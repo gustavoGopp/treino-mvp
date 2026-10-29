@@ -1,6 +1,6 @@
 # Programa de treino — Fase 1
 
-Versão de 28/10/2026.
+Versão de 28/10/2026, com os ajustes do anexo de auditoria (docs/pesquisa/anexo-auditoria-programa-fase-1.md) aprovados em 29/10/2026.
 
 > Programa real, feito para um usuário específico (perfil em `privado/`). No produto, ele serve como **exemplo de saída esperada** do gerador e como fonte das regras (volume, reps, RIR, descanso, progressão) e das referências científicas.
 
@@ -52,7 +52,7 @@ A readaptação dura duas semanas. Na semana 3 o programa já roda completo, e a
 
 - **Cargas iniciais:** na semana 1, use cerca de 60% do que você fazia no auge. Exemplo: se o supino com halteres era 30 kg, comece com 18 kg para 10 repetições, sobrando 3–4. Se ficou fácil demais, suba na sessão seguinte, não na mesma.
 - **Dor muscular:** a primeira sessão de cada treino protege as seguintes (efeito da sessão repetida, *evidência robusta*). Dor leve no dia 2 é esperada. Se ela ainda estiver forte no dia do próximo treino do mesmo grupo, repita a semana 1 antes de avançar.
-- **Memória muscular:** depois de uma pausa, a massa perdida volta mais rápido do que demorou para ser construída (*evidência moderada*). As cargas devem subir rápido nas primeiras 4–6 semanas, e isso é normal.
+- **Memória muscular:** depois de uma pausa, a massa perdida costuma voltar mais rápido do que demorou para ser construída, mas a evidência em humanos é mista (*um estudo em cada caso; mecanismos em discussão*). As cargas devem subir rápido nas primeiras 4–6 semanas, e isso é normal.
 
 ## Aquecimento e séries efetivas
 
@@ -73,8 +73,8 @@ Peito e costas em largura, com 19 séries efetivas em cerca de 60 min.
 | # | Exercício | Músculo principal | Séries | Reps | RIR | Descanso | Técnica / observação | Progressão | Se estiver ocupado |
 |---|---|---|---|---|---|---|---|---|---|
 | 1 | Supino inclinado com halteres | Peitoral (parte superior) | 3 | 6–10 | 1–2 | 2–3 min | Banco a ~30°, escápulas juntas, cotovelos a ~45°. Desça até alongar o peito. | 10 reps nas 3 séries: sobe para o próximo halter. | Supino inclinado na polia, com o banco entre as torres e as polias embaixo |
-| 2 | Barra fixa (pegada neutra ou aberta) | Dorsal | 3 | 6–12 | 1–2 | 2–3 min | Comece com o braço estendido, leve o peito até a barra, sem balanço. Se fizer menos de 5, troque pela alternativa. | 12 reps nas 3 séries: halter preso entre os pés (2–3 kg) ou descida de 3 s. | Puxada ajoelhado na polia alta com barra reta |
-| 3 | Remada baixa com triângulo | Costas (dorsal e meio das costas) | 3 | 8–12 | 1–2 | 2 min | Polia no ponto mais baixo, sentado no banco. Puxe até o abdômen e segure 1 s. | 12 reps nas 3: +1 placa. | Remada unilateral com halter apoiada no banco |
+| 2 | Barra fixa (pegada pronada; neutra ou supinada são equivalentes para o dorsal) | Dorsal | 3 | 6–12 | 1–2 | 2–3 min | Comece com o braço estendido, leve o peito até a barra, sem balanço. Se fizer menos de 5, troque pela alternativa. | 12 reps nas 3 séries: halter preso entre os pés (2–3 kg) ou descida de 3 s. | Puxada ajoelhado na polia alta com barra reta |
+| 3 | Remada baixa com triângulo | Costas (dorsal e meio das costas) | 3 | 8–12 | 1–2 | 2 min | Polia na altura do umbigo (sentado no banco) ou 1–2 furos abaixo. Puxe até o abdômen e segure 1 s. | 12 reps nas 3: +1 placa. | Remada unilateral com halter apoiada no banco |
 | 4 | Crucifixo na polia (crossover) | Peitoral | 3 | 10–15 | 0–1 | 1,5 min | Polias na altura do ombro, um passo à frente, cotovelos levemente dobrados e fixos. Foco no alongamento. | 15 reps nas 3: +1 placa. | Crucifixo com halteres no banco plano |
 | 5 | Elevação lateral unilateral na polia | Deltoide lateral | 3 por lado | 10–15 | 0–1 | Sem pausa entre os lados; 1 min após os dois | Polia embaixo. Suba até a linha do ombro e desça em 2 s. | 15 reps nas 3: +1 placa. | Elevação lateral com halteres |
 | 6 | Face pull com corda | Deltoide posterior | 2 | 12–20 | 0–1 | 1 min | Polia na altura da testa. Puxe a corda até o rosto, abrindo as mãos, com os cotovelos altos. | 20 reps nas 2: +1 placa. | Crucifixo inverso com halteres, peito apoiado no banco inclinado |
@@ -124,11 +124,11 @@ Quadríceps, posteriores, braços e deltoide lateral, com 18 séries efetivas em
 | 5 | Tríceps francês na polia com corda | Tríceps (cabeça longa) | 3 | 10–15 | 0–1 | 1,5 min | De costas para a polia, braços acima da cabeça, alongando bem atrás da cabeça. | 15 reps nas 3: +1 placa. | Tríceps francês sentado com halter |
 | 6 | Elevação lateral unilateral na polia | Deltoide lateral | 3 por lado | 12–20 | 0–1 | Sem pausa entre os lados; 1 min após os dois | Igual ao Torso A. | 20 reps nas 3: +1 placa. | Elevação lateral com halteres |
 
-O tríceps francês entra porque treinar o tríceps com o braço acima da cabeça gerou ~40% mais crescimento que o tríceps na polia em um estudo de 2023 (*evidência moderada, um estudo*). Por isso o programa tem os dois.
+O tríceps francês entra porque treinar o tríceps com o braço acima da cabeça gerou ~40% mais crescimento que o tríceps na polia em um estudo de 2023 (*um estudo, em pessoas destreinadas*). Por isso o programa tem os dois.
 
 ## Progressão
 
-A regra é a dupla progressão: primeiro você sobe as repetições dentro da faixa. Quando chegar no topo da faixa em todas as séries, no RIR certo e com amplitude completa, sobe a carga na sessão seguinte.
+A regra é a dupla progressão: primeiro você sobe as repetições dentro da faixa. Quando chegar no topo da faixa em todas as séries, no RIR certo e com amplitude completa, por **2 sessões seguidas**, sobe a carga na sessão seguinte.
 
 1. **Halteres fixos (1–10 kg):** sobem de 1 em 1 kg, então a regra funciona sem ajuste.
 2. **Halteres montáveis:** a menor subida costuma ser ~2 kg por halter (por exemplo, trocar 2+2 kg por 3+3 kg). É normal cair para o início da faixa depois de subir.
