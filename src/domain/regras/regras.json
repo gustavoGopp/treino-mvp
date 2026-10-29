@@ -1,0 +1,1084 @@
+[
+  {
+    "id": "volume.semanal.dose-resposta",
+    "regra": "Séries semanais por músculo: 10 ou mais rendem mais hipertrofia que menos de 10, com retorno decrescente",
+    "valores": {
+      "iniciante": "≥ 10 > < 10",
+      "intermediario": "≥ 10 > < 10",
+      "avancado": "≥ 10 > < 10"
+    },
+    "selo": "robusta",
+    "fontes": [
+      "schoenfeld2017a",
+      "pelland2026",
+      "bazvalle2022",
+      "schoenfeld2019b"
+    ]
+  },
+  {
+    "id": "volume.semanal.minimo",
+    "regra": "Mínimo semanal da faixa do nível (músculos prioritários)",
+    "valores": {
+      "iniciante": "6",
+      "intermediario": "10",
+      "avancado": "12"
+    },
+    "selo": "consenso",
+    "fontes": [
+      "schoenfeld2017a",
+      "bazvalle2022",
+      "krieger2010"
+    ]
+  },
+  {
+    "id": "volume.semanal.alvo",
+    "regra": "Alvo semanal padrão dos músculos prioritários",
+    "valores": {
+      "iniciante": "8",
+      "intermediario": "12",
+      "avancado": "14"
+    },
+    "selo": "consenso",
+    "fontes": [
+      "schoenfeld2017a",
+      "pelland2026",
+      "bazvalle2022"
+    ]
+  },
+  {
+    "id": "volume.semanal.maximo",
+    "regra": "Máximo semanal padrão do nível",
+    "valores": {
+      "iniciante": "10",
+      "intermediario": "16",
+      "avancado": "20"
+    },
+    "selo": "consenso",
+    "fontes": [
+      "bazvalle2022",
+      "aube2022",
+      "rantila2026"
+    ]
+  },
+  {
+    "id": "volume.semanal.teto-padrao",
+    "regra": "Teto absoluto; o ganho extra acima de ~20 é pequeno e incerto",
+    "valores": {
+      "iniciante": "20; nunca acima",
+      "intermediario": "20; nunca acima",
+      "avancado": "20; acima só por opção explícita do usuário"
+    },
+    "selo": "moderada",
+    "fontes": [
+      "bazvalle2022",
+      "aube2022",
+      "rantila2026",
+      "schoenfeld2019b"
+    ]
+  },
+  {
+    "id": "volume.semanal.minimo-eficaz",
+    "regra": "Piso para músculos não prioritários (ganho menor, mas relevante)",
+    "valores": {
+      "iniciante": "4–6",
+      "intermediario": "4–6",
+      "avancado": "4–6"
+    },
+    "selo": "moderada",
+    "fontes": [
+      "schoenfeld2017a"
+    ]
+  },
+  {
+    "id": "volume.manutencao.piso",
+    "regra": "Piso do modo manutenção, com carga mantida; o app avisa que mantém e não maximiza",
+    "valores": {
+      "iniciante": "1–3 séries pesadas por músculo por semana",
+      "intermediario": "1–3 séries pesadas por músculo por semana",
+      "avancado": "1–3 séries pesadas por músculo por semana"
+    },
+    "selo": "moderada",
+    "fontes": [
+      "bickel2011",
+      "spiering2021"
+    ]
+  },
+  {
+    "id": "volume.sessao.teto",
+    "regra": "Teto de séries fracionadas por músculo numa sessão",
+    "valores": {
+      "iniciante": "≤ 10",
+      "intermediario": "≤ 10",
+      "avancado": "≤ 10"
+    },
+    "selo": "um estudo",
+    "fontes": [
+      "remmert2025"
+    ]
+  },
+  {
+    "id": "volume.serie-indireta.peso",
+    "regra": "Peso da série indireta (sinergista, ex.: remada para o bíceps) na contagem de volume; é uma aproximação estatística",
+    "valores": {
+      "iniciante": "0,5",
+      "intermediario": "0,5",
+      "avancado": "0,5"
+    },
+    "selo": "moderada",
+    "fontes": [
+      "pelland2026",
+      "remmert2025"
+    ]
+  },
+  {
+    "id": "volume.series-por-exercicio",
+    "regra": "Séries de trabalho por exercício; série única não é padrão",
+    "valores": {
+      "iniciante": "2–3",
+      "intermediario": "≥ 2",
+      "avancado": "≥ 2"
+    },
+    "selo": "moderada",
+    "fontes": [
+      "krieger2010"
+    ]
+  },
+  {
+    "id": "frequencia.efeito-hipertrofia",
+    "regra": "Com volume semanal igual, a frequência quase não muda a hipertrofia; ela serve para distribuir o volume",
+    "valores": {
+      "iniciante": "neutra",
+      "intermediario": "neutra",
+      "avancado": "neutra"
+    },
+    "selo": "robusta",
+    "fontes": [
+      "schoenfeld2019a",
+      "pelland2026",
+      "schoenfeld2016a"
+    ]
+  },
+  {
+    "id": "frequencia.musculo",
+    "regra": "Frequência por músculo: padrão 2x por semana; mínimo = ceil(volume semanal / 10); 1x aceitável se volume ≤ 10",
+    "valores": {
+      "iniciante": "2x; mínimo ceil(volume/10)",
+      "intermediario": "2x; mínimo ceil(volume/10)",
+      "avancado": "2x; mínimo ceil(volume/10)"
+    },
+    "selo": "consenso",
+    "fontes": [
+      "remmert2025",
+      "acsm2026"
+    ]
+  },
+  {
+    "id": "reps.equivalencia-cargas",
+    "regra": "Com a série perto da falha, cargas de ~6 a ~30 repetições dão hipertrofia parecida; prescrever em repetições + RIR, nunca em %1RM",
+    "valores": {
+      "iniciante": "6–30 reps",
+      "intermediario": "6–30 reps",
+      "avancado": "6–30 reps"
+    },
+    "selo": "robusta",
+    "fontes": [
+      "schoenfeld2017b",
+      "lopez2021",
+      "lasevicius2018"
+    ]
+  },
+  {
+    "id": "reps.faixa.por-tipo",
+    "regra": "Faixa de repetições padrão por tipo de exercício",
+    "valores": {
+      "iniciante": "composto 6–10 ou 8–12; isolador 10–20",
+      "intermediario": "composto 6–10 ou 8–12; isolador 10–20",
+      "avancado": "composto 6–10 ou 8–12; isolador 10–20"
+    },
+    "selo": "consenso",
+    "fontes": [
+      "schoenfeld2017b",
+      "lopez2021"
+    ]
+  },
+  {
+    "id": "reps.teto.carga-limitada",
+    "regra": "Teto de repetições quando a carga disponível é limitada; acima disso aplica `equipamento.escada-carga-leve`",
+    "valores": {
+      "iniciante": "até 30",
+      "intermediario": "até 30",
+      "avancado": "até 30"
+    },
+    "selo": "consenso",
+    "fontes": [
+      "lasevicius2018",
+      "schoenfeld2021"
+    ]
+  },
+  {
+    "id": "rir.falha.nao-necessaria",
+    "regra": "Ir à falha não é exigido; basta terminar perto dela",
+    "valores": {
+      "iniciante": "não exigir falha",
+      "intermediario": "não exigir falha",
+      "avancado": "não exigir falha"
+    },
+    "selo": "robusta",
+    "fontes": [
+      "refalo2023",
+      "grgic2022"
+    ]
+  },
+  {
+    "id": "rir.alvo",
+    "regra": "RIR alvo fora da readaptação e da fase de aprendizado",
+    "valores": {
+      "iniciante": "composto 2–3; isolador 1–2",
+      "intermediario": "composto 1–2; isolador 0–1",
+      "avancado": "composto 1–2; isolador 0–1"
+    },
+    "selo": "consenso",
+    "fontes": [
+      "robinson2024",
+      "refalo2023",
+      "grgic2022"
+    ]
+  },
+  {
+    "id": "rir.serie-efetiva",
+    "regra": "Série que conta como efetiva no volume",
+    "valores": {
+      "iniciante": "RIR ≤ 4; RIR ≥ 5 e aquecimento não contam",
+      "intermediario": "RIR ≤ 4; RIR ≥ 5 e aquecimento não contam",
+      "avancado": "RIR ≤ 4; RIR ≥ 5 e aquecimento não contam"
+    },
+    "selo": "consenso",
+    "fontes": [
+      "robinson2024"
+    ]
+  },
+  {
+    "id": "rir.carga-baixa",
+    "regra": "Séries com 15 repetições ou mais pedem RIR mais baixo, porque com carga baixa a proximidade da falha pesa mais",
+    "valores": {
+      "iniciante": "RIR 0–2",
+      "intermediario": "RIR 0–2",
+      "avancado": "RIR 0–2"
+    },
+    "selo": "um estudo",
+    "fontes": [
+      "lasevicius2022",
+      "robinson2024"
+    ]
+  },
+  {
+    "id": "rir.leitura",
+    "regra": "Leitura do RIR relatado: as pessoas subestimam ~1 repetição",
+    "valores": {
+      "iniciante": "RIR relatado ±1 (2 ≈ 2–3)",
+      "intermediario": "RIR relatado ±1 (2 ≈ 2–3)",
+      "avancado": "RIR relatado ±1 (2 ≈ 2–3)"
+    },
+    "selo": "moderada",
+    "fontes": [
+      "halperin2022"
+    ]
+  },
+  {
+    "id": "rir.calibracao",
+    "regra": "Calibração do RIR: última série de um isolador seguro até a falha técnica; nunca em agachamento, terra ou supino livre sem segurança",
+    "valores": {
+      "iniciante": "1x por semana a partir da semana 3",
+      "intermediario": "1x por semana a partir da semana 3",
+      "avancado": "1x por semana a partir da semana 3"
+    },
+    "selo": "consenso",
+    "fontes": [
+      "halperin2022",
+      "zourdos2016"
+    ]
+  },
+  {
+    "id": "descanso.piso",
+    "regra": "Descanso mínimo entre séries: vantagem pequena acima de 60 s, sem diferença apreciável acima de ~90 s",
+    "valores": {
+      "iniciante": "> 60 s",
+      "intermediario": "> 60 s",
+      "avancado": "> 60 s"
+    },
+    "selo": "moderada",
+    "fontes": [
+      "singer2024",
+      "grgic2017a"
+    ]
+  },
+  {
+    "id": "descanso.por-tipo",
+    "regra": "Descanso padrão por tipo de exercício",
+    "valores": {
+      "iniciante": "composto 90–120 s; isolador 60–90 s",
+      "intermediario": "composto 2–3 min (piso 90 s); isolador 60–90 s (piso 60 s)",
+      "avancado": "composto 2–3 min (piso 90 s); isolador 60–90 s (piso 60 s)"
+    },
+    "selo": "consenso",
+    "fontes": [
+      "singer2024",
+      "schoenfeld2016b"
+    ]
+  },
+  {
+    "id": "cadencia.repeticao",
+    "regra": "Duração da repetição: 0,5–8 s se equivalem; muito lenta parece pior",
+    "valores": {
+      "iniciante": "descida controlada ~2–3 s, sem embalo; nunca > 10 s por repetição",
+      "intermediario": "descida controlada ~2–3 s, sem embalo; nunca > 10 s por repetição",
+      "avancado": "descida controlada ~2–3 s, sem embalo; nunca > 10 s por repetição"
+    },
+    "selo": "moderada",
+    "fontes": [
+      "schoenfeld2015",
+      "lacerda2021"
+    ]
+  },
+  {
+    "id": "progressao.subir",
+    "regra": "Dupla progressão: quando subir a carga",
+    "valores": {
+      "iniciante": "todas as séries no topo da faixa com o RIR alvo em 2 sessões seguidas → menor incremento disponível e volta ao fundo da faixa",
+      "intermediario": "todas as séries no topo da faixa com o RIR alvo em 2 sessões seguidas → menor incremento disponível e volta ao fundo da faixa",
+      "avancado": "todas as séries no topo da faixa com o RIR alvo em 2 sessões seguidas → menor incremento disponível e volta ao fundo da faixa"
+    },
+    "selo": "consenso",
+    "fontes": [
+      "plotkin2022",
+      "nsca2008"
+    ]
+  },
+  {
+    "id": "progressao.manter",
+    "regra": "Dupla progressão: quando manter",
+    "valores": {
+      "iniciante": "repetições dentro da faixa → manter a carga e buscar +1 repetição",
+      "intermediario": "repetições dentro da faixa → manter a carga e buscar +1 repetição",
+      "avancado": "repetições dentro da faixa → manter a carga e buscar +1 repetição"
+    },
+    "selo": "consenso",
+    "fontes": [
+      "plotkin2022"
+    ]
+  },
+  {
+    "id": "progressao.reduzir",
+    "regra": "Dupla progressão: quando reduzir",
+    "valores": {
+      "iniciante": "abaixo do mínimo da faixa em 2 sessões seguidas, ou dor → −5 a −10%",
+      "intermediario": "abaixo do mínimo da faixa em 2 sessões seguidas, ou dor → −5 a −10%",
+      "avancado": "abaixo do mínimo da faixa em 2 sessões seguidas, ou dor → −5 a −10%"
+    },
+    "selo": "consenso",
+    "fontes": [
+      "plotkin2022",
+      "consenso-projeto"
+    ]
+  },
+  {
+    "id": "progressao.incremento.halteres",
+    "regra": "Incremento com halteres",
+    "valores": {
+      "iniciante": "fixos: próximo par do inventário; montáveis: menor combinação de anilhas disponível",
+      "intermediario": "fixos: próximo par do inventário; montáveis: menor combinação de anilhas disponível",
+      "avancado": "fixos: próximo par do inventário; montáveis: menor combinação de anilhas disponível"
+    },
+    "selo": "consenso",
+    "fontes": [
+      "nsca2008"
+    ]
+  },
+  {
+    "id": "progressao.incremento.polia",
+    "regra": "Incremento na polia (registrar o número da placa, não kg)",
+    "valores": {
+      "iniciante": "+1 placa",
+      "intermediario": "+1 placa",
+      "avancado": "+1 placa"
+    },
+    "selo": "consenso",
+    "fontes": [
+      "consenso-projeto"
+    ]
+  },
+  {
+    "id": "progressao.incremento.peso-corporal",
+    "regra": "Progressão sem kg confiável (peso do corpo e elástico)",
+    "valores": {
+      "iniciante": "repetições → descida de 3 s ou pausa → variação mais difícil → carga externa ou próxima tensão do elástico",
+      "intermediario": "repetições → descida de 3 s ou pausa → variação mais difícil → carga externa ou próxima tensão do elástico",
+      "avancado": "repetições → descida de 3 s ou pausa → variação mais difícil → carga externa ou próxima tensão do elástico"
+    },
+    "selo": "consenso",
+    "fontes": [
+      "lopes2019",
+      "consenso-projeto"
+    ]
+  },
+  {
+    "id": "progressao.salto-grande",
+    "regra": "Salto relativo de carga acima de ~10%",
+    "valores": {
+      "iniciante": "exigir 1–2 repetições acima do topo antes de subir; se depois de subir a 1ª série ficar abaixo do mínimo, voltar à carga anterior",
+      "intermediario": "exigir 1–2 repetições acima do topo antes de subir; se depois de subir a 1ª série ficar abaixo do mínimo, voltar à carga anterior",
+      "avancado": "exigir 1–2 repetições acima do topo antes de subir; se depois de subir a 1ª série ficar abaixo do mínimo, voltar à carga anterior"
+    },
+    "selo": "consenso",
+    "fontes": [
+      "plotkin2022",
+      "nsca2008"
+    ]
+  },
+  {
+    "id": "progressao.carga-leve",
+    "regra": "Carga leve demais",
+    "valores": {
+      "iniciante": "1ª série passa do topo por ≥ 2 repetições no RIR alvo → subir 2 incrementos",
+      "intermediario": "1ª série passa do topo por ≥ 2 repetições no RIR alvo → subir 2 incrementos",
+      "avancado": "1ª série passa do topo por ≥ 2 repetições no RIR alvo → subir 2 incrementos"
+    },
+    "selo": "consenso",
+    "fontes": [
+      "nsca2008",
+      "consenso-projeto"
+    ]
+  },
+  {
+    "id": "progressao.criterios-invalidos",
+    "regra": "O que nunca conta para progredir",
+    "valores": {
+      "iniciante": "repetições com amplitude encurtada ou embalo não contam; dor muscular tardia (DOMS) nunca é gatilho",
+      "intermediario": "repetições com amplitude encurtada ou embalo não contam; dor muscular tardia (DOMS) nunca é gatilho",
+      "avancado": "repetições com amplitude encurtada ou embalo não contam; dor muscular tardia (DOMS) nunca é gatilho"
+    },
+    "selo": "consenso",
+    "fontes": [
+      "damas2016",
+      "consenso-projeto"
+    ]
+  },
+  {
+    "id": "progressao.estagnacao",
+    "regra": "Estagnação = 3 sessões seguidas sem melhora de repetições nem de carga num exercício",
+    "valores": {
+      "iniciante": "escada: 1) faixa mais larga; 2) −10% e reconstruir; 3) semana leve se ≥ 2 exercícios estagnarem; 4) trocar por variação equivalente",
+      "intermediario": "escada: 1) faixa mais larga; 2) −10% e reconstruir; 3) semana leve se ≥ 2 exercícios estagnarem; 4) trocar por variação equivalente",
+      "avancado": "escada: 1) faixa mais larga; 2) −10% e reconstruir; 3) semana leve se ≥ 2 exercícios estagnarem; 4) trocar por variação equivalente"
+    },
+    "selo": "consenso",
+    "fontes": [
+      "rogerson2024",
+      "moesgaard2022"
+    ]
+  },
+  {
+    "id": "readaptacao.gatilho",
+    "regra": "Quando aplicar a readaptação após pausa sem treinar",
+    "valores": {
+      "iniciante": "< 2 semanas: retomar normal; 2 a < 3 semanas: 1ª sessão com RIR +1; ≥ 3 semanas: protocolo `readaptacao.semana1` a `semana3`",
+      "intermediario": "< 2 semanas: retomar normal; 2 a < 3 semanas: 1ª sessão com RIR +1; ≥ 3 semanas: protocolo `readaptacao.semana1` a `semana3`",
+      "avancado": "< 2 semanas: retomar normal; 2 a < 3 semanas: 1ª sessão com RIR +1; ≥ 3 semanas: protocolo `readaptacao.semana1` a `semana3`"
+    },
+    "selo": "consenso",
+    "fontes": [
+      "chen2012",
+      "ogasawara2013"
+    ]
+  },
+  {
+    "id": "readaptacao.semana1",
+    "regra": "Semana 1 após pausa ≥ 3 semanas",
+    "valores": {
+      "iniciante": "~50–60% das séries; RIR 3–4; carga 10–20% abaixo da última registrada",
+      "intermediario": "~50–60% das séries; RIR 3–4; carga 10–20% abaixo da última registrada",
+      "avancado": "~50–60% das séries; RIR 3–4; carga 10–20% abaixo da última registrada"
+    },
+    "selo": "consenso",
+    "fontes": [
+      "chen2012",
+      "damas2016"
+    ]
+  },
+  {
+    "id": "readaptacao.semana2",
+    "regra": "Semana 2 após pausa ≥ 3 semanas",
+    "valores": {
+      "iniciante": "~75% das séries; RIR 2–3",
+      "intermediario": "~75% das séries; RIR 2–3",
+      "avancado": "~75% das séries; RIR 2–3"
+    },
+    "selo": "consenso",
+    "fontes": [
+      "chen2012",
+      "consenso-projeto"
+    ]
+  },
+  {
+    "id": "readaptacao.semana3",
+    "regra": "Semana 3 após pausa ≥ 3 semanas",
+    "valores": {
+      "iniciante": "volume e RIR normais; dupla progressão normal",
+      "intermediario": "volume e RIR normais; dupla progressão normal",
+      "avancado": "volume e RIR normais; dupla progressão normal"
+    },
+    "selo": "consenso",
+    "fontes": [
+      "ogasawara2013",
+      "consenso-projeto"
+    ]
+  },
+  {
+    "id": "iniciante.fase-aprendizado",
+    "regra": "Fase de aprendizado do iniciante",
+    "valores": {
+      "iniciante": "2–3 semanas com RIR 3–4, volume no mínimo da faixa e foco técnico; carga sobe quando a técnica estiver estável",
+      "intermediario": "não se aplica (usa `readaptacao.*` se houver pausa)",
+      "avancado": "não se aplica (usa `readaptacao.*` se houver pausa)"
+    },
+    "selo": "consenso",
+    "fontes": [
+      "damas2016",
+      "chen2012"
+    ]
+  },
+  {
+    "id": "deload.semana-leve",
+    "regra": "Semana leve sugerida, manual e opcional (nunca automática no MVP)",
+    "valores": {
+      "iniciante": "mesma frequência, ~50% das séries, RIR 3–4, carga mantida ou −10%; sugerir se ≥ 2 exercícios estagnarem, se houver fadiga ou dor persistente, ou após 6–8 semanas sem pausa",
+      "intermediario": "mesma frequência, ~50% das séries, RIR 3–4, carga mantida ou −10%; sugerir se ≥ 2 exercícios estagnarem, se houver fadiga ou dor persistente, ou após 6–8 semanas sem pausa",
+      "avancado": "mesma frequência, ~50% das séries, RIR 3–4, carga mantida ou −10%; sugerir se ≥ 2 exercícios estagnarem, se houver fadiga ou dor persistente, ou após 6–8 semanas sem pausa"
+    },
+    "selo": "consenso",
+    "fontes": [
+      "bell2023",
+      "rogerson2024",
+      "coleman2024"
+    ]
+  },
+  {
+    "id": "selecao.equivalencia-equipamento",
+    "regra": "Máquina, peso livre, polia e halter, e unilateral ou bilateral, são substitutos equivalentes para hipertrofia se trabalham o mesmo músculo e permitem progredir",
+    "valores": {
+      "iniciante": "equivalentes",
+      "intermediario": "equivalentes",
+      "avancado": "equivalentes"
+    },
+    "selo": "moderada",
+    "fontes": [
+      "haugen2023",
+      "kassiano2025"
+    ]
+  },
+  {
+    "id": "selecao.amplitude",
+    "regra": "Amplitude completa e controlada, dentro da faixa sem dor; parcial na posição encurtada nunca como padrão",
+    "valores": {
+      "iniciante": "amplitude completa",
+      "intermediario": "amplitude completa",
+      "avancado": "amplitude completa"
+    },
+    "selo": "moderada",
+    "fontes": [
+      "pallares2021",
+      "kassiano2023a",
+      "wolf2023"
+    ]
+  },
+  {
+    "id": "selecao.comprimento-longo",
+    "regra": "Carga com o músculo alongado ganha bônus pequeno de desempate; nunca é critério eliminatório; EMG e \"estímulo/fadiga\" não pontuam",
+    "valores": {
+      "iniciante": "desempate",
+      "intermediario": "desempate",
+      "avancado": "desempate"
+    },
+    "selo": "moderada",
+    "fontes": [
+      "wolf2023",
+      "kassiano2023a",
+      "wolf2025"
+    ]
+  },
+  {
+    "id": "selecao.estabilidade",
+    "regra": "Exercícios estáveis e apoiados (máquina, banco, polia)",
+    "valores": {
+      "iniciante": "critério de pontuação (preferir)",
+      "intermediario": "desempate",
+      "avancado": "desempate"
+    },
+    "selo": "consenso",
+    "fontes": [
+      "haugen2023"
+    ]
+  },
+  {
+    "id": "selecao.variacao",
+    "regra": "Manter os exercícios no mesociclo (4–8 semanas); o 2º exercício do músculo é escolhido por complementaridade (outro comprimento ou região), nunca por sorteio",
+    "valores": {
+      "iniciante": "manter no bloco; complementar",
+      "intermediario": "manter no bloco; complementar",
+      "avancado": "manter no bloco; complementar"
+    },
+    "selo": "moderada",
+    "fontes": [
+      "kassiano2022",
+      "fonseca2014"
+    ]
+  },
+  {
+    "id": "selecao.complementos",
+    "regra": "2 exercícios complementares por semana para quadríceps, isquiotibiais, tríceps e peitoral, quando o equipamento permitir",
+    "valores": {
+      "iniciante": "2 por músculo listado",
+      "intermediario": "2 por músculo listado",
+      "avancado": "2 por músculo listado"
+    },
+    "selo": "moderada",
+    "fontes": [
+      "fonseca2014",
+      "maeo2021",
+      "maeo2023",
+      "chaves2020"
+    ]
+  },
+  {
+    "id": "selecao.peitoral-inclinado",
+    "regra": "Incluir uma variação inclinada para a porção superior do peitoral (razoável, não obrigatória)",
+    "valores": {
+      "iniciante": "se houver banco regulável",
+      "intermediario": "se houver banco regulável",
+      "avancado": "se houver banco regulável"
+    },
+    "selo": "um estudo",
+    "fontes": [
+      "chaves2020",
+      "rodriguezridao2020"
+    ]
+  },
+  {
+    "id": "selecao.triceps-acima-cabeca",
+    "regra": "Pelo menos 1 exercício de tríceps com o ombro flexionado (braço acima da cabeça) por semana",
+    "valores": {
+      "iniciante": "≥ 1",
+      "intermediario": "≥ 1",
+      "avancado": "≥ 1"
+    },
+    "selo": "um estudo",
+    "fontes": [
+      "maeo2023"
+    ]
+  },
+  {
+    "id": "selecao.flexora-sentada",
+    "regra": "Flexão de joelho sentada preferida à deitada, quando houver as duas",
+    "valores": {
+      "iniciante": "preferir sentada",
+      "intermediario": "preferir sentada",
+      "avancado": "preferir sentada"
+    },
+    "selo": "um estudo",
+    "fontes": [
+      "maeo2021"
+    ]
+  },
+  {
+    "id": "selecao.panturrilha-alongada",
+    "regra": "Panturrilha com ênfase no alongamento (calcanhar abaixo do apoio, pausa embaixo), de preferência em pé",
+    "valores": {
+      "iniciante": "ênfase no alongamento",
+      "intermediario": "ênfase no alongamento",
+      "avancado": "ênfase no alongamento"
+    },
+    "selo": "um estudo",
+    "fontes": [
+      "kassiano2023b"
+    ]
+  },
+  {
+    "id": "selecao.multi-mono",
+    "regra": "Base em multiarticulares; isoladores para braços, cabeças biarticulares, panturrilha e deltoide lateral; isoladores saem primeiro quando falta tempo",
+    "valores": {
+      "iniciante": "multi como base",
+      "intermediario": "multi como base",
+      "avancado": "multi como base"
+    },
+    "selo": "um estudo",
+    "fontes": [
+      "gentil2015",
+      "iversen2021"
+    ]
+  },
+  {
+    "id": "ordem.sessao",
+    "regra": "Ordenação determinística dos exercícios da sessão (a ordem não muda a hipertrofia)",
+    "valores": {
+      "iniciante": "prioridade do usuário → multiarticular → exigência técnica → carga absoluta → id estável",
+      "intermediario": "prioridade do usuário → multiarticular → exigência técnica → carga absoluta → id estável",
+      "avancado": "prioridade do usuário → multiarticular → exigência técnica → carga absoluta → id estável"
+    },
+    "selo": "consenso",
+    "fontes": [
+      "nunes2021",
+      "simao2012"
+    ]
+  },
+  {
+    "id": "equipamento.escada-carga-leve",
+    "regra": "Ordem fixa quando o halter ficou leve",
+    "valores": {
+      "iniciante": "1) repetições até ~30; 2) unilateral ou variação mais difícil; 3) excêntrica de 3–4 s (≤ 8 s por repetição); 4) pausa no alongamento ou 1,5 repetição; 5) sugerir comprar carga",
+      "intermediario": "1) repetições até ~30; 2) unilateral ou variação mais difícil; 3) excêntrica de 3–4 s (≤ 8 s por repetição); 4) pausa no alongamento ou 1,5 repetição; 5) sugerir comprar carga",
+      "avancado": "1) repetições até ~30; 2) unilateral ou variação mais difícil; 3) excêntrica de 3–4 s (≤ 8 s por repetição); 4) pausa no alongamento ou 1,5 repetição; 5) sugerir comprar carga"
+    },
+    "selo": "consenso",
+    "fontes": [
+      "schoenfeld2017b",
+      "schoenfeld2015",
+      "kassiano2025"
+    ]
+  },
+  {
+    "id": "equipamento.bfr",
+    "regra": "Restrição de fluxo sanguíneo (BFR): funciona, mas exige triagem, pressão individualizada e supervisão",
+    "valores": {
+      "iniciante": "nunca prescrever",
+      "intermediario": "nunca prescrever",
+      "avancado": "nunca prescrever"
+    },
+    "selo": "consenso",
+    "fontes": [
+      "lixandrao2018",
+      "minniti2020",
+      "patterson2019"
+    ]
+  },
+  {
+    "id": "equipamento.sem-puxada-vertical",
+    "regra": "Sem barra fixa nem polia alta",
+    "valores": {
+      "iniciante": "manter o volume de costas com remadas (invertida > unilateral com halter > puxada com elástico ancorado alto); pullover só como acessório; mostrar aviso de lacuna",
+      "intermediario": "manter o volume de costas com remadas (invertida > unilateral com halter > puxada com elástico ancorado alto); pullover só como acessório; mostrar aviso de lacuna",
+      "avancado": "manter o volume de costas com remadas (invertida > unilateral com halter > puxada com elástico ancorado alto); pullover só como acessório; mostrar aviso de lacuna"
+    },
+    "selo": "consenso",
+    "fontes": [
+      "fenwick2009"
+    ]
+  },
+  {
+    "id": "equipamento.flexao-por-supino",
+    "regra": "Sem banco ou supino: flexão de braço com escada de dificuldade até a série ficar perto da falha dentro da faixa",
+    "valores": {
+      "iniciante": "inclinada → chão → declinada → com elástico → déficit ou pausa",
+      "intermediario": "inclinada → chão → declinada → com elástico → déficit ou pausa",
+      "avancado": "inclinada → chão → declinada → com elástico → déficit ou pausa"
+    },
+    "selo": "um estudo",
+    "fontes": [
+      "kikuchi2017",
+      "calatayud2015"
+    ]
+  },
+  {
+    "id": "tempo.serie",
+    "regra": "Tempo estimado de uma série",
+    "valores": {
+      "iniciante": "repetições × 3 s + 5–10 s de preparo",
+      "intermediario": "repetições × 3 s + 5–10 s de preparo",
+      "avancado": "repetições × 3 s + 5–10 s de preparo"
+    },
+    "selo": "consenso",
+    "fontes": [
+      "schoenfeld2015"
+    ]
+  },
+  {
+    "id": "tempo.transicao",
+    "regra": "Transição entre exercícios (substitui o descanso; não há descanso depois da última série do último exercício)",
+    "valores": {
+      "iniciante": "60–120 s",
+      "intermediario": "60–120 s",
+      "avancado": "60–120 s"
+    },
+    "selo": "consenso",
+    "fontes": [
+      "consenso-projeto"
+    ]
+  },
+  {
+    "id": "tempo.aquecimento",
+    "regra": "Aquecimento específico antes de cada exercício principal (o geral é opcional)",
+    "valores": {
+      "iniciante": "1–2 séries leves, ~2–4 min",
+      "intermediario": "1–2 séries leves, ~2–4 min",
+      "avancado": "1–2 séries leves, ~2–4 min"
+    },
+    "selo": "consenso",
+    "fontes": [
+      "iversen2021"
+    ]
+  },
+  {
+    "id": "tempo.colchao",
+    "regra": "Margem para fila de equipamento",
+    "valores": {
+      "iniciante": "+10%",
+      "intermediario": "+10%",
+      "avancado": "+10%"
+    },
+    "selo": "consenso",
+    "fontes": [
+      "consenso-projeto"
+    ]
+  },
+  {
+    "id": "tempo.corte",
+    "regra": "Escada fixa quando a sessão não cabe no tempo",
+    "valores": {
+      "iniciante": "1) menos exercícios, priorizando multiarticulares; 2) só aquecimento específico; 3) supersérie entre músculos que não competem; 4) 1 drop set ou rest-pause na última série de isoladores; 5) por último, menos séries semanais, respeitando `volume.manutencao.piso`",
+      "intermediario": "1) menos exercícios, priorizando multiarticulares; 2) só aquecimento específico; 3) supersérie entre músculos que não competem; 4) 1 drop set ou rest-pause na última série de isoladores; 5) por último, menos séries semanais, respeitando `volume.manutencao.piso`",
+      "avancado": "1) menos exercícios, priorizando multiarticulares; 2) só aquecimento específico; 3) supersérie entre músculos que não competem; 4) 1 drop set ou rest-pause na última série de isoladores; 5) por último, menos séries semanais, respeitando `volume.manutencao.piso`"
+    },
+    "selo": "consenso",
+    "fontes": [
+      "iversen2021",
+      "zhang2025",
+      "sodal2023"
+    ]
+  },
+  {
+    "id": "tempo.superserie",
+    "regra": "Supersérie: pares agonista-antagonista ou músculos que não competem; ~15 s entre A e B e descanso só entre rodadas",
+    "valores": {
+      "iniciante": "nunca 2 multiarticulares pesados de pernas nem o mesmo músculo",
+      "intermediario": "nunca 2 multiarticulares pesados de pernas nem o mesmo músculo",
+      "avancado": "nunca 2 multiarticulares pesados de pernas nem o mesmo músculo"
+    },
+    "selo": "moderada",
+    "fontes": [
+      "zhang2025",
+      "robbins2010"
+    ]
+  },
+  {
+    "id": "tempo.drop-set",
+    "regra": "Drop set: 1 série + 2 quedas com ~10–15 s ≈ 2–3 séries; só onde a carga pode ser reduzida (o gerador checa o inventário), em máquina, polia ou halter",
+    "valores": {
+      "iniciante": "≤ 1 por exercício; nunca em multiarticular livre pesado",
+      "intermediario": "≤ 1 por exercício; nunca em multiarticular livre pesado",
+      "avancado": "≤ 1 por exercício; nunca em multiarticular livre pesado"
+    },
+    "selo": "robusta",
+    "fontes": [
+      "sodal2023",
+      "coleman2022",
+      "dropset2026"
+    ]
+  },
+  {
+    "id": "tempo.outras-tecnicas",
+    "regra": "Rest-pause permitido na última série de exercício estável; cluster sets e pré-exaustão não entram no modo curto (não economizam tempo ou não trazem ganho)",
+    "valores": {
+      "iniciante": "rest-pause sim; cluster e pré-exaustão não",
+      "intermediario": "rest-pause sim; cluster e pré-exaustão não",
+      "avancado": "rest-pause sim; cluster e pré-exaustão não"
+    },
+    "selo": "um estudo",
+    "fontes": [
+      "prestes2019",
+      "davies2021",
+      "trindade2019"
+    ]
+  },
+  {
+    "id": "seguranca.triagem",
+    "regra": "Triagem no estilo PAR-Q+, com gravidez e doença aguda como perguntas à parte",
+    "valores": {
+      "iniciante": "qualquer \"sim\" suspende a geração automática; recomenda médico ou profissional de Educação Física; segue só depois de a pessoa confirmar a liberação",
+      "intermediario": "qualquer \"sim\" suspende a geração automática; recomenda médico ou profissional de Educação Física; segue só depois de a pessoa confirmar a liberação",
+      "avancado": "qualquer \"sim\" suspende a geração automática; recomenda médico ou profissional de Educação Física; segue só depois de a pessoa confirmar a liberação"
+    },
+    "selo": "consenso",
+    "fontes": [
+      "warburton2011",
+      "riebe2015",
+      "schwartz2021"
+    ]
+  },
+  {
+    "id": "seguranca.triagem.osteoarticular",
+    "regra": "\"Sim\" isolado na pergunta sobre osso, articulação ou tecido mole",
+    "valores": {
+      "iniciante": "marca a região e exclui os exercícios que a carregam, em vez de bloquear tudo",
+      "intermediario": "marca a região e exclui os exercícios que a carregam, em vez de bloquear tudo",
+      "avancado": "marca a região e exclui os exercícios que a carregam, em vez de bloquear tudo"
+    },
+    "selo": "consenso",
+    "fontes": [
+      "warburton2011",
+      "consenso-projeto"
+    ]
+  },
+  {
+    "id": "seguranca.triagem.texto",
+    "regra": "Texto das perguntas da triagem",
+    "valores": {
+      "iniciante": "perguntas próprias no estilo do PAR-Q+, sem copiar o texto nem usar a marca, até confirmar a licença",
+      "intermediario": "perguntas próprias no estilo do PAR-Q+, sem copiar o texto nem usar a marca, até confirmar a licença",
+      "avancado": "perguntas próprias no estilo do PAR-Q+, sem copiar o texto nem usar a marca, até confirmar a licença"
+    },
+    "selo": "consenso",
+    "fontes": [
+      "parq2025"
+    ]
+  },
+  {
+    "id": "seguranca.alerta.cardiovascular",
+    "regra": "Dor, pressão ou aperto no peito (ou irradiado), falta de ar desproporcional, tontura ou quase desmaio, batimento muito irregular",
+    "valores": {
+      "iniciante": "encerra a sessão; orienta ligar para o SAMU 192 se o sintoma não passar ou for intenso; bloqueia novos treinos até a pessoa confirmar avaliação",
+      "intermediario": "encerra a sessão; orienta ligar para o SAMU 192 se o sintoma não passar ou for intenso; bloqueia novos treinos até a pessoa confirmar avaliação",
+      "avancado": "encerra a sessão; orienta ligar para o SAMU 192 se o sintoma não passar ou for intenso; bloqueia novos treinos até a pessoa confirmar avaliação"
+    },
+    "selo": "consenso",
+    "fontes": [
+      "aha-infarto",
+      "riebe2015"
+    ]
+  },
+  {
+    "id": "seguranca.alerta.musculoesqueletico",
+    "regra": "Dor articular aguda ou pontual, estalo com dor, formigamento, dormência ou dor irradiada, perda de força incomum; sinais de cauda equina (sela, urina, intestino, fraqueza nas pernas) pedem atendimento urgente",
+    "valores": {
+      "iniciante": "encerra o exercício; oferece alternativa; recomenda avaliação se persistir",
+      "intermediario": "encerra o exercício; oferece alternativa; recomenda avaliação se persistir",
+      "avancado": "encerra o exercício; oferece alternativa; recomenda avaliação se persistir"
+    },
+    "selo": "consenso",
+    "fontes": [
+      "aafp2015",
+      "verhagen2016",
+      "consenso-projeto"
+    ]
+  },
+  {
+    "id": "seguranca.dor.escala",
+    "regra": "Dor por série numa escala de 0 a 10 (pergunta opcional)",
+    "valores": {
+      "iniciante": "0–2: segue; 3–5: reduzir carga 10–20%, encurtar a amplitude ou desacelerar, trocar se não cair; > 5 ou aguda: encerra o exercício; piora na sessão seguinte ou dura > 1–2 semanas: recomendar avaliação",
+      "intermediario": "0–2: segue; 3–5: reduzir carga 10–20%, encurtar a amplitude ou desacelerar, trocar se não cair; > 5 ou aguda: encerra o exercício; piora na sessão seguinte ou dura > 1–2 semanas: recomendar avaliação",
+      "avancado": "0–2: segue; 3–5: reduzir carga 10–20%, encurtar a amplitude ou desacelerar, trocar se não cair; > 5 ou aguda: encerra o exercício; piora na sessão seguinte ou dura > 1–2 semanas: recomendar avaliação"
+    },
+    "selo": "consenso",
+    "fontes": [
+      "smith2017",
+      "silbernagel2007"
+    ]
+  },
+  {
+    "id": "seguranca.sem-diagnostico",
+    "regra": "O app não diagnostica e se posiciona como ferramenta de autogestão",
+    "valores": {
+      "iniciante": "nunca nomeia lesão, promete cura ou diz \"pode treinar com dor 5/10\"; DOMS × lesão aparece como heurística; recomenda profissional com CREF",
+      "intermediario": "nunca nomeia lesão, promete cura ou diz \"pode treinar com dor 5/10\"; DOMS × lesão aparece como heurística; recomenda profissional com CREF",
+      "avancado": "nunca nomeia lesão, promete cura ou diz \"pode treinar com dor 5/10\"; DOMS × lesão aparece como heurística; recomenda profissional com CREF"
+    },
+    "selo": "consenso",
+    "fontes": [
+      "doctify",
+      "confef488"
+    ]
+  },
+  {
+    "id": "seguranca.estalo-sem-dor",
+    "regra": "Estalo no ombro sem dor",
+    "valores": {
+      "iniciante": "não gera restrição; com dor, instabilidade ou perda de força aplica `seguranca.alerta.musculoesqueletico`",
+      "intermediario": "não gera restrição; com dor, instabilidade ou perda de força aplica `seguranca.alerta.musculoesqueletico`",
+      "avancado": "não gera restrição; com dor, instabilidade ou perda de força aplica `seguranca.alerta.musculoesqueletico`"
+    },
+    "selo": "consenso",
+    "fontes": [
+      "ijspt2023"
+    ]
+  },
+  {
+    "id": "nivel.classificacao",
+    "regra": "Classificação de nível no onboarding; na dúvida, classificar para baixo",
+    "valores": {
+      "iniciante": "< ~6 meses de treino contínuo, ou > ~6 meses parado, ou sem confiança na técnica básica",
+      "intermediario": "~6–24 meses de treino contínuo com técnica estável",
+      "avancado": "> ~2 anos de treino contínuo com progresso lento"
+    },
+    "selo": "consenso",
+    "fontes": [
+      "santosjunior2021",
+      "acsm2009"
+    ]
+  },
+  {
+    "id": "tecnica.remada-baixa.polia",
+    "regra": "Remada baixa sentada no banco reto, com triângulo e polia ajustável",
+    "valores": {
+      "iniciante": "polia na altura do umbigo da pessoa sentada ou 1–2 furos abaixo; cabo horizontal ou levemente ascendente; mãos terminam no abdômen; cotovelos rentes; coluna neutra",
+      "intermediario": "polia na altura do umbigo da pessoa sentada ou 1–2 furos abaixo; cabo horizontal ou levemente ascendente; mãos terminam no abdômen; cotovelos rentes; coluna neutra",
+      "avancado": "polia na altura do umbigo da pessoa sentada ou 1–2 furos abaixo; cabo horizontal ou levemente ascendente; mãos terminam no abdômen; cotovelos rentes; coluna neutra"
+    },
+    "selo": "consenso",
+    "fontes": [
+      "fenwick2009",
+      "lehman2004"
+    ]
+  },
+  {
+    "id": "tecnica.barra-fixa.pegada",
+    "regra": "Pegada da barra fixa: a pegada muda pouco a ativação do latíssimo; não dizer que a pegada aberta \"alarga as costas\"",
+    "valores": {
+      "iniciante": "pronada a ~1–1,5× a largura dos ombros; neutra e supinada como alternativas equivalentes (a supinada costuma render mais repetições)",
+      "intermediario": "pronada a ~1–1,5× a largura dos ombros; neutra e supinada como alternativas equivalentes",
+      "avancado": "pronada a ~1–1,5× a largura dos ombros; neutra e supinada como alternativas equivalentes"
+    },
+    "selo": "moderada",
+    "fontes": [
+      "youdas2010",
+      "dickie2017",
+      "lusk2010",
+      "andersen2014"
+    ]
+  },
+  {
+    "id": "tecnica.supino-inclinado.angulo",
+    "regra": "Ângulo do banco no supino inclinado",
+    "valores": {
+      "iniciante": "~30° (aceitável 15–45°; encaixe mais próximo de 30°); evitar > 45°",
+      "intermediario": "~30° (aceitável 15–45°; encaixe mais próximo de 30°); evitar > 45°",
+      "avancado": "~30° (aceitável 15–45°; encaixe mais próximo de 30°); evitar > 45°"
+    },
+    "selo": "um estudo",
+    "fontes": [
+      "rodriguezridao2020",
+      "chaves2020"
+    ]
+  },
+  {
+    "id": "tecnica.supino-halteres.cotovelos",
+    "regra": "Cotovelos no supino com halteres; não há prova de que um ângulo previna lesão",
+    "valores": {
+      "iniciante": "~30–60° do tronco (\"seta\", não \"T\"); antebraços perto da vertical; escápulas retraídas e deprimidas",
+      "intermediario": "~30–60° do tronco (\"seta\", não \"T\"); antebraços perto da vertical; escápulas retraídas e deprimidas",
+      "avancado": "~30–60° do tronco (\"seta\", não \"T\"); antebraços perto da vertical; escápulas retraídas e deprimidas"
+    },
+    "selo": "consenso",
+    "fontes": [
+      "noteboom2024"
+    ]
+  }
+]
