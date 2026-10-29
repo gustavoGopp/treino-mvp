@@ -24,5 +24,9 @@ export default defineConfig({
   ],
   test: {
     include: ['tests/unit/**/*.test.ts', 'tests/repo/**/*.test.ts'],
+    coverage: {
+      include: ['src/domain/**'],
+      thresholds: { lines: 90, statements: 90, functions: 90, branches: 90 },
+    },
   },
 });
