@@ -11,5 +11,5 @@
     "noEmit": true,
     "types": ["node"]
   },
-  "include": ["vite.config.ts", "playwright.config.ts", "tests/e2e", "tests/repo"]
+  "include": ["vite.config.ts", "playwright.config.ts", "tests/e2e", "tests/repo", "tests/motor"]
 }
