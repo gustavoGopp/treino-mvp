@@ -196,3 +196,12 @@ footer a{color:var(--accent)}
 .muted{color:var(--muted);font-size:.875rem}
 .brand a{color:inherit;text-decoration:none}
 .cta{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:0 18px;border-radius:12px;background:var(--accent);color:var(--accent-ink);font-weight:600;text-decoration:none;align-self:flex-start}
+/* Inspeção do gerador (só desenvolvimento) */
+.dev .box h2{color:var(--ink)}
+.porques{margin:0;padding-left:18px;display:flex;flex-direction:column;gap:4px;font-size:14px}
+.selo{display:inline-block;font-size:11.5px;color:var(--muted);border:1px solid var(--line);border-radius:6px;padding:0 5px;margin-left:4px}
+.selo code{font-size:11px}
+.exdev{border-top:1px solid var(--line);padding:8px 0}
+.exdev summary{cursor:pointer;font-size:14.5px}
+.vol{width:100%;border-collapse:collapse;font-size:14px;font-variant-numeric:tabular-nums}
+.vol th,.vol td{text-align:left;padding:4px 6px;border-bottom:1px solid var(--line)}
