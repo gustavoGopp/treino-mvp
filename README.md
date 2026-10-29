@@ -6,6 +6,8 @@ Treino de hipertrofia baseado em evidência, montado **só com o equipamento que
 2. O app monta o programa com regras determinísticas e fontes científicas, explicando o porquê de cada escolha.
 3. Durante o treino, o app mostra o guia animado de cada exercício, o temporizador de descanso e o registro com sugestão de progressão.
 
+**Demo:** https://treino-mvp-sigma.vercel.app
+
 **Status:** em desenvolvimento (M0, fundação). O plano está em [`docs/PLANO-MVP.md`](docs/PLANO-MVP.md) e o diário em [`docs/devlog.md`](docs/devlog.md).
 
 O app não substitui avaliação médica nem profissional de educação física.

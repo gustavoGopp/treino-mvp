@@ -18,6 +18,10 @@ Diário do desenvolvimento em público. Uma entrada por marco.
 - **Sem login no MVP.** Os dados ficam no aparelho (LGPD: dado de saúde é sensível), com exportação em JSON.
 - **Etapa de pesquisa antes das regras (M0-R).** Antes de codar o gerador, cada regra de treino vai ser levantada com fonte e nível de evidência.
 
+**No ar**
+- Produção: https://treino-mvp-sigma.vercel.app (deploy automático a cada push na `main`, com pré-visualização em cada PR).
+- CI verde na primeira rodada: https://github.com/gustavoGopp/treino-mvp/actions/runs/40935289634
+
 **Imagens:** `img/m0-inicio.png` (o app vazio) e `img/m0-guia-original.png` (o guia que vai ser migrado).
 
 **Rascunho de post para o LinkedIn**
