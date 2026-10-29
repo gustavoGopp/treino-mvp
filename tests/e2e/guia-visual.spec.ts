@@ -60,6 +60,11 @@ for (const id of ids) {
           [modo, vista, t] as const,
         );
         await page.goto(`/guia/${id}?modo=${modo}&vista=${vista}&t=${t}&erro=0&pausado=1`);
+        // Primeiro o desenho em si: o SVG do app tem que ser idêntico, caractere por caractere, ao do original.
+        const svgOriginal = () => ref.locator('#svg').innerHTML();
+        await expect.poll(async () => (await page.locator('.stage svg').innerHTML()) === (await svgOriginal()), {
+          message: `${id} ${modo} ${vista} t=${t}: SVG diferente do original`,
+        }).toBe(true);
         const [esperado, obtido] = await Promise.all([palcoEstavel(ref), palcoEstavel(page)]);
         expect(obtido.equals(esperado), `${id} ${modo} ${vista} t=${t}`).toBe(true);
       }
