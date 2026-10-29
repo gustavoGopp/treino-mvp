@@ -1,0 +1,92 @@
+{
+  "id": "supino-inclinado",
+  "name": "Supino inclinado com halteres",
+  "short": "Supino inclinado",
+  "target": "Peitoral maior, parte de cima (porção clavicular)",
+  "rx": "3 × 6–10 · RIR 1–2 · descanso 2–3 min",
+  "sets": 3,
+  "rest": {
+    "opts": [
+      120,
+      150,
+      180
+    ],
+    "def": 150
+  },
+  "feel": "Parte de cima do peito, perto da clavícula. Também um pouco na frente do ombro e no tríceps.",
+  "feelNote": "Sentir mais o ombro nem sempre é erro: pode ser fadiga ou anatomia. Confira primeiro o encosto e a trajetória.",
+  "setupEq": [
+    "Encosto a cerca de 30° (um terço do caminho entre deitado e sentado). Entre 30° e 45° funciona; acima disso o ombro assume mais o trabalho.",
+    "Assento plano, quadril encostado no fundo do banco.",
+    "Aperte a rosca das manoplas antes de cada série."
+  ],
+  "setupBody": [
+    "Pés firmes no chão, um pouco mais abertos que o quadril.",
+    "Glúteo, costas e cabeça apoiados no banco a série toda.",
+    "Escápulas levemente juntas e para baixo, peito alto. A lombar mantém a curva natural, sem arco exagerado.",
+    "Palmas para os pés ou giradas uns 20–30°. Punho reto, com o halter em cima do antebraço.",
+    "Para chegar à posição, sente com os halteres nas coxas e deite levando-os junto ao peito."
+  ],
+  "exec": [
+    [
+      "hold",
+      "Topo",
+      "Halteres sobre os ombros, cotovelos quase estendidos sem travar."
+    ],
+    [
+      "ecc",
+      "Descida (excêntrica)",
+      "~2–3 s. Desça com o antebraço na vertical até os halteres chegarem ao lado do peito."
+    ],
+    [
+      "hold",
+      "Embaixo",
+      "Pausa curta, sem quicar, com o peito alongado."
+    ],
+    [
+      "conc",
+      "Subida (concêntrica)",
+      "~1–1,5 s. Empurre para cima e levemente em direção aos ombros, sem bater um halter no outro."
+    ]
+  ],
+  "range": [
+    "Topo: halteres sobre os ombros, cotovelos quase estendidos.",
+    "Embaixo: halteres na altura do peito, cotovelos um pouco abaixo da linha do tronco.",
+    "Não desça mais se o ombro precisar sair do banco, rolar para a frente ou doer na parte da frente. A profundidade certa depende do seu braço e da mobilidade do ombro."
+  ],
+  "breath": "Inspire no topo e durante a descida. Embaixo, mantenha o abdômen firme. Solte o ar na subida, depois do trecho mais difícil (o começo). Em séries pesadas dá para segurar o ar 1–2 s na transição de baixo, mas não a série inteira.",
+  "cues": [
+    "Peito alto, escápulas no banco.",
+    "Antebraço sempre na vertical.",
+    "Desce controlando, sobe para os ombros."
+  ],
+  "check": [
+    "Encosto a ~30°",
+    "Roscas apertadas",
+    "Pés firmes, glúteo no banco",
+    "Escápulas encaixadas",
+    "Carga para RIR 1–2"
+  ],
+  "vary": "O ângulo do cotovelo em relação ao tronco (algo entre ~30° e ~70°), a largura e a profundidade dependem do comprimento dos braços e da mobilidade do ombro. O que não muda: antebraço embaixo da carga, ombro estável e nenhuma dor articular.",
+  "extLabels": [
+    "embaixo",
+    "topo"
+  ],
+  "errors": [
+    {
+      "id": "cot",
+      "title": "Cotovelos abertos a ~90°",
+      "desc": "O braço fica perpendicular ao tronco e o halter desce na linha do pescoço. Aumenta a carga na frente do ombro sem ganho para o peito."
+    },
+    {
+      "id": "punho",
+      "title": "Punho dobrado para trás",
+      "desc": "O halter fica atrás da linha do antebraço e a carga vai para o punho."
+    },
+    {
+      "id": "quadril",
+      "title": "Quadril sai do banco",
+      "desc": "O tronco fica mais plano, a lombar arqueia e o exercício vira um supino reto."
+    }
+  ]
+}

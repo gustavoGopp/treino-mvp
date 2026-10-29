@@ -1,0 +1,94 @@
+{
+  "id": "barra-fixa",
+  "name": "Barra fixa (pegada pronada)",
+  "short": "Barra fixa",
+  "target": "Dorsal (latíssimo do dorso)",
+  "rx": "3 × 6–12 · RIR 1–2 · descanso 2–3 min",
+  "sets": 3,
+  "rest": {
+    "opts": [
+      120,
+      150,
+      180
+    ],
+    "def": 150
+  },
+  "feel": "Laterais das costas, abaixo das axilas, e entre as escápulas. Bíceps e antebraço trabalham como secundários.",
+  "feelNote": "É comum o antebraço ou o bíceps cansar antes das costas. Isso não quer dizer que a execução está errada.",
+  "setupEq": [
+    "Barra no topo da estação. Use o banco para alcançar sem pular.",
+    "Mãos na barra reta um pouco mais abertas que os ombros (cerca de 1,5× a largura dos ombros), palmas para a frente.",
+    "Se essa pegada incomodar o ombro, feche um pouco ou teste as alças anguladas das pontas."
+  ],
+  "setupBody": [
+    "Comece pendurado, com os braços estendidos.",
+    "Pernas juntas, joelhos levemente dobrados, pés um pouco à frente do corpo.",
+    "Abdômen firme e glúteo contraído para o corpo não balançar."
+  ],
+  "exec": [
+    [
+      "hold",
+      "Pendurado",
+      "Braços estendidos, corpo parado."
+    ],
+    [
+      "conc",
+      "Começo da subida",
+      "Primeiro abaixe as escápulas: os ombros se afastam das orelhas e o corpo sobe alguns centímetros."
+    ],
+    [
+      "conc",
+      "Subida (concêntrica)",
+      "~1–1,5 s. Puxe os cotovelos para baixo e para os lados das costelas, levando o peito em direção à barra."
+    ],
+    [
+      "hold",
+      "Topo",
+      "Queixo acima da barra, peito perto dela, tronco levemente inclinado para trás."
+    ],
+    [
+      "ecc",
+      "Descida (excêntrica)",
+      "~2–3 s. Desça controlando até os braços estenderem de novo."
+    ]
+  ],
+  "range": [
+    "Embaixo: cotovelos estendidos. Os ombros sobem naturalmente, mas sem despencar.",
+    "Em cima: peito perto da barra e queixo acima dela.",
+    "Não vale ganhar altura balançando, chutando ou esticando o pescoço para passar o queixo."
+  ],
+  "breath": "Inspire embaixo ou durante a descida. Solte o ar durante a subida. Mantenha o abdômen firme a repetição toda.",
+  "cues": [
+    "Ombros longe das orelhas.",
+    "Cotovelos para o bolso de trás.",
+    "Peito na barra."
+  ],
+  "check": [
+    "Pegada ~1,5× os ombros",
+    "Corpo parado, abdômen firme",
+    "Braço estendido no início",
+    "Menos de 5 reps? Use a alternativa"
+  ],
+  "vary": "A largura ideal da pegada muda de pessoa para pessoa. A ativação do dorsal é parecida entre pegadas largas, médias e neutras, então escolha a que deixa o ombro mais confortável.",
+  "extLabels": [
+    "embaixo",
+    "topo"
+  ],
+  "errors": [
+    {
+      "id": "balanco",
+      "title": "Balanço (kipping)",
+      "desc": "Chutar e balançar dá impulso e tira trabalho das costas."
+    },
+    {
+      "id": "meia",
+      "title": "Meia repetição embaixo",
+      "desc": "Parar com o cotovelo dobrado corta a parte em que o dorsal está mais alongado."
+    },
+    {
+      "id": "encolher",
+      "title": "Ombros encolhidos no topo",
+      "desc": "Os ombros sobem até as orelhas e o pescoço estica para passar o queixo. Termine com o peito, não com o queixo."
+    }
+  ]
+}

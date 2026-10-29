@@ -1,0 +1,89 @@
+{
+  "id": "remada-baixa",
+  "name": "Remada baixa com triângulo",
+  "short": "Remada baixa",
+  "target": "Meio das costas (romboides e trapézio médio) e dorsal",
+  "rx": "3 × 8–12 · RIR 1–2 · descanso 2 min",
+  "sets": 3,
+  "rest": {
+    "opts": [
+      120
+    ],
+    "def": 120
+  },
+  "feel": "Meio das costas, entre as escápulas, e laterais das costas. A parte de trás do ombro e o bíceps trabalham como secundários.",
+  "feelNote": "Se sentir mais a lombar do que as costas, o tronco provavelmente está balançando.",
+  "setupEq": [
+    "Ajuste sugerido: carro da polia na altura do umbigo com você sentado (o programa diz \"ponto mais baixo\"). Assim o cabo fica quase horizontal.",
+    "Triângulo no mosquetão. Banco plano de frente para a torre.",
+    "Distância: com os braços estendidos, a pilha ainda precisa ficar levantada."
+  ],
+  "setupBody": [
+    "Sente na ponta do banco, pés firmes no chão, joelhos dobrados.",
+    "Pegada neutra no triângulo (palmas uma para a outra).",
+    "Coluna neutra, peito alto."
+  ],
+  "exec": [
+    [
+      "hold",
+      "Alongado",
+      "Braços estendidos, tronco até ~10–15° inclinado à frente, escápulas abertas."
+    ],
+    [
+      "conc",
+      "Puxada (concêntrica)",
+      "~1 s. O tronco volta à vertical enquanto as escápulas se juntam e os cotovelos vão para trás, rentes ao corpo."
+    ],
+    [
+      "hold",
+      "Fim",
+      "Triângulo no abdômen, cotovelos atrás do tronco. Segure 1 s."
+    ],
+    [
+      "ecc",
+      "Volta (excêntrica)",
+      "~2 s. Estenda os braços e deixe as escápulas abrirem, sem arredondar a lombar."
+    ]
+  ],
+  "range": [
+    "Início: braços estendidos, costas alongadas e coluna ainda neutra.",
+    "Fim: triângulo encostando no abdômen, cotovelos passando a linha do tronco.",
+    "Não vá além do ponto em que a lombar começa a arredondar."
+  ],
+  "breath": "Solte o ar puxando. Inspire na volta.",
+  "cues": [
+    "Peito alto.",
+    "Cotovelos rentes, para trás.",
+    "Junta as escápulas no fim."
+  ],
+  "check": [
+    "Polia na altura do umbigo",
+    "Pilha levantada com o braço estendido",
+    "Pés firmes",
+    "Tronco quase vertical",
+    "Carga para RIR 1–2"
+  ],
+  "vary": "Inclinar o tronco entre 0° e ~15° no alongamento é questão de preferência. O essencial é o tronco não virar o motor do movimento.",
+  "note": "<b>Ajuste sugerido:</b> o programa diz polia no ponto mais baixo. Sentado no banco, isso faz o cabo puxar para baixo. Com o carro na altura do umbigo, a resistência fica na direção da puxada. O documento do programa ainda não foi alterado.",
+  "extLabels": [
+    "início",
+    "fim"
+  ],
+  "errors": [
+    {
+      "id": "balanco",
+      "title": "Balançar o tronco",
+      "desc": "O tronco vira alavanca: a lombar faz o trabalho e as costas descansam."
+    },
+    {
+      "id": "arred",
+      "title": "Arredondar a coluna no alongamento",
+      "desc": "Buscar mais alongamento arredondando a lombar coloca a carga na coluna."
+    },
+    {
+      "id": "encolher",
+      "title": "Encolher os ombros no fim",
+      "desc": "Os ombros sobem: o trapézio de cima assume e o meio das costas trabalha menos."
+    }
+  ]
+}

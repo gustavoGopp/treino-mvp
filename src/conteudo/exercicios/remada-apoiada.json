@@ -1,0 +1,88 @@
+{
+  "id": "remada-apoiada",
+  "name": "Remada com halteres, peito apoiado no banco inclinado",
+  "short": "Remada apoiada",
+  "target": "Meio das costas e dorsal",
+  "rx": "3 × 8–12 · RIR 1–2 · descanso 2 min",
+  "sets": 3,
+  "rest": {
+    "opts": [
+      120
+    ],
+    "def": 120
+  },
+  "feel": "Meio das costas, entre as escápulas, e laterais das costas.",
+  "feelNote": "O apoio no peito tira a lombar do exercício. Se sentir a lombar, o peito está saindo do banco.",
+  "setupEq": [
+    "Encosto do banco a 30–45°.",
+    "Dois halteres no chão, ao lado da ponta do banco."
+  ],
+  "setupBody": [
+    "Deite de bruços com o peito no encosto e o queixo um pouco além da ponta.",
+    "Pés firmes no chão atrás, joelhos levemente dobrados.",
+    "Pegada neutra (palmas uma para a outra), braços estendidos para baixo."
+  ],
+  "exec": [
+    [
+      "hold",
+      "Alongado",
+      "Braços estendidos, ombros soltos para baixo e para a frente."
+    ],
+    [
+      "conc",
+      "Puxada (concêntrica)",
+      "~1 s. Puxe os cotovelos para trás, em direção ao quadril, juntando as escápulas."
+    ],
+    [
+      "hold",
+      "Fim",
+      "Halteres ao lado do quadril, cotovelos atrás do tronco. Segure 1 s."
+    ],
+    [
+      "ecc",
+      "Volta (excêntrica)",
+      "~2 s, até os braços estenderem."
+    ]
+  ],
+  "range": [
+    "Início: braços estendidos, escápulas afastadas.",
+    "Fim: cotovelos passando a linha do tronco, escápulas juntas.",
+    "O peito não sai do banco em nenhum momento. Se precisar sair, a carga está alta.",
+    "Se o halter encostar no chão antes de o braço estender, suba o encosto para 45°."
+  ],
+  "breath": "Solte o ar puxando, inspire na volta. Com o peito apoiado respirar fica um pouco mais difícil, então mantenha o ritmo.",
+  "cues": [
+    "Peito colado no banco.",
+    "Cotovelos para o quadril.",
+    "Junta as escápulas."
+  ],
+  "check": [
+    "Banco a 30–45°",
+    "Peito apoiado",
+    "Pés firmes",
+    "Pegada neutra",
+    "Carga para RIR 1–2"
+  ],
+  "vary": "Cotovelos mais abertos (~45° do tronco) trabalham mais o meio das costas e a parte de trás do ombro; cotovelos mais fechados, mais o dorsal. Os dois servem.",
+  "extLabels": [
+    "início",
+    "fim"
+  ],
+  "errors": [
+    {
+      "id": "peito",
+      "title": "Peito sai do banco",
+      "desc": "Levantar o tronco transforma o exercício numa remada com impulso da lombar."
+    },
+    {
+      "id": "encolher",
+      "title": "Encolher os ombros",
+      "desc": "Os ombros sobem no fim e o trapézio de cima assume o trabalho do meio das costas."
+    },
+    {
+      "id": "curta",
+      "title": "Não estender os braços",
+      "desc": "Sem deixar os braços estenderem embaixo, você perde o alongamento das costas."
+    }
+  ]
+}

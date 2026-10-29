@@ -1,0 +1,81 @@
+{
+  "id": "abdominal-polia",
+  "name": "Abdominal na polia com corda",
+  "short": "Abdominal polia",
+  "target": "Reto abdominal",
+  "rx": "2 × 10–15 · RIR 1 · descanso 1 min",
+  "sets": 2,
+  "rest": {
+    "opts": [
+      60
+    ],
+    "def": 60
+  },
+  "feel": "Abdômen, principalmente a parte de cima e do meio.",
+  "feelNote": "Se sentir mais a frente do quadril ou a lombar, o quadril provavelmente está se mexendo.",
+  "setupEq": [
+    "Carro no ponto mais alto, com a corda.",
+    "Colchonete embaixo dos joelhos."
+  ],
+  "setupBody": [
+    "Ajoelhe de frente para a torre, a cerca de meio passo, joelhos na largura do quadril.",
+    "Segure as pontas da corda ao lado da cabeça, perto das têmporas.",
+    "Quadril um pouco atrás dos joelhos, tronco inclinado à frente com a coluna neutra."
+  ],
+  "exec": [
+    [
+      "hold",
+      "Início",
+      "Coluna neutra, abdômen alongado."
+    ],
+    [
+      "conc",
+      "Enrolar (concêntrica)",
+      "~1,5 s. Leve as costelas em direção ao quadril e os cotovelos em direção às coxas. O quadril fica parado."
+    ],
+    [
+      "hold",
+      "Fim",
+      "Coluna toda enrolada. Segure 1 s contraindo."
+    ],
+    [
+      "ecc",
+      "Desenrolar (excêntrica)",
+      "~2 s, até a coluna voltar ao neutro."
+    ]
+  ],
+  "range": [
+    "Fim: coluna totalmente enrolada.",
+    "Início: coluna neutra. Não deixe o cabo puxar até a lombar arquear."
+  ],
+  "breath": "Solte todo o ar enquanto enrola, porque isso ajuda a fechar as costelas. Inspire voltando.",
+  "cues": [
+    "Costelas no quadril.",
+    "Quadril parado.",
+    "Mãos grudadas na cabeça."
+  ],
+  "check": [
+    "Polia no alto",
+    "Colchonete nos joelhos",
+    "Mãos na cabeça",
+    "Quadril parado",
+    "Soltar o ar enrolando"
+  ],
+  "vary": "O quanto o quadril fica para trás e a inclinação inicial do tronco variam com o seu tamanho e a distância da torre. O que importa é o movimento sair da coluna, não do quadril.",
+  "extLabels": [
+    "início",
+    "fim"
+  ],
+  "errors": [
+    {
+      "id": "quadril",
+      "title": "Mexer o quadril",
+      "desc": "Sentar para trás vira flexão de quadril: o abdômen quase não encurta."
+    },
+    {
+      "id": "bracos",
+      "title": "Puxar com os braços",
+      "desc": "Os braços puxam a corda para baixo e tiram a carga do abdômen."
+    }
+  ]
+}

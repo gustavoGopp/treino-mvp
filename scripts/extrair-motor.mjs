@@ -2,12 +2,14 @@
 // Port mecânico: o código é copiado como está. Só muda o necessário para virar módulo:
 //  - as variáveis globais de render (PJ, VIEW, KS, MEAS, prims, IKFAIL) viram campos do objeto CTX (contexto.ts);
 //  - cada declaração de topo ganha `export`, e cada módulo importa o que usa dos outros;
-//  - cada EX.push vira um arquivo em exercicios/, na mesma ordem.
+//  - cada EX.push vira um arquivo em exercicios/, na mesma ordem, sem os campos de texto
+//    (que vão para src/conteudo/ via scripts/extrair-conteudo.mjs).
 // Uso: node scripts/extrair-motor.mjs   (sobrescreve src/engine/; o teste de equivalência confere o resultado)
 import { mkdirSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
 import { createRequire } from 'node:module';
 import { dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { CAMPOS_TEXTO, CAMPOS_TEXTO_ERRO } from './campos-texto.mjs';
 
 const require = createRequire(import.meta.url);
 const ts = require('typescript');
@@ -90,6 +92,23 @@ function exportar(src) {
 const exSf = parse(secoes.exercicios);
 const compartilhado = [];
 const exercicios = []; // {id, codigo, base?}
+// Reescreve um literal de exercício sem os campos de texto (inclusive título e descrição dos erros).
+const nomeProp = (p) => p.name && (p.name.text ?? p.name.getText(exSf));
+function semTexto(obj, campos) {
+  const props = obj.properties.filter((p) => !campos.includes(nomeProp(p)));
+  const partes = props.map((p) => {
+    if (nomeProp(p) === 'errors' && ts.isPropertyAssignment(p) && ts.isArrayLiteralExpression(p.initializer)) {
+      const els = p.initializer.elements.map((e) => (ts.isObjectLiteralExpression(e) ? semTexto(e, CAMPOS_TEXTO_ERRO) : e.getText(exSf)));
+      return `\n  errors:[\n    ${els.join(',\n    ')}\n  ]`;
+    }
+    return p.getFullText(exSf).replace(/^\s*\n/, '\n');
+  });
+  return '{' + partes.join(',') + (partes.length && partes[0].startsWith('\n') ? '\n}' : '}');
+}
+const semTextoArg = (arg) =>
+  ts.isObjectLiteralExpression(arg)
+    ? semTexto(arg, CAMPOS_TEXTO)
+    : `Object.assign({},src,${semTexto(arg.arguments[2], CAMPOS_TEXTO)})`;
 const idDe = (obj) => {
   const p = obj.properties.find((q) => q.name && q.name.text === 'id');
   return p.initializer.text;
@@ -104,7 +123,7 @@ for (const st of exSf.statements) {
   if (ts.isExpressionStatement(st) && ts.isCallExpression(st.expression)) {
     const arg = st.expression.arguments[0];
     const id = idDe(arg);
-    exercicios.push({ id, codigo: `${comentarios(txt)}const ex = ${arg.getText(exSf)};\nexport default ex;\n` });
+    exercicios.push({ id, codigo: `${comentarios(txt)}const ex = ${semTextoArg(arg)};\nexport default ex;\n` });
     continue;
   }
   if (ts.isBlock(st)) {
@@ -113,7 +132,7 @@ for (const st of exSf.statements) {
     const base = decl.declarationList.declarations[0].initializer.arguments[0].body.right.text;
     const arg = push.expression.arguments[0];
     const id = ts.isObjectLiteralExpression(arg) ? idDe(arg) : idDe(arg.arguments[2]);
-    exercicios.push({ id, base, codigo: `const src = base;\nconst ex = ${arg.getText(exSf)};\nexport default ex;\n` });
+    exercicios.push({ id, base, codigo: `const src = base;\nconst ex = ${semTextoArg(arg)};\nexport default ex;\n` });
     continue;
   }
   throw new Error('instrução inesperada na seção de exercícios: ' + txt.slice(0, 80));

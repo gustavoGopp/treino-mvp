@@ -1,0 +1,87 @@
+{
+  "id": "rosca-inclinada",
+  "name": "Rosca inclinada com halteres",
+  "short": "Rosca inclinada",
+  "target": "Bíceps (com ênfase na posição alongada)",
+  "rx": "3 × 8–12 · RIR 0–1 · descanso 1,5 min",
+  "sets": 3,
+  "rest": {
+    "opts": [
+      90
+    ],
+    "def": 90
+  },
+  "feel": "Bíceps, com bastante alongamento embaixo.",
+  "feelNote": "Sentir puxar a frente do ombro na parte de baixo é comum. Dor na frente do ombro não é: suba o encosto para 60° ou troque pela rosca na polia.",
+  "setupEq": [
+    "Encosto a 45–60°; quanto mais deitado, mais o bíceps alonga.",
+    "Halteres fixos (1–10 kg) ou montados."
+  ],
+  "setupBody": [
+    "Sente com as costas e a cabeça apoiadas, pés firmes no chão.",
+    "Braços pendurados na vertical, atrás da linha do tronco.",
+    "Palmas para a frente, ombros encostados no banco."
+  ],
+  "exec": [
+    [
+      "hold",
+      "Embaixo",
+      "Braços estendidos, bíceps alongado."
+    ],
+    [
+      "conc",
+      "Subida (concêntrica)",
+      "~1 s. Dobre só o cotovelo; o braço continua na vertical."
+    ],
+    [
+      "hold",
+      "Topo",
+      "Halter perto do ombro, sem levar o cotovelo à frente."
+    ],
+    [
+      "ecc",
+      "Descida (excêntrica)",
+      "~2–3 s, até o braço estender de novo."
+    ]
+  ],
+  "range": [
+    "Embaixo: braço quase estendido, sem relaxar o ombro para a frente.",
+    "Em cima: até onde o cotovelo consegue ir sem sair da vertical.",
+    "Nas últimas repetições, a parte de baixo vale mais que a de cima: não encurte embaixo."
+  ],
+  "breath": "Solte o ar subindo, inspire descendo.",
+  "cues": [
+    "Ombros no encosto.",
+    "Braço na vertical.",
+    "Estica embaixo."
+  ],
+  "check": [
+    "Encosto a 45–60°",
+    "Costas e cabeça apoiadas",
+    "Palmas para a frente",
+    "Braços atrás do tronco",
+    "Carga para RIR 0–1"
+  ],
+  "vary": "A inclinação do encosto depende do conforto do ombro. Num estudo com rosca Scott, treinar só a parte inicial do movimento (braço estendido) gerou mais hipertrofia na porção do bíceps perto do cotovelo (Pedrosa et al., 2023; um estudo, mulheres destreinadas). O banco inclinado alonga ainda mais o bíceps por causa do ombro; isso vem da biomecânica, sem estudo direto de hipertrofia.",
+  "extLabels": [
+    "embaixo",
+    "topo"
+  ],
+  "errors": [
+    {
+      "id": "cotovelo",
+      "title": "Cotovelos vão para a frente",
+      "desc": "O braço sai da vertical e a frente do ombro passa a ajudar. O bíceps perde a posição alongada."
+    },
+    {
+      "id": "ombro",
+      "title": "Ombros saem do encosto",
+      "desc": "O tronco e os ombros vão para a frente para ajudar a subir. A carga está pesada demais."
+    },
+    {
+      "id": "curta",
+      "title": "Não estender embaixo",
+      "desc": "Voltar só até a metade perde a parte alongada, que é o motivo de fazer a rosca inclinada."
+    }
+  ]
+}

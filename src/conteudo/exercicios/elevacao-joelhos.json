@@ -1,0 +1,81 @@
+{
+  "id": "elevacao-joelhos",
+  "name": "Elevação de joelhos na barra fixa",
+  "short": "Elevação de joelhos",
+  "target": "Abdômen (reto abdominal)",
+  "rx": "2 × 10–15 · RIR 1 · descanso 1 min",
+  "sets": 2,
+  "rest": {
+    "opts": [
+      60
+    ],
+    "def": 60
+  },
+  "feel": "Abdômen, principalmente a parte de baixo.",
+  "feelNote": "Sentir só a frente do quadril significa que a pelve não está enrolando.",
+  "setupEq": [
+    "Barra no topo da estação. Use o banco para alcançar."
+  ],
+  "setupBody": [
+    "Pendure com a pegada na largura dos ombros ou um pouco mais aberta.",
+    "Ombros ativos: afaste-os um pouco das orelhas.",
+    "Corpo parado, pernas juntas."
+  ],
+  "exec": [
+    [
+      "hold",
+      "Pendurado",
+      "Corpo parado."
+    ],
+    [
+      "conc",
+      "Subida (concêntrica)",
+      "~1 s. Suba os joelhos e, no fim, enrole a pelve para cima, como se levasse os joelhos ao peito."
+    ],
+    [
+      "hold",
+      "Topo",
+      "Joelhos acima do quadril, pelve enrolada."
+    ],
+    [
+      "ecc",
+      "Descida (excêntrica)",
+      "~2 s, sem deixar o corpo balançar."
+    ]
+  ],
+  "range": [
+    "Em cima: joelhos pelo menos na altura do quadril, com a pelve enrolada.",
+    "Embaixo: pernas estendidas, sem embalo.",
+    "Se a pegada cansar antes do abdômen, troque pelo abdominal na polia."
+  ],
+  "breath": "Solte o ar subindo, inspire descendo.",
+  "cues": [
+    "Enrola a pelve.",
+    "Corpo parado.",
+    "Desce devagar."
+  ],
+  "check": [
+    "Banco para alcançar",
+    "Ombros ativos",
+    "Pernas juntas",
+    "Sem balanço",
+    "Parar com RIR 1"
+  ],
+  "vary": "Esticar mais as pernas deixa o exercício mais difícil; é a progressão quando 15 repetições ficarem fáceis.",
+  "extLabels": [
+    "embaixo",
+    "topo"
+  ],
+  "errors": [
+    {
+      "id": "balanco",
+      "title": "Balançar o corpo",
+      "desc": "O balanço sobe as pernas por impulso e o abdômen quase não trabalha."
+    },
+    {
+      "id": "pelve",
+      "title": "Só levantar as pernas",
+      "desc": "Subir os joelhos sem enrolar a pelve trabalha a frente do quadril e quase não usa o abdômen."
+    }
+  ]
+}

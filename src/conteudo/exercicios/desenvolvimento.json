@@ -1,0 +1,87 @@
+{
+  "id": "desenvolvimento",
+  "name": "Desenvolvimento sentado com halteres",
+  "short": "Desenvolvimento",
+  "target": "Deltoide anterior e lateral (frente e lateral do ombro)",
+  "rx": "3 × 8–12 · RIR 1–2 · descanso 2 min",
+  "sets": 3,
+  "rest": {
+    "opts": [
+      120
+    ],
+    "def": 120
+  },
+  "feel": "Frente e lateral do ombro. O tríceps ajuda.",
+  "feelNote": "Se sentir a lombar, você está arqueando: encoste as costas e firme o abdômen.",
+  "setupEq": [
+    "Encosto a 75–80°, não a 90°.",
+    "Aperte a rosca das manoplas."
+  ],
+  "setupBody": [
+    "Sente com as costas e a cabeça apoiadas, pés firmes no chão.",
+    "Halteres na altura das orelhas, cotovelos um pouco à frente do corpo.",
+    "Antebraços na vertical, palmas para a frente ou levemente giradas."
+  ],
+  "exec": [
+    [
+      "hold",
+      "Embaixo",
+      "Halteres na altura das orelhas."
+    ],
+    [
+      "conc",
+      "Subida (concêntrica)",
+      "~1–1,5 s. Empurre para cima e levemente para dentro, sem bater os halteres."
+    ],
+    [
+      "hold",
+      "Topo",
+      "Cotovelos quase estendidos."
+    ],
+    [
+      "ecc",
+      "Descida (excêntrica)",
+      "~2–3 s, até a altura das orelhas."
+    ]
+  ],
+  "range": [
+    "Embaixo: halteres na altura das orelhas, ou um pouco abaixo se o ombro estiver confortável.",
+    "Em cima: braços quase estendidos sobre os ombros.",
+    "Não desça mais se a frente do ombro doer."
+  ],
+  "breath": "Inspire embaixo e firme o abdômen. Solte o ar subindo, depois do trecho mais difícil.",
+  "cues": [
+    "Costas no encosto.",
+    "Cotovelos um pouco à frente.",
+    "Sobe e fecha um pouco."
+  ],
+  "check": [
+    "Encosto a 75–80°",
+    "Roscas apertadas",
+    "Costas apoiadas",
+    "Cotovelos à frente",
+    "Carga para RIR 1–2"
+  ],
+  "vary": "O quanto os cotovelos ficam à frente (de ~20° a ~45°) depende de como o seu ombro se sente. Encosto a 75–80° em vez de 90° costuma deixar o movimento mais natural (prática de treinadores, sem estudo direto).",
+  "extLabels": [
+    "embaixo",
+    "topo"
+  ],
+  "errors": [
+    {
+      "id": "arco",
+      "title": "Arquear a lombar",
+      "desc": "Inclinar o tronco para trás vira um supino inclinado e põe carga na lombar."
+    },
+    {
+      "id": "cotovelo",
+      "title": "Cotovelos para trás",
+      "desc": "Abrir os cotovelos atrás da linha do corpo aumenta a carga na frente do ombro."
+    },
+    {
+      "id": "curta",
+      "title": "Descer pouco",
+      "desc": "Parar acima da cabeça corta metade do movimento."
+    }
+  ]
+}

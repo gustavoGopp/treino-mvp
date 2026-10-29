@@ -1,0 +1,88 @@
+{
+  "id": "puxada-unilateral",
+  "name": "Puxada unilateral ajoelhado na polia alta",
+  "short": "Puxada unilateral",
+  "target": "Dorsal (laterais das costas)",
+  "rx": "3 × 10–15 por lado · RIR 0–1 · 1,5 min após os dois lados",
+  "sets": 3,
+  "rest": {
+    "opts": [
+      90
+    ],
+    "def": 90,
+    "note": "Faça um lado e logo o outro, sem pausa. O descanso vale depois dos dois lados."
+  },
+  "feel": "Lateral das costas, abaixo da axila.",
+  "feelNote": "Se sentir mais o bíceps, pense em levar o cotovelo ao quadril, e não a mão.",
+  "setupEq": [
+    "Carro no ponto mais alto, com estribo.",
+    "Colchonete embaixo dos joelhos."
+  ],
+  "setupBody": [
+    "Ajoelhe de frente para a torre, a cerca de meio passo, joelhos na largura do quadril.",
+    "Segure o estribo com uma mão, braço estendido para cima e para a frente.",
+    "A outra mão apoia na coxa. Tronco reto ou levemente inclinado para trás."
+  ],
+  "exec": [
+    [
+      "hold",
+      "Alongado",
+      "Braço estendido; deixe o ombro subir e alongar a lateral das costas."
+    ],
+    [
+      "conc",
+      "Puxada (concêntrica)",
+      "~1 s. Primeiro desça o ombro, depois puxe o cotovelo para baixo, em direção ao quadril."
+    ],
+    [
+      "hold",
+      "Fim",
+      "Cotovelo ao lado das costelas. Segure um instante."
+    ],
+    [
+      "ecc",
+      "Volta (excêntrica)",
+      "~2 s, alongando bem em cima."
+    ]
+  ],
+  "range": [
+    "Início: braço estendido, com o ombro alongado para cima.",
+    "Fim: cotovelo ao lado das costelas, um pouco atrás do tronco.",
+    "Não gire o tronco para puxar mais."
+  ],
+  "breath": "Solte o ar puxando, inspire alongando.",
+  "cues": [
+    "Ombro desce primeiro.",
+    "Cotovelo no quadril.",
+    "Alonga em cima."
+  ],
+  "check": [
+    "Polia no alto",
+    "Colchonete",
+    "Mão livre na coxa",
+    "Tronco parado",
+    "Mesma carga nos dois lados"
+  ],
+  "vary": "O ângulo do braço em relação ao corpo pode mudar um pouco. Escolha o que deixa você sentir mais a lateral das costas sem desconforto no ombro.",
+  "extLabels": [
+    "alongado",
+    "fim"
+  ],
+  "errors": [
+    {
+      "id": "tronco",
+      "title": "Jogar o tronco para trás",
+      "desc": "Usar o peso do corpo para puxar tira trabalho do dorsal."
+    },
+    {
+      "id": "encolher",
+      "title": "Ombro encolhido",
+      "desc": "Puxar sem descer o ombro deixa o trapézio de cima e o bíceps fazerem o trabalho."
+    },
+    {
+      "id": "curta",
+      "title": "Não alongar em cima",
+      "desc": "Voltar só até a metade perde a parte alongada do dorsal."
+    }
+  ]
+}

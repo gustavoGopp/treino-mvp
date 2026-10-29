@@ -1,0 +1,87 @@
+{
+  "id": "flexao-bola",
+  "name": "Flexão de joelho na bola suíça",
+  "short": "Flexão na bola",
+  "target": "Posteriores da coxa",
+  "rx": "3 × 8–15 · RIR 1 · descanso 1,5 min",
+  "sets": 3,
+  "rest": {
+    "opts": [
+      90
+    ],
+    "def": 90
+  },
+  "feel": "Parte de trás da coxa. O glúteo trabalha para segurar o quadril alto.",
+  "feelNote": "Câimbra na parte de trás da coxa pode acontecer no começo: pare, alongue e retome com menos repetições.",
+  "setupEq": [
+    "Bola suíça cheia e firme, num piso que não escorregue.",
+    "Colchonete embaixo das costas, se quiser."
+  ],
+  "setupBody": [
+    "Deite de costas com os braços no chão, abertos ~30° do corpo, palmas para baixo.",
+    "Calcanhares em cima da bola, pernas estendidas.",
+    "Suba o quadril até ombros, quadril e calcanhares ficarem em linha."
+  ],
+  "exec": [
+    [
+      "hold",
+      "Pernas estendidas",
+      "Quadril alto, corpo em linha."
+    ],
+    [
+      "conc",
+      "Puxada (concêntrica)",
+      "~1 s. Puxe a bola com os calcanhares em direção ao glúteo, subindo ainda mais o quadril."
+    ],
+    [
+      "hold",
+      "Fim",
+      "Joelhos a ~90°, pés apoiados em cima da bola. Segure um instante."
+    ],
+    [
+      "ecc",
+      "Volta (excêntrica)",
+      "~2 s, estendendo as pernas sem deixar o quadril descer."
+    ]
+  ],
+  "range": [
+    "Fim: joelhos a ~90°, com ombros, quadril e joelhos em linha.",
+    "Início: pernas estendidas, com o quadril ainda alto.",
+    "O quadril não encosta no chão entre as repetições."
+  ],
+  "breath": "Solte o ar puxando, inspire na volta.",
+  "cues": [
+    "Quadril alto.",
+    "Calcanhar no glúteo.",
+    "Volta devagar."
+  ],
+  "check": [
+    "Bola firme",
+    "Braços no chão",
+    "Calcanhares na bola",
+    "Quadril alto antes de começar",
+    "Parar com RIR 1"
+  ],
+  "vary": "Braços mais abertos dão mais estabilidade; mais junto ao corpo, mais difícil. Quando 15 repetições ficarem fáceis, passe para uma perna só.",
+  "extLabels": [
+    "início",
+    "fim"
+  ],
+  "errors": [
+    {
+      "id": "quadril",
+      "title": "Quadril cai ao puxar",
+      "desc": "O quadril dobra e desce quando os joelhos dobram. A parte de trás da coxa trabalha menos e o movimento fica mais curto."
+    },
+    {
+      "id": "volta",
+      "title": "Quadril encosta no chão na volta",
+      "desc": "Descer o quadril entre as repetições tira a tensão. O quadril fica alto do início ao fim da série."
+    },
+    {
+      "id": "curta",
+      "title": "Puxar pouco",
+      "desc": "Parar com os joelhos longe de 90° corta metade do movimento."
+    }
+  ]
+}

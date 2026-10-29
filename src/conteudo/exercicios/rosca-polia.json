@@ -1,0 +1,85 @@
+{
+  "id": "rosca-polia",
+  "name": "Rosca direta na polia com barra reta",
+  "short": "Rosca polia",
+  "target": "Bíceps",
+  "rx": "3 × 8–12 · RIR 0–1 · descanso 1,5 min",
+  "sets": 3,
+  "rest": {
+    "opts": [
+      90,
+      60
+    ],
+    "def": 90,
+    "note": "Em bi-set com o tríceps (cada um numa torre): rosca, tríceps e 1 min de descanso."
+  },
+  "feel": "Frente do braço (bíceps). O antebraço ajuda.",
+  "feelNote": "Se sentir mais a frente do ombro, os cotovelos provavelmente estão indo para a frente.",
+  "setupEq": [
+    "Carro no ponto mais baixo, com a barra reta.",
+    "Fique de frente para a torre, a cerca de meio passo, com o cabo esticado e a barra na altura das coxas.",
+    "Dá para fazer em bi-set com o tríceps, um em cada torre."
+  ],
+  "setupBody": [
+    "Pés na largura do quadril, joelhos destravados.",
+    "Pegada por baixo (palmas para cima), na largura dos ombros.",
+    "Cotovelos encostados nas laterais do tronco, ombros para trás."
+  ],
+  "exec": [
+    [
+      "hold",
+      "Embaixo",
+      "Braços quase estendidos, cabo tenso."
+    ],
+    [
+      "conc",
+      "Subida (concêntrica)",
+      "~1 s. Dobre só o cotovelo, levando a barra até perto dos ombros."
+    ],
+    [
+      "hold",
+      "Topo",
+      "Segure um instante contraindo."
+    ],
+    [
+      "ecc",
+      "Descida (excêntrica)",
+      "~2–3 s, até os braços quase estenderem."
+    ]
+  ],
+  "range": [
+    "Embaixo: braço quase estendido, sem deixar o ombro ir para a frente.",
+    "Em cima: barra perto dos ombros, com os cotovelos ainda no lugar.",
+    "Se para subir mais o cotovelo precisa ir para a frente, você já chegou ao fim da amplitude."
+  ],
+  "breath": "Solte o ar subindo, inspire descendo.",
+  "cues": [
+    "Cotovelos colados.",
+    "Só o antebraço se mexe.",
+    "Desce controlando."
+  ],
+  "check": [
+    "Polia no ponto mais baixo",
+    "Pegada na largura dos ombros",
+    "Cotovelos colados no tronco",
+    "Tronco parado",
+    "Carga para RIR 0–1"
+  ],
+  "vary": "A largura da pegada pode variar um pouco para deixar punhos e cotovelos confortáveis.",
+  "extLabels": [
+    "embaixo",
+    "topo"
+  ],
+  "errors": [
+    {
+      "id": "cotovelo",
+      "title": "Cotovelos vão para a frente",
+      "desc": "Levar o cotovelo para a frente no fim tira a carga do bíceps e passa para o ombro."
+    },
+    {
+      "id": "balanco",
+      "title": "Balançar o tronco",
+      "desc": "Jogar o tronco para trás dá impulso e o bíceps trabalha menos."
+    }
+  ]
+}

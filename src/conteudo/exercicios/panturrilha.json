@@ -1,0 +1,83 @@
+{
+  "id": "panturrilha",
+  "name": "Panturrilha unilateral no step",
+  "short": "Panturrilha",
+  "target": "Panturrilha (gastrocnêmio e sóleo)",
+  "rx": "3 × 10–15 por perna · RIR 0–1 · descanso 1 min",
+  "sets": 3,
+  "rest": {
+    "opts": [
+      60
+    ],
+    "def": 60,
+    "note": "Alterne as pernas sem pausa; o descanso vale depois das duas."
+  },
+  "feel": "Panturrilha, da parte de trás do joelho até o calcanhar.",
+  "feelNote": "Queimação forte no fim da série é normal nesse músculo. Dor em pontada no tendão de Aquiles não é: pare.",
+  "setupEq": [
+    "Step firme no chão, perto da torre.",
+    "Halter na mão do mesmo lado da perna que trabalha; a outra mão segura a torre."
+  ],
+  "setupBody": [
+    "Ponta do pé (a “bola” do pé) na borda do step, calcanhar para fora.",
+    "A outra perna dobrada atrás, sem apoiar.",
+    "Joelho da perna de apoio quase estendido e parado."
+  ],
+  "exec": [
+    [
+      "hold",
+      "Alongado",
+      "Calcanhar abaixo da borda do step. Segure 2 s."
+    ],
+    [
+      "conc",
+      "Subida (concêntrica)",
+      "~1 s. Suba o máximo que der na ponta do pé, empurrando pelo dedão."
+    ],
+    [
+      "hold",
+      "Topo",
+      "Segure ~1 s contraindo."
+    ],
+    [
+      "ecc",
+      "Descida (excêntrica)",
+      "~2 s, até o calcanhar passar a borda."
+    ]
+  ],
+  "range": [
+    "Embaixo: calcanhar o mais baixo que der, com a panturrilha bem alongada.",
+    "Em cima: o mais alto possível na ponta do pé.",
+    "A pausa de 2 s embaixo tira o “rebote” do tendão e faz o músculo trabalhar mais."
+  ],
+  "breath": "Respire normalmente: solte o ar subindo, inspire descendo.",
+  "cues": [
+    "Pausa embaixo.",
+    "Sobe pelo dedão.",
+    "Joelho parado."
+  ],
+  "check": [
+    "Step firme",
+    "Ponta do pé na borda",
+    "Mão na torre",
+    "Joelho quase estendido",
+    "Pausa de 2 s embaixo"
+  ],
+  "vary": "O quanto o calcanhar desce depende da mobilidade do tornozelo. Com o joelho estendido trabalha mais o gastrocnêmio; dobrar o joelho de propósito passa o trabalho para o sóleo, que é outro exercício.",
+  "extLabels": [
+    "alongado",
+    "topo"
+  ],
+  "errors": [
+    {
+      "id": "curta",
+      "title": "Não descer o calcanhar",
+      "desc": "Sem passar a borda do step, você perde a parte alongada, que é a mais importante para a panturrilha."
+    },
+    {
+      "id": "joelho",
+      "title": "Dobrar e esticar o joelho",
+      "desc": "O joelho dá impulso com a coxa e tira carga da panturrilha."
+    }
+  ]
+}

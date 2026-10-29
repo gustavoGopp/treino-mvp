@@ -1,0 +1,88 @@
+{
+  "id": "face-pull",
+  "name": "Face pull com corda",
+  "short": "Face pull",
+  "target": "Deltoide posterior (parte de trás do ombro)",
+  "rx": "2 × 12–20 · RIR 0–1 · descanso 1 min",
+  "sets": 2,
+  "rest": {
+    "opts": [
+      60
+    ],
+    "def": 60,
+    "note": "Em bi-set com a elevação lateral: sem pausa entre os dois e 1 min ao fim de cada volta."
+  },
+  "feel": "Parte de trás do ombro e entre as escápulas.",
+  "feelNote": "Se sentir só o bíceps, os cotovelos provavelmente estão baixos.",
+  "setupEq": [
+    "Carro na altura da testa ou um pouco acima, com a corda.",
+    "Dê 1–2 passos para trás, até a pilha ficar levantada com os braços estendidos."
+  ],
+  "setupBody": [
+    "Pés na largura do quadril ou um à frente do outro.",
+    "Segure nas bolinhas da corda, palmas para baixo ou polegares apontando para você.",
+    "Tronco reto ou levemente inclinado para trás."
+  ],
+  "exec": [
+    [
+      "hold",
+      "Início",
+      "Braços estendidos à frente, na altura do rosto."
+    ],
+    [
+      "conc",
+      "Puxada (concêntrica)",
+      "~1 s. Puxe a corda em direção ao rosto abrindo as mãos, com os cotovelos altos."
+    ],
+    [
+      "hold",
+      "Fim",
+      "Mãos ao lado das orelhas, cotovelos na linha do corpo, antebraços apontando para cima. Segure 1 s."
+    ],
+    [
+      "ecc",
+      "Volta (excêntrica)",
+      "~2 s, até os braços estenderem."
+    ]
+  ],
+  "range": [
+    "Início: braços estendidos. O ombro pode ir um pouco à frente.",
+    "Fim: mãos ao lado da cabeça e cotovelos alinhados com o corpo.",
+    "Não leve os cotovelos mais para trás arqueando a lombar."
+  ],
+  "breath": "Solte o ar puxando, inspire voltando.",
+  "cues": [
+    "Cotovelos altos.",
+    "Abre a corda e mostra o bíceps.",
+    "Peito parado."
+  ],
+  "check": [
+    "Polia na altura da testa",
+    "Pilha levantada com o braço estendido",
+    "Pés firmes",
+    "Cotovelos altos",
+    "Carga leve para 12–20"
+  ],
+  "vary": "A altura da polia e o quanto as mãos abrem dependem da mobilidade de rotação do seu ombro.",
+  "extLabels": [
+    "início",
+    "fim"
+  ],
+  "errors": [
+    {
+      "id": "baixo",
+      "title": "Cotovelos baixos",
+      "desc": "Os cotovelos descem e o movimento vira remada: a parte de trás do ombro trabalha menos."
+    },
+    {
+      "id": "tronco",
+      "title": "Jogar o tronco para trás",
+      "desc": "O peso do corpo puxa a corda no lugar do ombro."
+    },
+    {
+      "id": "encolher",
+      "title": "Encolher os ombros",
+      "desc": "Os ombros sobem e a cabeça vai para a frente. Mantenha o pescoço longo."
+    }
+  ]
+}

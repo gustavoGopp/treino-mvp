@@ -1,0 +1,87 @@
+{
+  "id": "triceps-frances",
+  "name": "Tríceps francês na polia com corda",
+  "short": "Tríceps francês",
+  "target": "Tríceps, principalmente a cabeça longa",
+  "rx": "3 × 10–15 · RIR 0–1 · descanso 1,5 min",
+  "sets": 3,
+  "rest": {
+    "opts": [
+      90
+    ],
+    "def": 90
+  },
+  "feel": "Parte de trás do braço, com alongamento forte embaixo, atrás da cabeça.",
+  "feelNote": "Dor no cotovelo na parte alongada: reduza a carga e a amplitude e me avise. Desconforto no ombro: abra um pouco os cotovelos ou troque pelo tríceps francês sentado com halter.",
+  "setupEq": [
+    "Carro mais ou menos na altura do ombro, com a corda.",
+    "Pegue a corda, vire de costas para a torre e dê um passo à frente para o cabo ficar tenso."
+  ],
+  "setupBody": [
+    "Um pé à frente do outro, joelhos destravados.",
+    "Tronco inclinado à frente ~25–30°, abdômen firme.",
+    "Braços acima da cabeça, ao lado das orelhas, cotovelos apontando para a frente."
+  ],
+  "exec": [
+    [
+      "hold",
+      "Alongado",
+      "Mãos atrás da cabeça, cotovelos bem dobrados."
+    ],
+    [
+      "conc",
+      "Extensão (concêntrica)",
+      "~1 s. Estenda só o cotovelo, levando as mãos para a frente e para cima."
+    ],
+    [
+      "hold",
+      "Fim",
+      "Braços estendidos na linha do tronco."
+    ],
+    [
+      "ecc",
+      "Volta (excêntrica)",
+      "~2–3 s, deixando as mãos irem bem para trás da cabeça."
+    ]
+  ],
+  "range": [
+    "Embaixo: mãos atrás da cabeça, cotovelos bem dobrados, sem dor.",
+    "Em cima: cotovelos estendidos.",
+    "Os cotovelos ficam no mesmo lugar do início ao fim."
+  ],
+  "breath": "Solte o ar estendendo, inspire voltando.",
+  "cues": [
+    "Cotovelos parados.",
+    "Alonga atrás da cabeça.",
+    "Abdômen firme."
+  ],
+  "check": [
+    "Polia na altura do ombro",
+    "Pés um à frente do outro",
+    "Tronco inclinado",
+    "Cotovelos à frente",
+    "Carga menor que no tríceps corda"
+  ],
+  "vary": "Com o braço acima da cabeça, a cabeça longa do tríceps trabalha alongada. Num estudo de 12 semanas, a extensão com o braço acima da cabeça gerou cerca de 1,4 vez mais hipertrofia do tríceps que a extensão com o braço ao lado do corpo, mesmo com cargas 34–39% menores (Maeo et al., 2023; um estudo). A polia embaixo, em pé e reto, também serve.",
+  "extLabels": [
+    "alongado",
+    "fim"
+  ],
+  "errors": [
+    {
+      "id": "abre",
+      "title": "Cotovelos abrem para os lados",
+      "desc": "O ombro gira e a carga sai do tríceps. Mantenha os cotovelos apontando para a frente."
+    },
+    {
+      "id": "cotovelo",
+      "title": "Cotovelos sobem e descem",
+      "desc": "O ombro entra no movimento e o exercício vira um pullover. Só o antebraço se mexe."
+    },
+    {
+      "id": "curta",
+      "title": "Não alongar atrás da cabeça",
+      "desc": "Parar com o cotovelo a 90° perde a parte alongada, que é o motivo deste exercício."
+    }
+  ]
+}

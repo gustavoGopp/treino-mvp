@@ -1,0 +1,88 @@
+{
+  "id": "stiff",
+  "name": "Stiff com halteres",
+  "short": "Stiff",
+  "target": "Posteriores da coxa e glúteos",
+  "rx": "3 × 8–12 · RIR 2 · descanso 2 min",
+  "sets": 3,
+  "rest": {
+    "opts": [
+      120
+    ],
+    "def": 120
+  },
+  "feel": "Posterior da coxa, principalmente perto do glúteo, e os glúteos.",
+  "feelNote": "A lombar trabalha um pouco porque segura a postura, e isso é normal. Dor ou queimação forte na lombar não é: confira se a coluna está arredondando.",
+  "setupEq": [
+    "Dois halteres. Comece com os fixos e passe para os montáveis quando ficarem leves.",
+    "Roscas bem apertadas."
+  ],
+  "setupBody": [
+    "Pés na largura do quadril, apontando para a frente.",
+    "Halteres na frente das coxas, palmas para você.",
+    "Joelhos levemente dobrados. Esse ângulo fica quase igual a série toda.",
+    "Escápulas encaixadas, peito aberto, abdômen firme."
+  ],
+  "exec": [
+    [
+      "hold",
+      "Em pé",
+      "Quadril estendido, halteres na frente das coxas."
+    ],
+    [
+      "ecc",
+      "Descida (excêntrica)",
+      "~2–3 s. Leve o quadril para trás, como se fosse fechar uma porta com o bumbum. Os halteres descem rentes às coxas e às canelas."
+    ],
+    [
+      "hold",
+      "Embaixo",
+      "Pare quando o posterior da coxa estiver bem alongado e a coluna ainda neutra."
+    ],
+    [
+      "conc",
+      "Subida (concêntrica)",
+      "~1–1,5 s. Empurre o quadril para a frente até ficar em pé, sem jogar o tronco para trás no fim."
+    ]
+  ],
+  "range": [
+    "Embaixo: até sentir o posterior bem alongado. Para muita gente os halteres chegam perto do meio da canela, mas isso depende da flexibilidade.",
+    "Em cima: quadril estendido, sem arquear a lombar para trás.",
+    "Pare de descer quando a lombar começar a arredondar, mesmo que os halteres não tenham chegado longe."
+  ],
+  "breath": "Inspire e firme o abdômen em pé. Segure enquanto desce e solte o ar na subida, depois de passar os joelhos.",
+  "cues": [
+    "Quadril para trás.",
+    "Halteres rentes às pernas.",
+    "Coluna longa do quadril à cabeça."
+  ],
+  "check": [
+    "Pés na largura do quadril",
+    "Joelhos levemente dobrados",
+    "Halteres colados nas coxas",
+    "Abdômen firme",
+    "Carga para RIR 2"
+  ],
+  "vary": "O quanto você desce depende da flexibilidade do posterior. A referência é a coluna neutra e o alongamento, não a altura em que o halter chega.",
+  "extLabels": [
+    "em pé",
+    "embaixo"
+  ],
+  "errors": [
+    {
+      "id": "arred",
+      "title": "Coluna arredondada",
+      "desc": "Para descer mais, a lombar arredonda e a carga vai para a coluna."
+    },
+    {
+      "id": "agachar",
+      "title": "Agachar em vez de levar o quadril para trás",
+      "desc": "Os joelhos dobram e o quadril desce: vira um agachamento e o posterior quase não alonga."
+    },
+    {
+      "id": "longe",
+      "title": "Halteres longe das pernas",
+      "desc": "Com os halteres à frente, a alavanca na lombar aumenta muito."
+    }
+  ]
+}

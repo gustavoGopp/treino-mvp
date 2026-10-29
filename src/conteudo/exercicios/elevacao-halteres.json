@@ -1,0 +1,86 @@
+{
+  "id": "elevacao-halteres",
+  "name": "Elevação lateral com halteres",
+  "short": "Elevação lateral",
+  "target": "Deltoide lateral (lateral do ombro)",
+  "rx": "3 × 12–20 · RIR 0–1 · descanso 1 min",
+  "sets": 3,
+  "rest": {
+    "opts": [
+      60
+    ],
+    "def": 60
+  },
+  "feel": "Lateral do ombro.",
+  "feelNote": "Se sentir o pescoço ou o trapézio, o ombro provavelmente está subindo junto com o braço.",
+  "setupEq": [
+    "Halteres fixos (1–10 kg), que sobem de 1 em 1 kg."
+  ],
+  "setupBody": [
+    "Pés na largura do quadril, joelhos destravados.",
+    "Tronco levemente inclinado à frente.",
+    "Halteres na frente das coxas, palmas para dentro, cotovelos levemente dobrados."
+  ],
+  "exec": [
+    [
+      "hold",
+      "Embaixo",
+      "Halteres na frente das coxas."
+    ],
+    [
+      "conc",
+      "Subida (concêntrica)",
+      "~1–1,5 s. Leve os braços para fora e um pouco à frente do corpo, com o cotovelo um pouco acima da mão."
+    ],
+    [
+      "hold",
+      "Topo",
+      "Braços na linha dos ombros."
+    ],
+    [
+      "ecc",
+      "Descida (excêntrica)",
+      "~2 s, controlando."
+    ]
+  ],
+  "range": [
+    "Em cima: mais ou menos na linha do ombro.",
+    "Embaixo: halteres perto das coxas, sem relaxar os ombros.",
+    "Com um ombro saudável dá para subir um pouco acima, mas o trapézio assume mais. Como o seu ombro estala, fique na linha do ombro."
+  ],
+  "breath": "Solte o ar subindo e inspire descendo.",
+  "cues": [
+    "Leva a mão para longe, não para cima.",
+    "Cotovelo conduz.",
+    "Ombro longe da orelha."
+  ],
+  "check": [
+    "Halteres fixos",
+    "Tronco levemente à frente",
+    "Cotovelos levemente dobrados",
+    "Sem embalo",
+    "Ombro baixo"
+  ],
+  "vary": "O plano exato do braço (de ~20° a ~40° à frente do corpo) depende da postura da sua escápula. A mão pode ficar neutra ou com o polegar levemente para cima, o que alivia a parte de cima do ombro.",
+  "extLabels": [
+    "embaixo",
+    "topo"
+  ],
+  "errors": [
+    {
+      "id": "balanco",
+      "title": "Balançar o tronco",
+      "desc": "O tronco dá o impulso e o ombro trabalha menos. Se precisar balançar, o halter está pesado."
+    },
+    {
+      "id": "encolher",
+      "title": "Encolher os ombros",
+      "desc": "Os ombros sobem junto com os braços e o trapézio assume."
+    },
+    {
+      "id": "frontal",
+      "title": "Virar elevação frontal",
+      "desc": "Os braços vão para a frente e o exercício passa a trabalhar mais a frente do ombro."
+    }
+  ]
+}

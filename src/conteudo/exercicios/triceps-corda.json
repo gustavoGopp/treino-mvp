@@ -1,0 +1,84 @@
+{
+  "id": "triceps-corda",
+  "name": "Tríceps na polia com corda",
+  "short": "Tríceps corda",
+  "target": "Tríceps",
+  "rx": "3 × 10–15 · RIR 0–1 · descanso 1,5 min",
+  "sets": 3,
+  "rest": {
+    "opts": [
+      90,
+      60
+    ],
+    "def": 90,
+    "note": "Em bi-set com a rosca: rosca, tríceps e 1 min de descanso."
+  },
+  "feel": "Parte de trás do braço (tríceps), principalmente as cabeças lateral e medial.",
+  "feelNote": "O tríceps francês do Membros B complementa este, porque trabalha mais a cabeça longa.",
+  "setupEq": [
+    "Carro no ponto mais alto, com a corda.",
+    "Fique de frente para a torre, a cerca de meio passo."
+  ],
+  "setupBody": [
+    "Pés na largura do quadril ou um à frente do outro.",
+    "Tronco levemente inclinado à frente, abdômen firme.",
+    "Cotovelos colados nas laterais do tronco, mãos nas bolinhas da corda."
+  ],
+  "exec": [
+    [
+      "hold",
+      "Em cima",
+      "Mãos na altura do peito, cotovelos dobrados e colados."
+    ],
+    [
+      "conc",
+      "Extensão (concêntrica)",
+      "~1 s. Estenda o cotovelo e, no fim, abra a corda levando as mãos para os lados das coxas."
+    ],
+    [
+      "hold",
+      "Embaixo",
+      "Braço estendido. Segure um instante."
+    ],
+    [
+      "ecc",
+      "Volta (excêntrica)",
+      "~2 s, até as mãos voltarem à altura do peito."
+    ]
+  ],
+  "range": [
+    "Embaixo: cotovelo totalmente estendido, com a corda aberta.",
+    "Em cima: mãos perto do peito, sem os cotovelos saírem do lugar.",
+    "Se os cotovelos sobem para as mãos irem mais alto, você passou do ponto."
+  ],
+  "breath": "Solte o ar estendendo, inspire voltando.",
+  "cues": [
+    "Cotovelos colados.",
+    "Abre a corda no fim.",
+    "Tronco parado."
+  ],
+  "check": [
+    "Polia no alto",
+    "Corda no mosquetão",
+    "Cotovelos colados",
+    "Tronco levemente à frente",
+    "Carga para RIR 0–1"
+  ],
+  "vary": "A inclinação do tronco, de reto até ~20°, é preferência. O essencial é o cotovelo ficar parado.",
+  "extLabels": [
+    "em cima",
+    "embaixo"
+  ],
+  "errors": [
+    {
+      "id": "cotovelo",
+      "title": "Cotovelos sobem e saem do tronco",
+      "desc": "O ombro entra no movimento e o tríceps trabalha menos."
+    },
+    {
+      "id": "tronco",
+      "title": "Debruçar o tronco",
+      "desc": "Debruçar sobre a corda usa o peso do corpo para empurrar."
+    }
+  ]
+}
