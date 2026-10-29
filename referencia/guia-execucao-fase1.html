@@ -1,0 +1,1813 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Guia de execução Fase 1</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  /* Layout: coluna única para celular. Palco animado no topo, cues e checklist logo abaixo, detalhes recolhíveis. */
+  --bg:#eaeef1; --surface:#ffffff; --ink:#14202a; --muted:#566673; --line:#d3dbe1;
+  --accent:#0a7c72; --accent-soft:#d6eeeb; --accent-ink:#ffffff; --warn:#b4410f; --warn-soft:#fbe7dc;
+  --stage:#f7f9fa; --fig:#1a2833; --fig-far:#a2afb9; --torso:#8fa0ab; --joint:#0a7c72;
+  --eq:#cdd6dc; --eq-dark:#8796a1; --cable:#4e5a64; --spine:#d29400;
+  --mus-p:rgba(214,46,38,.62); --mus-s:rgba(236,150,28,.5);
+  --err:#d1342b; --ghost:#1c9a53; --path:#2457d6; --guide:#0a7c72;
+  --font-d:"Barlow Condensed","Arial Narrow",system-ui,sans-serif;
+  --font-b:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#0d1215; --surface:#151c21; --ink:#e5ecf0; --muted:#97a5b0; --line:#25313a;
+    --accent:#2bb3a6; --accent-soft:#11312d; --accent-ink:#06201d; --warn:#fb923c; --warn-soft:#3a2214;
+    --stage:#10171b; --fig:#e7eef2; --fig-far:#4f5e69; --torso:#5d6e7a; --joint:#2bb3a6;
+    --eq:#2a353e; --eq-dark:#53626d; --cable:#a3b3bf; --spine:#f0b429;
+    --mus-p:rgba(244,82,72,.6); --mus-s:rgba(245,170,60,.45);
+    --err:#f2564c; --ghost:#3ccf7d; --path:#6c96ff; --guide:#2bb3a6;
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0d1215; --surface:#151c21; --ink:#e5ecf0; --muted:#97a5b0; --line:#25313a;
+  --accent:#2bb3a6; --accent-soft:#11312d; --accent-ink:#06201d; --warn:#fb923c; --warn-soft:#3a2214;
+  --stage:#10171b; --fig:#e7eef2; --fig-far:#4f5e69; --torso:#5d6e7a; --joint:#2bb3a6;
+  --eq:#2a353e; --eq-dark:#53626d; --cable:#a3b3bf; --spine:#f0b429;
+  --mus-p:rgba(244,82,72,.6); --mus-s:rgba(245,170,60,.45);
+  --err:#f2564c; --ghost:#3ccf7d; --path:#6c96ff; --guide:#2bb3a6;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--font-b);font-size:15px;line-height:1.45;-webkit-text-size-adjust:100%}
+button{font:inherit;color:inherit}
+button:focus-visible,summary:focus-visible,input:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.wrap{max-width:560px;margin:0 auto;padding:0 14px 40px;display:flex;flex-direction:column;gap:12px}
+header.top{background:var(--bg);padding:10px 0 8px;display:flex;flex-direction:column;gap:8px;border-bottom:1px solid var(--line)}
+.brand{display:flex;justify-content:space-between;align-items:baseline;gap:8px}
+.brand b{font-family:var(--font-d);font-size:18px;letter-spacing:.02em;text-transform:uppercase}
+.brand span{color:var(--muted);font-size:12px}
+.days{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none}
+.days::-webkit-scrollbar,.chips::-webkit-scrollbar{display:none}
+.day{flex:0 0 auto;border:1px solid var(--line);background:var(--surface);border-radius:999px;padding:5px 12px;font-size:13px;font-weight:600;cursor:pointer}
+.day[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.day:disabled{opacity:.5;cursor:default;font-weight:500}
+.day small{font-weight:400;opacity:.8}
+.chips{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;padding-bottom:2px}
+.chip{flex:0 0 auto;border:1px solid var(--line);background:var(--surface);border-radius:8px;padding:6px 10px;font-size:13px;cursor:pointer;display:flex;gap:6px;align-items:center}
+.chip i{font-style:normal;font-family:var(--font-d);font-weight:700;font-size:15px;color:var(--muted)}
+.chip[aria-pressed="true"]{border-color:var(--accent);background:var(--accent-soft)}
+.chip[aria-pressed="true"] i{color:var(--accent)}
+.exhead{display:flex;gap:10px;align-items:flex-start}
+.exhead .n{font-family:var(--font-d);font-weight:700;font-size:34px;line-height:1;color:var(--accent);min-width:28px}
+.exhead h1{font-family:var(--font-d);font-weight:700;font-size:26px;line-height:1.05;margin:0;text-wrap:balance;text-transform:uppercase;letter-spacing:.01em}
+.exhead .rx{font-size:13px;color:var(--muted);margin-top:4px;font-variant-numeric:tabular-nums}
+.exhead .tg{font-size:13px;margin-top:2px}
+.exhead .nav{margin-left:auto;display:flex;gap:6px}
+.iconbtn{width:38px;height:38px;border-radius:10px;border:1px solid var(--line);background:var(--surface);cursor:pointer;font-size:16px;display:grid;place-items:center}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:14px;overflow:hidden}
+.stage{position:relative;background:var(--stage);aspect-ratio:4/3;width:100%}
+.stage svg{position:absolute;inset:0;width:100%;height:100%;display:block}
+.hud{position:absolute;left:8px;right:8px;top:8px;display:flex;justify-content:space-between;align-items:flex-start;gap:8px;pointer-events:none}
+.phase{background:color-mix(in srgb,var(--surface) 88%,transparent);border:1px solid var(--line);border-radius:8px;padding:4px 8px;font-size:12px;line-height:1.25;max-width:62%}
+.phase b{display:block;font-size:13px}
+.phase span{color:var(--muted);font-variant-numeric:tabular-nums}
+.breath{font-family:var(--font-d);font-weight:700;letter-spacing:.06em;font-size:16px;padding:3px 10px;border-radius:999px;background:var(--accent);color:var(--accent-ink);transition:background .2s}
+.breath.in{background:var(--path);color:#fff}
+.breath.hold{background:var(--muted);color:var(--surface)}
+.errbanner{position:absolute;left:8px;right:8px;bottom:8px;background:var(--err);color:#fff;border-radius:8px;padding:5px 9px;font-size:12.5px;font-weight:600;display:none}
+.errbanner.on{display:block}
+.timeline{display:flex;height:22px;gap:2px;padding:6px 8px 0;position:relative}
+.tseg{flex-basis:0;border-radius:4px;font-size:10px;line-height:16px;height:16px;text-align:center;color:var(--muted);overflow:hidden;white-space:nowrap;background:var(--line)}
+.tseg.conc{background:var(--accent-soft);color:var(--accent)}
+.tseg.ecc{background:color-mix(in srgb,var(--path) 18%,var(--surface));color:var(--path)}
+.tcur{position:absolute;top:3px;width:2px;height:22px;background:var(--ink);border-radius:2px}
+.controls{display:flex;gap:6px;align-items:center;padding:8px;flex-wrap:wrap}
+.ctl{height:36px;min-width:40px;padding:0 10px;border-radius:9px;border:1px solid var(--line);background:var(--surface);cursor:pointer;font-size:14px;display:flex;align-items:center;gap:5px}
+.ctl[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.seg{display:flex;border:1px solid var(--line);border-radius:9px;overflow:hidden;margin-left:auto}
+.seg button{border:0;background:var(--surface);padding:0 10px;height:34px;font-size:13px;cursor:pointer}
+.seg button[aria-pressed="true"]{background:var(--accent);color:var(--accent-ink);font-weight:600}
+.modes{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border-top:1px solid var(--line)}
+.modes button{border:0;border-right:1px solid var(--line);background:var(--surface);padding:9px 2px;font-size:13px;cursor:pointer;font-weight:500}
+.modes button:last-child{border-right:0}
+.modes button[aria-pressed="true"]{background:var(--accent-soft);color:var(--accent);font-weight:700;box-shadow:inset 0 -3px 0 var(--accent)}
+.modeinfo{padding:10px 12px;border-top:1px solid var(--line);font-size:13.5px;display:flex;flex-direction:column;gap:8px}
+.legend{display:flex;flex-wrap:wrap;gap:10px;font-size:12.5px;color:var(--muted)}
+.legend span{display:flex;align-items:center;gap:5px}
+.sw{width:14px;height:10px;border-radius:3px;display:inline-block}
+.errchips{display:flex;flex-wrap:wrap;gap:6px}
+.errchip{border:1px solid var(--line);background:var(--surface);border-radius:8px;padding:5px 9px;font-size:13px;cursor:pointer;text-align:left}
+.errchip[aria-pressed="true"]{border-color:var(--err);background:color-mix(in srgb,var(--err) 12%,var(--surface));color:var(--err);font-weight:600}
+.quick{display:grid;grid-template-columns:1fr;gap:12px}
+.box{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:12px}
+.box h2{font-family:var(--font-d);font-size:17px;text-transform:uppercase;letter-spacing:.04em;margin:0 0 8px;color:var(--muted)}
+.cues{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:6px;counter-reset:c}
+.cues li{counter-increment:c;font-weight:600;font-size:17px;line-height:1.25;display:flex;gap:10px;align-items:baseline}
+.cues li::before{content:counter(c);font-family:var(--font-d);font-size:20px;color:var(--accent);min-width:14px}
+.check{display:flex;flex-direction:column;gap:4px}
+.check label{display:flex;gap:10px;align-items:center;font-size:15px;padding:4px 0;cursor:pointer}
+.check input{width:20px;height:20px;accent-color:var(--accent);flex:0 0 auto}
+.check .reset{align-self:flex-start;margin-top:4px;border:0;background:none;color:var(--muted);font-size:12.5px;text-decoration:underline;cursor:pointer;padding:0}
+details.box{padding:0}
+details.box summary{list-style:none;cursor:pointer;padding:12px;font-family:var(--font-d);font-size:17px;text-transform:uppercase;letter-spacing:.04em;display:flex;justify-content:space-between;align-items:center}
+details.box summary::-webkit-details-marker{display:none}
+details.box summary::after{content:"+";font-size:22px;color:var(--muted);font-family:var(--font-b)}
+details.box[open] summary::after{content:"–"}
+.dbody{padding:0 12px 12px;display:flex;flex-direction:column;gap:8px;font-size:14.5px}
+.dbody h3{font-size:12px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin:4px 0 0}
+.dbody ul{margin:0;padding-left:18px;display:flex;flex-direction:column;gap:4px}
+.dbody p{margin:0}
+.steps{display:flex;flex-direction:column;gap:6px}
+.step{display:grid;grid-template-columns:auto 1fr;gap:2px 10px}
+.step b{font-size:14px}
+.step span{grid-column:2}
+.dot{width:10px;height:10px;border-radius:50%;margin-top:6px;background:var(--line)}
+.dot.conc{background:var(--accent)}.dot.ecc{background:var(--path)}.dot.hold{background:var(--muted)}
+.note{font-size:13px;color:var(--muted)}
+.warnbox{background:var(--warn-soft);border:1px solid color-mix(in srgb,var(--warn) 35%,transparent);border-radius:10px;padding:8px 10px;font-size:13.5px}
+.warnbox b{color:var(--warn)}
+footer{display:flex;flex-direction:column;gap:12px}
+footer .box p{margin:0 0 6px;font-size:13.5px}
+footer ul{margin:0;padding-left:18px;font-size:13px;display:flex;flex-direction:column;gap:4px}
+footer a{color:var(--accent)}
+/* svg */
+.bn{stroke:var(--fig);stroke-linecap:round;fill:none}
+.bf{stroke:var(--fig-far);stroke-linecap:round;fill:none}
+.tor{stroke:var(--torso);fill:var(--torso);stroke-linejoin:round}
+.hd{fill:var(--stage);stroke:var(--fig)}
+.ns{stroke:var(--fig);stroke-linecap:round}
+.jt{fill:var(--stage);stroke:var(--joint)}
+.bn-e{stroke:var(--err);stroke-linecap:round;fill:none}
+.bf-e{stroke:var(--err);stroke-linecap:round;fill:none;opacity:.45}
+.tor-e{stroke:var(--err);fill:var(--err);stroke-linejoin:round;opacity:.85}
+.hd-e{fill:var(--stage);stroke:var(--err)}
+.ns-e{stroke:var(--err);stroke-linecap:round}
+.gh{stroke:var(--ghost);fill:none;stroke-linecap:round;stroke-linejoin:round;opacity:.75}
+.gh2{stroke:var(--muted);fill:none;stroke-linecap:round;stroke-linejoin:round;opacity:.6;stroke-dasharray:3 3}
+.sp{stroke:var(--spine);fill:none;stroke-linecap:round;stroke-linejoin:round}
+.spd{fill:var(--spine)}
+.eqp{fill:var(--eq);stroke:var(--eq-dark);stroke-linejoin:round}
+.eqd{fill:var(--eq-dark);stroke:var(--eq-dark);stroke-linejoin:round}
+.eqs{fill:var(--eq-dark);stroke:var(--fig-far);stroke-linejoin:round}
+.eql{stroke:var(--eq-dark);stroke-linecap:round;fill:none}
+.ball{fill:var(--eq);fill-opacity:.6;stroke:var(--eq-dark);stroke-width:.9}
+.cb{stroke:var(--cable);fill:none;stroke-linecap:round}
+.rope{stroke:#b0763a;fill:none;stroke-linecap:round}
+.db{fill:var(--fig);stroke:var(--fig)}
+.db-e{fill:var(--err);stroke:var(--err)}
+.mp{fill:var(--mus-p);stroke:var(--mus-p);stroke-width:2.5;stroke-linejoin:round}
+.ms{fill:var(--mus-s);stroke:var(--mus-s);stroke-width:2.5;stroke-linejoin:round}
+.scap{fill:var(--stage);stroke:var(--fig);stroke-linejoin:round;opacity:.9}
+.mpl{stroke:var(--mus-p);fill:none;stroke-linecap:round}
+.msl{stroke:var(--mus-s);fill:none;stroke-linecap:round}
+.pt{stroke:var(--path);fill:none;stroke-linecap:round;stroke-linejoin:round}
+.pta{fill:var(--path)}
+.pt2{stroke:var(--path);fill:none;stroke-linecap:round;opacity:.55}
+.gd{stroke:var(--guide);fill:none;stroke-linecap:round}
+.gda{fill:var(--guide)}
+.floor{stroke:var(--line);stroke-linecap:round}
+.lbl{fill:var(--ink);paint-order:stroke;stroke:var(--stage);stroke-linejoin:round;font-family:var(--font-b);font-weight:500}
+.lbl-g{fill:var(--guide);paint-order:stroke;stroke:var(--stage);stroke-linejoin:round;font-family:var(--font-b);font-weight:600}
+.lbl-p{fill:var(--path);paint-order:stroke;stroke:var(--stage);stroke-linejoin:round;font-family:var(--font-b);font-weight:600}
+.lbl-m{fill:var(--muted);paint-order:stroke;stroke:var(--stage);stroke-linejoin:round;font-family:var(--font-b);font-weight:500}
+.timer{display:flex;flex-direction:column;gap:10px}
+.thead{display:flex;justify-content:space-between;align-items:baseline;gap:8px}
+.thead h2{margin:0}
+.tpres{font-size:13px;color:var(--muted);font-variant-numeric:tabular-nums;text-align:right}
+.tsets{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.tsets span{font-size:13px;color:var(--muted);margin-left:4px}
+.tset{width:42px;height:42px;border-radius:50%;border:2px solid var(--line);background:var(--surface);font-family:var(--font-d);font-weight:700;font-size:19px;cursor:pointer}
+.tset[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
+.tclock{font-family:var(--font-d);font-weight:700;font-size:66px;line-height:1;text-align:center;font-variant-numeric:tabular-nums;letter-spacing:.02em}
+.tclock.idle{color:var(--muted)}
+.tclock.over{color:var(--warn)}
+.tbar{height:8px;border-radius:99px;background:var(--line);overflow:hidden}
+.tbar i{display:block;height:100%;width:0;background:var(--accent);border-radius:99px}
+.tbtns{display:flex;flex-direction:column;gap:8px}
+.topts{display:flex;gap:6px;justify-content:center;flex-wrap:wrap}
+.topt{border:1px solid var(--line);background:var(--surface);border-radius:8px;padding:6px 12px;font-size:14px;cursor:pointer;font-variant-numeric:tabular-nums}
+.topt[aria-pressed="true"]{border-color:var(--accent);background:var(--accent-soft);color:var(--accent);font-weight:700}
+.tmain{min-height:50px;border-radius:12px;border:0;background:var(--accent);color:var(--accent-ink);font-weight:600;font-size:16px;cursor:pointer;padding:8px 12px}
+.tctl{display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px}
+.tctl button,.tsec{height:44px;border-radius:10px;border:1px solid var(--line);background:var(--surface);font-size:15px;cursor:pointer}
+.tmsg{text-align:center;font-weight:600;color:var(--warn)}
+.timer.done{animation:tflash 1s ease 3}
+@keyframes tflash{50%{background:var(--warn-soft)}}
+@media (prefers-reduced-motion: reduce){ .breath{transition:none} .timer.done{animation:none} }
+@media (min-width:520px){ .quick{grid-template-columns:1fr 1fr} }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <div class="brand"><b>Guia de execução</b><span>Programa Fase 1 · animações esquemáticas</span></div>
+    <nav class="days" id="days" aria-label="Treinos"></nav>
+    <div class="chips" id="chips" role="tablist" aria-label="Exercícios"></div>
+  </header>
+
+  <section class="exhead">
+    <div class="n" id="exn">1</div>
+    <div>
+      <h1 id="exname"></h1>
+      <div class="rx" id="exrx"></div>
+      <div class="tg" id="extg"></div>
+    </div>
+    <div class="nav">
+      <button class="iconbtn" id="prev" aria-label="Exercício anterior">‹</button>
+      <button class="iconbtn" id="next" aria-label="Próximo exercício">›</button>
+    </div>
+  </section>
+
+  <section class="card" aria-label="Animação">
+    <div class="stage">
+      <svg id="svg" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Animação do exercício"></svg>
+      <div class="hud">
+        <div class="phase" id="phase"><b>—</b><span></span></div>
+        <div class="breath" id="breath">EXPIRA</div>
+      </div>
+      <div class="errbanner" id="errbanner"></div>
+    </div>
+    <div class="timeline" id="timeline"></div>
+    <div class="controls">
+      <button class="ctl" id="play" aria-label="Pausar">⏸</button>
+      <button class="ctl" id="reset" aria-label="Voltar à posição inicial">⏮</button>
+      <button class="ctl" id="slow" aria-pressed="false" aria-label="Câmera lenta">🐢 lento</button>
+      <div class="seg" id="views" role="group" aria-label="Visão"></div>
+    </div>
+    <div class="modes" id="modes" role="group" aria-label="Informação">
+      <button data-m="tec" aria-pressed="true">Técnica</button>
+      <button data-m="err" aria-pressed="false">Erros</button>
+      <button data-m="mus" aria-pressed="false">Músculos</button>
+      <button data-m="traj" aria-pressed="false">Trajetória</button>
+    </div>
+    <div class="modeinfo" id="modeinfo"></div>
+  </section>
+
+  <section class="box timer" id="timer" aria-label="Descanso entre séries">
+    <div class="thead"><h2>Descanso entre séries</h2><span class="tpres" id="tpres"></span></div>
+    <div class="tsets" id="tsets"></div>
+    <div class="tclock" id="tclock" aria-live="polite">0:00</div>
+    <div class="tbar"><i id="tbarfill"></i></div>
+    <div id="tbtns" class="tbtns"></div>
+    <div class="note" id="tnote"></div>
+  </section>
+
+  <section class="quick">
+    <div class="box"><h2>3 cues</h2><ol class="cues" id="cues"></ol></div>
+    <div class="box"><h2>Checklist de 5 s</h2><div class="check" id="check"></div></div>
+  </section>
+
+  <section id="details" style="display:flex;flex-direction:column;gap:10px"></section>
+
+  <footer>
+    <div class="box">
+      <h2>Segurança</h2>
+      <p>Dor muscular de treino é esperada: queimação durante a série e dolorimento difuso por 1–3 dias.</p>
+      <p><b>Pare o exercício</b> e procure avaliação (fisioterapeuta ou médico do esporte) se aparecer dor articular forte ou em pontada, formigamento, perda de força incomum ou sensação de lesão. Nesses casos, não continue achando que é normal. O estalo sem dor no ombro que você relatou não é motivo para parar.</p>
+      <p class="note">As animações usam um modelo simplificado com medidas aproximadas e não substituem uma avaliação presencial. A sensação muscular sozinha não prova que a execução está certa: confira também setup, trajetória e amplitude.</p>
+    </div>
+    <div class="box">
+      <h2>Fontes</h2>
+      <ul>
+        <li><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC7579505/">Rodríguez-Ridao et al., 2020: inclinação do banco e ativação do peitoral</a></li>
+        <li><a href="https://www.frontiersin.org/journals/physiology/articles/10.3389/fphys.2024.1393235">Noteboom et al., 2024: técnica do supino e cargas no ombro</a></li>
+        <li><a href="https://iris.unimol.it/handle/11695/152609">Estudo de 2025 sobre variações de pegada na puxada e ativação do dorsal</a></li>
+        <li><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC5548150">Variações da barra fixa e ativação muscular</a></li>
+        <li><a href="https://www.acefitness.org/resources/everyone/exercise-library/26/lateral-raise/">ACE: elevação lateral e rotação do braço perto da linha do ombro</a></li>
+        <li><a href="https://exrx.net/WeightExercises/Supraspinatus/DBFrontLateralRaise">ExRx: elevação no plano da escápula (~30° à frente)</a></li>
+        <li><a href="https://paulogentil.com/pdf/C17.pdf">Childs, 1999 (NSCA): respiração e manobra de Valsalva</a></li>
+        <li><a href="https://bjsm.bmj.com/content/26/2/97">Linsenbardt et al., 1992: técnicas de respiração e pressão arterial</a></li>
+        <li><a href="https://pubmed.ncbi.nlm.nih.gov/14636100/">Fry et al., 2003: joelho passando a ponta do pé no agachamento e torque no quadril</a></li>
+      </ul>
+    </div>
+  </footer>
+</div>
+
+<script>
+(function(){
+'use strict';
+/* ================= matemática ================= */
+const RAD=Math.PI/180;
+const sn=d=>Math.sin(d*RAD), cs=d=>Math.cos(d*RAD);
+const add=(a,b)=>[a[0]+b[0],a[1]+b[1],a[2]+b[2]];
+const sub=(a,b)=>[a[0]-b[0],a[1]-b[1],a[2]-b[2]];
+const mul=(a,k)=>[a[0]*k,a[1]*k,a[2]*k];
+const dot=(a,b)=>a[0]*b[0]+a[1]*b[1]+a[2]*b[2];
+const cross=(a,b)=>[a[1]*b[2]-a[2]*b[1],a[2]*b[0]-a[0]*b[2],a[0]*b[1]-a[1]*b[0]];
+const len=a=>Math.hypot(a[0],a[1],a[2]);
+const norm=a=>{const l=len(a)||1;return[a[0]/l,a[1]/l,a[2]/l];};
+const mid=(a,b)=>mul(add(a,b),.5);
+function comb(){let r=[0,0,0];for(let i=0;i<arguments.length;i+=2){const k=arguments[i],v=arguments[i+1];r=[r[0]+k*v[0],r[1]+k*v[1],r[2]+k*v[2]];}return r;}
+// direção por azimute/elevação, com lado (s=-1 direito, +1 esquerdo). az 0 = frente, 90 = para fora, 180 = trás. el +90 = cima.
+const dirAE=(az,el,s)=>[s*sn(az)*cs(el),sn(el),cs(az)*cs(el)];
+// tronco: pitch (positivo = inclina à frente), roll (positivo = inclina para a esquerda, +X)
+const tUp=(p,r)=>[cs(p)*sn(r),cs(p)*cs(r),sn(p)];
+const tFr=(p,r)=>[-sn(p)*sn(r),-sn(p)*cs(r),cs(p)];
+const sideV=(v,s)=>[s*v[0],v[1],v[2]];
+const X=[1,0,0],Y=[0,1,0],Z=[0,0,1];
+
+/* ================= corpo (cm) ================= */
+const B={lum:22,thor:29,neck:20,head:10.5,sh:19,shDrop:3,hip:9,ua:31,fa:32,th:43,sk:43,foot:17,heel:6,wrist:7};
+let IKFAIL=0;
+function ik2(S,T,a,b,pole){
+  const d=sub(T,S);let dist=len(d);const n=dist>1e-6?mul(d,1/dist):[0,-1,0];
+  const maxd=a+b-0.02;
+  if(dist>maxd+0.8)IKFAIL++;
+  dist=Math.min(Math.max(dist,Math.abs(a-b)+0.5),maxd);
+  const ca=(a*a+dist*dist-b*b)/(2*a*dist);const A=Math.acos(Math.max(-1,Math.min(1,ca)));
+  let pp=sub(pole,mul(n,dot(pole,n)));if(len(pp)<1e-4)pp=[0,0,1];pp=norm(pp);
+  return{E:add(S,add(mul(n,a*Math.cos(A)),mul(pp,a*Math.sin(A)))),H:add(S,mul(n,dist))};
+}
+function solveArm(a,S,s,sk){
+  if(a.ua){const E=add(S,mul(dirAE(a.ua[0],a.ua[1],s),B.ua));return{E,H:add(E,mul(dirAE(a.fa[0],a.fa[1],s),B.fa))};}
+  let T;
+  if(a.ikS)T=sideV(a.ikS,s);
+  else if(a.sph)T=add(S,mul(dirAE(a.sph[0],a.sph[1],s),a.sph[2]));
+  else if(a.head)T=comb(1,sk.Hc,s*a.head[0],sk.xN,a.head[1],sk.uN,a.head[2],sk.fN);
+  else if(a.tr)T=comb(1,sk.N,s*a.tr[0],sk.xT,a.tr[1],sk.uT,a.tr[2],sk.fT);
+  return ik2(S,T,B.ua,B.fa,sideV(a.poleRel||[1,-1,0],s));
+}
+function solveLeg(l,Hp,s){
+  let K,A;
+  if(l.th){K=add(Hp,mul(dirAE(l.th[0],l.th[1],s),B.th));A=add(K,mul(dirAE(l.sh[0],l.sh[1],s),B.sk));}
+  else{const r=ik2(Hp,sideV(l.ikS,s),B.th,B.sk,sideV(l.poleRel||[0,0,1],s));K=r.E;A=r.H;}
+  const fd=dirAE(l.ft[0],l.ft[1],s);
+  return{K,A,toe:add(A,mul(fd,B.foot)),heel:l.heelV?add(A,sideV(l.heelV,s)):add(add(A,mul(fd,-B.heel)),[0,-4,0])};
+}
+function skel(p){
+  const r=p.roll||0,P=p.P;
+  const lp=p.lumbar||0,tp=(p.thor!=null?p.thor:lp),np=(p.neck!=null?p.neck:tp);
+  const uL=tUp(lp,r),fL=tFr(lp,r),uT=tUp(tp,r),fT=tFr(tp,r),uN=tUp(np,r),fN=tFr(np,r);
+  const xL=cross(uL,fL),xT=cross(uT,fT),xN=cross(uN,fN);
+  const M=add(P,mul(uL,B.lum)),N=add(M,mul(uT,B.thor)),Hc=add(N,mul(uN,B.neck));
+  const xP=cross(tUp(lp,0),tFr(lp,0)); // pelve nivelada (o roll inclina só o tronco)
+  const sk={P,M,N,Hc,uL,fL,xL,uT,fT,xT,uN,fN,xN,side:{},pose:p};
+  for(const s of[-1,1]){
+    const k=s<0?'R':'L';
+    const pro=p['pro'+k]!=null?p['pro'+k]:(p.pro||0);
+    const elev=p['elev'+k]!=null?p['elev'+k]:(p.elev||0);
+    const rot=p['rot'+k]!=null?p['rot'+k]:(p.scapRot||0);
+    sk.side[k]={s,pro,elev,rot,S:comb(1,N,s*(B.sh-0.25*pro),xT,elev-B.shDrop,uT,pro,fT),Hp:add(P,mul(xP,s*B.hip))};
+  }
+  for(const k of['R','L']){
+    const sd=sk.side[k];
+    const arm=solveArm(p['arm'+k]||p.armR,sd.S,sd.s,sk);sd.E=arm.E;sd.H=arm.H;
+    const fa=norm(sub(sd.H,sd.E));sd.fa=fa;sd.uad=norm(sub(sd.E,sd.S));
+    sd.W=add(sd.H,mul(fa,-B.wrist));sd.G=sd.H;
+    const wb=p['wrist'+k]!=null?p['wrist'+k]:(p.wrist||0);
+    if(wb){const wd=p.wristDir||[0,0,-1];const bd=norm(sub(wd,mul(fa,dot(wd,fa))));const hd=norm(add(mul(fa,cs(wb)),mul(bd,sn(wb))));sd.G=add(sd.W,mul(hd,B.wrist));}
+    Object.assign(sd,solveLeg(p['leg'+k]||p.legR,sd.Hp,sd.s));
+  }
+  return sk;
+}
+function scapPts(sk,k){
+  const sd=sk.side[k],s=sd.s,{N,uT,fT,xT}=sk;
+  const c=comb(1,N,s*(10-0.55*sd.pro),xT,-11+sd.elev,uT,-7,fT);
+  const th=sd.rot*RAD;
+  return[[-4,6],[7,6.5],[-1.5,-9]].map(([l,u])=>{const l2=l*Math.cos(th)-u*Math.sin(th),u2=l*Math.sin(th)+u*Math.cos(th);return comb(1,c,s*l2,xT,u2,uT);});
+}
+
+/* ================= interpolação ================= */
+function interp(a,b,u){
+  if(a===undefined)return b; if(b===undefined)return a;
+  if(typeof a==='number')return a+(b-a)*u;
+  if(Array.isArray(a))return a.map((v,i)=>interp(v,b[i],u));
+  if(typeof a==='object'){const o={};for(const k of new Set([...Object.keys(a),...Object.keys(b)]))o[k]=interp(a[k],b[k],u);return o;}
+  return u<.5?a:b;
+}
+const ease=u=>0.5-0.5*Math.cos(Math.PI*u);
+
+/* ================= projeção e primitivas ================= */
+const VIEWS={
+  lateral:{name:'Lateral',proj:v=>[v[2],-v[1],-v[0]]},
+  frontal:{name:'Frontal',proj:v=>[v[0],-v[1],v[2]]},
+  posterior:{name:'Por trás',proj:v=>[-v[0],-v[1],-v[2]]},
+  top:{name:'De cima',proj:v=>[v[0],v[2],v[1]]},
+  zoom:{name:'Detalhe',proj:v=>[v[2],-v[1],-v[0]]}
+};
+const isSide=()=>VIEW==='lateral'||VIEW==='zoom';
+let PJ=VIEWS.lateral.proj, VIEW='lateral', KS=1, MEAS=null, prims=[];
+const f1=n=>Math.round(n*10)/10;
+function bb(x,y,r){if(MEAS){r=r||0;MEAS[0]=Math.min(MEAS[0],x-r);MEAS[1]=Math.max(MEAS[1],x+r);MEAS[2]=Math.min(MEAS[2],y-r);MEAS[3]=Math.max(MEAS[3],y+r);}}
+function push(l,d,s){prims.push({l,d,s});}
+function at(o){return(o.dash?` stroke-dasharray="${o.dash}"`:'')+(o.op!=null?` opacity="${o.op}"`:'');}
+function L3(a,b,cls,w,o={}){const A=PJ(a),C=PJ(b);bb(A[0],A[1],w/2);bb(C[0],C[1],w/2);push(o.layer??1,(A[2]+C[2])/2+(o.bias||0),`<line x1="${f1(A[0])}" y1="${f1(A[1])}" x2="${f1(C[0])}" y2="${f1(C[1])}" class="${cls}" stroke-width="${f1(w)}"${at(o)}/>`);}
+function PL3(pts,cls,w,o={}){const Q=pts.map(PJ);Q.forEach(q=>bb(q[0],q[1],w/2));push(o.layer??1,Q.reduce((s,q)=>s+q[2],0)/Q.length+(o.bias||0),`<polyline points="${Q.map(q=>f1(q[0])+','+f1(q[1])).join(' ')}" class="${cls}" stroke-width="${f1(w)}" fill="none"${at(o)}/>`);}
+function PG3(pts,cls,o={}){const Q=pts.map(PJ);Q.forEach(q=>bb(q[0],q[1],(o.w||0)/2));push(o.layer??1,Q.reduce((s,q)=>s+q[2],0)/Q.length+(o.bias||0),`<polygon points="${Q.map(q=>f1(q[0])+','+f1(q[1])).join(' ')}" class="${cls}"${o.w?` stroke-width="${f1(o.w)}"`:''}${at(o)}/>`);}
+function C3(c,r,cls,o={}){const A=PJ(c);bb(A[0],A[1],r);push(o.layer??1,A[2]+(o.bias||0),`<circle cx="${f1(A[0])}" cy="${f1(A[1])}" r="${f1(r)}" class="${cls}"${o.w?` stroke-width="${f1(o.w)}"`:''}${at(o)}/>`);}
+function hull(P){const p=P.map(q=>[q[0],q[1]]).sort((a,b)=>a[0]-b[0]||a[1]-b[1]);if(p.length<3)return p;const cr=(o,a,b)=>(a[0]-o[0])*(b[1]-o[1])-(a[1]-o[1])*(b[0]-o[0]);const lo=[],up=[];for(const q of p){while(lo.length>=2&&cr(lo[lo.length-2],lo[lo.length-1],q)<=0)lo.pop();lo.push(q);}for(let i=p.length-1;i>=0;i--){const q=p[i];while(up.length>=2&&cr(up[up.length-2],up[up.length-1],q)<=0)up.pop();up.push(q);}up.pop();lo.pop();return lo.concat(up);}
+function BOX(c,ax,cls,o={}){const pts=[];for(const a of[-1,1])for(const b of[-1,1])for(const d of[-1,1])pts.push(comb(1,c,a*ax[0][1],ax[0][0],b*ax[1][1],ax[1][0],d*ax[2][1],ax[2][0]));const Q=pts.map(PJ);Q.forEach(q=>bb(q[0],q[1],1));const h=hull(Q);push(o.layer??1,Q.reduce((s,q)=>s+q[2],0)/8+(o.bias||0),`<polygon points="${h.map(q=>f1(q[0])+','+f1(q[1])).join(' ')}" class="${cls}" stroke-width="${f1(o.w||0.8)}"${at(o)}/>`);}
+function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;');}
+function TX(v,str,o={}){if(MEAS)return;const A=o.scr?v:PJ(v);const x=A[0]+(o.dx||0)*KS,y=A[1]+(o.dy||0)*KS;push(o.layer??4,0,`<text x="${f1(x)}" y="${f1(y)}" class="${o.cls||'lbl'}" font-size="${f1((o.size||11)*KS)}" text-anchor="${o.anchor||'start'}" stroke-width="${f1(3.2*KS)}">${esc(str)}</text>`);}
+function arrowHead(p,q,cls,size){const dx=q[0]-p[0],dy=q[1]-p[1],l=Math.hypot(dx,dy)||1,ux=dx/l,uy=dy/l,s=size;const a=[q[0]-ux*s+uy*s*.55,q[1]-uy*s-ux*s*.55],b=[q[0]-ux*s-uy*s*.55,q[1]-uy*s+ux*s*.55];return`<polygon points="${f1(q[0])},${f1(q[1])} ${f1(a[0])},${f1(a[1])} ${f1(b[0])},${f1(b[1])}" class="${cls}"/>`;}
+function PATH2(Q,cls,w,o={}){if(MEAS||Q.length<2)return;let s=`<polyline points="${Q.map(q=>f1(q[0])+','+f1(q[1])).join(' ')}" class="${cls}" stroke-width="${f1(w)}" fill="none"${at(o)}/>`;if(o.arrow!==false){let i=Q.length-2;while(i>0&&Math.hypot(Q[Q.length-1][0]-Q[i][0],Q[Q.length-1][1]-Q[i][1])<3)i--;s+=arrowHead(Q[i],Q[Q.length-1],o.acls||'pta',(o.asz||4.2)*KS);}push(o.layer??3,0,s);}
+function ARROW3(a,b,cls,w,acls,o={}){if(MEAS)return;const A=PJ(a),C=PJ(b);push(o.layer??3,0,`<line x1="${f1(A[0])}" y1="${f1(A[1])}" x2="${f1(C[0])}" y2="${f1(C[1])}" class="${cls}" stroke-width="${f1(w)}"${at(o)}/>`+arrowHead(A,C,acls,4*KS));}
+
+/* ================= desenho do corpo ================= */
+function body(sk,pal){
+  const g=pal==='g'||pal==='g2';
+  const cl=b=>g?pal==='g'?'gh':'gh2':pal==='e'?b+'-e':b;
+  const ws=g?0.32:1;
+  const dN=PJ(sk.N)[2],dP=PJ(sk.P)[2];
+  const R=sk.side.R,Lf=sk.side.L;
+  const xM=norm(add(sk.xL,sk.xT));
+  const Mr=add(sk.M,mul(xM,-13)),Ml=add(sk.M,mul(xM,13));
+  const tw=({lateral:16,zoom:16,top:22,frontal:3.5,posterior:3.5})[VIEW];
+  const tcls=g?cl(''):cl('tor');
+  PG3([R.S,Lf.S,Ml,Mr],tcls,{w:tw*(g?0.18:1),bias:0});
+  PG3([Mr,Ml,Lf.Hp,R.Hp],tcls,{w:tw*(g?0.18:1),bias:-0.2});
+  // coluna (só na figura principal)
+  if(!g&&(isSide()||VIEW==='posterior')){
+    const back=isSide()?-5:-7.5;
+    const sp=[comb(1,sk.P,back,sk.fL),comb(1,sk.M,back-1,sk.fT),comb(1,sk.N,back+1,sk.fT),comb(1,sk.N,0.45,sub(sk.Hc,sk.N),back+2,sk.fN)];
+    PL3(sp,'sp',1.5,{bias:3,dash:''});
+    for(let i=0;i<3;i++)for(let j=0;j<4;j++){const t=j/4;C3(add(mul(sp[i],1-t),mul(sp[i+1],t)),1.25,'spd',{bias:3.1});}
+  }
+  // escápulas (vista de trás)
+  if(!g&&VIEW==='posterior'){for(const k of['R','L'])PG3(scapPts(sk,k),pal==='e'?'tor-e':'scap',{w:1.2,bias:2.5});}
+  // pescoço e cabeça
+  L3(sk.N,add(sk.N,mul(sub(sk.Hc,sk.N),.6)),g?cl(''):cl('bn'),6.5*ws,{bias:0.3});
+  C3(sk.Hc,B.head,g?cl(''):cl('hd'),{w:2.2*(g?.6:1),bias:0.6});
+  if(isSide()||VIEW==='top'){L3(comb(1,sk.Hc,7,sk.fN,.5,sk.uN),comb(1,sk.Hc,12.5,sk.fN,0,sk.uN),g?cl(''):cl('ns'),2.4*(g?.6:1),{bias:0.7});}
+  // membros
+  for(const k of['L','R']){
+    const sd=sk.side[k];
+    const side=isSide();
+    const nearA=!side||PJ(sd.S)[2]>=dN-1, nearL=!side||PJ(sd.Hp)[2]>=dP-1;
+    const ca=g?cl(''):cl(nearA?'bn':'bf'), cg=g?cl(''):cl(nearL?'bn':'bf');
+    L3(sd.Hp,sd.K,cg,10*ws);L3(sd.K,sd.A,cg,8*ws);PL3([sd.heel,sd.A,sd.toe],cg,4.5*ws);
+    L3(sd.S,sd.E,ca,8*ws,{bias:0.05});L3(sd.E,sd.W,ca,6.5*ws,{bias:0.06});L3(sd.W,sd.G,ca,5*ws,{bias:0.07});
+    if(!g&&pal!=='e'){for(const j of[sd.S,sd.E,sd.Hp,sd.K,sd.A])C3(j,2.3,'jt',{w:1.3,bias:0.2});}
+  }
+}
+/* músculos */
+const MUS={
+  pecClav(sk,k){const sd=sk.side[k],s=sd.s,{N,uT,fT,xT}=sk;const ins=comb(1,sd.S,.22,sub(sd.E,sd.S),2,fT);return[comb(1,N,10,fT,-3,uT,s*1,xT),comb(1,N,8,fT,-1,uT,s*10,xT),comb(1,sd.S,4,fT,-1,uT),ins,comb(1,N,10.5,fT,-9,uT,s*6,xT),comb(1,N,10.5,fT,-8,uT,s*1,xT)];},
+  pecStern(sk,k){const sd=sk.side[k],s=sd.s,{N,uT,fT,xT}=sk;const ins=comb(1,sd.S,.22,sub(sd.E,sd.S),2,fT);return[comb(1,N,10.5,fT,-8,uT,s*1,xT),comb(1,N,10.5,fT,-9,uT,s*6,xT),ins,comb(1,N,10,fT,-17,uT,s*12,xT),comb(1,N,11,fT,-19,uT,s*1,xT)];},
+  deltAnt(sk,k){const sd=sk.side[k];return{c:comb(1,sd.S,6,sd.uad,4,sk.fT),r:6};},
+  deltLat(sk,k){const sd=sk.side[k];return{c:comb(1,sd.S,6,sd.uad,sd.s*4.5,sk.xT,1,sk.uT),r:7};},
+  deltPost(sk,k){const sd=sk.side[k];return{c:comb(1,sd.S,6,sd.uad,-4,sk.fT),r:6.5};},
+  lats(sk,k){const sd=sk.side[k],s=sd.s,{N,P,M,uT,fT,xT,uL,fL,xL}=sk;return[comb(1,sd.S,.15,sub(sd.E,sd.S),-3,fT),comb(1,N,s*7,xT,-15,uT,-7,fT),comb(1,P,s*3,xL,10,uL,-7,fL),comb(1,P,s*11,xL,4,uL,-3,fL),comb(1,M,s*14,xT,-1,fT)];},
+  midTrap(sk,k){const sd=sk.side[k],s=sd.s,{N,uT,fT,xT}=sk;const sc=scapPts(sk,k);return[comb(1,N,s*1,xT,-2,uT,-7.5,fT),sc[0],sc[2],comb(1,N,s*1,xT,-19,uT,-7.5,fT)];},
+  upTrap(sk,k){const sd=sk.side[k],s=sd.s,{N,uT,fT,xT}=sk;return[comb(1,N,7,uT,s*2,xT,-2,fT),comb(1,sd.S,1.5,uT,-2,fT),comb(1,N,s*7,xT,-7,uT,-7,fT)];},
+  biceps(sk,k){const sd=sk.side[k];let an=sub(sd.fa,mul(sd.uad,dot(sd.fa,sd.uad)));an=len(an)<.15?sk.fT:norm(an);return{a:comb(1,sd.S,.3,sub(sd.E,sd.S),3,an),b:comb(1,sd.S,.85,sub(sd.E,sd.S),3,an),w:6};},
+  triceps(sk,k){const sd=sk.side[k];let an=sub(sd.fa,mul(sd.uad,dot(sd.fa,sd.uad)));an=len(an)<.15?sk.fT:norm(an);return{a:comb(1,sd.S,.25,sub(sd.E,sd.S),-3,an),b:comb(1,sd.S,.85,sub(sd.E,sd.S),-3,an),w:6.5};},
+  forearm(sk,k){const sd=sk.side[k];return{a:comb(1,sd.E,.15,sub(sd.W,sd.E)),b:comb(1,sd.E,.8,sub(sd.W,sd.E)),w:5};},
+  quads(sk,k){const sd=sk.side[k];const t=norm(sub(sd.K,sd.Hp)),sh=norm(sub(sd.A,sd.K));let p=sub(sh,mul(t,dot(sh,t)));p=len(p)<.12?mul(sk.fL,-1):norm(p);return{a:comb(1,sd.Hp,.2,sub(sd.K,sd.Hp),-5,p),b:comb(1,sd.Hp,.86,sub(sd.K,sd.Hp),-4,p),w:9};},
+  hams(sk,k){const sd=sk.side[k];const t=norm(sub(sd.K,sd.Hp)),sh=norm(sub(sd.A,sd.K));let p=sub(sh,mul(t,dot(sh,t)));p=len(p)<.12?mul(sk.fL,-1):norm(p);return{a:comb(1,sd.Hp,.15,sub(sd.K,sd.Hp),4.5,p),b:comb(1,sd.Hp,.85,sub(sd.K,sd.Hp),4,p),w:8};},
+  glutes(sk,k){const sd=sk.side[k];return{c:comb(1,sd.Hp,-6,sk.fL,1.5,sk.uL,sd.s*1.5,sk.xL),r:7.5};},
+  calf(sk,k){const sd=sk.side[k];const sh=norm(sub(sd.A,sd.K)),fd=norm(sub(sd.toe,sd.A));let q=sub(fd,mul(sh,dot(fd,sh)));q=len(q)<.12?sk.fL:norm(q);return{a:comb(1,sd.K,.12,sub(sd.A,sd.K),-3.5,q),b:comb(1,sd.K,.62,sub(sd.A,sd.K),-3,q),w:7.5};},
+  erect(sk){return{a:comb(1,sk.P,-7,sk.fL,4,sk.uL),b:comb(1,sk.N,-6,sk.fT,-6,sk.uT),w:6};},
+  rectus(sk){const{N,P,uT,fT,xT,uL,fL,xL}=sk;return[comb(1,N,10,fT,-15,uT,-4,xT),comb(1,N,10,fT,-15,uT,4,xT),comb(1,P,9,fL,4,uL,4,xL),comb(1,P,9,fL,4,uL,-4,xL)];},
+  obliq(sk,k){const s=sk.side[k].s,{N,M,P,uT,fT,xT,uL,fL,xL}=sk;return[comb(1,M,s*13,xT,2,fT),comb(1,N,s*12,xT,-14,uT,6,fT),comb(1,P,s*10,xL,6,uL,4,fL)];}
+};
+function muscles(sk,list,cls){
+  for(const[id,sides]of list){
+    let ks=sides==='RL'?['R','L']:[sides];
+    // na vista lateral, só o lado de perto (o de longe ficaria por cima do corpo)
+    if(isSide()&&sides==='RL')ks=['R'];
+    for(const k of ks){
+      const r=MUS[id](sk,k);
+      if(Array.isArray(r))PG3(r,cls,{layer:2});
+      else if(r.c)C3(r.c,r.r,cls,{layer:2});
+      else L3(r.a,r.b,cls+'l',r.w,{layer:2});
+    }
+  }
+}
+
+/* ================= equipamentos ================= */
+function dumbbell(G,hd,cls){L3(add(G,mul(hd,-9)),add(G,mul(hd,9)),cls,2.6);C3(add(G,mul(hd,-9)),7,cls,{bias:.1});C3(add(G,mul(hd,9)),7,cls,{bias:.1});}
+// torre da estação Movement: base [x,z], across = vetor da largura, out = vetor de frente; pulleyY = altura do carro
+function tower(t,lift){
+  const base=[t.x,0,t.z],ac=t.ac,out=t.out;
+  const zb=-400;
+  BOX(comb(1,base,119,Y,-7,out),[[ac,10],[Y,119],[out,7]],'eqp',{bias:zb,w:.6});
+  for(const s of[-1,1])L3(comb(1,base,s*8,ac,1,out),comb(1,base,s*8,ac,1,out,238,Y),'eql',2.2,{bias:zb+1});
+  BOX(comb(1,base,8,Y,-7,out),[[ac,8],[Y,4],[out,5]],'eqd',{bias:zb+2});
+  BOX(comb(1,base,36+lift,Y,-7,out),[[ac,7],[Y,22],[out,5]],'eqs',{bias:zb+2});
+  const pul=comb(1,base,t.py,Y,2,out);
+  BOX(comb(1,base,t.py,Y,1,out),[[ac,4.5],[Y,5],[out,2.5]],'eqd',{bias:zb+3});
+  C3(pul,3.2,'eqp',{w:1,bias:zb+4});
+  return pul;
+}
+function liftOf(ex,id,L){const L0=ex.L0&&ex.L0[id]!=null?ex.L0[id]:L;return Math.max(0,Math.min(95,(L-L0)*0.5));}
+function cable(ex,id,from,to){const L=len(sub(from,to));if(MEAS&&ex._cab){ex._cab[id]=Math.min(ex._cab[id]??1e9,L);}L3(from,to,'cb',1,{bias:-1});return L;}
+function dumbbellV(top,cls){const bot=add(top,[0,-20,0]);L3(top,bot,cls,2.6,{bias:.4});for(const c of[top,bot]){L3(add(c,[-9,0,0]),add(c,[9,0,0]),cls,4,{bias:.45});L3(add(c,[0,0,-9]),add(c,[0,0,9]),cls,4,{bias:.45});}}
+function ropeC(sk,pul){const hr=sk.side.R.G,hl=sk.side.L.G,m=mid(hr,hl);const half=len(sub(hr,hl))/2;return add(m,mul(norm(sub(pul,m)),Math.sqrt(Math.max(30,784-half*half))));}
+function rope(ex,id,sk,pul){
+  const hr=sk.side.R.G,hl=sk.side.L.G,m=mid(hr,hl);const u=norm(sub(pul,m));const half=len(sub(hr,hl))/2;const d=Math.sqrt(Math.max(30,28*28-half*half));
+  const c=add(m,mul(u,d));L3(c,hr,'rope',2,{bias:.2});L3(c,hl,'rope',2,{bias:.2});C3(hr,2.4,'eqd',{bias:.3});C3(hl,2.4,'eqd',{bias:.3});C3(c,1.6,'eqd',{bias:.2});
+  return cable(ex,id,c,pul);
+}
+
+function pullBar(){
+  L3([-62,230,0],[62,230,0],'eql',3.4,{bias:-3});
+  for(const s of[-1,1]){L3([s*62,230,0],[s*74,221,0],'eql',3.4,{bias:-3});L3([s*74,221,0],[s*80,232,0],'eql',3,{bias:-3});}
+  if(VIEW!=='lateral'){for(const s of[-1,1])BOX([s*84,119,-8],[[X,5],[Y,119],[Z,8]],'eqp',{bias:-400,w:.6});L3([-84,238,-8],[84,238,-8],'eql',3,{bias:-399});}
+  else C3([0,230,0],3.6,'eqd',{bias:3});
+}
+/* ================= exercícios: Torso A ================= */
+const EX=[];
+const benchInc={u:tUp(-60,0),f:tFr(-60,0)};
+EX.push({
+  id:'supino-inclinado',sets:3,rest:{opts:[120,150,180],def:150},name:'Supino inclinado com halteres',short:'Supino inclinado',
+  rx:'3 × 6–10 · RIR 1–2 · descanso 2–3 min',target:'Peitoral maior, parte de cima (porção clavicular)',
+  views:['lateral','top'],
+  base:{P:[0,53,0],lumbar:-60,thor:-60,neck:-55,pro:-2,elev:-1,legR:{ikS:[15,7,40],poleRel:[.25,.5,1],ft:[10,-22]}},
+  keys:{top:{armR:{ua:[90,84],fa:[-90,86]}},mid:{armR:{ua:[74,22],fa:[-90,84]}},bottom:{armR:{ua:[60,-30],fa:[-90,90]}}},
+  seq:[
+    {path:['top'],dur:.6,kind:'hold',label:'Topo',tempo:'respire',breath:'INSPIRA'},
+    {path:['top','mid','bottom'],dur:2.5,kind:'ecc',label:'Descida · excêntrica',tempo:'~2–3 s',breath:'INSPIRA'},
+    {path:['bottom'],dur:.45,kind:'hold',label:'Embaixo · sem quicar',tempo:'pausa curta',breath:'FIRME'},
+    {path:['bottom','mid','top'],dur:1.3,kind:'conc',label:'Subida · concêntrica',tempo:'~1–1,5 s',breath:'EXPIRA'}
+  ],
+  ext:['bottom','top'],extLabels:['embaixo','topo'],
+  paths:{lateral:[['G','R','halter'],['E','R','cotovelo']],top:[['G','R','halter'],['G','L',''],['E','R','cotovelo']]},
+  equip(sk){
+    const P0=[0,53,0],bu=benchInc.u,bf=benchInc.f;
+    BOX([0,46,13],[[X,13],[Y,2.6],[Z,17]],'eqp',{bias:-4});
+    BOX(comb(1,P0,37,bu,-10.5,bf),[[X,13],[bu,37],[bf,2.6]],'eqp',{bias:-4});
+    BOX([0,2.5,-12],[[X,4],[Y,2],[Z,48]],'eqd',{bias:-6});
+    BOX([0,23,18],[[X,2.5],[Y,21],[Z,2.5]],'eqd',{bias:-6});
+    BOX([0,23,-44],[[X,2.5],[Y,21],[Z,2.5]],'eqd',{bias:-6});
+    L3(comb(1,P0,-12,bf,8,bu),[0,20,-44],'eql',3,{bias:-6});
+    const hd=norm([1,0,-.3]);
+    for(const k of['R','L']){const sd=sk.side[k];dumbbell(sd.G,hd,'db'+(this._pal==='e'?'-e':''));}
+  },
+  guides:{
+    lateral(sk){const sd=sk.side.R;L3(sd.E,add(sd.E,[0,44,0]),'gd',1,{layer:3,dash:'3 2.5'});TX(add(sd.E,[0,16,0]),'antebraço na vertical',{cls:'lbl-g',dx:9});
+      const h=[0,47,-3];const pts=[];for(let a=0;a<=30;a+=3)pts.push([0,47+20*sn(a),-3-20*cs(a)]);PL3(pts,'gd',1,{layer:3});L3(h,[0,47,-27],'gd',.8,{layer:3,dash:'2 2'});TX([0,51,-27],'~30°',{cls:'lbl-g',anchor:'end',dx:-2});},
+    top(sk){const R=sk.side.R,Lf=sk.side.L;L3(R.S,add(R.S,mul(sk.uT,-30)),'gd',1,{layer:3,dash:'3 2.5'});L3(R.S,add(R.S,mul(sub(R.E,R.S),1.25)),'gd',1,{layer:3,dash:'3 2.5'});
+      TX([-34,0,-4],'cotovelo ~30–70° do tronco',{cls:'lbl-g',size:10,anchor:'end',dx:8});TX([34,0,-4],'halter sobre o cotovelo',{cls:'lbl-g',size:10,dx:-8});}
+  },
+  muscles:{p:[['pecClav','RL']],s:[['pecStern','RL'],['deltAnt','RL'],['triceps','RL']]},
+  feel:'Parte de cima do peito, perto da clavícula. Também um pouco na frente do ombro e no tríceps.',
+  feelNote:'Sentir mais o ombro nem sempre é erro: pode ser fadiga ou anatomia. Confira primeiro o encosto e a trajetória.',
+  setupEq:['Encosto a cerca de 30° (um terço do caminho entre deitado e sentado). Entre 30° e 45° funciona; acima disso o ombro assume mais o trabalho.','Assento plano, quadril encostado no fundo do banco.','Aperte a rosca das manoplas antes de cada série.'],
+  setupBody:['Pés firmes no chão, um pouco mais abertos que o quadril.','Glúteo, costas e cabeça apoiados no banco a série toda.','Escápulas levemente juntas e para baixo, peito alto. A lombar mantém a curva natural, sem arco exagerado.','Palmas para os pés ou giradas uns 20–30°. Punho reto, com o halter em cima do antebraço.','Para chegar à posição, sente com os halteres nas coxas e deite levando-os junto ao peito.'],
+  exec:[['hold','Topo','Halteres sobre os ombros, cotovelos quase estendidos sem travar.'],['ecc','Descida (excêntrica)','~2–3 s. Desça com o antebraço na vertical até os halteres chegarem ao lado do peito.'],['hold','Embaixo','Pausa curta, sem quicar, com o peito alongado.'],['conc','Subida (concêntrica)','~1–1,5 s. Empurre para cima e levemente em direção aos ombros, sem bater um halter no outro.']],
+  range:['Topo: halteres sobre os ombros, cotovelos quase estendidos.','Embaixo: halteres na altura do peito, cotovelos um pouco abaixo da linha do tronco.','Não desça mais se o ombro precisar sair do banco, rolar para a frente ou doer na parte da frente. A profundidade certa depende do seu braço e da mobilidade do ombro.'],
+  breath:'Inspire no topo e durante a descida. Embaixo, mantenha o abdômen firme. Solte o ar na subida, depois do trecho mais difícil (o começo). Em séries pesadas dá para segurar o ar 1–2 s na transição de baixo, mas não a série inteira.',
+  cues:['Peito alto, escápulas no banco.','Antebraço sempre na vertical.','Desce controlando, sobe para os ombros.'],
+  check:['Encosto a ~30°','Roscas apertadas','Pés firmes, glúteo no banco','Escápulas encaixadas','Carga para RIR 1–2'],
+  vary:'O ângulo do cotovelo em relação ao tronco (algo entre ~30° e ~70°), a largura e a profundidade dependem do comprimento dos braços e da mobilidade do ombro. O que não muda: antebraço embaixo da carga, ombro estável e nenhuma dor articular.',
+  errors:[
+    {id:'cot',title:'Cotovelos abertos a ~90°',view:'top',desc:'O braço fica perpendicular ao tronco e o halter desce na linha do pescoço. Aumenta a carga na frente do ombro sem ganho para o peito.',keys:{bottom:{armR:{ua:[100,-17],fa:[-90,90]}},mid:{armR:{ua:[96,22],fa:[-90,84]}}}},
+    {id:'punho',title:'Punho dobrado para trás',view:'lateral',desc:'O halter fica atrás da linha do antebraço e a carga vai para o punho.',base:{wrist:48,wristDir:[0,0,-1]}},
+    {id:'quadril',title:'Quadril sai do banco',view:'lateral',desc:'O tronco fica mais plano, a lombar arqueia e o exercício vira um supino reto.',keys:{mid:{P:[0,61,3],lumbar:-70,thor:-64},top:{P:[0,67,5],lumbar:-76,thor:-66}}}
+  ]
+});
+
+EX.push({
+  id:'barra-fixa',sets:3,rest:{opts:[120,150,180],def:150},name:'Barra fixa (pegada pronada)',short:'Barra fixa',
+  rx:'3 × 6–12 · RIR 1–2 · descanso 2–3 min',target:'Dorsal (latíssimo do dorso)',
+  views:['posterior','lateral'],
+  base:{lumbar:0,thor:0,neck:0,armR:{ikS:[34,230,0],poleRel:[1,-.25,.2]},legR:{th:[0,-80],sh:[180,-76],ft:[0,-55]}},
+  keys:{
+    hang:{P:[0,115.2,1],elev:6,pro:1,scapRot:32},
+    set:{P:[0,122.5,1],elev:-1,pro:-1,scapRot:24},
+    mid:{P:[0,150,1.5],lumbar:-4,thor:-7,neck:-3,elev:-2,pro:-3,scapRot:10,armR:{ikS:[34,230,0],poleRel:[.7,-1,.2]}},
+    top:{P:[0,179,2],lumbar:-10,thor:-14,neck:-8,elev:-3,pro:-4,scapRot:0,armR:{ikS:[34,230,0],poleRel:[.35,-1,.3]},legR:{th:[0,-74],sh:[180,-72],ft:[0,-55]}}
+  },
+  seq:[
+    {path:['hang'],dur:.5,kind:'hold',label:'Pendurado · braço estendido',tempo:'',breath:'INSPIRA'},
+    {path:['hang','set'],dur:.4,kind:'conc',label:'Escápulas descem',tempo:'começo da subida',breath:'EXPIRA'},
+    {path:['set','mid','top'],dur:1.1,kind:'conc',label:'Subida · concêntrica',tempo:'~1–1,5 s',breath:'EXPIRA'},
+    {path:['top'],dur:.5,kind:'hold',label:'Topo',tempo:'pausa curta',breath:'FIRME'},
+    {path:['top','mid','set','hang'],dur:2.6,kind:'ecc',label:'Descida · excêntrica',tempo:'~2–3 s',breath:'INSPIRA'}
+  ],
+  ext:['hang','top'],extLabels:['embaixo','topo'],
+  paths:{posterior:[['E','R','cotovelo'],['E','L',''],['S','R','ombro']],lateral:[['S','R','ombro'],['E','R','cotovelo']]},
+  equip(sk){pullBar();},
+  guides:{
+    posterior(sk){for(const k of['R','L']){const sc=scapPts(sk,k);const c=mul(add(add(sc[0],sc[1]),sc[2]),1/3);ARROW3(add(c,[0,7,-3]),add(c,[0,-5,-3]),'gd',1.1,'gda',{layer:3});}TX([0,8,0],'escápulas descem antes de dobrar o braço',{cls:'lbl-g',anchor:'middle'});},
+    lateral(sk){L3([0,230,0],[0,20,0],'gd',.9,{layer:2,dash:'2 3'});TX([0,24,0],'corpo sob a barra, sem balanço',{cls:'lbl-g',anchor:'middle',dy:12});}
+  },
+  muscles:{p:[['lats','RL']],s:[['midTrap','RL'],['biceps','RL'],['deltPost','RL'],['forearm','RL']]},
+  feel:'Laterais das costas, abaixo das axilas, e entre as escápulas. Bíceps e antebraço trabalham como secundários.',
+  feelNote:'É comum o antebraço ou o bíceps cansar antes das costas. Isso não quer dizer que a execução está errada.',
+  setupEq:['Barra no topo da estação. Use o banco para alcançar sem pular.','Mãos na barra reta um pouco mais abertas que os ombros (cerca de 1,5× a largura dos ombros), palmas para a frente.','Se essa pegada incomodar o ombro, feche um pouco ou teste as alças anguladas das pontas.'],
+  setupBody:['Comece pendurado, com os braços estendidos.','Pernas juntas, joelhos levemente dobrados, pés um pouco à frente do corpo.','Abdômen firme e glúteo contraído para o corpo não balançar.'],
+  exec:[['hold','Pendurado','Braços estendidos, corpo parado.'],['conc','Começo da subida','Primeiro abaixe as escápulas: os ombros se afastam das orelhas e o corpo sobe alguns centímetros.'],['conc','Subida (concêntrica)','~1–1,5 s. Puxe os cotovelos para baixo e para os lados das costelas, levando o peito em direção à barra.'],['hold','Topo','Queixo acima da barra, peito perto dela, tronco levemente inclinado para trás.'],['ecc','Descida (excêntrica)','~2–3 s. Desça controlando até os braços estenderem de novo.']],
+  range:['Embaixo: cotovelos estendidos. Os ombros sobem naturalmente, mas sem despencar.','Em cima: peito perto da barra e queixo acima dela.','Não vale ganhar altura balançando, chutando ou esticando o pescoço para passar o queixo.'],
+  breath:'Inspire embaixo ou durante a descida. Solte o ar durante a subida. Mantenha o abdômen firme a repetição toda.',
+  cues:['Ombros longe das orelhas.','Cotovelos para o bolso de trás.','Peito na barra.'],
+  check:['Pegada ~1,5× os ombros','Corpo parado, abdômen firme','Braço estendido no início','Menos de 5 reps? Use a alternativa'],
+  vary:'A largura ideal da pegada muda de pessoa para pessoa. A ativação do dorsal é parecida entre pegadas largas, médias e neutras, então escolha a que deixa o ombro mais confortável.',
+  errors:[
+    {id:'balanco',title:'Balanço (kipping)',view:'lateral',desc:'Chutar e balançar dá impulso e tira trabalho das costas.',keys:{hang:{lumbar:-8,thor:-6,legR:{th:[180,-78],sh:[180,-68],ft:[0,-60]}},set:{lumbar:6,legR:{th:[0,-55],sh:[0,-86],ft:[0,-40]}},mid:{lumbar:14,thor:2,legR:{th:[0,-12],sh:[0,-70],ft:[0,-20]}},top:{legR:{th:[0,-35],sh:[0,-82],ft:[0,-30]}}}},
+    {id:'meia',title:'Meia repetição embaixo',view:'posterior',desc:'Parar com o cotovelo dobrado corta a parte em que o dorsal está mais alongado.',keys:{hang:{P:[0,148,1.5],lumbar:-4,thor:-7,elev:-1,pro:-2,scapRot:10,armR:{ikS:[34,230,0],poleRel:[.7,-1,.2]}},set:{P:[0,148,1.5],lumbar:-4,thor:-7,elev:-1,pro:-2,scapRot:10,armR:{ikS:[34,230,0],poleRel:[.7,-1,.2]}}}},
+    {id:'encolher',title:'Ombros encolhidos no topo',view:'posterior',desc:'Os ombros sobem até as orelhas e o pescoço estica para passar o queixo. Termine com o peito, não com o queixo.',keys:{mid:{elev:4,pro:1,neck:-15},top:{P:[0,166,2],elev:7,pro:2,scapRot:20,neck:-30}}}
+  ]
+});
+
+EX.push({
+  id:'remada-baixa',sets:3,rest:{opts:[120],def:120},name:'Remada baixa com triângulo',short:'Remada baixa',
+  rx:'3 × 8–12 · RIR 1–2 · descanso 2 min',target:'Meio das costas (romboides e trapézio médio) e dorsal',
+  views:['lateral','posterior'],
+  base:{P:[0,53,0],legR:{ikS:[12,7,44],poleRel:[.2,.6,1],ft:[8,-15]}},
+  keys:{
+    stretch:{lumbar:12,thor:14,neck:10,pro:6,elev:0,armR:{ikS:[4,68,69],poleRel:[.7,-1,0]}},
+    mid:{lumbar:2,thor:3,neck:0,pro:0,elev:-1,armR:{ikS:[4,68,40],poleRel:[.5,-1,-.4]}},
+    end:{lumbar:-3,thor:-4,neck:-2,pro:-6,elev:-1,armR:{ikS:[4,67,15],poleRel:[.35,-.45,-1]}}
+  },
+  seq:[
+    {path:['stretch'],dur:.45,kind:'hold',label:'Alongado',tempo:'pausa curta',breath:'INSPIRA'},
+    {path:['stretch','mid','end'],dur:1.1,kind:'conc',label:'Puxada · concêntrica',tempo:'~1 s',breath:'EXPIRA'},
+    {path:['end'],dur:1,kind:'hold',label:'Segura contraído',tempo:'1 s',breath:'FIRME'},
+    {path:['end','mid','stretch'],dur:2.1,kind:'ecc',label:'Volta · excêntrica',tempo:'~2 s',breath:'INSPIRA'}
+  ],
+  ext:['stretch','end'],extLabels:['início','fim'],
+  paths:{lateral:[['G','R','mãos'],['E','R','cotovelo']],posterior:[['E','R','cotovelo'],['E','L','']]},
+  tower:{x:0,z:118,ac:X,out:[0,0,-1],py:66},
+  equip(sk){
+    BOX([0,42,-15],[[X,13],[Y,3],[Z,45]],'eqp',{bias:-4});
+    for(const z of[-50,20])BOX([0,20,z],[[X,2.5],[Y,19],[Z,2.5]],'eqd',{bias:-5});
+    const hr=sk.side.R.G,hl=sk.side.L.G,m=mid(hr,hl);
+    const t=this.tower;const pulPos=comb(1,[t.x,0,t.z],t.py,Y,2,t.out);
+    const apex=add(m,mul(norm(sub(pulPos,m)),9));
+    PL3([hr,apex,hl,hr],'eql',2.2,{bias:.3});
+    const L=cable(this,'a',apex,pulPos);tower(t,liftOf(this,'a',L));
+  },
+  guides:{
+    lateral(sk){const t=this.tower;L3([0,t.py,t.z-2],[0,t.py,-5],'gd',.9,{layer:2,dash:'2 3'});TX([0,t.py,t.z-8],'cabo quase horizontal',{cls:'lbl-g',anchor:'end',dy:-8});
+      L3(sk.P,add(sk.P,[0,92,0]),'gd',.9,{layer:3,dash:'3 2.5'});TX(add(sk.P,[0,96,0]),'tronco perto da vertical',{cls:'lbl-g',anchor:'middle'});},
+    posterior(sk){for(const k of['R','L']){const sd=sk.side[k],sc=scapPts(sk,k);const c=mul(add(add(sc[0],sc[1]),sc[2]),1/3);ARROW3(add(c,mul(sk.xT,sd.s*6)),add(c,mul(sk.xT,-sd.s*3)),'gd',1.1,'gda',{layer:3});}TX(comb(1,sk.N,34,sk.uT),'escápulas se juntam no fim',{cls:'lbl-g',anchor:'middle'});}
+  },
+  muscles:{p:[['midTrap','RL'],['lats','RL']],s:[['deltPost','RL'],['biceps','RL']]},
+  feel:'Meio das costas, entre as escápulas, e laterais das costas. A parte de trás do ombro e o bíceps trabalham como secundários.',
+  feelNote:'Se sentir mais a lombar do que as costas, o tronco provavelmente está balançando.',
+  setupEq:['Ajuste sugerido: carro da polia na altura do umbigo com você sentado (o programa diz "ponto mais baixo"). Assim o cabo fica quase horizontal.','Triângulo no mosquetão. Banco plano de frente para a torre.','Distância: com os braços estendidos, a pilha ainda precisa ficar levantada.'],
+  setupBody:['Sente na ponta do banco, pés firmes no chão, joelhos dobrados.','Pegada neutra no triângulo (palmas uma para a outra).','Coluna neutra, peito alto.'],
+  exec:[['hold','Alongado','Braços estendidos, tronco até ~10–15° inclinado à frente, escápulas abertas.'],['conc','Puxada (concêntrica)','~1 s. O tronco volta à vertical enquanto as escápulas se juntam e os cotovelos vão para trás, rentes ao corpo.'],['hold','Fim','Triângulo no abdômen, cotovelos atrás do tronco. Segure 1 s.'],['ecc','Volta (excêntrica)','~2 s. Estenda os braços e deixe as escápulas abrirem, sem arredondar a lombar.']],
+  range:['Início: braços estendidos, costas alongadas e coluna ainda neutra.','Fim: triângulo encostando no abdômen, cotovelos passando a linha do tronco.','Não vá além do ponto em que a lombar começa a arredondar.'],
+  breath:'Solte o ar puxando. Inspire na volta.',
+  cues:['Peito alto.','Cotovelos rentes, para trás.','Junta as escápulas no fim.'],
+  check:['Polia na altura do umbigo','Pilha levantada com o braço estendido','Pés firmes','Tronco quase vertical','Carga para RIR 1–2'],
+  vary:'Inclinar o tronco entre 0° e ~15° no alongamento é questão de preferência. O essencial é o tronco não virar o motor do movimento.',
+  note:'<b>Ajuste sugerido:</b> o programa diz polia no ponto mais baixo. Sentado no banco, isso faz o cabo puxar para baixo. Com o carro na altura do umbigo, a resistência fica na direção da puxada. O documento do programa ainda não foi alterado.',
+  errors:[
+    {id:'balanco',title:'Balançar o tronco',view:'lateral',desc:'O tronco vira alavanca: a lombar faz o trabalho e as costas descansam.',keys:{stretch:{lumbar:34,thor:37,neck:30,armR:{ikS:[4,62,80],poleRel:[.7,-1,0]}},mid:{lumbar:8,thor:8,neck:6},end:{lumbar:-18,thor:-20,neck:-14,armR:{ikS:[4,69,10],poleRel:[.35,-.45,-1]}}}},
+    {id:'arred',title:'Arredondar a coluna no alongamento',view:'lateral',desc:'Buscar mais alongamento arredondando a lombar coloca a carga na coluna.',keys:{stretch:{lumbar:16,thor:44,neck:48,pro:9,armR:{ikS:[4,64,74],poleRel:[.7,-1,0]}},mid:{lumbar:8,thor:22,neck:22}}},
+    {id:'encolher',title:'Encolher os ombros no fim',view:'posterior',desc:'Os ombros sobem: o trapézio de cima assume e o meio das costas trabalha menos.',keys:{mid:{elev:4},end:{elev:7,neck:12}}}
+  ]
+});
+
+EX.push({
+  id:'crucifixo-polia',sets:3,rest:{opts:[90],def:90},name:'Crucifixo na polia (crossover)',short:'Crucifixo polia',
+  rx:'3 × 10–15 · RIR 0–1 · descanso 1,5 min',target:'Peitoral maior',
+  views:['frontal','top'],
+  base:{P:[0,91,4],lumbar:12,thor:12,neck:4,legR:{ikS:[11,7,-16],poleRel:[.1,0,1],ft:[8,-18]},legL:{ikS:[11,7,24],poleRel:[.1,0,1],ft:[8,-18]}},
+  keys:{
+    open:{pro:-2,armR:{sph:[100,-6,62],poleRel:[.45,.25,-1]}},
+    mid:{pro:-1,armR:{sph:[45,-11,62],poleRel:[.8,.2,-.7]}},
+    close:{pro:1,armR:{sph:[-16,-16,62],poleRel:[1,.1,-.25]}}
+  },
+  seq:[
+    {path:['open'],dur:.5,kind:'hold',label:'Alongado',tempo:'pausa curta',breath:'INSPIRA'},
+    {path:['open','mid','close'],dur:1.3,kind:'conc',label:'Fechamento · concêntrica',tempo:'~1–1,5 s',breath:'EXPIRA'},
+    {path:['close'],dur:.5,kind:'hold',label:'Mãos juntas',tempo:'pausa curta',breath:'FIRME'},
+    {path:['close','mid','open'],dur:2.5,kind:'ecc',label:'Abertura · excêntrica',tempo:'~2–3 s',breath:'INSPIRA'}
+  ],
+  ext:['open','close'],extLabels:['aberto','fechado'],
+  paths:{frontal:[['G','R','mãos'],['G','L','']],top:[['G','R','mãos em arco'],['G','L',''],['E','R','cotovelo']]},
+  towers:[{x:-84,z:-45,ac:Z,out:[1,0,0],py:140},{x:84,z:-45,ac:Z,out:[-1,0,0],py:140}],
+  bounds:{frontal:[-96,96,-196,0]},
+  equip(sk){
+    const ids=['r','l'];
+    this.towers.forEach((t,i)=>{const k=i?'L':'R';const pul=comb(1,[t.x,0,t.z],t.py,Y,2,t.out);C3(sk.side[k].G,2.6,'eqd',{bias:.3});const L=cable(this,ids[i],sk.side[k].G,pul);tower(t,liftOf(this,ids[i],L));});
+  },
+  guides:{
+    top(sk){for(const k of['R','L']){const sd=sk.side[k];const pts=[];for(let a=104;a>=-18;a-=6)pts.push(add(sd.S,mul(dirAE(a,-10,sd.s),62)));PL3(pts,'gd',.9,{layer:2,dash:'2 3'});}TX(comb(1,sk.N,92,Z),'mãos em arco',{cls:'lbl-g',anchor:'middle'});},
+    frontal(sk){TX([0,12,0],'cotovelo levemente dobrado e fixo',{cls:'lbl-g',anchor:'middle',dy:-4});}
+  },
+  muscles:{p:[['pecStern','RL'],['pecClav','RL']],s:[['deltAnt','RL']]},
+  feel:'Peitoral, principalmente meio e parte de cima. A frente do ombro ajuda.',
+  feelNote:'Se sentir mais o bíceps ou o ombro, confira se os cotovelos estão dobrando e esticando, o que transforma o crucifixo em supino.',
+  setupEq:['Os dois carros na altura do ombro, com estribos.','Pegue um estribo de cada vez e dê 1–2 passos à frente da linha das torres, até o cabo ficar tenso com os braços abertos.'],
+  setupBody:['Um pé à frente do outro, joelhos levemente dobrados.','Tronco levemente inclinado à frente, peito alto, ombros para trás.','Cotovelos levemente dobrados. Esse ângulo fica igual a série toda.'],
+  exec:[['hold','Alongado','Braços abertos, mãos mais ou menos na linha do corpo, peito alongado.'],['conc','Fechamento (concêntrica)','~1–1,5 s. Leve as mãos em arco até se encontrarem na frente do peito, como se fosse abraçar uma árvore.'],['hold','Fim','Mãos juntas na frente da parte de baixo do peito.'],['ecc','Abertura (excêntrica)','~2–3 s. Abra no mesmo arco, controlando, até sentir o peito alongar.']],
+  range:['Início: mãos na linha do corpo ou um pouco atrás, peito alongado e ombro encaixado.','Fim: mãos se encontram na frente do peito.','Não abra mais se o ombro rolar para a frente ou se a sensação for na articulação do ombro.'],
+  breath:'Inspire abrindo, solte o ar fechando.',
+  cues:['Cotovelos travados no mesmo ângulo.','Abraça a árvore.','Peito alto, ombro para trás.'],
+  check:['Polias na altura do ombro','1–2 passos à frente','Pés escalonados','Cotovelos levemente dobrados','Cabo tenso com os braços abertos'],
+  vary:'A altura das polias muda a região mais trabalhada: polia alta favorece a parte de baixo do peito; polia baixa, a de cima. O quanto abrir depende da mobilidade do ombro.',
+  errors:[
+    {id:'supino',title:'Transformar em supino',view:'top',desc:'Dobrar e esticar o cotovelo transforma o crucifixo num supino e tira a tensão do peito no alongamento.',keys:{open:{armR:{sph:[100,-6,50],poleRel:[.45,.25,-1]}},mid:{armR:{sph:[45,-11,38],poleRel:[.9,.1,-.5]}}}},
+    {id:'abrir',title:'Abrir demais',view:'top',desc:'Abrir além da mobilidade leva o ombro para a frente e a carga para a articulação.',keys:{open:{pro:7,armR:{sph:[132,-2,62],poleRel:[.3,.3,-1]}}}},
+    {id:'tronco',title:'Usar o tronco',view:'lateral',desc:'Curvar o tronco para fechar troca trabalho do peito por impulso.',keys:{mid:{lumbar:20,thor:24},close:{lumbar:30,thor:40,neck:30}}}
+  ]
+});
+
+EX.push({
+  id:'elevacao-lateral',sets:3,rest:{opts:[60],def:60,note:'Faça um lado e logo o outro, sem pausa. O descanso vale depois dos dois lados. Em bi-set com o face pull: sem pausa entre os dois e 1 min ao fim de cada volta.'},name:'Elevação lateral unilateral na polia',short:'Elevação lateral',
+  rx:'3 × 10–15 por lado · RIR 0–1 · sem pausa entre os lados',target:'Deltoide lateral (lateral do ombro)',
+  views:['frontal','lateral'],
+  base:{P:[0,93,0],lumbar:0,thor:0,neck:0,roll:-4,legR:{ikS:[11,7,2],poleRel:[0,0,1],ft:[8,-18]},armL:{ikS:[40,125,6],poleRel:[.2,-1,-.3]}},
+  keys:{
+    low:{armR:{sph:[-40,-68,62],poleRel:[1,.25,-.4]}},
+    mid:{armR:{sph:[25,-36,62],poleRel:[.7,.6,-.5]}},
+    high:{armR:{sph:[60,-3,62],poleRel:[.25,1,-.5]}}
+  },
+  seq:[
+    {path:['low'],dur:.3,kind:'hold',label:'Embaixo',tempo:'cabo tenso',breath:'INSPIRA'},
+    {path:['low','mid','high'],dur:1.3,kind:'conc',label:'Subida · concêntrica',tempo:'~1–1,5 s',breath:'EXPIRA'},
+    {path:['high'],dur:.25,kind:'hold',label:'Linha do ombro',tempo:'',breath:'FIRME'},
+    {path:['high','mid','low'],dur:2.1,kind:'ecc',label:'Descida · excêntrica',tempo:'~2 s',breath:'INSPIRA'}
+  ],
+  ext:['low','high'],extLabels:['embaixo','topo'],
+  paths:{frontal:[['G','R','mão'],['E','R','cotovelo']],lateral:[['G','R','mão']]},
+  tower:{x:52,z:0,ac:Z,out:[-1,0,0],py:12},
+  equip(sk){const t=this.tower;const pul=comb(1,[t.x,0,t.z],t.py,Y,2,t.out);C3(sk.side.R.G,2.6,'eqd',{bias:.3});const L=cable(this,'a',sk.side.R.G,pul);tower(t,liftOf(this,'a',L));},
+  guides:{
+    frontal(sk){const S=sk.side.R.S;L3(add(S,[6,0,0]),add(S,[-80,0,0]),'gd',.9,{layer:2,dash:'2 3'});TX(add(S,[-80,0,0]),'linha do ombro',{cls:'lbl-g',dy:-6});},
+    lateral(sk){TX(comb(1,sk.side.R.S,22,Z,44,Y),'braço um pouco à frente do corpo',{cls:'lbl-g',anchor:'middle'});}
+  },
+  muscles:{p:[['deltLat','R']],s:[['deltAnt','R'],['upTrap','R']]},
+  feel:'Lateral do ombro.',
+  feelNote:'Se sentir o pescoço ou o trapézio, o ombro provavelmente está subindo junto com o braço.',
+  setupEq:['Carro no ponto mais baixo, com estribo.','Fique de lado para a torre, a cerca de um passo dela.'],
+  setupBody:['Segure o estribo com a mão mais longe da torre. O cabo passa na frente do corpo.','A outra mão segura a coluna da torre.','Tronco reto. Pode inclinar um pouco para longe da torre.'],
+  exec:[['hold','Embaixo','Mão na frente do quadril, cabo tenso.'],['conc','Subida (concêntrica)','~1–1,5 s. Leve o braço para fora e um pouco à frente do corpo, com o cotovelo levemente dobrado e um pouco acima da mão.'],['hold','Topo','Braço na linha do ombro.'],['ecc','Descida (excêntrica)','~2 s, controlando até a frente do quadril.']],
+  range:['Em cima: mais ou menos na linha do ombro.','Embaixo: mão na frente do quadril, sem deixar o cabo afrouxar.','Com um ombro saudável dá para subir acima disso, mas o trapézio assume mais. Como o seu ombro estala, fique na linha do ombro.'],
+  breath:'Solte o ar subindo e inspire descendo.',
+  cues:['Leva a mão para longe, não para cima.','Cotovelo conduz.','Ombro longe da orelha.'],
+  check:['Polia no ponto mais baixo','Mão de fora no estribo','Cabo na frente do corpo','Mão livre na torre','Ombro baixo'],
+  vary:'O plano exato do braço (de ~20° a ~40° à frente do corpo) depende da postura da sua escápula. A mão pode ficar neutra ou com o polegar levemente para cima, o que alivia a parte de cima do ombro.',
+  errors:[
+    {id:'balanco',title:'Balançar o tronco',view:'frontal',desc:'O tronco dá o impulso e o ombro trabalha menos.',keys:{low:{roll:4,P:[0,90,0]},mid:{roll:-12},high:{roll:-10}}},
+    {id:'encolher',title:'Encolher o ombro',view:'frontal',desc:'O ombro sobe junto com o braço e o trapézio assume.',keys:{mid:{elevR:4},high:{elevR:7}}},
+    {id:'frontal',title:'Virar elevação frontal',view:'lateral',desc:'O braço vai para a frente e o exercício passa a trabalhar mais a frente do ombro.',keys:{mid:{armR:{sph:[0,-36,62],poleRel:[.8,.6,-.3]}},high:{armR:{sph:[12,-3,62],poleRel:[.6,1,-.2]}}}}
+  ]
+});
+
+EX.push({
+  id:'face-pull',sets:2,rest:{opts:[60],def:60,note:'Em bi-set com a elevação lateral: sem pausa entre os dois e 1 min ao fim de cada volta.'},ropeAttach:true,name:'Face pull com corda',short:'Face pull',
+  rx:'2 × 12–20 · RIR 0–1 · descanso 1 min',target:'Deltoide posterior (parte de trás do ombro)',
+  views:['lateral','top'],
+  base:{P:[0,93,-2],lumbar:-4,thor:-6,neck:0,legR:{ikS:[11,7,2],poleRel:[0,0,1],ft:[8,-18]}},
+  keys:{
+    reach:{pro:4,elev:0,armR:{ikS:[9,152,56],poleRel:[1,-.35,-.1]}},
+    mid:{pro:-1,elev:0,armR:{ikS:[17,156,30],poleRel:[1,-.15,-.35]}},
+    pulled:{pro:-6,elev:-1,armR:{ikS:[27,159,2],poleRel:[1,-.1,-.4]}}
+  },
+  seq:[
+    {path:['reach'],dur:.4,kind:'hold',label:'Braços estendidos',tempo:'',breath:'INSPIRA'},
+    {path:['reach','mid','pulled'],dur:1,kind:'conc',label:'Puxada · concêntrica',tempo:'~1 s',breath:'EXPIRA'},
+    {path:['pulled'],dur:1,kind:'hold',label:'Segura',tempo:'1 s',breath:'FIRME'},
+    {path:['pulled','mid','reach'],dur:2,kind:'ecc',label:'Volta · excêntrica',tempo:'~2 s',breath:'INSPIRA'}
+  ],
+  ext:['reach','pulled'],extLabels:['início','fim'],
+  paths:{lateral:[['G','R','mãos'],['E','R','cotovelo']],top:[['G','R','mãos'],['G','L',''],['E','R','cotovelo'],['E','L','']]},
+  tower:{x:0,z:130,ac:X,out:[0,0,-1],py:160},
+  equip(sk){const t=this.tower;const pul=comb(1,[t.x,0,t.z],t.py,Y,2,t.out);const L=rope(this,'a',sk,pul);tower(t,liftOf(this,'a',L));},
+  guides:{
+    lateral(sk){const S=sk.side.R.S;L3(add(S,[0,0,-14]),add(S,[0,0,64]),'gd',.9,{layer:2,dash:'2 3'});TX(add(S,[0,0,20]),'cotovelos na altura dos ombros',{cls:'lbl-g',dy:16});},
+    top(sk){TX(comb(1,sk.N,-30,Z),'mãos abrem ao lado da cabeça',{cls:'lbl-g',anchor:'middle'});}
+  },
+  muscles:{p:[['deltPost','RL']],s:[['midTrap','RL']]},
+  feel:'Parte de trás do ombro e entre as escápulas.',
+  feelNote:'Se sentir só o bíceps, os cotovelos provavelmente estão baixos.',
+  setupEq:['Carro na altura da testa ou um pouco acima, com a corda.','Dê 1–2 passos para trás, até a pilha ficar levantada com os braços estendidos.'],
+  setupBody:['Pés na largura do quadril ou um à frente do outro.','Segure nas bolinhas da corda, palmas para baixo ou polegares apontando para você.','Tronco reto ou levemente inclinado para trás.'],
+  exec:[['hold','Início','Braços estendidos à frente, na altura do rosto.'],['conc','Puxada (concêntrica)','~1 s. Puxe a corda em direção ao rosto abrindo as mãos, com os cotovelos altos.'],['hold','Fim','Mãos ao lado das orelhas, cotovelos na linha do corpo, antebraços apontando para cima. Segure 1 s.'],['ecc','Volta (excêntrica)','~2 s, até os braços estenderem.']],
+  range:['Início: braços estendidos. O ombro pode ir um pouco à frente.','Fim: mãos ao lado da cabeça e cotovelos alinhados com o corpo.','Não leve os cotovelos mais para trás arqueando a lombar.'],
+  breath:'Solte o ar puxando, inspire voltando.',
+  cues:['Cotovelos altos.','Abre a corda e mostra o bíceps.','Peito parado.'],
+  check:['Polia na altura da testa','Pilha levantada com o braço estendido','Pés firmes','Cotovelos altos','Carga leve para 12–20'],
+  vary:'A altura da polia e o quanto as mãos abrem dependem da mobilidade de rotação do seu ombro.',
+  errors:[
+    {id:'baixo',title:'Cotovelos baixos',view:'lateral',desc:'Os cotovelos descem e o movimento vira remada: a parte de trás do ombro trabalha menos.',keys:{mid:{armR:{ikS:[11,138,38],poleRel:[.4,-1,-.3]}},pulled:{armR:{ikS:[14,127,20],poleRel:[.3,-1,-.6]}}}},
+    {id:'tronco',title:'Jogar o tronco para trás',view:'lateral',desc:'O peso do corpo puxa a corda no lugar do ombro.',keys:{mid:{lumbar:-12,thor:-14},pulled:{P:[0,93,-8],lumbar:-22,thor:-26,neck:-10}}},
+    {id:'encolher',title:'Encolher os ombros',view:'lateral',desc:'Os ombros sobem e a cabeça vai para a frente. Mantenha o pescoço longo.',keys:{mid:{elev:4,neck:12},pulled:{elev:7,neck:22}}}
+  ]
+});
+
+EX.push({
+  id:'abdominal-polia',sets:2,rest:{opts:[60],def:60},ropeAttach:true,name:'Abdominal na polia com corda',short:'Abdominal polia',
+  rx:'2 × 10–15 · RIR 1 · descanso 1 min',target:'Reto abdominal',
+  views:['lateral'],
+  base:{P:[0,48,-8],legR:{ikS:[10,8,-42],poleRel:[0,-.4,1],ft:[180,-12],heelV:[0,5,1]},armR:{head:[9,-1,4],poleRel:[.45,-1,.35]}},
+  keys:{up:{lumbar:28,thor:30,neck:26},mid:{lumbar:40,thor:64,neck:78},down:{lumbar:48,thor:98,neck:126}},
+  seq:[
+    {path:['up'],dur:.4,kind:'hold',label:'Coluna neutra',tempo:'',breath:'INSPIRA'},
+    {path:['up','mid','down'],dur:1.5,kind:'conc',label:'Enrolar · concêntrica',tempo:'~1,5 s',breath:'EXPIRA'},
+    {path:['down'],dur:1,kind:'hold',label:'Segura contraído',tempo:'1 s',breath:'EXPIRA'},
+    {path:['down','mid','up'],dur:2,kind:'ecc',label:'Desenrolar · excêntrica',tempo:'~2 s',breath:'INSPIRA'}
+  ],
+  ext:['up','down'],extLabels:['início','fim'],
+  paths:{lateral:[['Hc','','cabeça'],['E','R','cotovelo']]},
+  tower:{x:0,z:84,ac:X,out:[0,0,-1],py:212},
+  equip(sk){BOX([0,1.5,-15],[[X,25],[Y,1.5],[Z,35]],'eqp',{bias:-6});const t=this.tower;const pul=comb(1,[t.x,0,t.z],t.py,Y,2,t.out);const L=rope(this,'a',sk,pul);tower(t,liftOf(this,'a',L));},
+  guides:{lateral(sk){L3([0,2,sk.P[2]],[0,78,sk.P[2]],'gd',.9,{layer:2,dash:'3 2.5'});C3(sk.P,3.4,'gd',{layer:3,w:1.2,op:.9});TX([0,80,sk.P[2]-4],'quadril parado',{cls:'lbl-g',anchor:'end'});}},
+  muscles:{p:[['rectus','R']],s:[['obliq','RL']]},
+  feel:'Abdômen, principalmente a parte de cima e do meio.',
+  feelNote:'Se sentir mais a frente do quadril ou a lombar, o quadril provavelmente está se mexendo.',
+  setupEq:['Carro no ponto mais alto, com a corda.','Colchonete embaixo dos joelhos.'],
+  setupBody:['Ajoelhe de frente para a torre, a cerca de meio passo, joelhos na largura do quadril.','Segure as pontas da corda ao lado da cabeça, perto das têmporas.','Quadril um pouco atrás dos joelhos, tronco inclinado à frente com a coluna neutra.'],
+  exec:[['hold','Início','Coluna neutra, abdômen alongado.'],['conc','Enrolar (concêntrica)','~1,5 s. Leve as costelas em direção ao quadril e os cotovelos em direção às coxas. O quadril fica parado.'],['hold','Fim','Coluna toda enrolada. Segure 1 s contraindo.'],['ecc','Desenrolar (excêntrica)','~2 s, até a coluna voltar ao neutro.']],
+  range:['Fim: coluna totalmente enrolada.','Início: coluna neutra. Não deixe o cabo puxar até a lombar arquear.'],
+  breath:'Solte todo o ar enquanto enrola, porque isso ajuda a fechar as costelas. Inspire voltando.',
+  cues:['Costelas no quadril.','Quadril parado.','Mãos grudadas na cabeça.'],
+  check:['Polia no alto','Colchonete nos joelhos','Mãos na cabeça','Quadril parado','Soltar o ar enrolando'],
+  vary:'O quanto o quadril fica para trás e a inclinação inicial do tronco variam com o seu tamanho e a distância da torre. O que importa é o movimento sair da coluna, não do quadril.',
+  errors:[
+    {id:'quadril',title:'Mexer o quadril',view:'lateral',desc:'Sentar para trás vira flexão de quadril: o abdômen quase não encurta.',keys:{mid:{P:[0,46.9,-12.3],lumbar:50,thor:54,neck:54},down:{P:[0,45,-17.2],lumbar:68,thor:72,neck:72}}},
+    {id:'bracos',title:'Puxar com os braços',view:'lateral',desc:'Os braços puxam a corda para baixo e tiram a carga do abdômen.',keys:{up:{armR:{ikS:[9,108,29],poleRel:[.45,-1,.35]}},mid:{thor:50,neck:55,armR:{ikS:[12,58,42],poleRel:[.5,-.2,-1]}},down:{thor:62,neck:66,armR:{ikS:[12,42,40],poleRel:[.5,-.2,-1]}}}}
+  ]
+});
+
+
+/* ================= exercícios: Membros A ================= */
+EX.push({
+  id:'goblet',sets:3,rest:{opts:[120],def:120},name:'Agachamento goblet com calcanhar elevado',short:'Goblet',
+  rx:'3 × 8–15 · RIR 1–2 · descanso 2 min',target:'Quadríceps (frente da coxa)',
+  views:['lateral','frontal'],
+  base:{legR:{ikS:[15,10,0],poleRel:[.35,.3,1],ft:[15,-30],heelV:[0,-6.5,-4]},armR:{tr:[6,-10,16],poleRel:[.25,-1,.1]}},
+  keys:{top:{P:[0,95.3,-1],lumbar:6,thor:6,neck:2},mid:{P:[0,66,-9],lumbar:18,thor:16,neck:8},bottom:{P:[0,39,-15],lumbar:30,thor:26,neck:14}},
+  seq:[
+    {path:['top'],dur:.5,kind:'hold',label:'Em pé',tempo:'respire e firme o abdômen',breath:'INSPIRA'},
+    {path:['top','mid','bottom'],dur:2.4,kind:'ecc',label:'Descida · excêntrica',tempo:'~2–3 s',breath:'FIRME'},
+    {path:['bottom'],dur:.45,kind:'hold',label:'Embaixo · sem quicar',tempo:'pausa curta',breath:'FIRME'},
+    {path:['bottom','mid','top'],dur:1.3,kind:'conc',label:'Subida · concêntrica',tempo:'~1–1,5 s',breath:'EXPIRA'}
+  ],
+  ext:['top','bottom'],extLabels:['em pé','embaixo'],
+  paths:{lateral:[['P','','quadril'],['K','R','joelho']],frontal:[['K','R','joelho'],['K','L','']]},
+  equip(sk){
+    for(const s of[-1,1])BOX([s*15,1.6,-4],[[X,7],[Y,1.6],[Z,9]],'eqd',{bias:-1});
+    const top=add(mid(sk.side.R.G,sk.side.L.G),[0,3,0]);dumbbellV(top,'db'+(this._pal==='e'?'-e':''));
+  },
+  guides:{
+    lateral(sk){TX(sk.side.R.K,'joelho pode',{cls:'lbl-g',dx:8,dy:-20});TX(sk.side.R.K,'passar do pé',{cls:'lbl-g',dx:8,dy:-7});TX([-15,0,-12],'anilha sob o calcanhar',{cls:'lbl-g',anchor:'end',dy:-8});},
+    frontal(sk){for(const k of['R','L']){const t=sk.side[k].toe;L3([t[0],1,t[2]],[t[0],60,t[2]],'gd',.9,{layer:3,dash:'3 2.5'});}TX([0,1,0],'joelho na direção do pé',{cls:'lbl-g',anchor:'middle',dy:-6});}
+  },
+  muscles:{p:[['quads','RL']],s:[['glutes','RL']]},
+  feel:'Frente das coxas. Glúteos e parte de dentro da coxa trabalham junto.',
+  feelNote:'Queimação no quadríceps em séries longas é esperada. Dor na frente do joelho ou na lombar não é: confira a profundidade e a postura.',
+  setupEq:['Uma anilha de 5 kg (ou duas empilhadas) embaixo de cada calcanhar, uns 2–4 cm de altura. É mais estável que a borda do step.','Halter montável com a rosca bem apertada, porque você vai segurá-lo pela anilha de cima.','Enquanto os halteres fixos (até 10 kg) bastarem, use um fixo.'],
+  setupBody:['Pés um pouco mais abertos que o quadril, pontas levemente para fora.','Halter na vertical, encostado no peito, mãos em concha embaixo da anilha de cima.','Cotovelos apontando para baixo, peito alto.'],
+  exec:[['hold','Em pé','Joelhos quase estendidos, peso no meio do pé.'],['ecc','Descida (excêntrica)','~2–3 s. Os joelhos vão para a frente e para fora, na direção dos pés, e o quadril desce entre os calcanhares.'],['hold','Embaixo','Quadril na altura do joelho ou abaixo, sem perder a postura. Sem quicar.'],['conc','Subida (concêntrica)','~1–1,5 s. Empurre o chão com o pé inteiro, subindo quadril e peito juntos.']],
+  range:['Embaixo: o mais fundo que conseguir com o calcanhar apoiado, o peito alto e a lombar neutra. Para a maioria, quadril na altura do joelho ou abaixo.','Em cima: joelhos quase estendidos, sem travar.','Pare de descer antes do ponto em que a lombar começa a arredondar e o quadril “vira” para baixo.'],
+  breath:'Inspire em pé e firme o abdômen antes de descer. Mantenha a pressão na descida e no começo da subida, e solte o ar depois do trecho mais difícil. Em séries longas, respire a cada repetição, sempre em cima.',
+  cues:['Joelhos para a frente e para fora.','Peito alto, halter colado.','Desce entre os calcanhares.'],
+  check:['Anilhas sob os calcanhares','Rosca do halter apertada','Pés um pouco mais abertos que o quadril','Halter colado no peito','Carga para RIR 1–2'],
+  vary:'A largura dos pés, o quanto as pontas abrem e a profundidade dependem do seu quadril e do tornozelo. Aqui o joelho passar da ponta do pé é normal: impedir isso joga a carga para o quadril e a lombar (um estudo pequeno, Fry et al. 2003). O que importa é o joelho seguir a direção do pé e o calcanhar ficar apoiado.',
+  errors:[
+    {id:'valgo',title:'Joelhos para dentro',view:'frontal',desc:'Os joelhos caem para dentro na descida ou na subida. A carga sai do quadríceps e vai para a articulação do joelho.',keys:{mid:{legR:{ikS:[15,10,0],poleRel:[-.22,.3,1],ft:[15,-30],heelV:[0,-6.5,-4]}},bottom:{legR:{ikS:[15,10,0],poleRel:[-.22,.3,1],ft:[15,-30],heelV:[0,-6.5,-4]}}}},
+    {id:'lombar',title:'Tronco cai e a lombar arredonda',view:'lateral',desc:'Embaixo, o peito cai e a lombar arredonda. A carga passa para a coluna.',keys:{mid:{lumbar:26,thor:32},bottom:{P:[0,41,-19],lumbar:46,thor:60,neck:40}}},
+    {id:'raso',title:'Descer pouco',view:'lateral',desc:'Parar alto corta a parte da amplitude que mais trabalha o quadríceps.',keys:{mid:{P:[0,83,-5],lumbar:10,thor:10},bottom:{P:[0,72,-8],lumbar:14,thor:13,neck:6}}}
+  ]
+});
+
+EX.push({
+  id:'stiff',sets:3,rest:{opts:[120],def:120},name:'Stiff com halteres',short:'Stiff',
+  rx:'3 × 8–12 · RIR 2 · descanso 2 min',target:'Posteriores da coxa e glúteos',
+  views:['lateral'],
+  base:{legR:{ikS:[11,7,0],poleRel:[0,.2,1],ft:[6,-18]}},
+  keys:{
+    top:{P:[0,92,0],lumbar:0,thor:0,neck:2,armR:{sph:[-32,-82,62.5],poleRel:[1,0,-.3]}},
+    mid:{P:[0,90.5,-15],lumbar:35,thor:35,neck:40,armR:{sph:[-90,-81,62.5],poleRel:[1,0,-.3]}},
+    bottom:{P:[0,86.5,-30],lumbar:68,thor:70,neck:74,armR:{sph:[-160,-80,62.5],poleRel:[1,0,-.3]}}
+  },
+  seq:[
+    {path:['top'],dur:.5,kind:'hold',label:'Em pé',tempo:'respire e firme o abdômen',breath:'INSPIRA'},
+    {path:['top','mid','bottom'],dur:2.5,kind:'ecc',label:'Descida · excêntrica',tempo:'~2–3 s',breath:'FIRME'},
+    {path:['bottom'],dur:.45,kind:'hold',label:'Embaixo · alongado',tempo:'pausa curta',breath:'FIRME'},
+    {path:['bottom','mid','top'],dur:1.3,kind:'conc',label:'Subida · concêntrica',tempo:'~1–1,5 s',breath:'EXPIRA'}
+  ],
+  ext:['top','bottom'],extLabels:['em pé','embaixo'],
+  paths:{lateral:[['G','R','halter'],['P','','quadril']]},
+  equip(sk){const hd=[1,0,0];for(const k of['R','L'])dumbbell(sk.side[k].G,hd,'db'+(this._pal==='e'?'-e':''));},
+  guides:{
+    lateral(sk){const a=comb(1,sk.P,-10,sk.fL),b=comb(1,sk.N,-9,sk.fT);L3(add(a,mul(sub(a,b),.1)),add(b,mul(sub(b,a),.3)),'gd',1,{layer:3,dash:'3 2.5'});TX(add(b,mul(sub(b,a),.32)),'coluna neutra',{cls:'lbl-g',anchor:'end',dx:-4,dy:-4});
+      ARROW3(comb(1,sk.P,-12,Z),comb(1,sk.P,-28,Z),'gd',1.1,'gda',{layer:3});TX(comb(1,sk.P,-30,Z),'quadril para trás',{cls:'lbl-g',anchor:'end',dy:4});}
+  },
+  muscles:{p:[['hams','RL']],s:[['glutes','RL'],['erect','R']]},
+  feel:'Posterior da coxa, principalmente perto do glúteo, e os glúteos.',
+  feelNote:'A lombar trabalha um pouco porque segura a postura, e isso é normal. Dor ou queimação forte na lombar não é: confira se a coluna está arredondando.',
+  setupEq:['Dois halteres. Comece com os fixos e passe para os montáveis quando ficarem leves.','Roscas bem apertadas.'],
+  setupBody:['Pés na largura do quadril, apontando para a frente.','Halteres na frente das coxas, palmas para você.','Joelhos levemente dobrados. Esse ângulo fica quase igual a série toda.','Escápulas encaixadas, peito aberto, abdômen firme.'],
+  exec:[['hold','Em pé','Quadril estendido, halteres na frente das coxas.'],['ecc','Descida (excêntrica)','~2–3 s. Leve o quadril para trás, como se fosse fechar uma porta com o bumbum. Os halteres descem rentes às coxas e às canelas.'],['hold','Embaixo','Pare quando o posterior da coxa estiver bem alongado e a coluna ainda neutra.'],['conc','Subida (concêntrica)','~1–1,5 s. Empurre o quadril para a frente até ficar em pé, sem jogar o tronco para trás no fim.']],
+  range:['Embaixo: até sentir o posterior bem alongado. Para muita gente os halteres chegam perto do meio da canela, mas isso depende da flexibilidade.','Em cima: quadril estendido, sem arquear a lombar para trás.','Pare de descer quando a lombar começar a arredondar, mesmo que os halteres não tenham chegado longe.'],
+  breath:'Inspire e firme o abdômen em pé. Segure enquanto desce e solte o ar na subida, depois de passar os joelhos.',
+  cues:['Quadril para trás.','Halteres rentes às pernas.','Coluna longa do quadril à cabeça.'],
+  check:['Pés na largura do quadril','Joelhos levemente dobrados','Halteres colados nas coxas','Abdômen firme','Carga para RIR 2'],
+  vary:'O quanto você desce depende da flexibilidade do posterior. A referência é a coluna neutra e o alongamento, não a altura em que o halter chega.',
+  errors:[
+    {id:'arred',title:'Coluna arredondada',view:'lateral',desc:'Para descer mais, a lombar arredonda e a carga vai para a coluna.',keys:{mid:{lumbar:30,thor:48,neck:55},bottom:{P:[0,88,-18],lumbar:58,thor:96,neck:110}}},
+    {id:'agachar',title:'Agachar em vez de levar o quadril para trás',view:'lateral',desc:'Os joelhos dobram e o quadril desce: vira um agachamento e o posterior quase não alonga.',keys:{mid:{P:[0,77,-10],lumbar:24,thor:24,neck:28},bottom:{P:[0,62,-16],lumbar:42,thor:42,neck:46}}},
+    {id:'longe',title:'Halteres longe das pernas',view:'lateral',desc:'Com os halteres à frente, a alavanca na lombar aumenta muito.',keys:{mid:{armR:{sph:[-30,-66,62.5],poleRel:[1,0,-.3]}},bottom:{armR:{sph:[0,-62,62.5],poleRel:[1,0,-.3]}}}}
+  ]
+});
+
+EX.push({
+  id:'afundo',sets:2,rest:{opts:[90],def:90,note:'Faça uma perna e logo a outra; o descanso vale depois das duas.'},name:'Afundo estático com halteres',short:'Afundo',
+  rx:'2 × 8–12 por perna · RIR 1–2 · descanso 1,5 min',target:'Quadríceps e glúteo da perna da frente',
+  views:['lateral','frontal'],
+  base:{lumbar:4,thor:4,neck:2,legR:{ikS:[10,7,28],poleRel:[.1,.4,1],ft:[5,-18]},legL:{ikS:[10,14,-52],poleRel:[0,-1,.4],ft:[0,-50],heelV:[0,3,-5]},armR:{ua:[0,-90],fa:[0,-89]}},
+  keys:{top:{P:[0,83,-11]},mid:{P:[0,66,-11.5]},bottom:{P:[0,51,-12]}},
+  seq:[
+    {path:['top'],dur:.5,kind:'hold',label:'Em cima',tempo:'respire e firme o abdômen',breath:'INSPIRA'},
+    {path:['top','mid','bottom'],dur:2.3,kind:'ecc',label:'Descida · excêntrica',tempo:'~2–3 s',breath:'FIRME'},
+    {path:['bottom'],dur:.4,kind:'hold',label:'Embaixo',tempo:'pausa curta',breath:'FIRME'},
+    {path:['bottom','mid','top'],dur:1.3,kind:'conc',label:'Subida · concêntrica',tempo:'~1–1,5 s',breath:'EXPIRA'}
+  ],
+  ext:['top','bottom'],extLabels:['em cima','embaixo'],
+  paths:{lateral:[['P','','quadril'],['K','R','joelho']],frontal:[['K','R','joelho da frente']]},
+  equip(sk){for(const k of['R','L'])dumbbell(sk.side[k].G,Z,'db'+(this._pal==='e'?'-e':''));},
+  guides:{
+    lateral(sk){L3(add(sk.P,[0,-12,0]),[0,1,sk.P[2]],'gd',.9,{layer:2,dash:'2 3'});TX([0,1,sk.P[2]],'desce reto',{cls:'lbl-g',anchor:'middle',dy:-5});},
+    frontal(sk){const t=sk.side.R.toe;L3([t[0],1,t[2]],[t[0],62,t[2]],'gd',.9,{layer:3,dash:'3 2.5'});TX([t[0],30,t[2]],'joelho sobre o pé',{cls:'lbl-g',anchor:'end',dx:-16});}
+  },
+  muscles:{p:[['quads','R'],['glutes','R']],s:[['quads','L']]},
+  feel:'Frente da coxa e glúteo da perna da frente. A perna de trás ajuda menos.',
+  feelNote:'Sentir alongar a frente do quadril da perna de trás é normal.',
+  setupEq:['Dois halteres, um em cada mão, com pegada neutra.','Se o equilíbrio atrapalhar, segure a coluna da torre com uma mão e use um halter só, na outra.'],
+  setupBody:['Dê um passo largo: pé da frente inteiro no chão, pé de trás apoiado na ponta.','Pés na largura do quadril, como trilhos, e não numa linha só.','Tronco quase vertical, peso mais na perna da frente.'],
+  exec:[['hold','Em cima','Os dois joelhos quase estendidos, pés fixos no lugar.'],['ecc','Descida (excêntrica)','~2–3 s. Desça reto, levando o joelho de trás em direção ao chão.'],['hold','Embaixo','Joelho de trás a poucos centímetros do chão, coxa da frente perto da horizontal.'],['conc','Subida (concêntrica)','~1–1,5 s. Empurre o chão com o pé da frente inteiro.']],
+  range:['Embaixo: joelho de trás quase encostando no chão.','Em cima: pare um pouco antes de estender os joelhos totalmente, para manter a tensão.','Se o calcanhar da frente sair do chão, o passo está curto: afaste mais os pés.'],
+  breath:'Inspire em cima e firme o abdômen. Solte o ar subindo.',
+  cues:['Desce reto.','Joelho de trás no chão.','Pé da frente inteiro.'],
+  check:['Passo largo','Pés como trilhos','Calcanhar da frente no chão','Tronco quase vertical','Comece pela perna mais fraca'],
+  vary:'O tamanho do passo muda o foco: passo mais curto, com o joelho mais à frente, trabalha mais o quadríceps; passo mais longo, com o tronco um pouco inclinado, trabalha mais o glúteo. Os dois servem.',
+  errors:[
+    {id:'valgo',title:'Joelho da frente para dentro',view:'frontal',desc:'O joelho cai para dentro e a carga vai para a articulação.',keys:{mid:{legR:{ikS:[10,7,28],poleRel:[-.3,.4,1],ft:[5,-18]}},bottom:{legR:{ikS:[10,7,28],poleRel:[-.3,.4,1],ft:[5,-18]}}}},
+    {id:'tronco',title:'Tronco cai para a frente',view:'lateral',desc:'O peito cai e a lombar trabalha para segurar. Mantenha o tronco quase vertical.',keys:{mid:{lumbar:16,thor:18},bottom:{lumbar:28,thor:34,neck:30}}},
+    {id:'raso',title:'Descer pouco',view:'lateral',desc:'Parar com o joelho de trás longe do chão corta a parte mais produtiva da amplitude.',keys:{mid:{P:[0,76,-11.2]},bottom:{P:[0,70,-11.5]}}}
+  ]
+});
+
+EX.push({
+  id:'panturrilha',sets:3,rest:{opts:[60],def:60,note:'Alterne as pernas sem pausa; o descanso vale depois das duas.'},name:'Panturrilha unilateral no step',short:'Panturrilha',
+  rx:'3 × 10–15 por perna · RIR 0–1 · descanso 1 min',target:'Panturrilha (gastrocnêmio e sóleo)',
+  views:['lateral','zoom'],noCable:true,bounds:{zoom:[-42,46,-52,3]},
+  base:{lumbar:0,thor:0,neck:0,legL:{th:[0,-86],sh:[180,-38],ft:[0,-60]},armR:{ua:[0,-90],fa:[0,-89]},armL:{ikS:[12,135,49],poleRel:[.3,-1,-.2]}},
+  keys:{
+    stretch:{P:[-3,93.1,-7.8],legR:{ikS:[11,8.6,-6.8],poleRel:[0,0,1],ft:[0,22]}},
+    mid:{P:[-3,104.75,-8.2],legR:{ikS:[11,20.25,-7.2],poleRel:[0,0,1],ft:[0,-18]}},
+    top:{P:[-3,113.4,-1.75],legR:{ikS:[11,28.9,-.75],poleRel:[0,0,1],ft:[0,-55]}}
+  },
+  seq:[
+    {path:['stretch'],dur:2,kind:'hold',label:'Alongado · pausa',tempo:'2 s',breath:'INSPIRA'},
+    {path:['stretch','mid','top'],dur:1,kind:'conc',label:'Subida · concêntrica',tempo:'~1 s',breath:'EXPIRA'},
+    {path:['top'],dur:.8,kind:'hold',label:'Topo',tempo:'~1 s',breath:'FIRME'},
+    {path:['top','mid','stretch'],dur:2,kind:'ecc',label:'Descida · excêntrica',tempo:'~2 s',breath:'INSPIRA'}
+  ],
+  ext:['stretch','top'],extLabels:['alongado','topo'],
+  paths:{lateral:[['heel','R','calcanhar']],zoom:[['heel','R','calcanhar']]},
+  tower:{x:22,z:52,ac:X,out:[0,0,-1],py:12},
+  equip(sk){BOX([-4,7.5,24],[[X,34],[Y,7.5],[Z,16]],'eqp',{bias:-3});dumbbell(sk.side.R.G,Z,'db'+(this._pal==='e'?'-e':''));tower(this.tower,0);},
+  guides:{
+    lateral(sk){L3([-11,15,8],[-11,15,-30],'gd',.9,{layer:3,dash:'2 3'});TX([-11,15,-30],'borda do step',{cls:'lbl-g',anchor:'end',dx:-4,dy:4});},
+    zoom(sk){L3([-11,15,8],[-11,15,-38],'gd',.9,{layer:3,dash:'2 3'});TX([-11,15,-38],'borda do step',{cls:'lbl-g',dy:14});}
+  },
+  muscles:{p:[['calf','R']],s:[]},
+  feel:'Panturrilha, da parte de trás do joelho até o calcanhar.',
+  feelNote:'Queimação forte no fim da série é normal nesse músculo. Dor em pontada no tendão de Aquiles não é: pare.',
+  setupEq:['Step firme no chão, perto da torre.','Halter na mão do mesmo lado da perna que trabalha; a outra mão segura a torre.'],
+  setupBody:['Ponta do pé (a “bola” do pé) na borda do step, calcanhar para fora.','A outra perna dobrada atrás, sem apoiar.','Joelho da perna de apoio quase estendido e parado.'],
+  exec:[['hold','Alongado','Calcanhar abaixo da borda do step. Segure 2 s.'],['conc','Subida (concêntrica)','~1 s. Suba o máximo que der na ponta do pé, empurrando pelo dedão.'],['hold','Topo','Segure ~1 s contraindo.'],['ecc','Descida (excêntrica)','~2 s, até o calcanhar passar a borda.']],
+  range:['Embaixo: calcanhar o mais baixo que der, com a panturrilha bem alongada.','Em cima: o mais alto possível na ponta do pé.','A pausa de 2 s embaixo tira o “rebote” do tendão e faz o músculo trabalhar mais.'],
+  breath:'Respire normalmente: solte o ar subindo, inspire descendo.',
+  cues:['Pausa embaixo.','Sobe pelo dedão.','Joelho parado.'],
+  check:['Step firme','Ponta do pé na borda','Mão na torre','Joelho quase estendido','Pausa de 2 s embaixo'],
+  vary:'O quanto o calcanhar desce depende da mobilidade do tornozelo. Com o joelho estendido trabalha mais o gastrocnêmio; dobrar o joelho de propósito passa o trabalho para o sóleo, que é outro exercício.',
+  errors:[
+    {id:'curta',title:'Não descer o calcanhar',view:'lateral',desc:'Sem passar a borda do step, você perde a parte alongada, que é a mais importante para a panturrilha.',keys:{stretch:{P:[-3,101,-8.9],legR:{ikS:[11,16.5,-7.9],poleRel:[0,0,1],ft:[0,-5]}}}},
+    {id:'joelho',title:'Dobrar e esticar o joelho',view:'lateral',desc:'O joelho dá impulso com a coxa e tira carga da panturrilha.',keys:{stretch:{P:[-3,86,-10]},mid:{P:[-3,100,-9]}}}
+  ]
+});
+
+EX.push({
+  id:'rosca-polia',sets:3,rest:{opts:[90,60],def:90,note:'Em bi-set com o tríceps (cada um numa torre): rosca, tríceps e 1 min de descanso.'},name:'Rosca direta na polia com barra reta',short:'Rosca polia',barAttach:true,
+  rx:'3 × 8–12 · RIR 0–1 · descanso 1,5 min',target:'Bíceps',
+  views:['lateral'],
+  base:{P:[0,93,0],lumbar:0,thor:0,neck:0,legR:{ikS:[12,7,2],poleRel:[0,0,1],ft:[8,-18]},armR:{ua:[0,-84],fa:[-10,-78]}},
+  keys:{bottom:{},mid:{armR:{ua:[0,-84],fa:[-10,-10]}},top:{armR:{ua:[0,-84],fa:[-10,55]}}},
+  seq:[
+    {path:['bottom'],dur:.4,kind:'hold',label:'Embaixo',tempo:'cabo tenso',breath:'INSPIRA'},
+    {path:['bottom','mid','top'],dur:1.1,kind:'conc',label:'Subida · concêntrica',tempo:'~1 s',breath:'EXPIRA'},
+    {path:['top'],dur:.4,kind:'hold',label:'Topo',tempo:'contrai',breath:'FIRME'},
+    {path:['top','mid','bottom'],dur:2.4,kind:'ecc',label:'Descida · excêntrica',tempo:'~2–3 s',breath:'INSPIRA'}
+  ],
+  ext:['bottom','top'],extLabels:['embaixo','topo'],
+  paths:{lateral:[['G','R','barra'],['E','R','cotovelo']]},
+  tower:{x:0,z:52,ac:X,out:[0,0,-1],py:12},
+  equip(sk){const hr=sk.side.R.G,hl=sk.side.L.G;L3(add(hr,[-6,0,0]),add(hl,[6,0,0]),'db'+(this._pal==='e'?'-e':''),2.8,{bias:.4});const t=this.tower;const pul=comb(1,[t.x,0,t.z],t.py,Y,2,t.out);const L=cable(this,'a',mid(hr,hl),pul);tower(t,liftOf(this,'a',L));},
+  guides:{
+    lateral(sk){const R=sk.side.R;L3(R.S,add(R.S,[0,-44,0]),'gd',.9,{layer:3,dash:'3 2.5'});TX(R.E,'cotovelo parado',{cls:'lbl-g',anchor:'end',dx:-12,dy:4});}
+  },
+  muscles:{p:[['biceps','RL']],s:[['forearm','RL']]},
+  feel:'Frente do braço (bíceps). O antebraço ajuda.',
+  feelNote:'Se sentir mais a frente do ombro, os cotovelos provavelmente estão indo para a frente.',
+  setupEq:['Carro no ponto mais baixo, com a barra reta.','Fique de frente para a torre, a cerca de meio passo, com o cabo esticado e a barra na altura das coxas.','Dá para fazer em bi-set com o tríceps, um em cada torre.'],
+  setupBody:['Pés na largura do quadril, joelhos destravados.','Pegada por baixo (palmas para cima), na largura dos ombros.','Cotovelos encostados nas laterais do tronco, ombros para trás.'],
+  exec:[['hold','Embaixo','Braços quase estendidos, cabo tenso.'],['conc','Subida (concêntrica)','~1 s. Dobre só o cotovelo, levando a barra até perto dos ombros.'],['hold','Topo','Segure um instante contraindo.'],['ecc','Descida (excêntrica)','~2–3 s, até os braços quase estenderem.']],
+  range:['Embaixo: braço quase estendido, sem deixar o ombro ir para a frente.','Em cima: barra perto dos ombros, com os cotovelos ainda no lugar.','Se para subir mais o cotovelo precisa ir para a frente, você já chegou ao fim da amplitude.'],
+  breath:'Solte o ar subindo, inspire descendo.',
+  cues:['Cotovelos colados.','Só o antebraço se mexe.','Desce controlando.'],
+  check:['Polia no ponto mais baixo','Pegada na largura dos ombros','Cotovelos colados no tronco','Tronco parado','Carga para RIR 0–1'],
+  vary:'A largura da pegada pode variar um pouco para deixar punhos e cotovelos confortáveis.',
+  errors:[
+    {id:'cotovelo',title:'Cotovelos vão para a frente',view:'lateral',desc:'Levar o cotovelo para a frente no fim tira a carga do bíceps e passa para o ombro.',keys:{mid:{armR:{ua:[0,-70],fa:[-10,-5]}},top:{armR:{ua:[0,-45],fa:[-10,72]}}}},
+    {id:'balanco',title:'Balançar o tronco',view:'lateral',desc:'Jogar o tronco para trás dá impulso e o bíceps trabalha menos.',keys:{bottom:{lumbar:10,thor:12},mid:{lumbar:-4,thor:-6},top:{P:[0,93,-4],lumbar:-14,thor:-18,neck:-10}}}
+  ]
+});
+
+EX.push({
+  id:'triceps-corda',sets:3,rest:{opts:[90,60],def:90,note:'Em bi-set com a rosca: rosca, tríceps e 1 min de descanso.'},name:'Tríceps na polia com corda',short:'Tríceps corda',ropeAttach:true,
+  rx:'3 × 10–15 · RIR 0–1 · descanso 1,5 min',target:'Tríceps',
+  views:['lateral'],
+  base:{P:[0,93,0],lumbar:8,thor:10,neck:8,legR:{ikS:[12,7,-4],poleRel:[0,0,1],ft:[8,-18]}},
+  keys:{up:{armR:{ua:[5,-84],fa:[-5,22]}},mid:{armR:{ua:[5,-84],fa:[25,-35]}},down:{armR:{ua:[5,-84],fa:[70,-78]}}},
+  seq:[
+    {path:['up'],dur:.4,kind:'hold',label:'Em cima',tempo:'cotovelos colados',breath:'INSPIRA'},
+    {path:['up','mid','down'],dur:1,kind:'conc',label:'Extensão · concêntrica',tempo:'~1 s',breath:'EXPIRA'},
+    {path:['down'],dur:.5,kind:'hold',label:'Embaixo · corda aberta',tempo:'contrai',breath:'FIRME'},
+    {path:['down','mid','up'],dur:2,kind:'ecc',label:'Volta · excêntrica',tempo:'~2 s',breath:'INSPIRA'}
+  ],
+  ext:['up','down'],extLabels:['em cima','embaixo'],
+  paths:{lateral:[['G','R','mãos'],['E','R','cotovelo']]},
+  tower:{x:0,z:66,ac:X,out:[0,0,-1],py:205},
+  equip(sk){const t=this.tower;const pul=comb(1,[t.x,0,t.z],t.py,Y,2,t.out);const L=rope(this,'a',sk,pul);tower(t,liftOf(this,'a',L));},
+  guides:{
+    lateral(sk){const R=sk.side.R;L3(R.S,add(R.S,[0,-44,0]),'gd',.9,{layer:3,dash:'3 2.5'});TX(R.E,'cotovelo colado',{cls:'lbl-g',anchor:'end',dx:-12,dy:4});}
+  },
+  muscles:{p:[['triceps','RL']],s:[]},
+  feel:'Parte de trás do braço (tríceps), principalmente as cabeças lateral e medial.',
+  feelNote:'O tríceps francês do Membros B complementa este, porque trabalha mais a cabeça longa.',
+  setupEq:['Carro no ponto mais alto, com a corda.','Fique de frente para a torre, a cerca de meio passo.'],
+  setupBody:['Pés na largura do quadril ou um à frente do outro.','Tronco levemente inclinado à frente, abdômen firme.','Cotovelos colados nas laterais do tronco, mãos nas bolinhas da corda.'],
+  exec:[['hold','Em cima','Mãos na altura do peito, cotovelos dobrados e colados.'],['conc','Extensão (concêntrica)','~1 s. Estenda o cotovelo e, no fim, abra a corda levando as mãos para os lados das coxas.'],['hold','Embaixo','Braço estendido. Segure um instante.'],['ecc','Volta (excêntrica)','~2 s, até as mãos voltarem à altura do peito.']],
+  range:['Embaixo: cotovelo totalmente estendido, com a corda aberta.','Em cima: mãos perto do peito, sem os cotovelos saírem do lugar.','Se os cotovelos sobem para as mãos irem mais alto, você passou do ponto.'],
+  breath:'Solte o ar estendendo, inspire voltando.',
+  cues:['Cotovelos colados.','Abre a corda no fim.','Tronco parado.'],
+  check:['Polia no alto','Corda no mosquetão','Cotovelos colados','Tronco levemente à frente','Carga para RIR 0–1'],
+  vary:'A inclinação do tronco, de reto até ~20°, é preferência. O essencial é o cotovelo ficar parado.',
+  errors:[
+    {id:'cotovelo',title:'Cotovelos sobem e saem do tronco',view:'lateral',desc:'O ombro entra no movimento e o tríceps trabalha menos.',keys:{up:{armR:{ua:[0,-45],fa:[-5,45]}},mid:{armR:{ua:[0,-62],fa:[20,-20]}}}},
+    {id:'tronco',title:'Debruçar o tronco',view:'lateral',desc:'Debruçar sobre a corda usa o peso do corpo para empurrar.',keys:{mid:{lumbar:18,thor:24},down:{lumbar:28,thor:38,neck:30}}}
+  ]
+});
+
+
+/* ================= exercícios: Torso B ================= */
+EX.push({
+  id:'supino-reto',sets:3,rest:{opts:[120,150,180],def:150},name:'Supino reto com halteres',short:'Supino reto',
+  rx:'3 × 6–10 · RIR 1–2 · descanso 2–3 min',target:'Peitoral maior (meio do peito)',
+  views:['lateral','top'],
+  base:{P:[0,53,0],lumbar:-90,thor:-90,neck:-82,pro:-2,elev:-1,legR:{ikS:[16,7,38],poleRel:[.3,.6,1],ft:[10,-22]}},
+  keys:{top:{armR:{ua:[90,84],fa:[-90,86]}},mid:{armR:{ua:[65,25],fa:[-90,86]}},bottom:{armR:{ua:[50,-20],fa:[-90,90]}}},
+  seq:[
+    {path:['top'],dur:.6,kind:'hold',label:'Topo',tempo:'respire',breath:'INSPIRA'},
+    {path:['top','mid','bottom'],dur:2.5,kind:'ecc',label:'Descida · excêntrica',tempo:'~2–3 s',breath:'INSPIRA'},
+    {path:['bottom'],dur:.45,kind:'hold',label:'Embaixo · sem quicar',tempo:'pausa curta',breath:'FIRME'},
+    {path:['bottom','mid','top'],dur:1.3,kind:'conc',label:'Subida · concêntrica',tempo:'~1–1,5 s',breath:'EXPIRA'}
+  ],
+  ext:['bottom','top'],extLabels:['embaixo','topo'],
+  paths:{lateral:[['G','R','halter'],['E','R','cotovelo']],top:[['G','R','halter'],['G','L',''],['E','R','cotovelo']]},
+  equip(sk){
+    BOX([0,42.5,-34],[[X,13],[Y,2.5],[Z,54]],'eqp',{bias:-4});BOX([0,2.5,-34],[[X,4],[Y,2],[Z,46]],'eqd',{bias:-6});
+    for(const z of[-72,6])BOX([0,21,z],[[X,2.5],[Y,18.5],[Z,2.5]],'eqd',{bias:-6});
+    const c='db'+(this._pal==='e'?'-e':'');dumbbell(sk.side.R.G,norm([1,0,-.55]),c);dumbbell(sk.side.L.G,norm([1,0,.55]),c);
+  },
+  guides:{
+    lateral(sk){const sd=sk.side.R;L3(sd.E,add(sd.E,[0,44,0]),'gd',1,{layer:3,dash:'3 2.5'});TX(sd.G,'antebraço na vertical',{cls:'lbl-g',dx:16,dy:4});},
+    top(sk){const R=sk.side.R;L3(R.S,add(R.S,mul(sk.uT,-30)),'gd',1,{layer:3,dash:'3 2.5'});L3(R.S,add(R.S,mul(sub(R.E,R.S),1.25)),'gd',1,{layer:3,dash:'3 2.5'});
+      TX([-36,0,-8],'cotovelo ~30–70° do tronco',{cls:'lbl-g',size:10,anchor:'end',dx:8});TX([36,0,-8],'halter sobre o cotovelo',{cls:'lbl-g',size:10,dx:-8});}
+  },
+  muscles:{p:[['pecStern','RL']],s:[['pecClav','RL'],['deltAnt','RL'],['triceps','RL']]},
+  feel:'Meio do peito. Também a frente do ombro e o tríceps.',
+  feelNote:'Se a frente do ombro dominar, confira se os cotovelos não estão abertos demais e se as escápulas continuam no banco.',
+  setupEq:['Banco plano.','Aperte a rosca das manoplas antes de cada série.'],
+  setupBody:['Pés firmes no chão, um pouco mais abertos que o quadril.','Glúteo, costas e cabeça apoiados no banco.','Escápulas levemente juntas e para baixo, peito alto. A lombar mantém a curva natural.','Pegada levemente neutra: palmas giradas uns 20–30° uma para a outra.','Para deitar com os halteres, sente com eles nas coxas e deite levando-os junto ao peito.'],
+  exec:[['hold','Topo','Halteres sobre os ombros, cotovelos quase estendidos.'],['ecc','Descida (excêntrica)','~2–3 s. Antebraço na vertical, halteres descendo ao lado do peito, na linha do mamilo.'],['hold','Embaixo','Pausa curta, sem quicar, com o peito alongado.'],['conc','Subida (concêntrica)','~1–1,5 s. Empurre para cima e um pouco para dentro, terminando sobre os ombros.']],
+  range:['Topo: halteres sobre os ombros.','Embaixo: halteres na altura do peito, cotovelos um pouco abaixo da linha do tronco.','Não desça mais se o ombro precisar sair do banco, rolar para a frente ou doer na parte da frente.'],
+  breath:'Inspire no topo e durante a descida. Embaixo, mantenha o abdômen firme. Solte o ar na subida, depois do trecho mais difícil.',
+  cues:['Escápulas no banco.','Antebraço na vertical.','Cotovelos a meio caminho do tronco.'],
+  check:['Roscas apertadas','Pés firmes','Escápulas encaixadas','Pegada levemente neutra','Carga para RIR 1–2'],
+  vary:'O ângulo do cotovelo (entre ~30° e ~70° do tronco) e a profundidade dependem do seu braço e do ombro. Num estudo de modelagem com supino de barra (Noteboom et al., 2024), pegada menos aberta e escápulas retraídas reduziram a carga no ombro; é evidência limitada, mas o princípio vale aqui.',
+  errors:[
+    {id:'cot',title:'Cotovelos abertos a ~90°',view:'top',desc:'O braço fica perpendicular ao tronco: aumenta a carga na frente do ombro sem ganho para o peito.',keys:{mid:{armR:{ua:[90,25],fa:[-90,86]}},bottom:{armR:{ua:[92,-15],fa:[-90,90]}}}},
+    {id:'escap',title:'Ombros saem do banco no topo',view:'lateral',desc:'Empurrar até o ombro descolar do banco tira a estabilidade e põe carga na articulação.',keys:{mid:{pro:6},top:{pro:13,elev:3}}},
+    {id:'curta',title:'Descer pouco',view:'lateral',desc:'Parar longe do peito corta a parte alongada, que é a mais útil para o peitoral.',keys:{bottom:{armR:{ua:[63,18],fa:[-90,86]}}}}
+  ]
+});
+
+const RB={u:[0,sn(40),cs(40)],n:[0,cs(40),-sn(40)],h:[0,46,-10]};
+EX.push({
+  id:'remada-apoiada',sets:3,rest:{opts:[120],def:120},name:'Remada com halteres, peito apoiado no banco inclinado',short:'Remada apoiada',
+  rx:'3 × 8–12 · RIR 1–2 · descanso 2 min',target:'Meio das costas e dorsal',
+  views:['lateral','posterior'],
+  base:{P:[0,71.7,3.6],lumbar:50,thor:50,neck:42,legR:{ikS:[24,7,-38],poleRel:[.3,.2,1],ft:[10,-20]}},
+  keys:{
+    stretch:{pro:5,elev:1,armR:{ikS:[19,36.6,43.5],poleRel:[.3,0,-1]}},
+    mid:{pro:0,elev:0,armR:{ikS:[21,59.6,25.5],poleRel:[.25,1,-.5]}},
+    end:{pro:-6,elev:-1,armR:{ikS:[22,78.6,7.5],poleRel:[.2,1,-.6]}}
+  },
+  seq:[
+    {path:['stretch'],dur:.45,kind:'hold',label:'Alongado',tempo:'pausa curta',breath:'INSPIRA'},
+    {path:['stretch','mid','end'],dur:1.1,kind:'conc',label:'Puxada · concêntrica',tempo:'~1 s',breath:'EXPIRA'},
+    {path:['end'],dur:1,kind:'hold',label:'Segura contraído',tempo:'1 s',breath:'FIRME'},
+    {path:['end','mid','stretch'],dur:2.1,kind:'ecc',label:'Volta · excêntrica',tempo:'~2 s',breath:'INSPIRA'}
+  ],
+  ext:['stretch','end'],extLabels:['início','fim'],
+  paths:{lateral:[['G','R','halter'],['E','R','cotovelo']],posterior:[['E','R','cotovelo'],['E','L','']]},
+  equip(sk){
+    BOX(comb(1,RB.h,40,RB.u,-2.5,RB.n),[[X,14],[RB.u,40],[RB.n,2.5]],'eqp',{bias:-4});
+    BOX([0,43,-21],[[X,13],[Y,2.5],[Z,11]],'eqp',{bias:-4});
+    BOX([0,2.5,5],[[X,4],[Y,2],[Z,42]],'eqd',{bias:-6});BOX([0,40,32],[[X,2.5],[Y,38],[Z,2.5]],'eqd',{bias:-6});BOX([0,21,-22],[[X,2.5],[Y,19],[Z,2.5]],'eqd',{bias:-6});
+    for(const k of['R','L'])dumbbell(sk.side[k].G,Z,'db'+(this._pal==='e'?'-e':''));
+  },
+  guides:{
+    lateral(sk){TX([0,142,-22],'peito colado no banco',{cls:'lbl-g',anchor:'middle'});TX([0,76,-44],'cotovelo vai ao quadril',{cls:'lbl-g',anchor:'middle'});},
+    posterior(sk){for(const k of['R','L']){const sd=sk.side[k],sc=scapPts(sk,k);const c=mul(add(add(sc[0],sc[1]),sc[2]),1/3);ARROW3(add(c,mul(sk.xT,sd.s*6)),add(c,mul(sk.xT,-sd.s*3)),'gd',1.1,'gda',{layer:3});}TX([42,122,0],'escápulas se',{cls:'lbl-g',anchor:'end'});TX([42,122,0],'juntam no fim',{cls:'lbl-g',anchor:'end',dy:15});}
+  },
+  muscles:{p:[['midTrap','RL'],['lats','RL']],s:[['deltPost','RL'],['biceps','RL']]},
+  feel:'Meio das costas, entre as escápulas, e laterais das costas.',
+  feelNote:'O apoio no peito tira a lombar do exercício. Se sentir a lombar, o peito está saindo do banco.',
+  setupEq:['Encosto do banco a 30–45°.','Dois halteres no chão, ao lado da ponta do banco.'],
+  setupBody:['Deite de bruços com o peito no encosto e o queixo um pouco além da ponta.','Pés firmes no chão atrás, joelhos levemente dobrados.','Pegada neutra (palmas uma para a outra), braços estendidos para baixo.'],
+  exec:[['hold','Alongado','Braços estendidos, ombros soltos para baixo e para a frente.'],['conc','Puxada (concêntrica)','~1 s. Puxe os cotovelos para trás, em direção ao quadril, juntando as escápulas.'],['hold','Fim','Halteres ao lado do quadril, cotovelos atrás do tronco. Segure 1 s.'],['ecc','Volta (excêntrica)','~2 s, até os braços estenderem.']],
+  range:['Início: braços estendidos, escápulas afastadas.','Fim: cotovelos passando a linha do tronco, escápulas juntas.','O peito não sai do banco em nenhum momento. Se precisar sair, a carga está alta.','Se o halter encostar no chão antes de o braço estender, suba o encosto para 45°.'],
+  breath:'Solte o ar puxando, inspire na volta. Com o peito apoiado respirar fica um pouco mais difícil, então mantenha o ritmo.',
+  cues:['Peito colado no banco.','Cotovelos para o quadril.','Junta as escápulas.'],
+  check:['Banco a 30–45°','Peito apoiado','Pés firmes','Pegada neutra','Carga para RIR 1–2'],
+  vary:'Cotovelos mais abertos (~45° do tronco) trabalham mais o meio das costas e a parte de trás do ombro; cotovelos mais fechados, mais o dorsal. Os dois servem.',
+  errors:[
+    {id:'peito',title:'Peito sai do banco',view:'lateral',desc:'Levantar o tronco transforma o exercício numa remada com impulso da lombar.',keys:{mid:{lumbar:38,thor:34},end:{lumbar:26,thor:20,neck:20}}},
+    {id:'encolher',title:'Encolher os ombros',view:'posterior',desc:'Os ombros sobem no fim e o trapézio de cima assume o trabalho do meio das costas.',keys:{mid:{elev:4},end:{elev:7}}},
+    {id:'curta',title:'Não estender os braços',view:'lateral',desc:'Sem deixar os braços estenderem embaixo, você perde o alongamento das costas.',keys:{stretch:{pro:0,armR:{ikS:[20,54.6,33.5],poleRel:[.25,1,-.5]}}}}
+  ]
+});
+
+const SH={u:tUp(-12,0),f:tFr(-12,0)};
+EX.push({
+  id:'desenvolvimento',sets:3,rest:{opts:[120],def:120},name:'Desenvolvimento sentado com halteres',short:'Desenvolvimento',
+  rx:'3 × 8–12 · RIR 1–2 · descanso 2 min',target:'Deltoide anterior e lateral (frente e lateral do ombro)',
+  views:['frontal','lateral'],
+  base:{P:[0,53,0],lumbar:-10,thor:-12,neck:-6,pro:-1,legR:{ikS:[18,7,42],poleRel:[.3,.5,1],ft:[12,-20]}},
+  keys:{bottom:{armR:{ua:[70,-15],fa:[-90,90]}},mid:{armR:{ua:[74,30],fa:[-90,87]}},top:{armR:{ua:[80,82],fa:[-90,84]}}},
+  seq:[
+    {path:['bottom'],dur:.45,kind:'hold',label:'Embaixo',tempo:'altura das orelhas',breath:'INSPIRA'},
+    {path:['bottom','mid','top'],dur:1.3,kind:'conc',label:'Subida · concêntrica',tempo:'~1–1,5 s',breath:'EXPIRA'},
+    {path:['top'],dur:.4,kind:'hold',label:'Topo',tempo:'',breath:'FIRME'},
+    {path:['top','mid','bottom'],dur:2.4,kind:'ecc',label:'Descida · excêntrica',tempo:'~2–3 s',breath:'INSPIRA'}
+  ],
+  ext:['bottom','top'],extLabels:['embaixo','topo'],
+  paths:{frontal:[['G','R','halter'],['G','L',''],['E','R','cotovelo']],lateral:[['G','R','halter'],['E','R','cotovelo']]},
+  equip(sk){
+    BOX([0,45,8],[[X,13],[Y,2.5],[Z,17]],'eqp',{bias:-4});
+    BOX(comb(1,[0,53,0],34,SH.u,-10.5,SH.f),[[X,13],[SH.u,34],[SH.f,2.5]],'eqp',{bias:-4});
+    BOX([0,2.5,0],[[X,4],[Y,2],[Z,30]],'eqd',{bias:-6});BOX([0,22,4],[[X,2.5],[Y,20],[Z,2.5]],'eqd',{bias:-6});
+    const c='db'+(this._pal==='e'?'-e':'');for(const k of['R','L'])dumbbell(sk.side[k].G,X,c);
+  },
+  guides:{
+    frontal(sk){for(const k of['R','L']){const sd=sk.side[k];L3(sd.E,add(sd.E,[0,40,0]),'gd',1,{layer:3,dash:'3 2.5'});}const y=sk.Hc[1];L3([-72,y,0],[72,y,0],'gd',.8,{layer:2,dash:'2 3'});TX([72,y,0],'altura da orelha',{cls:'lbl-g',anchor:'end',dy:-6});},
+    lateral(sk){TX(comb(1,[0,53,0],72,SH.u,-14,SH.f),'encosto a 75–80°',{cls:'lbl-g',anchor:'end',dx:-4});}
+  },
+  muscles:{p:[['deltAnt','RL'],['deltLat','RL']],s:[['triceps','RL'],['upTrap','RL']]},
+  feel:'Frente e lateral do ombro. O tríceps ajuda.',
+  feelNote:'Se sentir a lombar, você está arqueando: encoste as costas e firme o abdômen.',
+  setupEq:['Encosto a 75–80°, não a 90°.','Aperte a rosca das manoplas.'],
+  setupBody:['Sente com as costas e a cabeça apoiadas, pés firmes no chão.','Halteres na altura das orelhas, cotovelos um pouco à frente do corpo.','Antebraços na vertical, palmas para a frente ou levemente giradas.'],
+  exec:[['hold','Embaixo','Halteres na altura das orelhas.'],['conc','Subida (concêntrica)','~1–1,5 s. Empurre para cima e levemente para dentro, sem bater os halteres.'],['hold','Topo','Cotovelos quase estendidos.'],['ecc','Descida (excêntrica)','~2–3 s, até a altura das orelhas.']],
+  range:['Embaixo: halteres na altura das orelhas, ou um pouco abaixo se o ombro estiver confortável.','Em cima: braços quase estendidos sobre os ombros.','Não desça mais se a frente do ombro doer.'],
+  breath:'Inspire embaixo e firme o abdômen. Solte o ar subindo, depois do trecho mais difícil.',
+  cues:['Costas no encosto.','Cotovelos um pouco à frente.','Sobe e fecha um pouco.'],
+  check:['Encosto a 75–80°','Roscas apertadas','Costas apoiadas','Cotovelos à frente','Carga para RIR 1–2'],
+  vary:'O quanto os cotovelos ficam à frente (de ~20° a ~45°) depende de como o seu ombro se sente. Encosto a 75–80° em vez de 90° costuma deixar o movimento mais natural (prática de treinadores, sem estudo direto).',
+  errors:[
+    {id:'arco',title:'Arquear a lombar',view:'lateral',desc:'Inclinar o tronco para trás vira um supino inclinado e põe carga na lombar.',keys:{mid:{lumbar:-20,thor:-24},top:{lumbar:-28,thor:-32,neck:-20}}},
+    {id:'cotovelo',title:'Cotovelos para trás',view:'frontal',desc:'Abrir os cotovelos atrás da linha do corpo aumenta a carga na frente do ombro.',keys:{bottom:{armR:{ua:[100,-12],fa:[-90,90]}},mid:{armR:{ua:[96,30],fa:[-90,87]}}}},
+    {id:'curta',title:'Descer pouco',view:'frontal',desc:'Parar acima da cabeça corta metade do movimento.',keys:{bottom:{armR:{ua:[74,28],fa:[-90,87]}}}}
+  ]
+});
+
+EX.push({
+  id:'puxada-unilateral',sets:3,rest:{opts:[90],def:90,note:'Faça um lado e logo o outro, sem pausa. O descanso vale depois dos dois lados.'},name:'Puxada unilateral ajoelhado na polia alta',short:'Puxada unilateral',
+  rx:'3 × 10–15 por lado · RIR 0–1 · 1,5 min após os dois lados',target:'Dorsal (laterais das costas)',
+  views:['posterior','lateral'],
+  base:{P:[0,49,-2],lumbar:-4,thor:-6,neck:-4,legR:{ikS:[10,8,-42],poleRel:[0,-.4,1],ft:[180,-12],heelV:[0,5,1]},armL:{ikS:[12,40,6],poleRel:[.3,-1,-.2]}},
+  keys:{
+    stretch:{elevR:5,proR:2,rotR:30,armR:{ikS:[12,158,22],poleRel:[1,-.2,.2]}},
+    mid:{elevR:1,proR:0,rotR:15,armR:{ikS:[18,128,16],poleRel:[.7,-.8,-.2]}},
+    end:{elevR:-3,proR:-4,rotR:0,armR:{ikS:[22,92,4],poleRel:[.4,-1,-.5]}}
+  },
+  seq:[
+    {path:['stretch'],dur:.5,kind:'hold',label:'Alongado',tempo:'ombro sobe',breath:'INSPIRA'},
+    {path:['stretch','mid','end'],dur:1,kind:'conc',label:'Puxada · concêntrica',tempo:'~1 s',breath:'EXPIRA'},
+    {path:['end'],dur:.5,kind:'hold',label:'Fim',tempo:'segura',breath:'FIRME'},
+    {path:['end','mid','stretch'],dur:2,kind:'ecc',label:'Volta · excêntrica',tempo:'~2 s',breath:'INSPIRA'}
+  ],
+  ext:['stretch','end'],extLabels:['alongado','fim'],
+  paths:{posterior:[['E','R','cotovelo'],['S','R','']],lateral:[['G','R','mão'],['E','R','cotovelo']]},
+  tower:{x:0,z:60,ac:X,out:[0,0,-1],py:210},
+  equip(sk){BOX([0,1.5,-15],[[X,25],[Y,1.5],[Z,35]],'eqp',{bias:-6});const t=this.tower;const pul=comb(1,[t.x,0,t.z],t.py,Y,2,t.out);C3(sk.side.R.G,2.6,'eqd',{bias:.3});const L=cable(this,'a',sk.side.R.G,pul);tower(t,liftOf(this,'a',L));},
+  guides:{
+    posterior(sk){const R=sk.side.R,sc=scapPts(sk,'R');const c=mul(add(add(sc[0],sc[1]),sc[2]),1/3);ARROW3(add(c,[0,6,-3]),add(c,[0,-5,-3]),'gd',1.1,'gda',{layer:3});TX([34,150,0],'ombro desce,',{cls:'lbl-g',anchor:'end'});TX([34,150,0],'cotovelo ao quadril',{cls:'lbl-g',anchor:'end',dy:15});},
+    lateral(sk){TX(add(sk.P,[0,96,-14]),'tronco quase parado',{cls:'lbl-g',anchor:'end'});}
+  },
+  muscles:{p:[['lats','R']],s:[['biceps','R'],['deltPost','R']]},
+  feel:'Lateral das costas, abaixo da axila.',
+  feelNote:'Se sentir mais o bíceps, pense em levar o cotovelo ao quadril, e não a mão.',
+  setupEq:['Carro no ponto mais alto, com estribo.','Colchonete embaixo dos joelhos.'],
+  setupBody:['Ajoelhe de frente para a torre, a cerca de meio passo, joelhos na largura do quadril.','Segure o estribo com uma mão, braço estendido para cima e para a frente.','A outra mão apoia na coxa. Tronco reto ou levemente inclinado para trás.'],
+  exec:[['hold','Alongado','Braço estendido; deixe o ombro subir e alongar a lateral das costas.'],['conc','Puxada (concêntrica)','~1 s. Primeiro desça o ombro, depois puxe o cotovelo para baixo, em direção ao quadril.'],['hold','Fim','Cotovelo ao lado das costelas. Segure um instante.'],['ecc','Volta (excêntrica)','~2 s, alongando bem em cima.']],
+  range:['Início: braço estendido, com o ombro alongado para cima.','Fim: cotovelo ao lado das costelas, um pouco atrás do tronco.','Não gire o tronco para puxar mais.'],
+  breath:'Solte o ar puxando, inspire alongando.',
+  cues:['Ombro desce primeiro.','Cotovelo no quadril.','Alonga em cima.'],
+  check:['Polia no alto','Colchonete','Mão livre na coxa','Tronco parado','Mesma carga nos dois lados'],
+  vary:'O ângulo do braço em relação ao corpo pode mudar um pouco. Escolha o que deixa você sentir mais a lateral das costas sem desconforto no ombro.',
+  errors:[
+    {id:'tronco',title:'Jogar o tronco para trás',view:'lateral',desc:'Usar o peso do corpo para puxar tira trabalho do dorsal.',keys:{mid:{lumbar:-14,thor:-18},end:{lumbar:-24,thor:-32,neck:-20}}},
+    {id:'encolher',title:'Ombro encolhido',view:'posterior',desc:'Puxar sem descer o ombro deixa o trapézio de cima e o bíceps fazerem o trabalho.',keys:{mid:{elevR:5},end:{elevR:6,rotR:20}}},
+    {id:'curta',title:'Não alongar em cima',view:'lateral',desc:'Voltar só até a metade perde a parte alongada do dorsal.',keys:{stretch:{elevR:1,rotR:12,armR:{ikS:[17,132,18],poleRel:[.8,-.6,-.2]}}}}
+  ]
+});
+
+EX.push({
+  id:'flexao',sets:2,rest:{opts:[90],def:90},name:'Flexão de braço',short:'Flexão',
+  rx:'2 × 8–20 · RIR 1 · descanso 1,5 min',target:'Peitoral e tríceps',
+  views:['lateral','top'],
+  base:{legR:{ikS:[9,9.5,-119.5],poleRel:[0,1,0],ft:[0,-34]},armR:{ikS:[30,3,-3],poleRel:[.7,.5,-1]},wrist:80,wristDir:[0,0,1]},
+  keys:{
+    top:{P:[0,43.8,-41.1],lumbar:66.5,thor:66.5,neck:70,pro:0},
+    mid:{P:[0,28.8,-36.2],lumbar:77,thor:77,neck:80,pro:-2},
+    bottom:{P:[0,14.3,-34.1],lumbar:86.8,thor:86.8,neck:88,pro:-4}
+  },
+  seq:[
+    {path:['top'],dur:.4,kind:'hold',label:'Em cima',tempo:'prancha',breath:'INSPIRA'},
+    {path:['top','mid','bottom'],dur:2,kind:'ecc',label:'Descida · excêntrica',tempo:'~2 s',breath:'INSPIRA'},
+    {path:['bottom'],dur:.35,kind:'hold',label:'Embaixo',tempo:'peito perto do chão',breath:'FIRME'},
+    {path:['bottom','mid','top'],dur:1,kind:'conc',label:'Subida · concêntrica',tempo:'~1 s',breath:'EXPIRA'}
+  ],
+  ext:['top','bottom'],extLabels:['em cima','embaixo'],
+  paths:{lateral:[['N','','peito'],['E','R','cotovelo']],top:[['E','R','cotovelo'],['E','L','']]},
+  equip(sk){},
+  guides:{
+    lateral(sk){L3(sk.side.R.A,add(sk.Hc,mul(sub(sk.Hc,sk.side.R.A),.06)),'gd',.9,{layer:3,dash:'3 2.5'});TX(sk.P,'corpo em linha reta',{cls:'lbl-g',anchor:'middle',dy:-18});},
+    top(sk){TX([-44,0,-4],'cotovelos ~45° do tronco',{cls:'lbl-g',size:10,anchor:'end'});TX([44,0,-4],'mãos na linha do peito',{cls:'lbl-g',size:10});}
+  },
+  muscles:{p:[['pecStern','RL']],s:[['triceps','RL'],['deltAnt','RL'],['rectus','R']]},
+  feel:'Peito e tríceps. O abdômen trabalha para segurar a prancha.',
+  feelNote:'Dor no punho? Apoie nos punhos fechados ou segure dois halteres no chão para deixar o punho reto.',
+  setupEq:['Chão. Quando passar de 20 repetições, pés no step.'],
+  setupBody:['Mãos um pouco mais abertas que os ombros, na linha do meio do peito.','Corpo em linha reta da cabeça aos calcanhares, abdômen e glúteo contraídos.','Pés juntos ou na largura do quadril.'],
+  exec:[['hold','Em cima','Braços estendidos, corpo em prancha.'],['ecc','Descida (excêntrica)','~2 s. O corpo desce inteiro junto, com os cotovelos indo para trás a meio caminho do tronco.'],['hold','Embaixo','Peito perto do chão.'],['conc','Subida (concêntrica)','~1 s. Empurre o chão mantendo a prancha.']],
+  range:['Embaixo: peito a poucos centímetros do chão.','Em cima: braços estendidos.','Se o quadril cair ou subir para completar a repetição, a série acabou.'],
+  breath:'Inspire descendo, solte o ar subindo.',
+  cues:['Corpo em linha.','Cotovelos para trás, não para os lados.','Peito perto do chão.'],
+  check:['Mãos na linha do peito','Abdômen e glúteo firmes','Corpo em linha','Descer até perto do chão','Parar com RIR 1'],
+  vary:'A largura das mãos e o ângulo dos cotovelos variam com o tamanho dos ombros. Mãos mais fechadas trabalham mais o tríceps; mais abertas, mais o peito.',
+  errors:[
+    {id:'quadril',title:'Quadril cai',view:'lateral',desc:'A lombar arqueia e o abdômen deixa de segurar. Contraia abdômen e glúteo.',keys:{top:{P:[0,33,-42],lumbar:54,thor:72},mid:{P:[0,19,-37],lumbar:65,thor:83},bottom:{P:[0,6,-35],lumbar:76,thor:92}}},
+    {id:'cot',title:'Cotovelos abertos a 90°',view:'top',desc:'Abrir os cotovelos para os lados aumenta a carga na frente do ombro.',base:{armR:{ikS:[33,3,0],poleRel:[1,.4,-.05]}}},
+    {id:'curta',title:'Descer pouco',view:'lateral',desc:'Meia repetição corta a parte alongada do peitoral.',keys:{bottom:{P:[0,28.8,-36.2],lumbar:77,thor:77,neck:80,pro:-2}}}
+  ]
+});
+
+EX.push({
+  id:'elevacao-halteres',sets:3,rest:{opts:[60],def:60},name:'Elevação lateral com halteres',short:'Elevação lateral',
+  rx:'3 × 12–20 · RIR 0–1 · descanso 1 min',target:'Deltoide lateral (lateral do ombro)',
+  views:['frontal','lateral'],
+  base:{P:[0,93,0],lumbar:8,thor:10,neck:6,legR:{ikS:[11,7,2],poleRel:[0,0,1],ft:[8,-18]}},
+  keys:{low:{armR:{sph:[20,-80,62],poleRel:[1,.2,-.3]}},mid:{armR:{sph:[45,-38,62],poleRel:[.7,.6,-.5]}},high:{armR:{sph:[60,-3,62],poleRel:[.25,1,-.5]}}},
+  seq:[
+    {path:['low'],dur:.3,kind:'hold',label:'Embaixo',tempo:'',breath:'INSPIRA'},
+    {path:['low','mid','high'],dur:1.3,kind:'conc',label:'Subida · concêntrica',tempo:'~1–1,5 s',breath:'EXPIRA'},
+    {path:['high'],dur:.25,kind:'hold',label:'Linha do ombro',tempo:'',breath:'FIRME'},
+    {path:['high','mid','low'],dur:2.1,kind:'ecc',label:'Descida · excêntrica',tempo:'~2 s',breath:'INSPIRA'}
+  ],
+  ext:['low','high'],extLabels:['embaixo','topo'],
+  paths:{frontal:[['G','R','mão'],['E','R','cotovelo']],lateral:[['G','R','mão']]},
+  equip(sk){for(const k of['R','L'])dumbbell(sk.side[k].G,Z,'db'+(this._pal==='e'?'-e':''));},
+  guides:{
+    frontal(sk){const S=sk.side.R.S;L3(add(S,[6,0,0]),add(S,[-80,0,0]),'gd',.9,{layer:2,dash:'2 3'});TX(add(S,[-80,0,0]),'linha do ombro',{cls:'lbl-g',dy:-6});},
+    lateral(sk){TX(comb(1,sk.side.R.S,22,Z,44,Y),'tronco levemente à frente',{cls:'lbl-g',anchor:'middle'});}
+  },
+  muscles:{p:[['deltLat','RL']],s:[['deltAnt','RL'],['upTrap','RL']]},
+  feel:'Lateral do ombro.',
+  feelNote:'Se sentir o pescoço ou o trapézio, o ombro provavelmente está subindo junto com o braço.',
+  setupEq:['Halteres fixos (1–10 kg), que sobem de 1 em 1 kg.'],
+  setupBody:['Pés na largura do quadril, joelhos destravados.','Tronco levemente inclinado à frente.','Halteres na frente das coxas, palmas para dentro, cotovelos levemente dobrados.'],
+  exec:[['hold','Embaixo','Halteres na frente das coxas.'],['conc','Subida (concêntrica)','~1–1,5 s. Leve os braços para fora e um pouco à frente do corpo, com o cotovelo um pouco acima da mão.'],['hold','Topo','Braços na linha dos ombros.'],['ecc','Descida (excêntrica)','~2 s, controlando.']],
+  range:['Em cima: mais ou menos na linha do ombro.','Embaixo: halteres perto das coxas, sem relaxar os ombros.','Com um ombro saudável dá para subir um pouco acima, mas o trapézio assume mais. Como o seu ombro estala, fique na linha do ombro.'],
+  breath:'Solte o ar subindo e inspire descendo.',
+  cues:['Leva a mão para longe, não para cima.','Cotovelo conduz.','Ombro longe da orelha.'],
+  check:['Halteres fixos','Tronco levemente à frente','Cotovelos levemente dobrados','Sem embalo','Ombro baixo'],
+  vary:'O plano exato do braço (de ~20° a ~40° à frente do corpo) depende da postura da sua escápula. A mão pode ficar neutra ou com o polegar levemente para cima, o que alivia a parte de cima do ombro.',
+  errors:[
+    {id:'balanco',title:'Balançar o tronco',view:'lateral',desc:'O tronco dá o impulso e o ombro trabalha menos. Se precisar balançar, o halter está pesado.',keys:{low:{lumbar:22,thor:26},mid:{P:[0,90,0],lumbar:-4,thor:-6},high:{lumbar:-6,thor:-8}}},
+    {id:'encolher',title:'Encolher os ombros',view:'frontal',desc:'Os ombros sobem junto com os braços e o trapézio assume.',keys:{mid:{elev:4},high:{elev:7}}},
+    {id:'frontal',title:'Virar elevação frontal',view:'lateral',desc:'Os braços vão para a frente e o exercício passa a trabalhar mais a frente do ombro.',keys:{mid:{armR:{sph:[5,-36,62],poleRel:[.8,.6,-.3]}},high:{armR:{sph:[12,-3,62],poleRel:[.6,1,-.2]}}}}
+  ]
+});
+
+EX.push({
+  id:'elevacao-joelhos',sets:2,rest:{opts:[60],def:60},name:'Elevação de joelhos na barra fixa',short:'Elevação de joelhos',
+  rx:'2 × 10–15 · RIR 1 · descanso 1 min',target:'Abdômen (reto abdominal)',
+  views:['lateral'],
+  base:{neck:0,elev:2,armR:{ikS:[30,230,0],poleRel:[1,-.25,.2]}},
+  keys:{
+    hang:{P:[0,118,1],lumbar:0,thor:0,legR:{th:[0,-84],sh:[180,-84],ft:[0,-55]}},
+    mid:{P:[0,119,5.5],lumbar:-10,thor:-2,legR:{th:[0,-40],sh:[0,-88],ft:[0,-45]}},
+    top:{P:[0,120.2,11.3],lumbar:-25,thor:-4,legR:{th:[0,8],sh:[0,-85],ft:[0,-40]}}
+  },
+  seq:[
+    {path:['hang'],dur:.4,kind:'hold',label:'Pendurado',tempo:'corpo parado',breath:'INSPIRA'},
+    {path:['hang','mid','top'],dur:1.1,kind:'conc',label:'Subida · concêntrica',tempo:'~1 s',breath:'EXPIRA'},
+    {path:['top'],dur:.5,kind:'hold',label:'Topo · pelve enrolada',tempo:'',breath:'EXPIRA'},
+    {path:['top','mid','hang'],dur:2,kind:'ecc',label:'Descida · excêntrica',tempo:'~2 s',breath:'INSPIRA'}
+  ],
+  ext:['hang','top'],extLabels:['embaixo','topo'],
+  paths:{lateral:[['K','R','joelho'],['P','','']]},
+  equip(sk){pullBar();},
+  guides:{lateral(sk){L3([0,230,0],[0,20,0],'gd',.9,{layer:2,dash:'2 3'});TX(sk.P,'enrola a pelve',{cls:'lbl-g',anchor:'end',dx:-14,dy:4});}},
+  muscles:{p:[['rectus','R']],s:[['obliq','RL'],['forearm','RL']]},
+  feel:'Abdômen, principalmente a parte de baixo.',
+  feelNote:'Sentir só a frente do quadril significa que a pelve não está enrolando.',
+  setupEq:['Barra no topo da estação. Use o banco para alcançar.'],
+  setupBody:['Pendure com a pegada na largura dos ombros ou um pouco mais aberta.','Ombros ativos: afaste-os um pouco das orelhas.','Corpo parado, pernas juntas.'],
+  exec:[['hold','Pendurado','Corpo parado.'],['conc','Subida (concêntrica)','~1 s. Suba os joelhos e, no fim, enrole a pelve para cima, como se levasse os joelhos ao peito.'],['hold','Topo','Joelhos acima do quadril, pelve enrolada.'],['ecc','Descida (excêntrica)','~2 s, sem deixar o corpo balançar.']],
+  range:['Em cima: joelhos pelo menos na altura do quadril, com a pelve enrolada.','Embaixo: pernas estendidas, sem embalo.','Se a pegada cansar antes do abdômen, troque pelo abdominal na polia.'],
+  breath:'Solte o ar subindo, inspire descendo.',
+  cues:['Enrola a pelve.','Corpo parado.','Desce devagar.'],
+  check:['Banco para alcançar','Ombros ativos','Pernas juntas','Sem balanço','Parar com RIR 1'],
+  vary:'Esticar mais as pernas deixa o exercício mais difícil; é a progressão quando 15 repetições ficarem fáceis.',
+  errors:[
+    {id:'balanco',title:'Balançar o corpo',view:'lateral',desc:'O balanço sobe as pernas por impulso e o abdômen quase não trabalha.',keys:{hang:{P:[0,123,7],lumbar:-10,thor:-14,legR:{th:[180,-80],sh:[180,-75],ft:[0,-60]}},mid:{P:[0,121,8]},top:{P:[0,122,14],thor:6}}},
+    {id:'pelve',title:'Só levantar as pernas',view:'lateral',desc:'Subir os joelhos sem enrolar a pelve trabalha a frente do quadril e quase não usa o abdômen.',keys:{mid:{P:[0,118,1],lumbar:0,thor:0},top:{P:[0,118,1],lumbar:0,thor:0}}}
+  ]
+});
+
+
+/* ================= exercícios: Membros B ================= */
+EX.push({
+  id:'bulgaro',sets:6,setLbl:['1a','1b','2a','2b','3a','3b'],setUnit:'séries (3 por perna)',
+  rest:{opts:[90],def:90,note:'O descanso de 1,5 min vale entre uma perna e outra. a = perna mais fraca (comece por ela), b = a outra.'},
+  name:'Agachamento búlgaro com apoio',short:'Búlgaro',
+  rx:'3 × 8–12 por perna · RIR 1–2 · 1,5 min entre as pernas',target:'Quadríceps e glúteo da perna da frente',
+  views:['lateral','frontal'],noCable:true,
+  base:{lumbar:14,thor:16,neck:10,legR:{ikS:[11,7,30],poleRel:[.1,.4,1],ft:[5,-18]},legL:{ikS:[10,53,-56],poleRel:[0,-1,.3],ft:[180,-20],heelV:[0,4,5]},
+    armR:{ua:[0,-90],fa:[0,-89]},armL:{ikS:[47,100,0],poleRel:[.4,-1,-.2]}},
+  keys:{top:{P:[0,80,-12]},mid:{P:[0,65,-12.5]},bottom:{P:[0,50,-13]}},
+  seq:[
+    {path:['top'],dur:.5,kind:'hold',label:'Em cima',tempo:'firme o abdômen',breath:'INSPIRA'},
+    {path:['top','mid','bottom'],dur:2.3,kind:'ecc',label:'Descida · excêntrica',tempo:'~2–3 s',breath:'FIRME'},
+    {path:['bottom'],dur:.4,kind:'hold',label:'Embaixo',tempo:'pausa curta',breath:'FIRME'},
+    {path:['bottom','mid','top'],dur:1.3,kind:'conc',label:'Subida · concêntrica',tempo:'~1–1,5 s',breath:'EXPIRA'}
+  ],
+  ext:['top','bottom'],extLabels:['em cima','embaixo'],
+  paths:{lateral:[['P','','quadril'],['K','R','joelho']],frontal:[['K','R','joelho da frente']]},
+  tower:{x:51,z:0,ac:Z,out:[-1,0,0],py:12},
+  equip(sk){
+    BOX([0,42.5,-84],[[X,13],[Y,2.5],[Z,31]],'eqp',{bias:-4});
+    for(const z of[-110,-58])BOX([0,21,z],[[X,2.5],[Y,19],[Z,2.5]],'eqd',{bias:-6});BOX([0,2.5,-84],[[X,4],[Y,2],[Z,28]],'eqd',{bias:-6});
+    dumbbell(sk.side.R.G,Z,'db'+(this._pal==='e'?'-e':''));if(VIEW!=='lateral')tower(this.tower,0);
+  },
+  guides:{
+    lateral(sk){L3(add(sk.P,[0,-12,0]),[0,1,sk.P[2]],'gd',.9,{layer:2,dash:'2 3'});TX([0,1,sk.P[2]],'desce reto',{cls:'lbl-g',anchor:'middle',dy:-5});},
+    frontal(sk){const t=sk.side.R.toe;L3([t[0],1,t[2]],[t[0],62,t[2]],'gd',.9,{layer:3,dash:'3 2.5'});TX([t[0],30,t[2]],'joelho sobre o pé',{cls:'lbl-g',anchor:'end',dx:-16});}
+  },
+  muscles:{p:[['quads','R'],['glutes','R']],s:[]},
+  feel:'Frente da coxa e glúteo da perna da frente.',
+  feelNote:'Sentir alongar a frente do quadril da perna de trás é normal. Dor no joelho da frente não é: pare e me avise.',
+  setupEq:['Banco plano atrás de você; a estação ao lado, para a mão de apoio.','Um halter na mão do lado da perna da frente.'],
+  setupBody:['Peito do pé de trás apoiado no banco, cadarço para baixo.','Pé da frente longe o bastante para o calcanhar ficar no chão embaixo: teste antes com o peso do corpo.','A mão livre segura a coluna da estação só para equilibrar, sem puxar.','Tronco levemente inclinado à frente, peso na perna da frente.'],
+  exec:[['hold','Em cima','Joelho da frente quase estendido, pés fixos.'],['ecc','Descida (excêntrica)','~2–3 s. Desça reto, levando o joelho de trás em direção ao chão.'],['hold','Embaixo','Coxa da frente perto da horizontal, joelho de trás a poucos centímetros do chão.'],['conc','Subida (concêntrica)','~1–1,5 s. Empurre o chão com o pé da frente inteiro.']],
+  range:['Embaixo: coxa da frente perto da horizontal ou um pouco abaixo.','Em cima: pare antes de travar o joelho, para manter a tensão.','Se o calcanhar da frente sair do chão, o pé está perto demais do banco.'],
+  breath:'Inspire em cima e firme o abdômen. Solte o ar subindo.',
+  cues:['Desce reto.','Peso no pé da frente.','Mão só equilibra.'],
+  check:['Peito do pé no banco','Calcanhar da frente no chão','Mão de apoio na estação','Tronco levemente à frente','Comece pela perna mais fraca'],
+  vary:'A distância do banco muda o foco: pé da frente mais perto, com o joelho avançando, trabalha mais o quadríceps; mais longe, com o tronco mais inclinado, trabalha mais o glúteo. Os dois servem, desde que o calcanhar fique no chão.',
+  errors:[
+    {id:'valgo',title:'Joelho da frente para dentro',view:'frontal',desc:'O joelho cai para dentro e a carga vai para a articulação.',keys:{mid:{legR:{ikS:[11,7,30],poleRel:[-.3,.4,1],ft:[5,-18]}},bottom:{legR:{ikS:[11,7,30],poleRel:[-.3,.4,1],ft:[5,-18]}}}},
+    {id:'perto',title:'Pé da frente perto do banco',view:'lateral',desc:'O calcanhar da frente sobe e o peso vai para a ponta do pé e para o joelho.',keys:{mid:{legR:{ikS:[11,12,12],poleRel:[.1,.4,1],ft:[5,-48]}},bottom:{legR:{ikS:[11,13,10],poleRel:[.1,.4,1],ft:[5,-52]}}}},
+    {id:'raso',title:'Descer pouco',view:'lateral',desc:'Parar com a coxa longe da horizontal corta a parte mais produtiva da amplitude.',keys:{bottom:{P:[0,66,-12.5]}}}
+  ]
+});
+
+const BALL=28;
+EX.push({
+  id:'flexao-bola',sets:3,rest:{opts:[90],def:90},name:'Flexão de joelho na bola suíça',short:'Flexão na bola',
+  rx:'3 × 8–15 · RIR 1 · descanso 1,5 min',target:'Posteriores da coxa',
+  views:['lateral'],noCable:true,
+  base:{neck:-88,armR:{ua:[25,-10],fa:[25,-4]}},
+  keys:{
+    ext:{P:[0,28.8,-32.6],lumbar:-111.6,thor:-111.6,legR:{ikS:[9,60.3,46.9],poleRel:[0,1,0],ft:[180,68],heelV:[0,-4.1,5.9]}},
+    mid:{P:[0,42.8,-40.9],lumbar:-130,thor:-130,legR:{ikS:[9,62,27],poleRel:[0,1,0],ft:[0,95],heelV:[0,-6,2]}},
+    curl:{P:[0,51.8,-50.7],lumbar:-145,thor:-145,legR:{ikS:[9,59.4,6.9],poleRel:[0,1,0],ft:[0,-5],heelV:[0,-3.5,-6]}}
+  },
+  seq:[
+    {path:['ext'],dur:.5,kind:'hold',label:'Pernas estendidas',tempo:'quadril alto',breath:'INSPIRA'},
+    {path:['ext','mid','curl'],dur:1.2,kind:'conc',label:'Puxada · concêntrica',tempo:'~1 s',breath:'EXPIRA'},
+    {path:['curl'],dur:.6,kind:'hold',label:'Joelhos a ~90°',tempo:'segura',breath:'FIRME'},
+    {path:['curl','mid','ext'],dur:2,kind:'ecc',label:'Volta · excêntrica',tempo:'~2 s',breath:'INSPIRA'}
+  ],
+  ext:['ext','curl'],extLabels:['início','fim'],
+  paths:{lateral:[['heel','R','calcanhar'],['P','','quadril']]},
+  equip(sk){
+    const sd=sk.side.R,fd=norm(sub(sd.toe,sd.A));const u=Math.max(0,Math.min(1,(.9-fd[1])/.95));
+    C3([0,BALL,sd.heel[2]+8.6*u],BALL,'ball',{bias:0});
+  },
+  guides:{
+    lateral(sk){L3(sk.N,sk.side.R.K,'gd',.9,{layer:3,dash:'3 2.5'});TX([0,80,-70],'quadril alto o tempo todo',{cls:'lbl-g',anchor:'middle'});}
+  },
+  muscles:{p:[['hams','R']],s:[['glutes','R'],['calf','R']]},
+  feel:'Parte de trás da coxa. O glúteo trabalha para segurar o quadril alto.',
+  feelNote:'Câimbra na parte de trás da coxa pode acontecer no começo: pare, alongue e retome com menos repetições.',
+  setupEq:['Bola suíça cheia e firme, num piso que não escorregue.','Colchonete embaixo das costas, se quiser.'],
+  setupBody:['Deite de costas com os braços no chão, abertos ~30° do corpo, palmas para baixo.','Calcanhares em cima da bola, pernas estendidas.','Suba o quadril até ombros, quadril e calcanhares ficarem em linha.'],
+  exec:[['hold','Pernas estendidas','Quadril alto, corpo em linha.'],['conc','Puxada (concêntrica)','~1 s. Puxe a bola com os calcanhares em direção ao glúteo, subindo ainda mais o quadril.'],['hold','Fim','Joelhos a ~90°, pés apoiados em cima da bola. Segure um instante.'],['ecc','Volta (excêntrica)','~2 s, estendendo as pernas sem deixar o quadril descer.']],
+  range:['Fim: joelhos a ~90°, com ombros, quadril e joelhos em linha.','Início: pernas estendidas, com o quadril ainda alto.','O quadril não encosta no chão entre as repetições.'],
+  breath:'Solte o ar puxando, inspire na volta.',
+  cues:['Quadril alto.','Calcanhar no glúteo.','Volta devagar.'],
+  check:['Bola firme','Braços no chão','Calcanhares na bola','Quadril alto antes de começar','Parar com RIR 1'],
+  vary:'Braços mais abertos dão mais estabilidade; mais junto ao corpo, mais difícil. Quando 15 repetições ficarem fáceis, passe para uma perna só.',
+  errors:[
+    {id:'quadril',title:'Quadril cai ao puxar',view:'lateral',desc:'O quadril dobra e desce quando os joelhos dobram. A parte de trás da coxa trabalha menos e o movimento fica mais curto.',keys:{mid:{P:[0,35.5,-36.3],lumbar:-120,thor:-120},curl:{P:[0,39.3,-38.2],lumbar:-125,thor:-125}}},
+    {id:'volta',title:'Quadril encosta no chão na volta',view:'lateral',desc:'Descer o quadril entre as repetições tira a tensão. O quadril fica alto do início ao fim da série.',keys:{ext:{P:[0,13,-29.5],lumbar:-93,thor:-93,legR:{ikS:[9,58,42],poleRel:[0,1,0],ft:[180,62],heelV:[0,-4.5,5.5]}}}},
+    {id:'curta',title:'Puxar pouco',view:'lateral',desc:'Parar com os joelhos longe de 90° corta metade do movimento.',keys:{curl:{P:[0,42.8,-40.9],lumbar:-130,thor:-130,legR:{ikS:[9,62,27],poleRel:[0,1,0],ft:[0,95],heelV:[0,-6,2]}}}}
+  ]
+});
+
+{const src=EX.find(e=>e.id==='panturrilha');
+EX.push({
+  id:'panturrilha-b',sets:3,rest:{opts:[60],def:60},name:'Panturrilha em pé no step',short:'Panturrilha',
+  rx:'3 × 12–20 · RIR 0–1 · descanso 1 min',target:'Panturrilha (gastrocnêmio e sóleo)',
+  views:['lateral','zoom'],noCable:true,bounds:{zoom:[-42,46,-52,3]},
+  base:{lumbar:0,thor:0,neck:0,armR:{ua:[0,-90],fa:[0,-89]},armL:{ikS:[12,135,49],poleRel:[.3,-1,-.2]}},
+  keys:{
+    stretch:{P:[0,93.1,-7.8],legR:{ikS:[11,8.6,-6.8],poleRel:[0,0,1],ft:[0,22]}},
+    mid:{P:[0,104.75,-8.2],legR:{ikS:[11,20.25,-7.2],poleRel:[0,0,1],ft:[0,-18]}},
+    top:{P:[0,113.4,-1.75],legR:{ikS:[11,28.9,-.75],poleRel:[0,0,1],ft:[0,-55]}}
+  },
+  seq:src.seq.map(g=>Object.assign({},g)),
+  ext:['stretch','top'],extLabels:['alongado','topo'],
+  paths:{lateral:[['heel','R','calcanhar']],zoom:[['heel','R','calcanhar']]},
+  tower:{x:22,z:52,ac:X,out:[0,0,-1],py:12},
+  equip:src.equip,guides:src.guides,
+  muscles:{p:[['calf','RL']],s:[]},
+  feel:'Panturrilhas, da parte de trás do joelho até o calcanhar.',
+  feelNote:src.feelNote,
+  setupEq:['Step firme no chão, perto da estação.','Um halter numa mão e a outra mão na estação; ou um halter em cada mão, se o equilíbrio estiver bom.'],
+  setupBody:['Pontas dos dois pés (a “bola” do pé) na borda do step, calcanhares para fora.','Pés na largura do quadril, apontando para a frente.','Joelhos quase estendidos e parados.'],
+  exec:[['hold','Alongado','Calcanhares abaixo da borda do step. Segure 2 s.'],['conc','Subida (concêntrica)','~1 s. Suba o máximo que der na ponta dos pés, empurrando pelo dedão.'],['hold','Topo','Segure ~1 s contraindo.'],['ecc','Descida (excêntrica)','~2 s, até os calcanhares passarem a borda.']],
+  range:src.range,breath:src.breath,
+  cues:['Pausa embaixo.','Sobe pelo dedão.','Joelhos parados.'],
+  check:['Step firme','Pontas dos pés na borda','Mão na estação','Joelhos quase estendidos','Pausa de 2 s embaixo'],
+  vary:src.vary,
+  errors:[
+    {id:'curta',title:'Não descer os calcanhares',view:'lateral',desc:'Sem passar a borda do step, você perde a parte alongada, que é a mais importante para a panturrilha.',keys:{stretch:{P:[0,101,-8.9],legR:{ikS:[11,16.5,-7.9],poleRel:[0,0,1],ft:[0,-5]}}}},
+    {id:'joelho',title:'Dobrar e esticar os joelhos',view:'lateral',desc:'Os joelhos dão impulso com as coxas e tiram carga das panturrilhas.',keys:{stretch:{P:[0,86,-10]},mid:{P:[0,100,-9]}}}
+  ]
+});}
+
+const RI={u:tUp(-40,0),f:tFr(-40,0)};
+EX.push({
+  id:'rosca-inclinada',sets:3,rest:{opts:[90],def:90},name:'Rosca inclinada com halteres',short:'Rosca inclinada',
+  rx:'3 × 8–12 · RIR 0–1 · descanso 1,5 min',target:'Bíceps (com ênfase na posição alongada)',
+  views:['lateral'],
+  base:{P:[0,53,0],lumbar:-40,thor:-40,neck:-28,pro:-3,legR:{ikS:[18,7,42],poleRel:[.3,.5,1],ft:[12,-20]}},
+  keys:{bottom:{armR:{ua:[0,-90],fa:[0,-83]}},mid:{armR:{ua:[0,-90],fa:[0,-5]}},top:{armR:{ua:[0,-90],fa:[0,45]}}},
+  seq:[
+    {path:['bottom'],dur:.6,kind:'hold',label:'Embaixo · alongado',tempo:'braço estendido',breath:'INSPIRA'},
+    {path:['bottom','mid','top'],dur:1.1,kind:'conc',label:'Subida · concêntrica',tempo:'~1 s',breath:'EXPIRA'},
+    {path:['top'],dur:.4,kind:'hold',label:'Topo',tempo:'',breath:'FIRME'},
+    {path:['top','mid','bottom'],dur:2.4,kind:'ecc',label:'Descida · excêntrica',tempo:'~2–3 s',breath:'INSPIRA'}
+  ],
+  ext:['bottom','top'],extLabels:['embaixo','topo'],
+  paths:{lateral:[['G','R','halter'],['E','R','cotovelo']]},
+  equip(sk){
+    BOX([0,45,8],[[X,13],[Y,2.5],[Z,17]],'eqp',{bias:-4});
+    BOX(comb(1,[0,53,0],36,RI.u,-10.5,RI.f),[[X,13],[RI.u,36],[RI.f,2.5]],'eqp',{bias:-4});
+    BOX([0,2.5,0],[[X,4],[Y,2],[Z,36]],'eqd',{bias:-6});BOX([0,22,4],[[X,2.5],[Y,20],[Z,2.5]],'eqd',{bias:-6});
+    const c='db'+(this._pal==='e'?'-e':'');for(const k of['R','L'])dumbbell(sk.side[k].G,X,c);
+  },
+  guides:{
+    lateral(sk){const R=sk.side.R;L3(R.S,add(R.S,[0,-44,0]),'gd',.9,{layer:3,dash:'3 2.5'});TX(R.E,'cotovelo parado',{cls:'lbl-g',anchor:'end',dx:-12,dy:4});
+      TX([0,112,48],'encosto a 45–60°',{cls:'lbl-g',anchor:'middle'});}
+  },
+  muscles:{p:[['biceps','RL']],s:[['forearm','RL']]},
+  feel:'Bíceps, com bastante alongamento embaixo.',
+  feelNote:'Sentir puxar a frente do ombro na parte de baixo é comum. Dor na frente do ombro não é: suba o encosto para 60° ou troque pela rosca na polia.',
+  setupEq:['Encosto a 45–60°; quanto mais deitado, mais o bíceps alonga.','Halteres fixos (1–10 kg) ou montados.'],
+  setupBody:['Sente com as costas e a cabeça apoiadas, pés firmes no chão.','Braços pendurados na vertical, atrás da linha do tronco.','Palmas para a frente, ombros encostados no banco.'],
+  exec:[['hold','Embaixo','Braços estendidos, bíceps alongado.'],['conc','Subida (concêntrica)','~1 s. Dobre só o cotovelo; o braço continua na vertical.'],['hold','Topo','Halter perto do ombro, sem levar o cotovelo à frente.'],['ecc','Descida (excêntrica)','~2–3 s, até o braço estender de novo.']],
+  range:['Embaixo: braço quase estendido, sem relaxar o ombro para a frente.','Em cima: até onde o cotovelo consegue ir sem sair da vertical.','Nas últimas repetições, a parte de baixo vale mais que a de cima: não encurte embaixo.'],
+  breath:'Solte o ar subindo, inspire descendo.',
+  cues:['Ombros no encosto.','Braço na vertical.','Estica embaixo.'],
+  check:['Encosto a 45–60°','Costas e cabeça apoiadas','Palmas para a frente','Braços atrás do tronco','Carga para RIR 0–1'],
+  vary:'A inclinação do encosto depende do conforto do ombro. Num estudo com rosca Scott, treinar só a parte inicial do movimento (braço estendido) gerou mais hipertrofia na porção do bíceps perto do cotovelo (Pedrosa et al., 2023; um estudo, mulheres destreinadas). O banco inclinado alonga ainda mais o bíceps por causa do ombro; isso vem da biomecânica, sem estudo direto de hipertrofia.',
+  errors:[
+    {id:'cotovelo',title:'Cotovelos vão para a frente',view:'lateral',desc:'O braço sai da vertical e a frente do ombro passa a ajudar. O bíceps perde a posição alongada.',keys:{mid:{armR:{ua:[0,-68],fa:[0,10]}},top:{armR:{ua:[0,-38],fa:[0,72]}}}},
+    {id:'ombro',title:'Ombros saem do encosto',view:'lateral',desc:'O tronco e os ombros vão para a frente para ajudar a subir. A carga está pesada demais.',keys:{mid:{lumbar:-34,thor:-28,neck:-20,pro:5},top:{lumbar:-30,thor:-20,neck:-12,pro:9,armR:{ua:[0,-62],fa:[0,62]}}}},
+    {id:'curta',title:'Não estender embaixo',view:'lateral',desc:'Voltar só até a metade perde a parte alongada, que é o motivo de fazer a rosca inclinada.',keys:{bottom:{armR:{ua:[0,-90],fa:[0,-35]}}}}
+  ]
+});
+
+EX.push({
+  id:'triceps-frances',sets:3,rest:{opts:[90],def:90},ropeAttach:true,name:'Tríceps francês na polia com corda',short:'Tríceps francês',
+  rx:'3 × 10–15 · RIR 0–1 · descanso 1,5 min',target:'Tríceps, principalmente a cabeça longa',
+  views:['lateral','frontal'],
+  base:{P:[0,86,-4],lumbar:26,thor:30,neck:12,legR:{ikS:[12,7,28],poleRel:[.1,.3,1],ft:[6,-18]},legL:{ikS:[11,10,-40],poleRel:[0,-.3,1],ft:[0,-45],heelV:[0,3,-5]}},
+  keys:{stretch:{armR:{ua:[-10,55],fa:[0,200]}},mid:{armR:{ua:[-10,55],fa:[0,145]}},end:{armR:{ua:[-10,55],fa:[0,62]}}},
+  seq:[
+    {path:['stretch'],dur:.5,kind:'hold',label:'Alongado',tempo:'mãos atrás da cabeça',breath:'INSPIRA'},
+    {path:['stretch','mid','end'],dur:1.1,kind:'conc',label:'Extensão · concêntrica',tempo:'~1 s',breath:'EXPIRA'},
+    {path:['end'],dur:.4,kind:'hold',label:'Braços estendidos',tempo:'',breath:'FIRME'},
+    {path:['end','mid','stretch'],dur:2.3,kind:'ecc',label:'Volta · excêntrica',tempo:'~2–3 s',breath:'INSPIRA'}
+  ],
+  ext:['stretch','end'],extLabels:['alongado','fim'],
+  paths:{lateral:[['G','R','mãos'],['E','R','cotovelo']],frontal:[['E','R','cotovelo'],['E','L','']]},
+  tower:{x:0,z:-60,ac:X,out:[0,0,1],py:150},
+  equip(sk){const t=this.tower;const pul=comb(1,[t.x,0,t.z],t.py,Y,2,t.out);const L=rope(this,'a',sk,pul);tower(t,liftOf(this,'a',L));},
+  guides:{
+    lateral(sk){const R=sk.side.R;L3(R.S,add(R.S,mul(sub(R.E,R.S),1.45)),'gd',.9,{layer:3,dash:'3 2.5'});TX(add(R.E,mul(sub(R.E,R.S),.45)),'cotovelo parado',{cls:'lbl-g',dx:8});},
+    frontal(sk){for(const k of['R','L']){const sd=sk.side[k];L3(sd.S,add(sd.S,mul(sub(sd.E,sd.S),1.35)),'gd',.9,{layer:3,dash:'3 2.5'});}TX(add(sk.Hc,[-28,-16,0]),'cotovelos',{cls:'lbl-g',anchor:'end'});TX(add(sk.Hc,[-28,-16,0]),'para a frente',{cls:'lbl-g',anchor:'end',dy:15});}
+  },
+  muscles:{p:[['triceps','RL']],s:[['rectus','R']]},
+  feel:'Parte de trás do braço, com alongamento forte embaixo, atrás da cabeça.',
+  feelNote:'Dor no cotovelo na parte alongada: reduza a carga e a amplitude e me avise. Desconforto no ombro: abra um pouco os cotovelos ou troque pelo tríceps francês sentado com halter.',
+  setupEq:['Carro mais ou menos na altura do ombro, com a corda.','Pegue a corda, vire de costas para a torre e dê um passo à frente para o cabo ficar tenso.'],
+  setupBody:['Um pé à frente do outro, joelhos destravados.','Tronco inclinado à frente ~25–30°, abdômen firme.','Braços acima da cabeça, ao lado das orelhas, cotovelos apontando para a frente.'],
+  exec:[['hold','Alongado','Mãos atrás da cabeça, cotovelos bem dobrados.'],['conc','Extensão (concêntrica)','~1 s. Estenda só o cotovelo, levando as mãos para a frente e para cima.'],['hold','Fim','Braços estendidos na linha do tronco.'],['ecc','Volta (excêntrica)','~2–3 s, deixando as mãos irem bem para trás da cabeça.']],
+  range:['Embaixo: mãos atrás da cabeça, cotovelos bem dobrados, sem dor.','Em cima: cotovelos estendidos.','Os cotovelos ficam no mesmo lugar do início ao fim.'],
+  breath:'Solte o ar estendendo, inspire voltando.',
+  cues:['Cotovelos parados.','Alonga atrás da cabeça.','Abdômen firme.'],
+  check:['Polia na altura do ombro','Pés um à frente do outro','Tronco inclinado','Cotovelos à frente','Carga menor que no tríceps corda'],
+  vary:'Com o braço acima da cabeça, a cabeça longa do tríceps trabalha alongada. Num estudo de 12 semanas, a extensão com o braço acima da cabeça gerou cerca de 1,4 vez mais hipertrofia do tríceps que a extensão com o braço ao lado do corpo, mesmo com cargas 34–39% menores (Maeo et al., 2023; um estudo). A polia embaixo, em pé e reto, também serve.',
+  errors:[
+    {id:'abre',title:'Cotovelos abrem para os lados',view:'frontal',desc:'O ombro gira e a carga sai do tríceps. Mantenha os cotovelos apontando para a frente.',keys:{stretch:{armR:{ua:[40,50],fa:[0,200]}},mid:{armR:{ua:[42,50],fa:[0,145]}},end:{armR:{ua:[30,52],fa:[0,62]}}}},
+    {id:'cotovelo',title:'Cotovelos sobem e descem',view:'lateral',desc:'O ombro entra no movimento e o exercício vira um pullover. Só o antebraço se mexe.',keys:{stretch:{armR:{ua:[-10,30],fa:[0,185]}},mid:{armR:{ua:[-10,40],fa:[0,135]}}}},
+    {id:'curta',title:'Não alongar atrás da cabeça',view:'lateral',desc:'Parar com o cotovelo a 90° perde a parte alongada, que é o motivo deste exercício.',keys:{stretch:{armR:{ua:[-10,55],fa:[0,150]}}}}
+  ]
+});
+
+{const src=EX.find(e=>e.id==='elevacao-lateral');
+EX.push(Object.assign({},src,{id:'elevacao-lateral-b',
+  rx:'3 × 12–20 por lado · RIR 0–1 · 1 min após os dois lados',
+  rest:{opts:[60],def:60,note:'Faça um lado e logo o outro, sem pausa. O descanso vale depois dos dois lados.'},
+  check:src.check}));}
+
+/* ================= preparação ================= */
+function prep(ex){
+  const merge=(a,b)=>Object.assign({},a,b);
+  ex.K={};for(const k in ex.keys)ex.K[k]=merge(ex.base,ex.keys[k]);
+  ex.T=ex.seq.reduce((s,g)=>s+g.dur,0);
+  let t=0;for(const g of ex.seq){g.t0=t;t+=g.dur;}
+  for(const e of ex.errors){e.K={};for(const k in ex.keys)e.K[k]=Object.assign({},ex.K[k],e.base||{},(e.keys&&e.keys[k])||{});}
+}
+function segAt(ex,t){t=((t%ex.T)+ex.T)%ex.T;for(const g of ex.seq)if(t<g.t0+g.dur)return g;return ex.seq[ex.seq.length-1];}
+function poseAt(ex,K,t){
+  t=((t%ex.T)+ex.T)%ex.T;const g=segAt(ex,t);let u=(t-g.t0)/g.dur;if(g.kind!=='hold')u=ease(u);
+  const p=g.path;if(p.length===1)return K[p[0]];
+  const s=u*(p.length-1);const i=Math.min(p.length-2,Math.floor(s));return interp(K[p[i]],K[p[i+1]],s-i);
+}
+function concTimes(ex,n){const segs=ex.seq.filter(g=>g.kind==='conc');const tot=segs.reduce((s,g)=>s+g.dur,0);const out=[];for(let i=0;i<=n;i++){let x=i/n*tot;for(const g of segs){if(x<=g.dur+1e-9){out.push(g.t0+Math.min(x,g.dur-1e-6));break;}x-=g.dur;}}return out;}
+function getPt(sk,key,side){if(key==='Hc')return sk.Hc;if(key==='N')return sk.N;if(key==='P')return sk.P;return sk.side[side][key];}
+
+/* render de uma cena (para o palco ou para medir) */
+function scene(ex,view,mode,t,errIdx){
+  VIEW=view;PJ=VIEWS[view].proj;prims=[];
+  const sk=skel(poseAt(ex,ex.K,t));
+  if(mode==='err'){
+    const e=ex.errors[errIdx||0];const ske=skel(poseAt(ex,e.K,t));
+    ex._pal='e';ex.equip(ske);ex._pal='n';
+    body(ske,'e');body(sk,'g');
+  }else{
+    ex._pal='n';ex.equip(sk);body(sk,'n');
+    if(mode==='mus'){muscles(sk,ex.muscles.s,'ms');muscles(sk,ex.muscles.p,'mp');}
+    if(mode==='tec'&&ex.guides&&ex.guides[view])ex.guides[view].call(ex,sk);
+    if(mode==='traj'){
+      const a=skel(ex.K[ex.ext[0]]),b=skel(ex.K[ex.ext[1]]);
+      body(a,'g2');body(b,'g');
+      const ts=concTimes(ex,36);
+      const list=(ex.paths&&ex.paths[view])||[];
+      list.forEach(([key,side,label],i)=>{
+        const Q=ts.map(tt=>PJ(getPt(skel(poseAt(ex,ex.K,tt)),key,side)));
+        const elbow=key==='E'||key==='S'||key==='K'||(key==='P'&&i>0);
+        PATH2(Q,elbow?'pt2':'pt',elbow?1.2:1.8,{dash:elbow?'2.5 2':'',asz:elbow?3.4:4.4});
+        if(label&&i===0)TX(Q[Q.length-1],label,{scr:true,cls:'lbl-p',dx:7,dy:-7});
+      });
+      const tw=ex.tower||(ex.towers&&ex.towers[0]);
+      if(tw&&ex._liftRange&&view!=='top'&&Math.abs(PJ([tw.x,0,tw.z])[0]-PJ(sk.P)[0])>40){const base=[tw.x,0,tw.z];const pos=comb(1,base,18,ex.tower?ex.tower.ac:Z,-7,tw.out);const a3=add(pos,[0,36+ex._liftRange[0],0]),b3=add(pos,[0,36+ex._liftRange[1],0]);
+        if(len(sub(PJ(a3),PJ(b3)))>4){ARROW3(a3,b3,'pt',1.4,'pta');ARROW3(b3,a3,'pt',1.4,'pta');TX(b3,'carga',{cls:'lbl-p',dx:5,dy:-4});}}
+    }
+  }
+  return sk;
+}
+
+/* caixa de visualização por exercício/visão */
+function fit(ex,view){
+  MEAS=[1e9,-1e9,1e9,-1e9];
+  const n=24;
+  for(let i=0;i<n;i++){const t=i/n*ex.T;scene(ex,view,'tec',t);scene(ex,view,'traj',t);ex.errors.forEach((e,j)=>{if(e.view===view)scene(ex,view,'err',t,j);});}
+  const m=MEAS;MEAS=null;
+  let x0=m[0],x1=m[1],y0=m[2],y1=Math.max(m[3],view==='top'?m[3]:0);
+  const ov=ex.bounds&&ex.bounds[view];if(ov){[x0,x1,y0,y1]=ov;}
+  let w=x1-x0,h=y1-y0;const pad=0.07;x0-=w*pad;x1+=w*pad;y0-=h*pad*1.6;y1+=h*pad*.6;w=x1-x0;h=y1-y0;
+  // topo reservado para o HUD
+  y0-=h*0.08;h=y1-y0;
+  if(w/h>4/3){const nh=w*3/4;y0-=(nh-h)/2+ (nh-h)*0.1;h=nh;}else{const nw=h*4/3;x0-=(nw-w)/2;w=nw;}
+  return[x0,y0,w,h];
+}
+function calib(ex){
+  ex._cab={};MEAS=[1e9,-1e9,1e9,-1e9];
+  for(let i=0;i<60;i++)scene(ex,ex.views[0],'tec',i/60*ex.T);
+  for(const e of ex.errors)for(let i=0;i<30;i++)scene(ex,e.view,'err',i/30*ex.T,ex.errors.indexOf(e));
+  MEAS=null;ex.L0={};for(const k in ex._cab)ex.L0[k]=ex._cab[k]-10;ex._cab=null;
+  // faixa de subida da pilha no ciclo correto
+  if((ex.tower||ex.towers)&&!ex.noCable){let lo=1e9,hi=-1e9;for(let i=0;i<40;i++){const sk=skel(poseAt(ex,ex.K,i/40*ex.T));const t=ex.tower||ex.towers[0];const pul=comb(1,[t.x,0,t.z],t.py,Y,2,t.out);let at;
+    if(ex.id==='remada-baixa'){const m=mid(sk.side.R.G,sk.side.L.G);at=add(m,mul(norm(sub(pul,m)),9));}
+    else if(ex.ropeAttach)at=ropeC(sk,pul);
+    else if(ex.barAttach)at=mid(sk.side.R.G,sk.side.L.G);
+    else at=sk.side.R.G;
+    const l=liftOf(ex,'a' in ex.L0?'a':'r',len(sub(at,pul)));lo=Math.min(lo,l);hi=Math.max(hi,l);}ex._liftRange=[lo,hi];}
+}
+
+/* ================= interface ================= */
+EX.forEach(prep);EX.forEach(calib);
+const DAYS=[{id:'torso-a',name:'Torso A',ex:EX.slice(0,7)},{id:'membros-a',name:'Membros A',ex:EX.slice(7,13)},{id:'torso-b',name:'Torso B',ex:EX.slice(13,20)},{id:'membros-b',name:'Membros B',ex:EX.slice(20,26)}];
+const SOON=[];
+const BOXES={};
+const $=id=>document.getElementById(id);
+const svg=$('svg');
+const reduce=window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+const hashDay=()=>{const h=(location.hash||'').slice(1);const i=DAYS.findIndex(d=>d.id===h);return i<0?0:i;};
+const state={day:hashDay(),ex:0,view:EX[0].views[0],mode:'tec',err:0,playing:!reduce,slow:false,t:0};
+const CUR=()=>DAYS[state.day].ex[state.ex];
+function buildDays(){
+  $('days').innerHTML=DAYS.map((d,i)=>`<button class="day" aria-pressed="${i===state.day}" data-d="${i}">${esc(d.name)}</button>`).join('')+SOON.map(n=>`<button class="day" disabled>${esc(n)} <small>em breve</small></button>`).join('');
+  $('days').querySelectorAll('button[data-d]').forEach(b=>b.onclick=()=>setDay(+b.dataset.d));
+}
+function setDay(d){state.day=d;try{if(location.hash.slice(1)!==DAYS[d].id)location.hash=DAYS[d].id;}catch(e){}buildDays();setEx(0);}
+window.addEventListener('hashchange',()=>{const d=hashDay();if(d!==state.day){state.day=d;buildDays();setEx(0);}});
+const checks={};
+function vb(ex,view){const k=ex.id+'|'+view;if(!BOXES[k])BOXES[k]=fit(ex,view);return BOXES[k];}
+
+function buildChips(){
+  $('chips').innerHTML=DAYS[state.day].ex.map((e,i)=>`<button class="chip" role="tab" aria-pressed="${i===state.ex}" data-i="${i}"><i>${i+1}</i>${esc(e.short)}</button>`).join('');
+  $('chips').querySelectorAll('.chip').forEach(b=>b.onclick=()=>setEx(+b.dataset.i));
+}
+function setEx(i){
+  const n=DAYS[state.day].ex.length;state.ex=(i+n)%n;const ex=CUR();state.err=0;state.t=0;
+  state.view=state.mode==='err'?ex.errors[0].view:ex.views[0];
+  buildChips();const c=$('chips').children[state.ex];if(c&&c.scrollIntoView)c.scrollIntoView({block:'nearest',inline:'center'});
+  $('exn').textContent=state.ex+1;$('exname').textContent=ex.name;$('exrx').textContent=ex.rx;$('extg').innerHTML='<b>Alvo:</b> '+esc(ex.target);
+  buildViews();buildTimeline();buildModeInfo();buildQuick();buildDetails();renderTimer();
+}
+function buildViews(){
+  const ex=CUR();
+  const vs=state.mode==='err'?[...new Set([state.view,...ex.views])]:ex.views;
+  $('views').innerHTML=vs.map(v=>`<button aria-pressed="${v===state.view}" data-v="${v}">${VIEWS[v].name}</button>`).join('');
+  $('views').querySelectorAll('button').forEach(b=>b.onclick=()=>{state.view=b.dataset.v;buildViews();});
+}
+function buildTimeline(){
+  const ex=CUR();
+  $('timeline').innerHTML=ex.seq.map(g=>`<div class="tseg ${g.kind}" style="flex-grow:${g.dur}">${g.kind!=='hold'&&g.dur>=.8?esc(g.label.split(' · ')[0].toLowerCase()):''}</div>`).join('')+'<div class="tcur" id="tcur"></div>';
+}
+function buildModeInfo(){
+  const ex=CUR();let h='';
+  if(state.mode==='tec'){h=`<div class="legend"><span><i class="sw" style="background:var(--guide)"></i>linhas de referência</span><span><i class="sw" style="background:var(--spine)"></i>coluna</span><span><i class="sw" style="background:var(--joint)"></i>articulações</span></div>`;if(ex.note)h+=`<div class="warnbox">${ex.note}</div>`;}
+  if(state.mode==='err'){const e=ex.errors[state.err];h=`<div class="errchips">${ex.errors.map((x,i)=>`<button class="errchip" aria-pressed="${i===state.err}" data-i="${i}">❌ ${esc(x.title)}</button>`).join('')}</div><div>${esc(e.desc)}</div><div class="legend"><span><i class="sw" style="background:var(--err)"></i>erro</span><span><i class="sw" style="background:var(--ghost)"></i>execução correta</span></div>`;}
+  if(state.mode==='mus'){h=`<div class="legend"><span><i class="sw" style="background:var(--mus-p)"></i>alvo principal</span><span><i class="sw" style="background:var(--mus-s)"></i>secundários</span></div><div><b>Onde sentir:</b> ${esc(ex.feel)}</div><div class="note">${esc(ex.feelNote)}</div>`;}
+  if(state.mode==='traj'){const L=ex.extLabels;h=`<div class="legend"><span><i class="sw" style="background:var(--path)"></i>trajetória da carga/mão (a seta mostra a fase concêntrica)</span><span><i class="sw" style="background:var(--path);opacity:.55"></i>pontilhado: cotovelo ou ombro</span><span><i class="sw" style="background:var(--muted)"></i>contorno cinza: ${esc(L[0])}</span><span><i class="sw" style="background:var(--ghost)"></i>contorno verde: ${esc(L[1])}</span></div><div class="note">${esc(ex.range[ex.range.length-1])}</div>`;}
+  $('modeinfo').innerHTML=h;
+  $('modeinfo').querySelectorAll('.errchip').forEach(b=>b.onclick=()=>{state.err=+b.dataset.i;state.view=ex.errors[state.err].view;state.t=0;buildViews();buildModeInfo();});
+
+}
+function buildQuick(){
+  const ex=CUR();
+  $('cues').innerHTML=ex.cues.map(c=>`<li>${esc(c)}</li>`).join('');
+  const ck=checks[ex.id]||(checks[ex.id]=ex.check.map(()=>false));
+  $('check').innerHTML=ex.check.map((c,i)=>`<label for="ck-${ex.id}-${i}"><input type="checkbox" id="ck-${ex.id}-${i}" data-i="${i}" ${ck[i]?'checked':''}>${esc(c)}</label>`).join('')+'<button class="reset" id="ckreset">Limpar checklist</button>';
+  $('check').querySelectorAll('input').forEach(inp=>inp.onchange=()=>{ck[+inp.dataset.i]=inp.checked;});
+  $('ckreset').onclick=()=>{ck.fill(false);buildQuick();};
+}
+function li(a){return'<ul>'+a.map(x=>`<li>${esc(x)}</li>`).join('')+'</ul>';}
+function buildDetails(){
+  const ex=CUR();
+  const steps='<div class="steps">'+ex.exec.map(([k,t,d])=>`<div class="step"><i class="dot ${k}"></i><b>${esc(t)}</b><span>${esc(d)}</span></div>`).join('')+'</div>';
+  const errs='<ul>'+ex.errors.map(e=>`<li><b>❌ ${esc(e.title)}.</b> ${esc(e.desc)}</li>`).join('')+'</ul>';
+  $('details').innerHTML=`
+  <details class="box" open><summary>Setup</summary><div class="dbody"><h3>Equipamento</h3>${li(ex.setupEq)}<h3>Corpo</h3>${li(ex.setupBody)}</div></details>
+  <details class="box"><summary>Execução e tempo</summary><div class="dbody">${steps}</div></details>
+  <details class="box"><summary>Amplitude</summary><div class="dbody">${li(ex.range)}</div></details>
+  <details class="box"><summary>Respiração</summary><div class="dbody"><p>${esc(ex.breath)}</p></div></details>
+  <details class="box"><summary>Onde sentir</summary><div class="dbody"><p>${esc(ex.feel)}</p><p class="note">${esc(ex.feelNote)}</p></div></details>
+  <details class="box"><summary>Erros comuns</summary><div class="dbody">${errs}<p class="note">Toque em “Erros” acima da animação para ver cada um.</p></div></details>
+  <details class="box"><summary>O que varia de pessoa para pessoa</summary><div class="dbody"><p>${esc(ex.vary)}</p></div></details>`;
+}
+document.querySelectorAll('#modes button').forEach(b=>b.onclick=()=>{
+  state.mode=b.dataset.m;document.querySelectorAll('#modes button').forEach(x=>x.setAttribute('aria-pressed',x===b));
+  const ex=CUR();
+  if(state.mode==='err'){state.err=0;state.view=ex.errors[0].view;state.t=0;}
+  else if(!ex.views.includes(state.view))state.view=ex.views[0];
+  buildViews();buildModeInfo();
+});
+$('play').onclick=()=>{state.playing=!state.playing;$('play').textContent=state.playing?'⏸':'▶';$('play').setAttribute('aria-label',state.playing?'Pausar':'Reproduzir');};
+$('reset').onclick=()=>{state.t=0;state.playing=false;$('play').textContent='▶';$('play').setAttribute('aria-label','Reproduzir');};
+$('slow').onclick=()=>{state.slow=!state.slow;$('slow').setAttribute('aria-pressed',state.slow);};
+$('prev').onclick=()=>setEx(state.ex-1);$('next').onclick=()=>setEx(state.ex+1);
+if(!state.playing){$('play').textContent='▶';$('play').setAttribute('aria-label','Reproduzir');}
+
+/* ================= descanso entre séries ================= */
+const fmt=x=>{x=Math.max(0,Math.round(x));return Math.floor(x/60)+':'+String(x%60).padStart(2,'0');};
+const today=()=>{const d=new Date();return d.getFullYear()+'-'+(d.getMonth()+1)+'-'+d.getDate();};
+const RT={running:false,endAt:0,dur:0,exId:null,exName:'',ctx:null,nodes:[],done:false,lock:null,sel:{}};
+let SETS={};try{const o=JSON.parse(localStorage.getItem('guia-series')||'{}');if(o.d===today())SETS=o.s||{};}catch(e){}
+function saveSets(){try{localStorage.setItem('guia-series',JSON.stringify({d:today(),s:SETS}));}catch(e){}}
+function setsOf(ex){const n=ex.sets||3;let a=SETS[ex.id];if(!a||a.length!==n){a=SETS[ex.id]=Array(n).fill(false);}return a;}
+function restSel(ex){return RT.sel[ex.id]||(ex.rest?ex.rest.def:90);}
+const mins=x=>String(+(x/60).toFixed(1)).replace('.',',');
+function restLabel(ex){const o=(ex.rest?ex.rest.opts:[90]).slice().sort((a,b)=>a-b);return (o.length>1?mins(o[0])+'–'+mins(o[o.length-1]):mins(o[0]))+' min';}
+function audio(){try{if(!RT.ctx){const AC=window.AudioContext||window.webkitAudioContext;if(AC)RT.ctx=new AC();}if(RT.ctx&&RT.ctx.state==='suspended')RT.ctx.resume();}catch(e){}return RT.ctx;}
+function clearBeeps(){RT.nodes.forEach(n=>{try{n.stop(0);}catch(e){}});RT.nodes=[];}
+function scheduleBeeps(sec){clearBeeps();const c=audio();if(!c)return;const t0=c.currentTime+Math.max(0,sec);
+  [0,.35,.7].forEach((d,i)=>{try{const o=c.createOscillator(),g=c.createGain();o.type='sine';o.frequency.value=i===2?1175:880;g.gain.setValueAtTime(.0001,t0+d);g.gain.exponentialRampToValueAtTime(.4,t0+d+.02);g.gain.exponentialRampToValueAtTime(.0001,t0+d+.26);o.connect(g);g.connect(c.destination);o.start(t0+d);o.stop(t0+d+.3);RT.nodes.push(o);}catch(e){}});}
+function startRest(){const ex=CUR();const sec=restSel(ex);RT.running=true;RT.done=false;RT.dur=sec;RT.endAt=Date.now()+sec*1000;RT.exId=ex.id;RT.exName=ex.short;scheduleBeeps(sec);
+  try{if(navigator.wakeLock&&!RT.lock)navigator.wakeLock.request('screen').then(l=>{RT.lock=l;}).catch(()=>{});}catch(e){}renderTimer();}
+function adjustRest(d){if(!RT.running)return;RT.endAt+=d*1000;RT.dur=Math.max(5,RT.dur+d);const left=(RT.endAt-Date.now())/1000;if(left>0){RT.done=false;$('timer').classList.remove('done');scheduleBeeps(left);}renderTimer();}
+function stopRest(){RT.running=false;RT.done=false;clearBeeps();try{if(RT.lock)RT.lock.release();}catch(e){}RT.lock=null;$('timer').classList.remove('done');renderTimer();}
+function finishSet(){const ex=CUR();const a=setsOf(ex);const i=a.indexOf(false);if(i>=0)a[i]=true;saveSets();startRest();}
+function renderTimer(){
+  const ex=CUR();const a=setsOf(ex);const doneN=a.filter(Boolean).length;const mine=RT.running&&RT.exId===ex.id;
+  $('tpres').textContent='Programa: '+restLabel(ex);
+  $('tsets').innerHTML=a.map((v,i)=>`<button class="tset" aria-pressed="${v}" data-i="${i}" aria-label="Série ${ex.setLbl?ex.setLbl[i]:i+1}">${ex.setLbl?ex.setLbl[i]:i+1}</button>`).join('')+`<span>${doneN} de ${a.length} ${ex.setUnit||'séries'}</span>`;
+  $('tsets').querySelectorAll('.tset').forEach(b=>b.onclick=()=>{a[+b.dataset.i]=!a[+b.dataset.i];saveSets();renderTimer();});
+  let h='';
+  if(RT.running){
+    h=`${RT.exId!==ex.id?`<div class="note" style="text-align:center">Descanso do ${esc(RT.exName)}</div>`:''}<div class="tmsg" id="tmsg"></div><div class="tctl"><button id="tminus">−15 s</button><button id="tplus">+15 s</button><button id="tstop">${RT.done?'Ok':'Parar'}</button></div>`;
+  }else{
+    const opts=(ex.rest?ex.rest.opts:[90]).slice().sort((x,y)=>x-y);
+    const sel=restSel(ex);
+    const all=doneN>=a.length;
+    h=(opts.length>1?`<div class="topts">${opts.map(o=>`<button class="topt" aria-pressed="${o===sel}" data-s="${o}">${fmt(o)}</button>`).join('')}</div>`:'')+
+      `<button class="tmain" id="tgo">${all?'Descansar '+fmt(sel)+' antes do próximo exercício':'Terminei a série · descansar '+fmt(sel)}</button>`+
+      (all?`<button class="tsec" id="tnext">Ir para o próximo exercício ›</button>`:'');
+  }
+  $('tbtns').innerHTML=h;
+  const q=id=>document.getElementById(id);
+  $('tbtns').querySelectorAll('.topt').forEach(b=>b.onclick=()=>{RT.sel[ex.id]=+b.dataset.s;renderTimer();});
+  if(q('tgo'))q('tgo').onclick=()=>{if(doneN>=a.length)startRest();else finishSet();};
+  if(q('tnext'))q('tnext').onclick=()=>setEx(state.ex+1);
+  if(q('tminus'))q('tminus').onclick=()=>adjustRest(-15);
+  if(q('tplus'))q('tplus').onclick=()=>adjustRest(15);
+  if(q('tstop'))q('tstop').onclick=stopRest;
+  $('tnote').textContent=[ex.rest&&ex.rest.note,'Semana 1 (readaptação): 2 séries por exercício, 1 na flexão de braço e no abdominal. Deixe a tela ligada para ouvir o aviso.'].filter(Boolean).join(' ');
+  tickTimer();
+}
+function tickTimer(){
+  const clock=$('tclock'),bar=$('tbarfill');if(!clock)return;
+  if(!RT.running){clock.textContent=fmt(restSel(CUR()));clock.className='tclock idle';bar.style.width='0%';return;}
+  const left=(RT.endAt-Date.now())/1000;
+  if(left>0){clock.textContent=fmt(Math.ceil(left));clock.className='tclock';bar.style.width=(100*(1-left/RT.dur)).toFixed(1)+'%';}
+  else{clock.textContent='+'+fmt(-left);clock.className='tclock over';bar.style.width='100%';
+    if(!RT.done){RT.done=true;$('timer').classList.add('done');try{navigator.vibrate&&navigator.vibrate([250,120,250,120,400]);}catch(e){}renderTimer();return;}
+    const m=document.getElementById('tmsg');if(m&&!m.textContent)m.textContent='Hora da próxima série';}
+}
+
+function draw(){
+  const ex=CUR();const v=state.view;const box=vb(ex,v);
+  KS=box[2]/Math.max(260,svg.clientWidth||360);
+  scene(ex,v,state.mode,state.t,state.err);
+  // chão
+  if(v!=='top')prims.push({l:0,d:-1e9,s:`<line x1="${f1(box[0])}" y1="0" x2="${f1(box[0]+box[2])}" y2="0" class="floor" stroke-width="${f1(1.5*KS)}"/>`});
+  prims.sort((a,b)=>a.l-b.l||a.d-b.d);
+  svg.setAttribute('viewBox',box.map(f1).join(' '));
+  svg.innerHTML=prims.map(p=>p.s).join('');
+  const g=segAt(ex,state.t);
+  $('phase').innerHTML=state.mode==='err'?`<b style="color:var(--err)">❌ ${esc(ex.errors[state.err].title)}</b><span>${esc(g.label)}</span>`:`<b>${esc(g.label)}</b><span>${esc(g.tempo||'')}</span>`;
+  const br=$('breath');br.textContent=g.breath;br.className='breath'+(g.breath==='INSPIRA'?' in':g.breath==='FIRME'?' hold':'');
+  const tc=$('tcur');if(tc){const tl=$('timeline');const w=tl.clientWidth-16;tc.style.left=(8+w*(((state.t%ex.T)+ex.T)%ex.T)/ex.T-1)+'px';}
+}
+let last=performance.now();
+function loop(now){
+  const dt=Math.min(.05,(now-last)/1000);last=now;
+  if(state.playing)state.t+=dt*(state.slow?.35:1);
+  draw();tickTimer();requestAnimationFrame(loop);
+}
+buildDays();setEx(0);requestAnimationFrame(loop);
+
+/* depuração: verificações numéricas e folha de contato */
+window.__guia={EX,skel,poseAt,scene,VIEWS,fit,
+  check(){const out=[];for(const ex of EX){IKFAIL=0;for(let i=0;i<80;i++)skel(poseAt(ex,ex.K,i/80*ex.T));const ok=IKFAIL;IKFAIL=0;const errs=ex.errors.map(e=>{IKFAIL=0;for(let i=0;i<80;i++)skel(poseAt(ex,e.K,i/80*ex.T));return e.id+':'+IKFAIL;});out.push(ex.id+' ik='+ok+' errs '+errs.join(' ')+' L0='+JSON.stringify(ex.L0)+' lift='+JSON.stringify(ex._liftRange));}return out;},
+  sheet(ids){const host=document.createElement('div');host.id='sheet';host.style.cssText='position:absolute;left:0;top:0;width:1600px;background:var(--bg);display:grid;grid-template-columns:repeat(4,1fr);gap:6px;padding:6px;z-index:99';
+    const cells=[];
+    for(const ex of EX.filter(e=>!ids||ids.includes(e.id))){for(const v of ex.views){for(const nm of [...new Set([ex.ext[0],'mid',ex.ext[1]])].filter(k=>ex.K[k])){cells.push({ex,v,mode:'tec',pose:nm});}cells.push({ex,v,mode:'mus',pose:ex.ext[1]});cells.push({ex,v,mode:'traj',pose:ex.ext[0]});}
+      ex.errors.forEach((e,j)=>cells.push({ex,v:e.view,mode:'err',err:j,pose:ex.ext[1]}));}
+    for(const c of cells){const box=fit(c.ex,c.v);const t=(()=>{for(const g of c.ex.seq)if(g.path.length===1&&g.path[0]===c.pose)return g.t0+g.dur/2;for(const g of c.ex.seq){const i=g.path.indexOf(c.pose);if(i>0)return g.t0+g.dur*(i/(g.path.length-1))*0.999;}return 0;})();
+      KS=box[2]/390;scene(c.ex,c.v,c.mode,t,c.err);prims.sort((a,b)=>a.l-b.l||a.d-b.d);
+      const d=document.createElement('div');d.style.cssText='background:var(--stage);border:1px solid var(--line);position:relative';
+      d.innerHTML=`<div style="position:absolute;left:4px;top:2px;font:11px sans-serif;color:var(--muted)">${c.ex.short} · ${c.v} · ${c.mode}${c.err!=null?' '+c.ex.errors[c.err].id:''} · ${c.pose}</div><svg viewBox="${box.map(f1).join(' ')}" style="width:100%;aspect-ratio:4/3;display:block">${(c.v!=='top'?`<line x1="${box[0]}" y1="0" x2="${box[0]+box[2]}" y2="0" class="floor" stroke-width="1.5"/>`:'')+prims.map(p=>p.s).join('')}</svg>`;
+      host.appendChild(d);}
+    document.body.appendChild(host);return cells.length;}
+};
+})();
+</script>
+</body>
+</html>
