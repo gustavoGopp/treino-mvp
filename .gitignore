@@ -23,3 +23,7 @@ playwright-report/
 .DS_Store
 Thumbs.db
 dev-dist/
+
+# Notas de pesquisa brutas (o resultado curado vai para docs/pesquisa/)
+research_notes/
+reports/
