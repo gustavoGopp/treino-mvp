@@ -17,7 +17,8 @@
     "test:e2e": "playwright test",
     "check": "npm run lint && npm run typecheck && npm run test",
     "qa:motor": "node scripts/qa-motor.mjs",
-    "test:cobertura": "vitest run --coverage"
+    "test:cobertura": "vitest run --coverage",
+    "test:privado": "vitest run --config privado/vitest.config.ts"
   },
   "dependencies": {
     "react": "^18.3.1",
