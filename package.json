@@ -15,7 +15,8 @@
     "typecheck": "tsc -b --noEmit",
     "test": "vitest run",
     "test:e2e": "playwright test",
-    "check": "npm run lint && npm run typecheck && npm run test"
+    "check": "npm run lint && npm run typecheck && npm run test",
+    "qa:motor": "node scripts/qa-motor.mjs"
   },
   "dependencies": {
     "react": "^18.3.1",
