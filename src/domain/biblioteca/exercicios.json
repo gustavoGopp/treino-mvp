@@ -1,0 +1,2551 @@
+[
+ {
+  "id": "supino-inclinado",
+  "nome": "Supino inclinado com halteres",
+  "padrao": "empurrar-h",
+  "musculos": {
+   "primarios": [
+    "peito"
+   ],
+   "secundarios": [
+    "ombro_anterior",
+    "triceps"
+   ]
+  },
+  "requer": [
+   [
+    "halteres",
+    "banco_inclinavel"
+   ]
+  ],
+  "complexidade": 2,
+  "tipo": "composto",
+  "faixaReps": [
+   6,
+   10
+  ],
+  "unilateral": false,
+  "articulacoes": [
+   "ombro",
+   "cotovelo"
+  ],
+  "tags": [
+   "inclinado",
+   "apoiado"
+  ],
+  "ordem": 1,
+  "carga": "halter",
+  "animacaoId": "supino-inclinado"
+ },
+ {
+  "id": "supino-barra",
+  "nome": "Supino reto com barra",
+  "padrao": "empurrar-h",
+  "musculos": {
+   "primarios": [
+    "peito"
+   ],
+   "secundarios": [
+    "ombro_anterior",
+    "triceps"
+   ]
+  },
+  "requer": [
+   [
+    "barra_longa",
+    "banco",
+    "rack"
+   ]
+  ],
+  "complexidade": 3,
+  "tipo": "composto",
+  "faixaReps": [
+   6,
+   10
+  ],
+  "unilateral": false,
+  "articulacoes": [
+   "ombro",
+   "cotovelo",
+   "punho"
+  ],
+  "tags": [
+   "plano"
+  ],
+  "ordem": 1.5,
+  "carga": "barra",
+  "animacaoId": null
+ },
+ {
+  "id": "supino-reto",
+  "nome": "Supino reto com halteres",
+  "padrao": "empurrar-h",
+  "musculos": {
+   "primarios": [
+    "peito"
+   ],
+   "secundarios": [
+    "ombro_anterior",
+    "triceps"
+   ]
+  },
+  "requer": [
+   [
+    "halteres",
+    "banco"
+   ]
+  ],
+  "complexidade": 2,
+  "tipo": "composto",
+  "faixaReps": [
+   6,
+   10
+  ],
+  "unilateral": false,
+  "articulacoes": [
+   "ombro",
+   "cotovelo"
+  ],
+  "tags": [
+   "plano",
+   "apoiado"
+  ],
+  "ordem": 2,
+  "carga": "halter",
+  "animacaoId": "supino-reto"
+ },
+ {
+  "id": "supino-inclinado-polia",
+  "nome": "Supino inclinado na polia, com o banco entre as torres",
+  "padrao": "empurrar-h",
+  "musculos": {
+   "primarios": [
+    "peito"
+   ],
+   "secundarios": [
+    "ombro_anterior",
+    "triceps"
+   ]
+  },
+  "requer": [
+   [
+    "polia_dupla",
+    "banco_inclinavel"
+   ]
+  ],
+  "complexidade": 2,
+  "tipo": "composto",
+  "faixaReps": [
+   8,
+   12
+  ],
+  "unilateral": false,
+  "articulacoes": [
+   "ombro",
+   "cotovelo"
+  ],
+  "tags": [
+   "inclinado",
+   "polia"
+  ],
+  "ordem": 3,
+  "carga": "polia",
+  "animacaoId": null
+ },
+ {
+  "id": "supino-polia",
+  "nome": "Supino na polia com o banco plano entre as torres",
+  "padrao": "empurrar-h",
+  "musculos": {
+   "primarios": [
+    "peito"
+   ],
+   "secundarios": [
+    "ombro_anterior",
+    "triceps"
+   ]
+  },
+  "requer": [
+   [
+    "polia_dupla",
+    "banco"
+   ]
+  ],
+  "complexidade": 2,
+  "tipo": "composto",
+  "faixaReps": [
+   8,
+   12
+  ],
+  "unilateral": false,
+  "articulacoes": [
+   "ombro",
+   "cotovelo"
+  ],
+  "tags": [
+   "plano",
+   "polia"
+  ],
+  "ordem": 4,
+  "carga": "polia",
+  "animacaoId": null
+ },
+ {
+  "id": "flexao",
+  "nome": "Flexão de braço",
+  "padrao": "empurrar-h",
+  "musculos": {
+   "primarios": [
+    "peito"
+   ],
+   "secundarios": [
+    "triceps",
+    "ombro_anterior"
+   ]
+  },
+  "requer": [
+   [
+    "apoio"
+   ]
+  ],
+  "complexidade": 1,
+  "tipo": "composto",
+  "faixaReps": [
+   8,
+   20
+  ],
+  "unilateral": false,
+  "articulacoes": [
+   "ombro",
+   "punho"
+  ],
+  "tags": [
+   "plano",
+   "peso-corpo"
+  ],
+  "ordem": 6,
+  "carga": "peso-corpo",
+  "animacaoId": "flexao"
+ },
+ {
+  "id": "flexao-elastico",
+  "nome": "Flexão de braço com elástico",
+  "padrao": "empurrar-h",
+  "musculos": {
+   "primarios": [
+    "peito"
+   ],
+   "secundarios": [
+    "triceps",
+    "ombro_anterior"
+   ]
+  },
+  "requer": [
+   [
+    "elastico"
+   ]
+  ],
+  "complexidade": 1,
+  "tipo": "composto",
+  "faixaReps": [
+   8,
+   20
+  ],
+  "unilateral": false,
+  "articulacoes": [
+   "ombro",
+   "punho"
+  ],
+  "tags": [
+   "plano",
+   "elastico"
+  ],
+  "ordem": 7,
+  "carga": "elastico",
+  "animacaoId": null
+ },
+ {
+  "id": "crucifixo-polia",
+  "nome": "Crucifixo na polia (crossover)",
+  "padrao": "isolador-peito",
+  "musculos": {
+   "primarios": [
+    "peito"
+   ],
+   "secundarios": [
+    "ombro_anterior"
+   ]
+  },
+  "requer": [
+   [
+    "polia_dupla"
+   ]
+  ],
+  "complexidade": 2,
+  "tipo": "isolador",
+  "faixaReps": [
+   10,
+   15
+  ],
+  "unilateral": false,
+  "articulacoes": [
+   "ombro"
+  ],
+  "tags": [
+   "polia",
+   "alongado"
+  ],
+  "ordem": 1,
+  "carga": "polia",
+  "animacaoId": "crucifixo-polia"
+ },
+ {
+  "id": "crucifixo-halteres",
+  "nome": "Crucifixo com halteres no banco plano",
+  "padrao": "isolador-peito",
+  "musculos": {
+   "primarios": [
+    "peito"
+   ],
+   "secundarios": [
+    "ombro_anterior"
+   ]
+  },
+  "requer": [
+   [
+    "halteres",
+    "banco"
+   ]
+  ],
+  "complexidade": 1,
+  "tipo": "isolador",
+  "faixaReps": [
+   10,
+   15
+  ],
+  "unilateral": false,
+  "articulacoes": [
+   "ombro"
+  ],
+  "tags": [
+   "alongado",
+   "apoiado"
+  ],
+  "ordem": 2,
+  "carga": "halter",
+  "animacaoId": null
+ },
+ {
+  "id": "crucifixo-polia-baixo",
+  "nome": "Crucifixo na polia de baixo para cima",
+  "padrao": "isolador-peito",
+  "musculos": {
+   "primarios": [
+    "peito"
+   ],
+   "secundarios": [
+    "ombro_anterior"
+   ]
+  },
+  "requer": [
+   [
+    "polia_dupla"
+   ]
+  ],
+  "complexidade": 2,
+  "tipo": "isolador",
+  "faixaReps": [
+   10,
+   15
+  ],
+  "unilateral": false,
+  "articulacoes": [
+   "ombro"
+  ],
+  "tags": [
+   "inclinado",
+   "polia"
+  ],
+  "ordem": 3,
+  "carga": "polia",
+  "animacaoId": null
+ },
+ {
+  "id": "crucifixo-elastico",
+  "nome": "Crucifixo com elástico",
+  "padrao": "isolador-peito",
+  "musculos": {
+   "primarios": [
+    "peito"
+   ],
+   "secundarios": [
+    "ombro_anterior"
+   ]
+  },
+  "requer": [
+   [
+    "elastico"
+   ]
+  ],
+  "complexidade": 1,
+  "tipo": "isolador",
+  "faixaReps": [
+   12,
+   20
+  ],
+  "unilateral": false,
+  "articulacoes": [
+   "ombro"
+  ],
+  "tags": [
+   "elastico"
+  ],
+  "ordem": 4,
+  "carga": "elastico",
+  "animacaoId": null
+ },
+ {
+  "id": "barra-fixa",
+  "nome": "Barra fixa",
+  "padrao": "puxar-v",
+  "musculos": {
+   "primarios": [
+    "costas"
+   ],
+   "secundarios": [
+    "biceps",
+    "ombro_posterior"
+   ]
+  },
+  "requer": [
+   [
+    "barra_fixa"
+   ]
+  ],
+  "complexidade": 2,
+  "tipo": "composto",
+  "faixaReps": [
+   6,
+   12
+  ],
+  "unilateral": false,
+  "articulacoes": [
+   "ombro",
+   "cotovelo"
+  ],
+  "tags": [
+   "peso-corpo"
+  ],
+  "ordem": 1,
+  "carga": "peso-corpo",
+  "animacaoId": "barra-fixa"
+ },
+ {
+  "id": "puxada-unilateral",
+  "nome": "Puxada unilateral ajoelhado na polia alta",
+  "padrao": "puxar-v",
+  "musculos": {
+   "primarios": [
+    "costas"
+   ],
+   "secundarios": [
+    "biceps",
+    "ombro_posterior"
+   ]
+  },
+  "requer": [
+   [
+    "polia_alta",
+    "estribo"
+   ]
+  ],
+  "complexidade": 1,
+  "tipo": "composto",
+  "faixaReps": [
+   10,
+   15
+  ],
+  "unilateral": true,
+  "articulacoes": [
+   "ombro"
+  ],
+  "tags": [
+   "polia",
+   "unilateral",
+   "alongado",
+   "estavel"
+  ],
+  "ordem": 2,
+  "carga": "polia",
+  "animacaoId": "puxada-unilateral"
+ },
+ {
+  "id": "puxada-barra-reta",
+  "nome": "Puxada ajoelhado na polia alta com barra reta",
+  "padrao": "puxar-v",
+  "musculos": {
+   "primarios": [
+    "costas"
+   ],
+   "secundarios": [
+    "biceps",
+    "ombro_posterior"
+   ]
+  },
+  "requer": [
+   [
+    "polia_alta",
+    "barra_reta_polia"
+   ]
+  ],
+  "complexidade": 1,
+  "tipo": "composto",
+  "faixaReps": [
+   8,
+   12
+  ],
+  "unilateral": false,
+  "articulacoes": [
+   "ombro"
+  ],
+  "tags": [
+   "polia",
+   "estavel"
+  ],
+  "ordem": 3,
+  "carga": "polia",
+  "animacaoId": null
+ },
+ {
+  "id": "barra-fixa-supinada",
+  "nome": "Barra fixa com pegada supinada",
+  "padrao": "puxar-v",
+  "musculos": {
+   "primarios": [
+    "costas"
+   ],
+   "secundarios": [
+    "biceps"
+   ]
+  },
+  "requer": [
+   [
+    "barra_fixa"
+   ]
+  ],
+  "complexidade": 2,
+  "tipo": "composto",
+  "faixaReps": [
+   6,
+   12
+  ],
+  "unilateral": false,
+  "articulacoes": [
+   "ombro",
+   "cotovelo"
+  ],
+  "tags": [
+   "peso-corpo"
+  ],
+  "ordem": 4,
+  "carga": "peso-corpo",
+  "animacaoId": null
+ },
+ {
+  "id": "puxada-elastico",
+  "nome": "Puxada com elástico ancorado no alto",
+  "padrao": "puxar-v",
+  "musculos": {
+   "primarios": [
+    "costas"
+   ],
+   "secundarios": [
+    "biceps"
+   ]
+  },
+  "requer": [
+   [
+    "elastico"
+   ]
+  ],
+  "complexidade": 1,
+  "tipo": "composto",
+  "faixaReps": [
+   10,
+   20
+  ],
+  "unilateral": false,
+  "articulacoes": [
+   "ombro"
+  ],
+  "tags": [
+   "elastico"
+  ],
+  "ordem": 5,
+  "carga": "elastico",
+  "animacaoId": null
+ },
+ {
+  "id": "remada-baixa",
+  "nome": "Remada baixa com triângulo",
+  "padrao": "puxar-h",
+  "musculos": {
+   "primarios": [
+    "costas"
+   ],
+   "secundarios": [
+    "biceps",
+    "ombro_posterior"
+   ]
+  },
+  "requer": [
+   [
+    "polia_baixa",
+    "triangulo",
+    "banco"
+   ]
+  ],
+  "complexidade": 1,
+  "tipo": "composto",
+  "faixaReps": [
+   8,
+   12
+  ],
+  "unilateral": false,
+  "articulacoes": [
+   "ombro",
+   "lombar"
+  ],
+  "tags": [
+   "polia",
+   "sentado",
+   "estavel"
+  ],
+  "ordem": 1,
+  "carga": "polia",
+  "animacaoId": "remada-baixa"
+ },
+ {
+  "id": "remada-apoiada",
+  "nome": "Remada com halteres, peito apoiado no banco inclinado",
+  "padrao": "puxar-h",
+  "musculos": {
+   "primarios": [
+    "costas"
+   ],
+   "secundarios": [
+    "biceps",
+    "ombro_posterior"
+   ]
+  },
+  "requer": [
+   [
+    "halteres",
+    "banco_inclinavel"
+   ]
+  ],
+  "complexidade": 1,
+  "tipo": "composto",
+  "faixaReps": [
+   8,
+   12
+  ],
+  "unilateral": false,
+  "articulacoes": [
+   "ombro"
+  ],
+  "tags": [
+   "apoiado",
+   "estavel"
+  ],
+  "ordem": 2,
+  "carga": "halter",
+  "animacaoId": "remada-apoiada"
+ },
+ {
+  "id": "remada-barra",
+  "nome": "Remada curvada com barra",
+  "padrao": "puxar-h",
+  "musculos": {
+   "primarios": [
+    "costas"
+   ],
+   "secundarios": [
+    "biceps",
+    "ombro_posterior"
+   ]
+  },
+  "requer": [
+   [
+    "barra_longa"
+   ]
+  ],
+  "complexidade": 3,
+  "tipo": "composto",
+  "faixaReps": [
+   6,
+   10
+  ],
+  "unilateral": false,
+  "articulacoes": [
+   "ombro",
+   "lombar"
+  ],
+  "tags": [],
+  "ordem": 2.5,
+  "carga": "barra",
+  "animacaoId": null
+ },
+ {
+  "id": "remada-unilateral-halter",
+  "nome": "Remada unilateral com halter apoiada no banco",
+  "padrao": "puxar-h",
+  "musculos": {
+   "primarios": [
+    "costas"
+   ],
+   "secundarios": [
+    "biceps",
+    "ombro_posterior"
+   ]
+  },
+  "requer": [
+   [
+    "halteres",
+    "banco"
+   ]
+  ],
+  "complexidade": 1,
+  "tipo": "composto",
+  "faixaReps": [
+   8,
+   12
+  ],
+  "unilateral": true,
+  "articulacoes": [
+   "ombro",
+   "lombar"
+  ],
+  "tags": [
+   "apoiado",
+   "unilateral"
+  ],
+  "ordem": 3,
+  "carga": "halter",
+  "animacaoId": null
+ },
+ {
+  "id": "remada-invertida",
+  "nome": "Remada invertida",
+  "padrao": "puxar-h",
+  "musculos": {
+   "primarios": [
+    "costas"
+   ],
+   "secundarios": [
+    "biceps",
+    "ombro_posterior"
+   ]
+  },
+  "requer": [
+   [
+    "barra_baixa"
+   ]
+  ],
+  "complexidade": 2,
+  "tipo": "composto",
+  "faixaReps": [
+   8,
+   15
+  ],
+  "unilateral": false,
+  "articulacoes": [
+   "ombro"
+  ],
+  "tags": [
+   "peso-corpo"
+  ],
+  "ordem": 4,
+  "carga": "peso-corpo",
+  "animacaoId": null
+ },
+ {
+  "id": "remada-elastico",
+  "nome": "Remada sentada com elástico",
+  "padrao": "puxar-h",
+  "musculos": {
+   "primarios": [
+    "costas"
+   ],
+   "secundarios": [
+    "biceps",
+    "ombro_posterior"
+   ]
+  },
+  "requer": [
+   [
+    "elastico"
+   ]
+  ],
+  "complexidade": 1,
+  "tipo": "composto",
+  "faixaReps": [
+   10,
+   20
+  ],
+  "unilateral": false,
+  "articulacoes": [
+   "ombro"
+  ],
+  "tags": [
+   "sentado",
+   "elastico"
+  ],
+  "ordem": 5,
+  "carga": "elastico",
+  "animacaoId": null
+ },
+ {
+  "id": "desenvolvimento",
+  "nome": "Desenvolvimento sentado com halteres",
+  "padrao": "empurrar-v",
+  "musculos": {
+   "primarios": [
+    "ombro_anterior"
+   ],
+   "secundarios": [
+    "ombro_lateral",
+    "triceps"
+   ]
+  },
+  "requer": [
+   [
+    "halteres",
+    "banco_inclinavel"
+   ]
+  ],
+  "complexidade": 2,
+  "tipo": "composto",
+  "faixaReps": [
+   8,
+   12
+  ],
+  "unilateral": false,
+  "articulacoes": [
+   "ombro",
+   "cotovelo"
+  ],
+  "tags": [
+   "apoiado"
+  ],
+  "ordem": 1,
+  "carga": "halter",
+  "animacaoId": "desenvolvimento"
+ },
+ {
+  "id": "desenvolvimento-barra",
+  "nome": "Desenvolvimento em pé com barra",
+  "padrao": "empurrar-v",
+  "musculos": {
+   "primarios": [
+    "ombro_anterior"
+   ],
+   "secundarios": [
+    "ombro_lateral",
+    "triceps"
+   ]
+  },
+  "requer": [
+   [
+    "barra_longa",
+    "rack"
+   ]
+  ],
+  "complexidade": 3,
+  "tipo": "composto",
+  "faixaReps": [
+   6,
+   10
+  ],
+  "unilateral": false,
+  "articulacoes": [
+   "ombro",
+   "lombar"
+  ],
+  "tags": [],
+  "ordem": 1.5,
+  "carga": "barra",
+  "animacaoId": null
+ },
+ {
+  "id": "desenvolvimento-unilateral",
+  "nome": "Desenvolvimento unilateral com halter, em pé",
+  "padrao": "empurrar-v",
+  "musculos": {
+   "primarios": [
+    "ombro_anterior"
+   ],
+   "secundarios": [
+    "ombro_lateral",
+    "triceps"
+   ]
+  },
+  "requer": [
+   [
+    "halteres"
+   ]
+  ],
+  "complexidade": 2,
+  "tipo": "composto",
+  "faixaReps": [
+   8,
+   12
+  ],
+  "unilateral": true,
+  "articulacoes": [
+   "ombro",
+   "lombar"
+  ],
+  "tags": [
+   "unilateral"
+  ],
+  "ordem": 2,
+  "carga": "halter",
+  "animacaoId": null
+ },
+ {
+  "id": "desenvolvimento-elastico",
+  "nome": "Desenvolvimento com elástico",
+  "padrao": "empurrar-v",
+  "musculos": {
+   "primarios": [
+    "ombro_anterior"
+   ],
+   "secundarios": [
+    "ombro_lateral",
+    "triceps"
+   ]
+  },
+  "requer": [
+   [
+    "elastico"
+   ]
+  ],
+  "complexidade": 1,
+  "tipo": "composto",
+  "faixaReps": [
+   10,
+   20
+  ],
+  "unilateral": false,
+  "articulacoes": [
+   "ombro"
+  ],
+  "tags": [
+   "elastico"
+  ],
+  "ordem": 3,
+  "carga": "elastico",
+  "animacaoId": null
+ },
+ {
+  "id": "elevacao-lateral",
+  "nome": "Elevação lateral unilateral na polia",
+  "padrao": "isolador-ombro-lateral",
+  "musculos": {
+   "primarios": [
+    "ombro_lateral"
+   ],
+   "secundarios": []
+  },
+  "requer": [
+   [
+    "polia_baixa",
+    "estribo"
+   ]
+  ],
+  "complexidade": 1,
+  "tipo": "isolador",
+  "faixaReps": [
+   10,
+   15
+  ],
+  "unilateral": true,
+  "articulacoes": [
+   "ombro"
+  ],
+  "tags": [
+   "polia",
+   "unilateral",
+   "estavel"
+  ],
+  "ordem": 1,
+  "carga": "polia",
+  "animacaoId": "elevacao-lateral"
+ },
+ {
+  "id": "elevacao-halteres",
+  "nome": "Elevação lateral com halteres",
+  "padrao": "isolador-ombro-lateral",
+  "musculos": {
+   "primarios": [
+    "ombro_lateral"
+   ],
+   "secundarios": []
+  },
+  "requer": [
+   [
+    "halteres"
+   ]
+  ],
+  "complexidade": 1,
+  "tipo": "isolador",
+  "faixaReps": [
+   12,
+   20
+  ],
+  "unilateral": false,
+  "articulacoes": [
+   "ombro"
+  ],
+  "tags": [
+   "halter"
+  ],
+  "ordem": 2,
+  "carga": "halter",
+  "animacaoId": "elevacao-halteres"
+ },
+ {
+  "id": "elevacao-lateral-elastico",
+  "nome": "Elevação lateral com elástico",
+  "padrao": "isolador-ombro-lateral",
+  "musculos": {
+   "primarios": [
+    "ombro_lateral"
+   ],
+   "secundarios": []
+  },
+  "requer": [
+   [
+    "elastico"
+   ]
+  ],
+  "complexidade": 1,
+  "tipo": "isolador",
+  "faixaReps": [
+   12,
+   20
+  ],
+  "unilateral": false,
+  "articulacoes": [
+   "ombro"
+  ],
+  "tags": [
+   "elastico"
+  ],
+  "ordem": 3,
+  "carga": "elastico",
+  "animacaoId": null
+ },
+ {
+  "id": "face-pull",
+  "nome": "Face pull com corda",
+  "padrao": "isolador-ombro-posterior",
+  "musculos": {
+   "primarios": [
+    "ombro_posterior"
+   ],
+   "secundarios": [
+    "costas"
+   ]
+  },
+  "requer": [
+   [
+    "polia_alta",
+    "corda"
+   ]
+  ],
+  "complexidade": 1,
+  "tipo": "isolador",
+  "faixaReps": [
+   12,
+   20
+  ],
+  "unilateral": false,
+  "articulacoes": [
+   "ombro"
+  ],
+  "tags": [
+   "polia"
+  ],
+  "ordem": 1,
+  "carga": "polia",
+  "animacaoId": "face-pull"
+ },
+ {
+  "id": "crucifixo-inverso",
+  "nome": "Crucifixo inverso com halteres, peito apoiado no banco inclinado",
+  "padrao": "isolador-ombro-posterior",
+  "musculos": {
+   "primarios": [
+    "ombro_posterior"
+   ],
+   "secundarios": [
+    "costas"
+   ]
+  },
+  "requer": [
+   [
+    "halteres",
+    "banco_inclinavel"
+   ]
+  ],
+  "complexidade": 1,
+  "tipo": "isolador",
+  "faixaReps": [
+   12,
+   20
+  ],
+  "unilateral": false,
+  "articulacoes": [
+   "ombro"
+  ],
+  "tags": [
+   "apoiado"
+  ],
+  "ordem": 2,
+  "carga": "halter",
+  "animacaoId": null
+ },
+ {
+  "id": "face-pull-elastico",
+  "nome": "Abertura com elástico na altura do rosto",
+  "padrao": "isolador-ombro-posterior",
+  "musculos": {
+   "primarios": [
+    "ombro_posterior"
+   ],
+   "secundarios": [
+    "costas"
+   ]
+  },
+  "requer": [
+   [
+    "elastico"
+   ]
+  ],
+  "complexidade": 1,
+  "tipo": "isolador",
+  "faixaReps": [
+   15,
+   25
+  ],
+  "unilateral": false,
+  "articulacoes": [
+   "ombro"
+  ],
+  "tags": [
+   "elastico"
+  ],
+  "ordem": 3,
+  "carga": "elastico",
+  "animacaoId": null
+ },
+ {
+  "id": "rosca-polia",
+  "nome": "Rosca direta na polia com barra reta",
+  "padrao": "isolador-biceps",
+  "musculos": {
+   "primarios": [
+    "biceps"
+   ],
+   "secundarios": []
+  },
+  "requer": [
+   [
+    "polia_baixa",
+    "barra_reta_polia"
+   ]
+  ],
+  "complexidade": 1,
+  "tipo": "isolador",
+  "faixaReps": [
+   8,
+   12
+  ],
+  "unilateral": false,
+  "articulacoes": [
+   "cotovelo"
+  ],
+  "tags": [
+   "polia",
+   "estavel"
+  ],
+  "ordem": 1,
+  "carga": "polia",
+  "animacaoId": "rosca-polia"
+ },
+ {
+  "id": "rosca-inclinada",
+  "nome": "Rosca inclinada com halteres",
+  "padrao": "isolador-biceps",
+  "musculos": {
+   "primarios": [
+    "biceps"
+   ],
+   "secundarios": []
+  },
+  "requer": [
+   [
+    "halteres",
+    "banco_inclinavel"
+   ]
+  ],
+  "complexidade": 1,
+  "tipo": "isolador",
+  "faixaReps": [
+   8,
+   12
+  ],
+  "unilateral": false,
+  "articulacoes": [
+   "ombro",
+   "cotovelo"
+  ],
+  "tags": [
+   "alongado",
+   "apoiado"
+  ],
+  "ordem": 2,
+  "carga": "halter",
+  "animacaoId": "rosca-inclinada"
+ },
+ {
+  "id": "rosca-barra-w",
+  "nome": "Rosca com barra W",
+  "padrao": "isolador-biceps",
+  "musculos": {
+   "primarios": [
+    "biceps"
+   ],
+   "secundarios": []
+  },
+  "requer": [
+   [
+    "barra_w"
+   ]
+  ],
+  "complexidade": 1,
+  "tipo": "isolador",
+  "faixaReps": [
+   8,
+   12
+  ],
+  "unilateral": false,
+  "articulacoes": [
+   "cotovelo",
+   "punho"
+  ],
+  "tags": [],
+  "ordem": 2.5,
+  "carga": "barra",
+  "animacaoId": null
+ },
+ {
+  "id": "rosca-alternada",
+  "nome": "Rosca alternada com halteres",
+  "padrao": "isolador-biceps",
+  "musculos": {
+   "primarios": [
+    "biceps"
+   ],
+   "secundarios": []
+  },
+  "requer": [
+   [
+    "halteres"
+   ]
+  ],
+  "complexidade": 1,
+  "tipo": "isolador",
+  "faixaReps": [
+   8,
+   12
+  ],
+  "unilateral": false,
+  "articulacoes": [
+   "cotovelo"
+  ],
+  "tags": [
+   "halter"
+  ],
+  "ordem": 3,
+  "carga": "halter",
+  "animacaoId": null
+ },
+ {
+  "id": "rosca-polia-costas",
+  "nome": "Rosca na polia baixa, de costas para a torre",
+  "padrao": "isolador-biceps",
+  "musculos": {
+   "primarios": [
+    "biceps"
+   ],
+   "secundarios": []
+  },
+  "requer": [
+   [
+    "polia_baixa",
+    "estribo"
+   ]
+  ],
+  "complexidade": 1,
+  "tipo": "isolador",
+  "faixaReps": [
+   10,
+   15
+  ],
+  "unilateral": true,
+  "articulacoes": [
+   "ombro",
+   "cotovelo"
+  ],
+  "tags": [
+   "polia",
+   "alongado"
+  ],
+  "ordem": 4,
+  "carga": "polia",
+  "animacaoId": null
+ },
+ {
+  "id": "rosca-elastico",
+  "nome": "Rosca com elástico",
+  "padrao": "isolador-biceps",
+  "musculos": {
+   "primarios": [
+    "biceps"
+   ],
+   "secundarios": []
+  },
+  "requer": [
+   [
+    "elastico"
+   ]
+  ],
+  "complexidade": 1,
+  "tipo": "isolador",
+  "faixaReps": [
+   12,
+   20
+  ],
+  "unilateral": false,
+  "articulacoes": [
+   "cotovelo"
+  ],
+  "tags": [
+   "elastico"
+  ],
+  "ordem": 5,
+  "carga": "elastico",
+  "animacaoId": null
+ },
+ {
+  "id": "triceps-corda",
+  "nome": "Tríceps na polia com corda",
+  "padrao": "isolador-triceps",
+  "musculos": {
+   "primarios": [
+    "triceps"
+   ],
+   "secundarios": []
+  },
+  "requer": [
+   [
+    "polia_alta",
+    "corda"
+   ]
+  ],
+  "complexidade": 1,
+  "tipo": "isolador",
+  "faixaReps": [
+   10,
+   15
+  ],
+  "unilateral": false,
+  "articulacoes": [
+   "cotovelo"
+  ],
+  "tags": [
+   "polia",
+   "estavel"
+  ],
+  "ordem": 1,
+  "carga": "polia",
+  "animacaoId": "triceps-corda"
+ },
+ {
+  "id": "triceps-frances",
+  "nome": "Tríceps francês na polia com corda",
+  "padrao": "isolador-triceps",
+  "musculos": {
+   "primarios": [
+    "triceps"
+   ],
+   "secundarios": []
+  },
+  "requer": [
+   [
+    "polia_baixa",
+    "corda"
+   ]
+  ],
+  "complexidade": 1,
+  "tipo": "isolador",
+  "faixaReps": [
+   10,
+   15
+  ],
+  "unilateral": false,
+  "articulacoes": [
+   "ombro",
+   "cotovelo"
+  ],
+  "tags": [
+   "polia",
+   "acima-cabeca",
+   "alongado"
+  ],
+  "ordem": 2,
+  "carga": "polia",
+  "animacaoId": "triceps-frances"
+ },
+ {
+  "id": "triceps-barra-reta",
+  "nome": "Tríceps na polia com barra reta",
+  "padrao": "isolador-triceps",
+  "musculos": {
+   "primarios": [
+    "triceps"
+   ],
+   "secundarios": []
+  },
+  "requer": [
+   [
+    "polia_alta",
+    "barra_reta_polia"
+   ]
+  ],
+  "complexidade": 1,
+  "tipo": "isolador",
+  "faixaReps": [
+   10,
+   15
+  ],
+  "unilateral": false,
+  "articulacoes": [
+   "cotovelo"
+  ],
+  "tags": [
+   "polia",
+   "estavel"
+  ],
+  "ordem": 3,
+  "carga": "polia",
+  "animacaoId": null
+ },
+ {
+  "id": "triceps-frances-halter",
+  "nome": "Tríceps francês sentado com halter",
+  "padrao": "isolador-triceps",
+  "musculos": {
+   "primarios": [
+    "triceps"
+   ],
+   "secundarios": []
+  },
+  "requer": [
+   [
+    "halteres"
+   ]
+  ],
+  "complexidade": 1,
+  "tipo": "isolador",
+  "faixaReps": [
+   10,
+   15
+  ],
+  "unilateral": false,
+  "articulacoes": [
+   "ombro",
+   "cotovelo"
+  ],
+  "tags": [
+   "acima-cabeca",
+   "alongado"
+  ],
+  "ordem": 4,
+  "carga": "halter",
+  "animacaoId": null
+ },
+ {
+  "id": "triceps-elastico-acima",
+  "nome": "Tríceps acima da cabeça com elástico",
+  "padrao": "isolador-triceps",
+  "musculos": {
+   "primarios": [
+    "triceps"
+   ],
+   "secundarios": []
+  },
+  "requer": [
+   [
+    "elastico"
+   ]
+  ],
+  "complexidade": 1,
+  "tipo": "isolador",
+  "faixaReps": [
+   12,
+   20
+  ],
+  "unilateral": false,
+  "articulacoes": [
+   "ombro",
+   "cotovelo"
+  ],
+  "tags": [
+   "acima-cabeca",
+   "elastico"
+  ],
+  "ordem": 5,
+  "carga": "elastico",
+  "animacaoId": null
+ },
+ {
+  "id": "agachamento-barra",
+  "nome": "Agachamento livre com barra",
+  "padrao": "agachar",
+  "musculos": {
+   "primarios": [
+    "quadriceps"
+   ],
+   "secundarios": [
+    "gluteos"
+   ]
+  },
+  "requer": [
+   [
+    "barra_longa",
+    "rack"
+   ]
+  ],
+  "complexidade": 3,
+  "tipo": "composto",
+  "faixaReps": [
+   6,
+   10
+  ],
+  "unilateral": false,
+  "articulacoes": [
+   "joelho",
+   "quadril",
+   "lombar"
+  ],
+  "tags": [],
+  "ordem": 1,
+  "carga": "barra",
+  "animacaoId": null
+ },
+ {
+  "id": "leg-press",
+  "nome": "Leg press",
+  "padrao": "agachar",
+  "musculos": {
+   "primarios": [
+    "quadriceps"
+   ],
+   "secundarios": [
+    "gluteos"
+   ]
+  },
+  "requer": [
+   [
+    "leg_press"
+   ]
+  ],
+  "complexidade": 1,
+  "tipo": "composto",
+  "faixaReps": [
+   8,
+   15
+  ],
+  "unilateral": false,
+  "articulacoes": [
+   "joelho",
+   "quadril"
+  ],
+  "tags": [
+   "maquina",
+   "estavel"
+  ],
+  "ordem": 2,
+  "carga": "maquina",
+  "animacaoId": null
+ },
+ {
+  "id": "goblet",
+  "nome": "Agachamento goblet com calcanhar elevado",
+  "padrao": "agachar",
+  "musculos": {
+   "primarios": [
+    "quadriceps"
+   ],
+   "secundarios": [
+    "gluteos"
+   ]
+  },
+  "requer": [
+   [
+    "halteres"
+   ]
+  ],
+  "complexidade": 1,
+  "tipo": "composto",
+  "faixaReps": [
+   8,
+   15
+  ],
+  "unilateral": false,
+  "articulacoes": [
+   "joelho",
+   "quadril"
+  ],
+  "tags": [
+   "halter"
+  ],
+  "ordem": 3,
+  "carga": "halter",
+  "animacaoId": "goblet"
+ },
+ {
+  "id": "agachamento-halteres",
+  "nome": "Agachamento com 2 halteres ao lado do corpo",
+  "padrao": "agachar",
+  "musculos": {
+   "primarios": [
+    "quadriceps"
+   ],
+   "secundarios": [
+    "gluteos"
+   ]
+  },
+  "requer": [
+   [
+    "halteres"
+   ]
+  ],
+  "complexidade": 1,
+  "tipo": "composto",
+  "faixaReps": [
+   8,
+   15
+  ],
+  "unilateral": false,
+  "articulacoes": [
+   "joelho",
+   "quadril"
+  ],
+  "tags": [
+   "halter"
+  ],
+  "ordem": 4,
+  "carga": "halter",
+  "animacaoId": null
+ },
+ {
+  "id": "agachamento-elastico",
+  "nome": "Agachamento com elástico",
+  "padrao": "agachar",
+  "musculos": {
+   "primarios": [
+    "quadriceps"
+   ],
+   "secundarios": [
+    "gluteos"
+   ]
+  },
+  "requer": [
+   [
+    "elastico"
+   ]
+  ],
+  "complexidade": 1,
+  "tipo": "composto",
+  "faixaReps": [
+   12,
+   25
+  ],
+  "unilateral": false,
+  "articulacoes": [
+   "joelho",
+   "quadril"
+  ],
+  "tags": [
+   "elastico"
+  ],
+  "ordem": 5,
+  "carga": "elastico",
+  "animacaoId": null
+ },
+ {
+  "id": "agachamento-peso-corpo",
+  "nome": "Agachamento com o peso do corpo",
+  "padrao": "agachar",
+  "musculos": {
+   "primarios": [
+    "quadriceps"
+   ],
+   "secundarios": [
+    "gluteos"
+   ]
+  },
+  "requer": [
+   [
+    "apoio"
+   ]
+  ],
+  "complexidade": 1,
+  "tipo": "composto",
+  "faixaReps": [
+   15,
+   30
+  ],
+  "unilateral": false,
+  "articulacoes": [
+   "joelho",
+   "quadril"
+  ],
+  "tags": [
+   "peso-corpo"
+  ],
+  "ordem": 6,
+  "carga": "peso-corpo",
+  "animacaoId": null
+ },
+ {
+  "id": "bulgaro",
+  "nome": "Agachamento búlgaro com apoio",
+  "padrao": "afundo",
+  "musculos": {
+   "primarios": [
+    "quadriceps"
+   ],
+   "secundarios": [
+    "gluteos"
+   ]
+  },
+  "requer": [
+   [
+    "halteres",
+    "banco"
+   ]
+  ],
+  "complexidade": 2,
+  "tipo": "composto",
+  "faixaReps": [
+   8,
+   12
+  ],
+  "unilateral": true,
+  "articulacoes": [
+   "joelho",
+   "quadril"
+  ],
+  "tags": [
+   "unilateral",
+   "bulgaro"
+  ],
+  "ordem": 1,
+  "carga": "halter",
+  "animacaoId": "bulgaro"
+ },
+ {
+  "id": "afundo",
+  "nome": "Afundo estático com halteres",
+  "padrao": "afundo",
+  "musculos": {
+   "primarios": [
+    "quadriceps"
+   ],
+   "secundarios": [
+    "gluteos"
+   ]
+  },
+  "requer": [
+   [
+    "halteres"
+   ]
+  ],
+  "complexidade": 1,
+  "tipo": "composto",
+  "faixaReps": [
+   8,
+   12
+  ],
+  "unilateral": true,
+  "articulacoes": [
+   "joelho",
+   "quadril"
+  ],
+  "tags": [
+   "unilateral",
+   "estatico"
+  ],
+  "ordem": 2,
+  "carga": "halter",
+  "animacaoId": "afundo"
+ },
+ {
+  "id": "afundo-tras",
+  "nome": "Afundo para trás alternado",
+  "padrao": "afundo",
+  "musculos": {
+   "primarios": [
+    "quadriceps"
+   ],
+   "secundarios": [
+    "gluteos"
+   ]
+  },
+  "requer": [
+   [
+    "halteres"
+   ]
+  ],
+  "complexidade": 2,
+  "tipo": "composto",
+  "faixaReps": [
+   8,
+   12
+  ],
+  "unilateral": true,
+  "articulacoes": [
+   "joelho",
+   "quadril"
+  ],
+  "tags": [
+   "unilateral"
+  ],
+  "ordem": 3,
+  "carga": "halter",
+  "animacaoId": null
+ },
+ {
+  "id": "afundo-peso-corpo",
+  "nome": "Afundo estático com o peso do corpo",
+  "padrao": "afundo",
+  "musculos": {
+   "primarios": [
+    "quadriceps"
+   ],
+   "secundarios": [
+    "gluteos"
+   ]
+  },
+  "requer": [
+   [
+    "apoio"
+   ]
+  ],
+  "complexidade": 1,
+  "tipo": "composto",
+  "faixaReps": [
+   12,
+   25
+  ],
+  "unilateral": true,
+  "articulacoes": [
+   "joelho",
+   "quadril"
+  ],
+  "tags": [
+   "unilateral",
+   "estatico",
+   "peso-corpo"
+  ],
+  "ordem": 4,
+  "carga": "peso-corpo",
+  "animacaoId": null
+ },
+ {
+  "id": "bulgaro-peso-corpo",
+  "nome": "Búlgaro com o peso do corpo",
+  "padrao": "afundo",
+  "musculos": {
+   "primarios": [
+    "quadriceps"
+   ],
+   "secundarios": [
+    "gluteos"
+   ]
+  },
+  "requer": [
+   [
+    "apoio"
+   ]
+  ],
+  "complexidade": 2,
+  "tipo": "composto",
+  "faixaReps": [
+   10,
+   20
+  ],
+  "unilateral": true,
+  "articulacoes": [
+   "joelho",
+   "quadril"
+  ],
+  "tags": [
+   "unilateral",
+   "bulgaro",
+   "peso-corpo"
+  ],
+  "ordem": 5,
+  "carga": "peso-corpo",
+  "animacaoId": null
+ },
+ {
+  "id": "terra-romeno-barra",
+  "nome": "Levantamento terra romeno com barra",
+  "padrao": "dobrar-quadril",
+  "musculos": {
+   "primarios": [
+    "posteriores"
+   ],
+   "secundarios": [
+    "gluteos"
+   ]
+  },
+  "requer": [
+   [
+    "barra_longa"
+   ]
+  ],
+  "complexidade": 3,
+  "tipo": "composto",
+  "faixaReps": [
+   6,
+   10
+  ],
+  "unilateral": false,
+  "articulacoes": [
+   "lombar",
+   "quadril"
+  ],
+  "tags": [],
+  "ordem": 1,
+  "carga": "barra",
+  "animacaoId": null
+ },
+ {
+  "id": "stiff",
+  "nome": "Stiff com halteres",
+  "padrao": "dobrar-quadril",
+  "musculos": {
+   "primarios": [
+    "posteriores"
+   ],
+   "secundarios": [
+    "gluteos"
+   ]
+  },
+  "requer": [
+   [
+    "halteres"
+   ]
+  ],
+  "complexidade": 2,
+  "tipo": "composto",
+  "faixaReps": [
+   8,
+   12
+  ],
+  "unilateral": false,
+  "articulacoes": [
+   "lombar",
+   "quadril"
+  ],
+  "tags": [
+   "halter"
+  ],
+  "ordem": 2,
+  "carga": "halter",
+  "animacaoId": "stiff"
+ },
+ {
+  "id": "pull-through",
+  "nome": "Pull-through na polia baixa com corda",
+  "padrao": "dobrar-quadril",
+  "musculos": {
+   "primarios": [
+    "posteriores"
+   ],
+   "secundarios": [
+    "gluteos"
+   ]
+  },
+  "requer": [
+   [
+    "polia_baixa",
+    "corda"
+   ]
+  ],
+  "complexidade": 1,
+  "tipo": "composto",
+  "faixaReps": [
+   10,
+   15
+  ],
+  "unilateral": false,
+  "articulacoes": [
+   "quadril"
+  ],
+  "tags": [
+   "polia",
+   "estavel"
+  ],
+  "ordem": 3,
+  "carga": "polia",
+  "animacaoId": null
+ },
+ {
+  "id": "stiff-unilateral",
+  "nome": "Stiff unilateral com halter",
+  "padrao": "dobrar-quadril",
+  "musculos": {
+   "primarios": [
+    "posteriores"
+   ],
+   "secundarios": [
+    "gluteos"
+   ]
+  },
+  "requer": [
+   [
+    "halteres"
+   ]
+  ],
+  "complexidade": 2,
+  "tipo": "composto",
+  "faixaReps": [
+   8,
+   12
+  ],
+  "unilateral": true,
+  "articulacoes": [
+   "lombar",
+   "quadril"
+  ],
+  "tags": [
+   "unilateral"
+  ],
+  "ordem": 4,
+  "carga": "halter",
+  "animacaoId": null
+ },
+ {
+  "id": "stiff-elastico",
+  "nome": "Stiff com elástico",
+  "padrao": "dobrar-quadril",
+  "musculos": {
+   "primarios": [
+    "posteriores"
+   ],
+   "secundarios": [
+    "gluteos"
+   ]
+  },
+  "requer": [
+   [
+    "elastico"
+   ]
+  ],
+  "complexidade": 1,
+  "tipo": "composto",
+  "faixaReps": [
+   12,
+   20
+  ],
+  "unilateral": false,
+  "articulacoes": [
+   "lombar",
+   "quadril"
+  ],
+  "tags": [
+   "elastico"
+  ],
+  "ordem": 5,
+  "carga": "elastico",
+  "animacaoId": null
+ },
+ {
+  "id": "ponte-gluteo",
+  "nome": "Ponte de glúteo",
+  "padrao": "dobrar-quadril",
+  "musculos": {
+   "primarios": [
+    "gluteos"
+   ],
+   "secundarios": [
+    "posteriores"
+   ]
+  },
+  "requer": [
+   [
+    "apoio"
+   ]
+  ],
+  "complexidade": 1,
+  "tipo": "composto",
+  "faixaReps": [
+   12,
+   25
+  ],
+  "unilateral": false,
+  "articulacoes": [
+   "quadril"
+  ],
+  "tags": [
+   "peso-corpo"
+  ],
+  "ordem": 6,
+  "carga": "peso-corpo",
+  "animacaoId": null
+ },
+ {
+  "id": "cadeira-flexora",
+  "nome": "Flexão de joelho na cadeira flexora (sentado)",
+  "padrao": "flexao-joelho",
+  "musculos": {
+   "primarios": [
+    "posteriores"
+   ],
+   "secundarios": []
+  },
+  "requer": [
+   [
+    "cadeira_flexora"
+   ]
+  ],
+  "complexidade": 1,
+  "tipo": "isolador",
+  "faixaReps": [
+   8,
+   15
+  ],
+  "unilateral": false,
+  "articulacoes": [
+   "joelho"
+  ],
+  "tags": [
+   "maquina",
+   "sentada",
+   "alongado",
+   "estavel"
+  ],
+  "ordem": 1,
+  "carga": "maquina",
+  "animacaoId": null
+ },
+ {
+  "id": "mesa-flexora",
+  "nome": "Mesa flexora (deitado)",
+  "padrao": "flexao-joelho",
+  "musculos": {
+   "primarios": [
+    "posteriores"
+   ],
+   "secundarios": []
+  },
+  "requer": [
+   [
+    "mesa_flexora"
+   ]
+  ],
+  "complexidade": 1,
+  "tipo": "isolador",
+  "faixaReps": [
+   8,
+   15
+  ],
+  "unilateral": false,
+  "articulacoes": [
+   "joelho"
+  ],
+  "tags": [
+   "maquina",
+   "estavel"
+  ],
+  "ordem": 2,
+  "carga": "maquina",
+  "animacaoId": null
+ },
+ {
+  "id": "flexao-bola",
+  "nome": "Flexão de joelho na bola suíça",
+  "padrao": "flexao-joelho",
+  "musculos": {
+   "primarios": [
+    "posteriores"
+   ],
+   "secundarios": [
+    "gluteos"
+   ]
+  },
+  "requer": [
+   [
+    "bola_suica"
+   ]
+  ],
+  "complexidade": 2,
+  "tipo": "isolador",
+  "faixaReps": [
+   8,
+   15
+  ],
+  "unilateral": false,
+  "articulacoes": [
+   "joelho"
+  ],
+  "tags": [
+   "peso-corpo"
+  ],
+  "ordem": 3,
+  "carga": "peso-corpo",
+  "animacaoId": "flexao-bola"
+ },
+ {
+  "id": "flexao-joelho-elastico",
+  "nome": "Flexão de joelho com elástico",
+  "padrao": "flexao-joelho",
+  "musculos": {
+   "primarios": [
+    "posteriores"
+   ],
+   "secundarios": []
+  },
+  "requer": [
+   [
+    "elastico"
+   ]
+  ],
+  "complexidade": 1,
+  "tipo": "isolador",
+  "faixaReps": [
+   12,
+   20
+  ],
+  "unilateral": false,
+  "articulacoes": [
+   "joelho"
+  ],
+  "tags": [
+   "elastico"
+  ],
+  "ordem": 4,
+  "carga": "elastico",
+  "animacaoId": null
+ },
+ {
+  "id": "cadeira-extensora",
+  "nome": "Cadeira extensora",
+  "padrao": "isolador-quadriceps",
+  "musculos": {
+   "primarios": [
+    "quadriceps"
+   ],
+   "secundarios": []
+  },
+  "requer": [
+   [
+    "cadeira_extensora"
+   ]
+  ],
+  "complexidade": 1,
+  "tipo": "isolador",
+  "faixaReps": [
+   10,
+   15
+  ],
+  "unilateral": false,
+  "articulacoes": [
+   "joelho"
+  ],
+  "tags": [
+   "maquina",
+   "estavel"
+  ],
+  "ordem": 1,
+  "carga": "maquina",
+  "animacaoId": null
+ },
+ {
+  "id": "panturrilha",
+  "nome": "Panturrilha unilateral no step",
+  "padrao": "panturrilha",
+  "musculos": {
+   "primarios": [
+    "panturrilha"
+   ],
+   "secundarios": []
+  },
+  "requer": [
+   [
+    "step"
+   ]
+  ],
+  "complexidade": 1,
+  "tipo": "isolador",
+  "faixaReps": [
+   10,
+   15
+  ],
+  "unilateral": true,
+  "articulacoes": [
+   "tornozelo"
+  ],
+  "tags": [
+   "unilateral",
+   "alongado"
+  ],
+  "ordem": 1,
+  "carga": "halter",
+  "animacaoId": "panturrilha"
+ },
+ {
+  "id": "panturrilha-bilateral-step",
+  "nome": "Panturrilha em pé no step",
+  "padrao": "panturrilha",
+  "musculos": {
+   "primarios": [
+    "panturrilha"
+   ],
+   "secundarios": []
+  },
+  "requer": [
+   [
+    "step"
+   ]
+  ],
+  "complexidade": 1,
+  "tipo": "isolador",
+  "faixaReps": [
+   12,
+   20
+  ],
+  "unilateral": false,
+  "articulacoes": [
+   "tornozelo"
+  ],
+  "tags": [
+   "alongado"
+  ],
+  "ordem": 2,
+  "carga": "halter",
+  "animacaoId": "panturrilha-b"
+ },
+ {
+  "id": "panturrilha-leg-press",
+  "nome": "Panturrilha no leg press",
+  "padrao": "panturrilha",
+  "musculos": {
+   "primarios": [
+    "panturrilha"
+   ],
+   "secundarios": []
+  },
+  "requer": [
+   [
+    "leg_press"
+   ]
+  ],
+  "complexidade": 1,
+  "tipo": "isolador",
+  "faixaReps": [
+   10,
+   15
+  ],
+  "unilateral": false,
+  "articulacoes": [
+   "tornozelo"
+  ],
+  "tags": [
+   "alongado",
+   "maquina",
+   "estavel"
+  ],
+  "ordem": 2.5,
+  "carga": "maquina",
+  "animacaoId": null
+ },
+ {
+  "id": "panturrilha-chao",
+  "nome": "Panturrilha em pé no chão",
+  "padrao": "panturrilha",
+  "musculos": {
+   "primarios": [
+    "panturrilha"
+   ],
+   "secundarios": []
+  },
+  "requer": [
+   [
+    "apoio"
+   ]
+  ],
+  "complexidade": 1,
+  "tipo": "isolador",
+  "faixaReps": [
+   12,
+   20
+  ],
+  "unilateral": false,
+  "articulacoes": [
+   "tornozelo"
+  ],
+  "tags": [],
+  "ordem": 3,
+  "carga": "halter",
+  "animacaoId": null
+ },
+ {
+  "id": "abdominal-polia",
+  "nome": "Abdominal na polia com corda, ajoelhado",
+  "padrao": "core",
+  "musculos": {
+   "primarios": [
+    "abdomen"
+   ],
+   "secundarios": []
+  },
+  "requer": [
+   [
+    "polia_alta",
+    "corda"
+   ]
+  ],
+  "complexidade": 1,
+  "tipo": "isolador",
+  "faixaReps": [
+   10,
+   15
+  ],
+  "unilateral": false,
+  "articulacoes": [
+   "lombar"
+  ],
+  "tags": [
+   "polia"
+  ],
+  "ordem": 1,
+  "carga": "polia",
+  "animacaoId": "abdominal-polia"
+ },
+ {
+  "id": "elevacao-joelhos",
+  "nome": "Elevação de joelhos na barra fixa",
+  "padrao": "core",
+  "musculos": {
+   "primarios": [
+    "abdomen"
+   ],
+   "secundarios": []
+  },
+  "requer": [
+   [
+    "barra_fixa"
+   ]
+  ],
+  "complexidade": 2,
+  "tipo": "isolador",
+  "faixaReps": [
+   10,
+   15
+  ],
+  "unilateral": false,
+  "articulacoes": [
+   "ombro"
+  ],
+  "tags": [
+   "peso-corpo"
+  ],
+  "ordem": 2,
+  "carga": "peso-corpo",
+  "animacaoId": "elevacao-joelhos"
+ },
+ {
+  "id": "abdominal-declinado",
+  "nome": "Abdominal no banco declinado",
+  "padrao": "core",
+  "musculos": {
+   "primarios": [
+    "abdomen"
+   ],
+   "secundarios": []
+  },
+  "requer": [
+   [
+    "banco_declinavel"
+   ]
+  ],
+  "complexidade": 1,
+  "tipo": "isolador",
+  "faixaReps": [
+   10,
+   20
+  ],
+  "unilateral": false,
+  "articulacoes": [
+   "lombar"
+  ],
+  "tags": [
+   "peso-corpo"
+  ],
+  "ordem": 3,
+  "carga": "peso-corpo",
+  "animacaoId": null
+ },
+ {
+  "id": "abdominal-chao",
+  "nome": "Abdominal no chão (crunch)",
+  "padrao": "core",
+  "musculos": {
+   "primarios": [
+    "abdomen"
+   ],
+   "secundarios": []
+  },
+  "requer": [
+   [
+    "apoio"
+   ]
+  ],
+  "complexidade": 1,
+  "tipo": "isolador",
+  "faixaReps": [
+   12,
+   25
+  ],
+  "unilateral": false,
+  "articulacoes": [
+   "lombar"
+  ],
+  "tags": [
+   "peso-corpo"
+  ],
+  "ordem": 4,
+  "carga": "peso-corpo",
+  "animacaoId": null
+ }
+]
