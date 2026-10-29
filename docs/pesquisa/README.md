@@ -32,6 +32,13 @@ Esta pasta reúne a pesquisa que alimenta o gerador de treino, a progressão e a
 9. As quatro decisões de técnica são biomecânica e EMG, não ensaio: polia na altura do umbigo ou 1–2 furos abaixo, barra fixa pronada com neutra e supinada equivalentes, inclinado a ~30°, cotovelos a 30–60°.
 10. `regras.md` tem 77 regras; `fontes.md` tem 114 fontes, das quais 52 estão NÃO VERIFICADAS. Nada no programa de referência muda sem aprovação do usuário (ver o anexo).
 
+## Decisões aprovadas (29/10/2026)
+
+1. Série efetiva = série de trabalho com RIR ≤ 4 (`rir.serie-efetiva`).
+2. Grupos não prioritários podem ficar no mínimo eficaz de 4–6 séries semanais (`volume.semanal.minimo-eficaz`).
+3. Qualquer "sim" na triagem bloqueia o programa automático até a pessoa confirmar que foi avaliada.
+4. Ordem de corte quando falta tempo: menos exercícios, aquecimento específico, bi-set, drop set ou rest-pause e, por último, menos séries.
+
 ## Pendências de verificação
 
 Em ordem de impacto no app. Cada item está detalhado em `fontes.md` e nas "Lacunas" de cada arquivo.

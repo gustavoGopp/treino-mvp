@@ -42,7 +42,7 @@ Todas as personas são fictícias e ficam versionadas em `tests/personas/`:
 - **Carla, 35, avançada.** Academia completa. 5 dias × 75 min.
 - **Diego, 26, iniciante em casa.** Elásticos e barra fixa. 3 dias × 40 min.
 
-**Jornada:** boas-vindas e aviso, com o que o app faz e o que não faz (não diagnostica) → triagem estilo PAR-Q+ (se houver risco, o app recomenda avaliação profissional antes e pode seguir só com aviso) → perfil (nível, dias, tempo, prioridades, exercícios a evitar, dores) → inventário (foto ou checklist, sempre com confirmação) → programa gerado, com o "porquê" de cada escolha → treino do dia → guia do exercício → séries marcadas com carga × repetições × RIR e temporizador → treino concluído → sugestão para a próxima sessão.
+**Jornada:** boas-vindas e aviso, com o que o app faz e o que não faz (não diagnostica) → triagem estilo PAR-Q+ (qualquer "sim" bloqueia a geração automática do programa até a pessoa confirmar que foi avaliada por um profissional; decisão do M0-R) → perfil (nível, dias, tempo, prioridades, exercícios a evitar, dores) → inventário (foto ou checklist, sempre com confirmação) → programa gerado, com o "porquê" de cada escolha → treino do dia → guia do exercício → séries marcadas com carga × repetições × RIR e temporizador → treino concluído → sugestão para a próxima sessão.
 
 ## c. Escopo
 **Dentro:** os 5 itens da seção 3 do prompt (perfil e triagem, inventário com foto, gerador, execução, registro e progressão), PWA instalável, exportação e importação em JSON, devlog.
@@ -101,7 +101,7 @@ generate(perfil, inventario, biblioteca, regras) -> Programa   // determinístic
      4d → Torso/Membros ×2 · 5d → T/M + Corpo todo ou PPL+T/M
   // 3. Volume semanal por grupo (do M0-R)
   alvo[g] = baseNivel(nivel)  // ex.: iniciante 8–10, intermediário 10–14, avançado 12–18
-  alvo[g] += bônus se g ∈ prioridades; pernas/grupos não-prioritários = mínimo eficaz
+  alvo[g] += bônus se g ∈ prioridades; grupos não prioritários podem ficar em volume.semanal.minimo-eficaz (4–6 séries)
   alvo[g] = min(alvo[g], capacidadeTempo(dias, minutos))
   // 4. Preenchimento por padrão de movimento, por dia
   for dia in split: for slot in template(dia) (padrões em ordem):
@@ -109,9 +109,11 @@ generate(perfil, inventario, biblioteca, regras) -> Programa   // determinístic
      escolher primeiro; distribuir séries para atingir alvo[g] com freq 2x
   // 5. Orçamento de tempo
   t = Σ (series × (tempoSerie + descanso)) + aquecimento(6–8min)
-  while t > minutos: remover série do isolador com grupo mais acima do alvo; depois propor bi-set; por fim cortar exercício
+  while t > minutos (ordem do M0-R, regra tempo.corte): 1) cortar exercício redundante; 2) aquecimento só específico;
+     3) bi-set entre músculos que não competem; 4) drop set/rest-pause em isoladores; 5) só por último reduzir séries (sem descer do mínimo eficaz)
   // 6. Ordem: compostos grandes → compostos menores → isoladores → core; unilaterais pela perna mais fraca
-  // 7. Prescrição: faixas/RIR/descanso pelas regras (composto 6–10/8–12 RIR1–2, isolador 10–20 RIR0–1; iniciante RIR+1)
+  // 7. Prescrição: faixas/RIR/descanso pelas regras de docs/pesquisa/regras.md (composto 6–10/8–12 RIR1–2, isolador 10–20 RIR0–1; iniciante RIR+1)
+  //    série efetiva = série de trabalho com RIR ≤ 4 (inclui a semana 1 da readaptação)
   // 8. Readaptação: se voltandoDePausa ou iniciante: sem1 2 séries RIR3–4, sem2 cheio RIR2–3, sem3 completo
   // 9. Alternativas: para cada exercício, até 2 de E com mesmo padrão e equipamento distinto
   // 10. Porquê: cada decisão grava {regraId, evidência, fonte}
@@ -174,6 +176,7 @@ Ao fim de cada marco eu paro, mostro o resultado e espero o seu ok.
 ## j. Riscos e mitigação
 - **Precisão da visão:** a confirmação é obrigatória, o checklist é sempre o caminho alternativo, e o acerto é medido com o gabarito.
 - **Segurança e responsabilidade:** triagem PAR-Q+, aviso de que o app não diagnostica, regras de contraindicação testadas, interrupção do exercício quando surge um sinal de alerta e termos de uso simples. Sugiro uma revisão por um educador físico (CREF) antes do beta aberto.
+- **Regulação e licença:** a prescrição de exercício é atribuição do profissional de educação física (CONFEF); o app se apresenta como ferramenta de orientação, com consulta jurídica antes do beta aberto. O texto do PAR-Q+ só entra no app depois de confirmada a licença; até lá, perguntas próprias no estilo do PAR-Q+.
 - **Custo da API:** código de convite, limite por aparelho e IP, teto de gastos no console, redimensionamento das imagens (menos tokens) e o modelo mais barato que atingir a meta.
 - **Qualidade das animações:** regressão em pixel, cartão textual em vez de improviso e aprovação humana a cada animação nova.
 - **Crescimento do escopo:** a lista "fora do MVP" fica no `CLAUDE.md`, e qualquer item novo vai para `docs/backlog.md`.
