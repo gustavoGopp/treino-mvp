@@ -98,7 +98,7 @@ export function gerarPrograma(perfil: Perfil, inventarioOriginal: Inventario): R
     p += 10 * (vaga.prefere ?? []).filter((t) => e.tags.includes(t)).length;
     if (nivel === 'iniciante' && e.tags.some((t) => t === 'estavel' || t === 'apoiado' || t === 'maquina')) p += 3; // selecao.estabilidade
     if (e.tags.includes('alongado')) p += 0.5; // selecao.comprimento-longo (só desempate)
-    if (e.musculos.primarios.some((m) => prioritarios.has(m))) p += 5; // ordem.sessao: prioridade do usuário
+    if (e.musculos.primarios.some((m) => prioritarios.has(m))) p += 5; // seleção: favorece exercícios dos grupos que a pessoa priorizou
     if (e.articulacoes.some((a) => dorLeve.has(a))) p -= 5;
     return p;
   };
@@ -229,6 +229,10 @@ export function gerarPrograma(perfil: Perfil, inventarioOriginal: Inventario): R
         },
         { regraId: r('volume.serie-indireta.peso'), texto: 'Séries indiretas (ex.: remada para o bíceps) contam como meia série.' },
         { regraId: r('rir.serie-efetiva'), texto: `Só contam séries de trabalho com até ${RIR.serieEfetivaMax} repetições de reserva.` },
+        {
+          regraId: r('ordem.sessao'),
+          texto: 'Ordem da sessão: multiarticulares primeiro, depois os grupos que você priorizou, core por último. A ordem quase não muda a hipertrofia.',
+        },
       ],
       regioesExcluidas,
     },

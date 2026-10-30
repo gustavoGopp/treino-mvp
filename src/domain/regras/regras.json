@@ -720,9 +720,9 @@
     "id": "ordem.sessao",
     "regra": "Ordenação determinística dos exercícios da sessão (a ordem não muda a hipertrofia)",
     "valores": {
-      "iniciante": "prioridade do usuário → multiarticular → exigência técnica → carga absoluta → id estável",
-      "intermediario": "prioridade do usuário → multiarticular → exigência técnica → carga absoluta → id estável",
-      "avancado": "prioridade do usuário → multiarticular → exigência técnica → carga absoluta → id estável"
+      "iniciante": "multiarticular → prioridade do usuário → ordem do modelo de divisão (que segue a exigência técnica) → core por último",
+      "intermediario": "multiarticular → prioridade do usuário → ordem do modelo de divisão (que segue a exigência técnica) → core por último",
+      "avancado": "multiarticular → prioridade do usuário → ordem do modelo de divisão (que segue a exigência técnica) → core por último"
     },
     "selo": "consenso",
     "fontes": [

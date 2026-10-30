@@ -29,7 +29,7 @@ Para hipertrofia, máquina, peso livre, polia e halter se equivalem, e o mesmo v
 - Os exercícios ficam fixos no mesociclo de 4–8 semanas para permitir progressão. O segundo exercício de cada músculo é escolhido por complementaridade (outro comprimento muscular, outra região), de forma determinística, nunca por sorteio (`selecao.variacao`, `selecao.complementos`).
 - Complementos regionais, quando houver equipamento: variação inclinada para o peitoral (`selecao.peitoral-inclinado`), tríceps acima da cabeça (`selecao.triceps-acima-cabeca`), flexora sentada (`selecao.flexora-sentada`) e panturrilha alongada (`selecao.panturrilha-alongada`). Cada um aparece no "porquê" como "apoiado por um estudo".
 - Multiarticulares formam a base; isoladores cobrem braços, cabeças biarticulares, panturrilha e deltoide lateral, e são os primeiros a sair quando falta tempo (`selecao.multi-mono`, `tempo.corte`).
-- Ordem determinística: prioridade do usuário → multiarticular → exigência técnica → carga absoluta → id estável (`ordem.sessao`). O app não promete que a ordem muda o crescimento.
+- Ordem determinística: multiarticular → prioridade do usuário → ordem do modelo de divisão (que segue a exigência técnica) → core por último (`ordem.sessao`). O app não promete que a ordem muda o crescimento.
 
 ## Lacunas
 

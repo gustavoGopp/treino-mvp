@@ -167,3 +167,15 @@ describe(`propriedades (${variacoes.length} combinações)`, () => {
     }
   });
 });
+
+describe('ordem da sessão (ordem.sessao)', () => {
+  it('nenhum isolador antes de um multiarticular; core sempre por último', () => {
+    for (const v of variacoes) {
+      const p = ok(v.perfil, v.inv);
+      for (const d of p.dias) {
+        const tipos = d.exercicios.map((x) => (x.padrao === 'core' ? 2 : x.tipo === 'composto' ? 0 : 1));
+        expect(tipos, `${v.nome} ${d.nome}`).toEqual([...tipos].sort((a, b) => a - b));
+      }
+    }
+  });
+});
