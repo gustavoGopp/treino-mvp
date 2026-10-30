@@ -90,6 +90,7 @@ export const DIVISOES: Record<2 | 3 | 4 | 5, { nome: string; dias: Dia[] }> = {
         { padrao: 'dobrar-quadril' },
         { padrao: 'isolador-ombro-lateral' },
         { padrao: 'isolador-biceps' },
+        { padrao: 'panturrilha', prefere: ['unilateral'] },
         { padrao: 'core' },
       ]),
       corpoTodo('corpo-b', 'Corpo todo B', [
@@ -112,6 +113,7 @@ export const DIVISOES: Record<2 | 3 | 4 | 5, { nome: string; dias: Dia[] }> = {
         { padrao: 'puxar-h' },
         { padrao: 'dobrar-quadril' },
         { padrao: 'isolador-ombro-lateral' },
+        { padrao: 'panturrilha', prefere: ['unilateral'] },
         { padrao: 'core' },
       ]),
       corpoTodo('corpo-b', 'Corpo todo B', [

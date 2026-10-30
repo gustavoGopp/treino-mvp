@@ -6,11 +6,13 @@ exports[`cenários (snapshots revisados) > ana 1`] = `
     "equipamento.sem-puxada-vertical",
     "equipamento.escada-carga-leve",
     "tempo.corte",
+    "tempo.corte",
+    "volume.semanal.alvo",
   ],
   "dias": [
-    "Corpo todo A (50 min): goblet 2×8–15 | stiff 3×8–12 | supino-reto 2×6–10 | remada-unilateral-halter 2×8–12 | elevacao-halteres 4×12–20 | abdominal-chao 2×12–25",
-    "Corpo todo B (50 min): bulgaro 2×8–12 | stiff-unilateral 3×8–12 | desenvolvimento-unilateral 2×8–12 | remada-unilateral-halter 2×8–12 | rosca-alternada 3×8–12 [bi-set] | triceps-frances-halter 3×10–15 [bi-set]",
-    "Corpo todo C (45 min): goblet 2×8–15 | flexao 2×8–20 | remada-unilateral-halter 2×8–12 | panturrilha-chao 4×12–20 | crucifixo-halteres 2×10–15 | abdominal-chao 2×12–25",
+    "Corpo todo A (49 min): goblet 3×8–15 | stiff 2×8–12 | supino-reto 2×6–10 | remada-unilateral-halter 2×8–12 | panturrilha-chao 2×12–20 [bi-set] | elevacao-halteres 3×12–20 [bi-set] | abdominal-chao 2×12–25",
+    "Corpo todo B (50 min): bulgaro 3×8–12 | stiff-unilateral 4×8–12 | desenvolvimento-unilateral 2×8–12 | remada-unilateral-halter 2×8–12 | rosca-alternada 2×8–12 [bi-set] | triceps-frances-halter 2×10–15 [bi-set]",
+    "Corpo todo C (43 min): goblet 2×8–15 | flexao 2×8–20 | remada-unilateral-halter 2×8–12 | panturrilha-chao 4×12–20 | crucifixo-halteres 2×10–15 | abdominal-chao 2×12–25",
   ],
   "divisao": "Corpo todo A/B/C",
   "fases": [
@@ -19,17 +21,17 @@ exports[`cenários (snapshots revisados) > ana 1`] = `
   ],
   "volume": {
     "abdomen": 4,
-    "biceps": 6,
+    "biceps": 5,
     "costas": 6,
-    "gluteos": 6,
+    "gluteos": 7,
     "ombro_anterior": 5,
-    "ombro_lateral": 5,
+    "ombro_lateral": 4,
     "ombro_posterior": 3,
-    "panturrilha": 4,
+    "panturrilha": 6,
     "peito": 6,
     "posteriores": 6,
-    "quadriceps": 6,
-    "triceps": 6,
+    "quadriceps": 8,
+    "triceps": 5,
   },
 }
 `;
@@ -38,9 +40,9 @@ exports[`cenários (snapshots revisados) > bruno 1`] = `
 {
   "avisos": [],
   "dias": [
-    "Torso A (61 min): supino-inclinado 3×6–10 | barra-fixa 3×6–12 | remada-baixa 3×8–12 | crucifixo-polia 3×10–15 | elevacao-lateral 4×10–15 | face-pull 2×12–20 | abdominal-polia 2×10–15",
-    "Membros A (54 min): goblet 2×8–15 | stiff 3×8–12 | afundo 2×8–12 | rosca-polia 4×8–12 | triceps-corda 4×10–15 | panturrilha 3×10–15",
-    "Torso B (64 min): supino-reto 3×6–10 | remada-apoiada 3×8–12 | puxada-unilateral 2×10–15 | flexao 3×8–20 | desenvolvimento 2×8–12 | elevacao-halteres 4×12–20 | elevacao-joelhos 2×10–15",
+    "Torso A (59 min): supino-inclinado 3×6–10 | barra-fixa 3×6–12 | remada-baixa 3×8–12 | crucifixo-polia 3×10–15 | elevacao-lateral 4×10–15 | face-pull 2×12–20 | abdominal-polia 2×10–15",
+    "Membros A (53 min): goblet 2×8–15 | stiff 3×8–12 | afundo 2×8–12 | rosca-polia 4×8–12 | triceps-corda 4×10–15 | panturrilha 3×10–15",
+    "Torso B (61 min): supino-reto 3×6–10 | remada-apoiada 3×8–12 | puxada-unilateral 2×10–15 | flexao 3×8–20 | desenvolvimento 2×8–12 | elevacao-halteres 4×12–20 | elevacao-joelhos 2×10–15",
     "Membros B (46 min): bulgaro 2×8–12 | rosca-inclinada 3×8–12 | triceps-frances 3×10–15 | elevacao-lateral 3×10–15 | flexao-bola 3×8–15 | panturrilha-bilateral-step 3×12–20",
   ],
   "divisao": "Torso/Membros (2x)",
@@ -68,13 +70,15 @@ exports[`cenários (snapshots revisados) > bruno 1`] = `
 
 exports[`cenários (snapshots revisados) > carla 1`] = `
 {
-  "avisos": [],
+  "avisos": [
+    "volume.semanal.alvo",
+  ],
   "dias": [
-    "Torso A (58 min): supino-inclinado 3×6–10 | barra-fixa 3×6–12 | remada-baixa 2×8–12 | crucifixo-polia 3×10–15 | elevacao-lateral 4×10–15 | face-pull 2×12–20 | abdominal-polia 2×10–15",
-    "Membros A (66 min): agachamento-barra 4×6–10 | terra-romeno-barra 4×6–10 | afundo 4×8–12 | panturrilha 4×10–15 | rosca-polia 2×8–12 | triceps-corda 2×10–15",
-    "Torso B (58 min): supino-barra 3×6–10 | remada-apoiada 2×8–12 | puxada-unilateral 2×10–15 | flexao 3×8–20 | desenvolvimento 2×8–12 | elevacao-halteres 3×12–20 | elevacao-joelhos 2×10–15",
+    "Torso A (56 min): supino-inclinado 3×6–10 | barra-fixa 3×6–12 | remada-baixa 2×8–12 | crucifixo-polia 3×10–15 | elevacao-lateral 4×10–15 | face-pull 2×12–20 | abdominal-polia 2×10–15",
+    "Membros A (65 min): agachamento-barra 4×6–10 | terra-romeno-barra 4×6–10 | afundo 4×8–12 | panturrilha 4×10–15 | rosca-polia 2×8–12 | triceps-corda 2×10–15",
+    "Torso B (55 min): supino-barra 3×6–10 | remada-apoiada 2×8–12 | puxada-unilateral 2×10–15 | flexao 3×8–20 | desenvolvimento 2×8–12 | elevacao-halteres 3×12–20 | elevacao-joelhos 2×10–15",
     "Membros B (54 min): bulgaro 4×8–12 | cadeira-flexora 4×8–15 | panturrilha-bilateral-step 4×12–20 | elevacao-lateral 3×10–15 | rosca-inclinada 2×8–12 | triceps-frances 2×10–15",
-    "Superiores C (40 min): supino-inclinado 2×6–10 | barra-fixa 2×6–12 | remada-baixa 2×8–12 | elevacao-lateral 3×10–15 | rosca-polia 2×8–12 | triceps-frances 2×10–15",
+    "Superiores C (39 min): supino-inclinado 2×6–10 | barra-fixa 2×6–12 | remada-baixa 2×8–12 | elevacao-lateral 3×10–15 | rosca-polia 2×8–12 | triceps-frances 2×10–15",
   ],
   "divisao": "Torso/Membros (2x) + Superiores",
   "fases": [],
@@ -104,9 +108,9 @@ exports[`cenários (snapshots revisados) > diego 1`] = `
     "tempo.corte",
   ],
   "dias": [
-    "Corpo todo A (51 min): flexao 2×8–20 | remada-elastico 2×10–20 | agachamento-elastico 2×12–25 | stiff-elastico 3×12–20 | elevacao-lateral-elastico 4×12–20 | elevacao-joelhos 2×10–15",
-    "Corpo todo B (43 min): barra-fixa 2×6–12 | afundo-peso-corpo 2×12–25 | desenvolvimento-elastico 2×10–20 | flexao-joelho-elastico 3×12–20 [bi-set] | rosca-elastico 3×12–20 [bi-set] | triceps-elastico-acima 2×12–20",
-    "Corpo todo C (53 min): flexao-elastico 2×8–20 | remada-elastico 2×10–20 | agachamento-elastico 2×12–25 | crucifixo-elastico 2×12–20 [bi-set] | panturrilha-chao 4×12–20 [bi-set] | face-pull-elastico 3×15–25 | abdominal-chao 2×12–25",
+    "Corpo todo A (47 min): flexao 2×8–20 | remada-elastico 2×10–20 | agachamento-elastico 2×12–25 | stiff-elastico 2×12–20 | elevacao-lateral-elastico 3×12–20 [bi-set] | panturrilha-chao 2×12–20 [bi-set] | elevacao-joelhos 2×10–15",
+    "Corpo todo B (45 min): barra-fixa 2×6–12 | afundo-peso-corpo 2×12–25 | desenvolvimento-elastico 2×10–20 | flexao-joelho-elastico 3×12–20 | rosca-elastico 3×12–20 | triceps-elastico-acima 2×12–20",
+    "Corpo todo C (45 min): flexao-elastico 3×8–20 | remada-elastico 2×10–20 | agachamento-elastico 2×12–25 | crucifixo-elastico 2×12–20 [bi-set] | panturrilha-chao 2×12–20 [bi-set] | face-pull-elastico 2×15–25 | abdominal-chao 2×12–25",
   ],
   "divisao": "Corpo todo A/B/C",
   "fases": [
@@ -116,16 +120,16 @@ exports[`cenários (snapshots revisados) > diego 1`] = `
   "volume": {
     "abdomen": 4,
     "biceps": 6,
-    "costas": 7.5,
-    "gluteos": 4.5,
-    "ombro_anterior": 5,
-    "ombro_lateral": 5,
-    "ombro_posterior": 6,
+    "costas": 7,
+    "gluteos": 4,
+    "ombro_anterior": 5.5,
+    "ombro_lateral": 4,
+    "ombro_posterior": 5,
     "panturrilha": 4,
-    "peito": 6,
-    "posteriores": 6,
+    "peito": 7,
+    "posteriores": 5,
     "quadriceps": 6,
-    "triceps": 5,
+    "triceps": 5.5,
   },
 }
 `;

@@ -1,6 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import { POR_ID } from '../../src/domain/biblioteca';
-import { gerarPrograma, prescricaoDaSemana, volumePorMusculo, type Perfil, type Programa } from '../../src/domain/gerador';
+import { GRUPOS, NOME_MUSCULO, gerarPrograma, prescricaoDaSemana, volumePorMusculo, type Perfil, type Programa } from '../../src/domain/gerador';
+import type { Musculo } from '../../src/domain/biblioteca';
 import { REGRAS, VOLUME, NIVEIS } from '../../src/domain/regras';
 import { capacidades, type Inventario } from '../../src/domain/taxonomia/equipamentos';
 import { ana, bruno, carla, diego, PERSONAS } from '../personas';
@@ -177,5 +178,41 @@ describe('ordem da sessão (ordem.sessao)', () => {
         expect(tipos, `${v.nome} ${d.nome}`).toEqual([...tipos].sort((a, b) => a - b));
       }
     }
+  });
+});
+
+describe('cortes respeitam a prioridade e avisam o que ficou de fora', () => {
+  const nomes = (p: Programa) => p.avisos.map((a) => a.texto).join(' ');
+  it('todo músculo abaixo do limiar aparece num aviso de meta', () => {
+    for (const v of variacoes) {
+      const p = ok(v.perfil, v.inv);
+      const prio = new Set<Musculo>(v.perfil.prioridades.flatMap((g) => GRUPOS[g]));
+      for (const [m, meta] of Object.entries(p.metas) as [Musculo, number][]) {
+        const limiar = prio.has(m) ? meta : Math.min(meta, VOLUME.minimoEficazPiso);
+        if ((p.volumeSemanal[m] ?? 0) < limiar) expect(nomes(p), `${v.nome} ${m}`).toContain(NOME_MUSCULO[m]);
+      }
+    }
+  });
+  it('nenhum músculo desce do piso nos cortes de tempo (prioritário: mínimo do nível; demais: 4), salvo limite estrutural já presente antes do corte', () => {
+    for (const v of variacoes) {
+      const p = ok(v.perfil, v.inv);
+      const prio = new Set<Musculo>(v.perfil.prioridades.flatMap((g) => GRUPOS[g]));
+      const estrutural = p.avisos.filter((a) => a.regraId === 'volume.semanal.alvo').map((a) => a.texto).join(' ');
+      for (const [m, meta] of Object.entries(p.metas) as [Musculo, number][]) {
+        const piso = Math.min(meta, prio.has(m) ? VOLUME.minimo[v.perfil.nivel] : VOLUME.minimoEficazPiso);
+        if ((p.volumeSemanal[m] ?? 0) < piso) expect(estrutural, `${v.nome} ${m}`).toContain(NOME_MUSCULO[m]);
+      }
+    }
+  });
+  it('Ana: com prioridade em pernas, pernas e glúteos ganham volume em relação a sem prioridade', () => {
+    const com = ok(ana.perfil, ana.inventario).volumeSemanal;
+    const sem = ok({ ...ana.perfil, prioridades: [] }, ana.inventario).volumeSemanal;
+    const soma = (v: typeof com) => (['quadriceps', 'posteriores', 'gluteos', 'panturrilha'] as const).reduce((t, m) => t + (v[m] ?? 0), 0);
+    expect(soma(com)).toBeGreaterThan(soma(sem));
+  });
+  it('Diego: com prioridade em peito e costas, os dois ficam acima do que teriam sem prioridade', () => {
+    const com = ok(diego.perfil, diego.inventario).volumeSemanal;
+    const sem = ok({ ...diego.perfil, prioridades: [] }, diego.inventario).volumeSemanal;
+    expect((com.peito ?? 0) + (com.costas ?? 0)).toBeGreaterThan((sem.peito ?? 0) + (sem.costas ?? 0));
   });
 });

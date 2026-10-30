@@ -53,7 +53,8 @@ export const TEMPO = {
   segPorRep: 3, // tempo.serie
   preparoSerie: 7.5, // tempo.serie (5–10 s)
   transicao: 90, // tempo.transicao (60–120 s)
-  aquecimento: 180, // tempo.aquecimento (~2–4 min) no 1º exercício de cada grupo grande
+  aquecimento: 180, // tempo.aquecimento (~2–4 min) no 1º multiarticular de cada região
+  aquecimentoCurto: 90, // séries de aproximação nos multiarticulares seguintes
   colchao: 0.1, // tempo.colchao
   superserieEntre: 15, // tempo.superserie
 };

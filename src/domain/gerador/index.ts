@@ -203,11 +203,15 @@ export function gerarPrograma(perfil: Perfil, inventarioOriginal: Inventario): R
   });
 
   // 5. Orçamento de tempo (tempo.corte)
-  programaDias = cortarTempo(programaDias, perfil.minutosSessao, metas, nivel, avisos);
+  const volumeAntesDoCorte = volumePorMusculo(
+    programaDias.flatMap((d) => d.exercicios.map((x) => ({ ex: POR_ID_BIB[x.exId]!, series: x.series }))),
+  );
+  programaDias = cortarTempo(programaDias, perfil.minutosSessao, metas, nivel, prioritarios, avisos);
 
   const volumeSemanal = volumePorMusculo(
     programaDias.flatMap((d) => d.exercicios.map((x) => ({ ex: POR_ID_BIB[x.exId]!, series: x.series }))),
   );
+  avisos.push(...avisosDeMeta(metas, volumeAntesDoCorte, volumeSemanal, divisao.nome, prioritarios));
 
   return {
     status: 'ok',
@@ -296,7 +300,11 @@ export function minutos(exs: ExercicioPrescrito[]): number {
     if (i > 0) seg += TEMPO.transicao;
     const e = POR_ID_BIB[x.exId]!;
     if (x.tipo === 'composto' && !e.musculos.primarios.some((m) => aquecidos.has(m))) {
-      seg += TEMPO.aquecimento;
+      // tempo.aquecimento: completo no 1º multiarticular de cada região (superior/inferior), curto nos seguintes.
+      // Valor a recalibrar com o tempo real registrado no app (M5).
+      const regiao = e.musculos.primarios.some((m) => INFERIORES.includes(m)) ? 'inferior' : 'superior';
+      seg += aquecidos.has(regiao) ? TEMPO.aquecimentoCurto : TEMPO.aquecimento;
+      aquecidos.add(regiao);
       e.musculos.primarios.forEach((m) => aquecidos.add(m));
     }
     if (par) {
@@ -307,26 +315,54 @@ export function minutos(exs: ExercicioPrescrito[]): number {
   return Math.round((seg * (1 + TEMPO.colchao)) / 60);
 }
 
+const INFERIORES: Musculo[] = ['quadriceps', 'posteriores', 'gluteos', 'panturrilha'];
+export const NOME_MUSCULO: Record<Musculo, string> = {
+  peito: 'peito',
+  costas: 'costas',
+  ombro_anterior: 'ombro (frente)',
+  ombro_lateral: 'ombro (lateral)',
+  ombro_posterior: 'ombro (posterior)',
+  biceps: 'bíceps',
+  triceps: 'tríceps',
+  quadriceps: 'quadríceps',
+  posteriores: 'posteriores da coxa',
+  gluteos: 'glúteos',
+  panturrilha: 'panturrilha',
+  abdomen: 'abdômen',
+};
+
 function cortarTempo(
   dias: DiaPrograma[],
   limite: number,
   metas: Partial<Record<Musculo, number>>,
   nivel: Nivel,
+  prioritarios: Set<Musculo>,
   avisos: Porque[],
 ): DiaPrograma[] {
   const recalcular = (d: DiaPrograma) => ({ ...d, minutosEstimados: minutos(d.exercicios) });
   const volume = () => volumePorMusculo(dias.flatMap((d) => d.exercicios.map((x) => ({ ex: POR_ID_BIB[x.exId]!, series: x.series }))));
-  const piso = (m: Musculo) => Math.min(metas[m] ?? 0, VOLUME.minimo[nivel], VOLUME.minimoEficaz);
+  // Piso de cada músculo nos cortes: prioritários não descem do mínimo do nível; os demais, do
+  // mínimo eficaz (4). Assim os cortes saem primeiro dos grupos que a pessoa não priorizou.
+  const piso = (m: Musculo) => Math.min(metas[m] ?? 0, prioritarios.has(m) ? VOLUME.minimo[nivel] : VOLUME.minimoEficazPiso);
+  const prioritario = (x: ExercicioPrescrito) => POR_ID_BIB[x.exId]!.musculos.primarios.some((m) => prioritarios.has(m));
+  // Um corte só vale se nenhum músculo atingido (principal: série inteira; secundário: meia série)
+  // cruzar o piso. Músculo que já estava abaixo do piso antes (limite estrutural) não trava o corte.
+  const cabe = (x: ExercicioPrescrito, menos: number, v: Partial<Record<Musculo, number>>) => {
+    const e = POR_ID_BIB[x.exId]!;
+    const ok = (m: Musculo, delta: number) => (v[m] ?? 0) < piso(m) || (v[m] ?? 0) - delta >= piso(m);
+    return e.musculos.primarios.every((m) => ok(m, menos)) && e.musculos.secundarios.every((m) => ok(m, menos * VOLUME.pesoIndireta));
+  };
   const usados = new Set<string>();
 
   for (let di = 0; di < dias.length; di++) {
     let d = dias[di]!;
-    // 1) menos exercícios: tira o isolador cujo músculo continua acima do piso sem ele
+    // 1) menos exercícios: tira um isolador cujos músculos continuam no piso sem ele (não prioritários primeiro)
     while (d.minutosEstimados > limite) {
       const v = volume();
       const removivel = d.exercicios
-        .filter((x) => x.tipo === 'isolador' && POR_ID_BIB[x.exId]!.musculos.primarios.every((m) => (v[m] ?? 0) - x.series >= Math.max(piso(m), metas[m] ?? 0)))
-        .at(-1);
+        .map((x, i) => ({ x, i }))
+        .filter(({ x }) => x.tipo === 'isolador' && cabe(x, x.series, v))
+        .sort((a, b) => Number(prioritario(a.x)) - Number(prioritario(b.x)) || b.i - a.i)[0]?.x;
       if (!removivel) break;
       d = recalcular({ ...d, exercicios: d.exercicios.filter((x) => x !== removivel) });
       dias[di] = d;
@@ -349,12 +385,13 @@ function cortarTempo(
       if (exs.some((x) => x.supersetCom)) usados.add('superserie');
     }
     // 4) drop set / rest-pause: só sugerido no texto (não muda a contagem de séries).
-    // 5) por último, menos séries, sem descer do piso de manutenção
+    // 5) por último, menos séries: primeiro dos não prioritários, sem descer de 2 por exercício nem do piso
     while (d.minutosEstimados > limite) {
       const v = volume();
-      const alvo = [...d.exercicios]
-        .filter((x) => x.series > 2 && POR_ID_BIB[x.exId]!.musculos.primarios.every((m) => (v[m] ?? 0) - 1 >= piso(m)))
-        .sort((a, b) => b.series - a.series)[0];
+      const alvo = d.exercicios
+        .map((x, i) => ({ x, i }))
+        .filter(({ x }) => x.series > VOLUME.seriesPorExercicio.min && cabe(x, 1, v))
+        .sort((a, b) => Number(prioritario(a.x)) - Number(prioritario(b.x)) || b.x.series - a.x.series || b.i - a.i)[0]?.x;
       if (!alvo) break;
       d = recalcular({ ...d, exercicios: d.exercicios.map((x) => (x === alvo ? { ...x, series: x.series - 1 } : x)) });
       dias[di] = d;
@@ -369,9 +406,40 @@ function cortarTempo(
   if (usados.size)
     avisos.push({
       regraId: r('tempo.corte'),
-      texto: 'Para caber no tempo: ' + [usados.has('corte') && 'menos exercícios', usados.has('superserie') && 'superséries entre músculos que não competem', usados.has('series') && 'menos séries'].filter(Boolean).join(', ') + '.',
+      texto:
+        'Para caber no tempo: ' +
+        [usados.has('corte') && 'menos exercícios', usados.has('superserie') && 'superséries entre músculos que não competem', usados.has('series') && 'menos séries']
+          .filter(Boolean)
+          .join(', ') +
+        '. Se puder, uma última série em drop set ou rest-pause nos isoladores recupera parte do estímulo.',
     });
   return dias;
+}
+
+/** Avisa, por músculo, quando o volume semanal ficou abaixo da meta e por quê (tempo ou modelo de divisão). */
+export function avisosDeMeta(
+  metas: Partial<Record<Musculo, number>>,
+  antes: Partial<Record<Musculo, number>>,
+  depois: Partial<Record<Musculo, number>>,
+  divisao: string,
+  prioritarios: Set<Musculo>,
+): Porque[] {
+  const fmt = (n: number) => String(Math.round(n * 10) / 10).replace('.', ',');
+  // Prioritários: aviso abaixo da meta. Demais: só abaixo de 4, o limite de baixo do mínimo eficaz (4–6).
+  const limiar = (m: Musculo) => (prioritarios.has(m) ? metas[m]! : Math.min(metas[m]!, VOLUME.minimoEficazPiso));
+  const abaixo = (Object.keys(metas) as Musculo[]).filter((m) => (depois[m] ?? 0) < limiar(m));
+  const porEstrutura = abaixo.filter((m) => (antes[m] ?? 0) < limiar(m));
+  const porTempo = abaixo.filter((m) => !porEstrutura.includes(m));
+  const lista = (ms: Musculo[]) => ms.map((m) => `${NOME_MUSCULO[m]} ${fmt(depois[m] ?? 0)} de ${fmt(metas[m]!)}`).join('; ');
+  const out: Porque[] = [];
+  if (porTempo.length)
+    out.push({ regraId: r('tempo.corte'), texto: `Abaixo da meta semanal por falta de tempo: ${lista(porTempo)} séries.` });
+  if (porEstrutura.length)
+    out.push({
+      regraId: r('volume.semanal.alvo'),
+      texto: `Abaixo da meta semanal com este equipamento e a divisão ${divisao}: ${lista(porEstrutura)} séries.`,
+    });
+  return out;
 }
 
 function fases(p: Perfil): Fase[] {

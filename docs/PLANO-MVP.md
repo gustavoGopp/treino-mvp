@@ -126,7 +126,7 @@ progression(historico, ex, incrementoDisponivel) -> Sugestao  // regras 1–8 do
 3. **Casa com elásticos + barra fixa**, 3 dias. Resultado esperado: barra fixa (ou negativas para iniciante), remada e desenvolvimento com elástico, agachamento e afundo com peso do corpo e repetições altas, flexão. Aviso de limitação para pernas.
 4. **Academia completa**, 5 dias, avançado. Resultado esperado: inclui máquinas e barra longa, 12–18 séries por grupo e respeita o tempo.
 
-Testes de propriedade: a mesma entrada gera a mesma saída (hash); nenhum exercício exige item fora do inventário; nenhum exercício carrega uma articulação com dor; o tempo estimado fica dentro do limite.
+Testes de propriedade: a mesma entrada gera a mesma saída (hash); nenhum exercício exige item fora do inventário; nenhum exercício carrega uma articulação com dor; o tempo estimado fica dentro do limite **ou** há aviso explícito; nenhum músculo desce do piso nos cortes; todo músculo abaixo da meta aparece num aviso (revisão de 30/10/2026).
 
 ## g. Fluxo da foto
 1. Captura com `<input capture>` ou da galeria, até 5 fotos.
