@@ -13,6 +13,8 @@ const ids: string[] = JSON.parse(readFileSync('tests/visual/linha-de-base/motor.
 );
 
 test.use({ viewport: { width: 390, height: 900 }, deviceScaleFactor: 2, isMobile: false, hasTouch: false });
+// Cada teste compara 8 quadros, com rasterização num fio só: mais tempo que o padrão de 30 s.
+test.setTimeout(120_000);
 
 async function bloquearFontes(page: Page) {
   await page.route(/fonts\.(googleapis|gstatic)\.com/, (r) => r.abort());
