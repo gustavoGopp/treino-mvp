@@ -1,9 +1,20 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { CONFIANCA_TECNICA, classificarNivel, niveisPermitidos, NOME_NIVEL, TEMPOS_DE_TREINO, type ConfiancaTecnica, type TempoDeTreino } from '../../domain/nivel';
+import {
+  CONFIANCA_TECNICA,
+  classificarNivel,
+  niveisPermitidos,
+  NOME_NIVEL,
+  PAUSAS,
+  pausaDe,
+  TEMPOS_DE_TREINO,
+  type ConfiancaTecnica,
+  type PausaId,
+  type TempoDeTreino,
+} from '../../domain/nivel';
 import type { Nivel as TipoNivel } from '../../domain/regras';
 import { useApp } from '../app/estado';
-import { Erros, Escolha, Numero, Passo, Selo, numeroOu } from '../app/ui';
+import { Erros, Escolha, Passo, Selo } from '../app/ui';
 
 // Passo 3: experiência de treino → nível (nivel.classificacao). Na dúvida, para baixo; a pessoa pode baixar, não subir.
 export function Nivel() {
@@ -11,20 +22,20 @@ export function Nivel() {
   const navigate = useNavigate();
   const salvo = estado.nivel;
   const [tempo, setTempo] = useState<TempoDeTreino | undefined>(salvo?.respostas.tempoContinuo);
-  const [parado, setParado] = useState(salvo ? String(salvo.respostas.semanasParado) : '');
+  const [pausa, setPausa] = useState<PausaId | undefined>(salvo ? pausaDe(salvo.respostas.semanasParado) : undefined);
   const [tecnica, setTecnica] = useState<ConfiancaTecnica | undefined>(salvo?.respostas.tecnica);
   const [escolhido, setEscolhido] = useState<TipoNivel | undefined>(salvo?.escolhido);
   const [tentou, setTentou] = useState(false);
 
-  const semanas = numeroOu(parado);
-  const semanasOk = semanas !== undefined && Number.isInteger(semanas) && semanas >= 0 && semanas <= 520;
+  const semanas = PAUSAS.find((p) => p.id === pausa)?.semanas;
+  const semanasOk = semanas !== undefined;
   const sugestao = tempo && tecnica && semanasOk ? classificarNivel({ tempoContinuo: tempo, semanasParado: semanas!, tecnica }) : null;
   const permitidos = sugestao ? niveisPermitidos(sugestao.nivel) : [];
   const nivelFinal = escolhido && permitidos.includes(escolhido) ? escolhido : sugestao?.nivel;
 
   const erros = [
     !tempo && 'Diga há quanto tempo você treina sem parar.',
-    !semanasOk && 'Informe quantas semanas está sem treinar (0 se está treinando).',
+    !semanasOk && 'Diga se está treinando ou há quanto tempo parou.',
     !tecnica && 'Diga se tem confiança na técnica básica.',
   ].filter((x): x is string => !!x);
 
@@ -52,16 +63,14 @@ export function Nivel() {
           aoMudar={setTempo}
           erro={tentou && !tempo ? 'Escolha uma opção.' : undefined}
         />
-        <Numero
-          rotulo="Há quantas semanas você está sem treinar?"
-          ajuda="Use 0 se está treinando hoje. Depois de uma pausa, o programa começa com semanas mais leves."
-          valor={parado}
-          aoMudar={setParado}
-          min={0}
-          max={520}
-          passo={1}
-          sufixo="semanas"
-          erro={tentou && !semanasOk ? 'Use um número inteiro, de 0 a 520.' : undefined}
+        <Escolha
+          nome="pausa"
+          legenda="Você está treinando agora?"
+          ajuda="Depois de uma pausa, o programa começa com semanas mais leves."
+          opcoes={PAUSAS}
+          valor={pausa}
+          aoMudar={setPausa}
+          erro={tentou && !semanasOk ? 'Escolha uma opção.' : undefined}
         />
         <Escolha
           nome="tecnica"

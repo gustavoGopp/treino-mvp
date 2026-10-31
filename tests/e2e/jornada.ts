@@ -31,7 +31,7 @@ export async function ana(page: Page, { pausa = 0 }: { pausa?: number } = {}) {
 
   await expect(page.getByRole('heading', { name: 'Sua experiência com musculação' })).toBeVisible();
   await grupo(page, /sem parar/).getByLabel('Menos de 6 meses').check();
-  await page.getByLabel('Há quantas semanas você está sem treinar?').fill('0');
+  await grupo(page, /treinando agora/).getByLabel(/^Estou treinando/).check();
   await grupo(page, /confiança na técnica/).getByLabel(/^Sim/).check();
   await expect(page.getByRole('heading', { name: 'Seu nível: Iniciante' })).toBeVisible();
   await p();

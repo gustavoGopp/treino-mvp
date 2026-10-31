@@ -29,6 +29,27 @@ export type RespostasNivel = {
 /** Pausa a partir da qual a pessoa volta como iniciante (~6 meses parado). */
 export const SEMANAS_PARADO_INICIANTE = 26;
 
+/**
+ * Faixas de pausa que a pessoa escolhe com um toque, em vez de contar semanas.
+ * Cada faixa guarda um número de semanas representativo, alinhado aos limites de readaptacao.gatilho
+ * (< 2: normal; 2 a < 3: 1ª sessão com RIR +1; ≥ 3: protocolo) e de nivel.classificacao (> ~6 meses: iniciante).
+ */
+export const PAUSAS = [
+  { id: 'treinando', texto: 'Estou treinando (ou parei há menos de 2 semanas)', semanas: 0 },
+  { id: '2-semanas', texto: 'Parei há umas 2 semanas', semanas: 2 },
+  { id: '3-semanas-6-meses', texto: 'Parei há 3 semanas a 6 meses', semanas: 12 },
+  { id: 'mais-6-meses', texto: 'Parei há mais de 6 meses', semanas: SEMANAS_PARADO_INICIANTE + 4 },
+] as const;
+export type PausaId = (typeof PAUSAS)[number]['id'];
+
+/** Faixa correspondente a um número de semanas (para reabrir o formulário com o valor salvo). */
+export function pausaDe(semanas: number): PausaId {
+  if (semanas < 2) return 'treinando';
+  if (semanas < 3) return '2-semanas';
+  if (semanas <= SEMANAS_PARADO_INICIANTE) return '3-semanas-6-meses';
+  return 'mais-6-meses';
+}
+
 export type Classificacao = { nivel: Nivel; motivo: string; regraId: string };
 
 export function classificarNivel(r0: RespostasNivel): Classificacao {
