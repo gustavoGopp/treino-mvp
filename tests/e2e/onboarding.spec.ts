@@ -78,8 +78,8 @@ test('recarregar a página mantém perfil, inventário e programa', async ({ pag
   await expect(page).toHaveURL(/\/programa$/);
   // E as respostas continuam nas telas do perfil.
   await page.goto('/comecar/inventario');
-  await expect(page.getByLabel('Halteres fixos')).toBeChecked();
-  await expect(page.getByLabel('Mais pesado')).toHaveValue('12');
+  await expect(page.getByLabel('Halteres fixos', { exact: true })).toBeChecked();
+  await expect(page.getByRole('group', { name: 'O mais pesado' }).getByLabel('12 kg', { exact: true })).toBeChecked();
 });
 
 test('exportar, apagar e importar devolve o mesmo estado', async ({ page }) => {
@@ -117,4 +117,22 @@ test('importar um arquivo inválido não altera os dados', async ({ page }) => {
   await expect(page.getByRole('alert')).toContainText('Seus dados atuais não foram alterados');
   await page.goto('/');
   await expect(page).toHaveURL(/\/programa$/);
+});
+
+test('equipamento por toque: anilhas com contador e valor fora da lista em "Outro"', async ({ page }) => {
+  await ana(page);
+  await page.goto('/comecar/inventario');
+  await page.getByLabel('Anilhas e manoplas', { exact: true }).check();
+  const detalhes = page.getByRole('region', { name: 'Detalhes: Anilhas e manoplas' });
+  await detalhes.getByRole('group', { name: 'Quantas manoplas?' }).getByLabel('2').check();
+  await detalhes.getByRole('group', { name: 'Peso de cada manopla' }).getByLabel('Outro').check();
+  await detalhes.getByLabel('Peso de cada manopla: outro valor').fill('1.8');
+  await detalhes.getByRole('button', { name: 'Mais anilhas de 5 kg' }).click();
+  await detalhes.getByRole('button', { name: 'Mais anilhas de 5 kg' }).click();
+  await expect(detalhes.getByLabel('Quantidade de anilhas de 5 kg')).toHaveText('4');
+  await page.getByRole('button', { name: 'Continuar' }).click();
+  await expect(page.getByRole('heading', { name: 'Dores e o que evitar' })).toBeVisible();
+  await page.goto('/comecar/inventario');
+  await expect(page.getByLabel('Peso de cada manopla: outro valor')).toHaveValue('1.8');
+  await expect(page.getByLabel('Quantidade de anilhas de 5 kg')).toHaveText('4');
 });

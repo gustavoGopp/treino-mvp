@@ -33,10 +33,48 @@ export function itensDaCategoria(cat: (typeof CATEGORIAS)[number]['id']): ItemId
   });
 }
 
+/** Nome curto para o cartão do equipamento (o nome completo da taxonomia fica como descrição). */
+export const NOME_CURTO: Record<ItemId, string> = {
+  estacao_polia_dupla: 'Polia dupla (crossover)',
+  polia_simples: 'Polia simples',
+  barra_fixa: 'Barra fixa',
+  banco_regulavel: 'Banco regulável',
+  banco_reto: 'Banco reto',
+  halteres_fixos: 'Halteres fixos',
+  anilhas_e_manoplas: 'Anilhas e manoplas',
+  barra_longa: 'Barra longa',
+  barra_w: 'Barra W',
+  rack_de_agachamento: 'Rack de agachamento',
+  smith: 'Smith',
+  leg_press: 'Leg press',
+  cadeira_extensora: 'Cadeira extensora',
+  mesa_flexora: 'Mesa flexora',
+  cadeira_flexora: 'Cadeira flexora',
+  paralelas: 'Paralelas',
+  acessorio_polia_corda: 'Corda',
+  acessorio_polia_triangulo: 'Triângulo',
+  acessorio_polia_barra_reta: 'Barra reta',
+  acessorio_polia_estribo: 'Estribo',
+  acessorio_polia_tornozeleira: 'Tornozeleira',
+  elasticos: 'Elásticos',
+  step: 'Step',
+  bola_suica: 'Bola suíça',
+  esteira: 'Esteira',
+};
+
+/** Valores comuns, para escolher com um toque (sempre há "outro"). Nenhum vem marcado. */
+export const VALORES = {
+  halterMin: [1, 2, 3, 4, 5],
+  halterMax: [8, 10, 12, 15, 20, 25, 30, 40],
+  halterPasso: [0.5, 1, 2, 2.5, 5],
+  manoplaKg: [1, 1.5, 2, 2.5, 3],
+  anilhaKg: [0.5, 1, 1.25, 2, 2.5, 3, 4, 5, 10],
+} as const;
+
 export const formVazio = (): FormInventario => ({
   marcados: [],
   halteres: { min: '', max: '', passo: '' },
-  anilhas: { manoplas: '', manoplaKg: '', linhas: [{ kg: '', qtd: '' }] },
+  anilhas: { manoplas: '', manoplaKg: '', linhas: [] },
   poliaDupla: { placas: '', kgPorPlaca: '' },
   poliaSimples: { placas: '' },
   bancoRegulavel: {},
@@ -96,7 +134,8 @@ export function deForm(f: FormInventario): { inventario: Inventario | null; erro
       case 'anilhas_e_manoplas': {
         const manoplas = positivo('anilhas.manoplas', f.anilhas.manoplas, true);
         const manoplaKg = positivo('anilhas.manoplaKg', f.anilhas.manoplaKg);
-        const linhas = f.anilhas.linhas.filter((l) => l.kg.trim() !== '' || l.qtd.trim() !== '');
+        // Linhas sem quantidade (ou com 0) são pesos que a pessoa não tem.
+        const linhas = f.anilhas.linhas.filter((l) => l.qtd.trim() !== '' && l.qtd.trim() !== '0');
         if (!linhas.length) erros['anilhas.linhas'] = 'Informe pelo menos um tipo de anilha (peso e quantidade).';
         const anilhas = linhas.map((l, i) => ({ kg: positivo(`anilhas.${i}.kg`, l.kg), qtd: positivo(`anilhas.${i}.qtd`, l.qtd, true) }));
         inv[id] = { manoplas, manoplaKg, anilhas };

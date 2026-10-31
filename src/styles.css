@@ -313,3 +313,27 @@ details.campo .opcoes{margin-top:8px}
 .vol td{text-align:right}
 .vol tr.abaixo td:last-child{color:var(--warn);font-weight:600}
 @media (prefers-reduced-motion: reduce){ .app *{scroll-behavior:auto;transition:none !important} }
+
+/* Equipamento: cartões com desenho, valores por toque e contador */
+.cartoes-eq{display:grid;grid-template-columns:repeat(auto-fill,minmax(98px,1fr));gap:8px}
+.cartao-eq{position:relative;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;gap:4px;min-height:104px;padding:8px 6px 10px;background:var(--surface);border:1.5px solid var(--line);border-radius:12px;cursor:pointer;text-align:center;font-size:13.5px;line-height:1.2;color:var(--ink)}
+.cartao-eq input{position:absolute;top:6px;right:6px;width:20px;height:20px;margin:0;accent-color:var(--accent)}
+.cartao-eq .icone-eq{width:64px;height:48px;fill:none;stroke:currentColor;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round;color:var(--muted)}
+.cartao-eq:has(input:checked){border-color:var(--accent);background:var(--accent-soft);font-weight:600}
+.cartao-eq:has(input:checked) .icone-eq{color:var(--link)}
+.cartao-eq:has(input:focus-visible){outline:3px solid var(--accent);outline-offset:2px}
+.detalhes-eq{margin-top:10px;padding:12px;border:1.5px solid var(--accent);border-radius:12px;background:var(--surface);display:flex;flex-direction:column;gap:14px}
+.detalhes-eq h3{margin:0;font-family:var(--font-d);font-size:18px}
+.chips-valor{display:flex;flex-wrap:wrap;gap:6px}
+.chip-valor{display:inline-flex;align-items:center;min-height:44px;padding:0 14px;border:1.5px solid var(--line);border-radius:999px;background:var(--surface);cursor:pointer;font-size:15px;font-variant-numeric:tabular-nums}
+.chip-valor input{position:absolute;opacity:0;width:1px;height:1px}
+.chip-valor:has(input:checked){border-color:var(--accent);background:var(--accent);color:var(--accent-ink);font-weight:600}
+.chip-valor:has(input:focus-visible){outline:3px solid var(--accent);outline-offset:2px}
+.contadores{display:flex;flex-direction:column;gap:6px}
+.contador{display:grid;grid-template-columns:1fr 48px 40px 48px;align-items:center;gap:6px;padding:4px 4px 4px 12px;border:1.5px solid var(--line);border-radius:10px;background:var(--surface)}
+.contador.ativo{border-color:var(--accent);background:var(--accent-soft)}
+.contador-rotulo{font-size:15px}
+.contador button{height:44px;border-radius:9px;border:1.5px solid var(--line);background:var(--surface);font-size:22px;line-height:1;cursor:pointer;color:var(--ink)}
+.contador button:disabled{opacity:.35;cursor:default}
+.contador output{text-align:center;font-family:var(--font-d);font-size:22px;font-weight:700;font-variant-numeric:tabular-nums}
+.outro-peso{display:flex;gap:8px;align-items:flex-end;flex-wrap:wrap}

@@ -46,11 +46,11 @@ export async function ana(page: Page, { pausa = 0 }: { pausa?: number } = {}) {
   await page.getByRole('button', { name: 'Continuar' }).click();
 
   await expect(page.getByRole('heading', { name: 'Que equipamento você tem?' })).toBeVisible();
-  await page.getByLabel('Halteres fixos').check();
-  await page.getByLabel('Mais leve').fill('1');
-  await page.getByLabel('Mais pesado').fill('12');
-  await page.getByLabel('De quanto em quanto').fill('1');
-  await page.getByLabel('Banco reto').check();
+  await page.getByLabel('Halteres fixos', { exact: true }).check();
+  await grupo(page, 'O mais leve').getByLabel('1 kg', { exact: true }).check();
+  await grupo(page, 'O mais pesado').getByLabel('12 kg', { exact: true }).check();
+  await grupo(page, 'De quanto em quanto').getByLabel('1 kg', { exact: true }).check();
+  await page.getByLabel('Banco reto', { exact: true }).check();
   await p();
   await page.getByRole('button', { name: 'Continuar' }).click();
 

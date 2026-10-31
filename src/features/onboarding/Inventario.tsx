@@ -1,18 +1,117 @@
-import { useState } from 'react';
+import { useId, useState, type ReactNode } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ITENS, type ItemId } from '../../domain/taxonomia/equipamentos';
 import { useApp } from '../app/estado';
-import { Erros, Escolha, Marcar, Numero, Passo } from '../app/ui';
-import { CATEGORIAS, deForm, itensDaCategoria, paraForm, type FormInventario } from './inventarioForm';
+import { Erros, Escolha, Numero, Passo } from '../app/ui';
+import { IconeEquipamento } from './icones';
+import { CATEGORIAS, deForm, itensDaCategoria, NOME_CURTO, paraForm, VALORES, type FormInventario } from './inventarioForm';
 
-// Passo 5: checklist do equipamento, por categoria, com os atributos que mudam a prescrição.
-// A foto entra no M4: aqui fica só o lugar reservado, sem botão.
+// Passo 5: equipamento. Cartões com desenho para tocar (quem não sabe o nome reconhece pela forma) e
+// detalhes escolhidos por toque, com "outro" para valores fora da lista. A foto entra no M4.
 
 const SIM_NAO = [
   { id: 'sim', texto: 'Sim' },
   { id: 'nao', texto: 'Não' },
 ] as const;
 const simNao = (v: boolean | undefined) => (v === undefined ? undefined : v ? 'sim' : 'nao');
+const kg = (n: number) => `${n.toLocaleString('pt-BR')} kg`;
+const ITENS_COM_DETALHES: ItemId[] = ['halteres_fixos', 'anilhas_e_manoplas', 'polia_simples', 'banco_regulavel', 'elasticos', 'estacao_polia_dupla'];
+
+/** Valor escolhido por toque entre os comuns, ou digitado em "Outro". */
+function ValorPorToque({
+  legenda,
+  valores,
+  valor,
+  aoMudar,
+  erro,
+  formato = kg,
+}: {
+  legenda: string;
+  valores: readonly number[];
+  valor: string;
+  aoMudar: (v: string) => void;
+  erro?: string;
+  formato?: (n: number) => string;
+}) {
+  const nome = useId();
+  const n = valor.trim() === '' ? undefined : Number(valor.replace(',', '.'));
+  const naLista = n !== undefined && valores.includes(n);
+  const [outro, setOutro] = useState(valor.trim() !== '' && !naLista);
+  return (
+    <fieldset className={`campo${erro ? ' com-erro' : ''}`}>
+      <legend>{legenda}</legend>
+      {erro && <p className="erro">{erro}</p>}
+      <div className="chips-valor">
+        {valores.map((v) => (
+          <label key={v} className="chip-valor">
+            <input
+              type="radio"
+              name={nome}
+              checked={!outro && n === v}
+              onChange={() => {
+                setOutro(false);
+                aoMudar(String(v));
+              }}
+            />
+            <span>{formato(v)}</span>
+          </label>
+        ))}
+        <label className="chip-valor">
+          <input
+            type="radio"
+            name={nome}
+            checked={outro}
+            onChange={() => {
+              setOutro(true);
+              aoMudar('');
+            }}
+          />
+          <span>Outro</span>
+        </label>
+      </div>
+      {outro && <Numero rotulo={`${legenda}: outro valor`} valor={valor} aoMudar={aoMudar} min={0} sufixo="kg" />}
+    </fieldset>
+  );
+}
+
+/** Contador com botões grandes de − e +. */
+function Contador({
+  rotulo,
+  texto,
+  valor,
+  aoMudar,
+  passo = 1,
+}: {
+  rotulo: string;
+  texto: string;
+  valor: number;
+  aoMudar: (n: number) => void;
+  passo?: number;
+}) {
+  return (
+    <div className={`contador${valor > 0 ? ' ativo' : ''}`}>
+      <span className="contador-rotulo">{texto}</span>
+      <button type="button" aria-label={`Menos ${rotulo}`} disabled={valor <= 0} onClick={() => aoMudar(Math.max(0, valor - passo))}>
+        −
+      </button>
+      <output aria-live="polite" aria-label={`Quantidade de ${rotulo}`}>
+        {valor}
+      </output>
+      <button type="button" aria-label={`Mais ${rotulo}`} onClick={() => aoMudar(valor + passo)}>
+        +
+      </button>
+    </div>
+  );
+}
+
+function Detalhes({ titulo, children }: { titulo: string; children: ReactNode }) {
+  return (
+    <section className="detalhes-eq" aria-label={`Detalhes: ${titulo}`}>
+      <h3>{titulo}</h3>
+      {children}
+    </section>
+  );
+}
 
 export function Inventario() {
   const { estado, atualizar } = useApp();
@@ -35,91 +134,96 @@ export function Inventario() {
     navigate('/comecar/restricoes');
   };
 
-  const nErros = Object.keys(erros).length;
+  // Anilhas: um contador por peso comum (de 2 em 2, porque vêm em pares) + pesos que a pessoa já tinha informado.
+  const qtdAnilha = (p: number) => Number(f.anilhas.linhas.find((l) => Number(l.kg.replace(',', '.')) === p)?.qtd || 0);
+  const mudarAnilha = (p: number, q: number) =>
+    set('anilhas', {
+      linhas: [...f.anilhas.linhas.filter((l) => Number(l.kg.replace(',', '.')) !== p), { kg: String(p), qtd: String(q) }]
+        .filter((l) => l.qtd !== '0')
+        .sort((a, b) => Number(a.kg) - Number(b.kg)),
+    });
+  const pesosAnilha = [...new Set([...VALORES.anilhaKg, ...f.anilhas.linhas.map((l) => Number(l.kg.replace(',', '.'))).filter((n) => n > 0)])].sort((a, b) => a - b);
+  const [novoPeso, setNovoPeso] = useState('');
 
-  const atributos = (id: ItemId) => {
+  const detalhes = (id: ItemId) => {
     switch (id) {
       case 'halteres_fixos':
         return (
-          <div className="sub">
-            <p className="ajuda">Ex.: de 2 a 20 kg, de 2 em 2. Isso define as cargas que o app pode sugerir.</p>
-            <div className="trio">
-              <Numero rotulo="Mais leve" valor={f.halteres.min} aoMudar={(v) => set('halteres', { min: v })} sufixo="kg" min={0} erro={e('halteres.min')} />
-              <Numero rotulo="Mais pesado" valor={f.halteres.max} aoMudar={(v) => set('halteres', { max: v })} sufixo="kg" min={0} erro={e('halteres.max')} />
-              <Numero rotulo="De quanto em quanto" valor={f.halteres.passo} aoMudar={(v) => set('halteres', { passo: v })} sufixo="kg" min={0} erro={e('halteres.passo')} />
-            </div>
-          </div>
+          <Detalhes titulo="Halteres fixos">
+            <p className="ajuda">Isso define as cargas que o app pode sugerir.</p>
+            <ValorPorToque legenda="O mais leve" valores={VALORES.halterMin} valor={f.halteres.min} aoMudar={(v) => set('halteres', { min: v })} erro={e('halteres.min')} />
+            <ValorPorToque legenda="O mais pesado" valores={VALORES.halterMax} valor={f.halteres.max} aoMudar={(v) => set('halteres', { max: v })} erro={e('halteres.max')} />
+            <ValorPorToque legenda="De quanto em quanto" valores={VALORES.halterPasso} valor={f.halteres.passo} aoMudar={(v) => set('halteres', { passo: v })} erro={e('halteres.passo')} />
+          </Detalhes>
         );
       case 'anilhas_e_manoplas':
         return (
-          <div className="sub">
-            <div className="trio">
-              <Numero rotulo="Manoplas" valor={f.anilhas.manoplas} aoMudar={(v) => set('anilhas', { manoplas: v })} passo={1} min={1} erro={e('anilhas.manoplas')} />
-              <Numero rotulo="Peso de cada manopla" valor={f.anilhas.manoplaKg} aoMudar={(v) => set('anilhas', { manoplaKg: v })} sufixo="kg" min={0} erro={e('anilhas.manoplaKg')} />
-            </div>
+          <Detalhes titulo="Anilhas e manoplas">
+            <Escolha
+              nome="manoplas"
+              legenda="Quantas manoplas?"
+              opcoes={[1, 2, 3, 4].map((n) => ({ id: String(n), texto: String(n) }))}
+              valor={f.anilhas.manoplas || undefined}
+              aoMudar={(v) => set('anilhas', { manoplas: v })}
+              erro={e('anilhas.manoplas')}
+              linha
+            />
+            <ValorPorToque legenda="Peso de cada manopla" valores={VALORES.manoplaKg} valor={f.anilhas.manoplaKg} aoMudar={(v) => set('anilhas', { manoplaKg: v })} erro={e('anilhas.manoplaKg')} />
             <fieldset className={`campo${e('anilhas.linhas') ? ' com-erro' : ''}`}>
-              <legend>Anilhas</legend>
-              <p className="ajuda">Uma linha por peso. Ex.: 4 anilhas de 2 kg.</p>
+              <legend>Quantas anilhas de cada peso?</legend>
+              <p className="ajuda">Toque em + para cada par de anilhas.</p>
               {e('anilhas.linhas') && <p className="erro">{e('anilhas.linhas')}</p>}
-              {f.anilhas.linhas.map((l, i) => (
-                <div key={i} className="trio anilha">
-                  <Numero
-                    rotulo={`Peso (linha ${i + 1})`}
-                    valor={l.kg}
-                    aoMudar={(v) => set('anilhas', { linhas: f.anilhas.linhas.map((x, j) => (j === i ? { ...x, kg: v } : x)) })}
-                    sufixo="kg"
-                    min={0}
-                    erro={e(`anilhas.${i}.kg`)}
-                  />
-                  <Numero
-                    rotulo={`Quantidade (linha ${i + 1})`}
-                    valor={l.qtd}
-                    aoMudar={(v) => set('anilhas', { linhas: f.anilhas.linhas.map((x, j) => (j === i ? { ...x, qtd: v } : x)) })}
-                    passo={1}
-                    min={1}
-                    erro={e(`anilhas.${i}.qtd`)}
-                  />
-                  {f.anilhas.linhas.length > 1 && (
-                    <button type="button" className="btn sec pequeno" onClick={() => set('anilhas', { linhas: f.anilhas.linhas.filter((_, j) => j !== i) })}>
-                      Remover linha {i + 1}
-                    </button>
-                  )}
-                </div>
-              ))}
-              <button type="button" className="btn sec pequeno" onClick={() => set('anilhas', { linhas: [...f.anilhas.linhas, { kg: '', qtd: '' }] })}>
-                Adicionar outro peso de anilha
-              </button>
+              <div className="contadores">
+                {pesosAnilha.map((p) => (
+                  <Contador key={p} rotulo={`anilhas de ${kg(p)}`} texto={kg(p)} valor={qtdAnilha(p)} passo={2} aoMudar={(q) => mudarAnilha(p, q)} />
+                ))}
+              </div>
+              <div className="outro-peso">
+                <Numero rotulo="Outro peso de anilha" valor={novoPeso} aoMudar={setNovoPeso} min={0} sufixo="kg" />
+                <button
+                  type="button"
+                  className="btn sec pequeno"
+                  onClick={() => {
+                    const p = Number(novoPeso.replace(',', '.'));
+                    if (p > 0) mudarAnilha(p, Math.max(2, qtdAnilha(p)));
+                    setNovoPeso('');
+                  }}
+                >
+                  Adicionar
+                </button>
+              </div>
             </fieldset>
-          </div>
+          </Detalhes>
         );
       case 'estacao_polia_dupla':
         return (
-          <div className="sub">
-            <p className="ajuda">Opcional: ajuda a sugerir a carga em placas.</p>
-            <div className="trio">
-              <Numero rotulo="Placas por torre (opcional)" valor={f.poliaDupla.placas} aoMudar={(v) => set('poliaDupla', { placas: v })} passo={1} min={1} erro={e('poliaDupla.placas')} />
-              <Numero rotulo="Peso de cada placa (opcional)" valor={f.poliaDupla.kgPorPlaca} aoMudar={(v) => set('poliaDupla', { kgPorPlaca: v })} sufixo="kg" min={0} erro={e('poliaDupla.kgPorPlaca')} />
-            </div>
-          </div>
+          <Detalhes titulo="Polia dupla">
+            <details className="dobra">
+              <summary>Placas da torre (opcional)</summary>
+              <div className="trio">
+                <Numero rotulo="Placas por torre" valor={f.poliaDupla.placas} aoMudar={(v) => set('poliaDupla', { placas: v })} passo={1} min={1} erro={e('poliaDupla.placas')} />
+                <Numero rotulo="Peso de cada placa" valor={f.poliaDupla.kgPorPlaca} aoMudar={(v) => set('poliaDupla', { kgPorPlaca: v })} sufixo="kg" min={0} erro={e('poliaDupla.kgPorPlaca')} />
+              </div>
+            </details>
+          </Detalhes>
         );
       case 'polia_simples':
         return (
-          <div className="sub">
+          <Detalhes titulo="Polia simples">
             <Escolha
               nome="polia-regulavel"
-              legenda="A altura da polia é regulável?"
+              legenda="Dá para mudar a altura da polia?"
               opcoes={SIM_NAO}
               valor={simNao(f.poliaSimples.regulavel)}
               aoMudar={(v) => set('poliaSimples', { regulavel: v === 'sim' })}
               erro={e('poliaSimples.regulavel')}
               linha
             />
-            <Numero rotulo="Placas (opcional)" valor={f.poliaSimples.placas} aoMudar={(v) => set('poliaSimples', { placas: v })} passo={1} min={1} erro={e('poliaSimples.placas')} />
-          </div>
+          </Detalhes>
         );
       case 'banco_regulavel':
         return (
-          <div className="sub">
+          <Detalhes titulo="Banco regulável">
             <Escolha
               nome="banco-declina"
               legenda="O banco também declina (cabeça abaixo dos pés)?"
@@ -129,51 +233,59 @@ export function Inventario() {
               erro={e('bancoRegulavel.declina')}
               linha
             />
-          </div>
+          </Detalhes>
         );
       case 'elasticos':
         return (
-          <div className="sub">
-            <Numero
-              rotulo="Quantas intensidades (cores) diferentes?"
-              ajuda="Ex.: 3 elásticos de forças diferentes."
-              valor={f.elasticos.intensidades}
+          <Detalhes titulo="Elásticos">
+            <Escolha
+              nome="elasticos"
+              legenda="Quantos elásticos de forças diferentes?"
+              opcoes={[1, 2, 3, 4, 5, 6].map((n) => ({ id: String(n), texto: String(n) }))}
+              valor={f.elasticos.intensidades || undefined}
               aoMudar={(v) => set('elasticos', { intensidades: v })}
-              passo={1}
-              min={1}
               erro={e('elasticos.intensidades')}
+              linha
             />
-          </div>
+          </Detalhes>
         );
       default:
         return null;
     }
   };
 
+  const nErros = Object.keys(erros).length;
+
   return (
     <Passo id="inventario" titulo="Que equipamento você tem?">
-      <p className="lede">Marque só o que você tem à disposição. Sem nada marcado, o programa usa o peso do corpo.</p>
+      <p className="lede">Toque em tudo o que você tem. Sem nada marcado, o programa usa o peso do corpo.</p>
       <div className="reservado" aria-label="Foto do equipamento">
         <b>Foto do equipamento</b>
-        <span>Em breve: tire uma foto e o app reconhece o equipamento. Por enquanto, use a lista.</span>
+        <span>Em breve: tire uma foto e o app reconhece o equipamento. Por enquanto, toque nos cartões.</span>
       </div>
       <form onSubmit={enviar} noValidate className="form">
-        {tentou && nErros > 0 && <Erros erros={[nErros === 1 ? 'Há 1 campo para corrigir.' : `Há ${nErros} campos para corrigir.`]} />}
-        {CATEGORIAS.map((c) => (
-          <fieldset key={c.id} className="campo categoria">
-            <legend>{c.titulo}</legend>
-            <div className="opcoes">
-              {itensDaCategoria(c.id).map((id) => (
-                <div key={id}>
-                  <Marcar marcado={f.marcados.includes(id)} aoMudar={(v) => marcar(id, v)}>
-                    {ITENS[id].nome}
-                  </Marcar>
-                  {f.marcados.includes(id) && atributos(id)}
-                </div>
+        {tentou && nErros > 0 && <Erros erros={[nErros === 1 ? 'Há 1 detalhe para completar.' : `Há ${nErros} detalhes para completar.`]} />}
+        {CATEGORIAS.map((c) => {
+          const itens = itensDaCategoria(c.id);
+          const comDetalhes = itens.filter((id) => f.marcados.includes(id) && ITENS_COM_DETALHES.includes(id));
+          return (
+            <fieldset key={c.id} className="campo categoria">
+              <legend>{c.titulo}</legend>
+              <div className="cartoes-eq">
+                {itens.map((id) => (
+                  <label key={id} className="cartao-eq" title={ITENS[id].nome}>
+                    <input type="checkbox" checked={f.marcados.includes(id)} onChange={(ev) => marcar(id, ev.target.checked)} />
+                    <IconeEquipamento id={id} />
+                    <span>{NOME_CURTO[id]}</span>
+                  </label>
+                ))}
+              </div>
+              {comDetalhes.map((id) => (
+                <div key={id}>{detalhes(id)}</div>
               ))}
-            </div>
-          </fieldset>
-        ))}
+            </fieldset>
+          );
+        })}
         <button type="submit" className="btn">
           Continuar
         </button>

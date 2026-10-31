@@ -50,7 +50,7 @@ describe('checklist do inventário', () => {
     const f = {
       ...formVazio(),
       marcados: ['anilhas_e_manoplas' as const],
-      anilhas: { manoplas: '2', manoplaKg: '2', linhas: [{ kg: '5', qtd: '2,5' }, { kg: '', qtd: '' }] },
+      anilhas: { manoplas: '2', manoplaKg: '2', linhas: [{ kg: '5', qtd: '2,5' }, { kg: '10', qtd: '0' }, { kg: '', qtd: '' }] },
     };
     expect(deForm(f).erros['anilhas.0.qtd']).toBeDefined();
     f.anilhas.linhas[0]!.qtd = '4';
