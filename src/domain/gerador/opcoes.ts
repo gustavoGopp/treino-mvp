@@ -89,7 +89,7 @@ export function opcoesDeAjuste(perfil: Perfil, inventario: Inventario): Opcao[] 
   });
 }
 
-const NOME_GRUPO: Record<Grupo, string> = {
+export const NOME_GRUPO: Record<Grupo, string> = {
   peito: 'peito',
   costas: 'costas',
   ombros: 'ombros',
