@@ -107,7 +107,7 @@ function Contador({
 function Detalhes({ titulo, children }: { titulo: string; children: ReactNode }) {
   return (
     <section className="detalhes-eq" aria-label={`Detalhes: ${titulo}`}>
-      <h3>{titulo}</h3>
+      <h2>{titulo}</h2>
       {children}
     </section>
   );

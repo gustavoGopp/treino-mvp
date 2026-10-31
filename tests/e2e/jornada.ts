@@ -58,5 +58,5 @@ export async function ana(page: Page, { pausa = 0 }: { pausa?: number } = {}) {
   await grupo(page, /dor em alguma articulação/).getByLabel('Não').check();
   await p();
   await page.getByRole('button', { name: 'Gerar meu programa' }).click();
-  await expect(page.getByRole('heading', { name: 'Seu programa', exact: true })).toBeVisible();
+  await expect(page.getByRole('heading', { name: 'Seu treino', exact: true })).toBeVisible();
 }

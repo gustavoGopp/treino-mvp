@@ -6,18 +6,26 @@ test('do zero ao programa em menos de 5 minutos (persona Ana)', async ({ page })
   await ana(page);
   expect(Date.now() - inicio).toBeLessThan(5 * 60_000);
 
-  await expect(page.locator('.resumo')).toContainText('Corpo todo A/B/C');
-  for (const dia of ['Corpo todo A', 'Corpo todo B', 'Corpo todo C']) await expect(page.getByRole('heading', { name: dia, exact: true })).toBeVisible();
-  // Exercício com animação abre o guia; sem animação, cartão de texto.
-  await expect(page.getByRole('link', { name: 'Ver a execução animada' }).first()).toBeVisible();
-  await expect(page.getByText('Animação em breve').first()).toBeVisible();
-  // O porquê vem com o selo de evidência.
-  await page.getByText('Por que este exercício').first().click();
-  await expect(page.locator('.exercicio .selo').first()).toBeVisible();
-  // Os avisos de meta por músculo aparecem.
+  // Vai direto ao treino: abas por dia e cartões com séries × repetições.
+  for (const dia of ['Corpo todo A', 'Corpo todo B', 'Corpo todo C']) await expect(page.getByRole('tab', { name: dia, exact: true })).toBeVisible();
+  await expect(page.getByRole('tab', { name: 'Corpo todo A', exact: true })).toHaveAttribute('aria-selected', 'true');
+  const painel = page.getByRole('tabpanel');
+  await expect(painel.locator('.series').first()).toHaveText('3 × 8–15');
+  // Exercício com animação mostra a imagem e abre o guia; sem animação, "animação em breve".
+  await expect(painel.locator('.miniatura svg').first()).toBeVisible();
+  await expect(painel.locator('.miniatura.vazia').first()).toBeVisible();
+  // O porquê, com o selo de evidência, fica um toque abaixo.
+  await painel.getByText('Detalhes', { exact: true }).first().click();
+  await expect(painel.locator('.mais .selo').first()).toBeVisible();
+  // Outro dia.
+  await page.getByRole('tab', { name: 'Corpo todo B', exact: true }).click();
+  await expect(painel.getByRole('heading', { name: /Agachamento búlgaro/ })).toBeVisible();
+  // Avisos de meta por músculo em "Sobre o programa".
+  await page.getByText('Sobre o programa: avisos e o porquê').click();
   await expect(page.getByText(/Abaixo da meta semanal/).first()).toBeVisible();
 
-  await page.getByRole('link', { name: 'Ver a execução animada' }).first().click();
+  await page.getByRole('tab', { name: 'Corpo todo A', exact: true }).click();
+  await painel.getByRole('link', { name: /Agachamento goblet.*ver como fazer/ }).click();
   await expect(page).toHaveURL(/\/guia\/goblet$/);
 });
 
@@ -50,20 +58,24 @@ test('"sim" só no osteoarticular pede as regiões em vez de bloquear', async ({
 
 test('escolher uma opção calculada gera o programa de novo com o novo perfil', async ({ page }) => {
   await ana(page);
+  // Os ajustes ficam recolhidos numa faixa; nenhuma opção vem escolhida.
+  await expect(page.getByRole('tab', { name: 'Corpo todo A', exact: true })).toBeVisible();
+  await page.getByRole('button', { name: 'Ver opções' }).click();
   const ajustes = page.getByRole('region', { name: 'Ajustes possíveis' });
-  await expect(ajustes).toBeVisible();
-  // Nenhuma opção vem escolhida: o programa só muda com o toque da pessoa.
-  await expect(page.locator('.resumo')).toContainText('Corpo todo A/B/C');
   await ajustes.getByRole('button', { name: /^4 treinos de 50 min/ }).click();
   await expect(page.getByRole('status')).toContainText('4 treinos de 50 min');
-  await expect(page.locator('.resumo')).toContainText('4 treinos por semana');
-  await expect(page.getByRole('heading', { name: 'Torso A', exact: true })).toBeVisible();
+  await expect(page.getByRole('list', { name: 'Resumo' })).toContainText('4x por semana');
+  await expect(page.getByRole('tab', { name: 'Torso A', exact: true })).toBeVisible();
 
-  // "Manter" recolhe o painel, que pode ser reaberto.
-  const manter = page.getByRole('button', { name: /^Manter/ });
-  if (await manter.isVisible()) {
-    await manter.click();
-    await expect(page.getByRole('button', { name: 'Ver ajustes possíveis' })).toBeVisible();
+  // "Manter" recolhe a faixa; dá para reabrir em "Sobre o programa".
+  const verOpcoes = page.getByRole('button', { name: 'Ver opções' });
+  if (await verOpcoes.isVisible()) {
+    await verOpcoes.click();
+    await page.getByRole('button', { name: /^Manter/ }).click();
+    await expect(verOpcoes).toBeHidden();
+    await page.getByText('Sobre o programa: avisos e o porquê').click();
+    await page.getByRole('button', { name: 'Ver ajustes possíveis' }).click();
+    await expect(page.getByRole('region', { name: 'Ajustes possíveis' })).toBeVisible();
   }
 });
 
@@ -71,7 +83,7 @@ test('recarregar a página mantém perfil, inventário e programa', async ({ pag
   await ana(page);
   const antes = await page.locator('main').innerText();
   await page.reload();
-  await expect(page.getByRole('heading', { name: 'Seu programa', exact: true })).toBeVisible();
+  await expect(page.getByRole('heading', { name: 'Seu treino', exact: true })).toBeVisible();
   expect(await page.locator('main').innerText()).toBe(antes);
   // A raiz abre direto no programa.
   await page.goto('/');
