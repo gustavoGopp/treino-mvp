@@ -3,7 +3,7 @@
 :root{
   /* Layout: coluna única para celular. Palco animado no topo, cues e checklist logo abaixo, detalhes recolhíveis. */
   --bg:#eaeef1; --surface:#ffffff; --ink:#14202a; --muted:#566673; --line:#d3dbe1;
-  --accent:#0a7c72; --accent-soft:#d6eeeb; --accent-ink:#ffffff; --warn:#b4410f; --warn-soft:#fbe7dc;
+  --accent:#0a7c72; --accent-soft:#d6eeeb; --accent-ink:#ffffff; --link:#08695f; --warn:#b4410f; --warn-soft:#fbe7dc;
   --stage:#f7f9fa; --fig:#1a2833; --fig-far:#a2afb9; --torso:#8fa0ab; --joint:#0a7c72;
   --eq:#cdd6dc; --eq-dark:#8796a1; --cable:#4e5a64; --spine:#d29400;
   --mus-p:rgba(214,46,38,.62); --mus-s:rgba(236,150,28,.5);
@@ -14,7 +14,7 @@
 @media (prefers-color-scheme: dark){
   :root:not([data-theme="light"]){
     --bg:#0d1215; --surface:#151c21; --ink:#e5ecf0; --muted:#97a5b0; --line:#25313a;
-    --accent:#2bb3a6; --accent-soft:#11312d; --accent-ink:#06201d; --warn:#fb923c; --warn-soft:#3a2214;
+    --accent:#2bb3a6; --accent-soft:#11312d; --accent-ink:#06201d; --link:#2bb3a6; --warn:#fb923c; --warn-soft:#3a2214;
     --stage:#10171b; --fig:#e7eef2; --fig-far:#4f5e69; --torso:#5d6e7a; --joint:#2bb3a6;
     --eq:#2a353e; --eq-dark:#53626d; --cable:#a3b3bf; --spine:#f0b429;
     --mus-p:rgba(244,82,72,.6); --mus-s:rgba(245,170,60,.45);
@@ -24,7 +24,7 @@
 }
 :root[data-theme="dark"]{
   --bg:#0d1215; --surface:#151c21; --ink:#e5ecf0; --muted:#97a5b0; --line:#25313a;
-  --accent:#2bb3a6; --accent-soft:#11312d; --accent-ink:#06201d; --warn:#fb923c; --warn-soft:#3a2214;
+  --accent:#2bb3a6; --accent-soft:#11312d; --accent-ink:#06201d; --link:#2bb3a6; --warn:#fb923c; --warn-soft:#3a2214;
   --stage:#10171b; --fig:#e7eef2; --fig-far:#4f5e69; --torso:#5d6e7a; --joint:#2bb3a6;
   --eq:#2a353e; --eq-dark:#53626d; --cable:#a3b3bf; --spine:#f0b429;
   --mus-p:rgba(244,82,72,.6); --mus-s:rgba(245,170,60,.45);
@@ -208,7 +208,7 @@ footer a{color:var(--accent)}
 
 /* Telas do app (M3): onboarding, programa e dados. Coluna única, mobile-first, alvos de toque ≥ 44 px. */
 .app{gap:16px}
-.app a{color:var(--accent)}
+.app a{color:var(--link)}
 .app .brand a{color:inherit}
 .app .brand > a,.app .brand > span{font-size:14px}
 .app .brand > a{min-height:44px;display:inline-flex;align-items:center}
@@ -230,17 +230,17 @@ footer a{color:var(--accent)}
 /* Botões */
 .btn{display:inline-flex;align-items:center;justify-content:center;text-align:center;min-height:52px;padding:10px 18px;border-radius:12px;border:0;background:var(--accent);color:var(--accent-ink) !important;font-weight:600;font-size:16px;cursor:pointer;text-decoration:none;width:100%}
 .btn:disabled{opacity:.45;cursor:not-allowed}
-.btn.sec{background:var(--surface);color:var(--accent) !important;border:1.5px solid var(--accent)}
+.btn.sec{background:var(--surface);color:var(--link) !important;border:1.5px solid var(--link)}
 .btn.perigo{background:var(--err);color:#fff !important}
 .btn.pequeno{min-height:44px;font-size:14px;width:auto;align-self:flex-start}
 .btn:focus-visible,.link-sec:focus-visible,.opcao-ajuste:focus-visible,a:focus-visible,select:focus-visible,summary:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
-.link-sec{align-self:center;min-height:44px;display:inline-flex;align-items:center;background:none;border:0;color:var(--accent);text-decoration:underline;font-size:15px;cursor:pointer;padding:0 8px}
+.link-sec{align-self:center;min-height:44px;display:inline-flex;align-items:center;background:none;border:0;color:var(--link);text-decoration:underline;font-size:15px;cursor:pointer;padding:0 8px}
 
 /* Formulários: rótulo e ajuda sempre visíveis, sem placeholder */
 .form{display:flex;flex-direction:column;gap:18px}
 .campo{border:0;margin:0;padding:0;display:flex;flex-direction:column;gap:8px;min-width:0}
 .campo legend,.rotulo{font-weight:600;font-size:16px;line-height:1.3;padding:0;margin-bottom:2px}
-.campo legend .num{color:var(--accent);font-family:var(--font-d);font-size:18px}
+.campo legend .num{color:var(--link);font-family:var(--font-d);font-size:18px}
 .ajuda{margin:0;font-size:14px;color:var(--muted)}
 .erro{margin:0;font-size:14px;font-weight:600;color:var(--err)}
 .com-erro > .opcoes,.com-erro .numero input{border-color:var(--err)}
@@ -276,12 +276,12 @@ details.campo .opcoes{margin-top:8px}
 .arquivo-campo input:focus-visible + label{outline:3px solid var(--accent);outline-offset:2px}
 .arquivo-nome{font-size:14px;color:var(--muted)}
 .status:empty{display:none}
-.status{margin:0;font-weight:600;color:var(--accent)}
+.status{margin:0;font-weight:600;color:var(--link)}
 .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 
 /* Selo de evidência */
 .selo{display:inline-block;font-size:12px;font-weight:600;line-height:1.3;padding:1px 7px;border-radius:999px;background:var(--line);color:var(--ink);white-space:nowrap;vertical-align:1px}
-.selo-robusta{background:var(--accent-soft);color:var(--accent)}
+.selo-robusta{background:var(--accent-soft);color:var(--link)}
 .selo-moderada{background:color-mix(in srgb,var(--path) 16%,var(--surface));color:var(--path)}
 
 /* Programa */
@@ -306,7 +306,7 @@ details.campo .opcoes{margin-top:8px}
 .cartao-texto{background:var(--stage);border:1px dashed var(--line);border-radius:10px;padding:8px 10px;display:flex;flex-direction:column;gap:2px;font-size:14px}
 .alternativas{margin:0;font-size:14px;color:var(--muted)}
 .alternativas a{display:inline-block;min-height:24px}
-.porque summary{cursor:pointer;min-height:44px;display:flex;align-items:center;font-size:14px;color:var(--accent);font-weight:600}
+.porque summary{cursor:pointer;min-height:44px;display:flex;align-items:center;font-size:14px;color:var(--link);font-weight:600}
 .porque .lista{font-size:14px}
 .vol{width:100%;border-collapse:collapse;font-size:14px;margin-top:8px}
 .vol th,.vol td{text-align:left;padding:6px 4px;border-bottom:1px solid var(--line);font-variant-numeric:tabular-nums}
