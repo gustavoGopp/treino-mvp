@@ -1,13 +1,15 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ARTICULACOES, type Articulacao } from '../../domain/biblioteca';
-import { avaliarTriagem, PERGUNTAS, type PerguntaId, type Respostas } from '../../domain/triagem';
+import { avaliarTriagem, PERGUNTAS, respostasNenhuma, type DorRegiao, type PerguntaId, type Respostas } from '../../domain/triagem';
 import { agoraIso, useApp } from '../app/estado';
 import { Erros, Escolha, Marcar, Passo, Selo } from '../app/ui';
 
 // Passo 2: triagem no estilo do PAR-Q+ (seguranca.triagem). Perguntas próprias do app (seguranca.triagem.texto).
 // Qualquer "sim" bloqueia o programa automático até a pessoa confirmar a liberação. "Sim" só no osteoarticular
-// abre a escolha de regiões, e os exercícios que as carregam saem (seguranca.triagem.osteoarticular).
+// abre a escolha de regiões e a nota da dor de hoje, de 0 a 10 (seguranca.triagem.osteoarticular). É o único lugar
+// do cadastro onde a dor é perguntada (seguranca.dor.programa). "Nenhuma se aplica a mim" marca "não" em todas,
+// e a pessoa ainda vê as perguntas antes de continuar (seguranca.triagem.nenhuma).
 
 export const NOME_ARTICULACAO: Record<Articulacao, string> = {
   ombro: 'Ombro',
@@ -24,19 +26,33 @@ const SIM_NAO = [
   { id: 'nao', texto: 'Não' },
 ] as const;
 
+const NOTAS = Array.from({ length: 11 }, (_, i) => ({ id: i, texto: String(i) }));
+const artigo = (a: Articulacao) => (a === 'lombar' ? 'na' : 'no');
+
 export function Triagem() {
   const { estado, atualizar } = useApp();
   const navigate = useNavigate();
   const salva = estado.triagem;
   const [resp, setResp] = useState<Partial<Record<PerguntaId, boolean>>>(() => salva?.respostas ?? {});
-  const [regioes, setRegioes] = useState<Articulacao[]>(() => salva?.regioes ?? []);
+  // Região marcada → nota de hoje (undefined = ainda sem nota, por exemplo num estado antigo).
+  const [dores, setDores] = useState<Partial<Record<Articulacao, number | undefined>>>(() =>
+    Object.fromEntries((salva?.dores ?? []).map((d) => [d.articulacao, d.nota])),
+  );
   const [erros, setErros] = useState<string[]>([]);
   const [tentou, setTentou] = useState(false);
-  const [bloqueio, setBloqueio] = useState<{ respostas: Respostas; regioes: Articulacao[] } | null>(null);
+  const [bloqueio, setBloqueio] = useState<{ respostas: Respostas; dores: DorRegiao[] } | null>(null);
   const [liberado, setLiberado] = useState(false);
 
   const faltam = PERGUNTAS.filter((p) => resp[p.id] === undefined);
   const osteo = resp.osteoarticular === true;
+  const regioes = ARTICULACOES.filter((a) => a in dores);
+  const semNota = regioes.filter((a) => dores[a] === undefined);
+
+  const nenhuma = () => {
+    setResp(respostasNenhuma());
+    setDores({});
+    setErros([]);
+  };
 
   const enviar = (e: React.FormEvent) => {
     e.preventDefault();
@@ -44,18 +60,19 @@ export function Triagem() {
     const lista: string[] = [];
     if (faltam.length) lista.push(faltam.length === 1 ? 'Responda a pergunta que ficou sem resposta.' : `Responda as ${faltam.length} perguntas que ficaram sem resposta.`);
     if (osteo && !regioes.length) lista.push('Marque pelo menos uma região com problema.');
+    if (osteo && semNota.length) lista.push(semNota.length === 1 ? 'Dê a nota da dor de hoje na região marcada.' : 'Dê a nota da dor de hoje em cada região marcada.');
     setErros(lista);
     if (lista.length) return;
 
     const respostas = resp as Respostas;
-    const regs = osteo ? [...regioes].sort() : [];
-    const r = avaliarTriagem({ respostas, regioes: regs });
+    const ds: DorRegiao[] = osteo ? regioes.map((a) => ({ articulacao: a, nota: dores[a]! })) : [];
+    const r = avaliarTriagem({ respostas, dores: ds });
     if (r.bloqueado) {
-      setBloqueio({ respostas, regioes: regs });
+      setBloqueio({ respostas, dores: ds });
       setLiberado(false);
       return;
     }
-    atualizar((s) => ({ ...s, triagem: { respostas, ...(regs.length ? { regioes: regs } : {}) } }));
+    atualizar((s) => ({ ...s, triagem: { respostas, ...(ds.length ? { dores: ds } : {}) } }));
     navigate('/comecar/nivel');
   };
 
@@ -65,7 +82,7 @@ export function Triagem() {
       ...s,
       triagem: {
         respostas: bloqueio.respostas,
-        ...(bloqueio.regioes.length ? { regioes: bloqueio.regioes } : {}),
+        ...(bloqueio.dores.length ? { dores: bloqueio.dores } : {}),
         liberacaoConfirmada: true,
         liberacaoConfirmadaEm: agoraIso(),
       },
@@ -74,7 +91,7 @@ export function Triagem() {
   };
 
   if (bloqueio) {
-    const r = avaliarTriagem({ respostas: bloqueio.respostas, regioes: bloqueio.regioes });
+    const r = avaliarTriagem({ respostas: bloqueio.respostas, dores: bloqueio.dores });
     return (
       <Passo id="triagem" titulo="Vamos pausar o programa automático">
         <div className="warnbox">
@@ -108,6 +125,12 @@ export function Triagem() {
         São perguntas de segurança no estilo do PAR-Q+. Um “sim” não impede você de treinar, mas pede uma avaliação antes do programa
         automático. <Selo id="seguranca.triagem" />
       </p>
+      <button type="button" className="btn sec" onClick={nenhuma}>
+        Nenhuma se aplica a mim
+      </button>
+      <p className="ajuda">
+        Marca “não” nas 9. Confira as perguntas abaixo antes de continuar. <Selo id="seguranca.triagem.nenhuma" />
+      </p>
       <form onSubmit={enviar} noValidate className="form">
         <Erros erros={erros} />
         {PERGUNTAS.map((p, i) => (
@@ -126,20 +149,43 @@ export function Triagem() {
               linha
             />
             {p.id === 'osteoarticular' && osteo && (
-              <fieldset className={`campo sub${tentou && !regioes.length ? ' com-erro' : ''}`}>
+              <fieldset className={`campo sub${tentou && (!regioes.length || semNota.length) ? ' com-erro' : ''}`}>
                 <legend>Quais regiões?</legend>
-                <p className="ajuda">Os exercícios que carregam essas regiões ficam fora do programa.</p>
+                <p className="ajuda">
+                  Para cada região, o app pergunta a dor de hoje. Acima de 5, os exercícios que carregam a região ficam de fora; de 3 a 5, o
+                  app prefere outros; até 2, o programa fica normal, com um lembrete. <Selo id="seguranca.dor.programa" />
+                </p>
                 <div className="opcoes grade">
                   {ARTICULACOES.map((a) => (
                     <Marcar
                       key={a}
-                      marcado={regioes.includes(a)}
-                      aoMudar={(v) => setRegioes((rs) => (v ? [...rs, a] : rs.filter((x) => x !== a)))}
+                      marcado={a in dores}
+                      aoMudar={(v) =>
+                        setDores((d) => {
+                          const n = { ...d };
+                          if (v) n[a] = undefined;
+                          else delete n[a];
+                          return n;
+                        })
+                      }
                     >
                       {NOME_ARTICULACAO[a]}
                     </Marcar>
                   ))}
                 </div>
+                {regioes.map((a) => (
+                  <Escolha
+                    key={a}
+                    nome={`dor-${a}`}
+                    legenda={`E hoje, dói ${artigo(a)} ${NOME_ARTICULACAO[a].toLowerCase()}? De 0 (nada) a 10 (a pior dor)`}
+                    opcoes={NOTAS}
+                    valor={dores[a]}
+                    aoMudar={(n) => setDores((d) => ({ ...d, [a]: n }))}
+                    erro={tentou && dores[a] === undefined ? 'Escolha a nota de hoje.' : undefined}
+                    linha
+                  />
+                ))}
+                <p className="ajuda">Dor forte, que piora ou que dura mais de 1 a 2 semanas pede avaliação profissional.</p>
               </fieldset>
             )}
           </div>

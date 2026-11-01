@@ -9,6 +9,9 @@ import { Erros, Escolha, Marcar, Numero, Passo, Selo, numeroOu } from '../app/ui
 
 // Passo 4: dias por semana, minutos por sessão, grupos prioritários e, opcional, a divisão.
 const DIAS = [2, 3, 4, 5, 6] as const;
+/** Minutos por toque (R1); "outro" abre o campo numérico. Nada vem marcado. */
+export const MINUTOS = [30, 45, 60, 75, 90] as const;
+type OpcaoMinutos = (typeof MINUTOS)[number] | 'outro';
 const GRUPOS_IDS = Object.keys(GRUPOS) as Grupo[];
 
 export function Rotina() {
@@ -17,6 +20,14 @@ export function Rotina() {
   const salva = estado.rotina;
   const [dias, setDias] = useState<(typeof DIAS)[number] | undefined>(salva?.diasSemana);
   const [min, setMin] = useState(salva ? String(salva.minutosSessao) : '');
+  // Um valor salvo fora dos botões abre em "Outro", com o número dele.
+  const [opMin, setOpMin] = useState<OpcaoMinutos | undefined>(() =>
+    salva ? ((MINUTOS as readonly number[]).includes(salva.minutosSessao) ? (salva.minutosSessao as OpcaoMinutos) : 'outro') : undefined,
+  );
+  const escolherMin = (v: OpcaoMinutos) => {
+    setOpMin(v);
+    setMin(v === 'outro' ? '' : String(v));
+  };
   const [prio, setPrio] = useState<Grupo[]>(salva?.prioridades ?? []);
   // Nada vem marcado (divisao.recomendacao): sem escolha, o gerador usa a recomendada.
   const [divisao, setDivisao] = useState<DivisaoId | undefined>(salva?.divisao);
@@ -32,7 +43,7 @@ export function Rotina() {
     if (d !== dias) setDivisao(undefined); // a divisão é de um número de dias
   };
 
-  const erros = [!dias && 'Escolha quantos dias por semana.', !minOk && 'Informe os minutos por sessão (de 20 a 150).'].filter(
+  const erros = [!dias && 'Escolha quantos dias por semana.', !minOk && (opMin === 'outro' ? 'Informe os minutos por sessão (de 20 a 150).' : 'Escolha quantos minutos por treino.')].filter(
     (x): x is string => !!x,
   );
 
@@ -65,17 +76,29 @@ export function Rotina() {
           erro={tentou && !dias ? 'Escolha uma opção.' : undefined}
           linha
         />
-        <Numero
-          rotulo="Quantos minutos por treino?"
-          ajuda="Tempo total, com aquecimento e descansos. Entre 20 e 150 minutos."
-          valor={min}
-          aoMudar={setMin}
-          min={20}
-          max={150}
-          passo={5}
-          sufixo="min"
-          erro={tentou && !minOk ? 'Use um número inteiro de 20 a 150.' : undefined}
+        <Escolha
+          nome="minutos"
+          legenda="Quantos minutos por treino?"
+          ajuda="Tempo total, com aquecimento e descansos."
+          opcoes={[...MINUTOS.map((m) => ({ id: m as OpcaoMinutos, texto: `${m} min` })), { id: 'outro' as OpcaoMinutos, texto: 'Outro' }]}
+          valor={opMin}
+          aoMudar={escolherMin}
+          erro={tentou && !opMin ? 'Escolha uma opção.' : undefined}
+          linha
         />
+        {opMin === 'outro' && (
+          <Numero
+            rotulo="Outro: quantos minutos?"
+            ajuda="Entre 20 e 150 minutos."
+            valor={min}
+            aoMudar={setMin}
+            min={20}
+            max={150}
+            passo={5}
+            sufixo="min"
+            erro={tentou && !minOk ? 'Use um número inteiro de 20 a 150.' : undefined}
+          />
+        )}
         <fieldset className="campo">
           <legend>Quais grupos você quer priorizar? (opcional)</legend>
           <p className="ajuda">
