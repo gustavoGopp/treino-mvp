@@ -38,6 +38,7 @@ Essas decisões foram copiadas do programa de referência para o código, sem pe
 | [06-populacoes-e-seguranca.md](06-populacoes-e-seguranca.md) | Tema T5: iniciante, volta de pausa, mulheres, 60+, gestação, pressão alta e lesões; a triagem conferida contra as diretrizes e uma proposta registrada, não aplicada | Aprovado em 01/11/2026 |
 | [07-progressao-e-acompanhamento.md](07-progressao-e-acompanhamento.md) | Tema T6: pausas detectadas sozinhas, "a sua semana", evolução por exercício, semana leve só com sinal e calibração da carga na 1ª série; base do marco R2 | Aprovado em 01/11/2026 |
 | [08-equipamentos-v2.md](08-equipamentos-v2.md) | Tema T7: a lista final de 46 equipamentos, o que cada um permite e como a carga sobe, os 3 atalhos de cenário, a foto e a fila das animações com o custo; 30 fichas de técnica novas em `../pesquisa/animacoes/` | Aprovado em 01/11/2026 |
+| [09-trocas-e-locais.md](09-trocas-e-locais.md) | Tema T9: o que se leva do progresso ao trocar de aparelho ou de local, o que recomeça pela calibração na 1ª série e o "prefiro este"; base do marco R1b | Aprovado em 01/11/2026 |
 
 ## Próxima sessão
 Os temas T1 a T7 estão aprovados. O próximo passo é o marco de código **R0b**; o prompt está em [`docs/prompts/sessao-r0b.md`](../prompts/sessao-r0b.md). O T8 (o programa do Gustavo) é feito na máquina dele, com `privado/`, depois do R0b. Para ler os resumos do PubMed, use `scripts/pesquisa/pubmed.py`.
