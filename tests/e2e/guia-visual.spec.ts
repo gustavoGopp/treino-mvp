@@ -16,6 +16,11 @@ test.use({ viewport: { width: 390, height: 900 }, deviceScaleFactor: 2, isMobile
 // Cada teste compara 8 quadros, com rasterização num fio só: mais tempo que o padrão de 30 s.
 test.setTimeout(120_000);
 
+// O cabeçalho do exercício (nome e prescrição) é texto do app e muda desde o R1 (a prescrição vem do programa
+// da pessoa). Com alturas diferentes, o palco desce uma fração de pixel e a rasterização muda, mesmo com o
+// desenho idêntico. Por isso o teste fixa a altura do cabeçalho nos dois lados: a comparação é só do palco.
+const CABECALHO_FIXO = '.exhead{height:150px!important;min-height:0!important;overflow:hidden!important;box-sizing:border-box!important}';
+
 async function bloquearFontes(page: Page) {
   await page.route(/fonts\.(googleapis|gstatic)\.com/, (r) => r.abort());
 }
@@ -38,6 +43,7 @@ for (const id of ids) {
     await bloquearFontes(page);
     await ref.route('**/guia-original.html', (r) => r.fulfill({ contentType: 'text/html', body: original }));
     await ref.goto('http://localhost/guia-original.html');
+    await ref.addStyleTag({ content: CABECALHO_FIXO });
     const { T, vistaPrincipal, vistaErro } = await ref.evaluate((id) => {
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       const g = (globalThis as any).__guia;
@@ -62,6 +68,7 @@ for (const id of ids) {
           [modo, vista, t] as const,
         );
         await page.goto(`/guia/${id}?modo=${modo}&vista=${vista}&t=${t}&erro=0&pausado=1`);
+        await page.addStyleTag({ content: CABECALHO_FIXO });
         // Primeiro o desenho em si: o SVG do app tem que ser idêntico, caractere por caractere, ao do original.
         const svgOriginal = () => ref.locator('#svg').innerHTML();
         await expect.poll(async () => (await page.locator('.stage svg').innerHTML()) === (await svgOriginal()), {

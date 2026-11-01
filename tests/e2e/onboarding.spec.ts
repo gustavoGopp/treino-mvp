@@ -1,5 +1,5 @@
 import { expect, test } from '@playwright/test';
-import { ana, triagem } from './jornada';
+import { ana, minutosPorTreino, triagem, triagemNenhuma } from './jornada';
 
 test('do zero ao programa em menos de 5 minutos (persona Ana)', async ({ page }) => {
   const inicio = Date.now();
@@ -10,8 +10,9 @@ test('do zero ao programa em menos de 5 minutos (persona Ana)', async ({ page })
   for (const dia of ['Corpo todo A', 'Corpo todo B', 'Corpo todo C']) await expect(page.getByRole('tab', { name: dia, exact: true })).toBeVisible();
   await expect(page.getByRole('tab', { name: 'Corpo todo A', exact: true })).toHaveAttribute('aria-selected', 'true');
   const painel = page.getByRole('tabpanel');
-  // Semana 1 (fase de aprendizado da iniciante): menos séries que o programa completo.
-  await expect(painel.locator('.series').first()).toHaveText('3 × 8–12 cada lado');
+  // Semana 1 (fase de aprendizado da iniciante): RIR 3–4 e menos séries que o programa completo.
+  await expect(painel.locator('.series').first()).toHaveText(/^\d × 8–12 cada lado$/);
+  await expect(painel.locator('.sub-rx').first()).toContainText('RIR 3–4');
   // Exercício com animação mostra a imagem e abre o guia.
   await expect(painel.locator('.miniatura svg').first()).toBeVisible();
   // Sem animação aprovada: "animação em breve" (ponte de glúteo), nunca uma animação improvisada.
@@ -28,19 +29,20 @@ test('do zero ao programa em menos de 5 minutos (persona Ana)', async ({ page })
 
   await page.getByRole('tab', { name: 'Corpo todo A', exact: true }).click();
   await painel.getByRole('link', { name: /Agachamento búlgaro.*ver como fazer/ }).click();
-  await expect(page).toHaveURL(/\/guia\/bulgaro$/);
+  await expect(page).toHaveURL(/\/guia\/bulgaro\?de=programa&dia=corpo-a&ex=bulgaro$/);
+  await expect(page.getByTestId('prescricao')).toContainText('RIR 3–4');
 });
 
 test('divisão: as opções aparecem sem nada marcado, a recomendada vem explicada e a escolha vira o programa', async ({ page }) => {
   await page.goto('/');
   await page.getByRole('button', { name: 'Entendi, vamos começar' }).click();
-  await triagem(page);
+  await triagemNenhuma(page);
   await page.getByRole('group', { name: /sem parar/ }).getByLabel('Menos de 6 meses').check();
   await page.getByRole('group', { name: /treinando agora/ }).getByLabel(/^Estou treinando/).check();
   await page.getByRole('group', { name: /confiança na técnica/ }).getByLabel(/^Sim/).check();
   await page.getByRole('button', { name: 'Continuar' }).click();
   await page.getByRole('group', { name: /Quantos dias/ }).getByLabel('3 dias').check();
-  await page.getByLabel('Quantos minutos por treino?').fill('60');
+  await minutosPorTreino(page, '60');
   const divisao = page.getByRole('group', { name: /Como prefere dividir/ });
   await expect(divisao).toBeVisible();
   for (const r of await divisao.getByRole('radio').all()) await expect(r).not.toBeChecked();
@@ -61,7 +63,6 @@ test('divisão: as opções aparecem sem nada marcado, a recomendada vem explica
   await page.getByRole('group', { name: 'De quanto em quanto' }).getByLabel('1 kg', { exact: true }).check();
   await page.getByLabel('Banco reto', { exact: true }).check();
   await page.getByRole('button', { name: 'Continuar' }).click();
-  await page.getByRole('group', { name: /dor em alguma articulação/ }).getByLabel('Não').check();
   await page.getByRole('button', { name: 'Gerar meu programa' }).click();
   for (const dia of ['Superior A', 'Inferior A', 'Corpo todo']) await expect(page.getByRole('tab', { name: dia, exact: true })).toBeVisible();
   // A escolha fica salva na rotina.
@@ -86,14 +87,72 @@ test('triagem com "sim" bloqueia, e confirmar a liberação desbloqueia', async 
   await expect(page.getByRole('heading', { name: 'Sua experiência com musculação' })).toBeVisible();
 });
 
-test('"sim" só no osteoarticular pede as regiões em vez de bloquear', async ({ page }) => {
-  await page.goto('/');
-  await page.getByRole('button', { name: 'Entendi, vamos começar' }).click();
-  await triagem(page, { simEm: ['osso, articulação'] });
-  await expect(page.getByText('Marque pelo menos uma região com problema.')).toBeVisible();
-  await page.getByRole('group', { name: 'Quais regiões?' }).getByLabel('Ombro').check();
+test('"sim" só no osteoarticular pede as regiões e a dor de hoje, e o aviso diz o motivo verdadeiro', async ({ page }) => {
+  await ana(page, {
+    passarTriagem: async (p) => {
+      await triagem(p, { simEm: ['osso, articulação'] });
+      await expect(p.getByText('Marque pelo menos uma região com problema.')).toBeVisible();
+      await p.getByRole('group', { name: 'Quais regiões?' }).getByLabel('Ombro').check();
+      await p.getByRole('button', { name: 'Continuar' }).click();
+      await expect(p.getByText('Dê a nota da dor de hoje na região marcada.')).toBeVisible();
+      await p.getByRole('group', { name: /E hoje, dói no ombro/ }).getByLabel('7', { exact: true }).check();
+      await p.getByRole('button', { name: 'Continuar' }).click();
+      await expect(p.getByRole('heading', { name: 'Sua experiência com musculação' })).toBeVisible();
+    },
+  });
+  // "Restrições" não pergunta a dor de novo: só mostra o resumo (o teste passou por ela).
+  await page.getByText('Sobre o programa: avisos e o porquê').click();
+  await expect(page.getByText(/peito 0 de \d+ séries, porque os exercícios que carregam o ombro ficaram de fora por causa da dor no ombro \(7 hoje\)/)).toBeVisible();
+  await expect(page.getByText(/Procure avaliação profissional; quando a dor baixar/)).toBeVisible();
+});
+
+test('cadastro sem nenhuma condição: 0 caractere digitado e até 15 toques, sem contar a tela de equipamento (critério 1)', async ({ page }) => {
+  await page.addInitScript(() => {
+    const w = window as unknown as { __toques: number; __caracteres: number };
+    w.__toques = 0;
+    w.__caracteres = 0;
+    addEventListener('pointerdown', () => location.pathname !== '/comecar/inventario' && w.__toques++, true);
+    addEventListener('beforeinput', (e) => (w.__caracteres += ((e as InputEvent).data ?? '').length), true);
+    addEventListener('keydown', (e) => e.key.length === 1 && w.__caracteres++, true);
+  });
+  await ana(page);
+  const { toques, caracteres } = await page.evaluate(() => {
+    const w = window as unknown as { __toques: number; __caracteres: number };
+    return { toques: w.__toques, caracteres: w.__caracteres };
+  });
+  expect(caracteres).toBe(0);
+  expect(toques).toBeLessThanOrEqual(15);
+});
+
+test('atalho "academia completa": nada vem marcado, o toque marca o conjunto, os "às vezes tem" ficam desmarcados e os detalhes continuam', async ({ page }) => {
+  await ana(page);
+  await page.goto('/comecar/inventario');
+  for (const a of ['Casa com halteres e elásticos', 'Condomínio com multifuncional', 'Academia completa'])
+    await expect(page.getByRole('button', { name: a })).toHaveAttribute('aria-pressed', 'false');
+  // A esteira saiu da lista (continua só na foto).
+  await expect(page.getByLabel('Esteira', { exact: true })).toHaveCount(0);
+  await page.getByRole('button', { name: 'Academia completa' }).click();
+  await expect(page.getByRole('button', { name: 'Academia completa' })).toHaveAttribute('aria-pressed', 'true');
+  await expect(page.getByLabel('Leg press', { exact: true })).toBeChecked();
+  // O que a Ana já tinha marcado continua marcado.
+  await expect(page.getByLabel('Halteres fixos', { exact: true })).toBeChecked();
+  const asVezes = page.getByRole('group', { name: /Às vezes tem/ });
+  for (const x of ['Kettlebell', 'Elásticos', 'Bola suíça', 'Suspensão (TRX)']) await expect(asVezes.getByLabel(x, { exact: true })).not.toBeChecked();
+  // A pergunta única da menor anilha aparece (leg press, hack, smith…), sem resposta marcada.
+  const anilha = page.getByRole('group', { name: 'Qual a menor anilha?' });
+  for (const r of await anilha.getByRole('radio').all()) await expect(r).not.toBeChecked();
+  await anilha.getByLabel('1,25 kg', { exact: true }).check();
+  // Os detalhes que mudam o programa continuam sendo perguntados.
   await page.getByRole('button', { name: 'Continuar' }).click();
-  await expect(page.getByRole('heading', { name: 'Sua experiência com musculação' })).toBeVisible();
+  await expect(page.getByText(/Há \d detalhes para completar/)).toBeVisible();
+  await page.getByRole('group', { name: 'Onde fica a polia?' }).getByLabel('Regulável').check();
+  await page.getByRole('group', { name: /O banco também declina/ }).getByLabel('Sim').check();
+  await page.getByRole('group', { name: /O voador também vira/ }).getByLabel('Sim').check();
+  await page.getByRole('group', { name: /braço fica acima da cabeça/ }).getByLabel('Não').check();
+  await page.getByRole('button', { name: 'Continuar' }).click();
+  await expect(page.getByRole('heading', { name: 'O que evitar (opcional)' })).toBeVisible();
+  await page.getByRole('button', { name: 'Gerar meu programa' }).click();
+  await expect(page.getByRole('heading', { name: 'Seu treino', exact: true })).toBeVisible();
 });
 
 test('escolher uma opção calculada gera o programa de novo com o novo perfil', async ({ page }) => {
@@ -184,7 +243,7 @@ test('equipamento por toque: anilhas com contador e valor fora da lista em "Outr
   await detalhes.getByRole('button', { name: 'Mais anilhas de 5 kg' }).click();
   await expect(detalhes.getByLabel('Quantidade de anilhas de 5 kg')).toHaveText('4');
   await page.getByRole('button', { name: 'Continuar' }).click();
-  await expect(page.getByRole('heading', { name: 'Dores e o que evitar' })).toBeVisible();
+  await expect(page.getByRole('heading', { name: 'O que evitar (opcional)' })).toBeVisible();
   await page.goto('/comecar/inventario');
   await expect(page.getByLabel('Peso de cada manopla: outro valor')).toHaveValue('1.8');
   await expect(page.getByLabel('Quantidade de anilhas de 5 kg')).toHaveText('4');

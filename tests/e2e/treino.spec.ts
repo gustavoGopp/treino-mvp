@@ -115,3 +115,24 @@ test('dor no peito encerra o treino e orienta ligar para o SAMU', async ({ page 
   await expect(page.getByRole('heading', { name: 'Treino encerrado por segurança' })).toBeVisible();
   await expect(page.getByRole('alert')).toContainText('192');
 });
+
+test('R1: aberto pelo treino, o guia do búlgaro mostra a prescrição da semana da Ana (RIR 3–4), não a da referência', async ({ page }) => {
+  await ana(page);
+  await comecar(page);
+  await expect(page.getByRole('heading', { name: 'Agachamento búlgaro com apoio' })).toBeVisible();
+  const meta = (await page.locator('p.meta').first().innerText()).trim();
+  const series = meta.match(/Meta: (\d+) × 8–12/)![1]!;
+  expect(meta).toContain('RIR 3–4');
+  await page.getByRole('link', { name: 'Ver como fazer' }).click();
+  await expect(page).toHaveURL(/\/guia\/bulgaro\?de=treino/);
+  const rx = page.getByTestId('prescricao');
+  await expect(rx).toHaveText(new RegExp(`^Semana 1: ${series} × 8–12 cada lado · RIR 3–4 · descanso 1:45 · fase de aprendizado$`));
+  // Nada da prescrição do programa de referência ("3 × 8–12 por perna · RIR 1–2 · 1,5 min").
+  await expect(page.locator('body')).not.toContainText('RIR 1–2');
+  await expect(page.locator('body')).not.toContainText('por perna');
+  // O checklist pede a carga para o RIR desta semana, e as abas são as do dia dela.
+  await expect(page.getByText('Carga para RIR 3–4')).toBeVisible();
+  await expect(page.getByRole('button', { name: 'Torso A' })).toHaveCount(0);
+  await page.getByRole('link', { name: '‹ Voltar ao treino' }).click();
+  await expect(page).toHaveURL(/\/treino$/);
+});
