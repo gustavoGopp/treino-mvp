@@ -33,14 +33,14 @@ export function BoasVindas() {
         )}
         <p className="lede">
           Montamos um programa de hipertrofia baseado em evidência, só com o seu equipamento, e mostramos o porquê de cada escolha.
-          Leva cerca de 5 minutos.
+          Leva cerca de 1 minuto, mais o tempo de marcar o seu equipamento.
         </p>
         <section className="box">
           <h2>O que o app faz</h2>
           <ul className="lista">
             <li>Monta o programa a partir de regras com fonte e selo de evidência.</li>
             <li>Mostra como executar cada exercício.</li>
-            <li>Sugere quando aumentar a carga (em breve).</li>
+            <li>Sugere a carga da próxima vez, pelo que você registrou.</li>
           </ul>
         </section>
         <section className="warnbox" aria-labelledby="nao-faz">
@@ -52,7 +52,11 @@ export function BoasVindas() {
         </section>
         <section className="box">
           <h2>Seus dados ficam no aparelho</h2>
-          <p>Nada é enviado para servidor. Você pode exportar ou apagar tudo quando quiser em “Meus dados”.</p>
+          <p>
+            O seu perfil, o programa e os treinos ficam guardados só neste aparelho. A única coisa que sai é a foto do equipamento, se
+            você usar: ela vai, sem a localização, para o reconhecimento e não fica guardada no servidor. Você pode exportar ou apagar tudo
+            quando quiser em “Meus dados”.
+          </p>
         </section>
         <button type="button" className="btn" onClick={comecar}>
           Entendi, vamos começar

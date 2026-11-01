@@ -62,7 +62,10 @@ export function Dados() {
       <Topo direita={estado.programa ? <Link to="/programa">Meu programa</Link> : undefined} />
       <main className="conteudo">
         <Titulo>Meus dados</Titulo>
-        <p className="lede">Tudo fica guardado só neste aparelho. Nada é enviado para servidor.</p>
+        <p className="lede">
+          Tudo fica guardado só neste aparelho. A única coisa que sai é a foto do equipamento, se você usar: ela vai, sem a localização, para
+          o reconhecimento e não fica guardada no servidor.
+        </p>
         {erroCarga && (
           <div className="caixa-erro" role="alert">
             {erroCarga}
