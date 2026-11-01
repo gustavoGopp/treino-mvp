@@ -425,7 +425,7 @@ export type OpcaoDivisao = {
 };
 
 const PORQUE_RECOMENDADA =
-  'Recomendada: cada músculo treina 2 vezes ou mais por semana, os treinos têm duração parecida e, se você faltar a um, perde só parte da semana daquele músculo.';
+  'Por que é a recomendada: cada músculo treina 2 vezes ou mais por semana, os treinos têm duração parecida e, se você faltar a um, perde só parte da semana daquele músculo.';
 export const AVISO_CLASSICA = 'Cada músculo treina 1 vez por semana: faltar a um dia tira a semana inteira daquele músculo.';
 
 /**

@@ -18,7 +18,7 @@ describe('opções de divisão por número de dias (divisao.recomendacao)', () =
       const o = opcoesDeDivisao(d, 8);
       expect(o.filter((x) => x.recomendada)).toHaveLength(1);
       expect(o[0]!.recomendada).toBe(true);
-      expect(o[0]!.descricao).toContain('Recomendada');
+      expect(o[0]!.descricao).toContain('Por que é a recomendada');
     }
   });
   it('divisao.seis-dias: aceita de 2 a 6 dias, e cada divisão tem tantos treinos quanto dias, com ids únicos', () => {

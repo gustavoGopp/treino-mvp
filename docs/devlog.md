@@ -302,3 +302,64 @@ O `PLANO-MVP.md` recebeu os critérios (seção a) e os marcos (seção i) novos
   - divisão dividida ou corpo todo dá o mesmo crescimento com o mesmo volume (meta-análises de 2019, 2024 e 2026), então a divisão vira uma escolha da pessoa entre opções equivalentes;
   - as regras numéricas do app foram confirmadas pela evidência mais recente (ACSM 2026, Pelland 2026), com 4 ajustes propostos;
   - foi montado um universo de cerca de 45 equipamentos.
+
+---
+
+## R0b: O gerador com a divisão escolhida e as vagas por função (01/11/2026, em revisão)
+
+**O que mudou**
+- **A divisão é escolhida pela pessoa.** São 12 opções, de 2 a 6 dias, na ordem da pesquisa (`pesquisa-v2/01`). Na rotina, um passo opcional, "Como prefere dividir?", mostra quantas vezes cada músculo treina e quantos exercícios cabem por treino. A recomendada vem explicada e nada vem marcado; se a pessoa pular, vale a recomendada. A clássica (ABC, ABCD, ABCDE) só aparece quando as metas cabem em 1 treino por músculo, com o aviso de que faltar a um dia tira a semana daquele músculo. 6 dias passa a ser aceito.
+- **Cada vaga pede uma função, não um aparelho.** Os modelos de dia viraram listas de funções (agachar, flexão de joelho, tríceps acima da cabeça…). A tabela 2.1 do T7 virou dado validado (`src/domain/gerador/funcoes.json`), em níveis: o 1º é a 1ª escolha, e máquina e peso livre valem o mesmo. Saiu o campo `ordem` da biblioteca, que era cópia do programa de referência. O desempate passou a ser, nesta ordem: estabilidade (só para iniciante), carga possível, variedade entre os dias e animação aprovada.
+- **Extensora, tríceps acima da cabeça e panturrilha em pé entram sempre que houver equipamento.** A extensora, que nunca aparecia, agora entra 2 vezes por semana na academia completa.
+- **Glúteo:** a ponte passou para o padrão novo "extensão de quadril", e entraram os padrões de abdução e adução e o músculo adutores (sem meta).
+- **Tempo:**
+  - o descanso dos multiarticulares caiu para 105 s em todos os níveis;
+  - o número de exercícios por treino segue a tabela do T4 (45 min → 6, 60 → 8, 75 → 10);
+  - a escada de cortes começa pelas técnicas que mantêm o volume: superséries, depois drop set na última série dos isoladores, que agora é prescrição e pode ser registrado no treino com as quedas de carga;
+  - só depois vêm menos exercícios e menos séries, primeiro nos músculos não prioritários.
+- **Avisos com o motivo verdadeiro:** "sem cadeira extensora…", "nenhum exercício possível com o seu equipamento", "com 50 min cabem cerca de 6 exercícios…", "a divisão treina este músculo 2x por semana…".
+- **Semana leve:** só com sinal (estagnação, fadiga ou dor), sem o gatilho de tempo.
+- **Regras:** `regras.md` ganhou 14 regras e teve 14 revistas, todas com selo e fonte. `fontes.md` ganhou 17 fontes, com o status novo "resumo-PubMed" (resumo oficial lido).
+- **Estado salvo:** versão 3, com a divisão escolhida e a migração 2 → 3, que não inventa escolha. Os programas já salvos continuam válidos.
+- **Testes:** 293 unitários (eram 239), entre eles:
+  - as divisões;
+  - a tabela de funções;
+  - cada regra nova;
+  - a escada de cortes testada direto ("um prioritário nunca perde séries antes de um não prioritário");
+  - a varredura de 1.296 combinações;
+  - as metas do R0.
+
+  No navegador, há um teste novo de ponta a ponta para a escolha da divisão.
+
+**O que mudou em cada persona** (o antes e o depois completo está na página "Diagnóstico do treino-mvp")
+- **Ana:** continua corpo todo A/B/C, com cerca de 6 exercícios por treino. Ganha a ponte de glúteo 2x por semana, e a panturrilha vai de 6 para 8 séries. O agachar vira o búlgaro, que pesa mais por perna com halteres leves. Só o ombro posterior fica abaixo do mínimo, porque nenhum exercício dele é possível com halteres e banco reto.
+- **Bruno:** Superior/Inferior 2x. Os braços saem do dia de pernas, e o superior fica com 12 séries por músculo. No tempo que o descanso economizou, coube mais exercício: os dias de superior chegam a 66–70 min. A barra fixa vira alternativa das puxadas na polia.
+- **Carla:** Superior/Inferior + Empurrar/Puxar/Pernas. Entra a cadeira extensora 2x por semana, e quadríceps e posteriores vão de 12 e 8 para 14 séries. A panturrilha fica em 8 de 14, com aviso.
+- **Diego:** continua corpo todo A/B/C, com 6 exercícios. Entra a ponte, e não há superséries nas 2 semanas de aprendizado.
+
+**Metas do R0, medidas com o equipamento da Carla** (540 programas: 3 níveis × 12 divisões × 5 durações × 3 escolhas de prioridade)
+
+| Meta | Hoje | Falta, para o R0c |
+|---|---|---|
+| 45 ou mais exercícios distintos | **39** de 60 possíveis | 6 exercícios; os 29 novos do R0c cobrem com folga |
+| 0 equipamento sem exercício possível | 1: as **paralelas** (a esteira fica fora por decisão) | o mergulho |
+| 2 ou mais alternativas de outro equipamento | 12 exercícios com menos | os pares em máquina: voador invertido, desenvolvimento, tríceps, panturrilha em pé, hip thrust e glúteo na máquina |
+| aviso com o motivo verdadeiro | todo músculo abaixo da meta tem aviso com motivo | — |
+
+As listas exatas ficam em `tests/unit/metas-r0.test.ts`, para o R0c zerar.
+
+**Decisões pendentes (para o Gustavo)**
+1. Animação aprovada como desempate entre equivalentes **[opinião]**. Recomendo manter.
+2. Sem drop set nas semanas de RIR 3–4 (fase de aprendizado e 1ª semana depois de uma pausa) **[opinião]**. Recomendo manter.
+3. Barra fixa ou puxada na polia, quando há as duas: hoje a polia ganha pelo critério "carga possível".
+
+**Imagem:** `img/r0b-divisao.png` (o passo "Como prefere dividir?").
+
+**Rascunho de post para o LinkedIn**
+> Corpo todo, ABC ou superior/inferior? Com o mesmo volume semanal, as meta-análises de 2019, 2024 e 2026 não acharam diferença de crescimento. Então o meu app de treino parou de escolher por você.
+>
+> Agora a pessoa diz quantos dias tem, e o app mostra as divisões que cabem, recomenda uma e explica o motivo, sem deixar nada marcado. Quem quer o ABC clássico pode escolher, com um aviso honesto: faltou ao dia de perna, ficou a semana sem perna.
+>
+> A outra mudança é mais funda. Cada vaga do treino deixou de pedir um aparelho ("supino com halteres") e passou a pedir uma função ("empurrar horizontal"). O equipamento só diz o que é possível. Máquina e peso livre valem o mesmo, porque os estudos dizem isso. Resultado: numa academia completa, a cadeira extensora, que nunca aparecia, entra 2 vezes por semana, porque é o que cresce a parte da coxa que o agachamento não pega.
+>
+> E quando o treino não cabe no tempo, o app primeiro junta exercícios em superséries e usa drop set, e só depois corta. Cada decisão tem um selo de evidência, e onde é opinião minha, está escrito "opinião".

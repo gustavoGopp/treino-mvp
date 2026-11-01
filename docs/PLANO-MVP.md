@@ -107,27 +107,30 @@ generate(perfil, inventario, biblioteca, regras) -> Programa   // determinístic
                           && ex.id ∉ perfil.evitar
                           && nivelOk(ex, perfil.nivel)
                           && !conflitaDor(ex.articulacoesCarregadas, perfil.dores))
-  // 2. Divisão (revisado em 01/11/2026: a pessoa escolhe entre opções equivalentes; ver pesquisa-v2/01-divisao-e-frequencia.md)
-  split = escolherSplit(dias, minutos, nivel)
-     2d → Corpo todo A/B · 3d → Corpo todo A/B/C (ou T/M/CT para avançado)
-     4d → Torso/Membros ×2 · 5d → T/M + Corpo todo ou PPL+T/M
+  // 2. Divisão (R0b: a pessoa escolhe entre opções equivalentes; regras divisao.*; pesquisa-v2/01)
+  split = perfil.divisao se servir para os dias e as metas, senão a recomendada (a 1ª de OPCOES_POR_DIAS)
+     2d → CT A/B · 3d → CT A/B/C | S/I + CT · 4d → S/I 2x | CT 4x · 5d → S/I + E/P/P | CT 5x · 6d → E/P/P 2x | S/I 3x
+     clássica (ABC, ABCD, ABCDE) só com meta ≤ 10 e por escolha, com o aviso das faltas
   // 3. Volume semanal por grupo (do M0-R)
   alvo[g] = baseNivel(nivel)  // ex.: iniciante 8–10, intermediário 10–14, avançado 12–18
   alvo[g] += bônus se g ∈ prioridades; grupos não prioritários podem ficar em volume.semanal.minimo-eficaz (4–6 séries)
   alvo[g] = min(alvo[g], capacidadeTempo(dias, minutos))
-  // 4. Preenchimento por padrão de movimento, por dia
-  for dia in split: for slot in template(dia) (padrões em ordem):
-     cand = E.filter(padrao==slot.padrao).sortBy(score)  // score: estabilidade, musc. alvo, complexidade≤nível, variedade entre A/B
-     escolher primeiro; distribuir séries para atingir alvo[g] com freq 2x
+  // 4. Preenchimento por função, por dia (R0b: selecao.funcao-da-vaga; funções em níveis = tabela 2.1 do pesquisa-v2/08)
+  for dia in split: vagas = funções do dia (as de prioridade só se o grupo for prioritário)
+     mantém as obrigatórias (extensora, tríceps acima da cabeça, panturrilha em pé) + as N primeiras (tempo.exercicios-por-sessao)
+     for vaga: 1º nível da função com exercício possível (ou a função seNada); desempate: dor leve, estabilidade (só iniciante),
+       carga possível, variedade entre os dias, animação aprovada, id
+     distribuir séries até alvo[g] (2–4 por exercício, ≤ 10 por músculo por sessão)
   // 5. Orçamento de tempo
   t = Σ (series × (tempoSerie + descanso)) + aquecimento(6–8min)
-  while t > minutos (ordem do M0-R, regra tempo.corte): 1) cortar exercício redundante; 2) aquecimento só específico;
-     3) bi-set entre músculos que não competem; 4) drop set/rest-pause em isoladores; 5) só por último reduzir séries (sem descer do mínimo eficaz)
+  while t > minutos (R0b, regra tempo.corte): 1) aquecimento só específico; 2) superséries (isoladores, depois multiarticulares de músculos diferentes);
+     3) drop set na última série de isoladores (vale 2 séries); 4) menos exercícios, sem tirar multiarticular nem obrigatório;
+     5) menos séries; 4 e 5 primeiro nos não prioritários (até o piso de 4) e só depois nos prioritários
   // 6. Ordem: compostos grandes → compostos menores → isoladores → core; unilaterais pela perna mais fraca
   // 7. Prescrição: faixas/RIR/descanso pelas regras de docs/pesquisa/regras.md (composto 6–10/8–12 RIR1–2, isolador 10–20 RIR0–1; iniciante RIR+1)
   //    série efetiva = série de trabalho com RIR ≤ 4 (inclui a semana 1 da readaptação)
   // 8. Readaptação: se voltandoDePausa ou iniciante: sem1 2 séries RIR3–4, sem2 cheio RIR2–3, sem3 completo
-  // 9. Alternativas: para cada exercício, até 2 de E com mesmo padrão e equipamento distinto
+  // 9. Alternativas (selecao.equivalencia): até 3, da mesma função, de outro equipamento primeiro; se faltarem, do mesmo músculo
   // 10. Porquê: cada decisão grava {regraId, evidência, fonte}
 progression(historico, ex, incrementoDisponivel) -> Sugestao  // regras 1–8 do programa-fase-1
 ```
