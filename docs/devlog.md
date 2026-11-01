@@ -492,10 +492,10 @@ As listas exatas ficam em `tests/unit/metas-r0.test.ts`, para o R0c zerar.
 
 **Imagens:** `img/r1-guia-antes-depois.png` (o guia do búlgaro antes e depois) e `img/r1-jornada.gif` (a jornada da Ana, do zero ao programa, sem digitar).
 
-**Precisa da decisão do Gustavo**
-1. A Ana com 45 min (snapshot revisto), ou mantê-la em 50 min com "Outro".
-2. A regra nova `selecao.dia-sem-principal`.
-3. O ajuste no teste de regressão visual (o cabeçalho fixo nas duas páginas).
+**Decisões do Gustavo (01/11/2026)**: o marco foi aprovado por inteiro e foi para a `main`.
+1. **Ana com 45 min:** aprovada, com o snapshot revisto.
+2. **`selecao.dia-sem-principal`:** aprovada.
+3. **Regressão visual com o cabeçalho fixo nas duas páginas:** aprovada.
 
 **Fica para o R1b:** vários locais com trocas inteligentes, a calibração da carga na 1ª série e o "prefiro este". Os atalhos e a menor anilha só mexem no formulário de um inventário, e a menor anilha fica em cada item, sem amarrar o app a um local só.
 

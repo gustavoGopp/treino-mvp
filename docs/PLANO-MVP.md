@@ -175,7 +175,7 @@ Testes de propriedade: a mesma entrada gera a mesma saída (hash); nenhum exerc�
 As correções da remada baixa e da barra fixa entram depois do M0-R, como mudanças separadas e revisadas, com uma nova linha de base.
 
 ## i. Marcos
-> Revisado em 01/11/2026. Os marcos M0 a M5, o R0b e o R0c estão concluídos (ver `devlog.md`); a tabela original fica no histórico do git. O R1b entrou a pedido do Gustavo, ao fim do R0c.
+> Revisado em 01/11/2026. Os marcos M0 a M5, o R0b, o R0c e o R1 estão concluídos (ver `devlog.md`); a tabela original fica no histórico do git. O R1b entrou a pedido do Gustavo, ao fim do R0c.
 
 | Marco | Entregáveis | Aceite | Esforço |
 |---|---|---|---|

@@ -8,7 +8,7 @@ Treino de hipertrofia baseado em evidência, montado **só com o equipamento que
 
 **Demo:** https://treino-mvp-sigma.vercel.app
 
-**Status:** em desenvolvimento. Os marcos M0 a M5 estão prontos (gerador, cadastro, foto do equipamento e treino com registro), e a base do programa foi refeita com pesquisa aprofundada (`docs/pesquisa-v2/`, marcos R0b e R0c: divisão escolhida, vagas por função e catálogo de 46 equipamentos e 102 exercícios). Em revisão: o R1 (cadastro em cerca de 1 minuto e o guia com a prescrição da pessoa). O plano está em [`docs/PLANO-MVP.md`](docs/PLANO-MVP.md) e o diário em [`docs/devlog.md`](docs/devlog.md).
+**Status:** em desenvolvimento. Os marcos M0 a M5 estão prontos (gerador, cadastro, foto do equipamento e treino com registro), e a base do programa foi refeita com pesquisa aprofundada (`docs/pesquisa-v2/`, marcos R0b e R0c: divisão escolhida, vagas por função e catálogo de 46 equipamentos e 102 exercícios). O R1 também está pronto (cadastro em cerca de 1 minuto e o guia com a prescrição da pessoa). Próximo: o R1b (vários locais e trocas inteligentes). O plano está em [`docs/PLANO-MVP.md`](docs/PLANO-MVP.md) e o diário em [`docs/devlog.md`](docs/devlog.md).
 
 O app não substitui avaliação médica nem profissional de educação física.
 
