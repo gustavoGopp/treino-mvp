@@ -30,5 +30,6 @@ Detalhes em `planejamento/2026-11-diagnostico.md`, `PLANO-MVP.md` e `pesquisa-v2
   - as animações que faltam, por frequência; 14 delas nunca aparecem em programa nenhum;
   - desenhos novos de equipamento;
   - termos de uso e formulário de opinião, se o app for aberto a outras pessoas.
+- **Cartões de texto dos exercícios antigos sem animação** (R0c): os 29 novos já têm cartão; os ~40 que vinham de antes (cadeira extensora, ponte, leg press…) ainda mostram "animação em breve" com os músculos. Escrever a partir de uma ficha de técnica, como os novos.
 - **Lacunas do gerador para avançados com academia completa:** entram no R0 (aproveitar o equipamento).
 - **Boneco mais humano, estética do formulário, cadastro mais rápido, peso inicial e acompanhamento:** viraram os marcos R1, R2 e R4 do `PLANO-MVP.md`.

@@ -363,3 +363,65 @@ As listas exatas ficam em `tests/unit/metas-r0.test.ts`, para o R0c zerar.
 > A outra mudança é mais funda. Cada vaga do treino deixou de pedir um aparelho ("supino com halteres") e passou a pedir uma função ("empurrar horizontal"). O equipamento só diz o que é possível. Máquina e peso livre valem o mesmo, porque os estudos dizem isso. Resultado: numa academia completa, a cadeira extensora, que nunca aparecia, entra 2 vezes por semana, porque é o que cresce a parte da coxa que o agachamento não pega.
 >
 > E quando o treino não cabe no tempo, o app primeiro junta exercícios em superséries e usa drop set, e só depois corta. Cada decisão tem um selo de evidência, e onde é opinião minha, está escrito "opinião".
+
+## R0c: O catálogo ampliado (01/11/2026)
+
+**O que mudou**
+- **Equipamento:**
+  - de 25 para 46 itens, por capacidade (pesquisa-v2/08, seção 1);
+  - o multifuncional vale pelas estações que a pessoa marca (puxador, remada, extensora, flexora, voador, supino);
+  - a polia simples passa a ser "no alto", "embaixo" ou "regulável", e a fixa deixou de ser inútil;
+  - a tela pergunta só o que muda o programa: as estações, a altura da polia, os pesos do kettlebell, se o voador inverte e se o tríceps na máquina é acima da cabeça;
+  - os 21 itens novos aparecem só com o nome, porque os desenhos ficam para depois.
+- **Exercícios:**
+  - entraram os 29 da pesquisa, todos sem animação. Cada um tem um **cartão de texto** tirado da ficha de técnica: montagem segura, posição, execução, amplitude, dicas, erros e como a carga sobe;
+  - o agachamento livre virou "profundo";
+  - os adutores entram como secundário dos agachamentos profundos e do afundo.
+- **Vagas:**
+  - a tabela de funções (2.1) está completa;
+  - entram a panturrilha sentada e a adução como complementos, só com pernas ou glúteos como prioridade e se houver tempo;
+  - a máquina de tríceps vale como "acima da cabeça" só quando o braço fica acima da cabeça.
+- **Alternativas:** passaram a ser todas as da mesma função. Aparecem 3, e o resto fica em "ver mais".
+- **Registro da carga, nos 5 tipos da pesquisa:**
+  - placa nas máquinas com torre;
+  - **kg de anilhas por lado** nas máquinas de anilha (leg press, hack, smith, panturrilha sentada), subindo o menor par (2 kg até a pessoa informar; opinião);
+  - **contrapeso** no graviton, onde progredir é tirar placa. Sem placa para tirar, a sugestão é passar para a barra fixa ou o mergulho livre;
+  - o kettlebell sobe pela lista de pesos.
+- **Foto:** os 46 ids, a altura da polia, as estações e os pesos do kettlebell como atributos, e as 14 dicas para não confundir aparelhos (hack × leg press, voador × polia, smith × rack…).
+- **Regras:** 7 novas e 2 revistas em `regras.md`, todas com selo e fonte; `fontes.md` ganhou 26 fontes.
+- **Estado salvo:** versão 4. A polia simples regulável vira "regulável"; a fixa fica sem altura até a pessoa dizer, sem inventar.
+- **Testes:** 331 unitários (eram 293) e 50 no navegador (eram 49). A meta de 45 exercícios e as outras metas do R0 agora passam no teste.
+
+**Metas do R0, com a Carla** (que agora tem os 46 equipamentos; 540 programas)
+
+| Meta | R0b | R0c |
+|---|---|---|
+| 45 ou mais exercícios distintos | 39 | **54** (de 102 possíveis) |
+| Nenhum equipamento sem exercício possível | paralelas e esteira | **só a esteira** (decidido) |
+| Todo exercício possível como vaga ou alternativa | faltava 1 | **todos** |
+| 2 ou mais alternativas de outro equipamento | 12 com menos | **só a adução** (não há outro exercício de adutores) |
+| Máquinas nas vagas | 17% | 31% |
+| Vagas com animação aprovada | 64% | 55% |
+
+**O que mudou em cada persona**
+- **Ana, Bruno e Diego:** os mesmos exercícios, os mesmos minutos. Muda só a conta: os adutores aparecem no volume, sem meta. A Ana ganha um aviso: "sem panturrilha sentada na máquina, o complemento para o sóleo fica de fora", porque pernas é prioridade dela.
+- **Carla:**
+  - entram a adução (2x), a panturrilha sentada, o coice na máquina (no lugar da ponte), a rosca na máquina e o abdominal na máquina;
+  - a panturrilha sobe de 8 para 12 séries (a meta é 14);
+  - o dia de Pernas vai de 54 para 67 min.
+
+**Imagens:** `img/r0c-equipamento.png` (o multifuncional e as estações) e `img/r0c-cartao.png` (o cartão de texto do hack).
+
+**Para a decisão do Gustavo**
+1. **O leg press não aparece para a Carla.** Ele empata com o hack e o smith em tudo, e o último desempate é a ordem alfabética do id. Trocar o desempate pela ordem da tabela da pesquisa traria o leg press de volta, mas também mudaria a Ana (goblet no lugar do búlgaro), o Bruno e o Diego. Por isso ficou como estava.
+2. **A adução sem alternativa:** é complemento opcional, e nenhum outro exercício do catálogo tem os adutores como principal. Com a máquina ocupada, ela fica de fora naquele dia.
+3. **O aviso da panturrilha sentada** para quem prioriza pernas e não tem a máquina. Ele segue o mesmo padrão do aviso da abdução.
+
+**Fica para depois:** os atalhos de cenário, a esteira fora da lista e a pergunta da menor anilha (R1); as animações dos exercícios novos (pela fila da seção 6); os desenhos dos 21 equipamentos; e a calibração por tipo de carga (R2).
+
+**Rascunho de post para o LinkedIn**
+> Meu app de treino sabia o que fazer com halteres e polia. Numa academia de verdade, metade dos aparelhos ficava sem uso: o hack, o voador, a cadeira abdutora, o graviton.
+>
+> Agora ele conhece 46 equipamentos e 102 exercícios. Ele trata o equipamento pelo que dá para fazer com ele: o multifuncional do condomínio vale pelas estações que você marca, e a polia de altura fixa finalmente serve para alguma coisa.
+>
+> Duas escolhas de que gosto. Exercício sem animação aprovada aparece como um cartão de texto, escrito a partir de uma ficha de técnica com fonte, nunca como um desenho improvisado. E cada aparelho diz como a carga sobe: no leg press você anota as anilhas por lado, porque ninguém sabe quanto pesa o trenó; no graviton, progredir é tirar placa, porque ali mais peso é mais ajuda.
