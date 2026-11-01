@@ -427,3 +427,81 @@ As listas exatas ficam em `tests/unit/metas-r0.test.ts`, para o R0c zerar.
 > Agora ele conhece 46 equipamentos e 102 exercícios. Ele trata o equipamento pelo que dá para fazer com ele: o multifuncional do condomínio vale pelas estações que você marca, e a polia de altura fixa finalmente serve para alguma coisa.
 >
 > Duas escolhas de que gosto. Exercício sem animação aprovada aparece como um cartão de texto, escrito a partir de uma ficha de técnica com fonte, nunca como um desenho improvisado. E cada aparelho diz como a carga sobe: no leg press você anota as anilhas por lado, porque ninguém sabe quanto pesa o trenó; no graviton, progredir é tirar placa, porque ali mais peso é mais ajuda.
+
+## R1: Nada contradiz o programa, e o cadastro leva cerca de 1 minuto (01/11/2026)
+
+**O que mudou**
+- **Triagem** (regra de segurança aprovada pelo Gustavo antes do código):
+  - um botão "Nenhuma se aplica a mim" marca "não" nas 9 perguntas; a pessoa ainda vê as perguntas e toca em "Continuar" (`seguranca.triagem.nenhuma`);
+  - o "sim" na pergunta de osso e articulação deixa de tirar a região inteira. Ela pede a região e a **dor de hoje, de 0 a 10**, e segue a regra de dor que já existia (`seguranca.triagem.osteoarticular`, revista; `seguranca.dor.programa`, nova):
+    - acima de 5, os exercícios que carregam a região saem;
+    - de 3 a 5, no desempate, o app prefere os que poupam a região;
+    - até 5, o exercício que carrega a região ganha um lembrete ("se doer acima de 5 numa série, pare e use a alternativa").
+  - o resto da triagem não muda, e a proposta da seção 9 do T5 continua só registrada.
+- **Dor num lugar só:** a dor saiu de "Restrições", que virou "O que evitar (opcional)", com um resumo da dor informada na triagem.
+- **Aviso com o motivo verdadeiro:** "peito 0 de 12 séries, porque os exercícios que carregam o ombro ficaram de fora por causa da dor no ombro (7 hoje)". Antes, o aviso dizia "nenhum exercício possível com o seu equipamento". A vaga que a dor esvazia deixa de virar aviso de falta de equipamento e recebe um exercício possível de outro músculo do mesmo dia (`selecao.dia-sem-principal`, nova).
+- **Teto semanal:** a distribuição das séries passou a conferir o teto de 20 séries em todos os músculos do exercício, e não só no músculo da vaga. O caso apareceu no teste de propriedade novo; nenhuma persona mudou por isso.
+- **Minutos por toque:** 30, 45, 60, 75, 90 ou "Outro".
+- **Equipamento:**
+  - os 3 atalhos do T7 ("casa com halteres e elásticos", "condomínio com multifuncional", "academia completa"). Nenhum vem marcado; o toque marca o conjunto, sem desmarcar o que a pessoa já tinha, e os "às vezes tem" aparecem logo abaixo, desmarcados (`equipamento.atalhos`, nova). Os detalhes que mudam o programa continuam sendo perguntados;
+  - a pergunta única "qual a menor anilha?", quando há leg press, hack, smith, panturrilha sentada, barra longa ou hexagonal. Ela é gravada em cada item; sem resposta, vale 2 kg (`equipamento.menor-anilha`, nova; opinião);
+  - a esteira saiu da lista. A foto ainda a reconhece e diz que o cardio não entra no treino.
+- **Guia com a prescrição da pessoa:** aberto pelo programa ou pelo treino, ele mostra a semana dela ("Semana 1: 2 × 8–12 cada lado · RIR 3–4 · descanso 1:45 · fase de aprendizado"), as abas do dia dela, "Voltar ao treino" e o checklist "Carga para RIR 3–4". Numa troca, vale a vaga com as repetições da alternativa. Sem contexto, é o catálogo, sem prescrição.
+- **Textos de técnica:** saíram o campo `rx` e os outros campos da prescrição de referência (séries e descanso), o "RIR 1–2" fixo dos checklists, os "até 10 kg" e "1–10 kg" e a nota "o programa diz polia no ponto mais baixo".
+- **Textos corrigidos:**
+  - a privacidade nas boas-vindas e em "Meus dados" (a foto é enviada sem localização e não fica guardada);
+  - "(em breve)" e "cerca de 5 minutos";
+  - "última registrada" na volta de pausa (`readaptacao.semana1`, só o texto);
+  - "mais repetições × 12", que virou "peso do corpo × 12";
+  - o README.
+- **Estado salvo, versão 5:** a dor fica só em `triagem.dores`. A migração não inventa nada:
+  - a região antiga entra sem nota e continua excluída até a pessoa dar a nota;
+  - a nota dada em "Restrições" vem junto;
+  - a resposta da pergunta osteoarticular não muda.
+- **Regras:** 5 novas e 2 revistas em `regras.md`, todas com selo e fonte.
+- **Testes:**
+  - 362 unitários (eram 331) e 53 no navegador (eram 50);
+  - teste de propriedade do R1: as 4 personas, com dor acima de 5 em 1 ou 2 regiões, em cada divisão possível. Nenhum dia fica sem exercício principal, e todo grupo grande com 0 série tem o aviso com o motivo;
+  - no navegador:
+    - o cadastro sem condição sai com 0 caractere e 13 toques;
+    - a Ana abre o búlgaro pelo treino e vê RIR 3–4;
+    - a triagem pede a nota;
+    - o atalho "academia completa";
+  - uma busca no repositório barra "Nada é enviado para servidor", "(em breve)" e "última registrada".
+- **Regressão visual do guia:** o teste fixa a altura do cabeçalho do exercício nas duas páginas (a original e a do app). A prescrição do cabeçalho agora é da pessoa, e, com outra altura de texto, o palco descia meio pixel. O SVG continua idêntico, caractere por caractere, e os 26 palcos, pixel a pixel.
+
+**Medido (personas fictícias, Pixel 7 simulado)**
+
+| | Antes | Depois |
+|---|---|---|
+| Toques da Ana até o programa (sem a tela de equipamento) | 28 | **13** |
+| Caracteres digitados | 2 | **0** |
+| Toques na tela de equipamento (Ana) | — | 6 |
+| Lugares onde a dor é perguntada | 2 | **1** |
+| Guia do búlgaro aberto pelo treino (Ana, semana 1) | "3 × 8–12 por perna · RIR 1–2 · 1,5 min" | "2 × 8–12 cada lado · RIR 3–4 · descanso 1:45" |
+
+**Bruno com o ombro marcado** (caso novo; antes, qualquer nota dava o mesmo resultado)
+- **Antes:** peito, costas e ombros com 0 série. O Superior A ficava só com a rosca alternada, e o aviso falava em falta de equipamento.
+- **Dor 0 a 2 hoje:** o mesmo programa de quem não tem dor, com o lembrete nos 18 exercícios que usam o ombro.
+- **Dor 3 a 5:** os mesmos grupos. Todo exercício de tronco dele usa o ombro, e o lembrete diz que nenhum equivalente poupa a região.
+- **Dor 7:** os exercícios do ombro saem. O aviso diz o motivo verdadeiro e recomenda avaliação, e o Superior A ganha o tríceps na polia, que poupa o ombro.
+
+**O que mudou em cada persona**
+- **Ana:** passa de 50 para **45 min**, como na seção b do plano, porque 50 não é botão. Sai o crucifixo, 4 exercícios perdem 1 série e os treinos ficam com 42 a 43 min. Entra o aviso "abaixo da meta semanal por falta de tempo: quadríceps 6 de 8; posteriores da coxa 7 de 8". Com 50 min, o programa sai idêntico ao do R0c.
+- **Bruno, Carla e Diego:** nenhuma mudança (os snapshots não mudaram).
+
+**Imagens:** `img/r1-guia-antes-depois.png` (o guia do búlgaro antes e depois) e `img/r1-jornada.gif` (a jornada da Ana, do zero ao programa, sem digitar).
+
+**Precisa da decisão do Gustavo**
+1. A Ana com 45 min (snapshot revisto), ou mantê-la em 50 min com "Outro".
+2. A regra nova `selecao.dia-sem-principal`.
+3. O ajuste no teste de regressão visual (o cabeçalho fixo nas duas páginas).
+
+**Fica para o R1b:** vários locais com trocas inteligentes, a calibração da carga na 1ª série e o "prefiro este". Os atalhos e a menor anilha só mexem no formulário de um inventário, e a menor anilha fica em cada item, sem amarrar o app a um local só.
+
+**Rascunho de post para o LinkedIn**
+> Um "sim" honesto custava caro no meu app. Quem respondia que teve um problema no ombro no último ano perdia todo o treino de peito, costas e ombros, mesmo sem dor nenhuma hoje. E o aviso ainda culpava o equipamento.
+>
+> Agora a pergunta segue com outra: "e hoje, dói? de 0 a 10". Até 5, o programa continua, com um lembrete para parar se doer numa série. Acima de 5, os exercícios da região saem, e o app diz o motivo verdadeiro e recomenda avaliação.
+>
+> No mesmo pacote, o cadastro de quem não tem nenhuma condição caiu para 13 toques, sem digitar nada, e o guia passou a mostrar a prescrição da sua semana, não a de um programa de exemplo. Nada no app pode contradizer o seu programa.
