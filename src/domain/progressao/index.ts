@@ -1,12 +1,17 @@
 import type { Exercicio } from '../biblioteca';
 import { r } from '../regras';
+import { MENOR_ANILHA_PADRAO_KG } from '../taxonomia/equipamentos';
 
 // Dupla progressão (progressao.*): primeiro as repetições sobem dentro da faixa; com todas as séries
 // no topo, no RIR alvo, em 2 sessões seguidas, a carga sobe na sessão seguinte.
 
+// Os 5 tipos de carga da pesquisa-v2/08, seção 1.1: kg conhecido, placa da torre, anilhas numa máquina
+// (kg por lado; o peso do trenó é desconhecido), contrapeso (mais placa = mais fácil) e degrau.
 export type Carga =
   | { tipo: 'kg'; kg: number }
   | { tipo: 'placa'; placa: number }
+  | { tipo: 'anilha'; kgPorLado: number } // progressao.incremento.maquina-anilha
+  | { tipo: 'contrapeso'; placa: number } // progressao.incremento.assistido: progredir = tirar placa
   | { tipo: 'degrau'; degrau: number }; // peso do corpo ou elástico: degraus da escada de dificuldade
 
 export type SerieRegistrada = {
@@ -26,9 +31,11 @@ export type Sugestao = { acao: Acao; proxima?: Carga; motivo: string; regraId: s
 
 export type OpcoesCarga = {
   tipo: Exercicio['carga'];
-  /** Cargas possíveis por halter, em ordem crescente (taxonomia/cargasHalter). */
-  cargasHalter?: number[];
+  /** Cargas possíveis, em ordem crescente: por halter (taxonomia/cargasHalter) ou de kettlebell (cargasKettlebell). */
+  lista?: number[];
   placasMax?: number;
+  /** Menor anilha das máquinas de anilha (kg); sem ela, o padrão do projeto [opinião]. */
+  menorAnilhaKg?: number;
 };
 
 // progressao.incremento.peso-corporal
@@ -40,7 +47,23 @@ export const ESCADA_PESO_CORPO = [
 ];
 
 const igual = (a: Carga, b: Carga) => JSON.stringify(a) === JSON.stringify(b);
-const valor = (c: Carga) => (c.tipo === 'kg' ? c.kg : c.tipo === 'placa' ? c.placa : c.degrau);
+/** Quanto maior, mais difícil. No contrapeso é ao contrário: mais placa = mais ajuda. */
+const valor = (c: Carga) => {
+  switch (c.tipo) {
+    case 'kg':
+      return c.kg;
+    case 'placa':
+      return c.placa;
+    case 'anilha':
+      return c.kgPorLado;
+    case 'contrapeso':
+      return -c.placa;
+    case 'degrau':
+      return c.degrau;
+  }
+};
+const arred = (x: number) => Math.round(x * 100) / 100;
+const passoAnilha = (o: OpcoesCarga) => o.menorAnilhaKg ?? MENOR_ANILHA_PADRAO_KG;
 
 export function proximaCarga(c: Carga, passos: number, o: OpcoesCarga): Carga | undefined {
   if (c.tipo === 'placa') {
@@ -51,7 +74,18 @@ export function proximaCarga(c: Carga, passos: number, o: OpcoesCarga): Carga | 
     const d = c.degrau + passos;
     return d < 0 || d >= ESCADA_PESO_CORPO.length ? undefined : { tipo: 'degrau', degrau: d };
   }
-  const lista = o.tipo === 'halter' ? o.cargasHalter ?? [] : [];
+  if (c.tipo === 'anilha') {
+    // progressao.incremento.maquina-anilha: o menor par de anilhas, um de cada lado.
+    const k = arred(c.kgPorLado + passos * passoAnilha(o));
+    return k < 0 ? undefined : { tipo: 'anilha', kgPorLado: k };
+  }
+  if (c.tipo === 'contrapeso') {
+    // progressao.incremento.assistido: subir = tirar placa de contrapeso; sem placa, vira a versão livre.
+    const p = c.placa - passos;
+    if (p < 1) return undefined;
+    return o.placasMax && p > o.placasMax ? undefined : { tipo: 'contrapeso', placa: p };
+  }
+  const lista = o.lista ?? [];
   if (lista.length) {
     if (passos > 0) {
       const acima = lista.filter((k) => k > c.kg + 1e-9);
@@ -69,8 +103,13 @@ export function proximaCarga(c: Carga, passos: number, o: OpcoesCarga): Carga | 
 
 /** Redução de 5–10% (progressao.reduzir) ou de 10–20% (seguranca.dor.escala). */
 function reduzir(c: Carga, fator: number, o: OpcoesCarga): Carga | undefined {
+  if (c.tipo === 'anilha') {
+    const passo = passoAnilha(o);
+    const k = Math.min(c.kgPorLado - passo, Math.floor((c.kgPorLado * (1 - fator)) / passo + 1e-9) * passo);
+    return k < 0 ? (c.kgPorLado > 0 ? { tipo: 'anilha', kgPorLado: 0 } : undefined) : { tipo: 'anilha', kgPorLado: arred(k) };
+  }
   if (c.tipo !== 'kg') return proximaCarga(c, -1, o);
-  const lista = o.tipo === 'halter' ? o.cargasHalter ?? [] : [];
+  const lista = o.lista ?? [];
   const alvo = c.kg * (1 - fator);
   if (lista.length) {
     const k = [...lista].reverse().find((x) => x <= alvo + 1e-9) ?? lista.find((x) => x < c.kg);
@@ -134,6 +173,12 @@ export function sugerirProgressao(historico: SessaoExercicio[], alvo: Alvo, o: O
   // Topo da faixa em 2 sessões seguidas, com a mesma carga → subir
   if (noTopo(ultima, alvo) && anterior && noTopo(anterior, alvo) && igual(anterior.series[0]!.carga, carga)) {
     const prox = proximaCarga(carga, 1, o);
+    if (!prox && carga.tipo === 'contrapeso')
+      return {
+        acao: 'subir',
+        motivo: 'Topo da faixa com a última placa de contrapeso: passe para a versão livre (barra fixa ou mergulho), sem ajuda.',
+        regraId: r('progressao.incremento.assistido'),
+      };
     if (!prox)
       return {
         acao: 'manter',

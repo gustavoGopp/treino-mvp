@@ -96,6 +96,8 @@ export const programaSchema = z.object({
 const carga = z.discriminatedUnion('tipo', [
   z.object({ tipo: z.literal('kg'), kg: z.number().nonnegative() }),
   z.object({ tipo: z.literal('placa'), placa: z.number().int().positive() }),
+  z.object({ tipo: z.literal('anilha'), kgPorLado: z.number().nonnegative() }),
+  z.object({ tipo: z.literal('contrapeso'), placa: z.number().int().positive() }),
   z.object({ tipo: z.literal('degrau'), degrau: z.number().int().nonnegative() }),
 ]);
 const serie = z.object({

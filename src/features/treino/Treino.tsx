@@ -1,8 +1,10 @@
 import { useMemo, useState } from 'react';
 import { Link, Navigate, useNavigate } from 'react-router-dom';
 import { BIBLIOTECA } from '../../domain/biblioteca';
-import type { ExercicioPrescrito } from '../../domain/gerador';
+import { ALTERNATIVAS_A_MOSTRA, type ExercicioPrescrito } from '../../domain/gerador';
 import { ESCADA_PESO_CORPO, type Carga, type SerieRegistrada } from '../../domain/progressao';
+import { MENOR_ANILHA_PADRAO_KG } from '../../domain/taxonomia/equipamentos';
+import { CartaoTexto } from '../programa/CartaoTexto';
 import { diaDaSemana, opcoesCarga, precisaAquecer, REGRA_AQUECIMENTO, sugestaoDoExercicio, textoCarga, ultimaSerie } from '../../domain/sessao';
 import { avaliarDor, avaliarSinal, type Sinal } from '../../domain/triagem';
 import type { Estado } from '../../storage/esquema';
@@ -108,6 +110,7 @@ export function Treino() {
             )}
           </div>
         </div>
+        {!x.animacaoId && <CartaoTexto exId={x.exId} />}
         {feito.noLugarDe && <p className="ajuda">No lugar de {POR_ID[feito.noLugarDe]?.nome.toLowerCase()}, só neste treino.</p>}
 
         <Sugestao x={x} estado={estado} />
@@ -273,7 +276,7 @@ function RegistroSerie({
       <h2>
         Série {numero} de {x.series}
       </h2>
-      <ControleCarga registro={op.registro} cargas={op.cargasHalter} placasMax={op.placasMax} valor={carga} aoMudar={setCarga} />
+      <ControleCarga registro={op.registro} cargas={op.lista} placasMax={op.placasMax} menorAnilhaKg={op.menorAnilhaKg} valor={carga} aoMudar={setCarga} />
       <div className="linha-registro">
         <span className="rotulo-curto" id={`reps-${numero}`}>
           Repetições{x.unilateral ? ' (cada lado)' : ''}
@@ -312,8 +315,9 @@ function RegistroSerie({
               <span className="rotulo-curto">Queda {n + 1}</span>
               <ControleCarga
                 registro={op.registro}
-                cargas={op.cargasHalter}
+                cargas={op.lista}
                 placasMax={op.placasMax}
+                menorAnilhaKg={op.menorAnilhaKg}
                 valor={q.carga}
                 aoMudar={(c) => setQuedas((qs) => qs.map((y, k) => (k === n ? { ...y, carga: c } : y)))}
               />
@@ -355,15 +359,62 @@ function ControleCarga({
   registro,
   cargas,
   placasMax,
+  menorAnilhaKg,
   valor,
   aoMudar,
 }: {
-  registro: 'kg' | 'placa' | 'degrau';
+  registro: Carga['tipo'];
   cargas?: number[];
   placasMax?: number;
+  menorAnilhaKg?: number;
   valor: Carga | undefined;
   aoMudar: (c: Carga) => void;
 }) {
+  if (registro === 'anilha') {
+    // progressao.incremento.maquina-anilha: kg de anilhas de cada lado, de menor anilha em menor anilha.
+    const k = valor?.tipo === 'anilha' ? valor.kgPorLado : undefined;
+    const passo = menorAnilhaKg ?? MENOR_ANILHA_PADRAO_KG;
+    const mudar = (dir: 1 | -1) => aoMudar({ tipo: 'anilha', kgPorLado: Math.max(0, Math.round(((k ?? 0) + dir * passo) * 100) / 100) });
+    return (
+      <div className="linha-registro">
+        <span className="rotulo-curto" id="carga-rotulo">
+          Anilhas por lado
+        </span>
+        <div className="stepper" role="group" aria-labelledby="carga-rotulo">
+          <button type="button" aria-label="Menos anilha de cada lado" disabled={k === undefined || k <= 0} onClick={() => mudar(-1)}>
+            −
+          </button>
+          <output aria-live="polite">{k === undefined ? '—' : `${k.toLocaleString('pt-BR')} kg`}</output>
+          <button type="button" aria-label="Mais anilha de cada lado" onClick={() => mudar(1)}>
+            +
+          </button>
+        </div>
+        <p className="ajuda">Sem contar o peso do trenó ou da barra da máquina.</p>
+      </div>
+    );
+  }
+  if (registro === 'contrapeso') {
+    // progressao.incremento.assistido: mais placa = mais ajuda (fica mais fácil).
+    const p = valor?.tipo === 'contrapeso' ? valor.placa : undefined;
+    const max = placasMax ?? 30;
+    return (
+      <div className="linha-registro">
+        <span className="rotulo-curto" id="carga-rotulo">
+          Contrapeso (placa)
+        </span>
+        <div className="stepper" role="group" aria-labelledby="carga-rotulo">
+          <button type="button" aria-label="Menos contrapeso (mais difícil)" disabled={!p || p <= 1} onClick={() => p && aoMudar({ tipo: 'contrapeso', placa: p - 1 })}>
+            −
+          </button>
+          <output aria-live="polite">{p ?? '—'}</output>
+          <button type="button" aria-label="Mais contrapeso (mais fácil)" disabled={!!p && p >= max} onClick={() => aoMudar({ tipo: 'contrapeso', placa: (p ?? 0) + 1 })}>
+            +
+          </button>
+        </div>
+        <p className="ajuda">Aqui é ao contrário: mais placa = mais ajuda. Para progredir, tire uma placa.</p>
+      </div>
+    );
+  }
   if (registro === 'degrau') {
     const d = valor?.tipo === 'degrau' ? valor.degrau : 0;
     return (
@@ -444,16 +495,22 @@ function ControleCarga({
 
 function Trocar({ alternativas, aoTrocar }: { alternativas: string[]; aoTrocar: (id: string) => void }) {
   if (!alternativas.length) return <p className="ajuda">Este exercício não tem alternativa com o seu equipamento.</p>;
+  const botao = (id: string) => (
+    <button key={id} type="button" className="opcao-ajuste" onClick={() => aoTrocar(id)}>
+      <b>{POR_ID[id]?.nome}</b>
+    </button>
+  );
+  const resto = alternativas.slice(ALTERNATIVAS_A_MOSTRA);
   return (
     <section className="box" aria-label="Trocar exercício">
       <h2>Trocar só neste treino por:</h2>
-      <div className="pilha">
-        {alternativas.map((id) => (
-          <button key={id} type="button" className="opcao-ajuste" onClick={() => aoTrocar(id)}>
-            <b>{POR_ID[id]?.nome}</b>
-          </button>
-        ))}
-      </div>
+      <div className="pilha">{alternativas.slice(0, ALTERNATIVAS_A_MOSTRA).map(botao)}</div>
+      {resto.length > 0 && (
+        <details className="ver-mais">
+          <summary>Ver mais {resto.length === 1 ? '1 opção' : `${resto.length} opções`}</summary>
+          <div className="pilha">{resto.map(botao)}</div>
+        </details>
+      )}
     </section>
   );
 }

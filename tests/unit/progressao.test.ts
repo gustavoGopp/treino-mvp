@@ -6,7 +6,7 @@ const sessao = (c: Carga, reps: number[], rir = 1, extra: Partial<SessaoExercici
   series: reps.map((r) => ({ carga: c, reps: r, rir, ...extra })),
 });
 const alvo = { reps: [8, 12] as [number, number], rir: [1, 2] as [number, number] };
-const halter = { tipo: 'halter' as const, cargasHalter: [8, 9, 10, 12, 14, 16, 18] };
+const halter = { tipo: 'halter' as const, lista: [8, 9, 10, 12, 14, 16, 18] };
 
 describe('dupla progressão', () => {
   it('sem histórico: manter', () => expect(sugerirProgressao([], alvo, halter).acao).toBe('manter'));
@@ -15,7 +15,7 @@ describe('dupla progressão', () => {
   });
   it('topo da faixa em 2 sessões seguidas: subir para o próximo halter', () => {
     const h = [sessao(kg(20), [12, 12, 12]), sessao(kg(20), [12, 12, 12])];
-    expect(sugerirProgressao(h, alvo, { tipo: 'halter', cargasHalter: [20, 22] })).toMatchObject({ acao: 'subir', proxima: kg(22), regraId: 'progressao.subir' });
+    expect(sugerirProgressao(h, alvo, { tipo: 'halter', lista: [20, 22] })).toMatchObject({ acao: 'subir', proxima: kg(22), regraId: 'progressao.subir' });
   });
   it('topo em uma sessão só: ainda manter', () => {
     expect(sugerirProgressao([sessao(kg(10), [11, 10, 10]), sessao(kg(10), [12, 12, 12])], alvo, halter).acao).toBe('manter');
@@ -31,10 +31,10 @@ describe('dupla progressão', () => {
   });
   it('salto acima de 10% pede 1–2 repetições acima do topo antes', () => {
     const h = [sessao(kg(8), [12, 12, 12]), sessao(kg(8), [12, 12, 12])];
-    const s = sugerirProgressao(h, alvo, { tipo: 'halter', cargasHalter: [8, 10] });
+    const s = sugerirProgressao(h, alvo, { tipo: 'halter', lista: [8, 10] });
     expect(s).toMatchObject({ acao: 'manter', regraId: 'progressao.salto-grande' });
     const h2 = [sessao(kg(8), [13, 13, 13]), sessao(kg(8), [13, 13, 13])];
-    expect(sugerirProgressao(h2, alvo, { tipo: 'halter', cargasHalter: [8, 10] })).toMatchObject({ acao: 'subir', proxima: kg(10) });
+    expect(sugerirProgressao(h2, alvo, { tipo: 'halter', lista: [8, 10] })).toMatchObject({ acao: 'subir', proxima: kg(10) });
   });
   it('carga leve demais: 2 incrementos', () => {
     expect(sugerirProgressao([sessao(kg(9), [15, 13, 12])], alvo, halter)).toMatchObject({ acao: 'subir', proxima: kg(12), regraId: 'progressao.carga-leve' });
@@ -92,5 +92,47 @@ describe('semana leve e série efetiva', () => {
   it('RIR até 4 conta; acima não', () => {
     expect(serieEfetiva({ carga: kg(10), reps: 10, rir: 4 })).toBe(true);
     expect(serieEfetiva({ carga: kg(10), reps: 10, rir: 5 })).toBe(false);
+  });
+});
+
+describe('tipos de carga do R0c (pesquisa-v2/08, seção 1.1)', () => {
+  const anilha = (k: number): Carga => ({ tipo: 'anilha', kgPorLado: k });
+  const contra = (p: number): Carga => ({ tipo: 'contrapeso', placa: p });
+  it('progressao.incremento.maquina-anilha: sobe o menor par de anilhas (padrão 2 kg, ou o informado)', () => {
+    expect(proximaCarga(anilha(20), 1, { tipo: 'anilha' })).toEqual(anilha(22));
+    expect(proximaCarga(anilha(20), 1, { tipo: 'anilha', menorAnilhaKg: 1.25 })).toEqual(anilha(21.25));
+    expect(proximaCarga(anilha(2), -2, { tipo: 'anilha' })).toBeUndefined();
+    const h = [sessao(anilha(20), [12, 12, 12]), sessao(anilha(20), [12, 12, 12])];
+    expect(sugerirProgressao(h, alvo, { tipo: 'anilha' })).toMatchObject({ acao: 'subir', proxima: anilha(22), regraId: 'progressao.subir' });
+    // abaixo do mínimo em 2 sessões: reduz para o múltiplo do passo, pelo menos 1 passo
+    const baixo = [sessao(anilha(20), [6, 6]), sessao(anilha(20), [6, 6])];
+    expect(sugerirProgressao(baixo, alvo, { tipo: 'anilha' })).toMatchObject({ acao: 'reduzir', proxima: anilha(18) });
+  });
+  it('progressao.incremento.assistido: progredir é tirar placa de contrapeso; mais placa = mais fácil', () => {
+    expect(proximaCarga(contra(6), 1, { tipo: 'assistida' })).toEqual(contra(5));
+    expect(proximaCarga(contra(6), -1, { tipo: 'assistida' })).toEqual(contra(7));
+    expect(proximaCarga(contra(6), -1, { tipo: 'assistida', placasMax: 6 })).toBeUndefined();
+    const h = [sessao(contra(6), [12, 12, 12]), sessao(contra(6), [12, 12, 12])];
+    expect(sugerirProgressao(h, alvo, { tipo: 'assistida' })).toMatchObject({ acao: 'subir', proxima: contra(5) });
+    // tirar placa e ficar pesado demais: volta à placa anterior (o sentido "mais difícil" é invertido)
+    const pesado = [sessao(contra(6), [12, 12]), sessao(contra(5), [5, 5])];
+    expect(sugerirProgressao(pesado, alvo, { tipo: 'assistida' })).toMatchObject({ acao: 'voltar', proxima: contra(6), regraId: 'progressao.salto-grande' });
+    // dor 3–5: mais ajuda
+    expect(sugerirProgressao([sessao(contra(4), [10], 1, { dor: 4 })], alvo, { tipo: 'assistida' }).proxima).toEqual(contra(5));
+  });
+  it('sem contrapeso para tirar: a sugestão é passar para a versão livre (barra fixa ou mergulho)', () => {
+    const h = [sessao(contra(1), [12, 12, 12]), sessao(contra(1), [12, 12, 12])];
+    const s = sugerirProgressao(h, alvo, { tipo: 'assistida' });
+    expect(s).toMatchObject({ acao: 'subir', regraId: 'progressao.incremento.assistido' });
+    expect(s.proxima).toBeUndefined();
+    expect(s.motivo).toMatch(/versão livre/);
+  });
+  it('kettlebell: próximo peso da lista; salto acima de ~10% pede repetições acima do topo antes (progressao.salto-grande)', () => {
+    const kb = { tipo: 'kettlebell' as const, lista: [8, 12, 16] };
+    expect(proximaCarga(kg(8), 1, kb)).toEqual(kg(12));
+    const h = [sessao(kg(8), [12, 12, 12]), sessao(kg(8), [12, 12, 12])];
+    expect(sugerirProgressao(h, alvo, kb)).toMatchObject({ acao: 'manter', regraId: 'progressao.salto-grande' });
+    const h2 = [sessao(kg(8), [13, 13, 13]), sessao(kg(8), [13, 13, 13])];
+    expect(sugerirProgressao(h2, alvo, kb)).toMatchObject({ acao: 'subir', proxima: kg(12) });
   });
 });

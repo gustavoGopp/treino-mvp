@@ -64,10 +64,10 @@ describe('carga conforme o equipamento', () => {
   it('halter usa só as cargas do inventário; polia, placa; peso do corpo e elástico, degrau', () => {
     const h = opcoesCarga('remada-unilateral-halter', ana.inventario);
     expect(h.registro).toBe('kg');
-    expect(h.cargasHalter).toEqual([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]);
+    expect(h.lista).toEqual([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]);
     expect(opcoesCarga('crucifixo-polia-baixo', { estacao_polia_dupla: { placas: 12 } })).toMatchObject({ registro: 'placa', placasMax: 12 });
     expect(opcoesCarga('flexao', {}).registro).toBe('degrau');
-    expect(opcoesCarga('leg-press', {}).registro).toBe('kg');
+    expect(opcoesCarga('leg-press', {}).registro).toBe('anilha');
     expect(opcoesCarga('nao-existe', {}).registro).toBe('degrau');
   });
 
@@ -76,6 +76,30 @@ describe('carga conforme o equipamento', () => {
     expect(textoCarga({ tipo: 'placa', placa: 4 })).toBe('placa 4');
     expect(textoCarga({ tipo: 'degrau', degrau: 0 })).toBe('mais repetições');
     expect(textoCarga({ tipo: 'degrau', degrau: 9 })).toBe('degrau 10');
+    expect(textoCarga({ tipo: 'anilha', kgPorLado: 12.5 })).toBe('12,5 kg por lado');
+    expect(textoCarga({ tipo: 'contrapeso', placa: 6 })).toBe('contrapeso 6');
+  });
+
+  it('os 5 tipos de carga (pesquisa-v2/08, seção 1.1): máquina com torre por placa, máquina de anilha por lado, graviton por contrapeso, kettlebell pela lista', () => {
+    expect(opcoesCarga('cadeira-extensora', { cadeira_extensora: { placas: 15 } })).toMatchObject({ registro: 'placa', placasMax: 15 });
+    // A estação do multifuncional dá as placas da torre dele.
+    expect(opcoesCarga('cadeira-extensora', { multifuncional: { extensora: true, placas: 10 } })).toMatchObject({ registro: 'placa', placasMax: 10 });
+    expect(opcoesCarga('puxada-frente', { estacao_puxada: { placas: 18 } })).toMatchObject({ registro: 'placa', placasMax: 18 });
+    expect(opcoesCarga('hack', { hack: { menorAnilhaKg: 1.25 } })).toMatchObject({ registro: 'anilha', menorAnilhaKg: 1.25 });
+    expect(opcoesCarga('hack', { hack: {} })).toEqual({ tipo: 'anilha', registro: 'anilha' });
+    expect(opcoesCarga('barra-fixa-graviton', { graviton: { placas: 12 } })).toMatchObject({ registro: 'contrapeso', placasMax: 12 });
+    expect(opcoesCarga('goblet-kettlebell', { kettlebell: { pesosKg: [16, 8, 12] } })).toMatchObject({ registro: 'kg', lista: [8, 12, 16] });
+    expect(opcoesCarga('remada-suspensao', { suspensao: {} }).registro).toBe('degrau');
+  });
+
+  it('registro antigo em kg de uma máquina que agora usa outro tipo não quebra: a sugestão segue, e a tela ignora a carga de outro tipo', () => {
+    const inv = PERSONAS.carla.inventario;
+    const kgAntigo = { carga: { tipo: 'kg' as const, kg: 80 }, reps: 10, rir: 2 };
+    const historico = [{ id: 's1', diaId: 'inferior', semana: 1, inicio: '2026-10-20T10:00:00.000Z', fim: '2026-10-20T11:00:00.000Z', exercicios: [{ exId: 'leg-press', series: [kgAntigo, kgAntigo] }] }];
+    const s = sugestaoDoExercicio(historico, { exId: 'leg-press', reps: [8, 15], rir: [1, 2] }, inv);
+    expect(s.acao).toBeDefined();
+    expect(s.proxima?.tipo === 'anilha').toBe(false);
+    expect(opcoesCarga('leg-press', inv).registro).toBe('anilha');
   });
 });
 

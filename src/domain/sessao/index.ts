@@ -2,7 +2,7 @@ import { BIBLIOTECA, type Exercicio } from '../biblioteca';
 import { prescricaoDaSemana, type DiaPrograma, type ExercicioPrescrito, type Programa } from '../gerador';
 import { ESCADA_PESO_CORPO, sugerirProgressao, type Carga, type OpcoesCarga, type SerieRegistrada, type SessaoExercicio, type Sugestao } from '../progressao';
 import { r } from '../regras';
-import { cargasHalter, type Inventario } from '../taxonomia/equipamentos';
+import { CAPACIDADES, cargasHalter, cargasKettlebell, ITEM_IDS, type Inventario } from '../taxonomia/equipamentos';
 
 // Sessão de treino: funções puras que ligam o programa, o histórico e a progressão.
 // Datas entram como texto ISO (quem chama decide "hoje"); nada aqui lê o relógio.
@@ -54,23 +54,51 @@ export function diaDaSemana(programa: Programa, diaId: string, semana: number): 
 
 export type TipoCarga = Carga['tipo'];
 
-/** Como registrar a carga de um exercício, conforme o equipamento (progressao.incremento.*; decisão 3). */
+/** Placas ou menor anilha do item que dá a capacidade do exercício (o 1º do inventário que a dá sozinho). */
+function atributoDoItem(ex: Exercicio | undefined, inv: Inventario, chave: 'placas' | 'menorAnilhaKg'): number | undefined {
+  if (!ex) return undefined;
+  const caps = ex.requer.find((g) => g.every((c) => CAPACIDADES[c](inv))) ?? ex.requer[0]!;
+  for (const id of ITEM_IDS) {
+    const a = (inv as Record<string, Record<string, unknown> | undefined>)[id];
+    if (!a || typeof a[chave] !== 'number') continue;
+    if (caps.some((c) => c !== 'apoio' && CAPACIDADES[c]({ [id]: a } as Inventario))) return a[chave] as number;
+  }
+  return undefined;
+}
+
+/** Como registrar a carga de um exercício, conforme o equipamento (progressao.incremento.*; pesquisa-v2/08, seção 1.1). */
 export function opcoesCarga(exId: string, inventario: Inventario): OpcoesCarga & { registro: TipoCarga } {
   const ex = POR_ID[exId];
   const tipo = ex?.carga ?? 'peso-corpo';
-  if (tipo === 'halter') return { tipo, registro: 'kg', cargasHalter: cargasHalter(inventario) };
-  if (tipo === 'polia') {
-    const placas = inventario.estacao_polia_dupla?.placas ?? inventario.polia_simples?.placas;
-    return { tipo, registro: 'placa', ...(placas ? { placasMax: placas } : {}) };
+  const placas = atributoDoItem(ex, inventario, 'placas');
+  switch (tipo) {
+    case 'halter':
+      return { tipo, registro: 'kg', lista: cargasHalter(inventario) };
+    case 'kettlebell':
+      return { tipo, registro: 'kg', lista: cargasKettlebell(inventario) };
+    case 'polia':
+    case 'maquina':
+      return { tipo, registro: 'placa', ...(placas ? { placasMax: placas } : {}) };
+    case 'anilha': {
+      const menor = atributoDoItem(ex, inventario, 'menorAnilhaKg');
+      return { tipo, registro: 'anilha', ...(menor ? { menorAnilhaKg: menor } : {}) };
+    }
+    case 'assistida':
+      return { tipo, registro: 'contrapeso', ...(placas ? { placasMax: placas } : {}) };
+    case 'peso-corpo':
+    case 'elastico':
+      return { tipo, registro: 'degrau' };
+    case 'barra':
+      return { tipo, registro: 'kg' };
   }
-  if (tipo === 'peso-corpo' || tipo === 'elastico') return { tipo, registro: 'degrau' };
-  return { tipo, registro: 'kg' };
 }
 
 /** Texto da carga para a tela. */
 export function textoCarga(c: Carga): string {
   if (c.tipo === 'kg') return `${c.kg.toLocaleString('pt-BR')} kg`;
   if (c.tipo === 'placa') return `placa ${c.placa}`;
+  if (c.tipo === 'anilha') return `${c.kgPorLado.toLocaleString('pt-BR')} kg por lado`;
+  if (c.tipo === 'contrapeso') return `contrapeso ${c.placa}`;
   return ESCADA_PESO_CORPO[c.degrau] ?? `degrau ${c.degrau + 1}`;
 }
 
