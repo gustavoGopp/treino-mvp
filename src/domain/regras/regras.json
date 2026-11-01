@@ -132,15 +132,16 @@
   },
   {
     "id": "volume.series-por-exercicio",
-    "regra": "Séries de trabalho por exercício; série única não é padrão",
+    "regra": "Séries de trabalho por exercício numa sessão; série única não é padrão; acima de 4, melhor dividir em 2 exercícios ou 2 dias",
     "valores": {
-      "iniciante": "2–3",
-      "intermediario": "≥ 2",
-      "avancado": "≥ 2"
+      "iniciante": "2–4",
+      "intermediario": "2–4",
+      "avancado": "2–4"
     },
     "selo": "moderada",
     "fontes": [
-      "krieger2010"
+      "krieger2010",
+      "remmert2025"
     ]
   },
   {
@@ -160,16 +161,85 @@
   },
   {
     "id": "frequencia.musculo",
-    "regra": "Frequência por músculo: padrão 2x por semana; mínimo = ceil(volume semanal / 10); 1x aceitável se volume ≤ 10",
+    "regra": "Frequência por músculo: consequência da divisão escolhida (`divisao.*`); mínimo = ceil(volume semanal / 10); 1x aceitável se volume ≤ 10",
     "valores": {
-      "iniciante": "2x; mínimo ceil(volume/10)",
-      "intermediario": "2x; mínimo ceil(volume/10)",
-      "avancado": "2x; mínimo ceil(volume/10)"
+      "iniciante": "mínimo ceil(volume/10); 1x só com volume ≤ 10",
+      "intermediario": "mínimo ceil(volume/10); 1x só com volume ≤ 10",
+      "avancado": "mínimo ceil(volume/10); 1x só com volume ≤ 10"
     },
     "selo": "consenso",
     "fontes": [
       "remmert2025",
       "acsm2026"
+    ]
+  },
+  {
+    "id": "divisao.equivalencia",
+    "regra": "Com o mesmo volume semanal, a divisão (corpo todo, superior/inferior, empurrar/puxar/pernas, clássica) não muda a hipertrofia; escolher pelo encaixe na rotina e pela preferência",
+    "valores": {
+      "iniciante": "equivalentes",
+      "intermediario": "equivalentes",
+      "avancado": "equivalentes"
+    },
+    "selo": "robusta",
+    "fontes": [
+      "ramoscampo2024",
+      "schoenfeld2019a",
+      "pelland2026"
+    ]
+  },
+  {
+    "id": "divisao.frequencia-minima",
+    "regra": "Frequência mínima de cada músculo na divisão, pelo teto de ~10 séries por sessão",
+    "valores": {
+      "iniciante": "ceil(meta semanal ÷ 10)",
+      "intermediario": "ceil(meta semanal ÷ 10)",
+      "avancado": "ceil(meta semanal ÷ 10)"
+    },
+    "selo": "um estudo",
+    "fontes": [
+      "remmert2025"
+    ]
+  },
+  {
+    "id": "divisao.recomendacao",
+    "regra": "Opções oferecidas por número de dias; a 1ª é a recomendada e vem explicada; a pessoa escolhe e nada vem pré-marcado (sem escolha, vale a recomendada)",
+    "valores": {
+      "iniciante": "2: corpo todo A/B; 3: corpo todo A/B/C ou superior/inferior + corpo todo; 4: superior/inferior 2x ou corpo todo 4x; 5: superior/inferior + empurrar/puxar/pernas ou corpo todo 5x; 6: empurrar/puxar/pernas 2x ou superior/inferior 3x",
+      "intermediario": "2: corpo todo A/B; 3: corpo todo A/B/C ou superior/inferior + corpo todo; 4: superior/inferior 2x ou corpo todo 4x; 5: superior/inferior + empurrar/puxar/pernas ou corpo todo 5x; 6: empurrar/puxar/pernas 2x ou superior/inferior 3x",
+      "avancado": "2: corpo todo A/B; 3: corpo todo A/B/C ou superior/inferior + corpo todo; 4: superior/inferior 2x ou corpo todo 4x; 5: superior/inferior + empurrar/puxar/pernas ou corpo todo 5x; 6: empurrar/puxar/pernas 2x ou superior/inferior 3x"
+    },
+    "selo": "consenso",
+    "fontes": [
+      "ramoscampo2024",
+      "consenso-projeto"
+    ]
+  },
+  {
+    "id": "divisao.seis-dias",
+    "regra": "Dias de treino por semana aceitos pelo app",
+    "valores": {
+      "iniciante": "2 a 6",
+      "intermediario": "2 a 6",
+      "avancado": "2 a 6"
+    },
+    "selo": "consenso",
+    "fontes": [
+      "consenso-projeto"
+    ]
+  },
+  {
+    "id": "divisao.classica",
+    "regra": "Divisão clássica (ABC, ABCD, ABCDE: cada músculo 1x por semana): só quando a meta semanal de todo músculo for ≤ 10 e a pessoa escolher, com o aviso de que faltar a um dia tira a semana inteira daquele músculo",
+    "valores": {
+      "iniciante": "3 a 5 dias; só com meta ≤ 10",
+      "intermediario": "3 a 5 dias; só com meta ≤ 10",
+      "avancado": "3 a 5 dias; só com meta ≤ 10"
+    },
+    "selo": "consenso",
+    "fontes": [
+      "remmert2025",
+      "consenso-projeto"
     ]
   },
   {
@@ -314,13 +384,13 @@
   },
   {
     "id": "descanso.por-tipo",
-    "regra": "Descanso padrão por tipo de exercício",
+    "regra": "Descanso padrão por tipo de exercício; sem diferença apreciável de hipertrofia acima de ~90 s",
     "valores": {
-      "iniciante": "composto 90–120 s; isolador 60–90 s",
-      "intermediario": "composto 2–3 min (piso 90 s); isolador 60–90 s (piso 60 s)",
-      "avancado": "composto 2–3 min (piso 90 s); isolador 60–90 s (piso 60 s)"
+      "iniciante": "composto 90–120 s (padrão 105 s; 2–3 min como opção); isolador 60–90 s (padrão 75 s)",
+      "intermediario": "composto 90–120 s (padrão 105 s; 2–3 min como opção); isolador 60–90 s (padrão 75 s)",
+      "avancado": "composto 90–120 s (padrão 105 s; 2–3 min como opção); isolador 60–90 s (padrão 75 s)"
     },
-    "selo": "consenso",
+    "selo": "moderada",
     "fontes": [
       "singer2024",
       "schoenfeld2016b"
@@ -549,11 +619,11 @@
   },
   {
     "id": "deload.semana-leve",
-    "regra": "Semana leve sugerida, manual e opcional (nunca automática no MVP)",
+    "regra": "Semana leve sugerida, manual e opcional (nunca automática no MVP); serve para fadiga, dor ou estagnação, não é necessária para crescer (uma semana leve não mudou a hipertrofia e reduziu um pouco a força)",
     "valores": {
-      "iniciante": "mesma frequência, ~50% das séries, RIR 3–4, carga mantida ou −10%; sugerir se ≥ 2 exercícios estagnarem, se houver fadiga ou dor persistente, ou após 6–8 semanas sem pausa",
-      "intermediario": "mesma frequência, ~50% das séries, RIR 3–4, carga mantida ou −10%; sugerir se ≥ 2 exercícios estagnarem, se houver fadiga ou dor persistente, ou após 6–8 semanas sem pausa",
-      "avancado": "mesma frequência, ~50% das séries, RIR 3–4, carga mantida ou −10%; sugerir se ≥ 2 exercícios estagnarem, se houver fadiga ou dor persistente, ou após 6–8 semanas sem pausa"
+      "iniciante": "mesma frequência, ~50% das séries, RIR 3–4, carga mantida ou −10%; sugerir só com sinal: ≥ 2 exercícios estagnados, ou fadiga ou dor persistente",
+      "intermediario": "mesma frequência, ~50% das séries, RIR 3–4, carga mantida ou −10%; sugerir só com sinal: ≥ 2 exercícios estagnados, ou fadiga ou dor persistente",
+      "avancado": "mesma frequência, ~50% das séries, RIR 3–4, carga mantida ou −10%; sugerir só com sinal: ≥ 2 exercícios estagnados, ou fadiga ou dor persistente"
     },
     "selo": "consenso",
     "fontes": [
@@ -564,7 +634,7 @@
   },
   {
     "id": "selecao.equivalencia-equipamento",
-    "regra": "Máquina, peso livre, polia e halter, e unilateral ou bilateral, são substitutos equivalentes para hipertrofia se trabalham o mesmo músculo e permitem progredir",
+    "regra": "Máquina, peso livre, polia e halter, e unilateral ou bilateral, são substitutos equivalentes para hipertrofia se trabalham o mesmo músculo e permitem progredir (aplicada pela `selecao.equivalencia`)",
     "valores": {
       "iniciante": "equivalentes",
       "intermediario": "equivalentes",
@@ -593,11 +663,11 @@
   },
   {
     "id": "selecao.comprimento-longo",
-    "regra": "Carga com o músculo alongado ganha bônus pequeno de desempate; nunca é critério eliminatório; EMG e \"estímulo/fadiga\" não pontuam",
+    "regra": "Carga com o músculo alongado: desde o R0b entra pela função da vaga (`selecao.alongado`), não como bônus; nunca é critério eliminatório; EMG e \"estímulo/fadiga\" não pontuam",
     "valores": {
-      "iniciante": "desempate",
-      "intermediario": "desempate",
-      "avancado": "desempate"
+      "iniciante": "pela função da vaga",
+      "intermediario": "pela função da vaga",
+      "avancado": "pela função da vaga"
     },
     "selo": "moderada",
     "fontes": [
@@ -608,11 +678,11 @@
   },
   {
     "id": "selecao.estabilidade",
-    "regra": "Exercícios estáveis e apoiados (máquina, banco, polia)",
+    "regra": "Exercícios estáveis e apoiados (máquina, banco, polia): desempate dentro do mesmo nível da função, só para iniciante",
     "valores": {
-      "iniciante": "critério de pontuação (preferir)",
-      "intermediario": "desempate",
-      "avancado": "desempate"
+      "iniciante": "desempate dentro do nível da função",
+      "intermediario": "não se aplica",
+      "avancado": "não se aplica"
     },
     "selo": "consenso",
     "fontes": [
@@ -621,11 +691,11 @@
   },
   {
     "id": "selecao.variacao",
-    "regra": "Manter os exercícios no mesociclo (4–8 semanas); o 2º exercício do músculo é escolhido por complementaridade (outro comprimento ou região), nunca por sorteio",
+    "regra": "Manter os exercícios no bloco (4–8 semanas); a variação é sistemática, dentro da mesma função (ex.: rosca inclinada ↔ Scott), nunca por sorteio",
     "valores": {
-      "iniciante": "manter no bloco; complementar",
-      "intermediario": "manter no bloco; complementar",
-      "avancado": "manter no bloco; complementar"
+      "iniciante": "manter no bloco; variar dentro da função",
+      "intermediario": "manter no bloco; variar dentro da função",
+      "avancado": "manter no bloco; variar dentro da função"
     },
     "selo": "moderada",
     "fontes": [
@@ -635,7 +705,7 @@
   },
   {
     "id": "selecao.complementos",
-    "regra": "2 exercícios complementares por semana para quadríceps, isquiotibiais, tríceps e peitoral, quando o equipamento permitir",
+    "regra": "2 exercícios complementares por semana para quadríceps, isquiotibiais, tríceps e peitoral, quando o equipamento permitir (generalizada pela `selecao.exercicios-por-musculo`)",
     "valores": {
       "iniciante": "2 por músculo listado",
       "intermediario": "2 por músculo listado",
@@ -714,6 +784,126 @@
     "fontes": [
       "gentil2015",
       "iversen2021"
+    ]
+  },
+  {
+    "id": "selecao.funcao-da-vaga",
+    "regra": "A vaga do modelo de dia pede uma função (padrão de movimento e, quando há evidência, a posição alongada), nunca um equipamento; o equipamento só diz o que é possível; dentro do mesmo nível da função, o desempate é estabilidade (só iniciante), carga possível e variedade entre os dias",
+    "valores": {
+      "iniciante": "por função",
+      "intermediario": "por função",
+      "avancado": "por função"
+    },
+    "selo": "consenso",
+    "fontes": [
+      "haugen2023",
+      "hernandezbelmonte2023",
+      "consenso-projeto"
+    ]
+  },
+  {
+    "id": "selecao.alongado",
+    "regra": "Quando há opção com o músculo mais alongado e evidência para aquele músculo, ela vem primeiro na função",
+    "valores": {
+      "iniciante": "tríceps acima da cabeça; flexora sentada; panturrilha em pé; extensora para o reto femoral",
+      "intermediario": "tríceps acima da cabeça; flexora sentada; panturrilha em pé; extensora para o reto femoral",
+      "avancado": "tríceps acima da cabeça; flexora sentada; panturrilha em pé; extensora para o reto femoral"
+    },
+    "selo": "moderada",
+    "fontes": [
+      "maeo2023",
+      "maeo2021",
+      "kinoshita2023",
+      "kinoshita2026",
+      "wolf2025"
+    ]
+  },
+  {
+    "id": "selecao.exercicios-por-musculo",
+    "regra": "Exercícios diferentes por músculo na semana",
+    "valores": {
+      "iniciante": "grandes (peito, costas, quadríceps, posteriores, glúteos): 2, de funções complementares; pequenos: 1, ou 2 se forem prioridade",
+      "intermediario": "grandes (peito, costas, quadríceps, posteriores, glúteos): 2, de funções complementares; pequenos: 1, ou 2 se forem prioridade",
+      "avancado": "grandes (peito, costas, quadríceps, posteriores, glúteos): 2, de funções complementares; pequenos: 1, ou 2 se forem prioridade"
+    },
+    "selo": "consenso",
+    "fontes": [
+      "kassiano2022",
+      "morin2025"
+    ]
+  },
+  {
+    "id": "selecao.isolador-obrigatorio",
+    "regra": "Quando o equipamento permite, entra o isolador que cobre o que os multiarticulares não cobrem; ele não sai nos cortes de tempo",
+    "valores": {
+      "iniciante": "extensora (reto femoral); tríceps acima da cabeça (cabeça longa); panturrilha em pé (gastrocnêmio)",
+      "intermediario": "extensora (reto femoral); tríceps acima da cabeça (cabeça longa); panturrilha em pé (gastrocnêmio)",
+      "avancado": "extensora (reto femoral); tríceps acima da cabeça (cabeça longa); panturrilha em pé (gastrocnêmio)"
+    },
+    "selo": "moderada",
+    "fontes": [
+      "kinoshita2026",
+      "maeo2023",
+      "kinoshita2023",
+      "kubo2019",
+      "kassiano2026",
+      "zabaletakorta2021"
+    ]
+  },
+  {
+    "id": "selecao.equivalencia",
+    "regra": "Exercícios da mesma função e do mesmo músculo são alternativas entre si (aparelho ocupado, dor, preferência); unilateral = bilateral e máquina = peso livre",
+    "valores": {
+      "iniciante": "alternativas da mesma função, de outro equipamento primeiro; se faltarem, do mesmo músculo",
+      "intermediario": "alternativas da mesma função, de outro equipamento primeiro; se faltarem, do mesmo músculo",
+      "avancado": "alternativas da mesma função, de outro equipamento primeiro; se faltarem, do mesmo músculo"
+    },
+    "selo": "moderada",
+    "fontes": [
+      "haugen2023",
+      "hernandezbelmonte2023",
+      "kassiano2025"
+    ]
+  },
+  {
+    "id": "selecao.manter-no-bloco",
+    "regra": "Mantém os exercícios por 4–8 semanas (o programa só muda quando a pessoa pede); ao trocar de bloco, varia dentro da mesma função",
+    "valores": {
+      "iniciante": "4–8 semanas",
+      "intermediario": "4–8 semanas",
+      "avancado": "4–8 semanas"
+    },
+    "selo": "moderada",
+    "fontes": [
+      "kassiano2022"
+    ]
+  },
+  {
+    "id": "selecao.gluteo",
+    "regra": "Ordem das funções para glúteos",
+    "valores": {
+      "iniciante": "agachar profundo ou afundo → extensão de quadril (hip thrust, glúteo na máquina, ponte, coice) → abdução como complemento",
+      "intermediario": "agachar profundo ou afundo → extensão de quadril (hip thrust, glúteo na máquina, ponte, coice) → abdução como complemento",
+      "avancado": "agachar profundo ou afundo → extensão de quadril (hip thrust, glúteo na máquina, ponte, coice) → abdução como complemento"
+    },
+    "selo": "um estudo",
+    "fontes": [
+      "plotkin2023",
+      "kubo2019",
+      "attarieh2026"
+    ]
+  },
+  {
+    "id": "selecao.crucifixo-complemento",
+    "regra": "Crucifixo ou voador (peito alongado) como complemento do empurrar, não como substituto",
+    "valores": {
+      "iniciante": "complemento",
+      "intermediario": "complemento",
+      "avancado": "complemento"
+    },
+    "selo": "um estudo",
+    "fontes": [
+      "pinto2025"
     ]
   },
   {
@@ -815,15 +1005,17 @@
   },
   {
     "id": "tempo.aquecimento",
-    "regra": "Aquecimento específico antes de cada exercício principal (o geral é opcional)",
+    "regra": "Aquecimento específico antes do 1º multiarticular de cada região (o geral não é exigido); a última série de aproximação fica perto da carga de trabalho",
     "valores": {
-      "iniciante": "1–2 séries leves, ~2–4 min",
-      "intermediario": "1–2 séries leves, ~2–4 min",
-      "avancado": "1–2 séries leves, ~2–4 min"
+      "iniciante": "1–2 séries leves, ~2–4 min; a última perto da carga do treino",
+      "intermediario": "1–2 séries leves, ~2–4 min; a última perto da carga do treino",
+      "avancado": "1–2 séries leves, ~2–4 min; a última perto da carga do treino"
     },
     "selo": "consenso",
     "fontes": [
-      "iversen2021"
+      "iversen2021",
+      "viveiros2024",
+      "ribeiro2014"
     ]
   },
   {
@@ -840,37 +1032,53 @@
     ]
   },
   {
-    "id": "tempo.corte",
-    "regra": "Escada fixa quando a sessão não cabe no tempo",
+    "id": "tempo.exercicios-por-sessao",
+    "regra": "Exercícios por treino conforme os minutos, pelo modelo de tempo do app (~3 séries cada); entre os pontos, proporcional",
     "valores": {
-      "iniciante": "1) menos exercícios, priorizando multiarticulares; 2) só aquecimento específico; 3) supersérie entre músculos que não competem; 4) 1 drop set ou rest-pause na última série de isoladores; 5) por último, menos séries semanais, respeitando `volume.manutencao.piso`",
-      "intermediario": "1) menos exercícios, priorizando multiarticulares; 2) só aquecimento específico; 3) supersérie entre músculos que não competem; 4) 1 drop set ou rest-pause na última série de isoladores; 5) por último, menos séries semanais, respeitando `volume.manutencao.piso`",
-      "avancado": "1) menos exercícios, priorizando multiarticulares; 2) só aquecimento específico; 3) supersérie entre músculos que não competem; 4) 1 drop set ou rest-pause na última série de isoladores; 5) por último, menos séries semanais, respeitando `volume.manutencao.piso`"
+      "iniciante": "30 min: 4; 45: 6; 60: 8; 75: 10; 90: 12",
+      "intermediario": "30 min: 4; 45: 6; 60: 8; 75: 10; 90: 12",
+      "avancado": "30 min: 4; 45: 6; 60: 8; 75: 10; 90: 12"
+    },
+    "selo": "consenso",
+    "fontes": [
+      "consenso-projeto"
+    ]
+  },
+  {
+    "id": "tempo.corte",
+    "regra": "Escada fixa quando a sessão não cabe no tempo: primeiro as técnicas que mantêm o volume; um músculo prioritário nunca perde séries antes de um não prioritário",
+    "valores": {
+      "iniciante": "1) só aquecimento específico; 2) superséries entre músculos que não competem (isoladores, depois multiarticulares de músculos diferentes); 3) drop set na última série de isoladores com ≥ 3 séries (nunca nas semanas com RIR 3–4); 4) menos exercícios, mantendo multiarticulares e isoladores obrigatórios; 5) por último, menos séries: não prioritários até o piso de 4, depois prioritários",
+      "intermediario": "1) só aquecimento específico; 2) superséries entre músculos que não competem (isoladores, depois multiarticulares de músculos diferentes); 3) drop set na última série de isoladores com ≥ 3 séries (nunca nas semanas com RIR 3–4); 4) menos exercícios, mantendo multiarticulares e isoladores obrigatórios; 5) por último, menos séries: não prioritários até o piso de 4, depois prioritários",
+      "avancado": "1) só aquecimento específico; 2) superséries entre músculos que não competem (isoladores, depois multiarticulares de músculos diferentes); 3) drop set na última série de isoladores com ≥ 3 séries (nunca nas semanas com RIR 3–4); 4) menos exercícios, mantendo multiarticulares e isoladores obrigatórios; 5) por último, menos séries: não prioritários até o piso de 4, depois prioritários"
     },
     "selo": "consenso",
     "fontes": [
       "iversen2021",
       "zhang2025",
-      "sodal2023"
+      "sodal2023",
+      "bradshaw2026",
+      "chien2026"
     ]
   },
   {
     "id": "tempo.superserie",
-    "regra": "Supersérie: pares agonista-antagonista ou músculos que não competem; ~15 s entre A e B e descanso só entre rodadas",
+    "regra": "Supersérie: pares agonista-antagonista ou músculos que não competem; ~15 s entre A e B e descanso só entre rodadas; aumenta o esforço percebido e o dano muscular",
     "valores": {
-      "iniciante": "nunca 2 multiarticulares pesados de pernas nem o mesmo músculo",
+      "iniciante": "só a partir da 3ª semana; nunca 2 multiarticulares pesados de pernas nem o mesmo músculo",
       "intermediario": "nunca 2 multiarticulares pesados de pernas nem o mesmo músculo",
       "avancado": "nunca 2 multiarticulares pesados de pernas nem o mesmo músculo"
     },
     "selo": "moderada",
     "fontes": [
       "zhang2025",
-      "robbins2010"
+      "robbins2010",
+      "iversen2024"
     ]
   },
   {
     "id": "tempo.drop-set",
-    "regra": "Drop set: 1 série + 2 quedas com ~10–15 s ≈ 2–3 séries; só onde a carga pode ser reduzida (o gerador checa o inventário), em máquina, polia ou halter",
+    "regra": "Drop set: 1 série + 2 quedas com ~10–15 s ≈ 2–3 séries (o gerador conta 2, o mínimo da faixa); prescrito pela escada `tempo.corte`, só onde a carga pode ser reduzida (máquina, polia ou halter)",
     "valores": {
       "iniciante": "≤ 1 por exercício; nunca em multiarticular livre pesado",
       "intermediario": "≤ 1 por exercício; nunca em multiarticular livre pesado",
@@ -880,12 +1088,13 @@
     "fontes": [
       "sodal2023",
       "coleman2022",
-      "dropset2026"
+      "dropset2026",
+      "bradshaw2026"
     ]
   },
   {
     "id": "tempo.outras-tecnicas",
-    "regra": "Rest-pause permitido na última série de exercício estável; cluster sets e pré-exaustão não entram no modo curto (não economizam tempo ou não trazem ganho)",
+    "regra": "Rest-pause (ou myo-reps) permitido na última série de exercício estável; cluster sets e pré-exaustão não entram no modo curto (não economizam tempo ou não trazem ganho)",
     "valores": {
       "iniciante": "rest-pause sim; cluster e pré-exaustão não",
       "intermediario": "rest-pause sim; cluster e pré-exaustão não",
@@ -895,7 +1104,9 @@
     "fontes": [
       "prestes2019",
       "davies2021",
-      "trindade2019"
+      "trindade2019",
+      "tsartsapakis2026",
+      "bradshaw2026"
     ]
   },
   {
