@@ -2,7 +2,7 @@ import { describe, expect, it } from 'vitest';
 import { z } from 'zod';
 import { gerarPrograma } from '../../src/domain/gerador';
 import { exportarJson, importarJson, nomeDoArquivo } from '../../src/storage/arquivo';
-import { estadoSchema, estadoVazio, perfilDe, primeiroPassoPendente, type Estado } from '../../src/storage/esquema';
+import { estadoSchema, estadoVazio, perfilDe, primeiroPassoPendente, VERSAO_ESTADO, type Estado } from '../../src/storage/esquema';
 import { migrar, type Migracao } from '../../src/storage/migracao';
 import { PERSONAS, type Persona } from '../personas';
 
@@ -14,11 +14,16 @@ function estadoDe(p: Persona): Estado {
   const r = gerarPrograma(perfil, p.inventario);
   if (r.status !== 'ok') throw new Error('persona bloqueada');
   return {
-    versao: 2,
+    versao: VERSAO_ESTADO,
     avisoAceitoEm: DATA,
     triagem: perfil.triagem,
     nivel: { respostas: { tempoContinuo: '6-24m', semanasParado: perfil.semanasParado, tecnica: 'sim' }, escolhido: perfil.nivel },
-    rotina: { diasSemana: perfil.diasSemana, minutosSessao: perfil.minutosSessao, prioridades: perfil.prioridades },
+    rotina: {
+      diasSemana: perfil.diasSemana,
+      ...(perfil.divisao ? { divisao: perfil.divisao } : {}),
+      minutosSessao: perfil.minutosSessao,
+      prioridades: perfil.prioridades,
+    },
     inventario: p.inventario,
     restricoes: { evitarExercicios: perfil.evitarExercicios, evitarEquipamentos: perfil.evitarEquipamentos, dores: perfil.dores },
     programa: { programa: r.programa, geradoEm: DATA },
@@ -67,8 +72,8 @@ describe('migração', () => {
     expect(migrar(null)).toMatchObject({ ok: false });
     expect(migrar([])).toMatchObject({ ok: false });
     expect(migrar({})).toMatchObject({ ok: false, erro: expect.stringContaining('versão') });
-    expect(migrar({ versao: 3 })).toMatchObject({ ok: false, erro: expect.stringContaining('mais nova') });
-    expect(migrar({ versao: 2, historico: [], rotina: { diasSemana: 7, minutosSessao: 50, prioridades: [] } })).toMatchObject({
+    expect(migrar({ versao: VERSAO_ESTADO + 1 })).toMatchObject({ ok: false, erro: expect.stringContaining('mais nova') });
+    expect(migrar({ versao: VERSAO_ESTADO, historico: [], rotina: { diasSemana: 7, minutosSessao: 50, prioridades: [] } })).toMatchObject({
       ok: false,
       erro: expect.stringContaining('rotina.diasSemana'),
     });
@@ -93,7 +98,34 @@ describe('migração', () => {
     const { historico, ...v1 } = estadoDe(PERSONAS.ana);
     void historico;
     const r = migrar(JSON.parse(JSON.stringify({ ...v1, versao: 1 })));
-    expect(r).toEqual({ ok: true, estado: { ...v1, versao: 2, historico: [] } });
+    expect(r).toEqual({ ok: true, estado: { ...v1, versao: VERSAO_ESTADO, historico: [] } });
+  });
+
+  it('versão 2 (antes do R0b) vira a 3 sem inventar divisão: a rotina e o programa salvo ficam iguais', () => {
+    const e = estadoDe(PERSONAS.bruno);
+    // Programa salvo antes do R0b: sem divisaoId nem funcao nas vagas.
+    const { divisaoId, ...programaAntigo } = e.programa!.programa;
+    void divisaoId;
+    const antigo = {
+      ...e,
+      versao: 2,
+      programa: { ...e.programa!, programa: { ...programaAntigo, dias: programaAntigo.dias.map((d) => ({ ...d, exercicios: d.exercicios.map(({ funcao, ...x }) => (void funcao, x)) })) } },
+    };
+    const r = migrar(JSON.parse(JSON.stringify(antigo)));
+    expect(r).toEqual({ ok: true, estado: { ...antigo, versao: 3 } });
+    if (!r.ok) return;
+    expect(r.estado.rotina!.divisao).toBeUndefined();
+    expect(perfilDe(r.estado)!.divisao).toBeUndefined();
+  });
+
+  it('versão 3 guarda a divisão escolhida e aceita 6 dias; ela chega ao gerador pelo perfil', () => {
+    const e = estadoDe(PERSONAS.carla);
+    const comDivisao: Estado = { ...e, rotina: { ...e.rotina!, diasSemana: 6, divisao: 'si-3x' } };
+    expect(migrar(JSON.parse(JSON.stringify(comDivisao)))).toEqual({ ok: true, estado: comDivisao });
+    expect(perfilDe(comDivisao)).toMatchObject({ diasSemana: 6, divisao: 'si-3x' });
+    const r = gerarPrograma(perfilDe(comDivisao)!, comDivisao.inventario!);
+    expect(r.status === 'ok' && r.programa.divisaoId).toBe('si-3x');
+    expect(migrar({ ...JSON.parse(JSON.stringify(e)), rotina: { ...e.rotina, divisao: 'abcdef' } })).toMatchObject({ ok: false });
   });
 
   it('na versão atual, devolve o estado validado', () => {

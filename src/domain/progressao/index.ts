@@ -9,7 +9,15 @@ export type Carga =
   | { tipo: 'placa'; placa: number }
   | { tipo: 'degrau'; degrau: number }; // peso do corpo ou elástico: degraus da escada de dificuldade
 
-export type SerieRegistrada = { carga: Carga; reps: number; rir: number; amplitudeCompleta?: boolean; dor?: number };
+export type SerieRegistrada = {
+  carga: Carga;
+  reps: number;
+  rir: number;
+  amplitudeCompleta?: boolean;
+  dor?: number;
+  /** Quedas do drop set (tempo.drop-set): registradas, mas fora da progressão, que usa só a série principal. */
+  quedas?: { carga: Carga; reps: number }[];
+};
 export type SessaoExercicio = { series: SerieRegistrada[] };
 export type Alvo = { reps: [number, number]; rir: [number, number] };
 
@@ -158,12 +166,15 @@ export function sugerirProgressao(historico: SessaoExercicio[], alvo: Alvo, o: O
   return { acao: 'manter', motivo: 'Mantenha a carga e busque +1 repetição.', regraId: r('progressao.manter') };
 }
 
-/** Semana leve sugerida, manual e opcional (deload.semana-leve). Nunca é aplicada automaticamente. */
-export function sugerirSemanaLeve(estado: { exerciciosEstagnados: number; semanasSemPausa: number; fadigaOuDorPersistente: boolean }) {
+/**
+ * Semana leve sugerida, manual e opcional (deload.semana-leve). Nunca é aplicada automaticamente.
+ * Só com sinal (pesquisa-v2/02, ajuste 2): o tempo sem pausa sozinho não é motivo, porque uma semana leve
+ * não mudou a hipertrofia e reduziu um pouco a força (coleman2024).
+ */
+export function sugerirSemanaLeve(estado: { exerciciosEstagnados: number; fadigaOuDorPersistente: boolean }) {
   const motivos = [
     estado.exerciciosEstagnados >= 2 && `${estado.exerciciosEstagnados} exercícios estagnados`,
     estado.fadigaOuDorPersistente && 'fadiga ou dor persistente',
-    estado.semanasSemPausa >= 6 && `${estado.semanasSemPausa} semanas sem pausa`,
   ].filter((m): m is string => !!m);
   return {
     sugerir: motivos.length > 0,

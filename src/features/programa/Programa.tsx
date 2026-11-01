@@ -73,7 +73,13 @@ export function Programa() {
     atualizar((s) =>
       regerar({
         ...s,
-        rotina: { diasSemana: o.perfil.diasSemana, minutosSessao: o.perfil.minutosSessao, prioridades: o.perfil.prioridades },
+        rotina: {
+          diasSemana: o.perfil.diasSemana,
+          // A divisão escolhida só vale para o mesmo número de dias (divisao.recomendacao).
+          ...(o.perfil.divisao ? { divisao: o.perfil.divisao } : {}),
+          minutosSessao: o.perfil.minutosSessao,
+          prioridades: o.perfil.prioridades,
+        },
         ajustes: undefined,
       }),
     );

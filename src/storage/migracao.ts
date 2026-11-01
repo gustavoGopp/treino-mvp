@@ -7,6 +7,9 @@ export type Migracao = (anterior: Record<string, unknown>) => Record<string, unk
 export const MIGRACOES: Record<number, Migracao> = {
   // 1 → 2 (M5): histórico de sessões de treino.
   1: (anterior) => ({ ...anterior, historico: [] }),
+  // 2 → 3 (R0b): a rotina passa a aceitar 6 dias e a divisão escolhida. Nada é inventado: sem escolha,
+  // vale a recomendada (para 2, 3 e 4 dias é a mesma estrutura de antes). O programa salvo não muda.
+  2: (anterior) => ({ ...anterior }),
 };
 
 export type ResultadoMigracao = { ok: true; estado: Estado } | { ok: false; erro: string };

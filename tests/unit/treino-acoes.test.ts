@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import { gerarPrograma } from '../../src/domain/gerador';
 import { descartarSessao, desfazerSerie, iniciarSessao, interromperExercicio, registrarSerie, terminarSessao, trocarExercicio } from '../../src/features/treino/acoes';
-import { estadoSchema, type Estado } from '../../src/storage/esquema';
+import { estadoSchema, VERSAO_ESTADO, type Estado } from '../../src/storage/esquema';
 import { PERSONAS } from '../personas';
 
 const T0 = '2026-11-02T10:00:00.000Z';
@@ -12,7 +12,7 @@ function estadoAna(): Estado {
   const p = PERSONAS.ana;
   const r = gerarPrograma(p.perfil, p.inventario);
   if (r.status !== 'ok') throw new Error('bloqueado');
-  return { versao: 2, inventario: p.inventario, programa: { programa: r.programa, geradoEm: T0 }, historico: [] };
+  return { versao: VERSAO_ESTADO, inventario: p.inventario, programa: { programa: r.programa, geradoEm: T0 }, historico: [] };
 }
 
 describe('ações do treino', () => {

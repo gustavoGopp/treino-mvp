@@ -1,6 +1,7 @@
 import { z } from 'zod';
 import { ARTICULACOES, BIBLIOTECA, MUSCULOS, PADROES } from '../domain/biblioteca';
 import { GRUPOS, type Grupo, type Perfil, type Programa } from '../domain/gerador';
+import { DIVISAO_IDS } from '../domain/gerador/divisoes';
 import { CONFIANCA_TECNICA, TEMPOS_DE_TREINO } from '../domain/nivel';
 import { NIVEIS } from '../domain/regras';
 import { ITEM_IDS, inventarioSchema, type ItemId } from '../domain/taxonomia/equipamentos';
@@ -9,7 +10,7 @@ import { PERGUNTAS, type PerguntaId } from '../domain/triagem';
 // Estado guardado no aparelho (IndexedDB) e no arquivo de exportação. Versionado: toda mudança de formato
 // ganha uma versão nova e uma migração em src/storage/migracao.ts, com teste.
 
-export const VERSAO_ESTADO = 2;
+export const VERSAO_ESTADO = 3;
 
 const enumDe = <T extends string>(xs: readonly T[]) => z.enum(xs as unknown as [T, ...T[]]);
 const ids = <T extends { id: string }>(xs: readonly T[]) => xs.map((x) => x.id) as T['id'][];
@@ -41,7 +42,9 @@ export const nivelSchema = z.object({
 });
 
 export const rotinaSchema = z.object({
-  diasSemana: z.union([z.literal(2), z.literal(3), z.literal(4), z.literal(5)]),
+  diasSemana: z.union([z.literal(2), z.literal(3), z.literal(4), z.literal(5), z.literal(6)]),
+  /** Divisão escolhida (divisao.recomendacao). Ausente = a pessoa não escolheu, e vale a recomendada. */
+  divisao: enumDe(DIVISAO_IDS).optional(),
   minutosSessao: z.number().int().min(20).max(150),
   prioridades: z.array(grupo),
 });
@@ -58,6 +61,7 @@ const exercicioPrescrito = z.object({
   nome: z.string(),
   padrao: enumDe(PADROES),
   tipo: z.enum(['composto', 'isolador']),
+  funcao: z.string().optional(),
   series: z.number().int().positive(),
   reps: faixa,
   rir: faixa,
@@ -65,6 +69,7 @@ const exercicioPrescrito = z.object({
   unilateral: z.boolean(),
   animacaoId: z.string().nullable(),
   supersetCom: z.string().optional(),
+  dropSet: z.boolean().optional(),
   alternativas: z.array(exercicioId),
   porque: z.array(porque),
 });
@@ -74,6 +79,7 @@ export const programaSchema = z.object({
   versao: z.literal(1),
   entradasHash: z.string(),
   divisao: z.string(),
+  divisaoId: enumDe(DIVISAO_IDS).optional(),
   dias: z.array(
     z.object({ id: z.string(), nome: z.string(), exercicios: z.array(exercicioPrescrito), minutosEstimados: z.number() }),
   ),
@@ -98,6 +104,8 @@ const serie = z.object({
   rir: z.number().int().min(0).max(10),
   amplitudeCompleta: z.boolean().optional(),
   dor: z.number().int().min(0).max(10).optional(),
+  /** Quedas de carga do drop set (tempo.drop-set), registradas na última série; a progressão não as usa. */
+  quedas: z.array(z.object({ carga, reps: z.number().int().nonnegative() })).max(2).optional(),
 });
 export const sessaoSchema = z.object({
   id: z.string(),
@@ -144,6 +152,7 @@ export function perfilDe(e: Estado): Perfil | null {
     nivel: e.nivel.escolhido,
     semanasParado: e.nivel.respostas.semanasParado,
     diasSemana: e.rotina.diasSemana,
+    ...(e.rotina.divisao ? { divisao: e.rotina.divisao } : {}),
     minutosSessao: e.rotina.minutosSessao,
     prioridades: e.rotina.prioridades,
     evitarExercicios: e.restricoes.evitarExercicios,

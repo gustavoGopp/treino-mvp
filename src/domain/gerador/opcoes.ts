@@ -68,8 +68,8 @@ export function opcoesDeAjuste(perfil: Perfil, inventario: Inventario): Opcao[] 
   };
 
   const candidatas = [
-    perfil.diasSemana < 5 &&
-      opcao('mais-um-dia', { ...perfil, diasSemana: (perfil.diasSemana + 1) as Perfil['diasSemana'] }, `${perfil.diasSemana + 1} treinos de ${perfil.minutosSessao} min`),
+    perfil.diasSemana < 6 &&
+      opcao('mais-um-dia', maisUmDia(perfil), `${perfil.diasSemana + 1} treinos de ${perfil.minutosSessao} min`),
     opcao('mais-tempo', { ...perfil, minutosSessao: perfil.minutosSessao + 15 }, `${perfil.diasSemana} treinos de ${perfil.minutosSessao + 15} min`),
     ...menosPrioridade(perfil, base.programa).map((g) =>
       opcao('menos-prioridade', { ...perfil, prioridades: perfil.prioridades.filter((x) => x !== g) }, `Sem priorizar ${NOME_GRUPO[g]}`),
@@ -87,6 +87,13 @@ export function opcoesDeAjuste(perfil: Perfil, inventario: Inventario): Opcao[] 
     void problemas;
     return semContagem;
   });
+}
+
+/** Um dia a mais; a divisão escolhida é de outro número de dias, então volta a valer a recomendada. */
+function maisUmDia(perfil: Perfil): Perfil {
+  const { divisao, ...resto } = perfil;
+  void divisao;
+  return { ...resto, diasSemana: (perfil.diasSemana + 1) as Perfil['diasSemana'] };
 }
 
 export const NOME_GRUPO: Record<Grupo, string> = {
