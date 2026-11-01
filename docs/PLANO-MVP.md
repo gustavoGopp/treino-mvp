@@ -31,13 +31,14 @@ Você já tem um sistema pessoal que funciona: fotos da academia → inventário
 
 **Critérios mensuráveis**
 1. **Cadastro rápido.** Para quem não tem condição de saúde nem dor, o caminho da abertura até o programa leva até 1 min e até 15 toques, sem contar a tela de equipamento. Com o botão "academia completa", o equipamento leva até 15 s. Medição: um teste automático conta os toques, e o Gustavo cronometra uma vez no celular.
-2. **Programa de referência.** No cenário "minha academia", o gerador repete pelo menos 80% dos exercícios principais do `programa-fase-1.md`, com diferença de até 2 séries por grupo.
+2. **Programa com base, não com cópia.** O programa de cada persona, inclusive o do Gustavo, só usa regras com selo e fonte da pesquisa (`docs/pesquisa/` e `docs/pesquisa-v2/`), e uma revisão independente confere a montagem contra a pesquisa v2. O `programa-fase-1.md` deixa de ser meta: vira só um caso de comparação. *(Trocado em 01/11/2026 a pedido do Gustavo; antes: repetir ≥ 80% do programa de referência.)*
 3. **Foto do equipamento.** No gabarito, recall ≥ 85% e precisão ≥ 90% dos itens com confiança alta, com o eval rodado pelo Gustavo.
 4. **Aproveitar o equipamento.**
    - Numa academia completa, os programas usam 45 ou mais exercícios distintos (eram 32 de 60).
    - Todo equipamento marcado serve a pelo menos um exercício.
    - Todo exercício tem 2 ou mais alternativas de outro equipamento.
    - A meta de cada músculo é atingida, ou aparece um aviso com o motivo verdadeiro.
+   - A divisão do treino é escolhida entre as opções equivalentes da pesquisa v2 (`pesquisa-v2/01-divisao-e-frequencia.md`), e não fixada pelo número de dias.
 5. **Uso real.** O Gustavo treina 4 semanas só com o app, com 10 sessões ou mais registradas, e aponta os 5 maiores incômodos.
 6. **Acompanhamento.**
    - Depois de uma pausa de 3 semanas ou mais, o próximo treino aplica a volta gradual.
@@ -186,7 +187,8 @@ As correções da remada baixa e da barra fixa entram depois do M0-R, como mudan
 
 | Marco | Entregáveis | Aceite | Esforço |
 |---|---|---|---|
-| **R0 Aproveitar o equipamento** | **R0a:** pesquisa curta dos exercícios novos e parada para revisão da lista. **R0b:** o gerador se adapta ao equipamento (vagas extras de extensora, glúteo e posteriores; máquina com o mesmo peso que o peso livre; preferências de função, não de equipamento; mais alternativas). **R0c:** catálogo ampliado (~12 equipamentos e ~25 exercícios, com cartão de texto e fonte; ids novos na visão). Detalhes em `planejamento/2026-11-catalogo-equipamentos.md`. | Critério 4; o critério 2 continua passando; os snapshots das personas mudam só com revisão | 1–1,5 semana |
+| **P Pesquisa v2: a base, sem premissas** | Refazer o estudo de como montar o programa, para todos e para o Gustavo, sem partir do programa de referência: divisão e frequência; panorama das variáveis; universo de equipamentos; escolha dos exercícios por músculo; montagem da sessão; iniciantes, pausas e populações; progressão e acompanhamento; e por fim o programa do Gustavo. Plano e resultados em `docs/pesquisa-v2/`. | Cada tema aprovado pelo Gustavo, com as mudanças em `regras.md` listadas; toda fonte com o resumo lido no PubMed (ou marcada como não verificada) | 1–2 semanas |
+| **R0 Aproveitar o equipamento** | **R0a:** pesquisa curta dos exercícios novos e parada para revisão da lista. **R0b:** o gerador se adapta ao equipamento (vagas extras de extensora, glúteo e posteriores; máquina com o mesmo peso que o peso livre; preferências de função, não de equipamento; mais alternativas). **R0c:** catálogo ampliado (~12 equipamentos e ~25 exercícios, com cartão de texto e fonte; ids novos na visão). Detalhes em `planejamento/2026-11-catalogo-equipamentos.md`; o conteúdo final sai dos temas 3 e 7 da pesquisa v2. | Critério 4; os snapshots das personas mudam só com revisão | 1–1,5 semana |
 | **R1 Corrigir o que engana e cadastro em 1 min** | Triagem com "Nenhuma se aplica a mim"; articulação passa a usar a nota de dor de hoje; uma pergunta de dor só; minutos por toque; botão "academia completa"; o guia mostra a prescrição da pessoa; textos corrigidos; aviso de meta com o motivo verdadeiro | Critério 1; nenhum dia só com abdominal; o guia aberto pelo treino mostra a prescrição da pessoa | ~3 dias |
 | **R2 Acompanhamento personalizado** | Pausas detectadas sozinhas (`readaptacao.gatilho` aplicado durante o uso); "a sua semana" (treinos e séries por músculo contra a meta); evolução por exercício; semana leve sugerida; calibração da carga na 1ª série; regras novas em `regras.md` | Critério 6; a calibração aparece depois da 1ª série | ~1 semana |
 | **R3 Uso real** | O Gustavo treina 4 semanas com o app; eval da foto com as fotos reais; lista dos incômodos; correções pequenas | Critérios 3 e 5 registrados no devlog | 4 semanas |

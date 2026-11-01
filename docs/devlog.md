@@ -293,3 +293,12 @@ Uma sessão de estudo, sem código novo, revisou o projeto inteiro. Ela usou o a
 - **Primeiro passo:** aproveitar melhor o equipamento disponível (marco R0), antes das correções (R1) e do acompanhamento (R2).
 
 O `PLANO-MVP.md` recebeu os critérios (seção a) e os marcos (seção i) novos. Os antigos ficam no mesmo arquivo, para histórico.
+
+**Atualização (01/11/2026, mais tarde).** O Gustavo pediu um passo atrás antes de qualquer código: refazer a base do programa com um estudo aprofundado, para todos e para ele, sem tomar como certo o programa pessoal de referência.
+- **Novo marco P (pesquisa v2),** em `docs/pesquisa-v2/`.
+- **O critério "repetir 80% do programa de referência" saiu.** Agora o critério é "só regras com selo e fonte, com revisão da montagem".
+- **Novidade de método:** a rede desta sessão abre o PubMed, e os estudos passam a ter o resumo oficial lido.
+- **Primeiros resultados:**
+  - divisão dividida ou corpo todo dá o mesmo crescimento com o mesmo volume (meta-análises de 2019, 2024 e 2026), então a divisão vira uma escolha da pessoa entre opções equivalentes;
+  - as regras numéricas do app foram confirmadas pela evidência mais recente (ACSM 2026, Pelland 2026), com 4 ajustes propostos;
+  - foi montado um universo de cerca de 45 equipamentos.
