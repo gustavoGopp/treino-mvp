@@ -1,7 +1,7 @@
 import { useMemo, useState } from 'react';
 import { Link, Navigate, useNavigate } from 'react-router-dom';
 import { BIBLIOTECA, type Musculo } from '../../domain/biblioteca';
-import { NOME_MUSCULO, type ExercicioPrescrito, type Programa as TipoPrograma } from '../../domain/gerador';
+import { ALTERNATIVAS_A_MOSTRA, NOME_MUSCULO, type ExercicioPrescrito, type Programa as TipoPrograma } from '../../domain/gerador';
 import { opcoesDeAjuste, type Opcao } from '../../domain/gerador/opcoes';
 import { NOME_NIVEL } from '../../domain/nivel';
 import { avaliarTriagem } from '../../domain/triagem';
@@ -12,6 +12,7 @@ import { iniciarSessao } from '../treino/acoes';
 import { agoraIso, gerarDoEstado, mesmoConteudo, useApp } from '../app/estado';
 import { Selo, Titulo, Topo } from '../app/ui';
 import { Miniatura } from './Miniatura';
+import { CartaoTexto, temCartao } from './CartaoTexto';
 
 // Tela do treino: vai direto ao que importa (o treino de cada dia, com a imagem de cada exercício e
 // séries × repetições em destaque). Ajustes, avisos e o porquê ficam um toque abaixo. Nada muda sem a escolha da pessoa.
@@ -264,28 +265,14 @@ function CartaoExercicio({ x, n, dia }: { x: ExercicioPrescrito; n: number; dia:
         <summary>Detalhes</summary>
         <div className="mais-corpo">
           {par && <p>Bi-set com {par.nome.toLowerCase()}: alterne os dois e descanse depois da dupla.</p>}
-          {!x.animacaoId && ex && (
+          {!x.animacaoId && ex && !temCartao(x.exId) && (
             <p>
               Animação em breve. Trabalha {musculos(ex.musculos.primarios)}
               {ex.musculos.secundarios.length ? `; também ${musculos(ex.musculos.secundarios)}` : ''}.
             </p>
           )}
-          {x.alternativas.length > 0 && (
-            <p>
-              Se o equipamento estiver ocupado:{' '}
-              {x.alternativas.map((id, i) => {
-                const alt = POR_ID[id];
-                if (!alt) return null;
-                return (
-                  <span key={id}>
-                    {i > 0 && ' ou '}
-                    {alt.animacaoId ? <Link to={`/guia/${alt.animacaoId}`}>{alt.nome.toLowerCase()}</Link> : alt.nome.toLowerCase()}
-                  </span>
-                );
-              })}
-              .
-            </p>
-          )}
+          {!x.animacaoId && <CartaoTexto exId={x.exId} />}
+          {x.alternativas.length > 0 && <Alternativas ids={x.alternativas} />}
           <ul className="lista">
             {x.porque.map((q) => (
               <li key={q.regraId}>
@@ -365,5 +352,33 @@ function Sobre({ programa, reabrirAjustes }: { programa: TipoPrograma; reabrirAj
         )}
       </div>
     </details>
+  );
+}
+
+/** Alternativas da mesma função: as 3 melhores à mostra e o resto em "ver mais" (decisão de 01/11/2026). */
+function Alternativas({ ids }: { ids: string[] }) {
+  const nome = (id: string) => {
+    const alt = POR_ID[id];
+    if (!alt) return null;
+    return alt.animacaoId ? <Link to={`/guia/${alt.animacaoId}`}>{alt.nome.toLowerCase()}</Link> : alt.nome.toLowerCase();
+  };
+  const lista = (xs: string[]) =>
+    xs.map((id, i) => (
+      <span key={id}>
+        {i > 0 && (i === xs.length - 1 ? ' ou ' : ', ')}
+        {nome(id)}
+      </span>
+    ));
+  const [mostra, resto] = [ids.slice(0, ALTERNATIVAS_A_MOSTRA), ids.slice(ALTERNATIVAS_A_MOSTRA)];
+  return (
+    <div className="alternativas">
+      <p>Se o equipamento estiver ocupado: {lista(mostra)}.</p>
+      {resto.length > 0 && (
+        <details className="ver-mais">
+          <summary>Ver mais {resto.length === 1 ? '1 opção' : `${resto.length} opções`}</summary>
+          <p>{lista(resto)}.</p>
+        </details>
+      )}
+    </div>
   );
 }

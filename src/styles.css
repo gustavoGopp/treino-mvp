@@ -308,6 +308,8 @@ details.campo .opcoes{margin-top:8px}
 .cartao-eq:has(input:checked){border-color:var(--accent);background:var(--accent-soft);font-weight:600}
 .cartao-eq:has(input:checked) .icone-eq{color:var(--link)}
 .cartao-eq:has(input:focus-visible){outline:3px solid var(--accent);outline-offset:2px}
+/* Equipamento ainda sem desenho (R0c): o cartão mostra só o nome, centralizado. */
+.cartao-eq:not(:has(svg)){justify-content:center;padding-top:14px}
 .detalhes-eq{margin-top:10px;padding:12px;border:1.5px solid var(--accent);border-radius:12px;background:var(--surface);display:flex;flex-direction:column;gap:14px}
 .detalhes-eq h2{margin:0;font-family:var(--font-d);font-size:18px}
 .chips-valor{display:flex;flex-wrap:wrap;gap:6px}
@@ -357,6 +359,13 @@ a.cartao-ex-corpo:focus-visible{outline:3px solid var(--accent);outline-offset:-
 .mais summary{cursor:pointer;min-height:44px;display:flex;align-items:center;padding:0 12px;font-size:14px;color:var(--link);font-weight:600}
 .mais-corpo{padding:0 12px 12px;display:flex;flex-direction:column;gap:8px;font-size:14px}
 .mais-corpo p{margin:0}
+/* Cartão de texto do exercício sem animação aprovada (R0c). */
+.cartao-texto{border:1.5px solid var(--line);border-radius:12px;background:var(--surface)}
+.cartao-texto>summary{min-height:44px;display:flex;align-items:center;padding:0 12px;cursor:pointer;font-weight:600}
+.cartao-texto-corpo{padding:0 12px 12px;font-size:14px;display:flex;flex-direction:column;gap:6px}
+.cartao-texto-corpo h4{margin:6px 0 0;font-size:14px}
+.cartao-texto-corpo p,.cartao-texto-corpo ul,.cartao-texto-corpo ol{margin:0}
+.ver-mais>summary{min-height:44px;display:flex;align-items:center;cursor:pointer;color:var(--link)}
 .sobre h3{margin:6px 0 0;font-family:var(--font-d);font-size:18px}
 
 /* Treino em andamento (M5): um exercício por vez, botões grandes, descanso fixo embaixo (alcance do polegar) */
