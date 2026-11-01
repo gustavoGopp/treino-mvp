@@ -44,8 +44,8 @@ export const RIR = {
 };
 
 export const DESCANSO = {
-  // descanso.por-tipo (segundos: padrão)
-  composto: { iniciante: 105, intermediario: 150, avancado: 150 } as PorNivel<number>,
+  // descanso.por-tipo (segundos: padrão). 90–120 s nos multiarticulares em todos os níveis (pesquisa-v2/02, ajuste 1).
+  composto: { iniciante: 105, intermediario: 105, avancado: 105 } as PorNivel<number>,
   isolador: { iniciante: 75, intermediario: 75, avancado: 75 } as PorNivel<number>,
 };
 
@@ -57,7 +57,22 @@ export const TEMPO = {
   aquecimentoCurto: 90, // séries de aproximação nos multiarticulares seguintes
   colchao: 0.1, // tempo.colchao
   superserieEntre: 15, // tempo.superserie
+  dropSet: 35, // tempo.drop-set: 2 quedas curtas com ~10–15 s entre elas, somadas à última série
 };
+
+/** tempo.exercicios-por-sessao: exercícios por treino conforme os minutos (pesquisa-v2/05, seção 1). */
+export const EXERCICIOS_POR_MINUTOS: [number, number][] = [
+  [30, 4],
+  [45, 6],
+  [60, 8],
+  [75, 10],
+  [90, 12],
+];
+export function exerciciosPorSessao(minutos: number): number {
+  // Proporcional entre os pontos da tabela (2 exercícios a cada 15 min), com piso de 3 e teto de 14.
+  const [m0, n0] = EXERCICIOS_POR_MINUTOS[0]!;
+  return Math.max(3, Math.min(14, Math.floor(n0 + ((minutos - m0) * 2) / 15 + 1e-9)));
+}
 
 export const READAPTACAO = {
   // readaptacao.gatilho

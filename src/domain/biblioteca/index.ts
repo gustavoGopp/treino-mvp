@@ -63,8 +63,6 @@ export const exercicioSchema = z
     unilateral: z.boolean(),
     articulacoes: z.array(z.enum(ARTICULACOES)),
     tags: z.array(z.string()),
-    /** Preferência dentro do padrão (menor = preferido), um critério fixo de desempate (selecao.*). */
-    ordem: z.number(),
     carga: z.enum(['halter', 'polia', 'peso-corpo', 'elastico', 'barra', 'maquina']),
     animacaoId: z.string().nullable(),
   })

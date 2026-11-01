@@ -33,7 +33,6 @@
    "inclinado",
    "apoiado"
   ],
-  "ordem": 1,
   "carga": "halter",
   "animacaoId": "supino-inclinado"
  },
@@ -72,7 +71,6 @@
   "tags": [
    "plano"
   ],
-  "ordem": 1.5,
   "carga": "barra",
   "animacaoId": null
  },
@@ -110,7 +108,6 @@
    "plano",
    "apoiado"
   ],
-  "ordem": 2,
   "carga": "halter",
   "animacaoId": "supino-reto"
  },
@@ -148,7 +145,6 @@
    "inclinado",
    "polia"
   ],
-  "ordem": 3,
   "carga": "polia",
   "animacaoId": null
  },
@@ -186,7 +182,6 @@
    "plano",
    "polia"
   ],
-  "ordem": 4,
   "carga": "polia",
   "animacaoId": null
  },
@@ -223,7 +218,6 @@
    "plano",
    "peso-corpo"
   ],
-  "ordem": 6,
   "carga": "peso-corpo",
   "animacaoId": "flexao"
  },
@@ -260,7 +254,6 @@
    "plano",
    "elastico"
   ],
-  "ordem": 7,
   "carga": "elastico",
   "animacaoId": null
  },
@@ -295,7 +288,6 @@
    "polia",
    "alongado"
   ],
-  "ordem": 1,
   "carga": "polia",
   "animacaoId": "crucifixo-polia"
  },
@@ -331,7 +323,6 @@
    "alongado",
    "apoiado"
   ],
-  "ordem": 2,
   "carga": "halter",
   "animacaoId": null
  },
@@ -366,7 +357,6 @@
    "inclinado",
    "polia"
   ],
-  "ordem": 3,
   "carga": "polia",
   "animacaoId": null
  },
@@ -400,7 +390,6 @@
   "tags": [
    "elastico"
   ],
-  "ordem": 4,
   "carga": "elastico",
   "animacaoId": null
  },
@@ -436,7 +425,6 @@
   "tags": [
    "peso-corpo"
   ],
-  "ordem": 1,
   "carga": "peso-corpo",
   "animacaoId": "barra-fixa"
  },
@@ -475,7 +463,6 @@
    "alongado",
    "estavel"
   ],
-  "ordem": 2,
   "carga": "polia",
   "animacaoId": "puxada-unilateral"
  },
@@ -512,7 +499,6 @@
    "polia",
    "estavel"
   ],
-  "ordem": 3,
   "carga": "polia",
   "animacaoId": null
  },
@@ -547,7 +533,6 @@
   "tags": [
    "peso-corpo"
   ],
-  "ordem": 4,
   "carga": "peso-corpo",
   "animacaoId": null
  },
@@ -581,7 +566,6 @@
   "tags": [
    "elastico"
   ],
-  "ordem": 5,
   "carga": "elastico",
   "animacaoId": null
  },
@@ -621,7 +605,6 @@
    "sentado",
    "estavel"
   ],
-  "ordem": 1,
   "carga": "polia",
   "animacaoId": "remada-baixa"
  },
@@ -658,7 +641,6 @@
    "apoiado",
    "estavel"
   ],
-  "ordem": 2,
   "carga": "halter",
   "animacaoId": "remada-apoiada"
  },
@@ -692,7 +674,6 @@
    "lombar"
   ],
   "tags": [],
-  "ordem": 2.5,
   "carga": "barra",
   "animacaoId": null
  },
@@ -730,7 +711,6 @@
    "apoiado",
    "unilateral"
   ],
-  "ordem": 3,
   "carga": "halter",
   "animacaoId": "remada-unilateral"
  },
@@ -765,7 +745,6 @@
   "tags": [
    "peso-corpo"
   ],
-  "ordem": 4,
   "carga": "peso-corpo",
   "animacaoId": null
  },
@@ -801,7 +780,6 @@
    "sentado",
    "elastico"
   ],
-  "ordem": 5,
   "carga": "elastico",
   "animacaoId": null
  },
@@ -838,7 +816,6 @@
   "tags": [
    "apoiado"
   ],
-  "ordem": 1,
   "carga": "halter",
   "animacaoId": "desenvolvimento"
  },
@@ -873,7 +850,6 @@
    "lombar"
   ],
   "tags": [],
-  "ordem": 1.5,
   "carga": "barra",
   "animacaoId": null
  },
@@ -909,7 +885,6 @@
   "tags": [
    "unilateral"
   ],
-  "ordem": 2,
   "carga": "halter",
   "animacaoId": null
  },
@@ -944,7 +919,6 @@
   "tags": [
    "elastico"
   ],
-  "ordem": 3,
   "carga": "elastico",
   "animacaoId": null
  },
@@ -979,7 +953,6 @@
    "unilateral",
    "estavel"
   ],
-  "ordem": 1,
   "carga": "polia",
   "animacaoId": "elevacao-lateral"
  },
@@ -1011,7 +984,6 @@
   "tags": [
    "halter"
   ],
-  "ordem": 2,
   "carga": "halter",
   "animacaoId": "elevacao-halteres"
  },
@@ -1043,7 +1015,6 @@
   "tags": [
    "elastico"
   ],
-  "ordem": 3,
   "carga": "elastico",
   "animacaoId": null
  },
@@ -1078,7 +1049,6 @@
   "tags": [
    "polia"
   ],
-  "ordem": 1,
   "carga": "polia",
   "animacaoId": "face-pull"
  },
@@ -1113,7 +1083,6 @@
   "tags": [
    "apoiado"
   ],
-  "ordem": 2,
   "carga": "halter",
   "animacaoId": null
  },
@@ -1147,7 +1116,6 @@
   "tags": [
    "elastico"
   ],
-  "ordem": 3,
   "carga": "elastico",
   "animacaoId": null
  },
@@ -1181,7 +1149,6 @@
    "polia",
    "estavel"
   ],
-  "ordem": 1,
   "carga": "polia",
   "animacaoId": "rosca-polia"
  },
@@ -1216,7 +1183,6 @@
    "alongado",
    "apoiado"
   ],
-  "ordem": 2,
   "carga": "halter",
   "animacaoId": "rosca-inclinada"
  },
@@ -1247,7 +1213,6 @@
    "punho"
   ],
   "tags": [],
-  "ordem": 2.5,
   "carga": "barra",
   "animacaoId": null
  },
@@ -1279,7 +1244,6 @@
   "tags": [
    "halter"
   ],
-  "ordem": 3,
   "carga": "halter",
   "animacaoId": "rosca-alternada"
  },
@@ -1314,7 +1278,6 @@
    "polia",
    "alongado"
   ],
-  "ordem": 4,
   "carga": "polia",
   "animacaoId": null
  },
@@ -1346,7 +1309,6 @@
   "tags": [
    "elastico"
   ],
-  "ordem": 5,
   "carga": "elastico",
   "animacaoId": null
  },
@@ -1380,7 +1342,6 @@
    "polia",
    "estavel"
   ],
-  "ordem": 1,
   "carga": "polia",
   "animacaoId": "triceps-corda"
  },
@@ -1416,7 +1377,6 @@
    "acima-cabeca",
    "alongado"
   ],
-  "ordem": 2,
   "carga": "polia",
   "animacaoId": "triceps-frances"
  },
@@ -1450,7 +1410,6 @@
    "polia",
    "estavel"
   ],
-  "ordem": 3,
   "carga": "polia",
   "animacaoId": null
  },
@@ -1484,7 +1443,6 @@
    "acima-cabeca",
    "alongado"
   ],
-  "ordem": 4,
   "carga": "halter",
   "animacaoId": "triceps-frances-halter"
  },
@@ -1518,7 +1476,6 @@
    "acima-cabeca",
    "elastico"
   ],
-  "ordem": 5,
   "carga": "elastico",
   "animacaoId": null
  },
@@ -1553,7 +1510,6 @@
    "lombar"
   ],
   "tags": [],
-  "ordem": 1,
   "carga": "barra",
   "animacaoId": null
  },
@@ -1589,7 +1545,6 @@
    "maquina",
    "estavel"
   ],
-  "ordem": 2,
   "carga": "maquina",
   "animacaoId": null
  },
@@ -1624,7 +1579,6 @@
   "tags": [
    "halter"
   ],
-  "ordem": 3,
   "carga": "halter",
   "animacaoId": "goblet"
  },
@@ -1659,7 +1613,6 @@
   "tags": [
    "halter"
   ],
-  "ordem": 4,
   "carga": "halter",
   "animacaoId": null
  },
@@ -1694,7 +1647,6 @@
   "tags": [
    "elastico"
   ],
-  "ordem": 5,
   "carga": "elastico",
   "animacaoId": null
  },
@@ -1729,7 +1681,6 @@
   "tags": [
    "peso-corpo"
   ],
-  "ordem": 6,
   "carga": "peso-corpo",
   "animacaoId": null
  },
@@ -1766,7 +1717,6 @@
    "unilateral",
    "bulgaro"
   ],
-  "ordem": 1,
   "carga": "halter",
   "animacaoId": "bulgaro"
  },
@@ -1802,7 +1752,6 @@
    "unilateral",
    "estatico"
   ],
-  "ordem": 2,
   "carga": "halter",
   "animacaoId": "afundo"
  },
@@ -1837,7 +1786,6 @@
   "tags": [
    "unilateral"
   ],
-  "ordem": 3,
   "carga": "halter",
   "animacaoId": null
  },
@@ -1874,7 +1822,6 @@
    "estatico",
    "peso-corpo"
   ],
-  "ordem": 4,
   "carga": "peso-corpo",
   "animacaoId": null
  },
@@ -1911,7 +1858,6 @@
    "bulgaro",
    "peso-corpo"
   ],
-  "ordem": 5,
   "carga": "peso-corpo",
   "animacaoId": null
  },
@@ -1944,7 +1890,6 @@
    "quadril"
   ],
   "tags": [],
-  "ordem": 1,
   "carga": "barra",
   "animacaoId": null
  },
@@ -1979,7 +1924,6 @@
   "tags": [
    "halter"
   ],
-  "ordem": 2,
   "carga": "halter",
   "animacaoId": "stiff"
  },
@@ -2015,7 +1959,6 @@
    "polia",
    "estavel"
   ],
-  "ordem": 3,
   "carga": "polia",
   "animacaoId": null
  },
@@ -2050,7 +1993,6 @@
   "tags": [
    "unilateral"
   ],
-  "ordem": 4,
   "carga": "halter",
   "animacaoId": "stiff-unilateral"
  },
@@ -2085,7 +2027,6 @@
   "tags": [
    "elastico"
   ],
-  "ordem": 5,
   "carga": "elastico",
   "animacaoId": null
  },
@@ -2119,7 +2060,6 @@
   "tags": [
    "peso-corpo"
   ],
-  "ordem": 6,
   "carga": "peso-corpo",
   "animacaoId": null
  },
@@ -2154,7 +2094,6 @@
    "alongado",
    "estavel"
   ],
-  "ordem": 1,
   "carga": "maquina",
   "animacaoId": null
  },
@@ -2187,7 +2126,6 @@
    "maquina",
    "estavel"
   ],
-  "ordem": 2,
   "carga": "maquina",
   "animacaoId": null
  },
@@ -2221,7 +2159,6 @@
   "tags": [
    "peso-corpo"
   ],
-  "ordem": 3,
   "carga": "peso-corpo",
   "animacaoId": "flexao-bola"
  },
@@ -2253,7 +2190,6 @@
   "tags": [
    "elastico"
   ],
-  "ordem": 4,
   "carga": "elastico",
   "animacaoId": null
  },
@@ -2286,7 +2222,6 @@
    "maquina",
    "estavel"
   ],
-  "ordem": 1,
   "carga": "maquina",
   "animacaoId": null
  },
@@ -2319,7 +2254,6 @@
    "unilateral",
    "alongado"
   ],
-  "ordem": 1,
   "carga": "halter",
   "animacaoId": "panturrilha"
  },
@@ -2351,7 +2285,6 @@
   "tags": [
    "alongado"
   ],
-  "ordem": 2,
   "carga": "halter",
   "animacaoId": "panturrilha-b"
  },
@@ -2385,7 +2318,6 @@
    "maquina",
    "estavel"
   ],
-  "ordem": 2.5,
   "carga": "maquina",
   "animacaoId": null
  },
@@ -2415,7 +2347,6 @@
    "tornozelo"
   ],
   "tags": [],
-  "ordem": 3,
   "carga": "halter",
   "animacaoId": "panturrilha-chao"
  },
@@ -2448,7 +2379,6 @@
   "tags": [
    "polia"
   ],
-  "ordem": 1,
   "carga": "polia",
   "animacaoId": "abdominal-polia"
  },
@@ -2480,7 +2410,6 @@
   "tags": [
    "peso-corpo"
   ],
-  "ordem": 2,
   "carga": "peso-corpo",
   "animacaoId": "elevacao-joelhos"
  },
@@ -2512,7 +2441,6 @@
   "tags": [
    "peso-corpo"
   ],
-  "ordem": 3,
   "carga": "peso-corpo",
   "animacaoId": null
  },
@@ -2544,7 +2472,6 @@
   "tags": [
    "peso-corpo"
   ],
-  "ordem": 4,
   "carga": "peso-corpo",
   "animacaoId": "abdominal-chao"
  }

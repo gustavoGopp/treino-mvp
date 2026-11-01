@@ -25,8 +25,8 @@ export const funcaoSchema = z
     semNivel1: regraId.optional(),
     /** Função usada no lugar quando nenhum nível é possível (ex.: flexão de joelho → dobrar o quadril). */
     seNada: z.string().optional(),
-    /** O que falta, em palavras, quando a função fica sem exercício (aviso de meta). */
-    lacuna: z.string().optional(),
+    /** Aviso quando a vaga fica sem exercício possível: o que falta e o que isso muda. */
+    lacuna: z.object({ falta: z.string().min(1), texto: z.string().min(1), regra: regraId }).strict().optional(),
     niveis: z.array(z.array(z.string())).min(1),
   })
   .strict()
