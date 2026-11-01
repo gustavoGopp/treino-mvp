@@ -30,5 +30,5 @@ Placa da torre (número).
 
 ## Fontes
 - `difonza2026`: Di Fonza D, Di Claudio G, Colantuono G et al. Electromyographic Analysis of Latissimus Dorsi Activation During Common Resistance Training Exercises: A Narrative Review. J Funct Morphol Kinesiol 2026;11(3):315. PMID 42647355. Resumo lido no PubMed em 01/11/2026.
-- `padovan2025`: Padovan R, Cè E, Longo S et al. High-Density Surface Electromyography Excitation of Prime Movers Across Scapular Positions in the Seated Row. J Funct Morphol Kinesiol 2025;11(1):6. PMID 41562724. Resumo lido no PubMed em 01/11/2026. Provavelmente é o estudo citado como `padovan2026` em `../08-tecnica-guia.md`, com PMID não verificado; a conferir na entrada para `fontes.md`.
+- `padovan2026`: Padovan R, Cè E, Longo S et al. High-Density Surface Electromyography Excitation of Prime Movers Across Scapular Positions in the Seated Row. J Funct Morphol Kinesiol 2025;11(1):6. PMID 41562724. Resumo lido no PubMed em 01/11/2026. Provavelmente é o estudo citado como `padovan2026` em `../08-tecnica-guia.md`, com PMID não verificado; a conferir na entrada para `fontes.md`.
 - `nsca2021`: NSCA. Exercise Technique Manual for Resistance Training, 4ª ed. Human Kinetics, 2021. **Não verificado** (livro pago, não acessado); referência de consenso de treinadores, a confirmar.

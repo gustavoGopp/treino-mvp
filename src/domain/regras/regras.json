@@ -453,11 +453,11 @@
   },
   {
     "id": "progressao.incremento.halteres",
-    "regra": "Incremento com halteres",
+    "regra": "Incremento com halteres e kettlebell",
     "valores": {
-      "iniciante": "fixos: próximo par do inventário; montáveis: menor combinação de anilhas disponível",
-      "intermediario": "fixos: próximo par do inventário; montáveis: menor combinação de anilhas disponível",
-      "avancado": "fixos: próximo par do inventário; montáveis: menor combinação de anilhas disponível"
+      "iniciante": "fixos: próximo par do inventário; montáveis: menor combinação de anilhas disponível; kettlebell: próximo peso da lista (salto acima de ~10% aplica `progressao.salto-grande`)",
+      "intermediario": "fixos: próximo par do inventário; montáveis: menor combinação de anilhas disponível; kettlebell: próximo peso da lista (salto acima de ~10% aplica `progressao.salto-grande`)",
+      "avancado": "fixos: próximo par do inventário; montáveis: menor combinação de anilhas disponível; kettlebell: próximo peso da lista (salto acima de ~10% aplica `progressao.salto-grande`)"
     },
     "selo": "consenso",
     "fontes": [
@@ -466,11 +466,37 @@
   },
   {
     "id": "progressao.incremento.polia",
-    "regra": "Incremento na polia (registrar o número da placa, não kg)",
+    "regra": "Incremento na polia e nas máquinas com torre de placas (registrar o número da placa, não kg)",
     "valores": {
       "iniciante": "+1 placa",
       "intermediario": "+1 placa",
       "avancado": "+1 placa"
+    },
+    "selo": "consenso",
+    "fontes": [
+      "consenso-projeto"
+    ]
+  },
+  {
+    "id": "progressao.incremento.maquina-anilha",
+    "regra": "Máquinas de anilha (leg press, hack, smith, panturrilha sentada): o peso do trenó ou da barra é desconhecido, então se registra o kg de anilhas por lado",
+    "valores": {
+      "iniciante": "kg por lado; subir o menor par de anilhas (padrão 2 kg [opinião] até a pessoa informar); calibração por passos, sem fórmula, salvo se o peso do trenó for informado",
+      "intermediario": "kg por lado; subir o menor par de anilhas (padrão 2 kg [opinião] até a pessoa informar); calibração por passos, sem fórmula, salvo se o peso do trenó for informado",
+      "avancado": "kg por lado; subir o menor par de anilhas (padrão 2 kg [opinião] até a pessoa informar); calibração por passos, sem fórmula, salvo se o peso do trenó for informado"
+    },
+    "selo": "consenso",
+    "fontes": [
+      "consenso-projeto"
+    ]
+  },
+  {
+    "id": "progressao.incremento.assistido",
+    "regra": "Graviton (barra e mergulho assistidos): mais placa de contrapeso = mais ajuda",
+    "valores": {
+      "iniciante": "registrar a placa de contrapeso; progredir = tirar 1 placa; sem placa, passar para a versão livre (barra fixa ou mergulho)",
+      "intermediario": "registrar a placa de contrapeso; progredir = tirar 1 placa; sem placa, passar para a versão livre (barra fixa ou mergulho)",
+      "avancado": "registrar a placa de contrapeso; progredir = tirar 1 placa; sem placa, passar para a versão livre (barra fixa ou mergulho)"
     },
     "selo": "consenso",
     "fontes": [
@@ -907,6 +933,33 @@
     ]
   },
   {
+    "id": "selecao.mergulho",
+    "regra": "Mergulho nas paralelas: complexidade 3 e articulação ombro (a triagem exclui); fica no nível 2 do empurrar horizontal, atrás dos supinos, e no nível 2 do complemento de tríceps",
+    "valores": {
+      "iniciante": "fora (complexidade acima do nível)",
+      "intermediario": "nível 2; só com o ombro sem restrição",
+      "avancado": "nível 2; só com o ombro sem restrição"
+    },
+    "selo": "consenso",
+    "fontes": [
+      "mckenzie2022"
+    ]
+  },
+  {
+    "id": "selecao.aducao-complemento",
+    "regra": "Adução na máquina (adutores, sem meta própria): complemento opcional no dia de pernas",
+    "valores": {
+      "iniciante": "só quando pernas ou glúteos são prioridade e há tempo; sai primeiro nos cortes; sem a máquina, nenhum aviso",
+      "intermediario": "só quando pernas ou glúteos são prioridade e há tempo; sai primeiro nos cortes; sem a máquina, nenhum aviso",
+      "avancado": "só quando pernas ou glúteos são prioridade e há tempo; sai primeiro nos cortes; sem a máquina, nenhum aviso"
+    },
+    "selo": "consenso",
+    "fontes": [
+      "consenso-projeto",
+      "kubo2019"
+    ]
+  },
+  {
     "id": "ordem.sessao",
     "regra": "Ordenação determinística dos exercícios da sessão (a ordem não muda a hipertrofia)",
     "valores": {
@@ -948,6 +1001,21 @@
       "lixandrao2018",
       "minniti2020",
       "patterson2019"
+    ]
+  },
+  {
+    "id": "equipamento.capacidades",
+    "regra": "O gerador trata o equipamento por capacidade: cada exercício pede capacidades (polia alta, banco inclinável…) e cada item dá as suas; o multifuncional dá as das estações marcadas, e a polia simples, as da altura",
+    "valores": {
+      "iniciante": "46 itens (pesquisa-v2/08, seção 1); a esteira fica só para a foto",
+      "intermediario": "46 itens (pesquisa-v2/08, seção 1); a esteira fica só para a foto",
+      "avancado": "46 itens (pesquisa-v2/08, seção 1); a esteira fica só para a foto"
+    },
+    "selo": "consenso",
+    "fontes": [
+      "haugen2023",
+      "hernandezbelmonte2023",
+      "consenso-projeto"
     ]
   },
   {
@@ -1219,6 +1287,33 @@
     "selo": "consenso",
     "fontes": [
       "ijspt2023"
+    ]
+  },
+  {
+    "id": "seguranca.montagem",
+    "regra": "Montagem segura no cartão e no guia dos exercícios com travas, apoios ou ancoragem; os acidentes (peso que cai, queda, pancada) são a maior causa de atendimento em pronto-socorro",
+    "valores": {
+      "iniciante": "smith e hack: travas logo abaixo do ponto mais baixo; panturrilha sentada: soltar e travar a alavanca; hip thrust: banco travado ou encostado; suspensão: ancoragem firme; barras: travas nas anilhas",
+      "intermediario": "smith e hack: travas logo abaixo do ponto mais baixo; panturrilha sentada: soltar e travar a alavanca; hip thrust: banco travado ou encostado; suspensão: ancoragem firme; barras: travas nas anilhas",
+      "avancado": "smith e hack: travas logo abaixo do ponto mais baixo; panturrilha sentada: soltar e travar a alavanca; hip thrust: banco travado ou encostado; suspensão: ancoragem firme; barras: travas nas anilhas"
+    },
+    "selo": "consenso",
+    "fontes": [
+      "kerr2010",
+      "coffey2026"
+    ]
+  },
+  {
+    "id": "visao.desambiguacao",
+    "regra": "Dicas para não confundir aparelhos parecidos no pedido da foto (hack × leg press, voador × polia dupla, multifuncional × estação de polia, smith × rack…); o par confundível ausente conta como falso positivo grave no eval",
+    "valores": {
+      "iniciante": "14 dicas no pedido (pesquisa-v2/08, seção 4)",
+      "intermediario": "14 dicas no pedido (pesquisa-v2/08, seção 4)",
+      "avancado": "14 dicas no pedido (pesquisa-v2/08, seção 4)"
+    },
+    "selo": "consenso",
+    "fontes": [
+      "consenso-projeto"
     ]
   },
   {
