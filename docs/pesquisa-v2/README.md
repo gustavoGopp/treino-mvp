@@ -36,6 +36,7 @@ Essas decisões foram copiadas do programa de referência para o código, sem pe
 | [04-exercicios-por-musculo.md](04-exercicios-por-musculo.md) | Tema T3: o que cresce mais em cada um dos 12 músculos, as regras de escolha por função e quantos exercícios por semana | Aprovado em 01/11/2026 |
 | [05-montagem-da-sessao.md](05-montagem-da-sessao.md) | Tema T4: quanto cabe em cada duração, ordem, aquecimento e a nova escada de cortes quando falta tempo | Aprovado em 01/11/2026 |
 | [06-populacoes-e-seguranca.md](06-populacoes-e-seguranca.md) | Tema T5: iniciante, volta de pausa, mulheres, 60+, gestação, pressão alta e lesões; a triagem conferida contra as diretrizes e uma proposta registrada, não aplicada | Aprovado em 01/11/2026 |
+| [07-progressao-e-acompanhamento.md](07-progressao-e-acompanhamento.md) | Tema T6: pausas detectadas sozinhas, "a sua semana", evolução por exercício, semana leve só com sinal e calibração da carga na 1ª série; base do marco R2 | Pronto para revisão |
 
 ## Próxima sessão
 O prompt para continuar com o tema T6 está em [`docs/prompts/sessao-pesquisa-v2-t6.md`](../prompts/sessao-pesquisa-v2-t6.md). Para ler os resumos do PubMed, use `scripts/pesquisa/pubmed.py`.
@@ -53,7 +54,7 @@ O prompt para continuar com o tema T6 está em [`docs/prompts/sessao-pesquisa-v2
    Esse tema substitui as "vagas" e a "ordem" herdadas.
 4. ~~**Montagem da sessão.**~~ (feito: `05-montagem-da-sessao.md`) Duração, ordem, técnicas para economizar tempo (superséries, drop set), aquecimento e transições.
 5. ~~**Iniciantes, volta de pausa e populações.**~~ (feito: `06-populacoes-e-seguranca.md`)
-6. **Progressão e acompanhamento.** Dupla progressão, pausas, semana leve e adesão. Base do marco R2.
+6. **Progressão e acompanhamento.** (em revisão: `07-progressao-e-acompanhamento.md`) Dupla progressão, pausas, semana leve e adesão. Base do marco R2.
 7. **Universo de equipamentos, segunda versão.** O que cada equipamento abre, com prioridade.
 8. **O programa do Gustavo.** Aplicar a base nova ao perfil e ao equipamento dele, na máquina que tem `privado/`, e comparar com o programa de referência só como curiosidade, não como meta.
 
