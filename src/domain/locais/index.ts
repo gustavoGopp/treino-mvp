@@ -126,18 +126,23 @@ export function diaNoLocal(dia: DiaPrograma, perfil: Perfil, inventario: Inventa
       musculosPresentes.add(achado.f.musculo);
       continue;
     }
-    // 2) selecao.dia-sem-principal: um exercício possível de outro músculo do dia que ainda não está no dia.
+    // 2) selecao.dia-sem-principal: primeiro outro movimento do mesmo músculo; senão, outro músculo do dia que ainda
+    //    não está no dia.
+    const musculo = f?.musculo;
     const outros = ctx.possiveis
       .filter((y) => y.padrao !== 'core' && !usados.has(y.id))
       .flatMap((y) => {
         const g = funcoesDoExercicio(y.id).find((z) => ctx.naFuncao(z, y.id));
-        return g && musculosDoDia.has(g.musculo) && !musculosPresentes.has(g.musculo) ? [{ y, g }] : [];
+        if (!g) return [];
+        const mesmo = g.musculo === musculo;
+        return mesmo || (musculosDoDia.has(g.musculo) && !musculosPresentes.has(g.musculo)) ? [{ y, g, mesmo }] : [];
       })
-      .sort((a, b) => ctx.comparar(new Map(), () => undefined)(a.y, b.y));
+      .sort((a, b) => Number(b.mesmo) - Number(a.mesmo) || ctx.comparar(new Map(), () => undefined)(a.y, b.y));
     const outro = outros[0];
     if (outro) {
       const nivelFuncao = outro.g.niveis.findIndex((n) => n.includes(outro.y.id));
-      const motivo = `${falta}, e nenhum equivalente de ${f ? minuscula(f.nome) : minuscula(e.nome)} é possível: no lugar de ${minuscula(e.nome)}, ${minuscula(outro.y.nome)} (outro músculo do dia)`;
+      const onde = outro.mesmo ? 'mesmo músculo, outro movimento' : 'outro músculo do dia';
+      const motivo = `${falta}, e nenhum equivalente de ${f ? minuscula(f.nome) : minuscula(e.nome)} é possível: no lugar de ${minuscula(e.nome)}, ${minuscula(outro.y.nome)} (${onde})`;
       novos.set(x.exId, entrar(x, outro.y, outro.g, nivelFuncao, { regraId: r('selecao.dia-sem-principal'), texto: `Neste local, ${motivo}.` }));
       trocas.push({ vaga: x.exId, entrou: outro.y.id, motivo, regraId: r('selecao.dia-sem-principal') });
       usados.add(outro.y.id);

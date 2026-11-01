@@ -1,0 +1,45 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`local.treino-do-dia: o Bruno faz o Superior A na academia do bairro > snapshot: os 4 dias do Bruno na academia do bairro (revisado) 1`] = `
+[
+  {
+    "avisos": [],
+    "dia": "Superior A: supino-reto 3×6–10 | barra-fixa 3×6–12 | remada-apoiada 3×8–12 | desenvolvimento 2×8–12 | triceps-frances-halter 4×10–15 | elevacao-halteres 4×12–20 | rosca-inclinada 4×8–12 | crucifixo-halteres 3×10–15 | crucifixo-inverso 2×12–20",
+    "trocas": [
+      "aqui não tem polia alta: puxada unilateral ajoelhado na polia alta → barra fixa",
+      "aqui não tem polia baixa: tríceps francês na polia com corda → tríceps francês sentado com halter",
+      "aqui não tem polia dupla: crucifixo na polia (crossover) → crucifixo com halteres no banco plano",
+      "aqui não tem polia alta: face pull com corda → crucifixo inverso com halteres, peito apoiado no banco inclinado",
+    ],
+  },
+  {
+    "avisos": [],
+    "dia": "Inferior A: bulgaro 3×8–12 | stiff 2×8–12 | cadeira-flexora 2×8–15 | panturrilha-leg-press 3×10–15 | abdominal-chao 2×12–25",
+    "trocas": [
+      "aqui não tem bola suíça: flexão de joelho na bola suíça → flexão de joelho na cadeira flexora (sentado)",
+      "aqui não tem step: panturrilha unilateral no step → panturrilha no leg press",
+      "aqui não tem polia alta: abdominal na polia com corda, ajoelhado → abdominal no chão (crunch)",
+    ],
+  },
+  {
+    "avisos": [],
+    "dia": "Superior B: supino-inclinado 3×6–10 | remada-apoiada 2×8–12 | barra-fixa 2×6–12 | desenvolvimento-unilateral 2×8–12 | elevacao-halteres 3×12–20 | rosca-inclinada 3×8–12 | mergulho 3×6–12 | crucifixo-halteres 3×10–15 | crucifixo-inverso 2×12–20",
+    "trocas": [
+      "aqui não tem polia baixa: remada baixa com triângulo → remada com halteres, peito apoiado no banco inclinado",
+      "aqui não tem polia alta: puxada ajoelhado na polia alta com barra reta → barra fixa",
+      "aqui não tem polia baixa: elevação lateral unilateral na polia → elevação lateral com halteres",
+      "aqui não tem polia baixa: rosca na polia baixa, de costas para a torre → rosca inclinada com halteres",
+      "aqui não tem polia alta: tríceps na polia com corda → mergulho nas paralelas",
+    ],
+  },
+  {
+    "avisos": [],
+    "dia": "Inferior B: afundo 3×8–12 | ponte-gluteo 2×12–25 | stiff-unilateral 2×8–12 | elevacao-halteres 3×12–20 | cadeira-flexora 2×8–15 | panturrilha-leg-press 3×10–15 | abdominal-chao 2×12–25",
+    "trocas": [
+      "aqui não tem elásticos: flexão de joelho com elástico → flexão de joelho na cadeira flexora (sentado)",
+      "aqui não tem step: panturrilha em pé no step → panturrilha no leg press",
+      "aqui não tem polia alta: abdominal na polia com corda, ajoelhado → abdominal no chão (crunch)",
+    ],
+  },
+]
+`;

@@ -8,8 +8,9 @@ import { avaliarTriagem } from '../../domain/triagem';
 import { faseDaSemana, proximoDia, semanaDoPrograma } from '../../domain/sessao';
 import { linkDoGuia } from '../guia/link';
 import { prescricaoDaSemana } from '../../domain/gerador';
-import { inventarioPrincipal, perfilDe, primeiroPassoPendente, type Estado } from '../../storage/esquema';
-import { iniciarSessao } from '../treino/acoes';
+import { inventarioPrincipal, localDoTreino, perfilDe, primeiroPassoPendente, type Estado } from '../../storage/esquema';
+import { alternarPreferencia, diaDoTreino, iniciarSessao } from '../treino/acoes';
+import { Preferencias } from './Prefiro';
 import { agoraIso, comProgramaNovo, gerarDoEstado, mesmoConteudo, useApp } from '../app/estado';
 import { Selo, Titulo, Topo } from '../app/ui';
 import { Miniatura } from './Miniatura';
@@ -32,6 +33,8 @@ export function Programa() {
     return p ? Math.max(0, p.dias.findIndex((d) => d.id === proximoDia(p, estado.historico).id)) : 0;
   });
   const [verAjustes, setVerAjustes] = useState(false);
+  // "Onde vou treinar hoje?" (R1b): o último local usado vem lembrado; a escolha continua visível.
+  const [localHoje, setLocalHoje] = useState(() => localDoTreino(estado)?.id);
   const perfil = useMemo(() => perfilDe(estado), [estado]);
   const inventario = inventarioPrincipal(estado);
   const opcoes = useMemo(() => (perfil && inventario ? opcoesDeAjuste(perfil, inventario) : []), [perfil, inventario]);
@@ -92,7 +95,16 @@ export function Programa() {
   // Mostra a prescrição desta semana (fases de readaptação e aprendizado mudam séries e RIR).
   const semana = semanaDoPrograma(estado.historico, agoraIso());
   const diasDaSemana = prescricaoDaSemana(salvo, semana);
-  const dia = diasDaSemana[Math.min(diaSel, diasDaSemana.length - 1)]!;
+  const diaDoPrograma = diasDaSemana[Math.min(diaSel, diasDaSemana.length - 1)]!;
+  const locais = estado.locais ?? [];
+  // O dia no local escolhido (local.treino-do-dia): as trocas e o motivo, antes de começar.
+  const noLocal = locais.length > 1 ? diaDoTreino(estado, { diaId: diaDoPrograma.id, semana, localId: localHoje }) : null;
+  const dia = noLocal && !noLocal.noLocalDoPrograma ? noLocal.dia : diaDoPrograma;
+  const nomeLocal = locais.find((l) => l.id === localHoje)?.nome;
+  const preferir = (funcao: string, id: string) => {
+    atualizar((s) => alternarPreferencia(s, funcao, id));
+    setAviso('Preferência salva. Ela entra quando você atualizar o programa e nas trocas de local.');
+  };
   const abaixo = salvo.avisos.filter((a) => a.texto.startsWith('Abaixo da meta')).length;
   const faseAtual = salvo.fases[0];
 
@@ -145,6 +157,12 @@ export function Programa() {
           </Link>
         ) : null}
 
+        {locais.length > 1 ? null : (
+          <Link className="link-sec" to="/locais">
+            Treina em mais de um lugar? Cadastre outro local
+          </Link>
+        )}
+
         <div className="abas" role="tablist" aria-label="Dias de treino">
           {diasDaSemana.map((d, i) => (
             <button
@@ -152,9 +170,9 @@ export function Programa() {
               type="button"
               role="tab"
               id={`aba-${d.id}`}
-              aria-selected={d === dia}
+              aria-selected={d === diaDoPrograma}
               aria-controls={`painel-${d.id}`}
-              tabIndex={d === dia ? 0 : -1}
+              tabIndex={d === diaDoPrograma ? 0 : -1}
               onClick={() => setDiaSel(i)}
               onKeyDown={(e) => {
                 if (e.key === 'ArrowRight' || e.key === 'ArrowLeft') {
@@ -174,21 +192,61 @@ export function Programa() {
             {dia.nome} · {dia.exercicios.length} exercícios · ~{dia.minutosEstimados} min
             {dia.id === proximoDia(salvo, estado.historico).id && estado.historico.length > 0 ? ' · próximo da rotação' : ''}
           </h2>
+          {!estado.sessaoAtual && locais.length > 1 && (
+            <fieldset className="campo onde-hoje">
+              <legend>Onde vou treinar hoje?</legend>
+              <div className="opcoes">
+                {locais.map((l) => (
+                  <button key={l.id} type="button" className="btn sec pequeno" aria-pressed={l.id === localHoje} onClick={() => setLocalHoje(l.id)}>
+                    {l.nome}
+                  </button>
+                ))}
+              </div>
+              {noLocal && !noLocal.noLocalDoPrograma && (
+                <div className="box">
+                  <p>
+                    <b>Em {nomeLocal}:</b>{' '}
+                    {noLocal.trocas.length ? 'o que muda neste treino.' : 'tudo do programa é possível aqui.'} <Selo id="local.treino-do-dia" />
+                  </p>
+                  {noLocal.trocas.length > 0 && (
+                    <ul className="trocas-local" aria-label={`Trocas em ${nomeLocal}`}>
+                      {noLocal.trocas.map((t) => (
+                        <li key={t.vaga}>{t.motivo.charAt(0).toUpperCase() + t.motivo.slice(1)}.</li>
+                      ))}
+                    </ul>
+                  )}
+                  <p className="ajuda">Séries, RIR e descanso de cada vaga continuam os mesmos. Num aparelho novo, a 1ª série acerta a carga.</p>
+                </div>
+              )}
+              <Link className="link-sec" to="/locais">
+                Meus locais
+              </Link>
+            </fieldset>
+          )}
           {!estado.sessaoAtual && (
             <button
               type="button"
               className="btn"
               onClick={() => {
-                atualizar((s) => iniciarSessao(s, agoraIso(), dia.id));
+                atualizar((s) => iniciarSessao(s, agoraIso(), dia.id, localHoje));
                 navigate('/treino');
               }}
             >
               Começar o treino {dia.nome}
+              {locais.length > 1 && nomeLocal ? ` em ${nomeLocal}` : ''}
             </button>
           )}
           <ol className="cartoes-ex">
             {dia.exercicios.map((x, i) => (
-              <CartaoExercicio key={x.exId} x={x} n={i + 1} dia={dia.exercicios} diaId={dia.id} />
+              <CartaoExercicio
+                key={x.exId}
+                x={x}
+                n={i + 1}
+                dia={dia.exercicios}
+                diaId={dia.id}
+                preferidos={estado.preferidos}
+                aoPreferir={preferir}
+              />
             ))}
           </ol>
         </section>
@@ -220,7 +278,21 @@ function Ajustes({ opcoes, escolher }: { opcoes: Opcao[]; escolher: (o: Opcao) =
   );
 }
 
-function CartaoExercicio({ x, n, dia, diaId }: { x: ExercicioPrescrito; n: number; dia: ExercicioPrescrito[]; diaId: string }) {
+function CartaoExercicio({
+  x,
+  n,
+  dia,
+  diaId,
+  preferidos,
+  aoPreferir,
+}: {
+  x: ExercicioPrescrito & { noLugarDe?: string };
+  n: number;
+  dia: ExercicioPrescrito[];
+  diaId: string;
+  preferidos?: Record<string, string>;
+  aoPreferir: (funcao: string, id: string) => void;
+}) {
   const ex = POR_ID[x.exId];
   const par = x.supersetCom ? dia.find((y) => y.exId === x.supersetCom) : undefined;
   const corpo = (
@@ -245,7 +317,7 @@ function CartaoExercicio({ x, n, dia, diaId }: { x: ExercicioPrescrito; n: numbe
   return (
     <li className="cartao-ex">
       {x.animacaoId ? (
-        <Link className="cartao-ex-corpo" to={linkDoGuia(x.animacaoId, { de: 'programa', diaId, exId: x.exId })}>
+        <Link className="cartao-ex-corpo" to={linkDoGuia(x.animacaoId, { de: 'programa', diaId, exId: x.exId, vaga: x.noLugarDe })}>
           {corpo}
           <span className="sr">: ver como fazer</span>
         </Link>
@@ -263,7 +335,8 @@ function CartaoExercicio({ x, n, dia, diaId }: { x: ExercicioPrescrito; n: numbe
             </p>
           )}
           {!x.animacaoId && <CartaoTexto exId={x.exId} />}
-          {x.alternativas.length > 0 && <Alternativas ids={x.alternativas} diaId={diaId} vaga={x.exId} />}
+          {x.alternativas.length > 0 && <Alternativas ids={x.alternativas} diaId={diaId} vaga={x.noLugarDe ?? x.exId} />}
+          <Preferencias funcao={x.funcao} atual={x.exId} alternativas={x.alternativas} preferidos={preferidos} aoPreferir={aoPreferir} />
           <ul className="lista">
             {x.porque.map((q) => (
               <li key={q.regraId}>

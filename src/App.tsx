@@ -5,6 +5,7 @@ import { Dados } from './features/dados/Dados';
 import { Guia } from './features/guia/Guia';
 import { BoasVindas } from './features/onboarding/BoasVindas';
 import { Inventario } from './features/onboarding/Inventario';
+import { EditarLocal, Locais } from './features/locais/Locais';
 import { Nivel } from './features/onboarding/Nivel';
 import { Restricoes } from './features/onboarding/Restricoes';
 import { Rotina } from './features/onboarding/Rotina';
@@ -28,6 +29,8 @@ export function App() {
           <Route path="/comecar/inventario" element={<Inventario />} />
           <Route path="/comecar/restricoes" element={<Restricoes />} />
           <Route path="/programa" element={<Programa />} />
+          <Route path="/locais" element={<Locais />} />
+          <Route path="/locais/:id" element={<EditarLocal />} />
           <Route path="/treino" element={<Treino />} />
           <Route path="/treino/fim" element={<Resumo />} />
           <Route path="/dados" element={<Dados />} />

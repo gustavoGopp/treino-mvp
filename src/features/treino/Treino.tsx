@@ -18,13 +18,13 @@ import {
   ultimaSerie,
   type OpcoesSugestao,
 } from '../../domain/sessao';
-import { FUNCAO } from '../../domain/gerador/funcoes';
 import type { Inventario } from '../../domain/taxonomia/equipamentos';
 import { avaliarDor, avaliarSinal, type Sinal } from '../../domain/triagem';
 import type { Estado } from '../../storage/esquema';
 import { agoraIso, useApp } from '../app/estado';
 import { Selo, Titulo, Topo } from '../app/ui';
 import { Miniatura } from '../programa/Miniatura';
+import { BotaoPrefiro } from '../programa/Prefiro';
 import { alternarPreferencia, desfazerSerie, diaDoTreino, interromperExercicio, inventarioDoTreino, opcoesDaCarga, registrarSerie, terminarSessao, trocarExercicio } from './acoes';
 import { PainelDescanso, useDescanso } from './Temporizador';
 
@@ -569,14 +569,14 @@ function Trocar({
       <button type="button" className="opcao-ajuste" onClick={() => aoTrocar(id)}>
         <b>{POR_ID[id]?.nome}</b>
       </button>
-      <BotaoPrefiro funcao={funcao} id={id} atual={atual} preferidos={preferidos} aoPreferir={aoPreferir} />
+      <BotaoPrefiro funcao={funcao} id={id} atual={atual} alternativas={alternativas} preferidos={preferidos} aoPreferir={aoPreferir} />
     </div>
   );
   const resto = alternativas.slice(ALTERNATIVAS_A_MOSTRA);
   return (
     <section className="box" aria-label="Trocar exercício">
       <h2>Trocar só neste treino por:</h2>
-      <BotaoPrefiro funcao={funcao} id={atual} atual={atual} preferidos={preferidos} aoPreferir={aoPreferir} rotulo={`Prefiro o atual (${POR_ID[atual]?.nome.toLowerCase()})`} />
+      <BotaoPrefiro funcao={funcao} id={atual} atual={atual} alternativas={alternativas} preferidos={preferidos} aoPreferir={aoPreferir} />
       <div className="pilha">{alternativas.slice(0, ALTERNATIVAS_A_MOSTRA).map(botao)}</div>
       {resto.length > 0 && (
         <details className="ver-mais">
@@ -585,36 +585,6 @@ function Trocar({
         </details>
       )}
     </section>
-  );
-}
-
-/**
- * "Prefiro este" (selecao.preferencia): só entre equivalentes do mesmo nível da função. Vale nos próximos programas e
- * nas trocas entre locais; tocar de novo desfaz. Nada vem preferido.
- */
-export function BotaoPrefiro({
-  funcao,
-  id,
-  atual,
-  preferidos,
-  aoPreferir,
-  rotulo,
-}: {
-  funcao?: string;
-  id: string;
-  atual: string;
-  preferidos?: Record<string, string>;
-  aoPreferir: (funcao: string, id: string) => void;
-  rotulo?: string;
-}) {
-  const f = funcao ? FUNCAO[funcao] : undefined;
-  const nivel = (x: string) => f?.niveis.findIndex((n) => n.includes(x)) ?? -1;
-  if (!f || nivel(id) < 0 || nivel(id) !== nivel(atual)) return null;
-  const marcado = preferidos?.[f.id] === id;
-  return (
-    <button type="button" className="link-sec prefiro" aria-pressed={marcado} onClick={() => aoPreferir(f.id, id)}>
-      {marcado ? `Você prefere ${id === atual ? 'o atual' : 'este'} · desfazer` : (rotulo ?? 'Prefiro este')}
-    </button>
   );
 }
 
