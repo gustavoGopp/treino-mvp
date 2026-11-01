@@ -187,9 +187,17 @@ function GuiaExercicio({ ex }: { ex: Animacao }) {
           <h1>{txt.name}</h1>
           {minha ? (
             <div className="rx" data-testid="prescricao">
-              Semana {minha.semana}: {minha.x.series} × {faixa(minha.x.reps)}
-              {minha.x.unilateral ? ' cada lado' : ''} · RIR {faixa(minha.x.rir)} · descanso {tempo(minha.x.descansoSeg)}
-              {minha.fase && minha.fase.rir ? ` · ${minha.fase.regraId === 'iniciante.fase-aprendizado' ? 'fase de aprendizado' : 'volta da pausa'}` : ''}
+              {[
+                `Semana ${minha.semana}: ${minha.x.series} × ${faixa(minha.x.reps)}${minha.x.unilateral ? ' cada lado' : ''}`,
+                `RIR ${faixa(minha.x.rir)}`,
+                `descanso ${tempo(minha.x.descansoSeg)}`,
+                ...(minha.fase?.rir ? [minha.fase.regraId === 'iniciante.fase-aprendizado' ? 'fase de aprendizado' : 'volta da pausa'] : []),
+              ].map((t, i) => (
+                <span key={t}>
+                  {i > 0 && ' · '}
+                  <span className="nw">{t}</span>
+                </span>
+              ))}
             </div>
           ) : (
             <div className="rx">As séries, as repetições e o RIR vêm do seu programa.</div>
