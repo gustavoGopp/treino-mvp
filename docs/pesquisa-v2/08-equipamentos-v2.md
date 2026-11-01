@@ -1,5 +1,13 @@
 # 8. Equipamentos, segunda versão (tema T7)
 
+> **Aprovado pelo Gustavo em 01/11/2026**, com as 4 decisões recomendadas:
+> 1. os adutores contam no volume, mas sem meta (como o ombro anterior); a cadeira adutora fica opcional;
+> 2. a meta do R0 passa a ser "nenhum equipamento **sem exercício possível**" (e todo exercício possível aparece como vaga ou como alternativa);
+> 3. animações: depois das 13 que o motor já desenha, a máquina de perna vem antes do elástico;
+> 4. a esteira sai da lista de treino e fica só para a foto não confundir.
+>
+> As mudanças da seção 7 entram em `regras.md`, nos dados e no código nos marcos R0b, R0c e R1.
+
 > Pesquisa de 01/11/2026. Os estudos têm o **resumo oficial lido no PubMed** (resumo-PubMed, com PMID), salvo quando marcados **não verificado**. O texto completo não foi lido: o PMC e as editoras estavam bloqueados nas sessões anteriores, e esta sessão não insistiu. Os selos seguem `docs/pesquisa/00-metodo.md`. EMG mede ativação e **não mede crescimento**: estudo de EMG nunca sustenta sozinho uma afirmação de hipertrofia.
 >
 > Medições **[medido]** com o gerador real e scripts temporários fora do repositório. Estimativas **[estimativa]** com um modelo das vagas por função do T3, também fora do repositório (seção 6). **[opinião]** marca o que é julgamento meu. Nada aqui muda `regras.md`, os dados ou o código sem a aprovação do Gustavo.
@@ -198,7 +206,7 @@ A coluna "prioridade" diz em que nível da função o exercício entra: **1** = 
 | Condomínio | 34 | 27 | 11% | a extensora passa a ~1,5 vez por semana; a puxada e a remada das estações entram |
 | Academia completa | 87 | **~62** | **~40%** | a extensora ~1,5 por semana, a cadeira flexora ~1,75, glúteo em máquina ou hip thrust ~1,5, abdução ~0,75 |
 
-**O que ainda fica sem vaga na academia completa** **[estimativa]**: barra hexagonal, banco romano, paralelas e a adutora. Elas ficam como **alternativas** (aparelho ocupado, dor, troca de bloco), porque o nível 1 da função já tem opção. Isso conflita com a meta do R0 "0 equipamento marcado sem uso". Proponho reescrever a meta: "0 equipamento marcado **sem exercício possível**, e todo exercício possível aparece como vaga ou como alternativa" (decisão do Gustavo, seção 9).
+**O que ainda fica sem vaga na academia completa** **[estimativa]**: barra hexagonal, banco romano, paralelas e a adutora. Elas ficam como **alternativas** (aparelho ocupado, dor, troca de bloco), porque o nível 1 da função já tem opção. Isso conflita com a meta do R0 "0 equipamento marcado sem uso". A meta foi reescrita (aprovada em 01/11/2026): "0 equipamento marcado **sem exercício possível**, e todo exercício possível aparece como vaga ou como alternativa".
 
 ## 4. Reconhecimento por foto (pergunta 3)
 
@@ -305,7 +313,7 @@ A revisão do Gustavo (a folha de contatos) é por lote e não entra nas unidade
 | 8 | **Smith** (depende da barra) | 2 | 0,7 | 10 | 0,07 |
 | | **Total** | **71** | | **165** | |
 
-**Recomendação [opinião]:** lote 2 = família P. Depois, a **máquina de perna antes do elástico**, apesar da conta: o elástico só fica na frente por causa do cenário casa, e o público principal é o Gustavo, numa academia. A extensora e a cadeira flexora são as máquinas que mais aparecem e hoje são cartão de texto. A barra longa e o smith ficam por último. Decisão do Gustavo (seção 9).
+**Aprovado em 01/11/2026:** lote 2 = família P. Depois, a **máquina de perna antes do elástico**, apesar da conta: o elástico só fica na frente por causa do cenário casa, e o público principal é o Gustavo, numa academia. A extensora e a cadeira flexora são as máquinas que mais aparecem e hoje são cartão de texto. A barra longa e o smith ficam por último. 
 
 ### 6.4 A fila, exercício por exercício (frequência estimada)
 Vagas por semana somadas nos 4 cenários; entre parênteses, só na academia completa. ✚ = exercício novo.
@@ -418,9 +426,9 @@ Vagas por semana somadas nos 4 cenários; entre parênteses, só na academia com
 ## 9. O que fica sem resposta
 - **A lista do que é "comum" não tem fonte oficial** no Brasil (`03`). Os atalhos e o multifuncional "típico" são opinião, apoiada em guias não verificados.
 - **Sem ensaio de hipertrofia** para hack, smith (como exercício comparado), supino e desenvolvimento na máquina, remada articulada, voador invertido, graviton, mergulho, kettlebell, banco romano, suspensão, abdominal e adutora na máquina. A base é EMG, biomecânica, a equivalência máquina = peso livre (robusta) e consenso.
-- **Adutores:** não estão entre os 12 músculos com meta. Proponho tratá-los como o ombro anterior (contam, mas sem meta), e a máquina adutora fica opcional. **Decisão do Gustavo.**
-- **Meta do R0 "0 equipamento sem uso":** barra hexagonal, banco romano, paralelas e adutora ficam sem vaga na academia completa. Proponho reescrever a meta (seção 3.1). **Decisão do Gustavo.**
-- **Ordem dos lotes de animação:** a conta põe o elástico antes da máquina de perna. Eu recomendo a máquina de perna antes (seção 6.3). **Decisão do Gustavo.**
+- **Adutores:** não estão entre os 12 músculos com meta. Decidido em 01/11/2026: contam como o ombro anterior (sem meta), e a máquina adutora fica opcional. Falta ensaio de hipertrofia com a máquina.
+- **Meta do R0 "0 equipamento sem uso":** barra hexagonal, banco romano, paralelas e adutora ficam sem vaga na academia completa. Decidido em 01/11/2026: a meta foi reescrita (seção 3.1).
+- **Ordem dos lotes de animação:** a conta põe o elástico antes da máquina de perna. Decidido em 01/11/2026: a máquina de perna vem antes (seção 6.3). O custo real da 1ª peça nova ainda é desconhecido.
 - **A frequência é estimativa** de um modelo simplificado (nível intermediário, ~8 vagas por dia, cenários com o mesmo peso). O número real sai do gerador do R0b. Vale medir de novo antes de abrir cada lote.
 - **Os custos das animações são opinião**, calibrados por um único lote, sem peça nova no motor. A 1ª peça nova (provavelmente a máquina de perna) vai mostrar o custo real.
 - **O valor padrão da menor anilha** (2 kg) é opinião; confirmar na academia do Gustavo (T8).

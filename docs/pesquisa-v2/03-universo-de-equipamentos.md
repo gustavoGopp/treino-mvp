@@ -68,7 +68,7 @@ Medido com o gerador real e scripts temporários, fora do repositório. Estes n�
 - **Nunca escolhidos:** a cadeira extensora e a mesa flexora. Nenhum modelo de dia tem vaga de extensora de joelho, nem de glúteo isolado.
 - **Glúteos:** um único exercício principal, a ponte.
 - **Carla** (avançada, academia completa, 5 × 75 min, prioridade em pernas): posteriores 8 de 14 e panturrilha 8 de 14, com o dia "Superiores C" usando 39 dos 75 min.
-- **Metas do R0:** 45 ou mais exercícios distintos na academia completa; 0 equipamento marcado sem uso; 2 ou mais alternativas de outro equipamento para cada exercício; meta de cada músculo atingida, ou aviso com o motivo verdadeiro.
+- **Metas do R0:** 45 ou mais exercícios distintos na academia completa; 0 equipamento marcado sem exercício possível (redação aprovada no T7, `08`, seção 3.1); 2 ou mais alternativas de outro equipamento para cada exercício; meta de cada músculo atingida, ou aviso com o motivo verdadeiro.
 
 ## O que ainda falta nesta frente
 - **O que cada exercício novo pede**, e quais têm evidência por músculo. Isso vem do tema 3 (escolha dos exercícios).
