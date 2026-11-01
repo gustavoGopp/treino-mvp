@@ -33,7 +33,8 @@ Essas decisões foram copiadas do programa de referência para o código, sem pe
 | [01-divisao-e-frequencia.md](01-divisao-e-frequencia.md) | Corpo todo, AB, ABC, ABCD, superior/inferior, empurrar/puxar/pernas: o que a evidência diz e como escolher | Pronto para revisão |
 | [02-panorama-da-evidencia.md](02-panorama-da-evidencia.md) | O que a evidência mais recente (ACSM 2026 e meta-análises) diz de cada variável, comparado com as regras atuais | Pronto para revisão |
 | [03-universo-de-equipamentos.md](03-universo-de-equipamentos.md) | Os equipamentos que academias, condomínios e casas costumam ter, organizados para o gerador | Primeira versão |
-| [04-exercicios-por-musculo.md](04-exercicios-por-musculo.md) | Tema T3: o que cresce mais em cada um dos 12 músculos, as regras de escolha por função e quantos exercícios por semana | Pronto para revisão |
+| [04-exercicios-por-musculo.md](04-exercicios-por-musculo.md) | Tema T3: o que cresce mais em cada um dos 12 músculos, as regras de escolha por função e quantos exercícios por semana | Aprovado em 01/11/2026 |
+| [05-montagem-da-sessao.md](05-montagem-da-sessao.md) | Tema T4: quanto cabe em cada duração, ordem, aquecimento e a nova escada de cortes quando falta tempo | Pronto para revisão |
 
 ## Plano dos próximos temas (em ordem)
 
@@ -46,7 +47,7 @@ Essas decisões foram copiadas do programa de referência para o código, sem pe
    - Como variar entre blocos de semanas.
 
    Esse tema substitui as "vagas" e a "ordem" herdadas.
-4. **Montagem da sessão.** Duração, ordem, técnicas para economizar tempo (superséries, drop set), aquecimento e transições.
+4. ~~**Montagem da sessão.**~~ (feito: `05-montagem-da-sessao.md`) Duração, ordem, técnicas para economizar tempo (superséries, drop set), aquecimento e transições.
 5. **Iniciantes, volta de pausa e populações.** Mulheres, pessoas acima de 60 anos, quem treina pouco tempo.
 6. **Progressão e acompanhamento.** Dupla progressão, pausas, semana leve e adesão. Base do marco R2.
 7. **Universo de equipamentos, segunda versão.** O que cada equipamento abre, com prioridade.
