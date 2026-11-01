@@ -35,6 +35,7 @@ Essas decisões foram copiadas do programa de referência para o código, sem pe
 | [03-universo-de-equipamentos.md](03-universo-de-equipamentos.md) | Os equipamentos que academias, condomínios e casas costumam ter, organizados para o gerador | Primeira versão |
 | [04-exercicios-por-musculo.md](04-exercicios-por-musculo.md) | Tema T3: o que cresce mais em cada um dos 12 músculos, as regras de escolha por função e quantos exercícios por semana | Aprovado em 01/11/2026 |
 | [05-montagem-da-sessao.md](05-montagem-da-sessao.md) | Tema T4: quanto cabe em cada duração, ordem, aquecimento e a nova escada de cortes quando falta tempo | Aprovado em 01/11/2026 |
+| [06-populacoes-e-seguranca.md](06-populacoes-e-seguranca.md) | Tema T5: iniciante, volta de pausa, mulheres, 60+, gestação, pressão alta e lesões; a triagem conferida contra as diretrizes e uma proposta registrada, não aplicada | Pronto para revisão |
 
 ## Próxima sessão
 O prompt para continuar com os temas T5 e T6 está em [`docs/prompts/sessao-pesquisa-v2-t5.md`](../prompts/sessao-pesquisa-v2-t5.md). Para ler os resumos do PubMed, use `scripts/pesquisa/pubmed.py`.
@@ -51,7 +52,7 @@ O prompt para continuar com os temas T5 e T6 está em [`docs/prompts/sessao-pesq
 
    Esse tema substitui as "vagas" e a "ordem" herdadas.
 4. ~~**Montagem da sessão.**~~ (feito: `05-montagem-da-sessao.md`) Duração, ordem, técnicas para economizar tempo (superséries, drop set), aquecimento e transições.
-5. **Iniciantes, volta de pausa e populações.** Mulheres, pessoas acima de 60 anos, quem treina pouco tempo.
+5. **Iniciantes, volta de pausa e populações.** Mulheres, pessoas acima de 60 anos, quem treina pouco tempo. (em revisão: `06-populacoes-e-seguranca.md`)
 6. **Progressão e acompanhamento.** Dupla progressão, pausas, semana leve e adesão. Base do marco R2.
 7. **Universo de equipamentos, segunda versão.** O que cada equipamento abre, com prioridade.
 8. **O programa do Gustavo.** Aplicar a base nova ao perfil e ao equipamento dele, na máquina que tem `privado/`, e comparar com o programa de referência só como curiosidade, não como meta.
