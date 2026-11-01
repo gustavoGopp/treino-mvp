@@ -45,7 +45,7 @@ describe('docs/pesquisa', () => {
   it('cada fonte aparece uma vez, com status e data de conferência', () => {
     expect(chaves.size).toBe(fontes.length);
     for (const f of fontes) {
-      expect(f.linha, f.key).toMatch(/\*\*status:\*\* (verificado-busca|NÃO VERIFICADO)/);
+      expect(f.linha, f.key).toMatch(/\*\*status:\*\* (verificado-busca|resumo-PubMed|NÃO VERIFICADO)/);
       expect(f.linha, f.key).toMatch(/conferido em \d{4}-\d{2}-\d{2}/);
     }
   });
