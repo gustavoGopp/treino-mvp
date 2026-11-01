@@ -20,6 +20,22 @@ export const MIGRACOES: Record<number, Migracao> = {
     const { alturaRegulavel, ...resto } = polia;
     return { ...anterior, inventario: { ...inv, polia_simples: { ...resto, ...(alturaRegulavel === true ? { altura: 'regulavel' } : {}) } } };
   },
+  // 4 → 5 (R1): a dor passa a ser perguntada num lugar só, a triagem, com a nota de hoje por região
+  // (seguranca.dor.programa). Nada é inventado: a região antiga da triagem entra sem nota (e continua excluída,
+  // como antes, até a pessoa dar a nota); a nota que a pessoa deu em "Restrições" vem junto; a dor de
+  // "Restrições" fora da triagem entra com a nota dela. A resposta da pergunta osteoarticular não muda.
+  4: (anterior) => {
+    const tri = anterior.triagem as (Record<string, unknown> & { regioes?: string[] }) | undefined;
+    const res = anterior.restricoes as (Record<string, unknown> & { dores?: { articulacao: string; intensidade: number }[] }) | undefined;
+    const notas = new Map((res?.dores ?? []).map((d) => [d.articulacao, d.intensidade]));
+    const regioes = [...new Set([...(tri?.regioes ?? []), ...notas.keys()])].sort();
+    const dores = regioes.map((a) => (notas.has(a) ? { articulacao: a, nota: notas.get(a)! } : { articulacao: a }));
+    const sem = (o: Record<string, unknown>, k: string) => Object.fromEntries(Object.entries(o).filter(([c]) => c !== k));
+    const saida: Record<string, unknown> = { ...anterior };
+    if (tri) saida.triagem = { ...sem(tri, 'regioes'), ...(dores.length ? { dores } : {}) };
+    if (res) saida.restricoes = sem(res, 'dores');
+    return saida;
+  },
 };
 
 export type ResultadoMigracao = { ok: true; estado: Estado } | { ok: false; erro: string };

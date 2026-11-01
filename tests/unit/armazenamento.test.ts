@@ -5,6 +5,7 @@ import { exportarJson, importarJson, nomeDoArquivo } from '../../src/storage/arq
 import { estadoSchema, estadoVazio, perfilDe, primeiroPassoPendente, VERSAO_ESTADO, type Estado } from '../../src/storage/esquema';
 import { migrar, type Migracao } from '../../src/storage/migracao';
 import { capacidades } from '../../src/domain/taxonomia/equipamentos';
+import { avaliarTriagem } from '../../src/domain/triagem';
 import { PERSONAS, type Persona } from '../personas';
 
 const DATA = '2026-10-31T12:00:00.000Z';
@@ -26,7 +27,7 @@ function estadoDe(p: Persona): Estado {
       prioridades: perfil.prioridades,
     },
     inventario: p.inventario,
-    restricoes: { evitarExercicios: perfil.evitarExercicios, evitarEquipamentos: perfil.evitarEquipamentos, dores: perfil.dores },
+    restricoes: { evitarExercicios: perfil.evitarExercicios, evitarEquipamentos: perfil.evitarEquipamentos },
     programa: { programa: r.programa, geradoEm: DATA },
     historico: [
       {
@@ -127,7 +128,7 @@ describe('migração', () => {
       inventario: { ...e.inventario, polia_simples: { alturaRegulavel, placas: 12 } },
     });
     const regulavel = migrar(v3(true));
-    expect(regulavel).toMatchObject({ ok: true, estado: { versao: 4, inventario: { polia_simples: { altura: 'regulavel', placas: 12 } } } });
+    expect(regulavel).toMatchObject({ ok: true, estado: { versao: 5, inventario: { polia_simples: { altura: 'regulavel', placas: 12 } } } });
     if (regulavel.ok) {
       expect(regulavel.estado.inventario!.polia_simples).toEqual({ altura: 'regulavel', placas: 12 });
       expect([...capacidades(regulavel.estado.inventario!)]).toEqual(expect.arrayContaining(['polia', 'polia_alta', 'polia_baixa']));
@@ -142,6 +143,35 @@ describe('migração', () => {
     }
     // Sem polia simples, nada muda.
     expect(migrar({ ...JSON.parse(JSON.stringify(e)), versao: 3 })).toEqual({ ok: true, estado: e });
+  });
+
+  it('versão 4 → 5 (R1): a dor vai para um lugar só, a triagem, sem inventar nota nem resposta', () => {
+    const e = estadoDe(PERSONAS.bruno);
+    const v4 = {
+      ...JSON.parse(JSON.stringify(e)),
+      versao: 4,
+      triagem: { respostas: { ...e.triagem!.respostas, osteoarticular: true }, regioes: ['joelho', 'ombro'] },
+      restricoes: { ...e.restricoes, dores: [{ articulacao: 'ombro', intensidade: 4 }, { articulacao: 'lombar', intensidade: 7 }] },
+    };
+    const r = migrar(v4);
+    expect(r.ok).toBe(true);
+    if (!r.ok) return;
+    // Joelho: só na triagem, sem nota (continua excluído, como antes). Ombro: a nota de "Restrições" vem junto.
+    // Lombar: só em "Restrições", com a nota dela. A resposta osteoarticular não muda.
+    expect(r.estado.triagem).toEqual({
+      respostas: { ...e.triagem!.respostas, osteoarticular: true },
+      dores: [{ articulacao: 'joelho' }, { articulacao: 'lombar', nota: 7 }, { articulacao: 'ombro', nota: 4 }],
+    });
+    expect(r.estado.restricoes).toEqual({ evitarExercicios: e.restricoes!.evitarExercicios, evitarEquipamentos: e.restricoes!.evitarEquipamentos });
+    const t = avaliarTriagem(perfilDe(r.estado)!.triagem);
+    expect(t.regioesExcluidas).toEqual(['joelho', 'lombar']);
+    expect(t.regioesDorLeve).toEqual(['ombro']);
+    // Quem não tinha dor nenhuma continua sem dor, e a resposta "não" fica "não".
+    const semDor = migrar({ ...JSON.parse(JSON.stringify(e)), versao: 4, restricoes: { ...e.restricoes, dores: [] } });
+    expect(semDor.ok && semDor.estado.triagem).toEqual(e.triagem);
+    // Dor só em "Restrições", com "não" na pergunta osteoarticular: a nota segue valendo, e a resposta não é trocada.
+    const soRestricoes = migrar({ ...JSON.parse(JSON.stringify(e)), versao: 4, restricoes: { ...e.restricoes, dores: [{ articulacao: 'punho', intensidade: 2 }] } });
+    expect(soRestricoes.ok && soRestricoes.estado.triagem).toEqual({ ...e.triagem, dores: [{ articulacao: 'punho', nota: 2 }] });
   });
 
   it('versão 3 guarda a divisão escolhida e aceita 6 dias; ela chega ao gerador pelo perfil', () => {

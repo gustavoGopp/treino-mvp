@@ -10,7 +10,7 @@ import { PERGUNTAS, type PerguntaId } from '../domain/triagem';
 // Estado guardado no aparelho (IndexedDB) e no arquivo de exportação. Versionado: toda mudança de formato
 // ganha uma versão nova e uma migração em src/storage/migracao.ts, com teste.
 
-export const VERSAO_ESTADO = 4;
+export const VERSAO_ESTADO = 5;
 
 const enumDe = <T extends string>(xs: readonly T[]) => z.enum(xs as unknown as [T, ...T[]]);
 const ids = <T extends { id: string }>(xs: readonly T[]) => xs.map((x) => x.id) as T['id'][];
@@ -26,7 +26,11 @@ const faixa = z.tuple([z.number(), z.number()]);
 
 export const triagemSchema = z.object({
   respostas: z.object(Object.fromEntries(PERGUNTAS.map((p) => [p.id, z.boolean()])) as Record<PerguntaId, z.ZodBoolean>),
-  regioes: z.array(articulacao).optional(),
+  /**
+   * Regiões marcadas e a dor de hoje, de 0 a 10 (seguranca.dor.programa). Desde a versão 5, é o único lugar
+   * da dor no cadastro. Sem nota = região de um estado antigo, que segue excluída até a pessoa dar a nota.
+   */
+  dores: z.array(z.object({ articulacao, nota: z.number().int().min(0).max(10).optional() }).strict()).optional(),
   liberacaoConfirmada: z.boolean().optional(),
   /** Data em que a pessoa confirmou a liberação (seguranca.triagem). Só a data: nada sobre o profissional. */
   liberacaoConfirmadaEm: data.optional(),
@@ -52,7 +56,6 @@ export const rotinaSchema = z.object({
 export const restricoesSchema = z.object({
   evitarExercicios: z.array(exercicioId),
   evitarEquipamentos: z.array(itemId),
-  dores: z.array(z.object({ articulacao, intensidade: z.number().int().min(0).max(10) })),
 });
 
 const porque = z.object({ regraId: z.string(), texto: z.string() });
@@ -159,10 +162,9 @@ export function perfilDe(e: Estado): Perfil | null {
     prioridades: e.rotina.prioridades,
     evitarExercicios: e.restricoes.evitarExercicios,
     evitarEquipamentos: e.restricoes.evitarEquipamentos,
-    dores: e.restricoes.dores,
     triagem: {
       respostas: e.triagem.respostas,
-      ...(e.triagem.regioes ? { regioes: e.triagem.regioes } : {}),
+      ...(e.triagem.dores?.length ? { dores: e.triagem.dores } : {}),
       ...(e.triagem.liberacaoConfirmada ? { liberacaoConfirmada: true } : {}),
     },
   };
