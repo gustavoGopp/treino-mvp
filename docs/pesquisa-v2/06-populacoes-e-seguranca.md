@@ -1,5 +1,7 @@
 # 6. Populações e segurança (tema T5)
 
+> **Aprovado pelo Gustavo em 01/11/2026**, inclusive a carga −10% na volta de 3 a 8 semanas e o cartão de montagem segura. A lacuna do guia brasileiro (PDF não lido) fica aceita e registrada na seção 12. A triagem continua sem mudança; a proposta da seção 9 segue só registrada.
+
 > Pesquisa de 01/11/2026. Estudos e diretrizes com o **resumo oficial lido no PubMed** (resumo-PubMed, com PMID), salvo quando marcado **não verificado**. O texto completo não foi lido: o PMC, as editoras e os sites do governo (gov.br, bvsms) estão bloqueados na rede desta sessão. Onde o texto é opinião do projeto, aparece **[opinião]**.
 >
 > **Regra de segurança não muda nesta fase.** Por decisão do Gustavo, sem profissional de Educação Física no projeto as regras de triagem continuam como estão. A seção 9 traz uma **proposta de triagem revisada**, que fica **registrada, não aplicada**.
