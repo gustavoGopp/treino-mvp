@@ -8,6 +8,7 @@ import {
   type Inventario,
   type ItemId,
 } from '../../domain/taxonomia/equipamentos';
+import { ATALHO, ITENS_DE_ANILHA, SO_NA_FOTO, type Atalho } from '../../domain/taxonomia/atalhos';
 
 // Conversão entre o checklist da tela e o Inventario da taxonomia. Função pura, testada em tests/unit/inventario-form.test.ts.
 // Nada vem pré-preenchido: um valor padrão errado mudaria a carga prescrita sem a pessoa perceber
@@ -25,6 +26,8 @@ export type FormInventario = {
   kettlebell: { pesos: number[] };
   voador: { invertido?: boolean };
   tricepsMaquina: { acimaDaCabeca?: boolean };
+  /** Menor anilha, pergunta única para os itens de anilha (equipamento.menor-anilha). Vazio = sem resposta. */
+  menorAnilha: string;
   /** Atributos que a tela não pergunta (placas, peso da barra, menor anilha): ficam como estavam. */
   extras: Partial<Record<ItemId, Record<string, unknown>>>;
 };
@@ -47,12 +50,12 @@ export const CATEGORIAS = [
   { id: 'barra', titulo: 'Barras' },
   { id: 'maquina', titulo: 'Máquinas' },
   { id: 'acessorio', titulo: 'Outros acessórios' },
-  { id: 'cardio', titulo: 'Cardio' },
 ] as const;
 
-/** Itens de cada categoria da tela. Os acessórios de polia aparecem junto das polias. */
+/** Itens de cada categoria da tela. Os acessórios de polia aparecem junto das polias. A esteira fica só na foto. */
 export function itensDaCategoria(cat: (typeof CATEGORIAS)[number]['id']): ItemId[] {
   return ITEM_IDS.filter((id) => {
+    if (SO_NA_FOTO.includes(id)) return false;
     const c = ITENS[id].categoria as string;
     if (id.startsWith('acessorio_polia_')) return cat === 'polia';
     return c === cat;
@@ -117,6 +120,7 @@ export const VALORES = {
   manoplaKg: [1, 1.5, 2, 2.5, 3],
   anilhaKg: [0.5, 1, 1.25, 2, 2.5, 3, 4, 5, 10],
   kettlebellKg: [4, 6, 8, 10, 12, 14, 16, 20, 24, 28, 32],
+  menorAnilhaKg: [0.5, 1, 1.25, 2, 2.5, 5],
 } as const;
 
 /** Itens cujos atributos a tela pergunta; os demais guardam o que já tinham em `extras`. */
@@ -145,6 +149,7 @@ export const formVazio = (): FormInventario => ({
   kettlebell: { pesos: [] },
   voador: {},
   tricepsMaquina: {},
+  menorAnilha: '',
   extras: {},
 });
 
@@ -170,11 +175,17 @@ export function paraForm(inv: Inventario | undefined): FormInventario {
   if (inv.kettlebell) f.kettlebell = { pesos: [...inv.kettlebell.pesosKg].sort((a, b) => a - b) };
   if (inv.voador) f.voador = inv.voador.invertido === undefined ? {} : { invertido: inv.voador.invertido };
   if (inv.triceps_maquina) f.tricepsMaquina = inv.triceps_maquina.acimaDaCabeca === undefined ? {} : { acimaDaCabeca: inv.triceps_maquina.acimaDaCabeca };
+  // A menor anilha vem do 1º item de anilha que a tem (a pergunta é uma só para todos).
+  const menor = ITENS_DE_ANILHA.map((id) => (inv as Record<string, { menorAnilhaKg?: number } | undefined>)[id]?.menorAnilhaKg).find((k) => k !== undefined);
+  f.menorAnilha = txt(menor);
   // Placas e kg por placa do multifuncional, do voador e da máquina de tríceps também ficam guardados.
   for (const id of f.marcados) {
     const a = (inv as Record<string, Record<string, unknown> | undefined>)[id];
     if (!a || !Object.keys(a).length) continue;
-    if (!COM_FORM.includes(id)) f.extras[id] = { ...a };
+    if (ITENS_DE_ANILHA.includes(id)) {
+      const resto = Object.fromEntries(Object.entries(a).filter(([k]) => k !== 'menorAnilhaKg'));
+      if (Object.keys(resto).length) f.extras[id] = resto;
+    } else if (!COM_FORM.includes(id)) f.extras[id] = { ...a };
     else if (id === 'multifuncional' || id === 'voador' || id === 'triceps_maquina' || id === 'polia_simples') {
       const { placas, kgPorPlaca } = a as { placas?: number; kgPorPlaca?: number };
       const resto = { ...(placas !== undefined && id !== 'polia_simples' ? { placas } : {}), ...(kgPorPlaca !== undefined ? { kgPorPlaca } : {}) };
@@ -263,6 +274,11 @@ export function deForm(f: FormInventario): { inventario: Inventario | null; erro
         inv[id] = { ...f.extras[id] };
     }
   }
+  // Menor anilha: gravada em cada item de anilha marcado; sem resposta, vale o padrão (MENOR_ANILHA_PADRAO_KG).
+  const temAnilha = f.marcados.some((id) => ITENS_DE_ANILHA.includes(id));
+  const menorAnilhaKg = temAnilha ? opcional('menorAnilha', f.menorAnilha) : undefined;
+  if (menorAnilhaKg !== undefined)
+    for (const id of f.marcados) if (ITENS_DE_ANILHA.includes(id)) inv[id] = { ...(inv[id] as object), menorAnilhaKg };
   if (Object.keys(erros).length) return { inventario: null, erros };
   const r = inventarioSchema.safeParse(inv);
   if (!r.success) return { inventario: null, erros: { geral: 'Confira os dados do equipamento.' } };
@@ -278,7 +294,8 @@ export function comSugestoes(f: FormInventario, sugestoes: { itemId: ItemId; atr
   const vazio = (s: string) => s.trim() === '';
   const num = (v: unknown) => (typeof v === 'number' && Number.isFinite(v) ? String(v) : '');
   for (const s of sugestoes) {
-    if (!confirmados.includes(s.itemId)) continue;
+    // A esteira é reconhecida na foto, mas não entra no treino (cardio fica fora do MVP).
+    if (!confirmados.includes(s.itemId) || SO_NA_FOTO.includes(s.itemId)) continue;
     if (!n.marcados.includes(s.itemId)) n.marcados.push(s.itemId);
     const a = s.atributos ?? {};
     if (s.itemId === 'halteres_fixos') {
@@ -296,5 +313,18 @@ export function comSugestoes(f: FormInventario, sugestoes: { itemId: ItemId; atr
     if (s.itemId === 'elasticos' && vazio(n.elasticos.intensidades)) n.elasticos.intensidades = num(a.intensidades);
   }
   n.marcados = ITEM_IDS.filter((id) => n.marcados.includes(id));
+  return n;
+}
+
+/**
+ * Atalho de cenário (equipamento.atalhos): marca o conjunto típico e nunca desmarca o que a pessoa já marcou.
+ * As estações do multifuncional só entram se a pessoa ainda não tiver escolhido nenhuma. Os "às vezes tem"
+ * ficam desmarcados. Nenhum detalhe é preenchido: a tela continua perguntando.
+ */
+export function aplicarAtalho(f: FormInventario, id: Atalho['id']): FormInventario {
+  const a = ATALHO[id];
+  const n: FormInventario = structuredClone(f);
+  n.marcados = ITEM_IDS.filter((x) => f.marcados.includes(x) || a.marca.includes(x));
+  if (a.estacoes && a.marca.includes('multifuncional') && !n.multifuncional.estacoes.length) n.multifuncional.estacoes = [...a.estacoes];
   return n;
 }

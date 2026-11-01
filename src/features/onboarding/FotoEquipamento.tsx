@@ -1,3 +1,4 @@
+import { SO_NA_FOTO } from '../../domain/taxonomia/atalhos';
 import { useId, useRef, useState } from 'react';
 import type { ItemId } from '../../domain/taxonomia/equipamentos';
 import { marcacaoInicial, type Sugestao } from '../../domain/visao';
@@ -83,7 +84,7 @@ export function FotoEquipamento({ aoUsar }: { aoUsar: (sugestoes: Sugestao[], co
   };
 
   if (estado === 'sugestoes') {
-    const faltam = sugestoes.filter((s) => escolha[s.itemId] === undefined).length;
+    const faltam = sugestoes.filter((s) => !SO_NA_FOTO.includes(s.itemId) && escolha[s.itemId] === undefined).length;
     return (
       <section className="foto-eq" aria-labelledby="sugestoes-foto">
         <h2 id="sugestoes-foto">O que encontramos nas fotos</h2>
@@ -100,6 +101,9 @@ export function FotoEquipamento({ aoUsar }: { aoUsar: (sugestoes: Sugestao[], co
                   {s.evidencia ? ` · ${s.evidencia}` : ''}
                 </span>
               </div>
+              {SO_NA_FOTO.includes(s.itemId) ? (
+                <p className="ajuda">Reconhecida, mas o cardio não entra no treino.</p>
+              ) : (
               <div className="sim-nao" role="group" aria-label={`Você tem ${NOME_CURTO[s.itemId]}?`}>
                 <button type="button" aria-pressed={escolha[s.itemId] === true} onClick={() => setEscolha((x) => ({ ...x, [s.itemId]: true }))}>
                   Tenho
@@ -108,6 +112,7 @@ export function FotoEquipamento({ aoUsar }: { aoUsar: (sugestoes: Sugestao[], co
                   Não tenho
                 </button>
               </div>
+              )}
             </li>
           ))}
         </ul>

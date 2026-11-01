@@ -2,11 +2,13 @@ import { useId, useState, type ReactNode } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ITENS, type ItemId } from '../../domain/taxonomia/equipamentos';
 import { useApp } from '../app/estado';
-import { Erros, Escolha, Numero, Passo } from '../app/ui';
+import { Erros, Escolha, Marcar, Numero, Passo, Selo } from '../app/ui';
 import { FotoEquipamento } from './FotoEquipamento';
 import { IconeEquipamento } from './icones';
 import { ALTURAS_POLIA, ESTACOES_MULTIFUNCIONAL } from '../../domain/taxonomia/equipamentos';
+import { ATALHO, ATALHOS, ITENS_DE_ANILHA, type Atalho } from '../../domain/taxonomia/atalhos';
 import {
+  aplicarAtalho,
   CATEGORIAS,
   comSugestoes,
   deForm,
@@ -180,6 +182,8 @@ export function Inventario() {
   const [f, setF] = useState<FormInventario>(() => paraForm(estado.inventario));
   const [erros, setErros] = useState<Record<string, string>>({});
   const [tentou, setTentou] = useState(false);
+  // Último atalho tocado (só na tela): mostra os "às vezes tem" logo abaixo. Nenhum vem selecionado.
+  const [atalho, setAtalho] = useState<Atalho['id'] | undefined>();
 
   const marcar = (id: ItemId, v: boolean) => setF((x) => ({ ...x, marcados: v ? [...x.marcados, id] : x.marcados.filter((m) => m !== id) }));
   const set = <K extends keyof FormInventario>(k: K, v: Partial<FormInventario[K]>) => setF((x) => ({ ...x, [k]: { ...(x[k] as object), ...v } }));
@@ -377,6 +381,40 @@ export function Inventario() {
       <FotoEquipamento aoUsar={(sug, conf) => setF((x) => comSugestoes(x, sug, conf))} />
       <form onSubmit={enviar} noValidate className="form">
         {tentou && nErros > 0 && <Erros erros={[nErros === 1 ? 'Há 1 detalhe para completar.' : `Há ${nErros} detalhes para completar.`]} />}
+        <fieldset className="campo atalhos">
+          <legend>Atalho: onde você treina?</legend>
+          <p className="ajuda">
+            Um toque marca o equipamento típico do lugar; depois é só tirar o que não tiver. <Selo id="equipamento.atalhos" />
+          </p>
+          <div className="opcoes">
+            {ATALHOS.map((a) => (
+              <button
+                key={a.id}
+                type="button"
+                className="btn sec"
+                aria-pressed={atalho === a.id}
+                onClick={() => {
+                  setF((x) => aplicarAtalho(x, a.id));
+                  setAtalho(a.id);
+                }}
+              >
+                {a.nome}
+              </button>
+            ))}
+          </div>
+          {atalho && (
+            <fieldset className="campo sub">
+              <legend>Às vezes tem (toque no que você tiver)</legend>
+              <div className="opcoes grade">
+                {ATALHO[atalho].asVezes.map((id) => (
+                  <Marcar key={id} marcado={f.marcados.includes(id)} aoMudar={(v) => marcar(id, v)}>
+                    {NOME_CURTO[id]}
+                  </Marcar>
+                ))}
+              </div>
+            </fieldset>
+          )}
+        </fieldset>
         {CATEGORIAS.map((c) => {
           const itens = itensDaCategoria(c.id);
           const comDetalhes = itens.filter((id) => f.marcados.includes(id) && ITENS_COM_DETALHES.includes(id));
@@ -398,6 +436,21 @@ export function Inventario() {
             </fieldset>
           );
         })}
+        {f.marcados.some((id) => ITENS_DE_ANILHA.includes(id)) && (
+          <Detalhes titulo="Anilhas das máquinas e barras">
+            <p className="ajuda">
+              Vale para {ITENS_DE_ANILHA.filter((id) => f.marcados.includes(id)).map((id) => NOME_CURTO[id].toLowerCase()).join(', ')}. É o passo para
+              subir a carga. Se não souber, o app usa 2 kg. <Selo id="equipamento.menor-anilha" />
+            </p>
+            <ValorPorToque
+              legenda="Qual a menor anilha?"
+              valores={VALORES.menorAnilhaKg}
+              valor={f.menorAnilha}
+              aoMudar={(v) => setF((x) => ({ ...x, menorAnilha: v }))}
+              erro={e('menorAnilha')}
+            />
+          </Detalhes>
+        )}
         <button type="submit" className="btn">
           Continuar
         </button>
