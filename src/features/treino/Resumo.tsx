@@ -60,10 +60,10 @@ export function Resumo() {
                   <li key={e.exId} className="cartao-ex resumo-ex">
                     <div className="mais-corpo">
                       <h3>{POR_ID[e.exId]?.nome}</h3>
-                      <p className="sub-rx">{e.series.map((x) => `${textoCarga(x.carga)} × ${x.reps}`).join(' · ')}</p>
+                      <p className="sub-rx">{e.series.map((x) => `${textoCarga(x.carga, e.exId)} × ${x.reps}`).join(' · ')}</p>
                       <p>
                         <b className={`acao acao-${sug.acao}`}>{ACAO[sug.acao]}</b>
-                        {sug.proxima && <> · próxima: {textoCarga(sug.proxima)}</>}
+                        {sug.proxima && <> · próxima: {textoCarga(sug.proxima, e.exId)}</>}
                       </p>
                       <p className="ajuda">
                         {sug.motivo} <Selo id={sug.regraId} />

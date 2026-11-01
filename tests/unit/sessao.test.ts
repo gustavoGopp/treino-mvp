@@ -2,7 +2,10 @@ import { describe, expect, it } from 'vitest';
 import { gerarPrograma, type Programa } from '../../src/domain/gerador';
 import {
   diaDaSemana,
+  faseDaSemana,
   historicoDoExercicio,
+  prescricaoDaVaga,
+  prescricaoNoGuia,
   opcoesCarga,
   precisaAquecer,
   proximoDia,
@@ -74,8 +77,11 @@ describe('carga conforme o equipamento', () => {
   it('texto da carga', () => {
     expect(textoCarga({ tipo: 'kg', kg: 12.5 })).toBe('12,5 kg');
     expect(textoCarga({ tipo: 'placa', placa: 4 })).toBe('placa 4');
-    expect(textoCarga({ tipo: 'degrau', degrau: 0 })).toBe('mais repetições');
-    expect(textoCarga({ tipo: 'degrau', degrau: 9 })).toBe('degrau 10');
+    // R1: no degrau, a base vem antes ("peso do corpo × 12", nunca "mais repetições × 12").
+    expect(textoCarga({ tipo: 'degrau', degrau: 0 })).toBe('peso do corpo');
+    expect(textoCarga({ tipo: 'degrau', degrau: 1 })).toBe('peso do corpo · descida de 3 s ou pausa embaixo');
+    expect(textoCarga({ tipo: 'degrau', degrau: 0 }, 'rosca-elastico')).toBe('elástico');
+    expect(textoCarga({ tipo: 'degrau', degrau: 9 })).toBe('peso do corpo · degrau 10');
     expect(textoCarga({ tipo: 'anilha', kgPorLado: 12.5 })).toBe('12,5 kg por lado');
     expect(textoCarga({ tipo: 'contrapeso', placa: 6 })).toBe('contrapeso 6');
   });
@@ -141,5 +147,41 @@ describe('aquecimento e resumo', () => {
     const s = sessao('a', '2026-11-02T10:00:00Z', [{ exId: 'x', series: [kg(10, 10, 2), kg(10, 10, 5)] }, { exId: 'y', series: [] }], '2026-11-02T10:47:00Z');
     expect(resumoSessao(s)).toEqual({ exercicios: 1, series: 2, efetivas: 1, minutos: 47 });
     expect(resumoSessao({ ...s, fim: undefined }).minutos).toBeUndefined();
+  });
+});
+
+describe('guia com a prescrição da pessoa (R1)', () => {
+  const programa = programaDe(PERSONAS.ana);
+  const diaA = programa.dias[0]!;
+  const bulgaro = diaA.exercicios.find((x) => x.exId === 'bulgaro')!;
+
+  it('na fase de aprendizado da Ana (semanas 1–2), o búlgaro vem com RIR 3–4 e menos séries; depois, o programa completo', () => {
+    const s1 = prescricaoNoGuia(programa, { diaId: diaA.id, exId: 'bulgaro' }, 1)!;
+    expect(s1.x.rir).toEqual([3, 4]);
+    expect(s1.x.series).toBeLessThan(bulgaro.series);
+    expect(s1.x.descansoSeg).toBe(bulgaro.descansoSeg);
+    expect(s1.fase?.regraId).toBe('iniciante.fase-aprendizado');
+    const s3 = prescricaoNoGuia(programa, { diaId: diaA.id, exId: 'bulgaro' }, 3)!;
+    expect(s3.x).toEqual(bulgaro);
+    expect(s3.x.rir).not.toEqual([3, 4]);
+  });
+  it('na troca pela alternativa, vale a vaga (séries, RIR, descanso) com as repetições da alternativa', () => {
+    const alt = bulgaro.alternativas[0]!;
+    const r = prescricaoNoGuia(programa, { diaId: diaA.id, exId: alt, vaga: 'bulgaro' }, 1)!;
+    expect(r.x.exId).toBe(alt);
+    expect(r.x.rir).toEqual([3, 4]);
+    expect(prescricaoDaVaga(bulgaro, alt).exId).toBe(alt);
+    expect(prescricaoDaVaga(bulgaro)).toBe(bulgaro);
+  });
+  it('dia ou exercício fora do programa: sem prescrição (o guia mostra o catálogo)', () => {
+    expect(prescricaoNoGuia(programa, { diaId: 'nao-existe', exId: 'bulgaro' }, 1)).toBeNull();
+    expect(prescricaoNoGuia(programa, { diaId: diaA.id, exId: 'supino-inclinado' }, 1)).toBeNull();
+  });
+  it('fase da semana: aprendizado nas semanas 1–2, completo da 3 em diante; readaptação do Bruno por semana', () => {
+    expect(faseDaSemana(programa, 2)?.semanas).toBe('1–2');
+    expect(faseDaSemana(programa, 5)?.semanas).toBe('3+');
+    const bruno = programaDe(PERSONAS.bruno);
+    expect([1, 2, 3].map((s) => faseDaSemana(bruno, s)?.regraId)).toEqual(['readaptacao.semana1', 'readaptacao.semana2', 'readaptacao.semana3']);
+    expect(faseDaSemana(bruno, 1)?.texto).not.toContain('última registrada');
   });
 });

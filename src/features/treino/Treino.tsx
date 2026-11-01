@@ -2,10 +2,11 @@ import { useMemo, useState } from 'react';
 import { Link, Navigate, useNavigate } from 'react-router-dom';
 import { BIBLIOTECA } from '../../domain/biblioteca';
 import { ALTERNATIVAS_A_MOSTRA, type ExercicioPrescrito } from '../../domain/gerador';
+import { linkDoGuia } from '../guia/link';
 import { ESCADA_PESO_CORPO, type Carga, type SerieRegistrada } from '../../domain/progressao';
 import { MENOR_ANILHA_PADRAO_KG } from '../../domain/taxonomia/equipamentos';
 import { CartaoTexto } from '../programa/CartaoTexto';
-import { diaDaSemana, opcoesCarga, precisaAquecer, REGRA_AQUECIMENTO, sugestaoDoExercicio, textoCarga, ultimaSerie } from '../../domain/sessao';
+import { diaDaSemana, opcoesCarga, precisaAquecer, prescricaoDaVaga, REGRA_AQUECIMENTO, sugestaoDoExercicio, textoCarga, ultimaSerie } from '../../domain/sessao';
 import { avaliarDor, avaliarSinal, type Sinal } from '../../domain/triagem';
 import type { Estado } from '../../storage/esquema';
 import { agoraIso, useApp } from '../app/estado';
@@ -44,9 +45,7 @@ export function Treino() {
 
   const itens: Item[] = sessao.exercicios.map((feito) => {
     const orig = dia.exercicios.find((x) => x.exId === (feito.noLugarDe ?? feito.exId)) ?? dia.exercicios[0]!;
-    const alt = feito.noLugarDe ? POR_ID[feito.exId] : undefined;
-    const x: ExercicioPrescrito = alt ? { ...orig, exId: alt.id, nome: alt.nome, reps: alt.faixaReps, unilateral: alt.unilateral, animacaoId: alt.animacaoId, alternativas: [] } : orig;
-    return { x, feito };
+    return { x: prescricaoDaVaga(orig, feito.noLugarDe ? feito.exId : undefined), feito };
   });
   const i = Math.min(indice, itens.length - 1);
   const { x, feito } = itens[i]!;
@@ -104,7 +103,7 @@ export function Treino() {
               )}
             </p>
             {x.animacaoId && (
-              <Link className="link-guia" to={`/guia/${x.animacaoId}`}>
+              <Link className="link-guia" to={linkDoGuia(x.animacaoId, { de: 'treino', diaId: sessao.diaId, exId: x.exId, vaga: feito.noLugarDe })}>
                 Ver como fazer
               </Link>
             )}
@@ -124,9 +123,9 @@ export function Treino() {
           <ol className="series-feitas" aria-label="Séries feitas">
             {feito.series.map((s, n) => (
               <li key={n}>
-                <span className="n">{n + 1}</span> {textoCarga(s.carga)} × {s.reps} · RIR {s.rir === 4 ? '4+' : s.rir}
+                <span className="n">{n + 1}</span> {textoCarga(s.carga, feito.exId)} × {s.reps} · RIR {s.rir === 4 ? '4+' : s.rir}
                 {s.dor ? ` · dor ${s.dor}` : ''}
-                {s.quedas?.length ? ` · quedas: ${s.quedas.map((q) => `${textoCarga(q.carga)} × ${q.reps}`).join(', ')}` : ''}
+                {s.quedas?.length ? ` · quedas: ${s.quedas.map((q) => `${textoCarga(q.carga, feito.exId)} × ${q.reps}`).join(', ')}` : ''}
               </li>
             ))}
             <li>
@@ -231,7 +230,7 @@ function Sugestao({ x, estado }: { x: ExercicioPrescrito; estado: Estado }) {
     );
   return (
     <div className="sugestao">
-      <b>{s.proxima ? `Hoje: ${textoCarga(s.proxima)}` : 'Hoje: mesma carga'}</b>
+      <b>{s.proxima ? `Hoje: ${textoCarga(s.proxima, x.exId)}` : 'Hoje: mesma carga'}</b>
       <span>
         {s.motivo} <Selo id={s.regraId} />
       </span>

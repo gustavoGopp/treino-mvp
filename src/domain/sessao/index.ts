@@ -1,5 +1,5 @@
 import { BIBLIOTECA, type Exercicio } from '../biblioteca';
-import { prescricaoDaSemana, type DiaPrograma, type ExercicioPrescrito, type Programa } from '../gerador';
+import { prescricaoDaSemana, type DiaPrograma, type ExercicioPrescrito, type Fase, type Programa } from '../gerador';
 import { ESCADA_PESO_CORPO, sugerirProgressao, type Carga, type OpcoesCarga, type SerieRegistrada, type SessaoExercicio, type Sugestao } from '../progressao';
 import { r } from '../regras';
 import { CAPACIDADES, cargasHalter, cargasKettlebell, ITEM_IDS, type Inventario } from '../taxonomia/equipamentos';
@@ -52,6 +52,41 @@ export function diaDaSemana(programa: Programa, diaId: string, semana: number): 
   return prescricaoDaSemana(programa, semana).find((d) => d.id === diaId) ?? programa.dias[0]!;
 }
 
+/** Prescrição de quem ocupa a vaga: a do programa ou, numa troca, a da alternativa (repetições, lado e animação dela). */
+export function prescricaoDaVaga(orig: ExercicioPrescrito, altId?: string): ExercicioPrescrito {
+  const alt = altId && altId !== orig.exId ? POR_ID[altId] : undefined;
+  return alt ? { ...orig, exId: alt.id, nome: alt.nome, reps: alt.faixaReps, unilateral: alt.unilateral, animacaoId: alt.animacaoId, alternativas: [] } : orig;
+}
+
+/** Fase que vale na semana (mesma leitura de prescricaoDaSemana: "1", "1–2", "3+", "1ª sessão"). */
+export function faseDaSemana(p: Programa, semana: number): Fase | undefined {
+  return p.fases.find((f) => {
+    const [a, b] = f.semanas.split(/[–+]/).map((x) => parseInt(x, 10));
+    if (Number.isNaN(a)) return semana === 1;
+    if (f.semanas.endsWith('+')) return semana >= a!;
+    return semana >= a! && semana <= (Number.isNaN(b) || b === undefined ? a! : b);
+  });
+}
+
+export type ContextoGuia = { diaId: string; exId: string; /** Exercício da vaga, quando houve troca pela alternativa. */ vaga?: string };
+
+/**
+ * O que o guia mostra quando é aberto pelo programa ou pelo treino (R1): a prescrição da pessoa naquela semana
+ * (séries, repetições, RIR e descanso, com as fases de aprendizado e readaptação), nunca a do programa de
+ * referência. Devolve null se o dia ou o exercício não estão no programa (o guia mostra então o catálogo).
+ */
+export function prescricaoNoGuia(
+  programa: Programa,
+  ctx: ContextoGuia,
+  semana: number,
+): { dia: DiaPrograma; x: ExercicioPrescrito; semana: number; fase?: Fase } | null {
+  const dia = prescricaoDaSemana(programa, semana).find((d) => d.id === ctx.diaId);
+  const orig = dia?.exercicios.find((x) => x.exId === (ctx.vaga ?? ctx.exId));
+  if (!dia || !orig) return null;
+  const fase = faseDaSemana(programa, semana);
+  return { dia, x: prescricaoDaVaga(orig, ctx.vaga ? ctx.exId : undefined), semana, ...(fase ? { fase } : {}) };
+}
+
 export type TipoCarga = Carga['tipo'];
 
 /** Placas ou menor anilha do item que dá a capacidade do exercício (o 1º do inventário que a dá sozinho). */
@@ -93,13 +128,20 @@ export function opcoesCarga(exId: string, inventario: Inventario): OpcoesCarga &
   }
 }
 
-/** Texto da carga para a tela. */
-export function textoCarga(c: Carga): string {
+/**
+ * Texto da carga para a tela. No degrau (peso do corpo, elástico), o nome do degrau vem depois da base:
+ * "peso do corpo × 12", e não "mais repetições × 12" (R1). O exercício, quando conhecido, diz se a base é o elástico.
+ */
+export function textoCarga(c: Carga, exId?: string): string {
+  if (c.tipo === 'degrau') {
+    const base = exId && POR_ID[exId]?.carga === 'elastico' ? 'elástico' : 'peso do corpo';
+    if (c.degrau === 0) return base;
+    return `${base} · ${ESCADA_PESO_CORPO[c.degrau] ?? `degrau ${c.degrau + 1}`}`;
+  }
   if (c.tipo === 'kg') return `${c.kg.toLocaleString('pt-BR')} kg`;
   if (c.tipo === 'placa') return `placa ${c.placa}`;
   if (c.tipo === 'anilha') return `${c.kgPorLado.toLocaleString('pt-BR')} kg por lado`;
-  if (c.tipo === 'contrapeso') return `contrapeso ${c.placa}`;
-  return ESCADA_PESO_CORPO[c.degrau] ?? `degrau ${c.degrau + 1}`;
+  return `contrapeso ${c.placa}`;
 }
 
 /** Histórico de um exercício (só sessões em que ele foi feito com séries), do mais antigo ao mais recente. */

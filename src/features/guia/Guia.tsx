@@ -1,10 +1,15 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { Link, Navigate, useNavigate, useParams, useSearchParams } from 'react-router-dom';
 import { CONTEUDO } from '../../conteudo';
+import { prescricaoNoGuia, semanaDoPrograma } from '../../domain/sessao';
 import { DIAS, EX, VIEWS, montarSvg } from '../../engine';
+import { agoraIso, useApp } from '../app/estado';
+import { lerContexto, linkDoGuia } from './link';
 
 // Tela do guia de execução: mesma interface do guia original (referencia/guia-execucao-fase1.html),
 // sem o temporizador de descanso (que entra no M5). O motor não sabe de React: o palco só recebe o SVG.
+// Aberto pelo programa ou pelo treino (R1), o guia mostra a prescrição da pessoa naquela semana e os
+// exercícios do dia dela. Sem contexto, é o catálogo das animações, sem prescrição nenhuma.
 
 type Modo = 'tec' | 'err' | 'mus' | 'traj';
 const MODOS: [Modo, string][] = [
@@ -22,6 +27,17 @@ const GRUPOS = [
   ...(EX.length > 26 ? [{ id: 'novas', nome: 'Novas', ex: EX.slice(26) }] : []),
 ];
 
+const faixa = ([a, b]: [number, number]) => (a === b ? `${a}` : `${a}–${b}`);
+const tempo = (seg: number) => (seg % 60 ? `${Math.floor(seg / 60)}:${String(seg % 60).padStart(2, '0')}` : `${seg / 60} min`);
+
+/** No checklist, o "RIR do seu programa" vira o RIR desta semana; sem esse item, ele entra no fim. */
+function checklistComRir(itens: string[], rir: string): string[] {
+  const trocado = itens.map((i) =>
+    i === 'Carga para o RIR do seu programa' ? `Carga para RIR ${rir}` : i === 'Parar no RIR do seu programa' ? `Parar com RIR ${rir}` : i,
+  );
+  return trocado.some((i, k) => i !== itens[k]) ? trocado : [...itens, `Carga para RIR ${rir}`];
+}
+
 const reduzMovimento = () => typeof window !== 'undefined' && !!window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
 
 export function Guia() {
@@ -35,8 +51,27 @@ function GuiaExercicio({ ex }: { ex: Animacao }) {
   const txt = CONTEUDO[ex.id]!;
   const navigate = useNavigate();
   const [params] = useSearchParams();
-  const dia = GRUPOS.find((d) => d.ex.includes(ex))!;
-  const pos = dia.ex.indexOf(ex);
+  const app = useApp();
+
+  // Prescrição da pessoa: a semana vem do treino em andamento (aberto pelo treino) ou do calendário do programa.
+  const ctx = lerContexto(params);
+  const programa = app.estado.programa?.programa;
+  const sessao = app.estado.sessaoAtual;
+  const semana = ctx?.de === 'treino' && sessao && sessao.diaId === ctx.diaId ? sessao.semana : semanaDoPrograma(app.estado.historico, agoraIso());
+  const minha = ctx && programa ? prescricaoNoGuia(programa, ctx, semana) : null;
+  const meus =
+    minha && ctx
+      ? minha.dia.exercicios
+          .map((x) => (ctx.vaga && x.exId === ctx.vaga ? minha.x : x))
+          .filter((x, i, xs) => x.animacaoId && xs.findIndex((y) => y.animacaoId === x.animacaoId) === i).map((x) => ({ x, ex: EX.find((e: Animacao) => e.id === x.animacaoId)! }))
+      : [];
+  // Na troca pela alternativa, ela continua no lugar da vaga ao navegar pelo dia.
+  const linkMeu = (exId: string, animacaoId: string) =>
+    linkDoGuia(animacaoId, { de: ctx!.de, diaId: ctx!.diaId, exId, ...(ctx!.vaga && exId === ctx!.exId ? { vaga: ctx!.vaga } : {}) });
+  const dia = minha
+    ? { id: minha.dia.id, nome: minha.dia.nome, ex: meus.map((m) => m.ex) }
+    : GRUPOS.find((d) => d.ex.includes(ex))!;
+  const pos = Math.max(0, dia.ex.indexOf(ex));
 
   // Parâmetros de URL fixam o quadro (usados pela regressão visual e para gerar imagens do devlog).
   const modoUrl = params.get('modo') as Modo | null;
@@ -99,7 +134,10 @@ function GuiaExercicio({ ex }: { ex: Animacao }) {
   }, [ex, txt]);
 
   const vistas: string[] = useMemo(() => (modo === 'err' ? [...new Set([vista, ...ex.views])] : ex.views), [modo, vista, ex]);
-  const irPara = (i: number) => navigate(`/guia/${dia.ex[(i + dia.ex.length) % dia.ex.length]!.id}`);
+  const irPara = (i: number) => {
+    const n = (i + dia.ex.length) % dia.ex.length;
+    navigate(minha ? linkMeu(meus[n]!.x.exId, meus[n]!.x.animacaoId!) : `/guia/${dia.ex[n]!.id}`);
+  };
   const trocarModo = (m: Modo) => {
     setModo(m);
     if (m === 'err') {
@@ -116,15 +154,23 @@ function GuiaExercicio({ ex }: { ex: Animacao }) {
           <b>
             <Link to="/">Guia de execução</Link>
           </b>
-          <span>Programa de referência · animações esquemáticas</span>
+          <span>{minha ? `Seu treino · ${minha.dia.nome}` : 'Catálogo de exercícios · animações esquemáticas'}</span>
         </div>
-        <nav className="days" aria-label="Treinos">
-          {GRUPOS.map((d) => (
-            <button key={d.id} className="day" aria-pressed={d === dia} onClick={() => navigate(`/guia/${d.ex[0]!.id}`)}>
-              {d.nome}
-            </button>
-          ))}
-        </nav>
+        {minha ? (
+          <nav className="days" aria-label="Voltar">
+            <Link className="day" to={ctx!.de === 'treino' ? '/treino' : '/programa'}>
+              ‹ Voltar {ctx!.de === 'treino' ? 'ao treino' : 'ao programa'}
+            </Link>
+          </nav>
+        ) : (
+          <nav className="days" aria-label="Treinos">
+            {GRUPOS.map((d) => (
+              <button key={d.id} className="day" aria-pressed={d === dia} onClick={() => navigate(`/guia/${d.ex[0]!.id}`)}>
+                {d.nome}
+              </button>
+            ))}
+          </nav>
+        )}
         <div className="chips" role="tablist" aria-label="Exercícios">
           {dia.ex.map((e: Animacao, i: number) => (
             <button key={e.id} className="chip" role="tab" aria-pressed={e === ex} onClick={() => irPara(i)}>
@@ -139,7 +185,15 @@ function GuiaExercicio({ ex }: { ex: Animacao }) {
         <div className="n">{pos + 1}</div>
         <div>
           <h1>{txt.name}</h1>
-          <div className="rx">{txt.rx}</div>
+          {minha ? (
+            <div className="rx" data-testid="prescricao">
+              Semana {minha.semana}: {minha.x.series} × {faixa(minha.x.reps)}
+              {minha.x.unilateral ? ' cada lado' : ''} · RIR {faixa(minha.x.rir)} · descanso {tempo(minha.x.descansoSeg)}
+              {minha.fase && minha.fase.rir ? ` · ${minha.fase.regraId === 'iniciante.fase-aprendizado' ? 'fase de aprendizado' : 'volta da pausa'}` : ''}
+            </div>
+          ) : (
+            <div className="rx">As séries, as repetições e o RIR vêm do seu programa.</div>
+          )}
           <div className="tg">
             <b>Alvo:</b> {txt.target}
           </div>
@@ -231,7 +285,7 @@ function GuiaExercicio({ ex }: { ex: Animacao }) {
             ))}
           </ol>
         </div>
-        <Checklist key={ex.id} itens={txt.check} id={ex.id} />
+        <Checklist key={ex.id} itens={minha ? checklistComRir(txt.check, faixa(minha.x.rir)) : txt.check} id={ex.id} />
       </section>
 
       <Detalhes txt={txt} />

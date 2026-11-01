@@ -5,7 +5,8 @@ import { ALTERNATIVAS_A_MOSTRA, NOME_MUSCULO, type ExercicioPrescrito, type Prog
 import { opcoesDeAjuste, type Opcao } from '../../domain/gerador/opcoes';
 import { NOME_NIVEL } from '../../domain/nivel';
 import { avaliarTriagem } from '../../domain/triagem';
-import { proximoDia, semanaDoPrograma } from '../../domain/sessao';
+import { faseDaSemana, proximoDia, semanaDoPrograma } from '../../domain/sessao';
+import { linkDoGuia } from '../guia/link';
 import { prescricaoDaSemana } from '../../domain/gerador';
 import { perfilDe, primeiroPassoPendente, type Estado } from '../../storage/esquema';
 import { iniciarSessao } from '../treino/acoes';
@@ -187,7 +188,7 @@ export function Programa() {
           )}
           <ol className="cartoes-ex">
             {dia.exercicios.map((x, i) => (
-              <CartaoExercicio key={x.exId} x={x} n={i + 1} dia={dia.exercicios} />
+              <CartaoExercicio key={x.exId} x={x} n={i + 1} dia={dia.exercicios} diaId={dia.id} />
             ))}
           </ol>
         </section>
@@ -196,16 +197,6 @@ export function Programa() {
       </main>
     </div>
   );
-}
-
-/** Fase que vale na semana (mesma leitura de prescricaoDaSemana: "1", "1–2", "3+", "1ª sessão"). */
-function faseDaSemana(p: TipoPrograma, semana: number) {
-  return p.fases.find((f) => {
-    const [a, b] = f.semanas.split(/[–+]/).map((x) => parseInt(x, 10));
-    if (Number.isNaN(a)) return semana === 1;
-    if (f.semanas.endsWith('+')) return semana >= a!;
-    return semana >= a! && semana <= (Number.isNaN(b) || b === undefined ? a! : b);
-  });
 }
 
 function Ajustes({ opcoes, escolher }: { opcoes: Opcao[]; escolher: (o: Opcao) => void }) {
@@ -229,7 +220,7 @@ function Ajustes({ opcoes, escolher }: { opcoes: Opcao[]; escolher: (o: Opcao) =
   );
 }
 
-function CartaoExercicio({ x, n, dia }: { x: ExercicioPrescrito; n: number; dia: ExercicioPrescrito[] }) {
+function CartaoExercicio({ x, n, dia, diaId }: { x: ExercicioPrescrito; n: number; dia: ExercicioPrescrito[]; diaId: string }) {
   const ex = POR_ID[x.exId];
   const par = x.supersetCom ? dia.find((y) => y.exId === x.supersetCom) : undefined;
   const corpo = (
@@ -254,7 +245,7 @@ function CartaoExercicio({ x, n, dia }: { x: ExercicioPrescrito; n: number; dia:
   return (
     <li className="cartao-ex">
       {x.animacaoId ? (
-        <Link className="cartao-ex-corpo" to={`/guia/${x.animacaoId}`}>
+        <Link className="cartao-ex-corpo" to={linkDoGuia(x.animacaoId, { de: 'programa', diaId, exId: x.exId })}>
           {corpo}
           <span className="sr">: ver como fazer</span>
         </Link>
@@ -272,7 +263,7 @@ function CartaoExercicio({ x, n, dia }: { x: ExercicioPrescrito; n: number; dia:
             </p>
           )}
           {!x.animacaoId && <CartaoTexto exId={x.exId} />}
-          {x.alternativas.length > 0 && <Alternativas ids={x.alternativas} />}
+          {x.alternativas.length > 0 && <Alternativas ids={x.alternativas} diaId={diaId} vaga={x.exId} />}
           <ul className="lista">
             {x.porque.map((q) => (
               <li key={q.regraId}>
@@ -356,11 +347,15 @@ function Sobre({ programa, reabrirAjustes }: { programa: TipoPrograma; reabrirAj
 }
 
 /** Alternativas da mesma função: as 3 melhores à mostra e o resto em "ver mais" (decisão de 01/11/2026). */
-function Alternativas({ ids }: { ids: string[] }) {
+function Alternativas({ ids, diaId, vaga }: { ids: string[]; diaId: string; vaga: string }) {
   const nome = (id: string) => {
     const alt = POR_ID[id];
     if (!alt) return null;
-    return alt.animacaoId ? <Link to={`/guia/${alt.animacaoId}`}>{alt.nome.toLowerCase()}</Link> : alt.nome.toLowerCase();
+    return alt.animacaoId ? (
+      <Link to={linkDoGuia(alt.animacaoId, { de: 'programa', diaId, exId: alt.id, vaga })}>{alt.nome.toLowerCase()}</Link>
+    ) : (
+      alt.nome.toLowerCase()
+    );
   };
   const lista = (xs: string[]) =>
     xs.map((id, i) => (
