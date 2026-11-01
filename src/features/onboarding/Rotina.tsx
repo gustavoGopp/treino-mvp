@@ -1,12 +1,14 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { GRUPOS, type Grupo } from '../../domain/gerador';
+import { GRUPOS, metaMaxima, type Grupo } from '../../domain/gerador';
+import { opcoesDeDivisao, type DivisaoId } from '../../domain/gerador/divisoes';
+import { exerciciosPorSessao } from '../../domain/regras';
 import { NOME_GRUPO } from '../../domain/gerador/opcoes';
 import { useApp } from '../app/estado';
 import { Erros, Escolha, Marcar, Numero, Passo, Selo, numeroOu } from '../app/ui';
 
-// Passo 4: dias por semana, minutos por sessão e grupos prioritários.
-const DIAS = [2, 3, 4, 5] as const;
+// Passo 4: dias por semana, minutos por sessão, grupos prioritários e, opcional, a divisão.
+const DIAS = [2, 3, 4, 5, 6] as const;
 const GRUPOS_IDS = Object.keys(GRUPOS) as Grupo[];
 
 export function Rotina() {
@@ -16,10 +18,20 @@ export function Rotina() {
   const [dias, setDias] = useState<(typeof DIAS)[number] | undefined>(salva?.diasSemana);
   const [min, setMin] = useState(salva ? String(salva.minutosSessao) : '');
   const [prio, setPrio] = useState<Grupo[]>(salva?.prioridades ?? []);
+  // Nada vem marcado (divisao.recomendacao): sem escolha, o gerador usa a recomendada.
+  const [divisao, setDivisao] = useState<DivisaoId | undefined>(salva?.divisao);
   const [tentou, setTentou] = useState(false);
 
   const minutos = numeroOu(min);
   const minOk = minutos !== undefined && Number.isInteger(minutos) && minutos >= 20 && minutos <= 150;
+  const prioOrdenadas = GRUPOS_IDS.filter((g) => prio.includes(g));
+  const opcoesDivisao = dias ? opcoesDeDivisao(dias, metaMaxima(estado.nivel?.escolhido ?? 'intermediario', prioOrdenadas)) : [];
+  const divisaoValida = divisao && opcoesDivisao.some((o) => o.id === divisao) ? divisao : undefined;
+  const mudarDias = (d: (typeof DIAS)[number]) => {
+    setDias(d);
+    if (d !== dias) setDivisao(undefined); // a divisão é de um número de dias
+  };
+
   const erros = [!dias && 'Escolha quantos dias por semana.', !minOk && 'Informe os minutos por sessão (de 20 a 150).'].filter(
     (x): x is string => !!x,
   );
@@ -28,7 +40,10 @@ export function Rotina() {
     e.preventDefault();
     setTentou(true);
     if (erros.length) return;
-    atualizar((s) => ({ ...s, rotina: { diasSemana: dias!, minutosSessao: minutos!, prioridades: GRUPOS_IDS.filter((g) => prio.includes(g)) } }));
+    atualizar((s) => ({
+      ...s,
+      rotina: { diasSemana: dias!, ...(divisaoValida ? { divisao: divisaoValida } : {}), minutosSessao: minutos!, prioridades: prioOrdenadas },
+    }));
     navigate('/comecar/inventario');
   };
 
@@ -41,12 +56,12 @@ export function Rotina() {
           legenda="Quantos dias por semana você pode treinar?"
           ajuda={
             <>
-              Com 2 a 5 dias dá para treinar cada músculo cerca de 2 vezes por semana. <Selo id="frequencia.musculo" />
+              Com 2 a 6 dias dá para treinar cada músculo cerca de 2 vezes por semana. <Selo id="divisao.seis-dias" />
             </>
           }
           opcoes={DIAS.map((d) => ({ id: d, texto: `${d} dias` }))}
           valor={dias}
-          aoMudar={setDias}
+          aoMudar={mudarDias}
           erro={tentou && !dias ? 'Escolha uma opção.' : undefined}
           linha
         />
@@ -75,6 +90,38 @@ export function Rotina() {
             ))}
           </div>
         </fieldset>
+        {dias && opcoesDivisao.length > 1 && (
+          <fieldset className="campo">
+            <legend>Como prefere dividir? (opcional)</legend>
+            <p className="ajuda">
+              Com o mesmo volume, as divisões rendem o mesmo crescimento; escolha a que encaixa melhor na sua semana. Se não escolher, o app usa
+              a recomendada. <Selo id="divisao.equivalencia" /> <Selo id="divisao.recomendacao" />
+            </p>
+            <div className="opcoes">
+              {opcoesDivisao.map((o) => (
+                <label key={o.id} className="opcao divisao">
+                  <input type="radio" name="divisao" checked={divisaoValida === o.id} onChange={() => setDivisao(o.id)} />
+                  <span>
+                    <b>{o.nome}</b>
+                    {o.recomendada && <span className="etiqueta"> Recomendada</span>}
+                    <br />
+                    <small>
+                      Cada músculo {o.frequencia === '1' ? '1 vez' : `${o.frequencia} vezes`} por semana
+                      {minOk ? ` · cerca de ${exerciciosPorSessao(minutos!)} exercícios por treino` : ''}. {o.descricao}
+                      {o.aviso && <> {o.aviso}</>}
+                    </small>
+                  </span>
+                </label>
+              ))}
+            </div>
+            {divisaoValida && (
+              <button type="button" className="btn sec" onClick={() => setDivisao(undefined)}>
+                Deixar o app escolher
+              </button>
+            )}
+            <p className="ajuda">Os minutos de cada treino aparecem no programa, porque dependem do seu equipamento.</p>
+          </fieldset>
+        )}
         <button type="submit" className="btn">
           Continuar
         </button>
