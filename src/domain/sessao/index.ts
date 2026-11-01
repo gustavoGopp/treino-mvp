@@ -204,7 +204,7 @@ export function textoPrimeiraVez(historico: Sessao[], exId: string, local?: Loca
     .flatMap((s) => s.exercicios)
     .find((e) => e.exId !== exId && e.series.length > 0 && funcoes.some((f) => f.niveis.some((n) => n.includes(e.exId))));
   if (feito) return `Você já faz ${(POR_ID[feito.exId]?.nome ?? '').toLowerCase()}; aqui é a 1ª vez: ${comeco}`;
-  return `1ª vez neste exercício: ${comeco.charAt(0).toUpperCase()}${comeco.slice(1)}`;
+  return `1ª vez neste exercício: ${comeco}`;
 }
 
 /**

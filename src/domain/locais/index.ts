@@ -142,7 +142,7 @@ export function diaNoLocal(dia: DiaPrograma, perfil: Perfil, inventario: Inventa
     if (outro) {
       const nivelFuncao = outro.g.niveis.findIndex((n) => n.includes(outro.y.id));
       const onde = outro.mesmo ? 'mesmo músculo, outro movimento' : 'outro músculo do dia';
-      const motivo = `${falta}, e nenhum equivalente de ${f ? minuscula(f.nome) : minuscula(e.nome)} é possível: no lugar de ${minuscula(e.nome)}, ${minuscula(outro.y.nome)} (${onde})`;
+      const motivo = `${falta}, e nenhum equivalente de ${f ? minuscula(f.nome) : minuscula(e.nome)} é possível: no lugar de ${minuscula(e.nome)}, ${minuscula(outro.y.nome)} — ${onde}`;
       novos.set(x.exId, entrar(x, outro.y, outro.g, nivelFuncao, { regraId: r('selecao.dia-sem-principal'), texto: `Neste local, ${motivo}.` }));
       trocas.push({ vaga: x.exId, entrou: outro.y.id, motivo, regraId: r('selecao.dia-sem-principal') });
       usados.add(outro.y.id);

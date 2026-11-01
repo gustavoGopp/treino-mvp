@@ -35,6 +35,14 @@ describe('selecao.preferencia', () => {
     }
   });
 
+  it('snapshot revisado: o dia da Carla que muda com "prefiro o leg press" (antes e depois)', () => {
+    const dia = (q: Programa) => q.dias.find((d) => d.exercicios.some((x) => x.funcao === 'agachar'))!;
+    const linha = (q: Programa) => `${dia(q).nome} (${dia(q).minutosEstimados} min): ${dia(q).exercicios.map((x) => `${x.exId} ${x.series}×${x.reps.join('–')}`).join(' | ')}`;
+    const antes = ok(carla.perfil, carla.inventario);
+    const depois = ok({ ...carla.perfil, preferidos: { agachar: 'leg-press' } }, carla.inventario);
+    expect({ antes: linha(antes), depois: linha(depois), volumeIgual: JSON.stringify(antes.volumeSemanal) === JSON.stringify(depois.volumeSemanal) }).toMatchSnapshot();
+  });
+
   it('a preferência vale por função: preferir o leg press na panturrilha em pé não mexe no agachar', () => {
     const p = ok({ ...carla.perfil, preferidos: { 'panturrilha-em-pe': 'panturrilha-leg-press' } }, carla.inventario);
     expect(agachar(p).map((x) => x.exId)).toEqual(['agachamento-barra']);

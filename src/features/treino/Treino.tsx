@@ -136,7 +136,7 @@ export function Treino() {
         {!x.animacaoId && <CartaoTexto exId={x.exId} />}
         {trocaDoLocal ? (
           <p className="ajuda troca-local">
-            Neste local, {trocaDoLocal.motivo}. <Selo id={trocaDoLocal.regraId} />
+            {trocaDoLocal.motivo.charAt(0).toUpperCase() + trocaDoLocal.motivo.slice(1)}. <Selo id={trocaDoLocal.regraId} />
           </p>
         ) : (
           feito.noLugarDe && <p className="ajuda">No lugar de {POR_ID[feito.noLugarDe]?.nome.toLowerCase()}, só neste treino.</p>
@@ -576,7 +576,6 @@ function Trocar({
   return (
     <section className="box" aria-label="Trocar exercício">
       <h2>Trocar só neste treino por:</h2>
-      <BotaoPrefiro funcao={funcao} id={atual} atual={atual} alternativas={alternativas} preferidos={preferidos} aoPreferir={aoPreferir} />
       <div className="pilha">{alternativas.slice(0, ALTERNATIVAS_A_MOSTRA).map(botao)}</div>
       {resto.length > 0 && (
         <details className="ver-mais">
@@ -584,6 +583,7 @@ function Trocar({
           <div className="pilha">{resto.map(botao)}</div>
         </details>
       )}
+      <BotaoPrefiro funcao={funcao} id={atual} atual={atual} alternativas={alternativas} preferidos={preferidos} aoPreferir={aoPreferir} />
     </section>
   );
 }
