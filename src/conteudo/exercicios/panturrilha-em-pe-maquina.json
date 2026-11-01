@@ -1,0 +1,56 @@
+{
+  "id": "panturrilha-em-pe-maquina",
+  "name": "Panturrilha em pé na máquina",
+  "short": "Panturrilha em pé",
+  "target": "Panturrilha",
+  "setupEq": [
+    "Ponta dos pés na borda da plataforma."
+  ],
+  "setupBody": [
+    "Ombros sob as almofadas, joelhos estendidos sem travar."
+  ],
+  "exec": [
+    [
+      "ecc",
+      "Descida",
+      "Desce o calcanhar bem abaixo da plataforma, até o alongamento máximo."
+    ],
+    [
+      "hold",
+      "Embaixo",
+      "Pausa de ~1 s no alongamento."
+    ],
+    [
+      "conc",
+      "Subida",
+      "Sobe o calcanhar o máximo possível."
+    ]
+  ],
+  "range": [
+    "Embaixo: calcanhar bem abaixo da plataforma.",
+    "Em cima: calcanhar o mais alto possível."
+  ],
+  "cues": [
+    "Pausa embaixo.",
+    "Joelhos esticados.",
+    "Sem quicar."
+  ],
+  "errors": [
+    {
+      "id": "e1",
+      "title": "Subida e descida curtas",
+      "desc": "Sem passar da linha da plataforma."
+    },
+    {
+      "id": "e2",
+      "title": "Dobrar os joelhos",
+      "desc": "Os joelhos dobram para dar impulso."
+    },
+    {
+      "id": "e3",
+      "title": "Quicar",
+      "desc": "Sem pausa embaixo."
+    }
+  ],
+  "carga": "Registre o número da placa da torre. Para progredir, +1 placa. Na máquina de anilhas, kg por lado."
+}

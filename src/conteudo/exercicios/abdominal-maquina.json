@@ -1,0 +1,46 @@
+{
+  "id": "abdominal-maquina",
+  "name": "Abdominal na máquina",
+  "short": "Abdominal na máquina",
+  "target": "Abdômen",
+  "setupEq": [
+    "Pés presos."
+  ],
+  "setupBody": [
+    "Sentado, peito ou ombros nas almofadas."
+  ],
+  "exec": [
+    [
+      "conc",
+      "Enrolar",
+      "Enrola o tronco, aproximando as costelas da pelve; o quadril dobra pouco."
+    ],
+    [
+      "ecc",
+      "Volta",
+      "Volta controlando até o tronco ficar reto."
+    ]
+  ],
+  "range": [
+    "Início: tronco reto.",
+    "Fim: tronco enrolado, costelas perto da pelve."
+  ],
+  "cues": [
+    "Enrola o tronco.",
+    "Braços só seguram.",
+    "Volta controlando."
+  ],
+  "errors": [
+    {
+      "id": "e1",
+      "title": "Puxar com os braços",
+      "desc": "Os braços fazem a força em vez do abdômen."
+    },
+    {
+      "id": "e2",
+      "title": "Só dobrar o quadril",
+      "desc": "A coluna fica reta."
+    }
+  ],
+  "carga": "Registre o número da placa da torre. Para progredir, +1 placa."
+}

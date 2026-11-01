@@ -1,0 +1,52 @@
+{
+  "id": "coice-polia",
+  "name": "Coice na polia com tornozeleira",
+  "short": "Coice na polia",
+  "target": "Glúteos",
+  "setupEq": [
+    "Polia no ponto mais baixo, tornozeleira presa na perna que trabalha."
+  ],
+  "setupBody": [
+    "De frente para a torre, mãos apoiadas nela.",
+    "Tronco levemente inclinado à frente."
+  ],
+  "exec": [
+    [
+      "conc",
+      "Levar para trás",
+      "Leva a perna para trás, com o joelho quase estendido, até a coxa passar um pouco da linha do corpo."
+    ],
+    [
+      "ecc",
+      "Volta",
+      "Volta até a frente do corpo, controlando."
+    ]
+  ],
+  "range": [
+    "Início: perna à frente do corpo.",
+    "Fim: coxa um pouco atrás da linha do corpo, sem arquear a lombar."
+  ],
+  "cues": [
+    "Joelho quase estendido.",
+    "Lombar parada.",
+    "Tronco parado."
+  ],
+  "errors": [
+    {
+      "id": "e1",
+      "title": "Arquear a lombar",
+      "desc": "A lombar arqueia para levar a perna mais longe."
+    },
+    {
+      "id": "e2",
+      "title": "Dobrar o joelho",
+      "desc": "O movimento vira uma flexora."
+    },
+    {
+      "id": "e3",
+      "title": "Embalar",
+      "desc": "O tronco balança."
+    }
+  ],
+  "carga": "Registre o número da placa da torre. Para progredir, +1 placa."
+}

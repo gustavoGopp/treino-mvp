@@ -1,0 +1,46 @@
+{
+  "id": "triceps-maquina",
+  "name": "Tríceps na máquina",
+  "short": "Tríceps na máquina",
+  "target": "Tríceps",
+  "setupEq": [
+    "Assento na altura em que o cotovelo fica alinhado com o eixo da máquina."
+  ],
+  "setupBody": [
+    "Braços apoiados na almofada."
+  ],
+  "exec": [
+    [
+      "conc",
+      "Estender",
+      "Estende os cotovelos até quase travar."
+    ],
+    [
+      "ecc",
+      "Volta",
+      "Volta até o cotovelo dobrar ~90° ou mais."
+    ]
+  ],
+  "range": [
+    "Início: cotovelo dobrado ~90° ou mais.",
+    "Fim: cotovelos quase estendidos."
+  ],
+  "cues": [
+    "Cotovelo no eixo.",
+    "Braço no apoio.",
+    "Estica até o fim."
+  ],
+  "errors": [
+    {
+      "id": "e1",
+      "title": "Tirar o braço da almofada",
+      "desc": "O braço sai do apoio."
+    },
+    {
+      "id": "e2",
+      "title": "Amplitude curta em cima",
+      "desc": "Não estende até o fim."
+    }
+  ],
+  "carga": "Registre o número da placa da torre. Para progredir, +1 placa."
+}

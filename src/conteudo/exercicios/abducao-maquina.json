@@ -1,0 +1,56 @@
+{
+  "id": "abducao-maquina",
+  "name": "Abdução na cadeira abdutora",
+  "short": "Abdução na máquina",
+  "target": "Glúteos (médio e parte de cima)",
+  "setupEq": [
+    "Almofadas do lado de fora dos joelhos."
+  ],
+  "setupBody": [
+    "Sentado, costas no encosto."
+  ],
+  "exec": [
+    [
+      "conc",
+      "Abrir",
+      "Abre as pernas até o fim confortável."
+    ],
+    [
+      "hold",
+      "Pausa",
+      "Segura ~1 s."
+    ],
+    [
+      "ecc",
+      "Volta",
+      "Volta controlando, sem deixar as placas baterem."
+    ]
+  ],
+  "range": [
+    "Início: pernas fechadas, placas sem encostar.",
+    "Fim: pernas abertas até o fim confortável."
+  ],
+  "cues": [
+    "Tronco parado.",
+    "Pausa aberto.",
+    "Placas sem bater."
+  ],
+  "errors": [
+    {
+      "id": "e1",
+      "title": "Embalar o tronco",
+      "desc": "O corpo vai para a frente e para trás."
+    },
+    {
+      "id": "e2",
+      "title": "Abrir pouco",
+      "desc": "A amplitude curta."
+    },
+    {
+      "id": "e3",
+      "title": "Soltar a volta",
+      "desc": "As placas batem."
+    }
+  ],
+  "carga": "Registre o número da placa da torre. Para progredir, +1 placa."
+}

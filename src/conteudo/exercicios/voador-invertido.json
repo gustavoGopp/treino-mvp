@@ -1,0 +1,51 @@
+{
+  "id": "voador-invertido",
+  "name": "Voador invertido",
+  "short": "Voador invertido",
+  "target": "Ombro (posterior)",
+  "setupEq": [
+    "Pegadores na altura dos ombros."
+  ],
+  "setupBody": [
+    "Sentado de frente para o encosto, peito apoiado."
+  ],
+  "exec": [
+    [
+      "conc",
+      "Abrir",
+      "Abre os braços para trás, com os cotovelos levemente dobrados, até a linha do corpo."
+    ],
+    [
+      "ecc",
+      "Volta",
+      "Volta controlando."
+    ]
+  ],
+  "range": [
+    "Início: braços à frente.",
+    "Fim: braços na linha do corpo."
+  ],
+  "cues": [
+    "Ombros baixos.",
+    "Peito no encosto.",
+    "Abre até a linha do corpo."
+  ],
+  "errors": [
+    {
+      "id": "e1",
+      "title": "Encolher os ombros",
+      "desc": "Os ombros sobem perto das orelhas."
+    },
+    {
+      "id": "e2",
+      "title": "Embalar o tronco",
+      "desc": "O corpo vai para trás para ajudar."
+    },
+    {
+      "id": "e3",
+      "title": "Abrir pouco",
+      "desc": "Os braços não chegam à linha do corpo."
+    }
+  ],
+  "carga": "Registre o número da placa da torre. Para progredir, +1 placa."
+}

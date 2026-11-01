@@ -1,0 +1,55 @@
+{
+  "id": "remada-suspensao",
+  "name": "Remada na suspensão",
+  "short": "Remada na suspensão",
+  "target": "Costas",
+  "setupEq": [
+    "Fitas presas num ponto firme no alto (porta com trava própria, viga ou barra), as duas na mesma altura."
+  ],
+  "setupBody": [
+    "Corpo reto e inclinado para trás, calcanhares no chão, braços estendidos."
+  ],
+  "exec": [
+    [
+      "conc",
+      "Puxar",
+      "Puxa até as mãos chegarem ao lado do peito, cotovelos rentes."
+    ],
+    [
+      "ecc",
+      "Volta",
+      "Volta controlando até os braços estenderem."
+    ]
+  ],
+  "range": [
+    "Início: braços estendidos, corpo reto.",
+    "Fim: mãos ao lado do peito.",
+    "Mais difícil: pés mais à frente, corpo mais horizontal."
+  ],
+  "cues": [
+    "Corpo reto como uma tábua.",
+    "Ombros baixos.",
+    "Estica os braços na volta."
+  ],
+  "errors": [
+    {
+      "id": "e1",
+      "title": "Quadril cai",
+      "desc": "O corpo não fica reto."
+    },
+    {
+      "id": "e2",
+      "title": "Encolher os ombros",
+      "desc": "Os ombros sobem."
+    },
+    {
+      "id": "e3",
+      "title": "Não estender os braços",
+      "desc": "A volta para no meio."
+    }
+  ],
+  "carga": "Peso do corpo, em degraus de inclinação: pés mais à frente = mais difícil. Depois, a escada de dificuldade.",
+  "montagem": [
+    "Prenda as fitas num ponto firme e confira se aguentam o seu peso antes da 1ª série."
+  ]
+}

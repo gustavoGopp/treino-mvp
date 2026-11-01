@@ -1481,14 +1481,15 @@
  },
  {
   "id": "agachamento-barra",
-  "nome": "Agachamento livre com barra",
+  "nome": "Agachamento livre com barra (profundo)",
   "padrao": "agachar",
   "musculos": {
    "primarios": [
     "quadriceps"
    ],
    "secundarios": [
-    "gluteos"
+    "gluteos",
+    "adutores"
    ]
   },
   "requer": [
@@ -1509,7 +1510,10 @@
    "quadril",
    "lombar"
   ],
-  "tags": [],
+  "tags": [
+   "profundo",
+   "montagem"
+  ],
   "carga": "barra",
   "animacaoId": null
  },
@@ -1545,7 +1549,7 @@
    "maquina",
    "estavel"
   ],
-  "carga": "maquina",
+  "carga": "anilha",
   "animacaoId": null
  },
  {
@@ -1693,7 +1697,8 @@
     "quadriceps"
    ],
    "secundarios": [
-    "gluteos"
+    "gluteos",
+    "adutores"
    ]
   },
   "requer": [
@@ -1729,7 +1734,8 @@
     "quadriceps"
    ],
    "secundarios": [
-    "gluteos"
+    "gluteos",
+    "adutores"
    ]
   },
   "requer": [
@@ -1764,7 +1770,8 @@
     "quadriceps"
    ],
    "secundarios": [
-    "gluteos"
+    "gluteos",
+    "adutores"
    ]
   },
   "requer": [
@@ -1798,7 +1805,8 @@
     "quadriceps"
    ],
    "secundarios": [
-    "gluteos"
+    "gluteos",
+    "adutores"
    ]
   },
   "requer": [
@@ -1834,7 +1842,8 @@
     "quadriceps"
    ],
    "secundarios": [
-    "gluteos"
+    "gluteos",
+    "adutores"
    ]
   },
   "requer": [
@@ -2318,7 +2327,7 @@
    "maquina",
    "estavel"
   ],
-  "carga": "maquina",
+  "carga": "anilha",
   "animacaoId": null
  },
  {
@@ -2474,5 +2483,1018 @@
   ],
   "carga": "peso-corpo",
   "animacaoId": "abdominal-chao"
+ },
+ {
+  "id": "hack",
+  "nome": "Agachamento no hack",
+  "padrao": "agachar",
+  "musculos": {
+   "primarios": [
+    "quadriceps"
+   ],
+   "secundarios": [
+    "gluteos"
+   ]
+  },
+  "requer": [
+   [
+    "hack"
+   ]
+  ],
+  "complexidade": 1,
+  "tipo": "composto",
+  "faixaReps": [
+   8,
+   15
+  ],
+  "unilateral": false,
+  "articulacoes": [
+   "joelho",
+   "quadril"
+  ],
+  "tags": [
+   "maquina",
+   "estavel",
+   "montagem"
+  ],
+  "carga": "anilha",
+  "animacaoId": null
+ },
+ {
+  "id": "agachamento-smith",
+  "nome": "Agachamento no smith",
+  "padrao": "agachar",
+  "musculos": {
+   "primarios": [
+    "quadriceps"
+   ],
+   "secundarios": [
+    "gluteos"
+   ]
+  },
+  "requer": [
+   [
+    "smith"
+   ]
+  ],
+  "complexidade": 2,
+  "tipo": "composto",
+  "faixaReps": [
+   8,
+   12
+  ],
+  "unilateral": false,
+  "articulacoes": [
+   "joelho",
+   "quadril",
+   "lombar"
+  ],
+  "tags": [
+   "estavel",
+   "montagem"
+  ],
+  "carga": "anilha",
+  "animacaoId": null
+ },
+ {
+  "id": "terra-hexagonal",
+  "nome": "Levantamento terra com barra hexagonal",
+  "padrao": "agachar",
+  "musculos": {
+   "primarios": [
+    "quadriceps",
+    "gluteos"
+   ],
+   "secundarios": [
+    "posteriores"
+   ]
+  },
+  "requer": [
+   [
+    "barra_hexagonal"
+   ]
+  ],
+  "complexidade": 2,
+  "tipo": "composto",
+  "faixaReps": [
+   6,
+   10
+  ],
+  "unilateral": false,
+  "articulacoes": [
+   "joelho",
+   "quadril",
+   "lombar"
+  ],
+  "tags": [
+   "montagem"
+  ],
+  "carga": "barra",
+  "animacaoId": null
+ },
+ {
+  "id": "goblet-kettlebell",
+  "nome": "Agachamento goblet com kettlebell",
+  "padrao": "agachar",
+  "musculos": {
+   "primarios": [
+    "quadriceps"
+   ],
+   "secundarios": [
+    "gluteos"
+   ]
+  },
+  "requer": [
+   [
+    "kettlebell"
+   ]
+  ],
+  "complexidade": 1,
+  "tipo": "composto",
+  "faixaReps": [
+   8,
+   15
+  ],
+  "unilateral": false,
+  "articulacoes": [
+   "joelho",
+   "quadril"
+  ],
+  "tags": [
+   "kettlebell"
+  ],
+  "carga": "kettlebell",
+  "animacaoId": null
+ },
+ {
+  "id": "supino-smith",
+  "nome": "Supino reto no smith",
+  "padrao": "empurrar-h",
+  "musculos": {
+   "primarios": [
+    "peito"
+   ],
+   "secundarios": [
+    "ombro_anterior",
+    "triceps"
+   ]
+  },
+  "requer": [
+   [
+    "smith",
+    "banco"
+   ]
+  ],
+  "complexidade": 2,
+  "tipo": "composto",
+  "faixaReps": [
+   6,
+   10
+  ],
+  "unilateral": false,
+  "articulacoes": [
+   "ombro",
+   "cotovelo"
+  ],
+  "tags": [
+   "plano",
+   "estavel",
+   "montagem"
+  ],
+  "carga": "anilha",
+  "animacaoId": null
+ },
+ {
+  "id": "supino-maquina",
+  "nome": "Supino sentado na máquina",
+  "padrao": "empurrar-h",
+  "musculos": {
+   "primarios": [
+    "peito"
+   ],
+   "secundarios": [
+    "ombro_anterior",
+    "triceps"
+   ]
+  },
+  "requer": [
+   [
+    "supino_maquina"
+   ]
+  ],
+  "complexidade": 1,
+  "tipo": "composto",
+  "faixaReps": [
+   8,
+   12
+  ],
+  "unilateral": false,
+  "articulacoes": [
+   "ombro",
+   "cotovelo"
+  ],
+  "tags": [
+   "plano",
+   "maquina",
+   "estavel"
+  ],
+  "carga": "maquina",
+  "animacaoId": null
+ },
+ {
+  "id": "mergulho",
+  "nome": "Mergulho nas paralelas",
+  "padrao": "empurrar-h",
+  "musculos": {
+   "primarios": [
+    "peito",
+    "triceps"
+   ],
+   "secundarios": [
+    "ombro_anterior"
+   ]
+  },
+  "requer": [
+   [
+    "paralelas"
+   ]
+  ],
+  "complexidade": 3,
+  "tipo": "composto",
+  "faixaReps": [
+   6,
+   12
+  ],
+  "unilateral": false,
+  "articulacoes": [
+   "ombro",
+   "cotovelo"
+  ],
+  "tags": [
+   "peso-corpo"
+  ],
+  "carga": "peso-corpo",
+  "animacaoId": null
+ },
+ {
+  "id": "mergulho-graviton",
+  "nome": "Mergulho assistido no graviton",
+  "padrao": "empurrar-h",
+  "musculos": {
+   "primarios": [
+    "peito",
+    "triceps"
+   ],
+   "secundarios": [
+    "ombro_anterior"
+   ]
+  },
+  "requer": [
+   [
+    "graviton"
+   ]
+  ],
+  "complexidade": 2,
+  "tipo": "composto",
+  "faixaReps": [
+   8,
+   12
+  ],
+  "unilateral": false,
+  "articulacoes": [
+   "ombro",
+   "cotovelo"
+  ],
+  "tags": [
+   "maquina",
+   "estavel"
+  ],
+  "carga": "assistida",
+  "animacaoId": null
+ },
+ {
+  "id": "voador",
+  "nome": "Voador (peck deck)",
+  "padrao": "isolador-peito",
+  "musculos": {
+   "primarios": [
+    "peito"
+   ],
+   "secundarios": [
+    "ombro_anterior"
+   ]
+  },
+  "requer": [
+   [
+    "voador"
+   ]
+  ],
+  "complexidade": 1,
+  "tipo": "isolador",
+  "faixaReps": [
+   10,
+   15
+  ],
+  "unilateral": false,
+  "articulacoes": [
+   "ombro"
+  ],
+  "tags": [
+   "maquina",
+   "estavel",
+   "alongado"
+  ],
+  "carga": "maquina",
+  "animacaoId": null
+ },
+ {
+  "id": "puxada-frente",
+  "nome": "Puxada pela frente no puxador",
+  "padrao": "puxar-v",
+  "musculos": {
+   "primarios": [
+    "costas"
+   ],
+   "secundarios": [
+    "biceps",
+    "ombro_posterior"
+   ]
+  },
+  "requer": [
+   [
+    "puxador"
+   ]
+  ],
+  "complexidade": 1,
+  "tipo": "composto",
+  "faixaReps": [
+   8,
+   12
+  ],
+  "unilateral": false,
+  "articulacoes": [
+   "ombro"
+  ],
+  "tags": [
+   "maquina",
+   "estavel"
+  ],
+  "carga": "maquina",
+  "animacaoId": null
+ },
+ {
+  "id": "barra-fixa-graviton",
+  "nome": "Barra fixa assistida no graviton",
+  "padrao": "puxar-v",
+  "musculos": {
+   "primarios": [
+    "costas"
+   ],
+   "secundarios": [
+    "biceps",
+    "ombro_posterior"
+   ]
+  },
+  "requer": [
+   [
+    "graviton"
+   ]
+  ],
+  "complexidade": 1,
+  "tipo": "composto",
+  "faixaReps": [
+   8,
+   12
+  ],
+  "unilateral": false,
+  "articulacoes": [
+   "ombro",
+   "cotovelo"
+  ],
+  "tags": [
+   "maquina",
+   "estavel"
+  ],
+  "carga": "assistida",
+  "animacaoId": null
+ },
+ {
+  "id": "remada-baixa-estacao",
+  "nome": "Remada baixa na estação",
+  "padrao": "puxar-h",
+  "musculos": {
+   "primarios": [
+    "costas"
+   ],
+   "secundarios": [
+    "biceps",
+    "ombro_posterior"
+   ]
+  },
+  "requer": [
+   [
+    "remada_estacao"
+   ]
+  ],
+  "complexidade": 1,
+  "tipo": "composto",
+  "faixaReps": [
+   8,
+   12
+  ],
+  "unilateral": false,
+  "articulacoes": [
+   "ombro",
+   "lombar"
+  ],
+  "tags": [
+   "maquina",
+   "sentado",
+   "estavel"
+  ],
+  "carga": "maquina",
+  "animacaoId": null
+ },
+ {
+  "id": "remada-articulada",
+  "nome": "Remada articulada",
+  "padrao": "puxar-h",
+  "musculos": {
+   "primarios": [
+    "costas"
+   ],
+   "secundarios": [
+    "biceps",
+    "ombro_posterior"
+   ]
+  },
+  "requer": [
+   [
+    "remada_articulada"
+   ]
+  ],
+  "complexidade": 1,
+  "tipo": "composto",
+  "faixaReps": [
+   8,
+   12
+  ],
+  "unilateral": false,
+  "articulacoes": [
+   "ombro"
+  ],
+  "tags": [
+   "maquina",
+   "apoiado",
+   "estavel"
+  ],
+  "carga": "maquina",
+  "animacaoId": null
+ },
+ {
+  "id": "remada-suspensao",
+  "nome": "Remada na suspensão",
+  "padrao": "puxar-h",
+  "musculos": {
+   "primarios": [
+    "costas"
+   ],
+   "secundarios": [
+    "biceps",
+    "ombro_posterior"
+   ]
+  },
+  "requer": [
+   [
+    "suspensao"
+   ]
+  ],
+  "complexidade": 2,
+  "tipo": "composto",
+  "faixaReps": [
+   8,
+   15
+  ],
+  "unilateral": false,
+  "articulacoes": [
+   "ombro"
+  ],
+  "tags": [
+   "peso-corpo",
+   "montagem"
+  ],
+  "carga": "peso-corpo",
+  "animacaoId": null
+ },
+ {
+  "id": "desenvolvimento-maquina",
+  "nome": "Desenvolvimento na máquina",
+  "padrao": "empurrar-v",
+  "musculos": {
+   "primarios": [
+    "ombro_anterior"
+   ],
+   "secundarios": [
+    "ombro_lateral",
+    "triceps"
+   ]
+  },
+  "requer": [
+   [
+    "desenvolvimento_maquina"
+   ]
+  ],
+  "complexidade": 1,
+  "tipo": "composto",
+  "faixaReps": [
+   8,
+   12
+  ],
+  "unilateral": false,
+  "articulacoes": [
+   "ombro",
+   "cotovelo"
+  ],
+  "tags": [
+   "maquina",
+   "estavel"
+  ],
+  "carga": "maquina",
+  "animacaoId": null
+ },
+ {
+  "id": "voador-invertido",
+  "nome": "Voador invertido",
+  "padrao": "isolador-ombro-posterior",
+  "musculos": {
+   "primarios": [
+    "ombro_posterior"
+   ],
+   "secundarios": [
+    "costas"
+   ]
+  },
+  "requer": [
+   [
+    "voador_invertido"
+   ]
+  ],
+  "complexidade": 1,
+  "tipo": "isolador",
+  "faixaReps": [
+   12,
+   20
+  ],
+  "unilateral": false,
+  "articulacoes": [
+   "ombro"
+  ],
+  "tags": [
+   "maquina",
+   "estavel"
+  ],
+  "carga": "maquina",
+  "animacaoId": null
+ },
+ {
+  "id": "rosca-scott",
+  "nome": "Rosca Scott",
+  "padrao": "isolador-biceps",
+  "musculos": {
+   "primarios": [
+    "biceps"
+   ],
+   "secundarios": []
+  },
+  "requer": [
+   [
+    "banco_scott",
+    "barra_w"
+   ],
+   [
+    "banco_scott",
+    "halteres"
+   ]
+  ],
+  "complexidade": 1,
+  "tipo": "isolador",
+  "faixaReps": [
+   8,
+   12
+  ],
+  "unilateral": false,
+  "articulacoes": [
+   "cotovelo"
+  ],
+  "tags": [
+   "apoiado",
+   "braco-a-frente"
+  ],
+  "carga": "barra",
+  "animacaoId": null
+ },
+ {
+  "id": "rosca-maquina",
+  "nome": "Rosca na máquina",
+  "padrao": "isolador-biceps",
+  "musculos": {
+   "primarios": [
+    "biceps"
+   ],
+   "secundarios": []
+  },
+  "requer": [
+   [
+    "rosca_maquina"
+   ]
+  ],
+  "complexidade": 1,
+  "tipo": "isolador",
+  "faixaReps": [
+   8,
+   12
+  ],
+  "unilateral": false,
+  "articulacoes": [
+   "cotovelo"
+  ],
+  "tags": [
+   "maquina",
+   "estavel",
+   "braco-a-frente"
+  ],
+  "carga": "maquina",
+  "animacaoId": null
+ },
+ {
+  "id": "triceps-maquina",
+  "nome": "Tríceps na máquina",
+  "padrao": "isolador-triceps",
+  "musculos": {
+   "primarios": [
+    "triceps"
+   ],
+   "secundarios": []
+  },
+  "requer": [
+   [
+    "triceps_maquina"
+   ]
+  ],
+  "complexidade": 1,
+  "tipo": "isolador",
+  "faixaReps": [
+   10,
+   15
+  ],
+  "unilateral": false,
+  "articulacoes": [
+   "cotovelo"
+  ],
+  "tags": [
+   "maquina",
+   "estavel"
+  ],
+  "carga": "maquina",
+  "animacaoId": null
+ },
+ {
+  "id": "hiperextensao",
+  "nome": "Hiperextensão no banco romano",
+  "padrao": "dobrar-quadril",
+  "musculos": {
+   "primarios": [
+    "gluteos",
+    "posteriores"
+   ],
+   "secundarios": []
+  },
+  "requer": [
+   [
+    "banco_romano"
+   ]
+  ],
+  "complexidade": 2,
+  "tipo": "composto",
+  "faixaReps": [
+   10,
+   20
+  ],
+  "unilateral": false,
+  "articulacoes": [
+   "quadril",
+   "lombar"
+  ],
+  "tags": [
+   "peso-corpo",
+   "apoiado"
+  ],
+  "carga": "peso-corpo",
+  "animacaoId": null
+ },
+ {
+  "id": "hip-thrust",
+  "nome": "Hip thrust",
+  "padrao": "extensao-quadril",
+  "musculos": {
+   "primarios": [
+    "gluteos"
+   ],
+   "secundarios": [
+    "posteriores"
+   ]
+  },
+  "requer": [
+   [
+    "barra_longa",
+    "banco"
+   ],
+   [
+    "smith",
+    "banco"
+   ]
+  ],
+  "complexidade": 2,
+  "tipo": "composto",
+  "faixaReps": [
+   8,
+   12
+  ],
+  "unilateral": false,
+  "articulacoes": [
+   "quadril"
+  ],
+  "tags": [
+   "apoiado",
+   "montagem"
+  ],
+  "carga": "barra",
+  "animacaoId": null
+ },
+ {
+  "id": "coice-maquina",
+  "nome": "Coice na máquina de glúteo",
+  "padrao": "extensao-quadril",
+  "musculos": {
+   "primarios": [
+    "gluteos"
+   ],
+   "secundarios": [
+    "posteriores"
+   ]
+  },
+  "requer": [
+   [
+    "gluteo_maquina"
+   ]
+  ],
+  "complexidade": 1,
+  "tipo": "isolador",
+  "faixaReps": [
+   10,
+   15
+  ],
+  "unilateral": true,
+  "articulacoes": [
+   "quadril"
+  ],
+  "tags": [
+   "maquina",
+   "estavel",
+   "unilateral"
+  ],
+  "carga": "maquina",
+  "animacaoId": null
+ },
+ {
+  "id": "coice-polia",
+  "nome": "Coice na polia com tornozeleira",
+  "padrao": "extensao-quadril",
+  "musculos": {
+   "primarios": [
+    "gluteos"
+   ],
+   "secundarios": [
+    "posteriores"
+   ]
+  },
+  "requer": [
+   [
+    "polia_baixa",
+    "tornozeleira"
+   ]
+  ],
+  "complexidade": 1,
+  "tipo": "isolador",
+  "faixaReps": [
+   12,
+   20
+  ],
+  "unilateral": true,
+  "articulacoes": [
+   "quadril"
+  ],
+  "tags": [
+   "polia",
+   "unilateral"
+  ],
+  "carga": "polia",
+  "animacaoId": null
+ },
+ {
+  "id": "abducao-maquina",
+  "nome": "Abdução na cadeira abdutora",
+  "padrao": "abducao-quadril",
+  "musculos": {
+   "primarios": [
+    "gluteos"
+   ],
+   "secundarios": []
+  },
+  "requer": [
+   [
+    "abdutora"
+   ]
+  ],
+  "complexidade": 1,
+  "tipo": "isolador",
+  "faixaReps": [
+   12,
+   20
+  ],
+  "unilateral": false,
+  "articulacoes": [
+   "quadril"
+  ],
+  "tags": [
+   "maquina",
+   "estavel"
+  ],
+  "carga": "maquina",
+  "animacaoId": null
+ },
+ {
+  "id": "abducao-polia",
+  "nome": "Abdução na polia com tornozeleira",
+  "padrao": "abducao-quadril",
+  "musculos": {
+   "primarios": [
+    "gluteos"
+   ],
+   "secundarios": []
+  },
+  "requer": [
+   [
+    "polia_baixa",
+    "tornozeleira"
+   ]
+  ],
+  "complexidade": 1,
+  "tipo": "isolador",
+  "faixaReps": [
+   12,
+   20
+  ],
+  "unilateral": true,
+  "articulacoes": [
+   "quadril"
+  ],
+  "tags": [
+   "polia",
+   "unilateral"
+  ],
+  "carga": "polia",
+  "animacaoId": null
+ },
+ {
+  "id": "aducao-maquina",
+  "nome": "Adução na cadeira adutora",
+  "padrao": "aducao-quadril",
+  "musculos": {
+   "primarios": [
+    "adutores"
+   ],
+   "secundarios": []
+  },
+  "requer": [
+   [
+    "adutora"
+   ]
+  ],
+  "complexidade": 1,
+  "tipo": "isolador",
+  "faixaReps": [
+   12,
+   20
+  ],
+  "unilateral": false,
+  "articulacoes": [
+   "quadril"
+  ],
+  "tags": [
+   "maquina",
+   "estavel"
+  ],
+  "carga": "maquina",
+  "animacaoId": null
+ },
+ {
+  "id": "panturrilha-em-pe-maquina",
+  "nome": "Panturrilha em pé na máquina",
+  "padrao": "panturrilha",
+  "musculos": {
+   "primarios": [
+    "panturrilha"
+   ],
+   "secundarios": []
+  },
+  "requer": [
+   [
+    "panturrilha_em_pe"
+   ]
+  ],
+  "complexidade": 1,
+  "tipo": "isolador",
+  "faixaReps": [
+   10,
+   15
+  ],
+  "unilateral": false,
+  "articulacoes": [
+   "tornozelo"
+  ],
+  "tags": [
+   "maquina",
+   "estavel",
+   "alongado"
+  ],
+  "carga": "maquina",
+  "animacaoId": null
+ },
+ {
+  "id": "panturrilha-sentada",
+  "nome": "Panturrilha sentada na máquina",
+  "padrao": "panturrilha",
+  "musculos": {
+   "primarios": [
+    "panturrilha"
+   ],
+   "secundarios": []
+  },
+  "requer": [
+   [
+    "panturrilha_sentada"
+   ]
+  ],
+  "complexidade": 1,
+  "tipo": "isolador",
+  "faixaReps": [
+   12,
+   20
+  ],
+  "unilateral": false,
+  "articulacoes": [
+   "tornozelo"
+  ],
+  "tags": [
+   "maquina",
+   "estavel",
+   "sentada",
+   "montagem"
+  ],
+  "carga": "anilha",
+  "animacaoId": null
+ },
+ {
+  "id": "abdominal-maquina",
+  "nome": "Abdominal na máquina",
+  "padrao": "core",
+  "musculos": {
+   "primarios": [
+    "abdomen"
+   ],
+   "secundarios": []
+  },
+  "requer": [
+   [
+    "abdominal_maquina"
+   ]
+  ],
+  "complexidade": 1,
+  "tipo": "isolador",
+  "faixaReps": [
+   10,
+   15
+  ],
+  "unilateral": false,
+  "articulacoes": [
+   "lombar"
+  ],
+  "tags": [
+   "maquina",
+   "estavel"
+  ],
+  "carga": "maquina",
+  "animacaoId": null
  }
 ]

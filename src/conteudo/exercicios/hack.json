@@ -1,0 +1,59 @@
+{
+  "id": "hack",
+  "name": "Agachamento no hack",
+  "short": "Hack",
+  "target": "Quadríceps e glúteos",
+  "setupEq": [
+    "Pés no meio da plataforma, na largura do quadril ou dos ombros."
+  ],
+  "setupBody": [
+    "Costas e ombros apoiados no encosto, ombros sob as almofadas."
+  ],
+  "exec": [
+    [
+      "ecc",
+      "Descida",
+      "Desce controlando até o joelho passar de 90°, sem a lombar descolar do encosto."
+    ],
+    [
+      "conc",
+      "Subida",
+      "Empurra a plataforma e sobe sem travar os joelhos no topo."
+    ]
+  ],
+  "range": [
+    "Embaixo: joelho além de 90°, lombar colada no encosto.",
+    "Em cima: joelhos quase estendidos, sem travar."
+  ],
+  "cues": [
+    "Desce fundo.",
+    "Joelhos na direção dos pés.",
+    "Lombar no encosto."
+  ],
+  "errors": [
+    {
+      "id": "e1",
+      "title": "Descer pouco",
+      "desc": "A amplitude curta tira o trabalho da coxa."
+    },
+    {
+      "id": "e2",
+      "title": "Lombar descola",
+      "desc": "No fundo, a lombar sai do encosto."
+    },
+    {
+      "id": "e3",
+      "title": "Joelhos para dentro",
+      "desc": "Os joelhos fecham em vez de seguir a linha dos pés."
+    },
+    {
+      "id": "e4",
+      "title": "Travar os joelhos",
+      "desc": "Esticar com força no topo."
+    }
+  ],
+  "carga": "Registre os kg de anilhas de cada lado (sem contar o trenó ou a barra da máquina). Para progredir, o menor par de anilhas.",
+  "montagem": [
+    "Solte a trava de segurança antes da 1ª repetição e trave de novo ao terminar."
+  ]
+}

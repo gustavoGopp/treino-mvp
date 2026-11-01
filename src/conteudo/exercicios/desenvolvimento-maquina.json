@@ -1,0 +1,46 @@
+{
+  "id": "desenvolvimento-maquina",
+  "name": "Desenvolvimento na máquina",
+  "short": "Desenvolvimento na máquina",
+  "target": "Ombro (frente)",
+  "setupEq": [
+    "Banco na altura em que os pegadores ficam na linha dos ombros."
+  ],
+  "setupBody": [
+    "Costas apoiadas no encosto."
+  ],
+  "exec": [
+    [
+      "conc",
+      "Empurrar",
+      "Empurra para cima até quase estender os cotovelos."
+    ],
+    [
+      "ecc",
+      "Volta",
+      "Desce até os pegadores chegarem na altura do queixo ou dos ombros."
+    ]
+  ],
+  "range": [
+    "Embaixo: pegadores na altura do queixo ou dos ombros.",
+    "Em cima: cotovelos quase estendidos."
+  ],
+  "cues": [
+    "Costas no encosto.",
+    "Desce até o queixo.",
+    "Sem arquear a lombar."
+  ],
+  "errors": [
+    {
+      "id": "e1",
+      "title": "Arquear a lombar",
+      "desc": "A lombar sai do encosto para empurrar."
+    },
+    {
+      "id": "e2",
+      "title": "Descer pouco",
+      "desc": "A amplitude curta."
+    }
+  ],
+  "carga": "Registre o número da placa da torre. Para progredir, +1 placa."
+}

@@ -1,0 +1,52 @@
+{
+  "id": "hiperextensao",
+  "name": "Hiperextensão no banco romano",
+  "short": "Hiperextensão",
+  "target": "Glúteos e posteriores da coxa",
+  "setupEq": [
+    "Almofada na altura do alto da coxa, abaixo do osso do quadril, para o quadril dobrar livre.",
+    "Pés presos na trava."
+  ],
+  "setupBody": [
+    "Mãos no peito."
+  ],
+  "exec": [
+    [
+      "ecc",
+      "Descida",
+      "Desce dobrando o quadril, com a coluna neutra, até um alongamento confortável atrás da coxa."
+    ],
+    [
+      "conc",
+      "Subida",
+      "Sobe até o corpo ficar em linha reta. Não passa da linha."
+    ]
+  ],
+  "range": [
+    "Embaixo: alongamento confortável atrás da coxa.",
+    "Em cima: corpo em linha reta, sem arquear a lombar."
+  ],
+  "cues": [
+    "Dobra o quadril.",
+    "Para na linha reta.",
+    "Coluna neutra."
+  ],
+  "errors": [
+    {
+      "id": "e1",
+      "title": "Arquear a lombar no topo",
+      "desc": "O corpo passa da linha reta."
+    },
+    {
+      "id": "e2",
+      "title": "Arredondar as costas",
+      "desc": "Embaixo, curva as costas em vez de dobrar o quadril."
+    },
+    {
+      "id": "e3",
+      "title": "Embalar",
+      "desc": "Subir com impulso."
+    }
+  ],
+  "carga": "Peso do corpo: registre o degrau da escada de dificuldade (mais repetições, descida lenta, variação mais difícil, carga extra). Depois, segure uma anilha ou um halter junto ao peito, em kg."
+}

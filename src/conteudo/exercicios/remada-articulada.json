@@ -1,0 +1,51 @@
+{
+  "id": "remada-articulada",
+  "name": "Remada articulada",
+  "short": "Remada articulada",
+  "target": "Costas",
+  "setupEq": [
+    "Assento na altura em que os pegadores ficam na linha do peito com os braços estendidos."
+  ],
+  "setupBody": [
+    "Peito apoiado na almofada durante toda a série."
+  ],
+  "exec": [
+    [
+      "conc",
+      "Puxar",
+      "Puxa levando os cotovelos para trás, rentes ao corpo."
+    ],
+    [
+      "ecc",
+      "Volta",
+      "Volta até alongar as escápulas para a frente."
+    ]
+  ],
+  "range": [
+    "Início: braços estendidos, escápulas à frente.",
+    "Fim: cotovelos para trás, rentes ao corpo."
+  ],
+  "cues": [
+    "Peito na almofada.",
+    "Ombros baixos.",
+    "Estica os braços na volta."
+  ],
+  "errors": [
+    {
+      "id": "e1",
+      "title": "Tirar o peito da almofada",
+      "desc": "O corpo ajuda a puxar."
+    },
+    {
+      "id": "e2",
+      "title": "Encolher os ombros",
+      "desc": "Os ombros sobem."
+    },
+    {
+      "id": "e3",
+      "title": "Não estender os braços",
+      "desc": "A volta para no meio."
+    }
+  ],
+  "carga": "Registre o número da placa da torre. Para progredir, +1 placa. Na de anilhas, kg por lado."
+}

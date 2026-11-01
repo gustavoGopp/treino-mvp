@@ -1,0 +1,51 @@
+{
+  "id": "coice-maquina",
+  "name": "Coice na máquina de glúteo",
+  "short": "Coice na máquina",
+  "target": "Glúteos",
+  "setupEq": [
+    "Um pé na plataforma ou na alavanca; o outro joelho apoiado."
+  ],
+  "setupBody": [
+    "Tronco apoiado (peito ou antebraços na almofada)."
+  ],
+  "exec": [
+    [
+      "conc",
+      "Empurrar",
+      "Empurra para trás estendendo o quadril até a coxa alinhar com o tronco."
+    ],
+    [
+      "ecc",
+      "Volta",
+      "Volta controlando até o quadril dobrar ~90°."
+    ]
+  ],
+  "range": [
+    "Início: quadril dobrado ~90°.",
+    "Fim: coxa alinhada com o tronco, sem arquear a lombar."
+  ],
+  "cues": [
+    "O movimento é do quadril.",
+    "Lombar parada.",
+    "Volta controlando."
+  ],
+  "errors": [
+    {
+      "id": "e1",
+      "title": "Arquear a lombar",
+      "desc": "A lombar arqueia para subir mais a perna."
+    },
+    {
+      "id": "e2",
+      "title": "Girar o quadril",
+      "desc": "O quadril gira para o lado."
+    },
+    {
+      "id": "e3",
+      "title": "Soltar a volta",
+      "desc": "A volta sem controle."
+    }
+  ],
+  "carga": "Registre o número da placa da torre. Para progredir, +1 placa. Na máquina de anilhas, kg por lado."
+}

@@ -1,0 +1,51 @@
+{
+  "id": "supino-maquina",
+  "name": "Supino sentado na máquina",
+  "short": "Supino na máquina",
+  "target": "Peito",
+  "setupEq": [
+    "Banco na altura em que os pegadores ficam na linha do meio do peito."
+  ],
+  "setupBody": [
+    "Costas e escápulas apoiadas, pés no chão."
+  ],
+  "exec": [
+    [
+      "conc",
+      "Empurrar",
+      "Empurra até quase estender os cotovelos, sem travar, com os cotovelos a ~30–60° do tronco."
+    ],
+    [
+      "ecc",
+      "Volta",
+      "Volta controlando até um alongamento confortável do peito."
+    ]
+  ],
+  "range": [
+    "Início: alongamento confortável do peito.",
+    "Fim: cotovelos quase estendidos."
+  ],
+  "cues": [
+    "Pegador na linha do peito.",
+    "Costas no encosto.",
+    "Sem travar os cotovelos."
+  ],
+  "errors": [
+    {
+      "id": "e1",
+      "title": "Banco na altura errada",
+      "desc": "O pegador fica fora da linha do peito."
+    },
+    {
+      "id": "e2",
+      "title": "Tirar as costas",
+      "desc": "As costas saem do encosto."
+    },
+    {
+      "id": "e3",
+      "title": "Travar os cotovelos",
+      "desc": "Esticar com força no fim."
+    }
+  ],
+  "carga": "Registre o número da placa da torre. Para progredir, +1 placa. Na máquina de anilhas, kg por lado."
+}

@@ -1,0 +1,52 @@
+{
+  "id": "puxada-frente",
+  "name": "Puxada pela frente no puxador",
+  "short": "Puxada pela frente",
+  "target": "Costas",
+  "setupEq": [
+    "Almofada das coxas ajustada para prender as pernas."
+  ],
+  "setupBody": [
+    "Sentado, braços estendidos em cima.",
+    "Pegada pronada (palmas para a frente), mãos a ~1 a 1,5 vez a largura dos ombros."
+  ],
+  "exec": [
+    [
+      "conc",
+      "Puxar",
+      "Desce a barra à frente do rosto até a parte de cima do peito. Nunca atrás da nuca."
+    ],
+    [
+      "ecc",
+      "Volta",
+      "Sobe até os braços estenderem por completo, sem soltar o peso."
+    ]
+  ],
+  "range": [
+    "Em cima: braços estendidos por completo.",
+    "Embaixo: barra na parte de cima do peito."
+  ],
+  "cues": [
+    "Barra à frente do rosto.",
+    "Tronco quase parado.",
+    "Estica os braços em cima."
+  ],
+  "errors": [
+    {
+      "id": "e1",
+      "title": "Puxar atrás da nuca",
+      "desc": "A barra passa atrás da cabeça."
+    },
+    {
+      "id": "e2",
+      "title": "Jogar o tronco para trás",
+      "desc": "O corpo balança para descer a barra."
+    },
+    {
+      "id": "e3",
+      "title": "Não estender os braços",
+      "desc": "A volta para antes de os braços esticarem."
+    }
+  ],
+  "carga": "Registre o número da placa da torre. Para progredir, +1 placa."
+}

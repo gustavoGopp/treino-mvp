@@ -63,7 +63,12 @@ export const exercicioSchema = z
     unilateral: z.boolean(),
     articulacoes: z.array(z.enum(ARTICULACOES)),
     tags: z.array(z.string()),
-    carga: z.enum(['halter', 'polia', 'peso-corpo', 'elastico', 'barra', 'maquina']),
+    /**
+     * Como a carga sobe (pesquisa-v2/08, seção 1.1): halter e kettlebell pela lista de pesos; barra em kg;
+     * polia e máquina com torre pela placa; anilha = máquina de anilhas (kg por lado); assistida = contrapeso
+     * (mais placa = mais fácil); peso do corpo e elástico pela escada de dificuldade.
+     */
+    carga: z.enum(['halter', 'kettlebell', 'polia', 'peso-corpo', 'elastico', 'barra', 'maquina', 'anilha', 'assistida']),
     animacaoId: z.string().nullable(),
   })
   .strict()

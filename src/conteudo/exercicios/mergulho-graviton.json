@@ -1,0 +1,46 @@
+{
+  "id": "mergulho-graviton",
+  "name": "Mergulho assistido no graviton",
+  "short": "Mergulho no graviton",
+  "target": "Peito e tríceps",
+  "setupEq": [
+    "Escolha o contrapeso: mais placa = mais ajuda."
+  ],
+  "setupBody": [
+    "Joelhos na plataforma, mãos nas barras do aparelho, braços estendidos."
+  ],
+  "exec": [
+    [
+      "ecc",
+      "Descida",
+      "Tronco levemente inclinado à frente; desce até o braço ficar quase paralelo ao chão, sem dor no ombro."
+    ],
+    [
+      "conc",
+      "Subida",
+      "Empurra até estender os cotovelos, sem travar."
+    ]
+  ],
+  "range": [
+    "Embaixo: braço quase paralelo ao chão, sem dor no ombro.",
+    "Em cima: cotovelos estendidos."
+  ],
+  "cues": [
+    "Ombros longe das orelhas.",
+    "Tronco um pouco à frente.",
+    "Sem dor no ombro."
+  ],
+  "errors": [
+    {
+      "id": "e1",
+      "title": "Descer demais",
+      "desc": "O ombro vai à frente, com dor."
+    },
+    {
+      "id": "e2",
+      "title": "Ombros encolhidos",
+      "desc": "Os ombros sobem perto das orelhas."
+    }
+  ],
+  "carga": "Registre a placa de contrapeso. Aqui é ao contrário: mais placa = mais ajuda. Para progredir, tire 1 placa."
+}

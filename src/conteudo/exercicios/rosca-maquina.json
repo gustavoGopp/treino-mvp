@@ -1,0 +1,46 @@
+{
+  "id": "rosca-maquina",
+  "name": "Rosca na máquina",
+  "short": "Rosca na máquina",
+  "target": "Bíceps",
+  "setupEq": [
+    "Assento na altura em que o cotovelo fica alinhado com o eixo da máquina."
+  ],
+  "setupBody": [
+    "Braços apoiados na almofada."
+  ],
+  "exec": [
+    [
+      "conc",
+      "Subida",
+      "Sobe até o fim."
+    ],
+    [
+      "ecc",
+      "Descida",
+      "Desce controlando até o cotovelo quase estender."
+    ]
+  ],
+  "range": [
+    "Embaixo: cotovelo quase estendido.",
+    "Em cima: fim do movimento."
+  ],
+  "cues": [
+    "Cotovelo no eixo.",
+    "Braço no apoio.",
+    "Desce até quase esticar."
+  ],
+  "errors": [
+    {
+      "id": "e1",
+      "title": "Tirar o braço do apoio",
+      "desc": "O braço sai da almofada."
+    },
+    {
+      "id": "e2",
+      "title": "Descer pouco",
+      "desc": "A amplitude curta."
+    }
+  ],
+  "carga": "Registre o número da placa da torre. Para progredir, +1 placa."
+}

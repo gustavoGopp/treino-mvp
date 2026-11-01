@@ -1,0 +1,52 @@
+{
+  "id": "voador",
+  "name": "Voador (peck deck)",
+  "short": "Voador",
+  "target": "Peito",
+  "setupEq": [
+    "Banco na altura em que os pegadores (ou as almofadas dos antebraços) ficam na linha do meio do peito."
+  ],
+  "setupBody": [
+    "Costas no encosto, escápulas juntas.",
+    "Cotovelos levemente dobrados e fixos."
+  ],
+  "exec": [
+    [
+      "ecc",
+      "Abrir",
+      "Abre até sentir o peito alongar, sem levar os braços para trás da linha do ombro."
+    ],
+    [
+      "conc",
+      "Fechar",
+      "Fecha à frente do peito, sem mexer os cotovelos."
+    ]
+  ],
+  "range": [
+    "Aberto: peito alongado, braços na linha do ombro.",
+    "Fechado: mãos à frente do peito."
+  ],
+  "cues": [
+    "Cotovelos fixos.",
+    "Costas no encosto.",
+    "Abre até alongar."
+  ],
+  "errors": [
+    {
+      "id": "e1",
+      "title": "Abrir demais",
+      "desc": "Os braços passam da linha do ombro."
+    },
+    {
+      "id": "e2",
+      "title": "Tirar as costas",
+      "desc": "As costas saem do encosto."
+    },
+    {
+      "id": "e3",
+      "title": "Dobrar e esticar os cotovelos",
+      "desc": "O movimento vira um supino."
+    }
+  ],
+  "carga": "Registre o número da placa da torre. Para progredir, +1 placa."
+}

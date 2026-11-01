@@ -1,0 +1,51 @@
+{
+  "id": "mergulho",
+  "name": "Mergulho nas paralelas",
+  "short": "Mergulho",
+  "target": "Peito e tríceps",
+  "setupEq": [
+    "Paralelas firmes, na largura do quadril ou um pouco mais."
+  ],
+  "setupBody": [
+    "Braços estendidos nas paralelas, ombros longe das orelhas."
+  ],
+  "exec": [
+    [
+      "ecc",
+      "Descida",
+      "Tronco levemente inclinado à frente; desce até o braço ficar quase paralelo ao chão, sem dor no ombro."
+    ],
+    [
+      "conc",
+      "Subida",
+      "Empurra até estender os cotovelos, sem travar."
+    ]
+  ],
+  "range": [
+    "Embaixo: braço quase paralelo ao chão, sem dor no ombro.",
+    "Em cima: cotovelos estendidos."
+  ],
+  "cues": [
+    "Ombros longe das orelhas.",
+    "Tronco um pouco à frente.",
+    "Pernas paradas."
+  ],
+  "errors": [
+    {
+      "id": "e1",
+      "title": "Descer demais",
+      "desc": "O ombro rola para a frente no fundo."
+    },
+    {
+      "id": "e2",
+      "title": "Balançar",
+      "desc": "As pernas balançam para dar impulso."
+    },
+    {
+      "id": "e3",
+      "title": "Amplitude curta",
+      "desc": "Descer pouco."
+    }
+  ],
+  "carga": "Peso do corpo: registre o degrau da escada de dificuldade (mais repetições, descida lenta, variação mais difícil, carga extra). Depois, carga extra (halter entre os pés ou cinto com anilha)."
+}

@@ -33,3 +33,21 @@ export const conteudoExercicioSchema = z
   .strict();
 
 export type ConteudoExercicio = z.infer<typeof conteudoExercicioSchema>;
+
+/**
+ * Cartão de texto de um exercício sem animação aprovada (CLAUDE.md, qualidade do guia): nunca uma animação
+ * improvisada. Os campos são um subconjunto do texto do guia, com os mesmos nomes; quando a animação for
+ * aprovada, o cartão só ganha os campos que faltam. Fonte: a ficha em docs/pesquisa/animacoes/<id>.md.
+ */
+export const cartaoTextoSchema = conteudoExercicioSchema
+  .pick({ id: true, name: true, short: true, target: true, setupEq: true, setupBody: true, exec: true, range: true, cues: true })
+  .extend({
+    errors: z.array(z.object({ id: texto, title: texto, desc: texto })).min(1),
+    /** Montagem segura (seguranca.montagem): travas, apoios e ancoragem. */
+    montagem: z.array(texto).min(1).optional(),
+    /** Como registrar e subir a carga (progressao.incremento.*). */
+    carga: texto,
+  })
+  .strict();
+
+export type CartaoTexto = z.infer<typeof cartaoTextoSchema>;

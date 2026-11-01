@@ -1,0 +1,54 @@
+{
+  "id": "panturrilha-sentada",
+  "name": "Panturrilha sentada na máquina",
+  "short": "Panturrilha sentada",
+  "target": "Panturrilha (sóleo)",
+  "setupEq": [
+    "Ponta dos pés na borda da plataforma."
+  ],
+  "setupBody": [
+    "Sentado, joelhos a ~90° sob a almofada."
+  ],
+  "exec": [
+    [
+      "ecc",
+      "Descida",
+      "Desce o calcanhar até o alongamento máximo."
+    ],
+    [
+      "hold",
+      "Embaixo",
+      "Pausa de ~1 s."
+    ],
+    [
+      "conc",
+      "Subida",
+      "Sobe o calcanhar ao máximo."
+    ]
+  ],
+  "range": [
+    "Embaixo: alongamento máximo.",
+    "Em cima: calcanhar o mais alto possível."
+  ],
+  "cues": [
+    "Pausa embaixo.",
+    "Tronco parado.",
+    "Amplitude toda."
+  ],
+  "errors": [
+    {
+      "id": "e1",
+      "title": "Amplitude curta",
+      "desc": "Subida e descida curtas."
+    },
+    {
+      "id": "e2",
+      "title": "Impulso com o quadril",
+      "desc": "O tronco levanta para ajudar."
+    }
+  ],
+  "carga": "Registre os kg de anilhas de cada lado (sem contar o trenó ou a barra da máquina). Para progredir, o menor par de anilhas. Em algumas máquinas, placa da torre.",
+  "montagem": [
+    "Solte a trava antes da 1ª repetição e trave de novo ao terminar a série."
+  ]
+}

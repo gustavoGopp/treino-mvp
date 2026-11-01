@@ -1,0 +1,55 @@
+{
+  "id": "terra-hexagonal",
+  "name": "Levantamento terra com barra hexagonal",
+  "short": "Terra hexagonal",
+  "target": "Quadríceps e glúteos",
+  "setupEq": [
+    "Anilhas iguais dos dois lados, com travas."
+  ],
+  "setupBody": [
+    "Em pé dentro da barra, pés na largura do quadril.",
+    "Pegadores neutros (palmas para dentro); quadril mais baixo que no terra comum."
+  ],
+  "exec": [
+    [
+      "conc",
+      "Subida",
+      "Coluna neutra: empurra o chão e estende joelhos e quadril juntos."
+    ],
+    [
+      "ecc",
+      "Descida",
+      "Controlada, até as anilhas tocarem o chão de leve."
+    ]
+  ],
+  "range": [
+    "Embaixo: anilhas no chão, coluna neutra.",
+    "Em cima: em pé, quadril e joelhos estendidos."
+  ],
+  "cues": [
+    "Coluna neutra.",
+    "Empurra o chão.",
+    "Peito e quadril sobem juntos."
+  ],
+  "errors": [
+    {
+      "id": "e1",
+      "title": "Arredondar a lombar",
+      "desc": "A lombar curva na saída do chão."
+    },
+    {
+      "id": "e2",
+      "title": "Quadril sobe antes",
+      "desc": "O quadril sobe antes do peito."
+    },
+    {
+      "id": "e3",
+      "title": "Soltar a barra",
+      "desc": "Deixar a barra cair na descida."
+    }
+  ],
+  "carga": "Registre o kg total (barra + anilhas). Para progredir, o menor par de anilhas.",
+  "montagem": [
+    "Anilhas iguais dos dois lados, com travas."
+  ]
+}

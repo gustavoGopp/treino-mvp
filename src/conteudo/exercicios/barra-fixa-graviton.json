@@ -1,0 +1,47 @@
+{
+  "id": "barra-fixa-graviton",
+  "name": "Barra fixa assistida no graviton",
+  "short": "Barra no graviton",
+  "target": "Costas",
+  "setupEq": [
+    "Escolha o contrapeso: mais placa = mais ajuda."
+  ],
+  "setupBody": [
+    "Joelhos (ou pés) na plataforma.",
+    "Pegada pronada a ~1 a 1,5 vez a largura dos ombros."
+  ],
+  "exec": [
+    [
+      "conc",
+      "Subida",
+      "Sobe até o queixo passar da barra."
+    ],
+    [
+      "ecc",
+      "Descida",
+      "Desce até os braços estenderem."
+    ]
+  ],
+  "range": [
+    "Embaixo: braços estendidos.",
+    "Em cima: queixo acima da barra."
+  ],
+  "cues": [
+    "Estica os braços embaixo.",
+    "Corpo parado.",
+    "Queixo acima da barra."
+  ],
+  "errors": [
+    {
+      "id": "e1",
+      "title": "Encurtar a descida",
+      "desc": "Os braços não estendem embaixo."
+    },
+    {
+      "id": "e2",
+      "title": "Balançar",
+      "desc": "O corpo balança para subir."
+    }
+  ],
+  "carga": "Registre a placa de contrapeso. Aqui é ao contrário: mais placa = mais ajuda. Para progredir, tire 1 placa. Sem contrapeso, passe para a barra fixa."
+}

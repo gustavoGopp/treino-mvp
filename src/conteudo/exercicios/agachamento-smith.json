@@ -1,0 +1,57 @@
+{
+  "id": "agachamento-smith",
+  "name": "Agachamento no smith",
+  "short": "Agachamento no smith",
+  "target": "Quadríceps e glúteos",
+  "setupEq": [
+    "Travas de segurança logo abaixo do ponto mais baixo do agachamento.",
+    "Barra no alto das costas; gire a barra para soltar e para travar."
+  ],
+  "setupBody": [
+    "Pés um pouco à frente da linha da barra, na largura dos ombros.",
+    "Costas retas."
+  ],
+  "exec": [
+    [
+      "ecc",
+      "Descida",
+      "Desce controlando até a coxa chegar à horizontal ou abaixo, sem dor."
+    ],
+    [
+      "conc",
+      "Subida",
+      "Sobe empurrando o chão, com as costas retas."
+    ]
+  ],
+  "range": [
+    "Embaixo: coxa na horizontal ou abaixo.",
+    "Em cima: em pé, sem travar os joelhos."
+  ],
+  "cues": [
+    "Pés à frente da barra.",
+    "Desce fundo.",
+    "Costas retas."
+  ],
+  "errors": [
+    {
+      "id": "e1",
+      "title": "Descer pouco",
+      "desc": "A amplitude curta tira o trabalho da coxa."
+    },
+    {
+      "id": "e2",
+      "title": "Pés embaixo da barra",
+      "desc": "O tronco tomba para a frente e o joelho sobrecarrega."
+    },
+    {
+      "id": "e3",
+      "title": "Esquecer a trava",
+      "desc": "Começar ou terminar sem as travas de segurança."
+    }
+  ],
+  "carga": "Registre os kg de anilhas de cada lado (sem contar o trenó ou a barra da máquina). Para progredir, o menor par de anilhas.",
+  "montagem": [
+    "Ajuste as travas de segurança logo abaixo do ponto mais baixo antes de começar.",
+    "Gire a barra para soltar e trave de novo ao terminar."
+  ]
+}

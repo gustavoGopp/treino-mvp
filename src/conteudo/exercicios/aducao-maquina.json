@@ -1,0 +1,46 @@
+{
+  "id": "aducao-maquina",
+  "name": "Adução na cadeira adutora",
+  "short": "Adução na máquina",
+  "target": "Adutores (parte de dentro da coxa)",
+  "setupEq": [
+    "Almofadas do lado de dentro dos joelhos."
+  ],
+  "setupBody": [
+    "Sentado, costas no encosto, pernas abertas até um alongamento confortável."
+  ],
+  "exec": [
+    [
+      "conc",
+      "Fechar",
+      "Fecha as pernas até as almofadas quase se tocarem."
+    ],
+    [
+      "ecc",
+      "Volta",
+      "Volta controlando, sem forçar a abertura."
+    ]
+  ],
+  "range": [
+    "Início: pernas abertas até um alongamento confortável.",
+    "Fim: almofadas quase se tocando."
+  ],
+  "cues": [
+    "Abre só até o confortável.",
+    "Volta controlando.",
+    "Placas sem bater."
+  ],
+  "errors": [
+    {
+      "id": "e1",
+      "title": "Abrir demais",
+      "desc": "Forçar a virilha no alongamento."
+    },
+    {
+      "id": "e2",
+      "title": "Bater as placas",
+      "desc": "A volta sem controle."
+    }
+  ],
+  "carga": "Registre o número da placa da torre. Para progredir, +1 placa."
+}

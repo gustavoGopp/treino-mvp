@@ -1,0 +1,51 @@
+{
+  "id": "rosca-scott",
+  "name": "Rosca Scott",
+  "short": "Rosca Scott",
+  "target": "Bíceps",
+  "setupEq": [
+    "Banco na altura em que o tronco fica reto; barra W ou halter."
+  ],
+  "setupBody": [
+    "Parte de trás do braço inteira apoiada na almofada, axilas encostadas na borda."
+  ],
+  "exec": [
+    [
+      "ecc",
+      "Descida",
+      "Desce controlando (~2–3 s) até o cotovelo quase estender, sem soltar o peso no fim."
+    ],
+    [
+      "conc",
+      "Subida",
+      "Sobe sem tirar o braço da almofada até o antebraço ficar quase vertical."
+    ]
+  ],
+  "range": [
+    "Embaixo: cotovelo quase estendido, sem travar.",
+    "Em cima: antebraço quase vertical."
+  ],
+  "cues": [
+    "Braço colado na almofada.",
+    "Desce devagar.",
+    "Sem soltar embaixo."
+  ],
+  "errors": [
+    {
+      "id": "e1",
+      "title": "Tirar o braço da almofada",
+      "desc": "O braço sai do apoio para subir."
+    },
+    {
+      "id": "e2",
+      "title": "Soltar o peso embaixo",
+      "desc": "O cotovelo trava de uma vez."
+    },
+    {
+      "id": "e3",
+      "title": "Descer pouco",
+      "desc": "A amplitude curta."
+    }
+  ],
+  "carga": "Registre os kg (barra W com anilhas, ou o halter). Para progredir, o menor par de anilhas ou o próximo halter."
+}

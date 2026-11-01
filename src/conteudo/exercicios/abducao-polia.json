@@ -1,0 +1,52 @@
+{
+  "id": "abducao-polia",
+  "name": "Abdução na polia com tornozeleira",
+  "short": "Abdução na polia",
+  "target": "Glúteos (médio e parte de cima)",
+  "setupEq": [
+    "Polia no ponto mais baixo; tornozeleira na perna mais longe da polia."
+  ],
+  "setupBody": [
+    "Em pé, de lado para a torre, mão na torre para equilíbrio.",
+    "Tronco reto."
+  ],
+  "exec": [
+    [
+      "conc",
+      "Levar para o lado",
+      "Leva a perna para o lado, com o joelho estendido e o pé apontando para a frente."
+    ],
+    [
+      "ecc",
+      "Volta",
+      "Volta cruzando à frente da outra perna, controlando."
+    ]
+  ],
+  "range": [
+    "Início: perna cruzada à frente da outra.",
+    "Fim: perna aberta para o lado, pé para a frente."
+  ],
+  "cues": [
+    "Tronco reto.",
+    "Pé para a frente.",
+    "Sem embalar."
+  ],
+  "errors": [
+    {
+      "id": "e1",
+      "title": "Inclinar o tronco",
+      "desc": "O tronco cai para o lado oposto."
+    },
+    {
+      "id": "e2",
+      "title": "Girar o pé para fora",
+      "desc": "Vira outro movimento."
+    },
+    {
+      "id": "e3",
+      "title": "Embalar a perna",
+      "desc": "A perna vai com impulso."
+    }
+  ],
+  "carga": "Registre o número da placa da torre. Para progredir, +1 placa."
+}

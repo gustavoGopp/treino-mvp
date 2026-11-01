@@ -1,0 +1,52 @@
+{
+  "id": "goblet-kettlebell",
+  "name": "Agachamento goblet com kettlebell",
+  "short": "Goblet com kettlebell",
+  "target": "Quadríceps",
+  "setupEq": [
+    "Kettlebell junto ao peito, mãos nas laterais da alça, base para baixo."
+  ],
+  "setupBody": [
+    "Pés um pouco mais abertos que o quadril.",
+    "Tronco ereto."
+  ],
+  "exec": [
+    [
+      "ecc",
+      "Descida",
+      "Desce entre os joelhos o mais fundo possível sem dor, com os cotovelos apontando para baixo."
+    ],
+    [
+      "conc",
+      "Subida",
+      "Sobe com o tronco ereto e os calcanhares no chão."
+    ]
+  ],
+  "range": [
+    "Embaixo: o mais fundo possível sem dor, cotovelos entre os joelhos.",
+    "Em cima: em pé, sem travar os joelhos."
+  ],
+  "cues": [
+    "Peito alto.",
+    "Desce fundo.",
+    "Calcanhar no chão."
+  ],
+  "errors": [
+    {
+      "id": "e1",
+      "title": "Tronco tomba",
+      "desc": "O tronco cai para a frente."
+    },
+    {
+      "id": "e2",
+      "title": "Descer pouco",
+      "desc": "A amplitude curta tira o trabalho da coxa."
+    },
+    {
+      "id": "e3",
+      "title": "Calcanhar sai do chão",
+      "desc": "O peso vai para a ponta dos pés."
+    }
+  ],
+  "carga": "Registre o peso do kettlebell, da sua lista. Os saltos costumam ser grandes: antes de subir, faça 1–2 repetições acima do topo em todas as séries."
+}
