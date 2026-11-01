@@ -26,4 +26,16 @@ Depois da foto do equipamento (M4), parar e fazer uma análise completa do cená
 - **Peso corporal, idade e outros dados do perfil**, e o que cada um muda de fato no programa (com evidência).
 - **Foto do corpo para estimar o biotipo** e indicar o treino. Pontos já levantados: foto do corpo é dado sensível (LGPD, minimização) e a evidência de que o biotipo deve mudar um programa de hipertrofia é fraca. Analisar com pesquisa antes de decidir.
 - As melhorias de estética, praticidade e o boneco mais humano, registradas acima.
-- **Limite da visão compartilhado** entre instâncias (Vercel KV ou Upstash) antes de abrir o beta; hoje o contador fica na memória de cada instância (`pesquisa/11-decisoes-m4.md`).
+- **Limite da visão compartilhado** entre instâncias antes de abrir o app para outras pessoas; hoje o contador fica na memória de cada instância (`pesquisa/11-decisoes-m4.md`). O Vercel KV foi descontinuado: o caminho é o Redis (Upstash) pelo Marketplace da Vercel.
+
+## Decididos no replanejamento de 01/11/2026
+Detalhes em `planejamento/2026-11-diagnostico.md` e `planejamento/2026-11-plano-revisado.md`.
+- **Não fazer agora:**
+  - foto do corpo e biotipo (sem evidência de benefício e com dado sensível);
+  - idade, peso corporal, sexo e altura no perfil (nenhuma regra os usa).
+- **De lado por decisão do Gustavo:** revisão por profissional de Educação Física e triagem com perguntas de acompanhamento.
+- **Depois do uso real (R5):**
+  - as animações que faltam, por frequência; 14 delas nunca aparecem em programa nenhum;
+  - desenhos novos de equipamento;
+  - termos de uso e formulário de opinião, se o app for aberto a outras pessoas.
+- **Lacunas do gerador para avançados com academia completa:** entram no R0 (aproveitar o equipamento).

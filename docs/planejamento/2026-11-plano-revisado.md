@@ -169,3 +169,11 @@
    - **Por quê:** quem tem equipamento misto (como a sua academia) precisa marcar item por item uma vez só, ou usar a foto.
 3. **Posso já trocar as seções a e i do `PLANO-MVP.md` por este documento e começar o R1?**
    - **Recomendo:** sim, e parar no fim do R1 para a sua revisão, como sempre.
+
+---
+
+## Aprovação (01/11/2026)
+- **Aprovado pelo Gustavo.** As seções a e i do `PLANO-MVP.md` foram trocadas.
+- **Pedido novo:** antes de qualquer outra coisa, avaliar se o app aproveita os equipamentos e exercícios disponíveis. A avaliação está em `2026-11-catalogo-equipamentos.md` e virou o marco **R0**, antes do R1.
+- **Pergunta 2 (o "1 minuto" inclui o equipamento?):** sem resposta. Segui a recomendação: 1 minuto sem o equipamento e até 15 s com "academia completa".
+- **Pergunta 1 (chave e projetos extras na Vercel):** continua pendente com o Gustavo.

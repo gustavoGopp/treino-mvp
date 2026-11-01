@@ -1,6 +1,6 @@
 # Plano do MVP: treino-mvp (codinome)
 
-> Aprovado em 29/10/2026. Mudanças de rumo são registradas no `docs/devlog.md`.
+> Aprovado em 29/10/2026; critérios (seção a) e marcos (seção i) revisados em 01/11/2026. Mudanças de rumo são registradas no `docs/devlog.md`.
 
 ## Contexto
 Você já tem um sistema pessoal que funciona: fotos da academia → inventário → programa de hipertrofia baseado em evidência (`programa-fase-1.md`) → guia animado com temporizador (`guia-execucao-fase1.html`). O objetivo agora é transformar isso num produto para quem treina com equipamento limitado, construído em público (git + LinkedIn).
@@ -25,15 +25,38 @@ Você já tem um sistema pessoal que funciona: fotos da academia → inventário
 ---
 
 ## a. Objetivo e critérios de sucesso
-**Objetivo:** uma pessoa com equipamento limitado monta, em minutos, um programa de hipertrofia baseado em evidência que só usa o que ela tem, e treina com o guia animado e as sugestões de progressão.
+> Revisado em 01/11/2026, depois do diagnóstico (`planejamento/2026-11-diagnostico.md`) e das decisões do Gustavo (`planejamento/2026-11-plano-revisado.md`). Os critérios de 29/10 estão no fim desta seção, para histórico.
+
+**Objetivo:** o Gustavo monta, em minutos, um programa de hipertrofia baseado em evidência que usa bem o equipamento que tem, treina com o guia animado e acompanha o próprio progresso no app, inclusive quando falta a treinos. Família e amigos podem testar, mas o plano não depende deles.
 
 **Critérios mensuráveis**
+1. **Cadastro rápido.** Para quem não tem condição de saúde nem dor, o caminho da abertura até o programa leva até 1 min e até 15 toques, sem contar a tela de equipamento. Com o botão "academia completa", o equipamento leva até 15 s. Medição: um teste automático conta os toques, e o Gustavo cronometra uma vez no celular.
+2. **Programa de referência.** No cenário "minha academia", o gerador repete pelo menos 80% dos exercícios principais do `programa-fase-1.md`, com diferença de até 2 séries por grupo.
+3. **Foto do equipamento.** No gabarito, recall ≥ 85% e precisão ≥ 90% dos itens com confiança alta, com o eval rodado pelo Gustavo.
+4. **Aproveitar o equipamento.**
+   - Numa academia completa, os programas usam 45 ou mais exercícios distintos (eram 32 de 60).
+   - Todo equipamento marcado serve a pelo menos um exercício.
+   - Todo exercício tem 2 ou mais alternativas de outro equipamento.
+   - A meta de cada músculo é atingida, ou aparece um aviso com o motivo verdadeiro.
+5. **Uso real.** O Gustavo treina 4 semanas só com o app, com 10 sessões ou mais registradas, e aponta os 5 maiores incômodos.
+6. **Acompanhamento.**
+   - Depois de uma pausa de 3 semanas ou mais, o próximo treino aplica a volta gradual.
+   - Uma pausa de menos de 2 semanas mantém a carga.
+   - A tela mostra os treinos feitos na semana e as séries por músculo contra a meta.
+
+   Tudo verificado por testes automáticos.
+7. **Animações.** As 31 animações aprovadas continuam com 0 pixel de diferença e 0 falha de IK. Todo exercício do programa do Gustavo tem animação.
+8. **Uso no celular.** Acessibilidade ≥ 90 no Lighthouse; o app se instala no celular; uma sessão inteira feita com uma mão.
+
+<details><summary>Critérios de 29/10/2026 (substituídos)</summary>
+
 1. Uma pessoa nova sai da primeira abertura com o programa pronto em **até 5 min** pelo checklist e em **até 7 min** pela foto. Medido com 5 testadores, cronometrado.
 2. No cenário "minha academia", o gerador reproduz o `programa-fase-1.md` com **pelo menos 80% de coincidência** nos exercícios principais e o mesmo número de séries por grupo, com tolerância de ±2.
 3. Visão: no gabarito, **recall ≥ 85%** e **precisão ≥ 90%** dos itens com confiança alta.
 4. **8 testadores** usam o app por **2 semanas**, e pelo menos 5 deles registram 6 ou mais sessões.
 5. Os 25 exercícios animados passam pelo teste de regressão visual com diferença de 0 pixel em relação ao guia original. O IK continua com 0 falhas.
 6. Lighthouse PWA/Acessibilidade ≥ 90 no celular, e uma sessão inteira é utilizável com uma mão.
+</details>
 
 ## b. Personas e jornada
 Todas as personas são fictícias e ficam versionadas em `tests/personas/`:
@@ -159,6 +182,21 @@ Testes de propriedade: a mesma entrada gera a mesma saída (hash); nenhum exerc�
 As correções da remada baixa e da barra fixa entram depois do M0-R, como mudanças separadas e revisadas, com uma nova linha de base.
 
 ## i. Marcos
+> Revisado em 01/11/2026. Os marcos M0 a M5 estão concluídos (ver `devlog.md`). A tabela original está no fim desta seção, para histórico.
+
+| Marco | Entregáveis | Aceite | Esforço |
+|---|---|---|---|
+| **R0 Aproveitar o equipamento** | **R0a:** pesquisa curta dos exercícios novos e parada para revisão da lista. **R0b:** o gerador se adapta ao equipamento (vagas extras de extensora, glúteo e posteriores; máquina com o mesmo peso que o peso livre; preferências de função, não de equipamento; mais alternativas). **R0c:** catálogo ampliado (~12 equipamentos e ~25 exercícios, com cartão de texto e fonte; ids novos na visão). Detalhes em `planejamento/2026-11-catalogo-equipamentos.md`. | Critério 4; o critério 2 continua passando; os snapshots das personas mudam só com revisão | 1–1,5 semana |
+| **R1 Corrigir o que engana e cadastro em 1 min** | Triagem com "Nenhuma se aplica a mim"; articulação passa a usar a nota de dor de hoje; uma pergunta de dor só; minutos por toque; botão "academia completa"; o guia mostra a prescrição da pessoa; textos corrigidos; aviso de meta com o motivo verdadeiro | Critério 1; nenhum dia só com abdominal; o guia aberto pelo treino mostra a prescrição da pessoa | ~3 dias |
+| **R2 Acompanhamento personalizado** | Pausas detectadas sozinhas (`readaptacao.gatilho` aplicado durante o uso); "a sua semana" (treinos e séries por músculo contra a meta); evolução por exercício; semana leve sugerida; calibração da carga na 1ª série; regras novas em `regras.md` | Critério 6; a calibração aparece depois da 1ª série | ~1 semana |
+| **R3 Uso real** | O Gustavo treina 4 semanas com o app; eval da foto com as fotos reais; lista dos incômodos; correções pequenas | Critérios 3 e 5 registrados no devlog | 4 semanas |
+| **R4 Experimento do boneco** (durante o R3) | Segundo estilo de figura só no goblet, com comparação lado a lado; as 31 animações aprovadas não mudam | O Gustavo decide: seguir, ajustar ou parar | 2–3 dias |
+| **R5 Decidir com o uso** | Escopo vem do R3 e do R4: boneco em tudo, animações que faltam, desenhos de equipamento, termos de uso e limite compartilhado se o app for aberto | Cada item com o motivo e o próprio aceite | a definir |
+
+Ao fim de cada marco eu paro, mostro o resultado e espero o seu ok.
+
+<details><summary>Marcos de 29/10/2026 (M0 a M5 concluídos; M6 e o lançamento substituídos)</summary>
+
 | Marco | Entregáveis | Aceite | Esforço |
 |---|---|---|---|
 | **M0 Fundação** | Repositório, `CLAUDE.md`, `docs/PLANO-MVP.md`, Vite+React+TS, lint, Vitest, Playwright, CI no GitHub Actions, deploy vazio na Vercel, PWA básico, LICENSE, devlog #0 | CI verde; URL de produção abre "olá"; `git ls-files` não mostra `privado/` | 0,5–1 dia |
@@ -172,6 +210,8 @@ As correções da remada baixa e da barra fixa entram depois do M0-R, como mudan
 | **Lançamento** | 2 semanas de beta, ajustes, post final | Critérios a.1–a.6 medidos | 2 semanas |
 
 Ao fim de cada marco eu paro, mostro o resultado e espero o seu ok.
+
+</details>
 
 ## j. Riscos e mitigação
 - **Precisão da visão:** a confirmação é obrigatória, o checklist é sempre o caminho alternativo, e o acerto é medido com o gabarito.

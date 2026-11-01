@@ -264,3 +264,32 @@ E um alerta registrado no backlog: a nossa triagem é mais rígida que o PAR-Q+ 
 ## Animações: lote 1 aprovado (01/11/2026)
 
 O Gustavo aprovou mais 5 animações: **panturrilha no chão, abdominal no chão, rosca alternada, tríceps francês com halter e stiff unilateral**. Com a remada unilateral, são 6 animações novas, todas com 0 falhas de cinemática e congeladas na regressão visual (`tests/visual/linha-de-base/novas.json`). Agora a persona Ana tem animação em quase todos os exercícios do programa. As fichas com as fontes estão em `pesquisa/animacoes/`, e três estudos foram conferidos no PubMed (Maeo 2023, Kassiano 2023 e 2025).
+
+---
+
+## Replanejamento (01/11/2026)
+
+Uma sessão de estudo, sem código novo, revisou o projeto inteiro. Ela usou o app como as personas fictícias, rodou os testes e o gerador e pesquisou cada ideia. Os documentos estão em `planejamento/`:
+- `2026-11-diagnostico.md`: o diagnóstico;
+- `2026-11-plano-revisado.md`: as decisões;
+- `2026-11-catalogo-equipamentos.md`: a avaliação de equipamentos e exercícios.
+
+**O que o diagnóstico encontrou**
+- A base técnica é sólida: 239 testes unitários, 21 testes no navegador e 99,8% das regras cobertas.
+- **Três problemas que confundem quem treina** passavam em todos os testes:
+  - marcar "ombro" na triagem tirava todos os exercícios de peito, costas e ombros;
+  - o guia mostrava a prescrição do programa de referência, e não a da pessoa;
+  - alguns textos diziam o contrário do app.
+- **O app não percebe pausas durante o uso.** Depois de um mês parada, uma persona recebia mais séries e mais esforço, quando a regra de readaptação manda o contrário.
+- **Numa academia completa, o gerador usa 32 dos 60 exercícios possíveis.** As máquinas ficam em 8%, e a cadeira extensora nunca entra, porque os modelos de cada dia copiam o programa de referência.
+
+**Decisões do Gustavo**
+- O público principal é ele mesmo. Família e amigos podem testar, mas o plano não depende disso.
+- O sucesso passa a ser medido pelo uso dele e pelo acompanhamento do progresso no app: treinos feitos, séries por músculo, carga depois de faltar.
+- O cadastro deve levar até 1 minuto para quem não tem condição de saúde nem dor, com um botão "academia completa".
+- O boneco atual fica, e um boneco diferente será testado num exercício para comparar.
+- A revisão por profissional de Educação Física e a triagem com perguntas de acompanhamento ficam de lado.
+- Foto do corpo, biotipo, idade, peso e sexo no perfil: não agora.
+- **Primeiro passo:** aproveitar melhor o equipamento disponível (marco R0), antes das correções (R1) e do acompanhamento (R2).
+
+O `PLANO-MVP.md` recebeu os critérios (seção a) e os marcos (seção i) novos. Os antigos ficam no mesmo arquivo, para histórico.
