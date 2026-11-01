@@ -61,6 +61,15 @@ Legenda da coluna "Hoje no app": ✔ existe; ◐ existe mas sem exercício que o
 3. **Cada padrão de movimento com pelo menos 2 alternativas de equipamento diferente**, para quando o aparelho estiver ocupado.
 4. **Atalhos de cenário na tela:** "academia completa", "condomínio com multifuncional", "casa com halteres e elásticos". Eles marcam um conjunto típico que a pessoa ajusta. É uma escolha explícita, nada vem pré-marcado (decisão 7 do M3).
 
+## Linha de base medida (01/11/2026)
+Medido com o gerador real e scripts temporários, fora do repositório. Estes números são o ponto de partida dos critérios do marco R0.
+- **Uso numa academia completa:** em 144 programas da persona Carla (3 níveis × 4 opções de dias × 4 durações × 3 escolhas de prioridade), o gerador usa **32 dos 60 exercícios possíveis**.
+- **Peso das máquinas:** elas ocupam **8%** dos exercícios dos programas; polia 40%, halter 34%, barra 9%, peso do corpo 9%.
+- **Nunca escolhidos:** a cadeira extensora e a mesa flexora. Nenhum modelo de dia tem vaga de extensora de joelho, nem de glúteo isolado.
+- **Glúteos:** um único exercício principal, a ponte.
+- **Carla** (avançada, academia completa, 5 × 75 min, prioridade em pernas): posteriores 8 de 14 e panturrilha 8 de 14, com o dia "Superiores C" usando 39 dos 75 min.
+- **Metas do R0:** 45 ou mais exercícios distintos na academia completa; 0 equipamento marcado sem uso; 2 ou mais alternativas de outro equipamento para cada exercício; meta de cada músculo atingida, ou aviso com o motivo verdadeiro.
+
 ## O que ainda falta nesta frente
 - **O que cada exercício novo pede**, e quais têm evidência por músculo. Isso vem do tema 3 (escolha dos exercícios).
 - **Como a foto reconhece os equipamentos novos.** O esquema da visão precisa dos ids novos, e o eval precisa de exemplos.

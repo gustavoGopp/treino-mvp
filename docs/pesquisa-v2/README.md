@@ -23,7 +23,7 @@ Essas decisões foram copiadas do programa de referência para o código, sem pe
 | 1 | A divisão é fixa pelo número de dias (2 → corpo todo A/B; 3 → corpo todo A/B/C; 4 → torso/membros; 5 → torso/membros + superiores) | Programa de referência (`src/domain/gerador/divisoes.ts`) | **Reavaliada em `01-divisao-e-frequencia.md`** |
 | 2 | Cada dia tem vagas fixas, com preferências copiadas do programa de referência (ex.: ombro lateral "prefere polia") | Programa de referência | Em estudo (tema 3 do plano abaixo) |
 | 3 | Cada exercício tem uma "ordem" fixa de preferência na biblioteca | Programa de referência | Em estudo (tema 3) |
-| 4 | Critério de sucesso: o gerador repetir ≥ 80% do programa de referência | Plano de 29/10 | **Proposta: retirar** (ver `01`, seção 6) |
+| 4 | Critério de sucesso: o gerador repetir ≥ 80% do programa de referência | Plano de 29/10 | **Retirada em 01/11/2026** (ver `01`, seção 6, e o critério 2 do `PLANO-MVP.md`) |
 | 5 | A biblioteca de 73 exercícios e as 25 animações originais | O guia do programa de referência | Em estudo (`03-universo-de-equipamentos.md` e tema 3) |
 | 6 | Os números das regras (volume, RIR, cargas, descanso, progressão) | Pesquisa M0-R | **Conferidos contra a evidência nova em `02-panorama-da-evidencia.md`**: na maior parte, confirmados |
 

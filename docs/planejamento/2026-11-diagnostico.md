@@ -1,5 +1,7 @@
 # Diagnóstico e proposta de caminho (01/11/2026)
 
+> **Documento histórico.** O plano em vigor está em `docs/PLANO-MVP.md` (critérios e marcos revisados em 01/11/2026), e a base do programa está sendo refeita em `docs/pesquisa-v2/`. Onde este diagnóstico e o plano divergirem, vale o plano.
+
 > Sessão de estudo, sem construir nada. Li o plano, o devlog, o backlog, a pesquisa, as decisões dos marcos M3, M4 e M5, a revisão do M2 e o código de `src/` e `api/`. Rodei os testes e usei o app no servidor local como as personas fictícias Ana, Bruno, Carla e Diego, e também como uma pessoa com pressão alta. Para medir o programa gerado, rodei o gerador direto com scripts temporários, fora do repositório. Nenhum código, teste ou dado do app foi alterado.
 >
 > **Como ler as marcações:**
@@ -375,6 +377,6 @@ O Gustavo respondeu às perguntas:
 - **Academia completa:** o botão entra como opção.
 - **Ideia nova:** um acompanhamento personalizado do progresso (quantos treinos, se treinou menos do que devia, que carga pegar depois de faltar).
 
-A proposta de plano com essas decisões está em `2026-11-plano-revisado.md`. Ela traz dois achados novos:
+As decisões foram incorporadas ao `docs/PLANO-MVP.md` (seções a e i) e a pesquisa continuou em `docs/pesquisa-v2/`. Dois achados novos daquela rodada:
 - **[medido]** o app não aplica a readaptação quando a pessoa para de treinar durante o uso;
 - a chave da Anthropic na Vercel não pôde ser verificada daqui, e há 3 projetos da Vercel ligados ao mesmo repositório.

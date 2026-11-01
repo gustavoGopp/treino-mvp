@@ -1,5 +1,7 @@
 # Pesquisa M0-R: regras de hipertrofia com evidência
 
+> **Revisão em andamento (01/11/2026):** `docs/pesquisa-v2/` refaz a base da montagem do programa (divisão, escolha dos exercícios, sessão, populações, progressão) e lê as fontes no PubMed. Onde houver conflito, vale a v2. Duas pendências desta página já tiveram o resumo oficial lido lá: Pelland 2026 (pendência 1) e ACSM 2026 (pendência 2).
+
 Esta pasta reúne a pesquisa que alimenta o gerador de treino, a progressão e a segurança do app. Cada regra tem um id estável, um selo de evidência e fontes rastreáveis. Pesquisa de 29/10/2026, feita por busca na web, sem leitura de textos completos (ver `00-metodo.md`).
 
 ## Arquivos

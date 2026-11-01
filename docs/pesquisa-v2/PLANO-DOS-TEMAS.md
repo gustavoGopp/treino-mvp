@@ -140,6 +140,12 @@ T6 Progressão e acompanhamento ────────────────
 - Adesão às recomendações de força em 3,3 milhões de pessoas (PMID 36418149); força e mortalidade em coortes (35228201).
 - **A buscar:** fórmulas de estimativa da carga máxima por repetições (Epley, Brzycki) e o erro delas em séries de muitas repetições.
 
+**Ponto de partida (achados de 01/11/2026):**
+- O app não percebe pausas durante o uso: a readaptação (`readaptacao.gatilho`) só vale no cadastro, e a "semana do programa" é contada pelo calendário.
+- Simulação: uma persona que treinou 1 semana, sumiu 1 mês e voltou recebeu **mais** séries e RIR **mais baixo** do que antes de parar, quando a regra manda cerca de metade das séries e carga 10% a 20% menor.
+- A função de semana leve existe, mas nenhuma tela a usa.
+- **Pedido do Gustavo:** saber quantos treinos foram feitos, se treinou menos do que devia, e que carga pegar depois de faltar. A resposta preliminar, a confirmar neste tema: até ~2 semanas sem treinar, manter a carga (Hwang 2017; Bosquet 2013; não verificados no PubMed ainda).
+
 **Entregável:** `07-progressao-e-acompanhamento.md`, com as regras novas de pausa, calibração, semana leve e as métricas de "a sua semana".
 
 **Pronto quando:** cada peça do R2 tem uma regra com selo e um caso de teste descrito, por exemplo "pausa de 22 dias → volta gradual".

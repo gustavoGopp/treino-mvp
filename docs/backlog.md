@@ -14,22 +14,14 @@ Ideias e requisitos para depois do MVP. Nada aqui entra sem passar pelo plano.
 - Deload automático (no MVP o app só sugere).
 - **Triagem com perguntas de acompanhamento** (como no PAR-Q+ oficial e no ACSM 2015), em vez de bloquear em qualquer "sim". Só depois de confirmar a licença do PAR-Q+ e com revisão de um CREF. Motivo e números em `docs/pesquisa/09-decisoes-m3.md`, seção 8.
 
-## Melhorias pedidas na revisão do M3 (01/11/2026)
-Dentro do escopo do MVP, para os próximos marcos (não são itens "fora do MVP"):
-- **Boneco do guia mais sofisticado.** Evoluir o desenho da figura (hoje traço e círculos). Qualquer mudança no motor passa pela regressão visual com nova linha de base aprovada.
-- **Estética do formulário**, principalmente os desenhos dos equipamentos e as imagens dos exercícios.
-- **Preencher mais rápido.** Medir o tempo de cada passo do onboarding com testadores e cortar o que não muda o programa.
 
-## Para o replanejamento depois do M4 (pedido do Gustavo em 01/11/2026)
-Depois da foto do equipamento (M4), parar e fazer uma análise completa do cenário e reescrever o plano. Ideias a avaliar:
-- **Peso inicial sugerido** a partir do tempo parado, do nível e de dados como peso corporal e idade (hoje o app não sugere carga inicial).
-- **Peso corporal, idade e outros dados do perfil**, e o que cada um muda de fato no programa (com evidência).
-- **Foto do corpo para estimar o biotipo** e indicar o treino. Pontos já levantados: foto do corpo é dado sensível (LGPD, minimização) e a evidência de que o biotipo deve mudar um programa de hipertrofia é fraca. Analisar com pesquisa antes de decidir.
-- As melhorias de estética, praticidade e o boneco mais humano, registradas acima.
-- **Limite da visão compartilhado** entre instâncias antes de abrir o app para outras pessoas; hoje o contador fica na memória de cada instância (`pesquisa/11-decisoes-m4.md`). O Vercel KV foi descontinuado: o caminho é o Redis (Upstash) pelo Marketplace da Vercel.
+## Pendências do lado do Gustavo
+- **Chave da Anthropic.** Confirmar que a chave e os convites estão no projeto `treino-mvp` da Vercel, o que atende `treino-mvp-sigma.vercel.app`.
+- **Projetos extras na Vercel.** Avaliar apagar `treino-mvp-huks` e `treino-mvp-yej6`, criados em 31/10/2026. Eles repetem cada deploy.
+- **Limite da visão compartilhado** entre instâncias, antes de abrir o app para outras pessoas. Hoje o contador fica na memória de cada instância (`pesquisa/11-decisoes-m4.md`). O Vercel KV foi descontinuado; o caminho é o Redis (Upstash) pelo Marketplace da Vercel.
 
 ## Decididos no replanejamento de 01/11/2026
-Detalhes em `planejamento/2026-11-diagnostico.md` e `planejamento/2026-11-plano-revisado.md`.
+Detalhes em `planejamento/2026-11-diagnostico.md`, `PLANO-MVP.md` e `pesquisa-v2/`.
 - **Não fazer agora:**
   - foto do corpo e biotipo (sem evidência de benefício e com dado sensível);
   - idade, peso corporal, sexo e altura no perfil (nenhuma regra os usa).
@@ -39,3 +31,4 @@ Detalhes em `planejamento/2026-11-diagnostico.md` e `planejamento/2026-11-plano-
   - desenhos novos de equipamento;
   - termos de uso e formulário de opinião, se o app for aberto a outras pessoas.
 - **Lacunas do gerador para avançados com academia completa:** entram no R0 (aproveitar o equipamento).
+- **Boneco mais humano, estética do formulário, cadastro mais rápido, peso inicial e acompanhamento:** viraram os marcos R1, R2 e R4 do `PLANO-MVP.md`.

@@ -269,10 +269,10 @@ O Gustavo aprovou mais 5 animações: **panturrilha no chão, abdominal no chão
 
 ## Replanejamento (01/11/2026)
 
-Uma sessão de estudo, sem código novo, revisou o projeto inteiro. Ela usou o app como as personas fictícias, rodou os testes e o gerador e pesquisou cada ideia. Os documentos estão em `planejamento/`:
+Uma sessão de estudo, sem código novo, revisou o projeto inteiro. Ela usou o app como as personas fictícias, rodou os testes e o gerador e pesquisou cada ideia. O diagnóstico está em `planejamento/2026-11-diagnostico.md`. Os documentos intermediários foram depois consolidados:
 - `2026-11-diagnostico.md`: o diagnóstico;
-- `2026-11-plano-revisado.md`: as decisões;
-- `2026-11-catalogo-equipamentos.md`: a avaliação de equipamentos e exercícios.
+- as decisões, incorporadas ao `PLANO-MVP.md`;
+- a avaliação de equipamentos, levada para `pesquisa-v2/03-universo-de-equipamentos.md`.
 
 **O que o diagnóstico encontrou**
 - A base técnica é sólida: 239 testes unitários, 21 testes no navegador e 99,8% das regras cobertas.

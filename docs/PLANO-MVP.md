@@ -3,6 +3,8 @@
 > Aprovado em 29/10/2026; critérios (seção a) e marcos (seção i) revisados em 01/11/2026. Mudanças de rumo são registradas no `docs/devlog.md`.
 
 ## Contexto
+> **Atualização de 01/11/2026.** O projeto deixou de partir do programa pessoal de referência. A base do programa está sendo refeita para qualquer pessoa, sem premissas, em `docs/pesquisa-v2/`. O `referencia/programa-fase-1.md` vira só histórico e caso de comparação, e o público principal, por agora, é o Gustavo. O texto abaixo é o contexto original de 29/10.
+
 Você já tem um sistema pessoal que funciona: fotos da academia → inventário → programa de hipertrofia baseado em evidência (`programa-fase-1.md`) → guia animado com temporizador (`guia-execucao-fase1.html`). O objetivo agora é transformar isso num produto para quem treina com equipamento limitado, construído em público (git + LinkedIn).
 
 **Decisões já tomadas**
@@ -16,16 +18,11 @@ Você já tem um sistema pessoal que funciona: fotos da academia → inventário
 | Níveis | Iniciante, intermediário e avançado. "Voltando de pausa" é um modificador que vale para qualquer nível |
 | Pesquisa | Nova etapa **M0-R** (pesquisa aprofundada) antes das regras do gerador. Ela também resolve as divergências do guia (remada baixa e pegada da barra fixa) |
 
-**Arquivos lidos.** Já li o guia HTML, a especificação, o `check-motor.cjs`, o perfil e o gabarito. Falta só o `prompt-original-personal-trainer.md`, que não é bloqueante: anexe quando puder. O que mudou no plano por causa dessa leitura:
-- **Motor (seção h):** o desenho já é determinístico (só o loop da tela usa relógio), então dá para comparar o SVG gerado como texto, além da imagem. Por outro lado, o motor guarda estado compartilhado entre funções (`VIEW`, `PJ`, `prims`, `MEAS`, `KS`), e os dados dos exercícios contêm funções (`equip`, `guides`). Por isso os dados viram módulos TypeScript, e não JSON.
-- **Taxonomia (seção e):** os ids partem dos itens do gabarito (`estacao_polia_dupla`, `halteres_fixos`, `anilhas_e_manoplas`, `acessorio_polia_*` etc.), e a lista `nao_tem` vira teste de falso positivo.
-- **Cenário 1 (seção f):** entram as preferências do perfil como entrada, além de "voltando de pausa" e "ombro estala sem dor" (que não gera restrição).
-- **Backlog:** o perfil registra restrições alimentares religiosas. Quando houver nutrição, elas entram como regra dura (anotado em `docs/backlog.md`, sem dados pessoais).
 
 ---
 
 ## a. Objetivo e critérios de sucesso
-> Revisado em 01/11/2026, depois do diagnóstico (`planejamento/2026-11-diagnostico.md`) e das decisões do Gustavo (`planejamento/2026-11-plano-revisado.md`). Os critérios de 29/10 estão no fim desta seção, para histórico.
+> Revisado em 01/11/2026, depois do diagnóstico (`planejamento/2026-11-diagnostico.md`) e das decisões do Gustavo registradas no `devlog.md`. As versões anteriores ficam no histórico do git e no `devlog.md`.
 
 **Objetivo:** o Gustavo monta, em minutos, um programa de hipertrofia baseado em evidência que usa bem o equipamento que tem, treina com o guia animado e acompanha o próprio progresso no app, inclusive quando falta a treinos. Família e amigos podem testar, mas o plano não depende deles.
 
@@ -49,15 +46,6 @@ Você já tem um sistema pessoal que funciona: fotos da academia → inventário
 7. **Animações.** As 31 animações aprovadas continuam com 0 pixel de diferença e 0 falha de IK. Todo exercício do programa do Gustavo tem animação.
 8. **Uso no celular.** Acessibilidade ≥ 90 no Lighthouse; o app se instala no celular; uma sessão inteira feita com uma mão.
 
-<details><summary>Critérios de 29/10/2026 (substituídos)</summary>
-
-1. Uma pessoa nova sai da primeira abertura com o programa pronto em **até 5 min** pelo checklist e em **até 7 min** pela foto. Medido com 5 testadores, cronometrado.
-2. No cenário "minha academia", o gerador reproduz o `programa-fase-1.md` com **pelo menos 80% de coincidência** nos exercícios principais e o mesmo número de séries por grupo, com tolerância de ±2.
-3. Visão: no gabarito, **recall ≥ 85%** e **precisão ≥ 90%** dos itens com confiança alta.
-4. **8 testadores** usam o app por **2 semanas**, e pelo menos 5 deles registram 6 ou mais sessões.
-5. Os 25 exercícios animados passam pelo teste de regressão visual com diferença de 0 pixel em relação ao guia original. O IK continua com 0 falhas.
-6. Lighthouse PWA/Acessibilidade ≥ 90 no celular, e uma sessão inteira é utilizável com uma mão.
-</details>
 
 ## b. Personas e jornada
 Todas as personas são fictícias e ficam versionadas em `tests/personas/`:
@@ -119,7 +107,7 @@ generate(perfil, inventario, biblioteca, regras) -> Programa   // determinístic
                           && ex.id ∉ perfil.evitar
                           && nivelOk(ex, perfil.nivel)
                           && !conflitaDor(ex.articulacoesCarregadas, perfil.dores))
-  // 2. Divisão
+  // 2. Divisão (revisado em 01/11/2026: a pessoa escolhe entre opções equivalentes; ver pesquisa-v2/01-divisao-e-frequencia.md)
   split = escolherSplit(dias, minutos, nivel)
      2d → Corpo todo A/B · 3d → Corpo todo A/B/C (ou T/M/CT para avançado)
      4d → Torso/Membros ×2 · 5d → T/M + Corpo todo ou PPL+T/M
@@ -145,6 +133,7 @@ progression(historico, ex, incrementoDisponivel) -> Sugestao  // regras 1–8 do
 ```
 
 **Cenários de teste (Vitest, com saída comparada a snapshot revisado)**
+> Revisado em 01/11/2026: o cenário 1 deixa de ter como resultado esperado o `programa-fase-1.md`; ele passa a ser só comparação (critério 2 da seção a). Os resultados esperados dos 4 cenários serão refeitos com a pesquisa v2.
 1. **Minha academia** (o teste fica em `privado/`, fora do CI). Entradas: o inventário do gabarito, intermediário voltando de pausa, 4 dias de 50–75 min, prioridade nos superiores, e evitar barra longa e exercícios de perna complexos com peso livre. Resultado esperado: Torso/Membros 4 dias, 10–12 séries para peito, costas e ombros, 6–8 para pernas, sessões de 55–65 min, sem barra longa, com os exercícios de `programa-fase-1.md`. Uma persona fictícia equivalente ("Bruno") fica versionada.
 2. **Halteres + banco**, 3 dias. Resultado esperado: corpo todo A/B/C com supino, remada apoiada, goblet, stiff, búlgaro e elevação lateral. Nenhum exercício de polia ou barra fixa. Puxada vertical aparece como aviso de "lacuna" (pullover com halter entra como substituto parcial, com evidência indicada).
 3. **Casa com elásticos + barra fixa**, 3 dias. Resultado esperado: barra fixa (ou negativas para iniciante), remada e desenvolvimento com elástico, agachamento e afundo com peso do corpo e repetições altas, flexão. Aviso de limitação para pernas.
@@ -178,17 +167,17 @@ Testes de propriedade: a mesma entrada gera a mesma saída (hash); nenhum exerc�
 
 **No MVP:** os 25 exercícios animados que já existem. Exercício sem animação aprovada aparece como **cartão textual** (setup, execução, 3 dicas, erros, onde sentir), com o selo "animação em breve".
 
-**Próximas animações, nesta ordem** (alternativas do programa primeiro): remada unilateral com halter, crucifixo com halteres, agachamento com 2 halteres, afundo para trás, panturrilha no chão, rosca alternada, tríceps francês com halter, crucifixo inverso no banco inclinado, puxada ajoelhado com barra reta, stiff unilateral. Depois vêm os exercícios dos cenários 2 e 3 (elásticos e peso do corpo). Cada animação nova passa pelo ritual folha de contatos → revisão sua → aprovação.
+**Próximas animações:** pela frequência com que cada exercício aparece nos programas gerados (tema T7 da pesquisa v2), começando pelos do programa do Gustavo. Cada animação nova passa pelo ritual de `docs/pesquisa/animacoes/README.md`.
 
 As correções da remada baixa e da barra fixa entram depois do M0-R, como mudanças separadas e revisadas, com uma nova linha de base.
 
 ## i. Marcos
-> Revisado em 01/11/2026. Os marcos M0 a M5 estão concluídos (ver `devlog.md`). A tabela original está no fim desta seção, para histórico.
+> Revisado em 01/11/2026. Os marcos M0 a M5 estão concluídos (ver `devlog.md`); a tabela original fica no histórico do git.
 
 | Marco | Entregáveis | Aceite | Esforço |
 |---|---|---|---|
 | **P Pesquisa v2: a base, sem premissas** | Refazer o estudo de como montar o programa, para todos e para o Gustavo, sem partir do programa de referência: divisão e frequência; panorama das variáveis; universo de equipamentos; escolha dos exercícios por músculo; montagem da sessão; iniciantes, pausas e populações; progressão e acompanhamento; e por fim o programa do Gustavo. Plano e resultados em `docs/pesquisa-v2/`. | Cada tema aprovado pelo Gustavo, com as mudanças em `regras.md` listadas; toda fonte com o resumo lido no PubMed (ou marcada como não verificada) | 1–2 semanas |
-| **R0 Aproveitar o equipamento** | **R0a:** pesquisa curta dos exercícios novos e parada para revisão da lista. **R0b:** o gerador se adapta ao equipamento (vagas extras de extensora, glúteo e posteriores; máquina com o mesmo peso que o peso livre; preferências de função, não de equipamento; mais alternativas). **R0c:** catálogo ampliado (~12 equipamentos e ~25 exercícios, com cartão de texto e fonte; ids novos na visão). Detalhes em `planejamento/2026-11-catalogo-equipamentos.md`; o conteúdo final sai dos temas 3 e 7 da pesquisa v2. | Critério 4; os snapshots das personas mudam só com revisão | 1–1,5 semana |
+| **R0 Aproveitar o equipamento** | **R0a:** pesquisa curta dos exercícios novos e parada para revisão da lista. **R0b:** o gerador se adapta ao equipamento (vagas extras de extensora, glúteo e posteriores; máquina com o mesmo peso que o peso livre; preferências de função, não de equipamento; mais alternativas). **R0c:** catálogo ampliado (~12 equipamentos e ~25 exercícios, com cartão de texto e fonte; ids novos na visão). Linha de base e lista em `pesquisa-v2/03-universo-de-equipamentos.md`; o conteúdo final sai dos temas 3 e 7 da pesquisa v2. | Critério 4; os snapshots das personas mudam só com revisão | 1–1,5 semana |
 | **R1 Corrigir o que engana e cadastro em 1 min** | Triagem com "Nenhuma se aplica a mim"; articulação passa a usar a nota de dor de hoje; uma pergunta de dor só; minutos por toque; botão "academia completa"; o guia mostra a prescrição da pessoa; textos corrigidos; aviso de meta com o motivo verdadeiro | Critério 1; nenhum dia só com abdominal; o guia aberto pelo treino mostra a prescrição da pessoa | ~3 dias |
 | **R2 Acompanhamento personalizado** | Pausas detectadas sozinhas (`readaptacao.gatilho` aplicado durante o uso); "a sua semana" (treinos e séries por músculo contra a meta); evolução por exercício; semana leve sugerida; calibração da carga na 1ª série; regras novas em `regras.md` | Critério 6; a calibração aparece depois da 1ª série | ~1 semana |
 | **R3 Uso real** | O Gustavo treina 4 semanas com o app; eval da foto com as fotos reais; lista dos incômodos; correções pequenas | Critérios 3 e 5 registrados no devlog | 4 semanas |
@@ -197,23 +186,6 @@ As correções da remada baixa e da barra fixa entram depois do M0-R, como mudan
 
 Ao fim de cada marco eu paro, mostro o resultado e espero o seu ok.
 
-<details><summary>Marcos de 29/10/2026 (M0 a M5 concluídos; M6 e o lançamento substituídos)</summary>
-
-| Marco | Entregáveis | Aceite | Esforço |
-|---|---|---|---|
-| **M0 Fundação** | Repositório, `CLAUDE.md`, `docs/PLANO-MVP.md`, Vite+React+TS, lint, Vitest, Playwright, CI no GitHub Actions, deploy vazio na Vercel, PWA básico, LICENSE, devlog #0 | CI verde; URL de produção abre "olá"; `git ls-files` não mostra `privado/` | 0,5–1 dia |
-| **M0-R Pesquisa** | `docs/pesquisa/` com volume, reps, RIR, descanso, frequência, seleção por nível, readaptação, iniciante × avançado, adaptações para dor, PAR-Q+ e equivalência de exercícios, além da decisão sobre remada e barra fixa. Cada regra tem fonte verificada e nível de evidência. Antes, uma rodada de perguntas para você | Você aprova o documento; toda regra tem link conferido | 1–2 dias |
-| **M1 Motor** | Linha de base, port para TS, regressão visual, tela do guia isolada (`/guia/:id`) | Diferença de 0 pixel nos 25 exercícios; 0 falhas de IK | 2–3 dias |
-| **M2 Domínio** | Taxonomia, biblioteca (~60 exercícios), regras, gerador, progressão, triagem; 4 cenários e testes de propriedade | Cobertura ≥ 90% em `domain/`; cenário 1 ≥ 80% de coincidência | 3–4 dias |
-| **M3 Onboarding + inventário** | Triagem, perfil, checklist, armazenamento local, exportação e importação | E2E: persona → programa em < 5 min; recarregar mantém os dados | 2 dias |
-| **M4 Visão** | Remoção de EXIF, `/api/vision`, convite e limite, tela de confirmação, `eval-vision` | Recall e precisão dentro da meta; teste confirma ausência de EXIF; a chave não aparece no bundle | 2 dias |
-| **M5 Execução + registro** | Treino do dia, guia, temporizador (portado), séries, sugestão de progressão, alerta de segurança (dor → interrompe e oferece alternativa) | E2E de uma sessão completa; testes da progressão | 2–3 dias |
-| **M6 Polimento + beta** | Acessibilidade, uso com uma mão, Lighthouse, textos, convites, formulário de feedback | Lighthouse ≥ 90; 8 testadores convidados | 1–2 dias |
-| **Lançamento** | 2 semanas de beta, ajustes, post final | Critérios a.1–a.6 medidos | 2 semanas |
-
-Ao fim de cada marco eu paro, mostro o resultado e espero o seu ok.
-
-</details>
 
 ## j. Riscos e mitigação
 - **Precisão da visão:** a confirmação é obrigatória, o checklist é sempre o caminho alternativo, e o acerto é medido com o gabarito.
@@ -235,14 +207,8 @@ Ao fim de cada marco eu paro, mostro o resultado e espero o seu ok.
 ## l. Build in public
 `docs/devlog.md` ganha uma entrada por marco: o que mudou, decisões tomadas, um GIF ou imagem (gerado pelo Playwright a partir das personas fictícias, nunca das suas fotos) e um rascunho de post para o LinkedIn de até 1.300 caracteres. Os posts nunca usam dados de `privado/`.
 
-## Ao aprovar
-1. Monto a estrutura local: `referencia/` com os arquivos do kit e `privado/` com o perfil, o gabarito e as 5 fotos, sem metadados. As fotos que vieram pelo chat são salvas como `foto-1..5.jpg`; se preferir, mande os arquivos originais.
-2. Crio o repositório `treino-mvp` (confirmo com você antes) e salvo este plano em `docs/PLANO-MVP.md`.
-3. Crio o `CLAUDE.md` com os princípios da seção 4 e as convenções: pt-BR, commits pequenos, `domain/` puro e testado, dados separados do código, nunca versionar `privado/`.
-4. Faço `git init` respeitando o `.gitignore` e confiro com `git status` e `git ls-files` que `privado/` ficou de fora.
-5. Executo o M0 e paro para a sua revisão. O M0-R começa logo depois, com as minhas perguntas da pesquisa.
 
 ## Verificação
-- M0: CI verde, URL da Vercel no ar e `git ls-files | grep privado` vazio.
-- Cada marco: os critérios de aceite da tabela, com prints ou GIFs no devlog.
-- Final: os critérios a.1–a.6 medidos com os testadores.
+- Cada marco: os critérios de aceite da tabela da seção i, com prints ou GIFs no devlog.
+- Cada tema da pesquisa v2: aprovado pelo Gustavo antes de mudar `regras.md`.
+- Final: os critérios da seção a medidos no uso real do Gustavo (marco R3).

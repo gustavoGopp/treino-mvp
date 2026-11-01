@@ -2,7 +2,9 @@
 
 Versão de 28/10/2026, com os ajustes do anexo de auditoria (docs/pesquisa/anexo-auditoria-programa-fase-1.md) aprovados em 29/10/2026.
 
-> Programa real, feito para um usuário específico (perfil em `privado/`). No produto, ele serve como **exemplo de saída esperada** do gerador e como fonte das regras (volume, reps, RIR, descanso, progressão) e das referências científicas.
+> **Documento histórico (desde 01/11/2026).** Este programa foi o ponto de partida do projeto e foi feito rápido, sem estudo aprofundado. Ele **não é mais** a saída esperada do gerador nem fonte de regras: as regras ficam em `docs/pesquisa/` e `docs/pesquisa-v2/`, e o programa novo do Gustavo sai do gerador universal (tema T8 da pesquisa v2). Fica aqui só como comparação e porque o guia animado original (`guia-execucao-fase1.html`) nasceu dele.
+>
+> Texto original: programa real, feito para um usuário específico (perfil em `privado/`).
 
 ## Lógica do programa
 
