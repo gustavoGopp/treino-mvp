@@ -21,7 +21,10 @@ export async function triagem(page: Page, { simEm = [], pausa = 0 }: Opcoes = {}
   await page.getByRole('button', { name: 'Continuar' }).click();
 }
 
-export async function ana(page: Page, { pausa = 0, minutos = '50', divisao }: { pausa?: number; minutos?: string; divisao?: string } = {}) {
+export async function ana(
+  page: Page,
+  { pausa = 0, minutos = '50', divisao, equipamentoExtra }: { pausa?: number; minutos?: string; divisao?: string; equipamentoExtra?: (page: Page) => Promise<void> } = {},
+) {
   const p = () => (pausa ? page.waitForTimeout(pausa) : Promise.resolve());
   await page.goto('/');
   await p();
@@ -53,6 +56,7 @@ export async function ana(page: Page, { pausa = 0, minutos = '50', divisao }: { 
   await grupo(page, 'O mais pesado').getByLabel('12 kg', { exact: true }).check();
   await grupo(page, 'De quanto em quanto').getByLabel('1 kg', { exact: true }).check();
   await page.getByLabel('Banco reto', { exact: true }).check();
+  if (equipamentoExtra) await equipamentoExtra(page);
   await p();
   await page.getByRole('button', { name: 'Continuar' }).click();
 

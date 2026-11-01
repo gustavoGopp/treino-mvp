@@ -189,3 +189,35 @@ test('equipamento por toque: anilhas com contador e valor fora da lista em "Outr
   await expect(page.getByLabel('Peso de cada manopla: outro valor')).toHaveValue('1.8');
   await expect(page.getByLabel('Quantidade de anilhas de 5 kg')).toHaveText('4');
 });
+
+test('catálogo do R0c: equipamento novo sem desenho, estações do multifuncional e cartão de texto do exercício sem animação', async ({ page }) => {
+  await ana(page, {
+    equipamentoExtra: async (p) => {
+      // Equipamento novo, ainda sem desenho: o cartão mostra só o nome.
+      const hack = p.getByLabel('Hack', { exact: true });
+      await hack.check();
+      await expect(p.locator('label.cartao-eq', { has: hack }).locator('svg')).toHaveCount(0);
+      // Multifuncional: sem estação marcada, a tela pede uma.
+      await p.getByLabel('Multifuncional', { exact: true }).check();
+      await p.getByRole('button', { name: 'Continuar' }).click();
+      await expect(p.getByText('Marque pelo menos uma estação do multifuncional.')).toBeVisible();
+      await p.getByRole('group', { name: 'Quais estações o seu tem?' }).getByLabel('Extensora').check();
+      // Polia simples: a altura (no alto, embaixo ou regulável).
+      await p.getByLabel('Polia simples', { exact: true }).check();
+      await p.getByRole('group', { name: 'Onde fica a polia?' }).getByLabel('Embaixo').check();
+    },
+  });
+  const painel = page.getByRole('tabpanel');
+  // A iniciante agacha no hack (estável), que ainda não tem animação: cartão de texto, nunca animação improvisada.
+  const cartao = painel.locator('li.cartao-ex', { has: page.getByRole('heading', { name: /Agachamento no hack/ }) });
+  await expect(cartao).toBeVisible();
+  await cartao.getByText('Detalhes', { exact: true }).click();
+  await cartao.getByText(/Como fazer \(cartão de texto/).click();
+  await expect(cartao.getByText('Montagem segura')).toBeVisible();
+  await expect(cartao.getByText(/Solte a trava de segurança/)).toBeVisible();
+  // As alternativas mostram 3 e guardam o resto em "ver mais".
+  await expect(cartao.getByText(/^Ver mais \d+ opç/)).toBeVisible();
+  // A extensora vem da estação do multifuncional (no dia B).
+  await page.getByRole('tab', { name: 'Corpo todo B', exact: true }).click();
+  await expect(painel.getByRole('heading', { name: /Cadeira extensora/ })).toBeVisible();
+});

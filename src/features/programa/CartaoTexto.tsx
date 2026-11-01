@@ -38,7 +38,8 @@ export function CartaoTexto({ exId, aberto = false }: { exId: string; aberto?: b
         <ol className="lista">
           {c.exec.map(([fase, titulo, texto]) => (
             <li key={titulo}>
-              <b>{titulo}</b> <span className="sr">({FASE[fase]})</span>: {texto}
+              <b>{titulo}</b>
+              <span className="sr"> ({FASE[fase]})</span>: {texto}
             </li>
           ))}
         </ol>
