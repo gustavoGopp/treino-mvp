@@ -16,7 +16,7 @@ import {
   type Perfil,
   type Programa,
 } from '../../src/domain/gerador';
-import type { Musculo } from '../../src/domain/biblioteca';
+import type { Articulacao, Musculo } from '../../src/domain/biblioteca';
 import { DIVISOES, DIVISAO_IDS } from '../../src/domain/gerador/divisoes';
 import { FUNCAO } from '../../src/domain/gerador/funcoes';
 import { DESCANSO, REGRAS, VOLUME, NIVEIS } from '../../src/domain/regras';
@@ -39,6 +39,10 @@ const resumo = (p: Programa) => ({
   fases: p.fases.map((f) => `${f.semanas}: ${f.fatorSeries}`),
 });
 const ids = (p: Programa) => p.dias.flatMap((d) => d.exercicios.map((x) => x.exId));
+/** Triagem com "sim" só na pergunta osteoarticular e a dor de hoje por região (seguranca.dor.programa). */
+const comDor = (perfil: Perfil, dores: { articulacao: Articulacao; nota?: number }[]): Perfil =>
+  dores.length ? { ...perfil, triagem: { respostas: { ...perfil.triagem.respostas, osteoarticular: true }, dores } } : perfil;
+const doresDe = (perfil: Perfil) => perfil.triagem.dores ?? [];
 
 describe('cenários (snapshots revisados)', () => {
   it.each(Object.entries(PERSONAS))('%s', (_n, p) => {
@@ -140,16 +144,46 @@ describe('triagem e dor no gerador', () => {
     expect(gerarPrograma({ ...bruno.perfil, triagem }, bruno.inventario).status).toBe('bloqueado');
     expect(gerarPrograma({ ...bruno.perfil, triagem: { ...triagem, liberacaoConfirmada: true } }, bruno.inventario).status).toBe('ok');
   });
-  it('"sim" só osteoarticular, com região marcada, exclui exercícios da região', () => {
-    const triagem = { respostas: { ...bruno.perfil.triagem.respostas, osteoarticular: true }, regioes: ['joelho' as const] };
-    const p = ok({ ...bruno.perfil, triagem }, bruno.inventario);
+  it('"sim" só osteoarticular, com região e dor de hoje acima de 5, exclui exercícios da região', () => {
+    const p = ok(comDor(bruno.perfil, [{ articulacao: 'joelho', nota: 7 }]), bruno.inventario);
     expect(p.regioesExcluidas).toEqual(['joelho']);
     expect(ids(p).some((id) => POR_ID[id]!.articulacoes.includes('joelho'))).toBe(false);
   });
   it('dor 3–5 desfavorece exercícios da articulação; pausa de 2 semanas pede RIR +1 na 1ª sessão', () => {
-    const p = ok({ ...bruno.perfil, dores: [{ articulacao: 'lombar', intensidade: 4 }], semanasParado: 2 }, bruno.inventario);
+    const p = ok(comDor({ ...bruno.perfil, semanasParado: 2 }, [{ articulacao: 'lombar', nota: 4 }]), bruno.inventario);
     expect(ids(p)).not.toContain('remada-baixa');
     expect(p.fases.map((f) => f.regraId)).toEqual(['readaptacao.gatilho']);
+  });
+  it('seguranca.dor.programa: o Bruno com o ombro marcado segue a dor de hoje (antes do R1, perdia o tronco inteiro)', () => {
+    const semDor = ok(bruno.perfil, bruno.inventario);
+    const ombro = (nota: number) => ok(comDor(bruno.perfil, [{ articulacao: 'ombro', nota }]), bruno.inventario);
+    const lembretes = (p: Programa) => p.dias.flatMap((d) => d.exercicios.flatMap((x) => x.porque.filter((q) => q.regraId === 'seguranca.dor.programa')));
+    // 0–2: o mesmo programa, com o lembrete em cada exercício que carrega o ombro.
+    const zero = ombro(0);
+    expect(ids(zero)).toEqual(ids(semDor));
+    expect(zero.regioesExcluidas).toEqual([]);
+    const carregaOmbro = zero.dias.flatMap((d) => d.exercicios).filter((x) => POR_ID[x.exId]!.articulacoes.includes('ombro'));
+    expect(lembretes(zero)).toHaveLength(carregaOmbro.length);
+    expect(lembretes(zero)[0]!.texto).toContain('dor 0 hoje');
+    // 3–5: os mesmos grupos treinados (no Bruno, todo exercício de tronco carrega o ombro), sem dizer que preferiu outro.
+    const quatro = ombro(4);
+    for (const m of ['peito', 'costas', 'ombro_lateral'] as const) expect(quatro.volumeSemanal[m], m).toBeGreaterThan(0);
+    expect(lembretes(quatro)[0]!.texto).toContain('nenhum exercício equivalente poupa a região');
+    // > 5: os exercícios do ombro saem, e o aviso diz o motivo verdadeiro (não "falta de equipamento").
+    const sete = ombro(7);
+    expect(ids(sete).some((id) => POR_ID[id]!.articulacoes.includes('ombro'))).toBe(false);
+    const peito = sete.avisos.find((a) => a.texto.includes('peito 0 de'));
+    expect(peito!.texto).toContain('por causa da dor no ombro (7 hoje)');
+    expect(peito!.texto).not.toContain('equipamento');
+    expect(sete.avisos.some((a) => a.regraId === 'seguranca.dor.programa' && a.texto.includes('Procure avaliação'))).toBe(true);
+    // selecao.dia-sem-principal: o Superior A, que ficava só com a rosca, ganha o tríceps que poupa o ombro.
+    expect(sete.dias[0]!.exercicios.length).toBeGreaterThan(1);
+    expect(sete.avisos.some((a) => a.regraId === 'selecao.dia-sem-principal')).toBe(true);
+  });
+  it('vaga esvaziada pela dor não vira aviso de falta de equipamento (a Carla tem a extensora)', () => {
+    const p = ok(comDor(carla.perfil, [{ articulacao: 'joelho', nota: 8 }]), carla.inventario);
+    expect(p.avisos.some((a) => a.texto.startsWith('Sem cadeira extensora'))).toBe(false);
+    expect(p.avisos.find((a) => a.texto.startsWith('Abaixo da meta semanal: quadríceps'))!.texto).toContain('por causa da dor no joelho (8 hoje)');
   });
   it('intermediário sem pausa não tem fase especial', () => {
     expect(ok({ ...bruno.perfil, semanasParado: 0 }, bruno.inventario).fases).toEqual([]);
@@ -162,11 +196,11 @@ for (const [nome, base] of Object.entries(PERSONAS))
   for (const divisao of DIVISAO_IDS)
     for (const minutosSessao of [35, 55, 80])
       for (const nivel of NIVEIS)
-        for (const dores of [[], [{ articulacao: 'ombro' as const, intensidade: 7 }], [{ articulacao: 'joelho' as const, intensidade: 6 }]])
+        for (const dores of [[], [{ articulacao: 'ombro' as const, nota: 7 }], [{ articulacao: 'joelho' as const, nota: 6 }]])
           variacoes.push({
             nome: `${nome}/${divisao}/${minutosSessao}min/${nivel}/${dores[0]?.articulacao ?? 'sem dor'}`,
             inv: base.inventario,
-            perfil: { ...base.perfil, diasSemana: DIVISOES[divisao].diasSemana, divisao, minutosSessao, nivel, dores },
+            perfil: comDor({ ...base.perfil, diasSemana: DIVISOES[divisao].diasSemana, divisao, minutosSessao, nivel }, dores),
           });
 
 describe(`propriedades (${variacoes.length} combinações)`, () => {
@@ -177,7 +211,7 @@ describe(`propriedades (${variacoes.length} combinações)`, () => {
     for (const v of variacoes) {
       const p = ok(v.perfil, v.inv);
       const caps = capacidades(Object.fromEntries(Object.entries(v.inv).filter(([k]) => !v.perfil.evitarEquipamentos.includes(k as never))));
-      const doidas = v.perfil.dores.filter((d) => d.intensidade > 5).map((d) => d.articulacao);
+      const doidas = doresDe(v.perfil).filter((d) => d.nota! > 5).map((d) => d.articulacao);
       for (const id of ids(p)) {
         const e = POR_ID[id]!;
         expect(e.requer.some((g) => g.every((c) => caps.has(c))), `${v.nome}: ${id}`).toBe(true);
@@ -224,6 +258,53 @@ describe(`propriedades (${variacoes.length} combinações)`, () => {
       expect(p.dias).toHaveLength(v.perfil.diasSemana);
       if (!DIVISOES[v.perfil.divisao!].classica) expect(p.divisaoId, v.nome).toBe(v.perfil.divisao);
     }
+  });
+});
+
+// R1: com a dor de hoje acima de 5 em uma ou duas regiões, nenhum dia fica sem exercício principal (fora o core),
+// e todo grupo grande com 0 série tem um aviso com o motivo (selecao.dia-sem-principal; seguranca.dor.programa).
+const REGIOES = ['ombro', 'cotovelo', 'punho', 'lombar', 'quadril', 'joelho', 'tornozelo'] as const;
+const combinacoesDeDor = [...REGIOES.map((a) => [a]), ...REGIOES.flatMap((a, i) => REGIOES.slice(i + 1).map((b) => [a, b]))];
+const comDores: { perfil: Perfil; inv: Inventario; nome: string }[] = [];
+for (const [nome, base] of Object.entries(PERSONAS))
+  for (const regioes of combinacoesDeDor)
+    for (const divisao of [undefined, ...DIVISAO_IDS.filter((d) => DIVISOES[d].diasSemana === base.perfil.diasSemana)])
+      comDores.push({
+        nome: `${nome}/${divisao ?? 'recomendada'}/${regioes.join('+')}`,
+        inv: base.inventario,
+        perfil: comDor({ ...base.perfil, ...(divisao ? { divisao } : {}) }, regioes.map((articulacao) => ({ articulacao, nota: 6 }))),
+      });
+const GRUPOS_GRANDES: Musculo[] = ['peito', 'costas', 'ombro_lateral', 'quadriceps', 'posteriores', 'gluteos'];
+
+describe(`propriedade do R1: dor em 1 ou 2 regiões (${comDores.length} combinações)`, () => {
+  it('nenhum dia sem exercício principal, e nenhum grupo grande com 0 série sem aviso com o motivo', () => {
+    for (const v of comDores) {
+      const p = ok(v.perfil, v.inv);
+      for (const d of p.dias) {
+        const temPrincipal = d.exercicios.some((x) => x.padrao !== 'core');
+        // Só vale um dia sem principal quando nenhum exercício fora do core é possível, e o aviso diz isso.
+        if (!temPrincipal)
+          expect(p.avisos.some((a) => a.regraId === 'selecao.dia-sem-principal' && a.texto.startsWith(d.nome) && a.texto.includes('nenhum outro exercício')), `${v.nome}: ${d.nome}`).toBe(true);
+      }
+      const textos = p.avisos.map((a) => a.texto);
+      for (const m of GRUPOS_GRANDES) {
+        if ((p.volumeSemanal[m] ?? 0) > 0) continue;
+        const aviso = textos.find((t) => t.includes(`${NOME_MUSCULO[m]} 0 de`));
+        expect(aviso, `${v.nome}: ${m}`).toBeDefined();
+        expect(aviso!, `${v.nome}: ${m}`).toMatch(/porque/);
+      }
+    }
+  });
+  it('nenhum exercício carrega uma região com dor acima de 5, e o lembrete aparece com dor de 0 a 5', () => {
+    for (const v of comDores.filter((_, i) => i % 3 === 0)) {
+      const p = ok(v.perfil, v.inv);
+      const excl = (v.perfil.triagem.dores ?? []).map((d) => d.articulacao);
+      for (const id of ids(p)) expect(POR_ID[id]!.articulacoes.some((a) => excl.includes(a)), `${v.nome}: ${id}`).toBe(false);
+    }
+    const leve = ok(comDor(ana.perfil, [{ articulacao: 'joelho', nota: 2 }]), ana.inventario);
+    const doJoelho = leve.dias.flatMap((d) => d.exercicios).filter((x) => POR_ID[x.exId]!.articulacoes.includes('joelho'));
+    expect(doJoelho.length).toBeGreaterThan(0);
+    for (const x of doJoelho) expect(x.porque.some((q) => q.regraId === 'seguranca.dor.programa'), x.exId).toBe(true);
   });
 });
 
@@ -305,7 +386,7 @@ describe('regras do R0c no gerador', () => {
     expect(avancado.length).toBeGreaterThan(0);
     expect(avancado[0]!.porque.map((q) => q.regraId)).toContain('selecao.mergulho');
     expect(todas(ok({ ...semFlexao, nivel: 'iniciante' }, inv)).some((x) => x.exId === 'mergulho' || x.alternativas.includes('mergulho'))).toBe(false);
-    const ombro = { ...semFlexao, dores: [{ articulacao: 'ombro' as const, intensidade: 7 }] };
+    const ombro = comDor(semFlexao, [{ articulacao: 'ombro', nota: 7 }]);
     expect(todas(ok(ombro, inv)).some((x) => x.exId === 'mergulho' || x.alternativas.includes('mergulho'))).toBe(false);
   });
   it('seguranca.montagem: os exercícios com travas ou ancoragem citam a montagem segura no porquê', () => {
@@ -356,11 +437,11 @@ describe('regras do R0b no gerador', () => {
     for (const v of variacoes) {
       const p = ok(v.perfil, v.inv);
       const caps = capacidades(v.inv);
-      const joelho = v.perfil.dores.some((d) => d.articulacao === 'joelho' && d.intensidade > 5);
+      const joelho = doresDe(v.perfil).some((d) => d.articulacao === 'joelho' && d.nota! > 5);
       const funcoes = new Set(p.dias.flatMap((d) => d.exercicios.map((x) => x.funcao)));
       const temNaDivisao = (f: string) => DIVISOES[p.divisaoId!].dias.some((d) => d.vagas.some((x) => x.funcao === f));
       if (caps.has('cadeira_extensora') && !joelho && temNaDivisao('extensora')) expect(funcoes.has('extensora'), v.nome).toBe(true);
-      if (temNaDivisao('triceps-acima-cabeca') && !v.perfil.dores.some((d) => d.articulacao === 'ombro' && d.intensidade > 5))
+      if (temNaDivisao('triceps-acima-cabeca') && !doresDe(v.perfil).some((d) => d.articulacao === 'ombro' && d.nota! > 5))
         expect(funcoes.has('triceps-acima-cabeca'), v.nome).toBe(true);
       if (temNaDivisao('panturrilha-em-pe')) expect(funcoes.has('panturrilha-em-pe'), v.nome).toBe(true);
     }

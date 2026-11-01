@@ -1,7 +1,7 @@
 import { BIBLIOTECA, MUSCULOS, type Articulacao, type Exercicio, type Musculo, type Padrao } from '../biblioteca';
 import { DESCANSO, READAPTACAO, RIR, TEMPO, VOLUME, NIVEL_COMPLEXIDADE_MAX, exerciciosPorSessao, r, type Nivel } from '../regras';
 import { capacidades, cargaMaxHalter, cargasHalter, cargasKettlebell, ITENS, type Inventario, type ItemId } from '../taxonomia/equipamentos';
-import { avaliarTriagem, type ResultadoTriagem, type Triagem } from '../triagem';
+import { avaliarTriagem, efeitoDaDor, type ResultadoTriagem, type Triagem } from '../triagem';
 import { divisaoEscolhida, type DiasSemana, type Divisao, type DivisaoId, type Vaga } from './divisoes';
 import { FUNCAO, funcoesDoExercicio, type Funcao } from './funcoes';
 
@@ -30,7 +30,7 @@ export type Perfil = {
   prioridades: Grupo[];
   evitarExercicios: string[];
   evitarEquipamentos: ItemId[];
-  dores: { articulacao: Articulacao; intensidade: number }[];
+  /** Triagem com as regiões e a dor de hoje: o único lugar onde a dor entra no programa (seguranca.dor.programa). */
   triagem: Triagem;
 };
 
@@ -100,10 +100,10 @@ export function gerarPrograma(perfil: Perfil, inventarioOriginal: Inventario): R
   const nivel = perfil.nivel;
   const inventario = semItens(inventarioOriginal, perfil.evitarEquipamentos);
   const caps = capacidades(inventario);
-  const regioesExcluidas = [
-    ...new Set([...triagem.regioesExcluidas, ...perfil.dores.filter((d) => d.intensidade > 5).map((d) => d.articulacao)]),
-  ].sort();
-  const dorLeve = new Set(perfil.dores.filter((d) => d.intensidade >= 3 && d.intensidade <= 5).map((d) => d.articulacao));
+  // Dor de hoje por região (seguranca.dor.programa): > 5 ou sem nota exclui; 3–5 desfavorece no desempate.
+  const regioesExcluidas = [...triagem.regioesExcluidas];
+  const dorLeve = new Set(triagem.regioesDorLeve);
+  const dorDe = (a: Articulacao) => textoDor(a, triagem.dores.find((d) => d.articulacao === a)?.nota);
   const grupos = new Set<Grupo>(perfil.prioridades);
   const prioritarios = new Set<Musculo>(perfil.prioridades.flatMap((g) => GRUPOS[g]));
   const avisos: Porque[] = [];
@@ -112,17 +112,24 @@ export function gerarPrograma(perfil: Perfil, inventarioOriginal: Inventario): R
   // 2. Divisão escolhida entre opções equivalentes (divisao.*)
   const { divisao, escolhida } = divisaoEscolhida(perfil.diasSemana, metaMaxima(nivel, perfil.prioridades), perfil.divisao);
 
-  // 1. Exercícios possíveis
-  const possiveis = BIBLIOTECA.filter(
+  // 1. Exercícios possíveis. Os "sem a região" guardam o que a dor tirou, para o aviso dizer o motivo verdadeiro.
+  const possiveisSemRegiao = BIBLIOTECA.filter(
     (e) =>
       e.requer.some((grupo) => grupo.every((c) => caps.has(c))) &&
       !perfil.evitarExercicios.includes(e.id) &&
-      e.complexidade <= NIVEL_COMPLEXIDADE_MAX[nivel] &&
-      !e.articulacoes.some((a) => regioesExcluidas.includes(a)),
+      e.complexidade <= NIVEL_COMPLEXIDADE_MAX[nivel],
   );
+  const carregaExcluida = (e: Exercicio) => e.articulacoes.some((a) => regioesExcluidas.includes(a));
+  const possiveis = possiveisSemRegiao.filter((e) => !carregaExcluida(e));
   const possivel = new Map(possiveis.map((e) => [e.id, e]));
   /** O exercício vale na função: é possível e cumpre as condições dela (funcoes.json, campo condicoes). */
   const naFuncao = (f: Funcao, id: string) => possivel.has(id) && (f.condicoes?.[id] ?? []).every((c) => caps.has(c));
+  const possivelSemRegiao = new Set(possiveisSemRegiao.map((e) => e.id));
+  /** A vaga teria exercício sem a dor? Então ela ficou vazia por causa da dor, não por falta de equipamento. */
+  const perdidaPorDor = (vaga: Vaga) =>
+    [FUNCAO[vaga.funcao]!, ...(FUNCAO[vaga.funcao]!.seNada ? [FUNCAO[FUNCAO[vaga.funcao]!.seNada!]!] : [])].some((f) =>
+      f.niveis.flat().some((id) => possivelSemRegiao.has(id) && (f.condicoes?.[id] ?? []).every((c) => caps.has(c))),
+    );
 
   // Desempate dentro do mesmo nível da função (selecao.funcao-da-vaga): dor leve desfavorece; estabilidade
   // só para iniciante; carga possível; variedade entre os dias; com animação aprovada; por fim o id, só para
@@ -165,10 +172,15 @@ export function gerarPrograma(perfil: Perfil, inventarioOriginal: Inventario): R
   const lacunas = new Set<string>();
   const nivelAbaixo = new Set<string>();
   const foraPorMinutos = new Set<Musculo>();
-  type Item = { ex: Exercicio; vaga: Vaga; funcao: Funcao; nivelFuncao: number; series: number; ordemVaga: number };
+  type Item = { ex: Exercicio; vaga: Vaga; funcao: Funcao; nivelFuncao: number; series: number; ordemVaga: number; preenchido?: boolean };
   const dias = divisao.dias.map((dia) => {
     const resolvidas = dia.vagas.filter(ativa).map((vaga, ordem) => ({ vaga, ordem, res: resolver(vaga) }));
-    for (const x of resolvidas) if (!x.res) lacunas.add(x.vaga.funcao);
+    let perdidas = 0;
+    for (const x of resolvidas)
+      if (!x.res) {
+        if (perdidaPorDor(x.vaga)) perdidas++;
+        else lacunas.add(x.vaga.funcao);
+      }
     const comExercicio = resolvidas.filter((x): x is typeof x & { res: NonNullable<typeof x.res> } => !!x.res);
     // Quais vagas cabem nos minutos: as vagas-base e as dos grupos prioritários, na ordem do modelo do dia
     // (que já é a de importância); os complementos não prioritários só entram se sobrar espaço.
@@ -201,8 +213,62 @@ export function gerarPrograma(perfil: Perfil, inventarioOriginal: Inventario): R
       usos.set(escolhido.id, (usos.get(escolhido.id) ?? 0) + 1);
       itens.push({ ex: escolhido, vaga: x.vaga, funcao, nivelFuncao, series: VOLUME.seriesPorExercicio.min, ordemVaga: x.ordem });
     }
-    return { dia, itens };
+    return { dia, itens, perdidas };
   });
+
+  // selecao.dia-sem-principal: as vagas que a dor esvaziou recebem exercícios possíveis dos outros músculos do
+  // mesmo dia, um por músculo que o dia ainda não tem, sem passar do teto; o dia que ficaria só com core recebe
+  // pelo menos um, do músculo mais abaixo da meta.
+  for (const d of dias) {
+    const soCore = !d.itens.some((i) => i.ex.padrao !== 'core');
+    if (!soCore && !d.perdidas) continue;
+    const v = volumePorMusculo(dias.flatMap((x) => x.itens.map((i) => ({ ex: i.ex, series: i.series }))));
+    const deficit = (m: Musculo) => ((metas[m] ?? 0) - (v[m] ?? 0)) / (metas[m] ?? 1);
+    // Os músculos que o modelo do dia treina (um dia de superior continua de superior).
+    const musculosDoDia = new Set(d.dia.vagas.map((x) => FUNCAO[x.funcao]!.musculo));
+    const cands = possiveis
+      .filter((e) => e.padrao !== 'core' && !d.itens.some((i) => i.ex.id === e.id))
+      .flatMap((e) => {
+        const f = funcoesDoExercicio(e.id).find((x) => naFuncao(x, e.id));
+        return f && (soCore || musculosDoDia.has(f.musculo)) ? [{ e, f }] : [];
+      })
+      .sort((a, b) => deficit(b.f.musculo) - deficit(a.f.musculo) || comparar(a.e, b.e));
+    const vagas = Math.max(soCore ? 1 : 0, Math.min(d.perdidas, N - d.itens.length));
+    const musculosUsados = new Set<Musculo>(d.itens.map((i) => i.funcao.musculo));
+    // Sem passar do teto semanal de nenhum músculo, contando as séries indiretas (volume.semanal.teto-padrao).
+    const cabeNoTeto = (e: Exercicio) => {
+      const extra = volumePorMusculo([{ ex: e, series: VOLUME.seriesPorExercicio.min }]);
+      return (Object.keys(extra) as Musculo[]).every((m) => (v[m] ?? 0) + extra[m]! <= VOLUME.teto);
+    };
+    let k = 0;
+    for (const { e, f } of cands) {
+      if (k >= vagas) break;
+      if (musculosUsados.has(f.musculo) || !cabeNoTeto(e)) continue;
+      for (const [m, n] of Object.entries(volumePorMusculo([{ ex: e, series: VOLUME.seriesPorExercicio.min }])) as [Musculo, number][]) v[m] = (v[m] ?? 0) + n;
+      musculosUsados.add(f.musculo);
+      usos.set(e.id, (usos.get(e.id) ?? 0) + 1);
+      const nivelFuncao = f.niveis.findIndex((n) => n.includes(e.id));
+      d.itens.push({ ex: e, vaga: { funcao: f.id }, funcao: f, nivelFuncao, series: VOLUME.seriesPorExercicio.min, ordemVaga: 100 + k, preenchido: true });
+      k++;
+    }
+    const causa = regioesExcluidas.length ? `por causa da dor ${regioesExcluidas.map(dorDe).join(' e ')}` : 'com o seu equipamento';
+    const entraram = d.itens.filter((i) => i.preenchido).map((i) => i.ex.nome.toLowerCase());
+    if (k)
+      avisos.push({
+        regraId: r('selecao.dia-sem-principal'),
+        texto: `${d.dia.nome}: ${causa}, o dia perdeu exercícios; no lugar, entram outros possíveis para os músculos do dia (${entraram.join(', ')}).`,
+      });
+    else if (soCore)
+      avisos.push({
+        regraId: r('selecao.dia-sem-principal'),
+        texto: `${d.dia.nome}: ${causa}, nenhum outro exercício é possível, e o dia fica só com abdominal.`,
+      });
+  }
+  if (regioesExcluidas.length)
+    avisos.push({
+      regraId: r('seguranca.dor.programa'),
+      texto: `Por causa da dor ${regioesExcluidas.map(dorDe).join(' e ')}, os exercícios que carregam a região ficaram de fora. Procure avaliação profissional; quando a dor baixar, atualize a nota na triagem e gere o programa de novo.`,
+    });
 
   if (nivelAbaixo.has('equipamento.sem-puxada-vertical'))
     avisos.push({
@@ -228,9 +294,14 @@ export function gerarPrograma(perfil: Perfil, inventarioOriginal: Inventario): R
   for (;;) {
     const v = volume();
     const candidatos = MUSCULOS_COM_META.map((m) => {
+      // Uma série a mais conta para todos os músculos do exercício: nenhum pode passar do teto semanal.
+      const cabe = (ex: Exercicio) => (Object.entries(volumePorMusculo([{ ex, series: 1 }])) as [Musculo, number][]).every(([x, n]) => (v[x] ?? 0) + n <= VOLUME.teto);
       const vagas = todos.filter(
         ({ it, di }) =>
-          it.ex.musculos.primarios.includes(m) && it.series < VOLUME.seriesPorExercicio.max && volumeNoDia(di, m) + 1 <= VOLUME.sessaoTeto,
+          it.ex.musculos.primarios.includes(m) &&
+          it.series < VOLUME.seriesPorExercicio.max &&
+          volumeNoDia(di, m) + 1 <= VOLUME.sessaoTeto &&
+          cabe(it.ex),
       );
       return { m, deficit: ((metas[m] ?? 0) - (v[m] ?? 0)) / (metas[m] ?? 1), vagas };
     }).filter((c) => c.deficit > 0 && c.vagas.length);
@@ -255,6 +326,21 @@ export function gerarPrograma(perfil: Perfil, inventarioOriginal: Inventario): R
     });
 
   // 7. Prescrição
+  // Lembrete nos exercícios que carregam uma região marcada com dor de 0 a 5 (seguranca.dor.programa).
+  const porqueDaDor = (e: Exercicio, preenchido?: boolean): Porque[] => {
+    const p: Porque[] = [];
+    if (preenchido)
+      p.push({ regraId: r('selecao.dia-sem-principal'), texto: 'Entrou no lugar de uma vaga que a dor tirou (ou para o dia não ficar só com abdominal).' });
+    for (const d of triagem.dores)
+      if (efeitoDaDor(d.nota) !== 'exclui' && e.articulacoes.includes(d.articulacao))
+        p.push({
+          regraId: r('seguranca.dor.programa'),
+          texto: `Você marcou ${ARTIGO[d.articulacao]} ${NOME_ARTICULACAO_MIN[d.articulacao]} (dor ${d.nota} hoje): se doer acima de 5 numa série, pare e use a alternativa.${
+            efeitoDaDor(d.nota) === 'prefere-outros' ? ' Nesta vaga, nenhum exercício equivalente poupa a região.' : ''
+          }`,
+        });
+    return p;
+  };
   const prescrever = (it: Item): ExercicioPrescrito => {
     const e = it.ex;
     const composto = e.tipo === 'composto';
@@ -271,7 +357,7 @@ export function gerarPrograma(perfil: Perfil, inventarioOriginal: Inventario): R
       unilateral: e.unilateral,
       animacaoId: e.animacaoId,
       alternativas: alternativas(e, it.funcao, possiveis.filter((x) => !funcaoTemExercicio(it.funcao, x.id) || naFuncao(it.funcao, x.id))),
-      porque: porqueDoExercicio(e, it.funcao, it.nivelFuncao, nivel),
+      porque: [...porqueDoExercicio(e, it.funcao, it.nivelFuncao, nivel), ...porqueDaDor(e, it.preenchido)],
     };
   };
   let programaDias: DiaPrograma[] = dias.map(({ dia, itens }) => {
@@ -297,8 +383,15 @@ export function gerarPrograma(perfil: Perfil, inventarioOriginal: Inventario): R
   const volumeSemanal = volumeDe(programaDias);
   const vezes = (m: Musculo) => programaDias.filter((d) => d.exercicios.some((x) => POR_ID_BIB[x.exId]!.musculos.primarios.includes(m))).length;
   const motivoEstrutural = (m: Musculo): string => {
+    // A dor tirou exercícios deste músculo? Então o motivo verdadeiro é a dor, não o equipamento (R1).
+    const tirados = possiveisSemRegiao.filter((e) => e.musculos.primarios.includes(m) && carregaExcluida(e));
+    const regioesDoMusculo = regioesExcluidas.filter((a) => tirados.some((e) => e.articulacoes.includes(a)));
+    const porDor = regioesDoMusculo.map(dorDe).join(' e ');
+    const quais = regioesDoMusculo.map((a) => `${ARTIGO[a]} ${NOME_ARTICULACAO_MIN[a]}`).join(' ou ');
+    if (!possiveis.some((e) => e.musculos.primarios.includes(m)) && tirados.length)
+      return `os exercícios que carregam ${quais} ficaram de fora por causa da dor ${porDor}`;
     const faltas = [...lacunas].map((id) => FUNCAO[id]!).filter((f) => f.musculo === m && f.lacuna).map((f) => f.lacuna!.falta);
-    const falta = faltas.length ? ` (falta ${faltas.join(' e ')})` : '';
+    const falta = (faltas.length ? ` (falta ${faltas.join(' e ')})` : '') + (tirados.length ? `; e a dor ${porDor} tirou outros exercícios` : '');
     if (!possiveis.some((e) => e.musculos.primarios.includes(m))) return `nenhum exercício possível com o seu equipamento${falta}`;
     if (foraPorMinutos.has(m))
       return `com ${perfil.minutosSessao} min cabem cerca de ${N} exercícios por treino, e as vagas próprias ficaram de fora${falta}`;
@@ -358,6 +451,22 @@ export function gerarPrograma(perfil: Perfil, inventarioOriginal: Inventario): R
       regioesExcluidas,
     },
   };
+}
+
+const NOME_ARTICULACAO_MIN: Record<Articulacao, string> = {
+  ombro: 'ombro',
+  cotovelo: 'cotovelo',
+  punho: 'punho',
+  lombar: 'lombar',
+  quadril: 'quadril',
+  joelho: 'joelho',
+  tornozelo: 'tornozelo',
+};
+const ARTIGO: Record<Articulacao, 'o' | 'a'> = { ombro: 'o', cotovelo: 'o', punho: 'o', lombar: 'a', quadril: 'o', joelho: 'o', tornozelo: 'o' };
+/** "no ombro (7 hoje)"; sem nota (dado antigo): "no ombro (marcado na triagem, sem a nota de hoje)". */
+export function textoDor(a: Articulacao, nota: number | undefined): string {
+  const onde = `${ARTIGO[a] === 'a' ? 'na' : 'no'} ${NOME_ARTICULACAO_MIN[a]}`;
+  return nota === undefined ? `${onde} (marcado na triagem, sem a nota de hoje)` : `${onde} (${nota} hoje)`;
 }
 
 function frequenciaTexto(d: Divisao): string {
@@ -667,7 +776,7 @@ export function avisosDeMeta(
 function fases(p: Perfil): Fase[] {
   if (p.semanasParado >= READAPTACAO.semanasProtocolo)
     return [
-      { semanas: '1', fatorSeries: READAPTACAO.semana1.fatorSeries, rir: READAPTACAO.semana1.rir, texto: 'Cerca de metade das séries, RIR 3–4 e carga 10–20% abaixo da última registrada.', regraId: r('readaptacao.semana1') },
+      { semanas: '1', fatorSeries: READAPTACAO.semana1.fatorSeries, rir: READAPTACAO.semana1.rir, texto: 'Cerca de metade das séries, RIR 3–4 e carga 10–20% abaixo da que você usava antes da pausa (na dúvida, comece leve).', regraId: r('readaptacao.semana1') },
       { semanas: '2', fatorSeries: READAPTACAO.semana2.fatorSeries, rir: READAPTACAO.semana2.rir, texto: 'Cerca de 3/4 das séries, RIR 2–3.', regraId: r('readaptacao.semana2') },
       { semanas: '3+', fatorSeries: 1, rir: null, texto: 'Programa completo; as cargas desta semana viram a referência.', regraId: r('readaptacao.semana3') },
     ];

@@ -829,11 +829,11 @@
   },
   {
     "id": "selecao.dia-sem-principal",
-    "regra": "Dia que ficaria só com core (abdominal) por causa das regiões excluídas (R1)",
+    "regra": "Dia que perdeu vagas por causa da dor, ou que ficaria só com core (abdominal) (R1)",
     "valores": {
-      "iniciante": "as vagas que ficaram vazias recebem exercícios possíveis (fora o core) dos músculos mais abaixo da meta, até o número de exercícios do dia; se nenhum for possível, o aviso diz o motivo",
-      "intermediario": "as vagas que ficaram vazias recebem exercícios possíveis (fora o core) dos músculos mais abaixo da meta, até o número de exercícios do dia; se nenhum for possível, o aviso diz o motivo",
-      "avancado": "as vagas que ficaram vazias recebem exercícios possíveis (fora o core) dos músculos mais abaixo da meta, até o número de exercícios do dia; se nenhum for possível, o aviso diz o motivo"
+      "iniciante": "vagas que a dor esvaziou recebem exercícios possíveis (fora o core) dos outros músculos daquele dia no modelo da divisão, um por músculo que o dia ainda não tem, sem passar do teto semanal; o dia que ficaria só com core recebe pelo menos um, do músculo mais abaixo da meta; se nenhum for possível, o aviso diz o motivo; vaga vazia pela dor não vira aviso de falta de equipamento",
+      "intermediario": "vagas que a dor esvaziou recebem exercícios possíveis (fora o core) dos outros músculos daquele dia no modelo da divisão, um por músculo que o dia ainda não tem, sem passar do teto semanal; o dia que ficaria só com core recebe pelo menos um, do músculo mais abaixo da meta; se nenhum for possível, o aviso diz o motivo; vaga vazia pela dor não vira aviso de falta de equipamento",
+      "avancado": "vagas que a dor esvaziou recebem exercícios possíveis (fora o core) dos outros músculos daquele dia no modelo da divisão, um por músculo que o dia ainda não tem, sem passar do teto semanal; o dia que ficaria só com core recebe pelo menos um, do músculo mais abaixo da meta; se nenhum for possível, o aviso diz o motivo; vaga vazia pela dor não vira aviso de falta de equipamento"
     },
     "selo": "consenso",
     "fontes": [

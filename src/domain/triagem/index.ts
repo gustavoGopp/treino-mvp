@@ -23,10 +23,19 @@ export const PERGUNTAS = [
 export type PerguntaId = (typeof PERGUNTAS)[number]['id'];
 export type Respostas = Record<PerguntaId, boolean>;
 
+/** "Nenhuma se aplica a mim" (seguranca.triagem.nenhuma): "não" em todas; a pessoa ainda vê e confirma. */
+export const respostasNenhuma = (): Respostas => Object.fromEntries(PERGUNTAS.map((p) => [p.id, false])) as Respostas;
+
+/**
+ * Região marcada na pergunta osteoarticular, com a nota da dor de hoje (0 a 10). É o único lugar onde a dor
+ * é perguntada no cadastro (R1). Sem nota = dado antigo (antes da versão 5), tratado como antes: exclui a região.
+ */
+export type DorRegiao = { articulacao: Articulacao; nota?: number };
+
 export type Triagem = {
   respostas: Respostas;
-  /** Regiões marcadas quando o único "sim" é o osteoarticular. */
-  regioes?: Articulacao[];
+  /** Regiões marcadas, com a dor de hoje (seguranca.dor.programa). */
+  dores?: DorRegiao[];
   /** A pessoa confirmou que foi avaliada e liberada por um profissional. */
   liberacaoConfirmada?: boolean;
 };
@@ -34,25 +43,47 @@ export type Triagem = {
 export type ResultadoTriagem = {
   bloqueado: boolean;
   motivos: PerguntaId[];
+  /** Dor de hoje > 5, ou sem nota: os exercícios que carregam a região saem. */
   regioesExcluidas: Articulacao[];
+  /** Dor de hoje de 3 a 5: no desempate, o gerador prefere os que poupam a região. */
+  regioesDorLeve: Articulacao[];
+  /** Todas as regiões marcadas, com a nota (para o lembrete e para o motivo dos avisos). */
+  dores: DorRegiao[];
   mensagem: string;
   regraId: string;
 };
 
+export type EfeitoDor = 'exclui' | 'prefere-outros' | 'lembrete';
+
+/** O que a nota de hoje faz no programa (seguranca.dor.programa). */
+export function efeitoDaDor(nota: number | undefined): EfeitoDor {
+  if (nota === undefined || nota > 5) return 'exclui';
+  if (nota >= 3) return 'prefere-outros';
+  return 'lembrete';
+}
+
+function porDor(dores: DorRegiao[] | undefined) {
+  const lista = [...(dores ?? [])].sort((a, b) => a.articulacao.localeCompare(b.articulacao));
+  const de = (e: EfeitoDor) => lista.filter((d) => efeitoDaDor(d.nota) === e).map((d) => d.articulacao);
+  return { dores: lista, regioesExcluidas: de('exclui'), regioesDorLeve: de('prefere-outros') };
+}
+
 export function avaliarTriagem(t: Triagem): ResultadoTriagem {
   const sins = PERGUNTAS.map((p) => p.id).filter((id) => t.respostas[id]);
   const soOsteo = sins.length === 1 && sins[0] === 'osteoarticular';
+  const dor = porDor(t.dores);
 
+  // Sem "sim": nada a excluir, salvo dores que vieram de um estado antigo (migração 4 → 5), que continuam valendo.
   if (sins.length === 0)
-    return { bloqueado: false, motivos: [], regioesExcluidas: [], mensagem: 'Tudo certo para começar.', regraId: r('seguranca.triagem') };
+    return { bloqueado: false, motivos: [], ...dor, mensagem: 'Tudo certo para começar.', regraId: r('seguranca.triagem') };
 
-  if (soOsteo && t.regioes?.length)
+  if (soOsteo && dor.dores.length)
     return {
       bloqueado: false,
       motivos: sins,
-      regioesExcluidas: [...t.regioes].sort(),
+      ...dor,
       mensagem:
-        'Vamos montar o programa sem exercícios que carregam as regiões marcadas. Se a dor aparecer ou piorar, procure avaliação profissional.',
+        'Vamos montar o programa pela dor de hoje: acima de 5, os exercícios que carregam a região ficam de fora; de 3 a 5, o app prefere outros. Se a dor aparecer ou piorar, procure avaliação profissional.',
       regraId: r('seguranca.triagem.osteoarticular'),
     };
 
@@ -60,7 +91,7 @@ export function avaliarTriagem(t: Triagem): ResultadoTriagem {
     return {
       bloqueado: false,
       motivos: sins,
-      regioesExcluidas: [...(t.regioes ?? [])].sort(),
+      ...dor,
       mensagem: 'Liberação confirmada. Siga as orientações do profissional que te avaliou.',
       regraId: r('seguranca.triagem'),
     };
@@ -69,6 +100,8 @@ export function avaliarTriagem(t: Triagem): ResultadoTriagem {
     bloqueado: true,
     motivos: sins,
     regioesExcluidas: [],
+    regioesDorLeve: [],
+    dores: dor.dores,
     mensagem:
       'Antes de começar, procure um médico ou profissional de Educação Física. O programa automático fica disponível quando você confirmar que foi avaliado e liberado.',
     regraId: r('seguranca.triagem'),

@@ -30,7 +30,6 @@ export const bruno: Persona = {
     prioridades: ['peito', 'costas', 'ombros', 'bracos'],
     evitarExercicios: [],
     evitarEquipamentos: ['barra_longa'],
-    dores: [],
     triagem: semRisco,
   },
   inventario: {
@@ -53,16 +52,15 @@ export const bruno: Persona = {
 /** Ana: iniciante, só halteres fixos e banco reto (cenário 2). */
 export const ana: Persona = {
   nome: 'Ana',
-  descricao: 'Iniciante; academia do prédio com halteres fixos de 1 a 12 kg e banco reto; quer glúteos e pernas.',
+  descricao: 'Iniciante; academia do prédio com halteres fixos de 1 a 12 kg e banco reto; 3 dias de 45 min; quer glúteos e pernas.',
   perfil: {
     nivel: 'iniciante',
     semanasParado: 0,
     diasSemana: 3,
-    minutosSessao: 50,
+    minutosSessao: 45,
     prioridades: ['gluteos', 'pernas'],
     evitarExercicios: [],
     evitarEquipamentos: [],
-    dores: [],
     triagem: semRisco,
   },
   inventario: { halteres_fixos: { minKg: 1, maxKg: 12, passoKg: 1 }, banco_reto: {} },
@@ -80,7 +78,6 @@ export const diego: Persona = {
     prioridades: ['peito', 'costas'],
     evitarExercicios: [],
     evitarEquipamentos: [],
-    dores: [],
     triagem: semRisco,
   },
   inventario: { elasticos: { intensidades: 4 }, barra_fixa: {} },
@@ -101,7 +98,6 @@ export const carla: Persona = {
     prioridades: ['peito', 'costas', 'ombros', 'pernas'],
     evitarExercicios: [],
     evitarEquipamentos: [],
-    dores: [],
     triagem: semRisco,
   },
   inventario: {
