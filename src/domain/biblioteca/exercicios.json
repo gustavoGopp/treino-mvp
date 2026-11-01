@@ -2092,7 +2092,7 @@
  {
   "id": "ponte-gluteo",
   "nome": "Ponte de glúteo",
-  "padrao": "dobrar-quadril",
+  "padrao": "extensao-quadril",
   "musculos": {
    "primarios": [
     "gluteos"

@@ -20,7 +20,8 @@ describe('biblioteca de exercícios', () => {
   });
 
   it('todo padrão de movimento tem pelo menos um exercício só com o peso do corpo ou com elástico', () => {
-    for (const p of PADROES.filter((p) => !['isolador-quadriceps'].includes(p))) {
+    // Extensora, abdução e adução pedem máquina ou polia: sem elas, viram lacunas explicadas (pesquisa-v2/08).
+    for (const p of PADROES.filter((p) => !['isolador-quadriceps', 'abducao-quadril', 'aducao-quadril'].includes(p))) {
       expect(BIBLIOTECA.some((e) => e.padrao === p && e.requer.some((g) => g.every((c) => c === 'apoio' || c === 'elastico' || c === 'step'))), p).toBe(true);
     }
   });

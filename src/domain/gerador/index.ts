@@ -68,7 +68,7 @@ export type Programa = {
 
 export type Resultado = { status: 'bloqueado'; triagem: ResultadoTriagem } | { status: 'ok'; programa: Programa; triagem: ResultadoTriagem };
 
-const MUSCULOS_COM_META = MUSCULOS.filter((m) => m !== 'ombro_anterior');
+const MUSCULOS_COM_META = MUSCULOS.filter((m) => m !== 'ombro_anterior' && m !== 'adutores');
 
 export function gerarPrograma(perfil: Perfil, inventarioOriginal: Inventario): Resultado {
   const triagem = avaliarTriagem(perfil.triagem);
@@ -329,6 +329,7 @@ export const NOME_MUSCULO: Record<Musculo, string> = {
   gluteos: 'glúteos',
   panturrilha: 'panturrilha',
   abdomen: 'abdômen',
+  adutores: 'adutores',
 };
 
 function cortarTempo(

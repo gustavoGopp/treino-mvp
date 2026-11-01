@@ -18,6 +18,8 @@ export const MUSCULOS = [
   'gluteos',
   'panturrilha',
   'abdomen',
+  /** Sem meta própria, como o ombro anterior (decisão de 01/11/2026, pesquisa-v2/08). */
+  'adutores',
 ] as const;
 export type Musculo = (typeof MUSCULOS)[number];
 
@@ -29,6 +31,9 @@ export const PADROES = [
   'agachar',
   'afundo',
   'dobrar-quadril',
+  'extensao-quadril',
+  'abducao-quadril',
+  'aducao-quadril',
   'flexao-joelho',
   'isolador-peito',
   'isolador-ombro-lateral',
