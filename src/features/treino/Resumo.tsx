@@ -16,6 +16,8 @@ const ACAO: Record<string, string> = {
   interromper: 'Trocar',
 };
 
+const plural = (n: number, um: string, varios: string) => `${n} ${n === 1 ? um : varios}`;
+
 export function Resumo() {
   const { estado } = useApp();
   const s = estado.historico.at(-1);
@@ -37,9 +39,9 @@ export function Resumo() {
         )}
         <ul className="fichas" aria-label="Resumo do treino">
           <li>{dia.nome}</li>
-          <li>{r.exercicios} exercícios</li>
+          <li>{plural(r.exercicios, 'exercício', 'exercícios')}</li>
           <li>
-            {r.series} séries ({r.efetivas} efetivas)
+            {plural(r.series, 'série', 'séries')} ({plural(r.efetivas, 'efetiva', 'efetivas')})
           </li>
           {r.minutos !== undefined && <li>{r.minutos} min</li>}
         </ul>

@@ -19,7 +19,8 @@
     "qa:motor": "node scripts/qa-motor.mjs",
     "test:cobertura": "vitest run --coverage",
     "test:privado": "vitest run --config privado/vitest.config.ts",
-    "gif:jornada": "bash scripts/gif/gerar.sh"
+    "gif:jornada": "bash scripts/gif/gerar.sh",
+    "gif:sessao": "bash scripts/gif/gerar.sh sessao docs/img/m5-treino.gif"
   },
   "dependencies": {
     "idb-keyval": "^6.2.2",
