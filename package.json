@@ -20,9 +20,11 @@
     "test:cobertura": "vitest run --coverage",
     "test:privado": "vitest run --config privado/vitest.config.ts",
     "gif:jornada": "bash scripts/gif/gerar.sh",
-    "gif:sessao": "bash scripts/gif/gerar.sh sessao docs/img/m5-treino.gif"
+    "gif:sessao": "bash scripts/gif/gerar.sh sessao docs/img/m5-treino.gif",
+    "eval:visao": "npx tsx scripts/eval-vision.ts"
   },
   "dependencies": {
+    "@anthropic-ai/sdk": "^1.3.0",
     "idb-keyval": "^6.2.2",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
