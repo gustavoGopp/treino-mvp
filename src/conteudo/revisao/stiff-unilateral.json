@@ -1,0 +1,85 @@
+{
+  "id": "stiff-unilateral",
+  "name": "Stiff unilateral com halter",
+  "short": "Stiff unilateral",
+  "target": "Posteriores da coxa e glúteos",
+  "rx": "Séries, repetições e descanso: veja o seu programa",
+  "sets": 3,
+  "rest": {
+    "opts": [
+      75
+    ],
+    "def": 75
+  },
+  "feel": "Atrás da coxa e no glúteo da perna de apoio.",
+  "feelNote": "A lombar trabalha um pouco para segurar a postura. Dor forte na lombar não é normal: confira se a coluna está arredondando.",
+  "setupEq": [
+    "Um halter."
+  ],
+  "setupBody": [
+    "Em pé numa perna, joelho levemente dobrado.",
+    "Halter na mão do mesmo lado da perna de apoio.",
+    "Abdômen firme, olhar à frente e para baixo."
+  ],
+  "exec": [
+    [
+      "hold",
+      "Em pé",
+      "Apoio numa perna."
+    ],
+    [
+      "ecc",
+      "Descida (excêntrica)",
+      "~2–3 s. Leve o quadril para trás; a perna livre sobe atrás, em linha com o tronco."
+    ],
+    [
+      "hold",
+      "Embaixo",
+      "Pare quando o posterior da coxa estiver bem alongado e a coluna ainda reta."
+    ],
+    [
+      "conc",
+      "Subida (concêntrica)",
+      "~1–1,5 s, empurrando o chão com o pé de apoio."
+    ]
+  ],
+  "range": [
+    "Início: em pé numa perna.",
+    "Fim: tronco quase paralelo ao chão, perna livre na mesma linha.",
+    "Quadril nivelado o tempo todo."
+  ],
+  "breath": "Inspire em cima, segure o ar na descida, solte subindo.",
+  "cues": [
+    "Quadril para trás.",
+    "Perna e tronco numa linha.",
+    "Quadril nivelado."
+  ],
+  "check": [
+    "Joelho de apoio levemente dobrado",
+    "Halter perto da perna",
+    "Coluna reta",
+    "Quadril nivelado"
+  ],
+  "vary": "Perdeu o equilíbrio? Encoste a mão livre numa parede.",
+  "extLabels": [
+    "início",
+    "fim"
+  ],
+  "errors": [
+    {
+      "id": "abre",
+      "title": "Abrir o quadril",
+      "desc": "A pelve gira para o lado da perna livre e o movimento perde o alinhamento."
+    },
+    {
+      "id": "arred",
+      "title": "Arredondar as costas",
+      "desc": "A coluna curvada sobrecarrega a lombar."
+    },
+    {
+      "id": "agachar",
+      "title": "Agachar",
+      "desc": "Dobrar muito o joelho de apoio transforma o exercício num agachamento em uma perna."
+    }
+  ]
+}

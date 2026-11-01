@@ -1,0 +1,89 @@
+{
+  "id": "rosca-alternada",
+  "name": "Rosca alternada com halteres",
+  "short": "Rosca alternada",
+  "target": "Bíceps",
+  "rx": "Séries, repetições e descanso: veja o seu programa",
+  "sets": 3,
+  "rest": {
+    "opts": [
+      75
+    ],
+    "def": 75
+  },
+  "feel": "Frente do braço, entre o ombro e o cotovelo.",
+  "feelNote": "O antebraço também trabalha. Dor no cotovelo não é normal: reduza a carga.",
+  "setupEq": [
+    "Dois halteres."
+  ],
+  "setupBody": [
+    "Em pé, pés na largura do quadril.",
+    "Halteres ao lado do corpo, palmas para a frente.",
+    "Cotovelos encostados ao lado do tronco."
+  ],
+  "exec": [
+    [
+      "hold",
+      "Embaixo",
+      "Braços estendidos."
+    ],
+    [
+      "conc",
+      "Subida (concêntrica)",
+      "~1 s. Um braço sobe; o cotovelo fica parado."
+    ],
+    [
+      "hold",
+      "Topo",
+      "Halter perto do ombro."
+    ],
+    [
+      "ecc",
+      "Descida (excêntrica)",
+      "~2 s, até estender o braço."
+    ],
+    [
+      "conc",
+      "Outro braço",
+      "Repita com o outro braço."
+    ]
+  ],
+  "range": [
+    "Início: braço estendido.",
+    "Fim: halter perto do ombro, cotovelo ainda ao lado do tronco."
+  ],
+  "breath": "Solte o ar subindo, inspire descendo.",
+  "cues": [
+    "Cotovelo parado.",
+    "Tronco parado.",
+    "Desce devagar."
+  ],
+  "check": [
+    "Pés firmes",
+    "Palmas para a frente",
+    "Cotovelos no tronco",
+    "Um braço de cada vez"
+  ],
+  "vary": "Também pode subir os dois juntos: o resultado é parecido.",
+  "extLabels": [
+    "início",
+    "fim"
+  ],
+  "errors": [
+    {
+      "id": "balanco",
+      "title": "Balançar o tronco",
+      "desc": "Jogar o corpo para trás dá impulso e tira o trabalho do bíceps. Se precisar balançar, a carga está alta."
+    },
+    {
+      "id": "cotovelo",
+      "title": "Cotovelo vai para a frente",
+      "desc": "Levar o cotovelo à frente passa o trabalho para o ombro."
+    },
+    {
+      "id": "curta",
+      "title": "Não estender o braço",
+      "desc": "Sem estender o braço embaixo, o bíceps trabalha só a metade do movimento."
+    }
+  ]
+}

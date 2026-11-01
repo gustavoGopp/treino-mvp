@@ -1,0 +1,80 @@
+{
+  "id": "abdominal-chao",
+  "name": "Abdominal no chão (crunch)",
+  "short": "Abdominal no chão",
+  "target": "Abdômen",
+  "rx": "Séries, repetições e descanso: veja o seu programa",
+  "sets": 3,
+  "rest": {
+    "opts": [
+      75
+    ],
+    "def": 75
+  },
+  "feel": "Na frente da barriga, principalmente acima do umbigo.",
+  "feelNote": "Se sentir o pescoço, as mãos estão puxando a cabeça ou o queixo está indo ao peito. Se sentir a lombar, ela está saindo do chão.",
+  "setupEq": [
+    "Um colchonete ou chão firme."
+  ],
+  "setupBody": [
+    "Deite de costas, joelhos dobrados e pés apoiados no chão.",
+    "Mãos cruzadas no peito.",
+    "Lombar apoiada no chão."
+  ],
+  "exec": [
+    [
+      "hold",
+      "Deitado",
+      "Lombar no chão, abdômen firme."
+    ],
+    [
+      "conc",
+      "Subida (concêntrica)",
+      "~1 s. Enrole a parte de cima das costas até as escápulas saírem do chão."
+    ],
+    [
+      "hold",
+      "Topo",
+      "Segure 1 s contraindo o abdômen."
+    ],
+    [
+      "ecc",
+      "Descida (excêntrica)",
+      "~2 s, até as escápulas encostarem."
+    ]
+  ],
+  "range": [
+    "Início: costas no chão.",
+    "Fim: escápulas fora do chão; a lombar continua apoiada.",
+    "Não precisa subir até sentar."
+  ],
+  "breath": "Solte o ar subindo, inspire descendo.",
+  "cues": [
+    "Sobe só as escápulas.",
+    "Lombar no chão.",
+    "Pescoço solto."
+  ],
+  "check": [
+    "Joelhos dobrados",
+    "Mãos no peito",
+    "Lombar apoiada",
+    "Descida lenta"
+  ],
+  "vary": "Fica fácil? Segure um peso leve no peito ou desça mais devagar.",
+  "extLabels": [
+    "início",
+    "fim"
+  ],
+  "errors": [
+    {
+      "id": "pescoco",
+      "title": "Puxar o pescoço",
+      "desc": "O queixo vai ao peito e as escápulas mal saem do chão: o pescoço faz o trabalho do abdômen."
+    },
+    {
+      "id": "lombar",
+      "title": "Subir a lombar",
+      "desc": "Subir o tronco inteiro vira um abdominal completo, que puxa mais com o quadril e carrega a lombar."
+    }
+  ]
+}

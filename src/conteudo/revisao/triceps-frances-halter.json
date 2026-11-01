@@ -1,0 +1,85 @@
+{
+  "id": "triceps-frances-halter",
+  "name": "Tríceps francês sentado com halter",
+  "short": "Tríceps francês halter",
+  "target": "Tríceps",
+  "rx": "Séries, repetições e descanso: veja o seu programa",
+  "sets": 3,
+  "rest": {
+    "opts": [
+      75
+    ],
+    "def": 75
+  },
+  "feel": "Parte de trás do braço, principalmente perto do ombro.",
+  "feelNote": "Dor no cotovelo não é normal: reduza a carga ou a amplitude.",
+  "setupEq": [
+    "Um halter.",
+    "Um banco ou cadeira firme."
+  ],
+  "setupBody": [
+    "Sente com as costas retas e os pés firmes no chão.",
+    "Segure um halter com as duas mãos, pela parte de cima, acima da cabeça.",
+    "Cotovelos apontando para cima, perto da cabeça."
+  ],
+  "exec": [
+    [
+      "hold",
+      "Alongado",
+      "Halter atrás da cabeça, cotovelos para cima."
+    ],
+    [
+      "conc",
+      "Extensão (concêntrica)",
+      "~1 s. Estenda os braços; os cotovelos ficam parados."
+    ],
+    [
+      "hold",
+      "Braços estendidos",
+      "Halter acima da cabeça."
+    ],
+    [
+      "ecc",
+      "Volta (excêntrica)",
+      "~2–3 s, até o halter descer atrás da cabeça."
+    ]
+  ],
+  "range": [
+    "Início: halter atrás da cabeça, tríceps alongado.",
+    "Fim: braços estendidos acima da cabeça."
+  ],
+  "breath": "Solte o ar estendendo, inspire na volta.",
+  "cues": [
+    "Cotovelos parados.",
+    "Cotovelos perto da cabeça.",
+    "Desce atrás da cabeça."
+  ],
+  "check": [
+    "Costas retas",
+    "Halter firme nas duas mãos",
+    "Cotovelos para cima",
+    "Abdômen firme"
+  ],
+  "vary": "Com polia e corda, o movimento é o mesmo (veja o tríceps francês na polia).",
+  "extLabels": [
+    "início",
+    "fim"
+  ],
+  "errors": [
+    {
+      "id": "abre",
+      "title": "Abrir os cotovelos",
+      "desc": "Os cotovelos abertos para os lados tiram a cabeça longa do tríceps da posição alongada."
+    },
+    {
+      "id": "arco",
+      "title": "Arquear as costas",
+      "desc": "Arquear a lombar para subir o halter tira o trabalho do tríceps e carrega a coluna."
+    },
+    {
+      "id": "curta",
+      "title": "Amplitude curta",
+      "desc": "Sem descer o halter atrás da cabeça, você perde a parte alongada do movimento."
+    }
+  ]
+}

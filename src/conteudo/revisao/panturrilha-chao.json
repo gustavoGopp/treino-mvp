@@ -1,0 +1,80 @@
+{
+  "id": "panturrilha-chao",
+  "name": "Panturrilha em pé no chão",
+  "short": "Panturrilha no chão",
+  "target": "Panturrilha",
+  "rx": "Séries, repetições e descanso: veja o seu programa",
+  "sets": 3,
+  "rest": {
+    "opts": [
+      75
+    ],
+    "def": 75
+  },
+  "feel": "Batata da perna, do calcanhar até atrás do joelho.",
+  "feelNote": "Queimação no fim da série é normal. Dor no tendão de Aquiles não é: diminua a amplitude e procure avaliação se continuar.",
+  "setupEq": [
+    "Nenhum equipamento: só uma parede ou um apoio firme na frente."
+  ],
+  "setupBody": [
+    "Em pé, pés na largura do quadril, apontando para a frente.",
+    "Mãos na parede, só para equilíbrio.",
+    "Joelhos estendidos, sem travar."
+  ],
+  "exec": [
+    [
+      "hold",
+      "Embaixo",
+      "Calcanhares no chão."
+    ],
+    [
+      "conc",
+      "Subida (concêntrica)",
+      "~1 s. Suba o calcanhar o máximo que conseguir."
+    ],
+    [
+      "hold",
+      "Topo",
+      "Segure 1 s lá em cima."
+    ],
+    [
+      "ecc",
+      "Descida (excêntrica)",
+      "~2 s, até o calcanhar tocar o chão."
+    ]
+  ],
+  "range": [
+    "Início: calcanhares no chão.",
+    "Fim: na ponta dos pés, o mais alto possível.",
+    "Se tiver um step, a versão com o calcanhar abaixo do step alonga mais a panturrilha."
+  ],
+  "breath": "Solte o ar subindo, inspire descendo.",
+  "cues": [
+    "Sobe o máximo.",
+    "Segura no topo.",
+    "Joelhos estendidos."
+  ],
+  "check": [
+    "Pés na largura do quadril",
+    "Mãos só para equilíbrio",
+    "Joelhos estendidos",
+    "Descida lenta"
+  ],
+  "vary": "Fica fácil? Faça numa perna só, segurando um halter na mão do mesmo lado.",
+  "extLabels": [
+    "início",
+    "fim"
+  ],
+  "errors": [
+    {
+      "id": "curta",
+      "title": "Subida curta",
+      "desc": "Subir só até a metade deixa de fora a parte mais forte da contração. Suba até o fim, mesmo que com menos repetições."
+    },
+    {
+      "id": "joelho",
+      "title": "Dobrar os joelhos",
+      "desc": "Dobrar e esticar os joelhos dá impulso e tira o trabalho da panturrilha."
+    }
+  ]
+}

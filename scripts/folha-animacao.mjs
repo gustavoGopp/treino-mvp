@@ -1,8 +1,9 @@
 // Folha de contatos de uma animação: quadros-chave em cada vista e modo, erros e a verificação de IK.
 // É o que o Gustavo revisa antes de aprovar uma animação nova.
 // Uso: node scripts/folha-animacao.mjs <id-da-animacao> [saida.png]
+// Animações em revisão ficam em src/engine/exercicios/revisao/ (fora do app até a aprovação).
 import { build } from 'esbuild';
-import { writeFileSync } from 'node:fs';
+import { existsSync, writeFileSync } from 'node:fs';
 import { createRequire } from 'node:module';
 
 const id = process.argv[2];
@@ -10,8 +11,10 @@ const saida = process.argv[3] ?? `test-results/folha-${id}.png`;
 if (!id) throw new Error('informe o id da animação');
 
 // A animação pode estar em revisão (arquivo em src/engine/exercicios/<id>.ts, ainda fora da lista EX do app).
+const arquivo = [`src/engine/exercicios/revisao/${id}.ts`, `src/engine/exercicios/${id}.ts`].find((f) => existsSync(f));
+if (!arquivo) throw new Error(`não achei src/engine/exercicios/[revisao/]${id}.ts`);
 const entrada = `export * from './src/engine/index.ts'; export { prep, calib } from './src/engine/cena.ts';
-export { default as NOVA } from './src/engine/exercicios/${id}.ts';`;
+export { default as NOVA } from './${arquivo}';`;
 const { outputFiles } = await build({ stdin: { contents: entrada, resolveDir: process.cwd(), loader: 'ts' }, bundle: true, format: 'esm', write: false });
 const motor = await import('data:text/javascript;base64,' + Buffer.from(outputFiles[0].text).toString('base64'));
 const ex = motor.EX.find((e) => e.id === id) ?? motor.NOVA;
