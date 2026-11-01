@@ -36,6 +36,9 @@ Essas decisões foram copiadas do programa de referência para o código, sem pe
 | [04-exercicios-por-musculo.md](04-exercicios-por-musculo.md) | Tema T3: o que cresce mais em cada um dos 12 músculos, as regras de escolha por função e quantos exercícios por semana | Aprovado em 01/11/2026 |
 | [05-montagem-da-sessao.md](05-montagem-da-sessao.md) | Tema T4: quanto cabe em cada duração, ordem, aquecimento e a nova escada de cortes quando falta tempo | Aprovado em 01/11/2026 |
 
+## Próxima sessão
+O prompt para continuar com os temas T5 e T6 está em [`docs/prompts/sessao-pesquisa-v2-t5.md`](../prompts/sessao-pesquisa-v2-t5.md). Para ler os resumos do PubMed, use `scripts/pesquisa/pubmed.py`.
+
 ## Plano dos próximos temas (em ordem)
 
 > O plano detalhado de cada tema (perguntas, fontes, entregável e critério de pronto) está em [PLANO-DOS-TEMAS.md](PLANO-DOS-TEMAS.md). Os temas 1 e 2 e a divisão escolhida pela pessoa foram aprovados pelo Gustavo em 01/11/2026.
