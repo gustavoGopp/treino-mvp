@@ -1,5 +1,14 @@
 # 7. Progressão e acompanhamento (tema T6)
 
+> **Aprovado pelo Gustavo em 01/11/2026**, com as 5 decisões recomendadas:
+> 1. a semana leve perde o gatilho "a cada 6–8 semanas" e passa a ser sugerida só com sinal;
+> 2. a carga cai −15% em pausas de 8 a 26 semanas, e acima de 26 semanas o app propõe refazer o nível;
+> 3. a semana do programa conta as semanas com treino, e não o calendário;
+> 4. entra o toque opcional "hoje foi: leve / normal / pesado demais" no fim do treino;
+> 5. depois de 3 de 4 semanas abaixo do planejado, o app oferece um programa com menos dias (nada muda sem a escolha da pessoa).
+>
+> As mudanças da seção 7 entram em `regras.md` e no código no marco R2.
+
 > Pesquisa de 01/11/2026. Estudos com o **resumo oficial lido no PubMed** (resumo-PubMed, com PMID), salvo quando marcado **não verificado**. As fontes de pausa (Hwang, Ogasawara, Chen, Bosquet) e Moesgaard 2022 foram lidas no T5 (`06`) e no `02`. O texto completo não foi lido (PMC e editoras bloqueados na rede da sessão). As medições usaram o código real do app, com scripts temporários fora do repositório **[medido]**. Onde o texto é opinião do projeto, aparece **[opinião]**.
 >
 > Base do marco **R2** (critério 6 do `PLANO-MVP.md`). Nada aqui muda `regras.md` nem o código sem a aprovação do Gustavo.
