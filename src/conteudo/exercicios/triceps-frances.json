@@ -3,14 +3,6 @@
   "name": "Tríceps francês na polia com corda",
   "short": "Tríceps francês",
   "target": "Tríceps, principalmente a cabeça longa",
-  "rx": "3 × 10–15 · RIR 0–1 · descanso 1,5 min",
-  "sets": 3,
-  "rest": {
-    "opts": [
-      90
-    ],
-    "def": 90
-  },
   "feel": "Parte de trás do braço, com alongamento forte embaixo, atrás da cabeça.",
   "feelNote": "Dor no cotovelo na parte alongada: reduza a carga e a amplitude e me avise. Desconforto no ombro: abra um pouco os cotovelos ou troque pelo tríceps francês sentado com halter.",
   "setupEq": [

@@ -3,14 +3,6 @@
   "name": "Crucifixo na polia (crossover)",
   "short": "Crucifixo polia",
   "target": "Peitoral maior",
-  "rx": "3 × 10–15 · RIR 0–1 · descanso 1,5 min",
-  "sets": 3,
-  "rest": {
-    "opts": [
-      90
-    ],
-    "def": 90
-  },
   "feel": "Peitoral, principalmente meio e parte de cima. A frente do ombro ajuda.",
   "feelNote": "Se sentir mais o bíceps ou o ombro, confira se os cotovelos estão dobrando e esticando, o que transforma o crucifixo em supino.",
   "setupEq": [

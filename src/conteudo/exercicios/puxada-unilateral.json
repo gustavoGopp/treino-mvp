@@ -3,15 +3,6 @@
   "name": "Puxada unilateral ajoelhado na polia alta",
   "short": "Puxada unilateral",
   "target": "Dorsal (laterais das costas)",
-  "rx": "3 × 10–15 por lado · RIR 0–1 · 1,5 min após os dois lados",
-  "sets": 3,
-  "rest": {
-    "opts": [
-      90
-    ],
-    "def": 90,
-    "note": "Faça um lado e logo o outro, sem pausa. O descanso vale depois dos dois lados."
-  },
   "feel": "Lateral das costas, abaixo da axila.",
   "feelNote": "Se sentir mais o bíceps, pense em levar o cotovelo ao quadril, e não a mão.",
   "setupEq": [

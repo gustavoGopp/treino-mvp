@@ -3,16 +3,6 @@
   "name": "Tríceps na polia com corda",
   "short": "Tríceps corda",
   "target": "Tríceps",
-  "rx": "3 × 10–15 · RIR 0–1 · descanso 1,5 min",
-  "sets": 3,
-  "rest": {
-    "opts": [
-      90,
-      60
-    ],
-    "def": 90,
-    "note": "Em bi-set com a rosca: rosca, tríceps e 1 min de descanso."
-  },
   "feel": "Parte de trás do braço (tríceps), principalmente as cabeças lateral e medial.",
   "feelNote": "O tríceps francês do Membros B complementa este, porque trabalha mais a cabeça longa.",
   "setupEq": [
@@ -62,7 +52,7 @@
     "Corda no mosquetão",
     "Cotovelos colados",
     "Tronco levemente à frente",
-    "Carga para RIR 0–1"
+    "Carga para o RIR do seu programa"
   ],
   "vary": "A inclinação do tronco, de reto até ~20°, é preferência. O essencial é o cotovelo ficar parado.",
   "extLabels": [

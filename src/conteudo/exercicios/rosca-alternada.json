@@ -3,14 +3,6 @@
   "name": "Rosca alternada com halteres",
   "short": "Rosca alternada",
   "target": "Bíceps",
-  "rx": "Séries, repetições e descanso: veja o seu programa",
-  "sets": 3,
-  "rest": {
-    "opts": [
-      75
-    ],
-    "def": 75
-  },
   "feel": "Frente do braço, entre o ombro e o cotovelo.",
   "feelNote": "O antebraço também trabalha. Dor no cotovelo não é normal: reduza a carga.",
   "setupEq": [

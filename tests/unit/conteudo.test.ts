@@ -13,6 +13,16 @@ describe('conteúdo dos exercícios', () => {
     expect(CONTEUDO[id]!.errors.map((e) => e.id)).toEqual(ex.errors.map((e: { id: string }) => e.id));
   });
 
+  it('R1: nenhum texto de técnica traz prescrição fixa (RIR com número, faixa de kg do programa de referência, "rx")', () => {
+    for (const [id, c] of [...Object.entries(CONTEUDO), ...Object.entries(CARTOES)]) {
+      const texto = JSON.stringify(c);
+      expect(texto, id).not.toMatch(/RIR \d/);
+      expect(texto, id).not.toMatch(/\(\d+[–-]\d+ kg\)|até \d+ kg/);
+      expect(texto, id).not.toMatch(/o programa diz/);
+      for (const k of ['rx', 'sets', 'setLbl', 'setUnit', 'rest']) expect(c, `${id}.${k}`).not.toHaveProperty(k);
+    }
+  });
+
   it('todo cartão de texto é de um exercício da biblioteca sem animação aprovada (nunca animação improvisada)', () => {
     for (const id of Object.keys(CARTOES)) {
       expect(POR_ID[id], id).toBeDefined();

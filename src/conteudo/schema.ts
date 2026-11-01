@@ -10,12 +10,8 @@ export const conteudoExercicioSchema = z
     name: texto,
     short: texto,
     target: texto,
-    // Prescrição legada da referência: sai daqui no M2, quando o programa passa a vir do gerador.
-    rx: texto,
-    sets: z.number().int().positive(),
-    setLbl: z.array(texto).optional(),
-    setUnit: texto.optional(),
-    rest: z.object({ opts: z.array(z.number().positive()).min(1), def: z.number().positive(), note: texto.optional() }),
+    // Sem prescrição: séries, repetições, RIR e descanso vêm do programa da pessoa (R1). O "rx" e os campos
+    // de séries e descanso do programa de referência saíram, e o .strict() barra a volta deles.
     feel: texto,
     feelNote: texto,
     setupEq: z.array(texto).min(1),

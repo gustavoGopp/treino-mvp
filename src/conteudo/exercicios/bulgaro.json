@@ -3,24 +3,6 @@
   "name": "Agachamento búlgaro com apoio",
   "short": "Búlgaro",
   "target": "Quadríceps e glúteo da perna da frente",
-  "rx": "3 × 8–12 por perna · RIR 1–2 · 1,5 min entre as pernas",
-  "sets": 6,
-  "setLbl": [
-    "1a",
-    "1b",
-    "2a",
-    "2b",
-    "3a",
-    "3b"
-  ],
-  "setUnit": "séries (3 por perna)",
-  "rest": {
-    "opts": [
-      90
-    ],
-    "def": 90,
-    "note": "O descanso de 1,5 min vale entre uma perna e outra. a = perna mais fraca (comece por ela), b = a outra."
-  },
   "feel": "Frente da coxa e glúteo da perna da frente.",
   "feelNote": "Sentir alongar a frente do quadril da perna de trás é normal. Dor no joelho da frente não é: pare e me avise.",
   "setupEq": [

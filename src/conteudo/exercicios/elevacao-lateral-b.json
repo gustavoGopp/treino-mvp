@@ -3,15 +3,6 @@
   "name": "Elevação lateral unilateral na polia",
   "short": "Elevação lateral",
   "target": "Deltoide lateral (lateral do ombro)",
-  "rx": "3 × 12–20 por lado · RIR 0–1 · 1 min após os dois lados",
-  "sets": 3,
-  "rest": {
-    "opts": [
-      60
-    ],
-    "def": 60,
-    "note": "Faça um lado e logo o outro, sem pausa. O descanso vale depois dos dois lados."
-  },
   "feel": "Lateral do ombro.",
   "feelNote": "Se sentir o pescoço ou o trapézio, o ombro provavelmente está subindo junto com o braço.",
   "setupEq": [

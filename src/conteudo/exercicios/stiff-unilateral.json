@@ -3,14 +3,6 @@
   "name": "Stiff unilateral com halter",
   "short": "Stiff unilateral",
   "target": "Posteriores da coxa e glúteos",
-  "rx": "Séries, repetições e descanso: veja o seu programa",
-  "sets": 3,
-  "rest": {
-    "opts": [
-      75
-    ],
-    "def": 75
-  },
   "feel": "Atrás da coxa e no glúteo da perna de apoio.",
   "feelNote": "A lombar trabalha um pouco para segurar a postura. Dor forte na lombar não é normal: confira se a coluna está arredondando.",
   "setupEq": [

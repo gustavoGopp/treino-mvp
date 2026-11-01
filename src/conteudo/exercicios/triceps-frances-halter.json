@@ -3,14 +3,6 @@
   "name": "Tríceps francês sentado com halter",
   "short": "Tríceps francês halter",
   "target": "Tríceps",
-  "rx": "Séries, repetições e descanso: veja o seu programa",
-  "sets": 3,
-  "rest": {
-    "opts": [
-      75
-    ],
-    "def": 75
-  },
   "feel": "Parte de trás do braço, principalmente perto do ombro.",
   "feelNote": "Dor no cotovelo não é normal: reduza a carga ou a amplitude.",
   "setupEq": [

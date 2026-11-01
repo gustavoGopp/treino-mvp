@@ -3,14 +3,6 @@
   "name": "Panturrilha em pé no step",
   "short": "Panturrilha",
   "target": "Panturrilha (gastrocnêmio e sóleo)",
-  "rx": "3 × 12–20 · RIR 0–1 · descanso 1 min",
-  "sets": 3,
-  "rest": {
-    "opts": [
-      60
-    ],
-    "def": 60
-  },
   "feel": "Panturrilhas, da parte de trás do joelho até o calcanhar.",
   "feelNote": "Queimação forte no fim da série é normal nesse músculo. Dor em pontada no tendão de Aquiles não é: pare.",
   "setupEq": [

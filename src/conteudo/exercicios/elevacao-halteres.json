@@ -3,18 +3,10 @@
   "name": "Elevação lateral com halteres",
   "short": "Elevação lateral",
   "target": "Deltoide lateral (lateral do ombro)",
-  "rx": "3 × 12–20 · RIR 0–1 · descanso 1 min",
-  "sets": 3,
-  "rest": {
-    "opts": [
-      60
-    ],
-    "def": 60
-  },
   "feel": "Lateral do ombro.",
   "feelNote": "Se sentir o pescoço ou o trapézio, o ombro provavelmente está subindo junto com o braço.",
   "setupEq": [
-    "Halteres fixos (1–10 kg), que sobem de 1 em 1 kg."
+    "Halteres leves; quanto menor o salto entre um peso e o seguinte, mais fácil progredir."
   ],
   "setupBody": [
     "Pés na largura do quadril, joelhos destravados.",

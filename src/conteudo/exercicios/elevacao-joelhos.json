@@ -3,14 +3,6 @@
   "name": "Elevação de joelhos na barra fixa",
   "short": "Elevação de joelhos",
   "target": "Abdômen (reto abdominal)",
-  "rx": "2 × 10–15 · RIR 1 · descanso 1 min",
-  "sets": 2,
-  "rest": {
-    "opts": [
-      60
-    ],
-    "def": 60
-  },
   "feel": "Abdômen, principalmente a parte de baixo.",
   "feelNote": "Sentir só a frente do quadril significa que a pelve não está enrolando.",
   "setupEq": [
@@ -59,7 +51,7 @@
     "Ombros ativos",
     "Pernas juntas",
     "Sem balanço",
-    "Parar com RIR 1"
+    "Parar no RIR do seu programa"
   ],
   "vary": "Esticar mais as pernas deixa o exercício mais difícil; é a progressão quando 15 repetições ficarem fáceis.",
   "extLabels": [

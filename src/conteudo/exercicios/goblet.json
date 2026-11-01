@@ -3,20 +3,12 @@
   "name": "Agachamento goblet com calcanhar elevado",
   "short": "Goblet",
   "target": "Quadríceps (frente da coxa)",
-  "rx": "3 × 8–15 · RIR 1–2 · descanso 2 min",
-  "sets": 3,
-  "rest": {
-    "opts": [
-      120
-    ],
-    "def": 120
-  },
   "feel": "Frente das coxas. Glúteos e parte de dentro da coxa trabalham junto.",
   "feelNote": "Queimação no quadríceps em séries longas é esperada. Dor na frente do joelho ou na lombar não é: confira a profundidade e a postura.",
   "setupEq": [
     "Uma anilha de 5 kg (ou duas empilhadas) embaixo de cada calcanhar, uns 2–4 cm de altura. É mais estável que a borda do step.",
     "Halter montável com a rosca bem apertada, porque você vai segurá-lo pela anilha de cima.",
-    "Enquanto os halteres fixos (até 10 kg) bastarem, use um fixo."
+    "Enquanto houver um halter fixo pesado o bastante, use o fixo."
   ],
   "setupBody": [
     "Pés um pouco mais abertos que o quadril, pontas levemente para fora.",
@@ -61,7 +53,7 @@
     "Rosca do halter apertada",
     "Pés um pouco mais abertos que o quadril",
     "Halter colado no peito",
-    "Carga para RIR 1–2"
+    "Carga para o RIR do seu programa"
   ],
   "vary": "A largura dos pés, o quanto as pontas abrem e a profundidade dependem do seu quadril e do tornozelo. Aqui o joelho passar da ponta do pé é normal: impedir isso joga a carga para o quadril e a lombar (um estudo pequeno, Fry et al. 2003). O que importa é o joelho seguir a direção do pé e o calcanhar ficar apoiado.",
   "extLabels": [

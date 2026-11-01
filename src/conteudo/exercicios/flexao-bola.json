@@ -3,14 +3,6 @@
   "name": "Flexão de joelho na bola suíça",
   "short": "Flexão na bola",
   "target": "Posteriores da coxa",
-  "rx": "3 × 8–15 · RIR 1 · descanso 1,5 min",
-  "sets": 3,
-  "rest": {
-    "opts": [
-      90
-    ],
-    "def": 90
-  },
   "feel": "Parte de trás da coxa. O glúteo trabalha para segurar o quadril alto.",
   "feelNote": "Câimbra na parte de trás da coxa pode acontecer no começo: pare, alongue e retome com menos repetições.",
   "setupEq": [
@@ -60,7 +52,7 @@
     "Braços no chão",
     "Calcanhares na bola",
     "Quadril alto antes de começar",
-    "Parar com RIR 1"
+    "Parar no RIR do seu programa"
   ],
   "vary": "Braços mais abertos dão mais estabilidade; mais junto ao corpo, mais difícil. Quando 15 repetições ficarem fáceis, passe para uma perna só.",
   "extLabels": [

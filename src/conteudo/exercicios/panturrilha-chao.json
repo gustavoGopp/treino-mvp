@@ -3,14 +3,6 @@
   "name": "Panturrilha em pé no chão",
   "short": "Panturrilha no chão",
   "target": "Panturrilha",
-  "rx": "Séries, repetições e descanso: veja o seu programa",
-  "sets": 3,
-  "rest": {
-    "opts": [
-      75
-    ],
-    "def": 75
-  },
   "feel": "Batata da perna, do calcanhar até atrás do joelho.",
   "feelNote": "Queimação no fim da série é normal. Dor no tendão de Aquiles não é: diminua a amplitude e procure avaliação se continuar.",
   "setupEq": [

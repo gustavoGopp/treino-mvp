@@ -3,14 +3,6 @@
   "name": "Flexão de braço",
   "short": "Flexão",
   "target": "Peitoral e tríceps",
-  "rx": "2 × 8–20 · RIR 1 · descanso 1,5 min",
-  "sets": 2,
-  "rest": {
-    "opts": [
-      90
-    ],
-    "def": 90
-  },
   "feel": "Peito e tríceps. O abdômen trabalha para segurar a prancha.",
   "feelNote": "Dor no punho? Apoie nos punhos fechados ou segure dois halteres no chão para deixar o punho reto.",
   "setupEq": [
@@ -59,7 +51,7 @@
     "Abdômen e glúteo firmes",
     "Corpo em linha",
     "Descer até perto do chão",
-    "Parar com RIR 1"
+    "Parar no RIR do seu programa"
   ],
   "vary": "A largura das mãos e o ângulo dos cotovelos variam com o tamanho dos ombros. Mãos mais fechadas trabalham mais o tríceps; mais abertas, mais o peito.",
   "extLabels": [

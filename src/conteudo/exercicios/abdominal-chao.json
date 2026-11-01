@@ -3,14 +3,6 @@
   "name": "Abdominal no chão (crunch)",
   "short": "Abdominal no chão",
   "target": "Abdômen",
-  "rx": "Séries, repetições e descanso: veja o seu programa",
-  "sets": 3,
-  "rest": {
-    "opts": [
-      75
-    ],
-    "def": 75
-  },
   "feel": "Na frente da barriga, principalmente acima do umbigo.",
   "feelNote": "Se sentir o pescoço, as mãos estão puxando a cabeça ou o queixo está indo ao peito. Se sentir a lombar, ela está saindo do chão.",
   "setupEq": [

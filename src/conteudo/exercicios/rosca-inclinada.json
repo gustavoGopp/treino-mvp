@@ -3,19 +3,11 @@
   "name": "Rosca inclinada com halteres",
   "short": "Rosca inclinada",
   "target": "Bíceps (com ênfase na posição alongada)",
-  "rx": "3 × 8–12 · RIR 0–1 · descanso 1,5 min",
-  "sets": 3,
-  "rest": {
-    "opts": [
-      90
-    ],
-    "def": 90
-  },
   "feel": "Bíceps, com bastante alongamento embaixo.",
   "feelNote": "Sentir puxar a frente do ombro na parte de baixo é comum. Dor na frente do ombro não é: suba o encosto para 60° ou troque pela rosca na polia.",
   "setupEq": [
     "Encosto a 45–60°; quanto mais deitado, mais o bíceps alonga.",
-    "Halteres fixos (1–10 kg) ou montados."
+    "Halteres fixos ou montados."
   ],
   "setupBody": [
     "Sente com as costas e a cabeça apoiadas, pés firmes no chão.",
@@ -60,7 +52,7 @@
     "Costas e cabeça apoiadas",
     "Palmas para a frente",
     "Braços atrás do tronco",
-    "Carga para RIR 0–1"
+    "Carga para o RIR do seu programa"
   ],
   "vary": "A inclinação do encosto depende do conforto do ombro. Num estudo com rosca Scott, treinar só a parte inicial do movimento (braço estendido) gerou mais hipertrofia na porção do bíceps perto do cotovelo (Pedrosa et al., 2023; um estudo, mulheres destreinadas). O banco inclinado alonga ainda mais o bíceps por causa do ombro; isso vem da biomecânica, sem estudo direto de hipertrofia.",
   "extLabels": [

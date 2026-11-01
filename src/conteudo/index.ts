@@ -3,11 +3,11 @@ import { cartaoTextoSchema, conteudoExercicioSchema, type CartaoTexto, type Cont
 const arquivos = import.meta.glob<{ default: unknown }>('./exercicios/*.json', { eager: true });
 
 // Valida tudo no carregamento: um JSON fora do formato quebra o app (e os testes) na hora.
-// Dois tipos no mesmo lugar: o texto do guia animado (com a prescrição "rx") e o cartão de texto de quem ainda
-// não tem animação aprovada (com "carga"). tests/unit/conteudo.test.ts confere quem é quem.
+// Dois tipos no mesmo lugar: o texto do guia animado e o cartão de texto de quem ainda não tem animação
+// aprovada (com "carga"). Nenhum traz prescrição: ela vem do programa (R1). tests/unit/conteudo.test.ts confere.
 const lidos = Object.entries(arquivos).map(([caminho, m]) => {
   const bruto = m.default as Record<string, unknown>;
-  const c = 'rx' in bruto ? { tipo: 'guia' as const, dado: conteudoExercicioSchema.parse(bruto) } : { tipo: 'cartao' as const, dado: cartaoTextoSchema.parse(bruto) };
+  const c = 'carga' in bruto ? { tipo: 'cartao' as const, dado: cartaoTextoSchema.parse(bruto) } : { tipo: 'guia' as const, dado: conteudoExercicioSchema.parse(bruto) };
   if (!caminho.endsWith(`/${c.dado.id}.json`)) throw new Error(`id ${c.dado.id} não bate com o arquivo ${caminho}`);
   return c;
 });

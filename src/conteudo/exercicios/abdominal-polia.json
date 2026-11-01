@@ -3,14 +3,6 @@
   "name": "Abdominal na polia com corda",
   "short": "Abdominal polia",
   "target": "Reto abdominal",
-  "rx": "2 × 10–15 · RIR 1 · descanso 1 min",
-  "sets": 2,
-  "rest": {
-    "opts": [
-      60
-    ],
-    "def": 60
-  },
   "feel": "Abdômen, principalmente a parte de cima e do meio.",
   "feelNote": "Se sentir mais a frente do quadril ou a lombar, o quadril provavelmente está se mexendo.",
   "setupEq": [

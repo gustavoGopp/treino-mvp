@@ -3,14 +3,6 @@
   "name": "Remada unilateral com halter apoiada no banco",
   "short": "Remada unilateral",
   "target": "Dorsal e meio das costas",
-  "rx": "Séries, repetições e descanso: veja o seu programa",
-  "sets": 3,
-  "rest": {
-    "opts": [
-      105
-    ],
-    "def": 105
-  },
   "feel": "Lateral das costas e meio das costas, do lado que puxa.",
   "feelNote": "O bíceps e a parte de trás do ombro ajudam. Se sentir a lombar, o tronco está girando ou a coluna está arredondando.",
   "setupEq": [
@@ -61,7 +53,7 @@
     "Costas retas",
     "Pé de apoio firme",
     "Pegada neutra",
-    "Carga para o RIR do programa"
+    "Carga para o RIR do seu programa"
   ],
   "vary": "Cotovelo mais aberto trabalha mais a parte de trás do ombro e o meio das costas; mais perto do corpo, mais o dorsal. As duas servem.",
   "extLabels": [

@@ -3,15 +3,6 @@
   "name": "Afundo estático com halteres",
   "short": "Afundo",
   "target": "Quadríceps e glúteo da perna da frente",
-  "rx": "2 × 8–12 por perna · RIR 1–2 · descanso 1,5 min",
-  "sets": 2,
-  "rest": {
-    "opts": [
-      90
-    ],
-    "def": 90,
-    "note": "Faça uma perna e logo a outra; o descanso vale depois das duas."
-  },
   "feel": "Frente da coxa e glúteo da perna da frente. A perna de trás ajuda menos.",
   "feelNote": "Sentir alongar a frente do quadril da perna de trás é normal.",
   "setupEq": [

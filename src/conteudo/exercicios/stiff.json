@@ -3,14 +3,6 @@
   "name": "Stiff com halteres",
   "short": "Stiff",
   "target": "Posteriores da coxa e glúteos",
-  "rx": "3 × 8–12 · RIR 2 · descanso 2 min",
-  "sets": 3,
-  "rest": {
-    "opts": [
-      120
-    ],
-    "def": 120
-  },
   "feel": "Posterior da coxa, principalmente perto do glúteo, e os glúteos.",
   "feelNote": "A lombar trabalha um pouco porque segura a postura, e isso é normal. Dor ou queimação forte na lombar não é: confira se a coluna está arredondando.",
   "setupEq": [
@@ -61,7 +53,7 @@
     "Joelhos levemente dobrados",
     "Halteres colados nas coxas",
     "Abdômen firme",
-    "Carga para RIR 2"
+    "Carga para o RIR do seu programa"
   ],
   "vary": "O quanto você desce depende da flexibilidade do posterior. A referência é a coluna neutra e o alongamento, não a altura em que o halter chega.",
   "extLabels": [

@@ -3,14 +3,6 @@
   "name": "Desenvolvimento sentado com halteres",
   "short": "Desenvolvimento",
   "target": "Deltoide anterior e lateral (frente e lateral do ombro)",
-  "rx": "3 × 8–12 · RIR 1–2 · descanso 2 min",
-  "sets": 3,
-  "rest": {
-    "opts": [
-      120
-    ],
-    "def": 120
-  },
   "feel": "Frente e lateral do ombro. O tríceps ajuda.",
   "feelNote": "Se sentir a lombar, você está arqueando: encoste as costas e firme o abdômen.",
   "setupEq": [
@@ -60,7 +52,7 @@
     "Roscas apertadas",
     "Costas apoiadas",
     "Cotovelos à frente",
-    "Carga para RIR 1–2"
+    "Carga para o RIR do seu programa"
   ],
   "vary": "O quanto os cotovelos ficam à frente (de ~20° a ~45°) depende de como o seu ombro se sente. Encosto a 75–80° em vez de 90° costuma deixar o movimento mais natural (prática de treinadores, sem estudo direto).",
   "extLabels": [

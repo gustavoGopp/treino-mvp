@@ -3,16 +3,6 @@
   "name": "Supino inclinado com halteres",
   "short": "Supino inclinado",
   "target": "Peitoral maior, parte de cima (porção clavicular)",
-  "rx": "3 × 6–10 · RIR 1–2 · descanso 2–3 min",
-  "sets": 3,
-  "rest": {
-    "opts": [
-      120,
-      150,
-      180
-    ],
-    "def": 150
-  },
   "feel": "Parte de cima do peito, perto da clavícula. Também um pouco na frente do ombro e no tríceps.",
   "feelNote": "Sentir mais o ombro nem sempre é erro: pode ser fadiga ou anatomia. Confira primeiro o encosto e a trajetória.",
   "setupEq": [
@@ -65,7 +55,7 @@
     "Roscas apertadas",
     "Pés firmes, glúteo no banco",
     "Escápulas encaixadas",
-    "Carga para RIR 1–2"
+    "Carga para o RIR do seu programa"
   ],
   "vary": "O ângulo do cotovelo em relação ao tronco (algo entre ~30° e ~70°), a largura e a profundidade dependem do comprimento dos braços e da mobilidade do ombro. O que não muda: antebraço embaixo da carga, ombro estável e nenhuma dor articular.",
   "extLabels": [

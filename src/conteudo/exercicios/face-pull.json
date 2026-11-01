@@ -3,15 +3,6 @@
   "name": "Face pull com corda",
   "short": "Face pull",
   "target": "Deltoide posterior (parte de trás do ombro)",
-  "rx": "2 × 12–20 · RIR 0–1 · descanso 1 min",
-  "sets": 2,
-  "rest": {
-    "opts": [
-      60
-    ],
-    "def": 60,
-    "note": "Em bi-set com a elevação lateral: sem pausa entre os dois e 1 min ao fim de cada volta."
-  },
   "feel": "Parte de trás do ombro e entre as escápulas.",
   "feelNote": "Se sentir só o bíceps, os cotovelos provavelmente estão baixos.",
   "setupEq": [

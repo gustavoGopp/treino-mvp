@@ -3,14 +3,6 @@
   "name": "Remada com halteres, peito apoiado no banco inclinado",
   "short": "Remada apoiada",
   "target": "Meio das costas e dorsal",
-  "rx": "3 × 8–12 · RIR 1–2 · descanso 2 min",
-  "sets": 3,
-  "rest": {
-    "opts": [
-      120
-    ],
-    "def": 120
-  },
   "feel": "Meio das costas, entre as escápulas, e laterais das costas.",
   "feelNote": "O apoio no peito tira a lombar do exercício. Se sentir a lombar, o peito está saindo do banco.",
   "setupEq": [
@@ -61,7 +53,7 @@
     "Peito apoiado",
     "Pés firmes",
     "Pegada neutra",
-    "Carga para RIR 1–2"
+    "Carga para o RIR do seu programa"
   ],
   "vary": "Cotovelos mais abertos (~45° do tronco) trabalham mais o meio das costas e a parte de trás do ombro; cotovelos mais fechados, mais o dorsal. Os dois servem.",
   "extLabels": [

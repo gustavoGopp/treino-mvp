@@ -3,18 +3,10 @@
   "name": "Remada baixa com triângulo",
   "short": "Remada baixa",
   "target": "Meio das costas (romboides e trapézio médio) e dorsal",
-  "rx": "3 × 8–12 · RIR 1–2 · descanso 2 min",
-  "sets": 3,
-  "rest": {
-    "opts": [
-      120
-    ],
-    "def": 120
-  },
   "feel": "Meio das costas, entre as escápulas, e laterais das costas. A parte de trás do ombro e o bíceps trabalham como secundários.",
   "feelNote": "Se sentir mais a lombar do que as costas, o tronco provavelmente está balançando.",
   "setupEq": [
-    "Ajuste sugerido: carro da polia na altura do umbigo com você sentado (o programa diz \"ponto mais baixo\"). Assim o cabo fica quase horizontal.",
+    "Carro da polia na altura do umbigo com você sentado. Assim o cabo fica quase horizontal.",
     "Triângulo no mosquetão. Banco plano de frente para a torre.",
     "Distância: com os braços estendidos, a pilha ainda precisa ficar levantada."
   ],
@@ -61,10 +53,10 @@
     "Pilha levantada com o braço estendido",
     "Pés firmes",
     "Tronco quase vertical",
-    "Carga para RIR 1–2"
+    "Carga para o RIR do seu programa"
   ],
   "vary": "Inclinar o tronco entre 0° e ~15° no alongamento é questão de preferência. O essencial é o tronco não virar o motor do movimento.",
-  "note": "<b>Ajuste sugerido:</b> o programa diz polia no ponto mais baixo. Sentado no banco, isso faz o cabo puxar para baixo. Com o carro na altura do umbigo, a resistência fica na direção da puxada. O documento do programa ainda não foi alterado.",
+  "note": "<b>Ajuste:</b> com você sentado no banco, a polia no ponto mais baixo faz o cabo puxar para baixo. Com o carro na altura do umbigo, a resistência fica na direção da puxada.",
   "extLabels": [
     "início",
     "fim"

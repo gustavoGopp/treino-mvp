@@ -5,7 +5,7 @@ import { mkdirSync, readFileSync, writeFileSync } from 'node:fs';
 import { createRequire } from 'node:module';
 import { dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
-import { CAMPOS_TEXTO } from './campos-texto.mjs';
+import { CAMPOS_TEXTO, LEGADO_PRESCRICAO } from './campos-texto.mjs';
 
 const require = createRequire(import.meta.url);
 const { chromium } = require('playwright');
@@ -27,7 +27,7 @@ const dados = await page.evaluate((campos) =>
     for (const c of campos) if (ex[c] !== undefined) o[c] = ex[c];
     o.errors = ex.errors.map((e) => ({ id: e.id, title: e.title, desc: e.desc }));
     return o;
-  }), CAMPOS_TEXTO);
+  }), CAMPOS_TEXTO.filter((c) => !LEGADO_PRESCRICAO.includes(c)));
 await browser.close();
 
 mkdirSync(destino, { recursive: true });
