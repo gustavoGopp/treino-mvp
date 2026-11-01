@@ -305,7 +305,7 @@ O `PLANO-MVP.md` recebeu os critérios (seção a) e os marcos (seção i) novos
 
 ---
 
-## R0b: O gerador com a divisão escolhida e as vagas por função (01/11/2026, em revisão)
+## R0b: O gerador com a divisão escolhida e as vagas por função (01/11/2026)
 
 **O que mudou**
 - **A divisão é escolhida pela pessoa.** São 12 opções, de 2 a 6 dias, na ordem da pesquisa (`pesquisa-v2/01`). Na rotina, um passo opcional, "Como prefere dividir?", mostra quantas vezes cada músculo treina e quantos exercícios cabem por treino. A recomendada vem explicada e nada vem marcado; se a pessoa pular, vale a recomendada. A clássica (ABC, ABCD, ABCDE) só aparece quando as metas cabem em 1 treino por músculo, com o aviso de que faltar a um dia tira a semana daquele músculo. 6 dias passa a ser aceito.
@@ -348,10 +348,10 @@ O `PLANO-MVP.md` recebeu os critérios (seção a) e os marcos (seção i) novos
 
 As listas exatas ficam em `tests/unit/metas-r0.test.ts`, para o R0c zerar.
 
-**Decisões pendentes (para o Gustavo)**
-1. Animação aprovada como desempate entre equivalentes **[opinião]**. Recomendo manter.
-2. Sem drop set nas semanas de RIR 3–4 (fase de aprendizado e 1ª semana depois de uma pausa) **[opinião]**. Recomendo manter.
-3. Barra fixa ou puxada na polia, quando há as duas: hoje a polia ganha pelo critério "carga possível".
+**Decisões do Gustavo (01/11/2026)** — os snapshots das 4 personas foram revistos e aprovados, e as 3 recomendações ficam:
+1. Animação aprovada como desempate entre equivalentes **[opinião]**: fica.
+2. Sem drop set nas semanas de RIR 3–4 (fase de aprendizado e 1ª semana depois de uma pausa) **[opinião]**: fica.
+3. Barra fixa ou puxada na polia, quando há as duas: fica a regra atual (a polia ganha pelo critério "carga possível"; a barra fixa é alternativa).
 
 **Imagem:** `img/r0b-divisao.png` (o passo "Como prefere dividir?").
 
