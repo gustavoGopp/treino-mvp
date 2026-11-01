@@ -4,6 +4,7 @@ import { gerarPrograma } from '../../src/domain/gerador';
 import { exportarJson, importarJson, nomeDoArquivo } from '../../src/storage/arquivo';
 import { estadoSchema, estadoVazio, perfilDe, primeiroPassoPendente, VERSAO_ESTADO, type Estado } from '../../src/storage/esquema';
 import { migrar, type Migracao } from '../../src/storage/migracao';
+import { capacidades } from '../../src/domain/taxonomia/equipamentos';
 import { PERSONAS, type Persona } from '../personas';
 
 const DATA = '2026-10-31T12:00:00.000Z';
@@ -101,7 +102,7 @@ describe('migração', () => {
     expect(r).toEqual({ ok: true, estado: { ...v1, versao: VERSAO_ESTADO, historico: [] } });
   });
 
-  it('versão 2 (antes do R0b) vira a 3 sem inventar divisão: a rotina e o programa salvo ficam iguais', () => {
+  it('versão 2 (antes do R0b) vira a atual sem inventar divisão: a rotina e o programa salvo ficam iguais', () => {
     const e = estadoDe(PERSONAS.bruno);
     // Programa salvo antes do R0b: sem divisaoId nem funcao nas vagas.
     const { divisaoId, ...programaAntigo } = e.programa!.programa;
@@ -112,10 +113,35 @@ describe('migração', () => {
       programa: { ...e.programa!, programa: { ...programaAntigo, dias: programaAntigo.dias.map((d) => ({ ...d, exercicios: d.exercicios.map(({ funcao, ...x }) => (void funcao, x)) })) } },
     };
     const r = migrar(JSON.parse(JSON.stringify(antigo)));
-    expect(r).toEqual({ ok: true, estado: { ...antigo, versao: 3 } });
+    expect(r).toEqual({ ok: true, estado: { ...antigo, versao: VERSAO_ESTADO } });
     if (!r.ok) return;
     expect(r.estado.rotina!.divisao).toBeUndefined();
     expect(perfilDe(r.estado)!.divisao).toBeUndefined();
+  });
+
+  it('versão 3 → 4 (R0c): a polia simples regulável vira "altura: regulavel"; a fixa fica sem altura, sem inventar', () => {
+    const e = estadoDe(PERSONAS.ana);
+    const v3 = (alturaRegulavel: boolean) => ({
+      ...JSON.parse(JSON.stringify(e)),
+      versao: 3,
+      inventario: { ...e.inventario, polia_simples: { alturaRegulavel, placas: 12 } },
+    });
+    const regulavel = migrar(v3(true));
+    expect(regulavel).toMatchObject({ ok: true, estado: { versao: 4, inventario: { polia_simples: { altura: 'regulavel', placas: 12 } } } });
+    if (regulavel.ok) {
+      expect(regulavel.estado.inventario!.polia_simples).toEqual({ altura: 'regulavel', placas: 12 });
+      expect([...capacidades(regulavel.estado.inventario!)]).toEqual(expect.arrayContaining(['polia', 'polia_alta', 'polia_baixa']));
+    }
+    const fixa = migrar(v3(false));
+    expect(fixa.ok && fixa.estado.inventario!.polia_simples).toEqual({ placas: 12 });
+    // Até a pessoa dizer a altura, a polia fixa só dá "polia", que nenhum exercício pede (exatamente como na versão 3).
+    if (fixa.ok) {
+      const caps = capacidades(fixa.estado.inventario!);
+      expect(caps.has('polia')).toBe(true);
+      expect(caps.has('polia_alta') || caps.has('polia_baixa')).toBe(false);
+    }
+    // Sem polia simples, nada muda.
+    expect(migrar({ ...JSON.parse(JSON.stringify(e)), versao: 3 })).toEqual({ ok: true, estado: e });
   });
 
   it('versão 3 guarda a divisão escolhida e aceita 6 dias; ela chega ao gerador pelo perfil', () => {

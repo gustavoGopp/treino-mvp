@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { inventarioSchema, ITENS, ITEM_IDS, type Inventario, type ItemId } from '../taxonomia/equipamentos.js';
+import { ALTURAS_POLIA, ESTACOES_MULTIFUNCIONAL, inventarioSchema, ITENS, ITEM_IDS, type Inventario, type ItemId } from '../taxonomia/equipamentos.js';
 
 // Visão (M4): o modelo só sugere; a pessoa confirma. Funções puras, sem rede.
 // Plano: docs/PLANO-MVP.md, seção g. Decisões: docs/pesquisa/11-decisoes-m4.md.
@@ -15,9 +15,13 @@ const atributos = {
     minKg: { type: 'number' },
     maxKg: { type: 'number' },
     passoKg: { type: 'number' },
-    alturaRegulavel: { type: 'boolean' },
+    altura: { type: 'string', enum: [...ALTURAS_POLIA] },
     declina: { type: 'boolean' },
     intensidades: { type: 'integer' },
+    // Multifuncional: as estações que aparecem na foto (pesquisa-v2/08, seção 4).
+    ...Object.fromEntries(ESTACOES_MULTIFUNCIONAL.map((e) => [e, { type: 'boolean' }])),
+    // Kettlebell: os números pintados.
+    pesosKg: { type: 'array', items: { type: 'number' } },
   },
 } as const;
 
@@ -92,6 +96,27 @@ export function aplicarConfirmados(inv: Inventario, sugestoes: Sugestao[], confi
   return novo as Inventario;
 }
 
+/**
+ * Dicas para não confundir aparelhos parecidos (visao.desambiguacao; pesquisa-v2/08, seção 4).
+ * O par confundível ausente da foto conta como falso positivo grave no eval (scripts/eval-vision.ts).
+ */
+export const DICAS_DESAMBIGUACAO: { par: [ItemId, ItemId, ...ItemId[]]; dica: string }[] = [
+  { par: ['hack', 'leg_press'], dica: 'hack: a pessoa fica em pé ou quase, com as costas num encosto inclinado e almofadas sobre os ombros; leg press: sentada ou deitada, empurra uma plataforma com os pés.' },
+  { par: ['voador', 'estacao_polia_dupla'], dica: 'voador: assento com encosto e dois braços presos à máquina, sem cabos soltos; polia dupla: duas torres altas, com cabos e pegadores soltos.' },
+  { par: ['multifuncional', 'estacao_polia_dupla', 'polia_simples'], dica: 'multifuncional: uma estrutura com assento fixo, puxador alto com almofada de coxa e às vezes extensora ou voador; estação de polia: torre(s) sem assento.' },
+  { par: ['smith', 'rack_de_agachamento'], dica: 'smith: barra presa em trilhos verticais; rack: barra solta, apoiada em ganchos.' },
+  { par: ['cadeira_extensora', 'cadeira_flexora', 'cadeira_abdutora_adutora'], dica: 'extensora: almofada na frente da canela, embaixo; cadeira flexora: almofada atrás do calcanhar e outra sobre a coxa; abdutora e adutora: almofadas dos lados dos joelhos.' },
+  { par: ['mesa_flexora', 'banco_romano'], dica: 'mesa flexora: a pessoa deita de bruços, com almofada atrás dos tornozelos; banco romano: apoio no quadril e trava dos pés, inclinado a 45° ou reto.' },
+  { par: ['panturrilha_em_pe_maquina', 'panturrilha_sentada_maquina', 'hack'], dica: 'panturrilha em pé: almofadas nos ombros e um degrau pequeno para a ponta dos pés; panturrilha sentada: almofada sobre os joelhos, pessoa sentada.' },
+  { par: ['supino_maquina', 'desenvolvimento_maquina'], dica: 'supino na máquina: pegadores à frente do peito; desenvolvimento na máquina: pegadores acima dos ombros (algumas máquinas fazem os dois).' },
+  { par: ['remada_articulada', 'supino_maquina'], dica: 'remada articulada: almofada no peito e pegadores à frente, para puxar; supino na máquina: encosto atrás, para empurrar.' },
+  { par: ['estacao_puxada', 'estacao_remada'], dica: 'puxador alto: barra no alto e almofada de coxa; remada baixa: assento baixo, apoio para os pés e cabo baixo (muitas vezes na mesma torre).' },
+  { par: ['banco_scott', 'banco_regulavel'], dica: 'banco Scott: almofada inclinada para os braços na frente do assento.' },
+  { par: ['graviton', 'paralelas', 'barra_fixa'], dica: 'graviton: plataforma para os joelhos e torre de pesos; paralelas e barra fixa: barras sem torre.' },
+  { par: ['barra_hexagonal', 'barra_longa'], dica: 'barra hexagonal: moldura em forma de hexágono, com a pessoa dentro e pegadores dos lados.' },
+  { par: ['suspensao', 'elasticos'], dica: 'suspensão: fitas de nylon com fivelas e pegadores; elásticos: borracha colorida.' },
+];
+
 /** Texto do pedido ao modelo (o esquema garante o formato; o texto explica a tarefa). */
 export function instrucoes(): string {
   const lista = ITEM_IDS.map((id) => `- ${id}: ${ITENS[id].nome}`).join('\n');
@@ -101,7 +126,10 @@ export function instrucoes(): string {
     'Regras:',
     '- Só inclua o que dá para ver. Na dúvida, use confiança "media" ou "baixa"; nunca invente.',
     '- "alta": o item aparece com clareza. "media": provável, mas parcial ou pequeno. "baixa": pode ser, mas é incerto.',
-    '- Atributos só quando visíveis: halteres fixos (minKg, maxKg, passoKg pelos números nos halteres), polia simples (alturaRegulavel), banco regulável (declina), elásticos (intensidades = cores diferentes).',
+    '- Atributos só quando visíveis: halteres fixos (minKg, maxKg, passoKg pelos números nos halteres), polia simples (altura: "alta", "baixa" ou "regulavel"), banco regulável (declina), elásticos (intensidades = cores diferentes), multifuncional (puxador, remadaBaixa, extensora, flexora, voador, supino: true para cada estação que aparece), kettlebell (pesosKg pelos números pintados).',
+    '- Esteira, bicicleta e elíptico: liste só a esteira; eles não entram no treino.',
     '- Em "evidencia", diga em poucas palavras onde o item aparece (ex.: "foto 2, à esquerda").',
+    'Para não confundir aparelhos parecidos:',
+    ...DICAS_DESAMBIGUACAO.map((d) => `- ${d.dica}`),
   ].join('\n');
 }

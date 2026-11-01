@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import { CATEGORIAS, deForm, formVazio, itensDaCategoria, paraForm } from '../../src/features/onboarding/inventarioForm';
-import { ITEM_IDS } from '../../src/domain/taxonomia/equipamentos';
+import { ITEM_IDS, type Inventario } from '../../src/domain/taxonomia/equipamentos';
 import { PERSONAS } from '../personas';
 
 describe('checklist do inventário', () => {
@@ -19,7 +19,10 @@ describe('checklist do inventário', () => {
   });
 
   it('pede os atributos que mudam a prescrição, sem valor padrão', () => {
-    const f = { ...formVazio(), marcados: ['halteres_fixos', 'polia_simples', 'banco_regulavel', 'elasticos', 'anilhas_e_manoplas'] as const };
+    const f = {
+      ...formVazio(),
+      marcados: ['halteres_fixos', 'polia_simples', 'banco_regulavel', 'elasticos', 'anilhas_e_manoplas', 'multifuncional', 'kettlebell', 'voador', 'triceps_maquina'] as const,
+    };
     const { inventario, erros } = deForm({ ...f, marcados: [...f.marcados], anilhas: { manoplas: '', manoplaKg: '', linhas: [{ kg: '', qtd: '' }] } });
     expect(inventario).toBeNull();
     expect(Object.keys(erros).sort()).toEqual(
@@ -32,7 +35,11 @@ describe('checklist do inventário', () => {
         'halteres.max',
         'halteres.min',
         'halteres.passo',
-        'poliaSimples.regulavel',
+        'kettlebell.pesos',
+        'multifuncional.estacoes',
+        'poliaSimples.altura',
+        'tricepsMaquina.acimaDaCabeca',
+        'voador.invertido',
       ].sort(),
     );
   });
@@ -55,6 +62,52 @@ describe('checklist do inventário', () => {
     expect(deForm(f).erros['anilhas.0.qtd']).toBeDefined();
     f.anilhas.linhas[0]!.qtd = '4';
     expect(deForm(f).inventario).toEqual({ anilhas_e_manoplas: { manoplas: 2, manoplaKg: 2, anilhas: [{ kg: 5, qtd: 4 }] } });
+  });
+});
+
+describe('atributos novos do R0c no checklist', () => {
+  it('polia simples pela altura, estações do multifuncional, pesos do kettlebell, voador e tríceps', () => {
+    const f = {
+      ...formVazio(),
+      marcados: ['polia_simples', 'multifuncional', 'kettlebell', 'voador', 'triceps_maquina'] as const,
+      poliaSimples: { altura: 'baixa' as const, placas: '' },
+      multifuncional: { estacoes: ['puxador' as const, 'extensora' as const] },
+      kettlebell: { pesos: [16, 8, 8] },
+      voador: { invertido: true },
+      tricepsMaquina: { acimaDaCabeca: false },
+    };
+    const { inventario, erros } = deForm({ ...f, marcados: [...f.marcados] });
+    expect(erros).toEqual({});
+    expect(inventario).toEqual({
+      polia_simples: { altura: 'baixa' },
+      multifuncional: { puxador: true, remadaBaixa: false, extensora: true, flexora: false, voador: false, supino: false },
+      kettlebell: { pesosKg: [8, 16] },
+      voador: { invertido: true },
+      triceps_maquina: { acimaDaCabeca: false },
+    });
+    expect(paraForm(inventario!)).toMatchObject({ poliaSimples: { altura: 'baixa' }, multifuncional: { estacoes: ['puxador', 'extensora'] }, kettlebell: { pesos: [8, 16] } });
+  });
+
+  it('atributos que a tela não pergunta (placas, menor anilha, peso da barra) passam intactos pela ida e volta', () => {
+    const inv = { leg_press: { menorAnilhaKg: 1.25 }, barra_longa: { pesoBarraKg: 20 }, multifuncional: { puxador: true, placas: 15 }, cadeira_extensora: { placas: 12, kgPorPlaca: 5 } };
+    const { inventario } = deForm(paraForm(inv as Inventario));
+    expect(inventario).toEqual({ ...inv, multifuncional: { puxador: true, remadaBaixa: false, extensora: false, flexora: false, voador: false, supino: false, placas: 15 } });
+  });
+
+  it('a foto preenche a altura da polia, as estações e os pesos do kettlebell, só se estiverem vazios', async () => {
+    const { comSugestoes } = await import('../../src/features/onboarding/inventarioForm');
+    const n = comSugestoes(
+      formVazio(),
+      [
+        { itemId: 'polia_simples', atributos: { altura: 'regulavel' } },
+        { itemId: 'multifuncional', atributos: { puxador: true, supino: true, voador: false } },
+        { itemId: 'kettlebell', atributos: { pesosKg: [12, 8, 'x'] } },
+      ],
+      ['polia_simples', 'multifuncional', 'kettlebell'],
+    );
+    expect(n.poliaSimples.altura).toBe('regulavel');
+    expect(n.multifuncional.estacoes).toEqual(['puxador', 'supino']);
+    expect(n.kettlebell.pesos).toEqual([8, 12]);
   });
 });
 

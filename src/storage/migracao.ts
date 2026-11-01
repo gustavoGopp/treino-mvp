@@ -10,6 +10,16 @@ export const MIGRACOES: Record<number, Migracao> = {
   // 2 → 3 (R0b): a rotina passa a aceitar 6 dias e a divisão escolhida. Nada é inventado: sem escolha,
   // vale a recomendada (para 2, 3 e 4 dias é a mesma estrutura de antes). O programa salvo não muda.
   2: (anterior) => ({ ...anterior }),
+  // 3 → 4 (R0c): a polia simples troca "alturaRegulavel" por "altura" (alta, baixa ou regulável). Regulável vira
+  // "regulavel"; fixa fica sem altura, porque o dado antigo não diz se ela fica no alto ou embaixo. A tela de
+  // equipamento pede a altura e, até lá, a polia fixa continua sem abrir exercício, como antes.
+  3: (anterior) => {
+    const inv = anterior.inventario as Record<string, unknown> | undefined;
+    const polia = inv?.polia_simples as Record<string, unknown> | undefined;
+    if (!inv || !polia || !('alturaRegulavel' in polia)) return { ...anterior };
+    const { alturaRegulavel, ...resto } = polia;
+    return { ...anterior, inventario: { ...inv, polia_simples: { ...resto, ...(alturaRegulavel === true ? { altura: 'regulavel' } : {}) } } };
+  },
 };
 
 export type ResultadoMigracao = { ok: true; estado: Estado } | { ok: false; erro: string };

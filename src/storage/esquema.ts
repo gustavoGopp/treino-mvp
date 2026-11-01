@@ -10,7 +10,7 @@ import { PERGUNTAS, type PerguntaId } from '../domain/triagem';
 // Estado guardado no aparelho (IndexedDB) e no arquivo de exportação. Versionado: toda mudança de formato
 // ganha uma versão nova e uma migração em src/storage/migracao.ts, com teste.
 
-export const VERSAO_ESTADO = 3;
+export const VERSAO_ESTADO = 4;
 
 const enumDe = <T extends string>(xs: readonly T[]) => z.enum(xs as unknown as [T, ...T[]]);
 const ids = <T extends { id: string }>(xs: readonly T[]) => xs.map((x) => x.id) as T['id'][];

@@ -1,4 +1,13 @@
-import { inventarioSchema, ITENS, ITEM_IDS, type Inventario, type ItemId } from '../../domain/taxonomia/equipamentos';
+import {
+  ALTURAS_POLIA,
+  ESTACOES_MULTIFUNCIONAL,
+  inventarioSchema,
+  ITENS,
+  ITEM_IDS,
+  type EstacaoMultifuncional,
+  type Inventario,
+  type ItemId,
+} from '../../domain/taxonomia/equipamentos';
 
 // Conversão entre o checklist da tela e o Inventario da taxonomia. Função pura, testada em tests/unit/inventario-form.test.ts.
 // Nada vem pré-preenchido: um valor padrão errado mudaria a carga prescrita sem a pessoa perceber
@@ -9,9 +18,26 @@ export type FormInventario = {
   halteres: { min: string; max: string; passo: string };
   anilhas: { manoplas: string; manoplaKg: string; linhas: { kg: string; qtd: string }[] };
   poliaDupla: { placas: string; kgPorPlaca: string };
-  poliaSimples: { regulavel?: boolean; placas: string };
+  poliaSimples: { altura?: AlturaPolia; placas: string };
   bancoRegulavel: { declina?: boolean };
   elasticos: { intensidades: string };
+  multifuncional: { estacoes: EstacaoMultifuncional[] };
+  kettlebell: { pesos: number[] };
+  voador: { invertido?: boolean };
+  tricepsMaquina: { acimaDaCabeca?: boolean };
+  /** Atributos que a tela não pergunta (placas, peso da barra, menor anilha): ficam como estavam. */
+  extras: Partial<Record<ItemId, Record<string, unknown>>>;
+};
+
+export type AlturaPolia = (typeof ALTURAS_POLIA)[number];
+export const NOME_ALTURA: Record<AlturaPolia, string> = { alta: 'No alto', baixa: 'Embaixo', regulavel: 'Regulável' };
+export const NOME_ESTACAO: Record<EstacaoMultifuncional, string> = {
+  puxador: 'Puxador alto',
+  remadaBaixa: 'Remada baixa',
+  extensora: 'Extensora',
+  flexora: 'Flexora',
+  voador: 'Voador',
+  supino: 'Supino',
 };
 
 export const CATEGORIAS = [
@@ -60,6 +86,27 @@ export const NOME_CURTO: Record<ItemId, string> = {
   step: 'Step',
   bola_suica: 'Bola suíça',
   esteira: 'Esteira',
+  barra_hexagonal: 'Barra hexagonal',
+  kettlebell: 'Kettlebell',
+  banco_scott: 'Banco Scott',
+  banco_romano: 'Banco romano',
+  estacao_puxada: 'Puxador alto',
+  estacao_remada: 'Remada baixa (estação)',
+  multifuncional: 'Multifuncional',
+  supino_maquina: 'Supino na máquina',
+  voador: 'Voador',
+  desenvolvimento_maquina: 'Desenvolvimento na máquina',
+  remada_articulada: 'Remada articulada',
+  graviton: 'Graviton',
+  rosca_maquina: 'Máquina de rosca',
+  triceps_maquina: 'Máquina de tríceps',
+  abdominal_maquina: 'Máquina de abdominal',
+  hack: 'Hack',
+  cadeira_abdutora_adutora: 'Abdutora e adutora',
+  gluteo_maquina: 'Glúteo na máquina',
+  panturrilha_em_pe_maquina: 'Panturrilha em pé',
+  panturrilha_sentada_maquina: 'Panturrilha sentada',
+  suspensao: 'Suspensão (TRX)',
 };
 
 /** Valores comuns, para escolher com um toque (sempre há "outro"). Nenhum vem marcado. */
@@ -69,7 +116,22 @@ export const VALORES = {
   halterPasso: [0.5, 1, 2, 2.5, 5],
   manoplaKg: [1, 1.5, 2, 2.5, 3],
   anilhaKg: [0.5, 1, 1.25, 2, 2.5, 3, 4, 5, 10],
+  kettlebellKg: [4, 6, 8, 10, 12, 14, 16, 20, 24, 28, 32],
 } as const;
+
+/** Itens cujos atributos a tela pergunta; os demais guardam o que já tinham em `extras`. */
+const COM_FORM: ItemId[] = [
+  'halteres_fixos',
+  'anilhas_e_manoplas',
+  'estacao_polia_dupla',
+  'polia_simples',
+  'banco_regulavel',
+  'elasticos',
+  'multifuncional',
+  'kettlebell',
+  'voador',
+  'triceps_maquina',
+];
 
 export const formVazio = (): FormInventario => ({
   marcados: [],
@@ -79,6 +141,11 @@ export const formVazio = (): FormInventario => ({
   poliaSimples: { placas: '' },
   bancoRegulavel: {},
   elasticos: { intensidades: '' },
+  multifuncional: { estacoes: [] },
+  kettlebell: { pesos: [] },
+  voador: {},
+  tricepsMaquina: {},
+  extras: {},
 });
 
 const txt = (n: number | undefined) => (n === undefined ? '' : String(n));
@@ -95,9 +162,25 @@ export function paraForm(inv: Inventario | undefined): FormInventario {
       linhas: inv.anilhas_e_manoplas.anilhas.map((a) => ({ kg: txt(a.kg), qtd: txt(a.qtd) })),
     };
   if (inv.estacao_polia_dupla) f.poliaDupla = { placas: txt(inv.estacao_polia_dupla.placas), kgPorPlaca: txt(inv.estacao_polia_dupla.kgPorPlaca) };
-  if (inv.polia_simples) f.poliaSimples = { regulavel: inv.polia_simples.alturaRegulavel, placas: txt(inv.polia_simples.placas) };
+  if (inv.polia_simples)
+    f.poliaSimples = { ...(inv.polia_simples.altura ? { altura: inv.polia_simples.altura } : {}), placas: txt(inv.polia_simples.placas) };
   if (inv.banco_regulavel) f.bancoRegulavel = { declina: inv.banco_regulavel.declina };
   if (inv.elasticos) f.elasticos = { intensidades: txt(inv.elasticos.intensidades) };
+  if (inv.multifuncional) f.multifuncional = { estacoes: ESTACOES_MULTIFUNCIONAL.filter((e) => inv.multifuncional![e]) };
+  if (inv.kettlebell) f.kettlebell = { pesos: [...inv.kettlebell.pesosKg].sort((a, b) => a - b) };
+  if (inv.voador) f.voador = inv.voador.invertido === undefined ? {} : { invertido: inv.voador.invertido };
+  if (inv.triceps_maquina) f.tricepsMaquina = inv.triceps_maquina.acimaDaCabeca === undefined ? {} : { acimaDaCabeca: inv.triceps_maquina.acimaDaCabeca };
+  // Placas e kg por placa do multifuncional, do voador e da máquina de tríceps também ficam guardados.
+  for (const id of f.marcados) {
+    const a = (inv as Record<string, Record<string, unknown> | undefined>)[id];
+    if (!a || !Object.keys(a).length) continue;
+    if (!COM_FORM.includes(id)) f.extras[id] = { ...a };
+    else if (id === 'multifuncional' || id === 'voador' || id === 'triceps_maquina' || id === 'polia_simples') {
+      const { placas, kgPorPlaca } = a as { placas?: number; kgPorPlaca?: number };
+      const resto = { ...(placas !== undefined && id !== 'polia_simples' ? { placas } : {}), ...(kgPorPlaca !== undefined ? { kgPorPlaca } : {}) };
+      if (Object.keys(resto).length) f.extras[id] = resto;
+    }
+  }
   return f;
 }
 
@@ -148,11 +231,27 @@ export function deForm(f: FormInventario): { inventario: Inventario | null; erro
         break;
       }
       case 'polia_simples': {
-        if (f.poliaSimples.regulavel === undefined) erros['poliaSimples.regulavel'] = 'Diga se a altura da polia é regulável.';
+        if (f.poliaSimples.altura === undefined) erros['poliaSimples.altura'] = 'Diga onde fica a polia (no alto, embaixo ou regulável).';
         const placas = opcional('poliaSimples.placas', f.poliaSimples.placas, true);
-        inv[id] = { alturaRegulavel: f.poliaSimples.regulavel, ...(placas !== undefined ? { placas } : {}) };
+        inv[id] = { ...f.extras[id], altura: f.poliaSimples.altura, ...(placas !== undefined ? { placas } : {}) };
         break;
       }
+      case 'multifuncional':
+        if (!f.multifuncional.estacoes.length) erros['multifuncional.estacoes'] = 'Marque pelo menos uma estação do multifuncional.';
+        inv[id] = { ...f.extras[id], ...Object.fromEntries(ESTACOES_MULTIFUNCIONAL.map((e) => [e, f.multifuncional.estacoes.includes(e)])) };
+        break;
+      case 'kettlebell':
+        if (!f.kettlebell.pesos.length) erros['kettlebell.pesos'] = 'Marque pelo menos um peso de kettlebell.';
+        inv[id] = { pesosKg: [...new Set(f.kettlebell.pesos)].sort((a, b) => a - b) };
+        break;
+      case 'voador':
+        if (f.voador.invertido === undefined) erros['voador.invertido'] = 'Diga se o voador também vira para trás.';
+        inv[id] = { ...f.extras[id], invertido: f.voador.invertido };
+        break;
+      case 'triceps_maquina':
+        if (f.tricepsMaquina.acimaDaCabeca === undefined) erros['tricepsMaquina.acimaDaCabeca'] = 'Diga se a máquina é com o braço acima da cabeça.';
+        inv[id] = { ...f.extras[id], acimaDaCabeca: f.tricepsMaquina.acimaDaCabeca };
+        break;
       case 'banco_regulavel':
         if (f.bancoRegulavel.declina === undefined) erros['bancoRegulavel.declina'] = 'Diga se o banco também declina.';
         inv[id] = { declina: f.bancoRegulavel.declina };
@@ -161,7 +260,7 @@ export function deForm(f: FormInventario): { inventario: Inventario | null; erro
         inv[id] = { intensidades: positivo('elasticos.intensidades', f.elasticos.intensidades, true) };
         break;
       default:
-        inv[id] = {};
+        inv[id] = { ...f.extras[id] };
     }
   }
   if (Object.keys(erros).length) return { inventario: null, erros };
@@ -187,7 +286,12 @@ export function comSugestoes(f: FormInventario, sugestoes: { itemId: ItemId; atr
       if (vazio(n.halteres.max)) n.halteres.max = num(a.maxKg);
       if (vazio(n.halteres.passo)) n.halteres.passo = num(a.passoKg);
     }
-    if (s.itemId === 'polia_simples' && n.poliaSimples.regulavel === undefined && typeof a.alturaRegulavel === 'boolean') n.poliaSimples.regulavel = a.alturaRegulavel;
+    if (s.itemId === 'polia_simples' && n.poliaSimples.altura === undefined && (ALTURAS_POLIA as readonly unknown[]).includes(a.altura))
+      n.poliaSimples.altura = a.altura as AlturaPolia;
+    if (s.itemId === 'multifuncional' && !n.multifuncional.estacoes.length)
+      n.multifuncional.estacoes = ESTACOES_MULTIFUNCIONAL.filter((e) => a[e] === true);
+    if (s.itemId === 'kettlebell' && !n.kettlebell.pesos.length && Array.isArray(a.pesosKg))
+      n.kettlebell.pesos = [...new Set(a.pesosKg.filter((k): k is number => typeof k === 'number' && k > 0))].sort((x, y) => x - y);
     if (s.itemId === 'banco_regulavel' && n.bancoRegulavel.declina === undefined && typeof a.declina === 'boolean') n.bancoRegulavel.declina = a.declina;
     if (s.itemId === 'elasticos' && vazio(n.elasticos.intensidades)) n.elasticos.intensidades = num(a.intensidades);
   }

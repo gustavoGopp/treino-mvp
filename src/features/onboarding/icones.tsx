@@ -19,7 +19,8 @@ const anilha = (x: number, y: number, r: number) => (
   </g>
 );
 
-export const ICONES: Record<ItemId, ReactNode> = {
+// Os equipamentos novos do R0c ainda não têm desenho: o cartão mostra só o nome (pesquisa-v2/08, seção 8).
+export const ICONES: Partial<Record<ItemId, ReactNode>> = {
   halteres_fixos: (
     <>
       {halter(8, 18, 26)}
@@ -215,6 +216,7 @@ export const ICONES: Record<ItemId, ReactNode> = {
 };
 
 export function IconeEquipamento({ id }: { id: ItemId }) {
+  if (!ICONES[id]) return null;
   return (
     <svg viewBox="0 0 64 48" className="icone-eq" aria-hidden="true" focusable="false">
       {ICONES[id]}

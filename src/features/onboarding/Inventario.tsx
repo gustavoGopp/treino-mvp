@@ -5,7 +5,19 @@ import { useApp } from '../app/estado';
 import { Erros, Escolha, Numero, Passo } from '../app/ui';
 import { FotoEquipamento } from './FotoEquipamento';
 import { IconeEquipamento } from './icones';
-import { CATEGORIAS, comSugestoes, deForm, itensDaCategoria, NOME_CURTO, paraForm, VALORES, type FormInventario } from './inventarioForm';
+import { ALTURAS_POLIA, ESTACOES_MULTIFUNCIONAL } from '../../domain/taxonomia/equipamentos';
+import {
+  CATEGORIAS,
+  comSugestoes,
+  deForm,
+  itensDaCategoria,
+  NOME_ALTURA,
+  NOME_CURTO,
+  NOME_ESTACAO,
+  paraForm,
+  VALORES,
+  type FormInventario,
+} from './inventarioForm';
 
 // Passo 5: equipamento. Cartões com desenho para tocar (quem não sabe o nome reconhece pela forma) e
 // detalhes escolhidos por toque, com "outro" para valores fora da lista. A foto (M4) sugere; a pessoa confirma.
@@ -16,7 +28,55 @@ const SIM_NAO = [
 ] as const;
 const simNao = (v: boolean | undefined) => (v === undefined ? undefined : v ? 'sim' : 'nao');
 const kg = (n: number) => `${n.toLocaleString('pt-BR')} kg`;
-const ITENS_COM_DETALHES: ItemId[] = ['halteres_fixos', 'anilhas_e_manoplas', 'polia_simples', 'banco_regulavel', 'elasticos', 'estacao_polia_dupla'];
+const ITENS_COM_DETALHES: ItemId[] = [
+  'halteres_fixos',
+  'anilhas_e_manoplas',
+  'polia_simples',
+  'banco_regulavel',
+  'elasticos',
+  'estacao_polia_dupla',
+  'multifuncional',
+  'kettlebell',
+  'voador',
+  'triceps_maquina',
+];
+
+/** Vários valores marcados por toque (estações do multifuncional, pesos do kettlebell). */
+function MarcarVarios<T extends string | number>({
+  legenda,
+  opcoes,
+  marcados,
+  aoMudar,
+  erro,
+  ajuda,
+}: {
+  legenda: string;
+  opcoes: { id: T; texto: string }[];
+  marcados: T[];
+  aoMudar: (v: T[]) => void;
+  erro?: string;
+  ajuda?: string;
+}) {
+  return (
+    <fieldset className={`campo${erro ? ' com-erro' : ''}`}>
+      <legend>{legenda}</legend>
+      {ajuda && <p className="ajuda">{ajuda}</p>}
+      {erro && <p className="erro">{erro}</p>}
+      <div className="chips-valor">
+        {opcoes.map((o) => (
+          <label key={String(o.id)} className="chip-valor">
+            <input
+              type="checkbox"
+              checked={marcados.includes(o.id)}
+              onChange={(ev) => aoMudar(ev.target.checked ? [...marcados, o.id] : marcados.filter((m) => m !== o.id))}
+            />
+            <span>{o.texto}</span>
+          </label>
+        ))}
+      </div>
+    </fieldset>
+  );
+}
 
 /** Valor escolhido por toque entre os comuns, ou digitado em "Outro". */
 function ValorPorToque({
@@ -212,12 +272,66 @@ export function Inventario() {
         return (
           <Detalhes titulo="Polia simples">
             <Escolha
-              nome="polia-regulavel"
-              legenda="Dá para mudar a altura da polia?"
+              nome="polia-altura"
+              legenda="Onde fica a polia?"
+              opcoes={ALTURAS_POLIA.map((a) => ({ id: a, texto: NOME_ALTURA[a] }))}
+              valor={f.poliaSimples.altura}
+              aoMudar={(v) => set('poliaSimples', { altura: v })}
+              erro={e('poliaSimples.altura')}
+              linha
+            />
+          </Detalhes>
+        );
+      case 'multifuncional':
+        return (
+          <Detalhes titulo="Multifuncional">
+            <MarcarVarios
+              legenda="Quais estações o seu tem?"
+              ajuda="Cada estação vale como a máquina dela."
+              opcoes={ESTACOES_MULTIFUNCIONAL.map((x) => ({ id: x, texto: NOME_ESTACAO[x] }))}
+              marcados={f.multifuncional.estacoes}
+              aoMudar={(v) => set('multifuncional', { estacoes: v })}
+              erro={e('multifuncional.estacoes')}
+            />
+          </Detalhes>
+        );
+      case 'kettlebell':
+        return (
+          <Detalhes titulo="Kettlebell">
+            <MarcarVarios
+              legenda="Quais pesos você tem?"
+              ajuda="O número costuma estar pintado no kettlebell."
+              opcoes={[...new Set([...VALORES.kettlebellKg, ...f.kettlebell.pesos])].sort((a, b) => a - b).map((k) => ({ id: k, texto: kg(k) }))}
+              marcados={f.kettlebell.pesos}
+              aoMudar={(v) => set('kettlebell', { pesos: v })}
+              erro={e('kettlebell.pesos')}
+            />
+          </Detalhes>
+        );
+      case 'voador':
+        return (
+          <Detalhes titulo="Voador">
+            <Escolha
+              nome="voador-invertido"
+              legenda="O voador também vira para trás (para o ombro posterior)?"
               opcoes={SIM_NAO}
-              valor={simNao(f.poliaSimples.regulavel)}
-              aoMudar={(v) => set('poliaSimples', { regulavel: v === 'sim' })}
-              erro={e('poliaSimples.regulavel')}
+              valor={simNao(f.voador.invertido)}
+              aoMudar={(v) => set('voador', { invertido: v === 'sim' })}
+              erro={e('voador.invertido')}
+              linha
+            />
+          </Detalhes>
+        );
+      case 'triceps_maquina':
+        return (
+          <Detalhes titulo="Máquina de tríceps">
+            <Escolha
+              nome="triceps-acima"
+              legenda="O braço fica acima da cabeça nessa máquina?"
+              opcoes={SIM_NAO}
+              valor={simNao(f.tricepsMaquina.acimaDaCabeca)}
+              aoMudar={(v) => set('tricepsMaquina', { acimaDaCabeca: v === 'sim' })}
+              erro={e('tricepsMaquina.acimaDaCabeca')}
               linha
             />
           </Detalhes>
