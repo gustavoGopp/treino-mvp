@@ -1,0 +1,88 @@
+{
+  "id": "remada-unilateral",
+  "name": "Remada unilateral com halter apoiada no banco",
+  "short": "Remada unilateral",
+  "target": "Dorsal e meio das costas",
+  "rx": "Séries, repetições e descanso: veja o seu programa",
+  "sets": 3,
+  "rest": {
+    "opts": [
+      105
+    ],
+    "def": 105
+  },
+  "feel": "Lateral das costas e meio das costas, do lado que puxa.",
+  "feelNote": "O bíceps e a parte de trás do ombro ajudam. Se sentir a lombar, o tronco está girando ou a coluna está arredondando.",
+  "setupEq": [
+    "Banco plano.",
+    "Um halter no chão, do lado do banco em que você vai puxar."
+  ],
+  "setupBody": [
+    "Joelho e mão do mesmo lado em cima do banco; a mão fica embaixo do ombro.",
+    "O outro pé no chão, um pouco para o lado, joelho levemente dobrado.",
+    "Costas retas, quase paralelas ao chão, abdômen firme.",
+    "Pegada neutra (palma virada para o banco), braço estendido para baixo."
+  ],
+  "exec": [
+    [
+      "hold",
+      "Alongado",
+      "Braço estendido, ombro solto um pouco para baixo, sem girar o tronco."
+    ],
+    [
+      "conc",
+      "Puxada (concêntrica)",
+      "~1 s. Leve o cotovelo para trás, em direção ao quadril, perto do corpo."
+    ],
+    [
+      "hold",
+      "Fim",
+      "Halter ao lado do quadril, cotovelo atrás do tronco. Segure 1 s."
+    ],
+    [
+      "ecc",
+      "Volta (excêntrica)",
+      "~2 s, até o braço estender de novo."
+    ]
+  ],
+  "range": [
+    "Início: braço estendido, ombro alongado para baixo.",
+    "Fim: cotovelo passando a linha do tronco, halter perto do quadril.",
+    "Ombros e quadril continuam paralelos ao chão o tempo todo."
+  ],
+  "breath": "Solte o ar puxando, inspire na volta.",
+  "cues": [
+    "Costas retas.",
+    "Cotovelo para o quadril.",
+    "Tronco parado."
+  ],
+  "check": [
+    "Mão embaixo do ombro",
+    "Costas retas",
+    "Pé de apoio firme",
+    "Pegada neutra",
+    "Carga para o RIR do programa"
+  ],
+  "vary": "Cotovelo mais aberto trabalha mais a parte de trás do ombro e o meio das costas; mais perto do corpo, mais o dorsal. As duas servem.",
+  "extLabels": [
+    "início",
+    "fim"
+  ],
+  "errors": [
+    {
+      "id": "girar",
+      "title": "Girar o tronco",
+      "desc": "Abrir o peito para subir o halter tira o trabalho das costas e torce a coluna. Se precisar girar, a carga está alta."
+    },
+    {
+      "id": "arredondar",
+      "title": "Arredondar as costas",
+      "desc": "A coluna curvada para cima tira a estabilidade e sobrecarrega a lombar. Mantenha o peito aberto e o olhar um pouco à frente."
+    },
+    {
+      "id": "curta",
+      "title": "Não estender o braço",
+      "desc": "Sem deixar o braço estender embaixo, você perde o alongamento das costas."
+    }
+  ]
+}

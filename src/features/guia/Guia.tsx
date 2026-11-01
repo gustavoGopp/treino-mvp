@@ -16,6 +16,12 @@ const MODOS: [Modo, string][] = [
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 type Animacao = any;
 
+// Treinos do programa de referência + as animações novas (criadas depois do guia original), num grupo próprio.
+const GRUPOS = [
+  ...DIAS,
+  ...(EX.length > 26 ? [{ id: 'novas', nome: 'Novas', ex: EX.slice(26) }] : []),
+];
+
 const reduzMovimento = () => typeof window !== 'undefined' && !!window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
 
 export function Guia() {
@@ -29,7 +35,7 @@ function GuiaExercicio({ ex }: { ex: Animacao }) {
   const txt = CONTEUDO[ex.id]!;
   const navigate = useNavigate();
   const [params] = useSearchParams();
-  const dia = DIAS.find((d) => d.ex.includes(ex))!;
+  const dia = GRUPOS.find((d) => d.ex.includes(ex))!;
   const pos = dia.ex.indexOf(ex);
 
   // Parâmetros de URL fixam o quadro (usados pela regressão visual e para gerar imagens do devlog).
@@ -113,7 +119,7 @@ function GuiaExercicio({ ex }: { ex: Animacao }) {
           <span>Programa de referência · animações esquemáticas</span>
         </div>
         <nav className="days" aria-label="Treinos">
-          {DIAS.map((d) => (
+          {GRUPOS.map((d) => (
             <button key={d.id} className="day" aria-pressed={d === dia} onClick={() => navigate(`/guia/${d.ex[0]!.id}`)}>
               {d.nome}
             </button>

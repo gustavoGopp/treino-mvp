@@ -732,7 +732,7 @@
   ],
   "ordem": 3,
   "carga": "halter",
-  "animacaoId": null
+  "animacaoId": "remada-unilateral"
  },
  {
   "id": "remada-invertida",

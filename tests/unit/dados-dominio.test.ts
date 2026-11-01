@@ -11,7 +11,7 @@ describe('biblioteca de exercícios', () => {
     expect(new Set(ids).size).toBe(ids.length);
   });
 
-  it('toda animação citada existe no motor, e as 25 animações únicas estão na biblioteca', () => {
+  it('toda animação citada existe no motor, e toda animação do motor está na biblioteca', () => {
     const animacoes = new Set(EX.map((e: { id: string }) => e.id));
     const usadas = BIBLIOTECA.map((e) => e.animacaoId).filter((a): a is string => !!a);
     for (const a of usadas) expect(animacoes, a).toContain(a);
