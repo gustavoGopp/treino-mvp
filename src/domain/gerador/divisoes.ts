@@ -10,7 +10,8 @@ import type { Grupo } from './index';
 // com prioridade ficam logo depois dos multiarticulares principais, para não serem as primeiras a sair.
 // Os blocos seguem a selecao.exercicios-por-musculo: músculo grande com 2 funções complementares na semana
 // (costas: puxar vertical + horizontal; posteriores: flexão de joelho + dobrar o quadril; glúteos: agachar ou
-// afundo + extensão de quadril), músculo pequeno com 1, ou 2 se for prioridade.
+// afundo + extensão de quadril), músculo pequeno com 1, ou 2 se for prioridade. A panturrilha sentada e a adução
+// (R0c) são complementos que só entram com pernas ou glúteos como prioridade, e por último (selecao.aducao-complemento).
 
 export type Vaga = {
   funcao: string;
@@ -88,6 +89,7 @@ const INFERIOR_A = [
   v('panturrilha-em-pe'),
   v('abdomen'),
   c('abducao', ['gluteos']),
+  c('aducao', ['pernas', 'gluteos']),
 ];
 const INFERIOR_B = [
   v('afundo'),
@@ -99,6 +101,8 @@ const INFERIOR_B = [
   c('dobrar-quadril'),
   c('abducao', ['gluteos']),
   c('elevacao-lateral', ['ombros']),
+  c('panturrilha-sentada', ['pernas']),
+  c('aducao', ['pernas', 'gluteos']),
 ];
 const CORPO_A = [
   v('agachar'),
@@ -123,6 +127,8 @@ const CORPO_B = [
   c('ombro-posterior'),
   c('empurrar-vertical', ['ombros']),
   c('abdomen'),
+  c('panturrilha-sentada', ['pernas']),
+  c('aducao', ['pernas', 'gluteos']),
 ];
 const CORPO_C = [
   v('afundo'),
@@ -149,6 +155,7 @@ const CORPO_SI = [
   c('triceps-complemento'),
   c('biceps'),
   c('abdomen'),
+  c('panturrilha-sentada', ['pernas']),
 ];
 // Corpo todo em 2 dias: cada dia precisa cobrir mais funções.
 const CORPO2_A = [
@@ -162,6 +169,7 @@ const CORPO2_A = [
   c('abdomen'),
   c('crucifixo'),
   c('biceps', ['bracos']),
+  c('panturrilha-sentada', ['pernas']),
 ];
 const CORPO2_B = [
   v('afundo'),
@@ -175,6 +183,7 @@ const CORPO2_B = [
   c('ombro-posterior'),
   c('empurrar-vertical', ['ombros']),
   c('abducao', ['gluteos']),
+  c('aducao', ['pernas', 'gluteos']),
 ];
 const EMPURRAR_A = [
   v('empurrar-horizontal'),
@@ -221,6 +230,7 @@ const PERNAS_A = [
   v('panturrilha-em-pe'),
   c('abducao', ['gluteos']),
   c('abdomen'),
+  c('aducao', ['pernas', 'gluteos']),
 ];
 const PERNAS_B = [
   v('afundo'),
@@ -230,6 +240,8 @@ const PERNAS_B = [
   v('panturrilha-em-pe'),
   c('flexao-joelho'),
   c('abducao', ['gluteos']),
+  c('panturrilha-sentada', ['pernas']),
+  c('aducao', ['pernas', 'gluteos']),
 ];
 // Clássicas: cada músculo 1x por semana (divisao.classica).
 const CL_PEITO_TRICEPS = [v('empurrar-horizontal'), v('empurrar-inclinado'), v('crucifixo'), v('triceps-acima-cabeca'), v('triceps-complemento')];
@@ -243,6 +255,8 @@ const CL_PERNAS = [
   v('extensao-quadril'),
   v('panturrilha-em-pe'),
   c('abducao', ['gluteos']),
+  c('panturrilha-sentada', ['pernas']),
+  c('aducao', ['pernas', 'gluteos']),
 ];
 const CL_OMBROS_ABDOMEN = [v('empurrar-vertical'), v('elevacao-lateral'), v('ombro-posterior'), v('abdomen')];
 const CL_EMPURRAR = [...CL_PEITO_TRICEPS, v('empurrar-vertical'), v('elevacao-lateral')];

@@ -1,6 +1,6 @@
 import { BIBLIOTECA, MUSCULOS, type Articulacao, type Exercicio, type Musculo, type Padrao } from '../biblioteca';
 import { DESCANSO, READAPTACAO, RIR, TEMPO, VOLUME, NIVEL_COMPLEXIDADE_MAX, exerciciosPorSessao, r, type Nivel } from '../regras';
-import { capacidades, cargaMaxHalter, cargasHalter, ITENS, type Inventario, type ItemId } from '../taxonomia/equipamentos';
+import { capacidades, cargaMaxHalter, cargasHalter, cargasKettlebell, ITENS, type Inventario, type ItemId } from '../taxonomia/equipamentos';
 import { avaliarTriagem, type ResultadoTriagem, type Triagem } from '../triagem';
 import { divisaoEscolhida, type DiasSemana, type Divisao, type DivisaoId, type Vaga } from './divisoes';
 import { FUNCAO, funcoesDoExercicio, type Funcao } from './funcoes';
@@ -121,12 +121,21 @@ export function gerarPrograma(perfil: Perfil, inventarioOriginal: Inventario): R
       !e.articulacoes.some((a) => regioesExcluidas.includes(a)),
   );
   const possivel = new Map(possiveis.map((e) => [e.id, e]));
+  /** O exercício vale na função: é possível e cumpre as condições dela (funcoes.json, campo condicoes). */
+  const naFuncao = (f: Funcao, id: string) => possivel.has(id) && (f.condicoes?.[id] ?? []).every((c) => caps.has(c));
 
   // Desempate dentro do mesmo nível da função (selecao.funcao-da-vaga): dor leve desfavorece; estabilidade
   // só para iniciante; carga possível; variedade entre os dias; com animação aprovada; por fim o id, só para
   // o resultado ser estável (sem preferência).
   const halterMax = cargaMaxHalter(inventario);
-  const cargaPossivel = (e: Exercicio) => (e.carga === 'peso-corpo' || e.carga === 'elastico' ? 0 : e.carga === 'halter' && halterMax < 20 ? 1 : 2);
+  const kettlebellMax = cargasKettlebell(inventario).at(-1) ?? 0;
+  // O graviton (assistida) não passa do peso do corpo: conta como o peso do corpo.
+  const cargaPossivel = (e: Exercicio) =>
+    e.carga === 'peso-corpo' || e.carga === 'elastico' || e.carga === 'assistida'
+      ? 0
+      : (e.carga === 'halter' && halterMax < 20) || (e.carga === 'kettlebell' && kettlebellMax < 20)
+        ? 1
+        : 2;
   const usos = new Map<string, number>();
   const chave = (e: Exercicio) => [
     e.articulacoes.some((a) => dorLeve.has(a)) ? 1 : 0,
@@ -144,7 +153,7 @@ export function gerarPrograma(perfil: Perfil, inventarioOriginal: Inventario): R
   /** 1º nível com exercício possível; se nada, a função substituta (seNada). */
   const resolver = (vaga: Vaga): { funcao: Funcao; nivel: number } | null => {
     for (const f of [FUNCAO[vaga.funcao]!, ...(FUNCAO[vaga.funcao]!.seNada ? [FUNCAO[FUNCAO[vaga.funcao]!.seNada!]!] : [])]) {
-      const n = f.niveis.findIndex((ids) => ids.some((id) => possivel.has(id)));
+      const n = f.niveis.findIndex((ids) => ids.some((id) => naFuncao(f, id)));
       if (n >= 0) return { funcao: f, nivel: n };
     }
     return null;
@@ -181,9 +190,9 @@ export function gerarPrograma(perfil: Perfil, inventarioOriginal: Inventario): R
       let escolhido: Exercicio | undefined;
       let nivelFuncao = x.res.nivel;
       for (; nivelFuncao < funcao.niveis.length && !escolhido; nivelFuncao++) {
-        const cands = funcao.niveis[nivelFuncao]!.map((id) => possivel.get(id)).filter(
-          (e): e is Exercicio => !!e && !itens.some((i) => i.ex.id === e.id),
-        );
+        const cands = funcao.niveis[nivelFuncao]!.filter((id) => naFuncao(funcao, id))
+          .map((id) => possivel.get(id))
+          .filter((e): e is Exercicio => !!e && !itens.some((i) => i.ex.id === e.id));
         escolhido = cands.sort(comparar)[0];
       }
       nivelFuncao--;
@@ -261,7 +270,7 @@ export function gerarPrograma(perfil: Perfil, inventarioOriginal: Inventario): R
       descansoSeg: composto ? DESCANSO.composto[nivel] : DESCANSO.isolador[nivel],
       unilateral: e.unilateral,
       animacaoId: e.animacaoId,
-      alternativas: alternativas(e, it.funcao, possiveis),
+      alternativas: alternativas(e, it.funcao, possiveis.filter((x) => !funcaoTemExercicio(it.funcao, x.id) || naFuncao(it.funcao, x.id))),
       porque: porqueDoExercicio(e, it.funcao, it.nivelFuncao, nivel),
     };
   };
@@ -275,9 +284,13 @@ export function gerarPrograma(perfil: Perfil, inventarioOriginal: Inventario): R
     volumePorMusculo(ds.flatMap((d) => d.exercicios.map((x) => ({ ex: POR_ID_BIB[x.exId]!, series: seriesDeVolume(x) }))));
   const volumeAntesDoCorte = volumeDe(programaDias);
   const cargasDeHalter = cargasHalter(inventario).length;
+  const cargasDeKettlebell = cargasKettlebell(inventario).length;
   const podeDrop = (x: ExercicioPrescrito) => {
     const c = POR_ID_BIB[x.exId]!.carga;
-    return x.tipo === 'isolador' && (c === 'maquina' || c === 'polia' || (c === 'halter' && cargasDeHalter >= 2));
+    return (
+      x.tipo === 'isolador' &&
+      (c === 'maquina' || c === 'polia' || c === 'anilha' || (c === 'halter' && cargasDeHalter >= 2) || (c === 'kettlebell' && cargasDeKettlebell >= 2))
+    );
   };
   programaDias = cortarTempo(programaDias, perfil.minutosSessao, metas, nivel, prioritarios, avisos, podeDrop);
 
@@ -367,11 +380,19 @@ function semItens(inv: Inventario, evitar: ItemId[]): Inventario {
   return Object.fromEntries(Object.entries(inv).filter(([k]) => !evitar.includes(k as ItemId) && k in ITENS)) as Inventario;
 }
 
-/** "Outro equipamento": outro tipo de carga, ou outra máquina (metas do R0). */
-export const equipamentoDe = (e: Exercicio) => (e.carga === 'maquina' ? `maquina:${e.requer[0]!.join('+')}` : e.carga);
+/** "Outro equipamento": outro tipo de carga, ou outra máquina (metas do R0). Máquina de anilha e graviton também são máquinas. */
+export const equipamentoDe = (e: Exercicio) =>
+  e.carga === 'maquina' || e.carga === 'anilha' || e.carga === 'assistida' ? `maquina:${e.requer[0]!.join('+')}` : e.carga;
 
-const MAX_ALTERNATIVAS = 3;
-/** Alternativas (selecao.equivalencia): da mesma função, de outro equipamento primeiro; se faltarem, do mesmo músculo. */
+const funcaoTemExercicio = (f: Funcao, id: string) => f.niveis.some((n) => n.includes(id));
+
+/** Quantas alternativas a tela mostra de saída; as outras ficam em "ver mais" (decisão do Gustavo, 01/11/2026). */
+export const ALTERNATIVAS_A_MOSTRA = 3;
+/**
+ * Alternativas (selecao.equivalencia): todas as possíveis da mesma função, de outro equipamento primeiro e depois
+ * pelo nível; se houver menos de 2 de outro equipamento, entram as do mesmo músculo, de outro equipamento.
+ * A tela mostra as 3 primeiras e guarda o resto em "ver mais": assim todo exercício possível aparece em algum lugar.
+ */
 function alternativas(e: Exercicio, funcao: Funcao, possiveis: Exercicio[]): string[] {
   const nivelDe = (id: string) => funcao.niveis.findIndex((n) => n.includes(id));
   const outro = (x: Exercicio) => (equipamentoDe(x) !== equipamentoDe(e) ? 0 : 1);
@@ -387,9 +408,9 @@ function alternativas(e: Exercicio, funcao: Funcao, possiveis: Exercicio[]): str
     // Do mesmo músculo, de outro equipamento, entram antes das da mesma função com o mesmo equipamento.
     const daFuncaoOutro = mesmaFuncao.filter((x) => outro(x) === 0).map((x) => x.id);
     const daFuncaoMesmo = mesmaFuncao.filter((x) => outro(x) === 1).map((x) => x.id);
-    return [...daFuncaoOutro, ...mesmoMusculo.slice(0, 2 - deOutro).map((x) => x.id), ...daFuncaoMesmo].slice(0, MAX_ALTERNATIVAS);
+    return [...daFuncaoOutro, ...mesmoMusculo.slice(0, 2 - deOutro).map((x) => x.id), ...daFuncaoMesmo];
   }
-  return ids.slice(0, MAX_ALTERNATIVAS);
+  return ids;
 }
 
 const TEXTO_REGRA_FUNCAO: Record<string, (e: Exercicio) => string | null> = {
@@ -402,6 +423,9 @@ const TEXTO_REGRA_FUNCAO: Record<string, (e: Exercicio) => string | null> = {
   'selecao.isolador-obrigatorio': () => 'Isolador que cobre o que os multiarticulares não cobrem (o reto femoral, na frente da coxa).',
   'selecao.gluteo': () => 'Glúteo: depois do agachar e do afundo, a extensão de quadril e, como complemento, a abdução.',
   'selecao.crucifixo-complemento': () => 'Complemento do peito com o músculo alongado.',
+  'selecao.mergulho': (e) =>
+    e.id === 'mergulho' ? 'Mergulho nas paralelas: exige mais do ombro, por isso só a partir do intermediário e atrás dos supinos.' : null,
+  'selecao.aducao-complemento': () => 'Complemento opcional para a parte de dentro da coxa (adutores), porque pernas ou glúteos são prioridade.',
 };
 
 function porqueDoExercicio(e: Exercicio, funcao: Funcao, nivelFuncao: number, nivel: Nivel): Porque[] {
@@ -419,6 +443,8 @@ function porqueDoExercicio(e: Exercicio, funcao: Funcao, nivelFuncao: number, ni
     if (texto) p.push({ regraId: r(id), texto });
   }
   if (nivel === 'iniciante' && estavel(e)) p.push({ regraId: r('selecao.estabilidade'), texto: 'Exercício estável e apoiado, mais fácil de aprender.' });
+  if (e.tags.includes('montagem'))
+    p.push({ regraId: r('seguranca.montagem'), texto: 'Antes da 1ª série, monte com segurança: travas, apoios e ancoragem, como no cartão do exercício.' });
   p.push({ regraId: r('selecao.equivalencia'), texto: 'As alternativas fazem a mesma função; dá para trocar se o aparelho estiver ocupado.' });
   p.push({
     regraId: r('reps.faixa.por-tipo'),

@@ -42,10 +42,10 @@ describe('selecao.isolador-obrigatorio e selecao.gluteo', () => {
   it('extensora, tríceps acima da cabeça e panturrilha em pé são as obrigatórias', () => {
     expect(FUNCOES.filter((f) => f.obrigatoria).map((f) => f.id).sort()).toEqual(['extensora', 'panturrilha-em-pe', 'triceps-acima-cabeca']);
   });
-  it('a ponte de glúteo é extensão de quadril; abdução ainda sem exercício (lacuna explicada)', () => {
+  it('a ponte de glúteo é extensão de quadril, atrás do hip thrust e do glúteo na máquina; abdução na máquina ou na polia, com a lacuna explicada se faltar', () => {
     expect(POR_ID['ponte-gluteo']!.padrao).toBe('extensao-quadril');
-    expect(FUNCAO['extensao-quadril']!.niveis.flat()).toContain('ponte-gluteo');
-    expect(FUNCAO['abducao']!.niveis.flat()).toEqual([]);
+    expect(FUNCAO['extensao-quadril']!.niveis).toEqual([['hip-thrust', 'coice-maquina'], ['ponte-gluteo', 'coice-polia', 'hiperextensao']]);
+    expect(FUNCAO['abducao']!.niveis).toEqual([['abducao-maquina', 'abducao-polia']]);
     expect(FUNCAO['abducao']!.lacuna).toBeTruthy();
   });
 });

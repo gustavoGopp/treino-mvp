@@ -1,12 +1,13 @@
 import { z } from 'zod';
 import { BIBLIOTECA, MUSCULOS } from '../biblioteca';
+import { CAPACIDADES, type Capacidade } from '../taxonomia/equipamentos';
 import { REGRAS } from '../regras';
 import dados from './funcoes.json';
 
 // Funções das vagas (docs/pesquisa-v2/08-equipamentos-v2.md, tabela 2.1; regra selecao.funcao-da-vaga).
 // Cada função lista os exercícios em níveis: o nível 1 é a 1ª escolha, e os exercícios do mesmo nível
 // são equivalentes (selecao.equivalencia). O nível seguinte só entra se nada do anterior for possível.
-// Só entram ids que já existem na biblioteca; os exercícios novos chegam no R0c.
+// Desde o R0c, a tabela está completa, com os exercícios novos do catálogo.
 
 const POR_ID = new Map(BIBLIOTECA.map((e) => [e.id, e]));
 const regraId = z.string().refine((id) => id in REGRAS, 'regra fora de regras.md');
@@ -27,6 +28,11 @@ export const funcaoSchema = z
     seNada: z.string().optional(),
     /** Aviso quando a vaga fica sem exercício possível: o que falta e o que isso muda. */
     lacuna: z.object({ falta: z.string().min(1), texto: z.string().min(1), regra: regraId }).strict().optional(),
+    /**
+     * Capacidades a mais que um exercício precisa para contar nesta função (ex.: a máquina de tríceps só vale
+     * como "tríceps acima da cabeça" quando o braço fica acima da cabeça; pesquisa-v2/08, seção 2).
+     */
+    condicoes: z.record(z.array(z.enum(Object.keys(CAPACIDADES) as [Capacidade, ...Capacidade[]])).min(1)).optional(),
     niveis: z.array(z.array(z.string())).min(1),
   })
   .strict()
@@ -40,6 +46,8 @@ export const funcaoSchema = z
       if (vistos.has(id)) ctx.addIssue({ code: 'custom', message: `${f.id}: ${id} repetido` });
       vistos.add(id);
     }
+    for (const id of Object.keys(f.condicoes ?? {}))
+      if (!vistos.has(id)) ctx.addIssue({ code: 'custom', message: `${f.id}: condição para ${id}, que não está na função` });
   });
 
 export type Funcao = z.infer<typeof funcaoSchema>;

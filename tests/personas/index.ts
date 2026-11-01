@@ -86,10 +86,13 @@ export const diego: Persona = {
   inventario: { elasticos: { intensidades: 4 }, barra_fixa: {} },
 };
 
-/** Carla: avançada, academia completa, 5 dias (cenário 4). */
+/**
+ * Carla: avançada, academia completa, 5 dias (cenário 4). Desde o R0c (decisão de 01/11/2026), ela tem os
+ * 46 equipamentos do catálogo, para as metas do R0 medirem o catálogo inteiro (tests/unit/metas-r0.test.ts).
+ */
 export const carla: Persona = {
   nome: 'Carla',
-  descricao: 'Avançada; academia completa; 5 dias de 75 min.',
+  descricao: 'Avançada; academia completa, com todos os 46 equipamentos do catálogo; 5 dias de 75 min.',
   perfil: {
     nivel: 'avancado',
     semanasParado: 0,
@@ -103,10 +106,12 @@ export const carla: Persona = {
   },
   inventario: {
     estacao_polia_dupla: {},
+    polia_simples: { altura: 'regulavel' },
     barra_fixa: {},
     banco_regulavel: { declina: true },
     banco_reto: {},
     halteres_fixos: { minKg: 2, maxKg: 40, passoKg: 2 },
+    anilhas_e_manoplas: { manoplas: 2, manoplaKg: 2, anilhas: [{ kg: 5, qtd: 4 }, { kg: 10, qtd: 4 }] },
     barra_longa: {},
     barra_w: {},
     rack_de_agachamento: {},
@@ -120,8 +125,32 @@ export const carla: Persona = {
     acessorio_polia_triangulo: {},
     acessorio_polia_barra_reta: {},
     acessorio_polia_estribo: {},
+    acessorio_polia_tornozeleira: {},
+    elasticos: { intensidades: 4 },
     step: {},
+    bola_suica: {},
     esteira: {},
+    barra_hexagonal: {},
+    kettlebell: { pesosKg: [8, 12, 16, 20, 24] },
+    banco_scott: {},
+    banco_romano: {},
+    estacao_puxada: {},
+    estacao_remada: {},
+    multifuncional: { puxador: true, remadaBaixa: true, extensora: true, flexora: true, voador: true, supino: true },
+    supino_maquina: {},
+    voador: { invertido: true },
+    desenvolvimento_maquina: {},
+    remada_articulada: {},
+    graviton: {},
+    rosca_maquina: {},
+    triceps_maquina: { acimaDaCabeca: false },
+    abdominal_maquina: {},
+    hack: {},
+    cadeira_abdutora_adutora: {},
+    gluteo_maquina: {},
+    panturrilha_em_pe_maquina: {},
+    panturrilha_sentada_maquina: {},
+    suspensao: {},
   },
 };
 

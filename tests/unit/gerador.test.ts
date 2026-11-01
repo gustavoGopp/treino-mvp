@@ -1,6 +1,8 @@
 import { describe, expect, it } from 'vitest';
 import { POR_ID } from '../../src/domain/biblioteca';
 import {
+  ALTERNATIVAS_A_MOSTRA,
+  equipamentoDe,
   GRUPOS,
   NOME_MUSCULO,
   cortarTempo,
@@ -270,6 +272,77 @@ describe('cortes respeitam a prioridade e avisam o que ficou de fora', () => {
     const com = ok(diego.perfil, diego.inventario).volumeSemanal;
     const sem = ok({ ...diego.perfil, prioridades: [] }, diego.inventario).volumeSemanal;
     expect((com.peito ?? 0) + (com.costas ?? 0)).toBeGreaterThan((sem.peito ?? 0) + (sem.costas ?? 0));
+  });
+});
+
+describe('regras do R0c no gerador', () => {
+  const base = carla.perfil;
+  const todas = (p: Programa) => p.dias.flatMap((d) => d.exercicios);
+  it('equipamento.capacidades: o multifuncional vale pelas estações marcadas (extensora, puxador)', () => {
+    const inv: Inventario = { multifuncional: { puxador: true, extensora: true }, halteres_fixos: { minKg: 2, maxKg: 30, passoKg: 2 }, banco_reto: {} };
+    const ids = todas(ok({ ...base, divisao: undefined }, inv)).map((x) => x.exId);
+    expect(ids).toEqual(expect.arrayContaining(['cadeira-extensora', 'puxada-frente']));
+    const semEstacao = todas(ok({ ...base, divisao: undefined }, { ...inv, multifuncional: { puxador: true } })).map((x) => x.exId);
+    expect(semEstacao).not.toContain('cadeira-extensora');
+  });
+  it('equipamento.capacidades: a polia simples fixa abre exercícios pela altura (antes, nenhum)', () => {
+    const alta = todas(ok(base, { polia_simples: { altura: 'alta' }, acessorio_polia_corda: {} })).map((x) => x.exId);
+    expect(alta).toEqual(expect.arrayContaining(['triceps-corda', 'face-pull']));
+    const semAltura = todas(ok(base, { polia_simples: {}, acessorio_polia_corda: {} })).map((x) => x.exId);
+    expect(semAltura.some((id) => POR_ID[id]!.carga === 'polia')).toBe(false);
+  });
+  it('condição da função: a máquina de tríceps só vale como "acima da cabeça" quando o braço fica acima da cabeça', () => {
+    const inv = (acimaDaCabeca: boolean): Inventario => ({ triceps_maquina: { acimaDaCabeca } });
+    const funcaoDaMaquina = (i: Inventario) => todas(ok(base, i)).filter((x) => x.exId === 'triceps-maquina').map((x) => x.funcao);
+    expect(funcaoDaMaquina(inv(false))).not.toContain('triceps-acima-cabeca');
+    expect(funcaoDaMaquina(inv(false))).toContain('triceps-complemento');
+    expect(funcaoDaMaquina(inv(true))).toContain('triceps-acima-cabeca');
+  });
+  it('selecao.mergulho: nas paralelas, só para intermediário e avançado, com o porquê; nunca com o ombro excluído', () => {
+    const inv: Inventario = { paralelas: {} };
+    const semFlexao = { ...base, evitarExercicios: ['flexao'] };
+    const avancado = todas(ok(semFlexao, inv)).filter((x) => x.exId === 'mergulho');
+    expect(avancado.length).toBeGreaterThan(0);
+    expect(avancado[0]!.porque.map((q) => q.regraId)).toContain('selecao.mergulho');
+    expect(todas(ok({ ...semFlexao, nivel: 'iniciante' }, inv)).some((x) => x.exId === 'mergulho' || x.alternativas.includes('mergulho'))).toBe(false);
+    const ombro = { ...semFlexao, dores: [{ articulacao: 'ombro' as const, intensidade: 7 }] };
+    expect(todas(ok(ombro, inv)).some((x) => x.exId === 'mergulho' || x.alternativas.includes('mergulho'))).toBe(false);
+  });
+  it('seguranca.montagem: os exercícios com travas ou ancoragem citam a montagem segura no porquê', () => {
+    for (const x of todas(ok(carla.perfil, carla.inventario)))
+      expect(x.porque.some((q) => q.regraId === 'seguranca.montagem'), x.exId).toBe(POR_ID[x.exId]!.tags.includes('montagem'));
+    const hack = todas(ok(base, { hack: {} })).find((x) => x.exId === 'hack');
+    expect(hack!.porque.map((q) => q.regraId)).toContain('seguranca.montagem');
+  });
+  it('selecao.aducao-complemento: a adução só entra com pernas ou glúteos como prioridade, e é a 1ª a sair', () => {
+    const inv: Inventario = { ...carla.inventario };
+    const com = (prioridades: Perfil['prioridades'], minutosSessao = 75) =>
+      todas(ok({ ...base, prioridades, minutosSessao }, inv)).filter((x) => x.exId === 'aducao-maquina').length;
+    expect(com(['pernas'])).toBeGreaterThan(0);
+    expect(com(['gluteos'])).toBeGreaterThan(0);
+    expect(com(['peito', 'costas'])).toBe(0);
+    expect(com(['pernas'], 35)).toBe(0); // sem tempo, sai antes dos outros
+    // sem a máquina, nenhum aviso de lacuna
+    const { cadeira_abdutora_adutora, ...semMaquina } = inv;
+    void cadeira_abdutora_adutora;
+    expect(ok({ ...base, prioridades: ['pernas'] }, semMaquina).avisos.some((a) => a.texto.includes('adu'))).toBe(false);
+  });
+  it('alternativas: todas as possíveis da mesma função, de outro equipamento primeiro (a tela mostra 3 e o resto em "ver mais")', () => {
+    expect(ALTERNATIVAS_A_MOSTRA).toBe(3);
+    const p = ok(carla.perfil, carla.inventario);
+    const agachar = todas(p).find((x) => x.funcao === 'agachar')!;
+    const daFuncao = FUNCAO['agachar']!.niveis.flat().filter((id) => id !== agachar.exId);
+    expect([...agachar.alternativas].sort()).toEqual([...daFuncao].sort());
+    expect(agachar.alternativas.length).toBeGreaterThan(ALTERNATIVAS_A_MOSTRA);
+    const outro = (id: string) => equipamentoDe(POR_ID[id]!) !== equipamentoDe(POR_ID[agachar.exId]!);
+    const primeiroMesmo = agachar.alternativas.findIndex((id) => !outro(id));
+    if (primeiroMesmo >= 0) expect(agachar.alternativas.slice(primeiroMesmo).every((id) => !outro(id))).toBe(true);
+  });
+  it('máquina de anilha e graviton contam como máquina no "outro equipamento"; o graviton não ganha da puxada pela carga', () => {
+    expect(equipamentoDe(POR_ID['leg-press']!)).toBe('maquina:leg_press');
+    expect(equipamentoDe(POR_ID['barra-fixa-graviton']!)).toBe('maquina:graviton');
+    const ids = todas(ok({ ...base, nivel: 'intermediario' }, { graviton: {}, estacao_puxada: {} })).map((x) => x.exId);
+    expect(ids).toContain('puxada-frente');
   });
 });
 
