@@ -9,7 +9,7 @@ import { PERGUNTAS, type PerguntaId } from '../domain/triagem';
 // Estado guardado no aparelho (IndexedDB) e no arquivo de exportação. Versionado: toda mudança de formato
 // ganha uma versão nova e uma migração em src/storage/migracao.ts, com teste.
 
-export const VERSAO_ESTADO = 1;
+export const VERSAO_ESTADO = 2;
 
 const enumDe = <T extends string>(xs: readonly T[]) => z.enum(xs as unknown as [T, ...T[]]);
 const ids = <T extends { id: string }>(xs: readonly T[]) => xs.map((x) => x.id) as T['id'][];
@@ -87,6 +87,30 @@ export const programaSchema = z.object({
   regioesExcluidas: z.array(articulacao),
 }) satisfies z.ZodType<Programa, z.ZodTypeDef, unknown>;
 
+const carga = z.discriminatedUnion('tipo', [
+  z.object({ tipo: z.literal('kg'), kg: z.number().nonnegative() }),
+  z.object({ tipo: z.literal('placa'), placa: z.number().int().positive() }),
+  z.object({ tipo: z.literal('degrau'), degrau: z.number().int().nonnegative() }),
+]);
+const serie = z.object({
+  carga,
+  reps: z.number().int().nonnegative(),
+  rir: z.number().int().min(0).max(10),
+  amplitudeCompleta: z.boolean().optional(),
+  dor: z.number().int().min(0).max(10).optional(),
+});
+export const sessaoSchema = z.object({
+  id: z.string(),
+  diaId: z.string(),
+  semana: z.number().int().positive(),
+  inicio: data,
+  fim: data.optional(),
+  encerradaPorAlerta: z.boolean().optional(),
+  exercicios: z.array(
+    z.object({ exId: exercicioId, noLugarDe: exercicioId.optional(), series: z.array(serie), interrompido: z.boolean().optional() }),
+  ),
+});
+
 export const estadoSchema = z.object({
   versao: z.literal(VERSAO_ESTADO),
   avisoAceitoEm: data.optional(),
@@ -99,6 +123,10 @@ export const estadoSchema = z.object({
   programa: z.object({ programa: programaSchema, geradoEm: data }).optional(),
   /** Painel de ajustes calculados: "Manter" recolhe o painel até a pessoa reabrir. */
   ajustes: z.object({ recolhido: z.boolean() }).optional(),
+  /** Sessões terminadas, da mais antiga à mais recente (M5). */
+  historico: z.array(sessaoSchema),
+  /** Treino em andamento, salvo a cada série para não se perder se o app fechar. */
+  sessaoAtual: sessaoSchema.optional(),
 });
 
 export type Estado = z.infer<typeof estadoSchema>;
@@ -107,7 +135,7 @@ export type NivelSalvo = z.infer<typeof nivelSchema>;
 export type Rotina = z.infer<typeof rotinaSchema>;
 export type Restricoes = z.infer<typeof restricoesSchema>;
 
-export const estadoVazio = (): Estado => ({ versao: VERSAO_ESTADO });
+export const estadoVazio = (): Estado => ({ versao: VERSAO_ESTADO, historico: [] });
 
 /** Perfil completo para o gerador, ou null se ainda falta algum passo do onboarding. */
 export function perfilDe(e: Estado): Perfil | null {

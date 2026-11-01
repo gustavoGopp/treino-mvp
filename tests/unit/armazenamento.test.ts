@@ -14,7 +14,7 @@ function estadoDe(p: Persona): Estado {
   const r = gerarPrograma(perfil, p.inventario);
   if (r.status !== 'ok') throw new Error('persona bloqueada');
   return {
-    versao: 1,
+    versao: 2,
     avisoAceitoEm: DATA,
     triagem: perfil.triagem,
     nivel: { respostas: { tempoContinuo: '6-24m', semanasParado: perfil.semanasParado, tecnica: 'sim' }, escolhido: perfil.nivel },
@@ -22,6 +22,16 @@ function estadoDe(p: Persona): Estado {
     inventario: p.inventario,
     restricoes: { evitarExercicios: perfil.evitarExercicios, evitarEquipamentos: perfil.evitarEquipamentos, dores: perfil.dores },
     programa: { programa: r.programa, geradoEm: DATA },
+    historico: [
+      {
+        id: 's1',
+        diaId: r.programa.dias[0]!.id,
+        semana: 1,
+        inicio: DATA,
+        fim: DATA,
+        exercicios: [{ exId: r.programa.dias[0]!.exercicios[0]!.exId, series: [{ carga: { tipo: 'kg', kg: 10 }, reps: 10, rir: 2 }] }],
+      },
+    ],
   };
 }
 
@@ -57,8 +67,8 @@ describe('migração', () => {
     expect(migrar(null)).toMatchObject({ ok: false });
     expect(migrar([])).toMatchObject({ ok: false });
     expect(migrar({})).toMatchObject({ ok: false, erro: expect.stringContaining('versão') });
-    expect(migrar({ versao: 2 })).toMatchObject({ ok: false, erro: expect.stringContaining('mais nova') });
-    expect(migrar({ versao: 1, rotina: { diasSemana: 7, minutosSessao: 50, prioridades: [] } })).toMatchObject({
+    expect(migrar({ versao: 3 })).toMatchObject({ ok: false, erro: expect.stringContaining('mais nova') });
+    expect(migrar({ versao: 2, historico: [], rotina: { diasSemana: 7, minutosSessao: 50, prioridades: [] } })).toMatchObject({
       ok: false,
       erro: expect.stringContaining('rotina.diasSemana'),
     });
@@ -68,15 +78,22 @@ describe('migração', () => {
     // Cenário fictício: a versão 1 guardava "aceite"; a 2 renomeia para "avisoAceitoEm"; a 3 cria "ajustes".
     const migracoes: Record<number, Migracao> = {
       1: ({ aceite, ...resto }) => ({ ...resto, avisoAceitoEm: aceite }),
-      2: (anterior) => ({ ...anterior, ajustes: { recolhido: false } }),
+      2: (anterior) => ({ ...anterior, historico: [], ajustes: { recolhido: false } }),
     };
     const v3 = estadoSchema.extend({ versao: z.literal(3) }) as unknown as typeof estadoSchema;
     expect(migrar({ versao: 1, aceite: DATA }, migracoes, 3, v3)).toEqual({
       ok: true,
-      estado: { versao: 3, avisoAceitoEm: DATA, ajustes: { recolhido: false } },
+      estado: { versao: 3, avisoAceitoEm: DATA, historico: [], ajustes: { recolhido: false } },
     });
     expect(migrar({ versao: 2, avisoAceitoEm: DATA }, migracoes, 3, v3)).toMatchObject({ ok: true, estado: { ajustes: { recolhido: false } } });
     expect(migrar({ versao: 1, aceite: DATA }, {}, 3, v3)).toMatchObject({ ok: false, erro: expect.stringContaining('versão 1') });
+  });
+
+  it('versão 1 (antes do M5) ganha o histórico vazio e continua com o programa', () => {
+    const { historico, ...v1 } = estadoDe(PERSONAS.ana);
+    void historico;
+    const r = migrar(JSON.parse(JSON.stringify({ ...v1, versao: 1 })));
+    expect(r).toEqual({ ok: true, estado: { ...v1, versao: 2, historico: [] } });
   });
 
   it('na versão atual, devolve o estado validado', () => {

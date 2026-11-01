@@ -2,9 +2,12 @@ import type { z } from 'zod';
 import { estadoSchema, VERSAO_ESTADO, type Estado } from './esquema';
 
 // Migrações do estado guardado. Cada entrada leva da versão N para N + 1.
-// Hoje só existe a versão 1; a próxima mudança de formato entra aqui, com teste em tests/unit/armazenamento.test.ts.
+// Cada mudança de formato entra aqui, com teste em tests/unit/armazenamento.test.ts.
 export type Migracao = (anterior: Record<string, unknown>) => Record<string, unknown>;
-export const MIGRACOES: Record<number, Migracao> = {};
+export const MIGRACOES: Record<number, Migracao> = {
+  // 1 → 2 (M5): histórico de sessões de treino.
+  1: (anterior) => ({ ...anterior, historico: [] }),
+};
 
 export type ResultadoMigracao = { ok: true; estado: Estado } | { ok: false; erro: string };
 
