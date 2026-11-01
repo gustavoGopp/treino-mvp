@@ -1,5 +1,5 @@
 import Anthropic from '@anthropic-ai/sdk';
-import { ESQUEMA_RESPOSTA, instrucoes } from '../../src/domain/visao';
+import { ESQUEMA_RESPOSTA, instrucoes } from '../../src/domain/visao/index.js';
 
 // Chamada ao Claude com saída estruturada (JSON Schema gerado da taxonomia).
 // Modelo configurável em VISION_MODEL; o padrão é o Opus atual. A escolha final é do Gustavo,

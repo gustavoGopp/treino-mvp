@@ -1,6 +1,6 @@
 import Anthropic from '@anthropic-ai/sdk';
-import { Limite, processarPedido, type Pedido } from './_lib/pedido';
-import { reconhecer } from './_lib/modelo';
+import { Limite, processarPedido, type Pedido } from './_lib/pedido.js';
+import { reconhecer } from './_lib/modelo.js';
 
 // Única função no servidor (CLAUDE.md): recebe fotos já reduzidas e sem metadados, valida o convite e o limite,
 // chama o Claude e devolve sugestões validadas. Não guarda nada; os logs não levam imagem.

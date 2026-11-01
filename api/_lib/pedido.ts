@@ -1,4 +1,4 @@
-import { validarSugestoes, type Sugestao } from '../../src/domain/visao';
+import { validarSugestoes, type Sugestao } from '../../src/domain/visao/index.js';
 
 // Regras do pedido de visão (plano, seção g.3): convite, limite por aparelho e por IP, tamanho e tipo das fotos.
 // Nada é salvo e nada da imagem vai para o log. A chamada ao modelo é injetada (testes sem rede).

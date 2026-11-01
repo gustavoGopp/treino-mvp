@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { inventarioSchema, ITENS, ITEM_IDS, type Inventario, type ItemId } from '../taxonomia/equipamentos';
+import { inventarioSchema, ITENS, ITEM_IDS, type Inventario, type ItemId } from '../taxonomia/equipamentos.js';
 
 // Visão (M4): o modelo só sugere; a pessoa confirma. Funções puras, sem rede.
 // Plano: docs/PLANO-MVP.md, seção g. Decisões: docs/pesquisa/11-decisoes-m4.md.

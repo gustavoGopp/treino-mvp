@@ -1,0 +1,16 @@
+{
+  // Função da Vercel (api/): a Vercel compila como módulo ES do Node, que exige extensão .js nos imports relativos.
+  // Este projeto confere isso no "tsc -b" (antes, o erro só aparecia no deploy).
+  "compilerOptions": {
+    "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.api.tsbuildinfo",
+    "target": "ES2022",
+    "lib": ["ES2023", "DOM"],
+    "module": "NodeNext",
+    "moduleResolution": "NodeNext",
+    "strict": true,
+    "skipLibCheck": true,
+    "noEmit": true,
+    "types": ["node"]
+  },
+  "include": ["api"]
+}
