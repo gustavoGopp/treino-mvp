@@ -24,6 +24,11 @@ describe('dupla progressão', () => {
     const h = [sessao(kg(10), [12, 12, 12]), sessao(kg(10), [12, 12, 12], 1, { amplitudeCompleta: false })];
     expect(sugerirProgressao(h, alvo, halter).acao).toBe('manter');
   });
+  it('as quedas do drop set ficam fora da progressão (tempo.drop-set)', () => {
+    const h = [sessao(kg(10), [12, 12, 12]), sessao(kg(10), [12, 12, 12])];
+    const comQuedas = h.map((x) => ({ series: x.series.map((y, i) => (i === 2 ? { ...y, quedas: [{ carga: kg(8), reps: 8 }, { carga: kg(6), reps: 6 }] } : y)) }));
+    expect(sugerirProgressao(comQuedas, alvo, halter)).toEqual(sugerirProgressao(h, alvo, halter));
+  });
   it('salto acima de 10% pede 1–2 repetições acima do topo antes', () => {
     const h = [sessao(kg(8), [12, 12, 12]), sessao(kg(8), [12, 12, 12])];
     const s = sugerirProgressao(h, alvo, { tipo: 'halter', cargasHalter: [8, 10] });

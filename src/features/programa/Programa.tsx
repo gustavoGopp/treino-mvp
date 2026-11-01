@@ -245,6 +245,7 @@ function CartaoExercicio({ x, n, dia }: { x: ExercicioPrescrito; n: number; dia:
         <p className="sub-rx">
           RIR {faixa(x.rir)} · descanso {tempo(x.descansoSeg)}
           {par && ' · bi-set'}
+          {x.dropSet && ' · última série em drop set'}
         </p>
       </div>
     </>

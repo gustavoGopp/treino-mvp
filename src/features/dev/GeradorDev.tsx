@@ -83,6 +83,7 @@ export function GeradorDev() {
                   <summary>
                     <b>{x.nome}</b> — {x.series} × {x.reps.join('–')} · RIR {x.rir.join('–')} · {(Math.round(x.descansoSeg / 15) / 4).toLocaleString('pt-BR')} min
                     {x.supersetCom && ' · bi-set'}
+                    {x.dropSet && ' · drop set'}
                   </summary>
                   <ul className="porques">
                     {x.porque.map((q) => (

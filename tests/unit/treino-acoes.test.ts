@@ -40,6 +40,15 @@ describe('ações do treino', () => {
     expect(iniciarSessao(e, T1).sessaoAtual!.diaId).toBe('corpo-b');
   });
 
+  it('a série com drop set guarda as quedas (até 2) e continua válida no esquema salvo', () => {
+    let e = iniciarSessao(estadoAna(), T0);
+    const comQuedas = { ...serie, quedas: [{ carga: { tipo: 'kg' as const, kg: 6 }, reps: 8 }, { carga: { tipo: 'kg' as const, kg: 4 }, reps: 6 }] };
+    e = registrarSerie(e, 0, comQuedas);
+    expect(e.sessaoAtual!.exercicios[0]!.series[0]!.quedas).toHaveLength(2);
+    expect(estadoSchema.parse(e)).toEqual(e);
+    const tres = { ...comQuedas, quedas: [...comQuedas.quedas, comQuedas.quedas[0]!] };
+    expect(estadoSchema.safeParse(registrarSerie(e, 0, tres)).success).toBe(false);
+  });
   it('troca pela alternativa: no lugar quando não houve série; depois, quando já houve', () => {
     let e = iniciarSessao(estadoAna(), T0);
     const orig = e.sessaoAtual!.exercicios[0]!.exId;

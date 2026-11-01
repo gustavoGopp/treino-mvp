@@ -94,6 +94,12 @@ export function Treino() {
             <p className="meta">
               Meta: {x.series} × {faixa(x.reps)}
               {x.unilateral ? ' (cada lado)' : ''} · RIR {faixa(x.rir)}
+              {x.dropSet && (
+                <>
+                  {' '}
+                  · última série em drop set <Selo id="tempo.drop-set" />
+                </>
+              )}
             </p>
             {x.animacaoId && (
               <Link className="link-guia" to={`/guia/${x.animacaoId}`}>
@@ -117,6 +123,7 @@ export function Treino() {
               <li key={n}>
                 <span className="n">{n + 1}</span> {textoCarga(s.carga)} × {s.reps} · RIR {s.rir === 4 ? '4+' : s.rir}
                 {s.dor ? ` · dor ${s.dor}` : ''}
+                {s.quedas?.length ? ` · quedas: ${s.quedas.map((q) => `${textoCarga(q.carga)} × ${q.reps}`).join(', ')}` : ''}
               </li>
             ))}
             <li>
@@ -253,6 +260,13 @@ function RegistroSerie({
   const [reps, setReps] = useState<number>(ultima?.reps ?? x.reps[0]);
   const [rir, setRir] = useState<number | undefined>(anteriores.at(-1)?.rir);
   const pronto = !!carga && rir !== undefined && reps >= 0;
+  // Drop set na última série (tempo.drop-set): as quedas ficam registradas, fora da progressão.
+  const comQuedas = !!x.dropSet && numero === x.series;
+  const [quedas, setQuedas] = useState<{ carga?: Carga; reps: number }[]>([
+    { reps: 0 },
+    { reps: 0 },
+  ]);
+  const quedasFeitas = quedas.filter((q): q is { carga: Carga; reps: number } => !!q.carga && q.reps > 0);
 
   return (
     <section className="registro" aria-label={`Série ${numero}`}>
@@ -286,7 +300,51 @@ function RegistroSerie({
           ))}
         </div>
       </fieldset>
-      <button type="button" className="btn" disabled={!pronto} onClick={() => carga && rir !== undefined && aoFazer({ carga, reps, rir })}>
+      {comQuedas && (
+        <fieldset className="campo quedas">
+          <legend>Drop set (opcional)</legend>
+          <p className="ajuda">
+            Logo depois da série, sem descansar: tire cerca de 20–30% da carga e faça mais repetições; repita uma vez. Anote as quedas se quiser.
+            <Selo id="tempo.drop-set" />
+          </p>
+          {quedas.map((q, n) => (
+            <div key={n} className="queda">
+              <span className="rotulo-curto">Queda {n + 1}</span>
+              <ControleCarga
+                registro={op.registro}
+                cargas={op.cargasHalter}
+                placasMax={op.placasMax}
+                valor={q.carga}
+                aoMudar={(c) => setQuedas((qs) => qs.map((y, k) => (k === n ? { ...y, carga: c } : y)))}
+              />
+              <div className="stepper" role="group" aria-label={`Repetições da queda ${n + 1}`}>
+                <button
+                  type="button"
+                  aria-label={`Menos uma repetição na queda ${n + 1}`}
+                  disabled={q.reps <= 0}
+                  onClick={() => setQuedas((qs) => qs.map((y, k) => (k === n ? { ...y, reps: Math.max(0, y.reps - 1) } : y)))}
+                >
+                  −
+                </button>
+                <output aria-live="polite">{q.reps}</output>
+                <button
+                  type="button"
+                  aria-label={`Mais uma repetição na queda ${n + 1}`}
+                  onClick={() => setQuedas((qs) => qs.map((y, k) => (k === n ? { ...y, reps: y.reps + 1 } : y)))}
+                >
+                  +
+                </button>
+              </div>
+            </div>
+          ))}
+        </fieldset>
+      )}
+      <button
+        type="button"
+        className="btn"
+        disabled={!pronto}
+        onClick={() => carga && rir !== undefined && aoFazer({ carga, reps, rir, ...(comQuedas && quedasFeitas.length ? { quedas: quedasFeitas } : {}) })}
+      >
         Série feita · descansar {tempo(x.descansoSeg)}
       </button>
     </section>

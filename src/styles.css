@@ -411,3 +411,4 @@ a.cartao-ex-corpo:focus-visible{outline:3px solid var(--accent);outline-offset:-
 .sim-nao button[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
 .sim-nao button:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
 .arquivo-campo label[aria-disabled="true"]{opacity:.6}
+.quedas .queda{display:flex;flex-wrap:wrap;align-items:center;gap:8px;padding:6px 0;border-top:1px solid var(--line)}
