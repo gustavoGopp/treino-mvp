@@ -11,25 +11,62 @@ test('do zero ao programa em menos de 5 minutos (persona Ana)', async ({ page })
   await expect(page.getByRole('tab', { name: 'Corpo todo A', exact: true })).toHaveAttribute('aria-selected', 'true');
   const painel = page.getByRole('tabpanel');
   // Semana 1 (fase de aprendizado da iniciante): menos séries que o programa completo.
-  await expect(painel.locator('.series').first()).toHaveText('2 × 8–15');
-  // Exercício com animação mostra a imagem e abre o guia (no dia A da Ana, todos já têm animação).
+  await expect(painel.locator('.series').first()).toHaveText('3 × 8–12 cada lado');
+  // Exercício com animação mostra a imagem e abre o guia.
   await expect(painel.locator('.miniatura svg').first()).toBeVisible();
-  await expect(painel.locator('.miniatura.vazia')).toHaveCount(0);
+  // Sem animação aprovada: "animação em breve" (ponte de glúteo), nunca uma animação improvisada.
+  await expect(painel.locator('.miniatura.vazia')).toHaveCount(1);
   // O porquê, com o selo de evidência, fica um toque abaixo.
   await painel.getByText('Detalhes', { exact: true }).first().click();
   await expect(painel.locator('.mais .selo').first()).toBeVisible();
   // Outro dia.
   await page.getByRole('tab', { name: 'Corpo todo B', exact: true }).click();
-  await expect(painel.getByRole('heading', { name: /Agachamento búlgaro/ })).toBeVisible();
-  // Sem animação aprovada: "animação em breve" (desenvolvimento unilateral).
-  await expect(painel.locator('.miniatura.vazia').first()).toBeVisible();
+  await expect(painel.getByRole('heading', { name: /Stiff unilateral/ })).toBeVisible();
   // Avisos de meta por músculo em "Sobre o programa".
   await page.getByText('Sobre o programa: avisos e o porquê').click();
   await expect(page.getByText(/Abaixo da meta semanal/).first()).toBeVisible();
 
   await page.getByRole('tab', { name: 'Corpo todo A', exact: true }).click();
-  await painel.getByRole('link', { name: /Agachamento goblet.*ver como fazer/ }).click();
-  await expect(page).toHaveURL(/\/guia\/goblet$/);
+  await painel.getByRole('link', { name: /Agachamento búlgaro.*ver como fazer/ }).click();
+  await expect(page).toHaveURL(/\/guia\/bulgaro$/);
+});
+
+test('divisão: as opções aparecem sem nada marcado, a recomendada vem explicada e a escolha vira o programa', async ({ page }) => {
+  await page.goto('/');
+  await page.getByRole('button', { name: 'Entendi, vamos começar' }).click();
+  await triagem(page);
+  await page.getByRole('group', { name: /sem parar/ }).getByLabel('Menos de 6 meses').check();
+  await page.getByRole('group', { name: /treinando agora/ }).getByLabel(/^Estou treinando/).check();
+  await page.getByRole('group', { name: /confiança na técnica/ }).getByLabel(/^Sim/).check();
+  await page.getByRole('button', { name: 'Continuar' }).click();
+  await page.getByRole('group', { name: /Quantos dias/ }).getByLabel('3 dias').check();
+  await page.getByLabel('Quantos minutos por treino?').fill('60');
+  const divisao = page.getByRole('group', { name: /Como prefere dividir/ });
+  await expect(divisao).toBeVisible();
+  for (const r of await divisao.getByRole('radio').all()) await expect(r).not.toBeChecked();
+  await expect(divisao.getByText('Recomendada', { exact: true })).toBeVisible();
+  await expect(divisao.getByText(/cerca de 8 exercícios por treino/).first()).toBeVisible();
+  // Iniciante: as metas cabem em 1 sessão por músculo, então a clássica aparece, com o aviso das faltas.
+  await expect(divisao.getByText(/faltar a um dia tira a semana inteira/)).toBeVisible();
+  await divisao.getByLabel(/Superior\/Inferior \+ Corpo todo/).check();
+  // Mudar os dias limpa a escolha (a divisão é de um número de dias).
+  await page.getByRole('group', { name: /Quantos dias/ }).getByLabel('4 dias').check();
+  for (const r of await divisao.getByRole('radio').all()) await expect(r).not.toBeChecked();
+  await page.getByRole('group', { name: /Quantos dias/ }).getByLabel('3 dias').check();
+  await divisao.getByLabel(/Superior\/Inferior \+ Corpo todo/).check();
+  await page.getByRole('button', { name: 'Continuar' }).click();
+  await page.getByLabel('Halteres fixos', { exact: true }).check();
+  await page.getByRole('group', { name: 'O mais leve' }).getByLabel('1 kg', { exact: true }).check();
+  await page.getByRole('group', { name: 'O mais pesado' }).getByLabel('12 kg', { exact: true }).check();
+  await page.getByRole('group', { name: 'De quanto em quanto' }).getByLabel('1 kg', { exact: true }).check();
+  await page.getByLabel('Banco reto', { exact: true }).check();
+  await page.getByRole('button', { name: 'Continuar' }).click();
+  await page.getByRole('group', { name: /dor em alguma articulação/ }).getByLabel('Não').check();
+  await page.getByRole('button', { name: 'Gerar meu programa' }).click();
+  for (const dia of ['Superior A', 'Inferior A', 'Corpo todo']) await expect(page.getByRole('tab', { name: dia, exact: true })).toBeVisible();
+  // A escolha fica salva na rotina.
+  await page.goto('/comecar/rotina');
+  await expect(page.getByRole('group', { name: /Como prefere dividir/ }).getByLabel(/Superior\/Inferior \+ Corpo todo/)).toBeChecked();
 });
 
 test('triagem com "sim" bloqueia, e confirmar a liberação desbloqueia', async ({ page }) => {
@@ -60,15 +97,16 @@ test('"sim" só no osteoarticular pede as regiões em vez de bloquear', async ({
 });
 
 test('escolher uma opção calculada gera o programa de novo com o novo perfil', async ({ page }) => {
-  await ana(page);
+  await ana(page, { minutos: '40' });
   // Os ajustes ficam recolhidos numa faixa; nenhuma opção vem escolhida.
   await expect(page.getByRole('tab', { name: 'Corpo todo A', exact: true })).toBeVisible();
   await page.getByRole('button', { name: 'Ver opções' }).click();
   const ajustes = page.getByRole('region', { name: 'Ajustes possíveis' });
-  await ajustes.getByRole('button', { name: /^4 treinos de 50 min/ }).click();
-  await expect(page.getByRole('status')).toContainText('4 treinos de 50 min');
+  await ajustes.getByRole('button', { name: /^4 treinos de 40 min/ }).click();
+  await expect(page.getByRole('status')).toContainText('4 treinos de 40 min');
   await expect(page.getByRole('list', { name: 'Resumo' })).toContainText('4x por semana');
-  await expect(page.getByRole('tab', { name: 'Torso A', exact: true })).toBeVisible();
+  // Com 4 dias, a recomendada é Superior/Inferior 2x.
+  await expect(page.getByRole('tab', { name: 'Superior A', exact: true })).toBeVisible();
 
   // "Manter" recolhe a faixa; dá para reabrir em "Sobre o programa".
   const verOpcoes = page.getByRole('button', { name: 'Ver opções' });

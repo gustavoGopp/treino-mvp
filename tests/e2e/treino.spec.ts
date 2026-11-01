@@ -28,7 +28,7 @@ async function comecar(page: Page, dia = 'Corpo todo A') {
 test('sessão completa: registra as séries, descansa e recebe a sugestão para a próxima vez', async ({ page }) => {
   await ana(page);
   await comecar(page);
-  await expect(page.getByRole('heading', { name: 'Agachamento goblet com calcanhar elevado' })).toBeVisible();
+  await expect(page.getByRole('heading', { name: 'Agachamento búlgaro com apoio' })).toBeVisible();
   await expect(page.getByText(/Primeira vez: escolha uma carga/)).toBeVisible();
   await expect(page.getByText(/1–2 séries leves de aquecimento/)).toBeVisible();
 
@@ -94,7 +94,7 @@ test('trocar pela alternativa vale só para esta sessão', async ({ page }) => {
   await comecar(page);
   await page.getByRole('button', { name: 'Trocar exercício' }).click();
   await page.getByRole('region', { name: 'Trocar exercício' }).getByRole('button').first().click();
-  await expect(page.getByText(/No lugar de agachamento goblet/)).toBeVisible();
+  await expect(page.getByText(/No lugar de agachamento búlgaro/)).toBeVisible();
 });
 
 test('dor acima de 5 encerra o exercício e oferece a alternativa', async ({ page }) => {

@@ -21,7 +21,7 @@ export async function triagem(page: Page, { simEm = [], pausa = 0 }: Opcoes = {}
   await page.getByRole('button', { name: 'Continuar' }).click();
 }
 
-export async function ana(page: Page, { pausa = 0 }: { pausa?: number } = {}) {
+export async function ana(page: Page, { pausa = 0, minutos = '50', divisao }: { pausa?: number; minutos?: string; divisao?: string } = {}) {
   const p = () => (pausa ? page.waitForTimeout(pausa) : Promise.resolve());
   await page.goto('/');
   await p();
@@ -39,9 +39,11 @@ export async function ana(page: Page, { pausa = 0 }: { pausa?: number } = {}) {
 
   await expect(page.getByRole('heading', { name: 'Sua rotina de treino' })).toBeVisible();
   await grupo(page, /Quantos dias/).getByLabel('3 dias').check();
-  await page.getByLabel('Quantos minutos por treino?').fill('50');
-  await page.getByLabel('Pernas').check();
-  await page.getByLabel('Glúteos').check();
+  await page.getByLabel('Quantos minutos por treino?').fill(minutos);
+  await page.getByLabel('Pernas', { exact: true }).check();
+  await page.getByLabel('Glúteos', { exact: true }).check();
+  // Divisão: passo opcional, nada vem marcado (divisao.recomendacao).
+  if (divisao) await grupo(page, /Como prefere dividir/).getByLabel(divisao).check();
   await p();
   await page.getByRole('button', { name: 'Continuar' }).click();
 
