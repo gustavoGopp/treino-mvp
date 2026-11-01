@@ -10,6 +10,8 @@ import { Restricoes } from './features/onboarding/Restricoes';
 import { Rotina } from './features/onboarding/Rotina';
 import { Triagem } from './features/onboarding/Triagem';
 import { Programa } from './features/programa/Programa';
+import { Resumo } from './features/treino/Resumo';
+import { Treino } from './features/treino/Treino';
 
 // Só em desenvolvimento: fora do bundle de produção.
 const GeradorDev = import.meta.env.DEV ? lazy(() => import('./features/dev/GeradorDev').then((m) => ({ default: m.GeradorDev }))) : null;
@@ -26,6 +28,8 @@ export function App() {
           <Route path="/comecar/inventario" element={<Inventario />} />
           <Route path="/comecar/restricoes" element={<Restricoes />} />
           <Route path="/programa" element={<Programa />} />
+          <Route path="/treino" element={<Treino />} />
+          <Route path="/treino/fim" element={<Resumo />} />
           <Route path="/dados" element={<Dados />} />
           <Route path="/guia" element={<Navigate to="/guia/supino-inclinado" replace />} />
           <Route path="/guia/:id" element={<Guia />} />

@@ -1,11 +1,14 @@
 import { useMemo, useState } from 'react';
-import { Link, Navigate } from 'react-router-dom';
+import { Link, Navigate, useNavigate } from 'react-router-dom';
 import { BIBLIOTECA, type Musculo } from '../../domain/biblioteca';
 import { NOME_MUSCULO, type ExercicioPrescrito, type Programa as TipoPrograma } from '../../domain/gerador';
 import { opcoesDeAjuste, type Opcao } from '../../domain/gerador/opcoes';
 import { NOME_NIVEL } from '../../domain/nivel';
 import { avaliarTriagem } from '../../domain/triagem';
+import { proximoDia, semanaDoPrograma } from '../../domain/sessao';
+import { prescricaoDaSemana } from '../../domain/gerador';
 import { perfilDe, primeiroPassoPendente, type Estado } from '../../storage/esquema';
+import { iniciarSessao } from '../treino/acoes';
 import { agoraIso, gerarDoEstado, mesmoConteudo, useApp } from '../app/estado';
 import { Selo, Titulo, Topo } from '../app/ui';
 import { Miniatura } from './Miniatura';
@@ -21,7 +24,11 @@ const musculos = (ms: readonly Musculo[]) => ms.map((m) => NOME_MUSCULO[m]).join
 export function Programa() {
   const { estado, atualizar } = useApp();
   const [aviso, setAviso] = useState('');
-  const [diaSel, setDiaSel] = useState(0);
+  const navigate = useNavigate();
+  const [diaSel, setDiaSel] = useState(() => {
+    const p = estado.programa?.programa;
+    return p ? Math.max(0, p.dias.findIndex((d) => d.id === proximoDia(p, estado.historico).id)) : 0;
+  });
   const [verAjustes, setVerAjustes] = useState(false);
   const perfil = useMemo(() => perfilDe(estado), [estado]);
   const opcoes = useMemo(() => (perfil && estado.inventario ? opcoesDeAjuste(perfil, estado.inventario) : []), [perfil, estado.inventario]);
@@ -74,7 +81,10 @@ export function Programa() {
     setAviso(`Programa gerado de novo: ${o.titulo.charAt(0).toLowerCase() + o.titulo.slice(1)}.`);
   };
 
-  const dia = salvo.dias[Math.min(diaSel, salvo.dias.length - 1)]!;
+  // Mostra a prescrição desta semana (fases de readaptação e aprendizado mudam séries e RIR).
+  const semana = semanaDoPrograma(estado.historico, agoraIso());
+  const diasDaSemana = prescricaoDaSemana(salvo, semana);
+  const dia = diasDaSemana[Math.min(diaSel, diasDaSemana.length - 1)]!;
   const abaixo = salvo.avisos.filter((a) => a.texto.startsWith('Abaixo da meta')).length;
   const faseAtual = salvo.fases[0];
 
@@ -117,12 +127,18 @@ export function Programa() {
 
         {faseAtual && (
           <p className="fase">
-            <b>{/^\d/.test(faseAtual.semanas) ? `Semana ${faseAtual.semanas}` : faseAtual.semanas}:</b> {faseAtual.texto}
+            <b>Você está na semana {semana}.</b> {faseDaSemana(salvo, semana)?.texto ?? faseAtual.texto}
           </p>
         )}
 
+        {estado.sessaoAtual ? (
+          <Link className="btn" to="/treino">
+            Continuar o treino em andamento
+          </Link>
+        ) : null}
+
         <div className="abas" role="tablist" aria-label="Dias de treino">
-          {salvo.dias.map((d, i) => (
+          {diasDaSemana.map((d, i) => (
             <button
               key={d.id}
               type="button"
@@ -134,9 +150,9 @@ export function Programa() {
               onClick={() => setDiaSel(i)}
               onKeyDown={(e) => {
                 if (e.key === 'ArrowRight' || e.key === 'ArrowLeft') {
-                  const n = (i + (e.key === 'ArrowRight' ? 1 : salvo.dias.length - 1)) % salvo.dias.length;
+                  const n = (i + (e.key === 'ArrowRight' ? 1 : diasDaSemana.length - 1)) % diasDaSemana.length;
                   setDiaSel(n);
-                  document.getElementById(`aba-${salvo.dias[n]!.id}`)?.focus();
+                  document.getElementById(`aba-${diasDaSemana[n]!.id}`)?.focus();
                 }
               }}
             >
@@ -148,7 +164,20 @@ export function Programa() {
         <section className="painel-dia" role="tabpanel" id={`painel-${dia.id}`} aria-labelledby={`aba-${dia.id}`}>
           <h2 className="info-dia">
             {dia.nome} · {dia.exercicios.length} exercícios · ~{dia.minutosEstimados} min
+            {dia.id === proximoDia(salvo, estado.historico).id && estado.historico.length > 0 ? ' · próximo da rotação' : ''}
           </h2>
+          {!estado.sessaoAtual && (
+            <button
+              type="button"
+              className="btn"
+              onClick={() => {
+                atualizar((s) => iniciarSessao(s, agoraIso(), dia.id));
+                navigate('/treino');
+              }}
+            >
+              Começar o treino {dia.nome}
+            </button>
+          )}
           <ol className="cartoes-ex">
             {dia.exercicios.map((x, i) => (
               <CartaoExercicio key={x.exId} x={x} n={i + 1} dia={dia.exercicios} />
@@ -160,6 +189,16 @@ export function Programa() {
       </main>
     </div>
   );
+}
+
+/** Fase que vale na semana (mesma leitura de prescricaoDaSemana: "1", "1–2", "3+", "1ª sessão"). */
+function faseDaSemana(p: TipoPrograma, semana: number) {
+  return p.fases.find((f) => {
+    const [a, b] = f.semanas.split(/[–+]/).map((x) => parseInt(x, 10));
+    if (Number.isNaN(a)) return semana === 1;
+    if (f.semanas.endsWith('+')) return semana >= a!;
+    return semana >= a! && semana <= (Number.isNaN(b) || b === undefined ? a! : b);
+  });
 }
 
 function Ajustes({ opcoes, escolher }: { opcoes: Opcao[]; escolher: (o: Opcao) => void }) {

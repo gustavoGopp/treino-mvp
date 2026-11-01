@@ -354,3 +354,39 @@ a.cartao-ex-corpo:focus-visible{outline:3px solid var(--accent);outline-offset:-
 .mais-corpo{padding:0 12px 12px;display:flex;flex-direction:column;gap:8px;font-size:14px}
 .mais-corpo p{margin:0}
 .sobre h3{margin:6px 0 0;font-family:var(--font-d);font-size:18px}
+
+/* Treino em andamento (M5): um exercício por vez, botões grandes, descanso fixo embaixo (alcance do polegar) */
+.sessao{gap:12px;padding-bottom:150px}
+.ex-sessao{display:grid;grid-template-columns:112px 1fr;gap:12px;align-items:center}
+.ex-sessao .titulo{font-size:24px}
+.meta{margin:4px 0 0;font-size:14px;color:var(--muted);font-variant-numeric:tabular-nums}
+.sugestao{display:flex;flex-direction:column;gap:2px;background:var(--surface);border:1.5px solid var(--accent);border-radius:12px;padding:10px 12px;font-size:14px}
+.sugestao b{font-family:var(--font-d);font-size:22px}
+.series-feitas{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:4px;font-variant-numeric:tabular-nums}
+.series-feitas li{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:8px 12px;font-size:15px}
+.series-feitas li:last-child{background:none;border:0;padding:0}
+.series-feitas .n{font-family:var(--font-d);color:var(--link);font-weight:700;margin-right:6px}
+.registro{background:var(--surface);border:1.5px solid var(--line);border-radius:14px;padding:12px;display:flex;flex-direction:column;gap:14px}
+.registro h2{margin:0;font-family:var(--font-d);font-size:20px}
+.linha-registro{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap}
+.rotulo-curto{font-weight:600;font-size:16px}
+.stepper{display:flex;align-items:center;gap:6px}
+.stepper button{width:52px;height:52px;border-radius:12px;border:1.5px solid var(--line);background:var(--surface);font-size:26px;line-height:1;cursor:pointer;color:var(--ink)}
+.stepper button:disabled{opacity:.35;cursor:default}
+.stepper output{min-width:64px;text-align:center;font-family:var(--font-d);font-size:28px;font-weight:700;font-variant-numeric:tabular-nums}
+.stepper select{max-width:none;width:auto;min-width:110px;font-family:var(--font-d);font-size:22px;font-weight:700;text-align:center}
+.status-ok{margin:0;font-weight:600;color:var(--link)}
+.acoes-sessao{display:flex;gap:8px;flex-wrap:wrap}
+.btn.alerta{color:var(--err) !important;border-color:var(--err)}
+.nav-sessao{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.descanso{position:fixed;left:0;right:0;bottom:0;z-index:5;background:var(--surface);border-top:2px solid var(--accent);padding:10px 16px calc(10px + env(safe-area-inset-bottom));display:flex;flex-direction:column;gap:8px;box-shadow:0 -6px 18px rgba(0,0,0,.08)}
+.descanso.acabou{border-top-color:var(--warn);background:var(--warn-soft)}
+.descanso-topo{display:flex;justify-content:space-between;align-items:baseline;font-weight:600}
+.tclock-mini{font-family:var(--font-d);font-weight:700;font-size:40px;line-height:1;font-variant-numeric:tabular-nums}
+.descanso .tbar i{transition:width .25s linear}
+.descanso .tctl button{height:48px}
+.acao{font-family:var(--font-d);font-size:18px}
+.acao-subir{color:var(--link)}
+.acao-reduzir,.acao-voltar,.acao-interromper,.acao-ajustar{color:var(--warn)}
+.resumo-ex h3{margin:0;font-size:16px}
+@media (prefers-reduced-motion: reduce){ .descanso .tbar i{transition:none} }

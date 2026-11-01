@@ -10,7 +10,8 @@ test('do zero ao programa em menos de 5 minutos (persona Ana)', async ({ page })
   for (const dia of ['Corpo todo A', 'Corpo todo B', 'Corpo todo C']) await expect(page.getByRole('tab', { name: dia, exact: true })).toBeVisible();
   await expect(page.getByRole('tab', { name: 'Corpo todo A', exact: true })).toHaveAttribute('aria-selected', 'true');
   const painel = page.getByRole('tabpanel');
-  await expect(painel.locator('.series').first()).toHaveText('3 × 8–15');
+  // Semana 1 (fase de aprendizado da iniciante): menos séries que o programa completo.
+  await expect(painel.locator('.series').first()).toHaveText('2 × 8–15');
   // Exercício com animação mostra a imagem e abre o guia; sem animação, "animação em breve".
   await expect(painel.locator('.miniatura svg').first()).toBeVisible();
   await expect(painel.locator('.miniatura.vazia').first()).toBeVisible();
