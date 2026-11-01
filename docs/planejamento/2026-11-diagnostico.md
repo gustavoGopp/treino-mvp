@@ -362,3 +362,19 @@ Esforço: **P** = até 2 dias; **M** = 3 a 6 dias; **G** = mais de 1 semana. "Ag
 - a chave e os convites ainda não estão configurados em produção (o devlog do M4 diz que dependem do Gustavo, e a rede desta sessão bloqueia o site publicado);
 - o teste privado do cenário 1 continua passando (`privado/` não está neste ambiente);
 - a regressão visual continua verde no CI (não a rodei aqui).
+
+---
+
+## Atualização de 01/11/2026: respostas do Gustavo
+
+O Gustavo respondeu às perguntas:
+- **Público:** o público principal é ele mesmo. Família e amigos podem testar, sem que o plano dependa disso.
+- **Boneco:** topa testar com o atual e quer um boneco diferente num exercício, para comparar.
+- **Profissional de Educação Física:** fica de lado por agora.
+- **Triagem:** a correção pode ser feita, com o cadastro em até 1 minuto para quem não tem nenhuma condição.
+- **Academia completa:** o botão entra como opção.
+- **Ideia nova:** um acompanhamento personalizado do progresso (quantos treinos, se treinou menos do que devia, que carga pegar depois de faltar).
+
+A proposta de plano com essas decisões está em `2026-11-plano-revisado.md`. Ela traz dois achados novos:
+- **[medido]** o app não aplica a readaptação quando a pessoa para de treinar durante o uso;
+- a chave da Anthropic na Vercel não pôde ser verificada daqui, e há 3 projetos da Vercel ligados ao mesmo repositório.
