@@ -34,7 +34,7 @@ Essas decisões foram copiadas do programa de referência para o código, sem pe
 | [02-panorama-da-evidencia.md](02-panorama-da-evidencia.md) | O que a evidência mais recente (ACSM 2026 e meta-análises) diz de cada variável, comparado com as regras atuais | Pronto para revisão |
 | [03-universo-de-equipamentos.md](03-universo-de-equipamentos.md) | Os equipamentos que academias, condomínios e casas costumam ter, organizados para o gerador | Primeira versão |
 | [04-exercicios-por-musculo.md](04-exercicios-por-musculo.md) | Tema T3: o que cresce mais em cada um dos 12 músculos, as regras de escolha por função e quantos exercícios por semana | Aprovado em 01/11/2026 |
-| [05-montagem-da-sessao.md](05-montagem-da-sessao.md) | Tema T4: quanto cabe em cada duração, ordem, aquecimento e a nova escada de cortes quando falta tempo | Pronto para revisão |
+| [05-montagem-da-sessao.md](05-montagem-da-sessao.md) | Tema T4: quanto cabe em cada duração, ordem, aquecimento e a nova escada de cortes quando falta tempo | Aprovado em 01/11/2026 |
 
 ## Plano dos próximos temas (em ordem)
 
