@@ -412,10 +412,12 @@ As listas exatas ficam em `tests/unit/metas-r0.test.ts`, para o R0c zerar.
 
 **Imagens:** `img/r0c-equipamento.png` (o multifuncional e as estações) e `img/r0c-cartao.png` (o cartão de texto do hack).
 
-**Para a decisão do Gustavo**
-1. **O leg press não aparece para a Carla.** Ele empata com o hack e o smith em tudo, e o último desempate é a ordem alfabética do id. Trocar o desempate pela ordem da tabela da pesquisa traria o leg press de volta, mas também mudaria a Ana (goblet no lugar do búlgaro), o Bruno e o Diego. Por isso ficou como estava.
-2. **A adução sem alternativa:** é complemento opcional, e nenhum outro exercício do catálogo tem os adutores como principal. Com a máquina ocupada, ela fica de fora naquele dia.
-3. **O aviso da panturrilha sentada** para quem prioriza pernas e não tem a máquina. Ele segue o mesmo padrão do aviso da abdução.
+**Decisões do Gustavo (01/11/2026)** — o marco foi aprovado, com os snapshots das 4 personas:
+1. **Leg press:** o desempate fica como está, e o leg press segue nas alternativas. Entra uma funcionalidade nova, a **preferência** ("prefiro este" entre equivalentes), que vale nos próximos programas e nas trocas entre locais (marco R1b).
+2. **Adução sem alternativa:** aprovada como exceção.
+3. **Aviso da panturrilha sentada** para quem prioriza pernas sem a máquina: aprovado.
+
+**Ideia nova do Gustavo, que virou o marco R1b:** cadastrar mais de um local (por exemplo, a academia do prédio e a do bairro) e fazer o treino de um no outro, com trocas inteligentes de aparelho e sem perder o progresso.
 
 **Fica para depois:** os atalhos de cenário, a esteira fora da lista e a pergunta da menor anilha (R1); as animações dos exercícios novos (pela fila da seção 6); os desenhos dos 21 equipamentos; e a calibração por tipo de carga (R2).
 
