@@ -2,6 +2,7 @@ import { Link, Navigate } from 'react-router-dom';
 import { BIBLIOTECA } from '../../domain/biblioteca';
 import { diaDaSemana, resumoSessao, sugestaoDoExercicio, textoCarga } from '../../domain/sessao';
 import { useApp } from '../app/estado';
+import { inventarioDoTreino, opcoesDaCarga } from './acoes';
 import { Selo, Titulo, Topo } from '../app/ui';
 
 // Fim do treino: resumo e a sugestão de cada exercício para a próxima vez (decisão 9 do M5).
@@ -14,6 +15,7 @@ const ACAO: Record<string, string> = {
   estagnado: 'Estagnado',
   ajustar: 'Ajustar',
   interromper: 'Trocar',
+  calibrar: 'Calibrar',
 };
 
 const plural = (n: number, um: string, varios: string) => `${n} ${n === 1 ? um : varios}`;
@@ -55,7 +57,7 @@ export function Resumo() {
               .map((e) => {
                 const orig = dia.exercicios.find((x) => x.exId === (e.noLugarDe ?? e.exId));
                 const alvo = { exId: e.exId, reps: (e.noLugarDe ? POR_ID[e.exId]?.faixaReps : orig?.reps) ?? [8, 12], rir: orig?.rir ?? [1, 2] };
-                const sug = sugestaoDoExercicio(estado.historico, alvo as { exId: string; reps: [number, number]; rir: [number, number] }, estado.inventario ?? {});
+                const sug = sugestaoDoExercicio(estado.historico, alvo as { exId: string; reps: [number, number]; rir: [number, number] }, inventarioDoTreino(estado, s), opcoesDaCarga(estado, s));
                 return (
                   <li key={e.exId} className="cartao-ex resumo-ex">
                     <div className="mais-corpo">

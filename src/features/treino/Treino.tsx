@@ -6,13 +6,26 @@ import { linkDoGuia } from '../guia/link';
 import { ESCADA_PESO_CORPO, type Carga, type SerieRegistrada } from '../../domain/progressao';
 import { MENOR_ANILHA_PADRAO_KG } from '../../domain/taxonomia/equipamentos';
 import { CartaoTexto } from '../programa/CartaoTexto';
-import { diaDaSemana, opcoesCarga, precisaAquecer, prescricaoDaVaga, REGRA_AQUECIMENTO, sugestaoDoExercicio, textoCarga, ultimaSerie } from '../../domain/sessao';
+import {
+  avaliarSerieDeCalibracao,
+  calibracaoNaSessao,
+  opcoesCarga,
+  precisaAquecer,
+  prescricaoDaVaga,
+  REGRA_AQUECIMENTO,
+  sugestaoDoExercicio,
+  textoCarga,
+  ultimaSerie,
+  type OpcoesSugestao,
+} from '../../domain/sessao';
+import { FUNCAO } from '../../domain/gerador/funcoes';
+import type { Inventario } from '../../domain/taxonomia/equipamentos';
 import { avaliarDor, avaliarSinal, type Sinal } from '../../domain/triagem';
 import type { Estado } from '../../storage/esquema';
 import { agoraIso, useApp } from '../app/estado';
 import { Selo, Titulo, Topo } from '../app/ui';
 import { Miniatura } from '../programa/Miniatura';
-import { desfazerSerie, interromperExercicio, registrarSerie, terminarSessao, trocarExercicio } from './acoes';
+import { alternarPreferencia, desfazerSerie, diaDoTreino, interromperExercicio, inventarioDoTreino, opcoesDaCarga, registrarSerie, terminarSessao, trocarExercicio } from './acoes';
 import { PainelDescanso, useDescanso } from './Temporizador';
 
 // Treino em andamento: um exercício por vez, séries registradas com um toque, descanso entre séries,
@@ -32,24 +45,32 @@ export function Treino() {
   const descanso = useDescanso();
   const sessao = estado.sessaoAtual;
   const programa = estado.programa?.programa;
-  const dia = useMemo(() => (programa && sessao ? diaDaSemana(programa, sessao.diaId, sessao.semana) : null), [programa, sessao]);
+  // O dia no local do treino (local.treino-do-dia): as vagas que não são possíveis ali já vêm trocadas, com o motivo.
+  const doTreino = useMemo(() => (sessao ? diaDoTreino(estado, sessao) : null), [estado, sessao]);
+  const dia = doTreino?.dia ?? null;
+  const vagaDe = (exId: string) => dia?.exercicios.find((x) => (x.noLugarDe ?? x.exId) === exId);
   // Ao voltar para um treino em andamento, abre o primeiro exercício que ainda não terminou.
   const [indice, setIndice] = useState(() => {
-    const meta = (exId: string) => dia?.exercicios.find((x) => x.exId === exId)?.series ?? 1;
+    const meta = (exId: string) => vagaDe(exId)?.series ?? 1;
     const i = sessao?.exercicios.findIndex((e) => !e.interrompido && e.series.length < meta(e.noLugarDe ?? e.exId)) ?? 0;
     return Math.max(0, i);
   });
   const [painel, setPainel] = useState<'nenhum' | 'trocar' | 'sentir'>('nenhum');
   const [aviso, setAviso] = useState<{ texto: string; regraId: string } | null>(null);
-  if (!sessao || !programa || !dia) return <Navigate to="/programa" replace />;
+  if (!sessao || !programa || !dia || !doTreino) return <Navigate to="/programa" replace />;
+  const inventario = inventarioDoTreino(estado, sessao);
+  const opcoesCargaHoje = opcoesDaCarga(estado, sessao);
 
+  // A vaga de cada item: a do dia no local; numa troca pela alternativa, a prescrição da vaga com a alternativa.
   const itens: Item[] = sessao.exercicios.map((feito) => {
-    const orig = dia.exercicios.find((x) => x.exId === (feito.noLugarDe ?? feito.exId)) ?? dia.exercicios[0]!;
-    return { x: prescricaoDaVaga(orig, feito.noLugarDe ? feito.exId : undefined), feito };
+    const vaga = vagaDe(feito.noLugarDe ?? feito.exId) ?? dia.exercicios[0]!;
+    return { x: feito.exId === vaga.exId ? vaga : prescricaoDaVaga(vaga, feito.exId), feito };
   });
   const i = Math.min(indice, itens.length - 1);
   const { x, feito } = itens[i]!;
   const completo = feito.series.length >= x.series || !!feito.interrompido;
+  const vaga = vagaDe(feito.noLugarDe ?? feito.exId);
+  const trocaDoLocal = doTreino.trocas.find((t) => t.vaga === feito.noLugarDe && t.entrou === feito.exId);
   const ultimo = i === itens.length - 1;
 
   const irPara = (n: number) => {
@@ -64,7 +85,10 @@ export function Treino() {
     navigate('/treino/fim', { replace: true });
   };
   const feita = (serie: SerieRegistrada) => {
-    atualizar((s) => registrarSerie(s, i, serie));
+    // Série de acerto da calibração (progressao.calibracao): fica no histórico, fora da dupla progressão.
+    const cal = calibracaoNaSessao(estado.historico, x, inventario, feito.series, opcoesCargaHoje);
+    const acerto = cal.calibrando && !avaliarSerieDeCalibracao(serie, x, inventario, opcoesCargaHoje).perto;
+    atualizar((s) => registrarSerie(s, i, acerto ? { ...serie, calibracao: true } : serie));
     if (feito.series.length + 1 < x.series) descanso.iniciar(x.descansoSeg);
     else if (!ultimo) descanso.iniciar(x.descansoSeg);
   };
@@ -110,10 +134,16 @@ export function Treino() {
           </div>
         </div>
         {!x.animacaoId && <CartaoTexto exId={x.exId} />}
-        {feito.noLugarDe && <p className="ajuda">No lugar de {POR_ID[feito.noLugarDe]?.nome.toLowerCase()}, só neste treino.</p>}
+        {trocaDoLocal ? (
+          <p className="ajuda troca-local">
+            Neste local, {trocaDoLocal.motivo}. <Selo id={trocaDoLocal.regraId} />
+          </p>
+        ) : (
+          feito.noLugarDe && <p className="ajuda">No lugar de {POR_ID[feito.noLugarDe]?.nome.toLowerCase()}, só neste treino.</p>
+        )}
 
-        <Sugestao x={x} estado={estado} />
-        {precisaAquecer(dia, dia.exercicios.findIndex((y) => y.exId === (feito.noLugarDe ?? feito.exId))) && feito.series.length === 0 && (
+        {feito.series.length === 0 && <Sugestao x={x} estado={estado} inventario={inventario} opcoes={opcoesCargaHoje} />}
+        {precisaAquecer(dia, dia.exercicios.findIndex((y) => y === vaga)) && feito.series.length === 0 && (
           <p className="fase">
             Antes: 1–2 séries leves de aquecimento, sem contar. <Selo id={REGRA_AQUECIMENTO} />
           </p>
@@ -124,6 +154,7 @@ export function Treino() {
             {feito.series.map((s, n) => (
               <li key={n}>
                 <span className="n">{n + 1}</span> {textoCarga(s.carga, feito.exId)} × {s.reps} · RIR {s.rir === 4 ? '4+' : s.rir}
+                {s.calibracao ? ' · acerto da carga' : ''}
                 {s.dor ? ` · dor ${s.dor}` : ''}
                 {s.quedas?.length ? ` · quedas: ${s.quedas.map((q) => `${textoCarga(q.carga, feito.exId)} × ${q.reps}`).join(', ')}` : ''}
               </li>
@@ -147,7 +178,16 @@ export function Treino() {
             Exercício encerrado. Se quiser, troque pela alternativa abaixo ou siga para o próximo.
           </div>
         ) : !completo ? (
-          <RegistroSerie key={`${i}-${feito.exId}-${feito.series.length}`} x={x} numero={feito.series.length + 1} anteriores={feito.series} aoFazer={feita} estado={estado} />
+          <RegistroSerie
+            key={`${i}-${feito.exId}-${feito.series.length}`}
+            x={x}
+            numero={feito.series.length + 1}
+            anteriores={feito.series}
+            aoFazer={feita}
+            estado={estado}
+            inventario={inventario}
+            opcoes={opcoesCargaHoje}
+          />
         ) : (
           <p className="status-ok">Séries completas.</p>
         )}
@@ -163,7 +203,11 @@ export function Treino() {
 
         {painel === 'trocar' && (
           <Trocar
-            alternativas={(POR_ID[feito.noLugarDe ?? feito.exId] && dia.exercicios.find((y) => y.exId === (feito.noLugarDe ?? feito.exId))?.alternativas) || []}
+            atual={feito.exId}
+            funcao={vaga?.funcao}
+            preferidos={estado.preferidos}
+            aoPreferir={(funcao, id) => atualizar((s) => alternarPreferencia(s, funcao, id))}
+            alternativas={vaga?.alternativas ?? []}
             aoTrocar={(alt) => {
               atualizar((s) => trocarExercicio(s, i, alt));
               if (feito.series.length) setIndice(i + 1);
@@ -218,15 +262,17 @@ export function Treino() {
 
 }
 
-function Sugestao({ x, estado }: { x: ExercicioPrescrito; estado: Estado }) {
-  if (!estado.inventario) return null;
-  const s = sugestaoDoExercicio(estado.historico, x, estado.inventario);
-  const temHistorico = !!ultimaSerie(estado.historico, x.exId);
-  if (!temHistorico)
+function Sugestao({ x, estado, inventario, opcoes }: { x: ExercicioPrescrito; estado: Estado; inventario: Inventario; opcoes: OpcoesSugestao }) {
+  const s = sugestaoDoExercicio(estado.historico, x, inventario, opcoes);
+  // 1ª vez (ou 1ª vez nesta máquina neste local): calibração na 1ª série (progressao.calibracao).
+  if (s.acao === 'calibrar' && !s.proxima)
     return (
-      <p className="fase">
-        Primeira vez: escolha uma carga que deixe você dentro de {faixa(x.reps)} repetições com {faixa(x.rir)} de reserva.
-      </p>
+      <div className="sugestao calibracao">
+        <b>Calibração da carga</b>
+        <span>
+          {s.motivo} A meta é {faixa(x.reps)} repetições com {faixa(x.rir)} de reserva. <Selo id={s.regraId} />
+        </span>
+      </div>
     );
   return (
     <div className="sugestao">
@@ -244,16 +290,21 @@ function RegistroSerie({
   anteriores,
   aoFazer,
   estado,
+  inventario,
+  opcoes,
 }: {
   x: ExercicioPrescrito;
   numero: number;
   anteriores: SerieRegistrada[];
   aoFazer: (s: SerieRegistrada) => void;
   estado: Estado;
+  inventario: Inventario;
+  opcoes: OpcoesSugestao;
 }) {
-  const op = opcoesCarga(x.exId, estado.inventario ?? {});
-  const ultima = anteriores.at(-1) ?? ultimaSerie(estado.historico, x.exId);
-  const sugerida = anteriores.length === 0 && estado.inventario ? sugestaoDoExercicio(estado.historico, x, estado.inventario).proxima : undefined;
+  const op = opcoesCarga(x.exId, inventario);
+  const cal = calibracaoNaSessao(estado.historico, x, inventario, anteriores, opcoes);
+  const ultima = anteriores.at(-1) ?? ultimaSerie(estado.historico, x.exId, opcoes.local);
+  const sugerida = anteriores.length === 0 ? sugestaoDoExercicio(estado.historico, x, inventario, opcoes).proxima : cal.ultima?.proxima;
   const cargaInicial: Carga | undefined =
     (sugerida && sugerida.tipo === op.registro ? sugerida : undefined) ??
     (ultima && ultima.carga.tipo === op.registro ? ultima.carga : undefined) ??
@@ -275,6 +326,11 @@ function RegistroSerie({
       <h2>
         Série {numero} de {x.series}
       </h2>
+      {cal.calibrando && cal.ultima && (
+        <p className="fase calibracao" role="status">
+          Calibração: {cal.ultima.motivo} <Selo id={cal.ultima.regraId} />
+        </p>
+      )}
       <ControleCarga registro={op.registro} cargas={op.lista} placasMax={op.placasMax} menorAnilhaKg={op.menorAnilhaKg} valor={carga} aoMudar={setCarga} />
       <div className="linha-registro">
         <span className="rotulo-curto" id={`reps-${numero}`}>
@@ -492,17 +548,35 @@ function ControleCarga({
   );
 }
 
-function Trocar({ alternativas, aoTrocar }: { alternativas: string[]; aoTrocar: (id: string) => void }) {
+function Trocar({
+  alternativas,
+  aoTrocar,
+  atual,
+  funcao,
+  preferidos,
+  aoPreferir,
+}: {
+  alternativas: string[];
+  aoTrocar: (id: string) => void;
+  atual: string;
+  funcao?: string;
+  preferidos?: Record<string, string>;
+  aoPreferir: (funcao: string, id: string) => void;
+}) {
   if (!alternativas.length) return <p className="ajuda">Este exercício não tem alternativa com o seu equipamento.</p>;
   const botao = (id: string) => (
-    <button key={id} type="button" className="opcao-ajuste" onClick={() => aoTrocar(id)}>
-      <b>{POR_ID[id]?.nome}</b>
-    </button>
+    <div key={id} className="alternativa">
+      <button type="button" className="opcao-ajuste" onClick={() => aoTrocar(id)}>
+        <b>{POR_ID[id]?.nome}</b>
+      </button>
+      <BotaoPrefiro funcao={funcao} id={id} atual={atual} preferidos={preferidos} aoPreferir={aoPreferir} />
+    </div>
   );
   const resto = alternativas.slice(ALTERNATIVAS_A_MOSTRA);
   return (
     <section className="box" aria-label="Trocar exercício">
       <h2>Trocar só neste treino por:</h2>
+      <BotaoPrefiro funcao={funcao} id={atual} atual={atual} preferidos={preferidos} aoPreferir={aoPreferir} rotulo={`Prefiro o atual (${POR_ID[atual]?.nome.toLowerCase()})`} />
       <div className="pilha">{alternativas.slice(0, ALTERNATIVAS_A_MOSTRA).map(botao)}</div>
       {resto.length > 0 && (
         <details className="ver-mais">
@@ -511,6 +585,36 @@ function Trocar({ alternativas, aoTrocar }: { alternativas: string[]; aoTrocar: 
         </details>
       )}
     </section>
+  );
+}
+
+/**
+ * "Prefiro este" (selecao.preferencia): só entre equivalentes do mesmo nível da função. Vale nos próximos programas e
+ * nas trocas entre locais; tocar de novo desfaz. Nada vem preferido.
+ */
+export function BotaoPrefiro({
+  funcao,
+  id,
+  atual,
+  preferidos,
+  aoPreferir,
+  rotulo,
+}: {
+  funcao?: string;
+  id: string;
+  atual: string;
+  preferidos?: Record<string, string>;
+  aoPreferir: (funcao: string, id: string) => void;
+  rotulo?: string;
+}) {
+  const f = funcao ? FUNCAO[funcao] : undefined;
+  const nivel = (x: string) => f?.niveis.findIndex((n) => n.includes(x)) ?? -1;
+  if (!f || nivel(id) < 0 || nivel(id) !== nivel(atual)) return null;
+  const marcado = preferidos?.[f.id] === id;
+  return (
+    <button type="button" className="link-sec prefiro" aria-pressed={marcado} onClick={() => aoPreferir(f.id, id)}>
+      {marcado ? `Você prefere ${id === atual ? 'o atual' : 'este'} · desfazer` : (rotulo ?? 'Prefiro este')}
+    </button>
   );
 }
 

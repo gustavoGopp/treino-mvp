@@ -12,7 +12,7 @@ function estadoAna(): Estado {
   const p = PERSONAS.ana;
   const r = gerarPrograma(p.perfil, p.inventario);
   if (r.status !== 'ok') throw new Error('bloqueado');
-  return { versao: VERSAO_ESTADO, inventario: p.inventario, programa: { programa: r.programa, geradoEm: T0 }, historico: [] };
+  return { versao: VERSAO_ESTADO, locais: [{ id: 'local-1', nome: 'Meu local', inventario: p.inventario }], programa: { programa: r.programa, geradoEm: T0 }, historico: [] };
 }
 
 describe('ações do treino', () => {

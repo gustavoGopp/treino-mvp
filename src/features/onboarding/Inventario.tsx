@@ -1,6 +1,7 @@
 import { useId, useState, type ReactNode } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { ITENS, type ItemId } from '../../domain/taxonomia/equipamentos';
+import { ITENS, type Inventario as InventarioDados, type ItemId } from '../../domain/taxonomia/equipamentos';
+import { comInventario, localPrincipal } from '../../storage/esquema';
 import { useApp } from '../app/estado';
 import { Erros, Escolha, Marcar, Numero, Passo, Selo } from '../app/ui';
 import { FotoEquipamento } from './FotoEquipamento';
@@ -176,10 +177,34 @@ function Detalhes({ titulo, children }: { titulo: string; children: ReactNode })
   );
 }
 
+// Passo 5 do cadastro: o equipamento do 1º local. O mesmo formulário serve aos outros locais (R1b, /locais).
 export function Inventario() {
   const { estado, atualizar } = useApp();
   const navigate = useNavigate();
-  const [f, setF] = useState<FormInventario>(() => paraForm(estado.inventario));
+  return (
+    <Passo id="inventario" titulo="Que equipamento você tem?">
+      <FormularioInventario
+        inicial={localPrincipal(estado)?.inventario}
+        aoSalvar={(inv) => {
+          atualizar((s) => comInventario(s, localPrincipal(s)?.id, inv));
+          navigate('/comecar/restricoes');
+        }}
+      />
+    </Passo>
+  );
+}
+
+/** Formulário de equipamento de um local: cartões, atalhos, foto e menor anilha (M3, R0c, R1; reaproveitado no R1b). */
+export function FormularioInventario({
+  inicial,
+  aoSalvar,
+  textoBotao = 'Continuar',
+}: {
+  inicial?: InventarioDados;
+  aoSalvar: (inv: InventarioDados) => void;
+  textoBotao?: string;
+}) {
+  const [f, setF] = useState<FormInventario>(() => paraForm(inicial));
   const [erros, setErros] = useState<Record<string, string>>({});
   const [tentou, setTentou] = useState(false);
   // Último atalho tocado (só na tela): mostra os "às vezes tem" logo abaixo. Nenhum vem selecionado.
@@ -195,8 +220,7 @@ export function Inventario() {
     const r = deForm(f);
     setErros(r.erros);
     if (!r.inventario) return;
-    atualizar((s) => ({ ...s, inventario: r.inventario! }));
-    navigate('/comecar/restricoes');
+    aoSalvar(r.inventario);
   };
 
   // Anilhas: um contador por peso comum (de 2 em 2, porque vêm em pares) + pesos que a pessoa já tinha informado.
@@ -376,7 +400,7 @@ export function Inventario() {
   const nErros = Object.keys(erros).length;
 
   return (
-    <Passo id="inventario" titulo="Que equipamento você tem?">
+    <>
       <p className="lede">Toque em tudo o que você tem. Sem nada marcado, o programa usa o peso do corpo.</p>
       <FotoEquipamento aoUsar={(sug, conf) => setF((x) => comSugestoes(x, sug, conf))} />
       <form onSubmit={enviar} noValidate className="form">
@@ -452,9 +476,9 @@ export function Inventario() {
           </Detalhes>
         )}
         <button type="submit" className="btn">
-          Continuar
+          {textoBotao}
         </button>
       </form>
-    </Passo>
+    </>
   );
 }

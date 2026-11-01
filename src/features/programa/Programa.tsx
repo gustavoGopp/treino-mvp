@@ -8,9 +8,9 @@ import { avaliarTriagem } from '../../domain/triagem';
 import { faseDaSemana, proximoDia, semanaDoPrograma } from '../../domain/sessao';
 import { linkDoGuia } from '../guia/link';
 import { prescricaoDaSemana } from '../../domain/gerador';
-import { perfilDe, primeiroPassoPendente, type Estado } from '../../storage/esquema';
+import { inventarioPrincipal, perfilDe, primeiroPassoPendente, type Estado } from '../../storage/esquema';
 import { iniciarSessao } from '../treino/acoes';
-import { agoraIso, gerarDoEstado, mesmoConteudo, useApp } from '../app/estado';
+import { agoraIso, comProgramaNovo, gerarDoEstado, mesmoConteudo, useApp } from '../app/estado';
 import { Selo, Titulo, Topo } from '../app/ui';
 import { Miniatura } from './Miniatura';
 import { CartaoTexto, temCartao } from './CartaoTexto';
@@ -33,7 +33,8 @@ export function Programa() {
   });
   const [verAjustes, setVerAjustes] = useState(false);
   const perfil = useMemo(() => perfilDe(estado), [estado]);
-  const opcoes = useMemo(() => (perfil && estado.inventario ? opcoesDeAjuste(perfil, estado.inventario) : []), [perfil, estado.inventario]);
+  const inventario = inventarioPrincipal(estado);
+  const opcoes = useMemo(() => (perfil && inventario ? opcoesDeAjuste(perfil, inventario) : []), [perfil, inventario]);
   const atualizado = useMemo(() => gerarDoEstado(estado), [estado]);
 
   const pendente = primeiroPassoPendente(estado);
@@ -61,8 +62,7 @@ export function Programa() {
 
   const versaoNova = !!atualizado && !mesmoConteudo(atualizado, salvo);
   const regerar = (e: Estado): Estado => {
-    const p = gerarDoEstado(e);
-    return { ...e, programa: p ? { programa: p, geradoEm: agoraIso() } : e.programa };
+    return comProgramaNovo(e, agoraIso());
   };
 
   const escolher = (o: Opcao) => {

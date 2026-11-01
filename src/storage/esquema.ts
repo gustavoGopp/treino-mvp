@@ -10,7 +10,7 @@ import { PERGUNTAS, type PerguntaId } from '../domain/triagem';
 // Estado guardado no aparelho (IndexedDB) e no arquivo de exportação. Versionado: toda mudança de formato
 // ganha uma versão nova e uma migração em src/storage/migracao.ts, com teste.
 
-export const VERSAO_ESTADO = 5;
+export const VERSAO_ESTADO = 6;
 
 const enumDe = <T extends string>(xs: readonly T[]) => z.enum(xs as unknown as [T, ...T[]]);
 const ids = <T extends { id: string }>(xs: readonly T[]) => xs.map((x) => x.id) as T['id'][];
@@ -111,6 +111,8 @@ const serie = z.object({
   dor: z.number().int().min(0).max(10).optional(),
   /** Quedas de carga do drop set (tempo.drop-set), registradas na última série; a progressão não as usa. */
   quedas: z.array(z.object({ carga, reps: z.number().int().nonnegative() })).max(2).optional(),
+  /** Série de acerto da calibração (progressao.calibracao): fica no histórico, fora da dupla progressão. */
+  calibracao: z.boolean().optional(),
 });
 export const sessaoSchema = z.object({
   id: z.string(),
@@ -119,10 +121,20 @@ export const sessaoSchema = z.object({
   inicio: data,
   fim: data.optional(),
   encerradaPorAlerta: z.boolean().optional(),
+  /** Local onde o treino foi feito (R1b). Sessão sem local = de antes do R1b, feita no 1º local (o único que existia). */
+  localId: z.string().optional(),
   exercicios: z.array(
     z.object({ exId: exercicioId, noLugarDe: exercicioId.optional(), series: z.array(serie), interrompido: z.boolean().optional() }),
   ),
 });
+
+/** Um local de treino (R1b): o nome que a pessoa escolheu e o inventário dele. */
+export const localSchema = z.object({
+  id: z.string().regex(/^local-\d+$/),
+  nome: z.string().trim().min(1).max(40),
+  inventario: inventarioSchema,
+});
+export type Local = z.infer<typeof localSchema>;
 
 export const estadoSchema = z.object({
   versao: z.literal(VERSAO_ESTADO),
@@ -130,10 +142,23 @@ export const estadoSchema = z.object({
   triagem: triagemSchema.optional(),
   nivel: nivelSchema.optional(),
   rotina: rotinaSchema.optional(),
-  inventario: inventarioSchema.optional(),
+  /** Locais de treino, cada um com o seu inventário (R1b). O 1º vem do cadastro. */
+  locais: z
+    .array(localSchema)
+    .refine((ls) => new Set(ls.map((l) => l.id)).size === ls.length, 'id de local repetido')
+    .optional(),
+  /** Local para o qual o programa é montado. Ausente = o 1º local. */
+  localPrincipalId: z.string().optional(),
+  /** Último local escolhido em "onde vou treinar hoje" (lembrado, mas a escolha continua visível). */
+  ultimoLocalId: z.string().optional(),
+  /** "Prefiro este" por função (selecao.preferencia): id da função → id do exercício. Nada vem preferido. */
+  preferidos: z.record(z.string(), exercicioId).optional(),
   restricoes: restricoesSchema.optional(),
-  /** Programa salvo: só muda quando a pessoa pede (docs/pesquisa/09-decisoes-m3.md, seção 5). */
-  programa: z.object({ programa: programaSchema, geradoEm: data }).optional(),
+  /**
+   * Programa salvo: só muda quando a pessoa pede (docs/pesquisa/09-decisoes-m3.md, seção 5). `localId` é o local
+   * para o qual ele foi montado (ausente = o 1º local).
+   */
+  programa: z.object({ programa: programaSchema, geradoEm: data, localId: z.string().optional() }).optional(),
   /** Painel de ajustes calculados: "Manter" recolhe o painel até a pessoa reabrir. */
   ajustes: z.object({ recolhido: z.boolean() }).optional(),
   /** Sessões terminadas, da mais antiga à mais recente (M5). */
@@ -150,6 +175,40 @@ export type Restricoes = z.infer<typeof restricoesSchema>;
 
 export const estadoVazio = (): Estado => ({ versao: VERSAO_ESTADO, historico: [] });
 
+// Locais (R1b). Funções puras sobre o estado: quem chama nunca lê `locais` direto.
+/** O local para o qual o programa é montado: o marcado como principal, ou o 1º. */
+export const localPrincipal = (e: Estado): Local | undefined =>
+  e.locais?.find((l) => l.id === e.localPrincipalId) ?? e.locais?.[0];
+export const localPorId = (e: Estado, id: string | undefined): Local | undefined => e.locais?.find((l) => l.id === id);
+/** Inventário do local principal: o do programa. */
+export const inventarioPrincipal = (e: Estado) => localPrincipal(e)?.inventario;
+/** Local lembrado para o treino de hoje: o último usado, se ainda existe; senão, o principal. */
+export const localDoTreino = (e: Estado): Local | undefined => localPorId(e, e.ultimoLocalId) ?? localPrincipal(e);
+/** Local do programa salvo: aquele para o qual ele foi montado (ausente = o 1º local). */
+export const localDoPrograma = (e: Estado): Local | undefined => localPorId(e, e.programa?.localId) ?? e.locais?.[0];
+/** Local de uma sessão: a de antes do R1b, sem local, foi feita no 1º local (o único que existia). */
+export const localDaSessao = (e: Estado, s: { localId?: string }): string | undefined => s.localId ?? e.locais?.[0]?.id;
+/** Próximo id livre ("local-2", "local-3"…), determinístico. */
+export function novoLocalId(e: Estado): string {
+  const usados = new Set((e.locais ?? []).map((l) => l.id));
+  let n = 1;
+  while (usados.has(`local-${n}`)) n++;
+  return `local-${n}`;
+}
+/** Grava o inventário de um local (cria o 1º, "Meu local", no cadastro). */
+export function comInventario(e: Estado, id: string | undefined, inventario: Local['inventario'], nome?: string): Estado {
+  const locais = e.locais ?? [];
+  const alvo = id ?? locais[0]?.id;
+  if (alvo && locais.some((l) => l.id === alvo))
+    return { ...e, locais: locais.map((l) => (l.id === alvo ? { ...l, inventario, ...(nome ? { nome } : {}) } : l)) };
+  return { ...e, locais: [...locais, { id: alvo ?? novoLocalId(e), nome: nome ?? NOME_LOCAL_PADRAO, inventario }] };
+}
+/** Todos os itens de todos os locais (para a lista de "o que evitar", que vale em qualquer local). */
+export const inventarioDeTodos = (e: Estado): Local['inventario'] =>
+  Object.assign({}, ...[...(e.locais ?? [])].reverse().map((l) => l.inventario)) as Local['inventario'];
+/** Nome neutro do 1º local, que a pessoa troca quando quiser (R1b). */
+export const NOME_LOCAL_PADRAO = 'Meu local';
+
 /** Perfil completo para o gerador, ou null se ainda falta algum passo do onboarding. */
 export function perfilDe(e: Estado): Perfil | null {
   if (!e.triagem || !e.nivel || !e.rotina || !e.restricoes) return null;
@@ -160,6 +219,7 @@ export function perfilDe(e: Estado): Perfil | null {
     ...(e.rotina.divisao ? { divisao: e.rotina.divisao } : {}),
     minutosSessao: e.rotina.minutosSessao,
     prioridades: e.rotina.prioridades,
+    ...(e.preferidos && Object.keys(e.preferidos).length ? { preferidos: e.preferidos } : {}),
     evitarExercicios: e.restricoes.evitarExercicios,
     evitarEquipamentos: e.restricoes.evitarEquipamentos,
     triagem: {
@@ -192,7 +252,7 @@ export function passoCompleto(e: Estado, id: PassoId): boolean {
     case 'rotina':
       return !!e.rotina;
     case 'inventario':
-      return !!e.inventario;
+      return !!e.locais?.length;
     case 'restricoes':
       return !!e.restricoes;
   }

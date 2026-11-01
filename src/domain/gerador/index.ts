@@ -385,14 +385,7 @@ export function gerarPrograma(perfil: Perfil, inventarioOriginal: Inventario): R
     const p: Porque[] = [];
     if (preenchido)
       p.push({ regraId: r('selecao.dia-sem-principal'), texto: 'Entrou no lugar de uma vaga que a dor tirou (ou para o dia não ficar só com abdominal).' });
-    for (const d of triagem.dores)
-      if (efeitoDaDor(d.nota) !== 'exclui' && e.articulacoes.includes(d.articulacao))
-        p.push({
-          regraId: r('seguranca.dor.programa'),
-          texto: `Você marcou ${ARTIGO[d.articulacao]} ${NOME_ARTICULACAO_MIN[d.articulacao]} (dor ${d.nota} hoje): se doer acima de 5 numa série, pare e use a alternativa.${
-            efeitoDaDor(d.nota) === 'prefere-outros' ? ' Nesta vaga, nenhum exercício equivalente poupa a região.' : ''
-          }`,
-        });
+    p.push(...lembretesDeDor(e, triagem));
     return p;
   };
   const prescrever = (it: Item): ExercicioPrescrito => {
@@ -505,6 +498,18 @@ export function gerarPrograma(perfil: Perfil, inventarioOriginal: Inventario): R
       regioesExcluidas,
     },
   };
+}
+
+/** Lembrete nos exercícios que carregam uma região marcada com dor de 0 a 5 (seguranca.dor.programa). */
+export function lembretesDeDor(e: Exercicio, triagem: ResultadoTriagem): Porque[] {
+  return triagem.dores
+    .filter((d) => efeitoDaDor(d.nota) !== 'exclui' && e.articulacoes.includes(d.articulacao))
+    .map((d) => ({
+      regraId: r('seguranca.dor.programa'),
+      texto: `Você marcou ${ARTIGO[d.articulacao]} ${NOME_ARTICULACAO_MIN[d.articulacao]} (dor ${d.nota} hoje): se doer acima de 5 numa série, pare e use a alternativa.${
+        efeitoDaDor(d.nota) === 'prefere-outros' ? ' Nesta vaga, nenhum exercício equivalente poupa a região.' : ''
+      }`,
+    }));
 }
 
 const NOME_ARTICULACAO_MIN: Record<Articulacao, string> = {

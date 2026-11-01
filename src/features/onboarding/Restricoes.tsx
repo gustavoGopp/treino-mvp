@@ -3,7 +3,8 @@ import { Link, useNavigate } from 'react-router-dom';
 import { BIBLIOTECA } from '../../domain/biblioteca';
 import { efeitoDaDor } from '../../domain/triagem';
 import { capacidades, ITENS, ITEM_IDS, type ItemId } from '../../domain/taxonomia/equipamentos';
-import { agoraIso, gerarDoEstado, useApp } from '../app/estado';
+import { inventarioDeTodos } from '../../storage/esquema';
+import { agoraIso, comProgramaNovo, useApp } from '../app/estado';
 import { Marcar, Passo, Selo } from '../app/ui';
 import { NOME_ARTICULACAO } from './Triagem';
 
@@ -23,7 +24,7 @@ export function Restricoes() {
   const [evitarEq, setEvitarEq] = useState<ItemId[]>(salva?.evitarEquipamentos ?? []);
   const [evitarEx, setEvitarEx] = useState<string[]>(salva?.evitarExercicios ?? []);
 
-  const inventario = estado.inventario;
+  const inventario = useMemo(() => inventarioDeTodos(estado), [estado]);
   const meusItens = ITEM_IDS.filter((id) => inventario && id in inventario);
   const possiveis = useMemo(() => {
     const caps = capacidades(inventario ?? {});
@@ -39,8 +40,7 @@ export function Restricoes() {
         evitarEquipamentos: ITEM_IDS.filter((id) => evitarEq.includes(id) && meusItens.includes(id)),
       };
       const novo = { ...s, restricoes };
-      const programa = gerarDoEstado(novo);
-      return { ...novo, programa: programa ? { programa, geradoEm: agoraIso() } : undefined, ajustes: undefined };
+      return { ...comProgramaNovo(novo, agoraIso(), true), ajustes: undefined };
     });
     navigate('/programa');
   };

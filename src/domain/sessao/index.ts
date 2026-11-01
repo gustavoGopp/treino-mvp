@@ -1,6 +1,8 @@
 import { BIBLIOTECA, type Exercicio } from '../biblioteca';
 import { prescricaoDaSemana, type DiaPrograma, type ExercicioPrescrito, type Fase, type Programa } from '../gerador';
-import { ESCADA_PESO_CORPO, sugerirProgressao, type Carga, type OpcoesCarga, type SerieRegistrada, type SessaoExercicio, type Sugestao } from '../progressao';
+import { ESCADA_PESO_CORPO, sugerirProgressao, type Alvo, type Carga, type OpcoesCarga, type SerieRegistrada, type SessaoExercicio, type Sugestao } from '../progressao';
+import { calibrar, emCalibracao, semCalibracao, type ResultadoCalibracao } from '../progressao/calibracao';
+import { funcoesDoExercicio } from '../gerador/funcoes';
 import { r } from '../regras';
 import { CAPACIDADES, cargasHalter, cargasKettlebell, ITEM_IDS, type Inventario } from '../taxonomia/equipamentos';
 
@@ -26,8 +28,16 @@ export type Sessao = {
   fim?: string;
   /** Encerrada por sinal de alerta cardiovascular (seguranca.alerta.cardiovascular). */
   encerradaPorAlerta?: boolean;
+  /** Local onde o treino foi feito (R1b); sem local = de antes do R1b, no 1º local. */
+  localId?: string;
   exercicios: ExercicioFeito[];
 };
+
+/**
+ * De qual local é o histórico que vale para a carga (progressao.troca-equivalente; decisão do Gustavo no R1b):
+ * `localId` é o local de hoje; `localPadrao`, o das sessões sem local (o 1º local, o único que existia antes).
+ */
+export type LocalDaCarga = { localId: string; localPadrao?: string };
 
 const POR_ID: Record<string, Exercicio> = Object.fromEntries(BIBLIOTECA.map((e) => [e.id, e]));
 
@@ -144,22 +154,120 @@ export function textoCarga(c: Carga, exId?: string): string {
   return `contrapeso ${c.placa}`;
 }
 
-/** Histórico de um exercício (só sessões em que ele foi feito com séries), do mais antigo ao mais recente. */
-export function historicoDoExercicio(historico: Sessao[], exId: string): SessaoExercicio[] {
+/**
+ * A carga do exercício depende da máquina (placa da torre, anilhas por lado, contrapeso): a placa 7 de uma torre não
+ * pesa o mesmo que a de outra, e o trenó de cada leg press pesa diferente. Halteres, kettlebell, barra, peso do corpo
+ * e elástico valem igual em qualquer local (kg é kg).
+ */
+export const cargaDaMaquina = (exId: string) => {
+  const c = POR_ID[exId]?.carga;
+  return c === 'polia' || c === 'maquina' || c === 'anilha' || c === 'assistida';
+};
+
+/**
+ * Histórico de um exercício (só sessões em que ele foi feito com séries), do mais antigo ao mais recente. Com o local,
+ * nas máquinas, só as sessões daquele local (decisão do R1b); fora delas, o histórico segue o exercício em qualquer local.
+ * Nada é apagado nem misturado: é só uma leitura com filtro.
+ */
+export function historicoDoExercicio(historico: Sessao[], exId: string, local?: LocalDaCarga): SessaoExercicio[] {
+  const noLocal = (s: Sessao) => !local || !cargaDaMaquina(exId) || (s.localId ?? local.localPadrao) === local.localId;
   return historico
+    .filter(noLocal)
     .flatMap((s) => s.exercicios.filter((e) => e.exId === exId && e.series.length > 0))
     .map((e) => ({ series: e.series }));
 }
 
 /** Última série registrada de um exercício, para pré-preencher a próxima (decisão 3). */
-export function ultimaSerie(historico: Sessao[], exId: string): SerieRegistrada | undefined {
-  return historicoDoExercicio(historico, exId).at(-1)?.series.at(-1);
+export function ultimaSerie(historico: Sessao[], exId: string, local?: LocalDaCarga): SerieRegistrada | undefined {
+  return historicoDoExercicio(historico, exId, local).at(-1)?.series.at(-1);
 }
 
-/** Sugestão de progressão para a próxima sessão do exercício, com o alvo da prescrição (decisão 9). */
-export function sugestaoDoExercicio(historico: Sessao[], x: Pick<ExercicioPrescrito, 'exId' | 'reps' | 'rir'>, inventario: Inventario): Sugestao {
-  return sugerirProgressao(historicoDoExercicio(historico, x.exId), { reps: x.reps, rir: x.rir }, opcoesCarga(x.exId, inventario));
+/** Opções de quem chama a sugestão: o local de hoje e a semana 1 da volta de uma pausa (a calibração só desce). */
+export type OpcoesSugestao = { local?: LocalDaCarga; soDesce?: boolean };
+
+/** Carga dentro do que o local tem: halteres e kettlebell pela lista do inventário (o maior até a carga). */
+export function noInventario(c: Carga, o: OpcoesCarga): { carga: Carga; ajustada: boolean } {
+  const lista = o.lista ?? [];
+  if (c.tipo !== 'kg' || !lista.length || lista.some((k) => Math.abs(k - c.kg) < 1e-9)) return { carga: c, ajustada: false };
+  const k = [...lista].reverse().find((x) => x <= c.kg) ?? lista[0]!;
+  return { carga: { tipo: 'kg', kg: k }, ajustada: true };
 }
+
+/** Texto da 1ª vez (progressao.troca-equivalente): nunca mostra a carga do exercício antigo como número. */
+export function textoPrimeiraVez(historico: Sessao[], exId: string, local?: LocalDaCarga): string {
+  const comeco = 'comece com uma carga que pareça fácil; a 1ª série acerta a carga.';
+  if (local && cargaDaMaquina(exId) && historicoDoExercicio(historico, exId).length)
+    return `1ª vez nesta máquina neste local (a carga de outra máquina não vale aqui): ${comeco}`;
+  const funcoes = funcoesDoExercicio(exId);
+  const feito = [...historico]
+    .reverse()
+    .flatMap((s) => s.exercicios)
+    .find((e) => e.exId !== exId && e.series.length > 0 && funcoes.some((f) => f.niveis.some((n) => n.includes(e.exId))));
+  if (feito) return `Você já faz ${(POR_ID[feito.exId]?.nome ?? '').toLowerCase()}; aqui é a 1ª vez: ${comeco}`;
+  return `1ª vez neste exercício: ${comeco.charAt(0).toUpperCase()}${comeco.slice(1)}`;
+}
+
+/**
+ * Sugestão para a próxima sessão do exercício, com o alvo da prescrição (decisão 9). Na 1ª vez (e na 1ª vez de uma
+ * máquina num local), a calibração na 1ª série (progressao.calibracao); depois, a dupla progressão, só com as séries
+ * de trabalho. A dor manda antes de tudo (seguranca.dor.escala).
+ */
+export function sugestaoDoExercicio(
+  historico: Sessao[],
+  x: Pick<ExercicioPrescrito, 'exId' | 'reps' | 'rir'>,
+  inventario: Inventario,
+  opcoes: OpcoesSugestao = {},
+): Sugestao {
+  const h = historicoDoExercicio(historico, x.exId, opcoes.local);
+  const op = opcoesCarga(x.exId, inventario);
+  const alvo: Alvo = { reps: x.reps, rir: x.rir };
+  const ultima = h.at(-1);
+  if (ultima?.series.some((s) => (s.dor ?? 0) >= 3)) return sugerirProgressao(h, alvo, op);
+  if (emCalibracao(h)) {
+    const s = ultima?.series.at(-1);
+    if (!s) return { acao: 'calibrar', motivo: textoPrimeiraVez(historico, x.exId, opcoes.local), regraId: r('progressao.calibracao') };
+    const c = calibrar(s, alvo, op, { soDesce: opcoes.soDesce });
+    const prox = noInventario(c.proxima, op).carga;
+    return { acao: 'calibrar', proxima: prox, motivo: `Ainda calibrando: comece por ${textoCarga(prox, x.exId)} e acerte na 1ª série.`, regraId: r('progressao.calibracao') };
+  }
+  const sug = sugerirProgressao(semCalibracao(h), alvo, op);
+  if (!sug.proxima) return sug;
+  const { carga, ajustada } = noInventario(sug.proxima, op);
+  return ajustada ? { ...sug, proxima: carga, motivo: `${sug.motivo} Aqui, o peso mais perto é ${textoCarga(carga, x.exId)}.` } : sug;
+}
+
+/**
+ * Durante o treino: o exercício está em calibração enquanto não houver uma série de trabalho, nem no histórico (desta
+ * chave de local) nem nesta sessão. Devolve o resultado da última série de acerto, para pré-preencher a próxima.
+ */
+export function calibracaoNaSessao(
+  historico: Sessao[],
+  x: Pick<ExercicioPrescrito, 'exId' | 'reps' | 'rir'>,
+  inventario: Inventario,
+  seriesDaSessao: SerieRegistrada[],
+  opcoes: OpcoesSugestao = {},
+): { calibrando: boolean; ultima?: ResultadoCalibracao } {
+  const h = historicoDoExercicio(historico, x.exId, opcoes.local);
+  const calibrando = emCalibracao(h) && !seriesDaSessao.some((s) => !s.calibracao);
+  const s = seriesDaSessao.at(-1);
+  if (!calibrando || !s) return { calibrando };
+  return { calibrando, ultima: avaliarSerieDeCalibracao(s, x, inventario, opcoes) };
+}
+
+/** Avalia uma série feita em calibração: a próxima carga e se ela já caiu perto do alvo (vira série de trabalho). */
+export function avaliarSerieDeCalibracao(
+  s: Pick<SerieRegistrada, 'carga' | 'reps' | 'rir'>,
+  x: Pick<ExercicioPrescrito, 'exId' | 'reps' | 'rir'>,
+  inventario: Inventario,
+  opcoes: OpcoesSugestao = {},
+): ResultadoCalibracao {
+  const op = opcoesCarga(x.exId, inventario);
+  const c = calibrar(s, { reps: x.reps, rir: x.rir }, op, { soDesce: opcoes.soDesce });
+  return { ...c, proxima: noInventario(c.proxima, op).carga };
+}
+
+/** Semana 1 de uma volta de pausa (readaptacao.semana1): a calibração não sobe a carga. */
+export const soDesceNaSemana = (p: Programa, semana: number) => faseDaSemana(p, semana)?.regraId === 'readaptacao.semana1';
 
 /** Lembrete de aquecimento antes do primeiro multiarticular de cada região (tempo.aquecimento; decisão 10). */
 export function precisaAquecer(dia: DiaPrograma, indice: number): boolean {
