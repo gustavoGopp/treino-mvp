@@ -390,3 +390,20 @@ a.cartao-ex-corpo:focus-visible{outline:3px solid var(--accent);outline-offset:-
 .acao-reduzir,.acao-voltar,.acao-interromper,.acao-ajustar{color:var(--warn)}
 .resumo-ex h3{margin:0;font-size:16px}
 @media (prefers-reduced-motion: reduce){ .descanso .tbar i{transition:none} }
+
+/* Foto do equipamento (M4): sugestões com confirmação "Tenho / Não tenho" */
+.foto-eq{background:var(--surface);border:1.5px solid var(--line);border-radius:14px;padding:12px;display:flex;flex-direction:column;gap:10px}
+.foto-eq h2{margin:0;font-family:var(--font-d);font-size:20px}
+.campo-texto{font:inherit;font-size:17px;min-height:48px;padding:8px 12px;border:1.5px solid var(--line);border-radius:10px;background:var(--surface);color:var(--ink);text-transform:uppercase;letter-spacing:.06em}
+.campo-texto:focus-visible{outline:3px solid var(--accent);outline-offset:1px}
+.sugestoes-foto{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:8px}
+.sugestao-foto{display:grid;grid-template-columns:56px 1fr;gap:4px 10px;align-items:center;padding:8px 10px;border:1.5px solid var(--line);border-radius:12px}
+.sugestao-foto .icone-eq{width:56px;height:42px;fill:none;stroke:currentColor;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round;color:var(--muted)}
+.sugestao-texto{display:flex;flex-direction:column;gap:2px;min-width:0}
+.sugestao-texto span{font-size:13px;color:var(--muted)}
+.conf-alta{border-color:var(--accent)}
+.sim-nao{grid-column:1 / -1;display:grid;grid-template-columns:1fr 1fr;gap:6px}
+.sim-nao button{min-height:44px;border-radius:10px;border:1.5px solid var(--line);background:var(--surface);font:inherit;font-weight:600;cursor:pointer;color:var(--ink)}
+.sim-nao button[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
+.sim-nao button:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+.arquivo-campo label[aria-disabled="true"]{opacity:.6}

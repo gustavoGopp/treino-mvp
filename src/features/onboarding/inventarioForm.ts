@@ -169,3 +169,28 @@ export function deForm(f: FormInventario): { inventario: Inventario | null; erro
   if (!r.success) return { inventario: null, erros: { geral: 'Confira os dados do equipamento.' } };
   return { inventario: r.data, erros };
 }
+
+/**
+ * Junta ao formulário os itens que a pessoa confirmou nas sugestões da foto (M4).
+ * Atributos da foto só preenchem campos vazios: o que a pessoa já informou nunca é trocado.
+ */
+export function comSugestoes(f: FormInventario, sugestoes: { itemId: ItemId; atributos?: Record<string, unknown> }[], confirmados: ItemId[]): FormInventario {
+  const n: FormInventario = structuredClone(f);
+  const vazio = (s: string) => s.trim() === '';
+  const num = (v: unknown) => (typeof v === 'number' && Number.isFinite(v) ? String(v) : '');
+  for (const s of sugestoes) {
+    if (!confirmados.includes(s.itemId)) continue;
+    if (!n.marcados.includes(s.itemId)) n.marcados.push(s.itemId);
+    const a = s.atributos ?? {};
+    if (s.itemId === 'halteres_fixos') {
+      if (vazio(n.halteres.min)) n.halteres.min = num(a.minKg);
+      if (vazio(n.halteres.max)) n.halteres.max = num(a.maxKg);
+      if (vazio(n.halteres.passo)) n.halteres.passo = num(a.passoKg);
+    }
+    if (s.itemId === 'polia_simples' && n.poliaSimples.regulavel === undefined && typeof a.alturaRegulavel === 'boolean') n.poliaSimples.regulavel = a.alturaRegulavel;
+    if (s.itemId === 'banco_regulavel' && n.bancoRegulavel.declina === undefined && typeof a.declina === 'boolean') n.bancoRegulavel.declina = a.declina;
+    if (s.itemId === 'elasticos' && vazio(n.elasticos.intensidades)) n.elasticos.intensidades = num(a.intensidades);
+  }
+  n.marcados = ITEM_IDS.filter((id) => n.marcados.includes(id));
+  return n;
+}

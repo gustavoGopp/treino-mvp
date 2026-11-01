@@ -3,11 +3,12 @@ import { useNavigate } from 'react-router-dom';
 import { ITENS, type ItemId } from '../../domain/taxonomia/equipamentos';
 import { useApp } from '../app/estado';
 import { Erros, Escolha, Numero, Passo } from '../app/ui';
+import { FotoEquipamento } from './FotoEquipamento';
 import { IconeEquipamento } from './icones';
-import { CATEGORIAS, deForm, itensDaCategoria, NOME_CURTO, paraForm, VALORES, type FormInventario } from './inventarioForm';
+import { CATEGORIAS, comSugestoes, deForm, itensDaCategoria, NOME_CURTO, paraForm, VALORES, type FormInventario } from './inventarioForm';
 
 // Passo 5: equipamento. Cartões com desenho para tocar (quem não sabe o nome reconhece pela forma) e
-// detalhes escolhidos por toque, com "outro" para valores fora da lista. A foto entra no M4.
+// detalhes escolhidos por toque, com "outro" para valores fora da lista. A foto (M4) sugere; a pessoa confirma.
 
 const SIM_NAO = [
   { id: 'sim', texto: 'Sim' },
@@ -259,10 +260,7 @@ export function Inventario() {
   return (
     <Passo id="inventario" titulo="Que equipamento você tem?">
       <p className="lede">Toque em tudo o que você tem. Sem nada marcado, o programa usa o peso do corpo.</p>
-      <div className="reservado" aria-label="Foto do equipamento">
-        <b>Foto do equipamento</b>
-        <span>Em breve: tire uma foto e o app reconhece o equipamento. Por enquanto, toque nos cartões.</span>
-      </div>
+      <FotoEquipamento aoUsar={(sug, conf) => setF((x) => comSugestoes(x, sug, conf))} />
       <form onSubmit={enviar} noValidate className="form">
         {tentou && nErros > 0 && <Erros erros={[nErros === 1 ? 'Há 1 detalhe para completar.' : `Há ${nErros} detalhes para completar.`]} />}
         {CATEGORIAS.map((c) => {

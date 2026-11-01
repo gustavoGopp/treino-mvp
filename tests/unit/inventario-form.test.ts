@@ -57,3 +57,23 @@ describe('checklist do inventário', () => {
     expect(deForm(f).inventario).toEqual({ anilhas_e_manoplas: { manoplas: 2, manoplaKg: 2, anilhas: [{ kg: 5, qtd: 4 }] } });
   });
 });
+
+describe('sugestões da foto no checklist', () => {
+  it('marca só o confirmado e preenche só campos vazios', async () => {
+    const { comSugestoes } = await import('../../src/features/onboarding/inventarioForm');
+    const f = { ...formVazio(), marcados: ['halteres_fixos' as const], halteres: { min: '1', max: '', passo: '' } };
+    const n = comSugestoes(
+      f,
+      [
+        { itemId: 'halteres_fixos', atributos: { minKg: 2, maxKg: 20, passoKg: 2 } },
+        { itemId: 'banco_regulavel', atributos: { declina: true } },
+        { itemId: 'step' },
+      ],
+      ['halteres_fixos', 'banco_regulavel'],
+    );
+    expect(n.marcados).toEqual(['banco_regulavel', 'halteres_fixos']);
+    expect(n.halteres).toEqual({ min: '1', max: '20', passo: '2' });
+    expect(n.bancoRegulavel.declina).toBe(true);
+    expect(f.marcados).toEqual(['halteres_fixos']); // não altera o original
+  });
+});
