@@ -80,8 +80,9 @@ describe('segurança na progressão', () => {
 
 describe('semana leve e série efetiva', () => {
   it('sugere só com motivo', () => {
-    expect(sugerirSemanaLeve({ exerciciosEstagnados: 0, semanasSemPausa: 3, fadigaOuDorPersistente: false }).sugerir).toBe(false);
-    expect(sugerirSemanaLeve({ exerciciosEstagnados: 2, semanasSemPausa: 7, fadigaOuDorPersistente: true }).motivos).toHaveLength(3);
+    expect(sugerirSemanaLeve({ exerciciosEstagnados: 0, fadigaOuDorPersistente: false }).sugerir).toBe(false);
+    expect(sugerirSemanaLeve({ exerciciosEstagnados: 2, fadigaOuDorPersistente: true }).motivos).toHaveLength(2);
+    expect(sugerirSemanaLeve({ exerciciosEstagnados: 1, fadigaOuDorPersistente: true }).sugerir).toBe(true);
   });
   it('RIR até 4 conta; acima não', () => {
     expect(serieEfetiva({ carga: kg(10), reps: 10, rir: 4 })).toBe(true);
