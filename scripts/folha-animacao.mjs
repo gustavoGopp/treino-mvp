@@ -9,12 +9,23 @@ const id = process.argv[2];
 const saida = process.argv[3] ?? `test-results/folha-${id}.png`;
 if (!id) throw new Error('informe o id da animação');
 
-const { outputFiles } = await build({ entryPoints: ['src/engine/index.ts'], bundle: true, format: 'esm', write: false });
+// A animação pode estar em revisão (arquivo em src/engine/exercicios/<id>.ts, ainda fora da lista EX do app).
+const entrada = `export * from './src/engine/index.ts'; export { prep, calib } from './src/engine/cena.ts';
+export { default as NOVA } from './src/engine/exercicios/${id}.ts';`;
+const { outputFiles } = await build({ stdin: { contents: entrada, resolveDir: process.cwd(), loader: 'ts' }, bundle: true, format: 'esm', write: false });
 const motor = await import('data:text/javascript;base64,' + Buffer.from(outputFiles[0].text).toString('base64'));
-const ex = motor.EX.find((e) => e.id === id);
-if (!ex) throw new Error(`animação ${id} não está em src/engine/exercicios/index.ts`);
-
-const qa = motor.check().find((l) => l.startsWith(id + ' '));
+const ex = motor.EX.find((e) => e.id === id) ?? motor.NOVA;
+if (!motor.EX.includes(ex)) {
+  motor.prep(ex);
+  motor.calib(ex);
+}
+// Mesma checagem de cinemática de src/engine/qa.ts, só para esta animação.
+const ik = (K) => {
+  motor.CTX.IKFAIL = 0;
+  for (let i = 0; i < 80; i++) motor.skel(motor.poseAt(ex, K, (i / 80) * ex.T));
+  return motor.CTX.IKFAIL;
+};
+const qa = `${id} ik=${ik(ex.K)} errs ${ex.errors.map((e) => `${e.id}:${ik(e.K)}`).join(' ')}`;
 const tempos = ex.seq.map((g) => ({ t: g.t0 + (g.kind === 'hold' ? g.dur / 2 : g.dur * 0.5), rot: g.label }));
 const css = (await import('node:fs')).readFileSync('src/styles.css', 'utf8');
 const quadro = (view, mode, t, err = 0, rot = '') => {
