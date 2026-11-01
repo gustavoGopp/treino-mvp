@@ -26,3 +26,4 @@ Depois da foto do equipamento (M4), parar e fazer uma análise completa do cená
 - **Peso corporal, idade e outros dados do perfil**, e o que cada um muda de fato no programa (com evidência).
 - **Foto do corpo para estimar o biotipo** e indicar o treino. Pontos já levantados: foto do corpo é dado sensível (LGPD, minimização) e a evidência de que o biotipo deve mudar um programa de hipertrofia é fraca. Analisar com pesquisa antes de decidir.
 - As melhorias de estética, praticidade e o boneco mais humano, registradas acima.
+- **Limite da visão compartilhado** entre instâncias (Vercel KV ou Upstash) antes de abrir o beta; hoje o contador fica na memória de cada instância (`pesquisa/11-decisoes-m4.md`).
