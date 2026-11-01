@@ -28,6 +28,11 @@ import tricepsFrances from './triceps-frances';
 import elevacaoLateralB from './elevacao-lateral-b';
 // Animações novas (marco das animações), sempre depois das 26 do guia original.
 import remadaUnilateral from './remada-unilateral';
+import panturrilhaChao from './panturrilha-chao';
+import abdominalChao from './abdominal-chao';
+import roscaAlternada from './rosca-alternada';
+import tricepsFrancesHalter from './triceps-frances-halter';
+import stiffUnilateral from './stiff-unilateral';
 
 // Mesma ordem do guia original (a ordem define os treinos e a ordem de preparação).
 export const EX = [
@@ -58,4 +63,9 @@ export const EX = [
   tricepsFrances,
   elevacaoLateralB,
   remadaUnilateral,
+  panturrilhaChao,
+  abdominalChao,
+  roscaAlternada,
+  tricepsFrancesHalter,
+  stiffUnilateral,
 ];

@@ -1281,7 +1281,7 @@
   ],
   "ordem": 3,
   "carga": "halter",
-  "animacaoId": null
+  "animacaoId": "rosca-alternada"
  },
  {
   "id": "rosca-polia-costas",
@@ -1486,7 +1486,7 @@
   ],
   "ordem": 4,
   "carga": "halter",
-  "animacaoId": null
+  "animacaoId": "triceps-frances-halter"
  },
  {
   "id": "triceps-elastico-acima",
@@ -2052,7 +2052,7 @@
   ],
   "ordem": 4,
   "carga": "halter",
-  "animacaoId": null
+  "animacaoId": "stiff-unilateral"
  },
  {
   "id": "stiff-elastico",
@@ -2417,7 +2417,7 @@
   "tags": [],
   "ordem": 3,
   "carga": "halter",
-  "animacaoId": null
+  "animacaoId": "panturrilha-chao"
  },
  {
   "id": "abdominal-polia",
@@ -2546,6 +2546,6 @@
   ],
   "ordem": 4,
   "carga": "peso-corpo",
-  "animacaoId": null
+  "animacaoId": "abdominal-chao"
  }
 ]

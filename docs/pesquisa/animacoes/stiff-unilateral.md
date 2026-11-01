@@ -1,6 +1,6 @@
 # Stiff unilateral com halter (`stiff-unilateral`)
 
-Exercício da biblioteca: `stiff-unilateral`. Dobrar o quadril. Aparece nos programas da Ana. **Em revisão:** aguarda a aprovação da folha de contatos.
+Exercício da biblioteca: `stiff-unilateral`. Dobrar o quadril. Aparece nos programas da Ana. **Aprovada** pelo Gustavo em 01/11/2026.
 
 ## Técnica animada
 | Ponto | O que a animação mostra | Selo | Fonte |

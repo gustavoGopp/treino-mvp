@@ -1,9 +1,9 @@
 // @ts-nocheck
-// Animação nova (em revisão). Stiff unilateral (em uma perna): apoio na perna esquerda, halter na mão esquerda,
+// Animação nova (aprovada). Stiff unilateral (em uma perna): apoio na perna esquerda, halter na mão esquerda,
 // a perna direita sobe para trás alinhada com o tronco. Quadril nivelado, coluna neutra.
 // Técnica e fontes: docs/pesquisa/animacoes/stiff-unilateral.md.
-import { ARROW3, TX, dumbbell } from '../../desenho';
-import { X, comb } from '../../math';
+import { ARROW3, TX, dumbbell } from '../desenho';
+import { X, comb } from '../math';
 
 const ex = {
   id:'stiff-unilateral',

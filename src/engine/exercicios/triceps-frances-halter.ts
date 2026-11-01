@@ -1,8 +1,8 @@
 // @ts-nocheck
-// Animação nova (em revisão). Tríceps francês sentado com um halter seguro pelas duas mãos, acima da cabeça.
+// Animação nova (aprovada). Tríceps francês sentado com um halter seguro pelas duas mãos, acima da cabeça.
 // Técnica e fontes: docs/pesquisa/animacoes/triceps-frances-halter.md.
-import { BOX, L3, TX, dumbbellV } from '../../desenho';
-import { X, Y, Z, add, mid, mul, sub } from '../../math';
+import { BOX, L3, TX, dumbbellV } from '../desenho';
+import { X, Y, Z, add, mid, mul, sub } from '../math';
 
 const ex = {
   id:'triceps-frances-halter',

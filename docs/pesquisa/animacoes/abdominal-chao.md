@@ -1,6 +1,6 @@
 # Abdominal no chão (crunch) (`abdominal-chao`)
 
-Exercício da biblioteca: `abdominal-chao`. Core. Aparece nos programas da Ana e do Diego. **Em revisão:** aguarda a aprovação da folha de contatos.
+Exercício da biblioteca: `abdominal-chao`. Core. Aparece nos programas da Ana e do Diego. **Aprovada** pelo Gustavo em 01/11/2026.
 
 ## Técnica animada
 | Ponto | O que a animação mostra | Selo | Fonte |

@@ -1,6 +1,6 @@
 # Rosca alternada com halteres (`rosca-alternada`)
 
-Exercício da biblioteca: `rosca-alternada`. Isolador de bíceps. Aparece nos programas da Ana. **Em revisão:** aguarda a aprovação da folha de contatos.
+Exercício da biblioteca: `rosca-alternada`. Isolador de bíceps. Aparece nos programas da Ana. **Aprovada** pelo Gustavo em 01/11/2026.
 
 ## Técnica animada
 | Ponto | O que a animação mostra | Selo | Fonte |

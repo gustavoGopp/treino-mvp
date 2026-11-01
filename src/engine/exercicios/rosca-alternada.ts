@@ -1,8 +1,8 @@
 // @ts-nocheck
-// Animação nova (em revisão). Rosca alternada em pé, halteres, cotovelos parados ao lado do tronco.
+// Animação nova (aprovada). Rosca alternada em pé, halteres, cotovelos parados ao lado do tronco.
 // Técnica e fontes: docs/pesquisa/animacoes/rosca-alternada.md.
-import { L3, TX, dumbbell } from '../../desenho';
-import { X, add } from '../../math';
+import { L3, TX, dumbbell } from '../desenho';
+import { X, add } from '../math';
 
 const baixo={ua:[0,-90],fa:[0,-86]};
 const ex = {

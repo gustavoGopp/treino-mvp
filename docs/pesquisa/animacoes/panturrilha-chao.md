@@ -1,6 +1,6 @@
 # Panturrilha em pé no chão (`panturrilha-chao`)
 
-Exercício da biblioteca: `panturrilha-chao`. Panturrilha (padrão panturrilha). Aparece nos programas da Ana e do Diego. **Em revisão:** aguarda a aprovação da folha de contatos.
+Exercício da biblioteca: `panturrilha-chao`. Panturrilha (padrão panturrilha). Aparece nos programas da Ana e do Diego. **Aprovada** pelo Gustavo em 01/11/2026.
 
 ## Técnica animada
 | Ponto | O que a animação mostra | Selo | Fonte |

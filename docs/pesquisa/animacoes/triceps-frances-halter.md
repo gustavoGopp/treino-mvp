@@ -1,6 +1,6 @@
 # Tríceps francês sentado com halter (`triceps-frances-halter`)
 
-Exercício da biblioteca: `triceps-frances-halter`. Isolador de tríceps. Aparece nos programas da Ana. **Em revisão:** aguarda a aprovação da folha de contatos.
+Exercício da biblioteca: `triceps-frances-halter`. Isolador de tríceps. Aparece nos programas da Ana. **Aprovada** pelo Gustavo em 01/11/2026.
 
 ## Técnica animada
 | Ponto | O que a animação mostra | Selo | Fonte |

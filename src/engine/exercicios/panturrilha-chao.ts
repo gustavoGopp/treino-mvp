@@ -1,8 +1,8 @@
 // @ts-nocheck
-// Animação nova (em revisão). Panturrilha em pé no chão, as duas pernas, mãos na parede para equilíbrio.
+// Animação nova (aprovada). Panturrilha em pé no chão, as duas pernas, mãos na parede para equilíbrio.
 // Técnica e fontes: docs/pesquisa/animacoes/panturrilha-chao.md.
-import { ARROW3, BOX, L3, TX } from '../../desenho';
-import { X, Y, Z } from '../../math';
+import { ARROW3, BOX, L3, TX } from '../desenho';
+import { X, Y, Z } from '../math';
 
 const ex = {
   id:'panturrilha-chao',

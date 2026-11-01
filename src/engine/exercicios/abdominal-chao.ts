@@ -1,9 +1,9 @@
 // @ts-nocheck
-// Animação nova (em revisão). Abdominal no chão (crunch): deitado de costas, joelhos dobrados, pés no chão.
+// Animação nova (aprovada). Abdominal no chão (crunch): deitado de costas, joelhos dobrados, pés no chão.
 // Sobe só as escápulas, enrolando a parte de cima da coluna; a lombar fica no chão.
 // Técnica e fontes: docs/pesquisa/animacoes/abdominal-chao.md.
-import { BOX, L3, TX } from '../../desenho';
-import { X, Y, Z } from '../../math';
+import { BOX, L3, TX } from '../desenho';
+import { X, Y, Z } from '../math';
 
 const ex = {
   id:'abdominal-chao',
