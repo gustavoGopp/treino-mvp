@@ -32,6 +32,11 @@ export type Perfil = {
   evitarEquipamentos: ItemId[];
   /** Triagem com as regiões e a dor de hoje: o único lugar onde a dor entra no programa (seguranca.dor.programa). */
   triagem: Triagem;
+  /**
+   * "Prefiro este" por função (selecao.preferencia): id da função → id do exercício. Só entra no desempate entre
+   * equivalentes; ausente ou vazio = sem preferência (o programa sai idêntico).
+   */
+  preferidos?: Record<string, string>;
 };
 
 export type Porque = { regraId: string; texto: string };
@@ -93,24 +98,17 @@ export function metasDoPerfil(nivel: Nivel, prioridades: Grupo[]): Partial<Recor
 }
 export const metaMaxima = (nivel: Nivel, prioridades: Grupo[]) => Math.max(...Object.values(metasDoPerfil(nivel, prioridades)));
 
-export function gerarPrograma(perfil: Perfil, inventarioOriginal: Inventario): Resultado {
-  const triagem = avaliarTriagem(perfil.triagem);
-  if (triagem.bloqueado) return { status: 'bloqueado', triagem };
-
+/**
+ * O que é possível e como se desempata, para um perfil num inventário (selecao.funcao-da-vaga; selecao.preferencia).
+ * É a mesma escolha do gerador e do treino do dia num outro local (local.treino-do-dia), para os dois nunca divergirem.
+ */
+export function contextoDeSelecao(perfil: Perfil, inventarioOriginal: Inventario, triagem: ResultadoTriagem = avaliarTriagem(perfil.triagem)) {
   const nivel = perfil.nivel;
   const inventario = semItens(inventarioOriginal, perfil.evitarEquipamentos);
   const caps = capacidades(inventario);
   // Dor de hoje por região (seguranca.dor.programa): > 5 ou sem nota exclui; 3–5 desfavorece no desempate.
   const regioesExcluidas = [...triagem.regioesExcluidas];
   const dorLeve = new Set(triagem.regioesDorLeve);
-  const dorDe = (a: Articulacao) => textoDor(a, triagem.dores.find((d) => d.articulacao === a)?.nota);
-  const grupos = new Set<Grupo>(perfil.prioridades);
-  const prioritarios = new Set<Musculo>(perfil.prioridades.flatMap((g) => GRUPOS[g]));
-  const avisos: Porque[] = [];
-  const metas = metasDoPerfil(nivel, perfil.prioridades);
-
-  // 2. Divisão escolhida entre opções equivalentes (divisao.*)
-  const { divisao, escolhida } = divisaoEscolhida(perfil.diasSemana, metaMaxima(nivel, perfil.prioridades), perfil.divisao);
 
   // 1. Exercícios possíveis. Os "sem a região" guardam o que a dor tirou, para o aviso dizer o motivo verdadeiro.
   const possiveisSemRegiao = BIBLIOTECA.filter(
@@ -132,8 +130,8 @@ export function gerarPrograma(perfil: Perfil, inventarioOriginal: Inventario): R
     );
 
   // Desempate dentro do mesmo nível da função (selecao.funcao-da-vaga): dor leve desfavorece; estabilidade
-  // só para iniciante; carga possível; variedade entre os dias; com animação aprovada; por fim o id, só para
-  // o resultado ser estável (sem preferência).
+  // só para iniciante; carga possível; variedade entre os dias; a preferência da pessoa (selecao.preferencia);
+  // com animação aprovada; por fim o id, só para o resultado ser estável.
   const halterMax = cargaMaxHalter(inventario);
   const kettlebellMax = cargasKettlebell(inventario).at(-1) ?? 0;
   // O graviton (assistida) não passa do peso do corpo: conta como o peso do corpo.
@@ -143,19 +141,24 @@ export function gerarPrograma(perfil: Perfil, inventarioOriginal: Inventario): R
       : (e.carga === 'halter' && halterMax < 20) || (e.carga === 'kettlebell' && kettlebellMax < 20)
         ? 1
         : 2;
-  const usos = new Map<string, number>();
-  const chave = (e: Exercicio) => [
+  /** A pessoa tocou "prefiro este" neste exercício, nesta função (selecao.preferencia). */
+  const preferido = (f: Funcao | undefined, e: Exercicio) => !!f && perfil.preferidos?.[f.id] === e.id;
+  const chave = (e: Exercicio, f: Funcao | undefined, usos: Map<string, number>) => [
     e.articulacoes.some((a) => dorLeve.has(a)) ? 1 : 0,
     nivel === 'iniciante' && !estavel(e) ? 1 : 0,
     -cargaPossivel(e),
     usos.get(e.id) ?? 0,
+    preferido(f, e) ? 0 : 1,
     e.animacaoId ? 0 : 1, // entre equivalentes, o que o guia já mostra animado (CLAUDE.md, qualidade do guia)
   ];
-  const comparar = (a: Exercicio, b: Exercicio) => {
-    const [ka, kb] = [chave(a), chave(b)];
-    for (let i = 0; i < ka.length; i++) if (ka[i] !== kb[i]) return ka[i]! - kb[i]!;
-    return a.id.localeCompare(b.id);
-  };
+  /** Comparador do desempate, com a contagem de usos (variedade entre os dias) de quem chama. */
+  const comparar =
+    (usos: Map<string, number>, funcaoDe: (e: Exercicio) => Funcao | undefined) =>
+    (a: Exercicio, b: Exercicio) => {
+      const [ka, kb] = [chave(a, funcaoDe(a), usos), chave(b, funcaoDe(b), usos)];
+      for (let i = 0; i < ka.length; i++) if (ka[i] !== kb[i]) return ka[i]! - kb[i]!;
+      return a.id.localeCompare(b.id);
+    };
 
   /** 1º nível com exercício possível; se nada, a função substituta (seNada). */
   const resolver = (vaga: Vaga): { funcao: Funcao; nivel: number } | null => {
@@ -165,6 +168,64 @@ export function gerarPrograma(perfil: Perfil, inventarioOriginal: Inventario): R
     }
     return null;
   };
+
+  /** Melhor exercício da função, do nível n em diante, fora os já usados no dia. */
+  const escolher = (funcao: Funcao, desde: number, usados: (id: string) => boolean, usos: Map<string, number>) => {
+    for (let n = desde; n < funcao.niveis.length; n++) {
+      const cands = funcao.niveis[n]!.filter((id) => naFuncao(funcao, id))
+        .map((id) => possivel.get(id))
+        .filter((e): e is Exercicio => !!e && !usados(e.id));
+      const e = cands.sort(comparar(usos, () => funcao))[0];
+      if (e) return { ex: e, nivelFuncao: n };
+    }
+    return null;
+  };
+
+  /** Alternativas possíveis neste inventário (selecao.equivalencia). */
+  const alternativasDe = (e: Exercicio, funcao: Funcao) =>
+    alternativas(e, funcao, possiveis.filter((x) => !funcaoTemExercicio(funcao, x.id) || naFuncao(funcao, x.id)));
+
+  return {
+    nivel,
+    inventario,
+    caps,
+    triagem,
+    regioesExcluidas,
+    dorLeve,
+    possiveisSemRegiao,
+    possiveis,
+    possivel,
+    carregaExcluida,
+    naFuncao,
+    perdidaPorDor,
+    halterMax,
+    preferido,
+    comparar,
+    resolver,
+    escolher,
+    alternativasDe,
+  };
+}
+export type ContextoDeSelecao = ReturnType<typeof contextoDeSelecao>;
+
+export function gerarPrograma(perfil: Perfil, inventarioOriginal: Inventario): Resultado {
+  const triagem = avaliarTriagem(perfil.triagem);
+  if (triagem.bloqueado) return { status: 'bloqueado', triagem };
+
+  const ctx = contextoDeSelecao(perfil, inventarioOriginal, triagem);
+  const { nivel, inventario, caps, regioesExcluidas, possiveisSemRegiao, possiveis, carregaExcluida, naFuncao, perdidaPorDor, halterMax, resolver } = ctx;
+  const dorDe = (a: Articulacao) => textoDor(a, triagem.dores.find((d) => d.articulacao === a)?.nota);
+  const grupos = new Set<Grupo>(perfil.prioridades);
+  const prioritarios = new Set<Musculo>(perfil.prioridades.flatMap((g) => GRUPOS[g]));
+  const avisos: Porque[] = [];
+  const metas = metasDoPerfil(nivel, perfil.prioridades);
+
+  // 2. Divisão escolhida entre opções equivalentes (divisao.*)
+  const { divisao, escolhida } = divisaoEscolhida(perfil.diasSemana, metaMaxima(nivel, perfil.prioridades), perfil.divisao);
+
+  const usos = new Map<string, number>();
+  const funcaoPossivel = (e: Exercicio) => funcoesDoExercicio(e.id).find((x) => naFuncao(x, e.id));
+  const comparar = ctx.comparar(usos, funcaoPossivel);
 
   // 4. Preenchimento das vagas por função
   const N = exerciciosPorSessao(perfil.minutosSessao);
@@ -199,16 +260,9 @@ export function gerarPrograma(perfil: Perfil, inventarioOriginal: Inventario): R
     const itens: Item[] = [];
     for (const x of mantidas.sort((a, b) => a.ordem - b.ordem)) {
       const { funcao } = x.res;
-      let escolhido: Exercicio | undefined;
-      let nivelFuncao = x.res.nivel;
-      for (; nivelFuncao < funcao.niveis.length && !escolhido; nivelFuncao++) {
-        const cands = funcao.niveis[nivelFuncao]!.filter((id) => naFuncao(funcao, id))
-          .map((id) => possivel.get(id))
-          .filter((e): e is Exercicio => !!e && !itens.some((i) => i.ex.id === e.id));
-        escolhido = cands.sort(comparar)[0];
-      }
-      nivelFuncao--;
-      if (!escolhido) continue;
+      const achado = ctx.escolher(funcao, x.res.nivel, (id) => itens.some((i) => i.ex.id === id), usos);
+      if (!achado) continue;
+      const { ex: escolhido, nivelFuncao } = achado;
       if (nivelFuncao > 0 && funcao.semNivel1) nivelAbaixo.add(funcao.semNivel1);
       usos.set(escolhido.id, (usos.get(escolhido.id) ?? 0) + 1);
       itens.push({ ex: escolhido, vaga: x.vaga, funcao, nivelFuncao, series: VOLUME.seriesPorExercicio.min, ordemVaga: x.ordem });
@@ -356,8 +410,8 @@ export function gerarPrograma(perfil: Perfil, inventarioOriginal: Inventario): R
       descansoSeg: composto ? DESCANSO.composto[nivel] : DESCANSO.isolador[nivel],
       unilateral: e.unilateral,
       animacaoId: e.animacaoId,
-      alternativas: alternativas(e, it.funcao, possiveis.filter((x) => !funcaoTemExercicio(it.funcao, x.id) || naFuncao(it.funcao, x.id))),
-      porque: [...porqueDoExercicio(e, it.funcao, it.nivelFuncao, nivel), ...porqueDaDor(e, it.preenchido)],
+      alternativas: ctx.alternativasDe(e, it.funcao),
+      porque: [...porqueDoExercicio(e, it.funcao, it.nivelFuncao, nivel, ctx.preferido(it.funcao, e)), ...porqueDaDor(e, it.preenchido)],
     };
   };
   let programaDias: DiaPrograma[] = dias.map(({ dia, itens }) => {
@@ -537,7 +591,7 @@ const TEXTO_REGRA_FUNCAO: Record<string, (e: Exercicio) => string | null> = {
   'selecao.aducao-complemento': () => 'Complemento opcional para a parte de dentro da coxa (adutores), porque pernas ou glúteos são prioridade.',
 };
 
-function porqueDoExercicio(e: Exercicio, funcao: Funcao, nivelFuncao: number, nivel: Nivel): Porque[] {
+export function porqueDoExercicio(e: Exercicio, funcao: Funcao, nivelFuncao: number, nivel: Nivel, preferido = false): Porque[] {
   const p: Porque[] = [
     {
       regraId: r('selecao.funcao-da-vaga'),
@@ -547,6 +601,8 @@ function porqueDoExercicio(e: Exercicio, funcao: Funcao, nivelFuncao: number, ni
           : `Vaga de ${funcao.nome.toLowerCase()}: sem as opções preferidas no seu equipamento, entra a melhor possível.`,
     },
   ];
+  if (preferido)
+    p.push({ regraId: r('selecao.preferencia'), texto: 'Você prefere este entre os equivalentes da mesma função (dá para desfazer nas alternativas).' });
   for (const id of funcao.regras) {
     const texto = TEXTO_REGRA_FUNCAO[id]?.(e);
     if (texto) p.push({ regraId: r(id), texto });
