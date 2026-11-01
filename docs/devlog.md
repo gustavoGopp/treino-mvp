@@ -248,6 +248,8 @@ E um alerta registrado no backlog: a nossa triagem é mais rígida que o PAR-Q+ 
 - Modelo padrão: Opus 5.5, trocável por variável de ambiente. Pelo plano, fica o mais barato que atingir recall ≥ 85% e precisão ≥ 90%; a escolha sai do eval.
 - O limite diário fica na memória da função, o que basta para o beta fechado com convite. Antes de abrir o beta, ele vai para um contador compartilhado (anotado no backlog).
 
+**Imagem:** `img/m4-foto.png` (sugestões da foto com "Tenho / Não tenho"; persona fictícia e API simulada).
+
 **Para funcionar em produção (depende do Gustavo):** cadastrar `ANTHROPIC_API_KEY` e `CONVITES` na Vercel, definir o teto de gasto no console da Anthropic e rodar o eval com as fotos reais. Até lá, a foto responde "ainda não está configurado" e a lista funciona normalmente.
 
 **Rascunho de post para o LinkedIn**
