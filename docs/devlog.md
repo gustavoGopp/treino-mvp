@@ -505,3 +505,53 @@ As listas exatas ficam em `tests/unit/metas-r0.test.ts`, para o R0c zerar.
 > Agora a pergunta segue com outra: "e hoje, dói? de 0 a 10". Até 5, o programa continua, com um lembrete para parar se doer numa série. Acima de 5, os exercícios da região saem, e o app diz o motivo verdadeiro e recomenda avaliação.
 >
 > No mesmo pacote, o cadastro de quem não tem nenhuma condição caiu para 13 toques, sem digitar nada, e o guia passou a mostrar a prescrição da sua semana, não a de um programa de exemplo. Nada no app pode contradizer o seu programa.
+
+## R1b: Vários locais, trocas explicadas e progresso que não se perde (01/11/2026)
+
+**Pesquisa antes do código** (`pesquisa-v2/09-trocas-e-locais.md`, tema T9, aprovada pelo Gustavo):
+- equivalentes crescem o músculo igual (máquina × peso livre; moderada, Haugen 2023 e Heidel 2022);
+- a força é em parte específica do aparelho, e boa parte do ganho de carga no começo é coordenação (moderada; um estudo);
+- não há conversão confiável de carga entre aparelhos: de −17% a +8% conforme o par (três estudos, um cada);
+- a proteção contra a dor muscular passa de uma variação para outra (um estudo); sobre a carga, ninguém mediu;
+- daí a regra: a troca leva a semana, a fase, a prescrição da vaga e o histórico; a carga do exercício novo recomeça pela calibração na 1ª série, e nunca se converte carga de um aparelho para outro.
+
+**O que mudou**
+- **Locais:** em "Meus locais", cada local tem um nome que a pessoa escolhe (chips "Prédio", "Academia", "Casa", "Trabalho" ou texto) e o seu equipamento, na mesma tela do cadastro, com os atalhos, a foto e a menor anilha. Um toque escolhe o local principal, para o qual o programa é montado.
+- **Onde vou treinar hoje?** Com 2 locais ou mais, aparece antes de começar, com o último local usado já escolhido e todos à vista. A prévia mostra cada troca com o motivo ("Aqui não tem polia alta: puxada unilateral → barra fixa").
+- **Treino do dia no local** (`local.treino-do-dia`, nova): cada vaga que não é possível ali troca pelo equivalente da mesma função, com o mesmo desempate do gerador (o código de escolha passou a ser um só, `contextoDeSelecao`). Séries, RIR e descanso da vaga ficam; as repetições são as do exercício que entrou. Sem equivalente, primeiro outro movimento do mesmo músculo, depois outro músculo do dia (`selecao.dia-sem-principal`); se nada for possível, a vaga sai com o motivo, e nenhum dia fica sem exercício principal. As alternativas do "pare e use a alternativa" são as do local.
+- **Calibração na 1ª série** (`progressao.calibracao`, nova; os casos C1 a C7 do T6): em toda 1ª vez de um exercício, e na 1ª vez de uma máquina de placa, anilhas ou contrapeso num local. Série a série, nos 5 tipos de carga. A série de acerto fica no histórico, marcada como "acerto da carga", e fora da dupla progressão. O texto diz "Você já faz X; aqui é a 1ª vez", sem número do exercício antigo.
+- **Progresso que não se perde** (`progressao.troca-equivalente`, nova): o histórico segue o exercício em qualquer local. Halteres, kettlebell, barra e peso do corpo continuam a progressão em qualquer local; se o local não tem o peso, vale o maior abaixo, com o aviso. Nas máquinas, cada local tem a sua carga (decisão do Gustavo).
+- **"Prefiro este"** (`selecao.preferencia`, nova): nos detalhes do exercício e no "Trocar exercício", entre equivalentes do mesmo nível da função. Entra no desempate antes da animação e da ordem alfabética, vale no próximo programa (o aviso "Há uma versão nova do seu programa" oferece atualizar) e nas trocas de local, aparece no "porquê", e um toque desfaz. A dor acima de 5 tira o preferido igual.
+- **Estado salvo, versão 6:** `locais`, `localPrincipalId`, `ultimoLocalId`, `preferidos`, o local de cada sessão e a marca de acerto nas séries. A migração 5 → 6 põe o inventário de antes no 1º local, "Meu local", sem tocar em atributo; não inventa principal, último local nem preferência. As sessões antigas contam como do 1º local. Exportação e importação continuam, e um arquivo da versão 5 entra já com o 1º local.
+- **Regras:** 4 novas (`progressao.calibracao`, `progressao.troca-equivalente`, `local.treino-do-dia`, `selecao.preferencia`) e 2 revistas (`selecao.funcao-da-vaga`, `selecao.equivalencia`), todas com selo e fonte; `fontes.md` ganhou 12 fontes.
+- **Testes:** 408 unitários (eram 362) e 55 no navegador (eram 53), entre eles:
+  - C1 a C7 da calibração e os 5 tipos de carga;
+  - o Bruno faz o Superior A no prédio e na academia do bairro, com as trocas explicadas, e o supino com halteres continua a progressão;
+  - a Carla num local sem rack: sem preferência entra o hack, com "prefiro o leg press" entra o leg press;
+  - propriedades: 4 personas × 6 locais × 2 semanas, nenhum exercício exige o que o local não tem e todo dia tem exercício principal; 8 treinos alternando locais, nenhum histórico é apagado nem misturado;
+  - no navegador: o 2º local, a escolha de onde treinar, a troca com o motivo e a calibração no leg press.
+
+**Snapshots**
+- **Ana, Bruno, Carla e Diego, sem 2º local e sem preferência:** os 4 snapshots não mudaram. O programa sai idêntico, inclusive o hash.
+- **Novo, Bruno na academia do bairro** (halteres de 2 a 30 kg, banco regulável, barra fixa, paralelas, leg press, extensora e flexora, sem polia):
+  - Superior A: puxada unilateral → barra fixa; francês na polia → francês com halter; crucifixo na polia → com halteres; face pull → crucifixo inverso;
+  - Inferior A e B: flexão de joelho na bola ou com elástico → cadeira flexora; panturrilha no step → no leg press; abdominal na polia → no chão;
+  - Superior B: remada baixa → remada apoiada; puxada com barra reta → barra fixa; elevação lateral na polia → com halteres; rosca na polia → rosca inclinada; tríceps na corda → mergulho.
+- **Novo, Carla com "prefiro o leg press":** no Inferior, o leg press entra no lugar do agachamento livre (4 × 8–15 em vez de 4 × 6–10). Os minutos não mudam; os adutores (sem meta) vão de 7,5 para 5,5 séries.
+
+**O que mudou em cada persona**
+- **Ana, Carla e Diego:** o programa é o mesmo. Muda o 1º treino de cada exercício: em vez de "escolha uma carga", vem a calibração.
+- **Bruno:** igual no prédio. Na academia do bairro, o mesmo dia troca o que é de polia, com o motivo, e a carga dos halteres segue.
+
+**Imagem:** `img/r1b-locais.png` (onde vou treinar hoje, a troca explicada e a calibração no leg press).
+
+**Fica para o R2:** pausas detectadas sozinhas (e com elas a calibração na volta de mais de 26 semanas), "a sua semana", evolução por exercício e semana leve sugerida. No backlog: apagar um local e oferecer o que o local a mais permite.
+
+**Rascunho de post para o LinkedIn**
+> Eu treino em dois lugares: a academia do prédio e uma do bairro. Meu app de treino só conhecia um.
+>
+> Agora cada local tem o seu equipamento, e antes de começar eu escolho onde treino hoje, com um toque. O treino do dia se ajusta: "aqui não tem polia alta: puxada → barra fixa". As séries e o descanso ficam os mesmos.
+>
+> A parte difícil foi o progresso. Fui aos estudos: o músculo cresce igual na máquina e no peso livre, mas a carga não passa de um aparelho para o outro. No supino, os halteres levantaram 17% menos que a barra; a máquina, 8% mais. Então o app não inventa conta. Na 1ª vez num aparelho, ele pede uma carga fácil e acerta pela 1ª série: "ficou leve: na próxima, 12 kg por lado". O histórico segue o exercício, em qualquer lugar.
+>
+> E entrou o "prefiro este": entre exercícios equivalentes, eu escolho. A preferência nunca passa por cima da dor.
