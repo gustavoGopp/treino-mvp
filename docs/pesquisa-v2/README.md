@@ -35,6 +35,8 @@ Essas decisões foram copiadas do programa de referência para o código, sem pe
 | [03-universo-de-equipamentos.md](03-universo-de-equipamentos.md) | Os equipamentos que academias, condomínios e casas costumam ter, organizados para o gerador | Primeira versão |
 
 ## Plano dos próximos temas (em ordem)
+
+> O plano detalhado de cada tema (perguntas, fontes, entregável e critério de pronto) está em [PLANO-DOS-TEMAS.md](PLANO-DOS-TEMAS.md). Os temas 1 e 2 e a divisão escolhida pela pessoa foram aprovados pelo Gustavo em 01/11/2026.
 1. ~~Divisão e frequência~~ (feito).
 2. ~~Panorama das variáveis~~ (feito).
 3. **Escolha dos exercícios, músculo por músculo.**
