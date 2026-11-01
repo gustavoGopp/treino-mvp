@@ -591,9 +591,9 @@
     "id": "readaptacao.semana1",
     "regra": "Semana 1 após pausa ≥ 3 semanas",
     "valores": {
-      "iniciante": "~50–60% das séries; RIR 3–4; carga 10–20% abaixo da última registrada",
-      "intermediario": "~50–60% das séries; RIR 3–4; carga 10–20% abaixo da última registrada",
-      "avancado": "~50–60% das séries; RIR 3–4; carga 10–20% abaixo da última registrada"
+      "iniciante": "~50–60% das séries; RIR 3–4; carga 10–20% abaixo da que a pessoa usava antes da pausa (na dúvida, começar leve)",
+      "intermediario": "~50–60% das séries; RIR 3–4; carga 10–20% abaixo da que a pessoa usava antes da pausa (na dúvida, começar leve)",
+      "avancado": "~50–60% das séries; RIR 3–4; carga 10–20% abaixo da que a pessoa usava antes da pausa (na dúvida, começar leve)"
     },
     "selo": "consenso",
     "fontes": [
@@ -828,6 +828,19 @@
     ]
   },
   {
+    "id": "selecao.dia-sem-principal",
+    "regra": "Dia que ficaria só com core (abdominal) por causa das regiões excluídas (R1)",
+    "valores": {
+      "iniciante": "as vagas que ficaram vazias recebem exercícios possíveis (fora o core) dos músculos mais abaixo da meta, até o número de exercícios do dia; se nenhum for possível, o aviso diz o motivo",
+      "intermediario": "as vagas que ficaram vazias recebem exercícios possíveis (fora o core) dos músculos mais abaixo da meta, até o número de exercícios do dia; se nenhum for possível, o aviso diz o motivo",
+      "avancado": "as vagas que ficaram vazias recebem exercícios possíveis (fora o core) dos músculos mais abaixo da meta, até o número de exercícios do dia; se nenhum for possível, o aviso diz o motivo"
+    },
+    "selo": "consenso",
+    "fontes": [
+      "consenso-projeto"
+    ]
+  },
+  {
     "id": "selecao.alongado",
     "regra": "Quando há opção com o músculo mais alongado e evidência para aquele músculo, ela vem primeiro na função",
     "valores": {
@@ -1019,6 +1032,32 @@
     ]
   },
   {
+    "id": "equipamento.atalhos",
+    "regra": "Atalhos de cenário na tela de equipamento (pesquisa-v2/08, seção 3): \"casa com halteres e elásticos\", \"condomínio com multifuncional\" e \"academia completa\"",
+    "valores": {
+      "iniciante": "nenhum vem selecionado; o toque marca o conjunto típico, sem desmarcar o que a pessoa já marcou; os \"às vezes tem\" aparecem logo abaixo, desmarcados; os detalhes que mudam o programa (faixa dos halteres, estações, altura da polia…) continuam sendo perguntados",
+      "intermediario": "nenhum vem selecionado; o toque marca o conjunto típico, sem desmarcar o que a pessoa já marcou; os \"às vezes tem\" aparecem logo abaixo, desmarcados; os detalhes que mudam o programa (faixa dos halteres, estações, altura da polia…) continuam sendo perguntados",
+      "avancado": "nenhum vem selecionado; o toque marca o conjunto típico, sem desmarcar o que a pessoa já marcou; os \"às vezes tem\" aparecem logo abaixo, desmarcados; os detalhes que mudam o programa (faixa dos halteres, estações, altura da polia…) continuam sendo perguntados"
+    },
+    "selo": "consenso",
+    "fontes": [
+      "consenso-projeto"
+    ]
+  },
+  {
+    "id": "equipamento.menor-anilha",
+    "regra": "Menor anilha das máquinas de anilha e das barras (leg press, hack, smith, panturrilha sentada, barra longa, barra hexagonal)",
+    "valores": {
+      "iniciante": "pergunta única, gravada em cada item de anilha; sem resposta, vale o padrão de 2 kg (opinião do projeto, a confirmar no T8)",
+      "intermediario": "pergunta única, gravada em cada item de anilha; sem resposta, vale o padrão de 2 kg (opinião do projeto, a confirmar no T8)",
+      "avancado": "pergunta única, gravada em cada item de anilha; sem resposta, vale o padrão de 2 kg (opinião do projeto, a confirmar no T8)"
+    },
+    "selo": "consenso",
+    "fontes": [
+      "consenso-projeto"
+    ]
+  },
+  {
     "id": "equipamento.sem-puxada-vertical",
     "regra": "Sem barra fixa nem polia alta",
     "valores": {
@@ -1194,15 +1233,29 @@
   },
   {
     "id": "seguranca.triagem.osteoarticular",
-    "regra": "\"Sim\" isolado na pergunta sobre osso, articulação ou tecido mole",
+    "regra": "\"Sim\" isolado na pergunta sobre osso, articulação ou tecido mole (revista no R1, aprovada pelo Gustavo em 01/11/2026)",
     "valores": {
-      "iniciante": "marca a região e exclui os exercícios que a carregam, em vez de bloquear tudo",
-      "intermediario": "marca a região e exclui os exercícios que a carregam, em vez de bloquear tudo",
-      "avancado": "marca a região e exclui os exercícios que a carregam, em vez de bloquear tudo"
+      "iniciante": "marca a região e pergunta \"e hoje, dói? de 0 a 10\"; a nota segue `seguranca.dor.programa`, em vez de tirar a região inteira; não bloqueia o programa",
+      "intermediario": "marca a região e pergunta \"e hoje, dói? de 0 a 10\"; a nota segue `seguranca.dor.programa`, em vez de tirar a região inteira; não bloqueia o programa",
+      "avancado": "marca a região e pergunta \"e hoje, dói? de 0 a 10\"; a nota segue `seguranca.dor.programa`, em vez de tirar a região inteira; não bloqueia o programa"
     },
     "selo": "consenso",
     "fontes": [
       "warburton2011",
+      "smith2017",
+      "consenso-projeto"
+    ]
+  },
+  {
+    "id": "seguranca.triagem.nenhuma",
+    "regra": "Botão \"Nenhuma se aplica a mim\" na triagem (R1)",
+    "valores": {
+      "iniciante": "marca \"não\" nas 9 perguntas de uma vez; as perguntas continuam à vista e a pessoa ainda toca em \"Continuar\"",
+      "intermediario": "marca \"não\" nas 9 perguntas de uma vez; as perguntas continuam à vista e a pessoa ainda toca em \"Continuar\"",
+      "avancado": "marca \"não\" nas 9 perguntas de uma vez; as perguntas continuam à vista e a pessoa ainda toca em \"Continuar\""
+    },
+    "selo": "consenso",
+    "fontes": [
       "consenso-projeto"
     ]
   },
@@ -1260,6 +1313,20 @@
     "fontes": [
       "smith2017",
       "silbernagel2007"
+    ]
+  },
+  {
+    "id": "seguranca.dor.programa",
+    "regra": "Dor de hoje por região, perguntada uma vez só (na triagem), usada para montar o programa (R1)",
+    "valores": {
+      "iniciante": "> 5, ou sem nota (dado antigo): tira os exercícios que carregam a região, e o aviso de meta diz o motivo (\"por causa da dor no ombro\"); 3–5: no desempate, prefere os que poupam a região; 0–5: lembrete no exercício (\"se doer acima de 5 numa série, pare e use a alternativa\"); a regra por série (`seguranca.dor.escala`) continua valendo",
+      "intermediario": "> 5, ou sem nota (dado antigo): tira os exercícios que carregam a região, e o aviso de meta diz o motivo (\"por causa da dor no ombro\"); 3–5: no desempate, prefere os que poupam a região; 0–5: lembrete no exercício (\"se doer acima de 5 numa série, pare e use a alternativa\"); a regra por série (`seguranca.dor.escala`) continua valendo",
+      "avancado": "> 5, ou sem nota (dado antigo): tira os exercícios que carregam a região, e o aviso de meta diz o motivo (\"por causa da dor no ombro\"); 3–5: no desempate, prefere os que poupam a região; 0–5: lembrete no exercício (\"se doer acima de 5 numa série, pare e use a alternativa\"); a regra por série (`seguranca.dor.escala`) continua valendo"
+    },
+    "selo": "consenso",
+    "fontes": [
+      "smith2017",
+      "consenso-projeto"
     ]
   },
   {
