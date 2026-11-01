@@ -33,13 +33,14 @@ Essas decisões foram copiadas do programa de referência para o código, sem pe
 | [01-divisao-e-frequencia.md](01-divisao-e-frequencia.md) | Corpo todo, AB, ABC, ABCD, superior/inferior, empurrar/puxar/pernas: o que a evidência diz e como escolher | Pronto para revisão |
 | [02-panorama-da-evidencia.md](02-panorama-da-evidencia.md) | O que a evidência mais recente (ACSM 2026 e meta-análises) diz de cada variável, comparado com as regras atuais | Pronto para revisão |
 | [03-universo-de-equipamentos.md](03-universo-de-equipamentos.md) | Os equipamentos que academias, condomínios e casas costumam ter, organizados para o gerador | Primeira versão |
+| [04-exercicios-por-musculo.md](04-exercicios-por-musculo.md) | Tema T3: o que cresce mais em cada um dos 12 músculos, as regras de escolha por função e quantos exercícios por semana | Pronto para revisão |
 
 ## Plano dos próximos temas (em ordem)
 
 > O plano detalhado de cada tema (perguntas, fontes, entregável e critério de pronto) está em [PLANO-DOS-TEMAS.md](PLANO-DOS-TEMAS.md). Os temas 1 e 2 e a divisão escolhida pela pessoa foram aprovados pelo Gustavo em 01/11/2026.
 1. ~~Divisão e frequência~~ (feito).
 2. ~~Panorama das variáveis~~ (feito).
-3. **Escolha dos exercícios, músculo por músculo.**
+3. ~~**Escolha dos exercícios, músculo por músculo.**~~ (feito: `04-exercicios-por-musculo.md`)
    - Para cada músculo: quais exercícios têm evidência de crescer mais, como posição alongada, ângulos e regiões do músculo. Exemplos já lidos: a flexora sentada cresceu mais os posteriores que a deitada (Maeo 2021); hip thrust e agachamento cresceram o glúteo de forma parecida (Plotkin 2023).
    - Quantos exercícios por músculo e por sessão.
    - Como variar entre blocos de semanas.
