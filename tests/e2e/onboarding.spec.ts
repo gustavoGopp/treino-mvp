@@ -12,15 +12,17 @@ test('do zero ao programa em menos de 5 minutos (persona Ana)', async ({ page })
   const painel = page.getByRole('tabpanel');
   // Semana 1 (fase de aprendizado da iniciante): menos séries que o programa completo.
   await expect(painel.locator('.series').first()).toHaveText('2 × 8–15');
-  // Exercício com animação mostra a imagem e abre o guia; sem animação, "animação em breve".
+  // Exercício com animação mostra a imagem e abre o guia (no dia A da Ana, todos já têm animação).
   await expect(painel.locator('.miniatura svg').first()).toBeVisible();
-  await expect(painel.locator('.miniatura.vazia').first()).toBeVisible();
+  await expect(painel.locator('.miniatura.vazia')).toHaveCount(0);
   // O porquê, com o selo de evidência, fica um toque abaixo.
   await painel.getByText('Detalhes', { exact: true }).first().click();
   await expect(painel.locator('.mais .selo').first()).toBeVisible();
   // Outro dia.
   await page.getByRole('tab', { name: 'Corpo todo B', exact: true }).click();
   await expect(painel.getByRole('heading', { name: /Agachamento búlgaro/ })).toBeVisible();
+  // Sem animação aprovada: "animação em breve" (desenvolvimento unilateral).
+  await expect(painel.locator('.miniatura.vazia').first()).toBeVisible();
   // Avisos de meta por músculo em "Sobre o programa".
   await page.getByText('Sobre o programa: avisos e o porquê').click();
   await expect(page.getByText(/Abaixo da meta semanal/).first()).toBeVisible();
