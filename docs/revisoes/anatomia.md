@@ -228,19 +228,21 @@ Os textos dizem **onde sentir**, e esses músculos trabalham sem que a pessoa pr
 - Uma modelagem do agachamento (Vigotsky e Bryanton, 2016) sobre a parte do adutor magno na extensão do quadril foi vista só em resumos de terceiros: **não verificada**, e não foi usada.
 
 ## Decisões do Gustavo
-Para decidir item a item. Nada pré-marcado.
+Decididas em 02/11/2026, item a item, sem nada pré-marcado.
 
 | # | Achado | Decisão |
 |---|---|---|
-| 1 | Posteriores na ponte e no hip thrust (e nos coices) | |
-| 2 | Glúteo no afundo, no búlgaro e no stiff unilateral: (a) desenho segue a biblioteca ou (b) biblioteca segue o desenho | |
-| 3 | Trapézio superior no desenho da elevação lateral | |
-| 4 | Deltoide lateral no desenvolvimento: (a) desenho e texto seguem a biblioteca ou (b) biblioteca segue o desenho | |
-| 5 | "Costas" nos crucifixos invertidos: (a) tirar ou (b) mudar o texto | |
-| 6 | Adutores nos agachamentos profundos, no leg press e no terra hexagonal (e no desenho do afundo e do búlgaro) | |
-| 7 | Selo e fonte nos músculos das 9 fichas | |
-| 8 | Músculos não contados: ficam só no desenho, saem ou passam a contar | |
-| 9 | Remover a cópia `elevacao-lateral-b` | |
-| 10 | Lombar no cartão da hiperextensão | |
-| 12 | Mergulho: manter ou tríceps secundário | |
-| 13 | Secundários fora do texto do guia | |
+| 1 | Posteriores na ponte e no hip thrust (e nos coices) | **entra agora:** tirar dos 3 e dos 2 coices |
+| 2 | Glúteo no afundo, no búlgaro e no stiff unilateral | **entra agora:** (a) o desenho segue a biblioteca (glúteo em laranja) |
+| 3 | Trapézio superior no desenho da elevação lateral | **entra agora:** sai do desenho das 2 elevações laterais |
+| 4 | Deltoide lateral no desenvolvimento | **entra agora:** (a) o desenho e o texto seguem a biblioteca (lateral como secundário) |
+| 5 | "Costas" nos crucifixos invertidos | **entra agora:** (a) sai dos 3 crucifixos invertidos; fica no face pull |
+| 6 | Adutores | **entra agora:** completar a lista (9 exercícios) e o desenho do afundo e do búlgaro |
+| 7 | Selo e fonte nos músculos das 9 fichas | **entra agora** |
+| 8 | Músculos não contados no desenho | **ficam só no desenho** (exceto o trapézio da elevação lateral, item 3) |
+| 9 | Remover a cópia `elevacao-lateral-b` | **entra agora** |
+| 10 | Lombar no cartão da hiperextensão | **entra agora** |
+| 12 | Mergulho | **mantém** (peito e tríceps principais) |
+| 13 | Secundários fora do texto do guia | **entra agora:** uma frase curta nos 7 guias |
+
+As mudanças no desenho valem para o Boneco (o estilo padrão, `src/engine/estilo/musculos.ts`). O estilo clássico continua igual ao guia original, que é o que o teste de equivalência confere.
