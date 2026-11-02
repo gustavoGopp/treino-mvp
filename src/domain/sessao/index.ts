@@ -1,11 +1,11 @@
 import { BIBLIOTECA, type Exercicio } from '../biblioteca';
 import { faseNaSemana, prescricaoDaSemana, type DiaPrograma, type ExercicioPrescrito, type Fase, type Programa } from '../gerador';
 import { blocoAtual, semanaNoBloco, type Hoje } from './bloco';
-import { ESCADA_PESO_CORPO, proximaCarga, sugerirProgressao, type Alvo, type Carga, type OpcoesCarga, type SerieRegistrada, type SessaoExercicio, type Sugestao } from '../progressao';
+import { ESCADA_PESO_CORPO, noPassoAbaixo, proximaCarga, sugerirProgressao, type Alvo, type Carga, type OpcoesCarga, type SerieRegistrada, type SessaoExercicio, type Sugestao } from '../progressao';
 import { calibrar, emCalibracao, semCalibracao, type ResultadoCalibracao } from '../progressao/calibracao';
 import { funcoesDoExercicio } from '../gerador/funcoes';
 import { r } from '../regras';
-import { CAPACIDADES, cargasHalter, cargasKettlebell, ITEM_IDS, MENOR_ANILHA_PADRAO_KG, type Inventario } from '../taxonomia/equipamentos';
+import { CAPACIDADES, cargasHalter, cargasKettlebell, ITEM_IDS, MENOR_ANILHA_PADRAO_KG, type Capacidade, type Inventario } from '../taxonomia/equipamentos';
 export * from './bloco';
 
 // Sessão de treino: funções puras que ligam o programa, o histórico e a progressão.
@@ -103,7 +103,7 @@ export function prescricaoNoGuia(
 export type TipoCarga = Carga['tipo'];
 
 /** Placas ou menor anilha do item que dá a capacidade do exercício (o 1º do inventário que a dá sozinho). */
-function atributoDoItem(ex: Exercicio | undefined, inv: Inventario, chave: 'placas' | 'menorAnilhaKg'): number | undefined {
+function atributoDoItem(ex: Exercicio | undefined, inv: Inventario, chave: 'placas' | 'menorAnilhaKg' | 'pesoBarraKg'): number | undefined {
   if (!ex) return undefined;
   const caps = ex.requer.find((g) => g.every((c) => CAPACIDADES[c](inv))) ?? ex.requer[0]!;
   for (const id of ITEM_IDS) {
@@ -117,8 +117,15 @@ function atributoDoItem(ex: Exercicio | undefined, inv: Inventario, chave: 'plac
 /** Como registrar a carga de um exercício, conforme o equipamento (progressao.incremento.*; pesquisa-v2/08, seção 1.1). */
 export function opcoesCarga(exId: string, inventario: Inventario): OpcoesCarga & { registro: TipoCarga } {
   const ex = POR_ID[exId];
-  const tipo = ex?.carga ?? 'peso-corpo';
+  let tipo = ex?.carga ?? 'peso-corpo';
   const placas = atributoDoItem(ex, inventario, 'placas');
+  // A carga segue a versão possível do exercício (auditoria, achado 7): a Scott com halteres sobe pela lista dos
+  // halteres; o hip thrust no smith, pelas anilhas por lado; e o que é "halter" sem halteres no local (a panturrilha
+  // no chão ou no step) sobe pela escada, como o peso do corpo.
+  const grupo = ex?.requer.find((g) => g.every((c) => CAPACIDADES[c](inventario)));
+  const BARRAS: Capacidade[] = ['barra_longa', 'barra_w', 'barra_hexagonal'];
+  if (tipo === 'barra' && grupo && !grupo.some((c) => BARRAS.includes(c))) tipo = grupo.includes('halteres') ? 'halter' : grupo.includes('smith') ? 'anilha' : tipo;
+  if (tipo === 'halter' && !cargasHalter(inventario).length) tipo = 'peso-corpo';
   switch (tipo) {
     case 'halter':
       return { tipo, registro: 'kg', lista: cargasHalter(inventario) };
@@ -136,8 +143,12 @@ export function opcoesCarga(exId: string, inventario: Inventario): OpcoesCarga &
     case 'peso-corpo':
     case 'elastico':
       return { tipo, registro: 'degrau' };
-    case 'barra':
-      return { tipo, registro: 'kg' };
+    case 'barra': {
+      // Sobe de 2 × a menor anilha (uma de cada lado), a partir do peso da barra quando informado (equipamento.menor-anilha).
+      const menor = atributoDoItem(ex, inventario, 'menorAnilhaKg') ?? MENOR_ANILHA_PADRAO_KG;
+      const base = atributoDoItem(ex, inventario, 'pesoBarraKg');
+      return { tipo, registro: 'kg', passoKg: 2 * menor, ...(base ? { baseKg: base } : {}) };
+    }
   }
 }
 
@@ -223,7 +234,7 @@ export function cargaDaVolta(c: Carga, reducao: number, o: OpcoesCarga): Carga {
       const alvo = c.kg * f;
       const lista = o.lista ?? [];
       if (lista.length) return { tipo: 'kg', kg: [...lista].reverse().find((k) => k <= alvo + 1e-9) ?? lista[0]! };
-      const k = Math.floor(alvo / 2.5 + 1e-9) * 2.5;
+      const k = noPassoAbaixo(alvo, o);
       return { tipo: 'kg', kg: k > 0 ? k : c.kg };
     }
     case 'placa':
@@ -278,8 +289,16 @@ export function sugestaoDoExercicio(
   inventario: Inventario,
   opcoes: OpcoesSugestao = {},
 ): Sugestao {
-  const h = historicoDoExercicio(historico, x.exId, opcoes.local);
   const op = opcoesCarga(x.exId, inventario);
+  // Registro por degrau: um "0 kg" antigo (antes do achado 7 da auditoria) vale como o 1º degrau.
+  const deDegrau = (s: SessaoExercicio): SessaoExercicio => ({
+    series: s.series.map((y) => (y.carga.tipo === 'kg' && y.carga.kg === 0 ? { ...y, carga: { tipo: 'degrau', degrau: 0 } } : y)),
+  });
+  const hist = (filtro?: FiltroHistorico) => {
+    const lido = historicoDoExercicio(historico, x.exId, opcoes.local, filtro);
+    return op.registro === 'degrau' ? lido.map(deDegrau) : lido;
+  };
+  const h = hist();
   const alvo: Alvo = { reps: x.reps, rir: x.rir };
   const ultima = h.at(-1);
   // A dor manda antes de tudo (seguranca.dor.escala), em qualquer semana.
@@ -292,7 +311,7 @@ export function sugestaoDoExercicio(
     return { acao: 'calibrar', proxima: prox, motivo: `Ainda calibrando: comece por ${textoCarga(prox, x.exId)} e acerte na 1ª série.`, regraId: r('progressao.calibracao') };
   }
   const bloco = opcoes.bloco;
-  const noBloco = bloco ? historicoDoExercicio(historico, x.exId, opcoes.local, { desde: bloco.inicio }) : h;
+  const noBloco = bloco ? hist({ desde: bloco.inicio }) : h;
   // Volta de uma pausa (readaptacao.durante-uso): a 1ª vez do exercício no bloco parte da última carga, reduzida.
   if (bloco && bloco.reducao > 0 && emCalibracao(noBloco)) {
     const base = cargaDeReferencia(h);
@@ -326,7 +345,7 @@ export function sugestaoDoExercicio(
     const base = cargaDeReferencia(noBloco);
     return { acao: 'manter', ...(base ? { proxima: base } : {}), motivo: 'Semana leve: a mesma carga, com menos séries e mais reserva.', regraId: r('deload.semana-leve') };
   }
-  const trabalho = semCalibracao(bloco ? historicoDoExercicio(historico, x.exId, opcoes.local, { desde: bloco.inicio, semLeve: true }) : historicoDoExercicio(historico, x.exId, opcoes.local, { semLeve: true }));
+  const trabalho = semCalibracao(bloco ? hist({ desde: bloco.inicio, semLeve: true }) : hist({ semLeve: true }));
   const sug = sugerirProgressao(trabalho.length ? trabalho : semCalibracao(noBloco), alvo, op);
   if (!sug.proxima) return sug;
   const { carga, ajustada } = noInventario(sug.proxima, op);

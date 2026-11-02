@@ -38,6 +38,19 @@ export type OpcoesCarga = {
   placasMax?: number;
   /** Menor anilha das máquinas de anilha (kg); sem ela, o padrão do projeto [opinião]. */
   menorAnilhaKg?: number;
+  /** Barra sem lista: a carga sobe de 2 × a menor anilha (equipamento.menor-anilha), a partir do peso da barra. */
+  passoKg?: number;
+  baseKg?: number;
+};
+
+/** Barra (ou carga em kg sem lista): degraus de `passoKg` a partir de `baseKg`; sem eles, 2,5 kg a partir de 0. */
+const passoDe = (o: OpcoesCarga) => o.passoKg ?? 2.5;
+const baseDe = (o: OpcoesCarga) => o.baseKg ?? 0;
+/** A maior carga do passo até x. */
+export const noPassoAbaixo = (x: number, o: OpcoesCarga) => {
+  const p = passoDe(o);
+  const b = baseDe(o);
+  return Math.round((b + Math.floor((x - b) / p + 1e-9) * p) * 100) / 100;
 };
 
 // progressao.incremento.peso-corporal
@@ -111,8 +124,12 @@ export function proximaCarga(c: Carga, passos: number, o: OpcoesCarga): Carga | 
     const k = abaixo.at(passos); // passos negativo: -1 = a anterior
     return k === undefined ? undefined : { tipo: 'kg', kg: k };
   }
-  // barra/máquina sem lista: degraus de 2,5 kg
-  const k = Math.round((c.kg + passos * 2.5) * 10) / 10;
+  // barra sem lista: degraus de 2 × a menor anilha a partir do peso da barra; uma carga antiga fora do passo vai para
+  // a próxima que existe (auditoria, achado 7).
+  const p = passoDe(o);
+  const b = baseDe(o);
+  const i = (c.kg - b) / p;
+  const k = Math.round((b + (passos > 0 ? Math.floor(i + 1e-9) + passos : Math.ceil(i - 1e-9) + passos) * p) * 100) / 100;
   return k > 0 ? { tipo: 'kg', kg: k } : undefined;
 }
 
@@ -130,7 +147,11 @@ function reduzir(c: Carga, fator: number, o: OpcoesCarga): Carga | undefined {
     const k = [...lista].reverse().find((x) => x <= alvo + 1e-9) ?? lista.find((x) => x < c.kg);
     return k === undefined ? undefined : { tipo: 'kg', kg: k };
   }
-  return { tipo: 'kg', kg: Math.round(alvo * 2) / 2 };
+  // No passo da barra: o degrau mais perto do alvo, sempre abaixo da carga de hoje.
+  const baixo = noPassoAbaixo(alvo, o);
+  const cima = Math.round((baixo + passoDe(o)) * 100) / 100;
+  const k = cima < c.kg - 1e-9 && cima - alvo < alvo - baixo ? cima : Math.min(baixo, noPassoAbaixo(c.kg - passoDe(o), o));
+  return k > 0 ? { tipo: 'kg', kg: k } : undefined;
 }
 
 const validas = (s: SessaoExercicio) => s.series.filter((x) => x.amplitudeCompleta !== false);

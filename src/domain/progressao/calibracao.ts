@@ -1,5 +1,5 @@
 import { r } from '../regras';
-import { proximaCarga, type Alvo, type Carga, type OpcoesCarga, type SerieRegistrada, type SessaoExercicio } from './index';
+import { noPassoAbaixo, proximaCarga, type Alvo, type Carga, type OpcoesCarga, type SerieRegistrada, type SessaoExercicio } from './index';
 
 // Calibração da carga, série a série (progressao.calibracao; pesquisa-v2/07, seção 2.3, e pesquisa-v2/09).
 // Vale na 1ª vez de um exercício e na 1ª vez de uma máquina de placa, anilhas ou contrapeso num local.
@@ -24,11 +24,11 @@ const REPS_FORMULA = 12;
 const TETO_SUBIDA = 0.25;
 const brzycki = (kg: number, a: number, rr: number) => (kg * (37 - a)) / (37 - rr);
 
-/** Maior carga da lista do inventário até x (arredondar para baixo); sem lista, degraus de 2,5 kg. */
+/** Maior carga da lista do inventário até x (arredondar para baixo); sem lista, no passo da barra (2 × a menor anilha). */
 function paraBaixo(x: number, o: OpcoesCarga): number | undefined {
   const lista = o.lista ?? [];
   if (lista.length) return [...lista].reverse().find((k) => k <= x + 1e-9);
-  const k = Math.floor(x / 2.5 + 1e-9) * 2.5;
+  const k = noPassoAbaixo(x, o);
   return k > 0 ? k : undefined;
 }
 

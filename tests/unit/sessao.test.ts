@@ -1,6 +1,8 @@
 import { describe, expect, it } from 'vitest';
 import { gerarPrograma, type Programa } from '../../src/domain/gerador';
+import { proximaCarga, type Carga } from '../../src/domain/progressao';
 import {
+  cargaDaVolta,
   diaDaSemana,
   faseDaSemana,
   historicoDoExercicio,
@@ -106,6 +108,34 @@ describe('carga conforme o equipamento', () => {
     expect(opcoesCarga('barra-fixa-graviton', { graviton: { placas: 12 } })).toMatchObject({ registro: 'contrapeso', placasMax: 12 });
     expect(opcoesCarga('goblet-kettlebell', { kettlebell: { pesosKg: [16, 8, 12] } })).toMatchObject({ registro: 'kg', lista: [8, 12, 16] });
     expect(opcoesCarga('remada-suspensao', { suspensao: {} }).registro).toBe('degrau');
+  });
+
+  describe('carga que existe (auditoria do treino, achado 7)', () => {
+    const topo = (c: Carga) => [{ id: 's1', diaId: 'a', semana: 3, inicio: '2026-10-20T10:00:00.000Z', fim: '2026-10-20T11:00:00.000Z', exercicios: [{ exId: 'x', series: [{ carga: c, reps: 10, rir: 1 }] }] }];
+    it('barra: sobe de 2 × a menor anilha, a partir do peso da barra (equipamento.menor-anilha)', () => {
+      const comDois = opcoesCarga('agachamento-barra', { barra_longa: { pesoBarraKg: 20, menorAnilhaKg: 2 }, rack_de_agachamento: {} });
+      expect(comDois).toMatchObject({ registro: 'kg', passoKg: 4, baseKg: 20 });
+      expect(proximaCarga({ tipo: 'kg', kg: 60 }, 1, comDois)).toEqual({ tipo: 'kg', kg: 64 });
+      const comCinco = opcoesCarga('agachamento-barra', { barra_longa: { menorAnilhaKg: 5 }, rack_de_agachamento: {} });
+      expect(proximaCarga({ tipo: 'kg', kg: 60 }, 1, comCinco)).toEqual({ tipo: 'kg', kg: 70 });
+      // Sem a resposta, vale a menor anilha padrão (2 kg) e a volta da pausa desce no múltiplo: 40 × 0,9 → 36.
+      expect(cargaDaVolta({ tipo: 'kg', kg: 40 }, 0.1, opcoesCarga('agachamento-barra', { barra_longa: {}, rack_de_agachamento: {} }))).toEqual({ tipo: 'kg', kg: 36 });
+      // Um registro antigo fora do passo (62,5 kg) sobe para a próxima carga que existe.
+      expect(proximaCarga({ tipo: 'kg', kg: 62.5 }, 1, comDois)).toEqual({ tipo: 'kg', kg: 64 });
+    });
+    it('panturrilha no chão, sem halteres: registra por degrau, e um "0 kg" antigo vira o 1º degrau', () => {
+      const so = { elasticos: { intensidades: 3 } };
+      expect(opcoesCarga('panturrilha-chao', so).registro).toBe('degrau');
+      expect(opcoesCarga('panturrilha-chao', ana.inventario)).toMatchObject({ registro: 'kg', lista: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12] });
+      const h = [0, 1].map((i) => ({ ...topo({ tipo: 'kg', kg: 0 })[0]!, id: `s${i}`, exercicios: [{ exId: 'panturrilha-chao', series: [1, 2, 3].map(() => ({ carga: { tipo: 'kg' as const, kg: 0 }, reps: 22, rir: 0 })) }] }));
+      const s = sugestaoDoExercicio(h, { exId: 'panturrilha-chao', reps: [12, 20], rir: [0, 1] }, so);
+      expect(s.proxima?.tipo).toBe('degrau');
+    });
+    it('Scott com halteres e hip thrust no smith: a carga segue o equipamento da versão possível', () => {
+      expect(opcoesCarga('rosca-scott', { banco_scott: {}, halteres_fixos: { minKg: 2, maxKg: 10, passoKg: 2 } })).toMatchObject({ registro: 'kg', lista: [2, 4, 6, 8, 10] });
+      expect(opcoesCarga('hip-thrust', { smith: { menorAnilhaKg: 5 }, banco_reto: {} })).toMatchObject({ registro: 'anilha', menorAnilhaKg: 5 });
+      expect(opcoesCarga('hip-thrust', { barra_longa: {}, banco_reto: {} }).registro).toBe('kg');
+    });
   });
 
   it('registro antigo em kg de uma máquina que agora usa outro tipo não quebra: a sugestão segue, e a tela ignora a carga de outro tipo', () => {

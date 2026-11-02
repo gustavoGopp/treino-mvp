@@ -94,11 +94,13 @@ describe('dupla progressão', () => {
     expect(proximaCarga(d(3), 1, { tipo: 'peso-corpo' })).toBeUndefined();
     expect(proximaCarga(d(0), -1, { tipo: 'peso-corpo' })).toBeUndefined();
   });
-  it('barra sem lista de cargas: degraus de 2,5 kg', () => {
+  it('barra sem o passo informado: degraus de 2,5 kg; a redução cai no degrau mais perto (antes, 37 kg, que não existe)', () => {
     expect(proximaCarga(kg(40), 1, { tipo: 'barra' })).toEqual(kg(42.5));
     expect(proximaCarga(kg(2.5), -1, { tipo: 'barra' })).toBeUndefined();
     const h = [sessao(kg(40), [7, 6]), sessao(kg(40), [6, 6])];
-    expect(sugerirProgressao(h, alvo, { tipo: 'barra' })).toMatchObject({ acao: 'reduzir', proxima: kg(37) });
+    expect(sugerirProgressao(h, alvo, { tipo: 'barra' })).toMatchObject({ acao: 'reduzir', proxima: kg(37.5) });
+    // Com a menor anilha de 2 kg (passo de 4 kg a partir da barra de 20): 40 → 36.
+    expect(sugerirProgressao(h, alvo, { tipo: 'barra', passoKg: 4, baseKg: 20 })).toMatchObject({ acao: 'reduzir', proxima: kg(36) });
   });
 });
 
