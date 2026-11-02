@@ -134,7 +134,7 @@ export const FORMAS = {
       p: [comb(1, N, s * 1.5, xT, -2, uT, -7.6, fT), comb(1, sc[0], 0.5, uT), comb(1, sc[2], s * 1, xT), comb(1, N, s * 1.5, xT, -17, uT, -7.6, fT)],
     };
   },
-  // Trapézio médio: origem nos processos espinhosos de C7 a T3; inserção no acrômio e na espinha da escápula.
+  // Trapézio médio: origem nos processos espinhosos de C7 a T4 (as fontes divergem em uma vértebra); inserção no acrômio e na espinha da escápula.
   trapMedio(sk, k) {
     const sd = sk.side[k],
       s = sd.s,
@@ -148,7 +148,7 @@ export const FORMAS = {
     };
   },
 
-  // Trapézio inferior: origem nos processos espinhosos de T4 a T12; inserção na parte medial da espinha da escápula.
+  // Trapézio inferior: origem nos processos espinhosos de T4/T6 a T12 (as fontes divergem); inserção na parte medial da espinha da escápula.
   trapInferior(sk, k) {
     const s = sk.side[k].s,
       { N, M, uT, fT, xT } = sk;
