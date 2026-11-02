@@ -683,3 +683,42 @@ As listas exatas ficam em `tests/unit/metas-r0.test.ts`, para o R0c zerar.
 **Depois da publicação (02/11/2026, pedido do Gustavo):** as prévias do "Estilo do boneco" em "Meus dados" ganharam a câmera fechada no corpo (`montarPrevia`); o guia não muda.
 
 **Fica para depois:** a revisão do especialista sobre o Boneco (roteiro pronto) e o enquadramento da puxada unilateral.
+
+## Auditoria do treino: o programa testado em 149.760 combinações (02/11/2026)
+
+**Por quê.** Antes das sessões de anatomia e de design, o Gustavo pediu uma revisão independente da **qualidade do treino**: a base de exercícios, o programa que o gerador monta e a progressão, com evidência e com muitos casos. O R3 (uso real) segue em paralelo, noutra sessão e noutro branch.
+
+**O que foi feito**
+- **Teste de estresse reproduzível** (`npm run auditoria`; scripts em `scripts/auditoria/`): 13 cenários fictícios (os 3 atalhos, com e sem os "às vezes tem", os mínimos e as personas) × 3 níveis × 12 divisões de 2 a 6 dias × 8 durações de 20 a 150 min × 5 prioridades × 8 situações de dor = **149.760 programas** em ~2,5 min. Mede volume, equilíbrio, escolha, monotonia, tempo, segurança e o treino do dia num 2º local; guarda 3 exemplos de cada problema. Duas rodadas dão arquivos idênticos.
+- **Praticante simulado:** 16 semanas seguindo a sugestão do app com os saltos reais de 15 equipamentos (o corpo é um modelo declarado no script).
+- **Inventário dos exercícios e mapa da cobertura** (`revisoes/auditoria/inventario.md` e `cobertura.md`), com a frequência de cada exercício nos programas.
+- **Relatório** `revisoes/auditoria-treino.md`: 12 achados por gravidade × frequência, cada um com exemplos, selo, proposta e esforço, e o que está bom. Seção nova na página "Diagnóstico do treino-mvp".
+
+**O que estava bom:** nenhum exercício carregava uma região marcada com dor acima de 5; nenhum dia acima do tempo sem aviso; todo músculo abaixo da meta com aviso e motivo; nenhum dia só com abdominal; os textos dos guias e dos cartões coerentes com a biblioteca e com as regras de técnica.
+
+**Decisões do Gustavo (02/11/2026), item a item:** entram agora os achados 1, 2 (lote 1), 3, 4, 6, 7, 9 (a partir da 3ª semana) e 10; vão para o backlog o 5 e o 8; o 11 é medido no export do R3.
+
+**O que mudou no app** (um commit e um teste por correção)
+1. **Articulações:** o cotovelo em 18 exercícios de empurrar e puxar e a lombar no pull-through. Com dor no cotovelo acima de 5, a remada, a puxada e a flexão saíam do lugar só no papel: ficavam no programa.
+2. **Motivo verdadeiro no 2º local:** "o único equivalente possível aqui já está no treino de hoje", em vez de "nenhum exercício possível substitui".
+3. **Treinos de até 4 exercícios:** os isoladores obrigatórios entram depois das vagas-base. Com 20 min, 48% dos programas zeravam costas ou posteriores na semana; agora 12% (só 2 dias × 3 exercícios), e 0% com 30 min. Regra `selecao.isolador-obrigatorio` revista.
+4. **Progressão sem vaivém:** a carga leve sobe 2 degraus só com salto de até ~10%, e uma carga que pesou demais não volta a ser sugerida por 6 sessões. Regras `progressao.carga-leve` e `progressao.salto-grande` revistas. No simulador, as voltas caíram de 5 para 0 (halteres), de 6 para 0 (placas) e de 4 para 0 (graviton).
+5. **Só carga que existe:** a barra sobe de 2 × a menor anilha (antes, sempre 2,5 kg); a panturrilha sem halteres registra por degrau (um "0 kg" antigo vale o 1º degrau); a Scott com halteres e o hip thrust no smith seguem o equipamento da versão possível.
+6. **`rir.carga-baixa` aplicada:** multiarticular do iniciante com 15 repetições ou mais (ponte, agachamento sem carga, elásticos) fica com reserva 1–2 a partir da 3ª semana.
+7. **Lote 1 de fichas e cartões:** ponte de glúteo (o exercício mais prescrito do teste), crucifixo com halteres, crucifixo inverso, cadeira extensora e flexora sentada.
+8. **4 exercícios que só pedem halteres**, com ficha e cartão: remada curvada, crucifixo invertido curvado, ponte com halter e supino no chão. Só com halteres, costas e ombro posterior deixam de ficar zerados.
+
+**Antes × depois:** sem guia, de 33% para 18% das prescrições; articulação faltando, de 128.531 ocorrências para 0; ombro posterior abaixo de 4 séries com halteres e banco reto, de 38% para 1%. Efeitos colaterais medidos e aprovados: o abdômen da Ana sai do dia B (4 → 0 séries, com aviso), e mais programas deixam um equivalente do mesmo nível sem uso.
+
+**Snapshots** revistos e aprovados pelo Gustavo (02/11/2026): Ana (ponte com halter, ombro posterior 3 → 6, peito 4 → 6, costas 6 → 7,5, abdômen 4 → 0), Bruno (ponte com halter no Inferior B, nos 2 locais) e as voltas do R2 (barra da Carla 40 → 36 kg; Ana com 9 séries na semana 1).
+
+**Testes:** 501 unitários (eram 488); `npm run check` passando; `npm run test:e2e` em andamento (o resultado entra aqui ao fim). As 32 animações e a linha de base do Boneco não mudaram.
+
+**Fica para depois** (`backlog.md`): os 37 exercícios ainda sem guia, em lotes pela frequência; a 2ª vaga do músculo prioritário; a escada por exercício no peso do corpo e no elástico; a cascata no 2º local (achado novo); e, para a sessão do R3, medir o "estagnado" no export.
+
+**Rascunho de post para o LinkedIn**
+> Testei o meu app de treino em 149.760 combinações de pessoa, equipamento, dias, minutos e dor. Ele não "acha": cada programa sai de regras, então dá para rodar todos e contar.
+>
+> O que me deixou tranquilo: em nenhum caso o app passou um exercício que carrega uma articulação marcada com dor forte. O que me surpreendeu: com dor no cotovelo, a rosca saía, mas a remada ficava, porque o dado dizia que a remada não usa o cotovelo. Um campo esquecido numa planilha vira um treino errado em escala.
+>
+> Também apareceu um bug que nenhum teste de exemplo pegaria: com halteres de 2 em 2 kg, o app subia a carga, mandava voltar e subia de novo, sem fim. E o exercício mais prescrito de todos, a ponte de glúteo, não tinha nem animação nem texto de como fazer. Agora tem.
