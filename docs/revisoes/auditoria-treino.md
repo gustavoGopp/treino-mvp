@@ -179,18 +179,18 @@ Na academia completa, 19 exercícios possíveis nunca são a 1ª escolha (supino
 Os músculos de cada exercício estão coerentes entre a biblioteca e os textos. Pontos para a anatomia conferir: o terra com barra hexagonal (hoje na função "agachar", com quadríceps e glúteo como principais), a hiperextensão (glúteo e posteriores; a lombar não aparece como músculo), o mergulho (peito e tríceps contados por inteiro), o desenvolvimento (só o ombro anterior como principal) e o face pull e o crucifixo inverso (costas como secundário). O rascunho do prompt fica em `docs/prompts/sessao-anatomia.md`.
 
 ## Decisões do Gustavo
-Cada item: **entra agora**, **backlog (R5)** ou **fica como está**. Nada vem marcado.
+Decididas em 02/11/2026, item a item, sem nada pré-marcado.
 
 | # | Achado | Decisão |
 |---|---|---|
-| 1 | Articulações (cotovelo e lombar) | |
-| 2 | Fichas e cartões dos 42 sem guia | |
-| 3 | Carga leve sem vaivém | |
-| 4 | Obrigatórios depois dos grandes em 20–30 min | |
-| 5 | 2ª vaga para o prioritário abaixo da meta | |
-| 6 | 4 exercícios novos só com halteres | |
-| 7 | Carga que não existe (barra, panturrilha, Scott, hip thrust) | |
-| 8 | Escada por exercício (peso do corpo e elástico) | |
-| 9 | `rir.carga-baixa` | |
-| 10 | Texto do 2º local | |
-| 11 | Estagnação medida no R3 | |
+| 1 | Articulações (cotovelo e lombar) | **entra agora** |
+| 2 | Fichas e cartões dos 42 sem guia | **entra agora: o 1º lote** (ponte, crucifixo com halteres, crucifixo inverso, extensora, flexora sentada); o resto vai para o backlog |
+| 3 | Carga leve sem vaivém | **entra agora** |
+| 4 | Obrigatórios depois dos grandes em 20–30 min | **entra agora** |
+| 5 | 2ª vaga para o prioritário abaixo da meta | **backlog (R5)** |
+| 6 | 4 exercícios novos só com halteres | **entra agora** |
+| 7 | Carga que não existe (barra, panturrilha, Scott, hip thrust) | **entra agora** |
+| 8 | Escada por exercício (peso do corpo e elástico) | **backlog (R5)** |
+| 9 | `rir.carga-baixa` | **aplicar a partir da 3ª semana** |
+| 10 | Texto do 2º local | **entra agora** |
+| 11 | Estagnação medida no R3 | **medir no export do R3** |
