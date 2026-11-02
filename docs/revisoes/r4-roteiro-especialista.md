@@ -10,24 +10,25 @@ segundos, entre uma série e outra, muitas vezes com uma mão só. O boneco prec
 O guia tem 4 modos: **Técnica** (o movimento, com dicas curtas), **Músculos** (os músculos que trabalham em cor),
 **Erros** e **Trajetória**. Nesta rodada só olhamos **Técnica** e **Músculos**.
 
-## O que estamos decidindo
-Hoje o boneco é feito de traços (o **Atual**). Testamos dois caminhos novos, com **exatamente o mesmo movimento**:
-- **Caminho A**: o boneco atual melhorado. Braços e pernas com espessura, tronco e cabeça preenchidos, contorno escuro e articulações marcadas.
-- **Caminho B**: mais simples. Uma silhueta lisa, sem contorno, e o músculo em destaque.
+## O que mudou e o que queremos saber
+O boneco antigo era feito de traços (hoje se chama **Clássico**). Em 02/11/2026 o app passou a usar um boneco novo,
+o **Boneco**: braços e pernas com espessura, tronco e cabeça cheios, contorno escuro e articulações marcadas, e os
+músculos com forma de músculo. O principal aparece em **vermelho** e os secundários em **laranja**. Existe ainda a
+**Silhueta**, um corpo liso sem contorno. As três ficam em "Meus dados" → "Estilo do boneco".
 
-Nos dois, o músculo principal aparece em **vermelho** e os secundários em **laranja**. Testamos em 2 exercícios:
-- **Puxada unilateral ajoelhado na polia alta**, vista de trás e de lado (a vista de trás é a que mais confunde hoje).
-- **Agachamento goblet** (halter junto ao peito), vista de lado e de frente.
+Queremos saber se o Boneco **ensina bem e está correto** antes de criar as próximas animações nele. Os exercícios que
+motivaram a mudança foram a **puxada unilateral ajoelhado na polia alta**, vista de trás, e o **agachamento goblet**.
 
 ## O material
-1. **As folhas de comparação** (imagens): Atual, A e B lado a lado, no início, no meio e no fim do movimento, nos modos
-   Técnica e Músculos, no tamanho do celular; e a miniatura do cartão do treino (bem pequena, 112 px).
-2. **O laboratório animado no celular**: um link que o Gustavo envia. Lá dá para trocar o estilo, a vista e o modo, ver
-   em câmera lenta e ver os três estilos juntos. O botão **🔍 perto** aproxima a câmera do corpo nos três estilos.
+1. **O app**, no celular: https://treino-mvp-sigma.vercel.app/guia/puxada-unilateral (não precisa de cadastro).
+   Em cada exercício dá para trocar a vista (de lado, de frente, de trás), o modo (Técnica, Erros, Músculos e
+   Trajetória), ver em câmera lenta e pausar. As setas passam para o próximo exercício (32 no total).
+2. **Para comparar os estilos:** https://treino-mvp-sigma.vercel.app/dados → "Estilo do boneco" → Boneco, Clássico ou
+   Silhueta. Depois volte ao guia.
 3. **A lista dos músculos realçados**, com origem e inserção, está no fim deste roteiro.
 
 ## O que avaliar (de 1 a 5, e um comentário curto quando quiser)
-| | Atual | A | B |
+| | Boneco | Clássico | Silhueta |
 |---|---|---|---|
 | **Clareza do movimento**: dá para entender o que o corpo faz, em 2 segundos? | | | |
 | **Leitura do músculo**: dá para ver qual músculo trabalha? | | | |
@@ -36,11 +37,11 @@ Nos dois, o músculo principal aparece em **vermelho** e os secundários em **la
 | **Consistência entre as vistas**: o mesmo boneco de lado, de frente e de trás parece a mesma pessoa? | | | |
 
 ## As perguntas
-1. Qual dos três explica melhor o movimento? Por quê?
+1. O Boneco explica bem o movimento? Melhor ou pior que o Clássico e a Silhueta? Por quê?
 2. Em qual dá para ver que músculo trabalha? Algum músculo está no lugar errado, grande ou pequeno demais, ou faltando?
 3. Qual é mais agradável de ver?
 4. Na vista de trás da puxada, o que ainda confunde? O que você tiraria?
-5. Se fosse para levar um estilo para os 31 exercícios do app, qual você escolheria, e o que mudaria nele antes?
+5. O que você mudaria no Boneco antes de criarmos as próximas animações nele?
 6. **Só se for da área de anatomia:** os músculos escolhidos fazem sentido para esses dois exercícios? Faltou algum
    importante, ou sobrou algum que só polui?
 7. **Só se for da área de design:** cor, espessura do traço, contraste e tamanho estão bons para uma tela de celular
@@ -48,7 +49,6 @@ Nos dois, o músculo principal aparece em **vermelho** e os secundários em **la
 
 ## Como devolver
 Do jeito mais fácil para você:
-- **Comentários na página** que o Gustavo enviar (dá para comentar direto nas imagens); ou
 - **Uma mensagem ou um documento** com as respostas numeradas (1 a 7) e, se quiser, a tabela de notas. Prints com
   rabiscos são muito bem-vindos.
 
