@@ -439,3 +439,14 @@ a.cartao-ex-corpo:focus-visible{outline:3px solid var(--accent);outline-offset:-
 .prefiro{align-self:flex-start;font-size:14px}
 .prefiro[aria-pressed="true"]{font-weight:700}
 .preferencias{display:flex;flex-direction:column;gap:2px;margin-top:6px}
+
+/* R2: volta de uma pausa, a sua semana, evolução e semana leve. Cores neutras: o acento em 3 intensidades e o cinza,
+   nunca vermelho (acompanhamento.semana). */
+.volta{border:1.5px solid var(--accent);display:flex;flex-direction:column;gap:8px}
+.volta h2{color:var(--ink)}
+.volta-numeros{display:grid;gap:6px;margin:0}
+.volta-numeros div{display:grid;grid-template-columns:minmax(110px,40%) 1fr;align-items:center;gap:8px;font-size:14px}
+.volta-numeros dt{color:var(--muted)}
+.volta-numeros dd{margin:0;display:flex;align-items:center;gap:8px;font-weight:600;font-variant-numeric:tabular-nums}
+.barra-volta{flex:1;height:10px;border-radius:4px;background:var(--line);overflow:hidden;max-width:160px}
+.barra-volta i{display:block;height:100%;background:var(--accent);opacity:.65;border-radius:4px}

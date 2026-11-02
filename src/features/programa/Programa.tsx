@@ -1,11 +1,12 @@
 import { useMemo, useState } from 'react';
 import { Link, Navigate, useNavigate } from 'react-router-dom';
 import { BIBLIOTECA, type Musculo } from '../../domain/biblioteca';
-import { ALTERNATIVAS_A_MOSTRA, NOME_MUSCULO, type ExercicioPrescrito, type Programa as TipoPrograma } from '../../domain/gerador';
+import { ALTERNATIVAS_A_MOSTRA, NOME_MUSCULO, type DiaPrograma, type ExercicioPrescrito, type Programa as TipoPrograma } from '../../domain/gerador';
+import { mensagemDeVolta, type MensagemDeVolta } from '../../domain/acompanhamento/volta';
 import { opcoesDeAjuste, type Opcao } from '../../domain/gerador/opcoes';
 import { NOME_NIVEL } from '../../domain/nivel';
 import { avaliarTriagem } from '../../domain/triagem';
-import { proximoDia } from '../../domain/sessao';
+import { proximoDia, treinoFeito } from '../../domain/sessao';
 import { linkDoGuia } from '../guia/link';
 import { inventarioPrincipal, localDoTreino, perfilDe, primeiroPassoPendente, type Estado } from '../../storage/esquema';
 import { alternarPreferencia, diaDoTreino, hojeDoEstado, iniciarSessao } from '../treino/acoes';
@@ -108,6 +109,7 @@ export function Programa() {
     setAviso('Preferência salva. Ela entra quando você atualizar o programa e nas trocas de local.');
   };
   const abaixo = salvo.avisos.filter((a) => a.texto.startsWith('Abaixo da meta')).length;
+  const volta = mensagemDeVolta(hoje);
   const faseAtual = salvo.fases[0];
 
   return (
@@ -147,9 +149,26 @@ export function Programa() {
         )}
         {verAjustes && <Ajustes opcoes={opcoes} escolher={escolher} />}
 
-        {faseAtual && (
+        {volta && !estado.sessaoAtual && (
+          <Volta
+            m={volta}
+            dia={diaDoPrograma}
+            normal={salvo.dias.find((d) => d.id === diaDoPrograma.id) ?? diaDoPrograma}
+            respondida={respondeuDepoisDoUltimoTreino(estado.respostas?.voltaLongaEm, estado.historico)}
+            refazer={() => {
+              atualizar((s) => ({ ...s, respostas: { ...s.respostas, voltaLongaEm: agoraIso() } }));
+              navigate('/comecar/nivel?de=programa');
+            }}
+            agoraNao={() => {
+              atualizar((s) => ({ ...s, respostas: { ...s.respostas, voltaLongaEm: agoraIso() } }));
+              setAviso('Tudo bem: o programa segue, com a mesma volta leve.');
+            }}
+          />
+        )}
+
+        {(hoje.fase ?? faseAtual) && (
           <p className="fase">
-            <b>Você está na semana {semana}.</b> {hoje.fase?.texto ?? faseAtual.texto}
+            <b>Você está na semana {semana}.</b> {(hoje.fase ?? faseAtual)!.texto} <Selo id={(hoje.fase ?? faseAtual)!.regraId} />
           </p>
         )}
 
@@ -256,6 +275,67 @@ export function Programa() {
         <Sobre programa={salvo} reabrirAjustes={opcoes.length > 0 && !!estado.ajustes?.recolhido ? () => { atualizar((s) => ({ ...s, ajustes: { recolhido: false } })); setVerAjustes(true); } : undefined} />
       </main>
     </div>
+  );
+}
+
+/** A pessoa já respondeu à proposta depois do último treino (a proposta não volta a cada abertura). */
+const respondeuDepoisDoUltimoTreino = (em: string | undefined, historico: Estado['historico']) => {
+  const fim = historico.filter(treinoFeito).at(-1)?.fim;
+  return !!em && (!fim || Date.parse(em) > Date.parse(fim));
+};
+
+/** Caixa da volta de uma pausa (readaptacao.durante-uso): a mensagem, as séries e a reserva de hoje. */
+function Volta({
+  m,
+  dia,
+  normal,
+  respondida,
+  refazer,
+  agoraNao,
+}: {
+  m: MensagemDeVolta;
+  dia: DiaPrograma;
+  normal: DiaPrograma;
+  respondida: boolean;
+  refazer: () => void;
+  agoraNao: () => void;
+}) {
+  const series = dia.exercicios.reduce((t, x) => t + x.series, 0);
+  const total = normal.exercicios.reduce((t, x) => t + x.series, 0);
+  const rirs = dia.exercicios.map((x) => x.rir);
+  const rir: [number, number] = [Math.min(...rirs.map((x) => x[0])), Math.max(...rirs.map((x) => x[1]))];
+  return (
+    <section className="box volta" aria-labelledby="volta-titulo">
+      <h2 id="volta-titulo">{m.titulo}</h2>
+      <p>
+        {m.texto} <Selo id={m.regraId} />
+      </p>
+      <dl className="volta-numeros">
+        <div>
+          <dt>Séries no {dia.nome}</dt>
+          <dd>
+            <span className="barra-volta" aria-hidden="true">
+              <i style={{ width: `${Math.round((series / Math.max(1, total)) * 100)}%` }} />
+            </span>
+            {series} de {total}
+          </dd>
+        </div>
+        <div>
+          <dt>Reserva</dt>
+          <dd>{faixa(rir)} repetições</dd>
+        </div>
+      </dl>
+      {m.refazerNivel && !respondida && (
+        <div className="opcoes linha">
+          <button type="button" className="btn sec pequeno" onClick={refazer}>
+            Refazer o nível
+          </button>
+          <button type="button" className="btn sec pequeno" onClick={agoraNao}>
+            Agora não
+          </button>
+        </div>
+      )}
+    </section>
   );
 }
 

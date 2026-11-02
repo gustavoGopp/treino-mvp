@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import {
   CONFIANCA_TECNICA,
   classificarNivel,
@@ -21,10 +21,13 @@ export function Nivel() {
   const { estado, atualizar } = useApp();
   const navigate = useNavigate();
   const salvo = estado.nivel;
+  // Refazer o nível depois de uma pausa longa (readaptacao.durante-uso): a pausa e o nível ficam sem resposta, para a
+  // pessoa responder de novo; ao salvar, volta ao programa.
+  const deVolta = useSearchParams()[0].get('de') === 'programa';
   const [tempo, setTempo] = useState<TempoDeTreino | undefined>(salvo?.respostas.tempoContinuo);
-  const [pausa, setPausa] = useState<PausaId | undefined>(salvo ? pausaDe(salvo.respostas.semanasParado) : undefined);
+  const [pausa, setPausa] = useState<PausaId | undefined>(salvo && !deVolta ? pausaDe(salvo.respostas.semanasParado) : undefined);
   const [tecnica, setTecnica] = useState<ConfiancaTecnica | undefined>(salvo?.respostas.tecnica);
-  const [escolhido, setEscolhido] = useState<TipoNivel | undefined>(salvo?.escolhido);
+  const [escolhido, setEscolhido] = useState<TipoNivel | undefined>(deVolta ? undefined : salvo?.escolhido);
   const [tentou, setTentou] = useState(false);
 
   const semanas = PAUSAS.find((p) => p.id === pausa)?.semanas;
@@ -47,7 +50,7 @@ export function Nivel() {
       ...s,
       nivel: { respostas: { tempoContinuo: tempo!, semanasParado: semanas!, tecnica: tecnica! }, escolhido: nivelFinal },
     }));
-    navigate('/comecar/rotina');
+    navigate(deVolta ? '/programa' : '/comecar/rotina');
   };
 
   return (
