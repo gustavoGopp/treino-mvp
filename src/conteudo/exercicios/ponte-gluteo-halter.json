@@ -1,0 +1,67 @@
+{
+  "id": "ponte-gluteo-halter",
+  "name": "Ponte de glúteo com halter",
+  "short": "Ponte com halter",
+  "target": "Glúteos",
+  "setupEq": [
+    "Um halter.",
+    "Uma toalha dobrada para apoiar o halter."
+  ],
+  "setupBody": [
+    "Sentado no chão, apoie o halter deitado na dobra do quadril, sobre a toalha.",
+    "Deite de costas segurando o halter com as duas mãos; joelhos dobrados, pés no chão na largura do quadril."
+  ],
+  "exec": [
+    [
+      "conc",
+      "Subida",
+      "Empurra o chão pelos calcanhares até ombros, quadril e joelhos ficarem em linha."
+    ],
+    [
+      "hold",
+      "Topo",
+      "Pausa de ~1 s, costelas para baixo."
+    ],
+    [
+      "ecc",
+      "Descida",
+      "Controlada, até o quadril quase encostar no chão."
+    ]
+  ],
+  "range": [
+    "Embaixo: quadril quase no chão.",
+    "Em cima: ombros, quadril e joelhos em linha, sem arquear a lombar."
+  ],
+  "cues": [
+    "Duas mãos no halter.",
+    "Empurra pelos calcanhares.",
+    "Pausa no topo."
+  ],
+  "errors": [
+    {
+      "id": "e1",
+      "title": "Arquear a lombar no topo",
+      "desc": "A lombar arqueia em vez de o quadril estender."
+    },
+    {
+      "id": "e2",
+      "title": "Halter rolando",
+      "desc": "Uma das mãos solta e o halter escorrega do quadril."
+    },
+    {
+      "id": "e3",
+      "title": "Empurrar pela ponta dos pés",
+      "desc": "O calcanhar sai do chão."
+    },
+    {
+      "id": "e4",
+      "title": "Subir pouco",
+      "desc": "O quadril não alinha."
+    }
+  ],
+  "carga": "Pela lista dos seus halteres: o próximo peso quando todas as séries chegarem ao topo da faixa.",
+  "montagem": [
+    "Apoie o halter sentado, antes de deitar, sobre uma toalha dobrada.",
+    "Segure o halter com as duas mãos durante toda a série."
+  ]
+}

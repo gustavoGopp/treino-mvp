@@ -1,0 +1,63 @@
+{
+  "id": "crucifixo-invertido-curvado",
+  "name": "Crucifixo invertido curvado com halteres",
+  "short": "Crucifixo invertido curvado",
+  "target": "Ombro (posterior)",
+  "setupEq": [
+    "Um par de halteres leves."
+  ],
+  "setupBody": [
+    "Em pé, pés na largura do quadril, joelhos levemente dobrados.",
+    "Dobre o quadril até o tronco ficar bem inclinado, costas retas.",
+    "Halteres pendurados, palmas uma para a outra."
+  ],
+  "exec": [
+    [
+      "conc",
+      "Subida",
+      "Abre os braços para os lados, cotovelos fixos, até perto da linha dos ombros."
+    ],
+    [
+      "hold",
+      "Topo",
+      "Pausa curta, tronco parado."
+    ],
+    [
+      "ecc",
+      "Descida",
+      "Controlada, até os braços pendurarem."
+    ]
+  ],
+  "range": [
+    "Embaixo: braços pendurados.",
+    "Em cima: braços perto da linha dos ombros."
+  ],
+  "cues": [
+    "Costas retas.",
+    "Tronco parado.",
+    "Abre para os lados."
+  ],
+  "errors": [
+    {
+      "id": "e1",
+      "title": "Arredondar as costas",
+      "desc": "A lombar perde a posição."
+    },
+    {
+      "id": "e2",
+      "title": "Subir o tronco",
+      "desc": "Embalo a cada repetição."
+    },
+    {
+      "id": "e3",
+      "title": "Encolher os ombros",
+      "desc": "O trapézio assume."
+    },
+    {
+      "id": "e4",
+      "title": "Dobrar os cotovelos",
+      "desc": "Vira uma remada."
+    }
+  ],
+  "carga": "Pela lista dos seus halteres; comece leve."
+}

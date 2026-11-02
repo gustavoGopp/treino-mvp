@@ -79,17 +79,18 @@ describe('sem equivalente no local (selecao.dia-sem-principal)', () => {
   it('motivo verdadeiro: quando o único equivalente possível já está no treino de hoje, o aviso diz isso (auditoria, achado 10)', () => {
     const perfil: Perfil = { ...carla.perfil, nivel: 'intermediario', diasSemana: 4, divisao: 'si-2x', minutosSessao: 60, prioridades: [] };
     const sup = ok(perfil, carla.inventario).dias.find((d) => d.nome === 'Superior A')!;
-    const { trocas } = diaNoLocal(sup, perfil, PERSONAS.ana.inventario);
-    // A remada com halter entra no lugar da puxada; a vaga da remada apoiada não tem outra remada possível ali.
+    const soHalteres: Inventario = { halteres_fixos: { minKg: 2, maxKg: 20, passoKg: 2 } };
+    const { trocas } = diaNoLocal(sup, perfil, soHalteres);
+    // A remada curvada entra no lugar da puxada; a vaga da remada apoiada não tem outra remada possível ali.
     const remada = trocas.find((t) => t.vaga === 'remada-apoiada')!;
-    expect(remada.motivo).toContain('o único equivalente possível aqui (remada unilateral com halter apoiada no banco) já está no treino de hoje');
+    expect(remada.motivo).toContain('o único equivalente possível aqui (remada curvada com halteres) já está no treino de hoje');
     expect(remada.motivo).not.toContain('nenhum equivalente');
-    // A rosca alternada entrou numa vaga anterior; a da rosca inclinada fica de fora pelo motivo verdadeiro.
-    const rosca = trocas.find((t) => t.vaga === 'rosca-inclinada')!;
-    expect(rosca.entrou).toBeUndefined();
-    expect(rosca.motivo).toContain('o único equivalente possível aqui (rosca alternada com halteres) já está no treino de hoje');
-    // Sem equivalente nenhum ali, o texto antigo continua: o face pull não tem substituto com halteres e banco reto.
-    expect(trocas.find((t) => t.vaga === 'face-pull')!.motivo).toContain('nenhum exercício possível substitui');
+    // O crucifixo invertido curvado entrou numa vaga anterior; a do face pull fica de fora pelo motivo verdadeiro.
+    const face = trocas.find((t) => t.vaga === 'face-pull')!;
+    expect(face.entrou).toBeUndefined();
+    expect(face.motivo).toContain('o único equivalente possível aqui (crucifixo invertido curvado com halteres) já está no treino de hoje');
+    // Sem equivalente nenhum ali, o texto antigo continua: nenhum crucifixo de peito é possível só com halteres.
+    expect(trocas.find((t) => t.vaga === 'crucifixo-polia')!.motivo).toContain('nenhum equivalente de crucifixo');
   });
 });
 

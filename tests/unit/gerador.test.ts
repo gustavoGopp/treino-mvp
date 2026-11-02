@@ -111,8 +111,9 @@ describe('cenário 2: só halteres e banco (Ana)', () => {
     expect(textos).toContain('Sem cadeira abdutora');
     expect(p.avisos.find((a) => a.texto.startsWith('Sem cadeira extensora'))!.regraId).toBe('selecao.isolador-obrigatorio');
   });
-  it('o aviso de meta dá o motivo verdadeiro: ombro posterior sem exercício possível com halteres e banco reto', () => {
-    expect(p.avisos.map((a) => a.texto).join(' ')).toMatch(/ombro \(posterior\)[^.]*nenhum exercício possível/);
+  it('ombro posterior com halteres e banco reto: o crucifixo invertido curvado (antes, nenhum exercício possível; auditoria, achado 6)', () => {
+    expect(p.dias.flatMap((d) => d.exercicios.map((x) => x.exId))).toContain('crucifixo-invertido-curvado');
+    expect(p.avisos.map((a) => a.texto).join(' ')).not.toMatch(/ombro \(posterior\)[^.]*nenhum exercício possível/);
   });
 });
 
@@ -470,14 +471,25 @@ describe('regras do R0b no gerador', () => {
             if (possivel(m)) expect(prog.volumeSemanal[m] ?? 0, `${p.nome}/${minutosSessao}min/${m}`).toBeGreaterThan(0);
         }
   });
-  it('rir.carga-baixa: multiarticular do iniciante com 15 repetições ou mais (meio da faixa) fica com reserva 1–2 a partir da 3ª semana (auditoria, achado 9)', () => {
+  it('rir.carga-baixa: multiarticular do iniciante com 15 repetições ou mais (meio da faixa) fica com reserva 1–2 a partir da 3ª semana (auditoria, achado 9; a ponte com halter tem 10–20)', () => {
     const prog = ok(ana.perfil, ana.inventario);
     const achar = (dias: DiaPrograma[], id: string) => dias.flatMap((d) => d.exercicios).find((x) => x.exId === id)!;
-    expect(achar(prog.dias, 'ponte-gluteo')).toMatchObject({ rir: [1, 2] });
-    expect(achar(prog.dias, 'ponte-gluteo').porque.map((q) => q.regraId)).toContain('rir.carga-baixa');
-    expect(achar(prescricaoDaSemana(prog, 1), 'ponte-gluteo').rir).toEqual([3, 4]); // fase de aprendizado
-    expect(achar(prescricaoDaSemana(prog, 3), 'ponte-gluteo').rir).toEqual([1, 2]);
+    expect(achar(prog.dias, 'ponte-gluteo-halter')).toMatchObject({ rir: [1, 2] });
+    expect(achar(prog.dias, 'ponte-gluteo-halter').porque.map((q) => q.regraId)).toContain('rir.carga-baixa');
+    expect(achar(prescricaoDaSemana(prog, 1), 'ponte-gluteo-halter').rir).toEqual([3, 4]); // fase de aprendizado
+    expect(achar(prescricaoDaSemana(prog, 3), 'ponte-gluteo-halter').rir).toEqual([1, 2]);
     expect(achar(prog.dias, 'bulgaro').rir).toEqual([2, 3]); // 8–12 repetições: não muda
+  });
+  it('só halteres, sem banco: costas, ombro posterior e glúteo com carga (auditoria, achado 6; antes, 0 série de costas e de ombro posterior)', () => {
+    const soHalteres: Inventario = { halteres_fixos: { minKg: 2, maxKg: 20, passoKg: 2 } };
+    for (const nivel of NIVEIS) {
+      const prog = ok({ ...diego.perfil, nivel, prioridades: [] }, soHalteres);
+      expect(prog.volumeSemanal.costas ?? 0, nivel).toBeGreaterThanOrEqual(4);
+      expect(prog.volumeSemanal.ombro_posterior ?? 0, nivel).toBeGreaterThan(0);
+      const ids = prog.dias.flatMap((d) => d.exercicios.map((x) => x.exId));
+      expect(ids, nivel).toContain('remada-curvada-halteres');
+      expect(ids, nivel).toContain('ponte-gluteo-halter');
+    }
   });
   it('selecao.funcao-da-vaga: o desempate de estabilidade só vale para iniciante', () => {
     const iniciante = ok({ ...bruno.perfil, nivel: 'iniciante', semanasParado: 0 }, bruno.inventario);

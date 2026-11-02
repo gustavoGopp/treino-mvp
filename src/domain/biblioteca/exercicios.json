@@ -3515,5 +3515,146 @@
   ],
   "carga": "maquina",
   "animacaoId": null
+ },
+ {
+  "id": "remada-curvada-halteres",
+  "nome": "Remada curvada com halteres",
+  "padrao": "puxar-h",
+  "musculos": {
+   "primarios": [
+    "costas"
+   ],
+   "secundarios": [
+    "biceps",
+    "ombro_posterior"
+   ]
+  },
+  "requer": [
+   [
+    "halteres"
+   ]
+  ],
+  "complexidade": 2,
+  "tipo": "composto",
+  "faixaReps": [
+   8,
+   12
+  ],
+  "unilateral": false,
+  "articulacoes": [
+   "ombro",
+   "cotovelo",
+   "lombar"
+  ],
+  "tags": [
+   "halter"
+  ],
+  "carga": "halter",
+  "animacaoId": null
+ },
+ {
+  "id": "crucifixo-invertido-curvado",
+  "nome": "Crucifixo invertido curvado com halteres",
+  "padrao": "isolador-ombro-posterior",
+  "musculos": {
+   "primarios": [
+    "ombro_posterior"
+   ],
+   "secundarios": [
+    "costas"
+   ]
+  },
+  "requer": [
+   [
+    "halteres"
+   ]
+  ],
+  "complexidade": 2,
+  "tipo": "isolador",
+  "faixaReps": [
+   12,
+   20
+  ],
+  "unilateral": false,
+  "articulacoes": [
+   "ombro",
+   "lombar"
+  ],
+  "tags": [
+   "halter"
+  ],
+  "carga": "halter",
+  "animacaoId": null
+ },
+ {
+  "id": "ponte-gluteo-halter",
+  "nome": "Ponte de glúteo com halter",
+  "padrao": "extensao-quadril",
+  "musculos": {
+   "primarios": [
+    "gluteos"
+   ],
+   "secundarios": [
+    "posteriores"
+   ]
+  },
+  "requer": [
+   [
+    "halteres"
+   ]
+  ],
+  "complexidade": 1,
+  "tipo": "composto",
+  "faixaReps": [
+   10,
+   20
+  ],
+  "unilateral": false,
+  "articulacoes": [
+   "quadril"
+  ],
+  "tags": [
+   "halter",
+   "montagem"
+  ],
+  "carga": "halter",
+  "animacaoId": null
+ },
+ {
+  "id": "supino-chao-halteres",
+  "nome": "Supino no chão com halteres",
+  "padrao": "empurrar-h",
+  "musculos": {
+   "primarios": [
+    "peito"
+   ],
+   "secundarios": [
+    "ombro_anterior",
+    "triceps"
+   ]
+  },
+  "requer": [
+   [
+    "halteres"
+   ]
+  ],
+  "complexidade": 1,
+  "tipo": "composto",
+  "faixaReps": [
+   8,
+   12
+  ],
+  "unilateral": false,
+  "articulacoes": [
+   "ombro",
+   "cotovelo"
+  ],
+  "tags": [
+   "plano",
+   "halter",
+   "montagem"
+  ],
+  "carga": "halter",
+  "animacaoId": null
  }
 ]

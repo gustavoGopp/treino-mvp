@@ -3,35 +3,36 @@
 exports[`snapshots do R2: o treino de cada persona na volta de 30 dias > Ana 1`] = `
 [
   {
-    "antes": "semana 6: 13 séries, RIR 2–3 e 1–2, a mesma carga",
+    "antes": "semana 6: 14 séries, RIR 2–3 e 1–2, a mesma carga",
     "cargas": [
       "Agachamento búlgaro com apoio: 10 kg → 9 kg",
       "Stiff com halteres: 10 kg → 9 kg",
-      "Ponte de glúteo: peso do corpo · variação mais difícil → peso do corpo · descida de 3 s ou pausa embaixo",
+      "Ponte de glúteo com halter: 10 kg → 9 kg",
       "Supino reto com halteres: 10 kg → 9 kg",
       "Remada unilateral com halter apoiada no banco: 10 kg → 9 kg",
       "Tríceps francês sentado com halter: 10 kg → 9 kg",
     ],
-    "depois": "semana 1 (readaptacao.semana1): 8 séries, RIR 3–4",
+    "depois": "semana 1 (readaptacao.semana1): 9 séries, RIR 3–4",
     "dia": "Corpo todo A",
   },
   {
-    "antes": "semana 6: 14 séries, RIR 2–3 e 1–2, a mesma carga",
+    "antes": "semana 6: 17 séries, RIR 2–3 e 1–2, a mesma carga",
     "cargas": [
       "Stiff unilateral com halter: 10 kg → 9 kg",
       "Remada unilateral com halter apoiada no banco: 10 kg → 9 kg",
       "Panturrilha em pé no chão: 10 kg → 9 kg",
+      "Crucifixo com halteres no banco plano: 10 kg → 9 kg",
       "Rosca alternada com halteres: 10 kg → 9 kg",
-      "Abdominal no chão (crunch): peso do corpo · variação mais difícil → peso do corpo · descida de 3 s ou pausa embaixo",
+      "Crucifixo invertido curvado com halteres: 10 kg → 9 kg",
     ],
-    "depois": "semana 1 (readaptacao.semana1): 9 séries, RIR 3–4",
+    "depois": "semana 1 (readaptacao.semana1): 10 séries, RIR 3–4",
     "dia": "Corpo todo B",
   },
   {
     "antes": "semana 6: 15 séries, RIR 2–3 e 1–2, a mesma carga",
     "cargas": [
       "Afundo estático com halteres: 10 kg → 9 kg",
-      "Ponte de glúteo: peso do corpo · variação mais difícil → peso do corpo · descida de 3 s ou pausa embaixo",
+      "Ponte de glúteo com halter: 10 kg → 9 kg",
       "Supino reto com halteres: 10 kg → 9 kg",
       "Remada unilateral com halter apoiada no banco: 10 kg → 9 kg",
       "Panturrilha em pé no chão: 10 kg → 9 kg",
@@ -93,7 +94,7 @@ exports[`snapshots do R2: o treino de cada persona na volta de 30 dias > Bruno, 
     "antes": "semana 6: 17 séries, RIR 1–2 e 0–1, a mesma carga",
     "cargas": [
       "Afundo estático com halteres: 10 kg → 8 kg",
-      "Ponte de glúteo: peso do corpo · variação mais difícil → peso do corpo · descida de 3 s ou pausa embaixo",
+      "Ponte de glúteo com halter: 10 kg → 8 kg",
       "Stiff unilateral com halter: 10 kg → 8 kg",
       "Elevação lateral com halteres: 10 kg → 8 kg",
       "Flexão de joelho na cadeira flexora (sentado): placa 8 → placa 7",
@@ -127,7 +128,7 @@ exports[`snapshots do R2: o treino de cada persona na volta de 30 dias > Carla 1
   {
     "antes": "semana 6: 23 séries, RIR 1–2 e 0–1, a mesma carga",
     "cargas": [
-      "Agachamento livre com barra (profundo): 40 kg → 35 kg",
+      "Agachamento livre com barra (profundo): 40 kg → 36 kg",
       "Stiff com halteres: 10 kg → 8 kg",
       "Flexão de joelho na cadeira flexora (sentado): placa 8 → placa 7",
       "Cadeira extensora: placa 8 → placa 7",
@@ -142,8 +143,8 @@ exports[`snapshots do R2: o treino de cada persona na volta de 30 dias > Carla 1
     "antes": "semana 6: 18 séries, RIR 1–2 e 0–1, a mesma carga",
     "cargas": [
       "Supino inclinado com halteres: 10 kg → 8 kg",
-      "Supino reto com barra: 40 kg → 35 kg",
-      "Desenvolvimento em pé com barra: 40 kg → 35 kg",
+      "Supino reto com barra: 40 kg → 36 kg",
+      "Desenvolvimento em pé com barra: 40 kg → 36 kg",
       "Elevação lateral unilateral na polia: placa 8 → placa 7",
       "Crucifixo com halteres no banco plano: 10 kg → 8 kg",
       "Tríceps francês sentado com halter: 10 kg → 8 kg",

@@ -1,0 +1,63 @@
+{
+  "id": "remada-curvada-halteres",
+  "name": "Remada curvada com halteres",
+  "short": "Remada curvada",
+  "target": "Costas",
+  "setupEq": [
+    "Um par de halteres."
+  ],
+  "setupBody": [
+    "Em pé, pés na largura do quadril, joelhos levemente dobrados.",
+    "Dobre o quadril até o tronco ficar bem inclinado, costas retas, abdômen firme.",
+    "Halteres pendurados, pegada neutra (palmas uma para a outra)."
+  ],
+  "exec": [
+    [
+      "conc",
+      "Puxada",
+      "Leva os cotovelos para trás, perto do corpo, até os halteres chegarem perto do quadril."
+    ],
+    [
+      "hold",
+      "Fim",
+      "Pausa curta, tronco parado."
+    ],
+    [
+      "ecc",
+      "Volta",
+      "Controlada, até os braços estenderem."
+    ]
+  ],
+  "range": [
+    "Início: braços estendidos.",
+    "Fim: cotovelos atrás do tronco, halteres perto do quadril."
+  ],
+  "cues": [
+    "Costas retas.",
+    "Cotovelos para trás.",
+    "Tronco parado."
+  ],
+  "errors": [
+    {
+      "id": "e1",
+      "title": "Arredondar as costas",
+      "desc": "A lombar perde a posição."
+    },
+    {
+      "id": "e2",
+      "title": "Subir o tronco",
+      "desc": "Embalo para levantar o peso."
+    },
+    {
+      "id": "e3",
+      "title": "Encolher os ombros",
+      "desc": "O trapézio assume."
+    },
+    {
+      "id": "e4",
+      "title": "Puxar só com os braços",
+      "desc": "Os cotovelos não vão para trás."
+    }
+  ],
+  "carga": "Pela lista dos seus halteres: o próximo peso quando todas as séries chegarem ao topo da faixa."
+}

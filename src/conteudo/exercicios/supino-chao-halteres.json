@@ -1,0 +1,68 @@
+{
+  "id": "supino-chao-halteres",
+  "name": "Supino no chão com halteres",
+  "short": "Supino no chão",
+  "target": "Peito",
+  "setupEq": [
+    "Um par de halteres.",
+    "Um colchonete, se tiver."
+  ],
+  "setupBody": [
+    "Sentado no chão, apoie os halteres nas coxas e deite levando-os junto ao peito.",
+    "Deitado, joelhos dobrados, pés no chão.",
+    "Halteres acima do peito."
+  ],
+  "exec": [
+    [
+      "ecc",
+      "Descida",
+      "Controlada, cotovelos a meio caminho do tronco, até a parte de trás dos braços encostar de leve no chão."
+    ],
+    [
+      "hold",
+      "Embaixo",
+      "Encosta sem quicar."
+    ],
+    [
+      "conc",
+      "Subida",
+      "Empurra até os braços estenderem."
+    ]
+  ],
+  "range": [
+    "Embaixo: a parte de trás dos braços encosta de leve no chão.",
+    "Em cima: braços estendidos acima do peito."
+  ],
+  "cues": [
+    "Cotovelos a meio caminho.",
+    "Encosta sem quicar.",
+    "Quadril no chão."
+  ],
+  "errors": [
+    {
+      "id": "e1",
+      "title": "Quicar o cotovelo",
+      "desc": "Bate no chão e usa o rebote."
+    },
+    {
+      "id": "e2",
+      "title": "Cotovelos em \"T\"",
+      "desc": "Abertos a 90° do tronco, mais carga no ombro."
+    },
+    {
+      "id": "e3",
+      "title": "Perder o controle em cima",
+      "desc": "Os halteres balançam."
+    },
+    {
+      "id": "e4",
+      "title": "Levantar o quadril",
+      "desc": "O quadril sai do chão para ajudar."
+    }
+  ],
+  "carga": "Pela lista dos seus halteres: o próximo peso quando todas as séries chegarem ao topo da faixa.",
+  "montagem": [
+    "Apoie os halteres nas coxas e deite levando-os junto ao peito; no fim, faça o caminho inverso.",
+    "Nunca solte os halteres do alto: desça-os até o peito antes de sentar."
+  ]
+}
