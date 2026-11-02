@@ -605,6 +605,12 @@ As listas exatas ficam em `tests/unit/metas-r0.test.ts`, para o R0c zerar.
 - **Carla:** com 3 de 5 treinos em 3 de 4 semanas, recebe a oferta de um programa de 3 ou 4 dias; com "pesado demais" em 2 dos últimos 3 treinos, a sugestão da semana leve.
 - **Diego:** na volta, um degrau abaixo nos elásticos e no peso do corpo.
 
+**Decisões do Gustavo (02/11/2026):** o marco foi aprovado por inteiro e foi para a `main`, com:
+1. os 4 snapshots novos (a volta de 30 dias de cada persona);
+2. nenhuma semana leve nova nas 3 semanas depois de uma semana leve;
+3. na volta de uma pausa, a proposta do tempo espera o próximo treino;
+4. a correção da fonte da `progressao.calibracao` (`nuzzo2024b`).
+
 **Imagem:** `img/r2-acompanhamento.png` (a volta de 22 dias, a sua semana, a evolução do supino e a semana leve).
 
 **Fica para o R3 (uso real):** o Gustavo treina 4 semanas com o app e vê, de verdade, a semana, as pausas e o tempo calibrado; o eval da foto com as fotos reais.
