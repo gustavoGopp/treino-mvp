@@ -486,3 +486,41 @@ a.cartao-ex-corpo:focus-visible{outline:3px solid var(--accent);outline-offset:-
 .marca{font-size:12px;font-weight:600;border-radius:999px;padding:2px 8px;background:var(--accent-soft);color:var(--link);white-space:nowrap}
 .marca.neutra{background:var(--line);color:var(--muted)}
 .hoje-foi .opcoes .btn{flex:1 1 0}
+
+/* R4 (experimento do boneco): estilos novos do corpo, A (boneco aprimorado) e B (silhueta limpa).
+   Só usados pela rota de laboratório e pelos scripts de comparação; o guia do app continua no estilo atual. */
+:root{
+  --ea-pele:#c3cdd4; --ea-pele-longe:#e3e8ec; --ea-cont-longe:#9eacb6;
+  --eb-pele:#93a2ad; --eb-pele-longe:#cdd5db;
+  --m-p:#d62e26; --m-s:#ec961c; --m-borda:#5c1410;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --ea-pele:#56656f; --ea-pele-longe:#2c3740; --ea-cont-longe:#4f5e69;
+    --eb-pele:#6e7f8b; --eb-pele-longe:#36434c;
+    --m-p:#f4524a; --m-s:#f5aa3c; --m-borda:#10171b;
+  }
+}
+:root[data-theme="dark"]{
+  --ea-pele:#56656f; --ea-pele-longe:#2c3740; --ea-cont-longe:#4f5e69;
+  --eb-pele:#6e7f8b; --eb-pele-longe:#36434c;
+  --m-p:#f4524a; --m-s:#f5aa3c; --m-borda:#10171b;
+}
+.ea-cont{stroke:var(--fig);fill:var(--fig);stroke-linecap:round;stroke-linejoin:round}
+.ea-cont-longe{stroke:var(--ea-cont-longe);fill:none;stroke-linecap:round}
+.ea-pele{fill:var(--ea-pele);stroke:var(--fig)}
+.ea-pele-t{fill:var(--ea-pele);stroke:var(--ea-pele);stroke-width:.6;stroke-linejoin:round}
+.ea-pele-l{stroke:var(--ea-pele);fill:none;stroke-linecap:round}
+.ea-pele-l-longe{stroke:var(--ea-pele-longe);fill:none;stroke-linecap:round}
+.ea-jt{fill:var(--stage);stroke:var(--joint)}
+.ea-sp{stroke:var(--fig);stroke-linecap:round;stroke-linejoin:round;opacity:.45}
+.ea-mp{fill:var(--m-p);stroke:var(--m-borda);stroke-linejoin:round}
+.ea-ms{fill:var(--m-s);stroke:var(--m-borda);stroke-linejoin:round}
+.eb-pele{fill:var(--eb-pele)}
+.eb-pele-t{fill:var(--eb-pele);stroke:var(--eb-pele);stroke-width:.6;stroke-linejoin:round}
+.eb-pele-l{stroke:var(--eb-pele);fill:none;stroke-linecap:round}
+.eb-pele-l-longe{stroke:var(--eb-pele-longe);fill:none;stroke-linecap:round}
+.eb-folga{stroke:var(--stage);fill:none;stroke-linecap:round}
+.eb-mp{fill:var(--m-p);stroke:var(--stage);stroke-linejoin:round}
+.eb-ms{fill:var(--m-s);stroke:var(--stage);stroke-linejoin:round}
+.estilo-b .eqp,.estilo-b .eqd,.estilo-b .eqs,.estilo-b .eql{opacity:.55}
