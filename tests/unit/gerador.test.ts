@@ -470,6 +470,15 @@ describe('regras do R0b no gerador', () => {
             if (possivel(m)) expect(prog.volumeSemanal[m] ?? 0, `${p.nome}/${minutosSessao}min/${m}`).toBeGreaterThan(0);
         }
   });
+  it('rir.carga-baixa: multiarticular do iniciante com 15 repetições ou mais (meio da faixa) fica com reserva 1–2 a partir da 3ª semana (auditoria, achado 9)', () => {
+    const prog = ok(ana.perfil, ana.inventario);
+    const achar = (dias: DiaPrograma[], id: string) => dias.flatMap((d) => d.exercicios).find((x) => x.exId === id)!;
+    expect(achar(prog.dias, 'ponte-gluteo')).toMatchObject({ rir: [1, 2] });
+    expect(achar(prog.dias, 'ponte-gluteo').porque.map((q) => q.regraId)).toContain('rir.carga-baixa');
+    expect(achar(prescricaoDaSemana(prog, 1), 'ponte-gluteo').rir).toEqual([3, 4]); // fase de aprendizado
+    expect(achar(prescricaoDaSemana(prog, 3), 'ponte-gluteo').rir).toEqual([1, 2]);
+    expect(achar(prog.dias, 'bulgaro').rir).toEqual([2, 3]); // 8–12 repetições: não muda
+  });
   it('selecao.funcao-da-vaga: o desempate de estabilidade só vale para iniciante', () => {
     const iniciante = ok({ ...bruno.perfil, nivel: 'iniciante', semanasParado: 0 }, bruno.inventario);
     const porques = iniciante.dias.flatMap((d) => d.exercicios.flatMap((x) => x.porque.map((q) => q.regraId)));

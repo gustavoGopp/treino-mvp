@@ -329,9 +329,9 @@
   },
   {
     "id": "rir.carga-baixa",
-    "regra": "Séries com 15 repetições ou mais pedem RIR mais baixo, porque com carga baixa a proximidade da falha pesa mais",
+    "regra": "Séries com 15 repetições ou mais pedem RIR mais baixo, porque com carga baixa a proximidade da falha pesa mais. Aplicada no gerador desde a auditoria do treino (02/11/2026): vale quando o meio da faixa do exercício é 15 ou mais",
     "valores": {
-      "iniciante": "RIR 0–2",
+      "iniciante": "RIR 1–2 a partir da 3ª semana (nas semanas 1–2, vale a fase de aprendizado, RIR 3–4)",
       "intermediario": "RIR 0–2",
       "avancado": "RIR 0–2"
     },

@@ -41,6 +41,8 @@ export const RIR = {
   composto: { iniciante: [2, 3], intermediario: [1, 2], avancado: [1, 2] } as PorNivel<[number, number]>,
   isolador: { iniciante: [1, 2], intermediario: [0, 1], avancado: [0, 1] } as PorNivel<[number, number]>,
   serieEfetivaMax: 4, // rir.serie-efetiva
+  // rir.carga-baixa: com o meio da faixa em 15 repetições ou mais, a reserva vai no máximo a 2 (fora da fase de aprendizado).
+  cargaBaixa: { repsMeio: 15, rirMax: 2 },
 };
 
 export const DESCANSO = {

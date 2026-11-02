@@ -402,6 +402,10 @@ export function gerarPrograma(perfil: Perfil, inventarioOriginal: Inventario): R
   const prescrever = (it: Item): ExercicioPrescrito => {
     const e = it.ex;
     const composto = e.tipo === 'composto';
+    // rir.carga-baixa: com carga baixa (muitas repetições), a proximidade da falha pesa mais; a reserva vai até 2.
+    const rirBase = composto ? RIR.composto[nivel] : RIR.isolador[nivel];
+    const cargaBaixa = (e.faixaReps[0] + e.faixaReps[1]) / 2 >= RIR.cargaBaixa.repsMeio && rirBase[1] > RIR.cargaBaixa.rirMax;
+    const rir: [number, number] = cargaBaixa ? [Math.min(rirBase[0], RIR.cargaBaixa.rirMax - 1), RIR.cargaBaixa.rirMax] : rirBase;
     return {
       exId: e.id,
       nome: e.nome,
@@ -410,12 +414,16 @@ export function gerarPrograma(perfil: Perfil, inventarioOriginal: Inventario): R
       funcao: it.funcao.id,
       series: it.series,
       reps: e.faixaReps,
-      rir: composto ? RIR.composto[nivel] : RIR.isolador[nivel],
+      rir,
       descansoSeg: composto ? DESCANSO.composto[nivel] : DESCANSO.isolador[nivel],
       unilateral: e.unilateral,
       animacaoId: e.animacaoId,
       alternativas: ctx.alternativasDe(e, it.funcao),
-      porque: [...porqueDoExercicio(e, it.funcao, it.nivelFuncao, nivel, ctx.preferido(it.funcao, e)), ...porqueDaDor(e, it.preenchido)],
+      porque: [
+        ...porqueDoExercicio(e, it.funcao, it.nivelFuncao, nivel, ctx.preferido(it.funcao, e)),
+        ...(cargaBaixa ? [{ regraId: r('rir.carga-baixa'), texto: 'Com muitas repetições, a série só conta perto da falha: termine com 1 a 2 repetições de reserva.' }] : []),
+        ...porqueDaDor(e, it.preenchido),
+      ],
     };
   };
   let programaDias: DiaPrograma[] = dias.map(({ dia, itens }) => {
