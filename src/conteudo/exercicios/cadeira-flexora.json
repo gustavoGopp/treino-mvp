@@ -1,0 +1,63 @@
+{
+  "id": "cadeira-flexora",
+  "name": "Flexão de joelho na cadeira flexora (sentado)",
+  "short": "Flexora sentada",
+  "target": "Posteriores da coxa",
+  "setupEq": [
+    "Cadeira flexora (ou a estação do multifuncional)."
+  ],
+  "setupBody": [
+    "Ajuste o encosto para o joelho ficar alinhado com o eixo.",
+    "O rolo de cima trava a coxa logo acima do joelho; o de baixo fica atrás do tornozelo.",
+    "Sentado e encostado; pode inclinar um pouco o tronco à frente."
+  ],
+  "exec": [
+    [
+      "conc",
+      "Flexão",
+      "Dobra os joelhos trazendo os calcanhares para baixo e para trás até onde der."
+    ],
+    [
+      "hold",
+      "Fim",
+      "Pausa curta."
+    ],
+    [
+      "ecc",
+      "Volta",
+      "Controlada, até os joelhos quase esticarem."
+    ]
+  ],
+  "range": [
+    "Início: joelhos quase esticados.",
+    "Fim: joelhos bem dobrados."
+  ],
+  "cues": [
+    "Coxa travada.",
+    "Joelho no eixo.",
+    "Volta devagar."
+  ],
+  "errors": [
+    {
+      "id": "e1",
+      "title": "Rolo da coxa solto",
+      "desc": "O quadril sobe do banco."
+    },
+    {
+      "id": "e2",
+      "title": "Dar tranco",
+      "desc": "O peso sobe no embalo."
+    },
+    {
+      "id": "e3",
+      "title": "Joelho fora do eixo",
+      "desc": "O encosto está mal ajustado."
+    },
+    {
+      "id": "e4",
+      "title": "Não estender na volta",
+      "desc": "A amplitude fica curta."
+    }
+  ],
+  "carga": "Pela placa da torre: +1 placa quando todas as séries chegarem ao topo da faixa."
+}

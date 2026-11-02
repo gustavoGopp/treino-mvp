@@ -1,0 +1,63 @@
+{
+  "id": "cadeira-extensora",
+  "name": "Cadeira extensora",
+  "short": "Cadeira extensora",
+  "target": "Quadríceps (frente da coxa)",
+  "setupEq": [
+    "Cadeira extensora (ou a estação do multifuncional)."
+  ],
+  "setupBody": [
+    "Ajuste o encosto para o joelho ficar alinhado com o eixo da máquina.",
+    "O rolo apoia na frente da canela, logo acima do pé.",
+    "Quadril encostado e mãos nas alças."
+  ],
+  "exec": [
+    [
+      "conc",
+      "Subida",
+      "Estende os joelhos até quase esticar."
+    ],
+    [
+      "hold",
+      "Topo",
+      "Pausa de ~1 s."
+    ],
+    [
+      "ecc",
+      "Descida",
+      "Controlada, até os joelhos dobrarem bem, sem bater as placas."
+    ]
+  ],
+  "range": [
+    "Embaixo: joelhos bem dobrados.",
+    "Em cima: joelhos quase esticados."
+  ],
+  "cues": [
+    "Joelho no eixo.",
+    "Sem tranco.",
+    "Desce devagar."
+  ],
+  "errors": [
+    {
+      "id": "e1",
+      "title": "Dar tranco",
+      "desc": "O peso sobe no embalo."
+    },
+    {
+      "id": "e2",
+      "title": "Tirar o quadril do banco",
+      "desc": "O tronco ajuda a subir."
+    },
+    {
+      "id": "e3",
+      "title": "Joelho fora do eixo",
+      "desc": "O encosto está mal ajustado."
+    },
+    {
+      "id": "e4",
+      "title": "Descer rápido",
+      "desc": "As placas batem."
+    }
+  ],
+  "carga": "Pela placa da torre: +1 placa quando todas as séries chegarem ao topo da faixa."
+}

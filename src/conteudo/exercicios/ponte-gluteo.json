@@ -1,0 +1,63 @@
+{
+  "id": "ponte-gluteo",
+  "name": "Ponte de glúteo",
+  "short": "Ponte de glúteo",
+  "target": "Glúteos",
+  "setupEq": [
+    "Nenhum equipamento: o chão (um colchonete ajuda)."
+  ],
+  "setupBody": [
+    "Deitado de costas, joelhos dobrados.",
+    "Pés no chão na largura do quadril, calcanhares a cerca de um palmo dos glúteos.",
+    "Braços ao lado do corpo."
+  ],
+  "exec": [
+    [
+      "conc",
+      "Subida",
+      "Empurra o chão pelos calcanhares até ombros, quadril e joelhos ficarem em linha."
+    ],
+    [
+      "hold",
+      "Topo",
+      "Pausa de ~1 s, costelas para baixo."
+    ],
+    [
+      "ecc",
+      "Descida",
+      "Controlada, até o quadril quase encostar no chão."
+    ]
+  ],
+  "range": [
+    "Embaixo: quadril quase no chão.",
+    "Em cima: ombros, quadril e joelhos em linha, sem arquear a lombar."
+  ],
+  "cues": [
+    "Empurra pelos calcanhares.",
+    "Costelas para baixo.",
+    "Pausa no topo."
+  ],
+  "errors": [
+    {
+      "id": "e1",
+      "title": "Arquear a lombar no topo",
+      "desc": "A lombar arqueia em vez de o quadril estender."
+    },
+    {
+      "id": "e2",
+      "title": "Empurrar pela ponta dos pés",
+      "desc": "O calcanhar sai do chão."
+    },
+    {
+      "id": "e3",
+      "title": "Joelhos caindo para dentro",
+      "desc": "Os joelhos fecham na subida."
+    },
+    {
+      "id": "e4",
+      "title": "Subir pouco",
+      "desc": "O quadril não alinha com o tronco e as coxas."
+    }
+  ],
+  "carga": "Peso do corpo: quando ficar fácil, mais repetições, depois pausa mais longa no topo, depois uma perna só. Com halteres, a ponte com halter sobre o quadril."
+}

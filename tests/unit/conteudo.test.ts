@@ -30,10 +30,17 @@ describe('conteúdo dos exercícios', () => {
     }
   });
 
-  it('os 29 exercícios novos do R0c têm cartão de texto e ficha de técnica', () => {
-    const novos = BIBLIOTECA.filter((e) => existsSync(`docs/pesquisa/animacoes/${e.id}.md`) && e.animacaoId === null && e.id !== 'agachamento-barra');
-    expect(novos).toHaveLength(29);
-    for (const e of novos) expect(CARTOES[e.id], e.id).toBeDefined();
+  it('todo exercício com ficha de técnica e sem animação tem cartão de texto (os 29 do R0c e os da auditoria do treino)', () => {
+    const comFicha = BIBLIOTECA.filter((e) => existsSync(`docs/pesquisa/animacoes/${e.id}.md`) && e.animacaoId === null && e.id !== 'agachamento-barra');
+    expect(comFicha.length).toBeGreaterThanOrEqual(29);
+    for (const e of comFicha) expect(CARTOES[e.id], e.id).toBeDefined();
+  });
+
+  it('auditoria do treino, lote 1: os 5 mais prescritos sem guia ganharam ficha de técnica e cartão de texto', () => {
+    for (const id of ['ponte-gluteo', 'crucifixo-halteres', 'crucifixo-inverso', 'cadeira-extensora', 'cadeira-flexora']) {
+      expect(existsSync(`docs/pesquisa/animacoes/${id}.md`), id).toBe(true);
+      expect(CARTOES[id], id).toBeDefined();
+    }
   });
 
   it('seguranca.montagem: exercício com travas ou ancoragem (tag "montagem") tem a montagem no cartão, se tiver cartão', () => {

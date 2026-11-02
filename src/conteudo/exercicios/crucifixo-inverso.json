@@ -1,0 +1,63 @@
+{
+  "id": "crucifixo-inverso",
+  "name": "Crucifixo inverso com halteres, peito apoiado no banco inclinado",
+  "short": "Crucifixo inverso",
+  "target": "Ombro (posterior)",
+  "setupEq": [
+    "Banco inclinado a cerca de 30–45°.",
+    "Um par de halteres leves."
+  ],
+  "setupBody": [
+    "Deitado de bruços no banco, peito apoiado, pés no chão.",
+    "Halteres pendurados, palmas uma para a outra, cotovelos levemente dobrados."
+  ],
+  "exec": [
+    [
+      "conc",
+      "Subida",
+      "Abre os braços para os lados, cotovelos fixos, até perto da linha dos ombros."
+    ],
+    [
+      "hold",
+      "Topo",
+      "Pausa curta, sem encolher os ombros."
+    ],
+    [
+      "ecc",
+      "Descida",
+      "Controlada, até os braços pendurarem."
+    ]
+  ],
+  "range": [
+    "Embaixo: braços pendurados.",
+    "Em cima: braços perto da linha dos ombros."
+  ],
+  "cues": [
+    "Peito no banco.",
+    "Ombros longe das orelhas.",
+    "Abre para os lados."
+  ],
+  "errors": [
+    {
+      "id": "e1",
+      "title": "Encolher os ombros",
+      "desc": "O trapézio assume o trabalho."
+    },
+    {
+      "id": "e2",
+      "title": "Dobrar os cotovelos",
+      "desc": "Vira uma remada."
+    },
+    {
+      "id": "e3",
+      "title": "Tirar o peito do banco",
+      "desc": "Dá embalo com o tronco."
+    },
+    {
+      "id": "e4",
+      "title": "Carga pesada demais",
+      "desc": "O movimento sai com tranco."
+    }
+  ],
+  "carga": "Pela lista dos seus halteres; use halteres leves, porque o salto de um para o outro pesa muito neste exercício."
+}
