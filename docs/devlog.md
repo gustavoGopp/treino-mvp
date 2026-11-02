@@ -557,3 +557,61 @@ As listas exatas ficam em `tests/unit/metas-r0.test.ts`, para o R0c zerar.
 > A parte difícil foi o progresso. Fui aos estudos: o músculo cresce igual na máquina e no peso livre, mas a carga não passa de um aparelho para o outro. No supino, os halteres levantaram 17% menos que a barra; a máquina, 8% mais. Então o app não inventa conta. Na 1ª vez num aparelho, ele pede uma carga fácil e acerta pela 1ª série: "ficou leve: na próxima, 12 kg por lado". O histórico segue o exercício, em qualquer lugar.
 >
 > E entrou o "prefiro este": entre exercícios equivalentes, eu escolho. A preferência nunca passa por cima da dor.
+
+## R2: O app percebe a pausa, mostra a sua semana e a evolução (02/11/2026)
+
+**Antes do código:** o plano das telas foi aprovado pelo Gustavo, com 4 decisões:
+1. "A sua semana" fica numa faixa no topo do "Seu treino"; um toque abre a tela completa.
+2. As séries de acerto da calibração contam na semana quando o RIR é 4 ou menos (`rir.serie-efetiva`); na evolução e no recorde, ficam fora.
+3. Acima de 26 semanas, com ou sem o aceite de refazer o nível, a volta é a mesma: a calibração a partir da última carga −20%.
+4. A semana leve aceita vale 7 dias a partir do toque; "Voltar ao normal" encerra antes.
+
+**O que mudou**
+- **Pausas detectadas sozinhas** (`readaptacao.durante-uso`, nova; `readaptacao.semana1` e `readaptacao.gatilho`, revistas):
+  - a pausa é contada em dias, do fim do último treino até hoje, em qualquer local, no calendário do aparelho;
+  - até 13 dias, nada muda. De 14 a 20, o 1º treino de cada dia tem 1 repetição a mais de reserva, com a mesma carga. Com 21 ou mais, começa um bloco novo, com a volta gradual: semana 1 com ~55% das séries e RIR 3–4, semana 2 com ~75% e RIR 2–3, semana 3 completa;
+  - a carga da volta vem preenchida: −10% (21 a 56 dias), −15% (57 a 182) e, acima de 182, a calibração da 1ª série a partir de −20%, com a proposta "Quer refazer o nível? Leva 1 minuto" (nada marcado). Sempre para baixo no que o local de hoje tem; nas máquinas, a partir da última carga daquele local, e sem registro ali, a calibração;
+  - a semana do programa conta as semanas com treino desde o início do bloco, e não o calendário. A fase de aprendizado da Ana passa a acabar depois de 2 semanas com treino;
+  - a mensagem de volta é sem culpa: "Bem-vindo de volta! Faz 22 dias do último treino. Estas 2 semanas vão mais leves, para o corpo se readaptar sem dor. O músculo não some em 3 semanas.";
+  - a fase "1ª sessão com RIR +1" do cadastro, que até aqui era só texto, passa a valer.
+- **"A sua semana"** (`acompanhamento.semana` e `acompanhamento.mensagens`, novas): treinos feitos × planejados, de segunda a domingo e em qualquer local; séries efetivas por músculo (a indireta vale meia; o drop set, 2, como na meta), do exercício feito de verdade, contra a meta da semana (na volta, no aprendizado e na semana leve, o prescrito); 4 estados no tom do app, sem vermelho; "X das últimas 8 semanas com treino"; e as mensagens da seção 4.4 do T6. Depois de 3 de 4 semanas abaixo do planejado, a oferta de um programa com menos dias ("2 dias", "3 dias", "Manter 4"), que só muda com o toque.
+- **Evolução por exercício** (`acompanhamento.evolucao`, nova): a melhor série de cada treino, com "subiu a carga" e "recorde"; a placa nas máquinas e o degrau no peso do corpo; nenhuma carga máxima estimada. A série de acerto aparece como "acerto da carga" e não vira recorde; a de amplitude encurtada também não. Nas máquinas, uma lista por local. Abre pela tela da semana e pelo cartão de cada exercício.
+- **Semana leve só com sinal** (`deload.semana-leve`, revista): 2 exercícios estagnados, "pesado demais" em 2 dos últimos 3 treinos, ou dor de 3 a 5 no mesmo exercício em 2 treinos seguidos, com o aviso de dor e de avaliação, que aparece mesmo sem a sugestão. Não sugere nas 3 semanas depois de uma volta nem depois de uma semana leve. O texto diz "Para descansar, não para crescer". O toque "hoje foi: leve / normal / pesado demais" fica no fim do treino, opcional e sem nada marcado. As sessões da semana leve ficam fora da dupla progressão.
+- **Tempo que se ajusta** (`tempo.calibracao`, nova): depois de 3 treinos com 80% das séries ou mais, se o tempo real ficar 5 min ou mais longe do previsto, o app pergunta "Ajustar a estimativa do tempo?". Com o "Ajustar", a margem pessoal substitui os 10%, e o aviso "Há uma versão nova do seu programa" oferece atualizar.
+- **Estado salvo, versão 7:** o "hoje foi" e a marca de semana leve em cada sessão; a semana leve aceita; as respostas às ofertas ("Manter", "Agora não", "Não"); a margem pessoal do tempo. Todos opcionais; a migração 6 → 7 não inventa nada. Exportação e importação continuam, e um arquivo da versão 6 entra igual.
+- **Regras:** 5 novas e 4 revistas em `regras.md`, todas com selo e fonte; 13 fontes novas em `fontes.md`, e Bickel 2011 e Spiering 2021 passam a resumo-PubMed. **Correção:** a `progressao.calibracao` (R1b) citava `nuzzo2024`, que em `fontes.md` é outro estudo do Nuzzo (dose mínima); ela passa a citar `nuzzo2024b` (repetições × % da carga máxima, 37792272).
+- **Testes:** 480 unitários (eram 408) e 60 no navegador (eram 55):
+  - os casos P1 a P9, W1 a W7, E1 a E4 e S1 a S5 do T6; o critério 6 fica coberto por P1, P3, W1 e W2;
+  - com locais: a pausa conta o treino de qualquer local; o Bruno volta de 30 dias na academia do bairro, e a flexora parte da placa daquele local; a semana conta o treino de qualquer local, inclusive a troca de local e a alternativa;
+  - propriedades: em 200 sequências de datas, a semana do programa nunca volta para trás dentro de um bloco; em 100, nenhuma pausa de até 13 dias muda a carga;
+  - no navegador: a volta de 22 dias (mensagem e 9 kg), a de menos de 14 dias (nada muda), a sua semana pela faixa, a evolução do supino e a semana leve com o "hoje foi".
+
+**Medido no T6 × agora:** o T6 media o Superior A do Bruno com 20 séries; com o programa de hoje (R0c e R1), ele tem 28. Na volta de 22 dias, a semana 1 fica com **16** séries, a semana 2 com **21** e a semana 3 com 28 (o T6 previa 12, 15 e 20, a mesma proporção).
+
+**Snapshots**
+- **Os 4 programas das personas não mudaram** (o gerador sai igual, inclusive sem margem pessoal).
+- **Novos, o treino de cada persona na volta de 30 dias** (2 semanas de treino, 30 dias parado), antes e depois:
+
+| Persona | Antes (sem o R2) | Depois |
+|---|---|---|
+| Ana | semana 6, programa completo (13 séries no Corpo todo A), RIR 2–3 e 1–2, a mesma carga | semana 1 da volta: 8 séries, RIR 3–4; halteres 10 → 9 kg; peso do corpo um degrau abaixo |
+| Bruno, de volta na academia do bairro | semana 6: 28 séries no Superior A, RIR 1–2 e 0–1, a mesma carga | semana 1: 16 séries, RIR 3–4; halteres 10 → 8 kg (lá vão de 2 em 2 kg); flexora placa 8 → 7 (a do bairro); panturrilha no leg press 20 → 15 kg por lado (menor anilha de 5 kg); barra fixa, mergulho e francês com halter, nunca feitos, calibram na 1ª série |
+| Carla | semana 6: 24 séries no Superior, a mesma carga | semana 1: 14 séries, RIR 3–4; halteres 10 → 8 kg (os dela vão de 2 em 2 kg); barra 40 → 35 kg; polias placa 8 → 7 |
+| Diego | semana 6: 16 séries no Corpo todo A, a mesma carga | semana 1: 10 séries, RIR 3–4; elásticos e peso do corpo um degrau abaixo |
+
+**O que mudou em cada persona**
+- **Ana:** a fase de aprendizado acaba depois de 2 semanas com treino. Se ela some 10 dias depois da 1ª semana, volta na semana 2 (12 séries no Corpo todo A, RIR 3–4), e não na 3ª.
+- **Bruno:** treina no prédio e na academia do bairro; voltando de 30 dias na academia do bairro, faz a volta gradual com a carga de cada máquina daquele local.
+- **Carla:** com 3 de 5 treinos em 3 de 4 semanas, recebe a oferta de um programa de 3 ou 4 dias; com "pesado demais" em 2 dos últimos 3 treinos, a sugestão da semana leve.
+- **Diego:** na volta, um degrau abaixo nos elásticos e no peso do corpo.
+
+**Imagem:** `img/r2-acompanhamento.png` (a volta de 22 dias, a sua semana, a evolução do supino e a semana leve).
+
+**Fica para o R3 (uso real):** o Gustavo treina 4 semanas com o app e vê, de verdade, a semana, as pausas e o tempo calibrado; o eval da foto com as fotos reais.
+
+**Rascunho de post para o LinkedIn**
+> Meu app de treino não percebia quando eu parava. Se eu sumisse um mês, ele me esperava na "semana 6", com o treino cheio e a mesma carga.
+>
+> Agora ele conta os dias desde o último treino. Até 13 dias, nada muda: a pesquisa mostra que duas semanas não tiram força. Com 3 semanas ou mais, ele me recebe com um "bem-vindo de volta", deixa as 2 semanas seguintes mais leves e já preenche a carga 10% abaixo da última vez. A semana do programa passou a contar as semanas em que eu treinei, e não o calendário.
+>
+> Entrou também "a sua semana": quantos treinos eu fiz, as séries de cada músculo contra a meta, e "6 das últimas 8 semanas com treino", nunca uma sequência que zera. Sem vermelho e sem "você falhou": acompanhar o próprio progresso ajuda a manter o hábito, culpa não.

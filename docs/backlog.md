@@ -40,3 +40,8 @@ Detalhes em `planejamento/2026-11-diagnostico.md`, `PLANO-MVP.md` e `pesquisa-v2
 - **Esteira no inventário antigo (R1):** a esteira saiu da lista de treino, mas fica no inventário de quem já a tinha marcado, sem efeito no programa, para o app não apagar um dado sem a pessoa pedir. A decidir: tirá-la quando a pessoa salvar o equipamento de novo.
 - **Lacunas do gerador para avançados com academia completa:** entram no R0 (aproveitar o equipamento).
 - **Boneco mais humano, estética do formulário, cadastro mais rápido, peso inicial e acompanhamento:** viraram os marcos R1, R2 e R4 do `PLANO-MVP.md`.
+
+## Do R2 (02/11/2026)
+- **Tabela de Nuzzo 2024 (repetições × % da carga máxima):** com o texto completo, a calibração poderia usá-la no lugar da fórmula de Brzycki (pesquisa-v2/07, seção 9).
+- **Acima de 65 anos** a pausa pesa mais e a manutenção pede mais, mas o app não pergunta a idade (decisão do Gustavo: fica fora).
+- **Gráfico da evolução:** hoje é uma lista da melhor série de cada treino; um gráfico simples pode entrar depois do uso real (R3).
