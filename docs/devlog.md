@@ -545,6 +545,8 @@ As listas exatas ficam em `tests/unit/metas-r0.test.ts`, para o R0c zerar.
 
 **Imagem:** `img/r1b-locais.png` (onde vou treinar hoje, a troca explicada e a calibração no leg press).
 
+**Decisões do Gustavo (02/11/2026):** o marco foi aprovado por inteiro e foi para a `main`, com os 2 snapshots novos (o Bruno na academia do bairro e a Carla com "prefiro o leg press").
+
 **Fica para o R2:** pausas detectadas sozinhas (e com elas a calibração na volta de mais de 26 semanas), "a sua semana", evolução por exercício e semana leve sugerida. No backlog: apagar um local e oferecer o que o local a mais permite.
 
 **Rascunho de post para o LinkedIn**
