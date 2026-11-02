@@ -28,8 +28,8 @@ describe('biblioteca de exercícios', () => {
     const animacoes = new Set(EX.map((e: { id: string }) => e.id));
     const usadas = BIBLIOTECA.map((e) => e.animacaoId).filter((a): a is string => !!a);
     for (const a of usadas) expect(animacoes, a).toContain(a);
-    // elevacao-lateral-b é clone de elevacao-lateral (mesma animação, outra prescrição)
-    expect(new Set(usadas)).toEqual(new Set([...animacoes].filter((a) => a !== 'elevacao-lateral-b')));
+    // Sem animação órfã: a cópia elevacao-lateral-b saiu na revisão de anatomia (02/11/2026, achado 9).
+    expect(new Set(usadas)).toEqual(animacoes);
   });
 
   it('os 29 exercícios novos do R0c (pesquisa-v2/08, seção 5) estão na biblioteca, sem animação, com ficha de técnica', () => {

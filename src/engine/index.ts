@@ -20,5 +20,5 @@ export const DIAS = [
   { id: 'torso-a', nome: 'Torso A', ex: EX.slice(0, 7) },
   { id: 'membros-a', nome: 'Membros A', ex: EX.slice(7, 13) },
   { id: 'torso-b', nome: 'Torso B', ex: EX.slice(13, 20) },
-  { id: 'membros-b', nome: 'Membros B', ex: EX.slice(20, 26) },
+  { id: 'membros-b', nome: 'Membros B', ex: EX.slice(20, 25) },
 ];

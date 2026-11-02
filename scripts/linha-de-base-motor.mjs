@@ -65,6 +65,12 @@ const resultado = await page.evaluate((N) => {
 await browser.close();
 if (erros.length) throw new Error('erros de página: ' + erros.join('; '));
 
+// A cópia elevacao-lateral-b do guia original (a mesma animação com outra prescrição) saiu do app na revisão de
+// anatomia (02/11/2026, achado 9): fica fora da linha de base.
+const FORA = new Set(['elevacao-lateral-b']);
+resultado.exercicios = resultado.exercicios.filter((e) => !FORA.has(e.id));
+resultado.check = resultado.check.filter((l) => !FORA.has(l.split(' ')[0]));
+
 const out = {
   gerado: 'scripts/linha-de-base-motor.mjs',
   referenciaSha256: sha(original),

@@ -113,5 +113,6 @@ test('motor portado gera os mesmos quadros que o guia original', async ({ page }
       });
     }
   }
-  expect(n).toBe(4968);
+  // 25 animações do guia original (a cópia elevacao-lateral-b, 216 quadros, saiu em 02/11/2026).
+  expect(n).toBe(4752);
 });

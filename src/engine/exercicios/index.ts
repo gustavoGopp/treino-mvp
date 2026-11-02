@@ -25,8 +25,8 @@ import flexaoBola from './flexao-bola';
 import panturrilhaB from './panturrilha-b';
 import roscaInclinada from './rosca-inclinada';
 import tricepsFrances from './triceps-frances';
-import elevacaoLateralB from './elevacao-lateral-b';
-// Animações novas (marco das animações), sempre depois das 26 do guia original.
+// Animações novas (marco das animações), sempre depois das 25 do guia original (a 26ª, elevacao-lateral-b, era uma
+// cópia da elevação lateral com outra prescrição e saiu na revisão de anatomia, 02/11/2026).
 import remadaUnilateral from './remada-unilateral';
 import panturrilhaChao from './panturrilha-chao';
 import abdominalChao from './abdominal-chao';
@@ -61,7 +61,6 @@ export const EX = [
   panturrilhaB,
   roscaInclinada,
   tricepsFrances,
-  elevacaoLateralB,
   remadaUnilateral,
   panturrilhaChao,
   abdominalChao,

@@ -27,7 +27,7 @@ type Animacao = any;
 // Treinos do programa de referência + as animações novas (criadas depois do guia original), num grupo próprio.
 const GRUPOS = [
   ...DIAS,
-  ...(EX.length > 26 ? [{ id: 'novas', nome: 'Novas', ex: EX.slice(26) }] : []),
+  ...(EX.length > 25 ? [{ id: 'novas', nome: 'Novas', ex: EX.slice(25) }] : []),
 ];
 
 const faixa = ([a, b]: [number, number]) => (a === b ? `${a}` : `${a}–${b}`);

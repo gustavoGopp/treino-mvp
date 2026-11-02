@@ -2,7 +2,7 @@ import { readFileSync } from 'node:fs';
 import { expect, test, type Page } from '@playwright/test';
 
 // Regressão visual do guia: o palco do app tem que sair idêntico, pixel a pixel, ao do guia original
-// (referencia/guia-execucao-fase1.html, que é o oráculo). Vista principal × 4 modos × 2 tempos, nos 26 exercícios.
+// (referencia/guia-execucao-fase1.html, que é o oráculo). Vista principal × 4 modos × 2 tempos, nos 25 exercícios (a cópia elevacao-lateral-b saiu em 02/11/2026).
 // As fontes externas são bloqueadas nos dois lados para a comparação não depender da rede.
 const original = readFileSync('referencia/guia-execucao-fase1.html', 'utf8').replace(
   'window.__guia={',
