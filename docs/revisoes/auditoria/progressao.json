@@ -1,0 +1,285 @@
+[
+ {
+  "id": "halter-1kg",
+  "nome": "Supino com halteres fixos de 1 a 12 kg, de 1 em 1 kg",
+  "exercicio": "supino-reto",
+  "inicial": "11 kg",
+  "final": "12 kg",
+  "forcaCresceu": "+17% (modelo)",
+  "subidas": 1,
+  "voltas": 0,
+  "maiorTravaEmSessoes": 24,
+  "acoes": {
+   "manter": 14,
+   "estagnado": 17,
+   "subir": 1
+  },
+  "cargaInexistente": [],
+  "veredito": "trava"
+ },
+ {
+  "id": "halter-2kg",
+  "nome": "Supino com halteres fixos de 2 a 40 kg, de 2 em 2 kg",
+  "exercicio": "supino-reto",
+  "inicial": "18 kg",
+  "final": "22 kg",
+  "forcaCresceu": "+17% (modelo)",
+  "subidas": 6,
+  "voltas": 5,
+  "maiorTravaEmSessoes": 15,
+  "acoes": {
+   "manter": 11,
+   "estagnado": 10,
+   "subir": 6,
+   "voltar": 5
+  },
+  "cargaInexistente": [],
+  "veredito": "vaivém"
+ },
+ {
+  "id": "halter-esparso",
+  "nome": "Supino com só 2 pares de halteres (5 e 10 kg)",
+  "exercicio": "supino-reto",
+  "inicial": "5 kg",
+  "final": "5 kg",
+  "forcaCresceu": "+17% (modelo)",
+  "subidas": 16,
+  "voltas": 16,
+  "maiorTravaEmSessoes": 1,
+  "acoes": {
+   "subir": 16,
+   "voltar": 16
+  },
+  "cargaInexistente": [],
+  "veredito": "vaivém"
+ },
+ {
+  "id": "manoplas",
+  "nome": "Goblet com halteres montáveis de casa (2 a 18 kg)",
+  "exercicio": "goblet",
+  "inicial": "18 kg",
+  "final": "18 kg",
+  "forcaCresceu": "+17% (modelo)",
+  "subidas": 0,
+  "voltas": 0,
+  "maiorTravaEmSessoes": 32,
+  "acoes": {
+   "manter": 21,
+   "estagnado": 11
+  },
+  "cargaInexistente": [],
+  "veredito": "trava"
+ },
+ {
+  "id": "kettlebell",
+  "nome": "Goblet com kettlebells de 8, 12 e 16 kg",
+  "exercicio": "goblet-kettlebell",
+  "inicial": "12 kg",
+  "final": "16 kg",
+  "forcaCresceu": "+17% (modelo)",
+  "subidas": 4,
+  "voltas": 3,
+  "maiorTravaEmSessoes": 25,
+  "acoes": {
+   "manter": 12,
+   "estagnado": 13,
+   "subir": 4,
+   "voltar": 3
+  },
+  "cargaInexistente": [],
+  "veredito": "vaivém"
+ },
+ {
+  "id": "barra-2kg",
+  "nome": "Agachamento com barra, menor anilha de 2 kg",
+  "exercicio": "agachamento-barra",
+  "inicial": "62,5 kg",
+  "final": "67,5 kg",
+  "forcaCresceu": "+17% (modelo)",
+  "subidas": 1,
+  "voltas": 0,
+  "maiorTravaEmSessoes": 23,
+  "acoes": {
+   "manter": 14,
+   "estagnado": 17,
+   "subir": 1
+  },
+  "cargaInexistente": [
+   "67,5 kg"
+  ],
+  "veredito": "sugere carga que não existe"
+ },
+ {
+  "id": "barra-5kg",
+  "nome": "Agachamento com barra, menor anilha de 5 kg",
+  "exercicio": "agachamento-barra",
+  "inicial": "62,5 kg",
+  "final": "67,5 kg",
+  "forcaCresceu": "+17% (modelo)",
+  "subidas": 1,
+  "voltas": 0,
+  "maiorTravaEmSessoes": 23,
+  "acoes": {
+   "manter": 14,
+   "estagnado": 17,
+   "subir": 1
+  },
+  "cargaInexistente": [
+   "67,5 kg"
+  ],
+  "veredito": "sugere carga que não existe"
+ },
+ {
+  "id": "barra-1kg",
+  "nome": "Rosca com barra W, anilhas de 1 kg",
+  "exercicio": "rosca-barra-w",
+  "inicial": "22,5 kg",
+  "final": "27,5 kg",
+  "forcaCresceu": "+17% (modelo)",
+  "subidas": 6,
+  "voltas": 5,
+  "maiorTravaEmSessoes": 20,
+  "acoes": {
+   "manter": 10,
+   "estagnado": 11,
+   "subir": 6,
+   "voltar": 5
+  },
+  "cargaInexistente": [
+   "27,5 kg",
+   "22,5 kg",
+   "27,5 kg"
+  ],
+  "veredito": "sugere carga que não existe"
+ },
+ {
+  "id": "leg-press",
+  "nome": "Leg press, menor anilha de 5 kg",
+  "exercicio": "leg-press",
+  "inicial": "30 kg por lado",
+  "final": "40 kg por lado",
+  "forcaCresceu": "+17% (modelo)",
+  "subidas": 1,
+  "voltas": 0,
+  "maiorTravaEmSessoes": 20,
+  "acoes": {
+   "manter": 15,
+   "estagnado": 16,
+   "subir": 1
+  },
+  "cargaInexistente": [],
+  "veredito": "trava"
+ },
+ {
+  "id": "placa-pesada",
+  "nome": "Cadeira extensora (torre de 15 placas)",
+  "exercicio": "cadeira-extensora",
+  "inicial": "placa 8",
+  "final": "placa 10",
+  "forcaCresceu": "+17% (modelo)",
+  "subidas": 7,
+  "voltas": 6,
+  "maiorTravaEmSessoes": 10,
+  "acoes": {
+   "manter": 9,
+   "estagnado": 10,
+   "subir": 7,
+   "voltar": 6
+  },
+  "cargaInexistente": [],
+  "veredito": "vaivém"
+ },
+ {
+  "id": "placa-leve",
+  "nome": "Elevação lateral na polia (torre de 15 placas)",
+  "exercicio": "elevacao-lateral",
+  "inicial": "placa 2",
+  "final": "placa 4",
+  "forcaCresceu": "+17% (modelo)",
+  "subidas": 5,
+  "voltas": 4,
+  "maiorTravaEmSessoes": 23,
+  "acoes": {
+   "manter": 11,
+   "estagnado": 12,
+   "subir": 5,
+   "voltar": 4
+  },
+  "cargaInexistente": [],
+  "veredito": "vaivém"
+ },
+ {
+  "id": "graviton",
+  "nome": "Barra fixa no graviton (contrapeso, 10 placas)",
+  "exercicio": "barra-fixa-graviton",
+  "inicial": "contrapeso 5",
+  "final": "contrapeso 3",
+  "forcaCresceu": "+17% (modelo)",
+  "subidas": 5,
+  "voltas": 4,
+  "maiorTravaEmSessoes": 14,
+  "acoes": {
+   "manter": 11,
+   "estagnado": 12,
+   "subir": 5,
+   "voltar": 4
+  },
+  "cargaInexistente": [],
+  "veredito": "vaivém"
+ },
+ {
+  "id": "peso-corpo",
+  "nome": "Flexão de braço (peso do corpo, escada de dificuldade)",
+  "exercicio": "flexao",
+  "inicial": "peso do corpo",
+  "final": "peso do corpo",
+  "forcaCresceu": "+17% (modelo)",
+  "subidas": 0,
+  "voltas": 0,
+  "maiorTravaEmSessoes": 32,
+  "acoes": {
+   "manter": 16,
+   "estagnado": 16
+  },
+  "cargaInexistente": [],
+  "veredito": "trava"
+ },
+ {
+  "id": "elastico",
+  "nome": "Remada com elástico (3 intensidades)",
+  "exercicio": "remada-elastico",
+  "inicial": "elástico",
+  "final": "elástico",
+  "forcaCresceu": "+17% (modelo)",
+  "subidas": 0,
+  "voltas": 0,
+  "maiorTravaEmSessoes": 32,
+  "acoes": {
+   "manter": 16,
+   "estagnado": 16
+  },
+  "cargaInexistente": [],
+  "veredito": "trava"
+ },
+ {
+  "id": "panturrilha-sem-halter",
+  "nome": "Panturrilha no chão, para quem não tem halteres (só elásticos)",
+  "exercicio": "panturrilha-chao",
+  "inicial": "0 kg",
+  "final": "10 kg",
+  "forcaCresceu": "+17% (modelo)",
+  "subidas": 2,
+  "voltas": 0,
+  "maiorTravaEmSessoes": 17,
+  "acoes": {
+   "manter": 16,
+   "estagnado": 14,
+   "subir": 2
+  },
+  "cargaInexistente": [
+   "5 kg",
+   "10 kg"
+  ],
+  "veredito": "sugere carga que não existe"
+ }
+]
