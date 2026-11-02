@@ -2,7 +2,7 @@ import { readFileSync } from 'node:fs';
 import { describe, expect, it } from 'vitest';
 import { BIBLIOTECA } from '../../src/domain/biblioteca';
 import { CARTOES, CONTEUDO } from '../../src/conteudo';
-import { doDesenho, doTexto, ehMusculo } from '../../scripts/auditoria/anatomia-regras';
+import { AJUDANTES, doDesenho, doTexto, ehMusculo } from '../../scripts/auditoria/anatomia-regras';
 
 // Revisão de anatomia (docs/revisoes/anatomia.md, 02/11/2026): os músculos de cada exercício, decididos item a item
 // pelo Gustavo. O secundário conta meia série (volume.serie-indireta.peso), então cada regra aqui muda o volume.
@@ -74,16 +74,6 @@ describe('textos × biblioteca (revisão de anatomia)', () => {
     expect(BIBLIOTECA.find((e) => e.id === 'hiperextensao')!.musculos).toEqual({ primarios: ['gluteos', 'posteriores'], secundarios: [] });
   });
 });
-
-// Achado 8 (decisão do Gustavo): músculos que só ajudam ficam no desenho, em laranja, sem contar no volume.
-// Os que o gerador conta e a biblioteca não lista para o exercício estão aqui, um a um.
-const AJUDANTES: Record<string, string[]> = {
-  'elevacao-halteres': ['ombro_anterior'],
-  'elevacao-lateral': ['ombro_anterior'],
-  flexao: ['abdomen'],
-  'triceps-frances': ['abdomen'],
-  'flexao-bola': ['panturrilha'],
-};
 
 describe('desenho do boneco × biblioteca (revisão de anatomia)', () => {
   it('achados 2 e 4: o principal do desenho é o principal da biblioteca, nem mais nem menos', () => {

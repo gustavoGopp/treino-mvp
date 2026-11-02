@@ -10,7 +10,7 @@ import { BIBLIOTECA, MUSCULOS, type Exercicio } from '../../src/domain/bibliotec
 import { NOME_MUSCULO } from '../../src/domain/gerador';
 import { CARTOES, CONTEUDO } from '../../src/conteudo';
 import { EX } from '../../src/engine';
-import { NAO_CONTADOS, NOME_FORMA, FORMA, doDesenho, doTexto, ehMusculo, type Marca } from './anatomia-regras';
+import { AJUDANTES, NAO_CONTADOS, NOME_FORMA, FORMA, doDesenho, doTexto, ehMusculo, type Marca } from './anatomia-regras';
 
 const est = JSON.parse(readFileSync('docs/revisoes/auditoria/estresse.json', 'utf8')) as {
   escolha: { usosComoVaga: Record<string, number> };
@@ -60,12 +60,15 @@ for (const e of BIBLIOTECA) {
     if (pSemDesenho.length) marcas.push(`**P≠ desenho**: o principal ${lista(pSemDesenho)} não é principal no desenho`);
     const sSemDesenho = [...S].filter((m) => !d.p.has(m) && !d.s.has(m));
     if (sSemDesenho.length) marcas.push(`**S falta no desenho**: ${lista(sSemDesenho)}`);
-    const desenhoAMais = [...d.p, ...d.s].filter((m) => ehMusculo(m) && !conta.has(m));
+    const ajuda = new Set<Marca>(AJUDANTES[e.id] ?? []);
+    const desenhoAMais = [...d.p, ...d.s].filter((m) => ehMusculo(m) && !conta.has(m) && !ajuda.has(m));
     if (desenhoAMais.length) marcas.push(`**desenho mostra músculo que a biblioteca não conta aqui**: ${lista(desenhoAMais)}`);
+    const desenhoAjuda = [...d.p, ...d.s].filter((m) => ajuda.has(m));
+    if (desenhoAjuda.length) marcas.push(`desenho mostra quem só ajuda (achado 8): ${lista(desenhoAjuda)}`);
     const naoContado = [...d.p, ...d.s].filter((m) => !ehMusculo(m));
     if (naoContado.length) marcas.push(`desenho mostra o que o gerador não conta: ${lista(naoContado)}`);
   }
-  const textoAMais = [...tTF].filter((m) => ehMusculo(m) && !conta.has(m));
+  const textoAMais = [...tTF].filter((m) => ehMusculo(m) && !conta.has(m) && !(AJUDANTES[e.id] ?? []).includes(m as never));
   if (textoAMais.length) marcas.push(`**texto cita músculo que a biblioteca não conta aqui**: ${lista(textoAMais)}`);
   if (anim) {
     const sSemTexto = [...S].filter((m) => !tTF.has(m));
@@ -111,6 +114,7 @@ L.push(
   `| P≠ desenho | ${ids(conta('P≠ desenho'))} |`,
   `| S falta no desenho | ${ids(conta('S falta no desenho'))} |`,
   `| desenho mostra músculo que a biblioteca não conta aqui | ${ids(conta('desenho mostra músculo'))} |`,
+  `| desenho mostra quem só ajuda (decidido no achado 8) | ${ids(conta('só ajuda'))} |`,
   `| texto cita músculo que a biblioteca não conta aqui | ${ids(conta('texto cita músculo'))} |`,
   `| S não citado no texto do guia | ${ids(conta('S não citado'))} |`,
   ...NAO_CONTADOS.map((n) => `| desenho mostra _${n}_ | ${ids(linhas.filter((l) => l.desenho && [...l.desenho.p, ...l.desenho.s].includes(n)))} |`),

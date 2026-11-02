@@ -85,3 +85,15 @@ export function doDesenho(animacaoId: string) {
   return { p, s, formasP, formasS };
 }
 
+/**
+ * Achado 8 da revisão de anatomia (decisão do Gustavo, 02/11/2026): músculos que só ajudam ficam no desenho, em laranja,
+ * sem contar no volume. Aqui, os que o gerador conta em outros exercícios e a biblioteca não lista para este.
+ */
+export const AJUDANTES: Record<string, Musculo[]> = {
+  'elevacao-halteres': ['ombro_anterior'],
+  'elevacao-lateral': ['ombro_anterior'],
+  flexao: ['abdomen'],
+  'triceps-frances': ['abdomen'],
+  'flexao-bola': ['panturrilha'],
+};
+
