@@ -23,10 +23,11 @@ Para o ombro posterior não achei ensaio de hipertrofia comparando exercícios (
 4. **Carga pesada demais**, com tranco.
 
 ## Músculos
-Primário: ombro posterior. Secundário: costas (meio das costas).
+Primário: ombro posterior. **Sem secundário** desde a revisão de anatomia (02/11/2026, achado 5): abrir os braços para trás (abdução horizontal) é do deltoide posterior e do infraespinal (Schoenfeld 2013, PMID 23302754; **um estudo**, EMG), e este cartão pede para não juntar as escápulas, que é o que faria o meio das costas trabalhar (consenso, anatomia descritiva). Detalhes em `docs/revisoes/anatomia.md`.
 
 ## Como a carga sobe
 Halter: o próximo peso da lista; é um exercício de carga leve, e o salto entre halteres pesa muito em porcentagem.
 
 ## Fontes
 - `nsca2021`: NSCA. Exercise Technique Manual for Resistance Training, 4ª ed. Human Kinetics, 2021. **Não verificado** (livro pago, não acessado); referência de consenso de treinadores, a confirmar.
+- `schoenfeld2013`: Schoenfeld B et al. Effect of hand position on EMG activity of the posterior shoulder musculature during a horizontal abduction exercise. J Strength Cond Res 2013;27(10):2644-9. PMID 23302754 (`docs/pesquisa/fontes.md`).

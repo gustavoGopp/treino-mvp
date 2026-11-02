@@ -23,7 +23,7 @@ Num ensaio de 9 semanas, hip thrust e agachamento cresceram o glúteo de forma p
 4. **Subir pouco**: o quadril não alinha com o tronco e as coxas.
 
 ## Músculos
-Primário: glúteos. Secundário: posteriores da coxa (como na biblioteca).
+Primário: glúteos. **Sem secundário** desde a revisão de anatomia (02/11/2026, achado 1): no hip thrust, com o joelho dobrado como na ponte, os posteriores quase não cresceram (Plotkin 2023, `plotkin2023`; **um estudo**). A ponte segue o hip thrust por ter a mesma posição do joelho (consenso, inferência do projeto). Detalhes em `docs/revisoes/anatomia.md`.
 
 ## Como a carga sobe
 Peso do corpo, pela escada de dificuldade (`progressao.incremento.peso-corporal`): mais repetições, pausa no topo, uma perna só e, com halteres, a ponte com halter.

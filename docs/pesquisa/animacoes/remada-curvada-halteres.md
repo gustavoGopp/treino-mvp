@@ -23,7 +23,7 @@ Para costas, não achei ensaio de hipertrofia comparando puxada e remada (`pesqu
 4. **Puxar só com os braços**, sem levar os cotovelos para trás.
 
 ## Músculos
-Primário: costas. Secundários: bíceps e ombro posterior.
+Primário: costas. Secundários: bíceps e ombro posterior. **Consenso**, igual às outras remadas da biblioteca: puxar o cotovelo para trás estende o ombro (dorsal e deltoide posterior), aproxima a escápula (meio das costas) e dobra o cotovelo contra a carga (bíceps). Não há ensaio de hipertrofia comparando remadas (`docs/pesquisa-v2/04-exercicios-por-musculo.md`). Conferido na revisão de anatomia (02/11/2026).
 
 ## Como a carga sobe
 Halter: o próximo peso da lista.

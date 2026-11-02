@@ -23,7 +23,7 @@ Sem banco, o chão limita a descida: o peito alonga menos que no supino no banco
 4. **Levantar o quadril** do chão para empurrar.
 
 ## Músculos
-Primário: peito. Secundários: ombro (frente) e tríceps.
+Primário: peito. Secundários: ombro (frente) e tríceps. **Consenso**, igual aos outros supinos: empurrar na horizontal é do peitoral maior, com a frente do ombro e o tríceps ajudando; a amplitude menor (o cotovelo para no chão) não muda quem trabalha. Conferido na revisão de anatomia (02/11/2026).
 
 ## Como a carga sobe
 Halter: o próximo peso da lista.

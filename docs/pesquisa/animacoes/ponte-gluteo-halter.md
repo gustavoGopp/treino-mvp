@@ -22,7 +22,7 @@ Exercício **novo**, da auditoria do treino (02/11/2026, achado 6): só pede hal
 4. **Subir pouco.**
 
 ## Músculos
-Primário: glúteos. Secundário: posteriores da coxa.
+Primário: glúteos. **Sem secundário** desde a revisão de anatomia (02/11/2026, achado 1): no hip thrust, com o joelho dobrado como na ponte, os posteriores quase não cresceram (Plotkin 2023, PMID 37877099; **um estudo**). Detalhes em `docs/revisoes/anatomia.md`.
 
 ## Como a carga sobe
 Halter: o próximo peso da lista (`progressao.incremento.halteres`).

@@ -23,7 +23,7 @@ O crucifixo é complemento do empurrar, com o peito alongado (`selecao.crucifixo
 4. **Tirar as escápulas do banco.**
 
 ## Músculos
-Primário: peito. Secundário: ombro (frente).
+Primário: peito. Secundário: ombro (frente). **Consenso**, igual ao crucifixo na polia e ao voador: abrir e fechar os braços na frente do peito (adução horizontal) é do peitoral maior, com a frente do ombro ajudando. Não há ensaio de hipertrofia do crucifixo (`docs/pesquisa-v2/04-exercicios-por-musculo.md`). Conferido na revisão de anatomia (02/11/2026).
 
 ## Como a carga sobe
 Halter: o próximo peso da lista.

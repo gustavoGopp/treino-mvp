@@ -23,10 +23,11 @@ Exercício **novo**, da auditoria do treino (02/11/2026, achado 6): só pede hal
 4. **Dobrar os cotovelos** e puxar.
 
 ## Músculos
-Primário: ombro posterior. Secundário: costas (meio das costas).
+Primário: ombro posterior. **Sem secundário** desde a revisão de anatomia (02/11/2026, achado 5), como o crucifixo inverso: abdução horizontal do deltoide posterior e do infraespinal (Schoenfeld 2013, PMID 23302754; **um estudo**, EMG), sem juntar as escápulas (consenso). Detalhes em `docs/revisoes/anatomia.md`.
 
 ## Como a carga sobe
 Halter: o próximo peso da lista.
 
 ## Fontes
 - `nsca2021`: NSCA. Exercise Technique Manual for Resistance Training, 4ª ed. Human Kinetics, 2021. **Não verificado** (livro pago, não acessado); referência de consenso de treinadores, a confirmar.
+- `schoenfeld2013`: Schoenfeld B et al. Effect of hand position on EMG activity of the posterior shoulder musculature during a horizontal abduction exercise. J Strength Cond Res 2013;27(10):2644-9. PMID 23302754 (`docs/pesquisa/fontes.md`).

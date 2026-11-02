@@ -1,3 +1,4 @@
+import { readFileSync } from 'node:fs';
 import { describe, expect, it } from 'vitest';
 import { BIBLIOTECA } from '../../src/domain/biblioteca';
 import { CARTOES, CONTEUDO } from '../../src/conteudo';
@@ -111,6 +112,17 @@ describe('desenho do boneco × biblioteca (revisão de anatomia)', () => {
     for (const id of ['elevacao-halteres', 'elevacao-lateral']) {
       const d = doDesenho(id);
       expect([...d.p, ...d.s], id).not.toContain('trapézio superior');
+    }
+  });
+});
+
+describe('fichas de técnica (revisão de anatomia)', () => {
+  it('achado 7: os músculos das 9 fichas do lote 1 e da auditoria têm selo', () => {
+    const FICHAS = ['ponte-gluteo', 'ponte-gluteo-halter', 'crucifixo-halteres', 'crucifixo-inverso', 'crucifixo-invertido-curvado', 'cadeira-extensora', 'cadeira-flexora', 'remada-curvada-halteres', 'supino-chao-halteres'];
+    for (const id of FICHAS) {
+      const md = readFileSync(`docs/pesquisa/animacoes/${id}.md`, 'utf8');
+      const secao = md.split('## Músculos')[1]!.split('\n## ')[0]!;
+      expect(secao, id).toMatch(/\*\*(robusta|moderada|um estudo|consenso)\*\*/i);
     }
   });
 });

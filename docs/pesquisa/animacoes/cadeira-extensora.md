@@ -23,7 +23,7 @@ A extensora cresceu o reto femoral, a parte do quadríceps que cruza o quadril e
 4. **Descer rápido** e bater as placas.
 
 ## Músculos
-Primário: quadríceps (sobretudo o reto femoral).
+Primário: quadríceps (sobretudo o reto femoral). **Um estudo**: na extensora, o reto femoral cresceu +13,2% (contra +1,1% no leg press), e os vastos cresceram tanto quanto no leg press (Kinoshita 2026, PMID 41630124; resumo-PubMed). Conferido na revisão de anatomia (02/11/2026).
 
 ## Como a carga sobe
 Placa da torre: +1 placa (`progressao.incremento.polia`).

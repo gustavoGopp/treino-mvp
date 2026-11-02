@@ -23,7 +23,7 @@ A flexora sentada cresceu mais os posteriores que a deitada (+14% × +9%), porqu
 4. **Não estender na volta** (amplitude curta).
 
 ## Músculos
-Primário: posteriores da coxa.
+Primário: posteriores da coxa. **Um estudo**: a flexora sentada cresceu os posteriores mais que a deitada (+14% contra +9%; Maeo 2021, PMID 33009197; resumo-PubMed, em `docs/pesquisa-v2/04-exercicios-por-musculo.md`). Conferido na revisão de anatomia (02/11/2026).
 
 ## Como a carga sobe
 Placa da torre: +1 placa.
