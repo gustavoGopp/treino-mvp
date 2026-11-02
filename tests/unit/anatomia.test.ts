@@ -55,4 +55,16 @@ describe('textos × biblioteca (revisão de anatomia)', () => {
       for (const m of e.musculos.secundarios) expect(citados, `${e.id}: ${m}`).toContain(m);
     }
   });
+
+  it('achado 4: o desenvolvimento ensina a frente do ombro como principal e a lateral como ajuda, como a biblioteca conta', () => {
+    // Campos 2020 (PMID 33312291, EMG): a lateral trabalha no desenvolvimento, mas não há ensaio de crescimento.
+    const t = CONTEUDO.desenvolvimento!;
+    expect(t.target).toBe('Deltoide anterior (frente do ombro); a lateral do ombro ajuda');
+    expect(t.feel).toMatch(/^Frente do ombro\. A lateral do ombro/);
+    for (const e of BIBLIOTECA.filter((x) => x.padrao === 'empurrar-v')) {
+      expect(e.musculos.primarios, e.id).toEqual(['ombro_anterior']);
+      expect(e.musculos.secundarios, e.id).toContain('ombro_lateral');
+    }
+  });
 });
+
