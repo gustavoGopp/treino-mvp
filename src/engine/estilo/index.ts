@@ -11,13 +11,13 @@ import { skel } from '../esqueleto';
 import { Z, add, comb, len, sub } from '../math';
 import { caixa, montarSvg } from '../svg';
 import { corpoNovo } from './corpo';
-import { LISTA, medida, musculosNovos } from './musculos';
+import { medida, musculosNovos } from './musculos';
 
 export type Estilo = 'atual' | 'a' | 'b';
 export const ESTILOS: Estilo[] = ['atual', 'a', 'b'];
 export const NOMES_ESTILO = { atual: 'Clássico', a: 'Boneco', b: 'Silhueta' };
-/** Exercícios do experimento do R4 (os primeiros a ganhar os músculos anatômicos). */
-export const EXERCICIOS_R4 = Object.keys(LISTA);
+/** Exercícios do experimento do R4 (os primeiros a ganhar os músculos anatômicos e uma lista própria em LISTA). */
+export const EXERCICIOS_R4 = ['puxada-unilateral', 'goblet'];
 
 // Guias que mudam nos estilos novos. Face pull, vista de cima: o rótulo saía no topo do palco, atrás da caixa da
 // fase do app; desce para perto do cabo (pedido do Gustavo no R3, corrigido no estilo novo em 02/11/2026).

@@ -350,6 +350,49 @@ export const LISTA = {
     ['gluteos', 'RL', 's'],
     ['quadriceps', 'RL', 'p'],
   ],
+  // Revisão de anatomia (docs/revisoes/anatomia.md, decisões do Gustavo em 02/11/2026): o desenho do boneco segue
+  // os músculos da biblioteca. O estilo clássico continua igual ao guia original (teste de equivalência).
+  // Achados 2 e 6: glúteo secundário (como a biblioteca conta) e adutores da perna da frente.
+  afundo: [
+    ['gluteos', 'R', 's'],
+    ['adutores', 'R', 's'],
+    ['quadriceps', 'L', 's'],
+    ['quadriceps', 'R', 'p'],
+  ],
+  bulgaro: [
+    ['gluteos', 'R', 's'],
+    ['adutores', 'R', 's'],
+    ['quadriceps', 'R', 'p'],
+  ],
+  // Achado 2: o glúteo da perna de apoio passa a secundário, como no stiff com os dois pés.
+  'stiff-unilateral': [
+    ['eretores', 'C', 's'],
+    ['gluteos', 'R', 's'],
+    ['gluteos', 'L', 's'],
+    ['posteriores', 'L', 'p'],
+  ],
+  // Achado 4: a lateral do ombro é secundária (meia série na biblioteca); a frente é a principal.
+  desenvolvimento: [
+    ['trapSuperior', 'R', 's'],
+    ['trapSuperior', 'L', 's'],
+    ['deltLat', 'R', 's'],
+    ['deltLat', 'L', 's'],
+    ['deltAnt', 'R', 'p'],
+    ['deltAnt', 'L', 'p'],
+    ['triceps', 'R', 's'],
+    ['triceps', 'L', 's'],
+  ],
+  // Achado 3: sem o trapézio superior, que o texto apresenta como sinal de erro ("o ombro está subindo").
+  'elevacao-halteres': [
+    ['deltAnt', 'R', 's'],
+    ['deltAnt', 'L', 's'],
+    ['deltLat', 'R', 'p'],
+    ['deltLat', 'L', 'p'],
+  ],
+  'elevacao-lateral': [
+    ['deltAnt', 'R', 's'],
+    ['deltLat', 'R', 'p'],
+  ],
 };
 
 /** Lista de [forma, lado, tipo] do exercício, do mais profundo para o mais superficial. */

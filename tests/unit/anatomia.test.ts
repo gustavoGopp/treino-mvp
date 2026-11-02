@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import { BIBLIOTECA } from '../../src/domain/biblioteca';
 import { CARTOES, CONTEUDO } from '../../src/conteudo';
-import { doTexto } from '../../scripts/auditoria/anatomia-regras';
+import { doDesenho, doTexto, ehMusculo } from '../../scripts/auditoria/anatomia-regras';
 
 // Revisão de anatomia (docs/revisoes/anatomia.md, 02/11/2026): os músculos de cada exercício, decididos item a item
 // pelo Gustavo. O secundário conta meia série (volume.serie-indireta.peso), então cada regra aqui muda o volume.
@@ -71,6 +71,47 @@ describe('textos × biblioteca (revisão de anatomia)', () => {
     // Andersen 2021 (PMID 33948095, EMG): na hiperextensão a 45°, a lombar trabalhou tanto quanto no stiff.
     expect(CARTOES.hiperextensao!.target).toMatch(/lombar/);
     expect(BIBLIOTECA.find((e) => e.id === 'hiperextensao')!.musculos).toEqual({ primarios: ['gluteos', 'posteriores'], secundarios: [] });
+  });
+});
+
+// Achado 8 (decisão do Gustavo): músculos que só ajudam ficam no desenho, em laranja, sem contar no volume.
+// Os que o gerador conta e a biblioteca não lista para o exercício estão aqui, um a um.
+const AJUDANTES: Record<string, string[]> = {
+  'elevacao-halteres': ['ombro_anterior'],
+  'elevacao-lateral': ['ombro_anterior'],
+  flexao: ['abdomen'],
+  'triceps-frances': ['abdomen'],
+  'flexao-bola': ['panturrilha'],
+};
+
+describe('desenho do boneco × biblioteca (revisão de anatomia)', () => {
+  it('achados 2 e 4: o principal do desenho é o principal da biblioteca, nem mais nem menos', () => {
+    for (const e of BIBLIOTECA.filter((x) => x.animacaoId)) {
+      const d = doDesenho(e.animacaoId!);
+      expect([...d.p].filter(ehMusculo).sort(), e.id).toEqual([...e.musculos.primarios].sort());
+    }
+  });
+
+  it('achado 6: todo secundário da biblioteca aparece no desenho', () => {
+    for (const e of BIBLIOTECA.filter((x) => x.animacaoId)) {
+      const d = doDesenho(e.animacaoId!);
+      for (const m of e.musculos.secundarios) expect([...d.p, ...d.s], `${e.id}: ${m}`).toContain(m);
+    }
+  });
+
+  it('achado 8: o desenho só mostra músculo contado que a biblioteca lista, ou um ajudante da lista', () => {
+    for (const e of BIBLIOTECA.filter((x) => x.animacaoId)) {
+      const d = doDesenho(e.animacaoId!);
+      const conta = new Set<string>([...e.musculos.primarios, ...e.musculos.secundarios, ...(AJUDANTES[e.id] ?? [])]);
+      for (const m of [...d.p, ...d.s].filter(ehMusculo)) expect(conta, `${e.id}: ${m}`).toContain(m);
+    }
+  });
+
+  it('achado 3: as elevações laterais não realçam o trapézio superior', () => {
+    for (const id of ['elevacao-halteres', 'elevacao-lateral']) {
+      const d = doDesenho(id);
+      expect([...d.p, ...d.s], id).not.toContain('trapézio superior');
+    }
   });
 });
 
