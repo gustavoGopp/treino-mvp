@@ -29,7 +29,8 @@ test('sessão completa: registra as séries, descansa e recebe a sugestão para 
   await ana(page);
   await comecar(page);
   await expect(page.getByRole('heading', { name: 'Agachamento búlgaro com apoio' })).toBeVisible();
-  await expect(page.getByText(/Primeira vez: escolha uma carga/)).toBeVisible();
+  // 1ª vez: a 1ª série calibra a carga (progressao.calibracao, R1b).
+  await expect(page.getByText(/1ª vez neste exercício: comece com uma carga que pareça fácil/)).toBeVisible();
   await expect(page.getByText(/1–2 séries leves de aquecimento/)).toBeVisible();
 
   // 1ª série: sem carga e sem RIR o botão não deixa salvar.
@@ -47,10 +48,19 @@ test('sessão completa: registra as séries, descansa e recebe a sugestão para 
   await descanso.getByRole('button', { name: '+15 s' }).click();
   await expect(descanso.getByRole('timer')).toHaveText(/^(2:0\d|1:59)$/);
   await descanso.getByRole('button', { name: 'Pular' }).click();
-  await expect(page.getByRole('list', { name: 'Séries feitas' })).toContainText('8 kg × 9 · RIR 2');
+  // 8 kg × 9 com 2 de reserva, para a faixa 8–12 com RIR 3–4: pesada. A série fica como acerto da carga.
+  await expect(page.getByRole('list', { name: 'Séries feitas' })).toContainText('8 kg × 9 · RIR 2 · acerto da carga');
 
-  // 2ª série vem preenchida com a anterior.
-  await expect(page.getByLabel('Carga', { exact: true })).toHaveValue('8');
+  // 2ª série vem com a carga calibrada (Brzycki, para baixo no inventário: 7 kg).
+  await expect(page.getByText('Calibração: Ficou pesada: na próxima série, 7 kg.')).toBeVisible();
+  await expect(page.getByLabel('Carga', { exact: true })).toHaveValue('7');
+  await page.getByRole('button', { name: 'Mais uma repetição' }).click();
+  await page.getByRole('button', { name: 'Mais uma repetição' }).click();
+  await page.getByRole('radio', { name: '2', exact: true }).check();
+  await feita.click();
+  await page.getByRole('region', { name: 'Descanso' }).getByRole('button', { name: 'Pular' }).click();
+  // 7 kg × 11 com 2 de reserva: perto do alvo, vira a série de trabalho (sem a marca de acerto).
+  await expect(page.getByRole('list', { name: 'Séries feitas' })).toContainText(/7 kg × 11 · RIR 2\s*Desfazer/);
 
   for (;;) {
     await fazerExercicio(page);
@@ -74,7 +84,7 @@ test('sessão completa: registra as séries, descansa e recebe a sugestão para 
   // Treino A de novo: agora a carga sugerida aparece.
   await comecar(page, 'Corpo todo A');
   await expect(page.getByText(/^Hoje:/)).toBeVisible();
-  await expect(page.getByLabel('Carga', { exact: true })).toHaveValue('8');
+  await expect(page.getByLabel('Carga', { exact: true })).toHaveValue('7');
 });
 
 test('treino em andamento sobrevive a fechar o app', async ({ page }) => {

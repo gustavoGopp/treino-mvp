@@ -192,6 +192,64 @@ export const CAPACIDADES = {
 } as const;
 
 export type Capacidade = keyof typeof CAPACIDADES;
+
+/**
+ * Nome de cada capacidade para o motivo de uma troca de local (local.treino-do-dia): "aqui não tem polia alta".
+ * Começa em minúscula e vem com o artigo quando soa melhor na frase.
+ */
+export const NOME_CAPACIDADE: Record<Capacidade, string> = {
+  halteres: 'halteres',
+  kettlebell: 'kettlebell',
+  polia: 'polia',
+  polia_dupla: 'polia dupla',
+  polia_alta: 'polia alta',
+  polia_baixa: 'polia baixa',
+  puxador: 'puxador alto',
+  remada_estacao: 'estação de remada baixa',
+  corda: 'corda para polia',
+  triangulo: 'triângulo para polia',
+  barra_reta_polia: 'barra reta para polia',
+  estribo: 'estribo para polia',
+  tornozeleira: 'tornozeleira para polia',
+  banco: 'banco',
+  banco_inclinavel: 'banco que inclina',
+  banco_declinavel: 'banco que declina',
+  banco_scott: 'banco Scott',
+  banco_romano: 'banco romano',
+  barra_fixa: 'barra fixa',
+  barra_longa: 'barra longa',
+  barra_w: 'barra W',
+  barra_hexagonal: 'barra hexagonal',
+  rack: 'rack de agachamento',
+  smith: 'smith',
+  barra_baixa: 'rack ou smith',
+  leg_press: 'leg press',
+  hack: 'hack',
+  cadeira_extensora: 'cadeira extensora',
+  mesa_flexora: 'mesa flexora',
+  cadeira_flexora: 'cadeira flexora',
+  abdutora: 'cadeira abdutora',
+  adutora: 'cadeira adutora',
+  gluteo_maquina: 'máquina de glúteo',
+  panturrilha_em_pe: 'máquina de panturrilha em pé',
+  panturrilha_sentada: 'máquina de panturrilha sentada',
+  supino_maquina: 'supino na máquina',
+  voador: 'voador',
+  voador_invertido: 'voador que inverte',
+  desenvolvimento_maquina: 'máquina de desenvolvimento',
+  remada_articulada: 'remada articulada',
+  graviton: 'graviton',
+  rosca_maquina: 'máquina de rosca',
+  triceps_maquina: 'máquina de tríceps',
+  triceps_maquina_acima: 'máquina de tríceps acima da cabeça',
+  abdominal_maquina: 'máquina de abdominal',
+  paralelas: 'paralelas',
+  suspensao: 'suspensão',
+  elastico: 'elásticos',
+  step: 'step',
+  bola_suica: 'bola suíça',
+  apoio: 'apoio',
+};
 export const capacidades = (inv: Inventario) =>
   new Set((Object.keys(CAPACIDADES) as Capacidade[]).filter((c) => CAPACIDADES[c](inv)));
 

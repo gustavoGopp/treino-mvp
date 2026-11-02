@@ -1,0 +1,9 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`selecao.preferencia > snapshot revisado: o dia da Carla que muda com "prefiro o leg press" (antes e depois) 1`] = `
+{
+  "antes": "Inferior (61 min): agachamento-barra 4×6–10 | stiff 3×8–12 | cadeira-flexora 4×8–15 | cadeira-extensora 4×10–15 | panturrilha 4×10–15 | aducao-maquina 2×12–20 | abdominal-polia 2×10–15",
+  "depois": "Inferior (61 min): leg-press 4×8–15 | stiff 3×8–12 | cadeira-flexora 4×8–15 | cadeira-extensora 4×10–15 | panturrilha 4×10–15 | aducao-maquina 2×12–20 | abdominal-polia 2×10–15",
+  "volumeIgual": false,
+}
+`;

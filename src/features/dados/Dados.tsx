@@ -113,6 +113,16 @@ export function Dados() {
           </button>
         </section>
 
+        {estado.locais?.length ? (
+          <section className="box">
+            <h2>Meus locais</h2>
+            <p>Os lugares onde você treina, cada um com o seu equipamento. Dá para trocar o nome e cadastrar outro.</p>
+            <Link className="btn sec" to="/locais">
+              Ver meus locais
+            </Link>
+          </section>
+        ) : null}
+
         <section className="box">
           <h2>Refazer as respostas</h2>
           <p>Mudou algo na sua saúde, rotina ou equipamento? Refaça a partir da triagem; o programa é gerado de novo no fim.</p>

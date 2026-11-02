@@ -1,5 +1,5 @@
 import type { z } from 'zod';
-import { estadoSchema, VERSAO_ESTADO, type Estado } from './esquema';
+import { estadoSchema, NOME_LOCAL_PADRAO, VERSAO_ESTADO, type Estado } from './esquema';
 
 // Migrações do estado guardado. Cada entrada leva da versão N para N + 1.
 // Cada mudança de formato entra aqui, com teste em tests/unit/armazenamento.test.ts.
@@ -35,6 +35,14 @@ export const MIGRACOES: Record<number, Migracao> = {
     if (tri) saida.triagem = { ...sem(tri, 'regioes'), ...(dores.length ? { dores } : {}) };
     if (res) saida.restricoes = sem(res, 'dores');
     return saida;
+  },
+  // 5 → 6 (R1b): vários locais de treino. O inventário de antes vira o 1º local, com um nome neutro que a pessoa
+  // troca quando quiser, sem tocar em nenhum atributo. Nada mais é inventado: sem principal (vale o 1º), sem
+  // "último local", sem preferência. As sessões antigas ficam sem local e contam como do 1º (o único que existia).
+  5: (anterior) => {
+    const { inventario, ...resto } = anterior;
+    if (!inventario) return { ...resto };
+    return { ...resto, locais: [{ id: 'local-1', nome: NOME_LOCAL_PADRAO, inventario }] };
   },
 };
 

@@ -546,6 +546,45 @@
     ]
   },
   {
+    "id": "progressao.calibracao",
+    "regra": "Calibração da carga, série a série (R1b; pesquisa-v2/07, seção 2.3, e pesquisa-v2/09): vale na 1ª vez de um exercício, na 1ª vez de uma máquina de placa, anilhas ou contrapeso num local e na volta de pausa de mais de 26 semanas",
+    "valores": {
+      "iniciante": "R = repetições + reserva; A = meio da faixa + meio do RIR; perto (A ± 2) mantém; pesada (R < A − 2): carga × (37 − A) / (37 − R) (Brzycki), para baixo no inventário, só em kg conhecido; leve com R ≤ 12: a mesma conta para cima, para baixo no inventário; leve com R > 12: +1 passo (+2 se R ≥ A + 6), no máximo +25% e no mínimo 1 passo; placa, anilhas, contrapeso e degrau só por passos (±1, ou ±2 com folga de 6); a última carga perto do alvo vira a referência da próxima sessão; na semana 1 da volta de pausa só desce; dor ≥ 3 manda",
+      "intermediario": "R = repetições + reserva; A = meio da faixa + meio do RIR; perto (A ± 2) mantém; pesada (R < A − 2): carga × (37 − A) / (37 − R) (Brzycki), para baixo no inventário, só em kg conhecido; leve com R ≤ 12: a mesma conta para cima, para baixo no inventário; leve com R > 12: +1 passo (+2 se R ≥ A + 6), no máximo +25% e no mínimo 1 passo; placa, anilhas, contrapeso e degrau só por passos (±1, ou ±2 com folga de 6); a última carga perto do alvo vira a referência da próxima sessão; na semana 1 da volta de pausa só desce; dor ≥ 3 manda",
+      "avancado": "R = repetições + reserva; A = meio da faixa + meio do RIR; perto (A ± 2) mantém; pesada (R < A − 2): carga × (37 − A) / (37 − R) (Brzycki), para baixo no inventário, só em kg conhecido; leve com R ≤ 12: a mesma conta para cima, para baixo no inventário; leve com R > 12: +1 passo (+2 se R ≥ A + 6), no máximo +25% e no mínimo 1 passo; placa, anilhas, contrapeso e degrau só por passos (±1, ou ±2 com folga de 6); a última carga perto do alvo vira a referência da próxima sessão; na semana 1 da volta de pausa só desce; dor ≥ 3 manda"
+    },
+    "selo": "consenso",
+    "fontes": [
+      "halperin2022",
+      "mayhew1995",
+      "nuzzo2024",
+      "glass2004",
+      "consenso-projeto"
+    ]
+  },
+  {
+    "id": "progressao.troca-equivalente",
+    "regra": "Troca entre equivalentes da mesma função (outro local, alternativa ou preferência): o que leva e o que recomeça (pesquisa-v2/09)",
+    "valores": {
+      "iniciante": "leva a semana, a fase (aprendizado ou volta), as séries, o RIR e o descanso da vaga, o volume do músculo e o histórico; a carga do exercício novo, e de cada máquina de placa, anilhas ou contrapeso num local novo, recomeça pela calibração; nunca converte carga entre aparelhos nem mostra a do exercício antigo como número; kg conhecido e degrau seguem em qualquer local",
+      "intermediario": "leva a semana, a fase (aprendizado ou volta), as séries, o RIR e o descanso da vaga, o volume do músculo e o histórico; a carga do exercício novo, e de cada máquina de placa, anilhas ou contrapeso num local novo, recomeça pela calibração; nunca converte carga entre aparelhos nem mostra a do exercício antigo como número; kg conhecido e degrau seguem em qualquer local",
+      "avancado": "leva a semana, a fase (aprendizado ou volta), as séries, o RIR e o descanso da vaga, o volume do músculo e o histórico; a carga do exercício novo, e de cada máquina de placa, anilhas ou contrapeso num local novo, recomeça pela calibração; nunca converte carga entre aparelhos nem mostra a do exercício antigo como número; kg conhecido e degrau seguem em qualquer local"
+    },
+    "selo": "moderada",
+    "fontes": [
+      "haugen2023",
+      "heidel2022",
+      "saeterbakken2025",
+      "rutherford1986",
+      "saeterbakken2011",
+      "langford2007",
+      "cotterman2005",
+      "rossi2018",
+      "zourdos2015",
+      "nascimento2013"
+    ]
+  },
+  {
     "id": "progressao.criterios-invalidos",
     "regra": "O que nunca conta para progredir",
     "valores": {
@@ -814,7 +853,7 @@
   },
   {
     "id": "selecao.funcao-da-vaga",
-    "regra": "A vaga do modelo de dia pede uma função (padrão de movimento e, quando há evidência, a posição alongada), nunca um equipamento; o equipamento só diz o que é possível; dentro do mesmo nível da função, o desempate é estabilidade (só iniciante), carga possível e variedade entre os dias",
+    "regra": "A vaga do modelo de dia pede uma função (padrão de movimento e, quando há evidência, a posição alongada), nunca um equipamento; o equipamento só diz o que é possível; dentro do mesmo nível da função, o desempate é dor de 3 a 5, estabilidade (só iniciante), carga possível, variedade entre os dias, a preferência da pessoa (`selecao.preferencia`, R1b), animação aprovada e, por fim, a ordem alfabética",
     "valores": {
       "iniciante": "por função",
       "intermediario": "por função",
@@ -834,6 +873,32 @@
       "iniciante": "vagas que a dor esvaziou recebem exercícios possíveis (fora o core) dos outros músculos daquele dia no modelo da divisão, um por músculo que o dia ainda não tem, sem passar do teto semanal; o dia que ficaria só com core recebe pelo menos um, do músculo mais abaixo da meta; se nenhum for possível, o aviso diz o motivo; vaga vazia pela dor não vira aviso de falta de equipamento",
       "intermediario": "vagas que a dor esvaziou recebem exercícios possíveis (fora o core) dos outros músculos daquele dia no modelo da divisão, um por músculo que o dia ainda não tem, sem passar do teto semanal; o dia que ficaria só com core recebe pelo menos um, do músculo mais abaixo da meta; se nenhum for possível, o aviso diz o motivo; vaga vazia pela dor não vira aviso de falta de equipamento",
       "avancado": "vagas que a dor esvaziou recebem exercícios possíveis (fora o core) dos outros músculos daquele dia no modelo da divisão, um por músculo que o dia ainda não tem, sem passar do teto semanal; o dia que ficaria só com core recebe pelo menos um, do músculo mais abaixo da meta; se nenhum for possível, o aviso diz o motivo; vaga vazia pela dor não vira aviso de falta de equipamento"
+    },
+    "selo": "consenso",
+    "fontes": [
+      "consenso-projeto"
+    ]
+  },
+  {
+    "id": "selecao.preferencia",
+    "regra": "\"Prefiro este\" entre equivalentes da mesma função (R1b; decisão do Gustavo no R0c)",
+    "valores": {
+      "iniciante": "entra no desempate depois da dor de 3 a 5, da estabilidade (só iniciante), da carga possível e da variedade entre os dias, e antes da animação e da ordem alfabética; vale nos próximos programas e nas trocas entre locais; nada vem preferido; desfaz com um toque; a dor acima de 5 tira o preferido igual",
+      "intermediario": "entra no desempate depois da dor de 3 a 5, da estabilidade (só iniciante), da carga possível e da variedade entre os dias, e antes da animação e da ordem alfabética; vale nos próximos programas e nas trocas entre locais; nada vem preferido; desfaz com um toque; a dor acima de 5 tira o preferido igual",
+      "avancado": "entra no desempate depois da dor de 3 a 5, da estabilidade (só iniciante), da carga possível e da variedade entre os dias, e antes da animação e da ordem alfabética; vale nos próximos programas e nas trocas entre locais; nada vem preferido; desfaz com um toque; a dor acima de 5 tira o preferido igual"
+    },
+    "selo": "consenso",
+    "fontes": [
+      "consenso-projeto"
+    ]
+  },
+  {
+    "id": "local.treino-do-dia",
+    "regra": "Treino do dia num local que não é o do programa (R1b; pesquisa-v2/09)",
+    "valores": {
+      "iniciante": "cada vaga cujo exercício não é possível ali troca pelo equivalente possível da mesma função (tabela de funções, mesmo desempate do gerador), com o motivo à mostra (\"aqui não tem polia alta\"); sem equivalente, vale `selecao.dia-sem-principal`; a prescrição da vaga fica (séries, RIR, descanso), com as repetições do exercício que entrou; dor, alertas e \"pare e use a alternativa\" valem igual, com as alternativas do local",
+      "intermediario": "cada vaga cujo exercício não é possível ali troca pelo equivalente possível da mesma função (tabela de funções, mesmo desempate do gerador), com o motivo à mostra (\"aqui não tem polia alta\"); sem equivalente, vale `selecao.dia-sem-principal`; a prescrição da vaga fica (séries, RIR, descanso), com as repetições do exercício que entrou; dor, alertas e \"pare e use a alternativa\" valem igual, com as alternativas do local",
+      "avancado": "cada vaga cujo exercício não é possível ali troca pelo equivalente possível da mesma função (tabela de funções, mesmo desempate do gerador), com o motivo à mostra (\"aqui não tem polia alta\"); sem equivalente, vale `selecao.dia-sem-principal`; a prescrição da vaga fica (séries, RIR, descanso), com as repetições do exercício que entrou; dor, alertas e \"pare e use a alternativa\" valem igual, com as alternativas do local"
     },
     "selo": "consenso",
     "fontes": [
@@ -891,7 +956,7 @@
   },
   {
     "id": "selecao.equivalencia",
-    "regra": "Exercícios da mesma função e do mesmo músculo são alternativas entre si (aparelho ocupado, dor, preferência); unilateral = bilateral e máquina = peso livre",
+    "regra": "Exercícios da mesma função e do mesmo músculo são alternativas entre si (aparelho ocupado, dor, preferência, outro local); unilateral = bilateral e máquina = peso livre; entre os equivalentes, a pessoa pode tocar \"prefiro este\" (`selecao.preferencia`)",
     "valores": {
       "iniciante": "alternativas da mesma função, de outro equipamento primeiro; se faltarem, do mesmo músculo",
       "intermediario": "alternativas da mesma função, de outro equipamento primeiro; se faltarem, do mesmo músculo",

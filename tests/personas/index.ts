@@ -151,3 +151,21 @@ export const carla: Persona = {
 };
 
 export const PERSONAS = { bruno, ana, diego, carla };
+
+/**
+ * R1b: o 2º local do Bruno, fictício. O "prédio" é o equipamento de sempre (bruno.inventario); a "academia do bairro"
+ * tem halteres de 2 a 30 kg, banco regulável, barra fixa, paralelas, leg press, extensora e flexora, e nenhuma polia.
+ */
+export const brunoAcademiaDoBairro: Inventario = {
+  halteres_fixos: { minKg: 2, maxKg: 30, passoKg: 2 },
+  banco_regulavel: { declina: false },
+  barra_fixa: {},
+  paralelas: {},
+  leg_press: { menorAnilhaKg: 5 },
+  cadeira_extensora: {},
+  cadeira_flexora: {},
+};
+export const LOCAIS_DO_BRUNO = [
+  { id: 'local-1', nome: 'Prédio', inventario: bruno.inventario },
+  { id: 'local-2', nome: 'Academia do bairro', inventario: brunoAcademiaDoBairro },
+];

@@ -22,11 +22,13 @@ export type SerieRegistrada = {
   dor?: number;
   /** Quedas do drop set (tempo.drop-set): registradas, mas fora da progressão, que usa só a série principal. */
   quedas?: { carga: Carga; reps: number }[];
+  /** Série de acerto da calibração (progressao.calibracao): fica no histórico, mas fora da dupla progressão. */
+  calibracao?: boolean;
 };
 export type SessaoExercicio = { series: SerieRegistrada[] };
 export type Alvo = { reps: [number, number]; rir: [number, number] };
 
-export type Acao = 'subir' | 'manter' | 'reduzir' | 'voltar' | 'estagnado' | 'ajustar' | 'interromper';
+export type Acao = 'subir' | 'manter' | 'reduzir' | 'voltar' | 'estagnado' | 'ajustar' | 'interromper' | 'calibrar';
 export type Sugestao = { acao: Acao; proxima?: Carga; motivo: string; regraId: string };
 
 export type OpcoesCarga = {

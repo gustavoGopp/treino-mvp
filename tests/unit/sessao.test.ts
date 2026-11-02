@@ -113,8 +113,11 @@ describe('histórico e progressão', () => {
   const ex = 'remada-unilateral-halter';
   const alvo = { exId: ex, reps: [8, 12] as [number, number], rir: [1, 2] as [number, number] };
 
-  it('sem histórico, pede o primeiro registro', () => {
-    expect(sugestaoDoExercicio([], alvo, ana.inventario).acao).toBe('manter');
+  it('sem histórico, a 1ª série calibra a carga (progressao.calibracao), sem número de outro exercício', () => {
+    const s = sugestaoDoExercicio([], alvo, ana.inventario);
+    expect(s).toMatchObject({ acao: 'calibrar', regraId: 'progressao.calibracao' });
+    expect(s.proxima).toBeUndefined();
+    expect(s.motivo).toMatch(/comece com uma carga que pareça fácil/i);
     expect(ultimaSerie([], ex)).toBeUndefined();
   });
 

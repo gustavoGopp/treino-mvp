@@ -1,6 +1,6 @@
 import { createContext, useCallback, useContext, useEffect, useMemo, useRef, useState, type ReactNode } from 'react';
 import { gerarPrograma, type Programa } from '../../domain/gerador';
-import { estadoVazio, perfilDe, type Estado } from '../../storage/esquema';
+import { estadoVazio, inventarioPrincipal, localPrincipal, perfilDe, type Estado } from '../../storage/esquema';
 import { apagar, carregar, pedirPersistencia, salvar } from '../../storage/idb';
 
 // Estado do app: carregado do IndexedDB uma vez e salvo a cada mudança feita pela pessoa.
@@ -78,12 +78,21 @@ export function useApp(): Contexto {
   return c;
 }
 
-/** Gera o programa com o perfil e o inventário atuais. Devolve null se falta algo ou se a triagem bloqueia. */
+/** Gera o programa com o perfil e o inventário do local principal. Devolve null se falta algo ou se a triagem bloqueia. */
 export function gerarDoEstado(e: Estado): Programa | null {
   const perfil = perfilDe(e);
-  if (!perfil || !e.inventario) return null;
-  const r = gerarPrograma(perfil, e.inventario);
+  const inventario = inventarioPrincipal(e);
+  if (!perfil || !inventario) return null;
+  const r = gerarPrograma(perfil, inventario);
   return r.status === 'ok' ? r.programa : null;
+}
+
+/** Programa salvo gerado de novo, montado para o local principal (R1b); se não dá para gerar, fica o anterior. */
+export function comProgramaNovo(e: Estado, agora: string, semAnterior = false): Estado {
+  const p = gerarDoEstado(e);
+  const local = localPrincipal(e);
+  if (!p) return semAnterior ? { ...e, programa: undefined } : e;
+  return { ...e, programa: { programa: p, geradoEm: agora, ...(local ? { localId: local.id } : {}) } };
 }
 
 export const agoraIso = () => new Date().toISOString();
