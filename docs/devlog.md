@@ -753,6 +753,8 @@ As listas exatas ficam em `tests/unit/metas-r0.test.ts`, para o R0c zerar.
 
 **Testes:** 512 unitários (eram 501); `npm run check` passando; `npm run test:e2e` com 63 testes (eram 64: saiu o da cópia removida). A linha de base do Boneco mudou só no modo "músculos" das 6 animações aprovadas; o estilo clássico continua idêntico ao guia original.
 
+**Na `main`** desde 02/11/2026, com o ok do Gustavo (o branch `revisao-anatomia` entrou sem commit de merge). O CI do push falhou por tempo, não por lógica: um teste de propriedades levou 5,3 s com a cobertura ligada, acima do limite de 5 s (já tinha acontecido numa rodada anterior). Esse bloco agora tem 30 s.
+
 **Imagem:** `img/anatomia-afundo-frente.png` (afundo de frente, antes em cima e depois embaixo: a faixa laranja na parte de dentro da coxa da frente são os adutores).
 
 **Fica para a sessão de design** (`prompts/sessao-design.md`): os adutores aparecem pequenos na vista de frente; diferenciar na legenda o músculo que "só ajuda" do secundário que conta; e decidir se o estilo clássico continua como opção, já que ele não recebeu estas correções.
