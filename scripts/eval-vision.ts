@@ -15,6 +15,10 @@ const MODELOS = process.argv.slice(2).length ? process.argv.slice(2) : ['claude-
 // US$ por milhão de tokens (entrada, saída), conferidos na referência da API em 01/11/2026.
 const PRECO: Record<string, [number, number]> = { 'claude-haiku-5-5': [0.1, 0.5], 'claude-sonnet-5-5': [2, 10], 'claude-opus-5-5': [4, 20] };
 
+// A chave fica no .env.local (ou .env) da máquina, fora do git; o SDK só lê a variável de ambiente.
+for (const arq of ['.env.local', '.env']) if (!process.env.ANTHROPIC_API_KEY && existsSync(arq)) process.loadEnvFile?.(arq);
+if (!process.env.ANTHROPIC_API_KEY) throw new Error('falta ANTHROPIC_API_KEY (no .env.local, no .env ou no ambiente)');
+
 const pasta = 'privado';
 if (!existsSync(join(pasta, 'gabarito.json'))) throw new Error('falta privado/gabarito.json (roda só na máquina que tem privado/)');
 const gabarito = JSON.parse(readFileSync(join(pasta, 'gabarito.json'), 'utf8')) as { tem: unknown[]; nao_tem: unknown[] };
