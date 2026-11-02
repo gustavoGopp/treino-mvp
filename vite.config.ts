@@ -15,8 +15,12 @@ const commit = () => {
   }
 };
 
-export default defineConfig({
+// Rota de laboratório do boneco (R4): só em `npm run dev` e nas prévias da Vercel (nunca na produção).
+const lab = (mode: string) => mode === 'development' || process.env.VERCEL_ENV === 'preview';
+
+export default defineConfig(({ mode }) => ({
   define: {
+    __LAB__: JSON.stringify(lab(mode)),
     __VERSAO__: JSON.stringify(commit().slice(0, 7) || 'local'),
     __DATA_BUILD__: JSON.stringify(new Date().toISOString()),
   },
@@ -45,4 +49,4 @@ export default defineConfig({
       thresholds: { lines: 90, statements: 90, functions: 90, branches: 90 },
     },
   },
-});
+}));

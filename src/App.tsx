@@ -18,6 +18,8 @@ import { Treino } from './features/treino/Treino';
 
 // Só em desenvolvimento: fora do bundle de produção.
 const GeradorDev = import.meta.env.DEV ? lazy(() => import('./features/dev/GeradorDev').then((m) => ({ default: m.GeradorDev }))) : null;
+// Laboratório do boneco (R4): em desenvolvimento e nas prévias da Vercel; fora do bundle de produção.
+const LabBoneco = __LAB__ ? lazy(() => import('./features/dev/LabBoneco').then((m) => ({ default: m.LabBoneco }))) : null;
 
 export function App() {
   return (
@@ -46,6 +48,16 @@ export function App() {
               element={
                 <Suspense fallback={null}>
                   <GeradorDev />
+                </Suspense>
+              }
+            />
+          )}
+          {LabBoneco && (
+            <Route
+              path="/lab/boneco"
+              element={
+                <Suspense fallback={null}>
+                  <LabBoneco />
                 </Suspense>
               }
             />
