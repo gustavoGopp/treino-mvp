@@ -1,19 +1,24 @@
 // Folha de contatos de uma animação: quadros-chave em cada vista e modo, erros e a verificação de IK.
 // É o que o Gustavo revisa antes de aprovar uma animação nova.
-// Uso: node scripts/folha-animacao.mjs <id-da-animacao> [saida.png]
+// Uso: node scripts/folha-animacao.mjs <id-da-animacao> [saida.png] [--estilo=a|b]
+// --estilo (R4, experimento do boneco): desenha técnica e músculos no estilo novo; sem ele, a folha é a de sempre.
 // Animações em revisão ficam em src/engine/exercicios/revisao/ (fora do app até a aprovação).
 import { build } from 'esbuild';
 import { existsSync, writeFileSync } from 'node:fs';
 import { createRequire } from 'node:module';
 
-const id = process.argv[2];
-const saida = process.argv[3] ?? `test-results/folha-${id}.png`;
+const opcoes = process.argv.slice(2).filter((a) => a.startsWith('--'));
+const [id, saidaArg] = process.argv.slice(2).filter((a) => !a.startsWith('--'));
+const estilo = opcoes.find((a) => a.startsWith('--estilo='))?.split('=')[1] ?? null;
+if (estilo && !['a', 'b'].includes(estilo)) throw new Error('estilo: use a ou b');
+const saida = saidaArg ?? `test-results/folha-${id}${estilo ? `-estilo-${estilo}` : ''}.png`;
 if (!id) throw new Error('informe o id da animação');
 
 // A animação pode estar em revisão (arquivo em src/engine/exercicios/<id>.ts, ainda fora da lista EX do app).
 const arquivo = [`src/engine/exercicios/revisao/${id}.ts`, `src/engine/exercicios/${id}.ts`].find((f) => existsSync(f));
 if (!arquivo) throw new Error(`não achei src/engine/exercicios/[revisao/]${id}.ts`);
 const entrada = `export * from './src/engine/index.ts'; export { prep, calib } from './src/engine/cena.ts';
+export { montarSvgEstilo } from './src/engine/estilo/index.ts';
 export { default as NOVA } from './${arquivo}';`;
 const { outputFiles } = await build({ stdin: { contents: entrada, resolveDir: process.cwd(), loader: 'ts' }, bundle: true, format: 'esm', write: false });
 const motor = await import('data:text/javascript;base64,' + Buffer.from(outputFiles[0].text).toString('base64'));
@@ -32,16 +37,18 @@ const qa = `${id} ik=${ik(ex.K)} errs ${ex.errors.map((e) => `${e.id}:${ik(e.K)}
 const tempos = ex.seq.map((g) => ({ t: g.t0 + (g.kind === 'hold' ? g.dur / 2 : g.dur * 0.5), rot: g.label }));
 const css = (await import('node:fs')).readFileSync('src/styles.css', 'utf8');
 const quadro = (view, mode, t, err = 0, rot = '') => {
-  const q = motor.montarSvg(ex, view, mode, t, err, 300);
-  return `<figure><svg viewBox="${q.viewBox}">${q.html}</svg><figcaption>${rot}</figcaption></figure>`;
+  const q = estilo ? motor.montarSvgEstilo(ex, view, mode, t, err, 300, estilo) : { ...motor.montarSvg(ex, view, mode, t, err, 300), classe: '' };
+  return `<figure><svg class="${q.classe}" viewBox="${q.viewBox}">${q.html}</svg><figcaption>${rot}</figcaption></figure>`;
 };
 let html = `<style>${css}body{background:#fff;font:13px sans-serif;margin:12px}h2{font-size:15px;margin:14px 0 4px}.l{display:flex;flex-wrap:wrap;gap:8px}figure{margin:0;width:260px;background:var(--stage);border:1px solid #ddd}figure svg{width:260px;height:195px;display:block}figcaption{padding:3px 6px;font-size:12px}</style>`;
-html += `<h1 style="font-size:18px">${id}</h1><p><b>QA:</b> ${qa}</p>`;
+html += `<h1 style="font-size:18px">${id}${estilo ? ` · estilo ${estilo.toUpperCase()} (R4)` : ''}</h1><p><b>QA:</b> ${qa}</p>`;
 for (const view of ex.views) {
   html += `<h2>${view}: técnica</h2><div class="l">${tempos.map(({ t, rot }) => quadro(view, 'tec', t, 0, rot)).join('')}</div>`;
-  html += `<h2>${view}: músculos e trajetória</h2><div class="l">${quadro(view, 'mus', tempos[2]?.t ?? 0, 0, 'músculos')}${quadro(view, 'traj', 0, 0, 'trajetória')}</div>`;
+  if (estilo) html += `<h2>${view}: músculos</h2><div class="l">${tempos.map(({ t, rot }) => quadro(view, 'mus', t, 0, rot)).join('')}</div>`;
+  else html += `<h2>${view}: músculos e trajetória</h2><div class="l">${quadro(view, 'mus', tempos[2]?.t ?? 0, 0, 'músculos')}${quadro(view, 'traj', 0, 0, 'trajetória')}</div>`;
 }
-html += `<h2>Erros</h2><div class="l">${ex.errors.map((e, i) => quadro(e.view, 'err', tempos[2]?.t ?? 0, i, `${e.id} (${e.view})`)).join('')}</div>`;
+// trajetória e erros ainda não têm o estilo novo (ficam para o R5, se o estilo seguir)
+if (!estilo) html += `<h2>Erros</h2><div class="l">${ex.errors.map((e, i) => quadro(e.view, 'err', tempos[2]?.t ?? 0, i, `${e.id} (${e.view})`)).join('')}</div>`;
 writeFileSync('/tmp/folha.html', html);
 
 const require = createRequire(import.meta.url);
