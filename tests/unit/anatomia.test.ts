@@ -66,5 +66,11 @@ describe('textos × biblioteca (revisão de anatomia)', () => {
       expect(e.musculos.secundarios, e.id).toContain('ombro_lateral');
     }
   });
+
+  it('achado 10: o cartão da hiperextensão diz que a lombar trabalha (sem contar no volume)', () => {
+    // Andersen 2021 (PMID 33948095, EMG): na hiperextensão a 45°, a lombar trabalhou tanto quanto no stiff.
+    expect(CARTOES.hiperextensao!.target).toMatch(/lombar/);
+    expect(BIBLIOTECA.find((e) => e.id === 'hiperextensao')!.musculos).toEqual({ primarios: ['gluteos', 'posteriores'], secundarios: [] });
+  });
 });
 
