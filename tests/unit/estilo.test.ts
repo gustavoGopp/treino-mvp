@@ -77,6 +77,42 @@ describe('estilo do boneco (R4)', () => {
     }
   });
 
+  it('A e B desenham todos os exercícios, em todas as vistas, modos e erros, no mesmo enquadramento', () => {
+    for (const ex of EX as Animacao[])
+      for (const estilo of ['a', 'b'] as const) {
+        for (const view of ex.views) {
+          const base = montarSvg(ex, view, 'tec', 0, 0, 358).viewBox;
+          for (const mode of ['tec', 'mus', 'traj'])
+            for (let i = 0; i < 6; i++) {
+              const q = montarSvgEstilo(ex, view, mode, (i / 6) * ex.T, 0, 358, estilo);
+              expect(q.viewBox).toBe(base);
+              expect(q.classe).toBe(`estilo-${estilo} vista-${view}`);
+            }
+        }
+        ex.errors.forEach((e: { view: string }, j: number) => {
+          const html = montarSvgEstilo(ex, e.view, 'err', ex.T / 2, j, 358, estilo).html;
+          expect(html).toMatch(new RegExp(`e${estilo}-pele-t-e"`)); // a figura que erra
+          expect(html).toMatch(/class="gh"/); // e o certo, por cima
+        });
+      }
+  });
+
+  it('no modo músculos, todo exercício mostra o músculo principal em alguma vista', () => {
+    for (const ex of EX as Animacao[]) {
+      const t = ex.seq[2].t0 + ex.seq[2].dur / 2;
+      const algum = ex.views.some((v: string) => /class="ea-mp"/.test(montarSvgEstilo(ex, v, 'mus', t, 0, 358, 'a').html));
+      expect(algum, ex.id).toBe(true);
+    }
+  });
+
+  it('face pull de cima: o rótulo sai do topo do palco (caixa da fase) nos estilos novos', () => {
+    const fp = animacao('face-pull');
+    const y = (html: string) => Number(/<text x="[^"]+" y="([^"]+)"[^>]*>mãos abrem/.exec(html)![1]);
+    const [, y0, , h] = montarSvg(fp, 'top', 'tec', 0, 0, 358).viewBox.split(' ').map(Number) as [number, number, number, number];
+    expect(y(montarSvg(fp, 'top', 'tec', 0, 0, 358).html)).toBeLessThan(y0 + h * 0.25); // clássico: no topo
+    expect(y(montarSvgEstilo(fp, 'top', 'tec', 0, 0, 358, 'a').html)).toBeGreaterThan(y0 + h * 0.4); // novo: embaixo
+  });
+
   it('o músculo só aparece no modo músculos, e o bíceps não aparece na vista de trás', () => {
     const pux = animacao('puxada-unilateral');
     for (const estilo of ['a', 'b'] as const) {

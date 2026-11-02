@@ -493,18 +493,21 @@ a.cartao-ex-corpo:focus-visible{outline:3px solid var(--accent);outline-offset:-
   --ea-pele:#c3cdd4; --ea-pele-longe:#e3e8ec; --ea-cont-longe:#9eacb6;
   --eb-pele:#93a2ad; --eb-pele-longe:#cdd5db;
   --m-p:#d62e26; --m-s:#ec961c; --m-borda:#5c1410;
+  --e-pele-erro:#f6d3cf;
 }
 @media (prefers-color-scheme: dark){
   :root:not([data-theme="light"]){
     --ea-pele:#56656f; --ea-pele-longe:#2c3740; --ea-cont-longe:#4f5e69;
     --eb-pele:#6e7f8b; --eb-pele-longe:#36434c;
     --m-p:#f4524a; --m-s:#f5aa3c; --m-borda:#10171b;
+    --e-pele-erro:#4a2220;
   }
 }
 :root[data-theme="dark"]{
   --ea-pele:#56656f; --ea-pele-longe:#2c3740; --ea-cont-longe:#4f5e69;
   --eb-pele:#6e7f8b; --eb-pele-longe:#36434c;
   --m-p:#f4524a; --m-s:#f5aa3c; --m-borda:#10171b;
+  --e-pele-erro:#4a2220;
 }
 .ea-cont{stroke:var(--fig);fill:var(--fig);stroke-linecap:round;stroke-linejoin:round}
 .ea-cont-longe{stroke:var(--ea-cont-longe);fill:none;stroke-linecap:round}
@@ -524,6 +527,17 @@ a.cartao-ex-corpo:focus-visible{outline:3px solid var(--accent);outline-offset:-
 .eb-mp{fill:var(--m-p);stroke:var(--stage);stroke-linejoin:round}
 .eb-ms{fill:var(--m-s);stroke:var(--stage);stroke-linejoin:round}
 .estilo-b .eqp,.estilo-b .eqd,.estilo-b .eqs,.estilo-b .eql{opacity:.55}
+/* modo Erros nos estilos novos: a figura que erra em tons da cor de erro (o certo continua como fantasma verde) */
+.ea-cont-e{stroke:var(--err);fill:var(--err);stroke-linecap:round;stroke-linejoin:round}
+.ea-cont-longe-e{stroke:var(--err);fill:none;stroke-linecap:round;opacity:.5}
+.ea-pele-e,.eb-pele-e{fill:var(--e-pele-erro);stroke:var(--err)}
+.ea-pele-t-e,.eb-pele-t-e{fill:var(--e-pele-erro);stroke:var(--e-pele-erro);stroke-width:.6;stroke-linejoin:round}
+.ea-pele-l-e,.eb-pele-l-e{stroke:var(--e-pele-erro);fill:none;stroke-linecap:round}
+.ea-pele-l-longe-e,.eb-pele-l-longe-e{stroke:var(--e-pele-erro);fill:none;stroke-linecap:round;opacity:.6}
+.eb-pele-l-e{stroke:var(--err)}
+/* vista de cima: a corda e o cabo até a polia mais leves (o "triângulo comprido" do face pull, R3) */
+.estilo-a.vista-top .rope,.estilo-b.vista-top .rope{stroke-width:1.2px}
+.estilo-a.vista-top .cb,.estilo-b.vista-top .cb{opacity:.45;stroke-dasharray:3 3}
 /* R4: tela de laboratório do boneco (rota só de desenvolvimento e das prévias) */
 .lab .lab-estilo{margin:8px;margin-left:8px}
 .lab .lab-estilo button{flex:1;min-height:44px}
@@ -540,3 +554,12 @@ a.cartao-ex-corpo:focus-visible{outline:3px solid var(--accent);outline-offset:-
 .lab-cor{display:inline-block;width:12px;height:12px;border-radius:3px}
 .lab-cor.p{background:var(--m-p)}
 .lab-cor.s{background:var(--m-s)}
+/* "Meus dados" → Estilo do boneco: 3 opções com uma prévia pequena (área de toque bem maior que 44 px) */
+.estilos-boneco{display:flex;flex-direction:column;gap:8px}
+.estilo-boneco{display:grid;grid-template-columns:auto 96px 1fr;align-items:center;gap:10px;min-height:76px;padding:6px 10px;border:1.5px solid var(--line);border-radius:12px;background:var(--surface);cursor:pointer}
+.estilo-boneco:has(input:checked){border-color:var(--accent);background:var(--accent-soft)}
+.estilo-boneco:has(input:focus-visible){outline:3px solid var(--accent);outline-offset:2px}
+.estilo-boneco input{width:20px;height:20px;accent-color:var(--accent);margin:0}
+.estilo-boneco svg{width:96px;aspect-ratio:4/3;background:var(--stage);border-radius:8px;display:block}
+.estilo-boneco span{display:flex;flex-direction:column;gap:2px;min-width:0}
+.estilo-boneco small{color:var(--muted);font-size:12.5px;line-height:1.3}

@@ -52,10 +52,12 @@ const ESP = { ua: 9, fa: 7.5, mao: 5.5, th: 14, sk: 10, pe: 5, pesc: 8 };
  * Desenha o corpo e devolve a profundidade de cada parte (para os músculos ficarem por cima da parte certa
  * e por baixo do que estiver na frente dela).
  */
-export function corpoNovo(sk, estilo: EstiloNovo) {
+export function corpoNovo(sk, estilo: EstiloNovo, erro = false) {
   const A = estilo === 'a';
   const ow = A ? 1.3 : 0; // espessura do contorno (só no A)
-  const cls = (base, longe) => `e${estilo}-${base}${longe ? '-longe' : ''}`;
+  // no modo Erros, a figura que erra ganha as mesmas classes com o sufixo -e (tons da cor de erro)
+  const c = (n) => (erro ? n + '-e' : n);
+  const cls = (base, longe) => c(`e${estilo}-${base}${longe ? '-longe' : ''}`);
   const partes = { tronco: 0, cabeca: 0, braco: {}, perna: {} };
 
   // tronco: a casca das seções, pedaço a pedaço (pelve → cintura → tórax → base do pescoço)
@@ -68,14 +70,14 @@ export function corpoNovo(sk, estilo: EstiloNovo) {
   const nTopo = add(sk.N, mul(sub(sk.Hc, sk.N), 0.62));
   const qN = [CTX.PJ(sk.N), CTX.PJ(nTopo)];
   if (A) {
-    for (const h of cascas) push(1, dT, `<polygon points="${pts(h)}" class="ea-cont" stroke-width="${f1(ow * 2)}"/>`);
-    push(1, dT, `<line x1="${f1(qN[0][0])}" y1="${f1(qN[0][1])}" x2="${f1(qN[1][0])}" y2="${f1(qN[1][1])}" class="ea-cont" stroke-width="${f1(ESP.pesc + ow * 2)}"/>`);
+    for (const h of cascas) push(1, dT, `<polygon points="${pts(h)}" class="${c('ea-cont')}" stroke-width="${f1(ow * 2)}"/>`);
+    push(1, dT, `<line x1="${f1(qN[0][0])}" y1="${f1(qN[0][1])}" x2="${f1(qN[1][0])}" y2="${f1(qN[1][1])}" class="${c('ea-cont')}" stroke-width="${f1(ESP.pesc + ow * 2)}"/>`);
   }
   push(1, dT, `<line x1="${f1(qN[0][0])}" y1="${f1(qN[0][1])}" x2="${f1(qN[1][0])}" y2="${f1(qN[1][1])}" class="${cls('pele-l')}" stroke-width="${f1(ESP.pesc)}"/>`);
   for (const h of cascas) push(1, dT, `<polygon points="${pts(h)}" class="${cls('pele-t')}"/>`);
 
   // coluna: linha discreta só no A, nas vistas de lado e de trás (orienta a postura sem pontilhado)
-  if (A && (isSide() || CTX.VIEW === 'posterior')) {
+  if (A && !erro && (isSide() || CTX.VIEW === 'posterior')) {
     const back = isSide() ? -5 : -8.5;
     const sp = [comb(1, sk.P, back, sk.fL), comb(1, sk.M, back - 1, sk.fT), comb(1, sk.N, back + 1, sk.fT)].map(CTX.PJ);
     push(1, dT + 0.001, `<polyline points="${pts(sp)}" class="ea-sp" stroke-width="1.1" fill="none"/>`);
@@ -88,7 +90,7 @@ export function corpoNovo(sk, estilo: EstiloNovo) {
   if (isSide() || CTX.VIEW === 'top') {
     const a = CTX.PJ(comb(1, sk.Hc, B.head - 1, sk.fN, -0.5, sk.uN)),
       b = CTX.PJ(comb(1, sk.Hc, B.head + 2.5, sk.fN, -1.5, sk.uN));
-    push(1, H[2] + 0.61, `<line x1="${f1(a[0])}" y1="${f1(a[1])}" x2="${f1(b[0])}" y2="${f1(b[1])}" class="${A ? 'ea-cont' : 'eb-pele-l'}" stroke-width="${f1(A ? 2.6 : 3.4)}"/>`);
+    push(1, H[2] + 0.61, `<line x1="${f1(a[0])}" y1="${f1(a[1])}" x2="${f1(b[0])}" y2="${f1(b[1])}" class="${c(A ? 'ea-cont' : 'eb-pele-l')}" stroke-width="${f1(A ? 2.6 : 3.4)}"/>`);
   }
 
   // membros: cada um vira uma "cápsula" grossa (A: contorno escuro por baixo, recheio por cima; B: só recheio)
@@ -110,23 +112,23 @@ export function corpoNovo(sk, estilo: EstiloNovo) {
       [sd.E, sd.W, ESP.fa],
       [sd.W, sd.G, ESP.mao],
     ];
-    partes.perna[k] = membro(perna, longeL, [sd.Hp, sd.K, sd.A], A, ow, cls);
-    partes.braco[k] = membro(braco, longeA, [sd.S, sd.E], A, ow, cls);
+    partes.perna[k] = membro(perna, longeL, [sd.Hp, sd.K, sd.A], A, ow, cls, c, erro);
+    partes.braco[k] = membro(braco, longeA, [sd.S, sd.E], A, ow, cls, c, erro);
   }
   return partes;
 }
 
-function membro(segs, longe, juntas, A, ow, cls) {
+function membro(segs, longe, juntas, A, ow, cls, c, erro) {
   const d = zMedio(segs.flatMap((s) => [s[0], s[1]])) + 0.05;
   const Q = segs.map(([a, b, w]) => [CTX.PJ(a), CTX.PJ(b), w]);
   const linha = ([a, b, w], c, extra) =>
     `<line x1="${f1(a[0])}" y1="${f1(a[1])}" x2="${f1(b[0])}" y2="${f1(b[1])}" class="${c}" stroke-width="${f1(w + extra)}"/>`;
-  if (A) for (const s of Q) push(1, d, linha(s, longe ? 'ea-cont-longe' : 'ea-cont', ow * 2));
+  if (A) for (const s of Q) push(1, d, linha(s, c(longe ? 'ea-cont-longe' : 'ea-cont'), ow * 2));
   // B: sem contorno, mas o membro de perto ganha uma folga da cor do fundo, para não sumir na frente do tronco
   else if (!longe) for (const s of Q) push(1, d, linha(s, 'eb-folga', 1.8));
   for (const s of Q) push(1, d, linha(s, cls('pele-l', longe), 0));
   // articulações marcadas (só no A, só no lado de perto)
-  if (A && !longe) {
+  if (A && !longe && !erro) {
     let ant = null;
     for (const j of juntas) {
       const p = CTX.PJ(j);

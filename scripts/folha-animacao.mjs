@@ -1,7 +1,7 @@
 // Folha de contatos de uma animação: quadros-chave em cada vista e modo, erros e a verificação de IK.
 // É o que o Gustavo revisa antes de aprovar uma animação nova.
 // Uso: node scripts/folha-animacao.mjs <id-da-animacao> [saida.png] [--estilo=a|b]
-// --estilo (R4, experimento do boneco): desenha técnica e músculos no estilo novo; sem ele, a folha é a de sempre.
+// --estilo: desenha no estilo novo (a = boneco padrão, b = silhueta); sem ele, a folha é a do estilo clássico.
 // Animações em revisão ficam em src/engine/exercicios/revisao/ (fora do app até a aprovação).
 import { build } from 'esbuild';
 import { existsSync, writeFileSync } from 'node:fs';
@@ -44,11 +44,10 @@ let html = `<style>${css}body{background:#fff;font:13px sans-serif;margin:12px}h
 html += `<h1 style="font-size:18px">${id}${estilo ? ` · estilo ${estilo.toUpperCase()} (R4)` : ''}</h1><p><b>QA:</b> ${qa}</p>`;
 for (const view of ex.views) {
   html += `<h2>${view}: técnica</h2><div class="l">${tempos.map(({ t, rot }) => quadro(view, 'tec', t, 0, rot)).join('')}</div>`;
-  if (estilo) html += `<h2>${view}: músculos</h2><div class="l">${tempos.map(({ t, rot }) => quadro(view, 'mus', t, 0, rot)).join('')}</div>`;
+  if (estilo) html += `<h2>${view}: músculos e trajetória</h2><div class="l">${tempos.map(({ t, rot }) => quadro(view, 'mus', t, 0, rot)).join('')}${quadro(view, 'traj', 0, 0, 'trajetória')}</div>`;
   else html += `<h2>${view}: músculos e trajetória</h2><div class="l">${quadro(view, 'mus', tempos[2]?.t ?? 0, 0, 'músculos')}${quadro(view, 'traj', 0, 0, 'trajetória')}</div>`;
 }
-// trajetória e erros ainda não têm o estilo novo (ficam para o R5, se o estilo seguir)
-if (!estilo) html += `<h2>Erros</h2><div class="l">${ex.errors.map((e, i) => quadro(e.view, 'err', tempos[2]?.t ?? 0, i, `${e.id} (${e.view})`)).join('')}</div>`;
+html += `<h2>Erros</h2><div class="l">${ex.errors.map((e, i) => quadro(e.view, 'err', tempos[2]?.t ?? 0, i, `${e.id} (${e.view})`)).join('')}</div>`;
 writeFileSync('/tmp/folha.html', html);
 
 const require = createRequire(import.meta.url);

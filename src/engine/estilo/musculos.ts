@@ -4,7 +4,7 @@
 // seção 3). O contorno exato é simplificação de design: o objetivo é reconhecer o músculo, não um atlas.
 // Um músculo só aparece se a face dele estiver virada para quem olha (o bíceps não aparece na vista de trás).
 import { CTX } from '../contexto';
-import { f1, push } from '../desenho';
+import { f1, isSide, push } from '../desenho';
 import { scapPts } from '../esqueleto';
 import { add, comb, dot, len, mul, norm, sub } from '../math';
 
@@ -203,10 +203,138 @@ export const FORMAS = {
       p: [comb(1, P, s * 1.5, xL, 5, uL, -9.5, fL), comb(1, P, s * 11.5, xL, 7, uL, -6.5, fL), comb(1, P, s * 15.5, xL, -1, uL, -4, fL), add(fe, comb(s * 6, xL, -3, fL)), add(fe, comb(s * 1, xL, -6.5, fL)), comb(1, P, s * 1.5, xL, -6, uL, -10, fL)],
     };
   },
+  // Peitoral maior, parte clavicular: origem na metade medial da clavícula; inserção na crista do tubérculo maior do úmero.
+  peitoralClav(sk, k) {
+    const sd = sk.side[k],
+      s = sd.s,
+      { N, uT, fT, xT } = sk;
+    const ins = comb(1, sd.S, 0.2, sub(sd.E, sd.S), 2.5, fT);
+    return {
+      host: 'tronco',
+      n: norm(comb(1, fT, s * 0.3, xT)),
+      p: [comb(1, N, s * 2, xT, -1.5, uT, 9, fT), comb(1, N, s * 11, xT, -1, uT, 8, fT), comb(1, ins, 1.5, uT), comb(1, ins, -1.5, uT), comb(1, N, s * 12, xT, -6, uT, 5, fT), comb(1, N, s * 3, xT, -7, uT, 10.5, fT)],
+    };
+  },
+  // Peitoral maior, parte esternocostal: origem no esterno e nas cartilagens costais; inserção no úmero, com a clavicular.
+  peitoralEst(sk, k) {
+    const sd = sk.side[k],
+      s = sd.s,
+      { N, uT, fT, xT } = sk;
+    const ins = comb(1, sd.S, 0.22, sub(sd.E, sd.S), 2, fT);
+    return {
+      host: 'tronco',
+      n: norm(comb(1, fT, s * 0.3, xT)),
+      p: [comb(1, N, s * 1.5, xT, -6.5, uT, 10.5, fT), comb(1, N, s * 10, xT, -6, uT, 10, fT), comb(1, ins, 1, uT), comb(1, ins, -2, uT), comb(1, N, s * 14, xT, -10, uT, 4, fT), comb(1, N, s * 11, xT, -18, uT, 8.5, fT), comb(1, N, s * 1.5, xT, -18.5, uT, 11, fT)],
+    };
+  },
+  // Deltoide anterior: origem no terço lateral da clavícula; inserção na tuberosidade deltoidea do úmero.
+  deltAnt(sk, k) {
+    const { sd, an } = eixoBraco(sk, k);
+    return { host: 'braco', n: norm(add(an, mul(sk.fT, 0.5))), q: fuso2(comb(1, sd.S, 1.5, sk.uT), lerp(sd.S, sd.E, 0.46), mul(an, 3), 3.6, 5, 0, 0.9) };
+  },
+  // Deltoide lateral: origem no acrômio; inserção na tuberosidade deltoidea do úmero.
+  deltLat(sk, k) {
+    const { sd } = eixoBraco(sk, k);
+    let fora = mul(sk.xT, sd.s);
+    fora = sub(fora, mul(sd.uad, dot(fora, sd.uad)));
+    fora = len(fora) < 0.15 ? sk.uT : norm(fora);
+    // a face do deltoide lateral olha para fora e para cima do ombro, com o braço em qualquer posição
+    return { host: 'braco', n: norm(comb(sd.s, sk.xT, 0.6, sk.uT)), q: fuso2(comb(1, sd.S, 2, sk.uT), lerp(sd.S, sd.E, 0.46), mul(fora, 3), 3.8, 5, 0, 0.9) };
+  },
+  // Trapézio superior: origem no osso occipital, no ligamento da nuca e em C7; inserção no terço lateral da clavícula e no acrômio.
+  trapSuperior(sk, k) {
+    const sd = sk.side[k],
+      s = sd.s,
+      { N, Hc, uT, fT, xT, uN, fN, xN } = sk;
+    return {
+      host: 'tronco',
+      n: norm(comb(1, uT, s * 0.5, xT, -0.2, fT)),
+      p: [comb(1, Hc, -7.5, uN, -5, fN, s * 1.5, xN), comb(1, N, 1, uT, -6, fT, s * 1.5, xT), comb(1, N, -2, uT, -6.5, fT, s * 8, xT), comb(1, sd.S, 1.5, uT, -1.5, fT, s * -1.5, xT), comb(1, N, 4, uT, -2.5, fT, s * 5, xT)],
+    };
+  },
+  // Tríceps braquial: origem no tubérculo infraglenoidal da escápula e na face posterior do úmero; inserção no olécrano.
+  triceps(sk, k) {
+    const { sd, an } = eixoBraco(sk, k);
+    return { host: 'braco', n: mul(an, -1), q: fuso2(sd.S, sd.E, mul(an, -3), 3.3, 4.5, 0.12, 0.95) };
+  },
+  // Músculos do antebraço (flexores e extensores do punho e dos dedos): epicôndilos do úmero → ossos do carpo e dedos.
+  antebraco(sk, k) {
+    const sd = sk.side[k];
+    return { host: 'braco', n: null, q: fuso2(sd.E, sd.W, [0, 0, 0], 2.8, 3.75, 0.05, 0.8) };
+  },
+  // Posteriores da coxa (bíceps femoral, semitendinoso, semimembranoso): origem na tuberosidade isquiática;
+  // inserção na cabeça da fíbula e na tíbia, atrás do joelho.
+  posteriores(sk, k) {
+    const { sd, frente } = eixoCoxa(sk, k);
+    return { host: 'perna', n: mul(frente, -1), q: fuso2(sd.Hp, sd.K, mul(frente, -4), 4.6, 7, 0.1, 0.95) };
+  },
+  // Tríceps sural (gastrocnêmio e sóleo): côndilos do fêmur e parte de trás da tíbia e da fíbula → calcâneo (tendão de Aquiles).
+  panturrilha(sk, k) {
+    const sd = sk.side[k];
+    const sh = norm(sub(sd.A, sd.K)),
+      fd = norm(sub(sd.toe, sd.A));
+    let q = sub(fd, mul(sh, dot(fd, sh)));
+    q = len(q) < 0.12 ? sk.fL : norm(q);
+    return { host: 'perna', n: mul(q, -1), q: fuso2(sd.K, sd.A, mul(q, -3.5), 3.9, 5, 0.06, 0.7) };
+  },
+  // Eretores da espinha: do sacro e da crista ilíaca subindo ao lado da coluna até as costelas e as vértebras de cima.
+  eretores(sk) {
+    const { N, M, P, uT, fT, xT, uL, fL, xL } = sk;
+    const lado = isSide();
+    const fx = (base, h, uu, ff, xx, a, b) => comb(1, base, h, uu, a, xx, b, ff);
+    const borda = lado
+      ? [fx(P, 3, uL, fL, xL, 0, -11), fx(M, 0, uT, fT, xT, 0, -9.8), fx(N, -8, uT, fT, xT, 0, -9), fx(N, -8, uT, fT, xT, 0, -5.5), fx(M, 0, uT, fT, xT, 0, -6.3), fx(P, 3, uL, fL, xL, 0, -7.5)]
+      : [fx(P, 3, uL, fL, xL, -4, -10), fx(M, 0, uT, fT, xT, -4.5, -9.5), fx(N, -8, uT, fT, xT, -3.5, -8.5), fx(N, -8, uT, fT, xT, 3.5, -8.5), fx(M, 0, uT, fT, xT, 4.5, -9.5), fx(P, 3, uL, fL, xL, 4, -10)];
+    return { host: 'tronco', n: mul(fT, -1), p: borda };
+  },
+  // Reto do abdome: origem na crista e na sínfise púbica; inserção no processo xifoide e nas cartilagens das costelas 5 a 7.
+  retoAbdominal(sk) {
+    const { N, M, P, uT, fT, xT, uL, fL, xL } = sk;
+    const fx = (base, h, uu, ff, xx, a, b) => comb(1, base, h, uu, a, xx, b, ff);
+    const borda = isSide()
+      ? [fx(N, -13, uT, fT, xT, 0, 11), fx(M, 2, uT, fT, xT, 0, 10), fx(P, 2, uL, fL, xL, 0, 9.3), fx(P, 2, uL, fL, xL, 0, 4.5), fx(M, 2, uT, fT, xT, 0, 4.5), fx(N, -13, uT, fT, xT, 0, 5.5)]
+      : [fx(N, -13, uT, fT, xT, -5, 11), fx(M, 2, uT, fT, xT, -4.5, 10), fx(P, 2, uL, fL, xL, -3, 9.3), fx(P, 2, uL, fL, xL, 3, 9.3), fx(M, 2, uT, fT, xT, 4.5, 10), fx(N, -13, uT, fT, xT, 5, 11)];
+    return { host: 'tronco', n: sk.fT, p: borda };
+  },
+  // Oblíquo externo: origem nas costelas 5 a 12; inserção na crista ilíaca e na linha alba. Lateral do abdome.
+  obliquos(sk, k) {
+    const s = sk.side[k].s,
+      { M, P, uT, fT, xT, uL, fL, xL } = sk;
+    return {
+      host: 'tronco',
+      n: norm(comb(s, xT, 0.5, fT)),
+      p: [comb(1, M, s * 12.5, xT, 7, uT, 3, fT), comb(1, M, s * 13.5, xT, -1, uT, 0, fT), comb(1, P, s * 12, xL, 6, uL, 0, fL), comb(1, P, s * 7.5, xL, 5, uL, 7, fL), comb(1, M, s * 7, xT, 3, uT, 9, fT)],
+    };
+  },
 };
 
-// Os músculos de cada exercício do experimento (decisão do Gustavo em 02/11/2026: todos, na vista de trás da puxada).
-// Principal em vermelho, secundários em laranja. A ordem é do mais profundo para o mais superficial.
+// Os músculos de cada exercício vêm de ex.muscles (os mesmos do estilo clássico), trocando cada id pelas formas novas.
+// Puxada unilateral e goblet têm a lista do R4 (decisão do Gustavo em 02/11/2026: todos os músculos na vista de trás
+// da puxada; adutores no goblet, por kubo2019).
+const MAPA = {
+  lats: ['redondoMaior', 'dorsal'],
+  midTrap: ['romboides', 'trapMedio', 'trapInferior'],
+  upTrap: ['trapSuperior'],
+  pecClav: ['peitoralClav'],
+  pecStern: ['peitoralEst'],
+  deltAnt: ['deltAnt'],
+  deltLat: ['deltLat'],
+  deltPost: ['deltPost'],
+  biceps: ['biceps'],
+  triceps: ['triceps'],
+  forearm: ['antebraco'],
+  quads: ['quadriceps'],
+  hams: ['posteriores'],
+  glutes: ['gluteos'],
+  calf: ['panturrilha'],
+  erect: ['eretores'],
+  rectus: ['retoAbdominal'],
+  obliq: ['obliquos'],
+};
+// do mais profundo para o mais superficial (o trapézio cobre os romboides; o peitoral, as costelas)
+const ORDEM = ['romboides', 'redondoMaior', 'dorsal', 'eretores', 'trapMedio', 'trapInferior', 'trapSuperior', 'obliquos', 'retoAbdominal', 'peitoralEst', 'peitoralClav', 'gluteos', 'adutores', 'posteriores', 'quadriceps', 'panturrilha', 'deltPost', 'deltLat', 'deltAnt', 'triceps', 'biceps', 'antebraco'];
+const CENTRAIS = new Set(['eretores', 'retoAbdominal']);
+
 export const LISTA = {
   'puxada-unilateral': [
     ['romboides', 'R', 's'],
@@ -224,16 +352,35 @@ export const LISTA = {
   ],
 };
 
+/** Lista de [forma, lado, tipo] do exercício, do mais profundo para o mais superficial. */
+export function listaDe(ex) {
+  if (LISTA[ex.id]) return LISTA[ex.id];
+  const out = new Map();
+  for (const [tipo, lista] of [['s', ex.muscles.s], ['p', ex.muscles.p]])
+    for (const [id, lados] of lista)
+      for (const f of MAPA[id] ?? []) {
+        const ks = CENTRAIS.has(f) ? ['C'] : lados === 'RL' ? ['R', 'L'] : [lados];
+        for (const k of ks) out.set(f + k, [f, k, tipo]); // o principal vence o secundário
+      }
+  // as 3 partes do deltoide são vizinhas (não se cobrem no corpo): entre elas, o principal fica por cima
+  const pos = ([f, , tipo]) => (f.startsWith('delt') ? ORDEM.indexOf('deltPost') + (tipo === 'p' ? 0.5 : 0) : ORDEM.indexOf(f));
+  return [...out.values()].sort((a, b) => pos(a) - pos(b));
+}
+
+/** Área na tela dos músculos principais do último desenho (para escolher a vista da miniatura do cartão). */
+export const medida = { areaPrincipal: 0 };
+const area = (Q) => Math.abs(Q.reduce((s, q, i) => { const r = Q[(i + 1) % Q.length]; return s + q[0] * r[1] - r[0] * q[1]; }, 0)) / 2;
+
 export function musculosNovos(ex, sk, partes, estilo) {
-  const lista = LISTA[ex.id];
-  if (!lista) return false;
-  for (const [id, lados, tipo] of lista) {
+  medida.areaPrincipal = 0;
+  for (const [id, lados, tipo] of listaDe(ex)) {
     for (const k of lados === 'RL' ? ['R', 'L'] : [lados]) {
-      const m = FORMAS[id](sk, k);
-      if (CTX.PJ(m.n)[2] < -0.25) continue; // face virada para o outro lado
-      const d = m.host === 'tronco' ? partes.tronco : partes[m.host][k]; // por cima da parte, por baixo do que está na frente
-      push(1, d, `<path d="${caminhoSuave(m.q ?? m.p.map(CTX.PJ))}" class="e${estilo}-m${tipo}" stroke-width="${estilo === 'a' ? 0.9 : 0.8}"/>`);
+      const m = FORMAS[id](sk, k === 'C' ? 'R' : k);
+      if (m.n && CTX.PJ(m.n)[2] < -0.25) continue; // face virada para o outro lado
+      const d = m.host === 'tronco' ? partes.tronco : partes[m.host][k === 'C' ? 'R' : k]; // por cima da parte, por baixo do que está na frente
+      const Q = m.q ?? m.p.map(CTX.PJ);
+      if (tipo === 'p') medida.areaPrincipal += area(Q);
+      push(1, d, `<path d="${caminhoSuave(Q)}" class="e${estilo}-m${tipo}" stroke-width="${estilo === 'a' ? 0.9 : 0.8}"/>`);
     }
   }
-  return true;
 }
