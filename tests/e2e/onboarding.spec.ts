@@ -194,6 +194,12 @@ test('recarregar a página mantém perfil, inventário e programa', async ({ pag
   await expect(page.getByRole('group', { name: 'O mais pesado' }).getByLabel('12 kg', { exact: true })).toBeChecked();
 });
 
+test('Meus dados mostra a versão do app e a data da publicação', async ({ page }) => {
+  // R3: para a pessoa conferir se o celular já está com a versão nova.
+  await page.goto('/dados');
+  await expect(page.getByText(/^Versão do app: ([0-9a-f]{7}|local), publicada em \d{2}\/\d{2}\/\d{4}\.$/)).toBeVisible();
+});
+
 test('exportar, apagar e importar devolve o mesmo estado', async ({ page }) => {
   await ana(page);
   const programa = await page.locator('main').innerText();

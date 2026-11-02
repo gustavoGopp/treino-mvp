@@ -150,6 +150,10 @@ export function Dados() {
             </div>
           )}
         </section>
+
+        <p className="muted">
+          Versão do app: {__VERSAO__}, publicada em {new Date(__DATA_BUILD__).toLocaleDateString('pt-BR')}.
+        </p>
       </main>
     </div>
   );
