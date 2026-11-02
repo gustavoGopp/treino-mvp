@@ -3,7 +3,9 @@ import { Link, Navigate, useNavigate, useParams, useSearchParams } from 'react-r
 import { CONTEUDO } from '../../conteudo';
 import { prescricaoNoGuia } from '../../domain/sessao';
 import { hojeDoEstado, hojeDoTreino } from '../treino/acoes';
-import { DIAS, EX, VIEWS, montarSvg } from '../../engine';
+import { DIAS, EX, VIEWS } from '../../engine';
+import { montarSvgEstilo, type Estilo } from '../../engine/estilo';
+import { useEstiloBoneco } from '../app/estiloBoneco';
 import { agoraIso, fusoDoAparelho, useApp } from '../app/estado';
 import { lerContexto, linkDoGuia } from './link';
 
@@ -88,8 +90,9 @@ function GuiaExercicio({ ex }: { ex: Animacao }) {
   const resp = useRef<HTMLDivElement>(null);
   const cursor = useRef<HTMLDivElement>(null);
   const linha = useRef<HTMLDivElement>(null);
-  const estado = useRef({ modo, erro, vista, tocando, lento });
-  estado.current = { modo, erro, vista, tocando, lento };
+  const estilo = useEstiloBoneco();
+  const estado = useRef({ modo, erro, vista, tocando, lento, estilo });
+  estado.current = { modo, erro, vista, tocando, lento, estilo };
 
   useEffect(() => {
     let raf = 0;
@@ -101,8 +104,10 @@ function GuiaExercicio({ ex }: { ex: Animacao }) {
       if (s.tocando) t.current += dt * (s.lento ? 0.35 : 1);
       const el = svg.current;
       if (el) {
-        const q = montarSvg(ex, s.vista, s.modo, t.current, s.erro, el.clientWidth);
+        const q = montarSvgEstilo(ex, s.vista, s.modo, t.current, s.erro, el.clientWidth, s.estilo);
         el.setAttribute('viewBox', q.viewBox);
+        if (q.classe) el.setAttribute('class', q.classe);
+        else el.removeAttribute('class');
         el.innerHTML = q.html;
         const nomeErro = txt.errors[s.erro]!.title;
         if (fase.current) {
@@ -273,6 +278,7 @@ function GuiaExercicio({ ex }: { ex: Animacao }) {
         </div>
         <div className="modeinfo">
           <InfoModo
+            estilo={estilo}
             modo={modo}
             erro={erro}
             txt={txt}
@@ -317,7 +323,20 @@ function GuiaExercicio({ ex }: { ex: Animacao }) {
   );
 }
 
-function InfoModo({ modo, erro, txt, onErro }: { modo: Modo; erro: number; txt: (typeof CONTEUDO)[string]; onErro: (i: number) => void }) {
+function InfoModo({
+  estilo,
+  modo,
+  erro,
+  txt,
+  onErro,
+}: {
+  estilo: Estilo;
+  modo: Modo;
+  erro: number;
+  txt: (typeof CONTEUDO)[string];
+  onErro: (i: number) => void;
+}) {
+  const classico = estilo === 'atual';
   if (modo === 'tec')
     return (
       <>
@@ -326,14 +345,18 @@ function InfoModo({ modo, erro, txt, onErro }: { modo: Modo; erro: number; txt: 
             <i className="sw" style={{ background: 'var(--guide)' }} />
             linhas de referência
           </span>
-          <span>
-            <i className="sw" style={{ background: 'var(--spine)' }} />
-            coluna
-          </span>
-          <span>
-            <i className="sw" style={{ background: 'var(--joint)' }} />
-            articulações
-          </span>
+          {classico && (
+            <span>
+              <i className="sw" style={{ background: 'var(--spine)' }} />
+              coluna
+            </span>
+          )}
+          {estilo !== 'b' && (
+            <span>
+              <i className="sw" style={{ background: 'var(--joint)' }} />
+              articulações
+            </span>
+          )}
         </div>
         {txt.note && <div className="warnbox">{txt.note}</div>}
       </>
@@ -366,11 +389,11 @@ function InfoModo({ modo, erro, txt, onErro }: { modo: Modo; erro: number; txt: 
       <>
         <div className="legend">
           <span>
-            <i className="sw" style={{ background: 'var(--mus-p)' }} />
+            <i className="sw" style={{ background: classico ? 'var(--mus-p)' : 'var(--m-p)' }} />
             alvo principal
           </span>
           <span>
-            <i className="sw" style={{ background: 'var(--mus-s)' }} />
+            <i className="sw" style={{ background: classico ? 'var(--mus-s)' : 'var(--m-s)' }} />
             secundários
           </span>
         </div>

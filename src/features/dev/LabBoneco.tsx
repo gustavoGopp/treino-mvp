@@ -14,7 +14,7 @@ type Modo = 'tec' | 'mus';
 const EXERCICIOS: { id: string; nome: string; nota?: string }[] = [
   { id: 'puxada-unilateral', nome: 'Puxada unilateral' },
   { id: 'goblet', nome: 'Agachamento goblet' },
-  { id: 'face-pull', nome: 'Face pull (só diagnóstico)', nota: 'Fora do experimento: só a técnica, para ver se o estilo resolve a vista de cima. Os músculos seguem o desenho atual.' },
+  { id: 'face-pull', nome: 'Face pull', nota: 'De cima, no Boneco e na Silhueta, a corda e o cabo ficam mais leves e o rótulo sai de trás da caixa da fase.' },
 ];
 const LEGENDA: Record<string, { p: string[]; s: string[]; nota: Record<string, string> }> = {
   'puxada-unilateral': {
@@ -41,7 +41,7 @@ export function LabBoneco() {
   const [lento, setLento] = useState(false);
   const [perto, setPerto] = useState(false);
   const vistaOk = ex.views.includes(vista) ? vista : ex.views[0];
-  const modoOk: Modo = exId === 'face-pull' ? 'tec' : modo;
+  const modoOk: Modo = modo;
 
   const grande = useRef<SVGSVGElement>(null);
   const fase = useRef<HTMLDivElement>(null);
@@ -96,7 +96,7 @@ export function LabBoneco() {
           <span>R4 · só para teste</span>
         </div>
         <p className="note">
-          O mesmo movimento em 3 estilos. Nada aqui muda o guia do app: o boneco que você usa no treino continua o atual.
+          O mesmo movimento nos 3 estilos. O guia do app usa o Boneco (padrão); o Clássico e a Silhueta ficam em Meus dados.
         </p>
         <div className="chips" role="tablist" aria-label="Exercícios">
           {EXERCICIOS.map((e) => (
@@ -158,7 +158,7 @@ export function LabBoneco() {
               ['mus', 'Músculos'],
             ] as [Modo, string][]
           ).map(([m, nome]) => (
-            <button key={m} aria-pressed={m === modoOk} disabled={exId === 'face-pull' && m === 'mus'} onClick={() => setModo(m)}>
+            <button key={m} aria-pressed={m === modoOk} onClick={() => setModo(m)}>
               {nome}
             </button>
           ))}

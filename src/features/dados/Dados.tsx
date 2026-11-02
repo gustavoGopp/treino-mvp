@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { exportarJson, importarJson, nomeDoArquivo } from '../../storage/arquivo';
 import { useApp } from '../app/estado';
 import { Titulo, Topo } from '../app/ui';
+import { EscolhaEstiloBoneco } from './EstiloBoneco';
 
 // Meus dados: exportar e importar em JSON, apagar tudo e refazer a triagem. Nada sai do aparelho sem a pessoa.
 export function Dados() {
@@ -122,6 +123,8 @@ export function Dados() {
             </Link>
           </section>
         ) : null}
+
+        <EscolhaEstiloBoneco />
 
         <section className="box">
           <h2>Refazer as respostas</h2>

@@ -21,6 +21,12 @@ test.setTimeout(120_000);
 // desenho idêntico. Por isso o teste fixa a altura do cabeçalho nos dois lados: a comparação é só do palco.
 const CABECALHO_FIXO = '.exhead{height:150px!important;min-height:0!important;overflow:hidden!important;box-sizing:border-box!important}';
 
+// Desde 02/11/2026 o boneco padrão do app é o novo (src/engine/estilo, decisão do Gustavo). Este teste compara o
+// estilo clássico, que continua no app como opção em "Meus dados", com o guia original: escolhe o clássico antes.
+async function usarEstiloClassico(page: Page) {
+  await page.addInitScript(() => localStorage.setItem('treino-mvp:estilo-boneco', 'atual'));
+}
+
 async function bloquearFontes(page: Page) {
   await page.route(/fonts\.(googleapis|gstatic)\.com/, (r) => r.abort());
 }
@@ -41,6 +47,7 @@ for (const id of ids) {
     const ref = await browser.newPage({ viewport: { width: 390, height: 900 }, deviceScaleFactor: 2 });
     await bloquearFontes(ref);
     await bloquearFontes(page);
+    await usarEstiloClassico(page);
     await ref.route('**/guia-original.html', (r) => r.fulfill({ contentType: 'text/html', body: original }));
     await ref.goto('http://localhost/guia-original.html');
     await ref.addStyleTag({ content: CABECALHO_FIXO });
