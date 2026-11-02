@@ -47,7 +47,8 @@ Detalhes em `planejamento/2026-11-diagnostico.md`, `PLANO-MVP.md` e `pesquisa-v2
 - **Gráfico da evolução:** hoje é uma lista da melhor série de cada treino; um gráfico simples pode entrar depois do uso real (R3).
 
 ## Do R4 (02/11/2026)
-- **Boneco no estilo A em todas as animações (R5):** decisão do Gustavo no R4 (`devlog.md`, R4). Antes, a rodada com o especialista (`revisoes/r4-roteiro-especialista.md`). Falta: 11 formas de músculo com fonte, os modos Trajetória e Erros no estilo A, a vista de cima do tronco, a linha de base nova aprovada em 3 lotes e a troca do estilo padrão no guia e na miniatura. Ordem pela frequência nos programas (lista no devlog).
+- **Boneco no estilo A em todas as animações:** feito no próprio R4, a pedido do Gustavo (`devlog.md`, R4, continuação). Falta a rodada com o especialista (`revisoes/r4-roteiro-especialista.md`); os ajustes que ela pedir mudam a linha de base `estilo-a.json`, com nova aprovação.
 - **Leveza do B no A:** o B foi o mais agradável de ver. Perguntar ao especialista se vale um contorno mais fino ou menos linhas no A.
-- **Face pull, vista de cima (R5, à parte do estilo):** corda e cabo mais leves e o rótulo "mãos abrem ao lado da cabeça" fora do alcance da caixa da fase. Muda uma animação aprovada: linha de base nova.
+- **Face pull, vista de cima:** corrigido no Boneco e na Silhueta (corda e cabo mais leves, rótulo fora da caixa da fase). No Clássico fica como no guia original.
+- **Prévias do "Estilo do boneco" em Meus dados:** a figura ficou pequena nas 3 prévias; aproximar a câmera.
 - **Enquadramento da puxada unilateral:** a câmera inclui a torre inteira, e o corpo ocupa um quarto do palco. Aproximar só o corpo ajudou pouco no teste do R4 (a mão vai lá em cima); reavaliar com o especialista.

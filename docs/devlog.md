@@ -665,3 +665,19 @@ As listas exatas ficam em `tests/unit/metas-r0.test.ts`, para o R0c zerar.
 > O boneco melhorado explica melhor o movimento e mostra melhor o músculo. A silhueta é um pouco mais bonita. Fico com o boneco, e antes de levá-lo a todos os exercícios vou pedir a opinião de quem entende de ilustração ou de anatomia.
 >
 > E nenhuma das 31 animações aprovadas mudou um pixel no caminho.
+
+### R4, continuação: o Boneco vira o padrão do app, em todos os exercícios (02/11/2026)
+
+**Pedido do Gustavo:** o caminho A passa a ser o boneco oficial do app agora, com todos os exercícios, e os outros estilos ficam como opção nas configurações. Ele escolheu aprovar as folhas de uma vez e incluir a correção do face pull. Com isso, o "levar o A às animações" sai do R5 e entra aqui; a revisão do especialista passa a vir depois, e pode ainda pedir ajustes.
+
+**O que mudou**
+- **Os 32 exercícios do guia no Boneco**, nos 4 modos. No modo Erros, a figura que erra aparece em tons de vermelho e o certo continua como fantasma verde por cima; na Trajetória, as figuras de início e fim continuam em traço fino.
+- **12 músculos novos** com forma anatômica simplificada e a origem e a inserção comentadas no código (`src/engine/estilo/musculos.ts`): peitoral (partes clavicular e esternocostal), deltoides anterior e lateral, trapézio superior, tríceps, antebraço, posteriores da coxa, panturrilha, eretores da espinha, reto do abdome e oblíquos. Os músculos de cada exercício vêm da mesma lista do estilo clássico; o grande dorsal ganha o redondo maior, e o trapézio médio ganha os romboides e o trapézio inferior, como na puxada aprovada no R4.
+- **"Meus dados" → "Estilo do boneco":** Boneco (padrão), Clássico (o do guia original) e Silhueta (o caminho B). A escolha fica no aparelho (fora dos dados de treino e da exportação) e vale para o guia e as miniaturas.
+- **Miniatura do cartão:** no Boneco, a vista em que o músculo principal ocupa mais espaço (no supino, de cima, porque de lado o braço cobre o peitoral).
+- **Face pull de cima:** a corda e o cabo mais leves, e o rótulo "mãos abrem ao lado da cabeça" perto do cabo, fora da caixa da fase. O clássico fica como estava.
+- **Testes:** 488 unitários; no navegador, o guia confere que o Boneco é o padrão e que a troca em "Meus dados" funciona. **Regressão visual:** o Clássico continua comparado com o guia original (0 pixel, IK = 0, `motor.json` e `novas.json` intocados); o Boneco ganhou a linha de base `tests/visual/linha-de-base/estilo-a.json`, gravada **depois da aprovação do Gustavo** (02/11/2026) a partir das 32 folhas de contatos (`node scripts/folha-animacao.mjs <id> --estilo=a`), todas com IK = 0.
+
+**Decisão do Gustavo (02/11/2026):** as 32 folhas aprovadas; publicar no site.
+
+**Fica para depois:** a revisão do especialista sobre o Boneco (roteiro pronto); as prévias de "Meus dados" podem ganhar uma câmera mais perto; e o enquadramento da puxada unilateral.
