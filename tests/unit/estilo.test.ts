@@ -95,7 +95,7 @@ describe('estilo do boneco (R4)', () => {
           expect(html).toMatch(/class="gh"/); // e o certo, por cima
         });
       }
-  });
+  }, 30_000); // percorre os 32 exercícios nos 2 estilos
 
   it('no modo músculos, todo exercício mostra o músculo principal em alguma vista', () => {
     for (const ex of EX as Animacao[]) {
