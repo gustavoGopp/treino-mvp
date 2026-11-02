@@ -1,7 +1,4 @@
 import { describe, expect, it } from 'vitest';
-import { BIBLIOTECA } from '../../src/domain/biblioteca';
-import { gerarPrograma, type Perfil, type Programa } from '../../src/domain/gerador';
-import type { Carga, SerieRegistrada } from '../../src/domain/progressao';
 import {
   blocoAtual,
   cargaDaVolta,
@@ -15,63 +12,13 @@ import {
   type Sessao,
 } from '../../src/domain/sessao';
 import type { Inventario } from '../../src/domain/taxonomia/equipamentos';
-import { VERSAO_ESTADO, type Estado } from '../../src/storage/esquema';
-import { diaDoTreino, hojeDoEstado, inventarioDoTreino, iniciarSessao, opcoesDaCarga, registrarSerie, terminarSessao } from '../../src/features/treino/acoes';
-import { ana, bruno, carla, LOCAIS_DO_BRUNO, type Persona } from '../personas';
+import type { Estado } from '../../src/storage/esquema';
+import { diaDoTreino, hojeDoEstado, inventarioDoTreino, opcoesDaCarga } from '../../src/features/treino/acoes';
+import { ana, bruno, carla, LOCAIS_DO_BRUNO } from '../personas';
+import { dia, estadoDe, serieTipica, treinar } from './apoio-treino';
 
 // Pausas detectadas sozinhas (readaptacao.durante-uso; pesquisa-v2/07, seção 3): os casos P1 a P9 do T6, os casos com
 // locais e o teste de propriedade. O Bruno é rodado como "treinando" no cadastro, para isolar a pausa durante o uso.
-
-const POR_ID = Object.fromEntries(BIBLIOTECA.map((e) => [e.id, e]));
-/** Dia n a partir da segunda-feira 05/10/2026, às h horas (UTC). */
-const dia = (n: number, h = 10) => new Date(Date.UTC(2026, 9, 5) + n * 86_400_000 + h * 3_600_000).toISOString();
-
-function programaDe(perfil: Perfil, inv: Inventario): Programa {
-  const r = gerarPrograma(perfil, inv);
-  if (r.status !== 'ok') throw new Error('bloqueado');
-  return r.programa;
-}
-
-export function estadoDe(p: Persona, locais = [{ id: 'local-1', nome: 'Meu local', inventario: p.inventario }]): Estado {
-  return {
-    versao: VERSAO_ESTADO,
-    triagem: p.perfil.triagem,
-    nivel: { respostas: { tempoContinuo: '6-24m', semanasParado: 0, tecnica: 'sim' }, escolhido: p.perfil.nivel },
-    rotina: { diasSemana: p.perfil.diasSemana, minutosSessao: p.perfil.minutosSessao, prioridades: p.perfil.prioridades },
-    restricoes: { evitarExercicios: [], evitarEquipamentos: p.perfil.evitarEquipamentos },
-    locais,
-    programa: { programa: programaDe({ ...p.perfil, semanasParado: 0 }, p.inventario), geradoEm: dia(-1), localId: 'local-1' },
-    historico: [],
-  };
-}
-
-/** Uma série de trabalho típica para cada tipo de carga. */
-export const serieTipica = (exId: string): SerieRegistrada => {
-  const c = POR_ID[exId]!.carga;
-  const carga: Carga =
-    c === 'polia' || c === 'maquina'
-      ? { tipo: 'placa', placa: 8 }
-      : c === 'anilha'
-        ? { tipo: 'anilha', kgPorLado: 20 }
-        : c === 'assistida'
-          ? { tipo: 'contrapeso', placa: 3 }
-          : c === 'peso-corpo' || c === 'elastico'
-            ? { tipo: 'degrau', degrau: 2 }
-            : c === 'barra'
-              ? { tipo: 'kg', kg: 40 }
-              : { tipo: 'kg', kg: 10 };
-  return { carga, reps: 10, rir: 2 };
-};
-
-/** Faz o treino inteiro de um dia: as séries pedidas em cada exercício. */
-export function treinar(e: Estado, n: number, diaId: string, localId = 'local-1', serie = serieTipica): Estado {
-  let s = iniciarSessao(e, dia(n), diaId, localId);
-  s.sessaoAtual!.exercicios.forEach((x, i) => {
-    const d = diaDoTreino(s, s.sessaoAtual!)!.dia.exercicios.find((y) => y.exId === x.exId)!;
-    for (let k = 0; k < d.series; k++) s = registrarSerie(s, i, serie(x.exId));
-  });
-  return terminarSessao(s, dia(n, 11));
-}
 
 /** A carga que a tela pré-preenche hoje: a sugerida, ou a última registrada. */
 function cargaDeHoje(e: Estado, n: number, diaId: string, exId: string, localId = 'local-1') {
@@ -164,20 +111,23 @@ describe('os casos P1 a P9 do T6', () => {
     // Semana 1 da volta: a calibração só desce.
     expect(opcoesDaCarga(e, { id: dia(n), inicio: dia(n) }).soDesce).toBe(true);
 
-    // Faz a semana 1 da volta (n = 33 é uma segunda); na semana 2, 75% das séries e RIR 2–3.
+    // A volta cai num sábado (dia 33): a semana 1 do bloco é este fim de semana. Depois, semana 2 a partir da segunda.
     let v = e;
-    [0, 1, 3, 4].forEach((k, i) => (v = treinar(v, n + k, DIAS_BRUNO[i]!, 'local-1', (exId) => (exId === 'supino-reto' ? { carga: { tipo: 'kg', kg: 9 }, reps: 10, rir: 3 } : serieTipica(exId)))));
-    const h2 = hojeDoEstado(v, dia(n + 7))!;
+    const supino9 = (exId: string) => (exId === 'supino-reto' ? { carga: { tipo: 'kg' as const, kg: 9 }, reps: 10, rir: 3 } : serieTipica(exId));
+    v = treinar(v, n, SUP, 'local-1', supino9);
+    v = treinar(v, n + 1, 'inferior-a');
+    const seg = n + 2;
+    const h2 = hojeDoEstado(v, dia(seg))!;
     expect(h2.semana).toBe(2);
     expect(h2.fase?.regraId).toBe('readaptacao.semana2');
-    expect(totalSeries(v, n + 7, SUP)).toBe(21);
+    expect(totalSeries(v, seg, SUP)).toBe(21);
     expect(h2.dias.find((d) => d.id === SUP)!.exercicios[0]!.rir).toEqual([2, 3]);
     // Depois da 1ª vez no bloco, a carga segue a dupla progressão do bloco (9 kg), e não volta aos 10 kg de antes.
-    expect(cargaDeHoje(v, n + 7, SUP, 'supino-reto').carga).toEqual({ tipo: 'kg', kg: 9 });
-    [0, 1, 3, 4].forEach((k, i) => (v = treinar(v, n + 7 + k, DIAS_BRUNO[i]!)));
-    const h3 = hojeDoEstado(v, dia(n + 14))!;
+    expect(cargaDeHoje(v, seg, SUP, 'supino-reto').carga).toEqual({ tipo: 'kg', kg: 9 });
+    [0, 1, 3, 4].forEach((k, i) => (v = treinar(v, seg + k, DIAS_BRUNO[(i + 2) % 4]!)));
+    const h3 = hojeDoEstado(v, dia(seg + 7))!;
     expect(h3.semana).toBe(3);
-    expect(totalSeries(v, n + 14, SUP)).toBe(28);
+    expect(totalSeries(v, seg + 7, SUP)).toBe(28);
   });
 
   it('P4: Bruno, 70 dias → carga −15%: 8,5 kg vira 8 kg (para baixo, nos halteres de 1 em 1 kg)', () => {
