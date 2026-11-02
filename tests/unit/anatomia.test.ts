@@ -1,5 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import { BIBLIOTECA } from '../../src/domain/biblioteca';
+import { CARTOES, CONTEUDO } from '../../src/conteudo';
+import { doTexto } from '../../scripts/auditoria/anatomia-regras';
 
 // Revisão de anatomia (docs/revisoes/anatomia.md, 02/11/2026): os músculos de cada exercício, decididos item a item
 // pelo Gustavo. O secundário conta meia série (volume.serie-indireta.peso), então cada regra aqui muda o volume.
@@ -33,5 +35,24 @@ describe('músculos da biblioteca (revisão de anatomia)', () => {
     // nos exercícios de agachar (um estudo cada). Os adutores não têm meta: muda a conta mostrada, não o treino.
     for (const e of BIBLIOTECA.filter((x) => x.padrao === 'agachar' || x.padrao === 'afundo'))
       expect([...e.musculos.primarios, ...e.musculos.secundarios], e.id).toContain('adutores');
+  });
+});
+
+// Os textos lidos pelas mesmas palavras-chave da tabela (scripts/auditoria/anatomia-regras.ts).
+const comGuia = BIBLIOTECA.filter((e) => e.animacaoId && CONTEUDO[e.animacaoId]);
+
+describe('textos × biblioteca (revisão de anatomia)', () => {
+  it('todo guia e todo cartão citam o músculo principal no target', () => {
+    for (const e of comGuia) for (const m of e.musculos.primarios) expect(doTexto(CONTEUDO[e.animacaoId!]!.target), e.id).toContain(m);
+    for (const [id, c] of Object.entries(CARTOES))
+      for (const m of BIBLIOTECA.find((e) => e.id === id)!.musculos.primarios) expect(doTexto(c.target), id).toContain(m);
+  });
+
+  it('achado 13: todo guia cita os secundários que a biblioteca conta, no target ou no feel', () => {
+    for (const e of comGuia) {
+      const t = CONTEUDO[e.animacaoId!]!;
+      const citados = new Set([...doTexto(t.target), ...doTexto(t.feel)]);
+      for (const m of e.musculos.secundarios) expect(citados, `${e.id}: ${m}`).toContain(m);
+    }
   });
 });

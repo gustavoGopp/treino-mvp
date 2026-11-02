@@ -3,8 +3,8 @@
   "name": "Remada unilateral com halter apoiada no banco",
   "short": "Remada unilateral",
   "target": "Dorsal e meio das costas",
-  "feel": "Lateral das costas e meio das costas, do lado que puxa.",
-  "feelNote": "O bíceps e a parte de trás do ombro ajudam. Se sentir a lombar, o tronco está girando ou a coluna está arredondando.",
+  "feel": "Lateral das costas e meio das costas, do lado que puxa. O bíceps e a parte de trás do ombro ajudam.",
+  "feelNote": "Se sentir a lombar, o tronco está girando ou a coluna está arredondando.",
   "setupEq": [
     "Banco plano.",
     "Um halter no chão, do lado do banco em que você vai puxar."
