@@ -4,6 +4,7 @@
 //   node scripts/comparar-estilos.mjs <id> <vista>     → só uma (para conferir enquanto desenha)
 // Gera: <id>-<vista>.png (celular: palco de 358 px, técnica e músculos, início/meio/fim)
 //       miniaturas.png (o quadro do cartão do treino, 112 px, nos 3 estilos)
+//       resumo.png (os 3 estilos lado a lado, para o devlog)
 import { build } from 'esbuild';
 import { mkdirSync, readFileSync, writeFileSync } from 'node:fs';
 import { createRequire } from 'node:module';
@@ -80,10 +81,30 @@ async function miniaturas() {
   await foto(html, `${SAIDA}/miniaturas.png`, 400);
 }
 
+// Resumo para o devlog e a página: os 3 estilos lado a lado, no fim do movimento, no modo músculos
+async function resumo() {
+  const linhas = [
+    ['puxada-unilateral', 'posterior', 'Puxada unilateral, de trás'],
+    ['puxada-unilateral', 'lateral', 'Puxada unilateral, de lado'],
+    ['goblet', 'lateral', 'Agachamento goblet, de lado'],
+  ];
+  let html = `${estiloPagina}<h1>Boneco do guia: atual × caminho A × caminho B (modo músculos, fim do movimento)</h1>`;
+  html += `<div class="g" style="grid-template-columns:repeat(3,358px)">${M.ESTILOS.map((e) => `<div class="c">${M.NOMES_ESTILO[e]}</div>`).join('')}`;
+  for (const [id, view, nome] of linhas) {
+    const ex = M.EX.find((e) => e.id === id);
+    const t = fases(ex)[2][1];
+    html += `<div style="grid-column:1/-1;font-size:12px;font-weight:600;margin-top:4px">${nome}</div>`;
+    html += M.ESTILOS.map((e) => svg(ex, view, 'mus', t, e, 358, 358, 268)).join('');
+  }
+  html += '</div>';
+  await foto(html, `${SAIDA}/resumo.png`, 1100);
+}
+
 const [id, view, perto] = process.argv.slice(2);
 if (id) await grade(id, view ?? M.EX.find((e) => e.id === id).views[0], perto === 'perto');
 else {
   for (const i of M.EXERCICIOS_R4) for (const v of M.EX.find((e) => e.id === i).views) await grade(i, v);
   await grade('puxada-unilateral', 'posterior', true);
   await miniaturas();
+  await resumo();
 }
