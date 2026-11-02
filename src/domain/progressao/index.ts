@@ -1,5 +1,5 @@
 import type { Exercicio } from '../biblioteca';
-import { r } from '../regras';
+import { r, SEMANA_LEVE } from '../regras';
 import { MENOR_ANILHA_PADRAO_KG } from '../taxonomia/equipamentos';
 
 // Dupla progressão (progressao.*): primeiro as repetições sobem dentro da faixa; com todas as séries
@@ -50,6 +50,8 @@ export const ESCADA_PESO_CORPO = [
 
 const igual = (a: Carga, b: Carga) => JSON.stringify(a) === JSON.stringify(b);
 /** Quanto maior, mais difícil. No contrapeso é ao contrário: mais placa = mais ajuda. */
+/** Quanto maior, mais difícil (no contrapeso, menos placa = mais difícil). */
+export const valorDaCarga = (c: Carga) => valor(c);
 const valor = (c: Carga) => {
   switch (c.tipo) {
     case 'kg':
@@ -214,19 +216,21 @@ export function sugerirProgressao(historico: SessaoExercicio[], alvo: Alvo, o: O
 }
 
 /**
- * Semana leve sugerida, manual e opcional (deload.semana-leve). Nunca é aplicada automaticamente.
- * Só com sinal (pesquisa-v2/02, ajuste 2): o tempo sem pausa sozinho não é motivo, porque uma semana leve
- * não mudou a hipertrofia e reduziu um pouco a força (coleman2024).
+ * Semana leve sugerida, manual e opcional (deload.semana-leve; pesquisa-v2/07, seção 6). Nunca é aplicada sozinha.
+ * Só com sinal: ≥ 2 exercícios estagnados, "pesado demais" em 2 dos últimos 3 treinos ou dor de 3 a 5 no mesmo
+ * exercício em 2 sessões seguidas. Sem o gatilho de "6–8 semanas": uma semana leve não mudou a hipertrofia (coleman2024,
+ * pancar2026). Na carência (as 3 semanas depois de uma volta de pausa ou de uma semana leve), não sugere.
  */
-export function sugerirSemanaLeve(estado: { exerciciosEstagnados: number; fadigaOuDorPersistente: boolean }) {
+export function sugerirSemanaLeve(sinais: { exerciciosEstagnados: number; pesadoNosUltimos3: number; dorQueSeRepete: number; carencia?: boolean }) {
   const motivos = [
-    estado.exerciciosEstagnados >= 2 && `${estado.exerciciosEstagnados} exercícios estagnados`,
-    estado.fadigaOuDorPersistente && 'fadiga ou dor persistente',
+    sinais.exerciciosEstagnados >= SEMANA_LEVE.estagnados && `${sinais.exerciciosEstagnados} exercícios sem progresso em 3 treinos`,
+    sinais.pesadoNosUltimos3 >= SEMANA_LEVE.pesadoEm && `"pesado demais" em ${sinais.pesadoNosUltimos3} dos últimos ${SEMANA_LEVE.pesadoDe} treinos`,
+    sinais.dorQueSeRepete > 0 && 'dor de 3 a 5 no mesmo exercício em 2 treinos seguidos',
   ].filter((m): m is string => !!m);
   return {
-    sugerir: motivos.length > 0,
+    sugerir: motivos.length > 0 && !sinais.carencia,
     motivos,
-    texto: 'Semana leve opcional: mesma frequência, cerca de metade das séries, RIR 3–4 e carga mantida ou 10% menor.',
+    texto: 'Para descansar, não para crescer. Pode deixar a força um pouco mais baixa por alguns dias; o músculo não perde. Mesma frequência, cerca de metade das séries, RIR 3–4 e a mesma carga, por 7 dias.',
     regraId: r('deload.semana-leve'),
   };
 }
