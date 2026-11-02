@@ -106,6 +106,7 @@ const resultados = CASOS.map((caso) => {
   const inexistentes: string[] = [];
   let ultimaSubida = 0;
   let maiorTrava = 0;
+  const recorde = new Map<string, number>();
   for (let s = 1; s <= 32; s++) {
     const rf = 30 * (forca / efetiva(carga, caso) - 1);
     const series = [0, 1, 2].map((k) => {
@@ -120,6 +121,13 @@ const resultados = CASOS.map((caso) => {
     if (process.argv.includes(`--rastro=${caso.id}`))
       console.log(`${s}: ${textoCarga(carga, caso.exId)} × ${series.map((x) => `${x.reps}@${x.rir}`).join(' ')} → ${sug.acao} ${prox ? textoCarga(prox, caso.exId) : ''} (${sug.regraId})`);
     if (prox && !existe(prox, caso, lista) && inexistentes.length < 3) inexistentes.push(textoCarga(prox, caso.exId));
+    // Progresso = subir a carga ou bater o recorde de repetições na carga atual (a dupla progressão).
+    const total = series.reduce((t, x) => t + x.reps, 0);
+    const chave = JSON.stringify(carga);
+    if (total > (recorde.get(chave) ?? -1)) {
+      recorde.set(chave, total);
+      ultimaSubida = s;
+    }
     if (prox && valorDaCarga(prox) > valorDaCarga(carga)) ultimaSubida = s;
     maiorTrava = Math.max(maiorTrava, s - ultimaSubida);
     if (prox) carga = prox;
@@ -143,7 +151,7 @@ const resultados = CASOS.map((caso) => {
       ? 'sugere carga que não existe'
       : voltas >= 2
         ? 'vaivém'
-        : maiorTrava >= 12
+        : maiorTrava >= 8
           ? 'trava'
           : subidas === 0
             ? 'não sobe'
@@ -159,7 +167,7 @@ const L = [
   '',
   '> Gerado por `npm run auditoria:progressao`. A sugestão é a do app; o corpo é um modelo (Epley invertida, +1% de força por semana, 3 séries, 32 sessões em 16 semanas), descrito no topo de `scripts/auditoria/progressao.ts`. Serve para achar travas e vaivéns, não para prever ganho de ninguém.',
   '',
-  '| caso | começo → fim | subidas | voltas | maior trava (sessões) | ações | carga que não existe | veredito |',
+  '| caso | começo → fim | subidas | voltas | mais sessões sem progresso (nem carga nem repetições) | ações | carga que não existe | veredito |',
   '| --- | --- | ---: | ---: | ---: | --- | --- | --- |',
   ...resultados.map(
     (r) =>

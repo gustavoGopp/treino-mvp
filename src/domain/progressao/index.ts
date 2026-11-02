@@ -1,5 +1,5 @@
 import type { Exercicio } from '../biblioteca';
-import { r, SEMANA_LEVE } from '../regras';
+import { PROGRESSAO, r, SEMANA_LEVE } from '../regras';
 import { MENOR_ANILHA_PADRAO_KG } from '../taxonomia/equipamentos';
 
 // Dupla progressão (progressao.*): primeiro as repetições sobem dentro da faixa; com todas as séries
@@ -67,6 +67,17 @@ const valor = (c: Carga) => {
   }
 };
 const arred = (x: number) => Math.round(x * 100) / 100;
+/** "A carga de 10 kg", "a placa 9"…, para a mensagem da escada. */
+const textoDaCarga = (c: Carga) =>
+  c.tipo === 'kg'
+    ? `A carga de ${String(c.kg).replace('.', ',')} kg`
+    : c.tipo === 'placa'
+      ? `A placa ${c.placa}`
+      : c.tipo === 'anilha'
+        ? `A carga de ${String(c.kgPorLado).replace('.', ',')} kg por lado`
+        : c.tipo === 'contrapeso'
+          ? `O contrapeso ${c.placa}`
+          : 'Esse degrau';
 const passoAnilha = (o: OpcoesCarga) => o.menorAnilhaKg ?? MENOR_ANILHA_PADRAO_KG;
 
 export function proximaCarga(c: Carga, passos: number, o: OpcoesCarga): Carga | undefined {
@@ -168,10 +179,29 @@ export function sugerirProgressao(historico: SessaoExercicio[], alvo: Alvo, o: O
       regraId: r('progressao.reduzir'),
     };
 
-  // Carga leve demais: 1ª série passou do topo por 2+ repetições no RIR alvo → 2 incrementos
+  // Uma carga que ficou pesada há pouco (a 1ª série abaixo do mínimo da faixa) não volta a ser sugerida dentro da
+  // janela: antes, a escada de dificuldade. Sem isso, subir → voltar → subir… sem fim (auditoria, achado 3).
+  const recentes = historico.slice(-PROGRESSAO.janelaFalha);
+  const falhouHaPouco = (c: Carga) => recentes.some((x) => x.series[0] && igual(x.series[0].carga, c) && (validas(x)[0]?.reps ?? 0) < alvo.reps[0]);
+  const escada = (c: Carga): Sugestao => ({
+    acao: 'manter',
+    motivo: `${textoDaCarga(c)} pesou demais há pouco. Antes de tentar de novo, siga a escada: mais repetições (até ~30), descida lenta ou pausa no alongamento.`,
+    regraId: r('equipamento.escada-carga-leve'),
+  });
+
+  // Carga leve demais: 1ª série passou do topo por 2+ repetições no RIR alvo → 2 incrementos, se o salto total ficar
+  // em até ~10% (só dá para medir em kg); senão, 1 incremento (progressao.carga-leve, progressao.salto-grande).
   if (primeira && primeira.reps >= alvo.reps[1] + 2 && primeira.rir <= alvo.rir[1]) {
-    const prox = proximaCarga(carga, 2, o) ?? proximaCarga(carga, 1, o);
-    if (prox) return { acao: 'subir', proxima: prox, motivo: 'A carga está leve demais para a faixa: suba dois degraus.', regraId: r('progressao.carga-leve') };
+    const dois = proximaCarga(carga, 2, o);
+    const prox = dois && carga.tipo === 'kg' && dois.tipo === 'kg' && (dois.kg - carga.kg) / carga.kg <= PROGRESSAO.saltoGrande + 1e-9 ? dois : proximaCarga(carga, 1, o);
+    if (prox && falhouHaPouco(prox)) return escada(prox);
+    if (prox)
+      return {
+        acao: 'subir',
+        proxima: prox,
+        motivo: prox === dois ? 'A carga está leve demais para a faixa: suba dois degraus.' : 'A carga está leve demais para a faixa: suba um degrau.',
+        regraId: r('progressao.carga-leve'),
+      };
   }
 
   // Topo da faixa em 2 sessões seguidas, com a mesma carga → subir
@@ -189,8 +219,9 @@ export function sugerirProgressao(historico: SessaoExercicio[], alvo: Alvo, o: O
         motivo: 'Não há carga maior disponível: siga a escada (mais repetições até ~30, unilateral, descida lenta, pausa).',
         regraId: r('equipamento.escada-carga-leve'),
       };
+    if (falhouHaPouco(prox)) return escada(prox);
     const salto = carga.tipo === 'kg' && prox.tipo === 'kg' ? (prox.kg - carga.kg) / carga.kg : 0;
-    if (salto > 0.1 && !ultima.series.every((x) => x.reps >= alvo.reps[1] + 1))
+    if (salto > PROGRESSAO.saltoGrande && !ultima.series.every((x) => x.reps >= alvo.reps[1] + 1))
       return {
         acao: 'manter',
         motivo: `O próximo degrau é um salto de ${Math.round(salto * 100)}%: antes, faça 1–2 repetições acima do topo em todas as séries.`,

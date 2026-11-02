@@ -94,6 +94,12 @@ export const READAPTACAO = {
   },
 };
 
+/** progressao.salto-grande e progressao.carga-leve (revistas na auditoria do treino, 02/11/2026). */
+export const PROGRESSAO = {
+  saltoGrande: 0.1, // salto relativo acima de ~10%
+  janelaFalha: 6, // sessões em que uma carga que ficou pesada não volta a ser sugerida
+};
+
 /** deload.semana-leve: o conteúdo da semana leve e quando sugerir. */
 export const SEMANA_LEVE = {
   fatorSeries: 0.5,

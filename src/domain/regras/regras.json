@@ -522,11 +522,11 @@
   },
   {
     "id": "progressao.salto-grande",
-    "regra": "Salto relativo de carga acima de ~10%",
+    "regra": "Salto relativo de carga acima de ~10% (revista na auditoria do treino, 02/11/2026: sem vaivém entre subir e voltar)",
     "valores": {
-      "iniciante": "exigir 1–2 repetições acima do topo antes de subir; se depois de subir a 1ª série ficar abaixo do mínimo, voltar à carga anterior",
-      "intermediario": "exigir 1–2 repetições acima do topo antes de subir; se depois de subir a 1ª série ficar abaixo do mínimo, voltar à carga anterior",
-      "avancado": "exigir 1–2 repetições acima do topo antes de subir; se depois de subir a 1ª série ficar abaixo do mínimo, voltar à carga anterior"
+      "iniciante": "exigir 1–2 repetições acima do topo antes de subir; se depois de subir a 1ª série ficar abaixo do mínimo, voltar à carga anterior; essa carga não é sugerida de novo nas 6 sessões seguintes (antes, a escada `equipamento.escada-carga-leve`)",
+      "intermediario": "exigir 1–2 repetições acima do topo antes de subir; se depois de subir a 1ª série ficar abaixo do mínimo, voltar à carga anterior; essa carga não é sugerida de novo nas 6 sessões seguintes (antes, a escada `equipamento.escada-carga-leve`)",
+      "avancado": "exigir 1–2 repetições acima do topo antes de subir; se depois de subir a 1ª série ficar abaixo do mínimo, voltar à carga anterior; essa carga não é sugerida de novo nas 6 sessões seguintes (antes, a escada `equipamento.escada-carga-leve`)"
     },
     "selo": "consenso",
     "fontes": [
@@ -536,11 +536,11 @@
   },
   {
     "id": "progressao.carga-leve",
-    "regra": "Carga leve demais",
+    "regra": "Carga leve demais (revista na auditoria do treino, 02/11/2026)",
     "valores": {
-      "iniciante": "1ª série passa do topo por ≥ 2 repetições no RIR alvo → subir 2 incrementos",
-      "intermediario": "1ª série passa do topo por ≥ 2 repetições no RIR alvo → subir 2 incrementos",
-      "avancado": "1ª série passa do topo por ≥ 2 repetições no RIR alvo → subir 2 incrementos"
+      "iniciante": "1ª série passa do topo por ≥ 2 repetições no RIR alvo → subir 2 incrementos se o salto total ficar em até ~10% (só medível em kg); senão, 1 incremento",
+      "intermediario": "1ª série passa do topo por ≥ 2 repetições no RIR alvo → subir 2 incrementos se o salto total ficar em até ~10% (só medível em kg); senão, 1 incremento",
+      "avancado": "1ª série passa do topo por ≥ 2 repetições no RIR alvo → subir 2 incrementos se o salto total ficar em até ~10% (só medível em kg); senão, 1 incremento"
     },
     "selo": "consenso",
     "fontes": [

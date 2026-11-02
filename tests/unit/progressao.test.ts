@@ -36,8 +36,34 @@ describe('dupla progressão', () => {
     const h2 = [sessao(kg(8), [13, 13, 13]), sessao(kg(8), [13, 13, 13])];
     expect(sugerirProgressao(h2, alvo, { tipo: 'halter', lista: [8, 10] })).toMatchObject({ acao: 'subir', proxima: kg(10) });
   });
-  it('carga leve demais: 2 incrementos', () => {
-    expect(sugerirProgressao([sessao(kg(9), [15, 13, 12])], alvo, halter)).toMatchObject({ acao: 'subir', proxima: kg(12), regraId: 'progressao.carga-leve' });
+  it('carga leve demais: 2 incrementos, se o salto total ficar em até ~10%', () => {
+    const fina = { tipo: 'halter' as const, lista: [20, 21, 22, 24] };
+    expect(sugerirProgressao([sessao(kg(20), [15, 13, 12])], alvo, fina)).toMatchObject({ acao: 'subir', proxima: kg(22), regraId: 'progressao.carga-leve' });
+  });
+  it('carga leve demais com salto grande: 1 incremento só (auditoria, achado 3; antes, 9 → 12 kg, +33%)', () => {
+    expect(sugerirProgressao([sessao(kg(9), [15, 13, 12])], alvo, halter)).toMatchObject({ acao: 'subir', proxima: kg(10), regraId: 'progressao.carga-leve' });
+  });
+  describe('sem vaivém (auditoria do treino, achado 3)', () => {
+    const faixa = { reps: [6, 10] as [number, number], rir: [1, 2] as [number, number] };
+    it('halteres de 2 em 2 kg: 18 kg × 12 sobe para 20, e não para 22 (+22%)', () => {
+      const op = { tipo: 'halter' as const, lista: [16, 18, 20, 22, 24] };
+      expect(sugerirProgressao([sessao(kg(18), [12, 11, 10])], faixa, op)).toMatchObject({ acao: 'subir', proxima: kg(20) });
+    });
+    it('máquina de placas: na carga leve, 1 placa por vez', () => {
+      const p = (n: number): Carga => ({ tipo: 'placa', placa: n });
+      const op = { tipo: 'maquina' as const, placasMax: 15 };
+      expect(sugerirProgressao([sessao(p(8), [17, 16, 15], 0)], { reps: [10, 15], rir: [0, 1] }, op)).toMatchObject({ acao: 'subir', proxima: p(9) });
+    });
+    it('só 2 pares (5 e 10 kg): depois de voltar dos 10 kg, não tenta os 10 kg de novo logo em seguida; segue a escada', () => {
+      const op = { tipo: 'halter' as const, lista: [5, 10] };
+      const h = [sessao(kg(5), [23, 22, 21]), sessao(kg(10), [0, 0, 0], 0), sessao(kg(5), [23, 22, 21])];
+      expect(sugerirProgressao(h.slice(0, 1), faixa, op)).toMatchObject({ acao: 'subir', proxima: kg(10) });
+      expect(sugerirProgressao(h.slice(0, 2), faixa, op)).toMatchObject({ acao: 'voltar', proxima: kg(5) });
+      expect(sugerirProgressao(h, faixa, op)).toMatchObject({ acao: 'manter', regraId: 'equipamento.escada-carga-leve' });
+      // Passadas 6 sessões sem tentar, a carga volta a ser sugerida.
+      const depois = [...h, ...Array.from({ length: 6 }, () => sessao(kg(5), [24, 23, 22]))];
+      expect(sugerirProgressao(depois, faixa, op)).toMatchObject({ acao: 'subir', proxima: kg(10) });
+    });
   });
   it('subiu e a 1ª série ficou abaixo do mínimo: voltar à carga anterior', () => {
     const h = [sessao(kg(10), [12, 12, 12]), sessao(kg(12), [6, 6, 5])];
