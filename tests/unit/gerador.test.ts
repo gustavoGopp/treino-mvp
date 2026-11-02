@@ -205,7 +205,8 @@ for (const [nome, base] of Object.entries(PERSONAS))
             perfil: comDor({ ...base.perfil, diasSemana: DIVISOES[divisao].diasSemana, divisao, minutosSessao, nivel }, dores),
           });
 
-describe(`propriedades (${variacoes.length} combinações)`, () => {
+// Varre 1.296 programas por teste: no CI com cobertura, um teste chegou a 5,3 s (o limite padrão é 5 s).
+describe(`propriedades (${variacoes.length} combinações)`, { timeout: 30_000 }, () => {
   it('mesma entrada → mesma saída', () => {
     for (const v of variacoes.slice(0, 40)) expect(JSON.stringify(gerarPrograma(v.perfil, v.inv)), v.nome).toBe(JSON.stringify(gerarPrograma(v.perfil, v.inv)));
   });
