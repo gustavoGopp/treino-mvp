@@ -9,7 +9,7 @@
     "isolatedModules": true,
     "skipLibCheck": true,
     "noEmit": true,
-    "types": ["node"]
+    "types": ["node", "vite/client"]
   },
-  "include": ["vite.config.ts", "playwright.config.ts", "tests/e2e", "tests/repo", "tests/motor", "scripts/*.ts"]
+  "include": ["vite.config.ts", "playwright.config.ts", "tests/e2e", "tests/repo", "tests/motor", "scripts/*.ts", "scripts/auditoria/*.ts"]
 }
