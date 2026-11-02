@@ -47,7 +47,7 @@ Detalhes em `planejamento/2026-11-diagnostico.md`, `PLANO-MVP.md` e `pesquisa-v2
 - **Gráfico da evolução:** hoje é uma lista da melhor série de cada treino; um gráfico simples pode entrar depois do uso real (R3).
 
 ## Do R3 (uso real, a partir de 02/11/2026)
-- **Clareza do boneco (para o R4).** No uso, o Gustavo achou que a animação atual não deixa claro que são os músculos da pessoa; a versão anterior, mais simples, estava melhor. Dois caminhos a comparar lado a lado no R4: aprimorar o boneco atual, ou um estilo mais simples com mais clareza e um visual melhor. As 31 animações aprovadas não mudam sem a decisão dele.
+- **Clareza do boneco (para o R4).** No geral, o boneco do guia está bom para o Gustavo (o mesmo do guia original). O que incomoda são vistas em que não dá para entender o corpo e os músculos (abaixo). Dois caminhos a comparar lado a lado no R4: aprimorar o boneco atual, ou um estilo mais simples, com mais clareza e um visual melhor. As 31 animações aprovadas não mudam sem a decisão dele.
 - **Puxada unilateral na polia alta, vista de trás (o que mais incomodou o Gustavo):** o tronco vira um triângulo com triângulos menores, e não dá para entender o que é músculo. Bom caso de teste para o R4, ao lado do goblet.
 - **Face pull, vista de cima (secundário):** o cabo até a polia vira um triângulo comprido, e o rótulo "mãos abrem ao lado da cabeça" fica atrás da caixa da fase.
 - Os dois vêm do guia original; mexer muda animações aprovadas, então entram no R4 ou no R5, com linha de base nova.
