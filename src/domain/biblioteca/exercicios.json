@@ -1538,7 +1538,8 @@
     "quadriceps"
    ],
    "secundarios": [
-    "gluteos"
+    "gluteos",
+    "adutores"
    ]
   },
   "requer": [
@@ -1573,7 +1574,8 @@
     "quadriceps"
    ],
    "secundarios": [
-    "gluteos"
+    "gluteos",
+    "adutores"
    ]
   },
   "requer": [
@@ -1607,7 +1609,8 @@
     "quadriceps"
    ],
    "secundarios": [
-    "gluteos"
+    "gluteos",
+    "adutores"
    ]
   },
   "requer": [
@@ -1641,7 +1644,8 @@
     "quadriceps"
    ],
    "secundarios": [
-    "gluteos"
+    "gluteos",
+    "adutores"
    ]
   },
   "requer": [
@@ -1675,7 +1679,8 @@
     "quadriceps"
    ],
    "secundarios": [
-    "gluteos"
+    "gluteos",
+    "adutores"
    ]
   },
   "requer": [
@@ -2504,7 +2509,8 @@
     "quadriceps"
    ],
    "secundarios": [
-    "gluteos"
+    "gluteos",
+    "adutores"
    ]
   },
   "requer": [
@@ -2540,7 +2546,8 @@
     "quadriceps"
    ],
    "secundarios": [
-    "gluteos"
+    "gluteos",
+    "adutores"
    ]
   },
   "requer": [
@@ -2577,7 +2584,8 @@
     "gluteos"
    ],
    "secundarios": [
-    "posteriores"
+    "posteriores",
+    "adutores"
    ]
   },
   "requer": [
@@ -2612,7 +2620,8 @@
     "quadriceps"
    ],
    "secundarios": [
-    "gluteos"
+    "gluteos",
+    "adutores"
    ]
   },
   "requer": [

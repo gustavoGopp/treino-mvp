@@ -28,4 +28,10 @@ describe('músculos da biblioteca (revisão de anatomia)', () => {
     expect(posterior.filter((e) => !e.id.startsWith('face-pull')).map((e) => e.id).sort()).toEqual(['crucifixo-inverso', 'crucifixo-invertido-curvado', 'voador-invertido']);
   });
 
+  it('achado 6: todo agachar e todo afundo contam os adutores como secundário', () => {
+    // Kubo 2019 (PMID 31230110), Plotkin 2023 e Kinoshita 2026 (PMID 41630124; leg press): os adutores cresceram
+    // nos exercícios de agachar (um estudo cada). Os adutores não têm meta: muda a conta mostrada, não o treino.
+    for (const e of BIBLIOTECA.filter((x) => x.padrao === 'agachar' || x.padrao === 'afundo'))
+      expect([...e.musculos.primarios, ...e.musculos.secundarios], e.id).toContain('adutores');
+  });
 });
