@@ -68,6 +68,8 @@ export const EXERCICIOS_POR_MINUTOS: [number, number][] = [
   [75, 10],
   [90, 12],
 ];
+/** selecao.isolador-obrigatorio: com até este número de exercícios por treino, os obrigatórios entram depois das vagas-base. */
+export const OBRIGATORIO_CURTO = 4;
 export function exerciciosPorSessao(minutos: number): number {
   // Proporcional entre os pontos da tabela (2 exercícios a cada 15 min), com piso de 3 e teto de 14.
   const [m0, n0] = EXERCICIOS_POR_MINUTOS[0]!;

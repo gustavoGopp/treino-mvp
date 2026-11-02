@@ -1010,11 +1010,11 @@
   },
   {
     "id": "selecao.isolador-obrigatorio",
-    "regra": "Quando o equipamento permite, entra o isolador que cobre o que os multiarticulares não cobrem; ele não sai nos cortes de tempo",
+    "regra": "Quando o equipamento permite, entra o isolador que cobre o que os multiarticulares não cobrem; ele não sai nos cortes de tempo. Em treinos curtos (até 4 exercícios), entra depois das vagas-base do dia, para não deixar um músculo grande sem nenhuma série na semana (revista na auditoria do treino, 02/11/2026; `selecao.multi-mono`)",
     "valores": {
-      "iniciante": "extensora (reto femoral); tríceps acima da cabeça (cabeça longa); panturrilha em pé (gastrocnêmio)",
-      "intermediario": "extensora (reto femoral); tríceps acima da cabeça (cabeça longa); panturrilha em pé (gastrocnêmio)",
-      "avancado": "extensora (reto femoral); tríceps acima da cabeça (cabeça longa); panturrilha em pé (gastrocnêmio)"
+      "iniciante": "extensora (reto femoral); tríceps acima da cabeça (cabeça longa); panturrilha em pé (gastrocnêmio); com até 4 exercícios por treino, entram depois das vagas-base do dia",
+      "intermediario": "extensora (reto femoral); tríceps acima da cabeça (cabeça longa); panturrilha em pé (gastrocnêmio); com até 4 exercícios por treino, entram depois das vagas-base do dia",
+      "avancado": "extensora (reto femoral); tríceps acima da cabeça (cabeça longa); panturrilha em pé (gastrocnêmio); com até 4 exercícios por treino, entram depois das vagas-base do dia"
     },
     "selo": "moderada",
     "fontes": [

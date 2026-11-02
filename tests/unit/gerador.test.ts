@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { POR_ID } from '../../src/domain/biblioteca';
+import { BIBLIOTECA, POR_ID } from '../../src/domain/biblioteca';
 import {
   ALTERNATIVAS_A_MOSTRA,
   equipamentoDe,
@@ -13,13 +13,14 @@ import {
   volumePorMusculo,
   type DiaPrograma,
   type ExercicioPrescrito,
+  type Grupo,
   type Perfil,
   type Programa,
 } from '../../src/domain/gerador';
 import type { Articulacao, Musculo } from '../../src/domain/biblioteca';
 import { DIVISOES, DIVISAO_IDS } from '../../src/domain/gerador/divisoes';
 import { FUNCAO } from '../../src/domain/gerador/funcoes';
-import { DESCANSO, REGRAS, VOLUME, NIVEIS } from '../../src/domain/regras';
+import { DESCANSO, REGRAS, VOLUME, NIVEIS, OBRIGATORIO_CURTO, exerciciosPorSessao } from '../../src/domain/regras';
 import { capacidades, type Inventario } from '../../src/domain/taxonomia/equipamentos';
 import { ana, bruno, carla, diego, PERSONAS } from '../personas';
 
@@ -433,8 +434,8 @@ describe('regras do R0b no gerador', () => {
     for (const v of variacoes.filter((_, i) => i % 11 === 0))
       for (const x of ok(v.perfil, v.inv).dias.flatMap((d) => d.exercicios)) expect(x.descansoSeg).toBe(x.tipo === 'composto' ? 105 : 75);
   });
-  it('selecao.isolador-obrigatorio: extensora, tríceps acima da cabeça e panturrilha em pé entram sempre que houver', () => {
-    for (const v of variacoes) {
+  it('selecao.isolador-obrigatorio: extensora, tríceps acima da cabeça e panturrilha em pé entram sempre que houver (com 5 exercícios ou mais por treino)', () => {
+    for (const v of variacoes.filter((x) => exerciciosPorSessao(x.perfil.minutosSessao) > OBRIGATORIO_CURTO)) {
       const p = ok(v.perfil, v.inv);
       const caps = capacidades(v.inv);
       const joelho = doresDe(v.perfil).some((d) => d.articulacao === 'joelho' && d.nota! > 5);
@@ -456,6 +457,18 @@ describe('regras do R0b no gerador', () => {
     }
     const funcoes = new Set(xs.map((x) => x.funcao));
     expect(funcoes.has('extensao-quadril') && (funcoes.has('agachar') || funcoes.has('afundo'))).toBe(true);
+  });
+  it('selecao.isolador-obrigatorio: em treinos de até 4 exercícios, os obrigatórios entram depois das vagas-base, e nenhum músculo grande possível fica zerado nos 3 dias (auditoria, achado 4)', () => {
+    for (const p of Object.values(PERSONAS))
+      for (const minutosSessao of [20, 30])
+        for (const prioridades of [[], ['pernas', 'gluteos']] as Grupo[][]) {
+          const perfil: Perfil = { ...p.perfil, nivel: 'iniciante', diasSemana: 3, divisao: 'ct-abc', minutosSessao, prioridades, semanasParado: 0 };
+          const prog = ok(perfil, p.inventario);
+          const caps = capacidades(p.inventario);
+          const possivel = (m: Musculo) => BIBLIOTECA.some((e) => e.musculos.primarios.includes(m) && e.requer.some((g) => g.every((c) => caps.has(c))));
+          for (const m of ['peito', 'costas', 'quadriceps', 'posteriores', 'gluteos'] as Musculo[])
+            if (possivel(m)) expect(prog.volumeSemanal[m] ?? 0, `${p.nome}/${minutosSessao}min/${m}`).toBeGreaterThan(0);
+        }
   });
   it('selecao.funcao-da-vaga: o desempate de estabilidade só vale para iniciante', () => {
     const iniciante = ok({ ...bruno.perfil, nivel: 'iniciante', semanasParado: 0 }, bruno.inventario);

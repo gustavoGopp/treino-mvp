@@ -1,5 +1,5 @@
 import { BIBLIOTECA, MUSCULOS, type Articulacao, type Exercicio, type Musculo, type Padrao } from '../biblioteca';
-import { DESCANSO, READAPTACAO, RIR, TEMPO, VOLUME, NIVEL_COMPLEXIDADE_MAX, exerciciosPorSessao, r, type Nivel } from '../regras';
+import { DESCANSO, READAPTACAO, RIR, TEMPO, VOLUME, NIVEL_COMPLEXIDADE_MAX, OBRIGATORIO_CURTO, exerciciosPorSessao, r, type Nivel } from '../regras';
 import { capacidades, cargaMaxHalter, cargasHalter, cargasKettlebell, ITENS, type Inventario, type ItemId } from '../taxonomia/equipamentos';
 import { avaliarTriagem, efeitoDaDor, type ResultadoTriagem, type Triagem } from '../triagem';
 import { divisaoEscolhida, type DiasSemana, type Divisao, type DivisaoId, type Vaga } from './divisoes';
@@ -256,12 +256,15 @@ export function gerarPrograma(perfil: Perfil, inventarioOriginal: Inventario): R
     const rank = (x: (typeof comExercicio)[number]) =>
       x.vaga.complemento && !prioritarios.has(x.res.funcao.musculo) && !x.vaga.prioridade?.some((g) => grupos.has(g)) ? 1 : 0;
     // Os isoladores obrigatórios entram sempre que houver (selecao.isolador-obrigatorio); o resto preenche até N.
-    const obrigatorias = comExercicio.filter((x) => x.res.funcao.obrigatoria);
+    // Em treinos curtos (até OBRIGATORIO_CURTO exercícios), eles entram na fila comum, depois das vagas-base do dia:
+    // senão ocupam 2 de 3 lugares e a semana fica sem costas ou posteriores (selecao.multi-mono; auditoria, achado 4).
+    const curto = N <= OBRIGATORIO_CURTO;
+    const obrigatorias = curto ? [] : comExercicio.filter((x) => x.res.funcao.obrigatoria);
     const mantidas = [
       ...obrigatorias,
       ...comExercicio
-        .filter((x) => !x.res.funcao.obrigatoria)
-        .sort((a, b) => rank(a) - rank(b) || a.ordem - b.ordem)
+        .filter((x) => !obrigatorias.includes(x))
+        .sort((a, b) => rank(a) - rank(b) || (curto ? Number(!!a.res.funcao.obrigatoria) - Number(!!b.res.funcao.obrigatoria) : 0) || a.ordem - b.ordem)
         .slice(0, Math.max(0, N - obrigatorias.length)),
     ];
     for (const x of comExercicio) if (!mantidas.includes(x)) foraPorMinutos.add(x.res.funcao.musculo);
