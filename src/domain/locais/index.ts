@@ -127,6 +127,14 @@ export function diaNoLocal(dia: DiaPrograma, perfil: Perfil, inventario: Inventa
       musculosPresentes.add(achado.f.musculo);
       continue;
     }
+    // O equivalente existe, mas já está no treino de hoje? Então o motivo verdadeiro é esse, e não "nenhum é possível".
+    const jaNoDia = funcoes.flatMap((g) => g.niveis.flat().filter((id) => usados.has(id) && ctx.naFuncao(g, id)));
+    const nomes = [...new Set(jaNoDia)].map((id) => minuscula(POR_ID[id]!.nome));
+    const jaEsta = nomes.length
+      ? nomes.length === 1
+        ? `o único equivalente possível aqui (${nomes[0]}) já está no treino de hoje`
+        : `os equivalentes possíveis aqui (${nomes.join(', ')}) já estão no treino de hoje`
+      : '';
     // 2) selecao.dia-sem-principal: primeiro outro movimento do mesmo músculo; senão, outro músculo do dia que ainda
     //    não está no dia.
     const musculo = f?.musculo;
@@ -143,7 +151,7 @@ export function diaNoLocal(dia: DiaPrograma, perfil: Perfil, inventario: Inventa
     if (outro) {
       const nivelFuncao = outro.g.niveis.findIndex((n) => n.includes(outro.y.id));
       const onde = outro.mesmo ? 'mesmo músculo, outro movimento' : 'outro músculo do dia';
-      const motivo = `${falta}, e nenhum equivalente de ${f ? minuscula(f.nome) : minuscula(e.nome)} é possível: no lugar de ${minuscula(e.nome)}, ${minuscula(outro.y.nome)} — ${onde}`;
+      const motivo = `${falta}, e ${jaEsta || `nenhum equivalente de ${f ? minuscula(f.nome) : minuscula(e.nome)} é possível`}: no lugar de ${minuscula(e.nome)}, ${minuscula(outro.y.nome)} — ${onde}`;
       novos.set(x.exId, entrar(x, outro.y, outro.g, nivelFuncao, { regraId: r('selecao.dia-sem-principal'), texto: `Neste local, ${motivo}.` }));
       trocas.push({ vaga: x.exId, entrou: outro.y.id, motivo, regraId: r('selecao.dia-sem-principal') });
       usados.add(outro.y.id);
@@ -151,7 +159,7 @@ export function diaNoLocal(dia: DiaPrograma, perfil: Perfil, inventario: Inventa
       continue;
     }
     // 3) Nada possível: a vaga fica de fora hoje, com o motivo verdadeiro.
-    const motivo = `${falta}, e nenhum exercício possível substitui ${minuscula(e.nome)}: a vaga fica de fora hoje`;
+    const motivo = `${falta}, e ${jaEsta || `nenhum exercício possível substitui ${minuscula(e.nome)}`}: a vaga fica de fora hoje`;
     novos.set(x.exId, null);
     trocas.push({ vaga: x.exId, motivo, regraId: r('local.treino-do-dia') });
     avisos.push({ regraId: r('local.treino-do-dia'), texto: `Neste local, ${motivo}.` });
