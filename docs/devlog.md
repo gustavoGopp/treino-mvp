@@ -712,7 +712,7 @@ As listas exatas ficam em `tests/unit/metas-r0.test.ts`, para o R0c zerar.
 
 **Snapshots** revistos e aprovados pelo Gustavo (02/11/2026): Ana (ponte com halter, ombro posterior 3 → 6, peito 4 → 6, costas 6 → 7,5, abdômen 4 → 0), Bruno (ponte com halter no Inferior B, nos 2 locais) e as voltas do R2 (barra da Carla 40 → 36 kg; Ana com 9 séries na semana 1).
 
-**Testes:** 501 unitários (eram 488); `npm run check` passando; `npm run test:e2e` em andamento (o resultado entra aqui ao fim). As 32 animações e a linha de base do Boneco não mudaram.
+**Testes:** 501 unitários (eram 488); `npm run check` passando; `npm run test:e2e` com os 64 testes passando (o da volta de 22 dias passou a esperar "9 de 14" séries no Corpo todo A da Ana, eram "8 de 13", pelo programa aprovado). As 32 animações e a linha de base do Boneco não mudaram.
 
 **Fica para depois** (`backlog.md`): os 37 exercícios ainda sem guia, em lotes pela frequência; a 2ª vaga do músculo prioritário; a escada por exercício no peso do corpo e no elástico; a cascata no 2º local (achado novo); e, para a sessão do R3, medir o "estagnado" no export.
 
