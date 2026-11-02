@@ -48,5 +48,6 @@ Detalhes em `planejamento/2026-11-diagnostico.md`, `PLANO-MVP.md` e `pesquisa-v2
 
 ## Do R3 (uso real, a partir de 02/11/2026)
 - **Clareza do boneco (para o R4).** No uso, o Gustavo achou que a animação atual não deixa claro que são os músculos da pessoa; a versão anterior, mais simples, estava melhor. Dois caminhos a comparar lado a lado no R4: aprimorar o boneco atual, ou um estilo mais simples com mais clareza e um visual melhor. As 31 animações aprovadas não mudam sem a decisão dele.
+- **Face pull, vista de cima (secundário, pedido do Gustavo):** o cabo até a polia vira um triângulo comprido e pouco claro, e o rótulo "mãos abrem ao lado da cabeça" fica atrás da caixa da fase. Vem do guia original; mexer muda uma animação aprovada, então entra com o R4 ou o R5, com uma linha de base nova.
 - **Revisão por especialista da figura** (pedido do Gustavo): uma rodada com um especialista em design gráfico ou em anatomia humana, sobre a direção escolhida no R4 e antes de levá-la a todos os exercícios (R5).
 - **Cadastro:** pular mais rápido quem não tem condição nenhuma; "o que evitar" junto das perguntas do início; a tela de equipamento com "academia completa" tem cerca de 6 telas de rolagem. Proposta a trazer ao Gustavo; mexe na ordem do cadastro e no critério 1.
