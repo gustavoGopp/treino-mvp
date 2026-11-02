@@ -621,3 +621,47 @@ As listas exatas ficam em `tests/unit/metas-r0.test.ts`, para o R0c zerar.
 > Agora ele conta os dias desde o último treino. Até 13 dias, nada muda: a pesquisa mostra que duas semanas não tiram força. Com 3 semanas ou mais, ele me recebe com um "bem-vindo de volta", deixa as 2 semanas seguintes mais leves e já preenche a carga 10% abaixo da última vez. A semana do programa passou a contar as semanas em que eu treinei, e não o calendário.
 >
 > Entrou também "a sua semana": quantos treinos eu fiz, as séries de cada músculo contra a meta, e "6 das últimas 8 semanas com treino", nunca uma sequência que zera. Sem vermelho e sem "você falhou": acompanhar o próprio progresso ajuda a manter o hábito, culpa não.
+
+## R4: O experimento do boneco, o mesmo movimento em 3 estilos (02/11/2026)
+
+**Por quê:** no uso real (R3), o boneco do guia foi bem no geral, mas a vista de trás da puxada unilateral não se lia: o tronco virava um triângulo com triângulos menores, e não dava para separar corpo e músculo. O Gustavo pediu para comparar dois caminhos antes de mexer em tudo.
+
+**Antes de desenhar (decisões do Gustavo):** músculo principal em vermelho e secundários em laranja, sólidos e sem transparência; caminho A com contorno e juntas marcadas, caminho B sem contorno; o músculo só no modo Músculos; na vista de trás da puxada, todos os músculos (grande dorsal e redondo maior; trapézio médio e inferior, romboides, deltoide posterior e bíceps).
+
+**O que mudou**
+- **Por que a vista de trás não se lia** (`docs/pesquisa/animacoes/r4-estilo-do-boneco.md`, seção 1): o tronco são dois polígonos que afinam para baixo; as escápulas são triângulos claros; coluna pontilhada, escápulas, seta e músculo se empilham em ~25 px no celular; o músculo é meio transparente; e a câmera inclui a torre inteira, então o corpo ocupa um quarto do palco.
+- **Pesquisa curta**, com selo: realçar o essencial ajuda a aprender com imagens (Richter 2016, moderada); animação × imagem parada (Höffler 2007, moderada e contestada); boneco × vídeo real (Lucas 2019, um estudo: preferiram o vídeo, aprenderam igual). Ninguém comparou boneco com silhueta para musculação; silhueta neutra com cor só no alvo é consenso de design. A anatomia de cada músculo realçado tem origem e inserção, com as divergências entre fontes anotadas; o OpenStax não abriu na rede da sessão.
+- **Dois estilos novos, como opção paralela do motor** (`src/engine/estilo/`): o mesmo esqueleto e as mesmas poses aprovadas, com outro desenho do corpo (tronco com forma de costas e de peito, membros com espessura) e músculos com forma anatômica simplificada, presos aos ossos. Um músculo só aparece se a face dele está virada para quem olha (de trás, o bíceps some). Com o estilo desligado, a saída é a de sempre, caractere por caractere.
+- **Laboratório do boneco** (`/lab/boneco`): os 3 estilos animados, com troca de exercício, vista e modo, câmera lenta e os três juntos. Só existe em desenvolvimento e nas prévias da Vercel; no app publicado a rota não existe (teste no navegador).
+- **Folhas de contatos** com `--estilo=a|b` (`scripts/folha-animacao.mjs`) e grades de comparação (`scripts/comparar-estilos.mjs`): início, meio e fim, nos modos Técnica e Músculos, no tamanho do celular e na miniatura do cartão.
+- **Roteiro da revisão do especialista** (`docs/revisoes/r4-roteiro-especialista.md`): o que é o app, o que avaliar, o material, 7 perguntas e como devolver; e quem chamar (designer de ilustração didática ou profissional de Educação Física ou Fisioterapia).
+- **Testes:** 485 unitários (eram 480; 5 novos provam que o estilo desligado não muda nada e que A e B não vazam estado para o estilo atual) e 62 no navegador (eram 61; o novo confere que o laboratório não aparece no app). As 31 animações aprovadas seguem com **0 pixel de diferença** e **IK = 0**; nenhuma linha de base foi tocada.
+
+**Decisão do Gustavo (02/11/2026):** **seguir com o caminho A.**
+- Qual explica melhor o movimento? **A.**
+- Em qual dá para ver que músculo trabalha? **A.**
+- Qual é mais agradável de ver? **B, com A um pouquinho atrás.**
+
+**Estimativa para o R5 (levar o A às 31 animações e às que faltam)**
+- **Antes:** a rodada com o especialista sobre o A, com o roteiro pronto. O que o B tem de mais agradável (a leveza, menos linhas) entra como pergunta para ele: por exemplo, um contorno mais fino no A.
+- **O que falta desenhar:** as formas anatômicas dos outros músculos do app (peitoral, deltoides anterior e lateral, trapézio superior, tríceps, antebraço, posteriores da coxa, panturrilha, eretores, reto abdominal e oblíquos: 11 formas, com fonte); os modos Trajetória e Erros no estilo A (as figuras fantasma e a de erro); a vista de cima do tronco, que ainda sai estranha.
+- **Esforço:** cerca de 5 a 7 dias de trabalho, mais as aprovações do Gustavo em 3 lotes de folhas de contatos.
+- **Regressão visual:** o estilo atual continua no motor, e os testes de hoje (o guia original como oráculo, `motor.json` e `novas.json`) seguem provando que poses e cinemática não mudaram. O estilo A ganha uma **linha de base nova**, aprovada pelo Gustavo lote a lote, e o guia do app passa a ser comparado com ela. Nenhuma linha de base é atualizada só para o teste passar.
+- **Ordem:** pela frequência nos programas das 4 personas (vagas e alternativas): panturrilha em pé, afundo, elevação lateral, flexão, remada unilateral, elevação com halteres, panturrilha no chão, supino reto, stiff e stiff unilateral no 1º lote; depois barra fixa, búlgaro, crucifixo na polia, abdominais, tríceps francês, puxada unilateral, remadas, desenvolvimento, face pull e roscas; o resto no 3º. As animações novas que faltam já nascem no estilo A.
+
+**Face pull de cima:** o estilo A **não resolve sozinho**. O "triângulo comprido" é a corda (dois segmentos) somada ao cabo até a polia, e o rótulo "mãos abrem ao lado da cabeça" fica no topo do palco, onde a caixa da fase do app o cobre. Proposta para o R5, à parte: desenhar a corda e o cabo de forma mais leve e mover o rótulo para baixo, com linha de base nova da vista de cima.
+
+**Imagem:** `img/r4-boneco.png` (os 3 estilos lado a lado, no modo Músculos, no fim do movimento: puxada de trás e de lado, e goblet de lado).
+
+**Fica para o R5:** levar o A a todas as animações, depois do especialista; a correção do face pull.
+
+**Rascunho de post para o LinkedIn**
+> Meu app de treino tem um boneco animado que mostra como fazer cada exercício. De lado, ele funciona. De trás, numa puxada na polia, o tronco virava um triângulo cheio de triângulos menores, e ninguém entendia o que era corpo e o que era músculo.
+>
+> Antes de redesenhar 31 animações, fiz um experimento pequeno: o mesmo movimento, nas mesmas poses, em 3 estilos. O atual; um boneco melhorado, com braços e pernas com espessura, contorno e juntas marcadas; e uma silhueta lisa, sem contorno. Nos dois novos, o músculo tem forma de músculo e cor sólida: vermelho no principal, laranja nos secundários. E o músculo só aparece se estiver virado para quem olha: de trás, o bíceps some.
+>
+> A pesquisa ajuda pouco aqui: realçar o essencial ajuda a aprender com imagens, mas ninguém comparou boneco com silhueta para musculação. Então decidi olhando, no celular, lado a lado.
+>
+> O boneco melhorado explica melhor o movimento e mostra melhor o músculo. A silhueta é um pouco mais bonita. Fico com o boneco, e antes de levá-lo a todos os exercícios vou pedir a opinião de quem entende de ilustração ou de anatomia.
+>
+> E nenhuma das 31 animações aprovadas mudou um pixel no caminho.
