@@ -1074,9 +1074,7 @@
    "primarios": [
     "ombro_posterior"
    ],
-   "secundarios": [
-    "costas"
-   ]
+   "secundarios": []
   },
   "requer": [
    [
@@ -3047,9 +3045,7 @@
    "primarios": [
     "ombro_posterior"
    ],
-   "secundarios": [
-    "costas"
-   ]
+   "secundarios": []
   },
   "requer": [
    [
@@ -3552,9 +3548,7 @@
    "primarios": [
     "ombro_posterior"
    ],
-   "secundarios": [
-    "costas"
-   ]
+   "secundarios": []
   },
   "requer": [
    [

@@ -15,4 +15,17 @@ describe('músculos da biblioteca (revisão de anatomia)', () => {
       expect(e.musculos.secundarios, e.id).not.toContain('posteriores');
     }
   });
+
+  it('achado 5: os crucifixos invertidos não contam costas; o face pull, que junta as escápulas, conta', () => {
+    // Abrir os braços para trás (abdução horizontal) é do deltoide posterior e do infraespinal (Schoenfeld 2013,
+    // PMID 23302754, EMG); o meio das costas só entra quando a técnica junta as escápulas, e o cartão do crucifixo
+    // inverso pede o contrário. O face pull pede "entre as escápulas".
+    const posterior = BIBLIOTECA.filter((e) => e.padrao === 'isolador-ombro-posterior');
+    for (const e of posterior) {
+      if (e.id.startsWith('face-pull')) expect(e.musculos.secundarios, e.id).toContain('costas');
+      else expect(e.musculos.secundarios, e.id).not.toContain('costas');
+    }
+    expect(posterior.filter((e) => !e.id.startsWith('face-pull')).map((e) => e.id).sort()).toEqual(['crucifixo-inverso', 'crucifixo-invertido-curvado', 'voador-invertido']);
+  });
+
 });
