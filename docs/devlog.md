@@ -722,3 +722,46 @@ As listas exatas ficam em `tests/unit/metas-r0.test.ts`, para o R0c zerar.
 > O que me deixou tranquilo: em nenhum caso o app passou um exercício que carrega uma articulação marcada com dor forte. O que me surpreendeu: com dor no cotovelo, a rosca saía, mas a remada ficava, porque o dado dizia que a remada não usa o cotovelo. Um campo esquecido numa planilha vira um treino errado em escala.
 >
 > Também apareceu um bug que nenhum teste de exemplo pegaria: com halteres de 2 em 2 kg, o app subia a carga, mandava voltar e subia de novo, sem fim. E o exercício mais prescrito de todos, a ponte de glúteo, não tinha nem animação nem texto de como fazer. Agora tem.
+
+---
+
+## Revisão de anatomia: os músculos de cada exercício em 3 lugares (02/11/2026)
+
+**Por quê.** A 2ª das 3 sessões pedidas pelo Gustavo (auditoria do treino → **anatomia** → design). Os músculos de cada exercício aparecem em três lugares que precisam bater: a **biblioteca** (que conta o volume: o secundário vale meia série), o **texto** do guia e do cartão e o **desenho** do Boneco. A auditoria tinha conferido só a biblioteca × o texto.
+
+**O que foi feito**
+- **Tabela da anatomia gerada pelos dados** (`npm run auditoria:anatomia`, encadeada no `npm run auditoria`; `revisoes/anatomia/tabela.md`): os 69 exercícios com guia (31 animações e 38 cartões), com a biblioteca, o `target`, o `feel`, o desenho e marcas automáticas onde os três não batem; e toda a biblioteca por músculo. As regras de leitura ficam em `scripts/auditoria/anatomia-regras.ts`, usadas também pelo teste.
+- **Contra as fontes:** os 9 pontos da auditoria e cada marca da tabela, com selo. 10 estudos com o resumo lido no PubMed (que voltou a abrir nesta sessão), 5 deles novos em `fontes.md`; EMG só como apoio.
+- **Relatório** `revisoes/anatomia.md`: 13 achados por gravidade × frequência, o efeito de cada mudança simulado nas 4 personas antes da decisão, e uma seção nova na página "Diagnóstico do treino-mvp".
+
+**O que estava bom:** todo músculo principal aparece no texto; os 38 cartões batem com a biblioteca; 48 dos 69 exercícios batiam nos três lugares; as costas no desenho (dorsal e meio das costas) batem com os textos; os isoladores com ensaio (extensora, flexora sentada, panturrilha em pé, tríceps acima da cabeça) estão marcados como os ensaios mediram.
+
+**Decisões do Gustavo (02/11/2026), item a item:** entram os achados 1 a 7, 9, 10 e 13; o 8 fica como está (os músculos que só ajudam continuam no desenho, sem contar); o 12 (mergulho) também fica como está.
+
+**O que mudou no app** (um commit e um teste por correção; `tests/unit/anatomia.test.ts`, 13 testes)
+1. **Posteriores fora da ponte, do hip thrust e dos coices.** No único ensaio que mediu (hip thrust, Plotkin 2023), os posteriores quase não cresceram. A conta deixava o stiff com uma série a menos.
+2. **"Costas" fora dos crucifixos invertidos** (fica no face pull): o cartão pede para não juntar as escápulas, que é o que faz o meio das costas trabalhar.
+3. **Adutores em todo agachamento, no leg press e no terra hexagonal** (Kubo 2019, Plotkin 2023, Kinoshita 2026). Não muda treino nenhum (adutores não têm meta). E, de quebra, "prefiro o leg press" passou a manter o volume igual.
+4. **O desenho do Boneco segue a biblioteca** em 6 animações, com as folhas aprovadas uma a uma: o glúteo em laranja no afundo, no búlgaro e no stiff unilateral; os adutores no afundo e no búlgaro; a lateral do ombro em laranja no desenvolvimento; e o trapézio fora das elevações laterais (o texto diz que senti-lo é sinal de erro).
+5. **Textos:** o desenvolvimento ensina a frente do ombro como principal; o cartão da hiperextensão diz que a lombar segura a coluna; 7 guias passam a citar os secundários ("o bíceps e a parte de trás do ombro ajudam").
+6. **A cópia `elevacao-lateral-b` saiu** do motor, do texto e das linhas de base: aparecia duas vezes no catálogo do guia.
+7. **As 9 fichas novas** ganharam selo e fonte nos músculos.
+
+**Antes × depois:** marcas a conferir na tabela, de 10 para 0; principal do desenho diferente da biblioteca, de 4 animações para 0; programas com posteriores acima do máximo, de 2.511 para 992; com costas acima do máximo, de 1.493 para 994. Efeito colateral medido: programas com posteriores **zerados**, de 324 para 1.692, todos no cenário "só peso do corpo", em que a biblioteca não tem exercício de posteriores e a ponte só disfarçava isso na conta. O programa é o mesmo, e o aviso aparece em todos os casos.
+
+**Snapshots** revistos e aprovados pelo Gustavo (02/11/2026; `revisoes/anatomia/personas-antes-depois.md`): Ana (stiff unilateral 3 → 4, costas 7,5 → 6, aviso "posteriores 7 de 8"), Bruno (remada baixa 2 → 3), Carla (puxada e stiff 3 → 4), Diego (rosca com elástico 3 → 2).
+
+**Testes:** 512 unitários (eram 501); `npm run check` passando; `npm run test:e2e` com 63 testes (eram 64: saiu o da cópia removida). A linha de base do Boneco mudou só no modo "músculos" das 6 animações aprovadas; o estilo clássico continua idêntico ao guia original.
+
+**Imagem:** `img/anatomia-afundo-frente.png` (afundo de frente, antes em cima e depois embaixo: a faixa laranja na parte de dentro da coxa da frente são os adutores).
+
+**Fica para a sessão de design** (`prompts/sessao-design.md`): os adutores aparecem pequenos na vista de frente; diferenciar na legenda o músculo que "só ajuda" do secundário que conta; e decidir se o estilo clássico continua como opção, já que ele não recebeu estas correções.
+
+**Rascunho de post para o LinkedIn**
+> No meu app de treino, cada exercício diz quais músculos trabalha em três lugares: a planilha que conta o volume, o texto que ensina e o desenho animado. Escrevi um script que compara os três, e eles discordavam em 21 de 69 exercícios.
+>
+> O caso mais curioso: na elevação lateral, o desenho pintava o trapézio de laranja ("sinta aqui"), enquanto o texto dizia "se sentir o trapézio, você está fazendo errado".
+>
+> O mais importante: a planilha contava os posteriores da coxa na ponte de glúteo, o exercício mais prescrito do app. O único estudo que mediu isso achou que eles quase não crescem ali. Uma meia série a mais na conta, repetida em milhares de programas, vira um treino que parece completo sem ser.
+>
+> Tudo foi decidido item a item, com a fonte e o efeito nos treinos na mesa antes de mudar qualquer coisa.
