@@ -115,6 +115,31 @@ export function caixaPerto(ex, view) {
 }
 
 /**
+ * Prévia pequena (a escolha do estilo em "Meus dados"): o mesmo quadro de montarSvgEstilo, com a câmera
+ * fechada no corpo daquele instante (sem o chão vazio nem o resto do ciclo). Só muda o enquadramento.
+ */
+export function montarPrevia(ex, view, mode, t, estilo: Estilo) {
+  const q = montarSvgEstilo(ex, view, mode, t, 0, 120, estilo, true);
+  const PJ = VIEWS[view].proj;
+  const sk = skel(poseAt(ex, ex.K, t));
+  const pts = [sk.P, sk.M, sk.N, sk.Hc];
+  for (const k of ['R', 'L']) {
+    const d = sk.side[k];
+    pts.push(d.S, d.E, d.W, d.G, d.Hp, d.K, d.A, d.heel, d.toe);
+  }
+  let [x0, x1, y0, y1] = [1e9, -1e9, 1e9, -1e9];
+  for (const p of pts) {
+    const r = p === sk.Hc ? 12 : 8;
+    const [x, y] = PJ(p);
+    x0 = Math.min(x0, x - r); x1 = Math.max(x1, x + r); y0 = Math.min(y0, y - r); y1 = Math.max(y1, y + r);
+  }
+  if (view !== 'top') y1 = Math.max(y1, 2); // o pé fica no chão
+  let w = x1 - x0, h = y1 - y0;
+  if (w / h > 4 / 3) { const nh = (w * 3) / 4; y0 -= (nh - h) / 2; h = nh; } else { const nw = (h * 4) / 3; x0 -= (nw - w) / 2; w = nw; }
+  return { ...q, viewBox: [x0, y0, w, h].map(f1).join(' ') };
+}
+
+/**
  * Vista da miniatura do cartão: no estilo clássico, a principal (como sempre); nos novos, a vista em que os
  * músculos principais ocupam mais espaço no palco (no supino, de cima, porque de lado o braço cobre o peitoral).
  */

@@ -680,4 +680,6 @@ As listas exatas ficam em `tests/unit/metas-r0.test.ts`, para o R0c zerar.
 
 **Decisão do Gustavo (02/11/2026):** as 32 folhas aprovadas; publicar no site.
 
-**Fica para depois:** a revisão do especialista sobre o Boneco (roteiro pronto); as prévias de "Meus dados" podem ganhar uma câmera mais perto; e o enquadramento da puxada unilateral.
+**Depois da publicação (02/11/2026, pedido do Gustavo):** as prévias do "Estilo do boneco" em "Meus dados" ganharam a câmera fechada no corpo (`montarPrevia`); o guia não muda.
+
+**Fica para depois:** a revisão do especialista sobre o Boneco (roteiro pronto) e o enquadramento da puxada unilateral.

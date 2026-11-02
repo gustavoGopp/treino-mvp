@@ -1,5 +1,5 @@
 import { EX } from '../../engine';
-import { montarSvgEstilo, type Estilo } from '../../engine/estilo';
+import { montarPrevia, type Estilo } from '../../engine/estilo';
 import { definirEstiloBoneco, useEstiloBoneco } from '../app/estiloBoneco';
 
 // "Meus dados" → Estilo do boneco: o boneco novo é o padrão; o clássico e a silhueta ficam como opção.
@@ -15,7 +15,7 @@ const previas = new Map<Estilo, { viewBox: string; html: string; classe: string 
 function previa(e: Estilo) {
   if (!previas.has(e)) {
     const fundo = goblet.seq[2];
-    previas.set(e, montarSvgEstilo(goblet, 'lateral', 'mus', fundo.t0 + fundo.dur / 2, 0, 120, e, true)); // câmera perto do corpo
+    previas.set(e, montarPrevia(goblet, 'lateral', 'mus', fundo.t0 + fundo.dur / 2, e));
   }
   return previas.get(e)!;
 }

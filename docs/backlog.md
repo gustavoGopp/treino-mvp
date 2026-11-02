@@ -50,5 +50,4 @@ Detalhes em `planejamento/2026-11-diagnostico.md`, `PLANO-MVP.md` e `pesquisa-v2
 - **Boneco no estilo A em todas as animações:** feito no próprio R4, a pedido do Gustavo (`devlog.md`, R4, continuação). Falta a rodada com o especialista (`revisoes/r4-roteiro-especialista.md`); os ajustes que ela pedir mudam a linha de base `estilo-a.json`, com nova aprovação.
 - **Leveza do B no A:** o B foi o mais agradável de ver. Perguntar ao especialista se vale um contorno mais fino ou menos linhas no A.
 - **Face pull, vista de cima:** corrigido no Boneco e na Silhueta (corda e cabo mais leves, rótulo fora da caixa da fase). No Clássico fica como no guia original.
-- **Prévias do "Estilo do boneco" em Meus dados:** a figura ficou pequena nas 3 prévias; aproximar a câmera.
 - **Enquadramento da puxada unilateral:** a câmera inclui a torre inteira, e o corpo ocupa um quarto do palco. Aproximar só o corpo ajudou pouco no teste do R4 (a mão vai lá em cima); reavaliar com o especialista.
