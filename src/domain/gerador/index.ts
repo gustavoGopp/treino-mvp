@@ -37,7 +37,15 @@ export type Perfil = {
    * equivalentes; ausente ou vazio = sem preferência (o programa sai idêntico).
    */
   preferidos?: Record<string, string>;
+  /**
+   * Margem pessoal do tempo (tempo.calibracao), só depois do aceite da pessoa: substitui os 10% de tempo.colchao.
+   * Ausente = o programa sai idêntico.
+   */
+  margemTempo?: number;
 };
+
+/** A margem do tempo estimado: a pessoal, se aceita, ou a padrão (tempo.colchao). */
+export const colchaoDe = (p: Pick<Perfil, 'margemTempo'>) => p.margemTempo ?? TEMPO.colchao;
 
 export type Porque = { regraId: string; texto: string };
 
@@ -409,7 +417,7 @@ export function gerarPrograma(perfil: Perfil, inventarioOriginal: Inventario): R
   };
   let programaDias: DiaPrograma[] = dias.map(({ dia, itens }) => {
     const exercicios = itens.map(prescrever);
-    return { id: dia.id, nome: dia.nome, exercicios, minutosEstimados: minutos(exercicios) };
+    return { id: dia.id, nome: dia.nome, exercicios, minutosEstimados: minutos(exercicios, colchaoDe(perfil)) };
   });
 
   // 5. Orçamento de tempo (tempo.corte)
@@ -425,7 +433,7 @@ export function gerarPrograma(perfil: Perfil, inventarioOriginal: Inventario): R
       (c === 'maquina' || c === 'polia' || c === 'anilha' || (c === 'halter' && cargasDeHalter >= 2) || (c === 'kettlebell' && cargasDeKettlebell >= 2))
     );
   };
-  programaDias = cortarTempo(programaDias, perfil.minutosSessao, metas, nivel, prioritarios, avisos, podeDrop);
+  programaDias = cortarTempo(programaDias, perfil.minutosSessao, metas, nivel, prioritarios, avisos, podeDrop, colchaoDe(perfil));
 
   const volumeSemanal = volumeDe(programaDias);
   const vezes = (m: Musculo) => programaDias.filter((d) => d.exercicios.some((x) => POR_ID_BIB[x.exId]!.musculos.primarios.includes(m))).length;
@@ -629,7 +637,8 @@ export function porqueDoExercicio(e: Exercicio, funcao: Funcao, nivelFuncao: num
 }
 
 // Duração estimada (tempo.serie, tempo.transicao, tempo.aquecimento, tempo.colchao, tempo.superserie, tempo.drop-set).
-export function minutos(exs: ExercicioPrescrito[]): number {
+/** `colchao`: a margem para fila (tempo.colchao) ou, com o aceite da pessoa, a margem pessoal (tempo.calibracao). */
+export function minutos(exs: ExercicioPrescrito[], colchao: number = TEMPO.colchao): number {
   let seg = 0;
   const aquecidos = new Set<string>();
   const serie = (x: ExercicioPrescrito) => (((x.reps[0] + x.reps[1]) / 2) * TEMPO.segPorRep + TEMPO.preparoSerie) * (x.unilateral ? 2 : 1);
@@ -654,7 +663,7 @@ export function minutos(exs: ExercicioPrescrito[]): number {
       seg += n * (serie(x) + serie(par) + TEMPO.superserieEntre) + (n - 1) * Math.max(x.descansoSeg, par.descansoSeg) + drop(x) + drop(par);
     } else seg += x.series * serie(x) + (x.series - 1) * x.descansoSeg + drop(x);
   });
-  return Math.round((seg * (1 + TEMPO.colchao)) / 60);
+  return Math.round((seg * (1 + colchao)) / 60);
 }
 
 const INFERIORES: Musculo[] = ['quadriceps', 'posteriores', 'gluteos', 'panturrilha'];
@@ -688,8 +697,9 @@ export function cortarTempo(
   prioritarios: Set<Musculo>,
   avisos: Porque[],
   podeDrop: (x: ExercicioPrescrito) => boolean,
+  colchao: number = TEMPO.colchao,
 ): DiaPrograma[] {
-  const recalcular = (d: DiaPrograma) => ({ ...d, minutosEstimados: minutos(d.exercicios) });
+  const recalcular = (d: DiaPrograma) => ({ ...d, minutosEstimados: minutos(d.exercicios, colchao) });
   const volume = () =>
     volumePorMusculo(dias.flatMap((d) => d.exercicios.map((x) => ({ ex: POR_ID_BIB[x.exId]!, series: seriesDeVolume(x) }))));
   // Piso de cada músculo nos cortes: prioritários não descem do mínimo do nível; os demais, do

@@ -16,7 +16,7 @@ import { Selo, Titulo, Topo } from '../app/ui';
 import { Miniatura } from './Miniatura';
 import { FaixaSemana } from '../acompanhamento/Semana';
 import { SemanaLeve } from '../acompanhamento/SemanaLeve';
-import { semanaDoEstado } from '../acompanhamento/acoes';
+import { aceitarMargemTempo, recusarMargemTempo, semanaDoEstado, tempoDoEstado } from '../acompanhamento/acoes';
 import { CartaoTexto, temCartao } from './CartaoTexto';
 
 // Tela do treino: vai direto ao que importa (o treino de cada dia, com a imagem de cada exercício e
@@ -113,6 +113,7 @@ export function Programa() {
   };
   const abaixo = salvo.avisos.filter((a) => a.texto.startsWith('Abaixo da meta')).length;
   const volta = mensagemDeVolta(hoje);
+  const tempoProposto = tempoDoEstado(estado, fuso);
   const feitos = new Set(estado.historico.flatMap((s) => s.exercicios.filter((e) => e.series.length).map((e) => e.exId)));
   const resumoSemana = estado.historico.some(treinoFeito) ? semanaDoEstado(estado, agora, fuso) : null;
   const faseAtual = salvo.fases[0];
@@ -179,6 +180,31 @@ export function Programa() {
         )}
 
         {!estado.sessaoAtual && <SemanaLeve />}
+
+        {tempoProposto && !estado.sessaoAtual && (
+          <section className="box volta" aria-labelledby="tempo-real">
+            <h2 id="tempo-real">O tempo dos seus treinos</h2>
+            <p>
+              {tempoProposto.texto} <Selo id={tempoProposto.regraId} />
+            </p>
+            <p className="ajuda">Com o ajuste, o que cabe nos seus minutos pode mudar; o programa só muda quando você atualizar.</p>
+            <div className="opcoes linha">
+              <button
+                type="button"
+                className="btn sec pequeno"
+                onClick={() => {
+                  atualizar((s) => aceitarMargemTempo(s, tempoProposto.margem, agoraIso()));
+                  setAviso('Estimativa ajustada ao seu tempo real.');
+                }}
+              >
+                Ajustar
+              </button>
+              <button type="button" className="btn sec pequeno" onClick={() => atualizar((s) => recusarMargemTempo(s, agoraIso()))}>
+                Não
+              </button>
+            </div>
+          </section>
+        )}
 
         {estado.sessaoAtual ? (
           <Link className="btn" to="/treino">

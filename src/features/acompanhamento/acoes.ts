@@ -1,5 +1,6 @@
 import { resumoDaSemana, type ResumoDaSemana } from '../../domain/acompanhamento/semana';
 import { semanaLeveDeHoje } from '../../domain/acompanhamento/semana-leve';
+import { calibracaoDoTempo } from '../../domain/acompanhamento/tempo';
 import { SEMANA_LEVE } from '../../domain/regras';
 import { semanaLeveAtiva, treinoFeito } from '../../domain/sessao';
 import { localDaSessao, localDoPrograma, localPorId, type Estado } from '../../storage/esquema';
@@ -79,3 +80,16 @@ export function marcarHojeFoi(e: Estado, sessaoId: string, valor: 'leve' | 'norm
     }),
   };
 }
+
+/** A proposta de ajuste do tempo estimado (tempo.calibracao), escondida depois de um "Não" até o próximo treino. */
+export function tempoDoEstado(e: Estado, fusoMin = 0) {
+  if (!e.programa) return null;
+  const c = calibracaoDoTempo(e.programa.programa, e.historico, { fusoMin, ...(e.margemTempo !== undefined ? { margemAtual: e.margemTempo } : {}) });
+  const ultimoFim = e.historico.filter(treinoFeito).at(-1)?.fim;
+  const recusada = !!e.respostas?.tempoEm && (!ultimoFim || Date.parse(e.respostas.tempoEm) > Date.parse(ultimoFim));
+  return c && !recusada ? c : null;
+}
+/** "Ajustar": a margem pessoal entra no perfil; o aviso "Há uma versão nova do seu programa" oferece atualizar. */
+export const aceitarMargemTempo = (e: Estado, margem: number, agora: string): Estado => comResposta({ ...e, margemTempo: margem }, 'tempoEm', agora);
+/** "Não": nada muda, e a proposta some até o próximo treino. */
+export const recusarMargemTempo = (e: Estado, agora: string): Estado => comResposta(e, 'tempoEm', agora);

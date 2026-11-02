@@ -241,6 +241,7 @@ export function perfilDe(e: Estado): Perfil | null {
     minutosSessao: e.rotina.minutosSessao,
     prioridades: e.rotina.prioridades,
     ...(e.preferidos && Object.keys(e.preferidos).length ? { preferidos: e.preferidos } : {}),
+    ...(e.margemTempo !== undefined ? { margemTempo: e.margemTempo } : {}),
     evitarExercicios: e.restricoes.evitarExercicios,
     evitarEquipamentos: e.restricoes.evitarEquipamentos,
     triagem: {

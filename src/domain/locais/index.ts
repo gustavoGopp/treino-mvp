@@ -2,6 +2,7 @@ import { POR_ID, type Exercicio, type Musculo } from '../biblioteca';
 import {
   contextoDeSelecao,
   lembretesDeDor,
+  colchaoDe,
   minutos,
   porqueDoExercicio,
   textoDor,
@@ -187,7 +188,7 @@ export function diaNoLocal(dia: DiaPrograma, perfil: Perfil, inventario: Inventa
     return par && exercicios.some((y) => y.exId === par) ? { ...resto, supersetCom: par } : resto;
   });
 
-  return { dia: { ...dia, exercicios, minutosEstimados: minutos(exercicios) }, trocas, avisos };
+  return { dia: { ...dia, exercicios, minutosEstimados: minutos(exercicios, colchaoDe(perfil)) }, trocas, avisos };
 }
 
 /** O exercício exige só o que o local tem? (para a propriedade "nenhum exercício exige o que o local não tem") */
