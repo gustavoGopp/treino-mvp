@@ -41,7 +41,7 @@ Essas decisões foram copiadas do programa de referência para o código, sem pe
 | [09-trocas-e-locais.md](09-trocas-e-locais.md) | Tema T9: o que se leva do progresso ao trocar de aparelho ou de local, o que recomeça pela calibração na 1ª série e o "prefiro este"; base do marco R1b | Aprovado em 01/11/2026 |
 
 ## Próxima sessão
-Os temas T1 a T7 estão aprovados. O próximo passo é o marco de código **R0b**; o prompt está em [`docs/prompts/sessao-r0b.md`](../prompts/sessao-r0b.md). O T8 (o programa do Gustavo) é feito na máquina dele, com `privado/`, depois do R0b. Para ler os resumos do PubMed, use `scripts/pesquisa/pubmed.py`.
+Os temas T1 a T7 e o T9 estão aprovados, e os marcos R0b, R0c, R1 e R1b já os aplicaram. O próximo passo é o marco de código **R2**, com o T6; o prompt está em [`docs/prompts/sessao-r2.md`](../prompts/sessao-r2.md). O T8 (o programa do Gustavo) é feito na máquina dele, com `privado/`. Para ler os resumos do PubMed, use `scripts/pesquisa/pubmed.py`.
 
 ## Plano dos próximos temas (em ordem)
 
