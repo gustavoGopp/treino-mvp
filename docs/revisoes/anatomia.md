@@ -227,6 +227,29 @@ Os textos dizem **onde sentir**, e esses músculos trabalham sem que a pessoa pr
 - `lumen-lat` e a anatomia descritiva (origem, inserção e ação): as mesmas de `docs/pesquisa/animacoes/r4-estilo-do-boneco.md`, seção 3 (verificado-busca). O livro-texto aberto (OpenStax) continua fora da rede da sessão.
 - Uma modelagem do agachamento (Vigotsky e Bryanton, 2016) sobre a parte do adutor magno na extensão do quadril foi vista só em resumos de terceiros: **não verificada**, e não foi usada.
 
+## Depois das correções (02/11/2026)
+As correções aprovadas entraram no branch `revisao-anatomia`, cada uma com teste (`tests/unit/anatomia.test.ts`, 13 testes; `git log`). `npm run auditoria` foi rodado antes e depois; os arquivos em `docs/revisoes/auditoria/` e a tabela em `docs/revisoes/anatomia/tabela.md` já são os de depois.
+
+| Medida | Antes | Depois |
+|---|---|---|
+| Exercícios com guia que batem nos três lugares (sem nenhuma marca) | 48 de 69 | **54 de 69** (os 15 restantes só têm marcas informativas: ajudantes decididos no achado 8) |
+| Marcas a conferir na tabela | 10 exercícios | **0** |
+| Principal do desenho diferente da biblioteca | 4 animações | **0** |
+| Secundário da biblioteca que o desenho não mostra | 2 | **0** |
+| Animação sem exercício na biblioteca | 1 (`elevacao-lateral-b`) | **0** |
+| Programas com posteriores acima do máximo do nível | 2.511 | **992** |
+| Programas com costas acima do máximo do nível | 1.493 | **994** |
+| Programas com glúteos acima do máximo do nível | 4.115 | 4.178 |
+| Programas com posteriores **zerados** na semana (sem dor) | 324 | **1.692** (ver abaixo) |
+| Músculo abaixo da meta sem aviso | 0 | **0** |
+
+**Efeitos colaterais, medidos:**
+- **Posteriores zerados: 324 → 1.692.** Todo o aumento está no cenário **só peso do corpo** (de 72 para 1.440 programas sem dor). Ali, a biblioteca não tem nenhum exercício de posteriores (já era uma lacuna conhecida, achado 6 da auditoria), e a ponte sem carga "cobria" os posteriores só na conta. O programa não mudou; a conta ficou honesta, e o aviso de "abaixo da meta" aparece em todos os casos. Os outros cenários não mudaram.
+- **Personas:** os snapshots mudaram como você aprovou (`docs/revisoes/anatomia/personas-antes-depois.md`).
+- **"Prefiro o leg press":** com os adutores contados no leg press, a troca agachamento → leg press passou a manter o volume igual.
+- **Estilo clássico:** continua igual ao guia original (o teste de equivalência passa). As correções do desenho valem para o Boneco, que é o padrão.
+- **Catálogo do guia:** a elevação lateral na polia aparece uma vez só; o grupo "Membros B" do programa de referência ficou com 5 animações.
+
 ## Decisões do Gustavo
 Decididas em 02/11/2026, item a item, sem nada pré-marcado.
 
