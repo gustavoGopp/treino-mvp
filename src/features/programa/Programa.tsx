@@ -113,7 +113,8 @@ export function Programa() {
   };
   const abaixo = salvo.avisos.filter((a) => a.texto.startsWith('Abaixo da meta')).length;
   const volta = mensagemDeVolta(hoje);
-  const tempoProposto = tempoDoEstado(estado, fuso);
+  // Uma coisa de cada vez: na volta de uma pausa, a proposta do tempo espera o próximo treino.
+  const tempoProposto = volta ? null : tempoDoEstado(estado, fuso);
   const feitos = new Set(estado.historico.flatMap((s) => s.exercicios.filter((e) => e.series.length).map((e) => e.exId)));
   const resumoSemana = estado.historico.some(treinoFeito) ? semanaDoEstado(estado, agora, fuso) : null;
   const faseAtual = salvo.fases[0];

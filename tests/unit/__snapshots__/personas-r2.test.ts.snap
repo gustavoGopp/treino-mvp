@@ -1,0 +1,228 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`snapshots do R2: o treino de cada persona na volta de 30 dias > Ana 1`] = `
+[
+  {
+    "antes": "semana 6: 13 séries, RIR 2–3 e 1–2, a mesma carga",
+    "cargas": [
+      "Agachamento búlgaro com apoio: 10 kg → 9 kg",
+      "Stiff com halteres: 10 kg → 9 kg",
+      "Ponte de glúteo: peso do corpo · variação mais difícil → peso do corpo · descida de 3 s ou pausa embaixo",
+      "Supino reto com halteres: 10 kg → 9 kg",
+      "Remada unilateral com halter apoiada no banco: 10 kg → 9 kg",
+      "Tríceps francês sentado com halter: 10 kg → 9 kg",
+    ],
+    "depois": "semana 1 (readaptacao.semana1): 8 séries, RIR 3–4",
+    "dia": "Corpo todo A",
+  },
+  {
+    "antes": "semana 6: 14 séries, RIR 2–3 e 1–2, a mesma carga",
+    "cargas": [
+      "Stiff unilateral com halter: 10 kg → 9 kg",
+      "Remada unilateral com halter apoiada no banco: 10 kg → 9 kg",
+      "Panturrilha em pé no chão: 10 kg → 9 kg",
+      "Rosca alternada com halteres: 10 kg → 9 kg",
+      "Abdominal no chão (crunch): peso do corpo · variação mais difícil → peso do corpo · descida de 3 s ou pausa embaixo",
+    ],
+    "depois": "semana 1 (readaptacao.semana1): 9 séries, RIR 3–4",
+    "dia": "Corpo todo B",
+  },
+  {
+    "antes": "semana 6: 15 séries, RIR 2–3 e 1–2, a mesma carga",
+    "cargas": [
+      "Afundo estático com halteres: 10 kg → 9 kg",
+      "Ponte de glúteo: peso do corpo · variação mais difícil → peso do corpo · descida de 3 s ou pausa embaixo",
+      "Supino reto com halteres: 10 kg → 9 kg",
+      "Remada unilateral com halter apoiada no banco: 10 kg → 9 kg",
+      "Panturrilha em pé no chão: 10 kg → 9 kg",
+      "Elevação lateral com halteres: 10 kg → 9 kg",
+    ],
+    "depois": "semana 1 (readaptacao.semana1): 9 séries, RIR 3–4",
+    "dia": "Corpo todo C",
+  },
+]
+`;
+
+exports[`snapshots do R2: o treino de cada persona na volta de 30 dias > Bruno, de volta na academia do bairro 1`] = `
+[
+  {
+    "antes": "semana 6: 28 séries, RIR 1–2 e 0–1, a mesma carga",
+    "cargas": [
+      "Supino reto com halteres: 10 kg → 8 kg",
+      "Barra fixa: — → calibra na 1ª série",
+      "Remada com halteres, peito apoiado no banco inclinado: 10 kg → 8 kg",
+      "Desenvolvimento sentado com halteres: 10 kg → 8 kg",
+      "Tríceps francês sentado com halter: — → calibra na 1ª série",
+      "Elevação lateral com halteres: 10 kg → 8 kg",
+      "Rosca inclinada com halteres: 10 kg → 8 kg",
+      "Crucifixo com halteres no banco plano: 10 kg → 8 kg",
+      "Crucifixo inverso com halteres, peito apoiado no banco inclinado: 10 kg → 8 kg",
+    ],
+    "depois": "semana 1 (readaptacao.semana1): 16 séries, RIR 3–4",
+    "dia": "Superior A",
+  },
+  {
+    "antes": "semana 6: 12 séries, RIR 1–2 e 0–1, a mesma carga",
+    "cargas": [
+      "Agachamento búlgaro com apoio: 10 kg → 8 kg",
+      "Stiff com halteres: 10 kg → 8 kg",
+      "Flexão de joelho na cadeira flexora (sentado): placa 8 → placa 7",
+      "Panturrilha no leg press: 20 kg por lado → 15 kg por lado",
+      "Abdominal no chão (crunch): peso do corpo · variação mais difícil → peso do corpo · descida de 3 s ou pausa embaixo",
+    ],
+    "depois": "semana 1 (readaptacao.semana1): 7 séries, RIR 3–4",
+    "dia": "Inferior A",
+  },
+  {
+    "antes": "semana 6: 23 séries, RIR 1–2 e 0–1, a mesma carga",
+    "cargas": [
+      "Supino inclinado com halteres: 10 kg → 8 kg",
+      "Remada com halteres, peito apoiado no banco inclinado: 10 kg → 8 kg",
+      "Barra fixa: — → calibra na 1ª série",
+      "Desenvolvimento unilateral com halter, em pé: 10 kg → 8 kg",
+      "Elevação lateral com halteres: 10 kg → 8 kg",
+      "Rosca inclinada com halteres: 10 kg → 8 kg",
+      "Mergulho nas paralelas: — → calibra na 1ª série",
+      "Crucifixo com halteres no banco plano: 10 kg → 8 kg",
+      "Crucifixo inverso com halteres, peito apoiado no banco inclinado: 10 kg → 8 kg",
+    ],
+    "depois": "semana 1 (readaptacao.semana1): 14 séries, RIR 3–4",
+    "dia": "Superior B",
+  },
+  {
+    "antes": "semana 6: 17 séries, RIR 1–2 e 0–1, a mesma carga",
+    "cargas": [
+      "Afundo estático com halteres: 10 kg → 8 kg",
+      "Ponte de glúteo: peso do corpo · variação mais difícil → peso do corpo · descida de 3 s ou pausa embaixo",
+      "Stiff unilateral com halter: 10 kg → 8 kg",
+      "Elevação lateral com halteres: 10 kg → 8 kg",
+      "Flexão de joelho na cadeira flexora (sentado): placa 8 → placa 7",
+      "Panturrilha no leg press: 20 kg por lado → 15 kg por lado",
+      "Abdominal no chão (crunch): peso do corpo · variação mais difícil → peso do corpo · descida de 3 s ou pausa embaixo",
+    ],
+    "depois": "semana 1 (readaptacao.semana1): 10 séries, RIR 3–4",
+    "dia": "Inferior B",
+  },
+]
+`;
+
+exports[`snapshots do R2: o treino de cada persona na volta de 30 dias > Carla 1`] = `
+[
+  {
+    "antes": "semana 6: 24 séries, RIR 1–2 e 0–1, a mesma carga",
+    "cargas": [
+      "Supino reto com halteres: 10 kg → 8 kg",
+      "Puxada unilateral ajoelhado na polia alta: placa 8 → placa 7",
+      "Remada com halteres, peito apoiado no banco inclinado: 10 kg → 8 kg",
+      "Desenvolvimento sentado com halteres: 10 kg → 8 kg",
+      "Elevação lateral com halteres: 10 kg → 8 kg",
+      "Crucifixo na polia (crossover): placa 8 → placa 7",
+      "Tríceps francês na polia com corda: placa 8 → placa 7",
+      "Rosca inclinada com halteres: 10 kg → 8 kg",
+      "Face pull com corda: placa 8 → placa 7",
+    ],
+    "depois": "semana 1 (readaptacao.semana1): 14 séries, RIR 3–4",
+    "dia": "Superior",
+  },
+  {
+    "antes": "semana 6: 23 séries, RIR 1–2 e 0–1, a mesma carga",
+    "cargas": [
+      "Agachamento livre com barra (profundo): 40 kg → 35 kg",
+      "Stiff com halteres: 10 kg → 8 kg",
+      "Flexão de joelho na cadeira flexora (sentado): placa 8 → placa 7",
+      "Cadeira extensora: placa 8 → placa 7",
+      "Panturrilha unilateral no step: 10 kg → 8 kg",
+      "Adução na cadeira adutora: placa 8 → placa 7",
+      "Abdominal na polia com corda, ajoelhado: placa 8 → placa 7",
+    ],
+    "depois": "semana 1 (readaptacao.semana1): 12 séries, RIR 3–4",
+    "dia": "Inferior",
+  },
+  {
+    "antes": "semana 6: 18 séries, RIR 1–2 e 0–1, a mesma carga",
+    "cargas": [
+      "Supino inclinado com halteres: 10 kg → 8 kg",
+      "Supino reto com barra: 40 kg → 35 kg",
+      "Desenvolvimento em pé com barra: 40 kg → 35 kg",
+      "Elevação lateral unilateral na polia: placa 8 → placa 7",
+      "Crucifixo com halteres no banco plano: 10 kg → 8 kg",
+      "Tríceps francês sentado com halter: 10 kg → 8 kg",
+      "Tríceps na polia com corda: placa 8 → placa 7",
+    ],
+    "depois": "semana 1 (readaptacao.semana1): 10 séries, RIR 3–4",
+    "dia": "Empurrar",
+  },
+  {
+    "antes": "semana 6: 16 séries, RIR 1–2 e 0–1, a mesma carga",
+    "cargas": [
+      "Remada baixa com triângulo: placa 8 → placa 7",
+      "Puxada ajoelhado na polia alta com barra reta: placa 8 → placa 7",
+      "Elevação lateral com halteres: 10 kg → 8 kg",
+      "Crucifixo inverso com halteres, peito apoiado no banco inclinado: 10 kg → 8 kg",
+      "Rosca na máquina: placa 8 → placa 7",
+      "Abdominal na máquina: placa 8 → placa 7",
+    ],
+    "depois": "semana 1 (readaptacao.semana1): 9 séries, RIR 3–4",
+    "dia": "Puxar",
+  },
+  {
+    "antes": "semana 6: 24 séries, RIR 1–2 e 0–1, a mesma carga",
+    "cargas": [
+      "Afundo estático com halteres: 10 kg → 8 kg",
+      "Stiff unilateral com halter: 10 kg → 8 kg",
+      "Cadeira extensora: placa 8 → placa 7",
+      "Panturrilha em pé no step: 10 kg → 8 kg",
+      "Flexão de joelho na cadeira flexora (sentado): placa 8 → placa 7",
+      "Panturrilha sentada na máquina: 20 kg por lado → 18 kg por lado",
+      "Coice na máquina de glúteo: placa 8 → placa 7",
+      "Adução na cadeira adutora: placa 8 → placa 7",
+    ],
+    "depois": "semana 1 (readaptacao.semana1): 14 séries, RIR 3–4",
+    "dia": "Pernas",
+  },
+]
+`;
+
+exports[`snapshots do R2: o treino de cada persona na volta de 30 dias > Diego 1`] = `
+[
+  {
+    "antes": "semana 6: 16 séries, RIR 2–3 e 1–2, a mesma carga",
+    "cargas": [
+      "Flexão de braço: peso do corpo · variação mais difícil → peso do corpo · descida de 3 s ou pausa embaixo",
+      "Barra fixa: peso do corpo · variação mais difícil → peso do corpo · descida de 3 s ou pausa embaixo",
+      "Agachamento com elástico: elástico · variação mais difícil → elástico · descida de 3 s ou pausa embaixo",
+      "Flexão de joelho com elástico: elástico · variação mais difícil → elástico · descida de 3 s ou pausa embaixo",
+      "Tríceps acima da cabeça com elástico: elástico · variação mais difícil → elástico · descida de 3 s ou pausa embaixo",
+      "Elevação lateral com elástico: elástico · variação mais difícil → elástico · descida de 3 s ou pausa embaixo",
+    ],
+    "depois": "semana 1 (readaptacao.semana1): 10 séries, RIR 3–4",
+    "dia": "Corpo todo A",
+  },
+  {
+    "antes": "semana 6: 16 séries, RIR 2–3 e 1–2, a mesma carga",
+    "cargas": [
+      "Flexão de braço: peso do corpo · variação mais difícil → peso do corpo · descida de 3 s ou pausa embaixo",
+      "Remada sentada com elástico: elástico · variação mais difícil → elástico · descida de 3 s ou pausa embaixo",
+      "Stiff com elástico: elástico · variação mais difícil → elástico · descida de 3 s ou pausa embaixo",
+      "Rosca com elástico: elástico · variação mais difícil → elástico · descida de 3 s ou pausa embaixo",
+      "Panturrilha em pé no chão: 10 kg → 7,5 kg",
+      "Abertura com elástico na altura do rosto: elástico · variação mais difícil → elástico · descida de 3 s ou pausa embaixo",
+    ],
+    "depois": "semana 1 (readaptacao.semana1): 9 séries, RIR 3–4",
+    "dia": "Corpo todo B",
+  },
+  {
+    "antes": "semana 6: 14 séries, RIR 2–3 e 1–2, a mesma carga",
+    "cargas": [
+      "Flexão de braço: peso do corpo · variação mais difícil → peso do corpo · descida de 3 s ou pausa embaixo",
+      "Barra fixa com pegada supinada: peso do corpo · variação mais difícil → peso do corpo · descida de 3 s ou pausa embaixo",
+      "Afundo estático com o peso do corpo: peso do corpo · variação mais difícil → peso do corpo · descida de 3 s ou pausa embaixo",
+      "Ponte de glúteo: peso do corpo · variação mais difícil → peso do corpo · descida de 3 s ou pausa embaixo",
+      "Elevação lateral com elástico: elástico · variação mais difícil → elástico · descida de 3 s ou pausa embaixo",
+      "Abdominal no chão (crunch): peso do corpo · variação mais difícil → peso do corpo · descida de 3 s ou pausa embaixo",
+    ],
+    "depois": "semana 1 (readaptacao.semana1): 7 séries, RIR 3–4",
+    "dia": "Corpo todo C",
+  },
+]
+`;
