@@ -343,15 +343,18 @@
   },
   {
     "id": "rir.leitura",
-    "regra": "Leitura do RIR relatado: as pessoas subestimam ~1 repetição",
+    "regra": "Leitura do RIR relatado: as pessoas subestimam ~1 repetição; o erro é maior acima de ~12 repetições e longe da falha, e a experiência não o diminui (revista no R2)",
     "valores": {
-      "iniciante": "RIR relatado ±1 (2 ≈ 2–3)",
-      "intermediario": "RIR relatado ±1 (2 ≈ 2–3)",
-      "avancado": "RIR relatado ±1 (2 ≈ 2–3)"
+      "iniciante": "RIR relatado ±1 (2 ≈ 2–3); acima de ~12 repetições, menos confiável (a calibração usa passos pequenos)",
+      "intermediario": "RIR relatado ±1 (2 ≈ 2–3); acima de ~12 repetições, menos confiável (a calibração usa passos pequenos)",
+      "avancado": "RIR relatado ±1 (2 ≈ 2–3); acima de ~12 repetições, menos confiável (a calibração usa passos pequenos)"
     },
     "selo": "moderada",
     "fontes": [
-      "halperin2022"
+      "halperin2022",
+      "zourdos2021",
+      "remmert2023",
+      "bermudez2025"
     ]
   },
   {
@@ -557,7 +560,7 @@
     "fontes": [
       "halperin2022",
       "mayhew1995",
-      "nuzzo2024",
+      "nuzzo2024b",
       "glass2004",
       "consenso-projeto"
     ]
@@ -614,30 +617,51 @@
   },
   {
     "id": "readaptacao.gatilho",
-    "regra": "Quando aplicar a readaptação após pausa sem treinar",
+    "regra": "Quando aplicar a readaptação após pausa sem treinar dita no cadastro (durante o uso, vale `readaptacao.durante-uso`); a volta gradual existe para evitar dano e dor",
     "valores": {
-      "iniciante": "< 2 semanas: retomar normal; 2 a < 3 semanas: 1ª sessão com RIR +1; ≥ 3 semanas: protocolo `readaptacao.semana1` a `semana3`",
-      "intermediario": "< 2 semanas: retomar normal; 2 a < 3 semanas: 1ª sessão com RIR +1; ≥ 3 semanas: protocolo `readaptacao.semana1` a `semana3`",
-      "avancado": "< 2 semanas: retomar normal; 2 a < 3 semanas: 1ª sessão com RIR +1; ≥ 3 semanas: protocolo `readaptacao.semana1` a `semana3`"
+      "iniciante": "< 2 semanas: retomar normal, com a mesma carga; 2 a < 3 semanas: 1ª sessão de cada dia com RIR +1; ≥ 3 semanas: protocolo `readaptacao.semana1` a `semana3`",
+      "intermediario": "< 2 semanas: retomar normal, com a mesma carga; 2 a < 3 semanas: 1ª sessão de cada dia com RIR +1; ≥ 3 semanas: protocolo `readaptacao.semana1` a `semana3`",
+      "avancado": "< 2 semanas: retomar normal, com a mesma carga; 2 a < 3 semanas: 1ª sessão de cada dia com RIR +1; ≥ 3 semanas: protocolo `readaptacao.semana1` a `semana3`"
     },
     "selo": "consenso",
     "fontes": [
+      "ogasawara2011",
+      "ogasawara2013",
+      "hwang2017",
+      "chen2012"
+    ]
+  },
+  {
+    "id": "readaptacao.durante-uso",
+    "regra": "Pausa detectada durante o uso (R2; pesquisa-v2/07, seção 3): dias do fim da última sessão terminada até hoje, para o programa inteiro e em qualquer local; até 13 dias é moderada, o resto é consenso",
+    "valores": {
+      "iniciante": "até 13 dias: normal, com a mesma carga; 14–20: na 1ª sessão de cada dia do programa, RIR +1, mesma carga; 21–56: volta gradual (`readaptacao.semana1` a `semana3`) com carga −10%; 57–182: igual, com carga −15%; > 182: propõe refazer o nível (`nivel.classificacao`) e, com ou sem o aceite, volta gradual com a calibração na 1ª série a partir da última carga −20%; a semana do programa conta as semanas (segunda a domingo) com treino desde o início do bloco, e o bloco recomeça na volta de uma pausa de 21 dias ou mais; a mensagem de volta é sem culpa (\"Bem-vindo de volta! Faz 22 dias do último treino…\")",
+      "intermediario": "até 13 dias: normal, com a mesma carga; 14–20: na 1ª sessão de cada dia do programa, RIR +1, mesma carga; 21–56: volta gradual (`readaptacao.semana1` a `semana3`) com carga −10%; 57–182: igual, com carga −15%; > 182: propõe refazer o nível (`nivel.classificacao`) e, com ou sem o aceite, volta gradual com a calibração na 1ª série a partir da última carga −20%; a semana do programa conta as semanas (segunda a domingo) com treino desde o início do bloco, e o bloco recomeça na volta de uma pausa de 21 dias ou mais; a mensagem de volta é sem culpa (\"Bem-vindo de volta! Faz 22 dias do último treino…\")",
+      "avancado": "até 13 dias: normal, com a mesma carga; 14–20: na 1ª sessão de cada dia do programa, RIR +1, mesma carga; 21–56: volta gradual (`readaptacao.semana1` a `semana3`) com carga −10%; 57–182: igual, com carga −15%; > 182: propõe refazer o nível (`nivel.classificacao`) e, com ou sem o aceite, volta gradual com a calibração na 1ª série a partir da última carga −20%; a semana do programa conta as semanas (segunda a domingo) com treino desde o início do bloco, e o bloco recomeça na volta de uma pausa de 21 dias ou mais; a mensagem de volta é sem culpa (\"Bem-vindo de volta! Faz 22 dias do último treino…\")"
+    },
+    "selo": "consenso",
+    "fontes": [
+      "hwang2017",
+      "ogasawara2011",
+      "ogasawara2013",
       "chen2012",
-      "ogasawara2013"
+      "bosquet2013",
+      "consenso-projeto"
     ]
   },
   {
     "id": "readaptacao.semana1",
-    "regra": "Semana 1 após pausa ≥ 3 semanas",
+    "regra": "Semana 1 após pausa ≥ 3 semanas (revista no R2: o −15% de 8 a 26 semanas é o meio da faixa de 10–20% aprovada no T5)",
     "valores": {
-      "iniciante": "~50–60% das séries; RIR 3–4; carga 10–20% abaixo da que a pessoa usava antes da pausa (na dúvida, começar leve)",
-      "intermediario": "~50–60% das séries; RIR 3–4; carga 10–20% abaixo da que a pessoa usava antes da pausa (na dúvida, começar leve)",
-      "avancado": "~50–60% das séries; RIR 3–4; carga 10–20% abaixo da que a pessoa usava antes da pausa (na dúvida, começar leve)"
+      "iniciante": "~50–60% das séries; RIR 3–4; carga −10% (pausa de 3 a 8 semanas) ou −15% (8 a 26 semanas) sobre a última carga do exercício no histórico (nas máquinas, a do local de hoje), arredondada para baixo no inventário; na placa, placas × (1 − redução) para baixo; no peso do corpo e no elástico, um degrau abaixo; no contrapeso, uma placa a mais; sem registro, a calibração na 1ª série, que só desce; pausa dita no cadastro, sem histórico: começar leve",
+      "intermediario": "~50–60% das séries; RIR 3–4; carga −10% (pausa de 3 a 8 semanas) ou −15% (8 a 26 semanas) sobre a última registrada do exercício (nas máquinas, a do local de hoje), arredondada para baixo no inventário; na placa, placas × (1 − redução) para baixo; no peso do corpo e no elástico, um degrau abaixo; no contrapeso, uma placa a mais; sem registro, a calibração na 1ª série, que só desce; pausa dita no cadastro, sem histórico: começar leve",
+      "avancado": "~50–60% das séries; RIR 3–4; carga −10% (pausa de 3 a 8 semanas) ou −15% (8 a 26 semanas) sobre a última registrada do exercício (nas máquinas, a do local de hoje), arredondada para baixo no inventário; na placa, placas × (1 − redução) para baixo; no peso do corpo e no elástico, um degrau abaixo; no contrapeso, uma placa a mais; sem registro, a calibração na 1ª série, que só desce; pausa dita no cadastro, sem histórico: começar leve"
     },
     "selo": "consenso",
     "fontes": [
       "chen2012",
-      "damas2016"
+      "damas2016",
+      "bosquet2013"
     ]
   },
   {
@@ -684,17 +708,65 @@
   },
   {
     "id": "deload.semana-leve",
-    "regra": "Semana leve sugerida, manual e opcional (nunca automática no MVP); serve para fadiga, dor ou estagnação, não é necessária para crescer (uma semana leve não mudou a hipertrofia e reduziu um pouco a força)",
+    "regra": "Semana leve sugerida, manual e opcional (nunca automática); serve para descansar, não para crescer: duas semanas leves não mudaram a hipertrofia, e uma semana parada reduziu um pouco a força (gatilhos revistos no R2; \"não muda a hipertrofia\" é moderada)",
     "valores": {
-      "iniciante": "mesma frequência, ~50% das séries, RIR 3–4, carga mantida ou −10%; sugerir só com sinal: ≥ 2 exercícios estagnados, ou fadiga ou dor persistente",
-      "intermediario": "mesma frequência, ~50% das séries, RIR 3–4, carga mantida ou −10%; sugerir só com sinal: ≥ 2 exercícios estagnados, ou fadiga ou dor persistente",
-      "avancado": "mesma frequência, ~50% das séries, RIR 3–4, carga mantida ou −10%; sugerir só com sinal: ≥ 2 exercícios estagnados, ou fadiga ou dor persistente"
+      "iniciante": "mesma frequência, ~50% das séries, RIR 3–4, carga mantida, por 7 dias a partir do aceite; sugerir só com sinal: ≥ 2 exercícios estagnados, \"pesado demais\" em 2 dos últimos 3 treinos (toque opcional \"hoje foi: leve / normal / pesado demais\" no fim do treino) ou dor de 3 a 5 no mesmo exercício em 2 sessões seguidas, somada ao aviso de dor e de avaliação (`seguranca.dor.escala`), nunca no lugar dele; sem o gatilho de \"6–8 semanas\"; não sugere nas 3 semanas depois de uma volta de pausa nem nas 3 depois de uma semana leve",
+      "intermediario": "mesma frequência, ~50% das séries, RIR 3–4, carga mantida, por 7 dias a partir do aceite; sugerir só com sinal: ≥ 2 exercícios estagnados, \"pesado demais\" em 2 dos últimos 3 treinos (toque opcional \"hoje foi: leve / normal / pesado demais\" no fim do treino) ou dor de 3 a 5 no mesmo exercício em 2 sessões seguidas, somada ao aviso de dor e de avaliação (`seguranca.dor.escala`), nunca no lugar dele; sem o gatilho de \"6–8 semanas\"; não sugere nas 3 semanas depois de uma volta de pausa nem nas 3 depois de uma semana leve",
+      "avancado": "mesma frequência, ~50% das séries, RIR 3–4, carga mantida, por 7 dias a partir do aceite; sugerir só com sinal: ≥ 2 exercícios estagnados, \"pesado demais\" em 2 dos últimos 3 treinos (toque opcional \"hoje foi: leve / normal / pesado demais\" no fim do treino) ou dor de 3 a 5 no mesmo exercício em 2 sessões seguidas, somada ao aviso de dor e de avaliação (`seguranca.dor.escala`), nunca no lugar dele; sem o gatilho de \"6–8 semanas\"; não sugere nas 3 semanas depois de uma volta de pausa nem nas 3 depois de uma semana leve"
     },
     "selo": "consenso",
     "fontes": [
       "bell2023",
       "rogerson2024",
-      "coleman2024"
+      "coleman2024",
+      "pancar2026"
+    ]
+  },
+  {
+    "id": "acompanhamento.semana",
+    "regra": "\"A sua semana\" (R2; pesquisa-v2/07, seção 4.3): registro + meta + retorno",
+    "valores": {
+      "iniciante": "treinos feitos × planejados (segunda a domingo, em qualquer local); séries efetivas por músculo (`rir.serie-efetiva`, inclusive as de acerto da calibração com RIR ≤ 4), fracionadas (indireta 0,5), do exercício feito de verdade, contra a meta do programa (na volta de pausa, na fase de aprendizado e na semana leve, a meta é o prescrito naquela semana); 4 estados em cores neutras: na meta (≥ meta), crescendo (≥ 4), mantendo (≥ 1), ainda não treinou nesta semana (0); \"X das últimas 8 semanas com treino\", nunca uma sequência que zera",
+      "intermediario": "treinos feitos × planejados (segunda a domingo, em qualquer local); séries efetivas por músculo (`rir.serie-efetiva`, inclusive as de acerto da calibração com RIR ≤ 4), fracionadas (indireta 0,5), do exercício feito de verdade, contra a meta do programa (na volta de pausa, na fase de aprendizado e na semana leve, a meta é o prescrito naquela semana); 4 estados em cores neutras: na meta (≥ meta), crescendo (≥ 4), mantendo (≥ 1), ainda não treinou nesta semana (0); \"X das últimas 8 semanas com treino\", nunca uma sequência que zera",
+      "avancado": "treinos feitos × planejados (segunda a domingo, em qualquer local); séries efetivas por músculo (`rir.serie-efetiva`, inclusive as de acerto da calibração com RIR ≤ 4), fracionadas (indireta 0,5), do exercício feito de verdade, contra a meta do programa (na volta de pausa, na fase de aprendizado e na semana leve, a meta é o prescrito naquela semana); 4 estados em cores neutras: na meta (≥ meta), crescendo (≥ 4), mantendo (≥ 1), ainda não treinou nesta semana (0); \"X das últimas 8 semanas com treino\", nunca uma sequência que zera"
+    },
+    "selo": "consenso",
+    "fontes": [
+      "michie2009",
+      "harkin2016",
+      "krukowski2024",
+      "bickel2011"
+    ]
+  },
+  {
+    "id": "acompanhamento.mensagens",
+    "regra": "Mensagens do acompanhamento sem culpa (R2; pesquisa-v2/07, seção 4.4): fato + próximo passo; nunca \"você falhou\", \"perdeu\" ou \"deveria\"; nada de risco de morte na tela; nenhuma comparação com outras pessoas",
+    "valores": {
+      "iniciante": "semana completa: \"4 de 4\"; menos, com dias pela frente: \"2 de 4 treinos. Se der, o treino C cabe até domingo.\"; 1 treino: \"já conta\"; 0: nenhum aviso (\"Nova semana. O próximo treino é o B.\"); 3 das últimas 4 semanas abaixo do planejado: oferece um programa com menos dias, que só muda com o aceite",
+      "intermediario": "semana completa: \"4 de 4\"; menos, com dias pela frente: \"2 de 4 treinos. Se der, o treino C cabe até domingo.\"; 1 treino: \"já conta\"; 0: nenhum aviso (\"Nova semana. O próximo treino é o B.\"); 3 das últimas 4 semanas abaixo do planejado: oferece um programa com menos dias, que só muda com o aceite",
+      "avancado": "semana completa: \"4 de 4\"; menos, com dias pela frente: \"2 de 4 treinos. Se der, o treino C cabe até domingo.\"; 1 treino: \"já conta\"; 0: nenhum aviso (\"Nova semana. O próximo treino é o B.\"); 3 das últimas 4 semanas abaixo do planejado: oferece um programa com menos dias, que só muda com o aceite"
+    },
+    "selo": "consenso",
+    "fontes": [
+      "michie2009",
+      "momma2022",
+      "ren2024",
+      "garciahermoso2023"
+    ]
+  },
+  {
+    "id": "acompanhamento.evolucao",
+    "regra": "Evolução por exercício (R2; pesquisa-v2/07, seção 5): a melhor série de cada sessão, sem carga máxima estimada (as fórmulas divergem 15 a 52 pontos de % acima de 12 repetições)",
+    "valores": {
+      "iniciante": "carga × repetições (e o RIR) da melhor série de cada sessão; marcas \"subiu a carga\" e \"recorde\" (mais repetições com a mesma carga, ou mais carga com repetições dentro da faixa); placa nas máquinas, degrau no peso do corpo e no elástico; séries de acerto da calibração e de amplitude encurtada não contam como recorde; nas máquinas, separada por local; a alternativa tem a sua própria evolução",
+      "intermediario": "carga × repetições (e o RIR) da melhor série de cada sessão; marcas \"subiu a carga\" e \"recorde\" (mais repetições com a mesma carga, ou mais carga com repetições dentro da faixa); placa nas máquinas, degrau no peso do corpo e no elástico; séries de acerto da calibração e de amplitude encurtada não contam como recorde; nas máquinas, separada por local; a alternativa tem a sua própria evolução",
+      "avancado": "carga × repetições (e o RIR) da melhor série de cada sessão; marcas \"subiu a carga\" e \"recorde\" (mais repetições com a mesma carga, ou mais carga com repetições dentro da faixa); placa nas máquinas, degrau no peso do corpo e no elástico; séries de acerto da calibração e de amplitude encurtada não contam como recorde; nas máquinas, separada por local; a alternativa tem a sua própria evolução"
+    },
+    "selo": "consenso",
+    "fontes": [
+      "halperin2022",
+      "mayhew1995",
+      "consenso-projeto"
     ]
   },
   {
@@ -1197,6 +1269,19 @@
       "iniciante": "+10%",
       "intermediario": "+10%",
       "avancado": "+10%"
+    },
+    "selo": "consenso",
+    "fontes": [
+      "consenso-projeto"
+    ]
+  },
+  {
+    "id": "tempo.calibracao",
+    "regra": "Ajuste pessoal do tempo estimado com o tempo real registrado (pesquisa-v2/05, seção 5; aprovada no T4, entra no R2): medição da própria pessoa, não um estudo",
+    "valores": {
+      "iniciante": "depois de 3 sessões terminadas com ≥ 80% das séries feitas, a mediana de real ÷ estimado (sem a margem) vira a margem pessoal proposta, de −10% a +50%; só oferece se a diferença for de 5 min ou mais; entra só com o aceite, no lugar dos 10% de `tempo.colchao`",
+      "intermediario": "depois de 3 sessões terminadas com ≥ 80% das séries feitas, a mediana de real ÷ estimado (sem a margem) vira a margem pessoal proposta, de −10% a +50%; só oferece se a diferença for de 5 min ou mais; entra só com o aceite, no lugar dos 10% de `tempo.colchao`",
+      "avancado": "depois de 3 sessões terminadas com ≥ 80% das séries feitas, a mediana de real ÷ estimado (sem a margem) vira a margem pessoal proposta, de −10% a +50%; só oferece se a diferença for de 5 min ou mais; entra só com o aceite, no lugar dos 10% de `tempo.colchao`"
     },
     "selo": "consenso",
     "fontes": [
