@@ -178,6 +178,29 @@ Na academia completa, 19 exercícios possíveis nunca são a 1ª escolha (supino
 ## Para a sessão de anatomia
 Os músculos de cada exercício estão coerentes entre a biblioteca e os textos. Pontos para a anatomia conferir: o terra com barra hexagonal (hoje na função "agachar", com quadríceps e glúteo como principais), a hiperextensão (glúteo e posteriores; a lombar não aparece como músculo), o mergulho (peito e tríceps contados por inteiro), o desenvolvimento (só o ombro anterior como principal) e o face pull e o crucifixo inverso (costas como secundário). O rascunho do prompt fica em `docs/prompts/sessao-anatomia.md`.
 
+## Depois das correções (02/11/2026)
+As correções aprovadas entraram no branch `auditoria-treino`, cada uma com teste (`git log`). `npm run auditoria` foi rodado de novo; os arquivos em `docs/revisoes/auditoria/` já são os de depois.
+
+| Medida | Antes | Depois |
+|---|---|---|
+| Exercício que fica com dor > 5 numa região que ele carrega e o dado não marcava (item 1) | 128.531 ocorrências | **0** |
+| Prescrições de exercícios sem guia nenhum (item 2, lote 1; e os 4 novos já com cartão) | 33% | **18%** |
+| Progressão: casos simulados em vaivém (item 3) | 6 de 15 | **2 de 15**, limitados a 1 tentativa a cada 6 sessões (os saltos de +100% e de +50% numa placa leve) |
+| Programas de 20 min com costas ou posteriores zerados na semana (item 4) | 48% | **12%** (só a divisão de 2 dias; ver abaixo) |
+| Programas de 30 min com músculo grande zerado | 10% | **0%** |
+| Só halteres, sem banco: costas prioritárias abaixo da meta / ombro posterior abaixo de 4 séries (item 6) | 100% / 100% | **54,5% / 1,1%** |
+| Halteres + banco reto: costas prioritárias abaixo / ombro posterior abaixo de 4 | 57,3% / 38,3% | **16,2% / 1,1%** |
+| Carga sugerida que não existe: barra, panturrilha sem halter (item 7) | 4 de 15 casos | **0** |
+| Exercícios na biblioteca / com cartão de texto | 102 / 29 | **106 / 38** |
+
+**Efeitos colaterais, medidos:**
+- A "repetição com um equivalente parado" subiu de 29.769 para 63.773 programas: com mais opções no mesmo nível (por exemplo, a remada curvada ao lado da remada com halter apoiada), mais vezes uma delas fica sem uso. É o desempate do R0b (estabilidade e carga antes da variedade); não muda o volume.
+- Em casa, as costas prioritárias ficaram abaixo da meta em 16% dos programas (eram 12%), e o abdômen da Ana sai do dia B (de 4 para 0 séries, com aviso) para entrar o ombro posterior. Os dois estão nos snapshots aprovados.
+
+**Achados novos, vistos durante as correções (para decidir):**
+- **Cascata no 2º local.** Quando uma vaga não tem equivalente no local, o preenchimento "outro músculo do dia" pega o exercício que seria o equivalente da vaga seguinte, e assim por diante (no Superior B de uma academia completa feito só com halteres e banco reto: a puxada vira elevação lateral, a elevação vira rosca, a rosca vira tríceps). Proposta: primeiro trocar todas as vagas que têm equivalente, e só depois preencher as que não têm. Gravidade média, frequência baixa (só no treino em outro local). Esforço pequeno a médio.
+- **20 min em 2 dias.** Com 3 exercícios por dia e 2 dias, os 5 músculos grandes não cabem: os posteriores ficam de fora (com aviso). É limite de espaço, não de regra; uma saída seria pôr o "dobrar o quadril" antes do "afundo" no modelo do dia B. **[opinião]** Deixar como está: quem treina 2 × 20 min recebe o aviso.
+
 ## Decisões do Gustavo
 Decididas em 02/11/2026, item a item, sem nada pré-marcado.
 

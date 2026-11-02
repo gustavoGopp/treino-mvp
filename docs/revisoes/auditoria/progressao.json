@@ -94,47 +94,7 @@
   "nome": "Agachamento com barra, menor anilha de 2 kg",
   "exercicio": "agachamento-barra",
   "inicial": "62,5 kg",
-  "final": "67,5 kg",
-  "forcaCresceu": "+17% (modelo)",
-  "subidas": 1,
-  "voltas": 0,
-  "maiorTravaEmSessoes": 4,
-  "acoes": {
-   "manter": 14,
-   "estagnado": 17,
-   "subir": 1
-  },
-  "cargaInexistente": [
-   "67,5 kg"
-  ],
-  "veredito": "sugere carga que não existe"
- },
- {
-  "id": "barra-5kg",
-  "nome": "Agachamento com barra, menor anilha de 5 kg",
-  "exercicio": "agachamento-barra",
-  "inicial": "62,5 kg",
-  "final": "67,5 kg",
-  "forcaCresceu": "+17% (modelo)",
-  "subidas": 1,
-  "voltas": 0,
-  "maiorTravaEmSessoes": 4,
-  "acoes": {
-   "manter": 14,
-   "estagnado": 17,
-   "subir": 1
-  },
-  "cargaInexistente": [
-   "67,5 kg"
-  ],
-  "veredito": "sugere carga que não existe"
- },
- {
-  "id": "barra-1kg",
-  "nome": "Rosca com barra W, anilhas de 1 kg",
-  "exercicio": "rosca-barra-w",
-  "inicial": "22,5 kg",
-  "final": "25 kg",
+  "final": "68 kg",
   "forcaCresceu": "+17% (modelo)",
   "subidas": 1,
   "voltas": 0,
@@ -144,10 +104,44 @@
    "estagnado": 16,
    "subir": 1
   },
-  "cargaInexistente": [
-   "25 kg"
-  ],
-  "veredito": "sugere carga que não existe"
+  "cargaInexistente": [],
+  "veredito": "anda"
+ },
+ {
+  "id": "barra-5kg",
+  "nome": "Agachamento com barra, menor anilha de 5 kg",
+  "exercicio": "agachamento-barra",
+  "inicial": "62,5 kg",
+  "final": "70 kg",
+  "forcaCresceu": "+17% (modelo)",
+  "subidas": 1,
+  "voltas": 0,
+  "maiorTravaEmSessoes": 4,
+  "acoes": {
+   "manter": 15,
+   "estagnado": 16,
+   "subir": 1
+  },
+  "cargaInexistente": [],
+  "veredito": "anda"
+ },
+ {
+  "id": "barra-1kg",
+  "nome": "Rosca com barra W, anilhas de 1 kg",
+  "exercicio": "rosca-barra-w",
+  "inicial": "22,5 kg",
+  "final": "24 kg",
+  "forcaCresceu": "+17% (modelo)",
+  "subidas": 1,
+  "voltas": 0,
+  "maiorTravaEmSessoes": 4,
+  "acoes": {
+   "manter": 15,
+   "estagnado": 16,
+   "subir": 1
+  },
+  "cargaInexistente": [],
+  "veredito": "anda"
  },
  {
   "id": "leg-press",
@@ -260,22 +254,17 @@
   "id": "panturrilha-sem-halter",
   "nome": "Panturrilha no chão, para quem não tem halteres (só elásticos)",
   "exercicio": "panturrilha-chao",
-  "inicial": "0 kg",
-  "final": "7,5 kg",
+  "inicial": "peso do corpo · carga externa ou elástico mais forte",
+  "final": "peso do corpo · carga externa ou elástico mais forte",
   "forcaCresceu": "+17% (modelo)",
-  "subidas": 3,
+  "subidas": 0,
   "voltas": 0,
-  "maiorTravaEmSessoes": 4,
+  "maiorTravaEmSessoes": 31,
   "acoes": {
-   "manter": 17,
-   "estagnado": 12,
-   "subir": 3
+   "manter": 2,
+   "estagnado": 30
   },
-  "cargaInexistente": [
-   "2,5 kg",
-   "5 kg",
-   "7,5 kg"
-  ],
-  "veredito": "sugere carga que não existe"
+  "cargaInexistente": [],
+  "veredito": "trava"
  }
 ]
