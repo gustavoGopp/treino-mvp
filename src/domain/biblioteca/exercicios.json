@@ -2062,9 +2062,7 @@
    "primarios": [
     "gluteos"
    ],
-   "secundarios": [
-    "posteriores"
-   ]
+   "secundarios": []
   },
   "requer": [
    [
@@ -3219,9 +3217,7 @@
    "primarios": [
     "gluteos"
    ],
-   "secundarios": [
-    "posteriores"
-   ]
+   "secundarios": []
   },
   "requer": [
    [
@@ -3258,9 +3254,7 @@
    "primarios": [
     "gluteos"
    ],
-   "secundarios": [
-    "posteriores"
-   ]
+   "secundarios": []
   },
   "requer": [
    [
@@ -3293,9 +3287,7 @@
    "primarios": [
     "gluteos"
    ],
-   "secundarios": [
-    "posteriores"
-   ]
+   "secundarios": []
   },
   "requer": [
    [
@@ -3594,9 +3586,7 @@
    "primarios": [
     "gluteos"
    ],
-   "secundarios": [
-    "posteriores"
-   ]
+   "secundarios": []
   },
   "requer": [
    [
