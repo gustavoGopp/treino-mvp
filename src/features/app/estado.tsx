@@ -96,6 +96,8 @@ export function comProgramaNovo(e: Estado, agora: string, semAnterior = false): 
 }
 
 export const agoraIso = () => new Date().toISOString();
+/** Fuso do aparelho em minutos somados ao UTC (Brasília: −180), para a semana de segunda a domingo do calendário local. */
+export const fusoDoAparelho = () => -new Date().getTimezoneOffset();
 
 /**
  * Compara dois valores JSON sem depender da ordem das chaves nem de campos undefined.

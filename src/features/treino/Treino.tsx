@@ -21,7 +21,7 @@ import {
 import type { Inventario } from '../../domain/taxonomia/equipamentos';
 import { avaliarDor, avaliarSinal, type Sinal } from '../../domain/triagem';
 import type { Estado } from '../../storage/esquema';
-import { agoraIso, useApp } from '../app/estado';
+import { agoraIso, fusoDoAparelho, useApp } from '../app/estado';
 import { Selo, Titulo, Topo } from '../app/ui';
 import { Miniatura } from '../programa/Miniatura';
 import { BotaoPrefiro } from '../programa/Prefiro';
@@ -46,7 +46,7 @@ export function Treino() {
   const sessao = estado.sessaoAtual;
   const programa = estado.programa?.programa;
   // O dia no local do treino (local.treino-do-dia): as vagas que não são possíveis ali já vêm trocadas, com o motivo.
-  const doTreino = useMemo(() => (sessao ? diaDoTreino(estado, sessao) : null), [estado, sessao]);
+  const doTreino = useMemo(() => (sessao ? diaDoTreino(estado, sessao, fusoDoAparelho()) : null), [estado, sessao]);
   const dia = doTreino?.dia ?? null;
   const vagaDe = (exId: string) => dia?.exercicios.find((x) => (x.noLugarDe ?? x.exId) === exId);
   // Ao voltar para um treino em andamento, abre o primeiro exercício que ainda não terminou.
@@ -59,7 +59,7 @@ export function Treino() {
   const [aviso, setAviso] = useState<{ texto: string; regraId: string } | null>(null);
   if (!sessao || !programa || !dia || !doTreino) return <Navigate to="/programa" replace />;
   const inventario = inventarioDoTreino(estado, sessao);
-  const opcoesCargaHoje = opcoesDaCarga(estado, sessao);
+  const opcoesCargaHoje = opcoesDaCarga(estado, sessao, fusoDoAparelho());
 
   // A vaga de cada item: a do dia no local; numa troca pela alternativa, a prescrição da vaga com a alternativa.
   const itens: Item[] = sessao.exercicios.map((feito) => {

@@ -44,6 +44,10 @@ export const MIGRACOES: Record<number, Migracao> = {
     if (!inventario) return { ...resto };
     return { ...resto, locais: [{ id: 'local-1', nome: NOME_LOCAL_PADRAO, inventario }] };
   },
+  // 6 → 7 (R2): acompanhamento. Os campos novos são todos opcionais e nascem vazios: nenhum "hoje foi" marcado, nenhuma
+  // semana leve, nenhuma resposta e nenhuma margem de tempo. A semana do programa e as pausas saem do histórico que já
+  // existe, sem gravar nada.
+  6: (anterior) => ({ ...anterior }),
 };
 
 export type ResultadoMigracao = { ok: true; estado: Estado } | { ok: false; erro: string };

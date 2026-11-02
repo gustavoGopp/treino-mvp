@@ -1,9 +1,10 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { Link, Navigate, useNavigate, useParams, useSearchParams } from 'react-router-dom';
 import { CONTEUDO } from '../../conteudo';
-import { prescricaoNoGuia, semanaDoPrograma } from '../../domain/sessao';
+import { prescricaoNoGuia } from '../../domain/sessao';
+import { hojeDoEstado, hojeDoTreino } from '../treino/acoes';
 import { DIAS, EX, VIEWS, montarSvg } from '../../engine';
-import { agoraIso, useApp } from '../app/estado';
+import { agoraIso, fusoDoAparelho, useApp } from '../app/estado';
 import { lerContexto, linkDoGuia } from './link';
 
 // Tela do guia de execução: mesma interface do guia original (referencia/guia-execucao-fase1.html),
@@ -57,8 +58,8 @@ function GuiaExercicio({ ex }: { ex: Animacao }) {
   const ctx = lerContexto(params);
   const programa = app.estado.programa?.programa;
   const sessao = app.estado.sessaoAtual;
-  const semana = ctx?.de === 'treino' && sessao && sessao.diaId === ctx.diaId ? sessao.semana : semanaDoPrograma(app.estado.historico, agoraIso());
-  const minha = ctx && programa ? prescricaoNoGuia(programa, ctx, semana) : null;
+  const hoje = ctx?.de === 'treino' && sessao && sessao.diaId === ctx.diaId ? hojeDoTreino(app.estado, sessao, fusoDoAparelho()) : hojeDoEstado(app.estado, agoraIso(), fusoDoAparelho());
+  const minha = ctx && programa && hoje ? prescricaoNoGuia(programa, ctx, hoje) : null;
   const meus =
     minha && ctx
       ? minha.dia.exercicios

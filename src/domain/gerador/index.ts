@@ -835,12 +835,7 @@ export function avisosDeMeta(
 }
 
 function fases(p: Perfil): Fase[] {
-  if (p.semanasParado >= READAPTACAO.semanasProtocolo)
-    return [
-      { semanas: '1', fatorSeries: READAPTACAO.semana1.fatorSeries, rir: READAPTACAO.semana1.rir, texto: 'Cerca de metade das séries, RIR 3–4 e carga 10–20% abaixo da que você usava antes da pausa (na dúvida, comece leve).', regraId: r('readaptacao.semana1') },
-      { semanas: '2', fatorSeries: READAPTACAO.semana2.fatorSeries, rir: READAPTACAO.semana2.rir, texto: 'Cerca de 3/4 das séries, RIR 2–3.', regraId: r('readaptacao.semana2') },
-      { semanas: '3+', fatorSeries: 1, rir: null, texto: 'Programa completo; as cargas desta semana viram a referência.', regraId: r('readaptacao.semana3') },
-    ];
+  if (p.semanasParado >= READAPTACAO.semanasProtocolo) return fasesDeReadaptacao();
   if (p.semanasParado >= READAPTACAO.semanasNormal)
     return [{ semanas: '1ª sessão', fatorSeries: 1, rir: null, texto: 'Primeira sessão de cada treino com 1 repetição a mais de reserva.', regraId: r('readaptacao.gatilho') }];
   if (p.nivel === 'iniciante')
@@ -852,22 +847,50 @@ function fases(p: Perfil): Fase[] {
 }
 
 /**
- * Séries e RIR da semana, aplicando a fase (readaptação ou aprendizado).
- * Na fase de aprendizado do iniciante não há supersérie (tempo.superserie), e nas semanas com RIR 3–4
- * não há drop set, porque ele pede chegar perto da falha (tempo.corte); a série do drop set volta a ser normal.
+ * As 3 semanas da volta gradual (readaptacao.semana1 a semana3). Sem `volta`, é a do cadastro (a pausa dita antes de
+ * começar, sem histórico de carga). Com `volta`, é a da pausa detectada durante o uso (readaptacao.durante-uso): a carga
+ * da semana 1 já vem reduzida da última vez, ou, acima de 26 semanas, a 1ª série acerta a carga a partir da última −20%.
  */
-export function prescricaoDaSemana(programa: Programa, semana: number): DiaPrograma[] {
-  const fase = programa.fases.find((f) => {
+export function fasesDeReadaptacao(volta?: { reducao: number; calibrar?: boolean }): Fase[] {
+  const pct = volta ? Math.round(volta.reducao * 100) : 0;
+  const texto1 = !volta
+    ? 'Cerca de metade das séries, RIR 3–4 e carga 10–20% abaixo da que você usava antes da pausa (na dúvida, comece leve).'
+    : volta.calibrar
+      ? `Cerca de metade das séries e RIR 3–4. A 1ª série de cada exercício acerta a carga, começando ${pct}% abaixo da última vez.`
+      : `Cerca de metade das séries, RIR 3–4 e carga ${pct}% abaixo da última vez (já vem preenchida).`;
+  return [
+    { semanas: '1', fatorSeries: READAPTACAO.semana1.fatorSeries, rir: READAPTACAO.semana1.rir, texto: texto1, regraId: r('readaptacao.semana1') },
+    { semanas: '2', fatorSeries: READAPTACAO.semana2.fatorSeries, rir: READAPTACAO.semana2.rir, texto: 'Cerca de 3/4 das séries, RIR 2–3.', regraId: r('readaptacao.semana2') },
+    { semanas: '3+', fatorSeries: 1, rir: null, texto: 'Programa completo; as cargas desta semana viram a referência.', regraId: r('readaptacao.semana3') },
+  ];
+}
+
+/** A fase que vale numa semana ("1", "1–2", "3+"; "1ª sessão" não tem semana). */
+export function faseNaSemana(fases: Fase[], semana: number): Fase | undefined {
+  return fases.find((f) => {
     const [a, b] = f.semanas.split(/[–+]/);
     const ini = Number(a);
     if (Number.isNaN(ini)) return false;
     if (f.semanas.endsWith('+')) return semana >= ini;
     return semana >= ini && semana <= Number(b || a);
   });
-  if (!fase || fase.fatorSeries === 1) return programa.dias;
+}
+
+/**
+ * Séries e RIR da semana, aplicando a fase (readaptação ou aprendizado).
+ * Na fase de aprendizado do iniciante não há supersérie (tempo.superserie), e nas semanas com RIR 3–4
+ * não há drop set, porque ele pede chegar perto da falha (tempo.corte); a série do drop set volta a ser normal.
+ */
+export function prescricaoDaSemana(programa: Programa, semana: number, fases: Fase[] = programa.fases): DiaPrograma[] {
+  return aplicarFase(programa.dias, faseNaSemana(fases, semana));
+}
+
+/** Aplica uma fase (readaptação, aprendizado ou semana leve) aos dias: séries, RIR, supersérie e drop set. */
+export function aplicarFase(dias: DiaPrograma[], fase: Fase | undefined): DiaPrograma[] {
+  if (!fase || fase.fatorSeries === 1) return dias;
   const semSuperserie = fase.regraId === 'iniciante.fase-aprendizado';
   const semDropSet = !!fase.rir && fase.rir[0] >= 3;
-  return programa.dias.map((d) => ({
+  return dias.map((d) => ({
     ...d,
     exercicios: d.exercicios.map((x) => {
       const { supersetCom, dropSet, ...resto } = x;

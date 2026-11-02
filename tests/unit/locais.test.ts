@@ -164,17 +164,17 @@ describe('progressao.troca-equivalente: o Bruno no prédio e na academia do bair
   });
 
   it('o supino com halteres, repetido, continua a progressão normal na academia do bairro (kg é kg)', () => {
-    const x = diaDoTreino(e1, { diaId, semana: 2, localId: 'local-2' })!.dia.exercicios.find((y) => y.exId === 'supino-reto')!;
-    const s = sugestaoDoExercicio(e1.historico, x, brunoAcademiaDoBairro, opcoesDaCarga(e1, { localId: 'local-2', semana: 2 }));
+    const x = diaDoTreino(e1, { id: T(9), inicio: T(9), diaId, localId: 'local-2' })!.dia.exercicios.find((y) => y.exId === 'supino-reto')!;
+    const s = sugestaoDoExercicio(e1.historico, x, brunoAcademiaDoBairro, opcoesDaCarga(e1, { id: T(9), inicio: T(9), localId: 'local-2' }));
     expect(s.acao).not.toBe('calibrar');
     expect(historicoDoExercicio(e2.historico, 'supino-reto')).toHaveLength(2);
   });
 
   it('a barra fixa, 1ª vez, começa pela calibração; o exercício da polia, de volta ao prédio, segue de onde parou', () => {
-    const barra = diaDoTreino(e1, { diaId, semana: 2, localId: 'local-2' })!.dia.exercicios.find((y) => y.exId === 'barra-fixa')!;
-    expect(sugestaoDoExercicio(e1.historico, barra, brunoAcademiaDoBairro, opcoesDaCarga(e1, { localId: 'local-2', semana: 2 })).acao).toBe('calibrar');
+    const barra = diaDoTreino(e1, { id: T(9), inicio: T(9), diaId, localId: 'local-2' })!.dia.exercicios.find((y) => y.exId === 'barra-fixa')!;
+    expect(sugestaoDoExercicio(e1.historico, barra, brunoAcademiaDoBairro, opcoesDaCarga(e1, { id: T(9), inicio: T(9), localId: 'local-2' })).acao).toBe('calibrar');
     const puxada = e2.programa!.programa.dias[0]!.exercicios.find((y) => y.exId === 'puxada-unilateral')!;
-    const s = sugestaoDoExercicio(e2.historico, puxada, bruno.inventario, opcoesDaCarga(e2, { localId: 'local-1', semana: 3 }));
+    const s = sugestaoDoExercicio(e2.historico, puxada, bruno.inventario, opcoesDaCarga(e2, { id: T(16), inicio: T(16), localId: 'local-1' }));
     expect(s.acao).not.toBe('calibrar');
     expect(s.proxima ?? { tipo: 'placa', placa: 5 }).toMatchObject({ tipo: 'placa' });
   });
@@ -182,7 +182,7 @@ describe('progressao.troca-equivalente: o Bruno no prédio e na academia do bair
   it('máquina de outro local: a puxada feita no prédio, numa polia de outra academia, recomeça pela calibração', () => {
     const e = { ...e2, locais: [...e2.locais!, { id: 'local-3', nome: 'Academia', inventario: carla.inventario }] };
     const puxada = e.programa!.programa.dias[0]!.exercicios.find((y) => y.exId === 'puxada-unilateral')!;
-    const s = sugestaoDoExercicio(e.historico, puxada, carla.inventario, opcoesDaCarga(e, { localId: 'local-3', semana: 3 }));
+    const s = sugestaoDoExercicio(e.historico, puxada, carla.inventario, opcoesDaCarga(e, { id: T(16), inicio: T(16), localId: 'local-3' }));
     expect(s.acao).toBe('calibrar');
     expect(s.motivo).toMatch(/1ª vez nesta máquina neste local/);
     expect(s.motivo).not.toMatch(/placa \d/);
@@ -192,8 +192,8 @@ describe('progressao.troca-equivalente: o Bruno no prédio e na academia do bair
   });
 
   it('a 1ª vez de um exercício equivalente diz qual a pessoa já faz, sem mostrar a carga dele', () => {
-    const barra = diaDoTreino(e1, { diaId, semana: 2, localId: 'local-2' })!.dia.exercicios.find((y) => y.exId === 'barra-fixa')!;
-    const s = sugestaoDoExercicio(e1.historico, barra, brunoAcademiaDoBairro, opcoesDaCarga(e1, { localId: 'local-2', semana: 2 }));
+    const barra = diaDoTreino(e1, { id: T(9), inicio: T(9), diaId, localId: 'local-2' })!.dia.exercicios.find((y) => y.exId === 'barra-fixa')!;
+    const s = sugestaoDoExercicio(e1.historico, barra, brunoAcademiaDoBairro, opcoesDaCarga(e1, { id: T(9), inicio: T(9), localId: 'local-2' }));
     expect(s.motivo).toMatch(/^Você já faz puxada unilateral/);
     expect(s.motivo).not.toMatch(/placa|kg/);
   });

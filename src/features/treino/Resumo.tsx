@@ -1,8 +1,8 @@
 import { Link, Navigate } from 'react-router-dom';
 import { BIBLIOTECA } from '../../domain/biblioteca';
-import { diaDaSemana, resumoSessao, sugestaoDoExercicio, textoCarga } from '../../domain/sessao';
-import { useApp } from '../app/estado';
-import { inventarioDoTreino, opcoesDaCarga } from './acoes';
+import { resumoSessao, sugestaoDoExercicio, textoCarga } from '../../domain/sessao';
+import { fusoDoAparelho, useApp } from '../app/estado';
+import { hojeDoTreino, inventarioDoTreino, opcoesDaCarga } from './acoes';
 import { Selo, Titulo, Topo } from '../app/ui';
 
 // Fim do treino: resumo e a sugestão de cada exercício para a próxima vez (decisão 9 do M5).
@@ -25,7 +25,8 @@ export function Resumo() {
   const s = estado.historico.at(-1);
   const programa = estado.programa?.programa;
   if (!s || !programa) return <Navigate to="/programa" replace />;
-  const dia = diaDaSemana(programa, s.diaId, s.semana);
+  const hoje = hojeDoTreino(estado, s, fusoDoAparelho())!;
+  const dia = hoje.dias.find((d) => d.id === s.diaId) ?? hoje.dias[0]!;
   const r = resumoSessao(s);
 
   return (
@@ -57,7 +58,7 @@ export function Resumo() {
               .map((e) => {
                 const orig = dia.exercicios.find((x) => x.exId === (e.noLugarDe ?? e.exId));
                 const alvo = { exId: e.exId, reps: (e.noLugarDe ? POR_ID[e.exId]?.faixaReps : orig?.reps) ?? [8, 12], rir: orig?.rir ?? [1, 2] };
-                const sug = sugestaoDoExercicio(estado.historico, alvo as { exId: string; reps: [number, number]; rir: [number, number] }, inventarioDoTreino(estado, s), opcoesDaCarga(estado, s));
+                const sug = sugestaoDoExercicio(estado.historico, alvo as { exId: string; reps: [number, number]; rir: [number, number] }, inventarioDoTreino(estado, s), opcoesDaCarga(estado, s, fusoDoAparelho()));
                 return (
                   <li key={e.exId} className="cartao-ex resumo-ex">
                     <div className="mais-corpo">

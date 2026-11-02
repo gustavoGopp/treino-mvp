@@ -1,10 +1,12 @@
 import { BIBLIOTECA, type Exercicio } from '../biblioteca';
-import { prescricaoDaSemana, type DiaPrograma, type ExercicioPrescrito, type Fase, type Programa } from '../gerador';
-import { ESCADA_PESO_CORPO, sugerirProgressao, type Alvo, type Carga, type OpcoesCarga, type SerieRegistrada, type SessaoExercicio, type Sugestao } from '../progressao';
+import { faseNaSemana, prescricaoDaSemana, type DiaPrograma, type ExercicioPrescrito, type Fase, type Programa } from '../gerador';
+import { blocoAtual, semanaNoBloco, type Hoje } from './bloco';
+import { ESCADA_PESO_CORPO, proximaCarga, sugerirProgressao, type Alvo, type Carga, type OpcoesCarga, type SerieRegistrada, type SessaoExercicio, type Sugestao } from '../progressao';
 import { calibrar, emCalibracao, semCalibracao, type ResultadoCalibracao } from '../progressao/calibracao';
 import { funcoesDoExercicio } from '../gerador/funcoes';
 import { r } from '../regras';
-import { CAPACIDADES, cargasHalter, cargasKettlebell, ITEM_IDS, type Inventario } from '../taxonomia/equipamentos';
+import { CAPACIDADES, cargasHalter, cargasKettlebell, ITEM_IDS, MENOR_ANILHA_PADRAO_KG, type Inventario } from '../taxonomia/equipamentos';
+export * from './bloco';
 
 // Sessão de treino: funções puras que ligam o programa, o histórico e a progressão.
 // Datas entram como texto ISO (quem chama decide "hoje"); nada aqui lê o relógio.
@@ -31,6 +33,10 @@ export type Sessao = {
   /** Local onde o treino foi feito (R1b); sem local = de antes do R1b, no 1º local. */
   localId?: string;
   exercicios: ExercicioFeito[];
+  /** Toque opcional no fim do treino (deload.semana-leve): "hoje foi leve, normal ou pesado demais". */
+  hojeFoi?: 'leve' | 'normal' | 'pesado';
+  /** Feita durante uma semana leve aceita: fica fora da dupla progressão e da estagnação. */
+  semanaLeve?: boolean;
 };
 
 /**
@@ -49,12 +55,12 @@ export function proximoDia(programa: Programa, historico: Sessao[]): DiaPrograma
   return programa.dias[(i + 1) % programa.dias.length]!;
 }
 
-/** Semana do programa, contada em semanas corridas desde a primeira sessão (decisão 2). */
-export function semanaDoPrograma(historico: Sessao[], hojeIso: string): number {
-  const primeira = historico[0]?.inicio;
-  if (!primeira) return 1;
-  const dias = Math.floor((Date.parse(hojeIso) - Date.parse(primeira)) / 86_400_000);
-  return Math.max(1, Math.floor(dias / 7) + 1);
+/**
+ * Semana do programa (readaptacao.durante-uso; decisão 3 do T6): as semanas com treino desde o início do bloco, e não
+ * as semanas do calendário. O bloco recomeça na volta de uma pausa de 21 dias ou mais (ver ./bloco.ts).
+ */
+export function semanaDoPrograma(historico: Sessao[], hojeIso: string, fusoMin = 0): number {
+  return semanaNoBloco(blocoAtual(historico, hojeIso, fusoMin), hojeIso, fusoMin);
 }
 
 /** O dia com séries e RIR da semana (fases de readaptação e aprendizado). */
@@ -68,14 +74,9 @@ export function prescricaoDaVaga(orig: ExercicioPrescrito, altId?: string): Exer
   return alt ? { ...orig, exId: alt.id, nome: alt.nome, reps: alt.faixaReps, unilateral: alt.unilateral, animacaoId: alt.animacaoId, alternativas: [] } : orig;
 }
 
-/** Fase que vale na semana (mesma leitura de prescricaoDaSemana: "1", "1–2", "3+", "1ª sessão"). */
-export function faseDaSemana(p: Programa, semana: number): Fase | undefined {
-  return p.fases.find((f) => {
-    const [a, b] = f.semanas.split(/[–+]/).map((x) => parseInt(x, 10));
-    if (Number.isNaN(a)) return semana === 1;
-    if (f.semanas.endsWith('+')) return semana >= a!;
-    return semana >= a! && semana <= (Number.isNaN(b) || b === undefined ? a! : b);
-  });
+/** Fase que vale na semana ("1", "1–2", "3+"; a fase "1ª sessão" do cadastro vale na semana 1). */
+export function faseDaSemana(p: Programa, semana: number, fases: Fase[] = p.fases): Fase | undefined {
+  return faseNaSemana(fases, semana) ?? (semana === 1 ? fases.find((f) => f.semanas === '1ª sessão') : undefined);
 }
 
 export type ContextoGuia = { diaId: string; exId: string; /** Exercício da vaga, quando houve troca pela alternativa. */ vaga?: string };
@@ -88,12 +89,14 @@ export type ContextoGuia = { diaId: string; exId: string; /** Exercício da vaga
 export function prescricaoNoGuia(
   programa: Programa,
   ctx: ContextoGuia,
-  semana: number,
+  hoje: number | Pick<Hoje, 'semana' | 'dias' | 'fase'>,
 ): { dia: DiaPrograma; x: ExercicioPrescrito; semana: number; fase?: Fase } | null {
-  const dia = prescricaoDaSemana(programa, semana).find((d) => d.id === ctx.diaId);
+  const semana = typeof hoje === 'number' ? hoje : hoje.semana;
+  const dias = typeof hoje === 'number' ? prescricaoDaSemana(programa, semana) : hoje.dias;
+  const dia = dias.find((d) => d.id === ctx.diaId);
   const orig = dia?.exercicios.find((x) => x.exId === (ctx.vaga ?? ctx.exId));
   if (!dia || !orig) return null;
-  const fase = faseDaSemana(programa, semana);
+  const fase = typeof hoje === 'number' ? faseDaSemana(programa, semana) : hoje.fase;
   return { dia, x: prescricaoDaVaga(orig, ctx.vaga ? ctx.exId : undefined), semana, ...(fase ? { fase } : {}) };
 }
 
@@ -169,21 +172,78 @@ export const cargaDaMaquina = (exId: string) => {
  * nas máquinas, só as sessões daquele local (decisão do R1b); fora delas, o histórico segue o exercício em qualquer local.
  * Nada é apagado nem misturado: é só uma leitura com filtro.
  */
-export function historicoDoExercicio(historico: Sessao[], exId: string, local?: LocalDaCarga): SessaoExercicio[] {
+export function historicoDoExercicio(historico: Sessao[], exId: string, local?: LocalDaCarga, filtro: FiltroHistorico = {}): SessaoExercicio[] {
   const noLocal = (s: Sessao) => !local || !cargaDaMaquina(exId) || (s.localId ?? local.localPadrao) === local.localId;
+  const noFiltro = (s: Sessao) => (!filtro.desde || Date.parse(s.inicio) >= Date.parse(filtro.desde)) && (!filtro.semLeve || !s.semanaLeve);
   return historico
-    .filter(noLocal)
+    .filter((s) => noLocal(s) && noFiltro(s))
     .flatMap((s) => s.exercicios.filter((e) => e.exId === exId && e.series.length > 0))
     .map((e) => ({ series: e.series }));
 }
+
+/** Recorte do histórico: desde o início do bloco, e sem as sessões da semana leve (fora da dupla progressão). */
+export type FiltroHistorico = { desde?: string; semLeve?: boolean };
 
 /** Última série registrada de um exercício, para pré-preencher a próxima (decisão 3). */
 export function ultimaSerie(historico: Sessao[], exId: string, local?: LocalDaCarga): SerieRegistrada | undefined {
   return historicoDoExercicio(historico, exId, local).at(-1)?.series.at(-1);
 }
 
-/** Opções de quem chama a sugestão: o local de hoje e a semana 1 da volta de uma pausa (a calibração só desce). */
-export type OpcoesSugestao = { local?: LocalDaCarga; soDesce?: boolean };
+/**
+ * Opções de quem chama a sugestão: o local de hoje; a semana 1 da volta de uma pausa (a calibração só desce); o bloco
+ * de hoje (readaptacao.durante-uso: a dupla progressão olha só o bloco, e a 1ª vez no bloco vem com a carga da volta);
+ * e a semana leve (deload.semana-leve: a mesma carga).
+ */
+export type OpcoesSugestao = {
+  local?: LocalDaCarga;
+  soDesce?: boolean;
+  bloco?: { inicio: string; reducao: number; calibrar?: boolean };
+  semanaLeve?: boolean;
+};
+
+/** As opções da sugestão que saem da prescrição de hoje: a semana 1 da volta, o bloco aberto por pausa e a semana leve. */
+export const opcoesDeHoje = (hoje: Hoje): OpcoesSugestao => {
+  const b = hoje.bloco;
+  return {
+    ...(hoje.fase?.regraId === 'readaptacao.semana1' ? { soDesce: true } : {}),
+    ...(b.pausaDias !== undefined ? { bloco: { inicio: b.inicio, reducao: b.reducao, ...(b.calibrar ? { calibrar: true } : {}) } } : {}),
+    ...(hoje.semanaLeve ? { semanaLeve: true } : {}),
+  };
+};
+
+/**
+ * Carga da volta de uma pausa (readaptacao.semana1): a última × (1 − redução), sempre para baixo no que o local de hoje
+ * tem. Placa: placas × (1 − redução), para baixo; anilhas: no múltiplo da menor anilha; contrapeso: uma placa a mais
+ * (mais ajuda); peso do corpo e elástico: um degrau abaixo.
+ */
+export function cargaDaVolta(c: Carga, reducao: number, o: OpcoesCarga): Carga {
+  const f = 1 - reducao;
+  switch (c.tipo) {
+    case 'kg': {
+      const alvo = c.kg * f;
+      const lista = o.lista ?? [];
+      if (lista.length) return { tipo: 'kg', kg: [...lista].reverse().find((k) => k <= alvo + 1e-9) ?? lista[0]! };
+      const k = Math.floor(alvo / 2.5 + 1e-9) * 2.5;
+      return { tipo: 'kg', kg: k > 0 ? k : c.kg };
+    }
+    case 'placa':
+      return { tipo: 'placa', placa: Math.max(1, Math.floor(c.placa * f + 1e-9)) };
+    case 'anilha': {
+      const passo = o.menorAnilhaKg ?? MENOR_ANILHA_PADRAO_KG;
+      return { tipo: 'anilha', kgPorLado: Math.max(0, Math.round(Math.floor((c.kgPorLado * f) / passo + 1e-9) * passo * 100) / 100) };
+    }
+    case 'contrapeso':
+      return proximaCarga(c, -1, o) ?? c;
+    case 'degrau':
+      return { tipo: 'degrau', degrau: Math.max(0, c.degrau - 1) };
+  }
+}
+
+/** A carga de referência da última sessão: a 1ª série de trabalho (a da dupla progressão), ou a última de acerto. */
+const cargaDeReferencia = (h: SessaoExercicio[]): Carga | undefined => {
+  const ult = h.at(-1);
+  return (ult?.series.find((x) => !x.calibracao) ?? ult?.series.at(-1))?.carga;
+};
 
 /** Carga dentro do que o local tem: halteres e kettlebell pela lista do inventário (o maior até a carga). */
 export function noInventario(c: Carga, o: OpcoesCarga): { carga: Carga; ajustada: boolean } {
@@ -222,6 +282,7 @@ export function sugestaoDoExercicio(
   const op = opcoesCarga(x.exId, inventario);
   const alvo: Alvo = { reps: x.reps, rir: x.rir };
   const ultima = h.at(-1);
+  // A dor manda antes de tudo (seguranca.dor.escala), em qualquer semana.
   if (ultima?.series.some((s) => (s.dor ?? 0) >= 3)) return sugerirProgressao(h, alvo, op);
   if (emCalibracao(h)) {
     const s = ultima?.series.at(-1);
@@ -230,7 +291,43 @@ export function sugestaoDoExercicio(
     const prox = noInventario(c.proxima, op).carga;
     return { acao: 'calibrar', proxima: prox, motivo: `Ainda calibrando: comece por ${textoCarga(prox, x.exId)} e acerte na 1ª série.`, regraId: r('progressao.calibracao') };
   }
-  const sug = sugerirProgressao(semCalibracao(h), alvo, op);
+  const bloco = opcoes.bloco;
+  const noBloco = bloco ? historicoDoExercicio(historico, x.exId, opcoes.local, { desde: bloco.inicio }) : h;
+  // Volta de uma pausa (readaptacao.durante-uso): a 1ª vez do exercício no bloco parte da última carga, reduzida.
+  if (bloco && bloco.reducao > 0 && emCalibracao(noBloco)) {
+    const base = cargaDeReferencia(h);
+    if (base) {
+      const pct = Math.round(bloco.reducao * 100);
+      const volta = noInventario(cargaDaVolta(base, bloco.reducao, op), op).carga;
+      if (bloco.calibrar) {
+        const s = noBloco.at(-1)?.series.at(-1);
+        if (s) {
+          const c = calibrar(s, alvo, op, { soDesce: opcoes.soDesce });
+          const prox = noInventario(c.proxima, op).carga;
+          return { acao: 'calibrar', proxima: prox, motivo: `Ainda calibrando: comece por ${textoCarga(prox, x.exId)} e acerte na 1ª série.`, regraId: r('progressao.calibracao') };
+        }
+        return {
+          acao: 'calibrar',
+          proxima: volta,
+          motivo: `Última vez: ${textoCarga(base, x.exId)}. Depois de uma pausa longa, a 1ª série acerta a carga, começando ${pct}% abaixo.`,
+          regraId: r('readaptacao.durante-uso'),
+        };
+      }
+      return {
+        acao: 'reduzir',
+        proxima: volta,
+        motivo: `Última vez: ${textoCarga(base, x.exId)}. Volta da pausa: ${pct}% mais leve, para o corpo se readaptar sem dor.`,
+        regraId: r('readaptacao.semana1'),
+      };
+    }
+  }
+  // Semana leve (deload.semana-leve): a mesma carga da última vez, com menos séries e mais reserva.
+  if (opcoes.semanaLeve) {
+    const base = cargaDeReferencia(noBloco);
+    return { acao: 'manter', ...(base ? { proxima: base } : {}), motivo: 'Semana leve: a mesma carga, com menos séries e mais reserva.', regraId: r('deload.semana-leve') };
+  }
+  const trabalho = semCalibracao(bloco ? historicoDoExercicio(historico, x.exId, opcoes.local, { desde: bloco.inicio, semLeve: true }) : historicoDoExercicio(historico, x.exId, opcoes.local, { semLeve: true }));
+  const sug = sugerirProgressao(trabalho.length ? trabalho : semCalibracao(noBloco), alvo, op);
   if (!sug.proxima) return sug;
   const { carga, ajustada } = noInventario(sug.proxima, op);
   return ajustada ? { ...sug, proxima: carga, motivo: `${sug.motivo} Aqui, o peso mais perto é ${textoCarga(carga, x.exId)}.` } : sug;
@@ -248,7 +345,9 @@ export function calibracaoNaSessao(
   opcoes: OpcoesSugestao = {},
 ): { calibrando: boolean; ultima?: ResultadoCalibracao } {
   const h = historicoDoExercicio(historico, x.exId, opcoes.local);
-  const calibrando = emCalibracao(h) && !seriesDaSessao.some((s) => !s.calibracao);
+  // Volta de mais de 182 dias (readaptacao.durante-uso): a 1ª série acerta a carga, mesmo com histórico de antes.
+  const longa = !!opcoes.bloco?.calibrar && emCalibracao(historicoDoExercicio(historico, x.exId, opcoes.local, { desde: opcoes.bloco.inicio }));
+  const calibrando = (emCalibracao(h) || longa) && !seriesDaSessao.some((s) => !s.calibracao);
   const s = seriesDaSessao.at(-1);
   if (!calibrando || !s) return { calibrando };
   return { calibrando, ultima: avaliarSerieDeCalibracao(s, x, inventario, opcoes) };
@@ -267,7 +366,7 @@ export function avaliarSerieDeCalibracao(
 }
 
 /** Semana 1 de uma volta de pausa (readaptacao.semana1): a calibração não sobe a carga. */
-export const soDesceNaSemana = (p: Programa, semana: number) => faseDaSemana(p, semana)?.regraId === 'readaptacao.semana1';
+export const soDesceNaSemana = (p: Programa, semana: number, fases: Fase[] = p.fases) => faseDaSemana(p, semana, fases)?.regraId === 'readaptacao.semana1';
 
 /** Lembrete de aquecimento antes do primeiro multiarticular de cada região (tempo.aquecimento; decisão 10). */
 export function precisaAquecer(dia: DiaPrograma, indice: number): boolean {

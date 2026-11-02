@@ -243,6 +243,36 @@ describe('migração', () => {
     expect(migrar({ ...e, locais: [e.locais![0], e.locais![0]] })).toMatchObject({ ok: false });
   });
 
+  it('versão 6 → 7 (R2): nada é inventado; nenhum "hoje foi", nenhuma semana leve, nenhuma resposta e nenhuma margem de tempo', () => {
+    for (const p of Object.values(PERSONAS)) {
+      const e = estadoDe(p);
+      const r = migrar({ ...JSON.parse(JSON.stringify(e)), versao: 6 });
+      expect(r).toEqual({ ok: true, estado: e });
+      if (!r.ok) continue;
+      expect(r.estado.semanaLeve).toBeUndefined();
+      expect(r.estado.respostas).toBeUndefined();
+      expect(r.estado.margemTempo).toBeUndefined();
+      expect(r.estado.historico.every((s) => s.hojeFoi === undefined && s.semanaLeve === undefined)).toBe(true);
+    }
+    // Um arquivo exportado na versão 6 entra igual.
+    const e = estadoDe(PERSONAS.ana);
+    const arquivo = JSON.stringify({ app: 'treino-mvp', exportadoEm: DATA, estado: { ...JSON.parse(JSON.stringify(e)), versao: 6 } });
+    expect(importarJson(arquivo)).toEqual({ ok: true, estado: e });
+  });
+
+  it('o "hoje foi", a semana leve, as respostas e a margem de tempo passam pela exportação e voltam iguais', () => {
+    const e: Estado = {
+      ...estadoDe(PERSONAS.bruno),
+      semanaLeve: { inicio: DATA },
+      respostas: { revisaoMetaEm: DATA, voltaLongaEm: DATA, semanaLeveEm: DATA, tempoEm: DATA },
+      margemTempo: 0.25,
+    };
+    e.historico = e.historico.map((s) => ({ ...s, hojeFoi: 'pesado', semanaLeve: true }));
+    expect(importarJson(exportarJson(e, DATA))).toEqual({ ok: true, estado: e });
+    expect(migrar({ ...e, margemTempo: 2 })).toMatchObject({ ok: false });
+    expect(migrar({ ...e, historico: [{ ...e.historico[0], hojeFoi: 'cansado' }] })).toMatchObject({ ok: false });
+  });
+
   it('na versão atual, devolve o estado validado', () => {
     const e = estadoDe(PERSONAS.bruno);
     expect(migrar(JSON.parse(JSON.stringify(e)))).toEqual({ ok: true, estado: e });

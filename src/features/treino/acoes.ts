@@ -1,19 +1,34 @@
 import type { Porque } from '../../domain/gerador';
 import { diaNoLocal, type DiaNoLocal, type Troca } from '../../domain/locais';
 import type { SerieRegistrada } from '../../domain/progressao';
-import { diaDaSemana, proximoDia, semanaDoPrograma, soDesceNaSemana, type OpcoesSugestao, type Sessao } from '../../domain/sessao';
+import { hojeDaSessao, hojeNoPrograma, opcoesDeHoje, proximoDia, semanaLeveAtiva, type Hoje, type OpcoesSugestao, type Sessao } from '../../domain/sessao';
 import type { Inventario } from '../../domain/taxonomia/equipamentos';
 import { localDoPrograma, localDoTreino, localPorId, perfilDe, type Estado } from '../../storage/esquema';
 
-// Ações sobre o treino em andamento (estado → estado). Puras: quem chama passa a data de agora.
+// Ações sobre o treino em andamento (estado → estado). Puras: quem chama passa a data de agora e o fuso do aparelho.
+
+/** A prescrição de hoje no programa salvo (bloco, semana, volta de pausa, semana leve). */
+export function hojeDoEstado(e: Estado, agora: string, fusoMin = 0): Hoje | null {
+  if (!e.programa) return null;
+  return hojeNoPrograma(e.programa.programa, e.historico, agora, { fusoMin, ...(e.semanaLeve ? { semanaLeve: e.semanaLeve } : {}) });
+}
+
+/** A prescrição de uma sessão, refeita com o histórico de antes dela. */
+export const hojeDoTreino = (e: Estado, s: Pick<Sessao, 'id' | 'inicio' | 'semanaLeve'>, fusoMin = 0): Hoje | null =>
+  e.programa ? hojeDaSessao(e.programa.programa, e.historico, s, fusoMin) : null;
 
 /**
  * O dia de um treino no local escolhido (local.treino-do-dia): no local do programa, o dia do programa; em outro
  * local, cada vaga troca para o equivalente possível ali, com o motivo. A prescrição da semana vale igual.
  */
-export function diaDoTreino(e: Estado, s: Pick<Sessao, 'diaId' | 'semana' | 'localId'>): (DiaNoLocal & { noLocalDoPrograma: boolean }) | null {
-  if (!e.programa) return null;
-  const base = diaDaSemana(e.programa.programa, s.diaId, s.semana);
+export function diaDoTreino(
+  e: Estado,
+  s: Pick<Sessao, 'id' | 'inicio' | 'diaId' | 'localId' | 'semanaLeve'>,
+  fusoMin = 0,
+): (DiaNoLocal & { noLocalDoPrograma: boolean }) | null {
+  const hoje = hojeDoTreino(e, s, fusoMin);
+  if (!e.programa || !hoje) return null;
+  const base = hoje.dias.find((d) => d.id === s.diaId) ?? hoje.dias[0]!;
   const perfil = perfilDe(e);
   const doPrograma = localDoPrograma(e);
   const local = localPorId(e, s.localId) ?? doPrograma;
@@ -29,18 +44,18 @@ export const inventarioDoTreino = (e: Estado, s?: Pick<Sessao, 'localId'>): Inve
  * Como ler o histórico de carga num treino (progressao.troca-equivalente): nas máquinas, só o do local de hoje (as
  * sessões antigas, sem local, são do 1º local); e, na semana 1 da volta de uma pausa, a calibração só desce.
  */
-export function opcoesDaCarga(e: Estado, s: Pick<Sessao, 'localId' | 'semana'>): OpcoesSugestao {
+export function opcoesDaCarga(e: Estado, s: Pick<Sessao, 'id' | 'inicio' | 'localId' | 'semanaLeve'>, fusoMin = 0): OpcoesSugestao {
   const localId = s.localId ?? localDoPrograma(e)?.id;
+  const hoje = hojeDoTreino(e, s, fusoMin);
   return {
     ...(localId ? { local: { localId, ...(e.locais?.[0] ? { localPadrao: e.locais[0].id } : {}) } } : {}),
-    ...(e.programa && soDesceNaSemana(e.programa.programa, s.semana) ? { soDesce: true } : {}),
+    ...(hoje ? opcoesDeHoje(hoje) : {}),
   };
 }
 
 /** Prévia do dia num local, antes de começar ("onde vou treinar hoje?"). */
-export function previaDoDia(e: Estado, agora: string, diaId: string, localId?: string): { trocas: Troca[]; avisos: Porque[] } {
-  const semana = semanaDoPrograma(e.historico, agora);
-  const d = diaDoTreino(e, { diaId, semana, localId });
+export function previaDoDia(e: Estado, agora: string, diaId: string, localId?: string, fusoMin = 0): { trocas: Troca[]; avisos: Porque[] } {
+  const d = diaDoTreino(e, { id: agora, inicio: agora, diaId, ...(localId ? { localId } : {}), ...(semanaLeveAtiva(e.semanaLeve, agora, fusoMin) ? { semanaLeve: true } : {}) }, fusoMin);
   return { trocas: d?.trocas ?? [], avisos: d?.avisos ?? [] };
 }
 
@@ -48,16 +63,17 @@ export function previaDoDia(e: Estado, agora: string, diaId: string, localId?: s
  * Começa o treino de um dia (ou o próximo da rotação), no local escolhido (ou no lembrado). O local fica lembrado
  * para a próxima vez. Se já há um treino em andamento, mantém o atual.
  */
-export function iniciarSessao(e: Estado, agora: string, diaId?: string, localId?: string): Estado {
+export function iniciarSessao(e: Estado, agora: string, diaId?: string, localId?: string, fusoMin = 0): Estado {
   if (e.sessaoAtual || !e.programa) return e;
   const programa = e.programa.programa;
   const id = diaId ?? proximoDia(programa, e.historico).id;
-  const semana = semanaDoPrograma(e.historico, agora);
+  const hoje = hojeDoEstado(e, agora, fusoMin)!;
   const local = localPorId(e, localId) ?? localDoTreino(e);
-  const d = diaDoTreino(e, { diaId: id, semana, localId: local?.id });
-  const lista: { exId: string; noLugarDe?: string }[] = d?.dia.exercicios ?? diaDaSemana(programa, id, semana).exercicios;
+  const leve = hoje.semanaLeve ? { semanaLeve: true } : {};
+  const d = diaDoTreino(e, { id: agora, inicio: agora, diaId: id, ...(local ? { localId: local.id } : {}), ...leve }, fusoMin);
+  const lista: { exId: string; noLugarDe?: string }[] = d?.dia.exercicios ?? hoje.dias.find((x) => x.id === id)!.exercicios;
   const exercicios: Sessao['exercicios'] = lista.map((x) => ({ exId: x.exId, ...(x.noLugarDe ? { noLugarDe: x.noLugarDe } : {}), series: [] }));
-  const sessaoAtual: Sessao = { id: agora, diaId: id, semana, inicio: agora, ...(local ? { localId: local.id } : {}), exercicios };
+  const sessaoAtual: Sessao = { id: agora, diaId: id, semana: hoje.semana, inicio: agora, ...(local ? { localId: local.id } : {}), ...leve, exercicios };
   return { ...e, sessaoAtual, ...(local && (e.locais?.length ?? 0) > 1 ? { ultimoLocalId: local.id } : {}) };
 }
 

@@ -5,13 +5,12 @@ import { ALTERNATIVAS_A_MOSTRA, NOME_MUSCULO, type ExercicioPrescrito, type Prog
 import { opcoesDeAjuste, type Opcao } from '../../domain/gerador/opcoes';
 import { NOME_NIVEL } from '../../domain/nivel';
 import { avaliarTriagem } from '../../domain/triagem';
-import { faseDaSemana, proximoDia, semanaDoPrograma } from '../../domain/sessao';
+import { proximoDia } from '../../domain/sessao';
 import { linkDoGuia } from '../guia/link';
-import { prescricaoDaSemana } from '../../domain/gerador';
 import { inventarioPrincipal, localDoTreino, perfilDe, primeiroPassoPendente, type Estado } from '../../storage/esquema';
-import { alternarPreferencia, diaDoTreino, iniciarSessao } from '../treino/acoes';
+import { alternarPreferencia, diaDoTreino, hojeDoEstado, iniciarSessao } from '../treino/acoes';
 import { Preferencias } from './Prefiro';
-import { agoraIso, comProgramaNovo, gerarDoEstado, mesmoConteudo, useApp } from '../app/estado';
+import { agoraIso, comProgramaNovo, fusoDoAparelho, gerarDoEstado, mesmoConteudo, useApp } from '../app/estado';
 import { Selo, Titulo, Topo } from '../app/ui';
 import { Miniatura } from './Miniatura';
 import { CartaoTexto, temCartao } from './CartaoTexto';
@@ -93,12 +92,15 @@ export function Programa() {
   };
 
   // Mostra a prescrição desta semana (fases de readaptação e aprendizado mudam séries e RIR).
-  const semana = semanaDoPrograma(estado.historico, agoraIso());
-  const diasDaSemana = prescricaoDaSemana(salvo, semana);
+  const agora = agoraIso();
+  const fuso = fusoDoAparelho();
+  const hoje = hojeDoEstado(estado, agora, fuso)!;
+  const semana = hoje.semana;
+  const diasDaSemana = hoje.dias;
   const diaDoPrograma = diasDaSemana[Math.min(diaSel, diasDaSemana.length - 1)]!;
   const locais = estado.locais ?? [];
   // O dia no local escolhido (local.treino-do-dia): as trocas e o motivo, antes de começar.
-  const noLocal = locais.length > 1 ? diaDoTreino(estado, { diaId: diaDoPrograma.id, semana, localId: localHoje }) : null;
+  const noLocal = locais.length > 1 ? diaDoTreino(estado, { id: agora, inicio: agora, diaId: diaDoPrograma.id, ...(localHoje ? { localId: localHoje } : {}), ...(hoje.semanaLeve ? { semanaLeve: true } : {}) }, fuso) : null;
   const dia = noLocal && !noLocal.noLocalDoPrograma ? noLocal.dia : diaDoPrograma;
   const nomeLocal = locais.find((l) => l.id === localHoje)?.nome;
   const preferir = (funcao: string, id: string) => {
@@ -147,7 +149,7 @@ export function Programa() {
 
         {faseAtual && (
           <p className="fase">
-            <b>Você está na semana {semana}.</b> {faseDaSemana(salvo, semana)?.texto ?? faseAtual.texto}
+            <b>Você está na semana {semana}.</b> {hoje.fase?.texto ?? faseAtual.texto}
           </p>
         )}
 
@@ -228,7 +230,7 @@ export function Programa() {
               type="button"
               className="btn"
               onClick={() => {
-                atualizar((s) => iniciarSessao(s, agoraIso(), dia.id, localHoje));
+                atualizar((s) => iniciarSessao(s, agoraIso(), dia.id, localHoje, fusoDoAparelho()));
                 navigate('/treino');
               }}
             >

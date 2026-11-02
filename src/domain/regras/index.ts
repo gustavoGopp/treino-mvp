@@ -80,6 +80,29 @@ export const READAPTACAO = {
   semanasProtocolo: 3,
   semana1: { fatorSeries: 0.55, rir: [3, 4] as [number, number], reducaoCarga: [0.1, 0.2] as [number, number] },
   semana2: { fatorSeries: 0.75, rir: [2, 3] as [number, number] },
+  // readaptacao.durante-uso: dias sem treinar (do fim da última sessão terminada até hoje) e a carga da volta.
+  duranteUso: {
+    normalAte: 13,
+    rirMais1Ate: 20,
+    reducaoAte56: 0.1, // 21 a 56 dias (readaptacao.semana1)
+    voltaMenorAte: 56,
+    reducaoAte182: 0.15, // 57 a 182 dias
+    voltaMaiorAte: 182,
+    reducaoRefazer: 0.2, // mais de 182 dias: propõe refazer o nível; calibração a partir da última −20%
+  },
+};
+
+/** deload.semana-leve: o conteúdo da semana leve e quando sugerir. */
+export const SEMANA_LEVE = {
+  fatorSeries: 0.5,
+  rir: [3, 4] as [number, number],
+  dias: 7, // decisão do Gustavo (02/11/2026): 7 dias a partir do aceite
+  estagnados: 2,
+  pesadoEm: 2, // "pesado demais" em 2 dos últimos 3 treinos
+  pesadoDe: 3,
+  dorMin: 3,
+  dorMax: 5,
+  carenciaSemanas: 3, // não sugere nas 3 semanas depois de uma volta de pausa ou de uma semana leve
 };
 
 export const NIVEL_COMPLEXIDADE_MAX: PorNivel<number> = { iniciante: 2, intermediario: 3, avancado: 3 };

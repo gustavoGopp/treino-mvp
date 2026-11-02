@@ -10,7 +10,7 @@ import { PERGUNTAS, type PerguntaId } from '../domain/triagem';
 // Estado guardado no aparelho (IndexedDB) e no arquivo de exportação. Versionado: toda mudança de formato
 // ganha uma versão nova e uma migração em src/storage/migracao.ts, com teste.
 
-export const VERSAO_ESTADO = 6;
+export const VERSAO_ESTADO = 7;
 
 const enumDe = <T extends string>(xs: readonly T[]) => z.enum(xs as unknown as [T, ...T[]]);
 const ids = <T extends { id: string }>(xs: readonly T[]) => xs.map((x) => x.id) as T['id'][];
@@ -126,6 +126,10 @@ export const sessaoSchema = z.object({
   exercicios: z.array(
     z.object({ exId: exercicioId, noLugarDe: exercicioId.optional(), series: z.array(serie), interrompido: z.boolean().optional() }),
   ),
+  /** Toque opcional no fim do treino (R2; deload.semana-leve). Nada vem marcado: ausente = a pessoa não tocou. */
+  hojeFoi: z.enum(['leve', 'normal', 'pesado']).optional(),
+  /** Feita durante uma semana leve aceita (R2): fora da dupla progressão e da estagnação. */
+  semanaLeve: z.boolean().optional(),
 });
 
 /** Um local de treino (R1b): o nome que a pessoa escolheu e o inventário dele. */
@@ -165,6 +169,23 @@ export const estadoSchema = z.object({
   historico: z.array(sessaoSchema),
   /** Treino em andamento, salvo a cada série para não se perder se o app fechar. */
   sessaoAtual: sessaoSchema.optional(),
+  /** Semana leve aceita pela pessoa (R2; deload.semana-leve): vale por 7 dias a partir de `inicio`. */
+  semanaLeve: z.object({ inicio: data }).optional(),
+  /** Respostas às ofertas do acompanhamento (R2). Nada é decidido sem o toque da pessoa. */
+  respostas: z
+    .object({
+      /** "Manter" na oferta de um programa com menos dias (acompanhamento.mensagens): esconde a oferta por 4 semanas. */
+      revisaoMetaEm: data.optional(),
+      /** Resposta à proposta de refazer o nível depois de mais de 26 semanas (readaptacao.durante-uso). */
+      voltaLongaEm: data.optional(),
+      /** "Agora não" na sugestão da semana leve: esconde até aparecer um sinal novo. */
+      semanaLeveEm: data.optional(),
+      /** "Não" ao ajuste do tempo estimado (tempo.calibracao). */
+      tempoEm: data.optional(),
+    })
+    .optional(),
+  /** Margem pessoal do tempo estimado (tempo.calibracao), só com o aceite: substitui os 10% de tempo.colchao. */
+  margemTempo: z.number().min(-0.1).max(0.5).optional(),
 });
 
 export type Estado = z.infer<typeof estadoSchema>;

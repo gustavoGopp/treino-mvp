@@ -47,12 +47,22 @@ describe('rotação e semana', () => {
     expect(proximoDia(prog, [sessao(prog.dias[0]!.id, '2026-11-02T10:00:00Z', [], null)]).id).toBe(prog.dias[0]!.id);
   });
 
-  it('a semana conta em semanas corridas desde a primeira sessão', () => {
-    const h = [sessao('x', '2026-11-02T10:00:00Z')];
+  it('a semana conta as semanas com treino desde o início do bloco, e não o calendário (readaptacao.durante-uso)', () => {
+    const h = [sessao('x', '2026-11-02T10:00:00Z', [{ exId: 'supino-reto', series: [kg(8, 10)] }])];
     expect(semanaDoPrograma([], '2026-11-02T10:00:00Z')).toBe(1);
     expect(semanaDoPrograma(h, '2026-11-08T23:00:00Z')).toBe(1);
     expect(semanaDoPrograma(h, '2026-11-09T10:00:00Z')).toBe(2);
-    expect(semanaDoPrograma(h, '2026-11-23T10:00:00Z')).toBe(4);
+    // Duas semanas sem treino não avançam o programa: 15 dias depois, ainda é a semana 2.
+    expect(semanaDoPrograma(h, '2026-11-17T10:00:00Z')).toBe(2);
+    // 21 dias ou mais: um bloco novo começa na semana 1.
+    expect(semanaDoPrograma(h, '2026-11-23T10:00:00Z')).toBe(1);
+  });
+
+  it('a semana segue o calendário local (segunda a domingo) pelo fuso do aparelho', () => {
+    const h = [sessao('x', '2026-11-02T10:00:00Z', [{ exId: 'supino-reto', series: [kg(8, 10)] }])];
+    // Segunda 09/11 às 01:00 em UTC ainda é domingo 08/11 em Brasília (−180 min).
+    expect(semanaDoPrograma(h, '2026-11-09T01:00:00Z', 0)).toBe(2);
+    expect(semanaDoPrograma(h, '2026-11-09T01:00:00Z', -180)).toBe(1);
   });
 
   it('na fase de aprendizado (semanas 1–2) a iniciante faz menos séries que na semana 3', () => {
