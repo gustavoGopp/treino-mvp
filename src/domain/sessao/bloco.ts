@@ -100,8 +100,10 @@ export const FASE_SEMANA_LEVE: Fase = {
 };
 
 /** A semana leve aceita vale por 7 dias a partir do aceite (decisão do Gustavo, 02/11/2026). */
-export const semanaLeveAtiva = (semanaLeve: { inicio: string } | undefined, hojeIso: string, fusoMin = 0) => {
+export type SemanaLeveAceita = { inicio: string; encerradaEm?: string };
+export const semanaLeveAtiva = (semanaLeve: SemanaLeveAceita | undefined, hojeIso: string, fusoMin = 0) => {
   if (!semanaLeve) return false;
+  if (semanaLeve.encerradaEm && Date.parse(hojeIso) >= Date.parse(semanaLeve.encerradaEm)) return false;
   const d = diaLocal(hojeIso, fusoMin) - diaLocal(semanaLeve.inicio, fusoMin);
   return d >= 0 && d < SEMANA_LEVE.dias;
 };
@@ -153,7 +155,7 @@ export function hojeNoPrograma(
   programa: Programa,
   historico: Sessao[],
   hojeIso: string,
-  opcoes: { fusoMin?: number; semanaLeve?: { inicio: string } } = {},
+  opcoes: { fusoMin?: number; semanaLeve?: SemanaLeveAceita } = {},
 ): Hoje {
   const fuso = opcoes.fusoMin ?? 0;
   const bloco = blocoAtual(historico, hojeIso, fuso);

@@ -450,3 +450,35 @@ a.cartao-ex-corpo:focus-visible{outline:3px solid var(--accent);outline-offset:-
 .volta-numeros dd{margin:0;display:flex;align-items:center;gap:8px;font-weight:600;font-variant-numeric:tabular-nums}
 .barra-volta{flex:1;height:10px;border-radius:4px;background:var(--line);overflow:hidden;max-width:160px}
 .barra-volta i{display:block;height:100%;background:var(--accent);opacity:.65;border-radius:4px}
+.faixa-semana{display:flex;flex-direction:column;gap:6px;background:var(--surface);border:1.5px solid var(--accent);border-radius:12px;padding:10px 12px;color:var(--ink);text-decoration:none;min-height:44px}
+.faixa-semana .fs-topo{display:flex;justify-content:space-between;align-items:baseline;gap:8px;font-size:15px}
+.faixa-semana .fs-topo span{font-family:var(--font-d);font-size:20px;font-weight:700;color:var(--link)}
+.faixa-semana .fs-msg{font-size:13.5px;color:var(--muted)}
+.pontos{display:flex;gap:6px}
+.pontos i{width:26px;height:26px;border-radius:7px;border:2px solid var(--accent);background:transparent}
+.pontos i.on{background:var(--accent)}
+.numero-grande{font-family:var(--font-d);font-size:44px;font-weight:700;line-height:1;margin:0}
+.numero-grande small{font-size:20px;color:var(--muted);font-weight:600}
+.musculos{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:8px}
+.musculos li{display:grid;grid-template-columns:minmax(84px,30%) 1fr auto;grid-template-areas:"nome barra num" ". estado estado";align-items:center;gap:2px 8px;font-size:14px}
+.m-nome{grid-area:nome}
+.m-barra{grid-area:barra;height:12px;border-radius:4px;background:var(--line);overflow:hidden}
+.m-barra i{display:block;height:100%;background:var(--accent);border-radius:4px}
+.m-crescendo .m-barra i{opacity:.6}
+.m-mantendo .m-barra i{opacity:.32}
+.m-num{grid-area:num;font-variant-numeric:tabular-nums;font-weight:600;white-space:nowrap}
+.m-estado{grid-area:estado;font-size:12.5px;color:var(--muted)}
+.semanas{display:flex;gap:4px;max-width:360px}
+.semanas i{flex:1;height:18px;border-radius:4px;background:var(--line)}
+.semanas i.on{background:var(--accent)}
+.lista-evolucao{margin:0;padding-left:18px;display:flex;flex-direction:column;gap:2px}
+.lista-evolucao a{display:inline-flex;align-items:center;min-height:44px;color:var(--link)}
+.pontos-evolucao{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:6px}
+.pontos-evolucao li{display:grid;grid-template-columns:48px 1fr auto;gap:8px;align-items:center;background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:8px 10px;font-size:14.5px}
+.pe-data{font-variant-numeric:tabular-nums;color:var(--muted)}
+.pe-serie{font-weight:600}
+.pe-serie small{font-weight:400;color:var(--muted)}
+.pe-marcas{display:flex;flex-wrap:wrap;gap:4px;justify-content:flex-end}
+.marca{font-size:12px;font-weight:600;border-radius:999px;padding:2px 8px;background:var(--accent-soft);color:var(--link);white-space:nowrap}
+.marca.neutra{background:var(--line);color:var(--muted)}
+.hoje-foi .opcoes .btn{flex:1 1 0}

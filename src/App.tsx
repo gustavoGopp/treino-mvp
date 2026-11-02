@@ -1,6 +1,8 @@
 import { lazy, Suspense } from 'react';
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
 import { EstadoProvider } from './features/app/estado';
+import { Evolucao } from './features/acompanhamento/Evolucao';
+import { Semana } from './features/acompanhamento/Semana';
 import { Dados } from './features/dados/Dados';
 import { Guia } from './features/guia/Guia';
 import { BoasVindas } from './features/onboarding/BoasVindas';
@@ -33,6 +35,8 @@ export function App() {
           <Route path="/locais/:id" element={<EditarLocal />} />
           <Route path="/treino" element={<Treino />} />
           <Route path="/treino/fim" element={<Resumo />} />
+          <Route path="/semana" element={<Semana />} />
+          <Route path="/evolucao/:exId" element={<Evolucao />} />
           <Route path="/dados" element={<Dados />} />
           <Route path="/guia" element={<Navigate to="/guia/supino-inclinado" replace />} />
           <Route path="/guia/:id" element={<Guia />} />

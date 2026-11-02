@@ -3,6 +3,8 @@ import { BIBLIOTECA } from '../../domain/biblioteca';
 import { resumoSessao, sugestaoDoExercicio, textoCarga } from '../../domain/sessao';
 import { fusoDoAparelho, useApp } from '../app/estado';
 import { hojeDoTreino, inventarioDoTreino, opcoesDaCarga } from './acoes';
+import { marcarHojeFoi } from '../acompanhamento/acoes';
+import { SemanaLeve } from '../acompanhamento/SemanaLeve';
 import { Selo, Titulo, Topo } from '../app/ui';
 
 // Fim do treino: resumo e a sugestão de cada exercício para a próxima vez (decisão 9 do M5).
@@ -18,10 +20,16 @@ const ACAO: Record<string, string> = {
   calibrar: 'Calibrar',
 };
 
+const HOJE_FOI = [
+  ['leve', 'leve'],
+  ['normal', 'normal'],
+  ['pesado', 'pesado demais'],
+] as const;
+
 const plural = (n: number, um: string, varios: string) => `${n} ${n === 1 ? um : varios}`;
 
 export function Resumo() {
-  const { estado } = useApp();
+  const { estado, atualizar } = useApp();
   const s = estado.historico.at(-1);
   const programa = estado.programa?.programa;
   if (!s || !programa) return <Navigate to="/programa" replace />;
@@ -48,6 +56,20 @@ export function Resumo() {
           </li>
           {r.minutos !== undefined && <li>{r.minutos} min</li>}
         </ul>
+        <fieldset className="campo hoje-foi">
+          <legend>Hoje foi: (opcional)</legend>
+          <div className="opcoes linha">
+            {HOJE_FOI.map(([v, t]) => (
+              <button key={v} type="button" className="btn sec pequeno" aria-pressed={s.hojeFoi === v} onClick={() => atualizar((e) => marcarHojeFoi(e, s.id, v))}>
+                {t}
+              </button>
+            ))}
+          </div>
+          <p className="ajuda">
+            Nada vem marcado. Com "pesado demais" em 2 dos últimos 3 treinos, o app sugere uma semana leve. <Selo id="deload.semana-leve" />
+          </p>
+        </fieldset>
+        <SemanaLeve />
         <section aria-labelledby="proxima" className="pilha">
           <h2 id="proxima" className="secao">
             Para a próxima vez
@@ -77,7 +99,10 @@ export function Resumo() {
               })}
           </ol>
         </section>
-        <Link className="btn" to="/programa">
+        <Link className="btn" to="/semana">
+          Ver a sua semana
+        </Link>
+        <Link className="btn sec" to="/programa">
           Voltar ao programa
         </Link>
       </main>

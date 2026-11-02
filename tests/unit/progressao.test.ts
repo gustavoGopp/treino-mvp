@@ -84,10 +84,14 @@ describe('segurança na progressão', () => {
 });
 
 describe('semana leve e série efetiva', () => {
-  it('sugere só com motivo', () => {
-    expect(sugerirSemanaLeve({ exerciciosEstagnados: 0, fadigaOuDorPersistente: false }).sugerir).toBe(false);
-    expect(sugerirSemanaLeve({ exerciciosEstagnados: 2, fadigaOuDorPersistente: true }).motivos).toHaveLength(2);
-    expect(sugerirSemanaLeve({ exerciciosEstagnados: 1, fadigaOuDorPersistente: true }).sugerir).toBe(true);
+  it('sugere só com sinal, e nunca na carência (deload.semana-leve)', () => {
+    const sem = { exerciciosEstagnados: 0, pesadoNosUltimos3: 0, dorQueSeRepete: 0 };
+    expect(sugerirSemanaLeve(sem).sugerir).toBe(false);
+    expect(sugerirSemanaLeve({ ...sem, exerciciosEstagnados: 1, pesadoNosUltimos3: 1 }).sugerir).toBe(false);
+    expect(sugerirSemanaLeve({ exerciciosEstagnados: 2, pesadoNosUltimos3: 2, dorQueSeRepete: 1 }).motivos).toHaveLength(3);
+    expect(sugerirSemanaLeve({ ...sem, pesadoNosUltimos3: 2 }).sugerir).toBe(true);
+    expect(sugerirSemanaLeve({ ...sem, pesadoNosUltimos3: 2, carencia: true }).sugerir).toBe(false);
+    expect(sugerirSemanaLeve(sem).texto).toMatch(/^Para descansar, não para crescer\./);
   });
   it('RIR até 4 conta; acima não', () => {
     expect(serieEfetiva({ carga: kg(10), reps: 10, rir: 4 })).toBe(true);

@@ -14,6 +14,9 @@ import { Preferencias } from './Prefiro';
 import { agoraIso, comProgramaNovo, fusoDoAparelho, gerarDoEstado, mesmoConteudo, useApp } from '../app/estado';
 import { Selo, Titulo, Topo } from '../app/ui';
 import { Miniatura } from './Miniatura';
+import { FaixaSemana } from '../acompanhamento/Semana';
+import { SemanaLeve } from '../acompanhamento/SemanaLeve';
+import { semanaDoEstado } from '../acompanhamento/acoes';
 import { CartaoTexto, temCartao } from './CartaoTexto';
 
 // Tela do treino: vai direto ao que importa (o treino de cada dia, com a imagem de cada exercício e
@@ -110,6 +113,8 @@ export function Programa() {
   };
   const abaixo = salvo.avisos.filter((a) => a.texto.startsWith('Abaixo da meta')).length;
   const volta = mensagemDeVolta(hoje);
+  const feitos = new Set(estado.historico.flatMap((s) => s.exercicios.filter((e) => e.series.length).map((e) => e.exId)));
+  const resumoSemana = estado.historico.some(treinoFeito) ? semanaDoEstado(estado, agora, fuso) : null;
   const faseAtual = salvo.fases[0];
 
   return (
@@ -124,6 +129,7 @@ export function Programa() {
             <li>{NOME_NIVEL[perfil!.nivel]}</li>
           </ul>
         </div>
+        {resumoSemana && <FaixaSemana r={resumoSemana} />}
         <p role="status" className="status">
           {aviso}
         </p>
@@ -171,6 +177,8 @@ export function Programa() {
             <b>Você está na semana {semana}.</b> {(hoje.fase ?? faseAtual)!.texto} <Selo id={(hoje.fase ?? faseAtual)!.regraId} />
           </p>
         )}
+
+        {!estado.sessaoAtual && <SemanaLeve />}
 
         {estado.sessaoAtual ? (
           <Link className="btn" to="/treino">
@@ -267,6 +275,7 @@ export function Programa() {
                 diaId={dia.id}
                 preferidos={estado.preferidos}
                 aoPreferir={preferir}
+                comHistorico={feitos.has(x.exId)}
               />
             ))}
           </ol>
@@ -367,7 +376,9 @@ function CartaoExercicio({
   diaId,
   preferidos,
   aoPreferir,
+  comHistorico,
 }: {
+  comHistorico: boolean;
   x: ExercicioPrescrito & { noLugarDe?: string };
   n: number;
   dia: ExercicioPrescrito[];
@@ -409,6 +420,11 @@ function CartaoExercicio({
       <details className="mais">
         <summary>Detalhes</summary>
         <div className="mais-corpo">
+          {comHistorico && (
+            <Link className="link-sec" to={`/evolucao/${x.exId}`}>
+              Sua evolução neste exercício
+            </Link>
+          )}
           {par && <p>Bi-set com {par.nome.toLowerCase()}: alterne os dois e descanse depois da dupla.</p>}
           {!x.animacaoId && ex && !temCartao(x.exId) && (
             <p>

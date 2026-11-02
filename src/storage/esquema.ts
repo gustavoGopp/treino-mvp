@@ -170,7 +170,7 @@ export const estadoSchema = z.object({
   /** Treino em andamento, salvo a cada série para não se perder se o app fechar. */
   sessaoAtual: sessaoSchema.optional(),
   /** Semana leve aceita pela pessoa (R2; deload.semana-leve): vale por 7 dias a partir de `inicio`. */
-  semanaLeve: z.object({ inicio: data }).optional(),
+  semanaLeve: z.object({ inicio: data, /** "Voltar ao normal" antes dos 7 dias. */ encerradaEm: data.optional() }).optional(),
   /** Respostas às ofertas do acompanhamento (R2). Nada é decidido sem o toque da pessoa. */
   respostas: z
     .object({
