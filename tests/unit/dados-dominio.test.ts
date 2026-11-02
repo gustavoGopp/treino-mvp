@@ -52,9 +52,10 @@ describe('biblioteca de exercícios', () => {
     expect(e('ponte-gluteo').padrao).toBe('extensao-quadril');
   });
 
-  it('adutores como secundário dos agachamentos profundos e do afundo (kubo2019; plotkin2023)', () => {
+  // Lista completada na revisão de anatomia (02/11/2026, achado 6): todo agachar e todo afundo (tests/unit/anatomia.test.ts).
+  it('adutores como secundário de todo agachamento e afundo (kubo2019; plotkin2023; kinoshita2026)', () => {
     const comAdutores = BIBLIOTECA.filter((x) => x.musculos.secundarios.includes('adutores')).map((x) => x.id).sort();
-    expect(comAdutores).toEqual(['afundo', 'afundo-peso-corpo', 'afundo-tras', 'agachamento-barra', 'bulgaro', 'bulgaro-peso-corpo']);
+    expect(comAdutores).toEqual(BIBLIOTECA.filter((x) => x.padrao === 'agachar' || x.padrao === 'afundo').map((x) => x.id).sort());
     expect(BIBLIOTECA.filter((x) => x.musculos.primarios.includes('adutores')).map((x) => x.id)).toEqual(['aducao-maquina']);
   });
 

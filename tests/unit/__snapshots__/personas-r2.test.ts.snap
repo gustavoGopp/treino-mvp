@@ -16,7 +16,7 @@ exports[`snapshots do R2: o treino de cada persona na volta de 30 dias > Ana 1`]
     "dia": "Corpo todo A",
   },
   {
-    "antes": "semana 6: 17 séries, RIR 2–3 e 1–2, a mesma carga",
+    "antes": "semana 6: 15 séries, RIR 2–3 e 1–2, a mesma carga",
     "cargas": [
       "Stiff unilateral com halter: 10 kg → 9 kg",
       "Remada unilateral com halter apoiada no banco: 10 kg → 9 kg",
@@ -75,7 +75,7 @@ exports[`snapshots do R2: o treino de cada persona na volta de 30 dias > Bruno, 
     "dia": "Inferior A",
   },
   {
-    "antes": "semana 6: 23 séries, RIR 1–2 e 0–1, a mesma carga",
+    "antes": "semana 6: 24 séries, RIR 1–2 e 0–1, a mesma carga",
     "cargas": [
       "Supino inclinado com halteres: 10 kg → 8 kg",
       "Remada com halteres, peito apoiado no banco inclinado: 10 kg → 8 kg",
@@ -87,7 +87,7 @@ exports[`snapshots do R2: o treino de cada persona na volta de 30 dias > Bruno, 
       "Crucifixo com halteres no banco plano: 10 kg → 8 kg",
       "Crucifixo inverso com halteres, peito apoiado no banco inclinado: 10 kg → 8 kg",
     ],
-    "depois": "semana 1 (readaptacao.semana1): 14 séries, RIR 3–4",
+    "depois": "semana 1 (readaptacao.semana1): 15 séries, RIR 3–4",
     "dia": "Superior B",
   },
   {
@@ -110,7 +110,7 @@ exports[`snapshots do R2: o treino de cada persona na volta de 30 dias > Bruno, 
 exports[`snapshots do R2: o treino de cada persona na volta de 30 dias > Carla 1`] = `
 [
   {
-    "antes": "semana 6: 24 séries, RIR 1–2 e 0–1, a mesma carga",
+    "antes": "semana 6: 25 séries, RIR 1–2 e 0–1, a mesma carga",
     "cargas": [
       "Supino reto com halteres: 10 kg → 8 kg",
       "Puxada unilateral ajoelhado na polia alta: placa 8 → placa 7",
@@ -126,7 +126,7 @@ exports[`snapshots do R2: o treino de cada persona na volta de 30 dias > Carla 1
     "dia": "Superior",
   },
   {
-    "antes": "semana 6: 23 séries, RIR 1–2 e 0–1, a mesma carga",
+    "antes": "semana 6: 24 séries, RIR 1–2 e 0–1, a mesma carga",
     "cargas": [
       "Agachamento livre com barra (profundo): 40 kg → 36 kg",
       "Stiff com halteres: 10 kg → 8 kg",
@@ -200,7 +200,7 @@ exports[`snapshots do R2: o treino de cada persona na volta de 30 dias > Diego 1
     "dia": "Corpo todo A",
   },
   {
-    "antes": "semana 6: 16 séries, RIR 2–3 e 1–2, a mesma carga",
+    "antes": "semana 6: 15 séries, RIR 2–3 e 1–2, a mesma carga",
     "cargas": [
       "Flexão de braço: peso do corpo · variação mais difícil → peso do corpo · descida de 3 s ou pausa embaixo",
       "Remada sentada com elástico: elástico · variação mais difícil → elástico · descida de 3 s ou pausa embaixo",
@@ -209,7 +209,7 @@ exports[`snapshots do R2: o treino de cada persona na volta de 30 dias > Diego 1
       "Panturrilha em pé no chão: 10 kg → 7,5 kg",
       "Abertura com elástico na altura do rosto: elástico · variação mais difícil → elástico · descida de 3 s ou pausa embaixo",
     ],
-    "depois": "semana 1 (readaptacao.semana1): 9 séries, RIR 3–4",
+    "depois": "semana 1 (readaptacao.semana1): 8 séries, RIR 3–4",
     "dia": "Corpo todo B",
   },
   {
