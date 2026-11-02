@@ -1,5 +1,6 @@
 import { expect, test, type Page } from '@playwright/test';
 import { ana } from './jornada';
+import { semToquePequeno } from './toque';
 
 // R2: acompanhamento. A Ana (persona fictícia) faz o cadastro pelo app; o histórico de treinos é gravado direto no
 // aparelho (IndexedDB), com datas no passado, e o relógio da página fica parado numa quinta-feira. Assim o teste vê o
@@ -86,6 +87,7 @@ test('volta depois de 22 dias: a mensagem sem culpa, menos séries e a carga 10%
   await expect(volta).toContainText('3–4 repetições');
   await expect(page.getByText(/Você está na semana 1\. Cerca de metade das séries, RIR 3–4 e carga 10% abaixo da última vez/)).toBeVisible();
   await print(page, 'volta');
+  await semToquePequeno(page);
 
   await page.getByRole('button', { name: 'Começar o treino Corpo todo A' }).click();
   await expect(page.getByRole('heading', { name: 'Agachamento búlgaro com apoio' })).toBeVisible();
@@ -94,6 +96,7 @@ test('volta depois de 22 dias: a mensagem sem culpa, menos séries e a carga 10%
   await expect(page.getByText(/Última vez: 10 kg\. Volta da pausa: 10% mais leve/)).toBeVisible();
   await expect(page.getByLabel('Carga', { exact: true })).toHaveValue('9');
   await print(page, 'volta-treino');
+  await semToquePequeno(page);
 });
 
 test('menos de 14 dias: nenhuma mensagem e a mesma carga', async ({ page }) => {
@@ -119,6 +122,7 @@ test('abre "a sua semana" pela faixa do Seu treino: treinos, séries por múscul
   await expect(faixa).toContainText('2 de 3');
   await expect(faixa).toContainText('2 de 3 treinos. Se der, o Corpo todo C cabe até domingo.');
   await print(page, 'faixa');
+  await semToquePequeno(page);
   await faixa.click();
 
   await expect(page.getByRole('heading', { name: 'A sua semana' })).toBeVisible();
@@ -134,6 +138,7 @@ test('abre "a sua semana" pela faixa do Seu treino: treinos, séries por múscul
   // Semanas de 19/10 (3 treinos), 26/10 (nenhum) e a de hoje (2): 2 de 3, sem sequência que zera.
   await expect(page.getByRole('heading', { name: '2 semanas com treino nas últimas 3' })).toBeVisible();
   await print(page, 'semana');
+  await semToquePequeno(page);
 });
 
 test('vê a evolução de um exercício: a melhor série de cada treino, com "recorde" e "subiu a carga"', async ({ page }) => {
@@ -154,6 +159,7 @@ test('vê a evolução de um exercício: a melhor série de cada treino, com "re
   await expect(pontos.nth(2)).toContainText('subiu a carga');
   await expect(page.getByText(/estimad|carga máxima/i)).toHaveCount(0);
   await print(page, 'evolucao');
+  await semToquePequeno(page);
 });
 
 test('com o sinal, recebe a sugestão da semana leve: o toque "hoje foi" no fim do treino, sem nada marcado', async ({ page }) => {
@@ -169,6 +175,7 @@ test('com o sinal, recebe a sugestão da semana leve: o toque "hoje foi" no fim 
   await page.getByRole('banner').getByRole('button', { name: 'Terminar treino' }).click();
 
   await expect(page.getByRole('heading', { name: 'Treino concluído' })).toBeVisible();
+  await semToquePequeno(page);
   const hojeFoi = page.getByRole('group', { name: 'Hoje foi: (opcional)' });
   for (const b of ['leve', 'normal', 'pesado demais']) await expect(hojeFoi.getByRole('button', { name: b, exact: true })).toHaveAttribute('aria-pressed', 'false');
   await expect(page.getByRole('region', { name: 'Semana leve? (opcional)' })).toHaveCount(0);
@@ -179,6 +186,7 @@ test('com o sinal, recebe a sugestão da semana leve: o toque "hoje foi" no fim 
   await expect(leve).toContainText('Motivo: "pesado demais" em 2 dos últimos 3 treinos.');
   await expect(leve).toContainText('Para descansar, não para crescer.');
   await print(page, 'semana-leve');
+  await semToquePequeno(page);
   await leve.getByRole('button', { name: 'Fazer a semana leve' }).click();
   await expect(page.getByRole('region', { name: /^Semana leve até / })).toBeVisible();
 

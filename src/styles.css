@@ -212,6 +212,10 @@ footer a{color:var(--accent)}
 .app .brand a{color:inherit}
 .app .brand > a,.app .brand > span{font-size:14px}
 .app .brand > a{min-height:44px;display:inline-flex;align-items:center}
+/* R3: o nome no topo e o "Ver como fazer" do treino também com área de toque de 44 px (o desenho não muda).
+   Os chips de um número só (o RIR 0 a 3) ganham min-width de 44 px em .chip-valor. */
+.app .brand > b > a{min-height:44px;display:inline-flex;align-items:center}
+.link-guia{min-height:44px;display:inline-flex;align-items:center}
 .conteudo{display:flex;flex-direction:column;gap:16px}
 .titulo{font-family:var(--font-d);font-weight:700;font-size:30px;line-height:1.08;margin:0;text-wrap:balance}
 .titulo:focus,.titulo:focus-visible{outline:none} /* foco programático só para leitores de tela anunciarem a tela nova */
@@ -316,7 +320,7 @@ details.campo .opcoes{margin-top:8px}
 .detalhes-eq{margin-top:10px;padding:12px;border:1.5px solid var(--accent);border-radius:12px;background:var(--surface);display:flex;flex-direction:column;gap:14px}
 .detalhes-eq h2{margin:0;font-family:var(--font-d);font-size:18px}
 .chips-valor{display:flex;flex-wrap:wrap;gap:6px}
-.chip-valor{display:inline-flex;align-items:center;min-height:44px;padding:0 14px;border:1.5px solid var(--line);border-radius:999px;background:var(--surface);cursor:pointer;font-size:15px;font-variant-numeric:tabular-nums}
+.chip-valor{display:inline-flex;align-items:center;justify-content:center;min-height:44px;min-width:44px;padding:0 14px;border:1.5px solid var(--line);border-radius:999px;background:var(--surface);cursor:pointer;font-size:15px;font-variant-numeric:tabular-nums}
 .chip-valor input{position:absolute;opacity:0;width:1px;height:1px}
 .chip-valor:has(input:checked){border-color:var(--accent);background:var(--accent);color:var(--accent-ink);font-weight:600}
 .chip-valor:has(input:focus-visible){outline:3px solid var(--accent);outline-offset:2px}
