@@ -15,7 +15,7 @@ test('do zero ao programa em menos de 5 minutos (persona Ana)', async ({ page })
   await expect(painel.locator('.sub-rx').first()).toContainText('RIR 3–4');
   // Exercício com animação mostra a imagem e abre o guia.
   await expect(painel.locator('.miniatura svg').first()).toBeVisible();
-  // Sem animação aprovada: "animação em breve" (ponte de glúteo), nunca uma animação improvisada.
+  // Sem animação aprovada: "guia em texto" (ponte de glúteo), nunca uma animação improvisada.
   await expect(painel.locator('.miniatura.vazia')).toHaveCount(1);
   // O porquê, com o selo de evidência, fica um toque abaixo.
   await painel.getByText('Detalhes', { exact: true }).first().click();
@@ -223,7 +223,7 @@ test('exportar, apagar e importar devolve o mesmo estado', async ({ page }) => {
   const reexportado = JSON.parse(await (await import('node:fs/promises')).readFile(await download2.path(), 'utf8'));
   expect(reexportado.estado).toEqual(exportado.estado);
 
-  await page.getByRole('link', { name: 'Meu programa' }).click();
+  await page.getByRole('navigation', { name: 'Seções' }).getByRole('link', { name: 'Treino' }).click();
   expect(await page.locator('main').innerText()).toBe(programa);
 });
 
@@ -277,7 +277,7 @@ test('catálogo do R0c: equipamento novo sem desenho, estações do multifuncion
   const cartao = painel.locator('li.cartao-ex', { has: page.getByRole('heading', { name: /Agachamento no hack/ }) });
   await expect(cartao).toBeVisible();
   await cartao.getByText('Detalhes', { exact: true }).click();
-  await cartao.getByText(/Como fazer \(cartão de texto/).click();
+  await cartao.getByText('Como fazer (em texto)').click();
   await expect(cartao.getByText('Montagem segura')).toBeVisible();
   await expect(cartao.getByText(/Solte a trava de segurança/)).toBeVisible();
   // As alternativas mostram 3 e guardam o resto em "ver mais".

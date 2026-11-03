@@ -146,3 +146,23 @@ test('R1: aberto pelo treino, o guia do búlgaro mostra a prescrição da semana
   await page.getByRole('link', { name: '‹ Voltar ao treino' }).click();
   await expect(page).toHaveURL(/\/treino$/);
 });
+
+// Design v2 (item I): o botão mais tocado do app aparece sem rolar, em toda série, num celular comum e num pequeno.
+for (const largura of [412, 360]) {
+  test(`"Série feita" visível sem rolar nas 2 séries, a ${largura} px`, async ({ page }) => {
+    await page.setViewportSize({ width: largura, height: largura === 360 ? 740 : 839 });
+    await ana(page);
+    await comecar(page);
+    const feita = page.getByRole('button', { name: /^Série feita/ });
+    for (let serie = 0; serie < 2; serie++) {
+      await page.evaluate(() => window.scrollTo(0, 0));
+      await expect(feita).toBeInViewport({ ratio: 1 });
+      const carga = page.getByLabel('Carga', { exact: true });
+      if (!(await carga.inputValue())) await carga.selectOption({ index: 6 });
+      await page.getByRole('region', { name: /^Série \d/ }).getByRole('radio', { name: '2', exact: true }).check();
+      await feita.click();
+      const pular = page.getByRole('button', { name: 'Pular' });
+      if (await pular.isVisible()) await pular.click();
+    }
+  });
+}
