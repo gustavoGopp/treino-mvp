@@ -1172,9 +1172,9 @@
     "id": "equipamento.atalhos",
     "regra": "Atalhos de cenário na tela de equipamento (pesquisa-v2/08, seção 3): \"casa com halteres e elásticos\", \"condomínio com multifuncional\" e \"academia completa\"",
     "valores": {
-      "iniciante": "nenhum vem selecionado; o toque marca o conjunto típico, sem desmarcar o que a pessoa já marcou; os \"às vezes tem\" aparecem logo abaixo, desmarcados; os detalhes que mudam o programa (faixa dos halteres, estações, altura da polia…) continuam sendo perguntados",
-      "intermediario": "nenhum vem selecionado; o toque marca o conjunto típico, sem desmarcar o que a pessoa já marcou; os \"às vezes tem\" aparecem logo abaixo, desmarcados; os detalhes que mudam o programa (faixa dos halteres, estações, altura da polia…) continuam sendo perguntados",
-      "avancado": "nenhum vem selecionado; o toque marca o conjunto típico, sem desmarcar o que a pessoa já marcou; os \"às vezes tem\" aparecem logo abaixo, desmarcados; os detalhes que mudam o programa (faixa dos halteres, estações, altura da polia…) continuam sendo perguntados"
+      "iniciante": "nenhum vem selecionado; o toque marca o conjunto típico, sem desmarcar o que a pessoa já marcou; os \"às vezes tem\" aparecem logo abaixo, desmarcados; os detalhes que mudam o programa continuam sendo perguntados, exceto em \"academia completa\", que preenche só o que está sem resposta com valores típicos (halteres de 2 a 40 kg de 2 em 2, polia regulável e, nos \"sim ou não\" dos aparelhos, o lado conservador: voador sem a posição invertida, banco sem declinar, tríceps na máquina sem a versão acima da cabeça), editáveis em \"Meus locais\" (reformulação visual, 03/11/2026); a 1ª série de cada exercício acerta a carga (`progressao.calibracao`)",
+      "intermediario": "nenhum vem selecionado; o toque marca o conjunto típico, sem desmarcar o que a pessoa já marcou; os \"às vezes tem\" aparecem logo abaixo, desmarcados; os detalhes que mudam o programa continuam sendo perguntados, exceto em \"academia completa\", que preenche só o que está sem resposta com valores típicos (halteres de 2 a 40 kg de 2 em 2, polia regulável e, nos \"sim ou não\" dos aparelhos, o lado conservador: voador sem a posição invertida, banco sem declinar, tríceps na máquina sem a versão acima da cabeça), editáveis em \"Meus locais\" (reformulação visual, 03/11/2026); a 1ª série de cada exercício acerta a carga (`progressao.calibracao`)",
+      "avancado": "nenhum vem selecionado; o toque marca o conjunto típico, sem desmarcar o que a pessoa já marcou; os \"às vezes tem\" aparecem logo abaixo, desmarcados; os detalhes que mudam o programa continuam sendo perguntados, exceto em \"academia completa\", que preenche só o que está sem resposta com valores típicos (halteres de 2 a 40 kg de 2 em 2, polia regulável e, nos \"sim ou não\" dos aparelhos, o lado conservador: voador sem a posição invertida, banco sem declinar, tríceps na máquina sem a versão acima da cabeça), editáveis em \"Meus locais\" (reformulação visual, 03/11/2026); a 1ª série de cada exercício acerta a carga (`progressao.calibracao`)"
     },
     "selo": "consenso",
     "fontes": [
@@ -1398,11 +1398,11 @@
   },
   {
     "id": "seguranca.triagem.nenhuma",
-    "regra": "Botão \"Nenhuma se aplica a mim\" na triagem (R1)",
+    "regra": "Atalho da triagem para quem não tem nenhuma condição (R1; lista única desde a design v2)",
     "valores": {
-      "iniciante": "marca \"não\" nas 9 perguntas de uma vez; as perguntas continuam à vista e a pessoa ainda toca em \"Continuar\"",
-      "intermediario": "marca \"não\" nas 9 perguntas de uma vez; as perguntas continuam à vista e a pessoa ainda toca em \"Continuar\"",
-      "avancado": "marca \"não\" nas 9 perguntas de uma vez; as perguntas continuam à vista e a pessoa ainda toca em \"Continuar\""
+      "iniciante": "a triagem abre com as 9 condições numa lista curta, todas à vista, e dois botões: \"Nenhuma vale para mim\" responde \"não\" às 9 e segue; \"Sim, alguma vale\" leva às 9 perguntas, uma a uma, com as regiões e a dor de hoje como antes (reformulação visual, 03/11/2026)",
+      "intermediario": "a triagem abre com as 9 condições numa lista curta, todas à vista, e dois botões: \"Nenhuma vale para mim\" responde \"não\" às 9 e segue; \"Sim, alguma vale\" leva às 9 perguntas, uma a uma, com as regiões e a dor de hoje como antes (reformulação visual, 03/11/2026)",
+      "avancado": "a triagem abre com as 9 condições numa lista curta, todas à vista, e dois botões: \"Nenhuma vale para mim\" responde \"não\" às 9 e segue; \"Sim, alguma vale\" leva às 9 perguntas, uma a uma, com as regiões e a dor de hoje como antes (reformulação visual, 03/11/2026)"
     },
     "selo": "consenso",
     "fontes": [

@@ -42,6 +42,9 @@ export function Triagem() {
   const [tentou, setTentou] = useState(false);
   const [bloqueio, setBloqueio] = useState<{ respostas: Respostas; dores: DorRegiao[] } | null>(null);
   const [liberado, setLiberado] = useState(false);
+  // Design v2 (item C): primeiro as 9 condições numa lista curta, com "Nenhuma vale para mim" e "Sim, alguma vale";
+  // quem marca alguma responde uma a uma, como antes (seguranca.triagem.nenhuma).
+  const [lista, setLista] = useState(() => !salva || PERGUNTAS.every((p) => salva.respostas[p.id] === false));
 
   const faltam = PERGUNTAS.filter((p) => resp[p.id] === undefined);
   const osteo = resp.osteoarticular === true;
@@ -49,9 +52,9 @@ export function Triagem() {
   const semNota = regioes.filter((a) => dores[a] === undefined);
 
   const nenhuma = () => {
-    setResp(respostasNenhuma());
-    setDores({});
-    setErros([]);
+    const respostas = respostasNenhuma();
+    atualizar((s) => ({ ...s, triagem: { respostas } }));
+    navigate('/comecar/nivel');
   };
 
   const enviar = (e: React.FormEvent) => {
@@ -119,17 +122,37 @@ export function Triagem() {
     );
   }
 
+  if (lista)
+    return (
+      <Passo id="triagem" titulo="Antes de começar, 9 perguntas rápidas">
+        <p className="lede">
+          Alguma destas vale para você? São perguntas de segurança no estilo do PAR-Q+. Um “sim” não impede o treino; pede uma avaliação
+          antes do programa automático. <Selo id="seguranca.triagem" />
+        </p>
+        <ol className="lista lista-triagem" aria-label="As 9 condições">
+          {PERGUNTAS.map((p) => (
+            <li key={p.id}>{p.texto}</li>
+          ))}
+        </ol>
+        <p className="ajuda">
+          “Nenhuma vale para mim” responde “não” às 9. <Selo id="seguranca.triagem.nenhuma" />
+        </p>
+        <div className="acao-fixa pilha">
+          <button type="button" className="btn" onClick={nenhuma}>
+            Nenhuma vale para mim
+          </button>
+          <button type="button" className="btn sec" onClick={() => setLista(false)}>
+            Sim, alguma vale
+          </button>
+        </div>
+      </Passo>
+    );
+
   return (
     <Passo id="triagem" titulo="Antes de começar, 9 perguntas rápidas">
       <p className="lede">
-        São perguntas de segurança no estilo do PAR-Q+. Um “sim” não impede você de treinar, mas pede uma avaliação antes do programa
-        automático. <Selo id="seguranca.triagem" />
-      </p>
-      <button type="button" className="btn sec" onClick={nenhuma}>
-        Nenhuma se aplica a mim
-      </button>
-      <p className="ajuda">
-        Marca “não” nas 9. Confira as perguntas abaixo antes de continuar. <Selo id="seguranca.triagem.nenhuma" />
+        Responda uma a uma. Um “sim” não impede você de treinar, mas pede uma avaliação antes do programa automático.{' '}
+        <Selo id="seguranca.triagem" />
       </p>
       <form onSubmit={enviar} noValidate className="form">
         <Erros erros={erros} />
