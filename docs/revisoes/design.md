@@ -1,5 +1,7 @@
 # Revisão de design (03/11/2026)
 
+> **Atualização (03/11/2026):** a pedido do Gustavo, esta revisão foi revista e virou uma proposta de reformulação visual completa em `design-v2.md`. Os achados abaixo continuam medidos e válidos; os itens de tela passam a ser resolvidos pela v2.
+>
 > Revisão independente das telas e do Boneco, olhando o app como quem treina: no celular, com uma mão, na academia. É a 3ª de 3 sessões (auditoria do treino → anatomia → **design**). Nada mudou no app: cada item espera a decisão do Gustavo.
 >
 > **Como foi feito.** Tudo por script, com a persona fictícia Ana (e uma variação dela com elásticos):
@@ -67,7 +69,7 @@ Gravidade: **atrapalha** (custa toque, rolagem ou erro), **confunde** (a pessoa 
 ### 3. O Boneco fala só pela cor, e o laranja diz duas coisas
 **O que medi.**
 - **Contraste entre as cores dos músculos:** vermelho × laranja dá **2,1:1** no tema claro e **1,7:1** no escuro; o laranja sobre a pele do boneco, **1,5:1** no claro; o vermelho sobre a pele, **1,8:1** no escuro. O contorno escuro (5,7:1 no claro) é o que desenha a forma; a diferença entre principal e secundário está só no tom.
-- **Daltonismo:** com a simulação de deuteranopia (Machado, Oliveira e Fernandes 2009), vermelho e laranja viram dois tons de amarelo-oliva; a legenda fala de cores que a pessoa não vê. O daltonismo vermelho-verde atinge cerca de 8% dos homens e 0,4% das mulheres de origem europeia (Birch 2012) **[robusta: grandes levantamentos populacionais; resumo conferido por busca]**.
+- **Daltonismo:** com a simulação de deuteranopia (Machado, Oliveira e Fernandes 2009), vermelho e laranja viram dois tons de amarelo-oliva; a legenda fala de cores que a pessoa não vê. O daltonismo vermelho-verde atinge cerca de 8% dos homens e 0,4% das mulheres de origem europeia (Birch 2012) **[moderada: revisão de grandes levantamentos populacionais; resumo conferido por busca. Corrigido de "robusta" na revisão v2, `design-v2.md`]**.
 - **O laranja que só ajuda (ponto 2):** em **15 das 31 animações**, há laranja de músculo que o programa não conta para aquele exercício (antebraço nas roscas e na barra fixa, lombar nos stiffs, oblíquos nos abdominais, abdômen na flexão, frente do ombro nas elevações, trapézio no desenvolvimento, panturrilha na flexão de joelho na bola). Em **9 delas, todo o laranja é assim**, e a legenda chama de "secundários". Entre elas estão o abdominal no chão, a elevação lateral, o stiff, a rosca alternada e a flexão: 5 dos 7 exercícios mais prescritos.
 
 **Por que importa.** A WCAG pede que a cor não seja o único meio de passar uma informação (1.4.1) e que partes de gráfico necessárias para entender tenham contraste de 3:1 (1.4.11) **[consenso]**. O realce do músculo é o que ensina (`richter2016`, **moderada**): se metade do realce é ambíguo, ensina menos **[opinião]**.
