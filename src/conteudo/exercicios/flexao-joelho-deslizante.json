@@ -3,6 +3,8 @@
   "name": "Flexão de joelho deslizando os pés no chão",
   "short": "Flexão de joelho deslizante",
   "target": "Posteriores da coxa",
+  "feel": "Parte de trás da coxa. O glúteo trabalha para segurar o quadril fora do chão.",
+  "feelNote": "Câimbra na parte de trás da coxa pode acontecer no começo: pare, alongue e retome com menos repetições. Dor no joelho não é normal: diminua a amplitude e, se continuar, procure avaliação.",
   "setupEq": [
     "Chão liso (piso frio ou madeira), longe de tapetes e de quinas.",
     "Uma toalha sob os calcanhares, ou meias."
@@ -39,10 +41,24 @@
     "Início: pernas quase estendidas, com o quadril ainda fora do chão.",
     "O quadril não encosta no chão entre as repetições."
   ],
+  "breath": "Solte o ar puxando, inspire na volta.",
   "cues": [
     "Quadril fora do chão.",
     "Calcanhar no glúteo.",
     "Volta devagar."
+  ],
+  "check": [
+    "Chão liso e livre",
+    "Toalha ou meias sob os calcanhares",
+    "Quadril fora do chão",
+    "Volta devagar",
+    "Parar no RIR do seu programa"
+  ],
+  "vary": "É o mesmo movimento da flexão na bola, sem a bola. Difícil demais? Faça só a volta devagar e suba o quadril de novo com os pés perto. Fácil demais? Uma perna de cada vez.",
+  "note": "Use piso liso, longe de tapetes e de quinas. Se escorregar demais, faça com uma perna de cada vez e mais devagar.",
+  "extLabels": [
+    "início",
+    "fim"
   ],
   "errors": [
     {
@@ -60,10 +76,5 @@
       "title": "Puxar pouco",
       "desc": "Parar com os joelhos quase estendidos corta metade do movimento. Puxe os calcanhares até perto do glúteo."
     }
-  ],
-  "montagem": [
-    "Use piso liso, longe de tapetes e de quinas. Toalha sob os calcanhares, ou meias.",
-    "Se escorregar demais, faça com uma perna de cada vez e mais devagar."
-  ],
-  "carga": "Peso do corpo: registre o degrau da escada. Ponte parada com os calcanhares na toalha → só a volta devagar → completa → pausa de 2 s com os joelhos dobrados → uma perna. Sobe de degrau quando todas as séries chegarem ao topo da faixa."
+  ]
 }

@@ -3754,7 +3754,7 @@
    "peso-corpo"
   ],
   "carga": "peso-corpo",
-  "animacaoId": null
+  "animacaoId": "flexao-joelho-deslizante"
  },
  {
   "id": "nordico",
