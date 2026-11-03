@@ -137,7 +137,8 @@ export function Triagem() {
         <p className="ajuda">
           “Nenhuma vale para mim” responde “não” às 9. <Selo id="seguranca.triagem.nenhuma" />
         </p>
-        <div className="acao-fixa pilha">
+        {/* Os botões ficam no fim da lista, não grudados embaixo: a pessoa passa pelas 9 antes de responder. */}
+        <div className="pilha">
           <button type="button" className="btn" onClick={nenhuma}>
             Nenhuma vale para mim
           </button>
