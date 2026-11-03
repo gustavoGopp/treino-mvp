@@ -110,8 +110,10 @@ test('cadastro sem nenhuma condição: 0 caractere digitado e até 13 toques, se
     return { toques: w.__toques, caracteres: w.__caracteres };
   });
   expect(caracteres).toBe(0);
-  // Design v2: a triagem em lista (1 toque) e uma pergunta por vez; eram até 15.
-  expect(toques).toBeLessThanOrEqual(13);
+  // Design v2: a triagem em lista (1 toque) e uma pergunta por vez; eram até 15. Design v3: o toque responde e segue
+  // no nível e na rotina (sem "Continuar"), e a técnica não é perguntada a quem começa: 11, mesmo com as 2 prioridades
+  // da Ana marcadas no "Tudo certo?" (4 toques).
+  expect(toques).toBeLessThanOrEqual(11);
 });
 
 test('atalho "academia completa": nada vem marcado, o toque marca o conjunto e os detalhes vêm com valores típicos', async ({ page }) => {
@@ -272,4 +274,24 @@ test('catálogo do R0c: equipamento novo sem desenho, estações do multifuncion
   // A extensora vem da estação do multifuncional (no dia B).
   await page.getByRole('tab', { name: 'Corpo todo B', exact: true }).click();
   await expect(painel.getByRole('heading', { name: /Cadeira extensora/ })).toBeVisible();
+});
+
+// Design v3 (C1): no nível, o toque responde e segue; o "voltar" do celular volta à pergunta anterior, com a resposta
+// marcada, e a tela não avança sozinha ("Continuar" segue).
+test('nível: o toque responde e segue, e o voltar mostra a resposta marcada sem avançar', async ({ page }) => {
+  await page.goto('/');
+  await page.getByRole('button', { name: 'Entendi, vamos começar' }).click();
+  await page.getByRole('button', { name: 'Não tenho nenhuma destas' }).click();
+  await page.getByRole('group', { name: /sem parar/ }).getByLabel('Mais de 2 anos').check();
+  await expect(page.getByRole('group', { name: /treinando agora/ })).toBeVisible();
+  await expect(page).toHaveURL(/q=pausa/);
+  await page.goBack();
+  const tempo = page.getByRole('group', { name: /sem parar/ });
+  await expect(tempo.getByLabel('Mais de 2 anos')).toBeChecked();
+  await page.waitForTimeout(600);
+  await expect(tempo).toBeVisible();
+  await page.getByRole('button', { name: 'Continuar' }).click();
+  // Parado há mais de 6 meses: o nível já sai iniciante, e a técnica não é perguntada.
+  await page.getByRole('group', { name: /treinando agora/ }).getByLabel('Parei há mais de 6 meses').check();
+  await expect(page.getByRole('heading', { name: 'Sua rotina de treino' })).toBeVisible();
 });

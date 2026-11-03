@@ -1,5 +1,15 @@
 import { describe, expect, it } from 'vitest';
-import { classificarNivel, niveisPermitidos, PAUSAS, pausaDe, SEMANAS_PARADO_INICIANTE, type RespostasNivel } from '../../src/domain/nivel';
+import {
+  classificarNivel,
+  niveisPermitidos,
+  PAUSAS,
+  pausaDe,
+  SEMANAS_PARADO_INICIANTE,
+  tecnicaMudaNivel,
+  TEMPOS_DE_TREINO,
+  CONFIANCA_TECNICA,
+  type RespostasNivel,
+} from '../../src/domain/nivel';
 import { READAPTACAO } from '../../src/domain/regras';
 
 const base: RespostasNivel = { tempoContinuo: '6-24m', semanasParado: 0, tecnica: 'sim' };
@@ -21,6 +31,22 @@ describe('classificarNivel (nivel.classificacao)', () => {
     expect(classificarNivel({ ...base, tempoContinuo: 'mais-24m', semanasParado: SEMANAS_PARADO_INICIANTE + 1 }).nivel).toBe('iniciante');
   });
 
+  // Design v3 (C2): a pergunta da técnica só aparece quando pode mudar o nível. Quando ela não aparece, o nível é o
+  // mesmo que sairia com qualquer resposta, e o motivo não fala da técnica.
+  it('sem a resposta da técnica, o nível é o mesmo de qualquer resposta, quando ela não muda o nível', () => {
+    for (const t of TEMPOS_DE_TREINO)
+      for (const semanas of [0, 10, SEMANAS_PARADO_INICIANTE, SEMANAS_PARADO_INICIANTE + 4]) {
+        if (tecnicaMudaNivel(t.id, semanas)) continue;
+        const sem = classificarNivel({ tempoContinuo: t.id, semanasParado: semanas });
+        expect(sem.nivel).toBe('iniciante');
+        expect(sem.motivo).not.toMatch(/técnica/);
+        for (const c of CONFIANCA_TECNICA)
+          expect(classificarNivel({ tempoContinuo: t.id, semanasParado: semanas, tecnica: c.id }).nivel).toBe(sem.nivel);
+      }
+    expect(tecnicaMudaNivel('6-24m', 0)).toBe(true);
+    expect(tecnicaMudaNivel('menos-6m', 0)).toBe(false);
+    expect(tecnicaMudaNivel('mais-24m', SEMANAS_PARADO_INICIANTE + 1)).toBe(false);
+  });
   it('sempre cita a regra e explica o motivo', () => {
     const c = classificarNivel(base);
     expect(c.regraId).toBe('nivel.classificacao');
@@ -42,6 +68,13 @@ describe('classificarNivel (nivel.classificacao)', () => {
     expect(sem['3-semanas-6-meses']).toBeLessThanOrEqual(SEMANAS_PARADO_INICIANTE);
     expect(sem['mais-6-meses']).toBeGreaterThan(SEMANAS_PARADO_INICIANTE);
     for (const p of PAUSAS) expect(pausaDe(p.semanas)).toBe(p.id);
-    expect([0, 1, 2, 3, 26, 27].map(pausaDe)).toEqual(['treinando', 'treinando', '2-semanas', '3-semanas-6-meses', '3-semanas-6-meses', 'mais-6-meses']);
+    expect([0, 1, 2, 3, 26, 27].map(pausaDe)).toEqual([
+      'treinando',
+      'treinando',
+      '2-semanas',
+      '3-semanas-6-meses',
+      '3-semanas-6-meses',
+      'mais-6-meses',
+    ]);
   });
 });

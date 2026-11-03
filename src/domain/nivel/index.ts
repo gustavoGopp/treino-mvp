@@ -23,7 +23,8 @@ export type RespostasNivel = {
   tempoContinuo: TempoDeTreino;
   /** Semanas sem treinar até hoje (0 = treinando). */
   semanasParado: number;
-  tecnica: ConfiancaTecnica;
+  /** Sem resposta quando não muda o nível (design v3, C2): com menos de ~6 meses de treino ou parado há mais de ~6 meses. */
+  tecnica?: ConfiancaTecnica;
 };
 
 /** Pausa a partir da qual a pessoa volta como iniciante (~6 meses parado). */
@@ -54,7 +55,7 @@ export type Classificacao = { nivel: Nivel; motivo: string; regraId: string };
 
 export function classificarNivel(r0: RespostasNivel): Classificacao {
   const regraId = r('nivel.classificacao');
-  if (r0.tecnica !== 'sim')
+  if (r0.tecnica !== undefined && r0.tecnica !== 'sim')
     return { nivel: 'iniciante', motivo: 'Sem confiança total na técnica básica: começamos pelo aprendizado.', regraId };
   if (r0.semanasParado > SEMANAS_PARADO_INICIANTE)
     return { nivel: 'iniciante', motivo: 'Mais de ~6 meses parado: o corpo volta a responder como o de quem está começando.', regraId };
@@ -63,6 +64,12 @@ export function classificarNivel(r0: RespostasNivel): Classificacao {
     return { nivel: 'intermediario', motivo: 'De ~6 meses a ~2 anos de treino contínuo, com técnica estável.', regraId };
   return { nivel: 'avancado', motivo: 'Mais de ~2 anos de treino contínuo, com técnica estável.', regraId };
 }
+
+/**
+ * A pergunta da técnica só muda o nível de quem tem ~6 meses ou mais de treino e não está parado há mais de ~6 meses
+ * (design v3, C2): nos outros casos o nível já sai iniciante, e a técnica não é usada em mais nada.
+ */
+export const tecnicaMudaNivel = (tempo: TempoDeTreino, semanasParado: number) => tempo !== 'menos-6m' && semanasParado <= SEMANAS_PARADO_INICIANTE;
 
 /** Níveis que a pessoa pode escolher: o sugerido ou abaixo dele, nunca acima. */
 export const niveisPermitidos = (sugerido: Nivel): Nivel[] => NIVEIS.slice(0, NIVEIS.indexOf(sugerido) + 1);

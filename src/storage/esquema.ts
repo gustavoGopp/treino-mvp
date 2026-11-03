@@ -40,7 +40,8 @@ export const nivelSchema = z.object({
   respostas: z.object({
     tempoContinuo: enumDe(ids(TEMPOS_DE_TREINO)),
     semanasParado: z.number().int().min(0).max(520),
-    tecnica: enumDe(ids(CONFIANCA_TECNICA)),
+    // sem resposta quando não muda o nível (design v3, C2)
+    tecnica: enumDe(ids(CONFIANCA_TECNICA)).optional(),
   }),
   escolhido: nivel,
 });

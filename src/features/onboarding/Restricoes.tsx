@@ -5,7 +5,7 @@ import { efeitoDaDor } from '../../domain/triagem';
 import { capacidades, ITENS, ITEM_IDS, type ItemId } from '../../domain/taxonomia/equipamentos';
 import { inventarioDeTodos } from '../../storage/esquema';
 import { agoraIso, comProgramaNovo, useApp } from '../app/estado';
-import { NOME_NIVEL } from '../../domain/nivel';
+import { classificarNivel, NOME_NIVEL } from '../../domain/nivel';
 import { NOME_GRUPO } from '../../domain/gerador/opcoes';
 import { Marcar, Passo, Selo } from '../app/ui';
 import { NOME_ARTICULACAO } from './Triagem';
@@ -54,7 +54,11 @@ export function Restricoes() {
     { rotulo: 'Saúde', valor: algumSim ? 'Alguma condição marcada' : 'Nenhuma condição', para: '/comecar/triagem' },
     { rotulo: 'Nível', valor: estado.nivel ? NOME_NIVEL[estado.nivel.escolhido] : '—', para: '/comecar/nivel' },
     { rotulo: 'Rotina', valor: r ? `${r.diasSemana} dias por semana · até ${r.minutosSessao} min` : '—', para: '/comecar/rotina' },
-    { rotulo: 'Prioridade', valor: r?.prioridades.length ? r.prioridades.map((g) => NOME_GRUPO[g]).join(', ') : 'Nenhuma', para: '/comecar/rotina' },
+    {
+      rotulo: 'Prioridade (opcional)',
+      valor: r?.prioridades.length ? r.prioridades.map((g) => NOME_GRUPO[g]).join(', ') : 'Nenhuma',
+      para: '/comecar/rotina?so=prioridade',
+    },
     {
       rotulo: 'Equipamento',
       valor: meusItens.length ? `${meusItens.length} ${meusItens.length === 1 ? 'item' : 'itens'}` : 'Só o peso do corpo',
@@ -62,6 +66,9 @@ export function Restricoes() {
     },
   ];
   const evitando = evitarEq.length + evitarEx.length;
+  // Design v3 (C1): o resultado do nível, com o motivo e o selo, aparece aqui, e não mais numa caixa no meio do nível.
+  const nivel = estado.nivel;
+  const sugestao = nivel ? classificarNivel(nivel.respostas) : null;
 
   return (
     <Passo id="restricoes" titulo="Tudo certo?">
@@ -79,6 +86,14 @@ export function Restricoes() {
             </li>
           ))}
         </ul>
+        {nivel && sugestao && (
+          <p className="ajuda">
+            Nível {NOME_NIVEL[nivel.escolhido].toLowerCase()}
+            {nivel.escolhido !== sugestao.nivel
+              ? ` (você escolheu começar abaixo do sugerido, ${NOME_NIVEL[sugestao.nivel].toLowerCase()})`
+              : ''}: {sugestao.motivo} Na dúvida, classificamos para baixo. <Selo id={sugestao.regraId} />
+          </p>
+        )}
         {doresTriagem.length > 0 && (
           <div className="box">
             <p>

@@ -54,28 +54,21 @@ for (const tema of ['light', 'dark'] as const) {
     await page.goBack();
     await page.goto('/comecar/triagem');
     await page.getByRole('button', { name: 'Não tenho nenhuma destas' }).click();
-    await page
-      .getByRole('group', { name: /sem parar/ })
-      .getByLabel('Menos de 6 meses')
-      .check();
-    await page
-      .getByRole('group', { name: /treinando agora/ })
-      .getByLabel(/^Estou treinando/)
-      .check();
-    await page
-      .getByRole('group', { name: /confiança na técnica/ })
-      .getByLabel(/^Sim/)
-      .check();
-    await conferir(page); // nível
+    // Design v3: uma pergunta por tela. De 6 meses a 2 anos, a técnica é perguntada e há um nível mais leve para escolher.
+    await conferir(page); // nível, 1ª pergunta
+    await page.getByRole('group', { name: /sem parar/ }).getByLabel('De 6 meses a 2 anos').check();
+    await conferir(page); // pausa
+    await page.getByRole('group', { name: /treinando agora/ }).getByLabel(/^Estou treinando/).check();
+    await conferir(page); // técnica
+    await page.getByRole('group', { name: /confiança na técnica/ }).getByLabel(/^Sim/).check();
+    await expect(page.getByRole('heading', { name: 'Seu nível: Intermediário' })).toBeVisible();
+    await conferir(page); // resultado
     await page.getByRole('button', { name: 'Continuar' }).click();
-    await page
-      .getByRole('group', { name: /Quantos dias/ })
-      .getByLabel('3 dias')
-      .check();
-    await page
-      .getByRole('group', { name: /Quantos minutos/ })
-      .getByLabel('45 min', { exact: true })
-      .check();
+    await conferir(page); // dias
+    await page.getByRole('group', { name: /Quantos dias/ }).getByLabel('3 dias').check();
+    await page.getByRole('group', { name: /Quantos minutos/ }).getByLabel('Outro', { exact: true }).check();
+    await conferir(page); // minutos, com "Outro"
+    await page.getByLabel('Outro: quantos minutos?').fill('50');
     await conferir(page); // rotina
     await page.getByRole('button', { name: 'Continuar' }).click();
     await page.getByRole('button', { name: 'Academia completa' }).click();

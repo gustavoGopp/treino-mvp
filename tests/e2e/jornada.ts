@@ -33,14 +33,23 @@ export async function triagemNenhuma(page: Page) {
   await page.getByRole('button', { name: 'Não tenho nenhuma destas' }).click();
 }
 
-/** Minutos por toque (30, 45, 60, 75, 90); outro valor vai em "Outro". */
+/** Minutos por toque (30, 45, 60, 75, 90), que responde e segue; outro valor vai em "Outro" e pede "Continuar". */
 export async function minutosPorTreino(page: Page, minutos: string) {
   const g = grupo(page, /Quantos minutos/);
   if (['30', '45', '60', '75', '90'].includes(minutos)) await g.getByLabel(`${minutos} min`, { exact: true }).check();
   else {
     await g.getByLabel('Outro', { exact: true }).check();
     await page.getByLabel('Outro: quantos minutos?').fill(minutos);
+    await page.getByRole('button', { name: 'Continuar' }).click();
   }
+}
+
+/** No "Tudo certo?": a linha opcional "Prioridade" abre os grupos; "Salvar" volta ao resumo (design v3, C4). */
+export async function prioridades(page: Page, grupos: string[]) {
+  await page.getByRole('link', { name: /Prioridade \(opcional\)/ }).click();
+  for (const g of grupos) await page.getByLabel(g, { exact: true }).check();
+  await page.getByRole('button', { name: 'Salvar' }).click();
+  await expect(page.getByRole('heading', { name: 'Tudo certo?' })).toBeVisible();
 }
 
 export async function ana(
@@ -67,30 +76,18 @@ export async function ana(
   else await triagemNenhuma(page);
   await p();
 
+  // Design v3: uma pergunta por tela, e o toque responde e segue. Com menos de 6 meses de treino, a técnica não muda o
+  // nível e não é perguntada; o nível (iniciante, sem outro para escolher) vai direto para a rotina.
   await expect(page.getByRole('heading', { name: 'Sua experiência com musculação' })).toBeVisible();
-  await grupo(page, /sem parar/)
-    .getByLabel('Menos de 6 meses')
-    .check();
-  await grupo(page, /treinando agora/)
-    .getByLabel(/^Estou treinando/)
-    .check();
-  await grupo(page, /confiança na técnica/)
-    .getByLabel(/^Sim/)
-    .check();
-  await expect(page.getByRole('heading', { name: 'Seu nível: Iniciante' })).toBeVisible();
+  await grupo(page, /sem parar/).getByLabel('Menos de 6 meses').check();
+  await grupo(page, /treinando agora/).getByLabel(/^Estou treinando/).check();
   await p();
-  await page.getByRole('button', { name: 'Continuar' }).click();
 
   await expect(page.getByRole('heading', { name: 'Sua rotina de treino' })).toBeVisible();
-  await grupo(page, /Quantos dias/)
-    .getByLabel('3 dias')
-    .check();
+  await grupo(page, /Quantos dias/).getByLabel('3 dias').check();
   await minutosPorTreino(page, minutos);
-  await page.getByLabel('Pernas', { exact: true }).check();
-  await page.getByLabel('Glúteos', { exact: true }).check();
-  // A divisão saiu do cadastro (design v2, item E): é escolhida depois, em "Meus dados".
+  // A divisão saiu do cadastro (design v2, item E) e a prioridade virou uma linha do "Tudo certo?" (design v3, C4).
   await p();
-  await page.getByRole('button', { name: 'Continuar' }).click();
 
   await expect(page.getByRole('heading', { name: 'Que equipamento você tem?' })).toBeVisible();
   await page.getByLabel('Halteres fixos', { exact: true }).check();
@@ -103,6 +100,7 @@ export async function ana(
   await page.getByRole('button', { name: 'Continuar' }).click();
 
   await expect(page.getByRole('heading', { name: 'Tudo certo?' })).toBeVisible();
+  await prioridades(page, ['Pernas', 'Glúteos']);
   await p();
   await page.getByRole('button', { name: 'Gerar meu programa' }).click();
   await expect(page.getByRole('heading', { name: 'Seu treino', exact: true })).toBeVisible();
