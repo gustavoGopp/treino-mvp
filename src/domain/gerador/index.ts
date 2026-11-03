@@ -748,6 +748,10 @@ export function cortarTempo(
     const ok = (m: Musculo, delta: number) => (v[m] ?? 0) < piso(m) || (v[m] ?? 0) - delta >= piso(m);
     return e.musculos.primarios.every((m) => ok(m, menos)) && e.musculos.secundarios.every((m) => ok(m, menos * VOLUME.pesoIndireta));
   };
+  // O corte nunca tira o único exercício de um músculo: mesmo abaixo do piso, ele não vai a zero (sessão de equipamento
+  // mínimo: com 20 min e prioridade pernas, a flexão de joelho deslizante saía e os posteriores zeravam).
+  const naoZera = (x: ExercicioPrescrito, v: Partial<Record<Musculo, number>>) =>
+    POR_ID_BIB[x.exId]!.musculos.primarios.every((m) => (v[m] ?? 0) - seriesDeVolume(x) > 0);
   const naoPrioPrimeiro = <T extends { x: ExercicioPrescrito; i: number }>(a: T, b: T) => Number(prioritario(a.x)) - Number(prioritario(b.x));
   const usados = new Set<string>();
 
@@ -809,7 +813,7 @@ export function cortarTempo(
         const v = volume();
         const removivel = d.exercicios
           .map((x, i) => ({ x, i }))
-          .filter(({ x }) => prioritario(x) === daPrioridade && x.tipo === 'isolador' && !obrigatorio(x) && cabe(x, seriesDeVolume(x), v))
+          .filter(({ x }) => prioritario(x) === daPrioridade && x.tipo === 'isolador' && !obrigatorio(x) && cabe(x, seriesDeVolume(x), v) && naoZera(x, v))
           .sort((a, b) => b.i - a.i)[0]?.x;
         if (!removivel) break;
         salvar(

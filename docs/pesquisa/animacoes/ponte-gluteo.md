@@ -22,13 +22,34 @@ Num ensaio de 9 semanas, hip thrust e agachamento cresceram o glúteo de forma p
 3. **Joelhos caindo para dentro** na subida.
 4. **Subir pouco**: o quadril não alinha com o tronco e as coxas.
 
+## Animação (em revisão, 03/11/2026)
+Arquivo `src/engine/exercicios/revisao/ponte-gluteo.ts`; folha `docs/revisoes/equipamento-minimo/folhas/ponte-gluteo.png`. Pose nova, montada com as partes do `abdominal-chao` aprovado (deitado de costas no colchonete). Só a vista de lado: de frente (olhando dos pés), as canelas cobrem o corpo e o quadro não se lê.
+
+| Ponto | O que a animação mostra | Selo | Fonte |
+|---|---|---|---|
+| Posição | Deitado de costas num colchonete, joelhos dobrados, pés no chão a cerca de um palmo dos glúteos, braços no chão ao lado do corpo | consenso | `nsca2021` (não verificado), como a tabela de técnica acima |
+| Subida | ~1 s, o quadril sobe até ombros, quadril e joelhos ficarem em linha (linha tracejada da guia); ombros e cabeça ficam no chão | consenso | `nsca2021` (não verificado) |
+| Topo | Pausa de ~1 s | consenso | `nsca2021` (não verificado) |
+| Descida | ~2 s, controlada, até o quadril quase encostar no chão | consenso [opinião: a mesma cadência do `abdominal-chao` aprovado] | — |
+
+**Erros animados** (3 dos 4 do cartão; os ids do guia são os da animação): `lombar` (arquear a lombar no topo), `calcanhar` (empurrar pela ponta dos pés) e `raso` (subir pouco). O dos **joelhos caindo para dentro** só se veria de frente e fica no texto do guia, não na animação.
+
+**Músculos no desenho:** só o glúteo, principal; sem secundário, como na biblioteca.
+
 ## Músculos
 Primário: glúteos. **Sem secundário** desde a revisão de anatomia (02/11/2026, achado 1): no hip thrust, com o joelho dobrado como na ponte, os posteriores quase não cresceram (Plotkin 2023, `plotkin2023`; **um estudo**). A ponte segue o hip thrust por ter a mesma posição do joelho (consenso, inferência do projeto). Detalhes em `docs/revisoes/anatomia.md`.
 
 ## Como a carga sobe
 Peso do corpo, pela escada de dificuldade (`progressao.incremento.peso-corporal`): mais repetições, pausa no topo, uma perna só e, com halteres, a ponte com halter.
 
+## Referência visual
+> Referência visual de movimento, **não fonte de regra; não assistido nesta sessão**. Tirado de `../../pesquisa-v2/10-equipamento-minimo.md`, pergunta 7 (lá, listado para a ponte com uma perna; o vídeo mostra pontes de glúteo).
+
+| Canal | Título | URL |
+|---|---|---|
+| Bret Contreras (no título) | Glute Bridges with Bret Contreras | https://www.youtube.com/watch?v=yN-SNtUzHYM |
+
 ## Fontes
-- `plotkin2023`: Plotkin DL et al. Hip thrust and back squat training elicit similar gluteus muscle hypertrophy… Front Physiol 2023;14:1279170. PMID 37877099.
-- `kennedy2024`: Kennedy D et al. Electromyographic differences… between the barbell hip thrust and barbell glute bridge. Sports Biomech 2024. PMID 35586943.
+- `plotkin2023`: Plotkin DL et al. Hip thrust and back squat training elicit similar gluteus muscle hypertrophy… Front Physiol 2023;14:1279170. PMID 37877099. **Resumo lido no PubMed** (status `resumo-PubMed` em `../fontes.md`).
+- `kennedy2024`: Kennedy D et al. Electromyographic differences… between the barbell hip thrust and barbell glute bridge. Sports Biomech 2024. PMID 35586943. **Resumo lido no PubMed** (status `resumo-PubMed` em `../fontes.md`).
 - `nsca2021`: NSCA. Exercise Technique Manual for Resistance Training, 4ª ed. Human Kinetics, 2021. **Não verificado** (livro pago, não acessado); referência de consenso de treinadores, a confirmar.

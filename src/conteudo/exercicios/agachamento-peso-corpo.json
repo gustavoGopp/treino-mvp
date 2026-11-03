@@ -1,0 +1,64 @@
+{
+  "id": "agachamento-peso-corpo",
+  "name": "Agachamento com o peso do corpo",
+  "short": "Agachamento livre",
+  "target": "Quadríceps (frente da coxa)",
+  "setupEq": [
+    "Nenhum equipamento: só espaço livre em volta, num piso que não escorrega."
+  ],
+  "setupBody": [
+    "Pés um pouco mais abertos que o quadril, pontas levemente para fora.",
+    "Braços estendidos à frente, mais ou menos na altura dos ombros.",
+    "Peito alto, abdômen firme."
+  ],
+  "exec": [
+    [
+      "hold",
+      "Em pé",
+      "Joelhos quase estendidos, peso no meio do pé."
+    ],
+    [
+      "ecc",
+      "Descida (excêntrica)",
+      "~2–3 s. Os joelhos vão para a frente e para fora, na direção dos pés, e o quadril desce entre os calcanhares."
+    ],
+    [
+      "hold",
+      "Embaixo",
+      "Quadril na altura do joelho, sem perder a postura. Sem quicar."
+    ],
+    [
+      "conc",
+      "Subida (concêntrica)",
+      "~1–1,5 s. Empurre o chão com o pé inteiro, subindo quadril e peito juntos."
+    ]
+  ],
+  "range": [
+    "Embaixo: o mais fundo que conseguir com o calcanhar no chão, o peito alto e a lombar reta. Para a maioria, quadril na altura do joelho.",
+    "Em cima: joelhos quase estendidos, sem travar.",
+    "Pare de descer antes do ponto em que a lombar começa a arredondar."
+  ],
+  "cues": [
+    "Joelhos para a frente e para fora.",
+    "Calcanhar no chão.",
+    "Desce entre os calcanhares."
+  ],
+  "errors": [
+    {
+      "id": "valgo",
+      "title": "Joelhos para dentro",
+      "desc": "Os joelhos caem para dentro na descida ou na subida. A carga sai da coxa e vai para a articulação do joelho."
+    },
+    {
+      "id": "calcanhar",
+      "title": "Calcanhar sai do chão",
+      "desc": "O peso vai para a ponta do pé e o joelho fica sobrecarregado. Abra um pouco os pés, desça menos fundo ou leve os braços mais à frente."
+    },
+    {
+      "id": "raso",
+      "title": "Descer pouco",
+      "desc": "Parar alto corta a parte do movimento que mais trabalha a coxa."
+    }
+  ],
+  "carga": "Peso do corpo: quando ficar fácil, a escada de dificuldade. Primeiro descida de 3 s, depois pausa de 2 s embaixo, depois 1,5 repetição (desce, sobe até a metade, desce de novo e sobe). Depois disso, o afundo e o búlgaro."
+}

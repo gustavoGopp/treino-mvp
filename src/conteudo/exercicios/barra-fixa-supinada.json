@@ -1,0 +1,73 @@
+{
+  "id": "barra-fixa-supinada",
+  "name": "Barra fixa com pegada supinada",
+  "short": "Barra supinada",
+  "target": "Dorsal (latíssimo do dorso) e bíceps",
+  "setupEq": [
+    "Barra fixa firme. Use um banco ou degrau firme para alcançar sem pular.",
+    "Mãos na barra mais ou menos na largura dos ombros, palmas viradas para você."
+  ],
+  "setupBody": [
+    "Comece pendurado, com os braços estendidos.",
+    "Pernas juntas, joelhos levemente dobrados.",
+    "Abdômen firme e glúteo contraído para o corpo não balançar."
+  ],
+  "exec": [
+    [
+      "hold",
+      "Pendurado",
+      "Braços estendidos, corpo parado."
+    ],
+    [
+      "conc",
+      "Começo da subida",
+      "Primeiro abaixe as escápulas: os ombros se afastam das orelhas e o corpo sobe alguns centímetros."
+    ],
+    [
+      "conc",
+      "Subida (concêntrica)",
+      "~1–1,5 s. Puxe os cotovelos para baixo, à frente do corpo e rentes às costelas, levando o peito em direção à barra."
+    ],
+    [
+      "hold",
+      "Topo",
+      "Queixo acima da barra, peito perto dela."
+    ],
+    [
+      "ecc",
+      "Descida (excêntrica)",
+      "~2–3 s. Desça controlando até os braços estenderem de novo."
+    ]
+  ],
+  "range": [
+    "Embaixo: cotovelos estendidos, sem despencar.",
+    "Em cima: peito perto da barra e queixo acima dela.",
+    "Não vale ganhar altura balançando, chutando ou esticando o pescoço."
+  ],
+  "cues": [
+    "Ombros longe das orelhas.",
+    "Cotovelos rentes às costelas.",
+    "Peito na barra."
+  ],
+  "errors": [
+    {
+      "id": "balanco",
+      "title": "Balanço (kipping)",
+      "desc": "Chutar e balançar dá impulso e tira trabalho das costas."
+    },
+    {
+      "id": "meia",
+      "title": "Meia repetição embaixo",
+      "desc": "Parar com o cotovelo dobrado corta a parte em que as costas estão mais alongadas."
+    },
+    {
+      "id": "encolher",
+      "title": "Ombros encolhidos no topo",
+      "desc": "Os ombros sobem até as orelhas e o pescoço estica para passar o queixo. Termine com o peito, não com o queixo."
+    }
+  ],
+  "montagem": [
+    "Confira que a barra está bem presa e aguenta o seu peso antes da 1ª série. Barra de porta: só se estiver bem encaixada no batente."
+  ],
+  "carga": "Peso do corpo: quando ficar fácil, a escada de dificuldade. Primeiro descida de 3 s, depois pausa de 1 s em cima, depois descida de 5 s."
+}

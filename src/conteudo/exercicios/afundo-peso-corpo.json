@@ -1,0 +1,68 @@
+{
+  "id": "afundo-peso-corpo",
+  "name": "Afundo estático com o peso do corpo",
+  "short": "Afundo livre",
+  "target": "Quadríceps e glúteo da perna da frente",
+  "setupEq": [
+    "Nenhum equipamento. Uma parede ao lado ajuda se faltar equilíbrio."
+  ],
+  "setupBody": [
+    "Dê um passo largo: pé da frente inteiro no chão, pé de trás apoiado na ponta.",
+    "Pés na largura do quadril, como trilhos, e não numa linha só.",
+    "Mãos na cintura, tronco quase vertical, peso mais na perna da frente."
+  ],
+  "exec": [
+    [
+      "hold",
+      "Em cima",
+      "Os dois joelhos quase estendidos, pés fixos no lugar."
+    ],
+    [
+      "ecc",
+      "Descida (excêntrica)",
+      "~2–3 s. Desça reto, levando o joelho de trás em direção ao chão."
+    ],
+    [
+      "hold",
+      "Embaixo",
+      "Joelho de trás a poucos centímetros do chão, coxa da frente perto da horizontal."
+    ],
+    [
+      "conc",
+      "Subida (concêntrica)",
+      "~1–1,5 s. Empurre o chão com o pé da frente inteiro."
+    ]
+  ],
+  "range": [
+    "Embaixo: joelho de trás quase encostando no chão.",
+    "Em cima: pare um pouco antes de estender os joelhos totalmente.",
+    "Se o calcanhar da frente sair do chão, o passo está curto: afaste mais os pés."
+  ],
+  "cues": [
+    "Desce reto.",
+    "Joelho de trás no chão.",
+    "Pé da frente inteiro."
+  ],
+  "errors": [
+    {
+      "id": "valgo",
+      "title": "Joelho da frente para dentro",
+      "desc": "O joelho cai para dentro e a carga vai para a articulação."
+    },
+    {
+      "id": "tronco",
+      "title": "Tronco cai para a frente",
+      "desc": "O peito cai e a lombar trabalha para segurar. Mantenha o tronco quase vertical."
+    },
+    {
+      "id": "raso",
+      "title": "Descer pouco",
+      "desc": "Parar com o joelho de trás longe do chão corta a parte mais produtiva do movimento."
+    }
+  ],
+  "montagem": [
+    "Abra espaço em volta e tire tapetes soltos do caminho.",
+    "Se faltar equilíbrio, fique ao lado de uma parede e apoie uma mão nela, só para equilibrar."
+  ],
+  "carga": "Peso do corpo: quando ficar fácil, a escada de dificuldade. Primeiro descida de 3 s, depois pausa de 2 s embaixo, depois o pé da frente num degrau (mais amplitude). Depois disso, o búlgaro."
+}

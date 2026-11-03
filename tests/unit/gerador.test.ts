@@ -2,6 +2,7 @@ import { describe, expect, it } from 'vitest';
 import { BIBLIOTECA, POR_ID } from '../../src/domain/biblioteca';
 import {
   ALTERNATIVAS_A_MOSTRA,
+  contextoDeSelecao,
   equipamentoDe,
   GRUPOS,
   NOME_MUSCULO,
@@ -444,7 +445,9 @@ describe('regras do R0b no gerador', () => {
       const funcoes = new Set(p.dias.flatMap((d) => d.exercicios.map((x) => x.funcao)));
       const temNaDivisao = (f: string) => DIVISOES[p.divisaoId!].dias.some((d) => d.vagas.some((x) => x.funcao === f));
       if (caps.has('cadeira_extensora') && !joelho && temNaDivisao('extensora')) expect(funcoes.has('extensora'), v.nome).toBe(true);
-      if (temNaDivisao('triceps-acima-cabeca') && !doresDe(v.perfil).some((d) => d.articulacao === 'ombro' && d.nota! > 5))
+      // Só quando a função tem exercício possível no inventário (sem nada, não há tríceps acima da cabeça: a Elisa).
+      const possivelNaFuncao = (f: string) => !!contextoDeSelecao(v.perfil, v.inv).resolver({ funcao: f });
+      if (temNaDivisao('triceps-acima-cabeca') && possivelNaFuncao('triceps-acima-cabeca') && !doresDe(v.perfil).some((d) => d.articulacao === 'ombro' && d.nota! > 5))
         expect(funcoes.has('triceps-acima-cabeca'), v.nome).toBe(true);
       if (temNaDivisao('panturrilha-em-pe')) expect(funcoes.has('panturrilha-em-pe'), v.nome).toBe(true);
     }

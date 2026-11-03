@@ -150,7 +150,41 @@ export const carla: Persona = {
   },
 };
 
-export const PERSONAS = { bruno, ana, diego, carla };
+/** Elisa: iniciante, sem equipamento nenhum ("Corpo livre"), 3 dias de 30 min (sessão de equipamento mínimo). */
+export const elisa: Persona = {
+  nome: 'Elisa',
+  descricao: 'Iniciante; treina na sala, sem equipamento nenhum; 3 dias de 30 min; sem prioridade.',
+  perfil: {
+    nivel: 'iniciante',
+    semanasParado: 0,
+    diasSemana: 3,
+    minutosSessao: 30,
+    prioridades: [],
+    evitarExercicios: [],
+    evitarEquipamentos: [],
+    triagem: semRisco,
+  },
+  inventario: {},
+};
+
+/** Fábio: intermediário, só uma barra fixa de porta, 4 dias de 45 min, quer costas (sessão de equipamento mínimo). */
+export const fabio: Persona = {
+  nome: 'Fábio',
+  descricao: 'Intermediário; em casa, só uma barra fixa de porta; 4 dias de 45 min; prioridade costas.',
+  perfil: {
+    nivel: 'intermediario',
+    semanasParado: 0,
+    diasSemana: 4,
+    minutosSessao: 45,
+    prioridades: ['costas'],
+    evitarExercicios: [],
+    evitarEquipamentos: [],
+    triagem: semRisco,
+  },
+  inventario: { barra_fixa: {} },
+};
+
+export const PERSONAS = { bruno, ana, diego, carla, elisa, fabio };
 
 /**
  * R1b: o 2º local do Bruno, fictício. O "prédio" é o equipamento de sempre (bruno.inventario); a "academia do bairro"

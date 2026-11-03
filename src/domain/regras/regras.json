@@ -1315,11 +1315,11 @@
   },
   {
     "id": "selecao.flexao-joelho-sem-maquina",
-    "regra": "Sem cadeira nem mesa flexora, a flexão de joelho sai do peso do corpo, no nível 3 da função: a flexão na bola, a deslizante (toalha ou meias em chão liso) e o nórdico (só a partir do intermediário)",
+    "regra": "Sem cadeira nem mesa flexora, a flexão de joelho sai da bola ou do elástico (nível 3) e, sem eles, do peso do corpo (nível 4): a deslizante (toalha ou meias em chão liso) e o nórdico (só a partir do intermediário)",
     "valores": {
-      "iniciante": "bola ≈ deslizante",
-      "intermediario": "bola ≈ deslizante ≈ nórdico",
-      "avancado": "bola ≈ deslizante ≈ nórdico"
+      "iniciante": "bola ≈ elástico; depois, a deslizante",
+      "intermediario": "bola ≈ elástico; depois, deslizante ≈ nórdico",
+      "avancado": "bola ≈ elástico; depois, deslizante ≈ nórdico"
     },
     "selo": "consenso",
     "fontes": [
