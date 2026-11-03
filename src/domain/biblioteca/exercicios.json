@@ -207,7 +207,7 @@
   "tipo": "composto",
   "faixaReps": [
    8,
-   20
+   15
   ],
   "unilateral": false,
   "articulacoes": [
@@ -244,7 +244,7 @@
   "tipo": "composto",
   "faixaReps": [
    8,
-   20
+   15
   ],
   "unilateral": false,
   "articulacoes": [
@@ -416,8 +416,8 @@
   "complexidade": 2,
   "tipo": "composto",
   "faixaReps": [
-   6,
-   12
+   5,
+   10
   ],
   "unilateral": false,
   "articulacoes": [
@@ -526,8 +526,8 @@
   "complexidade": 2,
   "tipo": "composto",
   "faixaReps": [
-   6,
-   12
+   5,
+   10
   ],
   "unilateral": false,
   "articulacoes": [
@@ -561,7 +561,7 @@
   "tipo": "composto",
   "faixaReps": [
    10,
-   20
+   16
   ],
   "unilateral": false,
   "articulacoes": [
@@ -780,7 +780,7 @@
   "tipo": "composto",
   "faixaReps": [
    10,
-   20
+   16
   ],
   "unilateral": false,
   "articulacoes": [
@@ -923,7 +923,7 @@
   "tipo": "composto",
   "faixaReps": [
    10,
-   20
+   16
   ],
   "unilateral": false,
   "articulacoes": [
@@ -1118,8 +1118,8 @@
   "complexidade": 1,
   "tipo": "isolador",
   "faixaReps": [
-   15,
-   25
+   12,
+   20
   ],
   "unilateral": false,
   "articulacoes": [
@@ -1656,8 +1656,8 @@
   "complexidade": 1,
   "tipo": "composto",
   "faixaReps": [
-   12,
-   25
+   10,
+   16
   ],
   "unilateral": false,
   "articulacoes": [
@@ -1691,8 +1691,8 @@
   "complexidade": 1,
   "tipo": "composto",
   "faixaReps": [
-   15,
-   30
+   12,
+   20
   ],
   "unilateral": false,
   "articulacoes": [
@@ -1834,8 +1834,8 @@
   "complexidade": 1,
   "tipo": "composto",
   "faixaReps": [
-   12,
-   25
+   10,
+   16
   ],
   "unilateral": true,
   "articulacoes": [
@@ -1871,8 +1871,8 @@
   "complexidade": 2,
   "tipo": "composto",
   "faixaReps": [
-   10,
-   20
+   8,
+   15
   ],
   "unilateral": true,
   "articulacoes": [
@@ -2043,8 +2043,8 @@
   "complexidade": 1,
   "tipo": "composto",
   "faixaReps": [
-   12,
-   20
+   10,
+   16
   ],
   "unilateral": false,
   "articulacoes": [
@@ -2076,7 +2076,7 @@
   "tipo": "composto",
   "faixaReps": [
    12,
-   25
+   20
   ],
   "unilateral": false,
   "articulacoes": [
@@ -2488,7 +2488,7 @@
   "tipo": "isolador",
   "faixaReps": [
    12,
-   25
+   20
   ],
   "unilateral": false,
   "articulacoes": [

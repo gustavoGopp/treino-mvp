@@ -30,7 +30,7 @@ describe('os casos E1 a E4 do T6', () => {
   it('E2: flexão no degrau "descida de 3 s" × 12 → o degrau e as repetições, sem kg', () => {
     const [linha] = evolucaoDoExercicio([sessao(0, 'flexao', [s({ tipo: 'degrau', degrau: 1 }, 12)])], 'flexao', semLocal);
     const p = linha!.pontos[0]!;
-    expect(`${textoCarga(p.carga, 'flexao')} × ${p.reps}`).toBe('peso do corpo · descida de 3 s ou pausa embaixo × 12');
+    expect(`${textoCarga(p.carga, 'flexao')} × ${p.reps}`).toBe('peso do corpo · descida de 3 s × 12');
     expect(textoCarga(p.carga, 'flexao')).not.toMatch(/kg/);
   });
 

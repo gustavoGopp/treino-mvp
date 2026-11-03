@@ -1,7 +1,8 @@
 import { BIBLIOTECA, type Exercicio } from '../biblioteca';
 import { faseNaSemana, prescricaoDaSemana, type DiaPrograma, type ExercicioPrescrito, type Fase, type Programa } from '../gerador';
 import { blocoAtual, semanaNoBloco, type Hoje } from './bloco';
-import { ESCADA_PESO_CORPO, noPassoAbaixo, proximaCarga, sugerirProgressao, type Alvo, type Carga, type OpcoesCarga, type SerieRegistrada, type SessaoExercicio, type Sugestao } from '../progressao';
+import { escadaDe, nomeDoDegrau } from '../progressao/escadas';
+import { noPassoAbaixo, proximaCarga, sugerirProgressao, type Alvo, type Carga, type OpcoesCarga, type SerieRegistrada, type SessaoExercicio, type Sugestao } from '../progressao';
 import { calibrar, emCalibracao, semCalibracao, type ResultadoCalibracao } from '../progressao/calibracao';
 import { funcoesDoExercicio } from '../gerador/funcoes';
 import { r } from '../regras';
@@ -142,7 +143,8 @@ export function opcoesCarga(exId: string, inventario: Inventario): OpcoesCarga &
       return { tipo, registro: 'contrapeso', ...(placas ? { placasMax: placas } : {}) };
     case 'peso-corpo':
     case 'elastico':
-      return { tipo, registro: 'degrau' };
+      // progressao.escada-por-exercicio e progressao.escada-elastico: a escada do exercício, com as intensidades do local.
+      return { tipo, registro: 'degrau', degraus: escadaDe(exId, inventario) };
     case 'barra': {
       // Sobe de 2 × a menor anilha (uma de cada lado), a partir do peso da barra quando informado (equipamento.menor-anilha).
       const menor = atributoDoItem(ex, inventario, 'menorAnilhaKg') ?? MENOR_ANILHA_PADRAO_KG;
@@ -160,7 +162,7 @@ export function textoCarga(c: Carga, exId?: string): string {
   if (c.tipo === 'degrau') {
     const base = exId && POR_ID[exId]?.carga === 'elastico' ? 'elástico' : 'peso do corpo';
     if (c.degrau === 0) return base;
-    return `${base} · ${ESCADA_PESO_CORPO[c.degrau] ?? `degrau ${c.degrau + 1}`}`;
+    return `${base} · ${nomeDoDegrau(exId, c.degrau) ?? `degrau ${c.degrau + 1}`}`;
   }
   if (c.tipo === 'kg') return `${c.kg.toLocaleString('pt-BR')} kg`;
   if (c.tipo === 'placa') return `placa ${c.placa}`;

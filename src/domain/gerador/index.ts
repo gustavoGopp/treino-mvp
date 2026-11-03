@@ -2,7 +2,7 @@ import { BIBLIOTECA, MUSCULOS, type Articulacao, type Exercicio, type Musculo, t
 import { DESCANSO, READAPTACAO, RIR, TEMPO, VOLUME, NIVEL_COMPLEXIDADE_MAX, OBRIGATORIO_CURTO, exerciciosPorSessao, r, type Nivel } from '../regras';
 import { capacidades, cargaMaxHalter, cargasHalter, cargasKettlebell, ITENS, type Inventario, type ItemId } from '../taxonomia/equipamentos';
 import { avaliarTriagem, efeitoDaDor, type ResultadoTriagem, type Triagem } from '../triagem';
-import { divisaoEscolhida, type DiasSemana, type Divisao, type DivisaoId, type Vaga } from './divisoes';
+import { divisaoEscolhida, temDiaDeTronco, type DiasSemana, type Divisao, type DivisaoId, type Vaga } from './divisoes';
 import { FUNCAO, funcoesDoExercicio, type Funcao } from './funcoes';
 
 // Gerador de programa: função pura e determinística (mesma entrada → mesma saída).
@@ -228,8 +228,12 @@ export function gerarPrograma(perfil: Perfil, inventarioOriginal: Inventario): R
   const avisos: Porque[] = [];
   const metas = metasDoPerfil(nivel, perfil.prioridades);
 
-  // 2. Divisão escolhida entre opções equivalentes (divisao.*)
-  const { divisao, escolhida } = divisaoEscolhida(perfil.diasSemana, metaMaxima(nivel, perfil.prioridades), perfil.divisao);
+  // Nada para puxar no equipamento (equipamento.sem-ancoragem): nenhuma das duas funções de puxar tem exercício
+  // possível, e não por causa da dor.
+  const semPuxar = (['puxar-vertical', 'puxar-horizontal'] as const).every((f) => !resolver({ funcao: f }) && !perdidaPorDor({ funcao: f }));
+
+  // 2. Divisão escolhida entre opções equivalentes (divisao.*; divisao.sem-puxar)
+  const { divisao, escolhida, corpoTodoPorFaltaDePuxar } = divisaoEscolhida(perfil.diasSemana, metaMaxima(nivel, perfil.prioridades), perfil.divisao, semPuxar);
 
   const usos = new Map<string, number>();
   const funcaoPossivel = (e: Exercicio) => funcoesDoExercicio(e.id).find((x) => naFuncao(x, e.id));
@@ -317,11 +321,16 @@ export function gerarPrograma(perfil: Perfil, inventarioOriginal: Inventario): R
       k++;
     }
     const causa = regioesExcluidas.length ? `por causa da dor ${regioesExcluidas.map(dorDe).join(' e ')}` : 'com o seu equipamento';
-    const entraram = d.itens.filter((i) => i.preenchido).map((i) => i.ex.nome.toLowerCase());
+    const preenchidos = d.itens.filter((i) => i.preenchido);
+    const entraram = preenchidos.map((i) => i.ex.nome.toLowerCase());
+    // O texto diz a verdade: "de outros músculos" quando o que entrou não é músculo do dia (um dia de puxar com panturrilha).
+    const deFora = preenchidos.some((i) => !musculosDoDia.has(i.funcao.musculo));
     if (k)
       avisos.push({
         regraId: r('selecao.dia-sem-principal'),
-        texto: `${d.dia.nome}: ${causa}, o dia perdeu exercícios; no lugar, entram outros possíveis para os músculos do dia (${entraram.join(', ')}).`,
+        texto: deFora
+          ? `${d.dia.nome}: ${causa}, nenhum exercício é possível para os músculos deste dia; no lugar, entram exercícios de outros músculos (${entraram.join(', ')}).`
+          : `${d.dia.nome}: ${causa}, o dia perdeu exercícios; no lugar, entram outros possíveis para os músculos do dia (${entraram.join(', ')}).`,
       });
     else if (soCore)
       avisos.push({
@@ -335,7 +344,18 @@ export function gerarPrograma(perfil: Perfil, inventarioOriginal: Inventario): R
       texto: `Por causa da dor ${regioesExcluidas.map(dorDe).join(' e ')}, os exercícios que carregam a região ficaram de fora. Procure avaliação profissional; quando a dor baixar, atualize a nota na triagem e gere o programa de novo.`,
     });
 
-  if (nivelAbaixo.has('equipamento.sem-puxada-vertical'))
+  if (semPuxar)
+    avisos.push({
+      regraId: r('equipamento.sem-ancoragem'),
+      texto: 'Sem algo para puxar: costas, bíceps e ombro de trás ficam sem exercício, porque nenhum exercício do app treina esses músculos só com o chão. O resto do corpo segue no programa.',
+    });
+  if (semPuxar && temDiaDeTronco(divisao) && divisao.dias.some((x) => /Puxar|Superior|Costas/.test(x.nome)))
+    avisos.push({
+      regraId: r('divisao.sem-puxar'),
+      texto: `${divisao.nome}: sem exercício de puxar no seu equipamento, os dias de puxar ou de superior ficam com outros músculos. As divisões de corpo todo encaixam melhor; dá para trocar na rotina.`,
+    });
+  // Sem puxada vertical: quando ela caiu para uma remada, ou quando só a remada existe (ex.: só a barra longa).
+  if (nivelAbaixo.has('equipamento.sem-puxada-vertical') || (lacunas.has('puxar-vertical') && !semPuxar))
     avisos.push({
       regraId: r('equipamento.sem-puxada-vertical'),
       texto: 'Sem barra fixa nem polia alta: o volume de costas vem de remadas. É uma lacuna conhecida; a evidência para substituir a puxada é fraca.',
@@ -474,6 +494,9 @@ export function gerarPrograma(perfil: Perfil, inventarioOriginal: Inventario): R
         ? `${divisao.nome}: a divisão que você escolheu entre as opções equivalentes para ${perfil.diasSemana} dias.`
         : `${divisao.nome}: a recomendada para ${perfil.diasSemana} dias (você pode escolher outra na rotina).`,
     },
+    ...(corpoTodoPorFaltaDePuxar
+      ? [{ regraId: r('divisao.sem-puxar'), texto: 'Sem exercício de puxar no seu equipamento, a recomendada é a de corpo todo: nas outras, os dias de puxar ficariam com outros músculos.' }]
+      : []),
     {
       regraId: r('divisao.equivalencia'),
       texto: 'Com o mesmo volume semanal, as divisões rendem o mesmo crescimento; a escolha é pelo encaixe na sua rotina.',

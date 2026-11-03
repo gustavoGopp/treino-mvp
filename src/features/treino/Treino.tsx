@@ -351,7 +351,7 @@ function RegistroSerie({
           Calibração: {cal.ultima.motivo} <Selo id={cal.ultima.regraId} />
         </p>
       )}
-      <ControleCarga registro={op.registro} cargas={op.lista} placasMax={op.placasMax} menorAnilhaKg={op.menorAnilhaKg} valor={carga} aoMudar={setCarga} />
+      <ControleCarga registro={op.registro} cargas={op.lista} placasMax={op.placasMax} menorAnilhaKg={op.menorAnilhaKg} degraus={op.degraus} valor={carga} aoMudar={setCarga} />
       <div className="linha-registro">
         <span className="rotulo-curto" id={`reps-${numero}`}>
           Repetições{x.unilateral ? ' (cada lado)' : ''}
@@ -435,6 +435,7 @@ function ControleCarga({
   cargas,
   placasMax,
   menorAnilhaKg,
+  degraus,
   valor,
   aoMudar,
 }: {
@@ -442,6 +443,8 @@ function ControleCarga({
   cargas?: number[];
   placasMax?: number;
   menorAnilhaKg?: number;
+  /** Degraus do exercício (progressao.escada-por-exercicio); sem eles, a escada genérica. */
+  degraus?: string[];
   valor: Carga | undefined;
   aoMudar: (c: Carga) => void;
 }) {
@@ -496,7 +499,7 @@ function ControleCarga({
       <label className="campo">
         <span className="rotulo-curto">Dificuldade</span>
         <select value={d} onChange={(e) => aoMudar({ tipo: 'degrau', degrau: Number(e.target.value) })}>
-          {ESCADA_PESO_CORPO.map((t, n) => (
+          {(degraus ?? ESCADA_PESO_CORPO).map((t, n) => (
             <option key={n} value={n}>
               {t[0]!.toUpperCase() + t.slice(1)}
             </option>

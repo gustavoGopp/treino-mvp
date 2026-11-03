@@ -460,9 +460,24 @@ export function opcoesDeDivisao(dias: DiasSemana, metaMax: number): OpcaoDivisao
     }));
 }
 
-/** A divisão escolhida, se ela serve para os dias e as metas; senão, a recomendada. */
-export function divisaoEscolhida(dias: DiasSemana, metaMax: number, escolhida?: DivisaoId): { divisao: Divisao; escolhida: boolean } {
+/**
+ * A divisão escolhida, se ela serve para os dias e as metas; senão, a recomendada. Sem nenhum exercício de puxar
+ * possível (`semPuxar`), a recomendada passa a ser a de corpo todo do mesmo número de dias, quando existe
+ * (divisao.sem-puxar): nas outras, os dias de puxar ficariam com outros músculos.
+ */
+export function divisaoEscolhida(
+  dias: DiasSemana,
+  metaMax: number,
+  escolhida?: DivisaoId,
+  semPuxar = false,
+): { divisao: Divisao; escolhida: boolean; corpoTodoPorFaltaDePuxar: boolean } {
   const opcoes = opcoesDeDivisao(dias, metaMax);
   const ok = escolhida && opcoes.some((o) => o.id === escolhida);
-  return { divisao: DIVISOES[ok ? escolhida : opcoes[0]!.id], escolhida: !!ok };
+  if (ok) return { divisao: DIVISOES[escolhida], escolhida: true, corpoTodoPorFaltaDePuxar: false };
+  const corpoTodo = semPuxar ? opcoes.find((o) => !temDiaDeTronco(DIVISOES[o.id])) : undefined;
+  const id = corpoTodo?.id ?? opcoes[0]!.id;
+  return { divisao: DIVISOES[id], escolhida: false, corpoTodoPorFaltaDePuxar: !!corpoTodo && id !== opcoes[0]!.id };
 }
+
+/** A divisão tem dia só de tronco ou braços ("Superior", "Puxar", "Empurrar", os da clássica)? */
+export const temDiaDeTronco = (d: Divisao) => d.dias.some((x) => !/^Corpo todo|Inferior|Pernas/.test(x.nome));

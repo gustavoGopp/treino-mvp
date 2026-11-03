@@ -38,6 +38,8 @@ export type OpcoesCarga = {
   placasMax?: number;
   /** Menor anilha das máquinas de anilha (kg); sem ela, o padrão do projeto [opinião]. */
   menorAnilhaKg?: number;
+  /** Degraus do peso do corpo e do elástico (progressao.escada-por-exercicio); sem eles, a escada genérica. */
+  degraus?: string[];
   /** Barra sem lista: a carga sobe de 2 × a menor anilha (equipamento.menor-anilha), a partir do peso da barra. */
   passoKg?: number;
   baseKg?: number;
@@ -53,13 +55,9 @@ export const noPassoAbaixo = (x: number, o: OpcoesCarga) => {
   return Math.round((b + Math.floor((x - b) / p + 1e-9) * p) * 100) / 100;
 };
 
-// progressao.incremento.peso-corporal
-export const ESCADA_PESO_CORPO = [
-  'mais repetições',
-  'descida de 3 s ou pausa embaixo',
-  'variação mais difícil',
-  'carga externa ou elástico mais forte',
-];
+// progressao.incremento.peso-corporal: a escada genérica; cada exercício pode ter a sua (escadas.ts).
+export { ESCADA_GENERICA as ESCADA_PESO_CORPO } from './escadas';
+import { ESCADA_GENERICA } from './escadas';
 
 const igual = (a: Carga, b: Carga) => JSON.stringify(a) === JSON.stringify(b);
 /** Quanto maior, mais difícil. No contrapeso é ao contrário: mais placa = mais ajuda. */
@@ -100,7 +98,7 @@ export function proximaCarga(c: Carga, passos: number, o: OpcoesCarga): Carga | 
   }
   if (c.tipo === 'degrau') {
     const d = c.degrau + passos;
-    return d < 0 || d >= ESCADA_PESO_CORPO.length ? undefined : { tipo: 'degrau', degrau: d };
+    return d < 0 || d >= (o.degraus ?? ESCADA_GENERICA).length ? undefined : { tipo: 'degrau', degrau: d };
   }
   if (c.tipo === 'anilha') {
     // progressao.incremento.maquina-anilha: o menor par de anilhas, um de cada lado.
@@ -155,8 +153,12 @@ function reduzir(c: Carga, fator: number, o: OpcoesCarga): Carga | undefined {
 }
 
 const validas = (s: SessaoExercicio) => s.series.filter((x) => x.amplitudeCompleta !== false);
-const noTopo = (s: SessaoExercicio, a: Alvo) =>
-  s.series.length > 0 && s.series.every((x) => x.amplitudeCompleta !== false && x.reps >= a.reps[1] && x.rir <= a.rir[1]);
+const noTopo = (s: SessaoExercicio, a: Alvo) => {
+  if (!s.series.length || !s.series.every((x) => x.amplitudeCompleta !== false && x.rir <= a.rir[1])) return false;
+  // progressao.criterio-degrau: no peso do corpo e no elástico, a 1ª série no topo e as outras a até 2 repetições dele.
+  if (s.series[0]!.carga.tipo === 'degrau') return s.series[0]!.reps >= a.reps[1] && s.series.every((x) => x.reps >= a.reps[1] - PROGRESSAO.folgaDegrau);
+  return s.series.every((x) => x.reps >= a.reps[1]);
+};
 const totalReps = (s: SessaoExercicio) => validas(s).reduce((t, x) => t + x.reps, 0);
 
 export function sugerirProgressao(historico: SessaoExercicio[], alvo: Alvo, o: OpcoesCarga): Sugestao {
@@ -233,6 +235,12 @@ export function sugerirProgressao(historico: SessaoExercicio[], alvo: Alvo, o: O
         acao: 'subir',
         motivo: 'Topo da faixa com a última placa de contrapeso: passe para a versão livre (barra fixa ou mergulho), sem ajuda.',
         regraId: r('progressao.incremento.assistido'),
+      };
+    if (!prox && carga.tipo === 'degrau')
+      return {
+        acao: 'manter',
+        motivo: 'Você chegou ao último degrau deste exercício. Daqui em diante, busque mais repetições, até umas 30; acima disso, o peso do corpo rende menos.',
+        regraId: r('equipamento.fim-da-escada'),
       };
     if (!prox)
       return {

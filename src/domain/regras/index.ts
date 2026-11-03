@@ -100,6 +100,7 @@ export const READAPTACAO = {
 export const PROGRESSAO = {
   saltoGrande: 0.1, // salto relativo acima de ~10%
   janelaFalha: 6, // sessões em que uma carga que ficou pesada não volta a ser sugerida
+  folgaDegrau: 2, // progressao.criterio-degrau: as séries depois da 1ª podem ficar até 2 repetições abaixo do topo
 };
 
 /** deload.semana-leve: o conteúdo da semana leve e quando sugerir. */

@@ -104,8 +104,11 @@ function simular(caso: Caso, comeco: 'inicio' | 'meio') {
     faixa: `${reps[0]}–${reps[1]}`,
     rir: `${rir[0]}–${rir[1]}`,
     final: textoCarga(carga, caso.exId),
-    /** A 1ª série precisa chegar ao topo + 2 (com 1 repetição a menos por série, a 3ª fica no topo) para subir. */
-    repsNaPrimeiraSerie: `${primeiraSerie} → ${reps[1] + 2}`,
+    /**
+     * Até onde a 1ª série precisa chegar para subir: no degrau, o topo (progressao.criterio-degrau: as outras séries a até
+     * 2 do topo); no kg, o topo + 2 (com 1 repetição a menos por série, a 3ª fica no topo).
+     */
+    repsNaPrimeiraSerie: `${primeiraSerie} → ${op.registro === 'degrau' ? reps[1] : reps[1] + 2}`,
     estagnado: acoes.filter((a) => a === 'estagnado').length,
     ultimaRegra: sugerirProgressao(hist, { reps, rir }, op).regraId,
     primeiraSubidaNaSemana: primeiraSubida,
@@ -133,7 +136,7 @@ const L = [
   '',
   '> Gerado por `npm run auditoria:minimo-progressao`. A sugestão é a do app; o corpo é um modelo (Epley invertida, +1% de força por semana, 3 séries, 32 sessões em 16 semanas, cada degrau da escada = +15% de esforço), descrito no topo de `scripts/auditoria/minimo-progressao.ts`. Serve para achar travas, não para prever o ganho de ninguém. Não editar à mão.',
   '',
-  `A escada do peso do corpo e do elástico é uma só para todos os exercícios (\`progressao.incremento.peso-corporal\`): ${ESCADA_PESO_CORPO.map((d, i) => `${i + 1}) ${d}`).join('; ')}. Ela só sobe de degrau com todas as séries no topo da faixa, no RIR alvo, em 2 sessões seguidas.`,
+  `Sem escada própria, vale a genérica (\`progressao.incremento.peso-corporal\`): ${ESCADA_PESO_CORPO.map((d, i) => `${i + 1}) ${d}`).join('; ')}. Cada exercício tem a sua escada (\`progressao.escada-por-exercicio\`; o elástico sobe pelas intensidades, \`progressao.escada-elastico\`), e o degrau sobe quando a 1ª série chega ao topo da faixa e as outras ficam a até 2 repetições dele, no RIR alvo, em 2 sessões seguidas (\`progressao.criterio-degrau\`).`,
   '',
   '| exercício | onde | faixa | RIR | começo | 1ª série: hoje → para subir | 1ª subida | subidas em 16 semanas | "estagnado" (de 32) | maior trava (sessões) | fim | degrau que não existe | veredito |',
   '| --- | --- | --- | --- | --- | --- | --- | ---: | ---: | ---: | --- | --- | --- |',

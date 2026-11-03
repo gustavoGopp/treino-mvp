@@ -1,0 +1,22 @@
+{
+  "flexao": ["descida de 3 s", "pés elevados (declinada)", "pés elevados com descida de 3 s", "mãos em dois apoios (déficit) ou pausa de 2 s embaixo"],
+  "flexao-fechada": ["descida de 3 s", "pés elevados", "pés elevados com pausa de 2 s embaixo"],
+  "pike": ["descida de 3 s", "pés numa cadeira firme", "pés numa cadeira, com pausa de 2 s embaixo"],
+  "agachamento-peso-corpo": ["descida de 3 s", "pausa de 2 s embaixo", "1,5 repetição (desce, sobe até a metade, desce de novo e sobe)"],
+  "afundo-peso-corpo": ["descida de 3 s", "pausa de 2 s embaixo", "pé da frente num degrau (mais amplitude)"],
+  "bulgaro-peso-corpo": ["descida de 3 s", "pausa de 2 s embaixo", "pé da frente num apoio baixo (mais amplitude)"],
+  "ponte-gluteo": ["pausa de 2 s no alto", "ombros num sofá ou numa cadeira firme (hip thrust)", "uma perna só", "uma perna só, com os ombros apoiados"],
+  "panturrilha-chao": ["pausa de 2 s em cima", "uma perna só", "uma perna só, com pausa de 2 s em cima"],
+  "panturrilha-bilateral-step": ["pausa de 2 s embaixo, alongada", "uma perna só", "uma perna só, com pausa embaixo"],
+  "panturrilha": ["pausa de 2 s embaixo, alongada", "descida de 3 s", "pausa embaixo e em cima"],
+  "abdominal-chao": ["descida de 3 s", "braços acima da cabeça", "braços acima da cabeça, com pausa de 2 s em cima"],
+  "barra-fixa": ["descida de 3 s", "pausa de 1 s em cima", "descida de 5 s"],
+  "barra-fixa-supinada": ["descida de 3 s", "pausa de 1 s em cima", "descida de 5 s"],
+  "elevacao-joelhos": ["joelhos até o peito", "descida de 3 s", "pernas estendidas"],
+  "remada-suspensao": ["pés mais à frente (corpo mais deitado)", "pausa de 2 s com as mãos no peito", "descida de 3 s", "pés elevados"],
+  "remada-invertida": ["pés mais à frente (corpo mais deitado)", "pausa de 2 s com as mãos no peito", "descida de 3 s", "pés elevados"],
+  "mergulho": ["descida de 3 s", "pausa de 2 s embaixo"],
+  "flexao-bola": ["pausa de 2 s com os joelhos dobrados", "descida de 3 s", "uma perna só"],
+  "flexao-joelho-deslizante": ["só a volta lenta (3 s), voltando com as duas pernas", "pausa de 2 s com os joelhos dobrados", "uma perna só"],
+  "nordico": ["descida mais longa (4–5 s)", "descida até o chão sem usar as mãos", "descida e subida, empurrando com as mãos só no começo"]
+}
