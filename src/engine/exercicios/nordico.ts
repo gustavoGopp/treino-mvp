@@ -1,11 +1,12 @@
 // @ts-nocheck
-// Animação nova (em revisão). Flexão nórdica (nórdico). Técnica e fontes: docs/pesquisa/animacoes/nordico.md.
+// Animação nova (aprovada). Flexão nórdica (nórdico). Técnica e fontes: docs/pesquisa/animacoes/nordico.md.
 // Pose nova: ajoelhado numa almofada, calcanhares presos sob um sofá pesado. O corpo gira em bloco em torno dos
 // joelhos (joelho fixo em z = 0), reto do joelho à cabeça, e desce devagar (4 s); as mãos esperam na frente do
 // peito, tocam o chão e amortecem dobrando os cotovelos, como numa flexão. A volta é empurrando o chão com as mãos.
 // O sofá é desenhado com caixas (BOX): o motor não tem uma peça de sofá.
-import { BOX, L3, TX } from '../../desenho';
-import { X, Y, Z } from '../../math';
+import { BOX, L3, TX } from '../desenho';
+import { CTX } from '../contexto';
+import { X, Y, Z } from '../math';
 
 // pernas: tíbia no chão, calcanhar para cima (preso), dedos apoiados atrás
 const PERNA={ikS:[9,6,-43],poleRel:[0,-.3,1],ft:[180,-15],heelV:[0,4.5,1.5]};
@@ -35,13 +36,16 @@ const ex = {
   equip(sk){
     // almofada sob os joelhos
     BOX([0,1.2,0],[[X,22],[Y,1.2],[Z,12]],'eqp',{bias:-4});
-    // sofá: assento por cima dos calcanhares, encosto atrás e pés do lado de lá (atrás do corpo)
-    BOX([0,26,-60],[[X,50],[Y,14],[Z,24]],'eqp',{bias:-60});
-    BOX([0,58,-78],[[X,50],[Y,18],[Z,6]],'eqp',{bias:-61});
-    for(const z of[-80,-40])BOX([45,6,z],[[X,2],[Y,6],[Z,2]],'eqp',{bias:-62});
+    // sofá (a pedido do Gustavo, 04/11/2026, mais parecido com um sofá): base apoiada em pés curtos, com os
+    // calcanhares presos por baixo dela; almofada do assento, encosto e o braço do sofá (vista de lado, translúcido)
+    for(const z of[-72,-40])BOX([45,6,z],[[X,2],[Y,6],[Z,2]],'eqd',{bias:-62});
+    BOX([0,20,-56],[[X,50],[Y,8],[Z,18]],'eqd',{bias:-60});
+    BOX([0,33,-55],[[X,46],[Y,5],[Z,16]],'eqp',{bias:-60});
+    BOX([0,56,-70],[[X,48],[Y,18],[Z,4]],'eqp',{bias:-61});
+    if(CTX.VIEW==='lateral')BOX([0,40,-56],[[X,54],[Y,12],[Z,18]],'eqp',{bias:-59,op:.55});
   },
   guides:{
-    lateral(sk){L3(sk.side.R.K,sk.Hc,'gd',.9,{layer:3,dash:'3 2.5'});TX([0,130,40],'joelho, quadril e cabeça em linha',{cls:'lbl-g',anchor:'middle'});TX([0,-7,-60],'calcanhares presos',{cls:'lbl-g',anchor:'middle'});TX([0,-7,86],'mãos amortecem',{cls:'lbl-g',anchor:'middle'});}
+    lateral(sk){L3(sk.side.R.K,sk.Hc,'gd',.9,{layer:3,dash:'3 2.5'});TX([0,130,40],'joelho, quadril e cabeça em linha',{cls:'lbl-g',anchor:'middle'});TX([0,-7,-44],'calcanhares presos',{cls:'lbl-g',anchor:'middle'});TX([0,-7,86],'mãos amortecem',{cls:'lbl-g',anchor:'middle'});}
   },
   muscles:{p:[['hams','R']],s:[]},
   errors:[

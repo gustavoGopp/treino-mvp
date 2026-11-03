@@ -3,6 +3,8 @@
   "name": "Flexão nórdica (nórdico)",
   "short": "Nórdico",
   "target": "Posteriores da coxa",
+  "feel": "Parte de trás da coxa, do joelho ao glúteo, trabalhando enquanto o corpo desce.",
+  "feelNote": "A 1ª sessão costuma deixar a parte de trás da coxa bem dolorida por alguns dias. É esperado: comece com poucas descidas e aumente aos poucos. Pontada ou dor aguda durante a descida não é normal: pare e, se continuar, procure avaliação.",
   "setupEq": [
     "Um sofá ou cama pesados para prender os calcanhares, ou alguém segurando seus tornozelos.",
     "Uma almofada ou colchonete dobrado sob os joelhos.",
@@ -40,10 +42,24 @@
     "Embaixo: mãos no chão, cotovelos dobrados.",
     "Em cima: ajoelhado, corpo reto."
   ],
+  "breath": "Inspire antes de descer e solte o ar devagar na descida. Não prenda o ar.",
   "cues": [
     "Corpo reto.",
     "Desce devagar.",
     "Mãos amortecem."
+  ],
+  "check": [
+    "Calcanhares bem presos (puxe antes para testar)",
+    "Almofada sob os joelhos",
+    "Espaço livre à frente",
+    "Corpo reto",
+    "Descida lenta"
+  ],
+  "vary": "Comece com ajuda: desça só um pouco e deixe as mãos fazerem mais. A cada semana, segure a descida por mais tempo. Volta difícil? Empurre mais forte com as mãos.",
+  "note": "Antes da 1ª repetição, puxe com força e confira que o sofá ou a cama não se mexe. Se a âncora levantar no meio da descida, pare.",
+  "extLabels": [
+    "ajoelhado",
+    "mãos no chão"
   ],
   "errors": [
     {
@@ -56,12 +72,5 @@
       "title": "Desabar no começo",
       "desc": "Cair rápido nas mãos tira a parte que mais trabalha, a descida lenta. Desça devagar só até onde controla e deixe as mãos amortecerem o resto."
     }
-  ],
-  "montagem": [
-    "Prenda os calcanhares sob um sofá ou cama pesados, ou peça para alguém segurar seus tornozelos.",
-    "Antes da 1ª repetição, puxe com força e confira que nada se mexe.",
-    "Ponha uma almofada sob os joelhos.",
-    "Deixe espaço livre à frente e use as mãos para aparar a descida, como numa flexão."
-  ],
-  "carga": "Peso do corpo: registre o degrau da escada. Só a descida, com as mãos amortecendo → descida de 3 a 5 s até onde controla → descida completa → descida e volta empurrando com as mãos → completo. A 1ª sessão dói por alguns dias: comece com poucas descidas e suba aos poucos."
+  ]
 }
