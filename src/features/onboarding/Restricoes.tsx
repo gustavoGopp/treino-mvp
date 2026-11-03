@@ -57,7 +57,7 @@ export function Restricoes() {
     { rotulo: 'Prioridade', valor: r?.prioridades.length ? r.prioridades.map((g) => NOME_GRUPO[g]).join(', ') : 'Nenhuma', para: '/comecar/rotina' },
     {
       rotulo: 'Equipamento',
-      valor: meusItens.length ? `${meusItens.length} ${meusItens.length === 1 ? 'item' : 'itens'}` : 'Só o peso do corpo',
+      valor: meusItens.length ? `${meusItens.length} ${meusItens.length === 1 ? 'item' : 'itens'}` : 'Corpo livre (só o peso do corpo)',
       para: '/comecar/inventario',
     },
   ];

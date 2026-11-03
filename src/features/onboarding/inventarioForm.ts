@@ -324,6 +324,8 @@ export function comSugestoes(f: FormInventario, sugestoes: { itemId: ItemId; atr
 export function aplicarAtalho(f: FormInventario, id: Atalho['id']): FormInventario {
   const a = ATALHO[id];
   const n: FormInventario = structuredClone(f);
+  // "Corpo livre": a escolha explícita de treinar sem equipamento desmarca tudo (equipamento.atalhos).
+  if (a.semEquipamento) return { ...n, marcados: [] };
   n.marcados = ITEM_IDS.filter((x) => f.marcados.includes(x) || a.marca.includes(x));
   if (a.estacoes && a.marca.includes('multifuncional') && !n.multifuncional.estacoes.length) n.multifuncional.estacoes = [...a.estacoes];
   const p = a.padroes;

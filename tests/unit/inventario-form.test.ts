@@ -141,8 +141,14 @@ describe('atalhos de cenário (equipamento.atalhos)', () => {
   it('nada vem pré-marcado: o formulário vazio não tem nenhum item', () => {
     expect(formVazio().marcados).toEqual([]);
   });
+  it('"Corpo livre": o toque desmarca tudo, e o inventário fica vazio (só o peso do corpo)', () => {
+    const antes: FormInventario = { ...formVazio(), marcados: ['esteira', 'kettlebell', 'elasticos'] };
+    const f = aplicarAtalho(antes, 'corpo');
+    expect(f.marcados).toEqual([]);
+    expect(deForm(f).inventario).toEqual({});
+  });
   it('o toque marca o conjunto, sem desmarcar nada, e os "às vezes tem" ficam desmarcados', () => {
-    for (const a of ATALHOS) {
+    for (const a of ATALHOS.filter((x) => !x.semEquipamento)) {
       const antes: FormInventario = { ...formVazio(), marcados: ['esteira', 'kettlebell'] };
       const f = aplicarAtalho(antes, a.id);
       expect(f.marcados, a.id).toEqual(expect.arrayContaining([...a.marca, 'esteira', 'kettlebell']));

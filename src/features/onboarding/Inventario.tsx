@@ -425,7 +425,8 @@ export function FormularioInventario({
               </button>
             ))}
           </div>
-          {atalho && (
+          {atalho && ATALHO[atalho].ajuda && <p className="ajuda">{ATALHO[atalho].ajuda}</p>}
+          {atalho && ATALHO[atalho].asVezes.length > 0 && (
             <fieldset className="campo sub">
               <legend>Às vezes tem (toque no que você tiver)</legend>
               <div className="opcoes grade">

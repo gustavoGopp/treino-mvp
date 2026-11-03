@@ -3,11 +3,13 @@ import type { EstacaoMultifuncional, ItemId } from './equipamentos';
 // Atalhos de cenário na tela de equipamento (equipamento.atalhos; pesquisa-v2/08, seção 3). Nenhum vem
 // selecionado (decisão 7 do M3): o toque marca o conjunto típico, sem desmarcar nada, e os "às vezes tem"
 // aparecem logo abaixo, desmarcados. Os detalhes que mudam o programa continuam sendo perguntados.
+// "Corpo livre" (sessão de equipamento mínimo, decisão do Gustavo de 03/11/2026) é a escolha explícita de treinar
+// sem equipamento: o toque desmarca tudo, e o programa usa o chão, uma parede e uma cadeira firme.
 // [opinião] Os conjuntos vêm do T7 (guias de condomínio, páginas de rede e lojas, não verificados).
 // O atalho só mexe no formulário de um inventário: serve igual quando houver mais de um local (R1b).
 
 export type Atalho = {
-  id: 'casa' | 'condominio' | 'academia';
+  id: 'casa' | 'condominio' | 'academia' | 'corpo';
   nome: string;
   /** Itens marcados pelo toque. */
   marca: ItemId[];
@@ -15,6 +17,10 @@ export type Atalho = {
   estacoes?: EstacaoMultifuncional[];
   /** "Às vezes tem": aparecem desmarcados, a um toque cada. */
   asVezes: ItemId[];
+  /** Sem equipamento: o toque desmarca tudo (a escolha explícita de "não tenho nada"). */
+  semEquipamento?: true;
+  /** Texto curto mostrado logo abaixo, depois do toque. */
+  ajuda?: string;
   /**
    * Respostas típicas dos detalhes, preenchidas só onde a pessoa ainda não respondeu (design v2, item D: "academia
    * completa" sem perguntar os pesos). Ficam editáveis em "Meus locais"; a 1ª série de cada exercício acerta a carga.
@@ -93,6 +99,15 @@ export const ATALHOS: Atalho[] = [
     padroes: { halteres: { minKg: 2, maxKg: 40, passoKg: 2 }, alturaPolia: 'regulavel', voadorInvertido: false, bancoDeclina: false, tricepsAcimaDaCabeca: false },
   },
 ];
+
+ATALHOS.push({
+  id: 'corpo',
+  nome: 'Corpo livre',
+  marca: [],
+  asVezes: [],
+  semEquipamento: true,
+  ajuda: 'Sem equipamento: o programa usa o chão, uma parede e uma cadeira firme. Dá para marcar algum item depois, se aparecer.',
+});
 
 export const ATALHO: Record<Atalho['id'], Atalho> = Object.fromEntries(ATALHOS.map((a) => [a.id, a])) as Record<Atalho['id'], Atalho>;
 

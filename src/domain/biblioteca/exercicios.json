@@ -3649,5 +3649,143 @@
   ],
   "carga": "halter",
   "animacaoId": null
+ },
+ {
+  "id": "flexao-fechada",
+  "nome": "Flexão de braço com as mãos juntas",
+  "padrao": "empurrar-h",
+  "musculos": {
+   "primarios": [
+    "triceps",
+    "peito"
+   ],
+   "secundarios": [
+    "ombro_anterior"
+   ]
+  },
+  "requer": [
+   [
+    "apoio"
+   ]
+  ],
+  "complexidade": 1,
+  "tipo": "composto",
+  "faixaReps": [
+   8,
+   15
+  ],
+  "unilateral": false,
+  "articulacoes": [
+   "ombro",
+   "cotovelo",
+   "punho"
+  ],
+  "tags": [
+   "plano",
+   "peso-corpo"
+  ],
+  "carga": "peso-corpo",
+  "animacaoId": null
+ },
+ {
+  "id": "pike",
+  "nome": "Flexão com o quadril alto (pike)",
+  "padrao": "empurrar-v",
+  "musculos": {
+   "primarios": [
+    "ombro_anterior"
+   ],
+   "secundarios": [
+    "ombro_lateral",
+    "triceps"
+   ]
+  },
+  "requer": [
+   [
+    "apoio"
+   ]
+  ],
+  "complexidade": 2,
+  "tipo": "composto",
+  "faixaReps": [
+   6,
+   12
+  ],
+  "unilateral": false,
+  "articulacoes": [
+   "ombro",
+   "cotovelo",
+   "punho"
+  ],
+  "tags": [
+   "peso-corpo"
+  ],
+  "carga": "peso-corpo",
+  "animacaoId": null
+ },
+ {
+  "id": "flexao-joelho-deslizante",
+  "nome": "Flexão de joelho deslizando os pés no chão",
+  "padrao": "flexao-joelho",
+  "musculos": {
+   "primarios": [
+    "posteriores"
+   ],
+   "secundarios": [
+    "gluteos"
+   ]
+  },
+  "requer": [
+   [
+    "apoio"
+   ]
+  ],
+  "complexidade": 2,
+  "tipo": "isolador",
+  "faixaReps": [
+   8,
+   15
+  ],
+  "unilateral": false,
+  "articulacoes": [
+   "joelho"
+  ],
+  "tags": [
+   "peso-corpo"
+  ],
+  "carga": "peso-corpo",
+  "animacaoId": null
+ },
+ {
+  "id": "nordico",
+  "nome": "Flexão nórdica (nórdico)",
+  "padrao": "flexao-joelho",
+  "musculos": {
+   "primarios": [
+    "posteriores"
+   ],
+   "secundarios": []
+  },
+  "requer": [
+   [
+    "apoio"
+   ]
+  ],
+  "complexidade": 3,
+  "tipo": "isolador",
+  "faixaReps": [
+   4,
+   8
+  ],
+  "unilateral": false,
+  "articulacoes": [
+   "joelho"
+  ],
+  "tags": [
+   "montagem",
+   "peso-corpo"
+  ],
+  "carga": "peso-corpo",
+  "animacaoId": null
  }
 ]

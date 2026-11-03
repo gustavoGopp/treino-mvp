@@ -272,6 +272,22 @@
     ]
   },
   {
+    "id": "reps.faixa.degrau",
+    "regra": "Faixas dos exercícios de peso do corpo e de elástico: 5 a 8 repetições de largura, topo até 20 (antes, 12 a 15 de largura, com que a escada quase não andava). Qualquer faixa de ~6 a ~30 perto da falha cresce o músculo; a largura é escolha do projeto",
+    "valores": {
+      "iniciante": "flexão 8–15; agachamento 12–20; afundo 10–16; búlgaro 8–15; ponte e abdominal 12–20; elásticos compostos 10–16; face pull 12–20; barra fixa 5–10",
+      "intermediario": "flexão 8–15; agachamento 12–20; afundo 10–16; búlgaro 8–15; ponte e abdominal 12–20; elásticos compostos 10–16; face pull 12–20; barra fixa 5–10",
+      "avancado": "flexão 8–15; agachamento 12–20; afundo 10–16; búlgaro 8–15; ponte e abdominal 12–20; elásticos compostos 10–16; face pull 12–20; barra fixa 5–10"
+    },
+    "selo": "consenso",
+    "fontes": [
+      "schoenfeld2017b",
+      "lopez2021",
+      "lasevicius2022",
+      "consenso-projeto"
+    ]
+  },
+  {
     "id": "reps.teto.carga-limitada",
     "regra": "Teto de repetições quando a carga disponível é limitada; acima disso aplica `equipamento.escada-carga-leve`",
     "valores": {
@@ -508,15 +524,78 @@
   },
   {
     "id": "progressao.incremento.peso-corporal",
-    "regra": "Progressão sem kg confiável (peso do corpo e elástico)",
+    "regra": "Progressão sem kg confiável (peso do corpo e elástico). Revista na sessão de equipamento mínimo (03/11/2026): cada exercício segue a sua escada (`progressao.escada-por-exercicio`); o elástico, a das intensidades (`progressao.escada-elastico`); sem escada própria, a genérica. Nunca sugere uma carga ou um elástico que a pessoa não tem",
     "valores": {
-      "iniciante": "repetições → descida de 3 s ou pausa → variação mais difícil → carga externa ou próxima tensão do elástico",
-      "intermediario": "repetições → descida de 3 s ou pausa → variação mais difícil → carga externa ou próxima tensão do elástico",
-      "avancado": "repetições → descida de 3 s ou pausa → variação mais difícil → carga externa ou próxima tensão do elástico"
+      "iniciante": "genérica: repetições → descida de 3 s ou pausa embaixo → variação mais difícil → variação mais difícil com descida de 3 s; no fim, `equipamento.fim-da-escada`",
+      "intermediario": "genérica: repetições → descida de 3 s ou pausa embaixo → variação mais difícil → variação mais difícil com descida de 3 s; no fim, `equipamento.fim-da-escada`",
+      "avancado": "genérica: repetições → descida de 3 s ou pausa embaixo → variação mais difícil → variação mais difícil com descida de 3 s; no fim, `equipamento.fim-da-escada`"
     },
     "selo": "consenso",
     "fontes": [
       "lopes2019",
+      "schoenfeld2015",
+      "consenso-projeto"
+    ]
+  },
+  {
+    "id": "progressao.escada-por-exercicio",
+    "regra": "Escada própria de cada exercício de peso do corpo (dados em `src/domain/progressao/escadas.json`); o degrau 0 é o exercício como no guia, e cada degrau seguinte o deixa mais difícil sem carga externa. Pausa e 1,5 repetição não têm ensaio",
+    "valores": {
+      "iniciante": "ver `escadas.json` e `pesquisa-v2/10`, tabela 5.3",
+      "intermediario": "ver `escadas.json` e `pesquisa-v2/10`, tabela 5.3",
+      "avancado": "ver `escadas.json` e `pesquisa-v2/10`, tabela 5.3"
+    },
+    "selo": "consenso",
+    "fontes": [
+      "schoenfeld2015",
+      "kojic2025",
+      "wei2023",
+      "kassiano2025",
+      "consenso-projeto"
+    ]
+  },
+  {
+    "id": "progressao.escada-elastico",
+    "regra": "Elástico: a escada sobe pelas intensidades que a pessoa informou, da mais leve à mais forte; em cada intensidade, normal → mais esticado (um passo mais longe) → mais esticado com descida de 3 s. Com uma intensidade só, a escada para nela",
+    "valores": {
+      "iniciante": "intensidade 1 a N, 3 degraus cada",
+      "intermediario": "intensidade 1 a N, 3 degraus cada",
+      "avancado": "intensidade 1 a N, 3 degraus cada"
+    },
+    "selo": "consenso",
+    "fontes": [
+      "lopes2019",
+      "harper2025",
+      "consenso-projeto"
+    ]
+  },
+  {
+    "id": "progressao.criterio-degrau",
+    "regra": "No peso do corpo e no elástico, o degrau sobe quando a 1ª série chega ao topo da faixa e as outras ficam a no máximo 2 repetições dele, no RIR alvo, em 2 sessões seguidas (a fadiga entre as séries derruba mais as repetições do que com carga em kg)",
+    "valores": {
+      "iniciante": "1ª série no topo, as outras ≥ topo − 2, 2 sessões",
+      "intermediario": "1ª série no topo, as outras ≥ topo − 2, 2 sessões",
+      "avancado": "1ª série no topo, as outras ≥ topo − 2, 2 sessões"
+    },
+    "selo": "consenso",
+    "fontes": [
+      "halperin2022",
+      "consenso-projeto"
+    ]
+  },
+  {
+    "id": "equipamento.fim-da-escada",
+    "regra": "Fim da escada: no último degrau, com a série no topo, o app avisa de forma sutil, na própria sugestão, que dali em diante é buscar repetições até ~30 e que, acima disso, o peso do corpo rende menos; nunca avisa de antemão pelo nível, e nunca sugere compra (decisão do Gustavo, 03/11/2026)",
+    "valores": {
+      "iniciante": "texto na sugestão do exercício",
+      "intermediario": "texto na sugestão do exercício",
+      "avancado": "texto na sugestão do exercício"
+    },
+    "selo": "consenso",
+    "fontes": [
+      "lasevicius2018",
+      "lasevicius2022",
+      "schoenfeld2015carga",
       "consenso-projeto"
     ]
   },
@@ -942,9 +1021,9 @@
     "id": "selecao.dia-sem-principal",
     "regra": "Dia que perdeu vagas por causa da dor, ou que ficaria só com core (abdominal) (R1)",
     "valores": {
-      "iniciante": "vagas que a dor esvaziou recebem exercícios possíveis (fora o core) dos outros músculos daquele dia no modelo da divisão, um por músculo que o dia ainda não tem, sem passar do teto semanal; o dia que ficaria só com core recebe pelo menos um, do músculo mais abaixo da meta; se nenhum for possível, o aviso diz o motivo; vaga vazia pela dor não vira aviso de falta de equipamento",
-      "intermediario": "vagas que a dor esvaziou recebem exercícios possíveis (fora o core) dos outros músculos daquele dia no modelo da divisão, um por músculo que o dia ainda não tem, sem passar do teto semanal; o dia que ficaria só com core recebe pelo menos um, do músculo mais abaixo da meta; se nenhum for possível, o aviso diz o motivo; vaga vazia pela dor não vira aviso de falta de equipamento",
-      "avancado": "vagas que a dor esvaziou recebem exercícios possíveis (fora o core) dos outros músculos daquele dia no modelo da divisão, um por músculo que o dia ainda não tem, sem passar do teto semanal; o dia que ficaria só com core recebe pelo menos um, do músculo mais abaixo da meta; se nenhum for possível, o aviso diz o motivo; vaga vazia pela dor não vira aviso de falta de equipamento"
+      "iniciante": "vagas que a dor esvaziou recebem exercícios possíveis (fora o core) dos outros músculos daquele dia no modelo da divisão, um por músculo que o dia ainda não tem, sem passar do teto semanal; o dia que ficaria só com core recebe pelo menos um, do músculo mais abaixo da meta; se nenhum for possível, o aviso diz o motivo; o aviso diz \"de outros músculos\" quando o que entrou não é músculo do dia (03/11/2026: um dia de \"Puxar\" com panturrilha não é \"dos músculos do dia\"); vaga vazia pela dor não vira aviso de falta de equipamento",
+      "intermediario": "vagas que a dor esvaziou recebem exercícios possíveis (fora o core) dos outros músculos daquele dia no modelo da divisão, um por músculo que o dia ainda não tem, sem passar do teto semanal; o dia que ficaria só com core recebe pelo menos um, do músculo mais abaixo da meta; se nenhum for possível, o aviso diz o motivo; o aviso diz \"de outros músculos\" quando o que entrou não é músculo do dia (03/11/2026: um dia de \"Puxar\" com panturrilha não é \"dos músculos do dia\"); vaga vazia pela dor não vira aviso de falta de equipamento",
+      "avancado": "vagas que a dor esvaziou recebem exercícios possíveis (fora o core) dos outros músculos daquele dia no modelo da divisão, um por músculo que o dia ainda não tem, sem passar do teto semanal; o dia que ficaria só com core recebe pelo menos um, do músculo mais abaixo da meta; se nenhum for possível, o aviso diz o motivo; o aviso diz \"de outros músculos\" quando o que entrou não é músculo do dia (03/11/2026: um dia de \"Puxar\" com panturrilha não é \"dos músculos do dia\"); vaga vazia pela dor não vira aviso de falta de equipamento"
     },
     "selo": "consenso",
     "fontes": [
@@ -1125,11 +1204,11 @@
   },
   {
     "id": "equipamento.escada-carga-leve",
-    "regra": "Ordem fixa quando o halter ficou leve",
+    "regra": "Ordem fixa quando o halter ficou leve. Revista em 03/11/2026: o app não sugere comprar nada (decisão do Gustavo); o 5º passo virou o aviso sutil de fim de escada",
     "valores": {
-      "iniciante": "1) repetições até ~30; 2) unilateral ou variação mais difícil; 3) excêntrica de 3–4 s (≤ 8 s por repetição); 4) pausa no alongamento ou 1,5 repetição; 5) sugerir comprar carga",
-      "intermediario": "1) repetições até ~30; 2) unilateral ou variação mais difícil; 3) excêntrica de 3–4 s (≤ 8 s por repetição); 4) pausa no alongamento ou 1,5 repetição; 5) sugerir comprar carga",
-      "avancado": "1) repetições até ~30; 2) unilateral ou variação mais difícil; 3) excêntrica de 3–4 s (≤ 8 s por repetição); 4) pausa no alongamento ou 1,5 repetição; 5) sugerir comprar carga"
+      "iniciante": "1) repetições até ~30; 2) unilateral ou variação mais difícil; 3) excêntrica de 3–4 s (≤ 8 s por repetição); 4) pausa no alongamento ou 1,5 repetição; 5) `equipamento.fim-da-escada`",
+      "intermediario": "1) repetições até ~30; 2) unilateral ou variação mais difícil; 3) excêntrica de 3–4 s (≤ 8 s por repetição); 4) pausa no alongamento ou 1,5 repetição; 5) `equipamento.fim-da-escada`",
+      "avancado": "1) repetições até ~30; 2) unilateral ou variação mais difícil; 3) excêntrica de 3–4 s (≤ 8 s por repetição); 4) pausa no alongamento ou 1,5 repetição; 5) `equipamento.fim-da-escada`"
     },
     "selo": "consenso",
     "fontes": [
@@ -1170,7 +1249,7 @@
   },
   {
     "id": "equipamento.atalhos",
-    "regra": "Atalhos de cenário na tela de equipamento (pesquisa-v2/08, seção 3): \"casa com halteres e elásticos\", \"condomínio com multifuncional\" e \"academia completa\"",
+    "regra": "Atalhos de cenário na tela de equipamento (pesquisa-v2/08, seção 3): \"casa com halteres e elásticos\", \"condomínio com multifuncional\", \"academia completa\" e, desde 03/11/2026 (sessão de equipamento mínimo), \"Corpo livre\": a escolha explícita de treinar sem equipamento, que desmarca tudo",
     "valores": {
       "iniciante": "nenhum vem selecionado; o toque marca o conjunto típico, sem desmarcar o que a pessoa já marcou; os \"às vezes tem\" aparecem logo abaixo, desmarcados; os detalhes que mudam o programa continuam sendo perguntados, exceto em \"academia completa\", que preenche só o que está sem resposta com valores típicos (halteres de 2 a 40 kg de 2 em 2, polia regulável e, nos \"sim ou não\" dos aparelhos, o lado conservador: voador sem a posição invertida, banco sem declinar, tríceps na máquina sem a versão acima da cabeça), editáveis em \"Meus locais\" (reformulação visual, 03/11/2026); a 1ª série de cada exercício acerta a carga (`progressao.calibracao`)",
       "intermediario": "nenhum vem selecionado; o toque marca o conjunto típico, sem desmarcar o que a pessoa já marcou; os \"às vezes tem\" aparecem logo abaixo, desmarcados; os detalhes que mudam o programa continuam sendo perguntados, exceto em \"academia completa\", que preenche só o que está sem resposta com valores típicos (halteres de 2 a 40 kg de 2 em 2, polia regulável e, nos \"sim ou não\" dos aparelhos, o lado conservador: voador sem a posição invertida, banco sem declinar, tríceps na máquina sem a versão acima da cabeça), editáveis em \"Meus locais\" (reformulação visual, 03/11/2026); a 1ª série de cada exercício acerta a carga (`progressao.calibracao`)",
@@ -1208,12 +1287,71 @@
     ]
   },
   {
-    "id": "equipamento.flexao-por-supino",
-    "regra": "Sem banco ou supino: flexão de braço com escada de dificuldade até a série ficar perto da falha dentro da faixa",
+    "id": "equipamento.sem-ancoragem",
+    "regra": "Sem nada para puxar (nenhum exercício possível de puxar vertical nem horizontal): o app não inventa exercício de costas nem sugere compra; um aviso da vaga diz que costas, bíceps e ombro de trás ficam sem exercício e que o resto do corpo segue no programa. Mesa, porta, toalha, mochila e galão não entram (decisão do Gustavo, 03/11/2026)",
     "valores": {
-      "iniciante": "inclinada → chão → declinada → com elástico → déficit ou pausa",
-      "intermediario": "inclinada → chão → declinada → com elástico → déficit ou pausa",
-      "avancado": "inclinada → chão → declinada → com elástico → déficit ou pausa"
+      "iniciante": "aviso da vaga, sem sugestão de compra",
+      "intermediario": "aviso da vaga, sem sugestão de compra",
+      "avancado": "aviso da vaga, sem sugestão de compra"
+    },
+    "selo": "consenso",
+    "fontes": [
+      "park2015",
+      "schoenfeld2017a"
+    ]
+  },
+  {
+    "id": "divisao.sem-puxar",
+    "regra": "Sem nenhum exercício de puxar possível, a divisão recomendada passa a ser a de corpo todo do mesmo número de dias, quando existe; a que a pessoa escolheu é mantida, com um aviso de que os dias de puxar ficam com outros músculos. Com o mesmo volume, as divisões rendem o mesmo",
+    "valores": {
+      "iniciante": "corpo todo primeiro",
+      "intermediario": "corpo todo primeiro",
+      "avancado": "corpo todo primeiro"
+    },
+    "selo": "consenso",
+    "fontes": [
+      "consenso-projeto"
+    ]
+  },
+  {
+    "id": "selecao.flexao-joelho-sem-maquina",
+    "regra": "Sem cadeira nem mesa flexora, a flexão de joelho sai do peso do corpo, no nível 3 da função: a flexão na bola, a deslizante (toalha ou meias em chão liso) e o nórdico (só a partir do intermediário)",
+    "valores": {
+      "iniciante": "bola ≈ deslizante",
+      "intermediario": "bola ≈ deslizante ≈ nórdico",
+      "avancado": "bola ≈ deslizante ≈ nórdico"
+    },
+    "selo": "consenso",
+    "fontes": [
+      "maeo2024",
+      "morin2025",
+      "maeo2021"
+    ]
+  },
+  {
+    "id": "selecao.nordico",
+    "regra": "Nórdico: complexidade 3 (só intermediário e avançado), calcanhares presos sob um móvel pesado ou por alguém, descida lenta com as mãos amortecendo; começa com poucas séries, porque a 1ª sessão dá dor forte por alguns dias e subir o volume rápido dói mais",
+    "valores": {
+      "iniciante": "não entra",
+      "intermediario": "faixa de 4 a 8 descidas; a 1ª semana com 2 séries (o mínimo do programa)",
+      "avancado": "igual ao intermediário"
+    },
+    "selo": "um estudo",
+    "fontes": [
+      "coratella2025",
+      "behan2023",
+      "ishoi2025",
+      "maeo2024",
+      "cholp2025"
+    ]
+  },
+  {
+    "id": "equipamento.flexao-por-supino",
+    "regra": "Sem banco ou supino: flexão de braço com escada de dificuldade até a série ficar perto da falha dentro da faixa. Revista em 03/11/2026: a escada é a de `progressao.escada-por-exercicio`; o degrau \"com elástico\" saiu (o app não pede o que a pessoa não marcou); quem não chega ao mínimo da faixa no chão faz a inclinada, como diz o cartão",
+    "valores": {
+      "iniciante": "chão → descida de 3 s → pés elevados → pés elevados com descida de 3 s → mãos em dois apoios (déficit) ou pausa de 2 s embaixo; mais fácil: inclinada (mãos numa cadeira ou bancada)",
+      "intermediario": "chão → descida de 3 s → pés elevados → pés elevados com descida de 3 s → mãos em dois apoios (déficit) ou pausa de 2 s embaixo; mais fácil: inclinada (mãos numa cadeira ou bancada)",
+      "avancado": "chão → descida de 3 s → pés elevados → pés elevados com descida de 3 s → mãos em dois apoios (déficit) ou pausa de 2 s embaixo; mais fácil: inclinada (mãos numa cadeira ou bancada)"
     },
     "selo": "um estudo",
     "fontes": [
@@ -1510,9 +1648,9 @@
     "id": "seguranca.montagem",
     "regra": "Montagem segura no cartão e no guia dos exercícios com travas, apoios ou ancoragem; os acidentes (peso que cai, queda, pancada) são a maior causa de atendimento em pronto-socorro",
     "valores": {
-      "iniciante": "smith e hack: travas logo abaixo do ponto mais baixo; panturrilha sentada: soltar e travar a alavanca; hip thrust: banco travado ou encostado; suspensão: ancoragem firme; barras: travas nas anilhas",
-      "intermediario": "smith e hack: travas logo abaixo do ponto mais baixo; panturrilha sentada: soltar e travar a alavanca; hip thrust: banco travado ou encostado; suspensão: ancoragem firme; barras: travas nas anilhas",
-      "avancado": "smith e hack: travas logo abaixo do ponto mais baixo; panturrilha sentada: soltar e travar a alavanca; hip thrust: banco travado ou encostado; suspensão: ancoragem firme; barras: travas nas anilhas"
+      "iniciante": "smith e hack: travas logo abaixo do ponto mais baixo; panturrilha sentada: soltar e travar a alavanca; hip thrust: banco travado ou encostado; suspensão: ancoragem firme; barras: travas nas anilhas; em casa (03/11/2026): móvel testado antes da 1ª série, cadeira firme sem rodinhas encostada na parede, calcanhares do nórdico presos sob um móvel pesado ou por alguém, chão liso sem tapete solto na flexão deslizante",
+      "intermediario": "smith e hack: travas logo abaixo do ponto mais baixo; panturrilha sentada: soltar e travar a alavanca; hip thrust: banco travado ou encostado; suspensão: ancoragem firme; barras: travas nas anilhas; em casa (03/11/2026): móvel testado antes da 1ª série, cadeira firme sem rodinhas encostada na parede, calcanhares do nórdico presos sob um móvel pesado ou por alguém, chão liso sem tapete solto na flexão deslizante",
+      "avancado": "smith e hack: travas logo abaixo do ponto mais baixo; panturrilha sentada: soltar e travar a alavanca; hip thrust: banco travado ou encostado; suspensão: ancoragem firme; barras: travas nas anilhas; em casa (03/11/2026): móvel testado antes da 1ª série, cadeira firme sem rodinhas encostada na parede, calcanhares do nórdico presos sob um móvel pesado ou por alguém, chão liso sem tapete solto na flexão deslizante"
     },
     "selo": "consenso",
     "fontes": [
