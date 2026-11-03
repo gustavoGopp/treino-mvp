@@ -1,0 +1,1325 @@
+[
+ {
+  "tela": "claro/01-boas-vindas",
+  "toquePequeno": [],
+  "contrasteBaixo": [],
+  "botaoPrincipal": {
+   "texto": "Entendi, vamos começar",
+   "topoPct": 115,
+   "visivelSemRolar": false
+  },
+  "telas": 1.3,
+  "rolaDeLado": false
+ },
+ {
+  "tela": "claro/02-triagem-relance",
+  "toquePequeno": [],
+  "contrasteBaixo": [],
+  "botaoPrincipal": {
+   "texto": "Continuar",
+   "topoPct": 178,
+   "visivelSemRolar": false
+  },
+  "telas": 2,
+  "rolaDeLado": false
+ },
+ {
+  "tela": "claro/02-triagem",
+  "toquePequeno": [],
+  "contrasteBaixo": [],
+  "botaoPrincipal": {
+   "texto": "Continuar",
+   "topoPct": 178,
+   "visivelSemRolar": false
+  },
+  "telas": 2,
+  "rolaDeLado": false
+ },
+ {
+  "tela": "claro/03-nivel-vazio",
+  "toquePequeno": [],
+  "contrasteBaixo": [],
+  "botaoPrincipal": {
+   "texto": "Continuar",
+   "topoPct": 118,
+   "visivelSemRolar": false
+  },
+  "telas": 1.4,
+  "rolaDeLado": false
+ },
+ {
+  "tela": "claro/03-nivel",
+  "toquePequeno": [],
+  "contrasteBaixo": [],
+  "botaoPrincipal": {
+   "texto": "Continuar",
+   "topoPct": 136,
+   "visivelSemRolar": false
+  },
+  "telas": 1.5,
+  "rolaDeLado": false
+ },
+ {
+  "tela": "claro/04-rotina",
+  "toquePequeno": [],
+  "contrasteBaixo": [],
+  "botaoPrincipal": {
+   "texto": "Continuar",
+   "topoPct": 102,
+   "visivelSemRolar": false
+  },
+  "telas": 1.2,
+  "rolaDeLado": false
+ },
+ {
+  "tela": "claro/05-equipamento-relance",
+  "toquePequeno": [],
+  "contrasteBaixo": [],
+  "botaoPrincipal": {
+   "texto": "Continuar",
+   "topoPct": 366,
+   "visivelSemRolar": false
+  },
+  "telas": 3.8,
+  "rolaDeLado": false
+ },
+ {
+  "tela": "claro/05-equipamento",
+  "toquePequeno": [],
+  "contrasteBaixo": [],
+  "botaoPrincipal": {
+   "texto": "Continuar",
+   "topoPct": 366,
+   "visivelSemRolar": false
+  },
+  "telas": 3.8,
+  "rolaDeLado": false
+ },
+ {
+  "tela": "claro/05-equipamento-halteres",
+  "toquePequeno": [],
+  "contrasteBaixo": [],
+  "botaoPrincipal": {
+   "texto": "Continuar",
+   "topoPct": 433,
+   "visivelSemRolar": false
+  },
+  "telas": 4.5,
+  "rolaDeLado": false
+ },
+ {
+  "tela": "claro/06-restricoes",
+  "toquePequeno": [],
+  "contrasteBaixo": [],
+  "botaoPrincipal": {
+   "texto": "Gerar meu programa",
+   "topoPct": 56,
+   "visivelSemRolar": true
+  },
+  "telas": 1,
+  "rolaDeLado": false
+ },
+ {
+  "tela": "claro/07-programa-relance",
+  "toquePequeno": [],
+  "contrasteBaixo": [],
+  "botaoPrincipal": {
+   "texto": "Começar o treino Corpo todo A",
+   "topoPct": 56,
+   "visivelSemRolar": true
+  },
+  "telas": 2,
+  "rolaDeLado": false
+ },
+ {
+  "tela": "claro/07-programa",
+  "toquePequeno": [],
+  "contrasteBaixo": [],
+  "botaoPrincipal": {
+   "texto": "Começar o treino Corpo todo A",
+   "topoPct": 56,
+   "visivelSemRolar": true
+  },
+  "telas": 2,
+  "rolaDeLado": false
+ },
+ {
+  "tela": "claro/09-guia-afundo-tec",
+  "toquePequeno": [
+   {
+    "texto": "Torso A",
+    "largura": 74,
+    "altura": 31
+   },
+   {
+    "texto": "Membros A",
+    "largura": 98,
+    "altura": 31
+   },
+   {
+    "texto": "Torso B",
+    "largura": 74,
+    "altura": 31
+   },
+   {
+    "texto": "Membros B",
+    "largura": 97,
+    "altura": 31
+   },
+   {
+    "texto": "Novas",
+    "largura": 66,
+    "altura": 31
+   },
+   {
+    "texto": "1 Goblet",
+    "largura": 75,
+    "altura": 36
+   },
+   {
+    "texto": "2 Stiff",
+    "largura": 62,
+    "altura": 36
+   },
+   {
+    "texto": "3 Afundo",
+    "largura": 83,
+    "altura": 36
+   },
+   {
+    "texto": "4 Panturrilha",
+    "largura": 105,
+    "altura": 36
+   },
+   {
+    "texto": "5 Rosca polia",
+    "largura": 108,
+    "altura": 36
+   },
+   {
+    "texto": "6 Tríceps corda",
+    "largura": 122,
+    "altura": 36
+   },
+   {
+    "texto": "‹",
+    "largura": 38,
+    "altura": 38
+   },
+   {
+    "texto": "›",
+    "largura": 38,
+    "altura": 38
+   },
+   {
+    "texto": "▶",
+    "largura": 40,
+    "altura": 36
+   },
+   {
+    "texto": "⏮",
+    "largura": 40,
+    "altura": 36
+   },
+   {
+    "texto": "🐢 lento",
+    "largura": 76,
+    "altura": 36
+   },
+   {
+    "texto": "Lateral",
+    "largura": 63,
+    "altura": 34
+   },
+   {
+    "texto": "Frontal",
+    "largura": 62,
+    "altura": 34
+   },
+   {
+    "texto": "Técnica",
+    "largura": 96,
+    "altura": 37
+   },
+   {
+    "texto": "Erros",
+    "largura": 96,
+    "altura": 37
+   },
+   {
+    "texto": "Músculos",
+    "largura": 96,
+    "altura": 37
+   },
+   {
+    "texto": "Trajetória",
+    "largura": 96,
+    "altura": 37
+   },
+   {
+    "texto": "Limpar checklist",
+    "largura": 97,
+    "altura": 18
+   },
+   {
+    "texto": "Passo largo",
+    "largura": 358,
+    "altura": 34
+   },
+   {
+    "texto": "Pés como trilhos",
+    "largura": 358,
+    "altura": 34
+   },
+   {
+    "texto": "Calcanhar da frente no chão",
+    "largura": 358,
+    "altura": 34
+   },
+   {
+    "texto": "Tronco quase vertical",
+    "largura": 358,
+    "altura": 34
+   },
+   {
+    "texto": "Comece pela perna mais fraca",
+    "largura": 358,
+    "altura": 34
+   }
+  ],
+  "contrasteBaixo": [
+   {
+    "texto": "3",
+    "razao": 4.18,
+    "cor": "#0a7c72",
+    "fundo": "#d6eeeb",
+    "px": 15
+   },
+   {
+    "texto": "subida",
+    "razao": 4.18,
+    "cor": "#0a7c72",
+    "fundo": "#d6eeeb",
+    "px": 10
+   },
+   {
+    "texto": "Técnica",
+    "razao": 4.18,
+    "cor": "#0a7c72",
+    "fundo": "#d6eeeb",
+    "px": 13
+   }
+  ],
+  "botaoPrincipal": null,
+  "telas": 2.8,
+  "rolaDeLado": false
+ },
+ {
+  "tela": "claro/09-guia-afundo-mus",
+  "toquePequeno": [
+   {
+    "texto": "Torso A",
+    "largura": 74,
+    "altura": 31
+   },
+   {
+    "texto": "Membros A",
+    "largura": 98,
+    "altura": 31
+   },
+   {
+    "texto": "Torso B",
+    "largura": 74,
+    "altura": 31
+   },
+   {
+    "texto": "Membros B",
+    "largura": 97,
+    "altura": 31
+   },
+   {
+    "texto": "Novas",
+    "largura": 66,
+    "altura": 31
+   },
+   {
+    "texto": "1 Goblet",
+    "largura": 75,
+    "altura": 36
+   },
+   {
+    "texto": "2 Stiff",
+    "largura": 62,
+    "altura": 36
+   },
+   {
+    "texto": "3 Afundo",
+    "largura": 83,
+    "altura": 36
+   },
+   {
+    "texto": "4 Panturrilha",
+    "largura": 105,
+    "altura": 36
+   },
+   {
+    "texto": "5 Rosca polia",
+    "largura": 108,
+    "altura": 36
+   },
+   {
+    "texto": "6 Tríceps corda",
+    "largura": 122,
+    "altura": 36
+   },
+   {
+    "texto": "‹",
+    "largura": 38,
+    "altura": 38
+   },
+   {
+    "texto": "›",
+    "largura": 38,
+    "altura": 38
+   },
+   {
+    "texto": "▶",
+    "largura": 40,
+    "altura": 36
+   },
+   {
+    "texto": "⏮",
+    "largura": 40,
+    "altura": 36
+   },
+   {
+    "texto": "🐢 lento",
+    "largura": 76,
+    "altura": 36
+   },
+   {
+    "texto": "Lateral",
+    "largura": 63,
+    "altura": 34
+   },
+   {
+    "texto": "Frontal",
+    "largura": 62,
+    "altura": 34
+   },
+   {
+    "texto": "Técnica",
+    "largura": 96,
+    "altura": 37
+   },
+   {
+    "texto": "Erros",
+    "largura": 96,
+    "altura": 37
+   },
+   {
+    "texto": "Músculos",
+    "largura": 96,
+    "altura": 37
+   },
+   {
+    "texto": "Trajetória",
+    "largura": 96,
+    "altura": 37
+   },
+   {
+    "texto": "Limpar checklist",
+    "largura": 97,
+    "altura": 18
+   },
+   {
+    "texto": "Passo largo",
+    "largura": 358,
+    "altura": 34
+   },
+   {
+    "texto": "Pés como trilhos",
+    "largura": 358,
+    "altura": 34
+   },
+   {
+    "texto": "Calcanhar da frente no chão",
+    "largura": 358,
+    "altura": 34
+   },
+   {
+    "texto": "Tronco quase vertical",
+    "largura": 358,
+    "altura": 34
+   },
+   {
+    "texto": "Comece pela perna mais fraca",
+    "largura": 358,
+    "altura": 34
+   }
+  ],
+  "contrasteBaixo": [
+   {
+    "texto": "3",
+    "razao": 4.18,
+    "cor": "#0a7c72",
+    "fundo": "#d6eeeb",
+    "px": 15
+   },
+   {
+    "texto": "subida",
+    "razao": 4.18,
+    "cor": "#0a7c72",
+    "fundo": "#d6eeeb",
+    "px": 10
+   },
+   {
+    "texto": "Músculos",
+    "razao": 4.18,
+    "cor": "#0a7c72",
+    "fundo": "#d6eeeb",
+    "px": 13
+   }
+  ],
+  "botaoPrincipal": null,
+  "telas": 2.9,
+  "rolaDeLado": false
+ },
+ {
+  "tela": "claro/09-guia-afundo-traj",
+  "toquePequeno": [
+   {
+    "texto": "Torso A",
+    "largura": 74,
+    "altura": 31
+   },
+   {
+    "texto": "Membros A",
+    "largura": 98,
+    "altura": 31
+   },
+   {
+    "texto": "Torso B",
+    "largura": 74,
+    "altura": 31
+   },
+   {
+    "texto": "Membros B",
+    "largura": 97,
+    "altura": 31
+   },
+   {
+    "texto": "Novas",
+    "largura": 66,
+    "altura": 31
+   },
+   {
+    "texto": "1 Goblet",
+    "largura": 75,
+    "altura": 36
+   },
+   {
+    "texto": "2 Stiff",
+    "largura": 62,
+    "altura": 36
+   },
+   {
+    "texto": "3 Afundo",
+    "largura": 83,
+    "altura": 36
+   },
+   {
+    "texto": "4 Panturrilha",
+    "largura": 105,
+    "altura": 36
+   },
+   {
+    "texto": "5 Rosca polia",
+    "largura": 108,
+    "altura": 36
+   },
+   {
+    "texto": "6 Tríceps corda",
+    "largura": 122,
+    "altura": 36
+   },
+   {
+    "texto": "‹",
+    "largura": 38,
+    "altura": 38
+   },
+   {
+    "texto": "›",
+    "largura": 38,
+    "altura": 38
+   },
+   {
+    "texto": "▶",
+    "largura": 40,
+    "altura": 36
+   },
+   {
+    "texto": "⏮",
+    "largura": 40,
+    "altura": 36
+   },
+   {
+    "texto": "🐢 lento",
+    "largura": 76,
+    "altura": 36
+   },
+   {
+    "texto": "Lateral",
+    "largura": 63,
+    "altura": 34
+   },
+   {
+    "texto": "Frontal",
+    "largura": 62,
+    "altura": 34
+   },
+   {
+    "texto": "Técnica",
+    "largura": 96,
+    "altura": 37
+   },
+   {
+    "texto": "Erros",
+    "largura": 96,
+    "altura": 37
+   },
+   {
+    "texto": "Músculos",
+    "largura": 96,
+    "altura": 37
+   },
+   {
+    "texto": "Trajetória",
+    "largura": 96,
+    "altura": 37
+   },
+   {
+    "texto": "Limpar checklist",
+    "largura": 97,
+    "altura": 18
+   },
+   {
+    "texto": "Passo largo",
+    "largura": 358,
+    "altura": 34
+   },
+   {
+    "texto": "Pés como trilhos",
+    "largura": 358,
+    "altura": 34
+   },
+   {
+    "texto": "Calcanhar da frente no chão",
+    "largura": 358,
+    "altura": 34
+   },
+   {
+    "texto": "Tronco quase vertical",
+    "largura": 358,
+    "altura": 34
+   },
+   {
+    "texto": "Comece pela perna mais fraca",
+    "largura": 358,
+    "altura": 34
+   }
+  ],
+  "contrasteBaixo": [
+   {
+    "texto": "3",
+    "razao": 4.18,
+    "cor": "#0a7c72",
+    "fundo": "#d6eeeb",
+    "px": 15
+   },
+   {
+    "texto": "subida",
+    "razao": 4.18,
+    "cor": "#0a7c72",
+    "fundo": "#d6eeeb",
+    "px": 10
+   },
+   {
+    "texto": "Trajetória",
+    "razao": 4.18,
+    "cor": "#0a7c72",
+    "fundo": "#d6eeeb",
+    "px": 13
+   }
+  ],
+  "botaoPrincipal": null,
+  "telas": 3,
+  "rolaDeLado": false
+ },
+ {
+  "tela": "claro/09-guia-afundo-err",
+  "toquePequeno": [
+   {
+    "texto": "Torso A",
+    "largura": 74,
+    "altura": 31
+   },
+   {
+    "texto": "Membros A",
+    "largura": 98,
+    "altura": 31
+   },
+   {
+    "texto": "Torso B",
+    "largura": 74,
+    "altura": 31
+   },
+   {
+    "texto": "Membros B",
+    "largura": 97,
+    "altura": 31
+   },
+   {
+    "texto": "Novas",
+    "largura": 66,
+    "altura": 31
+   },
+   {
+    "texto": "1 Goblet",
+    "largura": 75,
+    "altura": 36
+   },
+   {
+    "texto": "2 Stiff",
+    "largura": 62,
+    "altura": 36
+   },
+   {
+    "texto": "3 Afundo",
+    "largura": 83,
+    "altura": 36
+   },
+   {
+    "texto": "4 Panturrilha",
+    "largura": 105,
+    "altura": 36
+   },
+   {
+    "texto": "5 Rosca polia",
+    "largura": 108,
+    "altura": 36
+   },
+   {
+    "texto": "6 Tríceps corda",
+    "largura": 122,
+    "altura": 36
+   },
+   {
+    "texto": "‹",
+    "largura": 38,
+    "altura": 38
+   },
+   {
+    "texto": "›",
+    "largura": 38,
+    "altura": 38
+   },
+   {
+    "texto": "▶",
+    "largura": 40,
+    "altura": 36
+   },
+   {
+    "texto": "⏮",
+    "largura": 40,
+    "altura": 36
+   },
+   {
+    "texto": "🐢 lento",
+    "largura": 76,
+    "altura": 36
+   },
+   {
+    "texto": "Frontal",
+    "largura": 64,
+    "altura": 34
+   },
+   {
+    "texto": "Lateral",
+    "largura": 62,
+    "altura": 34
+   },
+   {
+    "texto": "Técnica",
+    "largura": 96,
+    "altura": 37
+   },
+   {
+    "texto": "Erros",
+    "largura": 96,
+    "altura": 37
+   },
+   {
+    "texto": "Músculos",
+    "largura": 96,
+    "altura": 37
+   },
+   {
+    "texto": "Trajetória",
+    "largura": 96,
+    "altura": 37
+   },
+   {
+    "texto": "❌ Joelho da frente para dentro",
+    "largura": 218,
+    "altura": 31
+   },
+   {
+    "texto": "❌ Tronco cai para a frente",
+    "largura": 187,
+    "altura": 31
+   },
+   {
+    "texto": "❌ Descer pouco",
+    "largura": 126,
+    "altura": 31
+   },
+   {
+    "texto": "Limpar checklist",
+    "largura": 97,
+    "altura": 18
+   },
+   {
+    "texto": "Passo largo",
+    "largura": 358,
+    "altura": 34
+   },
+   {
+    "texto": "Pés como trilhos",
+    "largura": 358,
+    "altura": 34
+   },
+   {
+    "texto": "Calcanhar da frente no chão",
+    "largura": 358,
+    "altura": 34
+   },
+   {
+    "texto": "Tronco quase vertical",
+    "largura": 358,
+    "altura": 34
+   },
+   {
+    "texto": "Comece pela perna mais fraca",
+    "largura": 358,
+    "altura": 34
+   }
+  ],
+  "contrasteBaixo": [
+   {
+    "texto": "3",
+    "razao": 4.18,
+    "cor": "#0a7c72",
+    "fundo": "#d6eeeb",
+    "px": 15
+   },
+   {
+    "texto": "subida",
+    "razao": 4.18,
+    "cor": "#0a7c72",
+    "fundo": "#d6eeeb",
+    "px": 10
+   },
+   {
+    "texto": "Erros",
+    "razao": 4.18,
+    "cor": "#0a7c72",
+    "fundo": "#d6eeeb",
+    "px": 13
+   }
+  ],
+  "botaoPrincipal": null,
+  "telas": 3,
+  "rolaDeLado": false
+ },
+ {
+  "tela": "claro/10-treino-relance",
+  "toquePequeno": [],
+  "contrasteBaixo": [],
+  "botaoPrincipal": {
+   "texto": "Série feita · descansar 1:45",
+   "topoPct": 98,
+   "visivelSemRolar": false
+  },
+  "telas": 1.4,
+  "rolaDeLado": false
+ },
+ {
+  "tela": "claro/10-treino",
+  "toquePequeno": [],
+  "contrasteBaixo": [],
+  "botaoPrincipal": {
+   "texto": "Série feita · descansar 1:45",
+   "topoPct": 98,
+   "visivelSemRolar": false
+  },
+  "telas": 1.4,
+  "rolaDeLado": false
+ },
+ {
+  "tela": "claro/10-treino-pronto-para-salvar",
+  "toquePequeno": [],
+  "contrasteBaixo": [],
+  "botaoPrincipal": {
+   "texto": "Série feita · descansar 1:45",
+   "topoPct": 98,
+   "visivelSemRolar": false
+  },
+  "telas": 1.4,
+  "rolaDeLado": false
+ },
+ {
+  "tela": "claro/11-descanso",
+  "toquePequeno": [],
+  "contrasteBaixo": [],
+  "botaoPrincipal": {
+   "texto": "Série feita · descansar 1:45",
+   "topoPct": 93,
+   "visivelSemRolar": true
+  },
+  "telas": 1.4,
+  "rolaDeLado": false
+ },
+ {
+  "tela": "claro/11b-guia-a-partir-do-treino-relance",
+  "toquePequeno": [
+   {
+    "texto": "GUIA DE EXECUÇÃO",
+    "largura": 184,
+    "altura": 21
+   },
+   {
+    "texto": "‹ Voltar ao treino",
+    "largura": 131,
+    "altura": 31
+   },
+   {
+    "texto": "1 Búlgaro",
+    "largura": 82,
+    "altura": 36
+   },
+   {
+    "texto": "2 Stiff",
+    "largura": 62,
+    "altura": 36
+   },
+   {
+    "texto": "3 Supino reto",
+    "largura": 108,
+    "altura": 36
+   },
+   {
+    "texto": "4 Remada unilateral",
+    "largura": 148,
+    "altura": 36
+   },
+   {
+    "texto": "5 Tríceps francês halter",
+    "largura": 172,
+    "altura": 36
+   },
+   {
+    "texto": "‹",
+    "largura": 38,
+    "altura": 38
+   },
+   {
+    "texto": "›",
+    "largura": 38,
+    "altura": 38
+   },
+   {
+    "texto": "▶",
+    "largura": 40,
+    "altura": 36
+   },
+   {
+    "texto": "⏮",
+    "largura": 40,
+    "altura": 36
+   },
+   {
+    "texto": "🐢 lento",
+    "largura": 76,
+    "altura": 36
+   },
+   {
+    "texto": "Lateral",
+    "largura": 63,
+    "altura": 34
+   },
+   {
+    "texto": "Frontal",
+    "largura": 62,
+    "altura": 34
+   },
+   {
+    "texto": "Técnica",
+    "largura": 96,
+    "altura": 37
+   },
+   {
+    "texto": "Erros",
+    "largura": 96,
+    "altura": 37
+   },
+   {
+    "texto": "Músculos",
+    "largura": 96,
+    "altura": 37
+   },
+   {
+    "texto": "Trajetória",
+    "largura": 96,
+    "altura": 37
+   },
+   {
+    "texto": "Limpar checklist",
+    "largura": 97,
+    "altura": 18
+   },
+   {
+    "texto": "Peito do pé no banco",
+    "largura": 358,
+    "altura": 34
+   },
+   {
+    "texto": "Calcanhar da frente no chão",
+    "largura": 358,
+    "altura": 34
+   },
+   {
+    "texto": "Mão de apoio na estação",
+    "largura": 358,
+    "altura": 34
+   },
+   {
+    "texto": "Tronco levemente à frente",
+    "largura": 358,
+    "altura": 34
+   },
+   {
+    "texto": "Comece pela perna mais fraca",
+    "largura": 358,
+    "altura": 34
+   },
+   {
+    "texto": "Carga para RIR 3–4",
+    "largura": 358,
+    "altura": 34
+   }
+  ],
+  "contrasteBaixo": [
+   {
+    "texto": "1",
+    "razao": 4.18,
+    "cor": "#0a7c72",
+    "fundo": "#d6eeeb",
+    "px": 15
+   },
+   {
+    "texto": "subida",
+    "razao": 4.18,
+    "cor": "#0a7c72",
+    "fundo": "#d6eeeb",
+    "px": 10
+   },
+   {
+    "texto": "Técnica",
+    "razao": 4.18,
+    "cor": "#0a7c72",
+    "fundo": "#d6eeeb",
+    "px": 13
+   }
+  ],
+  "botaoPrincipal": null,
+  "telas": 2.9,
+  "rolaDeLado": false
+ },
+ {
+  "tela": "claro/11b-guia-a-partir-do-treino",
+  "toquePequeno": [
+   {
+    "texto": "GUIA DE EXECUÇÃO",
+    "largura": 184,
+    "altura": 21
+   },
+   {
+    "texto": "‹ Voltar ao treino",
+    "largura": 131,
+    "altura": 31
+   },
+   {
+    "texto": "1 Búlgaro",
+    "largura": 82,
+    "altura": 36
+   },
+   {
+    "texto": "2 Stiff",
+    "largura": 62,
+    "altura": 36
+   },
+   {
+    "texto": "3 Supino reto",
+    "largura": 108,
+    "altura": 36
+   },
+   {
+    "texto": "4 Remada unilateral",
+    "largura": 148,
+    "altura": 36
+   },
+   {
+    "texto": "5 Tríceps francês halter",
+    "largura": 172,
+    "altura": 36
+   },
+   {
+    "texto": "‹",
+    "largura": 38,
+    "altura": 38
+   },
+   {
+    "texto": "›",
+    "largura": 38,
+    "altura": 38
+   },
+   {
+    "texto": "▶",
+    "largura": 40,
+    "altura": 36
+   },
+   {
+    "texto": "⏮",
+    "largura": 40,
+    "altura": 36
+   },
+   {
+    "texto": "🐢 lento",
+    "largura": 76,
+    "altura": 36
+   },
+   {
+    "texto": "Lateral",
+    "largura": 63,
+    "altura": 34
+   },
+   {
+    "texto": "Frontal",
+    "largura": 62,
+    "altura": 34
+   },
+   {
+    "texto": "Técnica",
+    "largura": 96,
+    "altura": 37
+   },
+   {
+    "texto": "Erros",
+    "largura": 96,
+    "altura": 37
+   },
+   {
+    "texto": "Músculos",
+    "largura": 96,
+    "altura": 37
+   },
+   {
+    "texto": "Trajetória",
+    "largura": 96,
+    "altura": 37
+   },
+   {
+    "texto": "Limpar checklist",
+    "largura": 97,
+    "altura": 18
+   },
+   {
+    "texto": "Peito do pé no banco",
+    "largura": 358,
+    "altura": 34
+   },
+   {
+    "texto": "Calcanhar da frente no chão",
+    "largura": 358,
+    "altura": 34
+   },
+   {
+    "texto": "Mão de apoio na estação",
+    "largura": 358,
+    "altura": 34
+   },
+   {
+    "texto": "Tronco levemente à frente",
+    "largura": 358,
+    "altura": 34
+   },
+   {
+    "texto": "Comece pela perna mais fraca",
+    "largura": 358,
+    "altura": 34
+   },
+   {
+    "texto": "Carga para RIR 3–4",
+    "largura": 358,
+    "altura": 34
+   }
+  ],
+  "contrasteBaixo": [
+   {
+    "texto": "1",
+    "razao": 4.18,
+    "cor": "#0a7c72",
+    "fundo": "#d6eeeb",
+    "px": 15
+   },
+   {
+    "texto": "subida",
+    "razao": 4.18,
+    "cor": "#0a7c72",
+    "fundo": "#d6eeeb",
+    "px": 10
+   },
+   {
+    "texto": "Técnica",
+    "razao": 4.18,
+    "cor": "#0a7c72",
+    "fundo": "#d6eeeb",
+    "px": 13
+   }
+  ],
+  "botaoPrincipal": null,
+  "telas": 2.9,
+  "rolaDeLado": false
+ },
+ {
+  "tela": "claro/11c-treino-sem-animacao-relance",
+  "toquePequeno": [],
+  "contrasteBaixo": [],
+  "botaoPrincipal": {
+   "texto": "Série feita · descansar 1:45",
+   "topoPct": 89,
+   "visivelSemRolar": true
+  },
+  "telas": 1.3,
+  "rolaDeLado": false
+ },
+ {
+  "tela": "claro/11c-treino-cartao-de-texto",
+  "toquePequeno": [],
+  "contrasteBaixo": [],
+  "botaoPrincipal": {
+   "texto": "Série feita · descansar 1:45",
+   "topoPct": 208,
+   "visivelSemRolar": false
+  },
+  "telas": 2.5,
+  "rolaDeLado": false
+ },
+ {
+  "tela": "claro/12-senti-algo",
+  "toquePequeno": [],
+  "contrasteBaixo": [],
+  "botaoPrincipal": {
+   "texto": "Série feita · descansar 1:45",
+   "topoPct": 208,
+   "visivelSemRolar": false
+  },
+  "telas": 3.3,
+  "rolaDeLado": false
+ },
+ {
+  "tela": "claro/13-fim-do-treino",
+  "toquePequeno": [],
+  "contrasteBaixo": [],
+  "botaoPrincipal": {
+   "texto": "Ver a sua semana",
+   "topoPct": 70,
+   "visivelSemRolar": true
+  },
+  "telas": 1,
+  "rolaDeLado": false
+ },
+ {
+  "tela": "claro/14-semana",
+  "toquePequeno": [],
+  "contrasteBaixo": [],
+  "botaoPrincipal": null,
+  "telas": 1.6,
+  "rolaDeLado": false
+ },
+ {
+  "tela": "claro/15-evolucao",
+  "toquePequeno": [],
+  "contrasteBaixo": [
+   {
+    "texto": "acerto da carga",
+    "razao": 4.23,
+    "cor": "#566673",
+    "fundo": "#d3dbe1",
+    "px": 12
+   }
+  ],
+  "botaoPrincipal": null,
+  "telas": 1,
+  "rolaDeLado": false
+ },
+ {
+  "tela": "claro/16-meus-dados",
+  "toquePequeno": [],
+  "contrasteBaixo": [],
+  "botaoPrincipal": {
+   "texto": "Exportar meus dados (JSON)",
+   "topoPct": 42,
+   "visivelSemRolar": true
+  },
+  "telas": 2.1,
+  "rolaDeLado": false
+ },
+ {
+  "tela": "claro/17-locais",
+  "toquePequeno": [],
+  "contrasteBaixo": [],
+  "botaoPrincipal": {
+   "texto": "Cadastrar outro local",
+   "topoPct": 51,
+   "visivelSemRolar": true
+  },
+  "telas": 1,
+  "rolaDeLado": false
+ },
+ {
+  "tela": "claro/18-programa-com-elasticos-relance",
+  "toquePequeno": [],
+  "contrasteBaixo": [],
+  "botaoPrincipal": {
+   "texto": "Começar o treino Corpo todo A",
+   "topoPct": 56,
+   "visivelSemRolar": true
+  },
+  "telas": 2,
+  "rolaDeLado": false
+ },
+ {
+  "tela": "claro/18-programa-com-elasticos",
+  "toquePequeno": [],
+  "contrasteBaixo": [],
+  "botaoPrincipal": {
+   "texto": "Começar o treino Corpo todo A",
+   "topoPct": 56,
+   "visivelSemRolar": true
+  },
+  "telas": 2,
+  "rolaDeLado": false
+ }
+]
