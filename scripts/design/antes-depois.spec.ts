@@ -114,7 +114,7 @@ test('exercício sem animação: miniatura e cartão', async ({ page }) => {
 test('triagem: o atalho "nenhuma se aplica"', async ({ page }) => {
   await page.goto('/');
   await page.getByRole('button', { name: 'Entendi, vamos começar' }).click();
-  await expect(page.getByRole('heading', { name: 'Antes de começar, 9 perguntas rápidas' })).toBeVisible();
+  await expect(page.getByRole('heading', { name: 'Alguma destas vale para você?' })).toBeVisible();
   const antes = await tela(page);
   await page.evaluate(() => {
     const b = Array.from(document.querySelectorAll('button')).find((x) => x.textContent!.includes('Nenhuma se aplica'))!;

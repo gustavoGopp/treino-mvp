@@ -127,12 +127,12 @@ async function inicio(page: Page, c: ReturnType<typeof contador>) {
   );
   await expect(
     page.getByRole("heading", {
-      name: "Antes de começar, 9 perguntas rápidas",
+      name: "Alguma destas vale para você?",
     }),
   ).toBeVisible();
   await c.medir("triagem");
   await c.toque(
-    page.getByRole("button", { name: "Nenhuma vale para mim" }).click(),
+    page.getByRole("button", { name: "Não tenho nenhuma destas" }).click(),
   );
   await expect(
     page.getByRole("heading", { name: "Sua experiência com musculação" }),

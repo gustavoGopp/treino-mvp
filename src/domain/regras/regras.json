@@ -1398,24 +1398,25 @@
   },
   {
     "id": "seguranca.triagem.nenhuma",
-    "regra": "Atalho da triagem para quem não tem nenhuma condição (R1; lista única desde a design v2)",
+    "regra": "Atalho da triagem para quem não tem nenhuma condição (R1; lista única desde a design v2; lista em grupos desde a design v3)",
     "valores": {
-      "iniciante": "a triagem abre com as 9 condições numa lista curta, todas à vista, e dois botões: \"Nenhuma vale para mim\" responde \"não\" às 9 e segue; \"Sim, alguma vale\" leva às 9 perguntas, uma a uma, com as regiões e a dor de hoje como antes (reformulação visual, 03/11/2026)",
-      "intermediario": "a triagem abre com as 9 condições numa lista curta, todas à vista, e dois botões: \"Nenhuma vale para mim\" responde \"não\" às 9 e segue; \"Sim, alguma vale\" leva às 9 perguntas, uma a uma, com as regiões e a dor de hoje como antes (reformulação visual, 03/11/2026)",
-      "avancado": "a triagem abre com as 9 condições numa lista curta, todas à vista, e dois botões: \"Nenhuma vale para mim\" responde \"não\" às 9 e segue; \"Sim, alguma vale\" leva às 9 perguntas, uma a uma, com as regiões e a dor de hoje como antes (reformulação visual, 03/11/2026)"
+      "iniciante": "a triagem abre com as 9 condições numa lista curta, todas à vista, em 3 grupos com ícone (coração e circulação; doenças e remédios; agora ou recente), cada uma começando pela palavra-chave; no fim da lista, \"Sim, alguma destas vale\" leva às 9 perguntas, uma a uma, com as regiões e a dor de hoje como antes, e, depois de um \"ou\", \"Não tenho nenhuma destas\" responde \"não\" às 9 e segue (design v3, direção 3, aprovada pelo Gustavo em 03/11/2026)",
+      "intermediario": "a triagem abre com as 9 condições numa lista curta, todas à vista, em 3 grupos com ícone (coração e circulação; doenças e remédios; agora ou recente), cada uma começando pela palavra-chave; no fim da lista, \"Sim, alguma destas vale\" leva às 9 perguntas, uma a uma, com as regiões e a dor de hoje como antes, e, depois de um \"ou\", \"Não tenho nenhuma destas\" responde \"não\" às 9 e segue (design v3, direção 3, aprovada pelo Gustavo em 03/11/2026)",
+      "avancado": "a triagem abre com as 9 condições numa lista curta, todas à vista, em 3 grupos com ícone (coração e circulação; doenças e remédios; agora ou recente), cada uma começando pela palavra-chave; no fim da lista, \"Sim, alguma destas vale\" leva às 9 perguntas, uma a uma, com as regiões e a dor de hoje como antes, e, depois de um \"ou\", \"Não tenho nenhuma destas\" responde \"não\" às 9 e segue (design v3, direção 3, aprovada pelo Gustavo em 03/11/2026)"
     },
     "selo": "consenso",
     "fontes": [
-      "consenso-projeto"
+      "consenso-projeto",
+      "smyth2006"
     ]
   },
   {
     "id": "seguranca.triagem.texto",
     "regra": "Texto das perguntas da triagem",
     "valores": {
-      "iniciante": "perguntas próprias no estilo do PAR-Q+, sem copiar o texto nem usar a marca, até confirmar a licença",
-      "intermediario": "perguntas próprias no estilo do PAR-Q+, sem copiar o texto nem usar a marca, até confirmar a licença",
-      "avancado": "perguntas próprias no estilo do PAR-Q+, sem copiar o texto nem usar a marca, até confirmar a licença"
+      "iniciante": "perguntas próprias no estilo do PAR-Q+, sem copiar o texto nem usar a marca, até confirmar a licença; cada condição começa pela palavra-chave e termina com o critério inteiro (prazos de 12 e 6 meses, \"receitado\", \"que você toma\", \"agora\", \"dito por um médico\", \"pode piorar com exercício\"), o mesmo texto na lista, no \"uma a uma\" e na pausa; a pausa pede \"Um médico ou profissional de Educação Física me avaliou e me liberou\" (design v3, aprovada pelo Gustavo em 03/11/2026)",
+      "intermediario": "perguntas próprias no estilo do PAR-Q+, sem copiar o texto nem usar a marca, até confirmar a licença; cada condição começa pela palavra-chave e termina com o critério inteiro (prazos de 12 e 6 meses, \"receitado\", \"que você toma\", \"agora\", \"dito por um médico\", \"pode piorar com exercício\"), o mesmo texto na lista, no \"uma a uma\" e na pausa; a pausa pede \"Um médico ou profissional de Educação Física me avaliou e me liberou\" (design v3, aprovada pelo Gustavo em 03/11/2026)",
+      "avancado": "perguntas próprias no estilo do PAR-Q+, sem copiar o texto nem usar a marca, até confirmar a licença; cada condição começa pela palavra-chave e termina com o critério inteiro (prazos de 12 e 6 meses, \"receitado\", \"que você toma\", \"agora\", \"dito por um médico\", \"pode piorar com exercício\"), o mesmo texto na lista, no \"uma a uma\" e na pausa; a pausa pede \"Um médico ou profissional de Educação Física me avaliou e me liberou\" (design v3, aprovada pelo Gustavo em 03/11/2026)"
     },
     "selo": "consenso",
     "fontes": [

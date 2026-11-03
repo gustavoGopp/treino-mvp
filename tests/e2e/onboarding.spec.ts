@@ -64,14 +64,14 @@ test('triagem com "sim" bloqueia, e confirmar a liberação desbloqueia', async 
   await page.getByRole('button', { name: 'Entendi, vamos começar' }).click();
   await triagem(page, { simEm: ['coração'] });
 
-  await expect(page.getByRole('heading', { name: 'Vamos pausar o programa automático' })).toBeVisible();
+  await expect(page.getByRole('heading', { name: 'Primeiro, uma avaliação' })).toBeVisible();
   const continuar = page.getByRole('button', { name: 'Continuar com a liberação' });
   await expect(continuar).toBeDisabled();
   await page.reload();
   // Sem a confirmação, nada foi salvo: a triagem continua pendente.
   await expect(page).toHaveURL(/\/comecar\/triagem$/);
   await triagem(page, { simEm: ['coração'] });
-  await page.getByLabel('Confirmo que fui avaliado e liberado').check();
+  await page.getByLabel('me avaliou e me liberou').check();
   await continuar.click();
   await expect(page.getByRole('heading', { name: 'Sua experiência com musculação' })).toBeVisible();
 });

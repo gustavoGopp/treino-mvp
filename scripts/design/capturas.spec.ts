@@ -43,7 +43,7 @@ test('cadastro', async ({ page }) => {
   await page.goto('/');
   await foto(page, '01-boas-vindas');
   await page.getByRole('button', { name: 'Entendi, vamos começar' }).click();
-  await expect(page.getByRole('heading', { name: 'Antes de começar, 9 perguntas rápidas' })).toBeVisible();
+  await expect(page.getByRole('heading', { name: 'Alguma destas vale para você?' })).toBeVisible();
   await foto(page, '02-triagem-relance', false);
   await foto(page, '02-triagem');
   await triagemNenhuma(page);

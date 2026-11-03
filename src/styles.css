@@ -579,8 +579,17 @@ a.cartao-ex-corpo:focus-visible{outline:3px solid var(--accent);outline-offset:-
 .resumo-cadastro small{font-weight:400;font-size:14px;color:var(--muted)}
 .evitar > summary{min-height:56px;padding:0 16px;border:1.5px dashed var(--edge);border-radius:var(--r2)}
 .evitar[open] > summary{margin-bottom:12px}
-.lista-triagem{list-style:decimal;padding-left:24px;gap:0}
-.lista-triagem li{padding:10px 0;border-bottom:1px solid var(--line);font-size:16px;line-height:1.35}
+/* Design v3: triagem em 3 grupos, palavra-chave primeiro, ícone ao lado do texto (nunca no lugar dele) */
+.ic{width:24px;height:24px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex:none}
+.grupo-triagem{display:flex;flex-direction:column;gap:8px}
+.grupo-triagem h2{margin:0;font-size:14px;font-weight:800;letter-spacing:.04em;text-transform:uppercase;color:var(--muted)}
+.condicoes{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px}
+.condicoes li{display:grid;grid-template-columns:24px 1fr;gap:12px;align-items:start;font-size:17px;line-height:1.35}
+.condicoes b{font-weight:800}
+.saiba summary{cursor:pointer;min-height:48px;display:flex;align-items:center;font-weight:700;font-size:16px;color:var(--link)}
+.saiba p{margin:0 0 10px;font-size:16px}
+.ou{display:flex;align-items:center;gap:12px;margin:0;color:var(--muted);font-size:15px}
+.ou::before,.ou::after{content:"";flex:1;height:1px;background:var(--line)}
 .revelar{display:block}
 .nw{white-space:nowrap}
 .resumo-ex{padding:14px 16px}
