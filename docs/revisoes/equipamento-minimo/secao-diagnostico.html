@@ -1,0 +1,68 @@
+<!-- Seção "Quem não tem nada" para a página "Diagnóstico do treino-mvp", abaixo da seção mais recente.
+     Fragmento pronto para colar: estilos com o prefixo .em- para não colidir com os da página. Só dados fictícios
+     (docs/revisoes/equipamento-minimo.md). Gerado na sessão de equipamento mínimo, 03/11/2026. -->
+<section class="em" id="equipamento-minimo">
+  <style>
+    .em { --em-fundo: #ffffff; --em-texto: #1d1f23; --em-suave: #5b6270; --em-linha: #e3e6eb; --em-bom: #2f7d4f; --em-falta: #b54a2b; --em-barra: #3b6fb6; --em-trilho: #eef1f5; }
+    @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .em { --em-fundo: #16181c; --em-texto: #eceef1; --em-suave: #a3aab6; --em-linha: #2c3038; --em-bom: #6cc391; --em-falta: #f08b6b; --em-barra: #7aa7e6; --em-trilho: #23272e; } }
+    :root[data-theme="dark"] .em { --em-fundo: #16181c; --em-texto: #eceef1; --em-suave: #a3aab6; --em-linha: #2c3038; --em-bom: #6cc391; --em-falta: #f08b6b; --em-barra: #7aa7e6; --em-trilho: #23272e; }
+    .em { background: var(--em-fundo); color: var(--em-texto); padding: 24px 16px; border-top: 1px solid var(--em-linha); font: 16px/1.5 system-ui, sans-serif; }
+    .em h2 { font-size: 1.4rem; margin: 0 0 4px; } .em h3 { font-size: 1.05rem; margin: 24px 0 8px; }
+    .em .em-data { color: var(--em-suave); margin: 0 0 16px; }
+    .em .em-linha { display: grid; grid-template-columns: 8.5rem 1fr 3rem; gap: 8px; align-items: center; margin: 6px 0; }
+    .em .em-trilho { background: var(--em-trilho); border-radius: 4px; height: 14px; overflow: hidden; }
+    .em .em-barra { background: var(--em-barra); height: 100%; }
+    .em .em-zero { color: var(--em-falta); font-weight: 600; }
+    .em .em-num { text-align: right; font-variant-numeric: tabular-nums; }
+    .em ul { padding-left: 1.2rem; } .em li { margin: 4px 0; }
+    .em .em-cartoes { display: grid; grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr)); gap: 12px; }
+    .em .em-cartao { border: 1px solid var(--em-linha); border-radius: 8px; padding: 12px; }
+    .em .em-cartao strong { display: block; font-size: 1.6rem; }
+    .em .em-bom { color: var(--em-bom); } .em .em-nota { color: var(--em-suave); font-size: .9rem; }
+  </style>
+  <h2>Quem não tem nada, ou tem um aparelho só</h2>
+  <p class="em-data">03/11/2026 · 483.840 programas fictícios · relatório em <code>docs/revisoes/equipamento-minimo.md</code></p>
+
+  <div class="em-cartoes">
+    <div class="em-cartao"><strong class="em-bom">0</strong>exercício que carrega uma região com dor forte, em 423 mil programas com dor</div>
+    <div class="em-cartao"><strong class="em-zero">5</strong>músculos com zero série em todo programa de quem não tem nada</div>
+    <div class="em-cartao"><strong class="em-zero">30 de 52</strong>exercícios simulados que não sobem de nível em 16 semanas</div>
+  </div>
+
+  <h3>Séries por semana de quem não tem nada (média)</h3>
+  <div class="em-linha"><span>glúteos</span><span class="em-trilho"><span class="em-barra" style="width:54%"></span></span><span class="em-num">8,1</span></div>
+  <div class="em-linha"><span>panturrilha</span><span class="em-trilho"><span class="em-barra" style="width:50%"></span></span><span class="em-num">7,5</span></div>
+  <div class="em-linha"><span>quadríceps</span><span class="em-trilho"><span class="em-barra" style="width:41%"></span></span><span class="em-num">6,2</span></div>
+  <div class="em-linha"><span>peito</span><span class="em-trilho"><span class="em-barra" style="width:34%"></span></span><span class="em-num">5,1</span></div>
+  <div class="em-linha"><span>abdômen</span><span class="em-trilho"><span class="em-barra" style="width:29%"></span></span><span class="em-num">4,3</span></div>
+  <div class="em-linha"><span>tríceps</span><span class="em-trilho"><span class="em-barra" style="width:17%"></span></span><span class="em-num">2,6</span></div>
+  <div class="em-linha"><span>costas</span><span class="em-trilho"></span><span class="em-num em-zero">0</span></div>
+  <div class="em-linha"><span>bíceps</span><span class="em-trilho"></span><span class="em-num em-zero">0</span></div>
+  <div class="em-linha"><span>ombro lateral</span><span class="em-trilho"></span><span class="em-num em-zero">0</span></div>
+  <div class="em-linha"><span>ombro de trás</span><span class="em-trilho"></span><span class="em-num em-zero">0</span></div>
+  <div class="em-linha"><span>posteriores</span><span class="em-trilho"></span><span class="em-num em-zero">0</span></div>
+  <p class="em-nota">A meta mínima de cada músculo é de 4 a 6 séries por semana. A barra cheia vale 15 séries.</p>
+
+  <h3>O que a pesquisa diz, em linguagem simples</h3>
+  <ul>
+    <li><strong>Só o peso do corpo cresce músculo</strong> enquanto alguma variação levar a série perto do limite em até ~30 repetições (evidência moderada a robusta).</li>
+    <li><strong>Sem nada para segurar e puxar, não existe exercício de costas.</strong> Nenhum estudo testou a mesa, a toalha na porta ou a mochila; o "superman" não treina as costas que o app conta.</li>
+    <li><strong>O nórdico</strong> (descer o corpo para a frente com os calcanhares presos) cresce a parte de trás da coxa (evidência moderada), mas dói bastante nos primeiros dias.</li>
+    <li><strong>Se for comprar uma coisa só, o elástico rende mais</strong> (opinião, a partir dos números): sozinho, ele preenche 8 das 9 vagas de tronco que ficam vazias.</li>
+  </ul>
+
+  <h3>Os maiores problemas</h3>
+  <ul>
+    <li>Um dia chamado <strong>"Puxar" sai com panturrilha e abdominal</strong>, e o aviso diz que são "os músculos do dia".</li>
+    <li>A vaga sem exercício <strong>some calada</strong>: o app avisa "costas 0 de 6", mas não diz o que resolveria.</li>
+    <li>A progressão <strong>quase não anda</strong>: a flexão precisa passar de 14 para 22 repetições antes de subir de nível.</li>
+    <li>É o cenário com <strong>menos guia</strong>: 22% dos exercícios sem animação nem texto (70% com elásticos).</li>
+  </ul>
+
+  <h3>Se os exercícios propostos entrarem (estimativa)</h3>
+  <div class="em-linha"><span>posteriores</span><span class="em-trilho"><span class="em-barra" style="width:37%"></span></span><span class="em-num">0 → 5,5</span></div>
+  <div class="em-linha"><span>costas*</span><span class="em-trilho"><span class="em-barra" style="width:26%"></span></span><span class="em-num">0 → 3,9</span></div>
+  <div class="em-linha"><span>bíceps*</span><span class="em-trilho"><span class="em-barra" style="width:44%"></span></span><span class="em-num">0 → 6,6</span></div>
+  <p class="em-nota">* Só se mochila ou galão entrarem como carga (decisão do Gustavo). Estimativa com 1 caso a cada 8, numa cópia da biblioteca fora do app.</p>
+  <p class="em-nota">Nada mudou no app: cada item espera a decisão do Gustavo.</p>
+</section>

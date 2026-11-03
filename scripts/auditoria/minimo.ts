@@ -71,6 +71,7 @@ type Acc = {
   avisoSemPuxadaComPuxarZerado: number;
   avisoCompra: number;
   motivoFalso: number;
+  abaixoSemAviso: number;
   guia: { animacao: number; cartao: number; nada: number };
   dor: Record<string, { programas: number; soCore: number; superiorSemSuperior: number; vazio: number; violacao: number; incompleta: number; exercicios: Set<string> }>;
   tempo: Record<number, { programas: number; exercicios: number; dias: number; maxDia: number[]; sobra: number; series: number; noTeto: number }>;
@@ -88,6 +89,7 @@ const novo = (): Acc => ({
   avisoSemPuxadaComPuxarZerado: 0,
   avisoCompra: 0,
   motivoFalso: 0,
+  abaixoSemAviso: 0,
   guia: { animacao: 0, cartao: 0, nada: 0 },
   dor: {},
   tempo: {},
@@ -130,6 +132,12 @@ for (const caso of grade()) {
           problema(`volume.zero.${m}`, caso, p, `${NOME_MUSCULO[m]} com 0 série na semana, sem dor nenhuma`);
       }
       if (v < VOLUME.minimoEficazPiso) a.abaixoDe4SemDor[m] = (a.abaixoDe4SemDor[m] ?? 0) + 1;
+    }
+    // Todo músculo abaixo do limiar tem aviso (o mesmo limiar de avisosDeMeta: a meta, se prioridade; senão, 4).
+    const limiar = prio.has(m) ? (p.metas[m] ?? 0) : Math.min(p.metas[m] ?? 0, VOLUME.minimoEficazPiso);
+    if (v < limiar && !p.avisos.some((x) => x.texto.includes(NOME_MUSCULO[m] + ' '))) {
+      a.abaixoSemAviso++;
+      problema('volume.abaixo-sem-aviso', caso, p, `${NOME_MUSCULO[m]} com ${v} de ${p.metas[m]} séries, sem aviso`);
     }
   }
   if (semDor) a.semDor++;
@@ -294,6 +302,7 @@ const json = {
           avisoSemPuxadaComPuxarZerado: a.avisoSemPuxadaComPuxarZerado,
           avisosQueSugeremCompra: a.avisoCompra,
           motivoFalso: a.motivoFalso,
+          abaixoDoLimiarSemAviso: a.abaixoSemAviso,
           guia: { ...a.guia, semNadaPct: pct(a.guia.nada, a.guia.animacao + a.guia.cartao + a.guia.nada), animacaoPct: pct(a.guia.animacao, a.guia.animacao + a.guia.cartao + a.guia.nada) },
           dor: Object.fromEntries(
             Object.entries(a.dor).map(([k, s]) => [k, { programas: s.programas, diasSoCore: s.soCore, diasDeSuperiorSemSuperior: s.superiorSemSuperior, diasVazios: s.vazio, violacao: s.violacao, articulacaoIncompleta: s.incompleta, exercicios: [...s.exercicios].sort() }]),
@@ -365,6 +374,7 @@ for (const id of ids)
     linha(nomeClasse(id), f, t['aviso da vaga'] ?? 0, t['só aviso do músculo'] ?? 0, t['músculo coberto por outra vaga'] ?? 0, t['músculo sem meta: nada'] ?? 0, t.nada ?? 0);
 L.push('', `- Avisos que sugerem comprar algo, em todos os cenários: **${ids.reduce((t, id) => t + pc[id]!.avisosQueSugeremCompra, 0)}**.`);
 L.push(`- "Nenhum exercício possível" dito para um músculo que tinha exercício possível: **${ids.reduce((t, id) => t + pc[id]!.motivoFalso, 0)}**.`);
+L.push(`- Músculo com meta abaixo do limiar (a meta, se prioridade; senão, 4 séries) sem aviso: **${ids.reduce((t, id) => t + pc[id]!.abaixoDoLimiarSemAviso, 0)}**.`);
 L.push(`- Programas sem nenhuma série de puxar com o aviso \`equipamento.sem-puxada-vertical\`: **${ids.reduce((t, id) => t + pc[id]!.avisoSemPuxadaComPuxarZerado, 0)}** (ele só dispara quando a puxada cai para uma remada).`, '');
 L.push('## Equilíbrio (sem dor)', '');
 linha('cenário', 'empurra e não puxa', 'joelho sem posteriores da coxa');
