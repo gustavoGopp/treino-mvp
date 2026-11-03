@@ -64,3 +64,17 @@ Na implementação, `palavras.spec.ts` vira a medida do depois, e as metas aprov
 ## Fontes
 - Brysbaert M (2019). How many words do we read per minute? A review and meta-analysis of reading rate. *Journal of Memory and Language* 109:104047. DOI 10.1016/j.jml.2019.104047. **NÃO VERIFICADO** (citação de memória; o número só calibra a estimativa de tempo, não vira regra).
 - W3C (2023). WCAG 2.2, critérios 1.4.3, 2.5.8 e 2.5.5 (consenso).
+
+## Depois (03/11/2026, com a design v3 implementada)
+Medido pelo mesmo script, no fluxo novo (`medidas-depois-claro.json`, `-escuro`, `-pequeno`). Desde a implementação, a conta de palavras ignora o texto só para leitor de tela (`.sr`, que o selo novo usa) e o conteúdo recolhido; o "antes" não tinha nenhum dos dois.
+
+| Meta | Hoje (antes) | Meta | Depois |
+|---|---:|---:|---:|
+| Palavras na 1ª tela | 180 | até 50 (aprovada: até 75) | **49** |
+| Botão da 1ª tela à vista a 360 px | não | sim | **sim** (fixo embaixo) |
+| Palavras na triagem | 171 | até 100 | **149** (não alcançada: as 9 condições inteiras) |
+| Palavras até o programa ("academia completa") | ~980 | até 400 (aprovada: até 500) | **~550** com a prioridade, ~510 sem (não alcançada) |
+| Toques até o programa ("academia completa") | 13 | até 13 | **12** (com a prioridade: 9 sem ela) |
+| Toque < 44 px e contraste baixo | 0 | 0 | **0** |
+
+`tests/e2e/leitura.spec.ts` trava: as telas de pergunta sem rolar a 412 px e no máximo 560 palavras até o programa.

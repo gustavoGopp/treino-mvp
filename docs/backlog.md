@@ -61,3 +61,11 @@ Detalhes, números e exemplos em `revisoes/auditoria-treino.md`; a frequência d
 - **Escada por exercício no peso do corpo e no elástico** (achado 8): a da flexão já aprovada (`equipamento.flexao-por-supino`) e os elásticos pela intensidade (1 a N); rever as faixas largas (8–20, 12–25, 15–30), com que a escada quase não anda.
 - **Cascata no 2º local** (achado novo, durante as correções): trocar primeiro todas as vagas com equivalente e só depois preencher as que não têm.
 - **Para a sessão do R3:** medir no export do Gustavo quantas sugestões viram "estagnado" (achado 11). No modelo da auditoria, com progresso lento e normal, metade das sugestões fica "estagnado", e 2 exercícios estagnados sugerem a semana leve.
+
+## Da design v3 (03/11/2026)
+Detalhes em `revisoes/design-v3.md`, seção 10.
+- **Glossário nas telas de treino:** "reserva" no lugar de RIR (uma vez por tela: "pare 3 a 4 repetições antes do limite"). Mexe em textos do gerador, do guia e da semana leve e nos snapshots das personas.
+- **O resto do app** (seu treino, treino, guia, fim e semana): as propostas curtas de `design-v3/textos.md` (seção 4), `interacao.md` (seção 4) e `visual.md` (seção 5).
+- **Teste com 5 pessoas** de leitura variada, cronometrado, contando quem diz "não tenho nenhuma destas" sem ler (pedido do guardião). Se muita gente pular, voltar às direções 1 ou 2 da triagem.
+- **Meta de leitura não alcançada:** ~550 palavras até o programa, contra 500. O que sobra está na triagem, que não encurta sem perder critério.
+- **Página "Diagnóstico do treino-mvp":** a seção da design v3 não foi publicada nesta sessão (a página não apareceu na lista de artefatos desta conta).

@@ -162,3 +162,38 @@ Para cada item: entra, não entra, ou entra de outro jeito.
 
 ## Fontes desta rodada
 As referências completas estão em `design-v3/pesquisa.md` (seção "Fontes"); as da v2 continuam em `design-v2.md`.
+
+## 10. Decisão do Gustavo e o que entrou (03/11/2026)
+**Decisão:** a 1ª tela da **direção 2** (Boneco), a triagem da **direção 3** (lista curta, "Não tenho nenhuma destas" no fim) e todos os outros itens da seção 8 aprovados. Pedido a mais: **escolher o tema claro ou escuro** no app.
+
+**O que entrou** (branch `claude/sleepy-franklin-vh16tp`, um commit e um teste por mudança):
+| Item | O que mudou | Teste |
+|---|---|---|
+| Tema | "Meus dados" → "Tema da tela": igual ao celular (padrão), claro ou escuro; vale neste aparelho e fica depois de recarregar | `tests/e2e/tema.spec.ts` |
+| 1 | 1ª tela com o Boneco (um quadro do motor, sem mudança), uma frase, o "não faz" inteiro e os dados no aparelho antes do botão; o resto em "Como funciona" | `inicio.spec.ts`: até 75 palavras, aviso visível, botão à vista a 360 px |
+| 2, 3, 5 | Triagem em 3 grupos com ícone, palavra-chave em negrito, "Sim, alguma destas vale" · ou · "Não tenho nenhuma destas" no fim da lista; "Por que estas perguntas?" com o PAR-Q+ e os selos; "Suas respostas ficam só neste aparelho". Regras `seguranca.triagem.nenhuma` e `.texto` revistas | `triagem.test.ts`: cada critério das 9 condições conferido; os 3 grupos com as 9 |
+| 15 | Pausa: "Primeiro, uma avaliação"; "Um médico ou profissional de Educação Física me avaliou e me liberou" | `onboarding.spec.ts` |
+| 6 | Selo de uma palavra ("consenso", "moderada", "robusta", "1 estudo"), com 44 px de toque; um toque abre o nome inteiro e a regra | `telas.spec.ts` |
+| 8, 9 | Nível em uma pergunta por tela, o toque responde e segue (0,3 s), cada pergunta com o seu endereço; a técnica só é perguntada quando muda o nível; o resultado vai para o "Tudo certo?" | `nivel.test.ts`, `onboarding.spec.ts` (voltar sem avançar sozinho) |
+| 10, 11 | Rotina em 2 telas (dias; minutos); a prioridade é uma linha opcional do "Tudo certo?" | `onboarding.spec.ts`, jornada da Ana |
+| 12, 7 | Equipamento em 2 passos: "Onde você treina?" (3 lugares, "monto a lista", "pela foto") e os ajustes; na academia, os detalhes típicos ficam em "Ajustar item por item"; a frase da foto antes de "Escolher fotos" | `onboarding.spec.ts`, `foto.spec.ts`, `locais.spec.ts` |
+| 13 | Regiões numa tela e a nota de hoje de cada uma numa tela própria, com o aviso de avaliação; regra `seguranca.triagem.osteoarticular` revista | `onboarding.spec.ts` |
+| 14 | Glossário no cadastro: "Montar meu treino", "perguntas de saúde", "começamos mais leve" | — |
+| 16 | Metas de leitura num teste | `tests/e2e/leitura.spec.ts` |
+
+**Medido depois** (`design-v3/medidas-depois-*.json`, caminho "academia completa", 412 px):
+| Tela | Antes | Depois |
+|---|---:|---:|
+| Boas-vindas | 180 palavras, 1,49 telas, botão fora da vista | **49**, 1 tela, botão fixo |
+| Triagem | 171, 1,52 telas | **149**, 1,56 telas (rola de propósito: os botões ficam no fim da lista) |
+| Nível | 118, 1,79 telas | **35 + 46** em 2 telas, sem rolar |
+| Rotina | 98, 1,48 telas | **38 + 25** em 2 telas, sem rolar |
+| Equipamento | 383, 6,65 telas | **40 + 87**, 1 e 1,35 telas |
+| Tudo certo? (+ prioridade) | 27 | 43 (+ 40) |
+| **Até o programa** | **~980 palavras, 13 toques** | **~550 palavras, 12 toques** |
+
+**Meta não alcançada:** eram 500 palavras até o programa; ficaram ~550 com a prioridade (~510 sem ela). A diferença está na triagem, que mantém as 9 condições inteiras. O teste trava 560 para não piorar.
+
+**Toque e contraste:** 0 problema em todas as telas, nos 2 temas e a 360 px (`telas.spec.ts` e as capturas).
+
+**Ficou para depois** (`backlog.md`): o glossário nas telas de treino ("reserva" no lugar de RIR, que mexe em textos do gerador e nos snapshots); o resto do app (seu treino, treino, guia, fim e semana); o teste com 5 pessoas que o guardião pediu antes de decidir entre agrupar ou não.

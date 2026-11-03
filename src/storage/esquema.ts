@@ -256,7 +256,7 @@ export function perfilDe(e: Estado): Perfil | null {
 /** Passos do onboarding, na ordem. O primeiro incompleto é para onde a pessoa volta. */
 export const PASSOS = [
   { id: 'aviso', rota: '/', titulo: 'Boas-vindas' },
-  { id: 'triagem', rota: '/comecar/triagem', titulo: 'Triagem' },
+  { id: 'triagem', rota: '/comecar/triagem', titulo: 'Perguntas de saúde' },
   { id: 'nivel', rota: '/comecar/nivel', titulo: 'Experiência' },
   { id: 'rotina', rota: '/comecar/rotina', titulo: 'Rotina' },
   { id: 'inventario', rota: '/comecar/inventario', titulo: 'Equipamento' },

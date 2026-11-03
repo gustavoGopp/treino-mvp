@@ -811,3 +811,39 @@ As listas exatas ficam em `tests/unit/metas-r0.test.ts`, para o R0c zerar.
 > O boneco animado ficou igual, porque estava bom. O que mudou foi tudo em volta dele.
 
 **Na `main`** desde 03/11/2026, com o ok do Gustavo: os branches `revisao-design`, `reformulacao-visual` e `boneco-legenda` entraram sem commit de merge e foram publicados no site. Testes: 517 unitários e 47 no navegador.
+
+---
+
+## Design v3: menos leitura no começo (03/11/2026)
+
+**Por quê.** Ao abrir no celular a reformulação visual, o Gustavo achou a 1ª tela "só um texto corrido" e reclamou que, na triagem, "você tem que ficar lendo primeiro tudo para depois falar que nenhuma vale". A sessão seguiu `prompts/sessao-design-agentes.md`: um agente líder e subagentes com papéis (pesquisa de UX, estrutura e interação, texto, visual, e um guardião das regras), juntados em 4 para gastar menos.
+
+**O que foi feito**
+- **Antes medido por script** (`scripts/design/palavras.spec.ts`): até o programa, de 860 a 980 palavras (4 a 5 minutos se lesse tudo); o botão da 1ª tela, da triagem e do nível fora da vista. Toque e contraste já estavam em 0 problema: o problema era texto e rolagem.
+- **Pesquisa nova** (`revisoes/design-v3/pesquisa.md`): o atalho "nenhuma" é o formato que mais convida a não ler (Smyth 2006, moderada); o PAR-Q+ pede sim ou não em cada pergunta; leitura em pt-BR e letramento (INAF 2024).
+- **3 direções** no protótipo (canvas "treino-mvp · design v3 (menos leitura)"), revisadas pelo guardião, que reprovou os rótulos curtos do papel visual (perdiam critérios) e pegou duas condições sem o "agora" ou o "que você toma".
+- **Decisão do Gustavo (03/11/2026):** a 1ª tela da direção 2 (Boneco), a triagem da direção 3 (lista curta) e todo o resto aprovado, mais a escolha do tema claro ou escuro.
+
+**O que mudou no app** (um commit e um teste por mudança; tabela completa em `revisoes/design-v3.md`, seção 10)
+1. **Tema** claro, escuro ou igual ao celular, em "Meus dados".
+2. **1ª tela** com o Boneco, uma frase e o aviso inteiro antes do botão: de 180 para 49 palavras.
+3. **Triagem** em 3 grupos com ícone, a palavra-chave em negrito e "Não tenho nenhuma destas" no fim da lista. Nenhum critério saiu das 9 condições (o teste confere cada um). Regras `seguranca.triagem.nenhuma`, `.texto` e `.osteoarticular` revistas.
+4. **Selo** de uma palavra, que abre o nome inteiro e a regra com um toque.
+5. **Nível e rotina** em uma pergunta por tela, com o toque que responde e segue; a técnica só é perguntada quando muda o nível; a prioridade virou uma linha do "Tudo certo?".
+6. **Equipamento em 2 passos:** onde você treina, depois os ajustes.
+7. **Regiões e dor de hoje** em telas próprias.
+
+**Antes × depois** ("academia completa"): ~980 → ~550 palavras até o programa, 13 → 12 toques, nenhuma tela de pergunta rolando (a triagem rola de propósito: os botões ficam no fim da lista). A meta de 500 palavras não foi alcançada; o que sobra é a triagem, que não encurta sem perder critério.
+
+**Testes:** 520 unitários e 52 no navegador, todos passando (`npm run check`, `npm run test:e2e`). Novos: `tema.spec.ts`, `leitura.spec.ts` (as metas), o critério das 9 condições e o voltar no nível.
+
+**Imagens:** `img/v3-antes-cadastro.png` (antes), `img/v3-direcoes-claro.png` e `-escuro.png` (as 3 direções), `img/v3-antes-depois.png` (antes × depois).
+
+**Fica para depois** (`backlog.md`): "reserva" no lugar de RIR nas telas de treino; o resto do app; o teste com 5 pessoas.
+
+**Rascunho de post para o LinkedIn**
+> Medi quantas palavras o meu app de treino pede para alguém ler antes de ver o primeiro treino: 980. Uns 5 minutos de leitura, num celular, na academia.
+>
+> A parte mais difícil de cortar era a triagem de saúde. Ali, encurtar não pode esconder nada: "nos últimos 12 meses", "que pode piorar com exercício", "receitado". A solução foi pôr a palavra-chave primeiro, em negrito ("Dor no peito: parado, no dia a dia ou no esforço"), para a pessoa achar de relance o que é com ela, sem perder o critério inteiro.
+>
+> Agora são ~550 palavras, a primeira tela cabe sem rolar, e um teste automático impede que o texto volte a crescer.
