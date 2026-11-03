@@ -3721,7 +3721,7 @@
    "peso-corpo"
   ],
   "carga": "peso-corpo",
-  "animacaoId": null
+  "animacaoId": "pike"
  },
  {
   "id": "flexao-joelho-deslizante",

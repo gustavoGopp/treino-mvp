@@ -3,6 +3,8 @@
   "name": "Flexão com o quadril alto (pike)",
   "short": "Pike",
   "target": "Frente do ombro (a lateral do ombro e o tríceps ajudam)",
+  "feel": "Frente do ombro. A lateral do ombro e o tríceps ajudam.",
+  "feelNote": "A cabeça fica abaixo do quadril: respire sem prender o ar. Tontura, dor no ombro ou no punho? Pare. Se continuar, procure avaliação.",
   "setupEq": [
     "Nenhum equipamento: só o chão, num piso que não escorrega."
   ],
@@ -38,10 +40,23 @@
     "Em cima: braços estendidos.",
     "Se o quadril baixar para completar a repetição, a série acabou."
   ],
+  "breath": "Inspire descendo, solte o ar subindo. Não prenda o ar.",
   "cues": [
     "Quadril alto.",
     "Cabeça entre as mãos.",
     "Empurra o chão."
+  ],
+  "check": [
+    "Mãos um pouco mais abertas que os ombros",
+    "Quadril alto",
+    "Cotovelos para trás",
+    "Cabeça perto do chão",
+    "Parar no RIR do seu programa"
+  ],
+  "vary": "Quanto mais perto das mãos ficam os pés, mais em pé fica o tronco e mais o ombro trabalha. Fácil demais? Pés num degrau ou sofá firme (comece baixo).",
+  "extLabels": [
+    "em cima",
+    "embaixo"
   ],
   "errors": [
     {
@@ -59,9 +74,5 @@
       "title": "Descer pouco",
       "desc": "Parar com a cabeça longe do chão corta metade do movimento. Desça até a cabeça chegar perto do chão, entre as mãos."
     }
-  ],
-  "montagem": [
-    "Mãos num piso que não escorrega. Se os pés estiverem num degrau ou sofá, comece baixo. Com dor no punho, apoie as mãos fechadas numa toalha dobrada."
-  ],
-  "carga": "Peso do corpo: registre o degrau da escada. Pés no chão → descida de 3 s → pausa de 2 s embaixo → pés num degrau ou sofá firme. Sobe de degrau quando todas as séries chegarem ao topo da faixa."
+  ]
 }

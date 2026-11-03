@@ -1,9 +1,9 @@
 // @ts-nocheck
-// Animação nova (em revisão). Flexão com o quadril alto (pike push-up). Técnica e fontes: docs/pesquisa/animacoes/pike.md.
+// Animação nova (aprovada). Flexão com o quadril alto (pike push-up). Técnica e fontes: docs/pesquisa/animacoes/pike.md.
 // Parte da flexão aprovada (src/engine/exercicios/flexao.ts): mãos e pés no chão, mas com o quadril bem alto (corpo
 // em V invertido). Os cotovelos dobram e a cabeça desce entre as mãos, até a linha delas; o quadril continua alto e
 // gira sobre os pés com as pernas estendidas.
-import { L3, TX } from '../../desenho';
+import { L3, TX } from '../desenho';
 
 const ex = {
   id:'pike',
