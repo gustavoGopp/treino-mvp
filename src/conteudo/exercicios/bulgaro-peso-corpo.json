@@ -3,8 +3,11 @@
   "name": "Búlgaro com o peso do corpo",
   "short": "Búlgaro livre",
   "target": "Quadríceps e glúteo da perna da frente",
+  "feel": "Frente da coxa e glúteo da perna da frente. A parte de dentro da coxa também ajuda.",
+  "feelNote": "Sentir alongar a frente do quadril da perna de trás é normal. Dor no joelho da frente não é: desça menos e procure avaliação se continuar.",
   "setupEq": [
-    "Uma cadeira firme, sem rodinhas e que não seja dobrável, ou um sofá, atrás de você."
+    "Uma cadeira firme, sem rodinhas e que não seja dobrável, ou um sofá, atrás de você.",
+    "A cadeira fica encostada na parede, com o encosto do lado de lá."
   ],
   "setupBody": [
     "Peito do pé de trás apoiado no assento, cadarço para baixo.",
@@ -38,10 +41,23 @@
     "Em cima: pare antes de travar o joelho.",
     "Se o calcanhar da frente sair do chão, o pé está perto demais da cadeira."
   ],
+  "breath": "Inspire em cima e firme o abdômen. Solte o ar subindo.",
   "cues": [
     "Desce reto.",
     "Peso no pé da frente.",
     "Calcanhar da frente no chão."
+  ],
+  "check": [
+    "Cadeira firme na parede",
+    "Peito do pé no assento",
+    "Calcanhar da frente no chão",
+    "Tronco levemente à frente",
+    "Comece pela perna mais fraca"
+  ],
+  "vary": "A distância da cadeira muda o foco: pé da frente mais perto, com o joelho avançando, trabalha mais a frente da coxa; mais longe, com o tronco mais inclinado, trabalha mais o glúteo. Os dois servem, desde que o calcanhar fique no chão. Se faltar equilíbrio, apoie uma mão na parede.",
+  "extLabels": [
+    "em cima",
+    "embaixo"
   ],
   "errors": [
     {
@@ -59,11 +75,5 @@
       "title": "Descer pouco",
       "desc": "Parar com a coxa longe da horizontal corta a parte mais produtiva do movimento."
     }
-  ],
-  "montagem": [
-    "Cadeira firme, sem rodinhas e que não seja dobrável, encostada na parede. Cadeira de plástico fino também não serve.",
-    "Antes da 1ª série, empurre e puxe a cadeira para ver se ela escorrega ou balança.",
-    "Se o joelho da frente doer, desça menos."
-  ],
-  "carga": "Peso do corpo: quando ficar fácil, a escada de dificuldade. Primeiro descida de 3 s, depois pausa de 2 s embaixo, depois o pé da frente num apoio baixo (mais amplitude). Com halteres, o búlgaro com halter."
+  ]
 }

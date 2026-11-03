@@ -1,10 +1,10 @@
 // @ts-nocheck
-// Animação nova (em revisão). Búlgaro com o peso do corpo: peito do pé de trás no assento de uma cadeira firme,
+// Animação nova (aprovada). Búlgaro com o peso do corpo: peito do pé de trás no assento de uma cadeira firme,
 // encostada na parede, mãos na cintura. Parte do búlgaro aprovado, sem o halter, sem o banco e sem a torre.
 // Técnica e fontes: docs/pesquisa/animacoes/bulgaro-peso-corpo.md.
-import { CTX } from '../../contexto';
-import { BOX, L3, TX } from '../../desenho';
-import { X, Y, Z, add } from '../../math';
+import { CTX } from '../contexto';
+import { BOX, L3, TX } from '../desenho';
+import { X, Y, Z, add } from '../math';
 
 const ex = {
   id:'bulgaro-peso-corpo',
