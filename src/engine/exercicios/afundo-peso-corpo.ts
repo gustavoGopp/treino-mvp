@@ -1,9 +1,9 @@
 // @ts-nocheck
-// Animação nova (em revisão). Afundo estático com o peso do corpo: pés fixos num passo largo, mãos na cintura.
+// Animação nova (aprovada). Afundo estático com o peso do corpo: pés fixos num passo largo, mãos na cintura.
 // Parte do afundo com halteres aprovado, sem os halteres.
 // Técnica e fontes: docs/pesquisa/animacoes/afundo-peso-corpo.md.
-import { L3, TX } from '../../desenho';
-import { add } from '../../math';
+import { L3, TX } from '../desenho';
+import { add } from '../math';
 
 const ex = {
   id:'afundo-peso-corpo',

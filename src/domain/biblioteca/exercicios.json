@@ -1848,7 +1848,7 @@
    "peso-corpo"
   ],
   "carga": "peso-corpo",
-  "animacaoId": null
+  "animacaoId": "afundo-peso-corpo"
  },
  {
   "id": "bulgaro-peso-corpo",
