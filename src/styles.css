@@ -586,6 +586,12 @@ a.cartao-ex-corpo:focus-visible{outline:3px solid var(--accent);outline-offset:-
 .condicoes{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px}
 .condicoes li{display:grid;grid-template-columns:24px 1fr;gap:12px;align-items:start;font-size:17px;line-height:1.35}
 .condicoes b{font-weight:800}
+.miniatura.heroi{width:100%;aspect-ratio:auto;height:clamp(150px,30vh,240px);border-radius:var(--r3)}
+.boas-vindas .lede{font-size:18px}
+.garantias{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:12px}
+.garantias li{display:grid;grid-template-columns:24px 1fr;gap:12px;align-items:start;font-size:16px;line-height:1.4}
+.ic.aviso{color:var(--warn)}
+.ic.privado{color:var(--ok)}
 .saiba summary{cursor:pointer;min-height:48px;display:flex;align-items:center;font-weight:700;font-size:16px;color:var(--link)}
 .saiba p{margin:0 0 10px;font-size:16px}
 .ou{display:flex;align-items:center;gap:12px;margin:0;color:var(--muted);font-size:15px}

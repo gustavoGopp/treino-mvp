@@ -199,7 +199,7 @@ test('exportar, apagar e importar devolve o mesmo estado', async ({ page }) => {
 
   await page.getByRole('button', { name: 'Apagar todos os dados' }).click();
   await page.getByRole('button', { name: 'Sim, apagar tudo' }).click();
-  await expect(page.getByRole('heading', { name: 'Seu treino, com o equipamento que você tem' })).toBeVisible();
+  await expect(page.getByRole('heading', { name: 'Musculação com o que você tem' })).toBeVisible();
 
   await page.goto('/dados');
   await page.getByLabel('Arquivo exportado pelo treino-mvp').setInputFiles(arquivo);
