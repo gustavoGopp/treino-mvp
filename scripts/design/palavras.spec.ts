@@ -53,18 +53,21 @@ function contador(page: Page, caminho: string) {
       const m = await page.evaluate(() => {
         const raiz = document.querySelector('main') ?? document.body;
         const conta = (s: string) => s.split(/\s+/).filter((p) => /[\p{L}\p{N}]/u.test(p)).length;
-        const palavras = conta((raiz as HTMLElement).innerText);
-        // palavras dos nós de texto cujo topo está dentro da 1ª tela
+        // Só o que a pessoa vê: fora o texto só para leitor de tela (.sr, desde o selo da design v3) e o conteúdo
+        // recolhido (details fechado). Palavras à vista = nós de texto cujo topo está dentro da 1ª tela.
+        let palavras = 0;
         let semRolar = 0;
         const andar = document.createTreeWalker(raiz, NodeFilter.SHOW_TEXT);
         for (let n = andar.nextNode(); n; n = andar.nextNode()) {
           const el = n.parentElement;
-          if (!el || !n.textContent?.trim()) continue;
+          if (!el || !n.textContent?.trim() || el.closest('.sr')) continue;
           if (!el.checkVisibility({ visibilityProperty: true })) continue;
           const r = document.createRange();
           r.selectNodeContents(n);
           const caixa = r.getBoundingClientRect();
-          if (caixa.height > 0 && caixa.top < innerHeight) semRolar += conta(n.textContent);
+          if (caixa.height === 0) continue;
+          palavras += conta(n.textContent);
+          if (caixa.top < innerHeight) semRolar += conta(n.textContent);
         }
         // controles que a pessoa vê (o rádio escondido conta pelo rótulo: um toque por opção)
         const tocaveis = [...raiz.querySelectorAll('button, a[href], input, select, textarea, [role=button]')].filter((e) => {
