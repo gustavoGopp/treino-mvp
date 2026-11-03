@@ -1,8 +1,8 @@
 // @ts-nocheck
-// Animação nova (em revisão). Agachamento com o peso do corpo: pés no chão (sem anilha sob o calcanhar), braços
+// Animação nova (aprovada). Agachamento com o peso do corpo: pés no chão (sem anilha sob o calcanhar), braços
 // estendidos à frente na altura dos ombros como contrapeso. Parte do goblet aprovado, sem o halter.
 // Técnica e fontes: docs/pesquisa/animacoes/agachamento-peso-corpo.md.
-import { L3, TX } from '../../desenho';
+import { L3, TX } from '../desenho';
 
 const ex = {
   id:'agachamento-peso-corpo',
@@ -11,7 +11,7 @@ const ex = {
   keys:{
     top:{P:[0,92.3,-1],lumbar:4,thor:4,neck:2},
     mid:{P:[0,65,-10],lumbar:20,thor:17,neck:8},
-    bottom:{P:[0,41,-18],lumbar:34,thor:28,neck:14}
+    bottom:{P:[0,32,-15],lumbar:34,thor:28,neck:14}
   },
   seq:[
     {path:['top'],dur:.5,kind:'hold',label:'Em pé',tempo:'respire e firme o abdômen',breath:'INSPIRA'},

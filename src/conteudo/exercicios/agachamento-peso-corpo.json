@@ -3,6 +3,8 @@
   "name": "Agachamento com o peso do corpo",
   "short": "Agachamento livre",
   "target": "Quadríceps (frente da coxa)",
+  "feel": "Frente das coxas. Glúteos e parte de dentro da coxa trabalham junto.",
+  "feelNote": "Queimação na coxa no fim da série é esperada. Dor na frente do joelho ou na lombar não é: diminua a profundidade e procure avaliação se continuar.",
   "setupEq": [
     "Nenhum equipamento: só espaço livre em volta, num piso que não escorrega."
   ],
@@ -25,7 +27,7 @@
     [
       "hold",
       "Embaixo",
-      "Quadril na altura do joelho, sem perder a postura. Sem quicar."
+      "Quadril abaixo da altura do joelho, sem perder a postura. Sem quicar."
     ],
     [
       "conc",
@@ -34,14 +36,26 @@
     ]
   ],
   "range": [
-    "Embaixo: o mais fundo que conseguir com o calcanhar no chão, o peito alto e a lombar reta. Para a maioria, quadril na altura do joelho.",
+    "Embaixo: o mais fundo que conseguir com o calcanhar no chão, o peito alto e a lombar reta. O ideal é o quadril passar da altura do joelho; se o calcanhar sair do chão antes, pare um pouco acima.",
     "Em cima: joelhos quase estendidos, sem travar.",
     "Pare de descer antes do ponto em que a lombar começa a arredondar."
   ],
+  "breath": "Inspire em pé e firme o abdômen antes de descer. Solte o ar subindo. Em séries longas, respire a cada repetição, sempre em cima.",
   "cues": [
     "Joelhos para a frente e para fora.",
     "Calcanhar no chão.",
     "Desce entre os calcanhares."
+  ],
+  "check": [
+    "Pés um pouco mais abertos que o quadril",
+    "Braços à frente",
+    "Calcanhar no chão",
+    "Descida lenta"
+  ],
+  "vary": "A largura dos pés, o quanto as pontas abrem e a profundidade dependem do seu quadril e do tornozelo. O joelho passar da ponta do pé é normal; o que importa é ele seguir a direção do pé e o calcanhar ficar no chão.",
+  "extLabels": [
+    "em pé",
+    "embaixo"
   ],
   "errors": [
     {
@@ -59,6 +73,5 @@
       "title": "Descer pouco",
       "desc": "Parar alto corta a parte do movimento que mais trabalha a coxa."
     }
-  ],
-  "carga": "Peso do corpo: quando ficar fácil, a escada de dificuldade. Primeiro descida de 3 s, depois pausa de 2 s embaixo, depois 1,5 repetição (desce, sobe até a metade, desce de novo e sobe). Depois disso, o afundo e o búlgaro."
+  ]
 }

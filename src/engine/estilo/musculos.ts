@@ -364,6 +364,24 @@ export const LISTA = {
     ['adutores', 'R', 's'],
     ['quadriceps', 'R', 'p'],
   ],
+  // Equipamento mínimo (03/11/2026): as versões com o peso do corpo desenham os mesmos músculos das versões com
+  // halteres, inclusive os adutores, que a biblioteca conta como secundários (achado 6 da revisão de anatomia).
+  'agachamento-peso-corpo': [
+    ['adutores', 'RL', 's'],
+    ['gluteos', 'RL', 's'],
+    ['quadriceps', 'RL', 'p'],
+  ],
+  'afundo-peso-corpo': [
+    ['gluteos', 'R', 's'],
+    ['adutores', 'R', 's'],
+    ['quadriceps', 'L', 's'],
+    ['quadriceps', 'R', 'p'],
+  ],
+  'bulgaro-peso-corpo': [
+    ['gluteos', 'R', 's'],
+    ['adutores', 'R', 's'],
+    ['quadriceps', 'R', 'p'],
+  ],
   // Achado 2: o glúteo da perna de apoio passa a secundário, como no stiff com os dois pés.
   'stiff-unilateral': [
     ['eretores', 'C', 's'],

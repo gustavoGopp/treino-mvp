@@ -11,7 +11,7 @@ Exercício da biblioteca (sessão de equipamento mínimo, 03/11/2026): agachar, 
 | Posição | Em pé, pés um pouco mais abertos que o quadril, pontas levemente para fora, calcanhares no chão (sem anilha embaixo) | consenso | mesma base do `goblet` aprovado; `nsca2021` (não verificado) |
 | Braços | Estendidos à frente, mais ou menos na altura dos ombros e com as mãos se aproximando, como contrapeso; ficam assim a repetição toda | consenso [opinião: escolhido no lugar das mãos no peito porque ajuda a manter o calcanhar no chão sem a anilha] | `nsca2021` (não verificado) |
 | Descida | ~2–3 s; joelhos para a frente e para fora, na direção dos pés; o quadril desce entre os calcanhares e o tronco inclina um pouco mais que no goblet | consenso | mesma cadência do `goblet` aprovado |
-| Profundidade | Embaixo, quadril na altura do joelho, sem quicar, com calcanhar apoiado e lombar neutra | um estudo (agachar fundo cresceu mais glúteo e adutores que o meio agachamento) | `kubo2019` |
+| Profundidade | Embaixo, quadril abaixo da altura do joelho (agachamento completo), sem quicar, com calcanhar apoiado e lombar neutra. Revisto em 04/11/2026 a pedido do Gustavo ("o movimento mais correto pelas melhores fontes"): antes, a folha parava com a coxa paralela ao chão | moderada (amplitude completa ≥ parcial na hipertrofia: `selecao.amplitude`); um estudo (agachar fundo cresceu mais glúteo e adutores que o meio agachamento) | `pallares2021`, `kassiano2023a`, `kubo2019` |
 | Subida | ~1–1,5 s, empurrando o chão com o pé inteiro, quadril e peito sobem juntos | consenso | mesma cadência do `goblet` aprovado |
 | Joelho e pé | O joelho pode passar da ponta do pé; o que importa é seguir a direção do pé | consenso | mesmo guia do `goblet` aprovado |
 

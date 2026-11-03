@@ -33,6 +33,7 @@ import abdominalChao from './abdominal-chao';
 import roscaAlternada from './rosca-alternada';
 import tricepsFrancesHalter from './triceps-frances-halter';
 import stiffUnilateral from './stiff-unilateral';
+import agachamentoPesoCorpo from './agachamento-peso-corpo';
 
 // Mesma ordem do guia original (a ordem define os treinos e a ordem de preparação).
 export const EX = [
@@ -67,4 +68,5 @@ export const EX = [
   roscaAlternada,
   tricepsFrancesHalter,
   stiffUnilateral,
+  agachamentoPesoCorpo,
 ];
