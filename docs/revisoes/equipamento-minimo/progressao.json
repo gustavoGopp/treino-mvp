@@ -1,0 +1,1168 @@
+[
+ {
+  "id": "flexao",
+  "exercicio": "flexao",
+  "nome": "Flexão de braço",
+  "onde": "nada",
+  "inicio": {
+   "comeco": "inicio",
+   "faixa": "8–20",
+   "rir": "1–2",
+   "final": "peso do corpo",
+   "repsNaPrimeiraSerie": "8 → 22",
+   "estagnado": 17,
+   "ultimaRegra": "progressao.estagnacao",
+   "primeiraSubidaNaSemana": null,
+   "subidas": 0,
+   "maiorTravaEmSessoes": 4,
+   "noUltimoDegrau": false,
+   "acoes": {
+    "estagnado": 17,
+    "manter": 15
+   },
+   "degrauQueNaoExiste": [],
+   "veredito": "não sobe em 16 semanas"
+  },
+  "meio": {
+   "comeco": "meio",
+   "faixa": "8–20",
+   "rir": "1–2",
+   "final": "peso do corpo",
+   "repsNaPrimeiraSerie": "14 → 22",
+   "estagnado": 16,
+   "ultimaRegra": "progressao.estagnacao",
+   "primeiraSubidaNaSemana": null,
+   "subidas": 0,
+   "maiorTravaEmSessoes": 4,
+   "noUltimoDegrau": false,
+   "acoes": {
+    "estagnado": 16,
+    "manter": 16
+   },
+   "degrauQueNaoExiste": [],
+   "veredito": "não sobe em 16 semanas"
+  }
+ },
+ {
+  "id": "agachamento-peso-corpo",
+  "exercicio": "agachamento-peso-corpo",
+  "nome": "Agachamento com o peso do corpo",
+  "onde": "nada",
+  "inicio": {
+   "comeco": "inicio",
+   "faixa": "15–30",
+   "rir": "1–2",
+   "final": "peso do corpo",
+   "repsNaPrimeiraSerie": "16 → 32",
+   "estagnado": 16,
+   "ultimaRegra": "progressao.estagnacao",
+   "primeiraSubidaNaSemana": null,
+   "subidas": 0,
+   "maiorTravaEmSessoes": 4,
+   "noUltimoDegrau": false,
+   "acoes": {
+    "estagnado": 16,
+    "manter": 16
+   },
+   "degrauQueNaoExiste": [],
+   "veredito": "não sobe em 16 semanas"
+  },
+  "meio": {
+   "comeco": "meio",
+   "faixa": "15–30",
+   "rir": "1–2",
+   "final": "peso do corpo · descida de 3 s ou pausa embaixo",
+   "repsNaPrimeiraSerie": "23 → 32",
+   "estagnado": 13,
+   "ultimaRegra": "progressao.carga-leve",
+   "primeiraSubidaNaSemana": 16,
+   "subidas": 1,
+   "maiorTravaEmSessoes": 3,
+   "noUltimoDegrau": false,
+   "acoes": {
+    "estagnado": 13,
+    "manter": 18,
+    "subir": 1
+   },
+   "degrauQueNaoExiste": [],
+   "veredito": "anda"
+  }
+ },
+ {
+  "id": "afundo-peso-corpo",
+  "exercicio": "afundo-peso-corpo",
+  "nome": "Afundo estático com o peso do corpo",
+  "onde": "nada",
+  "inicio": {
+   "comeco": "inicio",
+   "faixa": "12–25",
+   "rir": "1–2",
+   "final": "peso do corpo",
+   "repsNaPrimeiraSerie": "13 → 27",
+   "estagnado": 16,
+   "ultimaRegra": "progressao.manter",
+   "primeiraSubidaNaSemana": null,
+   "subidas": 0,
+   "maiorTravaEmSessoes": 4,
+   "noUltimoDegrau": false,
+   "acoes": {
+    "estagnado": 16,
+    "manter": 16
+   },
+   "degrauQueNaoExiste": [],
+   "veredito": "não sobe em 16 semanas"
+  },
+  "meio": {
+   "comeco": "meio",
+   "faixa": "12–25",
+   "rir": "1–2",
+   "final": "peso do corpo · descida de 3 s ou pausa embaixo",
+   "repsNaPrimeiraSerie": "18 → 27",
+   "estagnado": 13,
+   "ultimaRegra": "progressao.manter",
+   "primeiraSubidaNaSemana": 16,
+   "subidas": 1,
+   "maiorTravaEmSessoes": 3,
+   "noUltimoDegrau": false,
+   "acoes": {
+    "estagnado": 13,
+    "manter": 18,
+    "subir": 1
+   },
+   "degrauQueNaoExiste": [],
+   "veredito": "anda"
+  }
+ },
+ {
+  "id": "bulgaro-peso-corpo",
+  "exercicio": "bulgaro-peso-corpo",
+  "nome": "Búlgaro com o peso do corpo",
+  "onde": "nada",
+  "inicio": {
+   "comeco": "inicio",
+   "faixa": "10–20",
+   "rir": "1–2",
+   "final": "peso do corpo",
+   "repsNaPrimeiraSerie": "10 → 22",
+   "estagnado": 16,
+   "ultimaRegra": "progressao.manter",
+   "primeiraSubidaNaSemana": null,
+   "subidas": 0,
+   "maiorTravaEmSessoes": 4,
+   "noUltimoDegrau": false,
+   "acoes": {
+    "estagnado": 16,
+    "manter": 16
+   },
+   "degrauQueNaoExiste": [],
+   "veredito": "não sobe em 16 semanas"
+  },
+  "meio": {
+   "comeco": "meio",
+   "faixa": "10–20",
+   "rir": "1–2",
+   "final": "peso do corpo · descida de 3 s ou pausa embaixo",
+   "repsNaPrimeiraSerie": "14 → 22",
+   "estagnado": 14,
+   "ultimaRegra": "progressao.manter",
+   "primeiraSubidaNaSemana": 15,
+   "subidas": 1,
+   "maiorTravaEmSessoes": 3,
+   "noUltimoDegrau": false,
+   "acoes": {
+    "estagnado": 14,
+    "manter": 17,
+    "subir": 1
+   },
+   "degrauQueNaoExiste": [],
+   "veredito": "anda"
+  }
+ },
+ {
+  "id": "ponte-gluteo",
+  "exercicio": "ponte-gluteo",
+  "nome": "Ponte de glúteo",
+  "onde": "nada",
+  "inicio": {
+   "comeco": "inicio",
+   "faixa": "12–25",
+   "rir": "1–2",
+   "final": "peso do corpo",
+   "repsNaPrimeiraSerie": "13 → 27",
+   "estagnado": 16,
+   "ultimaRegra": "progressao.manter",
+   "primeiraSubidaNaSemana": null,
+   "subidas": 0,
+   "maiorTravaEmSessoes": 4,
+   "noUltimoDegrau": false,
+   "acoes": {
+    "estagnado": 16,
+    "manter": 16
+   },
+   "degrauQueNaoExiste": [],
+   "veredito": "não sobe em 16 semanas"
+  },
+  "meio": {
+   "comeco": "meio",
+   "faixa": "12–25",
+   "rir": "1–2",
+   "final": "peso do corpo · descida de 3 s ou pausa embaixo",
+   "repsNaPrimeiraSerie": "18 → 27",
+   "estagnado": 13,
+   "ultimaRegra": "progressao.manter",
+   "primeiraSubidaNaSemana": 16,
+   "subidas": 1,
+   "maiorTravaEmSessoes": 3,
+   "noUltimoDegrau": false,
+   "acoes": {
+    "estagnado": 13,
+    "manter": 18,
+    "subir": 1
+   },
+   "degrauQueNaoExiste": [],
+   "veredito": "anda"
+  }
+ },
+ {
+  "id": "panturrilha-chao",
+  "exercicio": "panturrilha-chao",
+  "nome": "Panturrilha em pé no chão",
+  "onde": "nada",
+  "inicio": {
+   "comeco": "inicio",
+   "faixa": "12–20",
+   "rir": "0–1",
+   "final": "peso do corpo",
+   "repsNaPrimeiraSerie": "13 → 22",
+   "estagnado": 17,
+   "ultimaRegra": "progressao.manter",
+   "primeiraSubidaNaSemana": null,
+   "subidas": 0,
+   "maiorTravaEmSessoes": 4,
+   "noUltimoDegrau": false,
+   "acoes": {
+    "estagnado": 17,
+    "manter": 15
+   },
+   "degrauQueNaoExiste": [],
+   "veredito": "não sobe em 16 semanas"
+  },
+  "meio": {
+   "comeco": "meio",
+   "faixa": "12–20",
+   "rir": "0–1",
+   "final": "peso do corpo · descida de 3 s ou pausa embaixo",
+   "repsNaPrimeiraSerie": "15 → 22",
+   "estagnado": 14,
+   "ultimaRegra": "progressao.estagnacao",
+   "primeiraSubidaNaSemana": 13,
+   "subidas": 1,
+   "maiorTravaEmSessoes": 3,
+   "noUltimoDegrau": false,
+   "acoes": {
+    "estagnado": 14,
+    "manter": 17,
+    "subir": 1
+   },
+   "degrauQueNaoExiste": [],
+   "veredito": "anda"
+  }
+ },
+ {
+  "id": "abdominal-chao",
+  "exercicio": "abdominal-chao",
+  "nome": "Abdominal no chão (crunch)",
+  "onde": "nada",
+  "inicio": {
+   "comeco": "inicio",
+   "faixa": "12–25",
+   "rir": "0–1",
+   "final": "peso do corpo",
+   "repsNaPrimeiraSerie": "13 → 27",
+   "estagnado": 17,
+   "ultimaRegra": "progressao.manter",
+   "primeiraSubidaNaSemana": null,
+   "subidas": 0,
+   "maiorTravaEmSessoes": 4,
+   "noUltimoDegrau": false,
+   "acoes": {
+    "estagnado": 17,
+    "manter": 15
+   },
+   "degrauQueNaoExiste": [],
+   "veredito": "não sobe em 16 semanas"
+  },
+  "meio": {
+   "comeco": "meio",
+   "faixa": "12–25",
+   "rir": "0–1",
+   "final": "peso do corpo · descida de 3 s ou pausa embaixo",
+   "repsNaPrimeiraSerie": "19 → 27",
+   "estagnado": 15,
+   "ultimaRegra": "progressao.carga-leve",
+   "primeiraSubidaNaSemana": 16,
+   "subidas": 1,
+   "maiorTravaEmSessoes": 4,
+   "noUltimoDegrau": false,
+   "acoes": {
+    "estagnado": 15,
+    "manter": 16,
+    "subir": 1
+   },
+   "degrauQueNaoExiste": [],
+   "veredito": "anda"
+  }
+ },
+ {
+  "id": "barra-fixa",
+  "exercicio": "barra-fixa",
+  "nome": "Barra fixa",
+  "onde": "barra fixa",
+  "inicio": {
+   "comeco": "inicio",
+   "faixa": "6–12",
+   "rir": "1–2",
+   "final": "peso do corpo",
+   "repsNaPrimeiraSerie": "6 → 14",
+   "estagnado": 17,
+   "ultimaRegra": "progressao.manter",
+   "primeiraSubidaNaSemana": null,
+   "subidas": 0,
+   "maiorTravaEmSessoes": 4,
+   "noUltimoDegrau": false,
+   "acoes": {
+    "estagnado": 17,
+    "manter": 15
+   },
+   "degrauQueNaoExiste": [],
+   "veredito": "não sobe em 16 semanas"
+  },
+  "meio": {
+   "comeco": "meio",
+   "faixa": "6–12",
+   "rir": "1–2",
+   "final": "peso do corpo · descida de 3 s ou pausa embaixo",
+   "repsNaPrimeiraSerie": "8 → 14",
+   "estagnado": 16,
+   "ultimaRegra": "progressao.estagnacao",
+   "primeiraSubidaNaSemana": 13,
+   "subidas": 1,
+   "maiorTravaEmSessoes": 4,
+   "noUltimoDegrau": false,
+   "acoes": {
+    "estagnado": 16,
+    "manter": 15,
+    "subir": 1
+   },
+   "degrauQueNaoExiste": [],
+   "veredito": "anda"
+  }
+ },
+ {
+  "id": "barra-fixa-supinada",
+  "exercicio": "barra-fixa-supinada",
+  "nome": "Barra fixa com pegada supinada",
+  "onde": "barra fixa",
+  "inicio": {
+   "comeco": "inicio",
+   "faixa": "6–12",
+   "rir": "1–2",
+   "final": "peso do corpo",
+   "repsNaPrimeiraSerie": "6 → 14",
+   "estagnado": 17,
+   "ultimaRegra": "progressao.manter",
+   "primeiraSubidaNaSemana": null,
+   "subidas": 0,
+   "maiorTravaEmSessoes": 4,
+   "noUltimoDegrau": false,
+   "acoes": {
+    "estagnado": 17,
+    "manter": 15
+   },
+   "degrauQueNaoExiste": [],
+   "veredito": "não sobe em 16 semanas"
+  },
+  "meio": {
+   "comeco": "meio",
+   "faixa": "6–12",
+   "rir": "1–2",
+   "final": "peso do corpo · descida de 3 s ou pausa embaixo",
+   "repsNaPrimeiraSerie": "8 → 14",
+   "estagnado": 16,
+   "ultimaRegra": "progressao.estagnacao",
+   "primeiraSubidaNaSemana": 13,
+   "subidas": 1,
+   "maiorTravaEmSessoes": 4,
+   "noUltimoDegrau": false,
+   "acoes": {
+    "estagnado": 16,
+    "manter": 15,
+    "subir": 1
+   },
+   "degrauQueNaoExiste": [],
+   "veredito": "anda"
+  }
+ },
+ {
+  "id": "elevacao-joelhos",
+  "exercicio": "elevacao-joelhos",
+  "nome": "Elevação de joelhos na barra fixa",
+  "onde": "barra fixa",
+  "inicio": {
+   "comeco": "inicio",
+   "faixa": "10–15",
+   "rir": "0–1",
+   "final": "peso do corpo · descida de 3 s ou pausa embaixo",
+   "repsNaPrimeiraSerie": "11 → 17",
+   "estagnado": 17,
+   "ultimaRegra": "progressao.estagnacao",
+   "primeiraSubidaNaSemana": 15,
+   "subidas": 1,
+   "maiorTravaEmSessoes": 4,
+   "noUltimoDegrau": false,
+   "acoes": {
+    "estagnado": 17,
+    "manter": 14,
+    "subir": 1
+   },
+   "degrauQueNaoExiste": [],
+   "veredito": "anda"
+  },
+  "meio": {
+   "comeco": "meio",
+   "faixa": "10–15",
+   "rir": "0–1",
+   "final": "peso do corpo · descida de 3 s ou pausa embaixo",
+   "repsNaPrimeiraSerie": "13 → 17",
+   "estagnado": 17,
+   "ultimaRegra": "progressao.estagnacao",
+   "primeiraSubidaNaSemana": 10,
+   "subidas": 1,
+   "maiorTravaEmSessoes": 4,
+   "noUltimoDegrau": false,
+   "acoes": {
+    "estagnado": 17,
+    "manter": 14,
+    "subir": 1
+   },
+   "degrauQueNaoExiste": [],
+   "veredito": "anda"
+  }
+ },
+ {
+  "id": "remada-elastico-1",
+  "exercicio": "remada-elastico",
+  "nome": "Remada sentada com elástico",
+  "onde": "elástico de 1 intensidade",
+  "inicio": {
+   "comeco": "inicio",
+   "faixa": "10–20",
+   "rir": "1–2",
+   "final": "elástico",
+   "repsNaPrimeiraSerie": "10 → 22",
+   "estagnado": 16,
+   "ultimaRegra": "progressao.manter",
+   "primeiraSubidaNaSemana": null,
+   "subidas": 0,
+   "maiorTravaEmSessoes": 4,
+   "noUltimoDegrau": false,
+   "acoes": {
+    "estagnado": 16,
+    "manter": 16
+   },
+   "degrauQueNaoExiste": [],
+   "veredito": "não sobe em 16 semanas"
+  },
+  "meio": {
+   "comeco": "meio",
+   "faixa": "10–20",
+   "rir": "1–2",
+   "final": "elástico · descida de 3 s ou pausa embaixo",
+   "repsNaPrimeiraSerie": "14 → 22",
+   "estagnado": 14,
+   "ultimaRegra": "progressao.manter",
+   "primeiraSubidaNaSemana": 15,
+   "subidas": 1,
+   "maiorTravaEmSessoes": 3,
+   "noUltimoDegrau": false,
+   "acoes": {
+    "estagnado": 14,
+    "manter": 17,
+    "subir": 1
+   },
+   "degrauQueNaoExiste": [],
+   "veredito": "anda"
+  }
+ },
+ {
+  "id": "puxada-elastico-1",
+  "exercicio": "puxada-elastico",
+  "nome": "Puxada com elástico ancorado no alto",
+  "onde": "elástico de 1 intensidade",
+  "inicio": {
+   "comeco": "inicio",
+   "faixa": "10–20",
+   "rir": "1–2",
+   "final": "elástico",
+   "repsNaPrimeiraSerie": "10 → 22",
+   "estagnado": 16,
+   "ultimaRegra": "progressao.manter",
+   "primeiraSubidaNaSemana": null,
+   "subidas": 0,
+   "maiorTravaEmSessoes": 4,
+   "noUltimoDegrau": false,
+   "acoes": {
+    "estagnado": 16,
+    "manter": 16
+   },
+   "degrauQueNaoExiste": [],
+   "veredito": "não sobe em 16 semanas"
+  },
+  "meio": {
+   "comeco": "meio",
+   "faixa": "10–20",
+   "rir": "1–2",
+   "final": "elástico · descida de 3 s ou pausa embaixo",
+   "repsNaPrimeiraSerie": "14 → 22",
+   "estagnado": 14,
+   "ultimaRegra": "progressao.manter",
+   "primeiraSubidaNaSemana": 15,
+   "subidas": 1,
+   "maiorTravaEmSessoes": 3,
+   "noUltimoDegrau": false,
+   "acoes": {
+    "estagnado": 14,
+    "manter": 17,
+    "subir": 1
+   },
+   "degrauQueNaoExiste": [],
+   "veredito": "anda"
+  }
+ },
+ {
+  "id": "flexao-elastico-1",
+  "exercicio": "flexao-elastico",
+  "nome": "Flexão de braço com elástico",
+  "onde": "elástico de 1 intensidade",
+  "inicio": {
+   "comeco": "inicio",
+   "faixa": "8–20",
+   "rir": "1–2",
+   "final": "elástico",
+   "repsNaPrimeiraSerie": "8 → 22",
+   "estagnado": 17,
+   "ultimaRegra": "progressao.estagnacao",
+   "primeiraSubidaNaSemana": null,
+   "subidas": 0,
+   "maiorTravaEmSessoes": 4,
+   "noUltimoDegrau": false,
+   "acoes": {
+    "estagnado": 17,
+    "manter": 15
+   },
+   "degrauQueNaoExiste": [],
+   "veredito": "não sobe em 16 semanas"
+  },
+  "meio": {
+   "comeco": "meio",
+   "faixa": "8–20",
+   "rir": "1–2",
+   "final": "elástico",
+   "repsNaPrimeiraSerie": "14 → 22",
+   "estagnado": 16,
+   "ultimaRegra": "progressao.estagnacao",
+   "primeiraSubidaNaSemana": null,
+   "subidas": 0,
+   "maiorTravaEmSessoes": 4,
+   "noUltimoDegrau": false,
+   "acoes": {
+    "estagnado": 16,
+    "manter": 16
+   },
+   "degrauQueNaoExiste": [],
+   "veredito": "não sobe em 16 semanas"
+  }
+ },
+ {
+  "id": "agachamento-elastico-1",
+  "exercicio": "agachamento-elastico",
+  "nome": "Agachamento com elástico",
+  "onde": "elástico de 1 intensidade",
+  "inicio": {
+   "comeco": "inicio",
+   "faixa": "12–25",
+   "rir": "1–2",
+   "final": "elástico",
+   "repsNaPrimeiraSerie": "13 → 27",
+   "estagnado": 16,
+   "ultimaRegra": "progressao.manter",
+   "primeiraSubidaNaSemana": null,
+   "subidas": 0,
+   "maiorTravaEmSessoes": 4,
+   "noUltimoDegrau": false,
+   "acoes": {
+    "estagnado": 16,
+    "manter": 16
+   },
+   "degrauQueNaoExiste": [],
+   "veredito": "não sobe em 16 semanas"
+  },
+  "meio": {
+   "comeco": "meio",
+   "faixa": "12–25",
+   "rir": "1–2",
+   "final": "elástico · descida de 3 s ou pausa embaixo",
+   "repsNaPrimeiraSerie": "18 → 27",
+   "estagnado": 13,
+   "ultimaRegra": "progressao.manter",
+   "primeiraSubidaNaSemana": 16,
+   "subidas": 1,
+   "maiorTravaEmSessoes": 3,
+   "noUltimoDegrau": false,
+   "acoes": {
+    "estagnado": 13,
+    "manter": 18,
+    "subir": 1
+   },
+   "degrauQueNaoExiste": [],
+   "veredito": "anda"
+  }
+ },
+ {
+  "id": "rosca-elastico-1",
+  "exercicio": "rosca-elastico",
+  "nome": "Rosca com elástico",
+  "onde": "elástico de 1 intensidade",
+  "inicio": {
+   "comeco": "inicio",
+   "faixa": "12–20",
+   "rir": "0–1",
+   "final": "elástico",
+   "repsNaPrimeiraSerie": "13 → 22",
+   "estagnado": 17,
+   "ultimaRegra": "progressao.manter",
+   "primeiraSubidaNaSemana": null,
+   "subidas": 0,
+   "maiorTravaEmSessoes": 4,
+   "noUltimoDegrau": false,
+   "acoes": {
+    "estagnado": 17,
+    "manter": 15
+   },
+   "degrauQueNaoExiste": [],
+   "veredito": "não sobe em 16 semanas"
+  },
+  "meio": {
+   "comeco": "meio",
+   "faixa": "12–20",
+   "rir": "0–1",
+   "final": "elástico · descida de 3 s ou pausa embaixo",
+   "repsNaPrimeiraSerie": "15 → 22",
+   "estagnado": 14,
+   "ultimaRegra": "progressao.estagnacao",
+   "primeiraSubidaNaSemana": 13,
+   "subidas": 1,
+   "maiorTravaEmSessoes": 3,
+   "noUltimoDegrau": false,
+   "acoes": {
+    "estagnado": 14,
+    "manter": 17,
+    "subir": 1
+   },
+   "degrauQueNaoExiste": [],
+   "veredito": "anda"
+  }
+ },
+ {
+  "id": "elevacao-lateral-elastico-1",
+  "exercicio": "elevacao-lateral-elastico",
+  "nome": "Elevação lateral com elástico",
+  "onde": "elástico de 1 intensidade",
+  "inicio": {
+   "comeco": "inicio",
+   "faixa": "12–20",
+   "rir": "0–1",
+   "final": "elástico",
+   "repsNaPrimeiraSerie": "13 → 22",
+   "estagnado": 17,
+   "ultimaRegra": "progressao.manter",
+   "primeiraSubidaNaSemana": null,
+   "subidas": 0,
+   "maiorTravaEmSessoes": 4,
+   "noUltimoDegrau": false,
+   "acoes": {
+    "estagnado": 17,
+    "manter": 15
+   },
+   "degrauQueNaoExiste": [],
+   "veredito": "não sobe em 16 semanas"
+  },
+  "meio": {
+   "comeco": "meio",
+   "faixa": "12–20",
+   "rir": "0–1",
+   "final": "elástico · descida de 3 s ou pausa embaixo",
+   "repsNaPrimeiraSerie": "15 → 22",
+   "estagnado": 14,
+   "ultimaRegra": "progressao.estagnacao",
+   "primeiraSubidaNaSemana": 13,
+   "subidas": 1,
+   "maiorTravaEmSessoes": 3,
+   "noUltimoDegrau": false,
+   "acoes": {
+    "estagnado": 14,
+    "manter": 17,
+    "subir": 1
+   },
+   "degrauQueNaoExiste": [],
+   "veredito": "anda"
+  }
+ },
+ {
+  "id": "stiff-elastico-1",
+  "exercicio": "stiff-elastico",
+  "nome": "Stiff com elástico",
+  "onde": "elástico de 1 intensidade",
+  "inicio": {
+   "comeco": "inicio",
+   "faixa": "12–20",
+   "rir": "1–2",
+   "final": "elástico",
+   "repsNaPrimeiraSerie": "13 → 22",
+   "estagnado": 16,
+   "ultimaRegra": "progressao.manter",
+   "primeiraSubidaNaSemana": null,
+   "subidas": 0,
+   "maiorTravaEmSessoes": 4,
+   "noUltimoDegrau": false,
+   "acoes": {
+    "estagnado": 16,
+    "manter": 16
+   },
+   "degrauQueNaoExiste": [],
+   "veredito": "não sobe em 16 semanas"
+  },
+  "meio": {
+   "comeco": "meio",
+   "faixa": "12–20",
+   "rir": "1–2",
+   "final": "elástico · descida de 3 s ou pausa embaixo",
+   "repsNaPrimeiraSerie": "16 → 22",
+   "estagnado": 15,
+   "ultimaRegra": "progressao.estagnacao",
+   "primeiraSubidaNaSemana": 13,
+   "subidas": 1,
+   "maiorTravaEmSessoes": 4,
+   "noUltimoDegrau": false,
+   "acoes": {
+    "estagnado": 15,
+    "manter": 16,
+    "subir": 1
+   },
+   "degrauQueNaoExiste": [],
+   "veredito": "anda"
+  }
+ },
+ {
+  "id": "remada-elastico-3",
+  "exercicio": "remada-elastico",
+  "nome": "Remada sentada com elástico",
+  "onde": "elásticos de 3 intensidades",
+  "inicio": {
+   "comeco": "inicio",
+   "faixa": "10–20",
+   "rir": "1–2",
+   "final": "elástico",
+   "repsNaPrimeiraSerie": "10 → 22",
+   "estagnado": 16,
+   "ultimaRegra": "progressao.manter",
+   "primeiraSubidaNaSemana": null,
+   "subidas": 0,
+   "maiorTravaEmSessoes": 4,
+   "noUltimoDegrau": false,
+   "acoes": {
+    "estagnado": 16,
+    "manter": 16
+   },
+   "degrauQueNaoExiste": [],
+   "veredito": "não sobe em 16 semanas"
+  },
+  "meio": {
+   "comeco": "meio",
+   "faixa": "10–20",
+   "rir": "1–2",
+   "final": "elástico · descida de 3 s ou pausa embaixo",
+   "repsNaPrimeiraSerie": "14 → 22",
+   "estagnado": 14,
+   "ultimaRegra": "progressao.manter",
+   "primeiraSubidaNaSemana": 15,
+   "subidas": 1,
+   "maiorTravaEmSessoes": 3,
+   "noUltimoDegrau": false,
+   "acoes": {
+    "estagnado": 14,
+    "manter": 17,
+    "subir": 1
+   },
+   "degrauQueNaoExiste": [],
+   "veredito": "anda"
+  }
+ },
+ {
+  "id": "remada-suspensao",
+  "exercicio": "remada-suspensao",
+  "nome": "Remada na suspensão",
+  "onde": "suspensão",
+  "inicio": {
+   "comeco": "inicio",
+   "faixa": "8–15",
+   "rir": "1–2",
+   "final": "peso do corpo",
+   "repsNaPrimeiraSerie": "8 → 17",
+   "estagnado": 17,
+   "ultimaRegra": "progressao.estagnacao",
+   "primeiraSubidaNaSemana": null,
+   "subidas": 0,
+   "maiorTravaEmSessoes": 4,
+   "noUltimoDegrau": false,
+   "acoes": {
+    "estagnado": 17,
+    "manter": 15
+   },
+   "degrauQueNaoExiste": [],
+   "veredito": "não sobe em 16 semanas"
+  },
+  "meio": {
+   "comeco": "meio",
+   "faixa": "8–15",
+   "rir": "1–2",
+   "final": "peso do corpo · descida de 3 s ou pausa embaixo",
+   "repsNaPrimeiraSerie": "12 → 17",
+   "estagnado": 17,
+   "ultimaRegra": "progressao.estagnacao",
+   "primeiraSubidaNaSemana": 12,
+   "subidas": 1,
+   "maiorTravaEmSessoes": 4,
+   "noUltimoDegrau": false,
+   "acoes": {
+    "estagnado": 17,
+    "manter": 14,
+    "subir": 1
+   },
+   "degrauQueNaoExiste": [],
+   "veredito": "anda"
+  }
+ },
+ {
+  "id": "mergulho",
+  "exercicio": "mergulho",
+  "nome": "Mergulho nas paralelas",
+  "onde": "paralelas",
+  "inicio": {
+   "comeco": "inicio",
+   "faixa": "6–12",
+   "rir": "1–2",
+   "final": "peso do corpo",
+   "repsNaPrimeiraSerie": "6 → 14",
+   "estagnado": 17,
+   "ultimaRegra": "progressao.manter",
+   "primeiraSubidaNaSemana": null,
+   "subidas": 0,
+   "maiorTravaEmSessoes": 4,
+   "noUltimoDegrau": false,
+   "acoes": {
+    "estagnado": 17,
+    "manter": 15
+   },
+   "degrauQueNaoExiste": [],
+   "veredito": "não sobe em 16 semanas"
+  },
+  "meio": {
+   "comeco": "meio",
+   "faixa": "6–12",
+   "rir": "1–2",
+   "final": "peso do corpo · descida de 3 s ou pausa embaixo",
+   "repsNaPrimeiraSerie": "8 → 14",
+   "estagnado": 16,
+   "ultimaRegra": "progressao.estagnacao",
+   "primeiraSubidaNaSemana": 13,
+   "subidas": 1,
+   "maiorTravaEmSessoes": 4,
+   "noUltimoDegrau": false,
+   "acoes": {
+    "estagnado": 16,
+    "manter": 15,
+    "subir": 1
+   },
+   "degrauQueNaoExiste": [],
+   "veredito": "anda"
+  }
+ },
+ {
+  "id": "flexao-bola",
+  "exercicio": "flexao-bola",
+  "nome": "Flexão de joelho na bola suíça",
+  "onde": "bola suíça",
+  "inicio": {
+   "comeco": "inicio",
+   "faixa": "8–15",
+   "rir": "0–1",
+   "final": "peso do corpo",
+   "repsNaPrimeiraSerie": "9 → 17",
+   "estagnado": 18,
+   "ultimaRegra": "progressao.estagnacao",
+   "primeiraSubidaNaSemana": null,
+   "subidas": 0,
+   "maiorTravaEmSessoes": 5,
+   "noUltimoDegrau": false,
+   "acoes": {
+    "estagnado": 18,
+    "manter": 14
+   },
+   "degrauQueNaoExiste": [],
+   "veredito": "não sobe em 16 semanas"
+  },
+  "meio": {
+   "comeco": "meio",
+   "faixa": "8–15",
+   "rir": "0–1",
+   "final": "peso do corpo · descida de 3 s ou pausa embaixo",
+   "repsNaPrimeiraSerie": "11 → 17",
+   "estagnado": 16,
+   "ultimaRegra": "progressao.estagnacao",
+   "primeiraSubidaNaSemana": 12,
+   "subidas": 1,
+   "maiorTravaEmSessoes": 4,
+   "noUltimoDegrau": false,
+   "acoes": {
+    "estagnado": 16,
+    "manter": 15,
+    "subir": 1
+   },
+   "degrauQueNaoExiste": [],
+   "veredito": "anda"
+  }
+ },
+ {
+  "id": "panturrilha-step",
+  "exercicio": "panturrilha",
+  "nome": "Panturrilha unilateral no step",
+  "onde": "step",
+  "inicio": {
+   "comeco": "inicio",
+   "faixa": "10–15",
+   "rir": "0–1",
+   "final": "peso do corpo · descida de 3 s ou pausa embaixo",
+   "repsNaPrimeiraSerie": "11 → 17",
+   "estagnado": 17,
+   "ultimaRegra": "progressao.estagnacao",
+   "primeiraSubidaNaSemana": 15,
+   "subidas": 1,
+   "maiorTravaEmSessoes": 4,
+   "noUltimoDegrau": false,
+   "acoes": {
+    "estagnado": 17,
+    "manter": 14,
+    "subir": 1
+   },
+   "degrauQueNaoExiste": [],
+   "veredito": "anda"
+  },
+  "meio": {
+   "comeco": "meio",
+   "faixa": "10–15",
+   "rir": "0–1",
+   "final": "peso do corpo · descida de 3 s ou pausa embaixo",
+   "repsNaPrimeiraSerie": "13 → 17",
+   "estagnado": 17,
+   "ultimaRegra": "progressao.estagnacao",
+   "primeiraSubidaNaSemana": 10,
+   "subidas": 1,
+   "maiorTravaEmSessoes": 4,
+   "noUltimoDegrau": false,
+   "acoes": {
+    "estagnado": 17,
+    "manter": 14,
+    "subir": 1
+   },
+   "degrauQueNaoExiste": [],
+   "veredito": "anda"
+  }
+ },
+ {
+  "id": "goblet-kettlebell",
+  "exercicio": "goblet-kettlebell",
+  "nome": "Agachamento goblet com kettlebell",
+  "onde": "kettlebell de 12 kg",
+  "inicio": {
+   "comeco": "inicio",
+   "faixa": "8–15",
+   "rir": "1–2",
+   "final": "12 kg",
+   "repsNaPrimeiraSerie": "8 → 17",
+   "estagnado": 17,
+   "ultimaRegra": "progressao.estagnacao",
+   "primeiraSubidaNaSemana": null,
+   "subidas": 0,
+   "maiorTravaEmSessoes": 4,
+   "noUltimoDegrau": true,
+   "acoes": {
+    "estagnado": 17,
+    "manter": 15
+   },
+   "degrauQueNaoExiste": [],
+   "veredito": "sem carga maior: só a escada em texto"
+  },
+  "meio": {
+   "comeco": "meio",
+   "faixa": "8–15",
+   "rir": "1–2",
+   "final": "12 kg",
+   "repsNaPrimeiraSerie": "12 → 17",
+   "estagnado": 13,
+   "ultimaRegra": "equipamento.escada-carga-leve",
+   "primeiraSubidaNaSemana": null,
+   "subidas": 0,
+   "maiorTravaEmSessoes": 4,
+   "noUltimoDegrau": true,
+   "acoes": {
+    "estagnado": 13,
+    "manter": 19
+   },
+   "degrauQueNaoExiste": [],
+   "veredito": "sem carga maior: só a escada em texto"
+  }
+ },
+ {
+  "id": "goblet-par",
+  "exercicio": "goblet",
+  "nome": "Agachamento goblet com calcanhar elevado",
+  "onde": "um par de halteres de 5 kg",
+  "inicio": {
+   "comeco": "inicio",
+   "faixa": "8–15",
+   "rir": "1–2",
+   "final": "5 kg",
+   "repsNaPrimeiraSerie": "8 → 17",
+   "estagnado": 17,
+   "ultimaRegra": "progressao.estagnacao",
+   "primeiraSubidaNaSemana": null,
+   "subidas": 0,
+   "maiorTravaEmSessoes": 4,
+   "noUltimoDegrau": true,
+   "acoes": {
+    "estagnado": 17,
+    "manter": 15
+   },
+   "degrauQueNaoExiste": [],
+   "veredito": "sem carga maior: só a escada em texto"
+  },
+  "meio": {
+   "comeco": "meio",
+   "faixa": "8–15",
+   "rir": "1–2",
+   "final": "5 kg",
+   "repsNaPrimeiraSerie": "12 → 17",
+   "estagnado": 13,
+   "ultimaRegra": "equipamento.escada-carga-leve",
+   "primeiraSubidaNaSemana": null,
+   "subidas": 0,
+   "maiorTravaEmSessoes": 4,
+   "noUltimoDegrau": true,
+   "acoes": {
+    "estagnado": 13,
+    "manter": 19
+   },
+   "degrauQueNaoExiste": [],
+   "veredito": "sem carga maior: só a escada em texto"
+  }
+ },
+ {
+  "id": "rosca-alternada-par",
+  "exercicio": "rosca-alternada",
+  "nome": "Rosca alternada com halteres",
+  "onde": "um par de halteres de 5 kg",
+  "inicio": {
+   "comeco": "inicio",
+   "faixa": "8–12",
+   "rir": "0–1",
+   "final": "5 kg",
+   "repsNaPrimeiraSerie": "9 → 14",
+   "estagnado": 15,
+   "ultimaRegra": "equipamento.escada-carga-leve",
+   "primeiraSubidaNaSemana": null,
+   "subidas": 0,
+   "maiorTravaEmSessoes": 5,
+   "noUltimoDegrau": true,
+   "acoes": {
+    "estagnado": 15,
+    "manter": 17
+   },
+   "degrauQueNaoExiste": [],
+   "veredito": "sem carga maior: só a escada em texto"
+  },
+  "meio": {
+   "comeco": "meio",
+   "faixa": "8–12",
+   "rir": "0–1",
+   "final": "5 kg",
+   "repsNaPrimeiraSerie": "9 → 14",
+   "estagnado": 11,
+   "ultimaRegra": "equipamento.escada-carga-leve",
+   "primeiraSubidaNaSemana": null,
+   "subidas": 0,
+   "maiorTravaEmSessoes": 4,
+   "noUltimoDegrau": true,
+   "acoes": {
+    "estagnado": 11,
+    "manter": 21
+   },
+   "degrauQueNaoExiste": [],
+   "veredito": "sem carga maior: só a escada em texto"
+  }
+ },
+ {
+  "id": "elevacao-halteres-par",
+  "exercicio": "elevacao-halteres",
+  "nome": "Elevação lateral com halteres",
+  "onde": "um par de halteres de 5 kg",
+  "inicio": {
+   "comeco": "inicio",
+   "faixa": "12–20",
+   "rir": "0–1",
+   "final": "5 kg",
+   "repsNaPrimeiraSerie": "13 → 22",
+   "estagnado": 17,
+   "ultimaRegra": "progressao.manter",
+   "primeiraSubidaNaSemana": null,
+   "subidas": 0,
+   "maiorTravaEmSessoes": 4,
+   "noUltimoDegrau": true,
+   "acoes": {
+    "estagnado": 17,
+    "manter": 15
+   },
+   "degrauQueNaoExiste": [],
+   "veredito": "sem carga maior: só a escada em texto"
+  },
+  "meio": {
+   "comeco": "meio",
+   "faixa": "12–20",
+   "rir": "0–1",
+   "final": "5 kg",
+   "repsNaPrimeiraSerie": "15 → 22",
+   "estagnado": 12,
+   "ultimaRegra": "equipamento.escada-carga-leve",
+   "primeiraSubidaNaSemana": null,
+   "subidas": 0,
+   "maiorTravaEmSessoes": 3,
+   "noUltimoDegrau": true,
+   "acoes": {
+    "estagnado": 12,
+    "manter": 20
+   },
+   "degrauQueNaoExiste": [],
+   "veredito": "sem carga maior: só a escada em texto"
+  }
+ }
+]
