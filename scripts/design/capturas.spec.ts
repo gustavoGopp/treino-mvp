@@ -70,7 +70,7 @@ test('cadastro', async ({ page }) => {
   await grupo(page, 'De quanto em quanto').getByLabel('1 kg', { exact: true }).check();
   await page.getByLabel('Banco reto', { exact: true }).check();
   await page.getByRole('button', { name: 'Continuar' }).click();
-  await expect(page.getByRole('heading', { name: 'O que evitar (opcional)' })).toBeVisible();
+  await expect(page.getByRole('heading', { name: 'Tudo certo?' })).toBeVisible();
   await foto(page, '06-restricoes');
 });
 
@@ -78,7 +78,7 @@ test('programa, treino e acompanhamento', async ({ page }) => {
   await ana(page);
   await foto(page, '07-programa-relance', false);
   await foto(page, '07-programa');
-  const cartao = page.getByText('Como fazer (cartão de texto; animação em breve)').locator('visible=true').first();
+  const cartao = page.getByText('Como fazer (em texto)').locator('visible=true').first();
   if (await cartao.count()) {
     await cartao.click();
     await cartao.scrollIntoViewIfNeeded();
@@ -122,11 +122,11 @@ test('programa, treino e acompanhamento', async ({ page }) => {
   await page.goBack();
   // o exercício sem animação (ponte de glúteo com halter, cartão de texto), no treino
   for (let k = 0; k < 6; k++) {
-    if (await page.getByText('Como fazer (cartão de texto; animação em breve)').locator('visible=true').count()) break;
+    if (await page.getByText('Como fazer (em texto)').locator('visible=true').count()) break;
     await page.getByRole('button', { name: 'Próximo ›' }).click();
   }
   await foto(page, '11c-treino-sem-animacao-relance', false);
-  await page.getByText('Como fazer (cartão de texto; animação em breve)').locator('visible=true').first().click();
+  await page.getByText('Como fazer (em texto)').locator('visible=true').first().click();
   await foto(page, '11c-treino-cartao-de-texto');
   await page.getByRole('button', { name: 'Senti algo' }).first().click();
   await foto(page, '12-senti-algo', false);
@@ -152,7 +152,7 @@ test('exercícios sem guia (elásticos)', async ({ page }) => {
     await p.getByLabel('Elásticos', { exact: true }).check();
     await p.getByRole('group', { name: /Quantos elásticos/ }).getByLabel('3', { exact: true }).check();
   } });
-  const breve = page.getByText(/Animação em breve/).locator('visible=true').first();
+  const breve = page.getByText(/Sem guia ainda|guia em texto/).locator('visible=true').first();
   if (await breve.count()) await breve.scrollIntoViewIfNeeded();
   await foto(page, '18-programa-com-elasticos-relance', false);
   await foto(page, '18-programa-com-elasticos');

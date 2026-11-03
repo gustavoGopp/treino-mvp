@@ -70,3 +70,14 @@ for (const tema of ['light', 'dark'] as const) {
     await conferir(page); // confirmar
   });
 }
+
+test('celular pequeno (360 px): treino e guia sem rolar de lado e sem toque pequeno', async ({ page }) => {
+  await page.setViewportSize({ width: 360, height: 740 });
+  await ana(page);
+  await semToquePequeno(page);
+  await page.getByRole('button', { name: /^Começar o treino/ }).click();
+  await semToquePequeno(page);
+  await page.getByRole('link', { name: 'Ver como fazer' }).click();
+  await expect(page.getByRole('heading', { level: 1 })).toBeVisible();
+  await semToquePequeno(page);
+});
