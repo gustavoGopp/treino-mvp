@@ -128,7 +128,7 @@ export function Treino() {
             <Titulo>{x.nome}</Titulo>
             <p className="meta">
               Meta: {x.series} × {faixa(x.reps)}
-              {x.unilateral ? ' (cada lado)' : ''} · RIR {faixa(x.rir)}
+              {x.unilateral ? ' (cada lado)' : ''} · <span className="nw">RIR {faixa(x.rir)}</span>
               {x.dropSet && (
                 <>
                   {' '}

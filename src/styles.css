@@ -73,7 +73,9 @@ a.day{color:var(--link)}
 .exhead h1{font-weight:800;font-size:24px;line-height:1.2;margin:0;text-wrap:balance}
 .exhead .rx{font-size:15px;color:var(--muted);margin-top:4px;font-variant-numeric:tabular-nums}
 .exhead .tg{font-size:15px;margin-top:2px}
-.exhead .nav{margin-left:auto;display:flex;gap:6px}
+.exhead > div:not(.nav){flex:1;min-width:0}
+.exhead h1{overflow-wrap:break-word;hyphens:auto}
+.exhead .nav{margin-left:auto;display:flex;gap:6px;flex:none}
 .iconbtn{width:48px;height:48px;border-radius:14px;border:1.5px solid var(--edge);background:var(--surface);cursor:pointer;font-size:18px;display:grid;place-items:center;color:var(--ink)}
 .card{background:var(--surface);border-radius:var(--r3);overflow:hidden}
 .stage{position:relative;background:var(--stage);aspect-ratio:4/3;width:100%}
@@ -574,3 +576,5 @@ a.cartao-ex-corpo:focus-visible{outline:3px solid var(--accent);outline-offset:-
 .lista-triagem{list-style:decimal;padding-left:24px;gap:0}
 .lista-triagem li{padding:10px 0;border-bottom:1px solid var(--line);font-size:16px;line-height:1.35}
 .revelar{display:block}
+.nw{white-space:nowrap}
+.resumo-ex{padding:14px 16px}
