@@ -15,6 +15,17 @@ export type Atalho = {
   estacoes?: EstacaoMultifuncional[];
   /** "Às vezes tem": aparecem desmarcados, a um toque cada. */
   asVezes: ItemId[];
+  /**
+   * Respostas típicas dos detalhes, preenchidas só onde a pessoa ainda não respondeu (design v2, item D: "academia
+   * completa" sem perguntar os pesos). Ficam editáveis em "Meus locais"; a 1ª série de cada exercício acerta a carga.
+   */
+  padroes?: {
+    halteres?: { minKg: number; maxKg: number; passoKg: number };
+    alturaPolia?: 'alta' | 'baixa' | 'regulavel';
+    voadorInvertido?: boolean;
+    bancoDeclina?: boolean;
+    tricepsAcimaDaCabeca?: boolean;
+  };
 };
 
 export const ATALHOS: Atalho[] = [
@@ -76,6 +87,10 @@ export const ATALHOS: Atalho[] = [
       'step',
     ],
     asVezes: ['kettlebell', 'elasticos', 'bola_suica', 'suspensao'],
+    // [opinião] Halteres de 2 a 40 kg, de 2 em 2, e polia regulável; nos "sim ou não" dos aparelhos (voador invertido,
+    // banco que declina, tríceps acima da cabeça), o lado conservador: nenhum exercício que o aparelho talvez não
+    // permita. equipamento.atalhos.
+    padroes: { halteres: { minKg: 2, maxKg: 40, passoKg: 2 }, alturaPolia: 'regulavel', voadorInvertido: false, bancoDeclina: false, tricepsAcimaDaCabeca: false },
   },
 ];
 

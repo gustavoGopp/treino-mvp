@@ -156,11 +156,23 @@ describe('atalhos de cenário (equipamento.atalhos)', () => {
     const ja = { ...formVazio(), multifuncional: { estacoes: ['extensora' as const] } };
     expect(aplicarAtalho(ja, 'condominio').multifuncional.estacoes).toEqual(['extensora']);
   });
-  it('os detalhes continuam sendo perguntados: a academia completa sem detalhes não passa', () => {
-    const { erros } = deForm(aplicarAtalho(formVazio(), 'academia'));
-    expect(Object.keys(erros).sort()).toEqual(
-      ['bancoRegulavel.declina', 'halteres.max', 'halteres.min', 'halteres.passo', 'poliaSimples.altura', 'tricepsMaquina.acimaDaCabeca', 'voador.invertido'].sort(),
-    );
+  it('academia completa vem com valores típicos nos detalhes e passa sem pergunta nenhuma (design v2, item D)', () => {
+    const f = aplicarAtalho(formVazio(), 'academia');
+    expect(deForm(f).erros).toEqual({});
+    expect(f.halteres).toEqual({ min: '2', max: '40', passo: '2' });
+    expect(f.poliaSimples.altura).toBe('regulavel');
+    // o lado conservador nos "sim ou não"
+    expect([f.voador.invertido, f.bancoRegulavel.declina, f.tricepsMaquina.acimaDaCabeca]).toEqual([false, false, false]);
+  });
+  it('os valores típicos não passam por cima do que a pessoa já respondeu', () => {
+    const ja: FormInventario = { ...formVazio(), halteres: { min: '1', max: '12', passo: '1' }, voador: { invertido: true } };
+    const f = aplicarAtalho(ja, 'academia');
+    expect(f.halteres).toEqual({ min: '1', max: '12', passo: '1' });
+    expect(f.voador.invertido).toBe(true);
+  });
+  it('nos outros atalhos, os detalhes continuam sendo perguntados', () => {
+    const { erros } = deForm(aplicarAtalho(formVazio(), 'condominio'));
+    expect(Object.keys(erros)).toEqual(expect.arrayContaining(['halteres.min', 'bancoRegulavel.declina']));
   });
   it('academia completa com os detalhes mínimos gera o programa', () => {
     const f = aplicarAtalho(formVazio(), 'academia');

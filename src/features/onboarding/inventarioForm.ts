@@ -326,5 +326,12 @@ export function aplicarAtalho(f: FormInventario, id: Atalho['id']): FormInventar
   const n: FormInventario = structuredClone(f);
   n.marcados = ITEM_IDS.filter((x) => f.marcados.includes(x) || a.marca.includes(x));
   if (a.estacoes && a.marca.includes('multifuncional') && !n.multifuncional.estacoes.length) n.multifuncional.estacoes = [...a.estacoes];
+  const p = a.padroes;
+  if (p?.halteres && !n.halteres.min.trim() && !n.halteres.max.trim() && !n.halteres.passo.trim())
+    n.halteres = { min: String(p.halteres.minKg), max: String(p.halteres.maxKg), passo: String(p.halteres.passoKg) };
+  if (p?.alturaPolia && n.poliaSimples.altura === undefined) n.poliaSimples.altura = p.alturaPolia;
+  if (p?.voadorInvertido !== undefined && n.voador.invertido === undefined) n.voador.invertido = p.voadorInvertido;
+  if (p?.bancoDeclina !== undefined && n.bancoRegulavel.declina === undefined) n.bancoRegulavel.declina = p.bancoDeclina;
+  if (p?.tricepsAcimaDaCabeca !== undefined && n.tricepsMaquina.acimaDaCabeca === undefined) n.tricepsMaquina.acimaDaCabeca = p.tricepsAcimaDaCabeca;
   return n;
 }
