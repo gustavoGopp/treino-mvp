@@ -1,10 +1,10 @@
 // @ts-nocheck
-// Animação nova (em revisão). Barra fixa com pegada supinada (palmas viradas para você), mãos na largura dos
+// Animação nova (aprovada). Barra fixa com pegada supinada (palmas viradas para você), mãos na largura dos
 // ombros; os cotovelos descem à frente do corpo, rentes às costelas. Parte da barra fixa (pronada) aprovada.
 // Técnica e fontes: docs/pesquisa/animacoes/barra-fixa-supinada.md.
-import { ARROW3, L3, TX, pullBar } from '../../desenho';
-import { scapPts } from '../../esqueleto';
-import { add, mul } from '../../math';
+import { ARROW3, L3, TX, pullBar } from '../desenho';
+import { scapPts } from '../esqueleto';
+import { add, mul } from '../math';
 
 const ex = {
   id:'barra-fixa-supinada',

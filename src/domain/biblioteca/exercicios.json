@@ -538,7 +538,7 @@
    "peso-corpo"
   ],
   "carga": "peso-corpo",
-  "animacaoId": null
+  "animacaoId": "barra-fixa-supinada"
  },
  {
   "id": "puxada-elastico",
