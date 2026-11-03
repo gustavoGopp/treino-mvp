@@ -44,6 +44,9 @@ Detalhes em `design-v3/medidas.md` (script `scripts/design/palavras.spec.ts`, 41
 
 ## 3. As 3 direções (no protótipo, navegáveis, claro e escuro, com o antes embaixo)
 
+![As 3 direções, tema claro](../img/v3-direcoes-claro.png)
+![As 3 direções, tema escuro](../img/v3-direcoes-escuro.png)
+
 | | **Direção 1 · Três linhas e três blocos** | **Direção 2 · Boneco e uma por tela** | **Direção 3 · Caminho e lista curta** |
 |---|---|---|---|
 | **1ª tela** | Título e 3 linhas com ícone: o que faz, "Não é consulta médica" (a frase inteira, com o selo) e "Seus dados ficam só neste aparelho". | O Boneco grande em cima (um quadro do motor, sem mudança), título, uma frase e duas linhas: não diagnostica (frase inteira, selo) e dados no aparelho. "Como funciona" abre o resto. | "Seu treino pronto em 4 passos": saúde, você, equipamento, seu treino; embaixo, as mesmas duas linhas de segurança e dados. |
