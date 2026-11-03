@@ -10,6 +10,8 @@ const grupo = (page: Page, nome: string | RegExp) => page.getByRole('group', { n
 
 export async function triagem(page: Page, { simEm = [], pausa = 0 }: Opcoes = {}) {
   await expect(page.getByRole('heading', { name: 'Antes de começar, 9 perguntas rápidas' })).toBeVisible();
+  // Design v2: a triagem abre na lista das 9; quem tem alguma condição responde uma a uma.
+  await page.getByRole('button', { name: 'Sim, alguma vale' }).click();
   const grupos = page.locator('fieldset').filter({ has: page.getByRole('radio', { name: 'Sim' }) });
   const n = await grupos.count();
   for (let i = 0; i < n; i++) {
@@ -22,11 +24,11 @@ export async function triagem(page: Page, { simEm = [], pausa = 0 }: Opcoes = {}
   await page.getByRole('button', { name: 'Continuar' }).click();
 }
 
-/** Triagem de quem não tem nenhuma condição: o botão marca "não" em todas, e a pessoa confere e continua. */
+/** Triagem de quem não tem nenhuma condição: as 9 à vista numa lista, e um toque em "Nenhuma vale para mim". */
 export async function triagemNenhuma(page: Page) {
   await expect(page.getByRole('heading', { name: 'Antes de começar, 9 perguntas rápidas' })).toBeVisible();
-  await page.getByRole('button', { name: 'Nenhuma se aplica a mim' }).click();
-  await page.getByRole('button', { name: 'Continuar' }).click();
+  await expect(page.getByRole('list', { name: 'As 9 condições' }).getByRole('listitem')).toHaveCount(9);
+  await page.getByRole('button', { name: 'Nenhuma vale para mim' }).click();
 }
 
 /** Minutos por toque (30, 45, 60, 75, 90); outro valor vai em "Outro". */
@@ -70,8 +72,7 @@ export async function ana(
   await minutosPorTreino(page, minutos);
   await page.getByLabel('Pernas', { exact: true }).check();
   await page.getByLabel('Glúteos', { exact: true }).check();
-  // Divisão: passo opcional, nada vem marcado (divisao.recomendacao).
-  if (divisao) await grupo(page, /Como prefere dividir/).getByLabel(divisao).check();
+  // A divisão saiu do cadastro (design v2, item E): é escolhida depois, em "Meus dados".
   await p();
   await page.getByRole('button', { name: 'Continuar' }).click();
 
@@ -85,8 +86,20 @@ export async function ana(
   await p();
   await page.getByRole('button', { name: 'Continuar' }).click();
 
-  await expect(page.getByRole('heading', { name: 'O que evitar (opcional)' })).toBeVisible();
+  await expect(page.getByRole('heading', { name: 'Tudo certo?' })).toBeVisible();
   await p();
   await page.getByRole('button', { name: 'Gerar meu programa' }).click();
   await expect(page.getByRole('heading', { name: 'Seu treino', exact: true })).toBeVisible();
+  if (divisao) await escolherDivisao(page, divisao);
+}
+
+/** Escolhe a divisão em "Meus dados" → "Mudar a rotina ou a divisão" e aceita a versão nova do programa. */
+export async function escolherDivisao(page: Page, divisao: string) {
+  await page.goto('/dados');
+  await page.getByRole('link', { name: 'Mudar a rotina ou a divisão' }).click();
+  await grupo(page, /Como prefere dividir/).getByLabel(divisao).check();
+  await page.getByRole('button', { name: 'Salvar' }).click();
+  await expect(page.getByRole('heading', { name: 'Seu treino', exact: true })).toBeVisible();
+  const atualizar = page.getByRole('button', { name: 'Atualizar', exact: true });
+  if (await atualizar.isVisible()) await atualizar.click();
 }

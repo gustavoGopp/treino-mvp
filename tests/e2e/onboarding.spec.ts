@@ -33,16 +33,11 @@ test('do zero ao programa em menos de 5 minutos (persona Ana)', async ({ page })
   await expect(page.getByTestId('prescricao')).toContainText('RIR 3–4');
 });
 
-test('divisão: as opções aparecem sem nada marcado, a recomendada vem explicada e a escolha vira o programa', async ({ page }) => {
-  await page.goto('/');
-  await page.getByRole('button', { name: 'Entendi, vamos começar' }).click();
-  await triagemNenhuma(page);
-  await page.getByRole('group', { name: /sem parar/ }).getByLabel('Menos de 6 meses').check();
-  await page.getByRole('group', { name: /treinando agora/ }).getByLabel(/^Estou treinando/).check();
-  await page.getByRole('group', { name: /confiança na técnica/ }).getByLabel(/^Sim/).check();
-  await page.getByRole('button', { name: 'Continuar' }).click();
-  await page.getByRole('group', { name: /Quantos dias/ }).getByLabel('3 dias').check();
-  await minutosPorTreino(page, '60');
+test('divisão: escolhida em Meus dados, sem nada marcado, com a recomendada explicada, e a escolha vira o programa', async ({ page }) => {
+  await ana(page, { minutos: '60' });
+  // Saiu do cadastro (design v2, item E): no cadastro não aparece.
+  await page.goto('/dados');
+  await page.getByRole('link', { name: 'Mudar a rotina ou a divisão' }).click();
   const divisao = page.getByRole('group', { name: /Como prefere dividir/ });
   await expect(divisao).toBeVisible();
   for (const r of await divisao.getByRole('radio').all()) await expect(r).not.toBeChecked();
@@ -56,17 +51,11 @@ test('divisão: as opções aparecem sem nada marcado, a recomendada vem explica
   for (const r of await divisao.getByRole('radio').all()) await expect(r).not.toBeChecked();
   await page.getByRole('group', { name: /Quantos dias/ }).getByLabel('3 dias').check();
   await divisao.getByLabel(/Superior\/Inferior \+ Corpo todo/).check();
-  await page.getByRole('button', { name: 'Continuar' }).click();
-  await page.getByLabel('Halteres fixos', { exact: true }).check();
-  await page.getByRole('group', { name: 'O mais leve' }).getByLabel('1 kg', { exact: true }).check();
-  await page.getByRole('group', { name: 'O mais pesado' }).getByLabel('12 kg', { exact: true }).check();
-  await page.getByRole('group', { name: 'De quanto em quanto' }).getByLabel('1 kg', { exact: true }).check();
-  await page.getByLabel('Banco reto', { exact: true }).check();
-  await page.getByRole('button', { name: 'Continuar' }).click();
-  await page.getByRole('button', { name: 'Gerar meu programa' }).click();
+  await page.getByRole('button', { name: 'Salvar' }).click();
+  await page.getByRole('button', { name: 'Atualizar', exact: true }).click();
   for (const dia of ['Superior A', 'Inferior A', 'Corpo todo']) await expect(page.getByRole('tab', { name: dia, exact: true })).toBeVisible();
   // A escolha fica salva na rotina.
-  await page.goto('/comecar/rotina');
+  await page.goto('/comecar/rotina?de=dados');
   await expect(page.getByRole('group', { name: /Como prefere dividir/ }).getByLabel(/Superior\/Inferior \+ Corpo todo/)).toBeChecked();
 });
 
@@ -106,7 +95,7 @@ test('"sim" só no osteoarticular pede as regiões e a dor de hoje, e o aviso di
   await expect(page.getByText(/Procure avaliação profissional; quando a dor baixar/)).toBeVisible();
 });
 
-test('cadastro sem nenhuma condição: 0 caractere digitado e até 15 toques, sem contar a tela de equipamento (critério 1)', async ({ page }) => {
+test('cadastro sem nenhuma condição: 0 caractere digitado e até 13 toques, sem contar a tela de equipamento (critério 1)', async ({ page }) => {
   await page.addInitScript(() => {
     const w = window as unknown as { __toques: number; __caracteres: number };
     w.__toques = 0;
@@ -121,10 +110,11 @@ test('cadastro sem nenhuma condição: 0 caractere digitado e até 15 toques, se
     return { toques: w.__toques, caracteres: w.__caracteres };
   });
   expect(caracteres).toBe(0);
-  expect(toques).toBeLessThanOrEqual(15);
+  // Design v2: a triagem em lista (1 toque) e uma pergunta por vez; eram até 15.
+  expect(toques).toBeLessThanOrEqual(13);
 });
 
-test('atalho "academia completa": nada vem marcado, o toque marca o conjunto, os "às vezes tem" ficam desmarcados e os detalhes continuam', async ({ page }) => {
+test('atalho "academia completa": nada vem marcado, o toque marca o conjunto e os detalhes vêm com valores típicos', async ({ page }) => {
   await ana(page);
   await page.goto('/comecar/inventario');
   for (const a of ['Casa com halteres e elásticos', 'Condomínio com multifuncional', 'Academia completa'])
@@ -142,15 +132,12 @@ test('atalho "academia completa": nada vem marcado, o toque marca o conjunto, os
   const anilha = page.getByRole('group', { name: 'Qual a menor anilha?' });
   for (const r of await anilha.getByRole('radio').all()) await expect(r).not.toBeChecked();
   await anilha.getByLabel('1,25 kg', { exact: true }).check();
-  // Os detalhes que mudam o programa continuam sendo perguntados.
+  // Design v2 (item D): os detalhes vêm com valores típicos, editáveis; o lado conservador nos "sim ou não".
+  await expect(page.getByRole('group', { name: 'Onde fica a polia?' }).getByLabel('Regulável')).toBeChecked();
+  await expect(page.getByRole('group', { name: /O voador também vira/ }).getByLabel('Não')).toBeChecked();
+  await expect(page.getByRole('group', { name: /O banco também declina/ }).getByLabel('Não')).toBeChecked();
   await page.getByRole('button', { name: 'Continuar' }).click();
-  await expect(page.getByText(/Há \d detalhes para completar/)).toBeVisible();
-  await page.getByRole('group', { name: 'Onde fica a polia?' }).getByLabel('Regulável').check();
-  await page.getByRole('group', { name: /O banco também declina/ }).getByLabel('Sim').check();
-  await page.getByRole('group', { name: /O voador também vira/ }).getByLabel('Sim').check();
-  await page.getByRole('group', { name: /braço fica acima da cabeça/ }).getByLabel('Não').check();
-  await page.getByRole('button', { name: 'Continuar' }).click();
-  await expect(page.getByRole('heading', { name: 'O que evitar (opcional)' })).toBeVisible();
+  await expect(page.getByRole('heading', { name: 'Tudo certo?' })).toBeVisible();
   await page.getByRole('button', { name: 'Gerar meu programa' }).click();
   await expect(page.getByRole('heading', { name: 'Seu treino', exact: true })).toBeVisible();
 });
@@ -249,7 +236,7 @@ test('equipamento por toque: anilhas com contador e valor fora da lista em "Outr
   await detalhes.getByRole('button', { name: 'Mais anilhas de 5 kg' }).click();
   await expect(detalhes.getByLabel('Quantidade de anilhas de 5 kg')).toHaveText('4');
   await page.getByRole('button', { name: 'Continuar' }).click();
-  await expect(page.getByRole('heading', { name: 'O que evitar (opcional)' })).toBeVisible();
+  await expect(page.getByRole('heading', { name: 'Tudo certo?' })).toBeVisible();
   await page.goto('/comecar/inventario');
   await expect(page.getByLabel('Peso de cada manopla: outro valor')).toHaveValue('1.8');
   await expect(page.getByLabel('Quantidade de anilhas de 5 kg')).toHaveText('4');
