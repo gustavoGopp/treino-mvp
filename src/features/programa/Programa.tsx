@@ -12,7 +12,7 @@ import { inventarioPrincipal, localDoTreino, perfilDe, primeiroPassoPendente, ty
 import { alternarPreferencia, diaDoTreino, hojeDoEstado, iniciarSessao } from '../treino/acoes';
 import { Preferencias } from './Prefiro';
 import { agoraIso, comProgramaNovo, fusoDoAparelho, gerarDoEstado, mesmoConteudo, useApp } from '../app/estado';
-import { Selo, Titulo, Topo } from '../app/ui';
+import { NavInferior, Selo, Titulo, Topo } from '../app/ui';
 import { Miniatura } from './Miniatura';
 import { FaixaSemana } from '../acompanhamento/Semana';
 import { SemanaLeve } from '../acompanhamento/SemanaLeve';
@@ -120,8 +120,8 @@ export function Programa() {
   const faseAtual = salvo.fases[0];
 
   return (
-    <div className="wrap app">
-      <Topo direita={<Link to="/dados">Meus dados</Link>} />
+    <div className="wrap app com-nav">
+      <Topo />
       <main className="conteudo treino">
         <div className="cabeca-treino">
           <Titulo>Seu treino</Titulo>
@@ -279,19 +279,6 @@ export function Programa() {
               </Link>
             </fieldset>
           )}
-          {!estado.sessaoAtual && (
-            <button
-              type="button"
-              className="btn"
-              onClick={() => {
-                atualizar((s) => iniciarSessao(s, agoraIso(), dia.id, localHoje, fusoDoAparelho()));
-                navigate('/treino');
-              }}
-            >
-              Começar o treino {dia.nome}
-              {locais.length > 1 && nomeLocal ? ` em ${nomeLocal}` : ''}
-            </button>
-          )}
           <ol className="cartoes-ex">
             {dia.exercicios.map((x, i) => (
               <CartaoExercicio
@@ -306,10 +293,27 @@ export function Programa() {
               />
             ))}
           </ol>
+          {!estado.sessaoAtual && (
+            // A ação principal fica embaixo, ao alcance do polegar, enquanto a lista do dia está à vista (design v2, item G).
+            <div className="acao-fixa">
+            <button
+              type="button"
+              className="btn"
+              onClick={() => {
+                atualizar((s) => iniciarSessao(s, agoraIso(), dia.id, localHoje, fusoDoAparelho()));
+                navigate('/treino');
+              }}
+            >
+              Começar o treino {dia.nome}
+              {locais.length > 1 && nomeLocal ? ` em ${nomeLocal}` : ''}
+            </button>
+            </div>
+          )}
         </section>
 
         <Sobre programa={salvo} reabrirAjustes={opcoes.length > 0 && !!estado.ajustes?.recolhido ? () => { atualizar((s) => ({ ...s, ajustes: { recolhido: false } })); setVerAjustes(true); } : undefined} />
       </main>
+      <NavInferior atual="treino" />
     </div>
   );
 }
@@ -417,7 +421,7 @@ function CartaoExercicio({
   const par = x.supersetCom ? dia.find((y) => y.exId === x.supersetCom) : undefined;
   const corpo = (
     <>
-      <Miniatura animacaoId={x.animacaoId} />
+      <Miniatura animacaoId={x.animacaoId} temTexto={temCartao(x.exId)} />
       <div className="ex-texto">
         <h3>
           <span className="n">{n}</span> {x.nome}
@@ -455,8 +459,9 @@ function CartaoExercicio({
           {par && <p>Bi-set com {par.nome.toLowerCase()}: alterne os dois e descanse depois da dupla.</p>}
           {!x.animacaoId && ex && !temCartao(x.exId) && (
             <p>
-              Animação em breve. Trabalha {musculos(ex.musculos.primarios)}
-              {ex.musculos.secundarios.length ? `; também ${musculos(ex.musculos.secundarios)}` : ''}.
+              Sem guia ainda. Trabalha {musculos(ex.musculos.primarios)}
+              {ex.musculos.secundarios.length ? `; também ${musculos(ex.musculos.secundarios)}` : ''}. Se não conhece o exercício, prefira uma
+              alternativa com guia.
             </p>
           )}
           {!x.animacaoId && <CartaoTexto exId={x.exId} />}

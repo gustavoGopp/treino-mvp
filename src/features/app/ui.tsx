@@ -38,6 +38,28 @@ export function Topo({ direita }: { direita?: ReactNode }) {
   );
 }
 
+/**
+ * Navegação fixa embaixo, ao alcance do polegar (design v2, item H): o treino, a semana e os dados.
+ * Fica nas telas de início; no treino em andamento e no cadastro, não (ali a tela é uma tarefa só).
+ */
+export function NavInferior({ atual }: { atual: 'treino' | 'semana' | 'dados' }) {
+  const item = (id: typeof atual, para: string, rotulo: string, d: string) => (
+    <Link to={para} aria-current={atual === id ? 'page' : undefined}>
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path d={d} />
+      </svg>
+      {rotulo}
+    </Link>
+  );
+  return (
+    <nav className="nav-inferior" aria-label="Seções">
+      {item('treino', '/programa', 'Treino', 'M6.5 6.5v11M17.5 6.5v11M3.5 9v6M20.5 9v6M6.5 12h11')}
+      {item('semana', '/semana', 'Semana', 'M4 5h16v15H4zM4 10h16M9 3v4M15 3v4')}
+      {item('dados', '/dados', 'Meus dados', 'M12 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM4 21a8 8 0 0 1 16 0')}
+    </nav>
+  );
+}
+
 /** Título que recebe o foco quando a tela abre (leitores de tela anunciam a troca de tela). */
 export function Titulo({ children }: { children: ReactNode }) {
   const ref = useRef<HTMLHeadingElement>(null);

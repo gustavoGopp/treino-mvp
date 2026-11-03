@@ -2,7 +2,7 @@ import { useRef, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { exportarJson, importarJson, nomeDoArquivo } from '../../storage/arquivo';
 import { useApp } from '../app/estado';
-import { Titulo, Topo } from '../app/ui';
+import { NavInferior, Titulo, Topo } from '../app/ui';
 import { EscolhaEstiloBoneco } from './EstiloBoneco';
 
 // Meus dados: exportar e importar em JSON, apagar tudo e refazer a triagem. Nada sai do aparelho sem a pessoa.
@@ -59,8 +59,8 @@ export function Dados() {
   };
 
   return (
-    <div className="wrap app">
-      <Topo direita={estado.programa ? <Link to="/programa">Meu programa</Link> : undefined} />
+    <div className={estado.programa ? 'wrap app com-nav' : 'wrap app'}>
+      <Topo direita={estado.programa ? undefined : <Link to="/">Início</Link>} />
       <main className="conteudo">
         <Titulo>Meus dados</Titulo>
         <p className="lede">
@@ -158,6 +158,7 @@ export function Dados() {
           Versão do app: {__VERSAO__}, publicada em {new Date(__DATA_BUILD__).toLocaleDateString('pt-BR')}.
         </p>
       </main>
+      {estado.programa && <NavInferior atual="dados" />}
     </div>
   );
 }

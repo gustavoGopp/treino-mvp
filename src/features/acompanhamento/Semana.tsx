@@ -3,7 +3,7 @@ import { BIBLIOTECA } from '../../domain/biblioteca';
 import { exerciciosComHistorico } from '../../domain/acompanhamento/evolucao';
 import { TEXTO_ESTADO, type ResumoDaSemana } from '../../domain/acompanhamento/semana';
 import { agoraIso, fusoDoAparelho, useApp } from '../app/estado';
-import { Selo, Titulo, Topo } from '../app/ui';
+import { NavInferior, Selo, Titulo, Topo } from '../app/ui';
 import { aceitarMenosDias, manterDias, semanaDoEstado } from './acoes';
 import { SemanaLeve } from './SemanaLeve';
 
@@ -46,8 +46,8 @@ export function Semana() {
   const exercicios = exerciciosComHistorico(estado.historico);
 
   return (
-    <div className="wrap app">
-      <Topo direita={<Link to="/programa">Seu treino</Link>} />
+    <div className="wrap app com-nav">
+      <Topo />
       <main className="conteudo semana">
         <div className="cabeca-treino">
           <Titulo>A sua semana</Titulo>
@@ -141,6 +141,7 @@ export function Semana() {
           Voltar ao seu treino
         </Link>
       </main>
+      <NavInferior atual="semana" />
     </div>
   );
 }
