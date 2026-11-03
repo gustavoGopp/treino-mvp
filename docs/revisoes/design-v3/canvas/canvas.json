@@ -1,0 +1,21 @@
+{
+  "v": 3,
+  "createdOnFiles": { "v": 1, "at": "2026-11-03T18:10:00Z" },
+  "title": "treino-mvp · design v3 (menos leitura)",
+  "launch": { "view": "canvas" },
+  "pages": [],
+  "boards": {
+    "Main.dc.html": { "x": 0, "y": 0, "w": 390, "h": 844, "title": "Direção 1 · Três linhas e três blocos (navegável)", "is_interactive": true, "radius": 28 },
+    "D2.dc.html": { "x": 470, "y": 0, "w": 390, "h": 844, "title": "Direção 2 · Boneco e uma por tela (navegável)", "is_interactive": true, "radius": 28 },
+    "D3.dc.html": { "x": 940, "y": 0, "w": 390, "h": 844, "title": "Direção 3 · Caminho e lista curta (navegável)", "is_interactive": true, "radius": 28 },
+    "Escuro.dc.html": { "x": 0, "y": 1224, "w": 1330, "h": 844, "title": "As 3 direções no tema escuro", "is_interactive": true },
+    "Antes.dc.html": { "x": 0, "y": 2448, "w": 1500, "h": 1400, "title": "Antes: o cadastro de hoje (persona fictícia Ana)" }
+  },
+  "order": ["Main.dc.html", "D2.dc.html", "D3.dc.html", "Escuro.dc.html", "Antes.dc.html"],
+  "notes": {
+    "t1": { "x": 0, "y": -260, "text": "Depois · 3 direções · tema claro", "kind": "title1", "maxW": 1330 },
+    "t2": { "x": 0, "y": 964, "text": "Depois · tema escuro", "kind": "title1", "maxW": 1330 },
+    "t3": { "x": 0, "y": 2188, "text": "Antes · o app de hoje", "kind": "title1", "maxW": 1500 }
+  },
+  "designSystems": []
+}

@@ -1,0 +1,216 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>Direção 1 · Três linhas e três blocos</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Next:wght@400;600;800&amp;display=swap">
+<style>
+body{margin:0}
+a{color:var(--acc)}a:hover{color:var(--ink)}
+.claro{--bg:#F5F4F0;--surface:#FFFFFF;--surface2:#ECEAE4;--ink:#15171C;--ink2:#4B505B;--line:#DDD9D0;--edge:#868B95;--acc:#2443CF;--accInk:#FFFFFF;--accSoft:#E5EBFF;--ok:#0E7350;--okSoft:#E1F3EA;--warn:#8A4B00;--warnSoft:#FBEFD9}
+.escuro{--bg:#111316;--surface:#1A1D22;--surface2:#242830;--ink:#F3F2EE;--ink2:#AEB3BD;--line:#30343C;--edge:#6E737D;--acc:#9CB1FF;--accInk:#0C1A52;--accSoft:#1F2849;--ok:#62D2A2;--okSoft:#13291F;--warn:#F3B562;--warnSoft:#33270F}
+.app{width:390px;height:844px;box-sizing:border-box;display:flex;flex-direction:column;background:var(--bg);color:var(--ink);font-family:"Atkinson Hyperlegible Next",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;font-size:17px;line-height:1.4;overflow:hidden}
+.corpo{flex:1;display:flex;flex-direction:column;gap:20px;padding:4px 20px 0;overflow:auto}
+.pe{display:flex;flex-direction:column;gap:10px;padding:12px 20px 20px}
+.btn{display:flex;align-items:center;justify-content:center;min-height:56px;border-radius:16px;border:0;font:inherit;font-weight:800;font-size:18px;padding:0 20px;cursor:pointer;text-decoration:none;box-sizing:border-box;width:100%}
+.pri{background:var(--acc);color:var(--accInk)}
+.sec{background:var(--surface);color:var(--ink);border:1.5px solid var(--edge)}
+.link{display:flex;align-items:center;justify-content:center;min-height:48px;font-weight:700;font-size:16px;color:var(--acc);background:none;border:0;font-family:inherit;cursor:pointer}
+.topo{display:flex;justify-content:space-between;align-items:center;padding:8px 20px 0;min-height:48px;font-weight:800;font-size:16px}
+.topo span:last-child{color:var(--acc);font-size:15px}
+.cab{display:flex;align-items:center;gap:6px;padding:8px 14px 0 4px}
+.iconbtn{width:48px;height:48px;display:grid;place-items:center;border-radius:14px;border:0;background:transparent;color:var(--ink);cursor:pointer;padding:0}
+.ic{width:24px;height:24px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex:none}
+.seg{flex:1;height:6px;border-radius:3px;background:var(--line)}
+.seg.on{background:var(--acc)}
+.h1{font-size:31px;line-height:1.12;font-weight:800;margin:0;letter-spacing:-.01em}
+.sub{margin:0;color:var(--ink2);font-size:17px}
+.selo{display:inline-block;font-size:13px;font-weight:600;line-height:20px;color:var(--ink2);background:var(--surface2);border-radius:999px;padding:0 8px;vertical-align:1px;white-space:nowrap}
+.linhas{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:20px}
+.linhas li{display:grid;grid-template-columns:48px 1fr;gap:14px;align-items:start}
+.lad{width:48px;height:48px;border-radius:14px;display:grid;place-items:center}
+.lad.faz{background:var(--accSoft);color:var(--acc)}
+.lad.lim{background:var(--warnSoft);color:var(--warn)}
+.lad.pri2{background:var(--okSoft);color:var(--ok)}
+.lad.br{background:var(--surface);color:var(--ink)}
+.linhas b{display:block;font-size:19px;line-height:1.25;font-weight:800;padding-top:2px}
+.linhas .det{display:block;font-size:16px;line-height:1.4;color:var(--ink2);margin-top:2px}
+.cond{font-size:18px;line-height:1.35}
+.cond b{font-weight:800}
+.sn{display:flex;gap:8px;margin-top:10px}
+.chip{flex:1;min-height:48px;border-radius:12px;border:1.5px solid var(--edge);background:var(--surface);color:var(--ink);font:inherit;font-weight:700;font-size:17px;cursor:pointer}
+.chip.on{border:2px solid var(--acc);background:var(--accSoft);color:var(--acc)}
+.opt{display:flex;align-items:center;gap:14px;width:100%;min-height:64px;padding:12px 18px;border-radius:16px;border:1.5px solid var(--edge);background:var(--surface);color:var(--ink);font:inherit;font-size:18px;font-weight:700;text-align:left;cursor:pointer;box-sizing:border-box}
+.opt.on{border:2px solid var(--acc);background:var(--accSoft);color:var(--acc)}
+.nota{margin:0;font-size:15px;color:var(--ink2)}
+.caixa{background:var(--surface);border-radius:16px;padding:16px 18px;display:flex;flex-direction:column;gap:8px}
+</style>
+</helmet>
+<div class="app {{tema}}">
+
+<sc-if value="{{sBoas}}" hint-placeholder-val="{{ true }}">
+<div class="topo"><span>treino-mvp</span><span>Meus dados</span></div>
+<div class="corpo" style="padding-top: 16px; gap: 28px;">
+<h1 class="h1">Treino de musculação com o que você tem</h1>
+<ul class="linhas">
+<li><span class="lad faz"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M6.5 6.5v11M17.5 6.5v11M3.5 9v6M20.5 9v6M6.5 12h11"></path></svg></span><div><b>Monta seu treino com o seu equipamento</b><span class="det">Mostra como fazer cada exercício e de onde vem cada escolha.</span></div></li>
+<li><span class="lad lim"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 3v5a4 4 0 0 0 8 0V3M9 12v3a5 5 0 0 0 10 0v-2"></path><circle cx="19" cy="11" r="2"></circle></svg></span><div><b>Não é consulta médica</b><span class="det">Não diagnostica nem substitui médico ou profissional de Educação Física. Sentiu dor, tontura ou mal-estar? Pare e procure avaliação. <span class="selo">consenso</span></span></div></li>
+<li><span class="lad pri2"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><rect x="6" y="2" width="12" height="20" rx="2"></rect><path d="M10 13h4v4h-4zM10.5 13v-1.5a1.5 1.5 0 0 1 3 0V13"></path></svg></span><div><b>Seus dados ficam só neste aparelho</b><span class="det">Exporte ou apague tudo em Meus dados.</span></div></li>
+</ul>
+</div>
+<div class="pe">
+<button class="btn pri" type="button" onClick="{{comecar}}">Entendi, vamos começar</button>
+<button class="link" type="button">Ver o guia de exercícios</button>
+</div>
+</sc-if>
+
+<sc-if value="{{sCab}}" hint-placeholder-val="{{ false }}">
+<div class="cab">
+<button class="iconbtn" type="button" aria-label="Voltar" onClick="{{voltar}}"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M15 18l-6-6 6-6"></path></svg></button>
+<div style="flex: 1; display: flex; flex-direction: column; gap: 6px;">
+<div style="display: flex; gap: 4px;"><sc-for list="{{segs}}" as="s" hint-placeholder-count="5"><i class="{{s.cls}}"></i></sc-for></div>
+<span style="font-size: 14px; color: var(--ink2);">{{etapa}}</span>
+</div>
+</div>
+</sc-if>
+
+<sc-if value="{{sBloco}}" hint-placeholder-val="{{ false }}">
+<div class="corpo" style="padding-top: 12px;">
+<h1 class="h1">Alguma destas vale para você?</h1>
+<p class="sub">Um “sim” não impede o treino. Pode pedir uma avaliação antes.</p>
+<ul class="linhas">
+<sc-for list="{{itens}}" as="c" hint-placeholder-count="3">
+<li><span class="lad br"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="{{c.d}}"></path></svg></span>
+<div class="cond"><b>{{c.b}}</b>{{c.r}}
+<sc-if value="{{modoSim}}" hint-placeholder-val="{{ false }}">
+<div class="sn"><button type="button" class="{{c.clsSim}}" onClick="{{c.sim}}">Sim</button><button type="button" class="{{c.clsNao}}" onClick="{{c.nao}}">Não</button></div>
+</sc-if>
+</div></li>
+</sc-for>
+</ul>
+<p class="nota">Perguntas no estilo do PAR-Q+ <span class="selo">consenso</span> · <a href="#">Por que estas perguntas?</a></p>
+</div>
+<div class="pe">
+<sc-if value="{{modoLista}}" hint-placeholder-val="{{ true }}">
+<button class="btn sec" type="button" onClick="{{abrirSim}}">Sim, alguma destas</button>
+<button class="btn sec" type="button" onClick="{{nenhuma}}">Nenhuma destas</button>
+</sc-if>
+<sc-if value="{{modoSim}}" hint-placeholder-val="{{ false }}">
+<button class="btn pri" type="button" onClick="{{continuarSim}}" disabled="{{faltaResp}}" style="opacity: {{opac}};">Continuar</button>
+</sc-if>
+</div>
+</sc-if>
+
+<sc-if value="{{sNivel}}" hint-placeholder-val="{{ false }}">
+<div class="corpo" style="padding-top: 12px;">
+<h1 class="h1">Há quanto tempo você treina musculação sem parar?</h1>
+<p class="sub">Conte só o tempo contínuo, sem pausas de meses.</p>
+<div style="display: flex; flex-direction: column; gap: 10px;">
+<sc-for list="{{niveis}}" as="n" hint-placeholder-count="3"><button type="button" class="{{n.cls}}" onClick="{{n.pick}}">{{n.t}}</button></sc-for>
+</div>
+<p class="nota">O toque responde e segue. Errou? Volte pela seta.</p>
+</div>
+</sc-if>
+
+<sc-if value="{{sPausa}}" hint-placeholder-val="{{ false }}">
+<div class="corpo" style="padding-top: 12px;">
+<h1 class="h1">Algumas perguntas a mais</h1>
+<div class="caixa"><p style="margin: 0;">Aqui o app segue como hoje: pergunta a região e a dor de hoje (osso ou articulação), ou pausa o programa automático até você confirmar uma avaliação.</p><p class="nota" style="margin: 0;">Sem mudança nesta proposta.</p></div>
+</div>
+<div class="pe"><button class="btn pri" type="button" onClick="{{aposPausa}}">Continuar</button></div>
+</sc-if>
+
+<sc-if value="{{sFim}}" hint-placeholder-val="{{ false }}">
+<div class="corpo" style="padding-top: 40px;">
+<h1 class="h1">Fim do protótipo da direção 1</h1>
+<div class="caixa">
+<p style="margin: 0;"><b>Você fez {{toques}} toques</b> até aqui.</p>
+<p class="nota" style="margin: 0;">Depois: mais 2 perguntas de experiência, dias e minutos, onde você treina e o “Tudo certo?”, cada um numa tela, com o toque respondendo e seguindo.</p>
+</div>
+</div>
+<div class="pe"><button class="btn sec" type="button" onClick="{{recomecar}}">Recomeçar</button></div>
+</sc-if>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"tema":{"editor":"enum","options":["claro","escuro"],"default":"claro"},"$preview":{"width":390,"height":844}}'>
+function circ(cx, cy, r) { return 'M' + (cx - r) + ' ' + cy + 'a' + r + ' ' + r + ' 0 1 0 ' + (2 * r) + ' 0a' + r + ' ' + r + ' 0 1 0 ' + (-2 * r) + ' 0'; }
+var IC = {
+  coracao: 'M12 20s-8-4.6-8-10.5A4.5 4.5 0 0 1 12 7a4.5 4.5 0 0 1 8 2.5C20 15.4 12 20 12 20zM7 12h2.5l1.5-2.5 2 5 1.5-2.5H17',
+  peito: circ(12, 4.5, 2.5) + 'M4 21v-8a4 4 0 0 1 4-4h8a4 4 0 0 1 4 4v8M13 11.5l-2.5 3.5h3L11 18.5',
+  tontura: 'M12 12a1.5 1.5 0 0 1 3 0a3 3 0 0 1-6 0a4.5 4.5 0 0 1 9 0a6 6 0 0 1-12 0a7.5 7.5 0 0 1 15 0',
+  prancheta: 'M9 3h6v3H9zM8 4.5H6v16h12v-16h-2M12 10v6M9 13h6',
+  capsula: 'M10.5 20.5a5 5 0 0 1-7-7l6-6a5 5 0 0 1 7 7zM8.5 8.5l7 7',
+  dupla: circ(8, 8, 3) + circ(16.5, 8, 3) + 'M2.5 20a5.5 5.5 0 0 1 11 0M12 15.5a5.5 5.5 0 0 1 9.5 4.5',
+  osso: 'M8 10.5h8a2.3 2.3 0 1 1 2.6 1.5 2.3 2.3 0 1 1-2.6 1.5H8a2.3 2.3 0 1 1-2.6-1.5A2.3 2.3 0 1 1 8 10.5z',
+  carrinho: 'M13 3a8 8 0 0 1 8 8h-8zM3 11h18a6 6 0 0 1-6 6H9a6 6 0 0 1-6-6zM3 11 1.5 7' + circ(8, 20, 1.5) + circ(16, 20, 1.5),
+  termometro: 'M14 14.5V5a2 2 0 0 0-4 0v9.5a4 4 0 1 0 4 0zM12 9v8'
+};
+var COND = {
+  1: { d: IC.coracao, b: 'Problema no coração ou pressão alta', r: ', dito por um médico' },
+  2: { d: IC.peito, b: 'Dor no peito', r: ': parado, no dia a dia ou no esforço' },
+  3: { d: IC.tontura, b: 'Desmaio, ou tontura com perda de equilíbrio', r: ', nos últimos 12 meses' },
+  4: { d: IC.prancheta, b: 'Outra doença crônica', r: ' diagnosticada, além de coração ou pressão' },
+  5: { d: IC.capsula, b: 'Remédio receitado', r: ' para doença crônica' },
+  7: { d: IC.dupla, b: 'Um médico disse', r: ' para você só treinar com acompanhamento' },
+  6: { d: IC.osso, b: 'Problema em osso, articulação, músculo ou tendão', r: ' que pode piorar com exercício, agora ou nos últimos 12 meses' },
+  8: { d: IC.carrinho, b: 'Gravidez, ou parto', r: ' nos últimos 6 meses' },
+  9: { d: IC.termometro, b: 'Febre, gripe forte', r: ' ou se recuperando de alguma doença, agora' }
+};
+var BLOCOS = [[1, 2, 3], [4, 5, 7], [6, 8, 9]];
+var NOMES = ['Coração e circulação', 'Doenças e remédios', 'Agora ou recente'];
+class Component extends DCLogic {
+  constructor(props) { super(props); this.state = { tela: 'boas', bloco: 0, modo: 'lista', resp: {}, toques: 0, nivel: null, teveSim: false }; }
+  ir(patch) { this.setState(Object.assign({ toques: this.state.toques + 1 }, patch)); }
+  renderVals() {
+    var s = this.state, self = this;
+    var tela = s.tela;
+    var ids = BLOCOS[s.bloco];
+    var itens = ids.map(function (id) {
+      var c = COND[id], r = s.resp[id];
+      return { d: c.d, b: c.b, r: c.r,
+        clsSim: r === true ? 'chip on' : 'chip', clsNao: r === false ? 'chip on' : 'chip',
+        sim: function () { var n = Object.assign({}, s.resp); n[id] = true; self.ir({ resp: n }); },
+        nao: function () { var n = Object.assign({}, s.resp); n[id] = false; self.ir({ resp: n }); } };
+    });
+    var falta = ids.some(function (id) { return s.resp[id] === undefined; });
+    var secao = tela === 'nivel' ? 1 : 0;
+    var segs = [0, 1, 2, 3, 4].map(function (i) { return { cls: i <= secao ? 'seg on' : 'seg' }; });
+    var proximo = function (teveSim) {
+      if (s.bloco < 2) self.ir({ bloco: s.bloco + 1, modo: 'lista', teveSim: teveSim });
+      else self.ir({ tela: teveSim ? 'pausa' : 'nivel', modo: 'lista', teveSim: teveSim });
+    };
+    var niveis = ['Menos de 6 meses', 'De 6 meses a 2 anos', 'Mais de 2 anos'].map(function (t, i) {
+      return { t: t, cls: s.nivel === i ? 'opt on' : 'opt', pick: function () { self.ir({ nivel: i }); setTimeout(function () { self.setState({ tela: 'fim' }); }, 300); } };
+    });
+    return {
+      tema: this.props.tema ?? 'claro',
+      sBoas: tela === 'boas', sCab: tela === 'bloco' || tela === 'nivel' || tela === 'pausa', sBloco: tela === 'bloco', sNivel: tela === 'nivel', sPausa: tela === 'pausa', sFim: tela === 'fim',
+      modoLista: s.modo === 'lista', modoSim: s.modo === 'sim',
+      etapa: tela === 'nivel' ? 'Você · 1 de 3' : 'Saúde · ' + (s.bloco + 1) + ' de 3 · ' + NOMES[s.bloco],
+      segs: segs, itens: itens, niveis: niveis, toques: s.toques,
+      faltaResp: falta, opac: falta ? '0.45' : '1',
+      comecar: function () { self.ir({ tela: 'bloco', bloco: 0, modo: 'lista', resp: {} }); },
+      nenhuma: function () { var n = Object.assign({}, s.resp); ids.forEach(function (id) { n[id] = false; }); self.setState({ resp: n }); proximo(s.teveSim); },
+      abrirSim: function () { self.ir({ modo: 'sim' }); },
+      continuarSim: function () { if (falta) return; proximo(s.teveSim || ids.some(function (id) { return s.resp[id]; })); },
+      aposPausa: function () { self.ir({ tela: 'nivel' }); },
+      voltar: function () {
+        if (tela === 'nivel' || tela === 'pausa') self.setState({ tela: 'bloco', bloco: 2, modo: 'lista' });
+        else if (s.modo === 'sim') self.setState({ modo: 'lista' });
+        else if (s.bloco > 0) self.setState({ bloco: s.bloco - 1 });
+        else self.setState({ tela: 'boas' });
+      },
+      recomecar: function () { self.setState({ tela: 'boas', bloco: 0, modo: 'lista', resp: {}, toques: 0, nivel: null, teveSim: false }); }
+    };
+  }
+}
+</script>
+</body>
+</html>

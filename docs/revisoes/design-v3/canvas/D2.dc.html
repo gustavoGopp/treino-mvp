@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>Direção 2 · Boneco e uma por tela</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Next:wght@400;600;800&amp;display=swap">
+<style>
+body{margin:0}
+a{color:var(--acc)}a:hover{color:var(--ink)}
+.claro{--bg:#F5F4F0;--surface:#FFFFFF;--surface2:#ECEAE4;--ink:#15171C;--ink2:#4B505B;--line:#DDD9D0;--edge:#868B95;--acc:#2443CF;--accInk:#FFFFFF;--accSoft:#E5EBFF;--ok:#0E7350;--okSoft:#E1F3EA;--warn:#8A4B00;--warnSoft:#FBEFD9;--stage:#f7f9fa}
+.escuro{--bg:#111316;--surface:#1A1D22;--surface2:#242830;--ink:#F3F2EE;--ink2:#AEB3BD;--line:#30343C;--edge:#6E737D;--acc:#9CB1FF;--accInk:#0C1A52;--accSoft:#1F2849;--ok:#62D2A2;--okSoft:#13291F;--warn:#F3B562;--warnSoft:#33270F;--stage:#10171b}
+.app{width:390px;height:844px;box-sizing:border-box;display:flex;flex-direction:column;background:var(--bg);color:var(--ink);font-family:"Atkinson Hyperlegible Next",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;font-size:17px;line-height:1.4;overflow:hidden}
+.corpo{flex:1;display:flex;flex-direction:column;gap:18px;padding:4px 20px 0;overflow:auto}
+.pe{display:flex;flex-direction:column;gap:10px;padding:12px 20px 20px}
+.btn{display:flex;align-items:center;justify-content:center;min-height:56px;border-radius:16px;border:0;font:inherit;font-weight:800;font-size:18px;padding:0 20px;cursor:pointer;box-sizing:border-box;width:100%}
+.pri{background:var(--acc);color:var(--accInk)}
+.sec{background:var(--surface);color:var(--ink);border:1.5px solid var(--edge)}
+.link{display:flex;align-items:center;justify-content:center;min-height:48px;font-weight:700;font-size:16px;color:var(--acc);background:none;border:0;font-family:inherit;cursor:pointer}
+.topo{display:flex;justify-content:space-between;align-items:center;padding:8px 20px 0;min-height:48px;font-weight:800;font-size:16px}
+.topo span:last-child{color:var(--acc);font-size:15px}
+.cab{display:flex;align-items:center;gap:6px;padding:8px 14px 0 4px}
+.iconbtn{width:48px;height:48px;display:grid;place-items:center;border-radius:14px;border:0;background:transparent;color:var(--ink);cursor:pointer;padding:0}
+.ic{width:24px;height:24px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex:none}
+.seg{flex:1;height:6px;border-radius:3px;background:var(--line)}
+.seg.on{background:var(--acc)}
+.h1{font-size:31px;line-height:1.12;font-weight:800;margin:0;letter-spacing:-.01em}
+.sub{margin:0;color:var(--ink2);font-size:18px}
+.selo{display:inline-block;font-size:13px;font-weight:600;line-height:20px;color:var(--ink2);background:var(--surface2);border-radius:999px;padding:0 8px;vertical-align:1px;white-space:nowrap}
+.garantias{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:12px}
+.garantias li{display:flex;gap:12px;align-items:flex-start;font-size:16px;line-height:1.4}
+.heroi{width:100%;height:230px;border-radius:20px;background:var(--stage);overflow:hidden;display:grid;place-items:center}
+.heroi img{width:100%;height:100%;object-fit:cover}
+.grande{width:72px;height:72px;border-radius:20px;background:var(--surface);color:var(--ink);display:grid;place-items:center}
+.grande .ic{width:36px;height:36px}
+.sn{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.sn button{min-height:64px;border-radius:16px;border:1.5px solid var(--edge);background:var(--surface);color:var(--ink);font:inherit;font-weight:800;font-size:20px;cursor:pointer}
+.sn button.on{border:2px solid var(--acc);background:var(--accSoft);color:var(--acc)}
+.nota{margin:0;font-size:15px;color:var(--ink2)}
+.caixa{background:var(--surface);border-radius:16px;padding:16px 18px;display:flex;flex-direction:column;gap:8px}
+</style>
+</helmet>
+<div class="app {{tema}}">
+
+<sc-if value="{{sBoas}}" hint-placeholder-val="{{ true }}">
+<div class="topo"><span>treino-mvp</span><span>Meus dados</span></div>
+<div class="corpo" style="padding-top: 8px;">
+<div class="heroi"><img src="{{boneco}}" alt="O Boneco, o guia animado do app, fazendo um agachamento"></div>
+<h1 class="h1">Musculação com o que você tem</h1>
+<p class="sub">O app monta seu treino só com o seu equipamento, e o Boneco mostra cada exercício.</p>
+<ul class="garantias">
+<li><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" style="color: var(--warn);"><path d="M5 3v5a4 4 0 0 0 8 0V3M9 12v3a5 5 0 0 0 10 0v-2"></path><circle cx="19" cy="11" r="2"></circle></svg><span>Não diagnostica nem substitui médico ou profissional de Educação Física. Dor, tontura ou mal-estar? Pare e procure avaliação. <span class="selo">consenso</span></span></li>
+<li><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" style="color: var(--ok);"><rect x="6" y="2" width="12" height="20" rx="2"></rect><path d="M10 13h4v4h-4zM10.5 13v-1.5a1.5 1.5 0 0 1 3 0V13"></path></svg><span>Seus dados ficam só neste aparelho.</span></li>
+</ul>
+</div>
+<div class="pe">
+<button class="btn pri" type="button" onClick="{{comecar}}">Entendi, vamos começar</button>
+<button class="link" type="button">Como funciona</button>
+</div>
+</sc-if>
+
+<sc-if value="{{sCab}}" hint-placeholder-val="{{ false }}">
+<div class="cab">
+<button class="iconbtn" type="button" aria-label="Voltar" onClick="{{voltar}}"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M15 18l-6-6 6-6"></path></svg></button>
+<div style="flex: 1; display: flex; flex-direction: column; gap: 6px;">
+<div style="display: flex; gap: 3px;"><sc-for list="{{pontos}}" as="p" hint-placeholder-count="9"><i class="{{p.cls}}"></i></sc-for></div>
+<span style="font-size: 14px; color: var(--ink2);">Saúde · {{n}} de 9</span>
+</div>
+</div>
+</sc-if>
+
+<sc-if value="{{sCond}}" hint-placeholder-val="{{ false }}">
+<div class="corpo" style="padding-top: 36px; gap: 20px;">
+<span class="grande"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="{{c.d}}"></path></svg></span>
+<h1 class="h1">{{c.t}}</h1>
+<p class="sub">{{c.det}}</p>
+</div>
+<div class="pe">
+<p class="nota" style="text-align: center;">Um “sim” não impede o treino. <span class="selo">consenso</span></p>
+<div class="sn"><button type="button" class="{{clsSim}}" onClick="{{sim}}">Sim</button><button type="button" class="{{clsNao}}" onClick="{{nao}}">Não</button></div>
+</div>
+</sc-if>
+
+<sc-if value="{{sPausa}}" hint-placeholder-val="{{ false }}">
+<div class="corpo" style="padding-top: 12px;">
+<h1 class="h1">Algumas perguntas a mais</h1>
+<div class="caixa"><p style="margin: 0;">Aqui o app segue como hoje: pergunta a região e a dor de hoje (osso ou articulação), ou pausa o programa automático até você confirmar uma avaliação.</p><p class="nota" style="margin: 0;">Sem mudança nesta proposta.</p></div>
+</div>
+<div class="pe"><button class="btn pri" type="button" onClick="{{aposPausa}}">Continuar</button></div>
+</sc-if>
+
+<sc-if value="{{sFim}}" hint-placeholder-val="{{ false }}">
+<div class="corpo" style="padding-top: 40px;">
+<h1 class="h1">Fim do protótipo da direção 2</h1>
+<div class="caixa">
+<p style="margin: 0;"><b>Você fez {{toques}} toques</b> até aqui.</p>
+<p class="nota" style="margin: 0;">Depois: experiência, dias e minutos, onde você treina e o “Tudo certo?”, uma pergunta por tela, como nas outras direções.</p>
+</div>
+</div>
+<div class="pe"><button class="btn sec" type="button" onClick="{{recomecar}}">Recomeçar</button></div>
+</sc-if>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"tema":{"editor":"enum","options":["claro","escuro"],"default":"claro"},"$preview":{"width":390,"height":844}}'>
+function circ(cx, cy, r) { return 'M' + (cx - r) + ' ' + cy + 'a' + r + ' ' + r + ' 0 1 0 ' + (2 * r) + ' 0a' + r + ' ' + r + ' 0 1 0 ' + (-2 * r) + ' 0'; }
+var CONDS = [
+  { d: 'M12 20s-8-4.6-8-10.5A4.5 4.5 0 0 1 12 7a4.5 4.5 0 0 1 8 2.5C20 15.4 12 20 12 20zM7 12h2.5l1.5-2.5 2 5 1.5-2.5H17', t: 'Coração ou pressão alta?', det: 'Um médico já disse que você tem problema no coração ou pressão alta.' },
+  { d: circ(12, 4.5, 2.5) + 'M4 21v-8a4 4 0 0 1 4-4h8a4 4 0 0 1 4 4v8M13 11.5l-2.5 3.5h3L11 18.5', t: 'Dor no peito?', det: 'Parado, no dia a dia ou no esforço.' },
+  { d: 'M12 12a1.5 1.5 0 0 1 3 0a3 3 0 0 1-6 0a4.5 4.5 0 0 1 9 0a6 6 0 0 1-12 0a7.5 7.5 0 0 1 15 0', t: 'Desmaio ou tontura?', det: 'Desmaio, ou tontura com perda de equilíbrio, nos últimos 12 meses.' },
+  { d: 'M9 3h6v3H9zM8 4.5H6v16h12v-16h-2M12 10v6M9 13h6', t: 'Outra doença crônica?', det: 'Diagnosticada, além de problema no coração ou pressão alta.' },
+  { d: 'M10.5 20.5a5 5 0 0 1-7-7l6-6a5 5 0 0 1 7 7zM8.5 8.5l7 7', t: 'Remédio receitado?', det: 'Para alguma doença crônica.' },
+  { d: 'M8 10.5h8a2.3 2.3 0 1 1 2.6 1.5 2.3 2.3 0 1 1-2.6 1.5H8a2.3 2.3 0 1 1-2.6-1.5A2.3 2.3 0 1 1 8 10.5z', t: 'Osso, articulação, músculo ou tendão?', det: 'Um problema que pode piorar com exercício, agora ou nos últimos 12 meses.' },
+  { d: circ(8, 8, 3) + circ(16.5, 8, 3) + 'M2.5 20a5.5 5.5 0 0 1 11 0M12 15.5a5.5 5.5 0 0 1 9.5 4.5', t: 'Só com acompanhamento?', det: 'Um médico disse para você só fazer exercício com acompanhamento.' },
+  { d: 'M13 3a8 8 0 0 1 8 8h-8zM3 11h18a6 6 0 0 1-6 6H9a6 6 0 0 1-6-6zM3 11 1.5 7' + circ(8, 20, 1.5) + circ(16, 20, 1.5), t: 'Gravidez ou parto?', det: 'Grávida agora, ou parto nos últimos 6 meses.' },
+  { d: 'M14 14.5V5a2 2 0 0 0-4 0v9.5a4 4 0 1 0 4 0zM12 9v8', t: 'Doente agora?', det: 'Febre, gripe forte ou se recuperando de alguma doença.' }
+];
+class Component extends DCLogic {
+  constructor(props) { super(props); this.state = { tela: 'boas', i: 0, resp: [], toques: 0 }; }
+  renderVals() {
+    var s = this.state, self = this, tema = this.props.tema ?? 'claro';
+    var responder = function (v) {
+      var r = s.resp.slice(); r[s.i] = v;
+      self.setState({ resp: r, toques: s.toques + 1 });
+      setTimeout(function () {
+        if (s.i < 8) self.setState({ i: s.i + 1 });
+        else self.setState({ tela: r.some(function (x) { return x; }) ? 'pausa' : 'fim' });
+      }, 300);
+    };
+    return {
+      tema: tema,
+      boneco: tema === 'escuro' ? '/_blob/e0c849202e783ba51f964eb8dd5238f7' : '/_blob/a17629194c20a17a53eb84eec5a65179',
+      sBoas: s.tela === 'boas', sCab: s.tela === 'cond', sCond: s.tela === 'cond', sPausa: s.tela === 'pausa', sFim: s.tela === 'fim',
+      c: CONDS[s.i], n: s.i + 1, toques: s.toques,
+      pontos: CONDS.map(function (_, k) { return { cls: k <= s.i ? 'seg on' : 'seg' }; }),
+      clsSim: s.resp[s.i] === true ? 'on' : '', clsNao: s.resp[s.i] === false ? 'on' : '',
+      sim: function () { responder(true); }, nao: function () { responder(false); },
+      comecar: function () { self.setState({ tela: 'cond', i: 0, resp: [], toques: s.toques + 1 }); },
+      aposPausa: function () { self.setState({ tela: 'fim', toques: s.toques + 1 }); },
+      voltar: function () { if (s.i > 0) self.setState({ i: s.i - 1 }); else self.setState({ tela: 'boas' }); },
+      recomecar: function () { self.setState({ tela: 'boas', i: 0, resp: [], toques: 0 }); }
+    };
+  }
+}
+</script>
+</body>
+</html>
