@@ -1,4 +1,4 @@
-import { expect, type Page } from "@playwright/test";
+import { expect, type Page } from '@playwright/test';
 
 // Percorre o onboarding pela interface, como uma pessoa faria. Usado pelos testes E2E e pelo GIF do devlog.
 // Persona fictícia Ana (tests/personas): iniciante, halteres fixos de 1 a 12 kg e banco reto, 3 x 45 min, prioridade pernas e glúteos.
@@ -6,59 +6,40 @@ import { expect, type Page } from "@playwright/test";
 
 export type Opcoes = { simEm?: string[]; pausa?: number };
 
-const grupo = (page: Page, nome: string | RegExp) =>
-  page.getByRole("group", { name: nome });
+const grupo = (page: Page, nome: string | RegExp) => page.getByRole('group', { name: nome });
 
-export async function triagem(
-  page: Page,
-  { simEm = [], pausa = 0 }: Opcoes = {},
-) {
-  await expect(
-    page.getByRole("heading", { name: "Alguma destas vale para você?" }),
-  ).toBeVisible();
+export async function triagem(page: Page, { simEm = [], pausa = 0 }: Opcoes = {}) {
+  await expect(page.getByRole('heading', { name: 'Alguma destas vale para você?' })).toBeVisible();
   // A triagem abre na lista das 9; quem tem alguma condição responde uma a uma.
-  await page.getByRole("button", { name: "Sim, alguma destas vale" }).click();
-  const grupos = page
-    .locator("fieldset")
-    .filter({ has: page.getByRole("radio", { name: "Sim" }) });
+  await page.getByRole('button', { name: 'Sim, alguma destas vale' }).click();
+  const grupos = page.locator('fieldset').filter({ has: page.getByRole('radio', { name: 'Sim' }) });
   const n = await grupos.count();
   for (let i = 0; i < n; i++) {
     const g = grupos.nth(i);
-    const texto = (await g.locator("legend").innerText()).trim();
+    const texto = (await g.locator('legend').innerText()).trim();
     const sim = simEm.some((s) => texto.includes(s));
-    await g
-      .getByRole("radio", { name: sim ? "Sim" : "Não", exact: true })
-      .check();
+    await g.getByRole('radio', { name: sim ? 'Sim' : 'Não', exact: true }).check();
     if (pausa) await page.waitForTimeout(pausa / 3);
   }
-  await page.getByRole("button", { name: "Continuar" }).click();
+  await page.getByRole('button', { name: 'Continuar' }).click();
 }
 
 /** Triagem de quem não tem nenhuma condição: as 9 à vista numa lista, e um toque em "Não tenho nenhuma destas". */
 export async function triagemNenhuma(page: Page) {
-  await expect(
-    page.getByRole("heading", { name: "Alguma destas vale para você?" }),
-  ).toBeVisible();
+  await expect(page.getByRole('heading', { name: 'Alguma destas vale para você?' })).toBeVisible();
   // Design v3: as 9 em 3 grupos, todas à vista, e o botão só no fim da lista.
-  for (const g of [
-    "Coração e circulação",
-    "Doenças e remédios",
-    "Agora ou recente",
-  ])
-    await expect(
-      page.getByRole("region", { name: g }).getByRole("listitem"),
-    ).toHaveCount(3);
-  await page.getByRole("button", { name: "Não tenho nenhuma destas" }).click();
+  for (const g of ['Coração e circulação', 'Doenças e remédios', 'Agora ou recente'])
+    await expect(page.getByRole('region', { name: g }).getByRole('listitem')).toHaveCount(3);
+  await page.getByRole('button', { name: 'Não tenho nenhuma destas' }).click();
 }
 
 /** Minutos por toque (30, 45, 60, 75, 90); outro valor vai em "Outro". */
 export async function minutosPorTreino(page: Page, minutos: string) {
   const g = grupo(page, /Quantos minutos/);
-  if (["30", "45", "60", "75", "90"].includes(minutos))
-    await g.getByLabel(`${minutos} min`, { exact: true }).check();
+  if (['30', '45', '60', '75', '90'].includes(minutos)) await g.getByLabel(`${minutos} min`, { exact: true }).check();
   else {
-    await g.getByLabel("Outro", { exact: true }).check();
-    await page.getByLabel("Outro: quantos minutos?").fill(minutos);
+    await g.getByLabel('Outro', { exact: true }).check();
+    await page.getByLabel('Outro: quantos minutos?').fill(minutos);
   }
 }
 
@@ -66,7 +47,7 @@ export async function ana(
   page: Page,
   {
     pausa = 0,
-    minutos = "45",
+    minutos = '45',
     divisao,
     equipamentoExtra,
     passarTriagem,
@@ -79,18 +60,16 @@ export async function ana(
   } = {},
 ) {
   const p = () => (pausa ? page.waitForTimeout(pausa) : Promise.resolve());
-  await page.goto("/");
+  await page.goto('/');
   await p();
-  await page.getByRole("button", { name: "Entendi, vamos começar" }).click();
+  await page.getByRole('button', { name: 'Entendi, vamos começar' }).click();
   if (passarTriagem) await passarTriagem(page);
   else await triagemNenhuma(page);
   await p();
 
-  await expect(
-    page.getByRole("heading", { name: "Sua experiência com musculação" }),
-  ).toBeVisible();
+  await expect(page.getByRole('heading', { name: 'Sua experiência com musculação' })).toBeVisible();
   await grupo(page, /sem parar/)
-    .getByLabel("Menos de 6 meses")
+    .getByLabel('Menos de 6 meses')
     .check();
   await grupo(page, /treinando agora/)
     .getByLabel(/^Estou treinando/)
@@ -98,65 +77,49 @@ export async function ana(
   await grupo(page, /confiança na técnica/)
     .getByLabel(/^Sim/)
     .check();
-  await expect(
-    page.getByRole("heading", { name: "Seu nível: Iniciante" }),
-  ).toBeVisible();
+  await expect(page.getByRole('heading', { name: 'Seu nível: Iniciante' })).toBeVisible();
   await p();
-  await page.getByRole("button", { name: "Continuar" }).click();
+  await page.getByRole('button', { name: 'Continuar' }).click();
 
-  await expect(
-    page.getByRole("heading", { name: "Sua rotina de treino" }),
-  ).toBeVisible();
+  await expect(page.getByRole('heading', { name: 'Sua rotina de treino' })).toBeVisible();
   await grupo(page, /Quantos dias/)
-    .getByLabel("3 dias")
+    .getByLabel('3 dias')
     .check();
   await minutosPorTreino(page, minutos);
-  await page.getByLabel("Pernas", { exact: true }).check();
-  await page.getByLabel("Glúteos", { exact: true }).check();
+  await page.getByLabel('Pernas', { exact: true }).check();
+  await page.getByLabel('Glúteos', { exact: true }).check();
   // A divisão saiu do cadastro (design v2, item E): é escolhida depois, em "Meus dados".
   await p();
-  await page.getByRole("button", { name: "Continuar" }).click();
+  await page.getByRole('button', { name: 'Continuar' }).click();
 
-  await expect(
-    page.getByRole("heading", { name: "Que equipamento você tem?" }),
-  ).toBeVisible();
-  await page.getByLabel("Halteres fixos", { exact: true }).check();
-  await grupo(page, "O mais leve").getByLabel("1 kg", { exact: true }).check();
-  await grupo(page, "O mais pesado")
-    .getByLabel("12 kg", { exact: true })
-    .check();
-  await grupo(page, "De quanto em quanto")
-    .getByLabel("1 kg", { exact: true })
-    .check();
-  await page.getByLabel("Banco reto", { exact: true }).check();
+  await expect(page.getByRole('heading', { name: 'Que equipamento você tem?' })).toBeVisible();
+  await page.getByLabel('Halteres fixos', { exact: true }).check();
+  await grupo(page, 'O mais leve').getByLabel('1 kg', { exact: true }).check();
+  await grupo(page, 'O mais pesado').getByLabel('12 kg', { exact: true }).check();
+  await grupo(page, 'De quanto em quanto').getByLabel('1 kg', { exact: true }).check();
+  await page.getByLabel('Banco reto', { exact: true }).check();
   if (equipamentoExtra) await equipamentoExtra(page);
   await p();
-  await page.getByRole("button", { name: "Continuar" }).click();
+  await page.getByRole('button', { name: 'Continuar' }).click();
 
-  await expect(
-    page.getByRole("heading", { name: "Tudo certo?" }),
-  ).toBeVisible();
+  await expect(page.getByRole('heading', { name: 'Tudo certo?' })).toBeVisible();
   await p();
-  await page.getByRole("button", { name: "Gerar meu programa" }).click();
-  await expect(
-    page.getByRole("heading", { name: "Seu treino", exact: true }),
-  ).toBeVisible();
+  await page.getByRole('button', { name: 'Gerar meu programa' }).click();
+  await expect(page.getByRole('heading', { name: 'Seu treino', exact: true })).toBeVisible();
   if (divisao) await escolherDivisao(page, divisao);
 }
 
 /** Escolhe a divisão em "Meus dados" → "Mudar a rotina ou a divisão" e aceita a versão nova do programa. */
 export async function escolherDivisao(page: Page, divisao: string) {
-  await page.goto("/dados");
-  await page.getByRole("link", { name: "Mudar a rotina ou a divisão" }).click();
+  await page.goto('/dados');
+  await page.getByRole('link', { name: 'Mudar a rotina ou a divisão' }).click();
   await grupo(page, /Como prefere dividir/)
     .getByLabel(divisao)
     .check();
-  await page.getByRole("button", { name: "Salvar" }).click();
-  await expect(
-    page.getByRole("heading", { name: "Seu treino", exact: true }),
-  ).toBeVisible();
-  const atualizar = page.getByRole("button", {
-    name: "Atualizar",
+  await page.getByRole('button', { name: 'Salvar' }).click();
+  await expect(page.getByRole('heading', { name: 'Seu treino', exact: true })).toBeVisible();
+  const atualizar = page.getByRole('button', {
+    name: 'Atualizar',
     exact: true,
   });
   if (await atualizar.isVisible()) await atualizar.click();

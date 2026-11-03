@@ -1,28 +1,24 @@
-import { useEffect, useId, useRef, useState, type ReactNode } from "react";
-import { Link, Navigate } from "react-router-dom";
-import { REGRAS, type Selo as TipoSelo } from "../../domain/regras";
-import {
-  PASSOS,
-  primeiroPassoPendente,
-  type PassoId,
-} from "../../storage/esquema";
-import { useApp } from "./estado";
+import { useEffect, useId, useRef, useState, type ReactNode } from 'react';
+import { Link, Navigate } from 'react-router-dom';
+import { REGRAS, type Selo as TipoSelo } from '../../domain/regras';
+import { PASSOS, primeiroPassoPendente, type PassoId } from '../../storage/esquema';
+import { useApp } from './estado';
 
 // Peças de interface comuns às telas do app (onboarding, programa, dados).
 
 // Design v3 (C8, aprovado pelo Gustavo em 03/11/2026): o selo mostra uma palavra só; o nome inteiro vai para o leitor
 // de tela e aparece com um toque, junto com a regra (sozinho, "consenso" poderia ser lido como consenso científico).
 const SELO_CURTO: Record<TipoSelo, string> = {
-  robusta: "robusta",
-  moderada: "moderada",
-  "um estudo": "1 estudo",
-  consenso: "consenso",
+  robusta: 'robusta',
+  moderada: 'moderada',
+  'um estudo': '1 estudo',
+  consenso: 'consenso',
 };
 const SELO_LONGO: Record<TipoSelo, string> = {
-  robusta: "Evidência robusta",
-  moderada: "Evidência moderada",
-  "um estudo": "Apoiado por um estudo",
-  consenso: "Consenso de especialistas, sem estudo que teste isso",
+  robusta: 'Evidência robusta',
+  moderada: 'Evidência moderada',
+  'um estudo': 'Apoiado por um estudo',
+  consenso: 'Consenso de especialistas, sem estudo que teste isso',
 };
 
 /** Selo de evidência de uma regra de docs/pesquisa/regras.md: uma palavra, que abre o nome inteiro e a regra. */
@@ -35,7 +31,7 @@ export function Selo({ id }: { id: string }) {
     <>
       <button
         type="button"
-        className={`selo selo-${regra.selo.replace(" ", "-")}`}
+        className={`selo selo-${regra.selo.replace(' ', '-')}`}
         aria-expanded={aberto}
         aria-controls={aberto ? detalhe : undefined}
         onClick={(e) => {
@@ -45,9 +41,7 @@ export function Selo({ id }: { id: string }) {
         }}
       >
         <span className="selo-pilula">{SELO_CURTO[regra.selo]}</span>
-        <span className="sr">
-          . {SELO_LONGO[regra.selo]}. Toque para ver a regra
-        </span>
+        <span className="sr">. {SELO_LONGO[regra.selo]}. Toque para ver a regra</span>
       </button>
       {/* só existe aberto: fechado, o texto da regra não entra na página (nem na busca do leitor de tela) */}
       {aberto && (
@@ -77,13 +71,9 @@ export function Topo({ direita }: { direita?: ReactNode }) {
  * Navegação fixa embaixo, ao alcance do polegar (design v2, item H): o treino, a semana e os dados.
  * Fica nas telas de início; no treino em andamento e no cadastro, não (ali a tela é uma tarefa só).
  */
-export function NavInferior({
-  atual,
-}: {
-  atual: "treino" | "semana" | "dados";
-}) {
+export function NavInferior({ atual }: { atual: 'treino' | 'semana' | 'dados' }) {
   const item = (id: typeof atual, para: string, rotulo: string, d: string) => (
-    <Link to={para} aria-current={atual === id ? "page" : undefined}>
+    <Link to={para} aria-current={atual === id ? 'page' : undefined}>
       <svg viewBox="0 0 24 24" aria-hidden="true">
         <path d={d} />
       </svg>
@@ -92,24 +82,9 @@ export function NavInferior({
   );
   return (
     <nav className="nav-inferior" aria-label="Seções">
-      {item(
-        "treino",
-        "/programa",
-        "Treino",
-        "M6.5 6.5v11M17.5 6.5v11M3.5 9v6M20.5 9v6M6.5 12h11",
-      )}
-      {item(
-        "semana",
-        "/semana",
-        "Semana",
-        "M4 5h16v15H4zM4 10h16M9 3v4M15 3v4",
-      )}
-      {item(
-        "dados",
-        "/dados",
-        "Meus dados",
-        "M12 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM4 21a8 8 0 0 1 16 0",
-      )}
+      {item('treino', '/programa', 'Treino', 'M6.5 6.5v11M17.5 6.5v11M3.5 9v6M20.5 9v6M6.5 12h11')}
+      {item('semana', '/semana', 'Semana', 'M4 5h16v15H4zM4 10h16M9 3v4M15 3v4')}
+      {item('dados', '/dados', 'Meus dados', 'M12 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM4 21a8 8 0 0 1 16 0')}
     </nav>
   );
 }
@@ -121,12 +96,10 @@ export function NavInferior({
 export function Revelar({ children }: { children: ReactNode }) {
   const ref = useRef<HTMLDivElement>(null);
   useEffect(() => {
-    const reduz = window.matchMedia?.(
-      "(prefers-reduced-motion: reduce)",
-    ).matches;
+    const reduz = window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
     ref.current?.scrollIntoView?.({
-      behavior: reduz ? "auto" : "smooth",
-      block: "nearest",
+      behavior: reduz ? 'auto' : 'smooth',
+      block: 'nearest',
     });
   }, []);
   return (
@@ -153,31 +126,16 @@ export function Titulo({ children }: { children: ReactNode }) {
  * Moldura de um passo do onboarding: barra de progresso "Passo X de N" (padrão do GOV.UK) e guarda de rota.
  * Se um passo anterior está pendente, manda a pessoa para ele.
  */
-export function Passo({
-  id,
-  titulo,
-  children,
-}: {
-  id: PassoId;
-  titulo: string;
-  children: ReactNode;
-}) {
+export function Passo({ id, titulo, children }: { id: PassoId; titulo: string; children: ReactNode }) {
   const { estado, carregado } = useApp();
   if (!carregado) return null;
   const indice = PASSOS.findIndex((p) => p.id === id);
   const pendente = primeiroPassoPendente(estado);
-  if (pendente && PASSOS.findIndex((p) => p.id === pendente.id) < indice)
-    return <Navigate to={pendente.rota} replace />;
+  if (pendente && PASSOS.findIndex((p) => p.id === pendente.id) < indice) return <Navigate to={pendente.rota} replace />;
   const anterior = PASSOS[indice - 1];
   return (
     <div className="wrap app">
-      <Topo
-        direita={
-          estado.programa && !pendente ? (
-            <Link to="/programa">Meu programa</Link>
-          ) : undefined
-        }
-      />
+      <Topo direita={estado.programa && !pendente ? <Link to="/programa">Meu programa</Link> : undefined} />
       <div className="progresso">
         <span>
           Passo {indice + 1} de {PASSOS.length}
@@ -222,11 +180,7 @@ export function Escolha<T extends string | number>({
   const auto = useId();
   const n = nome ?? auto;
   return (
-    <fieldset
-      className={`campo${erro ? " com-erro" : ""}`}
-      aria-invalid={erro ? true : undefined}
-      aria-describedby={erro ? `${n}-erro` : undefined}
-    >
+    <fieldset className={`campo${erro ? ' com-erro' : ''}`} aria-invalid={erro ? true : undefined} aria-describedby={erro ? `${n}-erro` : undefined}>
       <legend>{legenda}</legend>
       {ajuda && <p className="ajuda">{ajuda}</p>}
       {erro && (
@@ -234,15 +188,10 @@ export function Escolha<T extends string | number>({
           {erro}
         </p>
       )}
-      <div className={linha ? "opcoes linha" : "opcoes"}>
+      <div className={linha ? 'opcoes linha' : 'opcoes'}>
         {opcoes.map((o) => (
           <label key={String(o.id)} className="opcao">
-            <input
-              type="radio"
-              name={n}
-              checked={valor === o.id}
-              onChange={() => aoMudar(o.id)}
-            />
+            <input type="radio" name={n} checked={valor === o.id} onChange={() => aoMudar(o.id)} />
             <span>{o.texto}</span>
           </label>
         ))}
@@ -252,22 +201,10 @@ export function Escolha<T extends string | number>({
 }
 
 /** Caixa de seleção com área de toque grande. */
-export function Marcar({
-  marcado,
-  aoMudar,
-  children,
-}: {
-  marcado: boolean;
-  aoMudar: (v: boolean) => void;
-  children: ReactNode;
-}) {
+export function Marcar({ marcado, aoMudar, children }: { marcado: boolean; aoMudar: (v: boolean) => void; children: ReactNode }) {
   return (
     <label className="opcao">
-      <input
-        type="checkbox"
-        checked={marcado}
-        onChange={(e) => aoMudar(e.target.checked)}
-      />
+      <input type="checkbox" checked={marcado} onChange={(e) => aoMudar(e.target.checked)} />
       <span>{children}</span>
     </label>
   );
@@ -296,12 +233,9 @@ export function Numero({
   sufixo?: string;
 }) {
   const id = useId();
-  const desc =
-    [ajuda ? `${id}-ajuda` : "", erro ? `${id}-erro` : ""]
-      .filter(Boolean)
-      .join(" ") || undefined;
+  const desc = [ajuda ? `${id}-ajuda` : '', erro ? `${id}-erro` : ''].filter(Boolean).join(' ') || undefined;
   return (
-    <div className={`campo${erro ? " com-erro" : ""}`}>
+    <div className={`campo${erro ? ' com-erro' : ''}`}>
       <label htmlFor={id} className="rotulo">
         {rotulo}
       </label>
@@ -323,7 +257,7 @@ export function Numero({
           value={valor}
           min={min}
           max={max}
-          step={passo ?? "any"}
+          step={passo ?? 'any'}
           onChange={(e) => aoMudar(e.target.value)}
           aria-invalid={erro ? true : undefined}
           aria-describedby={desc}
@@ -350,7 +284,7 @@ export function Erros({ erros }: { erros: string[] }) {
 }
 
 export const numeroOu = (s: string): number | undefined => {
-  if (s.trim() === "") return undefined;
-  const n = Number(s.replace(",", "."));
+  if (s.trim() === '') return undefined;
+  const n = Number(s.replace(',', '.'));
   return Number.isFinite(n) ? n : undefined;
 };

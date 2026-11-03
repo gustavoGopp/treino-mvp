@@ -1,5 +1,5 @@
-import type { Articulacao } from "../biblioteca";
-import { r } from "../regras";
+import type { Articulacao } from '../biblioteca';
+import { r } from '../regras';
 
 // Triagem de prontidão no estilo do PAR-Q+ (seguranca.triagem). As perguntas são próprias do app:
 // o texto oficial do PAR-Q+ só entra depois de confirmada a licença (seguranca.triagem.texto).
@@ -17,59 +17,38 @@ const P = <const I extends string>(id: I, destaque: string, resto: string) => ({
 });
 
 export const PERGUNTAS = [
-  P("coracao", "Problema no coração ou pressão alta", ", dito por um médico"),
-  P("peito", "Dor no peito", ": parado, no dia a dia ou no esforço"),
-  P(
-    "tontura",
-    "Desmaio, ou tontura com perda de equilíbrio",
-    ", nos últimos 12 meses",
-  ),
-  P(
-    "doenca-cronica",
-    "Outra doença crônica",
-    " diagnosticada, além de problema no coração ou pressão alta",
-  ),
-  P("medicamento", "Remédio receitado", " que você toma para doença crônica"),
-  P(
-    "osteoarticular",
-    "Problema em osso, articulação, músculo ou tendão",
-    " que pode piorar com exercício, agora ou nos últimos 12 meses",
-  ),
-  P(
-    "supervisao",
-    "Um médico disse",
-    " para você só fazer exercício com acompanhamento",
-  ),
-  P("gravidez", "Grávida agora, ou parto", " nos últimos 6 meses"),
-  P(
-    "doenca-aguda",
-    "Febre, gripe forte",
-    " ou se recuperando de alguma doença, agora",
-  ),
+  P('coracao', 'Problema no coração ou pressão alta', ', dito por um médico'),
+  P('peito', 'Dor no peito', ': parado, no dia a dia ou no esforço'),
+  P('tontura', 'Desmaio, ou tontura com perda de equilíbrio', ', nos últimos 12 meses'),
+  P('doenca-cronica', 'Outra doença crônica', ' diagnosticada, além de problema no coração ou pressão alta'),
+  P('medicamento', 'Remédio receitado', ' que você toma para doença crônica'),
+  P('osteoarticular', 'Problema em osso, articulação, músculo ou tendão', ' que pode piorar com exercício, agora ou nos últimos 12 meses'),
+  P('supervisao', 'Um médico disse', ' para você só fazer exercício com acompanhamento'),
+  P('gravidez', 'Grávida agora, ou parto', ' nos últimos 6 meses'),
+  P('doenca-aguda', 'Febre, gripe forte', ' ou se recuperando de alguma doença, agora'),
 ] as const;
 
 /** Os 3 grupos da lista (seguranca.triagem.nenhuma, design v3): as 9 à vista, agrupadas para achar de relance. */
 export const GRUPOS_TRIAGEM: readonly {
   nome: string;
-  ids: readonly (typeof PERGUNTAS)[number]["id"][];
+  ids: readonly (typeof PERGUNTAS)[number]['id'][];
 }[] = [
-  { nome: "Coração e circulação", ids: ["coracao", "peito", "tontura"] },
+  { nome: 'Coração e circulação', ids: ['coracao', 'peito', 'tontura'] },
   {
-    nome: "Doenças e remédios",
-    ids: ["doenca-cronica", "medicamento", "supervisao"],
+    nome: 'Doenças e remédios',
+    ids: ['doenca-cronica', 'medicamento', 'supervisao'],
   },
   {
-    nome: "Agora ou recente",
-    ids: ["osteoarticular", "gravidez", "doenca-aguda"],
+    nome: 'Agora ou recente',
+    ids: ['osteoarticular', 'gravidez', 'doenca-aguda'],
   },
 ];
 
-export type PerguntaId = (typeof PERGUNTAS)[number]["id"];
+export type PerguntaId = (typeof PERGUNTAS)[number]['id'];
 export type Respostas = Record<PerguntaId, boolean>;
 
 /** "Não tenho nenhuma destas" (seguranca.triagem.nenhuma): "não" em todas, depois de a pessoa passar pela lista das 9. */
-export const respostasNenhuma = (): Respostas =>
-  Object.fromEntries(PERGUNTAS.map((p) => [p.id, false])) as Respostas;
+export const respostasNenhuma = (): Respostas => Object.fromEntries(PERGUNTAS.map((p) => [p.id, false])) as Respostas;
 
 /**
  * Região marcada na pergunta osteoarticular, com a nota da dor de hoje (0 a 10). É o único lugar onde a dor
@@ -98,31 +77,28 @@ export type ResultadoTriagem = {
   regraId: string;
 };
 
-export type EfeitoDor = "exclui" | "prefere-outros" | "lembrete";
+export type EfeitoDor = 'exclui' | 'prefere-outros' | 'lembrete';
 
 /** O que a nota de hoje faz no programa (seguranca.dor.programa). */
 export function efeitoDaDor(nota: number | undefined): EfeitoDor {
-  if (nota === undefined || nota > 5) return "exclui";
-  if (nota >= 3) return "prefere-outros";
-  return "lembrete";
+  if (nota === undefined || nota > 5) return 'exclui';
+  if (nota >= 3) return 'prefere-outros';
+  return 'lembrete';
 }
 
 function porDor(dores: DorRegiao[] | undefined) {
-  const lista = [...(dores ?? [])].sort((a, b) =>
-    a.articulacao.localeCompare(b.articulacao),
-  );
-  const de = (e: EfeitoDor) =>
-    lista.filter((d) => efeitoDaDor(d.nota) === e).map((d) => d.articulacao);
+  const lista = [...(dores ?? [])].sort((a, b) => a.articulacao.localeCompare(b.articulacao));
+  const de = (e: EfeitoDor) => lista.filter((d) => efeitoDaDor(d.nota) === e).map((d) => d.articulacao);
   return {
     dores: lista,
-    regioesExcluidas: de("exclui"),
-    regioesDorLeve: de("prefere-outros"),
+    regioesExcluidas: de('exclui'),
+    regioesDorLeve: de('prefere-outros'),
   };
 }
 
 export function avaliarTriagem(t: Triagem): ResultadoTriagem {
   const sins = PERGUNTAS.map((p) => p.id).filter((id) => t.respostas[id]);
-  const soOsteo = sins.length === 1 && sins[0] === "osteoarticular";
+  const soOsteo = sins.length === 1 && sins[0] === 'osteoarticular';
   const dor = porDor(t.dores);
 
   // Sem "sim": nada a excluir, salvo dores que vieram de um estado antigo (migração 4 → 5), que continuam valendo.
@@ -131,8 +107,8 @@ export function avaliarTriagem(t: Triagem): ResultadoTriagem {
       bloqueado: false,
       motivos: [],
       ...dor,
-      mensagem: "Tudo certo para começar.",
-      regraId: r("seguranca.triagem"),
+      mensagem: 'Tudo certo para começar.',
+      regraId: r('seguranca.triagem'),
     };
 
   if (soOsteo && dor.dores.length)
@@ -141,8 +117,8 @@ export function avaliarTriagem(t: Triagem): ResultadoTriagem {
       motivos: sins,
       ...dor,
       mensagem:
-        "Vamos montar o programa pela dor de hoje: acima de 5, os exercícios que carregam a região ficam de fora; de 3 a 5, o app prefere outros. Se a dor aparecer ou piorar, procure avaliação profissional.",
-      regraId: r("seguranca.triagem.osteoarticular"),
+        'Vamos montar o programa pela dor de hoje: acima de 5, os exercícios que carregam a região ficam de fora; de 3 a 5, o app prefere outros. Se a dor aparecer ou piorar, procure avaliação profissional.',
+      regraId: r('seguranca.triagem.osteoarticular'),
     };
 
   if (t.liberacaoConfirmada)
@@ -150,9 +126,8 @@ export function avaliarTriagem(t: Triagem): ResultadoTriagem {
       bloqueado: false,
       motivos: sins,
       ...dor,
-      mensagem:
-        "Liberação confirmada. Siga as orientações do profissional que te avaliou.",
-      regraId: r("seguranca.triagem"),
+      mensagem: 'Liberação confirmada. Siga as orientações do profissional que te avaliou.',
+      regraId: r('seguranca.triagem'),
     };
 
   return {
@@ -161,69 +136,52 @@ export function avaliarTriagem(t: Triagem): ResultadoTriagem {
     regioesExcluidas: [],
     regioesDorLeve: [],
     dores: dor.dores,
-    mensagem:
-      "Procure um médico ou profissional de Educação Física. Depois da liberação, confirme aqui e o app monta seu treino.",
-    regraId: r("seguranca.triagem"),
+    mensagem: 'Procure um médico ou profissional de Educação Física. Depois da liberação, confirme aqui e o app monta seu treino.',
+    regraId: r('seguranca.triagem'),
   };
 }
 
 export type AcaoDor = {
-  acao: "seguir" | "ajustar" | "encerrar-exercicio";
+  acao: 'seguir' | 'ajustar' | 'encerrar-exercicio';
   mensagem: string;
   regraId: string;
 };
 
 /** Dor relatada numa série, de 0 a 10 (seguranca.dor.escala). Dor aguda encerra o exercício em qualquer nota. */
 export function avaliarDor(nota: number, aguda = false): AcaoDor {
-  const regraId = r("seguranca.dor.escala");
+  const regraId = r('seguranca.dor.escala');
   if (aguda || nota > 5)
     return {
-      acao: "encerrar-exercicio",
-      mensagem:
-        "Pare este exercício e use a alternativa. Se a dor continuar ou voltar, procure avaliação profissional.",
+      acao: 'encerrar-exercicio',
+      mensagem: 'Pare este exercício e use a alternativa. Se a dor continuar ou voltar, procure avaliação profissional.',
       regraId,
     };
   if (nota >= 3)
     return {
-      acao: "ajustar",
-      mensagem:
-        "Reduza a carga em 10–20%, encurte a amplitude ou desacelere. Se a dor não diminuir, troque pela alternativa.",
+      acao: 'ajustar',
+      mensagem: 'Reduza a carga em 10–20%, encurte a amplitude ou desacelere. Se a dor não diminuir, troque pela alternativa.',
       regraId,
     };
-  return { acao: "seguir", mensagem: "Pode seguir.", regraId };
+  return { acao: 'seguir', mensagem: 'Pode seguir.', regraId };
 }
 
-export type Sinal =
-  | "peito"
-  | "falta-de-ar"
-  | "tontura"
-  | "palpitacao"
-  | "dor-articular-aguda"
-  | "formigamento"
-  | "perda-de-forca";
+export type Sinal = 'peito' | 'falta-de-ar' | 'tontura' | 'palpitacao' | 'dor-articular-aguda' | 'formigamento' | 'perda-de-forca';
 
 /** Sinais de alerta durante o treino (seguranca.alerta.*). */
 export function avaliarSinal(s: Sinal): {
-  acao: "encerrar-sessao" | "encerrar-exercicio";
+  acao: 'encerrar-sessao' | 'encerrar-exercicio';
   mensagem: string;
   regraId: string;
 } {
-  if (
-    s === "peito" ||
-    s === "falta-de-ar" ||
-    s === "tontura" ||
-    s === "palpitacao"
-  )
+  if (s === 'peito' || s === 'falta-de-ar' || s === 'tontura' || s === 'palpitacao')
     return {
-      acao: "encerrar-sessao",
-      mensagem:
-        "Pare o treino agora e descanse. Se o sintoma não passar em poucos minutos, ligue para o SAMU (192).",
-      regraId: r("seguranca.alerta.cardiovascular"),
+      acao: 'encerrar-sessao',
+      mensagem: 'Pare o treino agora e descanse. Se o sintoma não passar em poucos minutos, ligue para o SAMU (192).',
+      regraId: r('seguranca.alerta.cardiovascular'),
     };
   return {
-    acao: "encerrar-exercicio",
-    mensagem:
-      "Pare este exercício e use a alternativa. Se o sintoma continuar, procure avaliação profissional.",
-    regraId: r("seguranca.alerta.musculoesqueletico"),
+    acao: 'encerrar-exercicio',
+    mensagem: 'Pare este exercício e use a alternativa. Se o sintoma continuar, procure avaliação profissional.',
+    regraId: r('seguranca.alerta.musculoesqueletico'),
   };
 }
