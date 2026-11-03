@@ -4,7 +4,8 @@ import { CONTEUDO } from '../../conteudo';
 import { prescricaoNoGuia } from '../../domain/sessao';
 import { hojeDoEstado, hojeDoTreino } from '../treino/acoes';
 import { DIAS, EX, VIEWS } from '../../engine';
-import { montarSvgEstilo, type Estilo } from '../../engine/estilo';
+import { montarSvgEstilo, vistaDaMiniatura, type Estilo } from '../../engine/estilo';
+import { instante } from '../programa/Miniatura';
 import { useEstiloBoneco } from '../app/estiloBoneco';
 import { agoraIso, fusoDoAparelho, useApp } from '../app/estado';
 import { lerContexto, linkDoGuia } from './link';
@@ -144,9 +145,20 @@ function GuiaExercicio({ ex }: { ex: Animacao }) {
     const n = (i + dia.ex.length) % dia.ex.length;
     navigate(minha ? linkMeu(meus[n]!.x.exId, meus[n]!.x.animacaoId!) : `/guia/${dia.ex[n]!.id}`);
   };
+  // Design v2 (opção 2 dos adutores): o modo Músculos abre na vista em que o músculo principal aparece mais, a mesma
+  // regra da miniatura (vistaDaMiniatura), a menos que a pessoa já tenha escolhido uma vista neste exercício.
+  const vistaManual = useRef<string | null>(null);
+  useEffect(() => {
+    vistaManual.current = null;
+  }, [ex]);
+  const escolherVista = (v: string) => {
+    vistaManual.current = v;
+    setVista(v);
+  };
   const trocarModo = (m: Modo) => {
     setModo(m);
-    if (m === 'err') {
+    if (m === 'mus' && !vistaManual.current && estilo !== 'atual') setVista(vistaDaMiniatura(ex, instante(ex), estilo));
+    else if (m === 'err') {
       setErro(0);
       setVista(ex.errors[0].view);
       t.current = 0;
@@ -263,7 +275,7 @@ function GuiaExercicio({ ex }: { ex: Animacao }) {
           </button>
           <div className="seg" role="group" aria-label="Visão">
             {vistas.map((v) => (
-              <button key={v} aria-pressed={v === vista} onClick={() => setVista(v)}>
+              <button key={v} aria-pressed={v === vista} onClick={() => escolherVista(v)}>
                 {VIEWS[v as keyof typeof VIEWS].name}
               </button>
             ))}
