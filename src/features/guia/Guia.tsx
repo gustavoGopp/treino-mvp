@@ -5,6 +5,7 @@ import { prescricaoNoGuia } from '../../domain/sessao';
 import { hojeDoEstado, hojeDoTreino } from '../treino/acoes';
 import { DIAS, EX, VIEWS } from '../../engine';
 import { montarSvgEstilo, vistaDaMiniatura, type Estilo } from '../../engine/estilo';
+import { SO_AJUDA } from '../../engine/estilo/musculos';
 import { instante } from '../programa/Miniatura';
 import { useEstiloBoneco } from '../app/estiloBoneco';
 import { agoraIso, fusoDoAparelho, useApp } from '../app/estado';
@@ -290,6 +291,7 @@ function GuiaExercicio({ ex }: { ex: Animacao }) {
         </div>
         <div className="modeinfo">
           <InfoModo
+            soAjuda={!!SO_AJUDA[ex.id]?.length}
             estilo={estilo}
             modo={modo}
             erro={erro}
@@ -336,12 +338,14 @@ function GuiaExercicio({ ex }: { ex: Animacao }) {
 }
 
 function InfoModo({
+  soAjuda,
   estilo,
   modo,
   erro,
   txt,
   onErro,
 }: {
+  soAjuda: boolean;
   estilo: Estilo;
   modo: Modo;
   erro: number;
@@ -406,8 +410,14 @@ function InfoModo({
           </span>
           <span>
             <i className="sw" style={{ background: classico ? 'var(--mus-s)' : 'var(--m-s)' }} />
-            secundários
+            {classico ? 'secundários' : 'também trabalha (conta meia série)'}
           </span>
+          {soAjuda && !classico && (
+            <span>
+              <i className="sw listras" />
+              só ajuda a firmar
+            </span>
+          )}
         </div>
         <div>
           <b>Onde sentir:</b> {txt.feel}

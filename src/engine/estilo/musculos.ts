@@ -410,19 +410,51 @@ export function listaDe(ex) {
   return [...out.values()].sort((a, b) => pos(a) - pos(b));
 }
 
+/**
+ * Músculos que só ajudam a firmar (desenhados, mas que a biblioteca não conta naquele exercício): ficam listrados de
+ * laranja, para não se confundirem com o secundário que conta meia série (legenda A, decisão do Gustavo em
+ * 03/11/2026; docs/revisoes/design.md, ponto 2). tests/unit/legenda.test.ts confere esta lista contra a biblioteca.
+ */
+export const SO_AJUDA: Record<string, string[]> = {
+  'abdominal-chao': ['obliquos'],
+  'abdominal-polia': ['obliquos'],
+  'barra-fixa': ['antebraco'],
+  desenvolvimento: ['trapSuperior'],
+  'elevacao-halteres': ['deltAnt'],
+  'elevacao-joelhos': ['obliquos', 'antebraco'],
+  'elevacao-lateral': ['deltAnt'],
+  flexao: ['retoAbdominal'],
+  'flexao-bola': ['panturrilha'],
+  'rosca-alternada': ['antebraco'],
+  'rosca-inclinada': ['antebraco'],
+  'rosca-polia': ['antebraco'],
+  stiff: ['eretores'],
+  'stiff-unilateral': ['eretores'],
+  'triceps-frances': ['retoAbdominal'],
+};
+// O padrão das listras (as cores vêm do CSS: .mh-fundo e .mh-listra).
+const LISTRAS = `<defs><pattern id="mh-listras" width="3.2" height="3.2" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="3.2" height="3.2" class="mh-fundo"/><rect width="1.6" height="3.2" class="mh-listra"/></pattern></defs>`;
+
 /** Área na tela dos músculos principais do último desenho (para escolher a vista da miniatura do cartão). */
 export const medida = { areaPrincipal: 0 };
 const area = (Q) => Math.abs(Q.reduce((s, q, i) => { const r = Q[(i + 1) % Q.length]; return s + q[0] * r[1] - r[0] * q[1]; }, 0)) / 2;
 
 export function musculosNovos(ex, sk, partes, estilo) {
   medida.areaPrincipal = 0;
-  for (const [id, lados, tipo] of listaDe(ex)) {
+  const soAjuda = SO_AJUDA[ex.id] ?? [];
+  let listras = false;
+  for (const [id, lados, tipo0] of listaDe(ex)) {
+    const tipo = tipo0 === 's' && soAjuda.includes(id) ? 'h' : tipo0;
     for (const k of lados === 'RL' ? ['R', 'L'] : [lados]) {
       const m = FORMAS[id](sk, k === 'C' ? 'R' : k);
       if (m.n && CTX.PJ(m.n)[2] < -0.25) continue; // face virada para o outro lado
       const d = m.host === 'tronco' ? partes.tronco : partes[m.host][k === 'C' ? 'R' : k]; // por cima da parte, por baixo do que está na frente
       const Q = m.q ?? m.p.map(CTX.PJ);
       if (tipo === 'p') medida.areaPrincipal += area(Q);
+      if (tipo === 'h' && !listras) {
+        listras = true;
+        push(0, -1e9, LISTRAS);
+      }
       push(1, d, `<path d="${caminhoSuave(Q)}" class="e${estilo}-m${tipo}" stroke-width="${estilo === 'a' ? 0.9 : 0.8}"/>`);
     }
   }
