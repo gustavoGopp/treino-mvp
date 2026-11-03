@@ -333,3 +333,52 @@ Decididas em 03/11/2026, item a item.
 - a mesa é, como a mochila e o galão, um equipamento improvisado, que o Gustavo decidiu deixar fora ("se é literalmente uma mochila, um galão, não entra"); seria incoerente aceitar a mesa e recusar a mochila.
 
 **Decisão: não entra.** O que fica no lugar: o aviso de que costas, bíceps e ombro de trás ficam sem exercício (`equipamento.sem-ancoragem`). Registrado no backlog, para reabrir se aparecer estudo de segurança ou se o app passar a perguntar pelos móveis da casa (item 8).
+
+## Depois das correções (03/11/2026)
+As correções aprovadas entraram no branch `claude/affectionate-shannon-16bhl3`, cada uma com teste (`git log`). `npm run auditoria` foi rodado de novo; os arquivos em `docs/revisoes/equipamento-minimo/` e `docs/revisoes/auditoria/` já são os de depois.
+
+| Medida (equipamento mínimo, 483.840 programas) | Antes | Depois |
+|---|---|---|
+| Sem nada: séries por semana de posteriores / tríceps / peito / glúteos | 0 / 2,6 / 5,1 / 8,1 | **6,7 / 5,1 / 6,5 / 10,2** |
+| Sem nada: programas sem dor com os posteriores em 0 | 100% | **0%** |
+| Todos os cenários: ocorrências de posteriores em 0 sem dor | 41.338 | **180** |
+| Vagas que somem só com o aviso do músculo: dobrar o quadril, flexão de joelho, tríceps complemento | 354.745 / 337.776 / 324.709 | **0 / 0 / 0** (agora têm exercício) |
+| Empurrar vertical que some sem aviso nenhum | 266.112 | **0** (o pike) |
+| Sem nada para puxar: aviso da vaga dizendo o que falta | não existia | **em todo programa** (`equipamento.sem-ancoragem`), sem sugerir compra |
+| Avisos que sugerem compra | 0 | 0 |
+| Dia de "Puxar" ou "Superior" sem tronco com o aviso falso "para os músculos do dia" | todos | **0**: o aviso diz "exercícios de outros músculos", e sem divisão escolhida a recomendada é a de corpo todo |
+| Sem nada: prescrições sem guia nenhum | 21,6% | **0%** (todo exercício tem cartão de texto) |
+| Sem nada: prescrições com animação | 59% | 41% **até a sua aprovação das 9 folhas**; com elas, todo exercício do cenário vazio fica animado |
+| Sem nada, 90 min: dia mais longo (mediana) | 42 min | 50 min |
+| Progressão: casos simulados que não sobem em 16 semanas | 30 de 52 | **12 de 52** (8 deles com uma carga só: um par de halteres ou um kettlebell) |
+| Progressão: semana da 1ª subida (mediana) | 15 | **10** |
+| Auditoria geral (149.760 programas): prescrições sem guia nenhum | 18% | **15%** |
+| Auditoria geral: posteriores em 0 sem dor | 1.692 | **180** |
+
+**O que não mudou, de propósito:** costas, bíceps e ombro de trás continuam em 0 sem nada para puxar (33.600 programas). A mesa, a mochila e o galão ficaram fora (perguntas 3 e 4), e o app agora diz isso com todas as letras. Os dias de superior sem tronco continuam quando a pessoa **escolhe** uma divisão com dia de puxar (7.118 dias sem dor na grade, que escolhe todas as divisões); agora com o aviso verdadeiro e o aviso da divisão.
+
+**Efeitos colaterais, medidos (auditoria geral):**
+- volume acima do máximo do nível em quem não priorizou: peito 964 → 2.506 e tríceps 1.004 → 2.576 programas, pela flexão com as mãos juntas, que entra como complemento de tríceps quando não há polia; glúteo 4.178 → 4.956, pela flexão deslizante, que também conta meia série de glúteo;
+- exercício em todos os dias: 23.063 → 25.537, porque a deslizante aparece em mais dias em casa.
+
+**Correções que apareceram no caminho**, todas com teste:
+- o corte de tempo podia tirar o único exercício de um músculo que já estava abaixo do piso, e ele ia a zero; agora nunca zera;
+- a vaga "dobrar o quadril" sem exercício recorre à flexão de joelho, como a flexão de joelho já recorria a ela;
+- `scripts/folha-animacao.mjs` grava um HTML por exercício, porque duas folhas ao mesmo tempo trocavam o desenho.
+
+**Snapshots** para a sua revisão (antes → depois):
+- **Ana:** a flexão de joelho deslizante entra no Corpo todo A no lugar do stiff, e o B fica com o stiff bilateral no lugar do unilateral. Posteriores 7 → 7, glúteos 10,5 → 11, quadríceps 6 → 7.
+- **Diego:** só as faixas novas (flexão 8–15, barra 5–10, elásticos 10–16).
+- **Bruno:** só as faixas novas, nos 2 locais.
+- **Elisa** (nova): 3 dias de corpo todo, com posteriores 6, glúteos 8 e costas 0 com o aviso.
+- **Fábio** (novo): barra fixa e supinada para as costas (8), flexão deslizante e nórdico (posteriores 8).
+
+**Testes:** 549 unitários (eram 501), `npm run check` passando, o e2e novo do "Corpo livre" e os 2 e2e ajustados ao programa novo da Ana. As 31 animações aprovadas e a linha de base do Boneco não mudaram.
+
+**As 9 folhas de contato para aprovar** (uma a uma), em `docs/revisoes/equipamento-minimo/folhas/`:
+- agachamento, afundo e búlgaro com o peso do corpo;
+- barra fixa supinada;
+- ponte de glúteo;
+- flexão com as mãos juntas, pike, flexão de joelho deslizante e nórdico.
+
+Todas dão `ik=0`. Até a aprovação, cada exercício aparece como cartão de texto.

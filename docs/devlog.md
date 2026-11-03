@@ -811,3 +811,43 @@ As listas exatas ficam em `tests/unit/metas-r0.test.ts`, para o R0c zerar.
 > O boneco animado ficou igual, porque estava bom. O que mudou foi tudo em volta dele.
 
 **Na `main`** desde 03/11/2026, com o ok do Gustavo: os branches `revisao-design`, `reformulacao-visual` e `boneco-legenda` entraram sem commit de merge e foram publicados no site. Testes: 517 unitários e 47 no navegador.
+
+## Equipamento mínimo: quem treina com o corpo, ou com um aparelho só (03/11/2026)
+
+**Por quê.** O app precisa funcionar para quem tem menos que o Gustavo: quem treina no quarto, na sala, no hotel, sem nada ou com um aparelho só. A meta foi um programa tão bem fundamentado, seguro e guiado quanto o da academia, dentro do que a evidência permite, e dizer com clareza onde ela não permite.
+
+**O que foi feito**
+- **Mapa e estresse reproduzíveis** (`npm run auditoria`; `scripts/auditoria/minimo*.ts`): o inventário vazio, os 46 itens sozinhos e 5 pares de casa, 483.840 programas. Duas rodadas dão arquivos idênticos. Números em `revisoes/equipamento-minimo/`.
+- **Pesquisa** (`pesquisa-v2/10-equipamento-minimo.md`): 7 perguntas, com selo, lacunas e buscas no PubMed. Três pesquisadores trabalharam em paralelo, e as fontes centrais foram relidas.
+- **Relatório** (`revisoes/equipamento-minimo.md`): 10 achados e 6 perguntas para o Gustavo, com a evidência e o efeito medido.
+
+**Decisões do Gustavo (03/11/2026):**
+- o botão novo do cadastro se chama "Corpo livre";
+- o app não sugere comprar nada: "se a pessoa marcou que não tem nada, ela não tem nada";
+- mochila e galão não entram como carga, e a remada na mesa também não (decidida pela sessão, a pedido dele);
+- todos os exercícios ganham animação;
+- o aviso de limite do peso do corpo é sutil;
+- os três problemas principais foram corrigidos.
+
+**O que mudou no app** (um commit e um teste por correção)
+1. **"Corpo livre"**, o 4º atalho do cadastro: o toque desmarca tudo e explica que o programa usa o chão, uma parede e uma cadeira.
+2. **4 exercícios novos de peso do corpo**, com ficha e cartão: flexão com as mãos juntas, pike, flexão de joelho deslizante e nórdico. Sem nada, os posteriores da coxa iam de 0 para 6,7 séries por semana.
+3. **O dia "Puxar" diz a verdade.** Sem nada para puxar, a divisão recomendada é a de corpo todo. Se a pessoa escolhe outra, o aviso diz "exercícios de outros músculos", e não mais "dos músculos do dia".
+4. **Aviso da vaga sem compra:** "Sem algo para puxar: costas, bíceps e ombro de trás ficam sem exercício…".
+5. **Escada própria por exercício**, guardada como dado. O elástico sobe pelas intensidades informadas. As faixas de repetições ficaram mais estreitas, e o degrau sobe com a 1ª série no topo. No fim da escada, aparece um aviso sutil. No simulador, os casos que não subiam em 16 semanas caíram de 30 para 12 de 52.
+6. **O corte de tempo nunca zera um músculo**, e "dobrar o quadril" recorre à flexão de joelho.
+7. **9 animações em revisão**, com folha de contatos e `ik=0`. Até a aprovação, cada uma aparece como cartão de texto.
+8. **Personas Elisa** (sem nada) **e Fábio** (só barra fixa de porta), teste de propriedade do vazio e de cada item sozinho, e e2e do caminho "Corpo livre".
+
+![O programa de quem não tem nada](img/equipamento-minimo-programa.png)
+
+**Antes × depois** no relatório. Os efeitos colaterais, medidos: mais casos de peito, tríceps e glúteo acima do máximo do nível em quem não priorizou esses músculos, e mais repetição da flexão deslizante entre os dias.
+
+**Testes:** 549 unitários (eram 501), `npm run check` passando, os e2e passando (o "Corpo livre" é novo; 2 foram ajustados ao programa novo da Ana). As 31 animações e a linha de base do Boneco não mudaram.
+
+**Fica para depois** (`backlog.md`): kettlebell como halter, flexão na suspensão, o aviso de tempo que sobra, a lista "o que tem em casa", a flexão com as mãos fechadas para o punho, a remada na mesa e as animações do elástico.
+
+**Rascunho de post para o LinkedIn**
+> Perguntei ao meu app de treino o que ele faria por quem não tem equipamento nenhum. Testei em quase meio milhão de combinações: ninguém se machucava, mas costas, bíceps e a parte de trás da coxa ficavam zeradas. E havia um "dia de puxar" com panturrilha e abdominal, apresentado como se fosse dos músculos do dia.
+>
+> A pesquisa foi clara: sem algo para segurar e puxar, não existe exercício de costas, e nenhum estudo testou a mesa da cozinha ou a mochila cheia. Então o app passou a dizer isso com todas as letras, sem tentar vender nada. E ganhou 4 exercícios com evidência para o resto do corpo, como o nórdico, que cresce a parte de trás da coxa só com o peso do corpo.

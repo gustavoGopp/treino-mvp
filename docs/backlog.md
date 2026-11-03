@@ -61,3 +61,17 @@ Detalhes, números e exemplos em `revisoes/auditoria-treino.md`; a frequência d
 - **Escada por exercício no peso do corpo e no elástico** (achado 8): a da flexão já aprovada (`equipamento.flexao-por-supino`) e os elásticos pela intensidade (1 a N); rever as faixas largas (8–20, 12–25, 15–30), com que a escada quase não anda.
 - **Cascata no 2º local** (achado novo, durante as correções): trocar primeiro todas as vagas com equivalente e só depois preencher as que não têm.
 - **Para a sessão do R3:** medir no export do Gustavo quantas sugestões viram "estagnado" (achado 11). No modelo da auditoria, com progresso lento e normal, metade das sugestões fica "estagnado", e 2 exercícios estagnados sugerem a semana leve.
+
+## Do equipamento mínimo (03/11/2026)
+Detalhes em `revisoes/equipamento-minimo.md` e `pesquisa-v2/10-equipamento-minimo.md`.
+- **Aprovar as 9 folhas de animação** (`revisoes/equipamento-minimo/folhas/`), uma a uma; depois, `aprovar-animacao.mjs` e a regravação da linha de base. As três de perna pedem os adutores no desenho (`estilo/musculos.ts`) para o teste de anatomia continuar passando.
+- **Para o debate com o Gustavo:**
+  - kettlebell como halter nos exercícios de um peso só, e flexão na suspensão (um estudo);
+  - aviso de que o tempo sobra por falta de exercício;
+  - lista "o que tem em casa" (cadeira firme, sofá, chão liso, onde prender o elástico), declarada pela pessoa;
+  - cartão da flexão com as mãos fechadas para quem tem dor leve no punho.
+- **Remada invertida na mesa:** não entrou. Não há estudo de segurança, o app não vê a mesa e o acidente é grave. Reabrir só se aparecer estudo ou se a lista "o que tem em casa" existir.
+- **Mochila, galão e outros objetos como carga:** não entram (decisão do Gustavo).
+- **Animações do elástico** (70% das prescrições com elásticos sem guia): pedem a peça nova no motor (+6 unidades na 1ª, `pesquisa-v2/08`, seção 6).
+- **"Estagnado"** continua em ~48% das sessões do simulador de peso do corpo, com o progresso lento do modelo: medir no export do R3 (achado 11 da auditoria).
+- **Aviso por músculo e por vaga juntos:** sem nada, a pessoa vê "Sem algo para puxar" e mais 4 avisos de músculo; dá para juntar num só.
