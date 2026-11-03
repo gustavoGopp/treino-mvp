@@ -2086,7 +2086,7 @@
    "peso-corpo"
   ],
   "carga": "peso-corpo",
-  "animacaoId": null
+  "animacaoId": "ponte-gluteo"
  },
  {
   "id": "cadeira-flexora",

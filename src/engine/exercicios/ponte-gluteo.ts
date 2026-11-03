@@ -1,10 +1,10 @@
 // @ts-nocheck
-// Animação nova (em revisão). Ponte de glúteo com o peso do corpo: deitado de costas num colchonete, joelhos
+// Animação nova (aprovada). Ponte de glúteo com o peso do corpo: deitado de costas num colchonete, joelhos
 // dobrados, pés no chão a cerca de um palmo dos glúteos, braços no chão ao lado do corpo, um pouco abertos. O quadril sobe até ombros,
 // quadril e joelhos ficarem em linha; ombros e cabeça ficam no chão. Pose nova (partes do abdominal no chão).
 // Técnica e fontes: docs/pesquisa/animacoes/ponte-gluteo.md.
-import { BOX, L3, TX } from '../../desenho';
-import { X, Y, Z } from '../../math';
+import { BOX, L3, TX } from '../desenho';
+import { X, Y, Z } from '../math';
 
 const ex = {
   id:'ponte-gluteo',
@@ -31,7 +31,7 @@ const ex = {
   errors:[
     {id:'lombar',view:'lateral',keys:{mid:{P:[0,25,-2.5],lumbar:-99,thor:-112},top:{P:[0,38,-6],lumbar:-98,thor:-140,neck:-95}}},
     {id:'calcanhar',view:'lateral',keys:{mid:{legR:{ikS:[11,10,36],poleRel:[0,1,.3],ft:[4,-35]}},top:{P:[0,33,-4.5],legR:{ikS:[11,13,38],poleRel:[0,1,.3],ft:[4,-48]}}}},
-    {id:'raso',view:'lateral',keys:{mid:{P:[0,17,-.9],lumbar:-96,thor:-96,neck:-90.5},top:{P:[0,22,-1.7],lumbar:-101.5,thor:-101.5,neck:-91}}}
+    {id:'raso',view:'lateral',keys:{mid:{P:[0,15,-.5],lumbar:-93.5,thor:-93.5,neck:-90.3},top:{P:[0,18,-1],lumbar:-97,thor:-97,neck:-90.5}}}
   ]
 };
 export default ex;
