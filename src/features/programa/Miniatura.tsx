@@ -9,7 +9,7 @@ import { useEstiloBoneco } from '../app/estiloBoneco';
 type Animacao = any;
 const cache = new Map<string, { viewBox: string; html: string; classe: string }>();
 
-function instante(ex: Animacao): number {
+export function instante(ex: Animacao): number {
   let t = 0;
   const pausas: number[] = [];
   for (const s of ex.seq as { kind: string; dur: number }[]) {
@@ -32,13 +32,20 @@ export function quadro(animacaoId: string, estilo: Estilo = 'atual') {
   return cache.get(chave)!;
 }
 
-export function Miniatura({ animacaoId }: { animacaoId: string | null }) {
+// Sem animação: "guia em texto" quando há cartão de texto; "sem guia ainda" quando não há nada (design v2, item 4).
+export function Miniatura({ animacaoId, temTexto = false }: { animacaoId: string | null; temTexto?: boolean }) {
   const estilo = useEstiloBoneco();
   const q = animacaoId ? quadro(animacaoId, estilo) : null;
   if (!q)
     return (
-      <div className="miniatura vazia" aria-hidden="true">
-        <span>animação em breve</span>
+      <div className={`miniatura vazia${temTexto ? '' : ' sem-guia'}`} aria-hidden="true">
+        {temTexto && (
+          <svg viewBox="0 0 24 24">
+            <rect x="5" y="3" width="14" height="18" rx="2" />
+            <path d="M8 8h8M8 12h8M8 16h5" />
+          </svg>
+        )}
+        <span>{temTexto ? 'guia em texto' : 'sem guia ainda'}</span>
       </div>
     );
   return (
