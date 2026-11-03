@@ -17,8 +17,8 @@
   "contrasteBaixo": [],
   "botaoPrincipal": {
    "texto": "Nenhuma vale para mim",
-   "topoPct": 82,
-   "visivelSemRolar": true
+   "topoPct": 147,
+   "visivelSemRolar": false
   },
   "telas": 1.8,
   "rolaDeLado": false
@@ -29,8 +29,8 @@
   "contrasteBaixo": [],
   "botaoPrincipal": {
    "texto": "Nenhuma vale para mim",
-   "topoPct": 82,
-   "visivelSemRolar": true
+   "topoPct": 147,
+   "visivelSemRolar": false
   },
   "telas": 1.8,
   "rolaDeLado": false
@@ -148,7 +148,7 @@
   "toquePequeno": [],
   "contrasteBaixo": [],
   "botaoPrincipal": null,
-  "telas": 4.2,
+  "telas": 4.3,
   "rolaDeLado": false
  },
  {
