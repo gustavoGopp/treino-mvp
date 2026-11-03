@@ -2,10 +2,11 @@ import { EX } from '../../engine';
 import { montarPrevia, type Estilo } from '../../engine/estilo';
 import { definirEstiloBoneco, useEstiloBoneco } from '../app/estiloBoneco';
 
-// "Meus dados" → Estilo do boneco: o boneco novo é o padrão; o clássico e a silhueta ficam como opção.
+// "Meus dados" → Estilo do boneco: o boneco novo é o padrão e a silhueta é a opção. O clássico (o do guia original)
+// saiu do app na reformulação visual (decisão do Gustavo, 03/11/2026): não recebeu as correções da anatomia. O motor
+// continua com ele, para o teste de equivalência com o guia original.
 const OPCOES: { id: Estilo; nome: string; desc: string }[] = [
   { id: 'a', nome: 'Boneco (padrão)', desc: 'Corpo com volume, contorno e músculos com forma de músculo.' },
-  { id: 'atual', nome: 'Clássico', desc: 'O boneco de traços do guia original.' },
   { id: 'b', nome: 'Silhueta', desc: 'Corpo liso, sem contorno; o músculo é o que mais aparece.' },
 ];
 
