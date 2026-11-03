@@ -43,7 +43,7 @@ test('guia: áreas de toque e contraste', async ({ page }) => {
   const n1 = (await medir(page, 'guia')).toquePequeno.length;
   await page.evaluate(() => window.scrollTo(0, 360));
   const depois = await tela(page);
-  await par(page, 'design-guia-toque.png', 'O guia com o polegar', `Áreas de toque menores que 44 px no guia aberto pelo treino: ${n0} antes, ${n1} no esboço. O texto verde sobre verde-claro (modo escolhido) passa de 4,2:1 para 5,2:1.`, antes, depois, 'Controles de 34 a 38 px de altura.', 'Os mesmos controles com 44 px; o desenho do palco não muda.');
+  await par(page, 'design-guia-toque.png', 'O guia com o polegar', `Áreas de toque menores que 44 px no guia aberto pelo treino: ${n0} antes, ${n1} no esboço. O texto verde sobre verde-claro (modo escolhido) passa de 4,2:1 para 5,4:1.`, antes, depois, 'Controles de 34 a 38 px de altura.', 'Os mesmos controles com 44 px; o desenho do palco não muda.');
   expect(n1).toBeLessThan(n0);
 });
 
