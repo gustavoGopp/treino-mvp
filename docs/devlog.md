@@ -767,3 +767,45 @@ As listas exatas ficam em `tests/unit/metas-r0.test.ts`, para o R0c zerar.
 > O mais importante: a planilha contava os posteriores da coxa na ponte de glúteo, o exercício mais prescrito do app. O único estudo que mediu isso achou que eles quase não crescem ali. Uma meia série a mais na conta, repetida em milhares de programas, vira um treino que parece completo sem ser.
 >
 > Tudo foi decidido item a item, com a fonte e o efeito nos treinos na mesa antes de mudar qualquer coisa.
+
+---
+
+## Revisão de design e reformulação visual (03/11/2026)
+
+**Por quê.** A 3ª das 3 sessões pedidas pelo Gustavo (auditoria → anatomia → **design**). A 1ª rodada (`revisoes/design.md`) mediu cada tela e o Boneco. O Gustavo pediu então uma revisão mais funda, com muitas fontes, e uma reformulação visual desapegada da estética de antes, salvo o Boneco (`revisoes/design-v2.md`). O protótipo navegável ficou no canvas "treino-mvp · reformulação visual". O Gustavo aprovou tudo ("depois vou revisar") e escolheu, nos itens do Boneco: legenda com listras, o modo Músculos abrindo na melhor vista e o clássico fora do app.
+
+**O que mudou no app** (branch `reformulacao-visual`, um commit por mudança)
+- **Base visual:** uma letra só (Atkinson Hyperlegible Next, feita para não confundir I/l/1 e O/0); fundo claro e quente; uma cor só para tocar (azul, que não disputa com o vermelho e o laranja dos músculos); toques de 48 px ou mais; tema escuro com cinza bem escuro. O desenho do Boneco e o palco não mudaram (os tons que ele usa ficam redeclarados no palco).
+- **Treino:** "Senti algo" sempre no topo; a sugestão de carga e o aquecimento dentro do cartão da série; "Série feita" grudado no pé da tela enquanto a série está à vista; o descanso num painel grande, com relógio de 72 px.
+- **Guia:** todos os controles com 48 px (eram 24 a 31 abaixo de 44); as 3 dicas em letra grande; "Voltar ao treino" na cor do app; o modo Músculos abre na vista em que o músculo principal aparece mais (no afundo, de lado).
+- **Exercício sem animação:** a miniatura diz "guia em texto" (ou "sem guia ainda"), não mais "animação em breve"; o cartão abre nas dicas e nos erros, com a montagem segura sempre à vista e o passo a passo recolhido.
+- **Cadastro:** a triagem abre numa lista das 9 condições, com "Nenhuma vale para mim" e "Sim, alguma vale" no fim da lista (regra `seguranca.triagem.nenhuma` reescrita). Nível e rotina mostram uma pergunta por vez. O equipamento começa pelo lugar, e "academia completa" preenche valores típicos nos detalhes, só onde a pessoa não respondeu (regra `equipamento.atalhos`): halteres de 2 a 40 kg e polia regulável; nos "sim ou não", o lado conservador. A divisão saiu do cadastro e foi para "Meus dados". As restrições viraram o resumo "Tudo certo?", com "Algo a evitar?" opcional.
+- **Navegação:** barra fixa embaixo (Treino, Semana, Meus dados) e "Começar" ao alcance do polegar.
+- **O clássico saiu do app:** quem o usava passa ao Boneco. O motor continua com ele, e o teste de equivalência com o guia original continua no projeto `motor`. O teste `guia-visual.spec.ts`, que comparava o clássico dentro do app, saiu.
+
+**Medido** (`scripts/design/capturas.spec.ts` e os testes novos em `tests/e2e/telas.spec.ts`)
+- **Toque e contraste:** 0 área de toque abaixo de 44 px e 0 texto abaixo do contraste mínimo, em todas as telas, nos 2 temas e a 360 px (antes: o guia com 24 a 31 toques pequenos e 6 textos abaixo do mínimo).
+- **"Série feita":** visível sem rolar nas 2 séries, a 412 e a 360 px (antes: começava a 98% e a 121% da altura da tela).
+- **Cadastro:** até 13 toques e 0 caractere sem contar o equipamento (eram até 15). Com "academia completa", nenhum detalhe a mais para responder.
+
+**Imagens:** `img/v2-triagem.png`, `img/v2-programa.png`, `img/v2-treino.png`, `img/v2-guia.png`, `img/v2-equipamento.png` (antes, depois no claro, depois no escuro).
+
+**Testes:** 514 unitários (eram 512) e 47 no navegador, todos passando (`npm run check`, `npm run test:e2e`).
+
+**Esperando a aprovação das folhas** (branch `boneco-legenda`, a partir de `reformulacao-visual`)
+- **Legenda A:** o músculo que só ajuda a firmar (em 15 animações) sai listrado de laranja, e a legenda do guia ganha 3 itens. Uma lista no motor, `SO_AJUDA`, travada por `tests/unit/legenda.test.ts` contra a biblioteca.
+- **Polia perto do corpo:** no modo Músculos, a câmera fica perto do corpo quando ele ocupa menos de 70% do palco (11 animações).
+- As 22 folhas estão geradas. **A linha de base `estilo-a.json` não foi gravada:** nesse branch, o teste dela falha até o Gustavo aprovar cada folha.
+
+**O que ficou para depois**
+- Os 21 ícones de equipamento que faltam (item 8).
+- O fim do treino, a semana e a evolução ganharam o sistema visual novo, mas mantêm a disposição de antes. A versão do protótipo, com os três números grandes no fim, fica para a próxima rodada.
+- Conferir se a letra tem algarismos de largura igual.
+- Teste de verdade, com uma mão, na academia.
+
+**Rascunho de post para o LinkedIn**
+> Refiz a cara do meu app de treino, com uma regra só: o que a mão precisa tocar fica embaixo, ao alcance do polegar. O botão "série feita", o que mais se toca no app, começava fora da tela na primeira série. Agora ele fica grudado no pé da tela.
+>
+> Medi tudo por script: nenhuma área de toque menor que 44 px, nenhum texto com contraste baixo, nos temas claro e escuro, até num celular pequeno. Antes, a tela que ensina o exercício tinha 25 botões pequenos demais.
+>
+> O boneco animado ficou igual, porque estava bom. O que mudou foi tudo em volta dele.
