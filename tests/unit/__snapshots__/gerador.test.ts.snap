@@ -116,7 +116,7 @@ exports[`cenários (snapshots revisados) > diego 1`] = `
     "tempo.corte",
   ],
   "dias": [
-    "Corpo todo A (44 min): flexao 3×8–15 [bi-set] | barra-fixa 2×5–10 [bi-set] | agachamento-elastico 3×10–16 | flexao-joelho-elastico 3×12–20 [bi-set] | triceps-elastico-acima 2×12–20 [bi-set] | elevacao-lateral-elastico 3×12–20",
+    "Corpo todo A (44 min): flexao 3×8–15 [bi-set] | barra-fixa 2×5–10 [bi-set] | agachamento-peso-corpo 3×12–20 | flexao-joelho-elastico 3×12–20 [bi-set] | triceps-elastico-acima 2×12–20 [bi-set] | elevacao-lateral-elastico 3×12–20",
     "Corpo todo B (43 min): flexao 3×8–15 [bi-set] | remada-elastico 2×10–16 [bi-set] | stiff-elastico 2×10–16 | rosca-elastico 2×12–20 [bi-set] | panturrilha-chao 4×12–20 [bi-set] | face-pull-elastico 2×12–20",
     "Corpo todo C (43 min): flexao 2×8–15 [bi-set] | barra-fixa-supinada 2×5–10 [bi-set] | afundo-peso-corpo 2×10–16 | ponte-gluteo 2×12–20 | elevacao-lateral-elastico 2×12–20 | abdominal-chao 4×12–20",
   ],
