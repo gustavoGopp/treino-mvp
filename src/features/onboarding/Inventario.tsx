@@ -209,6 +209,10 @@ export function FormularioInventario({
   const [tentou, setTentou] = useState(false);
   // Último atalho tocado (só na tela): mostra os "às vezes tem" logo abaixo. Nenhum vem selecionado.
   const [atalho, setAtalho] = useState<Atalho['id'] | undefined>();
+  // Design v3 (C5, aprovado pelo Gustavo em 03/11/2026): 2 passos. 1º "Onde você treina?" (os 3 lugares, "monto a lista"
+  // e "pela foto"); 2º os ajustes daquele caminho. Quem já tem equipamento salvo (editar) abre direto na lista.
+  const [modo, setModo] = useState<'lugar' | 'atalho' | 'lista' | 'foto'>(() => (paraForm(inicial).marcados.length ? 'lista' : 'lugar'));
+  const [abrirLista, setAbrirLista] = useState(false);
 
   const marcar = (id: ItemId, v: boolean) => setF((x) => ({ ...x, marcados: v ? [...x.marcados, id] : x.marcados.filter((m) => m !== id) }));
   const set = <K extends keyof FormInventario>(k: K, v: Partial<FormInventario[K]>) => setF((x) => ({ ...x, [k]: { ...(x[k] as object), ...v } }));
@@ -219,7 +223,10 @@ export function FormularioInventario({
     setTentou(true);
     const r = deForm(f);
     setErros(r.erros);
-    if (!r.inventario) return;
+    if (!r.inventario) {
+      setAbrirLista(true); // um detalhe faltando pode estar dentro de "Ajustar item por item"
+      return;
+    }
     aoSalvar(r.inventario);
   };
 
@@ -399,15 +406,39 @@ export function FormularioInventario({
 
   const nErros = Object.keys(erros).length;
 
-  return (
+  const listaDeItens = (
     <>
-      <p className="lede">Comece pelo lugar: um toque marca o equipamento típico. Depois é só ajustar.</p>
-      <form onSubmit={enviar} noValidate className="form">
-        {tentou && nErros > 0 && <Erros erros={[nErros === 1 ? 'Há 1 detalhe para completar.' : `Há ${nErros} detalhes para completar.`]} />}
+      {CATEGORIAS.map((c) => {
+        const itens = itensDaCategoria(c.id);
+        const comDetalhes = itens.filter((id) => f.marcados.includes(id) && ITENS_COM_DETALHES.includes(id));
+        return (
+          <fieldset key={c.id} className="campo categoria">
+            <legend>{c.titulo}</legend>
+            <div className="cartoes-eq">
+              {itens.map((id) => (
+                <label key={id} className="cartao-eq" title={ITENS[id].nome}>
+                  <input type="checkbox" checked={f.marcados.includes(id)} onChange={(ev) => marcar(id, ev.target.checked)} />
+                  <IconeEquipamento id={id} />
+                  <span>{NOME_CURTO[id]}</span>
+                </label>
+              ))}
+            </div>
+            {comDetalhes.map((id) => (
+              <div key={id}>{detalhes(id)}</div>
+            ))}
+          </fieldset>
+        );
+      })}
+    </>
+  );
+
+  if (modo === 'lugar')
+    return (
+      <div className="form">
         <fieldset className="campo atalhos">
           <legend>Onde você treina?</legend>
           <p className="ajuda">
-            Um toque marca o equipamento típico do lugar; depois é só tirar o que não tiver. <Selo id="equipamento.atalhos" />
+            Um toque marca o equipamento típico do lugar; depois é só ajustar. <Selo id="equipamento.atalhos" />
           </p>
           <div className="opcoes">
             {ATALHOS.map((a) => (
@@ -415,18 +446,36 @@ export function FormularioInventario({
                 key={a.id}
                 type="button"
                 className="btn sec"
-                aria-pressed={atalho === a.id}
                 onClick={() => {
                   setF((x) => aplicarAtalho(x, a.id));
                   setAtalho(a.id);
+                  setModo('atalho');
                 }}
               >
                 {a.nome}
               </button>
             ))}
+            <button type="button" className="btn sec" onClick={() => setModo('lista')}>
+              Monto a lista item por item
+            </button>
+            <button type="button" className="btn sec" onClick={() => setModo('foto')}>
+              Pela foto do lugar
+            </button>
           </div>
-          {atalho && (
-            <fieldset className="campo sub">
+        </fieldset>
+      </div>
+    );
+
+  return (
+    <>
+      <form onSubmit={enviar} noValidate className="form">
+        {tentou && nErros > 0 && <Erros erros={[nErros === 1 ? 'Há 1 detalhe para completar.' : `Há ${nErros} detalhes para completar.`]} />}
+        {modo === 'atalho' && atalho && (
+          <>
+            <p className="lede">
+              <b>{ATALHO[atalho].nome}</b>: o equipamento típico já está marcado. <Selo id="equipamento.atalhos" />
+            </p>
+            <fieldset className="campo">
               <legend>Às vezes tem (toque no que você tiver)</legend>
               <div className="opcoes grade">
                 {ATALHO[atalho].asVezes.map((id) => (
@@ -436,32 +485,30 @@ export function FormularioInventario({
                 ))}
               </div>
             </fieldset>
-          )}
-        </fieldset>
-        {/* Design v2 (item B): o lugar primeiro; a foto e a lista item a item ficam para ajustar */}
-        <FotoEquipamento aoUsar={(sug, conf) => setF((x) => comSugestoes(x, sug, conf))} />
-        <p className="ajuda">Ou toque item por item. Sem nada marcado, o programa usa o peso do corpo.</p>
-        {CATEGORIAS.map((c) => {
-          const itens = itensDaCategoria(c.id);
-          const comDetalhes = itens.filter((id) => f.marcados.includes(id) && ITENS_COM_DETALHES.includes(id));
-          return (
-            <fieldset key={c.id} className="campo categoria">
-              <legend>{c.titulo}</legend>
-              <div className="cartoes-eq">
-                {itens.map((id) => (
-                  <label key={id} className="cartao-eq" title={ITENS[id].nome}>
-                    <input type="checkbox" checked={f.marcados.includes(id)} onChange={(ev) => marcar(id, ev.target.checked)} />
-                    <IconeEquipamento id={id} />
-                    <span>{NOME_CURTO[id]}</span>
-                  </label>
+            {/* Na academia, os detalhes vêm com valores típicos (design v2, item D) e ficam no "ajustar"; nos outros
+                lugares, os detalhes dos itens marcados aparecem aqui, porque mudam o programa. */}
+            {atalho !== 'academia' &&
+              f.marcados
+                .filter((id) => ITENS_COM_DETALHES.includes(id))
+                .map((id) => (
+                  <div key={id}>
+                    {detalhes(id)}
+                  </div>
                 ))}
-              </div>
-              {comDetalhes.map((id) => (
-                <div key={id}>{detalhes(id)}</div>
-              ))}
-            </fieldset>
-          );
-        })}
+          </>
+        )}
+        {modo === 'foto' && <FotoEquipamento aoUsar={(sug, conf) => setF((x) => comSugestoes(x, sug, conf))} />}
+        {modo === 'atalho' ? (
+          <details className="campo dobra" open={abrirLista} onToggle={(ev) => setAbrirLista((ev.target as HTMLDetailsElement).open)}>
+            <summary>Ajustar item por item ({f.marcados.length} marcados)</summary>
+            {listaDeItens}
+          </details>
+        ) : (
+          <>
+            <p className="ajuda">{modo === 'foto' ? 'Ou toque item por item.' : 'Toque item por item.'} Sem nada marcado, o programa usa o peso do corpo.</p>
+            {listaDeItens}
+          </>
+        )}
         {f.marcados.some((id) => ITENS_DE_ANILHA.includes(id)) && (
           <Detalhes titulo="Anilhas das máquinas e barras">
             <p className="ajuda">
@@ -477,6 +524,9 @@ export function FormularioInventario({
             />
           </Detalhes>
         )}
+        <button type="button" className="btn sec" onClick={() => setModo('lugar')}>
+          Escolher pelo lugar
+        </button>
         <div className="acao-fixa">
           <button type="submit" className="btn">
             {textoBotao}

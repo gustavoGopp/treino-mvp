@@ -119,12 +119,16 @@ test('cadastro sem nenhuma condição: 0 caractere digitado e até 13 toques, se
 test('atalho "academia completa": nada vem marcado, o toque marca o conjunto e os detalhes vêm com valores típicos', async ({ page }) => {
   await ana(page);
   await page.goto('/comecar/inventario');
-  for (const a of ['Casa com halteres e elásticos', 'Condomínio com multifuncional', 'Academia completa'])
-    await expect(page.getByRole('button', { name: a })).toHaveAttribute('aria-pressed', 'false');
   // A esteira saiu da lista (continua só na foto).
   await expect(page.getByLabel('Esteira', { exact: true })).toHaveCount(0);
+  // Design v3 (C5): 1º o lugar, depois os ajustes daquele lugar.
+  await page.getByRole('button', { name: 'Escolher pelo lugar' }).click();
+  for (const a of ['Casa com halteres e elásticos', 'Condomínio com multifuncional', 'Academia completa', 'Monto a lista item por item', 'Pela foto do lugar'])
+    await expect(page.getByRole('button', { name: a })).toBeVisible();
   await page.getByRole('button', { name: 'Academia completa' }).click();
-  await expect(page.getByRole('button', { name: 'Academia completa' })).toHaveAttribute('aria-pressed', 'true');
+  await expect(page.getByText(/Academia completa: o equipamento típico já está marcado/)).toBeVisible();
+  // Os detalhes da academia vêm com valores típicos e ficam em "Ajustar item por item".
+  await page.getByText(/Ajustar item por item/).click();
   await expect(page.getByLabel('Leg press', { exact: true })).toBeChecked();
   // O que a Ana já tinha marcado continua marcado.
   await expect(page.getByLabel('Halteres fixos', { exact: true })).toBeChecked();

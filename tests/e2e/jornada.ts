@@ -90,6 +90,8 @@ export async function ana(
   await p();
 
   await expect(page.getByRole('heading', { name: 'Que equipamento você tem?' })).toBeVisible();
+  // Design v3 (C5): 1º o lugar; a Ana monta a lista item por item.
+  await page.getByRole('button', { name: 'Monto a lista item por item' }).click();
   await page.getByLabel('Halteres fixos', { exact: true }).check();
   await grupo(page, 'O mais leve').getByLabel('1 kg', { exact: true }).check();
   await grupo(page, 'O mais pesado').getByLabel('12 kg', { exact: true }).check();

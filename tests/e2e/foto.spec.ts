@@ -26,6 +26,14 @@ async function irParaEquipamento(page: Page) {
   await ana(page);
   await page.goto('/comecar/inventario');
   await expect(page.getByRole('heading', { name: 'Que equipamento você tem?' })).toBeVisible();
+  // Design v3 (C5): com equipamento salvo, a tela abre na lista; "Escolher pelo lugar" leva aos caminhos, e a foto é um deles.
+  await page.getByRole('button', { name: 'Escolher pelo lugar' }).click();
+  await page.getByRole('button', { name: 'Pela foto do lugar' }).click();
+  // A frase da privacidade vem antes do botão de enviar (design v3, C6).
+  const aviso = page.getByText(/perdem a localização no seu celular antes de sair; nada fica guardado no servidor/);
+  await expect(aviso).toBeVisible();
+  const [yAviso, yBotao] = [(await aviso.boundingBox())!.y, (await page.getByText('Escolher fotos').boundingBox())!.y];
+  expect(yAviso).toBeLessThan(yBotao);
 }
 
 test('foto: tira o EXIF no aparelho, mostra as sugestões e só usa o que a pessoa confirma', async ({ page }) => {
