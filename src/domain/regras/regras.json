@@ -1385,9 +1385,9 @@
     "id": "seguranca.triagem.osteoarticular",
     "regra": "\"Sim\" isolado na pergunta sobre osso, articulação ou tecido mole (revista no R1, aprovada pelo Gustavo em 01/11/2026)",
     "valores": {
-      "iniciante": "marca a região e pergunta \"e hoje, dói? de 0 a 10\"; a nota segue `seguranca.dor.programa`, em vez de tirar a região inteira; não bloqueia o programa",
-      "intermediario": "marca a região e pergunta \"e hoje, dói? de 0 a 10\"; a nota segue `seguranca.dor.programa`, em vez de tirar a região inteira; não bloqueia o programa",
-      "avancado": "marca a região e pergunta \"e hoje, dói? de 0 a 10\"; a nota segue `seguranca.dor.programa`, em vez de tirar a região inteira; não bloqueia o programa"
+      "iniciante": "marca a região e pergunta \"e hoje, dói? de 0 a 10\"; a nota segue `seguranca.dor.programa`, em vez de tirar a região inteira; não bloqueia o programa (design v3, aprovada pelo Gustavo em 03/11/2026: as regiões numa tela e a nota de cada uma numa tela própria; o aviso de avaliação fica na tela da nota, e o efeito da nota aparece no \"Tudo certo?\")",
+      "intermediario": "marca a região e pergunta \"e hoje, dói? de 0 a 10\"; a nota segue `seguranca.dor.programa`, em vez de tirar a região inteira; não bloqueia o programa (design v3, aprovada pelo Gustavo em 03/11/2026: as regiões numa tela e a nota de cada uma numa tela própria; o aviso de avaliação fica na tela da nota, e o efeito da nota aparece no \"Tudo certo?\")",
+      "avancado": "marca a região e pergunta \"e hoje, dói? de 0 a 10\"; a nota segue `seguranca.dor.programa`, em vez de tirar a região inteira; não bloqueia o programa (design v3, aprovada pelo Gustavo em 03/11/2026: as regiões numa tela e a nota de cada uma numa tela própria; o aviso de avaliação fica na tela da nota, e o efeito da nota aparece no \"Tudo certo?\")"
     },
     "selo": "consenso",
     "fontes": [

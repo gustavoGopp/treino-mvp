@@ -80,12 +80,15 @@ test('"sim" só no osteoarticular pede as regiões e a dor de hoje, e o aviso di
   await ana(page, {
     passarTriagem: async (p) => {
       await triagem(p, { simEm: ['osso, articulação'] });
+      // Design v3 (C7): as regiões numa tela e a nota de hoje de cada uma numa tela própria; o toque responde e segue.
+      await expect(p.getByRole('heading', { name: 'Onde é o problema?' })).toBeVisible();
+      await p.getByRole('button', { name: 'Continuar' }).click();
       await expect(p.getByText('Marque pelo menos uma região com problema.')).toBeVisible();
       await p.getByRole('group', { name: 'Quais regiões?' }).getByLabel('Ombro').check();
       await p.getByRole('button', { name: 'Continuar' }).click();
-      await expect(p.getByText('Dê a nota da dor de hoje na região marcada.')).toBeVisible();
-      await p.getByRole('group', { name: /E hoje, dói no ombro/ }).getByLabel('7', { exact: true }).check();
-      await p.getByRole('button', { name: 'Continuar' }).click();
+      await expect(p.getByRole('heading', { name: 'E hoje, dói no ombro?' })).toBeVisible();
+      await expect(p.getByText(/pede avaliação profissional/)).toBeVisible();
+      await p.getByRole('group', { name: /De 0 \(nada\) a 10/ }).getByLabel('7', { exact: true }).check();
       await expect(p.getByRole('heading', { name: 'Sua experiência com musculação' })).toBeVisible();
     },
   });
@@ -144,7 +147,7 @@ test('atalho "academia completa": nada vem marcado, o toque marca o conjunto e o
   await expect(page.getByRole('group', { name: /O banco também declina/ }).getByLabel('Não')).toBeChecked();
   await page.getByRole('button', { name: 'Continuar' }).click();
   await expect(page.getByRole('heading', { name: 'Tudo certo?' })).toBeVisible();
-  await page.getByRole('button', { name: 'Gerar meu programa' }).click();
+  await page.getByRole('button', { name: 'Montar meu treino' }).click();
   await expect(page.getByRole('heading', { name: 'Seu treino', exact: true })).toBeVisible();
 });
 
