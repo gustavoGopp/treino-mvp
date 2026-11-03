@@ -141,9 +141,9 @@ export function Dados() {
 
         <section className="box">
           <h2>Refazer as respostas</h2>
-          <p>Mudou algo na sua saúde, rotina ou equipamento? Refaça a partir da triagem; o programa é gerado de novo no fim.</p>
+          <p>Mudou algo na sua saúde, rotina ou equipamento? Refaça a partir das perguntas de saúde; o treino é montado de novo no fim.</p>
           <Link className="btn sec" to="/comecar/triagem">
-            Refazer a triagem e o perfil
+            Refazer as perguntas de saúde e o perfil
           </Link>
         </section>
 

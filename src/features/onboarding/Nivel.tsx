@@ -136,7 +136,7 @@ export function Nivel() {
           <section className="resultado" aria-live="polite">
             <h2>Seu nível: {NOME_NIVEL[sugestao.nivel]}</h2>
             <p>
-              {sugestao.motivo} Na dúvida, classificamos para baixo. <Selo id={sugestao.regraId} />
+              {sugestao.motivo} Na dúvida, começamos mais leve. <Selo id={sugestao.regraId} />
             </p>
             <Escolha
               nome="nivel-escolhido"

@@ -49,20 +49,19 @@ test('cadastro', async ({ page }) => {
   await triagemNenhuma(page);
   await expect(page.getByRole('heading', { name: 'Sua experiência com musculação' })).toBeVisible();
   await foto(page, '03-nivel-vazio');
+  // Design v3: uma pergunta por tela, o toque responde e segue.
   await grupo(page, /sem parar/).getByLabel('Menos de 6 meses').check();
-  await grupo(page, /treinando agora/).getByLabel(/^Estou treinando/).check();
-  await grupo(page, /confiança na técnica/).getByLabel(/^Sim/).check();
+  await expect(grupo(page, /treinando agora/)).toBeVisible();
   await foto(page, '03-nivel');
-  await page.getByRole('button', { name: 'Continuar' }).click();
+  await grupo(page, /treinando agora/).getByLabel(/^Estou treinando/).check();
   await expect(page.getByRole('heading', { name: 'Sua rotina de treino' })).toBeVisible();
   await foto(page, '04-rotina');
   await grupo(page, /Quantos dias/).getByLabel('3 dias').check();
   await grupo(page, /Quantos minutos/).getByLabel('45 min', { exact: true }).check();
-  await page.getByLabel('Pernas', { exact: true }).check();
-  await page.getByRole('button', { name: 'Continuar' }).click();
   await expect(page.getByRole('heading', { name: 'Que equipamento você tem?' })).toBeVisible();
   await foto(page, '05-equipamento-relance', false);
   await foto(page, '05-equipamento');
+  await page.getByRole('button', { name: 'Monto a lista item por item' }).click();
   await page.getByLabel('Halteres fixos', { exact: true }).check();
   await foto(page, '05-equipamento-halteres');
   await grupo(page, 'O mais leve').getByLabel('1 kg', { exact: true }).check();

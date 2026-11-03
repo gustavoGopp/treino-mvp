@@ -104,7 +104,7 @@ export async function ana(
   await expect(page.getByRole('heading', { name: 'Tudo certo?' })).toBeVisible();
   await prioridades(page, ['Pernas', 'Glúteos']);
   await p();
-  await page.getByRole('button', { name: 'Gerar meu programa' }).click();
+  await page.getByRole('button', { name: 'Montar meu treino' }).click();
   await expect(page.getByRole('heading', { name: 'Seu treino', exact: true })).toBeVisible();
   if (divisao) await escolherDivisao(page, divisao);
 }

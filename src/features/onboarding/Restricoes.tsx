@@ -91,13 +91,13 @@ export function Restricoes() {
             Nível {NOME_NIVEL[nivel.escolhido].toLowerCase()}
             {nivel.escolhido !== sugestao.nivel
               ? ` (você escolheu começar abaixo do sugerido, ${NOME_NIVEL[sugestao.nivel].toLowerCase()})`
-              : ''}: {sugestao.motivo} Na dúvida, classificamos para baixo. <Selo id={sugestao.regraId} />
+              : ''}: {sugestao.motivo} Na dúvida, começamos mais leve. <Selo id={sugestao.regraId} />
           </p>
         )}
         {doresTriagem.length > 0 && (
           <div className="box">
             <p>
-              Pela triagem: <Selo id="seguranca.dor.programa" />
+              Pelas perguntas de saúde: <Selo id="seguranca.dor.programa" />
             </p>
             <ul className="lista">
               {doresTriagem.map((d) => (
@@ -109,7 +109,7 @@ export function Restricoes() {
             </ul>
             {doresTriagem.some((d) => d.nota === undefined) && (
               <p className="ajuda">
-                Para dar a nota de hoje, volte à <Link to="/comecar/triagem">triagem</Link>.
+                Para dar a nota de hoje, volte às <Link to="/comecar/triagem">perguntas de saúde</Link>.
               </p>
             )}
           </div>
@@ -145,7 +145,7 @@ export function Restricoes() {
         </details>
         <div className="acao-fixa">
           <button type="submit" className="btn">
-            Gerar meu programa
+            Montar meu treino
           </button>
         </div>
       </form>
