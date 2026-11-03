@@ -108,7 +108,8 @@ export function caixaPerto(ex, view) {
   let [x0, x1, y0, y1] = m;
   if (view !== 'top') y1 = Math.max(y1, 0);
   let w = x1 - x0, h = y1 - y0;
-  const pad = 0.07; x0 -= w * pad; x1 += w * pad; y0 -= h * pad * 1.6; y1 += h * pad * 0.6; w = x1 - x0; h = y1 - y0;
+  // folga maior em cima: a mão e a pegada passam do topo da cabeça na puxada (03/11/2026)
+  const pad = 0.07; x0 -= w * pad; x1 += w * pad; y0 -= h * pad * 3.2; y1 += h * pad * 0.6; w = x1 - x0; h = y1 - y0;
   y0 -= h * 0.08; h = y1 - y0;
   if (w / h > 4 / 3) { const nh = (w * 3) / 4; y0 -= (nh - h) / 2 + (nh - h) * 0.1; h = nh; } else { const nw = (h * 4) / 3; x0 -= (nw - w) / 2; w = nw; }
   return (caixasPerto[k] = [x0, y0, w, h]);
@@ -159,10 +160,33 @@ export function vistaDaMiniatura(ex, t, estilo: Estilo) {
   return melhor;
 }
 
+/**
+ * Quanto do palco o corpo ocupa, de 0 a 1 (a maior das duas medidas, largura ou altura, ao longo do ciclo). Nos
+ * exercícios de polia a câmera enquadra a torre inteira e o corpo fica pequeno (46% a 62%; design.md, achado 6).
+ */
+const fracoes = {};
+export function fracaoDoCorpo(ex, view) {
+  const k = ex.id + '|' + view;
+  if (fracoes[k] !== undefined) return fracoes[k];
+  const PJ = VIEWS[view].proj;
+  let y0 = 1e9, y1 = -1e9, x0 = 1e9, x1 = -1e9;
+  for (let i = 0; i < 24; i++) {
+    const sk = skel(poseAt(ex, ex.K, (i / 24) * ex.T));
+    const pts = [sk.P, sk.M, sk.N, sk.Hc];
+    for (const s of ['R', 'L']) { const d = sk.side[s]; pts.push(d.S, d.E, d.W, d.G, d.Hp, d.K, d.A, d.heel, d.toe); }
+    for (const p of pts) { const q = PJ(p); y0 = Math.min(y0, q[1]); y1 = Math.max(y1, q[1]); x0 = Math.min(x0, q[0]); x1 = Math.max(x1, q[0]); }
+  }
+  const box = caixa(ex, view);
+  return (fracoes[k] = Math.max((y1 - y0 + 24) / box[3], (x1 - x0 + 18) / box[2]));
+}
+/** No modo Músculos, a câmera perto do corpo quando ele ocupa menos de 70% do palco (decisão do Gustavo, 03/11/2026). */
+export const PERTO_ABAIXO_DE = 0.7;
+
 /** Igual a montarSvg, com o estilo, nos 4 modos. `classe` vai no <svg> (o B apaga o equipamento; a vista de cima afina a corda). */
 export function montarSvgEstilo(ex, view, mode, t, err, largura, estilo: Estilo = 'atual', perto = false) {
   const novo = estilo !== 'atual';
   if (!novo && !perto) return { ...montarSvg(ex, view, mode, t, err, largura), classe: '' };
+  if (novo && mode === 'mus' && !perto && fracaoDoCorpo(ex, view) < PERTO_ABAIXO_DE) perto = true;
   const box = perto ? caixaPerto(ex, view) : caixa(ex, view);
   CTX.KS = box[2] / Math.max(260, largura || 360);
   if (novo) cenaEstilo(ex, view, mode, t, estilo, err);

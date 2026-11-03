@@ -1,7 +1,13 @@
 import { describe, expect, it } from 'vitest';
 import { EX, check, montarSvg } from '../../src/engine';
 import { CTX } from '../../src/engine/contexto';
-import { ESTILOS, EXERCICIOS_R4, montarSvgEstilo } from '../../src/engine/estilo';
+import { caixaPerto, ESTILOS, EXERCICIOS_R4, fracaoDoCorpo, montarSvgEstilo, PERTO_ABAIXO_DE } from '../../src/engine/estilo';
+
+// Desde 03/11/2026, no modo Músculos dos estilos novos, a câmera fica perto do corpo quando ele ocupa menos de 70% do palco.
+const f1 = (n: number) => String(Math.round(n * 10) / 10);
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const esperado = (ex: any, view: string, mode: string, estilo: string, base: string) =>
+  estilo !== 'atual' && mode === 'mus' && fracaoDoCorpo(ex, view) < PERTO_ABAIXO_DE ? caixaPerto(ex, view).map(f1).join(' ') : base;
 
 // R4 (experimento do boneco): os estilos novos são uma opção paralela do motor.
 // Com o estilo desligado ('atual'), a saída tem que ser a de sempre, caractere por caractere; e desenhar
@@ -70,7 +76,7 @@ describe('estilo do boneco (R4)', () => {
         const base = montarSvg(ex, view, 'tec', 0, 0, 358).viewBox;
         for (const estilo of ESTILOS) for (const mode of ['tec', 'mus']) {
           const q = montarSvgEstilo(ex, view, mode, ex.T / 3, 0, 358, estilo);
-          expect(q.viewBox).toBe(base);
+          expect(q.viewBox).toBe(esperado(ex, view, mode, estilo, base));
           expect(q.html.length).toBeGreaterThan(200);
         }
       }
@@ -85,7 +91,7 @@ describe('estilo do boneco (R4)', () => {
           for (const mode of ['tec', 'mus', 'traj'])
             for (let i = 0; i < 6; i++) {
               const q = montarSvgEstilo(ex, view, mode, (i / 6) * ex.T, 0, 358, estilo);
-              expect(q.viewBox).toBe(base);
+              expect(q.viewBox).toBe(esperado(ex, view, mode, estilo, base));
               expect(q.classe).toBe(`estilo-${estilo} vista-${view}`);
             }
         }
@@ -125,5 +131,16 @@ describe('estilo do boneco (R4)', () => {
     // bíceps: 7 formas possíveis; de trás, o bíceps (face da frente do braço) fica escondido
     const nTras = (montarSvgEstilo(pux, 'posterior', 'mus', pux.T * 0.6, 0, 358, 'a').html.match(/<path /g) ?? []).length;
     expect(nTras).toBeLessThan(7);
+  });
+
+  it('Músculos com o corpo pequeno no palco (polia): câmera perto do corpo; Técnica com a torre inteira', () => {
+    const pux = animacao('puxada-unilateral');
+    expect(fracaoDoCorpo(pux, 'posterior')).toBeLessThan(PERTO_ABAIXO_DE);
+    const tec = montarSvgEstilo(pux, 'posterior', 'tec', 0, 0, 358, 'a').viewBox.split(' ').map(Number);
+    const mus = montarSvgEstilo(pux, 'posterior', 'mus', 0, 0, 358, 'a').viewBox.split(' ').map(Number);
+    expect(mus[3]!).toBeLessThan(tec[3]! * 0.85);
+    // e quem já ocupa o palco fica como estava
+    const goblet = animacao('goblet');
+    expect(montarSvgEstilo(goblet, 'lateral', 'mus', 0, 0, 358, 'a').viewBox).toBe(montarSvg(goblet, 'lateral', 'tec', 0, 0, 358).viewBox);
   });
 });
