@@ -1,0 +1,222 @@
+[
+ {
+  "caminho": "pequeno/lista",
+  "ordem": 1,
+  "tela": "boas-vindas",
+  "palavras": 180,
+  "palavrasSemRolar": 113,
+  "segundosLeitura": 54,
+  "tocaveis": 2,
+  "alturaTelas": 1.92,
+  "toquesAteAqui": 0
+ },
+ {
+  "caminho": "pequeno/lista",
+  "ordem": 2,
+  "tela": "triagem",
+  "palavras": 171,
+  "palavrasSemRolar": 118,
+  "segundosLeitura": 51,
+  "tocaveis": 2,
+  "alturaTelas": 1.78,
+  "toquesAteAqui": 1
+ },
+ {
+  "caminho": "pequeno/lista",
+  "ordem": 3,
+  "tela": "nível, 1ª pergunta",
+  "palavras": 35,
+  "palavrasSemRolar": 35,
+  "segundosLeitura": 11,
+  "tocaveis": 3,
+  "alturaTelas": 1,
+  "toquesAteAqui": 2
+ },
+ {
+  "caminho": "pequeno/lista",
+  "ordem": 4,
+  "tela": "nível, respondido",
+  "palavras": 118,
+  "palavrasSemRolar": 118,
+  "segundosLeitura": 35,
+  "tocaveis": 11,
+  "alturaTelas": 2.05,
+  "toquesAteAqui": 5
+ },
+ {
+  "caminho": "pequeno/lista",
+  "ordem": 5,
+  "tela": "rotina",
+  "palavras": 40,
+  "palavrasSemRolar": 40,
+  "segundosLeitura": 12,
+  "tocaveis": 5,
+  "alturaTelas": 1,
+  "toquesAteAqui": 6
+ },
+ {
+  "caminho": "pequeno/lista",
+  "ordem": 6,
+  "tela": "rotina, respondida",
+  "palavras": 98,
+  "palavrasSemRolar": 98,
+  "segundosLeitura": 29,
+  "tocaveis": 19,
+  "alturaTelas": 1.72,
+  "toquesAteAqui": 9
+ },
+ {
+  "caminho": "pequeno/lista",
+  "ordem": 7,
+  "tela": "equipamento",
+  "palavras": 203,
+  "palavrasSemRolar": 86,
+  "segundosLeitura": 61,
+  "tocaveis": 51,
+  "alturaTelas": 4.8,
+  "toquesAteAqui": 10
+ },
+ {
+  "caminho": "pequeno/lista",
+  "ordem": 8,
+  "tela": "equipamento, marcado",
+  "palavras": 263,
+  "palavrasSemRolar": 190,
+  "segundosLeitura": 79,
+  "tocaveis": 72,
+  "alturaTelas": 5.65,
+  "toquesAteAqui": 15
+ },
+ {
+  "caminho": "pequeno/lista",
+  "ordem": 9,
+  "tela": "tudo certo?",
+  "palavras": 27,
+  "palavrasSemRolar": 27,
+  "segundosLeitura": 8,
+  "tocaveis": 6,
+  "alturaTelas": 1.06,
+  "toquesAteAqui": 16
+ },
+ {
+  "caminho": "pequeno/lista",
+  "ordem": 10,
+  "tela": "seu treino",
+  "palavras": 177,
+  "palavrasSemRolar": 95,
+  "segundosLeitura": 53,
+  "tocaveis": 12,
+  "alturaTelas": 2.56,
+  "toquesAteAqui": 17
+ },
+ {
+  "caminho": "pequeno/academia",
+  "ordem": 1,
+  "tela": "boas-vindas",
+  "palavras": 180,
+  "palavrasSemRolar": 113,
+  "segundosLeitura": 54,
+  "tocaveis": 2,
+  "alturaTelas": 1.92,
+  "toquesAteAqui": 0
+ },
+ {
+  "caminho": "pequeno/academia",
+  "ordem": 2,
+  "tela": "triagem",
+  "palavras": 171,
+  "palavrasSemRolar": 118,
+  "segundosLeitura": 51,
+  "tocaveis": 2,
+  "alturaTelas": 1.78,
+  "toquesAteAqui": 1
+ },
+ {
+  "caminho": "pequeno/academia",
+  "ordem": 3,
+  "tela": "nível, 1ª pergunta",
+  "palavras": 35,
+  "palavrasSemRolar": 35,
+  "segundosLeitura": 11,
+  "tocaveis": 3,
+  "alturaTelas": 1,
+  "toquesAteAqui": 2
+ },
+ {
+  "caminho": "pequeno/academia",
+  "ordem": 4,
+  "tela": "nível, respondido",
+  "palavras": 118,
+  "palavrasSemRolar": 118,
+  "segundosLeitura": 35,
+  "tocaveis": 11,
+  "alturaTelas": 2.05,
+  "toquesAteAqui": 5
+ },
+ {
+  "caminho": "pequeno/academia",
+  "ordem": 5,
+  "tela": "rotina",
+  "palavras": 40,
+  "palavrasSemRolar": 40,
+  "segundosLeitura": 12,
+  "tocaveis": 5,
+  "alturaTelas": 1,
+  "toquesAteAqui": 6
+ },
+ {
+  "caminho": "pequeno/academia",
+  "ordem": 6,
+  "tela": "rotina, respondida",
+  "palavras": 98,
+  "palavrasSemRolar": 98,
+  "segundosLeitura": 29,
+  "tocaveis": 19,
+  "alturaTelas": 1.72,
+  "toquesAteAqui": 9
+ },
+ {
+  "caminho": "pequeno/academia",
+  "ordem": 7,
+  "tela": "equipamento",
+  "palavras": 203,
+  "palavrasSemRolar": 86,
+  "segundosLeitura": 61,
+  "tocaveis": 51,
+  "alturaTelas": 4.8,
+  "toquesAteAqui": 10
+ },
+ {
+  "caminho": "pequeno/academia",
+  "ordem": 8,
+  "tela": "equipamento, marcado",
+  "palavras": 383,
+  "palavrasSemRolar": 67,
+  "segundosLeitura": 115,
+  "tocaveis": 92,
+  "alturaTelas": 7.81,
+  "toquesAteAqui": 11
+ },
+ {
+  "caminho": "pequeno/academia",
+  "ordem": 9,
+  "tela": "tudo certo?",
+  "palavras": 27,
+  "palavrasSemRolar": 27,
+  "segundosLeitura": 8,
+  "tocaveis": 6,
+  "alturaTelas": 1.06,
+  "toquesAteAqui": 12
+ },
+ {
+  "caminho": "pequeno/academia",
+  "ordem": 10,
+  "tela": "seu treino",
+  "palavras": 181,
+  "palavrasSemRolar": 93,
+  "segundosLeitura": 54,
+  "tocaveis": 10,
+  "alturaTelas": 2.59,
+  "toquesAteAqui": 13
+ }
+]
