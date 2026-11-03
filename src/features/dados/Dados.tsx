@@ -124,6 +124,16 @@ export function Dados() {
           </section>
         ) : null}
 
+        {estado.rotina && (
+          <section className="box">
+            <h2>Rotina e divisão do treino</h2>
+            <p>Dias, minutos, prioridades e como dividir os treinos na semana. Sem escolha, o app usa a divisão recomendada.</p>
+            <Link className="btn sec" to="/comecar/rotina?de=dados">
+              Mudar a rotina ou a divisão
+            </Link>
+          </section>
+        )}
+
         <EscolhaEstiloBoneco />
 
         <section className="box">

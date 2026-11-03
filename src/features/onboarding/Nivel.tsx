@@ -14,7 +14,7 @@ import {
 } from '../../domain/nivel';
 import type { Nivel as TipoNivel } from '../../domain/regras';
 import { useApp } from '../app/estado';
-import { Erros, Escolha, Passo, Selo } from '../app/ui';
+import { Erros, Escolha, Passo, Revelar, Selo } from '../app/ui';
 
 // Passo 3: experiência de treino → nível (nivel.classificacao). Na dúvida, para baixo; a pessoa pode baixar, não subir.
 export function Nivel() {
@@ -32,7 +32,14 @@ export function Nivel() {
 
   const semanas = PAUSAS.find((p) => p.id === pausa)?.semanas;
   const semanasOk = semanas !== undefined;
-  const sugestao = tempo && tecnica && semanasOk ? classificarNivel({ tempoContinuo: tempo, semanasParado: semanas!, tecnica }) : null;
+  const sugestao =
+    tempo && tecnica && semanasOk
+      ? classificarNivel({
+          tempoContinuo: tempo,
+          semanasParado: semanas!,
+          tecnica,
+        })
+      : null;
   const permitidos = sugestao ? niveisPermitidos(sugestao.nivel) : [];
   const nivelFinal = escolhido && permitidos.includes(escolhido) ? escolhido : sugestao?.nivel;
 
@@ -48,7 +55,14 @@ export function Nivel() {
     if (erros.length || !sugestao || !nivelFinal) return;
     atualizar((s) => ({
       ...s,
-      nivel: { respostas: { tempoContinuo: tempo!, semanasParado: semanas!, tecnica: tecnica! }, escolhido: nivelFinal },
+      nivel: {
+        respostas: {
+          tempoContinuo: tempo!,
+          semanasParado: semanas!,
+          tecnica: tecnica!,
+        },
+        escolhido: nivelFinal,
+      },
     }));
     navigate(deVolta ? '/programa' : '/comecar/rotina');
   };
@@ -66,44 +80,62 @@ export function Nivel() {
           aoMudar={setTempo}
           erro={tentou && !tempo ? 'Escolha uma opção.' : undefined}
         />
-        <Escolha
-          nome="pausa"
-          legenda="Você está treinando agora?"
-          ajuda="Depois de uma pausa, o programa começa com semanas mais leves."
-          opcoes={PAUSAS}
-          valor={pausa}
-          aoMudar={setPausa}
-          erro={tentou && !semanasOk ? 'Escolha uma opção.' : undefined}
-        />
-        <Escolha
-          nome="tecnica"
-          legenda="Você tem confiança na técnica dos exercícios básicos (agachamento, supino, remada)?"
-          opcoes={CONFIANCA_TECNICA}
-          valor={tecnica}
-          aoMudar={setTecnica}
-          erro={tentou && !tecnica ? 'Escolha uma opção.' : undefined}
-        />
-        {sugestao && (
-          <section className="resultado" aria-live="polite">
-            <h2>Seu nível: {NOME_NIVEL[sugestao.nivel]}</h2>
-            <p>
-              {sugestao.motivo} Na dúvida, classificamos para baixo. <Selo id={sugestao.regraId} />
-            </p>
-            {permitidos.length > 1 && (
-              <Escolha
-                nome="nivel-escolhido"
-                legenda="Quer começar num nível mais leve?"
-                ajuda="Você pode escolher um nível abaixo do sugerido, nunca acima."
-                opcoes={[...permitidos].reverse().map((n) => ({ id: n, texto: n === sugestao.nivel ? `${NOME_NIVEL[n]} (sugerido)` : NOME_NIVEL[n] }))}
-                valor={nivelFinal}
-                aoMudar={setEscolhido}
-              />
-            )}
-          </section>
+        {/* Uma pergunta por vez: a seguinte aparece depois da resposta (design v2, item B) */}
+        {tempo && (
+          <Revelar>
+            <Escolha
+              nome="pausa"
+              legenda="Você está treinando agora?"
+              ajuda="Depois de uma pausa, o programa começa com semanas mais leves."
+              opcoes={PAUSAS}
+              valor={pausa}
+              aoMudar={setPausa}
+              erro={tentou && !semanasOk ? 'Escolha uma opção.' : undefined}
+            />
+          </Revelar>
         )}
-        <button type="submit" className="btn">
-          Continuar
-        </button>
+        {tempo && semanasOk && (
+          <Revelar>
+            <Escolha
+              nome="tecnica"
+              legenda="Você tem confiança na técnica dos exercícios básicos (agachamento, supino, remada)?"
+              opcoes={CONFIANCA_TECNICA}
+              valor={tecnica}
+              aoMudar={setTecnica}
+              erro={tentou && !tecnica ? 'Escolha uma opção.' : undefined}
+            />
+          </Revelar>
+        )}
+        {sugestao && (
+          <Revelar>
+            <section className="resultado" aria-live="polite">
+              <h2>Seu nível: {NOME_NIVEL[sugestao.nivel]}</h2>
+              <p>
+                {sugestao.motivo} Na dúvida, classificamos para baixo. <Selo id={sugestao.regraId} />
+              </p>
+              {permitidos.length > 1 && (
+                <Escolha
+                  nome="nivel-escolhido"
+                  legenda="Quer começar num nível mais leve?"
+                  ajuda="Você pode escolher um nível abaixo do sugerido, nunca acima."
+                  opcoes={[...permitidos].reverse().map((n) => ({
+                    id: n,
+                    texto: n === sugestao.nivel ? `${NOME_NIVEL[n]} (sugerido)` : NOME_NIVEL[n],
+                  }))}
+                  valor={nivelFinal}
+                  aoMudar={setEscolhido}
+                />
+              )}
+            </section>
+          </Revelar>
+        )}
+        {sugestao && (
+          <div className="acao-fixa">
+            <button type="submit" className="btn">
+              Continuar
+            </button>
+          </div>
+        )}
       </form>
     </Passo>
   );

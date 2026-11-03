@@ -1,13 +1,15 @@
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import { GRUPOS, metaMaxima, type Grupo } from '../../domain/gerador';
 import { opcoesDeDivisao, type DivisaoId } from '../../domain/gerador/divisoes';
 import { exerciciosPorSessao } from '../../domain/regras';
 import { NOME_GRUPO } from '../../domain/gerador/opcoes';
 import { useApp } from '../app/estado';
-import { Erros, Escolha, Marcar, Numero, Passo, Selo, numeroOu } from '../app/ui';
+import { Erros, Escolha, Marcar, Numero, Passo, Revelar, Selo, numeroOu } from '../app/ui';
 
-// Passo 4: dias por semana, minutos por sessão, grupos prioritários e, opcional, a divisão.
+// Passo 4: dias por semana, minutos por sessão e grupos prioritários, uma pergunta por vez. A divisão (opcional) saiu
+// do cadastro na reformulação visual (design v2, item E): sem escolha, o gerador usa a recomendada; ela é escolhida
+// depois, em "Meus dados", que abre esta mesma tela com ?de=dados.
 const DIAS = [2, 3, 4, 5, 6] as const;
 /** Minutos por toque (R1); "outro" abre o campo numérico. Nada vem marcado. */
 export const MINUTOS = [30, 45, 60, 75, 90] as const;
@@ -18,6 +20,7 @@ export function Rotina() {
   const { estado, atualizar } = useApp();
   const navigate = useNavigate();
   const salva = estado.rotina;
+  const deDados = useSearchParams()[0].get('de') === 'dados';
   const [dias, setDias] = useState<(typeof DIAS)[number] | undefined>(salva?.diasSemana);
   const [min, setMin] = useState(salva ? String(salva.minutosSessao) : '');
   // Um valor salvo fora dos botões abre em "Outro", com o número dele.
@@ -43,9 +46,10 @@ export function Rotina() {
     if (d !== dias) setDivisao(undefined); // a divisão é de um número de dias
   };
 
-  const erros = [!dias && 'Escolha quantos dias por semana.', !minOk && (opMin === 'outro' ? 'Informe os minutos por sessão (de 20 a 150).' : 'Escolha quantos minutos por treino.')].filter(
-    (x): x is string => !!x,
-  );
+  const erros = [
+    !dias && 'Escolha quantos dias por semana.',
+    !minOk && (opMin === 'outro' ? 'Informe os minutos por sessão (de 20 a 150).' : 'Escolha quantos minutos por treino.'),
+  ].filter((x): x is string => !!x);
 
   const enviar = (e: React.FormEvent) => {
     e.preventDefault();
@@ -53,9 +57,14 @@ export function Rotina() {
     if (erros.length) return;
     atualizar((s) => ({
       ...s,
-      rotina: { diasSemana: dias!, ...(divisaoValida ? { divisao: divisaoValida } : {}), minutosSessao: minutos!, prioridades: prioOrdenadas },
+      rotina: {
+        diasSemana: dias!,
+        ...(divisaoValida ? { divisao: divisaoValida } : {}),
+        minutosSessao: minutos!,
+        prioridades: prioOrdenadas,
+      },
     }));
-    navigate('/comecar/inventario');
+    navigate(deDados ? '/programa' : '/comecar/inventario');
   };
 
   return (
@@ -76,49 +85,63 @@ export function Rotina() {
           erro={tentou && !dias ? 'Escolha uma opção.' : undefined}
           linha
         />
-        <Escolha
-          nome="minutos"
-          legenda="Quantos minutos por treino?"
-          ajuda="Tempo total, com aquecimento e descansos."
-          opcoes={[...MINUTOS.map((m) => ({ id: m as OpcaoMinutos, texto: `${m} min` })), { id: 'outro' as OpcaoMinutos, texto: 'Outro' }]}
-          valor={opMin}
-          aoMudar={escolherMin}
-          erro={tentou && !opMin ? 'Escolha uma opção.' : undefined}
-          linha
-        />
-        {opMin === 'outro' && (
-          <Numero
-            rotulo="Outro: quantos minutos?"
-            ajuda="Entre 20 e 150 minutos."
-            valor={min}
-            aoMudar={setMin}
-            min={20}
-            max={150}
-            passo={5}
-            sufixo="min"
-            erro={tentou && !minOk ? 'Use um número inteiro de 20 a 150.' : undefined}
-          />
+        {(dias || deDados) && (
+          <Revelar>
+            <Escolha
+              nome="minutos"
+              legenda="Quantos minutos por treino?"
+              ajuda="Tempo total, com aquecimento e descansos."
+              opcoes={[
+                ...MINUTOS.map((m) => ({
+                  id: m as OpcaoMinutos,
+                  texto: `${m} min`,
+                })),
+                { id: 'outro' as OpcaoMinutos, texto: 'Outro' },
+              ]}
+              valor={opMin}
+              aoMudar={escolherMin}
+              erro={tentou && !opMin ? 'Escolha uma opção.' : undefined}
+              linha
+            />
+            {opMin === 'outro' && (
+              <Numero
+                rotulo="Outro: quantos minutos?"
+                ajuda="Entre 20 e 150 minutos."
+                valor={min}
+                aoMudar={setMin}
+                min={20}
+                max={150}
+                passo={5}
+                sufixo="min"
+                erro={tentou && !minOk ? 'Use um número inteiro de 20 a 150.' : undefined}
+              />
+            )}
+          </Revelar>
         )}
-        <fieldset className="campo">
-          <legend>Quais grupos você quer priorizar? (opcional)</legend>
-          <p className="ajuda">
-            Os grupos prioritários recebem mais séries; os outros ficam no mínimo que já gera resultado. Priorizar muitos grupos pede mais
-            tempo. <Selo id="volume.semanal.minimo-eficaz" />
-          </p>
-          <div className="opcoes grade">
-            {GRUPOS_IDS.map((g) => (
-              <Marcar key={g} marcado={prio.includes(g)} aoMudar={(v) => setPrio((p) => (v ? [...p, g] : p.filter((x) => x !== g)))}>
-                {NOME_GRUPO[g][0]!.toUpperCase() + NOME_GRUPO[g].slice(1)}
-              </Marcar>
-            ))}
-          </div>
-        </fieldset>
-        {dias && opcoesDivisao.length > 1 && (
+        {((dias && opMin) || deDados) && (
+          <Revelar>
+            <fieldset className="campo">
+              <legend>Quais grupos você quer priorizar? (opcional)</legend>
+              <p className="ajuda">
+                Os grupos prioritários recebem mais séries; os outros ficam no mínimo que já gera resultado. Priorizar muitos grupos pede mais tempo.{' '}
+                <Selo id="volume.semanal.minimo-eficaz" />
+              </p>
+              <div className="opcoes grade">
+                {GRUPOS_IDS.map((g) => (
+                  <Marcar key={g} marcado={prio.includes(g)} aoMudar={(v) => setPrio((p) => (v ? [...p, g] : p.filter((x) => x !== g)))}>
+                    {NOME_GRUPO[g][0]!.toUpperCase() + NOME_GRUPO[g].slice(1)}
+                  </Marcar>
+                ))}
+              </div>
+            </fieldset>
+          </Revelar>
+        )}
+        {deDados && dias && opcoesDivisao.length > 1 && (
           <fieldset className="campo">
             <legend>Como prefere dividir? (opcional)</legend>
             <p className="ajuda">
-              Com o mesmo volume, as divisões rendem o mesmo crescimento; escolha a que encaixa melhor na sua semana. Se não escolher, o app usa
-              a recomendada. <Selo id="divisao.equivalencia" /> <Selo id="divisao.recomendacao" />
+              Com o mesmo volume, as divisões rendem o mesmo crescimento; escolha a que encaixa melhor na sua semana. Se não escolher, o app usa a
+              recomendada. <Selo id="divisao.equivalencia" /> <Selo id="divisao.recomendacao" />
             </p>
             <div className="opcoes">
               {opcoesDivisao.map((o) => (
@@ -145,9 +168,13 @@ export function Rotina() {
             <p className="ajuda">Os minutos de cada treino aparecem no programa, porque dependem do seu equipamento.</p>
           </fieldset>
         )}
-        <button type="submit" className="btn">
-          Continuar
-        </button>
+        {((dias && opMin) || deDados) && (
+          <div className="acao-fixa">
+            <button type="submit" className="btn">
+              {deDados ? 'Salvar' : 'Continuar'}
+            </button>
+          </div>
+        )}
       </form>
     </Passo>
   );

@@ -60,6 +60,23 @@ export function NavInferior({ atual }: { atual: 'treino' | 'semana' | 'dados' })
   );
 }
 
+/**
+ * Uma pergunta por vez (design v2, item B; GOV.UK "one thing per page"): a próxima pergunta só aparece depois da
+ * resposta à anterior, e a tela rola até ela. Envolve a pergunta que acabou de aparecer.
+ */
+export function Revelar({ children }: { children: ReactNode }) {
+  const ref = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    const reduz = window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
+    ref.current?.scrollIntoView?.({ behavior: reduz ? 'auto' : 'smooth', block: 'nearest' });
+  }, []);
+  return (
+    <div ref={ref} className="revelar">
+      {children}
+    </div>
+  );
+}
+
 /** Título que recebe o foco quando a tela abre (leitores de tela anunciam a troca de tela). */
 export function Titulo({ children }: { children: ReactNode }) {
   const ref = useRef<HTMLHeadingElement>(null);
