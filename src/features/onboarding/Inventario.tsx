@@ -401,12 +401,11 @@ export function FormularioInventario({
 
   return (
     <>
-      <p className="lede">Toque em tudo o que você tem. Sem nada marcado, o programa usa o peso do corpo.</p>
-      <FotoEquipamento aoUsar={(sug, conf) => setF((x) => comSugestoes(x, sug, conf))} />
+      <p className="lede">Comece pelo lugar: um toque marca o equipamento típico. Depois é só ajustar.</p>
       <form onSubmit={enviar} noValidate className="form">
         {tentou && nErros > 0 && <Erros erros={[nErros === 1 ? 'Há 1 detalhe para completar.' : `Há ${nErros} detalhes para completar.`]} />}
         <fieldset className="campo atalhos">
-          <legend>Atalho: onde você treina?</legend>
+          <legend>Onde você treina?</legend>
           <p className="ajuda">
             Um toque marca o equipamento típico do lugar; depois é só tirar o que não tiver. <Selo id="equipamento.atalhos" />
           </p>
@@ -439,6 +438,9 @@ export function FormularioInventario({
             </fieldset>
           )}
         </fieldset>
+        {/* Design v2 (item B): o lugar primeiro; a foto e a lista item a item ficam para ajustar */}
+        <FotoEquipamento aoUsar={(sug, conf) => setF((x) => comSugestoes(x, sug, conf))} />
+        <p className="ajuda">Ou toque item por item. Sem nada marcado, o programa usa o peso do corpo.</p>
         {CATEGORIAS.map((c) => {
           const itens = itensDaCategoria(c.id);
           const comDetalhes = itens.filter((id) => f.marcados.includes(id) && ITENS_COM_DETALHES.includes(id));
@@ -475,9 +477,11 @@ export function FormularioInventario({
             />
           </Detalhes>
         )}
-        <button type="submit" className="btn">
-          {textoBotao}
-        </button>
+        <div className="acao-fixa">
+          <button type="submit" className="btn">
+            {textoBotao}
+          </button>
+        </div>
       </form>
     </>
   );

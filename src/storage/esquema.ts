@@ -259,7 +259,7 @@ export const PASSOS = [
   { id: 'nivel', rota: '/comecar/nivel', titulo: 'Experiência' },
   { id: 'rotina', rota: '/comecar/rotina', titulo: 'Rotina' },
   { id: 'inventario', rota: '/comecar/inventario', titulo: 'Equipamento' },
-  { id: 'restricoes', rota: '/comecar/restricoes', titulo: 'Restrições' },
+  { id: 'restricoes', rota: '/comecar/restricoes', titulo: 'Confirmar' },
 ] as const;
 export type PassoId = (typeof PASSOS)[number]['id'];
 
