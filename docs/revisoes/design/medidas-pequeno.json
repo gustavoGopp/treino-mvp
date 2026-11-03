@@ -5,34 +5,26 @@
   "contrasteBaixo": [],
   "botaoPrincipal": {
    "texto": "Entendi, vamos começar",
-   "topoPct": 171,
-   "visivelSemRolar": false
+   "topoPct": 91,
+   "visivelSemRolar": true
   },
-  "telas": 1.9,
+  "telas": 1.1,
   "rolaDeLado": false
  },
  {
   "tela": "pequeno/02-triagem-relance",
   "toquePequeno": [],
   "contrasteBaixo": [],
-  "botaoPrincipal": {
-   "texto": "Nenhuma vale para mim",
-   "topoPct": 147,
-   "visivelSemRolar": false
-  },
-  "telas": 1.8,
+  "botaoPrincipal": null,
+  "telas": 1.9,
   "rolaDeLado": false
  },
  {
   "tela": "pequeno/02-triagem",
   "toquePequeno": [],
   "contrasteBaixo": [],
-  "botaoPrincipal": {
-   "texto": "Nenhuma vale para mim",
-   "topoPct": 147,
-   "visivelSemRolar": false
-  },
-  "telas": 1.8,
+  "botaoPrincipal": null,
+  "telas": 1.9,
   "rolaDeLado": false
  },
  {
@@ -47,12 +39,8 @@
   "tela": "pequeno/03-nivel",
   "toquePequeno": [],
   "contrasteBaixo": [],
-  "botaoPrincipal": {
-   "texto": "Continuar",
-   "topoPct": 182,
-   "visivelSemRolar": false
-  },
-  "telas": 2.1,
+  "botaoPrincipal": null,
+  "telas": 1,
   "rolaDeLado": false
  },
  {
@@ -67,24 +55,16 @@
   "tela": "pequeno/05-equipamento-relance",
   "toquePequeno": [],
   "contrasteBaixo": [],
-  "botaoPrincipal": {
-   "texto": "Continuar",
-   "topoPct": 91,
-   "visivelSemRolar": true
-  },
-  "telas": 4.8,
+  "botaoPrincipal": null,
+  "telas": 1,
   "rolaDeLado": false
  },
  {
   "tela": "pequeno/05-equipamento",
   "toquePequeno": [],
   "contrasteBaixo": [],
-  "botaoPrincipal": {
-   "texto": "Continuar",
-   "topoPct": 91,
-   "visivelSemRolar": true
-  },
-  "telas": 4.8,
+  "botaoPrincipal": null,
+  "telas": 1,
   "rolaDeLado": false
  },
  {
@@ -93,10 +73,10 @@
   "contrasteBaixo": [],
   "botaoPrincipal": {
    "texto": "Continuar",
-   "topoPct": 277,
-   "visivelSemRolar": false
+   "topoPct": 91,
+   "visivelSemRolar": true
   },
-  "telas": 5.6,
+  "telas": 4.7,
   "rolaDeLado": false
  },
  {
@@ -104,11 +84,11 @@
   "toquePequeno": [],
   "contrasteBaixo": [],
   "botaoPrincipal": {
-   "texto": "Gerar meu programa",
-   "topoPct": 83,
-   "visivelSemRolar": true
+   "texto": "Montar meu treino",
+   "topoPct": 95,
+   "visivelSemRolar": false
   },
-  "telas": 1.1,
+  "telas": 1.2,
   "rolaDeLado": false
  },
  {
@@ -117,7 +97,7 @@
   "contrasteBaixo": [],
   "botaoPrincipal": {
    "texto": "Começar o treino Corpo todo A",
-   "topoPct": 88,
+   "topoPct": 91,
    "visivelSemRolar": true
   },
   "telas": 2.6,
@@ -129,7 +109,7 @@
   "contrasteBaixo": [],
   "botaoPrincipal": {
    "texto": "Começar o treino Corpo todo A",
-   "topoPct": 196,
+   "topoPct": 204,
    "visivelSemRolar": false
   },
   "telas": 2.6,
@@ -197,7 +177,7 @@
   "contrasteBaixo": [],
   "botaoPrincipal": {
    "texto": "Série feita · descansar 1:45",
-   "topoPct": 144,
+   "topoPct": 142,
    "visivelSemRolar": false
   },
   "telas": 1.8,
@@ -209,7 +189,7 @@
   "contrasteBaixo": [],
   "botaoPrincipal": {
    "texto": "Série feita · descansar 1:45",
-   "topoPct": 132,
+   "topoPct": 129,
    "visivelSemRolar": false
   },
   "telas": 1.7,
@@ -249,10 +229,10 @@
   "contrasteBaixo": [],
   "botaoPrincipal": {
    "texto": "Série feita · descansar 1:45",
-   "topoPct": 129,
+   "topoPct": 126,
    "visivelSemRolar": false
   },
-  "telas": 2.6,
+  "telas": 2.5,
   "rolaDeLado": false
  },
  {
@@ -261,7 +241,7 @@
   "contrasteBaixo": [],
   "botaoPrincipal": {
    "texto": "Série feita · descansar 1:45",
-   "topoPct": 129,
+   "topoPct": 126,
    "visivelSemRolar": false
   },
   "telas": 3.7,
@@ -273,7 +253,7 @@
   "contrasteBaixo": [],
   "botaoPrincipal": {
    "texto": "Ver a sua semana",
-   "topoPct": 91,
+   "topoPct": 88,
    "visivelSemRolar": true
   },
   "telas": 1.1,
@@ -304,7 +284,7 @@
    "topoPct": 56,
    "visivelSemRolar": true
   },
-  "telas": 3.2,
+  "telas": 3.6,
   "rolaDeLado": false
  },
  {
@@ -313,7 +293,7 @@
   "contrasteBaixo": [],
   "botaoPrincipal": {
    "texto": "Cadastrar outro local",
-   "topoPct": 64,
+   "topoPct": 61,
    "visivelSemRolar": true
   },
   "telas": 1,

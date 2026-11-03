@@ -5,34 +5,26 @@
   "contrasteBaixo": [],
   "botaoPrincipal": {
    "texto": "Entendi, vamos começar",
-   "topoPct": 130,
-   "visivelSemRolar": false
+   "topoPct": 87,
+   "visivelSemRolar": true
   },
-  "telas": 1.5,
+  "telas": 1,
   "rolaDeLado": false
  },
  {
   "tela": "claro/02-triagem-relance",
   "toquePequeno": [],
   "contrasteBaixo": [],
-  "botaoPrincipal": {
-   "texto": "Nenhuma vale para mim",
-   "topoPct": 125,
-   "visivelSemRolar": false
-  },
-  "telas": 1.5,
+  "botaoPrincipal": null,
+  "telas": 1.6,
   "rolaDeLado": false
  },
  {
   "tela": "claro/02-triagem",
   "toquePequeno": [],
   "contrasteBaixo": [],
-  "botaoPrincipal": {
-   "texto": "Nenhuma vale para mim",
-   "topoPct": 125,
-   "visivelSemRolar": false
-  },
-  "telas": 1.5,
+  "botaoPrincipal": null,
+  "telas": 1.6,
   "rolaDeLado": false
  },
  {
@@ -47,12 +39,8 @@
   "tela": "claro/03-nivel",
   "toquePequeno": [],
   "contrasteBaixo": [],
-  "botaoPrincipal": {
-   "texto": "Continuar",
-   "topoPct": 158,
-   "visivelSemRolar": false
-  },
-  "telas": 1.8,
+  "botaoPrincipal": null,
+  "telas": 1,
   "rolaDeLado": false
  },
  {
@@ -67,24 +55,16 @@
   "tela": "claro/05-equipamento-relance",
   "toquePequeno": [],
   "contrasteBaixo": [],
-  "botaoPrincipal": {
-   "texto": "Continuar",
-   "topoPct": 92,
-   "visivelSemRolar": true
-  },
-  "telas": 4.2,
+  "botaoPrincipal": null,
+  "telas": 1,
   "rolaDeLado": false
  },
  {
   "tela": "claro/05-equipamento",
   "toquePequeno": [],
   "contrasteBaixo": [],
-  "botaoPrincipal": {
-   "texto": "Continuar",
-   "topoPct": 92,
-   "visivelSemRolar": true
-  },
-  "telas": 4.2,
+  "botaoPrincipal": null,
+  "telas": 1,
   "rolaDeLado": false
  },
  {
@@ -93,10 +73,10 @@
   "contrasteBaixo": [],
   "botaoPrincipal": {
    "texto": "Continuar",
-   "topoPct": 122,
-   "visivelSemRolar": false
+   "topoPct": 92,
+   "visivelSemRolar": true
   },
-  "telas": 4.9,
+  "telas": 4.2,
   "rolaDeLado": false
  },
  {
@@ -104,8 +84,8 @@
   "toquePequeno": [],
   "contrasteBaixo": [],
   "botaoPrincipal": {
-   "texto": "Gerar meu programa",
-   "topoPct": 73,
+   "texto": "Montar meu treino",
+   "topoPct": 84,
    "visivelSemRolar": true
   },
   "telas": 1,
@@ -249,7 +229,7 @@
   "contrasteBaixo": [],
   "botaoPrincipal": {
    "texto": "Série feita · descansar 1:45",
-   "topoPct": 111,
+   "topoPct": 108,
    "visivelSemRolar": false
   },
   "telas": 2,
@@ -261,7 +241,7 @@
   "contrasteBaixo": [],
   "botaoPrincipal": {
    "texto": "Série feita · descansar 1:45",
-   "topoPct": 111,
+   "topoPct": 108,
    "visivelSemRolar": false
   },
   "telas": 2.9,
@@ -284,7 +264,7 @@
   "toquePequeno": [],
   "contrasteBaixo": [],
   "botaoPrincipal": null,
-  "telas": 1.9,
+  "telas": 1.8,
   "rolaDeLado": false
  },
  {
@@ -304,7 +284,7 @@
    "topoPct": 47,
    "visivelSemRolar": true
   },
-  "telas": 2.6,
+  "telas": 3,
   "rolaDeLado": false
  },
  {
