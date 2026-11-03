@@ -387,6 +387,7 @@
    "avisoSemPuxadaComPuxarZerado": 0,
    "avisosQueSugeremCompra": 0,
    "motivoFalso": 0,
+   "abaixoDoLimiarSemAviso": 0,
    "guia": {
     "animacao": 69106,
     "cartao": 22053,
@@ -681,6 +682,7 @@
    "avisoSemPuxadaComPuxarZerado": 0,
    "avisosQueSugeremCompra": 0,
    "motivoFalso": 0,
+   "abaixoDoLimiarSemAviso": 0,
    "guia": {
     "animacao": 109036,
     "cartao": 21662,
@@ -1019,6 +1021,7 @@
    "avisoSemPuxadaComPuxarZerado": 0,
    "avisosQueSugeremCompra": 0,
    "motivoFalso": 0,
+   "abaixoDoLimiarSemAviso": 0,
    "guia": {
     "animacao": 82582,
     "cartao": 19701,
@@ -1314,6 +1317,7 @@
    "avisoSemPuxadaComPuxarZerado": 0,
    "avisosQueSugeremCompra": 0,
    "motivoFalso": 0,
+   "abaixoDoLimiarSemAviso": 0,
    "guia": {
     "animacao": 154153,
     "cartao": 48963,
@@ -1648,6 +1652,7 @@
    "avisoSemPuxadaComPuxarZerado": 0,
    "avisosQueSugeremCompra": 0,
    "motivoFalso": 0,
+   "abaixoDoLimiarSemAviso": 0,
    "guia": {
     "animacao": 154442,
     "cartao": 49088,
@@ -2013,6 +2018,7 @@
    "avisoSemPuxadaComPuxarZerado": 0,
    "avisosQueSugeremCompra": 0,
    "motivoFalso": 0,
+   "abaixoDoLimiarSemAviso": 0,
    "guia": {
     "animacao": 64719,
     "cartao": 21535,
@@ -2325,6 +2331,7 @@
    "avisoSemPuxadaComPuxarZerado": 0,
    "avisosQueSugeremCompra": 0,
    "motivoFalso": 0,
+   "abaixoDoLimiarSemAviso": 0,
    "guia": {
     "animacao": 65478,
     "cartao": 22183,
@@ -2632,6 +2639,7 @@
    "avisoSemPuxadaComPuxarZerado": 0,
    "avisosQueSugeremCompra": 0,
    "motivoFalso": 0,
+   "abaixoDoLimiarSemAviso": 0,
    "guia": {
     "animacao": 65686,
     "cartao": 23887,
@@ -2939,6 +2947,7 @@
    "avisoSemPuxadaComPuxarZerado": 0,
    "avisosQueSugeremCompra": 0,
    "motivoFalso": 0,
+   "abaixoDoLimiarSemAviso": 0,
    "guia": {
     "animacao": 65349,
     "cartao": 37604,
@@ -3250,6 +3259,7 @@
    "avisoSemPuxadaComPuxarZerado": 0,
    "avisosQueSugeremCompra": 0,
    "motivoFalso": 0,
+   "abaixoDoLimiarSemAviso": 0,
    "guia": {
     "animacao": 40559,
     "cartao": 21870,
@@ -3552,6 +3562,7 @@
    "avisoSemPuxadaComPuxarZerado": 0,
    "avisosQueSugeremCompra": 0,
    "motivoFalso": 0,
+   "abaixoDoLimiarSemAviso": 0,
    "guia": {
     "animacao": 68537,
     "cartao": 40101,
@@ -3861,6 +3872,7 @@
    "avisoSemPuxadaComPuxarZerado": 0,
    "avisosQueSugeremCompra": 0,
    "motivoFalso": 0,
+   "abaixoDoLimiarSemAviso": 0,
    "guia": {
     "animacao": 64701,
     "cartao": 21045,
@@ -4170,6 +4182,7 @@
    "avisoSemPuxadaComPuxarZerado": 0,
    "avisosQueSugeremCompra": 0,
    "motivoFalso": 0,
+   "abaixoDoLimiarSemAviso": 0,
    "guia": {
     "animacao": 64701,
     "cartao": 44153,
@@ -4481,6 +4494,7 @@
    "avisoSemPuxadaComPuxarZerado": 0,
    "avisosQueSugeremCompra": 0,
    "motivoFalso": 0,
+   "abaixoDoLimiarSemAviso": 0,
    "guia": {
     "animacao": 65605,
     "cartao": 30397,
@@ -4760,6 +4774,7 @@
    "avisoSemPuxadaComPuxarZerado": 0,
    "avisosQueSugeremCompra": 0,
    "motivoFalso": 0,
+   "abaixoDoLimiarSemAviso": 0,
    "guia": {
     "animacao": 53900,
     "cartao": 19744,
@@ -5140,6 +5155,7 @@
    "avisoSemPuxadaComPuxarZerado": 0,
    "avisosQueSugeremCompra": 0,
    "motivoFalso": 0,
+   "abaixoDoLimiarSemAviso": 0,
    "guia": {
     "animacao": 69057,
     "cartao": 22053,
@@ -5459,6 +5475,7 @@
    "avisoSemPuxadaComPuxarZerado": 0,
    "avisosQueSugeremCompra": 0,
    "motivoFalso": 0,
+   "abaixoDoLimiarSemAviso": 0,
    "guia": {
     "animacao": 86344,
     "cartao": 20688,
@@ -5772,6 +5789,7 @@
    "avisoSemPuxadaComPuxarZerado": 0,
    "avisosQueSugeremCompra": 0,
    "motivoFalso": 0,
+   "abaixoDoLimiarSemAviso": 0,
    "guia": {
     "animacao": 68206,
     "cartao": 35327,
@@ -6077,6 +6095,7 @@
    "avisoSemPuxadaComPuxarZerado": 0,
    "avisosQueSugeremCompra": 0,
    "motivoFalso": 0,
+   "abaixoDoLimiarSemAviso": 0,
    "guia": {
     "animacao": 67506,
     "cartao": 38063,
@@ -6376,6 +6395,7 @@
    "avisoSemPuxadaComPuxarZerado": 0,
    "avisosQueSugeremCompra": 0,
    "motivoFalso": 0,
+   "abaixoDoLimiarSemAviso": 0,
    "guia": {
     "animacao": 64729,
     "cartao": 43107,
@@ -6687,6 +6707,7 @@
    "avisoSemPuxadaComPuxarZerado": 0,
    "avisosQueSugeremCompra": 0,
    "motivoFalso": 0,
+   "abaixoDoLimiarSemAviso": 0,
    "guia": {
     "animacao": 65035,
     "cartao": 40864,
@@ -6998,6 +7019,7 @@
    "avisoSemPuxadaComPuxarZerado": 0,
    "avisosQueSugeremCompra": 0,
    "motivoFalso": 0,
+   "abaixoDoLimiarSemAviso": 0,
    "guia": {
     "animacao": 67282,
     "cartao": 35038,
@@ -7303,6 +7325,7 @@
    "avisoSemPuxadaComPuxarZerado": 0,
    "avisosQueSugeremCompra": 0,
    "motivoFalso": 0,
+   "abaixoDoLimiarSemAviso": 0,
    "guia": {
     "animacao": 65565,
     "cartao": 52495,
@@ -7618,6 +7641,7 @@
    "avisoSemPuxadaComPuxarZerado": 0,
    "avisosQueSugeremCompra": 0,
    "motivoFalso": 0,
+   "abaixoDoLimiarSemAviso": 0,
    "guia": {
     "animacao": 57589,
     "cartao": 37953,
@@ -7923,6 +7947,7 @@
    "avisoSemPuxadaComPuxarZerado": 0,
    "avisosQueSugeremCompra": 0,
    "motivoFalso": 0,
+   "abaixoDoLimiarSemAviso": 0,
    "guia": {
     "animacao": 59535,
     "cartao": 45128,
@@ -8232,6 +8257,7 @@
    "avisoSemPuxadaComPuxarZerado": 0,
    "avisosQueSugeremCompra": 0,
    "motivoFalso": 0,
+   "abaixoDoLimiarSemAviso": 0,
    "guia": {
     "animacao": 68352,
     "cartao": 32750,
@@ -8543,6 +8569,7 @@
    "avisoSemPuxadaComPuxarZerado": 0,
    "avisosQueSugeremCompra": 0,
    "motivoFalso": 0,
+   "abaixoDoLimiarSemAviso": 0,
    "guia": {
     "animacao": 65297,
     "cartao": 41234,
@@ -8854,6 +8881,7 @@
    "avisoSemPuxadaComPuxarZerado": 0,
    "avisosQueSugeremCompra": 0,
    "motivoFalso": 0,
+   "abaixoDoLimiarSemAviso": 0,
    "guia": {
     "animacao": 59415,
     "cartao": 49909,
@@ -9168,6 +9196,7 @@
    "avisoSemPuxadaComPuxarZerado": 0,
    "avisosQueSugeremCompra": 0,
    "motivoFalso": 0,
+   "abaixoDoLimiarSemAviso": 0,
    "guia": {
     "animacao": 63888,
     "cartao": 45203,
@@ -9476,6 +9505,7 @@
    "avisoSemPuxadaComPuxarZerado": 0,
    "avisosQueSugeremCompra": 0,
    "motivoFalso": 0,
+   "abaixoDoLimiarSemAviso": 0,
    "guia": {
     "animacao": 65770,
     "cartao": 35930,
@@ -9788,6 +9818,7 @@
    "avisoSemPuxadaComPuxarZerado": 0,
    "avisosQueSugeremCompra": 0,
    "motivoFalso": 0,
+   "abaixoDoLimiarSemAviso": 0,
    "guia": {
     "animacao": 47841,
     "cartao": 43305,
@@ -10093,6 +10124,7 @@
    "avisoSemPuxadaComPuxarZerado": 0,
    "avisosQueSugeremCompra": 0,
    "motivoFalso": 0,
+   "abaixoDoLimiarSemAviso": 0,
    "guia": {
     "animacao": 67506,
     "cartao": 38063,
@@ -10392,6 +10424,7 @@
    "avisoSemPuxadaComPuxarZerado": 0,
    "avisosQueSugeremCompra": 0,
    "motivoFalso": 0,
+   "abaixoDoLimiarSemAviso": 0,
    "guia": {
     "animacao": 67322,
     "cartao": 40068,
@@ -10713,6 +10746,7 @@
    "avisoSemPuxadaComPuxarZerado": 0,
    "avisosQueSugeremCompra": 0,
    "motivoFalso": 0,
+   "abaixoDoLimiarSemAviso": 0,
    "guia": {
     "animacao": 68296,
     "cartao": 22744,
@@ -11018,6 +11052,7 @@
    "avisoSemPuxadaComPuxarZerado": 0,
    "avisosQueSugeremCompra": 0,
    "motivoFalso": 0,
+   "abaixoDoLimiarSemAviso": 0,
    "guia": {
     "animacao": 40457,
     "cartao": 50766,
@@ -11320,6 +11355,7 @@
    "avisoSemPuxadaComPuxarZerado": 0,
    "avisosQueSugeremCompra": 0,
    "motivoFalso": 0,
+   "abaixoDoLimiarSemAviso": 0,
    "guia": {
     "animacao": 60329,
     "cartao": 36445,
@@ -11629,6 +11665,7 @@
    "avisoSemPuxadaComPuxarZerado": 0,
    "avisosQueSugeremCompra": 0,
    "motivoFalso": 0,
+   "abaixoDoLimiarSemAviso": 0,
    "guia": {
     "animacao": 65686,
     "cartao": 45963,
@@ -11908,6 +11945,7 @@
    "avisoSemPuxadaComPuxarZerado": 0,
    "avisosQueSugeremCompra": 0,
    "motivoFalso": 0,
+   "abaixoDoLimiarSemAviso": 0,
    "guia": {
     "animacao": 69522,
     "cartao": 19397,
@@ -12272,6 +12310,7 @@
    "avisoSemPuxadaComPuxarZerado": 0,
    "avisosQueSugeremCompra": 0,
    "motivoFalso": 0,
+   "abaixoDoLimiarSemAviso": 0,
    "guia": {
     "animacao": 156941,
     "cartao": 48878,
@@ -12608,6 +12647,7 @@
    "avisoSemPuxadaComPuxarZerado": 0,
    "avisosQueSugeremCompra": 0,
    "motivoFalso": 0,
+   "abaixoDoLimiarSemAviso": 0,
    "guia": {
     "animacao": 53914,
     "cartao": 41440,
@@ -12962,6 +13002,7 @@
    "avisoSemPuxadaComPuxarZerado": 0,
    "avisosQueSugeremCompra": 0,
    "motivoFalso": 0,
+   "abaixoDoLimiarSemAviso": 0,
    "guia": {
     "animacao": 163276,
     "cartao": 57345,
@@ -13301,6 +13342,7 @@
    "avisoSemPuxadaComPuxarZerado": 0,
    "avisosQueSugeremCompra": 0,
    "motivoFalso": 0,
+   "abaixoDoLimiarSemAviso": 0,
    "guia": {
     "animacao": 53838,
     "cartao": 19744,
