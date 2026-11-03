@@ -1,0 +1,332 @@
+[
+ {
+  "animacao": "supino-inclinado",
+  "exercicios": [
+   "supino-inclinado"
+  ],
+  "secundarioQueConta": [
+   "peito",
+   "ombro_anterior",
+   "triceps"
+  ],
+  "soAjuda": []
+ },
+ {
+  "animacao": "barra-fixa",
+  "exercicios": [
+   "barra-fixa"
+  ],
+  "secundarioQueConta": [
+   "costas",
+   "ombro_posterior",
+   "biceps"
+  ],
+  "soAjuda": [
+   "antebraço"
+  ]
+ },
+ {
+  "animacao": "remada-baixa",
+  "exercicios": [
+   "remada-baixa"
+  ],
+  "secundarioQueConta": [
+   "ombro_posterior",
+   "biceps"
+  ],
+  "soAjuda": []
+ },
+ {
+  "animacao": "crucifixo-polia",
+  "exercicios": [
+   "crucifixo-polia"
+  ],
+  "secundarioQueConta": [
+   "ombro_anterior"
+  ],
+  "soAjuda": []
+ },
+ {
+  "animacao": "elevacao-lateral",
+  "exercicios": [
+   "elevacao-lateral"
+  ],
+  "secundarioQueConta": [],
+  "soAjuda": [
+   "ombro_anterior"
+  ]
+ },
+ {
+  "animacao": "face-pull",
+  "exercicios": [
+   "face-pull"
+  ],
+  "secundarioQueConta": [
+   "costas"
+  ],
+  "soAjuda": []
+ },
+ {
+  "animacao": "abdominal-polia",
+  "exercicios": [
+   "abdominal-polia"
+  ],
+  "secundarioQueConta": [],
+  "soAjuda": [
+   "oblíquos"
+  ]
+ },
+ {
+  "animacao": "goblet",
+  "exercicios": [
+   "goblet"
+  ],
+  "secundarioQueConta": [
+   "adutores",
+   "gluteos"
+  ],
+  "soAjuda": []
+ },
+ {
+  "animacao": "stiff",
+  "exercicios": [
+   "stiff"
+  ],
+  "secundarioQueConta": [
+   "gluteos"
+  ],
+  "soAjuda": [
+   "eretores (lombar)"
+  ]
+ },
+ {
+  "animacao": "afundo",
+  "exercicios": [
+   "afundo"
+  ],
+  "secundarioQueConta": [
+   "gluteos",
+   "adutores",
+   "quadriceps"
+  ],
+  "soAjuda": []
+ },
+ {
+  "animacao": "panturrilha",
+  "exercicios": [
+   "panturrilha"
+  ],
+  "secundarioQueConta": [],
+  "soAjuda": []
+ },
+ {
+  "animacao": "rosca-polia",
+  "exercicios": [
+   "rosca-polia"
+  ],
+  "secundarioQueConta": [],
+  "soAjuda": [
+   "antebraço"
+  ]
+ },
+ {
+  "animacao": "triceps-corda",
+  "exercicios": [
+   "triceps-corda"
+  ],
+  "secundarioQueConta": [],
+  "soAjuda": []
+ },
+ {
+  "animacao": "supino-reto",
+  "exercicios": [
+   "supino-reto"
+  ],
+  "secundarioQueConta": [
+   "peito",
+   "ombro_anterior",
+   "triceps"
+  ],
+  "soAjuda": []
+ },
+ {
+  "animacao": "remada-apoiada",
+  "exercicios": [
+   "remada-apoiada"
+  ],
+  "secundarioQueConta": [
+   "ombro_posterior",
+   "biceps"
+  ],
+  "soAjuda": []
+ },
+ {
+  "animacao": "desenvolvimento",
+  "exercicios": [
+   "desenvolvimento"
+  ],
+  "secundarioQueConta": [
+   "ombro_lateral",
+   "triceps"
+  ],
+  "soAjuda": [
+   "trapézio superior"
+  ]
+ },
+ {
+  "animacao": "puxada-unilateral",
+  "exercicios": [
+   "puxada-unilateral"
+  ],
+  "secundarioQueConta": [
+   "costas",
+   "ombro_posterior",
+   "biceps"
+  ],
+  "soAjuda": []
+ },
+ {
+  "animacao": "flexao",
+  "exercicios": [
+   "flexao"
+  ],
+  "secundarioQueConta": [
+   "ombro_anterior",
+   "triceps"
+  ],
+  "soAjuda": [
+   "abdomen"
+  ]
+ },
+ {
+  "animacao": "elevacao-halteres",
+  "exercicios": [
+   "elevacao-halteres"
+  ],
+  "secundarioQueConta": [],
+  "soAjuda": [
+   "ombro_anterior"
+  ]
+ },
+ {
+  "animacao": "elevacao-joelhos",
+  "exercicios": [
+   "elevacao-joelhos"
+  ],
+  "secundarioQueConta": [],
+  "soAjuda": [
+   "oblíquos",
+   "antebraço"
+  ]
+ },
+ {
+  "animacao": "bulgaro",
+  "exercicios": [
+   "bulgaro"
+  ],
+  "secundarioQueConta": [
+   "gluteos",
+   "adutores"
+  ],
+  "soAjuda": []
+ },
+ {
+  "animacao": "flexao-bola",
+  "exercicios": [
+   "flexao-bola"
+  ],
+  "secundarioQueConta": [
+   "gluteos"
+  ],
+  "soAjuda": [
+   "panturrilha"
+  ]
+ },
+ {
+  "animacao": "panturrilha-b",
+  "exercicios": [
+   "panturrilha-bilateral-step"
+  ],
+  "secundarioQueConta": [],
+  "soAjuda": []
+ },
+ {
+  "animacao": "rosca-inclinada",
+  "exercicios": [
+   "rosca-inclinada"
+  ],
+  "secundarioQueConta": [],
+  "soAjuda": [
+   "antebraço"
+  ]
+ },
+ {
+  "animacao": "triceps-frances",
+  "exercicios": [
+   "triceps-frances"
+  ],
+  "secundarioQueConta": [],
+  "soAjuda": [
+   "abdomen"
+  ]
+ },
+ {
+  "animacao": "remada-unilateral",
+  "exercicios": [
+   "remada-unilateral-halter"
+  ],
+  "secundarioQueConta": [
+   "ombro_posterior",
+   "biceps"
+  ],
+  "soAjuda": []
+ },
+ {
+  "animacao": "panturrilha-chao",
+  "exercicios": [
+   "panturrilha-chao"
+  ],
+  "secundarioQueConta": [],
+  "soAjuda": []
+ },
+ {
+  "animacao": "abdominal-chao",
+  "exercicios": [
+   "abdominal-chao"
+  ],
+  "secundarioQueConta": [],
+  "soAjuda": [
+   "oblíquos"
+  ]
+ },
+ {
+  "animacao": "rosca-alternada",
+  "exercicios": [
+   "rosca-alternada"
+  ],
+  "secundarioQueConta": [],
+  "soAjuda": [
+   "antebraço"
+  ]
+ },
+ {
+  "animacao": "triceps-frances-halter",
+  "exercicios": [
+   "triceps-frances-halter"
+  ],
+  "secundarioQueConta": [],
+  "soAjuda": []
+ },
+ {
+  "animacao": "stiff-unilateral",
+  "exercicios": [
+   "stiff-unilateral"
+  ],
+  "secundarioQueConta": [
+   "gluteos"
+  ],
+  "soAjuda": [
+   "eretores (lombar)"
+  ]
+ }
+]

@@ -1,0 +1,1391 @@
+{
+ "raiz": ".",
+ "medidas": [
+  {
+   "id": "abdominal-chao",
+   "vaga": 166130,
+   "vistaDaMiniatura": "lateral",
+   "vistas": [
+    {
+     "vista": "lateral",
+     "corpoNoPalcoPct": 91,
+     "fracaoPrincipal": 0.74,
+     "musculos": [
+      {
+       "musculo": "obliquos",
+       "lado": "R",
+       "tipo": "s",
+       "px2Palco": 703,
+       "px2Miniatura": 68
+      },
+      {
+       "musculo": "retoAbdominal",
+       "lado": "C",
+       "tipo": "p",
+       "px2Palco": 723,
+       "px2Miniatura": 70
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "panturrilha-chao",
+   "vaga": 150897,
+   "vistaDaMiniatura": "zoom",
+   "vistas": [
+    {
+     "vista": "lateral",
+     "corpoNoPalcoPct": 85,
+     "fracaoPrincipal": 0.2,
+     "musculos": [
+      {
+       "musculo": "panturrilha",
+       "lado": "R",
+       "tipo": "p",
+       "px2Palco": 197,
+       "px2Miniatura": 19
+      }
+     ]
+    },
+    {
+     "vista": "zoom",
+     "corpoNoPalcoPct": 260,
+     "fracaoPrincipal": 1.91,
+     "musculos": [
+      {
+       "musculo": "panturrilha",
+       "lado": "R",
+       "tipo": "p",
+       "px2Palco": 1855,
+       "px2Miniatura": 180
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "elevacao-halteres",
+   "vaga": 145696,
+   "vistaDaMiniatura": "frontal",
+   "vistas": [
+    {
+     "vista": "frontal",
+     "corpoNoPalcoPct": 85,
+     "fracaoPrincipal": 0.19,
+     "musculos": [
+      {
+       "musculo": "deltAnt",
+       "lado": "R",
+       "tipo": "s",
+       "px2Palco": 88,
+       "px2Miniatura": 9
+      },
+      {
+       "musculo": "deltAnt",
+       "lado": "L",
+       "tipo": "s",
+       "px2Palco": 88,
+       "px2Miniatura": 9
+      },
+      {
+       "musculo": "deltLat",
+       "lado": "R",
+       "tipo": "p",
+       "px2Palco": 93,
+       "px2Miniatura": 9
+      },
+      {
+       "musculo": "deltLat",
+       "lado": "L",
+       "tipo": "p",
+       "px2Palco": 93,
+       "px2Miniatura": 9
+      }
+     ]
+    },
+    {
+     "vista": "lateral",
+     "corpoNoPalcoPct": 85,
+     "fracaoPrincipal": 0.04,
+     "musculos": [
+      {
+       "musculo": "deltAnt",
+       "lado": "R",
+       "tipo": "s",
+       "px2Palco": 39,
+       "px2Miniatura": 4
+      },
+      {
+       "musculo": "deltAnt",
+       "lado": "L",
+       "tipo": "s",
+       "px2Palco": 39,
+       "px2Miniatura": 4
+      },
+      {
+       "musculo": "deltLat",
+       "lado": "R",
+       "tipo": "p",
+       "px2Palco": 41,
+       "px2Miniatura": 4
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "stiff",
+   "vaga": 116556,
+   "vistaDaMiniatura": "lateral",
+   "vistas": [
+    {
+     "vista": "lateral",
+     "corpoNoPalcoPct": 85,
+     "fracaoPrincipal": 0.37,
+     "musculos": [
+      {
+       "musculo": "eretores",
+       "lado": "C",
+       "tipo": "s",
+       "px2Palco": 219,
+       "px2Miniatura": 21
+      },
+      {
+       "musculo": "gluteos",
+       "lado": "R",
+       "tipo": "s",
+       "px2Palco": 89,
+       "px2Miniatura": 9
+      },
+      {
+       "musculo": "posteriores",
+       "lado": "R",
+       "tipo": "p",
+       "px2Palco": 357,
+       "px2Miniatura": 35
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "rosca-alternada",
+   "vaga": 100599,
+   "vistaDaMiniatura": "lateral",
+   "vistas": [
+    {
+     "vista": "lateral",
+     "corpoNoPalcoPct": 85,
+     "fracaoPrincipal": 0.32,
+     "musculos": [
+      {
+       "musculo": "biceps",
+       "lado": "R",
+       "tipo": "p",
+       "px2Palco": 157,
+       "px2Miniatura": 15
+      },
+      {
+       "musculo": "biceps",
+       "lado": "L",
+       "tipo": "p",
+       "px2Palco": 157,
+       "px2Miniatura": 15
+      },
+      {
+       "musculo": "antebraco",
+       "lado": "R",
+       "tipo": "s",
+       "px2Palco": 110,
+       "px2Miniatura": 11
+      },
+      {
+       "musculo": "antebraco",
+       "lado": "L",
+       "tipo": "s",
+       "px2Palco": 110,
+       "px2Miniatura": 11
+      }
+     ]
+    },
+    {
+     "vista": "frontal",
+     "corpoNoPalcoPct": 85,
+     "fracaoPrincipal": 0.32,
+     "musculos": [
+      {
+       "musculo": "biceps",
+       "lado": "R",
+       "tipo": "p",
+       "px2Palco": 157,
+       "px2Miniatura": 15
+      },
+      {
+       "musculo": "biceps",
+       "lado": "L",
+       "tipo": "p",
+       "px2Palco": 157,
+       "px2Miniatura": 15
+      },
+      {
+       "musculo": "antebraco",
+       "lado": "R",
+       "tipo": "s",
+       "px2Palco": 97,
+       "px2Miniatura": 9
+      },
+      {
+       "musculo": "antebraco",
+       "lado": "L",
+       "tipo": "s",
+       "px2Palco": 109,
+       "px2Miniatura": 11
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "flexao",
+   "vaga": 91448,
+   "vistaDaMiniatura": "lateral",
+   "vistas": [
+    {
+     "vista": "lateral",
+     "corpoNoPalcoPct": 90,
+     "fracaoPrincipal": 0.31,
+     "musculos": [
+      {
+       "musculo": "retoAbdominal",
+       "lado": "C",
+       "tipo": "s",
+       "px2Palco": 627,
+       "px2Miniatura": 61
+      },
+      {
+       "musculo": "peitoralEst",
+       "lado": "R",
+       "tipo": "p",
+       "px2Palco": 304,
+       "px2Miniatura": 29
+      },
+      {
+       "musculo": "deltAnt",
+       "lado": "R",
+       "tipo": "s",
+       "px2Palco": 196,
+       "px2Miniatura": 19
+      },
+      {
+       "musculo": "deltAnt",
+       "lado": "L",
+       "tipo": "s",
+       "px2Palco": 196,
+       "px2Miniatura": 19
+      },
+      {
+       "musculo": "triceps",
+       "lado": "R",
+       "tipo": "s",
+       "px2Palco": 326,
+       "px2Miniatura": 32
+      },
+      {
+       "musculo": "triceps",
+       "lado": "L",
+       "tipo": "s",
+       "px2Palco": 326,
+       "px2Miniatura": 32
+      }
+     ]
+    },
+    {
+     "vista": "top",
+     "corpoNoPalcoPct": 85,
+     "fracaoPrincipal": 0,
+     "musculos": [
+      {
+       "musculo": "triceps",
+       "lado": "R",
+       "tipo": "s",
+       "px2Palco": 164,
+       "px2Miniatura": 16
+      },
+      {
+       "musculo": "triceps",
+       "lado": "L",
+       "tipo": "s",
+       "px2Palco": 164,
+       "px2Miniatura": 16
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "afundo",
+   "vaga": 87111,
+   "vistaDaMiniatura": "lateral",
+   "vistas": [
+    {
+     "vista": "lateral",
+     "corpoNoPalcoPct": 86,
+     "fracaoPrincipal": 0.44,
+     "musculos": [
+      {
+       "musculo": "gluteos",
+       "lado": "R",
+       "tipo": "s",
+       "px2Palco": 107,
+       "px2Miniatura": 10
+      },
+      {
+       "musculo": "quadriceps",
+       "lado": "R",
+       "tipo": "p",
+       "px2Palco": 429,
+       "px2Miniatura": 42
+      }
+     ]
+    },
+    {
+     "vista": "frontal",
+     "corpoNoPalcoPct": 86,
+     "fracaoPrincipal": 0.04,
+     "musculos": [
+      {
+       "musculo": "adutores",
+       "lado": "R",
+       "tipo": "s",
+       "px2Palco": 30,
+       "px2Miniatura": 3
+      },
+      {
+       "musculo": "quadriceps",
+       "lado": "L",
+       "tipo": "s",
+       "px2Palco": 430,
+       "px2Miniatura": 42
+      },
+      {
+       "musculo": "quadriceps",
+       "lado": "R",
+       "tipo": "p",
+       "px2Palco": 36,
+       "px2Miniatura": 3
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "supino-reto",
+   "vaga": 81100,
+   "vistaDaMiniatura": "top",
+   "vistas": [
+    {
+     "vista": "lateral",
+     "corpoNoPalcoPct": 80,
+     "fracaoPrincipal": 0.21,
+     "musculos": [
+      {
+       "musculo": "peitoralEst",
+       "lado": "R",
+       "tipo": "p",
+       "px2Palco": 204,
+       "px2Miniatura": 20
+      },
+      {
+       "musculo": "peitoralClav",
+       "lado": "R",
+       "tipo": "s",
+       "px2Palco": 109,
+       "px2Miniatura": 11
+      },
+      {
+       "musculo": "deltAnt",
+       "lado": "R",
+       "tipo": "s",
+       "px2Palco": 124,
+       "px2Miniatura": 12
+      },
+      {
+       "musculo": "deltAnt",
+       "lado": "L",
+       "tipo": "s",
+       "px2Palco": 124,
+       "px2Miniatura": 12
+      },
+      {
+       "musculo": "triceps",
+       "lado": "L",
+       "tipo": "s",
+       "px2Palco": 201,
+       "px2Miniatura": 19
+      }
+     ]
+    },
+    {
+     "vista": "top",
+     "corpoNoPalcoPct": 82,
+     "fracaoPrincipal": 0.79,
+     "musculos": [
+      {
+       "musculo": "peitoralEst",
+       "lado": "R",
+       "tipo": "p",
+       "px2Palco": 386,
+       "px2Miniatura": 37
+      },
+      {
+       "musculo": "peitoralEst",
+       "lado": "L",
+       "tipo": "p",
+       "px2Palco": 386,
+       "px2Miniatura": 37
+      },
+      {
+       "musculo": "peitoralClav",
+       "lado": "R",
+       "tipo": "s",
+       "px2Palco": 214,
+       "px2Miniatura": 21
+      },
+      {
+       "musculo": "peitoralClav",
+       "lado": "L",
+       "tipo": "s",
+       "px2Palco": 214,
+       "px2Miniatura": 21
+      },
+      {
+       "musculo": "deltAnt",
+       "lado": "R",
+       "tipo": "s",
+       "px2Palco": 143,
+       "px2Miniatura": 14
+      },
+      {
+       "musculo": "deltAnt",
+       "lado": "L",
+       "tipo": "s",
+       "px2Palco": 143,
+       "px2Miniatura": 14
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "stiff-unilateral",
+   "vaga": 72325,
+   "vistaDaMiniatura": "lateral",
+   "vistas": [
+    {
+     "vista": "lateral",
+     "corpoNoPalcoPct": 85,
+     "fracaoPrincipal": 0.33,
+     "musculos": [
+      {
+       "musculo": "eretores",
+       "lado": "C",
+       "tipo": "s",
+       "px2Palco": 194,
+       "px2Miniatura": 19
+      },
+      {
+       "musculo": "gluteos",
+       "lado": "R",
+       "tipo": "s",
+       "px2Palco": 124,
+       "px2Miniatura": 12
+      },
+      {
+       "musculo": "posteriores",
+       "lado": "L",
+       "tipo": "p",
+       "px2Palco": 317,
+       "px2Miniatura": 31
+      }
+     ]
+    },
+    {
+     "vista": "frontal",
+     "corpoNoPalcoPct": 85,
+     "fracaoPrincipal": 0,
+     "musculos": [
+      {
+       "musculo": "eretores",
+       "lado": "C",
+       "tipo": "s",
+       "px2Palco": 103,
+       "px2Miniatura": 10
+      },
+      {
+       "musculo": "gluteos",
+       "lado": "R",
+       "tipo": "s",
+       "px2Palco": 78,
+       "px2Miniatura": 8
+      },
+      {
+       "musculo": "gluteos",
+       "lado": "L",
+       "tipo": "s",
+       "px2Palco": 181,
+       "px2Miniatura": 18
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "triceps-frances-halter",
+   "vaga": 66083,
+   "vistaDaMiniatura": "lateral",
+   "vistas": [
+    {
+     "vista": "lateral",
+     "corpoNoPalcoPct": 88,
+     "fracaoPrincipal": 0.39,
+     "musculos": [
+      {
+       "musculo": "triceps",
+       "lado": "R",
+       "tipo": "p",
+       "px2Palco": 188,
+       "px2Miniatura": 18
+      },
+      {
+       "musculo": "triceps",
+       "lado": "L",
+       "tipo": "p",
+       "px2Palco": 188,
+       "px2Miniatura": 18
+      }
+     ]
+    },
+    {
+     "vista": "frontal",
+     "corpoNoPalcoPct": 88,
+     "fracaoPrincipal": 0.38,
+     "musculos": [
+      {
+       "musculo": "triceps",
+       "lado": "R",
+       "tipo": "p",
+       "px2Palco": 185,
+       "px2Miniatura": 18
+      },
+      {
+       "musculo": "triceps",
+       "lado": "L",
+       "tipo": "p",
+       "px2Palco": 185,
+       "px2Miniatura": 18
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "rosca-inclinada",
+   "vaga": 65194,
+   "vistaDaMiniatura": "lateral",
+   "vistas": [
+    {
+     "vista": "lateral",
+     "corpoNoPalcoPct": 82,
+     "fracaoPrincipal": 0.59,
+     "musculos": [
+      {
+       "musculo": "biceps",
+       "lado": "R",
+       "tipo": "p",
+       "px2Palco": 285,
+       "px2Miniatura": 28
+      },
+      {
+       "musculo": "biceps",
+       "lado": "L",
+       "tipo": "p",
+       "px2Palco": 285,
+       "px2Miniatura": 28
+      },
+      {
+       "musculo": "antebraco",
+       "lado": "R",
+       "tipo": "s",
+       "px2Palco": 199,
+       "px2Miniatura": 19
+      },
+      {
+       "musculo": "antebraco",
+       "lado": "L",
+       "tipo": "s",
+       "px2Palco": 199,
+       "px2Miniatura": 19
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "remada-apoiada",
+   "vaga": 60800,
+   "vistaDaMiniatura": "posterior",
+   "vistas": [
+    {
+     "vista": "lateral",
+     "corpoNoPalcoPct": 77,
+     "fracaoPrincipal": 0.73,
+     "musculos": [
+      {
+       "musculo": "romboides",
+       "lado": "R",
+       "tipo": "p",
+       "px2Palco": 19,
+       "px2Miniatura": 2
+      },
+      {
+       "musculo": "romboides",
+       "lado": "L",
+       "tipo": "p",
+       "px2Palco": 19,
+       "px2Miniatura": 2
+      },
+      {
+       "musculo": "redondoMaior",
+       "lado": "R",
+       "tipo": "p",
+       "px2Palco": 38,
+       "px2Miniatura": 4
+      },
+      {
+       "musculo": "dorsal",
+       "lado": "R",
+       "tipo": "p",
+       "px2Palco": 589,
+       "px2Miniatura": 57
+      },
+      {
+       "musculo": "trapMedio",
+       "lado": "R",
+       "tipo": "p",
+       "px2Palco": 14,
+       "px2Miniatura": 1
+      },
+      {
+       "musculo": "trapMedio",
+       "lado": "L",
+       "tipo": "p",
+       "px2Palco": 14,
+       "px2Miniatura": 1
+      },
+      {
+       "musculo": "trapInferior",
+       "lado": "R",
+       "tipo": "p",
+       "px2Palco": 9,
+       "px2Miniatura": 1
+      },
+      {
+       "musculo": "trapInferior",
+       "lado": "L",
+       "tipo": "p",
+       "px2Palco": 9,
+       "px2Miniatura": 1
+      },
+      {
+       "musculo": "deltPost",
+       "lado": "R",
+       "tipo": "s",
+       "px2Palco": 135,
+       "px2Miniatura": 13
+      },
+      {
+       "musculo": "deltPost",
+       "lado": "L",
+       "tipo": "s",
+       "px2Palco": 135,
+       "px2Miniatura": 13
+      },
+      {
+       "musculo": "biceps",
+       "lado": "R",
+       "tipo": "s",
+       "px2Palco": 215,
+       "px2Miniatura": 21
+      },
+      {
+       "musculo": "biceps",
+       "lado": "L",
+       "tipo": "s",
+       "px2Palco": 215,
+       "px2Miniatura": 21
+      }
+     ]
+    },
+    {
+     "vista": "posterior",
+     "corpoNoPalcoPct": 87,
+     "fracaoPrincipal": 2.56,
+     "musculos": [
+      {
+       "musculo": "romboides",
+       "lado": "R",
+       "tipo": "p",
+       "px2Palco": 243,
+       "px2Miniatura": 23
+      },
+      {
+       "musculo": "romboides",
+       "lado": "L",
+       "tipo": "p",
+       "px2Palco": 243,
+       "px2Miniatura": 23
+      },
+      {
+       "musculo": "redondoMaior",
+       "lado": "R",
+       "tipo": "p",
+       "px2Palco": 22,
+       "px2Miniatura": 2
+      },
+      {
+       "musculo": "redondoMaior",
+       "lado": "L",
+       "tipo": "p",
+       "px2Palco": 22,
+       "px2Miniatura": 2
+      },
+      {
+       "musculo": "dorsal",
+       "lado": "R",
+       "tipo": "p",
+       "px2Palco": 631,
+       "px2Miniatura": 61
+      },
+      {
+       "musculo": "dorsal",
+       "lado": "L",
+       "tipo": "p",
+       "px2Palco": 631,
+       "px2Miniatura": 61
+      },
+      {
+       "musculo": "trapMedio",
+       "lado": "R",
+       "tipo": "p",
+       "px2Palco": 202,
+       "px2Miniatura": 20
+      },
+      {
+       "musculo": "trapMedio",
+       "lado": "L",
+       "tipo": "p",
+       "px2Palco": 202,
+       "px2Miniatura": 20
+      },
+      {
+       "musculo": "trapInferior",
+       "lado": "R",
+       "tipo": "p",
+       "px2Palco": 149,
+       "px2Miniatura": 14
+      },
+      {
+       "musculo": "trapInferior",
+       "lado": "L",
+       "tipo": "p",
+       "px2Palco": 149,
+       "px2Miniatura": 14
+      },
+      {
+       "musculo": "deltPost",
+       "lado": "R",
+       "tipo": "s",
+       "px2Palco": 67,
+       "px2Miniatura": 7
+      },
+      {
+       "musculo": "deltPost",
+       "lado": "L",
+       "tipo": "s",
+       "px2Palco": 67,
+       "px2Miniatura": 7
+      },
+      {
+       "musculo": "biceps",
+       "lado": "R",
+       "tipo": "s",
+       "px2Palco": 59,
+       "px2Miniatura": 6
+      },
+      {
+       "musculo": "biceps",
+       "lado": "L",
+       "tipo": "s",
+       "px2Palco": 59,
+       "px2Miniatura": 6
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "supino-inclinado",
+   "vaga": 58875,
+   "vistaDaMiniatura": "top",
+   "vistas": [
+    {
+     "vista": "lateral",
+     "corpoNoPalcoPct": 85,
+     "fracaoPrincipal": 0.08,
+     "musculos": [
+      {
+       "musculo": "peitoralEst",
+       "lado": "R",
+       "tipo": "s",
+       "px2Palco": 160,
+       "px2Miniatura": 15
+      },
+      {
+       "musculo": "peitoralClav",
+       "lado": "R",
+       "tipo": "p",
+       "px2Palco": 82,
+       "px2Miniatura": 8
+      },
+      {
+       "musculo": "deltAnt",
+       "lado": "R",
+       "tipo": "s",
+       "px2Palco": 98,
+       "px2Miniatura": 9
+      },
+      {
+       "musculo": "triceps",
+       "lado": "L",
+       "tipo": "s",
+       "px2Palco": 156,
+       "px2Miniatura": 15
+      }
+     ]
+    },
+    {
+     "vista": "top",
+     "corpoNoPalcoPct": 87,
+     "fracaoPrincipal": 0.43,
+     "musculos": [
+      {
+       "musculo": "peitoralEst",
+       "lado": "R",
+       "tipo": "s",
+       "px2Palco": 385,
+       "px2Miniatura": 37
+      },
+      {
+       "musculo": "peitoralEst",
+       "lado": "L",
+       "tipo": "s",
+       "px2Palco": 385,
+       "px2Miniatura": 37
+      },
+      {
+       "musculo": "peitoralClav",
+       "lado": "R",
+       "tipo": "p",
+       "px2Palco": 208,
+       "px2Miniatura": 20
+      },
+      {
+       "musculo": "peitoralClav",
+       "lado": "L",
+       "tipo": "p",
+       "px2Palco": 208,
+       "px2Miniatura": 20
+      },
+      {
+       "musculo": "deltAnt",
+       "lado": "R",
+       "tipo": "s",
+       "px2Palco": 162,
+       "px2Miniatura": 16
+      },
+      {
+       "musculo": "deltAnt",
+       "lado": "L",
+       "tipo": "s",
+       "px2Palco": 162,
+       "px2Miniatura": 16
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "elevacao-joelhos",
+   "vaga": 53050,
+   "vistaDaMiniatura": "lateral",
+   "vistas": [
+    {
+     "vista": "lateral",
+     "corpoNoPalcoPct": 81,
+     "fracaoPrincipal": 0.15,
+     "musculos": [
+      {
+       "musculo": "obliquos",
+       "lado": "R",
+       "tipo": "s",
+       "px2Palco": 141,
+       "px2Miniatura": 14
+      },
+      {
+       "musculo": "retoAbdominal",
+       "lado": "C",
+       "tipo": "p",
+       "px2Palco": 149,
+       "px2Miniatura": 14
+      },
+      {
+       "musculo": "antebraco",
+       "lado": "R",
+       "tipo": "s",
+       "px2Palco": 61,
+       "px2Miniatura": 6
+      },
+      {
+       "musculo": "antebraco",
+       "lado": "L",
+       "tipo": "s",
+       "px2Palco": 61,
+       "px2Miniatura": 6
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "bulgaro",
+   "vaga": 50234,
+   "vistaDaMiniatura": "lateral",
+   "vistas": [
+    {
+     "vista": "lateral",
+     "corpoNoPalcoPct": 85,
+     "fracaoPrincipal": 0.46,
+     "musculos": [
+      {
+       "musculo": "gluteos",
+       "lado": "R",
+       "tipo": "s",
+       "px2Palco": 90,
+       "px2Miniatura": 9
+      },
+      {
+       "musculo": "quadriceps",
+       "lado": "R",
+       "tipo": "p",
+       "px2Palco": 447,
+       "px2Miniatura": 43
+      }
+     ]
+    },
+    {
+     "vista": "frontal",
+     "corpoNoPalcoPct": 57,
+     "fracaoPrincipal": 0.02,
+     "musculos": [
+      {
+       "musculo": "adutores",
+       "lado": "R",
+       "tipo": "s",
+       "px2Palco": 14,
+       "px2Miniatura": 1
+      },
+      {
+       "musculo": "quadriceps",
+       "lado": "R",
+       "tipo": "p",
+       "px2Palco": 17,
+       "px2Miniatura": 2
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "puxada-unilateral",
+   "vaga": 22800,
+   "vistaDaMiniatura": "posterior",
+   "vistas": [
+    {
+     "vista": "posterior",
+     "corpoNoPalcoPct": 59,
+     "fracaoPrincipal": 0.24,
+     "musculos": [
+      {
+       "musculo": "romboides",
+       "lado": "R",
+       "tipo": "s",
+       "px2Palco": 96,
+       "px2Miniatura": 9
+      },
+      {
+       "musculo": "redondoMaior",
+       "lado": "R",
+       "tipo": "p",
+       "px2Palco": 24,
+       "px2Miniatura": 2
+      },
+      {
+       "musculo": "dorsal",
+       "lado": "R",
+       "tipo": "p",
+       "px2Palco": 207,
+       "px2Miniatura": 20
+      },
+      {
+       "musculo": "trapMedio",
+       "lado": "R",
+       "tipo": "s",
+       "px2Palco": 89,
+       "px2Miniatura": 9
+      },
+      {
+       "musculo": "trapInferior",
+       "lado": "R",
+       "tipo": "s",
+       "px2Palco": 60,
+       "px2Miniatura": 6
+      },
+      {
+       "musculo": "deltPost",
+       "lado": "R",
+       "tipo": "s",
+       "px2Palco": 63,
+       "px2Miniatura": 6
+      }
+     ]
+    },
+    {
+     "vista": "lateral",
+     "corpoNoPalcoPct": 59,
+     "fracaoPrincipal": 0.2,
+     "musculos": [
+      {
+       "musculo": "romboides",
+       "lado": "R",
+       "tipo": "s",
+       "px2Palco": 7,
+       "px2Miniatura": 1
+      },
+      {
+       "musculo": "redondoMaior",
+       "lado": "R",
+       "tipo": "p",
+       "px2Palco": 5,
+       "px2Miniatura": 1
+      },
+      {
+       "musculo": "dorsal",
+       "lado": "R",
+       "tipo": "p",
+       "px2Palco": 193,
+       "px2Miniatura": 19
+      },
+      {
+       "musculo": "trapMedio",
+       "lado": "R",
+       "tipo": "s",
+       "px2Palco": 4,
+       "px2Miniatura": 0
+      },
+      {
+       "musculo": "trapInferior",
+       "lado": "R",
+       "tipo": "s",
+       "px2Palco": 4,
+       "px2Miniatura": 0
+      },
+      {
+       "musculo": "deltPost",
+       "lado": "R",
+       "tipo": "s",
+       "px2Palco": 54,
+       "px2Miniatura": 5
+      },
+      {
+       "musculo": "biceps",
+       "lado": "R",
+       "tipo": "s",
+       "px2Palco": 77,
+       "px2Miniatura": 7
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "face-pull",
+   "vaga": 12491,
+   "vistaDaMiniatura": "lateral",
+   "vistas": [
+    {
+     "vista": "lateral",
+     "corpoNoPalcoPct": 62,
+     "fracaoPrincipal": 0.02,
+     "musculos": [
+      {
+       "musculo": "romboides",
+       "lado": "R",
+       "tipo": "s",
+       "px2Palco": 7,
+       "px2Miniatura": 1
+      },
+      {
+       "musculo": "romboides",
+       "lado": "L",
+       "tipo": "s",
+       "px2Palco": 7,
+       "px2Miniatura": 1
+      },
+      {
+       "musculo": "trapMedio",
+       "lado": "R",
+       "tipo": "s",
+       "px2Palco": 6,
+       "px2Miniatura": 1
+      },
+      {
+       "musculo": "trapMedio",
+       "lado": "L",
+       "tipo": "s",
+       "px2Palco": 6,
+       "px2Miniatura": 1
+      },
+      {
+       "musculo": "trapInferior",
+       "lado": "R",
+       "tipo": "s",
+       "px2Palco": 4,
+       "px2Miniatura": 0
+      },
+      {
+       "musculo": "trapInferior",
+       "lado": "L",
+       "tipo": "s",
+       "px2Palco": 4,
+       "px2Miniatura": 0
+      },
+      {
+       "musculo": "deltPost",
+       "lado": "R",
+       "tipo": "p",
+       "px2Palco": 8,
+       "px2Miniatura": 1
+      },
+      {
+       "musculo": "deltPost",
+       "lado": "L",
+       "tipo": "p",
+       "px2Palco": 8,
+       "px2Miniatura": 1
+      }
+     ]
+    },
+    {
+     "vista": "top",
+     "corpoNoPalcoPct": 46,
+     "fracaoPrincipal": 0,
+     "musculos": [
+      {
+       "musculo": "romboides",
+       "lado": "R",
+       "tipo": "s",
+       "px2Palco": 22,
+       "px2Miniatura": 2
+      },
+      {
+       "musculo": "romboides",
+       "lado": "L",
+       "tipo": "s",
+       "px2Palco": 22,
+       "px2Miniatura": 2
+      },
+      {
+       "musculo": "trapMedio",
+       "lado": "R",
+       "tipo": "s",
+       "px2Palco": 33,
+       "px2Miniatura": 3
+      },
+      {
+       "musculo": "trapMedio",
+       "lado": "L",
+       "tipo": "s",
+       "px2Palco": 33,
+       "px2Miniatura": 3
+      },
+      {
+       "musculo": "trapInferior",
+       "lado": "R",
+       "tipo": "s",
+       "px2Palco": 14,
+       "px2Miniatura": 1
+      },
+      {
+       "musculo": "trapInferior",
+       "lado": "L",
+       "tipo": "s",
+       "px2Palco": 14,
+       "px2Miniatura": 1
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "desenvolvimento",
+   "vaga": 34851,
+   "vistaDaMiniatura": "frontal",
+   "vistas": [
+    {
+     "vista": "frontal",
+     "corpoNoPalcoPct": 86,
+     "fracaoPrincipal": 0.19,
+     "musculos": [
+      {
+       "musculo": "deltLat",
+       "lado": "R",
+       "tipo": "s",
+       "px2Palco": 91,
+       "px2Miniatura": 9
+      },
+      {
+       "musculo": "deltLat",
+       "lado": "L",
+       "tipo": "s",
+       "px2Palco": 91,
+       "px2Miniatura": 9
+      },
+      {
+       "musculo": "deltAnt",
+       "lado": "R",
+       "tipo": "p",
+       "px2Palco": 90,
+       "px2Miniatura": 9
+      },
+      {
+       "musculo": "deltAnt",
+       "lado": "L",
+       "tipo": "p",
+       "px2Palco": 90,
+       "px2Miniatura": 9
+      },
+      {
+       "musculo": "triceps",
+       "lado": "R",
+       "tipo": "s",
+       "px2Palco": 184,
+       "px2Miniatura": 18
+      },
+      {
+       "musculo": "triceps",
+       "lado": "L",
+       "tipo": "s",
+       "px2Palco": 184,
+       "px2Miniatura": 18
+      }
+     ]
+    },
+    {
+     "vista": "lateral",
+     "corpoNoPalcoPct": 87,
+     "fracaoPrincipal": 0.09,
+     "musculos": [
+      {
+       "musculo": "trapSuperior",
+       "lado": "R",
+       "tipo": "s",
+       "px2Palco": 53,
+       "px2Miniatura": 5
+      },
+      {
+       "musculo": "deltLat",
+       "lado": "R",
+       "tipo": "s",
+       "px2Palco": 92,
+       "px2Miniatura": 9
+      },
+      {
+       "musculo": "deltAnt",
+       "lado": "L",
+       "tipo": "p",
+       "px2Palco": 91,
+       "px2Miniatura": 9
+      },
+      {
+       "musculo": "triceps",
+       "lado": "R",
+       "tipo": "s",
+       "px2Palco": 186,
+       "px2Miniatura": 18
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "elevacao-lateral",
+   "vaga": 29832,
+   "vistaDaMiniatura": "frontal",
+   "vistas": [
+    {
+     "vista": "frontal",
+     "corpoNoPalcoPct": 62,
+     "fracaoPrincipal": 0.05,
+     "musculos": [
+      {
+       "musculo": "deltAnt",
+       "lado": "R",
+       "tipo": "s",
+       "px2Palco": 46,
+       "px2Miniatura": 4
+      },
+      {
+       "musculo": "deltLat",
+       "lado": "R",
+       "tipo": "p",
+       "px2Palco": 49,
+       "px2Miniatura": 5
+      }
+     ]
+    },
+    {
+     "vista": "lateral",
+     "corpoNoPalcoPct": 62,
+     "fracaoPrincipal": 0.02,
+     "musculos": [
+      {
+       "musculo": "deltAnt",
+       "lado": "R",
+       "tipo": "s",
+       "px2Palco": 22,
+       "px2Miniatura": 2
+      },
+      {
+       "musculo": "deltLat",
+       "lado": "R",
+       "tipo": "p",
+       "px2Palco": 23,
+       "px2Miniatura": 2
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}
