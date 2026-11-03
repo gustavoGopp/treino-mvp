@@ -792,10 +792,10 @@ As listas exatas ficam em `tests/unit/metas-r0.test.ts`, para o R0c zerar.
 
 **Testes:** 514 unitários (eram 512) e 47 no navegador, todos passando (`npm run check`, `npm run test:e2e`).
 
-**Esperando a aprovação das folhas** (branch `boneco-legenda`, a partir de `reformulacao-visual`)
+**Boneco: listras e polia perto do corpo** (branch `boneco-legenda`, a partir de `reformulacao-visual`)
 - **Legenda A:** o músculo que só ajuda a firmar (em 15 animações) sai listrado de laranja, e a legenda do guia ganha 3 itens. Uma lista no motor, `SO_AJUDA`, travada por `tests/unit/legenda.test.ts` contra a biblioteca.
 - **Polia perto do corpo:** no modo Músculos, a câmera fica perto do corpo quando ele ocupa menos de 70% do palco (11 animações).
-- As 22 folhas estão geradas. **A linha de base `estilo-a.json` não foi gravada:** nesse branch, o teste dela falha até o Gustavo aprovar cada folha.
+- As 22 folhas foram **aprovadas pelo Gustavo em 03/11/2026**, e a linha de base `estilo-a.json` foi gravada de novo.
 
 **O que ficou para depois**
 - Os 21 ícones de equipamento que faltam (item 8).
@@ -809,3 +809,5 @@ As listas exatas ficam em `tests/unit/metas-r0.test.ts`, para o R0c zerar.
 > Medi tudo por script: nenhuma área de toque menor que 44 px, nenhum texto com contraste baixo, nos temas claro e escuro, até num celular pequeno. Antes, a tela que ensina o exercício tinha 25 botões pequenos demais.
 >
 > O boneco animado ficou igual, porque estava bom. O que mudou foi tudo em volta dele.
+
+**Na `main`** desde 03/11/2026, com o ok do Gustavo: os branches `revisao-design`, `reformulacao-visual` e `boneco-legenda` entraram sem commit de merge e foram publicados no site. Testes: 517 unitários e 47 no navegador.
