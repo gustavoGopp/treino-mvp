@@ -1,11 +1,11 @@
-import { useMemo, useState } from 'react';
+import { useMemo, useState, type ReactNode } from 'react';
 import { Link, Navigate, useNavigate } from 'react-router-dom';
 import { BIBLIOTECA } from '../../domain/biblioteca';
 import { ALTERNATIVAS_A_MOSTRA, type ExercicioPrescrito } from '../../domain/gerador';
 import { linkDoGuia } from '../guia/link';
 import { ESCADA_PESO_CORPO, type Carga, type SerieRegistrada } from '../../domain/progressao';
 import { MENOR_ANILHA_PADRAO_KG } from '../../domain/taxonomia/equipamentos';
-import { CartaoTexto } from '../programa/CartaoTexto';
+import { CartaoTexto, temCartao } from '../programa/CartaoTexto';
 import {
   avaliarSerieDeCalibracao,
   calibracaoNaSessao,
@@ -97,9 +97,19 @@ export function Treino() {
     <div className="wrap app">
       <Topo
         direita={
-          <button type="button" className="link-sec" onClick={() => terminar()}>
-            Terminar treino
-          </button>
+          // "Senti algo" sempre à vista, no topo (segurança; design v2, item I).
+          <span className="brand-acoes">
+            <button type="button" className="alerta-topo" aria-expanded={painel === 'sentir'} onClick={() => setPainel(painel === 'sentir' ? 'nenhum' : 'sentir')}>
+              <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                <path d="M12 4l9 16H3z" />
+                <path d="M12 10v4M12 17h.01" />
+              </svg>
+              Senti algo
+            </button>
+            <button type="button" className="link-sec" onClick={() => terminar()}>
+              Terminar treino
+            </button>
+          </span>
         }
       />
       <main className="conteudo sessao">
@@ -113,7 +123,7 @@ export function Treino() {
         </div>
 
         <div className="ex-sessao">
-          <Miniatura animacaoId={x.animacaoId} />
+          <Miniatura animacaoId={x.animacaoId} temTexto={temCartao(x.exId)} />
           <div>
             <Titulo>{x.nome}</Titulo>
             <p className="meta">
@@ -134,6 +144,9 @@ export function Treino() {
           </div>
         </div>
         {!x.animacaoId && <CartaoTexto exId={x.exId} />}
+        {!x.animacaoId && !temCartao(x.exId) && (
+          <p className="ajuda">Sem guia ainda. Se não conhece este exercício, troque por um com guia em "Trocar exercício".</p>
+        )}
         {trocaDoLocal ? (
           <p className="ajuda troca-local">
             {trocaDoLocal.motivo.charAt(0).toUpperCase() + trocaDoLocal.motivo.slice(1)}. <Selo id={trocaDoLocal.regraId} />
@@ -142,12 +155,6 @@ export function Treino() {
           feito.noLugarDe && <p className="ajuda">No lugar de {POR_ID[feito.noLugarDe]?.nome.toLowerCase()}, só neste treino.</p>
         )}
 
-        {feito.series.length === 0 && <Sugestao x={x} estado={estado} inventario={inventario} opcoes={opcoesCargaHoje} />}
-        {precisaAquecer(dia, dia.exercicios.findIndex((y) => y === vaga)) && feito.series.length === 0 && (
-          <p className="fase">
-            Antes: 1–2 séries leves de aquecimento, sem contar. <Selo id={REGRA_AQUECIMENTO} />
-          </p>
-        )}
 
         {feito.series.length > 0 && (
           <ol className="series-feitas" aria-label="Séries feitas">
@@ -187,6 +194,19 @@ export function Treino() {
             estado={estado}
             inventario={inventario}
             opcoes={opcoesCargaHoje}
+            topo={
+              // A sugestão de carga e o aquecimento ficam dentro do cartão da série, para o botão de salvar caber na tela.
+              feito.series.length === 0 && (
+                <>
+                  <Sugestao x={x} estado={estado} inventario={inventario} opcoes={opcoesCargaHoje} />
+                  {precisaAquecer(dia, dia.exercicios.findIndex((y) => y === vaga)) && (
+                    <p className="fase">
+                      Antes: 1–2 séries leves de aquecimento, sem contar. <Selo id={REGRA_AQUECIMENTO} />
+                    </p>
+                  )}
+                </>
+              )
+            }
           />
         ) : (
           <p className="status-ok">Séries completas.</p>
@@ -195,9 +215,6 @@ export function Treino() {
         <div className="acoes-sessao">
           <button type="button" className="btn sec pequeno" aria-expanded={painel === 'trocar'} onClick={() => setPainel(painel === 'trocar' ? 'nenhum' : 'trocar')}>
             Trocar exercício
-          </button>
-          <button type="button" className="btn sec pequeno alerta" aria-expanded={painel === 'sentir'} onClick={() => setPainel(painel === 'sentir' ? 'nenhum' : 'sentir')}>
-            Senti algo
           </button>
         </div>
 
@@ -292,7 +309,9 @@ function RegistroSerie({
   estado,
   inventario,
   opcoes,
+  topo,
 }: {
+  topo?: ReactNode;
   x: ExercicioPrescrito;
   numero: number;
   anteriores: SerieRegistrada[];
@@ -326,6 +345,7 @@ function RegistroSerie({
       <h2>
         Série {numero} de {x.series}
       </h2>
+      {topo}
       {cal.calibrando && cal.ultima && (
         <p className="fase calibracao" role="status">
           Calibração: {cal.ultima.motivo} <Selo id={cal.ultima.regraId} />
@@ -400,7 +420,7 @@ function RegistroSerie({
       )}
       <button
         type="button"
-        className="btn"
+        className="btn salvar"
         disabled={!pronto}
         onClick={() => carga && rir !== undefined && aoFazer({ carga, reps, rir, ...(comQuedas && quedasFeitas.length ? { quedas: quedasFeitas } : {}) })}
       >
