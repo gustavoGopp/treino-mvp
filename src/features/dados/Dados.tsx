@@ -4,6 +4,7 @@ import { exportarJson, importarJson, nomeDoArquivo } from '../../storage/arquivo
 import { useApp } from '../app/estado';
 import { NavInferior, Titulo, Topo } from '../app/ui';
 import { EscolhaEstiloBoneco } from './EstiloBoneco';
+import { EscolhaTema } from './Tema';
 
 // Meus dados: exportar e importar em JSON, apagar tudo e refazer a triagem. Nada sai do aparelho sem a pessoa.
 export function Dados() {
@@ -133,6 +134,8 @@ export function Dados() {
             </Link>
           </section>
         )}
+
+        <EscolhaTema />
 
         <EscolhaEstiloBoneco />
 
