@@ -48,13 +48,13 @@ for (const view of ex.views) {
   else html += `<h2>${view}: músculos e trajetória</h2><div class="l">${quadro(view, 'mus', tempos[2]?.t ?? 0, 0, 'músculos')}${quadro(view, 'traj', 0, 0, 'trajetória')}</div>`;
 }
 html += `<h2>Erros</h2><div class="l">${ex.errors.map((e, i) => quadro(e.view, 'err', tempos[2]?.t ?? 0, i, `${e.id} (${e.view})`)).join('')}</div>`;
-writeFileSync('/tmp/folha.html', html);
+writeFileSync(`/tmp/folha-${id}.html`, html);
 
 const require = createRequire(import.meta.url);
 const { chromium } = require('playwright');
 const b = await chromium.launch();
 const p = await b.newPage({ viewport: { width: 1120, height: 800 } });
-await p.goto('file:///tmp/folha.html');
+await p.goto(`file:///tmp/folha-${id}.html`);
 await p.screenshot({ path: saida, fullPage: true });
 await b.close();
 console.log(qa);

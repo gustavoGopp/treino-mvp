@@ -1,0 +1,69 @@
+{
+  "id": "flexao-joelho-deslizante",
+  "name": "Flexão de joelho deslizando os pés no chão",
+  "short": "Flexão de joelho deslizante",
+  "target": "Posteriores da coxa",
+  "setupEq": [
+    "Chão liso (piso frio ou madeira), longe de tapetes e de quinas.",
+    "Uma toalha sob os calcanhares, ou meias."
+  ],
+  "setupBody": [
+    "Deite de costas com os braços no chão, ao lado do corpo, palmas para baixo.",
+    "Calcanhares na toalha, joelhos dobrados.",
+    "Suba o quadril até ombros, quadril e joelhos ficarem em linha."
+  ],
+  "exec": [
+    [
+      "hold",
+      "Pernas estendidas",
+      "Quadril um pouco fora do chão."
+    ],
+    [
+      "conc",
+      "Puxada (concêntrica)",
+      "~1 s. Puxe os calcanhares em direção ao glúteo, subindo o quadril."
+    ],
+    [
+      "hold",
+      "Joelhos dobrados",
+      "Quadril alto, ombros, quadril e joelhos em linha. Segure um instante."
+    ],
+    [
+      "ecc",
+      "Volta (excêntrica)",
+      "~2–3 s. Deixe os calcanhares deslizarem para longe sem o quadril encostar no chão."
+    ]
+  ],
+  "range": [
+    "Fim: calcanhares perto do glúteo, quadril alto.",
+    "Início: pernas quase estendidas, com o quadril ainda fora do chão.",
+    "O quadril não encosta no chão entre as repetições."
+  ],
+  "cues": [
+    "Quadril fora do chão.",
+    "Calcanhar no glúteo.",
+    "Volta devagar."
+  ],
+  "errors": [
+    {
+      "id": "quadril",
+      "title": "Quadril encosta no chão",
+      "desc": "Deixar o quadril cair, na ida ou na volta, tira a tensão da parte de trás da coxa. O quadril fica fora do chão do início ao fim da série."
+    },
+    {
+      "id": "lombar",
+      "title": "Arquear a lombar",
+      "desc": "Subir o quadril dobrando a lombar, com a barriga para cima, não trabalha mais a coxa e carrega as costas. Ombros, quadril e joelhos em linha."
+    },
+    {
+      "id": "curta",
+      "title": "Puxar pouco",
+      "desc": "Parar com os joelhos quase estendidos corta metade do movimento. Puxe os calcanhares até perto do glúteo."
+    }
+  ],
+  "montagem": [
+    "Use piso liso, longe de tapetes e de quinas. Toalha sob os calcanhares, ou meias.",
+    "Se escorregar demais, faça com uma perna de cada vez e mais devagar."
+  ],
+  "carga": "Peso do corpo: registre o degrau da escada. Ponte parada com os calcanhares na toalha → só a volta devagar → completa → pausa de 2 s com os joelhos dobrados → uma perna. Sobe de degrau quando todas as séries chegarem ao topo da faixa."
+}

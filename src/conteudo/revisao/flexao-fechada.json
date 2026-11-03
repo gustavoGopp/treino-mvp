@@ -1,0 +1,78 @@
+{
+  "id": "flexao-fechada",
+  "name": "Flexão de braço com as mãos juntas",
+  "short": "Flexão fechada",
+  "target": "Tríceps e peitoral",
+  "feel": "Parte de trás do braço (tríceps) e peito. A frente do ombro ajuda, e o abdômen trabalha para segurar a prancha.",
+  "feelNote": "Dor no punho ou no cotovelo? Apoie as mãos fechadas numa toalha dobrada, segure dois halteres no chão ou faça com as mãos numa mesa firme. Se a dor continuar, pare e procure avaliação.",
+  "setupEq": [
+    "Nenhum equipamento: só o chão. Mais fácil: mãos numa mesa ou bancada firme."
+  ],
+  "setupBody": [
+    "Mãos no chão na largura dos ombros (ou um pouco menos), abaixo da parte de baixo do peito.",
+    "Dedos para a frente; corpo em linha reta da cabeça aos calcanhares, abdômen e glúteo contraídos.",
+    "Pés juntos ou na largura do quadril."
+  ],
+  "exec": [
+    [
+      "hold",
+      "Em cima",
+      "Braços estendidos, corpo em prancha."
+    ],
+    [
+      "ecc",
+      "Descida (excêntrica)",
+      "~2 s. O corpo desce inteiro junto, com os cotovelos indo para trás, rentes ao corpo."
+    ],
+    [
+      "hold",
+      "Embaixo",
+      "Peito perto das mãos."
+    ],
+    [
+      "conc",
+      "Subida (concêntrica)",
+      "~1 s. Empurre o chão mantendo a prancha e os cotovelos junto ao corpo."
+    ]
+  ],
+  "range": [
+    "Embaixo: peito a poucos centímetros das mãos.",
+    "Em cima: braços estendidos.",
+    "Se o quadril cair ou os cotovelos abrirem para completar a repetição, a série acabou."
+  ],
+  "breath": "Inspire descendo, solte o ar subindo.",
+  "cues": [
+    "Cotovelos rentes.",
+    "Corpo em linha.",
+    "Peito perto das mãos."
+  ],
+  "check": [
+    "Mãos na largura dos ombros",
+    "Abdômen e glúteo firmes",
+    "Cotovelos para trás",
+    "Descer até perto das mãos",
+    "Parar no RIR do seu programa"
+  ],
+  "vary": "Mãos mais juntas que os ombros não precisam encostar: com os polegares e indicadores juntos (\"diamante\") o punho dobra mais, e nenhum estudo mostrou vantagem. Ficou difícil demais? Mãos numa mesa firme. Fácil demais? Pés num degrau.",
+  "extLabels": [
+    "em cima",
+    "embaixo"
+  ],
+  "errors": [
+    {
+      "id": "cot",
+      "title": "Cotovelos abertos para os lados",
+      "desc": "Com as mãos juntas, abrir os cotovelos tira o trabalho do tríceps e força o punho e a frente do ombro. Os cotovelos vão para trás, rentes ao corpo."
+    },
+    {
+      "id": "quadril",
+      "title": "Quadril cai",
+      "desc": "A lombar arqueia e o abdômen deixa de segurar. Contraia abdômen e glúteo, ou passe para a versão com as mãos numa mesa firme."
+    },
+    {
+      "id": "curta",
+      "title": "Descer pouco",
+      "desc": "Parar no meio corta a parte em que o tríceps e o peito mais trabalham. Desça até o peito chegar perto das mãos."
+    }
+  ]
+}

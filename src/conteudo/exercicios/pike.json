@@ -1,0 +1,67 @@
+{
+  "id": "pike",
+  "name": "Flexão com o quadril alto (pike)",
+  "short": "Pike",
+  "target": "Frente do ombro (a lateral do ombro e o tríceps ajudam)",
+  "setupEq": [
+    "Nenhum equipamento: só o chão, num piso que não escorrega."
+  ],
+  "setupBody": [
+    "Mãos no chão um pouco mais abertas que os ombros.",
+    "Ande com os pés na direção das mãos até o quadril ficar bem alto, o corpo num V de cabeça para baixo.",
+    "Pernas estendidas (ou com os joelhos um pouco dobrados), apoiado na ponta dos pés."
+  ],
+  "exec": [
+    [
+      "hold",
+      "Em cima",
+      "Braços estendidos, quadril alto."
+    ],
+    [
+      "ecc",
+      "Descida (excêntrica)",
+      "~2 s. Dobre os cotovelos para trás e leve a cabeça para o chão, entre as mãos."
+    ],
+    [
+      "hold",
+      "Embaixo",
+      "Cabeça perto do chão, sem encostar."
+    ],
+    [
+      "conc",
+      "Subida (concêntrica)",
+      "~1 s. Empurre o chão até os braços estenderem, sem baixar o quadril."
+    ]
+  ],
+  "range": [
+    "Embaixo: a cabeça perto do chão, na linha das mãos.",
+    "Em cima: braços estendidos.",
+    "Se o quadril baixar para completar a repetição, a série acabou."
+  ],
+  "cues": [
+    "Quadril alto.",
+    "Cabeça entre as mãos.",
+    "Empurra o chão."
+  ],
+  "errors": [
+    {
+      "id": "quadril",
+      "title": "Quadril desce e vira flexão",
+      "desc": "Na descida o quadril baixa e os ombros passam à frente das mãos: o peito trabalha mais e o ombro menos. O quadril fica alto do início ao fim."
+    },
+    {
+      "id": "cot",
+      "title": "Cotovelos abertos para os lados",
+      "desc": "Abrir os cotovelos a 90° força a frente do ombro. Eles vão para trás, a meio caminho entre o tronco e os lados."
+    },
+    {
+      "id": "curta",
+      "title": "Descer pouco",
+      "desc": "Parar com a cabeça longe do chão corta metade do movimento. Desça até a cabeça chegar perto do chão, entre as mãos."
+    }
+  ],
+  "montagem": [
+    "Mãos num piso que não escorrega. Se os pés estiverem num degrau ou sofá, comece baixo. Com dor no punho, apoie as mãos fechadas numa toalha dobrada."
+  ],
+  "carga": "Peso do corpo: registre o degrau da escada. Pés no chão → descida de 3 s → pausa de 2 s embaixo → pés num degrau ou sofá firme. Sobe de degrau quando todas as séries chegarem ao topo da faixa."
+}

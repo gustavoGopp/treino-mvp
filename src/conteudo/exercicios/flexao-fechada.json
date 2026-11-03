@@ -1,0 +1,67 @@
+{
+  "id": "flexao-fechada",
+  "name": "Flexão de braço com as mãos juntas",
+  "short": "Flexão fechada",
+  "target": "Tríceps e peitoral",
+  "setupEq": [
+    "Nenhum equipamento: só o chão. Mais fácil: mãos numa mesa ou bancada firme."
+  ],
+  "setupBody": [
+    "Mãos no chão na largura dos ombros (ou um pouco menos), abaixo da parte de baixo do peito.",
+    "Dedos para a frente; corpo em linha reta da cabeça aos calcanhares, abdômen e glúteo contraídos.",
+    "Pés juntos ou na largura do quadril."
+  ],
+  "exec": [
+    [
+      "hold",
+      "Em cima",
+      "Braços estendidos, corpo em prancha."
+    ],
+    [
+      "ecc",
+      "Descida (excêntrica)",
+      "~2 s. O corpo desce inteiro junto, com os cotovelos indo para trás, rentes ao corpo."
+    ],
+    [
+      "hold",
+      "Embaixo",
+      "Peito perto das mãos."
+    ],
+    [
+      "conc",
+      "Subida (concêntrica)",
+      "~1 s. Empurre o chão mantendo a prancha e os cotovelos junto ao corpo."
+    ]
+  ],
+  "range": [
+    "Embaixo: peito a poucos centímetros das mãos.",
+    "Em cima: braços estendidos.",
+    "Se o quadril cair ou os cotovelos abrirem para completar a repetição, a série acabou."
+  ],
+  "cues": [
+    "Cotovelos rentes.",
+    "Corpo em linha.",
+    "Peito perto das mãos."
+  ],
+  "errors": [
+    {
+      "id": "cot",
+      "title": "Cotovelos abertos para os lados",
+      "desc": "Com as mãos juntas, abrir os cotovelos tira o trabalho do tríceps e força o punho e a frente do ombro. Os cotovelos vão para trás, rentes ao corpo."
+    },
+    {
+      "id": "quadril",
+      "title": "Quadril cai",
+      "desc": "A lombar arqueia e o abdômen deixa de segurar. Contraia abdômen e glúteo, ou passe para a versão com as mãos numa mesa firme."
+    },
+    {
+      "id": "curta",
+      "title": "Descer pouco",
+      "desc": "Parar no meio corta a parte em que o tríceps e o peito mais trabalham. Desça até o peito chegar perto das mãos."
+    }
+  ],
+  "montagem": [
+    "Com dor no punho, apoie as mãos fechadas numa toalha dobrada, segure dois halteres como pegadores ou faça com as mãos numa mesa firme (mais fácil)."
+  ],
+  "carga": "Peso do corpo: registre o degrau da escada. Mãos numa mesa firme → no chão → descida de 3 s → pés num degrau → pausa de 2 s embaixo. Sobe de degrau quando todas as séries chegarem ao topo da faixa."
+}

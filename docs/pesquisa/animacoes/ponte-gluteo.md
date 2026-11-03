@@ -27,7 +27,8 @@ Arquivo `src/engine/exercicios/revisao/ponte-gluteo.ts`; folha `docs/revisoes/eq
 
 | Ponto | O que a animação mostra | Selo | Fonte |
 |---|---|---|---|
-| Posição | Deitado de costas num colchonete, joelhos dobrados, pés no chão a cerca de um palmo dos glúteos, braços no chão ao lado do corpo | consenso | `nsca2021` (não verificado), como a tabela de técnica acima |
+| Posição | Deitado de costas num colchonete, joelhos dobrados, pés no chão a cerca de um palmo dos glúteos, braços no chão ao lado do corpo, um pouco abertos [opinião: abertos para o braço de perto não cobrir o tronco na vista de lado] | consenso | `nsca2021` (não verificado), como a tabela de técnica acima |
+| Topo | Ombro, quadril e joelho em linha reta (o tronco inclina dos ombros, no chão, até o quadril, na direção da coxa); canela na vertical | consenso | `nsca2021` (não verificado) |
 | Subida | ~1 s, o quadril sobe até ombros, quadril e joelhos ficarem em linha (linha tracejada da guia); ombros e cabeça ficam no chão | consenso | `nsca2021` (não verificado) |
 | Topo | Pausa de ~1 s | consenso | `nsca2021` (não verificado) |
 | Descida | ~2 s, controlada, até o quadril quase encostar no chão | consenso [opinião: a mesma cadência do `abdominal-chao` aprovado] | — |
