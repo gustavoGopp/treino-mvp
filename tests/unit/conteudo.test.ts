@@ -36,10 +36,11 @@ describe('conteúdo dos exercícios', () => {
     for (const e of comFicha) expect(CARTOES[e.id], e.id).toBeDefined();
   });
 
-  it('auditoria do treino, lote 1: os 5 mais prescritos sem guia ganharam ficha de técnica e cartão de texto', () => {
+  it('auditoria do treino, lote 1: os 5 mais prescritos sem guia ganharam ficha de técnica e cartão de texto (ou, depois, a animação aprovada)', () => {
     for (const id of ['ponte-gluteo', 'crucifixo-halteres', 'crucifixo-inverso', 'cadeira-extensora', 'cadeira-flexora']) {
       expect(existsSync(`docs/pesquisa/animacoes/${id}.md`), id).toBe(true);
-      expect(CARTOES[id], id).toBeDefined();
+      const anim = POR_ID[id]?.animacaoId;
+      expect(CARTOES[id] ?? (anim ? CONTEUDO[anim] : undefined), id).toBeDefined();
     }
   });
 
