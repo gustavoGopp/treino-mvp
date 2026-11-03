@@ -221,41 +221,43 @@
   "nome": "Flexão de braço (peso do corpo, escada de dificuldade)",
   "exercicio": "flexao",
   "inicial": "peso do corpo",
-  "final": "peso do corpo",
+  "final": "peso do corpo · descida de 3 s",
   "forcaCresceu": "+17% (modelo)",
-  "subidas": 0,
+  "subidas": 1,
   "voltas": 0,
   "maiorTravaEmSessoes": 4,
   "acoes": {
    "manter": 16,
-   "estagnado": 16
+   "estagnado": 15,
+   "subir": 1
   },
   "cargaInexistente": [],
-  "veredito": "não sobe"
+  "veredito": "anda"
  },
  {
   "id": "elastico",
   "nome": "Remada com elástico (3 intensidades)",
   "exercicio": "remada-elastico",
   "inicial": "elástico",
-  "final": "elástico",
+  "final": "elástico · mais esticado (um passo mais longe)",
   "forcaCresceu": "+17% (modelo)",
-  "subidas": 0,
+  "subidas": 1,
   "voltas": 0,
   "maiorTravaEmSessoes": 4,
   "acoes": {
    "manter": 16,
-   "estagnado": 16
+   "estagnado": 15,
+   "subir": 1
   },
   "cargaInexistente": [],
-  "veredito": "não sobe"
+  "veredito": "anda"
  },
  {
   "id": "panturrilha-sem-halter",
   "nome": "Panturrilha no chão, para quem não tem halteres (só elásticos)",
   "exercicio": "panturrilha-chao",
-  "inicial": "peso do corpo · carga externa ou elástico mais forte",
-  "final": "peso do corpo · carga externa ou elástico mais forte",
+  "inicial": "peso do corpo · uma perna só, com pausa de 2 s em cima",
+  "final": "peso do corpo · uma perna só, com pausa de 2 s em cima",
   "forcaCresceu": "+17% (modelo)",
   "subidas": 0,
   "voltas": 0,

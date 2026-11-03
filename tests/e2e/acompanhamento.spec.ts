@@ -83,8 +83,8 @@ test('volta depois de 22 dias: a mensagem sem culpa, menos séries e a carga 10%
   const volta = page.getByRole('region', { name: 'Bem-vindo de volta!' });
   await expect(volta).toContainText('Faz 22 dias do último treino. Estas 2 semanas vão mais leves, para o corpo se readaptar sem dor. O músculo não some em 3 semanas.');
   await expect(volta).toContainText('A carga começa 10% abaixo da última vez e já vem preenchida.');
-  // 8 de 13 até a auditoria do treino: a ponte com halter (programa da Ana aprovado em 02/11/2026).
-  await expect(volta).toContainText(/Séries no Corpo todo A\s*9 de 14/);
+  // 8 de 13 até a auditoria do treino (a ponte com halter); 9 de 14 até a sessão de equipamento mínimo (a flexão deslizante).
+  await expect(volta).toContainText(/Séries no Corpo todo A\s*9 de 15/);
   await expect(volta).toContainText('3–4 repetições');
   await expect(page.getByText(/Você está na semana 1\. Cerca de metade das séries, RIR 3–4 e carga 10% abaixo da última vez/)).toBeVisible();
   await print(page, 'volta');

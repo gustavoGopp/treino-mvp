@@ -16,6 +16,6 @@
 | Cadeira extensora (torre de 15 placas) | placa 8 → placa 9 | 1 | 0 | 4 | manter 14, estagnado 17, subir 1 | — | **anda** |
 | Elevação lateral na polia (torre de 15 placas) | placa 2 → placa 2 | 2 | 2 | 4 | manter 16, estagnado 12, subir 2, voltar 2 | — | **vaivém** |
 | Barra fixa no graviton (contrapeso, 10 placas) | contrapeso 5 → contrapeso 4 | 1 | 0 | 4 | manter 15, estagnado 16, subir 1 | — | **anda** |
-| Flexão de braço (peso do corpo, escada de dificuldade) | peso do corpo → peso do corpo | 0 | 0 | 4 | manter 16, estagnado 16 | — | **não sobe** |
-| Remada com elástico (3 intensidades) | elástico → elástico | 0 | 0 | 4 | manter 16, estagnado 16 | — | **não sobe** |
-| Panturrilha no chão, para quem não tem halteres (só elásticos) | peso do corpo · carga externa ou elástico mais forte → peso do corpo · carga externa ou elástico mais forte | 0 | 0 | 31 | manter 2, estagnado 30 | — | **trava** |
+| Flexão de braço (peso do corpo, escada de dificuldade) | peso do corpo → peso do corpo · descida de 3 s | 1 | 0 | 4 | manter 16, estagnado 15, subir 1 | — | **anda** |
+| Remada com elástico (3 intensidades) | elástico → elástico · mais esticado (um passo mais longe) | 1 | 0 | 4 | manter 16, estagnado 15, subir 1 | — | **anda** |
+| Panturrilha no chão, para quem não tem halteres (só elásticos) | peso do corpo · uma perna só, com pausa de 2 s em cima → peso do corpo · uma perna só, com pausa de 2 s em cima | 0 | 0 | 31 | manter 2, estagnado 30 | — | **trava** |

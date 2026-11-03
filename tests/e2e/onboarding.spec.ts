@@ -15,14 +15,15 @@ test('do zero ao programa em menos de 5 minutos (persona Ana)', async ({ page })
   await expect(painel.locator('.sub-rx').first()).toContainText('RIR 3–4');
   // Exercício com animação mostra a imagem e abre o guia.
   await expect(painel.locator('.miniatura svg').first()).toBeVisible();
-  // Sem animação aprovada: "guia em texto" (ponte de glúteo), nunca uma animação improvisada.
-  await expect(painel.locator('.miniatura.vazia')).toHaveCount(1);
+  // Sem animação aprovada: "guia em texto" (ponte com halter e flexão de joelho deslizante), nunca uma animação improvisada.
+  await expect(painel.locator('.miniatura.vazia')).toHaveCount(2);
   // O porquê, com o selo de evidência, fica um toque abaixo.
   await painel.getByText('Detalhes', { exact: true }).first().click();
   await expect(painel.locator('.mais .selo').first()).toBeVisible();
   // Outro dia.
   await page.getByRole('tab', { name: 'Corpo todo B', exact: true }).click();
-  await expect(painel.getByRole('heading', { name: /Stiff unilateral/ })).toBeVisible();
+  // O stiff (bilateral) no B desde a sessão de equipamento mínimo: o stiff unilateral saiu para a flexão deslizante no A.
+  await expect(painel.getByRole('heading', { name: /Stiff com halteres/ })).toBeVisible();
   // Avisos de meta por músculo em "Sobre o programa".
   await page.getByText('Sobre o programa: avisos e o porquê').click();
   await expect(page.getByText(/Abaixo da meta semanal/).first()).toBeVisible();

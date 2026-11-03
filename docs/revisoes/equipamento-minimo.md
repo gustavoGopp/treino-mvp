@@ -299,24 +299,37 @@ Nada vem marcado. Para cada uma: a evidência, o efeito medido e as opções.
 ---
 
 ## Decisões do Gustavo
-A preencher na revisão, item a item. Nada está marcado.
+Decididas em 03/11/2026, item a item.
 
 | # | Item | Decisão |
 |---|---|---|
-| 1 | Dia de "Puxar" sem puxar: texto verdadeiro e divisões de corpo todo primeiro | |
-| 2 | Aviso por vaga sem opção (`lacuna`) e `equipamento.sem-ancoragem` | |
-| 3 | Flexão de joelho deslizante e nórdico | |
-| 4 | Animações da família P (agachamento, afundo, búlgaro sem peso, barra supinada) | |
-| 5 | Escada por exercício, elástico pela intensidade e faixas mais estreitas | |
-| 6 | Kettlebell como halter; flexão na suspensão | |
-| 7 | Aviso de tempo que sobra por falta de exercício | |
-| 8 | Lista "o que tem em casa" e montagem segura de casa | |
-| 9 | Cartão da flexão com as mãos fechadas (dor leve no punho) | |
-| 10 | Flexão fechada e pike | |
-| P1 | Botão "não tenho nada" | |
-| P2 | Sugestão de compra | |
-| P3 | Remada invertida na mesa | |
-| P4 | Objeto doméstico como carga | |
-| P5 | Fila das animações | |
-| P6 | Aviso de teto para o avançado | |
-| — | Personas novas (Elisa, sem nada; Fábio, só barra de porta), teste de propriedade e e2e do cadastro vazio | |
+| 1 | Dia de "Puxar" sem puxar: texto verdadeiro e divisões de corpo todo primeiro | **entra agora** ("ajuste os três problemas") |
+| 2 | Aviso por vaga sem opção e `equipamento.sem-ancoragem` | **entra agora, sem sugestão de compra** |
+| 3 | Flexão de joelho deslizante e nórdico | **entra agora** |
+| 4 | Animações da família P | **entra agora: todos os exercícios com animação**, folha a folha |
+| 5 | Escada por exercício, elástico pela intensidade e faixas | **entra agora** ("ajuste os três problemas") |
+| 6 | Kettlebell como halter; flexão na suspensão | para o debate |
+| 7 | Aviso de tempo que sobra | para o debate |
+| 8 | Lista "o que tem em casa" | para o debate |
+| 9 | Cartão da flexão com as mãos fechadas | para o debate |
+| 10 | Flexão fechada e pike | **entra agora** (com as animações) |
+| P1 | Botão "não tenho nada" | **entra, com outro nome**: "Corpo livre" |
+| P2 | Sugestão de compra | **não sugerir**: "se a pessoa marcou que não tem nada, ela não tem nada"; o app sugere só exercícios |
+| P3 | Remada invertida na mesa | **decidida por mim, a pedido do Gustavo: não entra** (análise abaixo) |
+| P4 | Objeto doméstico como carga | **não entra** |
+| P5 | Fila das animações | **todos os exercícios com animação** (os 9 da sessão estão em revisão, folha a folha) |
+| P6 | Aviso de teto para o avançado | **sutil**, só no fim da escada do exercício (`equipamento.fim-da-escada`) |
+| — | Personas, teste de propriedade e e2e do cadastro vazio | entram (fazem parte das correções) |
+
+### Remada invertida na mesa: a análise imparcial
+**A favor:**
+- seria a única remada de quem não tem nada, com costas de ~3,9 para ~6,7 séries na estimativa;
+- a remada invertida numa barra tem a maior ativação do latíssimo entre três remadas, com a menor carga na lombar (um estudo, EMG: `fenwick2009`, `youdas2016`).
+
+**Contra:**
+- **nenhum estudo** com mesa, nem de técnica nem de segurança;
+- o app não vê a mesa;
+- quando dá errado, a mesa vira ou o tampo cede em cima de quem está deitado embaixo dela. É o pior tipo de acidente para um app sem supervisão (`seguranca.montagem`: os acidentes são a maior causa de pronto-socorro na musculação, `kerr2010`, `coffey2026`);
+- a mesa é, como a mochila e o galão, um equipamento improvisado, que o Gustavo decidiu deixar fora ("se é literalmente uma mochila, um galão, não entra"); seria incoerente aceitar a mesa e recusar a mochila.
+
+**Decisão: não entra.** O que fica no lugar: o aviso de que costas, bíceps e ombro de trás ficam sem exercício (`equipamento.sem-ancoragem`). Registrado no backlog, para reabrir se aparecer estudo de segurança ou se o app passar a perguntar pelos móveis da casa (item 8).
