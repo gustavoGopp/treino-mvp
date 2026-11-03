@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>Guia do exercício</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Next:wght@400;600;800&amp;display=swap">
+<style>
+body{margin:0}
+a{color:var(--acc)}a:hover{color:var(--ink)}
+.claro{--bg:#F5F4F0;--surface:#FFFFFF;--surface2:#ECEAE4;--ink:#15171C;--ink2:#4B505B;--line:#DDD9D0;--edge:#868B95;--acc:#2443CF;--accInk:#FFFFFF;--accSoft:#E5EBFF;--ok:#0E7350;--okSoft:#E1F3EA;--alert:#B3261E;--alertSoft:#FCE8E6;--stage:#f7f9fa;--mp:#d62e26;--ms:#ec961c}
+.escuro{--bg:#111316;--surface:#1A1D22;--surface2:#242830;--ink:#F3F2EE;--ink2:#AEB3BD;--line:#30343C;--edge:#6E737D;--acc:#9CB1FF;--accInk:#0C1A52;--accSoft:#1F2849;--ok:#62D2A2;--okSoft:#13291F;--alert:#FF8F85;--alertSoft:#3A1D1B;--stage:#10171b;--mp:#f4524a;--ms:#f5aa3c}
+.app{width:390px;height:844px;box-sizing:border-box;display:flex;flex-direction:column;background:var(--bg);color:var(--ink);font-family:"Atkinson Hyperlegible Next",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;font-size:17px;line-height:1.45;overflow:hidden}
+.icon{width:24px;height:24px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex:none}
+.muted{color:var(--ink2)}
+.selo{display:inline-flex;align-items:center;font-size:13px;font-weight:600;color:var(--ink2);background:var(--surface2);border-radius:999px;padding:2px 10px;vertical-align:middle}
+.ctl{min-width:48px;min-height:48px;border-radius:14px;border:1.5px solid var(--edge);background:var(--surface);color:var(--ink);display:inline-flex;align-items:center;justify-content:center;gap:6px;font:inherit;font-weight:700;font-size:15px;cursor:pointer;padding:0 12px}
+.ctl.on{border:2px solid var(--acc);background:var(--accSoft);color:var(--acc)}
+.modo{flex:1;min-height:48px;border:0;border-radius:12px;background:transparent;color:var(--ink2);font:inherit;font-weight:700;font-size:15px;cursor:pointer;padding:0 4px}
+.modo.on{background:var(--surface);color:var(--ink);box-shadow:0 1px 2px rgba(0,0,0,.12)}
+.cue{display:flex;gap:14px;align-items:baseline;font-size:22px;font-weight:800;line-height:1.25}
+.cue b{color:var(--acc);font-size:24px;min-width:18px}
+.linha{display:flex;align-items:center;gap:12px;min-height:56px;padding:0 16px;border:0;border-bottom:1px solid var(--line);background:var(--surface);color:var(--ink);font:inherit;font-weight:700;text-align:left;cursor:pointer;width:100%;box-sizing:border-box}
+.linha span{flex:1}
+.sw{width:16px;height:12px;border-radius:3px;display:inline-block}
+</style>
+</helmet>
+<div class="app {{tema}}">
+<div style="display: flex; align-items: center; gap: 4px; padding: 8px 12px 4px 4px;">
+<a href="Treino.dc.html" style="display: inline-flex; align-items: center; gap: 4px; min-height: 48px; padding: 0 12px 0 8px; font-weight: 700; text-decoration: none;"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M15 18l-6-6 6-6"></path></svg>Voltar ao treino</a>
+</div>
+<div style="padding: 0 20px 8px;">
+<h1 style="margin: 0; font-size: 24px; line-height: 1.2; font-weight: 800;">Agachamento búlgaro com apoio</h1>
+<span class="muted" style="font-size: 15px;">Frente da coxa da perna da frente · 2 × 8–12 cada lado</span>
+</div>
+
+<div style="flex: 1; overflow: auto; display: flex; flex-direction: column;">
+<div style="background: var(--stage); position: relative;">
+<img src="{{quadro}}" alt="{{alt}}" style="width: 390px; height: 292px; display: block;">
+<span style="position: absolute; left: 12px; top: 12px; font-size: 14px; font-weight: 700; background: var(--surface); color: var(--ink); border-radius: 10px; padding: 4px 10px;">{{fase}}</span>
+</div>
+<div style="display: flex; gap: 8px; align-items: center; padding: 12px 20px 4px;">
+<button class="ctl" type="button" aria-label="{{rotuloPlay}}" onClick="{{alternar}}"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="{{iconePlay}}"></path></svg></button>
+<button class="{{clsLento}}" type="button" aria-pressed="{{lento}}" onClick="{{alternarLento}}">Lento</button>
+<div style="flex: 1;"></div>
+<button class="{{clsLateral}}" type="button" aria-pressed="{{ehLateral}}" onClick="{{verLateral}}">De lado</button>
+<button class="{{clsFrontal}}" type="button" aria-pressed="{{ehFrontal}}" onClick="{{verFrontal}}">De frente</button>
+</div>
+<div style="margin: 8px 20px 0; display: flex; gap: 4px; padding: 4px; border-radius: 16px; background: var(--surface2);" role="tablist" aria-label="O que mostrar">
+<sc-for list="{{modos}}" as="m" hint-placeholder-count="4"><button class="{{m.cls}}" type="button" role="tab" aria-selected="{{m.on}}" onClick="{{m.pick}}">{{m.nome}}</button></sc-for>
+</div>
+
+<sc-if value="{{ehMusculos}}" hint-placeholder-val="{{ false }}">
+<div style="padding: 14px 20px 0; display: flex; flex-direction: column; gap: 8px;">
+<div style="display: flex; gap: 16px; font-size: 15px;" class="muted"><span style="display: inline-flex; align-items: center; gap: 6px;"><i class="sw" style="background: var(--mp);"></i>principal</span><span style="display: inline-flex; align-items: center; gap: 6px;"><i class="sw" style="background: var(--ms);"></i>também trabalha</span></div>
+<p style="margin: 0;"><b>Onde sentir:</b> frente da coxa da perna da frente. O glúteo e a parte de dentro da coxa ajudam.</p>
+</div>
+</sc-if>
+<sc-if value="{{ehOutro}}" hint-placeholder-val="{{ false }}">
+<p style="margin: 14px 20px 0; font-size: 15px;" class="muted">Trajetória e Erros: o desenho continua o de hoje; só os controles mudam.</p>
+</sc-if>
+
+<div style="padding: 18px 20px 6px; display: flex; flex-direction: column; gap: 12px;">
+<span style="font-size: 14px; font-weight: 700; letter-spacing: .04em;" class="muted">3 DICAS</span>
+<div class="cue"><b>1</b>Desce reto.</div>
+<div class="cue"><b>2</b>Peso no pé da frente.</div>
+<div class="cue"><b>3</b>Mão só equilibra.</div>
+</div>
+<div style="margin: 12px 0 24px; border-top: 1px solid var(--line);">
+<button class="linha" type="button"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" style="color: var(--alert);"><path d="M12 3l8 3v6c0 4.5-3.4 8-8 9-4.6-1-8-4.5-8-9V6z"></path></svg><span>Segurança</span><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" style="color: var(--ink2);"><path d="M6 9l6 6 6-6"></path></svg></button>
+<button class="linha" type="button"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" style="color: var(--ink2);"><path d="M8 6h12M8 12h12M8 18h12M4 6h.01M4 12h.01M4 18h.01"></path></svg><span>Passo a passo e checklist</span><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" style="color: var(--ink2);"><path d="M6 9l6 6 6-6"></path></svg></button>
+<button class="linha" type="button"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" style="color: var(--ink2);"><path d="M4 19V5M4 19h16M8 15l3-4 3 2 5-6"></path></svg><span>De onde vem <span class="selo">consenso</span></span><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" style="color: var(--ink2);"><path d="M6 9l6 6 6-6"></path></svg></button>
+</div>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"tema":{"editor":"enum","options":["claro","escuro"],"default":"claro"},"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  constructor(p) { super(p); this.state = { i: 0, tocando: true, lento: false, vista: 'lateral', modo: 'tec' }; }
+  componentDidMount() {
+    const reduz = typeof window !== 'undefined' && window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (reduz) this.setState({ tocando: false });
+    this.t = setInterval(() => {
+      if (!this.state.tocando || this.state.modo !== 'tec' || this.state.vista !== 'lateral') return;
+      this.tick = (this.tick || 0) + 1;
+      if (this.state.lento && this.tick % 2) return;
+      this.setState({ i: (this.state.i + 1) % 10 });
+    }, 300);
+  }
+  componentWillUnmount() { clearInterval(this.t); }
+  renderVals() {
+    const s = this.state;
+    const escuro = this.props.tema === 'escuro';
+    const CLARO = ['e635727fa934e74f927d3d77a096e5b0', 'e5310713a0002abd057999ba51fb007d', 'b8e799bd92293557fb1ea897d7d16450', '34d6ed95b65b7203e4e5d22315868adf', '345478ce8609f954959d5727ba28ee4e', '02d71aec6df5fdf7c460fad23cbb9acc', '83554047a55f2c43f1212f0a6ecda608', '563df4f0c4855b6f4d74f149f9976ade', 'e8970f98cf9af30f640c2b1d2551c038', 'ab0629843db599b50863fcb1be9b7791'];
+    const ESCURO = ['740f9abe73e8cfc7b492f0a2725f1487', 'a51f5ba548ac281ed4209c1cba1b7e77', 'f3b31d8dac56f89d8f856aa424b3ae7b', 'e69824ea5dfbca82977e888f632c1e32', '1ceeca14208f6659f5646737ede38eaa', '9962bc0830d59b72aa2393d9e0f8a66a', '2014fb469fde7481b7ddbbb321eb20e6', '7f9b0bf6ac3cf0dcf82bbe24e478605f', 'a6f010e9fb4f68b07e5369aca8277417', '45bdaafcf158a124c8440c98ed7eb1db'];
+    const FASES = ['Em cima', 'Em cima', 'Descida', 'Descida', 'Embaixo', 'Embaixo', 'Subida', 'Subida', 'Subida', 'Em cima'];
+    let quadro = '/_blob/' + (escuro ? ESCURO : CLARO)[s.i];
+    if (s.modo === 'mus') quadro = escuro ? '/_blob/468c34a77ba5354a40e703bb0158ae23' : '/_blob/352054f970c394967d781b4ee3ba62d0';
+    if (s.vista === 'frontal') quadro = escuro ? '/_blob/a65d37b565ee5fd12a675aa0429d7f66' : '/_blob/e6bd62205d1f87a7579eb05a0f045180';
+    const MODOS = [['tec', 'Técnica'], ['mus', 'Músculos'], ['traj', 'Trajetória'], ['err', 'Erros']];
+    const modos = MODOS.map((m) => ({ nome: m[1], on: s.modo === m[0], cls: s.modo === m[0] ? 'modo on' : 'modo', pick: () => this.setState({ modo: m[0] }) }));
+    return {
+      tema: escuro ? 'escuro' : 'claro',
+      quadro: quadro,
+      alt: 'Boneco fazendo o agachamento búlgaro, ' + (s.vista === 'frontal' ? 'visto de frente' : 'visto de lado'),
+      fase: s.modo === 'mus' ? 'Músculos' : FASES[s.i],
+      rotuloPlay: s.tocando ? 'Pausar' : 'Reproduzir',
+      iconePlay: s.tocando ? 'M8 5v14M16 5v14' : 'M7 5l12 7-12 7z',
+      alternar: () => this.setState({ tocando: !s.tocando }),
+      lento: s.lento, clsLento: s.lento ? 'ctl on' : 'ctl', alternarLento: () => this.setState({ lento: !s.lento }),
+      ehLateral: s.vista === 'lateral', ehFrontal: s.vista === 'frontal',
+      clsLateral: s.vista === 'lateral' ? 'ctl on' : 'ctl', clsFrontal: s.vista === 'frontal' ? 'ctl on' : 'ctl',
+      verLateral: () => this.setState({ vista: 'lateral' }), verFrontal: () => this.setState({ vista: 'frontal' }),
+      modos: modos, ehMusculos: s.modo === 'mus', ehOutro: s.modo === 'traj' || s.modo === 'err'
+    };
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,27 @@
+{
+  "v": 3,
+  "createdOnFiles": { "v": 1, "at": "2026-11-03T02:10:00Z" },
+  "title": "treino-mvp · reformulação visual",
+  "launch": { "view": "canvas" },
+  "pages": [],
+  "boards": {
+    "Main.dc.html": { "x": 0, "y": 0, "w": 390, "h": 844, "title": "1 · Cadastro (navegável)", "is_interactive": true, "radius": 28 },
+    "Inicio.dc.html": { "x": 470, "y": 0, "w": 390, "h": 844, "title": "2 · Início: o treino de hoje", "is_interactive": true, "radius": 28 },
+    "Treino.dc.html": { "x": 940, "y": 0, "w": 390, "h": 844, "title": "3 · Treino (navegável)", "is_interactive": true, "radius": 28 },
+    "Guia.dc.html": { "x": 1410, "y": 0, "w": 390, "h": 844, "title": "4 · Guia com o Boneco", "is_interactive": true, "radius": 28 },
+    "Fim.dc.html": { "x": 1880, "y": 0, "w": 390, "h": 844, "title": "5 · Fim do treino", "is_interactive": true, "radius": 28 },
+    "Semana.dc.html": { "x": 2350, "y": 0, "w": 390, "h": 844, "title": "6 · A sua semana", "radius": 28 },
+    "Dados.dc.html": { "x": 2820, "y": 0, "w": 390, "h": 844, "title": "7 · Meus dados", "radius": 28 },
+    "Escuro.dc.html": { "x": 0, "y": 1224, "w": 3210, "h": 844, "title": "As mesmas telas no tema escuro" },
+    "Antes.dc.html": { "x": 0, "y": 2448, "w": 2740, "h": 940, "title": "Antes: o app de hoje (persona fictícia Ana)" },
+    "Sistema.dc.html": { "x": 0, "y": 3768, "w": 1440, "h": 1180, "title": "Sistema visual" }
+  },
+  "order": ["Main.dc.html", "Inicio.dc.html", "Treino.dc.html", "Guia.dc.html", "Fim.dc.html", "Semana.dc.html", "Dados.dc.html", "Escuro.dc.html", "Antes.dc.html", "Sistema.dc.html"],
+  "notes": {
+    "t1": { "x": 0, "y": -260, "text": "Depois · tema claro", "kind": "title1", "maxW": 3210 },
+    "t2": { "x": 0, "y": 964, "text": "Depois · tema escuro", "kind": "title1", "maxW": 3210 },
+    "t3": { "x": 0, "y": 2188, "text": "Antes · o app de hoje", "kind": "title1", "maxW": 2740 },
+    "t4": { "x": 0, "y": 3508, "text": "Sistema visual", "kind": "title1", "maxW": 1440 }
+  },
+  "designSystems": []
+}

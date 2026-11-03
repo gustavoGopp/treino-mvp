@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>Meus dados</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Next:wght@400;600;800&amp;display=swap">
+<style>
+body{margin:0}
+a{color:var(--acc)}a:hover{color:var(--ink)}
+.claro{--bg:#F5F4F0;--surface:#FFFFFF;--surface2:#ECEAE4;--ink:#15171C;--ink2:#4B505B;--line:#DDD9D0;--edge:#868B95;--acc:#2443CF;--accInk:#FFFFFF;--accSoft:#E5EBFF;--alert:#B3261E;--alertSoft:#FCE8E6}
+.escuro{--bg:#111316;--surface:#1A1D22;--surface2:#242830;--ink:#F3F2EE;--ink2:#AEB3BD;--line:#30343C;--edge:#6E737D;--acc:#9CB1FF;--accInk:#0C1A52;--accSoft:#1F2849;--alert:#FF8F85;--alertSoft:#3A1D1B}
+.app{width:390px;height:844px;box-sizing:border-box;display:flex;flex-direction:column;background:var(--bg);color:var(--ink);font-family:"Atkinson Hyperlegible Next",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;font-size:17px;line-height:1.45;overflow:hidden}
+.icon{width:24px;height:24px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex:none}
+.muted{color:var(--ink2)}
+.grupo{background:var(--surface);border-radius:20px;overflow:hidden}
+.linha{display:flex;align-items:center;gap:14px;min-height:60px;padding:6px 16px;border:0;border-bottom:1px solid var(--line);background:transparent;color:var(--ink);font:inherit;text-align:left;cursor:pointer;width:100%;box-sizing:border-box;text-decoration:none}
+.linha:last-child{border-bottom:0}
+.linha span{flex:1;display:flex;flex-direction:column}
+.linha small{color:var(--ink2);font-size:14px}
+.rot{font-size:14px;font-weight:700;letter-spacing:.04em;color:var(--ink2);padding:0 4px}
+.nav{display:flex;border-top:1px solid var(--line);background:var(--surface);padding:4px 8px 12px}
+.nav a{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;min-height:56px;font-size:13px;font-weight:600;color:var(--ink2);text-decoration:none;border-radius:12px}
+.nav a.on{color:var(--acc)}
+</style>
+</helmet>
+<div class="app {{tema}}">
+<div style="padding: 20px 20px 8px;"><h1 style="margin: 0; font-size: 28px; font-weight: 800; line-height: 1.15;">Meus dados</h1><span class="muted" style="font-size: 15px;">Tudo fica neste celular.</span></div>
+<div style="flex: 1; overflow: auto; padding: 8px 20px 16px; display: flex; flex-direction: column; gap: 10px;">
+<span class="rot">PROGRAMA</span>
+<div class="grupo">
+<button class="linha" type="button"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" style="color: var(--acc);"><path d="M12 21s-7-6.2-7-11a7 7 0 0 1 14 0c0 4.8-7 11-7 11z"></path><circle cx="12" cy="10" r="2.5"></circle></svg><span>Meus locais<small>Academia do prédio (principal) · Casa</small></span><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" style="color: var(--ink2);"><path d="M9 6l6 6-6 6"></path></svg></button>
+<button class="linha" type="button"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" style="color: var(--acc);"><path d="M4 6h16M4 12h10M4 18h7"></path></svg><span>Rotina e prioridades<small>3 dias · 45 min · pernas e glúteos</small></span><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" style="color: var(--ink2);"><path d="M9 6l6 6-6 6"></path></svg></button>
+<button class="linha" type="button"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" style="color: var(--acc);"><circle cx="12" cy="6" r="2.5"></circle><path d="M12 9v6M8 21l4-6 4 6M7 12h10"></path></svg><span>Estilo do boneco<small>Boneco (padrão)</small></span><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" style="color: var(--ink2);"><path d="M9 6l6 6-6 6"></path></svg></button>
+<button class="linha" type="button"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" style="color: var(--acc);"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"></path></svg><span>Tema<small>Igual ao do celular</small></span><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" style="color: var(--ink2);"><path d="M9 6l6 6-6 6"></path></svg></button>
+</div>
+<span class="rot" style="margin-top: 8px;">CÓPIA DE SEGURANÇA</span>
+<div class="grupo">
+<button class="linha" type="button"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" style="color: var(--acc);"><path d="M12 4v11M7 10l5 5 5-5M5 20h14"></path></svg><span>Guardar uma cópia<small>Um arquivo com todo o histórico</small></span></button>
+<button class="linha" type="button"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" style="color: var(--acc);"><path d="M12 20V9M7 14l5-5 5 5M5 4h14"></path></svg><span>Trazer uma cópia<small>Substitui os dados deste celular</small></span></button>
+</div>
+<span class="rot" style="margin-top: 8px;">SAÚDE</span>
+<div class="grupo">
+<button class="linha" type="button"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" style="color: var(--acc);"><path d="M12 21s-8-4.5-8-11a4.5 4.5 0 0 1 8-2.8A4.5 4.5 0 0 1 20 10c0 6.5-8 11-8 11z"></path></svg><span>Refazer as perguntas de saúde<small>Feitas em 02/11</small></span><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" style="color: var(--ink2);"><path d="M9 6l6 6-6 6"></path></svg></button>
+<button class="linha" type="button" style="color: var(--alert);"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M10 11v6M14 11v6M6 7l1 13h10l1-13M9 7V4h6v3"></path></svg><span style="font-weight: 700;">Apagar todos os dados</span></button>
+</div>
+<span class="muted" style="font-size: 13px; padding: 8px 4px;">Versão do app: 824769d</span>
+</div>
+<nav class="nav" aria-label="Seções">
+<a href="Inicio.dc.html"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M6.5 6.5v11M17.5 6.5v11M3.5 9v6M20.5 9v6M6.5 12h11"></path></svg>Treino</a>
+<a href="Semana.dc.html"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="5" width="16" height="15" rx="2"></rect><path d="M4 10h16M9 3v4M15 3v4"></path></svg>Semana</a>
+<a class="on" href="Dados.dc.html" aria-current="page"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4"></circle><path d="M4 21a8 8 0 0 1 16 0"></path></svg>Meus dados</a>
+</nav>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"tema":{"editor":"enum","options":["claro","escuro"],"default":"claro"},"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  renderVals() { return { tema: this.props.tema === 'escuro' ? 'escuro' : 'claro' }; }
+}
+</script>
+</body>
+</html>

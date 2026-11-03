@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>A sua semana</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Next:wght@400;600;800&amp;display=swap">
+<style>
+body{margin:0}
+a{color:var(--acc)}a:hover{color:var(--ink)}
+.claro{--bg:#F5F4F0;--surface:#FFFFFF;--surface2:#ECEAE4;--ink:#15171C;--ink2:#4B505B;--line:#DDD9D0;--edge:#868B95;--acc:#2443CF;--accInk:#FFFFFF;--accSoft:#E5EBFF;--ok:#0E7350;--okSoft:#E1F3EA}
+.escuro{--bg:#111316;--surface:#1A1D22;--surface2:#242830;--ink:#F3F2EE;--ink2:#AEB3BD;--line:#30343C;--edge:#6E737D;--acc:#9CB1FF;--accInk:#0C1A52;--accSoft:#1F2849;--ok:#62D2A2;--okSoft:#13291F}
+.app{width:390px;height:844px;box-sizing:border-box;display:flex;flex-direction:column;background:var(--bg);color:var(--ink);font-family:"Atkinson Hyperlegible Next",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;font-size:17px;line-height:1.45;overflow:hidden}
+.icon{width:24px;height:24px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex:none}
+.muted{color:var(--ink2)}
+.selo{display:inline-flex;align-items:center;font-size:13px;font-weight:600;color:var(--ink2);background:var(--surface2);border-radius:999px;padding:2px 10px;vertical-align:middle}
+.m{display:grid;grid-template-columns:92px 1fr 64px;gap:10px;align-items:center;min-height:44px}
+.trilho{position:relative;height:14px;border-radius:7px;background:var(--surface2)}
+.faixa{position:absolute;top:0;bottom:0;border-radius:7px;border:1.5px dashed var(--edge);box-sizing:border-box}
+.feito{position:absolute;left:0;top:0;bottom:0;border-radius:7px;background:var(--acc)}
+.n{text-align:right;font-weight:800;font-variant-numeric:tabular-nums}
+.n small{display:block;font-weight:400;font-size:13px;color:var(--ink2)}
+.nav{display:flex;border-top:1px solid var(--line);background:var(--surface);padding:4px 8px 12px}
+.nav a{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;min-height:56px;font-size:13px;font-weight:600;color:var(--ink2);text-decoration:none;border-radius:12px}
+.nav a.on{color:var(--acc)}
+</style>
+</helmet>
+<div class="app {{tema}}">
+<div style="padding: 20px 20px 8px;">
+<span class="muted" style="font-size: 14px;">3 a 9 de novembro</span>
+<h1 style="margin: 0; font-size: 28px; font-weight: 800; line-height: 1.15;">A sua semana</h1>
+</div>
+<div style="flex: 1; overflow: auto; padding: 8px 20px 16px; display: flex; flex-direction: column; gap: 16px;">
+<div style="background: var(--surface); border-radius: 20px; padding: 16px; display: flex; align-items: center; gap: 16px;">
+<div style="font-size: 44px; font-weight: 800; line-height: 1; font-variant-numeric: tabular-nums;">2<span class="muted" style="font-size: 22px;"> de 3</span></div>
+<div style="flex: 1;"><b>treinos feitos</b><br><span class="muted" style="font-size: 15px;">Falta o Corpo todo C. Qualquer dia serve.</span></div>
+</div>
+<div style="background: var(--surface); border-radius: 20px; padding: 16px; display: flex; flex-direction: column; gap: 6px;">
+<div style="display: flex; justify-content: space-between; align-items: baseline;"><b>Séries por músculo</b><span class="selo">moderada</span></div>
+<span class="muted" style="font-size: 14px;">Barra cheia: o que você fez. Tracejado: a faixa da semana.</span>
+<sc-for list="{{musculos}}" as="m" hint-placeholder-count="7">
+<div class="m"><span style="font-size: 16px;">{{m.nome}}</span><div class="trilho"><i class="faixa" style="{{m.faixa}}"></i><i class="feito" style="{{m.feito}}"></i></div><span class="n">{{m.feitas}}<small>de {{m.meta}}</small></span></div>
+</sc-for>
+</div>
+<p style="margin: 0; font-size: 14px;" class="muted">Exemplo com a persona fictícia Ana, no meio da semana.</p>
+</div>
+<nav class="nav" aria-label="Seções">
+<a href="Inicio.dc.html"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M6.5 6.5v11M17.5 6.5v11M3.5 9v6M20.5 9v6M6.5 12h11"></path></svg>Treino</a>
+<a class="on" href="Semana.dc.html" aria-current="page"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="5" width="16" height="15" rx="2"></rect><path d="M4 10h16M9 3v4M15 3v4"></path></svg>Semana</a>
+<a href="Dados.dc.html"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4"></circle><path d="M4 21a8 8 0 0 1 16 0"></path></svg>Meus dados</a>
+</nav>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"tema":{"editor":"enum","options":["claro","escuro"],"default":"claro"},"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const ESC = 16;
+    const M = [['Pernas', 6, 8, 12], ['Glúteos', 5, 8, 12], ['Peito', 4, 6, 10], ['Costas', 4, 6, 10], ['Ombros', 2, 4, 8], ['Braços', 3, 4, 8], ['Panturrilha', 2, 4, 8]];
+    const musculos = M.map((m) => ({
+      nome: m[0], feitas: m[1], meta: m[2] + '–' + m[3],
+      faixa: 'left: ' + (m[2] / ESC) * 100 + '%; width: ' + ((m[3] - m[2]) / ESC) * 100 + '%;',
+      feito: 'width: ' + (m[1] / ESC) * 100 + '%;'
+    }));
+    return { tema: this.props.tema === 'escuro' ? 'escuro' : 'claro', musculos: musculos };
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>Treino</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Next:wght@400;600;800&amp;display=swap">
+<style>
+body{margin:0}
+a{color:var(--acc)}a:hover{color:var(--ink)}
+.claro{--bg:#F5F4F0;--surface:#FFFFFF;--surface2:#ECEAE4;--ink:#15171C;--ink2:#4B505B;--line:#DDD9D0;--edge:#868B95;--acc:#2443CF;--accInk:#FFFFFF;--accSoft:#E5EBFF;--ok:#0E7350;--okSoft:#E1F3EA;--alert:#B3261E;--alertSoft:#FCE8E6;--stage:#f7f9fa}
+.escuro{--bg:#111316;--surface:#1A1D22;--surface2:#242830;--ink:#F3F2EE;--ink2:#AEB3BD;--line:#30343C;--edge:#6E737D;--acc:#9CB1FF;--accInk:#0C1A52;--accSoft:#1F2849;--ok:#62D2A2;--okSoft:#13291F;--alert:#FF8F85;--alertSoft:#3A1D1B;--stage:#10171b}
+.app{width:390px;height:844px;box-sizing:border-box;display:flex;flex-direction:column;background:var(--bg);color:var(--ink);font-family:"Atkinson Hyperlegible Next",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;font-size:17px;line-height:1.45;overflow:hidden}
+.btn{display:flex;align-items:center;justify-content:center;gap:8px;min-height:64px;border-radius:18px;border:0;font:inherit;font-weight:800;font-size:20px;padding:0 20px;cursor:pointer;text-decoration:none;box-sizing:border-box;width:100%}
+.pri{background:var(--acc);color:var(--accInk)}
+.pri:disabled{background:var(--surface2);color:var(--ink2);cursor:not-allowed}
+.sec{background:var(--surface);color:var(--ink);border:1.5px solid var(--edge);font-size:18px;font-weight:700;min-height:56px}
+.icon{width:24px;height:24px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex:none}
+.iconbtn{width:48px;height:48px;display:grid;place-items:center;border-radius:14px;border:0;background:transparent;color:var(--ink);cursor:pointer;padding:0}
+.muted{color:var(--ink2)}
+.selo{display:inline-flex;align-items:center;font-size:13px;font-weight:600;color:var(--ink2);background:var(--surface2);border-radius:999px;padding:2px 10px;vertical-align:middle}
+.prog{flex:1;height:6px;border-radius:3px;background:var(--line)}
+.prog.on{background:var(--acc)}
+.step{width:56px;height:56px;border-radius:16px;border:1.5px solid var(--edge);background:var(--surface);color:var(--ink);display:grid;place-items:center;cursor:pointer;padding:0}
+.valor{flex:1;text-align:center;font-size:40px;font-weight:800;line-height:1;font-variant-numeric:tabular-nums}
+.valor small{font-size:18px;font-weight:600;color:var(--ink2);margin-left:4px}
+.rir{flex:1;min-height:56px;border-radius:14px;border:1.5px solid var(--edge);background:var(--surface);color:var(--ink);font:inherit;font-size:20px;font-weight:800;cursor:pointer;font-variant-numeric:tabular-nums}
+.rir.on{border:2px solid var(--acc);background:var(--acc);color:var(--accInk)}
+.feita{display:inline-flex;align-items:center;gap:6px;font-size:15px;font-weight:600;padding:4px 10px;border-radius:999px;background:var(--okSoft);color:var(--ok)}
+.alerta{display:inline-flex;align-items:center;gap:6px;min-height:48px;padding:0 14px;border-radius:14px;border:1.5px solid var(--alert);background:transparent;color:var(--alert);font:inherit;font-weight:700;font-size:15px;cursor:pointer}
+</style>
+</helmet>
+<div class="app {{tema}}">
+<div style="display: flex; align-items: center; gap: 8px; padding: 12px 12px 8px 4px;">
+<a class="iconbtn" href="Inicio.dc.html" aria-label="Sair do treino"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"></path></svg></a>
+<div style="flex: 1; display: flex; flex-direction: column; gap: 6px;">
+<div style="display: flex; gap: 4px;"><i class="prog on"></i><i class="prog"></i><i class="prog"></i><i class="prog"></i><i class="prog"></i><i class="prog"></i></div>
+<span style="font-size: 14px;" class="muted">Exercício 1 de 6 · Corpo todo A</span>
+</div>
+<button class="alerta" type="button"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" style="width: 20px; height: 20px;"><path d="M12 4l9 16H3z"></path><path d="M12 10v4M12 17h.01"></path></svg>Senti algo</button>
+</div>
+
+<div style="display: flex; gap: 14px; align-items: center; padding: 4px 20px 12px;">
+<a href="Guia.dc.html" style="width: 112px; height: 84px; border-radius: 14px; overflow: hidden; background: var(--stage); flex: none; display: block;" aria-label="Ver como fazer: agachamento búlgaro"><img src="{{mini}}" alt="" style="width: 100%; height: 100%; object-fit: cover; display: block;"></a>
+<div style="display: flex; flex-direction: column; gap: 2px; min-width: 0;">
+<h1 style="margin: 0; font-size: 22px; line-height: 1.2; font-weight: 800;">Agachamento búlgaro com apoio</h1>
+<span class="muted" style="font-size: 15px;">2 séries · 8–12 cada lado · RIR 3–4</span>
+<a href="Guia.dc.html" style="font-size: 15px; font-weight: 700; min-height: 32px; display: inline-flex; align-items: center;">Ver como fazer</a>
+</div>
+</div>
+
+<sc-if value="{{registrando}}" hint-placeholder-val="{{ true }}">
+<div style="flex: 1; overflow: auto; padding: 0 20px 12px; display: flex; flex-direction: column; gap: 14px;">
+<div style="background: var(--surface); border-radius: 20px; padding: 16px; display: flex; flex-direction: column; gap: 14px;">
+<div style="display: flex; justify-content: space-between; align-items: center; gap: 8px; flex-wrap: wrap;">
+<h2 style="margin: 0; font-size: 24px; font-weight: 800;">Série {{serie}} de 2</h2>
+<sc-for list="{{feitas}}" as="f" hint-placeholder-count="0"><span class="feita"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" style="width: 18px; height: 18px;"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg>{{f.texto}}</span></sc-for>
+</div>
+<p style="margin: 0; font-size: 15px; background: var(--accSoft); color: var(--ink); border-radius: 12px; padding: 8px 12px;"><b>{{dica}}</b> <span class="selo">consenso</span></p>
+<div style="display: flex; flex-direction: column; gap: 6px;">
+<span style="font-weight: 700;">Carga</span>
+<div style="display: flex; align-items: center; gap: 12px;">
+<button class="step" type="button" aria-label="Menos carga" onClick="{{menosCarga}}"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"></path></svg></button>
+<span class="valor">{{carga}}<small>kg</small></span>
+<button class="step" type="button" aria-label="Mais carga" onClick="{{maisCarga}}"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"></path></svg></button>
+</div>
+</div>
+<div style="display: flex; flex-direction: column; gap: 6px;">
+<span style="font-weight: 700;">Repetições <span class="muted" style="font-weight: 400;">(cada lado)</span></span>
+<div style="display: flex; align-items: center; gap: 12px;">
+<button class="step" type="button" aria-label="Menos uma repetição" onClick="{{menosReps}}"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14"></path></svg></button>
+<span class="valor">{{reps}}</span>
+<button class="step" type="button" aria-label="Mais uma repetição" onClick="{{maisReps}}"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"></path></svg></button>
+</div>
+</div>
+<div style="display: flex; flex-direction: column; gap: 6px;">
+<span style="font-weight: 700;">Quantas ainda conseguiria?</span>
+<div style="display: flex; gap: 8px;" role="radiogroup" aria-label="Repetições de reserva">
+<sc-for list="{{rirs}}" as="r" hint-placeholder-count="5"><button class="{{r.cls}}" type="button" role="radio" aria-checked="{{r.on}}" onClick="{{r.pick}}">{{r.texto}}</button></sc-for>
+</div>
+<span class="muted" style="font-size: 14px;">Quase todo mundo acha que tem menos reserva do que tem. <span class="selo">moderada</span></span>
+</div>
+</div>
+<button type="button" style="align-self: flex-start; min-height: 48px; border: 0; background: transparent; color: var(--acc); font: inherit; font-weight: 700; display: inline-flex; align-items: center; gap: 8px; cursor: pointer; padding: 0 4px;"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 7h11l-3-3M17 17H6l3 3"></path></svg>Trocar só neste treino</button>
+</div>
+<div style="padding: 12px 20px 24px; border-top: 1px solid var(--line); background: var(--bg);">
+<button class="btn pri" type="button" disabled="{{semRir}}" onClick="{{feitaSerie}}">{{rotuloBotao}}</button>
+</div>
+</sc-if>
+
+<sc-if value="{{descansando}}" hint-placeholder-val="{{ false }}">
+<div style="flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 16px; padding: 0 24px;">
+<span class="feita" style="font-size: 16px;"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" style="width: 18px; height: 18px;"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg>Série {{serieAnterior}} registrada</span>
+<span style="font-size: 18px; font-weight: 700;" class="muted">Descanse</span>
+<span style="font-size: 96px; font-weight: 800; line-height: 1; font-variant-numeric: tabular-nums;" role="timer" aria-live="off">{{relogio}}</span>
+<div style="width: 100%; height: 10px; border-radius: 5px; background: var(--line); overflow: hidden;"><div style="{{barra}}"></div></div>
+<p style="margin: 0; text-align: center; font-size: 17px;"><b>Próxima:</b> série {{serie}} · {{carga}} kg × {{reps}}</p>
+<span class="muted" style="font-size: 14px;">1:45 para este exercício <span class="selo">moderada</span></span>
+</div>
+<div style="padding: 12px 20px 24px; border-top: 1px solid var(--line); display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px;">
+<button class="btn sec" type="button" onClick="{{menos15}}">−15 s</button>
+<button class="btn pri" type="button" onClick="{{pular}}" style="font-size: 18px; min-height: 56px;">Pular</button>
+<button class="btn sec" type="button" onClick="{{mais15}}">+15 s</button>
+</div>
+</sc-if>
+
+<sc-if value="{{concluido}}" hint-placeholder-val="{{ false }}">
+<div style="flex: 1; display: flex; flex-direction: column; justify-content: center; gap: 16px; padding: 0 20px;">
+<span class="feita" style="align-self: flex-start; font-size: 16px;"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" style="width: 18px; height: 18px;"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg>Búlgaro concluído: 2 séries</span>
+<h2 style="margin: 0; font-size: 28px; font-weight: 800;">Próximo: Stiff com halteres</h2>
+<p style="margin: 0;" class="muted">2 × 8–12 · comece com a carga que pareça fácil.</p>
+</div>
+<div style="padding: 12px 20px 24px; display: flex; flex-direction: column; gap: 10px;">
+<button class="btn pri" type="button" onClick="{{reiniciar}}">Ir para o stiff</button>
+<a class="btn sec" href="Fim.dc.html">Terminar o treino agora</a>
+</div>
+</sc-if>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"tema":{"editor":"enum","options":["claro","escuro"],"default":"claro"},"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  constructor(p) {
+    super(p);
+    this.state = { serie: 1, fase: 'reg', carga: 8, reps: 10, rir: null, feitas: [], seg: 105, total: 105 };
+  }
+  componentDidMount() {
+    this.t = setInterval(() => {
+      if (this.state.fase === 'desc') {
+        if (this.state.seg <= 1) this.setState({ fase: 'reg', seg: 105, total: 105 });
+        else this.setState({ seg: this.state.seg - 1 });
+      }
+    }, 1000);
+  }
+  componentWillUnmount() { clearInterval(this.t); }
+  renderVals() {
+    const s = this.state;
+    const rirs = ['0', '1', '2', '3', '4+'].map((t, i) => ({ texto: t, on: s.rir === i, cls: s.rir === i ? 'rir on' : 'rir', pick: () => this.setState({ rir: i }) }));
+    const mm = Math.floor(s.seg / 60), ss = String(s.seg % 60).padStart(2, '0');
+    const pct = Math.max(0, Math.min(100, (s.seg / s.total) * 100));
+    return {
+      tema: this.props.tema === 'escuro' ? 'escuro' : 'claro',
+      mini: this.props.tema === 'escuro' ? '/_blob/b2f8256a98e22edb2f645b39bdb3aa80' : '/_blob/cc974e8e5125da560a8fc91e7b815696',
+      registrando: s.fase === 'reg', descansando: s.fase === 'desc', concluido: s.fase === 'fim',
+      serie: s.serie, serieAnterior: s.serie - 1, carga: s.carga, reps: s.reps,
+      feitas: s.feitas.map((f) => ({ texto: f })),
+      dica: s.serie === 1 ? '1ª vez: comece leve. Esta série acerta a carga; antes, 1–2 séries leves de aquecimento.' : 'Hoje: mesma carga. Se passar de 12 repetições, o app sobe na próxima vez.',
+      rirs: rirs, semRir: s.rir === null,
+      rotuloBotao: s.rir === null ? 'Marque a reserva para salvar' : 'Série feita',
+      relogio: mm + ':' + ss,
+      barra: 'height: 100%; width: ' + pct + '%; background: var(--acc); border-radius: 5px;',
+      menosCarga: () => this.setState({ carga: Math.max(1, s.carga - 1) }),
+      maisCarga: () => this.setState({ carga: Math.min(12, s.carga + 1) }),
+      menosReps: () => this.setState({ reps: Math.max(0, s.reps - 1) }),
+      maisReps: () => this.setState({ reps: s.reps + 1 }),
+      feitaSerie: () => {
+        const feitas = s.feitas.concat([s.carga + ' kg × ' + s.reps]);
+        if (s.serie >= 2) this.setState({ feitas: feitas, fase: 'fim' });
+        else this.setState({ feitas: feitas, serie: s.serie + 1, fase: 'desc', seg: 105, total: 105, rir: null });
+      },
+      menos15: () => this.setState({ seg: Math.max(1, s.seg - 15) }),
+      mais15: () => this.setState({ seg: s.seg + 15, total: Math.max(s.total, s.seg + 15) }),
+      pular: () => this.setState({ fase: 'reg' }),
+      reiniciar: () => this.setState({ serie: 1, fase: 'reg', carga: 8, reps: 10, rir: null, feitas: [], seg: 105, total: 105 })
+    };
+  }
+}
+</script>
+</body>
+</html>

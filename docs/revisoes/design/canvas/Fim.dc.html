@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>Fim do treino</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Next:wght@400;600;800&amp;display=swap">
+<style>
+body{margin:0}
+a{color:var(--acc)}a:hover{color:var(--ink)}
+.claro{--bg:#F5F4F0;--surface:#FFFFFF;--surface2:#ECEAE4;--ink:#15171C;--ink2:#4B505B;--line:#DDD9D0;--edge:#868B95;--acc:#2443CF;--accInk:#FFFFFF;--accSoft:#E5EBFF;--ok:#0E7350;--okSoft:#E1F3EA;--alert:#B3261E;--alertSoft:#FCE8E6}
+.escuro{--bg:#111316;--surface:#1A1D22;--surface2:#242830;--ink:#F3F2EE;--ink2:#AEB3BD;--line:#30343C;--edge:#6E737D;--acc:#9CB1FF;--accInk:#0C1A52;--accSoft:#1F2849;--ok:#62D2A2;--okSoft:#13291F;--alert:#FF8F85;--alertSoft:#3A1D1B}
+.app{width:390px;height:844px;box-sizing:border-box;display:flex;flex-direction:column;background:var(--bg);color:var(--ink);font-family:"Atkinson Hyperlegible Next",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;font-size:17px;line-height:1.45;overflow:hidden}
+.btn{display:flex;align-items:center;justify-content:center;gap:8px;min-height:56px;border-radius:16px;border:0;font:inherit;font-weight:700;font-size:18px;padding:0 20px;cursor:pointer;text-decoration:none;box-sizing:border-box;width:100%}
+.pri{background:var(--acc);color:var(--accInk)}
+.icon{width:24px;height:24px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex:none}
+.muted{color:var(--ink2)}
+.stat{display:flex;flex-direction:column;gap:2px;background:var(--surface);border-radius:16px;padding:12px 14px}
+.stat b{font-size:30px;font-weight:800;line-height:1.1;font-variant-numeric:tabular-nums}
+.stat span{font-size:14px;color:var(--ink2)}
+.como{flex:1;min-height:64px;border-radius:16px;border:1.5px solid var(--edge);background:var(--surface);color:var(--ink);font:inherit;font-weight:700;font-size:17px;cursor:pointer;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px}
+.como small{font-weight:400;font-size:13px;color:var(--ink2)}
+.como.on{border:2px solid var(--acc);background:var(--accSoft);color:var(--acc)}
+.prox{display:flex;align-items:center;gap:12px;padding:12px 0;border-bottom:1px solid var(--line)}
+.prox:last-child{border-bottom:0}
+.seta{display:inline-flex;align-items:center;gap:6px;font-weight:800;font-variant-numeric:tabular-nums;color:var(--ok)}
+</style>
+</helmet>
+<div class="app {{tema}}">
+<div style="flex: 1; overflow: auto; padding: 40px 20px 16px; display: flex; flex-direction: column; gap: 18px;">
+<div style="display: flex; align-items: center; gap: 14px;">
+<div style="width: 56px; height: 56px; border-radius: 50%; background: var(--okSoft); color: var(--ok); display: grid; place-items: center; flex: none;"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" style="width: 30px; height: 30px;"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg></div>
+<div><h1 style="margin: 0; font-size: 28px; font-weight: 800; line-height: 1.15;">Treino concluído</h1><span class="muted">Corpo todo A · segunda-feira</span></div>
+</div>
+<div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px;">
+<div class="stat"><b>12</b><span>séries</span></div>
+<div class="stat"><b>6</b><span>exercícios</span></div>
+<div class="stat"><b>43</b><span>minutos</span></div>
+</div>
+<div style="display: flex; flex-direction: column; gap: 8px;">
+<span style="font-weight: 700;">Como foi hoje?</span>
+<div style="display: flex; gap: 8px;" role="radiogroup" aria-label="Como foi hoje">
+<sc-for list="{{opcoes}}" as="o" hint-placeholder-count="3"><button class="{{o.cls}}" type="button" role="radio" aria-checked="{{o.on}}" onClick="{{o.pick}}">{{o.texto}}<small>{{o.sub}}</small></button></sc-for>
+</div>
+</div>
+<div style="background: var(--surface); border-radius: 20px; padding: 6px 16px;">
+<span style="display: block; padding-top: 10px; font-size: 14px; font-weight: 700; letter-spacing: .04em;" class="muted">NA PRÓXIMA VEZ</span>
+<div class="prox"><span style="flex: 1;">Búlgaro</span><span class="seta">8 kg<svg class="icon" viewBox="0 0 24 24" aria-hidden="true" style="width: 18px; height: 18px;"><path d="M5 12h14M13 6l6 6-6 6"></path></svg>9 kg</span></div>
+<div class="prox"><span style="flex: 1;">Supino reto</span><span class="muted" style="font-weight: 700;">mesma carga, +1 repetição</span></div>
+<div class="prox"><span style="flex: 1;">Stiff</span><span class="seta">10 kg<svg class="icon" viewBox="0 0 24 24" aria-hidden="true" style="width: 18px; height: 18px;"><path d="M5 12h14M13 6l6 6-6 6"></path></svg>11 kg</span></div>
+</div>
+<p style="margin: 0; font-size: 14px;" class="muted">Exemplo com a persona fictícia Ana. As sugestões seguem a dupla progressão: sobe a carga quando todas as séries chegam ao topo da faixa.</p>
+</div>
+<div style="padding: 12px 20px 24px; border-top: 1px solid var(--line);">
+<a class="btn pri" href="Semana.dc.html">Ver a sua semana</a>
+</div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"tema":{"editor":"enum","options":["claro","escuro"],"default":"claro"},"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  constructor(p) { super(p); this.state = { como: null }; }
+  renderVals() {
+    const O = [['leve', 'Leve', 'sobrou fôlego'], ['normal', 'Normal', 'como esperado'], ['pesado', 'Pesado', 'foi difícil']];
+    const opcoes = O.map((o) => ({ texto: o[1], sub: o[2], on: this.state.como === o[0], cls: this.state.como === o[0] ? 'como on' : 'como', pick: () => this.setState({ como: o[0] }) }));
+    return { tema: this.props.tema === 'escuro' ? 'escuro' : 'claro', opcoes: opcoes };
+  }
+}
+</script>
+</body>
+</html>

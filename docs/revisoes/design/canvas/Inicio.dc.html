@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>Início</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Next:wght@400;600;800&amp;display=swap">
+<style>
+body{margin:0}
+a{color:var(--acc)}a:hover{color:var(--ink)}
+.claro{--bg:#F5F4F0;--surface:#FFFFFF;--surface2:#ECEAE4;--ink:#15171C;--ink2:#4B505B;--line:#DDD9D0;--edge:#868B95;--acc:#2443CF;--accInk:#FFFFFF;--accSoft:#E5EBFF;--ok:#0E7350;--okSoft:#E1F3EA;--alert:#B3261E;--alertSoft:#FCE8E6;--stage:#f7f9fa}
+.escuro{--bg:#111316;--surface:#1A1D22;--surface2:#242830;--ink:#F3F2EE;--ink2:#AEB3BD;--line:#30343C;--edge:#6E737D;--acc:#9CB1FF;--accInk:#0C1A52;--accSoft:#1F2849;--ok:#62D2A2;--okSoft:#13291F;--alert:#FF8F85;--alertSoft:#3A1D1B;--stage:#10171b}
+.app{width:390px;height:844px;box-sizing:border-box;display:flex;flex-direction:column;background:var(--bg);color:var(--ink);font-family:"Atkinson Hyperlegible Next",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;font-size:17px;line-height:1.45;overflow:hidden}
+.btn{display:flex;align-items:center;justify-content:center;gap:8px;min-height:56px;border-radius:16px;border:0;font:inherit;font-weight:700;font-size:18px;padding:0 20px;cursor:pointer;text-decoration:none;box-sizing:border-box;width:100%}
+.pri{background:var(--acc);color:var(--accInk)}
+.icon{width:24px;height:24px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;flex:none}
+.iconbtn{width:48px;height:48px;display:grid;place-items:center;border-radius:14px;border:0;background:transparent;color:var(--ink);cursor:pointer;padding:0}
+.muted{color:var(--ink2)}
+.selo{display:inline-flex;align-items:center;font-size:13px;font-weight:600;color:var(--ink2);background:var(--surface2);border-radius:999px;padding:2px 10px;vertical-align:middle}
+.dia{flex:1;display:flex;flex-direction:column;align-items:center;gap:6px;font-size:13px;color:var(--ink2)}
+.dia i{width:34px;height:34px;border-radius:50%;display:grid;place-items:center;font-style:normal;font-weight:800;font-size:14px;border:1.5px solid var(--edge);color:var(--ink);box-sizing:border-box}
+.dia i.hoje{border:2px solid var(--acc);background:var(--accSoft);color:var(--acc)}
+.dia i.treino{border-style:dashed}
+.tab{flex:1;min-height:48px;border:0;border-radius:12px;background:transparent;color:var(--ink2);font:inherit;font-weight:700;font-size:16px;cursor:pointer}
+.tab.on{background:var(--surface);color:var(--ink);box-shadow:0 1px 2px rgba(0,0,0,.12)}
+.ex{display:flex;align-items:center;gap:14px;min-height:72px;padding:8px 0;border-bottom:1px solid var(--line);text-decoration:none;color:var(--ink)}
+.ex:last-child{border-bottom:0}
+.mini{width:80px;height:60px;border-radius:10px;background:var(--stage);overflow:hidden;flex:none;display:grid;place-items:center}
+.mini img{width:100%;height:100%;object-fit:cover;display:block}
+.nav{display:flex;border-top:1px solid var(--line);background:var(--surface);padding:4px 8px 12px}
+.nav a{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;min-height:56px;font-size:13px;font-weight:600;color:var(--ink2);text-decoration:none;border-radius:12px}
+.nav a.on{color:var(--acc)}
+</style>
+</helmet>
+<div class="app {{tema}}">
+<div style="display: flex; align-items: center; justify-content: space-between; padding: 16px 12px 4px 20px;">
+<div style="display: flex; flex-direction: column;">
+<span style="font-size: 14px;" class="muted">Semana 1 de 4 · aprendizado</span>
+<h1 style="margin: 0; font-size: 28px; font-weight: 800; line-height: 1.15;">Seu treino</h1>
+</div>
+<span class="selo">3x por semana · 45 min</span>
+</div>
+
+<div style="flex: 1; overflow: auto; padding: 8px 20px 16px; display: flex; flex-direction: column; gap: 16px;">
+<div style="display: flex; gap: 2px;" aria-label="Esta semana">
+<div class="dia"><span>S</span><i class="hoje">A</i></div>
+<div class="dia"><span>T</span><i>·</i></div>
+<div class="dia"><span>Q</span><i class="treino">B</i></div>
+<div class="dia"><span>Q</span><i>·</i></div>
+<div class="dia"><span>S</span><i class="treino">C</i></div>
+<div class="dia"><span>S</span><i>·</i></div>
+<div class="dia"><span>D</span><i>·</i></div>
+</div>
+
+<div style="display: flex; gap: 4px; padding: 4px; border-radius: 16px; background: var(--surface2);" role="tablist" aria-label="Treinos">
+<sc-for list="{{dias}}" as="d" hint-placeholder-count="3"><button class="{{d.cls}}" type="button" role="tab" aria-selected="{{d.on}}" onClick="{{d.pick}}">{{d.nome}}</button></sc-for>
+</div>
+
+<div style="background: var(--surface); border-radius: 20px; padding: 16px 16px 4px;">
+<div style="display: flex; justify-content: space-between; align-items: baseline;">
+<h2 style="margin: 0; font-size: 22px; font-weight: 800;">{{diaAtual.nome}}</h2>
+<span class="muted" style="font-size: 15px;">{{diaAtual.resumo}}</span>
+</div>
+<span class="muted" style="font-size: 15px;">Fase de aprendizado: foco na técnica, RIR 3–4 <span class="selo">consenso</span></span>
+<div style="margin-top: 6px;">
+<sc-for list="{{diaAtual.exs}}" as="e" hint-placeholder-count="6">
+<a class="ex" href="Guia.dc.html">
+<div class="mini"><sc-if value="{{e.temImg}}" hint-placeholder-val="{{ true }}"><img src="{{e.img}}" alt=""></sc-if><sc-if value="{{e.texto}}" hint-placeholder-val="{{ false }}"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true" style="color: var(--acc); width: 28px; height: 28px;"><rect x="5" y="3" width="14" height="18" rx="2"></rect><path d="M8 8h8M8 12h8M8 16h5"></path></svg></sc-if></div>
+<span style="flex: 1; display: flex; flex-direction: column;"><b style="font-size: 17px; line-height: 1.25;">{{e.nome}}</b><span class="muted" style="font-size: 15px;">{{e.pres}}</span></span>
+</a>
+</sc-for>
+</div>
+</div>
+
+<button type="button" style="display: flex; align-items: center; gap: 12px; min-height: 56px; padding: 8px 16px; border-radius: 16px; border: 0; background: var(--surface2); color: var(--ink); font: inherit; text-align: left; cursor: pointer;">
+<svg class="icon" viewBox="0 0 24 24" aria-hidden="true" style="color: var(--ink2);"><circle cx="12" cy="12" r="9"></circle><path d="M12 8h.01M11 12h1v4h1"></path></svg>
+<span style="flex: 1; font-size: 15px;"><b>2 músculos abaixo da meta.</b> <span class="muted">Ver por quê e opções</span></span>
+<svg class="icon" viewBox="0 0 24 24" aria-hidden="true" style="color: var(--ink2);"><path d="M9 6l6 6-6 6"></path></svg>
+</button>
+</div>
+
+<div style="padding: 12px 20px; border-top: 1px solid var(--line); background: var(--bg);">
+<a class="btn pri" href="Treino.dc.html">Começar {{diaAtual.nome}}</a>
+</div>
+<nav class="nav" aria-label="Seções">
+<a class="on" href="Inicio.dc.html" aria-current="page"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M6.5 6.5v11M17.5 6.5v11M3.5 9v6M20.5 9v6M6.5 12h11"></path></svg>Treino</a>
+<a href="Semana.dc.html"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="5" width="16" height="15" rx="2"></rect><path d="M4 10h16M9 3v4M15 3v4"></path></svg>Semana</a>
+<a href="Dados.dc.html"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4"></circle><path d="M4 21a8 8 0 0 1 16 0"></path></svg>Meus dados</a>
+</nav>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"tema":{"editor":"enum","options":["claro","escuro"],"default":"claro"},"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  constructor(p) { super(p); this.state = { dia: 0 }; }
+  renderVals() {
+    const escuro = this.props.tema === 'escuro';
+    const I = escuro
+      ? { bulgaro: '/_blob/b2f8256a98e22edb2f645b39bdb3aa80', stiff: '/_blob/58299cdfd2ce4a8b8845b96a9b6f11ae', supino: '/_blob/85e275ce9bbaf31585ed32152b312163', remada: '/_blob/c9de5445ca550d549ae882e53dd9cb23', triceps: '/_blob/cf9191e51bf537e174f1a03ba731e575' }
+      : { bulgaro: '/_blob/cc974e8e5125da560a8fc91e7b815696', stiff: '/_blob/33c7dec39dbba55372169020a1bb13c6', supino: '/_blob/d4afef5dd7d7f6378219c136023070d2', remada: '/_blob/a68347543af936152c5304ca5020c72e', triceps: '/_blob/2e47629a4c77a570931468167810a891' };
+    const ex = (nome, pres, img) => ({ nome: nome, pres: pres, img: img || '', temImg: !!img, texto: !img });
+    const DIAS = [
+      { nome: 'Corpo todo A', resumo: '6 exercícios · ~45 min', exs: [
+        ex('Agachamento búlgaro com apoio', '2 × 8–12 cada lado', I.bulgaro),
+        ex('Stiff com halteres', '2 × 8–12', I.stiff),
+        ex('Ponte de glúteo com halter', '2 × 10–20 · guia em texto', null),
+        ex('Supino reto com halteres', '2 × 6–10', I.supino),
+        ex('Remada unilateral com halter', '2 × 8–12 cada lado', I.remada),
+        ex('Tríceps francês sentado', '2 × 10–15', I.triceps)
+      ] },
+      { nome: 'Corpo todo B', resumo: '6 exercícios · ~45 min', exs: [ex('Afundo estático com halteres', '2 × 8–12 cada lado', I.bulgaro), ex('Supino reto com halteres', '2 × 6–10', I.supino)] },
+      { nome: 'Corpo todo C', resumo: '6 exercícios · ~45 min', exs: [ex('Stiff unilateral com halter', '2 × 8–12', I.stiff), ex('Remada unilateral com halter', '2 × 8–12 cada lado', I.remada)] }
+    ];
+    const dias = DIAS.map((d, i) => ({ nome: ['A', 'B', 'C'][i], on: this.state.dia === i, cls: this.state.dia === i ? 'tab on' : 'tab', pick: () => this.setState({ dia: i }) }));
+    return { tema: escuro ? 'escuro' : 'claro', dias: dias, diaAtual: DIAS[this.state.dia] };
+  }
+}
+</script>
+</body>
+</html>
