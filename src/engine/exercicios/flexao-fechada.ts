@@ -1,9 +1,9 @@
 // @ts-nocheck
-// Animação nova (em revisão). Flexão de braço com as mãos juntas. Técnica e fontes: docs/pesquisa/animacoes/flexao-fechada.md.
+// Animação nova (aprovada). Flexão de braço com as mãos juntas. Técnica e fontes: docs/pesquisa/animacoes/flexao-fechada.md.
 // Parte da flexão aprovada (src/engine/exercicios/flexao.ts): as mesmas poses do tronco e das pernas, com as mãos
 // na largura dos ombros, abaixo da parte baixa do peito, e os cotovelos rentes ao corpo.
-import { L3, TX } from '../../desenho';
-import { add, mul, sub } from '../../math';
+import { L3, TX } from '../desenho';
+import { add, mul, sub } from '../math';
 
 const ex = {
   id:'flexao-fechada',

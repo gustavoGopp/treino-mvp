@@ -3,6 +3,8 @@
   "name": "Flexão de braço com as mãos juntas",
   "short": "Flexão fechada",
   "target": "Tríceps e peitoral",
+  "feel": "Parte de trás do braço (tríceps) e peito. A frente do ombro ajuda, e o abdômen trabalha para segurar a prancha.",
+  "feelNote": "Dor no punho ou no cotovelo? Apoie as mãos fechadas numa toalha dobrada, segure dois halteres no chão ou faça com as mãos numa mesa firme. Se a dor continuar, pare e procure avaliação.",
   "setupEq": [
     "Nenhum equipamento: só o chão. Mais fácil: mãos numa mesa ou bancada firme."
   ],
@@ -38,10 +40,23 @@
     "Em cima: braços estendidos.",
     "Se o quadril cair ou os cotovelos abrirem para completar a repetição, a série acabou."
   ],
+  "breath": "Inspire descendo, solte o ar subindo.",
   "cues": [
     "Cotovelos rentes.",
     "Corpo em linha.",
     "Peito perto das mãos."
+  ],
+  "check": [
+    "Mãos na largura dos ombros",
+    "Abdômen e glúteo firmes",
+    "Cotovelos para trás",
+    "Descer até perto das mãos",
+    "Parar no RIR do seu programa"
+  ],
+  "vary": "Mãos mais juntas que os ombros não precisam encostar: com os polegares e indicadores juntos (\"diamante\") o punho dobra mais, e nenhum estudo mostrou vantagem. Ficou difícil demais? Mãos numa mesa firme. Fácil demais? Pés num degrau.",
+  "extLabels": [
+    "em cima",
+    "embaixo"
   ],
   "errors": [
     {
@@ -59,9 +74,5 @@
       "title": "Descer pouco",
       "desc": "Parar no meio corta a parte em que o tríceps e o peito mais trabalham. Desça até o peito chegar perto das mãos."
     }
-  ],
-  "montagem": [
-    "Com dor no punho, apoie as mãos fechadas numa toalha dobrada, segure dois halteres como pegadores ou faça com as mãos numa mesa firme (mais fácil)."
-  ],
-  "carga": "Peso do corpo: registre o degrau da escada. Mãos numa mesa firme → no chão → descida de 3 s → pés num degrau → pausa de 2 s embaixo. Sobe de degrau quando todas as séries chegarem ao topo da faixa."
+  ]
 }

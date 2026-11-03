@@ -3685,7 +3685,7 @@
    "peso-corpo"
   ],
   "carga": "peso-corpo",
-  "animacaoId": null
+  "animacaoId": "flexao-fechada"
  },
  {
   "id": "pike",

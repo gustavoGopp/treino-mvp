@@ -38,6 +38,7 @@ import afundoPesoCorpo from './afundo-peso-corpo';
 import bulgaroPesoCorpo from './bulgaro-peso-corpo';
 import barraFixaSupinada from './barra-fixa-supinada';
 import ponteGluteo from './ponte-gluteo';
+import flexaoFechada from './flexao-fechada';
 
 // Mesma ordem do guia original (a ordem define os treinos e a ordem de preparação).
 export const EX = [
@@ -77,4 +78,5 @@ export const EX = [
   bulgaroPesoCorpo,
   barraFixaSupinada,
   ponteGluteo,
+  flexaoFechada,
 ];
