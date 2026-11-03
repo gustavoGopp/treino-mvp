@@ -47,6 +47,7 @@ a{color:var(--acc)}a:hover{color:var(--ink)}
 .ou{display:flex;align-items:center;gap:12px;color:var(--ink2);font-size:15px}
 .ou::before,.ou::after{content:"";flex:1;height:1px;background:var(--line)}
 .nota{margin:0;font-size:15px;color:var(--ink2)}
+.linha48{display:flex;align-items:center;min-height:48px;font-weight:700;font-size:16px}
 .caixa{background:var(--surface);border-radius:16px;padding:16px 18px;display:flex;flex-direction:column;gap:8px}
 </style>
 </helmet>
@@ -63,7 +64,7 @@ a{color:var(--acc)}a:hover{color:var(--ink)}
 <li><span class="marco on"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20s-8-4.6-8-10.5A4.5 4.5 0 0 1 12 7a4.5 4.5 0 0 1 8 2.5C20 15.4 12 20 12 20zM7 12h2.5l1.5-2.5 2 5 1.5-2.5H17"></path></svg></span><div><b>Saúde</b><span class="d">Perguntas de segurança</span></div></li>
 <li><span class="marco"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4"></circle><path d="M4 21a8 8 0 0 1 16 0"></path></svg></span><div><b>Você</b><span class="d">Experiência e dias livres</span></div></li>
 <li><span class="marco"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><path d="M6.5 6.5v11M17.5 6.5v11M3.5 9v6M20.5 9v6M6.5 12h11"></path></svg></span><div><b>Equipamento</b><span class="d">Onde você treina, ou uma foto</span></div></li>
-<li><span class="marco"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M10 8.5v7l6-3.5z"></path></svg></span><div><b>Seu treino</b><span class="d">Com o Boneco em cada exercício</span></div></li>
+<li><span class="marco"><svg class="ic" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M10 8.5v7l6-3.5z"></path></svg></span><div><b>Seu treino</b><span class="d">Com o guia de cada exercício</span></div></li>
 </ul>
 <div class="ressalvas">
 <p><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" style="color: var(--warn);"><path d="M5 3v5a4 4 0 0 0 8 0V3M9 12v3a5 5 0 0 0 10 0v-2"></path><circle cx="19" cy="11" r="2"></circle></svg><span>Não diagnostica nem substitui médico ou profissional de Educação Física. Dor, tontura ou mal-estar? Pare e procure avaliação. <span class="selo">consenso</span></span></p>
@@ -71,7 +72,7 @@ a{color:var(--acc)}a:hover{color:var(--ink)}
 </div>
 </div>
 <div class="pe">
-<button class="btn pri" type="button" onClick="{{comecar}}">Começar pela saúde</button>
+<button class="btn pri" type="button" onClick="{{comecar}}">Entendi, começar pela saúde</button>
 <button class="link" type="button">Ver o guia de exercícios</button>
 </div>
 </sc-if>
@@ -97,7 +98,8 @@ a{color:var(--acc)}a:hover{color:var(--ink)}
 </ul>
 </div>
 </sc-for>
-<p class="nota">Perguntas no estilo do PAR-Q+ <span class="selo">consenso</span> · <a href="#">Por que estas perguntas?</a></p>
+<p class="nota">Perguntas no estilo do PAR-Q+ <span class="selo">consenso</span>. Suas respostas ficam só neste aparelho.</p>
+<a class="linha48" href="#">Por que estas perguntas?</a>
 <button class="btn sec" type="button" onClick="{{sim}}">Sim, alguma destas vale</button>
 <div class="ou">ou</div>
 <button class="btn sec" type="button" onClick="{{nenhuma}}">Não tenho nenhuma destas</button>
@@ -134,11 +136,11 @@ var GRUPOS = [
     { d: 'M12 12a1.5 1.5 0 0 1 3 0a3 3 0 0 1-6 0a4.5 4.5 0 0 1 9 0a6 6 0 0 1-12 0a7.5 7.5 0 0 1 15 0', b: 'Desmaio, ou tontura com perda de equilíbrio', r: ', nos últimos 12 meses' } ] },
   { nome: 'Doenças e remédios', itens: [
     { d: 'M9 3h6v3H9zM8 4.5H6v16h12v-16h-2M12 10v6M9 13h6', b: 'Outra doença crônica', r: ' diagnosticada, além de coração ou pressão' },
-    { d: 'M10.5 20.5a5 5 0 0 1-7-7l6-6a5 5 0 0 1 7 7zM8.5 8.5l7 7', b: 'Remédio receitado', r: ' para doença crônica' },
+    { d: 'M10.5 20.5a5 5 0 0 1-7-7l6-6a5 5 0 0 1 7 7zM8.5 8.5l7 7', b: 'Remédio receitado', r: ' que você toma para doença crônica' },
     { d: circ(8, 8, 3) + circ(16.5, 8, 3) + 'M2.5 20a5.5 5.5 0 0 1 11 0M12 15.5a5.5 5.5 0 0 1 9.5 4.5', b: 'Um médico disse', r: ' para você só treinar com acompanhamento' } ] },
   { nome: 'Agora ou recente', itens: [
     { d: 'M8 10.5h8a2.3 2.3 0 1 1 2.6 1.5 2.3 2.3 0 1 1-2.6 1.5H8a2.3 2.3 0 1 1-2.6-1.5A2.3 2.3 0 1 1 8 10.5z', b: 'Problema em osso, articulação, músculo ou tendão', r: ' que pode piorar com exercício, agora ou nos últimos 12 meses' },
-    { d: 'M13 3a8 8 0 0 1 8 8h-8zM3 11h18a6 6 0 0 1-6 6H9a6 6 0 0 1-6-6zM3 11 1.5 7' + circ(8, 20, 1.5) + circ(16, 20, 1.5), b: 'Gravidez, ou parto', r: ' nos últimos 6 meses' },
+    { d: 'M13 3a8 8 0 0 1 8 8h-8zM3 11h18a6 6 0 0 1-6 6H9a6 6 0 0 1-6-6zM3 11 1.5 7' + circ(8, 20, 1.5) + circ(16, 20, 1.5), b: 'Grávida agora, ou parto', r: ' nos últimos 6 meses' },
     { d: 'M14 14.5V5a2 2 0 0 0-4 0v9.5a4 4 0 1 0 4 0zM12 9v8', b: 'Febre, gripe forte', r: ' ou se recuperando de alguma doença, agora' } ] }
 ];
 class Component extends DCLogic {

@@ -49,6 +49,7 @@ a{color:var(--acc)}a:hover{color:var(--ink)}
 .opt{display:flex;align-items:center;gap:14px;width:100%;min-height:64px;padding:12px 18px;border-radius:16px;border:1.5px solid var(--edge);background:var(--surface);color:var(--ink);font:inherit;font-size:18px;font-weight:700;text-align:left;cursor:pointer;box-sizing:border-box}
 .opt.on{border:2px solid var(--acc);background:var(--accSoft);color:var(--acc)}
 .nota{margin:0;font-size:15px;color:var(--ink2)}
+.linha48{display:flex;align-items:center;min-height:48px;font-weight:700;font-size:16px}
 .caixa{background:var(--surface);border-radius:16px;padding:16px 18px;display:flex;flex-direction:column;gap:8px}
 </style>
 </helmet>
@@ -94,7 +95,8 @@ a{color:var(--acc)}a:hover{color:var(--ink)}
 </div></li>
 </sc-for>
 </ul>
-<p class="nota">Perguntas no estilo do PAR-Q+ <span class="selo">consenso</span> · <a href="#">Por que estas perguntas?</a></p>
+<p class="nota">Perguntas no estilo do PAR-Q+ <span class="selo">consenso</span>. Suas respostas ficam só neste aparelho.</p>
+<a class="linha48" href="#">Por que estas perguntas?</a>
 </div>
 <div class="pe">
 <sc-if value="{{modoLista}}" hint-placeholder-val="{{ true }}">
@@ -157,10 +159,10 @@ var COND = {
   2: { d: IC.peito, b: 'Dor no peito', r: ': parado, no dia a dia ou no esforço' },
   3: { d: IC.tontura, b: 'Desmaio, ou tontura com perda de equilíbrio', r: ', nos últimos 12 meses' },
   4: { d: IC.prancheta, b: 'Outra doença crônica', r: ' diagnosticada, além de coração ou pressão' },
-  5: { d: IC.capsula, b: 'Remédio receitado', r: ' para doença crônica' },
+  5: { d: IC.capsula, b: 'Remédio receitado', r: ' que você toma para doença crônica' },
   7: { d: IC.dupla, b: 'Um médico disse', r: ' para você só treinar com acompanhamento' },
   6: { d: IC.osso, b: 'Problema em osso, articulação, músculo ou tendão', r: ' que pode piorar com exercício, agora ou nos últimos 12 meses' },
-  8: { d: IC.carrinho, b: 'Gravidez, ou parto', r: ' nos últimos 6 meses' },
+  8: { d: IC.carrinho, b: 'Grávida agora, ou parto', r: ' nos últimos 6 meses' },
   9: { d: IC.termometro, b: 'Febre, gripe forte', r: ' ou se recuperando de alguma doença, agora' }
 };
 var BLOCOS = [[1, 2, 3], [4, 5, 7], [6, 8, 9]];

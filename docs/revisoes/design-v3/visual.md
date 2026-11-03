@@ -1,5 +1,7 @@
 # Design visual (design v3, papel 4, 03/11/2026)
 
+> **Nota do líder, depois do guardião (`guardiao.md`):** os rótulos curtos da triagem e a frase curta de "não faz" deste arquivo e das imagens em `visual/` **não passaram**: perdem critérios. O sistema visual (hierarquia, ícones, ladrilhos, cores e contraste) continua valendo; os textos que valem são os de `textos.md` 2.1, com os ajustes de `design-v3.md`, seção 7.
+
 > Papel: hierarquia, letra, cor, espaço, ícones e ilustração. Parte do sistema da v2 (`../design-v2.md`) e o evolui. Não é uma 3ª reformulação.
 > Selos como em `docs/pesquisa/00-metodo.md`. As fontes vêm da v2, que leu só resumos. O que é opinião minha está marcado **[opinião]**.
 > **Nada mudou no app.** As telas abaixo são esboços em HTML, montados sobre o `src/styles.css` de hoje e medidos no Chromium a 412×915 e a 360×740, nos dois temas. As imagens estão em `visual/`.

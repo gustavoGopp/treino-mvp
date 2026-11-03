@@ -52,7 +52,7 @@ a{color:var(--acc)}a:hover{color:var(--ink)}
 <div class="corpo" style="padding-top: 8px;">
 <div class="heroi"><img src="{{boneco}}" alt="O Boneco, o guia animado do app, fazendo um agachamento"></div>
 <h1 class="h1">Musculação com o que você tem</h1>
-<p class="sub">O app monta seu treino só com o seu equipamento, e o Boneco mostra cada exercício.</p>
+<p class="sub">O app monta seu treino só com o seu equipamento e mostra como fazer cada exercício.</p>
 <ul class="garantias">
 <li><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" style="color: var(--warn);"><path d="M5 3v5a4 4 0 0 0 8 0V3M9 12v3a5 5 0 0 0 10 0v-2"></path><circle cx="19" cy="11" r="2"></circle></svg><span>Não diagnostica nem substitui médico ou profissional de Educação Física. Dor, tontura ou mal-estar? Pare e procure avaliação. <span class="selo">consenso</span></span></li>
 <li><svg class="ic" viewBox="0 0 24 24" aria-hidden="true" style="color: var(--ok);"><rect x="6" y="2" width="12" height="20" rx="2"></rect><path d="M10 13h4v4h-4zM10.5 13v-1.5a1.5 1.5 0 0 1 3 0V13"></path></svg><span>Seus dados ficam só neste aparelho.</span></li>
@@ -81,7 +81,7 @@ a{color:var(--acc)}a:hover{color:var(--ink)}
 <p class="sub">{{c.det}}</p>
 </div>
 <div class="pe">
-<p class="nota" style="text-align: center;">Um “sim” não impede o treino. <span class="selo">consenso</span></p>
+<p class="nota" style="text-align: center;">Um “sim” não impede o treino. <span class="selo">consenso</span><br>Suas respostas ficam só neste aparelho.</p>
 <div class="sn"><button type="button" class="{{clsSim}}" onClick="{{sim}}">Sim</button><button type="button" class="{{clsNao}}" onClick="{{nao}}">Não</button></div>
 </div>
 </sc-if>
@@ -114,7 +114,7 @@ var CONDS = [
   { d: circ(12, 4.5, 2.5) + 'M4 21v-8a4 4 0 0 1 4-4h8a4 4 0 0 1 4 4v8M13 11.5l-2.5 3.5h3L11 18.5', t: 'Dor no peito?', det: 'Parado, no dia a dia ou no esforço.' },
   { d: 'M12 12a1.5 1.5 0 0 1 3 0a3 3 0 0 1-6 0a4.5 4.5 0 0 1 9 0a6 6 0 0 1-12 0a7.5 7.5 0 0 1 15 0', t: 'Desmaio ou tontura?', det: 'Desmaio, ou tontura com perda de equilíbrio, nos últimos 12 meses.' },
   { d: 'M9 3h6v3H9zM8 4.5H6v16h12v-16h-2M12 10v6M9 13h6', t: 'Outra doença crônica?', det: 'Diagnosticada, além de problema no coração ou pressão alta.' },
-  { d: 'M10.5 20.5a5 5 0 0 1-7-7l6-6a5 5 0 0 1 7 7zM8.5 8.5l7 7', t: 'Remédio receitado?', det: 'Para alguma doença crônica.' },
+  { d: 'M10.5 20.5a5 5 0 0 1-7-7l6-6a5 5 0 0 1 7 7zM8.5 8.5l7 7', t: 'Remédio receitado?', det: 'Que você toma para alguma doença crônica.' },
   { d: 'M8 10.5h8a2.3 2.3 0 1 1 2.6 1.5 2.3 2.3 0 1 1-2.6 1.5H8a2.3 2.3 0 1 1-2.6-1.5A2.3 2.3 0 1 1 8 10.5z', t: 'Osso, articulação, músculo ou tendão?', det: 'Um problema que pode piorar com exercício, agora ou nos últimos 12 meses.' },
   { d: circ(8, 8, 3) + circ(16.5, 8, 3) + 'M2.5 20a5.5 5.5 0 0 1 11 0M12 15.5a5.5 5.5 0 0 1 9.5 4.5', t: 'Só com acompanhamento?', det: 'Um médico disse para você só fazer exercício com acompanhamento.' },
   { d: 'M13 3a8 8 0 0 1 8 8h-8zM3 11h18a6 6 0 0 1-6 6H9a6 6 0 0 1-6-6zM3 11 1.5 7' + circ(8, 20, 1.5) + circ(16, 20, 1.5), t: 'Gravidez ou parto?', det: 'Grávida agora, ou parto nos últimos 6 meses.' },
