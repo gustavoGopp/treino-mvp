@@ -1,5 +1,5 @@
 import { expect, test } from '@playwright/test';
-import { ana, minutosPorTreino, triagem, triagemNenhuma } from './jornada';
+import { ana, triagem } from './jornada';
 
 test('do zero ao programa em menos de 5 minutos (persona Ana)', async ({ page }) => {
   const inicio = Date.now();
