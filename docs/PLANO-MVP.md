@@ -59,7 +59,9 @@ Todas as personas são fictícias e ficam versionadas em `tests/personas/`:
 ## c. Escopo
 **Dentro:** os 5 itens da seção 3 do prompt (perfil e triagem, inventário com foto, gerador, execução, registro e progressão), PWA instalável, exportação e importação em JSON, devlog.
 
-**Fora (próximos passos):** nutrição, login e nuvem, pagamentos, app nativo, social, relógios, outros objetivos (emagrecimento, força, corrida), treinador humano, cardio prescrito (no MVP fica só como texto informativo) e deload automático (no MVP o app só sugere).
+**Fora (próximos passos):** nutrição, login e nuvem, pagamentos, app nativo, social, relógios, outros objetivos fora do treino de força (emagrecimento pela dieta, corrida, esportes; ver a nota abaixo), treinador humano, cardio prescrito (no MVP fica só como texto informativo) e deload automático (no MVP o app só sugere).
+
+> **Mudança de escopo (04/11/2026, decisão do Gustavo, opção (b) de `docs/pesquisa-v2/12-outros-objetivos.md`):** entra a pergunta "O que você quer agora?" (ganhar músculo, manter o músculo enquanto perde peso, ficar mais forte, saúde e disposição), sem nada marcado. Só "ficar mais forte" muda números (5–8 repetições e 2 min 30 s de descanso nos 2 primeiros compostos com carga, do intermediário em diante); as outras geram o mesmo treino, com um texto honesto sobre o que o app não cobre. Nutrição, cardio prescrito e força de competição continuam fora.
 
 ## d. Arquitetura
 **Recomendação: Vite + React + TypeScript, com uma função serverless na Vercel.**

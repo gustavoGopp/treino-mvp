@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
-import { GRUPOS, metaMaxima, type Grupo } from '../../domain/gerador';
+import { GRUPOS, metaMaxima, type Grupo, type Objetivo } from '../../domain/gerador';
 import { opcoesDeDivisao, type DivisaoId } from '../../domain/gerador/divisoes';
 import { exerciciosPorSessao } from '../../domain/regras';
 import { NOME_GRUPO } from '../../domain/gerador/opcoes';
@@ -15,6 +15,13 @@ const DIAS = [2, 3, 4, 5, 6] as const;
 export const MINUTOS = [30, 45, 60, 75, 90] as const;
 type OpcaoMinutos = (typeof MINUTOS)[number] | 'outro';
 const GRUPOS_IDS = Object.keys(GRUPOS) as Grupo[];
+/** "O que você quer agora?" (objetivo.pergunta; decisão do Gustavo em 04/11/2026). Nada vem marcado. */
+const OBJETIVOS_TEXTO: { id: Objetivo; texto: string }[] = [
+  { id: 'hipertrofia', texto: 'Ganhar músculo' },
+  { id: 'cutting', texto: 'Manter o músculo enquanto perco peso' },
+  { id: 'forca', texto: 'Ficar mais forte' },
+  { id: 'saude', texto: 'Saúde e disposição' },
+];
 
 export function Rotina() {
   const { estado, atualizar } = useApp();
@@ -34,6 +41,7 @@ export function Rotina() {
   const [prio, setPrio] = useState<Grupo[]>(salva?.prioridades ?? []);
   // Nada vem marcado (divisao.recomendacao): sem escolha, o gerador usa a recomendada.
   const [divisao, setDivisao] = useState<DivisaoId | undefined>(salva?.divisao);
+  const [objetivo, setObjetivo] = useState<Objetivo | undefined>(salva?.objetivo);
   const [tentou, setTentou] = useState(false);
 
   const minutos = numeroOu(min);
@@ -62,6 +70,7 @@ export function Rotina() {
         ...(divisaoValida ? { divisao: divisaoValida } : {}),
         minutosSessao: minutos!,
         prioridades: prioOrdenadas,
+        ...(objetivo ? { objetivo } : {}),
       },
     }));
     navigate(deDados ? '/programa' : '/comecar/inventario');
@@ -134,6 +143,19 @@ export function Rotina() {
                 ))}
               </div>
             </fieldset>
+            <Escolha
+              nome="objetivo"
+              legenda="O que você quer agora? (opcional)"
+              ajuda={
+                <>
+                  O treino é de força em todos. Só "ficar mais forte" muda números: menos repetições e mais descanso nos exercícios grandes. Sem escolha,
+                  o programa é para ganhar músculo. O app não cuida de alimentação nem de cardio. <Selo id="objetivo.pergunta" />
+                </>
+              }
+              opcoes={OBJETIVOS_TEXTO}
+              valor={objetivo}
+              aoMudar={setObjetivo}
+            />
           </Revelar>
         )}
         {deDados && dias && opcoesDivisao.length > 1 && (

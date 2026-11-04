@@ -1,6 +1,6 @@
 import { z } from 'zod';
 import { ARTICULACOES, BIBLIOTECA, MUSCULOS, PADROES } from '../domain/biblioteca';
-import { GRUPOS, type Grupo, type Perfil, type Programa } from '../domain/gerador';
+import { GRUPOS, OBJETIVOS, type Grupo, type Perfil, type Programa } from '../domain/gerador';
 import { DIVISAO_IDS } from '../domain/gerador/divisoes';
 import { CONFIANCA_TECNICA, TEMPOS_DE_TREINO } from '../domain/nivel';
 import { NIVEIS } from '../domain/regras';
@@ -51,6 +51,8 @@ export const rotinaSchema = z.object({
   divisao: enumDe(DIVISAO_IDS).optional(),
   minutosSessao: z.number().int().min(20).max(150),
   prioridades: z.array(grupo),
+  /** Objetivo (objetivo.pergunta). Ausente = a pessoa não respondeu, e vale "ganhar músculo". */
+  objetivo: enumDe(OBJETIVOS).optional(),
 });
 
 export const restricoesSchema = z.object({
@@ -239,6 +241,7 @@ export function perfilDe(e: Estado): Perfil | null {
     diasSemana: e.rotina.diasSemana,
     ...(e.rotina.divisao ? { divisao: e.rotina.divisao } : {}),
     minutosSessao: e.rotina.minutosSessao,
+    ...(e.rotina.objetivo && e.rotina.objetivo !== 'hipertrofia' ? { objetivo: e.rotina.objetivo } : {}),
     prioridades: e.rotina.prioridades,
     ...(e.preferidos && Object.keys(e.preferidos).length ? { preferidos: e.preferidos } : {}),
     ...(e.margemTempo !== undefined ? { margemTempo: e.margemTempo } : {}),

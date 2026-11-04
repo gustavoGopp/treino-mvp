@@ -1,5 +1,5 @@
 import { BIBLIOTECA, MUSCULOS, type Articulacao, type Exercicio, type Musculo, type Padrao } from '../biblioteca';
-import { DESCANSO, READAPTACAO, RIR, TEMPO, VOLUME, NIVEL_COMPLEXIDADE_MAX, OBRIGATORIO_CURTO, exerciciosPorSessao, r, type Nivel } from '../regras';
+import { DESCANSO, OBJETIVO_FORCA, READAPTACAO, RIR, TEMPO, VOLUME, NIVEL_COMPLEXIDADE_MAX, OBRIGATORIO_CURTO, exerciciosPorSessao, r, type Nivel } from '../regras';
 import { capacidades, cargaMaxHalter, cargasHalter, cargasKettlebell, ITENS, type Inventario, type ItemId } from '../taxonomia/equipamentos';
 import { avaliarTriagem, efeitoDaDor, type ResultadoTriagem, type Triagem } from '../triagem';
 import { divisaoEscolhida, temDiaDeTronco, type DiasSemana, type Divisao, type DivisaoId, type Vaga } from './divisoes';
@@ -19,8 +19,14 @@ export const GRUPOS = {
 } as const satisfies Record<string, readonly Musculo[]>;
 export type Grupo = keyof typeof GRUPOS;
 
+/** O que a pessoa quer agora (objetivo.pergunta). Ausente = ganhar músculo. Só "forca" muda números. */
+export const OBJETIVOS = ['hipertrofia', 'cutting', 'forca', 'saude'] as const;
+export type Objetivo = (typeof OBJETIVOS)[number];
+
 export type Perfil = {
   nivel: Nivel;
+  /** Objetivo (objetivo.pergunta); sem resposta, vale "hipertrofia". */
+  objetivo?: Objetivo;
   /** Semanas sem treinar antes de começar (readaptacao.gatilho). */
   semanasParado: number;
   diasSemana: DiasSemana;
@@ -442,8 +448,35 @@ export function gerarPrograma(perfil: Perfil, inventarioOriginal: Inventario): R
       ],
     };
   };
+  // Objetivo "ficar mais forte" (objetivo.forca.*): os 2 primeiros multiarticulares com carga de cada treino ficam com a
+  // faixa mais baixa e o descanso maior; o peso livre fica com 2 a 3 de reserva. O iniciante segue como na hipertrofia.
+  const forca = perfil.objetivo === 'forca' && nivel !== 'iniciante';
+  const comCarga = (e: Exercicio) => !['peso-corpo', 'elastico', 'assistida'].includes(e.carga);
+  const pesoLivre = (e: Exercicio) => ['barra', 'halter', 'kettlebell', 'anilha'].includes(e.carga);
+  const ajustarForca = (exs: ExercicioPrescrito[]): ExercicioPrescrito[] => {
+    if (!forca) return exs;
+    let k = 0;
+    return exs.map((x) => {
+      const e = POR_ID_BIB[x.exId]!;
+      if (k >= OBJETIVO_FORCA.compostosPorTreino || x.tipo !== 'composto' || !comCarga(e)) return x;
+      k++;
+      return {
+        ...x,
+        reps: OBJETIVO_FORCA.reps,
+        descansoSeg: OBJETIVO_FORCA.descansoSeg,
+        rir: pesoLivre(e) ? OBJETIVO_FORCA.rirPesoLivre : x.rir,
+        porque: [
+          ...x.porque,
+          {
+            regraId: r('objetivo.forca.faixa-compostos'),
+            texto: `Objetivo "ficar mais forte": ${OBJETIVO_FORCA.reps[0]} a ${OBJETIVO_FORCA.reps[1]} repetições e descanso de 2 min 30 s neste exercício grande.${pesoLivre(e) ? ' Com peso livre, termine com 2 a 3 repetições de reserva.' : ''}`,
+          },
+        ],
+      };
+    });
+  };
   let programaDias: DiaPrograma[] = dias.map(({ dia, itens }) => {
-    const exercicios = itens.map(prescrever);
+    const exercicios = ajustarForca(itens.map(prescrever));
     return { id: dia.id, nome: dia.nome, exercicios, minutosEstimados: minutos(exercicios, colchaoDe(perfil)) };
   });
 
@@ -492,6 +525,7 @@ export function gerarPrograma(perfil: Perfil, inventarioOriginal: Inventario): R
     });
 
   const porque: Porque[] = [
+    ...textoDoObjetivo(perfil.objetivo, nivel),
     {
       regraId: r('divisao.recomendacao'),
       texto: escolhida
@@ -544,6 +578,39 @@ export function gerarPrograma(perfil: Perfil, inventarioOriginal: Inventario): R
       regioesExcluidas,
     },
   };
+}
+
+/** O texto do objetivo (objetivo.*; pesquisa-v2/12). "Ganhar músculo" (ou sem resposta) não tem texto próprio. */
+export function textoDoObjetivo(objetivo: Objetivo | undefined, nivel: Nivel): Porque[] {
+  if (objetivo === 'cutting')
+    return [
+      {
+        regraId: r('objetivo.cutting.mesmo-programa'),
+        texto: 'Objetivo "manter o músculo enquanto perde peso": o treino é o mesmo. Na dieta, o treino de força ajuda a manter o músculo e a perder mais gordura.',
+      },
+      {
+        regraId: r('objetivo.cutting.texto'),
+        texto: 'Quem decide a perda de peso é a alimentação, que o app não cobre: procure um nutricionista. Na dieta, é normal o músculo parar de crescer; a carga pode continuar subindo.',
+      },
+    ];
+  if (objetivo === 'forca')
+    return [
+      {
+        regraId: r('objetivo.forca.faixa-compostos'),
+        texto:
+          nivel === 'iniciante'
+            ? 'Objetivo "ficar mais forte": no começo, o treino é o mesmo, e a força sobe com ele. A partir do nível intermediário, os 2 primeiros exercícios grandes de cada treino passam a usar menos repetições e mais descanso.'
+            : `Objetivo "ficar mais forte": os 2 primeiros exercícios grandes com carga de cada treino usam ${OBJETIVO_FORCA.reps[0]} a ${OBJETIVO_FORCA.reps[1]} repetições e descanso de 2 min 30 s; o resto segue como no treino de músculo. O app não testa a carga máxima nem prepara para competição.`,
+      },
+    ];
+  if (objetivo === 'saude')
+    return [
+      {
+        regraId: r('objetivo.saude.texto'),
+        texto: 'Objetivo "saúde e disposição": este treino cumpre a parte de força das recomendações da OMS e do ACSM. Elas pedem também 150 a 300 min por semana de atividade aeróbia moderada (como caminhada rápida), que o app não prescreve.',
+      },
+    ];
+  return [];
 }
 
 /** Lembrete nos exercícios que carregam uma região marcada com dor de 0 a 5 (seguranca.dor.programa). */
