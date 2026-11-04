@@ -12,7 +12,7 @@ for (const [orig, dest] of [
   [`${de('conteudo')}.json`, `src/conteudo/exercicios/${id}.json`],
 ]) {
   if (!existsSync(orig)) throw new Error(`não achei ${orig}`);
-  writeFileSync(dest, readFileSync(orig, 'utf8').replaceAll("from '../../", "from '../").replace('Animação nova (em revisão).', 'Animação nova (aprovada).'));
+  writeFileSync(dest, readFileSync(orig, 'utf8').replaceAll("from '../../", "from '../").replaceAll("from '../compartilhado'", "from './compartilhado'").replace('Animação nova (em revisão).', 'Animação nova (aprovada).'));
   renameSync(orig, `/tmp/${id}-${Date.now()}-${dest.split('/').pop()}`);
 }
 

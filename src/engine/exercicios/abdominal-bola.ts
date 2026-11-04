@@ -5,7 +5,7 @@
 // lugar do chão: a lombar fica na curva e o tronco começa um pouco estendido sobre ela.
 // Técnica e fontes: docs/pesquisa/animacoes/abdominal-bola.md.
 import { C3, L3, TX } from '../desenho';
-import { BALL } from '../compartilhado';
+import { BALL } from './compartilhado';
 
 const ex = {
   id:'abdominal-bola',

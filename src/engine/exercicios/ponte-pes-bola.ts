@@ -5,7 +5,7 @@
 // tronco e mesmo quadril), com a bola (C3) sob os calcanhares. A bola é desenhada sob o calcanhar: no erro em que
 // ela foge, ela vai junto com os pés. Técnica e fontes: docs/pesquisa/animacoes/ponte-pes-bola.md.
 import { BOX, C3, L3, TX } from '../desenho';
-import { BALL } from '../compartilhado';
+import { BALL } from './compartilhado';
 import { X, Y, Z } from '../math';
 
 const ex = {
