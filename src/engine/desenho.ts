@@ -2,7 +2,7 @@
 // Gerado por scripts/extrair-motor.mjs a partir de referencia/guia-execucao-fase1.html. Port mecânico: não editar à mão antes do M1 terminar.
 import { CTX } from './contexto';
 import { B, scapPts } from './esqueleto';
-import { X, Y, Z, add, comb, dot, len, mid, mul, norm, sub } from './math';
+import { X, Y, Z, add, comb, cross, dot, len, mid, mul, norm, sub } from './math';
 
 /* ================= projeção e primitivas ================= */
 export const VIEWS={
@@ -133,6 +133,21 @@ export function band(ex,id,from,to,o={}){
 }
 /** Pegador do elástico na mão: uma barrinha curta atravessada. */
 export function bandHandle(G,dir,o={}){L3(add(G,mul(dir,-4.5)),add(G,mul(dir,4.5)),'eqd',2.6,{bias:o.bias??.3});}
+/**
+ * Halter em 3D (catálogo, 04/11/2026): o cabo e as anilhas como cilindros de verdade, projetados na vista. De lado,
+ * a anilha vista de frente é um círculo e vista de perfil é um retângulo fino, como na vida real (o `dumbbell` antigo
+ * desenha sempre dois círculos). hd = direção do cabo.
+ */
+export function dumbbell3(G,hd,cls,o={}){
+  const u=norm(hd),a=norm(Math.abs(u[1])<.9?cross(u,[0,1,0]):cross(u,[1,0,0])),b=cross(u,a);
+  const disco=(c)=>{const pts=[];for(let i=0;i<20;i++){const t=i/20*2*Math.PI;pts.push(comb(1,c,7*Math.cos(t),a,7*Math.sin(t),b));}return pts;};
+  L3(add(G,mul(u,-8)),add(G,mul(u,8)),cls,2.6,{bias:(o.bias??0),layer:o.layer});
+  for(const s of[-1,1]){
+    const pts=[...disco(add(G,mul(u,s*7))),...disco(add(G,mul(u,s*11)))];
+    const Q=pts.map(CTX.PJ);Q.forEach(q=>bb(q[0],q[1],1));const h=hull(Q);
+    push(o.layer??1,Q.reduce((t,q)=>t+q[2],0)/Q.length+(o.bias??0)+.1,`<polygon points="${h.map(q=>f1(q[0])+','+f1(q[1])).join(' ')}" class="${cls}" stroke-width="0.8"/>`);
+  }
+}
 export function dumbbellV(top,cls){const bot=add(top,[0,-20,0]);L3(top,bot,cls,2.6,{bias:.4});for(const c of[top,bot]){L3(add(c,[-9,0,0]),add(c,[9,0,0]),cls,4,{bias:.45});L3(add(c,[0,0,-9]),add(c,[0,0,9]),cls,4,{bias:.45});}}
 export function ropeC(sk,pul){const hr=sk.side.R.G,hl=sk.side.L.G,m=mid(hr,hl);const half=len(sub(hr,hl))/2;return add(m,mul(norm(sub(pul,m)),Math.sqrt(Math.max(30,784-half*half))));}
 export function rope(ex,id,sk,pul){
