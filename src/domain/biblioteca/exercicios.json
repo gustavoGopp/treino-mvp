@@ -3009,7 +3009,7 @@
    "montagem"
   ],
   "carga": "peso-corpo",
-  "animacaoId": null
+  "animacaoId": "remada-suspensao"
  },
  {
   "id": "desenvolvimento-maquina",

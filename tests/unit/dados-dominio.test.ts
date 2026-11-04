@@ -32,9 +32,9 @@ describe('biblioteca de exercícios', () => {
     expect(new Set(usadas)).toEqual(animacoes);
   });
 
-  it('os 29 exercícios novos do R0c (pesquisa-v2/08, seção 5) estão na biblioteca, sem animação, com ficha de técnica', () => {
-    const NOVOS = ['hack', 'agachamento-smith', 'terra-hexagonal', 'goblet-kettlebell', 'supino-smith', 'supino-maquina', 'mergulho', 'mergulho-graviton', 'voador', 'puxada-frente', 'barra-fixa-graviton', 'remada-baixa-estacao', 'remada-articulada', 'remada-suspensao', 'desenvolvimento-maquina', 'voador-invertido', 'rosca-scott', 'rosca-maquina', 'triceps-maquina', 'hiperextensao', 'hip-thrust', 'coice-maquina', 'coice-polia', 'abducao-maquina', 'abducao-polia', 'aducao-maquina', 'panturrilha-em-pe-maquina', 'panturrilha-sentada', 'abdominal-maquina'];
-    expect(NOVOS).toHaveLength(29);
+  it('os 28 exercícios novos do R0c (pesquisa-v2/08, seção 5) ainda sem animação (a remada na suspensão foi animada em 04/11/2026) estão na biblioteca, com ficha de técnica', () => {
+    const NOVOS = ['hack', 'agachamento-smith', 'terra-hexagonal', 'goblet-kettlebell', 'supino-smith', 'supino-maquina', 'mergulho', 'mergulho-graviton', 'voador', 'puxada-frente', 'barra-fixa-graviton', 'remada-baixa-estacao', 'remada-articulada', 'desenvolvimento-maquina', 'voador-invertido', 'rosca-scott', 'rosca-maquina', 'triceps-maquina', 'hiperextensao', 'hip-thrust', 'coice-maquina', 'coice-polia', 'abducao-maquina', 'abducao-polia', 'aducao-maquina', 'panturrilha-em-pe-maquina', 'panturrilha-sentada', 'abdominal-maquina'];
+    expect(NOVOS).toHaveLength(28);
     for (const id of NOVOS) {
       const e = BIBLIOTECA.find((x) => x.id === id);
       expect(e, id).toBeDefined();

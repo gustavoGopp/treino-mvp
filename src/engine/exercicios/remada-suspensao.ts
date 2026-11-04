@@ -1,13 +1,13 @@
 // @ts-nocheck
-// Animação nova (em revisão). Remada na suspensão (fitas tipo TRX): de frente para a âncora, corpo reto e inclinado
+// Animação nova (aprovada). Remada na suspensão (fitas tipo TRX): de frente para a âncora, corpo reto e inclinado
 // para trás, calcanhares no chão; puxa até as mãos chegarem ao lado do peito e volta até estender os braços.
 // Parte da remada baixa aprovada (mesmo caminho dos braços e das escápulas), com o corpo girando sobre os calcanhares
 // e a peça nova da fita (suspensao, em src/engine/desenho.ts). A fita tem comprimento fixo (84 cm da âncora à mão):
 // o ângulo do corpo em cada fase sai dessa geometria (scripts de medida da sessão de catálogo, 11/2026).
 // Técnica e fontes: docs/pesquisa/animacoes/remada-suspensao.md.
-import { ARROW3, L3, TX, suspensao } from '../../desenho';
-import { scapPts } from '../../esqueleto';
-import { add, comb, mul } from '../../math';
+import { ARROW3, L3, TX, suspensao } from '../desenho';
+import { scapPts } from '../esqueleto';
+import { add, comb, mul } from '../math';
 
 const ANC = [0, 205, 0]; // âncora no alto (trava de porta ou viga), acima dos pés
 const ex = {

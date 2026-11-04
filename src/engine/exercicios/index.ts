@@ -54,6 +54,7 @@ import tricepsFrancesKettlebell from './triceps-frances-kettlebell';
 import afundoKettlebell from './afundo-kettlebell';
 import desenvolvimentoUnilateralKettlebell from './desenvolvimento-unilateral-kettlebell';
 import ponteKettlebell from './ponte-kettlebell';
+import remadaSuspensao from './remada-suspensao';
 
 // Mesma ordem do guia original (a ordem define os treinos e a ordem de preparação).
 export const EX = [
@@ -109,4 +110,5 @@ export const EX = [
   afundoKettlebell,
   desenvolvimentoUnilateralKettlebell,
   ponteKettlebell,
+  remadaSuspensao,
 ];
