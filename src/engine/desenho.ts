@@ -118,6 +118,21 @@ export function tower(t,lift){
 }
 export function liftOf(ex,id,L){const L0=ex.L0&&ex.L0[id]!=null?ex.L0[id]:L;return Math.max(0,Math.min(95,(L-L0)*0.5));}
 export function cable(ex,id,from,to){const L=len(sub(from,to));if(CTX.MEAS&&ex._cab){ex._cab[id]=Math.min(ex._cab[id]??1e9,L);}L3(from,to,'cb',1,{bias:-1});return L;}
+/**
+ * Elástico (peça nova do motor, 04/11/2026; pesquisa-v2/08, seção 6): uma faixa entre a âncora e a mão (ou o pé). O
+ * comprimento de repouso é o menor medido na calibração (como o cabo da polia); a faixa afina quando estica, até
+ * ~55% da largura com o dobro do comprimento, para a pessoa ver a tensão subir. Devolve o comprimento.
+ */
+export function band(ex,id,from,to,o={}){
+  const L=len(sub(from,to));
+  if(CTX.MEAS&&ex._cab){ex._cab[id]=Math.min(ex._cab[id]??1e9,L);}
+  const L0=ex.L0&&ex.L0[id]!=null?ex.L0[id]+10:L;
+  const r=Math.max(0,Math.min(1,(L-L0)/Math.max(1,L0)));
+  L3(from,to,'elas',(o.w??3.4)*(1-0.45*r),{bias:o.bias??-1,layer:o.layer});
+  return L;
+}
+/** Pegador do elástico na mão: uma barrinha curta atravessada. */
+export function bandHandle(G,dir,o={}){L3(add(G,mul(dir,-4.5)),add(G,mul(dir,4.5)),'eqd',2.6,{bias:o.bias??.3});}
 export function dumbbellV(top,cls){const bot=add(top,[0,-20,0]);L3(top,bot,cls,2.6,{bias:.4});for(const c of[top,bot]){L3(add(c,[-9,0,0]),add(c,[9,0,0]),cls,4,{bias:.45});L3(add(c,[0,0,-9]),add(c,[0,0,9]),cls,4,{bias:.45});}}
 export function ropeC(sk,pul){const hr=sk.side.R.G,hl=sk.side.L.G,m=mid(hr,hl);const half=len(sub(hr,hl))/2;return add(m,mul(norm(sub(pul,m)),Math.sqrt(Math.max(30,784-half*half))));}
 export function rope(ex,id,sk,pul){

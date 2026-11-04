@@ -8,7 +8,7 @@
   --ok:#0E7350; --ok-soft:#E1F3EA; --warn:#8A4B00; --warn-soft:#FBEFD9; --alert:#B3261E; --alert-soft:#FCE8E6;
   /* desenho do Boneco (iguais aos de antes) */
   --stage:#f7f9fa; --fig:#1a2833; --fig-far:#a2afb9; --torso:#8fa0ab; --joint:#0a7c72;
-  --eq:#cdd6dc; --eq-dark:#8796a1; --cable:#4e5a64; --spine:#d29400;
+  --eq:#cdd6dc; --eq-dark:#8796a1; --cable:#4e5a64; --spine:#d29400; --elastic:#6d4bb3;
   --mus-p:rgba(214,46,38,.62); --mus-s:rgba(236,150,28,.5);
   --err:#d1342b; --ghost:#1c9a53; --path:#2457d6; --guide:#0a7c72;
   --st-ink:#14202a; --st-muted:#566673; --st-line:#d3dbe1;
@@ -22,7 +22,7 @@
     --accent:#9CB1FF; --accent-soft:#1F2849; --accent-ink:#0C1A52; --link:#9CB1FF;
     --ok:#62D2A2; --ok-soft:#13291F; --warn:#F3B562; --warn-soft:#33270F; --alert:#FF8F85; --alert-soft:#3A1D1B;
     --stage:#10171b; --fig:#e7eef2; --fig-far:#4f5e69; --torso:#5d6e7a; --joint:#2bb3a6;
-    --eq:#2a353e; --eq-dark:#53626d; --cable:#a3b3bf; --spine:#f0b429;
+    --eq:#2a353e; --eq-dark:#53626d; --cable:#a3b3bf; --spine:#f0b429; --elastic:#b49ce6;
     --mus-p:rgba(244,82,72,.6); --mus-s:rgba(245,170,60,.45);
     --err:#f2564c; --ghost:#3ccf7d; --path:#6c96ff; --guide:#2bb3a6;
     --st-ink:#e5ecf0; --st-muted:#97a5b0; --st-line:#25313a;
@@ -34,7 +34,7 @@
   --accent:#9CB1FF; --accent-soft:#1F2849; --accent-ink:#0C1A52; --link:#9CB1FF;
   --ok:#62D2A2; --ok-soft:#13291F; --warn:#F3B562; --warn-soft:#33270F; --alert:#FF8F85; --alert-soft:#3A1D1B;
   --stage:#10171b; --fig:#e7eef2; --fig-far:#4f5e69; --torso:#5d6e7a; --joint:#2bb3a6;
-  --eq:#2a353e; --eq-dark:#53626d; --cable:#a3b3bf; --spine:#f0b429;
+  --eq:#2a353e; --eq-dark:#53626d; --cable:#a3b3bf; --spine:#f0b429; --elastic:#b49ce6;
   --mus-p:rgba(244,82,72,.6); --mus-s:rgba(245,170,60,.45);
   --err:#f2564c; --ghost:#3ccf7d; --path:#6c96ff; --guide:#2bb3a6;
   --st-ink:#e5ecf0; --st-muted:#97a5b0; --st-line:#25313a;
@@ -165,6 +165,7 @@ footer a{color:var(--link)}
 .ball{fill:var(--eq);fill-opacity:.6;stroke:var(--eq-dark);stroke-width:.9}
 .cb{stroke:var(--cable);fill:none;stroke-linecap:round}
 .rope{stroke:#b0763a;fill:none;stroke-linecap:round}
+.elas{stroke:var(--elastic);fill:none;stroke-linecap:round}
 .db{fill:var(--fig);stroke:var(--fig)}
 .db-e{fill:var(--err);stroke:var(--err)}
 .mp{fill:var(--mus-p);stroke:var(--mus-p);stroke-width:2.5;stroke-linejoin:round}
