@@ -311,7 +311,7 @@
     "banco"
    ]
   ],
-  "complexidade": 1,
+  "complexidade": 2,
   "tipo": "isolador",
   "faixaReps": [
    10,
@@ -741,7 +741,7 @@
     "barra_baixa"
    ]
   ],
-  "complexidade": 2,
+  "complexidade": 1,
   "tipo": "composto",
   "faixaReps": [
    8,
@@ -2430,7 +2430,8 @@
   ],
   "unilateral": false,
   "articulacoes": [
-   "ombro"
+   "ombro",
+   "lombar"
   ],
   "tags": [
    "peso-corpo"
@@ -2555,7 +2556,7 @@
     "smith"
    ]
   ],
-  "complexidade": 2,
+  "complexidade": 1,
   "tipo": "composto",
   "faixaReps": [
    8,

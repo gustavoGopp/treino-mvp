@@ -554,6 +554,14 @@ export function gerarPrograma(perfil: Perfil, inventarioOriginal: Inventario): R
     },
     { regraId: r('volume.serie-indireta.peso'), texto: 'Séries indiretas (ex.: remada para o bíceps) contam como meia série.' },
     { regraId: r('rir.serie-efetiva'), texto: `Só contam séries de trabalho com até ${RIR.serieEfetivaMax} repetições de reserva.` },
+    ...(nivel === 'avancado'
+      ? [
+          {
+            regraId: r('tecnica.parcial-alongada'),
+            texto: 'Se o fim do movimento incomodar, dá para fazer só a metade em que o músculo está esticado (por exemplo, a parte de baixo da rosca): cresce como o movimento completo, não mais.',
+          },
+        ]
+      : []),
     {
       regraId: r('ordem.sessao'),
       texto: 'Ordem da sessão: multiarticulares primeiro, depois os grupos que você priorizou, core por último. A ordem quase não muda a hipertrofia.',

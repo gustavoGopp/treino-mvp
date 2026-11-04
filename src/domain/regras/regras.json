@@ -1070,7 +1070,7 @@
       "maeo2021",
       "kinoshita2023",
       "kinoshita2026",
-      "wolf2025"
+      "pedrosa2022"
     ]
   },
   {
@@ -1741,6 +1741,21 @@
     "selo": "consenso",
     "fontes": [
       "consenso-projeto"
+    ]
+  },
+  {
+    "id": "tecnica.parcial-alongada",
+    "regra": "Repetição parcial na metade em que o músculo está esticado: cresce como a amplitude completa (não mais); serve de alternativa quando o fim da amplitude incomoda, nunca como padrão (`selecao.amplitude`); o porquê do programa do avançado cita a técnica (catálogo, 04/11/2026)",
+    "valores": {
+      "iniciante": "—",
+      "intermediario": "—",
+      "avancado": "alternativa em texto, quando o fim da amplitude incomoda"
+    },
+    "selo": "moderada",
+    "fontes": [
+      "wolf2025",
+      "gschneidner2025",
+      "pedrosa2022"
     ]
   },
   {
