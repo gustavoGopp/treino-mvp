@@ -2,7 +2,9 @@
   "id": "elevacao-joelhos-paralelas",
   "name": "Elevação de joelhos nas paralelas",
   "short": "Elevação de joelhos nas paralelas",
-  "target": "Abdômen (reto abdominal)",
+  "target": "Abdômen (reto abdominal); os oblíquos ajudam",
+  "feel": "Frente da barriga, abaixo do umbigo, principalmente no fim, quando a pelve enrola. Os oblíquos, nas laterais, ajudam.",
+  "feelNote": "Se sentir só a frente do quadril (a dobra entre a coxa e a barriga), você está levantando as pernas sem enrolar a pelve. Se os braços ou os ombros cansarem antes do abdômen, desça e faça o abdominal no chão.",
   "setupEq": [
     "Paralelas firmes, que não balançam nem escorregam.",
     "Se forem altas, um banco ou step firme para subir."
@@ -39,10 +41,24 @@
     "Embaixo: pernas estendidas, sem embalo.",
     "Se os braços ou os ombros cansarem antes do abdômen, desça e faça o abdominal no chão."
   ],
+  "breath": "Solte o ar subindo, inspire descendo.",
   "cues": [
     "Enrola a pelve.",
     "Ombros longe das orelhas.",
     "Desce devagar."
+  ],
+  "check": [
+    "Paralelas firmes",
+    "Braços retos (ou antebraços nas almofadas)",
+    "Ombros longe das orelhas",
+    "Corpo parado antes de subir",
+    "Série perto da falha, no RIR do programa"
+  ],
+  "vary": "Ficou fácil? A escada: joelhos até o peito, depois a descida de 3 s e, por fim, as pernas estendidas. Ficou difícil sustentar o corpo? Faça a elevação de joelhos na barra fixa ou o abdominal no chão.",
+  "note": "<b>Segurança:</b> paralelas que balançam ou escorregam não servem. Para sair, desça com o corpo parado; não pule.",
+  "extLabels": [
+    "pendurado",
+    "topo"
   ],
   "errors": [
     {
@@ -60,10 +76,5 @@
       "title": "Afundar nos ombros",
       "desc": "Os ombros sobem até as orelhas e o corpo afunda entre as barras: o peso vai para a articulação do ombro. Empurre as barras para baixo."
     }
-  ],
-  "montagem": [
-    "Paralelas firmes: se forem de chão, sem tapete solto embaixo; se forem de parede, bem presas. Teste com o seu peso antes da 1ª série.",
-    "Suba e desça pelo banco ou step, não pulando. Se não aguentar sustentar o corpo até o fim da série, desça e use o abdominal no chão."
-  ],
-  "carga": "Peso do corpo, pela escada: joelhos até o peito → descida de 3 s → pernas estendidas."
+  ]
 }

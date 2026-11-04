@@ -4162,7 +4162,7 @@
    "peso-corpo"
   ],
   "carga": "peso-corpo",
-  "animacaoId": null
+  "animacaoId": "elevacao-joelhos-paralelas"
  },
  {
   "id": "abdominal-bola",

@@ -1,10 +1,10 @@
 // @ts-nocheck
-// Animação nova (em revisão). Elevação de joelhos nas paralelas: corpo sustentado nas barras com os braços retos,
+// Animação nova (aprovada). Elevação de joelhos nas paralelas: corpo sustentado nas barras com os braços retos,
 // ombros longe das orelhas; sobe os joelhos e, no fim, enrola a pelve; desce sem balançar. Parte da elevação de
 // joelhos na barra fixa aprovada (mesmo tronco, mesmas pernas e mesmo caminho), com as mãos nas paralelas, embaixo,
 // em vez de na barra, em cima. Peça nova: paralelas (src/engine/desenho.ts).
 // Técnica e fontes: docs/pesquisa/animacoes/elevacao-joelhos-paralelas.md.
-import { L3, TX, paralelas } from '../../desenho';
+import { L3, TX, paralelas } from '../desenho';
 
 const ex = {
   id:'elevacao-joelhos-paralelas',
