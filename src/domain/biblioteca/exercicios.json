@@ -3824,7 +3824,7 @@
    "halter"
   ],
   "carga": "halter",
-  "animacaoId": null
+  "animacaoId": "remada-unilateral-sem-banco"
  },
  {
   "id": "rosca-martelo",
@@ -3855,7 +3855,7 @@
    "halter"
   ],
   "carga": "halter",
-  "animacaoId": null
+  "animacaoId": "rosca-martelo"
  },
  {
   "id": "triceps-frances-polia-unilateral",

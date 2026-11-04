@@ -42,6 +42,8 @@ import flexaoFechada from './flexao-fechada';
 import pike from './pike';
 import flexaoJoelhoDeslizante from './flexao-joelho-deslizante';
 import nordico from './nordico';
+import remadaUnilateralSemBanco from './remada-unilateral-sem-banco';
+import roscaMartelo from './rosca-martelo';
 
 // Mesma ordem do guia original (a ordem define os treinos e a ordem de preparação).
 export const EX = [
@@ -85,4 +87,6 @@ export const EX = [
   pike,
   flexaoJoelhoDeslizante,
   nordico,
+  remadaUnilateralSemBanco,
+  roscaMartelo,
 ];

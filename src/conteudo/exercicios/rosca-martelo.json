@@ -3,6 +3,8 @@
   "name": "Rosca martelo com halteres",
   "short": "Rosca martelo",
   "target": "Bíceps (frente do braço); o antebraço ajuda",
+  "feel": "Frente do braço, entre o ombro e o cotovelo.",
+  "feelNote": "O antebraço também trabalha. Dor no cotovelo não é normal: reduza a carga.",
   "setupEq": [
     "Um par de halteres."
   ],
@@ -20,27 +22,44 @@
     [
       "conc",
       "Subida (concêntrica)",
-      "~1 s. Dobre os cotovelos sem girar as mãos; os cotovelos ficam parados. Os dois juntos ou um de cada vez."
+      "~1 s. Um braço sobe sem girar a mão; o cotovelo fica parado."
     ],
     [
       "hold",
       "Topo",
-      "Halteres perto dos ombros, palmas ainda uma para a outra."
+      "Halter perto do ombro, palma ainda virada para dentro."
     ],
     [
       "ecc",
       "Descida (excêntrica)",
-      "~2 s, até estender os braços."
+      "~2 s, até estender o braço."
+    ],
+    [
+      "conc",
+      "Outro braço",
+      "Repita com o outro braço."
     ]
   ],
   "range": [
     "Início: braços estendidos ao lado do corpo.",
     "Fim: halteres perto dos ombros, cotovelos ainda ao lado do tronco."
   ],
+  "breath": "Solte o ar subindo, inspire descendo.",
   "cues": [
     "Palmas uma para a outra.",
     "Cotovelo parado.",
     "Desce devagar."
+  ],
+  "check": [
+    "Pés firmes",
+    "Palmas uma para a outra",
+    "Cotovelos no tronco",
+    "Um braço de cada vez"
+  ],
+  "vary": "Também pode subir os dois juntos: o resultado é parecido.",
+  "extLabels": [
+    "início",
+    "fim"
   ],
   "errors": [
     {
@@ -58,6 +77,5 @@
       "title": "Não estender os braços",
       "desc": "Sem estender os braços embaixo, o bíceps trabalha só a metade do movimento."
     }
-  ],
-  "carga": "Pela lista dos seus halteres: o próximo peso quando todas as séries chegarem ao topo da faixa."
+  ]
 }

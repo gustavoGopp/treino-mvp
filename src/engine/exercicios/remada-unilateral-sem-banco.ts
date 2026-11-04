@@ -1,10 +1,10 @@
 // @ts-nocheck
-// Animação nova (em revisão). Remada unilateral com halter, sem banco: pé esquerdo à frente com o joelho dobrado,
+// Animação nova (aprovada). Remada unilateral com halter, sem banco: pé esquerdo à frente com o joelho dobrado,
 // mão esquerda apoiada na coxa esquerda, tronco inclinado ~45–60° com a coluna neutra, braço direito puxando.
 // Parte da remada unilateral aprovada (mesmo caminho do braço que puxa); o apoio passa do banco para a coxa.
 // Técnica e fontes: docs/pesquisa/animacoes/remada-unilateral-sem-banco.md.
-import { TX, dumbbell3 } from '../../desenho';
-import { Z } from '../../math';
+import { TX, dumbbell3 } from '../desenho';
+import { Z } from '../math';
 
 const ex = {
   id:'remada-unilateral-sem-banco',
@@ -33,8 +33,8 @@ const ex = {
   },
   muscles:{p:[['lats','R'],['midTrap','R']],s:[['deltPost','R'],['biceps','R']]},
   errors:[
-    {id:'girar',view:'posterior',keys:{mid:{roll:-10},end:{roll:-18}}},
-    {id:'arredondar',view:'lateral',keys:{stretch:{lumbar:40,thor:86,neck:84},mid:{lumbar:42,thor:82,neck:80},end:{lumbar:44,thor:80,neck:78}}},
+    {id:'gira',view:'posterior',keys:{mid:{roll:-10},end:{roll:-18}}},
+    {id:'arred',view:'lateral',keys:{stretch:{lumbar:40,thor:86,neck:84},mid:{lumbar:42,thor:82,neck:80},end:{lumbar:44,thor:80,neck:78}}},
     {id:'curta',view:'lateral',keys:{stretch:{proR:0,armR:{ikS:[20,64,22],poleRel:[.25,1,-.5]}}}}
   ]
 };

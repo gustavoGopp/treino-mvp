@@ -1,10 +1,10 @@
 // @ts-nocheck
-// Animação nova (em revisão). Rosca martelo em pé, alternada, halteres com a pegada neutra (palmas uma para a outra,
+// Animação nova (aprovada). Rosca martelo em pé, alternada, halteres com a pegada neutra (palmas uma para a outra,
 // polegares para cima). Parte da rosca alternada aprovada: mesmo corpo e mesmo caminho do braço; muda o halter,
 // que fica sempre de pé em relação ao antebraço (cabo apontando para a frente embaixo e para cima no topo).
 // Técnica e fontes: docs/pesquisa/animacoes/rosca-martelo.md.
-import { L3, TX, dumbbell3 } from '../../desenho';
-import { X, add, cross, norm, sub } from '../../math';
+import { L3, TX, dumbbell3 } from '../desenho';
+import { X, add, cross, norm, sub } from '../math';
 
 const baixo={ua:[0,-90],fa:[0,-86]};
 // Pegada neutra: o cabo do halter fica no plano do movimento, perpendicular ao antebraço.

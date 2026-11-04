@@ -82,7 +82,8 @@ describe('sem equivalente no local (selecao.dia-sem-principal)', () => {
     const soHalteres: Inventario = { halteres_fixos: { minKg: 2, maxKg: 20, passoKg: 2 } };
     const base: Perfil = { ...carla.perfil, nivel: 'intermediario', diasSemana: 4, divisao: 'si-2x', minutosSessao: 60, prioridades: [] };
     const supBase = ok(base, carla.inventario).dias.find((d) => d.nome === 'Superior A')!;
-    expect(diaNoLocal(supBase, base, soHalteres).trocas.find((t) => t.vaga === 'remada-apoiada')!.entrou).toBe('remada-unilateral-sem-banco');
+    // (qual das duas remadas com halter entra depende do desempate: as duas têm animação desde 04/11/2026)
+    expect(['remada-unilateral-sem-banco', 'remada-curvada-halteres']).toContain(diaNoLocal(supBase, base, soHalteres).trocas.find((t) => t.vaga === 'remada-apoiada')!.entrou);
     const perfil: Perfil = { ...base, evitarExercicios: ['remada-unilateral-sem-banco', 'rosca-martelo'] };
     const sup = ok(perfil, carla.inventario).dias.find((d) => d.nome === 'Superior A')!;
     const { trocas } = diaNoLocal(sup, perfil, soHalteres);

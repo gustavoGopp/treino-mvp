@@ -444,6 +444,7 @@ export const SO_AJUDA: Record<string, string[]> = {
   flexao: ['retoAbdominal'],
   'flexao-bola': ['panturrilha'],
   'rosca-alternada': ['antebraco'],
+  'rosca-martelo': ['antebraco'],
   'rosca-inclinada': ['antebraco'],
   'rosca-polia': ['antebraco'],
   stiff: ['eretores'],
