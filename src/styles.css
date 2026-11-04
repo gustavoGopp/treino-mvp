@@ -585,3 +585,8 @@ a.cartao-ex-corpo:focus-visible{outline:3px solid var(--accent);outline-offset:-
 .revelar{display:block}
 .nw{white-space:nowrap}
 .resumo-ex{padding:14px 16px}
+/* Acabamento A2 do boneco (auditoria de 04/11/2026; estilo/corpo.ts, membros que afinam e folga do braço) */
+.ea-pele-t-longe{fill:var(--ea-pele-longe);stroke:var(--ea-pele-longe);stroke-width:.6;stroke-linejoin:round}
+.ea-pele-t-longe-e{fill:var(--e-pele-erro);stroke:var(--e-pele-erro);stroke-linejoin:round;opacity:.6}
+.ea-cont-longe{stroke-linejoin:round}
+.eb-folga-t{fill:var(--stage);stroke:var(--stage);stroke-linejoin:round}
