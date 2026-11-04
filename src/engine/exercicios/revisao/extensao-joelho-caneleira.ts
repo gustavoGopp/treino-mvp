@@ -31,7 +31,7 @@ const ex = {
     caneleira(sk,'R',this._pal==='e'?'db-e':'eqd');
   },
   guides:{
-    lateral(sk){const R=sk.side.R;L3(R.Hp,R.K,'gd',.9,{layer:3,dash:'3 2.5'});TX([0,30,-8],'coxa parada no assento',{cls:'lbl-g',anchor:'end'});TX([0,118,-6],'costas retas, mãos no assento',{cls:'lbl-g',anchor:'middle'});}
+    lateral(sk){const R=sk.side.R;L3(R.Hp,R.K,'gd',.9,{layer:3,dash:'3 2.5'});TX([0,38,-10],'coxa parada',{cls:'lbl-g',anchor:'end'});TX([0,118,-6],'costas retas, mãos no assento',{cls:'lbl-g',anchor:'middle'});}
   },
   muscles:{p:[['quads','R']],s:[]},
   errors:[

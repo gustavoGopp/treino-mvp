@@ -129,7 +129,7 @@ test('atalho "academia completa": nada vem marcado, o toque marca o conjunto e o
   // O que a Ana já tinha marcado continua marcado.
   await expect(page.getByLabel('Halteres fixos', { exact: true })).toBeChecked();
   const asVezes = page.getByRole('group', { name: /Às vezes tem/ });
-  for (const x of ['Kettlebell', 'Elásticos', 'Bola suíça', 'Suspensão (TRX)']) await expect(asVezes.getByLabel(x, { exact: true })).not.toBeChecked();
+  for (const x of ['Kettlebell', 'Elásticos', 'Bola suíça', 'Suspensão (TRX) ou argolas']) await expect(asVezes.getByLabel(x, { exact: true })).not.toBeChecked();
   // A pergunta única da menor anilha aparece (leg press, hack, smith…), sem resposta marcada.
   const anilha = page.getByRole('group', { name: 'Qual a menor anilha?' });
   for (const r of await anilha.getByRole('radio').all()) await expect(r).not.toBeChecked();
@@ -248,7 +248,7 @@ test('catálogo do R0c: equipamento novo sem desenho, estações do multifuncion
   await ana(page, {
     equipamentoExtra: async (p) => {
       // Equipamento novo, ainda sem desenho: o cartão mostra só o nome.
-      const hack = p.getByLabel('Hack', { exact: true });
+      const hack = p.getByLabel('Hack ou pendular', { exact: true });
       await hack.check();
       await expect(p.locator('label.cartao-eq', { has: hack }).locator('svg')).toHaveCount(0);
       // Multifuncional: sem estação marcada, a tela pede uma.
