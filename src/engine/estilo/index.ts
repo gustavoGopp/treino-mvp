@@ -60,6 +60,38 @@ function fantasmaDif(sk, ske) {
   return desenhadas;
 }
 
+// Piloto "erro sobre o certo": desenha, em vermelho tracejado, só as cadeias da pose errada que diferem mais de 3 cm
+// da certa, e escreve o nome do erro ao lado da junta que mais se afasta. Devolve quantas cadeias desenhou.
+function erroSobreOCerto(sk, ske, titulo) {
+  const dist = (a, b) => Math.hypot(a[0] - b[0], a[1] - b[1], a[2] - b[2]);
+  const cadeias = [[['P'], ['M'], ['N'], ['Hc']]];
+  for (const k of ['R', 'L']) {
+    cadeias.push([['N'], [k, 'S'], [k, 'E'], [k, 'W'], [k, 'G']]);
+    cadeias.push([['P'], [k, 'Hp'], [k, 'K'], [k, 'A'], [k, 'toe']]);
+  }
+  const pt = (s, c) => (c.length === 1 ? s[c[0]] : s.side[c[0]][c[1]]);
+  let desenhadas = 0, maior = 0, ondeRotulo = null;
+  for (const cad of cadeias) {
+    const difs = cad.map((c) => dist(pt(sk, c), pt(ske, c)));
+    const dif = Math.max(...difs);
+    if (dif < 3) continue;
+    desenhadas++;
+    const Q = cad.map((c) => pt(ske, c));
+    const n0 = CTX.prims.length;
+    for (let i = 0; i < Q.length - 1; i++) L3(Q[i], Q[i + 1], 'gh-e', 3.6);
+    if (cad[cad.length - 1][0] === 'Hc') C3(ske.Hc, B.head, 'hd-ge', { w: 2 });
+    for (let i = n0; i < CTX.prims.length; i++) CTX.prims[i].l = 1.6;
+    if (dif > maior) { maior = dif; ondeRotulo = Q[difs.indexOf(dif)]; }
+  }
+  if (desenhadas && titulo) {
+    // o rótulo fica do lado em que há espaço: à direita da junta na metade esquerda do palco, e vice-versa
+    const box = caixa(CTX.EX_ATUAL, CTX.VIEW);
+    const direita = CTX.PJ(ondeRotulo)[0] > box[0] + box[2] / 2;
+    TX(ondeRotulo, titulo, { cls: 'lbl-e', dx: direita ? -9 : 9, dy: -9, anchor: direita ? 'end' : 'start', layer: 4.5 });
+  }
+  return desenhadas;
+}
+
 /** Mesmos passos de scene() (../cena.ts), com o corpo e os músculos do estilo novo. */
 export function cenaEstilo(ex, view, mode, t, estilo, errIdx = 0) {
   CTX.VIEW = view;
@@ -72,6 +104,23 @@ export function cenaEstilo(ex, view, mode, t, estilo, errIdx = 0) {
     body(s, pal);
     for (let i = n0; i < CTX.prims.length; i++) CTX.prims[i].l = 1.5;
   };
+  if (mode === 'err' && CTX.ACABAMENTO?.erroInvertido) {
+    // Piloto da auditoria de 04/11/2026 (docs/revisoes/auditoria-fable.md, Parte D): o certo é a figura cheia, e o
+    // erro aparece só na cadeia que muda, em vermelho tracejado, com o nome do erro ao lado. Desligado por padrão.
+    const e = ex.errors[errIdx || 0];
+    const ske = skel(poseAt(ex, e.K, t));
+    ex._pal = 'n';
+    ex.equip(sk);
+    corpoNovo(sk, estilo);
+    CTX.EX_ATUAL = ex;
+    if (!erroSobreOCerto(sk, ske, e.titulo ?? e.id)) {
+      // erro pequeno demais para uma cadeia: a figura errada inteira, em contorno vermelho fino, por cima
+      const n0 = CTX.prims.length;
+      body(ske, 'e');
+      for (let i = n0; i < CTX.prims.length; i++) CTX.prims[i].l = 1.5;
+    }
+    return sk;
+  }
   if (mode === 'err') {
     const e = ex.errors[errIdx || 0];
     const ske = skel(poseAt(ex, e.K, t));

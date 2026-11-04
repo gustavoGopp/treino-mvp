@@ -155,6 +155,10 @@ footer a{color:var(--link)}
 .hd-e{fill:var(--stage);stroke:var(--err)}
 .ns-e{stroke:var(--err);stroke-linecap:round}
 .gh{stroke:var(--ghost);fill:none;stroke-linecap:round;stroke-linejoin:round;opacity:.75}
+/* piloto da auditoria (04/11/2026): o erro desenhado por cima do certo, em vermelho tracejado, com o nome do erro */
+.gh-e{stroke:var(--err);fill:none;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:4.5 3;opacity:.95}
+.hd-ge{fill:none;stroke:var(--err);stroke-dasharray:4.5 3}
+.lbl-e{fill:var(--err);paint-order:stroke;stroke:var(--stage);stroke-linejoin:round;font-family:var(--font-b);font-weight:700}
 .gh2{stroke:var(--muted);fill:none;stroke-linecap:round;stroke-linejoin:round;opacity:.6;stroke-dasharray:3 3}
 .sp{stroke:var(--spine);fill:none;stroke-linecap:round;stroke-linejoin:round}
 .spd{fill:var(--spine)}
