@@ -207,3 +207,12 @@ export function suspensao(ex,id,ancora,pegadores,cls,o={}){
     else{C3(p,3,'eqd',{bias:.2});L3(add(p,mul(a,-4.5)),add(p,mul(a,4.5)),cls,2.6,{bias:.3});}
   }
 }
+/**
+ * Paralelas (catálogo, 11/2026): duas barras na altura das mãos (h), separadas de 2·meia, com os montantes e a
+ * travessa no fundo, atrás da figura em todas as vistas (como a barra fixa). De lado, as duas barras viram uma só.
+ */
+export function paralelas(h=105,meia=25){
+  for(const s of[-1,1])L3([s*meia,h,-30],[s*meia,h,30],'eql',3.4,{bias:s<0?2:-2});
+  for(const s of[-1,1])BOX([s*meia,h/2,-27],[[X,2.5],[Y,h/2],[Z,2.5]],'eqp',{bias:-400,w:.6});
+  L3([-meia,h-4,-27],[meia,h-4,-27],'eql',3,{bias:-399});
+}

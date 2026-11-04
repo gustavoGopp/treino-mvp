@@ -1,0 +1,80 @@
+{
+  "id": "abdominal-bola",
+  "name": "Abdominal na bola suíça (crunch)",
+  "short": "Abdominal na bola",
+  "target": "Abdômen (reto abdominal); os oblíquos ajudam",
+  "feel": "Frente da barriga, entre as costelas e o quadril. Os oblíquos, nas laterais, ajudam.",
+  "feelNote": "Se sentir o pescoço, você está puxando a cabeça: queixo solto, olhar para o teto. Se sentir a frente do quadril, está subindo demais: basta as escápulas saírem da bola.",
+  "setupEq": [
+    "Bola suíça bem cheia, sem rachaduras.",
+    "Tapete ou chão que não escorrega, longe de quinas e móveis."
+  ],
+  "setupBody": [
+    "Sente na bola e ande com os pés à frente até a bola ficar sob a parte de baixo das costas.",
+    "Pés no chão, afastados na largura do quadril, joelhos dobrados.",
+    "Mãos cruzadas no peito."
+  ],
+  "exec": [
+    [
+      "hold",
+      "Em cima da bola",
+      "Costas acompanhando a curva da bola, sem deixar a cabeça cair para trás."
+    ],
+    [
+      "conc",
+      "Subida (concêntrica)",
+      "~1 s. Enrole a parte de cima das costas, aproximando as costelas do quadril."
+    ],
+    [
+      "hold",
+      "Topo",
+      "Segure 1 s contraindo o abdômen. A bola não rola."
+    ],
+    [
+      "ecc",
+      "Descida (excêntrica)",
+      "~2 s, voltando a acompanhar a curva da bola."
+    ]
+  ],
+  "range": [
+    "Início: costas apoiadas na bola, seguindo a curva dela.",
+    "Fim: escápulas fora da bola; não precisa sentar.",
+    "A bola fica parada: quem mexe é o tronco."
+  ],
+  "breath": "Solte o ar subindo, inspire descendo.",
+  "cues": [
+    "Enrola o tronco.",
+    "Bola parada.",
+    "Pescoço solto."
+  ],
+  "check": [
+    "Bola cheia, sem rachaduras",
+    "Chão que não escorrega",
+    "Bola sob a parte de baixo das costas",
+    "Pés firmes na largura do quadril",
+    "Série perto da falha, no RIR do programa"
+  ],
+  "vary": "Ficou fácil? A escada: descida de 3 s, depois os braços acima da cabeça e, por fim, os braços acima da cabeça com pausa de 2 s em cima. Para começar mais fácil, afaste menos os pés da bola, com o tronco mais sentado.",
+  "note": "<b>Segurança:</b> a bola pode escapar. Pés firmes, chão que não escorrega e nada de quinas por perto; nas primeiras séries, a bola encostada na parede.",
+  "extLabels": [
+    "em cima da bola",
+    "topo"
+  ],
+  "errors": [
+    {
+      "id": "pescoco",
+      "title": "Puxar o pescoço",
+      "desc": "O queixo vai ao peito e as escápulas mal saem da bola: o pescoço faz o trabalho do abdômen."
+    },
+    {
+      "id": "rola",
+      "title": "Rolar a bola",
+      "desc": "Empurrar com as pernas faz a bola rolar e o tronco subir sem enrolar. Pés firmes no chão, bola parada."
+    },
+    {
+      "id": "senta",
+      "title": "Subir até sentar",
+      "desc": "Subir o tronco inteiro puxa com o quadril e carrega a lombar. Basta as escápulas saírem da bola."
+    }
+  ]
+}
