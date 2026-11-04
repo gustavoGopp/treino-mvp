@@ -1,0 +1,69 @@
+{
+  "id": "desenvolvimento-elastico",
+  "name": "Desenvolvimento com elástico",
+  "short": "Desenvolvimento elástico",
+  "target": "Deltoide anterior (frente do ombro); a lateral do ombro ajuda",
+  "setupEq": [
+    "Um elástico com pegadores ou um elástico longo, sem rachaduras.",
+    "Em pé, de tênis, pise no meio do elástico com os dois pés, na largura do quadril.",
+    "Cada mão segura uma ponta. Com as mãos na altura das orelhas, o elástico já deve estar um pouco esticado."
+  ],
+  "setupBody": [
+    "Mãos na altura das orelhas, cotovelos um pouco à frente do corpo.",
+    "Antebraços na vertical, palmas para a frente ou levemente giradas.",
+    "Abdômen e glúteo firmes, joelhos destravados."
+  ],
+  "exec": [
+    [
+      "hold",
+      "Embaixo",
+      "Mãos na altura das orelhas."
+    ],
+    [
+      "conc",
+      "Subida (concêntrica)",
+      "~1–1,5 s. Empurre para cima e levemente para dentro."
+    ],
+    [
+      "hold",
+      "Topo",
+      "Cotovelos quase estendidos. Aqui o elástico pesa mais."
+    ],
+    [
+      "ecc",
+      "Descida (excêntrica)",
+      "~2–3 s, até a altura das orelhas."
+    ]
+  ],
+  "range": [
+    "Embaixo: mãos na altura das orelhas.",
+    "Em cima: braços quase estendidos sobre os ombros.",
+    "Não desça mais se a frente do ombro doer."
+  ],
+  "cues": [
+    "Abdômen firme, lombar parada.",
+    "Cotovelos um pouco à frente.",
+    "Sobe e fecha um pouco."
+  ],
+  "errors": [
+    {
+      "id": "arco",
+      "title": "Arquear a lombar",
+      "desc": "Inclinar o tronco para trás vira um supino inclinado e põe carga na lombar. Firme o abdômen e o glúteo."
+    },
+    {
+      "id": "cotovelo",
+      "title": "Cotovelos para trás",
+      "desc": "Abrir os cotovelos atrás da linha do corpo aumenta a carga na frente do ombro."
+    },
+    {
+      "id": "curta",
+      "title": "Descer pouco",
+      "desc": "Parar acima da cabeça corta metade do movimento."
+    }
+  ],
+  "montagem": [
+    "Confira se o elástico não tem rachaduras e se está bem preso embaixo dos dois pés, de tênis, no meio da sola. Ele vai dos pés até perto do rosto: se escapar, pode bater no rosto. Pare."
+  ],
+  "carga": "Elástico, pela escada: normal → mais esticado (pés mais afastados em cima do elástico, ou segure-o mais curto) → descida de 3 s; depois, a intensidade seguinte, se você tiver."
+}
