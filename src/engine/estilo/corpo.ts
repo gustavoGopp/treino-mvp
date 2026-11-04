@@ -56,9 +56,21 @@ export function aneisTronco(sk) {
 }
 
 // Espessuras (diâmetro, cm): braço, antebraço, mão, coxa, perna, pé, pescoço.
+/** Raio do ombro arredondado do acabamento A2 (cm; escolha de design, um pouco mais largo que o começo do braço). */
+const RAIO_OMBRO = 5.4;
+/** Direções em volta de um ponto (para o contorno de uma esfera em qualquer vista). */
+const DIRS = (() => {
+  const r = [];
+  for (let i = 0; i < 6; i++)
+    for (let j = 0; j < 12; j++) {
+      const t = (i / 5) * Math.PI, f = (j / 12) * 2 * Math.PI;
+      r.push([Math.sin(t) * Math.cos(f), Math.cos(t), Math.sin(t) * Math.sin(f)]);
+    }
+  return r;
+})();
 const ESP = { ua: 9, fa: 7.5, mao: 5.5, th: 14, sk: 10, pe: 5, pesc: 8 };
 // "conico": raio (cm) no começo e no fim de cada segmento
-const RAIO = { ua: [4.9, 3.9], fa: [3.9, 2.7], mao: [2.8, 3.9], th: [8, 5.4], sk: [5.2, 3.1], calc: [3.4, 3.4], pe: [3.4, 2.1] };
+const RAIO = { ua: [4.4, 3.6], fa: [3.6, 2.6], mao: [2.8, 3.9], th: [8, 5.4], sk: [5.2, 3.1], calc: [3.4, 3.4], pe: [3.4, 2.1] };
 
 const hashStr = (t) => { let h = 2166136261; for (let i = 0; i < t.length; i++) { h ^= t.charCodeAt(i); h = Math.imul(h, 16777619); } return (h >>> 0).toString(36); };
 const dPath = (h) => 'M' + h.map((q) => f1(q[0]) + ' ' + f1(q[1])).join('L') + 'Z';
@@ -95,6 +107,13 @@ export function corpoNovo(sk, estilo: EstiloNovo, erro = false) {
   partes.tronco = dT;
   const cascas = [];
   for (let i = 0; i < aneis.length - 1; i++) cascas.push(hull([...aneis[i], ...aneis[i + 1]].map(CTX.PJ)));
+  // ombros (acabamento A2): o alto do tórax vai até os dois ombros, arredondados (uma esfera em volta de cada S), e
+  // desce do pescoço para o ombro como o trapézio; o braço sai de dentro do ombro em vez de pender do canto do tronco
+  if (PR.conico) {
+    const esfera = (c, r) => DIRS.map((u) => comb(1, c, r, u));
+    const n = aneis.length;
+    cascas.push(hull([...aneis[n - 2], ...aneis[n - 1], ...esfera(comb(1, sk.side.R.S, -2.5, sk.uT), RAIO_OMBRO), ...esfera(comb(1, sk.side.L.S, -2.5, sk.uT), RAIO_OMBRO)].map(CTX.PJ)));
+  }
   const nTopo = add(sk.N, mul(sub(sk.Hc, sk.N), 0.62));
   const qN = [CTX.PJ(sk.N), CTX.PJ(nTopo)];
   if (A) {
@@ -168,8 +187,13 @@ function membro(segs, longe, juntas, A, ow, cls, c, erro, o) {
   if (A && PR.folga && o.braco && !longe && (isSide())) for (const s of Q) push(1, d, forma(s, PR.conico ? 'eb-folga-t' : 'eb-folga', ow * 2 + 2.4));
   // mão de perto por cima do equipamento (os dedos fecham em volta do cabo) e de lado
   const camada = (s) => (PR.mao && o.braco && s[3] === 'mao' && !longe && (isSide()) ? 1.45 : 1);
+  // ombro (deltoide): o recheio de uma calota redonda no começo do braço cobre a emenda entre o braço e o ombro do
+  // tronco, para o braço sair do ombro (pedido do Gustavo no piloto do acabamento, 04/11/2026)
+  const ombro = A && PR.conico && o.braco && !longe ? Q[0][0] : null;
+  const circ = (q, r, cl, w) => `<circle cx="${f1(q[0])}" cy="${f1(q[1])}" r="${f1(r)}" class="${cl}" stroke-width="${f1(w)}"/>`;
   if (A) for (const s of Q) push(camada(s), d, forma(s, cCont, ow * 2));
   else if (!longe) for (const s of Q) push(1, d, linha(s, 'eb-folga', 1.8));
+  if (ombro) push(1, d, circ(ombro, RAIO_OMBRO - 0.4, cPele, 0));
   for (const s of Q) push(camada(s), d, forma(s, cPele, 0));
   // a pelve cobre o começo da coxa de perto (só a cor, sem contorno): a coxa sai do quadril
   if (A && PR.quadril && o.perna && !longe) {
