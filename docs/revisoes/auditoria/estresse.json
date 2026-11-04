@@ -6,9 +6,9 @@
  },
  "contagem": {
   "volume.zero.posteriores": 180,
-  "tempo.sobra-com-meta-abaixo": 52096,
+  "tempo.sobra-com-meta-abaixo": 52071,
   "monotonia.todos-os-dias": 25537,
-  "monotonia.repete-com-opcao": 62873,
+  "monotonia.repete-com-opcao": 62875,
   "volume.excesso.gluteos": 4956,
   "volume.excesso.peito": 2506,
   "volume.excesso.biceps": 1503,
@@ -16,9 +16,9 @@
   "volume.excesso.costas": 994,
   "volume.excesso.posteriores": 1101,
   "volume.excesso.ombro_posterior": 1012,
-  "tempo.sobra-com-meta-cortada": 8,
   "volume.excesso.quadriceps": 624,
   "volume.zero.costas": 1440,
+  "volume.abaixo-sem-aviso": 23040,
   "equilibrio.sem-puxar": 1440,
   "volume.excesso.panturrilha": 18,
   "volume.excesso.ombro_lateral": 48
@@ -112,7 +112,7 @@
   "volume.excesso.peito": [
    {
     "caso": "casa · iniciante · Corpo todo 4x (4 dias) · 45 min · prioridade nenhuma · joelho 7 + lombar 7",
-    "programa": "Corpo todo A (40 min): flexao 2, puxada-elastico 2, ponte-gluteo-halter 2, triceps-frances-halter 2, elevacao-halteres 3, crucifixo-elastico 2 | Corpo todo B (39 min): flexao 2, remada-elastico 2, ponte-gluteo-halter 2, rosca-alternada 2, panturrilha-chao 3, face-pull-elastico 2 | Corpo todo C (40 min): flexao 2, puxada-elastico 2, ponte-gluteo-halter 2, flexao-fechada 2, elevacao-halteres 2, panturrilha-chao 3 | Corpo todo D (39 min): flexao 2, remada-elastico 2, ponte-gluteo-halter 2, desenvolvimento-elastico 2, rosca-alternada 2, face-pull-elastico 2",
+    "programa": "Corpo todo A (40 min): flexao 2, puxada-elastico 2, ponte-gluteo-halter 2, triceps-frances-halter 2, elevacao-halteres 3, crucifixo-elastico 2 | Corpo todo B (39 min): flexao 2, remada-elastico 2, ponte-gluteo-halter 2, rosca-alternada 2, panturrilha-chao 3, face-pull-elastico 2 | Corpo todo C (40 min): flexao 2, puxada-elastico 2, ponte-gluteo-halter 2, flexao-fechada 2, elevacao-halteres 2, panturrilha-chao 3 | Corpo todo D (38 min): flexao 2, remada-elastico 2, ponte-gluteo-halter 2, pike 2, rosca-alternada 2, face-pull-elastico 2",
     "problema": "peito sem prioridade com 12 séries (máximo do nível 10)"
    },
    {
@@ -129,7 +129,7 @@
   "volume.excesso.biceps": [
    {
     "caso": "casa · iniciante · Corpo todo 4x (4 dias) · 60 min · prioridade nenhuma · joelho 7 + lombar 7",
-    "programa": "Corpo todo A (42 min): flexao 2, puxada-elastico 2, ponte-gluteo-halter 2, triceps-frances-halter 2, elevacao-halteres 2, crucifixo-elastico 2, rosca-alternada 2 | Corpo todo B (46 min): flexao 2, remada-elastico 2, ponte-gluteo-halter 2, desenvolvimento-elastico 2, rosca-alternada 2, panturrilha-chao 3, face-pull-elastico 2 | Corpo todo C (45 min): flexao 2, puxada-elastico 2, ponte-gluteo-halter 2, flexao-fechada 2, elevacao-halteres 2, panturrilha-chao 3, rosca-alternada 2 | Corpo todo D (38 min): flexao 2, remada-elastico 2, ponte-gluteo-halter 2, pike 2, rosca-alternada 2, face-pull-elastico 2",
+    "programa": "Corpo todo A (42 min): flexao 2, puxada-elastico 2, ponte-gluteo-halter 2, triceps-frances-halter 2, elevacao-halteres 2, crucifixo-elastico 2, rosca-alternada 2 | Corpo todo B (46 min): flexao 2, remada-elastico 2, ponte-gluteo-halter 2, pike 2, rosca-alternada 2, panturrilha-chao 3, face-pull-elastico 2 | Corpo todo C (45 min): flexao 2, puxada-elastico 2, ponte-gluteo-halter 2, flexao-fechada 2, elevacao-halteres 2, panturrilha-chao 3, rosca-alternada 2 | Corpo todo D (39 min): flexao 2, remada-elastico 2, ponte-gluteo-halter 2, desenvolvimento-elastico 2, rosca-alternada 2, face-pull-elastico 2",
     "problema": "bíceps sem prioridade com 12 séries (máximo do nível 10)"
    },
    {
@@ -211,18 +211,6 @@
     "problema": "ombro (posterior) sem prioridade com 12 séries (máximo do nível 10)"
    }
   ],
-  "tempo.sobra-com-meta-cortada": [
-   {
-    "caso": "casa · iniciante · Clássica ABC (3 dias) · 45 min · prioridade nenhuma · joelho 7 + lombar 7",
-    "programa": "A: empurrar (29 min): flexao 2, flexao-fechada 2, desenvolvimento-elastico 2, crucifixo-elastico 2, triceps-frances-halter 2 | B: costas e bíceps (31 min): puxada-elastico 2, remada-elastico 2, face-pull-elastico 4, rosca-alternada 4 | C: pernas (23 min): ponte-gluteo-halter 4, panturrilha-chao 4",
-    "problema": "o dia mais longo tem 31 de 45 min, mas: \"Abaixo da meta semanal: ombro (lateral) 1 de 6 séries, porque com 45 min cabem cerca de 6 exercícios por treino, e as vagas próprias ficaram de fora.\""
-   },
-   {
-    "caso": "halteres-banco · iniciante · Clássica ABC (3 dias) · 45 min · prioridade nenhuma · joelho 7 + lombar 7",
-    "programa": "A: empurrar (27 min): supino-reto 2, flexao-fechada 2, pike 2, crucifixo-halteres 2, triceps-frances-halter 2 | B: costas e bíceps (7 min): rosca-alternada 4 | C: pernas (23 min): ponte-gluteo-halter 4, panturrilha-chao 4",
-    "problema": "o dia mais longo tem 27 de 45 min, mas: \"Abaixo da meta semanal: ombro (lateral) 1 de 6 séries, porque com 45 min cabem cerca de 6 exercícios por treino, e as vagas próprias ficaram de fora.\""
-   }
-  ],
   "volume.excesso.quadriceps": [
    {
     "caso": "condominio+ · iniciante · Corpo todo 5x (5 dias) · 45 min · prioridade nenhuma · sem dor",
@@ -245,6 +233,13 @@
     "caso": "peso-corpo · iniciante · Corpo todo A/B (2 dias) · 20 min · prioridade nenhuma · sem dor",
     "programa": "Corpo todo A (17 min): agachamento-peso-corpo 2, flexao 2, flexao-joelho-deslizante 2 | Corpo todo B (19 min): afundo-peso-corpo 2, flexao 2, flexao-joelho-deslizante 2",
     "problema": "costas com 0 série na semana, sem dor nenhuma"
+   }
+  ],
+  "volume.abaixo-sem-aviso": [
+   {
+    "caso": "peso-corpo · iniciante · Corpo todo A/B (2 dias) · 20 min · prioridade nenhuma · sem dor",
+    "programa": "Corpo todo A (17 min): agachamento-peso-corpo 2, flexao 2, flexao-joelho-deslizante 2 | Corpo todo B (19 min): afundo-peso-corpo 2, flexao 2, flexao-joelho-deslizante 2",
+    "problema": "ombro (lateral) com 0 de 6 séries, sem aviso"
    }
   ],
   "equilibrio.sem-puxar": [
@@ -648,17 +643,17 @@
     "abdomen": 42.5
    },
    "abaixoPrioPct": {
-    "peito": 3333,
-    "costas": 3671,
+    "peito": 3337,
+    "costas": 3673,
     "ombro_lateral": 4678,
     "ombro_posterior": 0,
-    "biceps": 2305,
+    "biceps": 2309,
     "triceps": 3058,
-    "quadriceps": 4795,
-    "posteriores": 3617,
-    "gluteos": 1685,
-    "panturrilha": 5238,
-    "abdomen": 1736
+    "quadriceps": 4794,
+    "posteriores": 3627,
+    "gluteos": 1686,
+    "panturrilha": 5239,
+    "abdomen": 1738
    },
    "media": {
     "peito": 7.4,
@@ -787,28 +782,28 @@
   "diego": {
    "programas": 11520,
    "abaixoPct": {
-    "peito": 38.9,
+    "peito": 39,
     "costas": 47.7,
     "ombro_lateral": 53.6,
     "ombro_posterior": 30.8,
-    "biceps": 29,
+    "biceps": 29.1,
     "triceps": 53.1,
-    "quadriceps": 51.9,
-    "posteriores": 36.4,
+    "quadriceps": 52,
+    "posteriores": 36.5,
     "gluteos": 16.3,
     "panturrilha": 50.7,
     "abdomen": 23.9
    },
    "abaixoPrioPct": {
-    "peito": 3283,
-    "costas": 3765,
+    "peito": 3288,
+    "costas": 3764,
     "ombro_lateral": 4661,
     "ombro_posterior": 0,
-    "biceps": 2281,
-    "triceps": 3063,
-    "quadriceps": 4831,
-    "posteriores": 3595,
-    "gluteos": 1705,
+    "biceps": 2287,
+    "triceps": 3064,
+    "quadriceps": 4835,
+    "posteriores": 3610,
+    "gluteos": 1706,
     "panturrilha": 5241,
     "abdomen": 1548
    },
@@ -819,7 +814,7 @@
     "ombro_posterior": 4.5,
     "biceps": 7.2,
     "triceps": 5.1,
-    "quadriceps": 5.8,
+    "quadriceps": 5.7,
     "posteriores": 7.5,
     "gluteos": 8.9,
     "panturrilha": 5.6,
@@ -953,7 +948,7 @@
  },
  "escolha": {
   "usosComoVaga": {
-   "abdominal-chao": 168416,
+   "abdominal-chao": 168407,
    "panturrilha-chao": 147536,
    "elevacao-halteres": 146254,
    "ponte-gluteo-halter": 126903,
@@ -966,24 +961,24 @@
    "cadeira-flexora": 66893,
    "rosca-inclinada": 64653,
    "ponte-gluteo": 64068,
-   "flexao-joelho-elastico": 63559,
+   "flexao-joelho-elastico": 63555,
    "remada-apoiada": 60800,
    "triceps-frances-halter": 59842,
    "supino-inclinado": 58875,
    "stiff-unilateral": 57145,
    "crucifixo-inverso": 53587,
-   "elevacao-joelhos": 52521,
+   "elevacao-joelhos": 52522,
    "flexao-fechada": 51777,
-   "flexao-joelho-deslizante": 51345,
+   "flexao-joelho-deslizante": 51347,
    "bulgaro": 50234,
    "cadeira-extensora": 45747,
    "panturrilha": 44833,
    "hip-thrust": 43486,
-   "rosca-elastico": 41091,
+   "rosca-elastico": 41073,
    "flexao-bola": 38741,
-   "elevacao-lateral-elastico": 34644,
+   "elevacao-lateral-elastico": 34637,
    "desenvolvimento": 34178,
-   "crucifixo-elastico": 33419,
+   "crucifixo-elastico": 33417,
    "remada-elastico": 31944,
    "abdominal-polia": 31655,
    "panturrilha-bilateral-step": 30987,
@@ -993,12 +988,13 @@
    "stiff-elastico": 29812,
    "afundo-peso-corpo": 29050,
    "remada-curvada-halteres": 28680,
+   "agachamento-peso-corpo": 27600,
    "goblet": 27580,
-   "face-pull-elastico": 25917,
+   "face-pull-elastico": 25919,
    "barra-fixa": 25200,
    "puxada-unilateral": 22800,
    "triceps-corda": 22496,
-   "nordico": 22006,
+   "nordico": 22036,
    "puxada-elastico": 21648,
    "panturrilha-leg-press": 21573,
    "coice-maquina": 21282,
@@ -1006,21 +1002,19 @@
    "abdominal-maquina": 20188,
    "afundo-tras": 19320,
    "aducao-maquina": 17852,
-   "agachamento-elastico": 17280,
    "barra-fixa-supinada": 17280,
    "puxada-barra-reta": 17280,
    "rosca-maquina": 16926,
    "triceps-frances": 16557,
-   "pike": 15952,
+   "pike": 16398,
    "triceps-elastico-acima": 15206,
-   "agachamento-peso-corpo": 15133,
-   "desenvolvimento-elastico": 14534,
    "desenvolvimento-unilateral": 14220,
+   "desenvolvimento-elastico": 14088,
    "crucifixo-polia": 14010,
+   "bulgaro-peso-corpo": 12784,
    "face-pull": 12459,
    "abducao-maquina": 12034,
    "panturrilha-sentada": 10870,
-   "bulgaro-peso-corpo": 10691,
    "leg-press": 9726,
    "agachamento-barra": 9600,
    "panturrilha-em-pe-maquina": 8484,
@@ -1043,6 +1037,7 @@
    "mergulho": 3284,
    "mesa-flexora": 3008,
    "supino-chao-halteres": 2710,
+   "agachamento-elastico": 2686,
    "flexao-elastico": 2520,
    "crucifixo-polia-baixo": 2350,
    "desenvolvimento-maquina": 2142,
@@ -1055,21 +1050,21 @@
    "pull-through": 325
   },
   "usosComoAlternativa": {
-   "flexao-joelho-deslizante": 277379,
-   "flexao": 221700,
-   "afundo-peso-corpo": 219711,
-   "flexao-fechada": 193934,
+   "flexao-joelho-deslizante": 277405,
+   "flexao": 221698,
+   "afundo-peso-corpo": 207210,
+   "flexao-fechada": 193932,
    "ponte-gluteo": 192191,
-   "nordico": 179621,
+   "nordico": 179623,
    "stiff-unilateral": 149510,
    "bulgaro-peso-corpo": 141952,
    "supino-chao-halteres": 130400,
    "remada-curvada-halteres": 123648,
    "bulgaro": 120941,
-   "agachamento-peso-corpo": 120933,
    "stiff": 118958,
    "flexao-elastico": 111515,
    "barra-fixa": 107632,
+   "agachamento-peso-corpo": 106339,
    "rosca-alternada": 105976,
    "barra-fixa-supinada": 105920,
    "panturrilha-chao": 105877,
@@ -1077,23 +1072,23 @@
    "rosca-elastico": 101171,
    "agachamento-halteres": 99600,
    "afundo-tras": 93582,
+   "agachamento-elastico": 93251,
    "elevacao-lateral-elastico": 86854,
    "crucifixo-halteres": 86108,
-   "stiff-elastico": 84067,
+   "stiff-elastico": 84099,
    "puxada-elastico": 81648,
    "crucifixo-elastico": 79096,
-   "agachamento-elastico": 78691,
    "goblet": 76073,
    "flexao-bola": 75430,
    "remada-elastico": 73168,
    "afundo": 71547,
    "panturrilha-bilateral-step": 70325,
    "triceps-elastico-acima": 68357,
-   "pike": 66550,
+   "pike": 66104,
    "ponte-gluteo-halter": 65288,
-   "abdominal-chao": 65158,
-   "elevacao-joelhos": 63682,
-   "flexao-joelho-elastico": 62758,
+   "abdominal-chao": 65159,
+   "elevacao-joelhos": 63676,
+   "flexao-joelho-elastico": 62790,
    "crucifixo-polia-baixo": 59757,
    "panturrilha": 56479,
    "rosca-barra-w": 56242,
@@ -1123,7 +1118,7 @@
    "barra-fixa-graviton": 28320,
    "supino-maquina": 28300,
    "remada-baixa-estacao": 28176,
-   "desenvolvimento-elastico": 27185,
+   "desenvolvimento-elastico": 27631,
    "hip-thrust": 25928,
    "panturrilha-em-pe-maquina": 25876,
    "triceps-barra-reta": 25585,
@@ -1379,10 +1374,9 @@
    },
    "diego": {
     "possiveis": 26,
-    "usados": 24,
+    "usados": 25,
     "nuncaVaga": [
-     "puxada-elastico",
-     "pike"
+     "puxada-elastico"
     ],
     "nuncaNemAlternativa": []
    },
@@ -2584,17 +2578,17 @@
   "elasticos": {
    "programas": 1080,
    "prioritarioAbaixoDaMetaPct": {
-    "peito": 9.9,
+    "peito": 10,
     "costas": 14.8,
     "ombro_lateral": 45.7,
     "ombro_posterior": 0,
     "biceps": 27.5,
     "triceps": 29.2,
     "quadriceps": 60.5,
-    "posteriores": 29,
+    "posteriores": 29.3,
     "gluteos": 17.1,
     "panturrilha": 74.4,
-    "abdomen": 61.1
+    "abdomen": 61.6
    },
    "demaisAbaixoDe4Pct": {
     "peito": 0,
@@ -2671,14 +2665,14 @@
   "diego": {
    "programas": 1080,
    "prioritarioAbaixoDaMetaPct": {
-    "peito": 8.6,
+    "peito": 9,
     "costas": 17.6,
     "ombro_lateral": 45.2,
     "ombro_posterior": 0,
-    "biceps": 25.9,
+    "biceps": 26.2,
     "triceps": 29.2,
-    "quadriceps": 60.2,
-    "posteriores": 27.8,
+    "quadriceps": 60.5,
+    "posteriores": 28.2,
     "gluteos": 16.7,
     "panturrilha": 73.9,
     "abdomen": 61.6
@@ -2768,26 +2762,26 @@
   "ombro_lateral|nenhum exercício possível": 1080,
   "ombro_posterior|nenhum exercício possível": 1080,
   "biceps|nenhum exercício possível": 1080,
-  "posteriores|corte de tempo": 751,
+  "posteriores|corte de tempo": 756,
   "abdomen|minutos (exercícios por treino)": 641,
   "ombro_lateral|minutos (exercícios por treino)": 597,
   "gluteos|corte de tempo": 539,
   "ombro_posterior|minutos (exercícios por treino)": 443,
   "peito|divisão: séries por exercício e por sessão no teto": 389,
   "biceps|minutos (exercícios por treino)": 350,
-  "quadriceps|corte de tempo": 344,
+  "quadriceps|corte de tempo": 346,
   "peito|minutos (exercícios por treino)": 315,
   "biceps|divisão: séries por exercício e por sessão no teto": 270,
   "posteriores|minutos (exercícios por treino)": 254,
-  "biceps|corte de tempo": 247,
+  "biceps|corte de tempo": 248,
   "ombro_lateral|divisão sem vaga própria": 224,
   "panturrilha|minutos (exercícios por treino)": 218,
   "gluteos|divisão: séries por exercício e por sessão no teto": 208,
+  "peito|corte de tempo": 205,
   "triceps|minutos (exercícios por treino)": 205,
   "costas|corte de tempo": 203,
-  "peito|corte de tempo": 202,
   "gluteos|divisão sem vaga própria": 144,
-  "abdomen|corte de tempo": 109,
+  "abdomen|corte de tempo": 110,
   "triceps|corte de tempo": 100,
   "gluteos|minutos (exercícios por treino)": 92,
   "triceps|divisão sem vaga própria": 72,
@@ -2797,14 +2791,14 @@
  "monotonia": {
   "programas3dias": 137280,
   "exercicioEmTodosOsDias": 25537,
-  "repeteComOpcaoParada": 62873
+  "repeteComOpcaoParada": 62875
  },
  "tempo": {
   "dias": 624000,
-  "acima": 41084,
+  "acima": 41114,
   "acimaSemAviso": 0,
-  "sobraMuito": 61119,
-  "sobraComAbaixoPorMinutos": 8,
+  "sobraMuito": 61094,
+  "sobraComAbaixoPorMinutos": 0,
   "porMinutos": {
    "20": {
     "programas": 18720,
@@ -2823,22 +2817,22 @@
    },
    "60": {
     "programas": 18720,
-    "sobraMaisDe30pct": 3161,
+    "sobraMaisDe30pct": 3149,
     "diaMaisLongoMediana": 53
    },
    "75": {
     "programas": 18720,
-    "sobraMaisDe30pct": 8516,
+    "sobraMaisDe30pct": 8512,
     "diaMaisLongoMediana": 54
    },
    "90": {
     "programas": 18720,
-    "sobraMaisDe30pct": 12670,
+    "sobraMaisDe30pct": 12662,
     "diaMaisLongoMediana": 54
    },
    "120": {
     "programas": 18720,
-    "sobraMaisDe30pct": 17650,
+    "sobraMaisDe30pct": 17649,
     "diaMaisLongoMediana": 54
    },
    "150": {
