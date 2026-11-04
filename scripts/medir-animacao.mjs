@@ -14,7 +14,8 @@ if (!arquivo) throw new Error(`não achei src/engine/exercicios/[revisao/]${id}.
 const entrada = `export * from './src/engine/index.ts'; export { prep, calib } from './src/engine/cena.ts'; export { default as NOVA } from './${arquivo}';`;
 const { outputFiles } = await build({ stdin: { contents: entrada, resolveDir: process.cwd(), loader: 'ts' }, bundle: true, format: 'esm', write: false });
 const m = await import('data:text/javascript;base64,' + Buffer.from(outputFiles[0].text).toString('base64'));
-const ex = m.EX.find((e) => e.id === id) ?? m.NOVA;
+// Uma correção de animação já aprovada fica em revisao/ com o mesmo id: nesse caso, a versão em revisão é a medida.
+const ex = arquivo.includes('/revisao/') ? m.NOVA : m.EX.find((e) => e.id === id);
 if (!m.EX.includes(ex)) {
   m.prep(ex);
   m.calib(ex);
