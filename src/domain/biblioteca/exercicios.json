@@ -3993,7 +3993,7 @@
    "montagem"
   ],
   "carga": "peso-corpo",
-  "animacaoId": null
+  "animacaoId": "rosca-suspensao"
  },
  {
   "id": "yt-suspensao",

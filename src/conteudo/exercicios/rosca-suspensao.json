@@ -2,7 +2,9 @@
   "id": "rosca-suspensao",
   "name": "Rosca na suspensão",
   "short": "Rosca na suspensão",
-  "target": "Bíceps (frente do braço)",
+  "target": "Bíceps (frente do braço); o antebraço ajuda",
+  "feel": "Frente do braço, entre o ombro e o cotovelo.",
+  "feelNote": "O antebraço também trabalha para segurar as alças. Se sentir mais as costas do que o bíceps, os cotovelos estão descendo: mantenha-os altos, apontando para a âncora.",
   "setupEq": [
     "Fitas de suspensão presas num ponto firme no alto, as duas alças na mesma altura."
   ],
@@ -24,8 +26,8 @@
     ],
     [
       "hold",
-      "Topo",
-      "Mãos perto da testa, corpo ainda reto."
+      "Mãos perto da testa",
+      "Corpo ainda reto, cotovelos altos."
     ],
     [
       "ecc",
@@ -38,10 +40,24 @@
     "Fim: mãos perto da testa, cotovelos na altura dos ombros.",
     "Mais difícil: pés mais à frente, corpo mais deitado."
   ],
+  "breath": "Solte o ar subindo, inspire descendo.",
   "cues": [
     "Corpo reto como uma tábua.",
     "Cotovelos altos e parados.",
     "Estica os braços na volta."
+  ],
+  "check": [
+    "Âncora firme, fita sem desgaste",
+    "Alças na mesma altura",
+    "Palmas para cima",
+    "Calcanhares no chão, corpo reto",
+    "Série perto da falha, no RIR do programa"
+  ],
+  "vary": "Ficou fácil? Pés mais à frente (corpo mais deitado). Depois, a escada: pausa de 2 s com as mãos perto da testa, descida de 3 s e, se a sua fita tiver o modo de uma alça, uma mão só (se não tiver: descida de 5 s).",
+  "note": "<b>Montagem segura:</b> Prenda a fita num ponto feito para isso: barra fixa firme, viga, ou a trava de porta do fabricante, com a porta fechada e trancada, do lado em que ela fecha contra o batente. Antes da 1ª série, deixe o peso cair na fita devagar. Confira se a fita não está gasta e se as alças estão na mesma altura.",
+  "extLabels": [
+    "braços estendidos",
+    "mãos na testa"
   ],
   "errors": [
     {
@@ -59,10 +75,5 @@
       "title": "Não estender os braços",
       "desc": "A volta para no meio e o bíceps trabalha só a metade do movimento."
     }
-  ],
-  "montagem": [
-    "Prenda a fita num ponto feito para isso: barra fixa firme, viga, ou a trava de porta do fabricante, com a porta fechada e trancada, do lado em que ela fecha contra o batente.",
-    "Antes da 1ª série, deixe o peso cair na fita devagar. Confira se a fita não está gasta e se as alças estão na mesma altura."
-  ],
-  "carga": "Peso do corpo, pela escada: pés mais à frente (corpo mais deitado) → pausa de 2 s com as mãos perto da testa → descida de 3 s → uma mão só, se a sua fita tiver o modo de uma alça (se não tiver: descida de 5 s)."
+  ]
 }

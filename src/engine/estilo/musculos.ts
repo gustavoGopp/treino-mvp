@@ -455,6 +455,7 @@ export const SO_AJUDA: Record<string, string[]> = {
   'rosca-kettlebell': ['antebraco'],
   'rosca-inclinada': ['antebraco'],
   'rosca-polia': ['antebraco'],
+  'rosca-suspensao': ['antebraco'],
   stiff: ['eretores'],
   'stiff-unilateral': ['eretores'],
   'stiff-kettlebell': ['eretores'],

@@ -1,9 +1,9 @@
 // @ts-nocheck
-// Animação nova (em revisão). Rosca na suspensão: de frente para a âncora, palmas para cima, corpo reto e inclinado
+// Animação nova (aprovada). Rosca na suspensão: de frente para a âncora, palmas para cima, corpo reto e inclinado
 // para trás; dobra os cotovelos e traz as mãos para perto da testa, com os cotovelos altos e parados (apontando para a
 // âncora). Parte da remada na suspensão em revisão (mesmo corpo, mesma fita de 85 cm): como a fita não estica, o
 // corpo sobe enquanto as mãos vêm à testa. Técnica e fontes: docs/pesquisa/animacoes/rosca-suspensao.md.
-import { L3, TX, suspensao } from '../../desenho';
+import { L3, TX, suspensao } from '../desenho';
 
 const ANC = [0, 205, 0];
 const ex = {
