@@ -10,7 +10,7 @@ import { mkdirSync, writeFileSync } from 'node:fs';
 import { BIBLIOTECA, MUSCULOS, PADROES, POR_ID, type Exercicio, type Musculo, type Padrao } from '../../src/domain/biblioteca';
 import { contextoDeSelecao, gerarPrograma, NOME_MUSCULO, type Programa } from '../../src/domain/gerador';
 import { DIVISAO_IDS, DIVISOES, type DivisaoId } from '../../src/domain/gerador/divisoes';
-import { FUNCOES, type Funcao } from '../../src/domain/gerador/funcoes';
+import { FUNCOES } from '../../src/domain/gerador/funcoes';
 import { NIVEIS, NIVEL_COMPLEXIDADE_MAX, type Nivel } from '../../src/domain/regras';
 import { capacidades, type Inventario } from '../../src/domain/taxonomia/equipamentos';
 import { CENARIOS, perfil } from './cenarios';
