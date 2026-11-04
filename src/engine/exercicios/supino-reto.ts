@@ -1,6 +1,6 @@
 // @ts-nocheck
 // Gerado por scripts/extrair-motor.mjs a partir de referencia/guia-execucao-fase1.html. Port mecânico: não editar à mão antes do M1 terminar.
-import { BOX, L3, TX, dumbbell } from '../desenho';
+import { BOX, L3, TX, dumbbell3 } from '../desenho';
 import { X, Y, Z, add, mul, norm, sub } from '../math';
 
 /* ================= exercícios: Torso B ================= */
@@ -20,7 +20,7 @@ const ex = {
   equip(sk){
     BOX([0,42.5,-34],[[X,13],[Y,2.5],[Z,54]],'eqp',{bias:-4});BOX([0,2.5,-34],[[X,4],[Y,2],[Z,46]],'eqd',{bias:-6});
     for(const z of[-72,6])BOX([0,21,z],[[X,2.5],[Y,18.5],[Z,2.5]],'eqd',{bias:-6});
-    const c='db'+(this._pal==='e'?'-e':'');dumbbell(sk.side.R.G,norm([1,0,-.55]),c);dumbbell(sk.side.L.G,norm([1,0,.55]),c);
+    const c='db'+(this._pal==='e'?'-e':'');dumbbell3(sk.side.R.G,norm([1,0,-.55]),c);dumbbell3(sk.side.L.G,norm([1,0,.55]),c);
   },
   guides:{
     lateral(sk){const sd=sk.side.R;L3(sd.E,add(sd.E,[0,44,0]),'gd',1,{layer:3,dash:'3 2.5'});TX(sd.G,'antebraço na vertical',{cls:'lbl-g',dx:16,dy:4});},

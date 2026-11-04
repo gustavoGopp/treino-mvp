@@ -2,7 +2,7 @@
 // Animação nova (marco das animações). Mesmo formato dos exercícios portados do guia original.
 // Remada unilateral com halter, joelho e mão esquerdos no banco plano, braço direito puxando.
 // Técnica e fontes: docs/pesquisa/animacoes/remada-unilateral.md.
-import { TX, BOX, dumbbell } from '../desenho';
+import { TX, BOX, dumbbell3 } from '../desenho';
 import { X, Y, Z } from '../math';
 
 // Banco plano ao longo do eixo Z, do lado esquerdo do corpo; topo do estofado em y = 46.5.
@@ -33,7 +33,7 @@ const ex = {
     BOX([b.x,b.y,b.z],[[X,b.meiaLarg],[Y,2.5],[Z,b.meioComp]],'eqp',{bias:-4});
     BOX([b.x,21,b.z-44],[[X,2.5],[Y,19],[Z,2.5]],'eqd',{bias:-6});BOX([b.x,21,b.z+44],[[X,2.5],[Y,19],[Z,2.5]],'eqd',{bias:-6});
     BOX([b.x,2.5,b.z],[[X,4],[Y,2],[Z,48]],'eqd',{bias:-6});
-    dumbbell(sk.side.R.G,Z,'db'+(this._pal==='e'?'-e':''));
+    dumbbell3(sk.side.R.G,Z,'db'+(this._pal==='e'?'-e':''));
   },
   guides:{
     lateral(sk){TX([0,121,4],'costas retas',{cls:'lbl-g',anchor:'middle'});TX([0,104,-62],'cotovelo vai ao quadril',{cls:'lbl-g',anchor:'middle'});},

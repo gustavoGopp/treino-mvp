@@ -1,6 +1,6 @@
 // @ts-nocheck
 // Gerado por scripts/extrair-motor.mjs a partir de referencia/guia-execucao-fase1.html. Port mecânico: não editar à mão antes do M1 terminar.
-import { L3, TX, dumbbell } from '../desenho';
+import { L3, TX, dumbbell3 } from '../desenho';
 import { Y, Z, add, comb } from '../math';
 
 const ex = {
@@ -16,7 +16,7 @@ const ex = {
   ],
   ext:['low','high'],
   paths:{frontal:[['G','R','mão'],['E','R','cotovelo']],lateral:[['G','R','mão']]},
-  equip(sk){for(const k of['R','L'])dumbbell(sk.side[k].G,Z,'db'+(this._pal==='e'?'-e':''));},
+  equip(sk){for(const k of['R','L'])dumbbell3(sk.side[k].G,Z,'db'+(this._pal==='e'?'-e':''));},
   guides:{
     frontal(sk){const S=sk.side.R.S;L3(add(S,[6,0,0]),add(S,[-80,0,0]),'gd',.9,{layer:2,dash:'2 3'});TX(add(S,[-80,0,0]),'linha do ombro',{cls:'lbl-g',dy:-6});},
     lateral(sk){TX(comb(1,sk.side.R.S,22,Z,44,Y),'tronco levemente à frente',{cls:'lbl-g',anchor:'middle'});}

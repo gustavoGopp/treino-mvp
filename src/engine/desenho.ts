@@ -139,6 +139,8 @@ export function bandHandle(G,dir,o={}){L3(add(G,mul(dir,-4.5)),add(G,mul(dir,4.5
  * desenha sempre dois círculos). hd = direção do cabo.
  */
 export function dumbbell3(G,hd,cls,o={}){
+  // Sem o acabamento A2 (estilo clássico e o A aprovado), o halter antigo: o clássico é conferido contra o guia original.
+  if(!CTX.ACABAMENTO)return dumbbell(G,hd,cls);
   const u=norm(hd),a=norm(Math.abs(u[1])<.9?cross(u,[0,1,0]):cross(u,[1,0,0])),b=cross(u,a);
   const disco=(c)=>{const pts=[];for(let i=0;i<20;i++){const t=i/20*2*Math.PI;pts.push(comb(1,c,7*Math.cos(t),a,7*Math.sin(t),b));}return pts;};
   L3(add(G,mul(u,-8)),add(G,mul(u,8)),cls,2.6,{bias:(o.bias??0),layer:o.layer});

@@ -1,6 +1,6 @@
 // @ts-nocheck
 // Gerado por scripts/extrair-motor.mjs a partir de referencia/guia-execucao-fase1.html. Port mecânico: não editar à mão antes do M1 terminar.
-import { BOX, L3, PL3, TX, dumbbell } from '../desenho';
+import { BOX, L3, PL3, TX, dumbbell3 } from '../desenho';
 import { benchInc } from '../exercicios/compartilhado';
 import { X, Y, Z, add, comb, cs, mul, norm, sn, sub } from '../math';
 
@@ -26,7 +26,7 @@ const ex = {
     BOX([0,23,-44],[[X,2.5],[Y,21],[Z,2.5]],'eqd',{bias:-6});
     L3(comb(1,P0,-12,bf,8,bu),[0,20,-44],'eql',3,{bias:-6});
     const hd=norm([1,0,-.3]);
-    for(const k of['R','L']){const sd=sk.side[k];dumbbell(sd.G,hd,'db'+(this._pal==='e'?'-e':''));}
+    for(const k of['R','L']){const sd=sk.side[k];dumbbell3(sd.G,hd,'db'+(this._pal==='e'?'-e':''));}
   },
   guides:{
     lateral(sk){const sd=sk.side.R;L3(sd.E,add(sd.E,[0,44,0]),'gd',1,{layer:3,dash:'3 2.5'});TX(add(sd.E,[0,16,0]),'antebraço na vertical',{cls:'lbl-g',dx:9});

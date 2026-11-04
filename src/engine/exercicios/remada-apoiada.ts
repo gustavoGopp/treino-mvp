@@ -1,6 +1,6 @@
 // @ts-nocheck
 // Gerado por scripts/extrair-motor.mjs a partir de referencia/guia-execucao-fase1.html. Port mecânico: não editar à mão antes do M1 terminar.
-import { ARROW3, BOX, TX, dumbbell } from '../desenho';
+import { ARROW3, BOX, TX, dumbbell3 } from '../desenho';
 import { scapPts } from '../esqueleto';
 import { RB } from '../exercicios/compartilhado';
 import { X, Y, Z, add, comb, mul } from '../math';
@@ -26,7 +26,7 @@ const ex = {
     BOX(comb(1,RB.h,40,RB.u,-2.5,RB.n),[[X,14],[RB.u,40],[RB.n,2.5]],'eqp',{bias:-4});
     BOX([0,43,-21],[[X,13],[Y,2.5],[Z,11]],'eqp',{bias:-4});
     BOX([0,2.5,5],[[X,4],[Y,2],[Z,42]],'eqd',{bias:-6});BOX([0,40,32],[[X,2.5],[Y,38],[Z,2.5]],'eqd',{bias:-6});BOX([0,21,-22],[[X,2.5],[Y,19],[Z,2.5]],'eqd',{bias:-6});
-    for(const k of['R','L'])dumbbell(sk.side[k].G,Z,'db'+(this._pal==='e'?'-e':''));
+    for(const k of['R','L'])dumbbell3(sk.side[k].G,Z,'db'+(this._pal==='e'?'-e':''));
   },
   guides:{
     lateral(sk){TX([0,142,-22],'peito colado no banco',{cls:'lbl-g',anchor:'middle'});TX([0,76,-44],'cotovelo vai ao quadril',{cls:'lbl-g',anchor:'middle'});},

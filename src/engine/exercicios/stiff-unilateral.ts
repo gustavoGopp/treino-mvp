@@ -2,7 +2,7 @@
 // Animação nova (aprovada). Stiff unilateral (em uma perna): apoio na perna esquerda, halter na mão esquerda,
 // a perna direita sobe para trás alinhada com o tronco. Quadril nivelado, coluna neutra.
 // Técnica e fontes: docs/pesquisa/animacoes/stiff-unilateral.md.
-import { ARROW3, TX, dumbbell } from '../desenho';
+import { ARROW3, TX, dumbbell3 } from '../desenho';
 import { X, comb } from '../math';
 
 const ex = {
@@ -22,7 +22,7 @@ const ex = {
   ],
   ext:['top','bottom'],
   paths:{lateral:[['G','L','halter'],['P','','quadril']],frontal:[['P','','quadril']]},
-  equip(sk){dumbbell(sk.side.L.G,X,'db'+(this._pal==='e'?'-e':''));},
+  equip(sk){dumbbell3(sk.side.L.G,X,'db'+(this._pal==='e'?'-e':''));},
   guides:{
     lateral(sk){ARROW3(comb(1,sk.P,-12,[0,0,1]),comb(1,sk.P,-28,[0,0,1]),'gd',1.1,'gda',{layer:3});TX(comb(1,sk.P,-30,[0,0,1]),'quadril para trás',{cls:'lbl-g',anchor:'end',dy:4});TX([0,150,-40],'perna e tronco numa linha',{cls:'lbl-g',anchor:'end'});},
     frontal(sk){TX([-34,104,0],'quadril nivelado',{cls:'lbl-g',anchor:'end'});}
