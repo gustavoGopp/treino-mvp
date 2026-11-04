@@ -330,6 +330,7 @@ const MAPA = {
   erect: ['eretores'],
   rectus: ['retoAbdominal'],
   obliq: ['obliquos'],
+  adutores: ['adutores'],
 };
 // do mais profundo para o mais superficial (o trapézio cobre os romboides; o peitoral, as costelas)
 const ORDEM = ['romboides', 'redondoMaior', 'dorsal', 'eretores', 'trapMedio', 'trapInferior', 'trapSuperior', 'obliquos', 'retoAbdominal', 'peitoralEst', 'peitoralClav', 'gluteos', 'adutores', 'posteriores', 'quadriceps', 'panturrilha', 'deltPost', 'deltLat', 'deltAnt', 'triceps', 'biceps', 'antebraco'];

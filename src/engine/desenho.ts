@@ -85,7 +85,9 @@ export const MUS={
   calf(sk,k){const sd=sk.side[k];const sh=norm(sub(sd.A,sd.K)),fd=norm(sub(sd.toe,sd.A));let q=sub(fd,mul(sh,dot(fd,sh)));q=len(q)<.12?sk.fL:norm(q);return{a:comb(1,sd.K,.12,sub(sd.A,sd.K),-3.5,q),b:comb(1,sd.K,.62,sub(sd.A,sd.K),-3,q),w:7.5};},
   erect(sk){return{a:comb(1,sk.P,-7,sk.fL,4,sk.uL),b:comb(1,sk.N,-6,sk.fT,-6,sk.uT),w:6};},
   rectus(sk){const{N,P,uT,fT,xT,uL,fL,xL}=sk;return[comb(1,N,10,fT,-15,uT,-4,xT),comb(1,N,10,fT,-15,uT,4,xT),comb(1,P,9,fL,4,uL,4,xL),comb(1,P,9,fL,4,uL,-4,xL)];},
-  obliq(sk,k){const s=sk.side[k].s,{N,M,P,uT,fT,xT,uL,fL,xL}=sk;return[comb(1,M,s*13,xT,2,fT),comb(1,N,s*12,xT,-14,uT,6,fT),comb(1,P,s*10,xL,6,uL,4,fL)];}
+  obliq(sk,k){const s=sk.side[k].s,{N,M,P,uT,fT,xT,uL,fL,xL}=sk;return[comb(1,M,s*13,xT,2,fT),comb(1,N,s*12,xT,-14,uT,6,fT),comb(1,P,s*10,xL,6,uL,4,fL)];},
+  // adutores (catálogo, 11/2026): fuso na face interna da coxa, do púbis ao joelho (a adução com caneleira os tem como principal)
+  adutores(sk,k){const sd=sk.side[k];const t=norm(sub(sd.K,sd.Hp));let m=mul(sk.xL,-sd.s);m=norm(sub(m,mul(t,dot(m,t))));return{a:comb(1,sd.Hp,.12,sub(sd.K,sd.Hp),3,m),b:comb(1,sd.Hp,.72,sub(sd.K,sd.Hp),2.5,m),w:7};}
 };
 export function muscles(sk,list,cls){
   for(const[id,sides]of list){
@@ -215,4 +217,37 @@ export function paralelas(h=105,meia=25){
   for(const s of[-1,1])L3([s*meia,h,-30],[s*meia,h,30],'eql',3.4,{bias:s<0?2:-2});
   for(const s of[-1,1])BOX([s*meia,h/2,-27],[[X,2.5],[Y,h/2],[Z,2.5]],'eqp',{bias:-400,w:.6});
   L3([-meia,h-4,-27],[meia,h-4,-27],'eql',3,{bias:-399});
+}
+/**
+ * Caneleira de peso (catálogo, 11/2026): uma caixa presa logo acima do tornozelo, atravessada por uma tira. k = lado.
+ * cls = 'eqd' (normal) ou 'db-e' (vermelha, na figura do erro).
+ */
+export function caneleira(sk,k,cls,o={}){
+  const sd=sk.side[k],u=norm(sub(sd.K,sd.A)),a=norm(Math.abs(u[1])<.9?cross(u,Y):cross(u,X)),b=cross(u,a);
+  const c=add(sd.A,mul(u,7));
+  BOX(c,[[u,4.5],[a,6.5],[b,6.5]],cls,{bias:o.bias??.3,w:.9});
+  L3(comb(1,c,-6.8,a,4.5,u),comb(1,c,6.8,a,4.5,u),'eql',1.6,{bias:(o.bias??.3)+.1});
+}
+/**
+ * Mini-band (catálogo, 11/2026): laço curto de elástico nas coxas, logo acima dos joelhos, feito com duas faixas
+ * (`band`, ids 'f' e 't': frente e trás) entre as duas coxas e uma "tampa" em cada coxa. Herda da `band` a calibração
+ * do repouso e o afinamento com a tensão: a faixa afina quando os joelhos abrem.
+ */
+export function miniBand(ex,sk,o={}){
+  const p={};for(const k of['R','L']){const sd=sk.side[k];p[k]=add(sd.K,mul(sub(sd.Hp,sd.K),.18));}
+  const f=mul(norm(sub(sk.fL,mul(sk.uL,dot(sk.fL,sk.uL)))),6);
+  band(ex,'f',add(p.R,f),add(p.L,f),{w:o.w??3.4,bias:.4});
+  band(ex,'t',sub(p.R,f),sub(p.L,f),{w:o.w??3.4,bias:-2});
+  for(const k of['R','L'])L3(add(p[k],f),sub(p[k],f),'elas',o.w??3.4,{bias:.5});
+}
+/**
+ * Roda abdominal (catálogo, 11/2026): uma roda de raio 9 no chão, com o eixo passando pelas duas mãos e um pegador
+ * de cada lado. De lado, a roda é um círculo; de frente, um retângulo fino. cls = 'db' ou 'db-e' (pegadores).
+ */
+export function roda(GR,GL,cls,o={}){
+  const c=mid(GR,GL),a=norm(sub(GL,GR));
+  if(isSide()){C3(c,9,'eqp',{w:1.2,bias:o.bias??.5});C3(c,2.2,'eqd',{bias:(o.bias??.5)+.1});}
+  else BOX(c,[[a,1.6],[Y,9],[Z,9]],'eqp',{bias:o.bias??.5,w:.9});
+  L3(add(GR,mul(a,-10)),add(GL,mul(a,10)),'eqd',2.4,{bias:(o.bias??.5)+.2});
+  for(const G of[GR,GL])L3(add(G,mul(a,-4.5)),add(G,mul(a,4.5)),cls,3.4,{bias:(o.bias??.5)+.3});
 }
