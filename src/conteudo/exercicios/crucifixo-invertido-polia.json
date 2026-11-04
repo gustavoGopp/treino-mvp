@@ -3,6 +3,8 @@
   "name": "Crucifixo invertido na polia, cabos cruzados",
   "short": "Crucifixo invertido na polia",
   "target": "Ombro (posterior): a parte de trás do ombro",
+  "feel": "Parte de trás dos ombros.",
+  "feelNote": "Se sentir mais o pescoço, os ombros estão subindo: diminua a placa.",
   "setupEq": [
     "As duas polias na altura dos ombros.",
     "Sem pegador (segure a ponta do cabo) ou com o estribo."
@@ -39,10 +41,22 @@
     "Fim: mãos perto da linha do corpo, braços quase retos.",
     "Não junte as escápulas com força: quem trabalha é a parte de trás do ombro."
   ],
+  "breath": "Solte o ar abrindo, inspire voltando.",
   "cues": [
     "Braços quase retos.",
     "Ombros longe das orelhas.",
     "Abre para os lados."
+  ],
+  "check": [
+    "Polias na altura dos ombros",
+    "Cabos cruzados",
+    "Cotovelos levemente dobrados e fixos",
+    "Ombros baixos"
+  ],
+  "vary": "Sem polia dupla, o crucifixo invertido com halteres ou o face pull trabalham a mesma parte do ombro.",
+  "extLabels": [
+    "início",
+    "fim"
   ],
   "errors": [
     {
@@ -60,10 +74,5 @@
       "title": "Jogar o tronco para trás",
       "desc": "O embalo do corpo abre os braços no lugar do ombro. Se precisar jogar o corpo, a placa está pesada demais."
     }
-  ],
-  "montagem": [
-    "Pinos das duas torres bem encaixados. Polias na altura dos ombros. Cruze os cabos, dê um passo para trás e abra os braços quase retos.",
-    "No fim da série, volte os cabos devagar antes de soltar."
-  ],
-  "carga": "Pela placa da torre: +1 placa quando todas as séries chegarem ao topo da faixa. Comece leve: é um exercício de carga baixa."
+  ]
 }

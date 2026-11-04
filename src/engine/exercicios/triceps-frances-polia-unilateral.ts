@@ -1,11 +1,11 @@
 // @ts-nocheck
-// Animação nova (em revisão). Tríceps francês unilateral na polia baixa, com estribo: de costas para a polia, pés
+// Animação nova (aprovada). Tríceps francês unilateral na polia baixa, com estribo: de costas para a polia, pés
 // alternados, tronco um pouco inclinado à frente; o braço direito fica acima da cabeça com o cotovelo apontado para
 // cima e para a frente, e só o antebraço se move. Parte do tríceps francês na polia aprovado (mesmo braço e mesmo
 // tronco); a polia passa para baixo, o cabo sobe pelas costas até a mão, e o outro braço fica solto.
 // Técnica e fontes: docs/pesquisa/animacoes/triceps-frances-polia-unilateral.md.
-import { L3, TX, bandHandle, cable, liftOf, tower } from '../../desenho';
-import { X, Y, add, comb, mul, sub } from '../../math';
+import { L3, TX, bandHandle, cable, liftOf, tower } from '../desenho';
+import { X, Y, add, comb, mul, sub } from '../math';
 
 const solto={ua:[0,-90],fa:[0,-80]};
 const ex = {

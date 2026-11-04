@@ -3,6 +3,8 @@
   "name": "Remada unilateral na polia baixa, em pé, com estribo",
   "short": "Remada unilateral na polia",
   "target": "Dorsal e meio das costas; o bíceps e a parte de trás do ombro ajudam",
+  "feel": "Lateral das costas e meio das costas, do lado que puxa. O bíceps e a parte de trás do ombro ajudam.",
+  "feelNote": "Se sentir a lombar, o tronco está girando ou a coluna está arredondando: apoie melhor a mão livre na coxa.",
   "setupEq": [
     "Polia embaixo, com o estribo (pegador de uma mão) preso no mosquetão."
   ],
@@ -38,10 +40,22 @@
     "Fim: mão ao lado do quadril, cotovelo passando a linha das costas.",
     "O tronco fica no mesmo lugar: quem mexe é o braço."
   ],
+  "breath": "Solte o ar puxando, inspire na volta.",
   "cues": [
     "Mão livre firme.",
     "Cotovelo para o quadril.",
     "Tronco parado."
+  ],
+  "check": [
+    "Pé do lado que puxa atrás",
+    "Mão livre firme na coxa",
+    "Costas retas",
+    "Braço estica na volta"
+  ],
+  "vary": "Sem polia, a remada unilateral com halter faz o mesmo trabalho. As duas servem.",
+  "extLabels": [
+    "início",
+    "fim"
   ],
   "errors": [
     {
@@ -59,10 +73,5 @@
       "title": "Não estender o braço",
       "desc": "Parar a volta no meio corta a parte em que as costas alongam."
     }
-  ],
-  "montagem": [
-    "Pino da torre bem encaixado e estribo preso no mosquetão. Base escalonada, mão livre na coxa ou no apoio da estação; puxe sem girar o tronco.",
-    "No fim da série, volte a placa devagar antes de soltar o estribo."
-  ],
-  "carga": "Pela placa da torre: +1 placa quando todas as séries chegarem ao topo da faixa."
+  ]
 }

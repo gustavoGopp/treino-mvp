@@ -1,11 +1,11 @@
 // @ts-nocheck
-// Animação nova (em revisão). Remada unilateral na polia baixa, com estribo: pé esquerdo à frente, mão livre na coxa
+// Animação nova (aprovada). Remada unilateral na polia baixa, com estribo: pé esquerdo à frente, mão livre na coxa
 // da frente, tronco inclinado com as costas retas; o braço direito puxa o cabo, que vem da polia baixa à frente, com o
 // cotovelo indo para trás em direção ao quadril. Parte da remada unilateral sem banco aprovada (mesmo corpo e mesmo
 // fim do braço); o começo do braço segue a linha do cabo.
 // Técnica e fontes: docs/pesquisa/animacoes/remada-unilateral-polia.md.
-import { TX, bandHandle, cable, liftOf, tower } from '../../desenho';
-import { X, Y, comb } from '../../math';
+import { TX, bandHandle, cable, liftOf, tower } from '../desenho';
+import { X, Y, comb } from '../math';
 
 const ex = {
   id:'remada-unilateral-polia',

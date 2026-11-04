@@ -3,6 +3,8 @@
   "name": "Tríceps francês unilateral na polia, com estribo",
   "short": "Francês unilateral na polia",
   "target": "Tríceps (parte de trás do braço), principalmente a cabeça longa",
+  "feel": "Parte de trás do braço, do ombro ao cotovelo, com o braço esticando no fim.",
+  "feelNote": "Dor no ombro ou no cotovelo não é normal: diminua a placa ou troque pelo exercício alternativo.",
   "setupEq": [
     "Polia embaixo, com o estribo (pegador de uma mão) preso no mosquetão."
   ],
@@ -37,10 +39,22 @@
     "Início: mão atrás da cabeça, tríceps alongado.",
     "Fim: braço estendido acima da cabeça."
   ],
+  "breath": "Solte o ar estendendo, inspire voltando.",
   "cues": [
     "Cotovelo para cima.",
     "Só o antebraço mexe.",
     "Desce atrás da cabeça."
+  ],
+  "check": [
+    "De costas para a polia",
+    "Pés alternados",
+    "Cotovelo apontando para cima",
+    "Só o antebraço se mexe"
+  ],
+  "vary": "Com a corda e as duas mãos, o movimento é o mesmo (tríceps francês na polia). As duas servem.",
+  "extLabels": [
+    "início",
+    "fim"
   ],
   "errors": [
     {
@@ -58,10 +72,5 @@
       "title": "Amplitude curta",
       "desc": "Sem levar a mão atrás da cabeça, você perde a parte alongada do movimento."
     }
-  ],
-  "montagem": [
-    "Pino da torre bem encaixado e estribo preso no mosquetão. Polia embaixo, de costas para ela, base escalonada.",
-    "No fim da série, volte a placa devagar antes de soltar o estribo."
-  ],
-  "carga": "Pela placa da torre: +1 placa quando todas as séries chegarem ao topo da faixa."
+  ]
 }

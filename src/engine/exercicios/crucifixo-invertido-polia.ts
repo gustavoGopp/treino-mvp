@@ -1,11 +1,11 @@
 // @ts-nocheck
-// Animação nova (em revisão). Crucifixo invertido na polia dupla, com os cabos cruzados: polias na altura dos ombros,
+// Animação nova (aprovada). Crucifixo invertido na polia dupla, com os cabos cruzados: polias na altura dos ombros,
 // à frente e dos lados; a mão direita segura o cabo da polia da esquerda e vice-versa. Braços quase retos, cotovelos
 // levemente dobrados e fixos; os braços abrem até as mãos chegarem perto da linha do corpo. Parte do crucifixo na
 // polia aprovado (mesmas torres e o mesmo braço em arco), com o movimento ao contrário.
 // Técnica e fontes: docs/pesquisa/animacoes/crucifixo-invertido-polia.md.
-import { C3, PL3, TX, cable, liftOf, tower } from '../../desenho';
-import { Y, Z, add, comb, dirAE, mul } from '../../math';
+import { C3, PL3, TX, cable, liftOf, tower } from '../desenho';
+import { Y, Z, add, comb, dirAE, mul } from '../math';
 
 const ex = {
   id:'crucifixo-invertido-polia',

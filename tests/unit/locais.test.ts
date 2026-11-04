@@ -27,7 +27,7 @@ describe('local.treino-do-dia: o Bruno faz o Superior A na academia do bairro', 
       ['puxada-unilateral', 'barra-fixa'],
       ['triceps-frances', 'triceps-frances-halter'],
       ['crucifixo-polia', 'crucifixo-halteres'],
-      ['face-pull', 'crucifixo-inverso'],
+      ['crucifixo-invertido-polia', 'crucifixo-inverso'],
     ]);
     expect(trocas[0]!.motivo).toBe('aqui não tem polia alta: puxada unilateral ajoelhado na polia alta → barra fixa');
     expect(trocas.every((t) => t.regraId === 'local.treino-do-dia')).toBe(true);
@@ -91,8 +91,9 @@ describe('sem equivalente no local (selecao.dia-sem-principal)', () => {
     const remada = trocas.find((t) => t.vaga === 'remada-apoiada')!;
     expect(remada.motivo).toContain('o único equivalente possível aqui (remada curvada com halteres) já está no treino de hoje');
     expect(remada.motivo).not.toContain('nenhum equivalente');
-    // O crucifixo invertido curvado entrou numa vaga anterior; a do face pull fica de fora pelo motivo verdadeiro.
-    const face = trocas.find((t) => t.vaga === 'face-pull')!;
+    // O crucifixo invertido curvado entrou numa vaga anterior; a do ombro de trás (o crucifixo invertido na polia desde
+    // 04/11/2026, antes o face pull) fica de fora pelo motivo verdadeiro.
+    const face = trocas.find((t) => t.vaga === 'crucifixo-invertido-polia' || t.vaga === 'face-pull')!;
     expect(face.entrou).toBeUndefined();
     expect(face.motivo).toContain('o único equivalente possível aqui (crucifixo invertido curvado com halteres) já está no treino de hoje');
     // Sem equivalente nenhum ali, o texto antigo continua: nenhum crucifixo de peito é possível só com halteres.
@@ -180,7 +181,7 @@ describe('progressao.troca-equivalente: o Bruno no prédio e na academia do bair
       ['puxada-unilateral', 'barra-fixa'],
       ['triceps-frances', 'triceps-frances-halter'],
       ['crucifixo-polia', 'crucifixo-halteres'],
-      ['face-pull', 'crucifixo-inverso'],
+      ['crucifixo-invertido-polia', 'crucifixo-inverso'],
     ]);
     expect(e2.ultimoLocalId).toBe('local-2');
   });

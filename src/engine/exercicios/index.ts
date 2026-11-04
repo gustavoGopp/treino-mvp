@@ -44,6 +44,9 @@ import flexaoJoelhoDeslizante from './flexao-joelho-deslizante';
 import nordico from './nordico';
 import remadaUnilateralSemBanco from './remada-unilateral-sem-banco';
 import roscaMartelo from './rosca-martelo';
+import tricepsFrancesPoliaUnilateral from './triceps-frances-polia-unilateral';
+import remadaUnilateralPolia from './remada-unilateral-polia';
+import crucifixoInvertidoPolia from './crucifixo-invertido-polia';
 
 // Mesma ordem do guia original (a ordem define os treinos e a ordem de preparação).
 export const EX = [
@@ -89,4 +92,7 @@ export const EX = [
   nordico,
   remadaUnilateralSemBanco,
   roscaMartelo,
+  tricepsFrancesPoliaUnilateral,
+  remadaUnilateralPolia,
+  crucifixoInvertidoPolia,
 ];

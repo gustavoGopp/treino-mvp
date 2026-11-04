@@ -3891,7 +3891,7 @@
    "alongado"
   ],
   "carga": "polia",
-  "animacaoId": null
+  "animacaoId": "triceps-frances-polia-unilateral"
  },
  {
   "id": "remada-unilateral-polia",
@@ -3929,7 +3929,7 @@
    "unilateral"
   ],
   "carga": "polia",
-  "animacaoId": null
+  "animacaoId": "remada-unilateral-polia"
  },
  {
   "id": "crucifixo-invertido-polia",
@@ -3960,7 +3960,7 @@
    "polia"
   ],
   "carga": "polia",
-  "animacaoId": null
+  "animacaoId": "crucifixo-invertido-polia"
  },
  {
   "id": "rosca-suspensao",

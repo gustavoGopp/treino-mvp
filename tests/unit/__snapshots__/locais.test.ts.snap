@@ -9,7 +9,7 @@ exports[`local.treino-do-dia: o Bruno faz o Superior A na academia do bairro > s
       "aqui não tem polia alta: puxada unilateral ajoelhado na polia alta → barra fixa",
       "aqui não tem polia baixa: tríceps francês na polia com corda → tríceps francês sentado com halter",
       "aqui não tem polia dupla: crucifixo na polia (crossover) → crucifixo com halteres no banco plano",
-      "aqui não tem polia alta: face pull com corda → crucifixo inverso com halteres, peito apoiado no banco inclinado",
+      "aqui não tem polia dupla: crucifixo invertido na polia, com os cabos cruzados → crucifixo inverso com halteres, peito apoiado no banco inclinado",
     ],
   },
   {
@@ -30,6 +30,7 @@ exports[`local.treino-do-dia: o Bruno faz o Superior A na academia do bairro > s
       "aqui não tem polia baixa: elevação lateral unilateral na polia → elevação lateral com halteres",
       "aqui não tem polia baixa: rosca na polia baixa, de costas para a torre → rosca inclinada com halteres",
       "aqui não tem polia alta: tríceps na polia com corda → mergulho nas paralelas",
+      "aqui não tem polia alta: face pull com corda → crucifixo inverso com halteres, peito apoiado no banco inclinado",
     ],
   },
   {
