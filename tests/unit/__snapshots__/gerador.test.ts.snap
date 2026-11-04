@@ -5,9 +5,7 @@ exports[`cenários (snapshots revisados) > ana 1`] = `
   "avisos": [
     "equipamento.sem-puxada-vertical",
     "equipamento.escada-carga-leve",
-    "selecao.gluteo",
     "selecao.isolador-obrigatorio",
-    "selecao.alongado",
     "tempo.corte",
     "tempo.corte",
     "volume.semanal.alvo",
@@ -42,14 +40,13 @@ exports[`cenários (snapshots revisados) > ana 1`] = `
 exports[`cenários (snapshots revisados) > bruno 1`] = `
 {
   "avisos": [
-    "selecao.isolador-obrigatorio",
     "tempo.corte",
   ],
   "dias": [
     "Superior A (70 min): supino-reto 3×6–10 | puxada-unilateral 3×10–15 | remada-apoiada 3×8–12 | desenvolvimento 2×8–12 | triceps-frances 4×10–15 [bi-set] | elevacao-halteres 4×12–20 [bi-set] | rosca-inclinada 4×8–12 | crucifixo-polia 3×10–15 | crucifixo-invertido-polia 2×12–20",
-    "Inferior A (36 min): bulgaro 3×8–12 | stiff 2×8–12 | flexao-bola 2×8–15 | panturrilha 3×10–15 | abdominal-polia 2×10–15",
+    "Inferior A (40 min): bulgaro 2×8–12 | stiff 2×8–12 | flexao-bola 2×8–15 | extensao-joelho-elastico 2×12–20 | panturrilha 3×10–15 | abdominal-polia 2×10–15",
     "Superior B (69 min): supino-inclinado 3×6–10 | remada-baixa 3×8–12 | puxada-barra-reta 2×8–12 | desenvolvimento-unilateral 2×8–12 | elevacao-lateral 3×10–15 | rosca-polia-costas 3×10–15 | triceps-corda 3×10–15 | crucifixo-halteres 3×10–15 | face-pull 2×12–20",
-    "Inferior B (51 min): afundo 3×8–12 | ponte-gluteo-halter 2×10–20 | stiff-unilateral 2×8–12 | elevacao-halteres 3×12–20 | flexao-joelho-elastico 2×12–20 | panturrilha-bilateral-step 3×12–20 | abdominal-polia 2×10–15",
+    "Inferior B (55 min): afundo 2×8–12 | ponte-gluteo-halter 2×10–20 | stiff-unilateral 2×8–12 | elevacao-halteres 3×12–20 | flexao-joelho-elastico 2×12–20 | extensao-joelho-elastico 2×12–20 | panturrilha-bilateral-step 3×12–20 | abdominal-polia 2×10–15",
   ],
   "divisao": "Superior/Inferior (2x)",
   "fases": [
@@ -59,17 +56,17 @@ exports[`cenários (snapshots revisados) > bruno 1`] = `
   ],
   "volume": {
     "abdomen": 4,
-    "adutores": 3,
+    "adutores": 2,
     "biceps": 12.5,
     "costas": 12,
-    "gluteos": 8,
+    "gluteos": 7,
     "ombro_anterior": 10,
     "ombro_lateral": 12,
     "ombro_posterior": 9.5,
     "panturrilha": 6,
     "peito": 12,
     "posteriores": 8,
-    "quadriceps": 6,
+    "quadriceps": 8,
     "triceps": 12,
   },
 }
@@ -111,14 +108,13 @@ exports[`cenários (snapshots revisados) > diego 1`] = `
 {
   "avisos": [
     "equipamento.escada-carga-leve",
-    "selecao.isolador-obrigatorio",
     "tempo.corte",
-    "tempo.corte",
+    "volume.semanal.alvo",
   ],
   "dias": [
-    "Corpo todo A (44 min): flexao 3×8–15 [bi-set] | barra-fixa 2×5–10 [bi-set] | agachamento-peso-corpo 3×12–20 | flexao-joelho-elastico 3×12–20 [bi-set] | triceps-elastico-acima 2×12–20 [bi-set] | elevacao-lateral-elastico 3×12–20",
-    "Corpo todo B (43 min): flexao 3×8–15 [bi-set] | remada-elastico 2×10–16 [bi-set] | stiff-elastico 2×10–16 | rosca-elastico 2×12–20 [bi-set] | panturrilha-chao 4×12–20 [bi-set] | face-pull-elastico 2×12–20",
-    "Corpo todo C (43 min): flexao 2×8–15 [bi-set] | barra-fixa-supinada 2×5–10 [bi-set] | afundo-peso-corpo 2×10–16 | ponte-gluteo 2×12–20 | elevacao-lateral-elastico 2×12–20 | abdominal-chao 4×12–20",
+    "Corpo todo A (41 min): flexao 3×8–15 [bi-set] | barra-fixa 3×5–10 [bi-set] | agachamento-peso-corpo 2×12–20 | flexao-joelho-elastico 3×12–20 [bi-set] | triceps-elastico-acima 2×12–20 [bi-set] | elevacao-lateral-elastico 3×12–20",
+    "Corpo todo B (45 min): flexao 3×8–15 [bi-set] | remada-elastico 3×10–16 [bi-set] | stiff-elastico 3×10–16 | extensao-joelho-elastico 2×12–20 [bi-set] | rosca-elastico 2×12–20 [bi-set] | panturrilha-chao 4×12–20",
+    "Corpo todo C (45 min): flexao 2×8–15 [bi-set] | barra-fixa-supinada 2×5–10 [bi-set] | afundo-peso-corpo 2×10–16 | ponte-gluteo 3×12–20 | elevacao-lateral-elastico 2×12–20 | abdominal-chao 4×12–20",
   ],
   "divisao": "Corpo todo A/B/C",
   "fases": [
@@ -127,17 +123,17 @@ exports[`cenários (snapshots revisados) > diego 1`] = `
   ],
   "volume": {
     "abdomen": 4,
-    "adutores": 2.5,
-    "biceps": 5,
-    "costas": 7,
-    "gluteos": 5.5,
+    "adutores": 2,
+    "biceps": 6,
+    "costas": 8,
+    "gluteos": 6.5,
     "ombro_anterior": 4,
     "ombro_lateral": 5,
-    "ombro_posterior": 4,
+    "ombro_posterior": 3,
     "panturrilha": 4,
     "peito": 8,
-    "posteriores": 5,
-    "quadriceps": 5,
+    "posteriores": 6,
+    "quadriceps": 6,
     "triceps": 6,
   },
 }

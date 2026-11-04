@@ -89,15 +89,27 @@ describe('cenário 2: só halteres e banco (Ana)', () => {
     expect(sem.dias.flatMap((d) => d.exercicios).some((x) => x.funcao === 'agachar' || x.funcao === 'afundo')).toBe(true);
     expect(extensoes(p)).toBeGreaterThan(extensoes(sem));
   });
-  it('lacunas explicadas: sem extensora e sem abdução, o aviso diz o que falta', () => {
+  it('lacunas explicadas: sem extensora, o aviso diz o que falta; a abdução deixou de ser lacuna (abdução deitado sem carga, auditoria de 04/11/2026)', () => {
     const textos = p.avisos.map((a) => a.texto).join(' ');
     expect(textos).toContain('Sem cadeira extensora');
-    expect(textos).toContain('Sem cadeira abdutora');
+    expect(textos).not.toContain('Sem cadeira abdutora');
     expect(p.avisos.find((a) => a.texto.startsWith('Sem cadeira extensora'))!.regraId).toBe('selecao.isolador-obrigatorio');
+    // Em 45 min a abdução não cabe (o crucifixo invertido, único exercício direto do ombro posterior, vem antes); com 60 min, entra.
+    expect(p.dias.flatMap((d) => d.exercicios.map((x) => x.exId))).not.toContain('abducao-deitado');
+    expect(ok({ ...ana.perfil, minutosSessao: 60 }, ana.inventario).dias.flatMap((d) => d.exercicios.map((x) => x.exId))).toContain('abducao-deitado');
   });
-  it('ombro posterior com halteres e banco reto: o crucifixo invertido curvado (antes, nenhum exercício possível; auditoria, achado 6)', () => {
-    expect(p.dias.flatMap((d) => d.exercicios.map((x) => x.exId))).toContain('crucifixo-invertido-curvado');
+  it('ombro posterior com halteres e banco reto: o crucifixo invertido curvado é possível e aparece como vaga ou alternativa (auditoria, achado 6)', () => {
+    // Desde 04/11/2026 a abdução sem carga (complemento do glúteo, prioridade da Ana) ocupa o lugar do crucifixo
+    // invertido no Corpo todo B de 45 min; ele continua possível e volta com mais minutos.
+    const ids = p.dias.flatMap((d) => d.exercicios.flatMap((x) => [x.exId, ...x.alternativas]));
+    expect(ids).toContain('crucifixo-invertido-curvado');
     expect(p.avisos.map((a) => a.texto).join(' ')).not.toMatch(/ombro \(posterior\)[^.]*nenhum exercício possível/);
+    expect(ok({ ...ana.perfil, minutosSessao: 60 }, ana.inventario).dias.flatMap((d) => d.exercicios.map((x) => x.exId))).toContain('crucifixo-invertido-curvado');
+  });
+  it('teto semanal já no mínimo de séries: no modelo de 6 dias, a 3ª vaga de glúteo fica de fora em vez de passar de 20 (volume.semanal.teto-padrao)', () => {
+    const q = ok({ ...ana.perfil, minutosSessao: 55, divisao: 'si-3x', diasSemana: 6, nivel: 'iniciante' }, ana.inventario);
+    expect(q.volumeSemanal.gluteos).toBeLessThanOrEqual(VOLUME.teto);
+    expect(q.dias.filter((d) => d.exercicios.some((x) => x.exId === 'abducao-deitado'))).toHaveLength(2);
   });
 });
 

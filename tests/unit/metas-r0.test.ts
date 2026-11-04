@@ -19,7 +19,8 @@ const SEM_EXERCICIO_DECIDIDO = ['esteira'];
  * selecao.aducao-complemento), e nenhum outro exercício do catálogo tem os adutores como músculo principal.
  * Com a máquina ocupada, ela simplesmente fica de fora naquele dia.
  */
-const SEM_ALTERNATIVA_DECIDIDO = ['aducao-maquina'];
+// Desde 04/11/2026 a adução tem as versões com caneleira e deitado sem carga: nenhum exercício fica sem 2 alternativas.
+const SEM_ALTERNATIVA_DECIDIDO: string[] = [];
 
 describe(`metas do R0 com o inventário da Carla (${m.programas} programas)`, () => {
   it(`exercícios distintos usados: meta ${META_EXERCICIOS} ou mais`, () => {
@@ -34,7 +35,7 @@ describe(`metas do R0 com o inventário da Carla (${m.programas} programas)`, ()
   it('todo exercício possível aparece como vaga ou como alternativa', () => {
     expect(m.semVagaNemAlternativa).toEqual([]);
   });
-  it('todo exercício usado tem 2 ou mais alternativas de outro equipamento, salvo a adução (decidido)', () => {
+  it('todo exercício usado tem 2 ou mais alternativas de outro equipamento (a adução deixou de ser exceção em 04/11/2026)', () => {
     expect(m.menosDe2Alternativas).toEqual(SEM_ALTERNATIVA_DECIDIDO);
   });
   it('as paralelas, a extensora, as máquinas novas e a adução aparecem nos programas', () => {

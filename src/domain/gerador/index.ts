@@ -253,6 +253,18 @@ export function gerarPrograma(perfil: Perfil, inventarioOriginal: Inventario): R
   const nivelAbaixo = new Set<string>();
   const foraPorMinutos = new Set<Musculo>();
   type Item = { ex: Exercicio; vaga: Vaga; funcao: Funcao; nivelFuncao: number; series: number; ordemVaga: number; preenchido?: boolean };
+  // Volume da semana só com o mínimo de séries, dia a dia: um complemento (ou uma vaga só de prioridade) não entra
+  // se, já no mínimo, passar do teto semanal de algum músculo (volume.semanal.teto-padrao, "nunca acima"). Antes,
+  // só a distribuição das séries conferia o teto, e no modelo de 6 dias com três vagas de glúteo o mínimo sozinho
+  // chegava a 21 (auditoria de 04/11/2026, Parte C).
+  const vMinimo: Partial<Record<Musculo, number>> = {};
+  const cabeNoTetoSemanal = (e: Exercicio) =>
+    (Object.entries(volumePorMusculo([{ ex: e, series: VOLUME.seriesPorExercicio.min }])) as [Musculo, number][]).every(([m, n]) => (vMinimo[m] ?? 0) + n <= VOLUME.teto);
+  // Músculos com meta que têm alguma vaga-base na semana (fora os complementos). Um complemento que é o único
+  // exercício direto de um músculo com meta (o ombro posterior, por exemplo) entra antes dos complementos de músculos
+  // que já têm vaga-base, mesmo prioritários: o piso de todo músculo vem antes da 2ª dose do prioritário
+  // (volume.semanal.minimo-eficaz; auditoria de 04/11/2026, Parte C).
+  const comVagaBase = new Set<Musculo>(divisao.dias.flatMap((d) => d.vagas.filter((v) => ativa(v) && !v.complemento).map((v) => FUNCAO[v.funcao]!.musculo)));
   const dias = divisao.dias.map((dia) => {
     const resolvidas = dia.vagas.filter(ativa).map((vaga, ordem) => ({ vaga, ordem, res: resolver(vaga) }));
     let perdidas = 0;
@@ -264,8 +276,12 @@ export function gerarPrograma(perfil: Perfil, inventarioOriginal: Inventario): R
     const comExercicio = resolvidas.filter((x): x is typeof x & { res: NonNullable<typeof x.res> } => !!x.res);
     // Quais vagas cabem nos minutos: as vagas-base e as dos grupos prioritários, na ordem do modelo do dia
     // (que já é a de importância); os complementos não prioritários só entram se sobrar espaço.
-    const rank = (x: (typeof comExercicio)[number]) =>
-      x.vaga.complemento && !prioritarios.has(x.res.funcao.musculo) && !x.vaga.prioridade?.some((g) => grupos.has(g)) ? 1 : 0;
+    const rank = (x: (typeof comExercicio)[number]) => {
+      const m = x.res.funcao.musculo;
+      if (!x.vaga.complemento) return 0;
+      if (!comVagaBase.has(m) && (MUSCULOS_COM_META as Musculo[]).includes(m)) return 1; // o único exercício direto do músculo
+      return prioritarios.has(m) || x.vaga.prioridade?.some((g) => grupos.has(g)) ? 2 : 3;
+    };
     // Os isoladores obrigatórios entram sempre que houver (selecao.isolador-obrigatorio); o resto preenche até N.
     // Em treinos curtos (até OBRIGATORIO_CURTO exercícios), eles entram na fila comum, depois das vagas-base do dia:
     // senão ocupam 2 de 3 lugares e a semana fica sem costas ou posteriores (selecao.multi-mono; auditoria, achado 4).
@@ -285,8 +301,10 @@ export function gerarPrograma(perfil: Perfil, inventarioOriginal: Inventario): R
       const achado = ctx.escolher(funcao, x.res.nivel, (id) => itens.some((i) => i.ex.id === id), usos);
       if (!achado) continue;
       const { ex: escolhido, nivelFuncao } = achado;
+      if ((x.vaga.complemento || x.vaga.prioridade) && !cabeNoTetoSemanal(escolhido)) continue;
       if (nivelFuncao > 0 && funcao.semNivel1) nivelAbaixo.add(funcao.semNivel1);
       usos.set(escolhido.id, (usos.get(escolhido.id) ?? 0) + 1);
+      for (const [m, n] of Object.entries(volumePorMusculo([{ ex: escolhido, series: VOLUME.seriesPorExercicio.min }])) as [Musculo, number][]) vMinimo[m] = (vMinimo[m] ?? 0) + n;
       itens.push({ ex: escolhido, vaga: x.vaga, funcao, nivelFuncao, series: VOLUME.seriesPorExercicio.min, ordemVaga: x.ordem });
     }
     return { dia, itens, perdidas };

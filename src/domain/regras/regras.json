@@ -1091,9 +1091,9 @@
     "id": "selecao.isolador-obrigatorio",
     "regra": "Quando o equipamento permite, entra o isolador que cobre o que os multiarticulares não cobrem; ele não sai nos cortes de tempo. Em treinos curtos (até 4 exercícios), entra depois das vagas-base do dia, para não deixar um músculo grande sem nenhuma série na semana (revista na auditoria do treino, 02/11/2026; `selecao.multi-mono`)",
     "valores": {
-      "iniciante": "extensora (reto femoral); tríceps acima da cabeça (cabeça longa); panturrilha em pé (gastrocnêmio); com até 4 exercícios por treino, entram depois das vagas-base do dia",
-      "intermediario": "extensora (reto femoral); tríceps acima da cabeça (cabeça longa); panturrilha em pé (gastrocnêmio); com até 4 exercícios por treino, entram depois das vagas-base do dia",
-      "avancado": "extensora (reto femoral); tríceps acima da cabeça (cabeça longa); panturrilha em pé (gastrocnêmio); com até 4 exercícios por treino, entram depois das vagas-base do dia"
+      "iniciante": "extensora (reto femoral; sem a máquina, com caneleira ou com elástico, no lado curto do músculo: `equipamento.caneleira`); tríceps acima da cabeça (cabeça longa); panturrilha em pé (gastrocnêmio); com até 4 exercícios por treino, entram depois das vagas-base do dia",
+      "intermediario": "extensora (reto femoral; sem a máquina, com caneleira ou com elástico, no lado curto do músculo: `equipamento.caneleira`); tríceps acima da cabeça (cabeça longa); panturrilha em pé (gastrocnêmio); com até 4 exercícios por treino, entram depois das vagas-base do dia",
+      "avancado": "extensora (reto femoral; sem a máquina, com caneleira ou com elástico, no lado curto do músculo: `equipamento.caneleira`); tríceps acima da cabeça (cabeça longa); panturrilha em pé (gastrocnêmio); com até 4 exercícios por treino, entram depois das vagas-base do dia"
     },
     "selo": "moderada",
     "fontes": [
@@ -1137,9 +1137,9 @@
     "id": "selecao.gluteo",
     "regra": "Ordem das funções para glúteos",
     "valores": {
-      "iniciante": "agachar profundo ou afundo → extensão de quadril (hip thrust, glúteo na máquina, ponte, coice) → abdução como complemento",
-      "intermediario": "agachar profundo ou afundo → extensão de quadril (hip thrust, glúteo na máquina, ponte, coice) → abdução como complemento",
-      "avancado": "agachar profundo ou afundo → extensão de quadril (hip thrust, glúteo na máquina, ponte, coice) → abdução como complemento"
+      "iniciante": "agachar profundo ou afundo → extensão de quadril (hip thrust, glúteo na máquina, ponte, coice) → abdução como complemento (máquina, polia, caneleira, mini-band e, sem nada, deitado de lado sem carga, com repetições altas: auditoria de 04/11/2026)",
+      "intermediario": "agachar profundo ou afundo → extensão de quadril (hip thrust, glúteo na máquina, ponte, coice) → abdução como complemento (máquina, polia, caneleira, mini-band e, sem nada, deitado de lado sem carga, com repetições altas: auditoria de 04/11/2026)",
+      "avancado": "agachar profundo ou afundo → extensão de quadril (hip thrust, glúteo na máquina, ponte, coice) → abdução como complemento (máquina, polia, caneleira, mini-band e, sem nada, deitado de lado sem carga, com repetições altas: auditoria de 04/11/2026)"
     },
     "selo": "um estudo",
     "fontes": [
@@ -1176,11 +1176,11 @@
   },
   {
     "id": "selecao.aducao-complemento",
-    "regra": "Adução na máquina ou, sem ela, com caneleira deitado de lado (`equipamento.caneleira`, desde 04/11/2026) (adutores, sem meta própria): complemento opcional no dia de pernas",
+    "regra": "Adução na máquina ou, sem ela, com caneleira deitado de lado (`equipamento.caneleira`, desde 04/11/2026) ou, sem nada, deitado de lado sem carga (auditoria de 04/11/2026) (adutores, sem meta própria): complemento opcional no dia de pernas",
     "valores": {
-      "iniciante": "só quando pernas ou glúteos são prioridade e há tempo; sai primeiro nos cortes; sem a máquina nem caneleiras, nenhum aviso",
-      "intermediario": "só quando pernas ou glúteos são prioridade e há tempo; sai primeiro nos cortes; sem a máquina nem caneleiras, nenhum aviso",
-      "avancado": "só quando pernas ou glúteos são prioridade e há tempo; sai primeiro nos cortes; sem a máquina nem caneleiras, nenhum aviso"
+      "iniciante": "só quando pernas ou glúteos são prioridade e há tempo; sai primeiro nos cortes; nunca gera aviso",
+      "intermediario": "só quando pernas ou glúteos são prioridade e há tempo; sai primeiro nos cortes; nunca gera aviso",
+      "avancado": "só quando pernas ou glúteos são prioridade e há tempo; sai primeiro nos cortes; nunca gera aviso"
     },
     "selo": "consenso",
     "fontes": [
@@ -1569,7 +1569,7 @@
   },
   {
     "id": "tempo.exercicios-por-sessao",
-    "regra": "Exercícios por treino conforme os minutos, pelo modelo de tempo do app (~3 séries cada); entre os pontos, proporcional",
+    "regra": "Exercícios por treino conforme os minutos, pelo modelo de tempo do app (~3 séries cada); entre os pontos, proporcional. Quando não cabem todas as vagas do dia: primeiro as vagas-base, depois o complemento que é o único exercício direto de um músculo com meta (ex.: ombro posterior), depois os complementos dos grupos prioritários e, por fim, os outros; um complemento não entra se, já no mínimo de séries, passar do teto semanal de algum músculo (`volume.semanal.minimo-eficaz`, `volume.semanal.teto-padrao`; auditoria de 04/11/2026)",
     "valores": {
       "iniciante": "30 min: 4; 45: 6; 60: 8; 75: 10; 90: 12",
       "intermediario": "30 min: 4; 45: 6; 60: 8; 75: 10; 90: 12",

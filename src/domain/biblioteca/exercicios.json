@@ -4626,5 +4626,135 @@
   ],
   "carga": "kettlebell",
   "animacaoId": "ponte-kettlebell"
+ },
+ {
+  "id": "abducao-deitado",
+  "nome": "Abdução de quadril deitado de lado, sem carga",
+  "padrao": "abducao-quadril",
+  "musculos": {
+   "primarios": [
+    "gluteos"
+   ],
+   "secundarios": []
+  },
+  "requer": [
+   [
+    "apoio"
+   ]
+  ],
+  "complexidade": 1,
+  "tipo": "isolador",
+  "faixaReps": [
+   15,
+   30
+  ],
+  "unilateral": true,
+  "articulacoes": [
+   "quadril"
+  ],
+  "tags": [
+   "unilateral",
+   "deitado",
+   "peso-corpo"
+  ],
+  "carga": "peso-corpo",
+  "animacaoId": null
+ },
+ {
+  "id": "aducao-deitado",
+  "nome": "Adução de quadril deitado de lado, sem carga",
+  "padrao": "aducao-quadril",
+  "musculos": {
+   "primarios": [
+    "adutores"
+   ],
+   "secundarios": []
+  },
+  "requer": [
+   [
+    "apoio"
+   ]
+  ],
+  "complexidade": 1,
+  "tipo": "isolador",
+  "faixaReps": [
+   15,
+   30
+  ],
+  "unilateral": true,
+  "articulacoes": [
+   "quadril"
+  ],
+  "tags": [
+   "unilateral",
+   "deitado",
+   "peso-corpo"
+  ],
+  "carga": "peso-corpo",
+  "animacaoId": null
+ },
+ {
+  "id": "extensao-joelho-elastico",
+  "nome": "Extensão de joelho sentado com elástico",
+  "padrao": "isolador-quadriceps",
+  "musculos": {
+   "primarios": [
+    "quadriceps"
+   ],
+   "secundarios": []
+  },
+  "requer": [
+   [
+    "elastico"
+   ]
+  ],
+  "complexidade": 1,
+  "tipo": "isolador",
+  "faixaReps": [
+   12,
+   20
+  ],
+  "unilateral": true,
+  "articulacoes": [
+   "joelho"
+  ],
+  "tags": [
+   "sentado",
+   "elastico"
+  ],
+  "carga": "elastico",
+  "animacaoId": null
+ },
+ {
+  "id": "panturrilha-sentada-halter",
+  "nome": "Panturrilha sentada com halter no joelho",
+  "padrao": "panturrilha",
+  "musculos": {
+   "primarios": [
+    "panturrilha"
+   ],
+   "secundarios": []
+  },
+  "requer": [
+   [
+    "halteres"
+   ]
+  ],
+  "complexidade": 1,
+  "tipo": "isolador",
+  "faixaReps": [
+   12,
+   20
+  ],
+  "unilateral": false,
+  "articulacoes": [
+   "tornozelo"
+  ],
+  "tags": [
+   "sentada",
+   "halter"
+  ],
+  "carga": "halter",
+  "animacaoId": null
  }
 ]

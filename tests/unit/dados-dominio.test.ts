@@ -56,7 +56,7 @@ describe('biblioteca de exercícios', () => {
   it('adutores como secundário de todo agachamento e afundo (kubo2019; plotkin2023; kinoshita2026)', () => {
     const comAdutores = BIBLIOTECA.filter((x) => x.musculos.secundarios.includes('adutores')).map((x) => x.id).sort();
     expect(comAdutores).toEqual(BIBLIOTECA.filter((x) => x.padrao === 'agachar' || x.padrao === 'afundo').map((x) => x.id).sort());
-    expect(BIBLIOTECA.filter((x) => x.musculos.primarios.includes('adutores')).map((x) => x.id)).toEqual(['aducao-maquina', 'aducao-caneleira']);
+    expect(BIBLIOTECA.filter((x) => x.musculos.primarios.includes('adutores')).map((x) => x.id)).toEqual(['aducao-maquina', 'aducao-caneleira', 'aducao-deitado']);
   });
 
   it('toda capacidade pedida por um exercício é dada por algum equipamento (ou é o apoio, que sempre existe)', () => {

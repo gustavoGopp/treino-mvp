@@ -1,0 +1,64 @@
+{
+  "id": "panturrilha-sentada-halter",
+  "name": "Panturrilha sentada com halter no joelho",
+  "short": "Panturrilha sentada com halter",
+  "target": "Panturrilha (sóleo, a parte de baixo)",
+  "setupEq": [
+    "Um halter, deitado sobre a coxa perto do joelho, em cima de uma toalha dobrada.",
+    "Uma cadeira firme, sem rodinhas, ou um banco.",
+    "Para alongar mais: a ponta dos pés num apoio baixo e firme (uma anilha, um livro grosso, um degrau). Sem apoio, no chão."
+  ],
+  "setupBody": [
+    "Sentado, joelhos a ~90°, pés na largura do quadril, ponta dos pés no apoio.",
+    "As duas mãos segurando o halter sobre a coxa, a série inteira.",
+    "Tronco reto e parado."
+  ],
+  "exec": [
+    [
+      "ecc",
+      "Descida",
+      "~2 s. O calcanhar desce até o alongamento máximo."
+    ],
+    [
+      "hold",
+      "Embaixo",
+      "Pausa de ~1 s, alongado."
+    ],
+    [
+      "conc",
+      "Subida",
+      "~1 s. Sobe o calcanhar o máximo, sem o tronco levantar."
+    ]
+  ],
+  "range": [
+    "Embaixo: alongamento máximo (mais se a ponta dos pés estiver num apoio).",
+    "Em cima: calcanhar o mais alto possível."
+  ],
+  "cues": [
+    "Pausa embaixo.",
+    "Tronco parado.",
+    "Amplitude toda."
+  ],
+  "errors": [
+    {
+      "id": "curta",
+      "title": "Amplitude curta",
+      "desc": "Sem descer até o alongamento nem subir até o fim, a série rende menos."
+    },
+    {
+      "id": "tronco",
+      "title": "Levantar o tronco",
+      "desc": "O tronco sobe para ajudar e o peso sai da panturrilha."
+    },
+    {
+      "id": "halter",
+      "title": "Halter escorregando",
+      "desc": "Uma mão solta e o halter desliza da coxa. As duas mãos nele, a série inteira."
+    }
+  ],
+  "carga": "Pela lista dos seus halteres: o próximo peso quando todas as séries chegarem ao topo da faixa. Quando um halter só ficar leve, use dois, um em cada joelho. É complemento: a panturrilha em pé continua sendo a principal.",
+  "montagem": [
+    "Halter sobre uma toalha dobrada, preso com as duas mãos.",
+    "Cadeira firme, sem rodinhas; apoio dos pés que não escorrega."
+  ]
+}
