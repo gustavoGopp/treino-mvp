@@ -1,0 +1,69 @@
+{
+  "id": "abdominal-bola",
+  "name": "Abdominal na bola suíça (crunch)",
+  "short": "Abdominal na bola",
+  "target": "Abdômen",
+  "setupEq": [
+    "Bola suíça bem cheia, sem rachaduras.",
+    "Tapete ou chão que não escorrega, longe de quinas e móveis."
+  ],
+  "setupBody": [
+    "Sente na bola e ande com os pés à frente até a bola ficar sob a parte de baixo das costas.",
+    "Pés no chão, afastados na largura do quadril, joelhos dobrados.",
+    "Mãos cruzadas no peito."
+  ],
+  "exec": [
+    [
+      "hold",
+      "Em cima da bola",
+      "Costas acompanhando a curva da bola, sem deixar a cabeça cair para trás."
+    ],
+    [
+      "conc",
+      "Subida (concêntrica)",
+      "~1 s. Enrole a parte de cima das costas, aproximando as costelas do quadril."
+    ],
+    [
+      "hold",
+      "Topo",
+      "Segure 1 s contraindo o abdômen. A bola não rola."
+    ],
+    [
+      "ecc",
+      "Descida (excêntrica)",
+      "~2 s, voltando a acompanhar a curva da bola."
+    ]
+  ],
+  "range": [
+    "Início: costas apoiadas na bola, seguindo a curva dela.",
+    "Fim: escápulas fora da bola; não precisa sentar.",
+    "A bola fica parada: quem mexe é o tronco."
+  ],
+  "cues": [
+    "Enrola o tronco.",
+    "Bola parada.",
+    "Pescoço solto."
+  ],
+  "errors": [
+    {
+      "id": "pescoco",
+      "title": "Puxar o pescoço",
+      "desc": "O queixo vai ao peito e as escápulas mal saem da bola: o pescoço faz o trabalho do abdômen."
+    },
+    {
+      "id": "rola",
+      "title": "Rolar a bola",
+      "desc": "Empurrar com as pernas faz a bola rolar e o tronco subir sem enrolar. Pés firmes no chão, bola parada."
+    },
+    {
+      "id": "senta",
+      "title": "Subir até sentar",
+      "desc": "Subir o tronco inteiro puxa com o quadril e carrega a lombar. Basta as escápulas saírem da bola."
+    }
+  ],
+  "montagem": [
+    "Bola bem cheia e sem rachaduras, sobre tapete que não escorrega, longe de quinas e móveis.",
+    "Pés afastados na largura do quadril. Se sentir tontura ao deitar para trás, pare e sente no chão."
+  ],
+  "carga": "Peso do corpo, pela escada: descida de 3 s → braços acima da cabeça → braços acima da cabeça, com pausa de 2 s em cima."
+}

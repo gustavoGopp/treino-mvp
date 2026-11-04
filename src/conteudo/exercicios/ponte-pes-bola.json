@@ -1,0 +1,68 @@
+{
+  "id": "ponte-pes-bola",
+  "name": "Ponte de glúteo com os pés na bola",
+  "short": "Ponte com os pés na bola",
+  "target": "Glúteos; os posteriores da coxa ajudam",
+  "setupEq": [
+    "Bola suíça bem cheia, sem rachaduras.",
+    "Um colchonete. Nas primeiras séries, a bola encostada na parede."
+  ],
+  "setupBody": [
+    "Deite de costas, braços abertos no chão, palmas para baixo.",
+    "Calcanhares em cima da bola, pernas quase estendidas, joelhos um pouco dobrados.",
+    "Pernas juntas ou na largura do quadril."
+  ],
+  "exec": [
+    [
+      "hold",
+      "Embaixo",
+      "Quadril perto do chão, calcanhares na bola."
+    ],
+    [
+      "conc",
+      "Subida (concêntrica)",
+      "~1 s. Empurre a bola para baixo com os calcanhares e suba o quadril até ombros, quadril e joelhos ficarem em linha."
+    ],
+    [
+      "hold",
+      "Topo",
+      "Segure ~1 s, sem arquear a lombar. A bola não rola."
+    ],
+    [
+      "ecc",
+      "Descida (excêntrica)",
+      "~2 s, até o quadril quase encostar no chão."
+    ]
+  ],
+  "range": [
+    "Em cima: ombros, quadril e joelhos em linha.",
+    "Embaixo: quadril quase no chão, sem descansar.",
+    "Os ombros e a cabeça ficam no chão."
+  ],
+  "cues": [
+    "Calcanhar empurra a bola.",
+    "Costelas para baixo.",
+    "Bola parada."
+  ],
+  "errors": [
+    {
+      "id": "lombar",
+      "title": "Arquear a lombar",
+      "desc": "Subir dobrando a lombar, com a barriga para cima, não trabalha mais o glúteo e carrega as costas. Pare quando o corpo ficar em linha."
+    },
+    {
+      "id": "bola",
+      "title": "Bola foge",
+      "desc": "A bola rola para os lados ou para longe e o quadril cai. Pernas firmes, bola encostada na parede no começo."
+    },
+    {
+      "id": "raso",
+      "title": "Subir pouco",
+      "desc": "O quadril não alinha com o tronco e as coxas, e o glúteo trabalha só a metade."
+    }
+  ],
+  "montagem": [
+    "Bola bem cheia e sem rachaduras, encostada na parede nas primeiras séries; braços abertos no chão para dar base."
+  ],
+  "carga": "Peso do corpo, pela escada: pausa de 2 s no alto → braços cruzados no peito (sem as mãos no chão) → uma perna só → uma perna só, com pausa de 2 s no alto."
+}

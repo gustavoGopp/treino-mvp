@@ -81,7 +81,7 @@ function cargaInicial(caso: Caso, reps: [number, number], rir: number): Carga {
   return [...cands].sort((a, b) => valorDaCarga(b) - valorDaCarga(a)).find(cabe) ?? cands[0]!;
 }
 
-/** A carga existe? Halter e kettlebell: na lista; barra: barra + pares da menor anilha. */
+/** A carga existe? Halter, kettlebell e caneleira: na lista; barra: barra + pares da menor anilha. */
 function existe(c: Carga, caso: Caso, lista: number[]): boolean {
   if (c.tipo !== 'kg') return true;
   if (lista.length) return lista.some((k) => Math.abs(k - c.kg) < 1e-9);

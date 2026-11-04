@@ -1,0 +1,69 @@
+{
+  "id": "crucifixo-invertido-polia",
+  "name": "Crucifixo invertido na polia, cabos cruzados",
+  "short": "Crucifixo invertido na polia",
+  "target": "Ombro (posterior): a parte de trás do ombro",
+  "setupEq": [
+    "As duas polias na altura dos ombros.",
+    "Sem pegador (segure a ponta do cabo) ou com o estribo."
+  ],
+  "setupBody": [
+    "Em pé entre as polias, cruze os cabos: a mão direita segura o cabo da esquerda, e a esquerda, o da direita.",
+    "Dê um passo para trás. Braços estendidos à frente, na altura dos ombros, cruzados.",
+    "Cotovelos levemente dobrados e fixos; pés na largura do quadril."
+  ],
+  "exec": [
+    [
+      "hold",
+      "Braços cruzados",
+      "Mãos à frente do peito, cabos cruzados."
+    ],
+    [
+      "conc",
+      "Abertura (concêntrica)",
+      "~1 s. Abra os braços para os lados, quase retos, até as mãos chegarem perto da linha do corpo."
+    ],
+    [
+      "hold",
+      "Aberto",
+      "Pausa curta, sem encolher os ombros."
+    ],
+    [
+      "ecc",
+      "Volta (excêntrica)",
+      "~2 s, até os braços cruzarem de novo à frente."
+    ]
+  ],
+  "range": [
+    "Início: braços cruzados à frente, na altura dos ombros.",
+    "Fim: mãos perto da linha do corpo, braços quase retos.",
+    "Não junte as escápulas com força: quem trabalha é a parte de trás do ombro."
+  ],
+  "cues": [
+    "Braços quase retos.",
+    "Ombros longe das orelhas.",
+    "Abre para os lados."
+  ],
+  "errors": [
+    {
+      "id": "encolher",
+      "title": "Encolher os ombros",
+      "desc": "Os ombros sobem e o trapézio assume o trabalho."
+    },
+    {
+      "id": "cotovelo",
+      "title": "Dobrar os cotovelos",
+      "desc": "Puxar com os cotovelos dobrados vira uma remada."
+    },
+    {
+      "id": "balanco",
+      "title": "Jogar o tronco para trás",
+      "desc": "O embalo do corpo abre os braços no lugar do ombro. Se precisar jogar o corpo, a placa está pesada demais."
+    }
+  ],
+  "montagem": [
+    "Pinos das duas torres bem encaixados. Polias na altura dos ombros. Cruze os cabos, dê um passo para trás e abra os braços quase retos.",
+    "No fim da série, volte os cabos devagar antes de soltar."
+  ],
+  "carga": "Pela placa da torre: +1 placa quando todas as séries chegarem ao topo da faixa. Comece leve: é um exercício de carga baixa."
+}

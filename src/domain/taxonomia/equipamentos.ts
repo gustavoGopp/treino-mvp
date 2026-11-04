@@ -1,6 +1,6 @@
 import { z } from 'zod';
 
-// Taxonomia controlada de equipamentos (equipamento.capacidades; pesquisa-v2/08, seção 1): 46 ids,
+// Taxonomia controlada de equipamentos (equipamento.capacidades; pesquisa-v2/08, seção 1, e 11, B.2.3): 49 ids,
 // que cobrem casa, condomínio e academia completa. Um id só existe quando muda o que dá para treinar
 // ou quando a foto precisa distingui-lo. Os atributos são só os que mudam a prescrição ou o registro
 // da carga (seção 1.1): pesos possíveis, placas, anilhas, alturas de polia e estações.
@@ -35,7 +35,7 @@ export const ITENS = {
   barra_hexagonal: { nome: 'Barra hexagonal (trap bar)', categoria: 'barra' },
   kettlebell: { nome: 'Kettlebell', categoria: 'halter' },
   banco_scott: { nome: 'Banco Scott', categoria: 'banco' },
-  banco_romano: { nome: 'Banco romano (hiperextensão)', categoria: 'banco' },
+  banco_romano: { nome: 'Banco romano (hiperextensão) ou GHD', categoria: 'banco' },
   estacao_puxada: { nome: 'Puxador alto (estação de puxada)', categoria: 'polia' },
   estacao_remada: { nome: 'Remada baixa (estação)', categoria: 'polia' },
   multifuncional: { nome: 'Multifuncional (várias estações numa torre só)', categoria: 'polia' },
@@ -47,12 +47,16 @@ export const ITENS = {
   rosca_maquina: { nome: 'Máquina de rosca', categoria: 'maquina' },
   triceps_maquina: { nome: 'Máquina de tríceps', categoria: 'maquina' },
   abdominal_maquina: { nome: 'Máquina de abdominal', categoria: 'maquina' },
-  hack: { nome: 'Hack (agachamento articulado)', categoria: 'maquina' },
-  cadeira_abdutora_adutora: { nome: 'Cadeira abdutora e adutora', categoria: 'maquina' },
+  hack: { nome: 'Hack ou agachamento pendular', categoria: 'maquina' },
+  cadeira_abdutora_adutora: { nome: 'Cadeira abdutora e adutora (ou máquina de abdução em pé)', categoria: 'maquina' },
   gluteo_maquina: { nome: 'Glúteo na máquina', categoria: 'maquina' },
   panturrilha_em_pe_maquina: { nome: 'Panturrilha em pé (máquina)', categoria: 'maquina' },
   panturrilha_sentada_maquina: { nome: 'Panturrilha sentada (máquina)', categoria: 'maquina' },
-  suspensao: { nome: 'Suspensão (fitas tipo TRX)', categoria: 'acessorio' },
+  suspensao: { nome: 'Fitas de suspensão (TRX) ou argolas', categoria: 'acessorio' },
+  // Novos no catálogo completo (pesquisa-v2/11, B.2.3; equipamento.caneleira, equipamento.mini-band, equipamento.roda-abdominal).
+  caneleiras: { nome: 'Caneleiras de peso', categoria: 'halter' },
+  mini_band: { nome: 'Mini-band (elástico curto em laço)', categoria: 'acessorio' },
+  roda_abdominal: { nome: 'Roda abdominal', categoria: 'acessorio' },
 } as const;
 
 export type ItemId = keyof typeof ITENS;
@@ -89,6 +93,8 @@ export const inventarioSchema = z
     barra_longa: barra.optional(),
     barra_hexagonal: barra.optional(),
     kettlebell: z.object({ pesosKg: z.array(kg).min(1) }).strict().optional(),
+    caneleiras: z.object({ pesosKg: z.array(kg).min(1) }).strict().optional(),
+    mini_band: z.object({ intensidades: inteiro }).optional(),
     leg_press: deAnilha.optional(),
     hack: deAnilha.optional(),
     smith: deAnilha.optional(),
@@ -188,6 +194,9 @@ export const CAPACIDADES = {
   elastico: (i: Inventario) => !!i.elasticos,
   step: (i: Inventario) => tem(i, 'step'),
   bola_suica: (i: Inventario) => tem(i, 'bola_suica'),
+  caneleiras: (i: Inventario) => !!i.caneleiras,
+  mini_band: (i: Inventario) => !!i.mini_band,
+  roda_abdominal: (i: Inventario) => tem(i, 'roda_abdominal'),
   apoio: () => true, // parede, porta, cadeira: sempre existe
 } as const;
 
@@ -248,6 +257,9 @@ export const NOME_CAPACIDADE: Record<Capacidade, string> = {
   elastico: 'elásticos',
   step: 'step',
   bola_suica: 'bola suíça',
+  caneleiras: 'caneleiras de peso',
+  mini_band: 'mini-band',
+  roda_abdominal: 'roda abdominal',
   apoio: 'apoio',
 };
 export const capacidades = (inv: Inventario) =>
@@ -280,5 +292,8 @@ export const cargaMaxHalter = (inv: Inventario) => cargasHalter(inv).at(-1) ?? 0
 
 /** Pesos de kettlebell (kg), em ordem crescente e sem repetição (progressao.incremento.halteres). */
 export const cargasKettlebell = (inv: Inventario): number[] => [...new Set((inv.kettlebell?.pesosKg ?? []).map(arred))].sort((a, b) => a - b);
+
+/** Pesos de caneleira (kg, de cada uma), em ordem crescente e sem repetição (equipamento.caneleira). */
+export const cargasCaneleiras = (inv: Inventario): number[] => [...new Set((inv.caneleiras?.pesosKg ?? []).map(arred))].sort((a, b) => a - b);
 
 const arred = (x: number) => Math.round(x * 100) / 100;

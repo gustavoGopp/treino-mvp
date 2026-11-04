@@ -44,8 +44,9 @@ describe('selecao.isolador-obrigatorio e selecao.gluteo', () => {
   });
   it('a ponte de glúteo é extensão de quadril, atrás do hip thrust e do glúteo na máquina; abdução na máquina ou na polia, com a lacuna explicada se faltar', () => {
     expect(POR_ID['ponte-gluteo']!.padrao).toBe('extensao-quadril');
-    expect(FUNCAO['extensao-quadril']!.niveis).toEqual([['hip-thrust', 'coice-maquina'], ['ponte-gluteo', 'ponte-gluteo-halter', 'coice-polia', 'hiperextensao']]);
-    expect(FUNCAO['abducao']!.niveis).toEqual([['abducao-maquina', 'abducao-polia']]);
+    expect(FUNCAO['extensao-quadril']!.niveis).toEqual([['hip-thrust', 'coice-maquina'], ['ponte-gluteo', 'ponte-gluteo-halter', 'coice-polia', 'hiperextensao', 'ponte-pes-bola']]);
+    // Catálogo completo (04/11/2026; equipamento.caneleira, equipamento.mini-band): sem máquina nem polia, a caneleira ou a mini-band.
+    expect(FUNCAO['abducao']!.niveis).toEqual([['abducao-maquina', 'abducao-polia'], ['abducao-caneleira', 'abducao-mini-band']]);
     expect(FUNCAO['abducao']!.lacuna).toBeTruthy();
   });
 });

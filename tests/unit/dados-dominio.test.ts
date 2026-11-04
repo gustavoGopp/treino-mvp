@@ -56,7 +56,7 @@ describe('biblioteca de exercícios', () => {
   it('adutores como secundário de todo agachamento e afundo (kubo2019; plotkin2023; kinoshita2026)', () => {
     const comAdutores = BIBLIOTECA.filter((x) => x.musculos.secundarios.includes('adutores')).map((x) => x.id).sort();
     expect(comAdutores).toEqual(BIBLIOTECA.filter((x) => x.padrao === 'agachar' || x.padrao === 'afundo').map((x) => x.id).sort());
-    expect(BIBLIOTECA.filter((x) => x.musculos.primarios.includes('adutores')).map((x) => x.id)).toEqual(['aducao-maquina']);
+    expect(BIBLIOTECA.filter((x) => x.musculos.primarios.includes('adutores')).map((x) => x.id)).toEqual(['aducao-maquina', 'aducao-caneleira']);
   });
 
   it('toda capacidade pedida por um exercício é dada por algum equipamento (ou é o apoio, que sempre existe)', () => {
@@ -71,6 +71,8 @@ describe('biblioteca de exercícios', () => {
       elasticos: { intensidades: 3 },
       halteres_fixos: { minKg: 2, maxKg: 20, passoKg: 2 },
       kettlebell: { pesosKg: [8] },
+      caneleiras: { pesosKg: [2] },
+      mini_band: { intensidades: 2 },
       anilhas_e_manoplas: { manoplas: 2, manoplaKg: 2, anilhas: [{ kg: 2, qtd: 4 }] },
     };
     const caps = capacidades(inventarioSchema.parse(completo));
@@ -121,8 +123,8 @@ describe('taxonomia', () => {
     expect(capacidades({ cadeira_abdutora_adutora: {} })).toEqual(new Set(['apoio', 'abdutora', 'adutora']));
   });
 
-  it('46 equipamentos (25 de antes e 21 do R0c), com atributos da seção 1.1 opcionais', () => {
-    expect(ITEM_IDS).toHaveLength(46);
+  it('49 equipamentos (25 de antes, 21 do R0c e 3 do catálogo completo), com atributos da seção 1.1 opcionais', () => {
+    expect(ITEM_IDS).toHaveLength(49);
     expect(Object.values(ITENS).every((i) => i.nome.length > 0)).toBe(true);
     expect(inventarioSchema.safeParse({ leg_press: { menorAnilhaKg: 1.25 }, barra_longa: { pesoBarraKg: 20 }, graviton: { placas: 12 }, cadeira_extensora: {} }).success).toBe(true);
     expect(inventarioSchema.safeParse({ polia_simples: { alturaRegulavel: true } }).success).toBe(false);

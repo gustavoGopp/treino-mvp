@@ -1,0 +1,63 @@
+{
+  "id": "rosca-martelo",
+  "name": "Rosca martelo com halteres",
+  "short": "Rosca martelo",
+  "target": "Bíceps (frente do braço); o antebraço ajuda",
+  "setupEq": [
+    "Um par de halteres."
+  ],
+  "setupBody": [
+    "Em pé, pés na largura do quadril, joelhos destravados.",
+    "Halteres ao lado do corpo, palmas viradas uma para a outra.",
+    "Cotovelos encostados ao lado do tronco."
+  ],
+  "exec": [
+    [
+      "hold",
+      "Embaixo",
+      "Braços estendidos, palmas uma para a outra."
+    ],
+    [
+      "conc",
+      "Subida (concêntrica)",
+      "~1 s. Dobre os cotovelos sem girar as mãos; os cotovelos ficam parados. Os dois juntos ou um de cada vez."
+    ],
+    [
+      "hold",
+      "Topo",
+      "Halteres perto dos ombros, palmas ainda uma para a outra."
+    ],
+    [
+      "ecc",
+      "Descida (excêntrica)",
+      "~2 s, até estender os braços."
+    ]
+  ],
+  "range": [
+    "Início: braços estendidos ao lado do corpo.",
+    "Fim: halteres perto dos ombros, cotovelos ainda ao lado do tronco."
+  ],
+  "cues": [
+    "Palmas uma para a outra.",
+    "Cotovelo parado.",
+    "Desce devagar."
+  ],
+  "errors": [
+    {
+      "id": "balanco",
+      "title": "Balançar o tronco",
+      "desc": "Jogar o corpo para trás dá impulso e tira o trabalho do bíceps. Se precisar balançar, o halter está pesado demais."
+    },
+    {
+      "id": "cotovelo",
+      "title": "Cotovelos vão para a frente",
+      "desc": "Levar os cotovelos à frente passa o trabalho para o ombro."
+    },
+    {
+      "id": "curta",
+      "title": "Não estender os braços",
+      "desc": "Sem estender os braços embaixo, o bíceps trabalha só a metade do movimento."
+    }
+  ],
+  "carga": "Pela lista dos seus halteres: o próximo peso quando todas as séries chegarem ao topo da faixa."
+}

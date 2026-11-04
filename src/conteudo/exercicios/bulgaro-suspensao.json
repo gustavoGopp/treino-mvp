@@ -1,0 +1,70 @@
+{
+  "id": "bulgaro-suspensao",
+  "name": "Búlgaro com o pé de trás na suspensão",
+  "short": "Búlgaro na suspensão",
+  "target": "Quadríceps e glúteo da perna da frente; a parte de dentro da coxa (adutores) ajuda",
+  "setupEq": [
+    "Fita de suspensão presa num ponto firme no alto, com a alça na altura do meio da canela.",
+    "Uma parede perto, para apoiar a mão nas primeiras séries."
+  ],
+  "setupBody": [
+    "De costas para a âncora, coloque o peito do pé de trás na alça.",
+    "Pé da frente longe o bastante para o calcanhar ficar no chão embaixo: teste antes, devagar.",
+    "Tronco levemente inclinado à frente, peso na perna da frente."
+  ],
+  "exec": [
+    [
+      "hold",
+      "Em cima",
+      "Joelho da frente quase estendido, pé de trás na alça."
+    ],
+    [
+      "ecc",
+      "Descida (excêntrica)",
+      "~2–3 s. Desça reto: o joelho de trás vai em direção ao chão e o pé de trás vai para trás com a fita."
+    ],
+    [
+      "hold",
+      "Embaixo",
+      "Coxa da frente perto da horizontal."
+    ],
+    [
+      "conc",
+      "Subida (concêntrica)",
+      "~1–1,5 s. Empurre o chão com o pé da frente inteiro; o pé de trás só acompanha."
+    ]
+  ],
+  "range": [
+    "Embaixo: coxa da frente perto da horizontal.",
+    "Em cima: pare antes de travar o joelho.",
+    "Se o joelho da frente doer, desça menos."
+  ],
+  "cues": [
+    "Peso no pé da frente.",
+    "Desce reto.",
+    "Pé de trás só acompanha."
+  ],
+  "errors": [
+    {
+      "id": "valgo",
+      "title": "Joelho da frente para dentro",
+      "desc": "O joelho cai para dentro e a carga vai para a articulação."
+    },
+    {
+      "id": "empurra",
+      "title": "Empurrar com o pé de trás",
+      "desc": "Pisar na alça para subir tira o peso da perna da frente, e a fita balança. O pé de trás só acompanha."
+    },
+    {
+      "id": "raso",
+      "title": "Descer pouco",
+      "desc": "Parar com a coxa longe da horizontal corta a parte mais produtiva do movimento."
+    }
+  ],
+  "montagem": [
+    "Prenda a fita num ponto feito para isso: barra fixa firme, viga, ou a trava de porta do fabricante, com a porta fechada e trancada, do lado em que ela fecha contra o batente.",
+    "Antes da 1ª série, deixe o peso cair na fita devagar. Confira se a fita não está gasta.",
+    "Alça na altura do meio da canela; peito do pé de trás na alça. Fique perto de uma parede para apoiar a mão nas primeiras séries."
+  ],
+  "carga": "Peso do corpo, pela escada: descida de 3 s → pausa de 2 s embaixo → 1,5 repetição (desce, sobe até a metade, desce de novo e sobe)."
+}

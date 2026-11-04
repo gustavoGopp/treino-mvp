@@ -35,7 +35,7 @@ export type Troca = {
 export type DiaNoLocal = { dia: Omit<DiaPrograma, 'exercicios'> & { exercicios: ExercicioNoLocal[] }; trocas: Troca[]; avisos: Porque[] };
 
 const minuscula = (t: string) => t.charAt(0).toLowerCase() + t.slice(1);
-const PODE_DROP: Exercicio['carga'][] = ['maquina', 'polia', 'anilha', 'halter', 'kettlebell'];
+const PODE_DROP: Exercicio['carga'][] = ['maquina', 'polia', 'anilha', 'halter', 'kettlebell', 'caneleira'];
 
 /** Por que o exercício não é possível neste local: a falta de equipamento, a dor ou o que a pessoa pediu para evitar. */
 function motivoDaFalta(e: Exercicio, f: Funcao | undefined, perfil: Perfil, inventario: Inventario, ctx: ReturnType<typeof contextoDeSelecao>): string {

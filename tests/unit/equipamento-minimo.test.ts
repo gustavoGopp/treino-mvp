@@ -9,12 +9,14 @@ import { respostasNenhuma } from '../../src/domain/triagem';
 import { elisa, fabio } from '../personas';
 
 // Propriedades do cenário de equipamento mínimo (docs/revisoes/equipamento-minimo.md): o inventário vazio ("Corpo livre")
-// e cada um dos 46 itens sozinho, com atributos típicos de quem tem só aquele item.
+// e cada um dos 49 itens sozinho, com atributos típicos de quem tem só aquele item.
 const SOZINHO: Partial<Record<ItemId, object>> = {
   halteres_fixos: { minKg: 5, maxKg: 5, passoKg: 5 },
   anilhas_e_manoplas: { manoplas: 2, manoplaKg: 2, anilhas: [{ kg: 1, qtd: 4 }, { kg: 2, qtd: 4 }] },
   elasticos: { intensidades: 1 },
   kettlebell: { pesosKg: [12] },
+  caneleiras: { pesosKg: [2] },
+  mini_band: { intensidades: 1 },
   polia_simples: { altura: 'alta' },
   multifuncional: { puxador: true, remadaBaixa: true },
   banco_regulavel: { declina: false },

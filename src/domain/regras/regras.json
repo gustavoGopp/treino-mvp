@@ -1176,11 +1176,11 @@
   },
   {
     "id": "selecao.aducao-complemento",
-    "regra": "Adução na máquina (adutores, sem meta própria): complemento opcional no dia de pernas",
+    "regra": "Adução na máquina ou, sem ela, com caneleira deitado de lado (`equipamento.caneleira`, desde 04/11/2026) (adutores, sem meta própria): complemento opcional no dia de pernas",
     "valores": {
-      "iniciante": "só quando pernas ou glúteos são prioridade e há tempo; sai primeiro nos cortes; sem a máquina, nenhum aviso",
-      "intermediario": "só quando pernas ou glúteos são prioridade e há tempo; sai primeiro nos cortes; sem a máquina, nenhum aviso",
-      "avancado": "só quando pernas ou glúteos são prioridade e há tempo; sai primeiro nos cortes; sem a máquina, nenhum aviso"
+      "iniciante": "só quando pernas ou glúteos são prioridade e há tempo; sai primeiro nos cortes; sem a máquina nem caneleiras, nenhum aviso",
+      "intermediario": "só quando pernas ou glúteos são prioridade e há tempo; sai primeiro nos cortes; sem a máquina nem caneleiras, nenhum aviso",
+      "avancado": "só quando pernas ou glúteos são prioridade e há tempo; sai primeiro nos cortes; sem a máquina nem caneleiras, nenhum aviso"
     },
     "selo": "consenso",
     "fontes": [
@@ -1236,14 +1236,55 @@
     "id": "equipamento.capacidades",
     "regra": "O gerador trata o equipamento por capacidade: cada exercício pede capacidades (polia alta, banco inclinável…) e cada item dá as suas; o multifuncional dá as das estações marcadas, e a polia simples, as da altura",
     "valores": {
-      "iniciante": "46 itens (pesquisa-v2/08, seção 1); a esteira fica só para a foto",
-      "intermediario": "46 itens (pesquisa-v2/08, seção 1); a esteira fica só para a foto",
-      "avancado": "46 itens (pesquisa-v2/08, seção 1); a esteira fica só para a foto"
+      "iniciante": "49 itens (pesquisa-v2/08, seção 1; caneleiras, mini-band e roda abdominal desde o catálogo completo, 11, B.2.3); a esteira fica só para a foto",
+      "intermediario": "49 itens (pesquisa-v2/08, seção 1; caneleiras, mini-band e roda abdominal desde o catálogo completo, 11, B.2.3); a esteira fica só para a foto",
+      "avancado": "49 itens (pesquisa-v2/08, seção 1; caneleiras, mini-band e roda abdominal desde o catálogo completo, 11, B.2.3); a esteira fica só para a foto"
     },
     "selo": "consenso",
     "fontes": [
       "haugen2023",
       "hernandezbelmonte2023",
+      "consenso-projeto"
+    ]
+  },
+  {
+    "id": "equipamento.caneleira",
+    "regra": "Caneleiras de peso (item novo, com o kg de cada uma; catálogo completo, 04/11/2026): abrem a extensão de joelho sentado, a abdução e a adução deitado de lado, as vagas que ficavam vazias em casa. Carga baixa perto da falha cresce como carga alta, mas na extensão o peso no tornozelo pesa mais com o joelho esticado (o lado curto do quadríceps, o contrário de `selecao.alongado`) e pode ficar leve para quem já treina: por isso a extensão com caneleira vem depois da cadeira extensora. Nenhum ensaio de hipertrofia com caneleira em adultos saudáveis (o único lido usou saquinhos de 0,5–1 kg em diabéticos)",
+    "valores": {
+      "iniciante": "extensão de joelho sentado, abdução e adução deitado de lado; na vaga da extensora, depois da cadeira extensora",
+      "intermediario": "extensão de joelho sentado, abdução e adução deitado de lado; na vaga da extensora, depois da cadeira extensora",
+      "avancado": "extensão de joelho sentado, abdução e adução deitado de lado; na vaga da extensora, depois da cadeira extensora"
+    },
+    "selo": "consenso",
+    "fontes": [
+      "chien2022",
+      "schoenfeld2017b",
+      "consenso-projeto"
+    ]
+  },
+  {
+    "id": "equipamento.mini-band",
+    "regra": "Mini-band (elástico curto em laço; item novo, catálogo completo, 04/11/2026): abre a abdução de quadril, que faz crescer a parte de cima do glúteo; é item próprio, separado dos elásticos longos: ter uma não abre os exercícios da outra, e a escada usa as intensidades da mini-band",
+    "valores": {
+      "iniciante": "abdução sentado com a mini-band; a escada pelas intensidades da mini-band",
+      "intermediario": "abdução sentado com a mini-band; a escada pelas intensidades da mini-band",
+      "avancado": "abdução sentado com a mini-band; a escada pelas intensidades da mini-band"
+    },
+    "selo": "um estudo",
+    "fontes": [
+      "attarieh2026"
+    ]
+  },
+  {
+    "id": "equipamento.roda-abdominal",
+    "regra": "Roda abdominal (item novo, catálogo completo, 04/11/2026): a lombar arqueia quando o abdômen cede, por isso fica fora do iniciante (complexidade 3) e sai com dor lombar (a lombar está nas articulações do exercício); entra como alternativa na vaga de abdômen, sem tirar as opções que já existem. Nenhum ensaio compara exercícios de abdômen com medida de hipertrofia",
+    "valores": {
+      "iniciante": "não entra",
+      "intermediario": "alternativa na vaga de abdômen; sai com dor lombar",
+      "avancado": "alternativa na vaga de abdômen; sai com dor lombar"
+    },
+    "selo": "consenso",
+    "fontes": [
       "consenso-projeto"
     ]
   },
@@ -1803,9 +1844,9 @@
     "id": "visao.desambiguacao",
     "regra": "Dicas para não confundir aparelhos parecidos no pedido da foto (hack × leg press, voador × polia dupla, multifuncional × estação de polia, smith × rack…); o par confundível ausente conta como falso positivo grave no eval",
     "valores": {
-      "iniciante": "14 dicas no pedido (pesquisa-v2/08, seção 4)",
-      "intermediario": "14 dicas no pedido (pesquisa-v2/08, seção 4)",
-      "avancado": "14 dicas no pedido (pesquisa-v2/08, seção 4)"
+      "iniciante": "16 dicas no pedido (pesquisa-v2/08, seção 4; caneleira × tornozeleira da polia e mini-band × elásticos longos, 11, B.2.3)",
+      "intermediario": "16 dicas no pedido (pesquisa-v2/08, seção 4; caneleira × tornozeleira da polia e mini-band × elásticos longos, 11, B.2.3)",
+      "avancado": "16 dicas no pedido (pesquisa-v2/08, seção 4; caneleira × tornozeleira da polia e mini-band × elásticos longos, 11, B.2.3)"
     },
     "selo": "consenso",
     "fontes": [

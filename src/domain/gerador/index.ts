@@ -1,6 +1,6 @@
 import { BIBLIOTECA, MUSCULOS, type Articulacao, type Exercicio, type Musculo, type Padrao } from '../biblioteca';
 import { DESCANSO, OBJETIVO_FORCA, READAPTACAO, RIR, TEMPO, VOLUME, NIVEL_COMPLEXIDADE_MAX, OBRIGATORIO_CURTO, exerciciosPorSessao, r, type Nivel } from '../regras';
-import { capacidades, cargaMaxHalter, cargasHalter, cargasKettlebell, ITENS, type Inventario, type ItemId } from '../taxonomia/equipamentos';
+import { capacidades, cargaMaxHalter, cargasCaneleiras, cargasHalter, cargasKettlebell, ITENS, type Capacidade, type Inventario, type ItemId } from '../taxonomia/equipamentos';
 import { avaliarTriagem, efeitoDaDor, type ResultadoTriagem, type Triagem } from '../triagem';
 import { divisaoEscolhida, temDiaDeTronco, type DiasSemana, type Divisao, type DivisaoId, type Vaga } from './divisoes';
 import { FUNCAO, funcoesDoExercicio, type Funcao } from './funcoes';
@@ -148,11 +148,12 @@ export function contextoDeSelecao(perfil: Perfil, inventarioOriginal: Inventario
   // com animação aprovada; por fim o id, só para o resultado ser estável.
   const halterMax = cargaMaxHalter(inventario);
   const kettlebellMax = cargasKettlebell(inventario).at(-1) ?? 0;
-  // O graviton (assistida) não passa do peso do corpo: conta como o peso do corpo.
+  // O graviton (assistida) não passa do peso do corpo: conta como o peso do corpo. A caneleira é carga baixa
+  // (equipamento.caneleira: 0,5 a 5 kg, em geral): conta como o halter leve.
   const cargaPossivel = (e: Exercicio) =>
     e.carga === 'peso-corpo' || e.carga === 'elastico' || e.carga === 'assistida'
       ? 0
-      : (e.carga === 'halter' && halterMax < 20) || (e.carga === 'kettlebell' && kettlebellMax < 20)
+      : (e.carga === 'halter' && halterMax < 20) || (e.carga === 'kettlebell' && kettlebellMax < 20) || e.carga === 'caneleira'
         ? 1
         : 2;
   /** A pessoa tocou "prefiro este" neste exercício, nesta função (selecao.preferencia). */
@@ -486,11 +487,17 @@ export function gerarPrograma(perfil: Perfil, inventarioOriginal: Inventario): R
   const volumeAntesDoCorte = volumeDe(programaDias);
   const cargasDeHalter = cargasHalter(inventario).length;
   const cargasDeKettlebell = cargasKettlebell(inventario).length;
+  const cargasDeCaneleira = cargasCaneleiras(inventario).length;
   const podeDrop = (x: ExercicioPrescrito) => {
     const c = POR_ID_BIB[x.exId]!.carga;
     return (
       x.tipo === 'isolador' &&
-      (c === 'maquina' || c === 'polia' || c === 'anilha' || (c === 'halter' && cargasDeHalter >= 2) || (c === 'kettlebell' && cargasDeKettlebell >= 2))
+      (c === 'maquina' ||
+        c === 'polia' ||
+        c === 'anilha' ||
+        (c === 'halter' && cargasDeHalter >= 2) ||
+        (c === 'kettlebell' && cargasDeKettlebell >= 2) ||
+        (c === 'caneleira' && cargasDeCaneleira >= 2))
     );
   };
   programaDias = cortarTempo(programaDias, perfil.minutosSessao, metas, nivel, prioritarios, avisos, podeDrop, colchaoDe(perfil));
@@ -726,6 +733,30 @@ const TEXTO_REGRA_FUNCAO: Record<string, (e: Exercicio) => string | null> = {
   'selecao.aducao-complemento': () => 'Complemento opcional para a parte de dentro da coxa (adutores), porque pernas ou glúteos são prioridade.',
 };
 
+/**
+ * O porquê dos itens do catálogo completo (pesquisa-v2/11, B.2.3): a caneleira (com o lado curto na extensão), a
+ * mini-band (item próprio) e a roda abdominal (fora do iniciante; sai com dor lombar).
+ */
+function porqueDoEquipamento(e: Exercicio): Porque | null {
+  const pede = (c: Capacidade) => e.requer.some((g) => g.includes(c));
+  if (pede('caneleiras'))
+    return {
+      regraId: r('equipamento.caneleira'),
+      texto:
+        e.padrao === 'isolador-quadriceps'
+          ? 'Com a caneleira, o peso pesa mais com o joelho esticado, o lado curto do músculo (o contrário do que se prefere), e pode ficar leve para quem já treina: por isso ela vem depois da cadeira extensora. Com carga leve, a série só conta perto da falha.'
+          : 'As caneleiras abrem este complemento sem máquina. Com carga leve, a série só conta perto da falha.',
+    };
+  if (pede('mini_band'))
+    return { regraId: r('equipamento.mini-band'), texto: 'A mini-band abre a abdução sem máquina; ela sobe pelas forças da sua mini-band, e não pelas dos elásticos longos.' };
+  if (pede('roda_abdominal'))
+    return {
+      regraId: r('equipamento.roda-abdominal'),
+      texto: 'Roda abdominal: exige muito da lombar, por isso fica fora do iniciante. Volte antes de a lombar arquear; com dor lombar, ela sai do treino.',
+    };
+  return null;
+}
+
 export function porqueDoExercicio(e: Exercicio, funcao: Funcao, nivelFuncao: number, nivel: Nivel, preferido = false): Porque[] {
   const p: Porque[] = [
     {
@@ -742,6 +773,8 @@ export function porqueDoExercicio(e: Exercicio, funcao: Funcao, nivelFuncao: num
     const texto = TEXTO_REGRA_FUNCAO[id]?.(e);
     if (texto) p.push({ regraId: r(id), texto });
   }
+  const doEquipamento = porqueDoEquipamento(e);
+  if (doEquipamento) p.push(doEquipamento);
   if (nivel === 'iniciante' && estavel(e)) p.push({ regraId: r('selecao.estabilidade'), texto: 'Exercício estável e apoiado, mais fácil de aprender.' });
   if (e.tags.includes('montagem'))
     p.push({ regraId: r('seguranca.montagem'), texto: 'Antes da 1ª série, monte com segurança: travas, apoios e ancoragem, como no cartão do exercício.' });

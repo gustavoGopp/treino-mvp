@@ -1,0 +1,67 @@
+{
+  "id": "triceps-frances-polia-unilateral",
+  "name": "Tríceps francês unilateral na polia, com estribo",
+  "short": "Francês unilateral na polia",
+  "target": "Tríceps (parte de trás do braço), principalmente a cabeça longa",
+  "setupEq": [
+    "Polia embaixo, com o estribo (pegador de uma mão) preso no mosquetão."
+  ],
+  "setupBody": [
+    "De costas para a polia, base escalonada: um pé à frente do outro.",
+    "Segure o estribo e leve a mão para trás da cabeça; o cabo passa por trás do corpo.",
+    "Cotovelo apontando para cima, perto da cabeça. A outra mão na cintura."
+  ],
+  "exec": [
+    [
+      "hold",
+      "Alongado",
+      "Mão atrás da cabeça, cotovelo para cima."
+    ],
+    [
+      "conc",
+      "Extensão (concêntrica)",
+      "~1 s. Estenda o braço acima da cabeça; o cotovelo fica parado."
+    ],
+    [
+      "hold",
+      "Braço estendido",
+      "Mão acima da cabeça."
+    ],
+    [
+      "ecc",
+      "Volta (excêntrica)",
+      "~2–3 s, até a mão voltar atrás da cabeça."
+    ]
+  ],
+  "range": [
+    "Início: mão atrás da cabeça, tríceps alongado.",
+    "Fim: braço estendido acima da cabeça."
+  ],
+  "cues": [
+    "Cotovelo para cima.",
+    "Só o antebraço mexe.",
+    "Desce atrás da cabeça."
+  ],
+  "errors": [
+    {
+      "id": "abre",
+      "title": "Abrir o cotovelo",
+      "desc": "O cotovelo abre para o lado e tira a cabeça longa do tríceps da posição alongada. Cotovelo apontando para cima, perto da cabeça."
+    },
+    {
+      "id": "arco",
+      "title": "Arquear as costas",
+      "desc": "Arquear a lombar para subir o estribo tira o trabalho do tríceps e carrega a coluna. Base escalonada e abdômen firme."
+    },
+    {
+      "id": "curta",
+      "title": "Amplitude curta",
+      "desc": "Sem levar a mão atrás da cabeça, você perde a parte alongada do movimento."
+    }
+  ],
+  "montagem": [
+    "Pino da torre bem encaixado e estribo preso no mosquetão. Polia embaixo, de costas para ela, base escalonada.",
+    "No fim da série, volte a placa devagar antes de soltar o estribo."
+  ],
+  "carga": "Pela placa da torre: +1 placa quando todas as séries chegarem ao topo da faixa."
+}

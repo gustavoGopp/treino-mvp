@@ -6,8 +6,8 @@ import { carla } from '../personas';
 import { ITEM_IDS } from '../../src/domain/taxonomia/equipamentos';
 import { medir } from './metas-r0';
 
-// Metas do R0 (docs/PLANO-MVP.md, critério 4), medidas com o inventário da Carla, que desde o R0c tem os 46
-// equipamentos do catálogo (decisão de 01/11/2026), numa varredura de 3 níveis × 12 divisões × 5 durações ×
+// Metas do R0 (docs/PLANO-MVP.md, critério 4), medidas com o inventário da Carla, que desde o R0c tem todos os
+// equipamentos do catálogo (decisão de 01/11/2026; 49 desde o catálogo completo), numa varredura de 3 níveis × 12 divisões × 5 durações ×
 // 3 escolhas de prioridade. No R0b faltavam 6 exercícios, as paralelas e 12 pares de alternativas; o R0c fechou.
 const m = medir(carla.perfil, carla.inventario);
 
@@ -27,7 +27,7 @@ describe(`metas do R0 com o inventário da Carla (${m.programas} programas)`, ()
     // O leg press empata com o hack e o smith em tudo e perde no último desempate (o id): fica nas alternativas.
     expect(m.usados).toEqual(expect.arrayContaining(['cadeira-extensora', 'cadeira-flexora', 'panturrilha-leg-press']));
   });
-  it('os 46 equipamentos estão marcados, e nenhum fica sem exercício possível, salvo a esteira (decidido)', () => {
+  it('os 49 equipamentos estão marcados, e nenhum fica sem exercício possível, salvo a esteira (decidido)', () => {
     expect(Object.keys(carla.inventario)).toHaveLength(ITEM_IDS.length);
     expect([...m.semExercicio].sort()).toEqual(SEM_EXERCICIO_DECIDIDO);
   });

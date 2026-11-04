@@ -32,6 +32,8 @@ const CASOS: Caso[] = [
   { id: 'flexao-bola', exId: 'flexao-bola', inventario: { bola_suica: {} }, onde: 'bola suíça' },
   { id: 'panturrilha-step', exId: 'panturrilha', inventario: { step: {} }, onde: 'step' },
   { id: 'goblet-kettlebell', exId: 'goblet-kettlebell', inventario: { kettlebell: { pesosKg: [12] } }, onde: 'kettlebell de 12 kg' },
+  { id: 'extensao-joelho-caneleira', exId: 'extensao-joelho-caneleira', inventario: { caneleiras: { pesosKg: [2] } }, onde: 'um par de caneleiras de 2 kg' },
+  { id: 'abducao-mini-band-1', exId: 'abducao-mini-band', inventario: { mini_band: { intensidades: 1 } }, onde: 'mini-band de 1 intensidade' },
   ...['goblet', 'rosca-alternada', 'elevacao-halteres'].map((exId) => ({ id: `${exId}-par`, exId, inventario: { halteres_fixos: { minKg: 5, maxKg: 5, passoKg: 5 } }, onde: 'um par de halteres de 5 kg' })),
 ];
 
@@ -47,8 +49,8 @@ const efetiva = (c: Carga) => (c.tipo === 'degrau' ? DEGRAU ** c.degrau : c.tipo
 /** O degrau sugerido existe para quem tem só este inventário? (o 4º degrau pede carga externa ou elástico mais forte) */
 function degrauExiste(c: Carga, caso: Caso): boolean {
   if (c.tipo !== 'degrau' || c.degrau < ESCADA_PESO_CORPO.length - 1) return true;
-  const temCarga = !!caso.inventario.halteres_fixos || !!caso.inventario.anilhas_e_manoplas || !!caso.inventario.kettlebell;
-  return temCarga || (caso.inventario.elasticos?.intensidades ?? 0) > 1;
+  const temCarga = !!caso.inventario.halteres_fixos || !!caso.inventario.anilhas_e_manoplas || !!caso.inventario.kettlebell || !!caso.inventario.caneleiras;
+  return temCarga || (caso.inventario.elasticos?.intensidades ?? 0) > 1 || (caso.inventario.mini_band?.intensidades ?? 0) > 1;
 }
 
 function simular(caso: Caso, comeco: 'inicio' | 'meio') {

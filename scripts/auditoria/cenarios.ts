@@ -17,6 +17,8 @@ const ATRIBUTOS: Partial<Record<ItemId, object>> = {
   elasticos: { intensidades: 3 },
   banco_regulavel: { declina: false },
   kettlebell: { pesosKg: [8, 12, 16] },
+  caneleiras: { pesosKg: [1, 2, 3] },
+  mini_band: { intensidades: 3 },
   multifuncional: { puxador: true, remadaBaixa: true },
   polia_simples: { altura: 'regulavel' },
   voador: { invertido: false },
@@ -37,7 +39,7 @@ export type Cenario = { id: string; nome: string; inventario: Inventario; comum:
 /** Os cenários do mapa da cobertura e do teste de estresse. "comum" = cenário típico, para a prioridade dos achados. */
 export const CENARIOS: Cenario[] = [
   { id: 'casa', nome: 'Casa com halteres e elásticos (atalho)', inventario: deAtalho('casa', 'sem'), comum: true },
-  { id: 'casa+', nome: 'Casa + os "às vezes tem" (banco, barra fixa, kettlebell, suspensão, step, bola)', inventario: deAtalho('casa', 'com'), comum: true },
+  { id: 'casa+', nome: 'Casa + os "às vezes tem" (banco, barra fixa, kettlebell, suspensão, step, bola, caneleiras, mini-band, roda)', inventario: deAtalho('casa', 'com'), comum: true },
   { id: 'condominio', nome: 'Condomínio com multifuncional (atalho: puxador e remada)', inventario: deAtalho('condominio', 'sem'), comum: true },
   {
     id: 'condominio+',
@@ -46,7 +48,7 @@ export const CENARIOS: Cenario[] = [
     comum: true,
   },
   { id: 'academia', nome: 'Academia completa (atalho)', inventario: deAtalho('academia', 'sem'), comum: true },
-  { id: 'academia+', nome: 'Academia completa + kettlebell, elásticos, bola e suspensão (a Carla)', inventario: carla.inventario, comum: false },
+  { id: 'academia+', nome: 'Academia completa + kettlebell, elásticos, bola, suspensão, caneleiras, mini-band e roda (a Carla)', inventario: carla.inventario, comum: false },
   { id: 'peso-corpo', nome: 'Só o peso do corpo (nada marcado)', inventario: {}, comum: false },
   { id: 'elasticos', nome: 'Só elásticos', inventario: { elasticos: { intensidades: 3 } }, comum: false },
   { id: 'halteres', nome: 'Só halteres (2 a 20 kg), sem banco', inventario: { halteres_fixos: { minKg: 2, maxKg: 20, passoKg: 2 } }, comum: true },

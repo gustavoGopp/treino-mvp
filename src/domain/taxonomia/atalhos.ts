@@ -39,14 +39,14 @@ export const ATALHOS: Atalho[] = [
     id: 'casa',
     nome: 'Casa com halteres e elásticos',
     marca: ['anilhas_e_manoplas', 'elasticos'],
-    asVezes: ['banco_reto', 'banco_regulavel', 'barra_fixa', 'kettlebell', 'suspensao', 'step', 'bola_suica'],
+    asVezes: ['banco_reto', 'banco_regulavel', 'barra_fixa', 'kettlebell', 'suspensao', 'step', 'bola_suica', 'caneleiras', 'mini_band', 'roda_abdominal'],
   },
   {
     id: 'condominio',
     nome: 'Condomínio com multifuncional',
     marca: ['multifuncional', 'banco_regulavel', 'halteres_fixos', 'bola_suica'],
     estacoes: ['puxador', 'remadaBaixa'],
-    asVezes: ['barra_longa', 'barra_w', 'barra_fixa', 'elasticos', 'step', 'kettlebell'],
+    asVezes: ['barra_longa', 'barra_w', 'barra_fixa', 'elasticos', 'step', 'kettlebell', 'caneleiras', 'mini_band', 'roda_abdominal'],
   },
   {
     id: 'academia',

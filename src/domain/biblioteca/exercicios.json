@@ -3788,5 +3788,601 @@
   ],
   "carga": "peso-corpo",
   "animacaoId": "nordico"
+ },
+ {
+  "id": "remada-unilateral-sem-banco",
+  "nome": "Remada unilateral com halter, sem banco (mão livre na coxa)",
+  "padrao": "puxar-h",
+  "musculos": {
+   "primarios": [
+    "costas"
+   ],
+   "secundarios": [
+    "biceps",
+    "ombro_posterior"
+   ]
+  },
+  "requer": [
+   [
+    "halteres"
+   ]
+  ],
+  "complexidade": 2,
+  "tipo": "composto",
+  "faixaReps": [
+   8,
+   12
+  ],
+  "unilateral": true,
+  "articulacoes": [
+   "ombro",
+   "cotovelo",
+   "lombar"
+  ],
+  "tags": [
+   "unilateral",
+   "halter"
+  ],
+  "carga": "halter",
+  "animacaoId": null
+ },
+ {
+  "id": "rosca-martelo",
+  "nome": "Rosca martelo com halteres",
+  "padrao": "isolador-biceps",
+  "musculos": {
+   "primarios": [
+    "biceps"
+   ],
+   "secundarios": []
+  },
+  "requer": [
+   [
+    "halteres"
+   ]
+  ],
+  "complexidade": 1,
+  "tipo": "isolador",
+  "faixaReps": [
+   8,
+   12
+  ],
+  "unilateral": false,
+  "articulacoes": [
+   "cotovelo"
+  ],
+  "tags": [
+   "halter"
+  ],
+  "carga": "halter",
+  "animacaoId": null
+ },
+ {
+  "id": "triceps-frances-polia-unilateral",
+  "nome": "Tríceps francês unilateral na polia baixa com estribo",
+  "padrao": "isolador-triceps",
+  "musculos": {
+   "primarios": [
+    "triceps"
+   ],
+   "secundarios": []
+  },
+  "requer": [
+   [
+    "polia_baixa",
+    "estribo"
+   ]
+  ],
+  "complexidade": 1,
+  "tipo": "isolador",
+  "faixaReps": [
+   10,
+   15
+  ],
+  "unilateral": true,
+  "articulacoes": [
+   "ombro",
+   "cotovelo"
+  ],
+  "tags": [
+   "polia",
+   "unilateral",
+   "acima-cabeca",
+   "alongado"
+  ],
+  "carga": "polia",
+  "animacaoId": null
+ },
+ {
+  "id": "remada-unilateral-polia",
+  "nome": "Remada unilateral em pé na polia baixa com estribo",
+  "padrao": "puxar-h",
+  "musculos": {
+   "primarios": [
+    "costas"
+   ],
+   "secundarios": [
+    "biceps",
+    "ombro_posterior"
+   ]
+  },
+  "requer": [
+   [
+    "polia_baixa",
+    "estribo"
+   ]
+  ],
+  "complexidade": 1,
+  "tipo": "composto",
+  "faixaReps": [
+   8,
+   12
+  ],
+  "unilateral": true,
+  "articulacoes": [
+   "ombro",
+   "cotovelo",
+   "lombar"
+  ],
+  "tags": [
+   "polia",
+   "unilateral"
+  ],
+  "carga": "polia",
+  "animacaoId": null
+ },
+ {
+  "id": "crucifixo-invertido-polia",
+  "nome": "Crucifixo invertido na polia, com os cabos cruzados",
+  "padrao": "isolador-ombro-posterior",
+  "musculos": {
+   "primarios": [
+    "ombro_posterior"
+   ],
+   "secundarios": []
+  },
+  "requer": [
+   [
+    "polia_dupla"
+   ]
+  ],
+  "complexidade": 2,
+  "tipo": "isolador",
+  "faixaReps": [
+   12,
+   20
+  ],
+  "unilateral": false,
+  "articulacoes": [
+   "ombro"
+  ],
+  "tags": [
+   "polia"
+  ],
+  "carga": "polia",
+  "animacaoId": null
+ },
+ {
+  "id": "rosca-suspensao",
+  "nome": "Rosca na suspensão",
+  "padrao": "isolador-biceps",
+  "musculos": {
+   "primarios": [
+    "biceps"
+   ],
+   "secundarios": []
+  },
+  "requer": [
+   [
+    "suspensao"
+   ]
+  ],
+  "complexidade": 2,
+  "tipo": "isolador",
+  "faixaReps": [
+   10,
+   15
+  ],
+  "unilateral": false,
+  "articulacoes": [
+   "ombro",
+   "cotovelo"
+  ],
+  "tags": [
+   "peso-corpo",
+   "montagem"
+  ],
+  "carga": "peso-corpo",
+  "animacaoId": null
+ },
+ {
+  "id": "yt-suspensao",
+  "nome": "Abertura em Y e T na suspensão",
+  "padrao": "isolador-ombro-posterior",
+  "musculos": {
+   "primarios": [
+    "ombro_posterior"
+   ],
+   "secundarios": []
+  },
+  "requer": [
+   [
+    "suspensao"
+   ]
+  ],
+  "complexidade": 2,
+  "tipo": "isolador",
+  "faixaReps": [
+   12,
+   20
+  ],
+  "unilateral": false,
+  "articulacoes": [
+   "ombro"
+  ],
+  "tags": [
+   "peso-corpo",
+   "montagem"
+  ],
+  "carga": "peso-corpo",
+  "animacaoId": null
+ },
+ {
+  "id": "triceps-suspensao",
+  "nome": "Tríceps na suspensão",
+  "padrao": "isolador-triceps",
+  "musculos": {
+   "primarios": [
+    "triceps"
+   ],
+   "secundarios": []
+  },
+  "requer": [
+   [
+    "suspensao"
+   ]
+  ],
+  "complexidade": 2,
+  "tipo": "isolador",
+  "faixaReps": [
+   10,
+   15
+  ],
+  "unilateral": false,
+  "articulacoes": [
+   "ombro",
+   "cotovelo"
+  ],
+  "tags": [
+   "peso-corpo",
+   "montagem"
+  ],
+  "carga": "peso-corpo",
+  "animacaoId": null
+ },
+ {
+  "id": "flexao-joelho-suspensao",
+  "nome": "Flexão de joelho na suspensão",
+  "padrao": "flexao-joelho",
+  "musculos": {
+   "primarios": [
+    "posteriores"
+   ],
+   "secundarios": [
+    "gluteos"
+   ]
+  },
+  "requer": [
+   [
+    "suspensao"
+   ]
+  ],
+  "complexidade": 2,
+  "tipo": "isolador",
+  "faixaReps": [
+   8,
+   15
+  ],
+  "unilateral": false,
+  "articulacoes": [
+   "joelho"
+  ],
+  "tags": [
+   "peso-corpo",
+   "montagem"
+  ],
+  "carga": "peso-corpo",
+  "animacaoId": null
+ },
+ {
+  "id": "bulgaro-suspensao",
+  "nome": "Búlgaro na suspensão",
+  "padrao": "afundo",
+  "musculos": {
+   "primarios": [
+    "quadriceps"
+   ],
+   "secundarios": [
+    "gluteos",
+    "adutores"
+   ]
+  },
+  "requer": [
+   [
+    "suspensao"
+   ]
+  ],
+  "complexidade": 3,
+  "tipo": "composto",
+  "faixaReps": [
+   8,
+   15
+  ],
+  "unilateral": true,
+  "articulacoes": [
+   "joelho",
+   "quadril"
+  ],
+  "tags": [
+   "unilateral",
+   "bulgaro",
+   "peso-corpo",
+   "montagem"
+  ],
+  "carga": "peso-corpo",
+  "animacaoId": null
+ },
+ {
+  "id": "elevacao-joelhos-paralelas",
+  "nome": "Elevação de joelhos nas paralelas",
+  "padrao": "core",
+  "musculos": {
+   "primarios": [
+    "abdomen"
+   ],
+   "secundarios": []
+  },
+  "requer": [
+   [
+    "paralelas"
+   ]
+  ],
+  "complexidade": 2,
+  "tipo": "isolador",
+  "faixaReps": [
+   10,
+   15
+  ],
+  "unilateral": false,
+  "articulacoes": [
+   "ombro",
+   "lombar"
+  ],
+  "tags": [
+   "peso-corpo"
+  ],
+  "carga": "peso-corpo",
+  "animacaoId": null
+ },
+ {
+  "id": "abdominal-bola",
+  "nome": "Abdominal na bola suíça",
+  "padrao": "core",
+  "musculos": {
+   "primarios": [
+    "abdomen"
+   ],
+   "secundarios": []
+  },
+  "requer": [
+   [
+    "bola_suica"
+   ]
+  ],
+  "complexidade": 2,
+  "tipo": "isolador",
+  "faixaReps": [
+   12,
+   20
+  ],
+  "unilateral": false,
+  "articulacoes": [
+   "lombar"
+  ],
+  "tags": [
+   "peso-corpo"
+  ],
+  "carga": "peso-corpo",
+  "animacaoId": null
+ },
+ {
+  "id": "ponte-pes-bola",
+  "nome": "Ponte de glúteo com os pés na bola suíça",
+  "padrao": "extensao-quadril",
+  "musculos": {
+   "primarios": [
+    "gluteos"
+   ],
+   "secundarios": []
+  },
+  "requer": [
+   [
+    "bola_suica"
+   ]
+  ],
+  "complexidade": 2,
+  "tipo": "composto",
+  "faixaReps": [
+   12,
+   20
+  ],
+  "unilateral": false,
+  "articulacoes": [
+   "quadril",
+   "joelho"
+  ],
+  "tags": [
+   "peso-corpo"
+  ],
+  "carga": "peso-corpo",
+  "animacaoId": null
+ },
+ {
+  "id": "extensao-joelho-caneleira",
+  "nome": "Extensão de joelho sentado com caneleira",
+  "padrao": "isolador-quadriceps",
+  "musculos": {
+   "primarios": [
+    "quadriceps"
+   ],
+   "secundarios": []
+  },
+  "requer": [
+   [
+    "caneleiras"
+   ]
+  ],
+  "complexidade": 1,
+  "tipo": "isolador",
+  "faixaReps": [
+   15,
+   25
+  ],
+  "unilateral": false,
+  "articulacoes": [
+   "joelho"
+  ],
+  "tags": [
+   "sentado"
+  ],
+  "carga": "caneleira",
+  "animacaoId": null
+ },
+ {
+  "id": "abducao-caneleira",
+  "nome": "Abdução de quadril deitado de lado com caneleira",
+  "padrao": "abducao-quadril",
+  "musculos": {
+   "primarios": [
+    "gluteos"
+   ],
+   "secundarios": []
+  },
+  "requer": [
+   [
+    "caneleiras"
+   ]
+  ],
+  "complexidade": 1,
+  "tipo": "isolador",
+  "faixaReps": [
+   15,
+   25
+  ],
+  "unilateral": true,
+  "articulacoes": [
+   "quadril"
+  ],
+  "tags": [
+   "unilateral",
+   "deitado"
+  ],
+  "carga": "caneleira",
+  "animacaoId": null
+ },
+ {
+  "id": "aducao-caneleira",
+  "nome": "Adução de quadril deitado de lado com caneleira",
+  "padrao": "aducao-quadril",
+  "musculos": {
+   "primarios": [
+    "adutores"
+   ],
+   "secundarios": []
+  },
+  "requer": [
+   [
+    "caneleiras"
+   ]
+  ],
+  "complexidade": 1,
+  "tipo": "isolador",
+  "faixaReps": [
+   15,
+   25
+  ],
+  "unilateral": true,
+  "articulacoes": [
+   "quadril"
+  ],
+  "tags": [
+   "unilateral",
+   "deitado"
+  ],
+  "carga": "caneleira",
+  "animacaoId": null
+ },
+ {
+  "id": "abducao-mini-band",
+  "nome": "Abdução de quadril sentado com mini-band",
+  "padrao": "abducao-quadril",
+  "musculos": {
+   "primarios": [
+    "gluteos"
+   ],
+   "secundarios": []
+  },
+  "requer": [
+   [
+    "mini_band"
+   ]
+  ],
+  "complexidade": 1,
+  "tipo": "isolador",
+  "faixaReps": [
+   12,
+   20
+  ],
+  "unilateral": false,
+  "articulacoes": [
+   "quadril"
+  ],
+  "tags": [
+   "sentado"
+  ],
+  "carga": "elastico",
+  "animacaoId": null
+ },
+ {
+  "id": "roda-abdominal",
+  "nome": "Roda abdominal, ajoelhado",
+  "padrao": "core",
+  "musculos": {
+   "primarios": [
+    "abdomen"
+   ],
+   "secundarios": []
+  },
+  "requer": [
+   [
+    "roda_abdominal"
+   ]
+  ],
+  "complexidade": 3,
+  "tipo": "isolador",
+  "faixaReps": [
+   8,
+   15
+  ],
+  "unilateral": false,
+  "articulacoes": [
+   "ombro",
+   "lombar"
+  ],
+  "tags": [
+   "peso-corpo"
+  ],
+  "carga": "peso-corpo",
+  "animacaoId": null
  }
 ]

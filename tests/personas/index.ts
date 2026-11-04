@@ -85,11 +85,11 @@ export const diego: Persona = {
 
 /**
  * Carla: avançada, academia completa, 5 dias (cenário 4). Desde o R0c (decisão de 01/11/2026), ela tem os
- * 46 equipamentos do catálogo, para as metas do R0 medirem o catálogo inteiro (tests/unit/metas-r0.test.ts).
+ * equipamentos do catálogo (49 desde o catálogo completo, 04/11/2026), para as metas do R0 medirem o catálogo inteiro (tests/unit/metas-r0.test.ts).
  */
 export const carla: Persona = {
   nome: 'Carla',
-  descricao: 'Avançada; academia completa, com todos os 46 equipamentos do catálogo; 5 dias de 75 min.',
+  descricao: 'Avançada; academia completa, com todos os 49 equipamentos do catálogo; 5 dias de 75 min.',
   perfil: {
     nivel: 'avancado',
     semanasParado: 0,
@@ -128,6 +128,9 @@ export const carla: Persona = {
     esteira: {},
     barra_hexagonal: {},
     kettlebell: { pesosKg: [8, 12, 16, 20, 24] },
+    caneleiras: { pesosKg: [1, 2, 3, 5] },
+    mini_band: { intensidades: 3 },
+    roda_abdominal: {},
     banco_scott: {},
     banco_romano: {},
     estacao_puxada: {},

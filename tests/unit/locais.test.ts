@@ -77,9 +77,14 @@ describe('sem equivalente no local (selecao.dia-sem-principal)', () => {
     }
   });
   it('motivo verdadeiro: quando o único equivalente possível já está no treino de hoje, o aviso diz isso (auditoria, achado 10)', () => {
-    const perfil: Perfil = { ...carla.perfil, nivel: 'intermediario', diasSemana: 4, divisao: 'si-2x', minutosSessao: 60, prioridades: [] };
-    const sup = ok(perfil, carla.inventario).dias.find((d) => d.nome === 'Superior A')!;
+    // Sem a remada sem banco e a rosca martelo (catálogo completo, 04/11/2026), que dão outro equivalente só com halteres:
+    // assim o cenário do achado 10 continua o mesmo. Com elas, a remada sem banco entra no lugar da remada apoiada.
     const soHalteres: Inventario = { halteres_fixos: { minKg: 2, maxKg: 20, passoKg: 2 } };
+    const base: Perfil = { ...carla.perfil, nivel: 'intermediario', diasSemana: 4, divisao: 'si-2x', minutosSessao: 60, prioridades: [] };
+    const supBase = ok(base, carla.inventario).dias.find((d) => d.nome === 'Superior A')!;
+    expect(diaNoLocal(supBase, base, soHalteres).trocas.find((t) => t.vaga === 'remada-apoiada')!.entrou).toBe('remada-unilateral-sem-banco');
+    const perfil: Perfil = { ...base, evitarExercicios: ['remada-unilateral-sem-banco', 'rosca-martelo'] };
+    const sup = ok(perfil, carla.inventario).dias.find((d) => d.nome === 'Superior A')!;
     const { trocas } = diaNoLocal(sup, perfil, soHalteres);
     // A remada curvada entra no lugar da puxada; a vaga da remada apoiada não tem outra remada possível ali.
     const remada = trocas.find((t) => t.vaga === 'remada-apoiada')!;

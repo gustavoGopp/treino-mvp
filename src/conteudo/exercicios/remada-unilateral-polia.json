@@ -1,0 +1,68 @@
+{
+  "id": "remada-unilateral-polia",
+  "name": "Remada unilateral na polia baixa, em pé, com estribo",
+  "short": "Remada unilateral na polia",
+  "target": "Dorsal e meio das costas; o bíceps e a parte de trás do ombro ajudam",
+  "setupEq": [
+    "Polia embaixo, com o estribo (pegador de uma mão) preso no mosquetão."
+  ],
+  "setupBody": [
+    "De frente para a polia, segure o estribo e dê passos para trás até a placa sair do lugar com o braço estendido.",
+    "Base escalonada: o pé do lado que puxa fica atrás.",
+    "Incline o tronco à frente com as costas retas e apoie a mão livre na coxa da frente (ou no apoio da estação)."
+  ],
+  "exec": [
+    [
+      "hold",
+      "Braço estendido",
+      "Costas retas, ombro alongado à frente, sem girar."
+    ],
+    [
+      "conc",
+      "Puxada (concêntrica)",
+      "~1 s. Leve o cotovelo para trás, em direção ao quadril, sem girar o tronco."
+    ],
+    [
+      "hold",
+      "Fim",
+      "Mão ao lado do quadril, cotovelo atrás do tronco. Segure 1 s."
+    ],
+    [
+      "ecc",
+      "Volta (excêntrica)",
+      "~2 s, até o braço estender de novo."
+    ]
+  ],
+  "range": [
+    "Início: braço estendido em direção à polia, a placa ainda sem encostar.",
+    "Fim: mão ao lado do quadril, cotovelo passando a linha das costas.",
+    "O tronco fica no mesmo lugar: quem mexe é o braço."
+  ],
+  "cues": [
+    "Mão livre firme.",
+    "Cotovelo para o quadril.",
+    "Tronco parado."
+  ],
+  "errors": [
+    {
+      "id": "gira",
+      "title": "Girar o tronco",
+      "desc": "Abrir o peito para puxar tira o trabalho das costas e torce a lombar. Se precisar girar, a placa está pesada demais."
+    },
+    {
+      "id": "arred",
+      "title": "Arredondar as costas",
+      "desc": "A lombar curva e passa a segurar a carga. Costas retas e mão livre firme."
+    },
+    {
+      "id": "curta",
+      "title": "Não estender o braço",
+      "desc": "Parar a volta no meio corta a parte em que as costas alongam."
+    }
+  ],
+  "montagem": [
+    "Pino da torre bem encaixado e estribo preso no mosquetão. Base escalonada, mão livre na coxa ou no apoio da estação; puxe sem girar o tronco.",
+    "No fim da série, volte a placa devagar antes de soltar o estribo."
+  ],
+  "carga": "Pela placa da torre: +1 placa quando todas as séries chegarem ao topo da faixa."
+}
