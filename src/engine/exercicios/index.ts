@@ -61,6 +61,7 @@ import tricepsSuspensao from './triceps-suspensao';
 import flexaoJoelhoSuspensao from './flexao-joelho-suspensao';
 import bulgaroSuspensao from './bulgaro-suspensao';
 import abdominalBola from './abdominal-bola';
+import pontePesBola from './ponte-pes-bola';
 
 // Mesma ordem do guia original (a ordem define os treinos e a ordem de preparação).
 export const EX = [
@@ -123,4 +124,5 @@ export const EX = [
   flexaoJoelhoSuspensao,
   bulgaroSuspensao,
   abdominalBola,
+  pontePesBola,
 ];

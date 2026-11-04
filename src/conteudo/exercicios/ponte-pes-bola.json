@@ -3,6 +3,8 @@
   "name": "Ponte de glúteo com os pés na bola",
   "short": "Ponte com os pés na bola",
   "target": "Glúteos. Os posteriores da coxa ajudam a segurar a bola, mas o app não conta série para eles aqui",
+  "feel": "Glúteos, na parte de trás do quadril. A parte de trás da coxa trabalha para segurar a bola no lugar.",
+  "feelNote": "Se sentir só a parte de trás da coxa, aproxime um pouco a bola e empurre pelos calcanhares. Se sentir a lombar, o quadril está subindo com a barriga para cima: pare quando o corpo ficar em linha. Cãibra atrás da coxa às vezes acontece: pare, alongue e recomece.",
   "setupEq": [
     "Bola suíça bem cheia, sem rachaduras.",
     "Um colchonete. Nas primeiras séries, a bola encostada na parede."
@@ -39,10 +41,24 @@
     "Embaixo: quadril quase no chão, sem descansar.",
     "Os ombros e a cabeça ficam no chão."
   ],
+  "breath": "Solte o ar subindo, inspire descendo.",
   "cues": [
     "Calcanhar empurra a bola.",
     "Costelas para baixo.",
     "Bola parada."
+  ],
+  "check": [
+    "Bola cheia, sem rachaduras",
+    "Bola na parede nas primeiras séries",
+    "Calcanhares no alto da bola",
+    "Braços abertos no chão",
+    "Série perto da falha, no RIR do programa"
+  ],
+  "vary": "Ficou fácil? A escada: pausa de 2 s no alto, depois os braços cruzados no peito (sem as mãos no chão), depois uma perna só e, por fim, uma perna só com pausa de 2 s no alto.",
+  "note": "<b>Segurança:</b> a bola pode escapar e o quadril cair no chão. Bola bem cheia, encostada na parede no começo, e pernas firmes.",
+  "extLabels": [
+    "embaixo",
+    "topo"
   ],
   "errors": [
     {
@@ -60,9 +76,5 @@
       "title": "Subir pouco",
       "desc": "O quadril não alinha com o tronco e as coxas, e o glúteo trabalha só a metade."
     }
-  ],
-  "montagem": [
-    "Bola bem cheia e sem rachaduras, encostada na parede nas primeiras séries; braços abertos no chão para dar base."
-  ],
-  "carga": "Peso do corpo, pela escada: pausa de 2 s no alto → braços cruzados no peito (sem as mãos no chão) → uma perna só → uma perna só, com pausa de 2 s no alto."
+  ]
 }

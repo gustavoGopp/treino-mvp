@@ -1,12 +1,12 @@
 // @ts-nocheck
-// Animação nova (em revisão). Ponte de glúteo com os pés na bola: deitado de costas, braços abertos no chão,
+// Animação nova (aprovada). Ponte de glúteo com os pés na bola: deitado de costas, braços abertos no chão,
 // calcanhares em cima da bola com as pernas quase estendidas; empurra a bola para baixo com os calcanhares e sobe o
 // quadril até ombros, quadril e joelhos ficarem em linha; desce em ~2 s. Parte da ponte de glúteo aprovada (mesmo
 // tronco e mesmo quadril), com a bola (C3) sob os calcanhares. A bola é desenhada sob o calcanhar: no erro em que
 // ela foge, ela vai junto com os pés. Técnica e fontes: docs/pesquisa/animacoes/ponte-pes-bola.md.
-import { BOX, C3, L3, TX } from '../../desenho';
+import { BOX, C3, L3, TX } from '../desenho';
 import { BALL } from '../compartilhado';
-import { X, Y, Z } from '../../math';
+import { X, Y, Z } from '../math';
 
 const ex = {
   id:'ponte-pes-bola',

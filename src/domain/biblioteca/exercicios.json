@@ -4225,7 +4225,7 @@
    "peso-corpo"
   ],
   "carga": "peso-corpo",
-  "animacaoId": null
+  "animacaoId": "ponte-pes-bola"
  },
  {
   "id": "extensao-joelho-caneleira",
