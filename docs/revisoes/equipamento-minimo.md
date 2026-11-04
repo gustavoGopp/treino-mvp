@@ -382,3 +382,37 @@ As correções aprovadas entraram no branch `claude/affectionate-shannon-16bhl3`
 - flexão com as mãos juntas, pike, flexão de joelho deslizante e nórdico.
 
 Todas dão `ik=0`. Até a aprovação, cada exercício aparece como cartão de texto.
+
+## Decisões da sessão de fechamento (03 e 04/11/2026)
+Sessão de catálogo completo e fechamento (`docs/prompts/sessao-catalogo-e-fechamento.md`), Parte A, item a item, sem nada pré-marcado.
+
+### As 9 folhas de animação
+Pedido do Gustavo na 1ª folha: **"faça a animação de acordo com o movimento mais correto de acordo com as melhores fontes"**. Cada folha foi conferida contra a ficha e as fontes antes de ser mostrada.
+
+| Folha | Decisão | O que mudou antes da aprovação |
+|---|---|---|
+| agachamento com o peso do corpo | aprovada | agachamento completo: quadril abaixo do joelho, calcanhar no chão (antes, coxa paralela). `selecao.amplitude` (moderada), `kubo2019` (um estudo). Adutores no desenho (achado 6) |
+| afundo parado com o peso do corpo | aprovada | adutores da perna da frente no desenho |
+| búlgaro com o peso do corpo | aprovada | adutores da perna da frente no desenho |
+| barra fixa supinada | aprovada | — |
+| ponte de glúteo | aprovada, com o erro mais claro | medido: no topo, ombro, quadril e joelho em linha (179,7° na vista de lado) e canela em pé; o "quadril sobe pouco" é a geometria real. O erro "raso" desceu, para não parecer o quadro de subida |
+| flexão com as mãos juntas | aprovada | — |
+| pike | aprovada com as duas vistas | a vista de frente fica, porque mostra o erro de abrir os cotovelos |
+| flexão de joelho deslizante | aprovada | toalha maior e centrada sob o calcanhar; pé em ângulo reto com a canela (antes, com os joelhos dobrados, apontava para cima como na ponta do pé: "o pé tá esquisito") |
+| nórdico | aprovada, com o sofá redesenhado | sofá com pés, base (calcanhares presos embaixo), almofada, braço e encosto, inteiro no quadro |
+
+As linhas de base do motor (`novas.json`, `estilo-a.json`) ganharam só os 9 exercícios; as 31 animações aprovadas antes não mudaram (o único "−" do diff é a vírgula da última linha).
+
+### Os outros itens
+| # | Item | Decisão |
+|---|---|---|
+| 2 | Snapshots das personas (Ana, Diego, Bruno, Elisa, Fábio) | **aprovados**. Efeito das animações: o Diego passa a fazer o agachamento com o peso do corpo, animado, no lugar do agachamento com elástico (`selecao.equivalencia`: o gerador prefere o equivalente com guia; carga baixa perto da falha cresce como alta, robusta) |
+| 3 | Kettlebell como halter (5 exercícios de um peso só) | **entra só com animação própria**, com o kettlebell desenhado (família M). Medido: com kettlebell + banco, costas 0 → 6; só com o kettlebell, quase nada muda, porque a remada unilateral pede banco (a remada unilateral curvada sem banco vai para a Parte B) |
+| 4 | Suspensão, paralelas, bola, step e banco | decidido um a um, com a medida numa cópia do app: **suspensão:** rosca, Y/T, tríceps, flexão de joelho e búlgaro entram (a rosca e o Y/T levam bíceps e ombro de trás de 3 para 6,3 séries; os outros três são variação); a **flexão na suspensão não entra**. **Paralelas e bola:** elevação de joelhos, abdominal na bola e ponte com os pés na bola entram como variedade. **Step e banco:** subida no step, búlgaro no step e hip thrust com o peso do corpo viram **degraus de escada**, só para quem marcou o step ou o banco |
+| 5 | Tempo que sobra | **avisar e sugerir menos tempo** ("o treino dura cerca de X min; mais tempo não acrescenta exercícios; você pode escolher uma duração menor sem perder nada") |
+| 6 | Lista "o que tem em casa" | **não perguntar e não avisar**; cada exercício ou degrau que depende de móvel (cadeira firme, sofá, chão liso, ponto para o elástico, degrau) ganha **uma alternativa** para quem não tiver. Medido: com a lista e nada marcado, os posteriores do vazio voltariam a 0 |
+| 7 | Flexão com as mãos fechadas para dor leve no punho | **entra**, só para quem marcou punho de 3 a 5 (flexão, flexão com as mãos juntas e pike) |
+| 8 | Juntar os avisos | **juntar e encurtar todos** (os textos novos passam pelo Gustavo antes) |
+| 9 | Animações do elástico | **agora**, logo depois do fechamento (peça nova no motor e 12 folhas) |
+| 10 | Página "Diagnóstico do treino-mvp" | **este projeto não usa a conta da Futurum** (só gustavogopp@gmail.com ou gustavogopp2@gmail.com). A sessão rodou nessa conta; por decisão do Gustavo, tudo fica só no git. A seção atualizada fica em `docs/revisoes/equipamento-minimo/secao-diagnostico.html`, para colar a partir da conta certa |
+| 11 | Levar para a `main` | **direto, sem commit de merge**, depois de `check`, e2e e auditoria passarem e de o Gustavo exportar os dados |
