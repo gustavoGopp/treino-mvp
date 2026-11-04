@@ -1,0 +1,79 @@
+{
+  "id": "triceps-suspensao",
+  "name": "Tríceps na suspensão (mãos à testa)",
+  "short": "Tríceps na suspensão",
+  "target": "Tríceps (parte de trás do braço)",
+  "feel": "Parte de trás do braço, entre o ombro e o cotovelo.",
+  "feelNote": "Se sentir o peito e o ombro, os cotovelos estão abrindo ou descendo e o movimento virou uma flexão: só os antebraços se mexem. Dor no cotovelo não é normal: fique mais em pé.",
+  "setupEq": [
+    "Fitas de suspensão presas num ponto firme no alto, as duas alças na mesma altura."
+  ],
+  "setupBody": [
+    "De costas para a âncora, segure as alças com as palmas para baixo.",
+    "Braços estendidos à frente, na altura dos ombros; a fita passa por cima da cabeça.",
+    "Corpo reto como numa prancha, inclinado à frente. Comece quase em pé: quanto mais inclinado, mais difícil."
+  ],
+  "exec": [
+    [
+      "hold",
+      "Braços estendidos",
+      "Corpo reto, inclinado à frente."
+    ],
+    [
+      "ecc",
+      "Descida (excêntrica)",
+      "~2 s. Dobre os cotovelos e leve as mãos em direção à testa; o corpo vai à frente junto. Os cotovelos apontam para a frente e ficam parados."
+    ],
+    [
+      "hold",
+      "Mãos perto da testa",
+      "Corpo ainda reto, cotovelos parados."
+    ],
+    [
+      "conc",
+      "Extensão (concêntrica)",
+      "~1 s. Estenda os cotovelos e volte o corpo à posição de início."
+    ]
+  ],
+  "range": [
+    "Início: braços estendidos à frente, na altura dos ombros.",
+    "Embaixo: mãos perto da testa, cotovelos dobrados.",
+    "Mais difícil: pés mais para trás, corpo mais inclinado."
+  ],
+  "breath": "Inspire descendo, solte o ar estendendo.",
+  "cues": [
+    "Corpo reto.",
+    "Cotovelos parados.",
+    "Mãos à testa."
+  ],
+  "check": [
+    "Âncora firme, fita sem desgaste",
+    "Alças na mesma altura",
+    "Fita por cima da cabeça, não no pescoço",
+    "Corpo reto, abdômen firme",
+    "Série perto da falha, no RIR do programa"
+  ],
+  "vary": "Ficou fácil? Pés mais para trás (corpo mais inclinado). Depois, a escada: pausa de 2 s com as mãos perto da testa, descida de 3 s e pés ainda mais para trás com a descida de 3 s.",
+  "note": "<b>Montagem segura:</b> Prenda a fita num ponto feito para isso: barra fixa firme, viga, ou a trava de porta do fabricante, com a porta fechada e trancada, do lado em que ela fecha contra o batente. Antes da 1ª série, deixe o peso cair na fita devagar. Confira se a fita não está gasta e se as alças estão na mesma altura. Aqui você fica de costas para a âncora e inclinado à frente: comece quase em pé e incline aos poucos.",
+  "extLabels": [
+    "braços estendidos",
+    "mãos na testa"
+  ],
+  "errors": [
+    {
+      "id": "quadril",
+      "title": "Quadril cai",
+      "desc": "A barriga desce e a lombar arqueia: o peso sai dos braços e vai para as costas. Corpo reto como numa prancha."
+    },
+    {
+      "id": "cotovelo",
+      "title": "Cotovelos abrem ou descem",
+      "desc": "Os cotovelos abrem para os lados ou descem, e o movimento vira uma flexão de braço. Só os antebraços se mexem."
+    },
+    {
+      "id": "curta",
+      "title": "Descer pouco",
+      "desc": "Parar com os braços quase estendidos corta a parte em que o tríceps mais alonga. Leve as mãos até perto da testa."
+    }
+  ]
+}

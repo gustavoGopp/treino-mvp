@@ -27,6 +27,17 @@ for (const g of ex.seq) {
   const s = (k) => sk.side[k];
   console.log(`${g.label.padEnd(28)} P ${f(sk.P)} | ombro R ${f(s('R').S)} | mão R ${f(s('R').G)} L ${f(s('L').G)} | joelho R ${f(s('R').K)} L ${f(s('L').K)} | ik ${m.CTX.IKFAIL}`);
 }
+// Fita de suspensão (peça `suspensao`): o caminho da âncora a cada pegador, pose a pose. A fita não estica, então o
+// comprimento deve variar pouco entre as poses-chave da animação (os erros podem fugir disso de propósito).
+if (ex._fita) {
+  const fitaDe = (K) => {
+    m.CTX.PJ = m.VIEWS[ex.views[0]].proj; m.CTX.VIEW = ex.views[0]; m.CTX.MEAS = [1e9, -1e9, 1e9, -1e9]; m.CTX.prims = [];
+    ex._fita = null; ex.equip(m.skel(K)); m.CTX.MEAS = null;
+    return Object.values(ex._fita).map((f) => `${f.min.toFixed(0)}${f.max - f.min > 0.5 ? `–${f.max.toFixed(0)}` : ''}`).join('/');
+  };
+  console.log(`fita de suspensão (cm, da âncora ao pegador): ${Object.keys(ex.K).map((k) => `${k} ${fitaDe(ex.K[k])}`).join(' · ')}`);
+  for (const e of ex.errors) console.log(`  erro ${e.id}: ${Object.keys(e.K).map((k) => `${k} ${fitaDe(e.K[k])}`).join(' · ')}`);
+}
 const maos = (K) => Object.keys(K).map((k) => `${k} ${dist(m.skel(K[k]).side.R.G, m.skel(K[k]).side.L.G)}`).join(' · ');
 console.log(`distância entre as mãos (cm): ${maos(ex.K)}`);
 for (const e of ex.errors) console.log(`  erro ${e.id}: ${maos(e.K)}`);

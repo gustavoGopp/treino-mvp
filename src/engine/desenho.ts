@@ -179,3 +179,31 @@ export function pullBar(){
   if(CTX.VIEW!=='lateral'){for(const s of[-1,1])BOX([s*84,119,-8],[[X,5],[Y,119],[Z,8]],'eqp',{bias:-400,w:.6});L3([-84,238,-8],[84,238,-8],'eql',3,{bias:-399});}
   else C3([0,230,0],3.6,'eqd',{bias:3});
 }
+
+/* ================= peças novas do catálogo completo (11/2026) ================= */
+/**
+ * Fita de suspensão (TRX ou argolas): mosquetão numa âncora no alto, um trecho único até o ponto em que a fita se
+ * divide e duas fitas até os pegadores (as mãos, ou os pés). A fita não estica: o comprimento sai da pose, e por isso
+ * não há calibração L0; com CTX.MEAS ligado, `ex._fita[id]` guarda o menor e o maior comprimento vistos
+ * (scripts/medir-animacao.mjs imprime os dois), para o autor conferir que a fita não "cresce" entre as fases.
+ * pegadores = [ponto direito, ponto esquerdo] (ou um ponto só: uma fita só). o.tira = comprimento do trecho único (cm). o.pe = pegador de pé (berço
+ * largo, sem anel). cls = 'db' ou 'db-e' (o pegador fica vermelho na figura do erro, como o halter).
+ */
+export function suspensao(ex,id,ancora,pegadores,cls,o={}){
+  const m=pegadores.length>1?mid(pegadores[0],pegadores[1]):pegadores[0],L=len(sub(m,ancora)); // um pegador só: uma fita
+  const u=norm(sub(m,ancora)),tira=Math.min(o.tira??30,L*.6),split=add(ancora,mul(u,tira));
+  if(CTX.MEAS){ // caminho da fita até cada pegador: trecho único + fita própria
+    ex._fita=ex._fita||{};const f=ex._fita[id]||{min:1e9,max:0};
+    for(const p of pegadores){const Lp=tira+len(sub(p,split));f.min=Math.min(f.min,Lp);f.max=Math.max(f.max,Lp);}
+    ex._fita[id]=f;
+  }
+  L3(add(ancora,[0,0,-10]),add(ancora,[0,0,10]),'eql',3,{bias:-3});
+  C3(ancora,2.6,'eqd',{bias:-3});
+  L3(ancora,split,'eql',2.4,{bias:-2});
+  for(const p of pegadores){
+    L3(split,p,'eql',1.8,{bias:-1});
+    const a=norm(Math.abs(u[0])<.9?cross(u,X):cross(u,Y)); // atravessado à fita
+    if(o.pe){L3(add(p,mul(a,-6)),add(p,mul(a,6)),cls,3.2,{bias:.3});}
+    else{C3(p,3,'eqd',{bias:.2});L3(add(p,mul(a,-4.5)),add(p,mul(a,4.5)),cls,2.6,{bias:.3});}
+  }
+}

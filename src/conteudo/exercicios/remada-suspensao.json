@@ -33,17 +33,17 @@
   ],
   "errors": [
     {
-      "id": "e1",
+      "id": "quadril",
       "title": "Quadril cai",
       "desc": "O corpo não fica reto."
     },
     {
-      "id": "e2",
+      "id": "encolher",
       "title": "Encolher os ombros",
       "desc": "Os ombros sobem."
     },
     {
-      "id": "e3",
+      "id": "curta",
       "title": "Não estender os braços",
       "desc": "A volta para no meio."
     }
