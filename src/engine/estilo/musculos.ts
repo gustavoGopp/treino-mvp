@@ -447,6 +447,7 @@ export function listaDe(ex) {
  * 03/11/2026; docs/revisoes/design.md, ponto 2). tests/unit/legenda.test.ts confere esta lista contra a biblioteca.
  */
 export const SO_AJUDA: Record<string, string[]> = {
+  'abdominal-bola': ['obliquos'],
   'abdominal-chao': ['obliquos'],
   'abdominal-polia': ['obliquos'],
   'barra-fixa': ['antebraco'],

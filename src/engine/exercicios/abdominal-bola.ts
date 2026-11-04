@@ -1,10 +1,10 @@
 // @ts-nocheck
-// Animação nova (em revisão). Abdominal na bola suíça (crunch): a parte de baixo das costas apoiada na bola, pés no
+// Animação nova (aprovada). Abdominal na bola suíça (crunch): a parte de baixo das costas apoiada na bola, pés no
 // chão, mãos cruzadas no peito; enrola só a parte de cima das costas e volta acompanhando a curva da bola, que fica
 // parada. Parte do abdominal no chão aprovado (mesmo enrolar do tronco), com a bola (C3, como na flexão na bola) no
 // lugar do chão: a lombar fica na curva e o tronco começa um pouco estendido sobre ela.
 // Técnica e fontes: docs/pesquisa/animacoes/abdominal-bola.md.
-import { C3, L3, TX } from '../../desenho';
+import { C3, L3, TX } from '../desenho';
 import { BALL } from '../compartilhado';
 
 const ex = {

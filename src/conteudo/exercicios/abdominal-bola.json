@@ -2,7 +2,9 @@
   "id": "abdominal-bola",
   "name": "Abdominal na bola suíça (crunch)",
   "short": "Abdominal na bola",
-  "target": "Abdômen",
+  "target": "Abdômen (reto abdominal); os oblíquos ajudam",
+  "feel": "Frente da barriga, entre as costelas e o quadril. Os oblíquos, nas laterais, ajudam.",
+  "feelNote": "Se sentir o pescoço, você está puxando a cabeça: queixo solto, olhar para o teto. Se sentir a frente do quadril, está subindo demais: basta as escápulas saírem da bola.",
   "setupEq": [
     "Bola suíça bem cheia, sem rachaduras.",
     "Tapete ou chão que não escorrega, longe de quinas e móveis."
@@ -39,10 +41,24 @@
     "Fim: escápulas fora da bola; não precisa sentar.",
     "A bola fica parada: quem mexe é o tronco."
   ],
+  "breath": "Solte o ar subindo, inspire descendo.",
   "cues": [
     "Enrola o tronco.",
     "Bola parada.",
     "Pescoço solto."
+  ],
+  "check": [
+    "Bola cheia, sem rachaduras",
+    "Chão que não escorrega",
+    "Bola sob a parte de baixo das costas",
+    "Pés firmes na largura do quadril",
+    "Série perto da falha, no RIR do programa"
+  ],
+  "vary": "Ficou fácil? A escada: descida de 3 s, depois os braços acima da cabeça e, por fim, os braços acima da cabeça com pausa de 2 s em cima. Para começar mais fácil, afaste menos os pés da bola, com o tronco mais sentado.",
+  "note": "<b>Segurança:</b> a bola pode escapar. Pés firmes, chão que não escorrega e nada de quinas por perto; nas primeiras séries, a bola encostada na parede.",
+  "extLabels": [
+    "em cima da bola",
+    "topo"
   ],
   "errors": [
     {
@@ -60,10 +76,5 @@
       "title": "Subir até sentar",
       "desc": "Subir o tronco inteiro puxa com o quadril e carrega a lombar. Basta as escápulas saírem da bola."
     }
-  ],
-  "montagem": [
-    "Bola bem cheia e sem rachaduras, sobre tapete que não escorrega, longe de quinas e móveis.",
-    "Pés afastados na largura do quadril. Se sentir tontura ao deitar para trás, pare e sente no chão."
-  ],
-  "carga": "Peso do corpo, pela escada: descida de 3 s → braços acima da cabeça → braços acima da cabeça, com pausa de 2 s em cima."
+  ]
 }

@@ -4193,7 +4193,7 @@
    "peso-corpo"
   ],
   "carga": "peso-corpo",
-  "animacaoId": null
+  "animacaoId": "abdominal-bola"
  },
  {
   "id": "ponte-pes-bola",
