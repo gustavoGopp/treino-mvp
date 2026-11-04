@@ -1,12 +1,12 @@
 // @ts-nocheck
-// Animação nova (em revisão). T na suspensão (o Y entra só no último degrau da escada, no texto): de frente para a
+// Animação nova (aprovada). T na suspensão (o Y entra só no último degrau da escada, no texto): de frente para a
 // âncora, palmas para baixo, corpo reto e inclinado para trás; abre os braços quase retos até as mãos chegarem à linha
 // dos ombros, juntando as escápulas. Parte da remada na suspensão em revisão (mesmo corpo), com a fita mais longa
 // (~100 cm): com os braços retos o corpo sobe muito, de ~60° a ~12° da vertical, como nos vídeos de referência.
 // Técnica e fontes: docs/pesquisa/animacoes/yt-suspensao.md.
-import { ARROW3, L3, TX, suspensao } from '../../desenho';
-import { scapPts } from '../../esqueleto';
-import { add, comb, mul } from '../../math';
+import { ARROW3, L3, TX, suspensao } from '../desenho';
+import { scapPts } from '../esqueleto';
+import { add, comb, mul } from '../math';
 
 const ANC = [0, 205, 0];
 const ex = {

@@ -3,6 +3,8 @@
   "name": "T e Y na suspensão",
   "short": "T e Y na suspensão",
   "target": "Ombro (posterior): a parte de trás do ombro. O meio das costas ajuda a juntar as escápulas, mas o app não conta série de costas aqui",
+  "feel": "Parte de trás do ombro. As escápulas se juntam no fim.",
+  "feelNote": "Se sentir mais o trapézio (pescoço) do que o ombro, os ombros estão subindo: ombros longe das orelhas. Se sentir o bíceps, os cotovelos estão dobrando.",
   "setupEq": [
     "Fitas de suspensão presas num ponto firme no alto, as duas alças na mesma altura."
   ],
@@ -20,7 +22,7 @@
     [
       "conc",
       "Abertura em T (concêntrica)",
-      "~1 s. Abra os braços para os lados, quase retos, até as mãos chegarem na linha dos ombros, juntando as escápulas."
+      "~1 s. Abra os braços para os lados, quase retos, até as mãos chegarem na linha dos ombros, juntando as escápulas. O corpo sobe junto."
     ],
     [
       "hold",
@@ -38,16 +40,30 @@
     "Fim do T: mãos na linha dos ombros, braços quase retos.",
     "No Y (último degrau da escada), os braços sobem na diagonal, acima da cabeça, só até onde o ombro não belisca."
   ],
+  "breath": "Solte o ar abrindo, inspire na volta.",
   "cues": [
     "Braços quase retos.",
     "Ombros longe das orelhas.",
     "Corpo reto."
   ],
+  "check": [
+    "Âncora firme, fita sem desgaste",
+    "Alças na mesma altura",
+    "Palmas para baixo",
+    "Corpo reto, abdômen firme",
+    "Série perto da falha, no RIR do programa"
+  ],
+  "vary": "Ficou fácil? Pés mais à frente (corpo mais deitado). Depois, a escada: pausa de 2 s com os braços abertos, descida de 3 s e, por fim, alternar o T com o Y (braços na diagonal, acima da cabeça) na mesma série.",
+  "note": "<b>Montagem segura:</b> Prenda a fita num ponto feito para isso: barra fixa firme, viga, ou a trava de porta do fabricante, com a porta fechada e trancada, do lado em que ela fecha contra o batente. Antes da 1ª série, deixe o peso cair na fita devagar. Confira se a fita não está gasta e se as alças estão na mesma altura. No Y, suba só até onde o ombro não belisca.",
+  "extLabels": [
+    "braços à frente",
+    "T"
+  ],
   "errors": [
     {
       "id": "cotovelo",
       "title": "Dobrar os cotovelos",
-      "desc": "Puxar com os cotovelos dobrados vira uma remada."
+      "desc": "Puxar com os cotovelos dobrados vira uma remada, e as costas fazem o trabalho do ombro."
     },
     {
       "id": "encolher",
@@ -59,10 +75,5 @@
       "title": "Quadril cai",
       "desc": "O corpo dobra no quadril e o peso sai dos braços. Abdômen e glúteo firmes."
     }
-  ],
-  "montagem": [
-    "Prenda a fita num ponto feito para isso: barra fixa firme, viga, ou a trava de porta do fabricante, com a porta fechada e trancada, do lado em que ela fecha contra o batente.",
-    "Antes da 1ª série, deixe o peso cair na fita devagar. Confira se a fita não está gasta e se as alças estão na mesma altura."
-  ],
-  "carga": "Peso do corpo, pela escada: pés mais à frente (corpo mais deitado) → pausa de 2 s com os braços abertos → descida de 3 s → alternar o T e o Y (braços acima da cabeça) na mesma série."
+  ]
 }
