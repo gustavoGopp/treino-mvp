@@ -1,11 +1,11 @@
 // @ts-nocheck
-// Animação nova (em revisão). Abdução de quadril sentado, com mini-band: sentado na beira do assento, costas retas,
+// Animação nova (aprovada). Abdução de quadril sentado, com mini-band: sentado na beira do assento, costas retas,
 // pés no chão na largura do quadril, mãos na lateral do assento, a faixa nas coxas logo acima dos joelhos; abre os
 // joelhos para fora com os pés no lugar, segura ~1 s e volta em ~2 s sem deixar os joelhos baterem. Parte da extensão
 // de joelho com caneleira em revisão (mesmo corpo sentado e mesmo banco), com o laço (miniBand, feito com a peça band).
 // Técnica e fontes: docs/pesquisa/animacoes/abducao-mini-band.md.
-import { BOX, L3, TX, miniBand } from '../../desenho';
-import { X, Y, Z } from '../../math';
+import { BOX, L3, TX, miniBand } from '../desenho';
+import { X, Y, Z } from '../math';
 
 const ex = {
   id:'abducao-mini-band',
