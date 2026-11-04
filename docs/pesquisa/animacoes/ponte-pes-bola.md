@@ -16,7 +16,7 @@ Exercício decidido pelo Gustavo em 04/11/2026 (`docs/revisoes/equipamento-minim
 
 ## Por que assim
 - Hip thrust e agachamento cresceram o glúteo de forma parecida (`plotkin2023`; **um estudo**); a ponte fica como alternativa na mesma função (**consenso**). Nenhum ensaio com a ponte com os pés na bola.
-- **Por que os posteriores contam aqui e não na ponte do chão:** no hip thrust, com o joelho dobrado, os posteriores quase não cresceram (`plotkin2023`; revisão de anatomia, achado 1). Com os pés na bola e as pernas quase estendidas, os posteriores, que cruzam o quadril e o joelho, ficam mais compridos e participam mais (**consenso**, anatomia; nenhum estudo mediu este exercício). É a marcação da B.3.2.
+- **Por que os posteriores participam mais aqui do que na ponte do chão (sem contar série):** no hip thrust, com o joelho dobrado, os posteriores quase não cresceram (`plotkin2023`; revisão de anatomia, achado 1). Com os pés na bola e as pernas quase estendidas, os posteriores, que cruzam o quadril e o joelho, ficam mais compridos e participam mais (**consenso**, anatomia; nenhum estudo mediu este exercício). É a marcação da B.3.2.
 - Tirar as mãos do chão (degrau 2 da escada) tira apoio e aumenta a exigência do quadril (**[opinião]** da B.2.5).
 
 ## Erros comuns
@@ -30,7 +30,7 @@ Exercício decidido pelo Gustavo em 04/11/2026 (`docs/revisoes/equipamento-minim
 - Câimbra na parte de trás da coxa: parar e retomar com menos repetições. Dor articular aguda, formigamento ou perda de força incomum: parar, usar a alternativa e procurar avaliação se persistir (`seguranca.alerta.musculoesqueletico`).
 
 ## Músculos
-Primário: glúteos. Secundário: posteriores da coxa (B.3.2: `gluteos` / `posteriores`). Selo: **consenso** (por anatomia; o achado 1, de **um estudo**, vale para o joelho dobrado e não se aplica direto aqui).
+Primário: glúteos. Sem secundário contado: os posteriores participam mais que na ponte do chão (pernas quase estendidas; **consenso**, anatomia), mas a revisão de anatomia (achado 1, aprovado pelo Gustavo) não conta posteriores em nenhuma extensão de quadril, e nenhum estudo mediu este exercício. A B.3.2 propunha `posteriores`; ficou de fora para não inflar o volume. Selo: **consenso**.
 
 ## Como a carga sobe
 Peso do corpo, pela escada da B.2.5: pausa de 2 s no alto → braços cruzados no peito (sem as mãos no chão) → uma perna só → uma perna só, com pausa de 2 s no alto. **Consenso** como passos de escada; o unilateral se apoia em `kassiano2025` (moderada).

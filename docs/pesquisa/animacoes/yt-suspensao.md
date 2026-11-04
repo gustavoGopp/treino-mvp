@@ -32,7 +32,7 @@ Exercício decidido pelo Gustavo em 04/11/2026 (`docs/revisoes/equipamento-minim
 - Dor articular aguda, formigamento, tontura ou perda de força incomum: parar, usar a alternativa e procurar avaliação se persistir (`seguranca.alerta.musculoesqueletico`).
 
 ## Músculos
-Primário: ombro posterior. Secundário: costas (meio das costas: o T pede juntar as escápulas, como o face pull; revisão de anatomia, achado 5). É a marcação da B.3.2 (`ombro_posterior`; `costas`). Selo: **consenso** (EMG como apoio).
+Primário: ombro posterior. Sem secundário contado: o meio das costas ajuda a juntar as escápulas no T, mas, pela revisão de anatomia (achado 5, aprovado pelo Gustavo), só os face pulls contam costas; a B.3.2 propunha `costas` e ficou de fora para não inflar o volume. Selo: **consenso** (EMG como apoio).
 
 ## Como a carga sobe
 Peso do corpo, pela escada da B.2.5: pés mais à frente (corpo mais deitado) → pausa de 2 s com os braços abertos → descida de 3 s → alternar o T e o Y na mesma série. **Consenso** como passos de escada.
