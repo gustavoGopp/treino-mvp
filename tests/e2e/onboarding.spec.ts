@@ -15,8 +15,9 @@ test('do zero ao programa em menos de 5 minutos (persona Ana)', async ({ page })
   await expect(painel.locator('.sub-rx').first()).toContainText('RIR 3–4');
   // Exercício com animação mostra a imagem e abre o guia.
   await expect(painel.locator('.miniatura svg').first()).toBeVisible();
-  // Sem animação aprovada: "guia em texto" (ponte com halter e flexão de joelho deslizante), nunca uma animação improvisada.
-  await expect(painel.locator('.miniatura.vazia')).toHaveCount(2);
+  // Sem animação aprovada: "guia em texto" (ponte com halter), nunca uma animação improvisada. A flexão de joelho
+  // deslizante ganhou a animação em 04/11/2026.
+  await expect(painel.locator('.miniatura.vazia')).toHaveCount(1);
   // O porquê, com o selo de evidência, fica um toque abaixo.
   await painel.getByText('Detalhes', { exact: true }).first().click();
   await expect(painel.locator('.mais .selo').first()).toBeVisible();
@@ -92,8 +93,8 @@ test('"sim" só no osteoarticular pede as regiões e a dor de hoje, e o aviso di
   });
   // "Restrições" não pergunta a dor de novo: só mostra o resumo (o teste passou por ela).
   await page.getByText('Sobre o programa: avisos e o porquê').click();
-  await expect(page.getByText(/peito 0 de \d+ séries, porque os exercícios que carregam o ombro ficaram de fora por causa da dor no ombro \(7 hoje\)/)).toBeVisible();
-  await expect(page.getByText(/Procure avaliação profissional; quando a dor baixar/)).toBeVisible();
+  await expect(page.getByText(/peito 0 de \d+ séries por semana\. Os exercícios que carregam o ombro saíram por causa da dor no ombro \(7 hoje\)/)).toBeVisible();
+  await expect(page.getByText(/Procure avaliação profissional\. Quando a dor baixar/)).toBeVisible();
 });
 
 test('cadastro sem nenhuma condição: 0 caractere digitado e até 13 toques, sem contar a tela de equipamento (critério 1)', async ({ page }) => {
