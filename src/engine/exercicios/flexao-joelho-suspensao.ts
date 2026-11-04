@@ -1,10 +1,10 @@
 // @ts-nocheck
-// Animação nova (em revisão). Flexão de joelho na suspensão: deitado de costas, calcanhares nas alças (a um palmo e
+// Animação nova (aprovada). Flexão de joelho na suspensão: deitado de costas, calcanhares nas alças (a um palmo e
 // meio do chão), quadril fora do chão em ponte; puxa os calcanhares em direção ao glúteo, subindo o quadril, e volta
 // sem o quadril encostar no chão. Parte da flexão de joelho deslizante aprovada (mesmo corpo e mesmo caminho), com os
 // pés mais altos (nas alças) e a fita no lugar da toalha. Técnica e fontes: docs/pesquisa/animacoes/flexao-joelho-suspensao.md.
-import { BOX, L3, TX, suspensao } from '../../desenho';
-import { X, Y, Z } from '../../math';
+import { BOX, L3, TX, suspensao } from '../desenho';
+import { X, Y, Z } from '../math';
 
 const ANC = [0, 205, 40]; // âncora no alto, sobre os pés
 const ex = {

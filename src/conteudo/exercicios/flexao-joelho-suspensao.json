@@ -3,6 +3,8 @@
   "name": "Flexão de joelho na suspensão",
   "short": "Flexão de joelho na suspensão",
   "target": "Posteriores da coxa; o glúteo ajuda a segurar o quadril no alto",
+  "feel": "Parte de trás da coxa. O glúteo trabalha como secundário, segurando o quadril fora do chão.",
+  "feelNote": "Se sentir a lombar, o quadril está subindo com a barriga para cima: ombros, quadril e joelhos em linha. Cãibra atrás da coxa às vezes acontece: pare, alongue e recomece com menos repetições.",
   "setupEq": [
     "Fitas de suspensão presas num ponto firme no alto, com as alças a um palmo e meio do chão.",
     "Um colchonete sob os ombros."
@@ -39,10 +41,24 @@
     "Início: pernas quase estendidas, com o quadril ainda fora do chão.",
     "As fitas ficam paradas: não deixe as pernas balançarem para os lados."
   ],
+  "breath": "Solte o ar puxando, inspire na volta.",
   "cues": [
     "Quadril fora do chão.",
     "Calcanhar no glúteo.",
     "Volta devagar."
+  ],
+  "check": [
+    "Âncora firme, fita sem desgaste",
+    "Alças a um palmo e meio do chão, na mesma altura",
+    "Colchonete sob os ombros",
+    "Calcanhares dentro das alças",
+    "Série perto da falha, no RIR do programa"
+  ],
+  "vary": "Ficou fácil? A escada: pausa de 2 s com os joelhos dobrados, descida de 3 s e, depois, uma perna só. Ainda não faz com as duas pernas? Faça só a volta devagar e suba o quadril de novo com os pés perto.",
+  "note": "<b>Montagem segura:</b> Prenda a fita num ponto feito para isso: barra fixa firme, viga, ou a trava de porta do fabricante, com a porta fechada e trancada, do lado em que ela fecha contra o batente. Antes da 1ª série, puxe as alças com os pés e confira que a âncora não cede. Confira se a fita não está gasta e se as alças estão na mesma altura.",
+  "extLabels": [
+    "pernas estendidas",
+    "joelhos dobrados"
   ],
   "errors": [
     {
@@ -60,11 +76,5 @@
       "title": "Puxar pouco",
       "desc": "Parar com os joelhos quase estendidos corta metade do movimento. Puxe os calcanhares até perto do glúteo."
     }
-  ],
-  "montagem": [
-    "Prenda a fita num ponto feito para isso: barra fixa firme, viga, ou a trava de porta do fabricante, com a porta fechada e trancada, do lado em que ela fecha contra o batente.",
-    "Antes da 1ª série, puxe as alças com os pés e confira que a âncora não cede. Confira se a fita não está gasta e se as alças estão na mesma altura.",
-    "Alças a um palmo e meio do chão, calcanhares nas alças; colchonete sob os ombros."
-  ],
-  "carga": "Peso do corpo, pela escada: pausa de 2 s com os joelhos dobrados → descida de 3 s → uma perna só. Ainda não faz com as duas pernas? Faça só a volta devagar e suba o quadril de novo com os pés perto."
+  ]
 }
