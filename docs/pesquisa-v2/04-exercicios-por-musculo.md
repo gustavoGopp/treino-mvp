@@ -94,3 +94,10 @@ Legenda da coluna "Ordem de preferência": a lista é **por função**; o exerc�
   - Kassiano 2023 (37015016);
   - de França 2015 (26244600);
   - revisão narrativa sobre posição alongada (37556026).
+
+## Atualização de 04/11/2026 (doc 11)
+A sessão de catálogo releu as fontes deste arquivo e achou quatro pontos a corrigir. O texto acima não foi reescrito; os detalhes, com selo e fonte, estão em [11-catalogo-completo.md](11-catalogo-completo.md), seção "O que muda em relação ao que o projeto dizia". Nada disso muda `regras.md`, os dados ou o código sem a decisão do Gustavo.
+1. **Agachamento profundo:** a linha do quadríceps o justifica pelo quadríceps, mas em Kubo 2019 o quadríceps cresceu igual no completo e no meio agachamento (+4,9% × +4,6%). A profundidade fez diferença no **glúteo** (+6,7% × +2,2%) e nos **adutores** (+6,2% × +2,7%). "Profundo" se justifica por eles (um estudo), não pelo quadríceps.
+2. **Reto femoral:** a extensora o cresce e o agachamento não, em três ensaios de três grupos (Kinoshita 2026, Kassiano 2026, Zabaleta-Korta 2021), mais Kubo 2019. O selo passa de "um estudo cada" para **moderada**, como o `08` já tinha posto.
+3. **Parcial alongada:** Wolf 2025 e um ensaio grande de 15 locais (Gschneidner 2025, 297 pessoas) mostram parcial alongada **≈** amplitude completa nos braços (moderada), e não vantagem. Isso **não derruba** `selecao.alongado`, que é sobre a escolha do exercício (Maeo 2021, Maeo 2023, Kinoshita 2023 e 2026), e não sobre amplitude parcial.
+4. **Costas e ombro posterior** continuam **consenso** na escolha do exercício: as buscas desta sessão não acharam nenhum ensaio de hipertrofia que compare exercícios.

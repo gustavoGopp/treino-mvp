@@ -40,7 +40,7 @@ Essas decisões foram copiadas do programa de referência para o código, sem pe
 | [08-equipamentos-v2.md](08-equipamentos-v2.md) | Tema T7: a lista final de 46 equipamentos, o que cada um permite e como a carga sobe, os 3 atalhos de cenário, a foto e a fila das animações com o custo; 30 fichas de técnica novas em `../pesquisa/animacoes/` | Aprovado em 01/11/2026 |
 | [09-trocas-e-locais.md](09-trocas-e-locais.md) | Tema T9: o que se leva do progresso ao trocar de aparelho ou de local, o que recomeça pela calibração na 1ª série e o "prefiro este"; base do marco R1b | Aprovado em 01/11/2026 |
 | [10-equipamento-minimo.md](10-equipamento-minimo.md) | Quem não tem nada, ou tem um aparelho só: peso do corpo, puxar sem equipamento, escadas por exercício | Decidido em 03 e 04/11/2026 (`docs/revisoes/equipamento-minimo.md`) |
-| 11-catalogo-completo.md | O catálogo completo de exercícios, por músculo, nível e equipamento | Em andamento (sessão de catálogo, 04/11/2026) |
+| [11-catalogo-completo.md](11-catalogo-completo.md) | O catálogo completo, por músculo, nível e equipamento: os buracos medidos, 17 equipamentos candidatos (com o sandbag), os exercícios que faltam, escadas, segurança e a lista de entrada ordenada por ganho ÷ custo de animação | Para a decisão do Gustavo |
 | [12-outros-objetivos.md](12-outros-objetivos.md) | Cutting, força máxima e saúde: o que muda no treino e o que o app pode fazer sem sair do MVP | Para a decisão do Gustavo |
 
 ## Próxima sessão
