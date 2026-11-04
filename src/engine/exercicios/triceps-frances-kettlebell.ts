@@ -1,9 +1,9 @@
 // @ts-nocheck
-// Animação nova (em revisão). Tríceps francês com um kettlebell: sentado, as duas mãos nos lados da alça
+// Animação nova (aprovada). Tríceps francês com um kettlebell: sentado, as duas mãos nos lados da alça
 // ("chifres"), a bola para baixo, atrás da cabeça; cotovelos apontando para cima e parados. Parte do tríceps francês
 // com halter aprovado (mesmo corpo e mesmo braço). Técnica e fontes: docs/pesquisa/animacoes/triceps-frances-kettlebell.md.
-import { BOX, L3, TX, kettlebell } from '../../desenho';
-import { X, Y, Z, add, mid, mul, sub } from '../../math';
+import { BOX, L3, TX, kettlebell } from '../desenho';
+import { X, Y, Z, add, mid, mul, sub } from '../math';
 
 const ex = {
   id:'triceps-frances-kettlebell',

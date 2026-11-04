@@ -1,7 +1,7 @@
 // @ts-nocheck
-// Animação nova (em revisão). Stiff com um kettlebell nas duas mãos (pela alça), joelhos levemente dobrados e fixos; o quadril vai para trás e o kettlebell desce perto das pernas. Parte do stiff aprovado (mesmo corpo e mesmo quadril); as mãos se juntam na alça. Técnica e fontes: docs/pesquisa/animacoes/stiff-kettlebell.md.
-import { ARROW3, L3, TX, kettlebell } from '../../desenho';
-import { Z, add, comb, mul, sub } from '../../math';
+// Animação nova (aprovada). Stiff com um kettlebell nas duas mãos (pela alça), joelhos levemente dobrados e fixos; o quadril vai para trás e o kettlebell desce perto das pernas. Parte do stiff aprovado (mesmo corpo e mesmo quadril); as mãos se juntam na alça. Técnica e fontes: docs/pesquisa/animacoes/stiff-kettlebell.md.
+import { ARROW3, L3, TX, kettlebell } from '../desenho';
+import { Z, add, comb, mul, sub } from '../math';
 
 const ex = {
   id:'stiff-kettlebell',

@@ -1,10 +1,10 @@
 // @ts-nocheck
-// Animação nova (em revisão). Remada unilateral com kettlebell: pé esquerdo à frente com o joelho dobrado,
+// Animação nova (aprovada). Remada unilateral com kettlebell: pé esquerdo à frente com o joelho dobrado,
 // mão esquerda apoiada na coxa esquerda, tronco inclinado ~45–60° com a coluna neutra, braço direito puxando.
 // Parte da remada unilateral sem banco aprovada (mesmo corpo e mesmo braço); o halter vira o kettlebell, pendurado pela alça.
 // Técnica e fontes: docs/pesquisa/animacoes/remada-unilateral-kettlebell.md.
-import { TX, kettlebell } from '../../desenho';
-import { Z } from '../../math';
+import { TX, kettlebell } from '../desenho';
+import { Z } from '../math';
 
 const ex = {
   id:'remada-unilateral-kettlebell',

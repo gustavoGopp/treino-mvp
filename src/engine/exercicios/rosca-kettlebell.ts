@@ -1,9 +1,9 @@
 // @ts-nocheck
-// Animação nova (em revisão). Rosca com um kettlebell, uma mão na alça, palma para a frente; a bola fica pendurada
+// Animação nova (aprovada). Rosca com um kettlebell, uma mão na alça, palma para a frente; a bola fica pendurada
 // embaixo da mão. Cotovelo parado ao lado do tronco. Parte da rosca alternada aprovada (mesmo corpo e mesmo braço).
 // Técnica e fontes: docs/pesquisa/animacoes/rosca-kettlebell.md.
-import { L3, TX, kettlebell } from '../../desenho';
-import { X, add } from '../../math';
+import { L3, TX, kettlebell } from '../desenho';
+import { X, add } from '../math';
 
 const baixo={ua:[0,-90],fa:[0,-86]};
 const ex = {

@@ -1,9 +1,9 @@
 // @ts-nocheck
-// Animação nova (em revisão). Desenvolvimento unilateral com kettlebell, em pé: o kettlebell apoiado no antebraço na
+// Animação nova (aprovada). Desenvolvimento unilateral com kettlebell, em pé: o kettlebell apoiado no antebraço na
 // altura do ombro, a bola do lado de fora; sobe até o braço estender acima da cabeça. A outra mão na cintura. Parte do
 // desenvolvimento aprovado (mesmo braço), em pé como a rosca. Técnica e fontes: docs/pesquisa/animacoes/desenvolvimento-unilateral-kettlebell.md.
-import { L3, TX, kettlebell } from '../../desenho';
-import { X, Z, add, comb, norm, sub } from '../../math';
+import { L3, TX, kettlebell } from '../desenho';
+import { X, Z, add, comb, norm, sub } from '../math';
 
 const ex = {
   id:'desenvolvimento-unilateral-kettlebell',
@@ -11,7 +11,7 @@ const ex = {
   base:{P:[0,93,0],lumbar:0,thor:0,neck:0,legR:{ikS:[12,7,0],poleRel:[.1,0,1],ft:[10,-20]},armL:{tr:[17,-44,0],poleRel:[1,-.2,-.5]}},
   keys:{bottom:{armR:{ua:[20,-68],fa:[10,82]}},mid:{armR:{ua:[45,20],fa:[10,86]}},top:{armR:{ua:[20,84],fa:[15,87]}}},
   seq:[
-    {path:['bottom'],dur:.45,kind:'hold',label:'Embaixo',tempo:'altura das orelhas',breath:'INSPIRA'},
+    {path:['bottom'],dur:.45,kind:'hold',label:'Embaixo',tempo:'na altura do ombro',breath:'INSPIRA'},
     {path:['bottom','mid','top'],dur:1.3,kind:'conc',label:'Subida · concêntrica',tempo:'~1–1,5 s',breath:'EXPIRA'},
     {path:['top'],dur:.4,kind:'hold',label:'Topo',tempo:'',breath:'FIRME'},
     {path:['top','mid','bottom'],dur:2.4,kind:'ecc',label:'Descida · excêntrica',tempo:'~2–3 s',breath:'INSPIRA'}

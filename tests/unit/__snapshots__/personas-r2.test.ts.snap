@@ -144,7 +144,7 @@ exports[`snapshots do R2: o treino de cada persona na volta de 30 dias > Carla 1
     "cargas": [
       "Supino inclinado com halteres: 10 kg → 8 kg",
       "Supino reto com barra: 40 kg → 36 kg",
-      "Desenvolvimento em pé com barra: 40 kg → 36 kg",
+      "Desenvolvimento unilateral com kettlebell, em pé: 10 kg → 8 kg",
       "Elevação lateral unilateral na polia: placa 8 → placa 7",
       "Crucifixo com halteres no banco plano: 10 kg → 8 kg",
       "Tríceps francês sentado com halter: 10 kg → 8 kg",
@@ -170,7 +170,7 @@ exports[`snapshots do R2: o treino de cada persona na volta de 30 dias > Carla 1
     "antes": "semana 6: 24 séries, RIR 1–2 e 0–1, a mesma carga",
     "cargas": [
       "Afundo estático com halteres: 10 kg → 8 kg",
-      "Stiff unilateral com halter: 10 kg → 8 kg",
+      "Stiff com kettlebell: 10 kg → 8 kg",
       "Cadeira extensora: placa 8 → placa 7",
       "Panturrilha em pé no step: 10 kg → 8 kg",
       "Flexão de joelho na cadeira flexora (sentado): placa 8 → placa 7",

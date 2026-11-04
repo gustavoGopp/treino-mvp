@@ -4384,5 +4384,247 @@
   ],
   "carga": "peso-corpo",
   "animacaoId": null
+ },
+ {
+  "id": "remada-unilateral-kettlebell",
+  "nome": "Remada unilateral com kettlebell (mão livre na coxa)",
+  "padrao": "puxar-h",
+  "musculos": {
+   "primarios": [
+    "costas"
+   ],
+   "secundarios": [
+    "biceps",
+    "ombro_posterior"
+   ]
+  },
+  "requer": [
+   [
+    "kettlebell"
+   ]
+  ],
+  "complexidade": 2,
+  "tipo": "composto",
+  "faixaReps": [
+   8,
+   12
+  ],
+  "unilateral": true,
+  "articulacoes": [
+   "ombro",
+   "cotovelo",
+   "lombar"
+  ],
+  "tags": [
+   "unilateral",
+   "kettlebell"
+  ],
+  "carga": "kettlebell",
+  "animacaoId": "remada-unilateral-kettlebell"
+ },
+ {
+  "id": "stiff-kettlebell",
+  "nome": "Stiff com kettlebell",
+  "padrao": "dobrar-quadril",
+  "musculos": {
+   "primarios": [
+    "posteriores"
+   ],
+   "secundarios": [
+    "gluteos"
+   ]
+  },
+  "requer": [
+   [
+    "kettlebell"
+   ]
+  ],
+  "complexidade": 2,
+  "tipo": "composto",
+  "faixaReps": [
+   8,
+   12
+  ],
+  "unilateral": false,
+  "articulacoes": [
+   "quadril",
+   "lombar"
+  ],
+  "tags": [
+   "kettlebell"
+  ],
+  "carga": "kettlebell",
+  "animacaoId": "stiff-kettlebell"
+ },
+ {
+  "id": "rosca-kettlebell",
+  "nome": "Rosca com kettlebell",
+  "padrao": "isolador-biceps",
+  "musculos": {
+   "primarios": [
+    "biceps"
+   ],
+   "secundarios": []
+  },
+  "requer": [
+   [
+    "kettlebell"
+   ]
+  ],
+  "complexidade": 1,
+  "tipo": "isolador",
+  "faixaReps": [
+   8,
+   12
+  ],
+  "unilateral": true,
+  "articulacoes": [
+   "cotovelo"
+  ],
+  "tags": [
+   "unilateral",
+   "kettlebell"
+  ],
+  "carga": "kettlebell",
+  "animacaoId": "rosca-kettlebell"
+ },
+ {
+  "id": "triceps-frances-kettlebell",
+  "nome": "Tríceps francês sentado com kettlebell",
+  "padrao": "isolador-triceps",
+  "musculos": {
+   "primarios": [
+    "triceps"
+   ],
+   "secundarios": []
+  },
+  "requer": [
+   [
+    "kettlebell"
+   ]
+  ],
+  "complexidade": 2,
+  "tipo": "isolador",
+  "faixaReps": [
+   10,
+   15
+  ],
+  "unilateral": false,
+  "articulacoes": [
+   "ombro",
+   "cotovelo"
+  ],
+  "tags": [
+   "acima-cabeca",
+   "alongado",
+   "kettlebell"
+  ],
+  "carga": "kettlebell",
+  "animacaoId": "triceps-frances-kettlebell"
+ },
+ {
+  "id": "afundo-kettlebell",
+  "nome": "Afundo com kettlebell junto ao peito",
+  "padrao": "afundo",
+  "musculos": {
+   "primarios": [
+    "quadriceps"
+   ],
+   "secundarios": [
+    "gluteos",
+    "adutores"
+   ]
+  },
+  "requer": [
+   [
+    "kettlebell"
+   ]
+  ],
+  "complexidade": 1,
+  "tipo": "composto",
+  "faixaReps": [
+   8,
+   12
+  ],
+  "unilateral": true,
+  "articulacoes": [
+   "joelho",
+   "quadril"
+  ],
+  "tags": [
+   "unilateral",
+   "kettlebell"
+  ],
+  "carga": "kettlebell",
+  "animacaoId": "afundo-kettlebell"
+ },
+ {
+  "id": "desenvolvimento-unilateral-kettlebell",
+  "nome": "Desenvolvimento unilateral com kettlebell, em pé",
+  "padrao": "empurrar-v",
+  "musculos": {
+   "primarios": [
+    "ombro_anterior"
+   ],
+   "secundarios": [
+    "ombro_lateral",
+    "triceps"
+   ]
+  },
+  "requer": [
+   [
+    "kettlebell"
+   ]
+  ],
+  "complexidade": 2,
+  "tipo": "composto",
+  "faixaReps": [
+   8,
+   12
+  ],
+  "unilateral": true,
+  "articulacoes": [
+   "ombro",
+   "cotovelo",
+   "lombar"
+  ],
+  "tags": [
+   "unilateral",
+   "kettlebell"
+  ],
+  "carga": "kettlebell",
+  "animacaoId": "desenvolvimento-unilateral-kettlebell"
+ },
+ {
+  "id": "ponte-kettlebell",
+  "nome": "Ponte de glúteo com kettlebell",
+  "padrao": "extensao-quadril",
+  "musculos": {
+   "primarios": [
+    "gluteos"
+   ],
+   "secundarios": []
+  },
+  "requer": [
+   [
+    "kettlebell"
+   ]
+  ],
+  "complexidade": 1,
+  "tipo": "composto",
+  "faixaReps": [
+   10,
+   20
+  ],
+  "unilateral": false,
+  "articulacoes": [
+   "quadril"
+  ],
+  "tags": [
+   "kettlebell",
+   "montagem"
+  ],
+  "carga": "kettlebell",
+  "animacaoId": "ponte-kettlebell"
  }
 ]

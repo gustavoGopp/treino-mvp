@@ -47,6 +47,13 @@ import roscaMartelo from './rosca-martelo';
 import tricepsFrancesPoliaUnilateral from './triceps-frances-polia-unilateral';
 import remadaUnilateralPolia from './remada-unilateral-polia';
 import crucifixoInvertidoPolia from './crucifixo-invertido-polia';
+import remadaUnilateralKettlebell from './remada-unilateral-kettlebell';
+import stiffKettlebell from './stiff-kettlebell';
+import roscaKettlebell from './rosca-kettlebell';
+import tricepsFrancesKettlebell from './triceps-frances-kettlebell';
+import afundoKettlebell from './afundo-kettlebell';
+import desenvolvimentoUnilateralKettlebell from './desenvolvimento-unilateral-kettlebell';
+import ponteKettlebell from './ponte-kettlebell';
 
 // Mesma ordem do guia original (a ordem define os treinos e a ordem de preparação).
 export const EX = [
@@ -95,4 +102,11 @@ export const EX = [
   tricepsFrancesPoliaUnilateral,
   remadaUnilateralPolia,
   crucifixoInvertidoPolia,
+  remadaUnilateralKettlebell,
+  stiffKettlebell,
+  roscaKettlebell,
+  tricepsFrancesKettlebell,
+  afundoKettlebell,
+  desenvolvimentoUnilateralKettlebell,
+  ponteKettlebell,
 ];

@@ -1,9 +1,9 @@
 // @ts-nocheck
-// Animação nova (em revisão). Afundo com um kettlebell junto ao peito (pegada do goblet: mãos nos lados da alça,
+// Animação nova (aprovada). Afundo com um kettlebell junto ao peito (pegada do goblet: mãos nos lados da alça,
 // a bola para baixo). Parte do afundo com o peso do corpo aprovado (mesmas pernas e o mesmo tronco) e da pegada
 // do goblet aprovado. Técnica e fontes: docs/pesquisa/animacoes/afundo-kettlebell.md.
-import { L3, TX, kettlebell } from '../../desenho';
-import { X, add, mid } from '../../math';
+import { L3, TX, kettlebell } from '../desenho';
+import { X, add, mid } from '../math';
 
 const ex = {
   id:'afundo-kettlebell',

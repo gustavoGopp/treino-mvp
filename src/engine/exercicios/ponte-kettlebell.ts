@@ -1,9 +1,9 @@
 // @ts-nocheck
-// Animação nova (em revisão). Ponte de glúteo com um kettlebell deitado sobre o quadril (com uma toalha embaixo), as
+// Animação nova (aprovada). Ponte de glúteo com um kettlebell deitado sobre o quadril (com uma toalha embaixo), as
 // duas mãos segurando para ele não rolar. Parte da ponte de glúteo aprovada (mesmo corpo e mesmo quadril).
 // Técnica e fontes: docs/pesquisa/animacoes/ponte-kettlebell.md.
-import { BOX, L3, TX, kettlebell } from '../../desenho';
-import { X, Y, Z, comb } from '../../math';
+import { BOX, L3, TX, kettlebell } from '../desenho';
+import { X, Y, Z, comb } from '../math';
 
 const ex = {
   id:'ponte-kettlebell',

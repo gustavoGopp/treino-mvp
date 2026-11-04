@@ -12,7 +12,7 @@ describe('músculos da biblioteca (revisão de anatomia)', () => {
     // Plotkin 2023 (PMID 37877099; um estudo): no hip thrust os posteriores quase não cresceram. A ponte e os coices
     // têm o joelho dobrado como o hip thrust (os coices, por analogia: opinião aprovada pelo Gustavo).
     const extensao = BIBLIOTECA.filter((e) => e.padrao === 'extensao-quadril');
-    expect(extensao.map((e) => e.id).sort()).toEqual(['coice-maquina', 'coice-polia', 'hip-thrust', 'ponte-gluteo', 'ponte-gluteo-halter', 'ponte-pes-bola']);
+    expect(extensao.map((e) => e.id).sort()).toEqual(['coice-maquina', 'coice-polia', 'hip-thrust', 'ponte-gluteo', 'ponte-gluteo-halter', 'ponte-kettlebell', 'ponte-pes-bola']);
     for (const e of extensao) {
       expect(e.musculos.primarios, e.id).not.toContain('posteriores');
       expect(e.musculos.secundarios, e.id).not.toContain('posteriores');

@@ -377,6 +377,12 @@ export const LISTA = {
     ['quadriceps', 'L', 's'],
     ['quadriceps', 'R', 'p'],
   ],
+  'afundo-kettlebell': [
+    ['gluteos', 'R', 's'],
+    ['adutores', 'R', 's'],
+    ['quadriceps', 'L', 's'],
+    ['quadriceps', 'R', 'p'],
+  ],
   'bulgaro-peso-corpo': [
     ['gluteos', 'R', 's'],
     ['adutores', 'R', 's'],
@@ -445,10 +451,12 @@ export const SO_AJUDA: Record<string, string[]> = {
   'flexao-bola': ['panturrilha'],
   'rosca-alternada': ['antebraco'],
   'rosca-martelo': ['antebraco'],
+  'rosca-kettlebell': ['antebraco'],
   'rosca-inclinada': ['antebraco'],
   'rosca-polia': ['antebraco'],
   stiff: ['eretores'],
   'stiff-unilateral': ['eretores'],
+  'stiff-kettlebell': ['eretores'],
   'triceps-frances': ['retoAbdominal'],
 };
 // O padrão das listras (as cores vêm do CSS: .mh-fundo e .mh-listra).

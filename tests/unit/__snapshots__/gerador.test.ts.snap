@@ -83,9 +83,9 @@ exports[`cenários (snapshots revisados) > carla 1`] = `
   "dias": [
     "Superior (70 min): supino-reto 3×6–10 | puxada-unilateral 4×10–15 | remada-apoiada 3×8–12 | desenvolvimento 2×8–12 | elevacao-halteres 4×12–20 | crucifixo-polia 3×10–15 | triceps-frances 2×10–15 | rosca-inclinada 2×8–12 | crucifixo-invertido-polia 2×12–20",
     "Inferior (63 min): agachamento-barra 4×6–10 | stiff 4×8–12 | cadeira-flexora 4×8–15 | cadeira-extensora 4×10–15 | panturrilha 4×10–15 | aducao-maquina 2×12–20 | abdominal-polia 2×10–15",
-    "Empurrar (49 min): supino-inclinado 3×6–10 | supino-barra 2×6–10 | desenvolvimento-barra 2×6–10 | elevacao-lateral 4×10–15 | crucifixo-halteres 3×10–15 | triceps-frances-halter 2×10–15 | triceps-corda 2×10–15",
+    "Empurrar (50 min): supino-inclinado 3×6–10 | supino-barra 2×6–10 | desenvolvimento-unilateral-kettlebell 2×8–12 | elevacao-lateral 4×10–15 | crucifixo-halteres 3×10–15 | triceps-frances-halter 2×10–15 | triceps-corda 2×10–15",
     "Puxar (41 min): remada-baixa 3×8–12 | puxada-barra-reta 3×8–12 | elevacao-halteres 4×12–20 | face-pull 2×12–20 | rosca-maquina 2×8–12 | abdominal-maquina 2×10–15",
-    "Pernas (67 min): afundo 3×8–12 | stiff-unilateral 3×8–12 | cadeira-extensora 3×10–15 | panturrilha-bilateral-step 4×12–20 | cadeira-flexora 3×8–15 | panturrilha-sentada 4×12–20 | coice-maquina 2×10–15 | aducao-maquina 2×12–20",
+    "Pernas (65 min): afundo 3×8–12 | stiff-kettlebell 3×8–12 | cadeira-extensora 3×10–15 | panturrilha-bilateral-step 4×12–20 | cadeira-flexora 3×8–15 | panturrilha-sentada 4×12–20 | coice-maquina 2×10–15 | aducao-maquina 2×12–20",
   ],
   "divisao": "Superior/Inferior + Empurrar/Puxar/Pernas",
   "fases": [],
