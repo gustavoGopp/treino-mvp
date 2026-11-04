@@ -52,6 +52,10 @@ Sem escada própria, vale a genérica (`progressao.incremento.peso-corporal`): 1
 | Panturrilha unilateral no step `panturrilha` | step | 10–15 | 0–1 | meio da faixa | 13 → 15 | semana 6 | 2 | 13 | 4 | peso do corpo · pausa de 2 s embaixo, alongada | — | **anda** |
 | Agachamento goblet com kettlebell `goblet-kettlebell` | kettlebell de 12 kg | 8–15 | 1–2 | início da faixa | 8 → 17 | — | 0 | 17 | 4 | 12 kg | — | **sem carga maior: só a escada em texto** |
 | Agachamento goblet com kettlebell `goblet-kettlebell` | kettlebell de 12 kg | 8–15 | 1–2 | meio da faixa | 12 → 17 | — | 0 | 13 | 4 | 12 kg | — | **sem carga maior: só a escada em texto** |
+| Extensão de joelho sentado com caneleira `extensao-joelho-caneleira` | um par de caneleiras de 2 kg | 15–25 | 0–1 | início da faixa | 15 → 27 | — | 0 | 15 | 3 | 2 kg | — | **sem carga maior: só a escada em texto** |
+| Extensão de joelho sentado com caneleira `extensao-joelho-caneleira` | um par de caneleiras de 2 kg | 15–25 | 0–1 | meio da faixa | 19 → 27 | — | 0 | 12 | 3 | 2 kg | — | **sem carga maior: só a escada em texto** |
+| Abdução de quadril sentado com mini-band `abducao-mini-band` | mini-band de 1 intensidade | 12–20 | 0–1 | início da faixa | 13 → 20 | — | 0 | 17 | 4 | faixa curta | — | **não sobe em 16 semanas** |
+| Abdução de quadril sentado com mini-band `abducao-mini-band` | mini-band de 1 intensidade | 12–20 | 0–1 | meio da faixa | 15 → 20 | semana 10 | 1 | 14 | 4 | faixa curta · pausa de 2 s com a faixa esticada | — | **anda** |
 | Agachamento goblet com calcanhar elevado `goblet` | um par de halteres de 5 kg | 8–15 | 1–2 | início da faixa | 8 → 17 | — | 0 | 17 | 4 | 5 kg | — | **sem carga maior: só a escada em texto** |
 | Agachamento goblet com calcanhar elevado `goblet` | um par de halteres de 5 kg | 8–15 | 1–2 | meio da faixa | 12 → 17 | — | 0 | 13 | 4 | 5 kg | — | **sem carga maior: só a escada em texto** |
 | Rosca alternada com halteres `rosca-alternada` | um par de halteres de 5 kg | 8–12 | 0–1 | início da faixa | 9 → 14 | — | 0 | 15 | 5 | 5 kg | — | **sem carga maior: só a escada em texto** |
@@ -61,7 +65,7 @@ Sem escada própria, vale a genérica (`progressao.incremento.peso-corporal`): 1
 
 ## Resumo
 
-- Casos que não sobem nenhuma vez em 16 semanas: **12 de 52**.
-- Sugestões "estagnado" (3 sessões sem melhora): 800 de 1664 sessões.
+- Casos que não sobem nenhuma vez em 16 semanas: **15 de 56**.
+- Sugestões "estagnado" (3 sessões sem melhora): 858 de 1792 sessões.
 - Casos em que o app sugere um degrau que a pessoa não tem (carga externa sem carga; elástico mais forte com uma intensidade só): **0**.
 - Mediana da 1ª subida, entre os que sobem: semana 10.

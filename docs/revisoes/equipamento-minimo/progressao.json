@@ -1056,6 +1056,95 @@
   }
  },
  {
+  "id": "extensao-joelho-caneleira",
+  "exercicio": "extensao-joelho-caneleira",
+  "nome": "Extensão de joelho sentado com caneleira",
+  "onde": "um par de caneleiras de 2 kg",
+  "inicio": {
+   "comeco": "inicio",
+   "faixa": "15–25",
+   "rir": "0–1",
+   "final": "2 kg",
+   "repsNaPrimeiraSerie": "15 → 27",
+   "estagnado": 15,
+   "ultimaRegra": "progressao.estagnacao",
+   "primeiraSubidaNaSemana": null,
+   "subidas": 0,
+   "maiorTravaEmSessoes": 3,
+   "noUltimoDegrau": true,
+   "acoes": {
+    "estagnado": 15,
+    "manter": 17
+   },
+   "degrauQueNaoExiste": [],
+   "veredito": "sem carga maior: só a escada em texto"
+  },
+  "meio": {
+   "comeco": "meio",
+   "faixa": "15–25",
+   "rir": "0–1",
+   "final": "2 kg",
+   "repsNaPrimeiraSerie": "19 → 27",
+   "estagnado": 12,
+   "ultimaRegra": "equipamento.escada-carga-leve",
+   "primeiraSubidaNaSemana": null,
+   "subidas": 0,
+   "maiorTravaEmSessoes": 3,
+   "noUltimoDegrau": true,
+   "acoes": {
+    "estagnado": 12,
+    "manter": 20
+   },
+   "degrauQueNaoExiste": [],
+   "veredito": "sem carga maior: só a escada em texto"
+  }
+ },
+ {
+  "id": "abducao-mini-band-1",
+  "exercicio": "abducao-mini-band",
+  "nome": "Abdução de quadril sentado com mini-band",
+  "onde": "mini-band de 1 intensidade",
+  "inicio": {
+   "comeco": "inicio",
+   "faixa": "12–20",
+   "rir": "0–1",
+   "final": "faixa curta",
+   "repsNaPrimeiraSerie": "13 → 20",
+   "estagnado": 17,
+   "ultimaRegra": "progressao.manter",
+   "primeiraSubidaNaSemana": null,
+   "subidas": 0,
+   "maiorTravaEmSessoes": 4,
+   "noUltimoDegrau": false,
+   "acoes": {
+    "estagnado": 17,
+    "manter": 15
+   },
+   "degrauQueNaoExiste": [],
+   "veredito": "não sobe em 16 semanas"
+  },
+  "meio": {
+   "comeco": "meio",
+   "faixa": "12–20",
+   "rir": "0–1",
+   "final": "faixa curta · pausa de 2 s com a faixa esticada",
+   "repsNaPrimeiraSerie": "15 → 20",
+   "estagnado": 14,
+   "ultimaRegra": "progressao.estagnacao",
+   "primeiraSubidaNaSemana": 10,
+   "subidas": 1,
+   "maiorTravaEmSessoes": 4,
+   "noUltimoDegrau": false,
+   "acoes": {
+    "estagnado": 14,
+    "manter": 17,
+    "subir": 1
+   },
+   "degrauQueNaoExiste": [],
+   "veredito": "anda"
+  }
+ },
+ {
   "id": "goblet-par",
   "exercicio": "goblet",
   "nome": "Agachamento goblet com calcanhar elevado",
