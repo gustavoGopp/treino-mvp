@@ -39,6 +39,9 @@ Essas decisões foram copiadas do programa de referência para o código, sem pe
 | [07-progressao-e-acompanhamento.md](07-progressao-e-acompanhamento.md) | Tema T6: pausas detectadas sozinhas, "a sua semana", evolução por exercício, semana leve só com sinal e calibração da carga na 1ª série; base do marco R2 | Aprovado em 01/11/2026 |
 | [08-equipamentos-v2.md](08-equipamentos-v2.md) | Tema T7: a lista final de 46 equipamentos, o que cada um permite e como a carga sobe, os 3 atalhos de cenário, a foto e a fila das animações com o custo; 30 fichas de técnica novas em `../pesquisa/animacoes/` | Aprovado em 01/11/2026 |
 | [09-trocas-e-locais.md](09-trocas-e-locais.md) | Tema T9: o que se leva do progresso ao trocar de aparelho ou de local, o que recomeça pela calibração na 1ª série e o "prefiro este"; base do marco R1b | Aprovado em 01/11/2026 |
+| [10-equipamento-minimo.md](10-equipamento-minimo.md) | Quem não tem nada, ou tem um aparelho só: peso do corpo, puxar sem equipamento, escadas por exercício | Decidido em 03 e 04/11/2026 (`docs/revisoes/equipamento-minimo.md`) |
+| 11-catalogo-completo.md | O catálogo completo de exercícios, por músculo, nível e equipamento | Em andamento (sessão de catálogo, 04/11/2026) |
+| [12-outros-objetivos.md](12-outros-objetivos.md) | Cutting, força máxima e saúde: o que muda no treino e o que o app pode fazer sem sair do MVP | Para a decisão do Gustavo |
 
 ## Próxima sessão
 Os temas T1 a T7 e o T9 estão aprovados, e os marcos R0b, R0c, R1 e R1b já os aplicaram. O próximo passo é o marco de código **R2**, com o T6; o prompt está em [`docs/prompts/sessao-r2.md`](../prompts/sessao-r2.md). O T8 (o programa do Gustavo) é feito na máquina dele, com `privado/`. Para ler os resumos do PubMed, use `scripts/pesquisa/pubmed.py`.
