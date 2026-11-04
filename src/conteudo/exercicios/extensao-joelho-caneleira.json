@@ -3,6 +3,8 @@
   "name": "Extensão de joelho sentado, com caneleira",
   "short": "Extensão com caneleira",
   "target": "Quadríceps (frente da coxa)",
+  "feel": "Frente da coxa, principalmente perto do joelho, com a perna esticada.",
+  "feelNote": "Com o joelho esticado a caneleira pesa mais; com ele dobrado, quase nada: por isso a pausa em cima e a descida devagar. Dor na frente do joelho não é normal: pare antes do ponto que dói e, se continuar, pare o exercício e procure avaliação.",
   "setupEq": [
     "Uma caneleira de peso, bem presa no tornozelo.",
     "Uma cadeira firme, sem rodinhas, ou um banco. Sem eles: a beira de uma cama ou de um sofá firme, alta o bastante para o pé ficar fora do chão.",
@@ -11,7 +13,7 @@
   "setupBody": [
     "Sente com as costas retas e segure a lateral do assento.",
     "Coxas apoiadas; a perna da caneleira pendurada, com o joelho dobrado.",
-    "Uma perna de cada vez."
+    "Uma perna de cada vez: termine com uma e faça a série seguinte com a outra."
   ],
   "exec": [
     [
@@ -26,7 +28,7 @@
     ],
     [
       "hold",
-      "Em cima",
+      "Em cima · segura",
       "Segure 1 s. Aqui a caneleira pesa mais."
     ],
     [
@@ -38,13 +40,26 @@
   "range": [
     "Em cima: joelho quase esticado, sem tranco.",
     "Embaixo: joelho bem dobrado, pé fora do chão.",
-    "Com o joelho esticado a caneleira pesa mais; com ele dobrado, quase nada. Por isso a pausa em cima e a descida devagar.",
-    "Se doer na frente do joelho, pare antes do ponto que dói. Se continuar doendo, pare o exercício e procure avaliação."
+    "Se doer na frente do joelho, pare antes do ponto que dói."
   ],
+  "breath": "Solte o ar esticando, inspire descendo.",
   "cues": [
     "Coxa parada.",
     "Segura em cima.",
     "Desce devagar."
+  ],
+  "check": [
+    "Caneleira bem presa",
+    "Cadeira firme, sem rodinhas",
+    "Pé fora do chão embaixo",
+    "Costas retas, mãos no assento",
+    "Série perto da falha, no RIR do programa"
+  ],
+  "vary": "Pela lista das suas caneleiras: a próxima quando todas as séries chegarem ao topo da faixa. Aviso honesto: para quem já treina a caneleira pode ficar leve. Sem caneleira mais pesada: mais repetições, descida de 3 s e, por fim, 1,5 repetição (sobe, desce até a metade, sobe de novo e desce).",
+  "note": "<b>Montagem segura:</b> cadeira firme, sem rodinhas, encostada na parede, ou um banco; sem eles, a beira de uma cama ou de um sofá firme. Caneleira bem presa, para não escorregar do tornozelo.",
+  "extLabels": [
+    "joelho dobrado",
+    "em cima"
   ],
   "errors": [
     {
@@ -62,10 +77,5 @@
       "title": "Deixar a perna cair",
       "desc": "Soltar a descida perde metade do trabalho. Desça em ~2 s."
     }
-  ],
-  "montagem": [
-    "Fivela bem fechada: a caneleira não pode escorregar para o pé.",
-    "Cadeira firme, sem rodinhas e que não seja dobrável, encostada na parede."
-  ],
-  "carga": "Pela lista das suas caneleiras: a próxima quando todas as séries chegarem ao topo da faixa. Aviso honesto: como o peso fica no tornozelo, ele pesa mais com o joelho esticado, e para quem já treina pode ficar leve. Sem caneleira mais pesada: mais repetições → descida de 3 s → 1,5 repetição (sobe, desce até a metade, sobe de novo e desce)."
+  ]
 }

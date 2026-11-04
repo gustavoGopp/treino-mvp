@@ -4256,7 +4256,7 @@
    "sentado"
   ],
   "carga": "caneleira",
-  "animacaoId": null
+  "animacaoId": "extensao-joelho-caneleira"
  },
  {
   "id": "abducao-caneleira",
@@ -4288,7 +4288,7 @@
    "deitado"
   ],
   "carga": "caneleira",
-  "animacaoId": null
+  "animacaoId": "abducao-caneleira"
  },
  {
   "id": "aducao-caneleira",
@@ -4320,7 +4320,7 @@
    "deitado"
   ],
   "carga": "caneleira",
-  "animacaoId": null
+  "animacaoId": "aducao-caneleira"
  },
  {
   "id": "abducao-mini-band",

@@ -1,11 +1,11 @@
 // @ts-nocheck
-// Animação nova (em revisão). Adução de quadril deitado de lado, com caneleira: deitado sobre o lado direito, de
+// Animação nova (aprovada). Adução de quadril deitado de lado, com caneleira: deitado sobre o lado direito, de
 // frente para quem vê, cabeça no braço de baixo; a perna de cima (esquerda) dobrada com o pé no chão à frente; a perna
 // de baixo (direita, com a caneleira) sobe estendida, num curso curto, e desce em ~2 s sem descansar no chão.
 // Parte da abdução com caneleira em revisão (mesmo tronco deitado), rolado para o outro lado (roll −90).
 // Técnica e fontes: docs/pesquisa/animacoes/aducao-caneleira.md.
-import { BOX, L3, TX, caneleira } from '../../desenho';
-import { X, Y, Z } from '../../math';
+import { BOX, L3, TX, caneleira } from '../desenho';
+import { X, Y, Z } from '../math';
 
 const ex = {
   id:'aducao-caneleira',

@@ -1,11 +1,11 @@
 // @ts-nocheck
-// Animação nova (em revisão). Extensão de joelho sentado, com caneleira: sentado num banco (ou cadeira firme), costas
+// Animação nova (aprovada). Extensão de joelho sentado, com caneleira: sentado num banco (ou cadeira firme), costas
 // retas, mãos na lateral do assento, coxas apoiadas; a perna da caneleira estende até quase esticar, segura ~1 s em
 // cima (onde a caneleira pesa mais) e desce em ~2 s, sem cair. Uma perna de cada vez. Parte do tríceps francês com
 // halter aprovado (mesmo corpo sentado e mesmo banco), com a caneleira (peça nova) no tornozelo direito.
 // Técnica e fontes: docs/pesquisa/animacoes/extensao-joelho-caneleira.md.
-import { BOX, L3, TX, caneleira } from '../../desenho';
-import { X, Y, Z } from '../../math';
+import { BOX, L3, TX, caneleira } from '../desenho';
+import { X, Y, Z } from '../math';
 
 const ex = {
   id:'extensao-joelho-caneleira',
