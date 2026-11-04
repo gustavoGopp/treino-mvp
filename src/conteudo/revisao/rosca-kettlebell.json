@@ -1,0 +1,77 @@
+{
+  "id": "rosca-kettlebell",
+  "name": "Rosca com kettlebell",
+  "short": "Rosca kettlebell",
+  "target": "Bíceps (frente do braço); o antebraço ajuda",
+  "feel": "Frente do braço, entre o ombro e o cotovelo.",
+  "feelNote": "O antebraço também trabalha para segurar a alça. Dor no cotovelo não é normal: reduza a carga.",
+  "setupEq": [
+    "Um kettlebell."
+  ],
+  "setupBody": [
+    "Em pé, pés na largura do quadril, joelhos destravados.",
+    "Uma mão na alça, palma para a frente; a bola fica pendurada embaixo da mão.",
+    "Cotovelo encostado ao lado do tronco; a outra mão solta ao lado do corpo.",
+    "Um braço por série: termine com um braço e faça a série seguinte com o outro."
+  ],
+  "exec": [
+    [
+      "hold",
+      "Embaixo",
+      "Braço estendido, palma para a frente, bola pendurada embaixo da mão."
+    ],
+    [
+      "conc",
+      "Subida (concêntrica)",
+      "~1 s. Suba até a mão chegar perto do ombro; o cotovelo fica parado."
+    ],
+    [
+      "hold",
+      "Topo",
+      "Mão perto do ombro, cotovelo ainda ao lado do tronco."
+    ],
+    [
+      "ecc",
+      "Descida (excêntrica)",
+      "~2 s, até estender o braço."
+    ]
+  ],
+  "range": [
+    "Início: braço estendido ao lado do corpo.",
+    "Fim: mão perto do ombro, cotovelo ainda ao lado do tronco."
+  ],
+  "breath": "Solte o ar subindo, inspire descendo.",
+  "cues": [
+    "Cotovelo parado.",
+    "Tronco parado.",
+    "Desce até estender."
+  ],
+  "check": [
+    "Pés firmes",
+    "Palma para a frente",
+    "Cotovelo no tronco",
+    "Alça firme na mão"
+  ],
+  "vary": "Também dá para segurar com as duas mãos nos lados da alça e subir os dois braços juntos. Ficou leve e não há kettlebell mais pesado? Segure pelos lados da alça, com a alça para baixo e a bola para cima: a bola fica mais longe do cotovelo e o mesmo peso fica mais difícil (prática de treinadores).",
+  "extLabels": [
+    "embaixo",
+    "topo"
+  ],
+  "errors": [
+    {
+      "id": "balanco",
+      "title": "Balançar o tronco",
+      "desc": "Jogar o corpo para trás dá impulso e tira o trabalho do bíceps. Se precisar balançar, o kettlebell está pesado demais."
+    },
+    {
+      "id": "cotovelo",
+      "title": "Cotovelo vai para a frente",
+      "desc": "Levar o cotovelo à frente passa o trabalho para o ombro."
+    },
+    {
+      "id": "curta",
+      "title": "Não estender o braço",
+      "desc": "Sem estender o braço embaixo, o bíceps trabalha só a metade do movimento."
+    }
+  ]
+}

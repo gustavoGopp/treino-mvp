@@ -1,0 +1,79 @@
+{
+  "id": "remada-unilateral-kettlebell",
+  "name": "Remada unilateral com kettlebell (mão livre na coxa)",
+  "short": "Remada unilateral kettlebell",
+  "target": "Dorsal e meio das costas; o bíceps e a parte de trás do ombro ajudam",
+  "feel": "Lateral das costas e meio das costas, do lado que puxa. O bíceps e a parte de trás do ombro ajudam.",
+  "feelNote": "Se sentir a lombar, o tronco está girando ou a coluna está arredondando: apoie melhor a mão livre na coxa.",
+  "setupEq": [
+    "Um kettlebell.",
+    "Chão que não escorrega. Se tiver um banco ou um móvel firme na altura do quadril, a mão livre pode ir nele."
+  ],
+  "setupBody": [
+    "Pés afastados, um à frente do outro: o pé do lado do kettlebell fica atrás.",
+    "Incline o tronco à frente, com as costas retas, e apoie a mão livre firme na coxa da frente.",
+    "Kettlebell pendurado pela alça, embaixo do ombro, palma virada para o corpo."
+  ],
+  "exec": [
+    [
+      "hold",
+      "Alongado",
+      "Braço estendido, kettlebell embaixo do ombro, costas retas, mão livre firme na coxa."
+    ],
+    [
+      "conc",
+      "Puxada (concêntrica)",
+      "~1 s. Leve o cotovelo para trás, em direção ao quadril, sem girar o tronco."
+    ],
+    [
+      "hold",
+      "Segura contraído",
+      "Kettlebell ao lado do quadril, cotovelo atrás do tronco. Segure 1 s."
+    ],
+    [
+      "ecc",
+      "Volta (excêntrica)",
+      "~2 s, até o braço estender de novo."
+    ]
+  ],
+  "range": [
+    "Início: braço estendido, kettlebell embaixo do ombro.",
+    "Fim: kettlebell ao lado do quadril, cotovelo passando a linha das costas.",
+    "Costas retas do começo ao fim: o tronco não sobe nem gira para ajudar."
+  ],
+  "breath": "Solte o ar puxando, inspire na volta.",
+  "cues": [
+    "Mão firme na coxa.",
+    "Cotovelo para o quadril.",
+    "Tronco parado."
+  ],
+  "check": [
+    "Pé do lado do kettlebell atrás",
+    "Mão livre firme na coxa",
+    "Costas retas",
+    "Palma virada para o corpo",
+    "Chão que não escorrega"
+  ],
+  "vary": "Com um banco, dá para apoiar nele a mão e o joelho do lado livre, e a remada fica mais estável: as duas servem. Ficou leve e não há kettlebell mais pesado? Segure 2 s com o cotovelo atrás do tronco antes de voltar.",
+  "extLabels": [
+    "início",
+    "fim"
+  ],
+  "errors": [
+    {
+      "id": "gira",
+      "title": "Girar o tronco",
+      "desc": "Abrir o peito para subir o kettlebell tira o trabalho das costas e torce a lombar. Se precisar girar, o kettlebell está pesado demais."
+    },
+    {
+      "id": "arred",
+      "title": "Arredondar as costas",
+      "desc": "A lombar curva e passa a segurar o peso. Costas retas e mão livre firme na coxa."
+    },
+    {
+      "id": "curta",
+      "title": "Não estender o braço",
+      "desc": "Parar a volta no meio corta a parte em que as costas alongam."
+    }
+  ]
+}

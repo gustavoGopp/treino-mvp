@@ -1,0 +1,79 @@
+{
+  "id": "triceps-frances-kettlebell",
+  "name": "Tríceps francês sentado com kettlebell",
+  "short": "Tríceps francês kettlebell",
+  "target": "Tríceps (parte de trás do braço)",
+  "feel": "Parte de trás do braço, principalmente perto do ombro.",
+  "feelNote": "Dor no cotovelo ou no ombro não é normal: reduza a carga ou a amplitude. Quem não levanta o braço acima da cabeça sem dor não deve fazer este exercício.",
+  "setupEq": [
+    "Um kettlebell.",
+    "Um banco ou cadeira firme. Sem eles, dá para fazer em pé, pés afastados."
+  ],
+  "setupBody": [
+    "Sente com as costas retas e os pés firmes no chão.",
+    "Segure o kettlebell com as duas mãos pelos lados da alça, com a bola para baixo.",
+    "Leve-o acima da cabeça: cotovelos apontando para cima, perto da cabeça."
+  ],
+  "exec": [
+    [
+      "hold",
+      "Alongado",
+      "Kettlebell atrás da cabeça, bola para baixo, cotovelos para cima."
+    ],
+    [
+      "conc",
+      "Extensão (concêntrica)",
+      "~1 s. Estenda os braços; os cotovelos ficam parados."
+    ],
+    [
+      "hold",
+      "Braços estendidos",
+      "Kettlebell acima da cabeça."
+    ],
+    [
+      "ecc",
+      "Volta (excêntrica)",
+      "~2–3 s, devagar, até o kettlebell descer atrás da cabeça."
+    ]
+  ],
+  "range": [
+    "Início: kettlebell atrás da cabeça, tríceps alongado.",
+    "Fim: braços estendidos acima da cabeça."
+  ],
+  "breath": "Solte o ar estendendo, inspire na volta.",
+  "cues": [
+    "Cotovelos parados.",
+    "Cotovelos perto da cabeça.",
+    "Desce devagar atrás da cabeça."
+  ],
+  "check": [
+    "Costas retas",
+    "Mãos firmes nos lados da alça",
+    "Cotovelos para cima",
+    "Abdômen firme",
+    "Peso que você controla com folga"
+  ],
+  "vary": "Com o braço acima da cabeça, a parte longa do tríceps trabalha alongada: num estudo de 12 semanas, essa posição cresceu mais o tríceps que a extensão com o braço ao lado do corpo (Maeo et al., 2023; um estudo). Ficou leve e não há kettlebell mais pesado? Desça em 3 s; depois, segure 2 s embaixo, alongado.",
+  "note": "<b>Segurança:</b> o kettlebell passa atrás da cabeça, e o risco é deixá-lo cair. Segure firme com as duas mãos, desça devagar e comece com um peso que você controla com folga.",
+  "extLabels": [
+    "início",
+    "fim"
+  ],
+  "errors": [
+    {
+      "id": "abre",
+      "title": "Abrir os cotovelos",
+      "desc": "Os cotovelos abertos para os lados tiram a parte longa do tríceps da posição alongada."
+    },
+    {
+      "id": "arco",
+      "title": "Arquear as costas",
+      "desc": "Arquear a lombar para subir o kettlebell tira o trabalho do tríceps e carrega a coluna."
+    },
+    {
+      "id": "curta",
+      "title": "Amplitude curta",
+      "desc": "Sem descer o kettlebell atrás da cabeça, você perde a parte alongada do movimento."
+    }
+  ]
+}

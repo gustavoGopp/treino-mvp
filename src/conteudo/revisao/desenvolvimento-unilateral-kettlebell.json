@@ -1,0 +1,81 @@
+{
+  "id": "desenvolvimento-unilateral-kettlebell",
+  "name": "Desenvolvimento unilateral em pé com kettlebell",
+  "short": "Desenvolvimento kettlebell",
+  "target": "Deltoide anterior (frente do ombro); a lateral do ombro e o tríceps ajudam",
+  "feel": "Frente do ombro. A lateral do ombro e o tríceps ajudam.",
+  "feelNote": "Se sentir a lombar, você está arqueando: firme o abdômen e deixe o tronco parado. Se o punho doer, ele está dobrando para trás: deixe-o reto, alinhado com o antebraço.",
+  "setupEq": [
+    "Um kettlebell.",
+    "Espaço livre acima da cabeça e ninguém por perto."
+  ],
+  "setupBody": [
+    "Em pé, pés na largura do quadril, joelhos destravados.",
+    "Kettlebell na altura do ombro, apoiado no antebraço: mão na alça, bola do lado de fora do antebraço, punho reto.",
+    "Cotovelo junto ao corpo.",
+    "A outra mão na cintura, abdômen firme."
+  ],
+  "exec": [
+    [
+      "hold",
+      "Embaixo",
+      "Kettlebell na altura do ombro, apoiado no antebraço, punho reto."
+    ],
+    [
+      "conc",
+      "Subida (concêntrica)",
+      "~1–1,5 s. Empurre para cima até estender o braço acima da cabeça, sem jogar o peso com as pernas."
+    ],
+    [
+      "hold",
+      "Topo",
+      "Braço estendido acima da cabeça, tronco parado."
+    ],
+    [
+      "ecc",
+      "Descida (excêntrica)",
+      "~2–3 s, devagar, até a mesma posição do início."
+    ]
+  ],
+  "range": [
+    "Embaixo: kettlebell na altura do ombro, apoiado no antebraço.",
+    "Em cima: braço estendido acima da cabeça.",
+    "Não suba mais se a frente do ombro doer."
+  ],
+  "breath": "Inspire embaixo e firme o abdômen. Solte o ar subindo, depois do trecho mais difícil.",
+  "cues": [
+    "Punho reto.",
+    "Tronco parado.",
+    "Desce devagar."
+  ],
+  "check": [
+    "Pés na largura do quadril",
+    "Punho reto",
+    "Bola do lado de fora do antebraço",
+    "Mão livre na cintura",
+    "Abdômen firme"
+  ],
+  "vary": "A mão livre pode ficar na cintura ou aberta para o lado, o que der mais equilíbrio. Ficou leve e não há kettlebell mais pesado? Desça em 3 s; depois, faça uma pausa embaixo.",
+  "note": "<b>Segurança:</b> quem não levanta o braço acima da cabeça sem dor não deve fazer este exercício. O peso passa acima da cabeça: desça sempre devagar e treine sem ninguém por perto.",
+  "extLabels": [
+    "embaixo",
+    "topo"
+  ],
+  "errors": [
+    {
+      "id": "arco",
+      "title": "Arquear a lombar",
+      "desc": "Inclinar o tronco para trás para subir o peso tira o trabalho do ombro e põe carga na lombar."
+    },
+    {
+      "id": "jogar",
+      "title": "Jogar o peso com as pernas",
+      "desc": "Dobrar os joelhos e dar impulso sobe o kettlebell sem o ombro fazer a força. Se precisar do impulso, o kettlebell está pesado demais."
+    },
+    {
+      "id": "punho",
+      "title": "Punho dobrado para trás",
+      "desc": "No início, o kettlebell puxa a mão para trás e o punho dobra. Punho reto, alinhado com o antebraço."
+    }
+  ]
+}

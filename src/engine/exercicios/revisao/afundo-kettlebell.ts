@@ -18,7 +18,7 @@ const ex = {
   ],
   ext:['top','bottom'],
   paths:{lateral:[['P','','quadril'],['K','R','joelho']],frontal:[['K','R','joelho da frente']]},
-  equip(sk){kettlebell(add(mid(sk.side.R.G,sk.side.L.G),[0,3,0]),[0,-1,0],X,'db'+(this._pal==='e'?'-e':''),{layer:1.4});},
+  equip(sk){kettlebell(null,[0,-1,0],X,'db'+(this._pal==='e'?'-e':''),{layer:1.4,maos:[sk.side.R.G,sk.side.L.G]});},
   guides:{
     lateral(sk){L3(add(sk.P,[0,-12,0]),[0,1,sk.P[2]],'gd',.9,{layer:2,dash:'2 3'});TX([0,1,sk.P[2]],'desce reto',{cls:'lbl-g',anchor:'middle',dy:-5});},
     frontal(sk){const t=sk.side.R.toe;L3([t[0],1,t[2]],[t[0],62,t[2]],'gd',.9,{layer:3,dash:'3 2.5'});TX([t[0],30,t[2]],'joelho sobre o pé',{cls:'lbl-g',anchor:'end',dx:-16});}

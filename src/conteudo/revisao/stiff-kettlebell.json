@@ -1,0 +1,81 @@
+{
+  "id": "stiff-kettlebell",
+  "name": "Stiff com kettlebell",
+  "short": "Stiff kettlebell",
+  "target": "Posteriores da coxa; os glúteos ajudam",
+  "feel": "Parte de trás da coxa, principalmente perto do glúteo. Os glúteos ajudam.",
+  "feelNote": "A lombar trabalha um pouco porque segura a postura, e isso é normal. Dor ou queimação forte na lombar não é: confira se a coluna está arredondando.",
+  "setupEq": [
+    "Um kettlebell, no chão entre os pés.",
+    "Chão que não escorrega."
+  ],
+  "setupBody": [
+    "Pés na largura do quadril, apontando para a frente.",
+    "Pegue o kettlebell pela alça com as duas mãos e fique em pé com as costas retas: ele fica na frente das coxas, braços estendidos.",
+    "Joelhos levemente dobrados. Esse ângulo fica quase igual a série toda.",
+    "Escápulas encaixadas, peito aberto, abdômen firme."
+  ],
+  "exec": [
+    [
+      "hold",
+      "Em pé",
+      "Quadril estendido, kettlebell na frente das coxas."
+    ],
+    [
+      "ecc",
+      "Descida (excêntrica)",
+      "~2–3 s. Leve o quadril para trás, como se fosse fechar uma porta com o bumbum. O kettlebell desce perto das pernas, sem bater nas canelas."
+    ],
+    [
+      "hold",
+      "Embaixo · alongado",
+      "Pare quando a parte de trás da coxa estiver bem alongada e a coluna ainda neutra."
+    ],
+    [
+      "conc",
+      "Subida (concêntrica)",
+      "~1–1,5 s. Empurre o quadril para a frente até ficar em pé, sem jogar o tronco para trás no fim."
+    ]
+  ],
+  "range": [
+    "Embaixo: até sentir a parte de trás da coxa bem alongada. Até onde o kettlebell chega depende da flexibilidade.",
+    "Em cima: quadril estendido, sem arquear a lombar para trás.",
+    "Pare de descer quando a lombar começar a arredondar, mesmo que o kettlebell não tenha chegado longe."
+  ],
+  "breath": "Inspire e firme o abdômen em pé. Segure enquanto desce e solte o ar na subida, depois de passar os joelhos.",
+  "cues": [
+    "Quadril para trás.",
+    "Kettlebell rente às pernas.",
+    "Coluna longa do quadril à cabeça."
+  ],
+  "check": [
+    "Pés na largura do quadril",
+    "Joelhos levemente dobrados",
+    "Alça firme nas duas mãos",
+    "Kettlebell perto das pernas",
+    "Abdômen firme"
+  ],
+  "vary": "O quanto você desce depende da flexibilidade da parte de trás da coxa: a referência é a coluna neutra e o alongamento, não a altura em que o kettlebell chega. Ficou leve e não há kettlebell mais pesado? Faça o stiff com uma perna só, o kettlebell na mão do lado contrário e a mão livre numa parede.",
+  "note": "<b>Por que não o swing:</b> no swing, o quadril estende rápido e o kettlebell sobe por impulso, com a lombar carregada em velocidade. O único ensaio encontrado mediu força e salto, não músculo (um estudo). O stiff tem descida controlada e a parte de trás da coxa alongada.",
+  "extLabels": [
+    "em pé",
+    "embaixo"
+  ],
+  "errors": [
+    {
+      "id": "arred",
+      "title": "Coluna arredondada",
+      "desc": "Para descer mais, a lombar arredonda e a carga vai para a coluna."
+    },
+    {
+      "id": "agachar",
+      "title": "Agachar em vez de levar o quadril para trás",
+      "desc": "Os joelhos dobram e o quadril desce: vira um agachamento e a parte de trás da coxa quase não alonga."
+    },
+    {
+      "id": "longe",
+      "title": "Kettlebell longe das pernas",
+      "desc": "Com o kettlebell à frente, o peso puxa o tronco e a alavanca na lombar aumenta."
+    }
+  ]
+}

@@ -20,7 +20,7 @@ const ex = {
   ],
   ext:['top','bottom'],
   paths:{lateral:[['G','R','halter'],['P','','quadril']]},
-  equip(sk){const R=sk.side.R.G,L=sk.side.L.G;kettlebell([(R[0]+L[0])/2,(R[1]+L[1])/2,(R[2]+L[2])/2],[0,-1,0],[1,0,0],'db'+(this._pal==='e'?'-e':''),{layer:1.4});},
+  equip(sk){kettlebell(null,[0,-1,0],[1,0,0],'db'+(this._pal==='e'?'-e':''),{layer:1.4,maos:[sk.side.R.G,sk.side.L.G]});},
   guides:{
     lateral(sk){const a=comb(1,sk.P,-10,sk.fL),b=comb(1,sk.N,-9,sk.fT);L3(add(a,mul(sub(a,b),.1)),add(b,mul(sub(b,a),.3)),'gd',1,{layer:3,dash:'3 2.5'});TX(add(b,mul(sub(b,a),.32)),'coluna neutra',{cls:'lbl-g',anchor:'end',dx:-4,dy:-4});
       ARROW3(comb(1,sk.P,-12,Z),comb(1,sk.P,-28,Z),'gd',1.1,'gda',{layer:3});TX(comb(1,sk.P,-30,Z),'quadril para trás',{cls:'lbl-g',anchor:'end',dy:4});}
@@ -29,7 +29,7 @@ const ex = {
   errors:[
     {id:'arred',view:'lateral',keys:{mid:{lumbar:30,thor:48,neck:55},bottom:{P:[0,88,-18],lumbar:58,thor:96,neck:110}}},
     {id:'agachar',view:'lateral',keys:{mid:{P:[0,77,-10],lumbar:24,thor:24,neck:28},bottom:{P:[0,62,-16],lumbar:42,thor:42,neck:46}}},
-    {id:'longe',view:'lateral',keys:{mid:{armR:{sph:[-30,-66,62.5],poleRel:[1,0,-.3]}},bottom:{armR:{sph:[0,-62,62.5],poleRel:[1,0,-.3]}}}}
+    {id:'longe',view:'lateral',keys:{mid:{armR:{sph:[-70,-68,62.5],poleRel:[1,0,-.3]}},bottom:{armR:{sph:[-45,-60,62.5],poleRel:[1,0,-.3]}}}}
   ]
 };
 export default ex;

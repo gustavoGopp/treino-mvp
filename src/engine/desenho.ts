@@ -156,8 +156,12 @@ export function dumbbell3(G,hd,cls,o={}){
  * direção da alça (de um "chifre" ao outro).
  */
 export function kettlebell(G,baixo,eixo,cls,o={}){
+  // Com as duas mãos (o.maos = [mão direita, mão esquerda]), a alça passa pelas duas, e a bola fica embaixo do meio:
+  // o kettlebell nunca fica solto entre as mãos (pedido do Gustavo, 04/11/2026).
+  if(o.maos){G=mid(o.maos[0],o.maos[1]);eixo=sub(o.maos[1],o.maos[0]);}
   const d=norm(baixo),a=norm(eixo),c=add(G,mul(d,12));
-  const pts=[comb(1,c,-6.5,a,-6,d),add(G,mul(a,-5)),add(G,mul(a,5)),comb(1,c,6.5,a,-6,d)];
+  const m=o.maos?Math.max(5,len(sub(o.maos[1],o.maos[0]))/2):5;
+  const pts=[comb(1,c,-6.5,a,-6,d),add(G,mul(a,-m)),add(G,mul(a,m)),comb(1,c,6.5,a,-6,d)];
   PL3(pts,cls.endsWith('-e')?'kb-alca-e':'kb-alca',2.4,{bias:(o.bias??0)+.2,layer:o.layer});
   C3(c,9,cls,{bias:o.bias??0,layer:o.layer});
 }
