@@ -150,6 +150,17 @@ export function dumbbell3(G,hd,cls,o={}){
     push(o.layer??1,Q.reduce((t,q)=>t+q[2],0)/Q.length+(o.bias??0)+.1,`<polygon points="${h.map(q=>f1(q[0])+','+f1(q[1])).join(' ')}" class="${cls}" stroke-width="0.8"/>`);
   }
 }
+/**
+ * Kettlebell (catálogo, 04/11/2026): a alça na mão (G) e a bola embaixo dela, na direção `baixo` (a gravidade, quando
+ * pendurado; ao longo do antebraço, quando apoiado nele). A bola é uma esfera: um círculo em qualquer vista. `eixo` é a
+ * direção da alça (de um "chifre" ao outro).
+ */
+export function kettlebell(G,baixo,eixo,cls,o={}){
+  const d=norm(baixo),a=norm(eixo),c=add(G,mul(d,12));
+  const pts=[comb(1,c,-6.5,a,-6,d),add(G,mul(a,-5)),add(G,mul(a,5)),comb(1,c,6.5,a,-6,d)];
+  PL3(pts,cls.endsWith('-e')?'kb-alca-e':'kb-alca',2.4,{bias:(o.bias??0)+.2,layer:o.layer});
+  C3(c,9,cls,{bias:o.bias??0,layer:o.layer});
+}
 export function dumbbellV(top,cls){const bot=add(top,[0,-20,0]);L3(top,bot,cls,2.6,{bias:.4});for(const c of[top,bot]){L3(add(c,[-9,0,0]),add(c,[9,0,0]),cls,4,{bias:.45});L3(add(c,[0,0,-9]),add(c,[0,0,9]),cls,4,{bias:.45});}}
 export function ropeC(sk,pul){const hr=sk.side.R.G,hl=sk.side.L.G,m=mid(hr,hl);const half=len(sub(hr,hl))/2;return add(m,mul(norm(sub(pul,m)),Math.sqrt(Math.max(30,784-half*half))));}
 export function rope(ex,id,sk,pul){

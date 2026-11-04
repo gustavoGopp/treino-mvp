@@ -168,6 +168,8 @@ footer a{color:var(--link)}
 .elas{stroke:var(--elastic);fill:none;stroke-linecap:round}
 .db{fill:var(--fig);stroke:var(--fig)}
 .db-e{fill:var(--err);stroke:var(--err)}
+.kb-alca{fill:none;stroke:var(--fig);stroke-linejoin:round;stroke-linecap:round}
+.kb-alca-e{fill:none;stroke:var(--err);stroke-linejoin:round;stroke-linecap:round}
 .mp{fill:var(--mus-p);stroke:var(--mus-p);stroke-width:2.5;stroke-linejoin:round}
 .ms{fill:var(--mus-s);stroke:var(--mus-s);stroke-width:2.5;stroke-linejoin:round}
 .scap{fill:var(--stage);stroke:var(--fig);stroke-linejoin:round;opacity:.9}
