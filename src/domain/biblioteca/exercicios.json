@@ -4383,7 +4383,7 @@
    "peso-corpo"
   ],
   "carga": "peso-corpo",
-  "animacaoId": null
+  "animacaoId": "roda-abdominal"
  },
  {
   "id": "remada-unilateral-kettlebell",

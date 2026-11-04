@@ -67,6 +67,7 @@ import extensaoJoelhoCaneleira from './extensao-joelho-caneleira';
 import abducaoCaneleira from './abducao-caneleira';
 import aducaoCaneleira from './aducao-caneleira';
 import abducaoMiniBand from './abducao-mini-band';
+import rodaAbdominal from './roda-abdominal';
 
 // Mesma ordem do guia original (a ordem define os treinos e a ordem de preparação).
 export const EX = [
@@ -135,4 +136,5 @@ export const EX = [
   abducaoCaneleira,
   aducaoCaneleira,
   abducaoMiniBand,
+  rodaAbdominal,
 ];

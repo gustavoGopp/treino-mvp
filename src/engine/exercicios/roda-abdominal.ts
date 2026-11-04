@@ -1,11 +1,11 @@
 // @ts-nocheck
-// Animação nova (em revisão). Rolamento com a roda abdominal, de joelhos: ajoelhado no colchonete, mãos nos
+// Animação nova (aprovada). Rolamento com a roda abdominal, de joelhos: ajoelhado no colchonete, mãos nos
 // pegadores, roda embaixo dos ombros, braços estendidos, abdômen firme; rola à frente devagar (2–3 s), com o quadril
 // acompanhando, só até onde a lombar não arqueia; puxa a roda de volta com o abdômen até os ombros voltarem em cima
 // das mãos. Parte do nórdico aprovado (mesmas pernas ajoelhadas, joelho fixo), com a roda (peça nova) nas mãos.
 // Técnica e fontes: docs/pesquisa/animacoes/roda-abdominal.md.
-import { BOX, L3, TX, roda } from '../../desenho';
-import { X, Y, Z } from '../../math';
+import { BOX, L3, TX, roda } from '../desenho';
+import { X, Y, Z } from '../math';
 
 // pernas: tíbia no chão, joelho em z = 0
 const PERNA={ikS:[9,6,-43],poleRel:[0,-.3,1],ft:[180,-15],heelV:[0,4.5,1.5]};

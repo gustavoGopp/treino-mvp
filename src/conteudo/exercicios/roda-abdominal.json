@@ -2,7 +2,9 @@
   "id": "roda-abdominal",
   "name": "Rolamento com a roda abdominal, de joelhos",
   "short": "Roda abdominal",
-  "target": "Abdômen",
+  "target": "Abdômen (reto abdominal); os oblíquos ajudam",
+  "feel": "Frente da barriga inteira, segurando o corpo reto, principalmente no ponto mais longe. Os oblíquos, nas laterais, ajudam.",
+  "feelNote": "Se sentir a lombar, você foi longe demais e a barriga cedeu: encurte o rolamento. Se sentir os ombros ou os braços, deixe os braços retos e leve o quadril junto.",
   "setupEq": [
     "Uma roda abdominal com os dois pegadores.",
     "Um colchonete ou almofada sob os joelhos.",
@@ -40,10 +42,24 @@
     "Pare antes do ponto em que a lombar começa a arquear.",
     "Volta: ombros em cima das mãos."
   ],
+  "breath": "Inspire na ida, solte o ar na volta.",
   "cues": [
     "Costelas para baixo.",
     "Só até a lombar não arquear.",
     "Volta com o abdômen."
+  ],
+  "check": [
+    "Colchonete sob os joelhos",
+    "Roda embaixo dos ombros no início",
+    "Parede à frente nas primeiras séries",
+    "Abdômen firme antes de rolar",
+    "Série perto da falha, no RIR do programa"
+  ],
+  "vary": "Ficou fácil? A escada de amplitude: contra a parede perto, depois a parede um pouco mais longe, depois sem parede (só até onde a lombar não arqueia) e, por fim, a ida de 3 s.",
+  "note": "<b>Segurança:</b> se a lombar arquear ou doer, pare a série e encurte o rolamento na próxima. Nas primeiras séries, role em direção a uma parede, que para a roda.",
+  "extLabels": [
+    "ajoelhado",
+    "mais longe"
   ],
   "errors": [
     {
@@ -61,11 +77,5 @@
       "title": "Ir rápido demais",
       "desc": "A roda foge, o corpo desaba e a lombar cede. A ida é devagar."
     }
-  ],
-  "montagem": [
-    "Colchonete sob os joelhos, num chão que não escorrega.",
-    "No começo, role em direção a uma parede: a roda bate e para antes de a lombar ceder.",
-    "Não é para iniciante nem para quem está com dor na lombar: nesses casos, faça o abdominal no chão."
-  ],
-  "carga": "Peso do corpo, em degraus de amplitude: contra a parede, perto → a parede um pouco mais longe → sem parede, só até onde a lombar não arqueia → ida de 3 s."
+  ]
 }
