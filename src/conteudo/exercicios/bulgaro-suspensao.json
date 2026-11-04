@@ -3,6 +3,8 @@
   "name": "Búlgaro com o pé de trás na suspensão",
   "short": "Búlgaro na suspensão",
   "target": "Quadríceps e glúteo da perna da frente; a parte de dentro da coxa (adutores) ajuda",
+  "feel": "Frente da coxa da perna da frente. O glúteo e a parte de dentro da coxa (adutores) trabalham como secundários.",
+  "feelNote": "Se o pé de trás cansa ou a fita balança muito, você está empurrando a alça: o peso fica na perna da frente. Dor no joelho da frente: desça menos.",
   "setupEq": [
     "Fita de suspensão presa num ponto firme no alto, com a alça na altura do meio da canela.",
     "Uma parede perto, para apoiar a mão nas primeiras séries."
@@ -10,7 +12,8 @@
   "setupBody": [
     "De costas para a âncora, coloque o peito do pé de trás na alça.",
     "Pé da frente longe o bastante para o calcanhar ficar no chão embaixo: teste antes, devagar.",
-    "Tronco levemente inclinado à frente, peso na perna da frente."
+    "Tronco levemente inclinado à frente, peso na perna da frente, mãos na cintura.",
+    "Uma perna por série: termine com uma e faça a série seguinte com a outra."
   ],
   "exec": [
     [
@@ -39,16 +42,31 @@
     "Em cima: pare antes de travar o joelho.",
     "Se o joelho da frente doer, desça menos."
   ],
+  "breath": "Inspire descendo, solte o ar subindo.",
   "cues": [
     "Peso no pé da frente.",
     "Desce reto.",
     "Pé de trás só acompanha."
   ],
+  "check": [
+    "Âncora firme, fita sem desgaste",
+    "Alça na altura do meio da canela",
+    "Peito do pé de trás na alça",
+    "Calcanhar da frente no chão",
+    "Parede perto para a mão",
+    "Série perto da falha, no RIR do programa"
+  ],
+  "vary": "Ficou fácil? A escada: descida de 3 s, pausa de 2 s embaixo e, depois, 1,5 repetição (desce, sobe até a metade, desce de novo e sobe). Perdeu o equilíbrio? Apoie a mão na parede.",
+  "note": "<b>Montagem segura:</b> Prenda a fita num ponto feito para isso: barra fixa firme, viga, ou a trava de porta do fabricante, com a porta fechada e trancada, do lado em que ela fecha contra o batente. Antes da 1ª série, deixe o peso cair na fita devagar e confira se a fita não está gasta. Alça na altura do meio da canela; fique perto de uma parede para apoiar a mão nas primeiras séries.",
+  "extLabels": [
+    "em cima",
+    "embaixo"
+  ],
   "errors": [
     {
       "id": "valgo",
       "title": "Joelho da frente para dentro",
-      "desc": "O joelho cai para dentro e a carga vai para a articulação."
+      "desc": "O joelho cai para dentro e a carga vai para a articulação. Joelho na direção do pé."
     },
     {
       "id": "empurra",
@@ -60,11 +78,5 @@
       "title": "Descer pouco",
       "desc": "Parar com a coxa longe da horizontal corta a parte mais produtiva do movimento."
     }
-  ],
-  "montagem": [
-    "Prenda a fita num ponto feito para isso: barra fixa firme, viga, ou a trava de porta do fabricante, com a porta fechada e trancada, do lado em que ela fecha contra o batente.",
-    "Antes da 1ª série, deixe o peso cair na fita devagar. Confira se a fita não está gasta.",
-    "Alça na altura do meio da canela; peito do pé de trás na alça. Fique perto de uma parede para apoiar a mão nas primeiras séries."
-  ],
-  "carga": "Peso do corpo, pela escada: descida de 3 s → pausa de 2 s embaixo → 1,5 repetição (desce, sobe até a metade, desce de novo e sobe)."
+  ]
 }

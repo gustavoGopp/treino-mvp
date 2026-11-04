@@ -389,6 +389,12 @@ export const LISTA = {
     ['adutores', 'R', 's'],
     ['quadriceps', 'R', 'p'],
   ],
+  // Catálogo completo (04/11/2026): o búlgaro na suspensão desenha os mesmos músculos do búlgaro com o peso do corpo.
+  'bulgaro-suspensao': [
+    ['gluteos', 'R', 's'],
+    ['adutores', 'R', 's'],
+    ['quadriceps', 'R', 'p'],
+  ],
   // Achado 2: o glúteo da perna de apoio passa a secundário, como no stiff com os dois pés.
   'stiff-unilateral': [
     ['eretores', 'C', 's'],

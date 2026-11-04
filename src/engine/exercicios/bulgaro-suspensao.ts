@@ -1,10 +1,10 @@
 // @ts-nocheck
-// Animação nova (em revisão). Búlgaro com o pé de trás na suspensão: de costas para a âncora, peito do pé de trás na
+// Animação nova (aprovada). Búlgaro com o pé de trás na suspensão: de costas para a âncora, peito do pé de trás na
 // alça (na altura do meio da canela), mãos na cintura; desce reto e o pé de trás vai para trás com a fita; sobe
 // empurrando o chão com o pé da frente. Parte do búlgaro com o peso do corpo aprovado (mesmo corpo e mesmo caminho),
 // com a alça no lugar da cadeira. Técnica e fontes: docs/pesquisa/animacoes/bulgaro-suspensao.md.
-import { L3, TX, suspensao } from '../../desenho';
-import { add, mid } from '../../math';
+import { L3, TX, suspensao } from '../desenho';
+import { add, mid } from '../math';
 
 const ANC = [0, 205, -78]; // âncora no alto, atrás da pessoa
 const ex = {

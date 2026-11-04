@@ -4130,7 +4130,7 @@
    "montagem"
   ],
   "carga": "peso-corpo",
-  "animacaoId": null
+  "animacaoId": "bulgaro-suspensao"
  },
  {
   "id": "elevacao-joelhos-paralelas",
