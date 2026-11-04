@@ -1,10 +1,10 @@
 // @ts-nocheck
-// Animação nova (em revisão). Tríceps na suspensão, mãos à testa: de costas para a âncora, corpo reto como numa
+// Animação nova (aprovada). Tríceps na suspensão, mãos à testa: de costas para a âncora, corpo reto como numa
 // prancha inclinada à frente, braços estendidos à frente na altura dos ombros; dobra os cotovelos e leva as mãos
 // em direção à testa enquanto o corpo vai à frente; os cotovelos apontam para a frente e ficam parados; estende de
 // volta. A fita passa por cima da cabeça. Parte da rosca na suspensão em revisão (mesmo corpo, espelhado para a frente)
 // e do tríceps na corda aprovado (cotovelo parado). Técnica e fontes: docs/pesquisa/animacoes/triceps-suspensao.md.
-import { L3, TX, suspensao } from '../../desenho';
+import { L3, TX, suspensao } from '../desenho';
 
 const ANC = [0, 205, 0];
 const ex = {

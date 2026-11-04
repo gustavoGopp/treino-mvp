@@ -57,6 +57,7 @@ import ponteKettlebell from './ponte-kettlebell';
 import remadaSuspensao from './remada-suspensao';
 import roscaSuspensao from './rosca-suspensao';
 import ytSuspensao from './yt-suspensao';
+import tricepsSuspensao from './triceps-suspensao';
 
 // Mesma ordem do guia original (a ordem define os treinos e a ordem de preparação).
 export const EX = [
@@ -115,4 +116,5 @@ export const EX = [
   remadaSuspensao,
   roscaSuspensao,
   ytSuspensao,
+  tricepsSuspensao,
 ];
