@@ -12,9 +12,9 @@ const sessao = (c: Carga, reps: number[], rir = 1): SessaoExercicio => ({ series
 
 describe('escada por exercício', () => {
   it('a flexão segue a escada aprovada (equipamento.flexao-por-supino): descida lenta, pés elevados, déficit', () => {
-    expect(escadaDe('flexao')).toEqual(['mais repetições', 'descida de 3 s', 'pés elevados (declinada)', 'pés elevados com descida de 3 s', 'mãos em dois apoios (déficit) ou pausa de 2 s embaixo']);
+    expect(escadaDe('flexao')).toEqual(['mais repetições', 'descida de 3 s', 'pés elevados (declinada; sem degrau, cama ou sofá: descida de 4 s)', 'pés elevados com descida de 3 s (sem apoio: descida de 5 s)', 'mãos em dois apoios (déficit) ou pausa de 2 s embaixo']);
     expect(opcoesCarga('flexao', {}).degraus).toEqual(escadaDe('flexao'));
-    expect(textoCarga(d(2), 'flexao')).toBe('peso do corpo · pés elevados (declinada)');
+    expect(textoCarga(d(2), 'flexao')).toBe('peso do corpo · pés elevados (declinada; sem degrau, cama ou sofá: descida de 4 s)');
   });
   it('nenhuma escada pede carga externa nem um elástico que a pessoa não tem (o app não sugere compra)', () => {
     for (const [id, degraus] of Object.entries(ESCADAS))
@@ -58,5 +58,12 @@ describe('critério do degrau e fim da escada', () => {
     const s = sugerirProgressao([sessao(ultimo, [15, 14, 13]), sessao(ultimo, [15, 14, 13])], alvo, o);
     expect(s).toMatchObject({ acao: 'manter', regraId: 'equipamento.fim-da-escada' });
     expect(s.motivo).not.toMatch(/compr|halter|elástico/i);
+  });
+});
+
+describe('degraus que pedem um móvel (decisão do Gustavo em 04/11/2026)', () => {
+  it('todo degrau com cadeira, sofá, cama, degrau ou apoio traz a alternativa para quem não tem', () => {
+    for (const [id, degraus] of Object.entries(ESCADAS))
+      for (const t of degraus) if (/cadeira|sofá|cama|degrau|apoio|elevados/.test(t)) expect(t, id).toMatch(/\(sem |; sem | ou /);
   });
 });
