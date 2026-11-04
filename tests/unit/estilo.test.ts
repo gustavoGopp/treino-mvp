@@ -128,8 +128,9 @@ describe('estilo do boneco (R4)', () => {
       expect(mus).toMatch(new RegExp(`e${estilo}-ms"`));
       expect(mus).not.toMatch(/class="(ms|mp|msl|mpl|scap)"/);
     }
-    // bíceps: 7 formas possíveis; de trás, o bíceps (face da frente do braço) fica escondido
-    const nTras = (montarSvgEstilo(pux, 'posterior', 'mus', pux.T * 0.6, 0, 358, 'a').html.match(/<path /g) ?? []).length;
+    // bíceps: 7 formas possíveis; de trás, o bíceps (face da frente do braço) fica escondido. Conta só os músculos
+    // (o acabamento de 04/11/2026 também desenha o tronco e o quadril com <path>).
+    const nTras = (montarSvgEstilo(pux, 'posterior', 'mus', pux.T * 0.6, 0, 358, 'a').html.match(/<path [^>]*class="ea-m[ps]"/g) ?? []).length;
     expect(nTras).toBeLessThan(7);
   });
 

@@ -14,11 +14,12 @@ import { caixa, montarSvg } from '../svg';
 import { corpoNovo } from './corpo';
 import { medida, musculosNovos } from './musculos';
 
-// 'a2': o Boneco com o acabamento da auditoria (proposta 2, escolhida pelo Gustavo em 04/11/2026). Fica fora de
-// ESTILOS (não aparece em "Meus dados") até o Gustavo aprovar o piloto e o lote; aí substitui o 'a'.
+// O Boneco ('a') usa o acabamento da auditoria (proposta 2, escolhida pelo Gustavo em 04/11/2026; piloto e lote
+// aprovados no mesmo dia; docs/revisoes/boneco-acabamento/). 'a2' ficou como outro nome do mesmo boneco, para as
+// folhas e os scripts da revisão.
 export type Estilo = 'atual' | 'a' | 'b' | 'a2';
 export const ESTILOS: Estilo[] = ['atual', 'a', 'b'];
-export const NOMES_ESTILO: Record<Estilo, string> = { atual: 'Clássico', a: 'Boneco', b: 'Silhueta', a2: 'Boneco (acabamento novo)' };
+export const NOMES_ESTILO: Record<Estilo, string> = { atual: 'Clássico', a: 'Boneco', b: 'Silhueta', a2: 'Boneco' };
 /** Exercícios do experimento do R4 (os primeiros a ganhar os músculos anatômicos e uma lista própria em LISTA). */
 export const EXERCICIOS_R4 = ['puxada-unilateral', 'goblet'];
 
@@ -223,7 +224,7 @@ export function acabamento(ex) {
 
 /** Igual a montarSvg, com o estilo, nos 4 modos. `classe` vai no <svg> (o B apaga o equipamento; a vista de cima afina a corda). */
 export function montarSvgEstilo(ex, view, mode, t, err, largura, estilo: Estilo = 'atual', perto = false) {
-  if (estilo === 'a2') {
+  if ((estilo === 'a' || estilo === 'a2') && !CTX.ACABAMENTO) {
     CTX.ACABAMENTO = acabamento(ex);
     try {
       return montarSvgEstilo(ex, view, mode, t, err, largura, 'a', perto);
