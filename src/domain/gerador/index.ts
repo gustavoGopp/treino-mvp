@@ -321,6 +321,7 @@ export function gerarPrograma(perfil: Perfil, inventarioOriginal: Inventario): R
       k++;
     }
     const causa = regioesExcluidas.length ? `por causa da dor ${regioesExcluidas.map(dorDe).join(' e ')}` : 'com o seu equipamento';
+    const semCausa = !regioesExcluidas.length;
     const preenchidos = d.itens.filter((i) => i.preenchido);
     const entraram = preenchidos.map((i) => i.ex.nome.toLowerCase());
     // O texto diz a verdade: "de outros músculos" quando o que entrou não é músculo do dia (um dia de puxar com panturrilha).
@@ -329,42 +330,37 @@ export function gerarPrograma(perfil: Perfil, inventarioOriginal: Inventario): R
       avisos.push({
         regraId: r('selecao.dia-sem-principal'),
         texto: deFora
-          ? `${d.dia.nome}: ${causa}, nenhum exercício é possível para os músculos deste dia; no lugar, entram exercícios de outros músculos (${entraram.join(', ')}).`
-          : `${d.dia.nome}: ${causa}, o dia perdeu exercícios; no lugar, entram outros possíveis para os músculos do dia (${entraram.join(', ')}).`,
+          ? `${d.dia.nome}: ${semCausa ? 'sem exercício' : `${causa}, sem exercício`} para os músculos deste dia; entram exercícios de outros músculos (${entraram.join(', ')}).`
+          : `${d.dia.nome}: ${causa}, o dia perdeu exercícios; entram outros dos mesmos músculos (${entraram.join(', ')}).`,
       });
     else if (soCore)
       avisos.push({
         regraId: r('selecao.dia-sem-principal'),
-        texto: `${d.dia.nome}: ${causa}, nenhum outro exercício é possível, e o dia fica só com abdominal.`,
+        texto: `${d.dia.nome}: ${causa}, só o abdominal é possível neste dia.`,
       });
   }
   if (regioesExcluidas.length)
     avisos.push({
       regraId: r('seguranca.dor.programa'),
-      texto: `Por causa da dor ${regioesExcluidas.map(dorDe).join(' e ')}, os exercícios que carregam a região ficaram de fora. Procure avaliação profissional; quando a dor baixar, atualize a nota na triagem e gere o programa de novo.`,
+      texto: `Por causa da dor ${regioesExcluidas.map(dorDe).join(' e ')}, saíram os exercícios que carregam a região. Procure avaliação profissional. Quando a dor baixar, atualize a nota na triagem.`,
     });
 
-  if (semPuxar)
-    avisos.push({
-      regraId: r('equipamento.sem-ancoragem'),
-      texto: 'Sem algo para puxar: costas, bíceps e ombro de trás ficam sem exercício, porque nenhum exercício do app treina esses músculos só com o chão. O resto do corpo segue no programa.',
-    });
   if (semPuxar && temDiaDeTronco(divisao) && divisao.dias.some((x) => /Puxar|Superior|Costas/.test(x.nome)))
     avisos.push({
       regraId: r('divisao.sem-puxar'),
-      texto: `${divisao.nome}: sem exercício de puxar no seu equipamento, os dias de puxar ou de superior ficam com outros músculos. As divisões de corpo todo encaixam melhor; dá para trocar na rotina.`,
+      texto: `${divisao.nome}: sem exercício de puxar, os dias de puxar ficam com outros músculos. Corpo todo encaixa melhor.`,
     });
   // Sem puxada vertical: quando ela caiu para uma remada, ou quando só a remada existe (ex.: só a barra longa).
   if (nivelAbaixo.has('equipamento.sem-puxada-vertical') || (lacunas.has('puxar-vertical') && !semPuxar))
     avisos.push({
       regraId: r('equipamento.sem-puxada-vertical'),
-      texto: 'Sem barra fixa nem polia alta: o volume de costas vem de remadas. É uma lacuna conhecida; a evidência para substituir a puxada é fraca.',
+      texto: 'Sem barra fixa nem polia alta: as costas treinam só com remadas.',
     });
   const temMaquinaDePerna = caps.has('leg_press') || caps.has('rack');
   if (!temMaquinaDePerna && halterMax < 20)
     avisos.push({
       regraId: r('equipamento.escada-carga-leve'),
-      texto: 'Carga limitada para pernas: o programa usa exercícios unilaterais, repetições mais altas (até ~30) e técnicas de dificuldade antes de pedir mais carga. Quadríceps e posteriores tendem a crescer menos que numa academia completa.',
+      texto: 'Pouca carga para as pernas: o programa usa uma perna de cada vez, mais repetições e degraus de dificuldade. As pernas podem crescer menos que numa academia.',
     });
   for (const id of [...lacunas].sort()) {
     const l = FUNCAO[id]!.lacuna;
@@ -475,17 +471,25 @@ export function gerarPrograma(perfil: Perfil, inventarioOriginal: Inventario): R
     const porDor = regioesDoMusculo.map(dorDe).join(' e ');
     const quais = regioesDoMusculo.map((a) => `${ARTIGO[a]} ${NOME_ARTICULACAO_MIN[a]}`).join(' ou ');
     if (!possiveis.some((e) => e.musculos.primarios.includes(m)) && tirados.length)
-      return `os exercícios que carregam ${quais} ficaram de fora por causa da dor ${porDor}`;
+      return `Os exercícios que carregam ${quais} saíram por causa da dor ${porDor}`;
     const faltas = [...lacunas].map((id) => FUNCAO[id]!).filter((f) => f.musculo === m && f.lacuna).map((f) => f.lacuna!.falta);
     const falta = (faltas.length ? ` (falta ${faltas.join(' e ')})` : '') + (tirados.length ? `; e a dor ${porDor} tirou outros exercícios` : '');
-    if (!possiveis.some((e) => e.musculos.primarios.includes(m))) return `nenhum exercício possível com o seu equipamento${falta}`;
-    if (foraPorMinutos.has(m))
-      return `com ${perfil.minutosSessao} min cabem cerca de ${N} exercícios por treino, e as vagas próprias ficaram de fora${falta}`;
+    if (!possiveis.some((e) => e.musculos.primarios.includes(m))) return `${SEM_EXERCICIO}${falta}`;
+    if (foraPorMinutos.has(m)) return `Com ${perfil.minutosSessao} min cabem ~${N} exercícios por treino${falta}`;
     const n = vezes(m);
-    if (n === 0) return `a divisão ${divisao.nome} não tem vaga própria para este músculo (só séries indiretas)${falta}`;
-    return `a divisão ${divisao.nome} treina este músculo ${n}x por semana e, com até ${VOLUME.seriesPorExercicio.max} séries por exercício e ${VOLUME.sessaoTeto} por sessão, não cabe mais${falta}`;
+    if (n === 0) return `A divisão ${divisao.nome} não tem vaga própria para este músculo, só séries indiretas${falta}`;
+    return `A divisão ${divisao.nome} treina este músculo ${n}x por semana e, com até ${VOLUME.seriesPorExercicio.max} séries por exercício e ${VOLUME.sessaoTeto} por sessão, não cabe mais${falta}`;
   };
-  avisos.push(...avisosDeMeta(metas, volumeAntesDoCorte, volumeSemanal, prioritarios, motivoEstrutural));
+  avisos.push(...avisosDeMeta(metas, volumeAntesDoCorte, volumeSemanal, prioritarios, motivoEstrutural, semPuxar));
+
+  // Tempo que sobra por falta de exercício (tempo.sobra; decisão do Gustavo em 04/11/2026): o dia mais longo usa menos
+  // de ~70% dos minutos escolhidos e alguma vaga ficou sem exercício possível com o equipamento. Sem sugerir compra.
+  const maisLongo = Math.max(0, ...programaDias.map((d) => d.minutosEstimados));
+  if ((lacunas.size || semPuxar) && maisLongo < TEMPO.sobraFracao * perfil.minutosSessao)
+    avisos.push({
+      regraId: r('tempo.sobra'),
+      texto: `Com o seu equipamento, o treino dura cerca de ${Math.max(5, Math.round(maisLongo / 5) * 5)} min. Mais tempo não acrescenta exercícios: dá para escolher uma duração menor sem perder nada.`,
+    });
 
   const porque: Porque[] = [
     {
@@ -546,13 +550,22 @@ export function gerarPrograma(perfil: Perfil, inventarioOriginal: Inventario): R
 export function lembretesDeDor(e: Exercicio, triagem: ResultadoTriagem): Porque[] {
   return triagem.dores
     .filter((d) => efeitoDaDor(d.nota) !== 'exclui' && e.articulacoes.includes(d.articulacao))
-    .map((d) => ({
-      regraId: r('seguranca.dor.programa'),
-      texto: `Você marcou ${ARTIGO[d.articulacao]} ${NOME_ARTICULACAO_MIN[d.articulacao]} (dor ${d.nota} hoje): se doer acima de 5 numa série, pare e use a alternativa.${
-        efeitoDaDor(d.nota) === 'prefere-outros' ? ' Nesta vaga, nenhum exercício equivalente poupa a região.' : ''
-      }`,
-    }));
+    .flatMap((d) => [
+      {
+        regraId: r('seguranca.dor.programa'),
+        texto: `Você marcou ${ARTIGO[d.articulacao]} ${NOME_ARTICULACAO_MIN[d.articulacao]} (dor ${d.nota} hoje): se doer acima de 5 numa série, pare e use a alternativa.${
+          efeitoDaDor(d.nota) === 'prefere-outros' ? ' Nesta vaga, nenhum exercício equivalente poupa a região.' : ''
+        }`,
+      },
+      // Dor leve no punho (3 a 5) nas flexões com as mãos no chão: mãos fechadas, com o punho reto (tecnica.flexao.punho;
+      // decisão do Gustavo em 04/11/2026). Só uma forma de fazer; o app não diagnostica.
+      ...(d.articulacao === 'punho' && efeitoDaDor(d.nota) === 'prefere-outros' && MAOS_NO_CHAO.has(e.id)
+        ? [{ regraId: r('tecnica.flexao.punho'), texto: 'Para poupar o punho: apoie as mãos fechadas numa toalha dobrada, com o punho reto, ou use pegadores de flexão.' }]
+        : []),
+    ]);
 }
+/** Flexões com as mãos apoiadas no chão (tecnica.flexao.punho). */
+const MAOS_NO_CHAO = new Set(['flexao', 'flexao-fechada', 'pike', 'flexao-elastico']);
 
 const NOME_ARTICULACAO_MIN: Record<Articulacao, string> = {
   ombro: 'ombro',
@@ -701,6 +714,37 @@ export function minutos(exs: ExercicioPrescrito[], colchao: number = TEMPO.colch
 }
 
 const INFERIORES: Musculo[] = ['quadriceps', 'posteriores', 'gluteos', 'panturrilha'];
+/** Motivo de quem não tem nenhum exercício possível para o músculo (agrupado num aviso só). */
+export const SEM_EXERCICIO = 'Sem exercício possível com o seu equipamento';
+/** Nomes curtos, para os avisos em lista (decisão do Gustavo em 04/11/2026). */
+export const NOME_MUSCULO_CURTO: Record<Musculo, string> = {
+  peito: 'peito',
+  costas: 'costas',
+  ombro_anterior: 'ombro da frente',
+  ombro_lateral: 'ombro lateral',
+  ombro_posterior: 'ombro de trás',
+  biceps: 'bíceps',
+  triceps: 'tríceps',
+  quadriceps: 'quadríceps',
+  posteriores: 'posteriores da coxa',
+  gluteos: 'glúteos',
+  panturrilha: 'panturrilha',
+  abdomen: 'abdômen',
+  adutores: 'adutores',
+};
+const listaDeNomes = (ms: Musculo[]) => {
+  const n = ms.map((m) => NOME_MUSCULO_CURTO[m]);
+  return n.length > 1 ? `${n.slice(0, -1).join(', ')} e ${n[n.length - 1]}` : n[0]!;
+};
+/** Aviso de músculo abaixo da meta (inclusive o agrupado de quem não tem exercício possível). */
+export const ehAvisoDeMeta = (a: Porque) =>
+  a.texto.startsWith('Abaixo da meta') || a.regraId === 'equipamento.sem-ancoragem' || a.texto.startsWith(SEM_EXERCICIO);
+/** Músculos citados num aviso de meta, pelo nome completo ou curto. */
+export const musculosDoAviso = (a: Porque): Musculo[] =>
+  (Object.keys(NOME_MUSCULO) as Musculo[]).filter((m) =>
+    [NOME_MUSCULO[m], NOME_MUSCULO_CURTO[m]].some((n) => new RegExp(`(^|[ :,(])${n.replace(/[()]/g, '\\$&')}( |,|\\.|$)`).test(a.texto)),
+  );
+
 export const NOME_MUSCULO: Record<Musculo, string> = {
   peito: 'peito',
   costas: 'costas',
@@ -838,7 +882,7 @@ export function cortarTempo(
     if (d.minutosEstimados > limite)
       avisos.push({
         regraId: r('tempo.corte'),
-        texto: `${d.nome}: estimativa de ${d.minutosEstimados} min, acima dos ${limite} min disponíveis mesmo depois dos cortes.`,
+        texto: `${d.nome}: deve levar ~${d.minutosEstimados} min, mais que os ${limite} min que você tem.`,
       });
   }
   if (usados.size)
@@ -866,6 +910,7 @@ export function avisosDeMeta(
   depois: Partial<Record<Musculo, number>>,
   prioritarios: Set<Musculo>,
   motivoEstrutural: (m: Musculo) => string,
+  semPuxar = false,
 ): Porque[] {
   const fmt = (n: number) => String(Math.round(n * 10) / 10).replace('.', ',');
   // Prioritários: aviso abaixo da meta. Demais: só abaixo de 4, o limite de baixo do mínimo eficaz (4–6).
@@ -875,10 +920,18 @@ export function avisosDeMeta(
   const porTempo = abaixo.filter((m) => !porEstrutura.includes(m));
   const item = (m: Musculo) => `${NOME_MUSCULO[m]} ${fmt(depois[m] ?? 0)} de ${fmt(metas[m]!)}`;
   const out: Porque[] = [];
-  if (porTempo.length)
-    out.push({ regraId: r('tempo.corte'), texto: `Abaixo da meta semanal por falta de tempo: ${porTempo.map(item).join('; ')} séries.` });
-  for (const m of porEstrutura)
-    out.push({ regraId: r('volume.semanal.alvo'), texto: `Abaixo da meta semanal: ${item(m)} séries, porque ${motivoEstrutural(m)}.` });
+  // Músculos sem nenhum exercício possível (e não por dor) viram um aviso só, com a lista (decisão do Gustavo em
+  // 04/11/2026); sem nada para puxar, é o aviso equipamento.sem-ancoragem.
+  const semExercicio = porEstrutura.filter((m) => motivoEstrutural(m) === SEM_EXERCICIO);
+  if (semExercicio.length)
+    out.push(
+      semPuxar
+        ? { regraId: r('equipamento.sem-ancoragem'), texto: `Sem algo para puxar ou levantar: ${listaDeNomes(semExercicio)} ficam sem exercício. O resto do corpo segue no programa.` }
+        : { regraId: r('volume.semanal.alvo'), texto: `${SEM_EXERCICIO}: ${listaDeNomes(semExercicio)}.` },
+    );
+  if (porTempo.length) out.push({ regraId: r('tempo.corte'), texto: `Abaixo da meta por falta de tempo: ${porTempo.map((m) => `${item(m)} séries`).join('; ')}.` });
+  for (const m of porEstrutura.filter((x) => !semExercicio.includes(x)))
+    out.push({ regraId: r('volume.semanal.alvo'), texto: `Abaixo da meta: ${item(m)} séries por semana. ${motivoEstrutural(m)}.` });
   return out;
 }
 

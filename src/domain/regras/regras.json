@@ -1457,6 +1457,19 @@
     ]
   },
   {
+    "id": "tempo.sobra",
+    "regra": "Tempo que sobra por falta de exercício (decisão do Gustavo em 04/11/2026, sessão de fechamento do equipamento mínimo): quando alguma vaga fica sem exercício possível com o equipamento e o dia mais longo usa menos de 70% dos minutos escolhidos, o app diz a duração real e que dá para escolher menos tempo sem perder nada; nunca sugere compra. O limite de 70% é escolha do projeto",
+    "valores": {
+      "iniciante": "< 70% dos minutos",
+      "intermediario": "< 70% dos minutos",
+      "avancado": "< 70% dos minutos"
+    },
+    "selo": "consenso",
+    "fontes": [
+      "consenso-projeto"
+    ]
+  },
+  {
     "id": "tempo.superserie",
     "regra": "Supersérie: pares agonista-antagonista ou músculos que não competem; ~15 s entre A e B e descanso só entre rodadas; aumenta o esforço percebido e o dano muscular",
     "valores": {
@@ -1614,6 +1627,19 @@
     "selo": "consenso",
     "fontes": [
       "smith2017",
+      "consenso-projeto"
+    ]
+  },
+  {
+    "id": "tecnica.flexao.punho",
+    "regra": "Dor leve no punho (3 a 5) nas flexões com as mãos no chão (flexão, flexão com as mãos juntas, pike, flexão com elástico): o porquê do exercício sugere as mãos fechadas numa toalha dobrada, com o punho reto, ou pegadores de flexão (decisão do Gustavo em 04/11/2026). Com dor acima de 5, a flexão continua saindo do programa. O único estudo achado (em cadáver) não foi verificado",
+    "valores": {
+      "iniciante": "punho 3 a 5",
+      "intermediario": "punho 3 a 5",
+      "avancado": "punho 3 a 5"
+    },
+    "selo": "consenso",
+    "fontes": [
       "consenso-projeto"
     ]
   },

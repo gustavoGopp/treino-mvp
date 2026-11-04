@@ -146,14 +146,10 @@ exports[`cenários (snapshots revisados) > diego 1`] = `
 exports[`cenários (snapshots revisados) > elisa 1`] = `
 {
   "avisos": [
-    "equipamento.sem-ancoragem",
     "equipamento.escada-carga-leve",
     "selecao.isolador-obrigatorio",
     "tempo.corte",
-    "volume.semanal.alvo",
-    "volume.semanal.alvo",
-    "volume.semanal.alvo",
-    "volume.semanal.alvo",
+    "equipamento.sem-ancoragem",
     "volume.semanal.alvo",
   ],
   "dias": [
@@ -185,7 +181,6 @@ exports[`cenários (snapshots revisados) > fabio 1`] = `
   "avisos": [
     "equipamento.escada-carga-leve",
     "selecao.isolador-obrigatorio",
-    "volume.semanal.alvo",
     "volume.semanal.alvo",
     "volume.semanal.alvo",
   ],

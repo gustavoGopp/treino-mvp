@@ -60,6 +60,7 @@ export const TEMPO = {
   colchao: 0.1, // tempo.colchao
   superserieEntre: 15, // tempo.superserie
   dropSet: 35, // tempo.drop-set: 2 quedas curtas com ~10–15 s entre elas, somadas à última série
+  sobraFracao: 0.7, // tempo.sobra: abaixo de 70% dos minutos escolhidos, o aviso de que falta exercício, não tempo
 };
 
 /** tempo.exercicios-por-sessao: exercícios por treino conforme os minutos (pesquisa-v2/05, seção 1). */

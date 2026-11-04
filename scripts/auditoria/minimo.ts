@@ -6,7 +6,7 @@
 import { mkdirSync, writeFileSync } from 'node:fs';
 import { BIBLIOTECA, MUSCULOS, POR_ID, type Articulacao, type Musculo, type Padrao } from '../../src/domain/biblioteca';
 import { CARTOES, CONTEUDO } from '../../src/conteudo';
-import { contextoDeSelecao, gerarPrograma, MUSCULOS_COM_META, NOME_MUSCULO, type Programa } from '../../src/domain/gerador';
+import { SEM_EXERCICIO, ehAvisoDeMeta, musculosDoAviso, contextoDeSelecao, gerarPrograma, MUSCULOS_COM_META, NOME_MUSCULO, type Programa } from '../../src/domain/gerador';
 import { DIVISAO_IDS, DIVISOES, type DivisaoId } from '../../src/domain/gerador/divisoes';
 import { FUNCAO, FUNCOES } from '../../src/domain/gerador/funcoes';
 import { exerciciosPorSessao, NIVEIS, NIVEL_COMPLEXIDADE_MAX, VOLUME, type Nivel } from '../../src/domain/regras';
@@ -155,7 +155,7 @@ for (const caso of grade()) {
       const m = f.musculo;
       const temMeta = (MUSCULOS_COM_META as readonly Musculo[]).includes(m);
       const avisoVaga = !!f.lacuna && p.avisos.some((x) => x.texto.startsWith(`Sem ${f.lacuna!.falta}:`));
-      const avisoMusculo = p.avisos.some((x) => x.texto.startsWith('Abaixo da meta') && (x.texto.includes(NOME_MUSCULO[m] + ' ') || x.texto.includes(NOME_MUSCULO[m] + ',')));
+      const avisoMusculo = p.avisos.some((x) => ehAvisoDeMeta(x) && musculosDoAviso(x).includes(m));
       const limiar = prio.has(m) ? (p.metas[m] ?? 0) : Math.min(p.metas[m] ?? 0, VOLUME.minimoEficazPiso);
       const t: Tratamento = avisoVaga
         ? 'aviso da vaga'
@@ -176,9 +176,9 @@ for (const caso of grade()) {
   // O motivo "nenhum exercício possível" é verdadeiro? E algum aviso diz o que comprar?
   for (const x of p.avisos) {
     if (COMPRA.test(x.texto)) a.avisoCompra++;
-    if (!x.texto.includes('nenhum exercício possível com o seu equipamento')) continue;
-    for (const m of MUSCULOS_COM_META)
-      if (x.texto.includes(`: ${NOME_MUSCULO[m]} `) && ctx.possiveis.some((e) => e.musculos.primarios.includes(m))) {
+    if (!(x.regraId === 'equipamento.sem-ancoragem' || x.texto.startsWith(SEM_EXERCICIO))) continue;
+    for (const m of musculosDoAviso(x))
+      if (ctx.possiveis.some((e) => e.musculos.primarios.includes(m))) {
         a.motivoFalso++;
         problema('aviso.motivo-falso', caso, p, `diz "nenhum exercício possível" para ${NOME_MUSCULO[m]}, mas há`);
       }

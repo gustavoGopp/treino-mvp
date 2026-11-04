@@ -5,7 +5,7 @@
 // Só dados fictícios (scripts/auditoria/cenarios.ts).
 import { writeFileSync, mkdirSync } from 'node:fs';
 import { BIBLIOTECA, POR_ID, type Articulacao, type Musculo } from '../../src/domain/biblioteca';
-import { contextoDeSelecao, gerarPrograma, MUSCULOS_COM_META, NOME_MUSCULO, type Programa } from '../../src/domain/gerador';
+import { SEM_EXERCICIO, ehAvisoDeMeta, musculosDoAviso, contextoDeSelecao, gerarPrograma, MUSCULOS_COM_META, NOME_MUSCULO, type Programa } from '../../src/domain/gerador';
 import { DIVISOES } from '../../src/domain/gerador/divisoes';
 import { FUNCAO } from '../../src/domain/gerador/funcoes';
 import { diaNoLocal } from '../../src/domain/locais';
@@ -55,9 +55,9 @@ const motivoDe = (t: string) =>
     ? 'corte de tempo'
     : t.includes('por causa da dor') || t.includes('a dor ')
       ? 'dor'
-      : t.includes('nenhum exercício possível')
+      : t.includes('nenhum exercício possível') || t.startsWith(SEM_EXERCICIO) || t.startsWith('Sem algo para puxar')
         ? 'nenhum exercício possível'
-        : t.includes('cabem cerca de')
+        : t.includes('cabem cerca de') || t.includes('cabem ~')
           ? 'minutos (exercícios por treino)'
           : t.includes('não tem vaga própria')
             ? 'divisão sem vaga própria'
@@ -114,9 +114,9 @@ for (const caso of grade({ amostra })) {
         if (v < (p.metas[m] ?? 0)) l.abaixoPrio[m] = (l.abaixoPrio[m] ?? 0) + 1;
       } else if (v < Math.min(p.metas[m] ?? 0, VOLUME.minimoEficazPiso)) l.abaixoDemais[m] = (l.abaixoDemais[m] ?? 0) + 1;
     }
-    for (const a of p.avisos.filter((x) => x.texto.startsWith('Abaixo da meta')))
+    for (const a of p.avisos.filter(ehAvisoDeMeta))
       for (const m of MUSCULOS_COM_META)
-        if (a.texto.includes(NOME_MUSCULO[m] + ' ') || a.texto.includes(NOME_MUSCULO[m] + ',')) {
+        if (musculosDoAviso(a).includes(m)) {
           const k = `${m}|${motivoDe(a.texto)}`;
           motivos.set(k, (motivos.get(k) ?? 0) + 1);
         }
@@ -193,7 +193,7 @@ for (const caso of grade({ amostra })) {
     if (porMinutos) {
       tempo.sobraComAbaixoPorMinutos++;
       problema('tempo.sobra-com-meta-cortada', caso, p, `o dia mais longo tem ${maxDia} de ${caso.minutos} min, mas: "${porMinutos.texto}"`);
-    } else if (caso.minutos >= 60 && p.avisos.some((a) => a.texto.startsWith('Abaixo da meta')))
+    } else if (caso.minutos >= 60 && p.avisos.some(ehAvisoDeMeta))
       problema('tempo.sobra-com-meta-abaixo', caso, p, `o dia mais longo tem ${maxDia} de ${caso.minutos} min e há músculo abaixo da meta`);
   }
 

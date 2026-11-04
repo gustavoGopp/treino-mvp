@@ -1,7 +1,7 @@
 import { useMemo, useState } from 'react';
 import { Link, Navigate, useNavigate } from 'react-router-dom';
 import { BIBLIOTECA, type Musculo } from '../../domain/biblioteca';
-import { ALTERNATIVAS_A_MOSTRA, NOME_MUSCULO, type DiaPrograma, type ExercicioPrescrito, type Programa as TipoPrograma } from '../../domain/gerador';
+import { ALTERNATIVAS_A_MOSTRA, NOME_MUSCULO, ehAvisoDeMeta, type DiaPrograma, type ExercicioPrescrito, type Programa as TipoPrograma } from '../../domain/gerador';
 import { mensagemDeVolta, type MensagemDeVolta } from '../../domain/acompanhamento/volta';
 import { opcoesDeAjuste, type Opcao } from '../../domain/gerador/opcoes';
 import { NOME_NIVEL } from '../../domain/nivel';
@@ -111,7 +111,7 @@ export function Programa() {
     atualizar((s) => alternarPreferencia(s, funcao, id));
     setAviso('Preferência salva. Ela entra quando você atualizar o programa e nas trocas de local.');
   };
-  const abaixo = salvo.avisos.filter((a) => a.texto.startsWith('Abaixo da meta')).length;
+  const abaixo = salvo.avisos.filter(ehAvisoDeMeta).length;
   const volta = mensagemDeVolta(hoje);
   // Uma coisa de cada vez: na volta de uma pausa, a proposta do tempo espera o próximo treino.
   const tempoProposto = volta ? null : tempoDoEstado(estado, fuso);

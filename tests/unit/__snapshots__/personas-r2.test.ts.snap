@@ -189,7 +189,7 @@ exports[`snapshots do R2: o treino de cada persona na volta de 30 dias > Diego 1
   {
     "antes": "semana 6: 16 séries, RIR 2–3 e 1–2, a mesma carga",
     "cargas": [
-      "Flexão de braço: peso do corpo · pés elevados (declinada) → peso do corpo · descida de 3 s",
+      "Flexão de braço: peso do corpo · pés elevados (declinada; sem degrau, cama ou sofá: descida de 4 s) → peso do corpo · descida de 3 s",
       "Barra fixa: peso do corpo · pausa de 1 s em cima → peso do corpo · descida de 3 s",
       "Agachamento com o peso do corpo: peso do corpo · pausa de 2 s embaixo → peso do corpo · descida de 3 s",
       "Flexão de joelho com elástico: elástico · mais esticado, com descida de 3 s → elástico · mais esticado (um passo mais longe)",
@@ -202,7 +202,7 @@ exports[`snapshots do R2: o treino de cada persona na volta de 30 dias > Diego 1
   {
     "antes": "semana 6: 15 séries, RIR 2–3 e 1–2, a mesma carga",
     "cargas": [
-      "Flexão de braço: peso do corpo · pés elevados (declinada) → peso do corpo · descida de 3 s",
+      "Flexão de braço: peso do corpo · pés elevados (declinada; sem degrau, cama ou sofá: descida de 4 s) → peso do corpo · descida de 3 s",
       "Remada sentada com elástico: elástico · mais esticado, com descida de 3 s → elástico · mais esticado (um passo mais longe)",
       "Stiff com elástico: elástico · mais esticado, com descida de 3 s → elástico · mais esticado (um passo mais longe)",
       "Rosca com elástico: elástico · mais esticado, com descida de 3 s → elástico · mais esticado (um passo mais longe)",
@@ -215,10 +215,10 @@ exports[`snapshots do R2: o treino de cada persona na volta de 30 dias > Diego 1
   {
     "antes": "semana 6: 14 séries, RIR 2–3 e 1–2, a mesma carga",
     "cargas": [
-      "Flexão de braço: peso do corpo · pés elevados (declinada) → peso do corpo · descida de 3 s",
+      "Flexão de braço: peso do corpo · pés elevados (declinada; sem degrau, cama ou sofá: descida de 4 s) → peso do corpo · descida de 3 s",
       "Barra fixa com pegada supinada: peso do corpo · pausa de 1 s em cima → peso do corpo · descida de 3 s",
       "Afundo estático com o peso do corpo: peso do corpo · pausa de 2 s embaixo → peso do corpo · descida de 3 s",
-      "Ponte de glúteo: peso do corpo · ombros num sofá ou numa cadeira firme (hip thrust) → peso do corpo · pausa de 2 s no alto",
+      "Ponte de glúteo: peso do corpo · ombros num sofá ou numa cadeira firme, como no hip thrust (sem eles: pausa de 3 s no alto) → peso do corpo · pausa de 2 s no alto",
       "Elevação lateral com elástico: elástico · mais esticado, com descida de 3 s → elástico · mais esticado (um passo mais longe)",
       "Abdominal no chão (crunch): peso do corpo · braços acima da cabeça → peso do corpo · descida de 3 s",
     ],

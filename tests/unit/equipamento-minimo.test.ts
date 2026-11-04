@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import { POR_ID, type Musculo, type Padrao } from '../../src/domain/biblioteca';
-import { contextoDeSelecao, gerarPrograma, MUSCULOS_COM_META, NOME_MUSCULO, type Perfil, type Programa } from '../../src/domain/gerador';
+import { SEM_EXERCICIO, musculosDoAviso, ehAvisoDeMeta, contextoDeSelecao, gerarPrograma, MUSCULOS_COM_META, type Perfil, type Programa } from '../../src/domain/gerador';
 import { DIVISOES, type DivisaoId } from '../../src/domain/gerador/divisoes';
 import { FUNCAO } from '../../src/domain/gerador/funcoes';
 import { NIVEIS, VOLUME, type Nivel } from '../../src/domain/regras';
@@ -79,11 +79,11 @@ describe(`equipamento mínimo: o vazio e cada item sozinho (${casos.length} prog
           const avisoDaVaga =
             (f.lacuna && p.avisos.some((a) => a.texto.startsWith(`Sem ${f.lacuna!.falta}:`))) ||
             (f.musculo === 'costas' && p.avisos.some((a) => a.regraId === 'equipamento.sem-ancoragem' || a.regraId === 'equipamento.sem-puxada-vertical'));
-          const avisoDoMusculo = p.avisos.some((a) => a.texto.startsWith('Abaixo da meta') && a.texto.includes(`${NOME_MUSCULO[m]} `));
+          const avisoDoMusculo = p.avisos.some((a) => ehAvisoDeMeta(a) && musculosDoAviso(a).includes(m));
           expect(semMeta || coberto || avisoDaVaga || avisoDoMusculo, `${nome}: ${vaga.funcao}`).toBe(true);
-          // O motivo é verdadeiro: "nenhum exercício possível" só quando não há mesmo.
-          for (const a of p.avisos.filter((x) => x.texto.includes(`: ${NOME_MUSCULO[m]} `) && x.texto.includes('nenhum exercício possível')))
-            expect(ctx.possiveis.some((e) => e.musculos.primarios.includes(m)), `${nome}: ${a.texto}`).toBe(false);
+          // O motivo é verdadeiro: "sem exercício" só para o músculo que não tem mesmo.
+          for (const a of p.avisos.filter((x) => x.regraId === 'equipamento.sem-ancoragem' || x.texto.startsWith(SEM_EXERCICIO)))
+            for (const mm of musculosDoAviso(a)) expect(ctx.possiveis.some((e) => e.musculos.primarios.includes(mm)), `${nome}: ${a.texto}`).toBe(false);
         }
     }
   });
@@ -94,7 +94,7 @@ describe(`equipamento mínimo: o vazio e cada item sozinho (${casos.length} prog
       for (const a of p.avisos) expect(a.texto, nome).not.toMatch(/\b(compr|adquir)/i);
     }
     const p = gerar(perfil('iniciante', 'ct-abc'), {});
-    expect(p.avisos.some((a) => a.regraId === 'equipamento.sem-ancoragem' && /costas, bíceps e ombro de trás/.test(a.texto))).toBe(true);
+    expect(p.avisos.some((a) => a.regraId === 'equipamento.sem-ancoragem' && /costas, ombro lateral, ombro de trás e bíceps ficam sem exercício/.test(a.texto))).toBe(true);
   });
 
   it('um dia de superior ou de puxar sem tronco nem braço diz a verdade: "exercícios de outros músculos"', () => {
@@ -131,5 +131,33 @@ describe('personas do equipamento mínimo', () => {
     expect(p.volumeSemanal.costas ?? 0).toBeGreaterThan(0);
     expect(p.volumeSemanal.posteriores ?? 0).toBeGreaterThan(0);
     expect(p.avisos.some((a) => a.regraId === 'equipamento.sem-ancoragem')).toBe(false);
+  });
+});
+
+describe('decisões da sessão de fechamento (04/11/2026)', () => {
+  const comPunho = (nota: number): Perfil => {
+    const pf = perfil('intermediario', 'ct-abc');
+    return { ...pf, triagem: { respostas: { ...pf.triagem.respostas, osteoarticular: true }, dores: [{ articulacao: 'punho', nota }] } };
+  };
+  it('tempo.sobra: sem nada e 90 min, o app diz quanto o treino dura e que dá para escolher menos, sem sugerir compra', () => {
+    const p = gerar(perfil('intermediario', 'ct-abc', 90), {});
+    const a = p.avisos.find((x) => x.regraId === 'tempo.sobra');
+    expect(a?.texto).toMatch(/^Com o seu equipamento, o treino dura cerca de \d+ min\. Mais tempo não acrescenta exercícios/);
+    expect(a!.texto).not.toMatch(/\b(compr|adquir)/i);
+    // Com tempo bem usado, nada.
+    expect(gerar(perfil('intermediario', 'ct-abc', 30), {}).avisos.some((x) => x.regraId === 'tempo.sobra')).toBe(false);
+  });
+  it('tecnica.flexao.punho: dor leve no punho (3 a 5) sugere as mãos fechadas na flexão; dor 0 a 2, não', () => {
+    const flexao = (p: Programa) => p.dias.flatMap((d) => d.exercicios).find((x) => x.exId === 'flexao');
+    expect(flexao(gerar(comPunho(4), {}))?.porque.some((q) => q.regraId === 'tecnica.flexao.punho')).toBe(true);
+    expect(flexao(gerar(comPunho(2), {}))?.porque.some((q) => q.regraId === 'tecnica.flexao.punho')).toBe(false);
+  });
+  it('sem nada para puxar, os músculos sem exercício viram um aviso só, com a lista (e o ombro lateral)', () => {
+    const p = gerar(perfil('iniciante', 'ct-abc'), {});
+    const sem = p.avisos.filter((a) => a.regraId === 'equipamento.sem-ancoragem');
+    expect(sem).toHaveLength(1);
+    expect(musculosDoAviso(sem[0]!).sort()).toEqual(['biceps', 'costas', 'ombro_lateral', 'ombro_posterior']);
+    for (const m of ['costas', 'biceps', 'ombro_lateral', 'ombro_posterior'] as Musculo[])
+      expect(p.avisos.filter((a) => a.texto.startsWith('Abaixo da meta') && musculosDoAviso(a).includes(m))).toHaveLength(0);
   });
 });

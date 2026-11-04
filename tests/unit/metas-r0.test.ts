@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { GRUPOS, NOME_MUSCULO } from '../../src/domain/gerador';
+import { musculosDoAviso, GRUPOS } from '../../src/domain/gerador';
 import { VOLUME } from '../../src/domain/regras';
 import type { Musculo } from '../../src/domain/biblioteca';
 import { carla } from '../personas';
@@ -45,13 +45,13 @@ describe(`metas do R0 com o inventário da Carla (${m.programas} programas)`, ()
   it('todo músculo abaixo da meta tem um aviso com o motivo (equipamento, minutos, divisão ou tempo)', () => {
     for (const { perfil, programa } of m.progs) {
       const prio = new Set<Musculo>(perfil.prioridades.flatMap((g) => GRUPOS[g]));
-      const textos = programa.avisos.filter((a) => a.regraId === 'volume.semanal.alvo' || a.regraId === 'tempo.corte').map((a) => a.texto);
+      const avisos = programa.avisos.filter((a) => ['volume.semanal.alvo', 'tempo.corte', 'equipamento.sem-ancoragem'].includes(a.regraId));
       for (const [mu, meta] of Object.entries(programa.metas) as [Musculo, number][]) {
         const limiar = prio.has(mu) ? meta : Math.min(meta, VOLUME.minimoEficazPiso);
         if ((programa.volumeSemanal[mu] ?? 0) >= limiar) continue;
-        const aviso = textos.find((t) => t.includes(NOME_MUSCULO[mu]));
+        const aviso = avisos.find((a) => musculosDoAviso(a).includes(mu));
         expect(aviso, `${perfil.divisao}/${perfil.minutosSessao}/${perfil.nivel} ${mu}`).toBeDefined();
-        expect(aviso!).toMatch(/porque|falta de tempo/);
+        expect(aviso!.texto).toMatch(/por semana\. \S|falta de tempo|^Sem /);
       }
     }
   });

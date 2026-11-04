@@ -1,23 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import { BIBLIOTECA, POR_ID } from '../../src/domain/biblioteca';
-import {
-  ALTERNATIVAS_A_MOSTRA,
-  contextoDeSelecao,
-  equipamentoDe,
-  GRUPOS,
-  NOME_MUSCULO,
-  cortarTempo,
-  gerarPrograma,
-  minutos,
-  prescricaoDaSemana,
-  seriesDeVolume,
-  volumePorMusculo,
-  type DiaPrograma,
-  type ExercicioPrescrito,
-  type Grupo,
-  type Perfil,
-  type Programa,
-} from '../../src/domain/gerador';
+import { musculosDoAviso, ehAvisoDeMeta, ALTERNATIVAS_A_MOSTRA, contextoDeSelecao, equipamentoDe, GRUPOS, cortarTempo, gerarPrograma, minutos, prescricaoDaSemana, seriesDeVolume, volumePorMusculo, type DiaPrograma, type ExercicioPrescrito, type Grupo, type Perfil, type Programa } from '../../src/domain/gerador';
 import type { Articulacao, Musculo } from '../../src/domain/biblioteca';
 import { DIVISOES, DIVISAO_IDS } from '../../src/domain/gerador/divisoes';
 import { FUNCAO } from '../../src/domain/gerador/funcoes';
@@ -186,7 +169,7 @@ describe('triagem e dor no gerador', () => {
   it('vaga esvaziada pela dor não vira aviso de falta de equipamento (a Carla tem a extensora)', () => {
     const p = ok(comDor(carla.perfil, [{ articulacao: 'joelho', nota: 8 }]), carla.inventario);
     expect(p.avisos.some((a) => a.texto.startsWith('Sem cadeira extensora'))).toBe(false);
-    expect(p.avisos.find((a) => a.texto.startsWith('Abaixo da meta semanal: quadríceps'))!.texto).toContain('por causa da dor no joelho (8 hoje)');
+    expect(p.avisos.find((a) => a.texto.startsWith('Abaixo da meta: quadríceps'))!.texto).toContain('por causa da dor no joelho (8 hoje)');
   });
   it('intermediário sem pausa não tem fase especial', () => {
     expect(ok({ ...bruno.perfil, semanasParado: 0 }, bruno.inventario).fases).toEqual([]);
@@ -288,14 +271,14 @@ describe(`propriedade do R1: dor em 1 ou 2 regiões (${comDores.length} combina�
         const temPrincipal = d.exercicios.some((x) => x.padrao !== 'core');
         // Só vale um dia sem principal quando nenhum exercício fora do core é possível, e o aviso diz isso.
         if (!temPrincipal)
-          expect(p.avisos.some((a) => a.regraId === 'selecao.dia-sem-principal' && a.texto.startsWith(d.nome) && a.texto.includes('nenhum outro exercício')), `${v.nome}: ${d.nome}`).toBe(true);
+          expect(p.avisos.some((a) => a.regraId === 'selecao.dia-sem-principal' && a.texto.startsWith(d.nome) && a.texto.includes('só o abdominal')), `${v.nome}: ${d.nome}`).toBe(true);
       }
-      const textos = p.avisos.map((a) => a.texto);
       for (const m of GRUPOS_GRANDES) {
         if ((p.volumeSemanal[m] ?? 0) > 0) continue;
-        const aviso = textos.find((t) => t.includes(`${NOME_MUSCULO[m]} 0 de`));
+        const aviso = p.avisos.find((a) => ehAvisoDeMeta(a) && musculosDoAviso(a).includes(m));
         expect(aviso, `${v.nome}: ${m}`).toBeDefined();
-        expect(aviso!, `${v.nome}: ${m}`).toMatch(/porque/);
+        // Com o motivo: o agrupado de quem não tem exercício, ou a frase depois de "por semana."
+        expect(aviso!.texto, `${v.nome}: ${m}`).toMatch(/^Sem |por semana\. \S/);
       }
     }
   });
@@ -325,14 +308,14 @@ describe('ordem da sessão (ordem.sessao)', () => {
 });
 
 describe('cortes respeitam a prioridade e avisam o que ficou de fora', () => {
-  const nomes = (p: Programa) => p.avisos.map((a) => a.texto).join(' ');
+  const nomes = (p: Programa) => p.avisos.flatMap(musculosDoAviso);
   it('todo músculo abaixo do limiar aparece num aviso de meta', () => {
     for (const v of variacoes) {
       const p = ok(v.perfil, v.inv);
       const prio = new Set<Musculo>(v.perfil.prioridades.flatMap((g) => GRUPOS[g]));
       for (const [m, meta] of Object.entries(p.metas) as [Musculo, number][]) {
         const limiar = prio.has(m) ? meta : Math.min(meta, VOLUME.minimoEficazPiso);
-        if ((p.volumeSemanal[m] ?? 0) < limiar) expect(nomes(p), `${v.nome} ${m}`).toContain(NOME_MUSCULO[m]);
+        if ((p.volumeSemanal[m] ?? 0) < limiar) expect(nomes(p), `${v.nome} ${m}`).toContain(m);
       }
     }
   });
@@ -340,10 +323,10 @@ describe('cortes respeitam a prioridade e avisam o que ficou de fora', () => {
     for (const v of variacoes) {
       const p = ok(v.perfil, v.inv);
       const prio = new Set<Musculo>(v.perfil.prioridades.flatMap((g) => GRUPOS[g]));
-      const estrutural = p.avisos.filter((a) => a.regraId === 'volume.semanal.alvo').map((a) => a.texto).join(' ');
+      const estrutural = p.avisos.filter((a) => a.regraId === 'volume.semanal.alvo' || a.regraId === 'equipamento.sem-ancoragem').flatMap(musculosDoAviso);
       for (const [m, meta] of Object.entries(p.metas) as [Musculo, number][]) {
         const piso = Math.min(meta, prio.has(m) ? VOLUME.minimo[v.perfil.nivel] : VOLUME.minimoEficazPiso);
-        if ((p.volumeSemanal[m] ?? 0) < piso) expect(estrutural, `${v.nome} ${m}`).toContain(NOME_MUSCULO[m]);
+        if ((p.volumeSemanal[m] ?? 0) < piso) expect(estrutural, `${v.nome} ${m}`).toContain(m);
       }
     }
   });
