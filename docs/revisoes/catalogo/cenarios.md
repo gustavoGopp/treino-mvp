@@ -8,59 +8,59 @@
 |---|---:|---:|---|
 | Academia completa (atalho) | 0 / 0 | 4 / 4 | — |
 | Academia completa + kettlebell, elásticos, bola, suspensão, caneleiras, mini-band e roda (a Carla) | 0 / 0 | 4 / 4 | — |
-| Casa com halteres e elásticos (atalho) | 4 / 4 | 10 / 10 | — |
-| Casa + os "às vezes tem" (banco, barra fixa, kettlebell, suspensão, step, bola, caneleiras, mini-band, roda) | 1 / 1 | 8 / 8 | — |
-| Condomínio com multifuncional (atalho: puxador e remada) | 4 / 4 | 10 / 10 | — |
-| Condomínio + os "às vezes tem" e o multifuncional com todas as estações | 1 / 1 | 8 / 8 | — |
-| Academia do bairro sem polia (2º local do Bruno) | 3 / 3 | 11 / 11 | — |
-| Prédio com polia dupla, halteres e banco regulável (o Bruno) | 4 / 4 | 2 / 2 | — |
-| Elásticos e barra fixa de porta (o Diego) (+ 1: barra-porta+elasticos) | 4 / 4 | 14 / 14 | — |
-| Só elásticos (+ 1: so:elasticos) | 4 / 4 | 16 / 16 | — |
-| Só halteres (2 a 20 kg), sem banco | 5 / 5 | 10 / 9 | — |
-| Halteres de 1 a 12 kg e banco reto (a Ana) | 4 / 4 | 11 / 10 | — |
-| Nada marcado (só o peso do corpo) (+ 10: so:polia_simples, so:banco_regulavel, so:banco_reto, so:acessorio_polia_corda, so:acessorio_polia_triangulo, so:acessorio_polia_barra_reta, so:acessorio_polia_estribo, so:acessorio_polia_tornozeleira, so:esteira, so:banco_scott) | 11 / 11 | 9 / 8 | — |
-| Banco reto + halteres leves (2 a 6 kg) | 4 / 4 | 11 / 10 | — |
-| Halteres de 2 a 10 kg + bola suíça | 5 / 5 | 9 / 9 | — |
-| Step + elásticos (3 intensidades) | 4 / 4 | 15 / 15 | — |
-| Suspensão + elásticos (3 intensidades) | 4 / 4 | 15 / 15 | — |
-| Só máquina de abdominal | 11 / 11 | 9 / 8 | — |
-| Só anilhas e manoplas para montar halteres | 5 / 5 | 10 / 9 | — |
-| Só banco romano (hiperextensão) ou ghd | 11 / 11 | 9 / 8 | — |
-| Só barra fixa | 10 / 10 | 8 / 7 | — |
-| Só barra hexagonal (trap bar) | 11 / 11 | 9 / 8 | — |
-| Só barra longa (olímpica ou comum) | 11 / 10 | 9 / 10 | puxar-horizontal, dobrar-quadril |
-| Só barra w | 10 / 10 | 10 / 9 | — |
-| Só bola suíça | 11 / 11 | 7 / 7 | — |
+| Casa com halteres e elásticos (atalho) | 0 / 0 | 14 / 14 | — |
+| Casa + os "às vezes tem" (banco, barra fixa, kettlebell, suspensão, step, bola, caneleiras, mini-band, roda) | 0 / 0 | 8 / 8 | — |
+| Condomínio com multifuncional (atalho: puxador e remada) | 1 / 1 | 13 / 13 | — |
+| Condomínio + os "às vezes tem" e o multifuncional com todas as estações | 0 / 0 | 9 / 9 | — |
+| Academia do bairro sem polia (2º local do Bruno) | 0 / 0 | 14 / 14 | — |
+| Prédio com polia dupla, halteres e banco regulável (o Bruno) | 0 / 0 | 6 / 6 | — |
+| Elásticos e barra fixa de porta (o Diego) (+ 1: barra-porta+elasticos) | 1 / 1 | 17 / 17 | — |
+| Só elásticos (+ 1: so:elasticos) | 1 / 1 | 19 / 19 | — |
+| Só halteres (2 a 20 kg), sem banco | 2 / 2 | 13 / 12 | — |
+| Halteres de 1 a 12 kg e banco reto (a Ana) | 1 / 1 | 14 / 13 | — |
+| Nada marcado (só o peso do corpo) (+ 10: so:polia_simples, so:banco_regulavel, so:banco_reto, so:acessorio_polia_corda, so:acessorio_polia_triangulo, so:acessorio_polia_barra_reta, so:acessorio_polia_estribo, so:acessorio_polia_tornozeleira, so:esteira, so:banco_scott) | 9 / 9 | 11 / 10 | — |
+| Banco reto + halteres leves (2 a 6 kg) | 1 / 1 | 14 / 13 | — |
+| Halteres de 2 a 10 kg + bola suíça | 2 / 2 | 12 / 12 | — |
+| Step + elásticos (3 intensidades) | 1 / 1 | 18 / 18 | — |
+| Suspensão + elásticos (3 intensidades) | 1 / 1 | 18 / 18 | — |
+| Só máquina de abdominal | 9 / 9 | 11 / 10 | — |
+| Só anilhas e manoplas para montar halteres | 2 / 2 | 13 / 12 | — |
+| Só banco romano (hiperextensão) ou ghd | 9 / 9 | 11 / 10 | — |
+| Só barra fixa | 8 / 8 | 10 / 9 | — |
+| Só barra hexagonal (trap bar) | 9 / 9 | 11 / 10 | — |
+| Só barra longa (olímpica ou comum) | 9 / 8 | 11 / 12 | puxar-horizontal, dobrar-quadril |
+| Só barra w | 8 / 8 | 12 / 11 | — |
+| Só bola suíça | 9 / 9 | 9 / 9 | — |
 | Só cadeira abdutora e adutora (ou máquina de abdução em pé) | 9 / 9 | 11 / 10 | — |
-| Só cadeira extensora | 10 / 10 | 10 / 9 | — |
-| Só cadeira flexora (sentada) | 11 / 11 | 9 / 9 | — |
+| Só cadeira extensora | 8 / 8 | 12 / 11 | — |
+| Só cadeira flexora (sentada) | 9 / 9 | 11 / 11 | — |
 | Só caneleiras de peso | 8 / 8 | 12 / 11 | — |
-| Só desenvolvimento na máquina | 11 / 11 | 9 / 8 | — |
-| Só estação de polia dupla (crossover) com altura regulável | 4 / 4 | 14 / 13 | — |
-| Só puxador alto (estação de puxada) | 10 / 10 | 10 / 9 | — |
-| Só remada baixa (estação) | 10 / 10 | 10 / 9 | — |
-| Só glúteo na máquina | 11 / 11 | 9 / 8 | — |
-| Só graviton (barra e mergulho assistidos) | 10 / 10 | 9 / 8 | — |
-| Só hack ou agachamento pendular | 11 / 11 | 9 / 8 | — |
-| Só halteres fixos | 5 / 5 | 10 / 9 | — |
-| Só kettlebell | 7 / 7 | 14 / 13 | — |
-| Só leg press | 11 / 11 | 9 / 8 | — |
-| Só mesa flexora (deitada) | 11 / 11 | 9 / 9 | — |
-| Só mini-band (elástico curto em laço) | 10 / 10 | 10 / 9 | — |
-| Só multifuncional (várias estações numa torre só) | 9 / 9 | 11 / 10 | — |
-| Só panturrilha em pé (máquina) | 11 / 11 | 9 / 8 | — |
-| Só panturrilha sentada (máquina) | 10 / 10 | 10 / 9 | — |
-| Só paralelas | 11 / 11 | 8 / 6 | — |
-| Só rack ou gaiola de agachamento | 9 / 9 | 11 / 10 | — |
-| Só remada articulada | 10 / 10 | 10 / 9 | — |
-| Só roda abdominal | 11 / 11 | 9 / 7 | — |
-| Só máquina de rosca | 10 / 10 | 10 / 9 | — |
-| Só smith | 9 / 9 | 11 / 10 | — |
-| Só step | 11 / 11 | 8 / 7 | — |
-| Só supino na máquina ou articulado | 11 / 11 | 9 / 8 | — |
-| Só fitas de suspensão (trx) ou argolas | 7 / 7 | 12 / 12 | — |
-| Só máquina de tríceps | 11 / 11 | 9 / 8 | — |
-| Só voador (peck deck) | 10 / 10 | 10 / 9 | — |
+| Só desenvolvimento na máquina | 9 / 9 | 11 / 10 | — |
+| Só estação de polia dupla (crossover) com altura regulável | 2 / 2 | 16 / 15 | — |
+| Só puxador alto (estação de puxada) | 8 / 8 | 12 / 11 | — |
+| Só remada baixa (estação) | 8 / 8 | 12 / 11 | — |
+| Só glúteo na máquina | 9 / 9 | 11 / 10 | — |
+| Só graviton (barra e mergulho assistidos) | 8 / 8 | 11 / 10 | — |
+| Só hack ou agachamento pendular | 9 / 9 | 11 / 10 | — |
+| Só halteres fixos | 2 / 2 | 13 / 12 | — |
+| Só kettlebell | 5 / 5 | 16 / 15 | — |
+| Só leg press | 9 / 9 | 11 / 10 | — |
+| Só mesa flexora (deitada) | 9 / 9 | 11 / 11 | — |
+| Só mini-band (elástico curto em laço) | 9 / 9 | 11 / 10 | — |
+| Só multifuncional (várias estações numa torre só) | 7 / 7 | 13 / 12 | — |
+| Só panturrilha em pé (máquina) | 9 / 9 | 11 / 10 | — |
+| Só panturrilha sentada (máquina) | 8 / 8 | 12 / 11 | — |
+| Só paralelas | 9 / 9 | 10 / 8 | — |
+| Só rack ou gaiola de agachamento | 7 / 7 | 13 / 12 | — |
+| Só remada articulada | 8 / 8 | 12 / 11 | — |
+| Só roda abdominal | 9 / 9 | 11 / 9 | — |
+| Só máquina de rosca | 8 / 8 | 12 / 11 | — |
+| Só smith | 7 / 7 | 13 / 12 | — |
+| Só step | 9 / 9 | 10 / 9 | — |
+| Só supino na máquina ou articulado | 9 / 9 | 11 / 10 | — |
+| Só fitas de suspensão (trx) ou argolas | 5 / 5 | 14 / 14 | — |
+| Só máquina de tríceps | 9 / 9 | 11 / 10 | — |
+| Só voador (peck deck) | 8 / 8 | 12 / 11 | — |
 
 ## Vaga por vaga
 ### Academia completa (atalho)
@@ -137,14 +137,14 @@
 | Tríceps (complemento) | **1** (n3) | **1** (n3) | **1** (n3) | flexao-fechada |
 | Agachar | 2 (n2) | 2 (n2) | 2 (n2) | goblet, agachamento-halteres |
 | Afundo | 2 | 2 | 2 | afundo, afundo-tras |
-| Extensora | **0** | **0** | **0** | — |
+| Extensora | **1** (n2) | **1** (n2) | **1** (n2) | extensao-joelho-elastico |
 | Flexão de joelho | **1** (n3) | **1** (n3) | **1** (n3) | flexao-joelho-elastico |
 | Dobrar o quadril | 2 | 2 | 2 | stiff, stiff-unilateral |
 | Extensão de quadril (glúteo) | 2 (n2) | 2 (n2) | 2 (n2) | ponte-gluteo, ponte-gluteo-halter |
-| Abdução de quadril | **0** | **0** | **0** | — |
-| Adução de quadril (complemento) | **0** | **0** | **0** | — |
+| Abdução de quadril | **1** (n3) | **1** (n3) | **1** (n3) | abducao-deitado |
+| Adução de quadril (complemento) | **1** (n3) | **1** (n3) | **1** (n3) | aducao-deitado |
 | Panturrilha em pé | **1** (n2) | **1** (n2) | **1** (n2) | panturrilha-chao |
-| Panturrilha sentada (complemento) | **0** | **0** | **0** | — |
+| Panturrilha sentada (complemento) | **1** (n2) | **1** (n2) | **1** (n2) | panturrilha-sentada-halter |
 | Abdômen | **1** (n2) | **1** (n2) | **1** (n2) | abdominal-chao |
 
 ### Casa + os "às vezes tem" (banco, barra fixa, kettlebell, suspensão, step, bola, caneleiras, mini-band, roda)
@@ -165,14 +165,14 @@
 | Tríceps (complemento) | **1** (n2) | **1** (n2) | **1** (n2) | triceps-suspensao |
 | Agachar | 4 (n2) | 4 (n2) | 4 (n2) | goblet, agachamento-halteres, bulgaro, goblet-kettlebell |
 | Afundo | 4 | 4 | 4 | bulgaro, afundo, afundo-tras, afundo-kettlebell |
-| Extensora | **1** (n2) | **1** (n2) | **1** (n2) | extensao-joelho-caneleira |
+| Extensora | 2 (n2) | 2 (n2) | 2 (n2) | extensao-joelho-caneleira, extensao-joelho-elastico |
 | Flexão de joelho | 2 (n3) | 2 (n3) | 2 (n3) | flexao-bola, flexao-joelho-elastico |
 | Dobrar o quadril | 3 | 3 | 3 | stiff, stiff-unilateral, stiff-kettlebell |
 | Extensão de quadril (glúteo) | 4 (n2) | 4 (n2) | 4 (n2) | ponte-gluteo, ponte-gluteo-halter, ponte-pes-bola, ponte-kettlebell |
 | Abdução de quadril | 2 (n2) | 2 (n2) | 2 (n2) | abducao-caneleira, abducao-mini-band |
 | Adução de quadril (complemento) | **1** (n2) | **1** (n2) | **1** (n2) | aducao-caneleira |
 | Panturrilha em pé | 2 | 2 | 2 | panturrilha, panturrilha-bilateral-step |
-| Panturrilha sentada (complemento) | **0** | **0** | **0** | — |
+| Panturrilha sentada (complemento) | **1** (n2) | **1** (n2) | **1** (n2) | panturrilha-sentada-halter |
 | Abdômen | 3 (n2) | 4 (n2) | 4 (n2) | elevacao-joelhos, abdominal-chao, abdominal-bola, roda-abdominal |
 
 ### Condomínio com multifuncional (atalho: puxador e remada)
@@ -197,10 +197,10 @@
 | Flexão de joelho | **1** (n3) | **1** (n3) | **1** (n3) | flexao-bola |
 | Dobrar o quadril | 2 | 2 | 2 | stiff, stiff-unilateral |
 | Extensão de quadril (glúteo) | 3 (n2) | 3 (n2) | 3 (n2) | ponte-gluteo, ponte-gluteo-halter, ponte-pes-bola |
-| Abdução de quadril | **0** | **0** | **0** | — |
-| Adução de quadril (complemento) | **0** | **0** | **0** | — |
+| Abdução de quadril | **1** (n3) | **1** (n3) | **1** (n3) | abducao-deitado |
+| Adução de quadril (complemento) | **1** (n3) | **1** (n3) | **1** (n3) | aducao-deitado |
 | Panturrilha em pé | **1** (n2) | **1** (n2) | **1** (n2) | panturrilha-chao |
-| Panturrilha sentada (complemento) | **0** | **0** | **0** | — |
+| Panturrilha sentada (complemento) | **1** (n2) | **1** (n2) | **1** (n2) | panturrilha-sentada-halter |
 | Abdômen | 2 (n2) | 2 (n2) | 2 (n2) | abdominal-chao, abdominal-bola |
 
 ### Condomínio + os "às vezes tem" e o multifuncional com todas as estações
@@ -228,7 +228,7 @@
 | Abdução de quadril | 2 (n2) | 2 (n2) | 2 (n2) | abducao-caneleira, abducao-mini-band |
 | Adução de quadril (complemento) | **1** (n2) | **1** (n2) | **1** (n2) | aducao-caneleira |
 | Panturrilha em pé | 2 | 2 | 2 | panturrilha, panturrilha-bilateral-step |
-| Panturrilha sentada (complemento) | **0** | **0** | **0** | — |
+| Panturrilha sentada (complemento) | **1** (n2) | **1** (n2) | **1** (n2) | panturrilha-sentada-halter |
 | Abdômen | 3 (n2) | 4 (n2) | 4 (n2) | elevacao-joelhos, abdominal-chao, abdominal-bola, roda-abdominal |
 
 ### Academia do bairro sem polia (2º local do Bruno)
@@ -253,10 +253,10 @@
 | Flexão de joelho | **1** | **1** | **1** | cadeira-flexora |
 | Dobrar o quadril | 2 | 2 | 2 | stiff, stiff-unilateral |
 | Extensão de quadril (glúteo) | 2 (n2) | 2 (n2) | 2 (n2) | ponte-gluteo, ponte-gluteo-halter |
-| Abdução de quadril | **0** | **0** | **0** | — |
-| Adução de quadril (complemento) | **0** | **0** | **0** | — |
+| Abdução de quadril | **1** (n3) | **1** (n3) | **1** (n3) | abducao-deitado |
+| Adução de quadril (complemento) | **1** (n3) | **1** (n3) | **1** (n3) | aducao-deitado |
 | Panturrilha em pé | **1** | **1** | **1** | panturrilha-leg-press |
-| Panturrilha sentada (complemento) | **0** | **0** | **0** | — |
+| Panturrilha sentada (complemento) | **1** (n2) | **1** (n2) | **1** (n2) | panturrilha-sentada-halter |
 | Abdômen | 3 (n2) | 3 (n2) | 3 (n2) | elevacao-joelhos, abdominal-chao, elevacao-joelhos-paralelas |
 
 ### Prédio com polia dupla, halteres e banco regulável (o Bruno)
@@ -277,14 +277,14 @@
 | Tríceps (complemento) | 2 | 2 | 2 | triceps-corda, triceps-barra-reta |
 | Agachar | 3 (n2) | 3 (n2) | 3 (n2) | goblet, agachamento-halteres, bulgaro |
 | Afundo | 3 | 3 | 3 | bulgaro, afundo, afundo-tras |
-| Extensora | **0** | **0** | **0** | — |
+| Extensora | **1** (n2) | **1** (n2) | **1** (n2) | extensao-joelho-elastico |
 | Flexão de joelho | 2 (n3) | 2 (n3) | 2 (n3) | flexao-bola, flexao-joelho-elastico |
 | Dobrar o quadril | 2 | 3 | 3 | terra-romeno-barra, stiff, stiff-unilateral |
 | Extensão de quadril (glúteo) | **1** | **1** | **1** | hip-thrust |
-| Abdução de quadril | **0** | **0** | **0** | — |
-| Adução de quadril (complemento) | **0** | **0** | **0** | — |
+| Abdução de quadril | **1** (n3) | **1** (n3) | **1** (n3) | abducao-deitado |
+| Adução de quadril (complemento) | **1** (n3) | **1** (n3) | **1** (n3) | aducao-deitado |
 | Panturrilha em pé | 2 | 2 | 2 | panturrilha, panturrilha-bilateral-step |
-| Panturrilha sentada (complemento) | **0** | **0** | **0** | — |
+| Panturrilha sentada (complemento) | **1** (n2) | **1** (n2) | **1** (n2) | panturrilha-sentada-halter |
 | Abdômen | 2 | 2 | 2 | abdominal-polia, abdominal-declinado |
 
 ### Elásticos e barra fixa de porta (o Diego)
@@ -305,12 +305,12 @@ Mesmo programa: Barra fixa de porta + elásticos (3 intensidades).
 | Tríceps (complemento) | **1** (n3) | **1** (n3) | **1** (n3) | flexao-fechada |
 | Agachar | 2 (n3) | 2 (n3) | 2 (n3) | agachamento-elastico, agachamento-peso-corpo |
 | Afundo | 2 (n2) | 2 (n2) | 2 (n2) | afundo-peso-corpo, bulgaro-peso-corpo |
-| Extensora | **0** | **0** | **0** | — |
+| Extensora | **1** (n2) | **1** (n2) | **1** (n2) | extensao-joelho-elastico |
 | Flexão de joelho | **1** (n3) | **1** (n3) | **1** (n3) | flexao-joelho-elastico |
 | Dobrar o quadril | **1** (n3) | **1** (n3) | **1** (n3) | stiff-elastico |
 | Extensão de quadril (glúteo) | **1** (n2) | **1** (n2) | **1** (n2) | ponte-gluteo |
-| Abdução de quadril | **0** | **0** | **0** | — |
-| Adução de quadril (complemento) | **0** | **0** | **0** | — |
+| Abdução de quadril | **1** (n3) | **1** (n3) | **1** (n3) | abducao-deitado |
+| Adução de quadril (complemento) | **1** (n3) | **1** (n3) | **1** (n3) | aducao-deitado |
 | Panturrilha em pé | **1** (n2) | **1** (n2) | **1** (n2) | panturrilha-chao |
 | Panturrilha sentada (complemento) | **0** | **0** | **0** | — |
 | Abdômen | 2 (n2) | 2 (n2) | 2 (n2) | elevacao-joelhos, abdominal-chao |
@@ -333,12 +333,12 @@ Mesmo programa: Só elásticos (faixas ou tubos).
 | Tríceps (complemento) | **1** (n3) | **1** (n3) | **1** (n3) | flexao-fechada |
 | Agachar | 2 (n3) | 2 (n3) | 2 (n3) | agachamento-elastico, agachamento-peso-corpo |
 | Afundo | 2 (n2) | 2 (n2) | 2 (n2) | afundo-peso-corpo, bulgaro-peso-corpo |
-| Extensora | **0** | **0** | **0** | — |
+| Extensora | **1** (n2) | **1** (n2) | **1** (n2) | extensao-joelho-elastico |
 | Flexão de joelho | **1** (n3) | **1** (n3) | **1** (n3) | flexao-joelho-elastico |
 | Dobrar o quadril | **1** (n3) | **1** (n3) | **1** (n3) | stiff-elastico |
 | Extensão de quadril (glúteo) | **1** (n2) | **1** (n2) | **1** (n2) | ponte-gluteo |
-| Abdução de quadril | **0** | **0** | **0** | — |
-| Adução de quadril (complemento) | **0** | **0** | **0** | — |
+| Abdução de quadril | **1** (n3) | **1** (n3) | **1** (n3) | abducao-deitado |
+| Adução de quadril (complemento) | **1** (n3) | **1** (n3) | **1** (n3) | aducao-deitado |
 | Panturrilha em pé | **1** (n2) | **1** (n2) | **1** (n2) | panturrilha-chao |
 | Panturrilha sentada (complemento) | **0** | **0** | **0** | — |
 | Abdômen | **1** (n2) | **1** (n2) | **1** (n2) | abdominal-chao |
@@ -365,10 +365,10 @@ Mesmo programa: Só elásticos (faixas ou tubos).
 | Flexão de joelho | **1** (n4) | 2 (n4) | 2 (n4) | flexao-joelho-deslizante, nordico |
 | Dobrar o quadril | 2 | 2 | 2 | stiff, stiff-unilateral |
 | Extensão de quadril (glúteo) | 2 (n2) | 2 (n2) | 2 (n2) | ponte-gluteo, ponte-gluteo-halter |
-| Abdução de quadril | **0** | **0** | **0** | — |
-| Adução de quadril (complemento) | **0** | **0** | **0** | — |
+| Abdução de quadril | **1** (n3) | **1** (n3) | **1** (n3) | abducao-deitado |
+| Adução de quadril (complemento) | **1** (n3) | **1** (n3) | **1** (n3) | aducao-deitado |
 | Panturrilha em pé | **1** (n2) | **1** (n2) | **1** (n2) | panturrilha-chao |
-| Panturrilha sentada (complemento) | **0** | **0** | **0** | — |
+| Panturrilha sentada (complemento) | **1** (n2) | **1** (n2) | **1** (n2) | panturrilha-sentada-halter |
 | Abdômen | **1** (n2) | **1** (n2) | **1** (n2) | abdominal-chao |
 
 ### Halteres de 1 a 12 kg e banco reto (a Ana)
@@ -393,10 +393,10 @@ Mesmo programa: Só elásticos (faixas ou tubos).
 | Flexão de joelho | **1** (n4) | 2 (n4) | 2 (n4) | flexao-joelho-deslizante, nordico |
 | Dobrar o quadril | 2 | 2 | 2 | stiff, stiff-unilateral |
 | Extensão de quadril (glúteo) | 2 (n2) | 2 (n2) | 2 (n2) | ponte-gluteo, ponte-gluteo-halter |
-| Abdução de quadril | **0** | **0** | **0** | — |
-| Adução de quadril (complemento) | **0** | **0** | **0** | — |
+| Abdução de quadril | **1** (n3) | **1** (n3) | **1** (n3) | abducao-deitado |
+| Adução de quadril (complemento) | **1** (n3) | **1** (n3) | **1** (n3) | aducao-deitado |
 | Panturrilha em pé | **1** (n2) | **1** (n2) | **1** (n2) | panturrilha-chao |
-| Panturrilha sentada (complemento) | **0** | **0** | **0** | — |
+| Panturrilha sentada (complemento) | **1** (n2) | **1** (n2) | **1** (n2) | panturrilha-sentada-halter |
 | Abdômen | **1** (n2) | **1** (n2) | **1** (n2) | abdominal-chao |
 
 ### Nada marcado (só o peso do corpo)
@@ -421,8 +421,8 @@ Mesmo programa: Só polia simples; Só banco regulável (inclina); Só banco ret
 | Flexão de joelho | **1** (n4) | 2 (n4) | 2 (n4) | flexao-joelho-deslizante, nordico |
 | Dobrar o quadril | → flexao-joelho | → flexao-joelho | → flexao-joelho | — |
 | Extensão de quadril (glúteo) | **1** (n2) | **1** (n2) | **1** (n2) | ponte-gluteo |
-| Abdução de quadril | **0** | **0** | **0** | — |
-| Adução de quadril (complemento) | **0** | **0** | **0** | — |
+| Abdução de quadril | **1** (n3) | **1** (n3) | **1** (n3) | abducao-deitado |
+| Adução de quadril (complemento) | **1** (n3) | **1** (n3) | **1** (n3) | aducao-deitado |
 | Panturrilha em pé | **1** (n2) | **1** (n2) | **1** (n2) | panturrilha-chao |
 | Panturrilha sentada (complemento) | **0** | **0** | **0** | — |
 | Abdômen | **1** (n2) | **1** (n2) | **1** (n2) | abdominal-chao |
@@ -449,10 +449,10 @@ Mesmo programa: Só polia simples; Só banco regulável (inclina); Só banco ret
 | Flexão de joelho | **1** (n4) | 2 (n4) | 2 (n4) | flexao-joelho-deslizante, nordico |
 | Dobrar o quadril | 2 | 2 | 2 | stiff, stiff-unilateral |
 | Extensão de quadril (glúteo) | 2 (n2) | 2 (n2) | 2 (n2) | ponte-gluteo, ponte-gluteo-halter |
-| Abdução de quadril | **0** | **0** | **0** | — |
-| Adução de quadril (complemento) | **0** | **0** | **0** | — |
+| Abdução de quadril | **1** (n3) | **1** (n3) | **1** (n3) | abducao-deitado |
+| Adução de quadril (complemento) | **1** (n3) | **1** (n3) | **1** (n3) | aducao-deitado |
 | Panturrilha em pé | **1** (n2) | **1** (n2) | **1** (n2) | panturrilha-chao |
-| Panturrilha sentada (complemento) | **0** | **0** | **0** | — |
+| Panturrilha sentada (complemento) | **1** (n2) | **1** (n2) | **1** (n2) | panturrilha-sentada-halter |
 | Abdômen | **1** (n2) | **1** (n2) | **1** (n2) | abdominal-chao |
 
 ### Halteres de 2 a 10 kg + bola suíça
@@ -477,10 +477,10 @@ Mesmo programa: Só polia simples; Só banco regulável (inclina); Só banco ret
 | Flexão de joelho | **1** (n3) | **1** (n3) | **1** (n3) | flexao-bola |
 | Dobrar o quadril | 2 | 2 | 2 | stiff, stiff-unilateral |
 | Extensão de quadril (glúteo) | 3 (n2) | 3 (n2) | 3 (n2) | ponte-gluteo, ponte-gluteo-halter, ponte-pes-bola |
-| Abdução de quadril | **0** | **0** | **0** | — |
-| Adução de quadril (complemento) | **0** | **0** | **0** | — |
+| Abdução de quadril | **1** (n3) | **1** (n3) | **1** (n3) | abducao-deitado |
+| Adução de quadril (complemento) | **1** (n3) | **1** (n3) | **1** (n3) | aducao-deitado |
 | Panturrilha em pé | **1** (n2) | **1** (n2) | **1** (n2) | panturrilha-chao |
-| Panturrilha sentada (complemento) | **0** | **0** | **0** | — |
+| Panturrilha sentada (complemento) | **1** (n2) | **1** (n2) | **1** (n2) | panturrilha-sentada-halter |
 | Abdômen | 2 (n2) | 2 (n2) | 2 (n2) | abdominal-chao, abdominal-bola |
 
 ### Step + elásticos (3 intensidades)
@@ -501,12 +501,12 @@ Mesmo programa: Só polia simples; Só banco regulável (inclina); Só banco ret
 | Tríceps (complemento) | **1** (n3) | **1** (n3) | **1** (n3) | flexao-fechada |
 | Agachar | 2 (n3) | 2 (n3) | 2 (n3) | agachamento-elastico, agachamento-peso-corpo |
 | Afundo | 2 (n2) | 2 (n2) | 2 (n2) | afundo-peso-corpo, bulgaro-peso-corpo |
-| Extensora | **0** | **0** | **0** | — |
+| Extensora | **1** (n2) | **1** (n2) | **1** (n2) | extensao-joelho-elastico |
 | Flexão de joelho | **1** (n3) | **1** (n3) | **1** (n3) | flexao-joelho-elastico |
 | Dobrar o quadril | **1** (n3) | **1** (n3) | **1** (n3) | stiff-elastico |
 | Extensão de quadril (glúteo) | **1** (n2) | **1** (n2) | **1** (n2) | ponte-gluteo |
-| Abdução de quadril | **0** | **0** | **0** | — |
-| Adução de quadril (complemento) | **0** | **0** | **0** | — |
+| Abdução de quadril | **1** (n3) | **1** (n3) | **1** (n3) | abducao-deitado |
+| Adução de quadril (complemento) | **1** (n3) | **1** (n3) | **1** (n3) | aducao-deitado |
 | Panturrilha em pé | 2 | 2 | 2 | panturrilha, panturrilha-bilateral-step |
 | Panturrilha sentada (complemento) | **0** | **0** | **0** | — |
 | Abdômen | **1** (n2) | **1** (n2) | **1** (n2) | abdominal-chao |
@@ -529,12 +529,12 @@ Mesmo programa: Só polia simples; Só banco regulável (inclina); Só banco ret
 | Tríceps (complemento) | **1** (n2) | **1** (n2) | **1** (n2) | triceps-suspensao |
 | Agachar | 2 (n3) | 2 (n3) | 2 (n3) | agachamento-elastico, agachamento-peso-corpo |
 | Afundo | 2 (n2) | 3 (n2) | 3 (n2) | afundo-peso-corpo, bulgaro-peso-corpo, bulgaro-suspensao |
-| Extensora | **0** | **0** | **0** | — |
+| Extensora | **1** (n2) | **1** (n2) | **1** (n2) | extensao-joelho-elastico |
 | Flexão de joelho | **1** (n3) | **1** (n3) | **1** (n3) | flexao-joelho-elastico |
 | Dobrar o quadril | **1** (n3) | **1** (n3) | **1** (n3) | stiff-elastico |
 | Extensão de quadril (glúteo) | **1** (n2) | **1** (n2) | **1** (n2) | ponte-gluteo |
-| Abdução de quadril | **0** | **0** | **0** | — |
-| Adução de quadril (complemento) | **0** | **0** | **0** | — |
+| Abdução de quadril | **1** (n3) | **1** (n3) | **1** (n3) | abducao-deitado |
+| Adução de quadril (complemento) | **1** (n3) | **1** (n3) | **1** (n3) | aducao-deitado |
 | Panturrilha em pé | **1** (n2) | **1** (n2) | **1** (n2) | panturrilha-chao |
 | Panturrilha sentada (complemento) | **0** | **0** | **0** | — |
 | Abdômen | **1** (n2) | **1** (n2) | **1** (n2) | abdominal-chao |
@@ -561,8 +561,8 @@ Mesmo programa: Só polia simples; Só banco regulável (inclina); Só banco ret
 | Flexão de joelho | **1** (n4) | 2 (n4) | 2 (n4) | flexao-joelho-deslizante, nordico |
 | Dobrar o quadril | → flexao-joelho | → flexao-joelho | → flexao-joelho | — |
 | Extensão de quadril (glúteo) | **1** (n2) | **1** (n2) | **1** (n2) | ponte-gluteo |
-| Abdução de quadril | **0** | **0** | **0** | — |
-| Adução de quadril (complemento) | **0** | **0** | **0** | — |
+| Abdução de quadril | **1** (n3) | **1** (n3) | **1** (n3) | abducao-deitado |
+| Adução de quadril (complemento) | **1** (n3) | **1** (n3) | **1** (n3) | aducao-deitado |
 | Panturrilha em pé | **1** (n2) | **1** (n2) | **1** (n2) | panturrilha-chao |
 | Panturrilha sentada (complemento) | **0** | **0** | **0** | — |
 | Abdômen | **1** | **1** | **1** | abdominal-maquina |
@@ -589,10 +589,10 @@ Mesmo programa: Só polia simples; Só banco regulável (inclina); Só banco ret
 | Flexão de joelho | **1** (n4) | 2 (n4) | 2 (n4) | flexao-joelho-deslizante, nordico |
 | Dobrar o quadril | 2 | 2 | 2 | stiff, stiff-unilateral |
 | Extensão de quadril (glúteo) | 2 (n2) | 2 (n2) | 2 (n2) | ponte-gluteo, ponte-gluteo-halter |
-| Abdução de quadril | **0** | **0** | **0** | — |
-| Adução de quadril (complemento) | **0** | **0** | **0** | — |
+| Abdução de quadril | **1** (n3) | **1** (n3) | **1** (n3) | abducao-deitado |
+| Adução de quadril (complemento) | **1** (n3) | **1** (n3) | **1** (n3) | aducao-deitado |
 | Panturrilha em pé | **1** (n2) | **1** (n2) | **1** (n2) | panturrilha-chao |
-| Panturrilha sentada (complemento) | **0** | **0** | **0** | — |
+| Panturrilha sentada (complemento) | **1** (n2) | **1** (n2) | **1** (n2) | panturrilha-sentada-halter |
 | Abdômen | **1** (n2) | **1** (n2) | **1** (n2) | abdominal-chao |
 
 ### Só banco romano (hiperextensão) ou ghd
@@ -617,8 +617,8 @@ Mesmo programa: Só polia simples; Só banco regulável (inclina); Só banco ret
 | Flexão de joelho | **1** (n4) | 2 (n4) | 2 (n4) | flexao-joelho-deslizante, nordico |
 | Dobrar o quadril | **1** (n2) | **1** (n2) | **1** (n2) | hiperextensao |
 | Extensão de quadril (glúteo) | 2 (n2) | 2 (n2) | 2 (n2) | ponte-gluteo, hiperextensao |
-| Abdução de quadril | **0** | **0** | **0** | — |
-| Adução de quadril (complemento) | **0** | **0** | **0** | — |
+| Abdução de quadril | **1** (n3) | **1** (n3) | **1** (n3) | abducao-deitado |
+| Adução de quadril (complemento) | **1** (n3) | **1** (n3) | **1** (n3) | aducao-deitado |
 | Panturrilha em pé | **1** (n2) | **1** (n2) | **1** (n2) | panturrilha-chao |
 | Panturrilha sentada (complemento) | **0** | **0** | **0** | — |
 | Abdômen | **1** (n2) | **1** (n2) | **1** (n2) | abdominal-chao |
@@ -645,8 +645,8 @@ Mesmo programa: Só polia simples; Só banco regulável (inclina); Só banco ret
 | Flexão de joelho | **1** (n4) | 2 (n4) | 2 (n4) | flexao-joelho-deslizante, nordico |
 | Dobrar o quadril | → flexao-joelho | → flexao-joelho | → flexao-joelho | — |
 | Extensão de quadril (glúteo) | **1** (n2) | **1** (n2) | **1** (n2) | ponte-gluteo |
-| Abdução de quadril | **0** | **0** | **0** | — |
-| Adução de quadril (complemento) | **0** | **0** | **0** | — |
+| Abdução de quadril | **1** (n3) | **1** (n3) | **1** (n3) | abducao-deitado |
+| Adução de quadril (complemento) | **1** (n3) | **1** (n3) | **1** (n3) | aducao-deitado |
 | Panturrilha em pé | **1** (n2) | **1** (n2) | **1** (n2) | panturrilha-chao |
 | Panturrilha sentada (complemento) | **0** | **0** | **0** | — |
 | Abdômen | 2 (n2) | 2 (n2) | 2 (n2) | elevacao-joelhos, abdominal-chao |
@@ -673,8 +673,8 @@ Mesmo programa: Só polia simples; Só banco regulável (inclina); Só banco ret
 | Flexão de joelho | **1** (n4) | 2 (n4) | 2 (n4) | flexao-joelho-deslizante, nordico |
 | Dobrar o quadril | → flexao-joelho | → flexao-joelho | → flexao-joelho | — |
 | Extensão de quadril (glúteo) | **1** (n2) | **1** (n2) | **1** (n2) | ponte-gluteo |
-| Abdução de quadril | **0** | **0** | **0** | — |
-| Adução de quadril (complemento) | **0** | **0** | **0** | — |
+| Abdução de quadril | **1** (n3) | **1** (n3) | **1** (n3) | abducao-deitado |
+| Adução de quadril (complemento) | **1** (n3) | **1** (n3) | **1** (n3) | aducao-deitado |
 | Panturrilha em pé | **1** (n2) | **1** (n2) | **1** (n2) | panturrilha-chao |
 | Panturrilha sentada (complemento) | **0** | **0** | **0** | — |
 | Abdômen | **1** (n2) | **1** (n2) | **1** (n2) | abdominal-chao |
@@ -701,8 +701,8 @@ Mesmo programa: Só polia simples; Só banco regulável (inclina); Só banco ret
 | Flexão de joelho | **1** (n4) | 2 (n4) | 2 (n4) | flexao-joelho-deslizante, nordico |
 | Dobrar o quadril | → flexao-joelho | **1** | **1** | terra-romeno-barra |
 | Extensão de quadril (glúteo) | **1** (n2) | **1** (n2) | **1** (n2) | ponte-gluteo |
-| Abdução de quadril | **0** | **0** | **0** | — |
-| Adução de quadril (complemento) | **0** | **0** | **0** | — |
+| Abdução de quadril | **1** (n3) | **1** (n3) | **1** (n3) | abducao-deitado |
+| Adução de quadril (complemento) | **1** (n3) | **1** (n3) | **1** (n3) | aducao-deitado |
 | Panturrilha em pé | **1** (n2) | **1** (n2) | **1** (n2) | panturrilha-chao |
 | Panturrilha sentada (complemento) | **0** | **0** | **0** | — |
 | Abdômen | **1** (n2) | **1** (n2) | **1** (n2) | abdominal-chao |
@@ -729,8 +729,8 @@ Mesmo programa: Só polia simples; Só banco regulável (inclina); Só banco ret
 | Flexão de joelho | **1** (n4) | 2 (n4) | 2 (n4) | flexao-joelho-deslizante, nordico |
 | Dobrar o quadril | → flexao-joelho | → flexao-joelho | → flexao-joelho | — |
 | Extensão de quadril (glúteo) | **1** (n2) | **1** (n2) | **1** (n2) | ponte-gluteo |
-| Abdução de quadril | **0** | **0** | **0** | — |
-| Adução de quadril (complemento) | **0** | **0** | **0** | — |
+| Abdução de quadril | **1** (n3) | **1** (n3) | **1** (n3) | abducao-deitado |
+| Adução de quadril (complemento) | **1** (n3) | **1** (n3) | **1** (n3) | aducao-deitado |
 | Panturrilha em pé | **1** (n2) | **1** (n2) | **1** (n2) | panturrilha-chao |
 | Panturrilha sentada (complemento) | **0** | **0** | **0** | — |
 | Abdômen | **1** (n2) | **1** (n2) | **1** (n2) | abdominal-chao |
@@ -757,8 +757,8 @@ Mesmo programa: Só polia simples; Só banco regulável (inclina); Só banco ret
 | Flexão de joelho | **1** (n3) | **1** (n3) | **1** (n3) | flexao-bola |
 | Dobrar o quadril | → flexao-joelho | → flexao-joelho | → flexao-joelho | — |
 | Extensão de quadril (glúteo) | 2 (n2) | 2 (n2) | 2 (n2) | ponte-gluteo, ponte-pes-bola |
-| Abdução de quadril | **0** | **0** | **0** | — |
-| Adução de quadril (complemento) | **0** | **0** | **0** | — |
+| Abdução de quadril | **1** (n3) | **1** (n3) | **1** (n3) | abducao-deitado |
+| Adução de quadril (complemento) | **1** (n3) | **1** (n3) | **1** (n3) | aducao-deitado |
 | Panturrilha em pé | **1** (n2) | **1** (n2) | **1** (n2) | panturrilha-chao |
 | Panturrilha sentada (complemento) | **0** | **0** | **0** | — |
 | Abdômen | 2 (n2) | 2 (n2) | 2 (n2) | abdominal-chao, abdominal-bola |
@@ -813,8 +813,8 @@ Mesmo programa: Só polia simples; Só banco regulável (inclina); Só banco ret
 | Flexão de joelho | **1** (n4) | 2 (n4) | 2 (n4) | flexao-joelho-deslizante, nordico |
 | Dobrar o quadril | → flexao-joelho | → flexao-joelho | → flexao-joelho | — |
 | Extensão de quadril (glúteo) | **1** (n2) | **1** (n2) | **1** (n2) | ponte-gluteo |
-| Abdução de quadril | **0** | **0** | **0** | — |
-| Adução de quadril (complemento) | **0** | **0** | **0** | — |
+| Abdução de quadril | **1** (n3) | **1** (n3) | **1** (n3) | abducao-deitado |
+| Adução de quadril (complemento) | **1** (n3) | **1** (n3) | **1** (n3) | aducao-deitado |
 | Panturrilha em pé | **1** (n2) | **1** (n2) | **1** (n2) | panturrilha-chao |
 | Panturrilha sentada (complemento) | **0** | **0** | **0** | — |
 | Abdômen | **1** (n2) | **1** (n2) | **1** (n2) | abdominal-chao |
@@ -841,8 +841,8 @@ Mesmo programa: Só polia simples; Só banco regulável (inclina); Só banco ret
 | Flexão de joelho | **1** | **1** | **1** | cadeira-flexora |
 | Dobrar o quadril | → flexao-joelho | → flexao-joelho | → flexao-joelho | — |
 | Extensão de quadril (glúteo) | **1** (n2) | **1** (n2) | **1** (n2) | ponte-gluteo |
-| Abdução de quadril | **0** | **0** | **0** | — |
-| Adução de quadril (complemento) | **0** | **0** | **0** | — |
+| Abdução de quadril | **1** (n3) | **1** (n3) | **1** (n3) | abducao-deitado |
+| Adução de quadril (complemento) | **1** (n3) | **1** (n3) | **1** (n3) | aducao-deitado |
 | Panturrilha em pé | **1** (n2) | **1** (n2) | **1** (n2) | panturrilha-chao |
 | Panturrilha sentada (complemento) | **0** | **0** | **0** | — |
 | Abdômen | **1** (n2) | **1** (n2) | **1** (n2) | abdominal-chao |
@@ -897,8 +897,8 @@ Mesmo programa: Só polia simples; Só banco regulável (inclina); Só banco ret
 | Flexão de joelho | **1** (n4) | 2 (n4) | 2 (n4) | flexao-joelho-deslizante, nordico |
 | Dobrar o quadril | → flexao-joelho | → flexao-joelho | → flexao-joelho | — |
 | Extensão de quadril (glúteo) | **1** (n2) | **1** (n2) | **1** (n2) | ponte-gluteo |
-| Abdução de quadril | **0** | **0** | **0** | — |
-| Adução de quadril (complemento) | **0** | **0** | **0** | — |
+| Abdução de quadril | **1** (n3) | **1** (n3) | **1** (n3) | abducao-deitado |
+| Adução de quadril (complemento) | **1** (n3) | **1** (n3) | **1** (n3) | aducao-deitado |
 | Panturrilha em pé | **1** (n2) | **1** (n2) | **1** (n2) | panturrilha-chao |
 | Panturrilha sentada (complemento) | **0** | **0** | **0** | — |
 | Abdômen | **1** (n2) | **1** (n2) | **1** (n2) | abdominal-chao |
@@ -925,8 +925,8 @@ Mesmo programa: Só polia simples; Só banco regulável (inclina); Só banco ret
 | Flexão de joelho | **1** (n4) | 2 (n4) | 2 (n4) | flexao-joelho-deslizante, nordico |
 | Dobrar o quadril | → flexao-joelho | → flexao-joelho | → flexao-joelho | — |
 | Extensão de quadril (glúteo) | **1** (n2) | **1** (n2) | **1** (n2) | ponte-gluteo |
-| Abdução de quadril | **0** | **0** | **0** | — |
-| Adução de quadril (complemento) | **0** | **0** | **0** | — |
+| Abdução de quadril | **1** (n3) | **1** (n3) | **1** (n3) | abducao-deitado |
+| Adução de quadril (complemento) | **1** (n3) | **1** (n3) | **1** (n3) | aducao-deitado |
 | Panturrilha em pé | **1** (n2) | **1** (n2) | **1** (n2) | panturrilha-chao |
 | Panturrilha sentada (complemento) | **0** | **0** | **0** | — |
 | Abdômen | **1** (n2) | **1** (n2) | **1** (n2) | abdominal-chao |
@@ -953,8 +953,8 @@ Mesmo programa: Só polia simples; Só banco regulável (inclina); Só banco ret
 | Flexão de joelho | **1** (n4) | 2 (n4) | 2 (n4) | flexao-joelho-deslizante, nordico |
 | Dobrar o quadril | → flexao-joelho | → flexao-joelho | → flexao-joelho | — |
 | Extensão de quadril (glúteo) | **1** (n2) | **1** (n2) | **1** (n2) | ponte-gluteo |
-| Abdução de quadril | **0** | **0** | **0** | — |
-| Adução de quadril (complemento) | **0** | **0** | **0** | — |
+| Abdução de quadril | **1** (n3) | **1** (n3) | **1** (n3) | abducao-deitado |
+| Adução de quadril (complemento) | **1** (n3) | **1** (n3) | **1** (n3) | aducao-deitado |
 | Panturrilha em pé | **1** (n2) | **1** (n2) | **1** (n2) | panturrilha-chao |
 | Panturrilha sentada (complemento) | **0** | **0** | **0** | — |
 | Abdômen | **1** (n2) | **1** (n2) | **1** (n2) | abdominal-chao |
@@ -981,8 +981,8 @@ Mesmo programa: Só polia simples; Só banco regulável (inclina); Só banco ret
 | Flexão de joelho | **1** (n4) | 2 (n4) | 2 (n4) | flexao-joelho-deslizante, nordico |
 | Dobrar o quadril | → flexao-joelho | → flexao-joelho | → flexao-joelho | — |
 | Extensão de quadril (glúteo) | **1** (n2) | **1** (n2) | **1** (n2) | ponte-gluteo |
-| Abdução de quadril | **0** | **0** | **0** | — |
-| Adução de quadril (complemento) | **0** | **0** | **0** | — |
+| Abdução de quadril | **1** (n3) | **1** (n3) | **1** (n3) | abducao-deitado |
+| Adução de quadril (complemento) | **1** (n3) | **1** (n3) | **1** (n3) | aducao-deitado |
 | Panturrilha em pé | **1** (n2) | **1** (n2) | **1** (n2) | panturrilha-chao |
 | Panturrilha sentada (complemento) | **0** | **0** | **0** | — |
 | Abdômen | **1** (n2) | **1** (n2) | **1** (n2) | abdominal-chao |
@@ -1009,8 +1009,8 @@ Mesmo programa: Só polia simples; Só banco regulável (inclina); Só banco ret
 | Flexão de joelho | **1** (n4) | 2 (n4) | 2 (n4) | flexao-joelho-deslizante, nordico |
 | Dobrar o quadril | → flexao-joelho | → flexao-joelho | → flexao-joelho | — |
 | Extensão de quadril (glúteo) | **1** | **1** | **1** | coice-maquina |
-| Abdução de quadril | **0** | **0** | **0** | — |
-| Adução de quadril (complemento) | **0** | **0** | **0** | — |
+| Abdução de quadril | **1** (n3) | **1** (n3) | **1** (n3) | abducao-deitado |
+| Adução de quadril (complemento) | **1** (n3) | **1** (n3) | **1** (n3) | aducao-deitado |
 | Panturrilha em pé | **1** (n2) | **1** (n2) | **1** (n2) | panturrilha-chao |
 | Panturrilha sentada (complemento) | **0** | **0** | **0** | — |
 | Abdômen | **1** (n2) | **1** (n2) | **1** (n2) | abdominal-chao |
@@ -1037,8 +1037,8 @@ Mesmo programa: Só polia simples; Só banco regulável (inclina); Só banco ret
 | Flexão de joelho | **1** (n4) | 2 (n4) | 2 (n4) | flexao-joelho-deslizante, nordico |
 | Dobrar o quadril | → flexao-joelho | → flexao-joelho | → flexao-joelho | — |
 | Extensão de quadril (glúteo) | **1** (n2) | **1** (n2) | **1** (n2) | ponte-gluteo |
-| Abdução de quadril | **0** | **0** | **0** | — |
-| Adução de quadril (complemento) | **0** | **0** | **0** | — |
+| Abdução de quadril | **1** (n3) | **1** (n3) | **1** (n3) | abducao-deitado |
+| Adução de quadril (complemento) | **1** (n3) | **1** (n3) | **1** (n3) | aducao-deitado |
 | Panturrilha em pé | **1** (n2) | **1** (n2) | **1** (n2) | panturrilha-chao |
 | Panturrilha sentada (complemento) | **0** | **0** | **0** | — |
 | Abdômen | **1** (n2) | **1** (n2) | **1** (n2) | abdominal-chao |
@@ -1065,8 +1065,8 @@ Mesmo programa: Só polia simples; Só banco regulável (inclina); Só banco ret
 | Flexão de joelho | **1** (n4) | 2 (n4) | 2 (n4) | flexao-joelho-deslizante, nordico |
 | Dobrar o quadril | → flexao-joelho | → flexao-joelho | → flexao-joelho | — |
 | Extensão de quadril (glúteo) | **1** (n2) | **1** (n2) | **1** (n2) | ponte-gluteo |
-| Abdução de quadril | **0** | **0** | **0** | — |
-| Adução de quadril (complemento) | **0** | **0** | **0** | — |
+| Abdução de quadril | **1** (n3) | **1** (n3) | **1** (n3) | abducao-deitado |
+| Adução de quadril (complemento) | **1** (n3) | **1** (n3) | **1** (n3) | aducao-deitado |
 | Panturrilha em pé | **1** (n2) | **1** (n2) | **1** (n2) | panturrilha-chao |
 | Panturrilha sentada (complemento) | **0** | **0** | **0** | — |
 | Abdômen | **1** (n2) | **1** (n2) | **1** (n2) | abdominal-chao |
@@ -1093,10 +1093,10 @@ Mesmo programa: Só polia simples; Só banco regulável (inclina); Só banco ret
 | Flexão de joelho | **1** (n4) | 2 (n4) | 2 (n4) | flexao-joelho-deslizante, nordico |
 | Dobrar o quadril | 2 | 2 | 2 | stiff, stiff-unilateral |
 | Extensão de quadril (glúteo) | 2 (n2) | 2 (n2) | 2 (n2) | ponte-gluteo, ponte-gluteo-halter |
-| Abdução de quadril | **0** | **0** | **0** | — |
-| Adução de quadril (complemento) | **0** | **0** | **0** | — |
+| Abdução de quadril | **1** (n3) | **1** (n3) | **1** (n3) | abducao-deitado |
+| Adução de quadril (complemento) | **1** (n3) | **1** (n3) | **1** (n3) | aducao-deitado |
 | Panturrilha em pé | **1** (n2) | **1** (n2) | **1** (n2) | panturrilha-chao |
-| Panturrilha sentada (complemento) | **0** | **0** | **0** | — |
+| Panturrilha sentada (complemento) | **1** (n2) | **1** (n2) | **1** (n2) | panturrilha-sentada-halter |
 | Abdômen | **1** (n2) | **1** (n2) | **1** (n2) | abdominal-chao |
 
 ### Só kettlebell
@@ -1121,8 +1121,8 @@ Mesmo programa: Só polia simples; Só banco regulável (inclina); Só banco ret
 | Flexão de joelho | **1** (n4) | 2 (n4) | 2 (n4) | flexao-joelho-deslizante, nordico |
 | Dobrar o quadril | **1** | **1** | **1** | stiff-kettlebell |
 | Extensão de quadril (glúteo) | 2 (n2) | 2 (n2) | 2 (n2) | ponte-gluteo, ponte-kettlebell |
-| Abdução de quadril | **0** | **0** | **0** | — |
-| Adução de quadril (complemento) | **0** | **0** | **0** | — |
+| Abdução de quadril | **1** (n3) | **1** (n3) | **1** (n3) | abducao-deitado |
+| Adução de quadril (complemento) | **1** (n3) | **1** (n3) | **1** (n3) | aducao-deitado |
 | Panturrilha em pé | **1** (n2) | **1** (n2) | **1** (n2) | panturrilha-chao |
 | Panturrilha sentada (complemento) | **0** | **0** | **0** | — |
 | Abdômen | **1** (n2) | **1** (n2) | **1** (n2) | abdominal-chao |
@@ -1149,8 +1149,8 @@ Mesmo programa: Só polia simples; Só banco regulável (inclina); Só banco ret
 | Flexão de joelho | **1** (n4) | 2 (n4) | 2 (n4) | flexao-joelho-deslizante, nordico |
 | Dobrar o quadril | → flexao-joelho | → flexao-joelho | → flexao-joelho | — |
 | Extensão de quadril (glúteo) | **1** (n2) | **1** (n2) | **1** (n2) | ponte-gluteo |
-| Abdução de quadril | **0** | **0** | **0** | — |
-| Adução de quadril (complemento) | **0** | **0** | **0** | — |
+| Abdução de quadril | **1** (n3) | **1** (n3) | **1** (n3) | abducao-deitado |
+| Adução de quadril (complemento) | **1** (n3) | **1** (n3) | **1** (n3) | aducao-deitado |
 | Panturrilha em pé | **1** | **1** | **1** | panturrilha-leg-press |
 | Panturrilha sentada (complemento) | **0** | **0** | **0** | — |
 | Abdômen | **1** (n2) | **1** (n2) | **1** (n2) | abdominal-chao |
@@ -1177,8 +1177,8 @@ Mesmo programa: Só polia simples; Só banco regulável (inclina); Só banco ret
 | Flexão de joelho | **1** (n2) | **1** (n2) | **1** (n2) | mesa-flexora |
 | Dobrar o quadril | → flexao-joelho | → flexao-joelho | → flexao-joelho | — |
 | Extensão de quadril (glúteo) | **1** (n2) | **1** (n2) | **1** (n2) | ponte-gluteo |
-| Abdução de quadril | **0** | **0** | **0** | — |
-| Adução de quadril (complemento) | **0** | **0** | **0** | — |
+| Abdução de quadril | **1** (n3) | **1** (n3) | **1** (n3) | abducao-deitado |
+| Adução de quadril (complemento) | **1** (n3) | **1** (n3) | **1** (n3) | aducao-deitado |
 | Panturrilha em pé | **1** (n2) | **1** (n2) | **1** (n2) | panturrilha-chao |
 | Panturrilha sentada (complemento) | **0** | **0** | **0** | — |
 | Abdômen | **1** (n2) | **1** (n2) | **1** (n2) | abdominal-chao |
@@ -1206,7 +1206,7 @@ Mesmo programa: Só polia simples; Só banco regulável (inclina); Só banco ret
 | Dobrar o quadril | → flexao-joelho | → flexao-joelho | → flexao-joelho | — |
 | Extensão de quadril (glúteo) | **1** (n2) | **1** (n2) | **1** (n2) | ponte-gluteo |
 | Abdução de quadril | **1** (n2) | **1** (n2) | **1** (n2) | abducao-mini-band |
-| Adução de quadril (complemento) | **0** | **0** | **0** | — |
+| Adução de quadril (complemento) | **1** (n3) | **1** (n3) | **1** (n3) | aducao-deitado |
 | Panturrilha em pé | **1** (n2) | **1** (n2) | **1** (n2) | panturrilha-chao |
 | Panturrilha sentada (complemento) | **0** | **0** | **0** | — |
 | Abdômen | **1** (n2) | **1** (n2) | **1** (n2) | abdominal-chao |
@@ -1233,8 +1233,8 @@ Mesmo programa: Só polia simples; Só banco regulável (inclina); Só banco ret
 | Flexão de joelho | **1** (n4) | 2 (n4) | 2 (n4) | flexao-joelho-deslizante, nordico |
 | Dobrar o quadril | → flexao-joelho | → flexao-joelho | → flexao-joelho | — |
 | Extensão de quadril (glúteo) | **1** (n2) | **1** (n2) | **1** (n2) | ponte-gluteo |
-| Abdução de quadril | **0** | **0** | **0** | — |
-| Adução de quadril (complemento) | **0** | **0** | **0** | — |
+| Abdução de quadril | **1** (n3) | **1** (n3) | **1** (n3) | abducao-deitado |
+| Adução de quadril (complemento) | **1** (n3) | **1** (n3) | **1** (n3) | aducao-deitado |
 | Panturrilha em pé | **1** (n2) | **1** (n2) | **1** (n2) | panturrilha-chao |
 | Panturrilha sentada (complemento) | **0** | **0** | **0** | — |
 | Abdômen | **1** (n2) | **1** (n2) | **1** (n2) | abdominal-chao |
@@ -1261,8 +1261,8 @@ Mesmo programa: Só polia simples; Só banco regulável (inclina); Só banco ret
 | Flexão de joelho | **1** (n4) | 2 (n4) | 2 (n4) | flexao-joelho-deslizante, nordico |
 | Dobrar o quadril | → flexao-joelho | → flexao-joelho | → flexao-joelho | — |
 | Extensão de quadril (glúteo) | **1** (n2) | **1** (n2) | **1** (n2) | ponte-gluteo |
-| Abdução de quadril | **0** | **0** | **0** | — |
-| Adução de quadril (complemento) | **0** | **0** | **0** | — |
+| Abdução de quadril | **1** (n3) | **1** (n3) | **1** (n3) | abducao-deitado |
+| Adução de quadril (complemento) | **1** (n3) | **1** (n3) | **1** (n3) | aducao-deitado |
 | Panturrilha em pé | **1** | **1** | **1** | panturrilha-em-pe-maquina |
 | Panturrilha sentada (complemento) | **0** | **0** | **0** | — |
 | Abdômen | **1** (n2) | **1** (n2) | **1** (n2) | abdominal-chao |
@@ -1289,8 +1289,8 @@ Mesmo programa: Só polia simples; Só banco regulável (inclina); Só banco ret
 | Flexão de joelho | **1** (n4) | 2 (n4) | 2 (n4) | flexao-joelho-deslizante, nordico |
 | Dobrar o quadril | → flexao-joelho | → flexao-joelho | → flexao-joelho | — |
 | Extensão de quadril (glúteo) | **1** (n2) | **1** (n2) | **1** (n2) | ponte-gluteo |
-| Abdução de quadril | **0** | **0** | **0** | — |
-| Adução de quadril (complemento) | **0** | **0** | **0** | — |
+| Abdução de quadril | **1** (n3) | **1** (n3) | **1** (n3) | abducao-deitado |
+| Adução de quadril (complemento) | **1** (n3) | **1** (n3) | **1** (n3) | aducao-deitado |
 | Panturrilha em pé | **1** (n2) | **1** (n2) | **1** (n2) | panturrilha-chao |
 | Panturrilha sentada (complemento) | **1** | **1** | **1** | panturrilha-sentada |
 | Abdômen | **1** (n2) | **1** (n2) | **1** (n2) | abdominal-chao |
@@ -1317,8 +1317,8 @@ Mesmo programa: Só polia simples; Só banco regulável (inclina); Só banco ret
 | Flexão de joelho | **1** (n4) | 2 (n4) | 2 (n4) | flexao-joelho-deslizante, nordico |
 | Dobrar o quadril | → flexao-joelho | → flexao-joelho | → flexao-joelho | — |
 | Extensão de quadril (glúteo) | **1** (n2) | **1** (n2) | **1** (n2) | ponte-gluteo |
-| Abdução de quadril | **0** | **0** | **0** | — |
-| Adução de quadril (complemento) | **0** | **0** | **0** | — |
+| Abdução de quadril | **1** (n3) | **1** (n3) | **1** (n3) | abducao-deitado |
+| Adução de quadril (complemento) | **1** (n3) | **1** (n3) | **1** (n3) | aducao-deitado |
 | Panturrilha em pé | **1** (n2) | **1** (n2) | **1** (n2) | panturrilha-chao |
 | Panturrilha sentada (complemento) | **0** | **0** | **0** | — |
 | Abdômen | 2 (n2) | 2 (n2) | 2 (n2) | abdominal-chao, elevacao-joelhos-paralelas |
@@ -1345,8 +1345,8 @@ Mesmo programa: Só polia simples; Só banco regulável (inclina); Só banco ret
 | Flexão de joelho | **1** (n4) | 2 (n4) | 2 (n4) | flexao-joelho-deslizante, nordico |
 | Dobrar o quadril | → flexao-joelho | → flexao-joelho | → flexao-joelho | — |
 | Extensão de quadril (glúteo) | **1** (n2) | **1** (n2) | **1** (n2) | ponte-gluteo |
-| Abdução de quadril | **0** | **0** | **0** | — |
-| Adução de quadril (complemento) | **0** | **0** | **0** | — |
+| Abdução de quadril | **1** (n3) | **1** (n3) | **1** (n3) | abducao-deitado |
+| Adução de quadril (complemento) | **1** (n3) | **1** (n3) | **1** (n3) | aducao-deitado |
 | Panturrilha em pé | **1** (n2) | **1** (n2) | **1** (n2) | panturrilha-chao |
 | Panturrilha sentada (complemento) | **0** | **0** | **0** | — |
 | Abdômen | **1** (n2) | **1** (n2) | **1** (n2) | abdominal-chao |
@@ -1373,8 +1373,8 @@ Mesmo programa: Só polia simples; Só banco regulável (inclina); Só banco ret
 | Flexão de joelho | **1** (n4) | 2 (n4) | 2 (n4) | flexao-joelho-deslizante, nordico |
 | Dobrar o quadril | → flexao-joelho | → flexao-joelho | → flexao-joelho | — |
 | Extensão de quadril (glúteo) | **1** (n2) | **1** (n2) | **1** (n2) | ponte-gluteo |
-| Abdução de quadril | **0** | **0** | **0** | — |
-| Adução de quadril (complemento) | **0** | **0** | **0** | — |
+| Abdução de quadril | **1** (n3) | **1** (n3) | **1** (n3) | abducao-deitado |
+| Adução de quadril (complemento) | **1** (n3) | **1** (n3) | **1** (n3) | aducao-deitado |
 | Panturrilha em pé | **1** (n2) | **1** (n2) | **1** (n2) | panturrilha-chao |
 | Panturrilha sentada (complemento) | **0** | **0** | **0** | — |
 | Abdômen | **1** (n2) | **1** (n2) | **1** (n2) | abdominal-chao |
@@ -1401,8 +1401,8 @@ Mesmo programa: Só polia simples; Só banco regulável (inclina); Só banco ret
 | Flexão de joelho | **1** (n4) | 2 (n4) | 2 (n4) | flexao-joelho-deslizante, nordico |
 | Dobrar o quadril | → flexao-joelho | → flexao-joelho | → flexao-joelho | — |
 | Extensão de quadril (glúteo) | **1** (n2) | **1** (n2) | **1** (n2) | ponte-gluteo |
-| Abdução de quadril | **0** | **0** | **0** | — |
-| Adução de quadril (complemento) | **0** | **0** | **0** | — |
+| Abdução de quadril | **1** (n3) | **1** (n3) | **1** (n3) | abducao-deitado |
+| Adução de quadril (complemento) | **1** (n3) | **1** (n3) | **1** (n3) | aducao-deitado |
 | Panturrilha em pé | **1** (n2) | **1** (n2) | **1** (n2) | panturrilha-chao |
 | Panturrilha sentada (complemento) | **0** | **0** | **0** | — |
 | Abdômen | **1** (n2) | 2 (n2) | 2 (n2) | abdominal-chao, roda-abdominal |
@@ -1429,8 +1429,8 @@ Mesmo programa: Só polia simples; Só banco regulável (inclina); Só banco ret
 | Flexão de joelho | **1** (n4) | 2 (n4) | 2 (n4) | flexao-joelho-deslizante, nordico |
 | Dobrar o quadril | → flexao-joelho | → flexao-joelho | → flexao-joelho | — |
 | Extensão de quadril (glúteo) | **1** (n2) | **1** (n2) | **1** (n2) | ponte-gluteo |
-| Abdução de quadril | **0** | **0** | **0** | — |
-| Adução de quadril (complemento) | **0** | **0** | **0** | — |
+| Abdução de quadril | **1** (n3) | **1** (n3) | **1** (n3) | abducao-deitado |
+| Adução de quadril (complemento) | **1** (n3) | **1** (n3) | **1** (n3) | aducao-deitado |
 | Panturrilha em pé | **1** (n2) | **1** (n2) | **1** (n2) | panturrilha-chao |
 | Panturrilha sentada (complemento) | **0** | **0** | **0** | — |
 | Abdômen | **1** (n2) | **1** (n2) | **1** (n2) | abdominal-chao |
@@ -1457,8 +1457,8 @@ Mesmo programa: Só polia simples; Só banco regulável (inclina); Só banco ret
 | Flexão de joelho | **1** (n4) | 2 (n4) | 2 (n4) | flexao-joelho-deslizante, nordico |
 | Dobrar o quadril | → flexao-joelho | → flexao-joelho | → flexao-joelho | — |
 | Extensão de quadril (glúteo) | **1** (n2) | **1** (n2) | **1** (n2) | ponte-gluteo |
-| Abdução de quadril | **0** | **0** | **0** | — |
-| Adução de quadril (complemento) | **0** | **0** | **0** | — |
+| Abdução de quadril | **1** (n3) | **1** (n3) | **1** (n3) | abducao-deitado |
+| Adução de quadril (complemento) | **1** (n3) | **1** (n3) | **1** (n3) | aducao-deitado |
 | Panturrilha em pé | **1** (n2) | **1** (n2) | **1** (n2) | panturrilha-chao |
 | Panturrilha sentada (complemento) | **0** | **0** | **0** | — |
 | Abdômen | **1** (n2) | **1** (n2) | **1** (n2) | abdominal-chao |
@@ -1485,8 +1485,8 @@ Mesmo programa: Só polia simples; Só banco regulável (inclina); Só banco ret
 | Flexão de joelho | **1** (n4) | 2 (n4) | 2 (n4) | flexao-joelho-deslizante, nordico |
 | Dobrar o quadril | → flexao-joelho | → flexao-joelho | → flexao-joelho | — |
 | Extensão de quadril (glúteo) | **1** (n2) | **1** (n2) | **1** (n2) | ponte-gluteo |
-| Abdução de quadril | **0** | **0** | **0** | — |
-| Adução de quadril (complemento) | **0** | **0** | **0** | — |
+| Abdução de quadril | **1** (n3) | **1** (n3) | **1** (n3) | abducao-deitado |
+| Adução de quadril (complemento) | **1** (n3) | **1** (n3) | **1** (n3) | aducao-deitado |
 | Panturrilha em pé | 2 | 2 | 2 | panturrilha, panturrilha-bilateral-step |
 | Panturrilha sentada (complemento) | **0** | **0** | **0** | — |
 | Abdômen | **1** (n2) | **1** (n2) | **1** (n2) | abdominal-chao |
@@ -1513,8 +1513,8 @@ Mesmo programa: Só polia simples; Só banco regulável (inclina); Só banco ret
 | Flexão de joelho | **1** (n4) | 2 (n4) | 2 (n4) | flexao-joelho-deslizante, nordico |
 | Dobrar o quadril | → flexao-joelho | → flexao-joelho | → flexao-joelho | — |
 | Extensão de quadril (glúteo) | **1** (n2) | **1** (n2) | **1** (n2) | ponte-gluteo |
-| Abdução de quadril | **0** | **0** | **0** | — |
-| Adução de quadril (complemento) | **0** | **0** | **0** | — |
+| Abdução de quadril | **1** (n3) | **1** (n3) | **1** (n3) | abducao-deitado |
+| Adução de quadril (complemento) | **1** (n3) | **1** (n3) | **1** (n3) | aducao-deitado |
 | Panturrilha em pé | **1** (n2) | **1** (n2) | **1** (n2) | panturrilha-chao |
 | Panturrilha sentada (complemento) | **0** | **0** | **0** | — |
 | Abdômen | **1** (n2) | **1** (n2) | **1** (n2) | abdominal-chao |
@@ -1541,8 +1541,8 @@ Mesmo programa: Só polia simples; Só banco regulável (inclina); Só banco ret
 | Flexão de joelho | 2 (n4) | 3 (n4) | 3 (n4) | flexao-joelho-deslizante, nordico, flexao-joelho-suspensao |
 | Dobrar o quadril | → flexao-joelho | → flexao-joelho | → flexao-joelho | — |
 | Extensão de quadril (glúteo) | **1** (n2) | **1** (n2) | **1** (n2) | ponte-gluteo |
-| Abdução de quadril | **0** | **0** | **0** | — |
-| Adução de quadril (complemento) | **0** | **0** | **0** | — |
+| Abdução de quadril | **1** (n3) | **1** (n3) | **1** (n3) | abducao-deitado |
+| Adução de quadril (complemento) | **1** (n3) | **1** (n3) | **1** (n3) | aducao-deitado |
 | Panturrilha em pé | **1** (n2) | **1** (n2) | **1** (n2) | panturrilha-chao |
 | Panturrilha sentada (complemento) | **0** | **0** | **0** | — |
 | Abdômen | **1** (n2) | **1** (n2) | **1** (n2) | abdominal-chao |
@@ -1569,8 +1569,8 @@ Mesmo programa: Só polia simples; Só banco regulável (inclina); Só banco ret
 | Flexão de joelho | **1** (n4) | 2 (n4) | 2 (n4) | flexao-joelho-deslizante, nordico |
 | Dobrar o quadril | → flexao-joelho | → flexao-joelho | → flexao-joelho | — |
 | Extensão de quadril (glúteo) | **1** (n2) | **1** (n2) | **1** (n2) | ponte-gluteo |
-| Abdução de quadril | **0** | **0** | **0** | — |
-| Adução de quadril (complemento) | **0** | **0** | **0** | — |
+| Abdução de quadril | **1** (n3) | **1** (n3) | **1** (n3) | abducao-deitado |
+| Adução de quadril (complemento) | **1** (n3) | **1** (n3) | **1** (n3) | aducao-deitado |
 | Panturrilha em pé | **1** (n2) | **1** (n2) | **1** (n2) | panturrilha-chao |
 | Panturrilha sentada (complemento) | **0** | **0** | **0** | — |
 | Abdômen | **1** (n2) | **1** (n2) | **1** (n2) | abdominal-chao |
@@ -1597,8 +1597,8 @@ Mesmo programa: Só polia simples; Só banco regulável (inclina); Só banco ret
 | Flexão de joelho | **1** (n4) | 2 (n4) | 2 (n4) | flexao-joelho-deslizante, nordico |
 | Dobrar o quadril | → flexao-joelho | → flexao-joelho | → flexao-joelho | — |
 | Extensão de quadril (glúteo) | **1** (n2) | **1** (n2) | **1** (n2) | ponte-gluteo |
-| Abdução de quadril | **0** | **0** | **0** | — |
-| Adução de quadril (complemento) | **0** | **0** | **0** | — |
+| Abdução de quadril | **1** (n3) | **1** (n3) | **1** (n3) | abducao-deitado |
+| Adução de quadril (complemento) | **1** (n3) | **1** (n3) | **1** (n3) | aducao-deitado |
 | Panturrilha em pé | **1** (n2) | **1** (n2) | **1** (n2) | panturrilha-chao |
 | Panturrilha sentada (complemento) | **0** | **0** | **0** | — |
 | Abdômen | **1** (n2) | **1** (n2) | **1** (n2) | abdominal-chao |

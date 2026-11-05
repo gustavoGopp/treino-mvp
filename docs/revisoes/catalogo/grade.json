@@ -1,5 +1,5 @@
 {
- "biblioteca": 135,
+ "biblioteca": 139,
  "soIntermediarioOuMais": [
   "supino-barra",
   "remada-barra",
@@ -861,8 +861,8 @@
      0
     ],
     "so:elasticos": [
-     0,
-     0
+     1,
+     1
     ],
     "so:halteres_fixos": [
      0,
@@ -897,12 +897,12 @@
      0
     ],
     "casa": [
-     0,
-     0
-    ],
-    "casa+": [
      1,
      1
+    ],
+    "casa+": [
+     2,
+     2
     ],
     "condominio": [
      0,
@@ -913,12 +913,12 @@
      1
     ],
     "academia+": [
-     2,
-     2
+     3,
+     3
     ],
     "biblioteca": [
-     2,
-     2
+     3,
+     3
     ]
    }
   },
@@ -1277,76 +1277,6 @@
    "padrao": "abducao-quadril",
    "celulas": {
     "vazio": [
-     0,
-     0
-    ],
-    "so:elasticos": [
-     0,
-     0
-    ],
-    "so:halteres_fixos": [
-     0,
-     0
-    ],
-    "halteres": [
-     0,
-     0
-    ],
-    "so:barra_fixa": [
-     0,
-     0
-    ],
-    "so:suspensao": [
-     0,
-     0
-    ],
-    "so:kettlebell": [
-     0,
-     0
-    ],
-    "so:caneleiras": [
-     1,
-     1
-    ],
-    "so:mini_band": [
-     1,
-     1
-    ],
-    "so:roda_abdominal": [
-     0,
-     0
-    ],
-    "casa": [
-     0,
-     0
-    ],
-    "casa+": [
-     2,
-     2
-    ],
-    "condominio": [
-     0,
-     0
-    ],
-    "academia": [
-     2,
-     2
-    ],
-    "academia+": [
-     4,
-     4
-    ],
-    "biblioteca": [
-     4,
-     4
-    ]
-   }
-  },
-  {
-   "musculo": "panturrilha",
-   "padrao": "panturrilha",
-   "celulas": {
-    "vazio": [
      1,
      1
     ],
@@ -1375,12 +1305,12 @@
      1
     ],
     "so:caneleiras": [
-     1,
-     1
+     2,
+     2
     ],
     "so:mini_band": [
-     1,
-     1
+     2,
+     2
     ],
     "so:roda_abdominal": [
      1,
@@ -1399,16 +1329,86 @@
      1
     ],
     "academia": [
-     6,
-     6
+     3,
+     3
     ],
     "academia+": [
-     6,
-     6
+     5,
+     5
     ],
     "biblioteca": [
-     6,
-     6
+     5,
+     5
+    ]
+   }
+  },
+  {
+   "musculo": "panturrilha",
+   "padrao": "panturrilha",
+   "celulas": {
+    "vazio": [
+     1,
+     1
+    ],
+    "so:elasticos": [
+     1,
+     1
+    ],
+    "so:halteres_fixos": [
+     2,
+     2
+    ],
+    "halteres": [
+     2,
+     2
+    ],
+    "so:barra_fixa": [
+     1,
+     1
+    ],
+    "so:suspensao": [
+     1,
+     1
+    ],
+    "so:kettlebell": [
+     1,
+     1
+    ],
+    "so:caneleiras": [
+     1,
+     1
+    ],
+    "so:mini_band": [
+     1,
+     1
+    ],
+    "so:roda_abdominal": [
+     1,
+     1
+    ],
+    "casa": [
+     2,
+     2
+    ],
+    "casa+": [
+     4,
+     4
+    ],
+    "condominio": [
+     2,
+     2
+    ],
+    "academia": [
+     7,
+     7
+    ],
+    "academia+": [
+     7,
+     7
+    ],
+    "biblioteca": [
+     7,
+     7
     ]
    }
   },
@@ -1487,68 +1487,68 @@
    "padrao": "aducao-quadril",
    "celulas": {
     "vazio": [
-     0,
-     0
+     1,
+     1
     ],
     "so:elasticos": [
-     0,
-     0
+     1,
+     1
     ],
     "so:halteres_fixos": [
-     0,
-     0
+     1,
+     1
     ],
     "halteres": [
-     0,
-     0
+     1,
+     1
     ],
     "so:barra_fixa": [
-     0,
-     0
+     1,
+     1
     ],
     "so:suspensao": [
-     0,
-     0
+     1,
+     1
     ],
     "so:kettlebell": [
-     0,
-     0
+     1,
+     1
     ],
     "so:caneleiras": [
-     1,
-     1
+     2,
+     2
     ],
     "so:mini_band": [
-     0,
-     0
+     1,
+     1
     ],
     "so:roda_abdominal": [
-     0,
-     0
+     1,
+     1
     ],
     "casa": [
-     0,
-     0
+     1,
+     1
     ],
     "casa+": [
-     1,
-     1
+     2,
+     2
     ],
     "condominio": [
-     0,
-     0
-    ],
-    "academia": [
      1,
      1
     ],
-    "academia+": [
+    "academia": [
      2,
      2
     ],
+    "academia+": [
+     3,
+     3
+    ],
     "biblioteca": [
-     2,
-     2
+     3,
+     3
     ]
    }
   }
@@ -1573,14 +1573,14 @@
      "triceps-complemento": 1,
      "agachar": 2,
      "afundo": 2,
-     "extensora": 0,
+     "extensora": 1,
      "flexao-joelho": 1,
      "dobrar-quadril": 2,
      "extensao-quadril": 2,
-     "abducao": 0,
-     "aducao": 0,
+     "abducao": 1,
+     "aducao": 1,
      "panturrilha-em-pe": 1,
-     "panturrilha-sentada": 0,
+     "panturrilha-sentada": 1,
      "abdomen": 1
     },
     "intermediario": {
@@ -1597,14 +1597,14 @@
      "triceps-complemento": 1,
      "agachar": 2,
      "afundo": 2,
-     "extensora": 0,
+     "extensora": 1,
      "flexao-joelho": 1,
      "dobrar-quadril": 2,
      "extensao-quadril": 2,
-     "abducao": 0,
-     "aducao": 0,
+     "abducao": 1,
+     "aducao": 1,
      "panturrilha-em-pe": 1,
-     "panturrilha-sentada": 0,
+     "panturrilha-sentada": 1,
      "abdomen": 1
     },
     "avancado": {
@@ -1621,14 +1621,14 @@
      "triceps-complemento": 1,
      "agachar": 2,
      "afundo": 2,
-     "extensora": 0,
+     "extensora": 1,
      "flexao-joelho": 1,
      "dobrar-quadril": 2,
      "extensao-quadril": 2,
-     "abducao": 0,
-     "aducao": 0,
+     "abducao": 1,
+     "aducao": 1,
      "panturrilha-em-pe": 1,
-     "panturrilha-sentada": 0,
+     "panturrilha-sentada": 1,
      "abdomen": 1
     }
    }
@@ -1652,14 +1652,14 @@
      "triceps-complemento": 1,
      "agachar": 4,
      "afundo": 4,
-     "extensora": 1,
+     "extensora": 2,
      "flexao-joelho": 2,
      "dobrar-quadril": 3,
      "extensao-quadril": 4,
      "abducao": 2,
      "aducao": 1,
      "panturrilha-em-pe": 2,
-     "panturrilha-sentada": 0,
+     "panturrilha-sentada": 1,
      "abdomen": 3
     },
     "intermediario": {
@@ -1676,14 +1676,14 @@
      "triceps-complemento": 1,
      "agachar": 4,
      "afundo": 4,
-     "extensora": 1,
+     "extensora": 2,
      "flexao-joelho": 2,
      "dobrar-quadril": 3,
      "extensao-quadril": 4,
      "abducao": 2,
      "aducao": 1,
      "panturrilha-em-pe": 2,
-     "panturrilha-sentada": 0,
+     "panturrilha-sentada": 1,
      "abdomen": 4
     },
     "avancado": {
@@ -1700,14 +1700,14 @@
      "triceps-complemento": 1,
      "agachar": 4,
      "afundo": 4,
-     "extensora": 1,
+     "extensora": 2,
      "flexao-joelho": 2,
      "dobrar-quadril": 3,
      "extensao-quadril": 4,
      "abducao": 2,
      "aducao": 1,
      "panturrilha-em-pe": 2,
-     "panturrilha-sentada": 0,
+     "panturrilha-sentada": 1,
      "abdomen": 4
     }
    }
@@ -1735,10 +1735,10 @@
      "flexao-joelho": 1,
      "dobrar-quadril": 2,
      "extensao-quadril": 3,
-     "abducao": 0,
-     "aducao": 0,
+     "abducao": 1,
+     "aducao": 1,
      "panturrilha-em-pe": 1,
-     "panturrilha-sentada": 0,
+     "panturrilha-sentada": 1,
      "abdomen": 2
     },
     "intermediario": {
@@ -1759,10 +1759,10 @@
      "flexao-joelho": 1,
      "dobrar-quadril": 2,
      "extensao-quadril": 3,
-     "abducao": 0,
-     "aducao": 0,
+     "abducao": 1,
+     "aducao": 1,
      "panturrilha-em-pe": 1,
-     "panturrilha-sentada": 0,
+     "panturrilha-sentada": 1,
      "abdomen": 2
     },
     "avancado": {
@@ -1783,10 +1783,10 @@
      "flexao-joelho": 1,
      "dobrar-quadril": 2,
      "extensao-quadril": 3,
-     "abducao": 0,
-     "aducao": 0,
+     "abducao": 1,
+     "aducao": 1,
      "panturrilha-em-pe": 1,
-     "panturrilha-sentada": 0,
+     "panturrilha-sentada": 1,
      "abdomen": 2
     }
    }
@@ -1817,7 +1817,7 @@
      "abducao": 2,
      "aducao": 1,
      "panturrilha-em-pe": 2,
-     "panturrilha-sentada": 0,
+     "panturrilha-sentada": 1,
      "abdomen": 3
     },
     "intermediario": {
@@ -1841,7 +1841,7 @@
      "abducao": 2,
      "aducao": 1,
      "panturrilha-em-pe": 2,
-     "panturrilha-sentada": 0,
+     "panturrilha-sentada": 1,
      "abdomen": 4
     },
     "avancado": {
@@ -1865,7 +1865,7 @@
      "abducao": 2,
      "aducao": 1,
      "panturrilha-em-pe": 2,
-     "panturrilha-sentada": 0,
+     "panturrilha-sentada": 1,
      "abdomen": 4
     }
    }
@@ -2048,12 +2048,12 @@
      "triceps-complemento": 1,
      "agachar": 2,
      "afundo": 2,
-     "extensora": 0,
+     "extensora": 1,
      "flexao-joelho": 1,
      "dobrar-quadril": 1,
      "extensao-quadril": 1,
-     "abducao": 0,
-     "aducao": 0,
+     "abducao": 1,
+     "aducao": 1,
      "panturrilha-em-pe": 1,
      "panturrilha-sentada": 0,
      "abdomen": 1
@@ -2072,12 +2072,12 @@
      "triceps-complemento": 1,
      "agachar": 2,
      "afundo": 2,
-     "extensora": 0,
+     "extensora": 1,
      "flexao-joelho": 1,
      "dobrar-quadril": 1,
      "extensao-quadril": 1,
-     "abducao": 0,
-     "aducao": 0,
+     "abducao": 1,
+     "aducao": 1,
      "panturrilha-em-pe": 1,
      "panturrilha-sentada": 0,
      "abdomen": 1
@@ -2096,12 +2096,12 @@
      "triceps-complemento": 1,
      "agachar": 2,
      "afundo": 2,
-     "extensora": 0,
+     "extensora": 1,
      "flexao-joelho": 1,
      "dobrar-quadril": 1,
      "extensao-quadril": 1,
-     "abducao": 0,
-     "aducao": 0,
+     "abducao": 1,
+     "aducao": 1,
      "panturrilha-em-pe": 1,
      "panturrilha-sentada": 0,
      "abdomen": 1
@@ -2131,10 +2131,10 @@
      "flexao-joelho": 1,
      "dobrar-quadril": 2,
      "extensao-quadril": 2,
-     "abducao": 0,
-     "aducao": 0,
+     "abducao": 1,
+     "aducao": 1,
      "panturrilha-em-pe": 1,
-     "panturrilha-sentada": 0,
+     "panturrilha-sentada": 1,
      "abdomen": 1
     },
     "intermediario": {
@@ -2155,10 +2155,10 @@
      "flexao-joelho": 2,
      "dobrar-quadril": 2,
      "extensao-quadril": 2,
-     "abducao": 0,
-     "aducao": 0,
+     "abducao": 1,
+     "aducao": 1,
      "panturrilha-em-pe": 1,
-     "panturrilha-sentada": 0,
+     "panturrilha-sentada": 1,
      "abdomen": 1
     },
     "avancado": {
@@ -2179,10 +2179,10 @@
      "flexao-joelho": 2,
      "dobrar-quadril": 2,
      "extensao-quadril": 2,
-     "abducao": 0,
-     "aducao": 0,
+     "abducao": 1,
+     "aducao": 1,
      "panturrilha-em-pe": 1,
-     "panturrilha-sentada": 0,
+     "panturrilha-sentada": 1,
      "abdomen": 1
     }
    }
@@ -2210,10 +2210,10 @@
      "flexao-joelho": 1,
      "dobrar-quadril": 2,
      "extensao-quadril": 2,
-     "abducao": 0,
-     "aducao": 0,
+     "abducao": 1,
+     "aducao": 1,
      "panturrilha-em-pe": 1,
-     "panturrilha-sentada": 0,
+     "panturrilha-sentada": 1,
      "abdomen": 1
     },
     "intermediario": {
@@ -2234,10 +2234,10 @@
      "flexao-joelho": 2,
      "dobrar-quadril": 2,
      "extensao-quadril": 2,
-     "abducao": 0,
-     "aducao": 0,
+     "abducao": 1,
+     "aducao": 1,
      "panturrilha-em-pe": 1,
-     "panturrilha-sentada": 0,
+     "panturrilha-sentada": 1,
      "abdomen": 1
     },
     "avancado": {
@@ -2258,10 +2258,10 @@
      "flexao-joelho": 2,
      "dobrar-quadril": 2,
      "extensao-quadril": 2,
-     "abducao": 0,
-     "aducao": 0,
+     "abducao": 1,
+     "aducao": 1,
      "panturrilha-em-pe": 1,
-     "panturrilha-sentada": 0,
+     "panturrilha-sentada": 1,
      "abdomen": 1
     }
    }
@@ -2286,12 +2286,12 @@
      "triceps-complemento": 1,
      "agachar": 2,
      "afundo": 2,
-     "extensora": 0,
+     "extensora": 1,
      "flexao-joelho": 1,
      "dobrar-quadril": 1,
      "extensao-quadril": 1,
-     "abducao": 0,
-     "aducao": 0,
+     "abducao": 1,
+     "aducao": 1,
      "panturrilha-em-pe": 1,
      "panturrilha-sentada": 0,
      "abdomen": 2
@@ -2310,12 +2310,12 @@
      "triceps-complemento": 1,
      "agachar": 2,
      "afundo": 2,
-     "extensora": 0,
+     "extensora": 1,
      "flexao-joelho": 1,
      "dobrar-quadril": 1,
      "extensao-quadril": 1,
-     "abducao": 0,
-     "aducao": 0,
+     "abducao": 1,
+     "aducao": 1,
      "panturrilha-em-pe": 1,
      "panturrilha-sentada": 0,
      "abdomen": 2
@@ -2334,12 +2334,12 @@
      "triceps-complemento": 1,
      "agachar": 2,
      "afundo": 2,
-     "extensora": 0,
+     "extensora": 1,
      "flexao-joelho": 1,
      "dobrar-quadril": 1,
      "extensao-quadril": 1,
-     "abducao": 0,
-     "aducao": 0,
+     "abducao": 1,
+     "aducao": 1,
      "panturrilha-em-pe": 1,
      "panturrilha-sentada": 0,
      "abdomen": 2
@@ -2365,14 +2365,14 @@
      "triceps-complemento": 2,
      "agachar": 3,
      "afundo": 3,
-     "extensora": 0,
+     "extensora": 1,
      "flexao-joelho": 2,
      "dobrar-quadril": 2,
      "extensao-quadril": 1,
-     "abducao": 0,
-     "aducao": 0,
+     "abducao": 1,
+     "aducao": 1,
      "panturrilha-em-pe": 2,
-     "panturrilha-sentada": 0,
+     "panturrilha-sentada": 1,
      "abdomen": 2
     },
     "intermediario": {
@@ -2389,14 +2389,14 @@
      "triceps-complemento": 2,
      "agachar": 3,
      "afundo": 3,
-     "extensora": 0,
+     "extensora": 1,
      "flexao-joelho": 2,
      "dobrar-quadril": 3,
      "extensao-quadril": 1,
-     "abducao": 0,
-     "aducao": 0,
+     "abducao": 1,
+     "aducao": 1,
      "panturrilha-em-pe": 2,
-     "panturrilha-sentada": 0,
+     "panturrilha-sentada": 1,
      "abdomen": 2
     },
     "avancado": {
@@ -2413,14 +2413,14 @@
      "triceps-complemento": 2,
      "agachar": 3,
      "afundo": 3,
-     "extensora": 0,
+     "extensora": 1,
      "flexao-joelho": 2,
      "dobrar-quadril": 3,
      "extensao-quadril": 1,
-     "abducao": 0,
-     "aducao": 0,
+     "abducao": 1,
+     "aducao": 1,
      "panturrilha-em-pe": 2,
-     "panturrilha-sentada": 0,
+     "panturrilha-sentada": 1,
      "abdomen": 2
     }
    }
@@ -2448,10 +2448,10 @@
      "flexao-joelho": 1,
      "dobrar-quadril": 2,
      "extensao-quadril": 2,
-     "abducao": 0,
-     "aducao": 0,
+     "abducao": 1,
+     "aducao": 1,
      "panturrilha-em-pe": 1,
-     "panturrilha-sentada": 0,
+     "panturrilha-sentada": 1,
      "abdomen": 3
     },
     "intermediario": {
@@ -2472,10 +2472,10 @@
      "flexao-joelho": 1,
      "dobrar-quadril": 2,
      "extensao-quadril": 2,
-     "abducao": 0,
-     "aducao": 0,
+     "abducao": 1,
+     "aducao": 1,
      "panturrilha-em-pe": 1,
-     "panturrilha-sentada": 0,
+     "panturrilha-sentada": 1,
      "abdomen": 3
     },
     "avancado": {
@@ -2496,10 +2496,10 @@
      "flexao-joelho": 1,
      "dobrar-quadril": 2,
      "extensao-quadril": 2,
-     "abducao": 0,
-     "aducao": 0,
+     "abducao": 1,
+     "aducao": 1,
      "panturrilha-em-pe": 1,
-     "panturrilha-sentada": 0,
+     "panturrilha-sentada": 1,
      "abdomen": 3
     }
    }
@@ -2537,8 +2537,8 @@
      "flexao-joelho": 1,
      "dobrar-quadril": "via flexao-joelho",
      "extensao-quadril": 1,
-     "abducao": 0,
-     "aducao": 0,
+     "abducao": 1,
+     "aducao": 1,
      "panturrilha-em-pe": 1,
      "panturrilha-sentada": 0,
      "abdomen": 1
@@ -2561,8 +2561,8 @@
      "flexao-joelho": 2,
      "dobrar-quadril": "via flexao-joelho",
      "extensao-quadril": 1,
-     "abducao": 0,
-     "aducao": 0,
+     "abducao": 1,
+     "aducao": 1,
      "panturrilha-em-pe": 1,
      "panturrilha-sentada": 0,
      "abdomen": 1
@@ -2585,8 +2585,8 @@
      "flexao-joelho": 2,
      "dobrar-quadril": "via flexao-joelho",
      "extensao-quadril": 1,
-     "abducao": 0,
-     "aducao": 0,
+     "abducao": 1,
+     "aducao": 1,
      "panturrilha-em-pe": 1,
      "panturrilha-sentada": 0,
      "abdomen": 1
@@ -2616,8 +2616,8 @@
      "flexao-joelho": 1,
      "dobrar-quadril": "via flexao-joelho",
      "extensao-quadril": 1,
-     "abducao": 0,
-     "aducao": 0,
+     "abducao": 1,
+     "aducao": 1,
      "panturrilha-em-pe": 1,
      "panturrilha-sentada": 0,
      "abdomen": 1
@@ -2640,8 +2640,8 @@
      "flexao-joelho": 2,
      "dobrar-quadril": "via flexao-joelho",
      "extensao-quadril": 1,
-     "abducao": 0,
-     "aducao": 0,
+     "abducao": 1,
+     "aducao": 1,
      "panturrilha-em-pe": 1,
      "panturrilha-sentada": 0,
      "abdomen": 1
@@ -2664,8 +2664,8 @@
      "flexao-joelho": 2,
      "dobrar-quadril": "via flexao-joelho",
      "extensao-quadril": 1,
-     "abducao": 0,
-     "aducao": 0,
+     "abducao": 1,
+     "aducao": 1,
      "panturrilha-em-pe": 1,
      "panturrilha-sentada": 0,
      "abdomen": 1
@@ -2695,8 +2695,8 @@
      "flexao-joelho": 1,
      "dobrar-quadril": "via flexao-joelho",
      "extensao-quadril": 1,
-     "abducao": 0,
-     "aducao": 0,
+     "abducao": 1,
+     "aducao": 1,
      "panturrilha-em-pe": 1,
      "panturrilha-sentada": 0,
      "abdomen": 2
@@ -2719,8 +2719,8 @@
      "flexao-joelho": 2,
      "dobrar-quadril": "via flexao-joelho",
      "extensao-quadril": 1,
-     "abducao": 0,
-     "aducao": 0,
+     "abducao": 1,
+     "aducao": 1,
      "panturrilha-em-pe": 1,
      "panturrilha-sentada": 0,
      "abdomen": 2
@@ -2743,8 +2743,8 @@
      "flexao-joelho": 2,
      "dobrar-quadril": "via flexao-joelho",
      "extensao-quadril": 1,
-     "abducao": 0,
-     "aducao": 0,
+     "abducao": 1,
+     "aducao": 1,
      "panturrilha-em-pe": 1,
      "panturrilha-sentada": 0,
      "abdomen": 2
@@ -2774,10 +2774,10 @@
      "flexao-joelho": 1,
      "dobrar-quadril": 2,
      "extensao-quadril": 2,
-     "abducao": 0,
-     "aducao": 0,
+     "abducao": 1,
+     "aducao": 1,
      "panturrilha-em-pe": 1,
-     "panturrilha-sentada": 0,
+     "panturrilha-sentada": 1,
      "abdomen": 1
     },
     "intermediario": {
@@ -2798,10 +2798,10 @@
      "flexao-joelho": 2,
      "dobrar-quadril": 2,
      "extensao-quadril": 2,
-     "abducao": 0,
-     "aducao": 0,
+     "abducao": 1,
+     "aducao": 1,
      "panturrilha-em-pe": 1,
-     "panturrilha-sentada": 0,
+     "panturrilha-sentada": 1,
      "abdomen": 1
     },
     "avancado": {
@@ -2822,10 +2822,10 @@
      "flexao-joelho": 2,
      "dobrar-quadril": 2,
      "extensao-quadril": 2,
-     "abducao": 0,
-     "aducao": 0,
+     "abducao": 1,
+     "aducao": 1,
      "panturrilha-em-pe": 1,
-     "panturrilha-sentada": 0,
+     "panturrilha-sentada": 1,
      "abdomen": 1
     }
    }
@@ -2853,10 +2853,10 @@
      "flexao-joelho": 1,
      "dobrar-quadril": 2,
      "extensao-quadril": 2,
-     "abducao": 0,
-     "aducao": 0,
+     "abducao": 1,
+     "aducao": 1,
      "panturrilha-em-pe": 1,
-     "panturrilha-sentada": 0,
+     "panturrilha-sentada": 1,
      "abdomen": 1
     },
     "intermediario": {
@@ -2877,10 +2877,10 @@
      "flexao-joelho": 2,
      "dobrar-quadril": 2,
      "extensao-quadril": 2,
-     "abducao": 0,
-     "aducao": 0,
+     "abducao": 1,
+     "aducao": 1,
      "panturrilha-em-pe": 1,
-     "panturrilha-sentada": 0,
+     "panturrilha-sentada": 1,
      "abdomen": 1
     },
     "avancado": {
@@ -2901,10 +2901,10 @@
      "flexao-joelho": 2,
      "dobrar-quadril": 2,
      "extensao-quadril": 2,
-     "abducao": 0,
-     "aducao": 0,
+     "abducao": 1,
+     "aducao": 1,
      "panturrilha-em-pe": 1,
-     "panturrilha-sentada": 0,
+     "panturrilha-sentada": 1,
      "abdomen": 1
     }
    }
@@ -2932,8 +2932,8 @@
      "flexao-joelho": 1,
      "dobrar-quadril": "via flexao-joelho",
      "extensao-quadril": 1,
-     "abducao": 0,
-     "aducao": 0,
+     "abducao": 1,
+     "aducao": 1,
      "panturrilha-em-pe": 1,
      "panturrilha-sentada": 0,
      "abdomen": 1
@@ -2956,8 +2956,8 @@
      "flexao-joelho": 2,
      "dobrar-quadril": 1,
      "extensao-quadril": 1,
-     "abducao": 0,
-     "aducao": 0,
+     "abducao": 1,
+     "aducao": 1,
      "panturrilha-em-pe": 1,
      "panturrilha-sentada": 0,
      "abdomen": 1
@@ -2980,8 +2980,8 @@
      "flexao-joelho": 2,
      "dobrar-quadril": 1,
      "extensao-quadril": 1,
-     "abducao": 0,
-     "aducao": 0,
+     "abducao": 1,
+     "aducao": 1,
      "panturrilha-em-pe": 1,
      "panturrilha-sentada": 0,
      "abdomen": 1
@@ -3011,8 +3011,8 @@
      "flexao-joelho": 1,
      "dobrar-quadril": "via flexao-joelho",
      "extensao-quadril": 1,
-     "abducao": 0,
-     "aducao": 0,
+     "abducao": 1,
+     "aducao": 1,
      "panturrilha-em-pe": 1,
      "panturrilha-sentada": 0,
      "abdomen": 1
@@ -3035,8 +3035,8 @@
      "flexao-joelho": 2,
      "dobrar-quadril": "via flexao-joelho",
      "extensao-quadril": 1,
-     "abducao": 0,
-     "aducao": 0,
+     "abducao": 1,
+     "aducao": 1,
      "panturrilha-em-pe": 1,
      "panturrilha-sentada": 0,
      "abdomen": 1
@@ -3059,8 +3059,8 @@
      "flexao-joelho": 2,
      "dobrar-quadril": "via flexao-joelho",
      "extensao-quadril": 1,
-     "abducao": 0,
-     "aducao": 0,
+     "abducao": 1,
+     "aducao": 1,
      "panturrilha-em-pe": 1,
      "panturrilha-sentada": 0,
      "abdomen": 1
@@ -3090,8 +3090,8 @@
      "flexao-joelho": 1,
      "dobrar-quadril": "via flexao-joelho",
      "extensao-quadril": 1,
-     "abducao": 0,
-     "aducao": 0,
+     "abducao": 1,
+     "aducao": 1,
      "panturrilha-em-pe": 1,
      "panturrilha-sentada": 0,
      "abdomen": 1
@@ -3114,8 +3114,8 @@
      "flexao-joelho": 2,
      "dobrar-quadril": "via flexao-joelho",
      "extensao-quadril": 1,
-     "abducao": 0,
-     "aducao": 0,
+     "abducao": 1,
+     "aducao": 1,
      "panturrilha-em-pe": 1,
      "panturrilha-sentada": 0,
      "abdomen": 1
@@ -3138,8 +3138,8 @@
      "flexao-joelho": 2,
      "dobrar-quadril": "via flexao-joelho",
      "extensao-quadril": 1,
-     "abducao": 0,
-     "aducao": 0,
+     "abducao": 1,
+     "aducao": 1,
      "panturrilha-em-pe": 1,
      "panturrilha-sentada": 0,
      "abdomen": 1
@@ -3169,8 +3169,8 @@
      "flexao-joelho": 1,
      "dobrar-quadril": "via flexao-joelho",
      "extensao-quadril": 1,
-     "abducao": 0,
-     "aducao": 0,
+     "abducao": 1,
+     "aducao": 1,
      "panturrilha-em-pe": 1,
      "panturrilha-sentada": 0,
      "abdomen": 1
@@ -3193,8 +3193,8 @@
      "flexao-joelho": 2,
      "dobrar-quadril": "via flexao-joelho",
      "extensao-quadril": 1,
-     "abducao": 0,
-     "aducao": 0,
+     "abducao": 1,
+     "aducao": 1,
      "panturrilha-em-pe": 1,
      "panturrilha-sentada": 0,
      "abdomen": 1
@@ -3217,8 +3217,8 @@
      "flexao-joelho": 2,
      "dobrar-quadril": "via flexao-joelho",
      "extensao-quadril": 1,
-     "abducao": 0,
-     "aducao": 0,
+     "abducao": 1,
+     "aducao": 1,
      "panturrilha-em-pe": 1,
      "panturrilha-sentada": 0,
      "abdomen": 1
@@ -3248,8 +3248,8 @@
      "flexao-joelho": 1,
      "dobrar-quadril": "via flexao-joelho",
      "extensao-quadril": 1,
-     "abducao": 0,
-     "aducao": 0,
+     "abducao": 1,
+     "aducao": 1,
      "panturrilha-em-pe": 1,
      "panturrilha-sentada": 0,
      "abdomen": 1
@@ -3272,8 +3272,8 @@
      "flexao-joelho": 2,
      "dobrar-quadril": "via flexao-joelho",
      "extensao-quadril": 1,
-     "abducao": 0,
-     "aducao": 0,
+     "abducao": 1,
+     "aducao": 1,
      "panturrilha-em-pe": 1,
      "panturrilha-sentada": 0,
      "abdomen": 1
@@ -3296,8 +3296,8 @@
      "flexao-joelho": 2,
      "dobrar-quadril": "via flexao-joelho",
      "extensao-quadril": 1,
-     "abducao": 0,
-     "aducao": 0,
+     "abducao": 1,
+     "aducao": 1,
      "panturrilha-em-pe": 1,
      "panturrilha-sentada": 0,
      "abdomen": 1
@@ -3327,8 +3327,8 @@
      "flexao-joelho": 1,
      "dobrar-quadril": "via flexao-joelho",
      "extensao-quadril": 1,
-     "abducao": 0,
-     "aducao": 0,
+     "abducao": 1,
+     "aducao": 1,
      "panturrilha-em-pe": 1,
      "panturrilha-sentada": 0,
      "abdomen": 1
@@ -3351,8 +3351,8 @@
      "flexao-joelho": 2,
      "dobrar-quadril": "via flexao-joelho",
      "extensao-quadril": 1,
-     "abducao": 0,
-     "aducao": 0,
+     "abducao": 1,
+     "aducao": 1,
      "panturrilha-em-pe": 1,
      "panturrilha-sentada": 0,
      "abdomen": 1
@@ -3375,8 +3375,8 @@
      "flexao-joelho": 2,
      "dobrar-quadril": "via flexao-joelho",
      "extensao-quadril": 1,
-     "abducao": 0,
-     "aducao": 0,
+     "abducao": 1,
+     "aducao": 1,
      "panturrilha-em-pe": 1,
      "panturrilha-sentada": 0,
      "abdomen": 1
@@ -3406,8 +3406,8 @@
      "flexao-joelho": 1,
      "dobrar-quadril": "via flexao-joelho",
      "extensao-quadril": 1,
-     "abducao": 0,
-     "aducao": 0,
+     "abducao": 1,
+     "aducao": 1,
      "panturrilha-em-pe": 1,
      "panturrilha-sentada": 0,
      "abdomen": 1
@@ -3430,8 +3430,8 @@
      "flexao-joelho": 1,
      "dobrar-quadril": "via flexao-joelho",
      "extensao-quadril": 1,
-     "abducao": 0,
-     "aducao": 0,
+     "abducao": 1,
+     "aducao": 1,
      "panturrilha-em-pe": 1,
      "panturrilha-sentada": 0,
      "abdomen": 1
@@ -3454,8 +3454,8 @@
      "flexao-joelho": 1,
      "dobrar-quadril": "via flexao-joelho",
      "extensao-quadril": 1,
-     "abducao": 0,
-     "aducao": 0,
+     "abducao": 1,
+     "aducao": 1,
      "panturrilha-em-pe": 1,
      "panturrilha-sentada": 0,
      "abdomen": 1
@@ -3485,8 +3485,8 @@
      "flexao-joelho": 1,
      "dobrar-quadril": "via flexao-joelho",
      "extensao-quadril": 1,
-     "abducao": 0,
-     "aducao": 0,
+     "abducao": 1,
+     "aducao": 1,
      "panturrilha-em-pe": 1,
      "panturrilha-sentada": 0,
      "abdomen": 1
@@ -3509,8 +3509,8 @@
      "flexao-joelho": 1,
      "dobrar-quadril": "via flexao-joelho",
      "extensao-quadril": 1,
-     "abducao": 0,
-     "aducao": 0,
+     "abducao": 1,
+     "aducao": 1,
      "panturrilha-em-pe": 1,
      "panturrilha-sentada": 0,
      "abdomen": 1
@@ -3533,8 +3533,8 @@
      "flexao-joelho": 1,
      "dobrar-quadril": "via flexao-joelho",
      "extensao-quadril": 1,
-     "abducao": 0,
-     "aducao": 0,
+     "abducao": 1,
+     "aducao": 1,
      "panturrilha-em-pe": 1,
      "panturrilha-sentada": 0,
      "abdomen": 1
@@ -3564,8 +3564,8 @@
      "flexao-joelho": 1,
      "dobrar-quadril": "via flexao-joelho",
      "extensao-quadril": 1,
-     "abducao": 0,
-     "aducao": 0,
+     "abducao": 1,
+     "aducao": 1,
      "panturrilha-em-pe": 1,
      "panturrilha-sentada": 0,
      "abdomen": 2
@@ -3588,8 +3588,8 @@
      "flexao-joelho": 2,
      "dobrar-quadril": "via flexao-joelho",
      "extensao-quadril": 1,
-     "abducao": 0,
-     "aducao": 0,
+     "abducao": 1,
+     "aducao": 1,
      "panturrilha-em-pe": 1,
      "panturrilha-sentada": 0,
      "abdomen": 2
@@ -3612,8 +3612,8 @@
      "flexao-joelho": 2,
      "dobrar-quadril": "via flexao-joelho",
      "extensao-quadril": 1,
-     "abducao": 0,
-     "aducao": 0,
+     "abducao": 1,
+     "aducao": 1,
      "panturrilha-em-pe": 1,
      "panturrilha-sentada": 0,
      "abdomen": 2
@@ -3643,8 +3643,8 @@
      "flexao-joelho": 1,
      "dobrar-quadril": "via flexao-joelho",
      "extensao-quadril": 1,
-     "abducao": 0,
-     "aducao": 0,
+     "abducao": 1,
+     "aducao": 1,
      "panturrilha-em-pe": 2,
      "panturrilha-sentada": 0,
      "abdomen": 1
@@ -3667,8 +3667,8 @@
      "flexao-joelho": 2,
      "dobrar-quadril": "via flexao-joelho",
      "extensao-quadril": 1,
-     "abducao": 0,
-     "aducao": 0,
+     "abducao": 1,
+     "aducao": 1,
      "panturrilha-em-pe": 2,
      "panturrilha-sentada": 0,
      "abdomen": 1
@@ -3691,8 +3691,8 @@
      "flexao-joelho": 2,
      "dobrar-quadril": "via flexao-joelho",
      "extensao-quadril": 1,
-     "abducao": 0,
-     "aducao": 0,
+     "abducao": 1,
+     "aducao": 1,
      "panturrilha-em-pe": 2,
      "panturrilha-sentada": 0,
      "abdomen": 1
@@ -3722,8 +3722,8 @@
      "flexao-joelho": 1,
      "dobrar-quadril": "via flexao-joelho",
      "extensao-quadril": 2,
-     "abducao": 0,
-     "aducao": 0,
+     "abducao": 1,
+     "aducao": 1,
      "panturrilha-em-pe": 1,
      "panturrilha-sentada": 0,
      "abdomen": 2
@@ -3746,8 +3746,8 @@
      "flexao-joelho": 1,
      "dobrar-quadril": "via flexao-joelho",
      "extensao-quadril": 2,
-     "abducao": 0,
-     "aducao": 0,
+     "abducao": 1,
+     "aducao": 1,
      "panturrilha-em-pe": 1,
      "panturrilha-sentada": 0,
      "abdomen": 2
@@ -3770,8 +3770,8 @@
      "flexao-joelho": 1,
      "dobrar-quadril": "via flexao-joelho",
      "extensao-quadril": 2,
-     "abducao": 0,
-     "aducao": 0,
+     "abducao": 1,
+     "aducao": 1,
      "panturrilha-em-pe": 1,
      "panturrilha-sentada": 0,
      "abdomen": 2
@@ -3801,8 +3801,8 @@
      "flexao-joelho": 1,
      "dobrar-quadril": "via flexao-joelho",
      "extensao-quadril": 1,
-     "abducao": 0,
-     "aducao": 0,
+     "abducao": 1,
+     "aducao": 1,
      "panturrilha-em-pe": 1,
      "panturrilha-sentada": 0,
      "abdomen": 1
@@ -3825,8 +3825,8 @@
      "flexao-joelho": 2,
      "dobrar-quadril": "via flexao-joelho",
      "extensao-quadril": 1,
-     "abducao": 0,
-     "aducao": 0,
+     "abducao": 1,
+     "aducao": 1,
      "panturrilha-em-pe": 1,
      "panturrilha-sentada": 0,
      "abdomen": 1
@@ -3849,8 +3849,8 @@
      "flexao-joelho": 2,
      "dobrar-quadril": "via flexao-joelho",
      "extensao-quadril": 1,
-     "abducao": 0,
-     "aducao": 0,
+     "abducao": 1,
+     "aducao": 1,
      "panturrilha-em-pe": 1,
      "panturrilha-sentada": 0,
      "abdomen": 1
@@ -3880,8 +3880,8 @@
      "flexao-joelho": 1,
      "dobrar-quadril": 1,
      "extensao-quadril": 2,
-     "abducao": 0,
-     "aducao": 0,
+     "abducao": 1,
+     "aducao": 1,
      "panturrilha-em-pe": 1,
      "panturrilha-sentada": 0,
      "abdomen": 1
@@ -3904,8 +3904,8 @@
      "flexao-joelho": 2,
      "dobrar-quadril": 1,
      "extensao-quadril": 2,
-     "abducao": 0,
-     "aducao": 0,
+     "abducao": 1,
+     "aducao": 1,
      "panturrilha-em-pe": 1,
      "panturrilha-sentada": 0,
      "abdomen": 1
@@ -3928,8 +3928,8 @@
      "flexao-joelho": 2,
      "dobrar-quadril": 1,
      "extensao-quadril": 2,
-     "abducao": 0,
-     "aducao": 0,
+     "abducao": 1,
+     "aducao": 1,
      "panturrilha-em-pe": 1,
      "panturrilha-sentada": 0,
      "abdomen": 1
@@ -3959,8 +3959,8 @@
      "flexao-joelho": 1,
      "dobrar-quadril": 1,
      "extensao-quadril": 2,
-     "abducao": 0,
-     "aducao": 0,
+     "abducao": 1,
+     "aducao": 1,
      "panturrilha-em-pe": 1,
      "panturrilha-sentada": 0,
      "abdomen": 1
@@ -3983,8 +3983,8 @@
      "flexao-joelho": 2,
      "dobrar-quadril": 1,
      "extensao-quadril": 2,
-     "abducao": 0,
-     "aducao": 0,
+     "abducao": 1,
+     "aducao": 1,
      "panturrilha-em-pe": 1,
      "panturrilha-sentada": 0,
      "abdomen": 1
@@ -4007,8 +4007,8 @@
      "flexao-joelho": 2,
      "dobrar-quadril": 1,
      "extensao-quadril": 2,
-     "abducao": 0,
-     "aducao": 0,
+     "abducao": 1,
+     "aducao": 1,
      "panturrilha-em-pe": 1,
      "panturrilha-sentada": 0,
      "abdomen": 1
@@ -4038,8 +4038,8 @@
      "flexao-joelho": 1,
      "dobrar-quadril": "via flexao-joelho",
      "extensao-quadril": 1,
-     "abducao": 0,
-     "aducao": 0,
+     "abducao": 1,
+     "aducao": 1,
      "panturrilha-em-pe": 1,
      "panturrilha-sentada": 0,
      "abdomen": 1
@@ -4062,8 +4062,8 @@
      "flexao-joelho": 2,
      "dobrar-quadril": "via flexao-joelho",
      "extensao-quadril": 1,
-     "abducao": 0,
-     "aducao": 0,
+     "abducao": 1,
+     "aducao": 1,
      "panturrilha-em-pe": 1,
      "panturrilha-sentada": 0,
      "abdomen": 1
@@ -4086,8 +4086,8 @@
      "flexao-joelho": 2,
      "dobrar-quadril": "via flexao-joelho",
      "extensao-quadril": 1,
-     "abducao": 0,
-     "aducao": 0,
+     "abducao": 1,
+     "aducao": 1,
      "panturrilha-em-pe": 1,
      "panturrilha-sentada": 0,
      "abdomen": 1
@@ -4117,8 +4117,8 @@
      "flexao-joelho": 1,
      "dobrar-quadril": "via flexao-joelho",
      "extensao-quadril": 1,
-     "abducao": 0,
-     "aducao": 0,
+     "abducao": 1,
+     "aducao": 1,
      "panturrilha-em-pe": 1,
      "panturrilha-sentada": 0,
      "abdomen": 1
@@ -4141,8 +4141,8 @@
      "flexao-joelho": 2,
      "dobrar-quadril": "via flexao-joelho",
      "extensao-quadril": 1,
-     "abducao": 0,
-     "aducao": 0,
+     "abducao": 1,
+     "aducao": 1,
      "panturrilha-em-pe": 1,
      "panturrilha-sentada": 0,
      "abdomen": 1
@@ -4165,8 +4165,8 @@
      "flexao-joelho": 2,
      "dobrar-quadril": "via flexao-joelho",
      "extensao-quadril": 1,
-     "abducao": 0,
-     "aducao": 0,
+     "abducao": 1,
+     "aducao": 1,
      "panturrilha-em-pe": 1,
      "panturrilha-sentada": 0,
      "abdomen": 1
@@ -4196,8 +4196,8 @@
      "flexao-joelho": 1,
      "dobrar-quadril": "via flexao-joelho",
      "extensao-quadril": 1,
-     "abducao": 0,
-     "aducao": 0,
+     "abducao": 1,
+     "aducao": 1,
      "panturrilha-em-pe": 1,
      "panturrilha-sentada": 0,
      "abdomen": 1
@@ -4220,8 +4220,8 @@
      "flexao-joelho": 2,
      "dobrar-quadril": "via flexao-joelho",
      "extensao-quadril": 1,
-     "abducao": 0,
-     "aducao": 0,
+     "abducao": 1,
+     "aducao": 1,
      "panturrilha-em-pe": 1,
      "panturrilha-sentada": 0,
      "abdomen": 1
@@ -4244,8 +4244,8 @@
      "flexao-joelho": 2,
      "dobrar-quadril": "via flexao-joelho",
      "extensao-quadril": 1,
-     "abducao": 0,
-     "aducao": 0,
+     "abducao": 1,
+     "aducao": 1,
      "panturrilha-em-pe": 1,
      "panturrilha-sentada": 0,
      "abdomen": 1
@@ -4275,8 +4275,8 @@
      "flexao-joelho": 1,
      "dobrar-quadril": "via flexao-joelho",
      "extensao-quadril": 1,
-     "abducao": 0,
-     "aducao": 0,
+     "abducao": 1,
+     "aducao": 1,
      "panturrilha-em-pe": 1,
      "panturrilha-sentada": 0,
      "abdomen": 1
@@ -4299,8 +4299,8 @@
      "flexao-joelho": 2,
      "dobrar-quadril": "via flexao-joelho",
      "extensao-quadril": 1,
-     "abducao": 0,
-     "aducao": 0,
+     "abducao": 1,
+     "aducao": 1,
      "panturrilha-em-pe": 1,
      "panturrilha-sentada": 0,
      "abdomen": 1
@@ -4323,8 +4323,8 @@
      "flexao-joelho": 2,
      "dobrar-quadril": "via flexao-joelho",
      "extensao-quadril": 1,
-     "abducao": 0,
-     "aducao": 0,
+     "abducao": 1,
+     "aducao": 1,
      "panturrilha-em-pe": 1,
      "panturrilha-sentada": 0,
      "abdomen": 1
@@ -4354,8 +4354,8 @@
      "flexao-joelho": 1,
      "dobrar-quadril": "via flexao-joelho",
      "extensao-quadril": 1,
-     "abducao": 0,
-     "aducao": 0,
+     "abducao": 1,
+     "aducao": 1,
      "panturrilha-em-pe": 1,
      "panturrilha-sentada": 0,
      "abdomen": 1
@@ -4378,8 +4378,8 @@
      "flexao-joelho": 2,
      "dobrar-quadril": "via flexao-joelho",
      "extensao-quadril": 1,
-     "abducao": 0,
-     "aducao": 0,
+     "abducao": 1,
+     "aducao": 1,
      "panturrilha-em-pe": 1,
      "panturrilha-sentada": 0,
      "abdomen": 1
@@ -4402,8 +4402,8 @@
      "flexao-joelho": 2,
      "dobrar-quadril": "via flexao-joelho",
      "extensao-quadril": 1,
-     "abducao": 0,
-     "aducao": 0,
+     "abducao": 1,
+     "aducao": 1,
      "panturrilha-em-pe": 1,
      "panturrilha-sentada": 0,
      "abdomen": 1
@@ -4433,8 +4433,8 @@
      "flexao-joelho": 1,
      "dobrar-quadril": "via flexao-joelho",
      "extensao-quadril": 1,
-     "abducao": 0,
-     "aducao": 0,
+     "abducao": 1,
+     "aducao": 1,
      "panturrilha-em-pe": 1,
      "panturrilha-sentada": 0,
      "abdomen": 1
@@ -4457,8 +4457,8 @@
      "flexao-joelho": 2,
      "dobrar-quadril": "via flexao-joelho",
      "extensao-quadril": 1,
-     "abducao": 0,
-     "aducao": 0,
+     "abducao": 1,
+     "aducao": 1,
      "panturrilha-em-pe": 1,
      "panturrilha-sentada": 0,
      "abdomen": 1
@@ -4481,8 +4481,8 @@
      "flexao-joelho": 2,
      "dobrar-quadril": "via flexao-joelho",
      "extensao-quadril": 1,
-     "abducao": 0,
-     "aducao": 0,
+     "abducao": 1,
+     "aducao": 1,
      "panturrilha-em-pe": 1,
      "panturrilha-sentada": 0,
      "abdomen": 1
@@ -4512,8 +4512,8 @@
      "flexao-joelho": 1,
      "dobrar-quadril": "via flexao-joelho",
      "extensao-quadril": 1,
-     "abducao": 0,
-     "aducao": 0,
+     "abducao": 1,
+     "aducao": 1,
      "panturrilha-em-pe": 1,
      "panturrilha-sentada": 0,
      "abdomen": 1
@@ -4536,8 +4536,8 @@
      "flexao-joelho": 2,
      "dobrar-quadril": "via flexao-joelho",
      "extensao-quadril": 1,
-     "abducao": 0,
-     "aducao": 0,
+     "abducao": 1,
+     "aducao": 1,
      "panturrilha-em-pe": 1,
      "panturrilha-sentada": 0,
      "abdomen": 1
@@ -4560,8 +4560,8 @@
      "flexao-joelho": 2,
      "dobrar-quadril": "via flexao-joelho",
      "extensao-quadril": 1,
-     "abducao": 0,
-     "aducao": 0,
+     "abducao": 1,
+     "aducao": 1,
      "panturrilha-em-pe": 1,
      "panturrilha-sentada": 0,
      "abdomen": 1
@@ -4591,8 +4591,8 @@
      "flexao-joelho": 1,
      "dobrar-quadril": "via flexao-joelho",
      "extensao-quadril": 1,
-     "abducao": 0,
-     "aducao": 0,
+     "abducao": 1,
+     "aducao": 1,
      "panturrilha-em-pe": 1,
      "panturrilha-sentada": 0,
      "abdomen": 1
@@ -4615,8 +4615,8 @@
      "flexao-joelho": 2,
      "dobrar-quadril": "via flexao-joelho",
      "extensao-quadril": 1,
-     "abducao": 0,
-     "aducao": 0,
+     "abducao": 1,
+     "aducao": 1,
      "panturrilha-em-pe": 1,
      "panturrilha-sentada": 0,
      "abdomen": 1
@@ -4639,8 +4639,8 @@
      "flexao-joelho": 2,
      "dobrar-quadril": "via flexao-joelho",
      "extensao-quadril": 1,
-     "abducao": 0,
-     "aducao": 0,
+     "abducao": 1,
+     "aducao": 1,
      "panturrilha-em-pe": 1,
      "panturrilha-sentada": 0,
      "abdomen": 1
@@ -4670,8 +4670,8 @@
      "flexao-joelho": 1,
      "dobrar-quadril": "via flexao-joelho",
      "extensao-quadril": 1,
-     "abducao": 0,
-     "aducao": 0,
+     "abducao": 1,
+     "aducao": 1,
      "panturrilha-em-pe": 1,
      "panturrilha-sentada": 0,
      "abdomen": 1
@@ -4694,8 +4694,8 @@
      "flexao-joelho": 2,
      "dobrar-quadril": "via flexao-joelho",
      "extensao-quadril": 1,
-     "abducao": 0,
-     "aducao": 0,
+     "abducao": 1,
+     "aducao": 1,
      "panturrilha-em-pe": 1,
      "panturrilha-sentada": 0,
      "abdomen": 1
@@ -4718,8 +4718,8 @@
      "flexao-joelho": 2,
      "dobrar-quadril": "via flexao-joelho",
      "extensao-quadril": 1,
-     "abducao": 0,
-     "aducao": 0,
+     "abducao": 1,
+     "aducao": 1,
      "panturrilha-em-pe": 1,
      "panturrilha-sentada": 0,
      "abdomen": 1
@@ -4749,8 +4749,8 @@
      "flexao-joelho": 1,
      "dobrar-quadril": "via flexao-joelho",
      "extensao-quadril": 1,
-     "abducao": 0,
-     "aducao": 0,
+     "abducao": 1,
+     "aducao": 1,
      "panturrilha-em-pe": 1,
      "panturrilha-sentada": 0,
      "abdomen": 1
@@ -4773,8 +4773,8 @@
      "flexao-joelho": 2,
      "dobrar-quadril": "via flexao-joelho",
      "extensao-quadril": 1,
-     "abducao": 0,
-     "aducao": 0,
+     "abducao": 1,
+     "aducao": 1,
      "panturrilha-em-pe": 1,
      "panturrilha-sentada": 0,
      "abdomen": 1
@@ -4797,8 +4797,8 @@
      "flexao-joelho": 2,
      "dobrar-quadril": "via flexao-joelho",
      "extensao-quadril": 1,
-     "abducao": 0,
-     "aducao": 0,
+     "abducao": 1,
+     "aducao": 1,
      "panturrilha-em-pe": 1,
      "panturrilha-sentada": 0,
      "abdomen": 1
@@ -4828,8 +4828,8 @@
      "flexao-joelho": 1,
      "dobrar-quadril": "via flexao-joelho",
      "extensao-quadril": 1,
-     "abducao": 0,
-     "aducao": 0,
+     "abducao": 1,
+     "aducao": 1,
      "panturrilha-em-pe": 1,
      "panturrilha-sentada": 0,
      "abdomen": 1
@@ -4852,8 +4852,8 @@
      "flexao-joelho": 2,
      "dobrar-quadril": "via flexao-joelho",
      "extensao-quadril": 1,
-     "abducao": 0,
-     "aducao": 0,
+     "abducao": 1,
+     "aducao": 1,
      "panturrilha-em-pe": 1,
      "panturrilha-sentada": 0,
      "abdomen": 1
@@ -4876,8 +4876,8 @@
      "flexao-joelho": 2,
      "dobrar-quadril": "via flexao-joelho",
      "extensao-quadril": 1,
-     "abducao": 0,
-     "aducao": 0,
+     "abducao": 1,
+     "aducao": 1,
      "panturrilha-em-pe": 1,
      "panturrilha-sentada": 0,
      "abdomen": 1
@@ -4907,8 +4907,8 @@
      "flexao-joelho": 1,
      "dobrar-quadril": "via flexao-joelho",
      "extensao-quadril": 1,
-     "abducao": 0,
-     "aducao": 0,
+     "abducao": 1,
+     "aducao": 1,
      "panturrilha-em-pe": 1,
      "panturrilha-sentada": 0,
      "abdomen": 1
@@ -4931,8 +4931,8 @@
      "flexao-joelho": 2,
      "dobrar-quadril": "via flexao-joelho",
      "extensao-quadril": 1,
-     "abducao": 0,
-     "aducao": 0,
+     "abducao": 1,
+     "aducao": 1,
      "panturrilha-em-pe": 1,
      "panturrilha-sentada": 0,
      "abdomen": 1
@@ -4955,8 +4955,8 @@
      "flexao-joelho": 2,
      "dobrar-quadril": "via flexao-joelho",
      "extensao-quadril": 1,
-     "abducao": 0,
-     "aducao": 0,
+     "abducao": 1,
+     "aducao": 1,
      "panturrilha-em-pe": 1,
      "panturrilha-sentada": 0,
      "abdomen": 1
@@ -5065,8 +5065,8 @@
      "flexao-joelho": 1,
      "dobrar-quadril": "via flexao-joelho",
      "extensao-quadril": 1,
-     "abducao": 0,
-     "aducao": 0,
+     "abducao": 1,
+     "aducao": 1,
      "panturrilha-em-pe": 1,
      "panturrilha-sentada": 0,
      "abdomen": 1
@@ -5089,8 +5089,8 @@
      "flexao-joelho": 2,
      "dobrar-quadril": "via flexao-joelho",
      "extensao-quadril": 1,
-     "abducao": 0,
-     "aducao": 0,
+     "abducao": 1,
+     "aducao": 1,
      "panturrilha-em-pe": 1,
      "panturrilha-sentada": 0,
      "abdomen": 1
@@ -5113,8 +5113,8 @@
      "flexao-joelho": 2,
      "dobrar-quadril": "via flexao-joelho",
      "extensao-quadril": 1,
-     "abducao": 0,
-     "aducao": 0,
+     "abducao": 1,
+     "aducao": 1,
      "panturrilha-em-pe": 1,
      "panturrilha-sentada": 0,
      "abdomen": 1
@@ -5144,8 +5144,8 @@
      "flexao-joelho": 1,
      "dobrar-quadril": "via flexao-joelho",
      "extensao-quadril": 1,
-     "abducao": 0,
-     "aducao": 0,
+     "abducao": 1,
+     "aducao": 1,
      "panturrilha-em-pe": 1,
      "panturrilha-sentada": 0,
      "abdomen": 1
@@ -5168,8 +5168,8 @@
      "flexao-joelho": 2,
      "dobrar-quadril": "via flexao-joelho",
      "extensao-quadril": 1,
-     "abducao": 0,
-     "aducao": 0,
+     "abducao": 1,
+     "aducao": 1,
      "panturrilha-em-pe": 1,
      "panturrilha-sentada": 0,
      "abdomen": 1
@@ -5192,8 +5192,8 @@
      "flexao-joelho": 2,
      "dobrar-quadril": "via flexao-joelho",
      "extensao-quadril": 1,
-     "abducao": 0,
-     "aducao": 0,
+     "abducao": 1,
+     "aducao": 1,
      "panturrilha-em-pe": 1,
      "panturrilha-sentada": 0,
      "abdomen": 1
@@ -5223,8 +5223,8 @@
      "flexao-joelho": 1,
      "dobrar-quadril": "via flexao-joelho",
      "extensao-quadril": 1,
-     "abducao": 0,
-     "aducao": 0,
+     "abducao": 1,
+     "aducao": 1,
      "panturrilha-em-pe": 1,
      "panturrilha-sentada": 1,
      "abdomen": 1
@@ -5247,8 +5247,8 @@
      "flexao-joelho": 2,
      "dobrar-quadril": "via flexao-joelho",
      "extensao-quadril": 1,
-     "abducao": 0,
-     "aducao": 0,
+     "abducao": 1,
+     "aducao": 1,
      "panturrilha-em-pe": 1,
      "panturrilha-sentada": 1,
      "abdomen": 1
@@ -5271,8 +5271,8 @@
      "flexao-joelho": 2,
      "dobrar-quadril": "via flexao-joelho",
      "extensao-quadril": 1,
-     "abducao": 0,
-     "aducao": 0,
+     "abducao": 1,
+     "aducao": 1,
      "panturrilha-em-pe": 1,
      "panturrilha-sentada": 1,
      "abdomen": 1
@@ -5302,8 +5302,8 @@
      "flexao-joelho": 2,
      "dobrar-quadril": "via flexao-joelho",
      "extensao-quadril": 1,
-     "abducao": 0,
-     "aducao": 0,
+     "abducao": 1,
+     "aducao": 1,
      "panturrilha-em-pe": 1,
      "panturrilha-sentada": 0,
      "abdomen": 1
@@ -5326,8 +5326,8 @@
      "flexao-joelho": 3,
      "dobrar-quadril": "via flexao-joelho",
      "extensao-quadril": 1,
-     "abducao": 0,
-     "aducao": 0,
+     "abducao": 1,
+     "aducao": 1,
      "panturrilha-em-pe": 1,
      "panturrilha-sentada": 0,
      "abdomen": 1
@@ -5350,8 +5350,8 @@
      "flexao-joelho": 3,
      "dobrar-quadril": "via flexao-joelho",
      "extensao-quadril": 1,
-     "abducao": 0,
-     "aducao": 0,
+     "abducao": 1,
+     "aducao": 1,
      "panturrilha-em-pe": 1,
      "panturrilha-sentada": 0,
      "abdomen": 1
@@ -5461,7 +5461,7 @@
      "dobrar-quadril": "via flexao-joelho",
      "extensao-quadril": 1,
      "abducao": 1,
-     "aducao": 0,
+     "aducao": 1,
      "panturrilha-em-pe": 1,
      "panturrilha-sentada": 0,
      "abdomen": 1
@@ -5485,7 +5485,7 @@
      "dobrar-quadril": "via flexao-joelho",
      "extensao-quadril": 1,
      "abducao": 1,
-     "aducao": 0,
+     "aducao": 1,
      "panturrilha-em-pe": 1,
      "panturrilha-sentada": 0,
      "abdomen": 1
@@ -5509,7 +5509,7 @@
      "dobrar-quadril": "via flexao-joelho",
      "extensao-quadril": 1,
      "abducao": 1,
-     "aducao": 0,
+     "aducao": 1,
      "panturrilha-em-pe": 1,
      "panturrilha-sentada": 0,
      "abdomen": 1
@@ -5539,8 +5539,8 @@
      "flexao-joelho": 1,
      "dobrar-quadril": "via flexao-joelho",
      "extensao-quadril": 1,
-     "abducao": 0,
-     "aducao": 0,
+     "abducao": 1,
+     "aducao": 1,
      "panturrilha-em-pe": 1,
      "panturrilha-sentada": 0,
      "abdomen": 1
@@ -5563,8 +5563,8 @@
      "flexao-joelho": 2,
      "dobrar-quadril": "via flexao-joelho",
      "extensao-quadril": 1,
-     "abducao": 0,
-     "aducao": 0,
+     "abducao": 1,
+     "aducao": 1,
      "panturrilha-em-pe": 1,
      "panturrilha-sentada": 0,
      "abdomen": 2
@@ -5587,8 +5587,8 @@
      "flexao-joelho": 2,
      "dobrar-quadril": "via flexao-joelho",
      "extensao-quadril": 1,
-     "abducao": 0,
-     "aducao": 0,
+     "abducao": 1,
+     "aducao": 1,
      "panturrilha-em-pe": 1,
      "panturrilha-sentada": 0,
      "abdomen": 2
@@ -5618,10 +5618,10 @@
      "flexao-joelho": 1,
      "dobrar-quadril": 2,
      "extensao-quadril": 3,
-     "abducao": 0,
-     "aducao": 0,
+     "abducao": 1,
+     "aducao": 1,
      "panturrilha-em-pe": 1,
-     "panturrilha-sentada": 0,
+     "panturrilha-sentada": 1,
      "abdomen": 2
     },
     "intermediario": {
@@ -5642,10 +5642,10 @@
      "flexao-joelho": 1,
      "dobrar-quadril": 2,
      "extensao-quadril": 3,
-     "abducao": 0,
-     "aducao": 0,
+     "abducao": 1,
+     "aducao": 1,
      "panturrilha-em-pe": 1,
-     "panturrilha-sentada": 0,
+     "panturrilha-sentada": 1,
      "abdomen": 2
     },
     "avancado": {
@@ -5666,10 +5666,10 @@
      "flexao-joelho": 1,
      "dobrar-quadril": 2,
      "extensao-quadril": 3,
-     "abducao": 0,
-     "aducao": 0,
+     "abducao": 1,
+     "aducao": 1,
      "panturrilha-em-pe": 1,
-     "panturrilha-sentada": 0,
+     "panturrilha-sentada": 1,
      "abdomen": 2
     }
    }
@@ -5693,12 +5693,12 @@
      "triceps-complemento": 1,
      "agachar": 2,
      "afundo": 2,
-     "extensora": 0,
+     "extensora": 1,
      "flexao-joelho": 1,
      "dobrar-quadril": 1,
      "extensao-quadril": 1,
-     "abducao": 0,
-     "aducao": 0,
+     "abducao": 1,
+     "aducao": 1,
      "panturrilha-em-pe": 1,
      "panturrilha-sentada": 0,
      "abdomen": 1
@@ -5717,12 +5717,12 @@
      "triceps-complemento": 1,
      "agachar": 2,
      "afundo": 3,
-     "extensora": 0,
+     "extensora": 1,
      "flexao-joelho": 1,
      "dobrar-quadril": 1,
      "extensao-quadril": 1,
-     "abducao": 0,
-     "aducao": 0,
+     "abducao": 1,
+     "aducao": 1,
      "panturrilha-em-pe": 1,
      "panturrilha-sentada": 0,
      "abdomen": 1
@@ -5741,12 +5741,12 @@
      "triceps-complemento": 1,
      "agachar": 2,
      "afundo": 3,
-     "extensora": 0,
+     "extensora": 1,
      "flexao-joelho": 1,
      "dobrar-quadril": 1,
      "extensao-quadril": 1,
-     "abducao": 0,
-     "aducao": 0,
+     "abducao": 1,
+     "aducao": 1,
      "panturrilha-em-pe": 1,
      "panturrilha-sentada": 0,
      "abdomen": 1
@@ -5776,10 +5776,10 @@
      "flexao-joelho": 1,
      "dobrar-quadril": 2,
      "extensao-quadril": 2,
-     "abducao": 0,
-     "aducao": 0,
+     "abducao": 1,
+     "aducao": 1,
      "panturrilha-em-pe": 1,
-     "panturrilha-sentada": 0,
+     "panturrilha-sentada": 1,
      "abdomen": 1
     },
     "intermediario": {
@@ -5800,10 +5800,10 @@
      "flexao-joelho": 2,
      "dobrar-quadril": 2,
      "extensao-quadril": 2,
-     "abducao": 0,
-     "aducao": 0,
+     "abducao": 1,
+     "aducao": 1,
      "panturrilha-em-pe": 1,
-     "panturrilha-sentada": 0,
+     "panturrilha-sentada": 1,
      "abdomen": 1
     },
     "avancado": {
@@ -5824,10 +5824,10 @@
      "flexao-joelho": 2,
      "dobrar-quadril": 2,
      "extensao-quadril": 2,
-     "abducao": 0,
-     "aducao": 0,
+     "abducao": 1,
+     "aducao": 1,
      "panturrilha-em-pe": 1,
-     "panturrilha-sentada": 0,
+     "panturrilha-sentada": 1,
      "abdomen": 1
     }
    }
@@ -5851,12 +5851,12 @@
      "triceps-complemento": 1,
      "agachar": 2,
      "afundo": 2,
-     "extensora": 0,
+     "extensora": 1,
      "flexao-joelho": 1,
      "dobrar-quadril": 1,
      "extensao-quadril": 1,
-     "abducao": 0,
-     "aducao": 0,
+     "abducao": 1,
+     "aducao": 1,
      "panturrilha-em-pe": 2,
      "panturrilha-sentada": 0,
      "abdomen": 1
@@ -5875,12 +5875,12 @@
      "triceps-complemento": 1,
      "agachar": 2,
      "afundo": 2,
-     "extensora": 0,
+     "extensora": 1,
      "flexao-joelho": 1,
      "dobrar-quadril": 1,
      "extensao-quadril": 1,
-     "abducao": 0,
-     "aducao": 0,
+     "abducao": 1,
+     "aducao": 1,
      "panturrilha-em-pe": 2,
      "panturrilha-sentada": 0,
      "abdomen": 1
@@ -5899,12 +5899,12 @@
      "triceps-complemento": 1,
      "agachar": 2,
      "afundo": 2,
-     "extensora": 0,
+     "extensora": 1,
      "flexao-joelho": 1,
      "dobrar-quadril": 1,
      "extensao-quadril": 1,
-     "abducao": 0,
-     "aducao": 0,
+     "abducao": 1,
+     "aducao": 1,
      "panturrilha-em-pe": 2,
      "panturrilha-sentada": 0,
      "abdomen": 1
@@ -5916,9 +5916,9 @@
   "programas": 5940,
   "porFuncao": {
    "abdomen": {
-    "aparece2": 4659,
-    "repeteComOpcao": 126,
-    "repeteSemOpcao": 3660
+    "aparece2": 4623,
+    "repeteComOpcao": 120,
+    "repeteSemOpcao": 3636
    },
    "abducao": {
     "aparece2": 0,
@@ -5946,9 +5946,9 @@
     "repeteSemOpcao": 228
    },
    "dobrar-quadril": {
-    "aparece2": 894,
+    "aparece2": 858,
     "repeteComOpcao": 0,
-    "repeteSemOpcao": 294
+    "repeteSemOpcao": 270
    },
    "elevacao-lateral": {
     "aparece2": 1368,
@@ -5976,14 +5976,14 @@
     "repeteSemOpcao": 360
    },
    "extensora": {
-    "aparece2": 378,
-    "repeteComOpcao": 0,
-    "repeteSemOpcao": 378
+    "aparece2": 702,
+    "repeteComOpcao": 54,
+    "repeteSemOpcao": 648
    },
    "flexao-joelho": {
-    "aparece2": 4164,
+    "aparece2": 4161,
     "repeteComOpcao": 0,
-    "repeteSemOpcao": 1865
+    "repeteSemOpcao": 1862
    },
    "ombro-posterior": {
     "aparece2": 1149,
