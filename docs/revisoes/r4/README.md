@@ -1,5 +1,17 @@
 # R4 do Boneco: as folhas para o Gustavo decidir e aprovar (05/11/2026)
 
+## O que espera o seu "aprovar" (resumo)
+| # | O quê | Onde olhar | Resposta esperada |
+|---|---|---|---|
+| 1 | Proposta 1, decisões (a) instante, (b) equipamento errado, (c) erros pequenos, (d) legenda e tema escuro | `erros-instante.png`, `erros-equipamento.png`, `erros-pequenos.png`, `erros-tema-escuro.png` | uma opção por item (a recomendação está em cada seção) |
+| 2 | Proposta 1, o lote: os 189 erros das 66 animações | `erros/pagina-01.png` a `pagina-06.png` | "aprovar" por página, ou a lista do que não convence |
+| 3 | Proposta 2, rótulos fora do corpo: piloto e lote | `rotulos-piloto.png`; `rotulos/pagina-01.png` a `pagina-09.png` | idem |
+| 4 | Proposta 3, a vista inicial pelo movimento: a lista medida (3 mudam) | a tabela abaixo | ligar (1), ligar sem o face pull (2) ou não ligar (3) |
+| 5 | As 12 animações do elástico (11 novas + a remada de 04/11) | `../elastico/README.md`, `../elastico/folhas/`, `../elastico/conferencia/` | "aprovar" por animação; e a âncora: poste (como está) ou porta |
+| 6 | As 4 entradas da auditoria | `../catalogo/folhas/` e `../catalogo/conferencia/` (`abducao-deitado`, `aducao-deitado`, `extensao-joelho-elastico`, `panturrilha-sentada-halter`) | "aprovar" por animação |
+
+Depois dos "aprovar": a regravação da linha de base do Boneco (`estilo-a.json`), a entrada das animações no app (com o antes × depois dos programas do Bruno, do Diego e da Carla), o fechamento (`npm run check`, e2e, auditoria duas vezes), o devlog, o backlog, o recado ao R3 e a ida para a `main` (exporte os dados do app antes: "Meus dados" → "Guardar uma cópia").
+
 O R4 muda a **cena** (o erro, os rótulos e a vista), não o corpo: o esqueleto, as poses e os músculos ficam como estão. Tudo aqui foi gerado pelo motor com `scripts/folha-erros.mjs` (e, mais adiante, `scripts/folha-rotulos.mjs`); nenhuma linha de base foi regravada ainda. Como ler cada folha: a coluna "hoje" é o modo Erros que está no app desde o acabamento A2 (a figura que erra em vermelho cheio e o certo em palitos verdes); as outras colunas são a proposta aprovada em direção (o certo é a figura cheia; só a parte do corpo que erra aparece em vermelho tracejado, com o nome do erro ao lado).
 
 ## Proposta 1: o erro sobre o certo
