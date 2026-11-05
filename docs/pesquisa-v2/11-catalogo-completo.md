@@ -269,7 +269,7 @@ Fonte: `docs/revisoes/catalogo/grade.md`, `cenarios.md` e `monotonia.md` (110 ex
 | Princípio | O que a evidência diz | Selo | Fontes |
 |---|---|---|---|
 | Agachamento profundo cresce os adutores | Completo × meio: +6,2% × +2,7%. | um estudo | `kubo2019` |
-| Agachamento > hip thrust | O agachamento cresceu mais o adutor (número não registrado no projeto). | um estudo | `plotkin2023` |
+| Agachamento > hip thrust | O agachamento cresceu mais o adutor: 2,5 ± 0,7 cm² a mais de área (IC95% 1,2–3,9), e o quadríceps 3,6 ± 1,5 cm² (texto completo lido em 05/11/2026). | um estudo | `plotkin2023` |
 | Leg press > extensora | Só o leg press cresceu o adutor magno (+6,2%). | um estudo | `kinoshita2026` |
 | Agachamento e terra pedem muito do adutor magno | Modelo com EMG em 15 pessoas; modelagem não mede crescimento. | consenso (apoio indireto) | `collings2026` |
 | Máquina adutora | Três buscas, nenhum ensaio de hipertrofia. | consenso | — |
@@ -283,7 +283,7 @@ Fonte: `docs/revisoes/catalogo/grade.md`, `cenarios.md` e `monotonia.md` (110 ex
 | Princípio | O que a evidência diz | Selo | Fontes |
 |---|---|---|---|
 | Em pé >> sentada para o gastrocnêmio | Em pé +9% a +12%; sentada +1% a +2%. | um estudo (efeito grande) | `kinoshita2023` (no projeto) |
-| Sóleo | Se a sentada cresce mais o sóleo que a em pé **não foi conferido** (resumo bloqueado). | consenso (até reler) | `kinoshita2023` |
+| Sóleo | **Lido em 05/11/2026 (texto completo):** o sóleo cresceu igual nas duas posições (+2,1% em pé × +2,9% sentada, p = 0,41). A sentada **não** cobre o sóleo melhor que a em pé; é só variação. | um estudo | `kinoshita2023` |
 | Parcial na parte alongada > completa | Mulheres jovens: com o calcanhar abaixo do apoio, cresceu mais. | um estudo | `kassiano2023b` (no projeto) |
 | Parciais depois da falha, posição dos pés, volume | Ensaios existem; nenhum resumo abriu. | sem selo | NÃO VERIFICADOS: 40850937, 39995432, 42006449, 32735428, 38684187 |
 | Peso do corpo | Escada do bilateral ao unilateral ≈ barra para o gastrocnêmio. | um estudo (muito pequeno) | `wei2023` |

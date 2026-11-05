@@ -43,7 +43,8 @@ Regras de aplicação:
 - **verificado-busca**: título, periódico e ano compatíveis e pelo menos um identificador persistente (PMID, DOI ou PMCID) confirmados num registro bibliográfico. Detalhes menores que faltam (coautores, páginas, título literal) aparecem entre parênteses.
 - **NÃO VERIFICADO**: falta confirmar algo essencial da citação, como o identificador citado, os autores, o ano ou o título, ou a fonte só foi vista em material secundário. O que falta está escrito na própria linha.
 - **resumo-PubMed** (desde a pesquisa v2, 01/11/2026): além do registro, o resumo oficial foi lido no PubMed, com o PMID anotado. É um degrau acima do "verificado-busca" (`docs/pesquisa-v2/README.md`). Detalhes da citação que não foram anotados (autores, título literal, periódico) aparecem entre parênteses.
-- Em todos os casos, **o texto completo não foi lido**. "verificado-busca" significa que a citação existe e bate com o registro, não que o número foi conferido no artigo.
+- **texto-completo** (desde a auditoria independente, 05/11/2026, quando a rede foi liberada): o artigo inteiro foi lido (no PMC, no Frontiers ou na página do periódico), e a linha diz onde e o que foi conferido. É o degrau acima do "resumo-PubMed": só ele confere um número no artigo.
+- Nos outros três casos, **o texto completo não foi lido**. "verificado-busca" significa que a citação existe e bate com o registro, não que o número foi conferido no artigo.
 
 ## Limitações gerais da literatura
 

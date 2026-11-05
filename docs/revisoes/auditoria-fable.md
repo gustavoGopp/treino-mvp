@@ -307,3 +307,18 @@ O Gustavo liberou o PubMed na rede do ambiente. As 4 leituras pendentes foram fe
 | **Attarieh 2026** (`attarieh2026`, PMID 42842490) | 17 adultos, polia, 10 semanas: extensão de quadril +9% no glúteo máximo (padrão de baixo) e sem crescimento do médio; abdução +5% no máximo (padrão de cima) e +4% no médio e mínimo | um estudo | os números do projeto batem; a abdução sem carga de hoje continua apoiada nesta fonte (consenso para a versão sem carga) |
 
 Continuam fora do alcance (rede ainda bloqueada): PMC, Springer, Frontiers, PeerJ, Taylor & Francis, LWW, DOAJ, eparmedx.com (PAR-Q+), gov.br, CONFEF, OMS, ACSM, NSCA, OpenStax e o YouTube (vídeos de referência das fichas). A lista do que vale liberar está na conversa de 05/11.
+
+## Com a rede liberada (05/11/2026): leituras no texto completo
+O Gustavo liberou PMC, Frontiers, Crossref e os periódicos. Um pesquisador auxiliar leu o **texto completo** (não o resumo) das fontes que mais pesam nas regras; `fontes.md` ganhou o status novo **texto-completo** (definido em `00-metodo.md`). O que mudou:
+
+| Fonte | Lida inteira? | O que o texto confirma ou corrige |
+|---|---|---|
+| `kinoshita2026` (extensora × leg press) | sim (PMC) | **Confirma** todos os números. Acrescenta: o leg press foi raso (quadril de 90° a 60°) e mesmo assim cresceu o glúteo; e o estudo compara mono × multiarticular, **não** "posição alongada": a extensora cresce o reto femoral por ser o único a isolá-lo, não por alongá-lo (`selecao.alongado` cita a fonte com um motivo impreciso; a regra `selecao.isolador-obrigatorio` cita certo) |
+| `plotkin2023` (hip thrust × agachamento) | sim (Frontiers) | **Confirma**; o número que faltava do adutor: agachamento > hip thrust em 2,5 ± 0,7 cm² (IC95% 1,2–3,9); todas as séries até a falha, 8–12 repetições, agachamento o mais profundo possível |
+| `maeo2021` (flexora sentada × deitada) | sim (PMC) | **Confirma** (+14,1% × +9,3%); a vantagem é só dos músculos que cruzam o quadril; a cabeça curta cresceu igual; **não testa bola nem elástico** (a regra `selecao.flexao-joelho-sem-maquina` extrapola, e deve dizer isso) |
+| `kinoshita2023` (panturrilha em pé × sentada) | sim (Frontiers) | **Confirma** os gastrocnêmios (+12,4% × +1,7%; +9,2% × +0,6%) e **corrige a ideia do sóleo**: ele cresceu igual nas duas (+2,1% × +2,9%, p = 0,41). A panturrilha sentada **não** cobre o sóleo melhor que a em pé: é variação, não complemento necessário. **Corrigido:** o aviso da vaga (`funcoes.json`), o `04`, o `11`, os cartões e as fichas da panturrilha sentada (máquina e halter) |
+| `haugen2023` (máquina × peso livre) | sim (PMC) | **Confirma** o sentido (sem diferença de hipertrofia), mas a parte de hipertrofia são só 5 estudos pequenos, metade com medidas indiretas, e os autores pedem cautela. **Sozinha não sustenta "robusta"**; o peso vem com `hernandezbelmonte2023` (o `04` já cita as duas). O selo "robusta" do `04` fica, com essa nota em `fontes.md` |
+| `maeo2023`, `kubo2019`, `pelland2026`, `kassiano2023b`, `remmert2025` | **não** (Springer, Wiley, LWW e SportRxiv bloqueiam robôs mesmo com a rede aberta) | status mantido. `remmert2025`: o Crossref achou dois resumos de congresso (MSSE 2026) com o mesmo título, não o artigo revisado; anotado. O `pelland2026` é o que mais faz falta: cinco regras de volume dependem dele |
+
+Protocolo comum dos ensaios lidos: não treinados, 70% de 1RM, 5 × 10, 2 vezes por semana, 12 semanas, séries perto da falha com ajuda do examinador; nenhum usou RIR. É bom lembrar disso ao ler os selos "um estudo".
+

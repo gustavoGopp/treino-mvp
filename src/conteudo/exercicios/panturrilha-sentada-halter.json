@@ -2,7 +2,7 @@
   "id": "panturrilha-sentada-halter",
   "name": "Panturrilha sentada com halter no joelho",
   "short": "Panturrilha sentada com halter",
-  "target": "Panturrilha (sóleo, a parte de baixo)",
+  "target": "Panturrilha (variação sentada; cresce menos que em pé)",
   "setupEq": [
     "Um halter, deitado sobre a coxa perto do joelho, em cima de uma toalha dobrada.",
     "Uma cadeira firme, sem rodinhas, ou um banco.",
@@ -56,7 +56,7 @@
       "desc": "Uma mão solta e o halter desliza da coxa. As duas mãos nele, a série inteira."
     }
   ],
-  "carga": "Pela lista dos seus halteres: o próximo peso quando todas as séries chegarem ao topo da faixa. Quando um halter só ficar leve, use dois, um em cada joelho. É complemento: a panturrilha em pé continua sendo a principal.",
+  "carga": "Pela lista dos seus halteres: o próximo peso quando todas as séries chegarem ao topo da faixa. Quando um halter só ficar leve, use dois, um em cada joelho. É variação: a panturrilha em pé continua sendo a principal (num estudo, a sentada cresceu a panturrilha bem menos, e o sóleo igual).",
   "montagem": [
     "Halter sobre uma toalha dobrada, preso com as duas mãos.",
     "Cadeira firme, sem rodinhas; apoio dos pés que não escorrega."

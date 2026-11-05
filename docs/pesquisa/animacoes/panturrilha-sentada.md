@@ -30,3 +30,6 @@ Em geral **anilhas** na alavanca: kg de anilhas por lado, por passos. Em algumas
 - `kinoshita2023`: Kinoshita M, Maeo S, Kobayashi Y et al. Triceps surae muscle hypertrophy is greater after standing versus seated calf-raise training. Front Physiol 2023;14:1272106. PMID 38156065. Resumo lido no PubMed em 01/11/2026.
 - `seguranca-t5`: Cartão de "montagem segura" aprovado no T5 (`docs/pesquisa-v2/06-populacoes-e-seguranca.md`); consenso do projeto.
 - `nsca2021`: NSCA. Exercise Technique Manual for Resistance Training, 4ª ed. Human Kinetics, 2021. **Não verificado** (livro pago, não acessado); referência de consenso de treinadores, a confirmar.
+
+## Leitura do texto completo (05/11/2026)
+O sóleo cresceu **igual** em pé e sentado (+2,1% × +2,9%, p = 0,41; `kinoshita2023`, 14 não treinados, 12 semanas). A ideia de que a sentada "cobre o sóleo" não tem apoio nesse ensaio: a sentada é variação, não complemento necessário. O cartão passou a dizer isso.

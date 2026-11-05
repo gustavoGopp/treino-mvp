@@ -37,3 +37,6 @@ Pela lista dos halteres (`progressao.incremento.halteres`): o próximo quando to
 ## Fontes
 - `kinoshita2023`, `kassiano2023b`, `haugen2023`: já em `../fontes.md` (resumo-PubMed).
 - `nsca2021`: **não verificado** (livro pago); consenso de treinadores.
+
+## Leitura do texto completo (05/11/2026)
+O sóleo cresceu **igual** em pé e sentado (+2,1% × +2,9%, p = 0,41; `kinoshita2023`). A versão sentada é variação; a em pé é a que faz a panturrilha crescer. O cartão passou a dizer isso.

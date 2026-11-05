@@ -2,7 +2,7 @@
   "id": "panturrilha-sentada",
   "name": "Panturrilha sentada na máquina",
   "short": "Panturrilha sentada",
-  "target": "Panturrilha (sóleo)",
+  "target": "Panturrilha (variação sentada; cresce menos que em pé)",
   "setupEq": [
     "Ponta dos pés na borda da plataforma."
   ],
