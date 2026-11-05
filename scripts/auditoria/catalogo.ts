@@ -12,9 +12,9 @@ import { contextoDeSelecao, gerarPrograma, NOME_MUSCULO, type Programa } from '.
 import { DIVISAO_IDS, DIVISOES, type DivisaoId } from '../../src/domain/gerador/divisoes';
 import { FUNCOES } from '../../src/domain/gerador/funcoes';
 import { NIVEIS, NIVEL_COMPLEXIDADE_MAX, type Nivel } from '../../src/domain/regras';
-import { capacidades, type Inventario } from '../../src/domain/taxonomia/equipamentos';
-import { CENARIOS, perfil } from './cenarios';
-import { CENARIOS_MIN, chaveDaClasse } from './minimo-cenarios';
+import { capacidades } from '../../src/domain/taxonomia/equipamentos';
+import { perfil } from './cenarios';
+import { CENARIOS_55, membrosDaClasse, TODOS_OS_CENARIOS, type Cen } from './cenarios-55';
 
 const arg = (k: string) => {
   const i = process.argv.indexOf(k);
@@ -23,20 +23,10 @@ const arg = (k: string) => {
 const SAIDA = arg('--saida') ?? 'docs/revisoes/catalogo';
 mkdirSync(SAIDA, { recursive: true });
 
-type Cen = { id: string; nome: string; inventario: Inventario; grupo: 'atalho' | 'vazio' | 'item' | 'par' | 'persona' };
-const ATALHOS_IDS = new Set(['casa', 'casa+', 'condominio', 'condominio+', 'academia', 'academia+']);
-const todos: Cen[] = [
-  ...CENARIOS.filter((c) => c.id !== 'peso-corpo').map((c) => ({ id: c.id, nome: c.nome, inventario: c.inventario, grupo: ATALHOS_IDS.has(c.id) ? ('atalho' as const) : ('persona' as const) })),
-  ...CENARIOS_MIN.map((c) => ({ id: c.tipo === 'item' ? `so:${c.id}` : c.id, nome: c.nome, inventario: c.inventario, grupo: c.tipo })),
-];
-// Cenários que abrem exatamente os mesmos exercícios geram o mesmo programa: medidos uma vez (o 1º da lista representa).
-const classes = new Map<string, Cen[]>();
-for (const c of todos) {
-  const k = chaveDaClasse(c.inventario);
-  classes.set(k, [...(classes.get(k) ?? []), c]);
-}
-const REPRESENTANTES = [...classes.values()].map((cs) => cs[0]!);
-const membros = (c: Cen) => classes.get(chaveDaClasse(c.inventario))!;
+// Os 67 cenários e as 55 classes vêm de cenarios-55.ts (sessão de qualidade dos treinos, 05/11/2026).
+const todos = TODOS_OS_CENARIOS;
+const REPRESENTANTES = CENARIOS_55;
+const membros = membrosDaClasse;
 
 const possivel = (caps: Set<string>, e: Exercicio) => e.requer.some((g) => g.every((x) => caps.has(x)));
 const noNivel = (e: Exercicio, n: Nivel) => e.complexidade <= NIVEL_COMPLEXIDADE_MAX[n];
