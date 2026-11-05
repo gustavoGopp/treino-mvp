@@ -1,0 +1,49 @@
+// @ts-nocheck
+// Animação nova (em revisão). Extensão de joelho sentado com elástico: a mesma pose da extensão com caneleira aprovada
+// (mesmo corpo sentado e mesmo banco), com o elástico no lugar da caneleira: preso num ponto baixo e firme atrás da
+// cadeira (aqui um poste baixo, escolha de desenho do R4) e num laço no tornozelo; a faixa (band) afina quando estica
+// (a tensão sobe com a perna estendida, onde a ficha pede a pausa).
+// Técnica e fontes: docs/pesquisa/animacoes/extensao-joelho-elastico.md.
+import { BOX, L3, TX, band, poste } from '../../desenho';
+import { X, Y, Z, add, mul, norm, sub } from '../../math';
+
+const ex = {
+  id:'extensao-joelho-elastico',
+  views:['lateral'],
+  base:{P:[0,53,0],lumbar:-2,thor:-4,neck:0,legL:{ikS:[16,7,40],poleRel:[.3,.5,1],ft:[12,-20]},armR:{ikS:[22,46,-6],poleRel:[1,-.3,-.6]}},
+  keys:{
+    bottom:{legR:{th:[0,-2],sh:[0,-85],ft:[0,-5]}},
+    mid:{legR:{th:[0,-2],sh:[0,-45],ft:[0,30]}},
+    top:{legR:{th:[0,-2],sh:[0,-8],ft:[0,55]}},
+    midDown:{legR:{th:[0,-2],sh:[0,-45],ft:[0,30]}}
+  },
+  seq:[
+    {path:['bottom'],dur:.5,kind:'hold',label:'Joelho dobrado',tempo:'pé fora do chão',breath:'INSPIRA'},
+    {path:['bottom','mid','top'],dur:1.1,kind:'conc',label:'Subida · concêntrica',tempo:'~1 s',breath:'EXPIRA'},
+    {path:['top'],dur:1,kind:'hold',label:'Em cima · segura',tempo:'elástico mais esticado',breath:'FIRME'},
+    {path:['top','midDown','bottom'],dur:2,kind:'ecc',label:'Descida · excêntrica',tempo:'~2 s',breath:'INSPIRA'}
+  ],
+  ext:['bottom','top'],
+  paths:{lateral:[['A','R','tornozelo'],['K','R','joelho']]},
+  ancora:[0,8,-48],
+  equip(sk){
+    BOX([0,45,6],[[X,13],[Y,2.5],[Z,17]],'eqp',{bias:-4});
+    BOX([0,2.5,0],[[X,4],[Y,2],[Z,30]],'eqd',{bias:-6});BOX([0,22,4],[[X,2.5],[Y,20],[Z,2.5]],'eqd',{bias:-6});
+    // o elástico preso num ponto baixo e firme atrás da cadeira, com a outra ponta num laço no tornozelo
+    const a=poste(this.ancora[0],this.ancora[2],this.ancora[1],{h:40});const l=add(sk.side.R.A,mul(norm(sub(sk.side.R.K,sk.side.R.A)),4));
+    band(this,'r',a,l,{bias:.5});L3(add(l,[0,4,0]),add(l,[0,-4,0]),'elas',3.4,{bias:.6});
+  },
+  guides:{
+    lateral(sk){const R=sk.side.R;L3(R.Hp,R.K,'gd',.9,{layer:3,dash:'3 2.5'});TX([0,38,-10],'coxa parada',{cls:'lbl-g',anchor:'end'});TX([0,118,-6],'costas retas, mãos no assento',{cls:'lbl-g',anchor:'middle'});TX(add(this.ancora,[0,12,0]),'preso baixo, atrás',{cls:'lbl-g',anchor:'end',dx:-4});}
+  },
+  muscles:{p:[['quads','R']],s:[]},
+  errors:[
+    // chutar a perna: sobe de uma vez (o meio já é o topo) e o tronco vai para trás
+    {id:'tranco',view:'lateral',keys:{mid:{lumbar:-10,thor:-12,neck:-6,legR:{th:[0,-2],sh:[0,-8],ft:[0,55]}},top:{lumbar:-10,thor:-12,neck:-6}}},
+    // tirar a coxa do assento: a coxa sobe e o tronco vai para trás
+    {id:'quadril',view:'lateral',keys:{mid:{lumbar:-12,thor:-16,neck:-8,legR:{th:[0,8],sh:[0,-40],ft:[0,32]}},top:{lumbar:-16,thor:-22,neck:-10,legR:{th:[0,16],sh:[0,4],ft:[0,58]}}}},
+    // deixar a perna cair: a descida acaba logo no começo
+    {id:'cai',view:'lateral',keys:{midDown:{legR:{th:[0,-2],sh:[0,-85],ft:[0,-5]}}}}
+  ]
+};
+export default ex;

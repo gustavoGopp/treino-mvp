@@ -1,0 +1,81 @@
+{
+  "id": "extensao-joelho-elastico",
+  "name": "Extensão de joelho sentado com elástico",
+  "short": "Extensão com elástico",
+  "target": "Quadríceps (sobretudo a parte do meio da coxa, que vai até o quadril)",
+  "feel": "Frente da coxa, principalmente perto do joelho, com a perna esticada.",
+  "feelNote": "Com o joelho esticado o elástico puxa mais; com ele dobrado, quase nada: por isso a pausa em cima e a descida devagar. Dor na frente do joelho não é normal: pare antes do ponto que dói e, se continuar, pare o exercício e procure avaliação.",
+  "setupEq": [
+    "Um elástico longo, preso num ponto baixo e firme atrás da cadeira: o pé de trás da cadeira ou da mesa, ou a trava de porta. Sem onde prender: a ponta do elástico sob o pé da perna que fica no chão.",
+    "Uma cadeira firme, sem rodinhas, ou um banco. Sem eles: a beira de uma cama ou de um sofá firme.",
+    "A outra ponta do elástico no tornozelo (laço ou alça)."
+  ],
+  "setupBody": [
+    "Sente na beira do assento, com as costas retas, e segure a lateral do assento.",
+    "Coxas apoiadas; a perna do elástico com o joelho dobrado e o elástico já um pouco esticado.",
+    "Uma perna de cada vez: termine com uma e faça a série seguinte com a outra."
+  ],
+  "exec": [
+    [
+      "hold",
+      "Joelho dobrado",
+      "Elástico levemente esticado, coxa parada no assento."
+    ],
+    [
+      "conc",
+      "Subida",
+      "~1 s. Estenda o joelho até quase esticar; a coxa não sai do assento."
+    ],
+    [
+      "hold",
+      "Em cima",
+      "Segure 1 s. Aqui o elástico puxa mais."
+    ],
+    [
+      "ecc",
+      "Descida",
+      "~2 s, sem deixar o elástico puxar a perna de volta."
+    ]
+  ],
+  "range": [
+    "Em cima: joelho quase esticado, sem tranco.",
+    "Embaixo: joelho bem dobrado, com o elástico ainda um pouco esticado.",
+    "Se doer na frente do joelho, pare antes do ponto que dói."
+  ],
+  "breath": "Solte o ar esticando, inspire descendo.",
+  "cues": [
+    "Coxa parada.",
+    "Segura em cima.",
+    "Desce devagar."
+  ],
+  "check": [
+    "Elástico preso num ponto baixo e firme atrás",
+    "Laço no tornozelo, já um pouco esticado embaixo",
+    "Cadeira firme, sem rodinhas",
+    "Costas retas, mãos no assento",
+    "Série perto da falha, no RIR do programa"
+  ],
+  "vary": "Ficou fácil? Afaste a cadeira do ponto (o elástico começa mais esticado) ou passe para a intensidade seguinte, se tiver. Aviso honesto: o elástico puxa pouco com o joelho dobrado; a cadeira extensora, quando houver, é a 1ª opção.",
+  "note": "<b>Montagem segura:</b> cadeira firme, sem rodinhas, encostada na parede, ou um banco. Antes da 1ª série, puxe forte o elástico para testar o ponto; se o elástico escapar ou o ponto ceder, pare.",
+  "extLabels": [
+    "joelho dobrado",
+    "em cima"
+  ],
+  "errors": [
+    {
+      "id": "tranco",
+      "title": "Chutar a perna",
+      "desc": "Subir com tranco joga a perna por impulso: a coxa trabalha menos e o joelho leva o solavanco."
+    },
+    {
+      "id": "quadril",
+      "title": "Tirar a coxa do assento",
+      "desc": "Levantar a coxa ou jogar o tronco para trás ajuda a subir com o quadril. A coxa fica apoiada."
+    },
+    {
+      "id": "cai",
+      "title": "Deixar o elástico puxar a perna de volta",
+      "desc": "Soltar a descida perde metade do trabalho. Desça em ~2 s."
+    }
+  ]
+}
