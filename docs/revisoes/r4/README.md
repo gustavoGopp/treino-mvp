@@ -33,7 +33,22 @@ Todos os erros das 66 animações (189 erros), 11 exercícios por página, nas c
 Depois dos quatro "aprovar": a linha de base `tests/visual/linha-de-base/estilo-a.json` é regravada (só os quadros de erro mudam; os de técnica, músculos e trajetória continuam com o mesmo hash).
 
 ## Proposta 2: rótulos fora do corpo
-(em andamento: a folha-piloto entra aqui)
+
+### O piloto: `rotulos-piloto.png`
+Seis exercícios (tríceps na suspensão, remada na suspensão, remada sem banco, remada com elástico, face pull e agachamento com o peso do corpo), em cada vista, os quatro quadros do ciclo em duas linhas: **hoje** e **proposta**. A regra, aplicada por cima de qualquer animação (não muda nenhuma pose):
+- o rótulo de técnica cujo texto passa por cima do corpo em algum instante do ciclo é movido para o lugar livre mais perto da âncora (dentro do palco, abaixo da caixa da fase do app, fora do corpo, sem cruzar outro rótulo), com uma linha fina tracejada até o ponto; de preferência, um lugar cuja linha não atravesse o corpo;
+- o deslocamento é fixo para o ciclo inteiro: o rótulo acompanha a âncora sem pular de lado entre os quadros;
+- um rótulo largo demais para caber ao lado do corpo é quebrado em duas linhas (na vírgula ou no espaço do meio);
+- o rótulo que já está fora não se move (encostar de leve no pé ou na mão não conta);
+- sem lugar no palco, fica onde está (o pior caso é o de hoje).
+- Medido nas 66 animações, na largura do app: 58 das 172 linhas de rótulo se movem; 114 ficam como estão.
+
+O que o piloto mostra: no tríceps na suspensão, "cotovelos parados, apontando à frente" sai de cima do braço e vai para a esquerda, em duas linhas; na remada sem banco, "mão livre na coxa" sai de dentro do tronco e aponta para a mão escondida com a linha; na remada na suspensão de trás, "escápulas se juntam no fim" sai de cima da cabeça. Na remada com elástico e no face pull nada muda (os rótulos já estavam fora). Limite conhecido: a linha até o ponto atravessa o corpo quando a âncora está escondida atrás dele (a mão livre na coxa).
+
+### O lote inteiro: `rotulos/pagina-01.png` a `rotulos/pagina-09.png`
+As 66 animações, 8 por página, hoje × proposta. Para aprovar: um "aprovar" por página, ou a lista do que não convence.
+
+Depois do "aprovar": a linha de base `estilo-a.json` é regravada (os quadros de técnica com rótulo movido mudam de hash).
 
 ## Proposta 3: a vista que abre é a do maior movimento
 (em andamento: a lista medida entra aqui)
