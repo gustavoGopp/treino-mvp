@@ -34,8 +34,8 @@ Peso do corpo, pela escada do exercício (`src/domain/progressao/escadas.json`):
 
 | Canal | Título | URL |
 |---|---|---|
-| não confirmado | How to Perform the Bodyweight Squat - Exercise Tutorial | https://www.youtube.com/watch?v=RClKKQqsvXA |
-| não confirmado | How to Do a Bodyweight Squat (Perfect Form + Common Mistakes) | https://www.youtube.com/watch?v=eWatHIujxPM |
+| Buff Dudes Workouts (canal conferido pelo título em 05/11/2026) | How to Perform the Bodyweight Squat - Exercise Tutorial | https://www.youtube.com/watch?v=RClKKQqsvXA |
+| Over The Hill Athlete (canal conferido pelo título em 05/11/2026) | How to Do a Bodyweight Squat (Perfect Form + Common Mistakes) | https://www.youtube.com/watch?v=eWatHIujxPM |
 
 ## Fontes
 - `kubo2019` (já em `../fontes.md`): Kubo K et al. Effects of squat training with different depths on lower limb muscle volumes. Eur J Appl Physiol 2019. PMID 31230110. **Resumo lido no PubMed** (status `resumo-PubMed`).

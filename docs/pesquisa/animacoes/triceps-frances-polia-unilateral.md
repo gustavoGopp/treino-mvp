@@ -37,8 +37,8 @@ Placa da torre: +1 placa (`progressao.incremento.polia`).
 
 | Canal | Título | URL |
 |---|---|---|
-| não confirmado | Exercise Tutorial: Single Arm Cable Overhead Tricep Extension | https://www.youtube.com/watch?v=w3iAESGWK6M |
-| não confirmado | How To: Single Arm Overhead Cable Tricep Extension | https://www.youtube.com/watch?v=zYTJpaPK7vE |
+| Travis Tarrant (canal conferido pelo título em 05/11/2026) | Exercise Tutorial: Single Arm Cable Overhead Tricep Extension | https://www.youtube.com/watch?v=w3iAESGWK6M |
+| Adnan Ahmed (canal conferido pelo título em 05/11/2026) | How To: Single Arm Overhead Cable Tricep Extension | https://www.youtube.com/watch?v=zYTJpaPK7vE |
 
 ## Fontes
 - `maeo2023`, `kassiano2025`, `kerr2010` (já em `../fontes.md`; resumo-PubMed).

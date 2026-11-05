@@ -37,8 +37,8 @@ Peso do corpo, pela escada do exercício (`src/domain/progressao/escadas.json`):
 | Canal | Título | URL |
 |---|---|---|
 | Oleksiy Torokhtiy (no título) | Bodyweight Bulgarian Split Squat / Torokhtiy Weightlifting Library | https://www.youtube.com/watch?v=oGTVhFgRnes |
-| não confirmado | Chair Bulgarian Split Squat | https://www.youtube.com/watch?v=zFbhMqkvg6o |
-| não confirmado (ajustes para dor no joelho) | How To Eliminate Knee Pain In The Split Squat: Try These Adjustments | https://www.youtube.com/watch?v=yHvF3BVUII8 |
+| Ashley Poelhuis Fitness (canal conferido pelo título em 05/11/2026) | Chair Bulgarian Split Squat | https://www.youtube.com/watch?v=zFbhMqkvg6o |
+| (canal Nick Tumminello - Trainer of Trainers, conferido em 05/11/2026) (ajustes para dor no joelho) | How To Eliminate Knee Pain In The Split Squat: Try These Adjustments | https://www.youtube.com/watch?v=yHvF3BVUII8 |
 
 ## Fontes
 - `kassiano2025` (já em `../fontes.md`): PMID 39794667. **Resumo lido no PubMed** (status `resumo-PubMed`).

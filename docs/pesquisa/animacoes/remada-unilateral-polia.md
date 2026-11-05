@@ -40,8 +40,8 @@ Placa da torre: +1 placa (`progressao.incremento.polia`).
 
 | Canal | Título | URL |
 |---|---|---|
-| não confirmado | How to do Standing Single Arm Cable Rows | https://www.youtube.com/watch?v=raO8Q08Wems |
-| não confirmado | Single Arm Standing Cable Row | https://www.youtube.com/watch?v=DaPtTW0OOr8 |
+| Chris and Eric Martinez (canal conferido pelo título em 05/11/2026) | How to do Standing Single Arm Cable Rows | https://www.youtube.com/watch?v=raO8Q08Wems |
+| OPEX Fitness (canal conferido pelo título em 05/11/2026) | Single Arm Standing Cable Row | https://www.youtube.com/watch?v=DaPtTW0OOr8 |
 
 ## Fontes
 - `haugen2023`, `kassiano2025`, `fenwick2009`, `kerr2010` (já em `../fontes.md`; resumo-PubMed).

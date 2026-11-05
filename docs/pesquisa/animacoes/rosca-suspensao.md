@@ -40,8 +40,8 @@ Peso do corpo, pela escada da B.2.5 (`progressao.escada-por-exercicio`): pés ma
 
 | Canal | Título | URL |
 |---|---|---|
-| não confirmado | How To Do A TRX BICEP CURL | https://www.youtube.com/watch?v=Pa8Mls8saXc |
-| não confirmado | Exercise Tutorial: TRX One Arm Bicep Curl (degrau de uma mão) | https://www.youtube.com/watch?v=bApLiemofYQ |
+| Live Lean TV Daily Exercises (canal conferido pelo título em 05/11/2026) | How To Do A TRX BICEP CURL | https://www.youtube.com/watch?v=Pa8Mls8saXc |
+| Travis Tarrant (canal conferido pelo título em 05/11/2026) | Exercise Tutorial: TRX One Arm Bicep Curl (degrau de uma mão) | https://www.youtube.com/watch?v=bApLiemofYQ |
 
 ## Fontes
 - `soligon2020`, `aguileracastells2020`, `haugen2023`, `kassiano2025`, `kojic2025` (já em `../fontes.md`; resumo-PubMed). `schoenfeld2015` (já em `../fontes.md`; NÃO VERIFICADO, falta confirmar o PMID).

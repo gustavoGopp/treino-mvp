@@ -42,7 +42,7 @@ Kettlebell: o próximo peso da lista (`progressao.incremento.halteres`); os salt
 
 | Canal | Título | URL |
 |---|---|---|
-| não confirmado | Single Arm Kettlebell Row | https://www.youtube.com/watch?v=l5qelXL5nfs |
+| OPEX Fitness (canal conferido pelo título em 05/11/2026) | Single Arm Kettlebell Row | https://www.youtube.com/watch?v=l5qelXL5nfs |
 
 ## Fontes
 - `haugen2023`, `kassiano2025`, `fenwick2009` (já em `../fontes.md`; resumo-PubMed).

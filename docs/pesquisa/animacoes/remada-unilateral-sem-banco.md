@@ -42,8 +42,8 @@ Halter: o próximo peso da lista (`progressao.incremento.halteres`). Com o halte
 
 | Canal | Título | URL |
 |---|---|---|
-| não confirmado | How to do a Dumbbell Single Arm Row // Staggered Stance | https://www.youtube.com/watch?v=rz8dldEHc5c |
-| não confirmado | No Bench - Try This One Arm Dumbbell Row Technique! | https://www.youtube.com/shorts/Pw3glZCQMGM |
+| Denvyr | Tall Girl Nutritionist (canal conferido pelo título em 05/11/2026) | How to do a Dumbbell Single Arm Row // Staggered Stance | https://www.youtube.com/watch?v=rz8dldEHc5c |
+| Criticalbench (canal conferido pelo título em 05/11/2026) | No Bench - Try This One Arm Dumbbell Row Technique! | https://www.youtube.com/shorts/Pw3glZCQMGM |
 
 ## Fontes
 - `haugen2023`, `kassiano2025`, `fenwick2009` (já em `../fontes.md`; resumo-PubMed).

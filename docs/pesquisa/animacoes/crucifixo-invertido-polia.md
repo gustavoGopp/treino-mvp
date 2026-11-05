@@ -40,7 +40,7 @@ Placa da torre: +1 placa (`progressao.incremento.polia`). Exercício de carga ba
 
 | Canal | Título | URL |
 |---|---|---|
-| não confirmado | How To: Reverse Cable Crossover | https://www.youtube.com/watch?v=FcCNakXguzc |
+| Live Lean TV Daily Exercises (canal conferido pelo título em 05/11/2026) | How To: Reverse Cable Crossover | https://www.youtube.com/watch?v=FcCNakXguzc |
 | Hunter Labrada (no título) | How To - Standing Cable Rear Delt Fly - Hunter Labrada | https://www.youtube.com/watch?v=JENKmsEZQO8 |
 
 ## Fontes

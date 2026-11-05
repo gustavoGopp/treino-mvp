@@ -39,7 +39,7 @@ Kettlebell: o próximo peso da lista (`progressao.incremento.halteres`; `progres
 
 | Canal | Título | URL |
 |---|---|---|
-| não confirmado | How To Do: Kettlebell Triceps Extension - Standing | https://www.youtube.com/watch?v=DBiDUQJTo6A |
+| Fitway - Workout Trainer (canal conferido pelo título em 05/11/2026) | How To Do: Kettlebell Triceps Extension - Standing | https://www.youtube.com/watch?v=DBiDUQJTo6A |
 
 ## Fontes
 - `maeo2023`, `haugen2023`, `kerr2010`, `kojic2025` (já em `../fontes.md`; resumo-PubMed). `schoenfeld2015` (já em `../fontes.md`; NÃO VERIFICADO, falta confirmar o PMID).

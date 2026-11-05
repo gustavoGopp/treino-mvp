@@ -41,7 +41,7 @@ Peso do corpo, pela escada da B.2.5 (idêntica à do `abdominal-chao`): descida 
 | Canal | Título | URL |
 |---|---|---|
 | Nick Tumminello, pela busca (transmissão ao vivo) | How to perform stability ball crunches correctly | https://m.youtube.com/live/8NGXHJ2bEzE |
-| não confirmado | Episode 145 - Stability Ball Crunch Basics and Progression | https://www.youtube.com/watch?v=KrTtX8K_AJk |
+| Aram H (canal conferido pelo título em 05/11/2026) | Episode 145 - Stability Ball Crunch Basics and Progression | https://www.youtube.com/watch?v=KrTtX8K_AJk |
 
 ## Fontes
 - `consenso-projeto` (técnica e escada).

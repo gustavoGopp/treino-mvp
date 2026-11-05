@@ -34,8 +34,8 @@ Peso do corpo, pela escada do exercício (`src/domain/progressao/escadas.json`):
 
 | Canal | Título | URL |
 |---|---|---|
-| não confirmado | Chin ups- supinated grip | https://www.youtube.com/watch?v=sNBS5iIu6Zg |
-| não confirmado | Chin Up Demo | https://www.youtube.com/watch?v=-ggSDT68kk8 |
+| Mike Campbell Man Coach (canal conferido pelo título em 05/11/2026) | Chin ups- supinated grip | https://www.youtube.com/watch?v=sNBS5iIu6Zg |
+| Go Fitness Lilburn Home of DFC CrossFit (canal conferido pelo título em 05/11/2026) | Chin Up Demo | https://www.youtube.com/watch?v=-ggSDT68kk8 |
 
 ## Fontes
 - `youdas2010` (já em `../fontes.md`): Youdas JW et al. Surface electromyographic activation patterns and elbow joint motion during a pull-up, chin-up, or perfect-pullup rotational exercise. J Strength Cond Res 2010. PMID 21068680. Status `verificado-busca` (valores do latíssimo não conferidos).

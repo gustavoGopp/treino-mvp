@@ -521,34 +521,34 @@ Base: o mapa de cobertura (`docs/revisoes/equipamento-minimo/cobertura.md`) e a 
 | Exercício | Canal | Título | URL |
 |---|---|---|---|
 | Nórdico | E3 Rehab (pela busca; o artigo do site tem o mesmo título) | How to Set Up, Perform, & Program Nordic Hamstring Curls (Progressions…) | https://www.youtube.com/watch?v=_e9vFU9-tkc |
-| Nórdico (montagem sem parceiro) | não confirmado | 3 Simple Ways to Setup Nordic Hamstring Curls (Without a Partner) | https://www.youtube.com/watch?v=9XOaewLMMrs |
+| Nórdico (montagem sem parceiro) | Soccer Rehab (canal conferido pelo título em 05/11/2026) | 3 Simple Ways to Setup Nordic Hamstring Curls (Without a Partner) | https://www.youtube.com/watch?v=9XOaewLMMrs |
 | Flexão de joelho deslizante | The Prehab Guys (biblioteca de vídeos, no Vimeo) | Single Leg Hamstring Curl – Slider | https://library.theprehabguys.com/vimeo-video/single-leg-hamstring-curl-slider/ |
-| Flexão de joelho deslizante | não confirmado | Towel Hamstring Curls | https://www.youtube.com/watch?v=cWSsWpuxmYM |
+| Flexão de joelho deslizante | Nick Brattain (canal conferido pelo título em 05/11/2026) | Towel Hamstring Curls | https://www.youtube.com/watch?v=cWSsWpuxmYM |
 | Ponte unilateral | Bret Contreras (no título) | Glute Bridges with Bret Contreras | https://www.youtube.com/watch?v=yN-SNtUzHYM |
-| Ponte com os pés elevados | não confirmado (apareceu na busca por Bret Contreras) | 1-legged foot elevated glute bridge | https://www.youtube.com/watch?v=t5D6ktqa_mY |
-| Ponte com os pés elevados | não confirmado | Feet elevated glute bridge | https://www.youtube.com/watch?v=V-GsfUFOsNg |
+| Ponte com os pés elevados | (canal Coach Jess TV, conferido em 05/11/2026) (apareceu na busca por Bret Contreras) | 1-legged foot elevated glute bridge | https://www.youtube.com/watch?v=t5D6ktqa_mY |
+| Ponte com os pés elevados | Bret Contreras Glute Guy (canal conferido pelo título em 05/11/2026) | Feet elevated glute bridge | https://www.youtube.com/watch?v=V-GsfUFOsNg |
 | Stiff unilateral sem peso | Mark Wildman (no título) | Bodyweight Single Leg RDL by Mark Wildman | https://www.youtube.com/watch?v=PcflnHs334Q |
-| Stiff unilateral sem peso | não confirmado | Bodyweight Single Leg RDL (Exercise Library) | https://www.youtube.com/watch?v=DPFnfAUCvTA |
-| Remada invertida na mesa | não confirmado | Stronger Back at Home! How to Do Inverted Rows with a Table | https://www.youtube.com/watch?v=6NTruShwwKk |
-| Remada invertida (progressões) | não confirmado | Inverted Rows (Beginner to Advanced Progressions) | https://www.youtube.com/watch?v=Fl0UMfdEzsE |
-| Remada na porta com toalha | não confirmado | Towel Rows (ring rows) - Quarantine Workout Tip | https://www.youtube.com/watch?v=w1bhwu3jNso |
-| Remada na porta com toalha | não confirmado | How To Do a Row at Home (no equipment required) | https://www.youtube.com/watch?v=hfGD-K11vPk |
-| Extensão de tronco deitado (superman) | não confirmado | Superman Exercise- Physical Therapy Back Strengthening Exercises | https://www.youtube.com/watch?v=STvo35VczKI |
-| Y-T-W no chão | não confirmado | Y-Raise A.K.A. Prone V-Raise - Lower Trapezius Strengthening Exercise | https://www.youtube.com/watch?v=juoKsTqy77E |
+| Stiff unilateral sem peso | Horton Barbell (canal conferido pelo título em 05/11/2026) | Bodyweight Single Leg RDL (Exercise Library) | https://www.youtube.com/watch?v=DPFnfAUCvTA |
+| Remada invertida na mesa | Abel Hailemikiel (canal conferido pelo título em 05/11/2026) | Stronger Back at Home! How to Do Inverted Rows with a Table | https://www.youtube.com/watch?v=6NTruShwwKk |
+| Remada invertida (progressões) | Zack Henderson (canal conferido pelo título em 05/11/2026) | Inverted Rows (Beginner to Advanced Progressions) | https://www.youtube.com/watch?v=Fl0UMfdEzsE |
+| Remada na porta com toalha | fora do ar (404 em 05/11/2026) | Towel Rows (ring rows) - Quarantine Workout Tip | https://www.youtube.com/watch?v=w1bhwu3jNso |
+| Remada na porta com toalha | Stronger Runner (canal conferido pelo título em 05/11/2026) | How To Do a Row at Home (no equipment required) | https://www.youtube.com/watch?v=hfGD-K11vPk |
+| Extensão de tronco deitado (superman) | Michelle Kenway (canal conferido pelo título em 05/11/2026) | Superman Exercise- Physical Therapy Back Strengthening Exercises | https://www.youtube.com/watch?v=STvo35VczKI |
+| Y-T-W no chão | PhysioExercise (canal conferido pelo título em 05/11/2026) | Y-Raise A.K.A. Prone V-Raise - Lower Trapezius Strengthening Exercise | https://www.youtube.com/watch?v=juoKsTqy77E |
 | Pike push-up | FitnessFAQs (Daniel Vadnal), pela busca | Are You Doing Pike Push-Ups Correctly? | https://www.youtube.com/watch?v=eN6uwRVdNyY |
 | Pike push-up | FitnessFAQs, pela busca | The Forgotten Exercise For Bigger Shoulders | https://m.youtube.com/watch?v=Tq1nYz7U5os |
-| Flexão fechada | não confirmado | Triceps FOCUSED Push Up Variation (Close Grip Push Up) | https://www.youtube.com/watch?v=aWixj7ey758 |
-| Flexão fechada | não confirmado | Close-Grip Push Ups | https://www.youtube.com/watch?v=r8swN_LqR14 |
-| Mergulho na cadeira | não confirmado | How to do a chair dip safely and correctly triceps and shoulders | https://www.youtube.com/watch?v=o3W5yCJnqxg |
-| Mergulho na cadeira | não confirmado | How to Do Chair Dips Correctly (Fix These Mistakes for Bigger Triceps) | https://www.youtube.com/watch?v=Ix8SLOzmC38 |
+| Flexão fechada | Mike | J2FIT Strength & Conditioning (canal conferido pelo título em 05/11/2026) | Triceps FOCUSED Push Up Variation (Close Grip Push Up) | https://www.youtube.com/watch?v=aWixj7ey758 |
+| Flexão fechada | STRONG ATHLETE (canal conferido pelo título em 05/11/2026) | Close-Grip Push Ups | https://www.youtube.com/watch?v=r8swN_LqR14 |
+| Mergulho na cadeira | Nielsen Fitness Premium In-Home (and Virtual) Personal Training (canal conferido pelo título em 05/11/2026) | How to do a chair dip safely and correctly triceps and shoulders | https://www.youtube.com/watch?v=o3W5yCJnqxg |
+| Mergulho na cadeira | M-Form Fitness (canal conferido pelo título em 05/11/2026) | How to Do Chair Dips Correctly (Fix These Mistakes for Bigger Triceps) | https://www.youtube.com/watch?v=Ix8SLOzmC38 |
 | Afundo para trás sem peso | Runna, pela busca | Reverse Bodyweight Lunge Exercise Tutorial - Proper Form | https://m.youtube.com/watch?v=HXs8u1251ss |
-| Afundo para trás sem peso | não confirmado | Reverse Lunge Form for Beginners (Step-by-Step) | https://www.youtube.com/watch?v=ALl174GTuoY |
-| Step-up na cadeira | não confirmado | Step-Ups onto a Chair, Box or Bench | https://www.youtube.com/watch?v=N57dZbDs1EY |
-| Step-up na cadeira | não confirmado | Exercise Tutorial - Step Up to Chair | https://www.youtube.com/watch?v=aajhW7DD1EA |
+| Afundo para trás sem peso | Steve & Latifah | Fitness (canal conferido pelo título em 05/11/2026) | Reverse Lunge Form for Beginners (Step-by-Step) | https://www.youtube.com/watch?v=ALl174GTuoY |
+| Step-up na cadeira | The Warrior Method (canal conferido pelo título em 05/11/2026) | Step-Ups onto a Chair, Box or Bench | https://www.youtube.com/watch?v=N57dZbDs1EY |
+| Step-up na cadeira | XHIT Daily (canal conferido pelo título em 05/11/2026) | Exercise Tutorial - Step Up to Chair | https://www.youtube.com/watch?v=aajhW7DD1EA |
 | Panturrilha unilateral no degrau | Renaissance Periodization, por um catálogo de terceiros (vídeo geral de panturrilha) | 8 Calf Raise Mistakes and How to Fix Them | https://www.youtube.com/watch?v=Xa18jxyeSnM |
-| Panturrilha unilateral no degrau | não confirmado | How To Do A Single Leg Calf Raise | https://www.youtube.com/watch?v=IphGZ8OlfYg |
-| Nórdico invertido (extra) | provável E3 Rehab (mesmo formato de título; não confirmado) | How to Safely Set Up, Perform, & Program Reverse Nordics (Progressions…) | https://www.youtube.com/watch?v=PvJDjcfZe1c |
-| Búlgaro com dor no joelho (extra) | não confirmado | How To Eliminate Knee Pain In The Split Squat: Try These Adjustments | https://www.youtube.com/watch?v=yHvF3BVUII8 |
+| Panturrilha unilateral no degrau | PureGym (canal conferido pelo título em 05/11/2026) | How To Do A Single Leg Calf Raise | https://www.youtube.com/watch?v=IphGZ8OlfYg |
+| Nórdico invertido (extra) | provável E3 Rehab (canal E3 Rehab, conferido em 05/11/2026) | How to Safely Set Up, Perform, & Program Reverse Nordics (Progressions…) | https://www.youtube.com/watch?v=PvJDjcfZe1c |
+| Búlgaro com dor no joelho (extra) | Nick Tumminello - Trainer of Trainers (canal conferido pelo título em 05/11/2026) | How To Eliminate Knee Pain In The Split Squat: Try These Adjustments | https://www.youtube.com/watch?v=yHvF3BVUII8 |
 
 **Sem vídeo de canal reconhecido confirmado:** flexão deslizante no YouTube, remadas na mesa e na porta, superman e Y-T-W, flexão fechada, mergulho na cadeira, step-up e panturrilha unilateral. As buscas por Jeff Nippard, Squat University, Athlean-X, Jeremy Ethier, Hybrid Calisthenics e RP com esses exercícios não devolveram vídeo atribuível. Para fechar a lista, é preciso liberar youtube.com na rede da sessão ou o Gustavo procurar no próprio canal.
 

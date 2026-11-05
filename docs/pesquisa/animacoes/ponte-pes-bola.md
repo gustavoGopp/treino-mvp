@@ -40,8 +40,8 @@ Peso do corpo, pela escada da B.2.5: pausa de 2 s no alto → braços cruzados n
 
 | Canal | Título | URL |
 |---|---|---|
-| não confirmado | Stability Ball Straight Leg Glute Bridge | https://www.youtube.com/watch?v=rlRP8QMaSeg |
-| não confirmado | Stability Ball Single Leg Glute Bridge (degrau de uma perna) | https://www.youtube.com/watch?v=KxvqRpgkn6c |
+| N1 Motion (canal conferido pelo título em 05/11/2026) | Stability Ball Straight Leg Glute Bridge | https://www.youtube.com/watch?v=rlRP8QMaSeg |
+| Alaina Wood Fitness (canal conferido pelo título em 05/11/2026) | Stability Ball Single Leg Glute Bridge (degrau de uma perna) | https://www.youtube.com/watch?v=KxvqRpgkn6c |
 
 ## Fontes
 - `plotkin2023`, `kassiano2025` (já em `../fontes.md`; resumo-PubMed).

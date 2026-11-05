@@ -638,35 +638,35 @@ Ver "Buscas registradas", parte W2.
 
 | Exercício | Canal | Título | URL |
 |---|---|---|---|
-| Remada unilateral sem banco (mão na coxa) | não confirmado | How to do a Dumbbell Single Arm Row // Staggered Stance | https://www.youtube.com/watch?v=rz8dldEHc5c |
-| Remada unilateral sem banco | não confirmado | No Bench - Try This One Arm Dumbbell Row Technique! | https://www.youtube.com/shorts/Pw3glZCQMGM |
-| Remada unilateral com kettlebell | não confirmado | Single Arm Kettlebell Row | https://www.youtube.com/watch?v=l5qelXL5nfs |
-| Stiff com kettlebell | não confirmado | How to: Kettlebell Romanian Deadlift (RDL) | https://www.youtube.com/watch?v=Uc5rP5xs7qQ |
-| Stiff com kettlebell (unilateral) | não confirmado | HOW TO: Kettlebell Single Leg Romanian Deadlift (RDL) | https://www.youtube.com/watch?v=rU90WKZ-few |
-| Tríceps francês com kettlebell | não confirmado | How To Do: Kettlebell Triceps Extension - Standing | https://www.youtube.com/watch?v=DBiDUQJTo6A |
-| Rosca martelo | não confirmado | Dumbbell Hammer Curl - Proper Form & Technique [4K] | https://www.youtube.com/watch?v=3nqezx8BEv0 |
-| Remada unilateral na polia, em pé | não confirmado | How to do Standing Single Arm Cable Rows | https://www.youtube.com/watch?v=raO8Q08Wems |
-| Remada unilateral na polia, em pé | não confirmado | Single Arm Standing Cable Row | https://www.youtube.com/watch?v=DaPtTW0OOr8 |
-| Crucifixo invertido na polia | não confirmado | How To: Reverse Cable Crossover | https://www.youtube.com/watch?v=FcCNakXguzc |
+| Remada unilateral sem banco (mão na coxa) | Denvyr | Tall Girl Nutritionist (canal conferido pelo título em 05/11/2026) | How to do a Dumbbell Single Arm Row // Staggered Stance | https://www.youtube.com/watch?v=rz8dldEHc5c |
+| Remada unilateral sem banco | Criticalbench (canal conferido pelo título em 05/11/2026) | No Bench - Try This One Arm Dumbbell Row Technique! | https://www.youtube.com/shorts/Pw3glZCQMGM |
+| Remada unilateral com kettlebell | OPEX Fitness (canal conferido pelo título em 05/11/2026) | Single Arm Kettlebell Row | https://www.youtube.com/watch?v=l5qelXL5nfs |
+| Stiff com kettlebell | Of The Lion Fitness (canal conferido pelo título em 05/11/2026) | How to: Kettlebell Romanian Deadlift (RDL) | https://www.youtube.com/watch?v=Uc5rP5xs7qQ |
+| Stiff com kettlebell (unilateral) | Fight Fitness (canal conferido pelo título em 05/11/2026) | HOW TO: Kettlebell Single Leg Romanian Deadlift (RDL) | https://www.youtube.com/watch?v=rU90WKZ-few |
+| Tríceps francês com kettlebell | Fitway - Workout Trainer (canal conferido pelo título em 05/11/2026) | How To Do: Kettlebell Triceps Extension - Standing | https://www.youtube.com/watch?v=DBiDUQJTo6A |
+| Rosca martelo | Steev (canal conferido pelo título em 05/11/2026) | Dumbbell Hammer Curl - Proper Form & Technique [4K] | https://www.youtube.com/watch?v=3nqezx8BEv0 |
+| Remada unilateral na polia, em pé | Chris and Eric Martinez (canal conferido pelo título em 05/11/2026) | How to do Standing Single Arm Cable Rows | https://www.youtube.com/watch?v=raO8Q08Wems |
+| Remada unilateral na polia, em pé | OPEX Fitness (canal conferido pelo título em 05/11/2026) | Single Arm Standing Cable Row | https://www.youtube.com/watch?v=DaPtTW0OOr8 |
+| Crucifixo invertido na polia | Live Lean TV Daily Exercises (canal conferido pelo título em 05/11/2026) | How To: Reverse Cable Crossover | https://www.youtube.com/watch?v=FcCNakXguzc |
 | Crucifixo invertido na polia | Hunter Labrada (no título) | How To - Standing Cable Rear Delt Fly - Hunter Labrada | https://www.youtube.com/watch?v=JENKmsEZQO8 |
-| Tríceps francês unilateral na polia | não confirmado | Exercise Tutorial: Single Arm Cable Overhead Tricep Extension | https://www.youtube.com/watch?v=w3iAESGWK6M |
-| Tríceps francês unilateral na polia | não confirmado | How To: Single Arm Overhead Cable Tricep Extension | https://www.youtube.com/watch?v=zYTJpaPK7vE |
-| Rosca na suspensão | não confirmado | How To Do A TRX BICEP CURL | https://www.youtube.com/watch?v=Pa8Mls8saXc |
-| Rosca na suspensão, uma mão | não confirmado | Exercise Tutorial: TRX One Arm Bicep Curl | https://www.youtube.com/watch?v=bApLiemofYQ |
+| Tríceps francês unilateral na polia | Travis Tarrant (canal conferido pelo título em 05/11/2026) | Exercise Tutorial: Single Arm Cable Overhead Tricep Extension | https://www.youtube.com/watch?v=w3iAESGWK6M |
+| Tríceps francês unilateral na polia | Adnan Ahmed (canal conferido pelo título em 05/11/2026) | How To: Single Arm Overhead Cable Tricep Extension | https://www.youtube.com/watch?v=zYTJpaPK7vE |
+| Rosca na suspensão | Live Lean TV Daily Exercises (canal conferido pelo título em 05/11/2026) | How To Do A TRX BICEP CURL | https://www.youtube.com/watch?v=Pa8Mls8saXc |
+| Rosca na suspensão, uma mão | Travis Tarrant (canal conferido pelo título em 05/11/2026) | Exercise Tutorial: TRX One Arm Bicep Curl | https://www.youtube.com/watch?v=bApLiemofYQ |
 | T na suspensão | David Adamo, pela busca | How To Do a TRX Rear Delt Fly | https://www.youtube.com/watch?v=eYD_k-4rBis |
 | Y na suspensão | Jen Sinkler (revista Experience Life), pela busca | TRX "Y" Deltoid Fly | https://www.youtube.com/watch?v=YUIH_TntR0c |
 | Tríceps na suspensão | Seriously Strong Training, pela busca | How to do TRX Tricep Extensions Using Your Body Weight | https://www.youtube.com/watch?v=HPe0b7Te1Bk |
 | Tríceps na suspensão | Fit Father, pela busca | TRX Tricep Extension — Best Bodyweight Triceps Exercise | https://www.youtube.com/watch?v=xODm0GuXPMY |
-| Flexão de joelho na suspensão | não confirmado | TRX Hamstring Curl Progressions | https://www.youtube.com/watch?v=KbdehYrIqgY |
-| Flexão de joelho na suspensão (uma perna) | não confirmado | TRX suspended single leg hamstring curl | https://www.youtube.com/watch?v=ZXJRy4lwx6s |
+| Flexão de joelho na suspensão | Anthony Mayatt (canal conferido pelo título em 05/11/2026) | TRX Hamstring Curl Progressions | https://www.youtube.com/watch?v=KbdehYrIqgY |
+| Flexão de joelho na suspensão (uma perna) | Sean Buckley (canal conferido pelo título em 05/11/2026) | TRX suspended single leg hamstring curl | https://www.youtube.com/watch?v=ZXJRy4lwx6s |
 | Búlgaro com o pé na alça | Third Space (treinador Luke), pela busca | TRX Rear Foot Elevated Split Squat | https://www.youtube.com/embed/MCimf-OrtBQ |
 | Búlgaro com o pé na alça | Filak Hockey Training, pela busca | TRX Rear foot elevated split squat/Bulgarian Split squat | https://www.youtube.com/watch?v=H2sb4bTFq2o |
-| Elevação de joelhos nas paralelas | não confirmado | Knee Raises on Parallel Bars | https://www.youtube.com/watch?v=S7wAEgrUn6s |
-| Elevação de joelhos e de pernas nas paralelas | não confirmado | How To Do Parallel Bar Bent Knee Raises and Leg Raises | https://www.youtube.com/watch?v=FP0XM5Lnjog |
+| Elevação de joelhos nas paralelas | Nicolas Sart (canal conferido pelo título em 05/11/2026) | Knee Raises on Parallel Bars | https://www.youtube.com/watch?v=S7wAEgrUn6s |
+| Elevação de joelhos e de pernas nas paralelas | Elite ConfiDance (canal conferido pelo título em 05/11/2026) | How To Do Parallel Bar Bent Knee Raises and Leg Raises | https://www.youtube.com/watch?v=FP0XM5Lnjog |
 | Abdominal na bola | Nick Tumminello, pela busca (transmissão ao vivo) | How to perform stability ball crunches correctly | https://m.youtube.com/live/8NGXHJ2bEzE |
-| Abdominal na bola (progressões) | não confirmado | Episode 145 - Stability Ball Crunch Basics and Progression | https://www.youtube.com/watch?v=KrTtX8K_AJk |
-| Ponte com os pés na bola | não confirmado | Stability Ball Straight Leg Glute Bridge | https://www.youtube.com/watch?v=rlRP8QMaSeg |
-| Ponte com os pés na bola, uma perna | não confirmado | Stability Ball Single Leg Glute Bridge | https://www.youtube.com/watch?v=KxvqRpgkn6c |
+| Abdominal na bola (progressões) | Aram H (canal conferido pelo título em 05/11/2026) | Episode 145 - Stability Ball Crunch Basics and Progression | https://www.youtube.com/watch?v=KrTtX8K_AJk |
+| Ponte com os pés na bola | N1 Motion (canal conferido pelo título em 05/11/2026) | Stability Ball Straight Leg Glute Bridge | https://www.youtube.com/watch?v=rlRP8QMaSeg |
+| Ponte com os pés na bola, uma perna | Alaina Wood Fitness (canal conferido pelo título em 05/11/2026) | Stability Ball Single Leg Glute Bridge | https://www.youtube.com/watch?v=KxvqRpgkn6c |
 
 **Sem busca feita** (termo sugerido): afundo com kettlebell no peito ("kettlebell goblet reverse lunge"), desenvolvimento unilateral com kettlebell ("single arm kettlebell overhead press"), ponte com kettlebell ("kettlebell glute bridge"), rosca com kettlebell ("kettlebell biceps curl"), subida no step ("step-up aerobic step bodyweight"), hip thrust com o peso do corpo ("bodyweight hip thrust bench"). Os vídeos de step-up e de búlgaro do `10` (seção 7) servem para os degraus.
 

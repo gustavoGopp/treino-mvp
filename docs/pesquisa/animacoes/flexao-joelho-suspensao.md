@@ -38,8 +38,8 @@ Peso do corpo, pela escada da B.2.5 (idêntica à da `flexao-bola`): pausa de 2 
 
 | Canal | Título | URL |
 |---|---|---|
-| não confirmado | TRX Hamstring Curl Progressions | https://www.youtube.com/watch?v=KbdehYrIqgY |
-| não confirmado | TRX suspended single leg hamstring curl (degrau de uma perna) | https://www.youtube.com/watch?v=ZXJRy4lwx6s |
+| Anthony Mayatt (canal conferido pelo título em 05/11/2026) | TRX Hamstring Curl Progressions | https://www.youtube.com/watch?v=KbdehYrIqgY |
+| Sean Buckley (canal conferido pelo título em 05/11/2026) | TRX suspended single leg hamstring curl (degrau de uma perna) | https://www.youtube.com/watch?v=ZXJRy4lwx6s |
 
 ## Fontes
 - `maeo2021` (já em `../fontes.md`; resumo-PubMed). Usado só por analogia.

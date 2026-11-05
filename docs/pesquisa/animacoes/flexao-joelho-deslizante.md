@@ -36,7 +36,7 @@ Peso do corpo, pela escada da flexão na bola (tabela 5.3): ponte parada com os 
 ## Referência visual
 Referência visual de movimento, **não fonte de regra; não assistido nesta sessão** (P7).
 - The Prehab Guys (biblioteca de vídeos, no Vimeo), "Single Leg Hamstring Curl – Slider": https://library.theprehabguys.com/vimeo-video/single-leg-hamstring-curl-slider/ (a versão de uma perna)
-- Canal não confirmado, "Towel Hamstring Curls": https://www.youtube.com/watch?v=cWSsWpuxmYM
+- Canal (canal Nick Brattain, conferido em 05/11/2026), "Towel Hamstring Curls": https://www.youtube.com/watch?v=cWSsWpuxmYM
 
 ## Fontes
 - `maeo2021` (já em `../fontes.md`): Maeo S et al. Greater Hamstrings Muscle Hypertrophy but Similar Damage Protection after Training at Long versus Short Muscle Lengths. Med Sci Sports Exerc 2021;53(4):825–837. PMID 33009197. **Resumo lido no PubMed.** Usado aqui só por analogia.

@@ -40,7 +40,7 @@ Halteres: o próximo par da lista (`progressao.incremento.halteres`). Com o halt
 
 | Canal | Título | URL |
 |---|---|---|
-| não confirmado | Dumbbell Hammer Curl - Proper Form & Technique [4K] | https://www.youtube.com/watch?v=3nqezx8BEv0 |
+| Steev (canal conferido pelo título em 05/11/2026) | Dumbbell Hammer Curl - Proper Form & Technique [4K] | https://www.youtube.com/watch?v=3nqezx8BEv0 |
 
 ## Fontes
 - `kobayashi2026` (já em `../fontes.md`; resumo-PubMed): só como contexto; não testou a martelo.

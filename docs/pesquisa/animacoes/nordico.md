@@ -40,7 +40,7 @@ Peso do corpo, pela escada do nórdico (tabela 5.3, proposta): só a descida, co
 ## Referência visual
 Referência visual de movimento, **não fonte de regra; não assistido nesta sessão** (P7; o Gustavo confere o canal ao abrir).
 - E3 Rehab (pela busca), "How to Set Up, Perform, & Program Nordic Hamstring Curls (Progressions…)": https://www.youtube.com/watch?v=_e9vFU9-tkc
-- Canal não confirmado, "3 Simple Ways to Setup Nordic Hamstring Curls (Without a Partner)": https://www.youtube.com/watch?v=9XOaewLMMrs
+- Canal (canal Soccer Rehab, conferido em 05/11/2026), "3 Simple Ways to Setup Nordic Hamstring Curls (Without a Partner)": https://www.youtube.com/watch?v=9XOaewLMMrs
 
 ## Fontes
 Chaves de `docs/pesquisa-v2/10-equipamento-minimo.md`, "Fontes novas" (ainda fora de `../fontes.md`, salvo onde está dito). Em todas, **resumo oficial lido no PubMed** na sessão de equipamento mínimo (03/11/2026); texto completo não lido.

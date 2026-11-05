@@ -33,8 +33,8 @@ Peso do corpo, pela escada do exercício (`src/domain/progressao/escadas.json`):
 
 | Canal | Título | URL |
 |---|---|---|
-| Toni e Ryan (pela busca; não confirmado) | How to Split Squat (static lunge) | https://www.youtube.com/watch?v=KynErtGwD2M |
-| não confirmado | Bodyweight Split Squat / Stationary Lunges | https://www.youtube.com/watch?v=2xklZsB6bcI |
+| Toni e Ryan (canal Pinnacle Health Club, conferido em 05/11/2026) | How to Split Squat (static lunge) | https://www.youtube.com/watch?v=KynErtGwD2M |
+| Allison Ethier (canal conferido pelo título em 05/11/2026) | Bodyweight Split Squat / Stationary Lunges | https://www.youtube.com/watch?v=2xklZsB6bcI |
 
 ## Fontes
 - `kassiano2025` (já em `../fontes.md`): Kassiano W et al. Comparison of Muscle Growth and Dynamic Strength Adaptations Induced by Unilateral and Bilateral Resistance Training. Sports Med 2025. PMID 39794667. **Resumo lido no PubMed** (status `resumo-PubMed`).

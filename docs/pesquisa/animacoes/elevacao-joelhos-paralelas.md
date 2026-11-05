@@ -39,8 +39,8 @@ Peso do corpo, pela escada da B.2.5 (idêntica à da `elevacao-joelhos` na barra
 
 | Canal | Título | URL |
 |---|---|---|
-| não confirmado | Knee Raises on Parallel Bars | https://www.youtube.com/watch?v=S7wAEgrUn6s |
-| não confirmado | How To Do Parallel Bar Bent Knee Raises and Leg Raises | https://www.youtube.com/watch?v=FP0XM5Lnjog |
+| Nicolas Sart (canal conferido pelo título em 05/11/2026) | Knee Raises on Parallel Bars | https://www.youtube.com/watch?v=S7wAEgrUn6s |
+| Elite ConfiDance (canal conferido pelo título em 05/11/2026) | How To Do Parallel Bar Bent Knee Raises and Leg Raises | https://www.youtube.com/watch?v=FP0XM5Lnjog |
 
 ## Fontes
 - `escamilla2006`, `kerr2010` (já em `../fontes.md`; resumo-PubMed).

@@ -41,8 +41,8 @@ Kettlebell: o próximo peso da lista (`progressao.incremento.halteres`; `progres
 
 | Canal | Título | URL |
 |---|---|---|
-| não confirmado | How to: Kettlebell Romanian Deadlift (RDL) | https://www.youtube.com/watch?v=Uc5rP5xs7qQ |
-| não confirmado | HOW TO: Kettlebell Single Leg Romanian Deadlift (RDL) (passo 2) | https://www.youtube.com/watch?v=rU90WKZ-few |
+| Of The Lion Fitness (canal conferido pelo título em 05/11/2026) | How to: Kettlebell Romanian Deadlift (RDL) | https://www.youtube.com/watch?v=Uc5rP5xs7qQ |
+| Fight Fitness (canal conferido pelo título em 05/11/2026) | HOW TO: Kettlebell Single Leg Romanian Deadlift (RDL) (passo 2) | https://www.youtube.com/watch?v=rU90WKZ-few |
 
 ## Fontes
 - `morin2025`, `morin2025b`, `haugen2023`, `kassiano2025`, `santosjunior2024` (já em `../fontes.md`).
