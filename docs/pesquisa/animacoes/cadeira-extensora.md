@@ -33,3 +33,6 @@ Placa da torre: +1 placa (`progressao.incremento.polia`).
 - `zabaletakorta2021`: PMID 34743671.
 - `kassiano2026`: PMID 41379528.
 - `nsca2021`: NSCA. Exercise Technique Manual for Resistance Training, 4ª ed. Human Kinetics, 2021. **Não verificado** (livro pago, não acessado); referência de consenso de treinadores, a confirmar.
+
+## Encosto reclinado (lido em 05/11/2026)
+Com o quadril a 40° (encosto reclinado) em vez de 90° (sentado reto), o reto femoral cresceu mais em 22 homens não treinados, 10 semanas, evidência bayesiana "extrema"; o vasto lateral cresceu igual (`larsen2025c`, PMID 39699974; **um estudo**, não treinados). Entra no cartão como "se o encosto reclina, recline-o um pouco". A mesma lógica vale, em tese, para a extensão sentada com caneleira ou elástico (encostar as costas e abrir o quadril), mas ninguém testou fora da máquina (**consenso**).

@@ -296,3 +296,14 @@ Em ordem de importância **[opinião]**:
 
 ## Na `main`
 Merge sem forçar em 05/11/2026 (commit `913f8c9`), depois de `npm run check` (615 testes), `npm run test:e2e` (48 testes, e2e e motor) e `npm run auditoria` duas vezes com arquivos idênticos. O conteúdo da `main` é idêntico ao da branch. O recado ao R3 está em `docs/prompts/recado-r3-catalogo-completo.md`.
+
+## Leituras feitas quando o PubMed abriu (05/11/2026)
+O Gustavo liberou o PubMed na rede do ambiente. As 4 leituras pendentes foram feitas na hora, e `fontes.md` foi atualizado:
+| Estudo | O que diz (resumo) | Selo | O que mudou no projeto |
+|---|---|---|---|
+| **Larsen 2025, leg press** (`larsen2025b`, PMID 40113586) | 23 treinados, 8 semanas: o joelho a 5–100° e a 5–154° cresceram o quadríceps igual | um estudo | ganhou a chave que faltava; confirma a linha do `04` |
+| **Kassiano 2026** (`kassiano2026`, PMID 41379528) | 63 mulheres não treinadas: a extensora cresceu mais o reto femoral nos 3 pontos (+11,4% × +2,0% na parte de cima); o agachamento, feito **no smith**, cresceu mais o vasto lateral de baixo | um estudo | o título diz "back squat" e o exercício foi no smith: as fichas e o `08` estavam os dois certos; status passa a resumo lido |
+| **Larsen 2025, ângulo do quadril na extensora** (`larsen2025c`, PMID 39699974) | 22 homens não treinados, 10 semanas: com o encosto reclinado (quadril a 40°) o reto femoral cresceu mais que sentado reto (90°), evidência "extrema"; o vasto lateral, igual | um estudo (não treinados) | **entrou no cartão da cadeira extensora:** "se o encosto reclina, recline-o um pouco"; ficha e `11` atualizados |
+| **Attarieh 2026** (`attarieh2026`, PMID 42842490) | 17 adultos, polia, 10 semanas: extensão de quadril +9% no glúteo máximo (padrão de baixo) e sem crescimento do médio; abdução +5% no máximo (padrão de cima) e +4% no médio e mínimo | um estudo | os números do projeto batem; a abdução sem carga de hoje continua apoiada nesta fonte (consenso para a versão sem carga) |
+
+Continuam fora do alcance (rede ainda bloqueada): PMC, Springer, Frontiers, PeerJ, Taylor & Francis, LWW, DOAJ, eparmedx.com (PAR-Q+), gov.br, CONFEF, OMS, ACSM, NSCA, OpenStax e o YouTube (vídeos de referência das fichas). A lista do que vale liberar está na conversa de 05/11.
