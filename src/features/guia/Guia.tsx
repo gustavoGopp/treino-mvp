@@ -4,7 +4,7 @@ import { CONTEUDO } from '../../conteudo';
 import { prescricaoNoGuia } from '../../domain/sessao';
 import { hojeDoEstado, hojeDoTreino } from '../treino/acoes';
 import { DIAS, EX, VIEWS } from '../../engine';
-import { montarSvgEstilo, vistaDaMiniatura, type Estilo } from '../../engine/estilo';
+import { instanteDoErro, montarSvgEstilo, vistaDaMiniatura, type Estilo } from '../../engine/estilo';
 import { SO_AJUDA } from '../../engine/estilo/musculos';
 import { instante } from '../programa/Miniatura';
 import { useEstiloBoneco } from '../app/estiloBoneco';
@@ -79,20 +79,22 @@ function GuiaExercicio({ ex }: { ex: Animacao }) {
   const pos = Math.max(0, dia.ex.indexOf(ex));
 
   // Parâmetros de URL fixam o quadro (usados pela regressão visual e para gerar imagens do devlog).
+  const estilo = useEstiloBoneco();
   const modoUrl = params.get('modo') as Modo | null;
   const [modo, setModo] = useState<Modo>(modoUrl && MODOS.some(([m]) => m === modoUrl) ? modoUrl : 'tec');
   const [erro, setErro] = useState(() => Math.max(0, Math.min(ex.errors.length - 1, Number(params.get('erro') ?? 0))));
   const [vista, setVista] = useState<string>(() => params.get('vista') ?? (modo === 'err' ? ex.errors[erro].view : ex.views[0]));
   const [tocando, setTocando] = useState(() => params.get('pausado') !== '1' && !reduzMovimento());
   const [lento, setLento] = useState(false);
-  const t = useRef(Number(params.get('t') ?? 0));
+  // R4 (05/11/2026): no Boneco, o modo Erros abre no instante em que o certo e o errado mais se afastam.
+  const inicioDoErro = (i: number) => (estilo !== 'atual' ? instanteDoErro(ex, i) : 0);
+  const t = useRef(Number(params.get('t') ?? (modo === 'err' ? inicioDoErro(erro) : 0)));
 
   const svg = useRef<SVGSVGElement>(null);
   const fase = useRef<HTMLDivElement>(null);
   const resp = useRef<HTMLDivElement>(null);
   const cursor = useRef<HTMLDivElement>(null);
   const linha = useRef<HTMLDivElement>(null);
-  const estilo = useEstiloBoneco();
   const estado = useRef({ modo, erro, vista, tocando, lento, estilo });
   estado.current = { modo, erro, vista, tocando, lento, estilo };
 
@@ -106,7 +108,8 @@ function GuiaExercicio({ ex }: { ex: Animacao }) {
       if (s.tocando) t.current += dt * (s.lento ? 0.35 : 1);
       const el = svg.current;
       if (el) {
-        const q = montarSvgEstilo(ex, s.vista, s.modo, t.current, s.erro, el.clientWidth, s.estilo);
+        // o título do erro (texto do guia) vai ao motor, que o escreve ao lado da parte do corpo que erra (R4)
+        const q = montarSvgEstilo(ex, s.vista, s.modo, t.current, s.erro, el.clientWidth, s.estilo, false, { tituloErro: txt.errors[s.erro]!.title });
         el.setAttribute('viewBox', q.viewBox);
         if (q.classe) el.setAttribute('class', q.classe);
         else el.removeAttribute('class');
@@ -162,7 +165,7 @@ function GuiaExercicio({ ex }: { ex: Animacao }) {
     else if (m === 'err') {
       setErro(0);
       setVista(ex.errors[0].view);
-      t.current = 0;
+      t.current = inicioDoErro(0);
     } else if (!ex.views.includes(vista)) setVista(ex.views[0]);
   };
 
@@ -299,7 +302,7 @@ function GuiaExercicio({ ex }: { ex: Animacao }) {
             onErro={(i) => {
               setErro(i);
               setVista(ex.errors[i].view);
-              t.current = 0;
+              t.current = inicioDoErro(i);
             }}
           />
         </div>
@@ -388,16 +391,30 @@ function InfoModo({
           ))}
         </div>
         <div>{txt.errors[erro]!.desc}</div>
-        <div className="legend">
-          <span>
-            <i className="sw" style={{ background: 'var(--err)' }} />
-            erro
-          </span>
-          <span>
-            <i className="sw" style={{ background: 'var(--ghost)' }} />
-            execução correta
-          </span>
-        </div>
+        {estilo === 'a' ? (
+          // R4 (05/11/2026): no Boneco, o certo é a figura cheia e só a parte que erra aparece em vermelho tracejado
+          <div className="legend">
+            <span>
+              <i className="sw" style={{ background: 'var(--ea-pele)', border: '1.5px solid var(--fig)' }} />
+              execução correta
+            </span>
+            <span>
+              <i className="sw" style={{ background: 'var(--err)' }} />
+              a parte que erra (tracejado)
+            </span>
+          </div>
+        ) : (
+          <div className="legend">
+            <span>
+              <i className="sw" style={{ background: 'var(--err)' }} />
+              erro
+            </span>
+            <span>
+              <i className="sw" style={{ background: 'var(--ghost)' }} />
+              execução correta
+            </span>
+          </div>
+        )}
       </>
     );
   if (modo === 'mus')

@@ -36,22 +36,32 @@ const GUIAS = {
   },
 };
 
+// As cadeias do corpo (tronco e cabeça, cada braço, cada perna) e a distância 3D entre duas juntas: servem ao fantasma
+// do acabamento A2, ao "erro sobre o certo" e ao instante do erro (R4, 05/11/2026).
+const CADEIAS = (() => {
+  const c = [[['P'], ['M'], ['N'], ['Hc']]];
+  for (const k of ['R', 'L']) {
+    c.push([['N'], [k, 'S'], [k, 'E'], [k, 'W'], [k, 'G']]);
+    c.push([['P'], [k, 'Hp'], [k, 'K'], [k, 'A'], [k, 'toe']]);
+  }
+  return c;
+})();
+const junta = (s, c) => (c.length === 1 ? s[c[0]] : s.side[c[0]][c[1]]);
+const dist3 = (a, b) => Math.hypot(a[0] - b[0], a[1] - b[1], a[2] - b[2]);
+/** Diferença (cm) entre o certo e o errado: a maior distância entre juntas homólogas. */
+const difDasPoses = (sk, ske) => Math.max(...CADEIAS.flatMap((cad) => cad.map((c) => dist3(junta(sk, c), junta(ske, c)))));
+/** Diferença mínima (cm) para uma cadeia contar como "o que muda" no modo Erros. */
+export const DIF_MINIMA_DA_CADEIA = 3;
+
 // Acabamento A2: o fantasma verde só nas cadeias (tronco e cabeça, cada braço, cada perna) em que o certo e o
 // errado diferem mais de 3 cm; o resto do corpo, igual nos dois, fica só com a figura que erra.
 function fantasmaDif(sk, ske) {
-  const dist = (a, b) => Math.hypot(a[0] - b[0], a[1] - b[1], a[2] - b[2]);
-  const cadeias = [[['P'], ['M'], ['N'], ['Hc']]];
-  for (const k of ['R', 'L']) {
-    cadeias.push([['N'], [k, 'S'], [k, 'E'], [k, 'W'], [k, 'G']]);
-    cadeias.push([['P'], [k, 'Hp'], [k, 'K'], [k, 'A'], [k, 'toe']]);
-  }
-  const pt = (s, c) => (c.length === 1 ? s[c[0]] : s.side[c[0]][c[1]]);
   let desenhadas = 0;
-  for (const cad of cadeias) {
-    const dif = Math.max(...cad.map((c) => dist(pt(sk, c), pt(ske, c))));
-    if (dif < 3) continue;
+  for (const cad of CADEIAS) {
+    const dif = Math.max(...cad.map((c) => dist3(junta(sk, c), junta(ske, c))));
+    if (dif < DIF_MINIMA_DA_CADEIA) continue;
     desenhadas++;
-    const Q = cad.map((c) => pt(sk, c));
+    const Q = cad.map((c) => junta(sk, c));
     const n0 = CTX.prims.length;
     for (let i = 0; i < Q.length - 1; i++) L3(Q[i], Q[i + 1], 'gh', 3.2);
     if (cad[cad.length - 1][0] === 'Hc') C3(sk.Hc, B.head, 'gh', { w: 1.6 });
@@ -60,23 +70,17 @@ function fantasmaDif(sk, ske) {
   return desenhadas;
 }
 
-// Piloto "erro sobre o certo": desenha, em vermelho tracejado, só as cadeias da pose errada que diferem mais de 3 cm
-// da certa, e escreve o nome do erro ao lado da junta que mais se afasta. Devolve quantas cadeias desenhou.
-function erroSobreOCerto(sk, ske, titulo) {
-  const dist = (a, b) => Math.hypot(a[0] - b[0], a[1] - b[1], a[2] - b[2]);
-  const cadeias = [[['P'], ['M'], ['N'], ['Hc']]];
-  for (const k of ['R', 'L']) {
-    cadeias.push([['N'], [k, 'S'], [k, 'E'], [k, 'W'], [k, 'G']]);
-    cadeias.push([['P'], [k, 'Hp'], [k, 'K'], [k, 'A'], [k, 'toe']]);
-  }
-  const pt = (s, c) => (c.length === 1 ? s[c[0]] : s.side[c[0]][c[1]]);
+// "Erro sobre o certo" (R4; piloto na auditoria de 04/11/2026, docs/revisoes/auditoria-fable.md, Parte D): desenha, em
+// vermelho tracejado, só as cadeias da pose errada que diferem mais de 3 cm da certa, e escreve o nome do erro ao lado
+// da junta que mais se afasta, do lado do palco (box) em que há espaço. Devolve quantas cadeias desenhou.
+function erroSobreOCerto(sk, ske, titulo, box) {
   let desenhadas = 0, maior = 0, ondeRotulo = null;
-  for (const cad of cadeias) {
-    const difs = cad.map((c) => dist(pt(sk, c), pt(ske, c)));
+  for (const cad of CADEIAS) {
+    const difs = cad.map((c) => dist3(junta(sk, c), junta(ske, c)));
     const dif = Math.max(...difs);
-    if (dif < 3) continue;
+    if (dif < DIF_MINIMA_DA_CADEIA) continue;
     desenhadas++;
-    const Q = cad.map((c) => pt(ske, c));
+    const Q = cad.map((c) => junta(ske, c));
     const n0 = CTX.prims.length;
     for (let i = 0; i < Q.length - 1; i++) L3(Q[i], Q[i + 1], 'gh-e', 3.6);
     if (cad[cad.length - 1][0] === 'Hc') C3(ske.Hc, B.head, 'hd-ge', { w: 2 });
@@ -84,16 +88,50 @@ function erroSobreOCerto(sk, ske, titulo) {
     if (dif > maior) { maior = dif; ondeRotulo = Q[difs.indexOf(dif)]; }
   }
   if (desenhadas && titulo) {
-    // o rótulo fica do lado em que há espaço: à direita da junta na metade esquerda do palco, e vice-versa
-    const box = caixa(CTX.EX_ATUAL, CTX.VIEW);
-    const direita = CTX.PJ(ondeRotulo)[0] > box[0] + box[2] / 2;
-    TX(ondeRotulo, titulo, { cls: 'lbl-e', dx: direita ? -9 : 9, dy: -9, anchor: direita ? 'end' : 'start', layer: 4.5 });
+    // o rótulo fica do lado em que há espaço: à direita da junta na metade esquerda do palco, e vice-versa; se mesmo
+    // assim não cabe no palco (texto longo numa figura larga), fica centrado acima da junta, dentro do palco
+    const q = CTX.PJ(ondeRotulo);
+    const larg = 0.55 * 11 * CTX.KS * titulo.length;
+    let direita = q[0] > box[0] + box[2] / 2;
+    if (direita && q[0] - 9 * CTX.KS - larg < box[0]) direita = false;
+    if (!direita && q[0] + 9 * CTX.KS + larg > box[0] + box[2]) {
+      const x = Math.max(box[0] + larg / 2 + 2 * CTX.KS, Math.min(box[0] + box[2] - larg / 2 - 2 * CTX.KS, q[0]));
+      TX([x, q[1] - 14 * CTX.KS], titulo, { scr: true, cls: 'lbl-e', anchor: 'middle', layer: 4.5 });
+    } else TX(ondeRotulo, titulo, { cls: 'lbl-e', dx: direita ? -9 : 9, dy: -9, anchor: direita ? 'end' : 'start', layer: 4.5 });
   }
   return desenhadas;
 }
 
+/**
+ * O instante do ciclo em que o certo e o errado mais se afastam (a maior distância entre juntas, em cm, em 48
+ * amostras; empate fica com o menor t). É onde o guia abre o modo Erros e a folha tira o quadro do erro (R4; antes,
+ * o meio da 3ª fase, em que alguns erros quase não apareciam). Em 3D: independe da vista. Determinístico.
+ */
+const instantes = {};
+export function instanteDoErro(ex, errIdx = 0) {
+  const k = ex.id + '|' + errIdx;
+  if (instantes[k] !== undefined) return instantes[k];
+  const e = ex.errors[errIdx];
+  let melhor = 0, maior = -1;
+  for (let i = 0; i < 48; i++) {
+    const t = (i / 48) * ex.T;
+    const d = difDasPoses(skel(poseAt(ex, ex.K, t)), skel(poseAt(ex, e.K, t)));
+    if (d > maior) { maior = d; melhor = t; }
+  }
+  return (instantes[k] = melhor);
+}
+/** A maior diferença (cm) entre o certo e o errado ao longo do ciclo: abaixo de 3 cm, o erro é "pequeno" (escápulas, pegada). */
+export function difMaximaDoErro(ex, errIdx = 0) {
+  let maior = 0;
+  for (let i = 0; i < 48; i++) {
+    const t = (i / 48) * ex.T;
+    maior = Math.max(maior, difDasPoses(skel(poseAt(ex, ex.K, t)), skel(poseAt(ex, ex.errors[errIdx].K, t))));
+  }
+  return maior;
+}
+
 /** Mesmos passos de scene() (../cena.ts), com o corpo e os músculos do estilo novo. */
-export function cenaEstilo(ex, view, mode, t, estilo, errIdx = 0) {
+export function cenaEstilo(ex, view, mode, t, estilo, errIdx = 0, box = null) {
   CTX.VIEW = view;
   CTX.PJ = VIEWS[view].proj;
   CTX.prims = [];
@@ -104,20 +142,42 @@ export function cenaEstilo(ex, view, mode, t, estilo, errIdx = 0) {
     body(s, pal);
     for (let i = n0; i < CTX.prims.length; i++) CTX.prims[i].l = 1.5;
   };
-  if (mode === 'err' && CTX.ACABAMENTO?.erroInvertido) {
-    // Piloto da auditoria de 04/11/2026 (docs/revisoes/auditoria-fable.md, Parte D): o certo é a figura cheia, e o
-    // erro aparece só na cadeia que muda, em vermelho tracejado, com o nome do erro ao lado. Desligado por padrão.
+  const AC = CTX.ACABAMENTO || {};
+  if (mode === 'err' && AC.erroInvertido && !(AC.erroPequeno === 'hoje' && difMaximaDoErro(ex, errIdx || 0) < DIF_MINIMA_DA_CADEIA)) {
+    // R4 (decisão do Gustavo, 05/11/2026; piloto na auditoria de 04/11): o certo é a figura cheia, e o erro aparece
+    // só na cadeia que muda, em vermelho tracejado, com o nome do erro (CTX.ROTULO_ERRO, o título do texto do guia).
     const e = ex.errors[errIdx || 0];
     const ske = skel(poseAt(ex, e.K, t));
     ex._pal = 'n';
     ex.equip(sk);
     corpoNovo(sk, estilo);
-    CTX.EX_ATUAL = ex;
-    if (!erroSobreOCerto(sk, ske, e.titulo ?? e.id)) {
-      // erro pequeno demais para uma cadeia: a figura errada inteira, em contorno vermelho fino, por cima
+    if (AC.erroEquip && ['R', 'L'].some((k) => dist3(sk.side[k].G, ske.side[k].G) >= DIF_MINIMA_DA_CADEIA)) {
+      // opção (b) da folha: o equipamento da pose errada, em vermelho e translúcido, quando a mão que erra se move
       const n0 = CTX.prims.length;
-      body(ske, 'e');
-      for (let i = n0; i < CTX.prims.length; i++) CTX.prims[i].l = 1.5;
+      ex._pal = 'e';
+      ex.equip(ske);
+      ex._pal = 'n';
+      for (let i = n0; i < CTX.prims.length; i++) { CTX.prims[i].l = 1.6; CTX.prims[i].s = CTX.prims[i].s.replace(/class="/, 'class="eq-err '); }
+    }
+    const b = box ?? caixa(ex, view);
+    if (!erroSobreOCerto(sk, ske, CTX.ROTULO_ERRO ?? e.id, b)) {
+      // erro pequeno demais para uma cadeia (na biblioteca de hoje, só o punho dobrado com o kettlebell: o corpo não
+      // muda, o objeto sim): o equipamento da pose errada em vermelho, com o nome do erro na mão; ou, como opção da
+      // folha (c), a figura errada inteira em contorno vermelho por cima
+      const n0 = CTX.prims.length;
+      if (AC.erroPequeno === 'contorno') {
+        body(ske, 'e');
+        for (let i = n0; i < CTX.prims.length; i++) CTX.prims[i].l = 1.5;
+      } else {
+        ex._pal = 'e';
+        ex.equip(ske);
+        ex._pal = 'n';
+        for (let i = n0; i < CTX.prims.length; i++) { CTX.prims[i].l = 1.6; CTX.prims[i].s = CTX.prims[i].s.replace(/class="/, 'class="eq-err '); }
+        const titulo = CTX.ROTULO_ERRO ?? e.id;
+        const q = CTX.PJ(ske.side.R.G);
+        const direita = q[0] > b[0] + b[2] / 2;
+        TX(ske.side.R.G, titulo, { cls: 'lbl-e', dx: direita ? -12 : 12, dy: -9, anchor: direita ? 'end' : 'start', layer: 4.5 });
+      }
     }
     return sk;
   }
@@ -263,22 +323,27 @@ export const PERTO_ABAIXO_DE = 0.7;
 /**
  * O acabamento A2 (docs/revisoes/boneco-acabamento/): tronco inteiro, coxa saindo do quadril, folga em volta do braço
  * de perto, mão, membros que afinam, fantasma do erro só no que muda e só as juntas que importam no exercício (as que
- * a trajetória acompanha: cotovelo, ombro, joelho, tornozelo e quadril).
+ * a trajetória acompanha: cotovelo, ombro, joelho, tornozelo e quadril). Desde o R4 (05/11/2026), o modo Erros é o
+ * "erro sobre o certo" (erroInvertido).
  */
 const JUNTA_DA_TRAJETORIA = { E: 'E', S: 'S', K: 'K', A: 'A', P: 'Hp', Hp: 'Hp' };
 export function acabamento(ex) {
   const juntas = [...new Set((Object.values(ex.paths ?? {}) as string[][][]).flatMap((ps) => ps.map((p) => JUNTA_DA_TRAJETORIA[p[0]!]).filter(Boolean)))];
-  return { tronco1: 1, quadril: 1, folga: 1, mao: 1, conico: 1, fantasmaDif: 1, juntas };
+  return { tronco1: 1, quadril: 1, folga: 1, mao: 1, conico: 1, fantasmaDif: 1, erroInvertido: 1, juntas };
 }
 
+/** Opções da cena do Boneco: o título do erro (o texto do guia), escrito ao lado da parte que erra no modo Erros. */
+export type OpcoesEstilo = { tituloErro?: string };
 /** Igual a montarSvg, com o estilo, nos 4 modos. `classe` vai no <svg> (o B apaga o equipamento; a vista de cima afina a corda). */
-export function montarSvgEstilo(ex, view, mode, t, err, largura, estilo: Estilo = 'atual', perto = false) {
+export function montarSvgEstilo(ex, view, mode, t, err, largura, estilo: Estilo = 'atual', perto = false, opcoes: OpcoesEstilo = {}) {
   if ((estilo === 'a' || estilo === 'a2') && !CTX.ACABAMENTO) {
     CTX.ACABAMENTO = acabamento(ex);
+    CTX.ROTULO_ERRO = opcoes.tituloErro ?? null;
     try {
-      return montarSvgEstilo(ex, view, mode, t, err, largura, 'a', perto);
+      return montarSvgEstilo(ex, view, mode, t, err, largura, 'a', perto, opcoes);
     } finally {
       CTX.ACABAMENTO = null;
+      CTX.ROTULO_ERRO = null;
     }
   }
   const novo = estilo !== 'atual';
@@ -286,7 +351,7 @@ export function montarSvgEstilo(ex, view, mode, t, err, largura, estilo: Estilo 
   if (novo && mode === 'mus' && !perto && fracaoDoCorpo(ex, view) < PERTO_ABAIXO_DE) perto = true;
   const box = perto ? caixaPerto(ex, view) : caixa(ex, view);
   CTX.KS = box[2] / Math.max(260, largura || 360);
-  if (novo) cenaEstilo(ex, view, mode, t, estilo, err);
+  if (novo) cenaEstilo(ex, view, mode, t, estilo, err, box);
   else scene(ex, view, mode, t, err);
   if (view !== 'top')
     CTX.prims.push({ l: 0, d: -1e9, s: `<line x1="${f1(box[0])}" y1="0" x2="${f1(box[0] + box[2])}" y2="0" class="floor" stroke-width="${f1(1.5 * CTX.KS)}"/>` });

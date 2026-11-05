@@ -159,6 +159,8 @@ footer a{color:var(--link)}
 .gh-e{stroke:var(--err);fill:none;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:4.5 3;opacity:.95}
 .hd-ge{fill:none;stroke:var(--err);stroke-dasharray:4.5 3}
 .lbl-e{fill:var(--err);paint-order:stroke;stroke:var(--stage);stroke-linejoin:round;font-family:var(--font-b);font-weight:700}
+/* opção (b) do R4: o equipamento da pose errada, translúcido e tracejado, por cima do certo */
+.eq-err{opacity:.55;stroke-dasharray:4 3}
 .gh2{stroke:var(--muted);fill:none;stroke-linecap:round;stroke-linejoin:round;opacity:.6;stroke-dasharray:3 3}
 .sp{stroke:var(--spine);fill:none;stroke-linecap:round;stroke-linejoin:round}
 .spd{fill:var(--spine)}

@@ -1,5 +1,5 @@
 import { createHash } from 'node:crypto';
-import { existsSync, readFileSync, writeFileSync } from 'node:fs';
+import { existsSync, readFileSync, readdirSync, writeFileSync } from 'node:fs';
 import { expect, test } from '@playwright/test';
 import { build } from 'esbuild';
 
@@ -25,7 +25,17 @@ test('o boneco padrão (estilo A) continua igual ao aprovado', async ({ page }) 
   });
   await page.setContent('<!doctype html><title>motor</title>');
   await page.addScriptTag({ content: bundle.outputFiles[0]!.text });
-  const atual = await page.evaluate((n) => {
+  // R4 (05/11/2026): no modo Erros, o motor escreve o título do erro (texto do guia); a linha de base guarda o que o
+  // app mostra, então os títulos vão daqui (o bundle não carrega src/conteudo).
+  const titulos: Record<string, Record<string, string>> = Object.fromEntries(
+    readdirSync('src/conteudo/exercicios')
+      .filter((f) => f.endsWith('.json'))
+      .map((f) => {
+        const j = JSON.parse(readFileSync(`src/conteudo/exercicios/${f}`, 'utf8')) as { id: string; errors?: { id: string; title: string }[] };
+        return [j.id, Object.fromEntries((j.errors ?? []).map((e) => [e.id, e.title]))];
+      }),
+  );
+  const atual = await page.evaluate(({ n, titulos }) => {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const M = (globalThis as any).MOTOR;
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -38,12 +48,13 @@ test('o boneco padrão (estilo A) continua igual ao aprovado', async ({ page }) 
         chaves.map((chave: string) => {
           const [view, mode, errId] = chave.split('|');
           const errIdx = errId ? ex.errors.findIndex((e: { id: string }) => e.id === errId) : 0;
-          return [chave, Array.from({ length: n }, (_, i) => M.montarSvgEstilo(ex, view, mode, (i / n) * ex.T, errIdx, 360, 'a').html as string)];
+          const opcoes = errId ? { tituloErro: titulos[ex.id]?.[errId] } : {};
+          return [chave, Array.from({ length: n }, (_, i) => M.montarSvgEstilo(ex, view, mode, (i / n) * ex.T, errIdx, 360, 'a', false, opcoes).html as string)];
         }),
       );
       return { id: ex.id, quadros };
     });
-  }, N);
+  }, { n: N, titulos });
   const hashes: Base = {
     nTempos: N,
     exercicios: atual.map((e: { id: string; quadros: Record<string, string[]> }) => ({ id: e.id, quadros: Object.fromEntries(Object.entries(e.quadros).map(([k, qs]) => [k, qs.map(sha)])) })),

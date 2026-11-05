@@ -14,10 +14,11 @@ const entrada = `export * from './src/engine/index.ts'; export { prep, calib } f
 const { outputFiles } = await build({ stdin: { contents: entrada, resolveDir: process.cwd(), loader: 'ts' }, bundle: true, format: 'esm', write: false });
 const M = await import('data:text/javascript;base64,' + Buffer.from(outputFiles[0].text).toString('base64'));
 const css = readFileSync('src/styles.css', 'utf8');
-const quadro = (ex, view, t, err, proposta) => {
-  if (proposta) M.CTX.ACABAMENTO = { ...M.acabamento(ex), erroInvertido: 1 };
-  const q = M.montarSvgEstilo(ex, view, 'err', t, err, 300, 'a');
-  M.CTX.ACABAMENTO = null;
+// Desde o R4 (05/11/2026) a proposta é o padrão do Boneco: a coluna "hoje" desliga a chave; o título vai nas opções.
+const quadro = (ex, view, t, err, proposta, titulo) => {
+  M.CTX.ACABAMENTO = { ...M.acabamento(ex), erroInvertido: proposta ? 1 : 0 };
+  let q;
+  try { q = M.montarSvgEstilo(ex, view, 'err', t, err, 300, 'a', false, { tituloErro: titulo }); } finally { M.CTX.ACABAMENTO = null; }
   return `<svg class="${q.classe}" viewBox="${q.viewBox}">${q.html}</svg>`;
 };
 let html = `<style>${css}body{background:#fff;font:13px sans-serif;margin:12px}h2{font-size:15px;margin:14px 0 4px}.l{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;width:1080px}figure{margin:0;background:var(--stage);border:1px solid #ddd}figure svg{width:100%;height:255px;display:block}figcaption{padding:3px 6px;font-size:12px}.cab{display:grid;grid-template-columns:repeat(3,1fr);width:1080px;font-weight:700;font-size:12px}</style>`;
@@ -26,13 +27,13 @@ for (const id of IDS) {
   const ex = M.EX.find((e) => e.id === id);
   if (!ex) throw new Error('não achei ' + id);
   const texto = JSON.parse(readFileSync(`src/conteudo/exercicios/${id}.json`, 'utf8'));
-  for (const e of ex.errors) e.titulo = texto.errors.find((x) => x.id === e.id)?.title ?? e.id;
   const t = ex.seq[2] ? ex.seq[2].t0 + (ex.seq[2].kind === 'hold' ? ex.seq[2].dur / 2 : ex.seq[2].dur * 0.5) : 0;
   html += `<h2>${texto.name}</h2><div class="cab"><div></div><div>hoje</div><div>proposta</div></div>`;
   ex.errors.forEach((e, i) => {
-    html += `<div class="l"><figure><figcaption><b>${e.titulo}</b><br>${texto.errors.find((x) => x.id === e.id)?.desc ?? ''}<br><i>vista ${e.view}</i></figcaption></figure>`;
-    html += `<figure>${quadro(ex, e.view, t, i, false)}<figcaption>hoje</figcaption></figure>`;
-    html += `<figure>${quadro(ex, e.view, t, i, true)}<figcaption>proposta</figcaption></figure></div>`;
+    html += `<div class="l"><figure><figcaption><b>${texto.errors.find((x) => x.id === e.id)?.title ?? e.id}</b><br>${texto.errors.find((x) => x.id === e.id)?.desc ?? ''}<br><i>vista ${e.view}</i></figcaption></figure>`;
+    const titulo = texto.errors.find((x) => x.id === e.id)?.title ?? e.id;
+    html += `<figure>${quadro(ex, e.view, t, i, false, titulo)}<figcaption>hoje</figcaption></figure>`;
+    html += `<figure>${quadro(ex, e.view, t, i, true, titulo)}<figcaption>proposta</figcaption></figure></div>`;
   });
 }
 writeFileSync('/tmp/piloto-erros.html', html);

@@ -97,8 +97,17 @@ describe('estilo do boneco (R4)', () => {
         }
         ex.errors.forEach((e: { view: string }, j: number) => {
           const html = montarSvgEstilo(ex, e.view, 'err', ex.T / 2, j, 358, estilo).html;
-          expect(html).toMatch(new RegExp(`e${estilo}-pele-t-e"`)); // a figura que erra
-          expect(html).toMatch(/class="gh"/); // e o certo, por cima
+          if (estilo === 'a') {
+            // R4 (05/11/2026): o certo é a figura cheia; o erro vem por cima, em vermelho tracejado (a cadeia que muda) ou,
+            // num erro pequeno, a figura errada inteira em contorno fino
+            expect(html).toMatch(/ea-pele-t"/);
+            expect(html).not.toMatch(/ea-pele-t-e"/);
+            expect(html).toMatch(/class="gh-e"|class="tor-e"|class="eq-err /); // a cadeia que muda, o errado inteiro ou só o objeto errado
+            expect(html).not.toMatch(/class="gh"/);
+          } else {
+            expect(html).toMatch(new RegExp(`e${estilo}-pele-t-e"`)); // a figura que erra
+            expect(html).toMatch(/class="gh"/); // e o certo, por cima
+          }
         });
       }
   }, 30_000); // percorre todos os exercícios nos 2 estilos
