@@ -1,12 +1,12 @@
 import { BIBLIOTECA, type Exercicio } from '../biblioteca';
 import { faseNaSemana, prescricaoDaSemana, type DiaPrograma, type ExercicioPrescrito, type Fase, type Programa } from '../gerador';
 import { blocoAtual, semanaNoBloco, type Hoje } from './bloco';
-import { escadaDe, nomeDoDegrau } from '../progressao/escadas';
+import { escadaDe, nomeDoDegrau, pedeMiniBand } from '../progressao/escadas';
 import { noPassoAbaixo, proximaCarga, sugerirProgressao, type Alvo, type Carga, type OpcoesCarga, type SerieRegistrada, type SessaoExercicio, type Sugestao } from '../progressao';
 import { calibrar, emCalibracao, semCalibracao, type ResultadoCalibracao } from '../progressao/calibracao';
 import { funcoesDoExercicio } from '../gerador/funcoes';
 import { r } from '../regras';
-import { CAPACIDADES, cargasHalter, cargasKettlebell, ITEM_IDS, MENOR_ANILHA_PADRAO_KG, type Capacidade, type Inventario } from '../taxonomia/equipamentos';
+import { CAPACIDADES, cargasCaneleiras, cargasHalter, cargasKettlebell, ITEM_IDS, MENOR_ANILHA_PADRAO_KG, type Capacidade, type Inventario } from '../taxonomia/equipamentos';
 export * from './bloco';
 
 // Sessão de treino: funções puras que ligam o programa, o histórico e a progressão.
@@ -132,6 +132,8 @@ export function opcoesCarga(exId: string, inventario: Inventario): OpcoesCarga &
       return { tipo, registro: 'kg', lista: cargasHalter(inventario) };
     case 'kettlebell':
       return { tipo, registro: 'kg', lista: cargasKettlebell(inventario) };
+    case 'caneleira':
+      return { tipo, registro: 'kg', lista: cargasCaneleiras(inventario) };
     case 'polia':
     case 'maquina':
       return { tipo, registro: 'placa', ...(placas ? { placasMax: placas } : {}) };
@@ -156,11 +158,12 @@ export function opcoesCarga(exId: string, inventario: Inventario): OpcoesCarga &
 
 /**
  * Texto da carga para a tela. No degrau (peso do corpo, elástico), o nome do degrau vem depois da base:
- * "peso do corpo × 12", e não "mais repetições × 12" (R1). O exercício, quando conhecido, diz se a base é o elástico.
+ * "peso do corpo × 12", e não "mais repetições × 12" (R1). O exercício, quando conhecido, diz se a base é o elástico
+ * ou a faixa curta da mini-band (equipamento.mini-band).
  */
 export function textoCarga(c: Carga, exId?: string): string {
   if (c.tipo === 'degrau') {
-    const base = exId && POR_ID[exId]?.carga === 'elastico' ? 'elástico' : 'peso do corpo';
+    const base = exId && POR_ID[exId]?.carga === 'elastico' ? (pedeMiniBand(exId) ? 'faixa curta' : 'elástico') : 'peso do corpo';
     if (c.degrau === 0) return base;
     return `${base} · ${nomeDoDegrau(exId, c.degrau) ?? `degrau ${c.degrau + 1}`}`;
   }
@@ -172,7 +175,7 @@ export function textoCarga(c: Carga, exId?: string): string {
 
 /**
  * A carga do exercício depende da máquina (placa da torre, anilhas por lado, contrapeso): a placa 7 de uma torre não
- * pesa o mesmo que a de outra, e o trenó de cada leg press pesa diferente. Halteres, kettlebell, barra, peso do corpo
+ * pesa o mesmo que a de outra, e o trenó de cada leg press pesa diferente. Halteres, kettlebell, caneleira, barra, peso do corpo
  * e elástico valem igual em qualquer local (kg é kg).
  */
 export const cargaDaMaquina = (exId: string) => {
@@ -258,7 +261,7 @@ const cargaDeReferencia = (h: SessaoExercicio[]): Carga | undefined => {
   return (ult?.series.find((x) => !x.calibracao) ?? ult?.series.at(-1))?.carga;
 };
 
-/** Carga dentro do que o local tem: halteres e kettlebell pela lista do inventário (o maior até a carga). */
+/** Carga dentro do que o local tem: halteres, kettlebell e caneleira pela lista do inventário (o maior até a carga). */
 export function noInventario(c: Carga, o: OpcoesCarga): { carga: Carga; ajustada: boolean } {
   const lista = o.lista ?? [];
   if (c.tipo !== 'kg' || !lista.length || lista.some((k) => Math.abs(k - c.kg) < 1e-9)) return { carga: c, ajustada: false };

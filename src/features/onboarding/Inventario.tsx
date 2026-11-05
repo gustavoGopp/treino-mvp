@@ -40,6 +40,8 @@ const ITENS_COM_DETALHES: ItemId[] = [
   'estacao_polia_dupla',
   'multifuncional',
   'kettlebell',
+  'caneleiras',
+  'mini_band',
   'voador',
   'triceps_maquina',
 ];
@@ -336,6 +338,19 @@ export function FormularioInventario({
             />
           </Detalhes>
         );
+      case 'caneleiras':
+        return (
+          <Detalhes titulo="Caneleiras de peso">
+            <MarcarVarios
+              legenda="Quais pesos você tem (de cada caneleira)?"
+              ajuda="O peso costuma estar escrito na caneleira."
+              opcoes={[...new Set([...VALORES.caneleiraKg, ...f.caneleiras.pesos])].sort((a, b) => a - b).map((k) => ({ id: k, texto: kg(k) }))}
+              marcados={f.caneleiras.pesos}
+              aoMudar={(v) => set('caneleiras', { pesos: v })}
+              erro={e('caneleiras.pesos')}
+            />
+          </Detalhes>
+        );
       case 'voador':
         return (
           <Detalhes titulo="Voador">
@@ -388,6 +403,20 @@ export function FormularioInventario({
               valor={f.elasticos.intensidades || undefined}
               aoMudar={(v) => set('elasticos', { intensidades: v })}
               erro={e('elasticos.intensidades')}
+              linha
+            />
+          </Detalhes>
+        );
+      case 'mini_band':
+        return (
+          <Detalhes titulo="Mini-band">
+            <Escolha
+              nome="mini-band"
+              legenda="Quantas mini-bands de forças diferentes?"
+              opcoes={[1, 2, 3, 4, 5, 6].map((n) => ({ id: String(n), texto: String(n) }))}
+              valor={f.miniBand.intensidades || undefined}
+              aoMudar={(v) => set('miniBand', { intensidades: v })}
+              erro={e('miniBand.intensidades')}
               linha
             />
           </Detalhes>

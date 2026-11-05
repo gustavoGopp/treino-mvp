@@ -1,6 +1,6 @@
 import { BIBLIOTECA, MUSCULOS, type Articulacao, type Exercicio, type Musculo, type Padrao } from '../biblioteca';
-import { DESCANSO, READAPTACAO, RIR, TEMPO, VOLUME, NIVEL_COMPLEXIDADE_MAX, OBRIGATORIO_CURTO, exerciciosPorSessao, r, type Nivel } from '../regras';
-import { capacidades, cargaMaxHalter, cargasHalter, cargasKettlebell, ITENS, type Inventario, type ItemId } from '../taxonomia/equipamentos';
+import { DESCANSO, OBJETIVO_FORCA, READAPTACAO, RIR, TEMPO, VOLUME, NIVEL_COMPLEXIDADE_MAX, OBRIGATORIO_CURTO, exerciciosPorSessao, r, type Nivel } from '../regras';
+import { capacidades, cargaMaxHalter, cargasCaneleiras, cargasHalter, cargasKettlebell, ITENS, type Capacidade, type Inventario, type ItemId } from '../taxonomia/equipamentos';
 import { avaliarTriagem, efeitoDaDor, type ResultadoTriagem, type Triagem } from '../triagem';
 import { divisaoEscolhida, temDiaDeTronco, type DiasSemana, type Divisao, type DivisaoId, type Vaga } from './divisoes';
 import { FUNCAO, funcoesDoExercicio, type Funcao } from './funcoes';
@@ -19,8 +19,14 @@ export const GRUPOS = {
 } as const satisfies Record<string, readonly Musculo[]>;
 export type Grupo = keyof typeof GRUPOS;
 
+/** O que a pessoa quer agora (objetivo.pergunta). Ausente = ganhar músculo. Só "forca" muda números. */
+export const OBJETIVOS = ['hipertrofia', 'cutting', 'forca', 'saude'] as const;
+export type Objetivo = (typeof OBJETIVOS)[number];
+
 export type Perfil = {
   nivel: Nivel;
+  /** Objetivo (objetivo.pergunta); sem resposta, vale "hipertrofia". */
+  objetivo?: Objetivo;
   /** Semanas sem treinar antes de começar (readaptacao.gatilho). */
   semanasParado: number;
   diasSemana: DiasSemana;
@@ -142,11 +148,12 @@ export function contextoDeSelecao(perfil: Perfil, inventarioOriginal: Inventario
   // com animação aprovada; por fim o id, só para o resultado ser estável.
   const halterMax = cargaMaxHalter(inventario);
   const kettlebellMax = cargasKettlebell(inventario).at(-1) ?? 0;
-  // O graviton (assistida) não passa do peso do corpo: conta como o peso do corpo.
+  // O graviton (assistida) não passa do peso do corpo: conta como o peso do corpo. A caneleira é carga baixa
+  // (equipamento.caneleira: 0,5 a 5 kg, em geral): conta como o halter leve.
   const cargaPossivel = (e: Exercicio) =>
     e.carga === 'peso-corpo' || e.carga === 'elastico' || e.carga === 'assistida'
       ? 0
-      : (e.carga === 'halter' && halterMax < 20) || (e.carga === 'kettlebell' && kettlebellMax < 20)
+      : (e.carga === 'halter' && halterMax < 20) || (e.carga === 'kettlebell' && kettlebellMax < 20) || e.carga === 'caneleira'
         ? 1
         : 2;
   /** A pessoa tocou "prefiro este" neste exercício, nesta função (selecao.preferencia). */
@@ -246,6 +253,18 @@ export function gerarPrograma(perfil: Perfil, inventarioOriginal: Inventario): R
   const nivelAbaixo = new Set<string>();
   const foraPorMinutos = new Set<Musculo>();
   type Item = { ex: Exercicio; vaga: Vaga; funcao: Funcao; nivelFuncao: number; series: number; ordemVaga: number; preenchido?: boolean };
+  // Volume da semana só com o mínimo de séries, dia a dia: um complemento (ou uma vaga só de prioridade) não entra
+  // se, já no mínimo, passar do teto semanal de algum músculo (volume.semanal.teto-padrao, "nunca acima"). Antes,
+  // só a distribuição das séries conferia o teto, e no modelo de 6 dias com três vagas de glúteo o mínimo sozinho
+  // chegava a 21 (auditoria de 04/11/2026, Parte C).
+  const vMinimo: Partial<Record<Musculo, number>> = {};
+  const cabeNoTetoSemanal = (e: Exercicio) =>
+    (Object.entries(volumePorMusculo([{ ex: e, series: VOLUME.seriesPorExercicio.min }])) as [Musculo, number][]).every(([m, n]) => (vMinimo[m] ?? 0) + n <= VOLUME.teto);
+  // Músculos com meta que têm alguma vaga-base na semana (fora os complementos). Um complemento que é o único
+  // exercício direto de um músculo com meta (o ombro posterior, por exemplo) entra antes dos complementos de músculos
+  // que já têm vaga-base, mesmo prioritários: o piso de todo músculo vem antes da 2ª dose do prioritário
+  // (volume.semanal.minimo-eficaz; auditoria de 04/11/2026, Parte C).
+  const comVagaBase = new Set<Musculo>(divisao.dias.flatMap((d) => d.vagas.filter((v) => ativa(v) && !v.complemento).map((v) => FUNCAO[v.funcao]!.musculo)));
   const dias = divisao.dias.map((dia) => {
     const resolvidas = dia.vagas.filter(ativa).map((vaga, ordem) => ({ vaga, ordem, res: resolver(vaga) }));
     let perdidas = 0;
@@ -257,8 +276,12 @@ export function gerarPrograma(perfil: Perfil, inventarioOriginal: Inventario): R
     const comExercicio = resolvidas.filter((x): x is typeof x & { res: NonNullable<typeof x.res> } => !!x.res);
     // Quais vagas cabem nos minutos: as vagas-base e as dos grupos prioritários, na ordem do modelo do dia
     // (que já é a de importância); os complementos não prioritários só entram se sobrar espaço.
-    const rank = (x: (typeof comExercicio)[number]) =>
-      x.vaga.complemento && !prioritarios.has(x.res.funcao.musculo) && !x.vaga.prioridade?.some((g) => grupos.has(g)) ? 1 : 0;
+    const rank = (x: (typeof comExercicio)[number]) => {
+      const m = x.res.funcao.musculo;
+      if (!x.vaga.complemento) return 0;
+      if (!comVagaBase.has(m) && (MUSCULOS_COM_META as Musculo[]).includes(m)) return 1; // o único exercício direto do músculo
+      return prioritarios.has(m) || x.vaga.prioridade?.some((g) => grupos.has(g)) ? 2 : 3;
+    };
     // Os isoladores obrigatórios entram sempre que houver (selecao.isolador-obrigatorio); o resto preenche até N.
     // Em treinos curtos (até OBRIGATORIO_CURTO exercícios), eles entram na fila comum, depois das vagas-base do dia:
     // senão ocupam 2 de 3 lugares e a semana fica sem costas ou posteriores (selecao.multi-mono; auditoria, achado 4).
@@ -278,8 +301,10 @@ export function gerarPrograma(perfil: Perfil, inventarioOriginal: Inventario): R
       const achado = ctx.escolher(funcao, x.res.nivel, (id) => itens.some((i) => i.ex.id === id), usos);
       if (!achado) continue;
       const { ex: escolhido, nivelFuncao } = achado;
+      if ((x.vaga.complemento || x.vaga.prioridade) && !cabeNoTetoSemanal(escolhido)) continue;
       if (nivelFuncao > 0 && funcao.semNivel1) nivelAbaixo.add(funcao.semNivel1);
       usos.set(escolhido.id, (usos.get(escolhido.id) ?? 0) + 1);
+      for (const [m, n] of Object.entries(volumePorMusculo([{ ex: escolhido, series: VOLUME.seriesPorExercicio.min }])) as [Musculo, number][]) vMinimo[m] = (vMinimo[m] ?? 0) + n;
       itens.push({ ex: escolhido, vaga: x.vaga, funcao, nivelFuncao, series: VOLUME.seriesPorExercicio.min, ordemVaga: x.ordem });
     }
     return { dia, itens, perdidas };
@@ -442,8 +467,35 @@ export function gerarPrograma(perfil: Perfil, inventarioOriginal: Inventario): R
       ],
     };
   };
+  // Objetivo "ficar mais forte" (objetivo.forca.*): os 2 primeiros multiarticulares com carga de cada treino ficam com a
+  // faixa mais baixa e o descanso maior; o peso livre fica com 2 a 3 de reserva. O iniciante segue como na hipertrofia.
+  const forca = perfil.objetivo === 'forca' && nivel !== 'iniciante';
+  const comCarga = (e: Exercicio) => !['peso-corpo', 'elastico', 'assistida'].includes(e.carga);
+  const pesoLivre = (e: Exercicio) => ['barra', 'halter', 'kettlebell', 'anilha'].includes(e.carga);
+  const ajustarForca = (exs: ExercicioPrescrito[]): ExercicioPrescrito[] => {
+    if (!forca) return exs;
+    let k = 0;
+    return exs.map((x) => {
+      const e = POR_ID_BIB[x.exId]!;
+      if (k >= OBJETIVO_FORCA.compostosPorTreino || x.tipo !== 'composto' || !comCarga(e)) return x;
+      k++;
+      return {
+        ...x,
+        reps: OBJETIVO_FORCA.reps,
+        descansoSeg: OBJETIVO_FORCA.descansoSeg,
+        rir: pesoLivre(e) ? OBJETIVO_FORCA.rirPesoLivre : x.rir,
+        porque: [
+          ...x.porque,
+          {
+            regraId: r('objetivo.forca.faixa-compostos'),
+            texto: `Objetivo "ficar mais forte": ${OBJETIVO_FORCA.reps[0]} a ${OBJETIVO_FORCA.reps[1]} repetições e descanso de 2 min 30 s neste exercício grande.${pesoLivre(e) ? ' Com peso livre, termine com 2 a 3 repetições de reserva.' : ''}`,
+          },
+        ],
+      };
+    });
+  };
   let programaDias: DiaPrograma[] = dias.map(({ dia, itens }) => {
-    const exercicios = itens.map(prescrever);
+    const exercicios = ajustarForca(itens.map(prescrever));
     return { id: dia.id, nome: dia.nome, exercicios, minutosEstimados: minutos(exercicios, colchaoDe(perfil)) };
   });
 
@@ -453,11 +505,17 @@ export function gerarPrograma(perfil: Perfil, inventarioOriginal: Inventario): R
   const volumeAntesDoCorte = volumeDe(programaDias);
   const cargasDeHalter = cargasHalter(inventario).length;
   const cargasDeKettlebell = cargasKettlebell(inventario).length;
+  const cargasDeCaneleira = cargasCaneleiras(inventario).length;
   const podeDrop = (x: ExercicioPrescrito) => {
     const c = POR_ID_BIB[x.exId]!.carga;
     return (
       x.tipo === 'isolador' &&
-      (c === 'maquina' || c === 'polia' || c === 'anilha' || (c === 'halter' && cargasDeHalter >= 2) || (c === 'kettlebell' && cargasDeKettlebell >= 2))
+      (c === 'maquina' ||
+        c === 'polia' ||
+        c === 'anilha' ||
+        (c === 'halter' && cargasDeHalter >= 2) ||
+        (c === 'kettlebell' && cargasDeKettlebell >= 2) ||
+        (c === 'caneleira' && cargasDeCaneleira >= 2))
     );
   };
   programaDias = cortarTempo(programaDias, perfil.minutosSessao, metas, nivel, prioritarios, avisos, podeDrop, colchaoDe(perfil));
@@ -492,6 +550,7 @@ export function gerarPrograma(perfil: Perfil, inventarioOriginal: Inventario): R
     });
 
   const porque: Porque[] = [
+    ...textoDoObjetivo(perfil.objetivo, nivel),
     {
       regraId: r('divisao.recomendacao'),
       texto: escolhida
@@ -520,6 +579,14 @@ export function gerarPrograma(perfil: Perfil, inventarioOriginal: Inventario): R
     },
     { regraId: r('volume.serie-indireta.peso'), texto: 'Séries indiretas (ex.: remada para o bíceps) contam como meia série.' },
     { regraId: r('rir.serie-efetiva'), texto: `Só contam séries de trabalho com até ${RIR.serieEfetivaMax} repetições de reserva.` },
+    ...(nivel === 'avancado'
+      ? [
+          {
+            regraId: r('tecnica.parcial-alongada'),
+            texto: 'Se o fim do movimento incomodar, dá para fazer só a metade em que o músculo está esticado (por exemplo, a parte de baixo da rosca): cresce como o movimento completo, não mais.',
+          },
+        ]
+      : []),
     {
       regraId: r('ordem.sessao'),
       texto: 'Ordem da sessão: multiarticulares primeiro, depois os grupos que você priorizou, core por último. A ordem quase não muda a hipertrofia.',
@@ -544,6 +611,39 @@ export function gerarPrograma(perfil: Perfil, inventarioOriginal: Inventario): R
       regioesExcluidas,
     },
   };
+}
+
+/** O texto do objetivo (objetivo.*; pesquisa-v2/12). "Ganhar músculo" (ou sem resposta) não tem texto próprio. */
+export function textoDoObjetivo(objetivo: Objetivo | undefined, nivel: Nivel): Porque[] {
+  if (objetivo === 'cutting')
+    return [
+      {
+        regraId: r('objetivo.cutting.mesmo-programa'),
+        texto: 'Objetivo "manter o músculo enquanto perde peso": o treino é o mesmo. Na dieta, o treino de força ajuda a manter o músculo e a perder mais gordura.',
+      },
+      {
+        regraId: r('objetivo.cutting.texto'),
+        texto: 'Quem decide a perda de peso é a alimentação, que o app não cobre: procure um nutricionista. Na dieta, é normal o músculo parar de crescer; a carga pode continuar subindo.',
+      },
+    ];
+  if (objetivo === 'forca')
+    return [
+      {
+        regraId: r('objetivo.forca.faixa-compostos'),
+        texto:
+          nivel === 'iniciante'
+            ? 'Objetivo "ficar mais forte": no começo, o treino é o mesmo, e a força sobe com ele. A partir do nível intermediário, os 2 primeiros exercícios grandes de cada treino passam a usar menos repetições e mais descanso.'
+            : `Objetivo "ficar mais forte": os 2 primeiros exercícios grandes com carga de cada treino usam ${OBJETIVO_FORCA.reps[0]} a ${OBJETIVO_FORCA.reps[1]} repetições e descanso de 2 min 30 s; o resto segue como no treino de músculo. O app não testa a carga máxima nem prepara para competição.`,
+      },
+    ];
+  if (objetivo === 'saude')
+    return [
+      {
+        regraId: r('objetivo.saude.texto'),
+        texto: 'Objetivo "saúde e disposição": este treino cumpre a parte de força das recomendações da OMS e do ACSM. Elas pedem também 150 a 300 min por semana de atividade aeróbia moderada (como caminhada rápida), que o app não prescreve.',
+      },
+    ];
+  return [];
 }
 
 /** Lembrete nos exercícios que carregam uma região marcada com dor de 0 a 5 (seguranca.dor.programa). */
@@ -651,6 +751,30 @@ const TEXTO_REGRA_FUNCAO: Record<string, (e: Exercicio) => string | null> = {
   'selecao.aducao-complemento': () => 'Complemento opcional para a parte de dentro da coxa (adutores), porque pernas ou glúteos são prioridade.',
 };
 
+/**
+ * O porquê dos itens do catálogo completo (pesquisa-v2/11, B.2.3): a caneleira (com o lado curto na extensão), a
+ * mini-band (item próprio) e a roda abdominal (fora do iniciante; sai com dor lombar).
+ */
+function porqueDoEquipamento(e: Exercicio): Porque | null {
+  const pede = (c: Capacidade) => e.requer.some((g) => g.includes(c));
+  if (pede('caneleiras'))
+    return {
+      regraId: r('equipamento.caneleira'),
+      texto:
+        e.padrao === 'isolador-quadriceps'
+          ? 'Com a caneleira, o peso pesa mais com o joelho esticado, o lado curto do músculo (o contrário do que se prefere), e pode ficar leve para quem já treina: por isso ela vem depois da cadeira extensora. Com carga leve, a série só conta perto da falha.'
+          : 'As caneleiras abrem este complemento sem máquina. Com carga leve, a série só conta perto da falha.',
+    };
+  if (pede('mini_band'))
+    return { regraId: r('equipamento.mini-band'), texto: 'A mini-band abre a abdução sem máquina; ela sobe pelas forças da sua mini-band, e não pelas dos elásticos longos.' };
+  if (pede('roda_abdominal'))
+    return {
+      regraId: r('equipamento.roda-abdominal'),
+      texto: 'Roda abdominal: exige muito da lombar, por isso fica fora do iniciante. Volte antes de a lombar arquear; com dor lombar, ela sai do treino.',
+    };
+  return null;
+}
+
 export function porqueDoExercicio(e: Exercicio, funcao: Funcao, nivelFuncao: number, nivel: Nivel, preferido = false): Porque[] {
   const p: Porque[] = [
     {
@@ -667,6 +791,8 @@ export function porqueDoExercicio(e: Exercicio, funcao: Funcao, nivelFuncao: num
     const texto = TEXTO_REGRA_FUNCAO[id]?.(e);
     if (texto) p.push({ regraId: r(id), texto });
   }
+  const doEquipamento = porqueDoEquipamento(e);
+  if (doEquipamento) p.push(doEquipamento);
   if (nivel === 'iniciante' && estavel(e)) p.push({ regraId: r('selecao.estabilidade'), texto: 'Exercício estável e apoiado, mais fácil de aprender.' });
   if (e.tags.includes('montagem'))
     p.push({ regraId: r('seguranca.montagem'), texto: 'Antes da 1ª série, monte com segurança: travas, apoios e ancoragem, como no cartão do exercício.' });

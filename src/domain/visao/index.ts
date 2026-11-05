@@ -115,6 +115,9 @@ export const DICAS_DESAMBIGUACAO: { par: [ItemId, ItemId, ...ItemId[]]; dica: st
   { par: ['graviton', 'paralelas', 'barra_fixa'], dica: 'graviton: plataforma para os joelhos e torre de pesos; paralelas e barra fixa: barras sem torre.' },
   { par: ['barra_hexagonal', 'barra_longa'], dica: 'barra hexagonal: moldura em forma de hexágono, com a pessoa dentro e pegadores dos lados.' },
   { par: ['suspensao', 'elasticos'], dica: 'suspensão: fitas de nylon com fivelas e pegadores; elásticos: borracha colorida.' },
+  // Catálogo completo (pesquisa-v2/11, B.2.3): a caneleira confunde com a tornozeleira da polia, e a mini-band com o elástico longo.
+  { par: ['caneleiras', 'acessorio_polia_tornozeleira'], dica: 'caneleira de peso: almofada grossa e pesada que se prende no tornozelo com velcro, com o kg escrito; tornozeleira da polia: tira fina com uma argola de metal para prender o cabo.' },
+  { par: ['mini_band', 'elasticos'], dica: 'mini-band: laço curto e largo de borracha ou tecido, do tamanho de duas mãos abertas, sem pegadores; elásticos: faixas ou tubos longos, muitas vezes com pegadores nas pontas.' },
 ];
 
 /** Texto do pedido ao modelo (o esquema garante o formato; o texto explica a tarefa). */
@@ -126,7 +129,7 @@ export function instrucoes(): string {
     'Regras:',
     '- Só inclua o que dá para ver. Na dúvida, use confiança "media" ou "baixa"; nunca invente.',
     '- "alta": o item aparece com clareza. "media": provável, mas parcial ou pequeno. "baixa": pode ser, mas é incerto.',
-    '- Atributos só quando visíveis: halteres fixos (minKg, maxKg, passoKg pelos números nos halteres), polia simples (altura: "alta", "baixa" ou "regulavel"), banco regulável (declina), elásticos (intensidades = cores diferentes), multifuncional (puxador, remadaBaixa, extensora, flexora, voador, supino: true para cada estação que aparece), kettlebell (pesosKg pelos números pintados).',
+    '- Atributos só quando visíveis: halteres fixos (minKg, maxKg, passoKg pelos números nos halteres), polia simples (altura: "alta", "baixa" ou "regulavel"), banco regulável (declina), elásticos (intensidades = cores diferentes), multifuncional (puxador, remadaBaixa, extensora, flexora, voador, supino: true para cada estação que aparece), kettlebell (pesosKg pelos números pintados), caneleiras (pesosKg pelo kg escrito em cada uma), mini-band (intensidades = cores diferentes).',
     '- Esteira, bicicleta e elíptico: liste só a esteira; eles não entram no treino.',
     '- Em "evidencia", diga em poucas palavras onde o item aparece (ex.: "foto 2, à esquerda").',
     'Para não confundir aparelhos parecidos:',

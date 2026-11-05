@@ -1,0 +1,78 @@
+{
+  "id": "remada-unilateral-sem-banco",
+  "name": "Remada unilateral com halter, sem banco (mão livre na coxa)",
+  "short": "Remada unilateral sem banco",
+  "target": "Dorsal e meio das costas; o bíceps e a parte de trás do ombro ajudam",
+  "feel": "Lateral das costas e meio das costas, do lado que puxa. O bíceps e a parte de trás do ombro ajudam.",
+  "feelNote": "Se sentir a lombar, o tronco está girando ou a coluna está arredondando: apoie melhor a mão livre na coxa.",
+  "setupEq": [
+    "Um halter.",
+    "Chão que não escorrega. Se tiver um apoio firme na altura do quadril (um móvel pesado que não se mexe), a mão livre pode ir nele."
+  ],
+  "setupBody": [
+    "Pés afastados, um à frente do outro: o pé do lado do halter fica atrás.",
+    "Incline o tronco à frente, com as costas retas, e apoie a mão livre firme na coxa da frente.",
+    "Halter pendurado embaixo do ombro, palma virada para o corpo."
+  ],
+  "exec": [
+    [
+      "hold",
+      "Braço estendido",
+      "Halter embaixo do ombro, costas retas, mão livre firme na coxa."
+    ],
+    [
+      "conc",
+      "Puxada (concêntrica)",
+      "~1 s. Leve o cotovelo para trás, em direção ao quadril, sem girar o tronco."
+    ],
+    [
+      "hold",
+      "Fim",
+      "Halter ao lado do quadril, cotovelo atrás do tronco. Segure 1 s."
+    ],
+    [
+      "ecc",
+      "Volta (excêntrica)",
+      "~2 s, até o braço estender de novo."
+    ]
+  ],
+  "range": [
+    "Início: braço estendido, halter embaixo do ombro.",
+    "Fim: halter ao lado do quadril, cotovelo passando a linha das costas.",
+    "Costas retas do começo ao fim: o tronco não sobe para ajudar."
+  ],
+  "breath": "Solte o ar puxando, inspire na volta.",
+  "cues": [
+    "Mão firme na coxa.",
+    "Cotovelo para o quadril.",
+    "Tronco parado."
+  ],
+  "check": [
+    "Pé do lado do halter atrás",
+    "Mão livre firme na coxa",
+    "Costas retas",
+    "Pegada neutra"
+  ],
+  "vary": "Com um banco, a mesma remada fica mais estável (remada unilateral com joelho e mão no banco). As duas servem.",
+  "extLabels": [
+    "início",
+    "fim"
+  ],
+  "errors": [
+    {
+      "id": "gira",
+      "title": "Girar o tronco",
+      "desc": "Abrir o peito para subir o halter tira o trabalho das costas e torce a lombar. Se precisar girar, o halter está pesado demais."
+    },
+    {
+      "id": "arred",
+      "title": "Arredondar as costas",
+      "desc": "A lombar curva e passa a segurar o peso. Costas retas e mão livre firme na coxa."
+    },
+    {
+      "id": "curta",
+      "title": "Não estender o braço",
+      "desc": "Parar a volta no meio corta a parte em que as costas alongam."
+    }
+  ]
+}

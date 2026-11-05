@@ -330,6 +330,7 @@ const MAPA = {
   erect: ['eretores'],
   rectus: ['retoAbdominal'],
   obliq: ['obliquos'],
+  adutores: ['adutores'],
 };
 // do mais profundo para o mais superficial (o trapézio cobre os romboides; o peitoral, as costelas)
 const ORDEM = ['romboides', 'redondoMaior', 'dorsal', 'eretores', 'trapMedio', 'trapInferior', 'trapSuperior', 'obliquos', 'retoAbdominal', 'peitoralEst', 'peitoralClav', 'gluteos', 'adutores', 'posteriores', 'quadriceps', 'panturrilha', 'deltPost', 'deltLat', 'deltAnt', 'triceps', 'biceps', 'antebraco'];
@@ -377,7 +378,19 @@ export const LISTA = {
     ['quadriceps', 'L', 's'],
     ['quadriceps', 'R', 'p'],
   ],
+  'afundo-kettlebell': [
+    ['gluteos', 'R', 's'],
+    ['adutores', 'R', 's'],
+    ['quadriceps', 'L', 's'],
+    ['quadriceps', 'R', 'p'],
+  ],
   'bulgaro-peso-corpo': [
+    ['gluteos', 'R', 's'],
+    ['adutores', 'R', 's'],
+    ['quadriceps', 'R', 'p'],
+  ],
+  // Catálogo completo (04/11/2026): o búlgaro na suspensão desenha os mesmos músculos do búlgaro com o peso do corpo.
+  'bulgaro-suspensao': [
     ['gluteos', 'R', 's'],
     ['adutores', 'R', 's'],
     ['quadriceps', 'R', 'p'],
@@ -434,6 +447,10 @@ export function listaDe(ex) {
  * 03/11/2026; docs/revisoes/design.md, ponto 2). tests/unit/legenda.test.ts confere esta lista contra a biblioteca.
  */
 export const SO_AJUDA: Record<string, string[]> = {
+  'roda-abdominal': ['obliquos'],
+  'elevacao-joelhos-paralelas': ['obliquos'],
+  'ponte-pes-bola': ['posteriores'],
+  'abdominal-bola': ['obliquos'],
   'abdominal-chao': ['obliquos'],
   'abdominal-polia': ['obliquos'],
   'barra-fixa': ['antebraco'],
@@ -444,10 +461,14 @@ export const SO_AJUDA: Record<string, string[]> = {
   flexao: ['retoAbdominal'],
   'flexao-bola': ['panturrilha'],
   'rosca-alternada': ['antebraco'],
+  'rosca-martelo': ['antebraco'],
+  'rosca-kettlebell': ['antebraco'],
   'rosca-inclinada': ['antebraco'],
   'rosca-polia': ['antebraco'],
+  'rosca-suspensao': ['antebraco'],
   stiff: ['eretores'],
   'stiff-unilateral': ['eretores'],
+  'stiff-kettlebell': ['eretores'],
   'triceps-frances': ['retoAbdominal'],
 };
 // O padrão das listras (as cores vêm do CSS: .mh-fundo e .mh-listra).

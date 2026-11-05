@@ -416,3 +416,11 @@ As linhas de base do motor (`novas.json`, `estilo-a.json`) ganharam só os 9 exe
 | 9 | Animações do elástico | **agora**, logo depois do fechamento (peça nova no motor e 12 folhas) |
 | 10 | Página "Diagnóstico do treino-mvp" | **este projeto não usa a conta da Futurum** (só gustavogopp@gmail.com ou gustavogopp2@gmail.com). A sessão rodou nessa conta; por decisão do Gustavo, tudo fica só no git. A seção atualizada fica em `docs/revisoes/equipamento-minimo/secao-diagnostico.html`, para colar a partir da conta certa |
 | 11 | Levar para a `main` | **direto, sem commit de merge**, depois de `check`, e2e e auditoria passarem e de o Gustavo exportar os dados |
+
+### Animações do elástico: o R4 vem antes (04/11/2026)
+A 1ª folha da família (remada sentada com elástico, com a peça nova `band` no motor) foi mostrada ao Gustavo: **"precisa aprimorar ainda o boneco, em especial a visualização do treino e do erro"**. Isso bate com o retorno do R3, anotado no backlog do `r3-uso-real`: vistas em que não se entende o corpo e os músculos. Decisão: **o boneco é aprimorado no marco R4 primeiro** (aprimorar o atual × estilo mais simples, lado a lado); as 12 animações do elástico saem depois, no estilo escolhido. Até lá:
+- a remada com elástico fica em `src/engine/exercicios/revisao/` e a folha em `docs/revisoes/elastico/folhas/`, fora do app;
+- a peça `band` fica no motor, sem uso no app;
+- os 12 exercícios com elástico ganham **cartão de texto** (11 deles não tinham guia nenhum).
+
+O que a sessão viu de fraco na folha: na vista de lado, o braço da frente cobre o tronco e as mãos; na vista de trás, sentado no chão, as pernas e o elástico somem; nos erros, a figura vermelha e o esqueleto verde se misturam, e o "encolher" quase não se vê.

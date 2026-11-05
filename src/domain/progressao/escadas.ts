@@ -33,19 +33,39 @@ export function degrauDoElastico(i: number): string {
 }
 
 /**
+ * A mini-band é item próprio (equipamento.mini-band): o exercício que pede a capacidade `mini_band` sobe pelas
+ * intensidades dela, e não pelas dos elásticos longos.
+ */
+export const pedeMiniBand = (exId: string | undefined): boolean => !!exId && !!POR_ID[exId]?.requer.some((g) => g.includes('mini_band'));
+
+/**
+ * Nome do degrau i da mini-band: em cada intensidade, normal → pausa com a faixa esticada → pausa com descida de 3 s.
+ * A faixa curta não tem "um passo mais longe", como o elástico longo; a pausa e a descida lenta não pedem nada (consenso).
+ */
+export function degrauDaMiniBand(i: number): string {
+  const k = Math.floor(i / 3) + 1;
+  const sub = i % 3;
+  const pre = k === 1 ? '' : `intensidade ${k}`;
+  if (sub === 0) return k === 1 ? 'mais repetições' : pre;
+  const resto = sub === 1 ? 'pausa de 2 s com a faixa esticada' : 'pausa de 2 s com a faixa esticada, com descida de 3 s';
+  return pre ? `${pre}, ${resto}` : resto;
+}
+
+/**
  * Os degraus de um exercício (o 0 é a base). O elástico sobe pelas intensidades que a pessoa informou (1 a N); sem o
- * inventário, a escada de 1 intensidade.
+ * inventário, a escada de 1 intensidade. A mini-band, pelas intensidades da mini-band.
  */
 export function escadaDe(exId: string | undefined, inventario?: Inventario): string[] {
   const e = exId ? POR_ID[exId] : undefined;
   if (e?.carga === 'elastico') {
-    const n = Math.max(1, inventario?.elasticos?.intensidades ?? 1);
-    return Array.from({ length: 3 * n }, (_, i) => degrauDoElastico(i));
+    const mini = pedeMiniBand(exId);
+    const n = Math.max(1, (mini ? inventario?.mini_band?.intensidades : inventario?.elasticos?.intensidades) ?? 1);
+    return Array.from({ length: 3 * n }, (_, i) => (mini ? degrauDaMiniBand(i) : degrauDoElastico(i)));
   }
   const propria = exId ? ESCADAS[exId] : undefined;
   return propria ? [ESCADA_GENERICA[0]!, ...propria] : ESCADA_GENERICA;
 }
 
-/** Nome do degrau, para o texto da carga (o elástico não depende de quantas intensidades a pessoa tem). */
+/** Nome do degrau, para o texto da carga (o elástico e a mini-band não dependem de quantas intensidades a pessoa tem). */
 export const nomeDoDegrau = (exId: string | undefined, d: number): string | undefined =>
-  exId && POR_ID[exId]?.carga === 'elastico' ? degrauDoElastico(d) : escadaDe(exId)[d];
+  exId && POR_ID[exId]?.carga === 'elastico' ? (pedeMiniBand(exId) ? degrauDaMiniBand(d) : degrauDoElastico(d)) : escadaDe(exId)[d];

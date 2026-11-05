@@ -1,0 +1,67 @@
+{
+  "id": "aducao-deitado",
+  "name": "Adução de quadril deitado de lado, sem carga",
+  "short": "Adução deitado",
+  "target": "Adutores (parte de dentro da coxa)",
+  "setupEq": [
+    "Nenhum equipamento. Um colchonete ou uma toalha no chão ajudam."
+  ],
+  "setupBody": [
+    "Deite de lado, com a cabeça apoiada no braço de baixo.",
+    "Perna de cima dobrada, com o pé no chão à frente da perna de baixo.",
+    "Perna de baixo estendida, em linha com o corpo.",
+    "Um lado por série: termine com um e faça a série seguinte do outro lado."
+  ],
+  "exec": [
+    [
+      "hold",
+      "Embaixo",
+      "Perna de baixo estendida, a um dedo do chão."
+    ],
+    [
+      "conc",
+      "Subida",
+      "~1 s. Suba a perna de baixo, estendida, num curso curto."
+    ],
+    [
+      "hold",
+      "Topo",
+      "Segure 1 s, com o quadril parado."
+    ],
+    [
+      "ecc",
+      "Descida",
+      "~2 s, sem descansar a perna no chão."
+    ]
+  ],
+  "range": [
+    "Em cima: só até onde o quadril fica parado. O curso é curto por natureza.",
+    "Embaixo: a perna fica a um dedo do chão, sem descansar."
+  ],
+  "cues": [
+    "Quadril parado.",
+    "Curso curto.",
+    "Não descansa embaixo."
+  ],
+  "errors": [
+    {
+      "id": "gira",
+      "title": "Girar o tronco",
+      "desc": "O tronco rola para trás para a perna subir mais; a parte de dentro da coxa trabalha menos."
+    },
+    {
+      "id": "tranco",
+      "title": "Subir com tranco",
+      "desc": "O impulso faz o meio da subida já ser o topo; suba em ~1 s."
+    },
+    {
+      "id": "descansa",
+      "title": "Descansar a perna no chão",
+      "desc": "A perna deita no chão entre as repetições e a série perde metade do trabalho."
+    }
+  ],
+  "carga": "Sem carga: faça 15 a 30 repetições perto da falha. Quando ficar fácil, siga a escada do exercício (pausa de 2 s no alto, descida de 3 s, depois 1,5 repetição).",
+  "montagem": [
+    "Colchonete num chão que não escorrega."
+  ]
+}

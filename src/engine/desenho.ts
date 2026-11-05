@@ -2,7 +2,7 @@
 // Gerado por scripts/extrair-motor.mjs a partir de referencia/guia-execucao-fase1.html. Port mecânico: não editar à mão antes do M1 terminar.
 import { CTX } from './contexto';
 import { B, scapPts } from './esqueleto';
-import { X, Y, Z, add, comb, dot, len, mid, mul, norm, sub } from './math';
+import { X, Y, Z, add, comb, cross, dot, len, mid, mul, norm, sub } from './math';
 
 /* ================= projeção e primitivas ================= */
 export const VIEWS={
@@ -85,7 +85,9 @@ export const MUS={
   calf(sk,k){const sd=sk.side[k];const sh=norm(sub(sd.A,sd.K)),fd=norm(sub(sd.toe,sd.A));let q=sub(fd,mul(sh,dot(fd,sh)));q=len(q)<.12?sk.fL:norm(q);return{a:comb(1,sd.K,.12,sub(sd.A,sd.K),-3.5,q),b:comb(1,sd.K,.62,sub(sd.A,sd.K),-3,q),w:7.5};},
   erect(sk){return{a:comb(1,sk.P,-7,sk.fL,4,sk.uL),b:comb(1,sk.N,-6,sk.fT,-6,sk.uT),w:6};},
   rectus(sk){const{N,P,uT,fT,xT,uL,fL,xL}=sk;return[comb(1,N,10,fT,-15,uT,-4,xT),comb(1,N,10,fT,-15,uT,4,xT),comb(1,P,9,fL,4,uL,4,xL),comb(1,P,9,fL,4,uL,-4,xL)];},
-  obliq(sk,k){const s=sk.side[k].s,{N,M,P,uT,fT,xT,uL,fL,xL}=sk;return[comb(1,M,s*13,xT,2,fT),comb(1,N,s*12,xT,-14,uT,6,fT),comb(1,P,s*10,xL,6,uL,4,fL)];}
+  obliq(sk,k){const s=sk.side[k].s,{N,M,P,uT,fT,xT,uL,fL,xL}=sk;return[comb(1,M,s*13,xT,2,fT),comb(1,N,s*12,xT,-14,uT,6,fT),comb(1,P,s*10,xL,6,uL,4,fL)];},
+  // adutores (catálogo, 11/2026): fuso na face interna da coxa, do púbis ao joelho (a adução com caneleira os tem como principal)
+  adutores(sk,k){const sd=sk.side[k];const t=norm(sub(sd.K,sd.Hp));let m=mul(sk.xL,-sd.s);m=norm(sub(m,mul(t,dot(m,t))));return{a:comb(1,sd.Hp,.12,sub(sd.K,sd.Hp),3,m),b:comb(1,sd.Hp,.72,sub(sd.K,sd.Hp),2.5,m),w:7};}
 };
 export function muscles(sk,list,cls){
   for(const[id,sides]of list){
@@ -118,6 +120,53 @@ export function tower(t,lift){
 }
 export function liftOf(ex,id,L){const L0=ex.L0&&ex.L0[id]!=null?ex.L0[id]:L;return Math.max(0,Math.min(95,(L-L0)*0.5));}
 export function cable(ex,id,from,to){const L=len(sub(from,to));if(CTX.MEAS&&ex._cab){ex._cab[id]=Math.min(ex._cab[id]??1e9,L);}L3(from,to,'cb',1,{bias:-1});return L;}
+/**
+ * Elástico (peça nova do motor, 04/11/2026; pesquisa-v2/08, seção 6): uma faixa entre a âncora e a mão (ou o pé). O
+ * comprimento de repouso é o menor medido na calibração (como o cabo da polia); a faixa afina quando estica, até
+ * ~55% da largura com o dobro do comprimento, para a pessoa ver a tensão subir. Devolve o comprimento.
+ */
+export function band(ex,id,from,to,o={}){
+  const L=len(sub(from,to));
+  if(CTX.MEAS&&ex._cab){ex._cab[id]=Math.min(ex._cab[id]??1e9,L);}
+  const L0=ex.L0&&ex.L0[id]!=null?ex.L0[id]+10:L;
+  const r=Math.max(0,Math.min(1,(L-L0)/Math.max(1,L0)));
+  L3(from,to,'elas',(o.w??3.4)*(1-0.45*r),{bias:o.bias??-1,layer:o.layer});
+  return L;
+}
+/** Pegador do elástico na mão: uma barrinha curta atravessada. */
+export function bandHandle(G,dir,o={}){L3(add(G,mul(dir,-4.5)),add(G,mul(dir,4.5)),'eqd',2.6,{bias:o.bias??.3});}
+/**
+ * Halter em 3D (catálogo, 04/11/2026): o cabo e as anilhas como cilindros de verdade, projetados na vista. De lado,
+ * a anilha vista de frente é um círculo e vista de perfil é um retângulo fino, como na vida real (o `dumbbell` antigo
+ * desenha sempre dois círculos). hd = direção do cabo.
+ */
+export function dumbbell3(G,hd,cls,o={}){
+  // Sem o acabamento A2 (estilo clássico e o A aprovado), o halter antigo: o clássico é conferido contra o guia original.
+  if(!CTX.ACABAMENTO)return dumbbell(G,hd,cls);
+  const u=norm(hd),a=norm(Math.abs(u[1])<.9?cross(u,[0,1,0]):cross(u,[1,0,0])),b=cross(u,a);
+  const disco=(c)=>{const pts=[];for(let i=0;i<20;i++){const t=i/20*2*Math.PI;pts.push(comb(1,c,7*Math.cos(t),a,7*Math.sin(t),b));}return pts;};
+  L3(add(G,mul(u,-8)),add(G,mul(u,8)),cls,2.6,{bias:(o.bias??0),layer:o.layer});
+  for(const s of[-1,1]){
+    const pts=[...disco(add(G,mul(u,s*7))),...disco(add(G,mul(u,s*11)))];
+    const Q=pts.map(CTX.PJ);Q.forEach(q=>bb(q[0],q[1],1));const h=hull(Q);
+    push(o.layer??1,Q.reduce((t,q)=>t+q[2],0)/Q.length+(o.bias??0)+.1,`<polygon points="${h.map(q=>f1(q[0])+','+f1(q[1])).join(' ')}" class="${cls}" stroke-width="0.8"/>`);
+  }
+}
+/**
+ * Kettlebell (catálogo, 04/11/2026): a alça na mão (G) e a bola embaixo dela, na direção `baixo` (a gravidade, quando
+ * pendurado; ao longo do antebraço, quando apoiado nele). A bola é uma esfera: um círculo em qualquer vista. `eixo` é a
+ * direção da alça (de um "chifre" ao outro).
+ */
+export function kettlebell(G,baixo,eixo,cls,o={}){
+  // Com as duas mãos (o.maos = [mão direita, mão esquerda]), a alça passa pelas duas, e a bola fica embaixo do meio:
+  // o kettlebell nunca fica solto entre as mãos (pedido do Gustavo, 04/11/2026).
+  if(o.maos){G=mid(o.maos[0],o.maos[1]);eixo=sub(o.maos[1],o.maos[0]);}
+  const d=norm(baixo),a=norm(eixo),c=add(G,mul(d,12));
+  const m=o.maos?Math.max(5,len(sub(o.maos[1],o.maos[0]))/2):5;
+  const pts=[comb(1,c,-6.5,a,-6,d),add(G,mul(a,-m)),add(G,mul(a,m)),comb(1,c,6.5,a,-6,d)];
+  PL3(pts,cls.endsWith('-e')?'kb-alca-e':'kb-alca',2.4,{bias:(o.bias??0)+.2,layer:o.layer});
+  C3(c,9,cls,{bias:o.bias??0,layer:o.layer});
+}
 export function dumbbellV(top,cls){const bot=add(top,[0,-20,0]);L3(top,bot,cls,2.6,{bias:.4});for(const c of[top,bot]){L3(add(c,[-9,0,0]),add(c,[9,0,0]),cls,4,{bias:.45});L3(add(c,[0,0,-9]),add(c,[0,0,9]),cls,4,{bias:.45});}}
 export function ropeC(sk,pul){const hr=sk.side.R.G,hl=sk.side.L.G,m=mid(hr,hl);const half=len(sub(hr,hl))/2;return add(m,mul(norm(sub(pul,m)),Math.sqrt(Math.max(30,784-half*half))));}
 export function rope(ex,id,sk,pul){
@@ -131,4 +180,74 @@ export function pullBar(){
   for(const s of[-1,1]){L3([s*62,230,0],[s*74,221,0],'eql',3.4,{bias:-3});L3([s*74,221,0],[s*80,232,0],'eql',3,{bias:-3});}
   if(CTX.VIEW!=='lateral'){for(const s of[-1,1])BOX([s*84,119,-8],[[X,5],[Y,119],[Z,8]],'eqp',{bias:-400,w:.6});L3([-84,238,-8],[84,238,-8],'eql',3,{bias:-399});}
   else C3([0,230,0],3.6,'eqd',{bias:3});
+}
+
+/* ================= peças novas do catálogo completo (11/2026) ================= */
+/**
+ * Fita de suspensão (TRX ou argolas): mosquetão numa âncora no alto, um trecho único até o ponto em que a fita se
+ * divide e duas fitas até os pegadores (as mãos, ou os pés). A fita não estica: o comprimento sai da pose, e por isso
+ * não há calibração L0; com CTX.MEAS ligado, `ex._fita[id]` guarda o menor e o maior comprimento vistos
+ * (scripts/medir-animacao.mjs imprime os dois), para o autor conferir que a fita não "cresce" entre as fases.
+ * pegadores = [ponto direito, ponto esquerdo] (ou um ponto só: uma fita só). o.tira = comprimento do trecho único (cm). o.pe = pegador de pé (berço
+ * largo, sem anel). cls = 'db' ou 'db-e' (o pegador fica vermelho na figura do erro, como o halter).
+ */
+export function suspensao(ex,id,ancora,pegadores,cls,o={}){
+  const m=pegadores.length>1?mid(pegadores[0],pegadores[1]):pegadores[0],L=len(sub(m,ancora)); // um pegador só: uma fita
+  const u=norm(sub(m,ancora)),tira=Math.min(o.tira??30,L*.6),split=add(ancora,mul(u,tira));
+  if(CTX.MEAS){ // caminho da fita até cada pegador: trecho único + fita própria
+    ex._fita=ex._fita||{};const f=ex._fita[id]||{min:1e9,max:0};
+    for(const p of pegadores){const Lp=tira+len(sub(p,split));f.min=Math.min(f.min,Lp);f.max=Math.max(f.max,Lp);}
+    ex._fita[id]=f;
+  }
+  L3(add(ancora,[0,0,-10]),add(ancora,[0,0,10]),'eql',3,{bias:-3});
+  C3(ancora,2.6,'eqd',{bias:-3});
+  L3(ancora,split,'eql',2.4,{bias:-2});
+  for(const p of pegadores){
+    L3(split,p,'eql',1.8,{bias:-1});
+    const a=norm(Math.abs(u[0])<.9?cross(u,X):cross(u,Y)); // atravessado à fita
+    if(o.pe){L3(add(p,mul(a,-6)),add(p,mul(a,6)),cls,3.2,{bias:.3});}
+    else{C3(p,3,'eqd',{bias:.2});L3(add(p,mul(a,-4.5)),add(p,mul(a,4.5)),cls,2.6,{bias:.3});}
+  }
+}
+/**
+ * Paralelas (catálogo, 11/2026): duas barras na altura das mãos (h), separadas de 2·meia, com os montantes e a
+ * travessa no fundo, atrás da figura em todas as vistas (como a barra fixa). De lado, as duas barras viram uma só.
+ */
+export function paralelas(h=105,meia=25){
+  for(const s of[-1,1])L3([s*meia,h,-30],[s*meia,h,30],'eql',3.4,{bias:s<0?2:-2});
+  for(const s of[-1,1])BOX([s*meia,h/2,-27],[[X,2.5],[Y,h/2],[Z,2.5]],'eqp',{bias:-400,w:.6});
+  L3([-meia,h-4,-27],[meia,h-4,-27],'eql',3,{bias:-399});
+}
+/**
+ * Caneleira de peso (catálogo, 11/2026): uma caixa presa logo acima do tornozelo, atravessada por uma tira. k = lado.
+ * cls = 'eqd' (normal) ou 'db-e' (vermelha, na figura do erro).
+ */
+export function caneleira(sk,k,cls,o={}){
+  const sd=sk.side[k],u=norm(sub(sd.K,sd.A)),a=norm(Math.abs(u[1])<.9?cross(u,Y):cross(u,X)),b=cross(u,a);
+  const c=add(sd.A,mul(u,7));
+  BOX(c,[[u,4.5],[a,6.5],[b,6.5]],cls,{bias:o.bias??.3,w:.9});
+  L3(comb(1,c,-6.8,a,4.5,u),comb(1,c,6.8,a,4.5,u),'eql',1.6,{bias:(o.bias??.3)+.1});
+}
+/**
+ * Mini-band (catálogo, 11/2026): laço curto de elástico nas coxas, logo acima dos joelhos, feito com duas faixas
+ * (`band`, ids 'f' e 't': frente e trás) entre as duas coxas e uma "tampa" em cada coxa. Herda da `band` a calibração
+ * do repouso e o afinamento com a tensão: a faixa afina quando os joelhos abrem.
+ */
+export function miniBand(ex,sk,o={}){
+  const p={};for(const k of['R','L']){const sd=sk.side[k];p[k]=add(sd.K,mul(sub(sd.Hp,sd.K),.18));}
+  const f=mul(norm(sub(sk.fL,mul(sk.uL,dot(sk.fL,sk.uL)))),6);
+  band(ex,'f',add(p.R,f),add(p.L,f),{w:o.w??3.4,bias:.4});
+  band(ex,'t',sub(p.R,f),sub(p.L,f),{w:o.w??3.4,bias:-2});
+  for(const k of['R','L'])L3(add(p[k],f),sub(p[k],f),'elas',o.w??3.4,{bias:.5});
+}
+/**
+ * Roda abdominal (catálogo, 11/2026): uma roda de raio 9 no chão, com o eixo passando pelas duas mãos e um pegador
+ * de cada lado. De lado, a roda é um círculo; de frente, um retângulo fino. cls = 'db' ou 'db-e' (pegadores).
+ */
+export function roda(GR,GL,cls,o={}){
+  const c=mid(GR,GL),a=norm(sub(GL,GR));
+  if(isSide()){C3(c,9,'eqp',{w:1.2,bias:o.bias??.5});C3(c,2.2,'eqd',{bias:(o.bias??.5)+.1});}
+  else BOX(c,[[a,1.6],[Y,9],[Z,9]],'eqp',{bias:o.bias??.5,w:.9});
+  L3(add(GR,mul(a,-10)),add(GL,mul(a,10)),'eqd',2.4,{bias:(o.bias??.5)+.2});
+  for(const G of[GR,GL])L3(add(G,mul(a,-4.5)),add(G,mul(a,4.5)),cls,3.4,{bias:(o.bias??.5)+.3});
 }

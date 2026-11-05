@@ -1,0 +1,76 @@
+{
+  "id": "triceps-frances-polia-unilateral",
+  "name": "Tríceps francês unilateral na polia, com estribo",
+  "short": "Francês unilateral na polia",
+  "target": "Tríceps (parte de trás do braço), principalmente a cabeça longa",
+  "feel": "Parte de trás do braço, do ombro ao cotovelo, com o braço esticando no fim.",
+  "feelNote": "Dor no ombro ou no cotovelo não é normal: diminua a placa ou troque pelo exercício alternativo.",
+  "setupEq": [
+    "Polia embaixo, com o estribo (pegador de uma mão) preso no mosquetão."
+  ],
+  "setupBody": [
+    "De costas para a polia, base escalonada: um pé à frente do outro.",
+    "Segure o estribo e leve a mão para trás da cabeça; o cabo passa por trás do corpo.",
+    "Cotovelo apontando para cima, perto da cabeça. A outra mão na cintura."
+  ],
+  "exec": [
+    [
+      "hold",
+      "Alongado",
+      "Mão atrás da cabeça, cotovelo para cima."
+    ],
+    [
+      "conc",
+      "Extensão (concêntrica)",
+      "~1 s. Estenda o braço acima da cabeça; o cotovelo fica parado."
+    ],
+    [
+      "hold",
+      "Braço estendido",
+      "Mão acima da cabeça."
+    ],
+    [
+      "ecc",
+      "Volta (excêntrica)",
+      "~2–3 s, até a mão voltar atrás da cabeça."
+    ]
+  ],
+  "range": [
+    "Início: mão atrás da cabeça, tríceps alongado.",
+    "Fim: braço estendido acima da cabeça."
+  ],
+  "breath": "Solte o ar estendendo, inspire voltando.",
+  "cues": [
+    "Cotovelo para cima.",
+    "Só o antebraço mexe.",
+    "Desce atrás da cabeça."
+  ],
+  "check": [
+    "De costas para a polia",
+    "Pés alternados",
+    "Cotovelo apontando para cima",
+    "Só o antebraço se mexe"
+  ],
+  "vary": "Com a corda e as duas mãos, o movimento é o mesmo (tríceps francês na polia). As duas servem.",
+  "extLabels": [
+    "início",
+    "fim"
+  ],
+  "errors": [
+    {
+      "id": "abre",
+      "title": "Abrir o cotovelo",
+      "desc": "O cotovelo abre para o lado e tira a cabeça longa do tríceps da posição alongada. Cotovelo apontando para cima, perto da cabeça."
+    },
+    {
+      "id": "arco",
+      "title": "Arquear as costas",
+      "desc": "Arquear a lombar para subir o estribo tira o trabalho do tríceps e carrega a coluna. Base escalonada e abdômen firme."
+    },
+    {
+      "id": "curta",
+      "title": "Amplitude curta",
+      "desc": "Sem levar a mão atrás da cabeça, você perde a parte alongada do movimento."
+    }
+  ]
+}

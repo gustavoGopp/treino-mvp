@@ -1,6 +1,6 @@
 // @ts-nocheck
 // Gerado por scripts/extrair-motor.mjs a partir de referencia/guia-execucao-fase1.html. Port mecânico: não editar à mão antes do M1 terminar.
-import { BOX, L3, TX, dumbbell, tower } from '../desenho';
+import { BOX, L3, TX, dumbbell3, tower } from '../desenho';
 import { X, Y, Z } from '../math';
 
 const ex = {
@@ -21,7 +21,7 @@ const ex = {
   ext:['stretch','top'],
   paths:{lateral:[['heel','R','calcanhar']],zoom:[['heel','R','calcanhar']]},
   tower:{x:22,z:52,ac:X,out:[0,0,-1],py:12},
-  equip(sk){BOX([-4,7.5,24],[[X,34],[Y,7.5],[Z,16]],'eqp',{bias:-3});dumbbell(sk.side.R.G,Z,'db'+(this._pal==='e'?'-e':''));tower(this.tower,0);},
+  equip(sk){BOX([-4,7.5,24],[[X,34],[Y,7.5],[Z,16]],'eqp',{bias:-3});dumbbell3(sk.side.R.G,Z,'db'+(this._pal==='e'?'-e':''));tower(this.tower,0);},
   guides:{
     lateral(sk){L3([-11,15,8],[-11,15,-30],'gd',.9,{layer:3,dash:'2 3'});TX([-11,15,-30],'borda do step',{cls:'lbl-g',anchor:'end',dx:-4,dy:4});},
     zoom(sk){L3([-11,15,8],[-11,15,-38],'gd',.9,{layer:3,dash:'2 3'});TX([-11,15,-38],'borda do step',{cls:'lbl-g',dy:14});}

@@ -1070,7 +1070,7 @@
       "maeo2021",
       "kinoshita2023",
       "kinoshita2026",
-      "wolf2025"
+      "pedrosa2022"
     ]
   },
   {
@@ -1091,9 +1091,9 @@
     "id": "selecao.isolador-obrigatorio",
     "regra": "Quando o equipamento permite, entra o isolador que cobre o que os multiarticulares não cobrem; ele não sai nos cortes de tempo. Em treinos curtos (até 4 exercícios), entra depois das vagas-base do dia, para não deixar um músculo grande sem nenhuma série na semana (revista na auditoria do treino, 02/11/2026; `selecao.multi-mono`)",
     "valores": {
-      "iniciante": "extensora (reto femoral); tríceps acima da cabeça (cabeça longa); panturrilha em pé (gastrocnêmio); com até 4 exercícios por treino, entram depois das vagas-base do dia",
-      "intermediario": "extensora (reto femoral); tríceps acima da cabeça (cabeça longa); panturrilha em pé (gastrocnêmio); com até 4 exercícios por treino, entram depois das vagas-base do dia",
-      "avancado": "extensora (reto femoral); tríceps acima da cabeça (cabeça longa); panturrilha em pé (gastrocnêmio); com até 4 exercícios por treino, entram depois das vagas-base do dia"
+      "iniciante": "extensora (reto femoral; sem a máquina, com caneleira ou com elástico, no lado curto do músculo: `equipamento.caneleira`); tríceps acima da cabeça (cabeça longa); panturrilha em pé (gastrocnêmio); com até 4 exercícios por treino, entram depois das vagas-base do dia",
+      "intermediario": "extensora (reto femoral; sem a máquina, com caneleira ou com elástico, no lado curto do músculo: `equipamento.caneleira`); tríceps acima da cabeça (cabeça longa); panturrilha em pé (gastrocnêmio); com até 4 exercícios por treino, entram depois das vagas-base do dia",
+      "avancado": "extensora (reto femoral; sem a máquina, com caneleira ou com elástico, no lado curto do músculo: `equipamento.caneleira`); tríceps acima da cabeça (cabeça longa); panturrilha em pé (gastrocnêmio); com até 4 exercícios por treino, entram depois das vagas-base do dia"
     },
     "selo": "moderada",
     "fontes": [
@@ -1137,9 +1137,9 @@
     "id": "selecao.gluteo",
     "regra": "Ordem das funções para glúteos",
     "valores": {
-      "iniciante": "agachar profundo ou afundo → extensão de quadril (hip thrust, glúteo na máquina, ponte, coice) → abdução como complemento",
-      "intermediario": "agachar profundo ou afundo → extensão de quadril (hip thrust, glúteo na máquina, ponte, coice) → abdução como complemento",
-      "avancado": "agachar profundo ou afundo → extensão de quadril (hip thrust, glúteo na máquina, ponte, coice) → abdução como complemento"
+      "iniciante": "agachar profundo ou afundo → extensão de quadril (hip thrust, glúteo na máquina, ponte, coice) → abdução como complemento (máquina, polia, caneleira, mini-band e, sem nada, deitado de lado sem carga, com repetições altas: auditoria de 04/11/2026)",
+      "intermediario": "agachar profundo ou afundo → extensão de quadril (hip thrust, glúteo na máquina, ponte, coice) → abdução como complemento (máquina, polia, caneleira, mini-band e, sem nada, deitado de lado sem carga, com repetições altas: auditoria de 04/11/2026)",
+      "avancado": "agachar profundo ou afundo → extensão de quadril (hip thrust, glúteo na máquina, ponte, coice) → abdução como complemento (máquina, polia, caneleira, mini-band e, sem nada, deitado de lado sem carga, com repetições altas: auditoria de 04/11/2026)"
     },
     "selo": "um estudo",
     "fontes": [
@@ -1176,11 +1176,11 @@
   },
   {
     "id": "selecao.aducao-complemento",
-    "regra": "Adução na máquina (adutores, sem meta própria): complemento opcional no dia de pernas",
+    "regra": "Adução na máquina ou, sem ela, com caneleira deitado de lado (`equipamento.caneleira`, desde 04/11/2026) ou, sem nada, deitado de lado sem carga (auditoria de 04/11/2026) (adutores, sem meta própria): complemento opcional no dia de pernas",
     "valores": {
-      "iniciante": "só quando pernas ou glúteos são prioridade e há tempo; sai primeiro nos cortes; sem a máquina, nenhum aviso",
-      "intermediario": "só quando pernas ou glúteos são prioridade e há tempo; sai primeiro nos cortes; sem a máquina, nenhum aviso",
-      "avancado": "só quando pernas ou glúteos são prioridade e há tempo; sai primeiro nos cortes; sem a máquina, nenhum aviso"
+      "iniciante": "só quando pernas ou glúteos são prioridade e há tempo; sai primeiro nos cortes; nunca gera aviso",
+      "intermediario": "só quando pernas ou glúteos são prioridade e há tempo; sai primeiro nos cortes; nunca gera aviso",
+      "avancado": "só quando pernas ou glúteos são prioridade e há tempo; sai primeiro nos cortes; nunca gera aviso"
     },
     "selo": "consenso",
     "fontes": [
@@ -1236,14 +1236,55 @@
     "id": "equipamento.capacidades",
     "regra": "O gerador trata o equipamento por capacidade: cada exercício pede capacidades (polia alta, banco inclinável…) e cada item dá as suas; o multifuncional dá as das estações marcadas, e a polia simples, as da altura",
     "valores": {
-      "iniciante": "46 itens (pesquisa-v2/08, seção 1); a esteira fica só para a foto",
-      "intermediario": "46 itens (pesquisa-v2/08, seção 1); a esteira fica só para a foto",
-      "avancado": "46 itens (pesquisa-v2/08, seção 1); a esteira fica só para a foto"
+      "iniciante": "49 itens (pesquisa-v2/08, seção 1; caneleiras, mini-band e roda abdominal desde o catálogo completo, 11, B.2.3); a esteira fica só para a foto",
+      "intermediario": "49 itens (pesquisa-v2/08, seção 1; caneleiras, mini-band e roda abdominal desde o catálogo completo, 11, B.2.3); a esteira fica só para a foto",
+      "avancado": "49 itens (pesquisa-v2/08, seção 1; caneleiras, mini-band e roda abdominal desde o catálogo completo, 11, B.2.3); a esteira fica só para a foto"
     },
     "selo": "consenso",
     "fontes": [
       "haugen2023",
       "hernandezbelmonte2023",
+      "consenso-projeto"
+    ]
+  },
+  {
+    "id": "equipamento.caneleira",
+    "regra": "Caneleiras de peso (item novo, com o kg de cada uma; catálogo completo, 04/11/2026): abrem a extensão de joelho sentado, a abdução e a adução deitado de lado, as vagas que ficavam vazias em casa. Carga baixa perto da falha cresce como carga alta, mas na extensão o peso no tornozelo pesa mais com o joelho esticado (o lado curto do quadríceps, o contrário de `selecao.alongado`) e pode ficar leve para quem já treina: por isso a extensão com caneleira vem depois da cadeira extensora. Nenhum ensaio de hipertrofia com caneleira em adultos saudáveis (o único lido usou saquinhos de 0,5–1 kg em diabéticos)",
+    "valores": {
+      "iniciante": "extensão de joelho sentado, abdução e adução deitado de lado; na vaga da extensora, depois da cadeira extensora",
+      "intermediario": "extensão de joelho sentado, abdução e adução deitado de lado; na vaga da extensora, depois da cadeira extensora",
+      "avancado": "extensão de joelho sentado, abdução e adução deitado de lado; na vaga da extensora, depois da cadeira extensora"
+    },
+    "selo": "consenso",
+    "fontes": [
+      "chien2022",
+      "schoenfeld2017b",
+      "consenso-projeto"
+    ]
+  },
+  {
+    "id": "equipamento.mini-band",
+    "regra": "Mini-band (elástico curto em laço; item novo, catálogo completo, 04/11/2026): abre a abdução de quadril, que faz crescer a parte de cima do glúteo; é item próprio, separado dos elásticos longos: ter uma não abre os exercícios da outra, e a escada usa as intensidades da mini-band",
+    "valores": {
+      "iniciante": "abdução sentado com a mini-band; a escada pelas intensidades da mini-band",
+      "intermediario": "abdução sentado com a mini-band; a escada pelas intensidades da mini-band",
+      "avancado": "abdução sentado com a mini-band; a escada pelas intensidades da mini-band"
+    },
+    "selo": "um estudo",
+    "fontes": [
+      "attarieh2026"
+    ]
+  },
+  {
+    "id": "equipamento.roda-abdominal",
+    "regra": "Roda abdominal (item novo, catálogo completo, 04/11/2026): a lombar arqueia quando o abdômen cede, por isso fica fora do iniciante (complexidade 3) e sai com dor lombar (a lombar está nas articulações do exercício); entra como alternativa na vaga de abdômen, sem tirar as opções que já existem. Nenhum ensaio compara exercícios de abdômen com medida de hipertrofia",
+    "valores": {
+      "iniciante": "não entra",
+      "intermediario": "alternativa na vaga de abdômen; sai com dor lombar",
+      "avancado": "alternativa na vaga de abdômen; sai com dor lombar"
+    },
+    "selo": "consenso",
+    "fontes": [
       "consenso-projeto"
     ]
   },
@@ -1346,6 +1387,106 @@
     ]
   },
   {
+    "id": "objetivo.pergunta",
+    "regra": "Pergunta \"O que você quer agora?\" (decisão do Gustavo em 04/11/2026, opção (b) de `pesquisa-v2/12`): ganhar músculo, manter o músculo enquanto perde peso, ficar mais forte, ou saúde e disposição. Nada vem marcado; sem resposta, vale \"ganhar músculo\". Só \"ficar mais forte\" muda números; as outras geram o mesmo programa, com um texto próprio. Nutrição e cardio prescrito continuam fora",
+    "valores": {
+      "iniciante": "opcional",
+      "intermediario": "opcional",
+      "avancado": "opcional"
+    },
+    "selo": "consenso",
+    "fontes": [
+      "consenso-projeto"
+    ]
+  },
+  {
+    "id": "objetivo.cutting.mesmo-programa",
+    "regra": "\"Manter o músculo enquanto perde peso\": o programa é o mesmo da hipertrofia; nenhum número muda por causa do déficit (volume, carga, frequência e RIR iguais). O treino de força protege a massa magra na dieta (robusta); 3 séries por exercício seguraram o músculo como 5 em treinados no déficit (um estudo)",
+    "valores": {
+      "iniciante": "igual",
+      "intermediario": "igual",
+      "avancado": "igual"
+    },
+    "selo": "robusta",
+    "fontes": [
+      "binmahfoz2025",
+      "deller2026",
+      "lopez2022",
+      "roth2023"
+    ]
+  },
+  {
+    "id": "objetivo.cutting.texto",
+    "regra": "Texto do objetivo: a dieta decide a perda de peso (fora do app); no déficit, o músculo tende a crescer pouco e a força pode continuar subindo (moderada); o texto é do projeto",
+    "valores": {
+      "iniciante": "texto",
+      "intermediario": "texto",
+      "avancado": "texto"
+    },
+    "selo": "moderada",
+    "fontes": [
+      "murphy2022",
+      "binmahfoz2025"
+    ]
+  },
+  {
+    "id": "objetivo.forca.faixa-compostos",
+    "regra": "\"Ficar mais forte\": os 2 primeiros exercícios multiarticulares com carga de cada treino usam 5–8 repetições; o resto segue como na hipertrofia. A direção (carga alta dá mais força) é robusta; a faixa e o número de exercícios são escolha do projeto",
+    "valores": {
+      "iniciante": "como na hipertrofia",
+      "intermediario": "5–8 nos 2 primeiros compostos com carga",
+      "avancado": "5–8 nos 2 primeiros compostos com carga"
+    },
+    "selo": "consenso",
+    "fontes": [
+      "acsm2026",
+      "schoenfeld2017b",
+      "lopez2021"
+    ]
+  },
+  {
+    "id": "objetivo.forca.descanso",
+    "regra": "Descanso nesses exercícios, no objetivo de força",
+    "valores": {
+      "iniciante": "90–120 s (como hoje)",
+      "intermediario": "2 min 30 s",
+      "avancado": "2 min 30 s"
+    },
+    "selo": "moderada",
+    "fontes": [
+      "grgic2018a",
+      "acsm2026"
+    ]
+  },
+  {
+    "id": "objetivo.forca.seguranca",
+    "regra": "Na faixa baixa, multiarticular com peso livre (barra, halter, kettlebell) fica com 2 a 3 repetições de reserva; nunca até a falha sem ajudante",
+    "valores": {
+      "iniciante": "—",
+      "intermediario": "RIR 2–3",
+      "avancado": "RIR 2–3"
+    },
+    "selo": "consenso",
+    "fontes": [
+      "consenso-projeto"
+    ]
+  },
+  {
+    "id": "objetivo.saude.texto",
+    "regra": "Texto do objetivo de saúde: o programa cumpre a parte de força das diretrizes; elas pedem também 150–300 min por semana de aeróbio moderado (ou 75–150 vigoroso), que o app não prescreve. Os números são das diretrizes (OMS 2020, ACSM), sem a evidência por trás lida aqui",
+    "valores": {
+      "iniciante": "texto",
+      "intermediario": "texto",
+      "avancado": "texto"
+    },
+    "selo": "consenso",
+    "fontes": [
+      "bull2020",
+      "garber2011",
+      "momma2022"
+    ]
+  },
+  {
     "id": "equipamento.flexao-por-supino",
     "regra": "Sem banco ou supino: flexão de braço com escada de dificuldade até a série ficar perto da falha dentro da faixa. Revista em 03/11/2026: a escada é a de `progressao.escada-por-exercicio`; o degrau \"com elástico\" saiu (o app não pede o que a pessoa não marcou); quem não chega ao mínimo da faixa no chão faz a inclinada, como diz o cartão",
     "valores": {
@@ -1428,7 +1569,7 @@
   },
   {
     "id": "tempo.exercicios-por-sessao",
-    "regra": "Exercícios por treino conforme os minutos, pelo modelo de tempo do app (~3 séries cada); entre os pontos, proporcional",
+    "regra": "Exercícios por treino conforme os minutos, pelo modelo de tempo do app (~3 séries cada); entre os pontos, proporcional. Quando não cabem todas as vagas do dia: primeiro as vagas-base, depois o complemento que é o único exercício direto de um músculo com meta (ex.: ombro posterior), depois os complementos dos grupos prioritários e, por fim, os outros; um complemento não entra se, já no mínimo de séries, passar do teto semanal de algum músculo (`volume.semanal.minimo-eficaz`, `volume.semanal.teto-padrao`; auditoria de 04/11/2026)",
     "valores": {
       "iniciante": "30 min: 4; 45: 6; 60: 8; 75: 10; 90: 12",
       "intermediario": "30 min: 4; 45: 6; 60: 8; 75: 10; 90: 12",
@@ -1644,6 +1785,21 @@
     ]
   },
   {
+    "id": "tecnica.parcial-alongada",
+    "regra": "Repetição parcial na metade em que o músculo está esticado: cresce como a amplitude completa (não mais); serve de alternativa quando o fim da amplitude incomoda, nunca como padrão (`selecao.amplitude`); o porquê do programa do avançado cita a técnica (catálogo, 04/11/2026)",
+    "valores": {
+      "iniciante": "—",
+      "intermediario": "—",
+      "avancado": "alternativa em texto, quando o fim da amplitude incomoda"
+    },
+    "selo": "moderada",
+    "fontes": [
+      "wolf2025",
+      "gschneidner2025",
+      "pedrosa2022"
+    ]
+  },
+  {
     "id": "seguranca.sem-diagnostico",
     "regra": "O app não diagnostica e se posiciona como ferramenta de autogestão",
     "valores": {
@@ -1688,9 +1844,9 @@
     "id": "visao.desambiguacao",
     "regra": "Dicas para não confundir aparelhos parecidos no pedido da foto (hack × leg press, voador × polia dupla, multifuncional × estação de polia, smith × rack…); o par confundível ausente conta como falso positivo grave no eval",
     "valores": {
-      "iniciante": "14 dicas no pedido (pesquisa-v2/08, seção 4)",
-      "intermediario": "14 dicas no pedido (pesquisa-v2/08, seção 4)",
-      "avancado": "14 dicas no pedido (pesquisa-v2/08, seção 4)"
+      "iniciante": "16 dicas no pedido (pesquisa-v2/08, seção 4; caneleira × tornozeleira da polia e mini-band × elásticos longos, 11, B.2.3)",
+      "intermediario": "16 dicas no pedido (pesquisa-v2/08, seção 4; caneleira × tornozeleira da polia e mini-band × elásticos longos, 11, B.2.3)",
+      "avancado": "16 dicas no pedido (pesquisa-v2/08, seção 4; caneleira × tornozeleira da polia e mini-band × elásticos longos, 11, B.2.3)"
     },
     "selo": "consenso",
     "fontes": [

@@ -1,7 +1,7 @@
 // @ts-nocheck
 // Gerado por scripts/extrair-motor.mjs a partir de referencia/guia-execucao-fase1.html. Port mecânico: não editar à mão antes do M1 terminar.
 import { CTX } from '../contexto';
-import { BOX, L3, TX, dumbbell, tower } from '../desenho';
+import { BOX, L3, TX, dumbbell3, tower } from '../desenho';
 import { X, Y, Z, add } from '../math';
 
 /* ================= exercícios: Membros B ================= */
@@ -23,7 +23,7 @@ const ex = {
   equip(sk){
     BOX([0,42.5,-84],[[X,13],[Y,2.5],[Z,31]],'eqp',{bias:-4});
     for(const z of[-110,-58])BOX([0,21,z],[[X,2.5],[Y,19],[Z,2.5]],'eqd',{bias:-6});BOX([0,2.5,-84],[[X,4],[Y,2],[Z,28]],'eqd',{bias:-6});
-    dumbbell(sk.side.R.G,Z,'db'+(this._pal==='e'?'-e':''));if(CTX.VIEW!=='lateral')tower(this.tower,0);
+    dumbbell3(sk.side.R.G,Z,'db'+(this._pal==='e'?'-e':''));if(CTX.VIEW!=='lateral')tower(this.tower,0);
   },
   guides:{
     lateral(sk){L3(add(sk.P,[0,-12,0]),[0,1,sk.P[2]],'gd',.9,{layer:2,dash:'2 3'});TX([0,1,sk.P[2]],'desce reto',{cls:'lbl-g',anchor:'middle',dy:-5});},

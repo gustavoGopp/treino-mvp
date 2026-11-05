@@ -1,0 +1,69 @@
+{
+  "id": "agachamento-barra",
+  "name": "Agachamento livre com barra (profundo)",
+  "short": "Agachamento com barra",
+  "target": "Quadríceps e glúteos (os adutores e os posteriores ajudam)",
+  "setupEq": [
+    "Barra no rack na altura do meio do peito; pinos de segurança um pouco abaixo do ponto mais baixo do seu agachamento.",
+    "Travas nas anilhas, dos dois lados."
+  ],
+  "setupBody": [
+    "Barra apoiada no alto das costas, sobre o trapézio, com as mãos um pouco mais abertas que os ombros.",
+    "Tire a barra do rack com dois passos para trás; pés na largura dos ombros ou um pouco mais, pontas levemente para fora.",
+    "Olhar à frente, coluna neutra."
+  ],
+  "exec": [
+    [
+      "ecc",
+      "Descida",
+      "~2–3 s. Quadril e joelhos dobram juntos; o joelho acompanha a ponta do pé e pode passar dela."
+    ],
+    [
+      "hold",
+      "Embaixo",
+      "Coxa abaixo da linha horizontal (agachamento completo), sem quicar, calcanhares no chão."
+    ],
+    [
+      "conc",
+      "Subida",
+      "Firme, empurrando o chão pelo pé inteiro; a barra sobe em linha reta sobre o meio do pé."
+    ]
+  ],
+  "range": [
+    "Embaixo: a coxa passa da linha horizontal, desde que sem dor e com os calcanhares no chão.",
+    "Em cima: pernas estendidas, sem travar o joelho com tranco."
+  ],
+  "cues": [
+    "Barra sobre o meio do pé.",
+    "Joelho segue a ponta do pé.",
+    "Desce até passar da horizontal."
+  ],
+  "errors": [
+    {
+      "id": "raso",
+      "title": "Meio agachamento",
+      "desc": "Parar antes de a coxa chegar à horizontal: o glúteo e a parte de dentro da coxa crescem menos (um estudo)."
+    },
+    {
+      "id": "valgo",
+      "title": "Joelhos para dentro",
+      "desc": "Na subida os joelhos se juntam. O joelho segue a direção do pé."
+    },
+    {
+      "id": "lombar",
+      "title": "Lombar arredonda no fundo",
+      "desc": "A coluna perde a posição neutra embaixo. Desça só até onde a coluna segura; a profundidade vem com o tempo."
+    },
+    {
+      "id": "calcanhar",
+      "title": "Calcanhar sai do chão",
+      "desc": "O peso vai para a ponta do pé. Pé inteiro no chão; se faltar mobilidade, uma anilha fina sob os calcanhares."
+    }
+  ],
+  "carga": "Kg total (barra + anilhas). Sobe o menor par de anilhas da sua academia quando todas as séries chegarem ao topo da faixa. A barra olímpica costuma pesar 20 kg; se a sua for diferente, ajuste em Meus locais.",
+  "montagem": [
+    "Pinos de segurança do rack logo abaixo do ponto mais baixo do agachamento: se travar, a barra fica nos pinos.",
+    "Travas nas anilhas antes de tirar a barra do rack.",
+    "Nunca agache sem os pinos de segurança, nem com a barra desbalanceada."
+  ]
+}

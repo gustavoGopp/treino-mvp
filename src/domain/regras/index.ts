@@ -51,6 +51,14 @@ export const DESCANSO = {
   isolador: { iniciante: 75, intermediario: 75, avancado: 75 } as PorNivel<number>,
 };
 
+/** Objetivo "ficar mais forte" (objetivo.forca.*; pesquisa-v2/12, decisão do Gustavo em 04/11/2026). */
+export const OBJETIVO_FORCA = {
+  compostosPorTreino: 2, // objetivo.forca.faixa-compostos: os 2 primeiros multiarticulares com carga do treino
+  reps: [5, 8] as [number, number], // objetivo.forca.faixa-compostos (consenso; a direção é robusta)
+  descansoSeg: 150, // objetivo.forca.descanso (2 min 30 s; moderada)
+  rirPesoLivre: [2, 3] as [number, number], // objetivo.forca.seguranca
+};
+
 export const TEMPO = {
   segPorRep: 3, // tempo.serie
   preparoSerie: 7.5, // tempo.serie (5–10 s)

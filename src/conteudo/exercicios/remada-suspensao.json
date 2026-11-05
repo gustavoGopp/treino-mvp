@@ -2,23 +2,37 @@
   "id": "remada-suspensao",
   "name": "Remada na suspensão",
   "short": "Remada na suspensão",
-  "target": "Costas",
+  "target": "Costas (dorsal e meio das costas); o bíceps e a parte de trás do ombro ajudam",
+  "feel": "Costas: as laterais (dorsal) e o meio, entre as escápulas. O bíceps e a parte de trás do ombro trabalham como secundários.",
+  "feelNote": "Se sentir mais os braços do que as costas, puxe o cotovelo para trás, em direção ao quadril, em vez de puxar só com a mão. Se a lombar reclamar, o corpo está dobrando no quadril: abdômen e glúteo firmes.",
   "setupEq": [
-    "Fitas presas num ponto firme no alto (porta com trava própria, viga ou barra), as duas na mesma altura."
+    "Fitas de suspensão presas num ponto firme no alto (porta com trava própria, viga ou barra), as duas alças na mesma altura."
   ],
   "setupBody": [
-    "Corpo reto e inclinado para trás, calcanhares no chão, braços estendidos."
+    "De frente para a âncora, segure as alças com as palmas viradas uma para a outra.",
+    "Corpo reto e inclinado para trás, calcanhares no chão, braços estendidos.",
+    "Comece quase em pé: quanto mais deitado o corpo (pés mais à frente), mais difícil."
   ],
   "exec": [
     [
+      "hold",
+      "Braços estendidos",
+      "Corpo reto como uma tábua, do calcanhar à cabeça."
+    ],
+    [
       "conc",
-      "Puxar",
-      "Puxa até as mãos chegarem ao lado do peito, cotovelos rentes."
+      "Puxada (concêntrica)",
+      "~1 s. Puxe até as mãos chegarem ao lado do peito, cotovelos rentes ao corpo; as escápulas se juntam no fim."
+    ],
+    [
+      "hold",
+      "Mãos ao lado do peito",
+      "Segure 1 s, corpo ainda reto, ombros longe das orelhas."
     ],
     [
       "ecc",
-      "Volta",
-      "Volta controlando até os braços estenderem."
+      "Volta (excêntrica)",
+      "~2 s, controlando, até estender os braços."
     ]
   ],
   "range": [
@@ -26,30 +40,40 @@
     "Fim: mãos ao lado do peito.",
     "Mais difícil: pés mais à frente, corpo mais horizontal."
   ],
+  "breath": "Solte o ar puxando, inspire na volta.",
   "cues": [
     "Corpo reto como uma tábua.",
     "Ombros baixos.",
     "Estica os braços na volta."
   ],
+  "check": [
+    "Âncora firme, fita sem desgaste",
+    "Alças na mesma altura",
+    "Calcanhares no chão",
+    "Corpo reto, abdômen firme",
+    "Série perto da falha, no RIR do programa"
+  ],
+  "vary": "Ficou fácil? Ponha os pés mais à frente, até o corpo ficar quase deitado. Ficou difícil demais? Fique mais em pé. Depois, a escada do programa: pausa de 2 s no fim e descida de 3 s.",
+  "note": "<b>Montagem segura:</b> Prenda a fita num ponto feito para isso: barra fixa firme, viga, ou a trava de porta do fabricante, com a porta fechada e trancada, do lado em que ela fecha contra o batente. Antes da 1ª série, deixe o peso cair na fita devagar. Confira se a fita não está gasta e se as alças estão na mesma altura.",
+  "extLabels": [
+    "braços estendidos",
+    "mãos no peito"
+  ],
   "errors": [
     {
-      "id": "e1",
+      "id": "quadril",
       "title": "Quadril cai",
-      "desc": "O corpo não fica reto."
+      "desc": "O corpo dobra no quadril e deixa de ser uma tábua: o peso sai das costas. Abdômen e glúteo firmes."
     },
     {
-      "id": "e2",
+      "id": "encolher",
       "title": "Encolher os ombros",
-      "desc": "Os ombros sobem."
+      "desc": "Os ombros sobem até as orelhas e o trapézio de cima assume o trabalho. Ombros baixos, escápulas se juntam."
     },
     {
-      "id": "e3",
+      "id": "curta",
       "title": "Não estender os braços",
-      "desc": "A volta para no meio."
+      "desc": "A volta para no meio e as costas trabalham só a metade do movimento."
     }
-  ],
-  "carga": "Peso do corpo, em degraus de inclinação: pés mais à frente = mais difícil. Depois, a escada de dificuldade.",
-  "montagem": [
-    "Prenda as fitas num ponto firme e confira se aguentam o seu peso antes da 1ª série."
   ]
 }

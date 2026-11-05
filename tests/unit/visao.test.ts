@@ -8,8 +8,8 @@ describe('visão: validação da resposta do modelo', () => {
     for (const id of ITEM_IDS) expect(instrucoes()).toContain(id);
   });
 
-  it('visao.desambiguacao: as 14 dicas da pesquisa entram no pedido, cada uma sobre ids da taxonomia', () => {
-    expect(DICAS_DESAMBIGUACAO).toHaveLength(14);
+  it('visao.desambiguacao: as 16 dicas da pesquisa entram no pedido, cada uma sobre ids da taxonomia', () => {
+    expect(DICAS_DESAMBIGUACAO).toHaveLength(16);
     const texto = instrucoes();
     for (const d of DICAS_DESAMBIGUACAO) {
       expect(texto).toContain(d.dica);

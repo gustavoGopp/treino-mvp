@@ -27,7 +27,7 @@ describe('local.treino-do-dia: o Bruno faz o Superior A na academia do bairro', 
       ['puxada-unilateral', 'barra-fixa'],
       ['triceps-frances', 'triceps-frances-halter'],
       ['crucifixo-polia', 'crucifixo-halteres'],
-      ['face-pull', 'crucifixo-inverso'],
+      ['crucifixo-invertido-polia', 'crucifixo-inverso'],
     ]);
     expect(trocas[0]!.motivo).toBe('aqui não tem polia alta: puxada unilateral ajoelhado na polia alta → barra fixa');
     expect(trocas.every((t) => t.regraId === 'local.treino-do-dia')).toBe(true);
@@ -77,16 +77,23 @@ describe('sem equivalente no local (selecao.dia-sem-principal)', () => {
     }
   });
   it('motivo verdadeiro: quando o único equivalente possível já está no treino de hoje, o aviso diz isso (auditoria, achado 10)', () => {
-    const perfil: Perfil = { ...carla.perfil, nivel: 'intermediario', diasSemana: 4, divisao: 'si-2x', minutosSessao: 60, prioridades: [] };
-    const sup = ok(perfil, carla.inventario).dias.find((d) => d.nome === 'Superior A')!;
+    // Sem a remada sem banco e a rosca martelo (catálogo completo, 04/11/2026), que dão outro equivalente só com halteres:
+    // assim o cenário do achado 10 continua o mesmo. Com elas, a remada sem banco entra no lugar da remada apoiada.
     const soHalteres: Inventario = { halteres_fixos: { minKg: 2, maxKg: 20, passoKg: 2 } };
+    const base: Perfil = { ...carla.perfil, nivel: 'intermediario', diasSemana: 4, divisao: 'si-2x', minutosSessao: 60, prioridades: [] };
+    const supBase = ok(base, carla.inventario).dias.find((d) => d.nome === 'Superior A')!;
+    // (qual das duas remadas com halter entra depende do desempate: as duas têm animação desde 04/11/2026)
+    expect(['remada-unilateral-sem-banco', 'remada-curvada-halteres']).toContain(diaNoLocal(supBase, base, soHalteres).trocas.find((t) => t.vaga === 'remada-apoiada')!.entrou);
+    const perfil: Perfil = { ...base, evitarExercicios: ['remada-unilateral-sem-banco', 'rosca-martelo'] };
+    const sup = ok(perfil, carla.inventario).dias.find((d) => d.nome === 'Superior A')!;
     const { trocas } = diaNoLocal(sup, perfil, soHalteres);
     // A remada curvada entra no lugar da puxada; a vaga da remada apoiada não tem outra remada possível ali.
     const remada = trocas.find((t) => t.vaga === 'remada-apoiada')!;
     expect(remada.motivo).toContain('o único equivalente possível aqui (remada curvada com halteres) já está no treino de hoje');
     expect(remada.motivo).not.toContain('nenhum equivalente');
-    // O crucifixo invertido curvado entrou numa vaga anterior; a do face pull fica de fora pelo motivo verdadeiro.
-    const face = trocas.find((t) => t.vaga === 'face-pull')!;
+    // O crucifixo invertido curvado entrou numa vaga anterior; a do ombro de trás (o crucifixo invertido na polia desde
+    // 04/11/2026, antes o face pull) fica de fora pelo motivo verdadeiro.
+    const face = trocas.find((t) => t.vaga === 'crucifixo-invertido-polia' || t.vaga === 'face-pull')!;
     expect(face.entrou).toBeUndefined();
     expect(face.motivo).toContain('o único equivalente possível aqui (crucifixo invertido curvado com halteres) já está no treino de hoje');
     // Sem equivalente nenhum ali, o texto antigo continua: nenhum crucifixo de peito é possível só com halteres.
@@ -174,7 +181,7 @@ describe('progressao.troca-equivalente: o Bruno no prédio e na academia do bair
       ['puxada-unilateral', 'barra-fixa'],
       ['triceps-frances', 'triceps-frances-halter'],
       ['crucifixo-polia', 'crucifixo-halteres'],
-      ['face-pull', 'crucifixo-inverso'],
+      ['crucifixo-invertido-polia', 'crucifixo-inverso'],
     ]);
     expect(e2.ultimoLocalId).toBe('local-2');
   });

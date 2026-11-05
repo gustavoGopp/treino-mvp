@@ -21,7 +21,7 @@ App web (PWA) que monta um programa de hipertrofia baseado em evidência, só co
 - **Commits:** pequenos e descritivos, no imperativo, em pt-BR (ex.: "Adiciona taxonomia de equipamentos").
 - **Estrutura:** `src/domain/` contém funções puras sem React, com 100% das regras testadas no Vitest. `src/engine/` é o motor de animação, sem React. `src/features/` tem as telas. `api/` tem só a função de visão.
 - **Dados separados do código:** biblioteca de exercícios, taxonomia e metas de volume ficam em arquivos de dados validados com zod.
-- **Escopo:** fora do MVP ficam nutrição, login e nuvem, pagamentos, app nativo, recursos sociais, relógios, outros objetivos, treinador humano, cardio prescrito e deload automático. Ideias novas vão para `docs/backlog.md`.
+- **Escopo:** fora do MVP ficam nutrição, login e nuvem, pagamentos, app nativo, recursos sociais, relógios, outros objetivos fora do treino de força (emagrecimento pela dieta, corrida, esportes), treinador humano, cardio prescrito e deload automático. Desde 04/11/2026, a pergunta de objetivo (ganhar músculo, manter o músculo na dieta, ficar mais forte, saúde) entra no MVP, só dentro do treino de força (`docs/pesquisa-v2/12-outros-objetivos.md`). Ideias novas vão para `docs/backlog.md`.
 - **Marcos:** ao fim de cada marco, atualizar `docs/devlog.md` (o que mudou, imagem ou GIF, rascunho de post) e parar para a revisão do Gustavo antes de seguir.
 
 ## Comandos

@@ -26,6 +26,10 @@ const novas: Base = existsSync(CAMINHO_NOVAS)
   ? JSON.parse(readFileSync(CAMINHO_NOVAS, 'utf8'))
   : { nTempos: 24, check: [], exercicios: [] };
 const sha = (s: string) => createHash('sha256').update(s).digest('hex');
+// Animações do guia original corrigidas depois, com a folha antes × depois aprovada (auditoria de 04/11/2026, Parte E.2):
+// para elas, a referência deixa de ser o HTML do guia e passa a ser a linha de base gravada do motor (novas.json),
+// como nas animações novas. O resto das originais continua idêntico ao guia, quadro a quadro.
+const CORRIGIDAS = ['rosca-polia'];
 
 test('motor portado gera os mesmos quadros que o guia original', async ({ page }) => {
   const bundle = await build({
@@ -38,7 +42,7 @@ test('motor portado gera os mesmos quadros que o guia original', async ({ page }
   await page.setContent('<!doctype html><title>motor</title>');
   await page.addScriptTag({ content: bundle.outputFiles[0]!.text });
 
-  const atual = await page.evaluate(({ b, n, gerar }) => {
+  const atual = await page.evaluate(({ b, n, gerar, corrigidas }) => {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const M = (globalThis as any).MOTOR;
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -54,8 +58,11 @@ test('motor portado gera os mesmos quadros que o guia original', async ({ page }
     return {
       ids: M.EX.map((e: { id: string }) => e.id),
       check: M.check(),
+      // as novas (depois das originais) e as originais corrigidas, que têm linha de base própria
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      novas: M.EX.slice(b.exercicios.length).map((ex: any) => {
+      idxNovas: M.EX.map((e: any, i: number) => (i >= b.exercicios.length || corrigidas.includes(e.id) ? i : -1)).filter((i: number) => i >= 0),
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      novas: M.EX.filter((e: any, i: number) => i >= b.exercicios.length || corrigidas.includes(e.id)).map((ex: any) => {
         const chaves = gerar
           ? [
               ...ex.views.flatMap((v: string) => [`${v}|tec`, `${v}|mus`, `${v}|traj`]),
@@ -86,24 +93,27 @@ test('motor portado gera os mesmos quadros que o guia original', async ({ page }
         return { id: be.id, T: ex.T, L0: ex.L0, lift: ex._liftRange ?? null, fits, frames };
       }),
     };
-  }, { b: base, n: novas, gerar: !!process.env.ATUALIZAR_NOVAS });
+  }, { b: base, n: novas, gerar: !!process.env.ATUALIZAR_NOVAS, corrigidas: CORRIGIDAS });
 
   const nOrig = base.exercicios.length;
-  expect(atual.ids.slice(0, nOrig)).toEqual(base.exercicios.map((e) => e.id));
-  expect(atual.check.slice(0, nOrig)).toEqual(base.check);
+  const idsBase = base.exercicios.map((e) => e.id);
+  expect(atual.ids.slice(0, nOrig)).toEqual(idsBase);
+  for (const [i, linha] of atual.check.slice(0, nOrig).entries()) if (!CORRIGIDAS.includes(idsBase[i]!)) expect(linha, idsBase[i]).toBe(base.check[i]);
   for (const linha of atual.check) expect(linha).toMatch(/ik=0 /);
+  const checkNovas = (atual.idxNovas as number[]).map((i) => atual.check[i]!);
 
   // Animações novas: toda animação no motor além das originais precisa de linha de base aprovada.
   const novasAtuais = (atual.novas as Base['exercicios']).map((a) => ({ ...a, frames: Object.fromEntries(Object.entries(a.frames).map(([k, qs]) => [k, qs.map(sha)])) }));
   if (process.env.ATUALIZAR_NOVAS) {
-    writeFileSync(CAMINHO_NOVAS, JSON.stringify({ nTempos: novas.nTempos, check: atual.check.slice(nOrig), exercicios: novasAtuais }, null, 1) + '\n');
+    writeFileSync(CAMINHO_NOVAS, JSON.stringify({ nTempos: novas.nTempos, check: checkNovas, exercicios: novasAtuais }, null, 1) + '\n');
   } else {
     expect(novasAtuais.map((a) => a.id), 'animação nova sem linha de base aprovada').toEqual(novas.exercicios.map((e) => e.id));
-    expect(atual.check.slice(nOrig)).toEqual(novas.check);
+    expect(checkNovas).toEqual(novas.check);
     for (const [i, b] of novas.exercicios.entries()) expect.soft(novasAtuais[i], b.id).toEqual(b);
   }
   let n = 0;
   for (const [i, b] of base.exercicios.entries()) {
+    if (CORRIGIDAS.includes(b.id)) continue;
     const a = atual.exercicios[i]!;
     expect.soft({ T: a.T, L0: a.L0, lift: a.lift, fits: a.fits }, b.id).toEqual({ T: b.T, L0: b.L0, lift: b.lift, fits: b.fits });
     for (const [chave, hashes] of Object.entries(b.frames)) {
@@ -113,6 +123,9 @@ test('motor portado gera os mesmos quadros que o guia original', async ({ page }
       });
     }
   }
-  // 25 animações do guia original (a cópia elevacao-lateral-b, 216 quadros, saiu em 02/11/2026).
-  expect(n).toBe(4752);
+  // 25 animações do guia original (a cópia elevacao-lateral-b, 216 quadros, saiu em 02/11/2026), menos as corrigidas
+  // (a rosca na polia: 120 quadros, desde 04/11/2026): 4632.
+  const esperado = base.exercicios.filter((e) => !CORRIGIDAS.includes(e.id)).reduce((s, e) => s + Object.values(e.frames).reduce((t, h) => t + h.length, 0), 0);
+  expect(esperado).toBe(4632);
+  expect(n).toBe(esperado);
 });

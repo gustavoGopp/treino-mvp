@@ -9,9 +9,9 @@ const ex = {
   views:['lateral','frontal'],
   base:{P:[0,53,0],lumbar:-2,thor:-4,neck:0,legR:{ikS:[16,7,40],poleRel:[.3,.5,1],ft:[12,-20]}},
   keys:{
-    stretch:{armR:{ua:[-16,74],fa:[180,-58]}},
-    mid:{armR:{ua:[-16,76],fa:[180,12]}},
-    end:{armR:{ua:[-16,78],fa:[180,86]}}
+    stretch:{armR:{ua:[-14,74],fa:[220,-58]}},
+    mid:{armR:{ua:[-18,76],fa:[200,12]}},
+    end:{armR:{ua:[-24,78],fa:[264,71]}}
   },
   seq:[
     {path:['stretch'],dur:.5,kind:'hold',label:'Alongado',tempo:'halter atrás da cabeça',breath:'INSPIRA'},
@@ -32,9 +32,9 @@ const ex = {
   },
   muscles:{p:[['triceps','RL']],s:[]},
   errors:[
-    {id:'abre',view:'frontal',keys:{stretch:{armR:{ua:[30,64],fa:[180,-58]}},mid:{armR:{ua:[34,66],fa:[180,12]}},end:{armR:{ua:[24,72],fa:[180,86]}}}},
+    {id:'abre',view:'frontal',keys:{stretch:{armR:{ua:[30,64],fa:[249,-48]}},mid:{armR:{ua:[34,66],fa:[321,7]}},end:{armR:{ua:[24,72],fa:[252,56]}}}},
     {id:'arco',view:'lateral',keys:{mid:{lumbar:-16,thor:-22,neck:-10},end:{lumbar:-22,thor:-30,neck:-16}}},
-    {id:'curta',view:'lateral',keys:{stretch:{armR:{ua:[-16,76],fa:[180,10]}}}}
+    {id:'curta',view:'lateral',keys:{stretch:{armR:{ua:[-18,76],fa:[200,10]}}}}
   ]
 };
 export default ex;

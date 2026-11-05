@@ -95,5 +95,7 @@ export const AJUDANTES: Record<string, Musculo[]> = {
   flexao: ['abdomen'],
   'triceps-frances': ['abdomen'],
   'flexao-bola': ['panturrilha'],
+  // Catálogo completo (04/11/2026): na ponte com os pés na bola, os posteriores seguram o calcanhar na bola sem contar série (ficha).
+  'ponte-pes-bola': ['posteriores'],
 };
 

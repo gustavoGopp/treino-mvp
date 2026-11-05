@@ -1,0 +1,80 @@
+{
+  "id": "afundo-kettlebell",
+  "name": "Afundo estático com kettlebell no peito",
+  "short": "Afundo kettlebell",
+  "target": "Quadríceps da perna da frente; o glúteo e os adutores ajudam",
+  "feel": "Frente da coxa da perna da frente. O glúteo e a parte de dentro da coxa (adutores) ajudam; a perna de trás ajuda menos.",
+  "feelNote": "Sentir alongar a frente do quadril da perna de trás é normal. Dor no joelho da frente não é: desça menos e procure avaliação se continuar.",
+  "setupEq": [
+    "Um kettlebell.",
+    "Espaço livre à frente e atrás, sem tapetes soltos."
+  ],
+  "setupBody": [
+    "Kettlebell junto ao peito, mãos nos lados da alça, bola para baixo, cotovelos perto do corpo.",
+    "Dê um passo largo: pé da frente inteiro no chão, pé de trás apoiado na ponta.",
+    "Pés na largura do quadril, como trilhos, e não numa linha só.",
+    "Tronco quase vertical, peso mais na perna da frente."
+  ],
+  "exec": [
+    [
+      "hold",
+      "Em cima",
+      "Os dois joelhos quase estendidos, pés fixos no lugar, kettlebell colado no peito."
+    ],
+    [
+      "ecc",
+      "Descida (excêntrica)",
+      "~2–3 s. Desça reto, levando o joelho de trás em direção ao chão."
+    ],
+    [
+      "hold",
+      "Embaixo",
+      "Joelho de trás a poucos centímetros do chão, coxa da frente perto da horizontal."
+    ],
+    [
+      "conc",
+      "Subida (concêntrica)",
+      "~1–1,5 s. Empurre o chão com o pé da frente inteiro; os pés não saem do lugar."
+    ]
+  ],
+  "range": [
+    "Embaixo: joelho de trás quase encostando no chão.",
+    "Em cima: pare um pouco antes de estender os joelhos totalmente.",
+    "Se o calcanhar da frente sair do chão, o passo está curto: afaste mais os pés."
+  ],
+  "breath": "Inspire em cima e firme o abdômen. Solte o ar subindo.",
+  "cues": [
+    "Desce reto.",
+    "Peito alto.",
+    "Pé da frente inteiro."
+  ],
+  "check": [
+    "Passo largo",
+    "Pés como trilhos",
+    "Calcanhar da frente no chão",
+    "Kettlebell colado no peito",
+    "Comece pela perna mais fraca"
+  ],
+  "vary": "O tamanho do passo muda o foco: passo mais curto, com o joelho mais à frente, trabalha mais a frente da coxa; passo mais longo, com o tronco um pouco inclinado, trabalha mais o glúteo. Os dois servem. Ficou leve e não há kettlebell mais pesado? Faça o afundo para trás, com o kettlebell no peito.",
+  "extLabels": [
+    "em cima",
+    "embaixo"
+  ],
+  "errors": [
+    {
+      "id": "valgo",
+      "title": "Joelho da frente para dentro",
+      "desc": "O joelho cai para dentro e a carga vai para a articulação."
+    },
+    {
+      "id": "tronco",
+      "title": "Tronco cai para a frente",
+      "desc": "O kettlebell puxa o peito para a frente e a lombar trabalha para segurar. Kettlebell colado no peito e tronco quase vertical."
+    },
+    {
+      "id": "raso",
+      "title": "Descer pouco",
+      "desc": "Parar com o joelho de trás longe do chão corta a parte mais produtiva do movimento."
+    }
+  ]
+}

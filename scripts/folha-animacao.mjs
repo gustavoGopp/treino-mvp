@@ -1,7 +1,7 @@
 // Folha de contatos de uma animação: quadros-chave em cada vista e modo, erros e a verificação de IK.
 // É o que o Gustavo revisa antes de aprovar uma animação nova.
 // Uso: node scripts/folha-animacao.mjs <id-da-animacao> [saida.png] [--estilo=a|b]
-// --estilo: desenha no estilo novo (a = boneco padrão, b = silhueta); sem ele, a folha é a do estilo clássico.
+// --estilo: desenha no estilo novo (a = boneco padrão, b = silhueta, a2 = boneco com o acabamento de 04/11); sem ele, a folha é a do estilo clássico.
 // Animações em revisão ficam em src/engine/exercicios/revisao/ (fora do app até a aprovação).
 import { build } from 'esbuild';
 import { existsSync, writeFileSync } from 'node:fs';
@@ -10,7 +10,7 @@ import { createRequire } from 'node:module';
 const opcoes = process.argv.slice(2).filter((a) => a.startsWith('--'));
 const [id, saidaArg] = process.argv.slice(2).filter((a) => !a.startsWith('--'));
 const estilo = opcoes.find((a) => a.startsWith('--estilo='))?.split('=')[1] ?? null;
-if (estilo && !['a', 'b'].includes(estilo)) throw new Error('estilo: use a ou b');
+if (estilo && !['a', 'b', 'a2'].includes(estilo)) throw new Error('estilo: use a, b ou a2');
 const saida = saidaArg ?? `test-results/folha-${id}${estilo ? `-estilo-${estilo}` : ''}.png`;
 if (!id) throw new Error('informe o id da animação');
 
@@ -22,7 +22,8 @@ export { montarSvgEstilo } from './src/engine/estilo/index.ts';
 export { default as NOVA } from './${arquivo}';`;
 const { outputFiles } = await build({ stdin: { contents: entrada, resolveDir: process.cwd(), loader: 'ts' }, bundle: true, format: 'esm', write: false });
 const motor = await import('data:text/javascript;base64,' + Buffer.from(outputFiles[0].text).toString('base64'));
-const ex = motor.EX.find((e) => e.id === id) ?? motor.NOVA;
+// Uma correção de animação já aprovada fica em revisao/ com o mesmo id: nesse caso, a versão em revisão é a medida.
+const ex = arquivo.includes('/revisao/') ? motor.NOVA : motor.EX.find((e) => e.id === id);
 if (!motor.EX.includes(ex)) {
   motor.prep(ex);
   motor.calib(ex);

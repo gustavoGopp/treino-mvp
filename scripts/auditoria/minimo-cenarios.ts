@@ -1,19 +1,22 @@
 // Cenários fictícios da sessão de equipamento mínimo (docs/revisoes/equipamento-minimo.md, Parte A).
-// O inventário vazio, cada um dos 46 itens sozinho (com atributos típicos de quem tem só aquele item) e os pares
+// O inventário vazio, cada um dos 49 itens sozinho (com atributos típicos de quem tem só aquele item) e os pares
 // mais prováveis em casa. Nada aqui é dado de uma pessoa real.
 import { BIBLIOTECA, type Articulacao } from '../../src/domain/biblioteca';
 import { FUNCOES } from '../../src/domain/gerador/funcoes';
-import { capacidades, cargasHalter, cargasKettlebell, ITEM_IDS, ITENS, type Inventario, type ItemId } from '../../src/domain/taxonomia/equipamentos';
+import { capacidades, cargasCaneleiras, cargasHalter, cargasKettlebell, ITEM_IDS, ITENS, type Inventario, type ItemId } from '../../src/domain/taxonomia/equipamentos';
 
 /**
  * Atributos típicos de quem tem só aquele item [opinião]: um par de halteres só, um elástico de uma intensidade só,
- * um kettlebell só, uma polia simples fixa no alto, um kit pequeno de manoplas, uma barra sem rack.
+ * um kettlebell só, uma polia simples fixa no alto, um kit pequeno de manoplas, uma barra sem rack, um par de caneleiras
+ * só e uma mini-band só.
  */
 export const SOZINHO: Partial<Record<ItemId, object>> = {
   halteres_fixos: { minKg: 5, maxKg: 5, passoKg: 5 },
   anilhas_e_manoplas: { manoplas: 2, manoplaKg: 2, anilhas: [{ kg: 1, qtd: 4 }, { kg: 2, qtd: 4 }] },
   elasticos: { intensidades: 1 },
   kettlebell: { pesosKg: [12] },
+  caneleiras: { pesosKg: [2] },
+  mini_band: { intensidades: 1 },
   polia_simples: { altura: 'alta' },
   multifuncional: { puxador: true, remadaBaixa: true },
   banco_regulavel: { declina: false },
@@ -39,14 +42,14 @@ export const CENARIOS_MIN: CenarioMin[] = [
 
 const CAPS_DE_CONDICAO = new Set(FUNCOES.flatMap((f) => Object.values(f.condicoes ?? {}).flat()));
 /**
- * Dois cenários que abrem os mesmos exercícios, com as mesmas condições de função e as mesmas cargas de halter e
- * kettlebell, geram o mesmo programa: a grade roda uma vez por classe (o 1º cenário da lista é o representante).
+ * Dois cenários que abrem os mesmos exercícios, com as mesmas condições de função e as mesmas cargas de halter,
+ * kettlebell e caneleira, geram o mesmo programa: a grade roda uma vez por classe (o 1º cenário da lista é o representante).
  * Ex.: a corda para polia sozinha não abre nada, e fica na classe do inventário vazio.
  */
 export const chaveDaClasse = (inv: Inventario) => {
   const caps = capacidades(inv);
   const possiveis = BIBLIOTECA.filter((e) => e.requer.some((g) => g.every((c) => caps.has(c)))).map((e) => e.id);
-  return JSON.stringify([possiveis, [...caps].filter((c) => CAPS_DE_CONDICAO.has(c)).sort(), cargasHalter(inv), cargasKettlebell(inv)]);
+  return JSON.stringify([possiveis, [...caps].filter((c) => CAPS_DE_CONDICAO.has(c)).sort(), cargasHalter(inv), cargasKettlebell(inv), cargasCaneleiras(inv)]);
 };
 
 export type Dor = { articulacao: Articulacao; nota: number };

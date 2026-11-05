@@ -1,0 +1,79 @@
+{
+  "id": "abducao-mini-band",
+  "name": "Abdução de quadril sentado, com mini-band",
+  "short": "Abdução com mini-band",
+  "target": "Glúteos (médio e parte de cima)",
+  "feel": "Lado do quadril, na parte de cima do glúteo, dos dois lados ao mesmo tempo.",
+  "feelNote": "Se sentir a frente da coxa ou a lombar, o tronco está embalando ou os pés estão saindo do lugar. A faixa pesa mais com os joelhos abertos: é normal sentir mais no fim.",
+  "setupEq": [
+    "Uma mini-band (elástico curto em laço), sem rachaduras.",
+    "Um banco ou uma cadeira firme, sem rodinhas."
+  ],
+  "setupBody": [
+    "Sente na beira do assento, costas retas, pés no chão na largura do quadril.",
+    "Faixa nas coxas, logo acima dos joelhos, sem enrolar.",
+    "Mãos na lateral do assento."
+  ],
+  "exec": [
+    [
+      "hold",
+      "Joelhos na largura do quadril",
+      "A faixa já um pouco esticada."
+    ],
+    [
+      "conc",
+      "Abertura (concêntrica)",
+      "~1 s. Abra os joelhos para fora; os pés ficam no lugar."
+    ],
+    [
+      "hold",
+      "Aberto · segura",
+      "Segure 1 s. Aqui a faixa pesa mais."
+    ],
+    [
+      "ecc",
+      "Volta (excêntrica)",
+      "~2 s, sem deixar os joelhos baterem."
+    ]
+  ],
+  "range": [
+    "Início: joelhos na largura do quadril, a faixa sem folga.",
+    "Fim: joelhos abertos até o fim confortável."
+  ],
+  "breath": "Solte o ar abrindo, inspire na volta.",
+  "cues": [
+    "Abre os joelhos.",
+    "Pés no chão.",
+    "Volta devagar."
+  ],
+  "check": [
+    "Faixa sem rachaduras",
+    "Faixa acima dos joelhos, sem enrolar",
+    "Pés na largura do quadril",
+    "Costas retas, mãos no assento",
+    "Série perto da falha, no RIR do programa"
+  ],
+  "vary": "Ficou fácil? A escada: comece com a faixa mais esticada (pés e joelhos mais afastados), depois a volta de 3 s e, por fim, a faixa seguinte, se você tiver.",
+  "note": "<b>Segurança:</b> faixa rachada pode estourar: confira antes de cada série. Nunca sobre o joelho: sempre nas coxas, logo acima dele.",
+  "extLabels": [
+    "fechado",
+    "aberto"
+  ],
+  "errors": [
+    {
+      "id": "tronco",
+      "title": "Embalar o tronco",
+      "desc": "O corpo vai para a frente e para trás para ajudar a abrir. O tronco fica parado."
+    },
+    {
+      "id": "solta",
+      "title": "Soltar a volta",
+      "desc": "Deixar a faixa fechar os joelhos de uma vez perde metade do trabalho. Volte em ~2 s."
+    },
+    {
+      "id": "pes",
+      "title": "Tirar os pés do lugar",
+      "desc": "Abrir os pés junto ou subir na ponta tira a tensão da faixa. Os pés ficam parados."
+    }
+  ]
+}

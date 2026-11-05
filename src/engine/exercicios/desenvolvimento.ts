@@ -1,6 +1,6 @@
 // @ts-nocheck
 // Gerado por scripts/extrair-motor.mjs a partir de referencia/guia-execucao-fase1.html. Port mecânico: não editar à mão antes do M1 terminar.
-import { BOX, L3, TX, dumbbell } from '../desenho';
+import { BOX, L3, TX, dumbbell3 } from '../desenho';
 import { SH } from '../exercicios/compartilhado';
 import { X, Y, Z, add, comb } from '../math';
 
@@ -21,7 +21,7 @@ const ex = {
     BOX([0,45,8],[[X,13],[Y,2.5],[Z,17]],'eqp',{bias:-4});
     BOX(comb(1,[0,53,0],34,SH.u,-10.5,SH.f),[[X,13],[SH.u,34],[SH.f,2.5]],'eqp',{bias:-4});
     BOX([0,2.5,0],[[X,4],[Y,2],[Z,30]],'eqd',{bias:-6});BOX([0,22,4],[[X,2.5],[Y,20],[Z,2.5]],'eqd',{bias:-6});
-    const c='db'+(this._pal==='e'?'-e':'');for(const k of['R','L'])dumbbell(sk.side[k].G,X,c);
+    const c='db'+(this._pal==='e'?'-e':'');for(const k of['R','L'])dumbbell3(sk.side[k].G,X,c);
   },
   guides:{
     frontal(sk){for(const k of['R','L']){const sd=sk.side[k];L3(sd.E,add(sd.E,[0,40,0]),'gd',1,{layer:3,dash:'3 2.5'});}const y=sk.Hc[1];L3([-72,y,0],[72,y,0],'gd',.8,{layer:2,dash:'2 3'});TX([72,y,0],'altura da orelha',{cls:'lbl-g',anchor:'end',dy:-6});},

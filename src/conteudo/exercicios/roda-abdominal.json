@@ -1,0 +1,81 @@
+{
+  "id": "roda-abdominal",
+  "name": "Rolamento com a roda abdominal, de joelhos",
+  "short": "Roda abdominal",
+  "target": "Abdômen (reto abdominal); os oblíquos ajudam",
+  "feel": "Frente da barriga inteira, segurando o corpo reto, principalmente no ponto mais longe. Os oblíquos, nas laterais, ajudam.",
+  "feelNote": "Se sentir a lombar, você foi longe demais e a barriga cedeu: encurte o rolamento. Se sentir os ombros ou os braços, deixe os braços retos e leve o quadril junto.",
+  "setupEq": [
+    "Uma roda abdominal com os dois pegadores.",
+    "Um colchonete ou almofada sob os joelhos.",
+    "No começo, uma parede à frente, para a roda bater e parar."
+  ],
+  "setupBody": [
+    "Ajoelhado no colchonete, mãos nos pegadores, roda no chão embaixo dos ombros.",
+    "Braços estendidos.",
+    "Abdômen firme, costelas para baixo, pelve um pouco enrolada."
+  ],
+  "exec": [
+    [
+      "hold",
+      "Ajoelhado",
+      "Roda embaixo dos ombros, abdômen firme."
+    ],
+    [
+      "ecc",
+      "Ida (excêntrica)",
+      "~2–3 s. Role à frente devagar, levando o quadril junto, só até onde a lombar não arqueia."
+    ],
+    [
+      "hold",
+      "Ponto mais longe",
+      "Corpo reto dos joelhos aos ombros; a lombar não afunda."
+    ],
+    [
+      "conc",
+      "Volta (concêntrica)",
+      "~1–2 s. Puxe a roda de volta com o abdômen até os ombros voltarem em cima das mãos."
+    ]
+  ],
+  "range": [
+    "Comece curto: role só um pouco, ou em direção à parede, e aumente aos poucos.",
+    "Pare antes do ponto em que a lombar começa a arquear.",
+    "Volta: ombros em cima das mãos."
+  ],
+  "breath": "Inspire na ida, solte o ar na volta.",
+  "cues": [
+    "Costelas para baixo.",
+    "Só até a lombar não arquear.",
+    "Volta com o abdômen."
+  ],
+  "check": [
+    "Colchonete sob os joelhos",
+    "Roda embaixo dos ombros no início",
+    "Parede à frente nas primeiras séries",
+    "Abdômen firme antes de rolar",
+    "Série perto da falha, no RIR do programa"
+  ],
+  "vary": "Ficou fácil? A escada de amplitude: contra a parede perto, depois a parede um pouco mais longe, depois sem parede (só até onde a lombar não arqueia) e, por fim, a ida de 3 s.",
+  "note": "<b>Segurança:</b> se a lombar arquear ou doer, pare a série e encurte o rolamento na próxima. Nas primeiras séries, role em direção a uma parede, que para a roda.",
+  "extLabels": [
+    "ajoelhado",
+    "mais longe"
+  ],
+  "errors": [
+    {
+      "id": "lombar",
+      "title": "Arquear a lombar",
+      "desc": "A barriga cai e a lombar afunda no fim da ida: o abdômen cedeu e a coluna segura o peso. Encurte o rolamento."
+    },
+    {
+      "id": "quadril",
+      "title": "Deixar o quadril para trás",
+      "desc": "Só os braços vão à frente e o quadril fica parado: o abdômen quase não trabalha. O quadril acompanha a roda."
+    },
+    {
+      "id": "rapido",
+      "title": "Ir rápido demais",
+      "desc": "A roda foge, o corpo desaba e a lombar cede. A ida é devagar."
+    }
+  ]
+}

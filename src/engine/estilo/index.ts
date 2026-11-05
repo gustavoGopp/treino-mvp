@@ -6,16 +6,20 @@
 // com as mesmas poses e o mesmo equipamento, trocando só o corpo e os músculos. A caixa é a do estilo clássico.
 import { concTimes, getPt, poseAt, scene, segAt } from '../cena';
 import { CTX } from '../contexto';
-import { ARROW3, PATH2, TX, VIEWS, body, f1 } from '../desenho';
+import { ARROW3, C3, L3, PATH2, TX, VIEWS, body, f1 } from '../desenho';
+import { B } from '../esqueleto';
 import { skel } from '../esqueleto';
 import { Z, add, comb, len, sub } from '../math';
 import { caixa, montarSvg } from '../svg';
 import { corpoNovo } from './corpo';
 import { medida, musculosNovos } from './musculos';
 
-export type Estilo = 'atual' | 'a' | 'b';
+// O Boneco ('a') usa o acabamento da auditoria (proposta 2, escolhida pelo Gustavo em 04/11/2026; piloto e lote
+// aprovados no mesmo dia; docs/revisoes/boneco-acabamento/). 'a2' ficou como outro nome do mesmo boneco, para as
+// folhas e os scripts da revisão.
+export type Estilo = 'atual' | 'a' | 'b' | 'a2';
 export const ESTILOS: Estilo[] = ['atual', 'a', 'b'];
-export const NOMES_ESTILO = { atual: 'Clássico', a: 'Boneco', b: 'Silhueta' };
+export const NOMES_ESTILO: Record<Estilo, string> = { atual: 'Clássico', a: 'Boneco', b: 'Silhueta', a2: 'Boneco' };
 /** Exercícios do experimento do R4 (os primeiros a ganhar os músculos anatômicos e uma lista própria em LISTA). */
 export const EXERCICIOS_R4 = ['puxada-unilateral', 'goblet'];
 
@@ -32,6 +36,62 @@ const GUIAS = {
   },
 };
 
+// Acabamento A2: o fantasma verde só nas cadeias (tronco e cabeça, cada braço, cada perna) em que o certo e o
+// errado diferem mais de 3 cm; o resto do corpo, igual nos dois, fica só com a figura que erra.
+function fantasmaDif(sk, ske) {
+  const dist = (a, b) => Math.hypot(a[0] - b[0], a[1] - b[1], a[2] - b[2]);
+  const cadeias = [[['P'], ['M'], ['N'], ['Hc']]];
+  for (const k of ['R', 'L']) {
+    cadeias.push([['N'], [k, 'S'], [k, 'E'], [k, 'W'], [k, 'G']]);
+    cadeias.push([['P'], [k, 'Hp'], [k, 'K'], [k, 'A'], [k, 'toe']]);
+  }
+  const pt = (s, c) => (c.length === 1 ? s[c[0]] : s.side[c[0]][c[1]]);
+  let desenhadas = 0;
+  for (const cad of cadeias) {
+    const dif = Math.max(...cad.map((c) => dist(pt(sk, c), pt(ske, c))));
+    if (dif < 3) continue;
+    desenhadas++;
+    const Q = cad.map((c) => pt(sk, c));
+    const n0 = CTX.prims.length;
+    for (let i = 0; i < Q.length - 1; i++) L3(Q[i], Q[i + 1], 'gh', 3.2);
+    if (cad[cad.length - 1][0] === 'Hc') C3(sk.Hc, B.head, 'gh', { w: 1.6 });
+    for (let i = n0; i < CTX.prims.length; i++) CTX.prims[i].l = 1.5;
+  }
+  return desenhadas;
+}
+
+// Piloto "erro sobre o certo": desenha, em vermelho tracejado, só as cadeias da pose errada que diferem mais de 3 cm
+// da certa, e escreve o nome do erro ao lado da junta que mais se afasta. Devolve quantas cadeias desenhou.
+function erroSobreOCerto(sk, ske, titulo) {
+  const dist = (a, b) => Math.hypot(a[0] - b[0], a[1] - b[1], a[2] - b[2]);
+  const cadeias = [[['P'], ['M'], ['N'], ['Hc']]];
+  for (const k of ['R', 'L']) {
+    cadeias.push([['N'], [k, 'S'], [k, 'E'], [k, 'W'], [k, 'G']]);
+    cadeias.push([['P'], [k, 'Hp'], [k, 'K'], [k, 'A'], [k, 'toe']]);
+  }
+  const pt = (s, c) => (c.length === 1 ? s[c[0]] : s.side[c[0]][c[1]]);
+  let desenhadas = 0, maior = 0, ondeRotulo = null;
+  for (const cad of cadeias) {
+    const difs = cad.map((c) => dist(pt(sk, c), pt(ske, c)));
+    const dif = Math.max(...difs);
+    if (dif < 3) continue;
+    desenhadas++;
+    const Q = cad.map((c) => pt(ske, c));
+    const n0 = CTX.prims.length;
+    for (let i = 0; i < Q.length - 1; i++) L3(Q[i], Q[i + 1], 'gh-e', 3.6);
+    if (cad[cad.length - 1][0] === 'Hc') C3(ske.Hc, B.head, 'hd-ge', { w: 2 });
+    for (let i = n0; i < CTX.prims.length; i++) CTX.prims[i].l = 1.6;
+    if (dif > maior) { maior = dif; ondeRotulo = Q[difs.indexOf(dif)]; }
+  }
+  if (desenhadas && titulo) {
+    // o rótulo fica do lado em que há espaço: à direita da junta na metade esquerda do palco, e vice-versa
+    const box = caixa(CTX.EX_ATUAL, CTX.VIEW);
+    const direita = CTX.PJ(ondeRotulo)[0] > box[0] + box[2] / 2;
+    TX(ondeRotulo, titulo, { cls: 'lbl-e', dx: direita ? -9 : 9, dy: -9, anchor: direita ? 'end' : 'start', layer: 4.5 });
+  }
+  return desenhadas;
+}
+
 /** Mesmos passos de scene() (../cena.ts), com o corpo e os músculos do estilo novo. */
 export function cenaEstilo(ex, view, mode, t, estilo, errIdx = 0) {
   CTX.VIEW = view;
@@ -44,6 +104,23 @@ export function cenaEstilo(ex, view, mode, t, estilo, errIdx = 0) {
     body(s, pal);
     for (let i = n0; i < CTX.prims.length; i++) CTX.prims[i].l = 1.5;
   };
+  if (mode === 'err' && CTX.ACABAMENTO?.erroInvertido) {
+    // Piloto da auditoria de 04/11/2026 (docs/revisoes/auditoria-fable.md, Parte D): o certo é a figura cheia, e o
+    // erro aparece só na cadeia que muda, em vermelho tracejado, com o nome do erro ao lado. Desligado por padrão.
+    const e = ex.errors[errIdx || 0];
+    const ske = skel(poseAt(ex, e.K, t));
+    ex._pal = 'n';
+    ex.equip(sk);
+    corpoNovo(sk, estilo);
+    CTX.EX_ATUAL = ex;
+    if (!erroSobreOCerto(sk, ske, e.titulo ?? e.id)) {
+      // erro pequeno demais para uma cadeia: a figura errada inteira, em contorno vermelho fino, por cima
+      const n0 = CTX.prims.length;
+      body(ske, 'e');
+      for (let i = n0; i < CTX.prims.length; i++) CTX.prims[i].l = 1.5;
+    }
+    return sk;
+  }
   if (mode === 'err') {
     const e = ex.errors[errIdx || 0];
     const ske = skel(poseAt(ex, e.K, t));
@@ -51,7 +128,8 @@ export function cenaEstilo(ex, view, mode, t, estilo, errIdx = 0) {
     ex.equip(ske);
     ex._pal = 'n';
     corpoNovo(ske, estilo, true);
-    fantasma(sk, 'g');
+    // Erro pequeno (escápulas, por exemplo: nenhuma cadeia muda 3 cm), o fantasma inteiro, como no estilo A.
+    if (!CTX.ACABAMENTO?.fantasmaDif || !fantasmaDif(sk, ske)) fantasma(sk, 'g');
     return sk;
   }
   ex._pal = 'n';
@@ -182,8 +260,27 @@ export function fracaoDoCorpo(ex, view) {
 /** No modo Músculos, a câmera perto do corpo quando ele ocupa menos de 70% do palco (decisão do Gustavo, 03/11/2026). */
 export const PERTO_ABAIXO_DE = 0.7;
 
+/**
+ * O acabamento A2 (docs/revisoes/boneco-acabamento/): tronco inteiro, coxa saindo do quadril, folga em volta do braço
+ * de perto, mão, membros que afinam, fantasma do erro só no que muda e só as juntas que importam no exercício (as que
+ * a trajetória acompanha: cotovelo, ombro, joelho, tornozelo e quadril).
+ */
+const JUNTA_DA_TRAJETORIA = { E: 'E', S: 'S', K: 'K', A: 'A', P: 'Hp', Hp: 'Hp' };
+export function acabamento(ex) {
+  const juntas = [...new Set((Object.values(ex.paths ?? {}) as string[][][]).flatMap((ps) => ps.map((p) => JUNTA_DA_TRAJETORIA[p[0]!]).filter(Boolean)))];
+  return { tronco1: 1, quadril: 1, folga: 1, mao: 1, conico: 1, fantasmaDif: 1, juntas };
+}
+
 /** Igual a montarSvg, com o estilo, nos 4 modos. `classe` vai no <svg> (o B apaga o equipamento; a vista de cima afina a corda). */
 export function montarSvgEstilo(ex, view, mode, t, err, largura, estilo: Estilo = 'atual', perto = false) {
+  if ((estilo === 'a' || estilo === 'a2') && !CTX.ACABAMENTO) {
+    CTX.ACABAMENTO = acabamento(ex);
+    try {
+      return montarSvgEstilo(ex, view, mode, t, err, largura, 'a', perto);
+    } finally {
+      CTX.ACABAMENTO = null;
+    }
+  }
   const novo = estilo !== 'atual';
   if (!novo && !perto) return { ...montarSvg(ex, view, mode, t, err, largura), classe: '' };
   if (novo && mode === 'mus' && !perto && fracaoDoCorpo(ex, view) < PERTO_ABAIXO_DE) perto = true;

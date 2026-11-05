@@ -1,6 +1,6 @@
 // @ts-nocheck
 // Gerado por scripts/extrair-motor.mjs a partir de referencia/guia-execucao-fase1.html. Port mecânico: não editar à mão antes do M1 terminar.
-import { ARROW3, L3, TX, dumbbell } from '../desenho';
+import { ARROW3, L3, TX, dumbbell3 } from '../desenho';
 import { Z, add, comb, mul, sub } from '../math';
 
 const ex = {
@@ -20,7 +20,7 @@ const ex = {
   ],
   ext:['top','bottom'],
   paths:{lateral:[['G','R','halter'],['P','','quadril']]},
-  equip(sk){const hd=[1,0,0];for(const k of['R','L'])dumbbell(sk.side[k].G,hd,'db'+(this._pal==='e'?'-e':''));},
+  equip(sk){const hd=[1,0,0];for(const k of['R','L'])dumbbell3(sk.side[k].G,hd,'db'+(this._pal==='e'?'-e':''));},
   guides:{
     lateral(sk){const a=comb(1,sk.P,-10,sk.fL),b=comb(1,sk.N,-9,sk.fT);L3(add(a,mul(sub(a,b),.1)),add(b,mul(sub(b,a),.3)),'gd',1,{layer:3,dash:'3 2.5'});TX(add(b,mul(sub(b,a),.32)),'coluna neutra',{cls:'lbl-g',anchor:'end',dx:-4,dy:-4});
       ARROW3(comb(1,sk.P,-12,Z),comb(1,sk.P,-28,Z),'gd',1.1,'gda',{layer:3});TX(comb(1,sk.P,-30,Z),'quadril para trás',{cls:'lbl-g',anchor:'end',dy:4});}

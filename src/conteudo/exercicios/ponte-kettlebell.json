@@ -1,0 +1,81 @@
+{
+  "id": "ponte-kettlebell",
+  "name": "Ponte de glúteo com kettlebell",
+  "short": "Ponte kettlebell",
+  "target": "Glúteos",
+  "feel": "Glúteos, na parte de trás do quadril.",
+  "feelNote": "Se sentir mais a parte de trás da coxa ou a lombar do que o glúteo, aproxime um pouco os pés e não arqueie a lombar no topo. Cãibra atrás da coxa às vezes acontece: pare, alongue e recomece.",
+  "setupEq": [
+    "Um kettlebell.",
+    "Uma toalha dobrada para apoiar o kettlebell.",
+    "O chão (um colchonete ajuda)."
+  ],
+  "setupBody": [
+    "Sentado no chão, apoie o kettlebell deitado de lado sobre o quadril, em cima da toalha.",
+    "Deite de costas segurando o kettlebell com as duas mãos; joelhos dobrados.",
+    "Pés no chão na largura do quadril, calcanhares a cerca de um palmo dos glúteos."
+  ],
+  "exec": [
+    [
+      "hold",
+      "Deitado",
+      "Abdômen firme, costelas para baixo, as duas mãos no kettlebell."
+    ],
+    [
+      "conc",
+      "Subida (concêntrica)",
+      "~1 s. Empurre o chão pelos calcanhares até ombros, quadril e joelhos ficarem em linha."
+    ],
+    [
+      "hold",
+      "Topo · segura",
+      "Segure ~1 s, apertando o glúteo, sem arquear a lombar."
+    ],
+    [
+      "ecc",
+      "Descida (excêntrica)",
+      "~2 s, controlada, até o quadril quase encostar no chão."
+    ]
+  ],
+  "range": [
+    "Embaixo: quadril quase no chão.",
+    "Em cima: ombros, quadril e joelhos em linha, sem arquear a lombar.",
+    "Ombros e cabeça ficam no chão o tempo todo."
+  ],
+  "breath": "Solte o ar subindo, inspire descendo.",
+  "cues": [
+    "Duas mãos no kettlebell.",
+    "Empurra pelos calcanhares.",
+    "Pausa no topo."
+  ],
+  "check": [
+    "Toalha embaixo do kettlebell",
+    "As duas mãos no kettlebell",
+    "Pés a um palmo dos glúteos",
+    "Calcanhares no chão",
+    "Ombros no chão"
+  ],
+  "vary": "Os joelhos seguem a direção dos pés: não deixe que caiam para dentro na subida. Se os pés ficarem longe demais, a parte de trás da coxa trabalha mais; perto demais, o calcanhar tende a sair do chão. Ficou leve e não há kettlebell mais pesado? Faça a ponte com uma perna só, com o kettlebell no quadril.",
+  "note": "<b>Segurança:</b> o kettlebell pode rolar e cair do quadril. As duas mãos ficam nele o tempo todo, da montagem até você sentar de novo.",
+  "extLabels": [
+    "embaixo",
+    "topo"
+  ],
+  "errors": [
+    {
+      "id": "lombar",
+      "title": "Arquear a lombar no topo",
+      "desc": "A lombar arqueia em vez de o quadril estender. Pare quando ombros, quadril e joelhos ficarem em linha."
+    },
+    {
+      "id": "calcanhar",
+      "title": "Empurrar pela ponta dos pés",
+      "desc": "O calcanhar sai do chão e a coxa trabalha mais que o glúteo. Empurre pelos calcanhares."
+    },
+    {
+      "id": "raso",
+      "title": "Subir pouco",
+      "desc": "O quadril não alinha com o tronco e as coxas, e a parte mais forte da contração fica de fora."
+    }
+  ]
+}

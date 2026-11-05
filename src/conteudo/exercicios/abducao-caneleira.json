@@ -1,0 +1,80 @@
+{
+  "id": "abducao-caneleira",
+  "name": "Abdução de quadril deitado de lado, com caneleira",
+  "short": "Abdução com caneleira",
+  "target": "Glúteos (médio e parte de cima)",
+  "feel": "Lado do quadril, na parte de cima do glúteo da perna que sobe.",
+  "feelNote": "Se sentir a frente do quadril (a dobra entre a coxa e a barriga), a perna está indo para a frente ou o quadril está rolando para trás. Se sentir a cintura, está subindo alto demais.",
+  "setupEq": [
+    "Uma caneleira de peso, bem presa no tornozelo da perna de cima.",
+    "Um colchonete."
+  ],
+  "setupBody": [
+    "Deite de lado, com a cabeça apoiada no braço de baixo.",
+    "Perna de baixo dobrada, para dar base. Perna de cima estendida, um pouco atrás da linha do corpo.",
+    "Quadril empilhado: um lado do quadril bem em cima do outro, sem rolar para trás.",
+    "Um lado por série: termine com um e faça a série seguinte do outro lado."
+  ],
+  "exec": [
+    [
+      "hold",
+      "Embaixo",
+      "Perna de cima estendida, quase encostando na de baixo."
+    ],
+    [
+      "conc",
+      "Subida (concêntrica)",
+      "~1 s. Suba a perna de cima, estendida e um pouco para trás, com os dedos apontando para a frente."
+    ],
+    [
+      "hold",
+      "Topo · segura",
+      "Segure 1 s. O quadril não rola para trás."
+    ],
+    [
+      "ecc",
+      "Descida (excêntrica)",
+      "~2 s, até a perna quase encostar na de baixo."
+    ]
+  ],
+  "range": [
+    "Em cima: até onde a perna sobe sem o quadril rolar nem a cintura dobrar. Não precisa subir muito.",
+    "Embaixo: a perna quase encosta na de baixo, sem descansar."
+  ],
+  "breath": "Solte o ar subindo, inspire descendo.",
+  "cues": [
+    "Quadril empilhado.",
+    "Perna um pouco para trás.",
+    "Dedos para a frente."
+  ],
+  "check": [
+    "Caneleira bem presa na perna de cima",
+    "Cabeça no braço de baixo",
+    "Perna de baixo dobrada",
+    "Quadril empilhado",
+    "Série perto da falha, no RIR do programa"
+  ],
+  "vary": "Pela lista das suas caneleiras: a próxima quando todas as séries chegarem ao topo da faixa. Sem caneleira mais pesada: mais repetições, descida de 3 s e, por fim, 1,5 repetição (sobe, desce até a metade, sobe de novo e desce).",
+  "note": "<b>Segurança:</b> caneleira bem presa, para não escorregar. Se doer no lado do quadril, suba menos.",
+  "extLabels": [
+    "embaixo",
+    "topo"
+  ],
+  "errors": [
+    {
+      "id": "rola",
+      "title": "Rolar o quadril para trás",
+      "desc": "O quadril gira, os dedos apontam para o teto e a frente do quadril assume o trabalho. Quadril empilhado, dedos para a frente."
+    },
+    {
+      "id": "frente",
+      "title": "Levar a perna para a frente",
+      "desc": "A perna sobe à frente do corpo e o glúteo trabalha menos. Mantenha a perna um pouco atrás da linha do corpo."
+    },
+    {
+      "id": "alto",
+      "title": "Subir alto demais com tranco",
+      "desc": "Jogar a perna para cima dobra a cintura e tira o trabalho do glúteo. Suba só até onde o quadril não mexe."
+    }
+  ]
+}

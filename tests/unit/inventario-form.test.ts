@@ -117,6 +117,30 @@ describe('atributos novos do R0c no checklist', () => {
   });
 });
 
+describe('itens novos do catálogo completo no checklist (04/11/2026)', () => {
+  it('caneleiras pelos pesos (como o kettlebell), mini-band pelas intensidades (como os elásticos), roda sem detalhe', () => {
+    const f: FormInventario = { ...formVazio(), marcados: ['caneleiras', 'mini_band', 'roda_abdominal'], caneleiras: { pesos: [3, 1, 1] }, miniBand: { intensidades: '3' } };
+    const { inventario, erros } = deForm(f);
+    expect(erros).toEqual({});
+    expect(inventario).toEqual({ caneleiras: { pesosKg: [1, 3] }, mini_band: { intensidades: 3 }, roda_abdominal: {} });
+    expect(paraForm(inventario!)).toMatchObject({ caneleiras: { pesos: [1, 3] }, miniBand: { intensidades: '3' } });
+    const vazio = deForm({ ...formVazio(), marcados: ['caneleiras', 'mini_band'] });
+    expect(Object.keys(vazio.erros).sort()).toEqual(['caneleiras.pesos', 'miniBand.intensidades']);
+  });
+  it('a foto preenche os pesos das caneleiras e as intensidades da mini-band, só se estiverem vazios', () => {
+    const n = comSugestoes(
+      formVazio(),
+      [
+        { itemId: 'caneleiras', atributos: { pesosKg: [2, 1, 'x'] } },
+        { itemId: 'mini_band', atributos: { intensidades: 4 } },
+      ],
+      ['caneleiras', 'mini_band'],
+    );
+    expect(n.caneleiras.pesos).toEqual([1, 2]);
+    expect(n.miniBand.intensidades).toBe('4');
+  });
+});
+
 describe('sugestões da foto no checklist', () => {
   it('marca só o confirmado e preenche só campos vazios', async () => {
     const { comSugestoes } = await import('../../src/features/onboarding/inventarioForm');

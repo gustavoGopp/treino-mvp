@@ -1,7 +1,7 @@
 // @ts-nocheck
 // Animação nova (aprovada). Rosca alternada em pé, halteres, cotovelos parados ao lado do tronco.
 // Técnica e fontes: docs/pesquisa/animacoes/rosca-alternada.md.
-import { L3, TX, dumbbell } from '../desenho';
+import { L3, TX, dumbbell3 } from '../desenho';
 import { X, add } from '../math';
 
 const baixo={ua:[0,-90],fa:[0,-86]};
@@ -27,7 +27,7 @@ const ex = {
   ],
   ext:['bottom','rTop'],
   paths:{lateral:[['G','R','halter'],['E','R','cotovelo']],frontal:[['G','R','halter'],['G','L','']]},
-  equip(sk){const c='db'+(this._pal==='e'?'-e':'');for(const k of['R','L'])dumbbell(sk.side[k].G,X,c);},
+  equip(sk){const c='db'+(this._pal==='e'?'-e':'');for(const k of['R','L'])dumbbell3(sk.side[k].G,X,c);},
   guides:{
     lateral(sk){const R=sk.side.R;L3(R.S,add(R.S,[0,-40,0]),'gd',.9,{layer:3,dash:'3 2.5'});TX(R.E,'cotovelo parado',{cls:'lbl-g',anchor:'end',dx:-12,dy:4});TX([0,128,-14],'tronco parado',{cls:'lbl-g',anchor:'end'});},
     frontal(sk){}

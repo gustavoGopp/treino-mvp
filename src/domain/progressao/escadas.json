@@ -1,22 +1,168 @@
 {
-  "flexao": ["descida de 3 s", "pés elevados (declinada; sem degrau, cama ou sofá: descida de 4 s)", "pés elevados com descida de 3 s (sem apoio: descida de 5 s)", "mãos em dois apoios (déficit) ou pausa de 2 s embaixo"],
-  "flexao-fechada": ["descida de 3 s", "pés elevados (sem degrau, cama ou sofá: descida de 4 s)", "pés elevados com pausa de 2 s embaixo (sem apoio: descida de 5 s)"],
-  "pike": ["descida de 3 s", "pés numa cadeira firme (sem ela: descida de 5 s)", "pés numa cadeira, com pausa de 2 s embaixo (sem ela: descida de 5 s com pausa embaixo)"],
-  "agachamento-peso-corpo": ["descida de 3 s", "pausa de 2 s embaixo", "1,5 repetição (desce, sobe até a metade, desce de novo e sobe)"],
-  "afundo-peso-corpo": ["descida de 3 s", "pausa de 2 s embaixo", "pé da frente num degrau, mais amplitude (sem degrau: descida de 5 s)"],
-  "bulgaro-peso-corpo": ["descida de 3 s", "pausa de 2 s embaixo", "pé da frente num apoio baixo, mais amplitude (sem apoio: descida de 5 s)"],
-  "ponte-gluteo": ["pausa de 2 s no alto", "ombros num sofá ou numa cadeira firme, como no hip thrust (sem eles: pausa de 3 s no alto)", "uma perna só", "uma perna só, com os ombros apoiados (sem apoio: uma perna só, com pausa de 2 s no alto)"],
-  "panturrilha-chao": ["pausa de 2 s em cima", "uma perna só", "uma perna só, com pausa de 2 s em cima"],
-  "panturrilha-bilateral-step": ["pausa de 2 s embaixo, alongada", "uma perna só", "uma perna só, com pausa embaixo"],
-  "panturrilha": ["pausa de 2 s embaixo, alongada", "descida de 3 s", "pausa embaixo e em cima"],
-  "abdominal-chao": ["descida de 3 s", "braços acima da cabeça", "braços acima da cabeça, com pausa de 2 s em cima"],
-  "barra-fixa": ["descida de 3 s", "pausa de 1 s em cima", "descida de 5 s"],
-  "barra-fixa-supinada": ["descida de 3 s", "pausa de 1 s em cima", "descida de 5 s"],
-  "elevacao-joelhos": ["joelhos até o peito", "descida de 3 s", "pernas estendidas"],
-  "remada-suspensao": ["pés mais à frente (corpo mais deitado)", "pausa de 2 s com as mãos no peito", "descida de 3 s", "pés elevados (sem degrau, cama ou sofá: descida de 5 s)"],
-  "remada-invertida": ["pés mais à frente (corpo mais deitado)", "pausa de 2 s com as mãos no peito", "descida de 3 s", "pés elevados (sem degrau, cama ou sofá: descida de 5 s)"],
-  "mergulho": ["descida de 3 s", "pausa de 2 s embaixo"],
-  "flexao-bola": ["pausa de 2 s com os joelhos dobrados", "descida de 3 s", "uma perna só"],
-  "flexao-joelho-deslizante": ["só a volta lenta (3 s), voltando com as duas pernas", "pausa de 2 s com os joelhos dobrados", "uma perna só"],
-  "nordico": ["descida mais longa (4–5 s)", "descida até o chão sem usar as mãos", "descida e subida, empurrando com as mãos só no começo"]
+ "flexao": [
+  "descida de 3 s",
+  "pés elevados (declinada; sem degrau, cama ou sofá: descida de 4 s)",
+  "pés elevados com descida de 3 s (sem apoio: descida de 5 s)",
+  "mãos em dois apoios (déficit) ou pausa de 2 s embaixo"
+ ],
+ "flexao-fechada": [
+  "descida de 3 s",
+  "pés elevados (sem degrau, cama ou sofá: descida de 4 s)",
+  "pés elevados com pausa de 2 s embaixo (sem apoio: descida de 5 s)"
+ ],
+ "pike": [
+  "descida de 3 s",
+  "pés numa cadeira firme (sem ela: descida de 5 s)",
+  "pés numa cadeira, com pausa de 2 s embaixo (sem ela: descida de 5 s com pausa embaixo)"
+ ],
+ "agachamento-peso-corpo": [
+  "descida de 3 s",
+  "pausa de 2 s embaixo",
+  "1,5 repetição (desce, sobe até a metade, desce de novo e sobe)",
+  "subida no step, uma perna de cada vez, com descida de 3 s (sem step: 1,5 repetição com descida de 3 s)"
+ ],
+ "afundo-peso-corpo": [
+  "descida de 3 s",
+  "pausa de 2 s embaixo",
+  "pé da frente num degrau, mais amplitude (sem degrau: descida de 5 s)",
+  "pé de trás no step, como um búlgaro baixo (sem step: pausa de 2 s embaixo com descida de 3 s)"
+ ],
+ "bulgaro-peso-corpo": [
+  "descida de 3 s",
+  "pausa de 2 s embaixo",
+  "pé da frente no step ou num apoio baixo, mais amplitude (sem eles: descida de 5 s)"
+ ],
+ "ponte-gluteo": [
+  "pausa de 2 s no alto",
+  "ombros no banco, como no hip thrust (sem banco: num sofá firme encostado na parede; sem eles: pausa de 3 s no alto)",
+  "uma perna só",
+  "uma perna só, com os ombros apoiados (sem apoio: uma perna só, com pausa de 2 s no alto)"
+ ],
+ "panturrilha-chao": [
+  "pausa de 2 s em cima",
+  "uma perna só",
+  "uma perna só, com pausa de 2 s em cima"
+ ],
+ "panturrilha-bilateral-step": [
+  "pausa de 2 s embaixo, alongada",
+  "uma perna só",
+  "uma perna só, com pausa embaixo"
+ ],
+ "panturrilha": [
+  "pausa de 2 s embaixo, alongada",
+  "descida de 3 s",
+  "pausa embaixo e em cima"
+ ],
+ "abdominal-chao": [
+  "descida de 3 s",
+  "braços acima da cabeça",
+  "braços acima da cabeça, com pausa de 2 s em cima"
+ ],
+ "barra-fixa": [
+  "descida de 3 s",
+  "pausa de 1 s em cima",
+  "descida de 5 s"
+ ],
+ "barra-fixa-supinada": [
+  "descida de 3 s",
+  "pausa de 1 s em cima",
+  "descida de 5 s"
+ ],
+ "elevacao-joelhos": [
+  "joelhos até o peito",
+  "descida de 3 s",
+  "pernas estendidas"
+ ],
+ "remada-suspensao": [
+  "pés mais à frente (corpo mais deitado)",
+  "pausa de 2 s com as mãos no peito",
+  "descida de 3 s",
+  "pés elevados (sem degrau, cama ou sofá: descida de 5 s)"
+ ],
+ "remada-invertida": [
+  "pés mais à frente (corpo mais deitado)",
+  "pausa de 2 s com as mãos no peito",
+  "descida de 3 s",
+  "pés elevados (sem degrau, cama ou sofá: descida de 5 s)"
+ ],
+ "mergulho": [
+  "descida de 3 s",
+  "pausa de 2 s embaixo"
+ ],
+ "flexao-bola": [
+  "pausa de 2 s com os joelhos dobrados",
+  "descida de 3 s",
+  "uma perna só"
+ ],
+ "flexao-joelho-deslizante": [
+  "só a volta lenta (3 s), voltando com as duas pernas",
+  "pausa de 2 s com os joelhos dobrados",
+  "uma perna só"
+ ],
+ "nordico": [
+  "descida mais longa (4–5 s)",
+  "descida até o chão sem usar as mãos",
+  "descida e subida, empurrando com as mãos só no começo"
+ ],
+ "rosca-suspensao": [
+  "pés mais à frente (corpo mais deitado)",
+  "pausa de 2 s com as mãos perto da testa",
+  "descida de 3 s",
+  "uma mão só, com a fita no modo de uma alça (se a sua fita não tiver: descida de 5 s)"
+ ],
+ "yt-suspensao": [
+  "pés mais à frente (corpo mais deitado)",
+  "pausa de 2 s com os braços abertos",
+  "descida de 3 s",
+  "alternar o T e o Y (braços acima da cabeça) na mesma série"
+ ],
+ "triceps-suspensao": [
+  "pés mais para trás (corpo mais inclinado)",
+  "pausa de 2 s com as mãos perto da testa",
+  "descida de 3 s",
+  "pés mais para trás, com descida de 3 s"
+ ],
+ "flexao-joelho-suspensao": [
+  "pausa de 2 s com os joelhos dobrados",
+  "descida de 3 s",
+  "uma perna só"
+ ],
+ "bulgaro-suspensao": [
+  "descida de 3 s",
+  "pausa de 2 s embaixo",
+  "1,5 repetição (desce, sobe até a metade, desce de novo e sobe)"
+ ],
+ "elevacao-joelhos-paralelas": [
+  "joelhos até o peito",
+  "descida de 3 s",
+  "pernas estendidas"
+ ],
+ "abdominal-bola": [
+  "descida de 3 s",
+  "braços acima da cabeça",
+  "braços acima da cabeça, com pausa de 2 s em cima"
+ ],
+ "ponte-pes-bola": [
+  "pausa de 2 s no alto",
+  "braços cruzados no peito (sem as mãos no chão)",
+  "uma perna só",
+  "uma perna só, com pausa de 2 s no alto"
+ ],
+ "roda-abdominal": [
+  "ida de 3 s, rolando devagar",
+  "pausa de 2 s lá na frente",
+  "rolar mais longe, até onde a lombar continua sem arquear"
+ ],
+ "abducao-deitado": [
+  "pausa de 2 s no alto",
+  "descida de 3 s",
+  "pausa de 2 s no alto com descida de 3 s",
+  "1,5 repetição (sobe, desce até a metade, sobe de novo e desce)"
+ ],
+ "aducao-deitado": [
+  "pausa de 2 s no alto",
+  "descida de 3 s",
+  "pausa de 2 s no alto com descida de 3 s",
+  "1,5 repetição (sobe, desce até a metade, sobe de novo e desce)"
+ ]
 }

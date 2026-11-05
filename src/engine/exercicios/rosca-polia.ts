@@ -1,5 +1,7 @@
 // @ts-nocheck
-// Gerado por scripts/extrair-motor.mjs a partir de referencia/guia-execucao-fase1.html. Port mecânico: não editar à mão antes do M1 terminar.
+// Animação nova (aprovada). Rosca direta na polia com barra reta. CORREÇÃO da conferência das animações antigas (04/11/2026):
+// a barra reta tem largura fixa; antes, o antebraço subia 10° para dentro e a pegada "encolhia" 9 cm no meio da subida.
+// Original: port do guia (referencia/guia-execucao-fase1.html); mudar uma animação original quebra a equivalência com o guia (tests/motor).
 import { L3, TX, cable, liftOf, tower } from '../desenho';
 import { X, Y, add, comb, mid } from '../math';
 
@@ -7,7 +9,7 @@ const ex = {
   id:'rosca-polia',barAttach:true,
   views:['lateral'],
   base:{P:[0,93,0],lumbar:0,thor:0,neck:0,legR:{ikS:[12,7,2],poleRel:[0,0,1],ft:[8,-18]},armR:{ua:[0,-84],fa:[-10,-78]}},
-  keys:{bottom:{},mid:{armR:{ua:[0,-84],fa:[-10,-10]}},top:{armR:{ua:[0,-84],fa:[-10,55]}}},
+  keys:{bottom:{},mid:{armR:{ua:[0,-84],fa:[0,-10]}},top:{armR:{ua:[0,-84],fa:[0,55]}}},
   seq:[
     {path:['bottom'],dur:.4,kind:'hold',label:'Embaixo',tempo:'cabo tenso',breath:'INSPIRA'},
     {path:['bottom','mid','top'],dur:1.1,kind:'conc',label:'Subida · concêntrica',tempo:'~1 s',breath:'EXPIRA'},
@@ -23,7 +25,7 @@ const ex = {
   },
   muscles:{p:[['biceps','RL']],s:[['forearm','RL']]},
   errors:[
-    {id:'cotovelo',view:'lateral',keys:{mid:{armR:{ua:[0,-70],fa:[-10,-5]}},top:{armR:{ua:[0,-45],fa:[-10,72]}}}},
+    {id:'cotovelo',view:'lateral',keys:{mid:{armR:{ua:[0,-70],fa:[0,-5]}},top:{armR:{ua:[0,-45],fa:[0,72]}}}},
     {id:'balanco',view:'lateral',keys:{bottom:{lumbar:10,thor:12},mid:{lumbar:-4,thor:-6},top:{P:[0,93,-4],lumbar:-14,thor:-18,neck:-10}}}
   ]
 };

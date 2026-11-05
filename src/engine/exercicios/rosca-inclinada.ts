@@ -1,6 +1,6 @@
 // @ts-nocheck
 // Gerado por scripts/extrair-motor.mjs a partir de referencia/guia-execucao-fase1.html. Port mecânico: não editar à mão antes do M1 terminar.
-import { BOX, L3, TX, dumbbell } from '../desenho';
+import { BOX, L3, TX, dumbbell3 } from '../desenho';
 import { RI } from '../exercicios/compartilhado';
 import { X, Y, Z, add, comb } from '../math';
 
@@ -21,7 +21,7 @@ const ex = {
     BOX([0,45,8],[[X,13],[Y,2.5],[Z,17]],'eqp',{bias:-4});
     BOX(comb(1,[0,53,0],36,RI.u,-10.5,RI.f),[[X,13],[RI.u,36],[RI.f,2.5]],'eqp',{bias:-4});
     BOX([0,2.5,0],[[X,4],[Y,2],[Z,36]],'eqd',{bias:-6});BOX([0,22,4],[[X,2.5],[Y,20],[Z,2.5]],'eqd',{bias:-6});
-    const c='db'+(this._pal==='e'?'-e':'');for(const k of['R','L'])dumbbell(sk.side[k].G,X,c);
+    const c='db'+(this._pal==='e'?'-e':'');for(const k of['R','L'])dumbbell3(sk.side[k].G,X,c);
   },
   guides:{
     lateral(sk){const R=sk.side.R;L3(R.S,add(R.S,[0,-44,0]),'gd',.9,{layer:3,dash:'3 2.5'});TX(R.E,'cotovelo parado',{cls:'lbl-g',anchor:'end',dx:-12,dy:4});

@@ -1,0 +1,81 @@
+{
+  "id": "remada-elastico",
+  "name": "Remada sentada com elástico",
+  "short": "Remada com elástico",
+  "target": "Meio das costas (romboides e trapézio médio) e dorsal",
+  "feel": "Meio das costas, entre as escápulas, e laterais das costas. A parte de trás do ombro e o bíceps trabalham como secundários.",
+  "feelNote": "Se sentir mais a lombar do que as costas, o tronco provavelmente está balançando.",
+  "setupEq": [
+    "Um elástico com pegadores ou um elástico longo, sem rachaduras.",
+    "Sente no chão (um colchonete ajuda) e passe o meio do elástico pela sola dos dois pés, de tênis.",
+    "Cada mão segura uma ponta. Com os braços estendidos, o elástico já deve estar um pouco esticado."
+  ],
+  "setupBody": [
+    "Pernas estendidas, joelhos um pouco dobrados.",
+    "Palmas uma para a outra.",
+    "Coluna neutra, peito alto."
+  ],
+  "exec": [
+    [
+      "hold",
+      "Alongado",
+      "Braços estendidos para os pés, tronco até ~10–15° inclinado à frente, escápulas abertas."
+    ],
+    [
+      "conc",
+      "Puxada (concêntrica)",
+      "~1 s. O tronco volta à vertical enquanto as escápulas se juntam e os cotovelos vão para trás, rentes ao corpo."
+    ],
+    [
+      "hold",
+      "Fim",
+      "Mãos ao lado do abdômen, cotovelos atrás do tronco. Segure 1 s."
+    ],
+    [
+      "ecc",
+      "Volta (excêntrica)",
+      "~2 s. Estenda os braços e deixe as escápulas abrirem, sem arredondar a lombar."
+    ]
+  ],
+  "range": [
+    "Início: braços estendidos, costas alongadas e coluna ainda neutra.",
+    "Fim: mãos ao lado do abdômen, cotovelos passando a linha do tronco.",
+    "Não vá além do ponto em que a lombar começa a arredondar."
+  ],
+  "breath": "Solte o ar puxando. Inspire na volta.",
+  "cues": [
+    "Peito alto.",
+    "Cotovelos rentes, para trás.",
+    "Junta as escápulas no fim."
+  ],
+  "check": [
+    "Elástico sem rachaduras",
+    "Bem preso na sola dos pés",
+    "Um pouco esticado já no início",
+    "Tronco quase vertical",
+    "Série perto da falha, no RIR do programa"
+  ],
+  "vary": "Ficou fácil? Comece com as mãos mais perto do corpo, dê uma volta a mais do elástico no pé ou passe para a intensidade seguinte, se tiver.",
+  "note": "<b>Segurança:</b> se o elástico escapar do pé, ele pode bater no rosto. Confira antes de cada série que ele está bem preso e sem rachaduras; se escapar, pare.",
+  "extLabels": [
+    "início",
+    "fim"
+  ],
+  "errors": [
+    {
+      "id": "balanco",
+      "title": "Balançar o tronco",
+      "desc": "O tronco vira alavanca: a lombar faz o trabalho e as costas descansam."
+    },
+    {
+      "id": "arred",
+      "title": "Arredondar a coluna no alongamento",
+      "desc": "Buscar mais alongamento arredondando a lombar coloca a carga na coluna."
+    },
+    {
+      "id": "encolher",
+      "title": "Encolher os ombros no fim",
+      "desc": "Os ombros sobem: o trapézio de cima assume e o meio das costas trabalha menos."
+    }
+  ]
+}

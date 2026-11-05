@@ -55,7 +55,7 @@ test('Corpo livre: sem nada marcado, o programa sai só com o peso do corpo, diz
   await expect(page.getByRole('heading', { name: 'Agachamento com o peso do corpo' })).toBeVisible();
   const dificuldade = page.getByRole('combobox', { name: 'Dificuldade' });
   await expect(dificuldade).toBeVisible();
-  expect(await dificuldade.locator('option').allTextContents()).toEqual(['Mais repetições', 'Descida de 3 s', 'Pausa de 2 s embaixo', '1,5 repetição (desce, sobe até a metade, desce de novo e sobe)']);
+  expect(await dificuldade.locator('option').allTextContents()).toEqual(['Mais repetições', 'Descida de 3 s', 'Pausa de 2 s embaixo', '1,5 repetição (desce, sobe até a metade, desce de novo e sobe)', 'Subida no step, uma perna de cada vez, com descida de 3 s (sem step: 1,5 repetição com descida de 3 s)']);
   const registro = page.getByRole('region', { name: /^Série \d/ });
   await registro.getByRole('radio', { name: '2', exact: true }).check();
   await registro.getByRole('button', { name: /^Série feita/ }).click();

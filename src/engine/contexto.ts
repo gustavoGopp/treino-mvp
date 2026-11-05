@@ -8,6 +8,8 @@ export const CTX: {
   MEAS: number[] | null;
   prims: Prim[];
   IKFAIL: number;
+  /** Acabamento A2 do boneco (estilo/corpo.ts); null = o estilo A aprovado. */
+  ACABAMENTO: Record<string, unknown> | null;
 } = {
   PJ: (v) => [v[2]!, -v[1]!, -v[0]!], // mesma projeção de VIEWS.lateral
   VIEW: 'lateral',
@@ -15,4 +17,5 @@ export const CTX: {
   MEAS: null,
   prims: [],
   IKFAIL: 0,
+  ACABAMENTO: null,
 };

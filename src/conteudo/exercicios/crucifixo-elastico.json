@@ -1,0 +1,77 @@
+{
+  "id": "crucifixo-elastico",
+  "name": "Crucifixo com elástico",
+  "short": "Crucifixo elástico",
+  "target": "Peitoral maior",
+  "setupEq": [
+    "Um elástico com pegadores ou um elástico longo, sem rachaduras.",
+    "Prenda o meio do elástico atrás de você, na altura do peito: numa porta fechada, com a âncora de porta do lado de lá, ou em volta de um pilar ou barra firme.",
+    "De costas para o ponto, com uma ponta em cada mão, dê 1–2 passos à frente até o elástico ficar esticado com os braços abertos."
+  ],
+  "setupBody": [
+    "Um pé à frente do outro, joelhos levemente dobrados.",
+    "Tronco levemente inclinado à frente, peito alto, ombros para trás.",
+    "Cotovelos levemente dobrados. Esse ângulo fica igual a série toda."
+  ],
+  "exec": [
+    [
+      "hold",
+      "Alongado",
+      "Braços abertos, mãos mais ou menos na linha do corpo, peito alongado. O elástico já está esticado."
+    ],
+    [
+      "conc",
+      "Fechamento (concêntrica)",
+      "~1–1,5 s. Leve as mãos em arco até se encontrarem na frente do peito, como se fosse abraçar uma árvore."
+    ],
+    [
+      "hold",
+      "Fim",
+      "Mãos juntas na frente da parte de baixo do peito."
+    ],
+    [
+      "ecc",
+      "Abertura (excêntrica)",
+      "~2–3 s. Abra no mesmo arco, controlando, até sentir o peito alongar."
+    ]
+  ],
+  "range": [
+    "Início: mãos na linha do corpo, peito alongado e ombro encaixado.",
+    "Fim: mãos se encontram na frente do peito.",
+    "Não abra mais se o ombro rolar para a frente ou se a sensação for na articulação do ombro."
+  ],
+  "cues": [
+    "Cotovelos travados no mesmo ângulo.",
+    "Abraça a árvore.",
+    "Elástico esticado já com os braços abertos."
+  ],
+  "errors": [
+    {
+      "id": "supino",
+      "title": "Transformar em supino",
+      "desc": "Dobrar e esticar o cotovelo transforma o crucifixo num supino e tira a tensão do peito."
+    },
+    {
+      "id": "abrir",
+      "title": "Abrir demais",
+      "desc": "Abrir além da mobilidade leva o ombro para a frente e a carga para a articulação."
+    },
+    {
+      "id": "tronco",
+      "title": "Usar o tronco",
+      "desc": "Curvar o tronco para fechar troca trabalho do peito por impulso."
+    },
+    {
+      "id": "frouxo",
+      "title": "Elástico frouxo com os braços abertos",
+      "desc": "O elástico pesa menos com os braços abertos. Se ele afrouxar ali, o peito não trabalha na parte alongada: dê um passo à frente."
+    }
+  ],
+  "montagem": [
+    "Confira se o elástico não tem rachaduras. Se ele escapar, pode bater no rosto: pare.",
+    "Porta: fechada (e trancada, se der), abrindo para o lado de lá, com a âncora do lado de lá. Assim o elástico empurra a porta contra o batente. Ninguém abre a porta durante a série.",
+    "Pilar ou barra: só um ponto firme, que não gire nem solte. Antes da 1ª série, puxe forte com as mãos para testar.",
+    "Sem onde prender: passe o meio do elástico pelas costas, na altura das escápulas, por baixo das axilas, com uma ponta em cada mão. O movimento é o mesmo."
+  ],
+  "carga": "Elástico, pela escada: normal → mais esticado (um passo mais longe do ponto; sem ponto, segure o elástico mais curto) → descida de 3 s; depois, a intensidade seguinte, se você tiver."
+}

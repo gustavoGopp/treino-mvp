@@ -24,6 +24,8 @@ export type FormInventario = {
   elasticos: { intensidades: string };
   multifuncional: { estacoes: EstacaoMultifuncional[] };
   kettlebell: { pesos: number[] };
+  caneleiras: { pesos: number[] };
+  miniBand: { intensidades: string };
   voador: { invertido?: boolean };
   tricepsMaquina: { acimaDaCabeca?: boolean };
   /** Menor anilha, pergunta única para os itens de anilha (equipamento.menor-anilha). Vazio = sem resposta. */
@@ -92,7 +94,7 @@ export const NOME_CURTO: Record<ItemId, string> = {
   barra_hexagonal: 'Barra hexagonal',
   kettlebell: 'Kettlebell',
   banco_scott: 'Banco Scott',
-  banco_romano: 'Banco romano',
+  banco_romano: 'Banco romano ou GHD',
   estacao_puxada: 'Puxador alto',
   estacao_remada: 'Remada baixa (estação)',
   multifuncional: 'Multifuncional',
@@ -104,12 +106,15 @@ export const NOME_CURTO: Record<ItemId, string> = {
   rosca_maquina: 'Máquina de rosca',
   triceps_maquina: 'Máquina de tríceps',
   abdominal_maquina: 'Máquina de abdominal',
-  hack: 'Hack',
+  hack: 'Hack ou pendular',
   cadeira_abdutora_adutora: 'Abdutora e adutora',
   gluteo_maquina: 'Glúteo na máquina',
   panturrilha_em_pe_maquina: 'Panturrilha em pé',
   panturrilha_sentada_maquina: 'Panturrilha sentada',
-  suspensao: 'Suspensão (TRX)',
+  suspensao: 'Suspensão (TRX) ou argolas',
+  caneleiras: 'Caneleiras de peso',
+  mini_band: 'Mini-band',
+  roda_abdominal: 'Roda abdominal',
 };
 
 /** Valores comuns, para escolher com um toque (sempre há "outro"). Nenhum vem marcado. */
@@ -120,6 +125,8 @@ export const VALORES = {
   manoplaKg: [1, 1.5, 2, 2.5, 3],
   anilhaKg: [0.5, 1, 1.25, 2, 2.5, 3, 4, 5, 10],
   kettlebellKg: [4, 6, 8, 10, 12, 14, 16, 20, 24, 28, 32],
+  /** [opinião] A caneleira comum vai de 0,5 a 5 kg (pesquisa-v2/11, B.2.3, sem fonte); há "outro". */
+  caneleiraKg: [0.5, 1, 1.5, 2, 2.5, 3, 4, 5],
   menorAnilhaKg: [0.5, 1, 1.25, 2, 2.5, 5],
 } as const;
 
@@ -133,6 +140,8 @@ const COM_FORM: ItemId[] = [
   'elasticos',
   'multifuncional',
   'kettlebell',
+  'caneleiras',
+  'mini_band',
   'voador',
   'triceps_maquina',
 ];
@@ -147,6 +156,8 @@ export const formVazio = (): FormInventario => ({
   elasticos: { intensidades: '' },
   multifuncional: { estacoes: [] },
   kettlebell: { pesos: [] },
+  caneleiras: { pesos: [] },
+  miniBand: { intensidades: '' },
   voador: {},
   tricepsMaquina: {},
   menorAnilha: '',
@@ -173,6 +184,8 @@ export function paraForm(inv: Inventario | undefined): FormInventario {
   if (inv.elasticos) f.elasticos = { intensidades: txt(inv.elasticos.intensidades) };
   if (inv.multifuncional) f.multifuncional = { estacoes: ESTACOES_MULTIFUNCIONAL.filter((e) => inv.multifuncional![e]) };
   if (inv.kettlebell) f.kettlebell = { pesos: [...inv.kettlebell.pesosKg].sort((a, b) => a - b) };
+  if (inv.caneleiras) f.caneleiras = { pesos: [...inv.caneleiras.pesosKg].sort((a, b) => a - b) };
+  if (inv.mini_band) f.miniBand = { intensidades: txt(inv.mini_band.intensidades) };
   if (inv.voador) f.voador = inv.voador.invertido === undefined ? {} : { invertido: inv.voador.invertido };
   if (inv.triceps_maquina) f.tricepsMaquina = inv.triceps_maquina.acimaDaCabeca === undefined ? {} : { acimaDaCabeca: inv.triceps_maquina.acimaDaCabeca };
   // A menor anilha vem do 1º item de anilha que a tem (a pergunta é uma só para todos).
@@ -255,6 +268,10 @@ export function deForm(f: FormInventario): { inventario: Inventario | null; erro
         if (!f.kettlebell.pesos.length) erros['kettlebell.pesos'] = 'Marque pelo menos um peso de kettlebell.';
         inv[id] = { pesosKg: [...new Set(f.kettlebell.pesos)].sort((a, b) => a - b) };
         break;
+      case 'caneleiras':
+        if (!f.caneleiras.pesos.length) erros['caneleiras.pesos'] = 'Marque pelo menos um peso de caneleira.';
+        inv[id] = { pesosKg: [...new Set(f.caneleiras.pesos)].sort((a, b) => a - b) };
+        break;
       case 'voador':
         if (f.voador.invertido === undefined) erros['voador.invertido'] = 'Diga se o voador também vira para trás.';
         inv[id] = { ...f.extras[id], invertido: f.voador.invertido };
@@ -269,6 +286,9 @@ export function deForm(f: FormInventario): { inventario: Inventario | null; erro
         break;
       case 'elasticos':
         inv[id] = { intensidades: positivo('elasticos.intensidades', f.elasticos.intensidades, true) };
+        break;
+      case 'mini_band':
+        inv[id] = { intensidades: positivo('miniBand.intensidades', f.miniBand.intensidades, true) };
         break;
       default:
         inv[id] = { ...f.extras[id] };
@@ -309,8 +329,11 @@ export function comSugestoes(f: FormInventario, sugestoes: { itemId: ItemId; atr
       n.multifuncional.estacoes = ESTACOES_MULTIFUNCIONAL.filter((e) => a[e] === true);
     if (s.itemId === 'kettlebell' && !n.kettlebell.pesos.length && Array.isArray(a.pesosKg))
       n.kettlebell.pesos = [...new Set(a.pesosKg.filter((k): k is number => typeof k === 'number' && k > 0))].sort((x, y) => x - y);
+    if (s.itemId === 'caneleiras' && !n.caneleiras.pesos.length && Array.isArray(a.pesosKg))
+      n.caneleiras.pesos = [...new Set(a.pesosKg.filter((k): k is number => typeof k === 'number' && k > 0))].sort((x, y) => x - y);
     if (s.itemId === 'banco_regulavel' && n.bancoRegulavel.declina === undefined && typeof a.declina === 'boolean') n.bancoRegulavel.declina = a.declina;
     if (s.itemId === 'elasticos' && vazio(n.elasticos.intensidades)) n.elasticos.intensidades = num(a.intensidades);
+    if (s.itemId === 'mini_band' && vazio(n.miniBand.intensidades)) n.miniBand.intensidades = num(a.intensidades);
   }
   n.marcados = ITEM_IDS.filter((id) => n.marcados.includes(id));
   return n;
