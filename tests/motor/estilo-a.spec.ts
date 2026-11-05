@@ -14,6 +14,7 @@ const sha = (s: string) => createHash('sha256').update(s).digest('hex');
 type Base = { nTempos: number; exercicios: { id: string; quadros: Record<string, string[]> }[] };
 
 test('o boneco padrão (estilo A) continua igual ao aprovado', async ({ page }) => {
+  test.setTimeout(240_000); // 82 animações × vistas × modos × 24 tempos (R4, 05/11/2026)
   const gerar = !!process.env.ATUALIZAR_ESTILO_A;
   test.skip(!gerar && !existsSync(CAMINHO), 'linha de base do estilo A ainda não aprovada');
   const bundle = await build({
