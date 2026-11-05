@@ -39,6 +39,16 @@ if (ex._fita) {
   console.log(`fita de suspensão (cm, da âncora ao pegador): ${Object.keys(ex.K).map((k) => `${k} ${fitaDe(ex.K[k])}`).join(' · ')}`);
   for (const e of ex.errors) console.log(`  erro ${e.id}: ${Object.keys(e.K).map((k) => `${k} ${fitaDe(e.K[k])}`).join(' · ')}`);
 }
+// Elástico e cabo (peças `band` e `cable`): o comprimento em cada pose-chave e o repouso calibrado (L0). O elástico
+// afina quando passa do repouso: a tensão deve subir na fase em que o músculo encurta (R4, 05/11/2026).
+if (ex.L0 && Object.keys(ex.L0).length) {
+  const compr = (K) => {
+    m.CTX.PJ = m.VIEWS[ex.views[0]].proj; m.CTX.VIEW = ex.views[0]; m.CTX.MEAS = [1e9, -1e9, 1e9, -1e9]; m.CTX.prims = [];
+    ex._cab = {}; ex.equip(m.skel(K)); m.CTX.MEAS = null; const c = ex._cab; ex._cab = null;
+    return Object.entries(c).map(([id, L]) => `${id} ${L.toFixed(0)}`).join('/');
+  };
+  console.log(`elástico ou cabo (cm; repouso ${Object.entries(ex.L0).map(([id, L]) => `${id} ${(L + 10).toFixed(0)}`).join('/')}): ${Object.keys(ex.K).map((k) => `${k} ${compr(ex.K[k])}`).join(' · ')}`);
+}
 const maos = (K) => Object.keys(K).map((k) => `${k} ${dist(m.skel(K[k]).side.R.G, m.skel(K[k]).side.L.G)}`).join(' · ');
 console.log(`distância entre as mãos (cm): ${maos(ex.K)}`);
 for (const e of ex.errors) console.log(`  erro ${e.id}: ${maos(e.K)}`);

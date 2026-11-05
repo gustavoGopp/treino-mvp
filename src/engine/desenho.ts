@@ -136,6 +136,18 @@ export function band(ex,id,from,to,o={}){
   L3(from,to,'elas',(o.w??3.4)*(1-0.45*r),{bias:o.bias??-1,layer:o.layer});
   return L;
 }
+/**
+ * Âncora do elástico (R4, 05/11/2026): um poste fino no chão, em [x, 0, z], com um anel na altura `alt` onde o elástico
+ * está preso. Escolha de desenho: a ficha fala em porta, pilar ou barra firme; de lado, uma porta cobriria o corpo e,
+ * de frente, sumiria; o poste lê em todas as vistas e é a convenção da torre da polia. Devolve o ponto do anel.
+ */
+export function poste(x,z,alt,o={}){
+  const h=o.h??Math.max(alt+12,60);
+  BOX([x,h/2,z],[[X,2.5],[Y,h/2],[Z,2.5]],'eqp',{bias:-400,w:.6});
+  BOX([x,2,z],[[X,7],[Y,2],[Z,7]],'eqd',{bias:-399});
+  C3([x,alt,z],3,'eqd',{bias:-398});
+  return[x,alt,z];
+}
 /** Pegador do elástico na mão: uma barrinha curta atravessada. */
 export function bandHandle(G,dir,o={}){L3(add(G,mul(dir,-4.5)),add(G,mul(dir,4.5)),'eqd',2.6,{bias:o.bias??.3});}
 /**
