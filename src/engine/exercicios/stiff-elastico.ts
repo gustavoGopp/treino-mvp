@@ -1,11 +1,11 @@
 // @ts-nocheck
-// Animação nova (em revisão). Stiff com elástico: em pé, pisando no meio do elástico com os dois pés, cada mão numa
+// Animação nova (aprovada). Stiff com elástico: em pé, pisando no meio do elástico com os dois pés, cada mão numa
 // ponta na frente das coxas; o quadril vai para trás e as mãos descem rentes às pernas. Parte do stiff aprovado (mesmo
 // corpo, mesmo caminho do quadril e das mãos), com a peça do elástico (band) no lugar do halter: a faixa sai de baixo
 // do meio de cada pé e é mais curta em pé, onde estica mais (a tensão é maior em cima e quase nenhuma embaixo).
 // Técnica e fontes: docs/pesquisa/animacoes/stiff-elastico.md.
-import { ARROW3, L3, TX, band, bandHandle } from '../../desenho';
-import { X, Z, add, comb, mid, mul, sub } from '../../math';
+import { ARROW3, L3, TX, band, bandHandle } from '../desenho';
+import { X, Z, add, comb, mid, mul, sub } from '../math';
 
 const sola=(sk,k)=>add(mid(sk.side[k].heel,sk.side[k].toe),[0,-1,0]);
 const ex = {

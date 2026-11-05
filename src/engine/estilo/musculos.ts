@@ -420,6 +420,23 @@ export const LISTA = {
     ['deltLat', 'R', 'p'],
     ['deltLat', 'L', 'p'],
   ],
+  // R4 (05/11/2026): as versões com elástico desenham os mesmos músculos das versões aprovadas em que se baseiam.
+  'elevacao-lateral-elastico': [
+    ['deltAnt', 'R', 's'],
+    ['deltAnt', 'L', 's'],
+    ['deltLat', 'R', 'p'],
+    ['deltLat', 'L', 'p'],
+  ],
+  'desenvolvimento-elastico': [
+    ['trapSuperior', 'R', 's'],
+    ['trapSuperior', 'L', 's'],
+    ['deltLat', 'R', 's'],
+    ['deltLat', 'L', 's'],
+    ['deltAnt', 'R', 'p'],
+    ['deltAnt', 'L', 'p'],
+    ['triceps', 'R', 's'],
+    ['triceps', 'L', 's'],
+  ],
   'elevacao-lateral': [
     ['deltAnt', 'R', 's'],
     ['deltLat', 'R', 'p'],
@@ -470,6 +487,13 @@ export const SO_AJUDA: Record<string, string[]> = {
   'stiff-unilateral': ['eretores'],
   'stiff-kettlebell': ['eretores'],
   'triceps-frances': ['retoAbdominal'],
+  // R4 (05/11/2026): as versões com elástico, como as suas bases
+  'rosca-elastico': ['antebraco'],
+  'elevacao-lateral-elastico': ['deltAnt'],
+  'stiff-elastico': ['eretores'],
+  'desenvolvimento-elastico': ['trapSuperior'],
+  'triceps-elastico-acima': ['retoAbdominal'],
+  'flexao-elastico': ['retoAbdominal'],
 };
 // O padrão das listras (as cores vêm do CSS: .mh-fundo e .mh-listra).
 const LISTRAS = `<defs><pattern id="mh-listras" width="3.2" height="3.2" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="3.2" height="3.2" class="mh-fundo"/><rect width="1.6" height="3.2" class="mh-listra"/></pattern></defs>`;

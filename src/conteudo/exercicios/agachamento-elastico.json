@@ -3,6 +3,8 @@
   "name": "Agachamento com elástico",
   "short": "Agachamento elástico",
   "target": "Quadríceps (frente da coxa)",
+  "feel": "Frente das coxas. Glúteos e parte de dentro da coxa trabalham junto.",
+  "feelNote": "O elástico pesa mais em pé e quase nada embaixo. Queimação na coxa no fim da série é esperada. Dor na frente do joelho ou na lombar não é: diminua a profundidade e procure avaliação se continuar.",
   "setupEq": [
     "Um elástico com pegadores ou um elástico longo, sem rachaduras. Em geral, um dos mais fortes.",
     "Em pé, de tênis, pise no meio do elástico com os dois pés.",
@@ -40,10 +42,24 @@
     "Em cima: joelhos quase estendidos, sem travar.",
     "Pare de descer antes do ponto em que a lombar começa a arredondar."
   ],
+  "breath": "Inspire em pé e firme o abdômen antes de descer. Solte o ar subindo.",
   "cues": [
     "Joelhos para a frente e para fora.",
     "Peito alto, mãos nos ombros.",
     "Desce entre os calcanhares."
+  ],
+  "check": [
+    "Elástico sem rachaduras",
+    "Os dois pés no meio do elástico",
+    "Mãos na frente dos ombros",
+    "Calcanhar no chão",
+    "Descida lenta"
+  ],
+  "vary": "A largura dos pés, as pontas abertas e a profundidade dependem do seu quadril e do tornozelo. O joelho passar da ponta do pé é normal. Ficou fácil? Segure mais curto, passe para a intensidade seguinte ou use dois elásticos.",
+  "note": "<b>Segurança:</b> confira antes de cada série se o elástico está sem rachaduras e bem preso. Um elástico que escapa pode bater no rosto; se escapar, pare.",
+  "extLabels": [
+    "em pé",
+    "embaixo"
   ],
   "errors": [
     {
@@ -61,9 +77,5 @@
       "title": "Descer pouco",
       "desc": "Parar alto corta a parte da amplitude que mais trabalha a coxa."
     }
-  ],
-  "montagem": [
-    "Confira se o elástico não tem rachaduras e se está bem preso embaixo dos dois pés, de tênis, no meio da sola. Ele sobe pela frente do corpo até os ombros: se escapar, pode bater no rosto. Pare."
-  ],
-  "carga": "Elástico, pela escada: normal → mais esticado (segure o elástico mais curto, com uma volta na mão; os pés ficam onde estão) → descida de 3 s; depois, a intensidade seguinte, se você tiver."
+  ]
 }

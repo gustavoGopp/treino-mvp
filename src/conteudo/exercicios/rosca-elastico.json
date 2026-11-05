@@ -3,6 +3,8 @@
   "name": "Rosca com elástico",
   "short": "Rosca elástico",
   "target": "Bíceps",
+  "feel": "Frente do braço, entre o ombro e o cotovelo. O antebraço também trabalha ao segurar a ponta.",
+  "feelNote": "O elástico pesa mais no topo: é normal o fim da subida ser a parte mais dura. Dor no cotovelo não é normal: use um elástico mais leve.",
   "setupEq": [
     "Um elástico com pegadores ou um elástico longo, sem rachaduras.",
     "Em pé, de tênis, pise no meio do elástico com os dois pés, na largura do quadril.",
@@ -39,10 +41,24 @@
     "Início: braços estendidos.",
     "Fim: mãos perto dos ombros, cotovelos ainda ao lado do tronco."
   ],
+  "breath": "Solte o ar subindo, inspire descendo.",
   "cues": [
     "Cotovelo parado.",
     "Tronco parado.",
     "Desce devagar."
+  ],
+  "check": [
+    "Elástico sem rachaduras",
+    "Os dois pés no meio do elástico",
+    "Um pouco esticado já embaixo",
+    "Cotovelos no tronco",
+    "Parar no RIR do seu programa"
+  ],
+  "vary": "Ficou fácil? Afaste um pouco os pés (o elástico começa mais esticado) ou passe para a intensidade seguinte, se tiver. Também pode subir um braço de cada vez.",
+  "note": "<b>Segurança:</b> confira antes de cada série se o elástico está sem rachaduras e bem preso. Um elástico que escapa pode bater no rosto; se escapar, pare.",
+  "extLabels": [
+    "início",
+    "fim"
   ],
   "errors": [
     {
@@ -60,9 +76,5 @@
       "title": "Não estender os braços",
       "desc": "Sem estender os braços embaixo, o bíceps trabalha só a metade do movimento."
     }
-  ],
-  "montagem": [
-    "Confira se o elástico não tem rachaduras e se está bem preso embaixo dos dois pés, de tênis, no meio da sola. Se ele escapar, pode bater no rosto: pare."
-  ],
-  "carga": "Elástico, pela escada: normal → mais esticado (pés mais afastados em cima do elástico, ou segure-o mais curto) → descida de 3 s; depois, a intensidade seguinte, se você tiver."
+  ]
 }

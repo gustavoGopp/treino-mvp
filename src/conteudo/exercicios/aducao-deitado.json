@@ -3,6 +3,8 @@
   "name": "Adução de quadril deitado de lado, sem carga",
   "short": "Adução deitado",
   "target": "Adutores (parte de dentro da coxa)",
+  "feel": "Parte de dentro da coxa da perna de baixo, da virilha até perto do joelho.",
+  "feelNote": "Se sentir a lombar ou a cintura, o quadril está girando para subir mais: o movimento é curto mesmo. Se a virilha doer de forma aguda, pare.",
   "setupEq": [
     "Nenhum equipamento. Um colchonete ou uma toalha no chão ajudam."
   ],
@@ -38,10 +40,24 @@
     "Em cima: só até onde o quadril fica parado. O curso é curto por natureza.",
     "Embaixo: a perna fica a um dedo do chão, sem descansar."
   ],
+  "breath": "Solte o ar subindo, inspire descendo.",
   "cues": [
     "Quadril parado.",
     "Curso curto.",
     "Não descansa embaixo."
+  ],
+  "check": [
+    "Deitado de lado, cabeça no braço de baixo",
+    "Pé de cima no chão, à frente",
+    "Quadril parado",
+    "Perna de baixo não descansa embaixo",
+    "Série perto da falha, no RIR do programa"
+  ],
+  "vary": "Sem carga, a série vai até 30 repetições. Ficou fácil? Uma pausa de 2 s no topo, descida de 3 s e, por fim, 1,5 repetição (sobe, desce até a metade, sobe de novo e desce). Com caneleira, troque pela versão com carga.",
+  "note": "<b>Segurança:</b> dor aguda na virilha não é normal: pare e procure avaliação se continuar.",
+  "extLabels": [
+    "embaixo",
+    "topo"
   ],
   "errors": [
     {
@@ -59,9 +75,5 @@
       "title": "Descansar a perna no chão",
       "desc": "A perna deita no chão entre as repetições e a série perde metade do trabalho."
     }
-  ],
-  "carga": "Sem carga: faça 15 a 30 repetições perto da falha. Quando ficar fácil, siga a escada do exercício (pausa de 2 s no alto, descida de 3 s, depois 1,5 repetição).",
-  "montagem": [
-    "Colchonete num chão que não escorrega."
   ]
 }

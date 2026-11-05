@@ -3,6 +3,8 @@
   "name": "Flexão de joelho com elástico",
   "short": "Flexão de joelho elástico",
   "target": "Posteriores da coxa",
+  "feel": "Parte de trás da coxa.",
+  "feelNote": "O elástico pesa mais com os joelhos dobrados e menos com as pernas estendidas. Câimbra na parte de trás da coxa pode acontecer no começo: pare, alongue e retome com menos repetições.",
   "setupEq": [
     "Um elástico com pegadores ou um elástico longo, sem rachaduras. Um colchonete.",
     "Prenda o meio do elástico num ponto firme e baixo, perto do chão: o pé de um móvel pesado que não arraste (sofá, cama), ou uma porta fechada com a âncora de porta embaixo, do lado de lá.",
@@ -40,10 +42,24 @@
     "Fim: joelhos bem dobrados, calcanhares perto do glúteo.",
     "O quadril não sai do chão para puxar mais."
   ],
+  "breath": "Solte o ar dobrando, inspire na volta.",
   "cues": [
     "Quadril no chão.",
     "Calcanhar no glúteo.",
     "Volta devagar."
+  ],
+  "check": [
+    "Elástico preso num ponto firme e baixo",
+    "Pontas em volta dos dois tornozelos",
+    "Esticado já com as pernas estendidas",
+    "Quadril no chão",
+    "Volta devagar"
+  ],
+  "vary": "Ficou fácil? Deite um pouco mais longe do ponto ou passe para a intensidade seguinte. Sem onde prender embaixo? A flexão de joelho deslizante, se houver chão liso, ou o stiff com elástico.",
+  "note": "<b>Segurança:</b> antes da 1ª série, puxe forte o elástico com as mãos para testar o ponto (a porta fechada, abrindo para o lado de lá; o móvel não pode arrastar). Elástico sem rachaduras. Se escapar ou o ponto ceder, pare.",
+  "extLabels": [
+    "início",
+    "fim"
   ],
   "errors": [
     {
@@ -61,12 +77,5 @@
       "title": "Puxar pouco ou não estender na volta",
       "desc": "A amplitude fica curta e a coxa trabalha só parte do movimento."
     }
-  ],
-  "montagem": [
-    "Confira se o elástico não tem rachaduras e se está bem preso atrás dos tornozelos. Se ele escapar, pode bater no corpo ou no rosto: pare.",
-    "Móvel: só um bem pesado, que não arraste nem tombe. Antes da 1ª série, puxe forte com as mãos para testar.",
-    "Porta: fechada (e trancada, se der), abrindo para o lado de lá, com a âncora embaixo, do lado de lá. Assim, puxando, você empurra a porta contra o batente. Ninguém abre a porta durante a série.",
-    "Sem onde prender embaixo: faça a flexão de joelho deslizando os pés no chão, se houver chão liso; se não, o stiff com elástico, que também trabalha a parte de trás da coxa."
-  ],
-  "carga": "Elástico, pela escada: normal → mais esticado (deite um pouco mais longe do ponto) → descida de 3 s; depois, a intensidade seguinte, se você tiver."
+  ]
 }

@@ -1,11 +1,11 @@
 // @ts-nocheck
-// Animação nova (em revisão). Rosca com elástico: em pé, pisando no meio do elástico com os dois pés, cada mão numa
+// Animação nova (aprovada). Rosca com elástico: em pé, pisando no meio do elástico com os dois pés, cada mão numa
 // ponta; os dois antebraços sobem juntos com os cotovelos parados ao lado do tronco. Parte da rosca alternada aprovada
 // (mesmo corpo em pé, mesmo caminho do antebraço), com os dois braços juntos e a peça do elástico (band) no lugar do
 // halter: a faixa sai de baixo do meio de cada pé e afina quando estica (a tensão sobe no topo).
 // Técnica e fontes: docs/pesquisa/animacoes/rosca-elastico.md.
-import { L3, TX, band, bandHandle } from '../../desenho';
-import { X, add, mid } from '../../math';
+import { L3, TX, band, bandHandle } from '../desenho';
+import { X, add, mid } from '../math';
 
 const baixo={ua:[0,-90],fa:[0,-86]};
 const sola=(sk,k)=>add(mid(sk.side[k].heel,sk.side[k].toe),[0,-1,0]); // sob o meio do pé

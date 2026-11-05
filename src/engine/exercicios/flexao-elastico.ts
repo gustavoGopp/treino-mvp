@@ -1,11 +1,11 @@
 // @ts-nocheck
-// Animação nova (em revisão). Flexão de braço com elástico: o meio do elástico passa pelas costas, na altura das
+// Animação nova (aprovada). Flexão de braço com elástico: o meio do elástico passa pelas costas, na altura das
 // escápulas, e cada ponta fica presa sob a palma; a flexão é a de sempre, e o elástico pesa mais no fim da subida.
 // Parte da flexão aprovada (mesmo corpo e mesmo caminho), com a faixa das costas a cada mão (band), que afina
 // quando estica. O erro "pescoco" é a faixa subindo para o pescoço (um parâmetro da pose lido pelo equipamento).
 // Técnica e fontes: docs/pesquisa/animacoes/flexao-elastico.md.
-import { L3, TX, band } from '../../desenho';
-import { add, comb, mul, sub } from '../../math';
+import { L3, TX, band } from '../desenho';
+import { add, comb, mul, sub } from '../math';
 
 const ex = {
   id:'flexao-elastico',

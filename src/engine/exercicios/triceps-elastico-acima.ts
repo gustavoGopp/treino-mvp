@@ -1,12 +1,12 @@
 // @ts-nocheck
-// Animação nova (em revisão). Tríceps acima da cabeça com elástico: em pé, um pé à frente do outro; o pé de trás
+// Animação nova (aprovada). Tríceps acima da cabeça com elástico: em pé, um pé à frente do outro; o pé de trás
 // pisa no meio do elástico, as duas pontas sobem pelas costas e as mãos as seguram juntas atrás da cabeça; estende só
 // o cotovelo, levando as mãos para cima. Parte do tríceps francês na polia aprovado (mesmo caminho do antebraço e a
 // mesma base com um pé à frente), com o tronco em pé e as duas faixas de baixo do pé de trás às mãos (atrás do
 // corpo), que afinam quando esticam (a tensão sobe com os braços estendidos).
 // Técnica e fontes: docs/pesquisa/animacoes/triceps-elastico-acima.md.
-import { L3, TX, band, bandHandle } from '../../desenho';
-import { X, add, mid, mul, sub } from '../../math';
+import { L3, TX, band, bandHandle } from '../desenho';
+import { X, add, mid, mul, sub } from '../math';
 
 const sola=(sk,k)=>add(mid(sk.side[k].heel,sk.side[k].toe),[0,-1,0]);
 const ex = {

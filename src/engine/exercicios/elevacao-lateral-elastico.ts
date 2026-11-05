@@ -1,11 +1,11 @@
 // @ts-nocheck
-// Animação nova (em revisão). Elevação lateral com elástico: em pé, pisando no meio do elástico com os dois pés, cada
+// Animação nova (aprovada). Elevação lateral com elástico: em pé, pisando no meio do elástico com os dois pés, cada
 // mão numa ponta; os braços sobem para fora e um pouco à frente até a linha dos ombros, cotovelo um pouco acima da
 // mão. Parte da elevação com halteres aprovada (mesmo corpo e mesmo caminho do braço), com a peça do elástico (band)
 // no lugar do halter: a faixa sai de baixo do meio de cada pé e afina quando estica (a tensão sobe no topo).
 // Técnica e fontes: docs/pesquisa/animacoes/elevacao-lateral-elastico.md.
-import { L3, TX, band, bandHandle } from '../../desenho';
-import { Y, Z, add, comb, mid } from '../../math';
+import { L3, TX, band, bandHandle } from '../desenho';
+import { Y, Z, add, comb, mid } from '../math';
 
 const sola=(sk,k)=>add(mid(sk.side[k].heel,sk.side[k].toe),[0,-1,0]);
 const ex = {

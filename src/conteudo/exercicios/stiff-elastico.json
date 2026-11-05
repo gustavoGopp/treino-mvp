@@ -3,6 +3,8 @@
   "name": "Stiff com elástico",
   "short": "Stiff elástico",
   "target": "Posteriores da coxa e glúteos",
+  "feel": "Posterior da coxa, principalmente perto do glúteo, e os glúteos.",
+  "feelNote": "Aqui o elástico pesa mais em pé, e quase nada embaixo: a parte alongada fica leve. A lombar trabalha um pouco para segurar a postura, e isso é normal; dor ou queimação forte na lombar não é.",
   "setupEq": [
     "Um elástico com pegadores ou um elástico longo, sem rachaduras. Em geral, um dos mais fortes.",
     "Em pé, de tênis, pise no meio do elástico com os dois pés, na largura do quadril.",
@@ -41,10 +43,24 @@
     "Em cima: quadril estendido, sem arquear a lombar para trás.",
     "Pare de descer quando a lombar começar a arredondar, mesmo que as mãos não tenham chegado longe."
   ],
+  "breath": "Inspire e firme o abdômen em pé. Segure enquanto desce e solte o ar na subida, depois de passar os joelhos.",
   "cues": [
     "Quadril para trás.",
     "Mãos rentes às pernas.",
     "Coluna longa do quadril à cabeça."
+  ],
+  "check": [
+    "Elástico sem rachaduras",
+    "Os dois pés no meio do elástico",
+    "Já esticado em pé, segurado curto",
+    "Joelhos levemente dobrados",
+    "Abdômen firme"
+  ],
+  "vary": "O quanto você desce depende da flexibilidade do posterior. A referência é a coluna neutra e o alongamento. Ficou fácil? Segure mais curto ou passe para a intensidade seguinte.",
+  "note": "<b>Segurança:</b> confira antes de cada série se o elástico está sem rachaduras e bem preso. Um elástico que escapa pode bater no rosto; se escapar, pare.",
+  "extLabels": [
+    "em pé",
+    "embaixo"
   ],
   "errors": [
     {
@@ -62,9 +78,5 @@
       "title": "Mãos longe das pernas",
       "desc": "Com as mãos à frente, a alavanca na lombar aumenta."
     }
-  ],
-  "montagem": [
-    "Confira se o elástico não tem rachaduras e se está bem preso embaixo dos dois pés, de tênis, no meio da sola. Se ele escapar, pode bater no rosto: pare."
-  ],
-  "carga": "Elástico, pela escada: normal → mais esticado (segure o elástico mais curto, com uma volta na mão; os pés ficam onde estão) → descida de 3 s; depois, a intensidade seguinte, se você tiver."
+  ]
 }

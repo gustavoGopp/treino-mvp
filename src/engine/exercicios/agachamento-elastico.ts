@@ -1,11 +1,11 @@
 // @ts-nocheck
-// Animação nova (em revisão). Agachamento com elástico: em pé, pisando no meio do elástico com os dois pés, cada mão
+// Animação nova (aprovada). Agachamento com elástico: em pé, pisando no meio do elástico com os dois pés, cada mão
 // numa ponta na frente dos ombros, cotovelos para baixo; o elástico sobe pela frente do corpo. Parte do agachamento
 // com o peso do corpo aprovado (mesmo caminho do quadril e dos joelhos), com as mãos nos ombros (como no goblet) e a
 // peça do elástico (band): a faixa sai de baixo do meio de cada pé e é mais curta em pé, onde estica mais.
 // Técnica e fontes: docs/pesquisa/animacoes/agachamento-elastico.md.
-import { L3, TX, band, bandHandle } from '../../desenho';
-import { X, add, mid } from '../../math';
+import { L3, TX, band, bandHandle } from '../desenho';
+import { X, add, mid } from '../math';
 
 const sola=(sk,k)=>add(mid(sk.side[k].heel,sk.side[k].toe),[0,-1,0]);
 const ex = {

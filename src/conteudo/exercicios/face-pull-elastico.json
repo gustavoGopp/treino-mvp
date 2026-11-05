@@ -3,6 +3,8 @@
   "name": "Abertura com elástico na altura do rosto",
   "short": "Face pull com elástico",
   "target": "Deltoide posterior (parte de trás do ombro)",
+  "feel": "Parte de trás do ombro e entre as escápulas.",
+  "feelNote": "O elástico pesa mais no fim da puxada, com as mãos ao lado da cabeça. Se sentir só o bíceps, os cotovelos provavelmente estão baixos.",
   "setupEq": [
     "Um elástico com pegadores ou um elástico longo, sem rachaduras. Em geral, um dos mais leves.",
     "Prenda o meio do elástico na altura da testa: numa porta fechada, com a âncora de porta do lado de lá, ou em volta de um pilar ou barra firme.",
@@ -40,10 +42,24 @@
     "Fim: mãos ao lado da cabeça e cotovelos alinhados com o corpo.",
     "Não leve os cotovelos mais para trás arqueando a lombar."
   ],
+  "breath": "Solte o ar puxando, inspire voltando.",
   "cues": [
     "Cotovelos altos.",
     "Abre as mãos no fim.",
     "Peito parado."
+  ],
+  "check": [
+    "Elástico preso na altura da testa, num ponto firme",
+    "Esticado já com os braços estendidos",
+    "Pés firmes",
+    "Cotovelos altos",
+    "Elástico leve, para 12–20"
+  ],
+  "vary": "A altura do ponto e o quanto as mãos abrem dependem da mobilidade de rotação do seu ombro. Ficou fácil? Dê um passo para trás ou passe para a intensidade seguinte.",
+  "note": "<b>Segurança:</b> antes da 1ª série, puxe forte o elástico com as mãos para testar o ponto (a porta fechada, abrindo para o lado de lá; o móvel não pode arrastar). Elástico sem rachaduras. Se escapar ou o ponto ceder, pare.",
+  "extLabels": [
+    "início",
+    "fim"
   ],
   "errors": [
     {
@@ -61,12 +77,5 @@
       "title": "Encolher os ombros",
       "desc": "Os ombros sobem e a cabeça vai para a frente. Mantenha o pescoço longo."
     }
-  ],
-  "montagem": [
-    "Confira se o elástico não tem rachaduras. Ele fica na altura do rosto: se escapar ou arrebentar, vem direto nele. Pare se escapar.",
-    "Porta: fechada (e trancada, se der), abrindo para o lado de lá, com a âncora do lado de lá. Assim, puxando, você empurra a porta contra o batente. Ninguém abre a porta durante a série.",
-    "Pilar ou barra: só um ponto firme, que não gire nem solte. Antes da 1ª série, puxe forte para testar.",
-    "Sem onde prender: faça a abertura com o elástico entre as mãos. Braços estendidos à frente, na altura do ombro, mãos na largura dos ombros; abra os braços para os lados até as mãos chegarem perto da linha do corpo e volte devagar."
-  ],
-  "carga": "Elástico, pela escada: normal → mais esticado (um passo mais longe do ponto; na abertura sem ponto, mãos mais perto uma da outra no elástico) → descida de 3 s; depois, a intensidade seguinte, se você tiver."
+  ]
 }

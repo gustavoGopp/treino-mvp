@@ -422,38 +422,47 @@ function decidirRotulos(ex, view, box, grupos) {
     quadros.some((q) => { const r = retEm(q, gi, off0[0] + 0.5 * fs, off0[1] + 0.25 * fs, Math.max(1, w - fs), Math.max(1, h - 0.5 * fs)); return r && tocaOCorpo(r, q.caps.map((c) => [c[0], c[1], c[2], c[3], 0.5])); }),
   );
   medidas.forEach(({ off0, w, h }, gi) => { if (!mexem[gi]) postos.push([gi, off0[0], off0[1], w, h]); });
-  // 2) cada um dos que se movem, na ordem, procura o seu lugar
-  const dec = [];
-  grupos.forEach((g, gi) => {
-    if (!mexem[gi]) { dec.push(null); return; }
-    const { txs } = medidas[gi];
-    let { n, w, h } = medidas[gi];
-    // um rótulo de uma linha largo demais para caber ao lado do corpo é quebrado em duas (na vírgula ou no espaço
-    // mais perto do meio), para ter onde ficar
-    let textos = null;
-    if (n === 1 && w > 0.4 * box[2]) {
-      textos = quebrar(txs[0].str);
-      if (textos) { n = 2; w = Math.max(...textos.map((t) => larguraDoTexto({ ...txs[0], str: t }))); h = linha + 1.05 * fs; }
+  // 2) cada um dos que se movem, na ordem, procura o seu lugar; quem não acha fica onde está e vira obstáculo para os
+  // outros (a colocação recomeça, no máximo uma vez por rótulo: determinístico)
+  const quebras = {};
+  const semLugar = new Set();
+  for (;;) {
+    postos.length = 0;
+    medidas.forEach(({ off0, w, h }, gi) => { if (!mexem[gi] || semLugar.has(gi)) postos.push([gi, off0[0], off0[1], w, h]); });
+    const dec = [];
+    let falhou = -1;
+    for (let gi = 0; gi < grupos.length && falhou < 0; gi++) {
+      if (!mexem[gi] || semLugar.has(gi)) { dec.push(null); continue; }
+      const { txs } = medidas[gi];
+      let { n, w, h } = medidas[gi];
+      // um rótulo de uma linha largo demais para caber ao lado do corpo é quebrado em duas (na vírgula ou no espaço
+      // mais perto do meio), para ter onde ficar
+      let textos = null;
+      if (n === 1 && w > 0.4 * box[2]) {
+        textos = quebras[gi] ?? (quebras[gi] = quebrar(txs[0].str));
+        if (textos) { n = 2; w = Math.max(...textos.map((t) => larguraDoTexto({ ...txs[0], str: t }))); h = linha + 1.05 * fs; }
+      }
+      // em volta da âncora, do mais perto ao mais longe: para o lado do palco com mais espaço, o outro lado, acima,
+      // abaixo e as diagonais; primeiro só os lugares cuja linha até o ponto não atravessa o corpo
+      const ax = txs[0].ax;
+      const lado = ax < box[0] + box[2] / 2 ? -1 : 1;
+      const dirs = [[lado, 0], [-lado, 0], [0, -1], [0, 1], [lado, -1], [-lado, -1], [lado, 1], [-lado, 1]];
+      let achou = null;
+      for (const semAtravessar of [true, false]) {
+        for (let d = 1.2 * fs; !achou && d < Math.max(box[2], box[3]); d += 0.9 * fs)
+          for (const [dx, dy] of dirs) {
+            const cx = dx * (d + (dx ? w / 2 : 0)), cy = dy * (d + (dy ? h / 2 : 0));
+            if (livreEmTodos(gi, cx - w / 2, cy - h / 2, w, h, semAtravessar)) { achou = { dx: cx - w / 2, dy: cy - h / 2 }; break; }
+          }
+        if (achou) break;
+      }
+      if (!achou) { falhou = gi; break; } // sem lugar no palco: fica onde está (o pior caso é o de hoje)
+      postos.push([gi, achou.dx, achou.dy, w, h]);
+      dec.push({ ...achou, w, h, fs, linha, mg, textos });
     }
-    // em volta da âncora, do mais perto ao mais longe: para o lado do palco com mais espaço, o outro lado, acima,
-    // abaixo e as diagonais; primeiro só os lugares cuja linha até o ponto não atravessa o corpo
-    const ax = txs[0].ax;
-    const lado = ax < box[0] + box[2] / 2 ? -1 : 1;
-    const dirs = [[lado, 0], [-lado, 0], [0, -1], [0, 1], [lado, -1], [-lado, -1], [lado, 1], [-lado, 1]];
-    let achou = null;
-    for (const semAtravessar of [true, false]) {
-      for (let d = 1.2 * fs; !achou && d < Math.max(box[2], box[3]); d += 0.9 * fs)
-        for (const [dx, dy] of dirs) {
-          const cx = dx * (d + (dx ? w / 2 : 0)), cy = dy * (d + (dy ? h / 2 : 0));
-          if (livreEmTodos(gi, cx - w / 2, cy - h / 2, w, h, semAtravessar)) { achou = { dx: cx - w / 2, dy: cy - h / 2 }; break; }
-        }
-      if (achou) break;
-    }
-    if (!achou) { dec.push(null); return; } // sem lugar no palco: fica onde está (o pior caso é o de hoje)
-    postos.push([gi, achou.dx, achou.dy, w, h]);
-    dec.push({ ...achou, w, h, fs, linha, mg, textos });
-  });
-  return dec;
+    if (falhou < 0) return dec;
+    semLugar.add(falhou);
+  }
 }
 
 /**

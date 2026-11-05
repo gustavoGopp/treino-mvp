@@ -3,6 +3,8 @@
   "name": "Elevação lateral com elástico",
   "short": "Elevação lateral elástico",
   "target": "Deltoide lateral (lateral do ombro)",
+  "feel": "Lateral do ombro.",
+  "feelNote": "O elástico pesa mais em cima, na linha do ombro. Se sentir o pescoço ou o trapézio, o ombro está subindo junto com o braço.",
   "setupEq": [
     "Um elástico com pegadores ou um elástico longo, sem rachaduras. Em geral, um dos mais leves.",
     "Em pé, de tênis, pise no meio do elástico com os dois pés, na largura do quadril.",
@@ -40,10 +42,24 @@
     "Embaixo: mãos perto das coxas, sem relaxar os ombros.",
     "Com o ombro saudável dá para subir um pouco acima, mas o trapézio assume mais."
   ],
+  "breath": "Solte o ar subindo e inspire descendo.",
   "cues": [
     "Leva a mão para longe, não para cima.",
     "Cotovelo conduz.",
     "Ombro longe da orelha."
+  ],
+  "check": [
+    "Elástico sem rachaduras",
+    "Os dois pés no meio do elástico",
+    "Tronco levemente à frente",
+    "Cotovelos levemente dobrados",
+    "Ombro baixo"
+  ],
+  "vary": "O plano do braço (de ~20° a ~40° à frente do corpo) depende da postura da sua escápula. Ficou fácil? Afaste os pés ou segure mais curto; depois, a intensidade seguinte, se tiver.",
+  "note": "<b>Segurança:</b> confira antes de cada série se o elástico está sem rachaduras e bem preso. Um elástico que escapa pode bater no rosto; se escapar, pare.",
+  "extLabels": [
+    "embaixo",
+    "topo"
   ],
   "errors": [
     {
@@ -61,9 +77,5 @@
       "title": "Virar elevação frontal",
       "desc": "Os braços vão para a frente e o exercício passa a trabalhar mais a frente do ombro."
     }
-  ],
-  "montagem": [
-    "Confira se o elástico não tem rachaduras e se está bem preso embaixo dos dois pés, de tênis, no meio da sola. Se ele escapar, pode bater no rosto: pare."
-  ],
-  "carga": "Elástico, pela escada: normal → mais esticado (pés mais afastados em cima do elástico, ou segure-o mais curto) → descida de 3 s; depois, a intensidade seguinte, se você tiver."
+  ]
 }

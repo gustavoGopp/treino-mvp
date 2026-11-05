@@ -1,11 +1,11 @@
 // @ts-nocheck
-// Animação nova (em revisão). Face pull com elástico: o elástico preso à frente, na altura da testa (porta, pilar ou
+// Animação nova (aprovada). Face pull com elástico: o elástico preso à frente, na altura da testa (porta, pilar ou
 // barra: aqui um poste, escolha de desenho do R4), uma ponta em cada mão; puxa em direção ao rosto abrindo as mãos,
 // cotovelos altos. Parte do face pull com corda aprovado (mesmo corpo e mesmo caminho dos braços), sem a torre e a
 // corda: duas faixas do anel do poste às mãos, que afinam quando esticam (a tensão sobe no fim da puxada).
 // Técnica e fontes: docs/pesquisa/animacoes/face-pull-elastico.md.
-import { L3, TX, band, bandHandle, poste } from '../../desenho';
-import { X, Z, add, comb } from '../../math';
+import { L3, TX, band, bandHandle, poste } from '../desenho';
+import { X, Z, add, comb } from '../math';
 
 const ex = {
   id:'face-pull-elastico',

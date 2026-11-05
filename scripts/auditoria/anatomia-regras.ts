@@ -97,5 +97,9 @@ export const AJUDANTES: Record<string, Musculo[]> = {
   'flexao-bola': ['panturrilha'],
   // Catálogo completo (04/11/2026): na ponte com os pés na bola, os posteriores seguram o calcanhar na bola sem contar série (ficha).
   'ponte-pes-bola': ['posteriores'],
+  // R4 (05/11/2026): as versões com elástico, como as suas bases
+  'elevacao-lateral-elastico': ['ombro_anterior'],
+  'flexao-elastico': ['abdomen'],
+  'triceps-elastico-acima': ['abdomen'],
 };
 

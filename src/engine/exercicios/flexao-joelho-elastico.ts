@@ -1,13 +1,13 @@
 // @ts-nocheck
-// Animação nova (em revisão). Flexão de joelho com elástico: deitado de bruços num colchonete, testa apoiada nos
+// Animação nova (aprovada). Flexão de joelho com elástico: deitado de bruços num colchonete, testa apoiada nos
 // braços dobrados, o elástico preso num ponto firme e baixo atrás dos pés (pé de um móvel ou porta: aqui um poste
 // baixo, escolha de desenho do R4) e passando por trás dos dois tornozelos; dobra os joelhos trazendo os calcanhares
 // ao glúteo, com o quadril no chão. Pose nova no motor (o tronco deitado de bruços: pitch +90), com o ciclo da flexão
 // deslizante aprovada e as duas faixas do anel do poste aos tornozelos, que afinam quando esticam (a tensão sobe com
 // os joelhos dobrados).
 // Técnica e fontes: docs/pesquisa/animacoes/flexao-joelho-elastico.md.
-import { BOX, L3, TX, band, poste } from '../../desenho';
-import { X, Y, Z, add, mul, norm, sub } from '../../math';
+import { BOX, L3, TX, band, poste } from '../desenho';
+import { X, Y, Z, add, mul, norm, sub } from '../math';
 
 // o laço no tornozelo: onde a faixa prende, logo acima do calcanhar
 const laco=(sk,k)=>{const sd=sk.side[k];return add(sd.A,mul(norm(sub(sd.K,sd.A)),4));};

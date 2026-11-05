@@ -3,6 +3,8 @@
   "name": "Desenvolvimento com elástico",
   "short": "Desenvolvimento elástico",
   "target": "Deltoide anterior (frente do ombro); a lateral do ombro ajuda",
+  "feel": "Frente do ombro. A lateral do ombro e o tríceps ajudam.",
+  "feelNote": "O elástico pesa mais em cima, com os braços quase estendidos. Se sentir a lombar, você está arqueando: firme o abdômen e o glúteo.",
   "setupEq": [
     "Um elástico com pegadores ou um elástico longo, sem rachaduras.",
     "Em pé, de tênis, pise no meio do elástico com os dois pés, na largura do quadril.",
@@ -40,10 +42,24 @@
     "Em cima: braços quase estendidos sobre os ombros.",
     "Não desça mais se a frente do ombro doer."
   ],
+  "breath": "Inspire embaixo e firme o abdômen. Solte o ar subindo.",
   "cues": [
     "Abdômen firme, lombar parada.",
     "Cotovelos um pouco à frente.",
     "Sobe e fecha um pouco."
+  ],
+  "check": [
+    "Elástico sem rachaduras",
+    "Os dois pés no meio do elástico",
+    "Um pouco esticado já nas orelhas",
+    "Cotovelos à frente",
+    "Abdômen e glúteo firmes"
+  ],
+  "vary": "O quanto os cotovelos ficam à frente (de ~20° a ~45°) depende de como o seu ombro se sente. Ficou fácil? Afaste os pés ou passe para a intensidade seguinte.",
+  "note": "<b>Segurança:</b> confira antes de cada série se o elástico está sem rachaduras e bem preso. Um elástico que escapa pode bater no rosto; se escapar, pare.",
+  "extLabels": [
+    "embaixo",
+    "topo"
   ],
   "errors": [
     {
@@ -61,9 +77,5 @@
       "title": "Descer pouco",
       "desc": "Parar acima da cabeça corta metade do movimento."
     }
-  ],
-  "montagem": [
-    "Confira se o elástico não tem rachaduras e se está bem preso embaixo dos dois pés, de tênis, no meio da sola. Ele vai dos pés até perto do rosto: se escapar, pode bater no rosto. Pare."
-  ],
-  "carga": "Elástico, pela escada: normal → mais esticado (pés mais afastados em cima do elástico, ou segure-o mais curto) → descida de 3 s; depois, a intensidade seguinte, se você tiver."
+  ]
 }

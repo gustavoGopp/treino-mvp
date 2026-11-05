@@ -21,5 +21,7 @@ As poses estão em `src/engine/exercicios/revisao/`, fora do app até o "aprovar
 
 Erros novos (sem par na base, pedidos pelo cartão): `frouxo` no crucifixo (perto demais do poste: a faixa grossa com os braços abertos), `arco` no tríceps, `lombar` no agachamento (no lugar do "calcanhar"), `pescoco` na flexão (a faixa sobe para o pescoço), `tranco` na flexão de joelho.
 
-## Para aprovar
-Para cada animação: a folha, a conferência e o texto. Um "aprovar" por animação (ou a lista do que não convence). Com o "aprovar", a animação entra no app (`node scripts/aprovar-animacao.mjs <id> <id>`) e os programas das personas que têm elástico (Bruno, Diego, Carla) são medidos antes × depois (o desempate "animação aprovada" pode trocar exercícios equivalentes); a tabela entra aqui.
+## Aprovadas (05/11/2026)
+O Gustavo aprovou as 12 (e as 4 da auditoria) com o poste como âncora. Entraram no app com `node scripts/aprovar-animacao.mjs <id> <id>`; o texto completo substituiu o cartão em `src/conteudo/exercicios/`.
+
+**Antes × depois nos programas** (`npx vitest run` antes de regravar os snapshots): só o **Diego** muda. No Corpo todo A, o agachamento com o peso do corpo (2×12–20) dá lugar ao **agachamento com elástico (2×10–16)**: os dois são equivalentes na vaga de agachar, e o desempate pela animação aprovada agora escolhe o do elástico (a escada de carga passa a ser a do elástico: mais esticado, descida de 3 s). Bruno e Carla não mudam (as vagas deles já tinham o exercício com elástico escolhido, ou outro equipamento na frente). Ana, Elisa e Fábio não têm elástico.

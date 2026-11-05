@@ -3,6 +3,8 @@
   "name": "Panturrilha sentada com halter no joelho",
   "short": "Panturrilha sentada com halter",
   "target": "Panturrilha (variação sentada; cresce menos que em pé)",
+  "feel": "Panturrilha, da parte de trás do joelho até o calcanhar.",
+  "feelNote": "Queimação forte no fim da série é normal nesse músculo. Dor em pontada no tendão de Aquiles não é: pare. Sentado, a parte de cima da panturrilha trabalha menos que em pé: esta é a variação, não a principal.",
   "setupEq": [
     "Um halter, deitado sobre a coxa perto do joelho, em cima de uma toalha dobrada.",
     "Uma cadeira firme, sem rodinhas, ou um banco.",
@@ -34,10 +36,24 @@
     "Embaixo: alongamento máximo (mais se a ponta dos pés estiver num apoio).",
     "Em cima: calcanhar o mais alto possível."
   ],
+  "breath": "Respire normalmente: solte o ar subindo, inspire descendo.",
   "cues": [
     "Pausa embaixo.",
     "Tronco parado.",
     "Amplitude toda."
+  ],
+  "check": [
+    "Cadeira ou banco firme",
+    "Ponta dos pés num apoio baixo e firme",
+    "Halter sobre a coxa, perto do joelho, com toalha",
+    "As duas mãos no halter",
+    "Pausa de ~1 s embaixo"
+  ],
+  "vary": "O quanto o calcanhar desce depende da mobilidade do tornozelo; sem apoio, faça no chão. Ficou fácil? O próximo halter, ou um em cada coxa.",
+  "note": "<b>Segurança:</b> o halter fica deitado sobre a coxa, sempre com as mãos em cima; se escorregar, pare e ajeite.",
+  "extLabels": [
+    "alongado",
+    "topo"
   ],
   "errors": [
     {
@@ -55,10 +71,5 @@
       "title": "Halter escorregando",
       "desc": "Uma mão solta e o halter desliza da coxa. As duas mãos nele, a série inteira."
     }
-  ],
-  "carga": "Pela lista dos seus halteres: o próximo peso quando todas as séries chegarem ao topo da faixa. Quando um halter só ficar leve, use dois, um em cada joelho. É variação: a panturrilha em pé continua sendo a principal (num estudo, a sentada cresceu a panturrilha bem menos, e o sóleo igual).",
-  "montagem": [
-    "Halter sobre uma toalha dobrada, preso com as duas mãos.",
-    "Cadeira firme, sem rodinhas; apoio dos pés que não escorrega."
   ]
 }

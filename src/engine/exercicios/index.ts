@@ -68,6 +68,22 @@ import abducaoCaneleira from './abducao-caneleira';
 import aducaoCaneleira from './aducao-caneleira';
 import abducaoMiniBand from './abducao-mini-band';
 import rodaAbdominal from './roda-abdominal';
+import flexaoJoelhoElastico from './flexao-joelho-elastico';
+import roscaElastico from './rosca-elastico';
+import elevacaoLateralElastico from './elevacao-lateral-elastico';
+import crucifixoElastico from './crucifixo-elastico';
+import stiffElastico from './stiff-elastico';
+import remadaElastico from './remada-elastico';
+import facePullElastico from './face-pull-elastico';
+import puxadaElastico from './puxada-elastico';
+import tricepsElasticoAcima from './triceps-elastico-acima';
+import desenvolvimentoElastico from './desenvolvimento-elastico';
+import agachamentoElastico from './agachamento-elastico';
+import flexaoElastico from './flexao-elastico';
+import abducaoDeitado from './abducao-deitado';
+import aducaoDeitado from './aducao-deitado';
+import extensaoJoelhoElastico from './extensao-joelho-elastico';
+import panturrilhaSentadaHalter from './panturrilha-sentada-halter';
 
 // Mesma ordem do guia original (a ordem define os treinos e a ordem de preparação).
 export const EX = [
@@ -137,4 +153,20 @@ export const EX = [
   aducaoCaneleira,
   abducaoMiniBand,
   rodaAbdominal,
+  flexaoJoelhoElastico,
+  roscaElastico,
+  elevacaoLateralElastico,
+  crucifixoElastico,
+  stiffElastico,
+  remadaElastico,
+  facePullElastico,
+  puxadaElastico,
+  tricepsElasticoAcima,
+  desenvolvimentoElastico,
+  agachamentoElastico,
+  flexaoElastico,
+  abducaoDeitado,
+  aducaoDeitado,
+  extensaoJoelhoElastico,
+  panturrilhaSentadaHalter,
 ];

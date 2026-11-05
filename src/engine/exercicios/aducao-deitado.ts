@@ -1,9 +1,9 @@
 // @ts-nocheck
-// Animação nova (em revisão). Adução de quadril deitado de lado, sem carga: a mesma pose da versão com caneleira aprovada (aducao-caneleira), sem a peça
+// Animação nova (aprovada). Adução de quadril deitado de lado, sem carga: a mesma pose da versão com caneleira aprovada (aducao-caneleira), sem a peça
 // (entrada da auditoria de 04/11/2026: a versão sem carga, para quem não tem caneleira; a técnica é a mesma).
 // Técnica e fontes: docs/pesquisa/animacoes/aducao-deitado.md.
-import { BOX, L3, TX } from '../../desenho';
-import { X, Y, Z } from '../../math';
+import { BOX, L3, TX } from '../desenho';
+import { X, Y, Z } from '../math';
 
 const ex = {
   id:'aducao-deitado',

@@ -1,11 +1,11 @@
 // @ts-nocheck
-// Animação nova (em revisão). Remada sentada com elástico: sentado no chão, pernas estendidas com os joelhos um pouco
+// Animação nova (aprovada). Remada sentada com elástico: sentado no chão, pernas estendidas com os joelhos um pouco
 // dobrados, o elástico passa pela sola dos pés e cada mão segura uma ponta. Parte da remada baixa aprovada (mesmo
 // tronco e mesmo caminho dos braços), com a peça nova do elástico (band, em src/engine/desenho.ts) no lugar do cabo.
 // Técnica e fontes: docs/pesquisa/animacoes/remada-elastico.md.
-import { ARROW3, BOX, L3, TX, band, bandHandle } from '../../desenho';
-import { scapPts } from '../../esqueleto';
-import { X, Y, Z, add, comb, mul } from '../../math';
+import { ARROW3, BOX, L3, TX, band, bandHandle } from '../desenho';
+import { scapPts } from '../esqueleto';
+import { X, Y, Z, add, comb, mul } from '../math';
 
 const pe = (sk, k) => add(sk.side[k].A, [0, 2, 9]); // sola, na frente do tornozelo: onde o elástico passa
 const ex = {

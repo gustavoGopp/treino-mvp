@@ -1,13 +1,13 @@
 // @ts-nocheck
-// Animação nova (em revisão). Puxada com elástico ancorado no alto: o elástico preso acima da cabeça (topo da porta,
+// Animação nova (aprovada). Puxada com elástico ancorado no alto: o elástico preso acima da cabeça (topo da porta,
 // barra ou viga: aqui um poste alto, escolha de desenho do R4), uma ponta em cada mão; ajoelhado de frente para o
 // ponto, a um passo; os ombros descem e os cotovelos vão para baixo, em direção ao quadril. Parte da puxada
 // unilateral ajoelhada aprovada (mesmo corpo ajoelhado, mesmo caminho do braço), com os dois braços e as duas
 // faixas, que afinam quando esticam (a tensão sobe no fim da puxada).
 // Técnica e fontes: docs/pesquisa/animacoes/puxada-elastico.md.
-import { ARROW3, BOX, TX, band, bandHandle, poste } from '../../desenho';
-import { scapPts } from '../../esqueleto';
-import { X, Y, Z, add, comb, mul } from '../../math';
+import { ARROW3, BOX, TX, band, bandHandle, poste } from '../desenho';
+import { scapPts } from '../esqueleto';
+import { X, Y, Z, add, comb, mul } from '../math';
 
 const ex = {
   id:'puxada-elastico',

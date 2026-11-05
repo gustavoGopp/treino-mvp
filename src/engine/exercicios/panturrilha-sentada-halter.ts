@@ -1,11 +1,11 @@
 // @ts-nocheck
-// Animação nova (em revisão). Panturrilha sentada com halter no joelho: sentado num banco, joelhos a ~90°, a ponta dos
+// Animação nova (aprovada). Panturrilha sentada com halter no joelho: sentado num banco, joelhos a ~90°, a ponta dos
 // pés num apoio baixo; o halter deitado sobre a coxa perto do joelho, segurado com as duas mãos; o calcanhar desce até
 // o alongamento, pausa de ~1 s embaixo e sobe o máximo sem o tronco levantar. Parte do corpo sentado e do banco da
 // extensão de joelho com caneleira aprovada, com o halter em 3D (dumbbell3) encostado na coxa e as mãos sobre ele.
 // Técnica e fontes: docs/pesquisa/animacoes/panturrilha-sentada-halter.md.
-import { BOX, L3, TX, dumbbell3 } from '../../desenho';
-import { X, Y, Z, add } from '../../math';
+import { BOX, L3, TX, dumbbell3 } from '../desenho';
+import { X, Y, Z, add } from '../math';
 
 // o halter deitado sobre a coxa, perto do joelho (ou, no erro, escorregado para o meio da coxa)
 const halter=(sk)=>add(sk.side.R.K,[0,6.5,sk.pose.escorrega?-20:-6]);

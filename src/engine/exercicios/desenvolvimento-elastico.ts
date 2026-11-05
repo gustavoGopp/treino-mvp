@@ -1,12 +1,12 @@
 // @ts-nocheck
-// Animação nova (em revisão). Desenvolvimento com elástico: em pé, pisando no meio do elástico com os dois pés, cada
+// Animação nova (aprovada). Desenvolvimento com elástico: em pé, pisando no meio do elástico com os dois pés, cada
 // mão numa ponta na altura das orelhas, cotovelos um pouco à frente; empurra para cima e um pouco para dentro até os
 // cotovelos quase estenderem. Parte do desenvolvimento sentado aprovado (mesmo caminho dos braços), em pé (o corpo da
 // rosca alternada), com a peça do elástico (band) no lugar do halter: a faixa sai de baixo do meio de cada pé e sobe
 // pela frente do corpo, afinando quando estica (a tensão sobe no topo).
 // Técnica e fontes: docs/pesquisa/animacoes/desenvolvimento-elastico.md.
-import { L3, TX, band, bandHandle } from '../../desenho';
-import { X, add, mid } from '../../math';
+import { L3, TX, band, bandHandle } from '../desenho';
+import { X, add, mid } from '../math';
 
 const sola=(sk,k)=>add(mid(sk.side[k].heel,sk.side[k].toe),[0,-1,0]);
 const ex = {

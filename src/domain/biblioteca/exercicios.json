@@ -257,7 +257,7 @@
    "elastico"
   ],
   "carga": "elastico",
-  "animacaoId": null
+  "animacaoId": "flexao-elastico"
  },
  {
   "id": "crucifixo-polia",
@@ -393,7 +393,7 @@
    "elastico"
   ],
   "carga": "elastico",
-  "animacaoId": null
+  "animacaoId": "crucifixo-elastico"
  },
  {
   "id": "barra-fixa",
@@ -572,7 +572,7 @@
    "elastico"
   ],
   "carga": "elastico",
-  "animacaoId": null
+  "animacaoId": "puxada-elastico"
  },
  {
   "id": "remada-baixa",
@@ -792,7 +792,7 @@
    "elastico"
   ],
   "carga": "elastico",
-  "animacaoId": null
+  "animacaoId": "remada-elastico"
  },
  {
   "id": "desenvolvimento",
@@ -934,7 +934,7 @@
    "elastico"
   ],
   "carga": "elastico",
-  "animacaoId": null
+  "animacaoId": "desenvolvimento-elastico"
  },
  {
   "id": "elevacao-lateral",
@@ -1030,7 +1030,7 @@
    "elastico"
   ],
   "carga": "elastico",
-  "animacaoId": null
+  "animacaoId": "elevacao-lateral-elastico"
  },
  {
   "id": "face-pull",
@@ -1129,7 +1129,7 @@
    "elastico"
   ],
   "carga": "elastico",
-  "animacaoId": null
+  "animacaoId": "face-pull-elastico"
  },
  {
   "id": "rosca-polia",
@@ -1322,7 +1322,7 @@
    "elastico"
   ],
   "carga": "elastico",
-  "animacaoId": null
+  "animacaoId": "rosca-elastico"
  },
  {
   "id": "triceps-corda",
@@ -1489,7 +1489,7 @@
    "elastico"
   ],
   "carga": "elastico",
-  "animacaoId": null
+  "animacaoId": "triceps-elastico-acima"
  },
  {
   "id": "agachamento-barra",
@@ -1668,7 +1668,7 @@
    "elastico"
   ],
   "carga": "elastico",
-  "animacaoId": null
+  "animacaoId": "agachamento-elastico"
  },
  {
   "id": "agachamento-peso-corpo",
@@ -2055,7 +2055,7 @@
    "elastico"
   ],
   "carga": "elastico",
-  "animacaoId": null
+  "animacaoId": "stiff-elastico"
  },
  {
   "id": "ponte-gluteo",
@@ -2216,7 +2216,7 @@
    "elastico"
   ],
   "carga": "elastico",
-  "animacaoId": null
+  "animacaoId": "flexao-joelho-elastico"
  },
  {
   "id": "cadeira-extensora",
@@ -4658,7 +4658,7 @@
    "peso-corpo"
   ],
   "carga": "peso-corpo",
-  "animacaoId": null
+  "animacaoId": "abducao-deitado"
  },
  {
   "id": "aducao-deitado",
@@ -4691,7 +4691,7 @@
    "peso-corpo"
   ],
   "carga": "peso-corpo",
-  "animacaoId": null
+  "animacaoId": "aducao-deitado"
  },
  {
   "id": "extensao-joelho-elastico",
@@ -4723,7 +4723,7 @@
    "elastico"
   ],
   "carga": "elastico",
-  "animacaoId": null
+  "animacaoId": "extensao-joelho-elastico"
  },
  {
   "id": "panturrilha-sentada-halter",
@@ -4755,6 +4755,6 @@
    "halter"
   ],
   "carga": "halter",
-  "animacaoId": null
+  "animacaoId": "panturrilha-sentada-halter"
  }
 ]

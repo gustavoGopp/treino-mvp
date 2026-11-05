@@ -1,12 +1,12 @@
 // @ts-nocheck
-// Animação nova (em revisão). Crucifixo com elástico: o elástico preso atrás, na altura do peito (porta, pilar ou
+// Animação nova (aprovada). Crucifixo com elástico: o elástico preso atrás, na altura do peito (porta, pilar ou
 // barra: aqui um poste, escolha de desenho do R4), uma ponta em cada mão, 1–2 passos à frente; as mãos vão em arco
 // até se encontrarem na frente do peito, cotovelos travados no mesmo ângulo. Parte do crucifixo na polia aprovado
 // (mesmo corpo e mesmo arco das mãos), sem as duas torres: duas faixas do anel do poste às mãos, que afinam quando
 // esticam (a tensão sobe no fechamento). O erro "frouxo" é ficar perto demais do poste: a faixa fica grossa.
 // Técnica e fontes: docs/pesquisa/animacoes/crucifixo-elastico.md.
-import { PL3, TX, band, bandHandle, poste } from '../../desenho';
-import { Z, add, comb, dirAE, mul, norm, sub } from '../../math';
+import { PL3, TX, band, bandHandle, poste } from '../desenho';
+import { Z, add, comb, dirAE, mul, norm, sub } from '../math';
 
 const ex = {
   id:'crucifixo-elastico',

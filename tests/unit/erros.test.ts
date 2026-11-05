@@ -46,10 +46,11 @@ describe('modo Erros: o erro sobre o certo', () => {
   });
 
   it('um erro pequeno (nenhuma cadeia muda 3 cm): o certo cheio, só o objeto da pose errada em vermelho e o nome na mão', () => {
-    // "encolher os ombros" move o braço inteiro (7 cm na elevação lateral): é um erro de cadeia. Na biblioteca de hoje, o único
-    // erro em que o corpo não muda é o punho dobrado com o kettlebell: só a bola cai para trás.
+    // "encolher os ombros" move o braço inteiro (7 cm na elevação lateral): é um erro de cadeia. Erro em que o corpo não
+    // muda: o punho dobrado com o kettlebell (só a bola cai para trás) e o elástico no pescoço na flexão.
     const pequenos = EX.flatMap((ex: Animacao) => ex.errors.map((e: { id: string }, k: number) => [ex, k, `${ex.id}:${e.id}`] as const)).filter(([ex, k]) => difMaximaDoErro(ex, k) < DIF_MINIMA_DA_CADEIA);
-    expect(pequenos.map(([, , id]) => id)).toEqual(['desenvolvimento-unilateral-kettlebell:punho']);
+    // (e, desde a aprovação das 16 de 05/11, o elástico que sobe para o pescoço na flexão: só a faixa muda de lugar)
+    expect(pequenos.map(([, , id]) => id)).toEqual(['desenvolvimento-unilateral-kettlebell:punho', 'flexao-elastico:pescoco']);
     expect(difMaximaDoErro(animacao('elevacao-halteres'), erroDe(animacao('elevacao-halteres'), 'encolher'))).toBeGreaterThan(DIF_MINIMA_DA_CADEIA);
     const [ex, k] = pequenos[0]!;
     const html = montarSvgEstilo(ex, ex.errors[k].view, 'err', instanteDoErro(ex, k), k, 358, 'a', false, { tituloErro: 'Punho dobrado' }).html;

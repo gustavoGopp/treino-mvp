@@ -12,7 +12,14 @@ const animacao = (id: string): Animacao => EX.find((e: Animacao) => e.id === id)
 describe('a vista do modo Técnica pelo movimento (R4)', () => {
   it('a lista medida em 05/11/2026: só estes mudam de vista inicial', () => {
     const mudam = (EX as Animacao[]).filter((ex) => vistaDoMovimento(ex, 'a') !== ex.views[0]).map((ex) => `${ex.id}: ${ex.views[0]} → ${vistaDoMovimento(ex, 'a')}`);
-    expect(mudam).toEqual(['crucifixo-polia: frontal → top', 'face-pull: lateral → top', 'crucifixo-invertido-polia: frontal → top']);
+    expect(mudam).toEqual([
+      'crucifixo-polia: frontal → top',
+      'face-pull: lateral → top',
+      'crucifixo-invertido-polia: frontal → top',
+      // as versões com elástico, aprovadas no mesmo dia, seguem as suas bases
+      'crucifixo-elastico: frontal → top',
+      'face-pull-elastico: lateral → top',
+    ]);
   });
 
   it('o resultado é sempre uma vista do exercício; no clássico, a 1ª; a vista zoom não concorre', () => {

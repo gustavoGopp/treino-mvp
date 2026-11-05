@@ -1,11 +1,11 @@
 // @ts-nocheck
-// Animação nova (em revisão). Extensão de joelho sentado com elástico: a mesma pose da extensão com caneleira aprovada
+// Animação nova (aprovada). Extensão de joelho sentado com elástico: a mesma pose da extensão com caneleira aprovada
 // (mesmo corpo sentado e mesmo banco), com o elástico no lugar da caneleira: preso num ponto baixo e firme atrás da
 // cadeira (aqui um poste baixo, escolha de desenho do R4) e num laço no tornozelo; a faixa (band) afina quando estica
 // (a tensão sobe com a perna estendida, onde a ficha pede a pausa).
 // Técnica e fontes: docs/pesquisa/animacoes/extensao-joelho-elastico.md.
-import { BOX, L3, TX, band, poste } from '../../desenho';
-import { X, Y, Z, add, mul, norm, sub } from '../../math';
+import { BOX, L3, TX, band, poste } from '../desenho';
+import { X, Y, Z, add, mul, norm, sub } from '../math';
 
 const ex = {
   id:'extensao-joelho-elastico',
