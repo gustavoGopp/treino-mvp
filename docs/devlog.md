@@ -902,7 +902,7 @@ As listas exatas ficam em `tests/unit/metas-r0.test.ts`, para o R0c zerar.
 
 **O que o auditor discorda ou deixa como opção** (com a recomendação marcada no relatório): o texto do "porquê" do nível 2 ("entra a melhor possível" soa como "pior"); "prefiro este" só vale dentro do mesmo nível; o ombro posterior como secundário da barra fixa supinada; "estagnado" em 3 sessões (medir no R3 antes); o zod 4; e um R4 pequeno (erro sobre o certo, rótulos fora do corpo, vista pelo movimento) para destravar as 12 animações do elástico.
 
-**Medido:** `npm run check` com 615 testes (eram 600); projeto `motor` passando com as linhas de base regravadas; auditoria completa regravada com os 139 exercícios ([[SEM_ANIM]] das prescrições do estresse ainda sem animação, eram 33,9%), idêntica em duas rodadas.
+**Medido:** `npm run check` com 615 testes (eram 600); projeto `motor` passando com as linhas de base regravadas; auditoria completa regravada com os 139 exercícios (38,9% das prescrições do estresse ainda sem animação, eram 33,9%: as 4 entradas novas tapam vagas vazias e por isso são muito prescritas, 237 mil vezes; vão para o topo da fila), idêntica em duas rodadas.
 
 **Rascunho de post para o LinkedIn**
 > Pedi a um segundo modelo que auditasse o meu app de treino do zero: o que existe, se os exercícios escolhidos têm base, o que falta e se o boneco ensina bem. Ele podia discordar de tudo, desde que dissesse onde, por quê e com qual fonte.

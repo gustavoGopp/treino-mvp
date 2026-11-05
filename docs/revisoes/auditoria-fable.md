@@ -56,7 +56,7 @@
 | Risco | Onde | O que fiz ou proponho |
 |---|---|---|
 | **A técnica de quase todo exercício vem de "consenso"** (o manual da NSCA, não verificado, é a referência de técnica em quase todas as fichas). A evidência de hipertrofia decide a *escolha* do exercício; a *forma* de fazer é prática de treinadores | `docs/pesquisa/animacoes/*.md` | Está dito com honestidade em cada ficha. Fica a recomendação do plano: revisão por um profissional de Educação Física antes do beta aberto (o roteiro do especialista já existe) |
-| **Um terço das prescrições sem animação** (33,9% antes desta sessão; medido no estresse) | `docs/revisoes/catalogo/fila.md` | As 14 aprovadas hoje tiram 67,7 mil prescrições dessa conta; o resto está na fila (Parte E.3) |
+| **Mais de um terço das prescrições sem animação** (33,9% antes desta sessão; 38,9% depois, porque as 4 entradas novas tapam vagas vazias e são muito prescritas; medido no estresse) | `docs/revisoes/catalogo/fila.md` | As 14 aprovadas hoje tiram 67,7 mil prescrições dessa conta; as 4 novas vão para o topo da fila (Parte E.3) |
 | **21 exercícios sem guia nenhum**, inclusive o agachamento com barra, que é a 1ª escolha de agachar na academia completa (o dia Inferior da Carla) | `src/conteudo/exercicios/` | Cartão do agachamento com barra escrito nesta sessão, a partir da ficha; os outros 20 estão na fila com "sem ficha nem cartão" |
 | **O teto semanal não era conferido no preenchimento das vagas**, só na distribuição de séries: no modelo de 6 dias, três vagas de glúteo somavam 21 já no mínimo de séries | `src/domain/gerador/index.ts` | Corrigido e testado (Parte C) |
 | **A ordem dos complementos** deixava um complemento do grupo prioritário (abdução) tirar o único exercício direto de outro músculo (ombro posterior) | `src/domain/gerador/index.ts` | Corrigido: o único exercício direto de um músculo com meta vem antes (Parte C) |
@@ -139,7 +139,7 @@ As duas propostas não feitas servem a quem só tem barra (cenários raros: "só
 - **Diego:** Corpo todo B ganha `extensao-joelho-elastico 2×12–20` e **perde o face pull com elástico** (o dia de 45 min tem 6 vagas-base, e a extensora obrigatória não sai nos cortes); o ombro posterior cai de 4 para 3 séries e ganha o aviso de meta. É a regra `selecao.isolador-obrigatorio` funcionando como aprovada; para o Diego (prioridade peito e costas), o custo é o ombro posterior. **Se o Gustavo preferir** o face pull do Diego à extensão com elástico, a saída limpa é a extensão com elástico no nível 3 da extensora (depois da caneleira), não a volta da vaga vazia. **[opinião]** Mantenho como está: a extensora tem evidência moderada e o face pull é consenso.
 
 ### C.2 (b) Existe, mas sem animação: a fila
-Depois das 14 aprovadas hoje, 73 exercícios estão sem animação (69 da fila + os 4 novos). Os números da fila (`docs/revisoes/catalogo/fila.md`) continuam valendo; a decisão sobre ela está na Parte E.3. O que fiz agora, por ser barato e importante:
+Depois das 14 aprovadas hoje, 73 exercícios estão sem animação (69 da fila + os 4 novos). **Um efeito que precisa ser dito:** com a auditoria regravada (139 exercícios), a fatia das prescrições do estresse sem animação **subiu de 33,9% para 38,9%**, mesmo com 14 animações a mais. O motivo são as 4 entradas novas, que tapam vagas antes vazias e por isso são muito prescritas: adução deitado 85 mil, abdução deitado 56 mil, panturrilha sentada com halter 49 mil e extensão com elástico 47 mil (237 mil juntas, as 4 entre as 12 mais prescritas sem animação). As quatro são variações de pose baratas (a abdução e a adução saem das caneleiras sem a peça; a panturrilha e a extensão, do corpo sentado que já existe, com o halter 3D ou a peça `band`): **devem ir para o topo do bloco A da fila.** A ponte com halter continua a mais prescrita sem animação (109 mil). Os números da fila (`docs/revisoes/catalogo/fila.md`) foram medidos antes destas entradas; a decisão sobre ela está na Parte E.3. O que fiz agora, por ser barato e importante:
 - **Cartão do agachamento com barra** (`src/conteudo/exercicios/agachamento-barra.json`), escrito a partir da ficha que já existia. Era o único exercício do programa da Carla sem guia nenhum, e a 1ª escolha de agachar em toda academia completa.
 - Os outros 20 sem ficha nem cartão somam 127 mil prescrições no estresse (4,1% do total); os maiores: panturrilha no leg press (21,7 mil), puxada com barra reta (17,3 mil), afundo para trás (16,8 mil), desenvolvimento unilateral com halter (13,6 mil), leg press (9,7 mil). Proposta: ficha + cartão desses 5 antes de qualquer animação do bloco C.
 
@@ -219,7 +219,8 @@ Executado por animação: `node scripts/aprovar-animacao.mjs`, as entradas em `S
 - **Rosca na polia:** a barra reta de largura fixa (36–38 cm, a largura dos ombros, como o texto pede), em vez de "encolher" 9 cm no meio da subida. Aprovada. **A decisão de produto:** o HTML do guia original era a referência porque garantia que o port do motor não mudou nada; hoje a referência de técnica é a ficha com fonte (`CLAUDE.md`), e as 25 originais ganharam ficha em 04/11. Então: uma original corrigida, com a folha antes × depois aprovada, passa a ter linha de base própria, gravada do motor, como as novas. Implementado em `tests/motor/equivalencia.spec.ts` com a lista `CORRIGIDAS` (hoje só `rosca-polia`): as outras 24 continuam comparadas quadro a quadro com o guia (4.632 quadros). As 3 notas sem correção (pegada da barra fixa a 1,8× os ombros, joelho de trás do búlgaro a 14 cm, halteres do stiff na altura do joelho) continuam como estão: o texto do app admite a variação.
 
 ### E.3 A fila dos sem animação
-**Decisão:** a ordem dos blocos fica **A, C, B, D, E** (como proposto), com duas mudanças de método:
+**Decisão:** a ordem dos blocos fica **A, C, B, D, E** (como proposto), com três mudanças de método:
+0. **As 4 entradas novas desta sessão entram no topo do bloco A** (C.2): são 237 mil prescrições e nenhuma peça nova no motor (a extensão com elástico usa a peça `band`, já pronta, e pode esperar o R4 com as outras do elástico).
 1. **Antes de animar, ficha e cartão dos 5 mais prescritos sem guia nenhum** (C.2): panturrilha no leg press, puxada com barra reta, afundo para trás, desenvolvimento unilateral com halter e leg press. Um cartão custa menos que uma animação e tira o "sem guia ainda" de 69 mil prescrições.
 2. **Os 12 do elástico continuam esperando o R4**, por decisão do Gustavo (04/11). Minha recomendação (D.5): o R4 pode ser pequeno (propostas 1 a 3) e as poses do elástico podem ser feitas em paralelo, porque o estilo é aplicado por cima; o que espera é só o "aprovar".
 
@@ -272,3 +273,23 @@ Poucas e certas: react, react-router, vite, zod, idb-keyval, o SDK da Anthropic 
 ---
 
 ## Executado nesta sessão (commits na branch, do mais antigo ao mais novo)
+| Commit | O quê |
+|---|---|
+| `dddc6f0` a `ffc29e1` (12 commits) | As 14 animações aprovadas: remada, rosca, T, tríceps, flexão de joelho e búlgaro na suspensão; abdominal na bola, ponte com os pés na bola, elevação de joelhos nas paralelas; as 3 caneleiras (num commit só); mini-band; roda. Entre eles, `5c98018` corrige o import de `compartilhado` no script de aprovação |
+| `c9e2934` | Linhas de base das 14 regravadas (`novas.json`, `estilo-a.json`) e conferidas sem as variáveis |
+| `e6eab1a` | Folha-piloto do modo Erros (chave `erroInvertido`, desligada; `scripts/piloto-erros.mjs`; `docs/revisoes/auditoria-fable/erros-piloto.png`) |
+| `462aae0` | As 2 correções (pike, rosca na polia) e a lista `CORRIGIDAS` no teste de equivalência |
+| `7f1a50b` | Os 4 exercícios novos (ficha, cartão, escadas, regras) e as 2 correções do gerador (teto no mínimo; ordem dos complementos), com os snapshots regravados |
+| `012c52e` | Este relatório, o cartão do agachamento com barra e o backlog |
+| `3d37db2` e os seguintes | Devlog, recado ao R3, a auditoria regravada com os 139 exercícios (duas rodadas idênticas) e a ida para a `main` (ver o fim do arquivo) |
+
+## O que ficou para o Gustavo
+Em ordem de importância **[opinião]**:
+1. **Aprovar a direção do R4** com a folha-piloto (Parte D.3, propostas 1 a 3). É o que destrava as 12 animações do elástico.
+2. **O face pull do Diego** (C.1): manter a extensão com elástico no nível 2 (minha recomendação) ou movê-la para o nível 3.
+3. **O texto do "porquê" do nível 2** (B.2) e **"prefiro este" entre níveis** (B.6): duas opções pequenas de produto.
+4. **Ombro posterior na barra fixa supinada e na puxada com elástico** (B.5): junto com a próxima regravação do Boneco.
+5. **As duas entradas com barra** (C.1), se os cenários "só barra" importarem.
+6. **`zod` 4** (F.7), numa branch própria.
+7. **"Estagnado"** (F.2): medir no export do R3 antes de mudar.
+8. **Exportar os dados** antes de abrir o app atualizado ("Meus dados" → "Guardar uma cópia").
