@@ -881,3 +881,32 @@ As listas exatas ficam em `tests/unit/metas-r0.test.ts`, para o R0c zerar.
 > O detalhe que mais me ensinou: a fita de suspensão não estica. Então, quando a pessoa puxa o corpo, ela não "chega" nas mãos; o corpo inteiro gira sobre os calcanhares e sobe. Deixar a geometria decidir o ângulo do tronco em cada fase, em vez de desenhar à mão, foi o que fez a animação parecer certa.
 >
 > E, antes de aprovar o que é novo, conferi as 40 animações antigas uma a uma. Trinta e oito batem com a ficha. Duas vão para a mesa: uma barra que encolhia 9 cm no meio da subida e um par de mãos que deveria ficar no chão e não ficava.
+
+---
+
+## Auditoria independente: 14 animações aprovadas, 4 exercícios novos, 2 correções do gerador e um piloto do modo Erros (04/11/2026)
+
+**Por quê.** O Gustavo pediu uma auditoria por outro modelo, sem histórico no projeto: mapear o que existe, julgar a escolha dos exercícios, apontar o que falta, olhar a animação como um treinador olha o vídeo do aluno e **decidir e executar** as pendências do catálogo, em vez de deixá-las para ele. O relatório inteiro está em `revisoes/auditoria-fable.md`.
+
+**O que foi feito**
+- **As 14 animações em revisão foram aprovadas**, família a família (suspensão, bola e paralelas, caneleiras, mini-band e roda), pela conferência escrita e pela medida refeita (ik = 0 em todas; fita de comprimento fixo; mãos na largura da pegada). Nenhum programa de persona mudou. São 66 animações no app (eram 52).
+- **As 2 correções antigas entraram** (as mãos plantadas do pike e a barra de largura fixa da rosca na polia). Decisão de produto: uma animação do guia original corrigida passa a ter linha de base própria, gravada do motor (`CORRIGIDAS` em `tests/motor/equivalencia.spec.ts`); as outras 24 continuam idênticas ao guia.
+- **4 exercícios novos**, medidos numa cópia antes de entrar: abdução e adução deitado de lado sem carga, extensão de joelho com elástico e panturrilha sentada com halter. As vagas vazias somadas nos 55 cenários caíram de 431 para 313; a "casa com halteres e elásticos" foi de 4 para 0 vagas vazias.
+- **2 correções do gerador**, achadas ao medir as entradas: o teto semanal de 20 séries não era conferido no preenchimento das vagas (no modelo de 6 dias, três vagas de glúteo somavam 21 já no mínimo); e um complemento do grupo prioritário tirava o único exercício direto de outro músculo (na Ana, a abdução tirava o crucifixo invertido do ombro posterior). Agora o único exercício direto de um músculo com meta vem antes dos complementos prioritários.
+- **Folha-piloto do modo Erros** (`revisoes/auditoria-fable/erros-piloto.png`): o certo como figura cheia e só a parte errada em vermelho tracejado, com o nome do erro. Nenhuma linha de base mudou; a chave fica desligada até o Gustavo aprovar.
+- O cartão do agachamento com barra (era o único exercício do programa da Carla sem guia nenhum), o script de aprovação corrigido e o backlog atualizado.
+
+![Modo Erros: hoje × proposta](img/auditoria-fable-erros.png)
+
+**Antes × depois nas personas:** a Ana não muda; o Bruno e o Diego ganham a extensão de joelho com elástico (vaga obrigatória da extensora); o Diego perde o face pull do dia B por falta de minutos; na academia do bairro, o Bruno passa a fazer a cadeira extensora. Snapshots regravados depois de registrados no relatório.
+
+**O que o auditor discorda ou deixa como opção** (com a recomendação marcada no relatório): o texto do "porquê" do nível 2 ("entra a melhor possível" soa como "pior"); "prefiro este" só vale dentro do mesmo nível; o ombro posterior como secundário da barra fixa supinada; "estagnado" em 3 sessões (medir no R3 antes); o zod 4; e um R4 pequeno (erro sobre o certo, rótulos fora do corpo, vista pelo movimento) para destravar as 12 animações do elástico.
+
+**Medido:** `npm run check` com 615 testes (eram 600); projeto `motor` passando com as linhas de base regravadas; auditoria completa regravada com os 139 exercícios ([[SEM_ANIM]] das prescrições do estresse ainda sem animação, eram 33,9%), idêntica em duas rodadas.
+
+**Rascunho de post para o LinkedIn**
+> Pedi a um segundo modelo que auditasse o meu app de treino do zero: o que existe, se os exercícios escolhidos têm base, o que falta e se o boneco ensina bem. Ele podia discordar de tudo, desde que dissesse onde, por quê e com qual fonte.
+>
+> O achado que mais me ensinou veio de uma medição, não de uma opinião. Ao acrescentar dois exercícios sem carga para quem treina em casa, apareceu um limite que o gerador não conferia: num modelo de 6 dias, o mínimo de séries sozinho já passava do teto semanal do glúteo. O bug existia antes; ninguém tinha a combinação que o mostrava.
+>
+> E, nas animações, o veredito foi o que eu sentia: as poses estão certas, o que falta é o erro saltar aos olhos. A proposta veio com uma folha-piloto, lado a lado com o atual, antes de mudar qualquer coisa.
