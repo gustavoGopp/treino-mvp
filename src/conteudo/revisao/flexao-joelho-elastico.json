@@ -1,0 +1,81 @@
+{
+  "id": "flexao-joelho-elastico",
+  "name": "Flexão de joelho com elástico",
+  "short": "Flexão de joelho elástico",
+  "target": "Posteriores da coxa",
+  "feel": "Parte de trás da coxa.",
+  "feelNote": "O elástico pesa mais com os joelhos dobrados e menos com as pernas estendidas. Câimbra na parte de trás da coxa pode acontecer no começo: pare, alongue e retome com menos repetições.",
+  "setupEq": [
+    "Um elástico com pegadores ou um elástico longo, sem rachaduras. Um colchonete.",
+    "Prenda o meio do elástico num ponto firme e baixo, perto do chão: o pé de um móvel pesado que não arraste (sofá, cama), ou uma porta fechada com a âncora de porta embaixo, do lado de lá.",
+    "Passe as pontas (ou os pegadores) em volta dos dois tornozelos, por trás, logo acima do calcanhar."
+  ],
+  "setupBody": [
+    "Deite de bruços no colchonete, com os pés para o lado do ponto.",
+    "Testa apoiada nos braços dobrados, quadril encostado no chão.",
+    "Afaste-se do ponto até o elástico ficar um pouco esticado com as pernas estendidas."
+  ],
+  "exec": [
+    [
+      "hold",
+      "Pernas estendidas",
+      "Joelhos quase estendidos, quadril no chão."
+    ],
+    [
+      "conc",
+      "Flexão (concêntrica)",
+      "~1 s. Dobre os joelhos trazendo os calcanhares em direção ao glúteo. O quadril fica no chão."
+    ],
+    [
+      "hold",
+      "Fim",
+      "Joelhos bem dobrados. Pausa curta."
+    ],
+    [
+      "ecc",
+      "Volta (excêntrica)",
+      "~2–3 s, controlada, até os joelhos quase estenderem."
+    ]
+  ],
+  "range": [
+    "Início: joelhos quase estendidos, elástico um pouco esticado.",
+    "Fim: joelhos bem dobrados, calcanhares perto do glúteo.",
+    "O quadril não sai do chão para puxar mais."
+  ],
+  "breath": "Solte o ar dobrando, inspire na volta.",
+  "cues": [
+    "Quadril no chão.",
+    "Calcanhar no glúteo.",
+    "Volta devagar."
+  ],
+  "check": [
+    "Elástico preso num ponto firme e baixo",
+    "Pontas em volta dos dois tornozelos",
+    "Esticado já com as pernas estendidas",
+    "Quadril no chão",
+    "Volta devagar"
+  ],
+  "vary": "Ficou fácil? Deite um pouco mais longe do ponto ou passe para a intensidade seguinte. Sem onde prender embaixo? A flexão de joelho deslizante, se houver chão liso, ou o stiff com elástico.",
+  "note": "<b>Segurança:</b> antes da 1ª série, puxe forte o elástico com as mãos para testar o ponto (a porta fechada, abrindo para o lado de lá; o móvel não pode arrastar). Elástico sem rachaduras. Se escapar ou o ponto ceder, pare.",
+  "extLabels": [
+    "início",
+    "fim"
+  ],
+  "errors": [
+    {
+      "id": "quadril",
+      "title": "Quadril sobe do chão",
+      "desc": "O quadril dobra para ajudar e a parte de trás da coxa trabalha menos."
+    },
+    {
+      "id": "tranco",
+      "title": "Dar tranco",
+      "desc": "Os calcanhares sobem no embalo e a volta cai sem controle."
+    },
+    {
+      "id": "curta",
+      "title": "Puxar pouco ou não estender na volta",
+      "desc": "A amplitude fica curta e a coxa trabalha só parte do movimento."
+    }
+  ]
+}
