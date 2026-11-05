@@ -1669,8 +1669,10 @@
     "selo": "consenso",
     "fontes": [
       "warburton2011",
+      "bredin2013",
       "riebe2015",
-      "schwartz2021"
+      "schwartz2021",
+      "ms2021"
     ]
   },
   {
@@ -1703,11 +1705,11 @@
   },
   {
     "id": "seguranca.triagem.texto",
-    "regra": "Texto das perguntas da triagem",
+    "regra": "Texto das perguntas da triagem (licença do PAR-Q+ conferida em 05/11/2026)",
     "valores": {
-      "iniciante": "perguntas próprias no estilo do PAR-Q+, sem copiar o texto nem usar a marca, até confirmar a licença",
-      "intermediario": "perguntas próprias no estilo do PAR-Q+, sem copiar o texto nem usar a marca, até confirmar a licença",
-      "avancado": "perguntas próprias no estilo do PAR-Q+, sem copiar o texto nem usar a marca, até confirmar a licença"
+      "iniciante": "perguntas próprias, inspiradas no PAR-Q+ e apresentadas como \"não é o questionário oficial\"; a licença, lida em 05/11/2026, exige autorização escrita da PAR-Q+ Collaboration para usar o texto oficial num app (pedido não feito) e proíbe alegar endosso",
+      "intermediario": "perguntas próprias, inspiradas no PAR-Q+ e apresentadas como \"não é o questionário oficial\"; a licença, lida em 05/11/2026, exige autorização escrita da PAR-Q+ Collaboration para usar o texto oficial num app (pedido não feito) e proíbe alegar endosso",
+      "avancado": "perguntas próprias, inspiradas no PAR-Q+ e apresentadas como \"não é o questionário oficial\"; a licença, lida em 05/11/2026, exige autorização escrita da PAR-Q+ Collaboration para usar o texto oficial num app (pedido não feito) e proíbe alegar endosso"
     },
     "selo": "consenso",
     "fontes": [

@@ -126,7 +126,7 @@ export function Triagem() {
     return (
       <Passo id="triagem" titulo="Antes de começar, 9 perguntas rápidas">
         <p className="lede">
-          Alguma destas vale para você? São perguntas de segurança no estilo do PAR-Q+. Um “sim” não impede o treino; pede uma avaliação
+          Alguma destas vale para você? São perguntas de segurança próprias do app, inspiradas no PAR-Q+ (não é o questionário oficial). Um “sim” não impede o treino; pede uma avaliação
           antes do programa automático. <Selo id="seguranca.triagem" />
         </p>
         <ol className="lista lista-triagem" aria-label="As 9 condições">

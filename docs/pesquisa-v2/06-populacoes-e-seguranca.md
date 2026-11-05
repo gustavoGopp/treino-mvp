@@ -136,6 +136,13 @@ A triagem atual (`src/domain/triagem/index.ts`) tem 9 perguntas, e qualquer "sim
 
 **Conclusão [opinião]:** a triagem atual **não deixa passar ninguém que as diretrizes mandariam parar** (os sintomas estão todos lá). O problema é o contrário: ela **para gente que as diretrizes mandariam treinar** (pressão controlada, gestação sem complicação, doença crônica estável). O próprio ACSM 2015 diz que esse excesso de encaminhamentos vira barreira ao exercício, e o consenso que deu origem ao PAR-Q+ concluiu que o risco de ficar inativo é muito maior que o risco passageiro de uma sessão de exercício (Warburton 2011, 21800945, consenso).
 
+### Leituras no original (05/11/2026, auditoria independente, com a rede liberada)
+- **PAR-Q+ 2025** (`parq2025`, lido inteiro, com os termos): a licença **não** permite incorporar o texto oficial num app sem autorização escrita da PAR-Q+ Collaboration; um questionário próprio é permitido, desde que não se apresente como PAR-Q+ nem alegue endosso. O formulário manda "adiar" na gravidez e na doença aguda, sem prazo de pós-parto: confirma as perguntas 8 e 9 à parte, mas não os "6 meses". Existe a versão oficial em português do Brasil (`schwartz2021`).
+- **OMS 2020** (`bull2020`, texto completo e a diretriz): confirma o "2 ou mais dias por semana" e a força na gestação sem contraindicação (com acompanhamento; evitar deitar de costas depois do 1º trimestre). **Ressalva:** a OMS dispensa liberação médica só para atividade leve ou moderada; o treino de hipertrofia perto da falha é vigoroso, então a dispensa não cobre o caso do app.
+- **Guia do Ministério da Saúde 2021** (`ms2021`, PDF oficial): não pede avaliação antes de começar para a população geral; musculação na gestação com acompanhamento aconselhado; listas oficiais de contraindicações (p. 43). Confirma a conclusão desta seção: a triagem do app é mais rígida que as diretrizes.
+- **ACSM 2026** (`acsm2026`, texto completo): a frase "o risco de ficar inativo é muito maior" que esta seção atribuía a Warburton 2011 está, na verdade, em **Bredin 2013** (`bredin2013`, lido); Warburton 2011 continua sem leitura. O ACSM 2015 (`riebe2015`) não abriu.
+- **CONFEF 436/2022 e 617/2026:** o site não abre para robôs; continuam não lidas.
+
 ## 9. Proposta de triagem revisada (REGISTRADA, NÃO APLICADA)
 
 > Esta proposta **não entra no app** sem a revisão de um profissional de Educação Física (decisão do Gustavo). Ela fica aqui para quando houver esse profissional.
