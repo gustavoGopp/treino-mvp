@@ -152,7 +152,7 @@ export function cenaEstilo(ex, view, mode, t, estilo, errIdx = 0, box = null) {
     ex.equip(sk);
     corpoNovo(sk, estilo);
     if (AC.erroEquip && ['R', 'L'].some((k) => dist3(sk.side[k].G, ske.side[k].G) >= DIF_MINIMA_DA_CADEIA)) {
-      // opção (b) da folha: o equipamento da pose errada, em vermelho e translúcido, quando a mão que erra se move
+      // decisão (b) do Gustavo (05/11/2026): o equipamento da pose errada, em vermelho translúcido, quando a mão que erra se move
       const n0 = CTX.prims.length;
       ex._pal = 'e';
       ex.equip(ske);
@@ -565,12 +565,13 @@ export const PERTO_ABAIXO_DE = 0.7;
  * O acabamento A2 (docs/revisoes/boneco-acabamento/): tronco inteiro, coxa saindo do quadril, folga em volta do braço
  * de perto, mão, membros que afinam, fantasma do erro só no que muda e só as juntas que importam no exercício (as que
  * a trajetória acompanha: cotovelo, ombro, joelho, tornozelo e quadril). Desde o R4 (05/11/2026), o modo Erros é o
- * "erro sobre o certo" (erroInvertido) e os rótulos de técnica saem de cima do corpo (rotulosFora).
+ * "erro sobre o certo" (erroInvertido), com o equipamento da pose errada em vermelho translúcido (erroEquip; decisão
+ * (b) do Gustavo, 05/11), e os rótulos de técnica saem de cima do corpo (rotulosFora).
  */
 const JUNTA_DA_TRAJETORIA = { E: 'E', S: 'S', K: 'K', A: 'A', P: 'Hp', Hp: 'Hp' };
 export function acabamento(ex) {
   const juntas = [...new Set((Object.values(ex.paths ?? {}) as string[][][]).flatMap((ps) => ps.map((p) => JUNTA_DA_TRAJETORIA[p[0]!]).filter(Boolean)))];
-  return { tronco1: 1, quadril: 1, folga: 1, mao: 1, conico: 1, fantasmaDif: 1, erroInvertido: 1, rotulosFora: 1, juntas };
+  return { tronco1: 1, quadril: 1, folga: 1, mao: 1, conico: 1, fantasmaDif: 1, erroInvertido: 1, erroEquip: 1, rotulosFora: 1, juntas };
 }
 
 /** Opções da cena do Boneco: o título do erro (o texto do guia), escrito ao lado da parte que erra no modo Erros. */

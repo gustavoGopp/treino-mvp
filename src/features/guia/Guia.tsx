@@ -4,7 +4,7 @@ import { CONTEUDO } from '../../conteudo';
 import { prescricaoNoGuia } from '../../domain/sessao';
 import { hojeDoEstado, hojeDoTreino } from '../treino/acoes';
 import { DIAS, EX, VIEWS } from '../../engine';
-import { instanteDoErro, montarSvgEstilo, vistaDaMiniatura, type Estilo } from '../../engine/estilo';
+import { instanteDoErro, montarSvgEstilo, vistaDaMiniatura, vistaDoMovimento, type Estilo } from '../../engine/estilo';
 import { SO_AJUDA } from '../../engine/estilo/musculos';
 import { instante } from '../programa/Miniatura';
 import { useEstiloBoneco } from '../app/estiloBoneco';
@@ -83,7 +83,8 @@ function GuiaExercicio({ ex }: { ex: Animacao }) {
   const modoUrl = params.get('modo') as Modo | null;
   const [modo, setModo] = useState<Modo>(modoUrl && MODOS.some(([m]) => m === modoUrl) ? modoUrl : 'tec');
   const [erro, setErro] = useState(() => Math.max(0, Math.min(ex.errors.length - 1, Number(params.get('erro') ?? 0))));
-  const [vista, setVista] = useState<string>(() => params.get('vista') ?? (modo === 'err' ? ex.errors[erro].view : ex.views[0]));
+  // R4 (decisão do Gustavo, 05/11/2026): no Boneco, o modo Técnica abre na vista em que o movimento é maior
+  const [vista, setVista] = useState<string>(() => params.get('vista') ?? (modo === 'err' ? ex.errors[erro].view : modo === 'tec' ? vistaDoMovimento(ex, estilo) : ex.views[0]));
   const [tocando, setTocando] = useState(() => params.get('pausado') !== '1' && !reduzMovimento());
   const [lento, setLento] = useState(false);
   // R4 (05/11/2026): no Boneco, o modo Erros abre no instante em que o certo e o errado mais se afastam.
@@ -166,7 +167,8 @@ function GuiaExercicio({ ex }: { ex: Animacao }) {
       setErro(0);
       setVista(ex.errors[0].view);
       t.current = inicioDoErro(0);
-    } else if (!ex.views.includes(vista)) setVista(ex.views[0]);
+    } else if (m === 'tec' && !vistaManual.current && estilo !== 'atual') setVista(vistaDoMovimento(ex, estilo));
+    else if (!ex.views.includes(vista)) setVista(ex.views[0]);
   };
 
   return (

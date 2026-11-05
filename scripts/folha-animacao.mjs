@@ -18,7 +18,7 @@ if (!id) throw new Error('informe o id da animação');
 const arquivo = [`src/engine/exercicios/revisao/${id}.ts`, `src/engine/exercicios/${id}.ts`].find((f) => existsSync(f));
 if (!arquivo) throw new Error(`não achei src/engine/exercicios/[revisao/]${id}.ts`);
 const entrada = `export * from './src/engine/index.ts'; export { prep, calib } from './src/engine/cena.ts';
-export { montarSvgEstilo } from './src/engine/estilo/index.ts';
+export { montarSvgEstilo, instanteDoErro } from './src/engine/estilo/index.ts';
 export { default as NOVA } from './${arquivo}';`;
 const { outputFiles } = await build({ stdin: { contents: entrada, resolveDir: process.cwd(), loader: 'ts' }, bundle: true, format: 'esm', write: false });
 const motor = await import('data:text/javascript;base64,' + Buffer.from(outputFiles[0].text).toString('base64'));
@@ -48,7 +48,8 @@ for (const view of ex.views) {
   if (estilo) html += `<h2>${view}: músculos e trajetória</h2><div class="l">${tempos.map(({ t, rot }) => quadro(view, 'mus', t, 0, rot)).join('')}${quadro(view, 'traj', 0, 0, 'trajetória')}</div>`;
   else html += `<h2>${view}: músculos e trajetória</h2><div class="l">${quadro(view, 'mus', tempos[2]?.t ?? 0, 0, 'músculos')}${quadro(view, 'traj', 0, 0, 'trajetória')}</div>`;
 }
-html += `<h2>Erros</h2><div class="l">${ex.errors.map((e, i) => quadro(e.view, 'err', tempos[2]?.t ?? 0, i, `${e.id} (${e.view})`)).join('')}</div>`;
+// R4 (05/11/2026): o quadro de cada erro no instante em que o certo e o errado mais se afastam (como o guia abre o modo Erros)
+html += `<h2>Erros</h2><div class="l">${ex.errors.map((e, i) => quadro(e.view, 'err', estilo ? motor.instanteDoErro(ex, i) : (tempos[2]?.t ?? 0), i, `${e.id} (${e.view})`)).join('')}</div>`;
 writeFileSync(`/tmp/folha-${id}.html`, html);
 
 const require = createRequire(import.meta.url);
