@@ -293,3 +293,6 @@ Em ordem de importância **[opinião]**:
 6. **`zod` 4** (F.7), numa branch própria.
 7. **"Estagnado"** (F.2): medir no export do R3 antes de mudar.
 8. **Exportar os dados** antes de abrir o app atualizado ("Meus dados" → "Guardar uma cópia").
+
+## Na `main`
+Merge sem forçar em 05/11/2026 (commit `913f8c9`), depois de `npm run check` (615 testes), `npm run test:e2e` (48 testes, e2e e motor) e `npm run auditoria` duas vezes com arquivos idênticos. O conteúdo da `main` é idêntico ao da branch. O recado ao R3 está em `docs/prompts/recado-r3-catalogo-completo.md`.
