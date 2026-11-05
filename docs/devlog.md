@@ -910,3 +910,33 @@ As listas exatas ficam em `tests/unit/metas-r0.test.ts`, para o R0c zerar.
 > O achado que mais me ensinou veio de uma medição, não de uma opinião. Ao acrescentar dois exercícios sem carga para quem treina em casa, apareceu um limite que o gerador não conferia: num modelo de 6 dias, o mínimo de séries sozinho já passava do teto semanal do glúteo. O bug existia antes; ninguém tinha a combinação que o mostrava.
 >
 > E, nas animações, o veredito foi o que eu sentia: as poses estão certas, o que falta é o erro saltar aos olhos. A proposta veio com uma folha-piloto, lado a lado com o atual, antes de mudar qualquer coisa.
+
+---
+
+## R4: o erro sobre o certo, os rótulos fora do corpo, a vista pelo movimento e as 16 animações do elástico e da auditoria (05/11/2026)
+
+**Por quê.** O retorno do Gustavo na folha do elástico (04/11): "precisa aprimorar ainda o boneco, em especial a visualização do treino e do erro". A auditoria propôs um R4 pequeno, de **cena** e não de corpo (o esqueleto, as poses e os músculos ficam como estão), com a folha-piloto do modo Erros; o Gustavo aprovou a direção em 05/11, e as 12 animações do elástico esperavam por isso. Prompt em `prompts/sessao-r4-boneco.md`; as folhas de decisão e os lotes em `revisoes/r4/`.
+
+**O que mudou no Boneco** (três regras determinísticas, aplicadas por cima de todas as animações)
+- **O erro sobre o certo.** No modo Erros, o certo é a figura cheia e só a parte do corpo que erra aparece em vermelho tracejado, com o nome do erro (o título do texto do guia, que a tela passa ao motor) ao lado da junta que mais se afasta. O modo abre no instante em que o certo e o errado mais se afastam (medido em 48 instantes do ciclo; antes, no começo, em que vários erros nem apareciam). O equipamento da pose errada também aparece, em vermelho translúcido. Erro em que o corpo não muda (o punho com o kettlebell, o elástico no pescoço): só o objeto errado em vermelho, com o nome na mão. Legenda nova: "execução correta" e "a parte que erra".
+- **Rótulos fora do corpo.** O rótulo de técnica que cairia por cima do corpo em algum instante do ciclo vai para o lugar livre mais perto da âncora (dentro do palco, abaixo da caixa da fase, fora da silhueta, sem cruzar outro rótulo), com uma linha fina até o ponto; o deslocamento é fixo no ciclo, então o rótulo acompanha a âncora sem pular de lado; o rótulo largo quebra em duas linhas; quem já está fora não se move. Medido na largura do app: 58 das 172 linhas de rótulo se movem.
+- **A vista que abre é a do maior movimento.** O modo Técnica abre na vista em que a trajetória da mão (ou do pé) é mais longa na tela, em fração da largura do palco; empate (menos de 15%) ou ruído (menos de 8% do palco) mantém a 1ª vista. Medido: mudam só os dois crucifixos na polia, o face pull, e os seus pares com elástico, todos para a vista de cima. A miniatura do cartão fica no modo Músculos (decisão do Gustavo).
+
+![Antes × depois: o erro sobre o certo e os rótulos fora do corpo](img/r4-erro-sobre-o-certo.png)
+
+**As 16 animações** (12 do elástico, 4 da auditoria), cada uma com folha, medida (ik = 0 em todas; a faixa do elástico afinando na fase em que o músculo encurta) e conferência escrita (`revisoes/elastico/`, `revisoes/catalogo/conferencia/`), aprovadas pelo Gustavo em 05/11. A pose nova é a de bruços (flexão de joelho); as outras partem das aprovadas mais parecidas. A âncora do elástico preso num ponto virou um **poste fino com anel** (de lado, a porta cobriria o corpo). São **82 animações no app** (eram 66); os 16 cartões viraram texto completo.
+
+**Antes × depois nas personas:** só o Diego muda: no Corpo todo A, o agachamento com o peso do corpo dá lugar ao agachamento com elástico (equivalentes; o desempate pela animação aprovada). Bruno e Carla não mudam.
+
+**Medido:** `npm run check` com 647 testes (eram 615); e2e com 46 testes; linhas de base regravadas (`estilo-a.json`: 82 animações, 15.624 quadros; `novas.json`: 58) e conferidas sem as variáveis; auditoria completa idêntica em duas rodadas, com 22,5% das prescrições do estresse sem animação (eram 38,9%).
+
+**Decisões que ficaram registradas:** a Silhueta continua no modo Erros antigo; o estilo clássico não muda um byte (a regressão contra o guia original continua verde); o poste como âncora é escolha de desenho, confirmada pelo Gustavo.
+
+**Fica para depois** (`backlog.md`): a câmera perto do corpo no modo Técnica, a vista de cima na adução deitada, a mão por cima do disco de frente, a sombra no chão, a miniatura pelo movimento; a fila dos 57 sem animação.
+
+**Rascunho de post para o LinkedIn**
+> O boneco do meu app de treino aprendeu a mostrar o erro de outro jeito. Antes, a figura errada aparecia inteira em vermelho, com o certo desenhado por cima em palitos verdes, e a pessoa tinha que procurar onde estava a diferença. Agora o certo é a figura, e só a parte que erra aparece em vermelho tracejado, com o nome do erro ao lado. O instante do quadro também é medido: o motor acha o momento do ciclo em que o certo e o errado mais se afastam.
+>
+> O detalhe que mais me ensinou: um rótulo de texto em cima do corpo atrapalha mais do que ajuda. A regra nova empurra o rótulo para o lugar livre mais perto, com uma linha fina até o ponto, e mantém o deslocamento fixo no ciclo inteiro, para ele não pular de lado quando a animação roda.
+>
+> Com isso, saíram as doze animações do elástico que esperavam na fila, cada uma com a folha de contatos, a medida em centímetros e a tabela "o que a fonte pede × o que o boneco faz". O elástico afina quando estica: dá para ver onde a tensão está.
