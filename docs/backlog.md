@@ -16,6 +16,7 @@ Ideias e requisitos para depois do MVP. Nada aqui entra sem passar pelo plano.
 
 
 ## Pendências do lado do Gustavo
+- **Sessão de qualidade dos treinos gerados** (prompt pronto em `prompts/sessao-qualidade-treinos.md`, 05/11): o estresse ampliado, a pesquisa por grupamento e por combinação de dia, o que a prioridade faz e o caso "60 min sem equipamento → 3 exercícios".
 - **Chave da Anthropic.** Confirmar que a chave e os convites estão no projeto `treino-mvp` da Vercel, o que atende `treino-mvp-sigma.vercel.app`.
 - **Projetos extras na Vercel.** Avaliar apagar `treino-mvp-huks` e `treino-mvp-yej6`, criados em 31/10/2026. Eles repetem cada deploy.
 - **Cronometrar o cadastro no celular (critério 1, R1).** O teste automático conta 13 toques e 0 caractere para quem não tem condição nenhuma (sem a tela de equipamento); falta a sua medição de tempo no celular, uma vez, e a da tela de equipamento com "academia completa" (meta: até 15 s).
