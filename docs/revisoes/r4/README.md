@@ -51,4 +51,24 @@ As 66 animações, 8 por página, hoje × proposta. Para aprovar: um "aprovar" p
 Depois do "aprovar": a linha de base `estilo-a.json` é regravada (os quadros de técnica com rótulo movido mudam de hash).
 
 ## Proposta 3: a vista que abre é a do maior movimento
-(em andamento: a lista medida entra aqui)
+
+A regra (`vistaDoMovimento`, em `src/engine/estilo/index.ts`): para cada vista do exercício, o motor projeta a trajetória da mão (ou do pé, ou do quadril: a 1ª trajetória de `paths`) ao longo da fase concêntrica e mede o comprimento do caminho na tela, em fração da largura do palco daquela vista. O modo Técnica abre na vista em que o caminho é mais longo; empate (menos de 15% de diferença) mantém a 1ª vista; uma vista só ganha se o movimento nela percorre pelo menos 8% da largura do palco (abaixo disso é ruído). A vista "Detalhe" (zoom) não concorre. Só a vista inicial muda: nenhum quadro muda, nenhuma linha de base muda. A miniatura do cartão continua no modo Músculos (decisão do Gustavo, 05/11).
+
+**Medido nas 66 animações** (comprimento do caminho por vista, em fração da largura do palco): **3 mudam de vista inicial**.
+
+| Exercício | Vistas (a 1ª é a de hoje) | Comprimento por vista | Abre em |
+|---|---|---|---|
+| Crucifixo na polia | frontal, top | frontal 0,25 · top 0,55 | **top** (muda) |
+| Face pull com corda | lateral, top | lateral 0,14 · top 0,20 | **top** (muda) |
+| Crucifixo invertido na polia | frontal, top | frontal 0,23 · top 0,51 | **top** (muda) |
+| Barra fixa supinada | posterior, lateral | posterior 0,04 · lateral 0,07 | posterior (a lateral vence por 75%, mas é ruído: abaixo de 0,08) |
+| Elevação lateral (suspeita da auditoria) | frontal, lateral | frontal 0,22 · lateral 0,19 | frontal (já era) |
+| Elevação com halteres | frontal, lateral | frontal 0,27 · lateral 0,25 | frontal (já era) |
+| Abdução com caneleira (suspeita) | lateral, top | lateral 0,21 · top 0,05 | lateral (já era: deitado de lado, a perna sobe na vertical) |
+| Desenvolvimento unilateral com kettlebell | frontal, lateral | frontal 0,20 · lateral 0,22 | frontal (empate: menos de 15%) |
+| YT na suspensão | posterior, lateral | posterior 0,17 · lateral 0,19 | posterior (empate) |
+| Os outros 57 | | a 1ª vista vence ou empata | não mudam |
+
+A remada com elástico (em revisão) será medida quando entrar no app (lateral 0,22 × posterior 0,15 na pose de hoje: fica de lado).
+
+Opções: (1) ligar com os 3 que mudam; (2) ligar, mas manter o face pull de lado (a altura do cotovelo é o que mais erra); (3) não ligar. **Minha recomendação: (1)**: nos dois crucifixos, de cima se vê o arco das mãos e o cotovelo "levemente dobrado e fixo", que de frente somem; no face pull, de cima se vê as mãos abrindo ao lado da cabeça. A tabela inteira dos 66 está no teste `tests/unit/vista-inicial.test.ts` (a lista dos que mudam é fixa: se uma pose mudar, o teste avisa). A regra já está no motor; **no app fica desligada até o "aprovar"** (é uma linha em `Guia.tsx`).

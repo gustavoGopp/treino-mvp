@@ -502,6 +502,44 @@ export function vistaDaMiniatura(ex, t, estilo: Estilo) {
 }
 
 /**
+ * Vista inicial do modo Técnica (R4, proposta 3; decisão do Gustavo, 05/11/2026): a vista em que a 1ª trajetória
+ * (a mão, o pé ou o quadril de `paths`) percorre mais tela, em fração da largura do palco daquela vista. Troca só se a
+ * vista ganha por mais de 15% da 1ª de `views` e o movimento nela não é ruído (MOVIMENTO_MINIMO); a vista `zoom` (a
+ * lateral com a câmera fechada) não concorre. No
+ * estilo clássico, e sem `paths`, a 1ª vista, como sempre. Só escolhe a vista: nenhum quadro muda.
+ */
+const vistasDoMovimento = {};
+export function comprimentosDoMovimento(ex) {
+  if (vistasDoMovimento[ex.id]) return vistasDoMovimento[ex.id];
+  const v0 = ex.views[0];
+  const traj = ex.paths?.[v0]?.[0];
+  const out = {};
+  if (traj) {
+    const [key, side] = traj;
+    const pontos = concTimes(ex, 36).map((t) => getPt(skel(poseAt(ex, ex.K, t)), key, side));
+    for (const v of ex.views) {
+      if (v === 'zoom') continue;
+      const Q = pontos.map(VIEWS[v].proj);
+      let L = 0;
+      for (let i = 1; i < Q.length; i++) L += Math.hypot(Q[i][0] - Q[i - 1][0], Q[i][1] - Q[i - 1][1]);
+      out[v] = L / caixa(ex, v)[2];
+    }
+  }
+  return (vistasDoMovimento[ex.id] = out);
+}
+export function vistaDoMovimento(ex, estilo: Estilo) {
+  const v0 = ex.views[0];
+  if (estilo === 'atual' || ex.views.length < 2) return v0;
+  const c = comprimentosDoMovimento(ex);
+  if (c[v0] === undefined) return v0;
+  let melhor = v0, maior = c[v0];
+  for (const v of ex.views.slice(1)) if (c[v] !== undefined && c[v] > maior * 1.15 && c[v] >= MOVIMENTO_MINIMO) { maior = c[v]; melhor = v; }
+  return melhor;
+}
+/** Uma vista só ganha se o movimento nela percorre pelo menos 8% da largura do palco (barra fixa: 4% × 7% é ruído). */
+export const MOVIMENTO_MINIMO = 0.08;
+
+/**
  * Quanto do palco o corpo ocupa, de 0 a 1 (a maior das duas medidas, largura ou altura, ao longo do ciclo). Nos
  * exercícios de polia a câmera enquadra a torre inteira e o corpo fica pequeno (46% a 62%; design.md, achado 6).
  */
