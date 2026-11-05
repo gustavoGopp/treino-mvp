@@ -1,0 +1,81 @@
+{
+  "id": "puxada-elastico",
+  "name": "Puxada com elástico ancorado no alto",
+  "short": "Puxada com elástico",
+  "target": "Dorsal (laterais das costas)",
+  "feel": "Lateral das costas, abaixo da axila. O bíceps ajuda.",
+  "feelNote": "O elástico pesa mais no fim da puxada e menos em cima, na parte alongada. Se sentir mais o bíceps, pense em levar os cotovelos ao quadril, e não as mãos.",
+  "setupEq": [
+    "Um elástico com pegadores ou um elástico longo, sem rachaduras.",
+    "Prenda o meio do elástico no alto: no topo de uma porta fechada, com a âncora de porta do lado de lá, ou em volta de uma barra ou viga firme acima da cabeça.",
+    "Um colchonete embaixo dos joelhos."
+  ],
+  "setupBody": [
+    "Ajoelhe de frente para o ponto, a cerca de um passo, joelhos na largura do quadril.",
+    "Uma ponta em cada mão, braços estendidos para cima e um pouco à frente. O elástico já deve estar um pouco esticado.",
+    "Tronco reto ou levemente inclinado para trás."
+  ],
+  "exec": [
+    [
+      "hold",
+      "Alongado",
+      "Braços estendidos; deixe os ombros subirem e alongarem as laterais das costas."
+    ],
+    [
+      "conc",
+      "Puxada (concêntrica)",
+      "~1 s. Primeiro desça os ombros, depois puxe os cotovelos para baixo, em direção ao quadril."
+    ],
+    [
+      "hold",
+      "Fim",
+      "Cotovelos ao lado das costelas, mãos perto dos ombros. Segure um instante."
+    ],
+    [
+      "ecc",
+      "Volta (excêntrica)",
+      "~2 s, alongando bem em cima."
+    ]
+  ],
+  "range": [
+    "Início: braços estendidos, com os ombros alongados para cima.",
+    "Fim: cotovelos ao lado das costelas.",
+    "Não jogue o tronco para trás para puxar mais."
+  ],
+  "breath": "Solte o ar puxando, inspire alongando.",
+  "cues": [
+    "Ombros descem primeiro.",
+    "Cotovelos no quadril.",
+    "Alonga em cima."
+  ],
+  "check": [
+    "Elástico preso no alto, num ponto firme",
+    "Colchonete sob os joelhos",
+    "Esticado já com os braços estendidos",
+    "Tronco parado",
+    "Alongar bem em cima"
+  ],
+  "vary": "O ângulo do braço em relação ao corpo pode mudar um pouco: escolha o que deixa você sentir mais a lateral das costas sem desconforto no ombro. Ficou fácil? Afaste-se do ponto ou passe para a intensidade seguinte.",
+  "note": "<b>Segurança:</b> antes da 1ª série, puxe forte o elástico com as mãos para testar o ponto (a porta fechada, abrindo para o lado de lá; o móvel não pode arrastar). Elástico sem rachaduras. Se escapar ou o ponto ceder, pare.",
+  "extLabels": [
+    "alongado",
+    "fim"
+  ],
+  "errors": [
+    {
+      "id": "tronco",
+      "title": "Jogar o tronco para trás",
+      "desc": "Usar o peso do corpo para puxar tira trabalho das costas."
+    },
+    {
+      "id": "encolher",
+      "title": "Ombros encolhidos",
+      "desc": "Puxar sem descer os ombros deixa o trapézio de cima e o bíceps fazerem o trabalho."
+    },
+    {
+      "id": "curta",
+      "title": "Não alongar em cima",
+      "desc": "Voltar só até a metade perde a parte alongada das costas."
+    }
+  ]
+}
