@@ -47,6 +47,12 @@ describe('opções de divisão por número de dias (divisao.recomendacao)', () =
       }
     }
   });
+  it('divisao.sem-puxar: sem puxar, 6 dias vão para o Corpo todo 6x, que nunca aparece nas opções; a escolha da pessoa é mantida', () => {
+    expect(divisaoEscolhida(6, 12, undefined, true)).toMatchObject({ divisao: { id: 'ct-6x' }, corpoTodoPorFaltaDePuxar: true });
+    expect(divisaoEscolhida(6, 12, undefined, false)).toMatchObject({ divisao: { id: 'ppl-2x' }, corpoTodoPorFaltaDePuxar: false });
+    expect(divisaoEscolhida(6, 12, 'ppl-2x', true)).toMatchObject({ divisao: { id: 'ppl-2x' }, escolhida: true });
+    for (const d of [2, 3, 4, 5, 6] as const) expect(opcoesDeDivisao(d, 6).map((o) => o.id)).not.toContain('ct-6x');
+  });
   it('a escolha vale se servir para os dias e as metas; senão, a recomendada', () => {
     expect(divisaoEscolhida(4, 12, 'ct-4x')).toMatchObject({ divisao: { id: 'ct-4x' }, escolhida: true });
     expect(divisaoEscolhida(4, 12)).toMatchObject({ divisao: { id: 'si-2x' }, escolhida: false });

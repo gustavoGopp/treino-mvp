@@ -35,6 +35,7 @@ export const DIVISAO_IDS = [
   'classica-3',
   'classica-4',
   'classica-5',
+  'ct-6x',
 ] as const;
 export type DivisaoId = (typeof DIVISAO_IDS)[number];
 export type DiasSemana = 2 | 3 | 4 | 5 | 6;
@@ -68,6 +69,7 @@ const SUPERIOR_A = [
   c('crucifixo'),
   c('ombro-posterior'),
   c('empurrar-vertical', ['ombros']),
+  c('abdomen', ['abdomen']),
 ];
 const SUPERIOR_B = [
   v('empurrar-inclinado'),
@@ -79,6 +81,7 @@ const SUPERIOR_B = [
   c('ombro-posterior'),
   c('crucifixo', ['peito']),
   c('empurrar-vertical', ['ombros']),
+  c('abdomen', ['abdomen']),
 ];
 const INFERIOR_A = [
   v('agachar'),
@@ -181,6 +184,8 @@ const CORPO2_B = [
   v('biceps'),
   v('abdomen'),
   c('ombro-posterior'),
+  // A elevação lateral só existia no dia A de 2 dias e ficava em 2 séries, abaixo do piso de 4 (sessão de qualidade, 06/11/2026).
+  c('elevacao-lateral'),
   c('empurrar-vertical', ['ombros']),
   c('abducao', ['gluteos']),
   c('aducao', ['pernas', 'gluteos']),
@@ -193,6 +198,7 @@ const EMPURRAR_A = [
   c('empurrar-inclinado'),
   c('crucifixo'),
   c('triceps-complemento'),
+  c('abdomen', ['abdomen']),
 ];
 const EMPURRAR_B = [
   v('empurrar-inclinado'),
@@ -202,6 +208,7 @@ const EMPURRAR_B = [
   c('empurrar-horizontal'),
   c('triceps-complemento'),
   c('empurrar-vertical', ['ombros']),
+  c('abdomen', ['abdomen']),
 ];
 const PUXAR_A = [
   v('puxar-vertical'),
@@ -242,6 +249,7 @@ const PERNAS_B = [
   c('abducao', ['gluteos']),
   c('panturrilha-sentada', ['pernas']),
   c('aducao', ['pernas', 'gluteos']),
+  c('abdomen', ['abdomen']),
 ];
 // Clássicas: cada músculo 1x por semana (divisao.classica).
 const CL_PEITO_TRICEPS = [v('empurrar-horizontal'), v('empurrar-inclinado'), v('crucifixo'), v('triceps-acima-cabeca'), v('triceps-complemento')];
@@ -375,6 +383,22 @@ const DEF: Divisao[] = [
     ],
   },
   {
+    // Só como recuo de divisao.sem-puxar (decisão do Gustavo em 06/11/2026): não entra em OPCOES_POR_DIAS.
+    id: 'ct-6x',
+    nome: 'Corpo todo 6x',
+    diasSemana: 6,
+    frequencia: '6',
+    descricao: 'Os seis treinos passam por todos os grandes grupos; treinos curtos. Para quem não tem como puxar: nas outras divisões de 6 dias, os dias de puxar ficariam com outros músculos.',
+    dias: [
+      dia('corpo-a', 'Corpo todo A', CORPO_A),
+      dia('corpo-b', 'Corpo todo B', CORPO_B),
+      dia('corpo-c', 'Corpo todo C', CORPO_C),
+      dia('corpo-d', 'Corpo todo D', CORPO2_A),
+      dia('corpo-e', 'Corpo todo E', CORPO2_B),
+      dia('corpo-f', 'Corpo todo F', CORPO_SI),
+    ],
+  },
+  {
     id: 'classica-3',
     nome: 'Clássica ABC',
     diasSemana: 3,
@@ -425,6 +449,15 @@ export const OPCOES_POR_DIAS: Record<DiasSemana, DivisaoId[]> = {
   6: ['ppl-2x', 'si-3x'],
 };
 
+/**
+ * Recuo de divisao.sem-puxar para os dias que não têm corpo todo entre as opções (6 dias): sem puxar, o
+ * Empurrar/Puxar/Pernas deixava dois dias de "Puxar" com 2 exercícios (sessão de qualidade dos treinos, 06/11/2026).
+ */
+export const CORPO_TODO_SEM_PUXAR: Partial<Record<DiasSemana, DivisaoId>> = { 6: 'ct-6x' };
+
+/** As divisões que a tela oferece (todas, menos o recuo `ct-6x`): as auditorias que escolhem a divisão rodam só estas. */
+export const DIVISOES_OFERECIDAS: DivisaoId[] = DIVISAO_IDS.filter((id) => Object.values(OPCOES_POR_DIAS).some((ids) => ids.includes(id)));
+
 /** Teto de meta semanal para a clássica: com 1x por semana e ~10 séries por sessão (divisao.classica). */
 export const META_MAX_CLASSICA = 10;
 
@@ -462,8 +495,8 @@ export function opcoesDeDivisao(dias: DiasSemana, metaMax: number): OpcaoDivisao
 
 /**
  * A divisão escolhida, se ela serve para os dias e as metas; senão, a recomendada. Sem nenhum exercício de puxar
- * possível (`semPuxar`), a recomendada passa a ser a de corpo todo do mesmo número de dias, quando existe
- * (divisao.sem-puxar): nas outras, os dias de puxar ficariam com outros músculos.
+ * possível (`semPuxar`), a recomendada passa a ser a de corpo todo do mesmo número de dias, quando existe, e com 6 dias
+ * o Corpo todo 6x (divisao.sem-puxar): nas outras, os dias de puxar ficariam com outros músculos.
  */
 export function divisaoEscolhida(
   dias: DiasSemana,
@@ -474,8 +507,8 @@ export function divisaoEscolhida(
   const opcoes = opcoesDeDivisao(dias, metaMax);
   const ok = escolhida && opcoes.some((o) => o.id === escolhida);
   if (ok) return { divisao: DIVISOES[escolhida], escolhida: true, corpoTodoPorFaltaDePuxar: false };
-  const corpoTodo = semPuxar ? opcoes.find((o) => !temDiaDeTronco(DIVISOES[o.id])) : undefined;
-  const id = corpoTodo?.id ?? opcoes[0]!.id;
+  const corpoTodo = semPuxar ? (opcoes.find((o) => !temDiaDeTronco(DIVISOES[o.id]))?.id ?? CORPO_TODO_SEM_PUXAR[dias]) : undefined;
+  const id = corpoTodo ?? opcoes[0]!.id;
   return { divisao: DIVISOES[id], escolhida: false, corpoTodoPorFaltaDePuxar: !!corpoTodo && id !== opcoes[0]!.id };
 }
 

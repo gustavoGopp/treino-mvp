@@ -17,7 +17,7 @@
     "test:e2e": "playwright test",
     "check": "npm run lint && npm run typecheck && npm run test",
     "qa:motor": "node scripts/qa-motor.mjs",
-    "auditoria": "npm run auditoria:estresse && npm run auditoria:progressao && npm run auditoria:base && npm run auditoria:anatomia && npm run auditoria:minimo && npm run auditoria:minimo-progressao && npm run auditoria:catalogo",
+    "auditoria": "npm run auditoria:estresse && npm run auditoria:progressao && npm run auditoria:base && npm run auditoria:anatomia && npm run auditoria:minimo && npm run auditoria:minimo-progressao && npm run auditoria:catalogo && npm run auditoria:qualidade",
     "auditoria:estresse": "vite-node scripts/auditoria/estresse.ts --",
     "auditoria:progressao": "vite-node scripts/auditoria/progressao.ts --",
     "auditoria:base": "vite-node scripts/auditoria/base.ts",
@@ -29,7 +29,9 @@
     "gif:jornada": "bash scripts/gif/gerar.sh",
     "gif:sessao": "bash scripts/gif/gerar.sh sessao docs/img/m5-treino.gif",
     "eval:visao": "npx tsx scripts/eval-vision.ts",
-    "auditoria:catalogo": "vite-node scripts/auditoria/catalogo.ts"
+    "auditoria:catalogo": "vite-node scripts/auditoria/catalogo.ts",
+    "auditoria:qualidade": "vite-node scripts/auditoria/qualidade.ts --",
+    "auditoria:verificar": "node scripts/auditoria/verificar.mjs"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^1.3.0",

@@ -515,7 +515,8 @@
     "costas"
    ],
    "secundarios": [
-    "biceps"
+    "biceps",
+    "ombro_posterior"
    ]
   },
   "requer": [
@@ -549,7 +550,8 @@
     "costas"
    ],
    "secundarios": [
-    "biceps"
+    "biceps",
+    "ombro_posterior"
    ]
   },
   "requer": [
@@ -3775,8 +3777,8 @@
   "complexidade": 3,
   "tipo": "isolador",
   "faixaReps": [
-   4,
-   8
+   6,
+   10
   ],
   "unilateral": false,
   "articulacoes": [

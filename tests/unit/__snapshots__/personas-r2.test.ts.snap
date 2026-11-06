@@ -3,7 +3,7 @@
 exports[`snapshots do R2: o treino de cada persona na volta de 30 dias > Ana 1`] = `
 [
   {
-    "antes": "semana 6: 15 séries, RIR 2–3 e 1–2, a mesma carga",
+    "antes": "semana 6: 16 séries, RIR 2–3 e 1–2, a mesma carga",
     "cargas": [
       "Agachamento búlgaro com apoio: 10 kg → 9 kg",
       "Ponte de glúteo com halter: 10 kg → 9 kg",
@@ -11,17 +11,18 @@ exports[`snapshots do R2: o treino de cada persona na volta de 30 dias > Ana 1`]
       "Remada unilateral com halter apoiada no banco: 10 kg → 9 kg",
       "Flexão de joelho deslizando os pés no chão: peso do corpo · pausa de 2 s com os joelhos dobrados → peso do corpo · só a volta lenta (3 s), voltando com as duas pernas",
       "Tríceps francês sentado com halter: 10 kg → 9 kg",
+      "Abdominal no chão (crunch): peso do corpo · braços acima da cabeça → peso do corpo · descida de 3 s",
     ],
     "depois": "semana 1 (readaptacao.semana1): 9 séries, RIR 3–4",
     "dia": "Corpo todo A",
   },
   {
-    "antes": "semana 6: 16 séries, RIR 2–3 e 1–2, a mesma carga",
+    "antes": "semana 6: 15 séries, RIR 2–3 e 1–2, a mesma carga",
     "cargas": [
       "Stiff com halteres: 10 kg → 9 kg",
+      "Supino reto com halteres: 10 kg → 9 kg",
       "Remada unilateral com halter apoiada no banco: 10 kg → 9 kg",
       "Panturrilha em pé no chão: 10 kg → 9 kg",
-      "Crucifixo com halteres no banco plano: 10 kg → 9 kg",
       "Rosca alternada com halteres: 10 kg → 9 kg",
       "Crucifixo invertido curvado com halteres: 10 kg → 9 kg",
     ],

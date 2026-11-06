@@ -1,7 +1,9 @@
 import type { Musculo } from '../biblioteca';
 import { VOLUME, r } from '../regras';
 import type { Inventario } from '../taxonomia/equipamentos';
-import { GRUPOS, NOME_MUSCULO, gerarPrograma, type Grupo, type Perfil, type Programa } from './index';
+import { GRUPOS, NOME_GRUPO, NOME_MUSCULO, gerarPrograma, type Grupo, type Perfil, type Programa } from './index';
+
+export { NOME_GRUPO };
 
 // Escolhas calculadas: quando o programa não atinge as metas ou não cabe no tempo, o gerador roda de novo
 // com variações simples do perfil e mostra só as que melhoram o resultado. A pessoa escolhe; nada muda sozinho.
@@ -96,15 +98,6 @@ function maisUmDia(perfil: Perfil): Perfil {
   return { ...resto, diasSemana: (perfil.diasSemana + 1) as Perfil['diasSemana'] };
 }
 
-export const NOME_GRUPO: Record<Grupo, string> = {
-  peito: 'peito',
-  costas: 'costas',
-  ombros: 'ombros',
-  bracos: 'braços',
-  pernas: 'pernas',
-  gluteos: 'glúteos',
-  abdomen: 'abdômen',
-};
 
 /** O grupo prioritário com pior cobertura (volume/meta) é o candidato a deixar de ser prioridade. */
 function menosPrioridade(perfil: Perfil, programa: Programa): Grupo[] {

@@ -16,7 +16,7 @@ Ideias e requisitos para depois do MVP. Nada aqui entra sem passar pelo plano.
 
 
 ## Pendências do lado do Gustavo
-- **Sessão de qualidade dos treinos gerados** (prompt pronto em `prompts/sessao-qualidade-treinos.md`, 05/11): o estresse ampliado, a pesquisa por grupamento e por combinação de dia, o que a prioridade faz e o caso "60 min sem equipamento → 3 exercícios".
+- **Sessão de qualidade dos treinos gerados: revisar o que entrou** (decisões 1 a 7 aprovadas e aplicadas em 06/11; `revisoes/qualidade-treinos.md`, Parte F) e dar o ok para a ida à `main`, depois de exportar os dados do app.
 - **Chave da Anthropic.** Confirmar que a chave e os convites estão no projeto `treino-mvp` da Vercel, o que atende `treino-mvp-sigma.vercel.app`.
 - **Projetos extras na Vercel.** Avaliar apagar `treino-mvp-huks` e `treino-mvp-yej6`, criados em 31/10/2026. Eles repetem cada deploy.
 - **Cronometrar o cadastro no celular (critério 1, R1).** O teste automático conta 13 toques e 0 caractere para quem não tem condição nenhuma (sem a tela de equipamento); falta a sua medição de tempo no celular, uma vez, e a da tela de equipamento com "academia completa" (meta: até 15 s).
@@ -96,4 +96,20 @@ Detalhes, medidas e o porquê de cada item em `revisoes/auditoria-fable.md`.
 - **PubMed** continua bloqueado na rede das sessões: as leituras pendentes de 04/11 (Larsen 2025 do leg press, o título de `kassiano2026`) seguem por fazer.
 - **Licença do PAR-Q+** (lida em 05/11/2026, `parq2025`): usar o texto oficial num app exige autorização escrita da PAR-Q+ Collaboration (eparmedx@gmail.com), possivelmente com taxa. Decidir: pedir a autorização (e então usar a versão oficial em português, `schwartz2021`) ou seguir com as perguntas próprias, que a tela já apresenta como "não é o questionário oficial". Vale junto com a revisão do profissional de Educação Física.
 - **Textos de segurança a partir do Guia do Ministério da Saúde 2021** (`ms2021`, licença CC BY-NC-SA): as listas oficiais em pt-BR de contraindicações e de condições que pedem acompanhamento (p. 43) podem substituir frases do app, com a fonte citada.
+
+## Da qualidade dos treinos gerados (06/11/2026)
+- **A prioridade puxa frequência** (D-4): quando a meta do prioritário passa do teto de 10 séries por sessão e a divisão o treina 1 vez por semana, ativar a vaga dele noutro dia. Cobre a "2ª vaga do prioritário quando há tempo" da auditoria de 02/11. No avançado, pernas prioritárias ficam abaixo da meta em 96% dos programas. Medir antes.
+- **Recomendar até 2 grupos de foco no cadastro** (D-3), sem bloquear; "pernas" conta como 3 músculos.
+- **Modo "só este grupo"** (D-5): se vier, nunca zerar os outros; usar o piso de manutenção (`volume.manutencao.piso`).
+- **Mais séries para todos quando sobra tempo** (E-c): na academia completa, 25,5% dos programas de 45 min ou mais usam menos de 70% dos minutos, porque a lista de vagas do dia e o teto de 4 séries por exercício param o dia em 55 a 65 min. É mudança de regra de volume para todo mundo: precisa de decisão e medida próprias.
+- **A barra fixa que encaixa baixo** (B.4): um atributo no cadastro do item abre a remada invertida para quem só tem a barra; hoje `barra_baixa` exige rack ou smith.
+- **Ombro posterior no grupo "ombros"** (B.9) [opinião do pesquisador]; efeito no Bruno e na Carla.
+- **Abdução com peso 0,5 e o glúteo fora dos secundários das flexões de joelho** (B.17): é [opinião]; listar o efeito na biblioteca e na anatomia antes.
+- **Nórdico invertido no nível 3 da extensora** (B.14): só um estudo sem grupo controle; não recomendado numa vaga obrigatória.
+- **Ombro posterior como vaga-base num dia** (C.5) e **ordem dos complementos** (C.6): medir em 45 min antes.
+- **Panturrilha no degrau** (B.20, 2ª parte): exercício novo com o calcanhar abaixo do degrau da escada; precisa de cartão textual e, depois, de animação aprovada.
+- **Custo da proteção do abdômen** (F.5): na Ana, o abdominal protegido tirou 2 séries do búlgaro, um exercício de foco. Se o Gustavo achar alto, proteger com 2 séries e sem passar dos minutos.
+- **Dias de 30 min acima do tempo** (F.9): com a proteção do abdômen e da panturrilha, 40% dos programas de 30 min têm um dia acima do tempo (eram 26%), sempre com aviso. Proposta: com 30 min ou menos, proteger com 2 séries e trocar por um isolador do mesmo dia em vez de somar.
+- **O mesmo exercício em todos os dias no Corpo todo 6x** (F.9): 39,9% dos programas da grade (eram 29,8%), puxado pelos cenários sem equipamento com 6 dias.
+- **O ombro lateral no Corpo todo 6x**: sem a vaga de empurrar vertical (como nos outros corpos todos), o ombro lateral fica sem a meia série do pike em quem não tem como puxar.
 
