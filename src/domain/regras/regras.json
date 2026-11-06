@@ -32,7 +32,7 @@
   },
   {
     "id": "volume.semanal.alvo",
-    "regra": "Alvo semanal padrão dos músculos prioritários",
+    "regra": "Alvo semanal padrão dos músculos prioritários. É foco com manutenção: os outros músculos ficam no mínimo eficaz e continuam crescendo, mais devagar; o texto do app diz isso (decisão do Gustavo em 06/11/2026, sessão de qualidade dos treinos)",
     "valores": {
       "iniciante": "8",
       "intermediario": "12",
@@ -42,7 +42,24 @@
     "fontes": [
       "schoenfeld2017a",
       "pelland2026",
-      "bazvalle2022"
+      "bazvalle2022",
+      "bickel2011",
+      "spiering2021"
+    ]
+  },
+  {
+    "id": "volume.prioridade.competicao",
+    "regra": "Quando há 2 grupos de foco ou mais e algum músculo prioritário fica abaixo da meta, um aviso por programa diz quais, quanto faltou e que, para o foco render, vale escolher menos grupos ou mais minutos ou dias; \"pernas\" são 3 músculos e pedem o triplo de séries (decisão do Gustavo em 06/11/2026, sessão de qualidade dos treinos). Quantos grupos dá para priorizar ao mesmo tempo não tem estudo; o teto por sessão é de um estudo",
+    "valores": {
+      "iniciante": "aviso",
+      "intermediario": "aviso",
+      "avancado": "aviso"
+    },
+    "selo": "consenso",
+    "fontes": [
+      "consenso-projeto",
+      "remmert2025",
+      "pelland2026"
     ]
   },
   {

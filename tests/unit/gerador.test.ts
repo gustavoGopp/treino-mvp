@@ -665,3 +665,21 @@ describe('a vaga sem exercício possível (selecao.vaga-sem-equipamento; tempo.s
   });
 });
 
+describe('o que a prioridade diz (volume.semanal.alvo; volume.prioridade.competicao)', () => {
+  it('o porquê explica foco com manutenção: o foco cresce mais rápido e os outros continuam crescendo', () => {
+    const q = ok(fabio.perfil, fabio.inventario).porque.find((x) => x.regraId === 'volume.semanal.alvo')!;
+    expect(q.texto).toMatch(/^Foco em costas: ~12 séries por semana/);
+    expect(q.texto).toMatch(/continuam crescendo, mais devagar/);
+    const sem = ok({ ...fabio.perfil, prioridades: [] }, fabio.inventario).porque.find((x) => x.regraId === 'volume.semanal.alvo')!;
+    expect(sem.texto).toMatch(/^Sem grupo de foco/);
+  });
+  it('com 2 focos ou mais e um prioritário abaixo da meta, um aviso só, que diz quanto faltou; com 1 foco, nunca', () => {
+    const a = ok(ana.perfil, ana.inventario).avisos.filter((x) => x.regraId === 'volume.prioridade.competicao');
+    expect(a).toHaveLength(1);
+    expect(a[0]!.texto).toMatch(/^Seus focos disputam o mesmo tempo: .+ de \d+/);
+    expect(a[0]!.texto).toMatch(/escolha um grupo só/);
+    expect(a[0]!.texto).toMatch(/"Pernas" são 3 músculos/);
+    for (const v of variacoes.filter((x) => x.perfil.prioridades.length < 2)) expect(ok(v.perfil, v.inv).avisos.some((x) => x.regraId === 'volume.prioridade.competicao'), v.nome).toBe(false);
+  });
+});
+

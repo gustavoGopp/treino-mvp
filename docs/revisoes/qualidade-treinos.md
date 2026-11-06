@@ -420,3 +420,17 @@ As costas, que ele priorizou, saem de 8 (abaixo do mínimo de 10 do intermediár
 **Testes.** Sem nada e 6 dias, vale o Corpo todo 6x, com o porquê, e nenhum dia fica com menos de 4 exercícios em 60 min (antes, dias de "Puxar" com 2); quem escolheu o Empurrar/Puxar/Pernas mantém a escolha e recebe o aviso; o Corpo todo 6x nunca aparece nas opções da tela.
 
 **Personas.** Nenhuma muda: nenhuma treina 6 dias sem ter como puxar.
+
+### F.3 Decisão 3: o texto da prioridade e o aviso quando prioridades competem
+
+**Regras.** `volume.semanal.alvo` passa a dizer que é foco com manutenção (fontes + `bickel2011`, `spiering2021`). Nova: `volume.prioridade.competicao` (consenso, com `consenso-projeto`, `remmert2025`, `pelland2026`).
+
+**Código.** O "porquê" do programa troca "Grupos prioritários com ~N séries semanais; os demais no mínimo eficaz (6)" por "Foco em {grupos}: ~N séries por semana, para crescer mais rápido. Os outros músculos ficam com ~6: continuam crescendo, mais devagar." (sem foco: "Sem grupo de foco: todos os músculos ficam com ~6 séries por semana, o bastante para crescer, mais devagar que com foco. Para acelerar um grupo, escolha-o como prioridade."). Com 2 focos ou mais e algum músculo prioritário com exercício possível abaixo da meta, um aviso por programa. Os nomes dos grupos (`NOME_GRUPO`) passaram de `opcoes.ts` para o gerador; `opcoes.ts` os reexporta e a tela não muda.
+
+**Personas.** Os treinos não mudam; dois programas ganham o aviso (o resumo do snapshot lista os ids dos avisos):
+
+| Persona | Aviso novo |
+|---|---|
+| Ana (glúteos e pernas, 3 × 45 min) | "Seus focos disputam o mesmo tempo: quadríceps 7 de 8 e posteriores da coxa 7 de 8 séries por semana. Com 3 treinos de 45 min não cabe tudo: para o foco render, escolha um grupo só, ou aumente os minutos ou os dias. "Pernas" são 3 músculos (frente da coxa, posterior e panturrilha): como foco, pedem o triplo de séries de "peito"." |
+| Carla (peito, costas, ombros e pernas, 5 × 75 min) | "Seus focos disputam o mesmo tempo: panturrilha 12 de 14 séries por semana. Com 5 treinos de 75 min não cabe tudo: para o foco render, escolha 1 ou 2 grupos, ou aumente os minutos ou os dias. (…)" |
+| Bruno, Diego, Elisa, Fábio | nenhum (Bruno e Diego atingem as metas dos focos; Elisa e Fábio têm 0 ou 1 foco) |

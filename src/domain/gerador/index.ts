@@ -18,6 +18,17 @@ export const GRUPOS = {
   abdomen: ['abdomen'],
 } as const satisfies Record<string, readonly Musculo[]>;
 export type Grupo = keyof typeof GRUPOS;
+/** Nomes dos grupos de foco na tela e nos textos (antes em opcoes.ts, que reexporta). */
+export const NOME_GRUPO: Record<Grupo, string> = {
+  peito: 'peito',
+  costas: 'costas',
+  ombros: 'ombros',
+  bracos: 'braços',
+  pernas: 'pernas',
+  gluteos: 'glúteos',
+  abdomen: 'abdômen',
+};
+const emLista = (xs: string[]) => (xs.length > 1 ? `${xs.slice(0, -1).join(', ')} e ${xs[xs.length - 1]}` : (xs[0] ?? ''));
 
 /** O que a pessoa quer agora (objetivo.pergunta). Ausente = ganhar músculo. Só "forca" muda números. */
 export const OBJETIVOS = ['hipertrofia', 'cutting', 'forca', 'saude'] as const;
@@ -608,6 +619,22 @@ export function gerarPrograma(perfil: Perfil, inventarioOriginal: Inventario): R
   };
   avisos.push(...avisosDeMeta(metas, volumeAntesDoCorte, volumeSemanal, prioritarios, motivoEstrutural, semPuxar));
 
+  // volume.prioridade.competicao: com 2 grupos de foco ou mais, os prioritários abaixo da meta (os que têm exercício
+  // possível) disputam o mesmo tempo; um aviso por programa (decisão do Gustavo em 06/11/2026).
+  if (perfil.prioridades.length >= 2) {
+    const faltou = [...prioritarios].filter((m) => (metas[m] ?? 0) > 0 && (volumeSemanal[m] ?? 0) < metas[m]! && possiveis.some((e) => e.musculos.primarios.includes(m)));
+    if (faltou.length) {
+      const fmt = (n: number) => String(Math.round(n * 10) / 10).replace('.', ',');
+      const sugestao = perfil.prioridades.length > 2 ? 'escolha 1 ou 2 grupos' : 'escolha um grupo só';
+      avisos.push({
+        regraId: r('volume.prioridade.competicao'),
+        texto:
+          `Seus focos disputam o mesmo tempo: ${emLista(faltou.map((m) => `${NOME_MUSCULO_CURTO[m]} ${fmt(volumeSemanal[m] ?? 0)} de ${fmt(metas[m]!)}`))} séries por semana. Com ${perfil.diasSemana} treinos de ${perfil.minutosSessao} min não cabe tudo: para o foco render, ${sugestao}, ou aumente os minutos ou os dias.` +
+          (perfil.prioridades.includes('pernas') ? ' "Pernas" são 3 músculos (frente da coxa, posterior e panturrilha): como foco, pedem o triplo de séries de "peito".' : ''),
+      });
+    }
+  }
+
   // Tempo que sobra por falta de exercício (tempo.sobra; decisão do Gustavo em 04/11/2026): o dia mais longo usa menos
   // de ~70% dos minutos escolhidos e alguma vaga ficou sem exercício possível com o equipamento. Sem sugerir compra.
   // O dia típico é a mediana dos dias (revisão de 06/11/2026: com o dia mais longo, dias de 20, 17 e 43 min em 60 não avisavam).
@@ -645,7 +672,9 @@ export function gerarPrograma(perfil: Perfil, inventarioOriginal: Inventario): R
     },
     {
       regraId: r('volume.semanal.alvo'),
-      texto: `Grupos prioritários com ~${VOLUME.alvo[nivel]} séries semanais; os demais no mínimo eficaz (${VOLUME.minimoEficaz}).`,
+      texto: perfil.prioridades.length
+        ? `Foco em ${emLista(perfil.prioridades.map((g) => NOME_GRUPO[g]))}: ~${VOLUME.alvo[nivel]} séries por semana, para crescer mais rápido. Os outros músculos ficam com ~${VOLUME.minimoEficaz}: continuam crescendo, mais devagar.`
+        : `Sem grupo de foco: todos os músculos ficam com ~${VOLUME.minimoEficaz} séries por semana, o bastante para crescer, mais devagar que com foco. Para acelerar um grupo, escolha-o como prioridade.`,
     },
     ...(seriesNaSobra
       ? [{ regraId: r('tempo.sobra-series'), texto: `Nos dias com vaga sem exercício possível, o tempo que sobrou virou série: os músculos que dá para treinar sobem até ~${VOLUME.alvo[nivel]} séries por semana.` }]

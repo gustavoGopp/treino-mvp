@@ -9,6 +9,7 @@ exports[`cenários (snapshots revisados) > ana 1`] = `
     "tempo.corte",
     "tempo.corte",
     "volume.semanal.alvo",
+    "volume.prioridade.competicao",
   ],
   "dias": [
     "Corpo todo A (44 min): bulgaro 4×8–12 [bi-set] | ponte-gluteo-halter 2×10–20 [bi-set] | supino-reto 2×6–10 [bi-set] | remada-unilateral-halter 2×8–12 [bi-set] | flexao-joelho-deslizante 3×8–15 [bi-set] | triceps-frances-halter 2×10–15 [bi-set] [drop set]",
@@ -76,6 +77,7 @@ exports[`cenários (snapshots revisados) > carla 1`] = `
 {
   "avisos": [
     "volume.semanal.alvo",
+    "volume.prioridade.competicao",
   ],
   "dias": [
     "Superior (70 min): supino-reto 3×6–10 | puxada-unilateral 4×10–15 | remada-apoiada 3×8–12 | desenvolvimento 2×8–12 | elevacao-halteres 4×12–20 | crucifixo-polia 3×10–15 | triceps-frances 2×10–15 | rosca-inclinada 2×8–12 | crucifixo-invertido-polia 2×12–20",
