@@ -1,0 +1,224 @@
+<title>Decisões do redesign</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Next:wght@400;700;800&display=swap">
+<style>
+/* A página de decisão do redesign: uma coluna de celular, um cartão por item, nada pré-marcado.
+   As cores são as da direção Giz e grafite (a escolhida pelo Gustavo no protótipo). */
+:root{
+  --fundo:#F5F3EF; --superficie:#FFFFFF; --superficie-2:#EAE7E2; --linha:#D9D7D3;
+  --texto:#171B20; --texto-2:#464B51; --borda:#5F636B;
+  --acao:#3F3AA8; --sobre-acao:#FFFFFF; --acao-suave:#E6EAFE;
+  --feito:#0F6B3E; --feito-suave:#D9F5E1; --atencao:#7B5612; --atencao-suave:#FCEAD0;
+  --fonte:"Atkinson Hyperlegible Next","Atkinson Hyperlegible",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --fundo:#151410; --superficie:#211F1C; --superficie-2:#2D2B27; --linha:#3C3A36;
+  --texto:#F1EEE9; --texto-2:#BBB8B0; --borda:#9C998F;
+  --acao:#A9B3FF; --sobre-acao:#25284A; --acao-suave:#272A4B;
+  --feito:#65AE80; --feito-suave:#12301E; --atencao:#C6974A; --atencao-suave:#362508;
+  color-scheme:dark;
+}}
+:root[data-theme="dark"]{
+  --fundo:#151410; --superficie:#211F1C; --superficie-2:#2D2B27; --linha:#3C3A36;
+  --texto:#F1EEE9; --texto-2:#BBB8B0; --borda:#9C998F;
+  --acao:#A9B3FF; --sobre-acao:#25284A; --acao-suave:#272A4B;
+  --feito:#65AE80; --feito-suave:#12301E; --atencao:#C6974A; --atencao-suave:#362508;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--fundo);color:var(--texto);font-family:var(--fonte);font-size:1.0625rem;line-height:1.45}
+button,textarea{font:inherit;color:inherit}
+:focus-visible{outline:3px solid var(--acao);outline-offset:2px}
+h1,h2,h3,p{margin:0}
+.col{max-width:680px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--fundo)}
+.topo{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--fundo);border-bottom:1px solid var(--linha)}
+.topo .col{padding-block:12px;display:flex;align-items:center;gap:12px}
+.topo b{flex:1;font-size:1.0625rem}
+.conta{font-size:.9375rem;font-weight:700;color:var(--texto-2);font-variant-numeric:tabular-nums;white-space:nowrap}
+.barra{height:6px;background:var(--superficie-2)}
+.barra i{display:block;height:100%;background:var(--acao);transition:width .2s}
+main.col{padding-block:24px 48px;display:flex;flex-direction:column;gap:24px}
+.intro{display:flex;flex-direction:column;gap:10px}
+.intro h1{font-size:1.5rem;font-weight:800;line-height:1.15;text-wrap:balance}
+.apoio{font-size:.9375rem;color:var(--texto-2)}
+.aviso{background:var(--atencao-suave);border-radius:16px;padding:12px 16px;font-size:.9375rem}
+.area{display:flex;flex-direction:column;gap:12px}
+.area>h2{font-size:.8125rem;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--texto-2);margin-top:8px}
+.item{background:var(--superficie);border-radius:16px;padding:16px;display:flex;flex-direction:column;gap:12px;border:2px solid transparent}
+.item.decidido{border-color:var(--feito)}
+.item h3{font-size:1.25rem;font-weight:800;line-height:1.25;text-wrap:balance}
+.item .muda{margin:0}
+.rec{display:flex;flex-direction:column;gap:2px;background:var(--acao-suave);border-radius:12px;padding:10px 12px;font-size:.9375rem}
+.rec b{font-size:.8125rem;letter-spacing:.04em;text-transform:uppercase;color:var(--texto-2)}
+.opcoes{display:flex;flex-wrap:wrap;gap:8px}
+.opcoes button{min-height:48px;padding:0 16px;border-radius:999px;border:2px solid var(--borda);background:var(--superficie);font-weight:700;cursor:pointer;flex:1 1 auto}
+.opcoes button[aria-pressed="true"]{background:var(--acao);border-color:var(--acao);color:var(--sobre-acao)}
+.opcoes button[aria-pressed="true"]::before{content:"✓ "}
+details{border-top:1px solid var(--linha);padding-top:8px}
+summary{min-height:44px;display:flex;align-items:center;cursor:pointer;font-weight:700;color:var(--acao)}
+dl{margin:8px 0 0;display:flex;flex-direction:column;gap:10px;font-size:.9375rem}
+dt{font-weight:800;color:var(--texto-2);font-size:.8125rem;letter-spacing:.04em;text-transform:uppercase}
+dd{margin:2px 0 0}
+.item img{display:block;width:100%;max-width:100%;height:auto;border-radius:12px;border:1px solid var(--linha);margin-top:8px}
+.links{display:flex;flex-wrap:wrap;gap:8px 16px}
+.links a{color:var(--acao);font-weight:700;min-height:44px;display:inline-flex;align-items:center}
+label.nota{display:flex;flex-direction:column;gap:6px;font-weight:700;font-size:.9375rem}
+textarea{min-height:72px;border:2px solid var(--borda);border-radius:12px;background:var(--superficie);padding:10px 12px;font-size:1rem;resize:vertical}
+.estado{font-size:.8125rem;color:var(--texto-2);min-height:1.2em}
+.fim{display:flex;flex-direction:column;gap:12px;background:var(--superficie);border-radius:16px;padding:16px}
+.btn{min-height:56px;border-radius:16px;border:2px solid var(--acao);background:var(--acao);color:var(--sobre-acao);font-weight:800;font-size:1.0625rem;cursor:pointer;padding:0 16px}
+.btn.sec{background:var(--superficie);color:var(--texto);border-color:var(--borda)}
+.filtro{display:flex;gap:8px;flex-wrap:wrap}
+.filtro button{min-height:44px;padding:0 14px;border-radius:999px;border:2px solid var(--borda);background:var(--superficie);font-weight:700;font-size:.9375rem;cursor:pointer}
+.filtro button[aria-pressed="true"]{border-color:var(--acao);background:var(--acao-suave)}
+@media (prefers-reduced-motion: reduce){*{transition:none!important}}
+</style>
+
+<header class="topo"><div class="col"><b>Decisões do redesign</b><span class="conta" id="conta" aria-live="polite">0 de 0</span></div><div class="barra" aria-hidden="true"><i id="barra" style="width:0"></i></div></header>
+<main class="col">
+  <section class="intro">
+    <h1>O que entra no app, item a item</h1>
+    <p>Para cada item: o que muda, a evidência, o custo e a minha recomendação. <b>Nada vem marcado.</b> Toque na sua escolha; ela fica guardada e eu leio daqui.</p>
+    <p class="apoio">Os detalhes, a imagem do antes e do depois e o link para a tela no protótipo ficam em "Ver os detalhes". Persona fictícia Ana nas imagens.</p>
+    <p class="aviso" id="aviso-db" hidden></p>
+    <div class="filtro" role="group" aria-label="Mostrar"><button type="button" aria-pressed="true" data-filtro="todos">Todos</button><button type="button" aria-pressed="false" data-filtro="falta">Só os que faltam</button></div>
+  </section>
+  <div id="lista"></div>
+  <section class="fim" aria-labelledby="fim-t">
+    <h2 id="fim-t" style="font-size:1.25rem;font-weight:800">Quando terminar</h2>
+    <p>Volte à conversa e diga "decidi". Se a página avisar que não conseguiu guardar, copie as escolhas e cole lá.</p>
+    <button type="button" class="btn sec" id="copiar">Copiar minhas escolhas</button>
+    <p class="estado" id="estado-copia" role="status"></p>
+  </section>
+</main>
+<script src="itens.js"></script>
+<script>
+(function () {
+  'use strict';
+  const ITENS = window.ITENS;
+  const PROTOTIPO = 'https://claude.ai/artifact/5U6uCLS7wT6GsUHYCsQg56';
+  const $ = (s, el = document) => el.querySelector(s);
+  const esc = (s) => String(s ?? '').replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' })[c]);
+  const escolhas = {}; // id -> {escolha, nota}
+  let filtro = 'todos';
+  let db = null, gravarNoAparelho = true;
+  const lerLocal = () => { try { return JSON.parse(localStorage.getItem('decisoes-redesign') || '{}'); } catch (e) { return {}; } };
+  const gravarLocal = () => { try { localStorage.setItem('decisoes-redesign', JSON.stringify(escolhas)); } catch (e) {} };
+  Object.assign(escolhas, lerLocal());
+
+  const rotulo = (it, k) => (it.opcoes.find(([id]) => id === k) || [k, k])[1];
+  function cartao(it) {
+    const e = escolhas[it.id] || {};
+    return `<article class="item${e.escolha ? ' decidido' : ''}" id="item-${it.id}" aria-labelledby="t-${it.id}">
+      <h3 id="t-${it.id}">${esc(it.titulo)}</h3>
+      <p class="muda">${esc(it.muda)}</p>
+      <p class="rec"><b>Recomendo</b><span><strong>${esc(rotulo(it, it.rec))}</strong>: ${esc(it.motivo)}</span></p>
+      <div class="opcoes" role="group" aria-label="Sua escolha para: ${esc(it.titulo)}">${it.opcoes.map(([k, t]) => `<button type="button" data-item="${it.id}" data-escolha="${k}" aria-pressed="${e.escolha === k}">${esc(t)}</button>`).join('')}</div>
+      <details><summary>Ver os detalhes</summary><dl>
+        <div><dt>Evidência</dt><dd>${esc(it.evidencia)}</dd></div>
+        ${it.regra ? `<div><dt>Regra ou dado que muda</dt><dd>${esc(it.regra)}</dd></div>` : ''}
+        <div><dt>Custo</dt><dd>${esc(it.lote || '—')} · ${esc(it.custo.split('·')[1] || '').trim() || '—'}</dd></div>
+        ${it.risco ? `<div><dt>Risco</dt><dd>${esc(it.risco)}</dd></div>` : ''}
+      </dl>
+      ${it.img ? `<img src="img/${esc(it.img)}" alt="Antes e depois: ${esc(it.titulo)}" loading="lazy">` : ''}
+      ${it.tela ? `<p class="links"><a href="${PROTOTIPO}#${esc(it.tela)}" target="_blank" rel="noopener">Ver no protótipo ↗</a></p>` : ''}
+      </details>
+      <label class="nota" for="nota-${it.id}">Comentário (opcional)<textarea id="nota-${it.id}" data-nota="${it.id}">${esc(e.nota || '')}</textarea></label>
+      <p class="estado" id="estado-${it.id}" role="status"></p>
+    </article>`;
+  }
+  function desenhar() {
+    const areas = [...new Set(ITENS.map((i) => i.area))];
+    $('#lista').innerHTML = areas.map((a) => {
+      const itens = ITENS.filter((i) => i.area === a && (filtro === 'todos' || !(escolhas[i.id] || {}).escolha));
+      return itens.length ? `<section class="area" aria-label="${esc(a)}"><h2>${esc(a)}</h2>${itens.map(cartao).join('')}</section>` : '';
+    }).join('') || '<p>Todos os itens têm uma escolha. Obrigado!</p>';
+    contar();
+  }
+  function contar() {
+    const n = ITENS.filter((i) => (escolhas[i.id] || {}).escolha).length;
+    $('#conta').textContent = `${n} de ${ITENS.length}`;
+    $('#barra').style.width = (n / ITENS.length) * 100 + '%';
+  }
+  async function guardar(id) {
+    gravarLocal();
+    const st = $('#estado-' + id);
+    if (!db) { if (st) st.textContent = 'Guardado neste aparelho.'; return; }
+    try {
+      await db.doc('decisoes/' + id).set({ escolha: escolhas[id].escolha || null, nota: escolhas[id].nota || '', em: new Date().toISOString() });
+      if (st) st.textContent = 'Guardado.';
+    } catch (e) {
+      if (st) st.textContent = 'Não consegui guardar fora do aparelho; ficou guardado aqui. Use "Copiar minhas escolhas" no fim.';
+    }
+  }
+  document.addEventListener('click', (ev) => {
+    const b = ev.target.closest('button'); if (!b) return;
+    if (b.dataset.escolha) {
+      const id = b.dataset.item;
+      escolhas[id] = { ...(escolhas[id] || {}), escolha: b.dataset.escolha };
+      b.parentElement.querySelectorAll('button').forEach((x) => x.setAttribute('aria-pressed', x === b));
+      $('#item-' + id).classList.add('decidido');
+      contar();
+      guardar(id);
+      return;
+    }
+    if (b.dataset.filtro) {
+      filtro = b.dataset.filtro;
+      document.querySelectorAll('[data-filtro]').forEach((x) => x.setAttribute('aria-pressed', x === b));
+      desenhar();
+      return;
+    }
+    if (b.id === 'copiar') {
+      const texto = ITENS.map((i) => { const e = escolhas[i.id] || {}; return `${i.titulo}: ${e.escolha ? rotulo(i, e.escolha) : '(sem escolha)'}${e.nota ? ' — ' + e.nota : ''}`; }).join('\n');
+      const ok = () => ($('#estado-copia').textContent = 'Copiado. Cole na conversa.');
+      try {
+        navigator.clipboard.writeText(texto).then(ok, () => mostrarTexto(texto));
+      } catch (e) { mostrarTexto(texto); }
+    }
+  });
+  function mostrarTexto(texto) {
+    const t = document.createElement('textarea');
+    t.value = texto; t.readOnly = true; t.setAttribute('aria-label', 'Suas escolhas, para copiar'); t.style.minHeight = '240px';
+    $('#estado-copia').replaceWith(t); t.focus(); t.select();
+  }
+  document.addEventListener('change', (ev) => {
+    const t = ev.target; if (!t.dataset || !t.dataset.nota) return;
+    const id = t.dataset.nota;
+    escolhas[id] = { ...(escolhas[id] || {}), nota: t.value.trim() };
+    guardar(id);
+  });
+
+  desenhar();
+  // o armazenamento da página: as escolhas ficam fora do aparelho, e a conversa lê de lá
+  (async () => {
+    const aviso = $('#aviso-db');
+    let atrasou = setTimeout(() => { aviso.hidden = false; aviso.textContent = 'Ainda não consegui falar com o armazenamento; as escolhas ficam guardadas neste aparelho por enquanto.'; }, 10000);
+    const d = window.claude && (await window.claude.use('db'));
+    if (!d) {
+      clearTimeout(atrasou);
+      aviso.hidden = false;
+      aviso.textContent = 'Nesta visualização as escolhas ficam só neste aparelho. No fim, use "Copiar minhas escolhas" e cole na conversa.';
+      return;
+    }
+    db = d;
+    db.collection('decisoes').onSnapshot((snap) => {
+      clearTimeout(atrasou);
+      if (!snap.metadata.fromCache) aviso.hidden = true;
+      let mudou = false;
+      for (const doc of snap.docs) {
+        const v = doc.data() || {};
+        const atual = escolhas[doc.id] || {};
+        if (v.escolha !== atual.escolha || (v.nota || '') !== (atual.nota || '')) { escolhas[doc.id] = { escolha: v.escolha || undefined, nota: v.nota || '' }; mudou = true; }
+      }
+      if (mudou) { gravarLocal(); if (!document.activeElement || !document.activeElement.matches('textarea')) desenhar(); else contar(); }
+    }, () => {
+      clearTimeout(atrasou);
+      aviso.hidden = false;
+      aviso.textContent = 'O armazenamento não respondeu; as escolhas ficam guardadas neste aparelho. No fim, use "Copiar minhas escolhas".';
+    });
+  })();
+})();
+</script>
