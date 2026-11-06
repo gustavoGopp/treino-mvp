@@ -1,8 +1,10 @@
-import { useEffect, useId, useRef, type ReactNode } from 'react';
+import { useEffect, useId, useRef, useState, type ReactNode } from 'react';
 import { Link, Navigate } from 'react-router-dom';
 import { REGRAS, type Selo as TipoSelo } from '../../domain/regras';
 import { PASSOS, primeiroPassoPendente, type PassoId } from '../../storage/esquema';
 import { useApp } from './estado';
+import { Folha } from './Folha';
+import { carregarFontes, TEXTO_LEITURA, type Fonte } from '../../conteudo/fontes';
 
 // Peças de interface comuns às telas do app (onboarding, programa, dados).
 
@@ -13,14 +15,91 @@ const TEXTO_SELO: Record<TipoSelo, string> = {
   consenso: 'consenso de especialistas',
 };
 
-/** Selo de evidência de uma regra de docs/pesquisa/regras.md. */
+// O que cada selo quer dizer (docs/pesquisa/00-metodo.md, tabela dos níveis), em palavras simples.
+const SENTIDO_SELO: Record<TipoSelo, string> = {
+  robusta: 'Várias meta-análises (ou uma grande, com ensaios) apontam na mesma direção.',
+  moderada: 'Uma meta-análise, alguns ensaios coerentes ou um único grupo de pesquisa com resultados consistentes.',
+  'um estudo': 'Um único ensaio, quase sempre com amostra pequena e curta duração.',
+  consenso: 'Prática de treinadores e posicionamentos, sem ensaio que teste este número.',
+};
+
+/**
+ * Selo de evidência de uma regra de docs/pesquisa/regras.md. A pílula mostra o nível; um toque abre uma folha com a
+ * regra, o que o nível quer dizer e as fontes por extenso (src/conteudo/fontes.json, baixado só nessa hora).
+ */
 export function Selo({ id }: { id: string }) {
+  const [aberto, setAberto] = useState(false);
   const regra = REGRAS[id];
   if (!regra) return null;
+  const texto = TEXTO_SELO[regra.selo];
   return (
-    <span className={`selo selo-${regra.selo.replace(' ', '-')}`} title={regra.regra}>
-      {TEXTO_SELO[regra.selo]}
-    </span>
+    <>
+      <button type="button" className={`selo selo-${regra.selo.replace(' ', '-')}`} aria-label={`${texto}: ver de onde vem`} aria-haspopup="dialog" onClick={() => setAberto(true)}>
+        {texto}
+      </button>
+      {aberto && (
+        <Folha titulo="De onde vem isto" aoFechar={() => setAberto(false)}>
+          <SeloFolha regra={regra} />
+        </Folha>
+      )}
+    </>
+  );
+}
+
+function SeloFolha({ regra }: { regra: (typeof REGRAS)[string] }) {
+  const [fontes, setFontes] = useState<Record<string, Fonte> | null | 'erro'>(null);
+  useEffect(() => {
+    let vivo = true;
+    carregarFontes().then(
+      (f) => vivo && setFontes(f),
+      () => vivo && setFontes('erro'),
+    );
+    return () => {
+      vivo = false;
+    };
+  }, []);
+  const texto = TEXTO_SELO[regra.selo];
+  return (
+    <div className="selo-folha">
+      <p className="regra">{regra.regra}</p>
+      <p className="sentido">
+        <b>{texto[0]!.toUpperCase() + texto.slice(1)}.</b> {SENTIDO_SELO[regra.selo]}
+      </p>
+      {regra.fontes.length > 0 && (
+        <div>
+          <p className="rotulo">Fontes</p>
+          {fontes === null ? (
+            <p role="status">Carregando as fontes…</p>
+          ) : fontes === 'erro' ? (
+            <p role="status">Não deu para carregar as fontes agora. As chaves são: {regra.fontes.join(', ')}.</p>
+          ) : (
+            <ol>
+              {regra.fontes.map((k) => {
+                const f = fontes[k];
+                return (
+                  <li key={k}>
+                    {f ? f.citacao : k}
+                    {f && (
+                      <small>
+                        {TEXTO_LEITURA[f.leitura]}
+                        {f.link && (
+                          <>
+                            {' · '}
+                            <a href={f.link} target="_blank" rel="noreferrer">
+                              abrir a fonte
+                            </a>
+                          </>
+                        )}
+                      </small>
+                    )}
+                  </li>
+                );
+              })}
+            </ol>
+          )}
+        </div>
+      )}
+    </div>
   );
 }
 
