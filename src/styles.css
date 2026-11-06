@@ -1,26 +1,37 @@
-/* Reformulação visual (design v2, 03/11/2026; docs/revisoes/design-v2.md). Uma letra só (Atkinson Hyperlegible Next),
-   fundo claro e quente, uma cor só para ação (azul), toques de 48 a 64 px e a ação principal embaixo, perto do polegar.
+/* Reformulação visual (design v2, 03/11/2026; docs/revisoes/design-v2.md) e redesign (06/11/2026; docs/revisoes/redesign/).
+   Uma letra só (Atkinson Hyperlegible Next), fundo de giz, texto de grafite, uma cor só para ação (índigo), toques de 48 a 64 px e a ação principal embaixo, perto do polegar.
    O desenho do Boneco não muda: o bloco "svg" e o bloco "R4" mais abaixo são os de sempre, e o palco (.stage,
    .miniatura) redeclara os tons que o desenho usa (--ink, --muted, --line) com os valores antigos. */
 :root{
-  --bg:#F5F4F0; --surface:#FFFFFF; --surface-2:#ECEAE4; --ink:#15171C; --muted:#4B505B; --line:#DDD9D0; --edge:#868B95;
-  --accent:#2443CF; --accent-soft:#E5EBFF; --accent-ink:#FFFFFF; --link:#2443CF;
-  --ok:#0E7350; --ok-soft:#E1F3EA; --warn:#8A4B00; --warn-soft:#FBEFD9; --alert:#B3261E; --alert-soft:#FCE8E6;
+  /* Giz e grafite (redesign, 06/11/2026; docs/revisoes/redesign/proposta.md, seção 4): nomes pelo papel da cor */
+  --fundo:#F5F3EF; --superficie:#FFFFFF; --superficie-2:#EAE7E2; --linha:#D9D7D3;
+  --texto:#171B20; --texto-2:#464B51; --borda:#868B95;
+  --acao:#3F3AA8; --sobre-acao:#FFFFFF; --acao-suave:#E6EAFE; --foco:#3F3AA8;
+  --feito:#0F6B3E; --feito-suave:#D9F5E1; --atencao:#7B5612; --atencao-suave:#FCEAD0;
+  --alerta:#AF283D; --alerta-suave:#FEE6E6; --descanso:#E3E6FC; --descanso-texto:#171B20; --veu:rgba(23,27,32,.48);
   /* desenho do Boneco (iguais aos de antes) */
   --stage:#f7f9fa; --fig:#1a2833; --fig-far:#a2afb9; --torso:#8fa0ab; --joint:#0a7c72;
   --eq:#cdd6dc; --eq-dark:#8796a1; --cable:#4e5a64; --spine:#d29400; --elastic:#6d4bb3;
   --mus-p:rgba(214,46,38,.62); --mus-s:rgba(236,150,28,.5);
   --err:#d1342b; --ghost:#1c9a53; --path:#2457d6; --guide:#0a7c72;
   --st-ink:#14202a; --st-muted:#566673; --st-line:#d3dbe1;
+  /* os nomes antigos continuam valendo, como apelidos dos novos (o palco do Boneco redeclara --ink, --muted e --line) */
+  --bg:var(--fundo); --surface:var(--superficie); --surface-2:var(--superficie-2); --line:var(--linha);
+  --ink:var(--texto); --muted:var(--texto-2); --edge:var(--borda);
+  --accent:var(--acao); --accent-soft:var(--acao-suave); --accent-ink:var(--sobre-acao); --link:var(--acao);
+  --ok:var(--feito); --ok-soft:var(--feito-suave); --warn:var(--atencao); --warn-soft:var(--atencao-suave);
+  --alert:var(--alerta); --alert-soft:var(--alerta-suave);
   --font-d:"Atkinson Hyperlegible Next","Atkinson Hyperlegible",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
   --font-b:var(--font-d);
   --r1:12px; --r2:16px; --r3:20px;
 }
 @media (prefers-color-scheme: dark){
   :root:not([data-theme="light"]){
-    --bg:#111316; --surface:#1A1D22; --surface-2:#242830; --ink:#F3F2EE; --muted:#AEB3BD; --line:#30343C; --edge:#6E737D;
-    --accent:#9CB1FF; --accent-soft:#1F2849; --accent-ink:#0C1A52; --link:#9CB1FF;
-    --ok:#62D2A2; --ok-soft:#13291F; --warn:#F3B562; --warn-soft:#33270F; --alert:#FF8F85; --alert-soft:#3A1D1B;
+    --fundo:#151410; --superficie:#211F1C; --superficie-2:#2D2B27; --linha:#3C3A36;
+    --texto:#F1EEE9; --texto-2:#BBB8B0; --borda:#6E737D;
+    --acao:#A9B3FF; --sobre-acao:#25284A; --acao-suave:#272A4B; --foco:#A9B3FF;
+    --feito:#65AE80; --feito-suave:#12301E; --atencao:#C6974A; --atencao-suave:#362508;
+    --alerta:#EA8085; --alerta-suave:#3E1E1F; --descanso:#222537; --descanso-texto:#F1EEE9; --veu:rgba(0,0,0,.6);
     --stage:#10171b; --fig:#e7eef2; --fig-far:#4f5e69; --torso:#5d6e7a; --joint:#2bb3a6;
     --eq:#2a353e; --eq-dark:#53626d; --cable:#a3b3bf; --spine:#f0b429; --elastic:#b49ce6;
     --mus-p:rgba(244,82,72,.6); --mus-s:rgba(245,170,60,.45);
@@ -30,9 +41,11 @@
   }
 }
 :root[data-theme="dark"]{
-  --bg:#111316; --surface:#1A1D22; --surface-2:#242830; --ink:#F3F2EE; --muted:#AEB3BD; --line:#30343C; --edge:#6E737D;
-  --accent:#9CB1FF; --accent-soft:#1F2849; --accent-ink:#0C1A52; --link:#9CB1FF;
-  --ok:#62D2A2; --ok-soft:#13291F; --warn:#F3B562; --warn-soft:#33270F; --alert:#FF8F85; --alert-soft:#3A1D1B;
+  --fundo:#151410; --superficie:#211F1C; --superficie-2:#2D2B27; --linha:#3C3A36;
+  --texto:#F1EEE9; --texto-2:#BBB8B0; --borda:#6E737D;
+  --acao:#A9B3FF; --sobre-acao:#25284A; --acao-suave:#272A4B; --foco:#A9B3FF;
+  --feito:#65AE80; --feito-suave:#12301E; --atencao:#C6974A; --atencao-suave:#362508;
+  --alerta:#EA8085; --alerta-suave:#3E1E1F; --descanso:#222537; --descanso-texto:#F1EEE9; --veu:rgba(0,0,0,.6);
   --stage:#10171b; --fig:#e7eef2; --fig-far:#4f5e69; --torso:#5d6e7a; --joint:#2bb3a6;
   --eq:#2a353e; --eq-dark:#53626d; --cable:#a3b3bf; --spine:#f0b429; --elastic:#b49ce6;
   --mus-p:rgba(244,82,72,.6); --mus-s:rgba(245,170,60,.45);
@@ -45,7 +58,7 @@
 *{box-sizing:border-box}
 html,body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--font-b);font-size:17px;line-height:1.45;-webkit-text-size-adjust:100%}
 button{font:inherit;color:inherit}
-:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+:focus-visible{outline:3px solid var(--foco);outline-offset:2px}
 .wrap{max-width:560px;margin:0 auto;padding:0 16px 40px;display:flex;flex-direction:column;gap:16px}
 
 /* Topo */
@@ -347,7 +360,7 @@ details.campo .opcoes{margin-top:8px}
 .cartao-ex{background:var(--surface);border-bottom:1px solid var(--line)}
 .cartao-ex:last-child{border-bottom:0}
 .cartao-ex-corpo{display:grid;grid-template-columns:96px 1fr;gap:14px;align-items:center;padding:12px 14px;color:var(--ink) !important;text-decoration:none}
-a.cartao-ex-corpo:focus-visible{outline:3px solid var(--accent);outline-offset:-3px}
+a.cartao-ex-corpo:focus-visible{outline:3px solid var(--foco);outline-offset:-3px}
 .miniatura{width:112px;aspect-ratio:4/3;background:var(--stage);border-radius:var(--r1);overflow:hidden;display:grid;place-items:center}
 .cartao-ex-corpo .miniatura{width:96px}
 .miniatura svg{width:100%;height:100%;display:block}
