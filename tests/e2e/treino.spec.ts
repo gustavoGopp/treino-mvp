@@ -181,3 +181,26 @@ test('terminar no meio do treino pede confirmação; "Continuar treinando" volta
   await terminarTreino(page);
   await expect(page.getByRole('heading', { name: 'Treino concluído' })).toBeVisible();
 });
+
+// Lote 2 do redesign: depois de "Série feita", "Desfazer" fica 5 s à vista; desfazer apaga a série e para o descanso.
+test('"Desfazer" por 5 s depois de salvar a série apaga a série e para o descanso', async ({ page }) => {
+  await ana(page);
+  await comecar(page);
+  await page.getByLabel('Carga', { exact: true }).selectOption('8');
+  await page.getByRole('radio', { name: '2', exact: true }).check();
+  await page.getByRole('button', { name: /^Série feita/ }).click();
+  const barra = page.getByRole('status').filter({ hasText: 'Série 1 salva' });
+  await expect(barra).toBeVisible();
+  await expect(page.getByRole('region', { name: 'Descanso' })).toBeVisible();
+  await barra.getByRole('button', { name: 'Desfazer' }).click();
+  await expect(page.getByRole('list', { name: 'Séries feitas' })).toHaveCount(0);
+  await expect(page.getByRole('region', { name: 'Descanso' })).toHaveCount(0);
+  await expect(page.getByRole('region', { name: /^Série 1/ })).toBeVisible();
+  // sem desfazer, a barra some sozinha em 5 s e a série fica (a série volta ao começo: carga e reserva de novo)
+  await page.getByLabel('Carga', { exact: true }).selectOption('8');
+  await page.getByRole('radio', { name: '2', exact: true }).check();
+  await page.getByRole('button', { name: /^Série feita/ }).click();
+  await expect(page.getByRole('status').filter({ hasText: 'Série 1 salva' })).toBeVisible();
+  await expect(page.getByRole('status').filter({ hasText: 'Série 1 salva' })).toBeHidden({ timeout: 7000 });
+  await expect(page.getByRole('list', { name: 'Séries feitas' })).toContainText('8 kg × 8');
+});

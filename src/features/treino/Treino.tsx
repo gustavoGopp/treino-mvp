@@ -1,4 +1,4 @@
-import { useMemo, useState, type ReactNode } from 'react';
+import { useEffect, useMemo, useState, type ReactNode } from 'react';
 import { Link, Navigate, useNavigate } from 'react-router-dom';
 import { BIBLIOTECA } from '../../domain/biblioteca';
 import { ALTERNATIVAS_A_MOSTRA, type ExercicioPrescrito } from '../../domain/gerador';
@@ -59,6 +59,13 @@ export function Treino() {
   });
   const [painel, setPainel] = useState<'nenhum' | 'trocar' | 'sentir' | 'mais' | 'terminar'>('nenhum');
   const [aviso, setAviso] = useState<{ texto: string; regraId: string } | null>(null);
+  // "Desfazer" por 5 s depois de salvar a série (redesign, lote 2): o toque errado em "Série feita" se corrige na hora.
+  const [salva, setSalva] = useState<{ indice: number; numero: number } | null>(null);
+  useEffect(() => {
+    if (!salva) return;
+    const t = setTimeout(() => setSalva(null), 5000);
+    return () => clearTimeout(t);
+  }, [salva]);
   if (!sessao || !programa || !dia || !doTreino) return <Navigate to="/programa" replace />;
   const inventario = inventarioDoTreino(estado, sessao);
   const opcoesCargaHoje = opcoesDaCarga(estado, sessao, fusoDoAparelho());
@@ -77,6 +84,7 @@ export function Treino() {
 
   const irPara = (n: number) => {
     setIndice(n);
+    setSalva(null);
     setPainel('nenhum');
     setAviso(null);
     window.scrollTo?.(0, 0);
@@ -93,6 +101,7 @@ export function Treino() {
     const cal = calibracaoNaSessao(estado.historico, x, inventario, feito.series, opcoesCargaHoje);
     const acerto = cal.calibrando && !avaliarSerieDeCalibracao(serie, x, inventario, opcoesCargaHoje).perto;
     atualizar((s) => registrarSerie(s, i, acerto ? { ...serie, calibracao: true } : serie));
+    setSalva({ indice: i, numero: feito.series.length + 1 });
     if (feito.series.length + 1 < x.series) descanso.iniciar(x.descansoSeg);
     else if (!ultimo) descanso.iniciar(x.descansoSeg);
     window.scrollTo?.(0, 0);
@@ -117,6 +126,22 @@ export function Treino() {
       </header>
       <main className="conteudo sessao">
         <PainelDescanso d={descanso} />
+        {salva && (
+          <div className="desfazer" role="status">
+            <span>Série {salva.numero} salva</span>
+            <button
+              type="button"
+              onClick={() => {
+                atualizar((s) => desfazerSerie(s, salva.indice));
+                descanso.parar();
+                setSalva(null);
+                setIndice(salva.indice);
+              }}
+            >
+              Desfazer
+            </button>
+          </div>
+        )}
         <div className="progresso">
           <span>
             {dia.nome} · exercício {i + 1} de {itens.length}
