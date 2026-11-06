@@ -123,8 +123,8 @@ h1,h2,h3,p{margin:0}
 .sup.feito{background:var(--feito-suave)}
 .sup h2{font-size:var(--t-pergunta);font-weight:800;line-height:1.25}
 
-/* Selo de evidência: pílula tocável que abre a fonte */
-.selo{position:relative;display:inline;font:inherit;font-size:var(--t-rotulo);font-weight:700;line-height:1.35;padding:2px 9px;border-radius:var(--rp);border:0;background:var(--superficie-2);color:var(--texto-2);cursor:pointer;white-space:nowrap;text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:2px;vertical-align:1px}
+/* Selo de evidência: uma palavra curta e apagada, tocável, que abre a fonte (retorno do Gustavo, 06/11: muito sutil) */
+.selo{position:relative;display:inline;font:inherit;font-size:var(--t-rotulo);font-weight:600;line-height:1.35;padding:0 2px;border:0;background:none;color:var(--texto-2);cursor:pointer;white-space:nowrap;text-decoration:underline dotted;text-decoration-thickness:1px;text-underline-offset:3px;margin-left:2px}
 
 .selo::after{content:"";position:absolute;left:0;right:0;top:-11px;bottom:-11px}
 /* Opções em linha (rádio, caixa) */
@@ -178,6 +178,17 @@ legend{padding:0;margin-bottom:var(--e1)}
 .sw{width:18px;height:12px;border-radius:3px;display:inline-block}
 
 /* Treino */
+/* "por quê?": a explicação e as regras saem da tela e ficam a um toque (retorno do Gustavo, 06/11) */
+.porque{position:relative;font:inherit;font-size:var(--t-apoio);font-weight:700;color:var(--acao);white-space:nowrap;text-underline-offset:3px}
+.porque::after{content:"";position:absolute;left:-6px;right:-6px;top:-12px;bottom:-12px}
+.dica{display:flex;gap:var(--e2);align-items:baseline;flex-wrap:wrap;font-size:var(--t-apoio);color:var(--texto-2)}
+.dica b{color:var(--texto)}
+.rir button.meta-rir{position:relative}
+.rir button.meta-rir::after{content:"";position:absolute;left:30%;right:30%;bottom:5px;height:3px;border-radius:2px;background:var(--acao)}
+.rir button.meta-rir[aria-pressed="true"]::after{background:var(--sobre-acao)}
+.rir-legenda{display:flex;align-items:center;gap:6px;font-size:var(--t-rotulo);color:var(--texto-2)}
+.rir-legenda i{display:inline-block;width:14px;height:3px;border-radius:2px;background:var(--acao)}
+.mais-op{width:var(--toque);height:var(--toque);flex:none;border-radius:var(--r2);border:1.5px solid var(--borda);background:var(--superficie);font-size:1.5rem;line-height:1;cursor:pointer;color:var(--texto)}
 .ex-cab{display:flex;gap:var(--e3);align-items:center}
 .ex-cab .mini{width:88px}
 .ex-cab h1{font-size:var(--t-pergunta);font-weight:800;line-height:1.2}
@@ -355,6 +366,7 @@ const guardar = (k, v) => { try { localStorage.setItem(k, v); } catch (e) {} };
 const ler = (k) => { try { return localStorage.getItem(k) || ''; } catch (e) { return ''; } };
 
 // --- selo de evidência: a pílula abre a regra, o significado do selo e as fontes ---
+const CURTO_SELO = { robusta: 'robusta', moderada: 'moderada', 'um estudo': '1 estudo', consenso: 'consenso' };
 const TXT_SELO = { robusta: 'evidência robusta', moderada: 'evidência moderada', 'um estudo': 'um estudo', consenso: 'consenso de especialistas' };
 const SIGNIFICADO = {
   robusta: 'Várias meta-análises (ou uma grande, com ensaios) apontam na mesma direção.',
@@ -363,7 +375,15 @@ const SIGNIFICADO = {
   consenso: 'Prática de treinadores e posicionamentos, sem ensaio que teste este número.',
 };
 const CURTA = { coracao: 'Problema no coração ou pressão alta', peito: 'Dor no peito', tontura: 'Perdeu o equilíbrio por tontura, ou desmaiou, no último ano', 'doenca-cronica': 'Outra doença crônica', medicamento: 'Remédio para doença crônica', osteoarticular: 'Problema em osso, articulação, músculo ou tendão', supervisao: 'Médico pediu exercício só com acompanhamento', gravidez: 'Gravidez, ou bebê nos últimos 6 meses', 'doenca-aguda': 'Febre, gripe forte ou se recuperando de doença' };
-const selo = (id) => { const r = D.regras[id]; return r ? ` <a href="#fonte" class="selo" data-selo="${id}" aria-label="${esc(TXT_SELO[r.selo])}: ver de onde vem">${TXT_SELO[r.selo]}</a>` : ''; };
+const selo = (id) => { const r = D.regras[id]; return r ? ` <a href="#fonte" class="selo" data-selo="${id}" aria-label="${esc(TXT_SELO[r.selo])}: ver de onde vem">${CURTO_SELO[r.selo]}</a>` : ''; };
+// "por quê?": a folha mostra o texto de apoio da tela, cada um com o seu selo (a regra e as fontes a mais um toque)
+const PORQUE = {};
+const porque = (chave, itens) => { PORQUE[chave] = itens; return ` <a href="#porque" class="porque" data-porque="${chave}">por quê?</a>`; };
+function folhaPorque(chave) {
+  const itens = PORQUE[chave] || [];
+  abrirFolha(`<div class="folha-cab"><h2 id="folha-t" tabindex="-1">Por quê</h2><button type="button" class="btn ter auto" data-fechar>Fechar</button></div>
+    ${itens.map(([texto, id]) => `<p>${texto}${id ? selo(id) : ''}</p>`).join('')}`, { abaixoCab: !!document.querySelector('.senti') });
+}
 function folhaSelo(id) {
   const r = D.regras[id];
   const fontes = r.fontes.map((f) => `<li>${esc(D.fontes[f] || f)}</li>`).join('');
@@ -550,45 +570,46 @@ tela('equipamento-foto', 'Cadastro', '5d. Equipamento: a foto, enquanto analisa'
   <p class="apoio">Nada entra sem a sua confirmação: cada sugestão vem com "Tenho" e "Não tenho".</p>`));
 
 // ======================= INÍCIO (PROGRAMA) =======================
-const linhaEx = (x, i) => `<li><button type="button" class="linha ex" data-ex="${i}">${miniBoneco(x.animacaoId, x.nome)}<span class="txt"><b>${esc(x.nome)}</b><span class="num"><span class="rx" style="font-size:1.0625rem">${rxCurta(x)}</span> · reserva ${faixa(x.rir)} · descanso ${tempo(x.descansoSeg)}</span></span><span class="seta" aria-hidden="true">›</span></button></li>`;
+const linhaEx = (x, i) => `<li><button type="button" class="linha ex" data-ex="${i}">${miniBoneco(x.animacaoId, x.nome)}<span class="txt"><b>${esc(x.nome)}</b><span class="num"><span class="rx" style="font-size:1.0625rem">${rxCurta(x)}</span></span></span><span class="seta" aria-hidden="true">›</span></button></li>`;
 const listaDia = (d) => `<div class="pilha">
   <div class="seg" role="tablist" aria-label="Dias de treino">${D.dias.map((x, i) => `<button type="button" role="tab" aria-selected="${D.dias[i] === d}" data-dia="${i}">${esc(x.nome.replace('Corpo todo ', ''))}</button>`).join('')}</div>
-  <p class="apoio num">${esc(d.nome)} · ${d.exercicios.length} exercícios · ~${d.minutos} min</p>
   <ul class="lista">${d.exercicios.map(linhaEx).join('')}</ul></div>`;
-const faixaSemana = (feitos, msg) => `<a class="sup" href="#semana" style="text-decoration:none;color:inherit;flex-direction:row;align-items:center;gap:12px"><span class="pilha-2" style="flex:1;min-width:0"><span style="display:flex;align-items:center;gap:12px"><b>A sua semana</b><span class="bolinhas" role="img" aria-label="${feitos} de 3 treinos feitos">${[0, 1, 2].map((i) => `<i class="${i < feitos ? 'on' : ''}"></i>`).join('')}</span><b class="num" style="color:var(--acao)">${feitos} de 3</b></span><span class="apoio">${esc(msg)}</span></span><span class="seta" aria-hidden="true" style="font-size:1.375rem;color:var(--texto-2)">›</span></a>`;
+const faixaSemana = (feitos) => `<a class="sup" href="#semana" style="text-decoration:none;color:inherit;flex-direction:row;flex-wrap:wrap;align-items:center;gap:12px;min-height:3.5rem"><b style="flex:1 1 auto">A sua semana</b><span class="bolinhas" role="img" aria-label="${feitos} de 3 treinos feitos">${[0, 1, 2].map((i) => `<i class="${i < feitos ? 'on' : ''}"></i>`).join('')}</span><b class="num" style="color:var(--acao)">${feitos} de 3</b><span class="seta" aria-hidden="true" style="font-size:1.375rem;color:var(--texto-2)">›</span></a>`;
 const cartaoHoje = (d, extra) => `<section class="sup" aria-labelledby="hoje-t" style="box-shadow:inset 0 0 0 2px var(--acao-suave)"><p class="rotulo">Hoje</p><h2 id="hoje-t">${esc(d.nome)}</h2><p class="apoio num">${d.exercicios.length} exercícios · ~${d.minutos} min</p>${extra || ''}</section>`;
-const fase1 = `<p class="apoio">${esc(D.fases[0].texto)}${selo(D.fases[0].regraId)}</p>`;
+const fase1 = '';
+const aviso1 = (texto, botao, alvo) => `<div class="sup" style="flex-direction:row;flex-wrap:wrap;align-items:center;gap:12px"><p style="flex:1 1 9rem;margin:0">${texto}</p><a class="btn sec auto" href="${alvo}" style="min-height:var(--toque)">${botao}</a></div>`;
 const inicio = ({ d = diaA, topo = '', hoje = '', semana = '', mensagem = '' }) => `${cabCasa()}
 <main class="miolo gutter">
   ${titulo('Seu treino')}${topo}
   ${cartaoHoje(d, hoje)}
   ${semana}${mensagem}
   ${listaDia(d)}
-  <a class="linha sup" href="#selo" style="flex-direction:row">Sobre o programa: as regras e os avisos<span class="seta" aria-hidden="true">›</span></a>
+  <a class="linha" href="#selo" style="flex-direction:row;color:var(--texto-2)">Sobre o programa<span class="seta" aria-hidden="true">›</span></a>
 </main>${base(`<button type="button" class="btn" data-ir="treino">Começar o treino ${esc(d.nome)}</button>`, 'treino')}`;
 
 tela('programa-novo', 'Início', '6. Programa recém-gerado', () => inicio({
-  topo: `<div class="sup info"><p class="num"><b>Montado para:</b> Iniciante · 3 × 45 min · halteres e banco · prioridade pernas e glúteos. <a class="link" href="#dados">Mudar</a></p></div>
-  <div class="sup aviso"><p>Alguns músculos ficaram abaixo da meta, por causa do equipamento e do tempo. <a class="link" href="#selo">Ver os 6 avisos</a></p><p class="apoio">Este aviso aparece agora e depois fica em "Sobre o programa".</p></div>`,
-  hoje: fase1, semana: faixaSemana(0, 'Nova semana. O próximo treino é o Corpo todo A.'),
+  mensagem: aviso1('Programa pronto. <b>6 avisos</b> sobre a meta.', 'Ver', '#selo'),
+  semana: faixaSemana(0),
 }));
-tela('inicio', 'Início', '7. Início na 1ª semana', () => inicio({ d: diaB, hoje: fase1, semana: faixaSemana(1, 'Já conta: um treino por semana mantém o que você ganhou. Se der, o Corpo todo B cabe até domingo.') }));
+tela('inicio', 'Início', '7. Início na 1ª semana', () => inicio({ d: diaB, semana: faixaSemana(1) }));
 tela('inicio-volta', 'Início', '7b. Início: a volta depois de 22 dias', () => `${cabCasa()}
 <main class="miolo gutter">
   ${titulo('Seu treino')}
   <section class="sup info" aria-labelledby="volta-t"><h2 id="volta-t">Bem-vindo de volta!</h2>
-    <p>Faz 22 dias do último treino. Estas 2 semanas vão mais leves, para o corpo se readaptar sem dor. O músculo não some em 3 semanas. A carga começa 10% abaixo da última vez e já vem preenchida.${selo('readaptacao.durante-uso')}</p>
+    <p>2 semanas mais leves; a carga já vem 10% menor.${porque('volta', [['Faz 22 dias do último treino. Estas 2 semanas vão mais leves, para o corpo se readaptar sem dor. O músculo não some em 3 semanas. A carga começa 10% abaixo da última vez e já vem preenchida.', 'readaptacao.durante-uso']])}</p>
     <p class="rotulo" style="margin-top:4px">Hoje</p><p><b>${esc(diaA.nome)}</b> <span class="apoio num">· ${diaA.exercicios.length} exercícios · ~${diaA.minutos} min</span></p></section>
-  ${faixaSemana(0, 'Nova semana. O próximo treino é o Corpo todo A.')}
+  ${faixaSemana(0)}
   ${listaDia(diaA)}
 </main>${base(`<button type="button" class="btn" data-ir="treino">Começar o treino ${esc(diaA.nome)}</button>`, 'treino')}`);
 tela('inicio-semana4', 'Início', '7c. Início na 4ª semana: uma mensagem por vez', () => inicio({
-  d: diaC, semana: faixaSemana(2, '2 de 3 treinos. Se der, o Corpo todo C cabe até domingo.'),
-  mensagem: `<section class="sup" aria-labelledby="leve-t"><h2 id="leve-t">Semana leve? (opcional)</h2><p><b>Motivo:</b> 3 exercícios sem progresso em 3 treinos.</p>
-    <p>Cerca de metade das séries, RIR 3–4 e a mesma carga. Para descansar, não para crescer.${selo('deload.semana-leve')}</p>
-    <div class="dois" style="gap:12px"><button type="button" class="btn sec" data-aviso="Protótipo: a semana leve começa com este toque, como hoje.">Fazer a semana leve</button><button type="button" class="btn sec" data-aviso="Protótipo: a oferta some até aparecer um sinal novo, como hoje.">Agora não</button></div>
-    <a class="linha" href="#selo" style="padding:0;min-height:3rem">Mais 2 avisos<span class="seta" aria-hidden="true">›</span></a></section>`,
+  d: diaC, semana: faixaSemana(2),
+  mensagem: aviso1('<b>Semana leve?</b> 3 exercícios parados.', 'Ver', '#inicio-leve'),
 }));
+tela('inicio-leve', 'Início', '7f. A semana leve, a um toque do aviso', () => TELAS['inicio-semana4'].render(), () => abrirFolha(`<div class="folha-cab"><h2 id="folha-t" tabindex="-1">Semana leve? (opcional)</h2><button type="button" class="btn ter auto" data-fechar>Fechar</button></div>
+  <p><b>Motivo:</b> 3 exercícios sem progresso em 3 treinos.</p>
+  <p>Cerca de metade das séries, RIR 3–4 e a mesma carga. Para descansar, não para crescer.${selo('deload.semana-leve')}</p>
+  <div class="pilha-2"><button type="button" class="btn" data-aviso="Protótipo: a semana leve começa com este toque, como hoje.">Fazer a semana leve</button><button type="button" class="btn sec" data-aviso="Protótipo: a oferta some até aparecer um sinal novo, como hoje." data-fechar>Agora não</button></div>
+  <a class="linha" href="#selo" style="padding:0;min-height:3rem">Mais 2 avisos<span class="seta" aria-hidden="true">›</span></a>`));
 tela('exercicio', 'Início', '7d. Detalhe de um exercício (folha)', () => TELAS.inicio.render(), () => folhaExercicio(diaB.exercicios[0]));
 function folhaExercicio(x) {
   abrirFolha(`<div class="folha-cab"><h2 id="folha-t" tabindex="-1">${esc(x.nome)}</h2><button type="button" class="btn ter auto" data-fechar>Fechar</button></div>
@@ -602,22 +623,27 @@ tela('selo', 'Início', '7e. Toque no selo: a regra e as fontes', () => TELAS.in
 
 // ======================= TREINO =======================
 const exA = diaA.exercicios[0];
-const exCab = (x, i) => `<div class="ex-cab">${miniBoneco(x.animacaoId, x.nome)}<div class="pilha-2" style="flex:1;min-width:0"><h1 id="t1" tabindex="-1">${esc(x.nome)}</h1><p class="meta">${rxCurta(x)} · reserva ${faixa(x.rir)}</p>${x.animacaoId ? '<a class="link" href="#guia" style="min-height:2.75rem;display:inline-flex;align-items:center">Ver como fazer ›</a>' : ''}</div></div>`;
+const maisOp = `<button type="button" class="mais-op" data-ir="treino-mais" aria-label="Mais opções: anterior, próximo, trocar, terminar" aria-haspopup="dialog">⋯</button>`;
+const exCab = (x, i) => `<div class="ex-cab">${miniBoneco(x.animacaoId, x.nome)}<div class="pilha-2" style="flex:1;min-width:0"><h1 id="t1" tabindex="-1">${esc(x.nome)}</h1><p class="meta">${rxCurta(x)}</p>${x.animacaoId ? '<a class="link" href="#guia" style="min-height:2.75rem;display:inline-flex;align-items:center">Como fazer ›</a>' : ''}</div>${maisOp}</div>`;
 const progresso = (i) => `<div style="height:4px;background:var(--superficie-2)" aria-hidden="true"><i style="display:block;height:100%;width:${(i / 6) * 100}%;background:var(--acao)"></i></div>`;
-const registro = ({ n = 1, total = 4, carga = S.carga, reps = S.reps, rir = S.rir, rotulo = 'Série feita · descansar 1:45' } = {}) => `<section class="registro gutter" aria-labelledby="serie-t">
+const registro = ({ n = 1, total = 4, carga = S.carga, reps = S.reps, rir = S.rir, meta = exA.rir, rotulo = 'Série feita · descansar 1:45' } = {}) => `<section class="registro gutter" aria-labelledby="serie-t">
   <div class="serie-tit"><h2 id="serie-t" style="font-size:var(--t-pergunta);font-weight:800">Série ${n} de ${total}</h2><span class="apoio">cada lado</span></div>
   <div class="linha-reg"><span class="rot" id="rot-carga">Carga</span><div class="stepper" role="group" aria-labelledby="rot-carga"><button type="button" aria-label="Menos carga" data-passo="carga:-1">−</button><output id="carga" aria-live="polite">${carga}<small> kg</small></output><button type="button" aria-label="Mais carga" data-passo="carga:1">+</button></div></div>
   <div class="linha-reg"><span class="rot" id="rot-reps">Repetições</span><div class="stepper" role="group" aria-labelledby="rot-reps"><button type="button" aria-label="Menos uma repetição" data-passo="reps:-1">−</button><output id="reps" aria-live="polite">${reps}</output><button type="button" aria-label="Mais uma repetição" data-passo="reps:1">+</button></div></div>
-  <fieldset><legend style="font-weight:700">Quantas repetições ainda conseguiria? (RIR)</legend><p class="apoio" style="margin-top:-6px">A maioria das pessoas acha que tem menos reserva do que tem.${selo('rir.leitura')}</p>
-  <div class="rir">${['0', '1', '2', '3', '4+'].map((r) => `<button type="button" aria-pressed="${rir === r}" data-rir="${r}">${r}</button>`).join('')}</div></fieldset>
+  <fieldset><legend style="font-weight:700">Quantas repetições ainda conseguiria? (RIR)</legend>
+  <div class="rir">${['0', '1', '2', '3', '4+'].map((r, i) => { const naMeta = i >= meta[0] && i <= meta[1]; return `<button type="button" aria-pressed="${rir === r}" data-rir="${r}"${naMeta ? ' class="meta-rir" aria-describedby="rir-meta"' : ''}>${r}</button>`; }).join('')}</div>
+  <p class="dica" style="justify-content:space-between"><span class="rir-legenda" id="rir-meta"><i aria-hidden="true"></i>meta de hoje: ${faixa(meta)}</span>${porque('rir', [['A maioria das pessoas acha que tem menos reserva do que tem.', 'rir.leitura'], [`A meta deste exercício é ${faixa(meta)} repetições de reserva.`, 'rir.alvo']])}</p></fieldset>
 </section>
 <div class="feita-base gutter"><button type="button" class="btn g" data-ir="treino-descanso" id="feita"${rir === null ? ' disabled aria-describedby="feita-por-que"' : ''}>${rotulo}</button><span class="sr" id="feita-por-que">Escolha quantas repetições ainda conseguiria (RIR) para salvar.</span></div>`;
-const restoTreino = `<div class="pilha" style="margin-top:8px"><div class="dois"><button type="button" class="btn sec" data-aviso="Protótipo: vai para o exercício anterior.">‹ Anterior</button><button type="button" class="btn sec" data-aviso="Protótipo: vai para o próximo exercício.">Próximo ›</button></div><button type="button" class="btn sec" data-ir="treino-trocar">Trocar exercício</button><button type="button" class="btn ter" data-ir="treino-terminar">Terminar o treino agora</button></div>`;
+const restoTreino = '';
+const folhaMais = () => abrirFolha(`<div class="folha-cab"><h2 id="folha-t" tabindex="-1">Mais opções</h2><button type="button" class="btn ter auto" data-fechar>Fechar</button></div>
+  <div class="dois"><button type="button" class="btn sec" data-aviso="Protótipo: vai para o exercício anterior.">‹ Anterior</button><button type="button" class="btn sec" data-aviso="Protótipo: vai para o próximo exercício.">Próximo ›</button></div>
+  <a class="btn sec" href="#treino-trocar">Trocar exercício</a>
+  <a class="btn ter" href="#treino-terminar">Terminar o treino agora</a>`, { abaixoCab: true, retorno: '.mais-op' });
 tela('treino', 'Treino', '8. Treino: 1ª série (calibração)', () => `${cabTarefa('inicio', 'Início', 'A · 1 de 6', 'Voltar ao início; o treino fica salvo')}${progresso(0)}
 <main class="treino-main"><div class="miolo gutter" style="gap:16px">
   ${exCab(exA)}
-  <div class="sup info"><p><b>Calibração da carga.</b> 1ª vez neste exercício: comece com uma carga que pareça fácil; a 1ª série acerta a carga. A meta é ${faixa(exA.reps)} repetições com ${faixa(exA.rir)} de reserva.${selo('progressao.calibracao')}</p><p class="apoio">Antes: 1–2 séries leves de aquecimento, sem contar.${selo('tempo.aquecimento')}</p></div>
-  ${restoTreino}
+  <p class="dica"><b>1ª vez: comece leve.</b> Aqueça antes.${porque('calib', [[`<b>Calibração da carga.</b> 1ª vez neste exercício: comece com uma carga que pareça fácil; a 1ª série acerta a carga. A meta é ${faixa(exA.reps)} repetições com ${faixa(exA.rir)} de reserva.`, 'progressao.calibracao'], ['Antes: 1–2 séries leves de aquecimento, sem contar.', 'tempo.aquecimento']])}</p>
 </div>${registro()}</main>`);
 
 const painelDescanso = (acabou) => `<section class="descanso${acabou ? ' acabou' : ''}" aria-labelledby="desc-t">
@@ -631,8 +657,7 @@ const telaDescanso = (acabou) => `${cabTarefa('inicio', 'Início', 'A · 1 de 6'
 <main class="treino-main"><div class="miolo gutter" style="gap:16px">
   ${painelDescanso(acabou)}
   <div class="ex-cab" style="gap:12px">${miniBoneco(exA.animacaoId, '')}<div class="pilha-2" style="flex:1;min-width:0"><h1 id="t1" tabindex="-1" style="font-size:var(--t-corpo);font-weight:800">${esc(exA.nome)}</h1>${feitas}</div></div>
-  <div class="sup info"><p><b>Calibração:</b> Ficou pesada: na próxima série, 7 kg.${selo('progressao.calibracao')}</p></div>
-  ${restoTreino}
+  <p class="dica"><b>Próxima: 7 kg.</b> A 1ª ficou pesada.${porque('calib2', [['<b>Calibração:</b> Ficou pesada: na próxima série, 7 kg.', 'progressao.calibracao']])}</p>
 </div>${registro({ n: 2, carga: 7, reps: 10, rir: '2', rotulo: 'Série feita (encerra o descanso)' })}</main>`;
 tela('treino-descanso', 'Treino', '8b. Descanso (o registro continua à vista)', () => telaDescanso(false), () => iniciarDescanso());
 tela('treino-acabou', 'Treino', '8c. Descanso que acabou', () => telaDescanso(true));
@@ -640,18 +665,19 @@ tela('treino-senti', 'Treino', '8d. "Senti algo" aberto', () => TELAS.treino.ren
   <div class="pilha-2">${['Dor, pressão ou aperto no peito', 'Falta de ar fora do normal', 'Tontura ou quase desmaio', 'Coração batendo muito irregular', 'Dor aguda ou em pontada numa articulação', 'Formigamento ou dormência', 'Perda de força estranha'].map((t) => `<button type="button" class="btn sec" style="justify-content:flex-start;text-align:left" data-aviso="Protótipo: a resposta de segurança é a mesma do app de hoje.">${t}</button>`).join('')}</div>
   <fieldset><legend style="font-weight:700">Ou dê uma nota para a dor (0 a 10)</legend><div class="pilha-2"><div class="chips cheios">${[0, 1, 2, 3, 4, 5].map((n) => `<button type="button" class="chip" data-aviso="Protótipo: a nota segue a regra de dor de hoje.">${n}</button>`).join('')}</div><div class="chips cheios">${[6, 7, 8, 9, 10].map((n) => `<button type="button" class="chip" data-aviso="Protótipo: a nota segue a regra de dor de hoje.">${n}</button>`).join('')}</div></div></fieldset>
   <p class="apoio">O app não diagnostica.${selo('seguranca.sem-diagnostico')}</p>`, { abaixoCab: true, retorno: '.senti' }));
+tela('treino-porque', 'Treino', '8i. "por quê?" aberto: a explicação e o selo a um toque', () => TELAS.treino.render(), () => folhaPorque('calib'));
+tela('treino-mais', 'Treino', '8h. Mais opções (⋯): anterior, próximo, trocar, terminar', () => TELAS.treino.render(), folhaMais);
 tela('treino-trocar', 'Treino', '8e. Trocar exercício (folha)', () => TELAS.treino.render(), () => abrirFolha(`<div class="folha-cab"><h2 id="folha-t" tabindex="-1">Trocar só neste treino por:</h2><button type="button" class="btn ter auto" data-fechar>Fechar</button></div>
   <ul class="lista">${exA.alternativas.slice(0, 3).map((a) => `<li><button type="button" class="linha" data-aviso="Protótipo: troca só neste treino, como hoje."><span class="txt"><b>${esc(nomeDe(a))}</b><span>Faz a mesma função; dá para trocar se o aparelho estiver ocupado.</span></span><span class="seta" aria-hidden="true">›</span></button></li>`).join('')}</ul>
-  <p class="apoio">As alternativas fazem a mesma função.${selo('selecao.equivalencia')}</p>`, { abaixoCab: true, retorno: '[data-ir="treino-trocar"]' }));
+  <p class="apoio">As alternativas fazem a mesma função.${selo('selecao.equivalencia')}</p>`, { abaixoCab: true, retorno: '.mais-op' }));
 const exPonte = diaA.exercicios[1];
 const cartaoP = D.cartoes['ponte-gluteo-halter'];
 tela('treino-texto', 'Treino', '8f. Exercício sem animação: montagem segura à vista', () => `${cabTarefa('inicio', 'Início', 'A · 2 de 6', 'Voltar ao início; o treino fica salvo')}${progresso(1)}
 <main class="treino-main"><div class="miolo gutter" style="gap:16px">
-  <div class="ex-cab">${miniBoneco(null)}<div class="pilha-2" style="flex:1;min-width:0"><h1 id="t1" tabindex="-1">${esc(exPonte.nome)}</h1><p class="meta">${rxCurta(exPonte)} · reserva ${faixa(exPonte.rir)}</p><button type="button" class="link" data-cartao style="min-height:2.75rem;text-align:left">Como fazer: dicas e erros ›</button></div></div>
+  <div class="ex-cab">${miniBoneco(null)}<div class="pilha-2" style="flex:1;min-width:0"><h1 id="t1" tabindex="-1">${esc(exPonte.nome)}</h1><p class="meta">${rxCurta(exPonte)}</p><button type="button" class="link" data-cartao style="min-height:2.75rem;text-align:left">Como fazer: dicas e erros ›</button></div>${maisOp}</div>
   <section class="montagem" aria-labelledby="mont-t"><p><b id="mont-t">Montagem segura</b>${selo('seguranca.montagem')}</p><ul>${cartaoP.montagem.map((t) => `<li>${esc(t)}</li>`).join('')}</ul></section>
-  ${restoTreino}
-</div>${registro({ n: 1, total: exPonte.series, carga: 6, reps: 15, rir: null, rotulo: 'Série feita · descansar 1:45' })}</main>`);
-tela('treino-terminar', 'Treino', '8g. Terminar com confirmação', () => TELAS.treino.render(), () => abrirFolha(`<h2 id="folha-t" class="pergunta" tabindex="-1">Terminar o treino agora?</h2><p>Você fez 1 de 6 exercícios. O que já foi registrado fica salvo.</p><div class="pilha-2"><button type="button" class="btn" data-fechar>Continuar treinando</button><a class="btn sec" href="#fim">Terminar o treino</a></div>`, { dialogo: true, abaixoCab: true, retorno: '[data-ir="treino-terminar"]' }));
+</div>${registro({ n: 1, total: exPonte.series, carga: 6, reps: 15, rir: null, meta: exPonte.rir, rotulo: 'Série feita · descansar 1:45' })}</main>`);
+tela('treino-terminar', 'Treino', '8g. Terminar com confirmação', () => TELAS.treino.render(), () => abrirFolha(`<h2 id="folha-t" class="pergunta" tabindex="-1">Terminar o treino agora?</h2><p>Você fez 1 de 6 exercícios. O que já foi registrado fica salvo.</p><div class="pilha-2"><button type="button" class="btn" data-fechar>Continuar treinando</button><a class="btn sec" href="#fim">Terminar o treino</a></div>`, { dialogo: true, abaixoCab: true, retorno: '.mais-op' }));
 
 // ======================= GUIA =======================
 const GUIA = D.guia.bulgaro;
@@ -821,6 +847,7 @@ function mostrar() {
 $('#app').addEventListener('click', (e) => {
   const el = e.target.closest('button, a'); if (!el) return;
   if (el.dataset.selo) { e.preventDefault(); return folhaSelo(el.dataset.selo); }
+  if (el.dataset.porque) { e.preventDefault(); return folhaPorque(el.dataset.porque); }
   if (el.dataset.privacidade !== undefined) e.preventDefault();
   if (el.dataset.confirmarTriagem !== undefined) {
     const nao = D.triagem.filter((p) => !$('#tr-' + p.id).checked);
