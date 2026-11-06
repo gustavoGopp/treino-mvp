@@ -13,6 +13,8 @@ export type Medida = {
   botaoPrincipal: { texto: string; topoPct: number; visivelSemRolar: boolean } | null;
   telas: number;
   rolaDeLado: boolean;
+  /** Palavras à vista sem rolar (retorno do Gustavo, 06/11: "muita informação na tela"). Fora: o palco do Boneco. */
+  palavras: number;
 };
 
 export async function medir(page: Page, tela: string): Promise<Medida> {
@@ -115,6 +117,21 @@ export async function medir(page: Page, tela: string): Promise<Medida> {
       botaoPrincipal = { texto: b.innerText.trim().replace(/\s+/g, ' ').slice(0, 40), topoPct: Math.round((topo / H) * 100), visivelSemRolar: topo + r.height <= H };
     }
     const de = document.documentElement;
-    return { tela, toquePequeno, contrasteBaixo, botaoPrincipal, telas: Math.round((de.scrollHeight / H) * 10) / 10, rolaDeLado: de.scrollWidth > de.clientWidth };
+    // palavras à vista sem rolar: cada pedaço de texto visível que cai, ao menos em parte, dentro da tela
+    let palavras = 0;
+    const andar = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT);
+    for (let n = andar.nextNode(); n; n = andar.nextNode()) {
+      const pai = n.parentElement;
+      if (!pai || pai.closest('svg, .stage, .miniatura, .proto, script, style, [aria-hidden="true"]')) continue;
+      if (!pai.checkVisibility({ contentVisibilityAuto: true, visibilityProperty: true, opacityProperty: true })) continue;
+      const pr = pai.getBoundingClientRect();
+      if (pr.width <= 1 || pr.height <= 1) continue; // o texto só para o leitor de tela (.sr)
+      const faixa = document.createRange();
+      faixa.selectNodeContents(n);
+      const caixas = Array.from(faixa.getClientRects()).filter((c) => c.width > 1 && c.height > 1 && c.bottom > 0 && c.top < H);
+      if (!caixas.length) continue;
+      palavras += (n.textContent ?? '').split(/\s+/).filter((w) => /[\p{L}\p{N}]/u.test(w)).length;
+    }
+    return { tela, toquePequeno, contrasteBaixo, botaoPrincipal, palavras, telas: Math.round((de.scrollHeight / H) * 10) / 10, rolaDeLado: de.scrollWidth > de.clientWidth };
   }, tela);
 }
