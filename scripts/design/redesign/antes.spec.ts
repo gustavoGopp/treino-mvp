@@ -10,7 +10,8 @@ import { medir, type Medida } from '../medir';
 // docs/revisoes/redesign/antes/medidas-<projeto>.json. O conjunto de referência versionado é copiado por referencia.mjs.
 
 const AGORA = new Date('2026-11-05T15:00:00.000Z'); // quinta-feira, 12:00 em Brasília
-// FASE=depois grava o mesmo inventário do app redesenhado (Fase 5), ao lado do "antes".
+// FASE=lote-1 (lote-2...) grava o mesmo inventário do app redesenhado em cada lote da Fase 5, ao lado do "antes".
+// ("depois" é a pasta das medidas do protótipo: não usar aqui.)
 const FASE = process.env.FASE ?? 'antes';
 const SAIDA = `docs/revisoes/redesign/${FASE}`;
 const PERSONAS = ['ana', 'bruno', 'carla', 'diego', 'elisa', 'fabio'] as const;
