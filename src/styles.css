@@ -381,7 +381,7 @@ details.campo .opcoes{margin-top:8px}
 .detalhes-eq{margin-top:12px;padding:16px;border-radius:var(--r2);background:var(--surface);display:flex;flex-direction:column;gap:16px;box-shadow:inset 0 0 0 2px var(--accent-soft)}
 .detalhes-eq h2{margin:0;font-size:var(--t-pergunta);font-weight:800}
 .chips-valor{display:flex;flex-wrap:wrap;gap:8px}
-.chip-valor{display:inline-flex;align-items:center;justify-content:center;min-height:3rem;min-width:3rem;padding:0 16px;border:1.5px solid var(--edge);border-radius:var(--rp);background:var(--surface);cursor:pointer;font-size:var(--t-corpo);font-weight:600;font-variant-numeric:tabular-nums}
+.chip-valor{position:relative;display:inline-flex;align-items:center;justify-content:center;min-height:3rem;min-width:3rem;padding:0 16px;border:1.5px solid var(--edge);border-radius:var(--rp);background:var(--surface);cursor:pointer;font-size:var(--t-corpo);font-weight:600;font-variant-numeric:tabular-nums}
 .chip-valor input{position:absolute;opacity:0;width:1px;height:1px}
 .chip-valor:has(input:checked){border-color:var(--accent);background:var(--accent);color:var(--accent-ink);font-weight:800}
 .chip-valor:has(input:focus-visible){outline:3px solid var(--accent);outline-offset:2px}
@@ -715,3 +715,29 @@ a.cartao-ex-corpo:focus-visible{outline:3px solid var(--foco);outline-offset:-3p
 .ea-pele-t-longe-e{fill:var(--e-pele-erro);stroke:var(--e-pele-erro);stroke-linejoin:round;opacity:.6}
 .ea-cont-longe{stroke-linejoin:round}
 .eb-folga-t{fill:var(--stage);stroke:var(--stage);stroke-linejoin:round}
+
+/* Treino e guia em tela estreita (lote 2): 320 px e zoom de 200% (206 px) */
+@media (max-width:359px){
+  .registro .linha-registro{flex-wrap:wrap}
+  .registro .chips-valor{display:flex;flex-wrap:wrap}
+  .registro .chip-valor{flex:1 0 var(--toque)}
+  .ex-sessao{grid-template-columns:1fr auto}
+  .ex-sessao .miniatura{grid-column:1;grid-row:1}
+  .ex-sessao .mais-op{grid-column:2;grid-row:1}
+  .ex-sessao > div:not(.miniatura){grid-column:1 / -1;grid-row:2}
+}
+@media (max-width:279px){
+  .modes{grid-template-columns:1fr 1fr}
+  /* com zoom de 200%, o controle de carga e de repetições ocupa a linha toda: − número + */
+  .registro .stepper{display:grid;grid-template-columns:var(--toque) minmax(0,1fr) var(--toque);width:100%}
+  .registro .stepper select,.registro .stepper output{min-width:0;width:100%;font-size:var(--t-pergunta)}
+  .registro .stepper:has(select){grid-template-columns:1fr 1fr}
+  .registro .stepper:has(select) select{grid-column:1 / -1;grid-row:1}
+  .registro .stepper:has(select) button{width:100%}
+  .exhead .rx .nw{white-space:normal}
+  .tctl{grid-template-columns:1fr 1fr}
+  .tctl button:last-child{grid-column:1 / -1}
+  .marca{white-space:normal}
+  .stage .hud{flex-wrap:wrap}
+}
+
