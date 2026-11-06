@@ -20,6 +20,8 @@ async function servir(page: Page) {
     return r.fulfill({ status: 200, contentType: `${tipo}; charset=utf-8`, body: html });
   });
   await page.addInitScript(() => ((window as unknown as { CAPTURA: boolean }).CAPTURA = true));
+  // letra do sistema maior: a raiz da página a 125% (só no projeto letra125)
+  if (test.info().project.name === 'letra125') await page.addInitScript(() => document.addEventListener('DOMContentLoaded', () => (document.documentElement.style.fontSize = '125%')));
 }
 
 test('todas as telas do protótipo', async ({ page }, info) => {
@@ -45,7 +47,7 @@ test('todas as telas do protótipo', async ({ page }, info) => {
       const ok = (el: Element | null) => {
         if (!el) return null;
         const r = el.getBoundingClientRect();
-        if (r.top < 0 || r.bottom > innerHeight || r.width === 0) return false;
+        if (r.top < 0 || r.bottom > innerHeight || r.left < 0 || r.right > innerWidth || r.width === 0) return false;
         const topo = document.elementFromPoint(r.left + r.width / 2, r.top + r.height / 2);
         return !!topo && (el === topo || el.contains(topo));
       };
@@ -67,7 +69,23 @@ test('todas as telas do protótipo', async ({ page }, info) => {
       }
       return { sentiAlgo: ok(document.querySelector('.senti')), serieFeita: ok(document.querySelector('#feita')), rir: ok(document.querySelector('.rir')), relogio: ok(document.querySelector('#relogio')), cortados: [...new Set(cortados)] };
     });
-    medidas.push({ ...m, visivel } as Medida);
+    // foco coberto (WCAG 2.4.11): cada alvo recebe o foco; conta os que ficam inteiros atrás de uma barra fixa
+    const focoCoberto = await page.evaluate(() => {
+      const alvos = Array.from(document.querySelectorAll<HTMLElement>('#app a[href], #app button, #app input, #app select, .veu a[href], .veu button, .veu input')).filter((e) => !e.closest('[inert]') && e.getClientRects().length && !(e as HTMLButtonElement).disabled);
+      const cobertos: string[] = [];
+      for (const e of alvos) {
+        e.focus();
+        // o 1º pedaço do alvo (um link que quebra em 2 linhas tem um buraco no meio do retângulo)
+        const r = e.getClientRects()[0] ?? e.getBoundingClientRect();
+        const pontos = [[r.left + r.width / 2, r.top + 2], [r.left + r.width / 2, r.bottom - 2], [r.left + 2, r.top + r.height / 2]];
+        const visto = pontos.some(([x, y]) => { const t = document.elementFromPoint(x, y); return !!t && (t === e || e.contains(t) || (e as HTMLInputElement).labels?.[0]?.contains(t)); });
+        if (!visto) cobertos.push((e.innerText || e.getAttribute('aria-label') || e.id || e.tagName).trim().slice(0, 30));
+      }
+      (document.activeElement as HTMLElement | null)?.blur();
+      scrollTo(0, 0);
+      return cobertos;
+    });
+    medidas.push({ ...m, visivel: { ...visivel, focoCoberto } } as Medida);
   }
   mkdirSync(SAIDA, { recursive: true });
   writeFileSync(`${SAIDA}/medidas-${info.project.name}.json`, JSON.stringify(medidas, null, 1) + '\n');

@@ -16,5 +16,9 @@ export default defineConfig({
     { name: 'escuro', use: { ...devices['Pixel 7'], deviceScaleFactor: 1, colorScheme: 'dark' } },
     { name: 'pequeno', use: { ...devices['Pixel 7'], deviceScaleFactor: 1, viewport: { width: 360, height: 740 }, colorScheme: 'light' } },
     { name: 'baixo', use: { ...devices['Pixel 7'], deviceScaleFactor: 1, viewport: { width: 412, height: 640 }, colorScheme: 'light' } },
+    // a partir da crítica (agente 6): 320 px (WCAG 1.4.10), o zoom de 200% no Pixel 7 e a letra do sistema em 125%
+    { name: 'estreito', use: { ...devices['Pixel 7'], deviceScaleFactor: 1, viewport: { width: 320, height: 640 }, colorScheme: 'light' } },
+    { name: 'zoom200', use: { ...devices['Pixel 7'], deviceScaleFactor: 1, viewport: { width: 206, height: 420 }, colorScheme: 'light' } },
+    { name: 'letra125', use: { ...devices['Pixel 7'], deviceScaleFactor: 1, colorScheme: 'light' } },
   ],
 });

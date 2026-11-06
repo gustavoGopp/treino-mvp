@@ -12,22 +12,22 @@
    As cores do palco do Boneco vêm de boneco.css e não mudam. */
 :root{
   --fundo:#F5F3EF; --superficie:#FFFFFF; --superficie-2:#EAE7E2; --linha:#D9D7D3;
-  --texto:#171B20; --texto-2:#464B51; --borda:#868A92;
+  --texto:#171B20; --texto-2:#464B51; --borda:#5F636B;
   --acao:#3F3AA8; --sobre-acao:#FFFFFF; --acao-suave:#E6EAFE; --foco:#3F3AA8;
   --feito:#0F6B3E; --feito-suave:#D9F5E1; --atencao:#7B5612; --atencao-suave:#FCEAD0;
   --alerta:#AF283D; --alerta-suave:#FEE6E6; --descanso:#E3E6FC; --descanso-texto:#171B20;
   --veu:rgba(23,27,32,.48);
   --fonte:"Atkinson Hyperlegible Next","Atkinson Hyperlegible",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
-  --t-relogio:88px; --t-numero:44px; --t-titulo:24px; --t-pergunta:20px; --t-corpo:17px; --t-apoio:15px; --t-rotulo:13px;
+  --t-relogio:5.5rem; --t-numero:2.75rem; --t-titulo:1.5rem; --t-pergunta:1.25rem; --t-corpo:1.0625rem; --t-apoio:.9375rem; --t-rotulo:.8125rem;
   --e1:4px; --e2:8px; --e3:12px; --e4:16px; --e5:24px; --e6:32px;
   --r1:8px; --r2:16px; --rp:999px;
-  --toque:48px; --toque-m:56px; --toque-g:64px;
+  --toque:3rem; --toque-m:3.5rem; --toque-g:4rem;
   --dur:200ms;
   --largura:412px;
 }
 @media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
   --fundo:#151410; --superficie:#211F1C; --superficie-2:#2D2B27; --linha:#3C3A36;
-  --texto:#F1EEE9; --texto-2:#BBB8B0; --borda:#6F6C64;
+  --texto:#F1EEE9; --texto-2:#BBB8B0; --borda:#9C998F;
   --acao:#A9B3FF; --sobre-acao:#25284A; --acao-suave:#272A4B; --foco:#A9B3FF;
   --feito:#65AE80; --feito-suave:#12301E; --atencao:#C6974A; --atencao-suave:#362508;
   --alerta:#EA8085; --alerta-suave:#3E1E1F; --descanso:#222537; --descanso-texto:#F1EEE9; --veu:rgba(0,0,0,.6);
@@ -35,7 +35,7 @@
 }}
 :root[data-theme="dark"]{
   --fundo:#151410; --superficie:#211F1C; --superficie-2:#2D2B27; --linha:#3C3A36;
-  --texto:#F1EEE9; --texto-2:#BBB8B0; --borda:#6F6C64;
+  --texto:#F1EEE9; --texto-2:#BBB8B0; --borda:#9C998F;
   --acao:#A9B3FF; --sobre-acao:#25284A; --acao-suave:#272A4B; --foco:#A9B3FF;
   --feito:#65AE80; --feito-suave:#12301E; --atencao:#C6974A; --atencao-suave:#362508;
   --alerta:#EA8085; --alerta-suave:#3E1E1F; --descanso:#222537; --descanso-texto:#F1EEE9; --veu:rgba(0,0,0,.6);
@@ -64,7 +64,7 @@ button,input,select{font:inherit;color:inherit}
 .proto{background:var(--superficie-2);border-bottom:1px solid var(--linha);padding-block:var(--e2);padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
 .proto-in{max-width:var(--largura);margin:0 auto;display:flex;flex-wrap:wrap;gap:var(--e2);align-items:center}
 .proto label{font-size:var(--t-rotulo);font-weight:700;color:var(--texto-2);display:flex;flex-direction:column;gap:2px;flex:1 1 120px;min-width:0}
-.proto select{min-height:var(--toque);border:2px solid var(--borda);border-radius:var(--r1);background:var(--superficie);font-size:16px;padding:0 var(--e2);width:100%}
+.proto select{min-height:var(--toque);border:2px solid var(--borda);border-radius:var(--r1);background:var(--superficie);font-size:1rem;padding:0 var(--e2);width:100%}
 html.captura .proto{display:none}
 
 /* A tela do app: uma coluna de celular */
@@ -103,9 +103,9 @@ h1,h2,h3,p{margin:0}
 .barra-inf svg{width:24px;height:24px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
 
 /* Botões */
-.btn{display:flex;align-items:center;justify-content:center;gap:var(--e2);width:100%;min-height:var(--toque-m);padding:var(--e2) var(--e4);border-radius:var(--r2);border:2px solid var(--acao);background:var(--acao);color:var(--sobre-acao);font-weight:800;font-size:18px;text-align:center;cursor:pointer;text-decoration:none;line-height:1.2;transition:filter var(--dur)}
+.btn{display:flex;align-items:center;justify-content:center;gap:var(--e2);width:100%;min-height:var(--toque-m);padding:var(--e2) var(--e4);border-radius:var(--r2);border:2px solid var(--acao);background:var(--acao);color:var(--sobre-acao);font-weight:800;font-size:1.125rem;text-align:center;cursor:pointer;text-decoration:none;line-height:1.2;transition:filter var(--dur)}
 .btn:active{filter:brightness(.88)}
-.btn.g{min-height:var(--toque-g);font-size:20px}
+.btn.g{min-height:var(--toque-g);font-size:1.25rem}
 .btn.sec{background:var(--superficie);color:var(--texto);border-color:var(--borda)}
 .btn.ter{background:none;border-color:transparent;color:var(--acao);min-height:var(--toque);font-size:var(--t-corpo);font-weight:700}
 .btn.perigo{background:var(--alerta);border-color:var(--alerta);color:var(--superficie)}
@@ -124,8 +124,9 @@ h1,h2,h3,p{margin:0}
 .sup h2{font-size:var(--t-pergunta);font-weight:800;line-height:1.25}
 
 /* Selo de evidência: pílula tocável que abre a fonte */
-.selo{display:inline;font:inherit;font-size:var(--t-rotulo);font-weight:700;line-height:1.35;padding:2px 9px;border-radius:var(--rp);border:0;background:var(--superficie-2);color:var(--texto-2);cursor:pointer;white-space:nowrap;text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:2px;vertical-align:1px}
+.selo{position:relative;display:inline;font:inherit;font-size:var(--t-rotulo);font-weight:700;line-height:1.35;padding:2px 9px;border-radius:var(--rp);border:0;background:var(--superficie-2);color:var(--texto-2);cursor:pointer;white-space:nowrap;text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:2px;vertical-align:1px}
 
+.selo::after{content:"";position:absolute;left:0;right:0;top:-11px;bottom:-11px}
 /* Opções em linha (rádio, caixa) */
 .opcoes{display:flex;flex-direction:column;gap:var(--e2)}
 .opcao{display:flex;align-items:center;gap:var(--e3);min-height:var(--toque-m);padding:var(--e2) var(--e4);background:var(--superficie);border:2px solid var(--borda);border-radius:var(--r2);cursor:pointer;font-weight:700;line-height:1.3}
@@ -157,20 +158,20 @@ legend{padding:0;margin-bottom:var(--e1)}
 .linha .txt{flex:1;min-width:0;display:flex;flex-direction:column;gap:2px}
 .linha .txt b{font-weight:700;line-height:1.25}
 .linha .txt span{font-size:var(--t-apoio);color:var(--texto-2)}
-.linha .seta{color:var(--texto-2);font-size:22px;flex:none}
+.linha .seta{color:var(--texto-2);font-size:1.375rem;flex:none}
 .linha.ex{min-height:76px}
 .linha .rx{font-size:var(--t-pergunta);font-weight:800;color:var(--texto);font-variant-numeric:tabular-nums}
 
 /* Miniatura e palco do Boneco (moldura nova; o desenho é o do motor) */
 .mini{width:64px;aspect-ratio:4/3;flex:none;border-radius:var(--r1);overflow:hidden;background:var(--stage);display:grid;place-items:center}
 .mini svg{width:100%;height:100%;display:block}
-.mini.texto{background:var(--superficie-2);color:var(--texto-2);font-size:13px;font-weight:700;text-align:center;line-height:1.15;padding:2px}
+.mini.texto{background:var(--superficie-2);color:var(--texto-2);font-size:0.8125rem;font-weight:700;text-align:center;line-height:1.15;padding:2px}
 .palco{position:relative;background:var(--stage);aspect-ratio:4/3;max-width:100%}
 .palco:not(.mini){width:100%}
 .palco svg{position:absolute;inset:0;width:100%;height:100%;display:block}
 .palco .hud{position:absolute;left:10px;right:10px;top:10px;display:flex;justify-content:space-between;align-items:flex-start;gap:8px;pointer-events:none}
-.palco .fase{background:color-mix(in srgb,var(--stage) 88%,transparent);border-radius:10px;padding:4px 10px;font-size:14px;line-height:1.25;max-width:64%;color:var(--st-ink);font-weight:700}
-.palco .breath{font-weight:800;letter-spacing:.04em;font-size:15px;padding:4px 12px;border-radius:999px;background:#1F3CB8;color:#fff}
+.palco .fase{background:color-mix(in srgb,var(--stage) 88%,transparent);border-radius:10px;padding:4px 10px;font-size:0.875rem;line-height:1.25;max-width:64%;color:var(--st-ink);font-weight:700}
+.palco .breath{font-weight:800;letter-spacing:.04em;font-size:0.9375rem;padding:4px 12px;border-radius:999px;background:#1F3CB8;color:#fff}
 .palco .breath.hold{background:#3B4250}
 .legenda{display:flex;flex-wrap:wrap;gap:var(--e2) var(--e4);font-size:var(--t-apoio);color:var(--texto-2)}
 .legenda span{display:inline-flex;align-items:center;gap:6px}
@@ -186,28 +187,33 @@ legend{padding:0;margin-bottom:var(--e1)}
 .feitas{display:flex;gap:6px;flex-wrap:wrap}
 .feitas span{font-size:var(--t-rotulo);font-weight:700;background:var(--feito-suave);color:var(--texto);border-radius:var(--rp);padding:3px 10px;font-variant-numeric:tabular-nums}
 .feitas span::before{content:"✓ ";color:var(--feito)}
-.registro{position:sticky;bottom:0;z-index:16;background:var(--superficie);border-top:1px solid var(--linha);border-radius:20px 20px 0 0;box-shadow:0 -6px 18px rgba(0,0,0,.08);padding-block:var(--e3) calc(var(--e3) + env(safe-area-inset-bottom,0px));display:flex;flex-direction:column;gap:var(--e3)}
-.linha-reg{display:grid;grid-template-columns:1fr auto;align-items:center;gap:var(--e2)}
+.treino-main{flex:1;display:flex;flex-direction:column}
+.treino-main>.miolo{flex:1}
+.registro{position:sticky;bottom:var(--h-feita,88px);z-index:16;background:var(--superficie);border-top:1px solid var(--linha);border-radius:20px 20px 0 0;box-shadow:0 -6px 18px rgba(0,0,0,.08);padding-block:var(--e3) var(--e1);display:flex;flex-direction:column;gap:var(--e3)}
+.registro.solto{position:static;border-radius:var(--r2);border-top:0;box-shadow:none;margin-bottom:var(--e3)}
+.feita-base{position:sticky;bottom:0;z-index:17;background:var(--superficie);padding-block:var(--e2) calc(var(--e3) + env(safe-area-inset-bottom,0px))}
+.registro.solto+.feita-base{border-top:1px solid var(--linha)}
+.linha-reg{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:var(--e1) var(--e2)}
 .linha-reg .rot{font-weight:700;font-size:var(--t-apoio);color:var(--texto-2)}
 .stepper{display:flex;align-items:center;gap:var(--e2)}
-.stepper button{width:var(--toque-m);height:var(--toque-m);border-radius:var(--r2);border:2px solid var(--borda);background:var(--superficie);font-size:28px;font-weight:700;line-height:1;cursor:pointer}
-.stepper output{min-width:104px;text-align:center;font-size:var(--t-numero);font-weight:800;line-height:1;font-variant-numeric:tabular-nums}
+.stepper button{width:var(--toque-m);height:var(--toque-m);border-radius:var(--r2);border:2px solid var(--borda);background:var(--superficie);font-size:1.75rem;font-weight:700;line-height:1;cursor:pointer}
+.stepper output{min-width:5.5rem;text-align:center;font-size:clamp(1.75rem,12vw,var(--t-numero));font-weight:800;line-height:1;font-variant-numeric:tabular-nums}
 .stepper output small{font-size:var(--t-pergunta);font-weight:700;color:var(--texto-2)}
-.rir{display:grid;grid-template-columns:repeat(5,1fr);gap:var(--e2)}
-.rir button{min-height:var(--toque-m);border-radius:var(--r2);border:2px solid var(--borda);background:var(--superficie);font-weight:800;font-size:18px;cursor:pointer;font-variant-numeric:tabular-nums}
+.rir{display:grid;grid-template-columns:repeat(auto-fit,minmax(var(--toque),1fr));gap:var(--e2)}
+.rir button{min-height:var(--toque-m);border-radius:var(--r2);border:2px solid var(--borda);background:var(--superficie);font-weight:800;font-size:1.125rem;cursor:pointer;font-variant-numeric:tabular-nums}
 .rir button[aria-pressed="true"]{background:var(--acao);border-color:var(--acao);color:var(--sobre-acao)}
 .descanso{background:var(--descanso);color:var(--descanso-texto);border-radius:var(--r2);padding:var(--e4);display:flex;flex-direction:column;gap:var(--e2)}
 .descanso.acabou{background:var(--atencao-suave);box-shadow:inset 0 0 0 3px var(--atencao)}
-.descanso .topo{display:flex;justify-content:space-between;align-items:baseline;font-weight:800;font-size:var(--t-pergunta)}
-.descanso .acabou-txt{font-size:32px;font-weight:800;line-height:1.1}
-.relogio{font-size:var(--t-relogio);font-weight:800;line-height:1;font-variant-numeric:tabular-nums;text-align:center}
+.descanso .topo{display:flex;flex-wrap:wrap;gap:0 var(--e3);justify-content:space-between;align-items:baseline;font-weight:800;font-size:var(--t-pergunta)}
+.descanso .acabou-txt{font-size:2rem;font-weight:800;line-height:1.1}
+.relogio{font-size:clamp(3rem,24vw,var(--t-relogio));font-weight:800;line-height:1;font-variant-numeric:tabular-nums;text-align:center}
 .tbarra{height:10px;border-radius:var(--rp);background:color-mix(in srgb,var(--descanso-texto) 14%,transparent);overflow:hidden}
 .tbarra i{display:block;height:100%;background:var(--acao);border-radius:var(--rp)}
 .montagem{background:var(--atencao-suave);border-radius:var(--r2);padding:var(--e3) var(--e4);display:flex;flex-direction:column;gap:var(--e1);font-size:var(--t-apoio)}
 .montagem b{font-size:var(--t-corpo)}
 .montagem ul{margin:0;padding-left:20px}
 .dicas{list-style:none;margin:0;padding:0;counter-reset:d;display:flex;flex-direction:column;gap:var(--e3)}
-.dicas li{counter-increment:d;display:flex;gap:var(--e3);font-size:20px;font-weight:800;line-height:1.3}
+.dicas li{counter-increment:d;display:flex;gap:var(--e3);font-size:1.25rem;font-weight:800;line-height:1.3}
 .dicas li::before{content:counter(d);color:var(--acao);min-width:18px}
 
 /* Folha inferior e diálogo */
@@ -229,7 +235,7 @@ legend{padding:0;margin-bottom:var(--e1)}
 .numero-g{font-size:var(--t-numero);font-weight:800;line-height:1;font-variant-numeric:tabular-nums}
 .numero-g small{font-size:var(--t-pergunta);color:var(--texto-2);font-weight:700}
 .semanas{display:flex;gap:4px}
-.semanas i{flex:1;height:22px;border-radius:4px;background:var(--superficie-2);display:grid;place-items:center;font-style:normal;font-size:12px;font-weight:800;color:var(--sobre-acao)}
+.semanas i{flex:1;height:22px;border-radius:4px;background:var(--superficie-2);display:grid;place-items:center;font-style:normal;font-size:0.75rem;font-weight:800;color:var(--sobre-acao)}
 .semanas i.on{background:var(--acao)}
 .semanas i.on::after{content:"✓"}
 .musc{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:var(--e3)}
@@ -248,11 +254,11 @@ legend{padding:0;margin-bottom:var(--e1)}
 .categoria{background:var(--superficie);border-radius:var(--r2)}
 .categoria>summary{list-style:none;min-height:var(--toque-m);padding:0 var(--e4);display:flex;align-items:center;justify-content:space-between;gap:var(--e2);cursor:pointer;font-weight:700}
 .categoria>summary::-webkit-details-marker{display:none}
-.categoria>summary::after{content:"+";font-size:24px;color:var(--texto-2)}
+.categoria>summary::after{content:"+";font-size:1.5rem;color:var(--texto-2)}
 .categoria[open]>summary::after{content:"–"}
 .categoria .corpo{padding:0 var(--e3) var(--e4);display:flex;flex-direction:column;gap:var(--e3)}
 .grade-eq{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--e2)}
-.cartao-eq{position:relative;min-height:104px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;padding:var(--e2) 4px;border:2px solid var(--borda);border-radius:var(--r2);background:var(--superficie);font-size:14px;font-weight:700;text-align:center;line-height:1.2;cursor:pointer}
+.cartao-eq{position:relative;min-height:104px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;padding:var(--e2) 4px;border:2px solid var(--borda);border-radius:var(--r2);background:var(--superficie);font-size:0.875rem;font-weight:700;text-align:center;line-height:1.2;cursor:pointer}
 .cartao-eq svg{width:56px;height:42px;fill:none;stroke:currentColor;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round;color:var(--texto-2)}
 .cartao-eq .falta{width:56px;height:42px;border:2px dashed var(--borda);border-radius:6px}
 .cartao-eq input{position:absolute;top:8px;right:8px;width:20px;height:20px;margin:0;accent-color:var(--acao)}
@@ -261,7 +267,7 @@ legend{padding:0;margin-bottom:var(--e1)}
 .etapas{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:var(--e2)}
 .etapas li{display:flex;gap:var(--e3);align-items:center;font-weight:700}
 .etapas li::before{content:"";width:22px;height:22px;border-radius:50%;border:2.5px solid var(--borda);flex:none}
-.etapas li.ok::before{content:"✓";display:grid;place-items:center;background:var(--feito);border-color:var(--feito);color:var(--superficie);font-size:14px}
+.etapas li.ok::before{content:"✓";display:grid;place-items:center;background:var(--feito);border-color:var(--feito);color:var(--superficie);font-size:0.875rem}
 .etapas li.agora::before{border-color:var(--acao);border-right-color:transparent;animation:gira 1s linear infinite}
 .etapas li.agora{color:var(--acao)}
 @keyframes gira{to{transform:rotate(1turn)}}
@@ -281,7 +287,7 @@ legend{padding:0;margin-bottom:var(--e1)}
 .marcados .txt span{font-size:var(--t-apoio);color:var(--texto-2)}
 .busca{display:flex;flex-direction:column;gap:6px}
 .busca label{font-weight:700}
-.busca input{min-height:var(--toque-m);border:2px solid var(--borda);border-radius:var(--r2);background:var(--superficie);padding:0 var(--e4);font-size:17px}
+.busca input{min-height:var(--toque-m);border:2px solid var(--borda);border-radius:var(--r2);background:var(--superficie);padding:0 var(--e4);font-size:1.0625rem}
 .grade-2{display:grid;grid-template-columns:1fr 1fr;gap:var(--e2)}
 .item-eq{position:relative;min-height:116px;display:flex;flex-direction:column;align-items:flex-start;justify-content:space-between;gap:var(--e2);padding:var(--e3);border:2px solid var(--borda);border-radius:var(--r2);background:var(--superficie);cursor:pointer;font-weight:700;line-height:1.2}
 .item-eq svg{width:56px;height:42px;fill:none;stroke:currentColor;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round;color:var(--texto-2)}
@@ -298,11 +304,33 @@ legend{padding:0;margin-bottom:var(--e1)}
 /* Índice e sistema (fora do app) */
 .indice h2{font-size:var(--t-rotulo);font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--texto-2);margin-top:var(--e2)}
 .amostras{display:grid;grid-template-columns:repeat(auto-fill,minmax(110px,1fr));gap:var(--e2)}
-.amostra{border-radius:var(--r1);overflow:hidden;background:var(--superficie);font-size:12px}
+.amostra{border-radius:var(--r1);overflow:hidden;background:var(--superficie);font-size:0.75rem}
 .amostra i{display:block;height:44px;border-bottom:1px solid var(--linha)}
 .amostra span{display:block;padding:4px 6px;font-weight:700}
 .toast{position:fixed;left:50%;bottom:calc(96px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);z-index:40;max-width:min(380px,calc(100% - 32px));background:var(--texto);color:var(--fundo);padding:var(--e3) var(--e4);border-radius:var(--r2);font-size:var(--t-apoio);font-weight:700}
 
+/* tela estreita (320 px) ou com zoom: o cabeçalho quebra em 2 linhas em vez de cortar, e os botões se ajustam */
+@media (max-width: 359px){
+  .cab-in{flex-wrap:wrap;row-gap:0}
+  .cab-in .meio{order:3;flex-basis:100%;text-align:left;white-space:normal;padding-bottom:var(--e1)}
+  .senti{padding:0 var(--e3);white-space:normal;line-height:1.1;text-align:left}
+  .dois{grid-template-columns:1fr}
+  .selo{white-space:normal;-webkit-box-decoration-break:clone;box-decoration-break:clone}
+  .stepper button{width:var(--toque);height:var(--toque)}
+}
+/* zoom de 200% (cerca de 206 px de largura): nada se perde; os desenhos de apoio saem e as fileiras quebram */
+@media (max-width: 279px){
+  .stepper output{min-width:3rem}
+  .linha.ex .mini,.opcao .icone,.ex-cab .mini{display:none}
+  .seg{flex-wrap:wrap}.seg button{flex:1 1 40%}
+  .chips.cheios .chip{flex:1 1 auto}
+  .opcao span,.linha .txt,.chip,legend,p,h1,h2{overflow-wrap:anywhere}
+  .grade-2{grid-template-columns:1fr}
+  .marcados li{flex-wrap:wrap}.marcados svg{display:none}
+  .pontos li{grid-template-columns:1fr}
+  .bolinhas i{width:16px;height:16px}
+  a.sup span[style*="display:flex"]{flex-wrap:wrap}
+}
 @media (prefers-reduced-motion: reduce){*,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
 </style>
 <div class="proto" id="proto"><div class="proto-in">
@@ -334,7 +362,7 @@ const SIGNIFICADO = {
   'um estudo': 'Um único ensaio, quase sempre com amostra pequena e curta duração.',
   consenso: 'Prática de treinadores e posicionamentos, sem ensaio que teste este número.',
 };
-const CURTA = { coracao: 'Problema no coração ou pressão alta', peito: 'Dor no peito', tontura: 'Tontura forte ou desmaio no último ano', 'doenca-cronica': 'Outra doença crônica', medicamento: 'Remédio para doença crônica', osteoarticular: 'Problema em osso, articulação, músculo ou tendão', supervisao: 'Médico pediu exercício só com acompanhamento', gravidez: 'Gravidez, ou bebê nos últimos 6 meses', 'doenca-aguda': 'Febre, gripe forte ou se recuperando de doença' };
+const CURTA = { coracao: 'Problema no coração ou pressão alta', peito: 'Dor no peito', tontura: 'Perdeu o equilíbrio por tontura, ou desmaiou, no último ano', 'doenca-cronica': 'Outra doença crônica', medicamento: 'Remédio para doença crônica', osteoarticular: 'Problema em osso, articulação, músculo ou tendão', supervisao: 'Médico pediu exercício só com acompanhamento', gravidez: 'Gravidez, ou bebê nos últimos 6 meses', 'doenca-aguda': 'Febre, gripe forte ou se recuperando de doença' };
 const selo = (id) => { const r = D.regras[id]; return r ? ` <a href="#fonte" class="selo" data-selo="${id}" aria-label="${esc(TXT_SELO[r.selo])}: ver de onde vem">${TXT_SELO[r.selo]}</a>` : ''; };
 function folhaSelo(id) {
   const r = D.regras[id];
@@ -347,25 +375,45 @@ function folhaSelo(id) {
 }
 
 // --- folha inferior e diálogo ---
-let ultimoFoco = null;
+let ultimoFoco = null, retorno = null;
 function abrirFolha(html, opcoes = {}) {
   fechar();
   ultimoFoco = document.activeElement;
+  retorno = opcoes.retorno || null;
   const veu = document.createElement('div');
   veu.className = 'veu' + (opcoes.abaixoCab ? ' abaixo-cab' : '') + (opcoes.dialogo ? ' centro' : '');
+  // no treino a folha não é "modal" para o leitor de tela: o cabeçalho com "Senti algo" continua ao alcance
+  const modal = opcoes.abaixoCab ? '' : ' aria-modal="true"';
   veu.innerHTML = opcoes.dialogo
-    ? `<div class="dialogo" role="alertdialog" aria-modal="true" aria-labelledby="folha-t">${html}</div>`
-    : `<div class="folha gutter" role="dialog" aria-modal="true" aria-labelledby="folha-t"><div class="alca" aria-hidden="true"></div>${html}</div>`;
+    ? `<div class="dialogo" role="alertdialog"${modal} aria-labelledby="folha-t">${html}</div>`
+    : `<div class="folha gutter" role="dialog"${modal} aria-labelledby="folha-t"><div class="alca" aria-hidden="true"></div>${html}</div>`;
   veu.addEventListener('click', (e) => { if (e.target === veu || e.target.closest('[data-fechar]')) fechar(); });
+  // o resto da página fica inerte (o foco não escapa para trás do véu); no treino, menos o cabeçalho
+  for (const el of [$('#proto'), ...$('#app').children]) if (el && !(opcoes.abaixoCab && el.matches('.cab'))) el.inert = true;
   document.body.append(veu);
   ($('#folha-t', veu) || veu).focus();
 }
 function fechar() {
+  if (!document.querySelector('.veu')) return;
   document.querySelectorAll('.veu').forEach((v) => v.remove());
-  if (ultimoFoco && document.contains(ultimoFoco)) ultimoFoco.focus();
-  ultimoFoco = null;
+  for (const el of [$('#proto'), ...$('#app').children]) if (el) el.inert = false;
+  const volta = (ultimoFoco && document.contains(ultimoFoco) && ultimoFoco !== document.body ? ultimoFoco : null) || (retorno && $(retorno));
+  if (volta) volta.focus();
+  ultimoFoco = null; retorno = null;
 }
-document.addEventListener('keydown', (e) => { if (e.key === 'Escape') fechar(); });
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') return fechar();
+  // o Tab dá a volta dentro da folha (no treino, junto com o "Senti algo" do cabeçalho), sem escapar para trás do véu
+  const veu = document.querySelector('.veu');
+  if (e.key !== 'Tab' || !veu) return;
+  const sel = 'a[href], button:not([disabled]), input:not([disabled]), select, [tabindex="0"]';
+  const alvos = [...(veu.classList.contains('abaixo-cab') ? [$('.senti')].filter(Boolean) : []), ...veu.querySelectorAll(sel)].filter((x) => x.getClientRects().length);
+  if (!alvos.length) return;
+  const i = alvos.indexOf(document.activeElement);
+  const prox = e.shiftKey ? (i <= 0 ? alvos.length - 1 : i - 1) : (i === -1 || i === alvos.length - 1 ? 0 : i + 1);
+  e.preventDefault();
+  alvos[prox].focus();
+});
 function aviso(txt) {
   document.querySelectorAll('.toast').forEach((t) => t.remove());
   const t = document.createElement('div');
@@ -388,9 +436,10 @@ const cabPasso = (n, voltar) => `<header class="cab"><div class="gutter"><div cl
 const cabCasa = (voltar, rotuloVolta) => `<header class="cab"><div class="gutter"><div class="cab-in">${voltar ? `<a class="volta" href="#${voltar}">‹ ${rotuloVolta}</a><span class="meio"></span>` : '<span class="marca">treino-mvp</span>'}</div></div></header>`;
 const cabTarefa = (voltar, rotuloVolta, meio, rotuloAcessivel) => `<header class="cab"><div class="gutter"><div class="cab-in"><a class="volta" href="#${voltar}"${rotuloAcessivel ? ` aria-label="${rotuloAcessivel}"` : ''}>‹ ${rotuloVolta}</a><span class="meio">${meio}</span>${sentiBtn}</div></div></header>`;
 const titulo = (t) => `<h1 class="titulo" tabindex="-1" id="t1">${t}</h1>`;
-const miniBoneco = (id, rotulo) => {
+// a miniatura fica muda para o leitor de tela: o nome do exercício já está escrito ao lado
+const miniBoneco = (id) => {
   const m = id && B.mini[id];
-  return m ? `<span class="mini palco" role="img" aria-label="${esc(rotulo || 'Boneco')}"><svg viewBox="${m.v}" class="${m.c}">${m.h}</svg></span>` : `<span class="mini texto" aria-hidden="true">guia em texto</span>`;
+  return m ? `<span class="mini palco" aria-hidden="true"><svg viewBox="${m.v}" class="${m.c}">${m.h}</svg></span>` : `<span class="mini texto" aria-hidden="true">guia em texto</span>`;
 };
 const diaA = D.dias[0], diaB = D.dias[1], diaC = D.dias[2];
 const rxCurta = (x) => `${x.series} × ${faixa(x.reps)}${x.unilateral ? ' cada lado' : ''}`;
@@ -416,24 +465,26 @@ tela('boas-vindas', 'Cadastro', '1. Boas-vindas', () => `${cabPasso(1)}
 tela('triagem', 'Cadastro', '2. Saúde: uma pergunta', () => `${cabPasso(2, 'boas-vindas')}
 <main class="miolo gutter">
   ${titulo('Alguma destas vale para você?')}
-  <p class="apoio" style="margin-top:-12px">Hoje, ou algo que um médico já disse.</p>
+  <p class="apoio" style="margin-top:-12px">Hoje, ou algo que um médico já disse. Um "sim" não impede o treino; pede uma avaliação antes do programa automático.</p>
   <ul class="condicoes" aria-label="As 9 condições">${D.triagem.map((p) => `<li>${esc(CURTA[p.id])}</li>`).join('')}</ul>
   <p class="apoio">Se nenhuma vale, um toque responde "não" a todas.${selo('seguranca.triagem.nenhuma')} <a class="link" href="#perguntas" data-perguntas>Ver as perguntas completas</a></p>
-</main>${base(`<div class="pilha-2"><a class="btn" href="#experiencia">Não, nenhuma</a><a class="btn sec" href="#triagem-sim">Sim, alguma (ou não tenho certeza)</a></div>`)}`);
+  <div class="pilha-2"><a class="btn" href="#experiencia">Não, nenhuma</a><a class="btn sec" href="#triagem-sim">Sim, alguma (ou não tenho certeza)</a></div>
+  <p class="apoio">Os botões ficam depois da lista de propósito: a regra de segurança pede que você passe pelas 9 antes de responder.</p>
+</main>`);
 
 tela('triagem-sim', 'Cadastro', '2b. Saúde: quais valem', () => `${cabPasso(2, 'triagem')}
 <main class="miolo gutter">
   ${titulo('Quais valem para você?')}
-  <p>Marque só as que valem. As que você não marcar contam como "não".</p>
-  <fieldset><legend class="sr">As 9 condições</legend><div class="opcoes">${D.triagem.map((p) => `<label class="opcao"><input type="checkbox" id="tr-${p.id}"${p.id === 'osteoarticular' ? ' checked' : ''}><span><span class="curta">${esc(CURTA[p.id])}</span><span class="longa">${esc(p.texto)}</span></span></label>`).join('')}</div></fieldset>
-  <section class="sup" aria-labelledby="onde"><h2 id="onde" class="pergunta">Onde?</h2>
-    <div class="chips">${['Ombro', 'Cotovelo', 'Punho', 'Lombar', 'Quadril', 'Joelho', 'Tornozelo'].map((a) => `<label class="chip"><input type="checkbox" id="ar-${a}"${a === 'Ombro' ? ' checked' : ''}>${a}</label>`).join('')}</div>
-    <fieldset><legend class="pergunta" style="font-size:17px">E hoje, dói o ombro? De 0 (nada) a 10 (a pior dor)</legend>
-      <div class="chips">${Array.from({ length: 11 }, (_, n) => `<label class="chip"><input type="radio" name="nota" id="nota-${n}"${n === 4 ? ' checked' : ''}>${n}</label>`).join('')}</div></fieldset>
+  <p>Marque as que valem. No fim, você confirma que as outras não valem.</p>
+  <fieldset><legend class="sr">As 9 condições</legend><div class="opcoes">${D.triagem.map((p) => `<label class="opcao"><input type="checkbox" id="tr-${p.id}" data-cond="${p.id}"><span><span class="curta">${esc(CURTA[p.id])}</span><span class="longa">${esc(p.texto)}</span></span></label>`).join('')}</div></fieldset>
+  <section class="sup" aria-labelledby="onde" id="onde-sec" hidden><h2 id="onde" class="pergunta">Onde?</h2>
+    <div class="chips">${['Ombro', 'Cotovelo', 'Punho', 'Lombar', 'Quadril', 'Joelho', 'Tornozelo'].map((a) => `<label class="chip"><input type="checkbox" id="ar-${a}">${a}</label>`).join('')}</div>
+    <fieldset><legend class="pergunta" style="font-size:var(--t-corpo)">E hoje, dói? De 0 (nada) a 10 (a pior dor)</legend>
+      <div class="chips">${Array.from({ length: 11 }, (_, n) => `<label class="chip"><input type="radio" name="nota" id="nota-${n}">${n}</label>`).join('')}</div></fieldset>
     <p class="apoio">Dor forte, que piora ou que dura mais de 1 a 2 semanas pede avaliação profissional.</p>
   </section>
   <p class="apoio">Protótipo: com "sim" no coração, no peito, na tontura ou na supervisão, o bloqueio e a liberação continuam iguais aos de hoje.</p>
-</main>${base(`<a class="btn" href="#experiencia">Continuar</a>`)}`);
+</main>${base(`<button type="button" class="btn" data-confirmar-triagem>Continuar</button>`)}`);
 
 const escolha = (nome, legenda, ajuda, opcoes, marcada) => `<fieldset><legend class="pergunta">${legenda}</legend>${ajuda ? `<p class="apoio">${ajuda}</p>` : ''}<div class="opcoes">${opcoes.map((o, i) => `<label class="opcao"><input type="radio" name="${nome}" id="${nome}-${i}"${i === marcada ? ' checked' : ''}><span>${esc(o)}</span></label>`).join('')}</div></fieldset>`;
 tela('experiencia', 'Cadastro', '3. Experiência', () => `${cabPasso(3, 'triagem')}
@@ -470,7 +521,7 @@ tela('equipamento-academia', 'Cadastro', '5b. Equipamento: academia completa', (
 <main class="miolo gutter">
   ${titulo('Que equipamento você tem?')}
   ${lugares('academia')}
-  <div class="sup info"><p>Supomos halteres de 2 a 40 kg, polia regulável e o básico dos aparelhos. A 1ª série de cada exercício acerta a carga.${selo('equipamento.atalhos')}</p><a class="linha" href="#equipamento-lista" style="padding:0;min-height:48px"><span class="txt"><b>Conferir os 39 itens</b></span><span class="seta" aria-hidden="true">›</span></a></div>
+  <div class="sup info"><p>Supomos halteres de 2 a 40 kg, polia regulável e o básico dos aparelhos. A 1ª série de cada exercício acerta a carga.${selo('equipamento.atalhos')}</p><a class="linha" href="#equipamento-lista" style="padding:0;min-height:3rem"><span class="txt"><b>Conferir os 39 itens</b></span><span class="seta" aria-hidden="true">›</span></a></div>
 </main>${base(`<a class="btn" href="#programa-novo">Gerar meu programa</a>`)}`);
 
 const ITENS = Object.fromEntries(D.equipamento.map((c) => [c.titulo, c.itens.map((it) => [it.nome, it.desenho || window.ICONES_NOVOS[it.id] || '', it.id === 'halteres_fixos' || it.id === 'banco_reto', it.completo])]));
@@ -499,12 +550,12 @@ tela('equipamento-foto', 'Cadastro', '5d. Equipamento: a foto, enquanto analisa'
   <p class="apoio">Nada entra sem a sua confirmação: cada sugestão vem com "Tenho" e "Não tenho".</p>`));
 
 // ======================= INÍCIO (PROGRAMA) =======================
-const linhaEx = (x, i) => `<li><button type="button" class="linha ex" data-ex="${i}">${miniBoneco(x.animacaoId, x.nome)}<span class="txt"><b>${esc(x.nome)}</b><span class="num"><span class="rx" style="font-size:17px">${rxCurta(x)}</span> · reserva ${faixa(x.rir)} · descanso ${tempo(x.descansoSeg)}</span></span><span class="seta" aria-hidden="true">›</span></button></li>`;
+const linhaEx = (x, i) => `<li><button type="button" class="linha ex" data-ex="${i}">${miniBoneco(x.animacaoId, x.nome)}<span class="txt"><b>${esc(x.nome)}</b><span class="num"><span class="rx" style="font-size:1.0625rem">${rxCurta(x)}</span> · reserva ${faixa(x.rir)} · descanso ${tempo(x.descansoSeg)}</span></span><span class="seta" aria-hidden="true">›</span></button></li>`;
 const listaDia = (d) => `<div class="pilha">
   <div class="seg" role="tablist" aria-label="Dias de treino">${D.dias.map((x, i) => `<button type="button" role="tab" aria-selected="${D.dias[i] === d}" data-dia="${i}">${esc(x.nome.replace('Corpo todo ', ''))}</button>`).join('')}</div>
   <p class="apoio num">${esc(d.nome)} · ${d.exercicios.length} exercícios · ~${d.minutos} min</p>
   <ul class="lista">${d.exercicios.map(linhaEx).join('')}</ul></div>`;
-const faixaSemana = (feitos, msg) => `<a class="sup" href="#semana" style="text-decoration:none;color:inherit;flex-direction:row;align-items:center;gap:12px"><span class="pilha-2" style="flex:1;min-width:0"><span style="display:flex;align-items:center;gap:12px"><b>A sua semana</b><span class="bolinhas" role="img" aria-label="${feitos} de 3 treinos feitos">${[0, 1, 2].map((i) => `<i class="${i < feitos ? 'on' : ''}"></i>`).join('')}</span><b class="num" style="color:var(--acao)">${feitos} de 3</b></span><span class="apoio">${esc(msg)}</span></span><span class="seta" aria-hidden="true" style="font-size:22px;color:var(--texto-2)">›</span></a>`;
+const faixaSemana = (feitos, msg) => `<a class="sup" href="#semana" style="text-decoration:none;color:inherit;flex-direction:row;align-items:center;gap:12px"><span class="pilha-2" style="flex:1;min-width:0"><span style="display:flex;align-items:center;gap:12px"><b>A sua semana</b><span class="bolinhas" role="img" aria-label="${feitos} de 3 treinos feitos">${[0, 1, 2].map((i) => `<i class="${i < feitos ? 'on' : ''}"></i>`).join('')}</span><b class="num" style="color:var(--acao)">${feitos} de 3</b></span><span class="apoio">${esc(msg)}</span></span><span class="seta" aria-hidden="true" style="font-size:1.375rem;color:var(--texto-2)">›</span></a>`;
 const cartaoHoje = (d, extra) => `<section class="sup" aria-labelledby="hoje-t" style="box-shadow:inset 0 0 0 2px var(--acao-suave)"><p class="rotulo">Hoje</p><h2 id="hoje-t">${esc(d.nome)}</h2><p class="apoio num">${d.exercicios.length} exercícios · ~${d.minutos} min</p>${extra || ''}</section>`;
 const fase1 = `<p class="apoio">${esc(D.fases[0].texto)}${selo(D.fases[0].regraId)}</p>`;
 const inicio = ({ d = diaA, topo = '', hoje = '', semana = '', mensagem = '' }) => `${cabCasa()}
@@ -536,14 +587,14 @@ tela('inicio-semana4', 'Início', '7c. Início na 4ª semana: uma mensagem por v
   mensagem: `<section class="sup" aria-labelledby="leve-t"><h2 id="leve-t">Semana leve? (opcional)</h2><p><b>Motivo:</b> 3 exercícios sem progresso em 3 treinos.</p>
     <p>Cerca de metade das séries, RIR 3–4 e a mesma carga. Para descansar, não para crescer.${selo('deload.semana-leve')}</p>
     <div class="dois" style="gap:12px"><button type="button" class="btn sec" data-aviso="Protótipo: a semana leve começa com este toque, como hoje.">Fazer a semana leve</button><button type="button" class="btn sec" data-aviso="Protótipo: a oferta some até aparecer um sinal novo, como hoje.">Agora não</button></div>
-    <a class="linha" href="#selo" style="padding:0;min-height:48px">Mais 2 avisos<span class="seta" aria-hidden="true">›</span></a></section>`,
+    <a class="linha" href="#selo" style="padding:0;min-height:3rem">Mais 2 avisos<span class="seta" aria-hidden="true">›</span></a></section>`,
 }));
 tela('exercicio', 'Início', '7d. Detalhe de um exercício (folha)', () => TELAS.inicio.render(), () => folhaExercicio(diaB.exercicios[0]));
 function folhaExercicio(x) {
   abrirFolha(`<div class="folha-cab"><h2 id="folha-t" tabindex="-1">${esc(x.nome)}</h2><button type="button" class="btn ter auto" data-fechar>Fechar</button></div>
   <div style="display:flex;gap:12px;align-items:center">${miniBoneco(x.animacaoId, x.nome)}<p class="num"><b>${rxCurta(x)}</b><br><span class="apoio">reserva ${faixa(x.rir)} · descanso ${tempo(x.descansoSeg)}</span></p></div>
   ${x.animacaoId ? '<a class="btn sec" href="#guia">Ver como fazer</a>' : ''}
-  <div class="pilha-2"><p class="rotulo">Por que este exercício</p><ul class="lista">${x.porque.map((p) => `<li class="linha" style="cursor:default"><span class="txt"><span style="color:var(--texto);font-size:15px">${esc(p.texto)}${selo(p.regraId)}</span></span></li>`).join('')}</ul></div>
+  <div class="pilha-2"><p class="rotulo">Por que este exercício</p><ul class="lista">${x.porque.map((p) => `<li class="linha" style="cursor:default"><span class="txt"><span style="color:var(--texto);font-size:var(--t-apoio)">${esc(p.texto)}${selo(p.regraId)}</span></span></li>`).join('')}</ul></div>
   <div class="pilha-2"><p class="rotulo">Se o aparelho estiver ocupado</p><ul class="lista">${x.alternativas.slice(0, 3).map((a) => `<li class="linha" style="cursor:default"><span class="txt"><b>${esc(nomeDe(a))}</b></span></li>`).join('')}</ul></div>
   <a class="btn ter" href="#evolucao">Ver a evolução deste exercício</a>`);
 }
@@ -551,55 +602,56 @@ tela('selo', 'Início', '7e. Toque no selo: a regra e as fontes', () => TELAS.in
 
 // ======================= TREINO =======================
 const exA = diaA.exercicios[0];
-const exCab = (x, i) => `<div class="ex-cab">${miniBoneco(x.animacaoId, x.nome)}<div class="pilha-2" style="flex:1;min-width:0"><h1 id="t1" tabindex="-1">${esc(x.nome)}</h1><p class="meta">${rxCurta(x)} · reserva ${faixa(x.rir)}</p>${x.animacaoId ? '<a class="link" href="#guia" style="min-height:44px;display:inline-flex;align-items:center">Ver como fazer ›</a>' : ''}</div></div>`;
+const exCab = (x, i) => `<div class="ex-cab">${miniBoneco(x.animacaoId, x.nome)}<div class="pilha-2" style="flex:1;min-width:0"><h1 id="t1" tabindex="-1">${esc(x.nome)}</h1><p class="meta">${rxCurta(x)} · reserva ${faixa(x.rir)}</p>${x.animacaoId ? '<a class="link" href="#guia" style="min-height:2.75rem;display:inline-flex;align-items:center">Ver como fazer ›</a>' : ''}</div></div>`;
 const progresso = (i) => `<div style="height:4px;background:var(--superficie-2)" aria-hidden="true"><i style="display:block;height:100%;width:${(i / 6) * 100}%;background:var(--acao)"></i></div>`;
 const registro = ({ n = 1, total = 4, carga = S.carga, reps = S.reps, rir = S.rir, rotulo = 'Série feita · descansar 1:45' } = {}) => `<section class="registro gutter" aria-labelledby="serie-t">
-  <div class="serie-tit"><b id="serie-t">Série ${n} de ${total}</b><span class="apoio">cada lado</span></div>
-  <div class="linha-reg"><span class="rot">Carga</span><div class="stepper" role="group" aria-label="Carga"><button type="button" aria-label="Menos carga" data-passo="carga:-1">−</button><output id="carga" aria-live="polite">${carga}<small> kg</small></output><button type="button" aria-label="Mais carga" data-passo="carga:1">+</button></div></div>
-  <div class="linha-reg"><span class="rot">Repetições</span><div class="stepper" role="group" aria-label="Repetições"><button type="button" aria-label="Menos uma repetição" data-passo="reps:-1">−</button><output id="reps" aria-live="polite">${reps}</output><button type="button" aria-label="Mais uma repetição" data-passo="reps:1">+</button></div></div>
+  <div class="serie-tit"><h2 id="serie-t" style="font-size:var(--t-pergunta);font-weight:800">Série ${n} de ${total}</h2><span class="apoio">cada lado</span></div>
+  <div class="linha-reg"><span class="rot" id="rot-carga">Carga</span><div class="stepper" role="group" aria-labelledby="rot-carga"><button type="button" aria-label="Menos carga" data-passo="carga:-1">−</button><output id="carga" aria-live="polite">${carga}<small> kg</small></output><button type="button" aria-label="Mais carga" data-passo="carga:1">+</button></div></div>
+  <div class="linha-reg"><span class="rot" id="rot-reps">Repetições</span><div class="stepper" role="group" aria-labelledby="rot-reps"><button type="button" aria-label="Menos uma repetição" data-passo="reps:-1">−</button><output id="reps" aria-live="polite">${reps}</output><button type="button" aria-label="Mais uma repetição" data-passo="reps:1">+</button></div></div>
   <fieldset><legend style="font-weight:700">Quantas repetições ainda conseguiria? (RIR)</legend><p class="apoio" style="margin-top:-6px">A maioria das pessoas acha que tem menos reserva do que tem.${selo('rir.leitura')}</p>
   <div class="rir">${['0', '1', '2', '3', '4+'].map((r) => `<button type="button" aria-pressed="${rir === r}" data-rir="${r}">${r}</button>`).join('')}</div></fieldset>
-  <button type="button" class="btn g" data-ir="treino-descanso" id="feita"${rir === null ? ' disabled' : ''}>${rotulo}</button>
-</section>`;
+</section>
+<div class="feita-base gutter"><button type="button" class="btn g" data-ir="treino-descanso" id="feita"${rir === null ? ' disabled aria-describedby="feita-por-que"' : ''}>${rotulo}</button><span class="sr" id="feita-por-que">Escolha quantas repetições ainda conseguiria (RIR) para salvar.</span></div>`;
 const restoTreino = `<div class="pilha" style="margin-top:8px"><div class="dois"><button type="button" class="btn sec" data-aviso="Protótipo: vai para o exercício anterior.">‹ Anterior</button><button type="button" class="btn sec" data-aviso="Protótipo: vai para o próximo exercício.">Próximo ›</button></div><button type="button" class="btn sec" data-ir="treino-trocar">Trocar exercício</button><button type="button" class="btn ter" data-ir="treino-terminar">Terminar o treino agora</button></div>`;
 tela('treino', 'Treino', '8. Treino: 1ª série (calibração)', () => `${cabTarefa('inicio', 'Início', 'A · 1 de 6', 'Voltar ao início; o treino fica salvo')}${progresso(0)}
-<main class="miolo gutter" style="gap:16px">
+<main class="treino-main"><div class="miolo gutter" style="gap:16px">
   ${exCab(exA)}
   <div class="sup info"><p><b>Calibração da carga.</b> 1ª vez neste exercício: comece com uma carga que pareça fácil; a 1ª série acerta a carga. A meta é ${faixa(exA.reps)} repetições com ${faixa(exA.rir)} de reserva.${selo('progressao.calibracao')}</p><p class="apoio">Antes: 1–2 séries leves de aquecimento, sem contar.${selo('tempo.aquecimento')}</p></div>
   ${restoTreino}
-</main>${registro()}`);
+</div>${registro()}</main>`);
 
 const painelDescanso = (acabou) => `<section class="descanso${acabou ? ' acabou' : ''}" aria-labelledby="desc-t">
   <div class="topo"><span id="desc-t" class="${acabou ? 'acabou-txt' : ''}">${acabou ? 'Hora da próxima série' : 'Descanso'}</span>${acabou ? '' : '<span class="apoio">Série 1 de 4 feita</span>'}</div>
+  <p class="sr" role="status" id="status-descanso">${acabou ? 'Hora da próxima série.' : 'Descanso de 1 minuto e 45 segundos.'}</p>
   <div class="relogio" role="timer" aria-live="off" id="relogio">${acabou ? '+0:04' : tempo(S.descanso)}</div>
   ${acabou ? '' : `<div class="tbarra" aria-hidden="true"><i id="tbarra" style="width:${((105 - S.descanso) / 105) * 100}%"></i></div><div class="dois"><button type="button" class="btn sec" data-desc="-15">−15 s</button><button type="button" class="btn sec" data-desc="15">+15 s</button></div>`}
 </section>`;
-const feitas = `<div class="feitas" aria-label="Séries feitas"><span>1 · 8 kg × 10 · RIR 2 · acerto da carga</span></div>`;
+const feitas = `<ul class="feitas" role="list" aria-label="Séries feitas" style="list-style:none;margin:0;padding:0"><li><span>1 · 8 kg × 10 · RIR 2 · acerto da carga</span></li></ul>`;
 const telaDescanso = (acabou) => `${cabTarefa('inicio', 'Início', 'A · 1 de 6', 'Voltar ao início; o treino fica salvo')}${progresso(0)}
-<main class="miolo gutter" style="gap:16px">
+<main class="treino-main"><div class="miolo gutter" style="gap:16px">
   ${painelDescanso(acabou)}
-  <div class="ex-cab" style="gap:12px">${miniBoneco(exA.animacaoId, exA.nome)}<div class="pilha-2" style="flex:1;min-width:0"><p style="font-weight:800">${esc(exA.nome)}</p>${feitas}</div></div>
+  <div class="ex-cab" style="gap:12px">${miniBoneco(exA.animacaoId, '')}<div class="pilha-2" style="flex:1;min-width:0"><h1 id="t1" tabindex="-1" style="font-size:var(--t-corpo);font-weight:800">${esc(exA.nome)}</h1>${feitas}</div></div>
   <div class="sup info"><p><b>Calibração:</b> Ficou pesada: na próxima série, 7 kg.${selo('progressao.calibracao')}</p></div>
   ${restoTreino}
-</main>${registro({ n: 2, carga: 7, reps: 10, rir: '2', rotulo: 'Série feita (encerra o descanso)' })}`;
+</div>${registro({ n: 2, carga: 7, reps: 10, rir: '2', rotulo: 'Série feita (encerra o descanso)' })}</main>`;
 tela('treino-descanso', 'Treino', '8b. Descanso (o registro continua à vista)', () => telaDescanso(false), () => iniciarDescanso());
 tela('treino-acabou', 'Treino', '8c. Descanso que acabou', () => telaDescanso(true));
 tela('treino-senti', 'Treino', '8d. "Senti algo" aberto', () => TELAS.treino.render(), () => abrirFolha(`<div class="folha-cab"><h2 id="folha-t" tabindex="-1">O que você sentiu?</h2><button type="button" class="btn ter auto" data-fechar>Fechar</button></div>
   <div class="pilha-2">${['Dor, pressão ou aperto no peito', 'Falta de ar fora do normal', 'Tontura ou quase desmaio', 'Coração batendo muito irregular', 'Dor aguda ou em pontada numa articulação', 'Formigamento ou dormência', 'Perda de força estranha'].map((t) => `<button type="button" class="btn sec" style="justify-content:flex-start;text-align:left" data-aviso="Protótipo: a resposta de segurança é a mesma do app de hoje.">${t}</button>`).join('')}</div>
   <fieldset><legend style="font-weight:700">Ou dê uma nota para a dor (0 a 10)</legend><div class="pilha-2"><div class="chips cheios">${[0, 1, 2, 3, 4, 5].map((n) => `<button type="button" class="chip" data-aviso="Protótipo: a nota segue a regra de dor de hoje.">${n}</button>`).join('')}</div><div class="chips cheios">${[6, 7, 8, 9, 10].map((n) => `<button type="button" class="chip" data-aviso="Protótipo: a nota segue a regra de dor de hoje.">${n}</button>`).join('')}</div></div></fieldset>
-  <p class="apoio">O app não diagnostica.${selo('seguranca.sem-diagnostico')}</p>`, { abaixoCab: true }));
+  <p class="apoio">O app não diagnostica.${selo('seguranca.sem-diagnostico')}</p>`, { abaixoCab: true, retorno: '.senti' }));
 tela('treino-trocar', 'Treino', '8e. Trocar exercício (folha)', () => TELAS.treino.render(), () => abrirFolha(`<div class="folha-cab"><h2 id="folha-t" tabindex="-1">Trocar só neste treino por:</h2><button type="button" class="btn ter auto" data-fechar>Fechar</button></div>
   <ul class="lista">${exA.alternativas.slice(0, 3).map((a) => `<li><button type="button" class="linha" data-aviso="Protótipo: troca só neste treino, como hoje."><span class="txt"><b>${esc(nomeDe(a))}</b><span>Faz a mesma função; dá para trocar se o aparelho estiver ocupado.</span></span><span class="seta" aria-hidden="true">›</span></button></li>`).join('')}</ul>
-  <p class="apoio">As alternativas fazem a mesma função.${selo('selecao.equivalencia')}</p>`, { abaixoCab: true }));
+  <p class="apoio">As alternativas fazem a mesma função.${selo('selecao.equivalencia')}</p>`, { abaixoCab: true, retorno: '[data-ir="treino-trocar"]' }));
 const exPonte = diaA.exercicios[1];
 const cartaoP = D.cartoes['ponte-gluteo-halter'];
 tela('treino-texto', 'Treino', '8f. Exercício sem animação: montagem segura à vista', () => `${cabTarefa('inicio', 'Início', 'A · 2 de 6', 'Voltar ao início; o treino fica salvo')}${progresso(1)}
-<main class="miolo gutter" style="gap:16px">
-  <div class="ex-cab">${miniBoneco(null)}<div class="pilha-2" style="flex:1;min-width:0"><h1 id="t1" tabindex="-1">${esc(exPonte.nome)}</h1><p class="meta">${rxCurta(exPonte)} · reserva ${faixa(exPonte.rir)}</p><button type="button" class="link" data-cartao style="min-height:44px;text-align:left">Como fazer: dicas e erros ›</button></div></div>
+<main class="treino-main"><div class="miolo gutter" style="gap:16px">
+  <div class="ex-cab">${miniBoneco(null)}<div class="pilha-2" style="flex:1;min-width:0"><h1 id="t1" tabindex="-1">${esc(exPonte.nome)}</h1><p class="meta">${rxCurta(exPonte)} · reserva ${faixa(exPonte.rir)}</p><button type="button" class="link" data-cartao style="min-height:2.75rem;text-align:left">Como fazer: dicas e erros ›</button></div></div>
   <section class="montagem" aria-labelledby="mont-t"><p><b id="mont-t">Montagem segura</b>${selo('seguranca.montagem')}</p><ul>${cartaoP.montagem.map((t) => `<li>${esc(t)}</li>`).join('')}</ul></section>
   ${restoTreino}
-</main>${registro({ n: 1, total: exPonte.series, carga: 6, reps: 15, rir: null, rotulo: 'Série feita · descansar 1:45' })}`);
-tela('treino-terminar', 'Treino', '8g. Terminar com confirmação', () => TELAS.treino.render(), () => abrirFolha(`<h2 id="folha-t" class="pergunta" tabindex="-1">Terminar o treino agora?</h2><p>Você fez 1 de 6 exercícios. O que já foi registrado fica salvo.</p><div class="pilha-2"><a class="btn" href="#fim">Terminar o treino</a><button type="button" class="btn sec" data-fechar>Continuar treinando</button></div>`, { dialogo: true, abaixoCab: true }));
+</div>${registro({ n: 1, total: exPonte.series, carga: 6, reps: 15, rir: null, rotulo: 'Série feita · descansar 1:45' })}</main>`);
+tela('treino-terminar', 'Treino', '8g. Terminar com confirmação', () => TELAS.treino.render(), () => abrirFolha(`<h2 id="folha-t" class="pergunta" tabindex="-1">Terminar o treino agora?</h2><p>Você fez 1 de 6 exercícios. O que já foi registrado fica salvo.</p><div class="pilha-2"><button type="button" class="btn" data-fechar>Continuar treinando</button><a class="btn sec" href="#fim">Terminar o treino</a></div>`, { dialogo: true, abaixoCab: true, retorno: '[data-ir="treino-terminar"]' }));
 
 // ======================= GUIA =======================
 const GUIA = D.guia.bulgaro;
@@ -615,7 +667,7 @@ tela('guia', 'Guia', '9. Guia aberto pelo treino', () => `${cabTarefa('treino', 
 <main class="miolo" style="padding-top:0;gap:16px">
   <div class="palco" id="palco" role="img" aria-label="Boneco fazendo ${esc(GUIA.nome)}, modo ${MODOS.find((x) => x[0] === S.modo)[1]}"><svg id="svg-boneco"></svg><div class="hud" aria-hidden="true"><div class="fase" id="fase"></div><div class="breath" id="resp"></div></div></div>
   <div class="gutter pilha">
-    <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center"><button type="button" class="btn sec auto" id="tocar" style="min-height:48px">${S.tocando ? 'Pausar' : 'Tocar'}</button><button type="button" class="btn sec auto" id="lento" aria-pressed="${S.lento}" style="min-height:48px">Lento</button><span class="apoio" style="margin-left:auto">${NOME_VISTA[B.guia[S.modo].vista] || B.guia[S.modo].vista}</span></div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center"><button type="button" class="btn sec auto" id="tocar" style="min-height:3rem">${S.tocando ? 'Pausar' : 'Tocar'}</button><button type="button" class="btn sec auto" id="lento" aria-pressed="${S.lento}" style="min-height:3rem">Lento</button><span class="apoio" style="margin-left:auto">${NOME_VISTA[B.guia[S.modo].vista] || B.guia[S.modo].vista}</span></div>
     <div class="seg g" role="group" aria-label="Modo">${MODOS.map(([k, t]) => `<button type="button" aria-pressed="${S.modo === k}" data-modo="${k}">${t}</button>`).join('')}</div>
     ${legendaModo(S.modo)}
     <section class="pilha-2" aria-labelledby="dicas-t"><h2 id="dicas-t" class="rotulo">As 3 dicas</h2><ol class="dicas">${GUIA.dicas.map((c) => `<li>${esc(c)}</li>`).join('')}</ol></section>
@@ -702,7 +754,7 @@ tela('dados', 'Meus dados e locais', '13. Meus dados', () => `${cabCasa()}
   ${grupoLinhas('Saúde e aparelho', [['Refazer a triagem', 'As 9 perguntas e a dor de hoje'], ['Tema', 'Do celular']])}
   <button type="button" class="btn perigo" data-ir="dados-apagar">Apagar todos os dados</button>
 </main>${base('', 'dados')}`);
-tela('dados-apagar', 'Meus dados e locais', '13b. Apagar tudo: diálogo', () => TELAS.dados.render(), () => abrirFolha(`<h2 id="folha-t" class="pergunta" tabindex="-1">Apagar todos os dados?</h2><p>O perfil, o programa e os treinos saem deste aparelho e não voltam. Se quiser, guarde uma cópia antes.</p><div class="pilha-2"><button type="button" class="btn perigo" data-fechar>Apagar tudo</button><button type="button" class="btn sec" data-fechar>Cancelar</button></div>`, { dialogo: true }));
+tela('dados-apagar', 'Meus dados e locais', '13b. Apagar tudo: diálogo', () => TELAS.dados.render(), () => abrirFolha(`<h2 id="folha-t" class="pergunta" tabindex="-1">Apagar todos os dados?</h2><p>O perfil, o programa e os treinos saem deste aparelho e não voltam. Se quiser, guarde uma cópia antes.</p><div class="pilha-2"><button type="button" class="btn" data-fechar>Cancelar</button><button type="button" class="btn sec" style="color:var(--alerta);border-color:var(--alerta)" data-fechar>Apagar tudo</button></div>`, { dialogo: true, retorno: '[data-ir="dados-apagar"]' }));
 tela('locais', 'Meus dados e locais', '14. Meus locais (persona Bruno)', () => `${cabCasa('dados', 'Meus dados')}
 <main class="miolo gutter">
   ${titulo('Meus locais')}
@@ -749,6 +801,7 @@ function iniciarDescanso() {
     S.descanso = Math.max(0, S.descanso - 1);
     r.textContent = tempo(S.descanso);
     const b = $('#tbarra'); if (b) b.style.width = ((105 - S.descanso) / 105) * 100 + '%';
+    if (S.descanso === 10) { const st = $('#status-descanso'); if (st) st.textContent = 'Faltam 10 segundos.'; }
     if (!S.descanso) { clearInterval(S.timer); location.hash = 'treino-acabou'; }
   }, 1000);
 }
@@ -762,12 +815,18 @@ function mostrar() {
   document.title = `${t.nome.replace(/^[0-9a-z]+\. /, '')} · Redesign treino-mvp`;
   window.scrollTo(0, 0);
   const h = $('#t1'); if (h) h.focus({ preventScroll: true });
+  ajustarBarras();
   if (t.depois) t.depois();
 }
 $('#app').addEventListener('click', (e) => {
   const el = e.target.closest('button, a'); if (!el) return;
   if (el.dataset.selo) { e.preventDefault(); return folhaSelo(el.dataset.selo); }
   if (el.dataset.privacidade !== undefined) e.preventDefault();
+  if (el.dataset.confirmarTriagem !== undefined) {
+    const nao = D.triagem.filter((p) => !$('#tr-' + p.id).checked);
+    if (nao.length === D.triagem.length) return aviso('Nenhuma marcada. Se nenhuma vale, volte e toque em "Não, nenhuma".');
+    return abrirFolha(`<h2 id="folha-t" class="pergunta" tabindex="-1">Nenhuma destas vale para você?</h2><p>Você não marcou ${nao.length === 1 ? 'esta' : `estas ${nao.length}`}:</p><ul style="margin:0;padding-left:20px;display:flex;flex-direction:column;gap:6px;max-height:40vh;overflow:auto">${nao.map((p) => `<li>${esc(p.texto)}</li>`).join('')}</ul><div class="pilha-2"><a class="btn" href="#experiencia">Isso, nenhuma destas</a><button type="button" class="btn sec" data-fechar>Voltar e marcar</button></div>`, { dialogo: true, retorno: '[data-confirmar-triagem]' });
+  }
   if (el.dataset.perguntas !== undefined) { e.preventDefault(); return abrirFolha(`<div class="folha-cab"><h2 id="folha-t" tabindex="-1">As 9 perguntas completas</h2><button type="button" class="btn ter auto" data-fechar>Fechar</button></div><ol style="margin:0;padding-left:22px;display:flex;flex-direction:column;gap:10px">${D.triagem.map((p) => `<li>${esc(p.texto)}</li>`).join('')}</ol><p class="apoio">São perguntas próprias do app, no estilo do PAR-Q+; não é o questionário oficial.</p>`); }
   if (el.dataset.cat) { document.querySelectorAll('[data-cat]').forEach((b) => b.setAttribute('aria-pressed', b === el)); $('#grade').innerHTML = grade(el.dataset.cat); const q = $('#procurar'); if (q) q.value = ''; return; }
   if (el.dataset.halteres !== undefined) return abrirFolha(`<div class="folha-cab"><h2 id="folha-t" tabindex="-1">Halteres fixos</h2><button type="button" class="btn ter auto" data-fechar>Pronto</button></div>
@@ -788,6 +847,21 @@ $('#app').addEventListener('click', (e) => {
   if (el.dataset.cartao !== undefined) return abrirFolha(`<div class="folha-cab"><h2 id="folha-t" tabindex="-1">Como fazer (em texto)</h2><button type="button" class="btn ter auto" data-fechar>Fechar</button></div><p class="apoio">Trabalha: ${esc(cartaoP.alvo)}.</p><ol class="dicas">${cartaoP.dicas.map((c) => `<li>${esc(c)}</li>`).join('')}</ol><div class="pilha-2"><p class="rotulo">Erros comuns</p><ul class="lista">${cartaoP.erros.map((x) => `<li class="linha" style="cursor:default"><span class="txt"><b>${esc(x.titulo)}</b><span>${esc(x.desc)}</span></span></li>`).join('')}</ul></div>`, { abaixoCab: true });
   if (el.dataset.privacidade !== undefined) return abrirFolha(`<div class="folha-cab"><h2 id="folha-t" tabindex="-1">Seus dados ficam no aparelho</h2><button type="button" class="btn ter auto" data-fechar>Fechar</button></div><p>O seu perfil, o programa e os treinos ficam guardados só neste aparelho. A única coisa que sai é a foto do equipamento, se você usar: ela vai, sem a localização, para o reconhecimento e não fica guardada no servidor. Você pode exportar ou apagar tudo quando quiser em “Meus dados”.</p>`);
 });
+// a região da dor só aparece com "osso, articulação, músculo ou tendão" marcado
+$('#app').addEventListener('change', (e) => { if (e.target.dataset && e.target.dataset.cond === 'osteoarticular') $('#onde-sec').hidden = !e.target.checked; });
+// o painel da série só fica preso embaixo quando cabe (tela baixa, letra grande ou zoom: ele volta à página) e o
+// foco do teclado nunca fica atrás das barras fixas (scroll-padding na altura delas)
+function ajustarBarras() {
+  const raiz = document.documentElement;
+  const feita = $('.feita-base'), reg = $('.registro');
+  if (feita) raiz.style.setProperty('--h-feita', feita.offsetHeight + 'px');
+  if (reg) { reg.classList.remove('solto'); reg.classList.toggle('solto', reg.offsetHeight > innerHeight * 0.55); }
+  const cab = $('.cab');
+  const baixo = (reg && !reg.classList.contains('solto') ? reg.offsetHeight : 0) + (feita ? feita.offsetHeight : 0) + ($('.base') ? $('.base').offsetHeight : 0);
+  raiz.style.scrollPaddingTop = (cab ? cab.offsetHeight + 8 : 0) + 'px';
+  raiz.style.scrollPaddingBottom = baixo + 8 + 'px';
+}
+window.addEventListener('resize', ajustarBarras);
 // a busca procura em todas as categorias
 $('#app').addEventListener('input', (e) => {
   if (e.target.id !== 'procurar') return;

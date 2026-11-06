@@ -76,7 +76,7 @@ As três passam nos 27 pares medidos nos dois temas; os estados (feito, atençã
 O palco do Boneco usa as cores de sempre (`--stage`, `--fig`, `--mus-p`...): nenhuma muda.
 
 ### Letra
-Fica a **Atkinson Hyperlegible Next**: tem algarismos de largura igual (medido), licença OFL e pode ser servida pelo próprio app num arquivo variável de 34 kB, no lugar de 3 pedidos ao Google (55,6 kB). Sem internet, a letra continua.
+Fica a **Atkinson Hyperlegible Next**: tem algarismos de largura igual (medido), licença OFL e pode ser servida pelo próprio app num arquivo variável de 34 kB, no lugar de 3 pedidos ao Google (55,6 kB). O ganho é não depender do Google nem do cache do navegador (o crítico mediu: o app de hoje, sem internet, já mostra a letra pelo cache).
 
 | Degrau | Tamanho / peso | Uso |
 |---|---|---|
@@ -158,7 +158,7 @@ Meus dados em 3 grupos de linhas, com "Apagar todos os dados" por último e conf
 
 ## 7. Medidas do protótipo
 
-`depois/medidas-{claro,escuro,pequeno,baixo}.json`, pelas mesmas regras de `scripts/design/medir.ts`:
+`depois/medidas-*.json`, pelas mesmas regras de `scripts/design/medir.ts`. A tabela abaixo é a da Fase 2; depois da crítica, as medidas passaram a cobrir 7 cenários (320 px, zoom de 200% e letra a 125% entraram), todos limpos: ver a seção 13.
 
 | Medida | Claro 412 × 839 | Escuro | 360 × 740 | 412 × 640 |
 |---|---:|---:|---:|---:|
@@ -238,6 +238,41 @@ As 5 opções, lado a lado, com o desenho grande e como ele fica na linha do cad
 
 ![Corpo livre: 5 opções](img/adendo-corpo-livre.png)
 
-## 13. Para decidir
+## 13. A crítica independente (Fase 3)
+
+O agente 6 avaliou o protótipo e os 5 relatórios sem ler esta proposta (`agente-6-critica.md`). Os testes automáticos já passavam (0 violação WCAG A/AA no axe-core em 60 telas), mas ele achou 3 problemas que **bloqueiam** e 6 **graves**, quase todos onde nenhum agente tinha medido: 320 px, zoom de 200%, teclado e leitor de tela. Conferi cada um nos dados dele e todos se sustentam.
+
+### O que foi corrigido no protótipo
+
+| # | Problema (gravidade) | Correção | Medido depois |
+|---|---|---|---|
+| B1 | Treino a 320 px rolava de lado; com zoom de 200%, "Senti algo" cortado, relógio coberto e o painel da série com 91% da tela (bloqueia) | O painel da série só fica preso embaixo quando cabe (até 55% da altura); se não, volta à página e só o "Série feita" fica fixo. Abaixo de 360 px, o cabeçalho quebra em 2 linhas e os botões em coluna; o relógio e os números acompanham a largura. Abaixo de 280 px (zoom), saem os desenhos de apoio e as fileiras quebram | 320 × 640 e 206 × 420: 0 rolagem lateral; "Senti algo", "Série feita" e relógio inteiros em todos os estados; a parte fixa cai de 78% para 13% (320) e de 91% para 31% (zoom) |
+| B2 | Triagem: botões fixos; com zoom, 2 das 9 condições ficavam atrás do "Não, nenhuma" (bloqueia) | Os botões voltam a ficar depois da lista, como no app de hoje | A 9ª condição passa antes do botão a 320 e 360 px |
+| B3 | O foco do teclado ficava atrás do painel fixo em 25 de 168 alvos (bloqueia, WCAG 2.4.11) | `scroll-padding` na altura das barras fixas, recalculado a cada tela | 0 de 160 alvos cobertos |
+| G1 | Na tela "Quais valem", o "não" era implícito (grave) | Ao continuar, um diálogo lista as não marcadas, com a pergunta completa: "Nenhuma destas vale para você?" (+1 toque). Nada vem marcado; a região da dor só aparece com "osso, articulação, músculo ou tendão" marcado. A tontura perdeu o "forte" ("Perdeu o equilíbrio por tontura, ou desmaiou, no último ano"), e a frase "Um 'sim' não impede o treino; pede uma avaliação antes do programa automático" voltou à 1ª tela | O caminho com condição fica com 19 toques pela conta do agente 2 (18 + a confirmação; hoje são 29) |
+| G2 | O fim do descanso não chegava ao leitor de tela (grave) | Uma região de status fala só 3 vezes: o início do descanso, "faltam 10 segundos" e "hora da próxima série"; o nome do exercício é o título também no descanso | — (o leitor de tela real fica para o teste no aparelho) |
+| G3 | O foco escapava das folhas e diálogos (grave) | O resto da tela fica inerte e o Tab dá a volta dentro da folha; no treino, o "Senti algo" do cabeçalho continua no laço. A ordem dos diálogos mudou: a ação que não perde nada vem primeiro e cheia | Tab fora da folha: 0 de 30 fora do treino; no treino, só o "Senti algo" (de propósito) |
+| G4 | A letra do sistema não aumentava nada (247 medidas em px, 0 em rem) (grave) | Letras e alturas de toque em rem | Com a letra a 125%: 0 toque pequeno, 0 contraste baixo, 0 texto cortado |
+| G5 | Ao sol, a borda dos controles caía abaixo de 3:1 com 10% de reflexo (grave) | Borda mais escura no Giz e grafite: `#5F636B` no claro, `#9C998F` no escuro | 0 contraste baixo nos 7 cenários |
+| P1, P2, P4, P5, P7 | Selo com alvo pequeno; ordem dos botões nos diálogos; rótulos; "Série feita" desligado sem dizer por quê; cabeçalho cortado (pequenos) | Área de toque invisível de 44 px no selo; ordem trocada; lista de séries como lista e miniatura muda quando o nome está ao lado; o motivo do botão desligado para o leitor de tela; cabeçalho que quebra | — |
+
+**As medidas do protótipo agora cobrem 7 cenários** (claro e escuro no Pixel 7, 360 × 740, 412 × 640, 320 × 640, zoom de 200% e letra a 125%), 224 capturas: 0 toque abaixo de 44 px, 0 contraste baixo, 0 rolagem lateral, 0 texto cortado e 0 alvo com o foco coberto; "Senti algo" e "Série feita" à vista em todos os estados do treino. A reserva (RIR) fica à vista sem rolar nos 4 cenários de 360 px para cima; a 320 px e com zoom, o painel volta à página e a reserva pede rolar.
+
+### Onde discordei do crítico, e por quê
+- **G3, a folha modal com o próprio "Senti algo":** ele propôs o `<dialog>` modal do HTML e um "Senti algo" dentro de cada folha do treino. Isso deixaria 2 botões "Senti algo" na tela, um deles morto (o do cabeçalho, inerte atrás do diálogo). Preferi o contrário: no treino, a folha não é modal para o leitor de tela, o cabeçalho continua vivo e o Tab passa por ele. O risco que fica é o que ele mesmo marcou como não testado: como o VoiceOver e o TalkBack tratam isso no aparelho. Vai para o teste e2e e para o teste no celular do Gustavo.
+- **B1, o limite do painel preso:** ele sugeriu soltar o painel acima de ~45% da altura; usei 55%. Com 45%, a 412 × 640 a reserva (RIR) sairia da tela, e mantê-la ao lado do "Série feita" é o achado C do agente 3 (hoje ela fica escondida em 24 de 24 casos). O preço: a 412 × 640, a parte fixa fica em 60% da tela. [opinião, com a medida dos dois lados]
+
+### O que fica para decidir (não corrigido no protótipo)
+- **G6, o orçamento do JavaScript:** a meta do crítico (o JS da 1ª tela abaixo de 150 kB comprimido e menos de 600 ms de bloqueio) vira o lote técnico da seção 9.
+- **P3, o "Série feita" ativo no descanso com a reserva herdada:** um toque sem querer grava a série. As saídas são pedir a reserva de novo (+1 toque por série) ou um "Desfazer" por 5 s. Entra na tabela.
+- **P6, a legenda dos músculos do guia:** vermelho e laranja se aproximam na protanopia e na deuteranopia; a cor é do Boneco, que não muda neste redesign.
+
+### Afirmações dos agentes que não se sustentaram (registradas; os relatórios ficam como estão)
+- **Agente 2:** o "não marcado vale não" seguiria a lógica do "Nenhuma vale". Listas de marcar dão menos "sim" que perguntar item a item (Smyth et al. 2006; Pew 2019); daí a confirmação do G1.
+- **Agente 1:** "lembretes rendem 3,9% de abertura" é, na fonte, um aumento relativo de 3,9% na chance de registrar algo nas 24 h seguintes (Bidargaddi 2018); e "atrapalham o hábito" vem de um estudo só.
+- **Agente 4:** "5 ícones cobrem 81% do uso" é uma ordem de prioridade, não uma parcela de uso (o próprio corpo do relatório diz isso).
+- **Agente 5:** "Giz: nada se perde" no daltonismo exagera: o "Senti algo" perde o vermelho na protanopia e na deuteranopia (fica o ícone e o texto); o selo "um estudo" para o teste de sol do GSMArena é forte demais; e a letra servida pelo app não é um ganho "sem internet" (o cache já cobria), e sim não depender do Google.
+
+## 14. Para decidir
 
 A tabela item a item, com o antes e o depois, a evidência, o custo em lotes e a minha recomendação em cada linha, vem depois da crítica independente (agente 6), na Fase 4.
