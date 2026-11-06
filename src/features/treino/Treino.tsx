@@ -257,7 +257,7 @@ export function Treino() {
         )}
 
         {painel === 'trocar' && (
-          <Folha titulo="Trocar só neste treino por:" aoFechar={() => setPainel('nenhum')} livre={() => document.querySelector<HTMLElement>('.alerta-topo')}>
+          <Folha titulo="Trocar só neste treino por:" aoFechar={() => setPainel('nenhum')} livre={() => document.querySelector<HTMLElement>('.alerta-topo')} fecharAoTocarLivre={false}>
             {aviso && (
               <div className="warnbox" role="alert">
                 {aviso.texto} <Selo id={aviso.regraId} />
@@ -279,7 +279,7 @@ export function Treino() {
           </Folha>
         )}
         {painel === 'sentir' && (
-          <Folha titulo="O que você sentiu?" aoFechar={() => setPainel('nenhum')} livre={() => document.querySelector<HTMLElement>('.alerta-topo')}>
+          <Folha titulo="O que você sentiu?" aoFechar={() => setPainel('nenhum')} livre={() => document.querySelector<HTMLElement>('.alerta-topo')} fecharAoTocarLivre={false}>
             <Sentir
               aoDor={(nota) => {
                 const r = avaliarDor(nota);
@@ -320,7 +320,7 @@ export function Treino() {
         )}
 
         {painel === 'mais' && (
-          <Folha titulo="Mais opções" aoFechar={() => setPainel('nenhum')} livre={() => document.querySelector<HTMLElement>('.alerta-topo')}>
+          <Folha titulo="Mais opções" aoFechar={() => setPainel('nenhum')} livre={() => document.querySelector<HTMLElement>('.alerta-topo')} fecharAoTocarLivre={false}>
             <div className="dois">
               <button type="button" className="btn sec" disabled={i === 0} onClick={() => irPara(i - 1)}>
                 ‹ Anterior
@@ -338,7 +338,7 @@ export function Treino() {
           </Folha>
         )}
         {painel === 'terminar' && (
-          <Folha titulo="Terminar o treino agora?" aoFechar={() => setPainel('nenhum')} livre={() => document.querySelector<HTMLElement>('.alerta-topo')} rotuloFechar="Voltar">
+          <Folha titulo="Terminar o treino agora?" aoFechar={() => setPainel('nenhum')} livre={() => document.querySelector<HTMLElement>('.alerta-topo')} fecharAoTocarLivre={false} rotuloFechar="Voltar">
             <p>
               Você terminou {itens.filter((t) => t.feito.series.length >= t.x.series || t.feito.interrompido).length} de {itens.length} exercícios. O que já foi registrado fica
               salvo.

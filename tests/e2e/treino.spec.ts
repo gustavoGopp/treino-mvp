@@ -225,3 +225,24 @@ test('exercício sem animação: a montagem segura vem sempre aberta, com o selo
   await page.keyboard.press('Escape');
   await expect(folha).toBeHidden();
 });
+
+// Segurança: "Senti algo" abre e fecha a própria folha, e de qualquer outra folha (o "⋯", a troca) vai direto para ela.
+test('"Senti algo" abre e fecha a folha, e passa por cima de qualquer outra folha do treino', async ({ page }) => {
+  await ana(page);
+  await comecar(page);
+  const senti = page.getByRole('button', { name: 'Senti algo' });
+  const folha = page.getByRole('dialog', { name: 'O que você sentiu?' });
+  await senti.click();
+  await expect(folha).toBeVisible();
+  await senti.click();
+  await expect(folha).toBeHidden();
+  await maisOpcoes(page);
+  await senti.click();
+  await expect(page.getByRole('dialog', { name: 'Mais opções' })).toBeHidden();
+  await expect(folha).toBeVisible();
+  await senti.click();
+  await abrirTrocar(page);
+  await senti.click();
+  await expect(page.getByRole('region', { name: 'Trocar exercício' })).toBeHidden();
+  await expect(folha).toBeVisible();
+});

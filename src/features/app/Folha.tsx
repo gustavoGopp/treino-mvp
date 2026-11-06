@@ -34,6 +34,7 @@ export function Folha({
   children,
   livre,
   rotuloFechar = 'Fechar',
+  fecharAoTocarLivre = true,
 }: {
   titulo: string;
   aoFechar: () => void;
@@ -41,6 +42,8 @@ export function Folha({
   /** Um elemento de fora da folha que continua ao alcance enquanto ela está aberta. */
   livre?: () => HTMLElement | null;
   rotuloFechar?: string;
+  /** Tocar no elemento livre fecha a folha. Desligado quando o próprio elemento decide o que abre (o treino). */
+  fecharAoTocarLivre?: boolean;
 }) {
   const id = useId();
   const folha = useRef<HTMLDivElement>(null);
@@ -57,7 +60,7 @@ export function Folha({
     const cab = livreEl?.closest('header');
     if (cab && veu.current) veu.current.style.top = `${Math.max(0, cab.getBoundingClientRect().bottom)}px`;
     const tocarLivre = () => fechar.current();
-    livreEl?.addEventListener('click', tocarLivre, { capture: true });
+    if (fecharAoTocarLivre) livreEl?.addEventListener('click', tocarLivre, { capture: true });
     folha.current?.querySelector<HTMLElement>('h2')?.focus();
     const tecla = (e: KeyboardEvent) => {
       if (e.key === 'Escape') {
