@@ -14,7 +14,7 @@ O app de hoje não tem nenhuma falha medida de toque ou contraste, mas cada tela
 - `icones-frequencia.mjs`: cruza `icones.tsx` com `equipamentos.ts` e ordena os itens sem desenho pelo uso nos 149.760 programas do teste de estresse (`docs/revisoes/auditoria/inventario.md`).
 - `esbocos.spec.ts` (fotografa as folhas dos esboços e mede quantos caracteres cabem numa linha de corpo) e `reduzir-png.py` (deixa cada PNG abaixo de 300 kB).
 
-**O que está bom [medido].** 0 toque abaixo de 44 px e 0 contraste baixo nos 22 estados, nas duas larguras. 0 linha de texto acima de 75 caracteres. Nenhuma tela rola de lado. A página mais longa da semana (`/semana`) já é a mais clara do app: 6 alvos, 2 caixas, 1,9 alturas de tela.
+**O que está bom [medido].** 0 toque abaixo de 44 px e 0 contraste baixo nos 22 estados, nas duas larguras. 0 linha de texto acima de 75 caracteres. Nenhuma tela rola de lado. A tela da semana (`/semana`) já é a mais clara do app: 6 alvos, 2 caixas, 1,9 alturas de tela.
 
 **O sistema de hoje, em números [medido, `inventario.mjs`].**
 
@@ -165,7 +165,7 @@ Outras medidas:
 | Recolher | em superfície, plano | fechado, aberto, foco | os 8 da tabela |
 | Folha inferior e diálogo | folha padrão (não modal), folha modal, diálogo | aberta; fecha com "Fechar" e com o Voltar | novo |
 
-- **Efeito esperado:** ~130 variantes de hoje viram 16 componentes. A pessoa aprende uma vez o que é um botão, uma opção, uma lista.
+- **Efeito esperado:** ~113 variantes de hoje (soma da tabela da seção 2) viram 16 componentes. A pessoa aprende uma vez o que é um botão, uma opção, uma lista.
 - **Custo e risco:** grande se feito de uma vez; médio por família. Os testes e2e procuram por papel e nome (`getByRole`), não por classe, então devem passar; a regressão visual vai mudar (é o objetivo).
 
 ### 4.4 Navegação: a mesma barra em todas as telas de "casa", nenhuma barra em tarefa
@@ -197,10 +197,10 @@ SEM BARRA (tarefa)                               COM BARRA (casa)  [Treino | Sem
 
 ### 4.5 A ação principal sempre presa embaixo
 - **Tela/estado:** boas-vindas, triagem (uma a uma), experiência, rotina, programa (celular pequeno).
-- **Problema:** o botão que leva adiante começa fora da tela em 5 das 8 telas do cadastro: 127% a 154% na boas-vindas, 158% a 182% na experiência, 172% a 206% na rotina; e o "Começar o treino" do programa fica a 196% no celular pequeno. Só equipamento, confirmar e treino têm a ação fixa. [medido]
+- **Problema:** o botão que leva adiante começa fora da tela em 6 dos 8 estados medidos do cadastro (um deles, a lista da triagem, por regra): 127% a 154% na boas-vindas, 183% a 223% na triagem uma a uma, 158% a 182% na experiência, 172% a 206% na rotina; 123% a 288% no equipamento depois de marcar halteres; e o "Começar o treino" do programa fica a 196% no celular pequeno. [medido]
 - **Evidência:** princípio 2 da v2 (ação embaixo, ao alcance do polegar) [fonte: Bergstrom-Lehtovirta 2014; um estudo]. Observação contra: a NN/g diz que o meio da tela é o lugar mais fácil de tocar [fonte: Laubheimer 2023; consenso]; o ganho aqui é **achar** o botão sem rolar, não alcançá-lo [opinião].
 - **Proposta:** a barra de ação fixa vira padrão em toda tela que tem uma ação principal; com a barra inferior, ela fica logo acima. **Exceção mantida:** na lista da triagem, os 2 botões ficam no fim, depois das 9 perguntas (é a regra de segurança; ver a seção 7).
-- **Efeito esperado:** botão principal visível sem rolar em 7 de 8 telas do cadastro (hoje 3) e no programa em qualquer celular.
+- **Efeito esperado:** botão principal visível sem rolar em 7 dos 8 estados do cadastro (hoje 2: equipamento antes de marcar e confirmar) e no programa em qualquer celular.
 - **Custo e risco:** pequeno; um componente. O "Continuar" fixo pode ser tocado antes de responder tudo: o erro já existe e aparece no topo e na pergunta.
 
 ### 4.6 Programa: o treino de hoje primeiro, o resto um toque adiante
@@ -315,8 +315,8 @@ SEM BARRA (tarefa)                               COM BARRA (casa)  [Treino | Sem
 1. O app passa em todos os testes de toque e contraste; o que falta é coerência: cada tela tem o seu jeito.
 2. Hoje há 19 tamanhos de letra, 17 espaçamentos, 16 cantos e 19 tipos de botão; numa só tela do treino aparecem 12 tamanhos.
 3. Proponho 7 tamanhos de letra, 6 espaços, 3 cantos, 2 bordas e 3 alturas de toque, cada um com um uso só.
-4. Os ~130 jeitos de desenhar botão, caixa, lista e seletor viram 16 peças, cada uma com os seus estados (escolhido, desabilitado, foco, erro).
-5. O botão que leva adiante fica preso embaixo em todo o cadastro (hoje está fora da tela em 5 de 8 telas); a triagem é a exceção, por segurança.
+4. Os ~113 jeitos de desenhar botão, caixa, lista e seletor viram 16 peças, cada uma com os seus estados (escolhido, desabilitado, foco, erro).
+5. O botão que leva adiante fica preso embaixo em todo o cadastro (hoje está fora da tela em 6 de 8 estados medidos); a triagem é a exceção, por segurança.
 6. A barra inferior (Treino, Semana, Meus dados) fica igual, mas aparece também em Evolução e Locais; no treino e no cadastro, não.
 7. O início fica com o treino de hoje e "Começar" sempre à vista; os detalhes de cada exercício abrem numa folha (de 61 selos e 44 botões numa página para ~3 e ~15).
 8. O selo de evidência hoje não abre nada no celular; proponho que um toque mostre a regra, o que o selo quer dizer e a fonte (precisa de um arquivo de fontes).
