@@ -105,19 +105,26 @@ export async function escolherDivisao(page: Page, divisao: string) {
 }
 
 // Treino (redesign, lote 2): anterior, próximo, trocar e terminar ficam no "⋯" do exercício; terminar pede confirmação.
+/** Espera a folha aberta terminar de subir (200 ms), para o toque não cair no meio do movimento. */
+export async function folhaPronta(page: Page) {
+  await page.locator('.folha').last().evaluate((e) => Promise.all(e.getAnimations().map((a) => a.finished)));
+}
 /** Abre o "⋯" (Mais opções) do exercício e devolve a folha. */
 export async function maisOpcoes(page: Page) {
   await page.getByRole('button', { name: /^Mais opções/ }).click();
+  await folhaPronta(page);
   return page.getByRole('dialog', { name: 'Mais opções' });
 }
 /** Termina o treino pelo "⋯", confirmando. */
 export async function terminarTreino(page: Page) {
   await (await maisOpcoes(page)).getByRole('button', { name: 'Terminar o treino agora' }).click();
+  await folhaPronta(page);
   await page.getByRole('dialog', { name: 'Terminar o treino agora?' }).getByRole('button', { name: 'Terminar o treino', exact: true }).click();
 }
 /** Abre a folha de troca do exercício pelo "⋯". */
 export async function abrirTrocar(page: Page) {
   await (await maisOpcoes(page)).getByRole('button', { name: 'Trocar exercício' }).click();
+  await folhaPronta(page);
   return page.getByRole('region', { name: 'Trocar exercício' });
 }
 /** Vai ao próximo exercício: pelo botão que aparece quando o exercício acabou, ou pelo "⋯". */
