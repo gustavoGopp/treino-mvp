@@ -1718,7 +1718,7 @@
   },
   {
     "id": "tempo.sobra-series",
-    "regra": "Séries no tempo que sobra (sessão de qualidade dos treinos, decisão do Gustavo em 06/11/2026): nos dias que têm vaga sem exercício possível por equipamento, as séries dos exercícios do dia sobem até o alvo do nível em cada músculo com meta (o abdômen não prioritário fica na meta dele), enquanto o dia couber nos minutos; o músculo mais longe da meta vem primeiro, e nunca passa de 4 séries por exercício, 10 por músculo na sessão nem 20 na semana. A direção (mais séries, mais crescimento, com retorno decrescente) é robusta; usar o tempo que sobra assim é escolha do projeto",
+    "regra": "Séries no tempo que sobra (sessão de qualidade dos treinos, decisão do Gustavo em 06/11/2026): nos dias que têm vaga sem exercício possível por equipamento, as séries dos exercícios do dia sobem até o alvo do nível em cada músculo com meta (o abdômen não prioritário fica na meta dele), enquanto o dia couber nos minutos; o músculo mais longe da meta vem primeiro, e nunca passa de 4 séries por exercício, 10 por músculo na sessão, 20 na semana nem, num músculo que não é prioridade, do máximo do nível (`volume.semanal.maximo`). A direção (mais séries, mais crescimento, com retorno decrescente) é robusta; usar o tempo que sobra assim é escolha do projeto",
     "valores": {
       "iniciante": "até 8 por músculo",
       "intermediario": "até 12 por músculo",

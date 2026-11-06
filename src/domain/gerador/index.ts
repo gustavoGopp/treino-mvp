@@ -592,7 +592,9 @@ export function gerarPrograma(perfil: Perfil, inventarioOriginal: Inventario): R
           const e = POR_ID_BIB[x.exId]!;
           // Uma série a mais conta para todos os músculos principais do exercício: nenhum passa do teto da sessão.
           if (!e.musculos.primarios.includes(m) || x.series >= VOLUME.seriesPorExercicio.max || e.musculos.primarios.some((pm) => (noDia[pm] ?? 0) + 1 > VOLUME.sessaoTeto)) return;
-          if (!(Object.entries(volumePorMusculo([{ ex: e, series: 1 }])) as [Musculo, number][]).every(([k, n]) => (v[k] ?? 0) + n <= VOLUME.teto)) return;
+          // Nenhum músculo do exercício passa do teto (20) nem, se não for prioridade, do máximo do nível (volume.semanal.maximo).
+          const limite = (k: Musculo) => (prioritarios.has(k) ? VOLUME.teto : VOLUME.maximo[nivel]);
+          if (!(Object.entries(volumePorMusculo([{ ex: e, series: 1 }])) as [Musculo, number][]).every(([k, n]) => (v[k] ?? 0) + n <= limite(k))) return;
           if (minutos(d.exercicios.map((y, j) => (j === xi ? { ...y, series: y.series + 1 } : y)), colchaoDe(perfil)) > perfil.minutosSessao) return;
           if (!melhor || deficit > melhor.deficit) melhor = { di, xi, deficit };
         });
