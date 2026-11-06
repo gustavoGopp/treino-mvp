@@ -33,5 +33,5 @@ window.ICONES_LUGAR = {
   academia: '<path d="M14 44V6M50 44V6M8 44h12M44 44h12M14 20h4M50 20h-4M4 18h56"/><rect x="5" y="11" width="5" height="14" rx="1.5"/><rect x="54" y="11" width="5" height="14" rx="1.5"/><path d="M20 44h24"/>',
   condominio: '<path d="M6 44V6h24v38M30 16h16v28M2 44h60"/><path d="M12 13h4M20 13h4M12 21h4M20 21h4M12 29h4M20 29h4"/><path d="M48 36h12M48 33v6M60 33v6" stroke-width="3"/>',
   casa: '<path d="M6 22 32 4l26 18M11 19v25h42V19M2 44h60"/><path d="M22 33h20M20 29v8M44 29v8" stroke-width="3.2"/>',
-  corpo: '<circle cx="34" cy="8" r="5"/><path d="M33 14 22 29" stroke-width="5"/><path d="M22 29 36 31" stroke-width="4.4"/><path d="M36 31 34 43M34 43h7" stroke-width="4"/><path d="M31 18 46 20" stroke-width="3.6"/><path d="M6 44h52"/>',
+  corpo: '<rect x="10" y="40" width="44" height="4" rx="2"/><circle cx="32" cy="9" r="4.5"/><path d="M32 15v13" stroke-width="5"/><path d="M32 17 22 6M32 17 42 6M32 28l-7 12M32 28l7 12" stroke-width="3.6"/>', // opção D, aprovada em 06/11
 };
