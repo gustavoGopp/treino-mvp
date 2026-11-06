@@ -1,4 +1,6 @@
-import { CARTOES, type CartaoTexto as Cartao } from '../../conteudo';
+import { useEffect, useState } from 'react';
+import { carregarCartao, temCartao } from '../../conteudo/cartoes';
+import type { CartaoTexto as Cartao } from '../../conteudo/schema';
 import { Selo } from '../app/ui';
 
 // Cartão de texto do exercício sem animação aprovada (CLAUDE.md, qualidade do guia): nunca uma animação
@@ -6,10 +8,24 @@ import { Selo } from '../app/ui';
 
 const FASE: Record<Cartao['exec'][number][0], string> = { hold: 'Pausa', ecc: 'Descida', conc: 'Subida' };
 
-export const temCartao = (exId: string) => !!CARTOES[exId];
+export { temCartao };
+
+/** O cartão do exercício, baixado na 1ª vez em que aparece (do service worker, em milissegundos, depois da instalação). */
+function useCartao(exId: string) {
+  const [c, setC] = useState<Cartao | null>(null);
+  useEffect(() => {
+    let vivo = true;
+    setC(null);
+    carregarCartao(exId).then((x) => vivo && setC(x));
+    return () => {
+      vivo = false;
+    };
+  }, [exId]);
+  return c;
+}
 
 export function CartaoTexto({ exId, aberto = false }: { exId: string; aberto?: boolean }) {
-  const c = CARTOES[exId];
+  const c = useCartao(exId);
   if (!c) return null;
   // Design v2 (docs/revisoes/design-v2.md): abre no que se lê entre as séries (as dicas e os erros, como as
   // "3 cues" do guia); a montagem segura fica sempre à vista; o passo a passo completo fica recolhido.
