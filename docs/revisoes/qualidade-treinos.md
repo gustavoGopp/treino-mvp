@@ -475,3 +475,30 @@ O peito continua com 6 séries por semana; muda o estímulo, de isolador para mu
 A troca segue a regra que o projeto já tinha (o piso de todo músculo vem antes da 2ª dose do prioritário, `tempo.corte`), mas é a primeira vez que ela tira séries de um foco nas personas. Fica anotado para o Gustavo: se o custo da Ana parecer alto, a alternativa é proteger o abdômen só com 2 séries e sem passar dos minutos.
 
 **Personas nos snapshots.** Só a Ana muda: no dia A, búlgaro 4 → 2, flexão de joelho deslizante 3 → 2, abdominal no chão 4 (novo); no dia C, afundo 3 → 4, panturrilha 3 → 2; avisos: sai "abaixo da meta" (o abdômen) e entra o de tempo do dia C. Na volta de 30 dias (snapshot do R2), a semana 6 tem 16 séries no dia A (antes 15) e o abdominal entra na lista de cargas.
+
+### F.6 e F.7 Decisões 6 e 7: os ajustes pequenos e o ombro posterior na biblioteca
+
+**O que entrou**, cada um com a regra em `regras.md`:
+
+| Item | Mudança | Regra e fonte |
+|---|---|---|
+| B.8 | `c('elevacao-lateral')` no dia B do corpo todo de 2 dias (antes, a elevação lateral só existia no dia A e ficava em 2 séries, abaixo do piso de 4) | `volume.semanal.minimo-eficaz`; `larsen2025` (um exercício com 10 séries por semana cresce o deltoide lateral) |
+| B.11 | a extensão de tríceps na suspensão vira o 2º nível da vaga obrigatória "tríceps acima da cabeça" | `selecao.triceps-acima-cabeca` + `brandao2020` |
+| B.16 | o nórdico passa de 4–8 para 6–10 descidas | `selecao.nordico` (`maeo2024`, `cholp2025`: o volume baixo não cresceu a espessura) |
+| B.18 | o coice na polia sobe para o 1º nível da extensão de quadril | `selecao.gluteo` (`attarieh2026`) |
+| B.20 | a panturrilha no chão ganha o "porquê": uma perna de cada vez e descida em 3 s, porque no chão o calcanhar não desce | `selecao.panturrilha-alongada` + `nakamura2025` |
+| B.5 | a barra fixa supinada e a puxada com elástico passam a contar o ombro de trás como secundário (meia série), como a barra fixa pronada já contava | revisão de anatomia, auditoria independente B.5 |
+
+**B.5 mexeu no guia, como a auditoria avisava.** O desenho das duas animações passa a marcar o ombro de trás como secundário (`src/engine/exercicios/barra-fixa-supinada.ts` e `puxada-elastico.ts`), e o texto "o que sentir" dos dois cartões passa a citá-lo. As linhas de base visuais do motor (`tests/visual/linha-de-base/estilo-a.json` e `novas.json`) foram regravadas; o diff confirma que só essas duas animações mudaram, nas duas linhas de base, e a regressão visual passa.
+
+**Fica para depois** (backlog): o exercício novo "panturrilha no degrau" (B.20, 2ª parte), porque precisa de cartão textual e, depois, de animação aprovada.
+
+**Testes atualizados.** O teste dos níveis do glúteo passa a esperar o coice na polia no 1º nível. O teste das escolhas calculadas do Diego mudou de caso: com 45 min, o Diego já não tem nenhuma meta abaixo do piso (a barra supinada conta meia série para o ombro de trás) e não há o que ajustar; com 30 min, o "+15 min" continua aparecendo e resolvendo.
+
+**Personas.**
+
+| Persona | Antes | Depois |
+|---|---|---|
+| Diego | ombro de trás 3 séries por semana, com o aviso "abaixo da meta" | 4 séries (o piso), sem aviso; o treino não muda |
+| Fábio | nórdico 2 × 4–8 nos dois dias de inferior; flexão deslizante 3 no Inferior A; ombro de trás 3; glúteos 9,5 | nórdico 3 × 6–10 no Inferior A e 2 × 6–10 no B; deslizante 2 no A; ombro de trás 6; glúteos 9 |
+| Bruno, Ana, Carla, Elisa | | não mudam |

@@ -970,7 +970,7 @@
   },
   {
     "id": "selecao.triceps-acima-cabeca",
-    "regra": "Pelo menos 1 exercício de tríceps com o ombro flexionado (braço acima da cabeça) por semana",
+    "regra": "Pelo menos 1 exercício de tríceps com o ombro flexionado (braço acima da cabeça) por semana. Sem carga, a extensão de tríceps na suspensão (ombro a 90–120°) cobre a vaga como 2º nível: a extensão isolada cresceu a cabeça longa que o supino não cresceu (`brandao2020`; decisão do Gustavo em 06/11/2026)",
     "valores": {
       "iniciante": "≥ 1",
       "intermediario": "≥ 1",
@@ -978,7 +978,8 @@
     },
     "selo": "um estudo",
     "fontes": [
-      "maeo2023"
+      "maeo2023",
+      "brandao2020"
     ]
   },
   {
@@ -996,7 +997,7 @@
   },
   {
     "id": "selecao.panturrilha-alongada",
-    "regra": "Panturrilha com ênfase no alongamento (calcanhar abaixo do apoio, pausa embaixo), de preferência em pé",
+    "regra": "Panturrilha com ênfase no alongamento (calcanhar abaixo do apoio, pausa embaixo), de preferência em pé. No chão, sem degrau, o calcanhar não desce: com o peso do corpo, uma perna de cada vez e a descida em 3 s (a metade de cima cresceu bem menos, `kassiano2023b`; com uma perna e a descida lenta cresceu, `nakamura2025`; decisão do Gustavo em 06/11/2026)",
     "valores": {
       "iniciante": "ênfase no alongamento",
       "intermediario": "ênfase no alongamento",
@@ -1004,7 +1005,8 @@
     },
     "selo": "um estudo",
     "fontes": [
-      "kassiano2023b"
+      "kassiano2023b",
+      "nakamura2025"
     ]
   },
   {
@@ -1173,7 +1175,7 @@
   },
   {
     "id": "selecao.gluteo",
-    "regra": "Ordem das funções para glúteos",
+    "regra": "Ordem das funções para glúteos; o coice na polia sobe ao 1º nível da extensão de quadril, ao lado do hip thrust e do coice na máquina, por ser o único com ensaio de ressonância (`attarieh2026`; decisão do Gustavo em 06/11/2026)",
     "valores": {
       "iniciante": "agachar profundo ou afundo → extensão de quadril (hip thrust, glúteo na máquina, ponte, coice) → abdução como complemento (máquina, polia, caneleira, mini-band e, sem nada, deitado de lado sem carga, com repetições altas: auditoria de 04/11/2026)",
       "intermediario": "agachar profundo ou afundo → extensão de quadril (hip thrust, glúteo na máquina, ponte, coice) → abdução como complemento (máquina, polia, caneleira, mini-band e, sem nada, deitado de lado sem carga, com repetições altas: auditoria de 04/11/2026)",
@@ -1427,7 +1429,7 @@
     "regra": "Nórdico: complexidade 3 (só intermediário e avançado), calcanhares presos sob um móvel pesado ou por alguém, descida lenta com as mãos amortecendo; começa com poucas séries, porque a 1ª sessão dá dor forte por alguns dias e subir o volume rápido dói mais",
     "valores": {
       "iniciante": "não entra",
-      "intermediario": "faixa de 4 a 8 descidas; a 1ª semana com 2 séries (o mínimo do programa)",
+      "intermediario": "faixa de 6 a 10 descidas (era 4 a 8 até 06/11/2026: o volume baixo não cresceu a espessura, `cholp2025`; o ensaio que cresceu foi até 10, `maeo2024`); a 1ª semana com 2 séries (o mínimo do programa)",
       "avancado": "igual ao intermediário"
     },
     "selo": "um estudo",

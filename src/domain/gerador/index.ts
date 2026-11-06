@@ -867,7 +867,11 @@ const TEXTO_REGRA_FUNCAO: Record<string, (e: Exercicio) => string | null> = {
   'selecao.triceps-acima-cabeca': () => 'Braço acima da cabeça para alongar a cabeça longa do tríceps.',
   'selecao.flexora-sentada': (e) => (e.tags.includes('sentada') ? 'Flexão de joelho sentada, com o posterior mais alongado.' : null),
   'selecao.panturrilha-alongada': (e) =>
-    e.tags.includes('alongado') ? 'Ênfase no alongamento: calcanhar abaixo do apoio e pausa embaixo.' : null,
+    e.id === 'panturrilha-chao'
+      ? 'No chão o calcanhar não desce abaixo da ponta do pé: faça com uma perna de cada vez e desça em 3 s, para a série contar.'
+      : e.tags.includes('alongado')
+        ? 'Ênfase no alongamento: calcanhar abaixo do apoio e pausa embaixo.'
+        : null,
   'selecao.alongado': () => 'Na função, vem primeiro a opção com o músculo mais alongado, que cresceu mais nos estudos.',
   'selecao.isolador-obrigatorio': () => 'Isolador que cobre o que os multiarticulares não cobrem (o reto femoral, na frente da coxa).',
   'selecao.gluteo': () => 'Glúteo: depois do agachar e do afundo, a extensão de quadril e, como complemento, a abdução.',

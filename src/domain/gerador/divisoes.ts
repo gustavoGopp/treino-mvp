@@ -184,6 +184,8 @@ const CORPO2_B = [
   v('biceps'),
   v('abdomen'),
   c('ombro-posterior'),
+  // A elevação lateral só existia no dia A de 2 dias e ficava em 2 séries, abaixo do piso de 4 (sessão de qualidade, 06/11/2026).
+  c('elevacao-lateral'),
   c('empurrar-vertical', ['ombros']),
   c('abducao', ['gluteos']),
   c('aducao', ['pernas', 'gluteos']),

@@ -36,7 +36,7 @@ const ex = {
     posterior(sk){for(const k of['R','L']){const sc=scapPts(sk,k);const c=mul(add(add(sc[0],sc[1]),sc[2]),1/3);ARROW3(add(c,[0,6,-3]),add(c,[0,-5,-3]),'gd',1.1,'gda',{layer:3});}TX([40,150,0],'ombros descem,',{cls:'lbl-g',anchor:'end'});TX([40,150,0],'cotovelos ao quadril',{cls:'lbl-g',anchor:'end',dy:15});},
     lateral(sk){TX(add(sk.P,[0,96,-14]),'tronco quase parado',{cls:'lbl-g',anchor:'end'});TX(add(this.ancora,[0,8,0]),'preso no alto',{cls:'lbl-g',anchor:'end',dx:-6});}
   },
-  muscles:{p:[['lats','RL']],s:[['biceps','RL']]},
+  muscles:{p:[['lats','RL']],s:[['biceps','RL'],['deltPost','RL']]},
   errors:[
     {id:'tronco',view:'lateral',keys:{mid:{lumbar:-14,thor:-18},end:{lumbar:-24,thor:-32,neck:-20}}},
     {id:'encolher',view:'posterior',keys:{mid:{elev:5},end:{elev:6,scapRot:20}}},
