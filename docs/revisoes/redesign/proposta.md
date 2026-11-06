@@ -467,3 +467,10 @@ Os 4 critérios seguem limpos: 0 toque abaixo de 44 px, 0 contraste baixo, 0 rol
 3. A frase do PAR-Q+ na triagem: entra ou não.
 
 A apresentação escolhida entra no app no lote 3 (cadastro).
+
+**As escolhas do Gustavo (06/11).**
+1. **Apresentação B, "o seu lugar"**: os 4 desenhos de lugar no topo, com o desenho D do Corpo livre. No protótipo, ela passou a ser a tela de boas-vindas; a A ficou guardada como "1z", só para registro.
+2. **O botão é "Começar"**: o aviso vem inteiro antes dele, e o toque continua registrando que a pessoa viu o aviso.
+3. **A frase do PAR-Q+ entra na tela de saúde**, logo abaixo do título e antes das 9 condições: "Treinar é seguro para a maioria das pessoas. Esta pergunta vê se vale falar com um profissional antes." É texto de segurança novo, aprovado por ele, e a fonte é o próprio PAR-Q+ 2025 (`parq2025`, em `docs/pesquisa/fontes.md`). Não muda o bloqueio, a liberação nem as 9 perguntas.
+
+Medido de novo: 36 telas nos 7 cenários, sem nenhum problema. Na apresentação B, o aviso vem inteiro antes do botão em todos os cenários, e o botão fica à vista sem rolar a 412 e a 360 px. Tudo isso entra no app no lote 3 (cadastro).
