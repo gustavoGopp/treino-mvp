@@ -74,7 +74,7 @@ writeFileSync(`${SAIDA}/itens.js`, '// Gerado por scripts/design/redesign/deciso
 const rotulo = (i) => (i.opcoes ?? PADRAO).find(([k]) => k === i.rec)?.[1] ?? i.rec;
 let md = `## 14. Para decidir (Fase 4)
 
-Cada linha traz o que muda, a evidência, o que muda de regra ou dado, o custo em lotes, o risco e a minha recomendação. **Nada vem marcado**: as escolhas são do Gustavo, na página de decisão (link abaixo) ou aqui. A tabela sai de \`scripts/design/redesign/decisoes.mjs\`, a mesma fonte da página.
+Cada linha traz o que muda, a evidência, o que muda de regra ou dado, o custo em lotes, o risco e a minha recomendação. **Nada vem marcado**: as escolhas são do Gustavo, na página de decisão (https://claude.ai/artifact/QoxRNuAZGvpUDTddzVXxf6, que guarda cada escolha) ou aqui. A tabela sai de \`scripts/design/redesign/decisoes.mjs\`, a mesma fonte da página.
 
 `;
 let area = '';
