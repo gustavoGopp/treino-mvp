@@ -140,3 +140,50 @@ A 1ª pintura ficou 40% mais cedo (sem a folha de estilo do Google, que travava 
 
 **Lighthouse, com o app instalado** (o método do "antes", por rota): desempenho de 63 a 71 (antes: 59 a 71); acessibilidade 100 em 5 rotas e 93 no guia (as 3 falhas de antes, que são do lote 2). A falha `target-size` do programa sumiu. Nesta situação a maior pintura variou de 17 ms a 3,4 s entre rotas parecidas: é ruído do método, que fica registrado.
 
+
+### Lote técnico, desempenho (06/11/2026)
+Mesmo método do lote 1: `docs/revisoes/redesign/lote-tecnico/`, com `base.json` e `primeira-visita.json`. O perfil do processador sai de `scripts/design/redesign/perfil.mjs`.
+
+**O que mudou:**
+- cada tela virou um pedaço próprio do JavaScript;
+- o cartão de texto de cada exercício é baixado só quando aparece;
+- o motor do Boneco não muda, mas as miniaturas e as prévias de estilo passaram a ser calculadas num Worker, fora da linha principal.
+
+Nada mudou na tela: as capturas da Ana (programa, 1ª série e Meus dados) ficaram iguais às de antes, pixel por pixel.
+
+**O que pesava de verdade.** O perfil do processador com o celular 4× mais lento mostrou que, no programa, quase todo o tempo ia para o motor desenhando as miniaturas, e não para o tamanho do pacote. Depois do Worker, a linha principal gasta cerca de 0,1 s ao abrir o programa.
+
+| JavaScript da 1ª tela, comprimido (`tests/e2e/orcamento.spec.ts`) | Antes | Lote técnico |
+|---|---:|---:|
+| Boas-vindas (pessoa nova) | 271,5 kB, o app inteiro | **147,0 kB** (meta: menos de 150) |
+| Programa (quem volta, com o motor das miniaturas) | 271,5 kB | 189,1 kB (limite do teste: 200) |
+| O motor do Boneco | dentro do pacote | num pedaço só dele, mais o Worker, carregados quando a 1ª miniatura aparece |
+
+Do pacote inicial, o que sobra é o que o app precisa para abrir: React, zod (valida o estado guardado), o domínio com as regras e o gerador, e as telas de boas-vindas e do programa.
+
+**Lighthouse, 1ª visita** (perfil vazio, 3 rodadas de cada):
+
+| | Antes (`420938e`) | Lote 1 | Lote técnico |
+|---|---:|---:|---:|
+| Desempenho | 74 · 74 · 72 | 49 · 71 · 71 | **100 · 100 · 100** |
+| 1ª pintura (ms) | cerca de 1.500 | cerca de 900 | 902 a 959 |
+| Bloqueio total (ms) | 1.319 a 1.580 | 2.799 a 3.119 | **17 a 39** |
+| Pronto para uso (ms) | 4.680 a 4.939 | 5.704 a 6.022 | 2.185 a 2.243 |
+| Trabalho do processador (ms) | 3.392 a 3.974 | 3.342 a 3.871 | 523 a 659 |
+
+**Lighthouse, com o app instalado, por rota:**
+
+| Rota | Desempenho (lote 1 → lote técnico) | Bloqueio total (ms) |
+|---|---|---:|
+| `/` (abre o programa) | 70 → 98 | 150 |
+| `/comecar/triagem` | 71 → 100 | 25 |
+| `/programa` | 64 → 93 | 309 |
+| `/semana` | 63 → 100 | 39 |
+| `/dados` | 64 → 100 | 25 |
+| `/guia/bulgaro` | 70 → **71** | 3.229 |
+
+A acessibilidade fica em 100 em 5 rotas e em 93 no guia, com as mesmas 3 falhas de antes.
+
+**O que não melhorou:** o guia. Ele anima o Boneco quadro a quadro na própria tela, e esse cálculo não vai para o Worker sem mudar a forma de desenhar. Fica para o lote 2 (treino e guia), que já reconstrói essa tela, junto com as 3 falhas de acessibilidade.
+
+**Sem rede:** `tests/e2e/sem-rede.spec.ts` abre o app uma vez, corta a rede e confere que o programa (com as miniaturas), o treino, o guia (com o palco) e a semana abrem, pelo que o service worker guardou.
