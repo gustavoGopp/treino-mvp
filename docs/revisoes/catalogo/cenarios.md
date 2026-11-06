@@ -36,7 +36,7 @@
 | Só cadeira flexora (sentada) | 9 / 9 | 11 / 11 | — |
 | Só caneleiras de peso | 8 / 8 | 12 / 11 | — |
 | Só desenvolvimento na máquina | 9 / 9 | 11 / 10 | — |
-| Só estação de polia dupla (crossover) com altura regulável | 2 / 2 | 16 / 15 | — |
+| Só estação de polia dupla (crossover) com altura regulável | 2 / 2 | 17 / 16 | — |
 | Só puxador alto (estação de puxada) | 8 / 8 | 12 / 11 | — |
 | Só remada baixa (estação) | 8 / 8 | 12 / 11 | — |
 | Só glúteo na máquina | 9 / 9 | 11 / 10 | — |
@@ -58,7 +58,7 @@
 | Só smith | 7 / 7 | 13 / 12 | — |
 | Só step | 9 / 9 | 10 / 9 | — |
 | Só supino na máquina ou articulado | 9 / 9 | 11 / 10 | — |
-| Só fitas de suspensão (trx) ou argolas | 5 / 5 | 14 / 14 | — |
+| Só fitas de suspensão (trx) ou argolas | 4 / 4 | 15 / 15 | — |
 | Só máquina de tríceps | 9 / 9 | 11 / 10 | — |
 | Só voador (peck deck) | 8 / 8 | 12 / 11 | — |
 
@@ -84,7 +84,7 @@
 | Extensora | **1** | **1** | **1** | cadeira-extensora |
 | Flexão de joelho | **1** | **1** | **1** | cadeira-flexora |
 | Dobrar o quadril | 2 | 3 | 3 | terra-romeno-barra, stiff, stiff-unilateral |
-| Extensão de quadril (glúteo) | 2 | 2 | 2 | hip-thrust, coice-maquina |
+| Extensão de quadril (glúteo) | 3 | 3 | 3 | hip-thrust, coice-maquina, coice-polia |
 | Abdução de quadril | 2 | 2 | 2 | abducao-maquina, abducao-polia |
 | Adução de quadril (complemento) | **1** | **1** | **1** | aducao-maquina |
 | Panturrilha em pé | 4 | 4 | 4 | panturrilha-em-pe-maquina, panturrilha-leg-press, panturrilha, panturrilha-bilateral-step |
@@ -112,7 +112,7 @@
 | Extensora | **1** | **1** | **1** | cadeira-extensora |
 | Flexão de joelho | **1** | **1** | **1** | cadeira-flexora |
 | Dobrar o quadril | 3 | 4 | 4 | terra-romeno-barra, stiff, stiff-unilateral, stiff-kettlebell |
-| Extensão de quadril (glúteo) | 2 | 2 | 2 | hip-thrust, coice-maquina |
+| Extensão de quadril (glúteo) | 3 | 3 | 3 | hip-thrust, coice-maquina, coice-polia |
 | Abdução de quadril | 2 | 2 | 2 | abducao-maquina, abducao-polia |
 | Adução de quadril (complemento) | **1** | **1** | **1** | aducao-maquina |
 | Panturrilha em pé | 4 | 4 | 4 | panturrilha-em-pe-maquina, panturrilha-leg-press, panturrilha, panturrilha-bilateral-step |
@@ -377,7 +377,7 @@ Mesmo programa: Só elásticos (faixas ou tubos).
 | Vaga | iniciante | intermediário | avançado | opções (avançado) |
 |---|---:|---:|---:|---|
 | Empurrar horizontal | **1** | **1** | **1** | supino-reto |
-| Empurrar inclinado | **1** (n2) | **1** (n2) | **1** (n2) | crucifixo-halteres |
+| Empurrar inclinado | **1** (n2) | **1** (n2) | **1** (n2) | supino-reto |
 | Crucifixo (peito alongado) | **1** | **1** | **1** | crucifixo-halteres |
 | Puxar vertical | 3 (n2) | 3 (n2) | 3 (n2) | remada-unilateral-halter, remada-curvada-halteres, remada-unilateral-sem-banco |
 | Puxar horizontal | 3 | 3 | 3 | remada-unilateral-halter, remada-curvada-halteres, remada-unilateral-sem-banco |
@@ -433,7 +433,7 @@ Mesmo programa: Só polia simples; Só banco regulável (inclina); Só banco ret
 | Vaga | iniciante | intermediário | avançado | opções (avançado) |
 |---|---:|---:|---:|---|
 | Empurrar horizontal | **1** | **1** | **1** | supino-reto |
-| Empurrar inclinado | **1** (n2) | **1** (n2) | **1** (n2) | crucifixo-halteres |
+| Empurrar inclinado | **1** (n2) | **1** (n2) | **1** (n2) | supino-reto |
 | Crucifixo (peito alongado) | **1** | **1** | **1** | crucifixo-halteres |
 | Puxar vertical | 3 (n2) | 3 (n2) | 3 (n2) | remada-unilateral-halter, remada-curvada-halteres, remada-unilateral-sem-banco |
 | Puxar horizontal | 3 | 3 | 3 | remada-unilateral-halter, remada-curvada-halteres, remada-unilateral-sem-banco |
@@ -909,7 +909,7 @@ Mesmo programa: Só polia simples; Só banco regulável (inclina); Só banco ret
 | Vaga | iniciante | intermediário | avançado | opções (avançado) |
 |---|---:|---:|---:|---|
 | Empurrar horizontal | **1** (n2) | **1** (n2) | **1** (n2) | flexao |
-| Empurrar inclinado | 2 (n2) | 2 (n2) | 2 (n2) | crucifixo-polia, crucifixo-polia-baixo |
+| Empurrar inclinado | **1** (n3) | **1** (n3) | **1** (n3) | flexao |
 | Crucifixo (peito alongado) | 2 | 2 | 2 | crucifixo-polia, crucifixo-polia-baixo |
 | Puxar vertical | **1** | **1** | **1** | puxada-unilateral |
 | Puxar horizontal | **1** | **1** | **1** | remada-unilateral-polia |
@@ -1497,7 +1497,7 @@ Mesmo programa: Só polia simples; Só banco regulável (inclina); Só banco ret
 | Vaga | iniciante | intermediário | avançado | opções (avançado) |
 |---|---:|---:|---:|---|
 | Empurrar horizontal | **1** | **1** | **1** | supino-maquina |
-| Empurrar inclinado | **1** (n3) | **1** (n3) | **1** (n3) | flexao |
+| Empurrar inclinado | **1** (n2) | **1** (n2) | **1** (n2) | supino-maquina |
 | Crucifixo (peito alongado) | **0** | **0** | **0** | — |
 | Puxar vertical | **0** | **0** | **0** | — |
 | Puxar horizontal | **0** | **0** | **0** | — |
@@ -1533,7 +1533,7 @@ Mesmo programa: Só polia simples; Só banco regulável (inclina); Só banco ret
 | Elevação lateral | **0** | **0** | **0** | — |
 | Ombro posterior | **1** (n2) | **1** (n2) | **1** (n2) | yt-suspensao |
 | Bíceps | **1** (n2) | **1** (n2) | **1** (n2) | rosca-suspensao |
-| Tríceps acima da cabeça | **0** | **0** | **0** | — |
+| Tríceps acima da cabeça | **1** (n2) | **1** (n2) | **1** (n2) | triceps-suspensao |
 | Tríceps (complemento) | **1** (n2) | **1** (n2) | **1** (n2) | triceps-suspensao |
 | Agachar | **1** (n3) | **1** (n3) | **1** (n3) | agachamento-peso-corpo |
 | Afundo | 2 (n2) | 3 (n2) | 3 (n2) | afundo-peso-corpo, bulgaro-peso-corpo, bulgaro-suspensao |
@@ -1581,7 +1581,7 @@ Mesmo programa: Só polia simples; Só banco regulável (inclina); Só banco ret
 | Vaga | iniciante | intermediário | avançado | opções (avançado) |
 |---|---:|---:|---:|---|
 | Empurrar horizontal | **1** (n2) | **1** (n2) | **1** (n2) | flexao |
-| Empurrar inclinado | **1** (n2) | **1** (n2) | **1** (n2) | voador |
+| Empurrar inclinado | **1** (n3) | **1** (n3) | **1** (n3) | flexao |
 | Crucifixo (peito alongado) | **1** | **1** | **1** | voador |
 | Puxar vertical | **0** | **0** | **0** | — |
 | Puxar horizontal | **0** | **0** | **0** | — |

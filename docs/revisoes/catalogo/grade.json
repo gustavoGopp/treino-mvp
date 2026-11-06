@@ -1892,7 +1892,7 @@
      "extensora": 1,
      "flexao-joelho": 1,
      "dobrar-quadril": 2,
-     "extensao-quadril": 2,
+     "extensao-quadril": 3,
      "abducao": 2,
      "aducao": 1,
      "panturrilha-em-pe": 4,
@@ -1916,7 +1916,7 @@
      "extensora": 1,
      "flexao-joelho": 1,
      "dobrar-quadril": 3,
-     "extensao-quadril": 2,
+     "extensao-quadril": 3,
      "abducao": 2,
      "aducao": 1,
      "panturrilha-em-pe": 4,
@@ -1940,7 +1940,7 @@
      "extensora": 1,
      "flexao-joelho": 1,
      "dobrar-quadril": 3,
-     "extensao-quadril": 2,
+     "extensao-quadril": 3,
      "abducao": 2,
      "aducao": 1,
      "panturrilha-em-pe": 4,
@@ -1971,7 +1971,7 @@
      "extensora": 1,
      "flexao-joelho": 1,
      "dobrar-quadril": 3,
-     "extensao-quadril": 2,
+     "extensao-quadril": 3,
      "abducao": 2,
      "aducao": 1,
      "panturrilha-em-pe": 4,
@@ -1995,7 +1995,7 @@
      "extensora": 1,
      "flexao-joelho": 1,
      "dobrar-quadril": 4,
-     "extensao-quadril": 2,
+     "extensao-quadril": 3,
      "abducao": 2,
      "aducao": 1,
      "panturrilha-em-pe": 4,
@@ -2019,7 +2019,7 @@
      "extensora": 1,
      "flexao-joelho": 1,
      "dobrar-quadril": 4,
-     "extensao-quadril": 2,
+     "extensao-quadril": 3,
      "abducao": 2,
      "aducao": 1,
      "panturrilha-em-pe": 4,
@@ -2600,7 +2600,7 @@
    "vagas": {
     "iniciante": {
      "empurrar-horizontal": 1,
-     "empurrar-inclinado": 2,
+     "empurrar-inclinado": 1,
      "crucifixo": 2,
      "puxar-vertical": 1,
      "puxar-horizontal": 1,
@@ -2624,7 +2624,7 @@
     },
     "intermediario": {
      "empurrar-horizontal": 1,
-     "empurrar-inclinado": 2,
+     "empurrar-inclinado": 1,
      "crucifixo": 2,
      "puxar-vertical": 1,
      "puxar-horizontal": 1,
@@ -2648,7 +2648,7 @@
     },
     "avancado": {
      "empurrar-horizontal": 1,
-     "empurrar-inclinado": 2,
+     "empurrar-inclinado": 1,
      "crucifixo": 2,
      "puxar-vertical": 1,
      "puxar-horizontal": 1,
@@ -5294,7 +5294,7 @@
      "elevacao-lateral": 0,
      "ombro-posterior": 1,
      "biceps": 1,
-     "triceps-acima-cabeca": 0,
+     "triceps-acima-cabeca": 1,
      "triceps-complemento": 1,
      "agachar": 1,
      "afundo": 2,
@@ -5318,7 +5318,7 @@
      "elevacao-lateral": 0,
      "ombro-posterior": 1,
      "biceps": 1,
-     "triceps-acima-cabeca": 0,
+     "triceps-acima-cabeca": 1,
      "triceps-complemento": 1,
      "agachar": 1,
      "afundo": 3,
@@ -5342,7 +5342,7 @@
      "elevacao-lateral": 0,
      "ombro-posterior": 1,
      "biceps": 1,
-     "triceps-acima-cabeca": 0,
+     "triceps-acima-cabeca": 1,
      "triceps-complemento": 1,
      "agachar": 1,
      "afundo": 3,
@@ -5916,9 +5916,9 @@
   "programas": 5940,
   "porFuncao": {
    "abdomen": {
-    "aparece2": 4623,
+    "aparece2": 4620,
     "repeteComOpcao": 120,
-    "repeteSemOpcao": 3636
+    "repeteSemOpcao": 3633
    },
    "abducao": {
     "aparece2": 0,
@@ -5926,23 +5926,23 @@
     "repeteSemOpcao": 0
    },
    "afundo": {
-    "aparece2": 1650,
+    "aparece2": 3291,
     "repeteComOpcao": 0,
-    "repeteSemOpcao": 27
+    "repeteSemOpcao": 69
    },
    "agachar": {
-    "aparece2": 549,
+    "aparece2": 891,
     "repeteComOpcao": 0,
-    "repeteSemOpcao": 396
+    "repeteSemOpcao": 699
    },
    "biceps": {
-    "aparece2": 1401,
+    "aparece2": 1404,
     "repeteComOpcao": 20,
-    "repeteSemOpcao": 801
+    "repeteSemOpcao": 804
    },
    "crucifixo": {
     "aparece2": 348,
-    "repeteComOpcao": 32,
+    "repeteComOpcao": 23,
     "repeteSemOpcao": 228
    },
    "dobrar-quadril": {
@@ -5951,19 +5951,19 @@
     "repeteSemOpcao": 270
    },
    "elevacao-lateral": {
-    "aparece2": 1368,
-    "repeteComOpcao": 72,
-    "repeteSemOpcao": 1152
+    "aparece2": 1449,
+    "repeteComOpcao": 75,
+    "repeteSemOpcao": 1224
    },
    "empurrar-horizontal": {
-    "aparece2": 2388,
-    "repeteComOpcao": 18,
-    "repeteSemOpcao": 1974
+    "aparece2": 2970,
+    "repeteComOpcao": 24,
+    "repeteSemOpcao": 2718
    },
    "empurrar-inclinado": {
-    "aparece2": 1101,
-    "repeteComOpcao": 39,
-    "repeteSemOpcao": 993
+    "aparece2": 1089,
+    "repeteComOpcao": 27,
+    "repeteSemOpcao": 1008
    },
    "empurrar-vertical": {
     "aparece2": 0,
@@ -5981,9 +5981,9 @@
     "repeteSemOpcao": 648
    },
    "flexao-joelho": {
-    "aparece2": 4161,
+    "aparece2": 4209,
     "repeteComOpcao": 0,
-    "repeteSemOpcao": 1862
+    "repeteSemOpcao": 1863
    },
    "ombro-posterior": {
     "aparece2": 1149,
@@ -5996,29 +5996,29 @@
     "repeteSemOpcao": 2736
    },
    "panturrilha-sentada": {
-    "aparece2": 0,
+    "aparece2": 6,
     "repeteComOpcao": 0,
-    "repeteSemOpcao": 0
+    "repeteSemOpcao": 6
    },
    "puxar-horizontal": {
-    "aparece2": 1296,
+    "aparece2": 1360,
     "repeteComOpcao": 69,
-    "repeteSemOpcao": 504
+    "repeteSemOpcao": 568
    },
    "puxar-vertical": {
-    "aparece2": 1836,
+    "aparece2": 1863,
     "repeteComOpcao": 267,
-    "repeteSemOpcao": 720
+    "repeteSemOpcao": 738
    },
    "triceps-acima-cabeca": {
-    "aparece2": 720,
+    "aparece2": 756,
     "repeteComOpcao": 72,
-    "repeteSemOpcao": 504
+    "repeteSemOpcao": 540
    },
    "triceps-complemento": {
-    "aparece2": 459,
+    "aparece2": 1947,
     "repeteComOpcao": 0,
-    "repeteSemOpcao": 435
+    "repeteSemOpcao": 1917
    }
   }
  }

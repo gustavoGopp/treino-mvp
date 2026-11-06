@@ -515,3 +515,34 @@ Sem mudar nenhum programa (os snapshots das personas não mudaram):
 - Linhas novas só de registro: `selecao.dobrar-quadril` (moderada; as fontes dos níveis, que não mudaram) e `volume.semanal.abdomen` (consenso; a meta de 4 deixa de herdar o moderada do mínimo eficaz).
 - O "porquê" de quem cai num nível abaixo do 1º deixa de soar como "pior": "entre as opções do seu equipamento, a melhor para esta função".
 - O suspeito `dia.poucos-exercicios` da grade ficou como estava (menos de 5 exercícios com 45 min ou mais), para o antes e o depois serem medidos na mesma régua.
+
+### F.9 O antes e o depois na grade (as decisões 1 a 7 juntas)
+
+A auditoria completa rodou duas vezes com os 34 arquivos idênticos por hash (`npm run auditoria:verificar`). Os estresses antigos passaram a rodar só as divisões que a tela oferece (o Corpo todo 6x, escolhido à força, repetia a divisão recomendada e inflava as contagens); assim o estresse do treino tem os mesmos 149.760 programas de antes e a comparação vale.
+
+**Grade de qualidade** (911.625 programas):
+
+| Medida | Antes | Depois |
+|---|---:|---:|
+| Dias com até 3 exercícios, 45 min ou mais (sem dor, sem exercício evitado) | 16,5% | 6,6% |
+| Idem, sem nada | 20% | **0%** |
+| Sem nada, dias com até 4 exercícios (45 min ou mais) | 50,2% | 26,5% |
+| Sem nada, 60 min: mediana de exercícios por dia | 4 | 5 |
+| Programas cujo dia mais longo usa menos de 70% dos minutos | 35% | 21,8% |
+| Idem, com 60 min | 31,3% | 13,6% |
+| Mediana do uso dos minutos, com 60 min / com 90 min | 75% / 50% | 95% / 60% |
+| Uso baixo e nenhum aviso de sobra | 3,9% | 2% |
+| Prioritário abaixo da meta com tempo sobrando | 7,1% | 4% |
+| Abdômen a zero na semana / panturrilha a zero | 11,6% / 10,4% | 5,9% / 5,9% |
+| Músculo acima do teto de 20; dia acima dos minutos sem aviso; dia vazio ou só com abdominal | 0; 0; 0 | 0; 0; 0 |
+| Sem nada, intermediário: séries por semana de peito / quadríceps / posteriores / glúteos / tríceps | 7,7 / 6,6 / 7,6 / 9,1 / 5,4 | 10,5 / 9,6 / 9,8 / 12,0 / 7,5 |
+
+**Estresse do treino** (149.760 programas, a mesma grade de antes): músculos sem prioridade acima do máximo do nível ficam no mesmo lugar ou caem (peito 2.380 → 2.203, tríceps 2.504 → 2.465), menos o ombro de trás (1.225 → 1.400, a meia série das puxadas supinadas, decisão 7) e o glúteo (4.491 → 4.581); a sobra acima de 30% cai de 34,2% para 31,9% dos programas; com 75 a 150 min, o dia mais longo vai de 62–63 para 65 min em mediana.
+
+**Os custos que apareceram**, registrados para o Gustavo:
+
+1. **Dias acima dos minutos.** No estresse do treino, de 7,1% para 9,8% dos dias, todos com o aviso de tempo; na grade de qualidade, os programas de 30 min com o dia mais longo acima do tempo vão de 26% para 40%. A causa é a proteção do abdômen e da panturrilha (decisão 5), que coloca o exercício mesmo com o treino cheio. Com 45 min ou mais, quase nada muda (4,1% → 6,4% com 45; 0,5% → 0,6% com 60).
+2. **O mesmo exercício em todos os dias.** De 29,8% para 39,9% dos programas na grade de qualidade. A causa principal é o Corpo todo 6x (decisão 2): quem não tem como puxar e treina 6 dias recebe seis treinos de corpo todo com os poucos exercícios que existem sem equipamento; antes, recebia dois dias de "Puxar" quase vazios. Repetir o mesmo exercício com o volume certo não atrapalha o crescimento (moderada, Parte B), mas é menos variado.
+3. **O ombro lateral no Corpo todo 6x.** Sem nada para puxar, o ombro lateral fica a zero em 55,9% dos programas (eram 50,7%): o Corpo todo 6x não tem a vaga de empurrar vertical (o pike, que conta meia série para ele), como os outros corpos todos.
+
+Os três estão no backlog com a proposta de ajuste, para o Gustavo decidir se valem uma rodada.

@@ -109,5 +109,7 @@ Detalhes, medidas e o porquê de cada item em `revisoes/auditoria-fable.md`.
 - **Ombro posterior como vaga-base num dia** (C.5) e **ordem dos complementos** (C.6): medir em 45 min antes.
 - **Panturrilha no degrau** (B.20, 2ª parte): exercício novo com o calcanhar abaixo do degrau da escada; precisa de cartão textual e, depois, de animação aprovada.
 - **Custo da proteção do abdômen** (F.5): na Ana, o abdominal protegido tirou 2 séries do búlgaro, um exercício de foco. Se o Gustavo achar alto, proteger com 2 séries e sem passar dos minutos.
+- **Dias de 30 min acima do tempo** (F.9): com a proteção do abdômen e da panturrilha, 40% dos programas de 30 min têm um dia acima do tempo (eram 26%), sempre com aviso. Proposta: com 30 min ou menos, proteger com 2 séries e trocar por um isolador do mesmo dia em vez de somar.
+- **O mesmo exercício em todos os dias no Corpo todo 6x** (F.9): 39,9% dos programas da grade (eram 29,8%), puxado pelos cenários sem equipamento com 6 dias.
 - **O ombro lateral no Corpo todo 6x**: sem a vaga de empurrar vertical (como nos outros corpos todos), o ombro lateral fica sem a meia série do pike em quem não tem como puxar.
 
