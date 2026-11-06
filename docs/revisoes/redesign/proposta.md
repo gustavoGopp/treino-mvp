@@ -231,6 +231,9 @@ O Lighthouse de hoje dá 59 a 73 de desempenho no celular simulado, abaixo da me
 ![Saúde: uma pergunta](img/ad-triagem-claro.png)
 ![Equipamento: item por item](img/ad-equipamento-lista-claro.png)
 
+### Adendo da Fase 3 (06/11): o desenho do Corpo livre
+O Gustavo ainda não gostou do desenho do Corpo livre (a pessoa agachando) e pediu para registrar como adendo da Fase 3. Fica **não aprovado**: volta com novas opções lado a lado, para a escolha dele, antes da tabela de decisões. Os outros 3 lugares e os 24 equipamentos novos seguem como proposta, também com aprovação item a item.
+
 ## 13. Para decidir
 
 A tabela item a item, com o antes e o depois, a evidência, o custo em lotes e a minha recomendação em cada linha, vem depois da crítica independente (agente 6), na Fase 4.
