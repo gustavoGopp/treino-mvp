@@ -410,3 +410,60 @@ Na série, a proposta caiu pela metade (110 → 56). No início, caiu um terço;
 ![Descanso, sem animação, "por quê?" e "⋯"](img/menos-texto-treino-estados.png)
 
 **Já no app (lote 1):** o selo sutil e o "por quê?" no RIR (`PorQue` em `src/features/app/ui.tsx`, com teste em `tests/e2e/selo.spec.ts`). O resto entra com os lotes 2 (treino) e 4 (início), que passam a seguir esta regra.
+
+## 16. A apresentação, refeita do zero (06/11)
+
+**O pedido.** O Gustavo achou a apresentação pouco convidativa e pediu uma pesquisa com fontes, com liberdade para reformular tudo ("não se prenda a essa versão"). A pesquisa completa, com cada afirmação marcada, está em `agente-7-apresentacao.md`.
+
+**O que a pesquisa disse, em 4 pontos:**
+- A 1ª impressão de uma tela se forma em menos de meio segundo, e a complexidade visual pesa mais que a cor [fonte: Lindgaard 2006, um estudo; Tuch 2012, um estudo; Reinecke 2013, um estudo]. A tela de hoje abria sem imagem, e a coisa maior e mais colorida nela era a caixa laranja do aviso.
+- É melhor mostrar o produto e o valor antes de pedir dados, sem tutorial em sequência [fonte: NN/g, consenso; Kendrick 2020, um estudo].
+- O aviso de saúde é exigido pelas lojas e tem de ficar à vista sem assustar [fonte: Apple, diretriz 1.4.1; Google Play; consenso]. O próprio PAR-Q+ fala do benefício antes do risco.
+- O tempo prometido tem de ser o real [fonte: Yan 2007, citado em Conrad 2010, um estudo]. "4 perguntas rápidas" não batia com 4 passos que somam 7 perguntas mais o equipamento.
+
+**As duas propostas** (as duas no protótipo, versão 6):
+- **A, o Boneco recebe (a recomendada):**
+  - o Boneco real, em movimento, no topo; ele fica parado com movimento reduzido, e um toque nele abre o guia;
+  - o título "Treino de força feito para o que você tem";
+  - a linha "Monta o programa, mostra cada exercício e diz o porquê";
+  - o aviso "O que o app não faz", com o texto inteiro, na letra normal do texto, num fundo neutro, sem a caixa de alerta;
+  - a linha "Seus dados ficam só neste celular. Sem login.";
+  - o botão "Começar", com "4 passos, uns 3 minutos" embaixo;
+  - "Meus dados" no topo, para quem chega num celular novo e quer importar a cópia.
+- **B, o seu lugar:** a mesma tela, com os 4 desenhos de lugar no topo. O desenho do corpo já é a opção D aprovada, que também passou para a tela de equipamento.
+
+**O aviso de segurança.**
+- O texto é o mesmo de hoje, palavra por palavra; as capturas conferem isso por script.
+- Ele vem sempre **antes** do botão, porque o botão deixou de ficar preso embaixo e passou a vir depois do aviso, no fim da página. Em celular normal, a 412 e a 360 px, tudo cabe e o botão fica à vista sem rolar. Com zoom de 200% ou letra grande, a pessoa passa pelo aviso para chegar ao botão.
+- O tom de alerta (laranja) fica para quando há risco de verdade: a triagem e o "Senti algo".
+
+**Medidas** (`medidas-*.json` em `depois/`, 36 telas em 7 cenários):
+
+| | Hoje | A | B |
+|---|---:|---:|---:|
+| Palavras à vista sem rolar, Pixel 7 | 106 | 76 | 74 |
+| Botão à vista sem rolar, a 412 e a 360 px | sim | sim | sim |
+| O aviso inteiro antes do botão, nos 7 cenários | não conferido | sim | sim |
+
+Os 4 critérios seguem limpos: 0 toque abaixo de 44 px, 0 contraste baixo, 0 rolagem de lado, 0 texto cortado e 0 foco coberto. Das 76 palavras, 38 são do aviso.
+
+![A apresentação: hoje, A e B](img/apresentacao-claro.png)
+![A e B no escuro, e A a 360 px](img/apresentacao-escuro-e-360.png)
+
+**Outros pontos da pesquisa:**
+
+| Ponto | O que fiz |
+|---|---|
+| Dizer que os dados ficam no celular na hora em que a saúde é perguntada | Aplicado no protótipo, em 1 frase na tela de saúde. |
+| "Dá para mudar depois, em Meus dados" onde a pessoa hesita | Aplicado na rotina e no equipamento. |
+| O Boneco da apresentação abre o guia (dar antes de pedir) | Aplicado. |
+| Tirar o "nós" e as ordens dos textos que não são de segurança | Começado ("O app supõe halteres..."). O resto entra com o lote 3. |
+| Dicas no próprio 1º treino, em vez de tutorial | Fica para o lote 2 (treino). |
+| Uma frase do PAR-Q+ antes das condições, na triagem ("Treinar é seguro para a maioria das pessoas...") | **Decisão do Gustavo:** é texto de segurança novo. Não muda o bloqueio nem as 9 perguntas. |
+
+**Para o Gustavo decidir:**
+1. A ou B.
+2. O botão "Começar" ou "Entendi, começar". Nos dois casos, o toque registra que a pessoa viu o aviso; o segundo diz isso por escrito.
+3. A frase do PAR-Q+ na triagem: entra ou não.
+
+A apresentação escolhida entra no app no lote 3 (cadastro).
