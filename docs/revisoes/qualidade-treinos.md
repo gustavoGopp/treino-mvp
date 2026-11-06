@@ -502,3 +502,16 @@ A troca segue a regra que o projeto já tinha (o piso de todo músculo vem antes
 | Diego | ombro de trás 3 séries por semana, com o aviso "abaixo da meta" | 4 séries (o piso), sem aviso; o treino não muda |
 | Fábio | nórdico 2 × 4–8 nos dois dias de inferior; flexão deslizante 3 no Inferior A; ombro de trás 3; glúteos 9,5 | nórdico 3 × 6–10 no Inferior A e 2 × 6–10 no B; deslizante 2 no A; ombro de trás 6; glúteos 9 |
 | Bruno, Ana, Carla, Elisa | | não mudam |
+
+### F.8 O que ficou comigo: selos e textos
+
+Sem mudar nenhum programa (os snapshots das personas não mudaram):
+
+- `ordem.sessao`: consenso → **moderada** (`nunes2021`, `acsm2026`, `tomeleri2020`), com o texto de que a ordem não muda a hipertrofia e "prioritário primeiro" vale para força.
+- `selecao.multi-mono`: um estudo → **moderada** (`rosa2022`, meta-análise), com a ressalva de que o multiarticular não basta para a cabeça longa do tríceps (`brandao2020`) nem por série (`mannarino2021`).
+- `volume.serie-indireta.peso`: moderada → **um estudo** para o número 0,5 (`pelland2026` comparou 1, 0,5 e 0 sem estimar o ótimo); a direção continua moderada no texto. É a única que desce: o selo vai para o número.
+- `selecao.exercicios-por-musculo`: o número 2 continua **consenso**; o texto e as fontes passam a dizer o que se sabe (um exercício com o volume certo cresce o total; funções diferentes crescem regiões diferentes; nenhum ensaio compara 1 contra 2 com o mesmo volume).
+- `selecao.crucifixo-complemento` e `tempo.exercicios-por-sessao`: o texto ganha o que a pesquisa achou ("peito alongado" é consenso; os ensaios usam 2 a 8 exercícios por sessão).
+- Linhas novas só de registro: `selecao.dobrar-quadril` (moderada; as fontes dos níveis, que não mudaram) e `volume.semanal.abdomen` (consenso; a meta de 4 deixa de herdar o moderada do mínimo eficaz).
+- O "porquê" de quem cai num nível abaixo do 1º deixa de soar como "pior": "entre as opções do seu equipamento, a melhor para esta função".
+- O suspeito `dia.poucos-exercicios` da grade ficou como estava (menos de 5 exercícios com 45 min ou mais), para o antes e o depois serem medidos na mesma régua.

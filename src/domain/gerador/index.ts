@@ -912,7 +912,7 @@ export function porqueDoExercicio(e: Exercicio, funcao: Funcao, nivelFuncao: num
       texto:
         nivelFuncao === 0
           ? `Vaga de ${funcao.nome.toLowerCase()}: entre as opções equivalentes, a que melhor cabe no seu equipamento.`
-          : `Vaga de ${funcao.nome.toLowerCase()}: sem as opções preferidas no seu equipamento, entra a melhor possível.`,
+          : `Vaga de ${funcao.nome.toLowerCase()}: entre as opções do seu equipamento, a melhor para esta função.`,
     },
   ];
   if (preferido)

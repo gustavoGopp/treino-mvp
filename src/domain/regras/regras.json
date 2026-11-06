@@ -107,6 +107,20 @@
     ]
   },
   {
+    "id": "volume.semanal.abdomen",
+    "regra": "Meta semanal do abdômen não prioritário: o piso de 4 séries. Não há ensaio de hipertrofia que compare exercícios de abdômen nem programa com e sem trabalho direto; a curva de dose-resposta (`schoenfeld2017a`) é extrapolada; um exercício de flexão do tronco basta (linha criada em 06/11/2026 para o selo da meta, que antes herdava o da linha de cima)",
+    "valores": {
+      "iniciante": "4",
+      "intermediario": "4",
+      "avancado": "4"
+    },
+    "selo": "consenso",
+    "fontes": [
+      "consenso-projeto",
+      "schoenfeld2017a"
+    ]
+  },
+  {
     "id": "volume.manutencao.piso",
     "regra": "Piso do modo manutenção, com carga mantida; o app avisa que mantém e não maximiza",
     "valores": {
@@ -135,16 +149,17 @@
   },
   {
     "id": "volume.serie-indireta.peso",
-    "regra": "Peso da série indireta (sinergista, ex.: remada para o bíceps) na contagem de volume; é uma aproximação estatística",
+    "regra": "Peso da série indireta (sinergista, ex.: remada para o bíceps) na contagem de volume; é uma aproximação estatística. `pelland2026` comparou contar a série indireta como 1, 0,5 e 0, e o 0,5 se ajustou melhor, sem estimar o peso ótimo; na rosca × remada a razão foi 0,47 (`mannarino2021`). O número 0,5 tem selo de um estudo; a direção (entre 0 e 1) é moderada (revisto em 06/11/2026)",
     "valores": {
       "iniciante": "0,5",
       "intermediario": "0,5",
       "avancado": "0,5"
     },
-    "selo": "moderada",
+    "selo": "um estudo",
     "fontes": [
       "pelland2026",
-      "remmert2025"
+      "remmert2025",
+      "mannarino2021"
     ]
   },
   {
@@ -1011,16 +1026,20 @@
   },
   {
     "id": "selecao.multi-mono",
-    "regra": "Base em multiarticulares; isoladores para braços, cabeças biarticulares, panturrilha e deltoide lateral; isoladores saem primeiro quando falta tempo",
+    "regra": "Base em multiarticulares; isoladores para braços, cabeças biarticulares, panturrilha e deltoide lateral; isoladores saem primeiro quando falta tempo. Revisto em 06/11/2026: o multiarticular basta para o tamanho total do bíceps (meta-análise, `rosa2022`), não por série (a rosca cresceu os flexores do cotovelo 2× a remada, `mannarino2021`) nem para a cabeça longa do tríceps (o supino sozinho não a cresceu, `brandao2020`)",
     "valores": {
       "iniciante": "multi como base",
       "intermediario": "multi como base",
       "avancado": "multi como base"
     },
-    "selo": "um estudo",
+    "selo": "moderada",
     "fontes": [
       "gentil2015",
-      "iversen2021"
+      "iversen2021",
+      "rosa2022",
+      "mannarino2021",
+      "brandao2020",
+      "gentil2013"
     ]
   },
   {
@@ -1115,7 +1134,7 @@
   },
   {
     "id": "selecao.exercicios-por-musculo",
-    "regra": "Exercícios diferentes por músculo na semana",
+    "regra": "Exercícios diferentes por músculo na semana. O que se sabe (06/11/2026): com o mesmo volume, um exercício só cresce o músculo inteiro como vários (moderada, em coxa e braço); funções diferentes crescem regiões diferentes (moderada: posteriores, quadríceps, peito, bíceps); nenhum ensaio compara 1 exercício com mais séries a 2 exercícios com o mesmo volume. O número 2 é consenso",
     "valores": {
       "iniciante": "grandes (peito, costas, quadríceps, posteriores, glúteos): 2, de funções complementares; pequenos: 1, ou 2 se forem prioridade",
       "intermediario": "grandes (peito, costas, quadríceps, posteriores, glúteos): 2, de funções complementares; pequenos: 1, ou 2 se forem prioridade",
@@ -1124,7 +1143,12 @@
     "selo": "consenso",
     "fontes": [
       "kassiano2022",
-      "morin2025"
+      "morin2025",
+      "kassiano2025var",
+      "fonseca2014",
+      "costa2021",
+      "zabaletakorta2021",
+      "maeo2024"
     ]
   },
   {
@@ -1190,7 +1214,7 @@
   },
   {
     "id": "selecao.crucifixo-complemento",
-    "regra": "Crucifixo ou voador (peito alongado) como complemento do empurrar, não como substituto",
+    "regra": "Crucifixo ou voador (peito alongado) como complemento do empurrar, não como substituto. O motivo \"peito alongado\" é consenso: a meta-análise do comprimento muscular achou efeito trivial em outros músculos (`varovic2025`); o isolador sozinho cresceu menos o peitoral que o multiarticular (`barbalho2021`), por isso ele complementa e não substitui (revisto em 06/11/2026)",
     "valores": {
       "iniciante": "complemento",
       "intermediario": "complemento",
@@ -1198,7 +1222,9 @@
     },
     "selo": "um estudo",
     "fontes": [
-      "pinto2025"
+      "pinto2025",
+      "varovic2025",
+      "barbalho2021"
     ]
   },
   {
@@ -1243,16 +1269,20 @@
   },
   {
     "id": "ordem.sessao",
-    "regra": "Ordenação determinística dos exercícios da sessão (a ordem não muda a hipertrofia)",
+    "regra": "Ordenação determinística dos exercícios da sessão (a ordem não muda a hipertrofia). A ordem não muda a hipertrofia (meta-análise de 11 estudos, `nunes2021`; ACSM 2026); o exercício que abre a sessão ganha mais força; começar pela perna reduz o esforço percebido no corpo todo (um estudo, `nunes2019`). \"Prioritário primeiro\" tem apoio para força, não para hipertrofia (só `avelar2019`, fraco). Selo revisto em 06/11/2026 (sessão de qualidade dos treinos)",
     "valores": {
       "iniciante": "multiarticular → prioridade do usuário → ordem do modelo de divisão (que segue a exigência técnica) → core por último",
       "intermediario": "multiarticular → prioridade do usuário → ordem do modelo de divisão (que segue a exigência técnica) → core por último",
       "avancado": "multiarticular → prioridade do usuário → ordem do modelo de divisão (que segue a exigência técnica) → core por último"
     },
-    "selo": "consenso",
+    "selo": "moderada",
     "fontes": [
       "nunes2021",
-      "simao2012"
+      "simao2012",
+      "acsm2026",
+      "tomeleri2020",
+      "avelar2019",
+      "nunes2019"
     ]
   },
   {
@@ -1407,6 +1437,22 @@
       "consenso-projeto",
       "ramoscampo2024",
       "pelland2026"
+    ]
+  },
+  {
+    "id": "selecao.dobrar-quadril",
+    "regra": "Ordem da função \"dobrar o quadril\" (posteriores): terra romeno e stiff com carga → hiperextensão e pull-through → stiff com elástico; sem nenhum, vale a flexão de joelho (`seNada`). O quadril dobrado cresce a cabeça longa do bíceps femoral e o semimembranoso; a flexão de joelho com o quadril estendido, o semitendíneo (moderada, 3 grupos de pesquisa). Linha criada em 06/11/2026 para registrar as fontes dos níveis, que não mudaram",
+    "valores": {
+      "iniciante": "ordem dos níveis",
+      "intermediario": "ordem dos níveis",
+      "avancado": "ordem dos níveis"
+    },
+    "selo": "moderada",
+    "fontes": [
+      "morin2025",
+      "crawford2025",
+      "bourne2017",
+      "maeo2024"
     ]
   },
   {
@@ -1624,7 +1670,7 @@
   },
   {
     "id": "tempo.exercicios-por-sessao",
-    "regra": "Exercícios por treino conforme os minutos, pelo modelo de tempo do app (~3 séries cada); entre os pontos, proporcional. Quando não cabem todas as vagas do dia: primeiro as vagas-base, depois o complemento que é o único exercício direto de um músculo com meta (ex.: ombro posterior), depois os complementos dos grupos prioritários e, por fim, os outros; nenhuma vaga entra se, já no mínimo de séries, passar do teto semanal de algum músculo (`volume.semanal.minimo-eficaz`, `volume.semanal.teto-padrao`; auditoria de 04/11/2026; desde 06/11/2026 vale também para as vagas-base, por causa do Corpo todo 6x)",
+    "regra": "Exercícios por treino conforme os minutos, pelo modelo de tempo do app (~3 séries cada); entre os pontos, proporcional. Quando não cabem todas as vagas do dia: primeiro as vagas-base, depois o complemento que é o único exercício direto de um músculo com meta (ex.: ombro posterior), depois os complementos dos grupos prioritários e, por fim, os outros; nenhuma vaga entra se, já no mínimo de séries, passar do teto semanal de algum músculo (`volume.semanal.minimo-eficaz`, `volume.semanal.teto-padrao`; auditoria de 04/11/2026; desde 06/11/2026 vale também para as vagas-base, por causa do Corpo todo 6x). Os ensaios de hipertrofia usam de 2 a 8 exercícios por sessão; a evidência conta séries por músculo por semana, e \"5 a 7 exercícios por treino\" é prática de treinadores (pesquisa-v2/14, 06/11/2026)",
     "valores": {
       "iniciante": "30 min: 4; 45: 6; 60: 8; 75: 10; 90: 12",
       "intermediario": "30 min: 4; 45: 6; 60: 8; 75: 10; 90: 12",
@@ -1632,7 +1678,11 @@
     },
     "selo": "consenso",
     "fontes": [
-      "consenso-projeto"
+      "consenso-projeto",
+      "iversen2024",
+      "bazvalle2019",
+      "tomeleri2020",
+      "acsm2026"
     ]
   },
   {
