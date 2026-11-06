@@ -22,7 +22,7 @@ import type { Inventario } from '../../domain/taxonomia/equipamentos';
 import { avaliarDor, avaliarSinal, type Sinal } from '../../domain/triagem';
 import type { Estado } from '../../storage/esquema';
 import { agoraIso, fusoDoAparelho, useApp } from '../app/estado';
-import { Selo, Titulo, Topo } from '../app/ui';
+import { PorQue, Selo, Titulo, Topo } from '../app/ui';
 import { Miniatura } from '../programa/Miniatura';
 import { BotaoPrefiro } from '../programa/Prefiro';
 import { alternarPreferencia, desfazerSerie, diaDoTreino, interromperExercicio, inventarioDoTreino, opcoesDaCarga, registrarSerie, terminarSessao, trocarExercicio } from './acoes';
@@ -368,7 +368,9 @@ function RegistroSerie({
       </div>
       <fieldset className="campo">
         <legend>Quantas repetições ainda conseguiria? (RIR)</legend>
-        <p className="ajuda">A maioria das pessoas acha que tem menos reserva do que tem. <Selo id="rir.leitura" /></p>
+        <PorQue regras={['rir.leitura']}>
+          <p>A maioria das pessoas acha que tem menos reserva do que tem.</p>
+        </PorQue>
         <div className="chips-valor">
           {RIRS.map((n) => (
             <label key={n} className="chip-valor">

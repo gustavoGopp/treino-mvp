@@ -58,3 +58,19 @@ test('no treino, a folha do selo abre abaixo do cabeçalho e "Senti algo" contin
   await expect(folha).toBeHidden();
   await expect(page.getByRole('region', { name: 'Senti algo' })).toBeVisible();
 });
+
+// Retorno do Gustavo (06/11): a explicação sai da tela e fica a um toque, no "por quê?". O texto da regra e o selo vão junto.
+test('o "por quê?" do RIR abre a explicação com a regra, o selo e as fontes', async ({ page }) => {
+  await ana(page);
+  await page.getByRole('button', { name: /^Começar o treino/ }).click();
+  await expect(page.getByText('A maioria das pessoas acha que tem menos reserva do que tem.')).toHaveCount(0);
+  await page.getByRole('group', { name: /RIR/ }).getByRole('button', { name: 'por quê?' }).click();
+  const folha = page.getByRole('dialog', { name: 'Por quê' });
+  await expect(folha).toContainText('A maioria das pessoas acha que tem menos reserva do que tem.');
+  await expect(folha.locator('.sentido')).toContainText('Evidência moderada.');
+  await expect(folha.locator('ol li').first()).toBeVisible();
+  await expect(page.getByRole('button', { name: 'Senti algo' })).toBeVisible();
+  await semToquePequeno(page);
+  await page.keyboard.press('Escape');
+  await expect(folha).toBeHidden();
+});

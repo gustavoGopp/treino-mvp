@@ -8,6 +8,10 @@ import { carregarFontes, TEXTO_LEITURA, type Fonte } from '../../conteudo/fontes
 
 // Peças de interface comuns às telas do app (onboarding, programa, dados).
 
+// A palavra que aparece na tela, curta e apagada (retorno do Gustavo, 06/11: "tem que ser uma coisa muito sutil").
+// O nome completo fica no nome acessível e na folha.
+const CURTO_SELO: Record<TipoSelo, string> = { robusta: 'robusta', moderada: 'moderada', 'um estudo': '1 estudo', consenso: 'consenso' };
+
 const TEXTO_SELO: Record<TipoSelo, string> = {
   robusta: 'evidência robusta',
   moderada: 'evidência moderada',
@@ -35,11 +39,36 @@ export function Selo({ id }: { id: string }) {
   return (
     <>
       <button type="button" className={`selo selo-${regra.selo.replace(' ', '-')}`} aria-label={`${texto}: ver de onde vem`} aria-haspopup="dialog" onClick={() => setAberto(true)}>
-        {texto}
+        {CURTO_SELO[regra.selo]}
       </button>
       {aberto && (
         <Folha titulo="De onde vem isto" aoFechar={() => setAberto(false)} livre={() => document.querySelector<HTMLElement>('.alerta-topo')}>
           <SeloFolha regra={regra} />
+        </Folha>
+      )}
+    </>
+  );
+}
+
+/**
+ * "por quê?" (retorno do Gustavo, 06/11: menos texto na tela). A explicação e as regras saem da tela e ficam a um toque:
+ * a folha mostra o texto de apoio da tela (se houver) e, para cada regra, o texto da regra, o selo e as fontes, como a
+ * folha do selo. O texto da regra não muda; só muda de lugar.
+ */
+export function PorQue({ regras, titulo = 'Por quê', children }: { regras: string[]; titulo?: string; children?: ReactNode }) {
+  const [aberto, setAberto] = useState(false);
+  const lista = regras.map((id) => REGRAS[id]).filter((r): r is (typeof REGRAS)[string] => !!r);
+  return (
+    <>
+      <button type="button" className="porque" aria-haspopup="dialog" onClick={() => setAberto(true)}>
+        por quê?
+      </button>
+      {aberto && (
+        <Folha titulo={titulo} aoFechar={() => setAberto(false)} livre={() => document.querySelector<HTMLElement>('.alerta-topo')}>
+          {children && <div className="porque-texto">{children}</div>}
+          {lista.map((r) => (
+            <SeloFolha key={r.id} regra={r} />
+          ))}
         </Folha>
       )}
     </>

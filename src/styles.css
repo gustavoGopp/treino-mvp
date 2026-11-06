@@ -318,13 +318,18 @@ details.campo .opcoes{margin-top:8px}
 .status{margin:0;font-weight:700;color:var(--ok)}
 .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 
-/* Selo de evidência: sempre visível, discreto (uma pílula cinza), e tocável: abre a regra, o significado e as fontes.
-   A pílula fica pequena; a área de toque cresce por fora dela (::after) até 44 px, sem empurrar a linha. */
-.selo{position:relative;display:inline-block;font:inherit;font-size:var(--t-rotulo);font-weight:700;line-height:1.35;padding:1px 8px;border:0;border-radius:var(--rp);background:var(--superficie-2);color:var(--texto-2);white-space:nowrap;vertical-align:1px;margin-left:2px;cursor:pointer;text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:2px}
+/* Selo de evidência: ao lado de toda regra, sutil (uma palavra curta e apagada, sublinhado pontilhado), e tocável: abre a
+   regra, o significado e as fontes. A palavra fica pequena; a área de toque cresce por fora dela (::after) até 44 px, sem empurrar a linha. */
+.selo{position:relative;display:inline-block;font:inherit;font-size:var(--t-rotulo);font-weight:600;line-height:1.35;padding:0 2px;border:0;border-radius:var(--r1);background:none;color:var(--texto-2);white-space:nowrap;vertical-align:baseline;margin-left:2px;cursor:pointer;text-decoration:underline dotted;text-decoration-thickness:1px;text-underline-offset:3px}
 .selo::after{content:"";position:absolute;left:min(0px,calc(50% - 22px));right:min(0px,calc(50% - 22px));top:calc(50% - 22px);bottom:calc(50% - 22px)}
 .selo code{font-size:var(--t-rotulo)}
 /* em tela muito estreita (320 px, zoom de 200%) o selo quebra a linha em vez de passar da borda */
 @media (max-width:359px){.selo{white-space:normal;max-width:100%;text-align:left}}
+/* "por quê?": o link pequeno que abre a explicação e as regras (a área de toque cresce por fora, como no selo) */
+.porque{position:relative;display:inline-block;font:inherit;font-size:var(--t-apoio);font-weight:700;padding:0 2px;border:0;background:none;color:var(--link);cursor:pointer;text-decoration:underline;text-underline-offset:3px;white-space:nowrap}
+.porque::after{content:"";position:absolute;left:min(0px,calc(50% - 22px));right:min(0px,calc(50% - 22px));top:calc(50% - 22px);bottom:calc(50% - 22px)}
+.porque-texto p{margin:0}
+.campo > .porque{align-self:flex-start;margin-top:-6px}
 .selo-folha{display:flex;flex-direction:column;gap:var(--e4)}
 .selo-folha .regra{margin:0;font-weight:700}
 .selo-folha .sentido{margin:0;padding:var(--e4);border-radius:var(--r2);background:var(--acao-suave)}
