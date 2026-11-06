@@ -165,7 +165,7 @@ O que **não** sei: se a Web Audio agendada toca com a tela do Android bloqueada
 - **Tela/estado:** treino, qualquer estado, depois de tocar em "Senti algo".
 - **Problema:** o painel abre entre 106% e 159% da altura, abaixo da dobra, em 24 de 24 casos; o foco não vai para ele e a tela não rola. Quem sente dor e toca no botão vê a tela igual. [medido; imagem 2]
 - **Evidência:** atenção em rajadas de segundos [fonte: Oulasvirta et al. 2005, um estudo (resumo)]. A regra do projeto pede o caminho de segurança à mão.
-- **Proposta:** "Senti algo" abre uma **folha por cima** (sobe de baixo, ocupa até 85% da altura, fundo escurecido), com o título "O que você sentiu?", as 4 opções de sinal (60 px cada, como hoje) e a escala de 0 a 10 em **duas fileiras** (0–5 e 6–10, 56 px). O foco vai para o título; "Fechar" no alto e o gesto de voltar fecham. Os textos de segurança ficam intactos.
+- **Proposta:** "Senti algo" abre uma **folha por cima** (sobe de baixo, ocupa até 85% da altura, fundo escurecido), com o título "O que você sentiu?", as 7 opções de sinal (56 a 60 px cada, textos de hoje) e a escala de 0 a 10 em **duas fileiras** (0–5 e 6–10, 56 px). Conta: título 56 + 7 sinais × 56 + espaços 48 + escala 144 ≈ 640 px; cabe inteira a 412 × 839 e a 412 × 780; a 640 e a 740, os 7 sinais cabem e a escala de dor rola dentro da folha [opinião: conta minha]. O foco vai para o título; "Fechar" no alto e o gesto de voltar fecham. Os textos de segurança ficam intactos.
 - **Efeito esperado:** 0 casos de painel fora da tela; o caminho "tocar → escolher" cabe em 2 toques sem rolar, nos 4 tamanhos.
 - **Custo e risco:** médio; muda `Treino.tsx` (componente `Sentir`) e um teste e2e. Risco: folha por cima esconde o registro; ela só existe enquanto aberta.
 
@@ -219,7 +219,7 @@ O que **não** sei: se a Web Audio agendada toca com a tela do Android bloqueada
 - **Custo e risco:** pequeno, se a folha de A for reaproveitada.
 
 ### H. Cartão de texto: montagem segura recolhida e "Série feita" que some
-- **Tela/estado:** exercício sem animação (Ana: ponte de glúteo; Carla: 7 máquinas).
+- **Tela/estado:** exercício sem animação (Ana: ponte de glúteo e crucifixo; Carla: várias máquinas).
 - **Problema:** no treino, o cartão vem **fechado** (`<details>` sem `open`), então a "Montagem segura" fica recolhida por padrão (conflito com "o que não muda"). Aberto, ele empurra o "Série feita" para fora da tela (111% a 155%). [medido; imagem 4]
 - **Proposta:** no treino, a "Montagem segura" aparece **sempre**, em até 3 linhas, acima do registro (com o selo); o resto do cartão (dicas, erros, passo a passo) abre numa folha por cima (como A), sem empurrar o registro.
 - **Efeito esperado:** montagem segura visível sem tocar em 100% dos exercícios com cartão; "Série feita" visível com o cartão aberto.
@@ -292,16 +292,19 @@ Legenda: `[fixo]` não rola; `~~~` dobra da tela a 360 × 740. Tamanhos: letra /
 ```
        ─────────────  (o treino escurecido atrás)
 [fixo] O que você sentiu?                  [ Fechar ]   22 px / 48
-       [ Dor no peito, falta de ar...           ]       17 px / 60
-       [ Tontura ou batimento irregular         ]       60
-       [ Dor articular aguda ou formigamento    ]       60
-       [ Perda de força incomum                 ]       60
+       [ Dor, pressão ou aperto no peito        ]       17 px / 56
+       [ Falta de ar fora do normal             ]       56
+       [ Tontura ou quase desmaio               ]       56
+       [ Coração batendo muito irregular        ]       56
+       [ Dor aguda ou em pontada numa articulação ]     56
+       [ Formigamento ou dormência              ]       56
+       [ Perda de força estranha                ]       56
        Ou dê uma nota para a dor (0 a 10)
        ( 0 )( 1 )( 2 )( 3 )( 4 )( 5 )                   56
        ( 6 )( 7 )( 8 )( 9 )( 10 )                       56
        O app não diagnostica. [selo]
 ```
-(Os textos dos sinais são os de hoje; o rascunho só abrevia.)
+(Os textos dos sinais são os de hoje, intactos.)
 
 **Trocar exercício**: a mesma folha, com "Trocar por:" e as alternativas como cartões de 60 px (nome, motivo, estrela de preferido).
 
