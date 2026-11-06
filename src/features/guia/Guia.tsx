@@ -6,7 +6,7 @@ import { hojeDoEstado, hojeDoTreino } from '../treino/acoes';
 import { DIAS, EX, VIEWS } from '../../engine';
 import { instanteDoErro, montarSvgEstilo, vistaDaMiniatura, vistaDoMovimento, type Estilo } from '../../engine/estilo';
 import { SO_AJUDA } from '../../engine/estilo/musculos';
-import { instante } from '../programa/Miniatura';
+import { instante } from '../programa/quadroBoneco';
 import { useEstiloBoneco } from '../app/estiloBoneco';
 import { agoraIso, fusoDoAparelho, useApp } from '../app/estado';
 import { lerContexto, linkDoGuia } from './link';

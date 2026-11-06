@@ -23,7 +23,7 @@ import { avaliarDor, avaliarSinal, type Sinal } from '../../domain/triagem';
 import type { Estado } from '../../storage/esquema';
 import { agoraIso, fusoDoAparelho, useApp } from '../app/estado';
 import { PorQue, Selo, Titulo, Topo } from '../app/ui';
-import { Miniatura } from '../programa/MiniaturaPreguicosa';
+import { Miniatura } from '../programa/Miniatura';
 import { BotaoPrefiro } from '../programa/Prefiro';
 import { alternarPreferencia, desfazerSerie, diaDoTreino, interromperExercicio, inventarioDoTreino, opcoesDaCarga, registrarSerie, terminarSessao, trocarExercicio } from './acoes';
 import { PainelDescanso, useDescanso } from './Temporizador';

@@ -26,7 +26,7 @@ async function jsDaTela(page: Page, abrir: () => Promise<unknown>) {
 
 test('a boas-vindas baixa menos de 150 kB de JavaScript comprimido', async ({ page }) => {
   const { kB, arquivos } = await jsDaTela(page, () => page.goto('/'));
-  expect(arquivos.some((f) => /estiloBoneco|Miniatura|Guia/.test(f)), 'o motor do Boneco fica fora da boas-vindas').toBe(false);
+  expect(arquivos.some((f) => /quadroBoneco|boneco\.worker|estiloBoneco|Guia/.test(f)), 'o motor do Boneco fica fora da boas-vindas').toBe(false);
   expect(kB, `JS da boas-vindas: ${arquivos.join(', ')}`).toBeLessThan(150);
 });
 
