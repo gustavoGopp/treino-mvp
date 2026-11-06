@@ -1,0 +1,791 @@
+<title>Redesign treino-mvp</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="Protótipo do redesign do treino-mvp: todas as telas, nos temas claro e escuro, com o Boneco do motor.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Next:wght@400;700;800&display=swap">
+<link rel="stylesheet" href="boneco.css">
+<style>
+/* Protótipo do redesign (docs/revisoes/redesign/proposta.md). Uma coluna de celular (até 412 px), a ação embaixo,
+   o selo de evidência tocável. Tokens: a direção Ameixa (recomendada pelo agente 5) e, para comparar, Giz e Petróleo.
+   As cores do palco do Boneco vêm de boneco.css e não mudam. */
+:root{
+  --fundo:#F9F2F0; --superficie:#FFFFFF; --superficie-2:#EFE5E4; --linha:#DDD6D4;
+  --texto:#171B20; --texto-2:#464B51; --borda:#868A92;
+  --acao:#722987; --sobre-acao:#FFFFFF; --acao-suave:#F5E4FB; --foco:#722987;
+  --feito:#0F6B3E; --feito-suave:#D9F5E1; --atencao:#7B5612; --atencao-suave:#FCEAD0;
+  --alerta:#AF283D; --alerta-suave:#FEE6E6; --descanso:#F1E2F5; --descanso-texto:#171B20;
+  --veu:rgba(23,27,32,.48);
+  --fonte:"Atkinson Hyperlegible Next","Atkinson Hyperlegible",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  --t-relogio:88px; --t-numero:44px; --t-titulo:24px; --t-pergunta:20px; --t-corpo:17px; --t-apoio:15px; --t-rotulo:13px;
+  --e1:4px; --e2:8px; --e3:12px; --e4:16px; --e5:24px; --e6:32px;
+  --r1:8px; --r2:16px; --rp:999px;
+  --toque:48px; --toque-m:56px; --toque-g:64px;
+  --dur:200ms;
+  --largura:412px;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --fundo:#191211; --superficie:#251D1C; --superficie-2:#312928; --linha:#413837;
+  --texto:#F6ECEA; --texto-2:#C0B6B4; --borda:#736A68;
+  --acao:#DFA1F3; --sobre-acao:#392240; --acao-suave:#3A2341; --foco:#DFA1F3;
+  --feito:#65AE80; --feito-suave:#12301E; --atencao:#C59749; --atencao-suave:#362508;
+  --alerta:#E98084; --alerta-suave:#3E1E1F; --descanso:#2E2132; --descanso-texto:#F6ECEA; --veu:rgba(0,0,0,.6);
+  color-scheme:dark;
+}}
+:root[data-theme="dark"]{
+  --fundo:#191211; --superficie:#251D1C; --superficie-2:#312928; --linha:#413837;
+  --texto:#F6ECEA; --texto-2:#C0B6B4; --borda:#736A68;
+  --acao:#DFA1F3; --sobre-acao:#392240; --acao-suave:#3A2341; --foco:#DFA1F3;
+  --feito:#65AE80; --feito-suave:#12301E; --atencao:#C59749; --atencao-suave:#362508;
+  --alerta:#E98084; --alerta-suave:#3E1E1F; --descanso:#2E2132; --descanso-texto:#F6ECEA; --veu:rgba(0,0,0,.6);
+  color-scheme:dark;
+}
+/* Direção Giz e grafite */
+:root[data-direcao="giz"]{--fundo:#F5F3EF; --superficie:#FFFFFF; --superficie-2:#EAE7E2; --linha:#D9D7D3; --texto:#171B20; --texto-2:#464B51; --borda:#868A92; --acao:#3F3AA8; --sobre-acao:#FFFFFF; --acao-suave:#E6EAFE; --foco:#3F3AA8; --descanso:#E3E6FC}
+@media (prefers-color-scheme: dark){:root[data-direcao="giz"]:not([data-theme="light"]){--fundo:#151410; --superficie:#211F1C; --superficie-2:#2D2B27; --linha:#3C3A36; --texto:#F1EEE9; --texto-2:#BBB8B0; --borda:#6F6C64; --acao:#A9B3FF; --sobre-acao:#25284A; --acao-suave:#272A4B; --foco:#A9B3FF; --descanso:#222537; --descanso-texto:#F1EEE9}}
+:root[data-direcao="giz"][data-theme="dark"]{--fundo:#151410; --superficie:#211F1C; --superficie-2:#2D2B27; --linha:#3C3A36; --texto:#F1EEE9; --texto-2:#BBB8B0; --borda:#6F6C64; --acao:#A9B3FF; --sobre-acao:#25284A; --acao-suave:#272A4B; --foco:#A9B3FF; --descanso:#222537; --descanso-texto:#F1EEE9}
+/* Direção Petróleo */
+:root[data-direcao="petroleo"]{--fundo:#F0F4F7; --superficie:#FFFFFF; --superficie-2:#E3E9EC; --linha:#D4D8DB; --texto:#171B20; --texto-2:#474B52; --borda:#868A92; --acao:#045260; --sobre-acao:#FFFFFF; --acao-suave:#D2F2FA; --foco:#045260; --atencao:#7E5600; --alerta:#AF293D; --descanso:#D2EEF4}
+@media (prefers-color-scheme: dark){:root[data-direcao="petroleo"]:not([data-theme="light"]){--fundo:#0E1518; --superficie:#1A2024; --superficie-2:#252D30; --linha:#343C40; --texto:#E7F0F5; --texto-2:#B2BABF; --borda:#656D71; --acao:#60C7DD; --sobre-acao:#00313B; --acao-suave:#03343D; --foco:#60C7DD; --feito:#66AF81; --atencao:#C6984A; --alerta:#EA8185; --descanso:#0F2B31; --descanso-texto:#E7F0F5}}
+:root[data-direcao="petroleo"][data-theme="dark"]{--fundo:#0E1518; --superficie:#1A2024; --superficie-2:#252D30; --linha:#343C40; --texto:#E7F0F5; --texto-2:#B2BABF; --borda:#656D71; --acao:#60C7DD; --sobre-acao:#00313B; --acao-suave:#03343D; --foco:#60C7DD; --feito:#66AF81; --atencao:#C6984A; --alerta:#EA8185; --descanso:#0F2B31; --descanso-texto:#E7F0F5}
+
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--fundo);color:var(--texto);font-family:var(--fonte);font-size:var(--t-corpo);line-height:1.45}
+button,input,select{font:inherit;color:inherit}
+:focus-visible{outline:3px solid var(--foco);outline-offset:2px}
+/* o foco programático no título só serve para o leitor de tela anunciar a tela nova */
+[tabindex="-1"]:focus{outline:none}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.num{font-variant-numeric:tabular-nums}
+
+/* Barra do protótipo (fora do app; some nas capturas) */
+.proto{background:var(--superficie-2);border-bottom:1px solid var(--linha);padding-block:var(--e2);padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.proto-in{max-width:var(--largura);margin:0 auto;display:flex;flex-wrap:wrap;gap:var(--e2);align-items:center}
+.proto label{font-size:var(--t-rotulo);font-weight:700;color:var(--texto-2);display:flex;flex-direction:column;gap:2px;flex:1 1 120px;min-width:0}
+.proto select{min-height:var(--toque);border:2px solid var(--borda);border-radius:var(--r1);background:var(--superficie);font-size:16px;padding:0 var(--e2);width:100%}
+html.captura .proto{display:none}
+
+/* A tela do app: uma coluna de celular */
+.app{max-width:var(--largura);margin:0 auto;min-height:100dvh;display:flex;flex-direction:column;background:var(--fundo);position:relative}
+.gutter{padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.miolo{flex:1;display:flex;flex-direction:column;gap:var(--e5);padding-block:var(--e4) var(--e5)}
+.pilha{display:flex;flex-direction:column;gap:var(--e3)}
+.pilha-2{display:flex;flex-direction:column;gap:var(--e2)}
+h1,h2,h3,p{margin:0}
+.titulo{font-size:var(--t-titulo);font-weight:800;line-height:1.15;text-wrap:balance}
+.pergunta{font-size:var(--t-pergunta);font-weight:700;line-height:1.3;text-wrap:balance}
+.apoio{font-size:var(--t-apoio);color:var(--texto-2)}
+.rotulo{font-size:var(--t-rotulo);font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--texto-2)}
+.lede{font-size:var(--t-corpo)}
+
+/* Cabeçalhos: de passo (cadastro), de seção (casa), de tarefa (treino, guia) */
+.cab{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--fundo);border-bottom:1px solid var(--linha)}
+.cab-in{min-height:var(--toque-m);display:flex;align-items:center;gap:var(--e4)}
+.cab-in .meio{flex:1;min-width:0;text-align:center;font-size:var(--t-apoio);font-weight:700;color:var(--texto-2);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.cab-in .marca{flex:1;font-weight:800;font-size:var(--t-corpo)}
+.volta{min-height:var(--toque);min-width:var(--toque);display:inline-flex;align-items:center;gap:var(--e1);padding:0 var(--e2) 0 0;border:0;background:none;color:var(--acao);font-weight:700;font-size:var(--t-corpo);cursor:pointer;text-decoration:none}
+.passo{display:flex;flex-direction:column;gap:6px;padding-bottom:var(--e2)}
+.passo .barra{height:6px;border-radius:var(--rp);background:var(--superficie-2);overflow:hidden}
+.passo .barra i{display:block;height:100%;background:var(--acao);border-radius:var(--rp)}
+.passo span{font-size:var(--t-rotulo);font-weight:700;color:var(--texto-2)}
+.senti{min-height:var(--toque-m);padding:0 var(--e4);display:inline-flex;align-items:center;gap:var(--e2);border:2px solid var(--alerta);border-radius:var(--r2);background:var(--superficie);color:var(--alerta);font-weight:800;font-size:var(--t-corpo);cursor:pointer;white-space:nowrap}
+.senti svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+
+/* Base fixa: a ação principal e a barra inferior */
+.base{position:sticky;bottom:0;z-index:18;background:var(--fundo);border-top:1px solid var(--linha);padding-bottom:env(safe-area-inset-bottom,0px)}
+.base .acao{padding-block:var(--e3)}
+.barra-inf{display:flex;border-top:1px solid var(--linha);background:var(--superficie)}
+.barra-inf a{flex:1;min-height:var(--toque-g);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;font-size:var(--t-rotulo);font-weight:700;color:var(--texto-2);text-decoration:none}
+.barra-inf a[aria-current="page"]{color:var(--acao)}
+.barra-inf a[aria-current="page"] svg{stroke-width:2.6}
+.barra-inf svg{width:24px;height:24px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+
+/* Botões */
+.btn{display:flex;align-items:center;justify-content:center;gap:var(--e2);width:100%;min-height:var(--toque-m);padding:var(--e2) var(--e4);border-radius:var(--r2);border:2px solid var(--acao);background:var(--acao);color:var(--sobre-acao);font-weight:800;font-size:18px;text-align:center;cursor:pointer;text-decoration:none;line-height:1.2;transition:filter var(--dur)}
+.btn:active{filter:brightness(.88)}
+.btn.g{min-height:var(--toque-g);font-size:20px}
+.btn.sec{background:var(--superficie);color:var(--texto);border-color:var(--borda)}
+.btn.ter{background:none;border-color:transparent;color:var(--acao);min-height:var(--toque);font-size:var(--t-corpo);font-weight:700}
+.btn.perigo{background:var(--alerta);border-color:var(--alerta);color:var(--superficie)}
+.btn.auto{width:auto}
+.btn:disabled{background:var(--superficie-2);border-color:var(--superficie-2);color:var(--texto-2);cursor:not-allowed}
+.btn small{font-weight:700;font-size:var(--t-apoio);opacity:.9}
+.dois{display:grid;grid-template-columns:1fr 1fr;gap:var(--e2)}
+.link{color:var(--acao);font-weight:700;text-decoration:underline;text-underline-offset:3px;background:none;border:0;padding:0;cursor:pointer;font-size:inherit}
+
+/* Superfícies */
+.sup{background:var(--superficie);border-radius:var(--r2);padding:var(--e4);display:flex;flex-direction:column;gap:var(--e2)}
+.sup.info{background:var(--acao-suave)}
+.sup.aviso{background:var(--atencao-suave);box-shadow:inset 4px 0 0 var(--atencao)}
+.sup.alerta{background:var(--alerta-suave);box-shadow:inset 4px 0 0 var(--alerta)}
+.sup.feito{background:var(--feito-suave)}
+.sup h2{font-size:var(--t-pergunta);font-weight:800;line-height:1.25}
+
+/* Selo de evidência: pílula tocável que abre a fonte */
+.selo{display:inline;font:inherit;font-size:var(--t-rotulo);font-weight:700;line-height:1.35;padding:2px 9px;border-radius:var(--rp);border:0;background:var(--superficie-2);color:var(--texto-2);cursor:pointer;white-space:nowrap;text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:2px;vertical-align:1px}
+
+/* Opções em linha (rádio, caixa) */
+.opcoes{display:flex;flex-direction:column;gap:var(--e2)}
+.opcao{display:flex;align-items:center;gap:var(--e3);min-height:var(--toque-m);padding:var(--e2) var(--e4);background:var(--superficie);border:2px solid var(--borda);border-radius:var(--r2);cursor:pointer;font-weight:700;line-height:1.3}
+.opcao input{width:22px;height:22px;margin:0;flex:none;accent-color:var(--acao)}
+.opcao:has(input:checked){border-color:var(--acao);background:var(--acao-suave)}
+.opcao:has(input:focus-visible){outline:3px solid var(--foco);outline-offset:2px}
+.opcao small{display:block;font-weight:400;font-size:var(--t-apoio);color:var(--texto-2)}
+.opcao .icone{width:48px;height:36px;flex:none;color:var(--texto-2)}
+fieldset{border:0;margin:0;padding:0;min-width:0;display:flex;flex-direction:column;gap:var(--e3)}
+legend{padding:0;margin-bottom:var(--e1)}
+
+/* Chips (valores) e segmentado */
+.chips{display:flex;flex-wrap:wrap;gap:var(--e2)}
+.chip{min-height:var(--toque);min-width:var(--toque);padding:0 var(--e4);display:inline-flex;align-items:center;justify-content:center;gap:6px;border:2px solid var(--borda);border-radius:var(--rp);background:var(--superficie);font-weight:700;cursor:pointer;font-variant-numeric:tabular-nums}
+.chip[aria-pressed="true"],.chip:has(input:checked){background:var(--acao);border-color:var(--acao);color:var(--sobre-acao)}
+.chip[aria-pressed="true"]::before,.chip:has(input:checked)::before{content:"✓"}
+.chip input{position:absolute;opacity:0;width:1px;height:1px}
+.chip:has(input:focus-visible){outline:3px solid var(--foco);outline-offset:2px}
+.chips.cheios .chip{flex:1 1 0}
+.seg{display:flex;gap:var(--e1);padding:var(--e1);border-radius:var(--r2);background:var(--superficie-2)}
+.seg button{flex:1 1 0;min-height:var(--toque);border:0;border-radius:12px;background:transparent;font-weight:700;font-size:var(--t-apoio);color:var(--texto-2);cursor:pointer;padding:0 var(--e1)}
+.seg button[aria-pressed="true"],.seg button[aria-selected="true"]{background:var(--superficie);color:var(--texto);box-shadow:0 0 0 2px var(--acao)}
+.seg.g button{min-height:var(--toque-m);font-size:var(--t-corpo)}
+
+/* Lista de linhas */
+.lista{list-style:none;margin:0;padding:0;background:var(--superficie);border-radius:var(--r2);overflow:hidden}
+.lista li+li{border-top:1px solid var(--linha)}
+.linha{display:flex;align-items:center;gap:var(--e3);min-height:var(--toque-m);padding:var(--e2) var(--e4);width:100%;border:0;background:none;text-align:left;cursor:pointer;color:inherit;text-decoration:none;font-size:var(--t-corpo)}
+.linha .txt{flex:1;min-width:0;display:flex;flex-direction:column;gap:2px}
+.linha .txt b{font-weight:700;line-height:1.25}
+.linha .txt span{font-size:var(--t-apoio);color:var(--texto-2)}
+.linha .seta{color:var(--texto-2);font-size:22px;flex:none}
+.linha.ex{min-height:76px}
+.linha .rx{font-size:var(--t-pergunta);font-weight:800;color:var(--texto);font-variant-numeric:tabular-nums}
+
+/* Miniatura e palco do Boneco (moldura nova; o desenho é o do motor) */
+.mini{width:64px;aspect-ratio:4/3;flex:none;border-radius:var(--r1);overflow:hidden;background:var(--stage);display:grid;place-items:center}
+.mini svg{width:100%;height:100%;display:block}
+.mini.texto{background:var(--superficie-2);color:var(--texto-2);font-size:13px;font-weight:700;text-align:center;line-height:1.15;padding:2px}
+.palco{position:relative;background:var(--stage);aspect-ratio:4/3;width:100%;max-width:100%}
+.palco svg{position:absolute;inset:0;width:100%;height:100%;display:block}
+.palco .hud{position:absolute;left:10px;right:10px;top:10px;display:flex;justify-content:space-between;align-items:flex-start;gap:8px;pointer-events:none}
+.palco .fase{background:color-mix(in srgb,var(--stage) 88%,transparent);border-radius:10px;padding:4px 10px;font-size:14px;line-height:1.25;max-width:64%;color:var(--st-ink);font-weight:700}
+.palco .breath{font-weight:800;letter-spacing:.04em;font-size:15px;padding:4px 12px;border-radius:999px;background:#1F3CB8;color:#fff}
+.palco .breath.hold{background:#3B4250}
+.legenda{display:flex;flex-wrap:wrap;gap:var(--e2) var(--e4);font-size:var(--t-apoio);color:var(--texto-2)}
+.legenda span{display:inline-flex;align-items:center;gap:6px}
+.sw{width:18px;height:12px;border-radius:3px;display:inline-block}
+
+/* Treino */
+.ex-cab{display:flex;gap:var(--e3);align-items:center}
+.ex-cab .mini{width:88px}
+.ex-cab h1{font-size:var(--t-pergunta);font-weight:800;line-height:1.2}
+.meta{font-size:var(--t-apoio);color:var(--texto-2);font-variant-numeric:tabular-nums}
+.serie-tit{display:flex;justify-content:space-between;align-items:baseline;gap:var(--e2)}
+.serie-tit b{font-size:var(--t-pergunta);font-weight:800;font-variant-numeric:tabular-nums}
+.feitas{display:flex;gap:6px;flex-wrap:wrap}
+.feitas span{font-size:var(--t-rotulo);font-weight:700;background:var(--feito-suave);color:var(--texto);border-radius:var(--rp);padding:3px 10px;font-variant-numeric:tabular-nums}
+.feitas span::before{content:"✓ ";color:var(--feito)}
+.registro{position:sticky;bottom:0;z-index:16;background:var(--superficie);border-top:1px solid var(--linha);border-radius:20px 20px 0 0;box-shadow:0 -6px 18px rgba(0,0,0,.08);padding-block:var(--e3) calc(var(--e3) + env(safe-area-inset-bottom,0px));display:flex;flex-direction:column;gap:var(--e3)}
+.linha-reg{display:grid;grid-template-columns:1fr auto;align-items:center;gap:var(--e2)}
+.linha-reg .rot{font-weight:700;font-size:var(--t-apoio);color:var(--texto-2)}
+.stepper{display:flex;align-items:center;gap:var(--e2)}
+.stepper button{width:var(--toque-m);height:var(--toque-m);border-radius:var(--r2);border:2px solid var(--borda);background:var(--superficie);font-size:28px;font-weight:700;line-height:1;cursor:pointer}
+.stepper output{min-width:104px;text-align:center;font-size:var(--t-numero);font-weight:800;line-height:1;font-variant-numeric:tabular-nums}
+.stepper output small{font-size:var(--t-pergunta);font-weight:700;color:var(--texto-2)}
+.rir{display:grid;grid-template-columns:repeat(5,1fr);gap:var(--e2)}
+.rir button{min-height:var(--toque-m);border-radius:var(--r2);border:2px solid var(--borda);background:var(--superficie);font-weight:800;font-size:18px;cursor:pointer;font-variant-numeric:tabular-nums}
+.rir button[aria-pressed="true"]{background:var(--acao);border-color:var(--acao);color:var(--sobre-acao)}
+.descanso{background:var(--descanso);color:var(--descanso-texto);border-radius:var(--r2);padding:var(--e4);display:flex;flex-direction:column;gap:var(--e2)}
+.descanso.acabou{background:var(--atencao-suave);box-shadow:inset 0 0 0 3px var(--atencao)}
+.descanso .topo{display:flex;justify-content:space-between;align-items:baseline;font-weight:800;font-size:var(--t-pergunta)}
+.descanso .acabou-txt{font-size:32px;font-weight:800;line-height:1.1}
+.relogio{font-size:var(--t-relogio);font-weight:800;line-height:1;font-variant-numeric:tabular-nums;text-align:center}
+.tbarra{height:10px;border-radius:var(--rp);background:color-mix(in srgb,var(--descanso-texto) 14%,transparent);overflow:hidden}
+.tbarra i{display:block;height:100%;background:var(--acao);border-radius:var(--rp)}
+.montagem{background:var(--atencao-suave);border-radius:var(--r2);padding:var(--e3) var(--e4);display:flex;flex-direction:column;gap:var(--e1);font-size:var(--t-apoio)}
+.montagem b{font-size:var(--t-corpo)}
+.montagem ul{margin:0;padding-left:20px}
+.dicas{list-style:none;margin:0;padding:0;counter-reset:d;display:flex;flex-direction:column;gap:var(--e3)}
+.dicas li{counter-increment:d;display:flex;gap:var(--e3);font-size:20px;font-weight:800;line-height:1.3}
+.dicas li::before{content:counter(d);color:var(--acao);min-width:18px}
+
+/* Folha inferior e diálogo */
+.veu{position:fixed;inset:0;z-index:30;background:var(--veu);display:flex;align-items:flex-end;justify-content:center}
+.veu.abaixo-cab{top:calc(env(safe-area-inset-top,0px) + 57px);z-index:19}
+.folha{width:100%;max-width:var(--largura);max-height:88%;overflow:auto;background:var(--fundo);border-radius:20px 20px 0 0;box-shadow:0 -8px 24px rgba(0,0,0,.22);padding-block:var(--e2) calc(var(--e5) + env(safe-area-inset-bottom,0px));display:flex;flex-direction:column;gap:var(--e4);animation:sobe var(--dur) ease-out}
+.folha .alca{width:40px;height:5px;border-radius:var(--rp);background:var(--borda);margin:0 auto}
+.folha-cab{display:flex;align-items:center;justify-content:space-between;gap:var(--e3)}
+.folha-cab h2{font-size:var(--t-pergunta);font-weight:800}
+.dialogo{width:calc(100% - 32px);max-width:380px;margin:auto;align-self:center;background:var(--fundo);border-radius:var(--r2);padding:var(--e5);display:flex;flex-direction:column;gap:var(--e4);animation:aparece var(--dur) ease-out}
+.veu.centro{align-items:center}
+@keyframes sobe{from{transform:translateY(24px);opacity:.6}to{transform:none;opacity:1}}
+@keyframes aparece{from{transform:scale(.97);opacity:.6}to{transform:none;opacity:1}}
+
+/* Semana, fim, evolução */
+.bolinhas{display:flex;gap:var(--e2)}
+.bolinhas i{width:22px;height:22px;border-radius:50%;border:2.5px solid var(--acao)}
+.bolinhas i.on{background:var(--acao)}
+.numero-g{font-size:var(--t-numero);font-weight:800;line-height:1;font-variant-numeric:tabular-nums}
+.numero-g small{font-size:var(--t-pergunta);color:var(--texto-2);font-weight:700}
+.semanas{display:flex;gap:4px}
+.semanas i{flex:1;height:22px;border-radius:4px;background:var(--superficie-2);display:grid;place-items:center;font-style:normal;font-size:12px;font-weight:800;color:var(--sobre-acao)}
+.semanas i.on{background:var(--acao)}
+.semanas i.on::after{content:"✓"}
+.musc{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:var(--e3)}
+.musc li{display:grid;grid-template-columns:96px 1fr auto;align-items:center;gap:var(--e2);font-size:var(--t-apoio)}
+.musc .b{position:relative;height:14px;border-radius:7px;background:var(--superficie-2)}
+.musc .b i{position:absolute;left:0;top:0;bottom:0;border-radius:7px;background:var(--acao)}
+.musc .b u{position:absolute;top:-3px;bottom:-3px;border:2px dashed var(--texto-2);border-radius:6px}
+.musc .n{font-weight:800;font-variant-numeric:tabular-nums}
+.subiu{font-size:var(--t-rotulo);font-weight:800;border-radius:var(--rp);padding:2px 9px;background:var(--feito-suave);color:var(--texto);white-space:nowrap}
+.subiu::before{content:"↑ ";color:var(--feito)}
+.pontos{list-style:none;margin:0;padding:0;background:var(--superficie);border-radius:var(--r2);overflow:hidden}
+.pontos li{display:grid;grid-template-columns:56px 1fr auto;gap:var(--e2);align-items:center;padding:var(--e3) var(--e4);font-variant-numeric:tabular-nums}
+.pontos li+li{border-top:1px solid var(--linha)}
+
+/* Equipamento */
+.categoria{background:var(--superficie);border-radius:var(--r2)}
+.categoria>summary{list-style:none;min-height:var(--toque-m);padding:0 var(--e4);display:flex;align-items:center;justify-content:space-between;gap:var(--e2);cursor:pointer;font-weight:700}
+.categoria>summary::-webkit-details-marker{display:none}
+.categoria>summary::after{content:"+";font-size:24px;color:var(--texto-2)}
+.categoria[open]>summary::after{content:"–"}
+.categoria .corpo{padding:0 var(--e3) var(--e4);display:flex;flex-direction:column;gap:var(--e3)}
+.grade-eq{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--e2)}
+.cartao-eq{position:relative;min-height:104px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;padding:var(--e2) 4px;border:2px solid var(--borda);border-radius:var(--r2);background:var(--superficie);font-size:14px;font-weight:700;text-align:center;line-height:1.2;cursor:pointer}
+.cartao-eq svg{width:56px;height:42px;fill:none;stroke:currentColor;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round;color:var(--texto-2)}
+.cartao-eq .falta{width:56px;height:42px;border:2px dashed var(--borda);border-radius:6px}
+.cartao-eq input{position:absolute;top:8px;right:8px;width:20px;height:20px;margin:0;accent-color:var(--acao)}
+.cartao-eq:has(input:checked){border-color:var(--acao);background:var(--acao-suave)}
+.cartao-eq:has(input:checked) svg{color:var(--acao)}
+.etapas{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:var(--e2)}
+.etapas li{display:flex;gap:var(--e3);align-items:center;font-weight:700}
+.etapas li::before{content:"";width:22px;height:22px;border-radius:50%;border:2.5px solid var(--borda);flex:none}
+.etapas li.ok::before{content:"✓";display:grid;place-items:center;background:var(--feito);border-color:var(--feito);color:var(--superficie);font-size:14px}
+.etapas li.agora::before{border-color:var(--acao);border-right-color:transparent;animation:gira 1s linear infinite}
+.etapas li.agora{color:var(--acao)}
+@keyframes gira{to{transform:rotate(1turn)}}
+
+/* Índice e sistema (fora do app) */
+.indice h2{font-size:var(--t-rotulo);font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--texto-2);margin-top:var(--e2)}
+.amostras{display:grid;grid-template-columns:repeat(auto-fill,minmax(110px,1fr));gap:var(--e2)}
+.amostra{border-radius:var(--r1);overflow:hidden;background:var(--superficie);font-size:12px}
+.amostra i{display:block;height:44px;border-bottom:1px solid var(--linha)}
+.amostra span{display:block;padding:4px 6px;font-weight:700}
+.toast{position:fixed;left:50%;bottom:calc(96px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);z-index:40;max-width:min(380px,calc(100% - 32px));background:var(--texto);color:var(--fundo);padding:var(--e3) var(--e4);border-radius:var(--r2);font-size:var(--t-apoio);font-weight:700}
+
+@media (prefers-reduced-motion: reduce){*,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+</style>
+<div class="proto" id="proto"><div class="proto-in">
+  <label for="sel-tela">Tela<select id="sel-tela"></select></label>
+  <label for="sel-tema">Tema<select id="sel-tema"><option value="">do celular</option><option value="light">claro</option><option value="dark">escuro</option></select></label>
+  <label for="sel-dir">Cor<select id="sel-dir"><option value="">Ameixa (recomendada)</option><option value="giz">Giz e grafite</option><option value="petroleo">Petróleo</option></select></label>
+</div></div>
+<div class="app" id="app"></div>
+<script src="dados.js"></script>
+<script src="boneco.js"></script>
+<script>
+(function(){
+'use strict';
+const D = window.DADOS, B = window.BONECO;
+const $ = (s, el = document) => el.querySelector(s);
+const esc = (s) => String(s ?? '').replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' })[c]);
+const faixa = (f) => (f[0] === f[1] ? `${f[0]}` : `${f[0]}–${f[1]}`);
+const tempo = (s) => `${Math.floor(s / 60)}:${String(s % 60).padStart(2, '0')}`;
+const reduz = () => window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+const guardar = (k, v) => { try { localStorage.setItem(k, v); } catch (e) {} };
+const ler = (k) => { try { return localStorage.getItem(k) || ''; } catch (e) { return ''; } };
+
+// --- selo de evidência: a pílula abre a regra, o significado do selo e as fontes ---
+const TXT_SELO = { robusta: 'evidência robusta', moderada: 'evidência moderada', 'um estudo': 'um estudo', consenso: 'consenso de especialistas' };
+const SIGNIFICADO = {
+  robusta: 'Várias meta-análises (ou uma grande, com ensaios) apontam na mesma direção.',
+  moderada: 'Uma meta-análise, alguns ensaios coerentes ou um único grupo de pesquisa com resultados consistentes.',
+  'um estudo': 'Um único ensaio, quase sempre com amostra pequena e curta duração.',
+  consenso: 'Prática de treinadores e posicionamentos, sem ensaio que teste este número.',
+};
+const selo = (id) => { const r = D.regras[id]; return r ? ` <a href="#fonte" class="selo" data-selo="${id}" aria-label="${esc(TXT_SELO[r.selo])}: ver de onde vem">${TXT_SELO[r.selo]}</a>` : ''; };
+function folhaSelo(id) {
+  const r = D.regras[id];
+  const fontes = r.fontes.map((f) => `<li>${esc(D.fontes[f] || f)}</li>`).join('');
+  abrirFolha(`<div class="folha-cab"><h2 id="folha-t" tabindex="-1">De onde vem isto</h2><button type="button" class="btn ter auto" data-fechar>Fechar</button></div>
+    <p><b>${esc(r.regra)}</b></p>
+    <div class="sup info"><p><b>${esc(TXT_SELO[r.selo][0].toUpperCase() + TXT_SELO[r.selo].slice(1))}.</b> ${esc(SIGNIFICADO[r.selo])}</p></div>
+    ${fontes ? `<div class="pilha-2"><p class="rotulo">Fontes</p><ol class="apoio" style="margin:0;padding-left:20px;display:flex;flex-direction:column;gap:8px">${fontes}</ol></div>` : ''}
+    <p class="apoio">Protótipo: no app de hoje este toque não abre nada no celular. Mostrar as fontes por extenso pede um arquivo de fontes no domínio (pedido do agente 4).</p>`);
+}
+
+// --- folha inferior e diálogo ---
+let ultimoFoco = null;
+function abrirFolha(html, opcoes = {}) {
+  fechar();
+  ultimoFoco = document.activeElement;
+  const veu = document.createElement('div');
+  veu.className = 'veu' + (opcoes.abaixoCab ? ' abaixo-cab' : '') + (opcoes.dialogo ? ' centro' : '');
+  veu.innerHTML = opcoes.dialogo
+    ? `<div class="dialogo" role="alertdialog" aria-modal="true" aria-labelledby="folha-t">${html}</div>`
+    : `<div class="folha gutter" role="dialog" aria-modal="true" aria-labelledby="folha-t"><div class="alca" aria-hidden="true"></div>${html}</div>`;
+  veu.addEventListener('click', (e) => { if (e.target === veu || e.target.closest('[data-fechar]')) fechar(); });
+  document.body.append(veu);
+  ($('#folha-t', veu) || veu).focus();
+}
+function fechar() {
+  document.querySelectorAll('.veu').forEach((v) => v.remove());
+  if (ultimoFoco && document.contains(ultimoFoco)) ultimoFoco.focus();
+  ultimoFoco = null;
+}
+document.addEventListener('keydown', (e) => { if (e.key === 'Escape') fechar(); });
+function aviso(txt) {
+  document.querySelectorAll('.toast').forEach((t) => t.remove());
+  const t = document.createElement('div');
+  t.className = 'toast'; t.setAttribute('role', 'status'); t.textContent = txt;
+  document.body.append(t);
+  setTimeout(() => t.remove(), 3200);
+}
+
+// --- peças comuns ---
+const ICONE = {
+  treino: 'M6.5 6.5v11M17.5 6.5v11M3.5 9v6M20.5 9v6M6.5 12h11',
+  semana: 'M4 5h16v15H4zM4 10h16M9 3v4M15 3v4',
+  dados: 'M12 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM4 21a8 8 0 0 1 16 0',
+};
+const nav = (atual) => `<nav class="barra-inf" aria-label="Seções">${[['inicio', 'treino', 'Treino'], ['semana', 'semana', 'Semana'], ['dados', 'dados', 'Meus dados']].map(([h, i, t]) => `<a href="#${h}"${atual === i ? ' aria-current="page"' : ''}><svg viewBox="0 0 24 24" aria-hidden="true"><path d="${ICONE[i]}"/></svg>${t}</a>`).join('')}</nav>`;
+const base = (acao, atual) => `<div class="base">${acao ? `<div class="acao gutter">${acao}</div>` : ''}${atual ? nav(atual) : ''}</div>`;
+const sentiBtn = `<button type="button" class="senti" data-ir="treino-senti" aria-haspopup="dialog"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 4l9 16H3z"/><path d="M12 10v4M12 17h.01"/></svg>Senti algo</button>`;
+const cabPasso = (n, voltar) => `<header class="cab"><div class="gutter"><div class="cab-in">${voltar ? `<a class="volta" href="#${voltar}">‹ Voltar</a>` : '<span class="marca">treino-mvp</span>'}<span class="meio">Passo ${n} de 5</span><span style="width:48px" aria-hidden="true"></span></div>
+  <div class="passo"><div class="barra" aria-hidden="true"><i style="width:${n * 20}%"></i></div></div></div></header>`;
+const cabCasa = (voltar, rotuloVolta) => `<header class="cab"><div class="gutter"><div class="cab-in">${voltar ? `<a class="volta" href="#${voltar}">‹ ${rotuloVolta}</a><span class="meio"></span>` : '<span class="marca">treino-mvp</span>'}</div></div></header>`;
+const cabTarefa = (voltar, rotuloVolta, meio, rotuloAcessivel) => `<header class="cab"><div class="gutter"><div class="cab-in"><a class="volta" href="#${voltar}"${rotuloAcessivel ? ` aria-label="${rotuloAcessivel}"` : ''}>‹ ${rotuloVolta}</a><span class="meio">${meio}</span>${sentiBtn}</div></div></header>`;
+const titulo = (t) => `<h1 class="titulo" tabindex="-1" id="t1">${t}</h1>`;
+const miniBoneco = (id, rotulo) => {
+  const m = id && B.mini[id];
+  return m ? `<span class="mini palco" role="img" aria-label="${esc(rotulo || 'Boneco')}"><svg viewBox="${m.v}" class="${m.c}">${m.h}</svg></span>` : `<span class="mini texto" aria-hidden="true">guia em texto</span>`;
+};
+const diaA = D.dias[0], diaB = D.dias[1], diaC = D.dias[2];
+const rxCurta = (x) => `${x.series} × ${faixa(x.reps)}${x.unilateral ? ' cada lado' : ''}`;
+const nomeDe = (id) => D.nomes[id] || id;
+
+// --- estado de interação do protótipo ---
+const S = { rir: null, carga: 8, reps: 10, dia: 0, modo: 'tec', tocando: !reduz(), lento: false, descanso: 105, timer: null, raf: 0 };
+
+// ======================= CADASTRO =======================
+const TELAS = {};
+const tela = (id, grupo, nome, render, depois) => (TELAS[id] = { id, grupo, nome, render, depois });
+
+tela('boas-vindas', 'Cadastro', '1. Boas-vindas', () => `${cabPasso(1)}
+<main class="miolo gutter">
+  ${titulo('Seu treino, com o equipamento que você tem')}
+  <p class="lede">Um programa de hipertrofia com base em evidência, montado só com o que você tem, e o porquê de cada escolha.</p>
+  <section class="sup aviso" aria-labelledby="nao-faz"><h2 id="nao-faz">O que o app não faz</h2>
+    <p>O app não diagnostica e não substitui um médico ou um profissional de Educação Física. É uma ferramenta de orientação, não uma prescrição. Se sentir dor, tontura ou mal-estar, pare e procure avaliação.${selo('seguranca.sem-diagnostico')}</p></section>
+  <p>Seus dados ficam neste aparelho. Só a foto do equipamento sai, sem localização, e não é guardada. <a class="link" href="#privacidade" data-privacidade>Como cuidamos dos seus dados</a></p>
+  <p class="apoio">4 perguntas rápidas e o seu equipamento.</p>
+</main>${base(`<a class="btn" href="#triagem">Entendi, vamos começar</a>`)}`);
+
+tela('triagem', 'Cadastro', '2. Saúde: as 9 perguntas', () => `${cabPasso(2, 'boas-vindas')}
+<main class="miolo gutter">
+  ${titulo('Antes de começar, 9 perguntas rápidas')}
+  <p>Leia as 9. Se nenhuma vale para você, um toque responde "não" a todas.${selo('seguranca.triagem.nenhuma')}</p>
+  <ol class="lista" aria-label="As 9 condições" style="padding:0">${D.triagem.map((p, i) => `<li class="linha" style="cursor:default"><span class="rx num" style="font-size:17px;min-width:20px">${i + 1}</span><span class="txt">${esc(p.texto)}</span></li>`).join('')}</ol>
+  <div class="pilha">
+    <a class="btn" href="#experiencia">Nenhuma vale para mim</a>
+    <a class="btn sec" href="#triagem-sim">Sim, alguma vale</a>
+  </div>
+  <p class="apoio">Os dois botões ficam no fim de propósito: a regra de segurança pede que você passe pelas 9 antes de responder.</p>
+</main>`);
+
+tela('triagem-sim', 'Cadastro', '2b. Saúde: marcar as que valem', () => `${cabPasso(2, 'triagem')}
+<main class="miolo gutter">
+  ${titulo('Quais valem para você?')}
+  <p>Marque só as que valem. As que você não marcar contam como "não".</p>
+  <fieldset><legend class="sr">As 9 condições</legend><div class="opcoes">${D.triagem.map((p) => `<label class="opcao"><input type="checkbox" id="tr-${p.id}"${p.id === 'osteoarticular' ? ' checked' : ''}><span>${esc(p.texto)}</span></label>`).join('')}</div></fieldset>
+  <section class="sup" aria-labelledby="onde"><h2 id="onde" class="pergunta">Onde?</h2>
+    <div class="chips">${['Ombro', 'Cotovelo', 'Punho', 'Lombar', 'Quadril', 'Joelho', 'Tornozelo'].map((a) => `<label class="chip"><input type="checkbox" id="ar-${a}"${a === 'Ombro' ? ' checked' : ''}>${a}</label>`).join('')}</div>
+    <fieldset><legend class="pergunta" style="font-size:17px">E hoje, dói o ombro? De 0 (nada) a 10 (a pior dor)</legend>
+      <div class="chips">${Array.from({ length: 11 }, (_, n) => `<label class="chip"><input type="radio" name="nota" id="nota-${n}"${n === 4 ? ' checked' : ''}>${n}</label>`).join('')}</div></fieldset>
+    <p class="apoio">Dor forte, que piora ou que dura mais de 1 a 2 semanas pede avaliação profissional.</p>
+  </section>
+  <p class="apoio">Protótipo: com "sim" no coração, no peito, na tontura ou na supervisão, o bloqueio e a liberação continuam iguais aos de hoje.</p>
+</main>${base(`<a class="btn" href="#experiencia">Continuar</a>`)}`);
+
+const escolha = (nome, legenda, ajuda, opcoes, marcada) => `<fieldset><legend class="pergunta">${legenda}</legend>${ajuda ? `<p class="apoio">${ajuda}</p>` : ''}<div class="opcoes">${opcoes.map((o, i) => `<label class="opcao"><input type="radio" name="${nome}" id="${nome}-${i}"${i === marcada ? ' checked' : ''}><span>${esc(o)}</span></label>`).join('')}</div></fieldset>`;
+tela('experiencia', 'Cadastro', '3. Experiência', () => `${cabPasso(3, 'triagem')}
+<main class="miolo gutter">
+  ${titulo('Sua experiência com musculação')}
+  ${escolha('tempo', 'Há quanto tempo você treina musculação sem parar?', 'Conte só o tempo contínuo, sem pausas de meses.', D.nivel.tempos.map((t) => t.texto), 0)}
+  ${escolha('pausa', 'Você está treinando agora?', 'Depois de uma pausa, o programa começa com semanas mais leves.', D.nivel.pausas.map((t) => t.texto), 0)}
+  ${escolha('tecnica', 'Você tem confiança na técnica dos exercícios básicos (agachamento, supino, remada)?', '', D.nivel.tecnica.map((t) => t.texto), 0)}
+  <section class="sup info" aria-live="polite"><h2>Seu nível: Iniciante</h2><p>O programa começa com 2 semanas de aprendizado, com foco na técnica.</p></section>
+</main>${base(`<a class="btn" href="#rotina">Continuar</a>`)}`);
+
+tela('rotina', 'Cadastro', '4. Rotina', () => `${cabPasso(4, 'experiencia')}
+<main class="miolo gutter">
+  ${titulo('Sua rotina de treino')}
+  <fieldset><legend class="pergunta">Quantos dias por semana você pode treinar?</legend><p class="apoio">Com 2 a 6 dias dá para treinar cada músculo cerca de 2 vezes por semana.</p>
+    <div class="chips cheios">${[2, 3, 4, 5, 6].map((d) => `<label class="chip"><input type="radio" name="dias" id="dias-${d}"${d === 3 ? ' checked' : ''}>${d}</label>`).join('')}</div></fieldset>
+  <fieldset><legend class="pergunta">Quantos minutos por treino?</legend><p class="apoio">Tempo total, com aquecimento e descansos.</p>
+    <div class="chips">${[30, 45, 60, 75, 90].map((m) => `<label class="chip"><input type="radio" name="min" id="min-${m}"${m === 45 ? ' checked' : ''}>${m} min</label>`).join('')}<label class="chip"><input type="radio" name="min" id="min-outro">Outro</label></div></fieldset>
+  <fieldset><legend class="pergunta">Quais grupos você quer priorizar? (opcional)</legend><p class="apoio">Os outros ficam no mínimo que ainda dá resultado.${selo('volume.semanal.minimo-eficaz')}</p>
+    <div class="chips">${['Peito', 'Costas', 'Ombros', 'Braços', 'Pernas', 'Glúteos', 'Abdômen'].map((g) => `<label class="chip"><input type="checkbox" id="pr-${g}"${g === 'Pernas' || g === 'Glúteos' ? ' checked' : ''}>${g}</label>`).join('')}</div></fieldset>
+  <p class="apoio">O objetivo ("ganhar músculo" é o padrão) e "algo a evitar" passam para depois do 1º treino, em Meus dados.</p>
+</main>${base(`<a class="btn" href="#equipamento">Continuar</a>`)}`);
+
+const ICO = {
+  academia: '<path d="M8 40V18l16-8 16 8v22M4 40h40M18 40V28h12v12"/>',
+  condominio: '<path d="M10 40V10h20v30M30 18h10v22M4 40h40M16 16h2M22 16h2M16 24h2M22 24h2M16 32h2M22 32h2"/>',
+  casa: '<path d="M6 22L24 8l18 14M10 19v21h28V19M20 40V30h8v10"/>',
+  corpo: '<circle cx="24" cy="9" r="4"/><path d="M24 14v13M14 20l10 3 10-3M24 27l-7 13M24 27l7 13"/>',
+};
+const icone = (k) => `<svg class="icone" viewBox="0 0 48 44" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${ICO[k]}</svg>`;
+const CATEGORIAS = [['Pesos livres', 8], ['Bancos e apoios', 5], ['Polia e estações', 9], ['Máquinas', 13], ['Barras e suportes', 6], ['Acessórios', 7]];
+const lugares = (marcado) => `<fieldset><legend class="pergunta">Onde você treina?</legend><div class="opcoes">${[['academia', 'Academia completa', 'Halteres, polias, barras e máquinas'], ['condominio', 'Condomínio com multifuncional', 'Alguns halteres, banco e uma estação'], ['casa', 'Casa com halteres e elásticos', 'Pergunta só o que muda o programa'], ['corpo', 'Corpo livre', 'Sem equipamento: chão, parede e cadeira']].map(([k, t, s]) => `<label class="opcao"><input type="radio" name="lugar" id="lugar-${k}"${marcado === k ? ' checked' : ''}>${icone(k)}<span>${t}<small>${s}</small></span></label>`).join('')}</div></fieldset>`;
+const categorias = (cheia) => `<div class="pilha-2"><p class="pergunta" style="font-size:17px">Conferir e ajustar a lista</p>${CATEGORIAS.map(([n, t]) => `<details class="categoria"><summary><span>${n}</span><span class="apoio num">${cheia ? t : 0} de ${t}</span></summary><div class="corpo"><p class="apoio">Abra para marcar ou desmarcar.</p></div></details>`).join('')}</div>`;
+tela('equipamento', 'Cadastro', '5. Equipamento: o lugar', () => `${cabPasso(5, 'rotina')}
+<main class="miolo gutter">
+  ${titulo('Que equipamento você tem?')}
+  ${lugares('')}
+  <a class="btn sec" href="#equipamento-foto">Reconhecer pela foto</a>
+  ${categorias(false)}
+</main>${base(`<button type="button" class="btn" disabled>Gerar meu programa</button><p class="apoio" style="text-align:center;margin-top:6px">Escolha um lugar ou marque na lista.</p>`)}`);
+
+tela('equipamento-academia', 'Cadastro', '5b. Equipamento: academia completa', () => `${cabPasso(5, 'rotina')}
+<main class="miolo gutter">
+  ${titulo('Que equipamento você tem?')}
+  ${lugares('academia')}
+  <div class="sup info"><p>Supomos halteres de 2 a 40 kg, polia regulável e o básico dos aparelhos. A 1ª série de cada exercício acerta a carga.${selo('equipamento.atalhos')} <a class="link" href="#equipamento-lista">Mudar</a></p></div>
+  ${categorias(true)}
+</main>${base(`<a class="btn" href="#programa-novo">Gerar meu programa</a>`)}`);
+
+const cartaoEq = (nome, marcado, desenho) => `<label class="cartao-eq"><input type="checkbox"${marcado ? ' checked' : ''}>${desenho ? `<svg viewBox="0 0 64 48" aria-hidden="true">${desenho}</svg>` : '<span class="falta" aria-hidden="true"></span>'}<span>${nome}</span></label>`;
+tela('equipamento-lista', 'Cadastro', '5c. Equipamento: a lista (Ana)', () => `${cabPasso(5, 'rotina')}
+<main class="miolo gutter">
+  ${titulo('Que equipamento você tem?')}
+  <div class="pilha-2"><p class="pergunta" style="font-size:17px">Conferir e ajustar a lista</p>
+  <details class="categoria" open><summary><span>Pesos livres</span><span class="apoio num">1 de 8</span></summary><div class="corpo">
+    <div class="grade-eq">
+      ${cartaoEq('Halteres fixos', true, '<path d="M8 18v12M14 14v20M14 24h14M28 14v20M34 18v12M36 32v8M42 28v16M42 36h12M54 28v16M6 44h52"/>')}
+      ${cartaoEq('Anilhas e manoplas', false, '<circle cx="20" cy="26" r="14"/><circle cx="20" cy="26" r="3"/><path d="M38 30h20M40 26v8M56 26v8M6 44h52"/>')}
+      ${cartaoEq('Barra longa', false, '<path d="M4 28h56M10 18v20M16 20v16M48 20v16M54 18v20M6 44h52"/>')}
+      ${cartaoEq('Kettlebell', false, '')}
+      ${cartaoEq('Elásticos', false, '<path d="M8 36c10-24 38-24 48 0M12 36c10-18 30-18 40 0M6 44h52"/>')}
+      ${cartaoEq('Caneleiras', false, '')}
+    </div>
+    <section class="sup info" aria-labelledby="det-h"><h2 id="det-h" style="font-size:17px">Halteres fixos</h2>
+      <fieldset><legend class="apoio">O mais leve</legend><div class="chips">${[1, 2, 3, 4].map((k) => `<label class="chip"><input type="radio" name="hl" id="hl-${k}"${k === 1 ? ' checked' : ''}>${k} kg</label>`).join('')}</div></fieldset>
+      <fieldset><legend class="apoio">O mais pesado</legend><div class="chips">${[10, 12, 16, 20, 24].map((k) => `<label class="chip"><input type="radio" name="hp" id="hp-${k}"${k === 12 ? ' checked' : ''}>${k} kg</label>`).join('')}</div></fieldset>
+      <fieldset><legend class="apoio">De quanto em quanto</legend><div class="chips">${[1, 2, 2.5].map((k) => `<label class="chip"><input type="radio" name="hq" id="hq-${k}"${k === 1 ? ' checked' : ''}>${String(k).replace('.', ',')} kg</label>`).join('')}</div></fieldset>
+    </section>
+  </div></details>
+  <details class="categoria"><summary><span>Bancos e apoios</span><span class="apoio num">1 de 5</span></summary><div class="corpo"><p class="apoio">Banco reto marcado.</p></div></details>
+  ${CATEGORIAS.slice(2).map(([n, t]) => `<details class="categoria"><summary><span>${n}</span><span class="apoio num">0 de ${t}</span></summary><div class="corpo"><p class="apoio">Abra para marcar.</p></div></details>`).join('')}
+  </div>
+  <p class="apoio">O contorno tracejado marca os 24 equipamentos ainda sem desenho; o nome fica sempre escrito.</p>
+</main>${base(`<a class="btn" href="#programa-novo">Gerar meu programa</a>`)}`);
+
+tela('equipamento-foto', 'Cadastro', '5d. Equipamento: a foto, enquanto analisa', () => TELAS.equipamento.render(), () => abrirFolha(`<div class="folha-cab"><h2 id="folha-t" tabindex="-1">Reconhecer pela foto</h2><button type="button" class="btn ter auto" data-fechar>Fechar</button></div>
+  <p class="apoio">As fotos são reduzidas e perdem a localização no seu celular, antes de sair. Nada fica guardado no servidor.</p>
+  <ol class="etapas" aria-live="polite"><li class="ok">Reduzindo e tirando a localização (no seu celular)</li><li class="ok">Enviando 2 fotos</li><li class="agora">Reconhecendo o equipamento</li></ol>
+  <p>Pode levar até uns 30 s. Enquanto isso, marque na lista o que você já sabe: as sugestões chegam sem apagar o que você marcou.</p>
+  <button type="button" class="btn sec" data-fechar>Marcar na lista enquanto isso</button>
+  <p class="apoio">Nada entra sem a sua confirmação: cada sugestão vem com "Tenho" e "Não tenho".</p>`));
+
+// ======================= INÍCIO (PROGRAMA) =======================
+const linhaEx = (x, i) => `<li><button type="button" class="linha ex" data-ex="${i}">${miniBoneco(x.animacaoId, x.nome)}<span class="txt"><b>${esc(x.nome)}</b><span class="num"><span class="rx" style="font-size:17px">${rxCurta(x)}</span> · reserva ${faixa(x.rir)} · descanso ${tempo(x.descansoSeg)}</span></span><span class="seta" aria-hidden="true">›</span></button></li>`;
+const listaDia = (d) => `<div class="pilha">
+  <div class="seg" role="tablist" aria-label="Dias de treino">${D.dias.map((x, i) => `<button type="button" role="tab" aria-selected="${D.dias[i] === d}" data-dia="${i}">${esc(x.nome.replace('Corpo todo ', ''))}</button>`).join('')}</div>
+  <p class="apoio num">${esc(d.nome)} · ${d.exercicios.length} exercícios · ~${d.minutos} min</p>
+  <ul class="lista">${d.exercicios.map(linhaEx).join('')}</ul></div>`;
+const faixaSemana = (feitos, msg) => `<a class="sup" href="#semana" style="text-decoration:none;color:inherit;flex-direction:row;align-items:center;gap:12px"><span class="pilha-2" style="flex:1;min-width:0"><span style="display:flex;align-items:center;gap:12px"><b>A sua semana</b><span class="bolinhas" role="img" aria-label="${feitos} de 3 treinos feitos">${[0, 1, 2].map((i) => `<i class="${i < feitos ? 'on' : ''}"></i>`).join('')}</span><b class="num" style="color:var(--acao)">${feitos} de 3</b></span><span class="apoio">${esc(msg)}</span></span><span class="seta" aria-hidden="true" style="font-size:22px;color:var(--texto-2)">›</span></a>`;
+const cartaoHoje = (d, extra) => `<section class="sup" aria-labelledby="hoje-t" style="box-shadow:inset 0 0 0 2px var(--acao-suave)"><p class="rotulo">Hoje</p><h2 id="hoje-t">${esc(d.nome)}</h2><p class="apoio num">${d.exercicios.length} exercícios · ~${d.minutos} min</p>${extra || ''}</section>`;
+const fase1 = `<p class="apoio">${esc(D.fases[0].texto)}${selo(D.fases[0].regraId)}</p>`;
+const inicio = ({ d = diaA, topo = '', hoje = '', semana = '', mensagem = '' }) => `${cabCasa()}
+<main class="miolo gutter">
+  ${titulo('Seu treino')}${topo}
+  ${cartaoHoje(d, hoje)}
+  ${semana}${mensagem}
+  ${listaDia(d)}
+  <a class="linha sup" href="#selo" style="flex-direction:row">Sobre o programa: as regras e os avisos<span class="seta" aria-hidden="true">›</span></a>
+</main>${base(`<button type="button" class="btn" data-ir="treino">Começar o treino ${esc(d.nome)}</button>`, 'treino')}`;
+
+tela('programa-novo', 'Início', '6. Programa recém-gerado', () => inicio({
+  topo: `<div class="sup info"><p class="num"><b>Montado para:</b> Iniciante · 3 × 45 min · halteres e banco · prioridade pernas e glúteos. <a class="link" href="#dados">Mudar</a></p></div>
+  <div class="sup aviso"><p>Alguns músculos ficaram abaixo da meta, por causa do equipamento e do tempo. <a class="link" href="#selo">Ver os 6 avisos</a></p><p class="apoio">Este aviso aparece agora e depois fica em "Sobre o programa".</p></div>`,
+  hoje: fase1, semana: faixaSemana(0, 'Nova semana. O próximo treino é o Corpo todo A.'),
+}));
+tela('inicio', 'Início', '7. Início na 1ª semana', () => inicio({ d: diaB, hoje: fase1, semana: faixaSemana(1, 'Já conta: um treino por semana mantém o que você ganhou. Se der, o Corpo todo B cabe até domingo.') }));
+tela('inicio-volta', 'Início', '7b. Início: a volta depois de 22 dias', () => `${cabCasa()}
+<main class="miolo gutter">
+  ${titulo('Seu treino')}
+  <section class="sup info" aria-labelledby="volta-t"><h2 id="volta-t">Bem-vindo de volta!</h2>
+    <p>Faz 22 dias do último treino. Estas 2 semanas vão mais leves, para o corpo se readaptar sem dor. O músculo não some em 3 semanas. A carga começa 10% abaixo da última vez e já vem preenchida.${selo('readaptacao.durante-uso')}</p>
+    <p class="rotulo" style="margin-top:4px">Hoje</p><p><b>${esc(diaA.nome)}</b> <span class="apoio num">· ${diaA.exercicios.length} exercícios · ~${diaA.minutos} min</span></p></section>
+  ${faixaSemana(0, 'Nova semana. O próximo treino é o Corpo todo A.')}
+  ${listaDia(diaA)}
+</main>${base(`<button type="button" class="btn" data-ir="treino">Começar o treino ${esc(diaA.nome)}</button>`, 'treino')}`);
+tela('inicio-semana4', 'Início', '7c. Início na 4ª semana: uma mensagem por vez', () => inicio({
+  d: diaC, semana: faixaSemana(2, '2 de 3 treinos. Se der, o Corpo todo C cabe até domingo.'),
+  mensagem: `<section class="sup" aria-labelledby="leve-t"><h2 id="leve-t">Semana leve? (opcional)</h2><p><b>Motivo:</b> 3 exercícios sem progresso em 3 treinos.</p>
+    <p>Cerca de metade das séries, RIR 3–4 e a mesma carga. Para descansar, não para crescer.${selo('deload.semana-leve')}</p>
+    <div class="dois" style="gap:12px"><button type="button" class="btn sec" data-aviso="Protótipo: a semana leve começa com este toque, como hoje.">Fazer a semana leve</button><button type="button" class="btn sec" data-aviso="Protótipo: a oferta some até aparecer um sinal novo, como hoje.">Agora não</button></div>
+    <a class="linha" href="#selo" style="padding:0;min-height:48px">Mais 2 avisos<span class="seta" aria-hidden="true">›</span></a></section>`,
+}));
+tela('exercicio', 'Início', '7d. Detalhe de um exercício (folha)', () => TELAS.inicio.render(), () => folhaExercicio(diaB.exercicios[0]));
+function folhaExercicio(x) {
+  abrirFolha(`<div class="folha-cab"><h2 id="folha-t" tabindex="-1">${esc(x.nome)}</h2><button type="button" class="btn ter auto" data-fechar>Fechar</button></div>
+  <div style="display:flex;gap:12px;align-items:center">${miniBoneco(x.animacaoId, x.nome)}<p class="num"><b>${rxCurta(x)}</b><br><span class="apoio">reserva ${faixa(x.rir)} · descanso ${tempo(x.descansoSeg)}</span></p></div>
+  ${x.animacaoId ? '<a class="btn sec" href="#guia">Ver como fazer</a>' : ''}
+  <div class="pilha-2"><p class="rotulo">Por que este exercício</p><ul class="lista">${x.porque.map((p) => `<li class="linha" style="cursor:default"><span class="txt"><span style="color:var(--texto);font-size:15px">${esc(p.texto)}${selo(p.regraId)}</span></span></li>`).join('')}</ul></div>
+  <div class="pilha-2"><p class="rotulo">Se o aparelho estiver ocupado</p><ul class="lista">${x.alternativas.slice(0, 3).map((a) => `<li class="linha" style="cursor:default"><span class="txt"><b>${esc(nomeDe(a))}</b></span></li>`).join('')}</ul></div>
+  <a class="btn ter" href="#evolucao">Ver a evolução deste exercício</a>`);
+}
+tela('selo', 'Início', '7e. Toque no selo: a regra e as fontes', () => TELAS.inicio.render(), () => folhaSelo('iniciante.fase-aprendizado'));
+
+// ======================= TREINO =======================
+const exA = diaA.exercicios[0];
+const exCab = (x, i) => `<div class="ex-cab">${miniBoneco(x.animacaoId, x.nome)}<div class="pilha-2" style="flex:1;min-width:0"><h1 id="t1" tabindex="-1">${esc(x.nome)}</h1><p class="meta">${rxCurta(x)} · reserva ${faixa(x.rir)}</p>${x.animacaoId ? '<a class="link" href="#guia" style="min-height:44px;display:inline-flex;align-items:center">Ver como fazer ›</a>' : ''}</div></div>`;
+const progresso = (i) => `<div style="height:4px;background:var(--superficie-2)" aria-hidden="true"><i style="display:block;height:100%;width:${(i / 6) * 100}%;background:var(--acao)"></i></div>`;
+const registro = ({ n = 1, total = 4, carga = S.carga, reps = S.reps, rir = S.rir, rotulo = 'Série feita · descansar 1:45' } = {}) => `<section class="registro gutter" aria-labelledby="serie-t">
+  <div class="serie-tit"><b id="serie-t">Série ${n} de ${total}</b><span class="apoio">cada lado</span></div>
+  <div class="linha-reg"><span class="rot">Carga</span><div class="stepper" role="group" aria-label="Carga"><button type="button" aria-label="Menos carga" data-passo="carga:-1">−</button><output id="carga" aria-live="polite">${carga}<small> kg</small></output><button type="button" aria-label="Mais carga" data-passo="carga:1">+</button></div></div>
+  <div class="linha-reg"><span class="rot">Repetições</span><div class="stepper" role="group" aria-label="Repetições"><button type="button" aria-label="Menos uma repetição" data-passo="reps:-1">−</button><output id="reps" aria-live="polite">${reps}</output><button type="button" aria-label="Mais uma repetição" data-passo="reps:1">+</button></div></div>
+  <fieldset><legend style="font-weight:700">Quantas repetições ainda conseguiria? (RIR)</legend><p class="apoio" style="margin-top:-6px">A maioria das pessoas acha que tem menos reserva do que tem.${selo('rir.leitura')}</p>
+  <div class="rir">${['0', '1', '2', '3', '4+'].map((r) => `<button type="button" aria-pressed="${rir === r}" data-rir="${r}">${r}</button>`).join('')}</div></fieldset>
+  <button type="button" class="btn g" data-ir="treino-descanso" id="feita"${rir === null ? ' disabled' : ''}>${rotulo}</button>
+</section>`;
+const restoTreino = `<div class="pilha" style="margin-top:8px"><div class="dois"><button type="button" class="btn sec" data-aviso="Protótipo: vai para o exercício anterior.">‹ Anterior</button><button type="button" class="btn sec" data-aviso="Protótipo: vai para o próximo exercício.">Próximo ›</button></div><button type="button" class="btn sec" data-ir="treino-trocar">Trocar exercício</button><button type="button" class="btn ter" data-ir="treino-terminar">Terminar o treino agora</button></div>`;
+tela('treino', 'Treino', '8. Treino: 1ª série (calibração)', () => `${cabTarefa('inicio', 'Início', 'A · 1 de 6', 'Voltar ao início; o treino fica salvo')}${progresso(0)}
+<main class="miolo gutter" style="gap:16px">
+  ${exCab(exA)}
+  <div class="sup info"><p><b>Calibração da carga.</b> 1ª vez neste exercício: comece com uma carga que pareça fácil; a 1ª série acerta a carga. A meta é ${faixa(exA.reps)} repetições com ${faixa(exA.rir)} de reserva.${selo('progressao.calibracao')}</p><p class="apoio">Antes: 1–2 séries leves de aquecimento, sem contar.${selo('tempo.aquecimento')}</p></div>
+  ${restoTreino}
+</main>${registro()}`);
+
+const painelDescanso = (acabou) => `<section class="descanso${acabou ? ' acabou' : ''}" aria-labelledby="desc-t">
+  <div class="topo"><span id="desc-t" class="${acabou ? 'acabou-txt' : ''}">${acabou ? 'Hora da próxima série' : 'Descanso'}</span>${acabou ? '' : '<span class="apoio">Série 1 de 4 feita</span>'}</div>
+  <div class="relogio" role="timer" aria-live="off" id="relogio">${acabou ? '+0:04' : tempo(S.descanso)}</div>
+  ${acabou ? '' : `<div class="tbarra" aria-hidden="true"><i id="tbarra" style="width:${((105 - S.descanso) / 105) * 100}%"></i></div><div class="dois"><button type="button" class="btn sec" data-desc="-15">−15 s</button><button type="button" class="btn sec" data-desc="15">+15 s</button></div>`}
+</section>`;
+const feitas = `<div class="feitas" aria-label="Séries feitas"><span>1 · 8 kg × 10 · RIR 2 · acerto da carga</span></div>`;
+const telaDescanso = (acabou) => `${cabTarefa('inicio', 'Início', 'A · 1 de 6', 'Voltar ao início; o treino fica salvo')}${progresso(0)}
+<main class="miolo gutter" style="gap:16px">
+  ${painelDescanso(acabou)}
+  <div class="ex-cab" style="gap:12px">${miniBoneco(exA.animacaoId, exA.nome)}<div class="pilha-2" style="flex:1;min-width:0"><p style="font-weight:800">${esc(exA.nome)}</p>${feitas}</div></div>
+  <div class="sup info"><p><b>Calibração:</b> Ficou pesada: na próxima série, 7 kg.${selo('progressao.calibracao')}</p></div>
+  ${restoTreino}
+</main>${registro({ n: 2, carga: 7, reps: 10, rir: '2', rotulo: 'Série feita (encerra o descanso)' })}`;
+tela('treino-descanso', 'Treino', '8b. Descanso (o registro continua à vista)', () => telaDescanso(false), () => iniciarDescanso());
+tela('treino-acabou', 'Treino', '8c. Descanso que acabou', () => telaDescanso(true));
+tela('treino-senti', 'Treino', '8d. "Senti algo" aberto', () => TELAS.treino.render(), () => abrirFolha(`<div class="folha-cab"><h2 id="folha-t" tabindex="-1">O que você sentiu?</h2><button type="button" class="btn ter auto" data-fechar>Fechar</button></div>
+  <div class="pilha-2">${['Dor, pressão ou aperto no peito', 'Falta de ar fora do normal', 'Tontura ou quase desmaio', 'Coração batendo muito irregular', 'Dor aguda ou em pontada numa articulação', 'Formigamento ou dormência', 'Perda de força estranha'].map((t) => `<button type="button" class="btn sec" style="justify-content:flex-start;text-align:left" data-aviso="Protótipo: a resposta de segurança é a mesma do app de hoje.">${t}</button>`).join('')}</div>
+  <fieldset><legend style="font-weight:700">Ou dê uma nota para a dor (0 a 10)</legend><div class="pilha-2"><div class="chips cheios">${[0, 1, 2, 3, 4, 5].map((n) => `<button type="button" class="chip" data-aviso="Protótipo: a nota segue a regra de dor de hoje.">${n}</button>`).join('')}</div><div class="chips cheios">${[6, 7, 8, 9, 10].map((n) => `<button type="button" class="chip" data-aviso="Protótipo: a nota segue a regra de dor de hoje.">${n}</button>`).join('')}</div></div></fieldset>
+  <p class="apoio">O app não diagnostica.${selo('seguranca.sem-diagnostico')}</p>`, { abaixoCab: true }));
+tela('treino-trocar', 'Treino', '8e. Trocar exercício (folha)', () => TELAS.treino.render(), () => abrirFolha(`<div class="folha-cab"><h2 id="folha-t" tabindex="-1">Trocar só neste treino por:</h2><button type="button" class="btn ter auto" data-fechar>Fechar</button></div>
+  <ul class="lista">${exA.alternativas.slice(0, 3).map((a) => `<li><button type="button" class="linha" data-aviso="Protótipo: troca só neste treino, como hoje."><span class="txt"><b>${esc(nomeDe(a))}</b><span>Faz a mesma função; dá para trocar se o aparelho estiver ocupado.</span></span><span class="seta" aria-hidden="true">›</span></button></li>`).join('')}</ul>
+  <p class="apoio">As alternativas fazem a mesma função.${selo('selecao.equivalencia')}</p>`, { abaixoCab: true }));
+const exPonte = diaA.exercicios[1];
+const cartaoP = D.cartoes['ponte-gluteo-halter'];
+tela('treino-texto', 'Treino', '8f. Exercício sem animação: montagem segura à vista', () => `${cabTarefa('inicio', 'Início', 'A · 2 de 6', 'Voltar ao início; o treino fica salvo')}${progresso(1)}
+<main class="miolo gutter" style="gap:16px">
+  <div class="ex-cab">${miniBoneco(null)}<div class="pilha-2" style="flex:1;min-width:0"><h1 id="t1" tabindex="-1">${esc(exPonte.nome)}</h1><p class="meta">${rxCurta(exPonte)} · reserva ${faixa(exPonte.rir)}</p><button type="button" class="link" data-cartao style="min-height:44px;text-align:left">Como fazer: dicas e erros ›</button></div></div>
+  <section class="montagem" aria-labelledby="mont-t"><p><b id="mont-t">Montagem segura</b>${selo('seguranca.montagem')}</p><ul>${cartaoP.montagem.map((t) => `<li>${esc(t)}</li>`).join('')}</ul></section>
+  ${restoTreino}
+</main>${registro({ n: 1, total: exPonte.series, carga: 6, reps: 15, rir: null, rotulo: 'Série feita · descansar 1:45' })}`);
+tela('treino-terminar', 'Treino', '8g. Terminar com confirmação', () => TELAS.treino.render(), () => abrirFolha(`<h2 id="folha-t" class="pergunta" tabindex="-1">Terminar o treino agora?</h2><p>Você fez 1 de 6 exercícios. O que já foi registrado fica salvo.</p><div class="pilha-2"><a class="btn" href="#fim">Terminar o treino</a><button type="button" class="btn sec" data-fechar>Continuar treinando</button></div>`, { dialogo: true, abaixoCab: true }));
+
+// ======================= GUIA =======================
+const GUIA = D.guia.bulgaro;
+const MODOS = [['tec', 'Técnica'], ['err', 'Erros'], ['mus', 'Músculos'], ['traj', 'Trajetória']];
+const NOME_VISTA = { lateral: 'De lado', frontal: 'De frente', top: 'De cima', tras: 'Por trás', zoom: 'Perto' };
+function legendaModo(m) {
+  if (m === 'mus') return `<div class="legenda"><span><i class="sw" style="background:var(--m-p)"></i>alvo principal</span><span><i class="sw" style="background:var(--m-s)"></i>também trabalha (conta meia série)</span></div>`;
+  if (m === 'err') return `<div class="pilha-2"><div class="chips">${GUIA.erros.map((e, i) => `<button type="button" class="chip" aria-pressed="${i === 0}" data-aviso="${i ? 'Protótipo: só o 1º erro foi gerado.' : ''}">${esc(e.titulo)}</button>`).join('')}</div><p>${esc(GUIA.erros[0].desc)}</p><div class="legenda"><span><i class="sw" style="background:var(--ea-pele);border:1.5px solid var(--fig)"></i>execução correta</span><span><i class="sw" style="background:var(--err)"></i>a parte que erra (tracejado)</span></div></div>`;
+  if (m === 'traj') return `<div class="legenda"><span><i class="sw" style="background:var(--path)"></i>trajetória</span><span><i class="sw" style="background:var(--guide)"></i>linha-guia</span></div>`;
+  return `<p class="apoio"><b style="color:var(--texto)">Onde sentir:</b> ${esc(GUIA.sentir)}</p>`;
+}
+tela('guia', 'Guia', '9. Guia aberto pelo treino', () => `${cabTarefa('treino', 'Treino', esc(GUIA.nome))}
+<main class="miolo" style="padding-top:0;gap:16px">
+  <div class="palco" id="palco" role="img" aria-label="Boneco fazendo ${esc(GUIA.nome)}, modo ${MODOS.find((x) => x[0] === S.modo)[1]}"><svg id="svg-boneco"></svg><div class="hud" aria-hidden="true"><div class="fase" id="fase"></div><div class="breath" id="resp"></div></div></div>
+  <div class="gutter pilha">
+    <div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center"><button type="button" class="btn sec auto" id="tocar" style="min-height:48px">${S.tocando ? 'Pausar' : 'Tocar'}</button><button type="button" class="btn sec auto" id="lento" aria-pressed="${S.lento}" style="min-height:48px">Lento</button><span class="apoio" style="margin-left:auto">${NOME_VISTA[B.guia[S.modo].vista] || B.guia[S.modo].vista}</span></div>
+    <div class="seg g" role="group" aria-label="Modo">${MODOS.map(([k, t]) => `<button type="button" aria-pressed="${S.modo === k}" data-modo="${k}">${t}</button>`).join('')}</div>
+    ${legendaModo(S.modo)}
+    <section class="pilha-2" aria-labelledby="dicas-t"><h2 id="dicas-t" class="rotulo">As 3 dicas</h2><ol class="dicas">${GUIA.dicas.map((c) => `<li>${esc(c)}</li>`).join('')}</ol></section>
+    <section class="montagem" aria-labelledby="mont-g"><p><b id="mont-g">Montagem</b>${selo('seguranca.montagem')}</p><ul>${[...GUIA.montagemEq, ...GUIA.montagemCorpo].map((t) => `<li>${esc(t)}</li>`).join('')}</ul></section>
+    <details class="categoria"><summary>Checklist de 5 segundos</summary><div class="corpo"><ul style="margin:0;padding-left:20px">${GUIA.checklist.map((t) => `<li>${esc(t)}</li>`).join('')}</ul></div></details>
+  </div>
+</main>`, () => animarBoneco());
+function animarBoneco() {
+  cancelAnimationFrame(S.raf);
+  const svg = $('#svg-boneco'); if (!svg) return;
+  const seq = B.guia[S.modo];
+  let t = 0, ultimo = performance.now();
+  const desenhar = (agora) => {
+    const dt = Math.max(0, Math.min(0.05, (agora - ultimo) / 1000)); ultimo = agora;
+    if (S.tocando) t += dt * (S.lento ? 0.35 : 1);
+    const n = seq.quadros.length;
+    const q = seq.quadros[((Math.floor(((t % seq.T) / seq.T) * n) % n) + n) % n];
+    if (svg.dataset.q !== q.h.length + q.f) {
+      svg.setAttribute('viewBox', q.v); svg.setAttribute('class', q.c); svg.innerHTML = q.h; svg.dataset.q = q.h.length + q.f;
+      $('#fase').textContent = S.modo === 'err' ? '❌ ' + GUIA.erros[0].titulo : q.f;
+      const r = $('#resp'); r.textContent = q.r; r.className = 'breath' + (q.r === 'FIRME' ? ' hold' : ''); r.hidden = !q.r;
+    }
+    S.raf = requestAnimationFrame(desenhar);
+  };
+  S.raf = requestAnimationFrame(desenhar);
+}
+
+// ======================= FIM, SEMANA, EVOLUÇÃO =======================
+tela('fim', 'Fim e semana', '10. Fim do treino: o que mudou hoje', () => `${cabCasa()}
+<main class="miolo gutter">
+  ${titulo('Treino concluído')}<p class="apoio num" style="margin-top:-16px">Corpo todo C · 42 min · 14 séries</p>
+  <section class="sup feito" aria-labelledby="mudou-t"><h2 id="mudou-t">O que mudou hoje</h2>
+    <p style="display:flex;align-items:center;gap:12px"><b>A sua semana</b><span class="bolinhas" role="img" aria-label="3 de 3 treinos feitos"><i class="on"></i><i class="on"></i><i class="on"></i></span><b class="num">3 de 3</b></p>
+    <p>Semana completa: 3 de 3. Glúteos e quadríceps na meta.${selo('acompanhamento.semana')}</p>
+    <p><span class="subiu">recorde</span> Supino reto com halteres: <b class="num">9 kg × 10</b></p>
+    <p>2 exercícios com carga para subir na próxima vez.</p></section>
+  <fieldset><legend class="pergunta">Hoje foi: (opcional)</legend><div class="chips cheios">${['leve', 'normal', 'pesado demais'].map((t) => `<button type="button" class="chip" aria-pressed="false" data-alterna>${t}</button>`).join('')}</div><p class="apoio">Nada vem marcado. Com "pesado demais" em 2 dos últimos 3 treinos, o app sugere uma semana leve.${selo('deload.semana-leve')}</p></fieldset>
+  <section class="pilha-2" aria-labelledby="prox-t"><h2 id="prox-t" class="pergunta">Para a próxima vez</h2><ul class="lista">
+    <li class="linha" style="cursor:default"><span class="txt"><b>Supino reto com halteres</b><span>Subir para 10 kg: você chegou ao topo da faixa com a reserva certa.${selo('progressao.dupla')}</span></span></li>
+    <li class="linha" style="cursor:default"><span class="txt"><b>Afundo estático com halteres</b><span>Subir para 8 kg.${selo('progressao.dupla')}</span></span></li>
+    <li class="linha" style="cursor:default"><span class="txt"><b>Elevação lateral com halteres</b><span>Mesma carga; buscar 1 repetição a mais.${selo('progressao.dupla')}</span></span></li></ul></section>
+</main>${base(`<div class="pilha-2"><a class="btn" href="#semana">Ver a sua semana</a><a class="btn ter" href="#inicio">Voltar ao início</a></div>`)}`);
+
+tela('fim-quando', 'Fim e semana', '10b. Depois do 1º treino: "Quando você treina?"', () => `${cabCasa()}
+<main class="miolo gutter">
+  ${titulo('Treino concluído')}<p class="apoio num" style="margin-top:-16px">Corpo todo A · 44 min · 13 séries · o 1º!</p>
+  <section class="sup feito"><h2>O que mudou hoje</h2><p style="display:flex;align-items:center;gap:12px"><b>A sua semana</b><span class="bolinhas" role="img" aria-label="1 de 3 treinos feitos"><i class="on"></i><i></i><i></i></span><b class="num">1 de 3</b></p><p>Já conta: um treino por semana mantém o que você ganhou.${selo('acompanhamento.semana')}</p></section>
+  <fieldset class="sup"><legend class="pergunta" style="margin-bottom:8px">Quando você costuma treinar? (opcional)</legend>
+    <div class="chips">${[['S', 'segunda'], ['T', 'terça'], ['Q', 'quarta'], ['Q', 'quinta'], ['S', 'sexta'], ['S', 'sábado'], ['D', 'domingo']].map(([l, n], i) => `<label class="chip" style="min-width:44px;padding:0 10px"><input type="checkbox" id="dia-${i}"${[0, 2, 4].includes(i) ? ' checked' : ''}><span aria-hidden="true">${l}</span><span class="sr">${n}</span></label>`).join('')}</div>
+    <p class="apoio">Ajuda o app a dizer "hoje é dia de treino". Você muda quando quiser. Sem lembrete, sem cobrança.</p>
+    <p class="apoio"><b>Pede um dado novo ao domínio</b> (os dias planejados): decisão separada.</p></fieldset>
+</main>${base(`<div class="dois"><a class="btn sec" href="#inicio">Pular</a><a class="btn" href="#inicio">Salvar</a></div>`)}`);
+
+const MUSC = [['Quadríceps', 'quadriceps'], ['Glúteos', 'gluteos'], ['Posteriores', 'posteriores'], ['Panturrilha', 'panturrilha'], ['Peito', 'peito'], ['Costas', 'costas'], ['Ombro lateral', 'ombro_lateral'], ['Bíceps', 'biceps'], ['Tríceps', 'triceps'], ['Abdômen', 'abdomen']];
+tela('semana', 'Fim e semana', '11. A sua semana: o dado antes da oferta', () => `${cabCasa()}
+<main class="miolo gutter">
+  ${titulo('A sua semana')}<p class="apoio num" style="margin-top:-16px">02/11 a 08/11 · exemplo com a persona Ana</p>
+  <section class="sup" aria-labelledby="tr-t"><p class="numero-g" id="tr-t">2 <small>de 3 treinos</small></p><span class="bolinhas" role="img" aria-label="2 de 3 treinos feitos"><i class="on"></i><i class="on"></i><i></i></span><p>2 de 3 treinos. Se der, o Corpo todo C cabe até domingo.${selo('acompanhamento.semana')}</p></section>
+  <section class="pilha-2" aria-labelledby="sem-t"><h2 id="sem-t" class="pergunta">Últimas 8 semanas</h2><span class="semanas" role="img" aria-label="7 de 8 semanas com treino">${[1, 1, 1, 1, 0, 1, 1, 1].map((x) => `<i class="${x ? 'on' : ''}"></i>`).join('')}</span><p class="apoio">7 das últimas 8 semanas com treino.</p></section>
+  <section class="pilha-2" aria-labelledby="subiu-t"><h2 id="subiu-t" class="pergunta">O que subiu nesta semana</h2><ul class="lista">
+    <li><a class="linha" href="#evolucao"><span class="txt"><b>Supino reto com halteres</b><span class="num">9 kg × 12</span></span><span class="subiu">recorde</span></a></li>
+    <li><a class="linha" href="#evolucao"><span class="txt"><b>Stiff com halteres</b><span class="num">12 kg × 10</span></span><span class="subiu">subiu a carga</span></a></li></ul><p class="apoio">Pede uma função pequena no domínio (as marcas por semana): decisão separada.</p></section>
+  <section class="pilha-2" aria-labelledby="mus-t"><h2 id="mus-t" class="pergunta">Séries por músculo</h2><p class="apoio">A barra cheia é o que foi feito; o tracejado é a meta. O número fica escrito.</p>
+    <ul class="musc">${MUSC.map(([n, k]) => { const meta = D.metas[k] || 0; const feito = Math.round((D.volumeSemanal[k] || 0) * 2 / 3); const max = 12; return `<li><span>${n}</span><span class="b" aria-hidden="true"><i style="width:${Math.min(100, (feito / max) * 100)}%"></i><u style="left:${(meta / max) * 100}%;width:2px"></u></span><span class="n num">${feito} de ${meta}</span></li>`; }).join('')}</ul></section>
+  <section class="sup" aria-labelledby="rev-t"><h2 id="rev-t">Um programa que cabe melhor? (opcional)</h2><p>As ofertas vêm depois dos dados, uma de cada vez.</p></section>
+  <a class="linha sup" href="#evolucao" style="flex-direction:row">Sua evolução: todos os exercícios<span class="seta" aria-hidden="true">›</span></a>
+</main>${base('', 'semana')}`);
+
+tela('evolucao', 'Fim e semana', '12. Evolução de um exercício', () => `${cabCasa('semana', 'Semana')}
+<main class="miolo gutter">
+  ${titulo('Supino reto com halteres')}
+  <div class="sup info"><p class="num">Começou com <b>8 kg × 10</b> · hoje <b>9 kg × 12</b> · 5 treinos</p></div>
+  <ul class="pontos" aria-label="A melhor série de cada treino">${[['12/10', '8 kg × 10', 'RIR 2', ''], ['16/10', '8 kg × 12', 'RIR 2', 'recorde'], ['21/10', '9 kg × 8', 'RIR 2', 'subiu a carga'], ['28/10', '9 kg × 10', 'RIR 2', 'recorde'], ['04/11', '9 kg × 12', 'RIR 1', 'recorde']].map(([d, s, r, m]) => `<li><span class="apoio">${d}</span><span><b>${s}</b> <span class="apoio">· ${r}</span></span>${m ? `<span class="subiu">${m}</span>` : '<span></span>'}</li>`).join('')}</ul>
+  <p class="apoio">Sem carga máxima estimada e sem gráfico: com 3 a 8 pontos, a lista diz o mesmo.</p>
+</main>${base(`<a class="btn sec" href="#inicio">Ver no treino de hoje</a>`, 'semana')}`);
+
+// ======================= MEUS DADOS, LOCAIS =======================
+const grupoLinhas = (rot, linhas) => `<section class="pilha-2" aria-label="${rot}"><p class="rotulo">${rot}</p><ul class="lista">${linhas.map(([t, s, h]) => `<li><a class="linha" href="#${h || 'dados'}"><span class="txt"><b>${t}</b><span>${s}</span></span><span class="seta" aria-hidden="true">›</span></a></li>`).join('')}</ul></section>`;
+tela('dados', 'Meus dados e locais', '13. Meus dados', () => `${cabCasa()}
+<main class="miolo gutter">
+  ${titulo('Meus dados')}
+  ${grupoLinhas('Programa', [['Rotina e divisão', '3 × 45 min · Corpo todo A/B/C'], ['Objetivo', 'Ganhar músculo (o padrão)'], ['Algo a evitar', 'Nada marcado'], ['Meus locais', '1 local: Meu local', 'locais'], ['Estilo do Boneco', 'Boneco']])}
+  ${grupoLinhas('Cópia de segurança', [['Guardar uma cópia', 'Um arquivo com tudo, para guardar onde quiser'], ['Trazer uma cópia', 'De um arquivo exportado por este app']])}
+  ${grupoLinhas('Saúde e aparelho', [['Refazer a triagem', 'As 9 perguntas e a dor de hoje'], ['Tema', 'Do celular']])}
+  <button type="button" class="btn perigo" data-ir="dados-apagar">Apagar todos os dados</button>
+</main>${base('', 'dados')}`);
+tela('dados-apagar', 'Meus dados e locais', '13b. Apagar tudo: diálogo', () => TELAS.dados.render(), () => abrirFolha(`<h2 id="folha-t" class="pergunta" tabindex="-1">Apagar todos os dados?</h2><p>O perfil, o programa e os treinos saem deste aparelho e não voltam. Se quiser, guarde uma cópia antes.</p><div class="pilha-2"><button type="button" class="btn perigo" data-fechar>Apagar tudo</button><button type="button" class="btn sec" data-fechar>Cancelar</button></div>`, { dialogo: true }));
+tela('locais', 'Meus dados e locais', '14. Meus locais (persona Bruno)', () => `${cabCasa('dados', 'Meus dados')}
+<main class="miolo gutter">
+  ${titulo('Meus locais')}
+  <ul class="lista" aria-label="Locais"><li><a class="linha" href="#locais"><span class="txt"><b>Prédio</b><span>Principal · polia dupla, halteres, banco, barra fixa</span></span><span class="seta" aria-hidden="true">›</span></a></li><li><a class="linha" href="#locais"><span class="txt"><b>Academia do bairro</b><span>Máquinas e polias; o dia troca o que não dá para fazer ali</span></span><span class="seta" aria-hidden="true">›</span></a></li></ul>
+  <a class="btn sec" href="#equipamento">Cadastrar outro local</a>
+</main>${base('', 'dados')}`);
+
+// ======================= SISTEMA E ÍNDICE =======================
+tela('sistema', 'Sistema visual', 'O sistema: cor, letra, espaço, peças', () => `${cabCasa('indice', 'Telas')}
+<main class="miolo gutter">
+  ${titulo('O sistema visual')}
+  <section class="pilha-2"><h2 class="pergunta">Cor (troque a direção na barra de cima)</h2><div class="amostras">${[['--fundo', 'fundo'], ['--superficie', 'superfície'], ['--texto', 'texto'], ['--texto-2', 'texto 2'], ['--acao', 'ação'], ['--acao-suave', 'ação suave'], ['--feito', 'feito'], ['--atencao', 'atenção'], ['--alerta', 'alerta de saúde'], ['--descanso', 'descanso'], ['--borda', 'borda de controle']].map(([v, n]) => `<div class="amostra"><i style="background:var(${v})"></i><span>${n}</span></div>`).join('')}</div><p class="apoio">O palco do Boneco usa as cores de sempre.</p></section>
+  <section class="pilha-2"><h2 class="pergunta">Letra: Atkinson Hyperlegible Next, 7 degraus</h2>
+    <p class="relogio" style="text-align:left">1:45</p><p class="apoio">88 · relógio do descanso</p>
+    <p class="numero-g">12</p><p class="apoio">44 · carga e repetições</p>
+    <p class="titulo">Título da tela</p><p class="apoio">24 · um por tela</p>
+    <p class="pergunta">Pergunta ou seção</p><p class="apoio">20</p>
+    <p>Corpo de texto, botões e opções</p><p class="apoio">17</p>
+    <p class="apoio">Apoio: ajuda e segunda linha · 15</p>
+    <p class="rotulo">Rótulo · 13</p></section>
+  <section class="pilha-2"><h2 class="pergunta">Espaço, canto e toque</h2><p class="apoio num">Espaço 4 · 8 · 12 · 16 · 24 · 32. Cantos 8 · 16 · pílula. Toque 48 · 56 · 64.</p></section>
+  <section class="pilha"><h2 class="pergunta">Peças</h2>
+    <button type="button" class="btn">Botão principal</button><button type="button" class="btn sec">Botão secundário</button><button type="button" class="btn ter">Botão terciário</button><button type="button" class="btn perigo">Perigo</button><button type="button" class="btn" disabled>Desabilitado</button>
+    <div class="chips"><button type="button" class="chip" aria-pressed="true">escolhido</button><button type="button" class="chip" aria-pressed="false">normal</button></div>
+    <div class="seg"><button type="button" aria-pressed="true">Técnica</button><button type="button" aria-pressed="false">Erros</button><button type="button" aria-pressed="false">Músculos</button></div>
+    <p>Uma regra com o selo ao lado.${selo('volume.semanal.dose-resposta') || selo('rir.alvo')}</p>
+    <div class="sup info"><p>Superfície de informação</p></div><div class="sup aviso"><p>Superfície de aviso</p></div><div class="sup alerta"><p>Superfície de alerta</p></div></section>
+</main>`);
+
+tela('indice', 'Sobre', 'Todas as telas', () => `${cabCasa()}
+<main class="miolo gutter indice">
+  ${titulo('Redesign do treino-mvp: o protótipo')}
+  <p>Todas as telas e estados propostos, com a persona fictícia Ana. O Boneco é o do motor, sem mudança. Os textos de regra e de segurança são os do app.</p>
+  <p class="apoio">Troque o tema e a direção de cor na barra de cima. Os toques navegam entre as telas; o que o protótipo não simula avisa embaixo.</p>
+  ${[...new Set(Object.values(TELAS).map((t) => t.grupo))].filter((g) => g !== 'Sobre').map((g) => `<h2>${g}</h2><ul class="lista">${Object.values(TELAS).filter((t) => t.grupo === g).map((t) => `<li><a class="linha" href="#${t.id}"><span class="txt"><b>${esc(t.nome)}</b></span><span class="seta" aria-hidden="true">›</span></a></li>`).join('')}</ul>`).join('')}
+</main>`);
+
+// ======================= roteador e interações =======================
+function iniciarDescanso() {
+  clearInterval(S.timer);
+  S.descanso = 105;
+  S.timer = setInterval(() => {
+    const r = $('#relogio'); if (!r) { clearInterval(S.timer); return; }
+    S.descanso = Math.max(0, S.descanso - 1);
+    r.textContent = tempo(S.descanso);
+    const b = $('#tbarra'); if (b) b.style.width = ((105 - S.descanso) / 105) * 100 + '%';
+    if (!S.descanso) { clearInterval(S.timer); location.hash = 'treino-acabou'; }
+  }, 1000);
+}
+function mostrar() {
+  fechar(); cancelAnimationFrame(S.raf); clearInterval(S.timer);
+  const id = (location.hash || '').slice(1);
+  const t = TELAS[id] || TELAS.indice;
+  if (t.id === 'treino') { S.rir = null; S.carga = 8; S.reps = 10; }
+  $('#app').innerHTML = t.render();
+  $('#sel-tela').value = t.id;
+  document.title = `${t.nome.replace(/^[0-9a-z]+\. /, '')} · Redesign treino-mvp`;
+  window.scrollTo(0, 0);
+  const h = $('#t1'); if (h) h.focus({ preventScroll: true });
+  if (t.depois) t.depois();
+}
+$('#app').addEventListener('click', (e) => {
+  const el = e.target.closest('button, a'); if (!el) return;
+  if (el.dataset.selo) { e.preventDefault(); return folhaSelo(el.dataset.selo); }
+  if (el.dataset.privacidade !== undefined) e.preventDefault();
+  if (el.dataset.ir) { location.hash = el.dataset.ir; return; }
+  if (el.dataset.aviso !== undefined) { if (el.dataset.aviso) aviso(el.dataset.aviso); return; }
+  if (el.dataset.ex !== undefined) { const d = D.dias.find((x) => $(`[data-dia][aria-selected="true"]`) && D.dias.indexOf(x) === Number($(`[data-dia][aria-selected="true"]`).dataset.dia)) || diaA; return folhaExercicio(d.exercicios[Number(el.dataset.ex)]); }
+  if (el.dataset.dia !== undefined) { const d = D.dias[Number(el.dataset.dia)]; el.closest('.pilha').outerHTML = listaDia(d); return; }
+  if (el.dataset.rir) { S.rir = el.dataset.rir; document.querySelectorAll('[data-rir]').forEach((b) => b.setAttribute('aria-pressed', b === el)); const f = $('#feita'); if (f) f.disabled = false; return; }
+  if (el.dataset.passo) { const [k, d] = el.dataset.passo.split(':'); S[k] = Math.max(0, Number($('#' + k).textContent.replace(/\D+$/, '').trim() || S[k]) + Number(d)); $('#' + k).innerHTML = k === 'carga' ? `${S[k]}<small> kg</small>` : S[k]; return; }
+  if (el.dataset.desc) { S.descanso = Math.max(0, S.descanso + Number(el.dataset.desc)); $('#relogio').textContent = tempo(S.descanso); return; }
+  if (el.dataset.modo) { S.modo = el.dataset.modo; mostrar(); return; }
+  if (el.id === 'tocar') { S.tocando = !S.tocando; el.textContent = S.tocando ? 'Pausar' : 'Tocar'; return; }
+  if (el.id === 'lento') { S.lento = !S.lento; el.setAttribute('aria-pressed', S.lento); return; }
+  if (el.dataset.alterna !== undefined) { el.parentElement.querySelectorAll('[data-alterna]').forEach((b) => b.setAttribute('aria-pressed', b === el && b.getAttribute('aria-pressed') !== 'true')); return; }
+  if (el.dataset.cartao !== undefined) return abrirFolha(`<div class="folha-cab"><h2 id="folha-t" tabindex="-1">Como fazer (em texto)</h2><button type="button" class="btn ter auto" data-fechar>Fechar</button></div><p class="apoio">Trabalha: ${esc(cartaoP.alvo)}.</p><ol class="dicas">${cartaoP.dicas.map((c) => `<li>${esc(c)}</li>`).join('')}</ol><div class="pilha-2"><p class="rotulo">Erros comuns</p><ul class="lista">${cartaoP.erros.map((x) => `<li class="linha" style="cursor:default"><span class="txt"><b>${esc(x.titulo)}</b><span>${esc(x.desc)}</span></span></li>`).join('')}</ul></div>`, { abaixoCab: true });
+  if (el.dataset.privacidade !== undefined) return abrirFolha(`<div class="folha-cab"><h2 id="folha-t" tabindex="-1">Seus dados ficam no aparelho</h2><button type="button" class="btn ter auto" data-fechar>Fechar</button></div><p>O seu perfil, o programa e os treinos ficam guardados só neste aparelho. A única coisa que sai é a foto do equipamento, se você usar: ela vai, sem a localização, para o reconhecimento e não fica guardada no servidor. Você pode exportar ou apagar tudo quando quiser em “Meus dados”.</p>`);
+});
+document.body.addEventListener('click', (e) => { const s = e.target.closest('.veu [data-selo]'); if (s) { e.preventDefault(); folhaSelo(s.dataset.selo); } const a = e.target.closest('.veu [data-aviso]'); if (a && a.dataset.aviso) aviso(a.dataset.aviso); const i = e.target.closest('.veu [data-ir]'); if (i) location.hash = i.dataset.ir; });
+// a barra do protótipo
+const sel = $('#sel-tela');
+const grupos = [...new Set(Object.values(TELAS).map((t) => t.grupo))];
+sel.innerHTML = grupos.map((g) => `<optgroup label="${g}">${Object.values(TELAS).filter((t) => t.grupo === g).map((t) => `<option value="${t.id}">${esc(t.nome)}</option>`).join('')}</optgroup>`).join('');
+sel.addEventListener('change', () => (location.hash = sel.value));
+const aplicar = (k, v, attr) => { if (v) document.documentElement.setAttribute(attr, v); else document.documentElement.removeAttribute(attr); guardar(k, v); };
+const tema = $('#sel-tema'), dir = $('#sel-dir');
+tema.value = ler('proto-tema'); dir.value = ler('proto-dir');
+aplicar('proto-tema', tema.value, 'data-theme'); aplicar('proto-dir', dir.value, 'data-direcao');
+tema.addEventListener('change', () => aplicar('proto-tema', tema.value, 'data-theme'));
+dir.addEventListener('change', () => aplicar('proto-dir', dir.value, 'data-direcao'));
+if (window.CAPTURA) document.documentElement.classList.add('captura');
+window.__TELAS = Object.values(TELAS).map((t) => ({ id: t.id, nome: t.nome, grupo: t.grupo }));
+window.addEventListener('hashchange', mostrar);
+mostrar();
+})();
+</script>

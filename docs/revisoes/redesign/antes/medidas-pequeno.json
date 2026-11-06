@@ -1070,5 +1070,29 @@
   },
   "telas": 3.1,
   "rolaDeLado": false
+ },
+ {
+  "tela": "pequeno/ana/16e-treino-cartao-fechado",
+  "toquePequeno": [],
+  "contrasteBaixo": [],
+  "botaoPrincipal": {
+   "texto": "Série feita · descansar 1:45",
+   "topoPct": 88,
+   "visivelSemRolar": true
+  },
+  "telas": 1.7,
+  "rolaDeLado": false
+ },
+ {
+  "tela": "pequeno/ana/16f-treino-cartao-aberto",
+  "toquePequeno": [],
+  "contrasteBaixo": [],
+  "botaoPrincipal": {
+   "texto": "Série feita · descansar 1:45",
+   "topoPct": 126,
+   "visivelSemRolar": false
+  },
+  "telas": 2.5,
+  "rolaDeLado": false
  }
 ]

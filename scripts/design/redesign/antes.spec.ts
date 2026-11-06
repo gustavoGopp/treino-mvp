@@ -207,3 +207,16 @@ for (const persona of PERSONAS) {
     }
   });
 }
+
+test('treino: exercício sem animação (Ana, 2º exercício, a ponte de glúteo)', async ({ page }) => {
+  await comEstado(page, 'ana');
+  await page.goto('/programa');
+  const nomeDia = (await page.getByRole('tab').nth(0).innerText()).trim();
+  await page.getByRole('button', { name: `Começar o treino ${nomeDia}` }).click();
+  await expect(page).toHaveURL(/\/treino$/);
+  await page.getByRole('button', { name: 'Próximo' }).click();
+  await expect(page.getByRole('heading', { name: /Ponte de glúteo/ })).toBeVisible();
+  await foto(page, 'ana', '16e-treino-cartao-fechado');
+  await page.locator('details.cartao-texto > summary').click();
+  await foto(page, 'ana', '16f-treino-cartao-aberto');
+});
