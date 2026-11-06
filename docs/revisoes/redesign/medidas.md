@@ -90,4 +90,53 @@ O que isso diz:
 Não medido nas telas do app de hoje nesta etapa: a simulação das 3 deficiências sobre as telas é do agente 5 (`agente-5-cor.md`). No Boneco, ver `docs/revisoes/design.md`, achado 3.
 
 ## Depois
-(preenchido a cada lote)
+
+### Lote 1, base visual e testes (06/11/2026)
+Mesmos scripts e mesmo método do "antes" (`FASE=lote-1`): `docs/revisoes/redesign/lote-1/` (`base.json`, `medidas-{claro,escuro,pequeno}.json`, `primeira-visita.json`). Imagens: `docs/img/redesign-lote-1-*.png`.
+
+**Telas, toque e contraste** (102 telas e estados por projeto, as 6 personas)
+
+| Medida | Antes | Lote 1 |
+|---|---:|---:|
+| Telas com toque abaixo de 44 px (claro / escuro / 360) | 0 / 0 / 0 | 0 / 0 / 0 |
+| Telas com contraste abaixo da WCAG 1.4.3 | 0 / 0 / 0 | 0 / 0 / 0 |
+| Telas que rolam de lado | 0 / 0 / 0 | 0 / 0 / 0 |
+| "Começar o treino" no programa recém-gerado, a 360 px | 177% (fora) | 78% (à vista) |
+
+O selo virou botão (abre a folha da regra); a pílula continua pequena e a área de toque cresce por fora dela até 44 px. Os dois medidores (`tests/e2e/toque.ts` e `scripts/design/medir.ts`) passaram a medir essa área ampliada: sem isso, a 1ª medição acusava 829 toques pequenos, todos selos.
+
+A medida do botão principal acusa "Série feita" um pouco mais abaixo no descanso e na 2ª série (92% → 95% em 4 telas a 412 px). É a medida que conta do topo de uma página já rolada (ver acima); na captura, o botão do lote 1 aparece inteiro acima do painel do descanso, e o de antes ficava pela metade atrás dele. O e2e "Série feita visível sem rolar" passa a 412 e a 360.
+
+**Os 4 critérios em 7 cenários** (`tests/e2e/cenarios.spec.ts`: claro, escuro, 360 × 740, 412 × 640, 320 × 640, zoom de 200% (206 × 420) e letra a 125%; 6 grupos de telas, 42 combinações)
+
+| | Lote 1 |
+|---|---:|
+| Combinações em que toque, contraste, texto cortado e foco coberto passam | 29 de 42 |
+| Pendentes, com o lote que reconstrói a tela | 13: treino (7, lote 2), guia (3, lote 2), fim pelo treino a 206 px (lote 2), início a 320 px (lote 4), equipamento com letra a 125% (lote 3) |
+
+O que o lote 1 corrigiu para chegar lá: a folga de rolagem do tamanho do cabeçalho e das barras de baixo (antes, o foco do teclado ficava atrás da barra de baixo e do "Começar" fixo); o selo, a faixa "Ver opções" e a opção de estilo do boneco quebram a linha em tela estreita. Um defeito real ficou à vista: **com zoom de 200%, a tela do treino não deixa tocar "Série feita"** (lote 2).
+
+**Bundle e letra**
+
+| | Antes | Lote 1 |
+|---|---:|---:|
+| JavaScript da 1ª tela (KiB / gzip) | 1.060,1 / 269,4 | 1.065,0 / 271,5 |
+| As fontes por extenso (só quando a pessoa abre um selo) | — | 48,9 / 16,3 |
+| CSS (KiB / gzip) | 42,9 / 8,5 | 48,2 / 9,4 |
+| Pedidos externos na 1ª visita | 3 (Google Fonts) | **0** |
+| Letra | 18,6 + 33,2 kB (Google) | 33,2 kB (do app, guardada pelo service worker) |
+
+**Lighthouse, 1ª visita** (perfil vazio; 3 rodadas de cada, na mesma sessão, com o "antes" construído de novo a partir de `420938e`)
+
+| | Antes | Lote 1 |
+|---|---:|---:|
+| Desempenho | 74 · 74 · 72 | 49 · 71 · 71 |
+| 1ª pintura (ms) | 1.493 · 1.528 · 1.485 | **903 · 905 · 968** |
+| Bloqueio total (ms) | 1.319 · 1.326 · 1.580 | 3.119 · 2.799 · 3.066 |
+| Pronto para uso (ms) | 4.680 · 4.697 · 4.939 | 5.704 a 6.022 |
+| Trabalho do processador (ms) | 3.392 a 3.974 | 3.342 a 3.871 |
+
+A 1ª pintura ficou 40% mais cedo (sem a folha de estilo do Google, que travava a pintura). O bloqueio total e o "pronto para uso" pioraram na simulação, com o mesmo trabalho do processador. Não achei a causa: não é o pré-carregamento da letra (sem ele, os números ficam iguais: 2.742 a 3.068 ms de bloqueio). Uma hipótese é a conta do simulador: com a 1ª pintura mais cedo, mais do processamento do JavaScript cai depois dela e conta como bloqueio. O lote técnico (dividir o pacote de 1 MB) ataca exatamente este número e vai medir de novo pelo mesmo método.
+
+**Lighthouse, com o app instalado** (o método do "antes", por rota): desempenho de 63 a 71 (antes: 59 a 71); acessibilidade 100 em 5 rotas e 93 no guia (as 3 falhas de antes, que são do lote 2). A falha `target-size` do programa sumiu. Nesta situação a maior pintura variou de 17 ms a 3,4 s entre rotas parecidas: é ruído do método, que fica registrado.
+

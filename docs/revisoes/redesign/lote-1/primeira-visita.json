@@ -1,0 +1,91 @@
+{
+ "medidoEm": "2026-11-06T16:36:20.251Z",
+ "metodo": "Lighthouse 13.6, celular simulado, perfil vazio, 3 rodadas de cada, na mesma sessão",
+ "antes_420938e": [
+  {
+   "desempenho": 74,
+   "fcpMs": 1493,
+   "ttiMs": 4680,
+   "tbtMs": 1319,
+   "trabalhoMs": 3408,
+   "pedidos": 9,
+   "externos": 2
+  },
+  {
+   "desempenho": 74,
+   "fcpMs": 1528,
+   "ttiMs": 4697,
+   "tbtMs": 1326,
+   "trabalhoMs": 3392,
+   "pedidos": 9,
+   "externos": 2
+  },
+  {
+   "desempenho": 72,
+   "fcpMs": 1485,
+   "ttiMs": 4939,
+   "tbtMs": 1580,
+   "trabalhoMs": 3974,
+   "pedidos": 9,
+   "externos": 2
+  }
+ ],
+ "lote1": [
+  {
+   "desempenho": 49,
+   "fcpMs": 903,
+   "ttiMs": 6022,
+   "tbtMs": 3119,
+   "trabalhoMs": 3731,
+   "pedidos": 8,
+   "externos": 0
+  },
+  {
+   "desempenho": 71,
+   "fcpMs": 905,
+   "ttiMs": 5704,
+   "tbtMs": 2799,
+   "trabalhoMs": 3342,
+   "pedidos": 8,
+   "externos": 0
+  },
+  {
+   "desempenho": 71,
+   "fcpMs": 968,
+   "ttiMs": 5966,
+   "tbtMs": 3066,
+   "trabalhoMs": 3871,
+   "pedidos": 8,
+   "externos": 0
+  }
+ ],
+ "lote1_sem_preload": [
+  {
+   "desempenho": 70,
+   "fcpMs": 950,
+   "ttiMs": 5619,
+   "tbtMs": 2962,
+   "trabalhoMs": 3654,
+   "pedidos": 8,
+   "externos": 0
+  },
+  {
+   "desempenho": 70,
+   "fcpMs": 956,
+   "ttiMs": 5924,
+   "tbtMs": 3068,
+   "trabalhoMs": 3686,
+   "pedidos": 8,
+   "externos": 0
+  },
+  {
+   "desempenho": 71,
+   "fcpMs": 902,
+   "ttiMs": 5652,
+   "tbtMs": 2742,
+   "trabalhoMs": 3477,
+   "pedidos": 8,
+   "externos": 0
+  }
+ ]
+}
