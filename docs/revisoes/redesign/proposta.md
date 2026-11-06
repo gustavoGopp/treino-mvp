@@ -369,3 +369,7 @@ Cada linha traz o que muda, a evidência, o que muda de regra ou dado, o custo e
 6. **Lote 5, meus dados, locais, ícones e nome.**
 
 Cada lote: um commit por mudança, `npm run check`, `npm run test:e2e` e o projeto `motor` verdes, as medidas em `medidas.md`, e uma parada para você olhar no celular.
+
+### A decisão do Gustavo (06/11/2026)
+
+O Gustavo aprovou **todos os 36 itens na opção recomendada** ("aprovo todos os pontos recomendados"). Marcou 9 deles na página de decisão e os outros 27 foram gravados na mesma página a partir da conversa. Isso inclui a direção Giz e grafite, o "Desfazer por 5 s" no descanso, a opção D do Corpo livre, os pedidos ao domínio 1, 2, 3 e 5 (o 4 fica de fora) e o nome treino-mvp por enquanto, com o ícone novo. A Fase 5 segue a ordem de lotes acima.
