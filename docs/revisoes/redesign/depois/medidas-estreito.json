@@ -5,15 +5,15 @@
   "contrasteBaixo": [],
   "botaoPrincipal": {
    "texto": "Começar",
-   "topoPct": 86,
-   "visivelSemRolar": true
+   "topoPct": 98,
+   "visivelSemRolar": false
   },
-  "palavras": 69,
-  "telas": 1,
+  "palavras": 70,
+  "telas": 1.2,
   "rolaDeLado": false,
   "visivel": {
    "avisoInteiro": true,
-   "avisoTexto": "O app não diagnostica e não substitui um médico ou um profissional de Educação Física. É uma ferramenta de orientação, não uma prescrição. Se sentir dor, tontura ou mal-estar, pare e procure avaliação. consenso",
+   "avisoTexto": "O que o app não fazO app não diagnostica e não substitui um médico ou um profissional de Educação Física. É uma ferramenta de orientação, não uma prescrição. Se sentir dor, tontura ou mal-estar, pare e procure avaliação. consenso",
    "sentiAlgo": null,
    "serieFeita": null,
    "rir": null,
@@ -28,15 +28,15 @@
   "contrasteBaixo": [],
   "botaoPrincipal": {
    "texto": "Começar",
-   "topoPct": 81,
+   "topoPct": 91,
    "visivelSemRolar": true
   },
-  "palavras": 67,
-  "telas": 1,
+  "palavras": 69,
+  "telas": 1.1,
   "rolaDeLado": false,
   "visivel": {
    "avisoInteiro": true,
-   "avisoTexto": "O app não diagnostica e não substitui um médico ou um profissional de Educação Física. É uma ferramenta de orientação, não uma prescrição. Se sentir dor, tontura ou mal-estar, pare e procure avaliação. consenso",
+   "avisoTexto": "O que o app não fazO app não diagnostica e não substitui um médico ou um profissional de Educação Física. É uma ferramenta de orientação, não uma prescrição. Se sentir dor, tontura ou mal-estar, pare e procure avaliação. consenso",
    "sentiAlgo": null,
    "serieFeita": null,
    "rir": null,
@@ -51,11 +51,11 @@
   "contrasteBaixo": [],
   "botaoPrincipal": {
    "texto": "Não, nenhuma",
-   "topoPct": 117,
+   "topoPct": 121,
    "visivelSemRolar": false
   },
-  "palavras": 85,
-  "telas": 1.5,
+  "palavras": 91,
+  "telas": 1.6,
   "rolaDeLado": false,
   "visivel": {
    "avisoInteiro": null,
@@ -147,7 +147,7 @@
    "visivelSemRolar": true
   },
   "palavras": 58,
-  "telas": 1.4,
+  "telas": 1.5,
   "rolaDeLado": false,
   "visivel": {
    "avisoInteiro": null,
@@ -216,7 +216,7 @@
    "visivelSemRolar": true
   },
   "palavras": 139,
-  "telas": 1.4,
+  "telas": 1.5,
   "rolaDeLado": false,
   "visivel": {
    "avisoInteiro": null,

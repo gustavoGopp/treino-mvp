@@ -125,21 +125,24 @@ h1,h2,h3,p{margin:0}
 
 /* apresentação (A e B) */
 .boas{gap:var(--e4);padding-top:var(--e3)}
-.palco.heroi{width:auto;aspect-ratio:auto;height:clamp(9rem,30vh,14rem);border-radius:var(--r2);overflow:hidden}
+.palco.heroi{display:block;width:auto;aspect-ratio:auto;height:clamp(9rem,30vh,14rem);border-radius:var(--r2);overflow:hidden}
 .lugares{display:grid;grid-template-columns:repeat(4,1fr);gap:var(--e2);padding:var(--e5) var(--e3);border-radius:var(--r2);background:var(--acao-suave);color:var(--acao)}
 .lugares svg{width:100%;height:auto;max-height:4.5rem}
 .marca-boas{margin:0;font-size:var(--t-rotulo);font-weight:800;letter-spacing:.04em;color:var(--texto-2)}
 .boas .titulo{font-size:1.875rem;line-height:1.15}
-.recursos{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:var(--e1)}
-.recursos li,.recursos a{display:flex;gap:var(--e3);align-items:center;min-height:2.75rem;font-weight:700}
-.recursos a{color:var(--texto);text-decoration:underline;text-decoration-color:var(--borda);text-underline-offset:4px}
-.recursos svg,.nota-aviso svg{width:1.625rem;height:1.625rem;flex:none;fill:none;stroke:var(--acao);stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
-.nota-aviso{display:flex;gap:var(--e3);align-items:flex-start;margin:0;font-size:var(--t-apoio);line-height:1.4;color:var(--texto-2);padding-top:var(--e3);border-top:1px solid var(--linha)}
-.nota-aviso svg{stroke:var(--texto-2);width:1.25rem;height:1.25rem;margin-top:1px}
+.topo-boas{display:flex;justify-content:space-between;align-items:center;min-height:var(--toque);margin-bottom:calc(-1 * var(--e2))}
+.topo-boas a{display:inline-flex;align-items:center;min-height:var(--toque);padding:0 var(--e1);color:var(--acao);font-weight:700;font-size:var(--t-apoio)}
+.privacidade-linha{margin:0}
+.privacidade-linha a{display:flex;gap:var(--e3);align-items:center;min-height:var(--toque);font-weight:700;color:var(--texto);text-decoration:underline;text-decoration-color:var(--borda);text-underline-offset:4px}
+.privacidade-linha svg,.nota-aviso svg{width:1.5rem;height:1.5rem;flex:none;fill:none;stroke:var(--acao);stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.nota-aviso{display:flex;gap:var(--e3);align-items:flex-start;margin:0;padding:var(--e4);border-radius:var(--r2);background:var(--superficie)}
+.nota-aviso svg{stroke:var(--texto-2);margin-top:2px}
+.nota-aviso h2{margin:0 0 var(--e1);font-size:var(--t-corpo);font-weight:800}
+.nota-aviso p{margin:0;font-size:var(--t-corpo);line-height:1.4}
 .acao-boas{margin-top:auto;padding-bottom:calc(var(--e3) + env(safe-area-inset-bottom,0px))}
 .sob-botao{margin:var(--e2) 0 0;text-align:center;font-size:var(--t-rotulo);color:var(--texto-2)}
 /* em tela baixa, o aviso inteiro continua à vista antes do botão: a imagem e o título encolhem */
-@media (max-height:800px){.boas{gap:var(--e3);padding-top:var(--e2)}.palco.heroi{height:18vh}.boas .lede{display:none}.lugares{padding:var(--e3)}.lugares svg{max-height:3.25rem}.boas .titulo{font-size:1.5rem}.recursos li,.recursos a{min-height:2.75rem}}
+@media (max-height:800px){.boas{gap:var(--e3);padding-top:var(--e2)}.palco.heroi{height:18vh}.lugares{padding:var(--e3)}.lugares svg{max-height:3.25rem}.boas .titulo{font-size:1.5rem}.nota-aviso{padding:var(--e3)}}
 @media (max-height:680px){.palco.heroi{height:18vh}}
 /* Selo de evidência: uma palavra curta e apagada, tocável, que abre a fonte (retorno do Gustavo, 06/11: muito sutil) */
 .selo{position:relative;display:inline;font:inherit;font-size:var(--t-rotulo);font-weight:600;line-height:1.35;padding:0 2px;border:0;background:none;color:var(--texto-2);cursor:pointer;white-space:nowrap;text-decoration:underline dotted;text-decoration-thickness:1px;text-underline-offset:3px;margin-left:2px}
@@ -495,28 +498,29 @@ const tela = (id, grupo, nome, render, depois) => (TELAS[id] = { id, grupo, nome
 // começar, mas como nota calma perto do botão, sem a caixa de alerta (o tom de alerta fica para a triagem e o "Senti algo").
 const AVISO_TXT = 'O app não diagnostica e não substitui um médico ou um profissional de Educação Física. É uma ferramenta de orientação, não uma prescrição. Se sentir dor, tontura ou mal-estar, pare e procure avaliação.';
 const ic = (d) => `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="${d}"/></svg>`;
-const recursos = `<ul class="recursos">
-  <li>${ic('M6.5 6.5v11M17.5 6.5v11M3.5 9v6M20.5 9v6M6.5 12h11')}Só com o equipamento que você tem</li>
-  <li>${ic('M12 3a9 9 0 1 0 0 18 9 9 0 0 0 0-18zM8.5 12.5l2.5 2.5 4.5-5')}O porquê de cada escolha, com a fonte</li>
-  <li><a href="#privacidade" data-privacidade>${ic('M7 11V8a5 5 0 0 1 10 0v3M5 11h14v10H5z')}<span>Seus dados ficam no seu celular</span></a></li>
-</ul>`;
-const notaAviso = `<p class="nota-aviso">${ic('M12 3a9 9 0 1 0 0 18 9 9 0 0 0 0-18zM12 11v5M12 8h.01')}<span>${AVISO_TXT}${selo('seguranca.sem-diagnostico')}</span></p>`;
+// pesquisa (agente-7): o aviso na letra e na cor do texto, com título, num fundo calmo; nem caixa de alerta (assusta e
+// gasta o tom do "Senti algo") nem letra miúda cinza (some). A privacidade em 1 linha, que abre a explicação.
+const recursos = `<p class="privacidade-linha"><a href="#privacidade" data-privacidade>${ic('M7 11V8a5 5 0 0 1 10 0v3M5 11h14v10H5z')}<span>Seus dados ficam só neste celular. Sem login.</span></a></p>`;
+const notaAviso = `<section class="nota-aviso" aria-labelledby="nao-faz">${ic('M12 3a9 9 0 1 0 0 18 9 9 0 0 0 0-18zM12 11v5M12 8h.01')}<div><h2 id="nao-faz">O que o app não faz</h2><p>${AVISO_TXT}${selo('seguranca.sem-diagnostico')}</p></div></section>`;
+const topoBoas = `<div class="topo-boas"><span class="marca-boas">treino-mvp</span><a href="#dados">Meus dados</a></div>`;
 // o botão vem depois do aviso, no fim da página (não preso embaixo): em tela grande ele fica no pé, à vista; em tela
 // pequena, zoom ou letra grande, a pessoa passa pelo aviso inteiro antes de chegar a ele
-const acaoComecar = `<div class="acao-boas"><a class="btn" href="#triagem">Começar</a><p class="sob-botao">4 passos curtos</p></div>`;
+const acaoComecar = `<div class="acao-boas"><a class="btn" href="#triagem">Começar</a><p class="sob-botao">4 passos, uns 3 minutos</p></div>`;
 const baseComecar = '';
 tela('boas-vindas', 'Cadastro', '1. Apresentação A: o Boneco recebe', () => `<main class="miolo gutter boas">
-  <div class="palco heroi" role="img" aria-label="O boneco do guia fazendo um agachamento búlgaro"><svg id="svg-heroi"></svg></div>
-  <div class="pilha-2"><p class="marca-boas">treino-mvp</p>${titulo('Treino de força feito para o que você tem')}<p class="lede">O app monta o programa e mostra como fazer.</p></div>
-  ${recursos}
+  ${topoBoas}
+  <a class="palco heroi" href="#guia" aria-label="Ver o guia do agachamento búlgaro: o boneco mostra como fazer"><svg id="svg-heroi" aria-hidden="true"></svg></a>
+  <div class="pilha-2">${titulo('Treino de força feito para o que você tem')}<p class="lede">Monta o programa, mostra cada exercício e diz o porquê.</p></div>
   ${notaAviso}
+  ${recursos}
   ${acaoComecar}
 </main>`, () => animarHeroi());
 tela('boas-vindas-b', 'Cadastro', '1b. Apresentação B: o seu lugar', () => `<main class="miolo gutter boas">
+  ${topoBoas}
   <div class="lugares" aria-hidden="true">${['academia', 'condominio', 'casa', 'corpo'].map((k) => `<svg viewBox="0 0 64 48" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">${window.ICONES_LUGAR[k]}</svg>`).join('')}</div>
-  <div class="pilha-2"><p class="marca-boas">treino-mvp</p>${titulo('Treine onde estiver, com o que tiver')}<p class="lede">Academia, prédio, casa ou só o corpo: o programa sai do que você tem.</p></div>
-  ${recursos}
+  <div class="pilha-2">${titulo('Treine onde estiver, com o que tiver')}<p class="lede">Monta o programa, mostra cada exercício e diz o porquê.</p></div>
   ${notaAviso}
+  ${recursos}
   ${acaoComecar}
 </main>`);
 function animarHeroi() {
@@ -539,7 +543,7 @@ function animarHeroi() {
 tela('triagem', 'Cadastro', '2. Saúde: uma pergunta', () => `${cabPasso(2, 'boas-vindas')}
 <main class="miolo gutter">
   ${titulo('Alguma destas vale para você?')}
-  <p class="apoio" style="margin-top:-12px">Hoje, ou algo que um médico já disse. Um "sim" não impede o treino; pede uma avaliação antes do programa automático.</p>
+  <p class="apoio" style="margin-top:-12px">Hoje, ou algo que um médico já disse. Um "sim" não impede o treino; pede uma avaliação antes do programa automático. Suas respostas ficam só neste celular.</p>
   <ul class="condicoes" aria-label="As 9 condições">${D.triagem.map((p) => `<li>${esc(CURTA[p.id])}</li>`).join('')}</ul>
   <p class="apoio">Se nenhuma vale, um toque responde "não" a todas.${selo('seguranca.triagem.nenhuma')} <a class="link" href="#perguntas" data-perguntas>Ver as perguntas completas</a></p>
   <div class="pilha-2"><a class="btn" href="#experiencia">Não, nenhuma</a><a class="btn sec" href="#triagem-sim">Sim, alguma (ou não tenho certeza)</a></div>
@@ -579,7 +583,7 @@ tela('rotina', 'Cadastro', '4. Rotina', () => `${cabPasso(4, 'experiencia')}
     <div class="chips">${[30, 45, 60, 75, 90].map((m) => `<label class="chip"><input type="radio" name="min" id="min-${m}"${m === 45 ? ' checked' : ''}>${m} min</label>`).join('')}<label class="chip"><input type="radio" name="min" id="min-outro">Outro</label></div></fieldset>
   <fieldset><legend class="pergunta">Quais grupos você quer priorizar? (opcional)</legend><p class="apoio">Os outros ficam no mínimo que ainda dá resultado.${selo('volume.semanal.minimo-eficaz')}</p>
     <div class="chips">${['Peito', 'Costas', 'Ombros', 'Braços', 'Pernas', 'Glúteos', 'Abdômen'].map((g) => `<label class="chip"><input type="checkbox" id="pr-${g}"${g === 'Pernas' || g === 'Glúteos' ? ' checked' : ''}>${g}</label>`).join('')}</div></fieldset>
-  <p class="apoio">O objetivo ("ganhar músculo" é o padrão) e "algo a evitar" passam para depois do 1º treino, em Meus dados.</p>
+  <p class="apoio">Dá para mudar depois, em Meus dados. O objetivo ("ganhar músculo" é o padrão) e "algo a evitar" também ficam lá.</p>
 </main>${base(`<a class="btn" href="#equipamento">Continuar</a>`)}`);
 
 const icone = (k) => `<svg class="icone" viewBox="0 0 64 48" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${window.ICONES_LUGAR[k]}</svg>`;
@@ -589,13 +593,14 @@ tela('equipamento', 'Cadastro', '5. Equipamento: o lugar', () => `${cabPasso(5, 
   ${titulo('Que equipamento você tem?')}
   ${lugares('')}
   <div class="dois"><a class="btn sec" href="#equipamento-foto">Pela foto</a><a class="btn sec" href="#equipamento-lista">Item por item</a></div>
+  <p class="apoio">Dá para mudar depois, em Meus dados.</p>
 </main>${base(`<button type="button" class="btn" disabled>Gerar meu programa</button><p class="apoio" style="text-align:center;margin-top:6px">Escolha um lugar ou marque na lista.</p>`)}`);
 
 tela('equipamento-academia', 'Cadastro', '5b. Equipamento: academia completa', () => `${cabPasso(5, 'rotina')}
 <main class="miolo gutter">
   ${titulo('Que equipamento você tem?')}
   ${lugares('academia')}
-  <div class="sup info"><p>Supomos halteres de 2 a 40 kg, polia regulável e o básico dos aparelhos. A 1ª série de cada exercício acerta a carga.${selo('equipamento.atalhos')}</p><a class="linha" href="#equipamento-lista" style="padding:0;min-height:3rem"><span class="txt"><b>Conferir os 39 itens</b></span><span class="seta" aria-hidden="true">›</span></a></div>
+  <div class="sup info"><p>O app supõe halteres de 2 a 40 kg, polia regulável e o básico dos aparelhos. A 1ª série de cada exercício acerta a carga.${selo('equipamento.atalhos')}</p><a class="linha" href="#equipamento-lista" style="padding:0;min-height:3rem"><span class="txt"><b>Conferir os 39 itens</b></span><span class="seta" aria-hidden="true">›</span></a></div>
 </main>${base(`<a class="btn" href="#programa-novo">Gerar meu programa</a>`)}`);
 
 const ITENS = Object.fromEntries(D.equipamento.map((c) => [c.titulo, c.itens.map((it) => [it.nome, it.desenho || window.ICONES_NOVOS[it.id] || '', it.id === 'halteres_fixos' || it.id === 'banco_reto', it.completo])]));
