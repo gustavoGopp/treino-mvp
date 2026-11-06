@@ -173,7 +173,8 @@ test('recarregar a página mantém perfil, inventário e programa', async ({ pag
   const antes = await page.locator('main').innerText();
   await page.reload();
   await expect(page.getByRole('heading', { name: 'Seu treino', exact: true })).toBeVisible();
-  expect(await page.locator('main').innerText()).toBe(antes);
+  // as miniaturas chegam num pedaço próprio, alguns milissegundos depois (lote técnico do redesign)
+  await expect.poll(() => page.locator('main').innerText()).toBe(antes);
   // A raiz abre direto no programa.
   await page.goto('/');
   await expect(page).toHaveURL(/\/programa$/);

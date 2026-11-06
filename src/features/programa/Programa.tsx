@@ -13,7 +13,7 @@ import { alternarPreferencia, diaDoTreino, hojeDoEstado, iniciarSessao } from '.
 import { Preferencias } from './Prefiro';
 import { agoraIso, comProgramaNovo, fusoDoAparelho, gerarDoEstado, mesmoConteudo, useApp } from '../app/estado';
 import { NavInferior, Selo, Titulo, Topo } from '../app/ui';
-import { Miniatura } from './Miniatura';
+import { Miniatura } from './MiniaturaPreguicosa';
 import { FaixaSemana } from '../acompanhamento/Semana';
 import { SemanaLeve } from '../acompanhamento/SemanaLeve';
 import { aceitarMargemTempo, recusarMargemTempo, semanaDoEstado, tempoDoEstado } from '../acompanhamento/acoes';
