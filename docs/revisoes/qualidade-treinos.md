@@ -434,3 +434,21 @@ As costas, que ele priorizou, saem de 8 (abaixo do mínimo de 10 do intermediár
 | Ana (glúteos e pernas, 3 × 45 min) | "Seus focos disputam o mesmo tempo: quadríceps 7 de 8 e posteriores da coxa 7 de 8 séries por semana. Com 3 treinos de 45 min não cabe tudo: para o foco render, escolha um grupo só, ou aumente os minutos ou os dias. "Pernas" são 3 músculos (frente da coxa, posterior e panturrilha): como foco, pedem o triplo de séries de "peito"." |
 | Carla (peito, costas, ombros e pernas, 5 × 75 min) | "Seus focos disputam o mesmo tempo: panturrilha 12 de 14 séries por semana. Com 5 treinos de 75 min não cabe tudo: para o foco render, escolha 1 ou 2 grupos, ou aumente os minutos ou os dias. (…)" |
 | Bruno, Diego, Elisa, Fábio | nenhum (Bruno e Diego atingem as metas dos focos; Elisa e Fábio têm 0 ou 1 foco) |
+
+### F.4 Decisão 4: o 2º empurrar quando não há banco inclinável
+
+**Regra.** `selecao.peitoral-inclinado` passa a dizer o que `chaves2020` mostrou (o inclinado dá região, não mais crescimento total) e que, sem banco inclinável, num dia sem outra vaga de empurrar horizontal, a vaga recebe um 2º empurrar antes do crucifixo (fontes + `barbalho2021`, `kikuchi2017`).
+
+**Dados e código.** Em `funcoes.json`, a função "empurrar inclinado" passa a ter os níveis: supinos inclinados; supinos retos (halteres, barra, máquina, smith); supino na polia e flexão; flexão com elástico e supino no chão; por último os crucifixos e o voador. No gerador, quando o dia já tem a vaga de empurrar horizontal, a vaga inclinada pula os supinos retos e segue para o crucifixo, para não pôr dois supinos iguais no mesmo dia.
+
+**Testes.** A Ana recebe um multiarticular na vaga inclinada do dia B; em nenhum dia com a vaga horizontal a inclinada repete um supino reto (sobre 702 programas da grade de propriedades).
+
+**Personas.** Só a Ana muda:
+
+| | Antes | Depois |
+|---|---|---|
+| Corpo todo B (44 min) | stiff 4, remada unilateral 2, panturrilha 4, **crucifixo com halteres 2**, rosca alternada 2, crucifixo invertido 2 | stiff 4, **supino reto com halteres 2**, remada unilateral 2, panturrilha 3 (com drop set), rosca alternada 2, crucifixo invertido 2 |
+| Tríceps por semana | 5 | 6 (o supino conta meia série) |
+| Volta de 30 dias (snapshot do R2) | 16 séries na semana 6; "Crucifixo com halteres no banco plano: 10 kg → 9 kg" | 15 séries; "Supino reto com halteres: 10 kg → 9 kg" |
+
+O peito continua com 6 séries por semana; muda o estímulo, de isolador para multiarticular, nos três dias.

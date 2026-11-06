@@ -954,16 +954,18 @@
   },
   {
     "id": "selecao.peitoral-inclinado",
-    "regra": "Incluir uma variação inclinada para a porção superior do peitoral (razoável, não obrigatória)",
+    "regra": "Incluir uma variação inclinada para a porção superior do peitoral (razoável, não obrigatória): a combinação reto + inclinado não cresceu mais que o reto sozinho no total; o inclinado sozinho cresceu mais a parte de cima (`chaves2020`, não treinados, 1 dia por semana). Sem banco inclinável, num dia que não tem outra vaga de empurrar horizontal, a vaga recebe um 2º empurrar (supino, flexão) antes do crucifixo, porque o isolador sozinho cresceu menos o peitoral que o multiarticular (decisão do Gustavo em 06/11/2026, sessão de qualidade dos treinos)",
     "valores": {
-      "iniciante": "se houver banco regulável",
-      "intermediario": "se houver banco regulável",
-      "avancado": "se houver banco regulável"
+      "iniciante": "se houver banco regulável; senão, 2º empurrar",
+      "intermediario": "se houver banco regulável; senão, 2º empurrar",
+      "avancado": "se houver banco regulável; senão, 2º empurrar"
     },
     "selo": "um estudo",
     "fontes": [
       "chaves2020",
-      "rodriguezridao2020"
+      "rodriguezridao2020",
+      "barbalho2021",
+      "kikuchi2017"
     ]
   },
   {

@@ -683,3 +683,21 @@ describe('o que a prioridade diz (volume.semanal.alvo; volume.prioridade.competi
   });
 });
 
+describe('selecao.peitoral-inclinado: sem banco inclinável, um 2º empurrar antes do crucifixo', () => {
+  it('a Ana (halteres e banco reto): no dia B, a vaga de empurrar inclinado recebe o supino, não o crucifixo', () => {
+    const b = ok(ana.perfil, ana.inventario).dias.find((d) => d.nome === 'Corpo todo B')!;
+    const x = b.exercicios.find((e) => e.funcao === 'empurrar-inclinado')!;
+    expect(POR_ID[x.exId]!.tipo).toBe('composto');
+  });
+  it('num dia que já tem a vaga de empurrar horizontal, a vaga inclinada não repete um supino reto', () => {
+    for (const v of variacoes.filter((_, i) => i % 3 === 0)) {
+      const p = ok(v.perfil, v.inv);
+      for (const d of p.dias) {
+        const horizontal = d.exercicios.some((e) => e.funcao === 'empurrar-horizontal');
+        const inclinado = d.exercicios.find((e) => e.funcao === 'empurrar-inclinado');
+        if (horizontal && inclinado) expect(POR_ID[inclinado.exId]!.padrao !== 'empurrar-h' || POR_ID[inclinado.exId]!.tags.includes('inclinado'), `${v.nome} ${d.nome} ${inclinado.exId}`).toBe(true);
+      }
+    }
+  });
+});
+

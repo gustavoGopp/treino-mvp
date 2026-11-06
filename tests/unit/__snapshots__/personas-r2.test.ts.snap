@@ -16,12 +16,12 @@ exports[`snapshots do R2: o treino de cada persona na volta de 30 dias > Ana 1`]
     "dia": "Corpo todo A",
   },
   {
-    "antes": "semana 6: 16 séries, RIR 2–3 e 1–2, a mesma carga",
+    "antes": "semana 6: 15 séries, RIR 2–3 e 1–2, a mesma carga",
     "cargas": [
       "Stiff com halteres: 10 kg → 9 kg",
+      "Supino reto com halteres: 10 kg → 9 kg",
       "Remada unilateral com halter apoiada no banco: 10 kg → 9 kg",
       "Panturrilha em pé no chão: 10 kg → 9 kg",
-      "Crucifixo com halteres no banco plano: 10 kg → 9 kg",
       "Rosca alternada com halteres: 10 kg → 9 kg",
       "Crucifixo invertido curvado com halteres: 10 kg → 9 kg",
     ],

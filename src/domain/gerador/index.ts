@@ -309,7 +309,11 @@ export function gerarPrograma(perfil: Perfil, inventarioOriginal: Inventario): R
     const itens: Item[] = [];
     for (const x of mantidas.sort((a, b) => a.ordem - b.ordem)) {
       const { funcao } = x.res;
-      const achado = ctx.escolher(funcao, x.res.nivel, (id) => itens.some((i) => i.ex.id === id), usos);
+      // selecao.peitoral-inclinado: o 2º empurrar (sem banco inclinável) só num dia sem outra vaga de empurrar horizontal,
+      // para não pôr dois supinos retos no mesmo dia; nesse caso a vaga segue para o crucifixo.
+      const segundoEmpurrar = funcao.id === 'empurrar-inclinado' && dia.vagas.some((w) => ativa(w) && w.funcao === 'empurrar-horizontal');
+      const fora = (id: string) => itens.some((i) => i.ex.id === id) || (segundoEmpurrar && POR_ID_BIB[id]!.padrao === 'empurrar-h' && !POR_ID_BIB[id]!.tags.includes('inclinado'));
+      const achado = ctx.escolher(funcao, x.res.nivel, fora, usos);
       if (!achado) continue;
       const { ex: escolhido, nivelFuncao } = achado;
       // Toda vaga confere o teto semanal já no mínimo de séries (antes, só os complementos e as vagas de prioridade:
