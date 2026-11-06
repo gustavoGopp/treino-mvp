@@ -263,7 +263,7 @@ export function gerarPrograma(perfil: Perfil, inventarioOriginal: Inventario): R
   const lacunas = new Set<string>();
   const nivelAbaixo = new Set<string>();
   const foraPorMinutos = new Set<Musculo>();
-  type Item = { ex: Exercicio; vaga: Vaga; funcao: Funcao; nivelFuncao: number; series: number; ordemVaga: number; preenchido?: boolean; noLugarDe?: string };
+  type Item = { ex: Exercicio; vaga: Vaga; funcao: Funcao; nivelFuncao: number; series: number; ordemVaga: number; preenchido?: boolean; noLugarDe?: string; protegido?: Musculo };
   // Volume da semana só com o mínimo de séries, dia a dia: um complemento (ou uma vaga só de prioridade) não entra
   // se, já no mínimo, passar do teto semanal de algum músculo (volume.semanal.teto-padrao, "nunca acima"). Antes,
   // só a distribuição das séries conferia o teto, e no modelo de 6 dias com três vagas de glúteo o mínimo sozinho
@@ -355,6 +355,24 @@ export function gerarPrograma(perfil: Perfil, inventarioOriginal: Inventario): R
       usos.set(e.id, (usos.get(e.id) ?? 0) + 1);
       d.itens.push({ ex: e, vaga: { funcao: f.id }, funcao: f, nivelFuncao: f.niveis.findIndex((n) => n.includes(e.id)), series: VOLUME.seriesPorExercicio.min, ordemVaga: 50 + d.itens.length, noLugarDe: FUNCAO[vaga.funcao]!.nome });
     }
+  }
+
+  // tempo.musculo-protegido: abdômen e panturrilha não ficam a zero na semana por falta de minutos; a 1ª vaga possível
+  // entra no dia com menos exercícios, mesmo passando do número que cabe (sessão de qualidade dos treinos, 06/11/2026).
+  for (const m of ['abdomen', 'panturrilha'] as Musculo[]) {
+    if (!(metas[m] ?? 0) || dias.some((d) => d.itens.some((i) => i.ex.musculos.primarios.includes(m)))) continue;
+    const alvo = dias
+      .map((d, di) => ({ d, di, vaga: d.dia.vagas.find((w) => ativa(w) && FUNCAO[w.funcao]!.musculo === m && !!resolver(w)) }))
+      .filter((x) => x.vaga)
+      .sort((a, b) => a.d.itens.length - b.d.itens.length || a.di - b.di)[0];
+    if (!alvo) continue;
+    const res = resolver(alvo.vaga!)!;
+    const achado = ctx.escolher(res.funcao, res.nivel, (id) => alvo.d.itens.some((i) => i.ex.id === id), usos);
+    if (!achado || !cabeNoTetoSemanal(achado.ex)) continue;
+    usos.set(achado.ex.id, (usos.get(achado.ex.id) ?? 0) + 1);
+    for (const [mm, n] of Object.entries(volumePorMusculo([{ ex: achado.ex, series: VOLUME.seriesPorExercicio.min }])) as [Musculo, number][]) vMinimo[mm] = (vMinimo[mm] ?? 0) + n;
+    alvo.d.itens.push({ ex: achado.ex, vaga: alvo.vaga!, funcao: res.funcao, nivelFuncao: achado.nivelFuncao, series: VOLUME.seriesPorExercicio.min, ordemVaga: 100, protegido: m });
+    foraPorMinutos.delete(m);
   }
 
   // selecao.dia-sem-principal: as vagas que a dor esvaziou recebem exercícios possíveis dos outros músculos do
@@ -480,8 +498,10 @@ export function gerarPrograma(perfil: Perfil, inventarioOriginal: Inventario): R
 
   // 7. Prescrição
   // Lembrete nos exercícios que carregam uma região marcada com dor de 0 a 5 (seguranca.dor.programa).
-  const porqueDaDor = (e: Exercicio, preenchido?: boolean, noLugarDe?: string): Porque[] => {
+  const porqueDaDor = (e: Exercicio, preenchido?: boolean, noLugarDe?: string, protegido?: Musculo): Porque[] => {
     const p: Porque[] = [];
+    if (protegido)
+      p.push({ regraId: r('tempo.musculo-protegido'), texto: `Entrou para ${protegido === 'abdomen' ? 'o abdômen' : 'a panturrilha'} não ficar sem nenhuma série na semana, mesmo com o treino cheio.` });
     if (noLugarDe)
       p.push({ regraId: r('selecao.vaga-sem-equipamento'), texto: `Entrou no lugar da vaga "${noLugarDe.toLowerCase()}", que não tem exercício possível com o seu equipamento: trabalha o mesmo músculo com outro movimento.` });
     if (preenchido)
@@ -512,7 +532,7 @@ export function gerarPrograma(perfil: Perfil, inventarioOriginal: Inventario): R
       porque: [
         ...porqueDoExercicio(e, it.funcao, it.nivelFuncao, nivel, ctx.preferido(it.funcao, e)),
         ...(cargaBaixa ? [{ regraId: r('rir.carga-baixa'), texto: 'Com muitas repetições, a série só conta perto da falha: termine com 1 a 2 repetições de reserva.' }] : []),
-        ...porqueDaDor(e, it.preenchido, it.noLugarDe),
+        ...porqueDaDor(e, it.preenchido, it.noLugarDe, it.protegido),
       ],
     };
   };

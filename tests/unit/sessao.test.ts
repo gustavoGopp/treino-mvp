@@ -201,7 +201,10 @@ describe('guia com a prescrição da pessoa (R1)', () => {
   it('na fase de aprendizado da Ana (semanas 1–2), o búlgaro vem com RIR 3–4 e menos séries; depois, o programa completo', () => {
     const s1 = prescricaoNoGuia(programa, { diaId: diaA.id, exId: 'bulgaro' }, 1)!;
     expect(s1.x.rir).toEqual([3, 4]);
-    expect(s1.x.series).toBeLessThan(bulgaro.series);
+    expect(s1.x.series).toBeLessThanOrEqual(bulgaro.series);
+    // Menos séries: o exercício com mais séries do dia (desde 06/11/2026 o búlgaro tem 2, que a fase não reduz).
+    const maior = [...diaA.exercicios].sort((a, b) => b.series - a.series)[0]!;
+    expect(prescricaoNoGuia(programa, { diaId: diaA.id, exId: maior.exId }, 1)!.x.series).toBeLessThan(maior.series);
     expect(s1.x.descansoSeg).toBe(bulgaro.descansoSeg);
     expect(s1.fase?.regraId).toBe('iniciante.fase-aprendizado');
     const s3 = prescricaoNoGuia(programa, { diaId: diaA.id, exId: 'bulgaro' }, 3)!;

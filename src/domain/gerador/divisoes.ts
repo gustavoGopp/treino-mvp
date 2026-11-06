@@ -69,6 +69,7 @@ const SUPERIOR_A = [
   c('crucifixo'),
   c('ombro-posterior'),
   c('empurrar-vertical', ['ombros']),
+  c('abdomen', ['abdomen']),
 ];
 const SUPERIOR_B = [
   v('empurrar-inclinado'),
@@ -80,6 +81,7 @@ const SUPERIOR_B = [
   c('ombro-posterior'),
   c('crucifixo', ['peito']),
   c('empurrar-vertical', ['ombros']),
+  c('abdomen', ['abdomen']),
 ];
 const INFERIOR_A = [
   v('agachar'),
@@ -194,6 +196,7 @@ const EMPURRAR_A = [
   c('empurrar-inclinado'),
   c('crucifixo'),
   c('triceps-complemento'),
+  c('abdomen', ['abdomen']),
 ];
 const EMPURRAR_B = [
   v('empurrar-inclinado'),
@@ -203,6 +206,7 @@ const EMPURRAR_B = [
   c('empurrar-horizontal'),
   c('triceps-complemento'),
   c('empurrar-vertical', ['ombros']),
+  c('abdomen', ['abdomen']),
 ];
 const PUXAR_A = [
   v('puxar-vertical'),
@@ -243,6 +247,7 @@ const PERNAS_B = [
   c('abducao', ['gluteos']),
   c('panturrilha-sentada', ['pernas']),
   c('aducao', ['pernas', 'gluteos']),
+  c('abdomen', ['abdomen']),
 ];
 // Clássicas: cada músculo 1x por semana (divisao.classica).
 const CL_PEITO_TRICEPS = [v('empurrar-horizontal'), v('empurrar-inclinado'), v('crucifixo'), v('triceps-acima-cabeca'), v('triceps-complemento')];

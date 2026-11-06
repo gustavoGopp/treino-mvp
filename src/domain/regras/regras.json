@@ -1227,6 +1227,19 @@
     ]
   },
   {
+    "id": "selecao.abdomen-prioridade",
+    "regra": "Com o abdômen como prioridade, os dias que não têm vaga de abdômen (superior, empurrar, pernas B) ganham uma, como complemento; antes, priorizá-lo não abria vaga e ele ficava abaixo da meta em 24% a 85% dos programas (decisão do Gustavo em 06/11/2026, sessão de qualidade dos treinos). Um exercício de flexão do tronco basta; não há ensaio que compare exercícios de abdômen",
+    "valores": {
+      "iniciante": "complemento",
+      "intermediario": "complemento",
+      "avancado": "complemento"
+    },
+    "selo": "consenso",
+    "fontes": [
+      "consenso-projeto"
+    ]
+  },
+  {
     "id": "ordem.sessao",
     "regra": "Ordenação determinística dos exercícios da sessão (a ordem não muda a hipertrofia)",
     "valores": {
@@ -1665,6 +1678,20 @@
       "pelland2026",
       "remmert2025",
       "iversen2021"
+    ]
+  },
+  {
+    "id": "tempo.musculo-protegido",
+    "regra": "Abdômen e panturrilha não ficam com zero série na semana por falta de minutos: quando nenhuma vaga deles coube nos exercícios que cabem, a 1ª vaga possível entra no dia com menos exercícios, mesmo passando do número que cabe; a escada de cortes (`tempo.corte`) ajusta o resto do dia e nunca a tira. Nos treinos curtos eles saíam primeiro (grade de 06/11/2026: panturrilha a zero em ~22% e abdômen em ~21% dos programas da academia, os de 30 min). Decisão do Gustavo em 06/11/2026, sessão de qualidade dos treinos",
+    "valores": {
+      "iniciante": "1 vaga por semana",
+      "intermediario": "1 vaga por semana",
+      "avancado": "1 vaga por semana"
+    },
+    "selo": "consenso",
+    "fontes": [
+      "consenso-projeto",
+      "schoenfeld2017a"
     ]
   },
   {

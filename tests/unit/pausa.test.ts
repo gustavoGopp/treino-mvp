@@ -156,9 +156,9 @@ describe('os casos P1 a P9 do T6', () => {
     expect(h.semana).toBe(2);
     expect(h.fase?.regraId).toBe('iniciante.fase-aprendizado');
     expect(h.dias[0]!.exercicios[0]!.rir).toEqual([3, 4]);
-    expect(totalSeries(a, n, dias[0]!)).toBe(13); // 12 até a sessão de equipamento mínimo (a flexão de joelho deslizante no A)
+    expect(totalSeries(a, n, dias[0]!)).toBe(15); // 13 até a sessão de qualidade dos treinos (o abdominal protegido no A); 12 até a de equipamento mínimo
     // Antes do R2, a semana era a do calendário: a 3ª, com o programa completo.
-    expect(seriesNormais(a, dias[0]!)).toBe(15); // 13 até a auditoria do treino (a ponte com halter); 14 até a sessão de equipamento mínimo (a flexão deslizante)
+    expect(seriesNormais(a, dias[0]!)).toBe(16); // 15 até a sessão de qualidade dos treinos (o abdominal protegido no A); 13 até a auditoria do treino; 14 até a de equipamento mínimo
   });
 
   it('P7: Bruno, na semana 2 de uma volta, fica mais 15 dias sem treinar → só o RIR +1; a volta gradual não recomeça', () => {

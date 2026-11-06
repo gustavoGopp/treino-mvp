@@ -452,3 +452,26 @@ As costas, que ele priorizou, saem de 8 (abaixo do mínimo de 10 do intermediár
 | Volta de 30 dias (snapshot do R2) | 16 séries na semana 6; "Crucifixo com halteres no banco plano: 10 kg → 9 kg" | 15 séries; "Supino reto com halteres: 10 kg → 9 kg" |
 
 O peito continua com 6 séries por semana; muda o estímulo, de isolador para multiarticular, nos três dias.
+
+### F.5 Decisão 5: abdômen e panturrilha protegidos, e a vaga de abdômen quando ele é prioridade
+
+**Regras.** Novas: `tempo.musculo-protegido` (consenso) e `selecao.abdomen-prioridade` (consenso). A regra `tempo.exercicios-por-sessao` não muda os números: o exercício protegido pode passar do número que cabe, e a escada de cortes (`tempo.corte`) ajusta o resto do dia sem nunca tirá-lo.
+
+**Código e dados.** No gerador, depois do preenchimento: se o abdômen ou a panturrilha ficaram sem nenhuma série na semana e há uma vaga possível deles, ela entra no dia com menos exercícios, e o exercício diz no "porquê" que entrou para o músculo não ficar sem nenhuma série. Em `divisoes.ts`, os dias de superior A e B, empurrar A e B e pernas B ganham `c('abdomen', ['abdomen'])`, que só entra com o abdômen como prioridade.
+
+**Testes.** Sem dor, nenhum dos 2.106 programas da grade de propriedades deixa o abdômen ou a panturrilha a zero, nem a Ana com 20 ou 30 min; o exercício protegido explica por quê; com o abdômen como prioridade, o Bruno faz mais séries de abdômen do que sem. Dois testes antigos dependiam do número de séries do búlgaro da Ana e foram atualizados com o porquê no comentário.
+
+**O custo, medido nas personas com 30 e 45 min.**
+
+| Persona | Antes (abdômen / panturrilha por semana) | Depois | O que custou |
+|---|---|---|---|
+| Ana, 45 min (o programa dela) | 0 / 8 | 4 / 7 | o abdominal entra com 4 séries no dia A; como o abdômen fica no piso, os cortes tiram 2 séries do búlgaro: quadríceps 7 → 6, glúteos 11 → 10, posteriores 7 → 6, panturrilha 8 → 7; o dia C fica com 46 min (aviso de tempo) |
+| Ana, 30 min | 0 / 0 | 4 / 3 | dias de 33 a 35 min, com aviso |
+| Diego, 30 min | 0 / 0 | 4 / 4 | dias de 37 e 38 min, com aviso |
+| Bruno, 30 min | 4 / 0 | 4 / 4 | um dia de 29 para 33 min |
+| Carla, 30 min | 4 / 0 | 4 / 3 | um dia de 38 para 45 min, com aviso |
+| Elisa e Fábio | já tinham os dois | igual | nada |
+
+A troca segue a regra que o projeto já tinha (o piso de todo músculo vem antes da 2ª dose do prioritário, `tempo.corte`), mas é a primeira vez que ela tira séries de um foco nas personas. Fica anotado para o Gustavo: se o custo da Ana parecer alto, a alternativa é proteger o abdômen só com 2 séries e sem passar dos minutos.
+
+**Personas nos snapshots.** Só a Ana muda: no dia A, búlgaro 4 → 2, flexão de joelho deslizante 3 → 2, abdominal no chão 4 (novo); no dia C, afundo 3 → 4, panturrilha 3 → 2; avisos: sai "abaixo da meta" (o abdômen) e entra o de tempo do dia C. Na volta de 30 dias (snapshot do R2), a semana 6 tem 16 séries no dia A (antes 15) e o abdominal entra na lista de cargas.

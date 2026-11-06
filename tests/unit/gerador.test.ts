@@ -701,3 +701,25 @@ describe('selecao.peitoral-inclinado: sem banco inclinável, um 2º empurrar ant
   });
 });
 
+describe('abdômen e panturrilha (tempo.musculo-protegido; selecao.abdomen-prioridade)', { timeout: 30_000 }, () => {
+  it('sem dor, nenhum programa deixa o abdômen ou a panturrilha com zero série na semana, mesmo com 30 min', () => {
+    for (const v of variacoes.filter((x) => !x.perfil.triagem.dores?.length))
+      for (const m of ['abdomen', 'panturrilha'] as Musculo[]) expect(ok(v.perfil, v.inv).volumeSemanal[m] ?? 0, `${v.nome} ${m}`).toBeGreaterThan(0);
+    for (const m of [20, 30] as const) {
+      const p = ok({ ...ana.perfil, minutosSessao: m }, ana.inventario);
+      expect(p.volumeSemanal.abdomen ?? 0, `Ana ${m} min`).toBeGreaterThan(0);
+      expect(p.volumeSemanal.panturrilha ?? 0, `Ana ${m} min`).toBeGreaterThan(0);
+    }
+  });
+  it('o exercício que entrou para proteger diz por quê', () => {
+    const p = ok(ana.perfil, ana.inventario);
+    expect(p.dias.flatMap((d) => d.exercicios).some((x) => x.porque.some((q) => q.regraId === 'tempo.musculo-protegido'))).toBe(true);
+  });
+  it('com o abdômen como prioridade, os dias de superior, empurrar e pernas B ganham uma vaga de abdômen', () => {
+    for (const id of ['superior-a', 'superior-b'] as const) expect(DIVISOES['si-2x'].dias.find((d) => d.id === id)!.vagas.some((v) => v.funcao === 'abdomen' && v.prioridade?.includes('abdomen')), id).toBe(true);
+    const com = ok({ ...bruno.perfil, prioridades: ['abdomen'] }, bruno.inventario).volumeSemanal.abdomen ?? 0;
+    const sem = ok({ ...bruno.perfil, prioridades: [] }, bruno.inventario).volumeSemanal.abdomen ?? 0;
+    expect(com).toBeGreaterThan(sem);
+  });
+});
+
