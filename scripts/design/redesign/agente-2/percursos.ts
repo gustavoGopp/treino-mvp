@@ -26,7 +26,7 @@ export async function marcarInventario(c: Percurso, inv: Inventario) {
   const { page } = c;
   for (const id of ITEM_IDS) {
     if (!(id in inv) || SO_NA_FOTO.includes(id)) continue; // a esteira só entra pela foto
-    await page.getByLabel(NOME_CURTO[id], { exact: true }).first().check();
+    await page.locator('.cartao-eq').getByLabel(NOME_CURTO[id], { exact: true }).first().check();
     const a = inv[id] as Record<string, unknown>;
     switch (id) {
       case 'halteres_fixos':

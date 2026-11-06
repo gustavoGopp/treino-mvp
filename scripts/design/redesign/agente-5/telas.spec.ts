@@ -46,7 +46,10 @@ async function aplicar(page: Page, direcao: string, tema: string) {
     { tokens, CVD },
   );
 }
+// SO=senti-algo (por exemplo) tira só as fotos daquele estado; o caminho até ele é o mesmo
+const SO = process.env.SO;
 async function fotos(page: Page, nome: string, direcao: string) {
+  if (SO && SO !== nome) return;
   const proj = test.info().project.name;
   const dir = `${DIR}/${proj}`;
   mkdirSync(dir, { recursive: true });
@@ -91,7 +94,9 @@ test('programa e treino com cada paleta', async ({ page }) => {
     await aplicar(page, d, tema);
     await fotos(page, 'descanso-acabou', d);
   }
-  await page.getByRole('button', { name: 'Ok' }).click();
+  // o aviso de fim do descanso pode ter um "Ok"; se não tiver, segue
+  const ok = page.getByRole('button', { name: 'Ok' });
+  if (await ok.count()) await ok.first().click();
   await page.getByRole('button', { name: 'Senti algo' }).first().click();
   for (const d of DIRECOES) {
     await aplicar(page, d, tema);

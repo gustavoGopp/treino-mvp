@@ -4,7 +4,7 @@ import { anexarJsonl, comEstado, comecar, gravarJson, PERSONAS } from './apoio';
 // Agente 3: toques por série e por treino, nas 6 personas, pelo caminho mínimo (aceitando o que vem preenchido):
 // escolher a carga quando falta, escolher o RIR, "Série feita", pular o descanso, "Próximo", "Terminar".
 // Duas situações: a 1ª sessão (nenhum histórico: a carga começa vazia) e a 2ª (com histórico: a carga vem sugerida).
-// Cargas-alvo na 1ª vez: halter = a opção do meio da lista (2 toques: abrir e escolher); placa 8; 10 kg por lado nas
+// Cargas-alvo na 1ª vez: halter = a opção do meio da lista (2 toques: abrir e escolher); placa 5; 10 kg por lado nas
 // anilhas; contrapeso 3; barra 40 kg; degrau: o que vem (0). Só no projeto p7 (a contagem não depende da tela).
 
 type Contagem = { carga: number; rir: number; feita: number; pular: number; proximo: number; outros: number; series: number; exercicios: number; abrirGuia: number };
@@ -18,28 +18,31 @@ async function treinoInteiro(page: Page): Promise<Contagem> {
     const registro = page.getByRole('region', { name: /^Série \d/ });
     while (await registro.isVisible()) {
       c.series++;
-      const carga = page.getByLabel('Carga', { exact: true });
-      if ((await carga.count()) && (await carga.evaluate((e) => e.tagName === 'SELECT')) && !(await carga.inputValue())) {
-        const n = await carga.locator('option:not([disabled])').count();
-        await carga.selectOption({ index: Math.max(1, Math.floor(n / 2)) });
+      // carga: só quando vem vazia ("Escolha" ou "—"); o que vem preenchido é aceito (0 toque)
+      const sel = registro.locator('.linha-registro select, label.campo select').first();
+      const out = registro.locator('.linha-registro .stepper output').first();
+      const temSelect = (await sel.count()) > 0 && (await sel.evaluate((e) => !(e.closest('label.campo') && e.closest('label.campo')!.textContent!.includes('Dificuldade'))));
+      if (temSelect && !(await sel.inputValue())) {
+        const n = await sel.locator('option:not([disabled])').count();
+        await sel.selectOption({ index: Math.max(1, Math.floor(n / 2)) });
         c.carga += 2;
-      }
-      for (const [rotulo, alvo] of [
-        ['Mais carga', 40],
-        ['Próxima placa', 8],
-        ['Mais anilha de cada lado', 10],
-        ['Mais contrapeso (mais fácil)', 3],
-      ] as const) {
-        const b = registro.getByRole('button', { name: rotulo });
-        if (!(await b.count())) continue;
-        const out = registro.locator('.stepper output').first();
-        for (let i = 0; i < 40; i++) {
-          const t = (await out.innerText()).trim();
-          const n = parseFloat(t.replace(',', '.'));
-          if (t !== '—' && !Number.isNaN(n) && n >= alvo) break;
-          if (await b.isDisabled()) break;
-          await b.click();
-          c.carga++;
+      } else if (!temSelect && (await out.count()) && (await out.innerText()).trim() === '—') {
+        for (const [rotulo, alvo] of [
+          ['Mais carga', 40],
+          ['Próxima placa', 5],
+          ['Mais anilha de cada lado', 10],
+          ['Mais contrapeso (mais fácil)', 3],
+        ] as const) {
+          const b = registro.getByRole('button', { name: rotulo }).first();
+          if (!(await b.count())) continue;
+          for (let i = 0; i < 40; i++) {
+            const t = (await out.innerText()).trim();
+            const n = parseFloat(t.replace(',', '.'));
+            if (t !== '—' && !Number.isNaN(n) && n >= alvo) break;
+            if (await b.isDisabled()) break;
+            await b.click();
+            c.carga++;
+          }
         }
       }
       const rir = registro.getByRole('radio', { name: '2', exact: true });

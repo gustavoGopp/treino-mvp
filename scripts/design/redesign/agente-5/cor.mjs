@@ -154,27 +154,29 @@ const DIRECOES = {
     nome: 'Giz e grafite',
     intencao: 'O app é papel e lápis: neutros quentes, uma só cor de ação (índigo) e o Boneco como a única coisa colorida da tela.',
     neutro: { h: 85, Cclaro: 0.006, Cescuro: 0.007 },
-    acao: { h: 278, Cclaro: 0.17, Cescuro: 0.11 },
+    acao: { h: 278, Cclaro: 0.17, Cescuro: 0.14 },
     marcaFundo: false,
   },
   petroleo: {
     nome: 'Petróleo',
     intencao: 'Técnico e calmo, como ciência do esporte: neutros frios, ação azul-petróleo e a cor de marca também na navegação.',
     neutro: { h: 230, Cclaro: 0.006, Cescuro: 0.012 },
-    acao: { h: 214, Cclaro: 0.125, Cescuro: 0.09 },
+    acao: { h: 214, Cclaro: 0.125, Cescuro: 0.1 },
     marcaFundo: true,
   },
   ameixa: {
     nome: 'Ameixa',
     intencao: 'Mais cara própria e menos "app de academia": neutros rosados, ação ameixa (violeta) e estados bem separados dela.',
     neutro: { h: 30, Cclaro: 0.008, Cescuro: 0.012 },
-    acao: { h: 318, Cclaro: 0.16, Cescuro: 0.1 },
+    acao: { h: 318, Cclaro: 0.16, Cescuro: 0.13 },
     marcaFundo: false,
   },
 };
 // Cores de estado comuns às três direções (a semântica não muda com a marca): feito verde, atenção ocre, alerta vermelho.
 const ESTADOS = { feito: { h: 155, Cclaro: 0.11, Cescuro: 0.1 }, atencao: { h: 78, Cclaro: 0.11, Cescuro: 0.11 }, alerta: { h: 18, Cclaro: 0.17, Cescuro: 0.13 } };
 
+const ALVO_ACAO = 7;
+const ALVO_ESTADO = 5.2;
 function paleta(dir, tema) {
   const escuro = tema === 'escuro';
   const n = dir.neutro;
@@ -198,16 +200,18 @@ function paleta(dir, tema) {
   p['texto-2'] = resolver({ h: inkH, C: 0.012, fundos, alvo: 7, escuro });
   p['borda-controle'] = resolver({ h: inkH, C: 0.012, fundos: [p.fundo, p.superficie], alvo: 3, escuro });
   const Ca = escuro ? dir.acao.Cescuro : dir.acao.Cclaro;
-  p.acao = resolver({ h: dir.acao.h, C: Ca, fundos, alvo: 4.5, escuro });
+  // 2ª passada (06/11): a ação e o texto sobre ela miram 7:1 (AAA, 1.4.6), para não ficar abaixo do app de hoje (7,56:1)
+  // no botão que a pessoa mais toca, lido de relance e sob luz forte
+  p.acao = resolver({ h: dir.acao.h, C: Ca, fundos, alvo: ALVO_ACAO, escuro });
   // texto sobre a ação: branco no claro; no escuro, um tom escuro do próprio matiz
-  p['texto-sobre-acao'] = escuro ? resolver({ h: dir.acao.h, C: 0.06, fundos: [p.acao], alvo: 4.5, escuro: false }) : '#FFFFFF';
-  if (!escuro && contraste(p['texto-sobre-acao'], p.acao) < 4.5) p.acao = resolver({ h: dir.acao.h, C: Ca, fundos: [...fundos, '#FFFFFF'], alvo: 4.5, escuro });
+  p['texto-sobre-acao'] = escuro ? resolver({ h: dir.acao.h, C: 0.06, fundos: [p.acao], alvo: ALVO_ACAO, escuro: false }) : '#FFFFFF';
+  if (!escuro && contraste(p['texto-sobre-acao'], p.acao) < ALVO_ACAO) p.acao = resolver({ h: dir.acao.h, C: Ca, fundos: [...fundos, '#FFFFFF'], alvo: ALVO_ACAO, escuro });
   p['acao-suave'] = escuro ? oklch2hex([0.3, 0.06, dir.acao.h]) : oklch2hex([0.94, 0.035, dir.acao.h]);
   p.foco = p.acao;
   for (const [k, e] of Object.entries(ESTADOS)) {
     const Ce = escuro ? e.Cescuro : e.Cclaro;
     p[`${k}-suave`] = escuro ? oklch2hex([0.28, 0.05, e.h]) : oklch2hex([0.945, 0.04, e.h]);
-    p[k] = resolver({ h: e.h, C: Ce, fundos: [...fundos, p[`${k}-suave`]], alvo: 4.5, escuro });
+    p[k] = resolver({ h: e.h, C: Ce, fundos: [...fundos, p[`${k}-suave`]], alvo: ALVO_ESTADO, escuro });
   }
   // descanso: a cor de marca em versão calma (fundo do painel), com o texto principal por cima
   p.descanso = escuro ? oklch2hex([0.27, 0.035, dir.acao.h]) : oklch2hex([0.93, 0.03, dir.acao.h]);
@@ -270,6 +274,10 @@ const CONFUSOES = [
   ['feito', 'fantasma certo (--ghost)', 'o feito × o verde do certo (fantasma)'],
   ['acao', 'músculo principal (estilo A, --m-p)', 'a ação × o vermelho do músculo (nunca pode confundir)'],
   ['acao', 'alerta', 'a ação × o alerta do próprio app'],
+  ['acao', 'erro (--err)', 'a ação × o vermelho do erro'],
+  ['acao', 'músculo secundário (estilo A, --m-s)', 'a ação × o laranja do músculo secundário'],
+  ['acao', 'fantasma certo (--ghost)', 'a ação × o verde do certo (fantasma)'],
+  ['alerta', 'músculo secundário (estilo A, --m-s)', 'o alerta × o laranja do músculo secundário'],
   ['feito', 'acao', 'o feito × a ação do próprio app'],
   ['atencao', 'alerta', 'a atenção × o alerta do próprio app'],
 ];

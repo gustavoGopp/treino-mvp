@@ -193,7 +193,7 @@ test('foto: até o envio, a espera e a confirmação (API simulada com 3 s de re
   );
   const usar = page.getByRole('button', { name: 'Usar na lista' });
   const desabilitadoAntes = await usar.isDisabled();
-  await page.getByRole('group', { name: /Você tem Banco reto/ }).getByRole('button', { name: 'Tenho' }).click();
+  await page.getByRole('group', { name: /Você tem Banco reto/ }).getByRole('button', { name: 'Tenho', exact: true }).click();
   await usar.click();
   await expect(page.getByLabel('Halteres fixos', { exact: true })).toBeChecked();
   const halteresPreenchidos = await grupo(page, 'O mais pesado').getByLabel('12 kg', { exact: true }).isChecked();
