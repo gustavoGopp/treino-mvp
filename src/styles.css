@@ -5,7 +5,7 @@
 :root{
   /* Giz e grafite (redesign, 06/11/2026; docs/revisoes/redesign/proposta.md, seção 4): nomes pelo papel da cor */
   --fundo:#F5F3EF; --superficie:#FFFFFF; --superficie-2:#EAE7E2; --linha:#D9D7D3;
-  --texto:#171B20; --texto-2:#464B51; --borda:#868B95;
+  --texto:#171B20; --texto-2:#464B51; --borda:#5F636B;
   --acao:#3F3AA8; --sobre-acao:#FFFFFF; --acao-suave:#E6EAFE; --foco:#3F3AA8;
   --feito:#0F6B3E; --feito-suave:#D9F5E1; --atencao:#7B5612; --atencao-suave:#FCEAD0;
   --alerta:#AF283D; --alerta-suave:#FEE6E6; --descanso:#E3E6FC; --descanso-texto:#171B20; --veu:rgba(23,27,32,.48);
@@ -28,7 +28,7 @@
 @media (prefers-color-scheme: dark){
   :root:not([data-theme="light"]){
     --fundo:#151410; --superficie:#211F1C; --superficie-2:#2D2B27; --linha:#3C3A36;
-    --texto:#F1EEE9; --texto-2:#BBB8B0; --borda:#6E737D;
+    --texto:#F1EEE9; --texto-2:#BBB8B0; --borda:#9C998F;
     --acao:#A9B3FF; --sobre-acao:#25284A; --acao-suave:#272A4B; --foco:#A9B3FF;
     --feito:#65AE80; --feito-suave:#12301E; --atencao:#C6974A; --atencao-suave:#362508;
     --alerta:#EA8085; --alerta-suave:#3E1E1F; --descanso:#222537; --descanso-texto:#F1EEE9; --veu:rgba(0,0,0,.6);
@@ -42,7 +42,7 @@
 }
 :root[data-theme="dark"]{
   --fundo:#151410; --superficie:#211F1C; --superficie-2:#2D2B27; --linha:#3C3A36;
-  --texto:#F1EEE9; --texto-2:#BBB8B0; --borda:#6E737D;
+  --texto:#F1EEE9; --texto-2:#BBB8B0; --borda:#9C998F;
   --acao:#A9B3FF; --sobre-acao:#25284A; --acao-suave:#272A4B; --foco:#A9B3FF;
   --feito:#65AE80; --feito-suave:#12301E; --atencao:#C6974A; --atencao-suave:#362508;
   --alerta:#EA8085; --alerta-suave:#3E1E1F; --descanso:#222537; --descanso-texto:#F1EEE9; --veu:rgba(0,0,0,.6);
