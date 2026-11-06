@@ -1,5 +1,5 @@
 import { useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
-import { Link, Navigate, useNavigate } from 'react-router-dom';
+import { Link, Navigate, useNavigate, useSearchParams } from 'react-router-dom';
 import { BIBLIOTECA } from '../../domain/biblioteca';
 import { ALTERNATIVAS_A_MOSTRA, type ExercicioPrescrito } from '../../domain/gerador';
 import { linkDoGuia } from '../guia/link';
@@ -57,7 +57,12 @@ export function Treino() {
     const i = sessao?.exercicios.findIndex((e) => !e.interrompido && e.series.length < meta(e.noLugarDe ?? e.exId)) ?? 0;
     return Math.max(0, i);
   });
-  const [painel, setPainel] = useState<'nenhum' | 'trocar' | 'sentir' | 'mais' | 'terminar'>('nenhum');
+  // "Senti algo" tocado no guia aberto pelo treino volta aqui com a folha aberta (?sentir=1): uma lógica de segurança só.
+  const [params, setParams] = useSearchParams();
+  const [painel, setPainel] = useState<'nenhum' | 'trocar' | 'sentir' | 'mais' | 'terminar'>(() => (params.get('sentir') === '1' ? 'sentir' : 'nenhum'));
+  useEffect(() => {
+    if (params.has('sentir')) setParams({}, { replace: true });
+  }, [params, setParams]);
   const [aviso, setAviso] = useState<{ texto: string; regraId: string } | null>(null);
   // "Desfazer" por 5 s depois de salvar a série (redesign, lote 2): o toque errado em "Série feita" se corrige na hora.
   const [salva, setSalva] = useState<{ indice: number; numero: number } | null>(null);

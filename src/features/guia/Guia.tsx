@@ -11,6 +11,7 @@ import { useEstiloBoneco } from '../app/estiloBoneco';
 import { agoraIso, fusoDoAparelho, useApp } from '../app/estado';
 import { lerContexto, linkDoGuia } from './link';
 import { useTelaAcesa } from '../treino/Temporizador';
+import { Selo } from '../app/ui';
 
 // Tela do guia de execução: mesma interface do guia original (referencia/guia-execucao-fase1.html),
 // sem o temporizador de descanso (que entra no M5). O motor não sabe de React: o palco só recebe o SVG.
@@ -176,157 +177,173 @@ function GuiaExercicio({ ex }: { ex: Animacao }) {
   };
 
   return (
-    <div className="wrap">
+    <div className="wrap guia">
+      {/* Redesign, lote 2: o palco no topo. Aberto pelo treino, o cabeçalho é o do treino: voltar e "Senti algo" (que
+          volta ao treino com a folha aberta, para a segurança ter uma lógica só). No catálogo, os dias e os exercícios. */}
       <header className="top">
-        <div className="brand">
-          <b>
-            <Link to="/">Guia de execução</Link>
-          </b>
-          <span>{minha ? `Seu treino · ${minha.dia.nome}` : 'Catálogo de exercícios · animações esquemáticas'}</span>
-        </div>
         {minha ? (
-          <nav className="days" aria-label="Voltar">
-            <Link className="day" to={ctx!.de === 'treino' ? '/treino' : '/programa'}>
+          <div className="brand cab-treino">
+            <Link className="volta-inicio" to={ctx!.de === 'treino' ? '/treino' : '/programa'}>
               ‹ Voltar {ctx!.de === 'treino' ? 'ao treino' : 'ao programa'}
             </Link>
-          </nav>
-        ) : (
-          <nav className="days" aria-label="Treinos">
-            {GRUPOS.map((d) => (
-              <button key={d.id} className="day" aria-pressed={d === dia} onClick={() => navigate(`/guia/${d.ex[0]!.id}`)}>
-                {d.nome}
+            {ctx!.de === 'treino' && (
+              <button type="button" className="alerta-topo" onClick={() => navigate('/treino?sentir=1')}>
+                <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                  <path d="M12 4l9 16H3z" />
+                  <path d="M12 10v4M12 17h.01" />
+                </svg>
+                Senti algo
               </button>
-            ))}
-          </nav>
-        )}
-        <div className="chips" role="tablist" aria-label="Exercícios">
-          {dia.ex.map((e: Animacao, i: number) => (
-            <button key={e.id} className="chip" role="tab" aria-pressed={e === ex} onClick={() => irPara(i)}>
-              <i>{i + 1}</i>
-              {CONTEUDO[e.id]!.short}
-            </button>
-          ))}
-        </div>
-      </header>
-
-      <section className="exhead">
-        <div className="n">{pos + 1}</div>
-        <div>
-          <h1>{txt.name}</h1>
-          {minha ? (
-            <div className="rx" data-testid="prescricao">
-              {[
-                `Semana ${minha.semana}: ${minha.x.series} × ${faixa(minha.x.reps)}${minha.x.unilateral ? ' cada lado' : ''}`,
-                `RIR ${faixa(minha.x.rir)}`,
-                `descanso ${tempo(minha.x.descansoSeg)}`,
-                ...(minha.fase?.rir ? [minha.fase.regraId === 'iniciante.fase-aprendizado' ? 'fase de aprendizado' : 'volta da pausa'] : []),
-              ].map((t, i) => (
-                <span key={t}>
-                  {i > 0 && ' · '}
-                  <span className="nw">{t}</span>
-                </span>
+            )}
+          </div>
+        ) : (
+          <>
+            <div className="brand">
+              <b>
+                <Link to="/">Guia de execução</Link>
+              </b>
+              <span>Catálogo de exercícios · animações esquemáticas</span>
+            </div>
+            <nav className="days" aria-label="Treinos">
+              {GRUPOS.map((d) => (
+                <button key={d.id} className="day" aria-pressed={d === dia} onClick={() => navigate(`/guia/${d.ex[0]!.id}`)}>
+                  {d.nome}
+                </button>
+              ))}
+            </nav>
+            <div className="chips" role="group" aria-label="Exercícios">
+              {dia.ex.map((e: Animacao, i: number) => (
+                <button key={e.id} className="chip" aria-pressed={e === ex} onClick={() => irPara(i)}>
+                  <i>{i + 1}</i>
+                  {CONTEUDO[e.id]!.short}
+                </button>
               ))}
             </div>
-          ) : (
-            <div className="rx">As séries, as repetições e o RIR vêm do seu programa.</div>
-          )}
-          <div className="tg">
-            <b>Alvo:</b> {txt.target}
+          </>
+        )}
+      </header>
+      <main className="conteudo-guia">
+        <section className="card" aria-label="Animação">
+          <div className="stage" data-testid="palco">
+            <svg ref={svg} xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Animação do exercício" />
+            <div className="hud">
+              <div className="phase" ref={fase}>
+                <b>—</b>
+                <span />
+              </div>
+              <div className="breath" ref={resp}>
+                EXPIRA
+              </div>
+            </div>
+            <div className="errbanner" />
           </div>
-        </div>
-        <div className="nav">
-          <button className="iconbtn" aria-label="Exercício anterior" onClick={() => irPara(pos - 1)}>
-            ‹
-          </button>
-          <button className="iconbtn" aria-label="Próximo exercício" onClick={() => irPara(pos + 1)}>
-            ›
-          </button>
-        </div>
-      </section>
-
-      <section className="card" aria-label="Animação">
-        <div className="stage" data-testid="palco">
-          <svg ref={svg} xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Animação do exercício" />
-          <div className="hud">
-            <div className="phase" ref={fase}>
-              <b>—</b>
-              <span />
-            </div>
-            <div className="breath" ref={resp}>
-              EXPIRA
+          <div className="timeline" ref={linha}>
+            {ex.seq.map((g: Animacao, i: number) => (
+              <div key={i} className={`tseg ${g.kind}`} style={{ flexGrow: g.dur }}>
+                {g.kind !== 'hold' && g.dur >= 0.8 ? g.label.split(' · ')[0].toLowerCase() : ''}
+              </div>
+            ))}
+            <div className="tcur" ref={cursor} />
+          </div>
+          <div className="controls">
+            <button className="ctl" aria-label={tocando ? 'Pausar' : 'Reproduzir'} onClick={() => setTocando(!tocando)}>
+              {tocando ? '⏸' : '▶'}
+            </button>
+            <button
+              className="ctl"
+              aria-label="Voltar à posição inicial"
+              onClick={() => {
+                t.current = 0;
+                setTocando(false);
+              }}
+            >
+              ⏮
+            </button>
+            <button className="ctl" aria-pressed={lento} onClick={() => setLento(!lento)}>
+              <span aria-hidden="true">🐢</span> Lento
+            </button>
+            <div className="seg" role="group" aria-label="Visão">
+              {vistas.map((v) => (
+                <button key={v} aria-pressed={v === vista} onClick={() => escolherVista(v)}>
+                  {VIEWS[v as keyof typeof VIEWS].name}
+                </button>
+              ))}
             </div>
           </div>
-          <div className="errbanner" />
-        </div>
-        <div className="timeline" ref={linha}>
-          {ex.seq.map((g: Animacao, i: number) => (
-            <div key={i} className={`tseg ${g.kind}`} style={{ flexGrow: g.dur }}>
-              {g.kind !== 'hold' && g.dur >= 0.8 ? g.label.split(' · ')[0].toLowerCase() : ''}
-            </div>
-          ))}
-          <div className="tcur" ref={cursor} />
-        </div>
-        <div className="controls">
-          <button className="ctl" aria-label={tocando ? 'Pausar' : 'Reproduzir'} onClick={() => setTocando(!tocando)}>
-            {tocando ? '⏸' : '▶'}
-          </button>
-          <button
-            className="ctl"
-            aria-label="Voltar à posição inicial"
-            onClick={() => {
-              t.current = 0;
-              setTocando(false);
-            }}
-          >
-            ⏮
-          </button>
-          <button className="ctl" aria-pressed={lento} aria-label="Câmera lenta" onClick={() => setLento(!lento)}>
-            🐢 lento
-          </button>
-          <div className="seg" role="group" aria-label="Visão">
-            {vistas.map((v) => (
-              <button key={v} aria-pressed={v === vista} onClick={() => escolherVista(v)}>
-                {VIEWS[v as keyof typeof VIEWS].name}
+          <div className="modes" role="group" aria-label="Informação">
+            {MODOS.map(([m, nome]) => (
+              <button key={m} aria-pressed={m === modo} onClick={() => trocarModo(m)}>
+                {nome}
               </button>
             ))}
           </div>
-        </div>
-        <div className="modes" role="group" aria-label="Informação">
-          {MODOS.map(([m, nome]) => (
-            <button key={m} aria-pressed={m === modo} onClick={() => trocarModo(m)}>
-              {nome}
+          <div className="modeinfo">
+            <InfoModo
+              soAjuda={!!SO_AJUDA[ex.id]?.length}
+              estilo={estilo}
+              modo={modo}
+              erro={erro}
+              txt={txt}
+              onErro={(i) => {
+                setErro(i);
+                setVista(ex.errors[i].view);
+                t.current = inicioDoErro(i);
+              }}
+            />
+          </div>
+        </section>
+
+        {txt.note && <NotaDoGuia nota={txt.note} />}
+
+        <section className="exhead">
+          <div className="n">{pos + 1}</div>
+          <div>
+            <h1>{txt.name}</h1>
+            {minha ? (
+              <div className="rx" data-testid="prescricao">
+                {[
+                  `Semana ${minha.semana}: ${minha.x.series} × ${faixa(minha.x.reps)}${minha.x.unilateral ? ' cada lado' : ''}`,
+                  `RIR ${faixa(minha.x.rir)}`,
+                  `descanso ${tempo(minha.x.descansoSeg)}`,
+                  ...(minha.fase?.rir ? [minha.fase.regraId === 'iniciante.fase-aprendizado' ? 'fase de aprendizado' : 'volta da pausa'] : []),
+                ].map((t, i) => (
+                  <span key={t}>
+                    {i > 0 && ' · '}
+                    <span className="nw">{t}</span>
+                  </span>
+                ))}
+              </div>
+            ) : (
+              <div className="rx">As séries, as repetições e o RIR vêm do seu programa.</div>
+            )}
+            <div className="tg">
+              <b>Alvo:</b> {txt.target}
+            </div>
+          </div>
+          <div className="nav">
+            <button className="iconbtn" aria-label="Exercício anterior" onClick={() => irPara(pos - 1)}>
+              ‹
             </button>
-          ))}
-        </div>
-        <div className="modeinfo">
-          <InfoModo
-            soAjuda={!!SO_AJUDA[ex.id]?.length}
-            estilo={estilo}
-            modo={modo}
-            erro={erro}
-            txt={txt}
-            onErro={(i) => {
-              setErro(i);
-              setVista(ex.errors[i].view);
-              t.current = inicioDoErro(i);
-            }}
-          />
-        </div>
-      </section>
+            <button className="iconbtn" aria-label="Próximo exercício" onClick={() => irPara(pos + 1)}>
+              ›
+            </button>
+          </div>
+        </section>
 
-      <section className="quick">
-        <div className="box">
-          <h2>3 cues</h2>
-          <ol className="cues">
-            {txt.cues.map((c) => (
-              <li key={c}>{c}</li>
-            ))}
-          </ol>
-        </div>
-        <Checklist key={ex.id} itens={minha ? checklistComRir(txt.check, faixa(minha.x.rir)) : txt.check} id={ex.id} />
-      </section>
+        <section className="quick">
+          <div className="box">
+            <h2>3 cues</h2>
+            <ol className="cues">
+              {txt.cues.map((c) => (
+                <li key={c}>{c}</li>
+              ))}
+            </ol>
+          </div>
+          <Checklist key={ex.id} itens={minha ? checklistComRir(txt.check, faixa(minha.x.rir)) : txt.check} id={ex.id} />
+        </section>
 
-      <Detalhes txt={txt} />
+        <Detalhes txt={txt} />
+      </main>
 
       <footer>
         <div className="box">
@@ -383,7 +400,6 @@ function InfoModo({
             </span>
           )}
         </div>
-        {txt.note && <div className="warnbox">{txt.note}</div>}
       </>
     );
   if (modo === 'err')
@@ -571,5 +587,19 @@ function Detalhes({ txt }: { txt: (typeof CONTEUDO)[string] }) {
         </div>
       </details>
     </section>
+  );
+}
+
+/**
+ * A nota do exercício (montagem segura ou segurança), à vista em todos os modos, logo abaixo do palco (lote 2). Os
+ * textos marcam o título com <b>…</b>: só essa marca vira negrito; todo o resto é texto, sem HTML livre.
+ */
+function NotaDoGuia({ nota }: { nota: string }) {
+  const partes = nota.split(/<b>(.*?)<\/b>/);
+  return (
+    <div className="warnbox nota-guia">
+      {partes.map((p, i) => (i % 2 ? <b key={i}>{p}</b> : p))}
+      {/montagem segura/i.test(nota) && <Selo id="seguranca.montagem" />}
+    </div>
   );
 }
