@@ -120,4 +120,104 @@ O redesign trata como dado, e esta sessão não refaz:
 
 ## Parte 2. A proposta
 
-*(Escrita depois dos relatórios das cinco frentes.)*
+> Feita a partir dos cinco relatórios em `docs/revisoes/proximos-passos/`. Cada número vem do relatório citado, onde está o comando que o mede. As fontes novas dos relatórios foram conferidas no PubMed ou no Crossref antes de entrar em `docs/pesquisa/fontes.md` (37 chaves novas e 5 atualizadas nesta sessão: de 331 para 368). Dois achados foram conferidos por mim direto no código, porque mudam a ordem: a nota de dor que não fica guardada e o treino vazio que conta como feito.
+
+### 2.1 O que as frentes encontraram, em uma linha cada
+
+- **A. Qualidade e variação** (`a-qualidade.md`): os custos que a sessão de 06/11 deixou caem com ajustes de 1 dia (dias de 30 min acima do tempo: 69,6% → 48,1%; o mesmo exercício em todos os dias: 29,6% → 18,4%). A "prioridade puxa frequência" (D-4), como está escrita no backlog, quase não tem efeito: o teto da sessão explica 4 de 5.301 casos. O que funciona é **um 2º exercício de outra função** para o prioritário (avançado abaixo da meta: 64,9% → 55,1%). **Variar os exercícios por blocos** mostra ganho só na academia (24 → 37,7 exercícios diferentes em 24 semanas; em casa, 17,6 → 18,5), sem ganho de músculo (moderada, `kassiano2022`, `kassiano2025var`).
+- **B. Avaliador e "monte o seu"** (`b-monte-e-avaliador.md`): um protótipo do avaliador, com o domínio de hoje, diz "está bom" em 59,8% de 2.682 programas do gerador, acha algo que o gerador não avisa em 17,4% e achou **3 defeitos reais do gerador** (glúteo sem extensão de quadril no Corpo todo A/B em 6,3%; dois afundos no dia em 2,4%; o teto de 10 séries por sessão que não conta as indiretas em 0,5%). Nos 4 programas publicados que digitou (protocolos de ensaios), aponta o que um treinador apontaria. Só o avaliador custa 2 a 3 dias e não muda o estado guardado; montar do zero, 9 a 13 dias no total.
+- **C. Fluxo e função** (`c-fluxo.md`): **a nota de dor do "Senti algo" não fica guardada** (0 de 6 personas; conferido: `Treino.tsx:238` só mostra a mensagem, e o campo `dor` da série existe em `esquema.ts:113`), e por isso a redução de carga com dor de 3 a 5 e a "dor que se repete" (com o aviso de avaliação) nunca disparam. **"Começar" e "Terminar" sem nenhuma série conta como treino feito e pula o dia** (6 de 6; conferido: `proximoDia`, `sessao/index.ts:52`). 2 de 20 avisos dizem o que fazer; 61% dos exercícios têm só o "porquê" genérico; 20% das vagas não têm alternativa e o texto manda usá-la.
+- **D. Longo prazo** (`d-longo-prazo.md`), num simulador de 24 e 52 semanas com o código real: **4 defeitos de lógica**, todos visíveis no 1º ou 2º mês: a calibração que nunca termina quando o salto de carga é grande (62 de 492 corridas, até 31 sessões); o "Agora não" da semana leve que dura só até o próximo treino (a oferta volta 46 a 107 vezes em 24 semanas); a semana leve sugerida na fase de aprendizado do iniciante; a estagnação contada no exercício que a pessoa não faz mais. O nível nunca é reavaliado. Não há estudo de hipertrofia com mais de 1 ano em quem já treina.
+- **E. Abrir para família e amigos** (`e-produto.md`): o app funciona sem rede depois da 1ª visita (5 de 5 passos). Faltam: o texto da foto exato (3 telas dizem "não fica guardada no servidor", mas a Anthropic guarda o que a API recebe por até 30 dias, `anthropic-retencao`) e o consentimento destacado (LGPD, art. 11); termos de uso; uma saída quando a tela quebra (há 0 tela de erro: a página fica branca, sem caminho até "Exportar"); e proteção contra a perda de dados (o Safari apaga o armazenamento de um site não instalado depois de 7 dias de uso sem visita, `webkit2020`). O teto de gasto no console da Anthropic protege mais o bolso que o limite compartilhado.
+
+### 2.2 A matriz
+
+Valor: **alto** (corrige algo errado ou abre um uso que o Gustavo pediu), **médio** (melhora o que já funciona), **baixo**. Esforço em dias de uma sessão como esta. Selo: o da regra que sustenta a mudança. "Estado" diz se mexe no que fica guardado no celular (`src/storage/`, hoje versão 7). ★ marca a minha recomendação para agora; ☆, para depois; sem marca, não recomendo agora.
+
+| # | Opção (frente) | Valor | Esforço | Evidência (selo) | Risco | Estado | Dependência e choque | Rec. |
+|---|---|---|---|---|---|---|---|---|
+| 1 | **Corrigir o registro**: gravar a dor na série; treino sem série não conta nem anda a rotação; descartar ou apagar um treino (C, opção B) | **alto** (segurança: liga 2 regras com aviso de avaliação) | 2 | regras de segurança já aprovadas (`seguranca.dor.escala`, consenso) | baixo; mais avisos e semanas leves no R3, que é o esperado | nada (o campo existe) | nenhuma; desejável durante o R3 (o export passa a ter a dor) | ★ |
+| 2 | **4 correções da progressão + leitura do export** (D, opção 1) | **alto** (falhas de lógica no 1º e 2º mês) | 1,5 | `progressao.calibracao`, `deload.semana-leve` (consenso) | baixo | nada (o "Agora não" por data, 7 dias) | o script do export é a medida do achado 11 e do F.2 que o backlog pede | ★ |
+| 3 | **Ajustes pequenos do gerador** (A, pacote A) + **as 3 correções que o avaliador achou** (B) | médio | 1 + 1 | `tempo.musculo-protegido`, `volume.sessao.teto` (consenso); `selecao.*` | baixo; muda os snapshots da Ana e do Diego e 25% dos programas da grade | nada | o programa do Gustavo no R3 só muda se ele atualizar | ★ |
+| 4 | **O avaliador, sozinho** (B, opção a), aplicado ao programa salvo e usado como régua nos testes e na auditoria | **alto** (é a base do "monte o seu") | 2–3 | regras de volume e frequência (robusta a consenso); 2 regras novas: empurrar × puxar (consenso, limiar a decidir) e frente × trás da coxa ([opinião]) | baixo | nada | exportar `prescrever` do gerador; a tela é pedido ao design | ★ |
+| 5 | **Textos do porquê e avisos com o próximo passo** (C, opção A) | médio-alto (confiança; cumpre `acompanhamento.mensagens`) | 2–3 | explicar o motivo: `deci1994` (um estudo), `ntoumanis2021` (moderada) | baixo; os textos mudam no meio do R3 | nada | junta bem com o avaliador (a saída dele vira os avisos do programa) | ★ |
+| 6 | **Abrir para família e amigos**: foto exata e consentimento, termos, tela de erro com "Exportar", aviso de instalação e "última cópia", canal de problema, teto de gasto (E, P1–P6) | **alto** se for abrir; nenhum se não | 3,5–4,5 + advogado + 30 min do Gustavo | `lgpd`, `anpd2-2022` (consenso, norma) | baixo no código; o advogado não tem preço com fonte | nada (a data da cópia no `localStorage`) | as telas são do redesign (lote 3 da foto) | ★ |
+| 7 | "Como ler o seu treino" para quem nunca treinou (E, B2) | médio | 0,5–1 | `rir.leitura` (moderada), `iniciante.fase-aprendizado` (consenso) | baixo | nada | tela do design | ★ (no marco de abrir) |
+| 8 | Panturrilha no degrau de casa (A, pacote E) | médio (88,9% dos programas fora da academia) | 1 + tela | um estudo × 2 (`selecao.panturrilha-alongada`) | baixo; nota de segurança [opinião] | item novo no inventário: migração | as animações já existem | ☆ |
+| 9 | 2º exercício para o prioritário + "escolha até 2" (A, pacote B; substitui a D-4 do backlog) | médio (quem tem foco; avançado) | 1,5 + tela | moderada (2º exercício); consenso (o dia) | médio (o exercício no dia errado) | nada | as prioridades ficam no cadastro (redesign, decisão 6) | ☆ |
+| 10 | Alternativas quando não há outro equipamento; "usar sempre este"; prévia antes de "Atualizar" (C, opção C) | médio | 3–4 | `selecao.equivalencia` (muda: decisão do Gustavo) | médio (snapshots, critério 4) | nada | a folha "Trocar" é do redesign | ☆ |
+| 11 | **Montar o próprio treino do zero**, com edição (B, opção c) | **alto** para quem já treina e tem programa (o público que o Gustavo escolheu) | +6 a 10 depois do avaliador | sem estudo que compare programa montado pela pessoa com prescrito (B, seção 3); motivação autônoma, `teixeira2012` (moderada) | médio-alto (a pessoa pode montar algo sem sentido: o avaliador orienta; só segurança bloqueia) | **versão nova com migração** (`origem`, `base`, `anterior`) | depende do 4; "Atualizar" nunca apaga um programa editado; tela nova do design | ☆ (depois do 4, quando for abrir para quem já treina) |
+| 12 | Gatilhos da semana leve e do "estagnado" pelo dado real; recalibrar quando a faixa muda; revisão do nível oferecida aos ~6 meses (D, opção 2) | médio (aparece no mês 6 ou numa troca de objetivo) | 2,5 | consenso (`nivel.revisao` nova) | médio | versão nova | o export do R3 | ☆ (depois do R3) |
+| 13 | Usar o tempo que sobra para todos (A, pacote C; backlog E-c) | baixo-médio | 1 | contradiz o texto aprovado em 06/11 ("foco com manutenção", D-1) | alto em produto (dilui o foco) | nada | decisão de produto do Gustavo | — |
+| 14 | Variação por blocos (A, pacote D; D, opção 3) | baixo (sem ganho de músculo, moderada; ganho só na academia) | 3–4 | moderada (empate) | médio (11 a 14% das séries recalibram; mais exercícios sem guia) | versão nova | depois do R3, só se o uso mostrar tédio ou platô | — |
+| 15 | Ler um programa de fora por IA (B, opção d) | médio para quem já treina | +3 a 5 depois do 11 | — (a IA só transcreve; a avaliação continua das regras) | alto (custo ~US$ 0,05 a 0,10 por programa, estimativa; privacidade; erro de leitura) | nada além do 11 | o Gustavo decidiu "depois" | — |
+| 16 | Limite compartilhado da visão (E, B1) | baixo com 10 a 30 pessoas e o teto de gasto feito | 0,5–1 | — | baixo | nada | Upstash grátis (`upstash-preco`) | ☆ |
+| 17 | Dívida de fontes, dependências (zod 4, react-router 7), testes de propriedade (E, B4–B6) | médio (base) | 0,5–4 | — | baixo; zod e router conflitam com o redesign em curso | nada | depois do lote do redesign | ☆ |
+| 18 | Eval da foto com fotos reais (E, B3) | médio (critério 3) | 0,5 + 15 min do Gustavo | — | baixo | nada | é do R3 | ☆ (no R3) |
+| 19 | PAR-Q+ oficial e revisão por um CREF (E, B8) | médio-alto se abrir a outras pessoas | — | — | custo a orçar | nada | estava "de lado" (01/11); abrir a outras pessoas é um motivo novo para reconsiderar [opinião] | decisão do Gustavo |
+| 20 | Pedidos do redesign ao domínio (proposta, seção 8): dias planejados (v8), marcas por sessão, resumo curto da sugestão, `restricoes` ausente vazia | médio (é o redesign que agenda) | — | — | baixo | o dos dias planejados pede a **v8** | **coordenar a v8 uma vez só**: as opções 8, 11, 12 e 14 também pedem versão nova | do redesign |
+
+Fora da matriz, porque as frentes mediram e não recomendam: C.5 (o ombro de trás sai em 273 programas de 45 min), B.17 e B.9 ([opinião]), B.14 (um estudo sem controle), B.4 (sem ganho de volume, risco não estudado), D-5 (+1,1 ponto de foco), a D-4 como escrita (0,08% dos casos). Detalhes em `a-qualidade.md`, seção 5.
+
+### 2.3 Qual parte desenvolver mais, e por quê
+
+**A minha recomendação: primeiro deixar o app confiável no uso de todo dia, depois construir o avaliador (que vira o "monte o seu"), e só então abrir para família e amigos.**
+
+- **O que mais vale agora não é uma função nova, é consertar o que hoje engana a pessoa sem ela perceber.** A dor que não fica guardada é de segurança; a calibração sem fim e a oferta que volta a cada treino aparecem no 1º mês; o treino vazio pula o dia. Todos estão medidos, custam pouco, não mudam o estado guardado e melhoram o dado do próprio R3 (o export do Gustavo passa a ter a dor e os treinos reais).
+- **Das frentes que o Gustavo citou, a que mais rende é o avaliador.** Ele é a base do "monte o seu treino" (sem ele, montar é só uma planilha), já mostrou 3 defeitos reais do gerador e passa a medir a qualidade de qualquer programa, inclusive os do gerador, nos testes. Custa 2 a 3 dias porque quase tudo já existe no domínio.
+- **A variação entre semanas e as combinações por dia estão em bom estado.** As combinações seguem a pesquisa (`14-combinacoes-por-dia.md`); a monotonia cai com um ajuste de 1 dia; e a variação por blocos não tem ganho de músculo (moderada), só ganho na academia, e mexe na progressão no meio do R3. Fica para depois do R3, se o uso pedir.
+- **A experiência de uso** (o visual) é do redesign. O que esta sessão achou de função (registro, textos, trocas) entra nos marcos 1 e 2 e na lista de pedidos ao design.
+- **A ordem entre o marco 2 e o 3 é escolha do Gustavo:** se ele quiser mandar o link para alguém antes do avaliador, o marco 3 vem primeiro, porque não depende dos outros.
+
+### 2.4 Os marcos propostos, na ordem
+
+Nenhum dos três muda a versão do estado guardado (a v8 fica para ser decidida uma vez só, junto com a do redesign). Os prompts estão em `docs/prompts/`.
+
+| Marco | Entregáveis | Aceite (medido) | Esforço |
+|---|---|---|---|
+| **R5a O registro que não engana** (`sessao-r5a-registro-confiavel.md`) | Matriz 1, 2 e 3: a nota de dor gravada na série; o treino sem série não conta nem anda a rotação, com "Descartar este treino"; apagar ou corrigir o último treino; a calibração com saída; o "Agora não" que dura 7 dias; nem semana leve nem "estagnado" na fase de aprendizado; a estagnação pelo exercício feito na vaga; o script que lê um export (o Gustavo roda no aparelho); os ajustes pequenos do gerador (30 min, um nível abaixo antes de repetir em todos os dias, o pike no Corpo todo 6x) e as 3 correções que o avaliador achou | Nas 6 personas por e2e: a nota de dor de 3 a 5 aparece na série guardada e reduz a carga da próxima; "Começar" + "Terminar" sem série mantém o mesmo dia. No simulador da frente D: 0 corrida com mais de 3 sessões só de calibração; a oferta recusada volta no máximo 1 vez por semana; 0 semana leve na fase de aprendizado. Na grade: dias de 30 min acima do tempo ≤ 50%; o mesmo exercício em todos os dias ≤ 20% na grade reduzida; 0 dia com mais de 10 séries de um músculo, contando as indiretas; glúteo com extensão de quadril em todo programa em que a ponte é possível. `npm run check`, `test:e2e`, `auditoria:verificar` limpos; snapshots revisados pelo Gustavo | 4–5 dias |
+| **R5b O avaliador e o porquê** (`sessao-r5b-avaliador.md`) | Matriz 4 e 5: `src/domain/avaliador/`, puro e testado, que recebe qualquer programa com exercícios da biblioteca e devolve achados com `regraId`, selo e o que ajustar, ou "está bom"; aplicado ao programa salvo ("Como está o seu programa") e como teste de propriedade e coluna nova da auditoria; as regras novas em `regras.md` (empurrar × puxar, com o limiar decidido pelo Gustavo; frente × trás da coxa; a complexidade por nível com `regraId`); os avisos com o próximo passo e o porquê específico de cada exercício | O avaliador diz "está bom" ou só "limite do equipamento" em ≥ 80% dos programas da grade reduzida e encontra 0 problema de segurança neles; nos 4 programas publicados de `b-monte-e-avaliador.md`, reproduz os achados do protótipo; 20 de 20 avisos do programa com "fato + próximo passo"; porquê específico em ≥ 90% dos exercícios das 6 personas; a tela segue o pedido ao design | 4–6 dias |
+| **R5c Abrir para família e amigos** (`sessao-r5c-abrir-familia.md`) | Matriz 6 e 7: o texto exato da foto, com a regra `privacidade.foto` e a caixa de consentimento antes do 1º envio; a página de termos e privacidade (rascunho para o advogado); a tela de erro com "Exportar meus dados", "Avisar um problema" e a versão; o aviso de instalar no iPhone; "última cópia há N dias"; o aviso quando o navegador nega o armazenamento persistente; o canal de problema; "Como ler o seu treino"; com o Gustavo: o teto de gasto e um convite por pessoa | e2e: um erro forçado numa tela mostra a saída e o export funciona dali; a caixa de consentimento aparece antes do 1º envio e não depois; "última cópia" aparece em Meus dados; 0 tela com "não fica guardada no servidor" sem dizer para onde a foto vai. O Gustavo confirma o teto de gasto e a revisão do advogado no devlog | 4–5 dias + advogado |
+
+Depois dos três, na ordem que o uso indicar: o **"monte o seu treino" do zero** (matriz 11, com a v8 coordenada), o degrau e o 2º exercício do prioritário (8 e 9), as trocas e a prévia (10), e, depois do R3, os gatilhos pelo dado real (12).
+
+### 2.5 Pedidos à sessão de design
+
+Só tela, em texto. O motivo medido está no relatório citado. Os que encostam numa decisão do redesign dizem qual.
+
+**Para o R5a**
+1. **A dor registrada aparece na série** ("dor 4 registrada nesta série") e volta no fim do treino e na próxima vez (C-1). Encaixa na folha do "Senti algo" (item `folhas`), sem mudar os textos de segurança.
+2. **Fim do treino com exercício interrompido**: "Interrompido: búlgaro (dor aguda)" e o lembrete de avaliação, antes de "Para a próxima vez" (C-2; hoje 6 de 6 sugerem o exercício interrompido sem citar a dor). Encaixa no item `fim`.
+3. **Terminar sem nenhuma série**: a confirmação do item `terminar` ganha "Descartar este treino / Guardar mesmo assim" (C-3).
+4. **Corrigir uma série ou apagar um treino** na Semana e na Evolução, com confirmação (C-6). Tela nova.
+5. **A semana leve recusada vira uma linha discreta em "A sua semana"**, não um cartão no início a cada treino (D-1). Ajuda a regra "1 oferta por abertura" do redesign.
+6. **Fim da calibração**: uma frase curta quando o app decide a carga (D-3).
+
+**Para o R5b**
+7. **"Como está o seu programa"**: em 1 linha "Está bom: nada a ajustar", ou os achados agrupados por tipo (segurança, ajustar, limites) com as superfícies "alerta", "aviso" e "informação" do redesign; a tabela por músculo recolhida (B-1, B-2; esboço em `b-monte-e-avaliador.md`).
+8. **A folha do exercício começa pelo porquê específico**, com os genéricos recolhidos (C-8).
+9. **A Semana separa a meta do programa**: "Quadríceps 2 de 6 (o seu programa planeja 6 de 8: falta tempo)" (C-7). Encaixa no item `semana`.
+10. **"Estagnado" com uma saída por vez** e "Outras opções" recolhidas (D-2).
+
+**Para o R5c**
+11. **Caixa de consentimento na tela da foto** (lote 3 do redesign), com "para onde vai" em uma linha (E-4).
+12. **Tela de erro** com "Exportar meus dados", "Avisar um problema", "Tentar de novo" e a versão (E-3).
+13. **Aviso de instalar no iPhone**, uma vez, só fora da tela de início (E-1).
+14. **"Última cópia: há N dias"** em Meus dados e um lembrete no início que nunca cubra "Começar" (E-2).
+15. **Link para os termos** nas boas-vindas e em Meus dados (E-5).
+16. **"Como ler o seu treino"**: uma folha antes do 1º treino ou no 1º toque em "RIR" (E-6).
+17. **Ícone do iPhone** (`apple-touch-icon` 180 px) no lote 5 (E-7).
+
+**Para depois** (só se o marco vier): o editor e o "Atualizar" que nunca apaga um programa editado (B-3, B-4); a prévia do que muda antes de "Atualizar" e na escolha da divisão (C-4, C-5); "usar sempre este" na folha "Trocar" (C-9); "escolha até 2" nas prioridades (A-1); o degrau na lista de casa (A-2); a oferta de bloco novo e de revisão do nível (A-3, D-4, D-5, D-6).
+
+**Um choque a registrar, sem decisão minha:** o redesign reservou a **versão 8 do estado** para os dias planejados. O "monte o seu" (11), os gatilhos pelo dado real (12), a variação por blocos (14) e o degrau (8) também pedem versão nova. Proposta: juntar tudo o que for entrar numa versão só, decidida quando o 1º desses marcos vier. Os três marcos propostos não mexem no estado.
+
+### 2.6 O que fica para depois, e por quê
+
+- **Variação por blocos** (14): sem ganho de músculo (moderada), ganho de variedade só na academia, custo medido de recalibração e mexe na progressão no meio do R3. Reabrir se o uso mostrar tédio ou platô.
+- **Usar todo o tempo que sobra** (13): contradiz o "foco com manutenção" aprovado em 06/11. É decisão de produto; o efeito está medido em `a-qualidade.md` se o Gustavo quiser.
+- **Gatilhos pelo dado real e revisão do nível** (12): os números dependem do export do R3, e a revisão do nível só aparece no 6º mês.
+- **Ler um programa por IA** (15): o Gustavo decidiu "depois", e ela só faz sentido depois do "monte o seu".
+- **Dependências e testes** (17): esperar o lote técnico do redesign, que mexe nos mesmos arquivos.
+- **Animações e Boneco**: a fila (A, C, B, D, E), a rodada com o especialista e o R4 D.3 seguem com a sessão de design e o R5 de animação; nada aqui muda essa ordem.
+- **Um achado lateral, não conferido:** a frente C viu a faixa "Há uma versão nova do seu programa" para o Bruno e a Carla sem razão aparente, ao semear o inventário sem passar pelo zod; o redesign registra a mesma faixa (`medidas.md`). Provavelmente é um artefato do estado semeado; vale uma checagem rápida no R5a.
