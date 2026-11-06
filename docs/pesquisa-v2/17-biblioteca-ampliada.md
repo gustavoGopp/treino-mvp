@@ -10,7 +10,20 @@
 >
 > **Os scripts citados em "Como reproduzir"** ficaram no rascunho da sessão e foram descartados; a medida que vale é a de `docs/revisoes/proximos-passos/g-biblioteca-ampliada.md`, refeita pelo orquestrador numa grade única.
 
-> **Resumo e decisões:** entram depois das medidas, em `docs/revisoes/proximos-passos/g-biblioteca-ampliada.md` (em andamento).
+## Resumo
+
+| Pergunta | Resposta | Selo |
+|---|---|---|
+| Os programas de treinadores e os vídeos com credencial têm exercício de costas sem algo para puxar? | **Não.** Todos supõem barra, argolas, fita, elástico ou mesa (G1, G2). Confirma `16` e `equipamento.sem-ancoragem`. | consenso |
+| O que esses programas fazem e o app não faz? | Começar abaixo do exercício do guia: flexão na parede ou de joelhos, agachamento até a cadeira, barra só na descida (G1); a flexão de joelhos carrega ~49% do peso do corpo, contra ~64% da comum (`kikuchi2017`, G4). | consenso; um estudo |
+| Que exercícios novos valem a pena? | 32, medidos: 6 de corpo livre (os de `16`, menos a rosca sem carga), 19 com halteres, elástico, banco e barra (G2, G3, G4) e 7 de um equipamento só (G3). Os níveis e o veredito de cada um estão nas partes G2 a G4 e em `docs/revisoes/proximos-passos/g-biblioteca-ampliada.md`, seção 2. | um estudo a consenso, por exercício |
+| O elástico machuca? | Numa série de 11 casos de lesão de olho, em todos o elástico escapou do ponto de ancoragem, preso sob ou à frente da pessoa (`ng2022`, G4). | um estudo (série de casos) |
+| Quantos exercícios por sessão? | Nenhum ensaio testa o número; a faixa proposta é consenso: 3–5 em 30 min, 4–7 em 45, 5–8 em 60, 5–10 em 75 e 90 (G5). | consenso |
+| Variar exercícios ajuda? | Não muda o músculo (moderada) e melhora um pouco o prazer e a motivação (moderada; aderência, um estudo) (G5). | moderada |
+| O que mais pesa para continuar treinando? | A regularidade no 1º mês (`conti2026`, texto completo lido); parar perto da falha é mais agradável que ir à falha (um estudo); escolher a carga também (um estudo) (G5). | moderada; um estudo |
+| Como medir se um treino é bom? | A régua da G5, em dois níveis (defeitos que não podem piorar; notas que devem melhorar), parte G5, 4.7. | evidência e consenso, por medida |
+
+**O que foi decidido e medido** (protótipo, grade de 108.900 programas, duas revisões cegas) está em `docs/revisoes/proximos-passos/g-biblioteca-ampliada.md`.
 
 
 ## Parte G5

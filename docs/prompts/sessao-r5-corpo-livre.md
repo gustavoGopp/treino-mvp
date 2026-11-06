@@ -1,47 +1,51 @@
-# Prompt: R5-CL, corpo livre e casa (variedade de verdade para quem treina sem equipamento)
+# Prompt: R5-CL, biblioteca ampliada (mais opções de exercício para todas as combinações de equipamento)
 
-> Rascunho escrito na sessão de próximos passos (06/11/2026), na rodada extra pedida pelo Gustavo, a partir de `docs/revisoes/proximos-passos/f-corpo-livre.md` e de `docs/pesquisa-v2/16-corpo-livre-e-casa.md`. Só vale se o Gustavo escolher este marco. Cole o texto abaixo, a partir de "Você vai conduzir", numa sessão nova.
+> Rascunho escrito na sessão de próximos passos (06/11/2026), depois das duas rodadas extras pedidas pelo Gustavo (corpo livre e biblioteca ampliada), a partir de `docs/revisoes/proximos-passos/g-biblioteca-ampliada.md`, `f-corpo-livre.md`, `docs/pesquisa-v2/16-corpo-livre-e-casa.md` e `17-biblioteca-ampliada.md`. Substitui o rascunho anterior deste arquivo (só corpo livre). Só vale se o Gustavo escolher este marco. Cole o texto abaixo, a partir de "Você vai conduzir", numa sessão nova.
 
 ---
 
-Você vai conduzir o **R5-CL, "corpo livre e casa"**, do treino-mvp, um web app (PWA) em pt-BR que monta um programa de hipertrofia baseado em evidência, só com o equipamento que a pessoa tem, e conduz cada sessão com um guia animado (o "Boneco"), o temporizador de descanso e as sugestões de progressão.
+Você vai conduzir o **R5-CL, "biblioteca ampliada"**, do treino-mvp, um web app (PWA) em pt-BR que monta um programa de hipertrofia baseado em evidência, só com o equipamento que a pessoa tem, e conduz cada sessão com um guia animado (o "Boneco"), o temporizador de descanso e as sugestões de progressão.
 
-**Quem é o Gustavo.** É o dono do app. Não é programador nem da área de exercício, anatomia ou design. Fala de produto e de experiência, e prefere explicações simples e visuais, em pt-BR, sem jargão. Quando um termo técnico for inevitável, explique-o numa frase.
+**Quem é o Gustavo.** É o dono do app. Não é programador nem da área de exercício, anatomia ou design. Fala de produto e de experiência, e prefere explicações simples e visuais, em pt-BR, sem jargão. Quando um termo técnico for inevitável, explique-o numa frase. **Ele pediu para não decidir questões técnicas:** decida você, registre o motivo e mostre o efeito medido; leve a ele só o que for decisão de produto.
 
-**Por que este marco.** Em 06/11 o Gustavo testou o app com "Corpo livre" (nada marcado) e foco nos superiores e recebeu treinos de corpo todo com 3 a 6 exercícios genéricos. Uma grade de 15.300 programas só de corpo livre mostrou a causa: a biblioteca tem 3 exercícios de superiores possíveis sem nada (`flexao`, `flexao-fechada`, `pike`). Com foco nos superiores, a semana tem 1,9 exercício diferente de superiores; o mesmo exercício aparece em todos os dias em 69,3% dos programas; costas, bíceps e ombro de trás ficam a zero. A pesquisa (três frentes, `pesquisa-v2/16`) aprovou 7 exercícios novos, e um protótipo mediu o efeito: 5,3 exercícios diferentes de superiores na semana, a repetição em todos os dias em 30,8%, o bíceps e o ombro de trás fora do zero, e o caso do Gustavo (intermediário, 3 dias, 60 min) com 7 a 8 exercícios por dia em vez de 5 a 6. As costas continuam sem saída honesta. O custo medido: com 30 min, os programas com um dia acima do tempo vão de 42% a 71,3%. Por isso este marco vai **junto do ajuste de 30 minutos** da frente A (R5a); se o R5a não veio antes, o ajuste entra aqui.
+**Por que este marco.** Em 06/11 o Gustavo testou o app sem equipamento, com foco nos superiores, e recebeu treinos curtos e genéricos. Duas rodadas de pesquisa (programas de treinadores, YouTube, lacunas de equipamento, PubMed, o que faz um treino agradável) e um protótipo descartável mediram o que fazer:
+- **32 exercícios novos** (de 139 para 171), em todos os equipamentos: 6 de corpo livre, 19 com halteres, elástico, banco e barra, 7 de um equipamento só. A lista, os níveis em `funcoes.json` e o motivo de cada um estão em `g-biblioteca-ampliada.md` (seção 2) e em `17` (partes G2 a G4, "Onde cada um entra").
+- **Duas proteções do equilíbrio da coxa** (quadríceps ÷ posteriores entre 0,5 e 2): no corte de tempo (`cortarTempo`, `cabe`) e no ajuste de 30 minutos do R5a.
+- **Medido** na grade de 108.900 programas (55 cenários de equipamento × níveis × dias × minutos × focos × dor), com a régua da frente G5 em dois níveis (defeitos que não podem piorar; notas que devem melhorar): programas sem dor sem nenhum defeito de 73,4% para 83,8%, nenhum defeito pior; repetir o mesmo exercício em todos os dias sem alternativa de 44,1% para 15,6%; exercícios diferentes por semana de 12,9 para 15,8; sem nada, exercícios por dia de 4,9 para 5,4. **Custo:** 74,9% dos programas com um dia de 3 ou mais cartões de texto (era 8,4%), até as animações chegarem.
+- **Duas revisões cegas** por treinadores independentes: a versão final melhor em 12 das 18 personas, pior em nenhuma.
+- **Ficaram de fora, com o motivo:** a rosca sem carga (um estudo só; a revisão cega mostrou que ela ocupa o tempo do foco), o crucifixo no chão com halteres, a elevação lateral na parede, a panturrilha com halter numa perna só, e tudo o que `16` recusou (porta, toalha, mesa, objetos como carga).
 
-**Os limites que o Gustavo decidiu.** Itens de casa só como apoio, sem carga (cadeira, parede, chão, toalha, degrau, sofá, cama). Mochila, galão e garrafa como peso não entram. Porta com toalha, batente, lençol e mesa não entram (0 estudo de segurança; o dado novo sobre treinar pendurado em casa é de lesão, `shabbir2026`).
-
-**Leia primeiro:** o `CLAUDE.md`; `docs/revisoes/proximos-passos/f-corpo-livre.md` inteiro (a grade, os pacotes E, P e L, o caso do Gustavo antes e depois, os pedidos); `docs/pesquisa-v2/16-corpo-livre-e-casa.md` (as tabelas de candidatos, as entradas JSON propostas, as perguntas em aberto) e `10-equipamento-minimo.md`; `docs/revisoes/proximos-passos/a-qualidade.md` (pacote A, o ajuste de 30 min); `docs/pesquisa/00-metodo.md` e `docs/pesquisa/regras.md` (`selecao.triceps-acima-cabeca`, `selecao.panturrilha-alongada`, `equipamento.sem-ancoragem`, `divisao.sem-puxar`, `tempo.sobra-series`, `tempo.musculo-protegido`); `src/domain/biblioteca/`, `src/domain/gerador/funcoes.json`, `src/domain/progressao/escadas.json`, `src/storage/esquema.ts`.
+**Leia primeiro:** o `CLAUDE.md`; `docs/revisoes/proximos-passos/g-biblioteca-ampliada.md` inteiro; `docs/pesquisa-v2/17-biblioteca-ampliada.md` (resumo, partes G3 e G4, as entradas JSON e a tabela "Onde cada um entra") e `16-corpo-livre-e-casa.md` (as entradas de corpo livre); `docs/revisoes/proximos-passos/a-qualidade.md` (pacote A, o ajuste de 30 min); `docs/pesquisa/00-metodo.md`, `docs/pesquisa/regras.md`; `src/domain/biblioteca/`, `src/domain/gerador/` (`funcoes.json`, `index.ts`: `contextoDeSelecao`, `cortarTempo`), `src/domain/progressao/escadas.json`, `scripts/auditoria/qualidade.ts` e `cenarios-55.ts`.
 
 **Regras desta sessão**
 - Conta: só as contas pessoais do Gustavo (gustavogopp@gmail.com ou gustavogopp2@gmail.com), nunca a da Futurum. Tudo fica no git, e só no git.
 - Não mexa no branch `r3-uso-real`. `privado/` nunca é versionado nem usado; as personas são fictícias.
-- **Exercício sem animação aprovada aparece como cartão textual**, nunca com uma animação improvisada (`CLAUDE.md`). Os 7 cartões são escritos a partir de uma ficha de técnica, com a montagem segura. As animações entram depois, na fila do R5 de animação.
-- O visual é do redesign: o cartão, o registro de série sem carga e o texto do aviso das costas são pedidos ao design (`f-corpo-livre.md`); faça o mínimo funcional com os componentes de hoje.
-- **O estado guardado:** confira no começo se a carga `sem-carga` cabe no registro de série de hoje (`esquema.ts`). Se pedir versão nova, pare e pergunte: a versão 8 está reservada ao redesign e tem de ser decidida uma vez só. O mesmo vale para o degrau, se ele virar item de cadastro. Os degraus novos de escada entram **só no fim** das escadas (o degrau é guardado como índice, `esquema.ts:106`).
+- **Exercício sem animação aprovada aparece como cartão textual**, nunca com animação improvisada (`CLAUDE.md`). Os 32 cartões são escritos a partir de uma ficha de técnica, com a montagem segura (`16` e `17` trazem a de cada um, e os vídeos de referência visual de `17`, G2, servem ao autor do cartão).
+- O visual é do redesign: cartões, avisos e a fila de animação são pedidos ao design (`g-biblioteca-ampliada.md`). Faça o mínimo funcional com os componentes de hoje.
+- **O estado guardado não muda de versão.** Se aparecer motivo, pare e pergunte (a versão 8 está reservada ao redesign).
+- Os itens de casa só como apoio, sem carga; nada de porta com toalha, lençol, mesa ou objeto como peso (decisões do Gustavo).
 - Branch nova a partir da `main`. Commits pequenos, em pt-BR e no imperativo, com push. Ida para a `main` só com o ok do Gustavo, por merge sem forçar, avisando-o para exportar os dados antes.
-- Toda regra nova entra primeiro em `docs/pesquisa/regras.md`, com selo e fonte. Gerador determinístico. Nenhuma mudança no gerador sem o antes e o depois das 6 personas.
-- Rede liberada (PubMed, PMC, Crossref). Nunca contorne bloqueio anti-robô. Nada de inventar estudo.
+- Toda regra nova ou mudada entra primeiro em `docs/pesquisa/regras.md`, com selo e fonte. Gerador determinístico. Nenhuma mudança no gerador sem o antes e o depois das 6 personas.
+- Rede liberada (PubMed, PMC, Crossref, YouTube para referência). Nunca contorne bloqueio anti-robô. Nada de inventar estudo.
 
-**O que fazer, nesta ordem (uma decisão por vez, com o antes e o depois)**
-1. **Versionar a grade de corpo livre** como script de auditoria (`npm run auditoria:corpo-livre`, determinístico, conferido por `auditoria:verificar`), reproduzindo a linha de base de `f-corpo-livre.md` (15.300 programas; com foco nos superiores, 1,9 superiores diferentes por semana).
-2. **Decisões do Gustavo antes do código:** a complexidade da flexão com os pés elevados (3: o iniciante chega a ela pela escada; 2: entra no 1º programa); se o degrau "pés elevados" sai da escada da flexão; se o degrau da escada é "apoio" (todos têm) ou item de cadastro.
-3. **Pacote L (pernas e abdômen)** e **pacote E (empurrar)**: `panturrilha-degrau`, `afundo-tras-peso-corpo`, `abdominal-invertido`, `extensao-triceps-peso-corpo`, `flexao-pes-elevados`; o arqueiro e o agachamento até a cadeira com uma perna no fim das escadas. Cada um com a regra, o cartão, o teste e a grade.
-4. **Pacote P (puxar e isolar):** `abertura-t-deitado` (nível 3 de `ombro-posterior`). A `rosca-sem-carga` (nível 4 de `biceps`) **só depois de ler o texto completo de `counts2016`** (Elsevier; se a rede bloquear, peça o PDF ao Gustavo por `privado/`): séries, repetições, tempo de contração e o que o grupo de controle fez. Se a leitura não sustentar, a rosca sem carga não entra, e o bíceps continua a zero com o aviso.
-5. **O ajuste de 30 minutos** (se o R5a não o trouxe) e o texto novo do aviso `equipamento.sem-ancoragem`.
+**O que fazer, nesta ordem**
+1. **A régua da G5 em `scripts/auditoria/qualidade.ts`** (os defeitos e as notas de `g-biblioteca-ampliada.md`, seção 1), e a grade de 108.900 programas como script de auditoria determinístico, conferido por `auditoria:verificar`. Reproduza a linha de base da `main` (73,4% dos programas sem dor sem defeito).
+2. **O ajuste de 30 minutos do R5a** (se ainda não veio), com a proteção da coxa.
+3. **A proteção da coxa no corte de tempo.** Teste: 0 programa com a coxa fora de 0,5–2 na grade.
+4. **Os 32 exercícios**, em lotes (corpo livre; halteres e banco; elástico; um equipamento só), cada lote com a regra, os cartões, os testes, a grade e as personas.
+5. **Os avisos de lacuna pelo que o programa tem de fato** (não dizer "ombro de trás sem exercício" com a abertura em T no programa).
 
 **Aceite (medido)**
-- Na grade de corpo livre: com foco nos superiores, ≥ 5 exercícios diferentes de superiores por semana e ≥ 5 exercícios por dia com 60 min; o mesmo exercício em todos os dias ≤ 35%; dias com até 4 exercícios (45 min ou mais) ≤ 20%; ombro de trás a zero ≤ 15%; bíceps a zero ≤ 1% (se a rosca sem carga entrar); com 30 min, dia acima do tempo ≤ 50%; costas a zero continua com o aviso.
-- O caso do Gustavo (intermediário, 3 e 4 dias, 60 min, foco nos superiores) mostrado antes e depois, exercício por exercício.
-- Bruno e Carla iguais; os snapshots de Ana, Diego, Elisa e Fábio revisados pelo Gustavo.
+- Na grade: nenhum defeito pior que na `main`; programas sem dor sem defeito ≥ 83%; repetir sem alternativa ≤ 16%; sem nada, exercícios por dia ≥ 5,3 e exercícios diferentes por semana ≥ 12,5; coxa desequilibrada 0%.
+- O caso do Gustavo (intermediário, sem nada, 3 e 4 dias, 60 min, foco nos superiores) mostrado antes e depois, exercício por exercício.
+- Bruno e Carla iguais; os snapshots das outras personas revisados pelo Gustavo.
 - `npm run check`, `npm run test:e2e` e `npm run auditoria:verificar` limpos.
 
-**Fechamento.** `docs/devlog.md` (o antes e o depois do caso do Gustavo e o rascunho de post), `docs/backlog.md`, o recado ao R3 se o programa dele mudar, e parar para a revisão do Gustavo.
+**Fechamento.** `docs/devlog.md` (o antes e o depois do caso do Gustavo, uma tabela da grade e o rascunho de post), `docs/backlog.md` (a fila de animação, com os 5 de corpo livre primeiro; e o marco seguinte: o foco que muda a distribuição, o 1º degrau da escada pelo nível e a regressão da barra fixa, `g-biblioteca-ampliada.md`, seção 5), o recado ao R3 se o programa dele mudar, e parar para a revisão do Gustavo.
 
 **O que não fazer**
 - Não use objeto como carga, nem porta, toalha na porta, lençol ou mesa.
 - Não conte superman nem Y-T-W como série de costas.
-- Não faça animação nova neste marco.
-- Não troque a lógica "vaga por função, nunca por equipamento", nem a divisão de quem não tem como puxar (o corpo todo fica, com a explicação).
+- Não faça animação nova neste marco, nem troque o desempate para "animado primeiro" (medido: faz o mesmo exercício se repetir havendo opção em 29,5% dos programas).
+- Não troque a lógica "vaga por função, nunca por equipamento", nem o determinismo.
 - Não afirme nada sobre treino sem selo e fonte.
