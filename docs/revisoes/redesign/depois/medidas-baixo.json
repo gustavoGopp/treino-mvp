@@ -1,6 +1,6 @@
 [
  {
-  "tela": "baixo/boas-vindas",
+  "tela": "baixo/boas-vindas-a",
   "toquePequeno": [],
   "contrasteBaixo": [],
   "botaoPrincipal": {
@@ -23,7 +23,7 @@
   }
  },
  {
-  "tela": "baixo/boas-vindas-b",
+  "tela": "baixo/boas-vindas",
   "toquePequeno": [],
   "contrasteBaixo": [],
   "botaoPrincipal": {
@@ -51,11 +51,11 @@
   "contrasteBaixo": [],
   "botaoPrincipal": {
    "texto": "Não, nenhuma",
-   "topoPct": 94,
+   "topoPct": 108,
    "visivelSemRolar": false
   },
-  "palavras": 107,
-  "telas": 1.3,
+  "palavras": 118,
+  "telas": 1.4,
   "rolaDeLado": false,
   "visivel": {
    "avisoInteiro": null,
@@ -793,7 +793,7 @@
   "toquePequeno": [],
   "contrasteBaixo": [],
   "botaoPrincipal": null,
-  "palavras": 83,
+  "palavras": 90,
   "telas": 4.5,
   "rolaDeLado": false,
   "visivel": {

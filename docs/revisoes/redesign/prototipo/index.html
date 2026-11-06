@@ -507,7 +507,7 @@ const topoBoas = `<div class="topo-boas"><span class="marca-boas">treino-mvp</sp
 // pequena, zoom ou letra grande, a pessoa passa pelo aviso inteiro antes de chegar a ele
 const acaoComecar = `<div class="acao-boas"><a class="btn" href="#triagem">Começar</a><p class="sob-botao">4 passos, uns 3 minutos</p></div>`;
 const baseComecar = '';
-tela('boas-vindas', 'Cadastro', '1. Apresentação A: o Boneco recebe', () => `<main class="miolo gutter boas">
+tela('boas-vindas-a', 'Cadastro', '1z. Apresentação A: o Boneco recebe (não escolhida, fica para registro)', () => `<main class="miolo gutter boas">
   ${topoBoas}
   <a class="palco heroi" href="#guia" aria-label="Ver o guia do agachamento búlgaro: o boneco mostra como fazer"><svg id="svg-heroi" aria-hidden="true"></svg></a>
   <div class="pilha-2">${titulo('Treino de força feito para o que você tem')}<p class="lede">Monta o programa, mostra cada exercício e diz o porquê.</p></div>
@@ -515,7 +515,7 @@ tela('boas-vindas', 'Cadastro', '1. Apresentação A: o Boneco recebe', () => `<
   ${recursos}
   ${acaoComecar}
 </main>`, () => animarHeroi());
-tela('boas-vindas-b', 'Cadastro', '1b. Apresentação B: o seu lugar', () => `<main class="miolo gutter boas">
+tela('boas-vindas', 'Cadastro', '1. Apresentação: o seu lugar (a escolhida, 06/11)', () => `<main class="miolo gutter boas">
   ${topoBoas}
   <div class="lugares" aria-hidden="true">${['academia', 'condominio', 'casa', 'corpo'].map((k) => `<svg viewBox="0 0 64 48" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">${window.ICONES_LUGAR[k]}</svg>`).join('')}</div>
   <div class="pilha-2">${titulo('Treine onde estiver, com o que tiver')}<p class="lede">Monta o programa, mostra cada exercício e diz o porquê.</p></div>
@@ -543,6 +543,7 @@ function animarHeroi() {
 tela('triagem', 'Cadastro', '2. Saúde: uma pergunta', () => `${cabPasso(2, 'boas-vindas')}
 <main class="miolo gutter">
   ${titulo('Alguma destas vale para você?')}
+  <p class="lede" style="margin-top:-12px">Treinar é seguro para a maioria das pessoas. Esta pergunta vê se vale falar com um profissional antes.</p>
   <p class="apoio" style="margin-top:-12px">Hoje, ou algo que um médico já disse. Um "sim" não impede o treino; pede uma avaliação antes do programa automático. Suas respostas ficam só neste celular.</p>
   <ul class="condicoes" aria-label="As 9 condições">${D.triagem.map((p) => `<li>${esc(CURTA[p.id])}</li>`).join('')}</ul>
   <p class="apoio">Se nenhuma vale, um toque responde "não" a todas.${selo('seguranca.triagem.nenhuma')} <a class="link" href="#perguntas" data-perguntas>Ver as perguntas completas</a></p>
