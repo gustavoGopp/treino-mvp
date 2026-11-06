@@ -16,7 +16,7 @@
 |---|---|---|
 | `npm run check` (lint + tipos + unitários) | **670 testes em 42 arquivos, todos passando** | 34 s |
 | `npm run test:e2e -- --trace off` (Playwright, Pixel 7, build + preview) | **48 testes, todos passando** (10 arquivos: cadastro 13, treino 7, guia 6, acompanhamento 5, telas 3, foto 3, início 2, locais 2, corpo livre 1, laboratório 1) | 2,2 min |
-| `npm run auditoria` (estresse, progressão, base, anatomia, mínimo, catálogo, qualidade) | em andamento (os números da parte 1 vêm dos arquivos da `main`, que a auditoria regera) | — |
+| `npm run auditoria` (estresse, progressão, base, anatomia, mínimo, catálogo, qualidade) | **os 8 passos terminaram, e todos os arquivos regerados saíram idênticos aos guardados na `main`** (`git status` limpo depois da rodada). A 1ª tentativa parou no limite de 30 min do terminal no 5º passo (a máquina estava dividida com as 5 frentes); os 4 passos restantes rodaram em seguida. `npm run auditoria:verificar` (duas rodadas seguidas) não foi repetido: a comparação com a rodada que gerou os arquivos da `main` mede o mesmo determinismo | ~50 min no total (19 min só os 4 últimos passos) |
 
 ### 1.2 O que cada tela faz (`src/App.tsx`, `src/features/`)
 
