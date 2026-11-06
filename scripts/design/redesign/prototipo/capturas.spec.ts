@@ -68,7 +68,13 @@ test('todas as telas do protótipo', async ({ page }, info) => {
         }
         if (r.right > limite.right + 1 || r.left < limite.left - 1) cortados.push(e.innerText.trim().slice(0, 40));
       }
-      return { sentiAlgo: ok(document.querySelector('.senti')), serieFeita: ok(document.querySelector('#feita')), rir: ok(document.querySelector('.rir')), relogio: ok(document.querySelector('#relogio')), cortados: [...new Set(cortados)] };
+      // apresentação: a nota do aviso de segurança inteira à vista, acima da barra do botão, antes de começar
+      const nota = document.querySelector('.nota-aviso');
+      // o aviso vem inteiro antes do botão: acima dele na tela e na ordem de leitura, sem nada por cima
+      const botao = document.querySelector('.acao-boas .btn');
+      const avisoInteiro = nota && botao ? nota.getBoundingClientRect().bottom <= botao.getBoundingClientRect().top && !!(nota.compareDocumentPosition(botao) & Node.DOCUMENT_POSITION_FOLLOWING) : null;
+      const avisoTexto = nota ? (nota.textContent ?? '').replace(/\s+/g, ' ').trim() : null;
+      return { avisoInteiro, avisoTexto, sentiAlgo: ok(document.querySelector('.senti')), serieFeita: ok(document.querySelector('#feita')), rir: ok(document.querySelector('.rir')), relogio: ok(document.querySelector('#relogio')), cortados: [...new Set(cortados)] };
     });
     // foco coberto (WCAG 2.4.11): cada alvo recebe o foco; conta os que ficam inteiros atrás de uma barra fixa
     const focoCoberto = await page.evaluate(() => {
