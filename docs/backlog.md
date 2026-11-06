@@ -16,7 +16,8 @@ Ideias e requisitos para depois do MVP. Nada aqui entra sem passar pelo plano.
 
 
 ## Pendências do lado do Gustavo
-- **Sessão de qualidade dos treinos gerados: revisar o que entrou** (decisões 1 a 7 aprovadas e aplicadas em 06/11; `revisoes/qualidade-treinos.md`, Parte F) e dar o ok para a ida à `main`, depois de exportar os dados do app.
+- **Levar a `main` nova para o redesign.** A sessão de qualidade dos treinos foi para a `main` em 06/11 (`6cb49d5`). Colar `prompts/recado-redesign-qualidade-treinos.md` na sessão do redesign visual: o merge não tem conflito, e só o `fontes.json` precisa ser regerado.
+- **Sessão de próximos passos:** colar `prompts/sessao-proximos-passos.md` numa sessão nova, quando quiser decidir o que desenvolver a seguir.
 - **Chave da Anthropic.** Confirmar que a chave e os convites estão no projeto `treino-mvp` da Vercel, o que atende `treino-mvp-sigma.vercel.app`.
 - **Projetos extras na Vercel.** Avaliar apagar `treino-mvp-huks` e `treino-mvp-yej6`, criados em 31/10/2026. Eles repetem cada deploy.
 - **Cronometrar o cadastro no celular (critério 1, R1).** O teste automático conta 13 toques e 0 caractere para quem não tem condição nenhuma (sem a tela de equipamento); falta a sua medição de tempo no celular, uma vez, e a da tela de equipamento com "academia completa" (meta: até 15 s).
