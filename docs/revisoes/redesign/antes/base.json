@@ -1,5 +1,5 @@
 {
- "medidoEm": "2026-11-06T07:54:57.986Z",
+ "medidoEm": "2026-11-06T08:07:01.295Z",
  "bundle": [
   {
    "arquivo": "index-CPpSDvq2.js",
@@ -43,63 +43,100 @@
  "lighthouse": [
   {
    "rota": "/",
-   "erro": "Error: spawnSync npx ETIMEDOUT"
+   "url": "http://localhost:4173/programa",
+   "desempenho": 69,
+   "acessibilidade": 96,
+   "boasPraticas": 100,
+   "fcpMs": 167,
+   "lcpMs": 167,
+   "tbtMs": 5064,
+   "cls": 0.033,
+   "speedIndexMs": 3681,
+   "pedidos": 8,
+   "transferidoKB": 0,
+   "falhasAcessibilidade": [
+    "target-size"
+   ]
   },
   {
    "rota": "/comecar/triagem",
-   "erro": "Error: spawnSync npx ETIMEDOUT"
+   "url": "http://localhost:4173/comecar/triagem",
+   "desempenho": 59,
+   "acessibilidade": 100,
+   "boasPraticas": 100,
+   "fcpMs": 109,
+   "lcpMs": 3283,
+   "tbtMs": 3111,
+   "cls": 0.119,
+   "speedIndexMs": 2260,
+   "pedidos": 8,
+   "transferidoKB": 0,
+   "falhasAcessibilidade": []
   },
   {
    "rota": "/programa",
-   "erro": "Error: Command failed: npx lighthouse http://localhost:4173/programa --port=9333 --disable-storage-reset --form-factor=mobile --screenEmulation.mobile --screenEmulation.width=412 --screenEmulation.height=915 --screenEmulation.deviceScaleFactor=2.625 --throttling-method=simulate --only-categories=per"
+   "url": "http://localhost:4173/programa",
+   "desempenho": 69,
+   "acessibilidade": 96,
+   "boasPraticas": 100,
+   "fcpMs": 286,
+   "lcpMs": 286,
+   "tbtMs": 4409,
+   "cls": 0.033,
+   "speedIndexMs": 3245,
+   "pedidos": 8,
+   "transferidoKB": 0,
+   "falhasAcessibilidade": [
+    "target-size"
+   ]
   },
   {
    "rota": "/guia/bulgaro",
    "url": "http://localhost:4173/guia/bulgaro",
-   "desempenho": 69,
+   "desempenho": 70,
    "acessibilidade": 93,
    "boasPraticas": 100,
-   "fcpMs": 1558,
-   "lcpMs": 1558,
-   "tbtMs": 2101,
-   "cls": 0,
-   "speedIndexMs": 4044,
-   "pedidos": 9,
-   "transferidoKB": 316,
+   "fcpMs": 72,
+   "lcpMs": 72,
+   "tbtMs": 3076,
+   "cls": 0.063,
+   "speedIndexMs": 2171,
+   "pedidos": 8,
+   "transferidoKB": 0,
    "falhasAcessibilidade": [
     "aria-allowed-attr",
-    "label-content-name-mismatch",
-    "landmark-one-main"
+    "landmark-one-main",
+    "label-content-name-mismatch"
    ]
   },
   {
    "rota": "/semana",
-   "url": "http://localhost:4173/",
+   "url": "http://localhost:4173/semana",
    "desempenho": 70,
    "acessibilidade": 100,
    "boasPraticas": 100,
-   "fcpMs": 1489,
-   "lcpMs": 1489,
-   "tbtMs": 3270,
-   "cls": 0.011,
-   "speedIndexMs": 2046,
-   "pedidos": 9,
-   "transferidoKB": 316,
+   "fcpMs": 96,
+   "lcpMs": 96,
+   "tbtMs": 3540,
+   "cls": 0,
+   "speedIndexMs": 2476,
+   "pedidos": 8,
+   "transferidoKB": 0,
    "falhasAcessibilidade": []
   },
   {
    "rota": "/dados",
    "url": "http://localhost:4173/dados",
-   "desempenho": 70,
+   "desempenho": 71,
    "acessibilidade": 100,
    "boasPraticas": 100,
-   "fcpMs": 1485,
-   "lcpMs": 1485,
-   "tbtMs": 3670,
-   "cls": 0.019,
-   "speedIndexMs": 2073,
-   "pedidos": 9,
-   "transferidoKB": 316,
+   "fcpMs": 23,
+   "lcpMs": 23,
+   "tbtMs": 2747,
+   "cls": 0,
+   "speedIndexMs": 2016,
+   "pedidos": 8,
+   "transferidoKB": 0,
    "falhasAcessibilidade": []
   }
  ]
