@@ -10,7 +10,13 @@ Em 05/11/2026 o Gustavo marcou opções aleatórias no cadastro, escolheu 60 min
 
 ## Em uma olhada
 
-(preenchido no fim da sessão, depois das decisões)
+- **O treino de 3 exercícios em 60 minutos sem equipamento existe, e tem duas origens.** Marcar a flexão como exercício a evitar (sem equipamento ela é o único empurrar do peito) deixa os dias com 3, 3 e 5 exercícios. E quem escolhe 6 dias sem ter como puxar recebe dois dias de "Puxar" com 2 exercícios, porque não existe corpo todo de 6 dias. Sem marcar nada, 3 dias de 60 minutos saem com 4, 4 e 6 exercícios (28, 26 e 45 minutos).
+- **O gerador está certo na conta que importa e errado na experiência.** A evidência conta séries por músculo por semana (robusta), e os músculos que dá para treinar sem equipamento chegam à meta. Mas o app encurta o treino em vez de usar o tempo: com 60 minutos, o dia mais longo usa em mediana 75% do tempo; com 90, só 50%. E o aviso de que sobra tempo olha só o dia mais longo, por isso não apareceu para o Gustavo.
+- **"5 a 7 exercícios por treino" é prática de treinadores, não estudo.** Os ensaios de hipertrofia usam de 2 a 8 por sessão; o posicionamento do ACSM de 2026 trocou a conta por exercício pela conta de 10 ou mais séries por músculo por semana. A mediana do app, 5 a 6, está dentro da faixa.
+- **A pesquisa de 9 grupamentos concorda numa coisa: um exercício só, com o volume certo, cresce o músculo inteiro; o 2º exercício serve à região** (a parte de cima do peito, o reto femoral, a cabeça longa do tríceps). Nenhum ensaio compara 1 exercício com mais séries a 2 exercícios com o mesmo volume.
+- **A prioridade de hoje é "foco pequeno, mantendo os outros".** Com 1 grupo priorizado, só 16% das séries da semana vão para ele. Isso tem apoio (manter custa pouco; os outros continuam crescendo, mais devagar), mas o app não explica e não avisa quando duas prioridades disputam o mesmo tempo.
+- **A recomendação para a vaga sem exercício**, medida em 911.625 programas: preencher com outra função do mesmo músculo quando ele está abaixo da meta, subir as séries até o alvo só nos dias com vaga vazia, e avisar a sobra de tempo pelo dia típico. O caso do Gustavo passa de 4, 4 e 6 exercícios (28 a 45 min) para 5, 5 e 6 (51 a 58 min); das 6 personas, só o Fábio muda.
+- **Nada mudou no gerador.** As decisões estão no fim, uma por vez, com a recomendação marcada.
 
 ---
 
@@ -290,4 +296,87 @@ Medido na grade (Parte A.5) e nas personas. Nenhuma muda o gerador antes do "apr
 
 ## Parte E. As opções para a vaga sem exercício possível
 
-(em andamento)
+### E.1 Como foi medido
+
+Cada opção virou um protótipo descartável no gerador, ligado por uma variável de ambiente e nunca commitado (a cópia ficou no scratchpad da sessão; o gerador foi revertido e os 647 testes seguem verdes). Cada protótipo rodou a grade inteira (911.625 programas), as 6 personas e o caso do Gustavo. As opções do prompt viraram sete protótipos e seis combinações:
+
+| Protótipo | O que faz | De onde veio |
+|---|---|---|
+| (a) **hoje** | avisa e encurta | `tempo.sobra`, decisão do Gustavo em 04/11 |
+| B1 | a vaga vazia por equipamento recebe um exercício de **outro músculo do dia** que ainda não está no dia (como a dor já faz, `selecao.dia-sem-principal`) | opção (b) do prompt |
+| B1r | B1, só com as vagas ativas e só músculos com meta (sem a adução) | refinamento de B1 |
+| B2 | B1, mas pode repetir um músculo que já está no dia | opção (b), versão ampla |
+| **B3** | a vaga vazia recebe **outra função do mesmo músculo** (extensora vazia → afundo; tríceps acima da cabeça vazio → flexão fechada; puxar horizontal vazio → a outra pegada da barra fixa), **só se o músculo estiver abaixo da meta**, nunca um 3º empurrar num dia sem puxar, dentro do teto semanal | a convergência da pesquisa (Partes B e C) |
+| C | com tempo sobrando, as séries de todo músculo com meta sobem até o alvo do nível (8, 12, 14), sem passar de 4 por exercício, 10 por músculo por sessão, 20 por semana nem dos minutos | opção (c) do prompt |
+| **C2** | C, **só nos dias que têm vaga vazia por equipamento** | refinamento de C |
+| **D** | o aviso de sobra usa o **dia típico** (mediana dos dias) em vez do mais longo, e também vale quando a sobra vem da dor | opção (d) do prompt |
+
+### E.2 Os números
+
+Base (hoje) contra cada opção. "Limpos" são os programas sem dor e sem exercício evitado.
+
+| Medida | Hoje | B1r | B2 | **B3** | C | **C2** | **D** | **B3 + C2 + D** |
+|---|---:|---:|---:|---:|---:|---:|---:|---:|
+| Dias com até 3 exercícios, 45 min ou mais (limpos) | 16,5% | 11,9% | 8,8% | 16,1% | 16,5% | 16,5% | 16,5% | 16,1% |
+| Sem nada: dias com até 4 exercícios (45+, limpos) | 50,2% | 20,5% | 10,2% | 38,8% | 50,2% | 50,2% | 50,2% | 38,8% |
+| Sem nada, 60 min: mediana de exercícios por dia | 4 | 5 | 8 | 5 | 4 | 4 | 4 | 5 |
+| Programas que usam menos de 70% dos minutos | 35% | 35,5% | 19,6% | 34,1% | 17,8% | 20,8% | 35% | **17,6%** |
+| Idem, com 60 min | 31,3% | 35,3% | 9,4% | 34,3% | 8,2% | 9,7% | 31,3% | **9,6%** |
+| Idem, academia completa (45+) | 25,5% | 25,9% | 24,7% | 25,5% | 6,7% | 25,5% | 25,5% | 25,5% |
+| Mediana do uso dos minutos, 60 min | 75% | 75% | 90% | 80% | 95% | 90% | 75% | **95%** |
+| Mediana do uso, 90 min | 50% | 50% | 65% | 50% | 65% | 60% | 50% | **70%** |
+| Programas com o aviso de sobra de tempo | 33,5% | 33,7% | 18,4% | 32,4% | 19,7% | 20,2% | 58% | 44,2% |
+| Uso baixo e nenhum aviso de sobra | 3,9% | 4,1% | 3,8% | 3,9% | 1,1% | 3,9% | 2% | 2% |
+| Prioritário abaixo da meta com tempo sobrando | 7,1% | 6% | 3,6% | 5,8% | 4,7% | 4,9% | 7,1% | **3,4%** |
+| O mesmo exercício em todos os dias | 29,8% | 31,3% | 33,8% | 30,8% | 29,8% | 29,8% | 29,8% | 30,8% |
+| Fatia do prioritário (1 prioridade, intermediário) | 16,1% | 16,1% | 15,1% | 16,2% | 14% | 14,5% | 16,1% | 14,6% |
+| Acima do teto de 20 séries; dia acima dos minutos sem aviso | 0; 0 | 0; 0 | 0; 0 | 0; 0 | 0; 0 | 0; 0 | 0; 0 | 0; 0 |
+| Sem nada, intermediário: séries por semana de peito / quadríceps / posteriores / glúteos / tríceps | 7,7 / 6,6 / 7,6 / 9,1 / 5,4 | 9,2 / 7,3 / 8,1 / 9,5 / 6,8 | 8,9 / 10,3 / 9,7 / 13,8 / 7,0 | 8,3 / 6,9 / 7,7 / 9,2 / 6,0 | 9,1 / 8,6 / 9,8 / 11,2 / 6,6 | 9,1 / 8,6 / 9,8 / 11,2 / 6,6 | igual a hoje | 9,8 / 9,5 / 9,7 / 11,5 / 7,5 |
+
+**O caso do Gustavo** (intermediário, 3 dias, 60 min, sem equipamento):
+
+| | Hoje | B3 + C2 + D |
+|---|---|---|
+| Sem marcar nada | 4, 4 e 6 exercícios (28, 26 e 45 min) | 5, 5 e 6 exercícios (51, 51 e 58 min) |
+| Evitando a flexão | 3, 3 e 5 (20, 17 e 43 min), sem aviso de sobra | 4, 4 e 5 (46, 43 e 56 min) |
+| Séries por semana (sem marcar nada) | peito 9, quadríceps 6, glúteos 7, posteriores 6, tríceps 6, abdômen 6, panturrilha 4 | peito 14, quadríceps 12, glúteos 12, posteriores 12, tríceps 11, abdômen 11, panturrilha 4 |
+| O que entra | | dia A: a flexão fechada na vaga do tríceps acima da cabeça; dia B: o búlgaro na vaga da extensora; as séries sobem para 4 nos exercícios dos dias com vaga vazia |
+| Costas, bíceps, ombros | 0, com o aviso "sem algo para puxar ou levantar" | igual: nenhuma opção inventa exercício que não existe |
+| 6 dias | dias de "Puxar" com 2 exercícios | igual: só a divisão de corpo todo de 6 dias (C.4) resolve |
+
+**As personas** (o antes e o depois dos programas versionados): com B3 + C2 + D, **só o Fábio muda**. Os dias de superior passam a ter as duas pegadas da barra fixa (3 + 3 séries) e a flexão fechada, e os de inferior ganham o búlgaro ou mais séries: costas de 8 para 12 séries por semana (chega ao alvo do intermediário prioritário), peito de 8 para 12, tríceps de 6 para 10, quadríceps de 6 para 8, abdômen de 4 para 7; os dias vão de 18 a 40 min para 33 a 45 min (ele escolheu 45). Bruno, Ana, Diego, Carla e Elisa não mudam: ou não têm vaga vazia, ou os dias já estão cheios pelos minutos (a Elisa, com 30 min, já tem os 4 exercícios que cabem). Com C (todos os dias), mudariam também o Bruno (o Inferior A de 40 para 67 min) e a Carla (todos os dias perto dos 75 min, abdômen de 4 para 8).
+
+### E.3 As opções, com a recomendação
+
+| # | Opção | Evidência | O que acontece | Recomendação |
+|---|---|---|---|---|
+| E-a | **Avisar e encurtar** (hoje) | A meta dos músculos possíveis é atingida (consenso, inferência das meta-análises de volume) | O treino de 60 min dura 28 a 45 | É a base: o aviso e a honestidade ficam em qualquer opção |
+| E-b1 | **Preencher com outro músculo do dia** (B1r) | Não achei estudo de "volume redistribuído" ([opinião]) | Mais exercícios por dia (sem nada, dias com até 4: 50% → 20%), mas o uso dos minutos não melhora (séries ficam em 2) | Não recomendo sozinha |
+| E-b2 | **Preencher repetindo músculo** (B2) | Contra a pesquisa: repetir o mesmo estímulo é redundante (`kassiano2022`); 3º empurrar sem puxar é contra o consenso do ombro | 8 exercícios por dia sem nada, mas com 3 de quadríceps no mesmo dia e mais monotonia | Não recomendo |
+| **E-b3** | **Preencher com outra função do mesmo músculo, se ele estiver abaixo da meta** (B3) | O 2º exercício de outra função cobre outra região (moderada: `fonseca2014`, `costa2021`, `zabaletakorta2021`, `maeo2024`); músculos não competem (`kataoka2026`, um estudo); nunca um 3º empurrar sem puxar (consenso, `kolber2017`) | +1 exercício nos dias com vaga vazia de um músculo possível (extensora, tríceps acima da cabeça, puxar horizontal só com barra fixa) | **Recomendada** |
+| E-c | **Mais séries em todos os dias** (C) | Mais séries rendem, com retorno decrescente (robusta); teto de ~10 por sessão (um estudo) | Usa o tempo também na academia completa (uso < 70%: 25,5% → 6,7%), mas muda o programa de todo mundo e a meta dos não prioritários sobe do piso (6) para o alvo do nível (12) | É uma mudança de regra de volume para todos: não recomendo nesta sessão; fica como opção para depois, com medida própria |
+| **E-c2** | **Mais séries só nos dias com vaga vazia** (C2) | Idem | O tempo que a vaga vazia deixa vira série nos músculos possíveis; a academia não muda | **Recomendada** |
+| **E-d** | **Aviso de sobra pelo dia típico, e também com dor** (D) | Consenso (decisão de produto) | O aviso aparece para o Gustavo ("o treino dura cerca de 30 min"); com B3 + C2, sai em 44% dos programas porque os dias ainda ficam abaixo de 70% em muitos cenários pobres | **Recomendada**: o aviso só diz a verdade |
+| **E-rec** | **B3 + C2 + D juntas** | as três acima | Uso < 70%: 35% → 17,6%; com 60 min: 31,3% → 9,6%; mediana do uso com 60 min: 75% → 95%; prioritário abaixo da meta com tempo sobrando: 7,1% → 3,4%; nenhum teto ultrapassado; só o Fábio muda | **Recomendada** |
+
+**Como entraria, depois do "aprovar"** (uma regra por vez, como manda o projeto): (1) `regras.md`: regra nova `selecao.vaga-sem-equipamento` (B3, consenso apoiado em moderada) e `tempo.sobra` reescrita (C2 + D, consenso); (2) `node scripts/gerar-regras.mjs`; (3) o código, a partir do protótipo; (4) testes novos em `tests/unit/gerador.test.ts`: a vaga vazia de um músculo abaixo da meta recebe outra função do mesmo músculo; nunca 3 empurrares num dia sem puxar; as séries extras não passam de 4 por exercício, 10 por músculo por sessão, 20 por semana nem dos minutos; o aviso de sobra sai quando o dia típico usa menos de 70%; (5) o snapshot do Fábio mostrado e só então regravado; (6) a grade e a auditoria duas vezes.
+
+
+---
+
+## Decisões para o Gustavo, uma por vez
+
+Cada linha é uma decisão. A recomendação está marcada; nada foi aplicado.
+
+| # | Decisão | Opções | Recomendação |
+|---|---|---|---|
+| 1 | **O que o app faz quando uma vaga não tem exercício possível** (Parte E) | E-a hoje; E-b1; E-b2; E-b3; E-c; E-c2; E-d; combinação | **B3 + C2 + D** (preencher com outra função do mesmo músculo abaixo da meta, mais séries só nos dias com vaga vazia, aviso pelo dia típico) |
+| 2 | **6 dias sem ter como puxar** (C.4) | manter o Empurrar/Puxar/Pernas com dias de 2 exercícios; criar o "Corpo todo 6x" só como recuo de `divisao.sem-puxar`; ou como 3ª opção de 6 dias para todos | **Só como recuo** (quem não tem como puxar e escolhe 6 dias); medir na grade antes |
+| 3 | **Texto da prioridade** (D-1) e **aviso quando as prioridades competem** (D-2) | sim; não; só o texto | **Sim aos dois** (texto e aviso, sem mudar o treino) |
+| 4 | **2º empurrar sem banco inclinável** (B.1: a vaga "empurrar inclinado" deixa de cair no crucifixo como exercício principal de peito do dia) | sim; não | **Sim** (muda o dia B da Ana: crucifixo → supino com halteres) |
+| 5 | **Proteger o abdômen e a panturrilha dos cortes de tempo** (B.21, B.23) e **vaga própria de abdômen quando ele é prioridade** (B.24) | sim; não; só proteger | **Sim aos três** (hoje ficam a zero em ~11% e ~22% dos programas de 30 min) |
+| 6 | **Pequenos ajustes de exercício e prescrição** | B.8 elevação lateral no dia B de 2 dias; B.11 tríceps na suspensão como nível 2 da vaga obrigatória; B.16 nórdico de 4–8 para 6–10 descidas; B.18 coice na polia no nível 1 do glúteo; B.20 panturrilha no chão com uma perna e descida lenta, e a panturrilha no degrau | **Sim a todos**, um por vez, cada um com o antes e o depois |
+| 7 | **Mudanças na biblioteca** (músculos dos exercícios: precisam do efeito listado antes) | B.5 ombro posterior como secundário da barra fixa supinada e da puxada com elástico; B.17 abdução com peso 0,5 e o glúteo fora dos secundários das flexões de joelho | **Sim a B.5** (anatomia; muda o Diego e o Fábio); **B.17 para depois**, com a lista de efeitos (é [opinião] e mexe na revisão de anatomia) |
+| 8 | **Para a próxima sessão** | D-4 a prioridade puxa frequência (2ª vaga do prioritário noutro dia); D-3 recomendar até 2 grupos no cadastro; B.4 a barra fixa que encaixa baixo; B.9 ombro posterior no grupo "ombros"; C.5 e C.6 ajustes de vagas; E-c mais séries para todos | **Backlog**, cada um com medida própria |
+
+**O que fica comigo** (texto e selo, sem mudar nenhum programa), para entrar num commit só depois do "aprovar" da decisão 1, porque toca `regras.md`: `ordem.sessao` de consenso para moderada (C.1); `selecao.exercicios-por-musculo` para moderada na parte "2 funções cobrem mais regiões; 1 com o volume certo cresce o total" (C.8, B.15); `selecao.multi-mono` para moderada e a nota do `pelland2026` em `volume.serie-indireta.peso` (B.10); `volume.semanal.abdomen` como linha própria com selo consenso (B.22); fontes e frases novas em `selecao.peitoral-inclinado`, `selecao.crucifixo-complemento`, `selecao.dobrar-quadril`, `tempo.exercicios-por-sessao` e `tempo.sobra` (B.2, B.15, C.2, C.7); o "porquê" dos níveis 2 que não soe como "pior" (B.6, B.10). E, no script da grade, o suspeito `dia.poucos-exercicios` passa a "menos de 4, ou vaga-base vazia sem compensação" (C.2). O porquê é o mesmo para todos: a evidência mudou o selo ou a fonte, e nenhum programa muda.
