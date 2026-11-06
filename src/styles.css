@@ -425,7 +425,13 @@ a.cartao-ex-corpo:focus-visible{outline:3px solid var(--foco);outline-offset:-3p
 .mais-corpo{padding:0 16px 16px;display:flex;flex-direction:column;gap:8px;font-size:var(--t-apoio)}
 .mais-corpo p{margin:0}
 /* Cartão de texto do exercício sem animação aprovada: abre nas dicas e nos erros, a montagem segura sempre à vista */
-.cartao-texto{border-radius:var(--r2);background:var(--surface)}
+.cartao-texto{display:flex;flex-direction:column;gap:var(--e2)}
+/* a montagem segura do exercício sem animação: sempre aberta (lote 2) */
+.cartao-texto .montagem{background:var(--atencao-suave);border-radius:var(--r2);padding:var(--e3) var(--e4)}
+.cartao-texto .montagem h4{margin:0 0 var(--e1);font-size:var(--t-corpo);font-weight:800}
+.cartao-texto .montagem .lista{margin:0}
+.cartao-texto .como-fazer{align-self:flex-start;min-height:var(--toque);display:inline-flex;align-items:center;background:none;border:0;padding:0;font:inherit;font-weight:700;color:var(--link);text-decoration:underline;text-underline-offset:3px;cursor:pointer}
+.folha .cartao-texto-corpo{padding:0}
 .cartao-texto>summary{min-height:3.5rem;display:flex;align-items:center;padding:0 16px;cursor:pointer;font-weight:800}
 .cartao-texto-corpo{padding:0 16px 16px;font-size:var(--t-corpo);display:flex;flex-direction:column;gap:8px}
 .cartao-texto-corpo h4{margin:8px 0 0;font-size:var(--t-apoio);font-weight:800;text-transform:uppercase;letter-spacing:.06em;color:var(--muted)}

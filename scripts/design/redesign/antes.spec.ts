@@ -156,11 +156,12 @@ for (const persona of PERSONAS) {
       await page.goBack();
       await expect(page).toHaveURL(/\/treino$/);
     } else {
-      const cartao = page.locator('details.cartao-texto > summary');
+      const cartao = page.locator('details.cartao-texto > summary, .cartao-texto .como-fazer');
       if (await cartao.count()) {
         await cartao.click();
         await foto(page, persona, '16d-cartao-texto-aberto');
-        await cartao.click();
+        if (await page.locator('.veu').count()) await page.keyboard.press('Escape');
+        else await cartao.click();
       }
     }
     await page.getByRole('button', { name: 'Senti algo' }).click();
@@ -230,6 +231,6 @@ test('treino: exercício sem animação (Ana, 2º exercício, a ponte de glúteo
   else await page.getByRole('button', { name: 'Próximo' }).click();
   await expect(page.getByRole('heading', { name: /Ponte de glúteo/ })).toBeVisible();
   await foto(page, 'ana', '16e-treino-cartao-fechado');
-  await page.locator('details.cartao-texto > summary').click();
+  await page.locator('details.cartao-texto > summary, .cartao-texto .como-fazer').click();
   await foto(page, 'ana', '16f-treino-cartao-aberto');
 });

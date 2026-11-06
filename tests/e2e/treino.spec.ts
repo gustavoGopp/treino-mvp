@@ -1,5 +1,5 @@
 import { expect, test, type Page } from '@playwright/test';
-import { ana, abrirTrocar, maisOpcoes, terminarTreino, porQueDaSugestao } from './jornada';
+import { ana, abrirTrocar, maisOpcoes, proximoExercicio, terminarTreino, porQueDaSugestao } from './jornada';
 
 // M5: treinar com o app. Persona fictícia Ana (halteres de 1 a 12 kg e banco reto).
 
@@ -205,4 +205,23 @@ test('"Desfazer" por 5 s depois de salvar a série apaga a série e para o desca
   await expect(page.getByRole('status').filter({ hasText: 'Série 1 salva' })).toBeVisible();
   await expect(page.getByRole('status').filter({ hasText: 'Série 1 salva' })).toBeHidden({ timeout: 7000 });
   await expect(page.getByRole('list', { name: 'Séries feitas' })).toContainText('8 kg × 8');
+});
+
+// Lote 2 do redesign (segurança): no exercício sem animação, a montagem segura vem aberta, com o selo, sem nenhum toque;
+// dicas e erros abrem numa folha.
+test('exercício sem animação: a montagem segura vem sempre aberta, com o selo', async ({ page }) => {
+  await ana(page);
+  await comecar(page);
+  await proximoExercicio(page);
+  await expect(page.getByRole('heading', { name: /Ponte de glúteo/ })).toBeVisible();
+  const montagem = page.getByRole('region', { name: /Montagem segura/ });
+  await expect(montagem).toBeVisible();
+  await expect(montagem.getByRole('listitem').first()).toBeVisible();
+  await expect(montagem.locator('button.selo')).toHaveAccessibleName(/: ver de onde vem$/);
+  await page.getByRole('button', { name: 'Como fazer: dicas e erros ›' }).click();
+  const folha = page.getByRole('dialog', { name: 'Como fazer (em texto)' });
+  await expect(folha.getByRole('heading', { name: 'Dicas' })).toBeVisible();
+  await expect(page.getByRole('button', { name: 'Senti algo' })).toBeVisible();
+  await page.keyboard.press('Escape');
+  await expect(folha).toBeHidden();
 });

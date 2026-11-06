@@ -113,7 +113,7 @@ const GRUPOS: Record<string, (page: Page) => Promise<void>> = {
     await proximoExercicio(page);
     await expect(page.getByRole('heading', { name: /Ponte de glúteo/ })).toBeVisible();
     await criterios(page); // exercício sem animação, cartão fechado
-    await page.locator('details.cartao-texto > summary').click();
+    await page.getByRole('button', { name: 'Como fazer: dicas e erros ›' }).click();
     await criterios(page); // cartão aberto
   },
   // lote 2

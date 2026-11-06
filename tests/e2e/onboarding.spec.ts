@@ -267,7 +267,7 @@ test('catálogo do R0c: equipamento novo sem desenho, estações do multifuncion
   const cartao = painel.locator('li.cartao-ex', { has: page.getByRole('heading', { name: /Agachamento no hack/ }) });
   await expect(cartao).toBeVisible();
   await cartao.getByText('Detalhes', { exact: true }).click();
-  await cartao.getByText('Como fazer (em texto)').click();
+  // lote 2 do redesign: a montagem segura vem sempre aberta; dicas e erros abrem numa folha
   await expect(cartao.getByText('Montagem segura')).toBeVisible();
   await expect(cartao.getByText(/Solte a trava de segurança/)).toBeVisible();
   // As alternativas mostram 3 e guardam o resto em "ver mais".
