@@ -4,14 +4,39 @@
   "toquePequeno": [],
   "contrasteBaixo": [],
   "botaoPrincipal": {
-   "texto": "Entendi, vamos começar",
-   "topoPct": 89,
+   "texto": "Começar",
+   "topoPct": 86,
    "visivelSemRolar": true
   },
-  "palavras": 99,
-  "telas": 1.3,
+  "palavras": 69,
+  "telas": 1,
   "rolaDeLado": false,
   "visivel": {
+   "avisoInteiro": true,
+   "avisoTexto": "O app não diagnostica e não substitui um médico ou um profissional de Educação Física. É uma ferramenta de orientação, não uma prescrição. Se sentir dor, tontura ou mal-estar, pare e procure avaliação. consenso",
+   "sentiAlgo": null,
+   "serieFeita": null,
+   "rir": null,
+   "relogio": null,
+   "cortados": [],
+   "focoCoberto": []
+  }
+ },
+ {
+  "tela": "estreito/boas-vindas-b",
+  "toquePequeno": [],
+  "contrasteBaixo": [],
+  "botaoPrincipal": {
+   "texto": "Começar",
+   "topoPct": 81,
+   "visivelSemRolar": true
+  },
+  "palavras": 67,
+  "telas": 1,
+  "rolaDeLado": false,
+  "visivel": {
+   "avisoInteiro": true,
+   "avisoTexto": "O app não diagnostica e não substitui um médico ou um profissional de Educação Física. É uma ferramenta de orientação, não uma prescrição. Se sentir dor, tontura ou mal-estar, pare e procure avaliação. consenso",
    "sentiAlgo": null,
    "serieFeita": null,
    "rir": null,
@@ -33,6 +58,8 @@
   "telas": 1.5,
   "rolaDeLado": false,
   "visivel": {
+   "avisoInteiro": null,
+   "avisoTexto": null,
    "sentiAlgo": null,
    "serieFeita": null,
    "rir": null,
@@ -54,6 +81,8 @@
   "telas": 2.5,
   "rolaDeLado": false,
   "visivel": {
+   "avisoInteiro": null,
+   "avisoTexto": null,
    "sentiAlgo": null,
    "serieFeita": null,
    "rir": null,
@@ -75,6 +104,8 @@
   "telas": 2.3,
   "rolaDeLado": false,
   "visivel": {
+   "avisoInteiro": null,
+   "avisoTexto": null,
    "sentiAlgo": null,
    "serieFeita": null,
    "rir": null,
@@ -96,6 +127,8 @@
   "telas": 1.7,
   "rolaDeLado": false,
   "visivel": {
+   "avisoInteiro": null,
+   "avisoTexto": null,
    "sentiAlgo": null,
    "serieFeita": null,
    "rir": null,
@@ -117,6 +150,8 @@
   "telas": 1.4,
   "rolaDeLado": false,
   "visivel": {
+   "avisoInteiro": null,
+   "avisoTexto": null,
    "sentiAlgo": null,
    "serieFeita": null,
    "rir": null,
@@ -138,6 +173,8 @@
   "telas": 1.5,
   "rolaDeLado": false,
   "visivel": {
+   "avisoInteiro": null,
+   "avisoTexto": null,
    "sentiAlgo": null,
    "serieFeita": null,
    "rir": null,
@@ -159,6 +196,8 @@
   "telas": 2.1,
   "rolaDeLado": false,
   "visivel": {
+   "avisoInteiro": null,
+   "avisoTexto": null,
    "sentiAlgo": null,
    "serieFeita": null,
    "rir": null,
@@ -180,6 +219,8 @@
   "telas": 1.4,
   "rolaDeLado": false,
   "visivel": {
+   "avisoInteiro": null,
+   "avisoTexto": null,
    "sentiAlgo": null,
    "serieFeita": null,
    "rir": null,
@@ -201,6 +242,8 @@
   "telas": 2.2,
   "rolaDeLado": false,
   "visivel": {
+   "avisoInteiro": null,
+   "avisoTexto": null,
    "sentiAlgo": null,
    "serieFeita": null,
    "rir": null,
@@ -222,6 +265,8 @@
   "telas": 2,
   "rolaDeLado": false,
   "visivel": {
+   "avisoInteiro": null,
+   "avisoTexto": null,
    "sentiAlgo": null,
    "serieFeita": null,
    "rir": null,
@@ -243,6 +288,8 @@
   "telas": 2,
   "rolaDeLado": false,
   "visivel": {
+   "avisoInteiro": null,
+   "avisoTexto": null,
    "sentiAlgo": null,
    "serieFeita": null,
    "rir": null,
@@ -264,6 +311,8 @@
   "telas": 2.1,
   "rolaDeLado": false,
   "visivel": {
+   "avisoInteiro": null,
+   "avisoTexto": null,
    "sentiAlgo": null,
    "serieFeita": null,
    "rir": null,
@@ -285,6 +334,8 @@
   "telas": 2.1,
   "rolaDeLado": false,
   "visivel": {
+   "avisoInteiro": null,
+   "avisoTexto": null,
    "sentiAlgo": null,
    "serieFeita": null,
    "rir": null,
@@ -306,6 +357,8 @@
   "telas": 2,
   "rolaDeLado": false,
   "visivel": {
+   "avisoInteiro": null,
+   "avisoTexto": null,
    "sentiAlgo": null,
    "serieFeita": null,
    "rir": null,
@@ -327,6 +380,8 @@
   "telas": 2,
   "rolaDeLado": false,
   "visivel": {
+   "avisoInteiro": null,
+   "avisoTexto": null,
    "sentiAlgo": null,
    "serieFeita": null,
    "rir": null,
@@ -348,6 +403,8 @@
   "telas": 1.2,
   "rolaDeLado": false,
   "visivel": {
+   "avisoInteiro": null,
+   "avisoTexto": null,
    "sentiAlgo": true,
    "serieFeita": true,
    "rir": true,
@@ -369,6 +426,8 @@
   "telas": 1.6,
   "rolaDeLado": false,
   "visivel": {
+   "avisoInteiro": null,
+   "avisoTexto": null,
    "sentiAlgo": true,
    "serieFeita": true,
    "rir": true,
@@ -390,6 +449,8 @@
   "telas": 1.4,
   "rolaDeLado": false,
   "visivel": {
+   "avisoInteiro": null,
+   "avisoTexto": null,
    "sentiAlgo": true,
    "serieFeita": true,
    "rir": true,
@@ -411,6 +472,8 @@
   "telas": 1.2,
   "rolaDeLado": false,
   "visivel": {
+   "avisoInteiro": null,
+   "avisoTexto": null,
    "sentiAlgo": true,
    "serieFeita": false,
    "rir": false,
@@ -432,6 +495,8 @@
   "telas": 1.2,
   "rolaDeLado": false,
   "visivel": {
+   "avisoInteiro": null,
+   "avisoTexto": null,
    "sentiAlgo": true,
    "serieFeita": false,
    "rir": false,
@@ -453,6 +518,8 @@
   "telas": 1.2,
   "rolaDeLado": false,
   "visivel": {
+   "avisoInteiro": null,
+   "avisoTexto": null,
    "sentiAlgo": true,
    "serieFeita": false,
    "rir": false,
@@ -474,6 +541,8 @@
   "telas": 1.2,
   "rolaDeLado": false,
   "visivel": {
+   "avisoInteiro": null,
+   "avisoTexto": null,
    "sentiAlgo": true,
    "serieFeita": false,
    "rir": false,
@@ -495,6 +564,8 @@
   "telas": 1.3,
   "rolaDeLado": false,
   "visivel": {
+   "avisoInteiro": null,
+   "avisoTexto": null,
    "sentiAlgo": true,
    "serieFeita": true,
    "rir": true,
@@ -516,6 +587,8 @@
   "telas": 1.2,
   "rolaDeLado": false,
   "visivel": {
+   "avisoInteiro": null,
+   "avisoTexto": null,
    "sentiAlgo": true,
    "serieFeita": false,
    "rir": false,
@@ -533,6 +606,8 @@
   "telas": 1.8,
   "rolaDeLado": false,
   "visivel": {
+   "avisoInteiro": null,
+   "avisoTexto": null,
    "sentiAlgo": true,
    "serieFeita": null,
    "rir": null,
@@ -554,6 +629,8 @@
   "telas": 1.7,
   "rolaDeLado": false,
   "visivel": {
+   "avisoInteiro": null,
+   "avisoTexto": null,
    "sentiAlgo": null,
    "serieFeita": null,
    "rir": null,
@@ -575,6 +652,8 @@
   "telas": 1.4,
   "rolaDeLado": false,
   "visivel": {
+   "avisoInteiro": null,
+   "avisoTexto": null,
    "sentiAlgo": null,
    "serieFeita": null,
    "rir": null,
@@ -592,6 +671,8 @@
   "telas": 2.4,
   "rolaDeLado": false,
   "visivel": {
+   "avisoInteiro": null,
+   "avisoTexto": null,
    "sentiAlgo": null,
    "serieFeita": null,
    "rir": null,
@@ -609,6 +690,8 @@
   "telas": 1.3,
   "rolaDeLado": false,
   "visivel": {
+   "avisoInteiro": null,
+   "avisoTexto": null,
    "sentiAlgo": null,
    "serieFeita": null,
    "rir": null,
@@ -630,6 +713,8 @@
   "telas": 1.6,
   "rolaDeLado": false,
   "visivel": {
+   "avisoInteiro": null,
+   "avisoTexto": null,
    "sentiAlgo": null,
    "serieFeita": null,
    "rir": null,
@@ -651,6 +736,8 @@
   "telas": 1.6,
   "rolaDeLado": false,
   "visivel": {
+   "avisoInteiro": null,
+   "avisoTexto": null,
    "sentiAlgo": null,
    "serieFeita": null,
    "rir": null,
@@ -668,6 +755,8 @@
   "telas": 1,
   "rolaDeLado": false,
   "visivel": {
+   "avisoInteiro": null,
+   "avisoTexto": null,
    "sentiAlgo": null,
    "serieFeita": null,
    "rir": null,
@@ -689,6 +778,8 @@
   "telas": 3.3,
   "rolaDeLado": false,
   "visivel": {
+   "avisoInteiro": null,
+   "avisoTexto": null,
    "sentiAlgo": null,
    "serieFeita": null,
    "rir": null,
@@ -702,10 +793,12 @@
   "toquePequeno": [],
   "contrasteBaixo": [],
   "botaoPrincipal": null,
-  "palavras": 73,
-  "telas": 4.6,
+  "palavras": 79,
+  "telas": 4.7,
   "rolaDeLado": false,
   "visivel": {
+   "avisoInteiro": null,
+   "avisoTexto": null,
    "sentiAlgo": null,
    "serieFeita": null,
    "rir": null,
