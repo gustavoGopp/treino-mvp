@@ -16,7 +16,7 @@ Ideias e requisitos para depois do MVP. Nada aqui entra sem passar pelo plano.
 
 
 ## Pendências do lado do Gustavo
-- **Sessão de qualidade dos treinos gerados: decidir as 8 decisões** de `revisoes/qualidade-treinos.md` (06/11; a 1ª é a vaga sem exercício possível, com a recomendação B3 + C2 + D medida em 911.625 programas).
+- **Sessão de qualidade dos treinos gerados: revisar o que entrou** (decisões 1 a 7 aprovadas e aplicadas em 06/11; `revisoes/qualidade-treinos.md`, Parte F) e dar o ok para a ida à `main`, depois de exportar os dados do app.
 - **Chave da Anthropic.** Confirmar que a chave e os convites estão no projeto `treino-mvp` da Vercel, o que atende `treino-mvp-sigma.vercel.app`.
 - **Projetos extras na Vercel.** Avaliar apagar `treino-mvp-huks` e `treino-mvp-yej6`, criados em 31/10/2026. Eles repetem cada deploy.
 - **Cronometrar o cadastro no celular (critério 1, R1).** O teste automático conta 13 toques e 0 caractere para quem não tem condição nenhuma (sem a tela de equipamento); falta a sua medição de tempo no celular, uma vez, e a da tela de equipamento com "academia completa" (meta: até 15 s).
@@ -107,4 +107,7 @@ Detalhes, medidas e o porquê de cada item em `revisoes/auditoria-fable.md`.
 - **Abdução com peso 0,5 e o glúteo fora dos secundários das flexões de joelho** (B.17): é [opinião]; listar o efeito na biblioteca e na anatomia antes.
 - **Nórdico invertido no nível 3 da extensora** (B.14): só um estudo sem grupo controle; não recomendado numa vaga obrigatória.
 - **Ombro posterior como vaga-base num dia** (C.5) e **ordem dos complementos** (C.6): medir em 45 min antes.
+- **Panturrilha no degrau** (B.20, 2ª parte): exercício novo com o calcanhar abaixo do degrau da escada; precisa de cartão textual e, depois, de animação aprovada.
+- **Custo da proteção do abdômen** (F.5): na Ana, o abdominal protegido tirou 2 séries do búlgaro, um exercício de foco. Se o Gustavo achar alto, proteger com 2 séries e sem passar dos minutos.
+- **O ombro lateral no Corpo todo 6x**: sem a vaga de empurrar vertical (como nos outros corpos todos), o ombro lateral fica sem a meia série do pike em quem não tem como puxar.
 
