@@ -22,6 +22,7 @@ import type { Inventario } from '../../domain/taxonomia/equipamentos';
 import { avaliarDor, avaliarSinal, type Sinal } from '../../domain/triagem';
 import type { Estado } from '../../storage/esquema';
 import { agoraIso, fusoDoAparelho, useApp } from '../app/estado';
+import { Folha } from '../app/Folha';
 import { PorQue, Selo, Titulo, Topo } from '../app/ui';
 import { Miniatura } from '../programa/Miniatura';
 import { BotaoPrefiro } from '../programa/Prefiro';
@@ -175,7 +176,7 @@ export function Treino() {
           </ol>
         )}
 
-        {aviso && (
+        {aviso && painel === 'nenhum' && (
           <div className="warnbox" role="alert">
             {aviso.texto} <Selo id={aviso.regraId} />
           </div>
@@ -220,43 +221,52 @@ export function Treino() {
         </div>
 
         {painel === 'trocar' && (
-          <Trocar
-            atual={feito.exId}
-            funcao={vaga?.funcao}
-            preferidos={estado.preferidos}
-            aoPreferir={(funcao, id) => atualizar((s) => alternarPreferencia(s, funcao, id))}
-            alternativas={vaga?.alternativas ?? []}
-            aoTrocar={(alt) => {
-              atualizar((s) => trocarExercicio(s, i, alt));
-              if (feito.series.length) setIndice(i + 1);
-              setPainel('nenhum');
-              setAviso(null);
-            }}
-          />
+          <Folha titulo="Trocar só neste treino por:" aoFechar={() => setPainel('nenhum')} livre={() => document.querySelector<HTMLElement>('.alerta-topo')}>
+            {aviso && (
+              <div className="warnbox" role="alert">
+                {aviso.texto} <Selo id={aviso.regraId} />
+              </div>
+            )}
+            <Trocar
+              atual={feito.exId}
+              funcao={vaga?.funcao}
+              preferidos={estado.preferidos}
+              aoPreferir={(funcao, id) => atualizar((s) => alternarPreferencia(s, funcao, id))}
+              alternativas={vaga?.alternativas ?? []}
+              aoTrocar={(alt) => {
+                atualizar((s) => trocarExercicio(s, i, alt));
+                if (feito.series.length) setIndice(i + 1);
+                setPainel('nenhum');
+                setAviso(null);
+              }}
+            />
+          </Folha>
         )}
         {painel === 'sentir' && (
-          <Sentir
-            aoDor={(nota) => {
-              const r = avaliarDor(nota);
-              setAviso({ texto: r.mensagem, regraId: r.regraId });
-              if (r.acao === 'encerrar-exercicio') {
+          <Folha titulo="O que você sentiu?" aoFechar={() => setPainel('nenhum')} livre={() => document.querySelector<HTMLElement>('.alerta-topo')}>
+            <Sentir
+              aoDor={(nota) => {
+                const r = avaliarDor(nota);
+                setAviso({ texto: r.mensagem, regraId: r.regraId });
+                if (r.acao === 'encerrar-exercicio') {
+                  atualizar((s) => interromperExercicio(s, i));
+                  descanso.parar();
+                  setPainel('trocar');
+                } else setPainel('nenhum');
+              }}
+              aoSinal={(sinal) => {
+                const r = avaliarSinal(sinal);
+                if (r.acao === 'encerrar-sessao') {
+                  terminar(true);
+                  return;
+                }
+                setAviso({ texto: r.mensagem, regraId: r.regraId });
                 atualizar((s) => interromperExercicio(s, i));
                 descanso.parar();
                 setPainel('trocar');
-              } else setPainel('nenhum');
-            }}
-            aoSinal={(sinal) => {
-              const r = avaliarSinal(sinal);
-              if (r.acao === 'encerrar-sessao') {
-                terminar(true);
-                return;
-              }
-              setAviso({ texto: r.mensagem, regraId: r.regraId });
-              atualizar((s) => interromperExercicio(s, i));
-              descanso.parar();
-              setPainel('trocar');
-            }}
-          />
+              }}
+            />
+          </Folha>
         )}
 
         <nav className="nav-sessao" aria-label="Exercícios">
@@ -600,8 +610,7 @@ function Trocar({
   );
   const resto = alternativas.slice(ALTERNATIVAS_A_MOSTRA);
   return (
-    <section className="box" aria-label="Trocar exercício">
-      <h2>Trocar só neste treino por:</h2>
+    <section className="trocar" aria-label="Trocar exercício">
       <div className="pilha">{alternativas.slice(0, ALTERNATIVAS_A_MOSTRA).map(botao)}</div>
       {resto.length > 0 && (
         <details className="ver-mais">
@@ -626,8 +635,7 @@ const SINAIS: { id: Sinal; texto: string }[] = [
 
 function Sentir({ aoDor, aoSinal }: { aoDor: (nota: number) => void; aoSinal: (s: Sinal) => void }) {
   return (
-    <section className="box sentir" aria-label="Senti algo">
-      <h2>O que você sentiu?</h2>
+    <section className="sentir" aria-label="Senti algo">
       <div className="pilha">
         {SINAIS.map((s) => (
           <button key={s.id} type="button" className="opcao-ajuste" onClick={() => aoSinal(s.id)}>
