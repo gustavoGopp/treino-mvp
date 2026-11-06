@@ -7,9 +7,10 @@ import { medir, type Medida } from '../../medir';
 // ganha o esqueleto <!doctype html> na hora. Saída: imagens em reports/design/redesign/depois/<projeto>/ (fora do git)
 // e os números em docs/revisoes/redesign/depois/medidas-<projeto>.json.
 
-const DIR = 'docs/revisoes/redesign/prototipo';
+// PROTO_DIR e PROTO_SAIDA medem outra cópia do protótipo (por exemplo, a versão anterior, para comparar)
+const DIR = process.env.PROTO_DIR ?? 'docs/revisoes/redesign/prototipo';
 const BASE = 'http://prototipo.local/';
-const SAIDA = 'docs/revisoes/redesign/depois';
+const SAIDA = process.env.PROTO_SAIDA ?? 'docs/revisoes/redesign/depois';
 
 async function servir(page: Page) {
   await page.route(/^http:\/\/prototipo\.local\//, (r) => {
@@ -32,7 +33,7 @@ test('todas as telas do protótipo', async ({ page }, info) => {
   await page.goto(BASE + '#indice');
   await page.evaluate(() => document.fonts.ready);
   const telas = await page.evaluate(() => (window as unknown as { __TELAS: { id: string; nome: string }[] }).__TELAS);
-  const dir = `reports/design/redesign/depois/${info.project.name}`;
+  const dir = `reports/design/redesign/${process.env.PROTO_SAIDA ? 'proto-' + SAIDA.split('/').pop() : 'depois'}/${info.project.name}`;
   mkdirSync(dir, { recursive: true });
   const medidas: Medida[] = [];
   for (const t of telas) {

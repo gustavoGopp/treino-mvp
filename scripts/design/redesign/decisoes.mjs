@@ -92,5 +92,7 @@ const p = 'docs/revisoes/redesign/proposta.md';
 const prop = readFileSync(p, 'utf8');
 const i14 = prop.indexOf('## 14. Para decidir');
 if (i14 < 0) throw new Error('seção 14 não encontrada');
-writeFileSync(p, prop.slice(0, i14) + md);
+// o que vem depois da seção 14 (o retorno sobre os lotes, seção 15 em diante) é escrito à mão e fica como está
+const i15 = prop.indexOf('\n## 15.');
+writeFileSync(p, prop.slice(0, i14) + md + (i15 >= 0 ? prop.slice(i15) : ''));
 console.log(`${ITENS.length} itens · ${imgs.length} imagens · seção 14 escrita`);
