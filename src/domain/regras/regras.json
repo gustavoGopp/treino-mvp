@@ -1031,6 +1031,25 @@
     ]
   },
   {
+    "id": "selecao.vaga-sem-equipamento",
+    "regra": "Vaga sem exercício possível com o equipamento (sessão de qualidade dos treinos, decisão do Gustavo em 06/11/2026): recebe outra função do mesmo músculo (extensora vazia → afundo ou agachar; tríceps acima da cabeça vazio → o complemento de tríceps; puxar horizontal vazio → a outra pegada da barra fixa), só se o músculo estiver abaixo da meta semanal, primeiro uma função que o dia ainda não tem, sem passar do teto semanal e nunca como o 3º empurrar de um dia sem puxar; sem opção, a vaga fica vazia e o aviso diz o que falta. O 2º exercício de outra função cobre outra região do músculo (moderada); repetir o mesmo estímulo não acrescenta; músculos não competem por crescimento (um estudo); o equilíbrio empurrar e puxar é consenso com apoio de caso-controle",
+    "valores": {
+      "iniciante": "1 por vaga vazia, dentro dos exercícios que cabem nos minutos",
+      "intermediario": "1 por vaga vazia, dentro dos exercícios que cabem nos minutos",
+      "avancado": "1 por vaga vazia, dentro dos exercícios que cabem nos minutos"
+    },
+    "selo": "consenso",
+    "fontes": [
+      "kassiano2022",
+      "fonseca2014",
+      "costa2021",
+      "zabaletakorta2021",
+      "maeo2024",
+      "kataoka2026",
+      "kolber2017"
+    ]
+  },
+  {
     "id": "selecao.preferencia",
     "regra": "\"Prefiro este\" entre equivalentes da mesma função (R1b; decisão do Gustavo no R0c)",
     "valores": {
@@ -1599,15 +1618,32 @@
   },
   {
     "id": "tempo.sobra",
-    "regra": "Tempo que sobra por falta de exercício (decisão do Gustavo em 04/11/2026, sessão de fechamento do equipamento mínimo): quando alguma vaga fica sem exercício possível com o equipamento e o dia mais longo usa menos de 70% dos minutos escolhidos, o app diz a duração real e que dá para escolher menos tempo sem perder nada; nunca sugere compra. O limite de 70% é escolha do projeto",
+    "regra": "Tempo que sobra por falta de exercício (decisão do Gustavo em 04/11/2026; revista na sessão de qualidade dos treinos, 06/11/2026): quando alguma vaga fica sem exercício possível com o equipamento, ou a dor tira exercícios, e o dia típico (a mediana dos dias da semana) usa menos de 70% dos minutos escolhidos, o app diz a duração real e que dá para escolher menos tempo sem perder nada; nunca sugere compra. Antes, valia o dia mais longo, e um programa com dias de 20, 17 e 43 min em 60 não avisava. O limite de 70% é escolha do projeto",
     "valores": {
-      "iniciante": "< 70% dos minutos",
-      "intermediario": "< 70% dos minutos",
-      "avancado": "< 70% dos minutos"
+      "iniciante": "< 70% dos minutos no dia típico",
+      "intermediario": "< 70% dos minutos no dia típico",
+      "avancado": "< 70% dos minutos no dia típico"
     },
     "selo": "consenso",
     "fontes": [
-      "consenso-projeto"
+      "consenso-projeto",
+      "iversen2021"
+    ]
+  },
+  {
+    "id": "tempo.sobra-series",
+    "regra": "Séries no tempo que sobra (sessão de qualidade dos treinos, decisão do Gustavo em 06/11/2026): nos dias que têm vaga sem exercício possível por equipamento, as séries dos exercícios do dia sobem até o alvo do nível em cada músculo com meta (o abdômen não prioritário fica na meta dele), enquanto o dia couber nos minutos; o músculo mais longe da meta vem primeiro, e nunca passa de 4 séries por exercício, 10 por músculo na sessão nem 20 na semana. A direção (mais séries, mais crescimento, com retorno decrescente) é robusta; usar o tempo que sobra assim é escolha do projeto",
+    "valores": {
+      "iniciante": "até 8 por músculo",
+      "intermediario": "até 12 por músculo",
+      "avancado": "até 14 por músculo"
+    },
+    "selo": "consenso",
+    "fontes": [
+      "schoenfeld2017a",
+      "pelland2026",
+      "remmert2025",
+      "iversen2021"
     ]
   },
   {

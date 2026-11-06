@@ -380,3 +380,33 @@ Cada linha é uma decisão. A recomendação está marcada; nada foi aplicado.
 | 8 | **Para a próxima sessão** | D-4 a prioridade puxa frequência (2ª vaga do prioritário noutro dia); D-3 recomendar até 2 grupos no cadastro; B.4 a barra fixa que encaixa baixo; B.9 ombro posterior no grupo "ombros"; C.5 e C.6 ajustes de vagas; E-c mais séries para todos | **Backlog**, cada um com medida própria |
 
 **O que fica comigo** (texto e selo, sem mudar nenhum programa), para entrar num commit só depois do "aprovar" da decisão 1, porque toca `regras.md`: `ordem.sessao` de consenso para moderada (C.1); `selecao.exercicios-por-musculo` para moderada na parte "2 funções cobrem mais regiões; 1 com o volume certo cresce o total" (C.8, B.15); `selecao.multi-mono` para moderada e a nota do `pelland2026` em `volume.serie-indireta.peso` (B.10); `volume.semanal.abdomen` como linha própria com selo consenso (B.22); fontes e frases novas em `selecao.peitoral-inclinado`, `selecao.crucifixo-complemento`, `selecao.dobrar-quadril`, `tempo.exercicios-por-sessao` e `tempo.sobra` (B.2, B.15, C.2, C.7); o "porquê" dos níveis 2 que não soe como "pior" (B.6, B.10). E, no script da grade, o suspeito `dia.poucos-exercicios` passa a "menos de 4, ou vaga-base vazia sem compensação" (C.2). O porquê é o mesmo para todos: a evidência mudou o selo ou a fonte, e nenhum programa muda.
+
+---
+
+## Parte F. O que entrou depois do "aprovar" (06/11/2026)
+
+O Gustavo aprovou as recomendações das decisões 1 a 7 em 06/11/2026. Elas entraram uma por vez: a regra em `regras.md`, o código, os testes e o antes e o depois dos programas das personas registrado aqui antes de regravar os snapshots.
+
+### F.1 Decisão 1: a vaga sem exercício possível
+
+**Regras.** Novas: `selecao.vaga-sem-equipamento` (consenso, com `kassiano2022`, `fonseca2014`, `costa2021`, `zabaletakorta2021`, `maeo2024`, `kataoka2026`, `kolber2017`) e `tempo.sobra-series` (consenso, com `schoenfeld2017a`, `pelland2026`, `remmert2025`, `iversen2021`). Revista: `tempo.sobra` passa a olhar o dia típico (a mediana dos dias) e a valer também quando a sobra vem da dor.
+
+**Código** (`src/domain/gerador/index.ts`): depois do preenchimento das vagas, cada vaga sem exercício possível por equipamento procura outra função do mesmo músculo, se ele estiver abaixo da meta, primeiro uma que o dia ainda não tem, nunca como o 3º empurrar de um dia sem puxar e dentro do teto semanal; o exercício que entra explica no "porquê" de qual vaga ocupou. Depois da prescrição, nos dias com vaga vazia, as séries sobem até o alvo do nível em cada músculo com meta (o abdômen não prioritário fica na meta dele), enquanto o dia couber nos minutos, sem passar de 4 por exercício, 10 por músculo na sessão (em todos os músculos principais do exercício) nem 20 na semana. Diferença em relação ao protótipo medido na Parte E: o abdômen não prioritário não sobe além da meta dele (4), porque a pesquisa do abdômen deu a meta como consenso e sem dose-resposta própria.
+
+**Testes** (`tests/unit/gerador.test.ts`, 7 novos, numa grade de 540 programas com vaga vazia): a vaga do tríceps acima da cabeça recebe o complemento de tríceps e a da extensora outro exercício de quadríceps; nenhum exercício repetido no dia; nunca 3 empurrares num dia sem puxar; as séries extras ficam dentro dos tetos e dos minutos; com o equipamento completo nada muda; o Fábio recebe as duas pegadas da barra fixa e as costas chegam ao alvo; o aviso de sobra aparece pelo dia típico e também com dor. Um primeiro teste pegou um caso em que a flexão fechada, subida pelo tríceps, levava o peito a 11 séries na sessão: a conferência do teto passou a valer para todos os músculos principais do exercício.
+
+**Antes e depois nas personas.** Só o Fábio muda (intermediário, só barra fixa de porta, 4 dias de 45 min, prioridade costas):
+
+| Dia | Antes | Depois |
+|---|---|---|
+| Superior A | 18 min: barra fixa 4 séries, flexão 2 | 33 min: barra fixa 3, barra fixa supinada 3, flexão 2, flexão fechada 4 |
+| Inferior A | 31 min: agachamento 3, flexão de joelho deslizante 2, nórdico 2, panturrilha 3, abdominal 2 | 45 min: agachamento 4, búlgaro 2, flexão de joelho deslizante 3, nórdico 2, panturrilha 4, abdominal 2 |
+| Superior B | 29 min: barra fixa supinada 4, flexão 2, flexão fechada 4 | 33 min: barra fixa supinada 3, barra fixa 3, flexão 2, flexão fechada 4 |
+| Inferior B | 40 min: afundo 3, ponte 2, deslizante 2, panturrilha 3, nórdico 2, elevação de joelhos 2 | 45 min: afundo 3, ponte 2, deslizante 3, panturrilha 4, nórdico 2, elevação de joelhos 2 |
+
+| Séries por semana | costas | bíceps | ombro de trás | peito | tríceps | quadríceps | posteriores | glúteos | panturrilha | abdômen |
+|---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|
+| Antes | 8 | 4 | 2 | 8 | 6 | 6 | 8 | 7 | 6 | 4 |
+| Depois | 12 | 6 | 3 | 12 | 10 | 9 | 10 | 9,5 | 8 | 4 |
+
+As costas, que ele priorizou, saem de 8 (abaixo do mínimo de 10 do intermediário) para 12, o alvo; o aviso de "abaixo da meta" das costas some. Bruno, Ana, Diego, Carla e Elisa saem idênticos.

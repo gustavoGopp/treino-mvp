@@ -6,7 +6,8 @@ import { DIVISOES, DIVISAO_IDS } from '../../src/domain/gerador/divisoes';
 import { FUNCAO } from '../../src/domain/gerador/funcoes';
 import { DESCANSO, REGRAS, VOLUME, NIVEIS, OBRIGATORIO_CURTO, exerciciosPorSessao } from '../../src/domain/regras';
 import { capacidades, type Inventario } from '../../src/domain/taxonomia/equipamentos';
-import { ana, bruno, carla, diego, PERSONAS } from '../personas';
+import { respostasNenhuma } from '../../src/domain/triagem';
+import { ana, bruno, carla, diego, fabio, PERSONAS } from '../personas';
 
 const ok = (perfil: Perfil, inv: Inventario): Programa => {
   const r = gerarPrograma(perfil, inv);
@@ -569,3 +570,87 @@ describe('escada de cortes (tempo.corte)', () => {
     expect(viuCorteDePrioritario).toBe(true);
   });
 });
+
+// Sessão de qualidade dos treinos (decisões do Gustavo em 06/11/2026): a vaga sem exercício possível com o equipamento.
+describe('a vaga sem exercício possível (selecao.vaga-sem-equipamento; tempo.sobra-series; tempo.sobra)', { timeout: 30_000 }, () => {
+  const semNada = (o: Partial<Perfil> = {}): Perfil => ({
+    nivel: 'intermediario',
+    semanasParado: 0,
+    diasSemana: 3,
+    minutosSessao: 60,
+    prioridades: [],
+    evitarExercicios: [],
+    evitarEquipamentos: [],
+    triagem: { respostas: respostasNenhuma() },
+    ...o,
+  });
+  const empurra = (id: string) => ['empurrar-h', 'empurrar-v'].includes(POR_ID[id]!.padrao);
+  const puxa = (id: string) => ['puxar-h', 'puxar-v'].includes(POR_ID[id]!.padrao);
+  // Grade pequena de casos com vaga vazia: sem nada e só barra fixa, níveis, dias e minutos.
+  const casos: { nome: string; perfil: Perfil; inv: Inventario }[] = [];
+  for (const [inv, nomeInv] of [[{}, 'sem nada'], [{ barra_fixa: {} }, 'barra fixa'], [{ halteres_fixos: { minKg: 2, maxKg: 20, passoKg: 2 } }, 'halteres']] as [Inventario, string][])
+    for (const nivel of NIVEIS)
+      for (const diasSemana of [2, 3, 4, 5, 6] as const)
+        for (const minutosSessao of [30, 45, 60, 90])
+          for (const prioridades of [[], ['peito'], ['pernas', 'gluteos']] as Grupo[][])
+            casos.push({ nome: `${nomeInv}/${nivel}/${diasSemana}d/${minutosSessao}min/${prioridades.join('+') || '-'}`, perfil: semNada({ nivel, diasSemana, minutosSessao, prioridades }), inv });
+
+  it('sem nada, 3 dias de 60 min: a vaga do tríceps acima da cabeça recebe o complemento de tríceps, e a da extensora outro exercício de quadríceps', () => {
+    const p = ok(semNada(), {});
+    const entraram = p.dias.flatMap((d) => d.exercicios).filter((x) => x.porque.some((q) => q.regraId === 'selecao.vaga-sem-equipamento'));
+    expect(entraram.map((x) => x.funcao)).toEqual(expect.arrayContaining(['triceps-complemento']));
+    expect(entraram.some((x) => ['agachar', 'afundo'].includes(x.funcao!))).toBe(true);
+    // O caso do Gustavo (05/11/2026): os dias deixam de ter 4 exercícios e passam a usar o tempo.
+    expect(p.dias.map((d) => d.exercicios.length).every((n) => n >= 5)).toBe(true);
+    expect(Math.min(...p.dias.map((d) => d.minutosEstimados))).toBeGreaterThanOrEqual(45);
+  });
+  it('só preenche músculo abaixo da meta, nunca com o 3º empurrar de um dia sem puxar, e nunca repete exercício no dia', () => {
+    for (const c of casos) {
+      const p = ok(c.perfil, c.inv);
+      for (const d of p.dias) {
+        const ids = d.exercicios.map((x) => x.exId);
+        expect(new Set(ids).size, `${c.nome} ${d.nome}`).toBe(ids.length);
+        const novos = d.exercicios.filter((x) => x.porque.some((q) => q.regraId === 'selecao.vaga-sem-equipamento'));
+        if (novos.some((x) => empurra(x.exId)) && !ids.some(puxa)) expect(ids.filter(empurra).length, `${c.nome} ${d.nome}`).toBeLessThanOrEqual(2);
+      }
+    }
+  });
+  it('as séries do tempo que sobra ficam dentro de 4 por exercício, 10 por músculo na sessão, 20 na semana e dos minutos', () => {
+    for (const c of casos) {
+      const p = ok(c.perfil, c.inv);
+      for (const [m, n] of Object.entries(p.volumeSemanal)) expect(n, `${c.nome} ${m}`).toBeLessThanOrEqual(VOLUME.teto);
+      for (const d of p.dias) {
+        for (const x of d.exercicios) expect(x.series, `${c.nome} ${x.exId}`).toBeLessThanOrEqual(VOLUME.seriesPorExercicio.max);
+        const v = volumePorMusculo(d.exercicios.map((x) => ({ ex: POR_ID[x.exId]!, series: seriesDeVolume(x) })));
+        for (const m of Object.keys(v) as Musculo[]) {
+          const direto = d.exercicios.filter((x) => POR_ID[x.exId]!.musculos.primarios.includes(m)).reduce((t, x) => t + seriesDeVolume(x), 0);
+          expect(direto, `${c.nome} ${d.nome} ${m}`).toBeLessThanOrEqual(VOLUME.sessaoTeto);
+        }
+        if (d.minutosEstimados > c.perfil.minutosSessao) expect(p.avisos.some((a) => a.regraId === 'tempo.corte' && a.texto.startsWith(d.nome)), `${c.nome} ${d.nome}`).toBe(true);
+      }
+    }
+  });
+  it('com o equipamento completo, nada muda: nenhum exercício entra por vaga vazia e as séries não sobem por sobra', () => {
+    const p = ok(carla.perfil, carla.inventario);
+    expect(p.dias.flatMap((d) => d.exercicios).some((x) => x.porque.some((q) => q.regraId === 'selecao.vaga-sem-equipamento'))).toBe(false);
+    expect(p.porque.some((q) => q.regraId === 'tempo.sobra-series')).toBe(false);
+  });
+  it('só barra fixa (o Fábio): a vaga vazia de puxar horizontal recebe a outra pegada, e as costas chegam ao alvo do intermediário', () => {
+    const p = ok(fabio.perfil, fabio.inventario);
+    for (const d of p.dias.filter((x) => /Superior/.test(x.nome))) expect(d.exercicios.map((x) => x.exId)).toEqual(expect.arrayContaining(['barra-fixa', 'barra-fixa-supinada']));
+    expect(p.volumeSemanal.costas).toBeGreaterThanOrEqual(VOLUME.alvo.intermediario);
+  });
+  it('tempo.sobra pelo dia típico: sem nada e 6 dias de 60 min, o aviso aparece (antes, o dia mais longo, de ~59 min, o escondia)', () => {
+    const p = ok(semNada({ diasSemana: 6 }), {});
+    const tipico = [...p.dias.map((d) => d.minutosEstimados)].sort((a, b) => a - b)[Math.floor((p.dias.length - 1) / 2)]!;
+    expect(tipico).toBeLessThan(0.7 * 60);
+    expect(p.avisos.some((a) => a.regraId === 'tempo.sobra')).toBe(true);
+  });
+  it('tempo.sobra também quando a sobra vem da dor, com o texto certo', () => {
+    const comDorForte = semNada({ minutosSessao: 90, triagem: { respostas: { ...respostasNenhuma(), osteoarticular: true }, dores: [{ articulacao: 'ombro', nota: 7 }] } });
+    const p = ok(comDorForte, ana.inventario);
+    const a = p.avisos.find((x) => x.regraId === 'tempo.sobra');
+    if (a) expect(a.texto).toMatch(/^Com (o seu equipamento|o que dá para fazer hoje), o treino dura cerca de \d+ min/);
+  });
+});
+
