@@ -28,12 +28,13 @@ p.nota{margin:0 0 20px;color:#333;font-size:14px;max-width:70ch}
 .quadros{display:flex;gap:16px;align-items:flex-start;flex-wrap:nowrap}
 .quadro{width:360px;flex:0 0 360px}
 .quadro .legenda{font-size:12px;line-height:1.3;color:#222;margin:0 0 6px;min-height:32px}
-.tela{position:relative;width:360px;background:var(--bg);border-radius:18px;overflow:hidden;box-shadow:0 1px 3px rgba(0,0,0,.25);display:flex;flex-direction:column;min-height:740px}
+.tela{position:relative;width:360px;height:740px;background:var(--bg);border-radius:18px;overflow-x:hidden;overflow-y:auto;box-shadow:0 1px 3px rgba(0,0,0,.25);display:flex;flex-direction:column}
+/* Cada quadro tem a altura de um celular pequeno (360 × 740) e rola por dentro: o que aparece na imagem é o que a pessoa vê sem rolar. */
 .tela .dobra{position:absolute;left:0;right:0;top:740px;border-top:2px dashed #7b2d2d;pointer-events:none;z-index:9}
 .tela .dobra::after{content:"dobra: 740 px (celular pequeno)";position:absolute;right:8px;top:-9px;font-size:10px;background:#7b2d2d;color:#fff;padding:1px 6px;border-radius:4px}
-.conteudo{padding:0 16px 16px;display:flex;flex-direction:column;gap:var(--s4);flex:1}
+.conteudo{padding:0 16px 0;display:flex;flex-direction:column;gap:var(--s4);flex:1 0 auto}
 /* cabeçalho */
-.cab{display:flex;align-items:center;gap:var(--s2);min-height:var(--h2);padding:var(--s1) var(--s2) var(--s1) var(--s4);background:var(--bg)}
+.cab{position:sticky;top:0;z-index:3;flex:0 0 auto;display:flex;align-items:center;gap:var(--s2);min-height:var(--h2);padding:var(--s1) var(--s2) var(--s1) var(--s4);background:var(--bg)}
 .cab .marca{font-weight:800;font-size:var(--t-corpo)}
 .cab .voltar{display:inline-flex;align-items:center;min-height:var(--h1);min-width:var(--h1);padding:0 var(--s2);font-weight:700;color:var(--ink);text-decoration:none;font-size:var(--t-apoio)}
 .cab .centro{flex:1;text-align:center;font-size:var(--t-apoio);color:var(--muted);font-weight:700}
@@ -61,10 +62,10 @@ p.nota{margin:0 0 20px;color:#333;font-size:14px;max-width:70ch}
 .btn:disabled,.btn.desab{background:var(--sf2);color:var(--muted);border-color:transparent}
 .btn.foco{outline:3px solid var(--ink);outline-offset:2px}
 .btn.press{background:var(--soft);color:var(--ink);border:2px solid var(--ink)}
-.acao-fixa{position:sticky;bottom:0;margin:auto -16px 0;padding:var(--s3) var(--s4);background:var(--bg);border-top:1px solid var(--line);display:flex;flex-direction:column;gap:var(--s2);align-items:center}
+.acao-fixa{position:sticky;bottom:0;z-index:2;margin:auto -16px 0;padding:var(--s3) var(--s4);background:var(--bg);border-top:1px solid var(--line);display:flex;flex-direction:column;gap:var(--s2);align-items:center}
 .acao-fixa.com-nav{bottom:64px}
 /* navegação inferior */
-.nav{display:flex;background:var(--sf);border-top:1px solid var(--line);margin-top:auto}
+.nav{position:sticky;bottom:0;z-index:3;flex:0 0 auto;display:flex;background:var(--sf);border-top:1px solid var(--line);margin-top:auto}
 .nav a{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;min-height:var(--h3);font-size:var(--t-rotulo);font-weight:700;color:var(--muted);text-decoration:none}
 .nav a.atual{color:var(--ink)}
 .nav i{display:block;width:24px;height:24px;border:2px solid currentColor;border-radius:6px}
@@ -154,7 +155,8 @@ p.nota{margin:0 0 20px;color:#333;font-size:14px;max-width:70ch}
 .recolher.plano{background:transparent}
 .recolher.plano .cabe{padding:0;border-bottom:1px solid var(--line)}
 /* folha inferior */
-.folha-inf{position:absolute;left:0;right:0;bottom:0;background:var(--sf);border-radius:24px 24px 0 0;padding:var(--s2) var(--s4) var(--s4);display:flex;flex-direction:column;gap:var(--s3);box-shadow:0 -8px 28px rgba(0,0,0,.25);z-index:5}
+.folha-inf{position:absolute;left:0;right:0;bottom:0;max-height:100%;overflow-y:auto;background:var(--sf);border-radius:24px 24px 0 0;padding:var(--s2) var(--s4) var(--s4);display:flex;flex-direction:column;gap:var(--s3);box-shadow:0 -8px 28px rgba(0,0,0,.25);z-index:5}
+.folha-inf>*,.conteudo>*{flex-shrink:0}
 .folha-inf::before{content:"";width:40px;height:4px;border-radius:2px;background:var(--line);margin:0 auto var(--s1)}
 .escurece{position:absolute;inset:0;background:rgba(0,0,0,.35);z-index:4}
 .tres{display:grid;grid-template-columns:1fr 1fr 1fr;gap:var(--s2)}
@@ -188,7 +190,7 @@ p.nota{margin:0 0 20px;color:#333;font-size:14px;max-width:70ch}
 </head>
 <body>
 <h1 class="pagina">treino-mvp · esboços do agente 4 (organização visual e hierarquia), 06/11/2026</h1>
-<p class="nota">Tudo em cinzas: a cor é do agente 5. Cada quadro tem 360 px de largura (celular pequeno); a linha tracejada marca a dobra de 740 px. O que fica abaixo da dobra é o que a pessoa só vê rolando. As peças seguem o sistema proposto no relatório: 7 degraus de letra (13 · 15 · 17 · 20 · 24 · 40 · 64), 6 passos de espaço (4 · 8 · 12 · 16 · 24 · 32), 3 raios (8 · 16 · pílula), 2 bordas (1 divisor · 2 contorno) e 3 alturas de toque (48 · 56 · 64). Os textos de segurança (triagem, "Senti algo", "O que o app não faz", segurança do guia) estão copiados do app, sem mudança; os das regras com selo também. Títulos, botões e ajudas podem ter sido reescritos (decisão 5 do Gustavo). Os números de exercício, carga e semana são da persona fictícia Ana.</p>
+<p class="nota">‹ › marca um texto que vem da regra e não muda; a pílula "selo" é o selo da regra daquele texto (robusta, moderada, um estudo ou consenso). Tudo em cinzas: a cor é do agente 5. Cada quadro é um celular pequeno (360 × 740 px) e rola por dentro: a imagem mostra só o que a pessoa vê sem rolar; o cabeçalho, a ação principal e a barra inferior ficam presos. Abra este arquivo no navegador e role dentro de cada quadro para ver o resto. As peças seguem o sistema proposto no relatório: 7 degraus de letra (13 · 15 · 17 · 20 · 24 · 40 · 64), 6 passos de espaço (4 · 8 · 12 · 16 · 24 · 32), 3 raios (8 · 16 · pílula), 2 bordas (1 divisor · 2 contorno) e 3 alturas de toque (48 · 56 · 64). Os textos de segurança (triagem, "Senti algo", "O que o app não faz", segurança do guia) estão copiados do app, sem mudança; os das regras com selo também. Títulos, botões e ajudas podem ter sido reescritos (decisão 5 do Gustavo). Os números de exercício, carga e semana são da persona fictícia Ana.</p>
 
 <!-- ===================== FOLHA 1: SISTEMA ===================== -->
 <div class="folha" id="f-sistema">
@@ -323,7 +325,7 @@ p.nota{margin:0 0 20px;color:#333;font-size:14px;max-width:70ch}
     </div>
     <p class="pergunta">Tem confiança na técnica básica?</p>
     <div class="opcoes"><span class="opcao sel"><i></i>Sim</span><span class="opcao"><i></i>Mais ou menos</span><span class="opcao"><i></i>Não</span></div>
-    <div class="card info"><h3>Seu nível: Iniciante</h3><p class="corpo">Menos de 6 meses de treino contínuo. Na dúvida, classificamos para baixo. <span class="pil selo">consenso</span></p><p class="apoio">Quer começar num nível mais leve? Você pode escolher um abaixo, nunca acima.</p></div>
+    <div class="card info"><h3>Seu nível: Iniciante</h3><p class="corpo">‹motivo› Na dúvida, classificamos para baixo. <span class="pil selo">selo</span></p><p class="apoio">Quer começar num nível mais leve? Você pode escolher um abaixo, nunca acima.</p></div>
     <div class="acao-fixa"><button class="btn">Continuar</button></div>
   </div>
 </div></div>
@@ -342,13 +344,13 @@ p.nota{margin:0 0 20px;color:#333;font-size:14px;max-width:70ch}
     <div class="passo"><span>Passo 4 de 6</span><div class="barra"><i style="width:66%"></i></div></div>
     <h1 class="titulo">Sua rotina de treino</h1>
     <p class="pergunta">Quantos dias por semana?</p>
-    <p class="apoio">Com 2 a 6 dias dá para treinar cada músculo cerca de 2 vezes por semana. <span class="pil selo">moderada</span></p>
+    <p class="apoio">Com 2 a 6 dias dá para treinar cada músculo cerca de 2 vezes por semana. <span class="pil selo">consenso</span></p>
     <div class="chips"><span class="chip">2</span><span class="chip sel">3</span><span class="chip">4</span><span class="chip">5</span><span class="chip">6</span></div>
     <p class="pergunta">Quantos minutos por treino?</p>
     <p class="apoio">Tempo total, com aquecimento e descansos.</p>
     <div class="chips"><span class="chip">30</span><span class="chip sel">45</span><span class="chip">60</span><span class="chip">75</span><span class="chip">90</span><span class="chip">Outro</span></div>
     <p class="pergunta">Quais grupos priorizar? <span class="apoio" style="font-weight:400">(opcional)</span></p>
-    <p class="apoio">Os prioritários recebem mais séries; os outros ficam no mínimo que já gera resultado. <span class="pil selo">robusta</span></p>
+    <p class="apoio">Os grupos prioritários recebem mais séries; os outros ficam no mínimo que já gera resultado. Priorizar muitos grupos pede mais tempo. <span class="pil selo">moderada</span></p>
     <div class="chips"><span class="chip">Peito</span><span class="chip">Costas</span><span class="chip">Ombros</span><span class="chip">Braços</span><span class="chip sel">Pernas</span><span class="chip sel">Glúteos</span><span class="chip">Abdômen</span></div>
     <p class="pergunta">O que você quer agora? <span class="apoio" style="font-weight:400">(opcional)</span></p>
     <div class="opcoes"><span class="opcao"><i></i>Ganhar músculo</span><span class="opcao"><i></i>Manter o músculo enquanto perco peso</span><span class="opcao"><i></i>Ficar mais forte</span><span class="opcao"><i></i>Saúde e disposição</span></div>
@@ -419,7 +421,7 @@ p.nota{margin:0 0 20px;color:#333;font-size:14px;max-width:70ch}
     <div class="opcoes">
       <span class="opcao"><span class="ic"></span><span class="texto">Casa com halteres e elásticos</span></span>
       <span class="opcao"><span class="ic"></span><span class="texto">Condomínio com multifuncional</span></span>
-      <span class="opcao sel"><span class="ic"></span><span class="texto">Academia completa<small>39 itens marcados · halteres de 2 a 40 kg</small></span></span>
+      <span class="opcao sel"><span class="ic"></span><span class="texto">Academia completa<small>‹n› itens marcados · confira os halteres</small></span></span>
       <span class="opcao"><span class="ic"></span><span class="texto">Corpo livre<small>sem equipamento</small></span></span>
     </div>
     <button class="btn sec">📷 Reconhecer pela foto</button>
@@ -427,9 +429,9 @@ p.nota{margin:0 0 20px;color:#333;font-size:14px;max-width:70ch}
     <div class="recolher"><div class="cabe">Halteres e anilhas <span class="pil">1 de 4</span></div></div>
     <div class="recolher"><div class="cabe">Bancos <span class="pil">4 de 4</span></div></div>
     <div class="recolher"><div class="cabe">Polias e acessórios <span class="pil">7 de 10</span></div></div>
-    <div class="recolher"><div class="cabe">Barras <span class="pil">5 de 6</span></div></div>
-    <div class="recolher"><div class="cabe">Máquinas <span class="pil">17 de 18</span></div></div>
-    <div class="recolher"><div class="cabe">Outros acessórios <span class="pil">1 de 8</span></div></div>
+    <div class="recolher"><div class="cabe">Barras <span class="pil">4 de 5</span></div></div>
+    <div class="recolher"><div class="cabe">Máquinas <span class="pil">17 de 19</span></div></div>
+    <div class="recolher"><div class="cabe">Outros acessórios <span class="pil">1 de 6</span></div></div>
     <div class="acao-fixa"><button class="btn">Continuar</button></div>
   </div>
 </div></div>
@@ -463,7 +465,7 @@ p.nota{margin:0 0 20px;color:#333;font-size:14px;max-width:70ch}
     </div>
     <div class="recolher"><div class="cabe">Bancos <span class="pil">4 de 4</span></div></div>
     <div class="recolher"><div class="cabe">Polias e acessórios <span class="pil">7 de 10</span></div></div>
-    <div class="recolher"><div class="cabe">Máquinas <span class="pil">17 de 18</span></div></div>
+    <div class="recolher"><div class="cabe">Máquinas <span class="pil">17 de 19</span></div></div>
     <div class="acao-fixa"><button class="btn">Continuar</button></div>
   </div>
 </div></div>
@@ -508,10 +510,10 @@ p.nota{margin:0 0 20px;color:#333;font-size:14px;max-width:70ch}
     <p class="apoio">3x por semana · até 45 min · Iniciante · <u>Meu local</u></p>
     <ul class="lista">
       <li><span class="texto"><b>A sua semana: 1 de 3</b><small>Qualquer dia serve. O Corpo todo B cabe até domingo.</small></span><span class="pontos" style="gap:4px"><i class="on" style="width:16px;height:16px"></i><i style="width:16px;height:16px"></i><i style="width:16px;height:16px"></i></span><span class="cheva">›</span></li>
-      <li><span class="texto"><b>Semana 1: fase de aprendizado</b><small>Foco na técnica, volume no mínimo, RIR 3–4. <span class="pil selo">consenso</span></small></span></li>
+      <li><span class="texto"><b>Semana 1: fase de aprendizado</b><small>‹texto da fase, intacto› <span class="pil selo">selo</span></small></span></li>
       <li><span class="texto"><b>1 aviso e 1 ajuste possível</b><small>Alguns músculos ficaram abaixo da meta.</small></span><span class="cheva">›</span></li>
     </ul>
-    <div class="seg"><span class="sel">Corpo todo A</span><span>Corpo todo B</span><span>Corpo todo C</span></div>
+    <div class="seg"><span class="sel">Dia A</span><span>Dia B</span><span>Dia C</span></div>
     <p class="apoio">Corpo todo A · 6 exercícios · ~44 min · próximo da rotação</p>
     <ul class="lista">
       <li><span class="mini">boneco</span><span class="texto"><b>1 Agachamento búlgaro com apoio</b><small><b style="font-size:20px;color:var(--ink)">3 × 8–12</b> cada lado · RIR 3–4 · 1:45</small></span><span class="cheva">›</span></li>
@@ -536,14 +538,14 @@ p.nota{margin:0 0 20px;color:#333;font-size:14px;max-width:70ch}
     <ul class="lista simples">
       <li>Sua evolução neste exercício <span class="cheva" style="margin-left:auto">›</span></li>
       <li>Se estiver ocupado: <u>afundo</u>, <u>agachamento goblet</u> ou <u>leg press</u></li>
-      <li>Prefere algum destes? Vale no próximo programa. <span class="pil selo">consenso</span></li>
+      <li>Prefere algum destes? Vale no próximo programa. <span class="pil selo">selo</span></li>
     </ul>
     <p class="rotulo">Por que este exercício</p>
     <ul class="lista simples">
-      <li>Primeiro composto do dia: o mais exigente vem descansado. <span class="pil selo">consenso</span></li>
-      <li>Unilateral para equilibrar os lados. <span class="pil selo">um estudo</span></li>
+      <li>‹porquê 1, gerado pela regra, texto intacto› <span class="pil selo">selo</span></li>
+      <li>‹porquê 2› <span class="pil selo">selo</span></li>
     </ul>
-    <div class="card info" style="padding:12px"><p class="rotulo">De onde vem este selo</p><p class="corpo" style="font-size:15px"><b>Consenso de especialistas:</b> prática de treinadores sem ensaio que teste o número. Regra <code>ordem.compostos-primeiro</code> · fonte: docs/pesquisa/regras.md</p></div>
+    <div class="card info" style="padding:12px"><p class="rotulo">De onde vem este selo</p><p class="corpo" style="font-size:15px"><b>Consenso de treinadores</b> (sem estudo que teste isso). Regra: ordenação dos exercícios da sessão (a ordem não muda a hipertrofia). Fontes: Nunes et al. 2021 (meta-análise); Simão et al. 2012 (revisão).</p><button class="btn ter" style="padding:0">O que querem dizer os selos ›</button></div>
     <button class="btn ter">Fechar</button>
   </div>
 </div></div>
@@ -554,7 +556,7 @@ p.nota{margin:0 0 20px;color:#333;font-size:14px;max-width:70ch}
   <div class="conteudo">
     <h1 class="titulo">Seu treino</h1>
     <div class="card"><div class="status-vazio" style="padding:8px"><span class="ic"></span><span><b>A sua semana aparece aqui</b><br>depois do 1º treino registrado.</span></div></div>
-    <div class="seg"><span class="sel">Corpo todo A</span><span>Corpo todo B</span><span>Corpo todo C</span></div>
+    <div class="seg"><span class="sel">Dia A</span><span>Dia B</span><span>Dia C</span></div>
     <p class="rotulo" style="margin-top:16px">Carregando (esqueleto, só se passar de 1 s)</p>
     <div class="card"><div class="linha"><span class="skel" style="width:88px;height:66px;border-radius:8px"></span><span style="flex:1;display:flex;flex-direction:column;gap:8px"><span class="skel" style="width:70%"></span><span class="skel" style="width:40%;height:20px"></span><span class="skel" style="width:60%"></span></span></div></div>
     <div class="card"><div class="linha"><span class="skel" style="width:88px;height:66px;border-radius:8px"></span><span style="flex:1;display:flex;flex-direction:column;gap:8px"><span class="skel" style="width:60%"></span><span class="skel" style="width:40%;height:20px"></span><span class="skel" style="width:50%"></span></span></div></div>
@@ -572,16 +574,16 @@ p.nota{margin:0 0 20px;color:#333;font-size:14px;max-width:70ch}
 
 <div class="quadro"><p class="legenda"><b>Treino: série</b> (/treino) · cabeçalho de tarefa: Sair à esquerda, "1 de 6" no centro, "Senti algo" à direita (sempre à vista); sem a marca e sem a barra inferior. Dentro do cartão da série: 1 linha de sugestão com selo (não 2 caixas), carga e repetições com o mesmo stepper, RIR em chips, "Série feita" de 64 px fixo.</p>
 <div class="tela"><div class="dobra"></div>
-  <div class="cab"><a class="voltar" href="#">Sair</a><span class="centro">Corpo todo A · 1 de 6</span><span class="dir"><button class="btn perigo compacto">⚠ Senti algo</button></span></div>
+  <div class="cab"><a class="voltar" href="#">Sair</a><span class="centro">Exercício 1 de 6</span><span class="dir"><button class="btn perigo compacto">⚠ Senti algo</button></span></div>
   <div class="conteudo" style="gap:12px">
     <div class="barra-h" style="height:6px"><i style="width:8%"></i></div>
     <div class="linha" style="flex-wrap:nowrap;align-items:flex-start"><span class="mini g">boneco</span><div style="flex:1"><p class="titulo" style="font-size:22px">Agachamento búlgaro com apoio</p><p class="apoio">Meta: 3 × 8–12 (cada lado) · RIR 3–4</p><button class="btn ter" style="padding:0">Ver como fazer ›</button></div></div>
     <div class="card" style="gap:12px">
       <div class="linha"><h3>Série 1 de 3</h3><span class="pil">descanso 1:45</span></div>
-      <p class="apoio"><b style="color:var(--ink)">Hoje: comece leve.</b> 1ª vez neste exercício: a 1ª série acerta a carga. Antes, 1–2 séries leves de aquecimento. <span class="pil selo">consenso</span></p>
+      <p class="apoio"><b style="color:var(--ink)">Hoje: ‹sugestão›.</b> ‹motivo da regra, texto intacto› <span class="pil selo">selo</span></p>
       <div class="linha"><span class="pergunta" style="font-size:17px">Carga</span><span class="stepper"><b>−</b><output style="font-size:32px">8 kg</output><b>+</b></span></div>
       <div class="linha"><span class="pergunta" style="font-size:17px">Repetições</span><span class="stepper"><b>−</b><output>10</output><b>+</b></span></div>
-      <p class="pergunta" style="font-size:17px">Quantas ainda conseguiria? (RIR) <span class="pil selo">moderada</span></p>
+      <p class="pergunta" style="font-size:17px">Quantas repetições ainda conseguiria? (RIR)</p><p class="apoio">A maioria das pessoas acha que tem menos reserva do que tem. <span class="pil selo">moderada</span></p>
       <div class="chips"><span class="chip">0</span><span class="chip">1</span><span class="chip">2</span><span class="chip sel">3</span><span class="chip">4 ou mais</span></div>
     </div>
     <div class="acao-fixa"><button class="btn grande">Série feita · descansar 1:45</button></div>
@@ -592,7 +594,7 @@ p.nota{margin:0 0 20px;color:#333;font-size:14px;max-width:70ch}
 
 <div class="quadro"><p class="legenda"><b>Treino: descanso</b> · folha inferior padrão (não modal): o relógio de 64 px, a barra, −15 / +15 / Pular, e a próxima série escrita. A tela de trás continua tocável (Senti algo, ver como fazer).</p>
 <div class="tela"><div class="dobra"></div>
-  <div class="cab"><a class="voltar" href="#">Sair</a><span class="centro">Corpo todo A · 1 de 6</span><span class="dir"><button class="btn perigo compacto">⚠ Senti algo</button></span></div>
+  <div class="cab"><a class="voltar" href="#">Sair</a><span class="centro">Exercício 1 de 6</span><span class="dir"><button class="btn perigo compacto">⚠ Senti algo</button></span></div>
   <div class="conteudo" style="gap:12px">
     <div class="barra-h" style="height:6px"><i style="width:8%"></i></div>
     <div class="linha" style="flex-wrap:nowrap;align-items:flex-start"><span class="mini g">boneco</span><div style="flex:1"><p class="titulo" style="font-size:22px">Agachamento búlgaro com apoio</p><p class="apoio">Meta: 3 × 8–12 (cada lado) · RIR 3–4</p></div></div>
@@ -609,7 +611,7 @@ p.nota{margin:0 0 20px;color:#333;font-size:14px;max-width:70ch}
 
 <div class="quadro"><p class="legenda"><b>Treino: "Senti algo"</b> · folha modal (interrompe): os 7 sinais como linhas de 56 px, a nota da dor em chips, "O app não diagnostica" com selo. Fechar devolve à série. O aviso da regra aparece depois como superfície de aviso na tela.</p>
 <div class="tela"><div class="dobra"></div>
-  <div class="cab"><a class="voltar" href="#">Sair</a><span class="centro">Corpo todo A · 1 de 6</span><span class="dir"><button class="btn perigo compacto press">⚠ Senti algo</button></span></div>
+  <div class="cab"><a class="voltar" href="#">Sair</a><span class="centro">Exercício 1 de 6</span><span class="dir"><button class="btn perigo compacto press">⚠ Senti algo</button></span></div>
   <div class="conteudo"><div class="barra-h" style="height:6px"><i style="width:8%"></i></div><p class="titulo" style="font-size:22px">Agachamento búlgaro com apoio</p></div>
   <div class="escurece"></div>
   <div class="folha-inf" style="top:90px">
@@ -639,7 +641,7 @@ p.nota{margin:0 0 20px;color:#333;font-size:14px;max-width:70ch}
 
 <div class="quadro"><p class="legenda"><b>Guia</b> (/guia/:id) · cabeçalho de tarefa com "Voltar ao treino"; o exercício e a prescrição; o palco sem mudança; os controles em 2 linhas (tocar, início, lento | vista) e os 4 modos em segmentado; as 3 dicas grandes; segurança sempre visível; o resto em recolher; "De onde vem" no fim (pedido ao domínio).</p>
 <div class="tela"><div class="dobra"></div>
-  <div class="cab"><a class="voltar" href="#">‹ Voltar ao treino</a><span class="centro">Corpo todo A · 2 de 6</span><span class="dir"><button class="btn sec icone">‹</button><button class="btn sec icone">›</button></span></div>
+  <div class="cab"><a class="voltar" href="#">‹ Voltar ao treino</a><span class="centro">2 de 6</span><span class="dir"><button class="btn sec icone">‹</button><button class="btn sec icone">›</button></span></div>
   <div class="conteudo" style="gap:12px">
     <h1 class="titulo" style="font-size:22px">Supino reto com halteres</h1>
     <p class="apoio">Semana 1: 3 × 8–12 · RIR 3–4 · descanso 1:45 · <b>Alvo:</b> peito</p>
@@ -669,9 +671,9 @@ p.nota{margin:0 0 20px;color:#333;font-size:14px;max-width:70ch}
     <p class="apoio">Nada vem marcado. Com "pesado demais" em 2 dos últimos 3 treinos, o app sugere uma semana leve. <span class="pil selo">consenso</span></p>
     <p class="pergunta">Para a próxima vez</p>
     <ul class="lista">
-      <li><span class="texto"><b>Agachamento búlgaro</b><small>8 kg × 10 · 8 kg × 10 · 8 kg × 9</small><small><span class="pil forte">Subir</span> próxima: 9 kg · chegou ao topo da faixa <span class="pil selo">consenso</span></small></span></li>
-      <li><span class="texto"><b>Supino reto com halteres</b><small>10 kg × 8 · 10 kg × 8 · 10 kg × 7</small><small><span class="pil ok">Manter</span> ainda dentro da faixa <span class="pil selo">consenso</span></small></span></li>
-      <li><span class="texto"><b>Ponte de glúteo com halter</b><small>12 kg × 15 · 12 kg × 15</small><small><span class="pil forte">Subir</span> próxima: 14 kg <span class="pil selo">consenso</span></small></span></li>
+      <li><span class="texto"><b>Agachamento búlgaro</b><small>8 kg × 10 · 8 kg × 10 · 8 kg × 9</small><small><span class="pil forte">Subir</span> próxima: 9 kg · ‹motivo› <span class="pil selo">selo</span></small></span></li>
+      <li><span class="texto"><b>Supino reto com halteres</b><small>10 kg × 8 · 10 kg × 8 · 10 kg × 7</small><small><span class="pil ok">Manter</span> ‹motivo› <span class="pil selo">selo</span></small></span></li>
+      <li><span class="texto"><b>Ponte de glúteo com halter</b><small>12 kg × 15 · 12 kg × 15</small><small><span class="pil forte">Subir</span> próxima: 14 kg ‹motivo› <span class="pil selo">selo</span></small></span></li>
     </ul>
     <div class="acao-fixa"><button class="btn">Ver a sua semana</button><button class="btn ter">Voltar ao treino</button></div>
   </div>
@@ -689,7 +691,7 @@ p.nota{margin:0 0 20px;color:#333;font-size:14px;max-width:70ch}
   <div class="cab"><span class="marca">treino-mvp</span></div>
   <div class="conteudo">
     <h1 class="titulo">A sua semana</h1>
-    <p class="apoio">02/11 a 08/11, em qualquer local <span class="pil selo">consenso</span></p>
+    <p class="apoio">02/11 a 08/11, em qualquer local <span class="pil selo">selo</span></p>
     <p class="numero">1 <small>de 3 treinos</small></p>
     <div class="pontos"><i class="on"></i><i></i><i></i></div>
     <p class="corpo">1 treino nesta semana. Já conta: um treino por semana mantém o que você ganhou. Se der, o Corpo todo B cabe até domingo.</p>
@@ -699,7 +701,7 @@ p.nota{margin:0 0 20px;color:#333;font-size:14px;max-width:70ch}
     <div class="musc"><span>Quadríceps</span><span class="barra-h"><i style="width:100%"></i></span><b>6 de 6</b></div>
     <div class="musc"><span>Glúteos</span><span class="barra-h"><i style="width:66%"></i></span><b>4 de 6</b></div>
     <div class="musc"><span>Panturrilha</span><span class="barra-h"><i style="width:0"></i></span><b>0 de 4</b></div>
-    <p class="apoio">Conta a série com até 4 repetições de reserva e amplitude completa; a indireta vale meia. <span class="pil selo">moderada</span></p>
+    <p class="apoio">Conta a série com até 4 repetições de reserva e amplitude completa; a série que trabalha o músculo de forma indireta vale meia. <span class="pil selo">consenso</span></p>
     <p class="pergunta">3 semanas com treino nas últimas 4</p>
     <div class="segs"><i class="on"></i><i class="on"></i><i></i><i class="on"></i></div>
     <p class="pergunta">Sua evolução</p>
@@ -756,7 +758,7 @@ p.nota{margin:0 0 20px;color:#333;font-size:14px;max-width:70ch}
   <div class="cab"><a class="voltar" href="#">‹ Meus dados</a></div>
   <div class="conteudo">
     <h1 class="titulo">Meus locais</h1>
-    <p class="apoio">O programa é montado para o principal; nos outros, o treino do dia troca o que não houver e diz o motivo. <span class="pil selo">consenso</span></p>
+    <p class="apoio">O programa é montado para o principal; nos outros, o treino do dia troca cada aparelho que não houver pelo equivalente, e diz o motivo. <span class="pil selo">consenso</span></p>
     <ul class="lista">
       <li><span class="texto"><b>Meu local</b><small>2 equipamentos</small></span><span class="pil forte">principal</span><span class="cheva">›</span></li>
       <li><span class="texto"><b>Academia do bairro</b><small>14 equipamentos</small></span><span class="cheva">›</span></li>

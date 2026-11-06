@@ -84,29 +84,29 @@ async function completarMinimo(page: Page): Promise<{ erros: string[]; toquesPar
   return { erros: [...new Set(errosVistos)], toquesParaCompletar: Math.max(0, toques) };
 }
 
-test('lugar: os 4 atalhos, o que marcam, o que ainda perguntam e quanto custa sair da tela', async ({ page }) => {
-  await ateEquipamento(page);
-  const antes = await alturas(page);
-  await foto(page, '00-vazia');
-  const atalhos: Record<string, unknown> = { telaVazia: antes };
-  for (const nome of ['Academia completa', 'Condomínio com multifuncional', 'Casa com halteres e elásticos', 'Corpo livre']) {
-    await page.reload();
-    await expect(page.getByRole('heading', { name: 'Que equipamento você tem?' })).toBeVisible();
+// Um teste por atalho (cada um num navegador limpo: o inventário salvo pré-marcaria o formulário do seguinte).
+const ATALHOS_NOMES = ['Academia completa', 'Condomínio com multifuncional', 'Casa com halteres e elásticos', 'Corpo livre'];
+for (const nome of ATALHOS_NOMES) {
+  test(`lugar: atalho "${nome}": o que marca, o que ainda pergunta e quanto custa sair da tela`, async ({ page }) => {
+    await ateEquipamento(page);
+    const chave = nome.split(' ')[0]!.toLowerCase();
+    if (chave === 'academia') {
+      resultado.telaVazia = await alturas(page);
+      await foto(page, '00-vazia');
+    }
     await marcarTela(page, 'atalho');
     const t0 = Date.now();
     await page.getByRole('button', { name: nome, exact: true }).click();
     const depois = await alturas(page);
     const asVezes = await grupo(page, /Às vezes tem/).getByRole('checkbox').count().catch(() => 0);
-    const chave = nome.split(' ')[0]!.toLowerCase();
     await foto(page, `01-atalho-${chave}`);
     await coletar(page);
     await marcarTela(page, 'completar');
     const { erros, toquesParaCompletar } = await completarMinimo(page);
     const ms = Date.now() - t0;
-    atalhos[nome] = { ...depois, asVezes, errosAoContinuar: erros, toquesParaCompletar, toquesAteSair: 1 + toquesParaCompletar + 1, tempoRoboMs: ms };
-  }
-  resultado.atalhos = atalhos;
-});
+    resultado[`atalho:${nome}`] = { ...depois, asVezes, errosAoContinuar: erros, toquesParaCompletar, toquesAteSair: 1 + toquesParaCompletar + 1, tempoRoboMs: ms };
+  });
+}
 
 test('lista: os cartões, as categorias e o custo de marcar a Carla item a item', async ({ page }) => {
   await ateEquipamento(page);

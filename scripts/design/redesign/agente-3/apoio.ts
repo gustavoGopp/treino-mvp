@@ -38,9 +38,10 @@ export async function comecar(page: Page, dia?: string, local?: string) {
   await expect(page.getByRole('heading', { name: 'Seu treino', exact: true })).toBeVisible();
   const abas = page.getByRole('tab');
   if (dia) await page.getByRole('tab', { name: dia, exact: true }).click();
-  const nomeDia = dia ?? (await abas.nth(0).innerText()).trim();
+  void abas;
   if (local) await page.getByRole('button', { name: local, exact: true }).click();
-  await page.getByRole('button', { name: new RegExp(`^Começar o treino ${nomeDia}`) }).click();
+  // sem dia dado: o treino que o app sugere hoje (o próximo da rotação), seja qual for a aba
+  await page.getByRole('button', { name: new RegExp(`^Começar o treino ${dia ?? ''}`) }).first().click();
   await expect(page).toHaveURL(/\/treino$/);
   await page.evaluate(() => document.fonts.ready);
 }
@@ -90,6 +91,7 @@ export const ALVOS: [string, string][] = [
   ['aquecimento', '.registro .fase:not(.calibracao)'],
   ['calibracao-linha', '.registro .fase.calibracao'],
   ['carga', '.registro > .linha-registro:first-of-type .stepper, .registro > label.campo select'],
+  ['carga-linha', '.registro .linha-registro'],
   ['carga-menos', '.registro > .linha-registro:first-of-type .stepper button:first-child'],
   ['carga-mais', '.registro > .linha-registro:first-of-type .stepper button:last-child'],
   ['reps', '.stepper[aria-labelledby^="reps-"]'],

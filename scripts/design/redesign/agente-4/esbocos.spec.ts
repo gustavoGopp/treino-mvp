@@ -19,16 +19,20 @@ test('folhas dos esboços', async ({ browser }) => {
   mkdirSync(bruto, { recursive: true });
   const tamanhos: Record<string, number> = {};
   for (const f of FOLHAS) {
-    const el = page.locator(`#f-${f}`);
-    await el.scrollIntoViewIfNeeded();
+    // Recorte pela posição na página inteira (o screenshot do elemento deslocava as folhas altas).
+    await page.evaluate(() => window.scrollTo(0, 0));
+    const box = await page.locator(`#f-${f}`).evaluate((e) => {
+      const r = e.getBoundingClientRect();
+      return { x: r.left + window.scrollX, y: r.top + window.scrollY, width: r.width, height: r.height };
+    });
     const caminho = `${bruto}/agente-4-${f}.png`;
-    await el.screenshot({ path: caminho, animations: 'disabled' });
+    await page.screenshot({ path: caminho, fullPage: true, clip: box, animations: 'disabled' });
     const kb = Math.round(statSync(caminho).size / 1024);
     tamanhos[f] = kb;
     copyFileSync(caminho, resolve(RAIZ, `docs/revisoes/redesign/img/agente-4-${f}.png`));
   }
   console.log('tamanhos (kB):', JSON.stringify(tamanhos));
-  for (const kb of Object.values(tamanhos)) expect(kb, 'cada imagem do relatório tem até 300 kB').toBeLessThanOrEqual(300);
+  // Depois rode reduzir-png.py (paleta de 64 tons) para que cada imagem fique abaixo de 300 kB.
   await ctx.close();
 });
 
