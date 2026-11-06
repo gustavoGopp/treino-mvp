@@ -4,12 +4,15 @@
 // estado da persona Ana foi gravado antes (assim /programa, /semana e /dados abrem com dados).
 // Precisa do app servido em 4173 e de reports/design/redesign/estados/ (estados.mjs).
 // Uso: node scripts/design/redesign/base.mjs   → docs/revisoes/redesign/antes/base.json
+//      FASE=lote-1 node scripts/design/redesign/base.mjs   → docs/revisoes/redesign/lote-1/base.json (a cada lote da Fase 5;
+//      a letra passa a ser medida no próprio app, em dist/fonts)
 import { execFileSync } from 'node:child_process';
 import { gzipSync } from 'node:zlib';
 import { mkdirSync, readdirSync, readFileSync, rmSync, statSync, writeFileSync } from 'node:fs';
 import { chromium } from '@playwright/test';
 
-const saida = { medidoEm: new Date().toISOString(), bundle: [], letra: {}, lighthouse: [] };
+const FASE = process.env.FASE ?? 'antes';
+const saida = { medidoEm: new Date().toISOString(), fase: FASE, bundle: [], letra: {}, lighthouse: [] };
 
 // 1. bundle
 for (const f of readdirSync('dist/assets')) {
@@ -18,21 +21,27 @@ for (const f of readdirSync('dist/assets')) {
 }
 for (const f of ['index.html', 'sw.js', 'manifest.webmanifest']) saida.bundle.push({ arquivo: f, kB: +(statSync(`dist/${f}`).size / 1024).toFixed(1) });
 
-// 2. a letra: o que o Google Fonts serve a um Chrome no Android (CSS + arquivos woff2)
-const UA = 'Mozilla/5.0 (Linux; Android 14; Pixel 7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0 Mobile Safari/537.36';
-const cssUrl = 'https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Next:wght@400;600;700;800&display=swap';
-try {
-  const css = await (await fetch(cssUrl, { headers: { 'user-agent': UA } })).text();
-  const urls = [...new Set([...css.matchAll(/url\((https:[^)]+)\)/g)].map((m) => m[1]))];
-  const arquivos = [];
-  for (const u of urls) {
-    const r = await fetch(u, { headers: { 'user-agent': UA } });
-    const b = Buffer.from(await r.arrayBuffer());
-    arquivos.push({ url: u.replace('https://fonts.gstatic.com/s/atkinsonhyperlegiblenext/', '…/'), kB: +(b.length / 1024).toFixed(1) });
+// 2. a letra: no app de hoje, o que o Google Fonts serve a um Chrome no Android (CSS + arquivos woff2); depois do
+// lote 1, o arquivo servido pelo próprio app
+if (FASE !== 'antes') {
+  const arquivos = readdirSync('dist/fonts').filter((f) => f.endsWith('.woff2')).map((f) => ({ url: `/fonts/${f}`, kB: +(statSync(`dist/fonts/${f}`).size / 1024).toFixed(1) }));
+  saida.letra = { pedidosExternos: 0, arquivos, totalKB: +arquivos.reduce((s, a) => s + a.kB, 0).toFixed(1), nota: 'servida pelo próprio app (variável, latin)' };
+} else {
+  const UA = 'Mozilla/5.0 (Linux; Android 14; Pixel 7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0 Mobile Safari/537.36';
+  const cssUrl = 'https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Next:wght@400;600;700;800&display=swap';
+  try {
+    const css = await (await fetch(cssUrl, { headers: { 'user-agent': UA } })).text();
+    const urls = [...new Set([...css.matchAll(/url\((https:[^)]+)\)/g)].map((m) => m[1]))];
+    const arquivos = [];
+    for (const u of urls) {
+      const r = await fetch(u, { headers: { 'user-agent': UA } });
+      const b = Buffer.from(await r.arrayBuffer());
+      arquivos.push({ url: u.replace('https://fonts.gstatic.com/s/atkinsonhyperlegiblenext/', '…/'), kB: +(b.length / 1024).toFixed(1) });
+    }
+    saida.letra = { cssKB: +(css.length / 1024).toFixed(1), pedidosExternos: 1 + urls.length, arquivos, totalKB: +arquivos.reduce((s, a) => s + a.kB, 0).toFixed(1), nota: 'variável (um arquivo cobre os 4 pesos); a 2ª URL costuma ser o subconjunto latin-ext' };
+  } catch (e) {
+    saida.letra = { erro: String(e) };
   }
-  saida.letra = { cssKB: +(css.length / 1024).toFixed(1), pedidosExternos: 1 + urls.length, arquivos, totalKB: +arquivos.reduce((s, a) => s + a.kB, 0).toFixed(1), nota: 'variável (um arquivo cobre os 4 pesos); a 2ª URL costuma ser o subconjunto latin-ext' };
-} catch (e) {
-  saida.letra = { erro: String(e) };
 }
 
 // 3. Lighthouse por rota. O estado da Ana é gravado num perfil de navegador em disco (Playwright, mesmo Chromium);
@@ -81,12 +90,13 @@ for (const rota of rotas) {
       speedIndexMs: Math.round(a['speed-index'].numericValue),
       pedidos: a['network-requests']?.details?.items?.length,
       transferidoKB: +((a['total-byte-weight']?.numericValue ?? 0) / 1024).toFixed(0),
+      pedidosExternos: (a['network-requests']?.details?.items ?? []).filter((i) => /^https?:/.test(i.url) && !i.url.startsWith('http://localhost:4173')).length,
       falhasAcessibilidade: r.categories.accessibility.auditRefs.filter((ref) => a[ref.id]?.score === 0).map((ref) => ref.id),
     });
   } catch (e) {
     saida.lighthouse.push({ rota, erro: String(e).slice(0, 300) });
   }
 }
-mkdirSync('docs/revisoes/redesign/antes', { recursive: true });
-writeFileSync('docs/revisoes/redesign/antes/base.json', JSON.stringify(saida, null, 1) + '\n');
+mkdirSync(`docs/revisoes/redesign/${FASE}`, { recursive: true });
+writeFileSync(`docs/revisoes/redesign/${FASE}/base.json`, JSON.stringify(saida, null, 1) + '\n');
 console.log(JSON.stringify({ bundle: saida.bundle, letra: saida.letra, lighthouse: saida.lighthouse.map((l) => ({ rota: l.rota, desempenho: l.desempenho, acessibilidade: l.acessibilidade, lcpMs: l.lcpMs, tbtMs: l.tbtMs, erro: l.erro })) }, null, 1));

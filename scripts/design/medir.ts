@@ -65,7 +65,15 @@ export async function medir(page: Page, tela: string): Promise<Medida> {
       .filter((e) => !(e.tagName === 'A' && e.closest('p, li') && getComputedStyle(e).display === 'inline'))
       .map((e) => {
         const r = e.getBoundingClientRect();
-        return { texto: (e.innerText || e.getAttribute('aria-label') || e.tagName).trim().replace(/\s+/g, ' ').slice(0, 40), largura: Math.round(r.width), altura: Math.round(r.height) };
+        // a área ampliada por fora com um ::after posicionado (o selo de evidência), como em tests/e2e/toque.ts
+        let [largura, altura] = [r.width, r.height];
+        const d = getComputedStyle(e, '::after');
+        if (d.content !== 'none' && d.position === 'absolute' && getComputedStyle(e).position !== 'static') {
+          const px = (v: string) => parseFloat(v) || 0;
+          largura = Math.max(largura, r.width - px(d.left) - px(d.right));
+          altura = Math.max(altura, r.height - px(d.top) - px(d.bottom));
+        }
+        return { texto: (e.innerText || e.getAttribute('aria-label') || e.tagName).trim().replace(/\s+/g, ' ').slice(0, 40), largura: Math.round(largura), altura: Math.round(altura) };
       })
       .filter((x) => x.altura < 44 || x.largura < 44);
 
