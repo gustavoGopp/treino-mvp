@@ -1362,15 +1362,17 @@
   },
   {
     "id": "divisao.sem-puxar",
-    "regra": "Sem nenhum exercício de puxar possível, a divisão recomendada passa a ser a de corpo todo do mesmo número de dias, quando existe; a que a pessoa escolheu é mantida, com um aviso de que os dias de puxar ficam com outros músculos. Com o mesmo volume, as divisões rendem o mesmo",
+    "regra": "Sem nenhum exercício de puxar possível, a divisão recomendada passa a ser a de corpo todo do mesmo número de dias, quando existe; com 6 dias, que não têm corpo todo entre as opções, vale o Corpo todo 6x, que só aparece nesse caso (decisão do Gustavo em 06/11/2026, sessão de qualidade dos treinos: antes, o Empurrar/Puxar/Pernas deixava dois dias de \"Puxar\" com 2 exercícios). A que a pessoa escolheu é mantida, com um aviso de que os dias de puxar ficam com outros músculos. Com o mesmo volume, as divisões rendem o mesmo",
     "valores": {
-      "iniciante": "corpo todo primeiro",
-      "intermediario": "corpo todo primeiro",
-      "avancado": "corpo todo primeiro"
+      "iniciante": "corpo todo primeiro; 6 dias: Corpo todo 6x",
+      "intermediario": "corpo todo primeiro; 6 dias: Corpo todo 6x",
+      "avancado": "corpo todo primeiro; 6 dias: Corpo todo 6x"
     },
     "selo": "consenso",
     "fontes": [
-      "consenso-projeto"
+      "consenso-projeto",
+      "ramoscampo2024",
+      "pelland2026"
     ]
   },
   {
@@ -1588,7 +1590,7 @@
   },
   {
     "id": "tempo.exercicios-por-sessao",
-    "regra": "Exercícios por treino conforme os minutos, pelo modelo de tempo do app (~3 séries cada); entre os pontos, proporcional. Quando não cabem todas as vagas do dia: primeiro as vagas-base, depois o complemento que é o único exercício direto de um músculo com meta (ex.: ombro posterior), depois os complementos dos grupos prioritários e, por fim, os outros; um complemento não entra se, já no mínimo de séries, passar do teto semanal de algum músculo (`volume.semanal.minimo-eficaz`, `volume.semanal.teto-padrao`; auditoria de 04/11/2026)",
+    "regra": "Exercícios por treino conforme os minutos, pelo modelo de tempo do app (~3 séries cada); entre os pontos, proporcional. Quando não cabem todas as vagas do dia: primeiro as vagas-base, depois o complemento que é o único exercício direto de um músculo com meta (ex.: ombro posterior), depois os complementos dos grupos prioritários e, por fim, os outros; nenhuma vaga entra se, já no mínimo de séries, passar do teto semanal de algum músculo (`volume.semanal.minimo-eficaz`, `volume.semanal.teto-padrao`; auditoria de 04/11/2026; desde 06/11/2026 vale também para as vagas-base, por causa do Corpo todo 6x)",
     "valores": {
       "iniciante": "30 min: 4; 45: 6; 60: 8; 75: 10; 90: 12",
       "intermediario": "30 min: 4; 45: 6; 60: 8; 75: 10; 90: 12",

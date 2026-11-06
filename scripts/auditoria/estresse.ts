@@ -6,7 +6,7 @@
 import { writeFileSync, mkdirSync } from 'node:fs';
 import { BIBLIOTECA, POR_ID, type Articulacao, type Musculo } from '../../src/domain/biblioteca';
 import { SEM_EXERCICIO, ehAvisoDeMeta, musculosDoAviso, contextoDeSelecao, gerarPrograma, MUSCULOS_COM_META, NOME_MUSCULO, type Programa } from '../../src/domain/gerador';
-import { DIVISOES } from '../../src/domain/gerador/divisoes';
+import { DIVISAO_IDS, DIVISOES } from '../../src/domain/gerador/divisoes';
 import { FUNCAO } from '../../src/domain/gerador/funcoes';
 import { diaNoLocal } from '../../src/domain/locais';
 import { NIVEIS, NIVEL_COMPLEXIDADE_MAX, VOLUME } from '../../src/domain/regras';
@@ -353,7 +353,7 @@ const L: string[] = [];
 const linha = (...xs: (string | number)[]) => L.push(`| ${xs.join(' | ')} |`);
 L.push('# Teste de estresse do gerador (auditoria do treino)', '');
 L.push(`> Gerado por \`npm run auditoria:estresse\`${amostra ? ` com \`--amostra ${amostra}\`` : ''}. Dados fictícios (\`scripts/auditoria/cenarios.ts\`). Não editar à mão.`, '');
-L.push(`**${programas.toLocaleString('pt-BR')} programas** (${CENARIOS.length} cenários × 3 níveis × 12 divisões de 2 a 6 dias × 8 durações de 20 a 150 min × 5 prioridades × 8 situações de dor${amostra ? `, 1 a cada ${amostra}` : ''}); ${bloqueados} bloqueados.`, '');
+L.push(`**${programas.toLocaleString('pt-BR')} programas** (${CENARIOS.length} cenários × 3 níveis × ${DIVISAO_IDS.length} divisões de 2 a 6 dias × 8 durações de 20 a 150 min × 5 prioridades × 8 situações de dor${amostra ? `, 1 a cada ${amostra}` : ''}); ${bloqueados} bloqueados.`, '');
 L.push('## Problemas encontrados (contagem de ocorrências)', '');
 linha('problema', 'ocorrências');
 linha('---', '---:');

@@ -301,7 +301,9 @@ export function gerarPrograma(perfil: Perfil, inventarioOriginal: Inventario): R
       const achado = ctx.escolher(funcao, x.res.nivel, (id) => itens.some((i) => i.ex.id === id), usos);
       if (!achado) continue;
       const { ex: escolhido, nivelFuncao } = achado;
-      if ((x.vaga.complemento || x.vaga.prioridade) && !cabeNoTetoSemanal(escolhido)) continue;
+      // Toda vaga confere o teto semanal já no mínimo de séries (antes, só os complementos e as vagas de prioridade:
+      // com os seis dias do Corpo todo 6x, as vagas-base sozinhas levavam o glúteo a 23; sessão de qualidade, 06/11/2026).
+      if (!cabeNoTetoSemanal(escolhido)) continue;
       if (nivelFuncao > 0 && funcao.semNivel1) nivelAbaixo.add(funcao.semNivel1);
       usos.set(escolhido.id, (usos.get(escolhido.id) ?? 0) + 1);
       for (const [m, n] of Object.entries(volumePorMusculo([{ ex: escolhido, series: VOLUME.seriesPorExercicio.min }])) as [Musculo, number][]) vMinimo[m] = (vMinimo[m] ?? 0) + n;

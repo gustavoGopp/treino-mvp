@@ -410,3 +410,13 @@ O Gustavo aprovou as recomendações das decisões 1 a 7 em 06/11/2026. Elas ent
 | Depois | 12 | 6 | 3 | 12 | 10 | 9 | 10 | 9,5 | 8 | 4 |
 
 As costas, que ele priorizou, saem de 8 (abaixo do mínimo de 10 do intermediário) para 12, o alvo; o aviso de "abaixo da meta" das costas some. Bruno, Ana, Diego, Carla e Elisa saem idênticos.
+
+### F.2 Decisão 2: o Corpo todo 6x para quem tem 6 dias e não tem como puxar
+
+**Regra.** `divisao.sem-puxar` revista: com 6 dias, que não têm corpo todo entre as opções, vale o Corpo todo 6x, que só aparece nesse caso; a escolha explícita da pessoa continua mantida, com o aviso. Fontes: `consenso-projeto`, `ramoscampo2024`, `pelland2026` (com o mesmo volume, a divisão e a frequência não mudam a hipertrofia).
+
+**Código.** `src/domain/gerador/divisoes.ts` ganha o modelo `ct-6x` (os seis dias de corpo todo que já existem: A, B, C, A de 2 dias, B de 2 dias e o de superior/inferior + corpo todo) e o recuo `CORPO_TODO_SEM_PUXAR`; o modelo não entra em `OPCOES_POR_DIAS`, então a tela da rotina não o oferece. Ao testar, o modelo expôs um furo antigo: o teto semanal de 20 séries só era conferido nos complementos e nas vagas de prioridade, e com seis dias de corpo todo as vagas-base sozinhas levavam o glúteo a 23. Agora toda vaga confere o teto já no mínimo de séries; nas divisões antigas o teto nunca era atingido no mínimo, e nenhum programa delas muda (a regra `tempo.exercicios-por-sessao` registra a mudança).
+
+**Testes.** Sem nada e 6 dias, vale o Corpo todo 6x, com o porquê, e nenhum dia fica com menos de 4 exercícios em 60 min (antes, dias de "Puxar" com 2); quem escolheu o Empurrar/Puxar/Pernas mantém a escolha e recebe o aviso; o Corpo todo 6x nunca aparece nas opções da tela.
+
+**Personas.** Nenhuma muda: nenhuma treina 6 dias sem ter como puxar.

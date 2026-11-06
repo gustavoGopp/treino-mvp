@@ -2,7 +2,7 @@ import { describe, expect, it } from 'vitest';
 import { BIBLIOTECA, POR_ID } from '../../src/domain/biblioteca';
 import { musculosDoAviso, ehAvisoDeMeta, ALTERNATIVAS_A_MOSTRA, contextoDeSelecao, equipamentoDe, GRUPOS, cortarTempo, gerarPrograma, minutos, prescricaoDaSemana, seriesDeVolume, volumePorMusculo, type DiaPrograma, type ExercicioPrescrito, type Grupo, type Perfil, type Programa } from '../../src/domain/gerador';
 import type { Articulacao, Musculo } from '../../src/domain/biblioteca';
-import { DIVISOES, DIVISAO_IDS } from '../../src/domain/gerador/divisoes';
+import { DIVISOES, DIVISAO_IDS, OPCOES_POR_DIAS } from '../../src/domain/gerador/divisoes';
 import { FUNCAO } from '../../src/domain/gerador/funcoes';
 import { DESCANSO, REGRAS, VOLUME, NIVEIS, OBRIGATORIO_CURTO, exerciciosPorSessao } from '../../src/domain/regras';
 import { capacidades, type Inventario } from '../../src/domain/taxonomia/equipamentos';
@@ -256,7 +256,8 @@ describe(`propriedades (${variacoes.length} combinações)`, { timeout: 30_000 }
     for (const v of variacoes.filter((_, i) => i % 5 === 0)) {
       const p = ok(v.perfil, v.inv);
       expect(p.dias).toHaveLength(v.perfil.diasSemana);
-      if (!DIVISOES[v.perfil.divisao!].classica) expect(p.divisaoId, v.nome).toBe(v.perfil.divisao);
+      // O Corpo todo 6x só vale como recuo de divisao.sem-puxar: escolhido sem estar entre as opções, vale a recomendada.
+      if (!DIVISOES[v.perfil.divisao!].classica && OPCOES_POR_DIAS[v.perfil.diasSemana].includes(v.perfil.divisao!)) expect(p.divisaoId, v.nome).toBe(v.perfil.divisao);
     }
   });
 });
@@ -640,8 +641,18 @@ describe('a vaga sem exercício possível (selecao.vaga-sem-equipamento; tempo.s
     for (const d of p.dias.filter((x) => /Superior/.test(x.nome))) expect(d.exercicios.map((x) => x.exId)).toEqual(expect.arrayContaining(['barra-fixa', 'barra-fixa-supinada']));
     expect(p.volumeSemanal.costas).toBeGreaterThanOrEqual(VOLUME.alvo.intermediario);
   });
-  it('tempo.sobra pelo dia típico: sem nada e 6 dias de 60 min, o aviso aparece (antes, o dia mais longo, de ~59 min, o escondia)', () => {
+  it('divisao.sem-puxar: sem nada e 6 dias, vale o Corpo todo 6x, e nenhum dia fica com menos de 4 exercícios em 60 min', () => {
     const p = ok(semNada({ diasSemana: 6 }), {});
+    expect(p.divisaoId).toBe('ct-6x');
+    expect(p.porque.some((q) => q.regraId === 'divisao.sem-puxar')).toBe(true);
+    expect(Math.min(...p.dias.map((d) => d.exercicios.length))).toBeGreaterThanOrEqual(4);
+    // Quem escolheu o Empurrar/Puxar/Pernas mantém a escolha, com o aviso.
+    const escolhida = ok(semNada({ diasSemana: 6, divisao: 'ppl-2x' }), {});
+    expect(escolhida.divisaoId).toBe('ppl-2x');
+    expect(escolhida.avisos.some((a) => a.regraId === 'divisao.sem-puxar')).toBe(true);
+  });
+  it('tempo.sobra pelo dia típico: sem nada, 6 dias de 60 min no Empurrar/Puxar/Pernas, o aviso aparece (antes, o dia mais longo o escondia)', () => {
+    const p = ok(semNada({ diasSemana: 6, divisao: 'ppl-2x' }), {});
     const tipico = [...p.dias.map((d) => d.minutosEstimados)].sort((a, b) => a - b)[Math.floor((p.dias.length - 1) / 2)]!;
     expect(tipico).toBeLessThan(0.7 * 60);
     expect(p.avisos.some((a) => a.regraId === 'tempo.sobra')).toBe(true);

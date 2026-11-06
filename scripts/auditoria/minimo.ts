@@ -343,7 +343,7 @@ const nomeClasse = (id: string) => {
 L.push('# Teste de estresse do cenário de equipamento mínimo', '');
 L.push(`> Gerado por \`npm run auditoria:minimo\`${amostra ? ` com \`--amostra ${amostra}\`` : ''}. Dados fictícios (\`scripts/auditoria/minimo-cenarios.ts\`). Não editar à mão.`, '');
 L.push(
-  `**${programas.toLocaleString('pt-BR')} programas**: ${CENARIOS_MIN.length} cenários (o inventário vazio, os ${CENARIOS_MIN.filter((c) => c.tipo === 'item').length} itens sozinhos e ${CENARIOS_MIN.filter((c) => c.tipo === 'par').length} pares de casa), que dão **${REPRESENTANTES.length} programas diferentes** (cenários com as mesmas capacidades geram o mesmo programa e rodam uma vez), × 3 níveis × 12 divisões de 2 a 6 dias × 8 durações de 20 a 150 min × 5 prioridades × 8 situações de dor${amostra ? `, 1 a cada ${amostra}` : ''}.`,
+  `**${programas.toLocaleString('pt-BR')} programas**: ${CENARIOS_MIN.length} cenários (o inventário vazio, os ${CENARIOS_MIN.filter((c) => c.tipo === 'item').length} itens sozinhos e ${CENARIOS_MIN.filter((c) => c.tipo === 'par').length} pares de casa), que dão **${REPRESENTANTES.length} programas diferentes** (cenários com as mesmas capacidades geram o mesmo programa e rodam uma vez), × 3 níveis × ${DIVISAO_IDS.length} divisões de 2 a 6 dias × 8 durações de 20 a 150 min × 5 prioridades × 8 situações de dor${amostra ? `, 1 a cada ${amostra}` : ''}.`,
   '',
 );
 L.push('## Classes de cenários', '', 'Os itens que, sozinhos, não abrem nenhum exercício a mais que o inventário vazio ficam na classe do vazio.', '');
