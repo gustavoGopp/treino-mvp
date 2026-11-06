@@ -940,3 +940,37 @@ As listas exatas ficam em `tests/unit/metas-r0.test.ts`, para o R0c zerar.
 > O detalhe que mais me ensinou: um rótulo de texto em cima do corpo atrapalha mais do que ajuda. A regra nova empurra o rótulo para o lugar livre mais perto, com uma linha fina até o ponto, e mantém o deslocamento fixo no ciclo inteiro, para ele não pular de lado quando a animação roda.
 >
 > Com isso, saíram as doze animações do elástico que esperavam na fila, cada uma com a folha de contatos, a medida em centímetros e a tabela "o que a fonte pede × o que o boneco faz". O elástico afina quando estica: dá para ver onde a tensão está.
+
+---
+
+## Qualidade dos treinos gerados: 911 mil programas, 9 pesquisas e o treino de 3 exercícios que virou 5 (05 e 06/11/2026)
+
+**Por quê.** O Gustavo marcou opções aleatórias no cadastro, escolheu 60 minutos e nenhum equipamento, e recebeu um treino de 3 exercícios. Pelo que ele conhece, um treino tem 5 a 7. A pergunta valia para o app inteiro: o gerador está certo, quando está errado e o que mudar.
+
+**O que foi feito.** Um estresse novo (`npm run auditoria:qualidade`): 911.625 programas, com os 55 cenários de equipamento, os 3 níveis, 2 a 6 dias, 30 a 90 min, 13 combinações de prioridade, dor leve e forte em cada região e exercício evitado, em 4 processos com junção determinística. `npm run auditoria:verificar` passou a conferir por hash que a auditoria inteira sai idêntica em duas rodadas. Nove pesquisas por grupamento, uma das combinações por dia e uma da prioridade, com 94 fontes novas conferidas no PubMed ou no Crossref (`docs/pesquisa-v2/13` a `15`). Cada opção para a vaga sem exercício virou um protótipo descartável medido na grade inteira, nas personas e no caso dele; ele aprovou as recomendações das decisões 1 a 7, que entraram uma por vez (`docs/revisoes/qualidade-treinos.md`, Parte F).
+
+**O que se descobriu.** O caso dos 3 exercícios tinha duas origens: um exercício evitado num cenário sem opção (a flexão, o único empurrar sem equipamento) e 6 dias sem como puxar (dois dias de "Puxar" com 2 exercícios). "5 a 7 exercícios" é prática de treinadores; os ensaios usam de 2 a 8, e o ACSM de 2026 conta séries por músculo por semana. Um exercício só, com o volume certo, cresce o músculo inteiro; o 2º serve à região. A prioridade era "foco pequeno, mantendo os outros": 16% das séries com um grupo de foco.
+
+**Medido** (grade de qualidade, antes → depois):
+
+| | Antes | Depois |
+|---|---:|---:|
+| Dias com até 3 exercícios, 45 min ou mais (sem dor nem exercício evitado) | 16,5% | 6,6% |
+| Idem, sem equipamento | 20% | 0% |
+| Programas que usam menos de 70% dos minutos | 35% | 21,8% |
+| Mediana do uso dos minutos com 60 min | 75% | 95% |
+| Abdômen a zero na semana | 11,6% | 5,9% |
+| Músculo acima de 20 séries; dia acima do tempo sem aviso | 0; 0 | 0; 0 |
+
+**Antes × depois nas personas:** o Fábio (só barra fixa) ganha as duas pegadas da barra no mesmo dia (costas de 8 para 12 séries), o búlgaro e o nórdico de 6 a 10; a Ana ganha o supino no lugar do crucifixo no dia B e o abdominal protegido, que custou 2 séries do búlgaro; o Diego chega ao piso do ombro de trás; a Ana e a Carla recebem o aviso de focos que competem. O caso do Gustavo: 4, 4 e 6 exercícios (26 a 45 min) viram 5, 5 e 6 (51 a 58 min).
+
+**Também:** `npm run check` com 670 testes (eram 647); 48 testes de ponta a ponta; as linhas de base visuais regravadas só nas duas puxadas que ganharam o ombro de trás; 7 regras novas e 14 revistas (141 no total).
+
+**Fica para depois** (`backlog.md`, "Da qualidade dos treinos gerados"): a prioridade puxar frequência; o custo da proteção do abdômen em treinos de 30 min (40% com um dia acima do tempo, eram 26%); a repetição no Corpo todo 6x; a panturrilha no degrau; mais séries para todos quando sobra tempo, também na academia.
+
+**Rascunho de post para o LinkedIn**
+> Um treino de 60 minutos com 3 exercícios. Foi o que o meu app de treino gerou quando eu marquei "sem equipamento" no cadastro. Em vez de ajustar o caso, rodei o gerador 911 mil vezes, com todas as combinações de equipamento, dias, minutos, foco e dor, e medi exercício por dia, tempo usado e séries por músculo.
+>
+> O que eu aprendi: "um treino tem 5 a 7 exercícios" não vem de estudo. Os ensaios de hipertrofia usam de 2 a 8, e o que conta é o número de séries por músculo por semana. O app acertava nessa conta e errava na experiência: encurtava o treino em vez de usar o tempo que eu tinha dado.
+>
+> A mudança foi pequena e medida: quando falta o equipamento para um exercício, entra outro movimento do mesmo músculo, e o tempo que sobra vira série. Os dias com até 3 exercícios caíram de 20% para zero no treino sem equipamento. E ficou registrado o que piorou, para eu decidir depois.
