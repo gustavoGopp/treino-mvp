@@ -7,14 +7,15 @@
 <link rel="stylesheet" href="boneco.css">
 <style>
 /* Protótipo do redesign (docs/revisoes/redesign/proposta.md). Uma coluna de celular (até 412 px), a ação embaixo,
-   o selo de evidência tocável. Tokens: a direção Ameixa (recomendada pelo agente 5) e, para comparar, Giz e Petróleo.
+   o selo de evidência tocável. Tokens: a direção Giz e grafite (a preferida do Gustavo, 06/11) e, para comparar,
+   Ameixa e Petróleo.
    As cores do palco do Boneco vêm de boneco.css e não mudam. */
 :root{
-  --fundo:#F9F2F0; --superficie:#FFFFFF; --superficie-2:#EFE5E4; --linha:#DDD6D4;
+  --fundo:#F5F3EF; --superficie:#FFFFFF; --superficie-2:#EAE7E2; --linha:#D9D7D3;
   --texto:#171B20; --texto-2:#464B51; --borda:#868A92;
-  --acao:#722987; --sobre-acao:#FFFFFF; --acao-suave:#F5E4FB; --foco:#722987;
+  --acao:#3F3AA8; --sobre-acao:#FFFFFF; --acao-suave:#E6EAFE; --foco:#3F3AA8;
   --feito:#0F6B3E; --feito-suave:#D9F5E1; --atencao:#7B5612; --atencao-suave:#FCEAD0;
-  --alerta:#AF283D; --alerta-suave:#FEE6E6; --descanso:#F1E2F5; --descanso-texto:#171B20;
+  --alerta:#AF283D; --alerta-suave:#FEE6E6; --descanso:#E3E6FC; --descanso-texto:#171B20;
   --veu:rgba(23,27,32,.48);
   --fonte:"Atkinson Hyperlegible Next","Atkinson Hyperlegible",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
   --t-relogio:88px; --t-numero:44px; --t-titulo:24px; --t-pergunta:20px; --t-corpo:17px; --t-apoio:15px; --t-rotulo:13px;
@@ -25,25 +26,25 @@
   --largura:412px;
 }
 @media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
-  --fundo:#191211; --superficie:#251D1C; --superficie-2:#312928; --linha:#413837;
-  --texto:#F6ECEA; --texto-2:#C0B6B4; --borda:#736A68;
-  --acao:#DFA1F3; --sobre-acao:#392240; --acao-suave:#3A2341; --foco:#DFA1F3;
-  --feito:#65AE80; --feito-suave:#12301E; --atencao:#C59749; --atencao-suave:#362508;
-  --alerta:#E98084; --alerta-suave:#3E1E1F; --descanso:#2E2132; --descanso-texto:#F6ECEA; --veu:rgba(0,0,0,.6);
+  --fundo:#151410; --superficie:#211F1C; --superficie-2:#2D2B27; --linha:#3C3A36;
+  --texto:#F1EEE9; --texto-2:#BBB8B0; --borda:#6F6C64;
+  --acao:#A9B3FF; --sobre-acao:#25284A; --acao-suave:#272A4B; --foco:#A9B3FF;
+  --feito:#65AE80; --feito-suave:#12301E; --atencao:#C6974A; --atencao-suave:#362508;
+  --alerta:#EA8085; --alerta-suave:#3E1E1F; --descanso:#222537; --descanso-texto:#F1EEE9; --veu:rgba(0,0,0,.6);
   color-scheme:dark;
 }}
 :root[data-theme="dark"]{
-  --fundo:#191211; --superficie:#251D1C; --superficie-2:#312928; --linha:#413837;
-  --texto:#F6ECEA; --texto-2:#C0B6B4; --borda:#736A68;
-  --acao:#DFA1F3; --sobre-acao:#392240; --acao-suave:#3A2341; --foco:#DFA1F3;
-  --feito:#65AE80; --feito-suave:#12301E; --atencao:#C59749; --atencao-suave:#362508;
-  --alerta:#E98084; --alerta-suave:#3E1E1F; --descanso:#2E2132; --descanso-texto:#F6ECEA; --veu:rgba(0,0,0,.6);
+  --fundo:#151410; --superficie:#211F1C; --superficie-2:#2D2B27; --linha:#3C3A36;
+  --texto:#F1EEE9; --texto-2:#BBB8B0; --borda:#6F6C64;
+  --acao:#A9B3FF; --sobre-acao:#25284A; --acao-suave:#272A4B; --foco:#A9B3FF;
+  --feito:#65AE80; --feito-suave:#12301E; --atencao:#C6974A; --atencao-suave:#362508;
+  --alerta:#EA8085; --alerta-suave:#3E1E1F; --descanso:#222537; --descanso-texto:#F1EEE9; --veu:rgba(0,0,0,.6);
   color-scheme:dark;
 }
-/* Direção Giz e grafite */
-:root[data-direcao="giz"]{--fundo:#F5F3EF; --superficie:#FFFFFF; --superficie-2:#EAE7E2; --linha:#D9D7D3; --texto:#171B20; --texto-2:#464B51; --borda:#868A92; --acao:#3F3AA8; --sobre-acao:#FFFFFF; --acao-suave:#E6EAFE; --foco:#3F3AA8; --descanso:#E3E6FC}
-@media (prefers-color-scheme: dark){:root[data-direcao="giz"]:not([data-theme="light"]){--fundo:#151410; --superficie:#211F1C; --superficie-2:#2D2B27; --linha:#3C3A36; --texto:#F1EEE9; --texto-2:#BBB8B0; --borda:#6F6C64; --acao:#A9B3FF; --sobre-acao:#25284A; --acao-suave:#272A4B; --foco:#A9B3FF; --descanso:#222537; --descanso-texto:#F1EEE9}}
-:root[data-direcao="giz"][data-theme="dark"]{--fundo:#151410; --superficie:#211F1C; --superficie-2:#2D2B27; --linha:#3C3A36; --texto:#F1EEE9; --texto-2:#BBB8B0; --borda:#6F6C64; --acao:#A9B3FF; --sobre-acao:#25284A; --acao-suave:#272A4B; --foco:#A9B3FF; --descanso:#222537; --descanso-texto:#F1EEE9}
+/* Direção Ameixa (a recomendada pelo agente 5) */
+:root[data-direcao="ameixa"]{--fundo:#F9F2F0; --superficie:#FFFFFF; --superficie-2:#EFE5E4; --linha:#DDD6D4; --acao:#722987; --sobre-acao:#FFFFFF; --acao-suave:#F5E4FB; --foco:#722987; --descanso:#F1E2F5}
+@media (prefers-color-scheme: dark){:root[data-direcao="ameixa"]:not([data-theme="light"]){--fundo:#191211; --superficie:#251D1C; --superficie-2:#312928; --linha:#413837; --texto:#F6ECEA; --texto-2:#C0B6B4; --borda:#736A68; --acao:#DFA1F3; --sobre-acao:#392240; --acao-suave:#3A2341; --foco:#DFA1F3; --atencao:#C59749; --alerta:#E98084; --descanso:#2E2132; --descanso-texto:#F6ECEA}}
+:root[data-direcao="ameixa"][data-theme="dark"]{--fundo:#191211; --superficie:#251D1C; --superficie-2:#312928; --linha:#413837; --texto:#F6ECEA; --texto-2:#C0B6B4; --borda:#736A68; --acao:#DFA1F3; --sobre-acao:#392240; --acao-suave:#3A2341; --foco:#DFA1F3; --atencao:#C59749; --alerta:#E98084; --descanso:#2E2132; --descanso-texto:#F6ECEA}
 /* Direção Petróleo */
 :root[data-direcao="petroleo"]{--fundo:#F0F4F7; --superficie:#FFFFFF; --superficie-2:#E3E9EC; --linha:#D4D8DB; --texto:#171B20; --texto-2:#474B52; --borda:#868A92; --acao:#045260; --sobre-acao:#FFFFFF; --acao-suave:#D2F2FA; --foco:#045260; --atencao:#7E5600; --alerta:#AF293D; --descanso:#D2EEF4}
 @media (prefers-color-scheme: dark){:root[data-direcao="petroleo"]:not([data-theme="light"]){--fundo:#0E1518; --superficie:#1A2024; --superficie-2:#252D30; --linha:#343C40; --texto:#E7F0F5; --texto-2:#B2BABF; --borda:#656D71; --acao:#60C7DD; --sobre-acao:#00313B; --acao-suave:#03343D; --foco:#60C7DD; --feito:#66AF81; --atencao:#C6984A; --alerta:#EA8185; --descanso:#0F2B31; --descanso-texto:#E7F0F5}}
@@ -117,8 +118,8 @@ h1,h2,h3,p{margin:0}
 /* Superfícies */
 .sup{background:var(--superficie);border-radius:var(--r2);padding:var(--e4);display:flex;flex-direction:column;gap:var(--e2)}
 .sup.info{background:var(--acao-suave)}
-.sup.aviso{background:var(--atencao-suave);box-shadow:inset 4px 0 0 var(--atencao)}
-.sup.alerta{background:var(--alerta-suave);box-shadow:inset 4px 0 0 var(--alerta)}
+.sup.aviso{background:var(--atencao-suave)}
+.sup.alerta{background:var(--alerta-suave)}
 .sup.feito{background:var(--feito-suave)}
 .sup h2{font-size:var(--t-pergunta);font-weight:800;line-height:1.25}
 
@@ -264,6 +265,35 @@ legend{padding:0;margin-bottom:var(--e1)}
 .etapas li.agora{color:var(--acao)}
 @keyframes gira{to{transform:rotate(1turn)}}
 
+/* Triagem: a pergunta geral, com as 9 condições em poucas palavras */
+.condicoes{list-style:none;margin:0;padding:var(--e3) var(--e4);background:var(--superficie);border-radius:var(--r2);display:flex;flex-direction:column;gap:6px;font-size:var(--t-apoio);line-height:1.35}
+.condicoes li{display:flex;gap:10px;align-items:baseline}
+.condicoes li::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--texto-2);flex:none;transform:translateY(-2px)}
+.opcao .curta{display:block;font-weight:800}
+.opcao .longa{display:block;font-weight:400;font-size:var(--t-apoio);color:var(--texto-2);margin-top:2px}
+/* Equipamento: o que está marcado, a busca, as categorias e a grade */
+.marcados{list-style:none;margin:0;padding:0;background:var(--superficie);border-radius:var(--r2);overflow:hidden}
+.marcados li{display:flex;align-items:center;gap:var(--e3);padding:var(--e2) var(--e2) var(--e2) var(--e4);min-height:72px}
+.marcados li+li{border-top:1px solid var(--linha)}
+.marcados svg{width:48px;height:36px;flex:none;fill:none;stroke:var(--acao);stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round}
+.marcados .txt{flex:1;min-width:0;display:flex;flex-direction:column}
+.marcados .txt span{font-size:var(--t-apoio);color:var(--texto-2)}
+.busca{display:flex;flex-direction:column;gap:6px}
+.busca label{font-weight:700}
+.busca input{min-height:var(--toque-m);border:2px solid var(--borda);border-radius:var(--r2);background:var(--superficie);padding:0 var(--e4);font-size:17px}
+.grade-2{display:grid;grid-template-columns:1fr 1fr;gap:var(--e2)}
+.item-eq{position:relative;min-height:116px;display:flex;flex-direction:column;align-items:flex-start;justify-content:space-between;gap:var(--e2);padding:var(--e3);border:2px solid var(--borda);border-radius:var(--r2);background:var(--superficie);cursor:pointer;font-weight:700;line-height:1.2}
+.item-eq svg{width:56px;height:42px;fill:none;stroke:currentColor;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round;color:var(--texto-2)}
+.item-eq .falta{width:56px;height:42px;border:2px dashed var(--borda);border-radius:8px}
+.item-eq input{position:absolute;opacity:0;width:1px;height:1px}
+.item-eq .estado{font-size:var(--t-rotulo);font-weight:800;color:var(--texto-2)}
+.item-eq .estado::before{content:"+ marcar"}
+.item-eq:has(input:checked){border-color:var(--acao);background:var(--acao-suave)}
+.item-eq:has(input:checked) svg{color:var(--acao)}
+.item-eq:has(input:checked) .estado{color:var(--acao)}
+.item-eq:has(input:checked) .estado::before{content:"✓ tenho"}
+.item-eq:has(input:focus-visible){outline:3px solid var(--foco);outline-offset:2px}
+
 /* Índice e sistema (fora do app) */
 .indice h2{font-size:var(--t-rotulo);font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:var(--texto-2);margin-top:var(--e2)}
 .amostras{display:grid;grid-template-columns:repeat(auto-fill,minmax(110px,1fr));gap:var(--e2)}
@@ -277,7 +307,7 @@ legend{padding:0;margin-bottom:var(--e1)}
 <div class="proto" id="proto"><div class="proto-in">
   <label for="sel-tela">Tela<select id="sel-tela"></select></label>
   <label for="sel-tema">Tema<select id="sel-tema"><option value="">do celular</option><option value="light">claro</option><option value="dark">escuro</option></select></label>
-  <label for="sel-dir">Cor<select id="sel-dir"><option value="">Ameixa (recomendada)</option><option value="giz">Giz e grafite</option><option value="petroleo">Petróleo</option></select></label>
+  <label for="sel-dir">Cor<select id="sel-dir"><option value="">Giz e grafite (a sua escolha)</option><option value="ameixa">Ameixa</option><option value="petroleo">Petróleo</option></select></label>
 </div></div>
 <div class="app" id="app"></div>
 <script src="dados.js"></script>
@@ -302,6 +332,7 @@ const SIGNIFICADO = {
   'um estudo': 'Um único ensaio, quase sempre com amostra pequena e curta duração.',
   consenso: 'Prática de treinadores e posicionamentos, sem ensaio que teste este número.',
 };
+const CURTA = { coracao: 'Problema no coração ou pressão alta', peito: 'Dor no peito', tontura: 'Tontura forte ou desmaio no último ano', 'doenca-cronica': 'Outra doença crônica', medicamento: 'Remédio para doença crônica', osteoarticular: 'Problema em osso, articulação, músculo ou tendão', supervisao: 'Médico pediu exercício só com acompanhamento', gravidez: 'Gravidez, ou bebê nos últimos 6 meses', 'doenca-aguda': 'Febre, gripe forte ou se recuperando de doença' };
 const selo = (id) => { const r = D.regras[id]; return r ? ` <a href="#fonte" class="selo" data-selo="${id}" aria-label="${esc(TXT_SELO[r.selo])}: ver de onde vem">${TXT_SELO[r.selo]}</a>` : ''; };
 function folhaSelo(id) {
   const r = D.regras[id];
@@ -380,23 +411,19 @@ tela('boas-vindas', 'Cadastro', '1. Boas-vindas', () => `${cabPasso(1)}
   <p class="apoio">4 perguntas rápidas e o seu equipamento.</p>
 </main>${base(`<a class="btn" href="#triagem">Entendi, vamos começar</a>`)}`);
 
-tela('triagem', 'Cadastro', '2. Saúde: as 9 perguntas', () => `${cabPasso(2, 'boas-vindas')}
+tela('triagem', 'Cadastro', '2. Saúde: uma pergunta', () => `${cabPasso(2, 'boas-vindas')}
 <main class="miolo gutter">
-  ${titulo('Antes de começar, 9 perguntas rápidas')}
-  <p>Leia as 9. Se nenhuma vale para você, um toque responde "não" a todas.${selo('seguranca.triagem.nenhuma')}</p>
-  <ol class="lista" aria-label="As 9 condições" style="padding:0">${D.triagem.map((p, i) => `<li class="linha" style="cursor:default"><span class="rx num" style="font-size:17px;min-width:20px">${i + 1}</span><span class="txt">${esc(p.texto)}</span></li>`).join('')}</ol>
-  <div class="pilha">
-    <a class="btn" href="#experiencia">Nenhuma vale para mim</a>
-    <a class="btn sec" href="#triagem-sim">Sim, alguma vale</a>
-  </div>
-  <p class="apoio">Os dois botões ficam no fim de propósito: a regra de segurança pede que você passe pelas 9 antes de responder.</p>
-</main>`);
+  ${titulo('Alguma destas vale para você?')}
+  <p class="apoio" style="margin-top:-12px">Hoje, ou algo que um médico já disse.</p>
+  <ul class="condicoes" aria-label="As 9 condições">${D.triagem.map((p) => `<li>${esc(CURTA[p.id])}</li>`).join('')}</ul>
+  <p class="apoio">Se nenhuma vale, um toque responde "não" a todas.${selo('seguranca.triagem.nenhuma')} <a class="link" href="#perguntas" data-perguntas>Ver as perguntas completas</a></p>
+</main>${base(`<div class="pilha-2"><a class="btn" href="#experiencia">Não, nenhuma</a><a class="btn sec" href="#triagem-sim">Sim, alguma (ou não tenho certeza)</a></div>`)}`);
 
-tela('triagem-sim', 'Cadastro', '2b. Saúde: marcar as que valem', () => `${cabPasso(2, 'triagem')}
+tela('triagem-sim', 'Cadastro', '2b. Saúde: quais valem', () => `${cabPasso(2, 'triagem')}
 <main class="miolo gutter">
   ${titulo('Quais valem para você?')}
   <p>Marque só as que valem. As que você não marcar contam como "não".</p>
-  <fieldset><legend class="sr">As 9 condições</legend><div class="opcoes">${D.triagem.map((p) => `<label class="opcao"><input type="checkbox" id="tr-${p.id}"${p.id === 'osteoarticular' ? ' checked' : ''}><span>${esc(p.texto)}</span></label>`).join('')}</div></fieldset>
+  <fieldset><legend class="sr">As 9 condições</legend><div class="opcoes">${D.triagem.map((p) => `<label class="opcao"><input type="checkbox" id="tr-${p.id}"${p.id === 'osteoarticular' ? ' checked' : ''}><span><span class="curta">${esc(CURTA[p.id])}</span><span class="longa">${esc(p.texto)}</span></span></label>`).join('')}</div></fieldset>
   <section class="sup" aria-labelledby="onde"><h2 id="onde" class="pergunta">Onde?</h2>
     <div class="chips">${['Ombro', 'Cotovelo', 'Punho', 'Lombar', 'Quadril', 'Joelho', 'Tornozelo'].map((a) => `<label class="chip"><input type="checkbox" id="ar-${a}"${a === 'Ombro' ? ' checked' : ''}>${a}</label>`).join('')}</div>
     <fieldset><legend class="pergunta" style="font-size:17px">E hoje, dói o ombro? De 0 (nada) a 10 (a pior dor)</legend>
@@ -429,55 +456,60 @@ tela('rotina', 'Cadastro', '4. Rotina', () => `${cabPasso(4, 'experiencia')}
 </main>${base(`<a class="btn" href="#equipamento">Continuar</a>`)}`);
 
 const ICO = {
-  academia: '<path d="M8 40V18l16-8 16 8v22M4 40h40M18 40V28h12v12"/>',
-  condominio: '<path d="M10 40V10h20v30M30 18h10v22M4 40h40M16 16h2M22 16h2M16 24h2M22 24h2M16 32h2M22 32h2"/>',
-  casa: '<path d="M6 22L24 8l18 14M10 19v21h28V19M20 40V30h8v10"/>',
-  corpo: '<circle cx="24" cy="9" r="4"/><path d="M24 14v13M14 20l10 3 10-3M24 27l-7 13M24 27l7 13"/>',
+  academia: '<path d="M10 7v27M38 7v27M6 34h8M34 34h8M3 15h42"/><path d="M7 10v10M41 10v10" stroke-width="4.5"/><path d="M3 34h42" stroke-width="1.6"/>',
+  condominio: '<path d="M7 35V5h20v30M27 13h14v22M3 35h42M12 11h3M19 11h3M12 18h3M19 18h3M12 25h3M19 25h3"/><path d="M31 29h7M31 26v6M38 26v6"/>',
+  casa: '<path d="M5 19L24 5l19 14M9 16v19h30V16M3 35h42"/><path d="M17 27h14M16 24v6M32 24v6" stroke-width="2.8"/>',
+  corpo: '<circle cx="24" cy="7" r="4.2"/><path d="M24 12.5v11" stroke-width="3.4"/><path d="M24 15.5L14.5 6M24 15.5L33.5 6M24 23.5L16 34M24 23.5L32 34M10 35.5h28"/>',
 };
 const icone = (k) => `<svg class="icone" viewBox="0 0 48 44" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${ICO[k]}</svg>`;
-const CATEGORIAS = [['Pesos livres', 8], ['Bancos e apoios', 5], ['Polia e estações', 9], ['Máquinas', 13], ['Barras e suportes', 6], ['Acessórios', 7]];
 const lugares = (marcado) => `<fieldset><legend class="pergunta">Onde você treina?</legend><div class="opcoes">${[['academia', 'Academia completa', 'Halteres, polias, barras e máquinas'], ['condominio', 'Condomínio com multifuncional', 'Alguns halteres, banco e uma estação'], ['casa', 'Casa com halteres e elásticos', 'Pergunta só o que muda o programa'], ['corpo', 'Corpo livre', 'Sem equipamento: chão, parede e cadeira']].map(([k, t, s]) => `<label class="opcao"><input type="radio" name="lugar" id="lugar-${k}"${marcado === k ? ' checked' : ''}>${icone(k)}<span>${t}<small>${s}</small></span></label>`).join('')}</div></fieldset>`;
-const categorias = (cheia) => `<div class="pilha-2"><p class="pergunta" style="font-size:17px">Conferir e ajustar a lista</p>${CATEGORIAS.map(([n, t]) => `<details class="categoria"><summary><span>${n}</span><span class="apoio num">${cheia ? t : 0} de ${t}</span></summary><div class="corpo"><p class="apoio">Abra para marcar ou desmarcar.</p></div></details>`).join('')}</div>`;
 tela('equipamento', 'Cadastro', '5. Equipamento: o lugar', () => `${cabPasso(5, 'rotina')}
 <main class="miolo gutter">
   ${titulo('Que equipamento você tem?')}
   ${lugares('')}
-  <a class="btn sec" href="#equipamento-foto">Reconhecer pela foto</a>
-  ${categorias(false)}
+  <div class="dois"><a class="btn sec" href="#equipamento-foto">Pela foto</a><a class="btn sec" href="#equipamento-lista">Item por item</a></div>
 </main>${base(`<button type="button" class="btn" disabled>Gerar meu programa</button><p class="apoio" style="text-align:center;margin-top:6px">Escolha um lugar ou marque na lista.</p>`)}`);
 
 tela('equipamento-academia', 'Cadastro', '5b. Equipamento: academia completa', () => `${cabPasso(5, 'rotina')}
 <main class="miolo gutter">
   ${titulo('Que equipamento você tem?')}
   ${lugares('academia')}
-  <div class="sup info"><p>Supomos halteres de 2 a 40 kg, polia regulável e o básico dos aparelhos. A 1ª série de cada exercício acerta a carga.${selo('equipamento.atalhos')} <a class="link" href="#equipamento-lista">Mudar</a></p></div>
-  ${categorias(true)}
+  <div class="sup info"><p>Supomos halteres de 2 a 40 kg, polia regulável e o básico dos aparelhos. A 1ª série de cada exercício acerta a carga.${selo('equipamento.atalhos')}</p><a class="linha" href="#equipamento-lista" style="padding:0;min-height:48px"><span class="txt"><b>Conferir os 39 itens</b></span><span class="seta" aria-hidden="true">›</span></a></div>
 </main>${base(`<a class="btn" href="#programa-novo">Gerar meu programa</a>`)}`);
 
-const cartaoEq = (nome, marcado, desenho) => `<label class="cartao-eq"><input type="checkbox"${marcado ? ' checked' : ''}>${desenho ? `<svg viewBox="0 0 64 48" aria-hidden="true">${desenho}</svg>` : '<span class="falta" aria-hidden="true"></span>'}<span>${nome}</span></label>`;
-tela('equipamento-lista', 'Cadastro', '5c. Equipamento: a lista (Ana)', () => `${cabPasso(5, 'rotina')}
+const DES = {
+  halteres: '<path d="M8 18v12M14 14v20M14 24h14M28 14v20M34 18v12M36 32v8M42 28v16M42 36h12M54 28v16M6 44h52"/>',
+  anilhas: '<circle cx="20" cy="26" r="14"/><circle cx="20" cy="26" r="3"/><path d="M38 30h20M40 26v8M56 26v8M6 44h52"/>',
+  barra: '<path d="M4 28h56M10 18v20M16 20v16M48 20v16M54 18v20M6 44h52"/>',
+  elasticos: '<path d="M8 36c10-24 38-24 48 0M12 36c10-18 30-18 40 0M6 44h52"/>',
+  banco: '<rect x="8" y="20" width="48" height="7" rx="3"/><path d="M14 27v17M50 27v17M10 44h8M46 44h8"/>',
+  regulavel: '<rect x="6" y="28" width="22" height="6" rx="3"/><path d="M30 31l20-22M16 34v10M44 34v10M10 44h40M30 31v13"/>',
+  step: '<rect x="10" y="26" width="44" height="10" rx="3"/><path d="M16 36v8M48 36v8M6 44h52"/>',
+  bola: '<circle cx="32" cy="24" r="18"/><path d="M16 18c10 6 22 6 32 0M6 44h52"/>',
+};
+const ITENS = {
+  'Pesos livres': [['Halteres fixos', 'halteres', true], ['Anilhas e manoplas', 'anilhas'], ['Barra longa', 'barra'], ['Kettlebell', ''], ['Elásticos', 'elasticos'], ['Caneleiras', ''], ['Mini-band', ''], ['Barra hexagonal', '']],
+  'Bancos e apoios': [['Banco reto', 'banco', true], ['Banco regulável', 'regulavel'], ['Step', 'step'], ['Bola suíça', 'bola'], ['Banco Scott', '']],
+  'Polia e estações': [['Polia dupla', ''], ['Multifuncional', ''], ['Puxador alto', ''], ['Remada baixa', '']],
+  'Máquinas': [['Leg press', ''], ['Cadeira extensora', ''], ['Mesa flexora', ''], ['Voador', '']],
+  'Barras e suportes': [['Barra fixa', ''], ['Paralelas', ''], ['Suporte de agachamento', '']],
+  'Acessórios': [['Fitas de suspensão', ''], ['Roda abdominal', ''], ['Corda da polia', '']],
+};
+const cardItem = ([n, d, marcado], i) => `<label class="item-eq" data-nome="${esc(n.toLowerCase())}"><input type="checkbox" id="it-${i}-${esc(n)}"${marcado ? ' checked' : ''}>${d ? `<svg viewBox="0 0 64 48" aria-hidden="true">${DES[d]}</svg>` : '<span class="falta" aria-hidden="true"></span>'}<span>${esc(n)}</span><span class="estado" aria-hidden="true"></span></label>`;
+const grade = (cat) => ITENS[cat].map(cardItem).join('');
+tela('equipamento-lista', 'Cadastro', '5c. Equipamento: item por item (Ana)', () => `${cabPasso(5, 'equipamento')}
 <main class="miolo gutter">
   ${titulo('Que equipamento você tem?')}
-  <div class="pilha-2"><p class="pergunta" style="font-size:17px">Conferir e ajustar a lista</p>
-  <details class="categoria" open><summary><span>Pesos livres</span><span class="apoio num">1 de 8</span></summary><div class="corpo">
-    <div class="grade-eq">
-      ${cartaoEq('Halteres fixos', true, '<path d="M8 18v12M14 14v20M14 24h14M28 14v20M34 18v12M36 32v8M42 28v16M42 36h12M54 28v16M6 44h52"/>')}
-      ${cartaoEq('Anilhas e manoplas', false, '<circle cx="20" cy="26" r="14"/><circle cx="20" cy="26" r="3"/><path d="M38 30h20M40 26v8M56 26v8M6 44h52"/>')}
-      ${cartaoEq('Barra longa', false, '<path d="M4 28h56M10 18v20M16 20v16M48 20v16M54 18v20M6 44h52"/>')}
-      ${cartaoEq('Kettlebell', false, '')}
-      ${cartaoEq('Elásticos', false, '<path d="M8 36c10-24 38-24 48 0M12 36c10-18 30-18 40 0M6 44h52"/>')}
-      ${cartaoEq('Caneleiras', false, '')}
-    </div>
-    <section class="sup info" aria-labelledby="det-h"><h2 id="det-h" style="font-size:17px">Halteres fixos</h2>
-      <fieldset><legend class="apoio">O mais leve</legend><div class="chips">${[1, 2, 3, 4].map((k) => `<label class="chip"><input type="radio" name="hl" id="hl-${k}"${k === 1 ? ' checked' : ''}>${k} kg</label>`).join('')}</div></fieldset>
-      <fieldset><legend class="apoio">O mais pesado</legend><div class="chips">${[10, 12, 16, 20, 24].map((k) => `<label class="chip"><input type="radio" name="hp" id="hp-${k}"${k === 12 ? ' checked' : ''}>${k} kg</label>`).join('')}</div></fieldset>
-      <fieldset><legend class="apoio">De quanto em quanto</legend><div class="chips">${[1, 2, 2.5].map((k) => `<label class="chip"><input type="radio" name="hq" id="hq-${k}"${k === 1 ? ' checked' : ''}>${String(k).replace('.', ',')} kg</label>`).join('')}</div></fieldset>
-    </section>
-  </div></details>
-  <details class="categoria"><summary><span>Bancos e apoios</span><span class="apoio num">1 de 5</span></summary><div class="corpo"><p class="apoio">Banco reto marcado.</p></div></details>
-  ${CATEGORIAS.slice(2).map(([n, t]) => `<details class="categoria"><summary><span>${n}</span><span class="apoio num">0 de ${t}</span></summary><div class="corpo"><p class="apoio">Abra para marcar.</p></div></details>`).join('')}
-  </div>
-  <p class="apoio">O contorno tracejado marca os 24 equipamentos ainda sem desenho; o nome fica sempre escrito.</p>
+  <section class="pilha-2" aria-labelledby="marc-t"><h2 id="marc-t" class="pergunta">Marcados <span class="apoio num">(2)</span></h2>
+    <ul class="marcados">
+      <li><svg viewBox="0 0 64 48" aria-hidden="true">${DES.halteres}</svg><span class="txt"><b>Halteres fixos</b><span class="num">de 1 a 12 kg, de 1 em 1 kg</span></span><button type="button" class="btn ter auto" data-halteres>Mudar</button></li>
+      <li><svg viewBox="0 0 64 48" aria-hidden="true">${DES.banco}</svg><span class="txt"><b>Banco reto</b><span>plano, sem inclinar</span></span><button type="button" class="btn ter auto" data-aviso="Protótipo: tira o banco da lista.">Tirar</button></li>
+    </ul></section>
+  <section class="pilha" aria-labelledby="add-t"><h2 id="add-t" class="pergunta">Marcar mais</h2>
+    <div class="busca"><label for="procurar">Procurar pelo nome</label><input id="procurar" type="search" autocomplete="off" inputmode="search"></div>
+    <div class="chips" role="group" aria-label="Categorias">${Object.keys(ITENS).map((c, i) => `<button type="button" class="chip" aria-pressed="${i === 0}" data-cat="${esc(c)}">${esc(c)}</button>`).join('')}</div>
+    <div class="grade-2" id="grade">${grade('Pesos livres')}</div>
+    <p class="apoio">O contorno tracejado marca os 24 equipamentos ainda sem desenho; o nome fica sempre escrito.</p></section>
 </main>${base(`<a class="btn" href="#programa-novo">Gerar meu programa</a>`)}`);
 
 tela('equipamento-foto', 'Cadastro', '5d. Equipamento: a foto, enquanto analisa', () => TELAS.equipamento.render(), () => abrirFolha(`<div class="folha-cab"><h2 id="folha-t" tabindex="-1">Reconhecer pela foto</h2><button type="button" class="btn ter auto" data-fechar>Fechar</button></div>
@@ -757,6 +789,12 @@ $('#app').addEventListener('click', (e) => {
   const el = e.target.closest('button, a'); if (!el) return;
   if (el.dataset.selo) { e.preventDefault(); return folhaSelo(el.dataset.selo); }
   if (el.dataset.privacidade !== undefined) e.preventDefault();
+  if (el.dataset.perguntas !== undefined) { e.preventDefault(); return abrirFolha(`<div class="folha-cab"><h2 id="folha-t" tabindex="-1">As 9 perguntas completas</h2><button type="button" class="btn ter auto" data-fechar>Fechar</button></div><ol style="margin:0;padding-left:22px;display:flex;flex-direction:column;gap:10px">${D.triagem.map((p) => `<li>${esc(p.texto)}</li>`).join('')}</ol><p class="apoio">São perguntas próprias do app, no estilo do PAR-Q+; não é o questionário oficial.</p>`); }
+  if (el.dataset.cat) { document.querySelectorAll('[data-cat]').forEach((b) => b.setAttribute('aria-pressed', b === el)); $('#grade').innerHTML = grade(el.dataset.cat); const q = $('#procurar'); if (q) q.value = ''; return; }
+  if (el.dataset.halteres !== undefined) return abrirFolha(`<div class="folha-cab"><h2 id="folha-t" tabindex="-1">Halteres fixos</h2><button type="button" class="btn ter auto" data-fechar>Pronto</button></div>
+    <fieldset><legend style="font-weight:700">O mais leve</legend><div class="chips">${[1, 2, 3, 4].map((k) => `<label class="chip"><input type="radio" name="hl" id="hl-${k}"${k === 1 ? ' checked' : ''}>${k} kg</label>`).join('')}</div></fieldset>
+    <fieldset><legend style="font-weight:700">O mais pesado</legend><div class="chips">${[10, 12, 16, 20, 24, 30].map((k) => `<label class="chip"><input type="radio" name="hp" id="hp-${k}"${k === 12 ? ' checked' : ''}>${k} kg</label>`).join('')}</div></fieldset>
+    <fieldset><legend style="font-weight:700">De quanto em quanto</legend><div class="chips">${[1, 2, 2.5].map((k) => `<label class="chip"><input type="radio" name="hq" id="hq-${k}"${k === 1 ? ' checked' : ''}>${String(k).replace('.', ',')} kg</label>`).join('')}</div></fieldset>`);
   if (el.dataset.ir) { location.hash = el.dataset.ir; return; }
   if (el.dataset.aviso !== undefined) { if (el.dataset.aviso) aviso(el.dataset.aviso); return; }
   if (el.dataset.ex !== undefined) { const d = D.dias.find((x) => $(`[data-dia][aria-selected="true"]`) && D.dias.indexOf(x) === Number($(`[data-dia][aria-selected="true"]`).dataset.dia)) || diaA; return folhaExercicio(d.exercicios[Number(el.dataset.ex)]); }
@@ -770,6 +808,14 @@ $('#app').addEventListener('click', (e) => {
   if (el.dataset.alterna !== undefined) { el.parentElement.querySelectorAll('[data-alterna]').forEach((b) => b.setAttribute('aria-pressed', b === el && b.getAttribute('aria-pressed') !== 'true')); return; }
   if (el.dataset.cartao !== undefined) return abrirFolha(`<div class="folha-cab"><h2 id="folha-t" tabindex="-1">Como fazer (em texto)</h2><button type="button" class="btn ter auto" data-fechar>Fechar</button></div><p class="apoio">Trabalha: ${esc(cartaoP.alvo)}.</p><ol class="dicas">${cartaoP.dicas.map((c) => `<li>${esc(c)}</li>`).join('')}</ol><div class="pilha-2"><p class="rotulo">Erros comuns</p><ul class="lista">${cartaoP.erros.map((x) => `<li class="linha" style="cursor:default"><span class="txt"><b>${esc(x.titulo)}</b><span>${esc(x.desc)}</span></span></li>`).join('')}</ul></div>`, { abaixoCab: true });
   if (el.dataset.privacidade !== undefined) return abrirFolha(`<div class="folha-cab"><h2 id="folha-t" tabindex="-1">Seus dados ficam no aparelho</h2><button type="button" class="btn ter auto" data-fechar>Fechar</button></div><p>O seu perfil, o programa e os treinos ficam guardados só neste aparelho. A única coisa que sai é a foto do equipamento, se você usar: ela vai, sem a localização, para o reconhecimento e não fica guardada no servidor. Você pode exportar ou apagar tudo quando quiser em “Meus dados”.</p>`);
+});
+// a busca procura em todas as categorias
+$('#app').addEventListener('input', (e) => {
+  if (e.target.id !== 'procurar') return;
+  const q = e.target.value.trim().toLowerCase();
+  const todos = Object.values(ITENS).flat();
+  const achados = q ? todos.filter(([n]) => n.toLowerCase().includes(q)) : ITENS[($('[data-cat][aria-pressed="true"]') || {}).dataset?.cat || 'Pesos livres'];
+  $('#grade').innerHTML = achados.length ? achados.map(cardItem).join('') : `<p class="apoio" style="grid-column:1/-1">Nada com "${esc(q)}". Confira a escrita ou procure pela categoria.</p>`;
 });
 document.body.addEventListener('click', (e) => { const s = e.target.closest('.veu [data-selo]'); if (s) { e.preventDefault(); folhaSelo(s.dataset.selo); } const a = e.target.closest('.veu [data-aviso]'); if (a && a.dataset.aviso) aviso(a.dataset.aviso); const i = e.target.closest('.veu [data-ir]'); if (i) location.hash = i.dataset.ir; });
 // a barra do protótipo

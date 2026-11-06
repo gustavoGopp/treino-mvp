@@ -62,13 +62,13 @@ O app de hoje passa em todos os testes de toque e contraste, mas na academia ele
 
 ## 5. O sistema visual
 
-### Cor: três direções, a recomendada é Ameixa
-As três passam nos 27 pares medidos nos dois temas; os estados (feito, atenção, alerta) são iguais nas três. Muda o fundo neutro e a cor de ação. Detalhe, razões e simulações em `agente-5-cor.md`. No protótipo, a barra de cima troca a direção.
+### Cor: três direções; a preferida do Gustavo é Giz e grafite
+As três passam nos 27 pares medidos nos dois temas; os estados (feito, atenção, alerta) são iguais nas três. Muda o fundo neutro e a cor de ação. Detalhe, razões e simulações em `agente-5-cor.md`. O agente 5 recomendou Ameixa; o Gustavo, ao ver o protótipo, preferiu **Giz e grafite** (06/11), que passou a ser a cor padrão do protótipo. A barra de cima ainda troca a direção.
 
 | Direção | Ação (claro / escuro) | Botão principal | O que perde |
 |---|---|---|---|
-| **Ameixa** (recomendada) | `#722987` / `#DFA1F3` | 8,81:1 / 7,13:1 | para daltônicos vermelho-verde a ameixa vira azul (a função fica) |
-| Giz e grafite | `#3F3AA8` / `#A9B3FF` | 8,82:1 / 7,14:1 | o app continua com "cara de azul de app" |
+| **Giz e grafite** (a preferida do Gustavo) | `#3F3AA8` / `#A9B3FF` | 8,82:1 / 7,14:1 | é a mais próxima do app de hoje; a ação fica a 8,7 do azul da trajetória do Boneco (Ameixa: 12,7). Continua azul para os daltônicos |
+| Ameixa (recomendada pelo agente 5) | `#722987` / `#DFA1F3` | 8,81:1 / 7,13:1 | para daltônicos vermelho-verde a ameixa vira azul (a função fica) |
 | Petróleo | `#045260` / `#60C7DD` | 8,82:1 / 7,13:1 | encosta nas juntas do Boneco; vira cinza para protanopes |
 
 ![Ameixa: programa e treino, claro e escuro](img/agente-5-ameixa.png)
@@ -135,9 +135,9 @@ O palco do Boneco no topo, de borda a borda (412 × 309); logo abaixo, tocar, le
 ### Cadastro (o foco b)
 - 6 → 5 telas: o "Tudo certo?" sai; o botão do equipamento vira "Gerar meu programa", e o programa abre com "Montado para: ... Mudar".
 - Boas-vindas com cerca de metade do texto e o botão à vista; o aviso de segurança intacto.
-- Quem tem alguma condição marca só as que valem (de 29 para 18 toques no caminho do Bruno com dor), com o mesmo texto e a mesma regra de bloqueio.
+- **Saúde em uma pergunta** (retorno do Gustavo, 06/11): "Alguma destas vale para você?", com as 9 condições escritas em poucas palavras logo abaixo; "Não, nenhuma" segue com 1 toque, e "Sim, alguma (ou não tenho certeza)" leva à tela em que a pessoa marca só as que valem, cada uma com a pergunta completa embaixo (de 29 para 18 toques no caminho do Bruno com dor). As perguntas completas também ficam a um toque na 1ª tela. Muda a regra `seguranca.triagem.nenhuma` e cria 9 textos curtos de segurança: ver a seção 12.
 - O objetivo sai para depois; as prioridades ficam.
-- Equipamento: "Onde você treina?" primeiro; "Academia completa" diz em 1 linha o que supôs; a lista vem por categoria, com a contagem escrita; a foto mostra as etapas reais e deixa usar a lista enquanto analisa.
+- Equipamento: "Onde você treina?" primeiro, com 4 desenhos novos (o "Corpo livre" é uma pessoa, não mais um boneco de palito solto); "Academia completa" diz em 1 linha o que supôs; "Item por item" abre a lista refeita: primeiro o que está marcado (com "Mudar" e "Tirar"), depois uma busca pelo nome, as categorias como chips e uma grade de cartões em 2 colunas que dizem "tenho" quando marcados. A foto mostra as etapas reais e deixa usar a lista enquanto analisa.
 - Toques por persona, hoje → proposto (contando o "Gerar" fora do equipamento, como o teste conta hoje): Ana 12 → 11, Bruno 17 → 14, Carla 14 → 13, Diego 12 → 11, Elisa 10 → 9, Fábio 11 → 10 (agente 2, recontado).
 
 ![Boas-vindas](img/ad-boas-vindas-claro.png)
@@ -207,6 +207,26 @@ O Lighthouse de hoje dá 59 a 73 de desempenho no celular simulado, abaixo da me
 - **Fontes:** a maior parte foi lida só pelo resumo (o PubMed segue bloqueado); cada relatório lista as que não conseguiu verificar.
 - **O tamanho do trabalho:** é uma reescrita de `src/features/` (~5.950 linhas) e `src/styles.css`, em lotes. A estimativa por lote vai na tabela de decisões.
 
-## 12. Para decidir
+## 12. O retorno do Gustavo sobre o protótipo (06/11) e o que mudou
+
+| O que ele disse | O que mudou no protótipo |
+|---|---|
+| "Não quero nada com essa barrinha lateral, que é claramente de IA." | Os avisos e alertas perderam a faixa colorida da esquerda; ficam só no tom do fundo, com o título em negrito. |
+| "Não quero tantas perguntas seguidas, como as 9 perguntas rápidas; quero uma pergunta geral, mais rápida." | A saúde virou uma pergunta só, com as 9 condições em poucas palavras embaixo. Quem não tem nenhuma responde com 1 toque; quem tem marca só as que valem na tela seguinte. |
+| "O desenho do Corpo livre está muito ruim." | Os 4 desenhos do "Onde você treina?" foram refeitos no mesmo traço; o "Corpo livre" é uma pessoa inteira, de braços e pernas abertos. |
+| "A parte de conferir a lista dá para melhorar." | A lista virou: o que está marcado em cima (com "Mudar" e "Tirar"), a busca pelo nome, as categorias como chips e uma grade de 2 colunas com o estado escrito ("tenho"). |
+| "A cor que eu mais gostei foi Giz e grafite." | Giz e grafite virou a cor padrão do protótipo; Ameixa e Petróleo continuam na barra de cima para comparar. |
+
+**Ressalva sobre a pergunta geral da saúde [opinião, com base no projeto].** As 9 perguntas existem porque uma pergunta geral sozinha deixa passar quem não se reconhece nela (pressão alta controlada, remédio de uso contínuo); é a razão de o app seguir o estilo do PAR-Q+ (`docs/pesquisa/07-seguranca-triagem-niveis.md`). Por isso a pergunta geral mostra as 9 condições escritas, em poucas palavras, e "não tenho certeza" conta como "sim". O que muda de regra, para a decisão do Gustavo na tabela:
+- `seguranca.triagem.nenhuma`: hoje a pessoa vê as 9 perguntas inteiras antes do "Nenhuma vale para mim"; na proposta, vê as 9 condições em forma curta (as inteiras ficam a um toque e reaparecem na tela do "sim").
+- 9 textos curtos novos de segurança, escritos por mim a partir das perguntas do app, sem mudar o conteúdo. A revisão de um profissional de Educação Física continua de lado, por decisão anterior do Gustavo (`docs/backlog.md`).
+- Nada muda no bloqueio, na liberação, na dor por região nem no estado guardado: as respostas continuam as mesmas 9, com "não" nas que não forem marcadas.
+
+**Medido depois do retorno:** as 32 telas continuam com 0 toque abaixo de 44 px, 0 contraste baixo e 0 rolagem lateral, nos 4 tamanhos, e o "Senti algo" segue à vista em todos os estados do treino.
+
+![Saúde: uma pergunta](img/ad-triagem-claro.png)
+![Equipamento: item por item](img/ad-equipamento-lista-claro.png)
+
+## 13. Para decidir
 
 A tabela item a item, com o antes e o depois, a evidência, o custo em lotes e a minha recomendação em cada linha, vem depois da crítica independente (agente 6), na Fase 4.

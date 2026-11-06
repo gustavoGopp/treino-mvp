@@ -22,11 +22,11 @@
   "toquePequeno": [],
   "contrasteBaixo": [],
   "botaoPrincipal": {
-   "texto": "Nenhuma vale para mim",
-   "topoPct": 146,
-   "visivelSemRolar": false
+   "texto": "Não, nenhuma",
+   "topoPct": 81,
+   "visivelSemRolar": true
   },
-  "telas": 1.8,
+  "telas": 1.1,
   "rolaDeLado": false,
   "visivel": {
    "sentiAlgo": null,
@@ -44,7 +44,7 @@
    "topoPct": 91,
    "visivelSemRolar": true
   },
-  "telas": 2.4,
+  "telas": 2.7,
   "rolaDeLado": false,
   "visivel": {
    "sentiAlgo": null,
@@ -98,7 +98,7 @@
    "topoPct": 87,
    "visivelSemRolar": true
   },
-  "telas": 1.7,
+  "telas": 1.1,
   "rolaDeLado": false,
   "visivel": {
    "sentiAlgo": null,
@@ -116,7 +116,7 @@
    "topoPct": 91,
    "visivelSemRolar": true
   },
-  "telas": 1.7,
+  "telas": 1.2,
   "rolaDeLado": false,
   "visivel": {
    "sentiAlgo": null,
@@ -130,8 +130,8 @@
   "toquePequeno": [],
   "contrasteBaixo": [],
   "botaoPrincipal": {
-   "texto": "Gerar meu programa",
-   "topoPct": 91,
+   "texto": "Mudar",
+   "topoPct": 29,
    "visivelSemRolar": true
   },
   "telas": 1.9,
@@ -152,7 +152,7 @@
    "topoPct": 87,
    "visivelSemRolar": true
   },
-  "telas": 1.7,
+  "telas": 1.1,
   "rolaDeLado": false,
   "visivel": {
    "sentiAlgo": null,
