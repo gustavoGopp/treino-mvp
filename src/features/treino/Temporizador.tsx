@@ -1,19 +1,55 @@
 import { useEffect, useRef, useState } from 'react';
 
 // Temporizador de descanso, portado do guia original (referencia/guia-execucao-fase1.html):
-// bipes (Web Audio), vibração, tela ligada (Wake Lock, melhor esforço) e ±15 s.
+// bipes (Web Audio), vibração e ±15 s. A tela ligada vale para o treino todo (useTelaAcesa, abaixo).
 // Conta pelo horário de término, não por tique: continua certo se a tela bloquear (docs/pesquisa/10-decisoes-m5.md, 8).
 
 type Estado = { fim: number; dur: number } | null;
 
 const fmt = (s: number) => `${Math.floor(s / 60)}:${String(Math.floor(s % 60)).padStart(2, '0')}`;
 
+type Trava = { release: () => Promise<void> };
+type WakeLock = { request: (t: 'screen') => Promise<Trava> };
+
+/**
+ * Tela ligada durante o treino todo (redesign, lote 2; antes, só no descanso): o celular não apaga entre as séries,
+ * com o app aberto na mão ou no banco. Pede o Wake Lock ao abrir o treino, pede de novo ao voltar para o app (o
+ * sistema solta a trava quando o app sai da tela) e solta ao sair do treino. Sem suporte, não faz nada.
+ */
+export function useTelaAcesa(ligada = true) {
+  useEffect(() => {
+    const wl = (navigator as unknown as { wakeLock?: WakeLock }).wakeLock;
+    if (!wl || !ligada) return;
+    let trava: Trava | null = null;
+    let vivo = true;
+    const pedir = () => {
+      if (document.visibilityState !== 'visible' || trava) return;
+      void wl
+        .request('screen')
+        .then((t) => {
+          if (vivo) trava = t;
+          else void t.release().catch(() => {});
+          (t as unknown as EventTarget).addEventListener?.('release', () => {
+            if (trava === t) trava = null;
+          });
+        })
+        .catch(() => {});
+    };
+    pedir();
+    document.addEventListener('visibilitychange', pedir);
+    return () => {
+      vivo = false;
+      document.removeEventListener('visibilitychange', pedir);
+      void trava?.release().catch(() => {});
+    };
+  }, [ligada]);
+}
+
 export function useDescanso() {
   const [estado, setEstado] = useState<Estado>(null);
   const [agora, setAgora] = useState(() => Date.now());
   const audio = useRef<AudioContext | null>(null);
   const bipes = useRef<OscillatorNode[]>([]);
-  const trava = useRef<{ release: () => Promise<void> } | null>(null);
   const vibrou = useRef(false);
 
   const pararBipes = () => {
@@ -53,24 +89,11 @@ export function useDescanso() {
       /* sem áudio: fica a vibração e o relógio */
     }
   };
-  const pedirTelaLigada = () => {
-    try {
-      const wl = (navigator as unknown as { wakeLock?: { request: (t: 'screen') => Promise<{ release: () => Promise<void> }> } }).wakeLock;
-      if (wl && !trava.current) void wl.request('screen').then((l) => (trava.current = l)).catch(() => {});
-    } catch {
-      /* melhor esforço */
-    }
-  };
-  const soltarTela = () => {
-    void trava.current?.release().catch(() => {});
-    trava.current = null;
-  };
 
   const iniciar = (seg: number) => {
     vibrou.current = false;
     setEstado({ fim: Date.now() + seg * 1000, dur: seg });
     agendarBipes(seg);
-    pedirTelaLigada();
   };
   const ajustar = (d: number) =>
     setEstado((e) => {
@@ -85,7 +108,6 @@ export function useDescanso() {
     });
   const parar = () => {
     pararBipes();
-    soltarTela();
     setEstado(null);
   };
 
@@ -103,7 +125,6 @@ export function useDescanso() {
           /* já parou */
         }
       });
-      void trava.current?.release().catch(() => {});
     },
     [],
   );

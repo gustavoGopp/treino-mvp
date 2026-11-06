@@ -26,7 +26,7 @@ import { PorQue, Selo, Titulo, Topo } from '../app/ui';
 import { Miniatura } from '../programa/Miniatura';
 import { BotaoPrefiro } from '../programa/Prefiro';
 import { alternarPreferencia, desfazerSerie, diaDoTreino, interromperExercicio, inventarioDoTreino, opcoesDaCarga, registrarSerie, terminarSessao, trocarExercicio } from './acoes';
-import { PainelDescanso, useDescanso } from './Temporizador';
+import { PainelDescanso, useDescanso, useTelaAcesa } from './Temporizador';
 
 // Treino em andamento: um exercício por vez, séries registradas com um toque, descanso entre séries,
 // troca pela alternativa e o botão "Senti algo" (dor e sinais de alerta). Decisões: docs/pesquisa/10-decisoes-m5.md.
@@ -43,6 +43,7 @@ export function Treino() {
   const { estado, atualizar } = useApp();
   const navigate = useNavigate();
   const descanso = useDescanso();
+  useTelaAcesa();
   const sessao = estado.sessaoAtual;
   const programa = estado.programa?.programa;
   // O dia no local do treino (local.treino-do-dia): as vagas que não são possíveis ali já vêm trocadas, com o motivo.

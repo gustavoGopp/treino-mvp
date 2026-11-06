@@ -10,6 +10,7 @@ import { instante } from '../programa/quadroBoneco';
 import { useEstiloBoneco } from '../app/estiloBoneco';
 import { agoraIso, fusoDoAparelho, useApp } from '../app/estado';
 import { lerContexto, linkDoGuia } from './link';
+import { useTelaAcesa } from '../treino/Temporizador';
 
 // Tela do guia de execução: mesma interface do guia original (referencia/guia-execucao-fase1.html),
 // sem o temporizador de descanso (que entra no M5). O motor não sabe de React: o palco só recebe o SVG.
@@ -47,6 +48,9 @@ const reduzMovimento = () => typeof window !== 'undefined' && !!window.matchMedi
 
 export function Guia() {
   const { id } = useParams();
+  const [params] = useSearchParams();
+  // aberto pelo treino, o guia faz parte do treino: a tela continua acesa
+  useTelaAcesa(lerContexto(params)?.de === 'treino');
   const ex: Animacao | undefined = EX.find((e: Animacao) => e.id === id);
   if (!ex) return <Navigate to={`/guia/${EX[0]!.id}`} replace />;
   return <GuiaExercicio key={ex.id} ex={ex} />;
