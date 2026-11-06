@@ -3,10 +3,10 @@ import { Link, Navigate, useNavigate, useParams, useSearchParams } from 'react-r
 import { CONTEUDO } from '../../conteudo';
 import { prescricaoNoGuia } from '../../domain/sessao';
 import { hojeDoEstado, hojeDoTreino } from '../treino/acoes';
-import { DIAS, EX, VIEWS } from '../../engine';
-import { instanteDoErro, montarSvgEstilo, vistaDaMiniatura, vistaDoMovimento, type Estilo } from '../../engine/estilo';
+import { VIEWS } from '../../engine/desenho';
+import type { Estilo } from '../../engine/estilo';
 import { SO_AJUDA } from '../../engine/estilo/musculos';
-import { instante } from '../programa/quadroBoneco';
+import { largarCiclo, pedirAoBoneco, pedirCiclo, type Catalogo, type Ficha, type QuadroGuia } from '../programa/desenhoFora';
 import { useEstiloBoneco } from '../app/estiloBoneco';
 import { agoraIso, fusoDoAparelho, useApp } from '../app/estado';
 import { lerContexto, linkDoGuia } from './link';
@@ -28,11 +28,29 @@ const MODOS: [Modo, string][] = [
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 type Animacao = any;
 
+type Grupo = { id: string; nome: string; ex: string[] };
 // Treinos do programa de referência + as animações novas (criadas depois do guia original), num grupo próprio.
-const GRUPOS = [
-  ...DIAS,
-  ...(EX.length > 25 ? [{ id: 'novas', nome: 'Novas', ex: EX.slice(25) }] : []),
+const gruposDo = (c: Catalogo): Grupo[] => [
+  ...c.dias.map((d) => ({ id: d.id, nome: d.nome, ex: d.ids })),
+  ...(c.todos.length > 25 ? [{ id: 'novas', nome: 'Novas', ex: c.todos.slice(25) }] : []),
 ];
+
+/** O catálogo e a ficha da animação, pedidos ao Worker do Boneco (lote 2: o motor não carrega na tela). */
+function useDoBoneco<T>(pedido: Parameters<typeof pedirAoBoneco>[0] | null): T | undefined {
+  const chave = pedido ? JSON.stringify(pedido) : '';
+  const [r, setR] = useState<{ chave: string; v: T } | null>(null);
+  useEffect(() => {
+    if (!pedido) return;
+    let vivo = true;
+    pedirAoBoneco<T>(pedido).then((v) => vivo && setR({ chave, v }));
+    return () => {
+      vivo = false;
+    };
+    // a chave resume o pedido
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [chave]);
+  return r && r.chave === chave ? r.v : undefined;
+}
 
 const faixa = ([a, b]: [number, number]) => (a === b ? `${a}` : `${a}–${b}`);
 const tempo = (seg: number) => (seg % 60 ? `${Math.floor(seg / 60)}:${String(seg % 60).padStart(2, '0')}` : `${seg / 60} min`);
@@ -52,12 +70,26 @@ export function Guia() {
   const [params] = useSearchParams();
   // aberto pelo treino, o guia faz parte do treino: a tela continua acesa
   useTelaAcesa(lerContexto(params)?.de === 'treino');
-  const ex: Animacao | undefined = EX.find((e: Animacao) => e.id === id);
-  if (!ex) return <Navigate to={`/guia/${EX[0]!.id}`} replace />;
-  return <GuiaExercicio key={ex.id} ex={ex} />;
+  const estilo = useEstiloBoneco();
+  const catalogo = useDoBoneco<Catalogo>({ tipo: 'catalogo' });
+  const valido = !!catalogo && !!id && catalogo.todos.includes(id);
+  const ex = useDoBoneco<Ficha | null>(valido ? { tipo: 'ficha', animacaoId: id!, estilo } : null);
+  if (catalogo && !valido) return <Navigate to={`/guia/${catalogo.todos[0]}`} replace />;
+  // até a ficha chegar (do Worker, em milissegundos): o fundo da tela e o palco vazio, do mesmo tamanho
+  if (!catalogo || !ex)
+    return (
+      <div className="wrap guia" aria-busy="true">
+        <main className="conteudo-guia">
+          <section className="card" aria-label="Animação">
+            <div className="stage" />
+          </section>
+        </main>
+      </div>
+    );
+  return <GuiaExercicio key={`${ex.id}-${estilo}`} ex={ex} grupos={gruposDo(catalogo)} />;
 }
 
-function GuiaExercicio({ ex }: { ex: Animacao }) {
+function GuiaExercicio({ ex, grupos }: { ex: Ficha; grupos: Grupo[] }) {
   const txt = CONTEUDO[ex.id]!;
   const navigate = useNavigate();
   const [params] = useSearchParams();
@@ -73,15 +105,15 @@ function GuiaExercicio({ ex }: { ex: Animacao }) {
     minha && ctx
       ? minha.dia.exercicios
           .map((x) => (ctx.vaga && x.exId === ctx.vaga ? minha.x : x))
-          .filter((x, i, xs) => x.animacaoId && xs.findIndex((y) => y.animacaoId === x.animacaoId) === i).map((x) => ({ x, ex: EX.find((e: Animacao) => e.id === x.animacaoId)! }))
+          .filter((x, i, xs) => x.animacaoId && xs.findIndex((y) => y.animacaoId === x.animacaoId) === i).map((x) => ({ x, ex: x.animacaoId as string }))
       : [];
   // Na troca pela alternativa, ela continua no lugar da vaga ao navegar pelo dia.
   const linkMeu = (exId: string, animacaoId: string) =>
     linkDoGuia(animacaoId, { de: ctx!.de, diaId: ctx!.diaId, exId, ...(ctx!.vaga && exId === ctx!.exId ? { vaga: ctx!.vaga } : {}) });
   const dia = minha
     ? { id: minha.dia.id, nome: minha.dia.nome, ex: meus.map((m) => m.ex) }
-    : GRUPOS.find((d) => d.ex.includes(ex))!;
-  const pos = Math.max(0, dia.ex.indexOf(ex));
+    : (grupos.find((d) => d.ex.includes(ex.id)) ?? grupos[0]!);
+  const pos = Math.max(0, dia.ex.indexOf(ex.id));
 
   // Parâmetros de URL fixam o quadro (usados pela regressão visual e para gerar imagens do devlog).
   const estilo = useEstiloBoneco();
@@ -89,11 +121,11 @@ function GuiaExercicio({ ex }: { ex: Animacao }) {
   const [modo, setModo] = useState<Modo>(modoUrl && MODOS.some(([m]) => m === modoUrl) ? modoUrl : 'tec');
   const [erro, setErro] = useState(() => Math.max(0, Math.min(ex.errors.length - 1, Number(params.get('erro') ?? 0))));
   // R4 (decisão do Gustavo, 05/11/2026): no Boneco, o modo Técnica abre na vista em que o movimento é maior
-  const [vista, setVista] = useState<string>(() => params.get('vista') ?? (modo === 'err' ? ex.errors[erro].view : modo === 'tec' ? vistaDoMovimento(ex, estilo) : ex.views[0]));
+  const [vista, setVista] = useState<string>(() => params.get('vista') ?? (modo === 'err' ? ex.errors[erro]!.view : modo === 'tec' ? ex.vistaMovimento : ex.views[0]!));
   const [tocando, setTocando] = useState(() => params.get('pausado') !== '1' && !reduzMovimento());
   const [lento, setLento] = useState(false);
   // R4 (05/11/2026): no Boneco, o modo Erros abre no instante em que o certo e o errado mais se afastam.
-  const inicioDoErro = (i: number) => (estilo !== 'atual' ? instanteDoErro(ex, i) : 0);
+  const inicioDoErro = (i: number) => ex.instantesErro[i] ?? 0;
   const t = useRef(Number(params.get('t') ?? (modo === 'err' ? inicioDoErro(erro) : 0)));
 
   const svg = useRef<SVGSVGElement>(null);
@@ -104,23 +136,94 @@ function GuiaExercicio({ ex }: { ex: Animacao }) {
   const estado = useRef({ modo, erro, vista, tocando, lento, estilo });
   estado.current = { modo, erro, vista, tocando, lento, estilo };
 
+  // O laço da animação (redesign, lote 2: desempenho sem mudar o motor). Antes, o SVG inteiro era refeito na tela
+  // cerca de 60 vezes por segundo, mesmo pausado, e o motor preparava os 82 exercícios na linha principal. Agora o
+  // motor fica no Worker do Boneco: tocando, a volta inteira chega de lá quadro a quadro (30 por segundo de animação)
+  // e fica o quadro mais recente já pronto; pausado, o Worker manda só o quadro do instante exato; fora da tela, nada
+  // é desenhado. A largura vem de um ResizeObserver e o cursor da linha do tempo anda por transform.
   useEffect(() => {
     let raf = 0;
     let ultimo = performance.now();
+    let chaveAnterior = '';
+    let hudAnterior = '';
+    let largura = svg.current?.clientWidth ?? 0;
+    let larguraLinha = linha.current?.clientWidth ?? 0;
+    let visivel = true;
+    let combinacao = '';
+    let doWorker = false;
+    const quadros = new Map<number, QuadroGuia>();
+    const avulsos = new Map<string, QuadroGuia>();
+    const pedidos = new Set<string>();
+    const ro =
+      typeof ResizeObserver !== 'undefined'
+        ? new ResizeObserver(() => {
+            largura = svg.current?.clientWidth ?? largura;
+            larguraLinha = linha.current?.clientWidth ?? larguraLinha;
+          })
+        : null;
+    if (svg.current) ro?.observe(svg.current);
+    if (linha.current) ro?.observe(linha.current);
+    const io =
+      typeof IntersectionObserver !== 'undefined' && svg.current
+        ? new IntersectionObserver(([e]) => {
+            visivel = !!e?.isIntersecting;
+          })
+        : null;
+    if (svg.current) io?.observe(svg.current);
+    // um quadro avulso (o instante exato, pausado, ou o 1º de uma combinação nova): pedido uma vez, guardado ao chegar
+    const avulso = (s: typeof estado.current, instante: number, chave: string) => {
+      const q = avulsos.get(chave);
+      if (q || pedidos.has(chave)) return q;
+      pedidos.add(chave);
+      void pedirAoBoneco<QuadroGuia>(
+        { tipo: 'quadroGuia', animacaoId: ex.id, vista: s.vista, modo: s.modo, t: instante, erro: s.erro, largura, estilo: s.estilo, tituloErro: txt.errors[s.erro]!.title },
+        false,
+      ).then((r) => {
+        if (avulsos.size > 300) avulsos.clear();
+        avulsos.set(chave, r);
+      });
+      return undefined;
+    };
     const desenhar = (agora: number) => {
+      raf = requestAnimationFrame(desenhar);
       const s = estado.current;
       const dt = Math.min(0.05, (agora - ultimo) / 1000);
       ultimo = agora;
       if (s.tocando) t.current += dt * (s.lento ? 0.35 : 1);
       const el = svg.current;
-      if (el) {
-        // o título do erro (texto do guia) vai ao motor, que o escreve ao lado da parte do corpo que erra (R4)
-        const q = montarSvgEstilo(ex, s.vista, s.modo, t.current, s.erro, el.clientWidth, s.estilo, false, { tituloErro: txt.errors[s.erro]!.title });
-        el.setAttribute('viewBox', q.viewBox);
-        if (q.classe) el.setAttribute('class', q.classe);
-        else el.removeAttribute('class');
-        el.innerHTML = q.html;
-        const nomeErro = txt.errors[s.erro]!.title;
+      if (!el || !visivel || document.hidden || !largura) return;
+      const ciclo = ((t.current % ex.T) + ex.T) % ex.T;
+      const c = `${s.vista}|${s.modo}|${s.erro}|${s.estilo}|${largura}`;
+      if (c !== combinacao) {
+        combinacao = c;
+        quadros.clear();
+        doWorker = pedirCiclo({ animacaoId: ex.id, vista: s.vista, modo: s.modo, erro: s.erro, largura, estilo: s.estilo, tituloErro: txt.errors[s.erro]!.title }, (i, q) => quadros.set(i, q));
+      }
+      let q: QuadroGuia | undefined;
+      let chave: string;
+      if (s.tocando && doWorker) {
+        // o quadro do instante, ou o mais recente já pronto antes dele; nenhum ainda: o 1º, avulso
+        let i = Math.floor(ciclo * 30);
+        while (i >= 0 && !quadros.has(i)) i--;
+        chave = i >= 0 ? `${c}|q${i}` : `${c}|0.0000`;
+        q = i >= 0 ? quadros.get(i) : avulso(s, 0, chave);
+      } else {
+        // pausado (ou sem Worker): o instante exato, ou o quadro de 1/30 s quando toca
+        const instante = s.tocando ? Math.floor(ciclo * 30) / 30 : t.current;
+        chave = `${c}|${instante.toFixed(4)}`;
+        q = avulso(s, instante, chave);
+      }
+      if (cursor.current) cursor.current.style.transform = `translateX(${((larguraLinha - 16) * ciclo) / ex.T}px)`;
+      if (!q || chave === chaveAnterior) return;
+      chaveAnterior = chave;
+      el.setAttribute('viewBox', q.viewBox);
+      if (q.classe) el.setAttribute('class', q.classe);
+      else el.removeAttribute('class');
+      el.innerHTML = q.html;
+      const nomeErro = txt.errors[s.erro]!.title;
+      const hud = `${s.modo}|${nomeErro}|${q.fase.label}|${q.fase.tempo}|${q.fase.breath}`;
+      if (hud !== hudAnterior) {
+        hudAnterior = hud;
         if (fase.current) {
           fase.current.replaceChildren();
           const b = document.createElement('b');
@@ -139,21 +242,30 @@ function GuiaExercicio({ ex }: { ex: Animacao }) {
           resp.current.textContent = q.fase.breath;
           resp.current.className = 'breath' + (q.fase.breath === 'INSPIRA' ? ' in' : q.fase.breath === 'FIRME' ? ' hold' : '');
         }
-        if (cursor.current && linha.current) {
-          const w = linha.current.clientWidth - 16;
-          cursor.current.style.left = 8 + (w * (((t.current % ex.T) + ex.T) % ex.T)) / ex.T - 1 + 'px';
-        }
       }
-      raf = requestAnimationFrame(desenhar);
     };
     raf = requestAnimationFrame(desenhar);
-    return () => cancelAnimationFrame(raf);
+    return () => {
+      cancelAnimationFrame(raf);
+      ro?.disconnect();
+      io?.disconnect();
+      largarCiclo();
+    };
   }, [ex, txt]);
+
+  // Movimento reduzido ligado depois de abrir: a animação para.
+  useEffect(() => {
+    const mq = window.matchMedia?.('(prefers-reduced-motion: reduce)');
+    if (!mq) return;
+    const mudou = () => mq.matches && setTocando(false);
+    mq.addEventListener?.('change', mudou);
+    return () => mq.removeEventListener?.('change', mudou);
+  }, []);
 
   const vistas: string[] = useMemo(() => (modo === 'err' ? [...new Set([vista, ...ex.views])] : ex.views), [modo, vista, ex]);
   const irPara = (i: number) => {
     const n = (i + dia.ex.length) % dia.ex.length;
-    navigate(minha ? linkMeu(meus[n]!.x.exId, meus[n]!.x.animacaoId!) : `/guia/${dia.ex[n]!.id}`);
+    navigate(minha ? linkMeu(meus[n]!.x.exId, meus[n]!.x.animacaoId!) : `/guia/${dia.ex[n]!}`);
   };
   // Design v2 (opção 2 dos adutores): o modo Músculos abre na vista em que o músculo principal aparece mais, a mesma
   // regra da miniatura (vistaDaMiniatura), a menos que a pessoa já tenha escolhido uma vista neste exercício.
@@ -167,13 +279,13 @@ function GuiaExercicio({ ex }: { ex: Animacao }) {
   };
   const trocarModo = (m: Modo) => {
     setModo(m);
-    if (m === 'mus' && !vistaManual.current && estilo !== 'atual') setVista(vistaDaMiniatura(ex, instante(ex), estilo));
+    if (m === 'mus' && !vistaManual.current && estilo !== 'atual') setVista(ex.vistaMiniatura);
     else if (m === 'err') {
       setErro(0);
-      setVista(ex.errors[0].view);
+      setVista(ex.errors[0]!.view);
       t.current = inicioDoErro(0);
-    } else if (m === 'tec' && !vistaManual.current && estilo !== 'atual') setVista(vistaDoMovimento(ex, estilo));
-    else if (!ex.views.includes(vista)) setVista(ex.views[0]);
+    } else if (m === 'tec' && !vistaManual.current && estilo !== 'atual') setVista(ex.vistaMovimento);
+    else if (!ex.views.includes(vista)) setVista(ex.views[0]!);
   };
 
   return (
@@ -205,17 +317,17 @@ function GuiaExercicio({ ex }: { ex: Animacao }) {
               <span>Catálogo de exercícios · animações esquemáticas</span>
             </div>
             <nav className="days" aria-label="Treinos">
-              {GRUPOS.map((d) => (
-                <button key={d.id} className="day" aria-pressed={d === dia} onClick={() => navigate(`/guia/${d.ex[0]!.id}`)}>
+              {grupos.map((d) => (
+                <button key={d.id} className="day" aria-pressed={d === dia} onClick={() => navigate(`/guia/${d.ex[0]!}`)}>
                   {d.nome}
                 </button>
               ))}
             </nav>
             <div className="chips" role="group" aria-label="Exercícios">
-              {dia.ex.map((e: Animacao, i: number) => (
-                <button key={e.id} className="chip" aria-pressed={e === ex} onClick={() => irPara(i)}>
+              {dia.ex.map((e: string, i: number) => (
+                <button key={e} className="chip" aria-pressed={e === ex.id} onClick={() => irPara(i)}>
                   <i>{i + 1}</i>
-                  {CONTEUDO[e.id]!.short}
+                  {CONTEUDO[e]!.short}
                 </button>
               ))}
             </div>
@@ -286,7 +398,7 @@ function GuiaExercicio({ ex }: { ex: Animacao }) {
               txt={txt}
               onErro={(i) => {
                 setErro(i);
-                setVista(ex.errors[i].view);
+                setVista(ex.errors[i]!.view);
                 t.current = inicioDoErro(i);
               }}
             />

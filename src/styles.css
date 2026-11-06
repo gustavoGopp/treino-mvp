@@ -130,7 +130,7 @@ a.day{color:var(--link)}
 .tseg{flex-basis:0;border-radius:var(--r1);font-size:var(--t-rotulo);line-height:18px;height:18px;text-align:center;color:var(--ink);overflow:hidden;white-space:nowrap;background:var(--surface-2)}
 .tseg.conc{background:var(--accent-soft);color:var(--ink)}
 .tseg.ecc{background:var(--surface-2);color:var(--ink)}
-.tcur{position:absolute;top:4px;width:3px;height:26px;background:var(--ink);border-radius:var(--r1)}
+.tcur{position:absolute;top:4px;left:7px;will-change:transform;width:3px;height:26px;background:var(--ink);border-radius:var(--r1)}
 .controls{display:flex;gap:8px;align-items:center;padding:12px;flex-wrap:wrap}
 .ctl{min-height:3rem;min-width:3rem;padding:0 12px;border-radius:var(--r2);border:1.5px solid var(--edge);background:var(--surface);cursor:pointer;font-size:var(--t-apoio);font-weight:700;display:flex;align-items:center;justify-content:center;gap:8px;color:var(--ink)}
 .ctl[aria-pressed="true"]{background:var(--accent-soft);color:var(--ink);border:2px solid var(--accent)}
