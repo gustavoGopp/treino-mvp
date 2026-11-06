@@ -9,7 +9,7 @@
 import { mkdirSync, writeFileSync } from 'node:fs';
 import { BIBLIOTECA, MUSCULOS, PADROES, POR_ID, type Exercicio, type Musculo, type Padrao } from '../../src/domain/biblioteca';
 import { contextoDeSelecao, gerarPrograma, NOME_MUSCULO, type Programa } from '../../src/domain/gerador';
-import { DIVISAO_IDS, DIVISOES, type DivisaoId } from '../../src/domain/gerador/divisoes';
+import { DIVISOES, DIVISOES_OFERECIDAS, type DivisaoId } from '../../src/domain/gerador/divisoes';
 import { FUNCOES } from '../../src/domain/gerador/funcoes';
 import { NIVEIS, NIVEL_COMPLEXIDADE_MAX, type Nivel } from '../../src/domain/regras';
 import { capacidades } from '../../src/domain/taxonomia/equipamentos';
@@ -149,7 +149,7 @@ const novoMon = (): Mon => ({ programas: 0, aparece2: 0, repeteComOpcao: 0, repe
 let programas = 0;
 for (const { c, vagas } of cen)
   for (const nivel of NIVEIS)
-    for (const divisao of DIVISAO_IDS as readonly DivisaoId[])
+    for (const divisao of DIVISOES_OFERECIDAS as readonly DivisaoId[])
       for (const minutos of MINUTOS_MON) {
         const r = gerarPrograma(perfil({ nivel, divisao, minutos, prioridades: [], dores: [] }), c.inventario);
         if (r.status !== 'ok') continue;
@@ -193,7 +193,7 @@ for (const { c, vagas } of cen)
 const md3: string[] = [
   '# Monotonia: o mesmo exercício em todos os dias da vaga',
   '',
-  `> Gerado por \`scripts/auditoria/catalogo.ts\`: ${programas} programas (${REPRESENTANTES.length} classes de cenário × 3 níveis × ${DIVISAO_IDS.length} divisões × ${MINUTOS_MON.join(', ')} min, sem prioridade nem dor).`,
+  `> Gerado por \`scripts/auditoria/catalogo.ts\`: ${programas} programas (${REPRESENTANTES.length} classes de cenário × 3 níveis × ${DIVISOES_OFERECIDAS.length} divisões × ${MINUTOS_MON.join(', ')} min, sem prioridade nem dor).`,
   '> "Repete com opção" = a vaga aparece em 2 dias ou mais, sempre com o mesmo exercício, embora houvesse outro equivalente possível no mesmo nível da função. "Repete sem opção" = repete porque só há um. A regra `selecao.variacao` (moderada) pede manter os exercícios no bloco e variar dentro da função; repetir na semana não é erro por si, mas mostra onde falta variedade possível.',
   '',
   '| Vaga | programas com a vaga | em 2 dias ou mais | repete com opção | repete sem opção | exemplos |',

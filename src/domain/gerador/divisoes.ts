@@ -455,6 +455,9 @@ export const OPCOES_POR_DIAS: Record<DiasSemana, DivisaoId[]> = {
  */
 export const CORPO_TODO_SEM_PUXAR: Partial<Record<DiasSemana, DivisaoId>> = { 6: 'ct-6x' };
 
+/** As divisões que a tela oferece (todas, menos o recuo `ct-6x`): as auditorias que escolhem a divisão rodam só estas. */
+export const DIVISOES_OFERECIDAS: DivisaoId[] = DIVISAO_IDS.filter((id) => Object.values(OPCOES_POR_DIAS).some((ids) => ids.includes(id)));
+
 /** Teto de meta semanal para a clássica: com 1x por semana e ~10 séries por sessão (divisao.classica). */
 export const META_MAX_CLASSICA = 10;
 

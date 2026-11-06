@@ -2,7 +2,7 @@
 // Nada aqui é dado de uma pessoa real: os inventários seguem os 3 atalhos de cenário (src/domain/taxonomia/atalhos.ts),
 // com e sem os itens "às vezes tem", mais os mínimos e as personas fictícias de tests/personas.
 import type { Grupo, Perfil } from '../../src/domain/gerador';
-import { DIVISAO_IDS, DIVISOES, type DivisaoId } from '../../src/domain/gerador/divisoes';
+import { DIVISOES, DIVISOES_OFERECIDAS, type DivisaoId } from '../../src/domain/gerador/divisoes';
 import type { Articulacao } from '../../src/domain/biblioteca';
 import { NIVEIS, type Nivel } from '../../src/domain/regras';
 import { ATALHOS } from '../../src/domain/taxonomia/atalhos';
@@ -115,7 +115,7 @@ export function* grade(opts: { cenarios?: Cenario[]; divisoes?: readonly Divisao
   let i = 0;
   for (const cenario of opts.cenarios ?? CENARIOS)
     for (const nivel of NIVEIS)
-      for (const divisao of opts.divisoes ?? DIVISAO_IDS)
+      for (const divisao of opts.divisoes ?? DIVISOES_OFERECIDAS)
         for (const minutos of opts.minutos ?? MINUTOS)
           for (const prioridade of opts.prioridades ?? PRIORIDADES)
             for (const dor of opts.dores ?? DORES) {

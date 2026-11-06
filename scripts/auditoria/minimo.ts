@@ -7,7 +7,7 @@ import { mkdirSync, writeFileSync } from 'node:fs';
 import { BIBLIOTECA, MUSCULOS, POR_ID, type Articulacao, type Musculo, type Padrao } from '../../src/domain/biblioteca';
 import { CARTOES, CONTEUDO } from '../../src/conteudo';
 import { SEM_EXERCICIO, ehAvisoDeMeta, musculosDoAviso, contextoDeSelecao, gerarPrograma, MUSCULOS_COM_META, NOME_MUSCULO, type Programa } from '../../src/domain/gerador';
-import { DIVISAO_IDS, DIVISOES, type DivisaoId } from '../../src/domain/gerador/divisoes';
+import { DIVISOES, DIVISOES_OFERECIDAS, type DivisaoId } from '../../src/domain/gerador/divisoes';
 import { FUNCAO, FUNCOES } from '../../src/domain/gerador/funcoes';
 import { exerciciosPorSessao, NIVEIS, NIVEL_COMPLEXIDADE_MAX, VOLUME, type Nivel } from '../../src/domain/regras';
 import { capacidades } from '../../src/domain/taxonomia/equipamentos';
@@ -33,7 +33,7 @@ function* grade(): Generator<Caso> {
   let i = 0;
   for (const cenario of REPRESENTANTES)
     for (const nivel of NIVEIS)
-      for (const divisao of DIVISAO_IDS)
+      for (const divisao of DIVISOES_OFERECIDAS)
         for (const minutos of MINUTOS)
           for (const prioridade of PRIORIDADES)
             for (const dor of DORES_MIN) {
@@ -343,7 +343,7 @@ const nomeClasse = (id: string) => {
 L.push('# Teste de estresse do cenário de equipamento mínimo', '');
 L.push(`> Gerado por \`npm run auditoria:minimo\`${amostra ? ` com \`--amostra ${amostra}\`` : ''}. Dados fictícios (\`scripts/auditoria/minimo-cenarios.ts\`). Não editar à mão.`, '');
 L.push(
-  `**${programas.toLocaleString('pt-BR')} programas**: ${CENARIOS_MIN.length} cenários (o inventário vazio, os ${CENARIOS_MIN.filter((c) => c.tipo === 'item').length} itens sozinhos e ${CENARIOS_MIN.filter((c) => c.tipo === 'par').length} pares de casa), que dão **${REPRESENTANTES.length} programas diferentes** (cenários com as mesmas capacidades geram o mesmo programa e rodam uma vez), × 3 níveis × ${DIVISAO_IDS.length} divisões de 2 a 6 dias × 8 durações de 20 a 150 min × 5 prioridades × 8 situações de dor${amostra ? `, 1 a cada ${amostra}` : ''}.`,
+  `**${programas.toLocaleString('pt-BR')} programas**: ${CENARIOS_MIN.length} cenários (o inventário vazio, os ${CENARIOS_MIN.filter((c) => c.tipo === 'item').length} itens sozinhos e ${CENARIOS_MIN.filter((c) => c.tipo === 'par').length} pares de casa), que dão **${REPRESENTANTES.length} programas diferentes** (cenários com as mesmas capacidades geram o mesmo programa e rodam uma vez), × 3 níveis × ${DIVISOES_OFERECIDAS.length} divisões de 2 a 6 dias × 8 durações de 20 a 150 min × 5 prioridades × 8 situações de dor${amostra ? `, 1 a cada ${amostra}` : ''}.`,
   '',
 );
 L.push('## Classes de cenários', '', 'Os itens que, sozinhos, não abrem nenhum exercício a mais que o inventário vazio ficam na classe do vazio.', '');
