@@ -8,6 +8,7 @@
    "topoPct": 82,
    "visivelSemRolar": true
   },
+  "palavras": 43,
   "telas": 2.9,
   "rolaDeLado": false,
   "visivel": {
@@ -25,9 +26,10 @@
   "contrasteBaixo": [],
   "botaoPrincipal": {
    "texto": "Não, nenhuma",
-   "topoPct": 249,
+   "topoPct": 244,
    "visivelSemRolar": false
   },
+  "palavras": 40,
   "telas": 3.2,
   "rolaDeLado": false,
   "visivel": {
@@ -48,6 +50,7 @@
    "topoPct": 84,
    "visivelSemRolar": true
   },
+  "palavras": 42,
   "telas": 6.7,
   "rolaDeLado": false,
   "visivel": {
@@ -68,6 +71,7 @@
    "topoPct": 84,
    "visivelSemRolar": true
   },
+  "palavras": 27,
   "telas": 4.7,
   "rolaDeLado": false,
   "visivel": {
@@ -88,6 +92,7 @@
    "topoPct": 84,
    "visivelSemRolar": true
   },
+  "palavras": 35,
   "telas": 4.2,
   "rolaDeLado": false,
   "visivel": {
@@ -108,6 +113,7 @@
    "topoPct": 70,
    "visivelSemRolar": true
   },
+  "palavras": 32,
   "telas": 2.7,
   "rolaDeLado": false,
   "visivel": {
@@ -128,6 +134,7 @@
    "topoPct": 82,
    "visivelSemRolar": true
   },
+  "palavras": 25,
   "telas": 3,
   "rolaDeLado": false,
   "visivel": {
@@ -148,6 +155,7 @@
    "topoPct": 73,
    "visivelSemRolar": true
   },
+  "palavras": 27,
   "telas": 4.4,
   "rolaDeLado": false,
   "visivel": {
@@ -168,6 +176,7 @@
    "topoPct": 70,
    "visivelSemRolar": true
   },
+  "palavras": 63,
   "telas": 2.7,
   "rolaDeLado": false,
   "visivel": {
@@ -188,7 +197,8 @@
    "topoPct": 61,
    "visivelSemRolar": true
   },
-  "telas": 6.2,
+  "palavras": 27,
+  "telas": 4.2,
   "rolaDeLado": false,
   "visivel": {
    "sentiAlgo": null,
@@ -208,7 +218,8 @@
    "topoPct": 61,
    "visivelSemRolar": true
   },
-  "telas": 5.2,
+  "palavras": 27,
+  "telas": 3.6,
   "rolaDeLado": false,
   "visivel": {
    "sentiAlgo": null,
@@ -228,7 +239,8 @@
    "topoPct": 61,
    "visivelSemRolar": true
   },
-  "telas": 5.3,
+  "palavras": 36,
+  "telas": 3.9,
   "rolaDeLado": false,
   "visivel": {
    "sentiAlgo": null,
@@ -248,7 +260,29 @@
    "topoPct": 61,
    "visivelSemRolar": true
   },
-  "telas": 6.1,
+  "palavras": 27,
+  "telas": 4.1,
+  "rolaDeLado": false,
+  "visivel": {
+   "sentiAlgo": null,
+   "serieFeita": null,
+   "rir": null,
+   "relogio": null,
+   "cortados": [],
+   "focoCoberto": []
+  }
+ },
+ {
+  "tela": "zoom200/inicio-leve",
+  "toquePequeno": [],
+  "contrasteBaixo": [],
+  "botaoPrincipal": {
+   "texto": "Começar o treino Corpo todo C",
+   "topoPct": 61,
+   "visivelSemRolar": true
+  },
+  "palavras": 56,
+  "telas": 4.1,
   "rolaDeLado": false,
   "visivel": {
    "sentiAlgo": null,
@@ -268,7 +302,8 @@
    "topoPct": 61,
    "visivelSemRolar": true
   },
-  "telas": 5.2,
+  "palavras": 44,
+  "telas": 3.6,
   "rolaDeLado": false,
   "visivel": {
    "sentiAlgo": null,
@@ -288,7 +323,8 @@
    "topoPct": 61,
    "visivelSemRolar": true
   },
-  "telas": 5.2,
+  "palavras": 51,
+  "telas": 3.6,
   "rolaDeLado": false,
   "visivel": {
    "sentiAlgo": null,
@@ -304,11 +340,12 @@
   "toquePequeno": [],
   "contrasteBaixo": [],
   "botaoPrincipal": {
-   "texto": "Terminar o treino agora",
-   "topoPct": 236,
-   "visivelSemRolar": false
+   "texto": "Série feita · descansar 1:45",
+   "topoPct": 75,
+   "visivelSemRolar": true
   },
-  "telas": 4.2,
+  "palavras": 29,
+  "telas": 2.5,
   "rolaDeLado": false,
   "visivel": {
    "sentiAlgo": true,
@@ -324,11 +361,12 @@
   "toquePequeno": [],
   "contrasteBaixo": [],
   "botaoPrincipal": {
-   "texto": "Terminar o treino agora",
-   "topoPct": 227,
-   "visivelSemRolar": false
+   "texto": "Série feita (encerra o descanso)",
+   "topoPct": 75,
+   "visivelSemRolar": true
   },
-  "telas": 4.1,
+  "palavras": 23,
+  "telas": 3.1,
   "rolaDeLado": false,
   "visivel": {
    "sentiAlgo": true,
@@ -344,11 +382,12 @@
   "toquePequeno": [],
   "contrasteBaixo": [],
   "botaoPrincipal": {
-   "texto": "Terminar o treino agora",
-   "topoPct": 205,
-   "visivelSemRolar": false
+   "texto": "Série feita (encerra o descanso)",
+   "topoPct": 75,
+   "visivelSemRolar": true
   },
-  "telas": 3.9,
+  "palavras": 30,
+  "telas": 2.9,
   "rolaDeLado": false,
   "visivel": {
    "sentiAlgo": true,
@@ -364,11 +403,54 @@
   "toquePequeno": [],
   "contrasteBaixo": [],
   "botaoPrincipal": {
-   "texto": "Terminar o treino agora",
-   "topoPct": 236,
-   "visivelSemRolar": false
+   "texto": "Série feita · descansar 1:45",
+   "topoPct": 75,
+   "visivelSemRolar": true
   },
-  "telas": 4.2,
+  "palavras": 50,
+  "telas": 2.5,
+  "rolaDeLado": false,
+  "visivel": {
+   "sentiAlgo": true,
+   "serieFeita": false,
+   "rir": false,
+   "relogio": null,
+   "cortados": [],
+   "focoCoberto": []
+  }
+ },
+ {
+  "tela": "zoom200/treino-porque",
+  "toquePequeno": [],
+  "contrasteBaixo": [],
+  "botaoPrincipal": {
+   "texto": "Série feita · descansar 1:45",
+   "topoPct": 75,
+   "visivelSemRolar": true
+  },
+  "palavras": 70,
+  "telas": 2.5,
+  "rolaDeLado": false,
+  "visivel": {
+   "sentiAlgo": true,
+   "serieFeita": false,
+   "rir": false,
+   "relogio": null,
+   "cortados": [],
+   "focoCoberto": []
+  }
+ },
+ {
+  "tela": "zoom200/treino-mais",
+  "toquePequeno": [],
+  "contrasteBaixo": [],
+  "botaoPrincipal": {
+   "texto": "Série feita · descansar 1:45",
+   "topoPct": 75,
+   "visivelSemRolar": true
+  },
+  "palavras": 40,
+  "telas": 2.5,
   "rolaDeLado": false,
   "visivel": {
    "sentiAlgo": true,
@@ -384,11 +466,12 @@
   "toquePequeno": [],
   "contrasteBaixo": [],
   "botaoPrincipal": {
-   "texto": "Terminar o treino agora",
-   "topoPct": 236,
-   "visivelSemRolar": false
+   "texto": "Série feita · descansar 1:45",
+   "topoPct": 75,
+   "visivelSemRolar": true
   },
-  "telas": 4.2,
+  "palavras": 60,
+  "telas": 2.5,
   "rolaDeLado": false,
   "visivel": {
    "sentiAlgo": true,
@@ -404,11 +487,12 @@
   "toquePequeno": [],
   "contrasteBaixo": [],
   "botaoPrincipal": {
-   "texto": "Terminar o treino agora",
-   "topoPct": 192,
-   "visivelSemRolar": false
+   "texto": "Série feita · descansar 1:45",
+   "topoPct": 75,
+   "visivelSemRolar": true
   },
-  "telas": 3.7,
+  "palavras": 37,
+  "telas": 3,
   "rolaDeLado": false,
   "visivel": {
    "sentiAlgo": true,
@@ -424,11 +508,12 @@
   "toquePequeno": [],
   "contrasteBaixo": [],
   "botaoPrincipal": {
-   "texto": "Terminar o treino agora",
-   "topoPct": 236,
-   "visivelSemRolar": false
+   "texto": "Série feita · descansar 1:45",
+   "topoPct": 75,
+   "visivelSemRolar": true
   },
-  "telas": 4.2,
+  "palavras": 51,
+  "telas": 2.5,
   "rolaDeLado": false,
   "visivel": {
    "sentiAlgo": true,
@@ -444,6 +529,7 @@
   "toquePequeno": [],
   "contrasteBaixo": [],
   "botaoPrincipal": null,
+  "palavras": 11,
   "telas": 4,
   "rolaDeLado": false,
   "visivel": {
@@ -464,7 +550,8 @@
    "topoPct": 69,
    "visivelSemRolar": true
   },
-  "telas": 3.8,
+  "palavras": 37,
+  "telas": 3.7,
   "rolaDeLado": false,
   "visivel": {
    "sentiAlgo": null,
@@ -484,7 +571,8 @@
    "topoPct": 84,
    "visivelSemRolar": true
   },
-  "telas": 3.2,
+  "palavras": 35,
+  "telas": 3.1,
   "rolaDeLado": false,
   "visivel": {
    "sentiAlgo": null,
@@ -500,6 +588,7 @@
   "toquePequeno": [],
   "contrasteBaixo": [],
   "botaoPrincipal": null,
+  "palavras": 34,
   "telas": 5.7,
   "rolaDeLado": false,
   "visivel": {
@@ -516,6 +605,7 @@
   "toquePequeno": [],
   "contrasteBaixo": [],
   "botaoPrincipal": null,
+  "palavras": 37,
   "telas": 2.6,
   "rolaDeLado": false,
   "visivel": {
@@ -536,6 +626,7 @@
    "topoPct": 260,
    "visivelSemRolar": false
   },
+  "palavras": 29,
   "telas": 3,
   "rolaDeLado": false,
   "visivel": {
@@ -556,6 +647,7 @@
    "topoPct": 260,
    "visivelSemRolar": false
   },
+  "palavras": 55,
   "telas": 3,
   "rolaDeLado": false,
   "visivel": {
@@ -572,6 +664,7 @@
   "toquePequeno": [],
   "contrasteBaixo": [],
   "botaoPrincipal": null,
+  "palavras": 35,
   "telas": 1.3,
   "rolaDeLado": false,
   "visivel": {
@@ -592,6 +685,7 @@
    "topoPct": 455,
    "visivelSemRolar": false
   },
+  "palavras": 14,
   "telas": 6.8,
   "rolaDeLado": false,
   "visivel": {
@@ -608,7 +702,8 @@
   "toquePequeno": [],
   "contrasteBaixo": [],
   "botaoPrincipal": null,
-  "telas": 8.3,
+  "palavras": 62,
+  "telas": 9.1,
   "rolaDeLado": false,
   "visivel": {
    "sentiAlgo": null,

@@ -373,3 +373,40 @@ Cada lote: um commit por mudança, `npm run check`, `npm run test:e2e` e o proje
 ### A decisão do Gustavo (06/11/2026)
 
 O Gustavo aprovou **todos os 36 itens na opção recomendada** ("aprovo todos os pontos recomendados"). Marcou 9 deles na página de decisão e os outros 27 foram gravados na mesma página a partir da conversa. Isso inclui a direção Giz e grafite, o "Desfazer por 5 s" no descanso, a opção D do Corpo livre, os pedidos ao domínio 1, 2, 3 e 5 (o 4 fica de fora) e o nome treino-mvp por enquanto, com o ícone novo. A Fase 5 segue a ordem de lotes acima.
+
+## 15. O retorno do Gustavo sobre o lote 1 (06/11): menos informação na tela
+
+**O que ele disse.** Está ficando interessante, mas ainda tem muita informação na tela. O selo e o "de onde vem isto" têm de ser muito sutis, porque quase ninguém vai usar. A tela "Seu treino" tem informação demais, e a do treino (o agachamento) tem muito texto. Tem de ser mais fácil, visual e simples de olhar; texto demais incomoda.
+
+**A regra nova, para todas as telas** [opinião, a partir do retorno; medida pelas palavras à vista]:
+1. **Uma tela, uma coisa principal.** De relance se lê o número e a ação; no máximo uma frase curta.
+2. **A explicação vai para "por quê?".** O texto de apoio e o de regra saem da tela e abrem a um toque, num link pequeno. O texto da regra não é reescrito, só muda de lugar: na folha, ele vem com o selo, e o selo abre as fontes. Onde a regra aparece, o selo está junto (princípio de evidência).
+3. **O selo fica sutil:** uma palavra curta e apagada (robusta, moderada, 1 estudo, consenso), com sublinhado pontilhado e a área de toque de 44 px por fora. Já está no app.
+4. **Nada de segurança sai da tela.** "Senti algo" sempre à vista; a montagem segura do exercício sem animação continua aberta e inteira; os textos de segurança não mudam.
+5. **O que é visual no lugar do texto:** a meta de reserva (RIR) aparece marcada nos próprios botões (um traço embaixo do 2 e do 3), em vez de uma frase; a sugestão do dia vem nos números já preenchidos, com uma etiqueta curta.
+
+**O que mudou no protótipo** (versão 5, no mesmo endereço):
+- **Início:** o cartão "Hoje" (nome, exercícios e minutos); a semana só com as bolinhas e "1 de 3 ›"; no máximo um aviso, em 1 linha com "Ver" (a explicação e os botões da semana leve abrem numa folha); cada exercício só com o nome e "4 × 8–12" (reserva e descanso ficam na folha do exercício); a frase da fase e o "Montado para" saem da tela.
+- **Série:** cabeçalho do exercício com nome, "4 × 8–12 cada lado", "Como fazer ›" e um botão "⋯", que reúne anterior, próximo, trocar e terminar (3 botões grandes a menos na tela); a calibração e o aquecimento em 1 linha ("1ª vez: comece leve. Aqueça antes. por quê?"); a meta da reserva nos botões; a ajuda do RIR no "por quê?".
+- **Descanso:** o relógio, a série feita e 1 linha com a próxima carga.
+- **Exercício sem animação:** a montagem segura inteira, sem os botões soltos embaixo.
+
+**Medidas** (Pixel 7, tema claro; `scripts/design/medir.ts`, que agora conta as palavras à vista sem rolar; app de hoje em `lote-1b/`, protótipo em `depois/`):
+
+| Tela | App de hoje | Protótipo v4 | Protótipo v5 |
+|---|---:|---:|---:|
+| Início | 116 | 109 | **72** |
+| Série, 1ª vez no exercício | 73 | 110 | **56** |
+| Descanso | 56* | 90 | **72** |
+| Exercício sem animação | 77 | 95 | **75** |
+| "Terminar" aberto | — | 132 | **78** |
+
+\* No app de hoje, o painel do descanso cobre metade da tela e esconde o resto; o protótipo mostra a série seguinte inteira junto do relógio.
+
+Na série, a proposta caiu pela metade (110 → 56). No início, caiu um terço; o que sobra são os nomes dos exercícios. Os 4 critérios seguem limpos nos 7 cenários (35 telas): 0 toque abaixo de 44 px, 0 contraste baixo, 0 rolagem de lado, 0 texto cortado, 0 foco coberto e "Senti algo" à vista em todas. Uma rolagem lateral nova a 206 px (a linha da semana e a do aviso) apareceu na 1ª medição e foi corrigida.
+
+![Início: app de hoje e proposta](img/menos-texto-inicio.png)
+![Série: app de hoje e proposta](img/menos-texto-treino.png)
+![Descanso, sem animação, "por quê?" e "⋯"](img/menos-texto-treino-estados.png)
+
+**Já no app (lote 1):** o selo sutil e o "por quê?" no RIR (`PorQue` em `src/features/app/ui.tsx`, com teste em `tests/e2e/selo.spec.ts`). O resto entra com os lotes 2 (treino) e 4 (início), que passam a seguir esta regra.

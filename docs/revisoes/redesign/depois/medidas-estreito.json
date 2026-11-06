@@ -8,6 +8,7 @@
    "topoPct": 89,
    "visivelSemRolar": true
   },
+  "palavras": 99,
   "telas": 1.3,
   "rolaDeLado": false,
   "visivel": {
@@ -28,6 +29,7 @@
    "topoPct": 117,
    "visivelSemRolar": false
   },
+  "palavras": 85,
   "telas": 1.5,
   "rolaDeLado": false,
   "visivel": {
@@ -48,6 +50,7 @@
    "topoPct": 89,
    "visivelSemRolar": true
   },
+  "palavras": 85,
   "telas": 2.5,
   "rolaDeLado": false,
   "visivel": {
@@ -68,6 +71,7 @@
    "topoPct": 89,
    "visivelSemRolar": true
   },
+  "palavras": 65,
   "telas": 2.3,
   "rolaDeLado": false,
   "visivel": {
@@ -88,6 +92,7 @@
    "topoPct": 89,
    "visivelSemRolar": true
   },
+  "palavras": 65,
   "telas": 1.7,
   "rolaDeLado": false,
   "visivel": {
@@ -108,6 +113,7 @@
    "topoPct": 85,
    "visivelSemRolar": true
   },
+  "palavras": 58,
   "telas": 1.4,
   "rolaDeLado": false,
   "visivel": {
@@ -128,6 +134,7 @@
    "topoPct": 89,
    "visivelSemRolar": true
   },
+  "palavras": 51,
   "telas": 1.5,
   "rolaDeLado": false,
   "visivel": {
@@ -148,6 +155,7 @@
    "topoPct": 39,
    "visivelSemRolar": true
   },
+  "palavras": 42,
   "telas": 2.1,
   "rolaDeLado": false,
   "visivel": {
@@ -168,6 +176,7 @@
    "topoPct": 85,
    "visivelSemRolar": true
   },
+  "palavras": 139,
   "telas": 1.4,
   "rolaDeLado": false,
   "visivel": {
@@ -188,7 +197,8 @@
    "topoPct": 78,
    "visivelSemRolar": true
   },
-  "telas": 3.1,
+  "palavras": 46,
+  "telas": 2.2,
   "rolaDeLado": false,
   "visivel": {
    "sentiAlgo": null,
@@ -208,7 +218,8 @@
    "topoPct": 78,
    "visivelSemRolar": true
   },
-  "telas": 2.5,
+  "palavras": 46,
+  "telas": 2,
   "rolaDeLado": false,
   "visivel": {
    "sentiAlgo": null,
@@ -228,7 +239,8 @@
    "topoPct": 78,
    "visivelSemRolar": true
   },
-  "telas": 2.6,
+  "palavras": 58,
+  "telas": 2,
   "rolaDeLado": false,
   "visivel": {
    "sentiAlgo": null,
@@ -248,7 +260,29 @@
    "topoPct": 78,
    "visivelSemRolar": true
   },
-  "telas": 3,
+  "palavras": 44,
+  "telas": 2.1,
+  "rolaDeLado": false,
+  "visivel": {
+   "sentiAlgo": null,
+   "serieFeita": null,
+   "rir": null,
+   "relogio": null,
+   "cortados": [],
+   "focoCoberto": []
+  }
+ },
+ {
+  "tela": "estreito/inicio-leve",
+  "toquePequeno": [],
+  "contrasteBaixo": [],
+  "botaoPrincipal": {
+   "texto": "Começar o treino Corpo todo C",
+   "topoPct": 78,
+   "visivelSemRolar": true
+  },
+  "palavras": 82,
+  "telas": 2.1,
   "rolaDeLado": false,
   "visivel": {
    "sentiAlgo": null,
@@ -268,7 +302,8 @@
    "topoPct": 78,
    "visivelSemRolar": true
   },
-  "telas": 2.5,
+  "palavras": 129,
+  "telas": 2,
   "rolaDeLado": false,
   "visivel": {
    "sentiAlgo": null,
@@ -288,7 +323,8 @@
    "topoPct": 78,
    "visivelSemRolar": true
   },
-  "telas": 2.5,
+  "palavras": 126,
+  "telas": 2,
   "rolaDeLado": false,
   "visivel": {
    "sentiAlgo": null,
@@ -304,16 +340,17 @@
   "toquePequeno": [],
   "contrasteBaixo": [],
   "botaoPrincipal": {
-   "texto": "Terminar o treino agora",
-   "topoPct": 117,
-   "visivelSemRolar": false
+   "texto": "Série feita · descansar 1:45",
+   "topoPct": 88,
+   "visivelSemRolar": true
   },
-  "telas": 2,
+  "palavras": 56,
+  "telas": 1.2,
   "rolaDeLado": false,
   "visivel": {
    "sentiAlgo": true,
    "serieFeita": true,
-   "rir": false,
+   "rir": true,
    "relogio": null,
    "cortados": [],
    "focoCoberto": []
@@ -324,16 +361,17 @@
   "toquePequeno": [],
   "contrasteBaixo": [],
   "botaoPrincipal": {
-   "texto": "Terminar o treino agora",
-   "topoPct": 134,
-   "visivelSemRolar": false
+   "texto": "Série feita (encerra o descanso)",
+   "topoPct": 88,
+   "visivelSemRolar": true
   },
-  "telas": 2.2,
+  "palavras": 72,
+  "telas": 1.6,
   "rolaDeLado": false,
   "visivel": {
    "sentiAlgo": true,
    "serieFeita": true,
-   "rir": false,
+   "rir": true,
    "relogio": true,
    "cortados": [],
    "focoCoberto": []
@@ -344,17 +382,18 @@
   "toquePequeno": [],
   "contrasteBaixo": [],
   "botaoPrincipal": {
-   "texto": "Terminar o treino agora",
-   "topoPct": 117,
-   "visivelSemRolar": false
+   "texto": "Série feita (encerra o descanso)",
+   "topoPct": 88,
+   "visivelSemRolar": true
   },
-  "telas": 2,
+  "palavras": 66,
+  "telas": 1.4,
   "rolaDeLado": false,
   "visivel": {
    "sentiAlgo": true,
    "serieFeita": true,
-   "rir": false,
-   "relogio": true,
+   "rir": true,
+   "relogio": false,
    "cortados": [],
    "focoCoberto": []
   }
@@ -364,11 +403,54 @@
   "toquePequeno": [],
   "contrasteBaixo": [],
   "botaoPrincipal": {
-   "texto": "Terminar o treino agora",
-   "topoPct": 117,
-   "visivelSemRolar": false
+   "texto": "Série feita · descansar 1:45",
+   "topoPct": 88,
+   "visivelSemRolar": true
   },
-  "telas": 2,
+  "palavras": 95,
+  "telas": 1.2,
+  "rolaDeLado": false,
+  "visivel": {
+   "sentiAlgo": true,
+   "serieFeita": false,
+   "rir": false,
+   "relogio": null,
+   "cortados": [],
+   "focoCoberto": []
+  }
+ },
+ {
+  "tela": "estreito/treino-porque",
+  "toquePequeno": [],
+  "contrasteBaixo": [],
+  "botaoPrincipal": {
+   "texto": "Série feita · descansar 1:45",
+   "topoPct": 88,
+   "visivelSemRolar": true
+  },
+  "palavras": 98,
+  "telas": 1.2,
+  "rolaDeLado": false,
+  "visivel": {
+   "sentiAlgo": true,
+   "serieFeita": false,
+   "rir": false,
+   "relogio": null,
+   "cortados": [],
+   "focoCoberto": []
+  }
+ },
+ {
+  "tela": "estreito/treino-mais",
+  "toquePequeno": [],
+  "contrasteBaixo": [],
+  "botaoPrincipal": {
+   "texto": "Série feita · descansar 1:45",
+   "topoPct": 88,
+   "visivelSemRolar": true
+  },
+  "palavras": 67,
+  "telas": 1.2,
   "rolaDeLado": false,
   "visivel": {
    "sentiAlgo": true,
@@ -384,11 +466,12 @@
   "toquePequeno": [],
   "contrasteBaixo": [],
   "botaoPrincipal": {
-   "texto": "Terminar o treino agora",
-   "topoPct": 117,
-   "visivelSemRolar": false
+   "texto": "Série feita · descansar 1:45",
+   "topoPct": 88,
+   "visivelSemRolar": true
   },
-  "telas": 2,
+  "palavras": 126,
+  "telas": 1.2,
   "rolaDeLado": false,
   "visivel": {
    "sentiAlgo": true,
@@ -404,16 +487,17 @@
   "toquePequeno": [],
   "contrasteBaixo": [],
   "botaoPrincipal": {
-   "texto": "Terminar o treino agora",
-   "topoPct": 100,
-   "visivelSemRolar": false
+   "texto": "Série feita · descansar 1:45",
+   "topoPct": 88,
+   "visivelSemRolar": true
   },
-  "telas": 1.8,
+  "palavras": 75,
+  "telas": 1.3,
   "rolaDeLado": false,
   "visivel": {
    "sentiAlgo": true,
    "serieFeita": true,
-   "rir": false,
+   "rir": true,
    "relogio": null,
    "cortados": [],
    "focoCoberto": []
@@ -424,11 +508,12 @@
   "toquePequeno": [],
   "contrasteBaixo": [],
   "botaoPrincipal": {
-   "texto": "Terminar o treino agora",
-   "topoPct": 117,
-   "visivelSemRolar": false
+   "texto": "Série feita · descansar 1:45",
+   "topoPct": 88,
+   "visivelSemRolar": true
   },
-  "telas": 2,
+  "palavras": 78,
+  "telas": 1.2,
   "rolaDeLado": false,
   "visivel": {
    "sentiAlgo": true,
@@ -444,7 +529,8 @@
   "toquePequeno": [],
   "contrasteBaixo": [],
   "botaoPrincipal": null,
-  "telas": 1.9,
+  "palavras": 44,
+  "telas": 1.8,
   "rolaDeLado": false,
   "visivel": {
    "sentiAlgo": true,
@@ -464,6 +550,7 @@
    "topoPct": 81,
    "visivelSemRolar": true
   },
+  "palavras": 81,
   "telas": 1.7,
   "rolaDeLado": false,
   "visivel": {
@@ -484,6 +571,7 @@
    "topoPct": 89,
    "visivelSemRolar": true
   },
+  "palavras": 70,
   "telas": 1.4,
   "rolaDeLado": false,
   "visivel": {
@@ -500,6 +588,7 @@
   "toquePequeno": [],
   "contrasteBaixo": [],
   "botaoPrincipal": null,
+  "palavras": 60,
   "telas": 2.4,
   "rolaDeLado": false,
   "visivel": {
@@ -516,6 +605,7 @@
   "toquePequeno": [],
   "contrasteBaixo": [],
   "botaoPrincipal": null,
+  "palavras": 78,
   "telas": 1.3,
   "rolaDeLado": false,
   "visivel": {
@@ -536,6 +626,7 @@
    "topoPct": 137,
    "visivelSemRolar": false
   },
+  "palavras": 61,
   "telas": 1.6,
   "rolaDeLado": false,
   "visivel": {
@@ -556,6 +647,7 @@
    "topoPct": 137,
    "visivelSemRolar": false
   },
+  "palavras": 87,
   "telas": 1.6,
   "rolaDeLado": false,
   "visivel": {
@@ -572,6 +664,7 @@
   "toquePequeno": [],
   "contrasteBaixo": [],
   "botaoPrincipal": null,
+  "palavras": 35,
   "telas": 1,
   "rolaDeLado": false,
   "visivel": {
@@ -592,6 +685,7 @@
    "topoPct": 215,
    "visivelSemRolar": false
   },
+  "palavras": 29,
   "telas": 3.3,
   "rolaDeLado": false,
   "visivel": {
@@ -608,7 +702,8 @@
   "toquePequeno": [],
   "contrasteBaixo": [],
   "botaoPrincipal": null,
-  "telas": 4.3,
+  "palavras": 73,
+  "telas": 4.6,
   "rolaDeLado": false,
   "visivel": {
    "sentiAlgo": null,
