@@ -20,19 +20,8 @@ const CENARIOS: Cenario[] = [
 ];
 
 // O que ainda falha no fim do lote 1 (medido em 06/11/2026), por cenário e grupo de telas, e o lote que reconstrói a tela.
-const L2_TREINO = 'lote 2: o descanso preso embaixo (e a barra de navegação da sessão) cobre o foco dos controles da série; o painel da série e o descanso no topo resolvem';
+// Lote 2 (06/11/2026): treino e guia passaram a cumprir os 4 critérios nos 7 cenários; sobram os de outros lotes.
 const PENDENTE: Record<string, string> = {
-  'claro/treino': L2_TREINO,
-  'escuro/treino': L2_TREINO,
-  'pequeno/treino': L2_TREINO,
-  'baixo/treino': L2_TREINO,
-  'estreito/treino': L2_TREINO,
-  'letra125/treino': L2_TREINO,
-  'zoom200/treino': 'lote 2: a 206 px a tela do treino rola de lado e "Série feita" não fica tocável',
-  'claro/guia': 'lote 2: as setas de exercício do guia ficam atrás da faixa de modos quando recebem o foco',
-  'escuro/guia': 'lote 2: as setas de exercício do guia ficam atrás da faixa de modos quando recebem o foco',
-  'zoom200/guia': 'lote 2: a 206 px há controles do guia menores que 44 px',
-  'zoom200/fim-e-semana': 'lote 2: o percurso passa pelo treino, que a 206 px não deixa salvar a série',
   'estreito/inicio': 'lote 4: a 320 px, a aba do 3º dia recebe o foco fora da faixa visível',
   'letra125/cadastro': 'lote 3: com a letra a 125%, os detalhes do equipamento ("Regulável") passam da borda',
 };
