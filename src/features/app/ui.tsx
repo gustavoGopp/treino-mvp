@@ -38,7 +38,7 @@ export function Selo({ id }: { id: string }) {
         {texto}
       </button>
       {aberto && (
-        <Folha titulo="De onde vem isto" aoFechar={() => setAberto(false)}>
+        <Folha titulo="De onde vem isto" aoFechar={() => setAberto(false)} livre={() => document.querySelector<HTMLElement>('.alerta-topo')}>
           <SeloFolha regra={regra} />
         </Folha>
       )}

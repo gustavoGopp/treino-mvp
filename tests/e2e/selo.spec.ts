@@ -6,10 +6,10 @@ import { semToquePequeno } from './toque';
 // Redesign (06/11/2026): o selo de evidência abre de onde vem a regra. Antes, a regra ficava num "title", que o celular
 // não mostra (docs/revisoes/redesign/agente-4-organizacao.md); agora um toque abre uma folha com a regra, o que o nível
 // quer dizer e as fontes por extenso (src/conteudo/fontes.json).
+// Fora do treino, a folha é modal: a página inteira fica inerte.
 test('o selo abre a regra, o significado e as fontes; o foco fica na folha e volta ao selo', async ({ page }) => {
   await ana(page);
-  await page.getByRole('button', { name: /^Começar o treino/ }).click();
-  const selo = page.locator('button.selo').first();
+  const selo = page.locator('button.selo:visible').first();
   await expect(selo).toBeVisible();
   await expect(selo).toHaveAccessibleName(/: ver de onde vem$/);
   await selo.click();
@@ -34,4 +34,27 @@ test('o selo abre a regra, o significado e as fontes; o foco fica na folha e vol
   await expect(folha).toBeHidden();
   await expect(selo).toBeFocused();
   expect(await page.locator('#root').evaluate((e) => (e as HTMLElement).inert)).toBe(false);
+});
+
+// Segurança: no treino, "Senti algo" continua à vista e tocável com a folha aberta (a folha abre abaixo do cabeçalho),
+// entra na volta do Tab, e tocar nele fecha a folha e abre o painel.
+test('no treino, a folha do selo abre abaixo do cabeçalho e "Senti algo" continua ao alcance', async ({ page }) => {
+  await ana(page);
+  await page.getByRole('button', { name: /^Começar o treino/ }).click();
+  await page.locator('button.selo').first().click();
+  const folha = page.getByRole('dialog', { name: 'De onde vem isto' });
+  await expect(folha).toBeVisible();
+  const senti = page.getByRole('button', { name: 'Senti algo' });
+  const [cab, veu] = await Promise.all([page.locator('header.top').boundingBox(), page.locator('.veu').boundingBox()]);
+  expect(veu!.y).toBeGreaterThanOrEqual(cab!.y + cab!.height - 1);
+  expect(await senti.evaluate((b) => { const r = b.getBoundingClientRect(); return document.elementFromPoint(r.left + r.width / 2, r.top + r.height / 2) === b || b.contains(document.elementFromPoint(r.left + r.width / 2, r.top + r.height / 2)); })).toBe(true);
+  let chegou = false;
+  for (let i = 0; i < 15 && !chegou; i++) {
+    await page.keyboard.press('Tab');
+    chegou = await senti.evaluate((b) => document.activeElement === b);
+  }
+  expect(chegou, '"Senti algo" entra na volta do Tab').toBe(true);
+  await senti.click();
+  await expect(folha).toBeHidden();
+  await expect(page.getByRole('region', { name: 'Senti algo' })).toBeVisible();
 });

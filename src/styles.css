@@ -328,6 +328,7 @@ details.campo .opcoes{margin-top:8px}
 .selo-folha{display:flex;flex-direction:column;gap:var(--e4)}
 .selo-folha .regra{margin:0;font-weight:700}
 .selo-folha .sentido{margin:0;padding:var(--e4);border-radius:var(--r2);background:var(--acao-suave)}
+.selo-folha .rotulo{font-size:var(--t-apoio);margin:0 0 var(--e2)}
 .selo-folha ol{margin:0;padding-left:var(--e5);display:flex;flex-direction:column;gap:var(--e3);font-size:var(--t-apoio)}
 .selo-folha ol small{display:block;color:var(--texto-2)}
 .selo-folha a{color:var(--link);overflow-wrap:anywhere}
