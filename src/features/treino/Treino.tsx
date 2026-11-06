@@ -122,6 +122,11 @@ export function Treino() {
           <Link to="/programa" className="volta-inicio" aria-label="Voltar ao início; o treino fica salvo">
             ‹ Início
           </Link>
+          {/* menos texto (lote 2): só "1 de 6" à vista; o nome do treino fica para o leitor de tela */}
+          <span className="onde-treino">
+            <span className="sr">{dia.nome}, exercício </span>
+            {i + 1} de {itens.length}
+          </span>
           <button type="button" className="alerta-topo" aria-expanded={painel === 'sentir'} onClick={() => setPainel(painel === 'sentir' ? 'nenhum' : 'sentir')}>
             <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
               <path d="M12 4l9 16H3z" />
@@ -150,9 +155,6 @@ export function Treino() {
           </div>
         )}
         <div className="progresso">
-          <span>
-            {dia.nome} · exercício {i + 1} de {itens.length}
-          </span>
           <div className="barra" aria-hidden="true">
             <i style={{ width: `${((i + (completo ? 1 : 0)) / itens.length) * 100}%` }} />
           </div>
