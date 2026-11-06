@@ -1,6 +1,6 @@
 import { copyFileSync, mkdirSync, statSync } from 'node:fs';
 import { resolve } from 'node:path';
-import { test, expect } from '@playwright/test';
+import { test } from '@playwright/test';
 
 // Agente 4 (redesign): fotografa cada folha dos esboços (docs/revisoes/redesign/img/agente-4-esbocos.html) e mede, no
 // app de hoje, quantos caracteres cabem numa linha de corpo (17 px) em 360, 412 e 560 px de largura (o máximo do .wrap).

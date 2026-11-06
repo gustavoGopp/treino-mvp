@@ -1,4 +1,4 @@
-import { expect, type Page } from '@playwright/test';
+import { expect } from '@playwright/test';
 import type { Inventario, ItemId } from '../../../../src/domain/taxonomia/equipamentos';
 import { ITEM_IDS } from '../../../../src/domain/taxonomia/equipamentos';
 import { ITENS_DE_ANILHA, SO_NA_FOTO } from '../../../../src/domain/taxonomia/atalhos';
