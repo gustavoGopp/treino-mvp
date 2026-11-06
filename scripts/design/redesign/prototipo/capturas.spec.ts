@@ -49,7 +49,23 @@ test('todas as telas do protótipo', async ({ page }, info) => {
         const topo = document.elementFromPoint(r.left + r.width / 2, r.top + r.height / 2);
         return !!topo && (el === topo || el.contains(topo));
       };
-      return { sentiAlgo: ok(document.querySelector('.senti')), serieFeita: ok(document.querySelector('#feita')), rir: ok(document.querySelector('.rir')), relogio: ok(document.querySelector('#relogio')) };
+      // texto cortado: sai da tela, ou de um ancestral que esconde o que passa da borda (o defeito da lista do início, 06/11)
+      const cortados: string[] = [];
+      for (const e of Array.from(document.body.querySelectorAll<HTMLElement>('*'))) {
+        if (e.closest('svg, .proto') || !Array.from(e.childNodes).some((n) => n.nodeType === 3 && n.textContent!.trim())) continue;
+        const r = e.getBoundingClientRect();
+        if (!r.width || !r.height) continue;
+        let limite = { left: 0, right: innerWidth };
+        for (let x = e.parentElement; x; x = x.parentElement) {
+          const s = getComputedStyle(x);
+          if (s.overflowX !== 'visible') {
+            const q = x.getBoundingClientRect();
+            limite = { left: Math.max(limite.left, q.left), right: Math.min(limite.right, q.right) };
+          }
+        }
+        if (r.right > limite.right + 1 || r.left < limite.left - 1) cortados.push(e.innerText.trim().slice(0, 40));
+      }
+      return { sentiAlgo: ok(document.querySelector('.senti')), serieFeita: ok(document.querySelector('#feita')), rir: ok(document.querySelector('.rir')), relogio: ok(document.querySelector('#relogio')), cortados: [...new Set(cortados)] };
     });
     medidas.push({ ...m, visivel } as Medida);
   }

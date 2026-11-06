@@ -14,7 +14,8 @@
    "sentiAlgo": null,
    "serieFeita": null,
    "rir": null,
-   "relogio": null
+   "relogio": null,
+   "cortados": []
   }
  },
  {
@@ -32,7 +33,8 @@
    "sentiAlgo": null,
    "serieFeita": null,
    "rir": null,
-   "relogio": null
+   "relogio": null,
+   "cortados": []
   }
  },
  {
@@ -50,7 +52,8 @@
    "sentiAlgo": null,
    "serieFeita": null,
    "rir": null,
-   "relogio": null
+   "relogio": null,
+   "cortados": []
   }
  },
  {
@@ -68,7 +71,8 @@
    "sentiAlgo": null,
    "serieFeita": null,
    "rir": null,
-   "relogio": null
+   "relogio": null,
+   "cortados": []
   }
  },
  {
@@ -86,7 +90,8 @@
    "sentiAlgo": null,
    "serieFeita": null,
    "rir": null,
-   "relogio": null
+   "relogio": null,
+   "cortados": []
   }
  },
  {
@@ -104,7 +109,8 @@
    "sentiAlgo": null,
    "serieFeita": null,
    "rir": null,
-   "relogio": null
+   "relogio": null,
+   "cortados": []
   }
  },
  {
@@ -116,13 +122,14 @@
    "topoPct": 89,
    "visivelSemRolar": true
   },
-  "telas": 1.2,
+  "telas": 1.3,
   "rolaDeLado": false,
   "visivel": {
    "sentiAlgo": null,
    "serieFeita": null,
    "rir": null,
-   "relogio": null
+   "relogio": null,
+   "cortados": []
   }
  },
  {
@@ -134,13 +141,14 @@
    "topoPct": 29,
    "visivelSemRolar": true
   },
-  "telas": 2.1,
+  "telas": 1.7,
   "rolaDeLado": false,
   "visivel": {
    "sentiAlgo": null,
    "serieFeita": null,
    "rir": null,
-   "relogio": null
+   "relogio": null,
+   "cortados": []
   }
  },
  {
@@ -158,7 +166,8 @@
    "sentiAlgo": null,
    "serieFeita": null,
    "rir": null,
-   "relogio": null
+   "relogio": null,
+   "cortados": []
   }
  },
  {
@@ -170,13 +179,14 @@
    "topoPct": 79,
    "visivelSemRolar": true
   },
-  "telas": 5.1,
+  "telas": 2.7,
   "rolaDeLado": false,
   "visivel": {
    "sentiAlgo": null,
    "serieFeita": null,
    "rir": null,
-   "relogio": null
+   "relogio": null,
+   "cortados": []
   }
  },
  {
@@ -188,13 +198,14 @@
    "topoPct": 79,
    "visivelSemRolar": true
   },
-  "telas": 4,
+  "telas": 2.2,
   "rolaDeLado": false,
   "visivel": {
    "sentiAlgo": null,
    "serieFeita": null,
    "rir": null,
-   "relogio": null
+   "relogio": null,
+   "cortados": []
   }
  },
  {
@@ -206,13 +217,14 @@
    "topoPct": 79,
    "visivelSemRolar": true
   },
-  "telas": 4.6,
+  "telas": 2.2,
   "rolaDeLado": false,
   "visivel": {
    "sentiAlgo": null,
    "serieFeita": null,
    "rir": null,
-   "relogio": null
+   "relogio": null,
+   "cortados": []
   }
  },
  {
@@ -224,13 +236,14 @@
    "topoPct": 79,
    "visivelSemRolar": true
   },
-  "telas": 4.9,
+  "telas": 2.6,
   "rolaDeLado": false,
   "visivel": {
    "sentiAlgo": null,
    "serieFeita": null,
    "rir": null,
-   "relogio": null
+   "relogio": null,
+   "cortados": []
   }
  },
  {
@@ -242,13 +255,14 @@
    "topoPct": 79,
    "visivelSemRolar": true
   },
-  "telas": 4,
+  "telas": 2.2,
   "rolaDeLado": false,
   "visivel": {
    "sentiAlgo": null,
    "serieFeita": null,
    "rir": null,
-   "relogio": null
+   "relogio": null,
+   "cortados": []
   }
  },
  {
@@ -260,13 +274,14 @@
    "topoPct": 79,
    "visivelSemRolar": true
   },
-  "telas": 4,
+  "telas": 2.2,
   "rolaDeLado": false,
   "visivel": {
    "sentiAlgo": null,
    "serieFeita": null,
    "rir": null,
-   "relogio": null
+   "relogio": null,
+   "cortados": []
   }
  },
  {
@@ -284,7 +299,8 @@
    "sentiAlgo": true,
    "serieFeita": true,
    "rir": true,
-   "relogio": null
+   "relogio": null,
+   "cortados": []
   }
  },
  {
@@ -302,7 +318,8 @@
    "sentiAlgo": true,
    "serieFeita": true,
    "rir": true,
-   "relogio": true
+   "relogio": true,
+   "cortados": []
   }
  },
  {
@@ -320,7 +337,8 @@
    "sentiAlgo": true,
    "serieFeita": true,
    "rir": true,
-   "relogio": true
+   "relogio": true,
+   "cortados": []
   }
  },
  {
@@ -338,7 +356,8 @@
    "sentiAlgo": true,
    "serieFeita": false,
    "rir": false,
-   "relogio": null
+   "relogio": null,
+   "cortados": []
   }
  },
  {
@@ -356,7 +375,8 @@
    "sentiAlgo": true,
    "serieFeita": false,
    "rir": false,
-   "relogio": null
+   "relogio": null,
+   "cortados": []
   }
  },
  {
@@ -374,7 +394,8 @@
    "sentiAlgo": true,
    "serieFeita": true,
    "rir": true,
-   "relogio": null
+   "relogio": null,
+   "cortados": []
   }
  },
  {
@@ -392,7 +413,8 @@
    "sentiAlgo": true,
    "serieFeita": false,
    "rir": false,
-   "relogio": null
+   "relogio": null,
+   "cortados": []
   }
  },
  {
@@ -406,7 +428,8 @@
    "sentiAlgo": true,
    "serieFeita": null,
    "rir": null,
-   "relogio": null
+   "relogio": null,
+   "cortados": []
   }
  },
  {
@@ -424,7 +447,8 @@
    "sentiAlgo": null,
    "serieFeita": null,
    "rir": null,
-   "relogio": null
+   "relogio": null,
+   "cortados": []
   }
  },
  {
@@ -442,7 +466,8 @@
    "sentiAlgo": null,
    "serieFeita": null,
    "rir": null,
-   "relogio": null
+   "relogio": null,
+   "cortados": []
   }
  },
  {
@@ -456,7 +481,8 @@
    "sentiAlgo": null,
    "serieFeita": null,
    "rir": null,
-   "relogio": null
+   "relogio": null,
+   "cortados": []
   }
  },
  {
@@ -470,7 +496,8 @@
    "sentiAlgo": null,
    "serieFeita": null,
    "rir": null,
-   "relogio": null
+   "relogio": null,
+   "cortados": []
   }
  },
  {
@@ -488,7 +515,8 @@
    "sentiAlgo": null,
    "serieFeita": null,
    "rir": null,
-   "relogio": null
+   "relogio": null,
+   "cortados": []
   }
  },
  {
@@ -506,7 +534,8 @@
    "sentiAlgo": null,
    "serieFeita": null,
    "rir": null,
-   "relogio": null
+   "relogio": null,
+   "cortados": []
   }
  },
  {
@@ -520,7 +549,8 @@
    "sentiAlgo": null,
    "serieFeita": null,
    "rir": null,
-   "relogio": null
+   "relogio": null,
+   "cortados": []
   }
  },
  {
@@ -538,7 +568,8 @@
    "sentiAlgo": null,
    "serieFeita": null,
    "rir": null,
-   "relogio": null
+   "relogio": null,
+   "cortados": []
   }
  },
  {
@@ -552,7 +583,8 @@
    "sentiAlgo": null,
    "serieFeita": null,
    "rir": null,
-   "relogio": null
+   "relogio": null,
+   "cortados": []
   }
  }
 ]

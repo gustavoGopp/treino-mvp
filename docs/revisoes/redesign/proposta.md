@@ -216,13 +216,17 @@ O Lighthouse de hoje dá 59 a 73 de desempenho no celular simulado, abaixo da me
 | "O desenho do Corpo livre está muito ruim." | Os 4 desenhos do "Onde você treina?" foram refeitos no mesmo traço; o "Corpo livre" é uma pessoa inteira, de braços e pernas abertos. |
 | "A parte de conferir a lista dá para melhorar." | A lista virou: o que está marcado em cima (com "Mudar" e "Tirar"), a busca pelo nome, as categorias como chips e uma grade de 2 colunas com o estado escrito ("tenho"). |
 | "A cor que eu mais gostei foi Giz e grafite." | Giz e grafite virou a cor padrão do protótipo; Ameixa e Petróleo continuam na barra de cima para comparar. |
+| 2ª rodada: "o desenho do Corpo livre está meio ruim; no item por item, alguns não têm desenho e não é fácil identificar." | Os 4 lugares foram redesenhados de novo, na mesma área dos desenhos de equipamento; o Corpo livre é uma pessoa agachando, vista de lado. Os **24 equipamentos sem desenho ganharam um**, no traço dos 25 de hoje, e a lista do protótipo passou a usar os 48 itens e as 6 categorias do app (com o nome completo para o leitor de tela). A folha de aprovação está em `img/icones-equipamento.png` (★ = desenho novo); cada desenho novo passa pela sua aprovação antes de ir para o app. |
+| 2ª rodada: "no treino, quando começa, o texto parece cortado pelo telefone (o 4 × 8–12 cada lado)." | Era um defeito do protótipo: na lista de exercícios do início, a miniatura do Boneco ocupava a largura da linha inteira e empurrava o texto para fora do cartão. Corrigido. O script de medidas ganhou uma checagem nova, "texto cortado" (que sai da tela ou do cartão), que pega esse defeito em 6 telas da versão anterior e em 0 da atual. A checagem antiga de rolagem lateral não pegava, porque o cartão escondia o excesso. |
 
 **Ressalva sobre a pergunta geral da saúde [opinião, com base no projeto].** As 9 perguntas existem porque uma pergunta geral sozinha deixa passar quem não se reconhece nela (pressão alta controlada, remédio de uso contínuo); é a razão de o app seguir o estilo do PAR-Q+ (`docs/pesquisa/07-seguranca-triagem-niveis.md`). Por isso a pergunta geral mostra as 9 condições escritas, em poucas palavras, e "não tenho certeza" conta como "sim". O que muda de regra, para a decisão do Gustavo na tabela:
 - `seguranca.triagem.nenhuma`: hoje a pessoa vê as 9 perguntas inteiras antes do "Nenhuma vale para mim"; na proposta, vê as 9 condições em forma curta (as inteiras ficam a um toque e reaparecem na tela do "sim").
 - 9 textos curtos novos de segurança, escritos por mim a partir das perguntas do app, sem mudar o conteúdo. A revisão de um profissional de Educação Física continua de lado, por decisão anterior do Gustavo (`docs/backlog.md`).
 - Nada muda no bloqueio, na liberação, na dor por região nem no estado guardado: as respostas continuam as mesmas 9, com "não" nas que não forem marcadas.
 
-**Medido depois do retorno:** as 32 telas continuam com 0 toque abaixo de 44 px, 0 contraste baixo e 0 rolagem lateral, nos 4 tamanhos, e o "Senti algo" segue à vista em todos os estados do treino.
+**Medido depois do retorno:** as 32 telas continuam com 0 toque abaixo de 44 px, 0 contraste baixo, 0 rolagem lateral e 0 texto cortado, nos 4 tamanhos, e o "Senti algo" segue à vista em todos os estados do treino. A checagem de texto cortado vale também para o app, na implementação.
+
+![Os 48 desenhos de equipamento e os 4 lugares](img/icones-equipamento.png)
 
 ![Saúde: uma pergunta](img/ad-triagem-claro.png)
 ![Equipamento: item por item](img/ad-equipamento-lista-claro.png)

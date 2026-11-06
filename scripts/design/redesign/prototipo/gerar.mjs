@@ -19,7 +19,12 @@ const M = {
   ...(await import('../../../../src/domain/triagem/index.ts')),
   ...(await import('../../../../src/domain/nivel/index.ts')),
   ...(await import('../../../../src/domain/biblioteca/index.ts')),
+  ...(await import('../../../../src/domain/taxonomia/equipamentos.ts')),
+  ...(await import('../../../../src/features/onboarding/inventarioForm.ts')),
+  ...(await import('../../../../src/features/onboarding/icones.tsx')),
 };
+const { renderToStaticMarkup } = await import('react-dom/server');
+const { createElement } = await import('react');
 const ex = (id) => M.EX.find((e) => e.id === id);
 
 // --- dados ---
@@ -76,6 +81,12 @@ const dados = {
   triagem: M.PERGUNTAS.map((p) => ({ id: p.id, texto: p.texto })),
   nivel: { tempos: M.TEMPOS_DE_TREINO, tecnica: M.CONFIANCA_TECNICA, pausas: M.PAUSAS.map((p) => ({ id: p.id, texto: p.texto })) },
   nomes: Object.fromEntries([...new Set(dias.flatMap((d) => d.exercicios.flatMap((x) => [x.exId, ...x.alternativas])))].map((id) => [id, M.POR_ID?.[id]?.nome ?? M.BIBLIOTECA.find((b) => b.id === id)?.nome ?? id])),
+  // equipamento: as categorias e os nomes curtos da tela de hoje, e os 25 desenhos que já existem, tirados do app
+  equipamento: M.CATEGORIAS.map((c) => ({
+    id: c.id,
+    titulo: c.titulo,
+    itens: M.itensDaCategoria(c.id).map((id) => ({ id, nome: M.NOME_CURTO[id], completo: M.ITENS[id].nome, desenho: M.ICONES[id] ? renderToStaticMarkup(createElement('g', null, M.ICONES[id])).replace(/^<g>|<\/g>$/g, '') : null })),
+  })),
   metas: programa.metas,
   volumeSemanal: programa.volumeSemanal,
 };
