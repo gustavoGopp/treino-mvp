@@ -10,7 +10,9 @@ import { medir, type Medida } from '../medir';
 // docs/revisoes/redesign/antes/medidas-<projeto>.json. O conjunto de referência versionado é copiado por referencia.mjs.
 
 const AGORA = new Date('2026-11-05T15:00:00.000Z'); // quinta-feira, 12:00 em Brasília
-const SAIDA = 'docs/revisoes/redesign/antes';
+// FASE=depois grava o mesmo inventário do app redesenhado (Fase 5), ao lado do "antes".
+const FASE = process.env.FASE ?? 'antes';
+const SAIDA = `docs/revisoes/redesign/${FASE}`;
 const PERSONAS = ['ana', 'bruno', 'carla', 'diego', 'elisa', 'fabio'] as const;
 const medidas: Medida[] = [];
 
@@ -30,7 +32,7 @@ test.afterAll(async ({}, info) => {
 /** Captura o que se vê sem rolar (-relance) e a página inteira, e mede a tela. */
 async function foto(page: Page, persona: string, nome: string) {
   const proj = test.info().project.name;
-  const dir = `reports/design/redesign/antes/${proj}/${persona}`;
+  const dir = `reports/design/redesign/${FASE}/${proj}/${persona}`;
   mkdirSync(dir, { recursive: true });
   await page.evaluate(() => document.fonts.ready);
   await page.waitForTimeout(200);
