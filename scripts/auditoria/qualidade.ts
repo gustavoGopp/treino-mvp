@@ -2,6 +2,7 @@
 //   npm run auditoria:qualidade                    (a grade inteira, em vários processos)
 //   npm run auditoria:qualidade -- --amostra 50    (1 caso-base a cada 50, para conferir rápido)
 //   npm run auditoria:qualidade -- --processos 1   (num processo só)
+//   npm run auditoria:qualidade -- --saida <pasta>  (escreve noutra pasta: medições de protótipos)
 // A grade: 55 cenários de equipamento (cenarios-55.ts) × 3 níveis × 5 números de dias (a divisão recomendada de cada
 // um) × 5 durações (30 a 90 min) × 13 prioridades × 15 situações de dor (sem; leve = 4 e forte = 7 em cada região), e,
 // nos casos sem dor, mais 2 variantes com um exercício evitado (o 1º da vaga de agachar; o 1º da vaga de empurrar
@@ -28,7 +29,8 @@ const amostra = Number(arg('--amostra')) || 0;
 const parte = arg('--parte'); // "i/N": este processo roda só os casos com índice ≡ i (mod N)
 const saidaParcial = arg('--saida-parcial');
 const processos = Math.max(1, Number(arg('--processos')) || Math.min(4, availableParallelism()));
-const SAIDA = 'docs/revisoes/qualidade';
+// --saida <pasta>: para medir um protótipo sem tocar na saída oficial (os arquivos oficiais ficam em docs/revisoes/qualidade).
+const SAIDA = arg('--saida') ?? 'docs/revisoes/qualidade';
 
 // ---------- a grade ----------
 export const MINUTOS_Q = [30, 45, 60, 75, 90];

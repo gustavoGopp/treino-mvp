@@ -205,6 +205,30 @@ Os avisos que saem: "Sem algo para puxar ou levantar: costas, ombro lateral, omb
 
 ## Parte D. O que "prioridade" faz hoje, e o que deveria fazer
 
+### D.1 O que o código faz com a prioridade (medido em 06/11/2026)
+
+A pessoa marca de 0 a 7 grupos no cadastro (peito, costas, ombros, braços, pernas, glúteos, abdômen). Cada grupo vira um ou mais músculos (`GRUPOS` em `src/domain/gerador/index.ts`: "pernas" = quadríceps, posteriores e panturrilha; "braços" = bíceps e tríceps; "ombros" = só o ombro lateral). A prioridade entra em cinco lugares:
+
+| Onde | O que muda | Regra |
+|---|---|---|
+| A meta semanal (`metasDoPerfil`) | o músculo prioritário sai do piso de 6 séries (4 no abdômen) e vai para o alvo do nível: 8 no iniciante, 12 no intermediário, 14 no avançado | `volume.semanal.alvo` (consenso), `volume.semanal.minimo-eficaz` (moderada) |
+| As vagas do dia (`ativa` e `rank`) | vagas marcadas com `prioridade` em `divisoes.ts` só entram se o grupo for prioridade (ex.: a extensão de quadril no dia A de corpo todo só com glúteos; o 2º bíceps no dia de puxar só com braços; a adução só com pernas ou glúteos); e, quando não cabem todas as vagas nos minutos, os complementos dos grupos prioritários entram antes dos outros | `tempo.exercicios-por-sessao`, `selecao.aducao-complemento` |
+| A distribuição das séries | as séries sobem primeiro no músculo mais longe da meta em proporção; como a meta do prioritário é maior, ele recebe mais séries (até 4 por exercício e 10 por sessão) | `volume.series-por-exercicio`, `volume.sessao.teto` |
+| A ordem da sessão | entre exercícios do mesmo tipo (multiarticular ou isolador), o do músculo prioritário vem antes | `ordem.sessao` (consenso) |
+| Os cortes de tempo (`cortarTempo`) | um prioritário nunca perde séries antes de um não prioritário; o piso do prioritário nos cortes é o mínimo do nível (6, 10, 12), o dos outros é 4 | `tempo.corte` (consenso) |
+
+O que a prioridade **não** faz: não acrescenta uma 2ª vaga do músculo nos dias (só as vagas marcadas em `divisoes.ts`, que existem para glúteos, pernas, ombros, braços, peito e costas em alguns dias, não em todos), não aumenta a frequência (os dias em que o músculo treina vêm da divisão) e não tira os outros músculos do programa: eles continuam com o piso de 4 a 6 séries.
+
+**O resultado medido (Parte A.5)**: com 1 grupo priorizado, 14% a 17% das séries da semana vão para ele; com 2, 26% a 30%; com 3, 58% a 61%. A fatia quase não muda com o equipamento, os dias ou os minutos. No avançado, o prioritário chega à meta de 14 em menos da metade dos programas (de 4% dos de pernas a 61% dos de glúteos); no iniciante (meta 8), em 22% a 87%. Com 2 ou 3 prioridades, em metade dos programas uma chega à meta e outra não (peito+braços 54% no intermediário, pernas+glúteos 60%, pernas+glúteos+abdômen 67%): elas competem pelas mesmas vagas, pelos mesmos minutos e pelo teto de 10 séries por músculo por sessão.
+
+**O que o app diz hoje** no "porquê" do programa: "Grupos prioritários com ~N séries semanais; os demais no mínimo eficaz (6)." (`volume.semanal.alvo`) e, nos avisos de meta, "Abaixo da meta: costas 8 de 12 séries por semana. A divisão X treina este músculo 2x por semana e, com até 4 séries por exercício e 10 por sessão, não cabe mais." Ou seja: o texto diz os números, mas não diz que "prioridade" significa foco maior mantendo os outros, nem avisa quando duas prioridades competem.
+
+### D.2 O que a evidência diz
+
+(em andamento: pesquisa em curso)
+
+### D.3 Opções para o Gustavo
+
 (em andamento)
 
 ## Parte E. As opções para a vaga sem exercício possível
