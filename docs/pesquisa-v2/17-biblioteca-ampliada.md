@@ -1748,7 +1748,7 @@ Os scripts ficam em `/tmp/claude-0/-home-user-treino-mvp/4613f7ac-a8aa-59f1-871a
 | 30140560 | `bishop2018` |
 | 30284496 | `dhahbi2022` |
 | 30529477 | `krause2019` |
-| 30660043 | `hoaj2019` |
+| 30660043 | `ho2019` |
 | 30888321 | `romeo2019` |
 | 31372578 | `rosignoli2019` |
 | 32299793 | `green2020` |
@@ -1757,7 +1757,7 @@ Os scripts ficam em `/tmp/claude-0/-home-user-treino-mvp/4613f7ac-a8aa-59f1-871a
 | 32781441 | `emanuel2021b` |
 | 32940548 | `youdas2021` |
 | 32990635 | `meyerowitzkatz2020` |
-| 33165305 | `ngcc2022` |
+| 33165305 | `ng2022` |
 | 33178079 | `lakicevic2020` |
 | 33239937 | `solstad2020` |
 | 33871831 | `steele2021` |
@@ -1777,7 +1777,7 @@ Os scripts ficam em `/tmp/claude-0/-home-user-treino-mvp/4613f7ac-a8aa-59f1-871a
 | 38280014 | `goller2024` |
 | 38437491 | `ruzga2024` |
 | 39480197 | `svensen2025` |
-| 39652733 | `dasilvalsl2025` |
+| 39652733 | `dasilva2025` |
 | 39728249 | `bouguezzi2024` |
 | 39896990 | `myraunet2025` |
 | 39960821 | `refalo2025` |
@@ -1790,7 +1790,7 @@ Os scripts ficam em `/tmp/claude-0/-home-user-treino-mvp/4613f7ac-a8aa-59f1-871a
 | 41503938 | `arnold2026` |
 | 41505507 | `cruzpimentel2026` |
 | 41835020 | `sammoud2026` |
-| 41848692 | `desouzasoaresb2026` |
+| 41848692 | `soares2026` |
 | 41944385 | `isiklar2026` |
 | 41964926 | `zhu2025` |
 | 42327570 | `chen2026` |
