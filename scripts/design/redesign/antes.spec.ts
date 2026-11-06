@@ -1,6 +1,6 @@
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs';
 import { expect, test, type Page } from '@playwright/test';
-import { triagemNenhuma } from '../../../tests/e2e/jornada';
+import { abrirTrocar, proximoExercicio, terminarTreino, triagemNenhuma } from '../../../tests/e2e/jornada';
 import { medir, type Medida } from '../medir';
 
 // Redesign (06/11/2026), Fase 1: o inventário do app de hoje, por script. Para cada persona fictícia (o estado vem de
@@ -166,11 +166,19 @@ for (const persona of PERSONAS) {
     await page.getByRole('button', { name: 'Senti algo' }).click();
     await foto(page, persona, '14-treino-senti-algo');
     await page.getByRole('button', { name: 'Senti algo' }).click();
-    const trocar = page.getByRole('button', { name: 'Trocar exercício' });
-    if (await trocar.count()) {
-      await trocar.click();
+    // a partir do lote 2, "Trocar" fica no "⋯"; antes, era um botão na tela
+    const mais = page.getByRole('button', { name: /^Mais opções/ });
+    if (await mais.count()) {
+      await abrirTrocar(page);
       await foto(page, persona, '15-treino-trocar');
-      await trocar.click();
+      await page.keyboard.press('Escape');
+    } else {
+      const trocar = page.getByRole('button', { name: 'Trocar exercício' });
+      if (await trocar.count()) {
+        await trocar.click();
+        await foto(page, persona, '15-treino-trocar');
+        await trocar.click();
+      }
     }
     await salvarSerie(page);
     await expect(page.getByRole('region', { name: 'Descanso' })).toBeVisible();
@@ -186,6 +194,7 @@ for (const persona of PERSONAS) {
     }
     const terminar = page.getByRole('button', { name: 'Terminar treino' });
     if (await terminar.isVisible()) await terminar.click();
+    else if (await page.getByRole('button', { name: /^Mais opções/ }).count()) await terminarTreino(page);
     await expect(page).toHaveURL(/\/treino\/fim$/, { timeout: 15_000 });
     await foto(page, persona, '17-fim-do-treino');
     await page.goto('/semana');
@@ -217,7 +226,8 @@ test('treino: exercício sem animação (Ana, 2º exercício, a ponte de glúteo
   const nomeDia = (await page.getByRole('tab').nth(0).innerText()).trim();
   await page.getByRole('button', { name: `Começar o treino ${nomeDia}` }).click();
   await expect(page).toHaveURL(/\/treino$/);
-  await page.getByRole('button', { name: 'Próximo' }).click();
+  if (await page.getByRole('button', { name: /^Mais opções/ }).count()) await proximoExercicio(page);
+  else await page.getByRole('button', { name: 'Próximo' }).click();
   await expect(page.getByRole('heading', { name: /Ponte de glúteo/ })).toBeVisible();
   await foto(page, 'ana', '16e-treino-cartao-fechado');
   await page.locator('details.cartao-texto > summary').click();

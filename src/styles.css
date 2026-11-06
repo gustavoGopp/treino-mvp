@@ -438,7 +438,14 @@ a.cartao-ex-corpo:focus-visible{outline:3px solid var(--foco);outline-offset:-3p
 
 /* Treino em andamento: uma série por vez, números grandes, "Série feita" fixo embaixo, descanso em painel grande */
 .sessao{gap:16px;padding-bottom:24px}
-.ex-sessao{display:grid;grid-template-columns:112px 1fr;gap:16px;align-items:center}
+.ex-sessao{display:grid;grid-template-columns:112px 1fr auto;gap:var(--e3) var(--e4);align-items:center}
+.ex-sessao .mais-op{grid-column:3;grid-row:1;align-self:start}
+.ex-sessao > div:not(.miniatura){grid-column:2;grid-row:1;min-width:0}
+/* o "⋯": anterior, próximo, trocar e terminar, numa folha (lote 2) */
+.mais-op{width:var(--toque);height:var(--toque);border-radius:var(--r2);border:1.5px solid var(--borda);background:var(--superficie);font-size:1.5rem;line-height:1;cursor:pointer;color:var(--texto)}
+.dois{display:grid;grid-template-columns:1fr 1fr;gap:var(--e2)}
+/* cabeçalho do treino: voltar ao início e "Senti algo" */
+.cab-treino .volta-inicio{min-height:var(--toque);display:inline-flex;align-items:center;padding:0 var(--e1);font-weight:700;color:var(--link)}
 .ex-sessao .titulo{font-size:var(--t-pergunta);line-height:1.2}
 .meta{margin:4px 0 0;font-size:var(--t-apoio);color:var(--muted);font-variant-numeric:tabular-nums}
 .sugestao{display:flex;flex-direction:column;gap:2px;background:var(--accent-soft);border-radius:var(--r1);padding:12px 12px;font-size:var(--t-apoio);color:var(--ink)}
@@ -462,7 +469,7 @@ a.cartao-ex-corpo:focus-visible{outline:3px solid var(--foco);outline-offset:-3p
 .acoes-sessao{display:flex;gap:8px;flex-wrap:wrap}
 .btn.alerta{color:var(--alert) !important;border-color:var(--alert)}
 .alerta-topo{display:inline-flex;align-items:center;gap:8px;min-height:3rem;padding:0 16px;border-radius:var(--r2);border:1.5px solid var(--alert);background:transparent;color:var(--alert);font-weight:700;font-size:var(--t-apoio);cursor:pointer}
-.nav-sessao{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.nav-sessao{display:grid;grid-template-columns:1fr;gap:var(--e2)}
 .descanso{position:fixed;left:0;right:0;bottom:0;z-index:5;background:var(--surface);border-radius:var(--r2) var(--r2) 0 0;padding:16px 16px calc(16px + env(safe-area-inset-bottom));display:flex;flex-direction:column;gap:12px;box-shadow:0 -8px 28px rgba(0,0,0,.16)}
 .descanso.acabou{background:var(--warn-soft)}
 .descanso-topo{display:flex;justify-content:space-between;align-items:baseline;font-weight:800;font-size:var(--t-pergunta)}

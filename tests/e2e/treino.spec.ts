@@ -1,5 +1,5 @@
 import { expect, test, type Page } from '@playwright/test';
-import { ana } from './jornada';
+import { ana, abrirTrocar, maisOpcoes, terminarTreino } from './jornada';
 
 // M5: treinar com o app. Persona fictícia Ana (halteres de 1 a 12 kg e banco reto).
 
@@ -64,7 +64,7 @@ test('sessão completa: registra as séries, descansa e recebe a sugestão para 
 
   for (;;) {
     await fazerExercicio(page);
-    const proximo = page.getByRole('button', { name: 'Próximo ›' });
+    const proximo = page.getByRole('navigation', { name: 'Exercícios' }).getByRole('button', { name: 'Próximo ›' });
     if (!(await proximo.isVisible())) break;
     await proximo.click();
   }
@@ -102,8 +102,7 @@ test('treino em andamento sobrevive a fechar o app', async ({ page }) => {
 test('trocar pela alternativa vale só para esta sessão', async ({ page }) => {
   await ana(page);
   await comecar(page);
-  await page.getByRole('button', { name: 'Trocar exercício' }).click();
-  await page.getByRole('region', { name: 'Trocar exercício' }).getByRole('button').first().click();
+  await (await abrirTrocar(page)).getByRole('button').first().click();
   await expect(page.getByText(/No lugar de agachamento búlgaro/)).toBeVisible();
 });
 
@@ -166,3 +165,19 @@ for (const largura of [412, 360]) {
     }
   });
 }
+
+// Lote 2 do redesign: terminar no meio pede confirmação, e "Senti algo" continua ao alcance com a confirmação aberta.
+test('terminar no meio do treino pede confirmação; "Continuar treinando" volta ao exercício', async ({ page }) => {
+  await ana(page);
+  await comecar(page);
+  await (await maisOpcoes(page)).getByRole('button', { name: 'Terminar o treino agora' }).click();
+  const confirma = page.getByRole('dialog', { name: 'Terminar o treino agora?' });
+  await expect(confirma).toContainText('Você terminou 0 de 6 exercícios. O que já foi registrado fica salvo.');
+  await expect(page.getByRole('button', { name: 'Senti algo' })).toBeVisible();
+  await confirma.getByRole('button', { name: 'Continuar treinando' }).click();
+  await expect(confirma).toBeHidden();
+  await expect(page).toHaveURL(/\/treino$/);
+  await expect(page.getByRole('heading', { name: 'Agachamento búlgaro com apoio' })).toBeVisible();
+  await terminarTreino(page);
+  await expect(page.getByRole('heading', { name: 'Treino concluído' })).toBeVisible();
+});

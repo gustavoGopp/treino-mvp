@@ -1,5 +1,5 @@
 import { expect, test, type Page } from '@playwright/test';
-import { ana } from './jornada';
+import { ana, terminarTreino } from './jornada';
 
 // R1b: vários locais. A Ana (persona fictícia) cadastra a "Academia" como 2º local, escolhe onde treina hoje,
 // vê a troca com o motivo e registra a 1ª série no aparelho novo, com a calibração da carga.
@@ -62,7 +62,7 @@ test('cadastra o 2º local, escolhe onde treinar hoje, vê a troca explicada e c
   await print(page, 'calibracao');
 
   // 5. O local fica lembrado para a próxima vez, e a escolha continua visível.
-  await page.getByRole('button', { name: 'Terminar treino' }).first().click();
+  await terminarTreino(page);
   await page.getByRole('link', { name: 'Voltar ao programa' }).click();
   await expect(page.getByRole('group', { name: 'Onde vou treinar hoje?' }).getByRole('button', { name: 'Academia' })).toHaveAttribute('aria-pressed', 'true');
   await expect(page.getByRole('group', { name: 'Onde vou treinar hoje?' }).getByRole('button', { name: 'Meu local' })).toBeVisible();

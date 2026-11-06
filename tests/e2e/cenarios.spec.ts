@@ -1,6 +1,6 @@
 import { expect, test, type Page } from '@playwright/test';
 import { criterios } from './criterios';
-import { ana } from './jornada';
+import { ana, abrirTrocar, maisOpcoes, proximoExercicio, terminarTreino } from './jornada';
 
 // Redesign (06/11/2026), lote 1: os 4 critérios (toque de 44 px, contraste, texto cortado e foco coberto) em todas as
 // telas, nos 7 cenários que o protótipo mediu (docs/revisoes/redesign/proposta.md, seção 13). Os cenários de 320 px,
@@ -99,15 +99,18 @@ const GRUPOS: Record<string, (page: Page) => Promise<void>> = {
     await page.getByRole('button', { name: 'Senti algo' }).click();
     await criterios(page);
     await page.getByRole('button', { name: 'Senti algo' }).click();
-    await page.getByRole('button', { name: 'Trocar exercício' }).click();
+    await abrirTrocar(page);
     await criterios(page);
-    await page.getByRole('button', { name: 'Trocar exercício' }).click();
+    await page.keyboard.press('Escape');
+    await maisOpcoes(page);
+    await criterios(page); // o "⋯"
+    await page.keyboard.press('Escape');
     await salvarSerie(page);
     await expect(page.getByRole('region', { name: 'Descanso' })).toBeVisible();
     await criterios(page); // descanso
     await page.getByRole('button', { name: 'Pular' }).click();
     await criterios(page); // série 2
-    await page.getByRole('button', { name: 'Próximo' }).click();
+    await proximoExercicio(page);
     await expect(page.getByRole('heading', { name: /Ponte de glúteo/ })).toBeVisible();
     await criterios(page); // exercício sem animação, cartão fechado
     await page.locator('details.cartao-texto > summary').click();
@@ -127,7 +130,7 @@ const GRUPOS: Record<string, (page: Page) => Promise<void>> = {
   'fim-e-semana': async (page) => {
     await comecar(page);
     await salvarSerie(page);
-    await page.getByRole('banner').getByRole('button', { name: 'Terminar treino' }).click();
+    await terminarTreino(page);
     await expect(page.getByRole('heading', { name: 'Treino concluído' })).toBeVisible();
     await criterios(page); // fim do treino
     await page.goto('/semana');

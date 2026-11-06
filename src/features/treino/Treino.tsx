@@ -23,7 +23,7 @@ import { avaliarDor, avaliarSinal, type Sinal } from '../../domain/triagem';
 import type { Estado } from '../../storage/esquema';
 import { agoraIso, fusoDoAparelho, useApp } from '../app/estado';
 import { Folha } from '../app/Folha';
-import { PorQue, Selo, Titulo, Topo } from '../app/ui';
+import { PorQue, Selo, Titulo } from '../app/ui';
 import { Miniatura } from '../programa/Miniatura';
 import { BotaoPrefiro } from '../programa/Prefiro';
 import { alternarPreferencia, desfazerSerie, diaDoTreino, interromperExercicio, inventarioDoTreino, opcoesDaCarga, registrarSerie, terminarSessao, trocarExercicio } from './acoes';
@@ -57,7 +57,7 @@ export function Treino() {
     const i = sessao?.exercicios.findIndex((e) => !e.interrompido && e.series.length < meta(e.noLugarDe ?? e.exId)) ?? 0;
     return Math.max(0, i);
   });
-  const [painel, setPainel] = useState<'nenhum' | 'trocar' | 'sentir'>('nenhum');
+  const [painel, setPainel] = useState<'nenhum' | 'trocar' | 'sentir' | 'mais' | 'terminar'>('nenhum');
   const [aviso, setAviso] = useState<{ texto: string; regraId: string } | null>(null);
   if (!sessao || !programa || !dia || !doTreino) return <Navigate to="/programa" replace />;
   const inventario = inventarioDoTreino(estado, sessao);
@@ -86,6 +86,8 @@ export function Treino() {
     atualizar((s) => terminarSessao(s, agoraIso(), porAlerta));
     navigate('/treino/fim', { replace: true });
   };
+  // Terminar pede confirmação, menos quando tudo já foi feito (redesign, lote 2). Os alertas de segurança encerram direto.
+  const pedirTerminar = () => (itens.every((t) => t.feito.series.length >= t.x.series || t.feito.interrompido) ? terminar() : setPainel('terminar'));
   const feita = (serie: SerieRegistrada) => {
     // Série de acerto da calibração (progressao.calibracao): fica no histórico, fora da dupla progressão.
     const cal = calibracaoNaSessao(estado.historico, x, inventario, feito.series, opcoesCargaHoje);
@@ -97,23 +99,21 @@ export function Treino() {
 
   return (
     <div className="wrap app">
-      <Topo
-        direita={
-          // "Senti algo" sempre à vista, no topo (segurança; design v2, item I).
-          <span className="brand-acoes">
-            <button type="button" className="alerta-topo" aria-expanded={painel === 'sentir'} onClick={() => setPainel(painel === 'sentir' ? 'nenhum' : 'sentir')}>
-              <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                <path d="M12 4l9 16H3z" />
-                <path d="M12 10v4M12 17h.01" />
-              </svg>
-              Senti algo
-            </button>
-            <button type="button" className="link-sec" onClick={() => terminar()}>
-              Terminar treino
-            </button>
-          </span>
-        }
-      />
+      {/* Cabeçalho do treino (redesign, lote 2): voltar ao início sem perder nada e "Senti algo" sempre à vista. */}
+      <header className="top">
+        <div className="brand cab-treino">
+          <Link to="/programa" className="volta-inicio" aria-label="Voltar ao início; o treino fica salvo">
+            ‹ Início
+          </Link>
+          <button type="button" className="alerta-topo" aria-expanded={painel === 'sentir'} onClick={() => setPainel(painel === 'sentir' ? 'nenhum' : 'sentir')}>
+            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+              <path d="M12 4l9 16H3z" />
+              <path d="M12 10v4M12 17h.01" />
+            </svg>
+            Senti algo
+          </button>
+        </div>
+      </header>
       <main className="conteudo sessao">
         <div className="progresso">
           <span>
@@ -126,6 +126,9 @@ export function Treino() {
 
         <div className="ex-sessao">
           <Miniatura animacaoId={x.animacaoId} temTexto={temCartao(x.exId)} />
+          <button type="button" className="mais-op" aria-label="Mais opções: anterior, próximo, trocar, terminar" aria-haspopup="dialog" onClick={() => setPainel('mais')}>
+            ⋯
+          </button>
           <div>
             <Titulo>{x.nome}</Titulo>
             <p className="meta">
@@ -214,12 +217,6 @@ export function Treino() {
           <p className="status-ok">Séries completas.</p>
         )}
 
-        <div className="acoes-sessao">
-          <button type="button" className="btn sec pequeno" aria-expanded={painel === 'trocar'} onClick={() => setPainel(painel === 'trocar' ? 'nenhum' : 'trocar')}>
-            Trocar exercício
-          </button>
-        </div>
-
         {painel === 'trocar' && (
           <Folha titulo="Trocar só neste treino por:" aoFechar={() => setPainel('nenhum')} livre={() => document.querySelector<HTMLElement>('.alerta-topo')}>
             {aviso && (
@@ -269,20 +266,52 @@ export function Treino() {
           </Folha>
         )}
 
-        <nav className="nav-sessao" aria-label="Exercícios">
-          <button type="button" className="btn sec" disabled={i === 0} onClick={() => irPara(i - 1)}>
-            ‹ Anterior
-          </button>
-          {ultimo ? (
-            <button type="button" className="btn" onClick={() => terminar()}>
-              Terminar treino
+        {completo && (
+          <nav className="nav-sessao" aria-label="Exercícios">
+            {ultimo ? (
+              <button type="button" className="btn" onClick={pedirTerminar}>
+                Terminar treino
+              </button>
+            ) : (
+              <button type="button" className="btn" onClick={() => irPara(i + 1)}>
+                Próximo ›
+              </button>
+            )}
+          </nav>
+        )}
+
+        {painel === 'mais' && (
+          <Folha titulo="Mais opções" aoFechar={() => setPainel('nenhum')} livre={() => document.querySelector<HTMLElement>('.alerta-topo')}>
+            <div className="dois">
+              <button type="button" className="btn sec" disabled={i === 0} onClick={() => irPara(i - 1)}>
+                ‹ Anterior
+              </button>
+              <button type="button" className="btn sec" disabled={ultimo} onClick={() => irPara(i + 1)}>
+                Próximo ›
+              </button>
+            </div>
+            <button type="button" className="btn sec" onClick={() => setPainel('trocar')}>
+              Trocar exercício
             </button>
-          ) : (
-            <button type="button" className={completo ? 'btn' : 'btn sec'} onClick={() => irPara(i + 1)}>
-              Próximo ›
+            <button type="button" className="btn ter" onClick={() => setPainel('terminar')}>
+              Terminar o treino agora
             </button>
-          )}
-        </nav>
+          </Folha>
+        )}
+        {painel === 'terminar' && (
+          <Folha titulo="Terminar o treino agora?" aoFechar={() => setPainel('nenhum')} livre={() => document.querySelector<HTMLElement>('.alerta-topo')} rotuloFechar="Voltar">
+            <p>
+              Você terminou {itens.filter((t) => t.feito.series.length >= t.x.series || t.feito.interrompido).length} de {itens.length} exercícios. O que já foi registrado fica
+              salvo.
+            </p>
+            <button type="button" className="btn" onClick={() => setPainel('nenhum')}>
+              Continuar treinando
+            </button>
+            <button type="button" className="btn sec" onClick={() => terminar()}>
+              Terminar o treino
+            </button>
+          </Folha>
+        )}
       </main>
       <PainelDescanso d={descanso} />
     </div>

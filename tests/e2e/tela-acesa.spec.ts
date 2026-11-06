@@ -1,5 +1,5 @@
 import { expect, test } from '@playwright/test';
-import { ana } from './jornada';
+import { ana, terminarTreino } from './jornada';
 
 // Lote 2 do redesign (06/11/2026): a tela fica acesa durante o treino todo, e não só no descanso. O Wake Lock é
 // simulado no navegador do teste, que conta os pedidos e as liberações.
@@ -42,7 +42,7 @@ test('a tela fica acesa do começo ao fim do treino, e volta a ficar ao retornar
   await expect(page).toHaveURL(/\/treino$/);
   await expect.poll(async () => { const t = await trava(); return t.pedidos - t.soltas; }).toBe(1);
   // ao terminar, a tela volta a apagar sozinha
-  await page.getByRole('banner').getByRole('button', { name: 'Terminar treino' }).click();
+  await terminarTreino(page);
   await expect(page.getByRole('heading', { name: 'Treino concluído' })).toBeVisible();
   await expect.poll(async () => { const t = await trava(); return t.pedidos - t.soltas; }).toBe(0);
 });

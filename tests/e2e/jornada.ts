@@ -103,3 +103,26 @@ export async function escolherDivisao(page: Page, divisao: string) {
   const atualizar = page.getByRole('button', { name: 'Atualizar', exact: true });
   if (await atualizar.isVisible()) await atualizar.click();
 }
+
+// Treino (redesign, lote 2): anterior, próximo, trocar e terminar ficam no "⋯" do exercício; terminar pede confirmação.
+/** Abre o "⋯" (Mais opções) do exercício e devolve a folha. */
+export async function maisOpcoes(page: Page) {
+  await page.getByRole('button', { name: /^Mais opções/ }).click();
+  return page.getByRole('dialog', { name: 'Mais opções' });
+}
+/** Termina o treino pelo "⋯", confirmando. */
+export async function terminarTreino(page: Page) {
+  await (await maisOpcoes(page)).getByRole('button', { name: 'Terminar o treino agora' }).click();
+  await page.getByRole('dialog', { name: 'Terminar o treino agora?' }).getByRole('button', { name: 'Terminar o treino', exact: true }).click();
+}
+/** Abre a folha de troca do exercício pelo "⋯". */
+export async function abrirTrocar(page: Page) {
+  await (await maisOpcoes(page)).getByRole('button', { name: 'Trocar exercício' }).click();
+  return page.getByRole('region', { name: 'Trocar exercício' });
+}
+/** Vai ao próximo exercício: pelo botão que aparece quando o exercício acabou, ou pelo "⋯". */
+export async function proximoExercicio(page: Page) {
+  const fora = page.getByRole('navigation', { name: 'Exercícios' }).getByRole('button', { name: 'Próximo ›' });
+  if (await fora.isVisible()) return fora.click();
+  await (await maisOpcoes(page)).getByRole('button', { name: 'Próximo ›' }).click();
+}

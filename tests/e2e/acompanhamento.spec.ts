@@ -1,5 +1,5 @@
 import { expect, test, type Page } from '@playwright/test';
-import { ana } from './jornada';
+import { ana, terminarTreino } from './jornada';
 import { semToquePequeno } from './toque';
 
 // R2: acompanhamento. A Ana (persona fictícia) faz o cadastro pelo app; o histórico de treinos é gravado direto no
@@ -173,7 +173,7 @@ test('com o sinal, recebe a sugestão da semana leve: o toque "hoje foi" no fim 
   await page.getByLabel('Carga', { exact: true }).selectOption('10');
   await page.getByRole('radio', { name: '2', exact: true }).check();
   await page.getByRole('button', { name: /^Série feita/ }).click();
-  await page.getByRole('banner').getByRole('button', { name: 'Terminar treino' }).click();
+  await terminarTreino(page);
 
   await expect(page.getByRole('heading', { name: 'Treino concluído' })).toBeVisible();
   await semToquePequeno(page);
