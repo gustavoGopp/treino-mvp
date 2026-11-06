@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState, type ReactNode } from 'react';
+import { useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
 import { Link, Navigate, useNavigate } from 'react-router-dom';
 import { BIBLIOTECA } from '../../domain/biblioteca';
 import { ALTERNATIVAS_A_MOSTRA, type ExercicioPrescrito } from '../../domain/gerador';
@@ -81,6 +81,8 @@ export function Treino() {
   const vaga = vagaDe(feito.noLugarDe ?? feito.exId);
   const trocaDoLocal = doTreino.trocas.find((t) => t.vaga === feito.noLugarDe && t.entrou === feito.exId);
   const ultimo = i === itens.length - 1;
+  // a calibração da série que vem (progressao.calibracao), mostrada acima do painel
+  const calNaSessao = calibracaoNaSessao(estado.historico, x, inventario, feito.series, opcoesCargaHoje);
 
   const irPara = (n: number) => {
     setIndice(n);
@@ -159,8 +161,8 @@ export function Treino() {
           <div>
             <Titulo>{x.nome}</Titulo>
             <p className="meta">
-              Meta: {x.series} × {faixa(x.reps)}
-              {x.unilateral ? ' (cada lado)' : ''} · <span className="nw">RIR {faixa(x.rir)}</span>
+              {x.series} × {faixa(x.reps)}
+              {x.unilateral ? ' cada lado' : ''}
               {x.dropSet && (
                 <>
                   {' '}
@@ -217,30 +219,34 @@ export function Treino() {
             Exercício encerrado. Se quiser, troque pela alternativa abaixo ou siga para o próximo.
           </div>
         ) : !completo ? (
-          <RegistroSerie
-            key={`${i}-${feito.exId}-${feito.series.length}`}
-            x={x}
-            numero={feito.series.length + 1}
-            anteriores={feito.series}
-            aoFazer={feita}
-            estado={estado}
-            inventario={inventario}
-            opcoes={opcoesCargaHoje}
-            descansando={descanso.ativo}
-            topo={
-              // A sugestão de carga e o aquecimento ficam dentro do cartão da série, para o botão de salvar caber na tela.
-              feito.series.length === 0 && (
-                <>
-                  <Sugestao x={x} estado={estado} inventario={inventario} opcoes={opcoesCargaHoje} />
-                  {precisaAquecer(dia, dia.exercicios.findIndex((y) => y === vaga)) && (
-                    <p className="fase">
-                      Antes: 1–2 séries leves de aquecimento, sem contar. <Selo id={REGRA_AQUECIMENTO} />
-                    </p>
-                  )}
-                </>
-              )
-            }
-          />
+          <>
+            {feito.series.length === 0 && (
+              <>
+                <Sugestao x={x} estado={estado} inventario={inventario} opcoes={opcoesCargaHoje} />
+                {precisaAquecer(dia, dia.exercicios.findIndex((y) => y === vaga)) && (
+                  <p className="dica">
+                    Antes: 1–2 séries leves de aquecimento, sem contar. <Selo id={REGRA_AQUECIMENTO} />
+                  </p>
+                )}
+              </>
+            )}
+            {calNaSessao.calibrando && calNaSessao.ultima && (
+              <p className="dica calibracao" role="status">
+                Calibração: {calNaSessao.ultima.motivo} <Selo id={calNaSessao.ultima.regraId} />
+              </p>
+            )}
+            <RegistroSerie
+              key={`${i}-${feito.exId}-${feito.series.length}`}
+              x={x}
+              numero={feito.series.length + 1}
+              anteriores={feito.series}
+              aoFazer={feita}
+              estado={estado}
+              inventario={inventario}
+              opcoes={opcoesCargaHoje}
+              descansando={descanso.ativo}
+            />
+          </>
         ) : (
           <p className="status-ok">Séries completas.</p>
         )}
@@ -346,26 +352,60 @@ export function Treino() {
 
 }
 
+// A sugestão do dia em uma linha (redesign, lote 2; regra de menos texto, proposta.md seção 15): de relance, a carga
+// de hoje; o motivo que o domínio escreveu, com o selo da regra, fica no "por quê?". O texto da regra não muda.
 function Sugestao({ x, estado, inventario, opcoes }: { x: ExercicioPrescrito; estado: Estado; inventario: Inventario; opcoes: OpcoesSugestao }) {
   const s = sugestaoDoExercicio(estado.historico, x, inventario, opcoes);
   // 1ª vez (ou 1ª vez nesta máquina neste local): calibração na 1ª série (progressao.calibracao).
   if (s.acao === 'calibrar' && !s.proxima)
     return (
-      <div className="sugestao calibracao">
-        <b>Calibração da carga</b>
-        <span>
-          {s.motivo} A meta é {faixa(x.reps)} repetições com {faixa(x.rir)} de reserva. <Selo id={s.regraId} />
-        </span>
-      </div>
+      <p className="dica">
+        <b>1ª vez: comece leve.</b>
+        <PorQue regras={[s.regraId]}>
+          <p>
+            <b>Calibração da carga.</b> {s.motivo} A meta é {faixa(x.reps)} repetições com {faixa(x.rir)} de reserva.
+          </p>
+        </PorQue>
+      </p>
     );
   return (
-    <div className="sugestao">
+    <p className="dica">
       <b>{s.proxima ? `Hoje: ${textoCarga(s.proxima, x.exId)}` : 'Hoje: mesma carga'}</b>
-      <span>
-        {s.motivo} <Selo id={s.regraId} />
-      </span>
-    </div>
+      <PorQue regras={[s.regraId]}>
+        <p>{s.motivo}</p>
+      </PorQue>
+    </p>
   );
+}
+
+/**
+ * O painel da série fica preso embaixo, perto do polegar (redesign, lote 2). Quando ele passa de 55% da altura da tela
+ * (celular baixo, zoom ou letra grande), volta para o fluxo da página, para não esconder o resto. Enquanto está preso,
+ * a folga de rolagem do foco do teclado é a altura dele (WCAG 2.4.11).
+ */
+function usePainelPreso() {
+  const ref = useRef<HTMLElement>(null);
+  const [solto, setSolto] = useState(false);
+  useLayoutEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const medir = () => {
+      const h = el.getBoundingClientRect().height;
+      const soltar = h > window.innerHeight * 0.55;
+      setSolto(soltar);
+      document.documentElement.style.scrollPaddingBottom = soltar ? '' : `${Math.ceil(h) + 16}px`;
+    };
+    medir();
+    const ro = typeof ResizeObserver !== 'undefined' ? new ResizeObserver(medir) : null;
+    ro?.observe(el);
+    window.addEventListener('resize', medir);
+    return () => {
+      ro?.disconnect();
+      window.removeEventListener('resize', medir);
+      document.documentElement.style.scrollPaddingBottom = '';
+    };
+  }, []);
+  return { ref, solto };
 }
 
 function RegistroSerie({
@@ -376,10 +416,8 @@ function RegistroSerie({
   estado,
   inventario,
   opcoes,
-  topo,
   descansando = false,
 }: {
-  topo?: ReactNode;
   descansando?: boolean;
   x: ExercicioPrescrito;
   numero: number;
@@ -408,22 +446,22 @@ function RegistroSerie({
     { reps: 0 },
   ]);
   const quedasFeitas = quedas.filter((q): q is { carga: Carga; reps: number } => !!q.carga && q.reps > 0);
+  const { ref, solto } = usePainelPreso();
+  // a reserva-alvo de hoje marcada nos próprios botões (no lugar de uma frase); 4 vale "4 ou mais"
+  const naMeta = (n: number) => n >= x.rir[0] && (n <= x.rir[1] || (n === 4 && x.rir[1] >= 4));
 
   return (
-    <section className="registro" aria-label={`Série ${numero}`}>
-      <h2>
-        Série {numero} de {x.series}
-      </h2>
-      {topo}
-      {cal.calibrando && cal.ultima && (
-        <p className="fase calibracao" role="status">
-          Calibração: {cal.ultima.motivo} <Selo id={cal.ultima.regraId} />
-        </p>
-      )}
+    <section ref={ref} className={`registro${solto ? ' solto' : ''}`} aria-label={`Série ${numero}`}>
+      <div className="serie-tit">
+        <h2>
+          Série {numero} de {x.series}
+        </h2>
+        {x.unilateral && <span>cada lado</span>}
+      </div>
       <ControleCarga registro={op.registro} cargas={op.lista} placasMax={op.placasMax} menorAnilhaKg={op.menorAnilhaKg} degraus={op.degraus} valor={carga} aoMudar={setCarga} />
       <div className="linha-registro">
         <span className="rotulo-curto" id={`reps-${numero}`}>
-          Repetições{x.unilateral ? ' (cada lado)' : ''}
+          Repetições
         </span>
         <div className="stepper" role="group" aria-labelledby={`reps-${numero}`}>
           <button type="button" aria-label="Menos uma repetição" disabled={reps <= 0} onClick={() => setReps((r) => Math.max(0, r - 1))}>
@@ -436,17 +474,23 @@ function RegistroSerie({
         </div>
       </div>
       <fieldset className="campo">
-        <legend>Quantas repetições ainda conseguiria? (RIR)</legend>
-        <PorQue regras={['rir.leitura']}>
-          <p>A maioria das pessoas acha que tem menos reserva do que tem.</p>
-        </PorQue>
+        <legend>Quantas ainda conseguiria? (RIR)</legend>
         <div className="chips-valor">
           {RIRS.map((n) => (
-            <label key={n} className="chip-valor">
-              <input type="radio" name={`rir-${numero}`} checked={rir === n} onChange={() => setRir(n)} />
+            <label key={n} className={`chip-valor${naMeta(n) ? ' meta' : ''}`}>
+              <input type="radio" name={`rir-${numero}`} checked={rir === n} onChange={() => setRir(n)} aria-describedby={naMeta(n) ? `rir-meta-${numero}` : undefined} />
               <span>{n === 4 ? '4 ou mais' : n}</span>
             </label>
           ))}
+        </div>
+        <div className="rir-pe">
+          <span className="rir-meta" id={`rir-meta-${numero}`}>
+            <i aria-hidden="true" />
+            meta de hoje: {faixa(x.rir)}
+          </span>
+          <PorQue regras={['rir.leitura']}>
+            <p>A maioria das pessoas acha que tem menos reserva do que tem.</p>
+          </PorQue>
         </div>
       </fieldset>
       {comQuedas && (

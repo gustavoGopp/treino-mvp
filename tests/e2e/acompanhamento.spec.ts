@@ -1,5 +1,5 @@
 import { expect, test, type Page } from '@playwright/test';
-import { ana, terminarTreino } from './jornada';
+import { ana, terminarTreino, porQueDaSugestao } from './jornada';
 import { semToquePequeno } from './toque';
 
 // R2: acompanhamento. A Ana (persona fictícia) faz o cadastro pelo app; o histórico de treinos é gravado direto no
@@ -92,9 +92,13 @@ test('volta depois de 22 dias: a mensagem sem culpa, menos séries e a carga 10%
 
   await page.getByRole('button', { name: 'Começar o treino Corpo todo A' }).click();
   await expect(page.getByRole('heading', { name: 'Agachamento búlgaro com apoio' })).toBeVisible();
-  await expect(page.getByText('Meta: 2 × 8–12 (cada lado) · RIR 3–4')).toBeVisible();
+  // lote 2 do redesign: a meta curta; a reserva-alvo marcada nos botões do RIR; o motivo no "por quê?"
+  await expect(page.locator('p.meta').first()).toHaveText('2 × 8–12 cada lado');
+  await expect(page.locator('.rir-meta')).toContainText('meta de hoje: 3–4');
   await expect(page.getByText('Hoje: 9 kg')).toBeVisible();
-  await expect(page.getByText(/Última vez: 10 kg\. Volta da pausa: 10% mais leve/)).toBeVisible();
+  const motivo = await porQueDaSugestao(page);
+  await expect(motivo).toContainText(/Última vez: 10 kg\. Volta da pausa: 10% mais leve/);
+  await page.keyboard.press('Escape');
   await expect(page.getByLabel('Carga', { exact: true })).toHaveValue('9');
   await print(page, 'volta-treino');
   await semToquePequeno(page);

@@ -1,5 +1,5 @@
 import { expect, test, type Page } from '@playwright/test';
-import { ana, terminarTreino } from './jornada';
+import { ana, terminarTreino, porQueDaSugestao } from './jornada';
 
 // R1b: vários locais. A Ana (persona fictícia) cadastra a "Academia" como 2º local, escolhe onde treina hoje,
 // vê a troca com o motivo e registra a 1ª série no aparelho novo, com a calibração da carga.
@@ -44,7 +44,9 @@ test('cadastra o 2º local, escolhe onde treinar hoje, vê a troca explicada e c
   await page.getByRole('button', { name: 'Começar o treino Corpo todo A em Academia' }).click();
   await expect(page.getByRole('heading', { name: 'Leg press' })).toBeVisible();
   await expect(page.getByText('Aqui não tem halteres: agachamento búlgaro com apoio → leg press.')).toBeVisible();
-  await expect(page.getByText(/Calibração da carga/)).toBeVisible();
+  await expect(page.getByText('1ª vez: comece leve.')).toBeVisible();
+  await expect(await porQueDaSugestao(page)).toContainText(/Calibração da carga/);
+  await page.keyboard.press('Escape');
   await print(page, 'troca-explicada');
 
   const mais = page.getByRole('button', { name: 'Mais anilha de cada lado' });

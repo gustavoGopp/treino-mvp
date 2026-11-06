@@ -1,5 +1,5 @@
 import { expect, test, type Page } from '@playwright/test';
-import { ana, abrirTrocar, maisOpcoes, terminarTreino } from './jornada';
+import { ana, abrirTrocar, maisOpcoes, terminarTreino, porQueDaSugestao } from './jornada';
 
 // M5: treinar com o app. Persona fictícia Ana (halteres de 1 a 12 kg e banco reto).
 
@@ -30,7 +30,9 @@ test('sessão completa: registra as séries, descansa e recebe a sugestão para 
   await comecar(page);
   await expect(page.getByRole('heading', { name: 'Agachamento búlgaro com apoio' })).toBeVisible();
   // 1ª vez: a 1ª série calibra a carga (progressao.calibracao, R1b).
-  await expect(page.getByText(/1ª vez neste exercício: comece com uma carga que pareça fácil/)).toBeVisible();
+  await expect(page.getByText('1ª vez: comece leve.')).toBeVisible();
+  await expect(await porQueDaSugestao(page)).toContainText(/1ª vez neste exercício: comece com uma carga que pareça fácil/);
+  await page.keyboard.press('Escape');
   await expect(page.getByText(/1–2 séries leves de aquecimento/)).toBeVisible();
 
   // 1ª série: sem carga e sem RIR o botão não deixa salvar.
@@ -130,8 +132,8 @@ test('R1: aberto pelo treino, o guia do búlgaro mostra a prescrição da semana
   await comecar(page);
   await expect(page.getByRole('heading', { name: 'Agachamento búlgaro com apoio' })).toBeVisible();
   const meta = (await page.locator('p.meta').first().innerText()).trim();
-  const series = meta.match(/Meta: (\d+) × 8–12/)![1]!;
-  expect(meta).toContain('RIR 3–4');
+  const series = meta.match(/^(\d+) × 8–12/)![1]!;
+  await expect(page.locator('.rir-meta')).toContainText('meta de hoje: 3–4');
   await page.getByRole('link', { name: 'Ver como fazer' }).click();
   await expect(page).toHaveURL(/\/guia\/bulgaro\?de=treino/);
   const rx = page.getByTestId('prescricao');

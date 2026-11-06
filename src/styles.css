@@ -74,7 +74,6 @@ html{scroll-padding-top:5rem;scroll-padding-bottom:1rem}
 html:has(.nav-inferior){scroll-padding-bottom:5.5rem}
 html:has(.acao-fixa){scroll-padding-bottom:6.5rem}
 html:has(.nav-inferior):has(.acao-fixa){scroll-padding-bottom:11.5rem}
-html:has(.registro .salvar){scroll-padding-bottom:7rem}
 button{font:inherit;color:inherit}
 :focus-visible{outline:3px solid var(--foco);outline-offset:2px}
 .wrap{max-width:560px;margin:0 auto;padding:0 16px 40px;display:flex;flex-direction:column;gap:16px}
@@ -455,16 +454,48 @@ a.cartao-ex-corpo:focus-visible{outline:3px solid var(--foco);outline-offset:-3p
 .series-feitas li:last-child{background:none;padding:0;flex-basis:100%}
 .series-feitas .n{color:var(--ok);font-weight:800;margin-right:8px}
 .registro{background:var(--surface);border-radius:var(--r2);padding:16px;display:flex;flex-direction:column;gap:16px}
-.registro h2{margin:0;font-size:var(--t-titulo);font-weight:800}
+/* o painel da série preso embaixo, perto do polegar (lote 2); com mais de 55% da tela ele fica solto, no fluxo */
+.registro:not(.solto){position:sticky;bottom:0;z-index:3;margin:0 -16px;border-radius:var(--r2) var(--r2) 0 0;padding:var(--e3) var(--e4) calc(var(--e3) + env(safe-area-inset-bottom,0px));gap:var(--e3);box-shadow:0 -6px 18px rgba(0,0,0,.10);border-top:1px solid var(--linha)}
+.registro .serie-tit{display:flex;justify-content:space-between;align-items:baseline;gap:var(--e3)}
+.registro .serie-tit span{color:var(--texto-2);font-size:var(--t-apoio)}
+.registro h2{margin:0;font-size:var(--t-pergunta);font-weight:800}
+.registro .campo{gap:var(--e2)}
+.registro .campo legend{font-size:var(--t-corpo)}
+/* compacto, para caber preso embaixo até 360 × 740: rótulo e controle na mesma linha, botões de 48 px */
+.registro .linha-registro{flex-wrap:nowrap}
+.registro .stepper{gap:var(--e1)}
+.registro .stepper button{width:var(--toque);height:var(--toque)}
+.registro .stepper output{min-width:3.5rem;line-height:1}
+.registro .stepper select{min-width:6.5rem;min-height:var(--toque);padding:0 var(--e2);font-size:1.75rem}
+.registro .chips-valor{display:grid;grid-template-columns:repeat(4,minmax(var(--toque),1fr)) minmax(5.5rem,1.6fr);gap:var(--e1)}
+.registro .chip-valor{padding:0 var(--e1)}
+.registro .salvar{min-height:3.5rem}
+/* a meta de reserva marcada nos botões: um traço embaixo, e a legenda ao lado do "por quê?" */
+.chip-valor.meta{position:relative}
+.chip-valor.meta::after{content:"";position:absolute;left:30%;right:30%;bottom:6px;height:3px;border-radius:2px;background:var(--acao)}
+.chip-valor.meta:has(input:checked)::after{background:var(--sobre-acao)}
+.rir-pe{display:flex;justify-content:space-between;align-items:center;gap:var(--e3);flex-wrap:wrap}
+.rir-meta{display:inline-flex;align-items:center;gap:6px;font-size:var(--t-rotulo);color:var(--texto-2)}
+.rir-meta i{display:inline-block;width:14px;height:3px;border-radius:2px;background:var(--acao)}
+/* a sugestão do dia, o aquecimento e a calibração: uma linha cada, acima do painel */
+.dica{margin:0;display:flex;flex-wrap:wrap;gap:var(--e1) var(--e2);align-items:baseline;font-size:var(--t-apoio);color:var(--texto-2)}
+.dica b{color:var(--texto);font-size:var(--t-corpo)}
 .linha-registro{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
 .rotulo-curto{font-weight:800;font-size:var(--t-corpo)}
 .stepper{display:flex;align-items:center;gap:8px}
 .stepper button{width:3.5rem;height:3.5rem;border-radius:var(--r2);border:1.5px solid var(--edge);background:var(--surface);font-size:var(--t-titulo);line-height:1;cursor:pointer;color:var(--ink)}
 .stepper button:disabled{opacity:.35;cursor:default}
 .stepper output{min-width:72px;text-align:center;font-size:var(--t-numero);font-weight:800;font-variant-numeric:tabular-nums}
-.stepper select{max-width:none;width:auto;min-width:120px;font-size:var(--t-titulo);font-weight:800;text-align:center;min-height:3.5rem}
+.stepper select{max-width:none;width:auto;min-width:120px;font-size:2rem;font-weight:800;text-align:center;min-height:3.5rem;font-variant-numeric:tabular-nums}
 /* o botão de salvar a série gruda no pé da tela enquanto o cartão da série está à vista */
-.registro .salvar{position:sticky;bottom:12px;z-index:2;min-height:4rem;font-size:var(--t-pergunta);font-weight:800;box-shadow:0 0 0 12px var(--surface)}
+.registro .salvar{font-size:var(--t-pergunta);font-weight:800}
+/* tela baixa (até 700 px de altura): menos espaço, e a legenda da meta só para o leitor de tela (o traço fica nos botões) */
+@media (max-height:700px){
+  .registro:not(.solto){gap:var(--e2);padding-top:var(--e2)}
+  .registro .campo{gap:var(--e1)}
+  .registro .rir-meta{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+  .registro .rir-pe{justify-content:flex-end;margin-top:calc(-1 * var(--e1))}
+}
 .status-ok{margin:0;font-weight:700;color:var(--ok)}
 .acoes-sessao{display:flex;gap:8px;flex-wrap:wrap}
 .btn.alerta{color:var(--alert) !important;border-color:var(--alert)}

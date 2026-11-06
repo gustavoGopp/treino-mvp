@@ -126,3 +126,9 @@ export async function proximoExercicio(page: Page) {
   if (await fora.isVisible()) return fora.click();
   await (await maisOpcoes(page)).getByRole('button', { name: 'Próximo ›' }).click();
 }
+
+/** Abre o "por quê?" da linha da sugestão do dia (acima do painel da série) e devolve a folha, com o motivo e o selo. */
+export async function porQueDaSugestao(page: Page) {
+  await page.locator('p.dica').filter({ has: page.getByRole('button', { name: 'por quê?' }) }).first().getByRole('button', { name: 'por quê?' }).click();
+  return page.getByRole('dialog', { name: 'Por quê' });
+}
