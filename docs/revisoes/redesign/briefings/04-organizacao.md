@@ -1,0 +1,19 @@
+# Briefing do agente 4: Organização visual e hierarquia
+
+Leia primeiro `docs/revisoes/redesign/briefings/00-comum.md`. Relatório: `docs/revisoes/redesign/agente-4-organizacao.md`. Scripts: `scripts/design/redesign/agente-4/`; imagens em `reports/design/redesign/agente-4/`.
+
+**Objetivo em uma frase:** qual é a arquitetura de informação e o sistema de layout (letra, espaço, componentes, navegação, estados) que fazem cada tela se entender em um relance e o app inteiro parecer uma coisa só.
+
+**Fronteira:** você é dono da **forma sem cor**: hierarquia tipográfica, ritmo de espaço, densidade, navegação, padrões de componente (cartão, lista, folha inferior, diálogo, botão, seletor, stepper, barra de progresso, abas), estados (vazio, erro, carregando, desabilitado, foco), ícones e o modo como o selo de evidência e a fonte aparecem. E o **layout da tela de equipamento** (o agente 2 diz o que ela precisa fazer e em quantos toques). O conteúdo do treino (estados, tamanhos exigidos pelo uso na academia) vem do agente 3 e o das telas de retorno do agente 1: você não precisa esperar por eles; desenhe o sistema e as telas com o que existe hoje, e deixe explícito o que é "ponto de encaixe" para as propostas deles. Cor é do agente 5: trabalhe em cinzas.
+
+**Faça o inventário** (por script, com contagem): os componentes e variantes que as telas de hoje usam (`src/features/**/*.tsx` e as classes de `src/styles.css`): quantos tipos de botão, de cartão, de lista, de chip, de seletor; quantos tamanhos de letra distintos; quantos valores de espaço, de raio e de borda; onde o mesmo conceito tem dois nomes ou dois estilos. Entregue a tabela e proponha o **conjunto mínimo** que cobre tudo, com cada estado.
+
+**Estude (com fonte e selo):** hierarquia tipográfica em telas pequenas (escala, pesos, comprimento de linha de 45 a 75 caracteres: Bringhurst; Butterick; Material e Apple HIG como consenso), tamanho mínimo de corpo no celular (16 px; o zoom do iOS em campos < 16 px), ritmo de espaço (escala de 4 ou 8), densidade por tela (o treino precisa de menos; a semana aguenta mais: lei de Hick-Hyman; carga cognitiva), navegação em celular (barra inferior × pilha; o que entra nela; Material "Navigation bar", Apple "Tab bars": quantos itens; quando a barra atrapalha uma tarefa como o treino ou o cadastro), padrões de cartão e lista (quando o cartão ajuda e quando só adiciona caixa: NN/g "Cards"), folha inferior e diálogo (quando usar cada um), estados vazios, de erro e de carregamento (skeleton × spinner: quando o esqueleto ajuda; NN/g; Material), ícones (reconhecimento × rótulo: NN/g "Icon usability": ícone sempre com texto?), o selo de evidência (como mostrar um metadado em toda regra sem virar ruído: progressive disclosure, NN/g).
+
+**Entregue:**
+- O **mapa de navegação proposto** (rotas e como se chega a cada tela; a barra fixa fica? muda? o que entra nela? o que acontece no treino e no cadastro) em texto ou ASCII.
+- A **escala tipográfica** (tamanhos, pesos, alturas de linha, uso de cada degrau) e a **escala de espaço** (passos, raios, bordas), com a justificativa.
+- A **lista de componentes** mínima, cada um com os estados e com os nomes de hoje que ele substitui.
+- Como o **selo de evidência** e o caminho até a fonte aparecem em cada tipo de tela (programa, treino, guia, semana), sem sumir.
+- O **plano dos 21 ícones de equipamento** que faltam (quais são, em `src/features/onboarding/icones.tsx` × `src/domain/taxonomia/equipamentos.ts`; no mesmo traço dos 25 existentes; ordem por frequência de uso; custo).
+- Um **esboço de cada tela em ASCII ou HTML estático sem cor** (cinzas), mostrando só a hierarquia: boas-vindas, triagem, experiência, rotina, equipamento (lugar, lista, foto), confirmar, programa, treino (série e descanso), guia, fim do treino, semana, evolução, meus dados, locais. Se fizer em HTML, um arquivo em `docs/revisoes/redesign/img/agente-4-esbocos.html` (sem dependências externas) e as capturas em PNG.
