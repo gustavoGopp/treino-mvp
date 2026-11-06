@@ -95,6 +95,7 @@ export function Treino() {
     atualizar((s) => registrarSerie(s, i, acerto ? { ...serie, calibracao: true } : serie));
     if (feito.series.length + 1 < x.series) descanso.iniciar(x.descansoSeg);
     else if (!ultimo) descanso.iniciar(x.descansoSeg);
+    window.scrollTo?.(0, 0);
   };
 
   return (
@@ -115,6 +116,7 @@ export function Treino() {
         </div>
       </header>
       <main className="conteudo sessao">
+        <PainelDescanso d={descanso} />
         <div className="progresso">
           <span>
             {dia.nome} · exercício {i + 1} de {itens.length}
@@ -199,6 +201,7 @@ export function Treino() {
             estado={estado}
             inventario={inventario}
             opcoes={opcoesCargaHoje}
+            descansando={descanso.ativo}
             topo={
               // A sugestão de carga e o aquecimento ficam dentro do cartão da série, para o botão de salvar caber na tela.
               feito.series.length === 0 && (
@@ -313,7 +316,6 @@ export function Treino() {
           </Folha>
         )}
       </main>
-      <PainelDescanso d={descanso} />
     </div>
   );
 
@@ -350,8 +352,10 @@ function RegistroSerie({
   inventario,
   opcoes,
   topo,
+  descansando = false,
 }: {
   topo?: ReactNode;
+  descansando?: boolean;
   x: ExercicioPrescrito;
   numero: number;
   anteriores: SerieRegistrada[];
@@ -466,7 +470,7 @@ function RegistroSerie({
         disabled={!pronto}
         onClick={() => carga && rir !== undefined && aoFazer({ carga, reps, rir, ...(comQuedas && quedasFeitas.length ? { quedas: quedasFeitas } : {}) })}
       >
-        Série feita · descansar {tempo(x.descansoSeg)}
+        {descansando ? 'Série feita' : `Série feita · descansar ${tempo(x.descansoSeg)}`}
       </button>
     </section>
   );
