@@ -52,11 +52,13 @@ O "Começar" do início só gruda embaixo quando a lista do dia já está à vis
 ### Bundle de produção e letra
 `docs/revisoes/redesign/antes/base.json`.
 
-| Arquivo | kB | kB comprimido (gzip) |
+| Arquivo | KiB (1.024 bytes) | KiB comprimido (gzip) |
 |---|---:|---:|
 | JavaScript (um arquivo só) | 1.060,1 | 269,4 |
 | CSS | 42,9 | 8,5 |
 | Pré-cache do PWA (6 arquivos) | 1.104,2 | — |
+
+O Vite mostra os mesmos arquivos em kB de 1.000 bytes: JS 1.085,56 kB (275,90 kB gzip) e CSS 43,94 kB (8,64 kB gzip). É a conta citada no briefing comum.
 
 | Letra (Atkinson Hyperlegible Next, Google Fonts) | Valor |
 |---|---:|
