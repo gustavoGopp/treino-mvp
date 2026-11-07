@@ -103,3 +103,8 @@ Achados ao refazer a tela do treino. Nada disso mudou no lote, porque mexe no do
 - **A nota de dor do "Senti algo" não é gravada na série.** A pessoa escolhe de 0 a 10 e o app responde na hora, mas a nota não vai para o registro, e o domínio lê `dor ≥ 3` na série para sugerir a carga seguinte. Corrigir pede gravar a nota na série aberta (e decidir o que fazer se ainda não houver série).
 - **Na barra, o "+/−" da carga anda de 2,5 kg** sem olhar a menor anilha do inventário, embora `opcoesCarga()` já devolva `passoKg`. Quem tem anilhas de 1 kg (2 kg a mais na barra) não consegue marcar 22 kg pelos botões.
 - **Testes:** os toques nas folhas falhavam às vezes porque a folha ainda estava subindo; `folhaPronta` (`tests/e2e/jornada.ts`) espera a animação terminar. Usar em todo teste novo que toque numa folha.
+
+## Do redesign, lote 4 (07/11/2026)
+- **Pedido 2 ao domínio, "Quando você costuma treinar?"** (aprovado em 06/11): pergunta opcional depois do 1º treino, para o início dizer "hoje é dia de treino" ou "próximo: sexta". Muda o estado guardado (versão 8, com migração e teste) e acrescenta uma função ao domínio. Ficou fora do lote 4 para ter uma parada própria: antes, lembrar de exportar os dados ("Meus dados" → "Guardar uma cópia").
+- **O fim do treino com sugestão de semana leve** é a tela mais longa do grupo (cerca de 100 palavras à vista). Uma ideia: a oferta da semana leve no fim do treino em 1 linha, como no início, com o bloco numa folha.
+

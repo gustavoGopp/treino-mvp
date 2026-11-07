@@ -243,3 +243,66 @@ As pequenas variações de 1 a 3 pontos nas outras rotas são da medida (o progr
 **O que não melhorou:**
 - o pacote do programa (189 kB) e o seu bloqueio (cerca de 0,3 s) ficam como no lote técnico; o início é o lote 4;
 - o Worker do Boneco tem 44 kB comprimidos e é baixado na 1ª miniatura, como antes.
+
+### Lote 4, início, fim do treino, semana e evolução (07/11/2026)
+Medidas em `docs/revisoes/redesign/lote-4/`: `base.json` (pacote e Lighthouse) e `medidas-{claro,escuro,pequeno}.json` (capturas). Imagens de antes e depois em `docs/img/redesign-lote-4-*.png`.
+
+**O que mudou:**
+- **Seu treino:**
+  - o cartão "Hoje" (o dia, os exercícios e os minutos) e a semana em 1 linha;
+  - **um aviso por vez:** a versão nova, a semana leve, o tempo dos treinos ou os ajustes aparecem em 1 linha; "Ver" abre o bloco inteiro numa folha, com os textos e os selos de sempre, e "Mais N avisos" logo abaixo;
+  - o aviso de dor continua sempre à vista;
+  - a volta depois de uma pausa é o próprio cartão de hoje, com a mensagem inteira no "por quê?";
+  - as abas com o nome curto (A, B, C);
+  - cada exercício abre uma folha com o que antes ficava em "Detalhes";
+  - "Sobre o programa" numa folha, com as pílulas e a fase;
+  - "Começar o treino" preso embaixo, em qualquer estado.
+- **Fim do treino:** primeiro "O que mudou hoje" (a semana já com o treino de hoje, os recordes do dia e quantas cargas sobem), depois "Hoje foi" e a próxima vez em linhas curtas, com o motivo no "por quê?". Sem confete.
+- **Semana:** o dado antes da oferta. Primeiro as últimas semanas, "O que subiu nesta semana" e as séries por músculo, com a meta marcada por um traço tracejado; só então a revisão da meta e a semana leve.
+- **Evolução:** o resumo em 1 linha ("Começou com 8 kg × 10 · agora 9 kg × 12 · 5 treinos").
+- **Domínio, pedido 3** (aprovado em 06/11): `marcasDaSessao` e `marcasDaSemana` em `src/domain/acompanhamento/evolucao.ts`. As duas reaproveitam a regra da evolução de cada exercício, e os testes cobrem o caso E1, a calibração, a amplitude, o fuso e as máquinas.
+- **Folha dentro de folha:** só a de cima responde ao Esc e ao Tab.
+
+**Critérios nas capturas** (6 personas):
+- 114 telas em cada tema e tamanho, com 0 toque abaixo de 44 px, 0 contraste baixo e 0 rolagem de lado;
+- nos 7 cenários de `tests/e2e/cenarios.spec.ts`, o início passa, inclusive a 320 px: a pendência `estreito/inicio` saiu;
+- as folhas do exercício, de "Sobre o programa" e dos avisos entraram nos cenários;
+- sobra só `letra125/cadastro`, do lote 3.
+
+**"Começar o treino" à vista sem rolar** (botão principal das capturas):
+
+| Tela | Lote 2 | Lote 4 |
+|---|---|---|
+| Ana, Seu treino (412 e 360 px) | não | **sim** |
+| Ana, outro dia (412 e 360 px) | não | **sim** |
+| Bruno e Carla, Seu treino | sim | sim |
+
+Os testes novos conferem o mesmo na volta depois de uma pausa e com a semana leve ativa (`acompanhamento.spec.ts`, `seu-treino.spec.ts`).
+
+**Palavras à vista sem rolar:**
+
+| Tela | Lote 2 (412 px) | Lote 4 (412 px) | Lote 2 (360 px) | Lote 4 (360 px) |
+|---|---:|---:|---:|---:|
+| Seu treino, Ana | 116 | **66** | 111 | **55** |
+| Seu treino, Bruno (2 locais) | 119 | **68** | 114 | **56** |
+| Fim do treino, Ana | 100 | 103 | 94 | 102 |
+| A sua semana, Ana | 98 | **77** | 86 | **67** |
+| Evolução, Ana | 39 | 50 | 39 | 50 |
+
+O protótipo aprovado previa 72 no início. O fim do treino ficou igual, mesmo com "O que mudou hoje" a mais: a sugestão da semana leve, que vinha depois da lista, agora aparece na 1ª tela. A evolução ganhou a linha do resumo.
+
+**Lighthouse, com o app instalado, por rota:**
+
+| Rota | Desempenho (lote 2 → lote 4) | Acessibilidade | Bloqueio total (ms) |
+|---|---|---:|---:|
+| `/` (abre o programa) | 95 → 99 | 100 | 138 |
+| `/comecar/triagem` | 99 → 100 | 100 | 26 |
+| `/programa` | 92 → 93 | 100 | 306 |
+| `/guia/bulgaro` | 91 → 90 | 100 | 423 |
+| `/semana` | 100 → 100 | 100 | 27 |
+| `/dados` | 100 → 100 | 100 | 64 |
+
+**O que não melhorou:**
+- o fim do treino ainda é a tela mais longa do grupo quando há sugestão de semana leve;
+- o bloqueio do programa (cerca de 0,3 s, das miniaturas) segue como no lote técnico;
+- o pedido 2 ("Quando você costuma treinar?", com o estado guardado na versão 8) ficou fora deste lote, para ter uma parada própria, com o lembrete de exportar os dados antes.
