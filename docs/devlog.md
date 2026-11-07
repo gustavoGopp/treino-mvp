@@ -974,3 +974,37 @@ As listas exatas ficam em `tests/unit/metas-r0.test.ts`, para o R0c zerar.
 > O que eu aprendi: "um treino tem 5 a 7 exercícios" não vem de estudo. Os ensaios de hipertrofia usam de 2 a 8, e o que conta é o número de séries por músculo por semana. O app acertava nessa conta e errava na experiência: encurtava o treino em vez de usar o tempo que eu tinha dado.
 >
 > A mudança foi pequena e medida: quando falta o equipamento para um exercício, entra outro movimento do mesmo músculo, e o tempo que sobra vira série. Os dias com até 3 exercícios caíram de 20% para zero no treino sem equipamento. E ficou registrado o que piorou, para eu decidir depois.
+
+## Próximos passos: o retrato medido, 7 frentes de pesquisa, a biblioteca ampliada e a ordem do R5 (06 e 07/11/2026)
+
+**Por quê.** Com os marcos M0 a M5, R0 a R2 e o R4 feitos e o R3 (uso real) em andamento, o Gustavo pediu um retrato honesto do app e uma recomendação de onde investir: a qualidade e a variação dos treinos, as combinações por dia, a experiência de uso, uma opção para a pessoa montar o próprio treino com um avaliador, e o que mais faltasse. No meio da sessão, ele testou o app sem equipamento e com foco nos superiores, recebeu treinos curtos e genéricos, e pediu duas rodadas extras: "cansar os testes" de corpo livre e uma pesquisa ampla (internet, YouTube, fontes confiáveis) para dar opções a todas as combinações. Só documentos: nada do app mudou.
+
+**O que foi feito.**
+- **O retrato** (`revisoes/proximos-passos.md`, parte 1): 670 testes unitários e 48 de ponta a ponta passando; a auditoria completa com os mesmos arquivos da `main`; as 141 regras por selo (66% consenso); o catálogo por cenário; a grade de qualidade; o backlog por frente e estado; o que o redesign está mudando.
+- **Cinco frentes em paralelo** (`revisoes/proximos-passos/a-qualidade.md` a `e-produto.md`): qualidade e variação; "monte o seu treino" e um avaliador (protótipo que achou 3 defeitos reais do gerador); fluxo e função (achou que **a nota de dor do "Senti algo" não fica guardada** e que **um treino vazio conta como feito**, os dois conferidos no código); progressão de longo prazo (4 defeitos de lógica num simulador de 24 e 52 semanas); e o que falta para abrir a família e amigos (o texto da foto, termos, uma tela de erro com "Exportar").
+- **Rodada de corpo livre** (`f-corpo-livre.md`, `pesquisa-v2/16-corpo-livre-e-casa.md`): numa grade de 15.300 programas só sem equipamento, a semana com foco nos superiores tinha 1,9 exercício diferente de superiores; 3 pesquisadores acharam 7 exercícios novos que valem a pena.
+- **Rodada da biblioteca ampliada** (`g-biblioteca-ampliada.md`, `pesquisa-v2/17-biblioteca-ampliada.md`): 5 frentes (programas de treinadores, YouTube, lacunas de equipamento, evidência, o que faz um treino agradável), uma **régua** de qualidade em dois níveis (defeitos que não podem piorar; notas que devem melhorar), 32 exercícios novos medidos em **108.900 programas** e **duas revisões cegas** por treinadores independentes simulados (que não sabiam qual semana era de qual versão).
+- **Fontes:** de 331 para 507 em `pesquisa/fontes.md` (176 chaves novas e 7 atualizadas), cada PMID conferido no PubMed (autor, ano, título; retratados marcados). Sites que bloqueiam robôs não foram contornados.
+
+**Medido** (biblioteca ampliada no protótipo, grade de 108.900 programas, os 36.300 sem dor):
+
+| | Hoje | Proposta |
+|---|---:|---:|
+| Programas sem nenhum defeito | 73,4% | 83,8% |
+| Defeitos que pioram | — | nenhum |
+| O mesmo exercício em todos os dias, sem alternativa | 44,1% | 15,6% |
+| Exercícios diferentes por semana | 12,9 | 15,8 |
+| Sem equipamento: exercícios por dia | 4,9 | 5,4 |
+| Dias com 3 ou mais cartões de texto (sem animação) | 8,4% | 74,9% (19,5% com os 5 animados) |
+| Revisão cega: personas melhores / piores / iguais | — | 12 / 0 / 6 |
+
+**Decidido em 07/11** (`proximos-passos.md`, parte 3; o Gustavo pediu que a sessão decidisse): os cartões de texto ficam até as 5 animações de corpo livre mais prescritas; o foco ganha um marco próprio; a ordem é **R5a** (o registro que não engana) → **R5-CL** (biblioteca ampliada) → **R5d** (o foco que aparece) → **R5-anim** (os 5 de corpo livre) → **R5b** (o avaliador) → **R5c** (abrir para família e amigos). O limiar de empurrar ÷ puxar é 1,5; "usar todo o tempo que sobra" ficou descartado. Uma sessão nova conduz os marcos a partir de `prompts/sessao-desenvolvimento.md`.
+
+**Fica para depois** (`backlog.md`, "Da sessão de próximos passos"): o "monte o seu treino" do zero e a leitura de programa por IA; os gatilhos da semana leve pelo export do R3; a variação por blocos; as costas sem algo para puxar (sem saída honesta).
+
+**Rascunho de post para o LinkedIn**
+> Pedi a uma "equipe" de agentes de IA para responder uma pergunta simples sobre o meu app de treino: o que melhorar primeiro? A resposta mais útil não foi uma função nova. Foi achar duas coisas que enganavam sem ninguém perceber: a dor que a pessoa registrava no meio do treino não ficava guardada, e um treino aberto e fechado sem nenhuma série contava como feito.
+>
+> Depois, testando eu mesmo sem equipamento, recebi treinos curtos e genéricos. Em vez de ajustar o meu caso, o app foi testado em 108.900 combinações de equipamento, nível, dias, tempo e foco, com uma régua de qualidade em duas camadas: o que não pode piorar e o que deve melhorar. Com 32 exercícios novos (de flexão com os pés elevados a abertura com elástico), os programas sem nenhum defeito foram de 73% para 84%, e o mesmo exercício repetido todos os dias por falta de opção caiu de 44% para 16%.
+>
+> E dois revisores, sem saber qual semana era de qual versão, preferiram a nova em 12 de 18 casos e não preferiram a antiga em nenhum. O que eles ainda criticaram (o foco escolhido recebe pouco a mais que o resto) vira o próximo passo. Uma coisa não teve solução: treinar as costas sem nada para puxar. Nenhum estudo, treinador ou vídeo sério mostrou um jeito honesto, e o app continua dizendo isso.
