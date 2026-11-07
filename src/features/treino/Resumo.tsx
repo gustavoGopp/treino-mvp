@@ -117,7 +117,9 @@ export function Resumo() {
             ))}
           </div>
           <p className="ajuda">
-            Nada vem marcado. Com "pesado demais" em 2 dos últimos 3 treinos, o app sugere uma semana leve. <Selo id="deload.semana-leve" />
+            <PorQue regras={['deload.semana-leve']} titulo="Hoje foi">
+              <p>Nada vem marcado. Com "pesado demais" em 2 dos últimos 3 treinos, o app sugere uma semana leve.</p>
+            </PorQue>
           </p>
         </fieldset>
         <section aria-labelledby="proxima" className="pilha">
