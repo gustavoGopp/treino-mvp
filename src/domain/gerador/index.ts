@@ -269,8 +269,7 @@ export function gerarPrograma(perfil: Perfil, inventarioOriginal: Inventario): R
   // só a distribuição das séries conferia o teto, e no modelo de 6 dias com três vagas de glúteo o mínimo sozinho
   // chegava a 21 (auditoria de 04/11/2026, Parte C).
   const vMinimo: Partial<Record<Musculo, number>> = {};
-  const cabeNoTetoSemanal = (e: Exercicio) =>
-    (Object.entries(volumePorMusculo([{ ex: e, series: VOLUME.seriesPorExercicio.min }])) as [Musculo, number][]).every(([m, n]) => (vMinimo[m] ?? 0) + n <= VOLUME.teto);
+  const cabeNoTetoSemanal = (e: Exercicio) => cabeNoTeto(vMinimo, e);
   // Músculos com meta que têm alguma vaga-base na semana (fora os complementos). Um complemento que é o único
   // exercício direto de um músculo com meta (o ombro posterior, por exemplo) entra antes dos complementos de músculos
   // que já têm vaga-base, mesmo prioritários: o piso de todo músculo vem antes da 2ª dose do prioritário
@@ -496,75 +495,12 @@ export function gerarPrograma(perfil: Perfil, inventarioOriginal: Inventario): R
       return a.ordemVaga - b.ordemVaga;
     });
 
-  // 7. Prescrição
-  // Lembrete nos exercícios que carregam uma região marcada com dor de 0 a 5 (seguranca.dor.programa).
-  const porqueDaDor = (e: Exercicio, preenchido?: boolean, noLugarDe?: string, protegido?: Musculo): Porque[] => {
-    const p: Porque[] = [];
-    if (protegido)
-      p.push({ regraId: r('tempo.musculo-protegido'), texto: `Entrou para ${protegido === 'abdomen' ? 'o abdômen' : 'a panturrilha'} não ficar sem nenhuma série na semana, mesmo com o treino cheio.` });
-    if (noLugarDe)
-      p.push({ regraId: r('selecao.vaga-sem-equipamento'), texto: `Entrou no lugar da vaga "${noLugarDe.toLowerCase()}", que não tem exercício possível com o seu equipamento: trabalha o mesmo músculo com outro movimento.` });
-    if (preenchido)
-      p.push({ regraId: r('selecao.dia-sem-principal'), texto: 'Entrou no lugar de uma vaga que a dor tirou (ou para o dia não ficar só com abdominal).' });
-    p.push(...lembretesDeDor(e, triagem));
-    return p;
-  };
-  const prescrever = (it: Item): ExercicioPrescrito => {
-    const e = it.ex;
-    const composto = e.tipo === 'composto';
-    // rir.carga-baixa: com carga baixa (muitas repetições), a proximidade da falha pesa mais; a reserva vai até 2.
-    const rirBase = composto ? RIR.composto[nivel] : RIR.isolador[nivel];
-    const cargaBaixa = (e.faixaReps[0] + e.faixaReps[1]) / 2 >= RIR.cargaBaixa.repsMeio && rirBase[1] > RIR.cargaBaixa.rirMax;
-    const rir: [number, number] = cargaBaixa ? [Math.min(rirBase[0], RIR.cargaBaixa.rirMax - 1), RIR.cargaBaixa.rirMax] : rirBase;
-    return {
-      exId: e.id,
-      nome: e.nome,
-      padrao: e.padrao,
-      tipo: e.tipo,
-      funcao: it.funcao.id,
-      series: it.series,
-      reps: e.faixaReps,
-      rir,
-      descansoSeg: composto ? DESCANSO.composto[nivel] : DESCANSO.isolador[nivel],
-      unilateral: e.unilateral,
-      animacaoId: e.animacaoId,
-      alternativas: ctx.alternativasDe(e, it.funcao),
-      porque: [
-        ...porqueDoExercicio(e, it.funcao, it.nivelFuncao, nivel, ctx.preferido(it.funcao, e)),
-        ...(cargaBaixa ? [{ regraId: r('rir.carga-baixa'), texto: 'Com muitas repetições, a série só conta perto da falha: termine com 1 a 2 repetições de reserva.' }] : []),
-        ...porqueDaDor(e, it.preenchido, it.noLugarDe, it.protegido),
-      ],
-    };
-  };
-  // Objetivo "ficar mais forte" (objetivo.forca.*): os 2 primeiros multiarticulares com carga de cada treino ficam com a
-  // faixa mais baixa e o descanso maior; o peso livre fica com 2 a 3 de reserva. O iniciante segue como na hipertrofia.
-  const forca = perfil.objetivo === 'forca' && nivel !== 'iniciante';
-  const comCarga = (e: Exercicio) => !['peso-corpo', 'elastico', 'assistida'].includes(e.carga);
-  const pesoLivre = (e: Exercicio) => ['barra', 'halter', 'kettlebell', 'anilha'].includes(e.carga);
-  const ajustarForca = (exs: ExercicioPrescrito[]): ExercicioPrescrito[] => {
-    if (!forca) return exs;
-    let k = 0;
-    return exs.map((x) => {
-      const e = POR_ID_BIB[x.exId]!;
-      if (k >= OBJETIVO_FORCA.compostosPorTreino || x.tipo !== 'composto' || !comCarga(e)) return x;
-      k++;
-      return {
-        ...x,
-        reps: OBJETIVO_FORCA.reps,
-        descansoSeg: OBJETIVO_FORCA.descansoSeg,
-        rir: pesoLivre(e) ? OBJETIVO_FORCA.rirPesoLivre : x.rir,
-        porque: [
-          ...x.porque,
-          {
-            regraId: r('objetivo.forca.faixa-compostos'),
-            texto: `Objetivo "ficar mais forte": ${OBJETIVO_FORCA.reps[0]} a ${OBJETIVO_FORCA.reps[1]} repetições e descanso de 2 min 30 s neste exercício grande.${pesoLivre(e) ? ' Com peso livre, termine com 2 a 3 repetições de reserva.' : ''}`,
-          },
-        ],
-      };
-    });
-  };
+  // 7. Prescrição (prescrever; objetivo.forca.* em ajustarParaForca)
   let programaDias: DiaPrograma[] = dias.map(({ dia, itens }) => {
-    const exercicios = ajustarForca(itens.map(prescrever));
+    const exercicios = ajustarParaForca(
+      itens.map((it) => prescrever(it.ex, it.funcao, it.nivelFuncao, it.series, ctx, { preenchido: it.preenchido, noLugarDe: it.noLugarDe, protegido: it.protegido })),
+      perfil,
+    );
     return { id: dia.id, nome: dia.nome, exercicios, minutosEstimados: minutos(exercicios, colchaoDe(perfil)) };
   });
 
@@ -739,6 +675,88 @@ export function gerarPrograma(perfil: Perfil, inventarioOriginal: Inventario): R
       regioesExcluidas,
     },
   };
+}
+
+/**
+ * Uma série a mais (ou o mínimo de séries de um exercício novo) cabe no teto semanal de todos os músculos do exercício,
+ * contando as séries indiretas (volume.semanal.teto-padrao, "nunca acima"). Usada pelo gerador e pelo avaliador.
+ */
+export function cabeNoTeto(volume: Partial<Record<Musculo, number>>, e: Exercicio, series: number = VOLUME.seriesPorExercicio.min, teto: number = VOLUME.teto): boolean {
+  return (Object.entries(volumePorMusculo([{ ex: e, series }])) as [Musculo, number][]).every(([m, n]) => (volume[m] ?? 0) + n <= teto);
+}
+
+/** De onde veio um exercício que não é a 1ª escolha da vaga: entra no "porquê" (gerador; avaliador). */
+export type OrigemDaVaga = { preenchido?: boolean; noLugarDe?: string; protegido?: Musculo };
+
+/**
+ * Prescrição de um exercício numa função (reps, RIR, descanso, alternativas e o porquê): rir.alvo, rir.carga-baixa,
+ * descanso.por-tipo, selecao.equivalencia, seguranca.dor.programa. A mesma do gerador, para o avaliador e, depois,
+ * para um exercício que a pessoa acrescentar.
+ */
+export function prescrever(e: Exercicio, funcao: Funcao, nivelFuncao: number, series: number, ctx: ContextoDeSelecao, origem: OrigemDaVaga = {}): ExercicioPrescrito {
+  const nivel = ctx.nivel;
+  const composto = e.tipo === 'composto';
+  // rir.carga-baixa: com carga baixa (muitas repetições), a proximidade da falha pesa mais; a reserva vai até 2.
+  const rirBase = composto ? RIR.composto[nivel] : RIR.isolador[nivel];
+  const cargaBaixa = (e.faixaReps[0] + e.faixaReps[1]) / 2 >= RIR.cargaBaixa.repsMeio && rirBase[1] > RIR.cargaBaixa.rirMax;
+  const rir: [number, number] = cargaBaixa ? [Math.min(rirBase[0], RIR.cargaBaixa.rirMax - 1), RIR.cargaBaixa.rirMax] : rirBase;
+  // Lembrete nos exercícios que carregam uma região marcada com dor de 0 a 5 (seguranca.dor.programa).
+  const daOrigem: Porque[] = [];
+  if (origem.protegido)
+    daOrigem.push({ regraId: r('tempo.musculo-protegido'), texto: `Entrou para ${origem.protegido === 'abdomen' ? 'o abdômen' : 'a panturrilha'} não ficar sem nenhuma série na semana, mesmo com o treino cheio.` });
+  if (origem.noLugarDe)
+    daOrigem.push({ regraId: r('selecao.vaga-sem-equipamento'), texto: `Entrou no lugar da vaga "${origem.noLugarDe.toLowerCase()}", que não tem exercício possível com o seu equipamento: trabalha o mesmo músculo com outro movimento.` });
+  if (origem.preenchido)
+    daOrigem.push({ regraId: r('selecao.dia-sem-principal'), texto: 'Entrou no lugar de uma vaga que a dor tirou (ou para o dia não ficar só com abdominal).' });
+  return {
+    exId: e.id,
+    nome: e.nome,
+    padrao: e.padrao,
+    tipo: e.tipo,
+    funcao: funcao.id,
+    series,
+    reps: e.faixaReps,
+    rir,
+    descansoSeg: composto ? DESCANSO.composto[nivel] : DESCANSO.isolador[nivel],
+    unilateral: e.unilateral,
+    animacaoId: e.animacaoId,
+    alternativas: ctx.alternativasDe(e, funcao),
+    porque: [
+      ...porqueDoExercicio(e, funcao, nivelFuncao, nivel, ctx.preferido(funcao, e)),
+      ...(cargaBaixa ? [{ regraId: r('rir.carga-baixa'), texto: 'Com muitas repetições, a série só conta perto da falha: termine com 1 a 2 repetições de reserva.' }] : []),
+      ...daOrigem,
+      ...lembretesDeDor(e, ctx.triagem),
+    ],
+  };
+}
+
+/**
+ * Objetivo "ficar mais forte" (objetivo.forca.*): os 2 primeiros multiarticulares com carga de cada treino ficam com a
+ * faixa mais baixa e o descanso maior; o peso livre fica com 2 a 3 de reserva. O iniciante segue como na hipertrofia.
+ */
+export function ajustarParaForca(exs: ExercicioPrescrito[], perfil: Pick<Perfil, 'objetivo' | 'nivel'>): ExercicioPrescrito[] {
+  if (perfil.objetivo !== 'forca' || perfil.nivel === 'iniciante') return exs;
+  const comCarga = (e: Exercicio) => !['peso-corpo', 'elastico', 'assistida'].includes(e.carga);
+  const pesoLivre = (e: Exercicio) => ['barra', 'halter', 'kettlebell', 'anilha'].includes(e.carga);
+  let k = 0;
+  return exs.map((x) => {
+    const e = POR_ID_BIB[x.exId]!;
+    if (k >= OBJETIVO_FORCA.compostosPorTreino || x.tipo !== 'composto' || !comCarga(e)) return x;
+    k++;
+    return {
+      ...x,
+      reps: OBJETIVO_FORCA.reps,
+      descansoSeg: OBJETIVO_FORCA.descansoSeg,
+      rir: pesoLivre(e) ? OBJETIVO_FORCA.rirPesoLivre : x.rir,
+      porque: [
+        ...x.porque,
+        {
+          regraId: r('objetivo.forca.faixa-compostos'),
+          texto: `Objetivo "ficar mais forte": ${OBJETIVO_FORCA.reps[0]} a ${OBJETIVO_FORCA.reps[1]} repetições e descanso de 2 min 30 s neste exercício grande.${pesoLivre(e) ? ' Com peso livre, termine com 2 a 3 repetições de reserva.' : ''}`,
+        },
+      ],
+    };
+  });
 }
 
 /** O texto do objetivo (objetivo.*; pesquisa-v2/12). "Ganhar músculo" (ou sem resposta) não tem texto próprio. */

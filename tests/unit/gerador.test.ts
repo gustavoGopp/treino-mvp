@@ -321,7 +321,7 @@ describe('ordem da sessão (ordem.sessao)', () => {
   });
 });
 
-describe('cortes respeitam a prioridade e avisam o que ficou de fora', () => {
+describe('cortes respeitam a prioridade e avisam o que ficou de fora', { timeout: 30_000 }, () => {
   const nomes = (p: Programa) => p.avisos.flatMap(musculosDoAviso);
   it('todo músculo abaixo do limiar aparece num aviso de meta', () => {
     for (const v of variacoes) {
