@@ -139,3 +139,23 @@ export async function porQueDaSugestao(page: Page) {
   await page.locator('p.dica').filter({ has: page.getByRole('button', { name: 'por quê?' }) }).first().getByRole('button', { name: 'por quê?' }).click();
   return page.getByRole('dialog', { name: 'Por quê' });
 }
+
+// Início (redesign, lote 4): cada exercício da lista abre uma folha com o resto; "Sobre o programa" e os avisos também.
+/** Abre a folha de um exercício da lista do dia e devolve a folha. */
+export async function abrirExercicio(page: Page, nome: string | RegExp) {
+  await page.getByRole('tabpanel').getByRole('button', { name: nome }).first().click();
+  await folhaPronta(page);
+  return page.getByRole('dialog').last();
+}
+/** Abre "Sobre o programa" (o resumo, a fase, os avisos do programa e o porquê) e devolve a folha. */
+export async function sobreOPrograma(page: Page) {
+  await page.getByRole('button', { name: 'Sobre o programa' }).click();
+  await folhaPronta(page);
+  return page.getByRole('dialog', { name: 'Sobre o programa' });
+}
+/** Abre a folha dos avisos pelo "Ver" (ou "Mais N avisos") da linha do aviso e devolve a folha. */
+export async function verAvisos(page: Page) {
+  await page.locator('.aviso-linha').getByRole('button', { name: /^(Ver|Mais \d+ avisos?)$/ }).click();
+  await folhaPronta(page);
+  return page.getByRole('dialog', { name: 'Avisos' });
+}

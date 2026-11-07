@@ -23,18 +23,18 @@ export function Pontos({ r }: { r: ResumoDaSemana }) {
   );
 }
 
-/** A faixa curta no topo do "Seu treino": um toque abre a tela completa (decisão do Gustavo, 02/11/2026). */
+/** A faixa curta no "Seu treino", em 1 linha: as bolinhas e "X de Y"; um toque abre a tela completa (lote 4). */
 export function FaixaSemana({ r }: { r: ResumoDaSemana }) {
   return (
     <Link className="faixa-semana" to="/semana">
-      <span className="fs-topo">
-        <b>A sua semana</b>
-        <span>
-          {r.feitos} de {r.planejados} <span aria-hidden="true">›</span>
-        </span>
-      </span>
+      <b>A sua semana</b>
       <Pontos r={r} />
-      <span className="fs-msg">{r.mensagem}</span>
+      <span className="fs-num">
+        {r.feitos} de {r.planejados}
+      </span>
+      <span className="seta" aria-hidden="true">
+        ›
+      </span>
     </Link>
   );
 }

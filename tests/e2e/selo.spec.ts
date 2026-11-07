@@ -1,15 +1,17 @@
 import { expect, test } from '@playwright/test';
-import { ana } from './jornada';
+import { ana, sobreOPrograma } from './jornada';
 import { semContrasteBaixo } from './contraste';
 import { semToquePequeno } from './toque';
 
 // Redesign (06/11/2026): o selo de evidência abre de onde vem a regra. Antes, a regra ficava num "title", que o celular
 // não mostra (docs/revisoes/redesign/agente-4-organizacao.md); agora um toque abre uma folha com a regra, o que o nível
 // quer dizer e as fontes por extenso (src/conteudo/fontes.json).
-// Fora do treino, a folha é modal: a página inteira fica inerte.
+// Fora do treino, a folha é modal: a página inteira fica inerte. Desde o lote 4, o início quase não tem selo à vista:
+// o teste abre "Sobre o programa" e toca no selo da fase, numa folha dentro da folha.
 test('o selo abre a regra, o significado e as fontes; o foco fica na folha e volta ao selo', async ({ page }) => {
   await ana(page);
-  const selo = page.locator('button.selo:visible').first();
+  const sobre = await sobreOPrograma(page);
+  const selo = sobre.locator('button.selo:visible').first();
   await expect(selo).toBeVisible();
   await expect(selo).toHaveAccessibleName(/: ver de onde vem$/);
   await selo.click();
@@ -30,9 +32,13 @@ test('o selo abre a regra, o significado e as fontes; o foco fica na folha e vol
     expect(await page.evaluate(() => !!document.activeElement?.closest('.folha'))).toBe(true);
   }
 
+  // o Esc fecha só a folha de cima; o foco volta ao selo, e a página volta quando a 2ª folha também fecha
   await page.keyboard.press('Escape');
   await expect(folha).toBeHidden();
+  await expect(sobre).toBeVisible();
   await expect(selo).toBeFocused();
+  await page.keyboard.press('Escape');
+  await expect(sobre).toBeHidden();
   expect(await page.locator('#root').evaluate((e) => (e as HTMLElement).inert)).toBe(false);
 });
 

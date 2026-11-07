@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react';
+import { useMemo, useState, type ReactNode } from 'react';
 import { Link, Navigate, useNavigate } from 'react-router-dom';
 import { BIBLIOTECA, type Musculo } from '../../domain/biblioteca';
 import { ALTERNATIVAS_A_MOSTRA, NOME_MUSCULO, ehAvisoDeMeta, type DiaPrograma, type ExercicioPrescrito, type Programa as TipoPrograma } from '../../domain/gerador';
@@ -12,11 +12,12 @@ import { inventarioPrincipal, localDoTreino, perfilDe, primeiroPassoPendente, ty
 import { alternarPreferencia, diaDoTreino, hojeDoEstado, iniciarSessao } from '../treino/acoes';
 import { Preferencias } from './Prefiro';
 import { agoraIso, comProgramaNovo, fusoDoAparelho, gerarDoEstado, mesmoConteudo, useApp } from '../app/estado';
-import { NavInferior, Selo, Titulo, Topo } from '../app/ui';
+import { NavInferior, PorQue, Selo, Titulo, Topo } from '../app/ui';
+import { Folha } from '../app/Folha';
 import { Miniatura } from './Miniatura';
 import { FaixaSemana } from '../acompanhamento/Semana';
 import { SemanaLeve } from '../acompanhamento/SemanaLeve';
-import { aceitarMargemTempo, recusarMargemTempo, semanaDoEstado, tempoDoEstado } from '../acompanhamento/acoes';
+import { aceitarMargemTempo, recusarMargemTempo, semanaDoEstado, semanaLeveDoEstado, tempoDoEstado } from '../acompanhamento/acoes';
 import { CartaoTexto, temCartao } from './CartaoTexto';
 
 // Tela do treino: vai direto ao que importa (o treino de cada dia, com a imagem de cada exercício e
@@ -26,6 +27,7 @@ const POR_ID = Object.fromEntries(BIBLIOTECA.map((e) => [e.id, e]));
 const tempo = (seg: number) => (seg % 60 ? `${Math.floor(seg / 60)}:${String(seg % 60).padStart(2, '0')}` : `${seg / 60} min`);
 const faixa = ([a, b]: [number, number]) => (a === b ? `${a}` : `${a}–${b}`);
 const musculos = (ms: readonly Musculo[]) => ms.map((m) => NOME_MUSCULO[m]).join(', ');
+const dataCurta = (iso: string) => `${iso.slice(8, 10)}/${iso.slice(5, 7)}`;
 
 export function Programa() {
   const { estado, atualizar } = useApp();
@@ -35,7 +37,8 @@ export function Programa() {
     const p = estado.programa?.programa;
     return p ? Math.max(0, p.dias.findIndex((d) => d.id === proximoDia(p, estado.historico).id)) : 0;
   });
-  const [verAjustes, setVerAjustes] = useState(false);
+  // a folha dos avisos ("Ver" na linha do aviso, ou "Ver ajustes possíveis" em "Sobre o programa")
+  const [verAvisos, setVerAvisos] = useState(false);
   // "Onde vou treinar hoje?" (R1b): o último local usado vem lembrado; a escolha continua visível.
   const [localHoje, setLocalHoje] = useState(() => localDoTreino(estado)?.id);
   const perfil = useMemo(() => perfilDe(estado), [estado]);
@@ -72,7 +75,7 @@ export function Programa() {
   };
 
   const escolher = (o: Opcao) => {
-    setVerAjustes(false);
+    setVerAvisos(false);
     if (o.id === 'manter') {
       atualizar((s) => ({ ...s, ajustes: { recolhido: true } }));
       setAviso('Programa mantido.');
@@ -118,71 +121,34 @@ export function Programa() {
   const feitos = new Set(estado.historico.flatMap((s) => s.exercicios.filter((e) => e.series.length).map((e) => e.exId)));
   const resumoSemana = estado.historico.some(treinoFeito) ? semanaDoEstado(estado, agora, fuso) : null;
   const faseAtual = salvo.fases[0];
+  const prefixoAbas = prefixoComum(diasDaSemana.map((d) => d.nome));
 
-  return (
-    <div className="wrap app com-nav">
-      <Topo />
-      <main className="conteudo treino">
-        <div className="cabeca-treino">
-          <Titulo>Seu treino</Titulo>
-          <ul className="fichas" aria-label="Resumo">
-            <li>{perfil!.diasSemana}x por semana</li>
-            <li>até {perfil!.minutosSessao} min</li>
-            <li>{NOME_NIVEL[perfil!.nivel]}</li>
-          </ul>
-        </div>
-        {resumoSemana && <FaixaSemana r={resumoSemana} />}
-        <p role="status" className="status">
-          {aviso}
-        </p>
-
-        {versaoNova && (
-          <div className="faixa destaque">
-            <span>Há uma versão nova do seu programa.</span>
-            <button type="button" className="btn pequeno" onClick={() => { atualizar(regerar); setAviso('Programa atualizado com as regras novas.'); }}>
-              Atualizar
-            </button>
-          </div>
-        )}
-
-        {opcoes.length > 0 && !estado.ajustes?.recolhido && (
-          <div className="faixa">
-            <span>
-              {abaixo ? 'Alguns músculos ficaram abaixo da meta.' : 'Algum treino passa do tempo.'} Dá para ajustar.
-            </span>
-            <button type="button" className="btn sec pequeno" aria-expanded={verAjustes} onClick={() => setVerAjustes((v) => !v)}>
-              {verAjustes ? 'Fechar' : 'Ver opções'}
-            </button>
-          </div>
-        )}
-        {verAjustes && <Ajustes opcoes={opcoes} escolher={escolher} />}
-
-        {volta && !estado.sessaoAtual && (
-          <Volta
-            m={volta}
-            dia={diaDoPrograma}
-            normal={salvo.dias.find((d) => d.id === diaDoPrograma.id) ?? diaDoPrograma}
-            respondida={respondeuDepoisDoUltimoTreino(estado.respostas?.voltaLongaEm, estado.historico)}
-            refazer={() => {
-              atualizar((s) => ({ ...s, respostas: { ...s.respostas, voltaLongaEm: agoraIso() } }));
-              navigate('/comecar/nivel?de=programa');
-            }}
-            agoraNao={() => {
-              atualizar((s) => ({ ...s, respostas: { ...s.respostas, voltaLongaEm: agoraIso() } }));
-              setAviso('Tudo bem: o programa segue, com a mesma volta leve.');
-            }}
-          />
-        )}
-
-        {(hoje.fase ?? faseAtual) && (
-          <p className="fase">
-            <b>Você está na semana {semana}.</b> {(hoje.fase ?? faseAtual)!.texto} <Selo id={(hoje.fase ?? faseAtual)!.regraId} />
-          </p>
-        )}
-
-        {!estado.sessaoAtual && <SemanaLeve />}
-
-        {tempoProposto && !estado.sessaoAtual && (
+  // Uma mensagem por vez (lote 4; agente 1, 4.5A): a dor fica sempre à vista; o resto entra numa fila, na ordem
+  // abaixo. Na tela aparece só a 1ª, em 1 linha; "Ver" abre a folha com o bloco inteiro (os textos e os selos de
+  // sempre) e, embaixo, os outros. No dia da volta de uma pausa, a volta é a mensagem do dia (só a versão nova fica).
+  const leve = estado.sessaoAtual ? null : semanaLeveDoEstado(estado, agora, fuso);
+  const fila: AvisoDaFila[] = [];
+  if (versaoNova)
+    fila.push({
+      id: 'versao',
+      linha: 'Há uma versão nova do seu programa.',
+      acao: {
+        rotulo: 'Atualizar',
+        fazer: () => {
+          atualizar(regerar);
+          setAviso('Programa atualizado com as regras novas.');
+        },
+      },
+      bloco: null,
+    });
+  if (!volta && !estado.sessaoAtual) {
+    if (leve?.ativa) fila.push({ id: 'leve-ativa', linha: <b>Semana leve{leve.ate ? ` até ${dataCurta(leve.ate)}` : ''}</b>, bloco: <SemanaLeve partes={['ativa']} /> });
+    if (leve?.mostrar) fila.push({ id: 'leve', linha: <b>Semana leve? (opcional)</b>, bloco: <SemanaLeve partes={['oferta']} /> });
+    if (tempoProposto)
+      fila.push({
+        id: 'tempo',
+        linha: <b>O tempo dos seus treinos</b>,
+        bloco: (
           <section className="box volta" aria-labelledby="tempo-real">
             <h2 id="tempo-real">O tempo dos seus treinos</h2>
             <p>
@@ -205,49 +171,54 @@ export function Programa() {
               </button>
             </div>
           </section>
-        )}
+        ),
+      });
+    if (opcoes.length > 0 && !estado.ajustes?.recolhido)
+      fila.push({
+        id: 'ajustes',
+        linha: `${abaixo ? 'Alguns músculos ficaram abaixo da meta.' : 'Algum treino passa do tempo.'} Dá para ajustar.`,
+        bloco: <Ajustes opcoes={opcoes} escolher={escolher} />,
+      });
+  }
+  const [primeiro, ...outros] = fila;
+  const naFolha = primeiro?.acao ? outros : fila;
+  const iniciar = () => {
+    atualizar((s) => iniciarSessao(s, agoraIso(), dia.id, localHoje, fusoDoAparelho()));
+    navigate('/treino');
+  };
+  const mostrarVolta = volta && !estado.sessaoAtual;
 
-        {estado.sessaoAtual ? (
-          <Link className="btn" to="/treino">
-            Continuar o treino em andamento
-          </Link>
-        ) : null}
+  return (
+    <div className="wrap app com-nav">
+      <Topo />
+      <main className="conteudo treino">
+        <Titulo>Seu treino</Titulo>
 
-        {locais.length > 1 ? null : (
-          <Link className="link-sec" to="/locais">
-            Treina em mais de um lugar? Cadastre outro local
-          </Link>
-        )}
-
-        <div className="abas" role="tablist" aria-label="Dias de treino">
-          {diasDaSemana.map((d, i) => (
-            <button
-              key={d.id}
-              type="button"
-              role="tab"
-              id={`aba-${d.id}`}
-              aria-selected={d === diaDoPrograma}
-              aria-controls={`painel-${d.id}`}
-              tabIndex={d === diaDoPrograma ? 0 : -1}
-              onClick={() => setDiaSel(i)}
-              onKeyDown={(e) => {
-                if (e.key === 'ArrowRight' || e.key === 'ArrowLeft') {
-                  const n = (i + (e.key === 'ArrowRight' ? 1 : diasDaSemana.length - 1)) % diasDaSemana.length;
-                  setDiaSel(n);
-                  document.getElementById(`aba-${diasDaSemana[n]!.id}`)?.focus();
-                }
+        <section className="cartao-hoje" aria-labelledby="hoje-t">
+          {mostrarVolta ? (
+            <Volta
+              m={volta}
+              dia={diaDoPrograma}
+              normal={salvo.dias.find((d) => d.id === diaDoPrograma.id) ?? diaDoPrograma}
+              respondida={respondeuDepoisDoUltimoTreino(estado.respostas?.voltaLongaEm, estado.historico)}
+              refazer={() => {
+                atualizar((s) => ({ ...s, respostas: { ...s.respostas, voltaLongaEm: agoraIso() } }));
+                navigate('/comecar/nivel?de=programa');
               }}
-            >
-              {d.nome}
-            </button>
-          ))}
-        </div>
-
-        <section className="painel-dia" role="tabpanel" id={`painel-${dia.id}`} aria-labelledby={`aba-${dia.id}`}>
-          <h2 className="info-dia">
-            {dia.nome} · {dia.exercicios.length} exercícios · ~{dia.minutosEstimados} min
-            {dia.id === proximoDia(salvo, estado.historico).id && estado.historico.length > 0 ? ' · próximo da rotação' : ''}
-          </h2>
+              agoraNao={() => {
+                atualizar((s) => ({ ...s, respostas: { ...s.respostas, voltaLongaEm: agoraIso() } }));
+                setAviso('Tudo bem: o programa segue, com a mesma volta leve.');
+              }}
+            />
+          ) : (
+            <>
+              <p className="rotulo">Hoje</p>
+              <h2 id="hoje-t">{dia.nome}</h2>
+              <p className="apoio num">
+                {dia.exercicios.length} exercícios · ~{dia.minutosEstimados} min
+              </p>
+            </>
+          )}
           {!estado.sessaoAtual && locais.length > 1 && (
             <fieldset className="campo onde-hoje">
               <legend>Onde vou treinar hoje?</legend>
@@ -279,12 +250,76 @@ export function Programa() {
               </Link>
             </fieldset>
           )}
+        </section>
+
+        {resumoSemana && <FaixaSemana r={resumoSemana} />}
+        {!estado.sessaoAtual && <SemanaLeve partes={['dor']} />}
+
+        {primeiro && (
+          <div className="aviso-linha">
+            <p>{primeiro.linha}</p>
+            {primeiro.acao ? (
+              <button type="button" className="btn sec pequeno" onClick={primeiro.acao.fazer}>
+                {primeiro.acao.rotulo}
+              </button>
+            ) : (
+              <button type="button" className="btn sec pequeno" aria-haspopup="dialog" onClick={() => setVerAvisos(true)}>
+                Ver
+              </button>
+            )}
+            {primeiro.acao && outros.length > 0 && (
+              <button type="button" className="btn ter pequeno" aria-haspopup="dialog" onClick={() => setVerAvisos(true)}>
+                {outros.length === 1 ? 'Mais 1 aviso' : `Mais ${outros.length} avisos`}
+              </button>
+            )}
+          </div>
+        )}
+        {verAvisos && naFolha.length > 0 && (
+          <Folha titulo="Avisos" aoFechar={() => setVerAvisos(false)}>
+            {naFolha.map((a, i) => (
+              <div key={a.id} className="pilha">
+                {i === 1 && naFolha === fila && <h3 className="rotulo">{outros.length === 1 ? 'Mais 1 aviso' : `Mais ${outros.length} avisos`}</h3>}
+                {a.bloco}
+              </div>
+            ))}
+          </Folha>
+        )}
+
+        <p role="status" className="status">
+          {aviso}
+        </p>
+
+        <div className="abas" role="tablist" aria-label="Dias de treino">
+          {diasDaSemana.map((d, i) => (
+            <button
+              key={d.id}
+              type="button"
+              role="tab"
+              id={`aba-${d.id}`}
+              aria-selected={d === diaDoPrograma}
+              aria-controls={`painel-${d.id}`}
+              tabIndex={d === diaDoPrograma ? 0 : -1}
+              onClick={() => setDiaSel(i)}
+              onKeyDown={(e) => {
+                if (e.key === 'ArrowRight' || e.key === 'ArrowLeft') {
+                  const n = (i + (e.key === 'ArrowRight' ? 1 : diasDaSemana.length - 1)) % diasDaSemana.length;
+                  setDiaSel(n);
+                  document.getElementById(`aba-${diasDaSemana[n]!.id}`)?.focus();
+                }
+              }}
+            >
+              {prefixoAbas && <span className="sr">{prefixoAbas}</span>}
+              {d.nome.slice(prefixoAbas.length)}
+            </button>
+          ))}
+        </div>
+
+        <section className="painel-dia" role="tabpanel" id={`painel-${dia.id}`} aria-labelledby={`aba-${dia.id}`}>
           <ol className="cartoes-ex">
-            {dia.exercicios.map((x, i) => (
-              <CartaoExercicio
+            {dia.exercicios.map((x) => (
+              <LinhaExercicio
                 key={x.exId}
                 x={x}
-                n={i + 1}
                 dia={dia.exercicios}
                 diaId={dia.id}
                 preferidos={estado.preferidos}
@@ -293,29 +328,51 @@ export function Programa() {
               />
             ))}
           </ol>
-          {!estado.sessaoAtual && (
-            // A ação principal fica embaixo, ao alcance do polegar, enquanto a lista do dia está à vista (design v2, item G).
-            <div className="acao-fixa">
-            <button
-              type="button"
-              className="btn"
-              onClick={() => {
-                atualizar((s) => iniciarSessao(s, agoraIso(), dia.id, localHoje, fusoDoAparelho()));
-                navigate('/treino');
-              }}
-            >
+        </section>
+
+        <Sobre
+          programa={salvo}
+          perfil={perfil!}
+          semana={semana}
+          fase={hoje.fase ?? faseAtual}
+          reabrirAjustes={
+            opcoes.length > 0 && !!estado.ajustes?.recolhido
+              ? () => {
+                  atualizar((s) => ({ ...s, ajustes: { recolhido: false } }));
+                  setVerAvisos(true);
+                }
+              : undefined
+          }
+        />
+
+        {/* A ação principal fica presa embaixo, acima da barra, em qualquer estado (lote 4; agente 1, 4.2). */}
+        <div className="acao-fixa">
+          {estado.sessaoAtual ? (
+            <Link className="btn" to="/treino">
+              Continuar o treino em andamento
+            </Link>
+          ) : (
+            <button type="button" className="btn" onClick={iniciar}>
               Começar o treino {dia.nome}
               {locais.length > 1 && nomeLocal ? ` em ${nomeLocal}` : ''}
             </button>
-            </div>
           )}
-        </section>
-
-        <Sobre programa={salvo} reabrirAjustes={opcoes.length > 0 && !!estado.ajustes?.recolhido ? () => { atualizar((s) => ({ ...s, ajustes: { recolhido: false } })); setVerAjustes(true); } : undefined} />
+        </div>
       </main>
       <NavInferior atual="treino" />
     </div>
   );
+}
+
+type AvisoDaFila = { id: string; linha: ReactNode; bloco: ReactNode; acao?: { rotulo: string; fazer: () => void } };
+
+/** O começo comum dos nomes dos dias ("Corpo todo "), que sai das abas para elas caberem a 320 px; o leitor de tela lê o nome inteiro. */
+function prefixoComum(nomes: string[]): string {
+  if (nomes.length < 2) return '';
+  const partes = nomes.map((n) => n.split(' '));
+  let k = 0;
+  while (partes.every((p) => p.length > k + 1 && p[k] === partes[0]![k])) k++;
+  return k ? `${partes[0]!.slice(0, k).join(' ')} ` : '';
 }
 
 /** A pessoa já respondeu à proposta depois do último treino (a proposta não volta a cada abertura). */
@@ -324,7 +381,10 @@ const respondeuDepoisDoUltimoTreino = (em: string | undefined, historico: Estado
   return !!em && (!fim || Date.parse(em) > Date.parse(fim));
 };
 
-/** Caixa da volta de uma pausa (readaptacao.durante-uso): a mensagem, as séries e a reserva de hoje. */
+/**
+ * A volta de uma pausa (readaptacao.durante-uso) é o próprio cartão de hoje (lote 4; agente 1, 4.4): o dia, as séries e a
+ * reserva de hoje; a mensagem inteira, com o selo, fica no "por quê?".
+ */
 function Volta({
   m,
   dia,
@@ -345,10 +405,10 @@ function Volta({
   const rirs = dia.exercicios.map((x) => x.rir);
   const rir: [number, number] = [Math.min(...rirs.map((x) => x[0])), Math.max(...rirs.map((x) => x[1]))];
   return (
-    <section className="box volta" aria-labelledby="volta-titulo">
-      <h2 id="volta-titulo">{m.titulo}</h2>
-      <p>
-        {m.texto} <Selo id={m.regraId} />
+    <>
+      <h2 id="hoje-t">{m.titulo}</h2>
+      <p className="apoio num">
+        <b>{dia.nome}</b> · {dia.exercicios.length} exercícios · ~{dia.minutosEstimados} min
       </p>
       <dl className="volta-numeros">
         <div>
@@ -365,6 +425,11 @@ function Volta({
           <dd>{faixa(rir)} repetições</dd>
         </div>
       </dl>
+      <p className="apoio">
+        <PorQue regras={[m.regraId]} titulo={m.titulo}>
+          <p>{m.texto}</p>
+        </PorQue>
+      </p>
       {m.refazerNivel && !respondida && (
         <div className="opcoes linha">
           <button type="button" className="btn sec pequeno" onClick={refazer}>
@@ -375,7 +440,7 @@ function Volta({
           </button>
         </div>
       )}
-    </section>
+    </>
   );
 }
 
@@ -400,9 +465,13 @@ function Ajustes({ opcoes, escolher }: { opcoes: Opcao[]; escolher: (o: Opcao) =
   );
 }
 
-function CartaoExercicio({
+/**
+ * Uma linha da lista do dia: a imagem, o nome e "4 × 8–12" (lote 4; menos texto, seção 15). Um toque abre a folha do
+ * exercício, com o resto que antes ficava em "Detalhes": reserva e descanso, o guia, a montagem segura, o porquê com os
+ * selos, as alternativas, a preferência e a evolução.
+ */
+function LinhaExercicio({
   x,
-  n,
   dia,
   diaId,
   preferidos,
@@ -411,49 +480,48 @@ function CartaoExercicio({
 }: {
   comHistorico: boolean;
   x: ExercicioPrescrito & { noLugarDe?: string };
-  n: number;
   dia: ExercicioPrescrito[];
   diaId: string;
   preferidos?: Record<string, string>;
   aoPreferir: (funcao: string, id: string) => void;
 }) {
+  const [aberta, setAberta] = useState(false);
   const ex = POR_ID[x.exId];
   const par = x.supersetCom ? dia.find((y) => y.exId === x.supersetCom) : undefined;
-  const corpo = (
+  const prescricao = (
     <>
-      <Miniatura animacaoId={x.animacaoId} temTexto={temCartao(x.exId)} />
-      <div className="ex-texto">
-        <h3>
-          <span className="n">{n}</span> {x.nome}
-        </h3>
-        <p className="series">
-          {x.series} × {faixa(x.reps)}
-          {x.unilateral && <small> cada lado</small>}
-        </p>
-        <p className="sub-rx">
-          RIR {faixa(x.rir)} · descanso {tempo(x.descansoSeg)}
-          {par && ' · bi-set'}
-          {x.dropSet && ' · última série em drop set'}
-        </p>
-      </div>
+      {x.series} × {faixa(x.reps)}
+      {x.unilateral && <small> cada lado</small>}
     </>
   );
   return (
     <li className="cartao-ex">
-      {x.animacaoId ? (
-        <Link className="cartao-ex-corpo" to={linkDoGuia(x.animacaoId, { de: 'programa', diaId, exId: x.exId, vaga: x.noLugarDe })}>
-          {corpo}
-          <span className="sr">: ver como fazer</span>
-        </Link>
-      ) : (
-        <div className="cartao-ex-corpo">{corpo}</div>
-      )}
-      <details className="mais">
-        <summary>Detalhes</summary>
-        <div className="mais-corpo">
-          {comHistorico && (
-            <Link className="link-sec" to={`/evolucao/${x.exId}`}>
-              Sua evolução neste exercício
+      <button type="button" className="cartao-ex-corpo" aria-haspopup="dialog" onClick={() => setAberta(true)}>
+        <Miniatura animacaoId={x.animacaoId} temTexto={temCartao(x.exId)} />
+        <span className="ex-texto">
+          <b className="ex-nome">{x.nome}</b>
+          <span className="series">{prescricao}</span>
+        </span>
+        <span className="seta" aria-hidden="true">
+          ›
+        </span>
+      </button>
+      {aberta && (
+        <Folha titulo={x.nome} aoFechar={() => setAberta(false)}>
+          <div className="ex-folha-topo">
+            <Miniatura animacaoId={x.animacaoId} temTexto={temCartao(x.exId)} />
+            <div>
+              <p className="series">{prescricao}</p>
+              <p className="sub-rx">
+                RIR {faixa(x.rir)} · descanso {tempo(x.descansoSeg)}
+                {par && ' · bi-set'}
+                {x.dropSet && ' · última série em drop set'}
+              </p>
+            </div>
+          </div>
+          {x.animacaoId && (
+            <Link className="btn sec" to={linkDoGuia(x.animacaoId, { de: 'programa', diaId, exId: x.exId, vaga: x.noLugarDe })}>
+              Ver como fazer
             </Link>
           )}
           {par && <p>Bi-set com {par.nome.toLowerCase()}: alterne os dois e descanse depois da dupla.</p>}
@@ -465,8 +533,7 @@ function CartaoExercicio({
             </p>
           )}
           {!x.animacaoId && <CartaoTexto exId={x.exId} />}
-          {x.alternativas.length > 0 && <Alternativas ids={x.alternativas} diaId={diaId} vaga={x.noLugarDe ?? x.exId} />}
-          <Preferencias funcao={x.funcao} atual={x.exId} alternativas={x.alternativas} preferidos={preferidos} aoPreferir={aoPreferir} />
+          <h3 className="rotulo">Por que este exercício</h3>
           <ul className="lista">
             {x.porque.map((q) => (
               <li key={q.regraId}>
@@ -474,78 +541,123 @@ function CartaoExercicio({
               </li>
             ))}
           </ul>
-        </div>
-      </details>
+          {x.alternativas.length > 0 && <Alternativas ids={x.alternativas} diaId={diaId} vaga={x.noLugarDe ?? x.exId} />}
+          <Preferencias funcao={x.funcao} atual={x.exId} alternativas={x.alternativas} preferidos={preferidos} aoPreferir={aoPreferir} />
+          {comHistorico && (
+            <Link className="btn ter" to={`/evolucao/${x.exId}`}>
+              Ver a evolução deste exercício
+            </Link>
+          )}
+        </Folha>
+      )}
     </li>
   );
 }
 
-function Sobre({ programa, reabrirAjustes }: { programa: TipoPrograma; reabrirAjustes?: () => void }) {
+/** "Sobre o programa" (lote 4): o resumo da rotina, a fase, os avisos e o porquê, numa folha a um toque. */
+function Sobre({
+  programa,
+  perfil,
+  semana,
+  fase,
+  reabrirAjustes,
+}: {
+  programa: TipoPrograma;
+  perfil: { diasSemana: number; minutosSessao: number; nivel: keyof typeof NOME_NIVEL };
+  semana: number;
+  fase?: TipoPrograma['fases'][number];
+  reabrirAjustes?: () => void;
+}) {
+  const [aberta, setAberta] = useState(false);
   const linhas = (Object.entries(programa.metas) as [Musculo, number][]).map(([m, meta]) => ({ m, meta, v: programa.volumeSemanal[m] ?? 0 }));
   return (
-    <details className="box dobra sobre">
-      <summary>Sobre o programa: avisos e o porquê</summary>
-      <div className="pilha">
-        <p>
-          <b>{programa.divisao}.</b>
-        </p>
-        {programa.avisos.map((a, i) => (
-          <div key={i} className="warnbox">
-            {a.texto} <Selo id={a.regraId} />
-          </div>
-        ))}
-        {programa.fases.length > 0 && (
-          <>
-            <h3>Fases</h3>
-            <ul className="lista">
-              {programa.fases.map((f) => (
-                <li key={f.semanas}>
-                  <b>{/^\d/.test(f.semanas) ? `Semana ${f.semanas}` : f.semanas}:</b> {f.texto} <Selo id={f.regraId} />
-                </li>
-              ))}
-            </ul>
-          </>
-        )}
-        <h3>Por que este programa</h3>
-        <ul className="lista">
-          {programa.porque.map((q) => (
-            <li key={q.regraId}>
-              {q.texto} <Selo id={q.regraId} />
-            </li>
+    <>
+      <button type="button" className="linha-sobre" aria-haspopup="dialog" onClick={() => setAberta(true)}>
+        Sobre o programa
+        <span className="seta" aria-hidden="true">
+          ›
+        </span>
+      </button>
+      {aberta && (
+        <Folha titulo="Sobre o programa" aoFechar={() => setAberta(false)}>
+          <ul className="fichas" aria-label="Resumo">
+            <li>{perfil.diasSemana}x por semana</li>
+            <li>até {perfil.minutosSessao} min</li>
+            <li>{NOME_NIVEL[perfil.nivel]}</li>
+          </ul>
+          {fase && (
+            <p className="fase">
+              <b>Você está na semana {semana}.</b> {fase.texto} <Selo id={fase.regraId} />
+            </p>
+          )}
+          <p>
+            <b>{programa.divisao}.</b>
+          </p>
+          {programa.avisos.map((a, i) => (
+            <div key={i} className="warnbox">
+              {a.texto} <Selo id={a.regraId} />
+            </div>
           ))}
-        </ul>
-        <h3>Séries por músculo na semana</h3>
-        <p className="ajuda">
-          Séries indiretas contam como meia série. <Selo id="volume.serie-indireta.peso" />
-        </p>
-        <table className="vol">
-          <thead>
-            <tr>
-              <th scope="col">Músculo</th>
-              <th scope="col">Meta</th>
-              <th scope="col">Programa</th>
-            </tr>
-          </thead>
-          <tbody>
-            {linhas.map(({ m, meta, v }) => (
-              <tr key={m} className={v < meta ? 'abaixo' : undefined}>
-                <th scope="row">{NOME_MUSCULO[m]}</th>
-                <td>{meta}</td>
-                <td>
-                  {v.toLocaleString('pt-BR')}
-                  {v < meta && <span className="sr"> (abaixo da meta)</span>}
-                </td>
-              </tr>
+          {programa.fases.length > 0 && (
+            <>
+              <h3>Fases</h3>
+              <ul className="lista">
+                {programa.fases.map((f) => (
+                  <li key={f.semanas}>
+                    <b>{/^\d/.test(f.semanas) ? `Semana ${f.semanas}` : f.semanas}:</b> {f.texto} <Selo id={f.regraId} />
+                  </li>
+                ))}
+              </ul>
+            </>
+          )}
+          <h3>Por que este programa</h3>
+          <ul className="lista">
+            {programa.porque.map((q) => (
+              <li key={q.regraId}>
+                {q.texto} <Selo id={q.regraId} />
+              </li>
             ))}
-          </tbody>
-        </table>
-        {reabrirAjustes && (
-          <button type="button" className="btn sec" onClick={reabrirAjustes}>
-            Ver ajustes possíveis
-          </button>
-        )}
-      </div>
-    </details>
+          </ul>
+          <h3>Séries por músculo na semana</h3>
+          <p className="ajuda">
+            Séries indiretas contam como meia série. <Selo id="volume.serie-indireta.peso" />
+          </p>
+          <table className="vol">
+            <thead>
+              <tr>
+                <th scope="col">Músculo</th>
+                <th scope="col">Meta</th>
+                <th scope="col">Programa</th>
+              </tr>
+            </thead>
+            <tbody>
+              {linhas.map(({ m, meta, v }) => (
+                <tr key={m} className={v < meta ? 'abaixo' : undefined}>
+                  <th scope="row">{NOME_MUSCULO[m]}</th>
+                  <td>{meta}</td>
+                  <td>
+                    {v.toLocaleString('pt-BR')}
+                    {v < meta && <span className="sr"> (abaixo da meta)</span>}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+          {reabrirAjustes && (
+            <button
+              type="button"
+              className="btn sec"
+              onClick={() => {
+                setAberta(false);
+                reabrirAjustes();
+              }}
+            >
+              Ver ajustes possíveis
+            </button>
+          )}
+        </Folha>
+      )}
+    </>
   );
 }
 

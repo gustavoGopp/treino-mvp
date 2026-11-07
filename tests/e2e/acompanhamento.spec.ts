@@ -1,5 +1,5 @@
 import { expect, test, type Page } from '@playwright/test';
-import { ana, terminarTreino, porQueDaSugestao } from './jornada';
+import { ana, porQueDaSugestao, sobreOPrograma, terminarTreino, verAvisos } from './jornada';
 import { semToquePequeno } from './toque';
 
 // R2: acompanhamento. A Ana (persona fictícia) faz o cadastro pelo app; o histórico de treinos é gravado direto no
@@ -80,15 +80,22 @@ test('volta depois de 22 dias: a mensagem sem culpa, menos séries e a carga 10%
     { dia: 1, quando: '2026-10-13T13:00:00.000Z' },
     { dia: 2, quando: '2026-10-14T13:00:00.000Z' },
   ]);
+  // lote 4 do redesign: a volta é o próprio cartão de hoje; a mensagem inteira, com o selo, fica no "por quê?".
   const volta = page.getByRole('region', { name: 'Bem-vindo de volta!' });
-  await expect(volta).toContainText('Faz 22 dias do último treino. Estas 2 semanas vão mais leves, para o corpo se readaptar sem dor. O músculo não some em 3 semanas.');
-  await expect(volta).toContainText('A carga começa 10% abaixo da última vez e já vem preenchida.');
   // 8 de 13 até a auditoria do treino (a ponte com halter); 9 de 14 até a sessão de equipamento mínimo (a flexão deslizante).
   await expect(volta).toContainText(/Séries no Corpo todo A\s*9 de 15/);
   await expect(volta).toContainText('3–4 repetições');
-  await expect(page.getByText(/Você está na semana 1\. Cerca de metade das séries, RIR 3–4 e carga 10% abaixo da última vez/)).toBeVisible();
+  // no dia da volta, ela é a única mensagem
+  await expect(page.locator('.aviso-linha')).toHaveCount(0);
   await print(page, 'volta');
   await semToquePequeno(page);
+  await volta.getByRole('button', { name: 'por quê?' }).click();
+  const porque = page.getByRole('dialog', { name: 'Bem-vindo de volta!' });
+  await expect(porque).toContainText('Faz 22 dias do último treino. Estas 2 semanas vão mais leves, para o corpo se readaptar sem dor. O músculo não some em 3 semanas.');
+  await expect(porque).toContainText('A carga começa 10% abaixo da última vez e já vem preenchida.');
+  await page.keyboard.press('Escape');
+  await expect((await sobreOPrograma(page)).getByText(/Você está na semana 1\. Cerca de metade das séries, RIR 3–4 e carga 10% abaixo da última vez/)).toBeVisible();
+  await page.keyboard.press('Escape');
 
   await page.getByRole('button', { name: 'Começar o treino Corpo todo A' }).click();
   await expect(page.getByRole('heading', { name: 'Agachamento búlgaro com apoio' })).toBeVisible();
@@ -196,8 +203,12 @@ test('com o sinal, recebe a sugestão da semana leve: o toque "hoje foi" no fim 
   await expect(page.getByRole('region', { name: /^Semana leve até / })).toBeVisible();
 
   // No Seu treino, a semana leve já vale: metade das séries e RIR 3–4.
-  await page.getByRole('link', { name: 'Voltar ao programa' }).click();
-  await expect(page.getByText(/Você está na semana \d\. Semana leve: cerca de metade das séries/)).toBeVisible();
-  await page.getByRole('button', { name: 'Voltar ao normal' }).click();
+  await page.getByRole('link', { name: 'Voltar ao início' }).click();
+  await expect((await sobreOPrograma(page)).getByText(/Você está na semana \d\. Semana leve: cerca de metade das séries/)).toBeVisible();
+  await page.keyboard.press('Escape');
+  // a semana leve ativa é o aviso do dia, em 1 linha; "Voltar ao normal" fica na folha
+  await expect(page.locator('.aviso-linha')).toContainText(/^Semana leve até /);
+  await (await verAvisos(page)).getByRole('button', { name: 'Voltar ao normal' }).click();
   await expect(page.getByRole('region', { name: /^Semana leve até / })).toHaveCount(0);
+  await expect(page.locator('.aviso-linha')).toHaveCount(0);
 });

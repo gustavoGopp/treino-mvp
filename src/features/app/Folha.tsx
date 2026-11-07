@@ -63,6 +63,9 @@ export function Folha({
     if (fecharAoTocarLivre) livreEl?.addEventListener('click', tocarLivre, { capture: true });
     folha.current?.querySelector<HTMLElement>('h2')?.focus();
     const tecla = (e: KeyboardEvent) => {
+      // folha dentro de folha (o selo, o "como fazer" na folha do exercício): só a de cima responde
+      const folhas = document.querySelectorAll('.folha');
+      if (folhas[folhas.length - 1] !== folha.current) return;
       if (e.key === 'Escape') {
         e.preventDefault();
         fechar.current();

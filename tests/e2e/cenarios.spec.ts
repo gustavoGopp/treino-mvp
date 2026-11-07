@@ -1,6 +1,6 @@
 import { expect, test, type Page } from '@playwright/test';
 import { criterios } from './criterios';
-import { ana, abrirTrocar, maisOpcoes, proximoExercicio, terminarTreino } from './jornada';
+import { abrirExercicio, abrirTrocar, ana, maisOpcoes, proximoExercicio, sobreOPrograma, terminarTreino, verAvisos } from './jornada';
 
 // Redesign (06/11/2026), lote 1: os 4 critérios (toque de 44 px, contraste, texto cortado e foco coberto) em todas as
 // telas, nos 7 cenários que o protótipo mediu (docs/revisoes/redesign/proposta.md, seção 13). Os cenários de 320 px,
@@ -22,7 +22,6 @@ const CENARIOS: Cenario[] = [
 // O que ainda falha no fim do lote 1 (medido em 06/11/2026), por cenário e grupo de telas, e o lote que reconstrói a tela.
 // Lote 2 (06/11/2026): treino e guia passaram a cumprir os 4 critérios nos 7 cenários; sobram os de outros lotes.
 const PENDENTE: Record<string, string> = {
-  'estreito/inicio': 'lote 4: a 320 px, a aba do 3º dia recebe o foco fora da faixa visível',
   'letra125/cadastro': 'lote 3: com a letra a 125%, os detalhes do equipamento ("Regulável") passam da borda',
 };
 
@@ -82,6 +81,17 @@ const GRUPOS: Record<string, (page: Page) => Promise<void>> = {
     await criterios(page); // Seu treino
     await page.getByRole('tab').nth(1).click();
     await criterios(page); // outro dia
+    await abrirExercicio(page, /./);
+    await criterios(page); // a folha do exercício
+    await page.keyboard.press('Escape');
+    await sobreOPrograma(page);
+    await criterios(page); // "Sobre o programa"
+    await page.keyboard.press('Escape');
+    if (await page.locator('.aviso-linha').count()) {
+      await verAvisos(page);
+      await criterios(page); // a folha dos avisos
+      await page.keyboard.press('Escape');
+    }
   },
   // lote 2
   treino: async (page) => {

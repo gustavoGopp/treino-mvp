@@ -1,36 +1,38 @@
 import { expect, test } from '@playwright/test';
-import { ana, triagem } from './jornada';
+import { abrirExercicio, ana, sobreOPrograma, triagem, verAvisos } from './jornada';
 
 test('do zero ao programa em menos de 5 minutos (persona Ana)', async ({ page }) => {
   const inicio = Date.now();
   await ana(page);
   expect(Date.now() - inicio).toBeLessThan(5 * 60_000);
 
-  // Vai direto ao treino: abas por dia e cartões com séries × repetições.
+  // Vai direto ao treino: abas por dia e a lista com séries × repetições; o resto fica na folha de cada exercício.
   for (const dia of ['Corpo todo A', 'Corpo todo B', 'Corpo todo C']) await expect(page.getByRole('tab', { name: dia, exact: true })).toBeVisible();
   await expect(page.getByRole('tab', { name: 'Corpo todo A', exact: true })).toHaveAttribute('aria-selected', 'true');
   const painel = page.getByRole('tabpanel');
-  // Semana 1 (fase de aprendizado da iniciante): RIR 3–4 e menos séries que o programa completo.
   await expect(painel.locator('.series').first()).toHaveText(/^\d × 8–12 cada lado$/);
-  await expect(painel.locator('.sub-rx').first()).toContainText('RIR 3–4');
-  // Exercício com animação mostra a imagem e abre o guia.
+  // Exercício com animação mostra a imagem.
   await expect(painel.locator('.miniatura svg').first()).toBeVisible();
   // Sem animação aprovada: "guia em texto" (ponte com halter), nunca uma animação improvisada. A flexão de joelho
   // deslizante ganhou a animação em 04/11/2026.
   await expect(painel.locator('.miniatura.vazia')).toHaveCount(1);
-  // O porquê, com o selo de evidência, fica um toque abaixo.
-  await painel.getByText('Detalhes', { exact: true }).first().click();
-  await expect(painel.locator('.mais .selo').first()).toBeVisible();
+  // Semana 1 (fase de aprendizado da iniciante): RIR 3–4; o porquê, com o selo de evidência, fica na folha do exercício.
+  let folha = await abrirExercicio(page, /Agachamento búlgaro/);
+  await expect(folha.locator('.sub-rx')).toContainText('RIR 3–4');
+  await expect(folha.locator('.selo').first()).toBeVisible();
+  await folha.getByRole('button', { name: 'Fechar' }).click();
   // Outro dia.
   await page.getByRole('tab', { name: 'Corpo todo B', exact: true }).click();
   // O stiff (bilateral) no B desde a sessão de equipamento mínimo: o stiff unilateral saiu para a flexão deslizante no A.
-  await expect(painel.getByRole('heading', { name: /Stiff com halteres/ })).toBeVisible();
+  await expect(painel.getByRole('button', { name: /Stiff com halteres/ })).toBeVisible();
   // Avisos de meta por músculo em "Sobre o programa".
-  await page.getByText('Sobre o programa: avisos e o porquê').click();
-  await expect(page.getByText(/Abaixo da meta/).first()).toBeVisible();
+  folha = await sobreOPrograma(page);
+  await expect(folha.getByText(/Abaixo da meta/).first()).toBeVisible();
+  await folha.getByRole('button', { name: 'Fechar' }).click();
 
   await page.getByRole('tab', { name: 'Corpo todo A', exact: true }).click();
-  await painel.getByRole('link', { name: /Agachamento búlgaro.*ver como fazer/ }).click();
+  folha = await abrirExercicio(page, /Agachamento búlgaro/);
+  await folha.getByRole('link', { name: 'Ver como fazer' }).click();
   await expect(page).toHaveURL(/\/guia\/bulgaro\?de=programa&dia=corpo-a&ex=bulgaro$/);
   await expect(page.getByTestId('prescricao')).toContainText('RIR 3–4');
 });
@@ -92,7 +94,7 @@ test('"sim" só no osteoarticular pede as regiões e a dor de hoje, e o aviso di
     },
   });
   // "Restrições" não pergunta a dor de novo: só mostra o resumo (o teste passou por ela).
-  await page.getByText('Sobre o programa: avisos e o porquê').click();
+  await sobreOPrograma(page);
   await expect(page.getByText(/peito 0 de \d+ séries por semana\. Os exercícios que carregam o ombro saíram por causa da dor no ombro \(7 hoje\)/)).toBeVisible();
   await expect(page.getByText(/Procure avaliação profissional\. Quando a dor baixar/)).toBeVisible();
 });
@@ -146,24 +148,23 @@ test('atalho "academia completa": nada vem marcado, o toque marca o conjunto e o
 
 test('escolher uma opção calculada gera o programa de novo com o novo perfil', async ({ page }) => {
   await ana(page, { minutos: '40' });
-  // Os ajustes ficam recolhidos numa faixa; nenhuma opção vem escolhida.
+  // Os ajustes entram na linha de aviso (um por vez); nenhuma opção vem escolhida.
   await expect(page.getByRole('tab', { name: 'Corpo todo A', exact: true })).toBeVisible();
-  await page.getByRole('button', { name: 'Ver opções' }).click();
-  const ajustes = page.getByRole('region', { name: 'Ajustes possíveis' });
-  await ajustes.getByRole('button', { name: /^4 treinos de 40 min/ }).click();
+  await expect(page.locator('.aviso-linha')).toContainText('Dá para ajustar.');
+  let avisos = await verAvisos(page);
+  await avisos.getByRole('region', { name: 'Ajustes possíveis' }).getByRole('button', { name: /^4 treinos de 40 min/ }).click();
   await expect(page.getByRole('status')).toContainText('4 treinos de 40 min');
-  await expect(page.getByRole('list', { name: 'Resumo' })).toContainText('4x por semana');
+  await expect((await sobreOPrograma(page)).getByRole('list', { name: 'Resumo' })).toContainText('4x por semana');
+  await page.getByRole('dialog', { name: 'Sobre o programa' }).getByRole('button', { name: 'Fechar' }).click();
   // Com 4 dias, a recomendada é Superior/Inferior 2x.
   await expect(page.getByRole('tab', { name: 'Superior A', exact: true })).toBeVisible();
 
-  // "Manter" recolhe a faixa; dá para reabrir em "Sobre o programa".
-  const verOpcoes = page.getByRole('button', { name: 'Ver opções' });
-  if (await verOpcoes.isVisible()) {
-    await verOpcoes.click();
-    await page.getByRole('button', { name: /^Manter/ }).click();
-    await expect(verOpcoes).toBeHidden();
-    await page.getByText('Sobre o programa: avisos e o porquê').click();
-    await page.getByRole('button', { name: 'Ver ajustes possíveis' }).click();
+  // "Manter" tira o aviso da tela; dá para reabrir em "Sobre o programa".
+  if (await page.locator('.aviso-linha').filter({ hasText: 'Dá para ajustar.' }).isVisible()) {
+    avisos = await verAvisos(page);
+    await avisos.getByRole('button', { name: /^Manter/ }).click();
+    await expect(page.locator('.aviso-linha')).toHaveCount(0);
+    await (await sobreOPrograma(page)).getByRole('button', { name: 'Ver ajustes possíveis' }).click();
     await expect(page.getByRole('region', { name: 'Ajustes possíveis' })).toBeVisible();
   }
 });
@@ -264,15 +265,14 @@ test('catálogo do R0c: equipamento novo sem desenho, estações do multifuncion
   });
   const painel = page.getByRole('tabpanel');
   // A iniciante agacha no hack (estável), que ainda não tem animação: cartão de texto, nunca animação improvisada.
-  const cartao = painel.locator('li.cartao-ex', { has: page.getByRole('heading', { name: /Agachamento no hack/ }) });
-  await expect(cartao).toBeVisible();
-  await cartao.getByText('Detalhes', { exact: true }).click();
-  // lote 2 do redesign: a montagem segura vem sempre aberta; dicas e erros abrem numa folha
+  // lote 4 do redesign: a lista abre a folha do exercício; lote 2: a montagem segura vem sempre aberta.
+  const cartao = await abrirExercicio(page, /Agachamento no hack/);
   await expect(cartao.getByText('Montagem segura')).toBeVisible();
   await expect(cartao.getByText(/Solte a trava de segurança/)).toBeVisible();
   // As alternativas mostram 3 e guardam o resto em "ver mais".
   await expect(cartao.getByText(/^Ver mais \d+ opç/)).toBeVisible();
+  await cartao.getByRole('button', { name: 'Fechar' }).click();
   // A extensora vem da estação do multifuncional (no dia B).
   await page.getByRole('tab', { name: 'Corpo todo B', exact: true }).click();
-  await expect(painel.getByRole('heading', { name: /Cadeira extensora/ })).toBeVisible();
+  await expect(painel.getByRole('button', { name: /Cadeira extensora/ })).toBeVisible();
 });

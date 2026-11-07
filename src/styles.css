@@ -743,3 +743,41 @@ a.cartao-ex-corpo:focus-visible{outline:3px solid var(--foco);outline-offset:-3p
   .stage .hud{flex-wrap:wrap}
 }
 
+
+/* Lote 4 (07/11/2026): o início. O cartão "Hoje", a semana em 1 linha, um aviso por vez, as abas que cabem a 320 px,
+   a lista enxuta (a folha do exercício guarda o resto), "Sobre o programa" a um toque e o "Começar" preso embaixo. */
+.cartao-hoje{background:var(--surface);border-radius:var(--r2);padding:16px;display:flex;flex-direction:column;gap:8px;box-shadow:inset 0 0 0 2px var(--accent-soft)}
+.cartao-hoje h2{margin:0;font-size:var(--t-pergunta);font-weight:800;line-height:1.2}
+.cartao-hoje p{margin:0}
+.rotulo{margin:0;font-size:var(--t-rotulo);font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--muted)}
+.apoio{font-size:var(--t-apoio);color:var(--muted)}
+.apoio b{color:var(--ink)}
+.num{font-variant-numeric:tabular-nums}
+.cartao-hoje .volta-numeros{margin:0}
+.cartao-hoje .onde-hoje{margin:0}
+.faixa-semana{flex-direction:row;flex-wrap:wrap;align-items:center;gap:12px;min-height:3.5rem}
+.faixa-semana > b{flex:1 1 auto;font-size:var(--t-corpo)}
+.faixa-semana .pontos i{width:22px;height:22px;border-width:2.5px}
+.faixa-semana .fs-num{font-size:var(--t-corpo);font-weight:800;color:var(--accent);font-variant-numeric:tabular-nums}
+.seta{font-size:1.375rem;line-height:1;color:var(--muted)}
+.aviso-linha{display:flex;flex-wrap:wrap;align-items:center;gap:8px 12px;background:var(--surface);border-radius:var(--r2);padding:8px 8px 8px 16px}
+.aviso-linha p{flex:1 1 9rem;margin:0;font-size:var(--t-apoio)}
+.aviso-linha .btn{flex:0 0 auto;width:auto}
+.abas{overflow:visible}
+.abas [role="tab"]{flex:1 1 0;min-width:0;padding:4px 8px;white-space:normal;line-height:1.2}
+.painel-dia{gap:0}
+button.cartao-ex-corpo{width:100%;border:0;background:transparent;font:inherit;text-align:left;cursor:pointer;grid-template-columns:96px 1fr auto}
+button.cartao-ex-corpo:focus-visible{outline:3px solid var(--foco);outline-offset:-3px}
+.ex-texto .ex-nome{font-size:var(--t-corpo);line-height:1.25;font-weight:800}
+.ex-texto .series{font-size:var(--t-pergunta)}
+.linha-sobre{display:flex;align-items:center;justify-content:space-between;gap:8px;min-height:3.5rem;width:100%;padding:0 16px;border:0;border-radius:var(--r2);background:var(--surface);font:inherit;font-weight:700;color:var(--ink);cursor:pointer;text-align:left}
+.linha-sobre:focus-visible{outline:3px solid var(--foco);outline-offset:2px}
+.ex-folha-topo{display:flex;gap:12px;align-items:center}
+.ex-folha-topo .miniatura{width:96px;flex:0 0 auto}
+.ex-folha-topo p{margin:0}
+.folha h3.rotulo{margin-top:8px}
+@media (max-width:279px){
+  button.cartao-ex-corpo{grid-template-columns:1fr auto}
+  button.cartao-ex-corpo .miniatura{display:none}
+  .faixa-semana .pontos i{width:16px;height:16px}
+}

@@ -1,5 +1,5 @@
 import { expect, test, type Page } from '@playwright/test';
-import { ana, terminarTreino, porQueDaSugestao } from './jornada';
+import { abrirExercicio, ana, porQueDaSugestao, terminarTreino } from './jornada';
 
 // R1b: vários locais. A Ana (persona fictícia) cadastra a "Academia" como 2º local, escolhe onde treina hoje,
 // vê a troca com o motivo e registra a 1ª série no aparelho novo, com a calibração da carga.
@@ -13,7 +13,9 @@ test('cadastra o 2º local, escolhe onde treinar hoje, vê a troca explicada e c
   await ana(page);
 
   // 1. Meus locais: o 1º local tem o nome neutro.
-  await page.getByRole('link', { name: 'Treina em mais de um lugar? Cadastre outro local' }).click();
+  // lote 4 do redesign: o convite saiu do início; os locais ficam em Meus dados.
+  await page.getByRole('navigation', { name: 'Seções' }).getByRole('link', { name: 'Meus dados' }).click();
+  await page.getByRole('link', { name: 'Ver meus locais' }).click();
   await expect(page.getByRole('heading', { name: 'Meus locais' })).toBeVisible();
   await expect(page.getByRole('list', { name: 'Locais' })).toContainText('Meu local');
   await page.getByRole('link', { name: 'Cadastrar outro local' }).click();
@@ -65,15 +67,14 @@ test('cadastra o 2º local, escolhe onde treinar hoje, vê a troca explicada e c
 
   // 5. O local fica lembrado para a próxima vez, e a escolha continua visível.
   await terminarTreino(page);
-  await page.getByRole('link', { name: 'Voltar ao programa' }).click();
+  await page.getByRole('link', { name: 'Voltar ao início' }).click();
   await expect(page.getByRole('group', { name: 'Onde vou treinar hoje?' }).getByRole('button', { name: 'Academia' })).toHaveAttribute('aria-pressed', 'true');
   await expect(page.getByRole('group', { name: 'Onde vou treinar hoje?' }).getByRole('button', { name: 'Meu local' })).toBeVisible();
 });
 
 test('"prefiro este" nas alternativas: um toque marca, outro desfaz, e o programa oferece a versão nova', async ({ page }) => {
   await ana(page);
-  const cartao = page.locator('.cartao-ex').filter({ hasText: 'Agachamento búlgaro com apoio' });
-  await cartao.getByText('Detalhes').click();
+  const cartao = await abrirExercicio(page, /Agachamento búlgaro com apoio/);
   const prefiro = cartao.getByRole('button', { name: /^Prefiro / }).nth(1);
   const nome = (await prefiro.innerText()).replace(/^Prefiro /, '');
   await prefiro.click();
