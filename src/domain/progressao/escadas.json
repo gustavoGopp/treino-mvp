@@ -202,5 +202,11 @@
   "descida de 5 s",
   "pausa de 2 s em cima e descida de 5 s",
   "pausa de 2 s em cima e no meio, e descida de 5 s"
+ ],
+ "face-pull-suspensao": [
+  "pés mais à frente (corpo mais deitado)",
+  "pausa de 2 s com as mãos ao lado das orelhas",
+  "descida de 3 s",
+  "pés mais à frente, com descida de 3 s"
  ]
 }

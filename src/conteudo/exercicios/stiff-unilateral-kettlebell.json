@@ -1,0 +1,57 @@
+{
+  "id": "stiff-unilateral-kettlebell",
+  "name": "Stiff unilateral com kettlebell",
+  "short": "Stiff unilateral kettlebell",
+  "target": "Posteriores da coxa; ajuda o glúteo",
+  "setupEq": [
+    "Um kettlebell. Uma parede ou móvel firme ao lado, para a mão livre, se precisar."
+  ],
+  "setupBody": [
+    "Em pé numa perna, joelho levemente solto.",
+    "O kettlebell na mão do lado oposto à perna de apoio."
+  ],
+  "exec": [
+    [
+      "ecc",
+      "Descida",
+      "~2 a 3 s. Dobre o quadril, levando o tronco à frente e a perna livre para trás, em linha com o tronco, até sentir a parte de trás da coxa alongar."
+    ],
+    [
+      "hold",
+      "Embaixo",
+      "Costas retas, quadril de frente para o chão."
+    ],
+    [
+      "conc",
+      "Subida",
+      "Volte empurrando o quadril à frente. Termine um lado e troque."
+    ]
+  ],
+  "range": [
+    "Embaixo: tronco quase paralelo ao chão, ou até as costas começarem a arredondar.",
+    "Em cima: em pé numa perna."
+  ],
+  "cues": [
+    "Quadril para trás.",
+    "Costas retas.",
+    "Quadril de frente para o chão."
+  ],
+  "errors": [
+    {
+      "id": "costas",
+      "title": "Arredondar as costas",
+      "desc": "A lombar perde a posição. Desça só até onde as costas ficam retas."
+    },
+    {
+      "id": "gira",
+      "title": "Abrir o quadril",
+      "desc": "O quadril gira para o lado da perna livre. Quadril de frente para o chão."
+    },
+    {
+      "id": "agacha",
+      "title": "Dobrar o joelho de apoio",
+      "desc": "Vira um agachamento e a parte de trás da coxa trabalha menos. Joelho só levemente solto."
+    }
+  ],
+  "carga": "Registre o peso do kettlebell. Quando todas as séries chegarem ao topo da faixa, use o próximo que você tem; sem um mais pesado, mais repetições e descida de 3 s."
+}

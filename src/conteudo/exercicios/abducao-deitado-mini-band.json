@@ -1,0 +1,61 @@
+{
+  "id": "abducao-deitado-mini-band",
+  "name": "Abdução de quadril deitado de lado com mini-band",
+  "short": "Abdução deitado mini-band",
+  "target": "Glúteos (médio e parte de cima)",
+  "setupEq": [
+    "Uma mini-band e um colchonete."
+  ],
+  "setupBody": [
+    "Deite de lado, a cabeça no braço de baixo, a perna de baixo dobrada.",
+    "A mini-band em volta dos tornozelos (ou acima dos joelhos, mais fácil); a perna de cima estendida, um pouco atrás da linha do corpo.",
+    "Quadril empilhado, sem rolar para trás."
+  ],
+  "exec": [
+    [
+      "conc",
+      "Subida",
+      "~1 s. Suba a perna de cima, estendida e um pouco para trás, dedos para a frente."
+    ],
+    [
+      "hold",
+      "No alto",
+      "Pausa curta."
+    ],
+    [
+      "ecc",
+      "Descida",
+      "~2 s, até a perna quase encostar na de baixo. Termine um lado e troque."
+    ]
+  ],
+  "range": [
+    "Embaixo: as pernas quase juntas.",
+    "Em cima: até onde a perna sobe sem o quadril rolar."
+  ],
+  "cues": [
+    "Quadril empilhado.",
+    "Perna um pouco para trás.",
+    "Dedos para a frente."
+  ],
+  "errors": [
+    {
+      "id": "rola",
+      "title": "Rolar o quadril para trás",
+      "desc": "O quadril gira e a frente do quadril assume. Quadril empilhado."
+    },
+    {
+      "id": "frente",
+      "title": "Levar a perna para a frente",
+      "desc": "O glúteo trabalha menos. Perna um pouco atrás da linha do corpo."
+    },
+    {
+      "id": "alto",
+      "title": "Subir alto demais com tranco",
+      "desc": "A cintura dobra. Suba só até onde o quadril não mexe."
+    }
+  ],
+  "montagem": [
+    "Antes da série, confira se a mini-band tem rachaduras ou está ressecada."
+  ],
+  "carga": "Registre a intensidade da mini-band. Ela sobe pelas intensidades da sua mini-band; em cada uma, primeiro mais esticada e depois com descida de 3 s."
+}

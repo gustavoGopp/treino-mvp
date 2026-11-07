@@ -1,0 +1,60 @@
+{
+  "id": "caminhada-lateral-mini-band",
+  "name": "Caminhada lateral com mini-band",
+  "short": "Caminhada lateral",
+  "target": "Glúteos (médio e parte de cima)",
+  "setupEq": [
+    "Uma mini-band e 3 a 4 m de espaço livre."
+  ],
+  "setupBody": [
+    "A mini-band acima dos joelhos (mais difícil: nos tornozelos).",
+    "Pés na largura do quadril, joelhos e quadril levemente dobrados, tronco reto."
+  ],
+  "exec": [
+    [
+      "conc",
+      "Passo",
+      "Dê um passo para o lado com um pé, esticando a mini-band, dedos para a frente."
+    ],
+    [
+      "hold",
+      "Afastado",
+      "Pausa curta, sem o tronco balançar."
+    ],
+    [
+      "ecc",
+      "Volta",
+      "Traga o outro pé devagar, sem soltar a tensão. Conte os passos para um lado e volte para o outro."
+    ]
+  ],
+  "range": [
+    "Pés afastados além do quadril no passo.",
+    "A mini-band nunca fica frouxa."
+  ],
+  "cues": [
+    "Meio agachado.",
+    "Dedos para a frente.",
+    "Mini-band sempre esticada."
+  ],
+  "errors": [
+    {
+      "id": "joelhos",
+      "title": "Joelhos para dentro",
+      "desc": "A mini-band puxa os joelhos para dentro. Empurre os joelhos para fora."
+    },
+    {
+      "id": "balanca",
+      "title": "Balançar o tronco",
+      "desc": "O tronco joga de um lado para o outro. Tronco reto."
+    },
+    {
+      "id": "frouxa",
+      "title": "Deixar a mini-band frouxa",
+      "desc": "Os pés se juntam demais e o glúteo descansa. Mantenha a tensão."
+    }
+  ],
+  "montagem": [
+    "Antes da série, confira se a mini-band tem rachaduras ou está ressecada."
+  ],
+  "carga": "Registre a intensidade da mini-band. Ela sobe pelas intensidades da sua mini-band; em cada uma, primeiro mais esticada e depois com descida de 3 s."
+}

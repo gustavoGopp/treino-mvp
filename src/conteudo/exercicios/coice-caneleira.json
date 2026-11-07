@@ -1,0 +1,60 @@
+{
+  "id": "coice-caneleira",
+  "name": "Coice de glúteo em quatro apoios com caneleira",
+  "short": "Coice com caneleira",
+  "target": "Glúteos",
+  "setupEq": [
+    "Uma caneleira bem presa no tornozelo e um colchonete."
+  ],
+  "setupBody": [
+    "Em quatro apoios: mãos sob os ombros, joelhos sob o quadril.",
+    "Costas retas, abdômen firme."
+  ],
+  "exec": [
+    [
+      "conc",
+      "Coice",
+      "~1 s. Leve o pé para trás e para cima, com o joelho dobrado, até a coxa ficar na linha do tronco."
+    ],
+    [
+      "hold",
+      "No alto",
+      "Pausa curta, apertando o glúteo."
+    ],
+    [
+      "ecc",
+      "Volta",
+      "~2 s, até o joelho voltar para baixo do quadril. Termine um lado e troque."
+    ]
+  ],
+  "range": [
+    "Início: joelho sob o quadril.",
+    "Fim: coxa na linha do tronco."
+  ],
+  "cues": [
+    "Coxa na linha do tronco.",
+    "Lombar parada.",
+    "Perto da falha."
+  ],
+  "errors": [
+    {
+      "id": "lombar",
+      "title": "Arquear a lombar no fim",
+      "desc": "A perna sobe acima do tronco e a lombar dobra. Pare com a coxa na linha do tronco."
+    },
+    {
+      "id": "gira",
+      "title": "Girar o quadril",
+      "desc": "O quadril abre para o lado. Quadril de frente para o chão."
+    },
+    {
+      "id": "longe",
+      "title": "Parar longe da falha",
+      "desc": "Com carga leve, a série só conta perto da falha. Vá até faltar 1 ou 2 repetições."
+    }
+  ],
+  "montagem": [
+    "Fivela da caneleira bem fechada; colchonete num chão que não escorrega."
+  ],
+  "carga": "Registre o peso da caneleira. Quando todas as séries chegarem ao topo da faixa, use a próxima caneleira; sem uma mais pesada, mais repetições e descida de 3 s."
+}

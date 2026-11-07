@@ -198,14 +198,22 @@ export function contextoDeSelecao(perfil: Perfil, inventarioOriginal: Inventario
 
   /** Melhor exercício da função, do nível n em diante, fora os já usados no dia. */
   const escolher = (funcao: Funcao, desde: number, usados: (id: string) => boolean, usos: Map<string, number>, evitar?: (e: Exercicio) => boolean) => {
+    let primeiro: { ex: Exercicio; nivelFuncao: number } | null = null;
     for (let n = desde; n < funcao.niveis.length; n++) {
       const cands = funcao.niveis[n]!.filter((id) => naFuncao(funcao, id))
         .map((id) => possivel.get(id))
         .filter((e): e is Exercicio => !!e && !usados(e.id));
       const e = cands.sort(comparar(usos, () => funcao, evitar))[0];
-      if (e) return { ex: e, nivelFuncao: n };
+      if (!e) continue;
+      // selecao.variacoes-equivalentes (frente A, m1): se o melhor do nível já está em todos os outros dias e não há
+      // equivalente no mesmo nível, desce um nível da mesma função antes de repetir; sem nada abaixo, repete.
+      if (evitar?.(e)) {
+        primeiro ??= { ex: e, nivelFuncao: n };
+        continue;
+      }
+      return { ex: e, nivelFuncao: n };
     }
-    return null;
+    return primeiro;
   };
 
   /** Alternativas possíveis neste inventário (selecao.equivalencia). */

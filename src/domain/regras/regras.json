@@ -968,7 +968,7 @@
   },
   {
     "id": "selecao.variacoes-equivalentes",
-    "regra": "Variações equivalentes entram na biblioteca mesmo sem abrir vaga nova (R5-CL, 07/11/2026; `docs/revisoes/proximos-passos/g-biblioteca-ampliada.md`, decisão 1; antes, `pesquisa-v2/11`, B.2.4, recusava o que \"só duplica\"): com mais de uma opção no mesmo nível da função, o desempate por variedade entre os dias (`selecao.funcao-da-vaga`) troca o exercício de um dia para o outro e a troca do dia ganha alternativas. Variar não muda a hipertrofia e melhora um pouco o prazer e a motivação. O desempate continua a preferir a variedade à animação: \"animado primeiro\" fazia o mesmo exercício se repetir havendo opção em 29,5% dos programas (decisão 8). No último dia de uma semana de 3 dias ou mais, entre os equivalentes do mesmo nível, o exercício que já está em todos os outros dias fica por último, antes até da estabilidade do iniciante (`selecao.estabilidade`): é o defeito B1 da régua da G5 (`docs/pesquisa-v2/17-biblioteca-ampliada.md`, tabela 4.7)",
+    "regra": "Variações equivalentes entram na biblioteca mesmo sem abrir vaga nova (R5-CL, 07/11/2026; `docs/revisoes/proximos-passos/g-biblioteca-ampliada.md`, decisão 1; antes, `pesquisa-v2/11`, B.2.4, recusava o que \"só duplica\"): com mais de uma opção no mesmo nível da função, o desempate por variedade entre os dias (`selecao.funcao-da-vaga`) troca o exercício de um dia para o outro e a troca do dia ganha alternativas. Variar não muda a hipertrofia e melhora um pouco o prazer e a motivação. O desempate continua a preferir a variedade à animação: \"animado primeiro\" fazia o mesmo exercício se repetir havendo opção em 29,5% dos programas (decisão 8). No último dia de uma semana de 3 dias ou mais, entre os equivalentes do mesmo nível, o exercício que já está em todos os outros dias fica por último, antes até da estabilidade do iniciante (`selecao.estabilidade`): é o defeito B1 da régua da G5 (`docs/pesquisa-v2/17-biblioteca-ampliada.md`, tabela 4.7). Sem equivalente no mesmo nível, o último dia desce um nível da mesma função antes de repetir (o protótipo `m1` da frente A, `docs/revisoes/proximos-passos/a-qualidade.md`, 2.3, do pacote A do R5a; consenso); sem nada abaixo, repete. Medido na grade: o mesmo exercício em todos os dias sem alternativa, de 21,0% para 15,6% dos programas sem dor, sem mudar nenhum defeito",
     "valores": {
       "iniciante": "variações no mesmo nível da função",
       "intermediario": "variações no mesmo nível da função",
@@ -1056,6 +1056,27 @@
       "vigouroux2024",
       "johnson2009",
       "shabbir2026"
+    ]
+  },
+  {
+    "id": "selecao.item-sozinho-ampliado",
+    "regra": "Biblioteca ampliada, lote de um equipamento só (R5-CL; `docs/pesquisa-v2/17-biblioteca-ampliada.md`, G2 e G3, lote 3; decisão 6 de `g-biblioteca-ampliada.md`): fecha vagas de quem tem só caneleiras, só mini-band, só kettlebell ou só a suspensão. Elevação lateral e crucifixo invertido sentado com caneleira no punho, no nível dos exercícios com elástico da função (robusta, o princípio da carga baixa perto da falha: `schoenfeld2017b`; um estudo contra, sem ir à falha: `svensen2025`); coice com caneleira no nível da ponte (um estudo, EMG: `selkowitz2013`); extensão de joelho com mini-band no nível da extensão com elástico (moderada, a extensora na máquina: `kinoshita2026`; um estudo contra, com elástico: `yasuda2016`; o cartão diz que a evidência com elástico é fraca); abdução deitado e caminhada lateral com mini-band no nível da abdução com mini-band (um estudo, EMG: `macadam2015`, `youdas2013`); stiff unilateral com kettlebell no nível do stiff com kettlebell (moderada, unilateral = bilateral: `kassiano2025`); remada alta na suspensão com os cotovelos abertos no nível da abertura em Y e T (um estudo, EMG: `youdas2021`). Com carga leve, a série vai perto da falha (`rir.carga-baixa`)",
+    "valores": {
+      "iniciante": "os 8",
+      "intermediario": "os 8",
+      "avancado": "os 8"
+    },
+    "selo": "consenso",
+    "fontes": [
+      "schoenfeld2017b",
+      "svensen2025",
+      "selkowitz2013",
+      "kinoshita2026",
+      "yasuda2016",
+      "macadam2015",
+      "youdas2013",
+      "kassiano2025",
+      "youdas2021"
     ]
   },
   {

@@ -1,0 +1,60 @@
+{
+  "id": "face-pull-suspensao",
+  "name": "Remada alta na suspensão, com os cotovelos abertos",
+  "short": "Remada alta na suspensão",
+  "target": "Ombro de trás (deltoide posterior); ajuda o meio das costas",
+  "setupEq": [
+    "A fita de suspensão presa num ponto alto e firme, as alças na altura do peito."
+  ],
+  "setupBody": [
+    "De frente para a ancoragem, uma alça em cada mão, palmas para baixo.",
+    "Pés à frente, corpo inclinado para trás e reto, braços estendidos."
+  ],
+  "exec": [
+    [
+      "conc",
+      "Puxada",
+      "~1 s. Puxe com os cotovelos altos e abertos, levando as mãos ao lado das orelhas."
+    ],
+    [
+      "hold",
+      "Fim",
+      "Pausa curta, juntando as escápulas."
+    ],
+    [
+      "ecc",
+      "Volta",
+      "~2 s, até os braços estenderem, o corpo reto."
+    ]
+  ],
+  "range": [
+    "Início: braços estendidos, corpo inclinado.",
+    "Fim: mãos ao lado das orelhas, cotovelos na altura dos ombros."
+  ],
+  "cues": [
+    "Cotovelos altos e abertos.",
+    "Corpo em prancha.",
+    "Mãos às orelhas."
+  ],
+  "errors": [
+    {
+      "id": "quadril",
+      "title": "Quadril caído",
+      "desc": "O corpo dobra e a série fica mais fácil. Corpo reto."
+    },
+    {
+      "id": "cotovelos",
+      "title": "Cotovelos baixos",
+      "desc": "Vira uma remada comum e as costas assumem. Cotovelos na altura dos ombros."
+    },
+    {
+      "id": "embalo",
+      "title": "Dar impulso",
+      "desc": "O corpo joga para trás. Volte devagar."
+    }
+  ],
+  "montagem": [
+    "Ancoragem firme num ponto alto (barra fixa, viga, porta só com a âncora do fabricante, fechada do lado oposto). Teste com o peso do corpo antes da 1ª série."
+  ],
+  "carga": "Peso do corpo: suba pela escada de dificuldade do exercício quando a 1ª série chegar ao topo da faixa e as outras ficarem perto dele. Mais difícil: pés mais à frente, corpo mais deitado."
+}

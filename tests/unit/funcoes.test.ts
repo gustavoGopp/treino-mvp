@@ -45,10 +45,10 @@ describe('selecao.isolador-obrigatorio e selecao.gluteo', () => {
   it('a ponte de glúteo é extensão de quadril, atrás do hip thrust e dos coices na máquina e na polia; abdução na máquina ou na polia, com a lacuna explicada se faltar', () => {
     expect(POR_ID['ponte-gluteo']!.padrao).toBe('extensao-quadril');
     // O coice na polia subiu ao 1º nível em 06/11/2026 (decisão do Gustavo; attarieh2026, o único com ressonância).
-    expect(FUNCAO['extensao-quadril']!.niveis).toEqual([['hip-thrust', 'coice-maquina', 'coice-polia'], ['ponte-gluteo', 'ponte-gluteo-halter', 'hiperextensao', 'ponte-pes-bola', 'ponte-kettlebell', 'coice-elastico']]);
+    expect(FUNCAO['extensao-quadril']!.niveis).toEqual([['hip-thrust', 'coice-maquina', 'coice-polia'], ['ponte-gluteo', 'ponte-gluteo-halter', 'hiperextensao', 'ponte-pes-bola', 'ponte-kettlebell', 'coice-elastico', 'coice-caneleira']]);
     // Catálogo completo (04/11/2026; equipamento.caneleira, equipamento.mini-band): sem máquina nem polia, a caneleira ou a mini-band.
     // Biblioteca ampliada (R5-CL, 07/11/2026): no 2º nível, a abdução em pé com elástico e as duas com mini-band.
-    expect(FUNCAO['abducao']!.niveis).toEqual([['abducao-maquina', 'abducao-polia'], ['abducao-caneleira', 'abducao-mini-band', 'abducao-elastico'], ['abducao-deitado']]);
+    expect(FUNCAO['abducao']!.niveis).toEqual([['abducao-maquina', 'abducao-polia'], ['abducao-caneleira', 'abducao-mini-band', 'abducao-elastico', 'caminhada-lateral-mini-band', 'abducao-deitado-mini-band'], ['abducao-deitado']]);
     expect(FUNCAO['abducao']!.lacuna).toBeTruthy();
   });
 });

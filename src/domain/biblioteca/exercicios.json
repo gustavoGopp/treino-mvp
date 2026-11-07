@@ -5567,5 +5567,262 @@
   ],
   "carga": "peso-corpo",
   "animacaoId": null
+ },
+ {
+  "id": "caminhada-lateral-mini-band",
+  "nome": "Caminhada lateral com mini-band",
+  "padrao": "abducao-quadril",
+  "musculos": {
+   "primarios": [
+    "gluteos"
+   ],
+   "secundarios": []
+  },
+  "requer": [
+   [
+    "mini_band"
+   ]
+  ],
+  "complexidade": 1,
+  "tipo": "isolador",
+  "faixaReps": [
+   12,
+   20
+  ],
+  "unilateral": false,
+  "articulacoes": [
+   "quadril",
+   "joelho"
+  ],
+  "tags": [
+   "elastico"
+  ],
+  "carga": "elastico",
+  "animacaoId": null
+ },
+ {
+  "id": "elevacao-lateral-caneleira",
+  "nome": "Elevação lateral com caneleira presa no punho",
+  "padrao": "isolador-ombro-lateral",
+  "musculos": {
+   "primarios": [
+    "ombro_lateral"
+   ],
+   "secundarios": []
+  },
+  "requer": [
+   [
+    "caneleiras"
+   ]
+  ],
+  "complexidade": 1,
+  "tipo": "isolador",
+  "faixaReps": [
+   15,
+   25
+  ],
+  "unilateral": false,
+  "articulacoes": [
+   "ombro"
+  ],
+  "tags": [],
+  "carga": "caneleira",
+  "animacaoId": null
+ },
+ {
+  "id": "crucifixo-invertido-caneleira",
+  "nome": "Crucifixo invertido sentado com caneleira presa no punho",
+  "padrao": "isolador-ombro-posterior",
+  "musculos": {
+   "primarios": [
+    "ombro_posterior"
+   ],
+   "secundarios": []
+  },
+  "requer": [
+   [
+    "caneleiras"
+   ]
+  ],
+  "complexidade": 1,
+  "tipo": "isolador",
+  "faixaReps": [
+   15,
+   25
+  ],
+  "unilateral": false,
+  "articulacoes": [
+   "ombro"
+  ],
+  "tags": [
+   "sentado",
+   "apoiado"
+  ],
+  "carga": "caneleira",
+  "animacaoId": null
+ },
+ {
+  "id": "coice-caneleira",
+  "nome": "Coice de glúteo em quatro apoios com caneleira",
+  "padrao": "extensao-quadril",
+  "musculos": {
+   "primarios": [
+    "gluteos"
+   ],
+   "secundarios": []
+  },
+  "requer": [
+   [
+    "caneleiras"
+   ]
+  ],
+  "complexidade": 1,
+  "tipo": "isolador",
+  "faixaReps": [
+   15,
+   25
+  ],
+  "unilateral": true,
+  "articulacoes": [
+   "quadril"
+  ],
+  "tags": [
+   "unilateral"
+  ],
+  "carga": "caneleira",
+  "animacaoId": null
+ },
+ {
+  "id": "extensao-joelho-mini-band",
+  "nome": "Extensão de joelho sentado com mini-band nos tornozelos",
+  "padrao": "isolador-quadriceps",
+  "musculos": {
+   "primarios": [
+    "quadriceps"
+   ],
+   "secundarios": []
+  },
+  "requer": [
+   [
+    "mini_band"
+   ]
+  ],
+  "complexidade": 1,
+  "tipo": "isolador",
+  "faixaReps": [
+   12,
+   20
+  ],
+  "unilateral": true,
+  "articulacoes": [
+   "joelho"
+  ],
+  "tags": [
+   "sentado"
+  ],
+  "carga": "elastico",
+  "animacaoId": null
+ },
+ {
+  "id": "abducao-deitado-mini-band",
+  "nome": "Abdução de quadril deitado de lado com mini-band",
+  "padrao": "abducao-quadril",
+  "musculos": {
+   "primarios": [
+    "gluteos"
+   ],
+   "secundarios": []
+  },
+  "requer": [
+   [
+    "mini_band"
+   ]
+  ],
+  "complexidade": 1,
+  "tipo": "isolador",
+  "faixaReps": [
+   12,
+   20
+  ],
+  "unilateral": true,
+  "articulacoes": [
+   "quadril"
+  ],
+  "tags": [
+   "deitado",
+   "unilateral"
+  ],
+  "carga": "elastico",
+  "animacaoId": null
+ },
+ {
+  "id": "stiff-unilateral-kettlebell",
+  "nome": "Stiff unilateral com kettlebell",
+  "padrao": "dobrar-quadril",
+  "musculos": {
+   "primarios": [
+    "posteriores"
+   ],
+   "secundarios": [
+    "gluteos"
+   ]
+  },
+  "requer": [
+   [
+    "kettlebell"
+   ]
+  ],
+  "complexidade": 2,
+  "tipo": "composto",
+  "faixaReps": [
+   8,
+   12
+  ],
+  "unilateral": true,
+  "articulacoes": [
+   "quadril",
+   "lombar"
+  ],
+  "tags": [
+   "unilateral",
+   "kettlebell"
+  ],
+  "carga": "kettlebell",
+  "animacaoId": null
+ },
+ {
+  "id": "face-pull-suspensao",
+  "nome": "Remada alta na suspensão, com os cotovelos abertos",
+  "padrao": "isolador-ombro-posterior",
+  "musculos": {
+   "primarios": [
+    "ombro_posterior"
+   ],
+   "secundarios": [
+    "costas"
+   ]
+  },
+  "requer": [
+   [
+    "suspensao"
+   ]
+  ],
+  "complexidade": 2,
+  "tipo": "isolador",
+  "faixaReps": [
+   10,
+   15
+  ],
+  "unilateral": false,
+  "articulacoes": [
+   "ombro",
+   "cotovelo"
+  ],
+  "tags": [
+   "peso-corpo",
+   "montagem"
+  ],
+  "carga": "peso-corpo",
+  "animacaoId": null
  }
 ]
