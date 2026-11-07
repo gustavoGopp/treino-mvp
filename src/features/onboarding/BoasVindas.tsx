@@ -1,6 +1,8 @@
 import { Link, Navigate, useNavigate } from 'react-router-dom';
 import { primeiroPassoPendente } from '../../storage/esquema';
 import { agoraIso, useApp } from '../app/estado';
+import { AvisoInstalar } from '../app/avisos';
+import { TextoFotoCurto } from '../app/privacidade';
 import { Selo, Titulo, Topo } from '../app/ui';
 
 // Passo 1: o que o app faz e o que não faz (seguranca.sem-diagnostico). Se já existe programa, abre direto nele.
@@ -31,6 +33,7 @@ export function BoasVindas() {
             {erroCarga} Em <Link to="/dados">Meus dados</Link> você pode importar um backup.
           </div>
         )}
+        <AvisoInstalar />
         <p className="lede">
           Montamos um programa de hipertrofia baseado em evidência, só com o seu equipamento, e mostramos o porquê de cada escolha.
           Leva cerca de 1 minuto, mais o tempo de marcar o seu equipamento.
@@ -53,11 +56,13 @@ export function BoasVindas() {
         <section className="box">
           <h2>Seus dados ficam no aparelho</h2>
           <p>
-            O seu perfil, o programa e os treinos ficam guardados só neste aparelho. A única coisa que sai é a foto do equipamento, se
-            você usar: ela vai, sem a localização, para o reconhecimento e não fica guardada no servidor. Você pode exportar ou apagar tudo
-            quando quiser em “Meus dados”.
+            O seu perfil, as respostas de saúde, o programa e os treinos ficam guardados só neste aparelho. <TextoFotoCurto /> Você pode
+            exportar ou apagar tudo quando quiser em “Meus dados”.
           </p>
         </section>
+        <p className="ajuda">
+          Ao começar, você concorda com os <Link to="/termos">termos de uso e o aviso de privacidade</Link>.
+        </p>
         <button type="button" className="btn" onClick={comecar}>
           Entendi, vamos começar
         </button>

@@ -34,6 +34,9 @@ tokens).
 - **Limitação conhecida:** o contador fica na memória de cada instância da função. Basta para o beta fechado com convite;
   antes de abrir o beta, trocar por um contador compartilhado (Vercel KV ou Upstash) e definir o teto de gasto no
   console da Anthropic (plano, seção j). Registrado no backlog.
+- **R5c (07/11/2026):** o aparelho e o IP são conferidos juntos (um pedido barrado não gasta nenhuma cota), e o
+  contador pode ser compartilhado no Upstash (`api/_lib/limite.ts`, variáveis `KV_REST_API_URL` e `KV_REST_API_TOKEN`).
+  Teto de gasto decidido pelo Gustavo: US$ 5 por mês.
 
 ## 5. Confirmação
 Como no plano: confiança alta aparece como "Tenho", baixa como "Não tenho" e média pergunta. O botão "Usar na lista" só

@@ -1,11 +1,18 @@
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { exportarJson, importarJson, nomeDoArquivo } from '../../storage/arquivo';
-import { useApp } from '../app/estado';
-import { NavInferior, Titulo, Topo } from '../app/ui';
+import { textoUltimaCopia } from '../../domain/dados';
+import { importarJson } from '../../storage/arquivo';
+import { consultarPersistencia } from '../../storage/idb';
+import { baixarCopia } from '../app/copia';
+import { agoraIso, useApp } from '../app/estado';
+import { apagarLocal, apagarTodosLocais, dataCurta, lerLocal, LOCAL } from '../app/local';
+import { AvisarProblema, TextoFotoCurto } from '../app/privacidade';
+import { NavInferior, Selo, Titulo, Topo } from '../app/ui';
 import { EscolhaEstiloBoneco } from './EstiloBoneco';
 
 // Meus dados: exportar e importar em JSON, apagar tudo e refazer a triagem. Nada sai do aparelho sem a pessoa.
+// R5c: a data da última cópia (dados.copia), o aviso quando o navegador nega o armazenamento persistente
+// (dados.persistente), a autorização da foto (privacidade.foto), os termos e o "Avisar um problema".
 export function Dados() {
   const { estado, carregado, persistente, erroCarga, substituir, limpar } = useApp();
   const navigate = useNavigate();
@@ -14,21 +21,25 @@ export function Dados() {
   const [erro, setErro] = useState('');
   const [confirmarApagar, setConfirmarApagar] = useState(false);
   const [nomeArquivo, setNomeArquivo] = useState('');
+  const [ultimaCopia, setUltimaCopia] = useState(() => lerLocal(LOCAL.ultimaCopia));
+  const [fotoEm, setFotoEm] = useState(() => lerLocal(LOCAL.fotoConsentimento));
+  const [consultada, setConsultada] = useState<boolean | null>(null);
+  useEffect(() => {
+    // Só consulta (não pede): o pedido acontece quando a pessoa salva algo (estado.tsx).
+    let vivo = true;
+    void consultarPersistencia().then((p) => vivo && setConsultada(p));
+    return () => {
+      vivo = false;
+    };
+  }, []);
   if (!carregado) return null;
+  const guardaPermanente = persistente ?? consultada;
 
   const temDados = Object.keys(estado).length > 1;
 
   const exportar = () => {
-    const agora = new Date();
-    const blob = new Blob([exportarJson(estado, agora.toISOString())], { type: 'application/json' });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = nomeDoArquivo(agora);
-    document.body.appendChild(a);
-    a.click();
-    a.remove();
-    setTimeout(() => URL.revokeObjectURL(url), 1000);
+    baixarCopia(estado);
+    setUltimaCopia(lerLocal(LOCAL.ultimaCopia));
     setErro('');
     setMsg('Arquivo exportado. Guarde-o num lugar seguro: ele tem seus dados de saúde.');
   };
@@ -54,6 +65,7 @@ export function Dados() {
 
   const apagar = async () => {
     await limpar();
+    apagarTodosLocais();
     setConfirmarApagar(false);
     navigate('/');
   };
@@ -64,8 +76,7 @@ export function Dados() {
       <main className="conteudo">
         <Titulo>Meus dados</Titulo>
         <p className="lede">
-          Tudo fica guardado só neste aparelho. A única coisa que sai é a foto do equipamento, se você usar: ela vai, sem a localização, para
-          o reconhecimento e não fica guardada no servidor.
+          Tudo fica guardado só neste aparelho. <TextoFotoCurto />
         </p>
         {erroCarga && (
           <div className="caixa-erro" role="alert">
@@ -84,9 +95,22 @@ export function Dados() {
         <section className="box">
           <h2>Guardar uma cópia</h2>
           <p>
-            O navegador pode apagar dados de sites pouco usados. Instale o app na tela inicial e exporte uma cópia de vez em quando.
-            {persistente === true && ' Este navegador aceitou guardar seus dados de forma permanente.'}
+            O navegador pode apagar dados de sites pouco usados. Instale o app na tela inicial e exporte uma cópia de vez em quando.{' '}
+            <Selo id="dados.copia" />
           </p>
+          <p>
+            <b>Última cópia: {textoUltimaCopia(ultimaCopia || undefined, agoraIso())}</b>
+            {ultimaCopia ? ` (${dataCurta(ultimaCopia)}, neste aparelho).` : '.'}
+          </p>
+          {guardaPermanente === true && <p>Este navegador aceitou guardar seus dados de forma permanente.</p>}
+          {guardaPermanente === false && (
+            <div className="warnbox" role="note">
+              <p>
+                <b>Este navegador não garantiu guardar seus dados de forma permanente:</b> ele pode apagá-los se faltar espaço. Instalar o
+                app na tela inicial ajuda; exportar uma cópia protege. <Selo id="dados.persistente" />
+              </p>
+            </div>
+          )}
           <button type="button" className="btn" onClick={exportar} disabled={!temDados}>
             Exportar meus dados (JSON)
           </button>
@@ -144,9 +168,40 @@ export function Dados() {
           </Link>
         </section>
 
+        {fotoEm && (
+          <section className="box">
+            <h2>Foto do equipamento</h2>
+            <p>
+              Você autorizou o envio das fotos à Anthropic, nos EUA, em {dataCurta(fotoEm)}. Se retirar, a foto pede a autorização de novo
+              antes do próximo envio. <Selo id="privacidade.foto" />
+            </p>
+            <button
+              type="button"
+              className="btn sec"
+              onClick={() => {
+                apagarLocal(LOCAL.fotoConsentimento);
+                setFotoEm('');
+                setErro('');
+                setMsg('Autorização da foto retirada.');
+              }}
+            >
+              Retirar a autorização da foto
+            </button>
+          </section>
+        )}
+
+        <section className="box pilha">
+          <h2>Termos e ajuda</h2>
+          <p>O que o app faz e não faz, onde ficam os seus dados, a foto e os seus direitos.</p>
+          <Link className="btn sec" to="/termos">
+            Termos de uso e privacidade
+          </Link>
+          <AvisarProblema />
+        </section>
+
         <section className="box">
           <h2>Apagar tudo</h2>
-          <p>Apaga o perfil, o equipamento e o programa deste aparelho. Não dá para desfazer sem um arquivo exportado.</p>
+          <p>Apaga o perfil, o equipamento, o programa, os treinos e as autorizações deste aparelho. Não dá para desfazer sem um arquivo exportado.</p>
           {!confirmarApagar ? (
             <button type="button" className="btn perigo" onClick={() => setConfirmarApagar(true)} disabled={!temDados}>
               Apagar todos os dados

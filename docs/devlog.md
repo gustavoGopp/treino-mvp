@@ -1008,3 +1008,57 @@ As listas exatas ficam em `tests/unit/metas-r0.test.ts`, para o R0c zerar.
 > Depois, testando eu mesmo sem equipamento, recebi treinos curtos e genéricos. Em vez de ajustar o meu caso, o app foi testado em 108.900 combinações de equipamento, nível, dias, tempo e foco, com uma régua de qualidade em duas camadas: o que não pode piorar e o que deve melhorar. Com 32 exercícios novos (de flexão com os pés elevados a abertura com elástico), os programas sem nenhum defeito foram de 73% para 84%, e o mesmo exercício repetido todos os dias por falta de opção caiu de 44% para 16%.
 >
 > E dois revisores, sem saber qual semana era de qual versão, preferiram a nova em 12 de 18 casos e não preferiram a antiga em nenhum. O que eles ainda criticaram (o foco escolhido recebe pouco a mais que o resto) vira o próximo passo. Uma coisa não teve solução: treinar as costas sem nada para puxar. Nenhum estudo, treinador ou vídeo sério mostrou um jeito honesto, e o app continua dizendo isso.
+
+---
+
+## R5c: Abrir para família e amigos (07/11/2026)
+
+**Por quê.** O Gustavo decidiu (06/11) abrir o app para família e amigos, não para o público. A frente E mediu o que faltava para outra pessoa usar sem ele por perto: três telas diziam que a foto "não fica guardada no servidor" sem dizer que ela vai para a Anthropic, nos EUA; um erro de tela deixava a página em branco, sem caminho até "Exportar"; não havia termos nem canal de problema; e "série", "repetição" e "carga" não eram explicados em lugar nenhum. O R5c veio antes dos outros marcos do R5 a pedido do Gustavo; ele não mexe no gerador, então não conflita com eles.
+
+**O que mudou** (branch `claude/kind-cori-879ak9`, a partir da `main` `b92fa13`; o lote do redesign não está na `main`, então tudo é o mínimo funcional com os componentes de hoje, e as telas seguem como pedidos ao design, itens 11 a 17 de `revisoes/proximos-passos.md`)
+- **A foto (P1).** As 3 telas usam o mesmo texto: a foto vai reduzida e sem a localização para a Anthropic, empresa dos EUA; o servidor do app não guarda; a Anthropic diz que apaga em até 30 dias, com exceções. Na tela da foto, uma **caixa de autorização** antes do 1º envio diz para onde a foto vai, por quanto tempo fica lá e que não treina modelos; o botão das fotos fica desligado até a pessoa marcar. A data fica só no aparelho, e "Retirar a autorização" (na foto e em Meus dados) a apaga. Regra nova `privacidade.foto` (consenso, norma).
+- **Uma descoberta ao reler as fontes:** a página da Anthropic sobre servidores (15/06/2026) diz que o dado é **guardado nos EUA, mas pode ser processado também na Europa, na Ásia e na Austrália**; e um envio marcado como violação da política de uso pode ficar **até 2 anos**. As duas coisas entraram no texto (fonte nova `anthropic-servidores`). A retenção especial dos "Covered Models" só vale para quem tem retenção zero contratada, não para o app.
+- **Tela de erro (P4).** Em volta de tudo, sem depender do resto do app: "Exportar meus dados" lê o armazenamento direto (mesmo um dado que o app não consegue mais ler), "Tentar de novo", "Avisar um problema" e a versão.
+- **Não perder os dados (P3).** Meus dados mostra "Última cópia: hoje / há N dias / nenhuma cópia ainda"; diz quando o navegador **negou** guardar de forma permanente; o início lembra de exportar depois de 3 treinos sem cópia (e cópia com mais de 7 dias), abaixo de "Começar", com "Exportar agora" e "Agora não" (7 dias). No iPhone aberto no Safari, um aviso com os passos para instalar, até o "Entendi". Tudo no `localStorage`: o estado guardado **não mudou de versão**. Regras `dados.copia`, `dados.instalar-iphone`, `dados.persistente`.
+- **Termos e canal (P2, P5).** A página `/termos` (rascunho para o advogado): o que o app faz e não faz, os dados no aparelho, a foto, o que Vercel, Google e Anthropic recebem, os direitos do art. 18 da LGPD (lido hoje) e como exercê-los no próprio app. Link nas boas-vindas, em Meus dados e na tela de erro. "Avisar um problema" leva a versão, o aparelho e a tela, e nunca o estado do app. O nome e o e-mail vêm de variáveis da Vercel (`VITE_RESPONSAVEL`, `VITE_CONTATO_EMAIL`): **nenhum dado pessoal no repositório**.
+- **"Como ler o seu treino" (B2).** No programa, aberto até o 1º treino terminado: série, repetição, carga, descanso e RIR, cada um com o seu selo; no iniciante, a linha da fase de aprendizado. Regra nova `treino.leitura`.
+- **Limite compartilhado (B1, feito depois do ok do Gustavo em 07/11).** O limite diário da foto (10 por aparelho, 40 por IP) passa a valer para todas as instâncias da função, num Redis do Upstash, com um comando por pedido e sem dependência nova. Basta criar o banco pelo Marketplace da Vercel (plano grátis), que cria as variáveis `KV_REST_API_URL` e `KV_REST_API_TOKEN`; sem elas, vale o contador em memória, como antes. O script foi rodado num Redis local: os pedidos barrados não somam no IP.
+- **Também:** o limite da foto confere o aparelho e o IP juntos (um pedido barrado pelo aparelho gastava a cota do IP); ícone do iPhone (`apple-touch-icon` de 180 px, gerado do `icon.svg` por `scripts/icone-iphone.mjs`; o lote 5 do redesign pode trocar o desenho); "Apagar tudo" apaga também o que fica no `localStorage`.
+
+**Medido**
+
+| | Antes | Depois |
+|---|---:|---:|
+| Telas com "não fica guardada no servidor" sem dizer para onde a foto vai | 3 | 0 (um teste falha se a frase voltar) |
+| Tela de erro com saída até "Exportar" | 0 | 1, em volta de todas as telas |
+| e2e: erro forçado → a saída aparece e o export baixa o arquivo com o programa | — | passa |
+| e2e: a caixa da foto aparece antes do 1º envio, não depois, e volta ao retirar | — | passa |
+| e2e: "Última cópia" em Meus dados (nenhuma → hoje, também depois de recarregar) | — | passa |
+| Lighthouse de acessibilidade (boas-vindas, termos, programa, Meus dados, caixa da foto, tela de erro) | — | 100 nas 6 (meta ≥ 90) |
+| Toque ≥ 44 px e contraste WCAG nas telas novas, tema claro e escuro | — | 0 falha |
+| `npm run check` | 670 testes | 698 testes passando (um teste antigo do gerador, "todo músculo abaixo do limiar", leva 4,8 a 6 s nesta máquina e às vezes passa do limite de 5 s; já acontecia na `main`, antes do R5c) |
+| `npm run test:e2e` | 48 | 55, todos passando |
+| Regras | 141 | 146 (5 novas, todas consenso) |
+
+**Imagem:** `img/r5c-abertura.png` (a caixa da foto, a tela de erro, a última cópia, o aviso do iPhone e "Como ler o seu treino").
+
+**Não é parecer jurídico.** Os termos e a caixa da foto são rascunho. A página diz "Rascunho em revisão jurídica" até `TERMOS_REVISADOS` virar `true`.
+
+**Com o Gustavo, antes de mandar o link a qualquer pessoa** (preencha aqui):
+- [x] **Teto de gasto: US$ 5 por mês** (decisão do Gustavo em 07/11/2026). Falta só confirmar que está ativo no console da Anthropic. Pela estimativa da frente E (até ~US$ 0,14 por envio de 5 fotos no Opus 5.5), dá **~35 envios de 5 fotos por mês**, ou mais com menos fotos por envio [estimativa; o eval mede o valor real]. Com 30 pessoas e 2 envios cada (~US$ 8), o teto pode chegar antes do fim do mês: aí a API recusa, o app mostra "Não foi possível analisar as fotos agora. Use a lista." e a lista funciona igual.
+- [ ] Um código de convite por pessoa em `CONVITES` (Vercel), definido em __/__/____.
+- [ ] `VITE_RESPONSAVEL` e `VITE_CONTATO_EMAIL` cadastrados na Vercel.
+- [ ] Revisão do advogado dos termos e da caixa da foto em __/__/____; o que mudou: ____.
+- [ ] Teste num iPhone: o aviso de instalar, o ícone e se o app instalado começa vazio.
+- A triagem continua com as perguntas próprias, e a revisão por um CREF continua "de lado" (decisão de 01/11): **reavaliar antes de abrir o app a desconhecidos**, não para família e amigos.
+
+**Fica para depois** (`backlog.md`, "Do R5c"): a letra do Google Fonts (sai com o lote 1 do redesign); a explicação do RIR no 1º toque em cada tela; medir o uso sem dado pessoal (só com decisão do Gustavo).
+
+**Rascunho de post para o LinkedIn**
+> Antes de mandar o meu app de treino para a família, reli uma frase que eu mesmo tinha aprovado: "a foto não fica guardada no servidor". Era verdade e era incompleta. O meu servidor não guarda, mas a foto vai para a empresa que faz o reconhecimento, nos EUA, que guarda por até 30 dias. Relendo os documentos dela, achei mais duas coisas: o dado pode ser processado em outros países, e um envio suspeito de abuso pode ficar até 2 anos.
+>
+> Agora o app diz isso antes do 1º envio, numa caixa que a pessoa marca (e pode desmarcar quando quiser). Quem não quer, usa a lista de equipamento, que faz o mesmo.
+>
+> Também descobri que, se uma tela desse erro, o app ficava em branco, sem caminho para salvar os dados. Como os dados moram só no celular, isso podia apagar meses de treino. Agora o erro mostra uma saída: exportar os dados, tentar de novo ou me avisar, sem nenhum dado de saúde na mensagem.
+>
+> Abrir para os amigos não foi uma função nova. Foi escrever, com fonte, o que o app faz com os dados de cada pessoa.
