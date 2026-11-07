@@ -4,6 +4,7 @@ import { capacidades, cargaMaxHalter, cargasCaneleiras, cargasHalter, cargasKett
 import { avaliarTriagem, efeitoDaDor, type ResultadoTriagem, type Triagem } from '../triagem';
 import { divisaoEscolhida, temDiaDeTronco, type DiasSemana, type Divisao, type DivisaoId, type Vaga } from './divisoes';
 import { FUNCAO, funcoesDoExercicio, type Funcao } from './funcoes';
+import { avaliar, avisosDoAvaliador } from '../avaliador';
 
 // Gerador de programa: função pura e determinística (mesma entrada → mesma saída).
 // Cada decisão grava o id da regra de docs/pesquisa/regras.md que a justifica.
@@ -623,6 +624,10 @@ export function gerarPrograma(perfil: Perfil, inventarioOriginal: Inventario): R
       regraId: r('tempo.sobra'),
       texto: `${regioesExcluidas.length && !lacunas.size && !semPuxar ? 'Com o que dá para fazer hoje' : 'Com o seu equipamento'}, o treino dura cerca de ${Math.max(5, Math.round(diaTipico / 5) * 5)} min. Mais tempo não acrescenta exercícios: dá para escolher uma duração menor sem perder nada.`,
     });
+
+  // O avaliador como régua (R5b, 07/11/2026): o que ele pede para ajustar e o gerador ainda não avisa (uma função só num
+  // músculo grande, o equilíbrio da coxa ou de empurrar e puxar, o isolador que faltou) vira aviso, com o próximo passo.
+  avisos.push(...avisosDoAvaliador(avaliar({ dias: programaDias }, perfil, inventarioOriginal), perfil));
 
   const porque: Porque[] = [
     ...textoDoObjetivo(perfil.objetivo, nivel),

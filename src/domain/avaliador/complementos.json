@@ -1,0 +1,125 @@
+[
+  {
+    "musculo": "peito",
+    "regra": "selecao.exercicios-por-musculo",
+    "grupos": [
+      {
+        "id": "horizontal",
+        "nome": "empurrar horizontal",
+        "funcoes": [
+          "empurrar-horizontal"
+        ]
+      },
+      {
+        "id": "inclinado",
+        "nome": "empurrar inclinado",
+        "funcoes": [
+          "empurrar-inclinado"
+        ]
+      },
+      {
+        "id": "crucifixo",
+        "nome": "crucifixo (peito alongado)",
+        "funcoes": [
+          "crucifixo"
+        ]
+      }
+    ]
+  },
+  {
+    "musculo": "costas",
+    "regra": "selecao.exercicios-por-musculo",
+    "grupos": [
+      {
+        "id": "vertical",
+        "nome": "puxar vertical",
+        "funcoes": [
+          "puxar-vertical"
+        ]
+      },
+      {
+        "id": "horizontal",
+        "nome": "puxar horizontal (remada)",
+        "funcoes": [
+          "puxar-horizontal"
+        ]
+      }
+    ]
+  },
+  {
+    "musculo": "quadriceps",
+    "regra": "selecao.exercicios-por-musculo",
+    "grupos": [
+      {
+        "id": "agachar",
+        "nome": "agachar",
+        "funcoes": [
+          "agachar"
+        ]
+      },
+      {
+        "id": "afundo",
+        "nome": "afundo",
+        "funcoes": [
+          "afundo"
+        ]
+      },
+      {
+        "id": "extensora",
+        "nome": "extensora",
+        "funcoes": [
+          "extensora"
+        ]
+      }
+    ]
+  },
+  {
+    "musculo": "posteriores",
+    "regra": "selecao.exercicios-por-musculo",
+    "grupos": [
+      {
+        "id": "flexao-joelho",
+        "nome": "flexão de joelho",
+        "funcoes": [
+          "flexao-joelho"
+        ]
+      },
+      {
+        "id": "dobrar-quadril",
+        "nome": "dobrar o quadril",
+        "funcoes": [
+          "dobrar-quadril"
+        ]
+      }
+    ]
+  },
+  {
+    "musculo": "gluteos",
+    "regra": "selecao.gluteo",
+    "grupos": [
+      {
+        "id": "agachar-afundo",
+        "nome": "agachar ou afundo",
+        "funcoes": [
+          "agachar",
+          "afundo"
+        ]
+      },
+      {
+        "id": "extensao-quadril",
+        "nome": "extensão de quadril",
+        "funcoes": [
+          "extensao-quadril",
+          "dobrar-quadril"
+        ]
+      },
+      {
+        "id": "abducao",
+        "nome": "abdução de quadril",
+        "funcoes": [
+          "abducao"
+        ]
+      }
+    ]
+  }
+]
