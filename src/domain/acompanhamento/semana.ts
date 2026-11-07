@@ -1,5 +1,5 @@
 import { BIBLIOTECA, type Exercicio, type Musculo } from '../biblioteca';
-import { MUSCULOS_COM_META, NOME_MUSCULO, seriesDeVolume, volumePorMusculo, type DiaPrograma, type Programa } from '../gerador';
+import { ehAvisoDeMeta, musculosDoAviso, MUSCULOS_COM_META, NOME_MUSCULO, seriesDeVolume, SEM_EXERCICIO, volumePorMusculo, type DiaPrograma, type Programa } from '../gerador';
 import { serieEfetiva } from '../progressao';
 import { r, VOLUME } from '../regras';
 import { diaLocal, hojeNoPrograma, proximoDia, segundaDaSemana, semanaLocal, treinoFeito, type Sessao } from '../sessao';
@@ -18,7 +18,40 @@ export const TEXTO_ESTADO: Record<EstadoMusculo, string> = {
   'sem-treino': 'ainda não treinou nesta semana',
 };
 
-export type MusculoNaSemana = { musculo: Musculo; nome: string; feitas: number; meta: number; estado: EstadoMusculo };
+export type MusculoNaSemana = {
+  musculo: Musculo;
+  nome: string;
+  feitas: number;
+  meta: number;
+  estado: EstadoMusculo;
+  /**
+   * Quando o programa planeja menos que a meta do nível (R5b; c-fluxo.md, pedido ao domínio 7): as séries que ele
+   * planeja e o motivo, em poucas palavras, tirado dos avisos do programa. A meta mostrada continua a do nível.
+   */
+  planejado?: { series: number; motivo: string };
+};
+
+/** As séries que o programa planeja para o músculo, e o motivo, quando ficam abaixo da meta do nível. */
+export function planejadoDoMusculo(programa: Programa, m: Musculo): MusculoNaSemana['planejado'] {
+  const meta = programa.metas[m] ?? 0;
+  const series = Math.round((programa.volumeSemanal[m] ?? 0) * 10) / 10;
+  if (!meta || series >= meta) return undefined;
+  const aviso = programa.avisos.find((a) => (ehAvisoDeMeta(a) || a.regraId === 'volume.prioridade.competicao') && musculosDoAviso(a).includes(m));
+  const motivo = !aviso
+    ? 'não coube mais nos seus treinos'
+    : aviso.regraId === 'equipamento.sem-ancoragem' || aviso.texto.startsWith(SEM_EXERCICIO)
+      ? 'sem exercício com o seu equipamento'
+      : /por causa da dor/.test(aviso.texto)
+        ? 'por causa da dor marcada na triagem'
+        : aviso.regraId === 'volume.prioridade.competicao'
+          ? 'os seus focos disputam o mesmo tempo'
+          : /A divisão/.test(aviso.texto)
+            ? 'pela divisão escolhida'
+            : /falta de tempo|min cabem/.test(aviso.texto)
+            ? 'falta tempo'
+            : 'não coube mais nos seus treinos';
+  return { series, motivo };
+}
 
 export type ResumoDaSemana = {
   /** Segunda e domingo da semana (AAAA-MM-DD, no calendário local). */
@@ -94,7 +127,8 @@ export function resumoDaSemana(programa: Programa, historico: Sessao[], hojeIso:
     const meta = metaPrescrita ? (prescrito[m] ?? 0) : (programa.metas[m] ?? 0);
     if (meta <= 0) return [];
     const f = Math.round((feitas[m] ?? 0) * 10) / 10;
-    return [{ musculo: m, nome: NOME_MUSCULO[m], feitas: f, meta: Math.round(meta * 10) / 10, estado: estadoDoMusculo(f, meta) }];
+    const planejado = metaPrescrita ? undefined : planejadoDoMusculo(programa, m);
+    return [{ musculo: m, nome: NOME_MUSCULO[m], feitas: f, meta: Math.round(meta * 10) / 10, estado: estadoDoMusculo(f, meta), ...(planejado ? { planejado } : {}) }];
   });
 
   // Os treinos da semana: os feitos, na ordem, e depois os que faltam na rotação.
