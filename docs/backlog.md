@@ -16,13 +16,19 @@ Ideias e requisitos para depois do MVP. Nada aqui entra sem passar pelo plano.
 
 
 ## Pendências do lado do Gustavo
+- **Antes de mandar o link a alguém (R5c, 07/11/2026; detalhes no devlog, "R5c"):**
+  - **Teto de gasto** mensal no console da Anthropic (sugestão da frente E: US$ 10, [opinião]) e confirmar no devlog.
+  - **Um código de convite por pessoa** na variável `CONVITES` da Vercel, para desligar só o que vazar; confirmar no devlog.
+  - **Advogado:** revisar `/termos` (`src/features/termos/Termos.tsx`) e a caixa da foto (`src/features/app/privacidade.tsx`); depois, `TERMOS_REVISADOS = true` e a revisão registrada no devlog.
+  - **Quem responde e o contato:** cadastrar na Vercel `VITE_RESPONSAVEL` (o nome) e `VITE_CONTATO_EMAIL` (o e-mail do canal). Sem elas, os termos mostram "a definir (rascunho)" e o "Avisar um problema" mostra o texto para copiar. Ficam fora do repositório de propósito.
+  - **No iPhone, uma vez:** abrir o link no Safari, ver o aviso de instalar, instalar e conferir se o app instalado começa vazio (o texto já diz "pode começar vazio" e manda exportar antes; não achei documento da Apple que confirme) e se o ícone novo aparece.
 - **Levar a `main` nova para o redesign.** A sessão de qualidade dos treinos foi para a `main` em 06/11 (`6cb49d5`). Colar `prompts/recado-redesign-qualidade-treinos.md` na sessão do redesign visual: o merge não tem conflito, e só o `fontes.json` precisa ser regerado.
 - **Sessão de desenvolvimento:** colar `prompts/sessao-desenvolvimento.md` numa sessão nova. Ela conduz os marcos R5a, R5-CL, R5d, R5-anim, R5b e R5c, um de cada vez, parando ao fim de cada um para a sua revisão (a sessão de próximos passos foi feita em 06–07/11; `revisoes/proximos-passos.md`, parte 3). O R5-anim pode correr numa sessão à parte, junto do R5d, com `prompts/sessao-r5-animacao-corpo-livre.md`.
 - **Chave da Anthropic.** Confirmar que a chave e os convites estão no projeto `treino-mvp` da Vercel, o que atende `treino-mvp-sigma.vercel.app`.
 - **Projetos extras na Vercel.** Avaliar apagar `treino-mvp-huks` e `treino-mvp-yej6`, criados em 31/10/2026. Eles repetem cada deploy.
 - **Cronometrar o cadastro no celular (critério 1, R1).** O teste automático conta 13 toques e 0 caractere para quem não tem condição nenhuma (sem a tela de equipamento); falta a sua medição de tempo no celular, uma vez, e a da tela de equipamento com "academia completa" (meta: até 15 s).
 - **Confirmar a menor anilha da sua academia (T8).** Sem resposta, o app usa 2 kg (opinião).
-- **Limite da visão compartilhado** entre instâncias, antes de abrir o app para outras pessoas. Hoje o contador fica na memória de cada instância (`pesquisa/11-decisoes-m4.md`). O Vercel KV foi descontinuado; o caminho é o Redis (Upstash) pelo Marketplace da Vercel.
+- **Limite da visão compartilhado** (B1 do R5c, opcional): continua em memória por instância. Para família e amigos, o que segura o gasto é o teto no console da Anthropic e um convite por pessoa (abaixo). O R5c corrigiu só a ordem: o aparelho e o IP são conferidos juntos (`api/_lib/pedido.ts`). O caminho, se um dia precisar, é o Redis (Upstash) pelo Marketplace da Vercel (grátis até 500 mil comandos por mês, `upstash-preco`).
 
 ## Decididos no replanejamento de 01/11/2026
 Detalhes em `planejamento/2026-11-diagnostico.md`, `PLANO-MVP.md` e `pesquisa-v2/`.
@@ -134,4 +140,11 @@ Detalhes, números e o motivo de cada item em `revisoes/proximos-passos.md` e no
 - **O resto da fila de animação**, pela frequência medida na grade de 108.900 programas (`proximos-passos/g-biblioteca-ampliada.md`, seção 4), depois dos 5 de corpo livre do R5-anim.
 - **Dívida de fontes:** 14 das fichas de `pesquisa-v2/10-equipamento-minimo.md` ainda fora de `pesquisa/fontes.md` (`alizadeh2020`, `bello2025`, `carvalho2022`, `ekstrom2003`, `gavanda2026`, `hammert2026`, `lees2025`, `martins2013`, `morton2016`, `oranchuk2019`, `schoenfeld2016c`, `terada2022`, `tsuzuku2018`, `vargasmolina2026`) e a `andersen2022` do `10` (meta-análise de resistência variável; a chave `andersen2022b` em `fontes.md` é outro artigo). As 14 "não verificadas" do `10` foram conferidas e registradas em 06/11.
 - **Dependências** (`zod` 4, react-router 7, vitest 5) e os **testes de propriedade** da F.4: numa branch própria, depois do lote técnico do redesign, que mexe nos mesmos arquivos.
+
+## Do R5c, abrir para família e amigos (07/11/2026)
+- **A letra do Google Fonts** manda o IP de quem abre o app ao Google (os termos dizem isso). O lote 1 do redesign já tira o pedido externo; quando ele chegar à `main`, tirar a linha dos termos.
+- **"Como ler o seu treino" no 1º toque em "RIR"** em cada tela (B2, 2ª parte): ficou só a folha no programa. Pedido ao design (item 16).
+- **Medir sem dado pessoal (B7):** formulário de opinião fora do app e a soma diária do log da visão (só números). Não feito: não colete nada sem decisão do Gustavo.
+- **Lembrete de cópia por e-mail ou na nuvem:** fora do MVP (login e nuvem). O lembrete fica no aparelho (`dados.copia`).
+- **O consentimento da foto ganhar versão** (se o texto da foto mudar, pedir de novo): hoje a data fica no `localStorage` sem versão do texto. Fazer junto da revisão do advogado, se ele pedir.
 
