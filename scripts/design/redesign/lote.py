@@ -14,6 +14,11 @@ GRUPOS = {
         ('treino-e-guia-escuro', 'escuro', ['ana/11-treino-serie-1', 'ana/16-guia-tecnica']),
         ('cadastro-360', 'pequeno', ['cadastro/03b-nivel-respondido', 'cadastro/04b-rotina-respondida']),
     ],
+    'lote-2': [
+        ('serie-e-descanso-claro', 'claro', ['ana/11-treino-serie-1', 'ana/12-treino-descanso']),
+        ('senti-e-guia-claro', 'claro', ['ana/14-treino-senti-algo', 'ana/16-guia-tecnica']),
+        ('treino-e-guia-escuro', 'escuro', ['ana/11-treino-serie-1', 'ana/16-guia-tecnica']),
+    ],
 }
 
 def rotular(img, rotulo, escuro):
