@@ -44,6 +44,15 @@ test('Corpo livre: sem nada marcado, o programa sai só com o peso do corpo, diz
   await expect(page.getByText(/Sem algo para puxar ou levantar: costas, ombro lateral, ombro de trás e bíceps ficam sem exercício/)).toBeVisible();
   await expect(page.getByText(/compr/i)).toHaveCount(0);
 
+  // "Como está o seu programa" (R5b): o avaliador sobre o programa salvo. Sem nada, só limites, e nada a comprar.
+  await page.getByText('Como está o seu programa').click();
+  const comoEsta = page.locator('details.como-esta');
+  await expect(comoEsta.getByText('Está bom dentro do que o seu equipamento, a dor ou o tempo permitem.')).toBeVisible();
+  await expect(comoEsta.getByRole('heading', { name: 'Limites (não precisa fazer nada)' })).toBeVisible();
+  await expect(comoEsta.getByText(/Sem exercício possível com o seu equipamento: costas/)).toBeVisible();
+  await expect(comoEsta.getByRole('heading', { name: 'Dá para ajustar' })).toHaveCount(0);
+  await expect(page.getByText(/compr/i)).toHaveCount(0);
+
   // A flexão de joelho deslizante cobre os posteriores da coxa sem equipamento.
   const painel = page.getByRole('tabpanel');
   await page.getByRole('tab', { name: 'Corpo todo A', exact: true }).click();

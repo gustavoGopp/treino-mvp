@@ -1,5 +1,6 @@
 import { useMemo, useState } from 'react';
 import { Link, Navigate, useNavigate } from 'react-router-dom';
+import { avaliar, type Avaliacao, type Gravidade } from '../../domain/avaliador';
 import { BIBLIOTECA, type Musculo } from '../../domain/biblioteca';
 import { ALTERNATIVAS_A_MOSTRA, NOME_MUSCULO, ehAvisoDeMeta, type DiaPrograma, type ExercicioPrescrito, type Programa as TipoPrograma } from '../../domain/gerador';
 import { mensagemDeVolta, type MensagemDeVolta } from '../../domain/acompanhamento/volta';
@@ -42,6 +43,11 @@ export function Programa() {
   const inventario = inventarioPrincipal(estado);
   const opcoes = useMemo(() => (perfil && inventario ? opcoesDeAjuste(perfil, inventario) : []), [perfil, inventario]);
   const atualizado = useMemo(() => gerarDoEstado(estado), [estado]);
+  // O avaliador sobre o programa salvo (R5b): nada novo é guardado.
+  const avaliacao = useMemo(() => {
+    const p = estado.programa?.programa;
+    return p && perfil && inventario ? avaliar(p, perfil, inventario) : null;
+  }, [estado.programa, perfil, inventario]);
 
   const pendente = primeiroPassoPendente(estado);
   if (pendente) return <Navigate to={pendente.rota} replace />;
@@ -311,6 +317,7 @@ export function Programa() {
           )}
         </section>
 
+        {avaliacao && <ComoEsta avaliacao={avaliacao} />}
         <Sobre programa={salvo} reabrirAjustes={opcoes.length > 0 && !!estado.ajustes?.recolhido ? () => { atualizar((s) => ({ ...s, ajustes: { recolhido: false } })); setVerAjustes(true); } : undefined} />
       </main>
       <NavInferior atual="treino" />
@@ -477,6 +484,57 @@ function CartaoExercicio({
         </div>
       </details>
     </li>
+  );
+}
+
+const VEREDITO: Record<Avaliacao['veredito'], string> = {
+  bom: 'Está bom: nada a ajustar.',
+  limite: 'Está bom dentro do que o seu equipamento, a dor ou o tempo permitem.',
+  ajustar: 'Dá para ajustar algumas coisas.',
+  bloqueado: 'Há um ponto de segurança.',
+};
+const GRUPOS_DO_AVALIADOR: { g: Gravidade; titulo: string }[] = [
+  { g: 'seguranca', titulo: 'Segurança' },
+  { g: 'alerta', titulo: 'Atenção' },
+  { g: 'ajustar', titulo: 'Dá para ajustar' },
+  { g: 'limite', titulo: 'Limites (não precisa fazer nada)' },
+  { g: 'info', titulo: 'Para saber' },
+];
+
+/**
+ * "Como está o seu programa" (R5b): a saída do avaliador com os componentes de hoje. O desenho (as superfícies de
+ * alerta, aviso e informação, a tabela recolhida) é pedido à sessão de design (proximos-passos.md, seção 2.5, item 7).
+ */
+function ComoEsta({ avaliacao }: { avaliacao: Avaliacao }) {
+  const grupos = GRUPOS_DO_AVALIADOR.map((x) => ({ ...x, achados: avaliacao.achados.filter((a) => a.gravidade === x.g) })).filter((x) => x.achados.length);
+  return (
+    <details className="box dobra como-esta" open={avaliacao.veredito === 'bloqueado'}>
+      <summary>Como está o seu programa</summary>
+      <div className="pilha">
+        <p>
+          <b>{VEREDITO[avaliacao.veredito]}</b> <Selo id="avaliador.gravidade" />
+        </p>
+        {grupos.map(({ g, titulo, achados }) => (
+          <section key={g} className="pilha" aria-label={titulo}>
+            <h3>{titulo}</h3>
+            {achados.map((a) =>
+              g === 'seguranca' || g === 'alerta' || g === 'ajustar' ? (
+                <div key={`${a.tipo}|${a.regraId}`} className="warnbox">
+                  {a.texto} <Selo id={a.regraId} />
+                </div>
+              ) : (
+                <p key={`${a.tipo}|${a.regraId}`}>
+                  {a.texto} <Selo id={a.regraId} />
+                </p>
+              ),
+            )}
+          </section>
+        ))}
+        {avaliacao.achados.some((a) => a.gravidade === 'ajustar') && (
+          <p className="ajuda">O app monta o programa pelas regras; para mudar, use Meus dados, "Mudar a rotina ou a divisão". Mudar exercício a exercício vem numa versão seguinte.</p>
+        )}
+      </div>
+    </details>
   );
 }
 
