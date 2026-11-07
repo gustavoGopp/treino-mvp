@@ -140,7 +140,20 @@ for (const persona of PERSONAS) {
       await foto(page, persona, '10b-programa-dia-2');
       await abas.nth(0).click();
     }
-    const nomeDia = (await abas.nth(0).innerText()).trim();
+    // lote 4: a aba mostra o nome curto ("A") e guarda o inteiro para o leitor de tela
+    const nomeDia = ((await abas.nth(0).textContent()) ?? '').trim();
+    // lote 4: a folha do exercício e "Sobre o programa"
+    const linhaEx = page.locator('button.cartao-ex-corpo').first();
+    if (await linhaEx.count()) {
+      await linhaEx.click();
+      await page.locator('.folha').last().evaluate((e) => Promise.all(e.getAnimations().map((a) => a.finished)));
+      await foto(page, persona, '10c-programa-exercicio');
+      await page.keyboard.press('Escape');
+      await page.getByRole('button', { name: 'Sobre o programa' }).click();
+      await page.locator('.folha').last().evaluate((e) => Promise.all(e.getAnimations().map((a) => a.finished)));
+      await foto(page, persona, '10d-programa-sobre');
+      await page.keyboard.press('Escape');
+    }
     await page.getByRole('button', { name: `Começar o treino ${nomeDia}` }).click();
     await expect(page).toHaveURL(/\/treino$/);
     await foto(page, persona, '11-treino-serie-1');
@@ -224,7 +237,7 @@ for (const persona of PERSONAS) {
 test('treino: exercício sem animação (Ana, 2º exercício, a ponte de glúteo)', async ({ page }) => {
   await comEstado(page, 'ana');
   await page.goto('/programa');
-  const nomeDia = (await page.getByRole('tab').nth(0).innerText()).trim();
+  const nomeDia = ((await page.getByRole('tab').nth(0).textContent()) ?? '').trim();
   await page.getByRole('button', { name: `Começar o treino ${nomeDia}` }).click();
   await expect(page).toHaveURL(/\/treino$/);
   if (await page.getByRole('button', { name: /^Mais opções/ }).count()) await proximoExercicio(page);
