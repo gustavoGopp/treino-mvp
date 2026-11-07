@@ -15,6 +15,12 @@ export async function carregar(): Promise<Carga> {
   return r.ok ? { estado: r.estado } : { estado: estadoVazio(), erro: r.erro };
 }
 
+/**
+ * O que está guardado, sem migrar nem validar: a tela de erro exporta daqui, mesmo que o app não consiga mais ler o dado.
+ * Devolve undefined se não há nada guardado.
+ */
+export const lerBruto = (): Promise<unknown> => get(CHAVE);
+
 export const salvar = (estado: Estado) => set(CHAVE, estado);
 export const apagar = () => del(CHAVE);
 
@@ -28,5 +34,15 @@ export async function pedirPersistencia(): Promise<boolean> {
     return (await navigator.storage.persisted()) || (await navigator.storage.persist());
   } catch {
     return false;
+  }
+}
+
+/** Só consulta, sem pedir (dados.persistente): true/false, ou null se o navegador não tem a API. */
+export async function consultarPersistencia(): Promise<boolean | null> {
+  try {
+    if (!navigator.storage?.persisted) return null;
+    return await navigator.storage.persisted();
+  } catch {
+    return null;
   }
 }

@@ -12,6 +12,7 @@ import { inventarioPrincipal, localDoTreino, perfilDe, primeiroPassoPendente, ty
 import { alternarPreferencia, diaDoTreino, hojeDoEstado, iniciarSessao } from '../treino/acoes';
 import { Preferencias } from './Prefiro';
 import { agoraIso, comProgramaNovo, fusoDoAparelho, gerarDoEstado, mesmoConteudo, useApp } from '../app/estado';
+import { AvisoInstalar, LembreteCopia } from '../app/avisos';
 import { NavInferior, Selo, Titulo, Topo } from '../app/ui';
 import { Miniatura } from './Miniatura';
 import { FaixaSemana } from '../acompanhamento/Semana';
@@ -135,6 +136,7 @@ export function Programa() {
         <p role="status" className="status">
           {aviso}
         </p>
+        <AvisoInstalar />
 
         {versaoNova && (
           <div className="faixa destaque">
@@ -310,6 +312,8 @@ export function Programa() {
             </div>
           )}
         </section>
+
+        {!estado.sessaoAtual && <LembreteCopia estado={estado} />}
 
         <Sobre programa={salvo} reabrirAjustes={opcoes.length > 0 && !!estado.ajustes?.recolhido ? () => { atualizar((s) => ({ ...s, ajustes: { recolhido: false } })); setVerAjustes(true); } : undefined} />
       </main>

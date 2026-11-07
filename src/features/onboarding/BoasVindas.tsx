@@ -1,6 +1,7 @@
 import { Link, Navigate, useNavigate } from 'react-router-dom';
 import { primeiroPassoPendente } from '../../storage/esquema';
 import { agoraIso, useApp } from '../app/estado';
+import { AvisoInstalar } from '../app/avisos';
 import { TextoFotoCurto } from '../app/privacidade';
 import { Selo, Titulo, Topo } from '../app/ui';
 
@@ -32,6 +33,7 @@ export function BoasVindas() {
             {erroCarga} Em <Link to="/dados">Meus dados</Link> você pode importar um backup.
           </div>
         )}
+        <AvisoInstalar />
         <p className="lede">
           Montamos um programa de hipertrofia baseado em evidência, só com o seu equipamento, e mostramos o porquê de cada escolha.
           Leva cerca de 1 minuto, mais o tempo de marcar o seu equipamento.
@@ -58,6 +60,9 @@ export function BoasVindas() {
             exportar ou apagar tudo quando quiser em “Meus dados”.
           </p>
         </section>
+        <p className="ajuda">
+          Ao começar, você concorda com os <Link to="/termos">termos de uso e o aviso de privacidade</Link>.
+        </p>
         <button type="button" className="btn" onClick={comecar}>
           Entendi, vamos começar
         </button>

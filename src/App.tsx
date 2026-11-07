@@ -1,6 +1,7 @@
 import { lazy, Suspense } from 'react';
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
 import { EstadoProvider } from './features/app/estado';
+import { LimiteDeErro, ProvaDeErro } from './features/app/TelaDeErro';
 import { Evolucao } from './features/acompanhamento/Evolucao';
 import { Semana } from './features/acompanhamento/Semana';
 import { Dados } from './features/dados/Dados';
@@ -13,6 +14,7 @@ import { Restricoes } from './features/onboarding/Restricoes';
 import { Rotina } from './features/onboarding/Rotina';
 import { Triagem } from './features/onboarding/Triagem';
 import { Programa } from './features/programa/Programa';
+import { Termos } from './features/termos/Termos';
 import { Resumo } from './features/treino/Resumo';
 import { Treino } from './features/treino/Treino';
 
@@ -22,49 +24,54 @@ const GeradorDev = import.meta.env.DEV ? lazy(() => import('./features/dev/Gerad
 const LabBoneco = __LAB__ ? lazy(() => import('./features/dev/LabBoneco').then((m) => ({ default: m.LabBoneco }))) : null;
 
 export function App() {
+  // A tela de erro fica em volta de tudo: um erro em qualquer tela (ou na carga do estado) mostra a saída com "Exportar".
   return (
-    <EstadoProvider>
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<BoasVindas />} />
-          <Route path="/comecar/triagem" element={<Triagem />} />
-          <Route path="/comecar/nivel" element={<Nivel />} />
-          <Route path="/comecar/rotina" element={<Rotina />} />
-          <Route path="/comecar/inventario" element={<Inventario />} />
-          <Route path="/comecar/restricoes" element={<Restricoes />} />
-          <Route path="/programa" element={<Programa />} />
-          <Route path="/locais" element={<Locais />} />
-          <Route path="/locais/:id" element={<EditarLocal />} />
-          <Route path="/treino" element={<Treino />} />
-          <Route path="/treino/fim" element={<Resumo />} />
-          <Route path="/semana" element={<Semana />} />
-          <Route path="/evolucao/:exId" element={<Evolucao />} />
-          <Route path="/dados" element={<Dados />} />
-          <Route path="/guia" element={<Navigate to="/guia/supino-inclinado" replace />} />
-          <Route path="/guia/:id" element={<Guia />} />
-          {GeradorDev && (
-            <Route
-              path="/dev/gerador"
-              element={
-                <Suspense fallback={null}>
-                  <GeradorDev />
-                </Suspense>
-              }
-            />
-          )}
-          {LabBoneco && (
-            <Route
-              path="/lab/boneco"
-              element={
-                <Suspense fallback={null}>
-                  <LabBoneco />
-                </Suspense>
-              }
-            />
-          )}
-          <Route path="*" element={<Navigate to="/" replace />} />
-        </Routes>
-      </BrowserRouter>
-    </EstadoProvider>
+    <LimiteDeErro>
+      <EstadoProvider>
+        <BrowserRouter>
+          <ProvaDeErro />
+          <Routes>
+            <Route path="/" element={<BoasVindas />} />
+            <Route path="/comecar/triagem" element={<Triagem />} />
+            <Route path="/comecar/nivel" element={<Nivel />} />
+            <Route path="/comecar/rotina" element={<Rotina />} />
+            <Route path="/comecar/inventario" element={<Inventario />} />
+            <Route path="/comecar/restricoes" element={<Restricoes />} />
+            <Route path="/programa" element={<Programa />} />
+            <Route path="/locais" element={<Locais />} />
+            <Route path="/locais/:id" element={<EditarLocal />} />
+            <Route path="/treino" element={<Treino />} />
+            <Route path="/treino/fim" element={<Resumo />} />
+            <Route path="/semana" element={<Semana />} />
+            <Route path="/evolucao/:exId" element={<Evolucao />} />
+            <Route path="/dados" element={<Dados />} />
+            <Route path="/termos" element={<Termos />} />
+            <Route path="/guia" element={<Navigate to="/guia/supino-inclinado" replace />} />
+            <Route path="/guia/:id" element={<Guia />} />
+            {GeradorDev && (
+              <Route
+                path="/dev/gerador"
+                element={
+                  <Suspense fallback={null}>
+                    <GeradorDev />
+                  </Suspense>
+                }
+              />
+            )}
+            {LabBoneco && (
+              <Route
+                path="/lab/boneco"
+                element={
+                  <Suspense fallback={null}>
+                    <LabBoneco />
+                  </Suspense>
+                }
+              />
+            )}
+            <Route path="*" element={<Navigate to="/" replace />} />
+          </Routes>
+        </BrowserRouter>
+      </EstadoProvider>
+    </LimiteDeErro>
   );
 }

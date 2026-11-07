@@ -1,10 +1,10 @@
-import type { Estado } from './esquema';
 import { migrar, type ResultadoMigracao } from './migracao';
 
 // Exportação e importação em JSON. O arquivo fica com a pessoa; nada sai do aparelho sem ela.
 export const APP_ID = 'treino-mvp';
 
-export function exportarJson(estado: Estado, exportadoEm: string): string {
+/** `estado` é o Estado do app ou, na tela de erro, o que estiver guardado (mesmo ilegível): a importação migra depois. */
+export function exportarJson(estado: unknown, exportadoEm: string): string {
   return JSON.stringify({ app: APP_ID, exportadoEm, estado }, null, 2);
 }
 
