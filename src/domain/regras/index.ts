@@ -34,6 +34,7 @@ export const VOLUME = {
   sessaoTeto: 10, // volume.sessao.teto
   pesoIndireta: 0.5, // volume.serie-indireta.peso
   seriesPorExercicio: { min: 2, max: 4 }, // volume.series-por-exercicio
+  coxa: [0.5, 2] as [number, number], // volume.equilibrio-coxa: quadríceps ÷ posteriores (séries semanais)
 };
 
 export const RIR = {
@@ -69,6 +70,7 @@ export const TEMPO = {
   superserieEntre: 15, // tempo.superserie
   dropSet: 35, // tempo.drop-set: 2 quedas curtas com ~10–15 s entre elas, somadas à última série
   sobraFracao: 0.7, // tempo.sobra: abaixo de 70% dos minutos escolhidos, o aviso de que falta exercício, não tempo
+  protegidoCurto: 30, // tempo.musculo-protegido: até 30 min, o protegido fica com 2 séries e troca por um isolador do dia
 };
 
 /** tempo.exercicios-por-sessao: exercícios por treino conforme os minutos (pesquisa-v2/05, seção 1). */

@@ -148,6 +148,21 @@
     ]
   },
   {
+    "id": "volume.equilibrio-coxa",
+    "regra": "Equilíbrio da coxa (R5-CL, 07/11/2026; `docs/revisoes/proximos-passos/g-biblioteca-ampliada.md`, decisão 9; régua da G5, D3, em `docs/pesquisa-v2/17-biblioteca-ampliada.md`): quando quadríceps e posteriores têm exercício possível, as séries semanais de quadríceps ÷ posteriores ficam entre 0,5 e 2, com pelo menos 1 exercício direto de posteriores (flexão de joelho ou dobrar o quadril) na semana. Os cortes de tempo (`tempo.corte`) e o ajuste de 30 min (`tempo.musculo-protegido`) não tiram a razão da faixa, salvo se ela já estava fora. A faixa é consenso: a razão de força não prevê lesão (meta-análise), e o agachamento não cresce os posteriores (um estudo), por isso os dois precisam de trabalho direto. Medido no protótipo: o defeito da coxa sai de 1,6% dos programas sem dor para 0%",
+    "valores": {
+      "iniciante": "0,5–2; ≥ 1 exercício direto de posteriores",
+      "intermediario": "0,5–2; ≥ 1 exercício direto de posteriores",
+      "avancado": "0,5–2; ≥ 1 exercício direto de posteriores"
+    },
+    "selo": "consenso",
+    "fontes": [
+      "green2018",
+      "kubo2019",
+      "maeo2021"
+    ]
+  },
+  {
     "id": "volume.serie-indireta.peso",
     "regra": "Peso da série indireta (sinergista, ex.: remada para o bíceps) na contagem de volume; é uma aproximação estatística. `pelland2026` comparou contar a série indireta como 1, 0,5 e 0, e o 0,5 se ajustou melhor, sem estimar o peso ótimo; na rosca × remada a razão foi 0,47 (`mannarino2021`). O número 0,5 tem selo de um estudo; a direção (entre 0 e 1) é moderada (revisto em 06/11/2026)",
     "valores": {
@@ -1687,7 +1702,7 @@
   },
   {
     "id": "tempo.corte",
-    "regra": "Escada fixa quando a sessão não cabe no tempo: primeiro as técnicas que mantêm o volume; um músculo prioritário nunca perde séries antes de um não prioritário",
+    "regra": "Escada fixa quando a sessão não cabe no tempo: primeiro as técnicas que mantêm o volume; um músculo prioritário nunca perde séries antes de um não prioritário. Desde o R5-CL (07/11/2026; `g-biblioteca-ampliada.md`, decisão 9), nenhum corte tira quadríceps ÷ posteriores da faixa de 0,5 a 2 (se já estava dentro) nem tira o único exercício direto de posteriores da semana (`volume.equilibrio-coxa`): com os exercícios novos de superiores ocupando o dia, o corte tirava séries de posteriores",
     "valores": {
       "iniciante": "1) só aquecimento específico; 2) superséries entre músculos que não competem (isoladores, depois multiarticulares de músculos diferentes); 3) drop set na última série de isoladores com ≥ 3 séries (nunca nas semanas com RIR 3–4); 4) menos exercícios, mantendo multiarticulares e isoladores obrigatórios; 5) por último, menos séries: não prioritários até o piso de 4, depois prioritários",
       "intermediario": "1) só aquecimento específico; 2) superséries entre músculos que não competem (isoladores, depois multiarticulares de músculos diferentes); 3) drop set na última série de isoladores com ≥ 3 séries (nunca nas semanas com RIR 3–4); 4) menos exercícios, mantendo multiarticulares e isoladores obrigatórios; 5) por último, menos séries: não prioritários até o piso de 4, depois prioritários",
@@ -1734,11 +1749,11 @@
   },
   {
     "id": "tempo.musculo-protegido",
-    "regra": "Abdômen e panturrilha não ficam com zero série na semana por falta de minutos: quando nenhuma vaga deles coube nos exercícios que cabem, a 1ª vaga possível entra no dia com menos exercícios, mesmo passando do número que cabe; a escada de cortes (`tempo.corte`) ajusta o resto do dia e nunca a tira. Nos treinos curtos eles saíam primeiro (grade de 06/11/2026: panturrilha a zero em ~22% e abdômen em ~21% dos programas da academia, os de 30 min). Decisão do Gustavo em 06/11/2026, sessão de qualidade dos treinos",
+    "regra": "Abdômen e panturrilha não ficam com zero série na semana por falta de minutos: quando nenhuma vaga deles coube nos exercícios que cabem, a 1ª vaga possível entra no dia com menos exercícios, mesmo passando do número que cabe; a escada de cortes (`tempo.corte`) ajusta o resto do dia e nunca a tira. Nos treinos curtos eles saíam primeiro (grade de 06/11/2026: panturrilha a zero em ~22% e abdômen em ~21% dos programas da academia, os de 30 min). Decisão do Gustavo em 06/11/2026, sessão de qualidade dos treinos. **Com 30 min ou menos** (R5-CL, 07/11/2026; `docs/revisoes/proximos-passos/a-qualidade.md`, F.9, o protótipo `f9-30`): o exercício protegido fica com 2 séries (a distribuição não o sobe) e, se o dia passar do tempo, sai do dia um isolador não obrigatório e não prioritário, o último da ordem, desde que nenhum músculo dele fique a zero na semana e a coxa continue entre 0,5 e 2 (`volume.equilibrio-coxa`). Medido na frente A, com 30 min: programas com um dia acima do tempo de 69,6% para 48,1%",
     "valores": {
-      "iniciante": "1 vaga por semana",
-      "intermediario": "1 vaga por semana",
-      "avancado": "1 vaga por semana"
+      "iniciante": "1 vaga por semana; com 30 min, 2 séries e a troca por um isolador do dia",
+      "intermediario": "1 vaga por semana; com 30 min, 2 séries e a troca por um isolador do dia",
+      "avancado": "1 vaga por semana; com 30 min, 2 séries e a troca por um isolador do dia"
     },
     "selo": "consenso",
     "fontes": [

@@ -723,3 +723,56 @@ describe('abdômen e panturrilha (tempo.musculo-protegido; selecao.abdomen-prior
   });
 });
 
+
+describe('equilíbrio da coxa e o ajuste de 30 min (volume.equilibrio-coxa; tempo.musculo-protegido; R5-CL)', { timeout: 60_000 }, () => {
+  // Uma grade pequena, sem dor, com os cenários que mais cortavam posteriores: 30 e 45 min, foco nos superiores ou nas pernas.
+  const grade: { nome: string; perfil: Perfil; inv: Inventario }[] = [];
+  for (const [nome, base] of Object.entries(PERSONAS))
+    for (const inv of [base.inventario, {} as Inventario])
+      for (const dias of [2, 3, 4, 5, 6] as const)
+        for (const minutosSessao of [30, 45])
+          for (const prioridades of [[], ['peito', 'costas', 'ombros', 'bracos'], ['pernas']] as Grupo[][])
+            for (const nivel of NIVEIS)
+              grade.push({
+                nome: `${nome}${Object.keys(inv).length ? '' : ' (sem nada)'}/${dias}d/${minutosSessao}min/${prioridades.join('+') || 'sem foco'}/${nivel}`,
+                inv,
+                perfil: { ...base.perfil, semanasParado: 0, diasSemana: dias, divisao: OPCOES_POR_DIAS[dias][0], minutosSessao, prioridades, nivel },
+              });
+  it('quadríceps ÷ posteriores fica entre 0,5 e 2, com 1 exercício direto de posteriores, quando os dois são possíveis', () => {
+    for (const v of grade) {
+      const ctx = contextoDeSelecao(v.perfil, v.inv);
+      const possivel = (m: Musculo) => ctx.possiveis.some((e) => e.musculos.primarios.includes(m));
+      if (!possivel('quadriceps') || !possivel('posteriores')) continue;
+      const p = ok(v.perfil, v.inv);
+      const q = p.volumeSemanal.quadriceps ?? 0;
+      const h = p.volumeSemanal.posteriores ?? 0;
+      expect(h, v.nome).toBeGreaterThan(0);
+      expect(q / h, v.nome).toBeGreaterThanOrEqual(VOLUME.coxa[0]);
+      expect(q / h, v.nome).toBeLessThanOrEqual(VOLUME.coxa[1]);
+      expect(ids(p).some((id) => ['flexao-joelho', 'dobrar-quadril'].includes(POR_ID[id]!.padrao)), v.nome).toBe(true);
+    }
+  });
+  it('com 30 min, o exercício protegido fica com 2 séries', () => {
+    let vistos = 0;
+    for (const v of grade.filter((x) => x.perfil.minutosSessao === 30))
+      for (const x of ok(v.perfil, v.inv).dias.flatMap((d) => d.exercicios))
+        if (x.porque.some((q) => q.regraId === 'tempo.musculo-protegido')) {
+          vistos++;
+          expect(seriesDeVolume(x), `${v.nome}: ${x.exId}`).toBe(2);
+        }
+    expect(vistos).toBeGreaterThan(0);
+  });
+  it('o corte de tempo não tira a coxa da faixa: a flexão de joelho não perde séries que a levariam abaixo de metade do quadríceps', () => {
+    const x = (exId: string, series: number): ExercicioPrescrito => {
+      const e = POR_ID[exId]!;
+      return { exId, nome: e.nome, padrao: e.padrao, tipo: e.tipo, series, reps: e.faixaReps, rir: [1, 2], descansoSeg: 75, unilateral: e.unilateral, animacaoId: e.animacaoId, alternativas: [], porque: [] };
+    };
+    const dias: DiaPrograma[] = [{ id: 'a', nome: 'A', exercicios: [x('agachamento-peso-corpo', 4), x('flexao-joelho-deslizante', 2), x('flexao', 4), x('flexao-fechada', 4)], minutosEstimados: 0 }];
+    dias[0]!.minutosEstimados = minutos(dias[0]!.exercicios);
+    const metas = { quadriceps: 4, posteriores: 2, peito: 4, triceps: 4 } as Partial<Record<Musculo, number>>;
+    const out = cortarTempo(dias, 10, metas, 'intermediario', new Set(), [], () => false);
+    const v = volumePorMusculo(out.flatMap((d) => d.exercicios.map((y) => ({ ex: POR_ID[y.exId]!, series: seriesDeVolume(y) }))));
+    expect(out[0]!.exercicios.some((y) => y.exId === 'flexao-joelho-deslizante')).toBe(true);
+    expect((v.quadriceps ?? 0) / (v.posteriores ?? 1)).toBeLessThanOrEqual(VOLUME.coxa[1]);
+  });
+});
