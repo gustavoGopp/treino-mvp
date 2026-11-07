@@ -1,0 +1,73 @@
+{
+  "id": "abdominal-invertido",
+  "name": "Abdominal invertido no chão",
+  "short": "Abdominal invertido",
+  "target": "Abdômen (reto do abdômen)",
+  "feel": "Barriga, principalmente a parte de baixo, perto do quadril.",
+  "feelNote": "Sentir a frente do quadril trabalhar também é normal. Dor na lombar não é: diminua a amplitude e, se continuar, pare e procure avaliação.",
+  "setupEq": [
+    "Nenhum equipamento: um colchonete ou um tapete no chão."
+  ],
+  "setupBody": [
+    "Deitado de costas, braços no chão ao lado do corpo, palmas para baixo.",
+    "Quadril e joelhos dobrados a ~90°: coxas na vertical, canelas paralelas ao chão.",
+    "Cabeça e parte de cima das costas apoiadas no chão."
+  ],
+  "exec": [
+    [
+      "hold",
+      "Deitado",
+      "Coxas na vertical, joelhos a ~90°."
+    ],
+    [
+      "conc",
+      "Subida (concêntrica)",
+      "~1 s. Enrole a pelve em direção ao peito, tirando o quadril do chão."
+    ],
+    [
+      "hold",
+      "Topo",
+      "Segure 1 s com a pelve enrolada."
+    ],
+    [
+      "ecc",
+      "Descida (excêntrica)",
+      "~2 s, até o quadril voltar ao chão, sem deixar as pernas caírem."
+    ]
+  ],
+  "range": [
+    "Início: quadril no chão, coxas na vertical.",
+    "Fim: o quadril sai do chão e os joelhos chegam perto do peito; as costas de cima continuam no chão.",
+    "Quem sobe é a pelve, não só as pernas."
+  ],
+  "breath": "Solte o ar enrolando, inspire descendo.",
+  "cues": [
+    "Enrola a pelve.",
+    "Joelhos parados a 90°.",
+    "Desce devagar."
+  ],
+  "check": [
+    "Braços no chão",
+    "Joelhos a ~90°",
+    "O quadril sai do chão",
+    "Costas de cima no chão",
+    "Sem embalo"
+  ],
+  "vary": "Fica fácil? Desça em 3 s; depois, segure 2 s lá em cima.",
+  "extLabels": [
+    "deitado",
+    "pelve enrolada"
+  ],
+  "errors": [
+    {
+      "id": "pernas",
+      "title": "Só trazer as pernas",
+      "desc": "Se o quadril não sai do chão, só a frente da coxa trabalha. O abdômen trabalha quando a pelve enrola."
+    },
+    {
+      "id": "balanco",
+      "title": "Embalar as pernas",
+      "desc": "Baixar as pernas e jogá-las para cima dá impulso e leva o peso para o pescoço. Joelhos parados a 90°, e o movimento sai da barriga."
+    }
+  ]
+}
