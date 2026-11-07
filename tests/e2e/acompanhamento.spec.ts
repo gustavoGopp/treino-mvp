@@ -132,7 +132,6 @@ test('abre "a sua semana" pela faixa do Seu treino: treinos, séries por múscul
   ]);
   const faixa = page.getByRole('link', { name: /A sua semana/ });
   await expect(faixa).toContainText('2 de 3');
-  await expect(faixa).toContainText('2 de 3 treinos. Se der, o Corpo todo C cabe até domingo.');
   await print(page, 'faixa');
   await semToquePequeno(page);
   await faixa.click();
@@ -140,6 +139,8 @@ test('abre "a sua semana" pela faixa do Seu treino: treinos, séries por múscul
   await expect(page.getByRole('heading', { name: 'A sua semana' })).toBeVisible();
   await expect(page.getByText('02/11 a 08/11, em qualquer local')).toBeVisible();
   await expect(page.getByRole('heading', { name: /2 de 3 treinos/ })).toBeVisible();
+  // lote 4 do redesign: a frase saiu da faixa do início e fica aqui
+  await expect(page.getByText('2 de 3 treinos. Se der, o Corpo todo C cabe até domingo.')).toBeVisible();
   const musculos = page.getByRole('list', { name: 'Séries efetivas por músculo nesta semana' });
   await expect(musculos).toBeVisible();
   await expect(musculos.getByRole('listitem').first()).toBeVisible();
@@ -148,7 +149,8 @@ test('abre "a sua semana" pela faixa do Seu treino: treinos, séries por múscul
   const cores = await musculos.locator('.m-barra i').evaluateAll((els) => els.map((e) => getComputedStyle(e).backgroundColor));
   expect(cores.every((c) => c === cores[0])).toBe(true);
   // Semanas de 19/10 (3 treinos), 26/10 (nenhum) e a de hoje (2): 2 de 3, sem sequência que zera.
-  await expect(page.getByRole('heading', { name: '2 semanas com treino nas últimas 3' })).toBeVisible();
+  await expect(page.getByRole('heading', { name: 'Últimas 3 semanas' })).toBeVisible();
+  await expect(page.getByText('2 das últimas 3 semanas com treino.')).toBeVisible();
   await print(page, 'semana');
   await semToquePequeno(page);
 });
@@ -172,6 +174,29 @@ test('vê a evolução de um exercício: a melhor série de cada treino, com "re
   await expect(page.getByText(/estimad|carga máxima/i)).toHaveCount(0);
   await print(page, 'evolucao');
   await semToquePequeno(page);
+});
+
+test('lote 4: o recorde do treino aparece em "O que mudou hoje" e em "O que subiu nesta semana", e leva à evolução', async ({ page }) => {
+  // Semana de 02/11: supino 8 kg × 10 na segunda e 8 kg × 12 na terça (recorde).
+  await comHistorico(page, [
+    { dia: 0, quando: '2026-11-02T13:00:00.000Z', series: { 'supino-reto': [[8, 10], [8, 9]] } },
+    { dia: 2, quando: '2026-11-03T13:00:00.000Z', series: { 'supino-reto': [[8, 12], [8, 10]] } },
+  ]);
+  // o fim do treino mostra a última sessão
+  await page.goto('/treino/fim');
+  const mudou = page.getByRole('region', { name: 'O que mudou hoje' });
+  await expect(mudou).toContainText('2 de 3');
+  await expect(mudou.getByRole('list', { name: 'Recordes de hoje' })).toContainText(/recorde\s*Supino reto com halteres:\s*8 kg × 12/);
+  await semToquePequeno(page);
+
+  await page.goto('/semana');
+  const subiu = page.getByRole('region', { name: 'O que subiu nesta semana' });
+  await expect(subiu).toContainText('Supino reto com halteres');
+  await expect(subiu).toContainText('recorde');
+  await semToquePequeno(page);
+  await subiu.getByRole('link', { name: /Supino reto com halteres/ }).click();
+  await expect(page.getByRole('heading', { name: 'Supino reto com halteres' })).toBeVisible();
+  await expect(page.getByText(/Começou com 8 kg × 10/)).toBeVisible();
 });
 
 test('com o sinal, recebe a sugestão da semana leve: o toque "hoje foi" no fim do treino, sem nada marcado', async ({ page }) => {

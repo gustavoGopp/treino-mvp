@@ -797,3 +797,15 @@ button.cartao-ex-corpo:focus-visible{outline:3px solid var(--foco);outline-offse
 .lista-proxima li:last-child{border-bottom:0}
 .lista-proxima li > span{font-size:var(--t-apoio);color:var(--muted)}
 .lista-proxima .acao{font-size:var(--t-apoio)}
+
+/* Lote 4: a semana. O traço tracejado marca a meta na barra de cada músculo; "O que subiu" leva à evolução. */
+.m-barra{position:relative;overflow:visible}
+.m-barra u{position:absolute;top:-4px;bottom:-4px;width:0;border-left:2px dashed var(--ink);text-decoration:none}
+.lista-subiu{list-style:none;margin:0;padding:0;background:var(--surface);border-radius:var(--r2);overflow:hidden}
+.lista-subiu li{border-bottom:1px solid var(--line)}
+.lista-subiu li:last-child{border-bottom:0}
+.lista-subiu a{display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:3.5rem;padding:8px 16px;color:var(--ink) !important;text-decoration:none}
+.lista-subiu a > span:first-child{display:flex;flex-direction:column;min-width:0}
+.lista-subiu a .num{font-size:var(--t-apoio);color:var(--muted)}
+.lista-subiu a:focus-visible{outline:3px solid var(--foco);outline-offset:-3px}
+.resumo-evolucao{margin:0;background:var(--accent-soft);border-radius:var(--r2);padding:12px 16px;font-size:var(--t-corpo);color:var(--ink)}
