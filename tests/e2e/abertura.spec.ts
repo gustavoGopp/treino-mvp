@@ -4,8 +4,8 @@ import { semContrasteBaixo } from './contraste';
 import { ana } from './jornada';
 import { semToquePequeno } from './toque';
 
-// R5c, abrir para família e amigos: a tela de erro com saída, a última cópia, o armazenamento negado, os termos
-// e o aviso de instalar no iPhone. A caixa de consentimento da foto está em foto.spec.ts.
+// R5c, abrir para família e amigos: a tela de erro com saída, a última cópia, o armazenamento negado, os termos,
+// o aviso de instalar no iPhone e o "Como ler o seu treino". A caixa de consentimento da foto está em foto.spec.ts.
 
 async function conferir(page: Page) {
   await semToquePequeno(page);
@@ -77,6 +77,16 @@ test('boas-vindas: o texto da foto diz para onde ela vai e há link para os term
   await expect(page.getByRole('heading', { name: 'Termos de uso e privacidade' })).toBeVisible();
   await page.getByRole('link', { name: 'Início' }).click();
   await expect(page.getByRole('button', { name: 'Entendi, vamos começar' })).toBeVisible();
+});
+
+test('"Como ler o seu treino" vem aberto antes do 1º treino', async ({ page }) => {
+  await ana(page);
+  const comoLer = page.locator('details.como-ler');
+  await expect(comoLer).toHaveAttribute('open', '');
+  await expect(comoLer.getByText('Série', { exact: true })).toBeVisible();
+  await expect(comoLer.getByText('RIR', { exact: true })).toBeVisible();
+  // A Ana é iniciante: a linha da fase de aprendizado aparece.
+  await expect(comoLer.getByText('As primeiras semanas')).toBeVisible();
 });
 
 test.describe('iPhone no Safari, sem instalar', () => {

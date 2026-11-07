@@ -14,6 +14,7 @@ import { Preferencias } from './Prefiro';
 import { agoraIso, comProgramaNovo, fusoDoAparelho, gerarDoEstado, mesmoConteudo, useApp } from '../app/estado';
 import { AvisoInstalar, LembreteCopia } from '../app/avisos';
 import { NavInferior, Selo, Titulo, Topo } from '../app/ui';
+import { ComoLer } from './ComoLer';
 import { Miniatura } from './Miniatura';
 import { FaixaSemana } from '../acompanhamento/Semana';
 import { SemanaLeve } from '../acompanhamento/SemanaLeve';
@@ -220,6 +221,8 @@ export function Programa() {
             Treina em mais de um lugar? Cadastre outro local
           </Link>
         )}
+
+        <ComoLer aberto={!estado.historico.some((h) => h.fim)} iniciante={perfil!.nivel === 'iniciante'} />
 
         <div className="abas" role="tablist" aria-label="Dias de treino">
           {diasDaSemana.map((d, i) => (
