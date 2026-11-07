@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest';
-import { avaliar, type Achado } from '../../src/domain/avaliador';
+import { avaliar, avisadoPeloGerador as avisado } from '../../src/domain/avaliador';
 import { ARTICULACOES } from '../../src/domain/biblioteca';
-import { gerarPrograma, musculosDoAviso, type Perfil, type Programa } from '../../src/domain/gerador';
+import { gerarPrograma, type Perfil } from '../../src/domain/gerador';
 import { respostasNenhuma } from '../../src/domain/triagem';
 import { gradeReduzida } from '../../scripts/auditoria/grade-reduzida';
 import { PERSONAS } from '../personas';
@@ -9,12 +9,6 @@ import { PERSONAS } from '../personas';
 // O avaliador como régua do gerador (R5b): nenhum programa gerado tem achado de segurança nem alerta, e todo
 // "ajustar" que o avaliador acha o gerador também avisa (com o fato e o próximo passo). O aceite: "está bom" ou só
 // "limite" em 80% ou mais da grade reduzida (docs/revisoes/r5b/medidas.md).
-
-/** O aviso do gerador que cobre o achado: a mesma regra; nas metas, um aviso que cita cada músculo. */
-function avisado(a: Achado, p: Programa): boolean {
-  if (a.tipo.startsWith('meta-')) return a.musculos.every((m) => p.avisos.some((x) => musculosDoAviso(x).includes(m)));
-  return p.avisos.some((x) => x.regraId === a.regraId);
-}
 
 const gerados = [...gradeReduzida()].map((c) => {
   const g = gerarPrograma(c.perfil, c.inventario);

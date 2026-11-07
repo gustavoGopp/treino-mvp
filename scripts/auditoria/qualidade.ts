@@ -15,6 +15,7 @@ import { spawn } from 'node:child_process';
 import { mkdirSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
 import { availableParallelism, tmpdir } from 'node:os';
 import { join } from 'node:path';
+import { avaliar, avisadoPeloGerador } from '../../src/domain/avaliador';
 import { ARTICULACOES, POR_ID, type Musculo } from '../../src/domain/biblioteca';
 import { ehAvisoDeMeta, musculosDoAviso, contextoDeSelecao, gerarPrograma, GRUPOS, MUSCULOS_COM_META, NOME_MUSCULO, type Grupo, type Perfil, type Programa } from '../../src/domain/gerador';
 import { DIVISOES, OPCOES_POR_DIAS, type DiasSemana, type DivisaoId, type Vaga } from '../../src/domain/gerador/divisoes';
@@ -119,8 +120,12 @@ type Acc = {
   avisosPorCenario: Contagem;
   /** Os piores casos de cada tipo: por cenário, o pior (pelo valor e depois pelo índice); o relatório mostra os 10 piores cenários. */
   piores: Record<string, Record<string, Pior>>;
+  /** O avaliador (R5b): por recorte ("todos", "nivel|x", "minutos|x", "dor|com/sem", "comum|sim/não"), os vereditos e os ajustar sem aviso. */
+  avaliador: Record<string, { programas: number; bom: number; limite: number; ajustar: number; bloqueado: number; semAviso: number }>;
+  /** Achados do avaliador: "gravidade regraId tipo" → programas com o achado (uma vez por programa). */
+  achados: Contagem;
 };
-const novo = (): Acc => ({ programas: 0, bloqueados: 0, dias: 0, contagem: {}, exemplos: {}, exerciciosPorDia: {}, usoPorPrograma: {}, volume: {}, fatia: {}, competem: {}, distintos: {}, monotonia: {}, vagas: {}, vagasDoDia: {}, avisos: {}, avisosPorCenario: {}, piores: {} });
+const novo = (): Acc => ({ programas: 0, bloqueados: 0, dias: 0, contagem: {}, exemplos: {}, exerciciosPorDia: {}, usoPorPrograma: {}, volume: {}, fatia: {}, competem: {}, distintos: {}, monotonia: {}, vagas: {}, vagasDoDia: {}, avisos: {}, avisosPorCenario: {}, piores: {}, avaliador: {}, achados: {} });
 const A = novo();
 const inc = (c: Contagem, k: string, n = 1) => (c[k] = (c[k] ?? 0) + n);
 const hist = (h: Hist, k: string, v: number | string) => inc((h[k] ??= {}), String(v));
@@ -290,6 +295,20 @@ function medir(c: CasoQ) {
     vd.foraPorMinutos += Math.max(0, comExercicio - base);
   });
 
+  // O avaliador (R5b): o veredito, os achados e o que ele pede para ajustar sem o gerador avisar.
+  const av = avaliar(p, pf, inv);
+  const semAviso = av.achados.filter((x) => x.gravidade === 'ajustar' && !avisadoPeloGerador(x, p));
+  for (const k of ['todos', `nivel|${nivel}`, `minutos|${caso.minutos}`, `dor|${semDor ? 'sem' : 'com'}`, `comum|${c.caso.cenario.comum ? 'sim' : 'nao'}`]) {
+    const q = (A.avaliador[k] ??= { programas: 0, bom: 0, limite: 0, ajustar: 0, bloqueado: 0, semAviso: 0 });
+    q.programas++;
+    q[av.veredito]++;
+    if (semAviso.length) q.semAviso++;
+  }
+  for (const k of new Set(av.achados.map((x) => `${x.gravidade} ${x.regraId} ${x.tipo.split(':')[0]}`))) inc(A.achados, k);
+  if (av.veredito === 'bloqueado') problema('avaliador.seguranca', c, p, av.achados.filter((x) => x.gravidade === 'seguranca').map((x) => x.texto).join(' '));
+  if (av.achados.some((x) => x.gravidade === 'alerta')) problema('avaliador.alerta', c, p, av.achados.filter((x) => x.gravidade === 'alerta').map((x) => x.texto).join(' '));
+  if (semAviso.length) problema('avaliador.ajustar-sem-aviso', c, p, semAviso.map((x) => x.texto).join(' '));
+
   // Avisos
   for (const id of new Set(p.avisos.map((a) => a.regraId))) {
     inc(A.avisos, id);
@@ -341,6 +360,11 @@ function somar(a: Acc, b: Acc) {
   }
   for (const [k, n] of Object.entries(b.avisos)) inc(a.avisos, k, n);
   for (const [k, n] of Object.entries(b.avisosPorCenario)) inc(a.avisosPorCenario, k, n);
+  for (const [k, v] of Object.entries(b.avaliador)) {
+    const x = (a.avaliador[k] ??= { programas: 0, bom: 0, limite: 0, ajustar: 0, bloqueado: 0, semAviso: 0 });
+    for (const f of Object.keys(x) as (keyof typeof x)[]) x[f] += v[f];
+  }
+  for (const [k, n] of Object.entries(b.achados)) inc(a.achados, k, n);
   for (const [id, porCen] of Object.entries(b.piores)) {
     const alvo = (a.piores[id] ??= {});
     for (const [cid, x] of Object.entries(porCen)) if (!alvo[cid] || melhorQue(x, alvo[cid])) alvo[cid] = x;
@@ -450,6 +474,8 @@ async function main() {
     vagasDoDia: acc.vagasDoDia,
     avisos: acc.avisos,
     avisosPorCenario: acc.avisosPorCenario,
+    avaliador: acc.avaliador,
+    achados: acc.achados,
     piores: Object.fromEntries(
       Object.entries(acc.piores).map(([id, porCen]) => [
         id,
@@ -605,6 +631,30 @@ async function main() {
       const m = (x: number) => virg(Math.round((10 * x) / vd.programas) / 10);
       linha(c.id, nivel, m(vd.vagas), m(vd.comExercicio), m(eq), m(dor), m(vd.foraPorMinutos), porFuncao.filter((x) => x.eq).map((x) => `${x.f} (${m(x.eq)})`).join(', ') || '—');
     }
+
+  L.push(
+    '',
+    '## O avaliador (R5b)',
+    '',
+    'O avaliador de programas (`src/domain/avaliador`) aplicado a cada programa gerado. "Está bom": nenhum achado além de informação. "Só limite": o que falta, o equipamento, a dor ou os dias e minutos não permitem. "Ajustar": dá para mudar com o que a pessoa tem. "Sem aviso": algum "ajustar" que o gerador não avisa (a régua pede 0). Gravidades e regras em `avaliador.gravidade`.',
+    '',
+  );
+  linha('recorte', 'programas', 'está bom', 'só limite', 'bom ou limite', 'ajustar', 'bloqueado', 'ajustar sem aviso');
+  linha('---', '---:', '---:', '---:', '---:', '---:', '---:', '---:');
+  const recortes = ['todos', 'comum|sim', 'comum|nao', 'dor|sem', 'dor|com', ...['iniciante', 'intermediario', 'avancado'].map((x) => `nivel|${x}`), ...MINUTOS_Q.map((x) => `minutos|${x}`)];
+  for (const k of recortes) {
+    const q = acc.avaliador[k];
+    if (!q) continue;
+    linha(k === 'todos' ? '**todos**' : k.replace('|', ': ').replace('comum: sim', 'cenários comuns').replace('comum: nao', 'outros cenários'), n(q.programas), pv(q.bom, q.programas), pv(q.limite, q.programas), pv(q.bom + q.limite, q.programas), pv(q.ajustar, q.programas), pv(q.bloqueado, q.programas), pv(q.semAviso, q.programas));
+  }
+  L.push('', '### Achados do avaliador', '', '% dos programas com cada achado (gravidade, regra e tipo; uma vez por programa).', '');
+  linha('gravidade', 'regra', 'tipo', 'programas', '%');
+  linha('---', '---', '---', '---:', '---:');
+  const ordemG = ['seguranca', 'alerta', 'ajustar', 'limite', 'info'];
+  for (const [k, q] of Object.entries(acc.achados).sort((a, b) => ordemG.indexOf(a[0].split(' ')[0]!) - ordemG.indexOf(b[0].split(' ')[0]!) || b[1] - a[1] || a[0].localeCompare(b[0]))) {
+    const [g, regra, tipo] = k.split(' ');
+    linha(g!, `\`${regra}\``, tipo!, n(q), pv(q, acc.programas));
+  }
 
   L.push('', '## Avisos', '', '% dos programas com cada aviso (uma vez por programa, mesmo que repetido).', '');
   linha('regra', 'programas', '%');

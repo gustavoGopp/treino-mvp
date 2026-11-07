@@ -6,6 +6,7 @@ import {
   metasDoPerfil,
   minutos,
   MUSCULOS_COM_META,
+  musculosDoAviso,
   NOME_MUSCULO_CURTO,
   GRUPOS,
   prescrever,
@@ -699,6 +700,15 @@ export function avisosDoAvaliador(a: Avaliacao, perfil: Pick<Perfil, 'diasSemana
               : `Mais empurrar que puxar: ${x.itens[0]} séries por semana.`;
       return { regraId: x.regraId, texto: `${fato} ${rotina}` };
     });
+}
+
+/**
+ * O programa gerado já avisa este achado? A mesma regra; nas metas, um aviso que cita cada músculo. É a régua do R5b:
+ * nenhum "ajustar" que o gerador não avise (testes e auditoria).
+ */
+export function avisadoPeloGerador(a: Achado, programa: { avisos: { regraId: string; texto: string }[] }): boolean {
+  if (a.tipo.startsWith('meta-')) return a.musculos.every((m) => programa.avisos.some((x) => musculosDoAviso(x).includes(m)));
+  return programa.avisos.some((x) => x.regraId === a.regraId);
 }
 
 const NOME_GRAVIDADE: Record<Gravidade, string> = { seguranca: 'SEGURANÇA', alerta: 'ALERTA', ajustar: 'AJUSTAR', limite: 'LIMITE', info: 'info' };
