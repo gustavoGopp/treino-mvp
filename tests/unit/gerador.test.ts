@@ -639,7 +639,12 @@ describe('a vaga sem exercício possível (selecao.vaga-sem-equipamento; tempo.s
   });
   it('só barra fixa (o Fábio): a vaga vazia de puxar horizontal recebe a outra pegada, e as costas chegam ao alvo do intermediário', () => {
     const p = ok(fabio.perfil, fabio.inventario);
-    for (const d of p.dias.filter((x) => /Superior/.test(x.nome))) expect(d.exercicios.map((x) => x.exId)).toEqual(expect.arrayContaining(['barra-fixa', 'barra-fixa-supinada']));
+    // Desde o R5-CL (07/11/2026), a 2ª puxada pode ser a barra só na descida (selecao.barra-negativa).
+    for (const d of p.dias.filter((x) => /Superior/.test(x.nome))) {
+      const ids = d.exercicios.map((x) => x.exId);
+      expect(ids).toContain('barra-fixa');
+      expect(ids.some((id) => id === 'barra-fixa-supinada' || id === 'barra-fixa-negativa'), d.nome).toBe(true);
+    }
     expect(p.volumeSemanal.costas).toBeGreaterThanOrEqual(VOLUME.alvo.intermediario);
   });
   it('divisao.sem-puxar: sem nada e 6 dias, vale o Corpo todo 6x, e nenhum dia fica com menos de 4 exercícios em 60 min', () => {

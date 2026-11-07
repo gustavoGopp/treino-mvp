@@ -1,0 +1,60 @@
+{
+  "id": "barra-fixa-negativa",
+  "name": "Barra fixa só na descida (negativa)",
+  "short": "Barra negativa",
+  "target": "Costas; ajudam o bíceps e o ombro de trás",
+  "setupEq": [
+    "A barra fixa e um banco, degrau ou caixa firme embaixo dela para chegar ao alto sem pular."
+  ],
+  "setupBody": [
+    "Suba no apoio e segure a barra com as mãos um pouco mais abertas que os ombros, palmas para a frente.",
+    "Comece em cima: queixo acima da barra, cotovelos dobrados, peito perto da barra."
+  ],
+  "exec": [
+    [
+      "hold",
+      "Em cima",
+      "Tire os pés do apoio, segurando com o queixo acima da barra."
+    ],
+    [
+      "ecc",
+      "Descida",
+      "3 a 5 s, controlando, até os braços estenderem."
+    ],
+    [
+      "hold",
+      "Volta",
+      "Ponha os pés no apoio e suba de novo pelo apoio, não pela barra. Cada descida conta 1 repetição."
+    ]
+  ],
+  "range": [
+    "Em cima: queixo acima da barra.",
+    "Embaixo: braços estendidos."
+  ],
+  "cues": [
+    "Suba pelo apoio.",
+    "Desça devagar.",
+    "Ombros longe das orelhas."
+  ],
+  "errors": [
+    {
+      "id": "solta",
+      "title": "Soltar o corpo",
+      "desc": "A descida vira uma queda e o ombro leva um tranco. Desça em 3 a 5 s, até o fim."
+    },
+    {
+      "id": "pula",
+      "title": "Pular para chegar ao alto",
+      "desc": "O salto pode tirar a pegada. Suba pelo banco ou degrau."
+    },
+    {
+      "id": "curta",
+      "title": "Parar no meio",
+      "desc": "A descida para antes dos braços estenderem. Desça até o fim."
+    }
+  ],
+  "montagem": [
+    "A barra bem presa (a de porta, encaixada e testada com o peso do corpo antes). Um banco, degrau ou caixa firme embaixo: nunca uma cadeira com rodinhas ou giratória."
+  ],
+  "carga": "Peso do corpo, pela escada própria. No topo da escada, passe para a barra fixa. Comece com poucas séries: a descida nova costuma dar dor muscular nos primeiros dias."
+}

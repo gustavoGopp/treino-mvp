@@ -1,0 +1,62 @@
+{
+  "id": "triceps-elastico-alto",
+  "name": "Tríceps com elástico preso no alto, como na polia",
+  "short": "Tríceps elástico no alto",
+  "target": "Tríceps (atrás do braço)",
+  "setupEq": [
+    "Um elástico e um ponto alto e firme: a âncora de porta do próprio elástico (do fabricante) ou a barra fixa."
+  ],
+  "setupBody": [
+    "De frente para o ponto alto, uma ponta do elástico em cada mão.",
+    "Cotovelos colados ao corpo, dobrados, mãos na altura do peito.",
+    "Tronco levemente inclinado à frente."
+  ],
+  "exec": [
+    [
+      "conc",
+      "Extensão",
+      "~1 s. Empurre as mãos para baixo, até os braços estenderem."
+    ],
+    [
+      "hold",
+      "Embaixo",
+      "Pausa curta, cotovelos parados."
+    ],
+    [
+      "ecc",
+      "Volta",
+      "~2 s, até as mãos voltarem à altura do peito."
+    ]
+  ],
+  "range": [
+    "Em cima: mãos na altura do peito.",
+    "Embaixo: braços estendidos."
+  ],
+  "cues": [
+    "Cotovelos colados.",
+    "Só o cotovelo mexe.",
+    "Teste o ponto antes."
+  ],
+  "errors": [
+    {
+      "id": "cotovelos",
+      "title": "Cotovelos soltos",
+      "desc": "Os cotovelos vão para a frente e o ombro ajuda. Cotovelos colados ao corpo."
+    },
+    {
+      "id": "tronco",
+      "title": "Jogar o tronco",
+      "desc": "O corpo dobra para empurrar. Tronco parado."
+    },
+    {
+      "id": "ancora",
+      "title": "Não testar o ponto alto",
+      "desc": "Se o elástico soltar lá em cima, volta no rosto. Puxe forte uma vez antes da série."
+    }
+  ],
+  "montagem": [
+    "Só a âncora de porta do fabricante do elástico, com a porta fechada e trancada do lado oposto ao seu, ou a barra fixa. Puxe forte uma vez antes da série para testar.",
+    "Antes da série, confira se o elástico tem rachaduras ou está ressecado; pise com o pé inteiro sobre ele. Um elástico que escapa volta no rosto."
+  ],
+  "carga": "Registre a intensidade do elástico. Ela sobe pelas intensidades que você tem; em cada uma, primeiro mais esticado e depois com descida de 3 s."
+}

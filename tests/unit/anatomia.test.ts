@@ -12,7 +12,7 @@ describe('músculos da biblioteca (revisão de anatomia)', () => {
     // Plotkin 2023 (PMID 37877099; um estudo): no hip thrust os posteriores quase não cresceram. A ponte e os coices
     // têm o joelho dobrado como o hip thrust (os coices, por analogia: opinião aprovada pelo Gustavo).
     const extensao = BIBLIOTECA.filter((e) => e.padrao === 'extensao-quadril');
-    expect(extensao.map((e) => e.id).sort()).toEqual(['coice-maquina', 'coice-polia', 'hip-thrust', 'ponte-gluteo', 'ponte-gluteo-halter', 'ponte-kettlebell', 'ponte-pes-bola']);
+    expect(extensao.map((e) => e.id).sort()).toEqual(['coice-elastico', 'coice-maquina', 'coice-polia', 'hip-thrust', 'ponte-gluteo', 'ponte-gluteo-halter', 'ponte-kettlebell', 'ponte-pes-bola']);
     for (const e of extensao) {
       expect(e.musculos.primarios, e.id).not.toContain('posteriores');
       expect(e.musculos.secundarios, e.id).not.toContain('posteriores');
@@ -28,7 +28,7 @@ describe('músculos da biblioteca (revisão de anatomia)', () => {
       if (e.id.startsWith('face-pull')) expect(e.musculos.secundarios, e.id).toContain('costas');
       else expect(e.musculos.secundarios, e.id).not.toContain('costas');
     }
-    expect(posterior.filter((e) => !e.id.startsWith('face-pull')).map((e) => e.id).sort()).toEqual(['abertura-t-deitado', 'crucifixo-inverso', 'crucifixo-invertido-curvado', 'crucifixo-invertido-polia', 'crucifixo-invertido-sentado', 'voador-invertido', 'yt-suspensao']);
+    expect(posterior.filter((e) => !e.id.startsWith('face-pull')).map((e) => e.id).sort()).toEqual(['abertura-elastico', 'abertura-t-deitado', 'crucifixo-inverso', 'crucifixo-invertido-curvado', 'crucifixo-invertido-polia', 'crucifixo-invertido-sentado', 'voador-invertido', 'yt-suspensao']);
   });
 
   it('achado 6: todo agachar e todo afundo contam os adutores como secundário', () => {

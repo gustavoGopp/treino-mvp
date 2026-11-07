@@ -1,0 +1,61 @@
+{
+  "id": "abducao-elastico",
+  "name": "Abdução de quadril em pé com elástico preso sob o outro pé",
+  "short": "Abdução em pé elástico",
+  "target": "Glúteos (médio e parte de cima)",
+  "setupEq": [
+    "Um elástico em laço, ou longo com um nó, e uma parede para a mão."
+  ],
+  "setupBody": [
+    "Em pé, de lado para a parede, a mão de dentro nela.",
+    "O elástico preso sob o pé de dentro (pé inteiro) e em volta do tornozelo de fora.",
+    "Tronco reto, a perna de fora estendida."
+  ],
+  "exec": [
+    [
+      "conc",
+      "Abertura",
+      "~1 s. Leve a perna de fora para o lado, estendida, com os dedos para a frente."
+    ],
+    [
+      "hold",
+      "Aberto",
+      "Pausa curta, tronco reto."
+    ],
+    [
+      "ecc",
+      "Volta",
+      "~2 s, até a perna quase encostar na outra. Termine um lado e troque."
+    ]
+  ],
+  "range": [
+    "Início: pernas juntas.",
+    "Fim: perna aberta para o lado, sem o tronco inclinar."
+  ],
+  "cues": [
+    "Tronco reto.",
+    "Dedos para a frente.",
+    "A mão só equilibra."
+  ],
+  "errors": [
+    {
+      "id": "inclina",
+      "title": "Inclinar o tronco",
+      "desc": "O tronco cai para o lado e a perna sobe mais, sem o glúteo. Tronco reto."
+    },
+    {
+      "id": "gira",
+      "title": "Girar o pé para fora",
+      "desc": "A frente do quadril assume. Dedos para a frente."
+    },
+    {
+      "id": "embalo",
+      "title": "Balançar a perna",
+      "desc": "O embalo tira o trabalho do glúteo. Abra e volte devagar."
+    }
+  ],
+  "montagem": [
+    "Antes da série, confira se o elástico tem rachaduras ou está ressecado; pise com o pé inteiro sobre ele. Um elástico que escapa volta no rosto."
+  ],
+  "carga": "Registre a intensidade do elástico. Ela sobe pelas intensidades que você tem; em cada uma, primeiro mais esticado e depois com descida de 3 s."
+}

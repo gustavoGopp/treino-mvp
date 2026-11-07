@@ -216,16 +216,16 @@ exports[`snapshots do R2: o treino de cada persona na volta de 30 dias > Diego 1
     "dia": "Corpo todo B",
   },
   {
-    "antes": "semana 6: 15 séries, RIR 2–3 e 1–2, a mesma carga",
+    "antes": "semana 6: 14 séries, RIR 2–3 e 1–2, a mesma carga",
     "cargas": [
       "Flexão de braço: peso do corpo · pés elevados (declinada; sem degrau, cama ou sofá: descida de 4 s) → peso do corpo · descida de 3 s",
       "Barra fixa com pegada supinada: peso do corpo · pausa de 1 s em cima → peso do corpo · descida de 3 s",
       "Afundo estático com o peso do corpo: peso do corpo · pausa de 2 s embaixo → peso do corpo · descida de 3 s",
       "Ponte de glúteo: peso do corpo · ombros no banco, como no hip thrust (sem banco: num sofá firme encostado na parede; sem eles: pausa de 3 s no alto) → peso do corpo · pausa de 2 s no alto",
-      "Elevação lateral com elástico: elástico · mais esticado, com descida de 3 s → elástico · mais esticado (um passo mais longe)",
+      "Elevação lateral unilateral com elástico preso sob o pé do outro lado: elástico · mais esticado, com descida de 3 s → elástico · mais esticado (um passo mais longe)",
       "Abdominal no chão (crunch): peso do corpo · braços acima da cabeça → peso do corpo · descida de 3 s",
     ],
-    "depois": "semana 1 (readaptacao.semana1): 8 séries, RIR 3–4",
+    "depois": "semana 1 (readaptacao.semana1): 7 séries, RIR 3–4",
     "dia": "Corpo todo C",
   },
 ]

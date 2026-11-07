@@ -1,0 +1,60 @@
+{
+  "id": "rosca-martelo-elastico",
+  "name": "Rosca martelo com elástico",
+  "short": "Rosca martelo elástico",
+  "target": "Bíceps (frente do braço) e o braquial",
+  "setupEq": [
+    "Um elástico longo."
+  ],
+  "setupBody": [
+    "Em pé, pise com os dois pés inteiros no meio do elástico.",
+    "Uma ponta em cada mão, palmas uma para a outra (pegada neutra), braços estendidos ao lado do corpo."
+  ],
+  "exec": [
+    [
+      "conc",
+      "Subida",
+      "~1 s. Dobre os cotovelos, levando as mãos em direção aos ombros, sem girar a pegada."
+    ],
+    [
+      "hold",
+      "No alto",
+      "Pausa curta, cotovelos colados ao corpo."
+    ],
+    [
+      "ecc",
+      "Descida",
+      "~2 s, até os braços quase estenderem."
+    ]
+  ],
+  "range": [
+    "Embaixo: braços quase estendidos.",
+    "Em cima: mãos perto dos ombros."
+  ],
+  "cues": [
+    "Pegada neutra.",
+    "Cotovelos colados.",
+    "Pés inteiros no elástico."
+  ],
+  "errors": [
+    {
+      "id": "cotovelos",
+      "title": "Cotovelos para a frente",
+      "desc": "O ombro ajuda a subir. Cotovelos colados ao corpo."
+    },
+    {
+      "id": "tronco",
+      "title": "Balançar o tronco",
+      "desc": "O corpo dá embalo. Fique parado."
+    },
+    {
+      "id": "pe",
+      "title": "Pisar só com a ponta do pé",
+      "desc": "O elástico pode escapar e voltar no rosto. Pise com o pé inteiro."
+    }
+  ],
+  "montagem": [
+    "Antes da série, confira se o elástico tem rachaduras ou está ressecado; pise com o pé inteiro sobre ele. Um elástico que escapa volta no rosto."
+  ],
+  "carga": "Registre a intensidade do elástico. Ela sobe pelas intensidades que você tem; em cada uma, primeiro mais esticado e depois com descida de 3 s."
+}

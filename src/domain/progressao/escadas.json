@@ -197,5 +197,10 @@
   "descida de 3 s",
   "pausa de 2 s no alto",
   "pausa de 2 s no alto com descida de 3 s"
+ ],
+ "barra-fixa-negativa": [
+  "descida de 5 s",
+  "pausa de 2 s em cima e descida de 5 s",
+  "pausa de 2 s em cima e no meio, e descida de 5 s"
  ]
 }

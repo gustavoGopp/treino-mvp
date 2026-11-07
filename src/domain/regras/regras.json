@@ -1023,6 +1023,42 @@
     ]
   },
   {
+    "id": "selecao.elastico-ampliado",
+    "regra": "Biblioteca ampliada, lote de elástico (R5-CL; `docs/pesquisa-v2/17-biblioteca-ampliada.md`, G3, lote 2, e G4): quase todos sem ponto de ancoragem. Remada curvada em pé e remada unilateral sob o pé da frente no nível da remada com elástico (moderada, a força com elástico = convencional: `lopes2019`; um estudo, EMG: `iversen2017`, `isiklar2026`); abertura com o elástico entre as mãos no nível do face pull com elástico (um estudo, EMG: `fukunaga2022`); abdução em pé com o elástico sob o outro pé no nível da abdução com caneleira (um estudo: `macadam2015`); coice em quatro apoios no nível da ponte (um estudo: `selkowitz2013`); elevação lateral unilateral cruzada e rosca martelo no nível dos exercícios com elástico da função (variações; um estudo, EMG: `andersen2010`); tríceps com o elástico preso no alto (só na âncora do fabricante ou na barra fixa, testada antes; consenso) no nível da flexão fechada. **Segurança:** numa série de 11 casos de lesão de olho, em todos o elástico escapou da ancoragem, preso sob ou à frente da pessoa (`ng2022`, um estudo): todo cartão com elástico pede o pé inteiro sobre ele e conferir rachaduras antes da série",
+    "valores": {
+      "iniciante": "os 9",
+      "intermediario": "os 9",
+      "avancado": "os 9"
+    },
+    "selo": "consenso",
+    "fontes": [
+      "lopes2019",
+      "iversen2017",
+      "fukunaga2022",
+      "macadam2015",
+      "selkowitz2013",
+      "andersen2010",
+      "ng2022"
+    ]
+  },
+  {
+    "id": "selecao.barra-negativa",
+    "regra": "Barra fixa só na descida (R5-CL; `docs/pesquisa-v2/17-biblioteca-ampliada.md`, G4; decisão 4 de `g-biblioteca-ampliada.md`): exercício próprio no último nível do puxar vertical, de 3 a 6 descidas de 3 a 5 s, subindo pelo banco ou degrau. Entra como 2ª puxada de quem só tem a barra e como alternativa de quem ainda não faz a barra; no topo da escada, a sugestão é passar para a barra fixa. Só a descida cresce como só a subida (moderada, certeza baixa); quem não faz 1 repetição precisa de um começo (um estudo). Para o iniciante, falta a regressão pelo nível (a barra entra antes da negativa): fica para o marco seguinte",
+    "valores": {
+      "iniciante": "último nível do puxar vertical",
+      "intermediario": "último nível do puxar vertical",
+      "avancado": "último nível do puxar vertical"
+    },
+    "selo": "moderada",
+    "fontes": [
+      "schoenfeld2017",
+      "dasilva2025",
+      "vigouroux2024",
+      "johnson2009",
+      "shabbir2026"
+    ]
+  },
+  {
     "id": "selecao.complementos",
     "regra": "2 exercícios complementares por semana para quadríceps, isquiotibiais, tríceps e peitoral, quando o equipamento permitir (generalizada pela `selecao.exercicios-por-musculo`)",
     "valores": {
