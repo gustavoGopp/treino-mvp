@@ -1527,7 +1527,7 @@
   },
   {
     "id": "equipamento.sem-puxada-vertical",
-    "regra": "Sem barra fixa nem polia alta",
+    "regra": "Sem barra fixa nem polia alta. O aviso diz o que o programa tem de fato (R5-CL, 07/11/2026; `g-biblioteca-ampliada.md`, seção 5, item 4): com a puxada de elástico no programa, diz que a puxada é só com o elástico, e não que as costas treinam \"só com remadas\"",
     "valores": {
       "iniciante": "manter o volume de costas com remadas (invertida > unilateral com halter > puxada com elástico ancorado alto); pullover só como acessório; mostrar aviso de lacuna",
       "intermediario": "manter o volume de costas com remadas (invertida > unilateral com halter > puxada com elástico ancorado alto); pullover só como acessório; mostrar aviso de lacuna",

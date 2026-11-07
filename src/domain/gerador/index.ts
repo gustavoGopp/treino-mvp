@@ -456,12 +456,17 @@ export function gerarPrograma(perfil: Perfil, inventarioOriginal: Inventario): R
       regraId: r('divisao.sem-puxar'),
       texto: `${divisao.nome}: sem exercício de puxar, os dias de puxar ficam com outros músculos. Corpo todo encaixa melhor.`,
     });
-  // Sem puxada vertical: quando ela caiu para uma remada, ou quando só a remada existe (ex.: só a barra longa).
-  if (nivelAbaixo.has('equipamento.sem-puxada-vertical') || (lacunas.has('puxar-vertical') && !semPuxar))
+  // Sem puxada vertical: quando ela caiu para uma remada, ou quando só a remada existe (ex.: só a barra longa). O texto diz
+  // o que o programa tem de fato (R5-CL): com a puxada de elástico no programa, as costas não treinam "só com remadas".
+  if (nivelAbaixo.has('equipamento.sem-puxada-vertical') || (lacunas.has('puxar-vertical') && !semPuxar)) {
+    const puxadaNoPrograma = dias.some((d) => d.itens.some((i) => i.ex.padrao === 'puxar-v'));
     avisos.push({
       regraId: r('equipamento.sem-puxada-vertical'),
-      texto: 'Sem barra fixa nem polia alta: as costas treinam só com remadas.',
+      texto: puxadaNoPrograma
+        ? 'Sem barra fixa nem polia alta: a puxada é só com o elástico, e as costas treinam também com remadas.'
+        : 'Sem barra fixa nem polia alta: as costas treinam só com remadas.',
     });
+  }
   const temMaquinaDePerna = caps.has('leg_press') || caps.has('rack');
   if (!temMaquinaDePerna && halterMax < 20)
     avisos.push({

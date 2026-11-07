@@ -165,3 +165,27 @@ describe('decisões da sessão de fechamento (04/11/2026)', () => {
       expect(p.avisos.filter((a) => a.texto.startsWith('Abaixo da meta') && musculosDoAviso(a).includes(m))).toHaveLength(0);
   });
 });
+
+describe('avisos de lacuna pelo que o programa tem de fato (R5-CL, 07/11/2026)', () => {
+  const avisosDe = (inv: Inventario, nivel: Nivel = 'intermediario') => gerar(perfil(nivel, 'ct-abc'), inv).avisos.map((a) => a.texto).join(' ');
+  it('com a puxada de elástico no programa, o aviso não diz que as costas treinam "só com remadas"', () => {
+    const inv = { elasticos: { intensidades: 3 } } as Inventario;
+    const p = gerar(perfil('intermediario', 'ct-abc'), inv);
+    expect(p.dias.flatMap((d) => d.exercicios).some((x) => x.exId === 'puxada-elastico')).toBe(true);
+    expect(avisosDe(inv)).not.toMatch(/só com remadas/);
+    expect(avisosDe(inv)).toMatch(/a puxada é só com o elástico/);
+  });
+  it('sem nada, o aviso de costas não diz que o ombro de trás fica sem exercício (a abertura em T está no programa)', () => {
+    const p = gerar(perfil('intermediario', 'ct-abc'), {});
+    expect(p.dias.flatMap((d) => d.exercicios).some((x) => x.exId === 'abertura-t-deitado')).toBe(true);
+    expect(avisosDe({})).not.toMatch(/ombro de trás/);
+  });
+  it('em todos os casos da grade, nenhum aviso diz que um músculo fica sem exercício quando o programa tem exercício direto dele', () => {
+    for (const { nome, inv, pf } of casos) {
+      const p = gerar(pf, inv);
+      const diretos = new Set(p.dias.flatMap((d) => d.exercicios.flatMap((x) => POR_ID[x.exId]!.musculos.primarios)));
+      for (const a of p.avisos.filter((x) => /fica(m)? sem exercício|Sem exercício possível/.test(x.texto)))
+        for (const m of musculosDoAviso(a)) expect(diretos.has(m), `${nome}: ${a.texto}`).toBe(false);
+    }
+  });
+});
