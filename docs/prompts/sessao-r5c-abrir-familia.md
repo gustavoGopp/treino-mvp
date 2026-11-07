@@ -1,6 +1,6 @@
 # Prompt: R5c, abrir o app para família e amigos com segurança
 
-> Rascunho escrito na sessão de próximos passos (06/11/2026), a partir de `docs/revisoes/proximos-passos.md` (parte 2, marco R5c) e do relatório `proximos-passos/e-produto.md`. Só vale se o Gustavo escolher este marco. Cole o texto abaixo, a partir de "Você vai conduzir", numa sessão nova.
+> Rascunho escrito na sessão de próximos passos (06/11/2026), a partir de `docs/revisoes/proximos-passos.md` (parte 2, marco R5c) e do relatório `proximos-passos/e-produto.md`. Escolhido em 07/11/2026 (parte 3 de `docs/revisoes/proximos-passos.md`). Cole o texto abaixo, a partir de "Você vai conduzir", numa sessão nova.
 >
 > **Atualização de 07/11/2026 (decisões da parte 3 de `docs/revisoes/proximos-passos.md`):** é o **6º marco** da ordem R5a → R5-CL → R5d → R5-anim → R5b → R5c, conduzida pela sessão de `sessao-desenvolvimento.md`. A triagem continua com as perguntas próprias e a revisão por um CREF continua "de lado" (decisão do Gustavo de 01/11); registre-a no devlog como item a reavaliar antes de abrir o app a desconhecidos (não para família e amigos).
 

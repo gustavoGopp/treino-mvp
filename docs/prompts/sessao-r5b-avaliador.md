@@ -1,6 +1,6 @@
 # Prompt: R5b, o avaliador de programas e o porquê de cada escolha
 
-> Rascunho escrito na sessão de próximos passos (06/11/2026), a partir de `docs/revisoes/proximos-passos.md` (parte 2, marco R5b) e dos relatórios `proximos-passos/b-monte-e-avaliador.md` e `c-fluxo.md`. Só vale se o Gustavo escolher este marco. Cole o texto abaixo, a partir de "Você vai conduzir", numa sessão nova.
+> Rascunho escrito na sessão de próximos passos (06/11/2026), a partir de `docs/revisoes/proximos-passos.md` (parte 2, marco R5b) e dos relatórios `proximos-passos/b-monte-e-avaliador.md` e `c-fluxo.md`. Escolhido em 07/11/2026 (parte 3 de `docs/revisoes/proximos-passos.md`). Cole o texto abaixo, a partir de "Você vai conduzir", numa sessão nova.
 >
 > **Atualização de 07/11/2026 (decisões da parte 3 de `docs/revisoes/proximos-passos.md`):** é o **5º marco** da ordem R5a → R5-CL → R5d → R5-anim → R5b → R5c, conduzida pela sessão de `sessao-desenvolvimento.md`. **Decidido, não pergunte de novo:** o limiar de empurrar ÷ puxar é **1,5** (o mesmo da régua da G5, consenso, `kolber2010`; equivale aos 2/3 do protótipo); a frente × trás da coxa usa **0,5–2** (consenso, `green2018`, a mesma faixa da régua). As 3 correções do gerador vieram no R5a. A régua da G5 já está na auditoria (R5-CL): o avaliador se alinha a ela.
 
@@ -29,7 +29,7 @@ Este marco faz o avaliador de verdade, sem editor, e a explicação do porquê. 
 - Rede liberada (PubMed, PMC, Crossref). Nunca contorne bloqueio anti-robô. Nada de inventar estudo.
 
 **O que fazer, nesta ordem**
-1. **Decisões do Gustavo antes do código** (uma por vez, com o efeito medido no protótipo): o limiar de empurrar × puxar (o protótipo usou 2/3, opinião); se a regra de frente × trás da coxa entra (opinião, sem estudo achado); se a flexão em duas vagas conta como 2 funções do peito.
+1. **As decisões já tomadas (07/11):** o limiar de empurrar ÷ puxar é 1,5 e a coxa usa 0,5–2 (os mesmos da régua da G5). Decida você, com a medida, se a flexão em duas vagas conta como 2 funções do peito, e registre.
 2. **Extrair do gerador** o que o avaliador precisa (`prescrever`, `cabeNoTetoSemanal`), sem mudar a saída: o snapshot das personas igual prova isso.
 3. **O avaliador**: por músculo, séries por semana contra a meta e o piso (meia série indireta), frequência e funções que se complementam; os equilíbrios; o tempo de cada dia; as séries acima do teto; os exercícios que a dor ou o equipamento impedem (isso bloqueia ou alerta forte, pelo princípio de segurança; o resto só orienta). Cada achado com `regraId`, selo e o texto do que ajustar, ou "está bom". Os achados iguais saem agrupados ("5 séries num exercício só" × 21 vira uma linha).
 4. **O avaliador como régua**: um teste de propriedade sobre o gerador (nenhum achado de segurança; nenhum "ajustar" que o gerador não avise) e uma coluna nova na auditoria (`npm run auditoria:qualidade`). Os 4 programas publicados entram como dado de teste, com a fonte de cada um.
