@@ -269,7 +269,7 @@ Todas conferidas no `esummary` de 06/11/2026 (autores, ano, título, periódico 
 | `emanuel2021b` | Emanuel A, Har-Nir I, Rozen Smukas II, Halperin I (2021) | The effect of self-selecting the number of repetitions on motor performance and psychological outcomes | Psychol Res 85(6):2398–2407 | 32778961 / 10.1007/s00426-020-01402-4 | resumo-PubMed |
 | `schwartzh2021` (a chave `schwartz2021` já é o PAR-Q+) | Schwartz H, Emanuel A, Rozen Samukas II, Halperin I (2021) | Exploring the acute affective responses to resistance training: A comparison of the predetermined and the estimated repetitions to failure approaches | PLoS One 16(8):e0256231 | 34407124 / 10.1371/journal.pone.0256231 | resumo-PubMed |
 | `focht2015` | Focht BC, Garver MJ, Cotter JA, et al. (2015) | Affective Responses to Acute Resistance Exercise Performed at Self-Selected and Imposed Loads in Trained Women | J Strength Cond Res 29(11):3067–3074 | 26506060 / 10.1519/JSC.0000000000000985 | resumo-PubMed |
-| `andersen2022` | Andersen V, Fimland MS, Iversen VM, et al. (2022) | A Comparison of Affective Responses Between Time Efficient and Traditional Resistance Training | Front Psychol 13:912368 | 35783742 / 10.3389/fpsyg.2022.912368 | texto completo lido em parte (Europe PMC, PMC9243264: durações, exercícios, preferências) |
+| `andersen2022b` | Andersen V, Fimland MS, Iversen VM, et al. (2022) | A Comparison of Affective Responses Between Time Efficient and Traditional Resistance Training | Front Psychol 13:912368 | 35783742 / 10.3389/fpsyg.2022.912368 | texto completo lido em parte (Europe PMC, PMC9243264: durações, exercícios, preferências) |
 | `myraunet2025` | Myraunet PA, Saeterbakken AH, Andersen V (2025) | A comparison of acute affective responses, physiological measures and training volume between superset and traditional resistance training in untrained adults | Front Sports Act Living 7:1536747 | 39896990 / 10.3389/fspor.2025.1536747 | texto completo lido em parte (Europe PMC, PMC11782152) |
 | `zhai2026` | Zhai R, Yang K, Dai H, et al. (2026) | Fragmented versus traditional resistance training: a randomized controlled trial on muscular strength, endurance, and enjoyment in recreationally trained young adults | J Exerc Sci Fit 24(4):200521 | 42729992 / 10.1016/j.jesf.2026.200521 | resumo-PubMed |
 | `soares2026` | de Souza Soares B, Mohammad J, Cantelmo CE, et al. (2026) | Feelings in the Lift: Comparing Perceptual Responses to Cluster and Traditional Resistance Training Protocols | J Strength Cond Res 40(5):e437–e444 | 41848692 / 10.1519/JSC.0000000000005360 | resumo-PubMed |
@@ -1779,7 +1779,7 @@ Os scripts ficam em `/tmp/claude-0/-home-user-treino-mvp/4613f7ac-a8aa-59f1-871a
 | 34806596 | `baik2022` |
 | 34955319 | `ford2022` |
 | 35391860 | `fukunaga2022` |
-| 35783742 | `andersen2022` |
+| 35783742 | `andersen2022b` |
 | 35790368 | `ariyasu2022` |
 | 36425012 | `adachi2022` |
 | 37169353 | `eather2023` |
