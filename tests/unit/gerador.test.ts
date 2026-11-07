@@ -596,10 +596,10 @@ describe('a vaga sem exercício possível (selecao.vaga-sem-equipamento; tempo.s
           for (const prioridades of [[], ['peito'], ['pernas', 'gluteos']] as Grupo[][])
             casos.push({ nome: `${nomeInv}/${nivel}/${diasSemana}d/${minutosSessao}min/${prioridades.join('+') || '-'}`, perfil: semNada({ nivel, diasSemana, minutosSessao, prioridades }), inv });
 
-  it('sem nada, 3 dias de 60 min: a vaga do tríceps acima da cabeça recebe o complemento de tríceps, e a da extensora outro exercício de quadríceps', () => {
+  it('sem nada, 3 dias de 60 min: a vaga da extensora recebe outro exercício de quadríceps (e, desde o R5-CL, o tríceps acima da cabeça tem exercício próprio)', () => {
     const p = ok(semNada(), {});
     const entraram = p.dias.flatMap((d) => d.exercicios).filter((x) => x.porque.some((q) => q.regraId === 'selecao.vaga-sem-equipamento'));
-    expect(entraram.map((x) => x.funcao)).toEqual(expect.arrayContaining(['triceps-complemento']));
+    expect(ids(p)).toContain('extensao-triceps-peso-corpo');
     expect(entraram.some((x) => ['agachar', 'afundo'].includes(x.funcao!))).toBe(true);
     // O caso do Gustavo (05/11/2026): os dias deixam de ter 4 exercícios e passam a usar o tempo.
     expect(p.dias.map((d) => d.exercicios.length).every((n) => n >= 5)).toBe(true);

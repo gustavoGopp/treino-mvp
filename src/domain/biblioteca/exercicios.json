@@ -4758,5 +4758,209 @@
   ],
   "carga": "halter",
   "animacaoId": "panturrilha-sentada-halter"
+ },
+ {
+  "id": "flexao-pes-elevados",
+  "nome": "Flexão com os pés elevados",
+  "padrao": "empurrar-h",
+  "musculos": {
+   "primarios": [
+    "peito"
+   ],
+   "secundarios": [
+    "triceps",
+    "ombro_anterior"
+   ]
+  },
+  "requer": [
+   [
+    "apoio"
+   ]
+  ],
+  "complexidade": 3,
+  "tipo": "composto",
+  "faixaReps": [
+   8,
+   15
+  ],
+  "unilateral": false,
+  "articulacoes": [
+   "ombro",
+   "cotovelo",
+   "punho"
+  ],
+  "tags": [
+   "peso-corpo"
+  ],
+  "carga": "peso-corpo",
+  "animacaoId": null
+ },
+ {
+  "id": "extensao-triceps-peso-corpo",
+  "nome": "Extensão de tríceps com o peso do corpo",
+  "padrao": "isolador-triceps",
+  "musculos": {
+   "primarios": [
+    "triceps"
+   ],
+   "secundarios": []
+  },
+  "requer": [
+   [
+    "apoio"
+   ]
+  ],
+  "complexidade": 2,
+  "tipo": "isolador",
+  "faixaReps": [
+   10,
+   15
+  ],
+  "unilateral": false,
+  "articulacoes": [
+   "ombro",
+   "cotovelo",
+   "punho"
+  ],
+  "tags": [
+   "acima-cabeca",
+   "peso-corpo"
+  ],
+  "carga": "peso-corpo",
+  "animacaoId": null
+ },
+ {
+  "id": "abertura-t-deitado",
+  "nome": "Abertura em T deitado de bruços, sem carga",
+  "padrao": "isolador-ombro-posterior",
+  "musculos": {
+   "primarios": [
+    "ombro_posterior"
+   ],
+   "secundarios": []
+  },
+  "requer": [
+   [
+    "apoio"
+   ]
+  ],
+  "complexidade": 1,
+  "tipo": "isolador",
+  "faixaReps": [
+   12,
+   20
+  ],
+  "unilateral": false,
+  "articulacoes": [
+   "ombro"
+  ],
+  "tags": [
+   "deitado",
+   "peso-corpo"
+  ],
+  "carga": "peso-corpo",
+  "animacaoId": null
+ },
+ {
+  "id": "panturrilha-degrau",
+  "nome": "Panturrilha no degrau da escada",
+  "padrao": "panturrilha",
+  "musculos": {
+   "primarios": [
+    "panturrilha"
+   ],
+   "secundarios": []
+  },
+  "requer": [
+   [
+    "apoio"
+   ]
+  ],
+  "complexidade": 1,
+  "tipo": "isolador",
+  "faixaReps": [
+   12,
+   20
+  ],
+  "unilateral": false,
+  "articulacoes": [
+   "tornozelo"
+  ],
+  "tags": [
+   "alongado",
+   "montagem",
+   "peso-corpo"
+  ],
+  "carga": "peso-corpo",
+  "animacaoId": null
+ },
+ {
+  "id": "afundo-tras-peso-corpo",
+  "nome": "Afundo para trás com o peso do corpo",
+  "padrao": "afundo",
+  "musculos": {
+   "primarios": [
+    "quadriceps"
+   ],
+   "secundarios": [
+    "gluteos",
+    "adutores"
+   ]
+  },
+  "requer": [
+   [
+    "apoio"
+   ]
+  ],
+  "complexidade": 1,
+  "tipo": "composto",
+  "faixaReps": [
+   10,
+   16
+  ],
+  "unilateral": true,
+  "articulacoes": [
+   "joelho",
+   "quadril"
+  ],
+  "tags": [
+   "unilateral",
+   "peso-corpo"
+  ],
+  "carga": "peso-corpo",
+  "animacaoId": null
+ },
+ {
+  "id": "abdominal-invertido",
+  "nome": "Abdominal invertido no chão",
+  "padrao": "core",
+  "musculos": {
+   "primarios": [
+    "abdomen"
+   ],
+   "secundarios": []
+  },
+  "requer": [
+   [
+    "apoio"
+   ]
+  ],
+  "complexidade": 1,
+  "tipo": "isolador",
+  "faixaReps": [
+   12,
+   20
+  ],
+  "unilateral": false,
+  "articulacoes": [
+   "lombar",
+   "quadril"
+  ],
+  "tags": [
+   "deitado",
+   "peso-corpo"
+  ],
+  "carga": "peso-corpo",
+  "animacaoId": null
  }
 ]

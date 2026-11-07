@@ -967,6 +967,42 @@
     ]
   },
   {
+    "id": "selecao.variacoes-equivalentes",
+    "regra": "Variações equivalentes entram na biblioteca mesmo sem abrir vaga nova (R5-CL, 07/11/2026; `docs/revisoes/proximos-passos/g-biblioteca-ampliada.md`, decisão 1; antes, `pesquisa-v2/11`, B.2.4, recusava o que \"só duplica\"): com mais de uma opção no mesmo nível da função, o desempate por variedade entre os dias (`selecao.funcao-da-vaga`) troca o exercício de um dia para o outro e a troca do dia ganha alternativas. Variar não muda a hipertrofia e melhora um pouco o prazer e a motivação. O desempate continua a preferir a variedade à animação: \"animado primeiro\" fazia o mesmo exercício se repetir havendo opção em 29,5% dos programas (decisão 8). No último dia de uma semana de 3 dias ou mais, entre os equivalentes do mesmo nível, o exercício que já está em todos os outros dias fica por último, antes até da estabilidade do iniciante (`selecao.estabilidade`): é o defeito B1 da régua da G5 (`docs/pesquisa-v2/17-biblioteca-ampliada.md`, tabela 4.7)",
+    "valores": {
+      "iniciante": "variações no mesmo nível da função",
+      "intermediario": "variações no mesmo nível da função",
+      "avancado": "variações no mesmo nível da função"
+    },
+    "selo": "moderada",
+    "fontes": [
+      "bazvalle2019",
+      "kassiano2022",
+      "sylvester2016"
+    ]
+  },
+  {
+    "id": "selecao.corpo-livre-ampliado",
+    "regra": "Biblioteca ampliada, lote de corpo livre (R5-CL; `docs/pesquisa-v2/16-corpo-livre-e-casa.md`): só pedem apoio (chão, parede, bancada, degrau), sem item novo nem carga. Flexão com os pés elevados no nível da flexão (empurrar horizontal e inclinado), complexidade 3, sem prometer \"peito de cima\" (consenso; `ebben2011`, `kikuchi2017`); extensão de tríceps com o peso do corpo como nível novo do tríceps acima da cabeça, depois da suspensão (um estudo, a posição: `maeo2023`, `brandao2020`); abertura em T deitado como último nível do ombro posterior, sem contar como costas (moderada, a ativação do trapézio; consenso, o deltoide: `rabello2024`, `lim2015`, `yu2024`); panturrilha no degrau da escada como nível antes da panturrilha no chão, que fica de alternativa (um estudo: `kinoshita2023`, `kassiano2023b`, `nakamura2025`; o degrau vale como apoio, decisão 3); afundo para trás e abdominal invertido no nível do afundo e do abdominal no chão (variações equivalentes; `kassiano2025`, `escamilla2006b`). As faixas de repetição seguem `reps.faixa.degrau` (a flexão com os pés elevados, 8–15, como a flexão; a abertura em T e o abdominal invertido, 12–20). Ficam fora a rosca sem carga (um estudo só, `counts2016`; a revisão cega mostrou que ela ocupa o tempo do foco) e tudo o que `16` recusou (porta, toalha, lençol, mesa, objeto como carga)",
+    "valores": {
+      "iniciante": "5 de 6 (a flexão com os pés elevados pela escada da flexão)",
+      "intermediario": "os 6",
+      "avancado": "os 6"
+    },
+    "selo": "consenso",
+    "fontes": [
+      "ebben2011",
+      "kikuchi2017",
+      "maeo2023",
+      "brandao2020",
+      "rabello2024",
+      "kinoshita2023",
+      "kassiano2023b",
+      "nakamura2025",
+      "escamilla2006b"
+    ]
+  },
+  {
     "id": "selecao.complementos",
     "regra": "2 exercícios complementares por semana para quadríceps, isquiotibiais, tríceps e peitoral, quando o equipamento permitir (generalizada pela `selecao.exercicios-por-musculo`)",
     "valores": {
@@ -1000,7 +1036,7 @@
   },
   {
     "id": "selecao.triceps-acima-cabeca",
-    "regra": "Pelo menos 1 exercício de tríceps com o ombro flexionado (braço acima da cabeça) por semana. Sem carga, a extensão de tríceps na suspensão (ombro a 90–120°) cobre a vaga como 2º nível: a extensão isolada cresceu a cabeça longa que o supino não cresceu (`brandao2020`; decisão do Gustavo em 06/11/2026)",
+    "regra": "Pelo menos 1 exercício de tríceps com o ombro flexionado (braço acima da cabeça) por semana. Sem carga, a extensão de tríceps na suspensão (ombro a 90–120°) cobre a vaga como 2º nível: a extensão isolada cresceu a cabeça longa que o supino não cresceu (`brandao2020`; decisão do Gustavo em 06/11/2026). Sem suspensão, a extensão de tríceps com o peso do corpo (mãos num apoio fixo) cobre a vaga como 3º nível, com a mesma posição do ombro (R5-CL, `selecao.corpo-livre-ampliado`)",
     "valores": {
       "iniciante": "≥ 1",
       "intermediario": "≥ 1",
@@ -1027,7 +1063,7 @@
   },
   {
     "id": "selecao.panturrilha-alongada",
-    "regra": "Panturrilha com ênfase no alongamento (calcanhar abaixo do apoio, pausa embaixo), de preferência em pé. No chão, sem degrau, o calcanhar não desce: com o peso do corpo, uma perna de cada vez e a descida em 3 s (a metade de cima cresceu bem menos, `kassiano2023b`; com uma perna e a descida lenta cresceu, `nakamura2025`; decisão do Gustavo em 06/11/2026)",
+    "regra": "Panturrilha com ênfase no alongamento (calcanhar abaixo do apoio, pausa embaixo), de preferência em pé. No chão, sem degrau, o calcanhar não desce: com o peso do corpo, uma perna de cada vez e a descida em 3 s (a metade de cima cresceu bem menos, `kassiano2023b`; com uma perna e a descida lenta cresceu, `nakamura2025`; decisão do Gustavo em 06/11/2026). Desde o R5-CL (07/11/2026), sem máquina nem step, a panturrilha no degrau da escada vem antes da no chão: o calcanhar desce abaixo do apoio (`selecao.corpo-livre-ampliado`)",
     "valores": {
       "iniciante": "ênfase no alongamento",
       "intermediario": "ênfase no alongamento",
@@ -1926,7 +1962,7 @@
   },
   {
     "id": "tecnica.flexao.punho",
-    "regra": "Dor leve no punho (3 a 5) nas flexões com as mãos no chão (flexão, flexão com as mãos juntas, pike, flexão com elástico): o porquê do exercício sugere as mãos fechadas numa toalha dobrada, com o punho reto, ou pegadores de flexão (decisão do Gustavo em 04/11/2026). Com dor acima de 5, a flexão continua saindo do programa. O único estudo achado (em cadáver) não foi verificado",
+    "regra": "Dor leve no punho (3 a 5) nas flexões com as mãos no chão (flexão, flexão com as mãos juntas, flexão com os pés elevados, pike, flexão com elástico): o porquê do exercício sugere as mãos fechadas numa toalha dobrada, com o punho reto, ou pegadores de flexão (decisão do Gustavo em 04/11/2026). Com dor acima de 5, a flexão continua saindo do programa. O único estudo achado (em cadáver) não foi verificado",
     "valores": {
       "iniciante": "punho 3 a 5",
       "intermediario": "punho 3 a 5",

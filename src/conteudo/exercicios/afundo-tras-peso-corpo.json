@@ -1,0 +1,56 @@
+{
+  "id": "afundo-tras-peso-corpo",
+  "name": "Afundo para trás com o peso do corpo",
+  "short": "Afundo para trás",
+  "target": "Frente da coxa (quadríceps); ajudam o glúteo e a parte de dentro da coxa (adutores)",
+  "setupEq": [
+    "Espaço livre atrás de você. Mais fácil: uma mão numa cadeira firme ao lado, só para equilibrar."
+  ],
+  "setupBody": [
+    "Em pé, pés na largura do quadril, mãos na cintura ou à frente do peito."
+  ],
+  "exec": [
+    [
+      "ecc",
+      "Passo e descida",
+      "Dê um passo largo para trás e desça em ~2 a 3 s, até o joelho de trás quase tocar o chão."
+    ],
+    [
+      "hold",
+      "Embaixo",
+      "Tronco quase vertical, o peso no pé da frente."
+    ],
+    [
+      "conc",
+      "Volta",
+      "Empurre com o pé da frente e volte à posição inicial. Termine as repetições de um lado e troque."
+    ]
+  ],
+  "range": [
+    "Embaixo: o joelho de trás quase toca o chão; a coxa da frente perto da horizontal.",
+    "Em cima: em pé, pés juntos."
+  ],
+  "cues": [
+    "Passo largo para trás.",
+    "Peso no pé da frente.",
+    "Joelho alinhado com o pé."
+  ],
+  "errors": [
+    {
+      "id": "joelho",
+      "title": "Joelho da frente para dentro",
+      "desc": "O joelho cai para dentro na descida. Aponte-o na direção dos dedos."
+    },
+    {
+      "id": "curta",
+      "title": "Descer pouco",
+      "desc": "A coxa trabalha menos. Desça até o joelho de trás quase tocar o chão."
+    },
+    {
+      "id": "tras",
+      "title": "Empurrar com o pé de trás",
+      "desc": "A perna de trás faz a força e a da frente descansa. O peso fica no pé da frente."
+    }
+  ],
+  "carga": "Peso do corpo: suba pela escada de dificuldade do exercício quando a 1ª série chegar ao topo da faixa e as outras ficarem perto dele."
+}

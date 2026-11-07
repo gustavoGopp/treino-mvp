@@ -1,0 +1,60 @@
+{
+  "id": "extensao-triceps-peso-corpo",
+  "name": "Extensão de tríceps com o peso do corpo",
+  "short": "Tríceps peso do corpo",
+  "target": "Tríceps (atrás do braço), com o braço acima da cabeça",
+  "setupEq": [
+    "Um apoio fixo na altura da cintura: bancada da cozinha, pia ou parede. Mais difícil: um degrau; no fim, o chão de joelhos."
+  ],
+  "setupBody": [
+    "Mãos no apoio na largura dos ombros, braços estendidos.",
+    "Pés para trás, corpo inclinado e reto, abdômen firme."
+  ],
+  "exec": [
+    [
+      "ecc",
+      "Descida",
+      "~2 a 3 s. Dobre só os cotovelos, que apontam para a frente, até a testa chegar perto do apoio."
+    ],
+    [
+      "hold",
+      "Embaixo",
+      "Braços acima da cabeça, cotovelos dobrados."
+    ],
+    [
+      "conc",
+      "Volta",
+      "Estique os cotovelos até os braços ficarem retos."
+    ]
+  ],
+  "range": [
+    "Embaixo: a testa perto do apoio, cotovelos bem dobrados.",
+    "Em cima: braços estendidos."
+  ],
+  "cues": [
+    "Só o cotovelo dobra.",
+    "Corpo reto.",
+    "Pare a 1 ou 2 repetições da falha."
+  ],
+  "errors": [
+    {
+      "id": "quadril",
+      "title": "Dobrar o quadril",
+      "desc": "O corpo dobra e a série fica mais fácil. Mantenha o corpo reto."
+    },
+    {
+      "id": "cotovelos",
+      "title": "Abrir os cotovelos",
+      "desc": "Os cotovelos vão para os lados e o tríceps trabalha menos. Aponte-os para a frente."
+    },
+    {
+      "id": "falha",
+      "title": "Ir até a falha",
+      "desc": "Se o cotovelo ceder no fim da série, a testa bate no apoio. Pare a 1 ou 2 repetições da falha."
+    }
+  ],
+  "montagem": [
+    "Só apoio fixo: bancada, pia, parede ou degrau. Mesa e encosto de sofá podem deslizar."
+  ],
+  "carga": "Peso do corpo: suba pela escada de dificuldade do exercício quando a 1ª série chegar ao topo da faixa e as outras ficarem perto dele. Mais fácil: as mãos na parede, em pé."
+}

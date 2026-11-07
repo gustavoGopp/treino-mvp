@@ -96,7 +96,7 @@ describe(`equipamento mínimo: o vazio e cada item sozinho (${casos.length} prog
       for (const a of p.avisos) expect(a.texto, nome).not.toMatch(/\b(compr|adquir)/i);
     }
     const p = gerar(perfil('iniciante', 'ct-abc'), {});
-    expect(p.avisos.some((a) => a.regraId === 'equipamento.sem-ancoragem' && /costas, ombro lateral, ombro de trás e bíceps ficam sem exercício/.test(a.texto))).toBe(true);
+    expect(p.avisos.some((a) => a.regraId === 'equipamento.sem-ancoragem' && /costas, ombro lateral e bíceps ficam sem exercício/.test(a.texto))).toBe(true);
   });
 
   it('um dia de superior ou de puxar sem tronco nem braço diz a verdade: "exercícios de outros músculos"', () => {
@@ -158,7 +158,9 @@ describe('decisões da sessão de fechamento (04/11/2026)', () => {
     const p = gerar(perfil('iniciante', 'ct-abc'), {});
     const sem = p.avisos.filter((a) => a.regraId === 'equipamento.sem-ancoragem');
     expect(sem).toHaveLength(1);
-    expect(musculosDoAviso(sem[0]!).sort()).toEqual(['biceps', 'costas', 'ombro_lateral', 'ombro_posterior']);
+    // Desde o R5-CL (07/11/2026), o ombro de trás tem a abertura em T sem carga: sai da lista.
+    expect(musculosDoAviso(sem[0]!).sort()).toEqual(['biceps', 'costas', 'ombro_lateral']);
+    expect(p.volumeSemanal.ombro_posterior ?? 0).toBeGreaterThan(0);
     for (const m of ['costas', 'biceps', 'ombro_lateral', 'ombro_posterior'] as Musculo[])
       expect(p.avisos.filter((a) => a.texto.startsWith('Abaixo da meta') && musculosDoAviso(a).includes(m))).toHaveLength(0);
   });

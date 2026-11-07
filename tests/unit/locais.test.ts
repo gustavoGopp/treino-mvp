@@ -84,7 +84,8 @@ describe('sem equivalente no local (selecao.dia-sem-principal)', () => {
     const supBase = ok(base, carla.inventario).dias.find((d) => d.nome === 'Superior A')!;
     // (qual das duas remadas com halter entra depende do desempate: as duas têm animação desde 04/11/2026)
     expect(['remada-unilateral-sem-banco', 'remada-curvada-halteres']).toContain(diaNoLocal(supBase, base, soHalteres).trocas.find((t) => t.vaga === 'remada-apoiada')!.entrou);
-    const perfil: Perfil = { ...base, evitarExercicios: ['remada-unilateral-sem-banco', 'rosca-martelo'] };
+    // Também sem a abertura em T e o crucifixo invertido sentado (R5-CL, 07/11/2026), outros equivalentes do ombro de trás.
+    const perfil: Perfil = { ...base, evitarExercicios: ['remada-unilateral-sem-banco', 'rosca-martelo', 'abertura-t-deitado', 'crucifixo-invertido-sentado'] };
     const sup = ok(perfil, carla.inventario).dias.find((d) => d.nome === 'Superior A')!;
     const { trocas } = diaNoLocal(sup, perfil, soHalteres);
     // A remada curvada entra no lugar da puxada; a vaga da remada apoiada não tem outra remada possível ali.

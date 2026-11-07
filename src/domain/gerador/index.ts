@@ -169,7 +169,8 @@ export function contextoDeSelecao(perfil: Perfil, inventarioOriginal: Inventario
         : 2;
   /** A pessoa tocou "prefiro este" neste exercício, nesta função (selecao.preferencia). */
   const preferido = (f: Funcao | undefined, e: Exercicio) => !!f && perfil.preferidos?.[f.id] === e.id;
-  const chave = (e: Exercicio, f: Funcao | undefined, usos: Map<string, number>) => [
+  const chave = (e: Exercicio, f: Funcao | undefined, usos: Map<string, number>, evitar?: (e: Exercicio) => boolean) => [
+    evitar?.(e) ? 1 : 0, // selecao.variacoes-equivalentes: no último dia, o que já está em todos os outros fica por último
     e.articulacoes.some((a) => dorLeve.has(a)) ? 1 : 0,
     nivel === 'iniciante' && !estavel(e) ? 1 : 0,
     -cargaPossivel(e),
@@ -179,9 +180,9 @@ export function contextoDeSelecao(perfil: Perfil, inventarioOriginal: Inventario
   ];
   /** Comparador do desempate, com a contagem de usos (variedade entre os dias) de quem chama. */
   const comparar =
-    (usos: Map<string, number>, funcaoDe: (e: Exercicio) => Funcao | undefined) =>
+    (usos: Map<string, number>, funcaoDe: (e: Exercicio) => Funcao | undefined, evitar?: (e: Exercicio) => boolean) =>
     (a: Exercicio, b: Exercicio) => {
-      const [ka, kb] = [chave(a, funcaoDe(a), usos), chave(b, funcaoDe(b), usos)];
+      const [ka, kb] = [chave(a, funcaoDe(a), usos, evitar), chave(b, funcaoDe(b), usos, evitar)];
       for (let i = 0; i < ka.length; i++) if (ka[i] !== kb[i]) return ka[i]! - kb[i]!;
       return a.id.localeCompare(b.id);
     };
@@ -196,12 +197,12 @@ export function contextoDeSelecao(perfil: Perfil, inventarioOriginal: Inventario
   };
 
   /** Melhor exercício da função, do nível n em diante, fora os já usados no dia. */
-  const escolher = (funcao: Funcao, desde: number, usados: (id: string) => boolean, usos: Map<string, number>) => {
+  const escolher = (funcao: Funcao, desde: number, usados: (id: string) => boolean, usos: Map<string, number>, evitar?: (e: Exercicio) => boolean) => {
     for (let n = desde; n < funcao.niveis.length; n++) {
       const cands = funcao.niveis[n]!.filter((id) => naFuncao(funcao, id))
         .map((id) => possivel.get(id))
         .filter((e): e is Exercicio => !!e && !usados(e.id));
-      const e = cands.sort(comparar(usos, () => funcao))[0];
+      const e = cands.sort(comparar(usos, () => funcao, evitar))[0];
       if (e) return { ex: e, nivelFuncao: n };
     }
     return null;
@@ -276,7 +277,13 @@ export function gerarPrograma(perfil: Perfil, inventarioOriginal: Inventario): R
   // que já têm vaga-base, mesmo prioritários: o piso de todo músculo vem antes da 2ª dose do prioritário
   // (volume.semanal.minimo-eficaz; auditoria de 04/11/2026, Parte C).
   const comVagaBase = new Set<Musculo>(divisao.dias.flatMap((d) => d.vagas.filter((v) => ativa(v) && !v.complemento).map((v) => FUNCAO[v.funcao]!.musculo)));
-  const dias = divisao.dias.map((dia) => {
+  // selecao.variacoes-equivalentes (régua da G5, B1): no último dia de uma semana de 3 dias ou mais, entre os
+  // equivalentes do mesmo nível, o exercício que já está em todos os outros dias fica por último (antes até da
+  // estabilidade do iniciante): repetir o mesmo exercício em todos os dias havendo outro equivalente é defeito.
+  const diasCom = new Map<string, number>();
+  const dias = divisao.dias.map((dia, di) => {
+    const ultimoDia = divisao.dias.length >= 3 && di === divisao.dias.length - 1;
+    const repeteEmTodos = (e: Exercicio) => ultimoDia && (diasCom.get(e.id) ?? 0) === di;
     const resolvidas = dia.vagas.filter(ativa).map((vaga, ordem) => ({ vaga, ordem, res: resolver(vaga) }));
     let perdidas = 0;
     for (const x of resolvidas)
@@ -313,7 +320,7 @@ export function gerarPrograma(perfil: Perfil, inventarioOriginal: Inventario): R
       // para não pôr dois supinos retos no mesmo dia; nesse caso a vaga segue para o crucifixo.
       const segundoEmpurrar = funcao.id === 'empurrar-inclinado' && dia.vagas.some((w) => ativa(w) && w.funcao === 'empurrar-horizontal');
       const fora = (id: string) => itens.some((i) => i.ex.id === id) || (segundoEmpurrar && POR_ID_BIB[id]!.padrao === 'empurrar-h' && !POR_ID_BIB[id]!.tags.includes('inclinado'));
-      const achado = ctx.escolher(funcao, x.res.nivel, fora, usos);
+      const achado = ctx.escolher(funcao, x.res.nivel, fora, usos, repeteEmTodos);
       if (!achado) continue;
       const { ex: escolhido, nivelFuncao } = achado;
       // Toda vaga confere o teto semanal já no mínimo de séries (antes, só os complementos e as vagas de prioridade:
@@ -324,6 +331,7 @@ export function gerarPrograma(perfil: Perfil, inventarioOriginal: Inventario): R
       for (const [m, n] of Object.entries(volumePorMusculo([{ ex: escolhido, series: VOLUME.seriesPorExercicio.min }])) as [Musculo, number][]) vMinimo[m] = (vMinimo[m] ?? 0) + n;
       itens.push({ ex: escolhido, vaga: x.vaga, funcao, nivelFuncao, series: VOLUME.seriesPorExercicio.min, ordemVaga: x.ordem });
     }
+    for (const id of new Set(itens.map((i) => i.ex.id))) diasCom.set(id, (diasCom.get(id) ?? 0) + 1);
     // Vagas sem exercício possível com o equipamento (não pela dor): selecao.vaga-sem-equipamento e tempo.sobra-series.
     const vazias = resolvidas.filter((x) => !x.res && !perdidaPorDor(x.vaga)).map((x) => x.vaga);
     return { dia, itens, perdidas, vazias };
@@ -824,7 +832,7 @@ export function lembretesDeDor(e: Exercicio, triagem: ResultadoTriagem): Porque[
     ]);
 }
 /** Flexões com as mãos apoiadas no chão (tecnica.flexao.punho). */
-const MAOS_NO_CHAO = new Set(['flexao', 'flexao-fechada', 'pike', 'flexao-elastico']);
+const MAOS_NO_CHAO = new Set(['flexao', 'flexao-fechada', 'flexao-pes-elevados', 'pike', 'flexao-elastico']);
 
 const NOME_ARTICULACAO_MIN: Record<Articulacao, string> = {
   ombro: 'ombro',

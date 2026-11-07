@@ -28,7 +28,7 @@ describe('músculos da biblioteca (revisão de anatomia)', () => {
       if (e.id.startsWith('face-pull')) expect(e.musculos.secundarios, e.id).toContain('costas');
       else expect(e.musculos.secundarios, e.id).not.toContain('costas');
     }
-    expect(posterior.filter((e) => !e.id.startsWith('face-pull')).map((e) => e.id).sort()).toEqual(['crucifixo-inverso', 'crucifixo-invertido-curvado', 'crucifixo-invertido-polia', 'voador-invertido', 'yt-suspensao']);
+    expect(posterior.filter((e) => !e.id.startsWith('face-pull')).map((e) => e.id).sort()).toEqual(['abertura-t-deitado', 'crucifixo-inverso', 'crucifixo-invertido-curvado', 'crucifixo-invertido-polia', 'voador-invertido', 'yt-suspensao']);
   });
 
   it('achado 6: todo agachar e todo afundo contam os adutores como secundário', () => {

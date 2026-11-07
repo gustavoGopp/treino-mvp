@@ -164,5 +164,38 @@
   "descida de 3 s",
   "pausa de 2 s no alto com descida de 3 s",
   "1,5 repetição (sobe, desce até a metade, sobe de novo e desce)"
+ ],
+ "flexao-pes-elevados": [
+  "descida de 3 s",
+  "pés mais altos (da cama para uma cadeira firme encostada na parede; sem ela: descida de 4 s)",
+  "pausa de 2 s embaixo",
+  "mãos em dois apoios firmes (déficit), com os pés elevados (sem eles: pausa de 2 s embaixo com descida de 3 s)"
+ ],
+ "extensao-triceps-peso-corpo": [
+  "descida de 3 s",
+  "mãos num degrau ou num apoio mais baixo e fixo",
+  "no chão, de joelhos",
+  "no chão, de joelhos, com descida de 3 s"
+ ],
+ "abertura-t-deitado": [
+  "pausa de 3 s no alto",
+  "descida de 3 s",
+  "braços em Y (polegares para cima)",
+  "Y com pausa de 3 s no alto"
+ ],
+ "panturrilha-degrau": [
+  "uma perna só",
+  "uma perna só, com pausa de 2 s embaixo",
+  "uma perna só, com descida de 3 s e pausa embaixo"
+ ],
+ "afundo-tras-peso-corpo": [
+  "descida de 3 s",
+  "pausa de 2 s embaixo",
+  "pé da frente num degrau, mais amplitude (sem degrau: descida de 5 s)"
+ ],
+ "abdominal-invertido": [
+  "descida de 3 s",
+  "pausa de 2 s no alto",
+  "pausa de 2 s no alto com descida de 3 s"
  ]
 }
