@@ -1,0 +1,58 @@
+{
+  "id": "desenvolvimento-em-pe-halteres",
+  "name": "Desenvolvimento em pé com dois halteres",
+  "short": "Desenvolvimento em pé",
+  "target": "Frente do ombro; ajudam a lateral do ombro e o tríceps",
+  "setupEq": [
+    "Um par de halteres."
+  ],
+  "setupBody": [
+    "Em pé, pés na largura do quadril, joelhos levemente soltos.",
+    "Halteres na altura dos ombros, palmas para a frente ou uma para a outra, cotovelos um pouco à frente do corpo.",
+    "Abdômen e glúteos firmes."
+  ],
+  "exec": [
+    [
+      "conc",
+      "Subida",
+      "Empurre os halteres para cima até os braços quase estenderem acima da cabeça."
+    ],
+    [
+      "hold",
+      "No alto",
+      "Sem bater um halter no outro."
+    ],
+    [
+      "ecc",
+      "Descida",
+      "~2 s, até os halteres voltarem à altura dos ombros."
+    ]
+  ],
+  "range": [
+    "Embaixo: halteres na altura dos ombros.",
+    "Em cima: braços quase estendidos acima da cabeça."
+  ],
+  "cues": [
+    "Costelas para baixo.",
+    "Sem arquear a lombar.",
+    "Sobe na linha dos ombros."
+  ],
+  "errors": [
+    {
+      "id": "lombar",
+      "title": "Arquear a lombar",
+      "desc": "O tronco inclina para trás para ajudar. Abdômen e glúteos firmes; se não der, o peso está alto."
+    },
+    {
+      "id": "joelhos",
+      "title": "Embalo das pernas",
+      "desc": "Os joelhos dobram e empurram. As pernas ficam paradas."
+    },
+    {
+      "id": "curta",
+      "title": "Descer pouco",
+      "desc": "Os halteres param acima da cabeça. Volte até a altura dos ombros."
+    }
+  ],
+  "carga": "Registre o peso do halter. Quando todas as séries chegarem ao topo da faixa, use o próximo peso que você tem; sem um mais pesado, mais repetições e descida de 3 s."
+}

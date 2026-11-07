@@ -92,11 +92,11 @@ describe('sem equivalente no local (selecao.dia-sem-principal)', () => {
     const remada = trocas.find((t) => t.vaga === 'remada-apoiada')!;
     expect(remada.motivo).toContain('o único equivalente possível aqui (remada curvada com halteres) já está no treino de hoje');
     expect(remada.motivo).not.toContain('nenhum equivalente');
-    // O crucifixo invertido curvado entrou numa vaga anterior; a do ombro de trás (o crucifixo invertido na polia desde
-    // 04/11/2026, antes o face pull) fica de fora pelo motivo verdadeiro.
+    // Desde o R5-CL (07/11/2026), a vaga da remada apoiada recebe a rosca (com a rosca concentrada, o dia tem outra rosca
+    // possível), e o crucifixo invertido curvado fica livre para a vaga do ombro de trás (antes, ele entrava na da remada
+    // e a do ombro de trás ficava de fora).
     const face = trocas.find((t) => t.vaga === 'crucifixo-invertido-polia' || t.vaga === 'face-pull')!;
-    expect(face.entrou).toBeUndefined();
-    expect(face.motivo).toContain('o único equivalente possível aqui (crucifixo invertido curvado com halteres) já está no treino de hoje');
+    expect(face.entrou).toBe('crucifixo-invertido-curvado');
     // Sem equivalente nenhum ali, o texto antigo continua: nenhum crucifixo de peito é possível só com halteres.
     expect(trocas.find((t) => t.vaga === 'crucifixo-polia')!.motivo).toContain('nenhum equivalente de crucifixo');
   });

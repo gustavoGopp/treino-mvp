@@ -1,0 +1,58 @@
+{
+  "id": "elevacao-lateral-unilateral",
+  "name": "Elevação lateral unilateral com halter, segurando num apoio",
+  "short": "Elevação lateral unilateral",
+  "target": "Lateral do ombro (deltoide lateral)",
+  "setupEq": [
+    "Um halter e um apoio firme para a mão livre (parede, batente ou móvel pesado), só para equilibrar."
+  ],
+  "setupBody": [
+    "Em pé, de lado para o apoio, a mão livre nele.",
+    "Tronco levemente inclinado para longe do apoio (10 a 20°).",
+    "Halter na outra mão, ao lado da coxa, cotovelo levemente dobrado."
+  ],
+  "exec": [
+    [
+      "conc",
+      "Subida",
+      "~1 s. Leve o braço para o lado até a altura do ombro, cotovelo na frente da mão."
+    ],
+    [
+      "hold",
+      "No alto",
+      "Pausa curta, sem encolher o ombro."
+    ],
+    [
+      "ecc",
+      "Descida",
+      "~2 s, até o halter voltar ao lado da coxa. Termine um lado e troque."
+    ]
+  ],
+  "range": [
+    "Embaixo: halter ao lado da coxa.",
+    "Em cima: braço na altura do ombro."
+  ],
+  "cues": [
+    "Cotovelo lidera.",
+    "Ombro longe da orelha.",
+    "A mão livre só equilibra."
+  ],
+  "errors": [
+    {
+      "id": "encolher",
+      "title": "Encolher o ombro",
+      "desc": "O ombro sobe para a orelha e o trapézio de cima assume. Ombro baixo."
+    },
+    {
+      "id": "embalo",
+      "title": "Jogar o tronco",
+      "desc": "O corpo balança para subir o halter. O tronco fica parado."
+    },
+    {
+      "id": "alto",
+      "title": "Subir acima do ombro",
+      "desc": "Acima da altura do ombro, o trapézio trabalha mais. Pare na altura do ombro."
+    }
+  ],
+  "carga": "Registre o peso do halter. Quando todas as séries chegarem ao topo da faixa, use o próximo peso que você tem; sem um mais pesado, mais repetições e descida de 3 s. Não pendure o peso do corpo no apoio (porta ou batente): a mão só equilibra."
+}

@@ -105,7 +105,8 @@ describe('cenário 2: só halteres e banco (Ana)', () => {
     const ids = p.dias.flatMap((d) => d.exercicios.flatMap((x) => [x.exId, ...x.alternativas]));
     expect(ids).toContain('crucifixo-invertido-curvado');
     expect(p.avisos.map((a) => a.texto).join(' ')).not.toMatch(/ombro \(posterior\)[^.]*nenhum exercício possível/);
-    expect(ok({ ...ana.perfil, minutosSessao: 60 }, ana.inventario).dias.flatMap((d) => d.exercicios.map((x) => x.exId))).toContain('crucifixo-invertido-curvado');
+    // Desde o R5-CL (07/11/2026), a versão sentada, com o peito nas coxas, ganha o desempate de estabilidade do iniciante.
+    expect(ok({ ...ana.perfil, minutosSessao: 60 }, ana.inventario).dias.flatMap((d) => d.exercicios.map((x) => x.exId))).toContain('crucifixo-invertido-sentado');
   });
   it('teto semanal já no mínimo de séries: no modelo de 6 dias, a 3ª vaga de glúteo fica de fora em vez de passar de 20 (volume.semanal.teto-padrao)', () => {
     const q = ok({ ...ana.perfil, minutosSessao: 55, divisao: 'si-3x', diasSemana: 6, nivel: 'iniciante' }, ana.inventario);

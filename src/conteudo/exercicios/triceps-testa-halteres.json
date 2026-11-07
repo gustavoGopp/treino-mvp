@@ -1,0 +1,58 @@
+{
+  "id": "triceps-testa-halteres",
+  "name": "Tríceps testa com halteres, deitado",
+  "short": "Tríceps testa",
+  "target": "Tríceps (atrás do braço)",
+  "setupEq": [
+    "Um par de halteres leves. O chão (com colchonete) ou um banco."
+  ],
+  "setupBody": [
+    "Deite de costas, joelhos dobrados.",
+    "Halteres acima do peito, braços estendidos, palmas uma para a outra (pegada neutra).",
+    "Leve os braços um pouco para trás, na direção da cabeça."
+  ],
+  "exec": [
+    [
+      "ecc",
+      "Descida",
+      "~2 a 3 s. Dobre só os cotovelos, levando os halteres para os lados da cabeça."
+    ],
+    [
+      "hold",
+      "Embaixo",
+      "Cotovelos bem dobrados, apontados para o teto."
+    ],
+    [
+      "conc",
+      "Subida",
+      "Estique os cotovelos até os braços ficarem retos."
+    ]
+  ],
+  "range": [
+    "Embaixo: halteres ao lado da cabeça, cotovelos bem dobrados.",
+    "Em cima: braços estendidos."
+  ],
+  "cues": [
+    "Pegada neutra.",
+    "Cotovelos para o teto.",
+    "Pare a 1 ou 2 repetições da falha."
+  ],
+  "errors": [
+    {
+      "id": "cotovelos",
+      "title": "Abrir os cotovelos",
+      "desc": "Os cotovelos vão para os lados. Aponte-os para o teto."
+    },
+    {
+      "id": "ombro",
+      "title": "Mexer os ombros",
+      "desc": "Os braços sobem e descem como num supino. Só o cotovelo dobra."
+    },
+    {
+      "id": "falha",
+      "title": "Ir até a falha",
+      "desc": "O halter passa perto do rosto. Comece leve e pare a 1 ou 2 repetições da falha."
+    }
+  ],
+  "carga": "Registre o peso do halter. Quando todas as séries chegarem ao topo da faixa, use o próximo peso que você tem; sem um mais pesado, mais repetições e descida de 3 s."
+}

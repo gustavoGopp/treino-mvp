@@ -1,0 +1,58 @@
+{
+  "id": "crucifixo-inclinado-halteres",
+  "name": "Crucifixo inclinado com halteres",
+  "short": "Crucifixo inclinado",
+  "target": "Peito (a parte de cima); ajuda a frente do ombro",
+  "setupEq": [
+    "Um par de halteres e um banco que inclina, a ~30°."
+  ],
+  "setupBody": [
+    "Deitado no banco inclinado, pés firmes no chão.",
+    "Halteres acima do peito, palmas uma para a outra, cotovelos levemente dobrados.",
+    "Escápulas juntas e para baixo."
+  ],
+  "exec": [
+    [
+      "ecc",
+      "Abertura",
+      "~2 a 3 s. Abra os braços para os lados, em arco, até sentir o peito alongar, com os cotovelos levemente dobrados."
+    ],
+    [
+      "hold",
+      "Embaixo",
+      "Pausa curta no alongamento, sem descer além do confortável."
+    ],
+    [
+      "conc",
+      "Fechamento",
+      "Feche em arco até os halteres voltarem acima do peito."
+    ]
+  ],
+  "range": [
+    "Embaixo: halteres perto da altura do peito, peito alongado.",
+    "Em cima: halteres acima do peito, sem bater."
+  ],
+  "cues": [
+    "Arco, não supino.",
+    "Cotovelos levemente dobrados.",
+    "Escápulas para baixo."
+  ],
+  "errors": [
+    {
+      "id": "supino",
+      "title": "Virar supino",
+      "desc": "Os cotovelos dobram muito e o movimento vira empurrar. Mantenha o ângulo do cotovelo."
+    },
+    {
+      "id": "fundo",
+      "title": "Descer demais",
+      "desc": "Os halteres passam muito da linha do peito e o ombro reclama. Pare no alongamento confortável."
+    },
+    {
+      "id": "ombros",
+      "title": "Soltar as escápulas",
+      "desc": "Os ombros sobem do banco. Escápulas juntas e para baixo."
+    }
+  ],
+  "carga": "Registre o peso do halter. Quando todas as séries chegarem ao topo da faixa, use o próximo peso que você tem; sem um mais pesado, mais repetições e descida de 3 s."
+}

@@ -4962,5 +4962,311 @@
   ],
   "carga": "peso-corpo",
   "animacaoId": null
+ },
+ {
+  "id": "desenvolvimento-em-pe-halteres",
+  "nome": "Desenvolvimento em pé com dois halteres",
+  "padrao": "empurrar-v",
+  "musculos": {
+   "primarios": [
+    "ombro_anterior"
+   ],
+   "secundarios": [
+    "ombro_lateral",
+    "triceps"
+   ]
+  },
+  "requer": [
+   [
+    "halteres"
+   ]
+  ],
+  "complexidade": 2,
+  "tipo": "composto",
+  "faixaReps": [
+   8,
+   12
+  ],
+  "unilateral": false,
+  "articulacoes": [
+   "ombro",
+   "cotovelo",
+   "lombar"
+  ],
+  "tags": [
+   "halter"
+  ],
+  "carga": "halter",
+  "animacaoId": null
+ },
+ {
+  "id": "elevacao-lateral-unilateral",
+  "nome": "Elevação lateral unilateral com halter, segurando num apoio",
+  "padrao": "isolador-ombro-lateral",
+  "musculos": {
+   "primarios": [
+    "ombro_lateral"
+   ],
+   "secundarios": []
+  },
+  "requer": [
+   [
+    "halteres"
+   ]
+  ],
+  "complexidade": 1,
+  "tipo": "isolador",
+  "faixaReps": [
+   12,
+   20
+  ],
+  "unilateral": true,
+  "articulacoes": [
+   "ombro"
+  ],
+  "tags": [
+   "halter",
+   "unilateral"
+  ],
+  "carga": "halter",
+  "animacaoId": null
+ },
+ {
+  "id": "triceps-frances-unilateral-halter",
+  "nome": "Tríceps francês unilateral com halter",
+  "padrao": "isolador-triceps",
+  "musculos": {
+   "primarios": [
+    "triceps"
+   ],
+   "secundarios": []
+  },
+  "requer": [
+   [
+    "halteres"
+   ]
+  ],
+  "complexidade": 1,
+  "tipo": "isolador",
+  "faixaReps": [
+   10,
+   15
+  ],
+  "unilateral": true,
+  "articulacoes": [
+   "ombro",
+   "cotovelo"
+  ],
+  "tags": [
+   "acima-cabeca",
+   "alongado",
+   "unilateral",
+   "halter"
+  ],
+  "carga": "halter",
+  "animacaoId": null
+ },
+ {
+  "id": "triceps-testa-halteres",
+  "nome": "Tríceps testa com halteres, deitado",
+  "padrao": "isolador-triceps",
+  "musculos": {
+   "primarios": [
+    "triceps"
+   ],
+   "secundarios": []
+  },
+  "requer": [
+   [
+    "halteres"
+   ]
+  ],
+  "complexidade": 2,
+  "tipo": "isolador",
+  "faixaReps": [
+   10,
+   15
+  ],
+  "unilateral": false,
+  "articulacoes": [
+   "ombro",
+   "cotovelo"
+  ],
+  "tags": [
+   "halter",
+   "deitado"
+  ],
+  "carga": "halter",
+  "animacaoId": null
+ },
+ {
+  "id": "crucifixo-invertido-sentado",
+  "nome": "Crucifixo invertido sentado, com o peito nas coxas, com halteres",
+  "padrao": "isolador-ombro-posterior",
+  "musculos": {
+   "primarios": [
+    "ombro_posterior"
+   ],
+   "secundarios": []
+  },
+  "requer": [
+   [
+    "halteres"
+   ]
+  ],
+  "complexidade": 1,
+  "tipo": "isolador",
+  "faixaReps": [
+   12,
+   20
+  ],
+  "unilateral": false,
+  "articulacoes": [
+   "ombro"
+  ],
+  "tags": [
+   "halter",
+   "sentado",
+   "apoiado"
+  ],
+  "carga": "halter",
+  "animacaoId": null
+ },
+ {
+  "id": "rosca-scott-banco-inclinado",
+  "nome": "Rosca Scott com halter, braço apoiado no encosto do banco inclinado",
+  "padrao": "isolador-biceps",
+  "musculos": {
+   "primarios": [
+    "biceps"
+   ],
+   "secundarios": []
+  },
+  "requer": [
+   [
+    "halteres",
+    "banco_inclinavel"
+   ]
+  ],
+  "complexidade": 1,
+  "tipo": "isolador",
+  "faixaReps": [
+   8,
+   12
+  ],
+  "unilateral": true,
+  "articulacoes": [
+   "cotovelo"
+  ],
+  "tags": [
+   "apoiado",
+   "braco-a-frente",
+   "halter",
+   "unilateral"
+  ],
+  "carga": "halter",
+  "animacaoId": null
+ },
+ {
+  "id": "crucifixo-inclinado-halteres",
+  "nome": "Crucifixo inclinado com halteres",
+  "padrao": "isolador-peito",
+  "musculos": {
+   "primarios": [
+    "peito"
+   ],
+   "secundarios": [
+    "ombro_anterior"
+   ]
+  },
+  "requer": [
+   [
+    "halteres",
+    "banco_inclinavel"
+   ]
+  ],
+  "complexidade": 2,
+  "tipo": "isolador",
+  "faixaReps": [
+   10,
+   15
+  ],
+  "unilateral": false,
+  "articulacoes": [
+   "ombro"
+  ],
+  "tags": [
+   "inclinado",
+   "alongado",
+   "apoiado"
+  ],
+  "carga": "halter",
+  "animacaoId": null
+ },
+ {
+  "id": "rosca-concentrada",
+  "nome": "Rosca concentrada sentado, com halter",
+  "padrao": "isolador-biceps",
+  "musculos": {
+   "primarios": [
+    "biceps"
+   ],
+   "secundarios": []
+  },
+  "requer": [
+   [
+    "halteres"
+   ]
+  ],
+  "complexidade": 1,
+  "tipo": "isolador",
+  "faixaReps": [
+   8,
+   12
+  ],
+  "unilateral": true,
+  "articulacoes": [
+   "cotovelo"
+  ],
+  "tags": [
+   "sentado",
+   "unilateral",
+   "halter"
+  ],
+  "carga": "halter",
+  "animacaoId": null
+ },
+ {
+  "id": "elevacao-lateral-deitado",
+  "nome": "Elevação lateral deitado de lado com halter",
+  "padrao": "isolador-ombro-lateral",
+  "musculos": {
+   "primarios": [
+    "ombro_lateral"
+   ],
+   "secundarios": []
+  },
+  "requer": [
+   [
+    "halteres"
+   ]
+  ],
+  "complexidade": 1,
+  "tipo": "isolador",
+  "faixaReps": [
+   12,
+   20
+  ],
+  "unilateral": true,
+  "articulacoes": [
+   "ombro"
+  ],
+  "tags": [
+   "unilateral",
+   "deitado",
+   "halter"
+  ],
+  "carga": "halter",
+  "animacaoId": null
  }
 ]
