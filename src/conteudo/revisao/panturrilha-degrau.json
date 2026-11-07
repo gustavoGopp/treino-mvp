@@ -1,0 +1,74 @@
+{
+  "id": "panturrilha-degrau",
+  "name": "Panturrilha no degrau da escada",
+  "short": "Panturrilha no degrau",
+  "target": "Panturrilha (gastrocnêmio e sóleo)",
+  "feel": "Batata da perna, do calcanhar até atrás do joelho.",
+  "feelNote": "Queimação no fim da série é normal. Dor em pontada no tendão de Aquiles não é: pare, diminua a amplitude e procure avaliação se continuar.",
+  "setupEq": [
+    "Um degrau de escada firme (ou uma soleira firme). Sem degrau, faça a panturrilha no chão.",
+    "Mãos na parede ou no corrimão, só para equilíbrio."
+  ],
+  "setupBody": [
+    "Pontas dos dois pés (a “bola” do pé) na borda do degrau, calcanhares para fora.",
+    "Pés na largura do quadril, apontando para a frente.",
+    "Joelhos estendidos, sem travar, e parados."
+  ],
+  "exec": [
+    [
+      "hold",
+      "Embaixo (alongado)",
+      "Calcanhares abaixo da borda do degrau. ~1 s, sem quicar."
+    ],
+    [
+      "conc",
+      "Subida (concêntrica)",
+      "~1 s. Suba o máximo que der na ponta dos pés."
+    ],
+    [
+      "hold",
+      "Topo",
+      "Segure 1 s lá em cima."
+    ],
+    [
+      "ecc",
+      "Descida (excêntrica)",
+      "~2 s, até os calcanhares passarem a borda do degrau."
+    ]
+  ],
+  "range": [
+    "Embaixo: calcanhar o mais baixo que der, abaixo da borda, com a panturrilha alongada.",
+    "Em cima: o mais alto possível na ponta do pé.",
+    "O quanto o calcanhar desce depende do tornozelo: desça até sentir alongar, sem dor."
+  ],
+  "breath": "Solte o ar subindo, inspire descendo.",
+  "cues": [
+    "Calcanhar abaixo da borda.",
+    "Sobe o máximo.",
+    "Joelhos parados."
+  ],
+  "check": [
+    "Degrau firme",
+    "Pontas dos pés na borda",
+    "Mãos só para equilíbrio",
+    "Joelhos estendidos",
+    "Descida lenta"
+  ],
+  "vary": "Fica fácil? Faça com uma perna só, a outra dobrada atrás, com a mão no corrimão.",
+  "extLabels": [
+    "alongado",
+    "topo"
+  ],
+  "errors": [
+    {
+      "id": "curta",
+      "title": "Não descer os calcanhares",
+      "desc": "Sem passar a borda do degrau, você perde a parte alongada, que é a razão de fazer no degrau e não no chão."
+    },
+    {
+      "id": "joelho",
+      "title": "Dobrar e esticar os joelhos",
+      "desc": "Os joelhos dão impulso com as coxas e tiram o trabalho da panturrilha."
+    }
+  ]
+}
