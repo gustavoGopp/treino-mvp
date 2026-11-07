@@ -1,0 +1,19 @@
+# R5-anim: as animações dos 5 exercícios de corpo livre (07/11/2026)
+
+Prompt: `docs/prompts/sessao-r5-animacao-corpo-livre.md`. Uma animação por vez, pelo ritual de `docs/pesquisa/animacoes/README.md`, com parada a cada folha para o "aprovar" do Gustavo. As poses ficam em `src/engine/exercicios/revisao/` e o texto do guia em `src/conteudo/revisao/`, fora do app até a aprovação. Nenhuma animação aprovada nem o motor mudaram.
+
+| # | Animação (id da biblioteca) | Nos programas sem dor | Base aprovada | Folha | Medida | Situação |
+|---|---|---|---|---|---|---|
+| 1 | `panturrilha-degrau` | 81,8% | `panturrilha-b` (step) + `panturrilha-chao` (mãos na parede) | `folhas/panturrilha-degrau.png` | ik 0 (animação e 2 erros) | **esperando o "aprovar"** |
+| 2 | `abdominal-invertido` | 61,7% | `abdominal-chao` | — | — | na fila |
+| 3 | `extensao-triceps-peso-corpo` | 59,4% | `triceps-suspensao` | — | — | na fila |
+| 4 | `abertura-t-deitado` | 56,1% | `yt-suspensao` (os braços) | — | — | na fila |
+| 5 | `flexao-pes-elevados` | 53,8% | `flexao` | — | — | na fila |
+
+## Pré-requisito: o R5-CL ainda não está na `main`
+O prompt supõe o R5-CL feito (os 32 exercícios na biblioteca, com cartão e ficha). Em 07/11 a `main` tem 139 exercícios e nenhum dos 5. O que isso muda:
+- **Dá para fazer agora:** a ficha (escrita aqui, a partir de `16` e `17`), a pose, a checagem e a folha. É o que o Gustavo aprova.
+- **Espera o R5-CL:** `node scripts/aprovar-animacao.mjs <id> <exercicio>` liga a animação ao exercício da biblioteca e falha se ele não existir; a medida da grade (dias com 3 ou mais cartões) depende dos 32 exercícios. A conferência "a ficha bate com o cartão" é feita quando o cartão existir.
+
+## Peças de cena
+Nenhuma peça nova até aqui. O degrau da escada é a caixa de 15 cm do step aprovado; a parede é a da panturrilha no chão.
