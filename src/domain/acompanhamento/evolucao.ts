@@ -1,6 +1,7 @@
 import { valorDaCarga, type Carga, type SerieRegistrada } from '../progressao';
 import { r } from '../regras';
 import { cargaDaMaquina, treinoFeito, type Sessao } from '../sessao';
+import { diaLocal, semanaLocal } from '../sessao/bloco';
 
 // Evolução por exercício (acompanhamento.evolucao; pesquisa-v2/07, seção 5): a melhor série de cada sessão, com as marcas
 // "subiu a carga" e "recorde". Sem carga máxima estimada: acima de ~12 repetições as fórmulas divergem 15 a 52 pontos
@@ -63,6 +64,49 @@ export function evolucaoDoExercicio(historico: Sessao[], exId: string, localDe: 
     linhas.set(chave, lista);
   }
   return [...linhas.entries()].map(([chave, pontos]) => ({ exId, ...(chave ? { localId: chave } : {}), pontos, regraId: r('acompanhamento.evolucao') }));
+}
+
+/** Uma marca da evolução (recorde ou subiu a carga) num exercício, para o fim do treino e a semana. */
+export type MarcaDoExercicio = { exId: string; localId?: string; sessaoId: string; data: string; carga: Carga; reps: number; marcas: Marca[] };
+
+const comMarca = (exId: string, l: LinhaDaEvolucao, p: PontoDaEvolucao): MarcaDoExercicio => ({
+  exId,
+  ...(l.localId ? { localId: l.localId } : {}),
+  sessaoId: p.sessaoId,
+  data: p.data,
+  carga: p.carga,
+  reps: p.reps,
+  marcas: p.marcas,
+});
+
+/**
+ * As marcas de uma sessão (pedido 3 do redesign; acompanhamento.evolucao): os exercícios feitos nela que tiveram
+ * recorde ou subiram a carga, na ordem em que foram feitos. Usa a mesma regra da evolução de cada exercício.
+ */
+export function marcasDaSessao(historico: Sessao[], sessaoId: string, localDe: (s: Sessao) => string | undefined): MarcaDoExercicio[] {
+  const sessao = historico.find((s) => s.id === sessaoId);
+  if (!sessao) return [];
+  const ids = [...new Set(sessao.exercicios.filter((e) => e.series.length).map((e) => e.exId))];
+  return ids.flatMap((exId) =>
+    evolucaoDoExercicio(historico, exId, localDe).flatMap((l) => l.pontos.filter((p) => p.sessaoId === sessaoId && p.marcas.length).map((p) => comMarca(exId, l, p))),
+  );
+}
+
+/**
+ * As marcas da semana do calendário de `hojeIso` (segunda a domingo, no fuso da pessoa): por exercício (e por local,
+ * nas máquinas), a marca mais recente da semana. Do exercício feito mais recentemente ao mais antigo.
+ */
+export function marcasDaSemana(historico: Sessao[], hojeIso: string, fusoMin: number, localDe: (s: Sessao) => string | undefined): MarcaDoExercicio[] {
+  const semana = semanaLocal(diaLocal(hojeIso, fusoMin));
+  const daSemana = new Set(historico.filter((s) => treinoFeito(s) && semanaLocal(diaLocal(s.inicio, fusoMin)) === semana).map((s) => s.id));
+  if (!daSemana.size) return [];
+  const ordem = exerciciosComHistorico(historico.filter((s) => daSemana.has(s.id)));
+  return ordem.flatMap((exId) =>
+    evolucaoDoExercicio(historico, exId, localDe).flatMap((l) => {
+      const p = l.pontos.filter((x) => daSemana.has(x.sessaoId) && x.marcas.length).at(-1);
+      return p ? [comMarca(exId, l, p)] : [];
+    }),
+  );
 }
 
 /** Os exercícios com histórico, do feito mais recentemente ao mais antigo. */
