@@ -1,6 +1,6 @@
 # Prompt: R5-CL, biblioteca ampliada (mais opções de exercício para todas as combinações de equipamento)
 
-> Rascunho escrito na sessão de próximos passos (06/11/2026), depois das duas rodadas extras pedidas pelo Gustavo (corpo livre e biblioteca ampliada), a partir de `docs/revisoes/proximos-passos/g-biblioteca-ampliada.md`, `f-corpo-livre.md`, `docs/pesquisa-v2/16-corpo-livre-e-casa.md` e `17-biblioteca-ampliada.md`. Substitui o rascunho anterior deste arquivo (só corpo livre). Só vale se o Gustavo escolher este marco. Cole o texto abaixo, a partir de "Você vai conduzir", numa sessão nova.
+> Rascunho escrito na sessão de próximos passos (06/11/2026), depois das duas rodadas extras pedidas pelo Gustavo (corpo livre e biblioteca ampliada), a partir de `docs/revisoes/proximos-passos/g-biblioteca-ampliada.md`, `f-corpo-livre.md`, `docs/pesquisa-v2/16-corpo-livre-e-casa.md` e `17-biblioteca-ampliada.md`. Substitui o rascunho anterior deste arquivo (só corpo livre). Escolhido em 07/11/2026 (parte 3 de `docs/revisoes/proximos-passos.md`). Cole o texto abaixo, a partir de "Você vai conduzir", numa sessão nova.
 >
 > **Atualização de 07/11/2026 (decisões da parte 3 de `docs/revisoes/proximos-passos.md`):** é o **2º marco** da ordem R5a → R5-CL → R5d → R5-anim → R5b → R5c, conduzida pela sessão de `sessao-desenvolvimento.md`. Os cartões de texto ficam até o R5-anim, que anima os 5 de corpo livre mais prescritos (medido: os dias com 3 ou mais cartões caem de 74,9% para 19,5%).
 

@@ -1,6 +1,6 @@
 # Prompt: R5a, o registro que não engana (dor guardada, treino vazio, progressão que não trava, ajustes do gerador)
 
-> Rascunho escrito na sessão de próximos passos (06/11/2026), a partir de `docs/revisoes/proximos-passos.md` (parte 2, marco R5a) e dos relatórios `proximos-passos/c-fluxo.md`, `d-longo-prazo.md`, `a-qualidade.md` e `b-monte-e-avaliador.md`. Só vale se o Gustavo escolher este marco. Cole o texto abaixo, a partir de "Você vai conduzir", numa sessão nova.
+> Rascunho escrito na sessão de próximos passos (06/11/2026), a partir de `docs/revisoes/proximos-passos.md` (parte 2, marco R5a) e dos relatórios `proximos-passos/c-fluxo.md`, `d-longo-prazo.md`, `a-qualidade.md` e `b-monte-e-avaliador.md`. Escolhido em 07/11/2026 (parte 3 de `docs/revisoes/proximos-passos.md`). Cole o texto abaixo, a partir de "Você vai conduzir", numa sessão nova.
 >
 > **Atualização de 07/11/2026 (decisões da parte 3 de `docs/revisoes/proximos-passos.md`):** é o **1º marco** da ordem R5a → R5-CL → R5d → R5-anim → R5b → R5c, conduzida pela sessão de `sessao-desenvolvimento.md`. O ajuste de 30 minutos do item 4 entra **com a proteção do equilíbrio da coxa** medida depois (`docs/revisoes/proximos-passos/g-biblioteca-ampliada.md`, decisão 9): a troca dos 30 min não tira quadríceps ÷ posteriores de 0,5–2; sem ela, o defeito da coxa sobe de 1,6% para 3,4% dos programas.
 
