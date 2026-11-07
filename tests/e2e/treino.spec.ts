@@ -73,12 +73,18 @@ test('sessão completa: registra as séries, descansa e recebe a sugestão para 
   await page.getByRole('main').getByRole('button', { name: 'Terminar treino' }).click();
 
   await expect(page.getByRole('heading', { name: 'Treino concluído' })).toBeVisible();
-  await expect(page.getByRole('list', { name: 'Resumo do treino' })).toContainText('Corpo todo A');
+  await expect(page.locator('.subtitulo')).toContainText('Corpo todo A');
+  // lote 4 do redesign: "O que mudou hoje" primeiro, com a semana já contando o treino de hoje
+  await expect(page.getByRole('region', { name: 'O que mudou hoje' })).toContainText('1 de 3');
   await expect(page.getByRole('heading', { name: 'Para a próxima vez' })).toBeVisible();
   await expect(page.locator('.resumo-ex').first()).toContainText('Manter');
+  // o motivo da sugestão, com o selo, fica no "por quê?" de cada linha
+  await page.locator('.resumo-ex').first().getByRole('button', { name: 'por quê?' }).click();
+  await expect(page.getByRole('dialog').locator('.selo-folha').first()).toBeVisible();
+  await page.keyboard.press('Escape');
 
-  // De volta ao programa: o próximo da rotação vem selecionado, e o histórico sobrevive ao recarregar.
-  await page.getByRole('link', { name: 'Voltar ao programa' }).click();
+  // De volta ao início: o próximo da rotação vem selecionado, e o histórico sobrevive ao recarregar.
+  await page.getByRole('link', { name: 'Voltar ao início' }).click();
   await expect(page.getByRole('tab', { name: 'Corpo todo B', exact: true })).toHaveAttribute('aria-selected', 'true');
   await page.reload();
   await expect(page.getByRole('button', { name: 'Começar o treino Corpo todo B' })).toBeVisible();

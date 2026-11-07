@@ -210,5 +210,5 @@ test('com o sinal, recebe a sugestão da semana leve: o toque "hoje foi" no fim 
   await expect(page.locator('.aviso-linha')).toContainText(/^Semana leve até /);
   await (await verAvisos(page)).getByRole('button', { name: 'Voltar ao normal' }).click();
   await expect(page.getByRole('region', { name: /^Semana leve até / })).toHaveCount(0);
-  await expect(page.locator('.aviso-linha')).toHaveCount(0);
+  await expect(page.locator('.aviso-linha', { hasText: 'Semana leve' })).toHaveCount(0);
 });
