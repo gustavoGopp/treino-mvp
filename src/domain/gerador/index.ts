@@ -231,6 +231,8 @@ export function contextoDeSelecao(perfil: Perfil, inventarioOriginal: Inventario
     perdidaPorDor,
     halterMax,
     preferido,
+    /** A chave do desempate (selecao.funcao-da-vaga), para o porquê dizer o que fez o exercício ganhar. */
+    chave,
     comparar,
     resolver,
     escolher,
@@ -584,6 +586,17 @@ export function gerarPrograma(perfil: Perfil, inventarioOriginal: Inventario): R
   programaDias = cortarTempo(programaDias, perfil.minutosSessao, metas, nivel, prioritarios, avisos, podeDrop, colchaoDe(perfil));
 
   const volumeSemanal = volumeDe(programaDias);
+  // O porquê específico (R5b; c-fluxo.md, pedido ao domínio 6): depois dos cortes, quando as séries já são as finais.
+  const doPrograma = new Set(programaDias.flatMap((d) => d.exercicios.map((x) => x.exId)));
+  programaDias = programaDias.map((d) => ({
+    ...d,
+    exercicios: d.exercicios.map((x) => ({
+      ...x,
+      porque: x.porque.map((q, i) =>
+        i === x.porque.findIndex((y) => y.regraId === 'selecao.funcao-da-vaga') ? porqueEspecifico(x, ctx, { volumeSemanal, metas, prioritarios, doPrograma }) : q,
+      ),
+    })),
+  }));
   const vezes = (m: Musculo) => programaDias.filter((d) => d.exercicios.some((x) => POR_ID_BIB[x.exId]!.musculos.primarios.includes(m))).length;
   const motivoEstrutural = (m: Musculo): string => {
     // A dor tirou exercícios deste músculo? Então o motivo verdadeiro é a dor, não o equipamento (R1).
@@ -786,6 +799,94 @@ export function ajustarParaForca(exs: ExercicioPrescrito[], perfil: Pick<Perfil,
       ],
     };
   });
+}
+
+const ARTIGO_MUSCULO: Record<Musculo, string> = {
+  peito: 'o peito',
+  costas: 'as costas',
+  ombro_anterior: 'o ombro da frente',
+  ombro_lateral: 'o ombro lateral',
+  ombro_posterior: 'o ombro de trás',
+  biceps: 'o bíceps',
+  triceps: 'o tríceps',
+  quadriceps: 'o quadríceps',
+  posteriores: 'os posteriores da coxa',
+  gluteos: 'os glúteos',
+  panturrilha: 'a panturrilha',
+  abdomen: 'o abdômen',
+  adutores: 'os adutores',
+};
+/** O que fez o exercício ganhar, pela posição da chave do desempate (contextoDeSelecao, `chave`). */
+const RAZAO_DO_DESEMPATE: ((ctx: ContextoDeSelecao, e: Exercicio, outro: Exercicio) => string)[] = [
+  (ctx, e, outro) => {
+    const poupa = outro.articulacoes.filter((a) => ctx.dorLeve.has(a) && !e.articulacoes.includes(a));
+    return `poupa ${poupa.map((a) => `${ARTIGO[a]} ${NOME_ARTICULACAO_MIN[a]}`).join(' e ')}, que você marcou com dor hoje`;
+  },
+  () => 'é mais estável e apoiado, mais fácil de aprender',
+  () => 'dá para pôr mais carga com o seu equipamento',
+  () => '',
+  () => 'você prefere este',
+  () => 'tem o guia animado (as outras servem igual)',
+];
+const minusculo = (s: string) => s.charAt(0).toLowerCase() + s.slice(1);
+
+/**
+ * O porquê específico de um exercício (R5b; acompanhamento do "porquê", c-fluxo.md, pedido ao domínio 6): a função da
+ * vaga, o músculo, se ele é foco, as séries aqui e na semana, e por que ganhou das outras opções, pela mesma chave do
+ * desempate do gerador (selecao.funcao-da-vaga).
+ */
+export function porqueEspecifico(
+  x: Pick<ExercicioPrescrito, 'exId' | 'funcao' | 'series' | 'dropSet'>,
+  ctx: ContextoDeSelecao,
+  semana: { volumeSemanal: Partial<Record<Musculo, number>>; metas: Partial<Record<Musculo, number>>; prioritarios: Set<Musculo>; doPrograma: Set<string> },
+): Porque {
+  const e = POR_ID_BIB[x.exId]!;
+  const f = (x.funcao && FUNCAO[x.funcao]) || funcoesDoExercicio(x.exId)[0]!;
+  const m = f.musculo;
+  const fmt = (n: number) => String(Math.round(n * 10) / 10).replace('.', ',');
+  const meta = semana.metas[m] ?? 0;
+  const series = `${x.series} ${x.series === 1 ? 'série' : 'séries'} aqui${x.dropSet ? ' (a última com drop set)' : ''}`;
+  const mesmoNome = f.nome.toLowerCase() === NOME_MUSCULO_CURTO[m];
+  const doMusculo = `${f.nome}${mesmoNome ? '' : `, para ${ARTIGO_MUSCULO[m]}`}${semana.prioritarios.has(m) ? `${mesmoNome ? ',' : ''} o seu foco`.replace(/^ o/, ', o') : ''}: ${series}${meta ? `, ${fmt(semana.volumeSemanal[m] ?? 0)} de ${fmt(meta)} na semana` : ''}.`;
+  const nome = (id: string) => minusculo(POR_ID_BIB[id]!.nome);
+  const nivel = f.niveis.findIndex((n) => n.includes(e.id));
+  const primeiro = f.niveis.findIndex((n) => n.some((id) => ctx.naFuncao(f, id)));
+  const razoes: string[] = [];
+  if (nivel > primeiro && primeiro >= 0) razoes.push('As opções de cima desta função já estão neste treino.');
+  else if (nivel > 0) {
+    const exemplo = POR_ID_BIB[f.niveis[0]![0]!]!;
+    const porque =
+      exemplo.complexidade > NIVEL_COMPLEXIDADE_MAX[ctx.nivel] && ctx.possiveisSemRegiao.every((y) => y.id !== exemplo.id)
+        ? 'pedem uma técnica acima do seu nível ou um equipamento fora da sua lista'
+        : ctx.carregaExcluida(exemplo)
+          ? 'carregam a região que você marcou com dor acima de 5 hoje'
+          : 'pedem um equipamento fora da sua lista';
+    razoes.push(`As primeiras opções desta função (como ${nome(exemplo.id)}) ${porque}.`);
+  }
+  const outros = (f.niveis[nivel] ?? []).filter((id) => id !== e.id && ctx.naFuncao(f, id)).map((id) => POR_ID_BIB[id]!);
+  if (!outros.length) {
+    if (!razoes.length) razoes.push('É a única opção desta linha da função com o seu equipamento.');
+  } else {
+    const k = (y: Exercicio) => ctx.chave(y, f, new Map());
+    const melhor = [...outros].sort((a, b) => {
+      const [ka, kb] = [k(a), k(b)];
+      for (let i = 0; i < ka.length; i++) if (ka[i] !== kb[i]) return ka[i]! - kb[i]!;
+      return a.id.localeCompare(b.id);
+    })[0]!;
+    const [ke, kb] = [k(e), k(melhor)];
+    const i = ke.findIndex((v, j) => v !== kb[j]);
+    const das = `${outros.slice(0, 2).map((y) => nome(y.id)).join(' e ')}${outros.length > 2 ? ' e outras' : ''}`;
+    if (i < 0) razoes.push(`Serve igual a ${das}: entre equivalentes, o app fica com um, e dá para trocar nas alternativas.`);
+    else if (ke[i]! < kb[i]!) razoes.push(`Entre as opções equivalentes (${das}), ganhou porque ${RAZAO_DO_DESEMPATE[i]!(ctx, e, melhor)}.`);
+    else
+      razoes.push(
+        semana.doPrograma.has(melhor.id)
+          ? `Entre as opções equivalentes, ${nome(melhor.id)} já está em outro treino: este varia o estímulo.`
+          : `Entre as opções equivalentes (${das}), este varia em relação aos outros treinos.`,
+      );
+  }
+  const razao = razoes.join(' ');
+  return { regraId: r('selecao.funcao-da-vaga'), texto: `${doMusculo} ${razao}` };
 }
 
 /** O texto do objetivo (objetivo.*; pesquisa-v2/12). "Ganhar músculo" (ou sem resposta) não tem texto próprio. */
