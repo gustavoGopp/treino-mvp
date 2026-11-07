@@ -259,11 +259,18 @@ export function gerarPrograma(perfil: Perfil, inventarioOriginal: Inventario): R
 
   // 4. Preenchimento das vagas por função
   const N = exerciciosPorSessao(perfil.minutosSessao);
-  const ativa = (v: Vaga) => !v.prioridade || v.prioridade.some((g) => grupos.has(g));
+  const ativaPorFoco = (v: Vaga) => !v.prioridade || v.prioridade.some((g) => grupos.has(g));
+  // selecao.gluteo (R5b, 07/11/2026): sem o stiff possível (equipamento ou dor) e sem outra vaga de extensão de quadril, o
+  // glúteo ficava só com agachar e afundo (Corpo todo A/B); a vaga de extensão de quadril que só entraria com foco em
+  // glúteos entra para todos.
+  const gluteoSemExtensao = !divisao.dias.some((d) =>
+    d.vagas.some((v) => ativaPorFoco(v) && (v.funcao === 'extensao-quadril' || (v.funcao === 'dobrar-quadril' && resolver(v)?.funcao.id === 'dobrar-quadril'))),
+  );
+  const ativa = (v: Vaga) => ativaPorFoco(v) || (gluteoSemExtensao && v.funcao === 'extensao-quadril');
   const lacunas = new Set<string>();
   const nivelAbaixo = new Set<string>();
   const foraPorMinutos = new Set<Musculo>();
-  type Item = { ex: Exercicio; vaga: Vaga; funcao: Funcao; nivelFuncao: number; series: number; ordemVaga: number; preenchido?: boolean; noLugarDe?: string; protegido?: Musculo };
+  type Item = { ex: Exercicio; vaga: Vaga; funcao: Funcao; nivelFuncao: number; series: number; ordemVaga: number; preenchido?: boolean; noLugarDe?: string; protegido?: Musculo; semAfundo?: boolean };
   // Volume da semana só com o mínimo de séries, dia a dia: um complemento (ou uma vaga só de prioridade) não entra
   // se, já no mínimo, passar do teto semanal de algum músculo (volume.semanal.teto-padrao, "nunca acima"). Antes,
   // só a distribuição das séries conferia o teto, e no modelo de 6 dias com três vagas de glúteo o mínimo sozinho
@@ -312,7 +319,12 @@ export function gerarPrograma(perfil: Perfil, inventarioOriginal: Inventario): R
       // para não pôr dois supinos retos no mesmo dia; nesse caso a vaga segue para o crucifixo.
       const segundoEmpurrar = funcao.id === 'empurrar-inclinado' && dia.vagas.some((w) => ativa(w) && w.funcao === 'empurrar-horizontal');
       const fora = (id: string) => itens.some((i) => i.ex.id === id) || (segundoEmpurrar && POR_ID_BIB[id]!.padrao === 'empurrar-h' && !POR_ID_BIB[id]!.tags.includes('inclinado'));
-      const achado = ctx.escolher(funcao, x.res.nivel, fora, usos);
+      // selecao.agachar-e-afundo (R5b, 07/11/2026): o búlgaro também está no nível 2 do agachar; num dia que já tem a vaga
+      // de afundo, o exercício do padrão agachar do mesmo nível ganha, para o dia não ficar com dois afundos.
+      const primeiro = ctx.escolher(funcao, x.res.nivel, fora, usos);
+      const comAfundo = funcao.id === 'agachar' && primeiro?.ex.padrao === 'afundo' && dia.vagas.some((w) => ativa(w) && w.funcao === 'afundo');
+      const deAgachar = comAfundo ? ctx.escolher(funcao, primeiro.nivelFuncao, (id) => fora(id) || POR_ID_BIB[id]!.padrao === 'afundo', usos) : null;
+      const achado = deAgachar && deAgachar.nivelFuncao === primeiro!.nivelFuncao ? deAgachar : primeiro;
       if (!achado) continue;
       const { ex: escolhido, nivelFuncao } = achado;
       // Toda vaga confere o teto semanal já no mínimo de séries (antes, só os complementos e as vagas de prioridade:
@@ -321,7 +333,7 @@ export function gerarPrograma(perfil: Perfil, inventarioOriginal: Inventario): R
       if (nivelFuncao > 0 && funcao.semNivel1) nivelAbaixo.add(funcao.semNivel1);
       usos.set(escolhido.id, (usos.get(escolhido.id) ?? 0) + 1);
       for (const [m, n] of Object.entries(volumePorMusculo([{ ex: escolhido, series: VOLUME.seriesPorExercicio.min }])) as [Musculo, number][]) vMinimo[m] = (vMinimo[m] ?? 0) + n;
-      itens.push({ ex: escolhido, vaga: x.vaga, funcao, nivelFuncao, series: VOLUME.seriesPorExercicio.min, ordemVaga: x.ordem });
+      itens.push({ ex: escolhido, vaga: x.vaga, funcao, nivelFuncao, series: VOLUME.seriesPorExercicio.min, ordemVaga: x.ordem, ...(achado === deAgachar ? { semAfundo: true } : {}) });
     }
     // Vagas sem exercício possível com o equipamento (não pela dor): selecao.vaga-sem-equipamento e tempo.sobra-series.
     const vazias = resolvidas.filter((x) => !x.res && !perdidaPorDor(x.vaga)).map((x) => x.vaga);
@@ -340,6 +352,7 @@ export function gerarPrograma(perfil: Perfil, inventarioOriginal: Inventario): R
       const v = volumePorMusculo(dias.flatMap((x) => x.itens.map((i) => ({ ex: i.ex, series: i.series }))));
       if (!(MUSCULOS_COM_META as Musculo[]).includes(m) || (v[m] ?? 0) >= (metas[m] ?? 0)) continue;
       const funcoesDoDia = new Set(d.itens.map((i) => i.funcao.id));
+      const padroesDoDia = new Set(d.itens.map((i) => i.ex.padrao));
       const tresEmpurrares = (e: Exercicio) => empurra(e) && !d.itens.some((i) => puxa(i.ex)) && d.itens.filter((i) => empurra(i.ex)).length >= 2;
       const achado = possiveis
         .filter((e) => e.padrao !== 'core' && !d.itens.some((i) => i.ex.id === e.id) && !tresEmpurrares(e) && cabeNoTetoSemanal(e))
@@ -347,7 +360,9 @@ export function gerarPrograma(perfil: Perfil, inventarioOriginal: Inventario): R
           const f = funcoesDoExercicio(e.id).find((x) => x.musculo === m && naFuncao(x, e.id));
           return f ? [{ e, f }] : [];
         })
-        .sort((a, b) => Number(funcoesDoDia.has(a.f.id)) - Number(funcoesDoDia.has(b.f.id)) || comparar(a.e, b.e))[0];
+        // Primeiro um padrão de movimento que o dia ainda não tem (o búlgaro na vaga de agachar já é um afundo: R5b,
+        // 07/11/2026), depois uma função que o dia ainda não tem.
+        .sort((a, b) => Number(padroesDoDia.has(a.e.padrao)) - Number(padroesDoDia.has(b.e.padrao)) || Number(funcoesDoDia.has(a.f.id)) - Number(funcoesDoDia.has(b.f.id)) || comparar(a.e, b.e))[0];
       if (!achado) continue;
       const { e, f } = achado;
       for (const [mm, n] of Object.entries(volumePorMusculo([{ ex: e, series: VOLUME.seriesPorExercicio.min }])) as [Musculo, number][]) vMinimo[mm] = (vMinimo[mm] ?? 0) + n;
@@ -459,8 +474,9 @@ export function gerarPrograma(perfil: Perfil, inventarioOriginal: Inventario): R
   // 3. Distribuição das séries até as metas (volume.semanal.*; volume.sessao.teto; volume.series-por-exercicio)
   const todos = dias.flatMap((d, di) => d.itens.map((it) => ({ it, di })));
   const volume = () => volumePorMusculo(todos.map(({ it }) => ({ ex: it.ex, series: it.series })));
-  const volumeNoDia = (di: number, m: Musculo) =>
-    volumePorMusculo(dias[di]!.itens.map((it) => ({ ex: it.ex, series: it.series })))[m] ?? 0;
+  // volume.sessao.teto, contando as séries indiretas pela metade (R5b, 07/11/2026: antes, só o músculo principal; o glúteo
+  // chegava a 12 num dia de pernas).
+  const cabeNaSessao = (di: number, ex: Exercicio) => cabeNoTeto(volumePorMusculo(dias[di]!.itens.map((it) => ({ ex: it.ex, series: it.series }))), ex, 1, VOLUME.sessaoTeto);
   for (;;) {
     const v = volume();
     const candidatos = MUSCULOS_COM_META.map((m) => {
@@ -470,7 +486,7 @@ export function gerarPrograma(perfil: Perfil, inventarioOriginal: Inventario): R
         ({ it, di }) =>
           it.ex.musculos.primarios.includes(m) &&
           it.series < VOLUME.seriesPorExercicio.max &&
-          volumeNoDia(di, m) + 1 <= VOLUME.sessaoTeto &&
+          cabeNaSessao(di, it.ex) &&
           cabe(it.ex),
       );
       return { m, deficit: ((metas[m] ?? 0) - (v[m] ?? 0)) / (metas[m] ?? 1), vagas };
@@ -498,7 +514,7 @@ export function gerarPrograma(perfil: Perfil, inventarioOriginal: Inventario): R
   // 7. Prescrição (prescrever; objetivo.forca.* em ajustarParaForca)
   let programaDias: DiaPrograma[] = dias.map(({ dia, itens }) => {
     const exercicios = ajustarParaForca(
-      itens.map((it) => prescrever(it.ex, it.funcao, it.nivelFuncao, it.series, ctx, { preenchido: it.preenchido, noLugarDe: it.noLugarDe, protegido: it.protegido })),
+      itens.map((it) => prescrever(it.ex, it.funcao, it.nivelFuncao, it.series, ctx, { preenchido: it.preenchido, noLugarDe: it.noLugarDe, protegido: it.protegido, semAfundo: it.semAfundo })),
       perfil,
     );
     return { id: dia.id, nome: dia.nome, exercicios, minutosEstimados: minutos(exercicios, colchaoDe(perfil)) };
@@ -526,8 +542,8 @@ export function gerarPrograma(perfil: Perfil, inventarioOriginal: Inventario): R
         const noDia = volumeDe([d]);
         d.exercicios.forEach((x, xi) => {
           const e = POR_ID_BIB[x.exId]!;
-          // Uma série a mais conta para todos os músculos principais do exercício: nenhum passa do teto da sessão.
-          if (!e.musculos.primarios.includes(m) || x.series >= VOLUME.seriesPorExercicio.max || e.musculos.primarios.some((pm) => (noDia[pm] ?? 0) + 1 > VOLUME.sessaoTeto)) return;
+          // Uma série a mais conta para todos os músculos do exercício (a indireta pela metade): nenhum passa do teto da sessão.
+          if (!e.musculos.primarios.includes(m) || x.series >= VOLUME.seriesPorExercicio.max || !cabeNoTeto(noDia, e, 1, VOLUME.sessaoTeto)) return;
           // Nenhum músculo do exercício passa do teto (20) nem, se não for prioridade, do máximo do nível (volume.semanal.maximo).
           const limite = (k: Musculo) => (prioritarios.has(k) ? VOLUME.teto : VOLUME.maximo[nivel]);
           if (!(Object.entries(volumePorMusculo([{ ex: e, series: 1 }])) as [Musculo, number][]).every(([k, n]) => (v[k] ?? 0) + n <= limite(k))) return;
@@ -686,7 +702,7 @@ export function cabeNoTeto(volume: Partial<Record<Musculo, number>>, e: Exercici
 }
 
 /** De onde veio um exercício que não é a 1ª escolha da vaga: entra no "porquê" (gerador; avaliador). */
-export type OrigemDaVaga = { preenchido?: boolean; noLugarDe?: string; protegido?: Musculo };
+export type OrigemDaVaga = { preenchido?: boolean; noLugarDe?: string; protegido?: Musculo; semAfundo?: boolean };
 
 /**
  * Prescrição de um exercício numa função (reps, RIR, descanso, alternativas e o porquê): rir.alvo, rir.carga-baixa,
@@ -706,6 +722,8 @@ export function prescrever(e: Exercicio, funcao: Funcao, nivelFuncao: number, se
     daOrigem.push({ regraId: r('tempo.musculo-protegido'), texto: `Entrou para ${origem.protegido === 'abdomen' ? 'o abdômen' : 'a panturrilha'} não ficar sem nenhuma série na semana, mesmo com o treino cheio.` });
   if (origem.noLugarDe)
     daOrigem.push({ regraId: r('selecao.vaga-sem-equipamento'), texto: `Entrou no lugar da vaga "${origem.noLugarDe.toLowerCase()}", que não tem exercício possível com o seu equipamento: trabalha o mesmo músculo com outro movimento.` });
+  if (origem.semAfundo)
+    daOrigem.push({ regraId: r('selecao.agachar-e-afundo'), texto: 'Este dia já tem um afundo: na vaga de agachar entra um agachamento, para o dia não repetir o mesmo movimento.' });
   if (origem.preenchido)
     daOrigem.push({ regraId: r('selecao.dia-sem-principal'), texto: 'Entrou no lugar de uma vaga que a dor tirou (ou para o dia não ficar só com abdominal).' });
   return {
