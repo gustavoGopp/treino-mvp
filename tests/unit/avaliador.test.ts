@@ -247,7 +247,7 @@ describe('avisosDoAvaliador: o que o gerador ainda não avisa, com o próximo pa
     const a = dePublicado(SCHOENFELD_3);
     const avisos = avisosDoAvaliador(a, { diasSemana: 3, minutosSessao: 60 });
     expect(avisos.map((x) => x.regraId)).toEqual(['avaliador.equilibrio.coxa']);
-    expect(avisos[0]!.texto).toMatch(/^Frente × trás da coxa fora do equilíbrio: quadríceps × posteriores 27 × 0 séries por semana\. Com 3 treinos de 60 min, .*Mudar a rotina/);
+    expect(avisos[0]!.texto).toMatch(/^Frente × trás da coxa fora do equilíbrio: quadríceps × posteriores 27 × 0 séries por semana\. Com 3 treinos de 60 min, .*Mudar a rotina ou a divisão/);
   });
   it('funções, isoladores e empurrar ÷ puxar, cada um com o fato e a rotina como próximo passo', () => {
     const doCarneiro = avisosDoAvaliador(dePublicado(CARNEIRO_5), { diasSemana: 5, minutosSessao: 60 });

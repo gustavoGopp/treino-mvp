@@ -7,6 +7,8 @@ import {
   minutos,
   MUSCULOS_COM_META,
   musculosDoAviso,
+  ehAvisoDeMeta,
+  ONDE_MUDAR_A_ROTINA,
   NOME_MUSCULO_CURTO,
   GRUPOS,
   prescrever,
@@ -350,7 +352,7 @@ export function avaliar(programa: ProgramaParaAvaliar, perfil: Perfil, inventari
       });
     if (v >= limiar) continue;
     const regra = prio ? 'volume.semanal.alvo' : naoPrioTexto(m);
-    const item = `${nomeM(m)} ${fmt(v)} de ${fmt(prio ? meta : limiar)}`;
+    const item = `${nomeM(m)} ${fmt(v)} de ${fmt(meta)}`; // a meta, como nos avisos do gerador (o achado vem abaixo do limiar)
     if (!possiveisDe(m).length) {
       const porDor = perdidoPorDor(m);
       achar({
@@ -685,7 +687,7 @@ function agrupar(brutos: Bruto[]): Achado[] {
  */
 export const TIPOS_AVISADOS_PELO_AVALIADOR = ['funcoes', 'coxa', 'empurrar-puxar', 'isolador'] as const;
 export function avisosDoAvaliador(a: Avaliacao, perfil: Pick<Perfil, 'diasSemana' | 'minutosSessao'>): { regraId: string; texto: string }[] {
-  const rotina = `Com ${perfil.diasSemana} ${plural(perfil.diasSemana, 'treino', 'treinos')} de ${perfil.minutosSessao} min, o app não encaixou mais. Não precisa fazer nada; se quiser corrigir, mais minutos por treino costumam resolver (Mudar a rotina).`;
+  const rotina = `Com ${perfil.diasSemana} ${plural(perfil.diasSemana, 'treino', 'treinos')} de ${perfil.minutosSessao} min, o app não encaixou mais. Não precisa fazer nada; se quiser corrigir, mais minutos por treino costumam resolver: dá para mudar ${ONDE_MUDAR_A_ROTINA}.`;
   return a.achados
     .filter((x) => x.gravidade === 'ajustar' && (TIPOS_AVISADOS_PELO_AVALIADOR as readonly string[]).includes(x.tipo.split(':')[0]!))
     .map((x) => {
@@ -707,7 +709,8 @@ export function avisosDoAvaliador(a: Avaliacao, perfil: Pick<Perfil, 'diasSemana
  * nenhum "ajustar" que o gerador não avise (testes e auditoria).
  */
 export function avisadoPeloGerador(a: Achado, programa: { avisos: { regraId: string; texto: string }[] }): boolean {
-  if (a.tipo.startsWith('meta-')) return a.musculos.every((m) => programa.avisos.some((x) => musculosDoAviso(x).includes(m)));
+  if (a.tipo.startsWith('meta-'))
+    return a.musculos.every((m) => programa.avisos.some((x) => (ehAvisoDeMeta(x) || x.regraId === 'volume.prioridade.competicao') && musculosDoAviso(x).includes(m)));
   return programa.avisos.some((x) => x.regraId === a.regraId);
 }
 

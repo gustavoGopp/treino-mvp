@@ -26,8 +26,8 @@ export const funcaoSchema = z
     semNivel1: regraId.optional(),
     /** Função usada no lugar quando nenhum nível é possível (ex.: flexão de joelho → dobrar o quadril). */
     seNada: z.string().optional(),
-    /** Aviso quando a vaga fica sem exercício possível: o que falta e o que isso muda. */
-    lacuna: z.object({ falta: z.string().min(1), texto: z.string().min(1), regra: regraId }).strict().optional(),
+    /** Aviso quando a vaga fica sem exercício possível: o que falta, o que isso muda e o próximo passo (acompanhamento.mensagens). */
+    lacuna: z.object({ falta: z.string().min(1), texto: z.string().min(1), proximo: z.string().min(1), regra: regraId }).strict().optional(),
     /**
      * Capacidades a mais que um exercício precisa para contar nesta função (ex.: a máquina de tríceps só vale
      * como "tríceps acima da cabeça" quando o braço fica acima da cabeça; pesquisa-v2/08, seção 2).

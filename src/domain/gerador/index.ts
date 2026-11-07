@@ -31,6 +31,10 @@ export const NOME_GRUPO: Record<Grupo, string> = {
 };
 const emLista = (xs: string[]) => (xs.length > 1 ? `${xs.slice(0, -1).join(', ')} e ${xs[xs.length - 1]}` : (xs[0] ?? ''));
 
+/** Onde a pessoa muda os dias, os minutos, o foco e a divisão: o próximo passo de vários avisos (acompanhamento.mensagens). */
+export const ONDE_MUDAR_A_ROTINA = 'em Meus dados, "Mudar a rotina ou a divisão"';
+const NADA_A_FAZER = 'Não precisa fazer nada: o resto do programa segue.';
+
 /** O que a pessoa quer agora (objetivo.pergunta). Ausente = ganhar músculo. Só "forca" muda números. */
 export const OBJETIVOS = ['hipertrofia', 'cutting', 'forca', 'saude'] as const;
 export type Objetivo = (typeof OBJETIVOS)[number];
@@ -431,17 +435,18 @@ export function gerarPrograma(perfil: Perfil, inventarioOriginal: Inventario): R
     const entraram = preenchidos.map((i) => i.ex.nome.toLowerCase());
     // O texto diz a verdade: "de outros músculos" quando o que entrou não é músculo do dia (um dia de puxar com panturrilha).
     const deFora = preenchidos.some((i) => !musculosDoDia.has(i.funcao.musculo));
+    const passoDoDia = semCausa ? ` ${NADA_A_FAZER}` : ' Não precisa fazer nada; quando a dor baixar, atualize a nota na triagem.';
     if (k)
       avisos.push({
         regraId: r('selecao.dia-sem-principal'),
         texto: deFora
-          ? `${d.dia.nome}: ${semCausa ? 'sem exercício' : `${causa}, sem exercício`} para os músculos deste dia; entram exercícios de outros músculos (${entraram.join(', ')}).`
-          : `${d.dia.nome}: ${causa}, o dia perdeu exercícios; entram outros dos mesmos músculos (${entraram.join(', ')}).`,
+          ? `${d.dia.nome}: ${semCausa ? 'sem exercício' : `${causa}, sem exercício`} para os músculos deste dia; entram exercícios de outros músculos (${entraram.join(', ')}).${passoDoDia}`
+          : `${d.dia.nome}: ${causa}, o dia perdeu exercícios; entram outros dos mesmos músculos (${entraram.join(', ')}).${passoDoDia}`,
       });
     else if (soCore)
       avisos.push({
         regraId: r('selecao.dia-sem-principal'),
-        texto: `${d.dia.nome}: ${causa}, só o abdominal é possível neste dia.`,
+        texto: `${d.dia.nome}: ${causa}, só o abdominal é possível neste dia.${passoDoDia}`,
       });
   }
   if (regioesExcluidas.length)
@@ -453,23 +458,23 @@ export function gerarPrograma(perfil: Perfil, inventarioOriginal: Inventario): R
   if (semPuxar && temDiaDeTronco(divisao) && divisao.dias.some((x) => /Puxar|Superior|Costas/.test(x.nome)))
     avisos.push({
       regraId: r('divisao.sem-puxar'),
-      texto: `${divisao.nome}: sem exercício de puxar, os dias de puxar ficam com outros músculos. Corpo todo encaixa melhor.`,
+      texto: `${divisao.nome}: sem exercício de puxar, os dias de puxar ficam com outros músculos. Corpo todo encaixa melhor: dá para trocar ${ONDE_MUDAR_A_ROTINA}.`,
     });
   // Sem puxada vertical: quando ela caiu para uma remada, ou quando só a remada existe (ex.: só a barra longa).
   if (nivelAbaixo.has('equipamento.sem-puxada-vertical') || (lacunas.has('puxar-vertical') && !semPuxar))
     avisos.push({
       regraId: r('equipamento.sem-puxada-vertical'),
-      texto: 'Sem barra fixa nem polia alta: as costas treinam só com remadas.',
+      texto: 'Sem barra fixa nem polia alta: as costas treinam só com remadas. Não precisa fazer nada: as remadas mantêm o volume das costas.',
     });
   const temMaquinaDePerna = caps.has('leg_press') || caps.has('rack');
   if (!temMaquinaDePerna && halterMax < 20)
     avisos.push({
       regraId: r('equipamento.escada-carga-leve'),
-      texto: 'Pouca carga para as pernas: o programa usa uma perna de cada vez, mais repetições e degraus de dificuldade. As pernas podem crescer menos que numa academia.',
+      texto: 'Pouca carga para as pernas: o programa usa uma perna de cada vez, mais repetições e degraus de dificuldade. As pernas podem crescer menos que numa academia. Não precisa fazer nada: quando um degrau ficar fácil, o app sugere o próximo.',
     });
   for (const id of [...lacunas].sort()) {
     const l = FUNCAO[id]!.lacuna;
-    if (l) avisos.push({ regraId: r(l.regra), texto: `Sem ${l.falta}: ${l.texto}` });
+    if (l) avisos.push({ regraId: r(l.regra), texto: `Sem ${l.falta}: ${l.texto} ${l.proximo}` });
   }
 
   // 3. Distribuição das séries até as metas (volume.semanal.*; volume.sessao.teto; volume.series-por-exercicio)
@@ -587,14 +592,15 @@ export function gerarPrograma(perfil: Perfil, inventarioOriginal: Inventario): R
     const porDor = regioesDoMusculo.map(dorDe).join(' e ');
     const quais = regioesDoMusculo.map((a) => `${ARTIGO[a]} ${NOME_ARTICULACAO_MIN[a]}`).join(' ou ');
     if (!possiveis.some((e) => e.musculos.primarios.includes(m)) && tirados.length)
-      return `Os exercícios que carregam ${quais} saíram por causa da dor ${porDor}`;
+      return `Os exercícios que carregam ${quais} saíram por causa da dor ${porDor}. Quando a dor baixar, atualize a nota na triagem`;
     const faltas = [...lacunas].map((id) => FUNCAO[id]!).filter((f) => f.musculo === m && f.lacuna).map((f) => f.lacuna!.falta);
     const falta = (faltas.length ? ` (falta ${faltas.join(' e ')})` : '') + (tirados.length ? `; e a dor ${porDor} tirou outros exercícios` : '');
-    if (!possiveis.some((e) => e.musculos.primarios.includes(m))) return `${SEM_EXERCICIO}${falta}`;
-    if (foraPorMinutos.has(m)) return `Com ${perfil.minutosSessao} min cabem ~${N} exercícios por treino${falta}`;
+    // Sem nada possível e sem falta a citar, o motivo é só SEM_EXERCICIO: avisosDeMeta junta esses músculos num aviso.
+    if (!possiveis.some((e) => e.musculos.primarios.includes(m))) return falta ? `${SEM_EXERCICIO}${falta}. ${NADA_A_FAZER.slice(0, -1)}` : SEM_EXERCICIO;
+    if (foraPorMinutos.has(m)) return `Com ${perfil.minutosSessao} min cabem ~${N} exercícios por treino${falta}. Com mais minutos por treino, o músculo ganha séries: dá para mudar ${ONDE_MUDAR_A_ROTINA}`;
     const n = vezes(m);
-    if (n === 0) return `A divisão ${divisao.nome} não tem vaga própria para este músculo, só séries indiretas${falta}`;
-    return `A divisão ${divisao.nome} treina este músculo ${n}x por semana e, com até ${VOLUME.seriesPorExercicio.max} séries por exercício e ${VOLUME.sessaoTeto} por sessão, não cabe mais${falta}`;
+    if (n === 0) return `A divisão ${divisao.nome} não tem vaga própria para este músculo, só séries indiretas${falta}. Outra divisão pode dar uma vaga a ele: dá para mudar ${ONDE_MUDAR_A_ROTINA}`;
+    return `A divisão ${divisao.nome} treina este músculo ${n}x por semana, e os exercícios dele já estão no limite de ${VOLUME.seriesPorExercicio.max} séries por exercício e ${VOLUME.sessaoTeto} por treino${falta}. Para chegar à meta, mais um dia na semana ou outra divisão: dá para mudar ${ONDE_MUDAR_A_ROTINA}`;
   };
   avisos.push(...avisosDeMeta(metas, volumeAntesDoCorte, volumeSemanal, prioritarios, motivoEstrutural, semPuxar));
 
@@ -1181,7 +1187,7 @@ export function cortarTempo(
     if (d.minutosEstimados > limite)
       avisos.push({
         regraId: r('tempo.corte'),
-        texto: `${d.nome}: deve levar ~${d.minutosEstimados} min, mais que os ${limite} min que você tem.`,
+        texto: `${d.nome}: deve levar ~${d.minutosEstimados} min, mais que os ${limite} min que você tem. Dá para treinar assim, ou escolher mais minutos ${ONDE_MUDAR_A_ROTINA}.`,
       });
   }
   if (usados.size)
@@ -1197,7 +1203,7 @@ export function cortarTempo(
         ]
           .filter(Boolean)
           .join(', ') +
-        '.',
+        '. Não precisa fazer nada; com mais minutos por treino, o programa precisa de menos cortes.',
     });
   return dias;
 }
@@ -1225,10 +1231,14 @@ export function avisosDeMeta(
   if (semExercicio.length)
     out.push(
       semPuxar
-        ? { regraId: r('equipamento.sem-ancoragem'), texto: `Sem algo para puxar ou levantar: ${listaDeNomes(semExercicio)} ficam sem exercício. O resto do corpo segue no programa.` }
-        : { regraId: r('volume.semanal.alvo'), texto: `${SEM_EXERCICIO}: ${listaDeNomes(semExercicio)}.` },
+        ? { regraId: r('equipamento.sem-ancoragem'), texto: `Sem algo para puxar ou levantar: ${listaDeNomes(semExercicio)} ficam sem exercício. Não precisa fazer nada: o resto do corpo segue no programa.` }
+        : { regraId: r('volume.semanal.alvo'), texto: `${SEM_EXERCICIO}: ${listaDeNomes(semExercicio)}. ${NADA_A_FAZER}` },
     );
-  if (porTempo.length) out.push({ regraId: r('tempo.corte'), texto: `Abaixo da meta por falta de tempo: ${porTempo.map((m) => `${item(m)} séries`).join('; ')}.` });
+  if (porTempo.length)
+    out.push({
+      regraId: r('tempo.corte'),
+      texto: `Abaixo da meta por falta de tempo: ${porTempo.map((m) => `${item(m)} séries`).join('; ')}. Para chegar à meta, mais minutos por treino ou mais dias: dá para mudar ${ONDE_MUDAR_A_ROTINA}.`,
+    });
   for (const m of porEstrutura.filter((x) => !semExercicio.includes(x)))
     out.push({ regraId: r('volume.semanal.alvo'), texto: `Abaixo da meta: ${item(m)} séries por semana. ${motivoEstrutural(m)}.` });
   return out;

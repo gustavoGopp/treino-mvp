@@ -851,7 +851,7 @@
   },
   {
     "id": "acompanhamento.mensagens",
-    "regra": "Mensagens do acompanhamento sem culpa (R2; pesquisa-v2/07, seção 4.4): fato + próximo passo; nunca \"você falhou\", \"perdeu\" ou \"deveria\"; nada de risco de morte na tela; nenhuma comparação com outras pessoas",
+    "regra": "Mensagens do acompanhamento sem culpa (R2; pesquisa-v2/07, seção 4.4): fato + próximo passo, também nos avisos do programa e do avaliador, com \"não precisa fazer nada\" quando a causa é o equipamento, a dor ou o tempo e nada há a mudar, sem sugerir compra (R5b, 07/11/2026: antes, 2 de 20 avisos das personas diziam o que fazer); nunca \"você falhou\", \"perdeu\" ou \"deveria\"; nada de risco de morte na tela; nenhuma comparação com outras pessoas",
     "valores": {
       "iniciante": "semana completa: \"4 de 4\"; menos, com dias pela frente: \"2 de 4 treinos. Se der, o treino C cabe até domingo.\"; 1 treino: \"já conta\"; 0: nenhum aviso (\"Nova semana. O próximo treino é o B.\"); 3 das últimas 4 semanas abaixo do planejado: oferece um programa com menos dias, que só muda com o aceite",
       "intermediario": "semana completa: \"4 de 4\"; menos, com dias pela frente: \"2 de 4 treinos. Se der, o treino C cabe até domingo.\"; 1 treino: \"já conta\"; 0: nenhum aviso (\"Nova semana. O próximo treino é o B.\"); 3 das últimas 4 semanas abaixo do planejado: oferece um programa com menos dias, que só muda com o aceite",
