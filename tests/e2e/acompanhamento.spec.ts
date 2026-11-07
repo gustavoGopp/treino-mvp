@@ -85,8 +85,9 @@ test('volta depois de 22 dias: a mensagem sem culpa, menos séries e a carga 10%
   // 8 de 13 até a auditoria do treino (a ponte com halter); 9 de 14 até a sessão de equipamento mínimo (a flexão deslizante).
   await expect(volta).toContainText(/Séries no Corpo todo A\s*9 de 15/);
   await expect(volta).toContainText('3–4 repetições');
-  // no dia da volta, ela é a única mensagem
+  // no dia da volta, ela é a única mensagem, e o "Começar" fica à vista sem rolar
   await expect(page.locator('.aviso-linha')).toHaveCount(0);
+  await expect(page.getByRole('button', { name: 'Começar o treino Corpo todo A' })).toBeInViewport({ ratio: 1 });
   await print(page, 'volta');
   await semToquePequeno(page);
   await volta.getByRole('button', { name: 'por quê?' }).click();
@@ -233,6 +234,7 @@ test('com o sinal, recebe a sugestão da semana leve: o toque "hoje foi" no fim 
   await page.keyboard.press('Escape');
   // a semana leve ativa é o aviso do dia, em 1 linha; "Voltar ao normal" fica na folha
   await expect(page.locator('.aviso-linha')).toContainText(/^Semana leve até /);
+  await expect(page.getByRole('button', { name: /^Começar o treino/ })).toBeInViewport({ ratio: 1 });
   await (await verAvisos(page)).getByRole('button', { name: 'Voltar ao normal' }).click();
   await expect(page.getByRole('region', { name: /^Semana leve até / })).toHaveCount(0);
   await expect(page.locator('.aviso-linha', { hasText: 'Semana leve' })).toHaveCount(0);
