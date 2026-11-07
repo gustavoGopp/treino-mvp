@@ -34,6 +34,8 @@ async function preparar(page: Page, c: Cenario) {
 }
 
 async function salvarSerie(page: Page) {
+  // a tela do treino chega num pedaço próprio: espera a série antes de olhar a carga (o `count` não espera)
+  await expect(page.getByRole('region', { name: /^Série \d/ })).toBeVisible();
   const carga = page.getByLabel('Carga', { exact: true });
   if ((await carga.count()) && (await carga.evaluate((e) => e.tagName === 'SELECT')) && !(await carga.inputValue())) await carga.selectOption({ index: 6 });
   const rir = page.getByRole('radio', { name: '2', exact: true });
