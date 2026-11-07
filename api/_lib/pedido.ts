@@ -17,16 +17,20 @@ export type Contexto = { ip: string; hoje: string; convites: string[]; chaveConf
 export type ChamarModelo = (fotosBase64: string[]) => Promise<unknown>;
 
 /**
- * Contador simples em memória, por instância da função. Serve para o beta fechado com convite;
- * antes de abrir o beta, trocar por um contador compartilhado (ex.: Vercel KV / Upstash).
+ * Contador simples em memória, por instância da função. Serve para o beta fechado com convite (família e amigos, R5c):
+ * o que segura o gasto é o teto mensal no console da Anthropic e um convite por pessoa. Um contador compartilhado
+ * (Upstash pelo Marketplace da Vercel) continua no backlog.
  */
 export class Limite {
   private usos = new Map<string, number>();
-  usar(chave: string, n: number, max: number): boolean {
-    const atual = this.usos.get(chave) ?? 0;
-    if (atual + n > max) return false;
-    this.usos.set(chave, atual + n);
+  /** Gasta `n` em todas as chaves só se todas couberem: um pedido barrado não gasta a cota de nenhuma. */
+  usarTodos(limites: { chave: string; max: number }[], n: number): boolean {
+    if (limites.some(({ chave, max }) => (this.usos.get(chave) ?? 0) + n > max)) return false;
+    for (const { chave } of limites) this.usos.set(chave, (this.usos.get(chave) ?? 0) + n);
     return true;
+  }
+  usar(chave: string, n: number, max: number): boolean {
+    return this.usarTodos([{ chave, max }], n);
   }
 }
 
@@ -43,7 +47,12 @@ export async function processarPedido(p: Pedido, ctx: Contexto, limite: Limite, 
   const fotos = p.fotos as unknown[];
   if (!fotos.every((f): f is string => typeof f === 'string' && f.length <= MAX_BASE64 && ehJpegBase64(f)))
     return erro(400, 'fotos', 'Foto em formato ou tamanho não aceito.');
-  if (!limite.usar(`ip:${ctx.ip}:${ctx.hoje}`, fotos.length, LIMITE_IP) || !limite.usar(`ap:${p.aparelho}:${ctx.hoje}`, fotos.length, LIMITE_APARELHO))
+  // O aparelho e o IP são conferidos juntos: antes, um pedido barrado pelo aparelho já tinha gastado a cota do IP.
+  const limites = [
+    { chave: `ap:${p.aparelho}:${ctx.hoje}`, max: LIMITE_APARELHO },
+    { chave: `ip:${ctx.ip}:${ctx.hoje}`, max: LIMITE_IP },
+  ];
+  if (!limite.usarTodos(limites, fotos.length))
     return erro(429, 'limite', 'Limite de fotos de hoje atingido. Use a lista ou tente amanhã.');
   try {
     const bruto = await chamar(fotos as string[]);

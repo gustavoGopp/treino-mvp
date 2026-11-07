@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { LIMITE_APARELHO, Limite, MAX_FOTOS, processarPedido, type Contexto } from '../../api/_lib/pedido';
+import { LIMITE_APARELHO, LIMITE_IP, Limite, MAX_FOTOS, processarPedido, type Contexto } from '../../api/_lib/pedido';
 
 const ctx: Contexto = { ip: '1.2.3.4', hoje: '2026-11-01', convites: ['BETA1'], chaveConfigurada: true };
 const foto = '/9j/' + 'A'.repeat(100);
@@ -34,6 +34,19 @@ describe('api/vision: regras do pedido', () => {
     for (let i = 0; i < LIMITE_APARELHO; i++) expect((await processarPedido(ok, ctx, limite, modelo)).status).toBe(200);
     expect((await processarPedido(ok, ctx, limite, modelo)).corpo.codigo).toBe('limite');
     expect((await processarPedido(ok, { ...ctx, hoje: '2026-11-02' }, limite, modelo)).status).toBe(200);
+  });
+
+  it('um pedido barrado pelo aparelho não gasta a cota do IP (R5c)', async () => {
+    const limite = new Limite();
+    for (let i = 0; i < LIMITE_APARELHO; i++) expect((await processarPedido(ok, ctx, limite, modelo)).status).toBe(200);
+    // O mesmo aparelho insiste muitas vezes: todas barradas, e nenhuma conta no IP.
+    for (let i = 0; i < LIMITE_IP; i++) expect((await processarPedido(ok, ctx, limite, modelo)).corpo.codigo).toBe('limite');
+    // Outros aparelhos no mesmo IP (a academia) ainda têm LIMITE_IP − LIMITE_APARELHO fotos.
+    const outros = (LIMITE_IP - LIMITE_APARELHO) / LIMITE_APARELHO;
+    for (let a = 0; a < outros; a++)
+      for (let i = 0; i < LIMITE_APARELHO; i++)
+        expect((await processarPedido({ ...ok, aparelho: `aparelho-outro-${a}` }, ctx, limite, modelo)).status).toBe(200);
+    expect((await processarPedido({ ...ok, aparelho: 'aparelho-mais-um' }, ctx, limite, modelo)).corpo.codigo).toBe('limite');
   });
 
   it('erro do modelo vira mensagem clara, sem detalhes internos', async () => {
