@@ -97,3 +97,9 @@ Detalhes, medidas e o porquê de cada item em `revisoes/auditoria-fable.md`.
 - **Licença do PAR-Q+** (lida em 05/11/2026, `parq2025`): usar o texto oficial num app exige autorização escrita da PAR-Q+ Collaboration (eparmedx@gmail.com), possivelmente com taxa. Decidir: pedir a autorização (e então usar a versão oficial em português, `schwartz2021`) ou seguir com as perguntas próprias, que a tela já apresenta como "não é o questionário oficial". Vale junto com a revisão do profissional de Educação Física.
 - **Textos de segurança a partir do Guia do Ministério da Saúde 2021** (`ms2021`, licença CC BY-NC-SA): as listas oficiais em pt-BR de contraindicações e de condições que pedem acompanhamento (p. 43) podem substituir frases do app, com a fonte citada.
 
+
+## Do redesign, lote 2 (06/11/2026)
+Achados ao refazer a tela do treino. Nada disso mudou no lote, porque mexe no domínio ou na regra: fica para o Gustavo decidir.
+- **A nota de dor do "Senti algo" não é gravada na série.** A pessoa escolhe de 0 a 10 e o app responde na hora, mas a nota não vai para o registro, e o domínio lê `dor ≥ 3` na série para sugerir a carga seguinte. Corrigir pede gravar a nota na série aberta (e decidir o que fazer se ainda não houver série).
+- **Na barra, o "+/−" da carga anda de 2,5 kg** sem olhar a menor anilha do inventário, embora `opcoesCarga()` já devolva `passoKg`. Quem tem anilhas de 1 kg não consegue marcar 21 kg pelos botões.
+- **Testes:** os toques nas folhas falhavam às vezes porque a folha ainda estava subindo; `folhaPronta` (`tests/e2e/jornada.ts`) espera a animação terminar. Usar em todo teste novo que toque numa folha.

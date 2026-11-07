@@ -187,3 +187,59 @@ A acessibilidade fica em 100 em 5 rotas e em 93 no guia, com as mesmas 3 falhas 
 **O que não melhorou:** o guia. Ele anima o Boneco quadro a quadro na própria tela, e esse cálculo não vai para o Worker sem mudar a forma de desenhar. Fica para o lote 2 (treino e guia), que já reconstrói essa tela, junto com as 3 falhas de acessibilidade.
 
 **Sem rede:** `tests/e2e/sem-rede.spec.ts` abre o app uma vez, corta a rede e confere que o programa (com as miniaturas), o treino, o guia (com o palco) e a semana abrem, pelo que o service worker guardou.
+
+### Lote 2, treino e guia (06/11/2026)
+Medidas em `docs/revisoes/redesign/lote-2/`: `base.json` (pacote e Lighthouse) e `medidas-{claro,escuro,pequeno}.json` (capturas). Imagens de antes e depois em `docs/img/redesign-lote-2-*.png`.
+
+**O que mudou no treino:**
+- a tela fica acesa o treino todo, não só no descanso;
+- o cabeçalho mostra "‹ Início", "1 de 6" e "Senti algo";
+- "Senti algo", "Trocar" e o novo "⋯" (anterior, próximo, trocar, terminar) abrem em folhas abaixo do cabeçalho, com "Senti algo" sempre tocável;
+- "Terminar o treino agora" pede confirmação, e os alertas de segurança continuam encerrando sem perguntar;
+- o descanso fica no alto da tela e a série seguinte aparece inteira; "Série feita" encerra o descanso, com 1 toque por série;
+- depois de salvar, "Desfazer" fica 5 s à vista;
+- o painel da série fica preso embaixo, com os números grandes; se ele passa de 55% da altura da tela, volta para o meio da página;
+- menos texto: a sugestão vira uma linha ("Hoje: 9 kg"), o motivo e a ajuda do RIR vão para o "por quê?" com o selo, e a meta de reserva aparece marcada nos botões;
+- no exercício sem animação, a montagem segura fica sempre aberta, e as dicas e os erros abrem numa folha.
+
+**O que mudou no guia:**
+- o palco fica no topo; vindo do treino, o cabeçalho é o mesmo do treino, e "Senti algo" volta ao treino com a folha aberta;
+- a nota de montagem ou de segurança aparece em todos os modos, sem as etiquetas `<b>` escritas na tela;
+- `<main>`, botões sem `role="tab"`, "Lento" com o nome igual ao texto;
+- o motor do Boneco saiu da linha principal: o Worker calcula um ciclo inteiro da animação e a tela só troca os quadros; o motor não mudou.
+
+**Critérios nas capturas** (6 personas): claro, 102 telas; escuro, 100; pequeno (360 px), 100. Em todas, 0 toque abaixo de 44 px, 0 contraste baixo e 0 rolagem de lado. Nos 7 cenários de `tests/e2e/cenarios.spec.ts`, treino e guia passam os 4 critérios; sobram 2 pendências, de outros lotes (início a 320 px, lote 4; cadastro com letra a 125%, lote 3).
+
+**Palavras à vista sem rolar** (Ana, claro):
+
+| Tela | Lote técnico | Lote 2 |
+|---|---:|---:|
+| Série 1 | 73 | 61 |
+| Série 2 | 65 | 61 |
+| Guia, técnica | 54 | 41 |
+| Guia, erros | 65 | 41 |
+| Guia, músculos | 90 | 63 |
+| Descanso | 56 | 66 |
+
+O descanso sobe porque a série seguinte agora aparece inteira, em vez de ficar coberta pelo painel.
+
+**Lighthouse, com o app instalado, por rota:**
+
+| Rota | Desempenho (lote técnico → lote 2) | Acessibilidade | Bloqueio total (ms) |
+|---|---|---:|---:|
+| `/` (abre o programa) | 98 → 95 | 100 | 255 |
+| `/comecar/triagem` | 100 → 99 | 100 | 116 |
+| `/programa` | 93 → 92 | 100 | 356 |
+| `/guia/bulgaro` | 71 → **91** | 93 → **100** | 3.229 → **376** |
+| `/semana` | 100 → 100 | 100 | 28 |
+| `/dados` | 100 → 100 | 100 | 36 |
+
+As pequenas variações de 1 a 3 pontos nas outras rotas são da medida (o programa não mudou neste lote).
+
+**Guia na 1ª visita** (perfil vazio, 3 rodadas): desempenho 95 · 96 · 96, bloqueio total de 223 a 257 ms. No lote técnico: 70.
+
+**Perfil do processador no guia** (`perfil.mjs /guia/bulgaro`, celular 4× mais lento, 6 s com a animação rodando): o código do app na linha principal gasta cerca de 0,6 s (a troca dos quadros e o React); o motor não aparece mais. O resto é o navegador pintando.
+
+**O que não melhorou:**
+- o pacote do programa (189 kB) e o seu bloqueio (cerca de 0,3 s) ficam como no lote técnico; o início é o lote 4;
+- o Worker do Boneco tem 44 kB comprimidos e é baixado na 1ª miniatura, como antes.
