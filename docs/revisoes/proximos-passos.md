@@ -236,3 +236,35 @@ Só tela, em texto. O motivo medido está no relatório citado. Os que encostam 
 - **Dependências e testes** (17): esperar o lote técnico do redesign, que mexe nos mesmos arquivos.
 - **Animações e Boneco**: a fila (A, C, B, D, E), a rodada com o especialista e o R4 D.3 seguem com a sessão de design e o R5 de animação; nada aqui muda essa ordem.
 - **Um achado lateral, não conferido:** a frente C viu a faixa "Há uma versão nova do seu programa" para o Bruno e a Carla sem razão aparente, ao semear o inventário sem passar pelo zod; o redesign registra a mesma faixa (`medidas.md`). Provavelmente é um artefato do estado semeado; vale uma checagem rápida no R5a.
+
+---
+
+## Parte 3. As decisões (07/11/2026)
+
+> O Gustavo pediu, em 07/11, que a sessão decidisse os pontos em aberto e montasse o prompt de uma sessão nova para continuar o desenvolvimento. Ele decide o produto; as decisões técnicas ficam com a sessão, sempre com o motivo e a medida. Ele também autorizou levar esta sessão à `main` (só `docs/`).
+
+### 3.1 O que foi decidido, e por quê
+
+1. **Os cartões de texto ficam, por enquanto.** Os 32 exercícios novos entram como cartão textual (o princípio do `CLAUDE.md`: nada de animação improvisada), e os **5 de corpo livre mais prescritos** ganham animação no marco logo depois da biblioteca: panturrilha no degrau (81,8% dos programas), abdominal invertido (61,7%), extensão de tríceps com o peso do corpo (59,4%), abertura em T deitado (56,1%) e flexão com os pés elevados (53,8%). Motivo: a única alternativa medida, "animado primeiro", fazia o mesmo exercício se repetir havendo opção em 29,5% dos programas (defeito com evidência moderada); e as animações da panturrilha, da flexão e do abdominal já existem e servem de base.
+2. **O foco ganha um marco próprio, o R5d "o foco que aparece",** logo depois da biblioteca. As duas revisões cegas e a frente A apontaram a mesma coisa: o grupo escolhido recebe quase o mesmo volume que o resto (a nota C2 da régua: 29% dos programas sem dor). Entram: o 2º exercício do prioritário (D-4c, medido em `a-qualidade.md`; substitui a D-4 do backlog, que quase não tinha efeito); "escolha até 2 grupos de foco" no cadastro (D-3); nos cortes de tempo, cortar primeiro os isoladores dos grupos que não são foco; o 1º degrau da escada pelo nível (o avançado sem equipamento não começa pela versão do iniciante); a regressão da barra fixa para quem não faz 1 repetição (a negativa antes da barra); e os avisos de lacuna pelo que o programa tem de fato.
+3. **A ordem dos marcos:** R5a → R5-CL → R5d → R5-anim → R5b → R5c (tabela 3.2). Motivo: primeiro o que engana e o que é de segurança (a dor que não fica guardada); depois a variedade que o Gustavo pediu; depois o foco, que a biblioteca não resolve; as 5 animações podem correr em paralelo ao R5d, porque mexem no motor e nos dados de animação, não no gerador; o avaliador fica mais útil quando o gerador já está bom; abrir para família e amigos por último, com o app no melhor estado.
+4. **Os pontos menores:**
+   - **O limiar de empurrar ÷ puxar do avaliador é 1,5** (o mesmo da régua da G5, consenso, `kolber2010`; equivale aos 2/3 do protótipo da frente B).
+   - **"Usar todo o tempo que sobra para todos" (E-c) fica descartado:** contradiz o foco e o "foco com manutenção" aprovado em 06/11; o efeito medido está em `a-qualidade.md`, se um dia valer reabrir.
+   - **A variação por blocos** fica para depois do R3 (sem ganho de músculo, moderada; mexe na progressão).
+   - **A triagem continua com as perguntas próprias**, e a revisão por um profissional de Educação Física (CREF) continua "de lado", como o Gustavo decidiu em 01/11. Fica registrada como item a reavaliar antes de abrir o app a desconhecidos (não para família e amigos).
+
+### 3.2 Os marcos, na ordem
+
+| # | Marco | O que entrega | Aceite (resumo) | Esforço | Prompt |
+|---|---|---|---|---|---|
+| 1 | **R5a O registro que não engana** | a dor guardada na série; o treino vazio não conta; a calibração com saída; o "Agora não" de 7 dias; a semana leve fora da fase de aprendizado; a leitura do export; o ajuste de 30 min (com a proteção da coxa) e as 3 correções do gerador | dor de 3 a 5 guardada e reduzindo a carga nas 6 personas; 0 calibração com mais de 3 sessões no simulador; nenhum defeito da régua pior que na `main` | 4–5 dias | `sessao-r5a-registro-confiavel.md` |
+| 2 | **R5-CL Biblioteca ampliada** | 32 exercícios novos (cartão textual) em todos os equipamentos; a proteção da coxa no corte de tempo; a régua da G5 na auditoria | nenhum defeito pior; ≥ 83% dos programas sem dor sem defeito; repetir sem alternativa ≤ 16%; sem nada, ≥ 5,3 exercícios por dia | 5–6 dias | `sessao-r5-corpo-livre.md` |
+| 3 | **R5d O foco que aparece** | 2º exercício do prioritário; "escolha até 2"; cortar primeiro o que não é foco; 1º degrau pelo nível; regressão da barra; avisos de lacuna | nenhum defeito pior; foco invisível (C2) ≤ 15%; o caso do Gustavo com os superiores acima das pernas; revisão cega sem persona pior | 3–4 dias | `sessao-r5d-foco.md` |
+| 4 | **R5-anim Os 5 de corpo livre** (pode correr junto do R5d) | as animações da panturrilha no degrau, do abdominal invertido, da extensão de tríceps, da abertura em T e da flexão com os pés elevados, no estilo A | aprovação do Gustavo folha a folha; as animações já aprovadas sem 1 pixel de diferença; dias com 3+ cartões de 74,9% para ≤ 20% dos programas sem dor (medido no protótipo com os 5 animados: 19,5%; sem nada, 0%) | 3–4 dias | `sessao-r5-animacao-corpo-livre.md` |
+| 5 | **R5b O avaliador e o porquê** | o avaliador de qualquer programa; o porquê específico; os avisos com o próximo passo | "está bom" ou só "limite" em ≥ 80% da grade; 20 de 20 avisos com o próximo passo | 4–6 dias | `sessao-r5b-avaliador.md` |
+| 6 | **R5c Abrir para família e amigos** | o texto e o consentimento da foto; termos; tela de erro com "Exportar"; não perder dados; canal de problema; "Como ler o seu treino" | os e2e de erro, consentimento e cópia; a revisão do advogado e o teto de gasto no devlog | 4–5 dias + advogado | `sessao-r5c-abrir-familia.md` |
+
+Depois deles, na ordem que o uso indicar: o "monte o seu treino" do zero (com a v8 coordenada com o redesign), os gatilhos da semana leve e do "estagnado" pelo export do R3, a revisão do nível aos ~6 meses e o resto da fila de animação.
+
+**A sessão nova** que conduz esses marcos, um de cada vez e parando ao fim de cada um, começa pelo prompt `docs/prompts/sessao-desenvolvimento.md`.

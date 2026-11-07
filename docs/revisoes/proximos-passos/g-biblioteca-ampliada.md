@@ -103,7 +103,7 @@ Programas sem dor em que cada exercício novo aparece (de 36.300):
 | Tríceps testa com halteres | 2.983 | 8,2% |
 | Os outros 23 | menos de 7% cada | |
 
-Os 5 primeiros são de corpo livre e valem em todo cenário (pedem só apoio): eles respondem pela maior parte dos cartões. **Animá-los primeiro** (as animações da panturrilha, da flexão e do abdominal já existem e servem de base, `16`) devolve o guia animado à maioria dos programas sem tirar a variedade.
+Os 5 primeiros são de corpo livre e valem em todo cenário (pedem só apoio): eles respondem pela maior parte dos cartões. **Animá-los primeiro** (as animações da panturrilha, da flexão e do abdominal já existem e servem de base, `16`) devolve o guia animado à maioria dos programas sem tirar a variedade. **Medido** (07/11, na cópia final com os 5 marcados como animados): os programas sem dor com um dia de 3 ou mais cartões caem de 74,9% para **19,5%** (hoje são 8,4%), e no corpo livre para 0%; nenhum defeito muda.
 
 ## 5. O que fica, e o que não se resolve com exercício
 
