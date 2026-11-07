@@ -70,3 +70,48 @@ export function ehAppleMovel({ userAgent, maxTouchPoints }: Pick<Navegador, 'use
 export function avisarInstalar(n: Navegador): boolean {
   return ehAppleMovel(n) && !n.instalado;
 }
+
+export type InfoProblema = {
+  /** Commit publicado (__VERSAO__). */
+  versao: string;
+  /** Data do build, já escrita (dd/mm/aaaa). */
+  publicadaEm: string;
+  /** navigator.userAgent: o modelo do navegador e do sistema, sem nada da pessoa. */
+  aparelho: string;
+  /** Caminho da tela (ex.: /programa). Sem a busca nem o fragmento. */
+  tela: string;
+  /** Erro de tela, se houver: só o tipo e a 1ª linha da mensagem, cortada. */
+  erro?: { nome: string; mensagem: string };
+};
+
+/** Tamanho máximo da mensagem de erro copiada no aviso. */
+export const MAX_MENSAGEM_ERRO = 160;
+
+/**
+ * Corpo do "Avisar um problema" (P5): a versão, o aparelho e a tela já escritos, e o pedido para não mandar dado de saúde
+ * nem o arquivo exportado. Recebe só dados técnicos: o estado do app nunca entra aqui.
+ */
+export function textoDoProblema(i: InfoProblema): string {
+  const tela = i.tela.split(/[?#]/)[0] || '/';
+  const linhas = [
+    'Conte o que aconteceu e o que você esperava (por favor, sem dados de saúde e sem anexar o arquivo exportado):',
+    '',
+    '',
+    '---',
+    `Versão: ${i.versao} (publicada em ${i.publicadaEm})`,
+    `Aparelho: ${i.aparelho}`,
+    `Tela: ${tela}`,
+  ];
+  if (i.erro) {
+    const msg = (i.erro.mensagem.split('\n')[0] ?? '').slice(0, MAX_MENSAGEM_ERRO);
+    linhas.push(`Erro: ${i.erro.nome}${msg ? `: ${msg}` : ''}`);
+  }
+  return linhas.join('\n');
+}
+
+/** Link de e-mail com o assunto e o corpo prontos; null sem e-mail configurado. */
+export function linkDoProblema(email: string, corpo: string): string | null {
+  const e = email.trim();
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(e)) return null;
+  return `mailto:${e}?subject=${encodeURIComponent('treino-mvp: um problema')}&body=${encodeURIComponent(corpo)}`;
+}

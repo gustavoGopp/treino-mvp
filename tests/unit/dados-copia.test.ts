@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { avisarInstalar, diasDesde, ehAppleMovel, lembrarCopia, textoUltimaCopia } from '../../src/domain/dados';
+import { avisarInstalar, diasDesde, ehAppleMovel, lembrarCopia, linkDoProblema, MAX_MENSAGEM_ERRO, textoDoProblema, textoUltimaCopia } from '../../src/domain/dados';
 
 // R5c: a última cópia, o lembrete de exportar (dados.copia) e o aviso de instalar no iPhone (dados.instalar-iphone).
 const AGORA = '2026-11-20T12:00:00.000Z';
@@ -59,5 +59,33 @@ describe('avisarInstalar (dados.instalar-iphone)', () => {
     expect(avisarInstalar({ userAgent: iphone, maxTouchPoints: 5, instalado: true })).toBe(false);
     expect(ehAppleMovel({ userAgent: ipadComoMac, maxTouchPoints: 0 })).toBe(false);
     expect(avisarInstalar({ userAgent: android, maxTouchPoints: 5, instalado: false })).toBe(false);
+  });
+});
+
+describe('textoDoProblema e linkDoProblema (P5)', () => {
+  const base = { versao: 'abc1234', publicadaEm: '07/11/2026', aparelho: 'Mozilla/5.0 (Linux; Android 14)', tela: '/evolucao/supino?x=1#a' };
+  it('escreve a versão, o aparelho e a tela, sem a busca da URL', () => {
+    const t = textoDoProblema(base);
+    expect(t).toContain('Versão: abc1234 (publicada em 07/11/2026)');
+    expect(t).toContain('Aparelho: Mozilla/5.0 (Linux; Android 14)');
+    expect(t).toContain('Tela: /evolucao/supino\n'.trim());
+    expect(t).not.toContain('x=1');
+    expect(t).toMatch(/sem dados de saúde/);
+    expect(t).not.toContain('Erro:');
+  });
+  it('do erro, leva só o tipo e a 1ª linha da mensagem, cortada', () => {
+    const longa = 'a'.repeat(400);
+    const t = textoDoProblema({ ...base, erro: { nome: 'TypeError', mensagem: `${longa}\nsegunda linha` } });
+    const linha = t.split('\n').find((l) => l.startsWith('Erro:'))!;
+    expect(linha).toBe(`Erro: TypeError: ${'a'.repeat(MAX_MENSAGEM_ERRO)}`);
+    expect(t).not.toContain('segunda linha');
+    expect(textoDoProblema({ ...base, erro: { nome: 'Error', mensagem: '' } })).toContain('Erro: Error\n'.trim());
+  });
+  it('monta o mailto só com um e-mail válido', () => {
+    expect(linkDoProblema('', 'x')).toBeNull();
+    expect(linkDoProblema('sem-arroba', 'x')).toBeNull();
+    const l = linkDoProblema(' alguem@exemplo.com ', 'linha 1\nlinha 2')!;
+    expect(l.startsWith('mailto:alguem@exemplo.com?subject=')).toBe(true);
+    expect(decodeURIComponent(l.split('body=')[1]!)).toBe('linha 1\nlinha 2');
   });
 });
