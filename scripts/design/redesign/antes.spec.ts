@@ -237,11 +237,16 @@ for (const persona of PERSONAS) {
 test('treino: exercício sem animação (Ana, 2º exercício, a ponte de glúteo)', async ({ page }) => {
   await comEstado(page, 'ana');
   await page.goto('/programa');
+  await page.getByRole('tab').nth(0).click();
   const nomeDia = ((await page.getByRole('tab').nth(0).textContent()) ?? '').trim();
   await page.getByRole('button', { name: `Começar o treino ${nomeDia}` }).click();
   await expect(page).toHaveURL(/\/treino$/);
-  if (await page.getByRole('button', { name: /^Mais opções/ }).count()) await proximoExercicio(page);
-  else await page.getByRole('button', { name: 'Próximo' }).click();
+  // o toque no "Próximo ›" da folha às vezes se perde no navegador lento das capturas: tenta de novo
+  for (let n = 0; n < 3 && !(await page.getByRole('heading', { name: /Ponte de glúteo/ }).isVisible()); n++) {
+    if (await page.getByRole('dialog', { name: 'Mais opções' }).isVisible()) await page.keyboard.press('Escape');
+    if (await page.getByRole('button', { name: /^Mais opções/ }).count()) await proximoExercicio(page);
+    await page.waitForTimeout(500);
+  }
   await expect(page.getByRole('heading', { name: /Ponte de glúteo/ })).toBeVisible();
   await foto(page, 'ana', '16e-treino-cartao-fechado');
   await page.locator('details.cartao-texto > summary, .cartao-texto .como-fazer').click();

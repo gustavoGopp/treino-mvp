@@ -117,6 +117,7 @@ export function Resumo() {
             ))}
           </div>
           <p className="ajuda">
+            Nada vem marcado.{' '}
             <PorQue regras={['deload.semana-leve']} titulo="Hoje foi">
               <p>Nada vem marcado. Com "pesado demais" em 2 dos últimos 3 treinos, o app sugere uma semana leve.</p>
             </PorQue>
