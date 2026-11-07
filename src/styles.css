@@ -422,6 +422,9 @@ a.cartao-ex-corpo:focus-visible{outline:3px solid var(--accent);outline-offset:-
 /* Foto do equipamento: sugestões com confirmação "Tenho / Não tenho" */
 .foto-eq{background:var(--surface);border-radius:var(--r3);padding:16px;display:flex;flex-direction:column;gap:12px}
 .foto-eq h2{margin:0;font-size:20px;font-weight:800}
+.consentimento{display:flex;flex-direction:column;gap:10px;border:2px solid var(--accent);border-radius:var(--r2);padding:14px}
+.consentimento h3{margin:0;font-size:17px;font-weight:800}
+.consentimento .lista,.mais-corpo .lista{font-size:15px}
 .campo-texto{font:inherit;font-size:18px;min-height:52px;padding:8px 12px;border:1.5px solid var(--edge);border-radius:var(--r1);background:var(--surface);color:var(--ink);text-transform:uppercase;letter-spacing:.06em}
 .sugestoes-foto{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:8px}
 .sugestao-foto{display:grid;grid-template-columns:56px 1fr;gap:4px 10px;align-items:center;padding:10px 12px;border:1.5px solid var(--edge);border-radius:var(--r2)}
@@ -598,3 +601,16 @@ a.cartao-ex-corpo:focus-visible{outline:3px solid var(--accent);outline-offset:-
 .ea-pele-t-longe-e{fill:var(--e-pele-erro);stroke:var(--e-pele-erro);stroke-linejoin:round;opacity:.6}
 .ea-cont-longe{stroke-linejoin:round}
 .eb-folga-t{fill:var(--stage);stroke:var(--stage);stroke-linejoin:round}
+
+/* R5c: abrir para família e amigos (tela de erro, termos, cópia, aviso de instalar, como ler o treino). */
+.link-texto{background:none;border:0;padding:0 2px;min-height:44px;font:inherit;font-weight:700;color:var(--link);text-decoration:underline;cursor:pointer}
+.texto-problema{margin:0;white-space:pre-wrap;word-break:break-word;font:inherit;font-size:14px;background:var(--surface-2);border-radius:var(--r1);padding:12px}
+.termos h2{margin:0;font-size:20px;font-weight:800}
+.termos section{display:flex;flex-direction:column;gap:8px}
+.termos p{margin:0}
+.aviso-instalar{display:flex;flex-direction:column;gap:8px;background:var(--surface);border-radius:var(--r2);padding:12px 14px;box-shadow:inset 0 0 0 2px var(--accent-soft)}
+.aviso-instalar p{margin:0}
+.aviso-instalar ol{margin:0;padding-left:22px}
+.como-ler dl{margin:0;display:flex;flex-direction:column;gap:8px}
+.como-ler dt{font-weight:800}
+.como-ler dd{margin:0}

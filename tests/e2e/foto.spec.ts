@@ -1,7 +1,9 @@
 import { readdirSync, readFileSync } from 'node:fs';
 import { expect, test, type Page } from '@playwright/test';
 import { temExif } from '../../src/lib/imagem';
+import { semContrasteBaixo } from './contraste';
 import { ana } from './jornada';
+import { semToquePequeno } from './toque';
 
 // M4: foto do equipamento, com a API simulada (o teste não chama o Claude nem precisa de chave).
 
@@ -46,6 +48,7 @@ test('foto: tira o EXIF no aparelho, mostra as sugestões e só usa o que a pess
 
   const original = await fotoComExif(page);
   expect(temExif(original)).toBe(true);
+  await page.getByLabel(/^Autorizo enviar as minhas fotos/).check();
   await page.getByLabel('Código de convite').fill('beta1');
   await page.getByLabel('Escolher fotos').setInputFiles({ name: 'academia.jpg', mimeType: 'image/jpeg', buffer: original });
 
@@ -75,11 +78,58 @@ test('foto: tira o EXIF no aparelho, mostra as sugestões e só usa o que a pess
 test('foto: convite inválido mostra o motivo e a lista continua funcionando', async ({ page }) => {
   await irParaEquipamento(page);
   await page.route('**/api/vision', (route) => route.fulfill({ status: 403, json: { codigo: 'convite', erro: 'Código de convite inválido.' } }));
+  await page.getByLabel(/^Autorizo enviar as minhas fotos/).check();
   await page.getByLabel('Código de convite').fill('errado');
   await page.getByLabel('Escolher fotos').setInputFiles({ name: 'a.jpg', mimeType: 'image/jpeg', buffer: await fotoComExif(page) });
   await expect(page.getByRole('alert')).toHaveText('Código de convite inválido.');
   await page.getByRole('button', { name: 'Continuar' }).click();
   await expect(page.getByRole('heading', { name: 'Tudo certo?' })).toBeVisible();
+});
+
+test('foto: a caixa de consentimento aparece antes do 1º envio e não depois (privacidade.foto)', async ({ page }) => {
+  await irParaEquipamento(page);
+  let envios = 0;
+  await page.route('**/api/vision', async (route) => {
+    envios++;
+    await route.fulfill({ json: { itens: [{ itemId: 'barra_fixa', confianca: 'alta', evidencia: 'foto 1' }] } });
+  });
+  const caixa = page.getByRole('region', { name: 'Antes de enviar: para onde vai a foto' });
+  await expect(caixa).toBeVisible();
+  await expect(caixa).toContainText('Anthropic, empresa dos EUA');
+  await expect(caixa).toContainText('em até 30 dias');
+  await expect(caixa).toContainText('O servidor do app não guarda a foto');
+  const autorizo = page.getByLabel(/^Autorizo enviar as minhas fotos/);
+  await expect(autorizo).not.toBeChecked();
+  // Sem a autorização, o botão das fotos fica desligado e nada é enviado.
+  await expect(page.getByLabel('Escolher fotos')).toBeDisabled();
+  for (const tema of ['light', 'dark'] as const) {
+    await page.emulateMedia({ colorScheme: tema });
+    await semToquePequeno(page);
+    await semContrasteBaixo(page);
+  }
+  await autorizo.check();
+  await expect(page.getByLabel('Escolher fotos')).toBeEnabled();
+  await page.getByLabel('Código de convite').fill('beta1');
+  await page.getByLabel('Escolher fotos').setInputFiles({ name: 'a.jpg', mimeType: 'image/jpeg', buffer: await fotoComExif(page) });
+  await expect(page.getByRole('region', { name: 'O que encontramos nas fotos' })).toBeVisible();
+  expect(envios).toBe(1);
+  const data = await page.evaluate(() => localStorage.getItem('treino-foto-consentimento'));
+  expect(data).toMatch(/^\d{4}-\d{2}-\d{2}T/);
+
+  // Depois do 1º envio, a caixa não volta: nem nesta tela nem ao recarregar.
+  await page.getByRole('button', { name: 'Descartar e voltar' }).click();
+  await expect(caixa).toHaveCount(0);
+  await expect(page.getByText(/^Você autorizou o envio das fotos à Anthropic, nos EUA, em/)).toBeVisible();
+  await page.reload();
+  await expect(page.getByRole('heading', { name: 'Reconhecer pela foto' })).toBeVisible();
+  await expect(caixa).toHaveCount(0);
+  await expect(page.getByLabel('Escolher fotos')).toBeEnabled();
+
+  // Retirar a autorização (LGPD, art. 8º, § 5º): a caixa volta antes do próximo envio.
+  await page.getByRole('button', { name: 'Retirar a autorização' }).click();
+  await expect(caixa).toBeVisible();
+  await expect(page.getByLabel('Escolher fotos')).toBeDisabled();
+  expect(await page.evaluate(() => localStorage.getItem('treino-foto-consentimento'))).toBeNull();
 });
 
 test('a chave da API não aparece no código que vai para o navegador', async () => {

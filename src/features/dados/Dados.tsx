@@ -2,6 +2,7 @@ import { useRef, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { exportarJson, importarJson, nomeDoArquivo } from '../../storage/arquivo';
 import { useApp } from '../app/estado';
+import { TextoFotoCurto } from '../app/privacidade';
 import { NavInferior, Titulo, Topo } from '../app/ui';
 import { EscolhaEstiloBoneco } from './EstiloBoneco';
 
@@ -64,8 +65,7 @@ export function Dados() {
       <main className="conteudo">
         <Titulo>Meus dados</Titulo>
         <p className="lede">
-          Tudo fica guardado só neste aparelho. A única coisa que sai é a foto do equipamento, se você usar: ela vai, sem a localização, para
-          o reconhecimento e não fica guardada no servidor.
+          Tudo fica guardado só neste aparelho. <TextoFotoCurto />
         </p>
         {erroCarga && (
           <div className="caixa-erro" role="alert">

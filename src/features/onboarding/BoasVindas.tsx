@@ -1,6 +1,7 @@
 import { Link, Navigate, useNavigate } from 'react-router-dom';
 import { primeiroPassoPendente } from '../../storage/esquema';
 import { agoraIso, useApp } from '../app/estado';
+import { TextoFotoCurto } from '../app/privacidade';
 import { Selo, Titulo, Topo } from '../app/ui';
 
 // Passo 1: o que o app faz e o que não faz (seguranca.sem-diagnostico). Se já existe programa, abre direto nele.
@@ -53,9 +54,8 @@ export function BoasVindas() {
         <section className="box">
           <h2>Seus dados ficam no aparelho</h2>
           <p>
-            O seu perfil, o programa e os treinos ficam guardados só neste aparelho. A única coisa que sai é a foto do equipamento, se
-            você usar: ela vai, sem a localização, para o reconhecimento e não fica guardada no servidor. Você pode exportar ou apagar tudo
-            quando quiser em “Meus dados”.
+            O seu perfil, as respostas de saúde, o programa e os treinos ficam guardados só neste aparelho. <TextoFotoCurto /> Você pode
+            exportar ou apagar tudo quando quiser em “Meus dados”.
           </p>
         </section>
         <button type="button" className="btn" onClick={comecar}>
