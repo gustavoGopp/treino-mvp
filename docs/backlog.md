@@ -17,7 +17,7 @@ Ideias e requisitos para depois do MVP. Nada aqui entra sem passar pelo plano.
 
 ## Pendências do lado do Gustavo
 - **Antes de mandar o link a alguém (R5c, 07/11/2026; detalhes no devlog, "R5c"):**
-  - **Teto de gasto** mensal no console da Anthropic (sugestão da frente E: US$ 10, [opinião]) e confirmar no devlog.
+  - **Teto de gasto: US$ 5 por mês** (decidido em 07/11). Confirmar que está ativo no console da Anthropic.
   - **Um código de convite por pessoa** na variável `CONVITES` da Vercel, para desligar só o que vazar; confirmar no devlog.
   - **Advogado:** revisar `/termos` (`src/features/termos/Termos.tsx`) e a caixa da foto (`src/features/app/privacidade.tsx`); depois, `TERMOS_REVISADOS = true` e a revisão registrada no devlog.
   - **Quem responde e o contato:** cadastrar na Vercel `VITE_RESPONSAVEL` (o nome) e `VITE_CONTATO_EMAIL` (o e-mail do canal). Sem elas, os termos mostram "a definir (rascunho)" e o "Avisar um problema" mostra o texto para copiar. Ficam fora do repositório de propósito.
@@ -28,7 +28,7 @@ Ideias e requisitos para depois do MVP. Nada aqui entra sem passar pelo plano.
 - **Projetos extras na Vercel.** Avaliar apagar `treino-mvp-huks` e `treino-mvp-yej6`, criados em 31/10/2026. Eles repetem cada deploy.
 - **Cronometrar o cadastro no celular (critério 1, R1).** O teste automático conta 13 toques e 0 caractere para quem não tem condição nenhuma (sem a tela de equipamento); falta a sua medição de tempo no celular, uma vez, e a da tela de equipamento com "academia completa" (meta: até 15 s).
 - **Confirmar a menor anilha da sua academia (T8).** Sem resposta, o app usa 2 kg (opinião).
-- **Limite da visão compartilhado** (B1 do R5c, opcional): continua em memória por instância. Para família e amigos, o que segura o gasto é o teto no console da Anthropic e um convite por pessoa (abaixo). O R5c corrigiu só a ordem: o aparelho e o IP são conferidos juntos (`api/_lib/pedido.ts`). O caminho, se um dia precisar, é o Redis (Upstash) pelo Marketplace da Vercel (grátis até 500 mil comandos por mês, `upstash-preco`).
+- **Criar o banco do limite compartilhado** (opcional): na Vercel, Marketplace → Upstash for Redis (plano grátis), ligado ao projeto `treino-mvp`. Ele cria `KV_REST_API_URL` e `KV_REST_API_TOKEN`, e o código do R5c (`api/_lib/limite.ts`) passa a usar o banco sozinho. Sem o banco, vale o contador em memória por instância.
 
 ## Decididos no replanejamento de 01/11/2026
 Detalhes em `planejamento/2026-11-diagnostico.md`, `PLANO-MVP.md` e `pesquisa-v2/`.

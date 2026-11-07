@@ -1022,6 +1022,7 @@ As listas exatas ficam em `tests/unit/metas-r0.test.ts`, para o R0c zerar.
 - **Não perder os dados (P3).** Meus dados mostra "Última cópia: hoje / há N dias / nenhuma cópia ainda"; diz quando o navegador **negou** guardar de forma permanente; o início lembra de exportar depois de 3 treinos sem cópia (e cópia com mais de 7 dias), abaixo de "Começar", com "Exportar agora" e "Agora não" (7 dias). No iPhone aberto no Safari, um aviso com os passos para instalar, até o "Entendi". Tudo no `localStorage`: o estado guardado **não mudou de versão**. Regras `dados.copia`, `dados.instalar-iphone`, `dados.persistente`.
 - **Termos e canal (P2, P5).** A página `/termos` (rascunho para o advogado): o que o app faz e não faz, os dados no aparelho, a foto, o que Vercel, Google e Anthropic recebem, os direitos do art. 18 da LGPD (lido hoje) e como exercê-los no próprio app. Link nas boas-vindas, em Meus dados e na tela de erro. "Avisar um problema" leva a versão, o aparelho e a tela, e nunca o estado do app. O nome e o e-mail vêm de variáveis da Vercel (`VITE_RESPONSAVEL`, `VITE_CONTATO_EMAIL`): **nenhum dado pessoal no repositório**.
 - **"Como ler o seu treino" (B2).** No programa, aberto até o 1º treino terminado: série, repetição, carga, descanso e RIR, cada um com o seu selo; no iniciante, a linha da fase de aprendizado. Regra nova `treino.leitura`.
+- **Limite compartilhado (B1, feito depois do ok do Gustavo em 07/11).** O limite diário da foto (10 por aparelho, 40 por IP) passa a valer para todas as instâncias da função, num Redis do Upstash, com um comando por pedido e sem dependência nova. Basta criar o banco pelo Marketplace da Vercel (plano grátis), que cria as variáveis `KV_REST_API_URL` e `KV_REST_API_TOKEN`; sem elas, vale o contador em memória, como antes. O script foi rodado num Redis local: os pedidos barrados não somam no IP.
 - **Também:** o limite da foto confere o aparelho e o IP juntos (um pedido barrado pelo aparelho gastava a cota do IP); ícone do iPhone (`apple-touch-icon` de 180 px, gerado do `icon.svg` por `scripts/icone-iphone.mjs`; o lote 5 do redesign pode trocar o desenho); "Apagar tudo" apaga também o que fica no `localStorage`.
 
 **Medido**
@@ -1035,7 +1036,7 @@ As listas exatas ficam em `tests/unit/metas-r0.test.ts`, para o R0c zerar.
 | e2e: "Última cópia" em Meus dados (nenhuma → hoje, também depois de recarregar) | — | passa |
 | Lighthouse de acessibilidade (boas-vindas, termos, programa, Meus dados, caixa da foto, tela de erro) | — | 100 nas 6 (meta ≥ 90) |
 | Toque ≥ 44 px e contraste WCAG nas telas novas, tema claro e escuro | — | 0 falha |
-| `npm run check` | 670 testes | 695 testes passando (um teste antigo do gerador, "todo músculo abaixo do limiar", leva 4,8 a 6 s nesta máquina e às vezes passa do limite de 5 s; já acontecia na `main`, antes do R5c) |
+| `npm run check` | 670 testes | 698 testes passando (um teste antigo do gerador, "todo músculo abaixo do limiar", leva 4,8 a 6 s nesta máquina e às vezes passa do limite de 5 s; já acontecia na `main`, antes do R5c) |
 | `npm run test:e2e` | 48 | 55, todos passando |
 | Regras | 141 | 146 (5 novas, todas consenso) |
 
@@ -1044,14 +1045,14 @@ As listas exatas ficam em `tests/unit/metas-r0.test.ts`, para o R0c zerar.
 **Não é parecer jurídico.** Os termos e a caixa da foto são rascunho. A página diz "Rascunho em revisão jurídica" até `TERMOS_REVISADOS` virar `true`.
 
 **Com o Gustavo, antes de mandar o link a qualquer pessoa** (preencha aqui):
-- [ ] Teto de gasto no console da Anthropic: US$ ____ por mês, definido em __/__/____.
+- [x] **Teto de gasto: US$ 5 por mês** (decisão do Gustavo em 07/11/2026). Falta só confirmar que está ativo no console da Anthropic. Pela estimativa da frente E (até ~US$ 0,14 por envio de 5 fotos no Opus 5.5), dá **~35 envios de 5 fotos por mês**, ou mais com menos fotos por envio [estimativa; o eval mede o valor real]. Com 30 pessoas e 2 envios cada (~US$ 8), o teto pode chegar antes do fim do mês: aí a API recusa, o app mostra "Não foi possível analisar as fotos agora. Use a lista." e a lista funciona igual.
 - [ ] Um código de convite por pessoa em `CONVITES` (Vercel), definido em __/__/____.
 - [ ] `VITE_RESPONSAVEL` e `VITE_CONTATO_EMAIL` cadastrados na Vercel.
 - [ ] Revisão do advogado dos termos e da caixa da foto em __/__/____; o que mudou: ____.
 - [ ] Teste num iPhone: o aviso de instalar, o ícone e se o app instalado começa vazio.
 - A triagem continua com as perguntas próprias, e a revisão por um CREF continua "de lado" (decisão de 01/11): **reavaliar antes de abrir o app a desconhecidos**, não para família e amigos.
 
-**Fica para depois** (`backlog.md`, "Do R5c"): a letra do Google Fonts (sai com o lote 1 do redesign); a explicação do RIR no 1º toque em cada tela; o limite compartilhado no Upstash; medir o uso sem dado pessoal (só com decisão do Gustavo).
+**Fica para depois** (`backlog.md`, "Do R5c"): a letra do Google Fonts (sai com o lote 1 do redesign); a explicação do RIR no 1º toque em cada tela; medir o uso sem dado pessoal (só com decisão do Gustavo).
 
 **Rascunho de post para o LinkedIn**
 > Antes de mandar o meu app de treino para a família, reli uma frase que eu mesmo tinha aprovado: "a foto não fica guardada no servidor". Era verdade e era incompleta. O meu servidor não guarda, mas a foto vai para a empresa que faz o reconhecimento, nos EUA, que guarda por até 30 dias. Relendo os documentos dela, achei mais duas coisas: o dado pode ser processado em outros países, e um envio suspeito de abuso pode ficar até 2 anos.
