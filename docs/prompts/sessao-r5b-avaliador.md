@@ -1,6 +1,8 @@
 # Prompt: R5b, o avaliador de programas e o porquê de cada escolha
 
 > Rascunho escrito na sessão de próximos passos (06/11/2026), a partir de `docs/revisoes/proximos-passos.md` (parte 2, marco R5b) e dos relatórios `proximos-passos/b-monte-e-avaliador.md` e `c-fluxo.md`. Só vale se o Gustavo escolher este marco. Cole o texto abaixo, a partir de "Você vai conduzir", numa sessão nova.
+>
+> **Atualização de 07/11/2026 (decisões da parte 3 de `docs/revisoes/proximos-passos.md`):** é o **5º marco** da ordem R5a → R5-CL → R5d → R5-anim → R5b → R5c, conduzida pela sessão de `sessao-desenvolvimento.md`. **Decidido, não pergunte de novo:** o limiar de empurrar ÷ puxar é **1,5** (o mesmo da régua da G5, consenso, `kolber2010`; equivale aos 2/3 do protótipo); a frente × trás da coxa usa **0,5–2** (consenso, `green2018`, a mesma faixa da régua). As 3 correções do gerador vieram no R5a. A régua da G5 já está na auditoria (R5-CL): o avaliador se alinha a ela.
 
 ---
 
