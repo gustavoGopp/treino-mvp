@@ -136,7 +136,7 @@
   },
   {
     "id": "volume.sessao.teto",
-    "regra": "Teto de séries fracionadas por músculo numa sessão",
+    "regra": "Teto de séries fracionadas por músculo numa sessão, contando as séries indiretas pela metade (desde 07/11/2026, R5b: antes, o gerador conferia só o músculo principal do exercício, e o glúteo chegava a 12 num dia de pernas em 0,6% dos programas)",
     "valores": {
       "iniciante": "≤ 10",
       "intermediario": "≤ 10",
@@ -1072,7 +1072,7 @@
   },
   {
     "id": "selecao.vaga-sem-equipamento",
-    "regra": "Vaga sem exercício possível com o equipamento (sessão de qualidade dos treinos, decisão do Gustavo em 06/11/2026): recebe outra função do mesmo músculo (extensora vazia → afundo ou agachar; tríceps acima da cabeça vazio → o complemento de tríceps; puxar horizontal vazio → a outra pegada da barra fixa), só se o músculo estiver abaixo da meta semanal, primeiro uma função que o dia ainda não tem, sem passar do teto semanal e nunca como o 3º empurrar de um dia sem puxar; sem opção, a vaga fica vazia e o aviso diz o que falta. O 2º exercício de outra função cobre outra região do músculo (moderada); repetir o mesmo estímulo não acrescenta; músculos não competem por crescimento (um estudo); o equilíbrio empurrar e puxar é consenso com apoio de caso-controle",
+    "regra": "Vaga sem exercício possível com o equipamento (sessão de qualidade dos treinos, decisão do Gustavo em 06/11/2026): recebe outra função do mesmo músculo (extensora vazia → afundo ou agachar; tríceps acima da cabeça vazio → o complemento de tríceps; puxar horizontal vazio → a outra pegada da barra fixa), só se o músculo estiver abaixo da meta semanal, primeiro um padrão de movimento que o dia ainda não tem (o búlgaro na vaga de agachar já é um afundo; R5b, 07/11/2026), depois uma função que o dia ainda não tem, sem passar do teto semanal e nunca como o 3º empurrar de um dia sem puxar; sem opção, a vaga fica vazia e o aviso diz o que falta. O 2º exercício de outra função cobre outra região do músculo (moderada); repetir o mesmo estímulo não acrescenta; músculos não competem por crescimento (um estudo); o equilíbrio empurrar e puxar é consenso com apoio de caso-controle",
     "valores": {
       "iniciante": "1 por vaga vazia, dentro dos exercícios que cabem nos minutos",
       "intermediario": "1 por vaga vazia, dentro dos exercícios que cabem nos minutos",
@@ -1152,6 +1152,20 @@
     ]
   },
   {
+    "id": "selecao.agachar-e-afundo",
+    "regra": "O búlgaro está no nível 2 do agachar e no 1º do afundo (`funcoes.json`). Num dia que tem as duas vagas, a de agachar prefere, no mesmo nível, um exercício do padrão agachar (goblet, agachamento com halteres), para o dia não ficar com dois afundos; sem um do mesmo nível, fica o búlgaro. Antes, 10% dos programas tinham um dia com búlgaro e afundo (R5b, 07/11/2026; achado da frente B da sessão de próximos passos). Funções diferentes crescem regiões diferentes do músculo (moderada, na linha `selecao.exercicios-por-musculo`); a preferência entre agachar e afundo no mesmo dia é escolha do projeto",
+    "valores": {
+      "iniciante": "agachar do padrão agachar quando o dia tem afundo",
+      "intermediario": "agachar do padrão agachar quando o dia tem afundo",
+      "avancado": "agachar do padrão agachar quando o dia tem afundo"
+    },
+    "selo": "consenso",
+    "fontes": [
+      "consenso-projeto",
+      "kassiano2022"
+    ]
+  },
+  {
     "id": "selecao.isolador-obrigatorio",
     "regra": "Quando o equipamento permite, entra o isolador que cobre o que os multiarticulares não cobrem; ele não sai nos cortes de tempo. Em treinos curtos (até 4 exercícios), entra depois das vagas-base do dia, para não deixar um músculo grande sem nenhuma série na semana (revista na auditoria do treino, 02/11/2026; `selecao.multi-mono`)",
     "valores": {
@@ -1199,7 +1213,7 @@
   },
   {
     "id": "selecao.gluteo",
-    "regra": "Ordem das funções para glúteos; o coice na polia sobe ao 1º nível da extensão de quadril, ao lado do hip thrust e do coice na máquina, por ser o único com ensaio de ressonância (`attarieh2026`; decisão do Gustavo em 06/11/2026)",
+    "regra": "Ordem das funções para glúteos; o coice na polia sobe ao 1º nível da extensão de quadril, ao lado do hip thrust e do coice na máquina, por ser o único com ensaio de ressonância (`attarieh2026`; decisão do Gustavo em 06/11/2026). Quando a semana não tem nenhuma vaga de extensão de quadril nem um stiff possível (sem carga, ou com dor lombar acima de 5), a vaga de extensão de quadril que só entraria com foco em glúteos entra para todos: sem isso, o Corpo todo A/B deixava o glúteo só com agachar e afundo em 2,3% dos programas sem dor (R5b, 07/11/2026)",
     "valores": {
       "iniciante": "agachar profundo ou afundo → extensão de quadril (hip thrust, glúteo na máquina, ponte, coice) → abdução como complemento (máquina, polia, caneleira, mini-band e, sem nada, deitado de lado sem carga, com repetições altas: auditoria de 04/11/2026)",
       "intermediario": "agachar profundo ou afundo → extensão de quadril (hip thrust, glúteo na máquina, ponte, coice) → abdução como complemento (máquina, polia, caneleira, mini-band e, sem nada, deitado de lado sem carga, com repetições altas: auditoria de 04/11/2026)",
@@ -1485,6 +1499,64 @@
       "ishoi2025",
       "maeo2024",
       "cholp2025"
+    ]
+  },
+  {
+    "id": "avaliador.gravidade",
+    "regra": "O avaliador de programas (R5b, 07/11/2026) classifica cada achado em cinco gravidades. **Segurança** bloqueia: exercício que carrega uma região com dor acima de 5 (ou sem nota) e triagem com um \"sim\" sem liberação (`seguranca.dor.programa`, `seguranca.triagem`). **Alerta** forte, sem bloquear: exercício que pede um equipamento que não está no local, marcado para evitar, ou acima da complexidade do nível. **Ajustar**: dá para mudar com o que a pessoa já tem (séries, dias, trocar ou acrescentar um exercício). **Limite**: o equipamento, a dor ou os dias e minutos não permitem; o texto diz \"não precisa fazer nada\" ou o que mudaria (mais minutos, mais dias, menos focos), sem sugerir compra. **Informação**: só para saber. Só a segurança bloqueia (princípio de segurança do projeto); o resto orienta e não insiste. Os achados iguais saem numa linha, com a lista. Mede pela tabela de funções (`funcoes.json`), como o gerador, nunca pelo padrão de movimento",
+    "valores": {
+      "iniciante": "5 gravidades; veredito: bloqueado, ajustar, limite ou está bom",
+      "intermediario": "5 gravidades; veredito: bloqueado, ajustar, limite ou está bom",
+      "avancado": "5 gravidades; veredito: bloqueado, ajustar, limite ou está bom"
+    },
+    "selo": "consenso",
+    "fontes": [
+      "consenso-projeto",
+      "smith2017"
+    ]
+  },
+  {
+    "id": "avaliador.equilibrio.empurrar-puxar",
+    "regra": "Séries semanais de empurrar (funções empurrar horizontal, empurrar inclinado, empurrar vertical e crucifixo) divididas pelas de puxar (puxar vertical, puxar horizontal e ombro posterior), quando há algum exercício de puxar possível. Acima do limiar, ajustar: trocar um exercício de empurrar por um de puxar, ou somar séries de puxar. Mais puxar que empurrar não é achado. Não há ensaio prospectivo do limiar; o desequilíbrio aparece em estudos de caso-controle de dor no ombro em quem treina força. Limiar decidido em 07/11/2026: o mesmo da régua da G5 (`docs/pesquisa-v2/17-biblioteca-ampliada.md`, D1)",
+    "valores": {
+      "iniciante": "≤ 1,5",
+      "intermediario": "≤ 1,5",
+      "avancado": "≤ 1,5"
+    },
+    "selo": "consenso",
+    "fontes": [
+      "kolber2010",
+      "kolber2014",
+      "kolber2017"
+    ]
+  },
+  {
+    "id": "avaliador.equilibrio.coxa",
+    "regra": "Quadríceps ÷ posteriores da coxa (séries semanais fracionadas) e pelo menos 1 exercício direto de posteriores na semana (flexão de joelho ou dobrar o quadril), quando os dois músculos têm exercício possível. A razão de força entre frente e trás da coxa não prevê lesão de posterior (moderada, `green2018`), e o agachamento não cresce os posteriores (um estudo, `kubo2019`), por isso a faixa é escolha de treinador. Faixa decidida em 07/11/2026: a mesma da régua da G5 (D3)",
+    "valores": {
+      "iniciante": "0,5 a 2, e ≥ 1 exercício direto de posteriores",
+      "intermediario": "0,5 a 2, e ≥ 1 exercício direto de posteriores",
+      "avancado": "0,5 a 2, e ≥ 1 exercício direto de posteriores"
+    },
+    "selo": "consenso",
+    "fontes": [
+      "green2018",
+      "kubo2019",
+      "maeo2021"
+    ]
+  },
+  {
+    "id": "selecao.complexidade-nivel",
+    "regra": "Complexidade técnica máxima do exercício por nível (1 a 3, campo `complexidade` da biblioteca): o filtro que o gerador já usava (`NIVEL_COMPLEXIDADE_MAX`) ganha id próprio em 07/11/2026 (R5b). Acima dele, o gerador não escolhe o exercício, e o avaliador dá um alerta forte, sem bloquear (exemplos de complexidade 3: mergulho, nórdico, roda abdominal, agachamento, supino e desenvolvimento com barra)",
+    "valores": {
+      "iniciante": "até 2",
+      "intermediario": "até 3",
+      "avancado": "até 3"
+    },
+    "selo": "consenso",
+    "fontes": [
+      "consenso-projeto",
+      "mckenzie2022"
     ]
   },
   {
