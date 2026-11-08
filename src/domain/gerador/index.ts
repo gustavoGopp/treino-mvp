@@ -892,7 +892,7 @@ function montarPrograma(perfil: Perfil, inventarioOriginal: Inventario, triagem:
     {
       regraId: r('volume.semanal.alvo'),
       texto: perfil.prioridades.length
-        ? `Foco em ${emLista(perfil.prioridades.map((g) => NOME_GRUPO[g]))}: ~${VOLUME.alvo[nivel]} séries por semana, para crescer mais rápido. Os outros músculos ficam com ~${VOLUME.minimoEficaz}: continuam crescendo, mais devagar.`
+        ? `Foco em ${emLista(perfil.prioridades.map((g) => NOME_GRUPO[g]))}: ~${VOLUME.alvo[nivel]} séries por semana${nivel === 'iniciante' ? ', o topo da faixa de quem está começando,' : ''} para crescer mais rápido. Os outros músculos ficam com ~${VOLUME.minimoEficaz}: mais do que o necessário para manter (1 a 3) e o bastante para continuar crescendo, mais devagar.`
         : `Sem grupo de foco: todos os músculos ficam com ~${VOLUME.minimoEficaz} séries por semana, o bastante para crescer, mais devagar que com foco. Para acelerar um grupo, escolha-o como prioridade.`,
     },
     ...(seriesNaSobra

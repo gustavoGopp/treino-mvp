@@ -675,7 +675,10 @@ describe('o que a prioridade diz (volume.semanal.alvo; volume.prioridade.competi
   it('o porquê explica foco com manutenção: o foco cresce mais rápido e os outros continuam crescendo', () => {
     const q = ok(fabio.perfil, fabio.inventario).porque.find((x) => x.regraId === 'volume.semanal.alvo')!;
     expect(q.texto).toMatch(/^Foco em costas: ~12 séries por semana/);
-    expect(q.texto).toMatch(/continuam crescendo, mais devagar/);
+    expect(q.texto).toMatch(/mais do que o necessário para manter \(1 a 3\) e o bastante para continuar crescendo, mais devagar/);
+    // R5d: no iniciante, o texto diz por que o foco é 10.
+    const ini = ok({ ...fabio.perfil, nivel: 'iniciante' }, fabio.inventario).porque.find((x) => x.regraId === 'volume.semanal.alvo')!;
+    expect(ini.texto).toMatch(/^Foco em costas: ~10 séries por semana, o topo da faixa de quem está começando, para crescer mais rápido/);
     const sem = ok({ ...fabio.perfil, prioridades: [] }, fabio.inventario).porque.find((x) => x.regraId === 'volume.semanal.alvo')!;
     expect(sem.texto).toMatch(/^Sem grupo de foco/);
   });
