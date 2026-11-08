@@ -2011,11 +2011,11 @@
   },
   {
     "id": "seguranca.dor.escala",
-    "regra": "Dor por série numa escala de 0 a 10 (pergunta opcional)",
+    "regra": "Dor por série numa escala de 0 a 10 (pergunta opcional). A nota dada no \"Senti algo\" fica guardada na série (R5a, 08/11/2026; `docs/revisoes/proximos-passos/c-fluxo.md`, C-1): na última série feita do exercício ou, se ele ainda não tem série, na próxima registrada; duas notas na mesma série guardam a maior. Sem a nota guardada, a redução da próxima sessão e a dor que se repete (`deload.semana-leve`) não disparavam no uso real (0 de 6 personas)",
     "valores": {
-      "iniciante": "0–2: segue; 3–5: reduzir carga 10–20%, encurtar a amplitude ou desacelerar, trocar se não cair; > 5 ou aguda: encerra o exercício; piora na sessão seguinte ou dura > 1–2 semanas: recomendar avaliação",
-      "intermediario": "0–2: segue; 3–5: reduzir carga 10–20%, encurtar a amplitude ou desacelerar, trocar se não cair; > 5 ou aguda: encerra o exercício; piora na sessão seguinte ou dura > 1–2 semanas: recomendar avaliação",
-      "avancado": "0–2: segue; 3–5: reduzir carga 10–20%, encurtar a amplitude ou desacelerar, trocar se não cair; > 5 ou aguda: encerra o exercício; piora na sessão seguinte ou dura > 1–2 semanas: recomendar avaliação"
+      "iniciante": "0–2: segue; 3–5: reduzir carga 10–20%, encurtar a amplitude ou desacelerar, trocar se não cair; > 5 ou aguda: encerra o exercício; piora na sessão seguinte ou dura > 1–2 semanas: recomendar avaliação; a nota fica na série e a 1ª sugestão da próxima sessão do exercício reduz a carga (3–5) ou indica a alternativa (> 5)",
+      "intermediario": "0–2: segue; 3–5: reduzir carga 10–20%, encurtar a amplitude ou desacelerar, trocar se não cair; > 5 ou aguda: encerra o exercício; piora na sessão seguinte ou dura > 1–2 semanas: recomendar avaliação; a nota fica na série e a 1ª sugestão da próxima sessão do exercício reduz a carga (3–5) ou indica a alternativa (> 5)",
+      "avancado": "0–2: segue; 3–5: reduzir carga 10–20%, encurtar a amplitude ou desacelerar, trocar se não cair; > 5 ou aguda: encerra o exercício; piora na sessão seguinte ou dura > 1–2 semanas: recomendar avaliação; a nota fica na série e a 1ª sugestão da próxima sessão do exercício reduz a carga (3–5) ou indica a alternativa (> 5)"
     },
     "selo": "consenso",
     "fontes": [
@@ -2034,6 +2034,19 @@
     "selo": "consenso",
     "fontes": [
       "smith2017",
+      "consenso-projeto"
+    ]
+  },
+  {
+    "id": "registro.treino-feito",
+    "regra": "O que conta como treino feito, e como desfazer um registro errado (R5a, 08/11/2026; `docs/revisoes/proximos-passos/c-fluxo.md`, opção B). Antes, \"Começar\" e \"Terminar\" sem série gravavam um treino concluído e pulavam o dia na rotação (6 de 6 personas). Desfazer e sair de um estado errado é um princípio de usabilidade (controle e liberdade de quem usa); não há estudo de treino sobre isso",
+    "valores": {
+      "iniciante": "só sessões com pelo menos 1 série contam como treino feito: a rotação dos dias, a semana, a pausa e a semana leve; \"Terminar\" sem nenhuma série oferece \"Descartar este treino\" ou \"Guardar mesmo assim\" (guardado, ele não conta); o último treino pode ser apagado, com confirmação",
+      "intermediario": "só sessões com pelo menos 1 série contam como treino feito: a rotação dos dias, a semana, a pausa e a semana leve; \"Terminar\" sem nenhuma série oferece \"Descartar este treino\" ou \"Guardar mesmo assim\" (guardado, ele não conta); o último treino pode ser apagado, com confirmação",
+      "avancado": "só sessões com pelo menos 1 série contam como treino feito: a rotação dos dias, a semana, a pausa e a semana leve; \"Terminar\" sem nenhuma série oferece \"Descartar este treino\" ou \"Guardar mesmo assim\" (guardado, ele não conta); o último treino pode ser apagado, com confirmação"
+    },
+    "selo": "consenso",
+    "fontes": [
       "consenso-projeto"
     ]
   },

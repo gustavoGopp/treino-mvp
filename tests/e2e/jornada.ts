@@ -125,11 +125,11 @@ export async function maisOpcoes(page: Page) {
   await folhaPronta(page);
   return page.getByRole('dialog', { name: 'Mais opções' });
 }
-/** Termina o treino pelo "⋯", confirmando. */
+/** Termina o treino pelo "⋯", confirmando (sem série, "Guardar mesmo assim"; registro.treino-feito). */
 export async function terminarTreino(page: Page) {
   await (await maisOpcoes(page)).getByRole('button', { name: 'Terminar o treino agora' }).click();
   await folhaPronta(page);
-  await page.getByRole('dialog', { name: 'Terminar o treino agora?' }).getByRole('button', { name: 'Terminar o treino', exact: true }).click();
+  await page.getByRole('dialog', { name: 'Terminar o treino agora?' }).getByRole('button', { name: /^(Terminar o treino|Guardar mesmo assim)$/ }).click();
 }
 /** Abre a folha de troca do exercício pelo "⋯". */
 export async function abrirTrocar(page: Page) {

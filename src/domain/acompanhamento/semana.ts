@@ -101,11 +101,12 @@ export function resumoDaSemana(programa: Programa, historico: Sessao[], hojeIso:
   const feitos = destaSemana.length;
   const nomes = Object.fromEntries(programa.dias.map((d) => [d.id, d.nome]));
   const lista: ResumoDaSemana['treinos'] = destaSemana.map((s) => ({ diaId: s.diaId, nome: nomes[s.diaId] ?? s.diaId, feito: true }));
-  let h = historico;
+  // Os que faltam seguem a rotação a partir do próximo (registro.treino-feito: só conta o treino com série).
+  let k = programa.dias.findIndex((d) => d.id === proximoDia(programa, historico).id);
   while (lista.length < o.planejados) {
-    const p = proximoDia(programa, h);
+    const p = programa.dias[k % programa.dias.length]!;
     lista.push({ diaId: p.id, nome: p.nome, feito: false });
-    h = [...h, { id: `x${lista.length}`, diaId: p.id, semana: 1, inicio: hojeIso, fim: hojeIso, exercicios: [] }];
+    k++;
   }
 
   // Semanas com treino: as 8 últimas; a de hoje só entra quando tem treino (o número não cai no meio da semana).

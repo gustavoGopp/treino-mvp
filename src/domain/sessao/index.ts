@@ -1,6 +1,6 @@
 import { BIBLIOTECA, type Exercicio } from '../biblioteca';
 import { faseNaSemana, prescricaoDaSemana, type DiaPrograma, type ExercicioPrescrito, type Fase, type Programa } from '../gerador';
-import { blocoAtual, semanaNoBloco, type Hoje } from './bloco';
+import { blocoAtual, semanaNoBloco, treinoFeito, type Hoje } from './bloco';
 import { escadaDe, nomeDoDegrau, pedeMiniBand } from '../progressao/escadas';
 import { noPassoAbaixo, proximaCarga, sugerirProgressao, type Alvo, type Carga, type OpcoesCarga, type SerieRegistrada, type SessaoExercicio, type Sugestao } from '../progressao';
 import { calibrar, emCalibracao, semCalibracao, type ResultadoCalibracao } from '../progressao/calibracao';
@@ -48,9 +48,12 @@ export type LocalDaCarga = { localId: string; localPadrao?: string };
 
 const POR_ID: Record<string, Exercicio> = Object.fromEntries(BIBLIOTECA.map((e) => [e.id, e]));
 
-/** Próximo dia da rotação: o seguinte ao da última sessão terminada; o primeiro se não há histórico (decisão 1). */
+/**
+ * Próximo dia da rotação: o seguinte ao do último treino feito; o primeiro se não há histórico (decisão 1). Só conta a
+ * sessão com pelo menos 1 série (registro.treino-feito): "Começar" e "Terminar" sem série não pulam o dia.
+ */
 export function proximoDia(programa: Programa, historico: Sessao[]): DiaPrograma {
-  const ultima = [...historico].reverse().find((s) => s.fim && programa.dias.some((d) => d.id === s.diaId));
+  const ultima = [...historico].reverse().find((s) => treinoFeito(s) && programa.dias.some((d) => d.id === s.diaId));
   if (!ultima) return programa.dias[0]!;
   const i = programa.dias.findIndex((d) => d.id === ultima.diaId);
   return programa.dias[(i + 1) % programa.dias.length]!;

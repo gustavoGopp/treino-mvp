@@ -1,6 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import { gerarPrograma } from '../../src/domain/gerador';
-import { descartarSessao, desfazerSerie, iniciarSessao, interromperExercicio, registrarSerie, terminarSessao, trocarExercicio } from '../../src/features/treino/acoes';
+import { anotarDor, apagarUltimoTreino, comDor, corrigirSerie, descartarSessao, desfazerSerie, iniciarSessao, interromperExercicio, registrarSerie, semSerie, terminarSessao, trocarExercicio } from '../../src/features/treino/acoes';
+import { sugestaoDoExercicio } from '../../src/domain/sessao';
 import { estadoSchema, VERSAO_ESTADO, type Estado } from '../../src/storage/esquema';
 import { PERSONAS } from '../personas';
 
@@ -71,5 +72,63 @@ describe('ações do treino', () => {
     expect(e.historico).toEqual([]);
     expect(terminarSessao(e, T1)).toBe(e);
     expect(registrarSerie(e, 0, serie)).toBe(e);
+  });
+});
+
+describe('o registro que não engana (R5a; seguranca.dor.escala, registro.treino-feito)', () => {
+  it('a nota de dor vai para a última série feita do exercício, com a maior nota', () => {
+    let e = registrarSerie(iniciarSessao(estadoAna(), T0), 0, serie);
+    e = registrarSerie(e, 0, serie);
+    const r = anotarDor(e, 0, 4);
+    expect(r.guardada).toBe(true);
+    expect(r.estado.sessaoAtual!.exercicios[0]!.series.map((s) => s.dor)).toEqual([undefined, 4]);
+    expect(anotarDor(r.estado, 0, 3).estado.sessaoAtual!.exercicios[0]!.series[1]!.dor).toBe(4);
+    expect(estadoSchema.parse(r.estado)).toEqual(r.estado);
+  });
+
+  it('sem série feita, a nota não tem onde ficar: quem chama a leva para a próxima série (comDor)', () => {
+    const e = iniciarSessao(estadoAna(), T0);
+    expect(anotarDor(e, 0, 4)).toEqual({ estado: e, guardada: false });
+    expect(comDor(serie, 4)).toEqual({ ...serie, dor: 4 });
+    expect(comDor({ ...serie, dor: 5 }, 4).dor).toBe(5);
+    expect(comDor(serie, 0)).toEqual(serie);
+    expect(comDor(serie)).toEqual(serie);
+  });
+
+  it('dor 4 guardada reduz a carga da próxima sessão do exercício', () => {
+    let e = iniciarSessao(estadoAna(), T0);
+    const x = e.programa!.programa.dias[0]!.exercicios[0]!;
+    const inv = e.locais![0]!.inventario;
+    e = registrarSerie(e, 0, serie);
+    e = anotarDor(e, 0, 4).estado;
+    e = terminarSessao(e, T1);
+    const sug = sugestaoDoExercicio(e.historico, { ...x, exId: e.historico[0]!.exercicios[0]!.exId }, inv);
+    expect(sug.acao).toBe('ajustar');
+    expect(sug.regraId).toBe('seguranca.dor.escala');
+  });
+
+  it('"Terminar" sem série: o treino em andamento está vazio; descartar não grava nada e mantém o dia', () => {
+    const e = iniciarSessao(estadoAna(), T0);
+    expect(semSerie(e)).toBe(true);
+    expect(semSerie(registrarSerie(e, 0, serie))).toBe(false);
+    const d = descartarSessao(e);
+    expect(d.historico).toHaveLength(0);
+    expect(iniciarSessao(d, T1).sessaoAtual!.diaId).toBe('corpo-a');
+    // "Guardar mesmo assim": fica no histórico, mas não conta para a rotação.
+    const g = terminarSessao(e, T1);
+    expect(g.historico).toHaveLength(1);
+    expect(iniciarSessao(g, T1).sessaoAtual!.diaId).toBe('corpo-a');
+  });
+
+  it('apaga o último treino e corrige uma série dele; outro id não muda nada', () => {
+    let e = terminarSessao(registrarSerie(iniciarSessao(estadoAna(), T0), 0, serie), T1);
+    const id = e.historico[0]!.id;
+    expect(apagarUltimoTreino(e, 'outro')).toBe(e);
+    expect(iniciarSessao(apagarUltimoTreino(e, id), T1).sessaoAtual!.diaId).toBe('corpo-a');
+    const certa = { ...serie, reps: 12 };
+    e = corrigirSerie(e, id, 0, 0, certa);
+    expect(e.historico[0]!.exercicios[0]!.series[0]).toEqual(certa);
+    expect(corrigirSerie(e, id, 0, 5, serie)).toBe(e);
+    expect(estadoSchema.parse(e)).toEqual(e);
   });
 });
