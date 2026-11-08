@@ -196,11 +196,16 @@ export function contextoDeSelecao(perfil: Perfil, inventarioOriginal: Inventario
     return null;
   };
 
+  // selecao.barra-negativa-iniciante (R5d): para o iniciante, a barra fixa (pronada ou supinada) vira a barra só na
+  // descida, quando ela é possível; se a descida já está no dia, a vaga segue para a próxima opção, sem a barra.
+  const barraDoIniciante = (id: string) => nivel === 'iniciante' && BARRA_LIVRE.includes(id) && possivel.has(BARRA_NEGATIVA);
+  const regressaoDoIniciante = (id: string) => (barraDoIniciante(id) ? BARRA_NEGATIVA : id);
+
   /** Melhor exercício da função, do nível n em diante, fora os já usados no dia. */
   const escolher = (funcao: Funcao, desde: number, usados: (id: string) => boolean, usos: Map<string, number>, evitar?: (e: Exercicio) => boolean) => {
     let primeiro: { ex: Exercicio; nivelFuncao: number } | null = null;
     for (let n = desde; n < funcao.niveis.length; n++) {
-      const cands = funcao.niveis[n]!.filter((id) => naFuncao(funcao, id))
+      const cands = [...new Set(funcao.niveis[n]!.filter((id) => naFuncao(funcao, id)).map(regressaoDoIniciante))]
         .map((id) => possivel.get(id))
         .filter((e): e is Exercicio => !!e && !usados(e.id));
       const e = cands.sort(comparar(usos, () => funcao, evitar))[0];
@@ -234,6 +239,7 @@ export function contextoDeSelecao(perfil: Perfil, inventarioOriginal: Inventario
     naFuncao,
     perdidaPorDor,
     halterMax,
+    barraDoIniciante,
     preferido,
     comparar,
     resolver,
@@ -376,7 +382,7 @@ function montarPrograma(perfil: Perfil, inventarioOriginal: Inventario, triagem:
       const funcoesDoDia = new Set(d.itens.map((i) => i.funcao.id));
       const tresEmpurrares = (e: Exercicio) => empurra(e) && !d.itens.some((i) => puxa(i.ex)) && d.itens.filter((i) => empurra(i.ex)).length >= 2;
       const achado = possiveis
-        .filter((e) => e.padrao !== 'core' && !d.itens.some((i) => i.ex.id === e.id) && !tresEmpurrares(e) && cabeNoTetoSemanal(e))
+        .filter((e) => e.padrao !== 'core' && !d.itens.some((i) => i.ex.id === e.id) && !tresEmpurrares(e) && cabeNoTetoSemanal(e) && !ctx.barraDoIniciante(e.id))
         .flatMap((e) => {
           const f = funcoesDoExercicio(e.id).find((x) => x.musculo === m && naFuncao(x, e.id));
           return f ? [{ e, f }] : [];
@@ -419,7 +425,7 @@ function montarPrograma(perfil: Perfil, inventarioOriginal: Inventario, triagem:
     // Os músculos que o modelo do dia treina (um dia de superior continua de superior).
     const musculosDoDia = new Set(d.dia.vagas.map((x) => FUNCAO[x.funcao]!.musculo));
     const cands = possiveis
-      .filter((e) => e.padrao !== 'core' && !d.itens.some((i) => i.ex.id === e.id))
+      .filter((e) => e.padrao !== 'core' && !d.itens.some((i) => i.ex.id === e.id) && !ctx.barraDoIniciante(e.id))
       .flatMap((e) => {
         const f = funcoesDoExercicio(e.id).find((x) => naFuncao(x, e.id));
         return f && (soCore || musculosDoDia.has(f.musculo)) ? [{ e, f }] : [];
@@ -1174,6 +1180,9 @@ const PUXAM: Musculo[] = ['costas', 'ombro_posterior'];
 const ISOLADORES_ADIAVEIS = new Set(['crucifixo', 'elevacao-lateral', 'ombro-posterior', 'biceps', 'abducao', 'abdomen']);
 /** volume.prioridade.segundo-exercicio: quantos exercícios a mais um músculo do foco abaixo da meta pode ganhar. */
 const SEGUNDOS_POR_MUSCULO = 2;
+/** selecao.barra-negativa-iniciante: a barra fixa livre e a regressão dela. */
+const BARRA_LIVRE = ['barra-fixa', 'barra-fixa-supinada'];
+const BARRA_NEGATIVA = 'barra-fixa-negativa';
 /** O dia passa do tempo acima disto (a estimativa já inclui a margem de fila; régua da G5, A3). */
 const LIMITE_DO_DIA = 1.1;
 

@@ -109,3 +109,21 @@ describe('o 2º exercício do foco (volume.prioridade.segundo-exercicio)', { tim
     }
   });
 });
+
+describe('a barra só na descida antes da barra para o iniciante (selecao.barra-negativa-iniciante)', () => {
+  const soBarra: Inventario = { barra_fixa: {} };
+  const ids = (p: Programa) => p.dias.flatMap((d) => d.exercicios.map((x) => x.exId));
+  it('o iniciante só com barra fixa recebe a negativa, e não a barra', () => {
+    for (const prioridades of [[], ['costas']] as Grupo[][])
+      for (const dias of [2, 3, 4, 5, 6] as const) {
+        const p = ok({ ...gael.perfil, nivel: 'iniciante', prioridades, diasSemana: dias, divisao: OPCOES_POR_DIAS[dias][0] }, soBarra);
+        expect(ids(p), `${dias} dias`).toContain('barra-fixa-negativa');
+        expect(ids(p).filter((id) => id === 'barra-fixa' || id === 'barra-fixa-supinada'), `${dias} dias`).toEqual([]);
+        // A barra fixa fica nas alternativas da negativa: é para onde a escada leva.
+        expect(p.dias.flatMap((d) => d.exercicios).find((x) => x.exId === 'barra-fixa-negativa')!.alternativas).toContain('barra-fixa');
+      }
+  });
+  it('o intermediário continua com a barra fixa', () => {
+    expect(ids(ok({ ...gael.perfil, prioridades: ['costas'] }, soBarra))).toContain('barra-fixa');
+  });
+});
