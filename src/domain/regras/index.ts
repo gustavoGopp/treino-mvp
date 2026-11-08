@@ -25,7 +25,13 @@ type PorNivel<T> = Record<Nivel, T>;
 export const VOLUME = {
   regra: { minimo: r('volume.semanal.minimo'), alvo: r('volume.semanal.alvo'), maximo: r('volume.semanal.maximo') },
   minimo: { iniciante: 6, intermediario: 10, avancado: 12 } as PorNivel<number>,
-  alvo: { iniciante: 8, intermediario: 12, avancado: 14 } as PorNivel<number>,
+  // volume.semanal.alvo: a meta dos músculos do foco. O iniciante foi de 8 para 10 no R5d (08/11/2026): o 8 era convenção,
+  // e com ele o foco quase não aparecia (8 contra 6 dos outros); 10 é o topo da faixa do iniciante.
+  alvo: { iniciante: 10, intermediario: 12, avancado: 14 } as PorNivel<number>,
+  // tempo.sobra-series: sem foco, até onde o tempo que sobra leva cada músculo (o alvo de antes do R5d; decisão de 06/11).
+  sobraAte: { iniciante: 8, intermediario: 12, avancado: 14 } as PorNivel<number>,
+  // iniciante.fase-aprendizado: a fração das séries nas semanas 1–2 (6 de 8, a mesma de antes do R5d).
+  faseAprendizado: 6 / 8,
   maximo: { iniciante: 10, intermediario: 16, avancado: 20 } as PorNivel<number>,
   teto: 20, // volume.semanal.teto-padrao
   // volume.semanal.minimo-eficaz (4–6): alvo 6 para músculos não prioritários; core fica no piso de 4.

@@ -82,8 +82,10 @@ test('volta depois de 22 dias: a mensagem sem culpa, menos séries e a carga 10%
   ]);
   // lote 4 do redesign: a volta é o próprio cartão de hoje; a mensagem inteira, com o selo, fica no "por quê?".
   const volta = page.getByRole('region', { name: 'Bem-vindo de volta!' });
+  // 9 de 15 desde o R5d (o abdominal saiu do A: com foco, os isoladores de quem não é foco entram depois);
+  // 9 de 16 desde a sessão de qualidade dos treinos (o abdominal protegido no A; o búlgaro com 2 séries); 9 de 15 antes;
   // 8 de 13 até a auditoria do treino (a ponte com halter); 9 de 14 até a sessão de equipamento mínimo (a flexão deslizante).
-  await expect(volta).toContainText(/Séries no Corpo todo A\s*9 de 16/);
+  await expect(volta).toContainText(/Séries no Corpo todo A\s*9 de 15/);
   await expect(volta).toContainText('3–4 repetições');
   // no dia da volta, ela é a única mensagem, e o "Começar" fica à vista sem rolar
   await expect(page.locator('.aviso-linha')).toHaveCount(0);
@@ -101,9 +103,9 @@ test('volta depois de 22 dias: a mensagem sem culpa, menos séries e a carga 10%
   await page.getByRole('button', { name: 'Começar o treino Corpo todo A' }).click();
   await expect(page.getByRole('heading', { name: 'Agachamento búlgaro com apoio' })).toBeVisible();
   // lote 2 do redesign: a meta curta; a reserva-alvo marcada nos botões do RIR; o motivo no "por quê?"
-  // 1 série desde a sessão de qualidade dos treinos: o búlgaro do programa tem 2 (o abdominal protegido tirou 2), e a
-  // semana 1 da volta tem cerca de metade (revisoes/qualidade-treinos.md, F.5).
-  await expect(page.locator('p.meta').first()).toHaveText('1 × 8–12 cada lado');
+  // 2 séries desde o R5d: o búlgaro do programa volta a 4 (o abdominal saiu do A), e a semana 1 da volta tem cerca de
+  // metade. 1 série da sessão de qualidade dos treinos até o R5d (o abdominal protegido tirava 2; qualidade-treinos.md, F.5).
+  await expect(page.locator('p.meta').first()).toHaveText('2 × 8–12 cada lado');
   await expect(page.locator('.rir-meta')).toContainText('meta de hoje: 3–4');
   await expect(page.getByText('Hoje: 9 kg')).toBeVisible();
   const motivo = await porQueDaSugestao(page);

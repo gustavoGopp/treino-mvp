@@ -180,7 +180,8 @@ test('terminar no meio do treino pede confirmação; "Continuar treinando" volta
   await comecar(page);
   await (await maisOpcoes(page)).getByRole('button', { name: 'Terminar o treino agora' }).click();
   const confirma = page.getByRole('dialog', { name: 'Terminar o treino agora?' });
-  await expect(confirma).toContainText('Você terminou 0 de 7 exercícios. O que já foi registrado fica salvo.');
+  // 6 exercícios no dia A da Ana desde o R5d (o abdominal saiu: com foco, os isoladores de quem não é foco entram depois).
+  await expect(confirma).toContainText('Você terminou 0 de 6 exercícios. O que já foi registrado fica salvo.');
   await expect(page.getByRole('button', { name: 'Senti algo' })).toBeVisible();
   await confirma.getByRole('button', { name: 'Continuar treinando' }).click();
   await expect(confirma).toBeHidden();

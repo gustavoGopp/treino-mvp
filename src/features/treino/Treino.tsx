@@ -4,6 +4,7 @@ import { BIBLIOTECA } from '../../domain/biblioteca';
 import { ALTERNATIVAS_A_MOSTRA, type ExercicioPrescrito } from '../../domain/gerador';
 import { linkDoGuia } from '../guia/link';
 import { ESCADA_PESO_CORPO, type Carga, type SerieRegistrada } from '../../domain/progressao';
+import { degrauInicial } from '../../domain/progressao/escadas';
 import { MENOR_ANILHA_PADRAO_KG } from '../../domain/taxonomia/equipamentos';
 import { CartaoTexto, temCartao } from '../programa/CartaoTexto';
 import {
@@ -441,7 +442,8 @@ function RegistroSerie({
   const cargaInicial: Carga | undefined =
     (sugerida && sugerida.tipo === op.registro ? sugerida : undefined) ??
     (ultima && ultima.carga.tipo === op.registro ? ultima.carga : undefined) ??
-    (op.registro === 'degrau' ? { tipo: 'degrau', degrau: 0 } : undefined);
+    // progressao.degrau-inicial (R5d): na 1ª vez, o degrau de partida segue o nível.
+    (op.registro === 'degrau' ? { tipo: 'degrau', degrau: degrauInicial(x.exId, estado.nivel?.escolhido ?? 'iniciante', inventario) } : undefined);
   const [carga, setCarga] = useState<Carga | undefined>(cargaInicial);
   const [reps, setReps] = useState<number>(ultima?.reps ?? x.reps[0]);
   const [rir, setRir] = useState<number | undefined>(anteriores.at(-1)?.rir);

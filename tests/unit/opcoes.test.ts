@@ -7,15 +7,18 @@ describe('escolhas calculadas (opcoesDeAjuste)', () => {
     expect(opcoesDeAjuste(bruno.perfil, bruno.inventario)).toEqual([]);
   });
   it('Diego (3 × 30): +15 min aparece e resolve; "manter" sempre por último', () => {
-    // Com 45 min, desde 06/11/2026 o Diego já não tem meta abaixo do piso (a barra fixa supinada conta meia série para o
-    // ombro de trás), e não há o que ajustar; com 30 min, o +15 min continua aparecendo e resolvendo.
-    expect(opcoesDeAjuste(diego.perfil, diego.inventario)).toEqual([]);
+    // Com 45 min, de 06/11/2026 até o R5d o Diego não tinha o que ajustar; desde o R5d (a meta do foco do iniciante foi de
+    // 8 para 10), as costas ficam com 9 de 10 e um dia passa 2 min do tempo, e o +15 min resolve os dois. Com 30 min, o
+    // +15 min continua aparecendo e reduzindo os problemas (sem resolver tudo, desde o R5d: os 45 min do Diego são os de cima).
+    const com45 = opcoesDeAjuste(diego.perfil, diego.inventario).find((x) => x.id === 'mais-tempo')!;
+    expect(com45.diasAcimaDoTempo).toBe(0);
+    expect(com45.abaixoDaMeta).toEqual([]);
     const o = opcoesDeAjuste({ ...diego.perfil, minutosSessao: 30 }, diego.inventario);
     expect(o.at(-1)!.id).toBe('manter');
     const maisTempo = o.find((x) => x.id === 'mais-tempo')!;
     expect(maisTempo.minutosSessao).toBe(45);
-    expect(maisTempo.diasAcimaDoTempo).toBe(0);
-    expect(maisTempo.abaixoDaMeta).toEqual([]);
+    const manter = o.at(-1)!;
+    expect(maisTempo.diasAcimaDoTempo + maisTempo.abaixoDaMeta.length).toBeLessThan(manter.diasAcimaDoTempo + manter.abaixoDaMeta.length);
   });
   it('+1 dia vai até 6 e volta para a divisão recomendada dos novos dias', () => {
     const p = { ...ana.perfil, divisao: 'si-ct' as const, minutosSessao: 35 };

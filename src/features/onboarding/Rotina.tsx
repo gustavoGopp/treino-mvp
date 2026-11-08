@@ -3,7 +3,7 @@ import { useNavigate, useSearchParams } from 'react-router-dom';
 import { GRUPOS, metaMaxima, type Grupo, type Objetivo } from '../../domain/gerador';
 import { opcoesDeDivisao, type DivisaoId } from '../../domain/gerador/divisoes';
 import { exerciciosPorSessao } from '../../domain/regras';
-import { NOME_GRUPO } from '../../domain/gerador/opcoes';
+import { NOME_GRUPO, notaDoFoco } from '../../domain/gerador/opcoes';
 import { useApp } from '../app/estado';
 import { Erros, Escolha, Marcar, Numero, Passo, Revelar, Selo, numeroOu } from '../app/ui';
 
@@ -132,8 +132,8 @@ export function Rotina() {
             <fieldset className="campo">
               <legend>Quais grupos você quer priorizar? (opcional)</legend>
               <p className="ajuda">
-                Os grupos prioritários recebem mais séries; os outros ficam no mínimo que já gera resultado. Priorizar muitos grupos pede mais tempo.{' '}
-                <Selo id="volume.semanal.minimo-eficaz" />
+                Os grupos prioritários recebem mais séries; os outros ficam no mínimo que já gera resultado. Escolha até 2: com mais, o foco se divide.{' '}
+                <Selo id="volume.semanal.minimo-eficaz" /> <Selo id="volume.prioridade.ate-dois" />
               </p>
               <div className="opcoes grade">
                 {GRUPOS_IDS.map((g) => (
@@ -142,6 +142,11 @@ export function Rotina() {
                   </Marcar>
                 ))}
               </div>
+              {notaDoFoco(prio) && (
+                <p className="ajuda" role="status">
+                  {notaDoFoco(prio)}
+                </p>
+              )}
             </fieldset>
             {/* lote 3 do redesign: o objetivo saiu do cadastro ("ganhar músculo" é o padrão) e fica em Meus dados */}
             {!deDados && (

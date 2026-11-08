@@ -2,8 +2,8 @@
 
 exports[`selecao.preferencia > snapshot revisado: o dia da Carla que muda com "prefiro o leg press" (antes e depois) 1`] = `
 {
-  "antes": "Inferior (63 min): agachamento-barra 4×6–10 | stiff 4×8–12 | cadeira-flexora 4×8–15 | cadeira-extensora 4×10–15 | panturrilha 4×10–15 | aducao-maquina 2×12–20 | abdominal-polia 2×10–15",
-  "depois": "Inferior (64 min): leg-press 4×8–15 | stiff 4×8–12 | cadeira-flexora 4×8–15 | cadeira-extensora 4×10–15 | panturrilha 4×10–15 | aducao-maquina 2×12–20 | abdominal-polia 2×10–15",
+  "antes": "Inferior (68 min): agachamento-barra 4×6–10 | stiff 4×8–12 | cadeira-flexora 4×8–15 | cadeira-extensora 4×10–15 | panturrilha 4×10–15 | panturrilha-sentada 2×12–20 | aducao-maquina 2×12–20 | abdominal-polia 2×10–15",
+  "depois": "Inferior (69 min): leg-press 4×8–15 | stiff 4×8–12 | cadeira-flexora 4×8–15 | cadeira-extensora 4×10–15 | panturrilha 4×10–15 | panturrilha-sentada 2×12–20 | aducao-maquina 2×12–20 | abdominal-polia 2×10–15",
   "volumeIgual": true,
 }
 `;
