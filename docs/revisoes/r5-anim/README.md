@@ -5,7 +5,7 @@ Prompt: `docs/prompts/sessao-r5-animacao-corpo-livre.md`. Uma animação por vez
 | # | Animação (id da biblioteca) | Nos programas sem dor | Base aprovada | Folha | Medida | Situação |
 |---|---|---|---|---|---|---|
 | 1 | `panturrilha-degrau` | 81,8% | `panturrilha-b` (step) + `panturrilha-chao` (mãos na parede) | `folhas/panturrilha-degrau.png` | ik 0 (animação e 2 erros) | **aprovada em 07/11**; entra no app com o R5-CL |
-| 2 | `abdominal-invertido` | 61,7% | `ponte-gluteo` (deitado, braços) + `abdominal-chao` + `elevacao-joelhos` (a pelve) | `folhas/abdominal-invertido.png` | ik 0 (animação e 2 erros) | **esperando o "aprovar"** |
+| 2 | `abdominal-invertido` | 61,7% | `ponte-gluteo` (deitado, braços) + `abdominal-chao` + `elevacao-joelhos` (a pelve) | `folhas/abdominal-invertido.png` | ik 0 (animação e 2 erros) | **aprovada em 08/11**; entra no app com o R5-CL |
 | 3 | `extensao-triceps-peso-corpo` | 59,4% | `triceps-suspensao` | — | — | na fila |
 | 4 | `abertura-t-deitado` | 56,1% | `yt-suspensao` (os braços) | — | — | na fila |
 | 5 | `flexao-pes-elevados` | 53,8% | `flexao` | — | — | na fila |
@@ -20,3 +20,4 @@ Nenhuma peça nova até aqui. O degrau da escada é a caixa de 15 cm do step apr
 
 ## Aprovações
 - `panturrilha-degrau`: aprovada pelo Gustavo em 07/11/2026, como está na folha (as duas pernas, 1 s embaixo). Fica em `revisao/` até o R5-CL pôr o exercício na biblioteca; aí, `node scripts/aprovar-animacao.mjs panturrilha-degrau panturrilha-degrau` e a linha de base.
+- `abdominal-invertido`: aprovada pelo Gustavo em 08/11/2026, como está na folha. Mesma espera pelo R5-CL.

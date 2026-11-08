@@ -1,6 +1,6 @@
 # Abdominal invertido no chão (`abdominal-invertido`)
 
-Exercício da biblioteca ampliada: `abdominal-invertido` (proposto em `../../pesquisa-v2/16-corpo-livre-e-casa.md`, parte de pernas, glúteo, panturrilha e abdômen; entra na biblioteca no R5-CL). Core, no mesmo nível do `abdominal-chao`, como variação equivalente. Nos programas sem dor, aparece em **61,7%** (`../../revisoes/proximos-passos/g-biblioteca-ampliada.md`, seção 4). Ficha escrita no R5-anim (07/11/2026); **em revisão** até o "aprovar" do Gustavo na folha.
+Exercício da biblioteca ampliada: `abdominal-invertido` (proposto em `../../pesquisa-v2/16-corpo-livre-e-casa.md`, parte de pernas, glúteo, panturrilha e abdômen; entra na biblioteca no R5-CL). Core, no mesmo nível do `abdominal-chao`, como variação equivalente. Nos programas sem dor, aparece em **61,7%** (`../../revisoes/proximos-passos/g-biblioteca-ampliada.md`, seção 4). Ficha escrita no R5-anim (07/11/2026). **Aprovada** pelo Gustavo em 08/11/2026 (folha `docs/revisoes/r5-anim/folhas/abdominal-invertido.png`); entra no app quando o R5-CL puser o exercício na biblioteca.
 
 - **Animação:** `abdominal-invertido`, em `src/engine/exercicios/revisao/` (fora do app até a aprovação).
 - **Base aprovada:** o corpo deitado, o colchonete e os braços da `ponte-gluteo`; o tronco montado por ângulos como no `abdominal-chao`; a pelve que enrola como na `elevacao-joelhos`. Nenhuma peça nova de cena.
