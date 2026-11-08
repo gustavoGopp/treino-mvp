@@ -780,7 +780,13 @@ function montarPrograma(perfil: Perfil, inventarioOriginal: Inventario, triagem:
       // séries indiretas (o glúteo sem exercício próprio sobe com o agachamento): os outros não ficam abaixo do piso.
       const viaIndireta = focoPossivel && !prioritarios.has(m) && (v[m] ?? 0) < VOLUME.minimoEficazPiso;
       const alvo = viaIndireta ? VOLUME.minimoEficazPiso : alvoDaSobra(m, programaDias);
-      const deficit = alvo ? (alvo - (v[m] ?? 0)) / alvo : 0;
+      // O foco também sobe enquanto as séries diretas dele (os exercícios em que ele é o músculo principal) estiverem abaixo
+      // da meta: um glúteo do foco que chega à meta só com séries indiretas do agachamento ainda pede mais ponte (R5d).
+      const direto = prioritarios.has(m)
+        ? programaDias.flatMap((z) => z.exercicios).filter((x) => POR_ID_BIB[x.exId]!.musculos.primarios.includes(m)).reduce((t, x) => t + seriesDeVolume(x), 0)
+        : 0;
+      const deficitDireto = prioritarios.has(m) && metas[m] ? (metas[m]! - direto) / metas[m]! : 0;
+      const deficit = Math.max(alvo ? (alvo - (v[m] ?? 0)) / alvo : 0, deficitDireto);
       if (deficit <= 0) continue;
       for (const di of diasComVaga) {
         const d = programaDias[di]!;
