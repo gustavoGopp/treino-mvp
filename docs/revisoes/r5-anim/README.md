@@ -8,7 +8,7 @@ Prompt: `docs/prompts/sessao-r5-animacao-corpo-livre.md`. Uma animação por vez
 | 2 | `abdominal-invertido` | 61,7% | `ponte-gluteo` (deitado, braços) + `abdominal-chao` + `elevacao-joelhos` (a pelve) | `folhas/abdominal-invertido.png` | ik 0 (animação e 2 erros) | **aprovada em 08/11**; entra no app com o R5-CL |
 | 3 | `extensao-triceps-peso-corpo` | 59,4% | `triceps-suspensao` (corpo, ciclo e erros), mãos paradas numa bancada | `folhas/extensao-triceps-peso-corpo.png` | ik 0 (animação e 3 erros) | **aprovada em 08/11**, com a bancada; entra no app com o R5-CL |
 | 4 | `abertura-t-deitado` | 56,1% | `flexao-joelho-elastico` (de bruços) + `yt-suspensao` (o T e os erros) | `folhas/abertura-t-deitado.png` | ik 0 (animação e 3 erros) | **aprovada em 08/11** (2ª versão, com as vistas pela cabeça e de cima); entra no app com o R5-CL |
-| 5 | `flexao-pes-elevados` | 53,8% | `flexao` | — | — | na fila |
+| 5 | `flexao-pes-elevados` | 53,8% | `flexao` + a cadeira do `bulgaro-peso-corpo` | `folhas/flexao-pes-elevados.png` | ik 0 (animação e 3 erros) | **esperando o "aprovar"** |
 
 ## Pré-requisito: o R5-CL ainda não está na `main`
 O prompt supõe o R5-CL feito (os 32 exercícios na biblioteca, com cartão e ficha). Em 07/11 a `main` tem 139 exercícios e nenhum dos 5. O que isso muda:
@@ -16,7 +16,7 @@ O prompt supõe o R5-CL feito (os 32 exercícios na biblioteca, com cartão e fi
 - **Espera o R5-CL:** `node scripts/aprovar-animacao.mjs <id> <exercicio>` liga a animação ao exercício da biblioteca e falha se ele não existir; a medida da grade (dias com 3 ou mais cartões) depende dos 32 exercícios. A conferência "a ficha bate com o cartão" é feita quando o cartão existir.
 
 ## Peças de cena
-Nenhuma peça nova até aqui. O degrau da escada é a caixa de 15 cm do step aprovado; a parede é a da panturrilha no chão; o colchonete é o da ponte de glúteo.
+Nenhuma peça nova até aqui. O degrau da escada é a caixa de 15 cm do step aprovado; a parede é a da panturrilha no chão; o colchonete é o da ponte de glúteo; a cadeira dos pés elevados é a do búlgaro com o peso do corpo.
 - A bancada da cozinha (extensão de tríceps) é a mesma caixa do degrau e da parede, com 90 cm de altura: nenhum desenho novo no motor. O Gustavo aprovou assim em 08/11.
 
 ## Aprovações

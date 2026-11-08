@@ -1,0 +1,78 @@
+{
+  "id": "flexao-pes-elevados",
+  "name": "Flexão com os pés elevados",
+  "short": "Flexão com os pés elevados",
+  "target": "Peito",
+  "feel": "Peito, tríceps e a frente dos ombros.",
+  "feelNote": "Cansaço no peito e nos braços é o esperado. Dor no ombro, no cotovelo ou no punho não é: volte à flexão comum ou pare, e procure avaliação se continuar.",
+  "setupEq": [
+    "Um apoio firme para os pés: cadeira sem rodinhas encostada na parede, cama, sofá ou um degrau de escada."
+  ],
+  "setupBody": [
+    "Pontas dos pés no apoio, mãos no chão um pouco mais abertas que os ombros, na linha do peito.",
+    "Corpo em linha reta dos calcanhares à cabeça, abdômen e glúteo contraídos.",
+    "A cabeça fica mais baixa que os pés."
+  ],
+  "exec": [
+    [
+      "hold",
+      "Em cima",
+      "Braços estendidos, corpo em prancha."
+    ],
+    [
+      "ecc",
+      "Descida (excêntrica)",
+      "~2 s. O corpo desce inteiro junto, com os cotovelos indo para trás a meio caminho do tronco."
+    ],
+    [
+      "hold",
+      "Embaixo",
+      "Peito perto do chão."
+    ],
+    [
+      "conc",
+      "Subida (concêntrica)",
+      "~1 s. Empurre o chão mantendo a prancha."
+    ]
+  ],
+  "range": [
+    "Embaixo: peito a poucos centímetros do chão.",
+    "Em cima: braços estendidos.",
+    "Se o quadril cair ou subir para completar a repetição, a série acabou."
+  ],
+  "breath": "Inspire descendo, solte o ar subindo.",
+  "cues": [
+    "Corpo em linha reta.",
+    "Cotovelos a 45°.",
+    "Peito perto do chão."
+  ],
+  "check": [
+    "Apoio dos pés firme",
+    "Mãos na linha do peito",
+    "Corpo em linha reta",
+    "Cotovelos a ~45° do tronco",
+    "Descida lenta"
+  ],
+  "vary": "É uma variação da flexão, mais pesada que a comum. Pesado demais? Volte à flexão comum. Fácil demais? Desça em 3 s, ou use um apoio mais alto.",
+  "extLabels": [
+    "em cima",
+    "embaixo"
+  ],
+  "errors": [
+    {
+      "id": "quadril",
+      "title": "Quadril cai",
+      "desc": "A lombar arqueia e o abdômen deixa de segurar. Com os pés no alto, isso acontece mais fácil: contraia abdômen e glúteo."
+    },
+    {
+      "id": "cot",
+      "title": "Cotovelos abertos a 90°",
+      "desc": "Abrir os cotovelos para os lados aumenta a carga na frente do ombro."
+    },
+    {
+      "id": "curta",
+      "title": "Descer pouco",
+      "desc": "Meia repetição corta a parte alongada do peitoral."
+    }
+  ]
+}
