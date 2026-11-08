@@ -92,6 +92,7 @@ function medir(caso: CasoR) {
     for (const d of m.defeitos) inc(A.c, `${r}|def:${d}`);
     for (const n of m.notas) inc(A.c, `${r}|nota:${n}`);
     if (p.dias.length >= 3) inc(A.c, `${r}|tresDiasOuMais`);
+    if (caso.pf.prioridades.length) inc(A.c, `${r}|comFoco`);
     inc(A.c, `${r}|dias`, p.dias.length);
     inc(A.c, `${r}|exercicios`, m.exerciciosPorDia.reduce((t, n) => t + n, 0));
     inc(A.c, `${r}|distintos`, m.distintos);
@@ -224,12 +225,12 @@ async function main() {
   linha('funções com 0 opção / com 1, somando os 55 cenários (intermediário)', `${opcoes.zero} / ${opcoes.uma}`);
 
   const tabela = (titulo: string, recortes: [string, string][]) => {
-    L.push('', `## ${titulo}`, '', 'Sem dor. "3+ cartões": programas com um dia de 3 ou mais cartões de texto (G1).', '');
-    linha('recorte', 'programas', 'sem defeito', ...DEFEITOS, 'exercícios por dia', 'diferentes por semana', 'B2', '3+ cartões');
-    linha('---', '---:', '---:', ...DEFEITOS.map(() => '---:'), '---:', '---:', '---:', '---:');
+    L.push('', `## ${titulo}`, '', 'Sem dor. "C2 (com foco)": a nota C2 entre os programas com algum grupo de foco (R5d). "3+ cartões": programas com um dia de 3 ou mais cartões de texto (G1).', '');
+    linha('recorte', 'programas', 'sem defeito', ...DEFEITOS, 'C2 (com foco)', 'exercícios por dia', 'diferentes por semana', 'B2', '3+ cartões');
+    linha('---', '---:', '---:', ...DEFEITOS.map(() => '---:'), '---:', '---:', '---:', '---:', '---:');
     for (const [r, nome] of recortes) {
       if (!P(r)) continue;
-      linha(nome, n(P(r)), pv(g(r, 'semDefeito'), P(r)), ...DEFEITOS.map((d) => pv(g(r, `def:${d}`), P(r))), dec(g(r, 'exercicios'), g(r, 'dias')), dec(g(r, 'distintos'), P(r), 1), pv(g(r, 'nota:B2'), P(r)), pv(g(r, 'nota:G1'), P(r)));
+      linha(nome, n(P(r)), pv(g(r, 'semDefeito'), P(r)), ...DEFEITOS.map((d) => pv(g(r, `def:${d}`), P(r))), pv(g(r, 'nota:C2'), g(r, 'comFoco')), dec(g(r, 'exercicios'), g(r, 'dias')), dec(g(r, 'distintos'), P(r), 1), pv(g(r, 'nota:B2'), P(r)), pv(g(r, 'nota:G1'), P(r)));
     }
   };
   const GRUPOS_CEN: [GrupoDeCenario, string][] = [
