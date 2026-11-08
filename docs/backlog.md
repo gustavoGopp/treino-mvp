@@ -162,3 +162,12 @@ Detalhes e números em `devlog.md` ("R5-CL") e em `revisoes/qualidade/regua.md`.
 - **Os 5 exercícios novos que só aparecem como alternativa** (o desenvolvimento em pé, a elevação lateral unilateral e a deitado com halter, a remada unilateral com elástico e a caminhada lateral com mini-band): ficam pelo desempate. Rever se a troca do dia mostrar que eles são escolhidos.
 - **Os degraus propostos em `pesquisa-v2/16` e `17` para exercícios que já existem** (o agachamento com uma perna até a cadeira, a flexão arqueiro, a prancha lateral com abdução, o abdominal com a toalha sob a lombar, o texto "no step ou num degrau de escada"): não entraram neste marco, que ficou nos 32 exercícios. Entram com o 1º degrau pelo nível.
 
+## Do R5d (08/11/2026)
+Detalhes e números em `devlog.md` ("R5d") e em `revisoes/qualidade/regua.md`.
+- **O foco invisível que resta:** 30 min (31,3%) e o foco nas pernas (44,2%). Três músculos com meta alta não cabem em pouco tempo; a nota do "até 2" e o aviso de focos que competem explicam. Ideia a medir: com "pernas" e 30 min, sugerir mais minutos no próprio cadastro.
+- **O aceite do caso do Gustavo:** as pernas ficam em 9–10, não no piso (6), porque a versão com as pernas no piso encurtava os treinos e foi a mais criticada na revisão cega. Se o Gustavo preferir treinos mais curtos com as pernas no piso, a distância de 6 séries (`volume.prioridade.foco-primeiro`) vira uma escolha de produto.
+- **As críticas dos treinadores que não são do foco:** puxar improvisado sem equipamento (remada sob a mesa, toalha na porta: pede pesquisa de segurança e de evidência); abdominal com 4 séries num dia só e elevação lateral no dia de pernas (a montagem das vagas); drop sets e superséries para o iniciante fora da fase de aprendizado; halteres leves sem elevação lateral nem rosca; fita e mini-band pouco usadas; o avançado sem carga vê o exercício base na semana (o degrau inicial só aparece no treino).
+- **A barra só na descida em todos os dias** do iniciante que só tem a barra (B2): os treinadores pediram para alternar com isometria no alto e remada australiana (a barra baixa, B.4, segue fora). Ela entra na fila de animação: hoje é cartão de texto.
+- **Os degraus propostos em `pesquisa-v2/16` e `17` para exercícios que já existem** (a flexão arqueiro, o agachamento até a cadeira e outros) seguem fora: o degrau inicial pelo nível usou as escadas de hoje.
+- **A tela do "escolha até 2"** (pedido ao design): a ajuda e a nota abaixo dos grupos entraram com os componentes de hoje.
+
