@@ -1,0 +1,60 @@
+{
+  "id": "extensao-joelho-mini-band",
+  "name": "Extensão de joelho sentado com mini-band nos tornozelos",
+  "short": "Extensão com mini-band",
+  "target": "Frente da coxa (quadríceps)",
+  "setupEq": [
+    "Uma mini-band e uma cadeira firme."
+  ],
+  "setupBody": [
+    "Sentado, costas apoiadas, a mini-band em volta dos dois tornozelos.",
+    "Um pé fica no chão, segurando a mini-band; a outra perna faz o movimento."
+  ],
+  "exec": [
+    [
+      "conc",
+      "Extensão",
+      "~1 s. Estique o joelho da perna de trabalho até a perna ficar reta."
+    ],
+    [
+      "hold",
+      "No alto",
+      "Pausa curta, a coxa apertada."
+    ],
+    [
+      "ecc",
+      "Volta",
+      "~2 s, até o pé voltar perto do outro. Termine um lado e troque."
+    ]
+  ],
+  "range": [
+    "Início: joelho dobrado, pé perto do outro.",
+    "Fim: perna estendida."
+  ],
+  "cues": [
+    "A perna parada segura.",
+    "Estique até o fim.",
+    "Perto da falha."
+  ],
+  "errors": [
+    {
+      "id": "quadril",
+      "title": "Levantar o quadril da cadeira",
+      "desc": "O corpo ajuda. Costas e quadril apoiados."
+    },
+    {
+      "id": "curta",
+      "title": "Não estender até o fim",
+      "desc": "A frente da coxa trabalha menos. Estique o joelho até a perna ficar reta."
+    },
+    {
+      "id": "longe",
+      "title": "Parar longe da falha",
+      "desc": "Com o elástico, a série só conta perto da falha. Vá até faltar 1 ou 2 repetições."
+    }
+  ],
+  "montagem": [
+    "Antes da série, confira se a mini-band tem rachaduras ou está ressecada."
+  ],
+  "carga": "Registre a intensidade da mini-band. Ela sobe pelas intensidades da sua mini-band; em cada uma, primeiro mais esticada e depois com descida de 3 s."
+}

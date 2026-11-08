@@ -1,0 +1,59 @@
+{
+  "id": "elevacao-lateral-caneleira",
+  "name": "Elevação lateral com caneleira presa no punho",
+  "short": "Elevação lateral caneleira",
+  "target": "Lateral do ombro (deltoide lateral)",
+  "setupEq": [
+    "Um par de caneleiras, presas no antebraço, logo acima do punho."
+  ],
+  "setupBody": [
+    "Em pé, pés na largura do quadril, braços ao lado do corpo, cotovelos levemente dobrados."
+  ],
+  "exec": [
+    [
+      "conc",
+      "Subida",
+      "~1 s. Leve os braços para os lados até a altura dos ombros."
+    ],
+    [
+      "hold",
+      "No alto",
+      "Pausa curta, ombros baixos."
+    ],
+    [
+      "ecc",
+      "Descida",
+      "~2 s, até os braços voltarem ao lado do corpo."
+    ]
+  ],
+  "range": [
+    "Embaixo: braços ao lado do corpo.",
+    "Em cima: braços na altura dos ombros."
+  ],
+  "cues": [
+    "Cotovelo lidera.",
+    "Ombros longe das orelhas.",
+    "Perto da falha."
+  ],
+  "errors": [
+    {
+      "id": "encolher",
+      "title": "Encolher os ombros",
+      "desc": "O trapézio de cima assume. Ombros baixos."
+    },
+    {
+      "id": "embalo",
+      "title": "Balançar o corpo",
+      "desc": "O embalo tira o trabalho do ombro. Tronco parado."
+    },
+    {
+      "id": "longe",
+      "title": "Parar longe da falha",
+      "desc": "Com carga leve, a série só conta perto da falha. Vá até faltar 1 ou 2 repetições."
+    }
+  ],
+  "montagem": [
+    "Velcro firme no antebraço, acima do punho; se a caneleira escorregar, pare."
+  ],
+  "carga": "Registre o peso da caneleira. Quando todas as séries chegarem ao topo da faixa, use a próxima caneleira; sem uma mais pesada, mais repetições e descida de 3 s."
+}

@@ -1,0 +1,60 @@
+{
+  "id": "panturrilha-degrau",
+  "name": "Panturrilha no degrau da escada",
+  "short": "Panturrilha no degrau",
+  "target": "Panturrilha (gastrocnêmio e sóleo), com o calcanhar abaixo do degrau",
+  "setupEq": [
+    "Um degrau de escada ou uma soleira firme, e o corrimão ou a parede para a mão. Sem degrau, faça a panturrilha no chão (a alternativa)."
+  ],
+  "setupBody": [
+    "A ponta dos pés na beirada do degrau; os calcanhares para fora, no ar.",
+    "Uma mão no corrimão ou na parede, só para equilibrar."
+  ],
+  "exec": [
+    [
+      "ecc",
+      "Descida",
+      "~2 a 3 s, até o calcanhar ficar bem abaixo do degrau."
+    ],
+    [
+      "hold",
+      "Embaixo",
+      "Pausa de 1 a 2 s no alongamento, sem quicar."
+    ],
+    [
+      "conc",
+      "Subida",
+      "Suba na ponta dos pés o máximo que der."
+    ]
+  ],
+  "range": [
+    "Embaixo: o calcanhar bem abaixo do degrau.",
+    "Em cima: na ponta dos pés."
+  ],
+  "cues": [
+    "Calcanhar bem embaixo.",
+    "Pausa no alongamento.",
+    "A mão só equilibra."
+  ],
+  "errors": [
+    {
+      "id": "quicar",
+      "title": "Quicar embaixo",
+      "desc": "O tendão devolve a força e o músculo trabalha menos. Pare 1 a 2 s embaixo."
+    },
+    {
+      "id": "curta",
+      "title": "Descer pouco",
+      "desc": "A parte de baixo, a do alongamento, é a que mais faz crescer. Desça até o calcanhar ficar abaixo do degrau."
+    },
+    {
+      "id": "puxar",
+      "title": "Puxar com a mão",
+      "desc": "O braço ajuda a subir. A mão só equilibra."
+    }
+  ],
+  "montagem": [
+    "Degrau firme, sem tapete solto. Segure o corrimão ou apoie a mão na parede; o calcanhar desce devagar."
+  ],
+  "carga": "Peso do corpo: suba pela escada de dificuldade do exercício quando a 1ª série chegar ao topo da faixa e as outras ficarem perto dele."
+}

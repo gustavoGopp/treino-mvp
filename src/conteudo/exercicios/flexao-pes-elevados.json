@@ -1,0 +1,60 @@
+{
+  "id": "flexao-pes-elevados",
+  "name": "Flexão com os pés elevados",
+  "short": "Flexão pés elevados",
+  "target": "Peito; ajudam o tríceps e a frente do ombro",
+  "setupEq": [
+    "Um degrau de escada, a cama ou um sofá firme para os pés. Sem móvel firme, um degrau de escada."
+  ],
+  "setupBody": [
+    "Mãos no chão, um pouco mais abertas que os ombros, dedos para a frente.",
+    "Pés no apoio, corpo reto da cabeça aos calcanhares, abdômen e glúteos firmes."
+  ],
+  "exec": [
+    [
+      "ecc",
+      "Descida",
+      "~2 a 3 s, cotovelos a ~45° do corpo, até o peito quase tocar o chão."
+    ],
+    [
+      "hold",
+      "Embaixo",
+      "Sem encostar nem soltar o corpo."
+    ],
+    [
+      "conc",
+      "Subida",
+      "Empurre o chão até os braços estenderem, sem travar os cotovelos."
+    ]
+  ],
+  "range": [
+    "Embaixo: o peito quase toca o chão.",
+    "Em cima: braços estendidos."
+  ],
+  "cues": [
+    "Corpo em prancha.",
+    "Cotovelos a ~45°.",
+    "Desça até perto do chão."
+  ],
+  "errors": [
+    {
+      "id": "quadril",
+      "title": "Quadril caído ou alto demais",
+      "desc": "O corpo perde a linha reta e a lombar arqueia ou o quadril sobe. Abdômen e glúteos firmes."
+    },
+    {
+      "id": "curta",
+      "title": "Descer pouco",
+      "desc": "A série fica mais fácil e o peito trabalha menos. Desça até o peito quase tocar o chão."
+    },
+    {
+      "id": "cotovelos",
+      "title": "Cotovelos abertos em T",
+      "desc": "Os cotovelos a 90° do corpo carregam mais o ombro. Deixe-os a ~45°."
+    }
+  ],
+  "montagem": [
+    "O apoio dos pés não pode deslizar: degrau de escada, cama ou sofá encostado na parede. Nada de cadeira com rodinhas."
+  ],
+  "carga": "Peso do corpo: suba pela escada de dificuldade do exercício quando a 1ª série chegar ao topo da faixa e as outras ficarem perto dele. Mais fácil: a flexão comum, com os pés no chão."
+}

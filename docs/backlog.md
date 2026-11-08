@@ -148,3 +148,17 @@ Detalhes, números e o motivo de cada item em `revisoes/proximos-passos.md` e no
 - **Lembrete de cópia por e-mail ou na nuvem:** fora do MVP (login e nuvem). O lembrete fica no aparelho (`dados.copia`).
 - **O consentimento da foto ganhar versão** (se o texto da foto mudar, pedir de novo): hoje a data fica no `localStorage` sem versão do texto. Fazer junto da revisão do advogado, se ele pedir.
 
+## Do R5-CL (07 e 08/11/2026)
+Detalhes e números em `devlog.md` ("R5-CL") e em `revisoes/qualidade/regua.md`.
+- **A fila de animação dos exercícios novos**, pelos programas sem dor em que cada um aparece (grade de 108.900 programas; todos hoje são cartão de texto). **Os 5 de corpo livre primeiro** (as animações da panturrilha, da flexão, do abdominal e do tríceps na suspensão servem de base; medido no protótipo: os programas com um dia de 3 ou mais cartões caem de ~75% para ~20%):
+  1. panturrilha no degrau (81,8%);
+  2. abdominal invertido (61,8%);
+  3. extensão de tríceps com o peso do corpo (59,4%);
+  4. abertura em T deitado (56,1%);
+  5. flexão com os pés elevados (53,8%);
+  6. depois: afundo para trás (10,2%), crucifixo invertido sentado (8,3%), tríceps testa com halteres (8,2%), tríceps francês unilateral (6,4%), elevação lateral unilateral com elástico (5,7%), rosca Scott no banco inclinado (4,3%), remada curvada com elástico (3,3%), rosca martelo com elástico (2,9%) e os outros, abaixo de 2,5% cada (a tabela completa em `revisoes/qualidade/regua.md`, "Uso de cada exercício").
+- **O marco seguinte** (`revisoes/proximos-passos/g-biblioteca-ampliada.md`, seção 5): **o foco que muda a distribuição** (o prioritário recebe quase o mesmo que o resto, e o tempo que sobra vai para músculos que não são foco: no caso do Gustavo, as pernas com 11 a 12 séries e costas e bíceps a 0); **o 1º degrau da escada pelo nível** (o avançado sem nada recebe os mesmos exercícios do iniciante); **a regressão da barra fixa** (o iniciante recebe a barra antes da barra só na descida).
+- **A régua:** o D1 (empurrar ÷ puxar) segue o limite escrito, 1,5, e dá 6,1% na `main`, contra 0,9% no protótipo, cuja leitura exata se perdeu. Rever com o R5d (o foco em peito ou ombros sobe o empurrar de propósito) se o limite deve considerar o foco. Faltam na régua as medidas que o protótipo não publicou: C3 (o aviso quando o foco não cabe), D2 (sem como puxar, nenhum empurrar a mais) e E2 a E4.
+- **Os 5 exercícios novos que só aparecem como alternativa** (o desenvolvimento em pé, a elevação lateral unilateral e a deitado com halter, a remada unilateral com elástico e a caminhada lateral com mini-band): ficam pelo desempate. Rever se a troca do dia mostrar que eles são escolhidos.
+- **Os degraus propostos em `pesquisa-v2/16` e `17` para exercícios que já existem** (o agachamento com uma perna até a cadeira, a flexão arqueiro, a prancha lateral com abdução, o abdominal com a toalha sob a lombar, o texto "no step ou num degrau de escada"): não entraram neste marco, que ficou nos 32 exercícios. Entram com o 1º degrau pelo nível.
+

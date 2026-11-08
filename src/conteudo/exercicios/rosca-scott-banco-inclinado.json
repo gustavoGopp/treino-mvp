@@ -1,0 +1,57 @@
+{
+  "id": "rosca-scott-banco-inclinado",
+  "name": "Rosca Scott com halter, braço apoiado no encosto do banco inclinado",
+  "short": "Scott no banco",
+  "target": "Bíceps (frente do braço)",
+  "setupEq": [
+    "Um halter e um banco que inclina, com o encosto a ~45 a 60°."
+  ],
+  "setupBody": [
+    "De pé ou ajoelhado atrás do banco, o braço de trabalho apoiado no encosto, a axila no topo dele.",
+    "Halter na mão, palma para cima, braço quase estendido."
+  ],
+  "exec": [
+    [
+      "conc",
+      "Subida",
+      "~1 s. Dobre o cotovelo, levando o halter em direção ao ombro."
+    ],
+    [
+      "hold",
+      "No alto",
+      "Pausa curta, o braço continua no encosto."
+    ],
+    [
+      "ecc",
+      "Descida",
+      "~2 a 3 s, até o braço quase estender, sem travar o cotovelo. Termine um lado e troque."
+    ]
+  ],
+  "range": [
+    "Embaixo: braço quase estendido, sem travar.",
+    "Em cima: halter perto do ombro."
+  ],
+  "cues": [
+    "Braço colado no encosto.",
+    "Desça devagar.",
+    "Não trave embaixo."
+  ],
+  "errors": [
+    {
+      "id": "trava",
+      "title": "Travar o cotovelo embaixo",
+      "desc": "O cotovelo estica de vez, soltando o peso. Desça devagar e pare antes de travar."
+    },
+    {
+      "id": "tira",
+      "title": "Tirar o braço do encosto",
+      "desc": "O ombro ajuda a subir. O braço fica apoiado do começo ao fim."
+    },
+    {
+      "id": "curta",
+      "title": "Descer pouco",
+      "desc": "A parte de baixo é a que mais trabalha aqui. Desça até o braço quase estender."
+    }
+  ],
+  "carga": "Registre o peso do halter. Quando todas as séries chegarem ao topo da faixa, use o próximo peso que você tem; sem um mais pesado, mais repetições e descida de 3 s."
+}

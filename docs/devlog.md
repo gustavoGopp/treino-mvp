@@ -1063,3 +1063,59 @@ As listas exatas ficam em `tests/unit/metas-r0.test.ts`, para o R0c zerar.
 > Também descobri que, se uma tela desse erro, o app ficava em branco, sem caminho para salvar os dados. Como os dados moram só no celular, isso podia apagar meses de treino. Agora o erro mostra uma saída: exportar os dados, tentar de novo ou me avisar, sem nenhum dado de saúde na mensagem.
 >
 > Abrir para os amigos não foi uma função nova. Foi escrever, com fonte, o que o app faz com os dados de cada pessoa.
+
+## R5-CL: a biblioteca ampliada, 32 exercícios novos e a régua na auditoria (07 e 08/11/2026)
+
+**Por quê.** Em 06/11 o Gustavo testou o app sem equipamento, com foco nos superiores, e recebeu treinos curtos e genéricos. A sessão de próximos passos mediu, num protótipo descartável, 32 exercícios novos e duas proteções do gerador (`revisoes/proximos-passos/g-biblioteca-ampliada.md`). Este marco os põe no app, com a régua de qualidade como teste da auditoria. O R5a (o registro que não engana) ainda não foi feito; dele, entraram aqui só o ajuste de 30 min e o "descer um nível antes de repetir", que o protótipo já usava.
+
+**O que mudou.**
+- **A régua** (`scripts/auditoria/regua.ts`, também medida no estresse de `qualidade.ts`) e a **grade de 108.900 programas** (`npm run auditoria:regua`, ~1,5 min), com a linha de base da `main` gravada (`revisoes/qualidade/regua-linha-de-base.json`): a auditoria falha se algum defeito passar dela. As definições do protótipo se perderam com o rascunho; as de agora reproduzem todos os números publicados da `main`, menos o empurrar ÷ puxar (D1), que segue o limite escrito na tabela da régua (1,5) e por isso é mais rígido (6,1% na `main`, e não 0,9%).
+- **O equilíbrio da coxa** (regra nova `volume.equilibrio-coxa`): nenhum corte de tempo tira quadríceps ÷ posteriores de 0,5–2 nem o único exercício direto de posteriores.
+- **Com 30 min**, o abdômen ou a panturrilha protegidos ficam com 2 séries e, se o dia passar do tempo, sai um isolador do dia (`tempo.musculo-protegido`).
+- **Os 32 exercícios**, em 4 lotes, cada um com a regra (`selecao.corpo-livre-ampliado`, `selecao.halteres-ampliado`, `selecao.elastico-ampliado`, `selecao.barra-negativa`, `selecao.item-sozinho-ampliado`), a ficha de técnica (`pesquisa/animacoes/`), o cartão de texto (`src/conteudo/exercicios/`), a escada quando é de peso do corpo, os testes e a grade. Todos aparecem como **cartão de texto** até a animação ser aprovada.
+- **No último dia da semana**, entre equivalentes do mesmo nível, o exercício que já está em todos os outros dias fica por último; sem equivalente, a função desce um nível antes de repetir (`selecao.variacoes-equivalentes`).
+- **Os avisos dizem o que o programa tem**: sem nada, o ombro de trás sai da lista "fica sem exercício" (a abertura em T está no programa); com a puxada de elástico, o aviso não diz mais que as costas treinam "só com remadas".
+
+**Decisões técnicas desta sessão** (o Gustavo pediu para não decidir as técnicas; cada uma medida):
+1. **As faixas de repetição** dos novos de peso do corpo e elástico seguem `reps.faixa.degrau` (a flexão com os pés elevados, 8–15, como a flexão; a abertura em T, 12–20, e não os 15–30 propostos). Com as faixas propostas, dois defeitos pioravam por 1 programa cada.
+2. **O desenvolvimento em pé e a elevação lateral unilateral com halter** ficam num nível próprio, logo abaixo dos animados, como a elevação deitado (decisão 5 do relatório). No mesmo nível, eles tiravam o lugar do animado nos programas do Bruno e da Carla, que o aceite pede iguais. Medido: a grade fica igual ou melhor.
+3. **A regra do último dia** (acima) entrou porque o lote de corpo livre fazia a hiperextensão ocupar os 6 dias de dois programas com outro exercício possível (o defeito B1). Ela leva o B1 de 0,3% a 0%.
+
+**Medido** (grade de 108.900 programas, os 36.300 sem dor; `revisoes/qualidade/regua.md`):
+
+| | `main` | R5-CL | protótipo (`g-biblioteca-ampliada.md`) |
+|---|---:|---:|---:|
+| Programas sem nenhum defeito | 71,4% | **83,9%** | — |
+| Idem, sem contar o D1 (a medida comparável com o protótipo) | 73,6% | **84,6%** | 73,4% → 83,8% |
+| Algum defeito pior que na `main` | — | **nenhum** (sem dor e com dor) | nenhum |
+| Dia com menos de 3 exercícios ou sem multiarticular (A2) | 7,5% | 1,5% | 7,5% → 1,5% |
+| Dia acima de 110% dos minutos (A3) | 9,8% | 7,0% | 9,8% → 7,3% |
+| O mesmo exercício em todos os dias havendo opção (B1) | 0,3% | 0% | 0,3% → 0,3% |
+| Foco abaixo da meta com tempo (C1) | 4,1% | 2,1% | 4,1% → 2,1% |
+| Empurrar ÷ puxar acima de 1,5 (D1) | 6,1% | 1,2% | 0,9% → 0,9% (outra leitura) |
+| Coxa desequilibrada (D3) | 1,6% | **0%** | 1,6% → 0% |
+| O mesmo exercício em todos os dias sem alternativa (B2, nota) | 44,1% | **15,6%** | 44,1% → 15,6% |
+| Exercícios por dia, média | 5,18 | 5,50 | 5,18 → 5,51 |
+| Exercícios diferentes por semana | 12,9 | 15,6 | 12,9 → 15,8 |
+| Sem nada: exercícios por dia; diferentes por semana | 4,91; 9,5 | **5,38; 12,9** | 5,38; 12,9 |
+| Prescrições sem nenhuma alternativa | 49,1% | 26,9% | 54,3% → 28,4% (outra leitura) |
+| Programas com um dia de 3 ou mais cartões de texto (G1, nota: **o custo**) | 8,4% | 73,1% | 8,4% → 74,9% |
+
+**O caso do Gustavo** (fictício: intermediário, sem nada, 60 min, foco nos superiores):
+- **3 dias, antes:** A (46 min) flexão, flexão com as mãos juntas, agachamento, flexão de joelho deslizante, abdominal; B (53 min) flexão, pike, búlgaro, nórdico, panturrilha no chão, abdominal; C (56 min) flexão, flexão com as mãos juntas, afundo, ponte, flexão de joelho deslizante, abdominal. 11 exercícios diferentes; ombro de trás 0.
+- **3 dias, depois:** A (52 min) flexão, **flexão com os pés elevados**, agachamento, **extensão de tríceps com o peso do corpo**, flexão de joelho deslizante, abdominal; B (60 min) **flexão com os pés elevados**, pike, búlgaro, nórdico, **panturrilha no degrau**, **abertura em T**, **abdominal invertido**; C (56 min) flexão, flexão com as mãos juntas, afundo, ponte, flexão de joelho deslizante, abdominal. 15 exercícios diferentes; ombro de trás 4; peito 12; tríceps 12,5.
+- **4 dias:** de 5, 5, 6 e 5 exercícios (36 a 52 min) para 6 em todos os dias (46 a 49 min); 11 → 15 exercícios diferentes; ombro de trás 0 → 8.
+- **Igual nas duas versões:** costas e bíceps a 0, com o aviso; as pernas, que não são foco, com 11 a 12 séries. Isso é regra do gerador (o foco), não biblioteca: é o marco seguinte (R5d).
+
+**As 6 personas:** Bruno e Carla **iguais**. Ana: o crucifixo invertido sentado no lugar do curvado (estável, para a iniciante), a panturrilha no degrau e a flexão num dos dias no lugar do supino (desce um nível antes de repetir); 13 → 15 exercícios diferentes. Diego: a panturrilha no degrau, a elevação lateral unilateral com elástico e a flexão com elástico num dos dias; 15 → 17. Elisa (30 min): 4, 4 e 3 → 4, 4 e 4 exercícios, com a abertura em T e a extensão de tríceps; 7 → 9. Fábio (só barra fixa): 4, 6, 4 e 6 → 5, 6, 5 e 6 exercícios (33 a 45 → 44 a 45 min), com a barra só na descida como 2ª puxada; 13 → 17. Os snapshots estão em `tests/unit/__snapshots__/` para a revisão.
+
+**Também:** 683 testes unitários (eram 670); 148 regras (eram 141); 32 fichas de técnica e 32 cartões novos. Cinco dos 32 não entram em nenhum programa da grade e servem só de alternativa (o desenvolvimento em pé, as duas elevações laterais com halter, a remada unilateral com elástico e a caminhada lateral).
+
+**Fica para depois** (`backlog.md`, "Do R5-CL"): a fila de animação, com os 5 de corpo livre primeiro (eles respondem pela maior parte dos cartões); o foco que muda a distribuição; o 1º degrau da escada pelo nível; a regressão da barra fixa para o iniciante.
+
+**Rascunho de post para o LinkedIn**
+> No meu app de treino, "sem equipamento" com foco nos superiores gerava 5 exercícios por dia, sempre os mesmos. Agora são 6 ou 7, com 15 exercícios diferentes na semana em vez de 11, e o ombro de trás deixou de ficar a zero.
+>
+> O que mudou não foi uma regra nova de treino. Foram 32 exercícios novos, cada um com a técnica escrita a partir de estudos e de vídeos de profissionais, e uma régua que mede 108.900 combinações de equipamento, nível, dias, tempo, foco e dor antes de cada mudança. A régua tem duas camadas: o que não pode piorar (defeitos com evidência) e o que deve melhorar (gosto e consenso). Os programas sem nenhum defeito foram de 71% para 84%, e o mesmo exercício repetido todos os dias por falta de opção, de 44% para 16%.
+>
+> O preço está medido: os exercícios novos ainda não têm o boneco animado, e aparecem como um cartão de texto. Animar os 5 mais usados devolve a animação à maioria dos treinos. E uma coisa continua sem solução honesta: as costas sem nada para puxar. O app diz isso, em vez de inventar.

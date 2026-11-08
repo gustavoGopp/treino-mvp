@@ -1,5 +1,5 @@
 {
- "biblioteca": 139,
+ "biblioteca": 171,
  "soIntermediarioOuMais": [
   "supino-barra",
   "remada-barra",
@@ -9,7 +9,8 @@
   "mergulho",
   "nordico",
   "bulgaro-suspensao",
-  "roda-abdominal"
+  "roda-abdominal",
+  "flexao-pes-elevados"
  ],
  "grade": [
   {
@@ -18,67 +19,67 @@
    "celulas": {
     "vazio": [
      2,
-     2
+     3
     ],
     "so:elasticos": [
      3,
-     3
+     4
     ],
     "so:halteres_fixos": [
      3,
-     3
+     4
     ],
     "halteres": [
      3,
-     3
+     4
     ],
     "so:barra_fixa": [
      2,
-     2
+     3
     ],
     "so:suspensao": [
      2,
-     2
+     3
     ],
     "so:kettlebell": [
      2,
-     2
+     3
     ],
     "so:caneleiras": [
      2,
-     2
+     3
     ],
     "so:mini_band": [
      2,
-     2
+     3
     ],
     "so:roda_abdominal": [
      2,
-     2
+     3
     ],
     "casa": [
      4,
-     4
+     5
     ],
     "casa+": [
      6,
-     6
+     7
     ],
     "condominio": [
      5,
-     5
+     6
     ],
     "academia": [
      10,
-     12
+     13
     ],
     "academia+": [
      11,
-     13
+     14
     ],
     "biblioteca": [
      11,
-     13
+     14
     ]
    }
   },
@@ -131,24 +132,24 @@
      1
     ],
     "casa+": [
+     3,
+     3
+    ],
+    "condominio": [
      2,
      2
     ],
-    "condominio": [
-     1,
-     1
-    ],
     "academia": [
-     4,
-     4
+     5,
+     5
     ],
     "academia+": [
-     5,
-     5
+     6,
+     6
     ],
     "biblioteca": [
-     5,
-     5
+     6,
+     6
     ]
    }
   },
@@ -161,8 +162,8 @@
      0
     ],
     "so:elasticos": [
-     1,
-     1
+     3,
+     3
     ],
     "so:halteres_fixos": [
      2,
@@ -197,12 +198,12 @@
      0
     ],
     "casa": [
-     3,
-     3
+     5,
+     5
     ],
     "casa+": [
-     7,
-     7
+     9,
+     9
     ],
     "condominio": [
      5,
@@ -213,12 +214,12 @@
      10
     ],
     "academia+": [
-     12,
-     13
+     14,
+     15
     ],
     "biblioteca": [
-     12,
-     13
+     14,
+     15
     ]
    }
   },
@@ -243,8 +244,8 @@
      0
     ],
     "so:barra_fixa": [
-     2,
-     2
+     3,
+     3
     ],
     "so:suspensao": [
      0,
@@ -271,24 +272,24 @@
      1
     ],
     "casa+": [
-     3,
-     3
+     4,
+     4
     ],
     "condominio": [
      1,
      1
     ],
     "academia": [
-     6,
-     6
+     7,
+     7
     ],
     "academia+": [
-     7,
-     7
+     8,
+     8
     ],
     "biblioteca": [
-     7,
-     7
+     8,
+     8
     ]
    }
   },
@@ -305,12 +306,12 @@
      2
     ],
     "so:halteres_fixos": [
-     2,
-     2
+     3,
+     3
     ],
     "halteres": [
-     2,
-     2
+     3,
+     3
     ],
     "so:barra_fixa": [
      1,
@@ -337,28 +338,28 @@
      1
     ],
     "casa": [
-     3,
-     3
+     4,
+     4
     ],
     "casa+": [
-     5,
-     5
+     6,
+     6
     ],
     "condominio": [
-     3,
-     3
+     4,
+     4
     ],
     "academia": [
-     4,
-     5
+     5,
+     6
     ],
     "academia+": [
-     6,
-     7
+     7,
+     8
     ],
     "biblioteca": [
-     6,
-     7
+     7,
+     8
     ]
    }
   },
@@ -371,16 +372,16 @@
      0
     ],
     "so:elasticos": [
-     1,
-     1
+     2,
+     2
     ],
     "so:halteres_fixos": [
-     1,
-     1
+     3,
+     3
     ],
     "halteres": [
-     1,
-     1
+     3,
+     3
     ],
     "so:barra_fixa": [
      0,
@@ -395,8 +396,8 @@
      0
     ],
     "so:caneleiras": [
-     0,
-     0
+     1,
+     1
     ],
     "so:mini_band": [
      0,
@@ -407,28 +408,28 @@
      0
     ],
     "casa": [
-     2,
-     2
+     5,
+     5
     ],
     "casa+": [
-     2,
-     2
+     6,
+     6
     ],
     "condominio": [
-     1,
-     1
+     3,
+     3
     ],
     "academia": [
-     2,
-     2
+     4,
+     4
     ],
     "academia+": [
-     3,
-     3
+     7,
+     7
     ],
     "biblioteca": [
-     3,
-     3
+     7,
+     7
     ]
    }
   },
@@ -437,68 +438,68 @@
    "padrao": "isolador-ombro-posterior",
    "celulas": {
     "vazio": [
-     0,
-     0
+     1,
+     1
     ],
     "so:elasticos": [
-     1,
-     1
+     3,
+     3
     ],
     "so:halteres_fixos": [
-     1,
-     1
+     3,
+     3
     ],
     "halteres": [
-     1,
-     1
+     3,
+     3
     ],
     "so:barra_fixa": [
-     0,
-     0
-    ],
-    "so:suspensao": [
      1,
      1
     ],
+    "so:suspensao": [
+     3,
+     3
+    ],
     "so:kettlebell": [
-     0,
-     0
+     1,
+     1
     ],
     "so:caneleiras": [
-     0,
-     0
+     2,
+     2
     ],
     "so:mini_band": [
-     0,
-     0
+     1,
+     1
     ],
     "so:roda_abdominal": [
-     0,
-     0
+     1,
+     1
     ],
     "casa": [
-     2,
-     2
+     5,
+     5
     ],
     "casa+": [
-     4,
-     4
+     9,
+     9
     ],
     "condominio": [
-     2,
-     2
-    ],
-    "academia": [
      4,
      4
     ],
+    "academia": [
+     6,
+     6
+    ],
     "academia+": [
-     7,
-     7
+     12,
+     12
     ],
     "biblioteca": [
-     7,
-     7
+     12,
+     12
     ]
    }
   },
@@ -511,16 +512,16 @@
      0
     ],
     "so:elasticos": [
-     1,
-     1
+     2,
+     2
     ],
     "so:halteres_fixos": [
-     2,
-     2
+     3,
+     3
     ],
     "halteres": [
-     2,
-     2
+     3,
+     3
     ],
     "so:barra_fixa": [
      0,
@@ -547,28 +548,28 @@
      0
     ],
     "casa": [
-     3,
-     3
+     5,
+     5
     ],
     "casa+": [
-     6,
-     6
+     9,
+     9
     ],
     "condominio": [
-     3,
-     3
+     5,
+     5
     ],
     "academia": [
-     8,
-     8
+     10,
+     10
     ],
     "academia+": [
-     11,
-     11
+     14,
+     14
     ],
     "biblioteca": [
-     11,
-     11
+     14,
+     14
     ]
    }
   },
@@ -647,68 +648,68 @@
    "padrao": "isolador-triceps",
    "celulas": {
     "vazio": [
-     0,
-     0
+     1,
+     1
     ],
     "so:elasticos": [
-     1,
-     1
+     3,
+     3
     ],
     "so:halteres_fixos": [
-     1,
-     1
-    ],
-    "halteres": [
-     1,
-     1
-    ],
-    "so:barra_fixa": [
-     0,
-     0
-    ],
-    "so:suspensao": [
-     1,
-     1
-    ],
-    "so:kettlebell": [
-     1,
-     1
-    ],
-    "so:caneleiras": [
-     0,
-     0
-    ],
-    "so:mini_band": [
-     0,
-     0
-    ],
-    "so:roda_abdominal": [
-     0,
-     0
-    ],
-    "casa": [
-     2,
-     2
-    ],
-    "casa+": [
      4,
      4
     ],
-    "condominio": [
+    "halteres": [
+     4,
+     4
+    ],
+    "so:barra_fixa": [
      1,
      1
     ],
-    "academia": [
+    "so:suspensao": [
+     2,
+     2
+    ],
+    "so:kettlebell": [
+     2,
+     2
+    ],
+    "so:caneleiras": [
+     1,
+     1
+    ],
+    "so:mini_band": [
+     1,
+     1
+    ],
+    "so:roda_abdominal": [
+     1,
+     1
+    ],
+    "casa": [
      6,
      6
     ],
-    "academia+": [
+    "casa+": [
+     8,
+     8
+    ],
+    "condominio": [
+     4,
+     4
+    ],
+    "academia": [
      9,
      9
     ],
+    "academia+": [
+     13,
+     13
+    ],
     "biblioteca": [
-     9,
-     9
+     13,
+     13
     ]
    }
   },
@@ -787,68 +788,68 @@
    "padrao": "afundo",
    "celulas": {
     "vazio": [
-     2,
-     2
-    ],
-    "so:elasticos": [
-     2,
-     2
-    ],
-    "so:halteres_fixos": [
-     4,
-     4
-    ],
-    "halteres": [
-     4,
-     4
-    ],
-    "so:barra_fixa": [
-     2,
-     2
-    ],
-    "so:suspensao": [
-     2,
-     3
-    ],
-    "so:kettlebell": [
      3,
      3
     ],
-    "so:caneleiras": [
-     2,
-     2
+    "so:elasticos": [
+     3,
+     3
     ],
-    "so:mini_band": [
-     2,
-     2
+    "so:halteres_fixos": [
+     5,
+     5
     ],
-    "so:roda_abdominal": [
-     2,
-     2
+    "halteres": [
+     5,
+     5
     ],
-    "casa": [
+    "so:barra_fixa": [
+     3,
+     3
+    ],
+    "so:suspensao": [
+     3,
+     4
+    ],
+    "so:kettlebell": [
      4,
      4
     ],
+    "so:caneleiras": [
+     3,
+     3
+    ],
+    "so:mini_band": [
+     3,
+     3
+    ],
+    "so:roda_abdominal": [
+     3,
+     3
+    ],
+    "casa": [
+     5,
+     5
+    ],
     "casa+": [
-     6,
-     7
+     7,
+     8
     ],
     "condominio": [
-     5,
-     5
+     6,
+     6
     ],
     "academia": [
-     5,
-     5
+     6,
+     6
     ],
     "academia+": [
-     6,
-     7
+     7,
+     8
     ],
     "biblioteca": [
-     6,
-     7
+     7,
+     8
     ]
    }
   },
@@ -889,8 +890,8 @@
      1
     ],
     "so:mini_band": [
-     0,
-     0
+     1,
+     1
     ],
     "so:roda_abdominal": [
      0,
@@ -901,8 +902,8 @@
      1
     ],
     "casa+": [
-     2,
-     2
+     3,
+     3
     ],
     "condominio": [
      0,
@@ -913,12 +914,12 @@
      1
     ],
     "academia+": [
-     3,
-     3
+     4,
+     4
     ],
     "biblioteca": [
-     3,
-     3
+     4,
+     4
     ]
    }
   },
@@ -951,8 +952,8 @@
      0
     ],
     "so:kettlebell": [
-     1,
-     1
+     2,
+     2
     ],
     "so:caneleiras": [
      0,
@@ -971,8 +972,8 @@
      3
     ],
     "casa+": [
-     4,
-     4
+     5,
+     5
     ],
     "condominio": [
      2,
@@ -983,12 +984,12 @@
      5
     ],
     "academia+": [
-     6,
-     7
+     7,
+     8
     ],
     "biblioteca": [
-     6,
-     7
+     7,
+     8
     ]
    }
   },
@@ -1211,8 +1212,8 @@
      1
     ],
     "so:elasticos": [
-     1,
-     1
+     2,
+     2
     ],
     "so:halteres_fixos": [
      2,
@@ -1235,8 +1236,8 @@
      2
     ],
     "so:caneleiras": [
-     1,
-     1
+     2,
+     2
     ],
     "so:mini_band": [
      1,
@@ -1247,12 +1248,12 @@
      1
     ],
     "casa": [
-     2,
-     2
+     3,
+     3
     ],
     "casa+": [
-     4,
-     4
+     6,
+     6
     ],
     "condominio": [
      3,
@@ -1263,12 +1264,12 @@
      5
     ],
     "academia+": [
-     7,
-     7
+     9,
+     9
     ],
     "biblioteca": [
-     7,
-     7
+     9,
+     9
     ]
    }
   },
@@ -1281,8 +1282,8 @@
      1
     ],
     "so:elasticos": [
-     1,
-     1
+     2,
+     2
     ],
     "so:halteres_fixos": [
      1,
@@ -1309,20 +1310,20 @@
      2
     ],
     "so:mini_band": [
-     2,
-     2
+     4,
+     4
     ],
     "so:roda_abdominal": [
      1,
      1
     ],
     "casa": [
-     1,
-     1
+     2,
+     2
     ],
     "casa+": [
-     3,
-     3
+     6,
+     6
     ],
     "condominio": [
      1,
@@ -1333,12 +1334,12 @@
      3
     ],
     "academia+": [
-     5,
-     5
+     8,
+     8
     ],
     "biblioteca": [
-     5,
-     5
+     8,
+     8
     ]
    }
   },
@@ -1347,68 +1348,68 @@
    "padrao": "panturrilha",
    "celulas": {
     "vazio": [
-     1,
-     1
+     2,
+     2
     ],
     "so:elasticos": [
-     1,
-     1
+     2,
+     2
     ],
     "so:halteres_fixos": [
-     2,
-     2
+     3,
+     3
     ],
     "halteres": [
-     2,
-     2
+     3,
+     3
     ],
     "so:barra_fixa": [
-     1,
-     1
+     2,
+     2
     ],
     "so:suspensao": [
-     1,
-     1
+     2,
+     2
     ],
     "so:kettlebell": [
-     1,
-     1
+     2,
+     2
     ],
     "so:caneleiras": [
-     1,
-     1
+     2,
+     2
     ],
     "so:mini_band": [
-     1,
-     1
+     2,
+     2
     ],
     "so:roda_abdominal": [
-     1,
-     1
+     2,
+     2
     ],
     "casa": [
-     2,
-     2
+     3,
+     3
     ],
     "casa+": [
-     4,
-     4
+     5,
+     5
     ],
     "condominio": [
-     2,
-     2
+     3,
+     3
     ],
     "academia": [
-     7,
-     7
+     8,
+     8
     ],
     "academia+": [
-     7,
-     7
+     8,
+     8
     ],
     "biblioteca": [
-     7,
-     7
+     8,
+     8
     ]
    }
   },
@@ -1417,68 +1418,68 @@
    "padrao": "core",
    "celulas": {
     "vazio": [
-     1,
-     1
+     2,
+     2
     ],
     "so:elasticos": [
-     1,
-     1
+     2,
+     2
     ],
     "so:halteres_fixos": [
-     1,
-     1
+     2,
+     2
     ],
     "halteres": [
-     1,
-     1
+     2,
+     2
     ],
     "so:barra_fixa": [
-     2,
-     2
+     3,
+     3
     ],
     "so:suspensao": [
-     1,
-     1
-    ],
-    "so:kettlebell": [
-     1,
-     1
-    ],
-    "so:caneleiras": [
-     1,
-     1
-    ],
-    "so:mini_band": [
-     1,
-     1
-    ],
-    "so:roda_abdominal": [
-     1,
-     2
-    ],
-    "casa": [
-     1,
-     1
-    ],
-    "casa+": [
-     3,
-     4
-    ],
-    "condominio": [
      2,
      2
     ],
-    "academia": [
-     5,
+    "so:kettlebell": [
+     2,
+     2
+    ],
+    "so:caneleiras": [
+     2,
+     2
+    ],
+    "so:mini_band": [
+     2,
+     2
+    ],
+    "so:roda_abdominal": [
+     2,
+     3
+    ],
+    "casa": [
+     2,
+     2
+    ],
+    "casa+": [
+     4,
      5
     ],
+    "condominio": [
+     3,
+     3
+    ],
+    "academia": [
+     6,
+     6
+    ],
     "academia+": [
-     7,
-     8
+     8,
+     9
     ],
     "biblioteca": [
-     7,
-     8
+     8,
+     9
     ]
    }
   },
@@ -1567,69 +1568,69 @@
      "puxar-horizontal": 2,
      "empurrar-vertical": 1,
      "elevacao-lateral": 1,
-     "ombro-posterior": 1,
-     "biceps": 2,
-     "triceps-acima-cabeca": 2,
-     "triceps-complemento": 1,
+     "ombro-posterior": 2,
+     "biceps": 3,
+     "triceps-acima-cabeca": 3,
+     "triceps-complemento": 3,
      "agachar": 2,
      "afundo": 2,
      "extensora": 1,
      "flexao-joelho": 1,
      "dobrar-quadril": 2,
-     "extensao-quadril": 2,
+     "extensao-quadril": 3,
      "abducao": 1,
      "aducao": 1,
      "panturrilha-em-pe": 1,
      "panturrilha-sentada": 1,
-     "abdomen": 1
+     "abdomen": 2
     },
     "intermediario": {
-     "empurrar-horizontal": 1,
-     "empurrar-inclinado": 1,
+     "empurrar-horizontal": 2,
+     "empurrar-inclinado": 2,
      "crucifixo": 1,
      "puxar-vertical": 2,
      "puxar-horizontal": 2,
      "empurrar-vertical": 1,
      "elevacao-lateral": 1,
-     "ombro-posterior": 1,
-     "biceps": 2,
-     "triceps-acima-cabeca": 2,
-     "triceps-complemento": 1,
+     "ombro-posterior": 2,
+     "biceps": 3,
+     "triceps-acima-cabeca": 3,
+     "triceps-complemento": 3,
      "agachar": 2,
      "afundo": 2,
      "extensora": 1,
      "flexao-joelho": 1,
      "dobrar-quadril": 2,
-     "extensao-quadril": 2,
+     "extensao-quadril": 3,
      "abducao": 1,
      "aducao": 1,
      "panturrilha-em-pe": 1,
      "panturrilha-sentada": 1,
-     "abdomen": 1
+     "abdomen": 2
     },
     "avancado": {
-     "empurrar-horizontal": 1,
-     "empurrar-inclinado": 1,
+     "empurrar-horizontal": 2,
+     "empurrar-inclinado": 2,
      "crucifixo": 1,
      "puxar-vertical": 2,
      "puxar-horizontal": 2,
      "empurrar-vertical": 1,
      "elevacao-lateral": 1,
-     "ombro-posterior": 1,
-     "biceps": 2,
-     "triceps-acima-cabeca": 2,
-     "triceps-complemento": 1,
+     "ombro-posterior": 2,
+     "biceps": 3,
+     "triceps-acima-cabeca": 3,
+     "triceps-complemento": 3,
      "agachar": 2,
      "afundo": 2,
      "extensora": 1,
      "flexao-joelho": 1,
      "dobrar-quadril": 2,
-     "extensao-quadril": 2,
+     "extensao-quadril": 3,
      "abducao": 1,
      "aducao": 1,
      "panturrilha-em-pe": 1,
      "panturrilha-sentada": 1,
-     "abdomen": 1
+     "abdomen": 2
     }
    }
   },
@@ -1641,74 +1642,74 @@
     "iniciante": {
      "empurrar-horizontal": 1,
      "empurrar-inclinado": 1,
-     "crucifixo": 1,
+     "crucifixo": 2,
      "puxar-vertical": 2,
      "puxar-horizontal": 5,
      "empurrar-vertical": 3,
      "elevacao-lateral": 1,
-     "ombro-posterior": 2,
-     "biceps": 1,
-     "triceps-acima-cabeca": 3,
+     "ombro-posterior": 3,
+     "biceps": 2,
+     "triceps-acima-cabeca": 4,
      "triceps-complemento": 1,
      "agachar": 4,
      "afundo": 4,
-     "extensora": 2,
+     "extensora": 3,
      "flexao-joelho": 2,
-     "dobrar-quadril": 3,
-     "extensao-quadril": 4,
-     "abducao": 2,
+     "dobrar-quadril": 4,
+     "extensao-quadril": 6,
+     "abducao": 5,
      "aducao": 1,
      "panturrilha-em-pe": 2,
      "panturrilha-sentada": 1,
-     "abdomen": 3
+     "abdomen": 4
     },
     "intermediario": {
      "empurrar-horizontal": 1,
      "empurrar-inclinado": 1,
-     "crucifixo": 1,
+     "crucifixo": 2,
      "puxar-vertical": 2,
      "puxar-horizontal": 5,
      "empurrar-vertical": 3,
      "elevacao-lateral": 1,
-     "ombro-posterior": 2,
-     "biceps": 1,
-     "triceps-acima-cabeca": 3,
+     "ombro-posterior": 3,
+     "biceps": 2,
+     "triceps-acima-cabeca": 4,
      "triceps-complemento": 1,
      "agachar": 4,
      "afundo": 4,
-     "extensora": 2,
+     "extensora": 3,
      "flexao-joelho": 2,
-     "dobrar-quadril": 3,
-     "extensao-quadril": 4,
-     "abducao": 2,
+     "dobrar-quadril": 4,
+     "extensao-quadril": 6,
+     "abducao": 5,
      "aducao": 1,
      "panturrilha-em-pe": 2,
      "panturrilha-sentada": 1,
-     "abdomen": 4
+     "abdomen": 5
     },
     "avancado": {
      "empurrar-horizontal": 1,
      "empurrar-inclinado": 1,
-     "crucifixo": 1,
+     "crucifixo": 2,
      "puxar-vertical": 2,
      "puxar-horizontal": 5,
      "empurrar-vertical": 3,
      "elevacao-lateral": 1,
-     "ombro-posterior": 2,
-     "biceps": 1,
-     "triceps-acima-cabeca": 3,
+     "ombro-posterior": 3,
+     "biceps": 2,
+     "triceps-acima-cabeca": 4,
      "triceps-complemento": 1,
      "agachar": 4,
      "afundo": 4,
-     "extensora": 2,
+     "extensora": 3,
      "flexao-joelho": 2,
-     "dobrar-quadril": 3,
-     "extensao-quadril": 4,
-     "abducao": 2,
+     "dobrar-quadril": 4,
+     "extensao-quadril": 6,
+     "abducao": 5,
      "aducao": 1,
      "panturrilha-em-pe": 2,
      "panturrilha-sentada": 1,
-     "abdomen": 4
+     "abdomen": 5
     }
    }
   },
@@ -1720,15 +1721,15 @@
     "iniciante": {
      "empurrar-horizontal": 1,
      "empurrar-inclinado": 1,
-     "crucifixo": 1,
+     "crucifixo": 2,
      "puxar-vertical": 1,
      "puxar-horizontal": 5,
      "empurrar-vertical": 2,
      "elevacao-lateral": 1,
-     "ombro-posterior": 2,
-     "biceps": 1,
-     "triceps-acima-cabeca": 1,
-     "triceps-complemento": 1,
+     "ombro-posterior": 3,
+     "biceps": 2,
+     "triceps-acima-cabeca": 2,
+     "triceps-complemento": 2,
      "agachar": 3,
      "afundo": 3,
      "extensora": 0,
@@ -1739,20 +1740,20 @@
      "aducao": 1,
      "panturrilha-em-pe": 1,
      "panturrilha-sentada": 1,
-     "abdomen": 2
+     "abdomen": 3
     },
     "intermediario": {
      "empurrar-horizontal": 1,
      "empurrar-inclinado": 1,
-     "crucifixo": 1,
+     "crucifixo": 2,
      "puxar-vertical": 1,
      "puxar-horizontal": 5,
      "empurrar-vertical": 2,
      "elevacao-lateral": 1,
-     "ombro-posterior": 2,
-     "biceps": 1,
-     "triceps-acima-cabeca": 1,
-     "triceps-complemento": 1,
+     "ombro-posterior": 3,
+     "biceps": 2,
+     "triceps-acima-cabeca": 2,
+     "triceps-complemento": 2,
      "agachar": 3,
      "afundo": 3,
      "extensora": 0,
@@ -1763,20 +1764,20 @@
      "aducao": 1,
      "panturrilha-em-pe": 1,
      "panturrilha-sentada": 1,
-     "abdomen": 2
+     "abdomen": 3
     },
     "avancado": {
      "empurrar-horizontal": 1,
      "empurrar-inclinado": 1,
-     "crucifixo": 1,
+     "crucifixo": 2,
      "puxar-vertical": 1,
      "puxar-horizontal": 5,
      "empurrar-vertical": 2,
      "elevacao-lateral": 1,
-     "ombro-posterior": 2,
-     "biceps": 1,
-     "triceps-acima-cabeca": 1,
-     "triceps-complemento": 1,
+     "ombro-posterior": 3,
+     "biceps": 2,
+     "triceps-acima-cabeca": 2,
+     "triceps-complemento": 2,
      "agachar": 3,
      "afundo": 3,
      "extensora": 0,
@@ -1787,7 +1788,7 @@
      "aducao": 1,
      "panturrilha-em-pe": 1,
      "panturrilha-sentada": 1,
-     "abdomen": 2
+     "abdomen": 3
     }
    }
   },
@@ -1799,74 +1800,74 @@
     "iniciante": {
      "empurrar-horizontal": 2,
      "empurrar-inclinado": 1,
-     "crucifixo": 2,
+     "crucifixo": 3,
      "puxar-vertical": 3,
      "puxar-horizontal": 6,
      "empurrar-vertical": 3,
      "elevacao-lateral": 1,
-     "ombro-posterior": 2,
-     "biceps": 1,
-     "triceps-acima-cabeca": 3,
-     "triceps-complemento": 1,
+     "ombro-posterior": 3,
+     "biceps": 2,
+     "triceps-acima-cabeca": 4,
+     "triceps-complemento": 3,
      "agachar": 4,
      "afundo": 4,
      "extensora": 1,
      "flexao-joelho": 1,
-     "dobrar-quadril": 3,
+     "dobrar-quadril": 4,
      "extensao-quadril": 1,
-     "abducao": 2,
+     "abducao": 5,
      "aducao": 1,
      "panturrilha-em-pe": 2,
      "panturrilha-sentada": 1,
-     "abdomen": 3
+     "abdomen": 4
     },
     "intermediario": {
      "empurrar-horizontal": 2,
      "empurrar-inclinado": 1,
-     "crucifixo": 2,
+     "crucifixo": 3,
      "puxar-vertical": 3,
      "puxar-horizontal": 6,
      "empurrar-vertical": 3,
      "elevacao-lateral": 1,
-     "ombro-posterior": 2,
-     "biceps": 1,
-     "triceps-acima-cabeca": 3,
-     "triceps-complemento": 1,
+     "ombro-posterior": 3,
+     "biceps": 2,
+     "triceps-acima-cabeca": 4,
+     "triceps-complemento": 3,
      "agachar": 4,
      "afundo": 4,
      "extensora": 1,
      "flexao-joelho": 1,
-     "dobrar-quadril": 4,
+     "dobrar-quadril": 5,
      "extensao-quadril": 1,
-     "abducao": 2,
+     "abducao": 5,
      "aducao": 1,
      "panturrilha-em-pe": 2,
      "panturrilha-sentada": 1,
-     "abdomen": 4
+     "abdomen": 5
     },
     "avancado": {
      "empurrar-horizontal": 2,
      "empurrar-inclinado": 1,
-     "crucifixo": 2,
+     "crucifixo": 3,
      "puxar-vertical": 3,
      "puxar-horizontal": 6,
      "empurrar-vertical": 3,
      "elevacao-lateral": 1,
-     "ombro-posterior": 2,
-     "biceps": 1,
-     "triceps-acima-cabeca": 3,
-     "triceps-complemento": 1,
+     "ombro-posterior": 3,
+     "biceps": 2,
+     "triceps-acima-cabeca": 4,
+     "triceps-complemento": 3,
      "agachar": 4,
      "afundo": 4,
      "extensora": 1,
      "flexao-joelho": 1,
-     "dobrar-quadril": 4,
+     "dobrar-quadril": 5,
      "extensao-quadril": 1,
-     "abducao": 2,
+     "abducao": 5,
      "aducao": 1,
      "panturrilha-em-pe": 2,
      "panturrilha-sentada": 1,
-     "abdomen": 4
+     "abdomen": 5
     }
    }
   },
@@ -1878,14 +1879,14 @@
     "iniciante": {
      "empurrar-horizontal": 3,
      "empurrar-inclinado": 2,
-     "crucifixo": 4,
+     "crucifixo": 5,
      "puxar-vertical": 6,
      "puxar-horizontal": 8,
      "empurrar-vertical": 3,
      "elevacao-lateral": 2,
-     "ombro-posterior": 4,
-     "biceps": 4,
-     "triceps-acima-cabeca": 3,
+     "ombro-posterior": 5,
+     "biceps": 5,
+     "triceps-acima-cabeca": 4,
      "triceps-complemento": 3,
      "agachar": 3,
      "afundo": 3,
@@ -1902,14 +1903,14 @@
     "intermediario": {
      "empurrar-horizontal": 4,
      "empurrar-inclinado": 2,
-     "crucifixo": 4,
+     "crucifixo": 5,
      "puxar-vertical": 6,
      "puxar-horizontal": 8,
      "empurrar-vertical": 4,
      "elevacao-lateral": 2,
-     "ombro-posterior": 4,
-     "biceps": 4,
-     "triceps-acima-cabeca": 3,
+     "ombro-posterior": 5,
+     "biceps": 5,
+     "triceps-acima-cabeca": 4,
      "triceps-complemento": 3,
      "agachar": 4,
      "afundo": 3,
@@ -1926,14 +1927,14 @@
     "avancado": {
      "empurrar-horizontal": 4,
      "empurrar-inclinado": 2,
-     "crucifixo": 4,
+     "crucifixo": 5,
      "puxar-vertical": 6,
      "puxar-horizontal": 8,
      "empurrar-vertical": 4,
      "elevacao-lateral": 2,
-     "ombro-posterior": 4,
-     "biceps": 4,
-     "triceps-acima-cabeca": 3,
+     "ombro-posterior": 5,
+     "biceps": 5,
+     "triceps-acima-cabeca": 4,
      "triceps-complemento": 3,
      "agachar": 4,
      "afundo": 3,
@@ -1957,20 +1958,20 @@
     "iniciante": {
      "empurrar-horizontal": 3,
      "empurrar-inclinado": 2,
-     "crucifixo": 4,
+     "crucifixo": 5,
      "puxar-vertical": 6,
      "puxar-horizontal": 9,
      "empurrar-vertical": 4,
      "elevacao-lateral": 2,
-     "ombro-posterior": 5,
-     "biceps": 4,
-     "triceps-acima-cabeca": 5,
+     "ombro-posterior": 6,
+     "biceps": 5,
+     "triceps-acima-cabeca": 6,
      "triceps-complemento": 3,
      "agachar": 3,
      "afundo": 4,
      "extensora": 1,
      "flexao-joelho": 1,
-     "dobrar-quadril": 3,
+     "dobrar-quadril": 4,
      "extensao-quadril": 3,
      "abducao": 2,
      "aducao": 1,
@@ -1981,20 +1982,20 @@
     "intermediario": {
      "empurrar-horizontal": 4,
      "empurrar-inclinado": 2,
-     "crucifixo": 4,
+     "crucifixo": 5,
      "puxar-vertical": 6,
      "puxar-horizontal": 9,
      "empurrar-vertical": 5,
      "elevacao-lateral": 2,
-     "ombro-posterior": 5,
-     "biceps": 4,
-     "triceps-acima-cabeca": 5,
+     "ombro-posterior": 6,
+     "biceps": 5,
+     "triceps-acima-cabeca": 6,
      "triceps-complemento": 3,
      "agachar": 4,
      "afundo": 4,
      "extensora": 1,
      "flexao-joelho": 1,
-     "dobrar-quadril": 4,
+     "dobrar-quadril": 5,
      "extensao-quadril": 3,
      "abducao": 2,
      "aducao": 1,
@@ -2005,20 +2006,20 @@
     "avancado": {
      "empurrar-horizontal": 4,
      "empurrar-inclinado": 2,
-     "crucifixo": 4,
+     "crucifixo": 5,
      "puxar-vertical": 6,
      "puxar-horizontal": 9,
      "empurrar-vertical": 5,
      "elevacao-lateral": 2,
-     "ombro-posterior": 5,
-     "biceps": 4,
-     "triceps-acima-cabeca": 5,
+     "ombro-posterior": 6,
+     "biceps": 5,
+     "triceps-acima-cabeca": 6,
      "triceps-complemento": 3,
      "agachar": 4,
      "afundo": 4,
      "extensora": 1,
      "flexao-joelho": 1,
-     "dobrar-quadril": 4,
+     "dobrar-quadril": 5,
      "extensao-quadril": 3,
      "abducao": 2,
      "aducao": 1,
@@ -2039,72 +2040,72 @@
      "empurrar-inclinado": 1,
      "crucifixo": 1,
      "puxar-vertical": 1,
-     "puxar-horizontal": 1,
+     "puxar-horizontal": 3,
      "empurrar-vertical": 1,
-     "elevacao-lateral": 1,
-     "ombro-posterior": 1,
-     "biceps": 1,
+     "elevacao-lateral": 2,
+     "ombro-posterior": 2,
+     "biceps": 2,
      "triceps-acima-cabeca": 1,
-     "triceps-complemento": 1,
+     "triceps-complemento": 2,
      "agachar": 2,
-     "afundo": 2,
+     "afundo": 3,
      "extensora": 1,
      "flexao-joelho": 1,
      "dobrar-quadril": 1,
-     "extensao-quadril": 1,
+     "extensao-quadril": 2,
      "abducao": 1,
      "aducao": 1,
      "panturrilha-em-pe": 1,
      "panturrilha-sentada": 0,
-     "abdomen": 1
+     "abdomen": 2
     },
     "intermediario": {
-     "empurrar-horizontal": 1,
-     "empurrar-inclinado": 1,
+     "empurrar-horizontal": 2,
+     "empurrar-inclinado": 2,
      "crucifixo": 1,
      "puxar-vertical": 1,
-     "puxar-horizontal": 1,
+     "puxar-horizontal": 3,
      "empurrar-vertical": 1,
-     "elevacao-lateral": 1,
-     "ombro-posterior": 1,
-     "biceps": 1,
+     "elevacao-lateral": 2,
+     "ombro-posterior": 2,
+     "biceps": 2,
      "triceps-acima-cabeca": 1,
-     "triceps-complemento": 1,
+     "triceps-complemento": 2,
      "agachar": 2,
-     "afundo": 2,
+     "afundo": 3,
      "extensora": 1,
      "flexao-joelho": 1,
      "dobrar-quadril": 1,
-     "extensao-quadril": 1,
+     "extensao-quadril": 2,
      "abducao": 1,
      "aducao": 1,
      "panturrilha-em-pe": 1,
      "panturrilha-sentada": 0,
-     "abdomen": 1
+     "abdomen": 2
     },
     "avancado": {
-     "empurrar-horizontal": 1,
-     "empurrar-inclinado": 1,
+     "empurrar-horizontal": 2,
+     "empurrar-inclinado": 2,
      "crucifixo": 1,
      "puxar-vertical": 1,
-     "puxar-horizontal": 1,
+     "puxar-horizontal": 3,
      "empurrar-vertical": 1,
-     "elevacao-lateral": 1,
-     "ombro-posterior": 1,
-     "biceps": 1,
+     "elevacao-lateral": 2,
+     "ombro-posterior": 2,
+     "biceps": 2,
      "triceps-acima-cabeca": 1,
-     "triceps-complemento": 1,
+     "triceps-complemento": 2,
      "agachar": 2,
-     "afundo": 2,
+     "afundo": 3,
      "extensora": 1,
      "flexao-joelho": 1,
      "dobrar-quadril": 1,
-     "extensao-quadril": 1,
+     "extensao-quadril": 2,
      "abducao": 1,
      "aducao": 1,
      "panturrilha-em-pe": 1,
      "panturrilha-sentada": 0,
-     "abdomen": 1
+     "abdomen": 2
     }
    }
   },
@@ -2121,10 +2122,10 @@
      "puxar-horizontal": 2,
      "empurrar-vertical": 1,
      "elevacao-lateral": 1,
-     "ombro-posterior": 1,
-     "biceps": 2,
-     "triceps-acima-cabeca": 1,
-     "triceps-complemento": 1,
+     "ombro-posterior": 2,
+     "biceps": 3,
+     "triceps-acima-cabeca": 2,
+     "triceps-complemento": 2,
      "agachar": 2,
      "afundo": 2,
      "extensora": 0,
@@ -2135,20 +2136,20 @@
      "aducao": 1,
      "panturrilha-em-pe": 1,
      "panturrilha-sentada": 1,
-     "abdomen": 1
+     "abdomen": 2
     },
     "intermediario": {
-     "empurrar-horizontal": 1,
-     "empurrar-inclinado": 1,
+     "empurrar-horizontal": 2,
+     "empurrar-inclinado": 2,
      "crucifixo": 0,
      "puxar-vertical": 2,
      "puxar-horizontal": 2,
      "empurrar-vertical": 1,
      "elevacao-lateral": 1,
-     "ombro-posterior": 1,
-     "biceps": 2,
-     "triceps-acima-cabeca": 1,
-     "triceps-complemento": 1,
+     "ombro-posterior": 2,
+     "biceps": 3,
+     "triceps-acima-cabeca": 2,
+     "triceps-complemento": 2,
      "agachar": 2,
      "afundo": 2,
      "extensora": 0,
@@ -2159,20 +2160,20 @@
      "aducao": 1,
      "panturrilha-em-pe": 1,
      "panturrilha-sentada": 1,
-     "abdomen": 1
+     "abdomen": 2
     },
     "avancado": {
-     "empurrar-horizontal": 1,
-     "empurrar-inclinado": 1,
+     "empurrar-horizontal": 2,
+     "empurrar-inclinado": 2,
      "crucifixo": 0,
      "puxar-vertical": 2,
      "puxar-horizontal": 2,
      "empurrar-vertical": 1,
      "elevacao-lateral": 1,
-     "ombro-posterior": 1,
-     "biceps": 2,
-     "triceps-acima-cabeca": 1,
-     "triceps-complemento": 1,
+     "ombro-posterior": 2,
+     "biceps": 3,
+     "triceps-acima-cabeca": 2,
+     "triceps-complemento": 2,
      "agachar": 2,
      "afundo": 2,
      "extensora": 0,
@@ -2183,7 +2184,7 @@
      "aducao": 1,
      "panturrilha-em-pe": 1,
      "panturrilha-sentada": 1,
-     "abdomen": 1
+     "abdomen": 2
     }
    }
   },
@@ -2200,10 +2201,10 @@
      "puxar-horizontal": 3,
      "empurrar-vertical": 1,
      "elevacao-lateral": 1,
-     "ombro-posterior": 1,
-     "biceps": 2,
-     "triceps-acima-cabeca": 1,
-     "triceps-complemento": 1,
+     "ombro-posterior": 2,
+     "biceps": 3,
+     "triceps-acima-cabeca": 2,
+     "triceps-complemento": 2,
      "agachar": 3,
      "afundo": 3,
      "extensora": 0,
@@ -2214,7 +2215,7 @@
      "aducao": 1,
      "panturrilha-em-pe": 1,
      "panturrilha-sentada": 1,
-     "abdomen": 1
+     "abdomen": 2
     },
     "intermediario": {
      "empurrar-horizontal": 1,
@@ -2224,10 +2225,10 @@
      "puxar-horizontal": 3,
      "empurrar-vertical": 1,
      "elevacao-lateral": 1,
-     "ombro-posterior": 1,
-     "biceps": 2,
-     "triceps-acima-cabeca": 1,
-     "triceps-complemento": 1,
+     "ombro-posterior": 2,
+     "biceps": 3,
+     "triceps-acima-cabeca": 2,
+     "triceps-complemento": 2,
      "agachar": 3,
      "afundo": 3,
      "extensora": 0,
@@ -2238,7 +2239,7 @@
      "aducao": 1,
      "panturrilha-em-pe": 1,
      "panturrilha-sentada": 1,
-     "abdomen": 1
+     "abdomen": 2
     },
     "avancado": {
      "empurrar-horizontal": 1,
@@ -2248,10 +2249,10 @@
      "puxar-horizontal": 3,
      "empurrar-vertical": 1,
      "elevacao-lateral": 1,
-     "ombro-posterior": 1,
-     "biceps": 2,
-     "triceps-acima-cabeca": 1,
-     "triceps-complemento": 1,
+     "ombro-posterior": 2,
+     "biceps": 3,
+     "triceps-acima-cabeca": 2,
+     "triceps-complemento": 2,
      "agachar": 3,
      "afundo": 3,
      "extensora": 0,
@@ -2262,7 +2263,7 @@
      "aducao": 1,
      "panturrilha-em-pe": 1,
      "panturrilha-sentada": 1,
-     "abdomen": 1
+     "abdomen": 2
     }
    }
   },
@@ -2277,72 +2278,72 @@
      "empurrar-inclinado": 1,
      "crucifixo": 1,
      "puxar-vertical": 2,
-     "puxar-horizontal": 1,
+     "puxar-horizontal": 3,
      "empurrar-vertical": 1,
-     "elevacao-lateral": 1,
-     "ombro-posterior": 1,
-     "biceps": 1,
+     "elevacao-lateral": 2,
+     "ombro-posterior": 2,
+     "biceps": 2,
      "triceps-acima-cabeca": 1,
-     "triceps-complemento": 1,
+     "triceps-complemento": 2,
      "agachar": 2,
-     "afundo": 2,
+     "afundo": 3,
      "extensora": 1,
      "flexao-joelho": 1,
      "dobrar-quadril": 1,
-     "extensao-quadril": 1,
+     "extensao-quadril": 2,
      "abducao": 1,
      "aducao": 1,
      "panturrilha-em-pe": 1,
      "panturrilha-sentada": 0,
-     "abdomen": 2
+     "abdomen": 3
     },
     "intermediario": {
-     "empurrar-horizontal": 1,
-     "empurrar-inclinado": 1,
+     "empurrar-horizontal": 2,
+     "empurrar-inclinado": 2,
      "crucifixo": 1,
      "puxar-vertical": 2,
-     "puxar-horizontal": 1,
+     "puxar-horizontal": 3,
      "empurrar-vertical": 1,
-     "elevacao-lateral": 1,
-     "ombro-posterior": 1,
-     "biceps": 1,
+     "elevacao-lateral": 2,
+     "ombro-posterior": 2,
+     "biceps": 2,
      "triceps-acima-cabeca": 1,
-     "triceps-complemento": 1,
+     "triceps-complemento": 2,
      "agachar": 2,
-     "afundo": 2,
+     "afundo": 3,
      "extensora": 1,
      "flexao-joelho": 1,
      "dobrar-quadril": 1,
-     "extensao-quadril": 1,
+     "extensao-quadril": 2,
      "abducao": 1,
      "aducao": 1,
      "panturrilha-em-pe": 1,
      "panturrilha-sentada": 0,
-     "abdomen": 2
+     "abdomen": 3
     },
     "avancado": {
-     "empurrar-horizontal": 1,
-     "empurrar-inclinado": 1,
+     "empurrar-horizontal": 2,
+     "empurrar-inclinado": 2,
      "crucifixo": 1,
      "puxar-vertical": 2,
-     "puxar-horizontal": 1,
+     "puxar-horizontal": 3,
      "empurrar-vertical": 1,
-     "elevacao-lateral": 1,
-     "ombro-posterior": 1,
-     "biceps": 1,
+     "elevacao-lateral": 2,
+     "ombro-posterior": 2,
+     "biceps": 2,
      "triceps-acima-cabeca": 1,
-     "triceps-complemento": 1,
+     "triceps-complemento": 2,
      "agachar": 2,
-     "afundo": 2,
+     "afundo": 3,
      "extensora": 1,
      "flexao-joelho": 1,
      "dobrar-quadril": 1,
-     "extensao-quadril": 1,
+     "extensao-quadril": 2,
      "abducao": 1,
      "aducao": 1,
      "panturrilha-em-pe": 1,
      "panturrilha-sentada": 0,
-     "abdomen": 2
+     "abdomen": 3
     }
    }
   },
@@ -2354,14 +2355,14 @@
     "iniciante": {
      "empurrar-horizontal": 1,
      "empurrar-inclinado": 2,
-     "crucifixo": 3,
+     "crucifixo": 4,
      "puxar-vertical": 4,
      "puxar-horizontal": 6,
      "empurrar-vertical": 2,
      "elevacao-lateral": 2,
-     "ombro-posterior": 4,
-     "biceps": 2,
-     "triceps-acima-cabeca": 4,
+     "ombro-posterior": 5,
+     "biceps": 3,
+     "triceps-acima-cabeca": 5,
      "triceps-complemento": 2,
      "agachar": 3,
      "afundo": 3,
@@ -2378,14 +2379,14 @@
     "intermediario": {
      "empurrar-horizontal": 1,
      "empurrar-inclinado": 2,
-     "crucifixo": 3,
+     "crucifixo": 4,
      "puxar-vertical": 4,
      "puxar-horizontal": 6,
      "empurrar-vertical": 2,
      "elevacao-lateral": 2,
-     "ombro-posterior": 4,
-     "biceps": 2,
-     "triceps-acima-cabeca": 4,
+     "ombro-posterior": 5,
+     "biceps": 3,
+     "triceps-acima-cabeca": 5,
      "triceps-complemento": 2,
      "agachar": 3,
      "afundo": 3,
@@ -2402,14 +2403,14 @@
     "avancado": {
      "empurrar-horizontal": 1,
      "empurrar-inclinado": 2,
-     "crucifixo": 3,
+     "crucifixo": 4,
      "puxar-vertical": 4,
      "puxar-horizontal": 6,
      "empurrar-vertical": 2,
      "elevacao-lateral": 2,
-     "ombro-posterior": 4,
-     "biceps": 2,
-     "triceps-acima-cabeca": 4,
+     "ombro-posterior": 5,
+     "biceps": 3,
+     "triceps-acima-cabeca": 5,
      "triceps-complemento": 2,
      "agachar": 3,
      "afundo": 3,
@@ -2433,15 +2434,15 @@
     "iniciante": {
      "empurrar-horizontal": 1,
      "empurrar-inclinado": 1,
-     "crucifixo": 1,
+     "crucifixo": 2,
      "puxar-vertical": 2,
      "puxar-horizontal": 4,
      "empurrar-vertical": 2,
      "elevacao-lateral": 1,
-     "ombro-posterior": 2,
-     "biceps": 1,
-     "triceps-acima-cabeca": 1,
-     "triceps-complemento": 1,
+     "ombro-posterior": 3,
+     "biceps": 2,
+     "triceps-acima-cabeca": 2,
+     "triceps-complemento": 2,
      "agachar": 1,
      "afundo": 3,
      "extensora": 1,
@@ -2452,19 +2453,19 @@
      "aducao": 1,
      "panturrilha-em-pe": 1,
      "panturrilha-sentada": 1,
-     "abdomen": 3
+     "abdomen": 4
     },
     "intermediario": {
      "empurrar-horizontal": 1,
      "empurrar-inclinado": 1,
-     "crucifixo": 1,
+     "crucifixo": 2,
      "puxar-vertical": 2,
      "puxar-horizontal": 4,
      "empurrar-vertical": 2,
      "elevacao-lateral": 1,
-     "ombro-posterior": 2,
-     "biceps": 1,
-     "triceps-acima-cabeca": 1,
+     "ombro-posterior": 3,
+     "biceps": 2,
+     "triceps-acima-cabeca": 2,
      "triceps-complemento": 1,
      "agachar": 1,
      "afundo": 3,
@@ -2476,19 +2477,19 @@
      "aducao": 1,
      "panturrilha-em-pe": 1,
      "panturrilha-sentada": 1,
-     "abdomen": 3
+     "abdomen": 4
     },
     "avancado": {
      "empurrar-horizontal": 1,
      "empurrar-inclinado": 1,
-     "crucifixo": 1,
+     "crucifixo": 2,
      "puxar-vertical": 2,
      "puxar-horizontal": 4,
      "empurrar-vertical": 2,
      "elevacao-lateral": 1,
-     "ombro-posterior": 2,
-     "biceps": 1,
-     "triceps-acima-cabeca": 1,
+     "ombro-posterior": 3,
+     "biceps": 2,
+     "triceps-acima-cabeca": 2,
      "triceps-complemento": 1,
      "agachar": 1,
      "afundo": 3,
@@ -2500,7 +2501,7 @@
      "aducao": 1,
      "panturrilha-em-pe": 1,
      "panturrilha-sentada": 1,
-     "abdomen": 3
+     "abdomen": 4
     }
    }
   },
@@ -2527,12 +2528,12 @@
      "puxar-horizontal": 0,
      "empurrar-vertical": 1,
      "elevacao-lateral": 0,
-     "ombro-posterior": 0,
+     "ombro-posterior": 1,
      "biceps": 0,
-     "triceps-acima-cabeca": 0,
+     "triceps-acima-cabeca": 1,
      "triceps-complemento": 1,
      "agachar": 1,
-     "afundo": 2,
+     "afundo": 3,
      "extensora": 0,
      "flexao-joelho": 1,
      "dobrar-quadril": "via flexao-joelho",
@@ -2541,22 +2542,22 @@
      "aducao": 1,
      "panturrilha-em-pe": 1,
      "panturrilha-sentada": 0,
-     "abdomen": 1
+     "abdomen": 2
     },
     "intermediario": {
-     "empurrar-horizontal": 1,
-     "empurrar-inclinado": 1,
+     "empurrar-horizontal": 2,
+     "empurrar-inclinado": 2,
      "crucifixo": 0,
      "puxar-vertical": 0,
      "puxar-horizontal": 0,
      "empurrar-vertical": 1,
      "elevacao-lateral": 0,
-     "ombro-posterior": 0,
+     "ombro-posterior": 1,
      "biceps": 0,
-     "triceps-acima-cabeca": 0,
+     "triceps-acima-cabeca": 1,
      "triceps-complemento": 1,
      "agachar": 1,
-     "afundo": 2,
+     "afundo": 3,
      "extensora": 0,
      "flexao-joelho": 2,
      "dobrar-quadril": "via flexao-joelho",
@@ -2565,22 +2566,22 @@
      "aducao": 1,
      "panturrilha-em-pe": 1,
      "panturrilha-sentada": 0,
-     "abdomen": 1
+     "abdomen": 2
     },
     "avancado": {
-     "empurrar-horizontal": 1,
-     "empurrar-inclinado": 1,
+     "empurrar-horizontal": 2,
+     "empurrar-inclinado": 2,
      "crucifixo": 0,
      "puxar-vertical": 0,
      "puxar-horizontal": 0,
      "empurrar-vertical": 1,
      "elevacao-lateral": 0,
-     "ombro-posterior": 0,
+     "ombro-posterior": 1,
      "biceps": 0,
-     "triceps-acima-cabeca": 0,
+     "triceps-acima-cabeca": 1,
      "triceps-complemento": 1,
      "agachar": 1,
-     "afundo": 2,
+     "afundo": 3,
      "extensora": 0,
      "flexao-joelho": 2,
      "dobrar-quadril": "via flexao-joelho",
@@ -2589,7 +2590,7 @@
      "aducao": 1,
      "panturrilha-em-pe": 1,
      "panturrilha-sentada": 0,
-     "abdomen": 1
+     "abdomen": 2
     }
    }
   },
@@ -2611,7 +2612,7 @@
      "triceps-acima-cabeca": 1,
      "triceps-complemento": 1,
      "agachar": 1,
-     "afundo": 2,
+     "afundo": 3,
      "extensora": 0,
      "flexao-joelho": 1,
      "dobrar-quadril": "via flexao-joelho",
@@ -2620,11 +2621,11 @@
      "aducao": 1,
      "panturrilha-em-pe": 1,
      "panturrilha-sentada": 0,
-     "abdomen": 1
+     "abdomen": 2
     },
     "intermediario": {
-     "empurrar-horizontal": 1,
-     "empurrar-inclinado": 1,
+     "empurrar-horizontal": 2,
+     "empurrar-inclinado": 2,
      "crucifixo": 2,
      "puxar-vertical": 1,
      "puxar-horizontal": 1,
@@ -2635,7 +2636,7 @@
      "triceps-acima-cabeca": 1,
      "triceps-complemento": 1,
      "agachar": 1,
-     "afundo": 2,
+     "afundo": 3,
      "extensora": 0,
      "flexao-joelho": 2,
      "dobrar-quadril": "via flexao-joelho",
@@ -2644,11 +2645,11 @@
      "aducao": 1,
      "panturrilha-em-pe": 1,
      "panturrilha-sentada": 0,
-     "abdomen": 1
+     "abdomen": 2
     },
     "avancado": {
-     "empurrar-horizontal": 1,
-     "empurrar-inclinado": 1,
+     "empurrar-horizontal": 2,
+     "empurrar-inclinado": 2,
      "crucifixo": 2,
      "puxar-vertical": 1,
      "puxar-horizontal": 1,
@@ -2659,7 +2660,7 @@
      "triceps-acima-cabeca": 1,
      "triceps-complemento": 1,
      "agachar": 1,
-     "afundo": 2,
+     "afundo": 3,
      "extensora": 0,
      "flexao-joelho": 2,
      "dobrar-quadril": "via flexao-joelho",
@@ -2668,7 +2669,7 @@
      "aducao": 1,
      "panturrilha-em-pe": 1,
      "panturrilha-sentada": 0,
-     "abdomen": 1
+     "abdomen": 2
     }
    }
   },
@@ -2685,12 +2686,12 @@
      "puxar-horizontal": 0,
      "empurrar-vertical": 1,
      "elevacao-lateral": 0,
-     "ombro-posterior": 0,
+     "ombro-posterior": 1,
      "biceps": 0,
-     "triceps-acima-cabeca": 0,
+     "triceps-acima-cabeca": 1,
      "triceps-complemento": 1,
      "agachar": 1,
-     "afundo": 2,
+     "afundo": 3,
      "extensora": 0,
      "flexao-joelho": 1,
      "dobrar-quadril": "via flexao-joelho",
@@ -2699,22 +2700,22 @@
      "aducao": 1,
      "panturrilha-em-pe": 1,
      "panturrilha-sentada": 0,
-     "abdomen": 2
+     "abdomen": 3
     },
     "intermediario": {
-     "empurrar-horizontal": 1,
-     "empurrar-inclinado": 1,
+     "empurrar-horizontal": 2,
+     "empurrar-inclinado": 2,
      "crucifixo": 0,
      "puxar-vertical": 2,
      "puxar-horizontal": 0,
      "empurrar-vertical": 1,
      "elevacao-lateral": 0,
-     "ombro-posterior": 0,
+     "ombro-posterior": 1,
      "biceps": 0,
-     "triceps-acima-cabeca": 0,
+     "triceps-acima-cabeca": 1,
      "triceps-complemento": 1,
      "agachar": 1,
-     "afundo": 2,
+     "afundo": 3,
      "extensora": 0,
      "flexao-joelho": 2,
      "dobrar-quadril": "via flexao-joelho",
@@ -2723,22 +2724,22 @@
      "aducao": 1,
      "panturrilha-em-pe": 1,
      "panturrilha-sentada": 0,
-     "abdomen": 2
+     "abdomen": 3
     },
     "avancado": {
-     "empurrar-horizontal": 1,
-     "empurrar-inclinado": 1,
+     "empurrar-horizontal": 2,
+     "empurrar-inclinado": 2,
      "crucifixo": 0,
      "puxar-vertical": 2,
      "puxar-horizontal": 0,
      "empurrar-vertical": 1,
      "elevacao-lateral": 0,
-     "ombro-posterior": 0,
+     "ombro-posterior": 1,
      "biceps": 0,
-     "triceps-acima-cabeca": 0,
+     "triceps-acima-cabeca": 1,
      "triceps-complemento": 1,
      "agachar": 1,
-     "afundo": 2,
+     "afundo": 3,
      "extensora": 0,
      "flexao-joelho": 2,
      "dobrar-quadril": "via flexao-joelho",
@@ -2747,7 +2748,7 @@
      "aducao": 1,
      "panturrilha-em-pe": 1,
      "panturrilha-sentada": 0,
-     "abdomen": 2
+     "abdomen": 3
     }
    }
   },
@@ -2764,10 +2765,10 @@
      "puxar-horizontal": 2,
      "empurrar-vertical": 1,
      "elevacao-lateral": 1,
-     "ombro-posterior": 1,
-     "biceps": 2,
-     "triceps-acima-cabeca": 1,
-     "triceps-complemento": 1,
+     "ombro-posterior": 2,
+     "biceps": 3,
+     "triceps-acima-cabeca": 2,
+     "triceps-complemento": 2,
      "agachar": 2,
      "afundo": 2,
      "extensora": 0,
@@ -2778,20 +2779,20 @@
      "aducao": 1,
      "panturrilha-em-pe": 1,
      "panturrilha-sentada": 1,
-     "abdomen": 1
+     "abdomen": 2
     },
     "intermediario": {
-     "empurrar-horizontal": 1,
-     "empurrar-inclinado": 1,
+     "empurrar-horizontal": 2,
+     "empurrar-inclinado": 2,
      "crucifixo": 0,
      "puxar-vertical": 2,
      "puxar-horizontal": 2,
      "empurrar-vertical": 1,
      "elevacao-lateral": 1,
-     "ombro-posterior": 1,
-     "biceps": 2,
-     "triceps-acima-cabeca": 1,
-     "triceps-complemento": 1,
+     "ombro-posterior": 2,
+     "biceps": 3,
+     "triceps-acima-cabeca": 2,
+     "triceps-complemento": 2,
      "agachar": 2,
      "afundo": 2,
      "extensora": 0,
@@ -2802,20 +2803,20 @@
      "aducao": 1,
      "panturrilha-em-pe": 1,
      "panturrilha-sentada": 1,
-     "abdomen": 1
+     "abdomen": 2
     },
     "avancado": {
-     "empurrar-horizontal": 1,
-     "empurrar-inclinado": 1,
+     "empurrar-horizontal": 2,
+     "empurrar-inclinado": 2,
      "crucifixo": 0,
      "puxar-vertical": 2,
      "puxar-horizontal": 2,
      "empurrar-vertical": 1,
      "elevacao-lateral": 1,
-     "ombro-posterior": 1,
-     "biceps": 2,
-     "triceps-acima-cabeca": 1,
-     "triceps-complemento": 1,
+     "ombro-posterior": 2,
+     "biceps": 3,
+     "triceps-acima-cabeca": 2,
+     "triceps-complemento": 2,
      "agachar": 2,
      "afundo": 2,
      "extensora": 0,
@@ -2826,7 +2827,7 @@
      "aducao": 1,
      "panturrilha-em-pe": 1,
      "panturrilha-sentada": 1,
-     "abdomen": 1
+     "abdomen": 2
     }
    }
   },
@@ -2843,10 +2844,10 @@
      "puxar-horizontal": 2,
      "empurrar-vertical": 1,
      "elevacao-lateral": 1,
-     "ombro-posterior": 1,
-     "biceps": 2,
-     "triceps-acima-cabeca": 1,
-     "triceps-complemento": 1,
+     "ombro-posterior": 2,
+     "biceps": 3,
+     "triceps-acima-cabeca": 2,
+     "triceps-complemento": 2,
      "agachar": 2,
      "afundo": 2,
      "extensora": 0,
@@ -2857,20 +2858,20 @@
      "aducao": 1,
      "panturrilha-em-pe": 1,
      "panturrilha-sentada": 1,
-     "abdomen": 1
+     "abdomen": 2
     },
     "intermediario": {
-     "empurrar-horizontal": 1,
-     "empurrar-inclinado": 1,
+     "empurrar-horizontal": 2,
+     "empurrar-inclinado": 2,
      "crucifixo": 0,
      "puxar-vertical": 2,
      "puxar-horizontal": 2,
      "empurrar-vertical": 1,
      "elevacao-lateral": 1,
-     "ombro-posterior": 1,
-     "biceps": 2,
-     "triceps-acima-cabeca": 1,
-     "triceps-complemento": 1,
+     "ombro-posterior": 2,
+     "biceps": 3,
+     "triceps-acima-cabeca": 2,
+     "triceps-complemento": 2,
      "agachar": 2,
      "afundo": 2,
      "extensora": 0,
@@ -2881,20 +2882,20 @@
      "aducao": 1,
      "panturrilha-em-pe": 1,
      "panturrilha-sentada": 1,
-     "abdomen": 1
+     "abdomen": 2
     },
     "avancado": {
-     "empurrar-horizontal": 1,
-     "empurrar-inclinado": 1,
+     "empurrar-horizontal": 2,
+     "empurrar-inclinado": 2,
      "crucifixo": 0,
      "puxar-vertical": 2,
      "puxar-horizontal": 2,
      "empurrar-vertical": 1,
      "elevacao-lateral": 1,
-     "ombro-posterior": 1,
-     "biceps": 2,
-     "triceps-acima-cabeca": 1,
-     "triceps-complemento": 1,
+     "ombro-posterior": 2,
+     "biceps": 3,
+     "triceps-acima-cabeca": 2,
+     "triceps-complemento": 2,
      "agachar": 2,
      "afundo": 2,
      "extensora": 0,
@@ -2905,7 +2906,7 @@
      "aducao": 1,
      "panturrilha-em-pe": 1,
      "panturrilha-sentada": 1,
-     "abdomen": 1
+     "abdomen": 2
     }
    }
   },
@@ -2922,12 +2923,12 @@
      "puxar-horizontal": 0,
      "empurrar-vertical": 1,
      "elevacao-lateral": 0,
-     "ombro-posterior": 0,
+     "ombro-posterior": 1,
      "biceps": 0,
-     "triceps-acima-cabeca": 0,
+     "triceps-acima-cabeca": 1,
      "triceps-complemento": 1,
      "agachar": 1,
-     "afundo": 2,
+     "afundo": 3,
      "extensora": 0,
      "flexao-joelho": 1,
      "dobrar-quadril": "via flexao-joelho",
@@ -2936,22 +2937,22 @@
      "aducao": 1,
      "panturrilha-em-pe": 1,
      "panturrilha-sentada": 0,
-     "abdomen": 1
+     "abdomen": 2
     },
     "intermediario": {
-     "empurrar-horizontal": 1,
-     "empurrar-inclinado": 1,
+     "empurrar-horizontal": 2,
+     "empurrar-inclinado": 2,
      "crucifixo": 0,
      "puxar-vertical": 0,
      "puxar-horizontal": 1,
      "empurrar-vertical": 1,
      "elevacao-lateral": 0,
-     "ombro-posterior": 0,
+     "ombro-posterior": 1,
      "biceps": 0,
-     "triceps-acima-cabeca": 0,
+     "triceps-acima-cabeca": 1,
      "triceps-complemento": 1,
      "agachar": 1,
-     "afundo": 2,
+     "afundo": 3,
      "extensora": 0,
      "flexao-joelho": 2,
      "dobrar-quadril": 1,
@@ -2960,22 +2961,22 @@
      "aducao": 1,
      "panturrilha-em-pe": 1,
      "panturrilha-sentada": 0,
-     "abdomen": 1
+     "abdomen": 2
     },
     "avancado": {
-     "empurrar-horizontal": 1,
-     "empurrar-inclinado": 1,
+     "empurrar-horizontal": 2,
+     "empurrar-inclinado": 2,
      "crucifixo": 0,
      "puxar-vertical": 0,
      "puxar-horizontal": 1,
      "empurrar-vertical": 1,
      "elevacao-lateral": 0,
-     "ombro-posterior": 0,
+     "ombro-posterior": 1,
      "biceps": 0,
-     "triceps-acima-cabeca": 0,
+     "triceps-acima-cabeca": 1,
      "triceps-complemento": 1,
      "agachar": 1,
-     "afundo": 2,
+     "afundo": 3,
      "extensora": 0,
      "flexao-joelho": 2,
      "dobrar-quadril": 1,
@@ -2984,7 +2985,7 @@
      "aducao": 1,
      "panturrilha-em-pe": 1,
      "panturrilha-sentada": 0,
-     "abdomen": 1
+     "abdomen": 2
     }
    }
   },
@@ -3001,12 +3002,12 @@
      "puxar-horizontal": 0,
      "empurrar-vertical": 1,
      "elevacao-lateral": 0,
-     "ombro-posterior": 0,
+     "ombro-posterior": 1,
      "biceps": 1,
-     "triceps-acima-cabeca": 0,
+     "triceps-acima-cabeca": 1,
      "triceps-complemento": 1,
      "agachar": 1,
-     "afundo": 2,
+     "afundo": 3,
      "extensora": 0,
      "flexao-joelho": 1,
      "dobrar-quadril": "via flexao-joelho",
@@ -3015,22 +3016,22 @@
      "aducao": 1,
      "panturrilha-em-pe": 1,
      "panturrilha-sentada": 0,
-     "abdomen": 1
+     "abdomen": 2
     },
     "intermediario": {
-     "empurrar-horizontal": 1,
-     "empurrar-inclinado": 1,
+     "empurrar-horizontal": 2,
+     "empurrar-inclinado": 2,
      "crucifixo": 0,
      "puxar-vertical": 0,
      "puxar-horizontal": 0,
      "empurrar-vertical": 1,
      "elevacao-lateral": 0,
-     "ombro-posterior": 0,
+     "ombro-posterior": 1,
      "biceps": 1,
-     "triceps-acima-cabeca": 0,
+     "triceps-acima-cabeca": 1,
      "triceps-complemento": 1,
      "agachar": 1,
-     "afundo": 2,
+     "afundo": 3,
      "extensora": 0,
      "flexao-joelho": 2,
      "dobrar-quadril": "via flexao-joelho",
@@ -3039,22 +3040,22 @@
      "aducao": 1,
      "panturrilha-em-pe": 1,
      "panturrilha-sentada": 0,
-     "abdomen": 1
+     "abdomen": 2
     },
     "avancado": {
-     "empurrar-horizontal": 1,
-     "empurrar-inclinado": 1,
+     "empurrar-horizontal": 2,
+     "empurrar-inclinado": 2,
      "crucifixo": 0,
      "puxar-vertical": 0,
      "puxar-horizontal": 0,
      "empurrar-vertical": 1,
      "elevacao-lateral": 0,
-     "ombro-posterior": 0,
+     "ombro-posterior": 1,
      "biceps": 1,
-     "triceps-acima-cabeca": 0,
+     "triceps-acima-cabeca": 1,
      "triceps-complemento": 1,
      "agachar": 1,
-     "afundo": 2,
+     "afundo": 3,
      "extensora": 0,
      "flexao-joelho": 2,
      "dobrar-quadril": "via flexao-joelho",
@@ -3063,7 +3064,7 @@
      "aducao": 1,
      "panturrilha-em-pe": 1,
      "panturrilha-sentada": 0,
-     "abdomen": 1
+     "abdomen": 2
     }
    }
   },
@@ -3080,12 +3081,12 @@
      "puxar-horizontal": 1,
      "empurrar-vertical": 1,
      "elevacao-lateral": 0,
-     "ombro-posterior": 0,
+     "ombro-posterior": 1,
      "biceps": 0,
-     "triceps-acima-cabeca": 0,
+     "triceps-acima-cabeca": 1,
      "triceps-complemento": 1,
      "agachar": 1,
-     "afundo": 2,
+     "afundo": 3,
      "extensora": 0,
      "flexao-joelho": 1,
      "dobrar-quadril": "via flexao-joelho",
@@ -3094,22 +3095,22 @@
      "aducao": 1,
      "panturrilha-em-pe": 1,
      "panturrilha-sentada": 0,
-     "abdomen": 1
+     "abdomen": 2
     },
     "intermediario": {
-     "empurrar-horizontal": 1,
-     "empurrar-inclinado": 1,
+     "empurrar-horizontal": 2,
+     "empurrar-inclinado": 2,
      "crucifixo": 0,
      "puxar-vertical": 1,
      "puxar-horizontal": 1,
      "empurrar-vertical": 1,
      "elevacao-lateral": 0,
-     "ombro-posterior": 0,
+     "ombro-posterior": 1,
      "biceps": 0,
-     "triceps-acima-cabeca": 0,
+     "triceps-acima-cabeca": 1,
      "triceps-complemento": 1,
      "agachar": 1,
-     "afundo": 2,
+     "afundo": 3,
      "extensora": 0,
      "flexao-joelho": 2,
      "dobrar-quadril": "via flexao-joelho",
@@ -3118,22 +3119,22 @@
      "aducao": 1,
      "panturrilha-em-pe": 1,
      "panturrilha-sentada": 0,
-     "abdomen": 1
+     "abdomen": 2
     },
     "avancado": {
-     "empurrar-horizontal": 1,
-     "empurrar-inclinado": 1,
+     "empurrar-horizontal": 2,
+     "empurrar-inclinado": 2,
      "crucifixo": 0,
      "puxar-vertical": 1,
      "puxar-horizontal": 1,
      "empurrar-vertical": 1,
      "elevacao-lateral": 0,
-     "ombro-posterior": 0,
+     "ombro-posterior": 1,
      "biceps": 0,
-     "triceps-acima-cabeca": 0,
+     "triceps-acima-cabeca": 1,
      "triceps-complemento": 1,
      "agachar": 1,
-     "afundo": 2,
+     "afundo": 3,
      "extensora": 0,
      "flexao-joelho": 2,
      "dobrar-quadril": "via flexao-joelho",
@@ -3142,7 +3143,7 @@
      "aducao": 1,
      "panturrilha-em-pe": 1,
      "panturrilha-sentada": 0,
-     "abdomen": 1
+     "abdomen": 2
     }
    }
   },
@@ -3159,12 +3160,12 @@
      "puxar-horizontal": 1,
      "empurrar-vertical": 1,
      "elevacao-lateral": 0,
-     "ombro-posterior": 0,
+     "ombro-posterior": 1,
      "biceps": 0,
-     "triceps-acima-cabeca": 0,
+     "triceps-acima-cabeca": 1,
      "triceps-complemento": 1,
      "agachar": 1,
-     "afundo": 2,
+     "afundo": 3,
      "extensora": 0,
      "flexao-joelho": 1,
      "dobrar-quadril": "via flexao-joelho",
@@ -3173,22 +3174,22 @@
      "aducao": 1,
      "panturrilha-em-pe": 1,
      "panturrilha-sentada": 0,
-     "abdomen": 1
+     "abdomen": 2
     },
     "intermediario": {
-     "empurrar-horizontal": 1,
-     "empurrar-inclinado": 1,
+     "empurrar-horizontal": 2,
+     "empurrar-inclinado": 2,
      "crucifixo": 0,
      "puxar-vertical": 1,
      "puxar-horizontal": 1,
      "empurrar-vertical": 1,
      "elevacao-lateral": 0,
-     "ombro-posterior": 0,
+     "ombro-posterior": 1,
      "biceps": 0,
-     "triceps-acima-cabeca": 0,
+     "triceps-acima-cabeca": 1,
      "triceps-complemento": 1,
      "agachar": 1,
-     "afundo": 2,
+     "afundo": 3,
      "extensora": 0,
      "flexao-joelho": 2,
      "dobrar-quadril": "via flexao-joelho",
@@ -3197,22 +3198,22 @@
      "aducao": 1,
      "panturrilha-em-pe": 1,
      "panturrilha-sentada": 0,
-     "abdomen": 1
+     "abdomen": 2
     },
     "avancado": {
-     "empurrar-horizontal": 1,
-     "empurrar-inclinado": 1,
+     "empurrar-horizontal": 2,
+     "empurrar-inclinado": 2,
      "crucifixo": 0,
      "puxar-vertical": 1,
      "puxar-horizontal": 1,
      "empurrar-vertical": 1,
      "elevacao-lateral": 0,
-     "ombro-posterior": 0,
+     "ombro-posterior": 1,
      "biceps": 0,
-     "triceps-acima-cabeca": 0,
+     "triceps-acima-cabeca": 1,
      "triceps-complemento": 1,
      "agachar": 1,
-     "afundo": 2,
+     "afundo": 3,
      "extensora": 0,
      "flexao-joelho": 2,
      "dobrar-quadril": "via flexao-joelho",
@@ -3221,7 +3222,7 @@
      "aducao": 1,
      "panturrilha-em-pe": 1,
      "panturrilha-sentada": 0,
-     "abdomen": 1
+     "abdomen": 2
     }
    }
   },
@@ -3238,12 +3239,12 @@
      "puxar-horizontal": 0,
      "empurrar-vertical": 1,
      "elevacao-lateral": 0,
-     "ombro-posterior": 0,
+     "ombro-posterior": 1,
      "biceps": 0,
-     "triceps-acima-cabeca": 0,
+     "triceps-acima-cabeca": 1,
      "triceps-complemento": 1,
      "agachar": 1,
-     "afundo": 2,
+     "afundo": 3,
      "extensora": 0,
      "flexao-joelho": 1,
      "dobrar-quadril": "via flexao-joelho",
@@ -3252,22 +3253,22 @@
      "aducao": 1,
      "panturrilha-em-pe": 1,
      "panturrilha-sentada": 0,
-     "abdomen": 1
+     "abdomen": 2
     },
     "intermediario": {
-     "empurrar-horizontal": 1,
-     "empurrar-inclinado": 1,
+     "empurrar-horizontal": 2,
+     "empurrar-inclinado": 2,
      "crucifixo": 0,
      "puxar-vertical": 0,
      "puxar-horizontal": 0,
      "empurrar-vertical": 1,
      "elevacao-lateral": 0,
-     "ombro-posterior": 0,
+     "ombro-posterior": 1,
      "biceps": 0,
-     "triceps-acima-cabeca": 0,
+     "triceps-acima-cabeca": 1,
      "triceps-complemento": 1,
      "agachar": 1,
-     "afundo": 2,
+     "afundo": 3,
      "extensora": 0,
      "flexao-joelho": 2,
      "dobrar-quadril": "via flexao-joelho",
@@ -3276,22 +3277,22 @@
      "aducao": 1,
      "panturrilha-em-pe": 1,
      "panturrilha-sentada": 0,
-     "abdomen": 1
+     "abdomen": 2
     },
     "avancado": {
-     "empurrar-horizontal": 1,
-     "empurrar-inclinado": 1,
+     "empurrar-horizontal": 2,
+     "empurrar-inclinado": 2,
      "crucifixo": 0,
      "puxar-vertical": 0,
      "puxar-horizontal": 0,
      "empurrar-vertical": 1,
      "elevacao-lateral": 0,
-     "ombro-posterior": 0,
+     "ombro-posterior": 1,
      "biceps": 0,
-     "triceps-acima-cabeca": 0,
+     "triceps-acima-cabeca": 1,
      "triceps-complemento": 1,
      "agachar": 1,
-     "afundo": 2,
+     "afundo": 3,
      "extensora": 0,
      "flexao-joelho": 2,
      "dobrar-quadril": "via flexao-joelho",
@@ -3300,7 +3301,7 @@
      "aducao": 1,
      "panturrilha-em-pe": 1,
      "panturrilha-sentada": 0,
-     "abdomen": 1
+     "abdomen": 2
     }
    }
   },
@@ -3317,12 +3318,12 @@
      "puxar-horizontal": 0,
      "empurrar-vertical": 1,
      "elevacao-lateral": 0,
-     "ombro-posterior": 0,
+     "ombro-posterior": 1,
      "biceps": 0,
-     "triceps-acima-cabeca": 0,
+     "triceps-acima-cabeca": 1,
      "triceps-complemento": 1,
      "agachar": 1,
-     "afundo": 2,
+     "afundo": 3,
      "extensora": 1,
      "flexao-joelho": 1,
      "dobrar-quadril": "via flexao-joelho",
@@ -3331,22 +3332,22 @@
      "aducao": 1,
      "panturrilha-em-pe": 1,
      "panturrilha-sentada": 0,
-     "abdomen": 1
+     "abdomen": 2
     },
     "intermediario": {
-     "empurrar-horizontal": 1,
-     "empurrar-inclinado": 1,
+     "empurrar-horizontal": 2,
+     "empurrar-inclinado": 2,
      "crucifixo": 0,
      "puxar-vertical": 0,
      "puxar-horizontal": 0,
      "empurrar-vertical": 1,
      "elevacao-lateral": 0,
-     "ombro-posterior": 0,
+     "ombro-posterior": 1,
      "biceps": 0,
-     "triceps-acima-cabeca": 0,
+     "triceps-acima-cabeca": 1,
      "triceps-complemento": 1,
      "agachar": 1,
-     "afundo": 2,
+     "afundo": 3,
      "extensora": 1,
      "flexao-joelho": 2,
      "dobrar-quadril": "via flexao-joelho",
@@ -3355,22 +3356,22 @@
      "aducao": 1,
      "panturrilha-em-pe": 1,
      "panturrilha-sentada": 0,
-     "abdomen": 1
+     "abdomen": 2
     },
     "avancado": {
-     "empurrar-horizontal": 1,
-     "empurrar-inclinado": 1,
+     "empurrar-horizontal": 2,
+     "empurrar-inclinado": 2,
      "crucifixo": 0,
      "puxar-vertical": 0,
      "puxar-horizontal": 0,
      "empurrar-vertical": 1,
      "elevacao-lateral": 0,
-     "ombro-posterior": 0,
+     "ombro-posterior": 1,
      "biceps": 0,
-     "triceps-acima-cabeca": 0,
+     "triceps-acima-cabeca": 1,
      "triceps-complemento": 1,
      "agachar": 1,
-     "afundo": 2,
+     "afundo": 3,
      "extensora": 1,
      "flexao-joelho": 2,
      "dobrar-quadril": "via flexao-joelho",
@@ -3379,7 +3380,7 @@
      "aducao": 1,
      "panturrilha-em-pe": 1,
      "panturrilha-sentada": 0,
-     "abdomen": 1
+     "abdomen": 2
     }
    }
   },
@@ -3396,12 +3397,12 @@
      "puxar-horizontal": 0,
      "empurrar-vertical": 1,
      "elevacao-lateral": 0,
-     "ombro-posterior": 0,
+     "ombro-posterior": 1,
      "biceps": 0,
-     "triceps-acima-cabeca": 0,
+     "triceps-acima-cabeca": 1,
      "triceps-complemento": 1,
      "agachar": 1,
-     "afundo": 2,
+     "afundo": 3,
      "extensora": 0,
      "flexao-joelho": 1,
      "dobrar-quadril": "via flexao-joelho",
@@ -3410,22 +3411,22 @@
      "aducao": 1,
      "panturrilha-em-pe": 1,
      "panturrilha-sentada": 0,
-     "abdomen": 1
+     "abdomen": 2
     },
     "intermediario": {
-     "empurrar-horizontal": 1,
-     "empurrar-inclinado": 1,
+     "empurrar-horizontal": 2,
+     "empurrar-inclinado": 2,
      "crucifixo": 0,
      "puxar-vertical": 0,
      "puxar-horizontal": 0,
      "empurrar-vertical": 1,
      "elevacao-lateral": 0,
-     "ombro-posterior": 0,
+     "ombro-posterior": 1,
      "biceps": 0,
-     "triceps-acima-cabeca": 0,
+     "triceps-acima-cabeca": 1,
      "triceps-complemento": 1,
      "agachar": 1,
-     "afundo": 2,
+     "afundo": 3,
      "extensora": 0,
      "flexao-joelho": 1,
      "dobrar-quadril": "via flexao-joelho",
@@ -3434,22 +3435,22 @@
      "aducao": 1,
      "panturrilha-em-pe": 1,
      "panturrilha-sentada": 0,
-     "abdomen": 1
+     "abdomen": 2
     },
     "avancado": {
-     "empurrar-horizontal": 1,
-     "empurrar-inclinado": 1,
+     "empurrar-horizontal": 2,
+     "empurrar-inclinado": 2,
      "crucifixo": 0,
      "puxar-vertical": 0,
      "puxar-horizontal": 0,
      "empurrar-vertical": 1,
      "elevacao-lateral": 0,
-     "ombro-posterior": 0,
+     "ombro-posterior": 1,
      "biceps": 0,
-     "triceps-acima-cabeca": 0,
+     "triceps-acima-cabeca": 1,
      "triceps-complemento": 1,
      "agachar": 1,
-     "afundo": 2,
+     "afundo": 3,
      "extensora": 0,
      "flexao-joelho": 1,
      "dobrar-quadril": "via flexao-joelho",
@@ -3458,7 +3459,7 @@
      "aducao": 1,
      "panturrilha-em-pe": 1,
      "panturrilha-sentada": 0,
-     "abdomen": 1
+     "abdomen": 2
     }
    }
   },
@@ -3475,12 +3476,12 @@
      "puxar-horizontal": 0,
      "empurrar-vertical": 1,
      "elevacao-lateral": 0,
-     "ombro-posterior": 0,
+     "ombro-posterior": 1,
      "biceps": 0,
-     "triceps-acima-cabeca": 0,
+     "triceps-acima-cabeca": 1,
      "triceps-complemento": 1,
      "agachar": 1,
-     "afundo": 2,
+     "afundo": 3,
      "extensora": 0,
      "flexao-joelho": 1,
      "dobrar-quadril": "via flexao-joelho",
@@ -3489,22 +3490,22 @@
      "aducao": 1,
      "panturrilha-em-pe": 1,
      "panturrilha-sentada": 0,
-     "abdomen": 1
+     "abdomen": 2
     },
     "intermediario": {
-     "empurrar-horizontal": 1,
-     "empurrar-inclinado": 1,
+     "empurrar-horizontal": 2,
+     "empurrar-inclinado": 2,
      "crucifixo": 0,
      "puxar-vertical": 0,
      "puxar-horizontal": 0,
      "empurrar-vertical": 1,
      "elevacao-lateral": 0,
-     "ombro-posterior": 0,
+     "ombro-posterior": 1,
      "biceps": 0,
-     "triceps-acima-cabeca": 0,
+     "triceps-acima-cabeca": 1,
      "triceps-complemento": 1,
      "agachar": 1,
-     "afundo": 2,
+     "afundo": 3,
      "extensora": 0,
      "flexao-joelho": 1,
      "dobrar-quadril": "via flexao-joelho",
@@ -3513,22 +3514,22 @@
      "aducao": 1,
      "panturrilha-em-pe": 1,
      "panturrilha-sentada": 0,
-     "abdomen": 1
+     "abdomen": 2
     },
     "avancado": {
-     "empurrar-horizontal": 1,
-     "empurrar-inclinado": 1,
+     "empurrar-horizontal": 2,
+     "empurrar-inclinado": 2,
      "crucifixo": 0,
      "puxar-vertical": 0,
      "puxar-horizontal": 0,
      "empurrar-vertical": 1,
      "elevacao-lateral": 0,
-     "ombro-posterior": 0,
+     "ombro-posterior": 1,
      "biceps": 0,
-     "triceps-acima-cabeca": 0,
+     "triceps-acima-cabeca": 1,
      "triceps-complemento": 1,
      "agachar": 1,
-     "afundo": 2,
+     "afundo": 3,
      "extensora": 0,
      "flexao-joelho": 1,
      "dobrar-quadril": "via flexao-joelho",
@@ -3537,7 +3538,7 @@
      "aducao": 1,
      "panturrilha-em-pe": 1,
      "panturrilha-sentada": 0,
-     "abdomen": 1
+     "abdomen": 2
     }
    }
   },
@@ -3554,12 +3555,12 @@
      "puxar-horizontal": 0,
      "empurrar-vertical": 1,
      "elevacao-lateral": 0,
-     "ombro-posterior": 0,
+     "ombro-posterior": 1,
      "biceps": 0,
-     "triceps-acima-cabeca": 0,
+     "triceps-acima-cabeca": 1,
      "triceps-complemento": 1,
      "agachar": 1,
-     "afundo": 2,
+     "afundo": 3,
      "extensora": 0,
      "flexao-joelho": 1,
      "dobrar-quadril": "via flexao-joelho",
@@ -3568,22 +3569,22 @@
      "aducao": 1,
      "panturrilha-em-pe": 1,
      "panturrilha-sentada": 0,
-     "abdomen": 2
+     "abdomen": 3
     },
     "intermediario": {
-     "empurrar-horizontal": 2,
-     "empurrar-inclinado": 1,
+     "empurrar-horizontal": 3,
+     "empurrar-inclinado": 2,
      "crucifixo": 0,
      "puxar-vertical": 0,
      "puxar-horizontal": 0,
      "empurrar-vertical": 1,
      "elevacao-lateral": 0,
-     "ombro-posterior": 0,
+     "ombro-posterior": 1,
      "biceps": 0,
-     "triceps-acima-cabeca": 0,
+     "triceps-acima-cabeca": 1,
      "triceps-complemento": 1,
      "agachar": 1,
-     "afundo": 2,
+     "afundo": 3,
      "extensora": 0,
      "flexao-joelho": 2,
      "dobrar-quadril": "via flexao-joelho",
@@ -3592,22 +3593,22 @@
      "aducao": 1,
      "panturrilha-em-pe": 1,
      "panturrilha-sentada": 0,
-     "abdomen": 2
+     "abdomen": 3
     },
     "avancado": {
-     "empurrar-horizontal": 2,
-     "empurrar-inclinado": 1,
+     "empurrar-horizontal": 3,
+     "empurrar-inclinado": 2,
      "crucifixo": 0,
      "puxar-vertical": 0,
      "puxar-horizontal": 0,
      "empurrar-vertical": 1,
      "elevacao-lateral": 0,
-     "ombro-posterior": 0,
+     "ombro-posterior": 1,
      "biceps": 0,
-     "triceps-acima-cabeca": 0,
+     "triceps-acima-cabeca": 1,
      "triceps-complemento": 1,
      "agachar": 1,
-     "afundo": 2,
+     "afundo": 3,
      "extensora": 0,
      "flexao-joelho": 2,
      "dobrar-quadril": "via flexao-joelho",
@@ -3616,7 +3617,7 @@
      "aducao": 1,
      "panturrilha-em-pe": 1,
      "panturrilha-sentada": 0,
-     "abdomen": 2
+     "abdomen": 3
     }
    }
   },
@@ -3633,12 +3634,12 @@
      "puxar-horizontal": 0,
      "empurrar-vertical": 1,
      "elevacao-lateral": 0,
-     "ombro-posterior": 0,
+     "ombro-posterior": 1,
      "biceps": 0,
-     "triceps-acima-cabeca": 0,
+     "triceps-acima-cabeca": 1,
      "triceps-complemento": 1,
      "agachar": 1,
-     "afundo": 2,
+     "afundo": 3,
      "extensora": 0,
      "flexao-joelho": 1,
      "dobrar-quadril": "via flexao-joelho",
@@ -3647,22 +3648,22 @@
      "aducao": 1,
      "panturrilha-em-pe": 2,
      "panturrilha-sentada": 0,
-     "abdomen": 1
+     "abdomen": 2
     },
     "intermediario": {
-     "empurrar-horizontal": 1,
-     "empurrar-inclinado": 1,
+     "empurrar-horizontal": 2,
+     "empurrar-inclinado": 2,
      "crucifixo": 0,
      "puxar-vertical": 0,
      "puxar-horizontal": 0,
      "empurrar-vertical": 1,
      "elevacao-lateral": 0,
-     "ombro-posterior": 0,
+     "ombro-posterior": 1,
      "biceps": 0,
-     "triceps-acima-cabeca": 0,
+     "triceps-acima-cabeca": 1,
      "triceps-complemento": 1,
      "agachar": 1,
-     "afundo": 2,
+     "afundo": 3,
      "extensora": 0,
      "flexao-joelho": 2,
      "dobrar-quadril": "via flexao-joelho",
@@ -3671,22 +3672,22 @@
      "aducao": 1,
      "panturrilha-em-pe": 2,
      "panturrilha-sentada": 0,
-     "abdomen": 1
+     "abdomen": 2
     },
     "avancado": {
-     "empurrar-horizontal": 1,
-     "empurrar-inclinado": 1,
+     "empurrar-horizontal": 2,
+     "empurrar-inclinado": 2,
      "crucifixo": 0,
      "puxar-vertical": 0,
      "puxar-horizontal": 0,
      "empurrar-vertical": 1,
      "elevacao-lateral": 0,
-     "ombro-posterior": 0,
+     "ombro-posterior": 1,
      "biceps": 0,
-     "triceps-acima-cabeca": 0,
+     "triceps-acima-cabeca": 1,
      "triceps-complemento": 1,
      "agachar": 1,
-     "afundo": 2,
+     "afundo": 3,
      "extensora": 0,
      "flexao-joelho": 2,
      "dobrar-quadril": "via flexao-joelho",
@@ -3695,7 +3696,7 @@
      "aducao": 1,
      "panturrilha-em-pe": 2,
      "panturrilha-sentada": 0,
-     "abdomen": 1
+     "abdomen": 2
     }
    }
   },
@@ -3712,12 +3713,12 @@
      "puxar-horizontal": 0,
      "empurrar-vertical": 1,
      "elevacao-lateral": 0,
-     "ombro-posterior": 0,
+     "ombro-posterior": 1,
      "biceps": 0,
-     "triceps-acima-cabeca": 0,
+     "triceps-acima-cabeca": 1,
      "triceps-complemento": 1,
      "agachar": 1,
-     "afundo": 2,
+     "afundo": 3,
      "extensora": 0,
      "flexao-joelho": 1,
      "dobrar-quadril": "via flexao-joelho",
@@ -3726,22 +3727,22 @@
      "aducao": 1,
      "panturrilha-em-pe": 1,
      "panturrilha-sentada": 0,
-     "abdomen": 2
+     "abdomen": 3
     },
     "intermediario": {
-     "empurrar-horizontal": 1,
-     "empurrar-inclinado": 1,
+     "empurrar-horizontal": 2,
+     "empurrar-inclinado": 2,
      "crucifixo": 0,
      "puxar-vertical": 0,
      "puxar-horizontal": 0,
      "empurrar-vertical": 1,
      "elevacao-lateral": 0,
-     "ombro-posterior": 0,
+     "ombro-posterior": 1,
      "biceps": 0,
-     "triceps-acima-cabeca": 0,
+     "triceps-acima-cabeca": 1,
      "triceps-complemento": 1,
      "agachar": 1,
-     "afundo": 2,
+     "afundo": 3,
      "extensora": 0,
      "flexao-joelho": 1,
      "dobrar-quadril": "via flexao-joelho",
@@ -3750,22 +3751,22 @@
      "aducao": 1,
      "panturrilha-em-pe": 1,
      "panturrilha-sentada": 0,
-     "abdomen": 2
+     "abdomen": 3
     },
     "avancado": {
-     "empurrar-horizontal": 1,
-     "empurrar-inclinado": 1,
+     "empurrar-horizontal": 2,
+     "empurrar-inclinado": 2,
      "crucifixo": 0,
      "puxar-vertical": 0,
      "puxar-horizontal": 0,
      "empurrar-vertical": 1,
      "elevacao-lateral": 0,
-     "ombro-posterior": 0,
+     "ombro-posterior": 1,
      "biceps": 0,
-     "triceps-acima-cabeca": 0,
+     "triceps-acima-cabeca": 1,
      "triceps-complemento": 1,
      "agachar": 1,
-     "afundo": 2,
+     "afundo": 3,
      "extensora": 0,
      "flexao-joelho": 1,
      "dobrar-quadril": "via flexao-joelho",
@@ -3774,7 +3775,7 @@
      "aducao": 1,
      "panturrilha-em-pe": 1,
      "panturrilha-sentada": 0,
-     "abdomen": 2
+     "abdomen": 3
     }
    }
   },
@@ -3791,12 +3792,12 @@
      "puxar-horizontal": 0,
      "empurrar-vertical": 1,
      "elevacao-lateral": 0,
-     "ombro-posterior": 0,
+     "ombro-posterior": 1,
      "biceps": 0,
-     "triceps-acima-cabeca": 0,
+     "triceps-acima-cabeca": 1,
      "triceps-complemento": 1,
      "agachar": 1,
-     "afundo": 2,
+     "afundo": 3,
      "extensora": 0,
      "flexao-joelho": 1,
      "dobrar-quadril": "via flexao-joelho",
@@ -3805,22 +3806,22 @@
      "aducao": 1,
      "panturrilha-em-pe": 1,
      "panturrilha-sentada": 0,
-     "abdomen": 1
+     "abdomen": 2
     },
     "intermediario": {
-     "empurrar-horizontal": 1,
-     "empurrar-inclinado": 1,
+     "empurrar-horizontal": 2,
+     "empurrar-inclinado": 2,
      "crucifixo": 0,
      "puxar-vertical": 0,
      "puxar-horizontal": 0,
      "empurrar-vertical": 1,
      "elevacao-lateral": 0,
-     "ombro-posterior": 0,
+     "ombro-posterior": 1,
      "biceps": 0,
-     "triceps-acima-cabeca": 0,
+     "triceps-acima-cabeca": 1,
      "triceps-complemento": 1,
      "agachar": 1,
-     "afundo": 2,
+     "afundo": 3,
      "extensora": 0,
      "flexao-joelho": 2,
      "dobrar-quadril": "via flexao-joelho",
@@ -3829,22 +3830,22 @@
      "aducao": 1,
      "panturrilha-em-pe": 1,
      "panturrilha-sentada": 0,
-     "abdomen": 1
+     "abdomen": 2
     },
     "avancado": {
-     "empurrar-horizontal": 1,
-     "empurrar-inclinado": 1,
+     "empurrar-horizontal": 2,
+     "empurrar-inclinado": 2,
      "crucifixo": 0,
      "puxar-vertical": 0,
      "puxar-horizontal": 0,
      "empurrar-vertical": 1,
      "elevacao-lateral": 0,
-     "ombro-posterior": 0,
+     "ombro-posterior": 1,
      "biceps": 0,
-     "triceps-acima-cabeca": 0,
+     "triceps-acima-cabeca": 1,
      "triceps-complemento": 1,
      "agachar": 1,
-     "afundo": 2,
+     "afundo": 3,
      "extensora": 0,
      "flexao-joelho": 2,
      "dobrar-quadril": "via flexao-joelho",
@@ -3853,7 +3854,7 @@
      "aducao": 1,
      "panturrilha-em-pe": 1,
      "panturrilha-sentada": 0,
-     "abdomen": 1
+     "abdomen": 2
     }
    }
   },
@@ -3870,7 +3871,7 @@
      "puxar-horizontal": 1,
      "empurrar-vertical": 1,
      "elevacao-lateral": 0,
-     "ombro-posterior": 0,
+     "ombro-posterior": 1,
      "biceps": 1,
      "triceps-acima-cabeca": 1,
      "triceps-complemento": 1,
@@ -3878,23 +3879,23 @@
      "afundo": 1,
      "extensora": 0,
      "flexao-joelho": 1,
-     "dobrar-quadril": 1,
+     "dobrar-quadril": 2,
      "extensao-quadril": 2,
      "abducao": 1,
      "aducao": 1,
      "panturrilha-em-pe": 1,
      "panturrilha-sentada": 0,
-     "abdomen": 1
+     "abdomen": 2
     },
     "intermediario": {
-     "empurrar-horizontal": 1,
-     "empurrar-inclinado": 1,
+     "empurrar-horizontal": 2,
+     "empurrar-inclinado": 2,
      "crucifixo": 0,
      "puxar-vertical": 1,
      "puxar-horizontal": 1,
      "empurrar-vertical": 1,
      "elevacao-lateral": 0,
-     "ombro-posterior": 0,
+     "ombro-posterior": 1,
      "biceps": 1,
      "triceps-acima-cabeca": 1,
      "triceps-complemento": 1,
@@ -3902,23 +3903,23 @@
      "afundo": 1,
      "extensora": 0,
      "flexao-joelho": 2,
-     "dobrar-quadril": 1,
+     "dobrar-quadril": 2,
      "extensao-quadril": 2,
      "abducao": 1,
      "aducao": 1,
      "panturrilha-em-pe": 1,
      "panturrilha-sentada": 0,
-     "abdomen": 1
+     "abdomen": 2
     },
     "avancado": {
-     "empurrar-horizontal": 1,
-     "empurrar-inclinado": 1,
+     "empurrar-horizontal": 2,
+     "empurrar-inclinado": 2,
      "crucifixo": 0,
      "puxar-vertical": 1,
      "puxar-horizontal": 1,
      "empurrar-vertical": 1,
      "elevacao-lateral": 0,
-     "ombro-posterior": 0,
+     "ombro-posterior": 1,
      "biceps": 1,
      "triceps-acima-cabeca": 1,
      "triceps-complemento": 1,
@@ -3926,13 +3927,13 @@
      "afundo": 1,
      "extensora": 0,
      "flexao-joelho": 2,
-     "dobrar-quadril": 1,
+     "dobrar-quadril": 2,
      "extensao-quadril": 2,
      "abducao": 1,
      "aducao": 1,
      "panturrilha-em-pe": 1,
      "panturrilha-sentada": 0,
-     "abdomen": 1
+     "abdomen": 2
     }
    }
   },
@@ -3949,12 +3950,12 @@
      "puxar-horizontal": 0,
      "empurrar-vertical": 1,
      "elevacao-lateral": 0,
-     "ombro-posterior": 0,
+     "ombro-posterior": 1,
      "biceps": 0,
-     "triceps-acima-cabeca": 0,
+     "triceps-acima-cabeca": 1,
      "triceps-complemento": 1,
      "agachar": 1,
-     "afundo": 2,
+     "afundo": 3,
      "extensora": 0,
      "flexao-joelho": 1,
      "dobrar-quadril": 1,
@@ -3963,22 +3964,22 @@
      "aducao": 1,
      "panturrilha-em-pe": 1,
      "panturrilha-sentada": 0,
-     "abdomen": 1
+     "abdomen": 2
     },
     "intermediario": {
-     "empurrar-horizontal": 1,
-     "empurrar-inclinado": 1,
+     "empurrar-horizontal": 2,
+     "empurrar-inclinado": 2,
      "crucifixo": 0,
      "puxar-vertical": 0,
      "puxar-horizontal": 0,
      "empurrar-vertical": 1,
      "elevacao-lateral": 0,
-     "ombro-posterior": 0,
+     "ombro-posterior": 1,
      "biceps": 0,
-     "triceps-acima-cabeca": 0,
+     "triceps-acima-cabeca": 1,
      "triceps-complemento": 1,
      "agachar": 1,
-     "afundo": 2,
+     "afundo": 3,
      "extensora": 0,
      "flexao-joelho": 2,
      "dobrar-quadril": 1,
@@ -3987,22 +3988,22 @@
      "aducao": 1,
      "panturrilha-em-pe": 1,
      "panturrilha-sentada": 0,
-     "abdomen": 1
+     "abdomen": 2
     },
     "avancado": {
-     "empurrar-horizontal": 1,
-     "empurrar-inclinado": 1,
+     "empurrar-horizontal": 2,
+     "empurrar-inclinado": 2,
      "crucifixo": 0,
      "puxar-vertical": 0,
      "puxar-horizontal": 0,
      "empurrar-vertical": 1,
      "elevacao-lateral": 0,
-     "ombro-posterior": 0,
+     "ombro-posterior": 1,
      "biceps": 0,
-     "triceps-acima-cabeca": 0,
+     "triceps-acima-cabeca": 1,
      "triceps-complemento": 1,
      "agachar": 1,
-     "afundo": 2,
+     "afundo": 3,
      "extensora": 0,
      "flexao-joelho": 2,
      "dobrar-quadril": 1,
@@ -4011,7 +4012,7 @@
      "aducao": 1,
      "panturrilha-em-pe": 1,
      "panturrilha-sentada": 0,
-     "abdomen": 1
+     "abdomen": 2
     }
    }
   },
@@ -4028,12 +4029,12 @@
      "puxar-horizontal": 0,
      "empurrar-vertical": 1,
      "elevacao-lateral": 0,
-     "ombro-posterior": 0,
+     "ombro-posterior": 1,
      "biceps": 0,
-     "triceps-acima-cabeca": 0,
+     "triceps-acima-cabeca": 1,
      "triceps-complemento": 1,
      "agachar": 1,
-     "afundo": 2,
+     "afundo": 3,
      "extensora": 0,
      "flexao-joelho": 1,
      "dobrar-quadril": "via flexao-joelho",
@@ -4042,22 +4043,22 @@
      "aducao": 1,
      "panturrilha-em-pe": 1,
      "panturrilha-sentada": 0,
-     "abdomen": 1
+     "abdomen": 2
     },
     "intermediario": {
-     "empurrar-horizontal": 1,
-     "empurrar-inclinado": 1,
+     "empurrar-horizontal": 2,
+     "empurrar-inclinado": 2,
      "crucifixo": 0,
      "puxar-vertical": 1,
      "puxar-horizontal": 0,
      "empurrar-vertical": 1,
      "elevacao-lateral": 0,
-     "ombro-posterior": 0,
+     "ombro-posterior": 1,
      "biceps": 0,
-     "triceps-acima-cabeca": 0,
+     "triceps-acima-cabeca": 1,
      "triceps-complemento": 1,
      "agachar": 1,
-     "afundo": 2,
+     "afundo": 3,
      "extensora": 0,
      "flexao-joelho": 2,
      "dobrar-quadril": "via flexao-joelho",
@@ -4066,22 +4067,22 @@
      "aducao": 1,
      "panturrilha-em-pe": 1,
      "panturrilha-sentada": 0,
-     "abdomen": 1
+     "abdomen": 2
     },
     "avancado": {
-     "empurrar-horizontal": 1,
-     "empurrar-inclinado": 1,
+     "empurrar-horizontal": 2,
+     "empurrar-inclinado": 2,
      "crucifixo": 0,
      "puxar-vertical": 1,
      "puxar-horizontal": 0,
      "empurrar-vertical": 1,
      "elevacao-lateral": 0,
-     "ombro-posterior": 0,
+     "ombro-posterior": 1,
      "biceps": 0,
-     "triceps-acima-cabeca": 0,
+     "triceps-acima-cabeca": 1,
      "triceps-complemento": 1,
      "agachar": 1,
-     "afundo": 2,
+     "afundo": 3,
      "extensora": 0,
      "flexao-joelho": 2,
      "dobrar-quadril": "via flexao-joelho",
@@ -4090,7 +4091,7 @@
      "aducao": 1,
      "panturrilha-em-pe": 1,
      "panturrilha-sentada": 0,
-     "abdomen": 1
+     "abdomen": 2
     }
    }
   },
@@ -4107,12 +4108,12 @@
      "puxar-horizontal": 1,
      "empurrar-vertical": 1,
      "elevacao-lateral": 0,
-     "ombro-posterior": 0,
+     "ombro-posterior": 1,
      "biceps": 0,
-     "triceps-acima-cabeca": 0,
+     "triceps-acima-cabeca": 1,
      "triceps-complemento": 1,
      "agachar": 1,
-     "afundo": 2,
+     "afundo": 3,
      "extensora": 0,
      "flexao-joelho": 1,
      "dobrar-quadril": "via flexao-joelho",
@@ -4121,22 +4122,22 @@
      "aducao": 1,
      "panturrilha-em-pe": 1,
      "panturrilha-sentada": 0,
-     "abdomen": 1
+     "abdomen": 2
     },
     "intermediario": {
-     "empurrar-horizontal": 1,
-     "empurrar-inclinado": 1,
+     "empurrar-horizontal": 2,
+     "empurrar-inclinado": 2,
      "crucifixo": 0,
      "puxar-vertical": 0,
      "puxar-horizontal": 1,
      "empurrar-vertical": 1,
      "elevacao-lateral": 0,
-     "ombro-posterior": 0,
+     "ombro-posterior": 1,
      "biceps": 0,
-     "triceps-acima-cabeca": 0,
+     "triceps-acima-cabeca": 1,
      "triceps-complemento": 1,
      "agachar": 1,
-     "afundo": 2,
+     "afundo": 3,
      "extensora": 0,
      "flexao-joelho": 2,
      "dobrar-quadril": "via flexao-joelho",
@@ -4145,22 +4146,22 @@
      "aducao": 1,
      "panturrilha-em-pe": 1,
      "panturrilha-sentada": 0,
-     "abdomen": 1
+     "abdomen": 2
     },
     "avancado": {
-     "empurrar-horizontal": 1,
-     "empurrar-inclinado": 1,
+     "empurrar-horizontal": 2,
+     "empurrar-inclinado": 2,
      "crucifixo": 0,
      "puxar-vertical": 0,
      "puxar-horizontal": 1,
      "empurrar-vertical": 1,
      "elevacao-lateral": 0,
-     "ombro-posterior": 0,
+     "ombro-posterior": 1,
      "biceps": 0,
-     "triceps-acima-cabeca": 0,
+     "triceps-acima-cabeca": 1,
      "triceps-complemento": 1,
      "agachar": 1,
-     "afundo": 2,
+     "afundo": 3,
      "extensora": 0,
      "flexao-joelho": 2,
      "dobrar-quadril": "via flexao-joelho",
@@ -4169,7 +4170,7 @@
      "aducao": 1,
      "panturrilha-em-pe": 1,
      "panturrilha-sentada": 0,
-     "abdomen": 1
+     "abdomen": 2
     }
    }
   },
@@ -4186,12 +4187,12 @@
      "puxar-horizontal": 1,
      "empurrar-vertical": 1,
      "elevacao-lateral": 0,
-     "ombro-posterior": 0,
+     "ombro-posterior": 1,
      "biceps": 0,
-     "triceps-acima-cabeca": 0,
+     "triceps-acima-cabeca": 1,
      "triceps-complemento": 1,
      "agachar": 1,
-     "afundo": 2,
+     "afundo": 3,
      "extensora": 0,
      "flexao-joelho": 1,
      "dobrar-quadril": "via flexao-joelho",
@@ -4200,22 +4201,22 @@
      "aducao": 1,
      "panturrilha-em-pe": 1,
      "panturrilha-sentada": 0,
-     "abdomen": 1
+     "abdomen": 2
     },
     "intermediario": {
-     "empurrar-horizontal": 1,
-     "empurrar-inclinado": 1,
+     "empurrar-horizontal": 2,
+     "empurrar-inclinado": 2,
      "crucifixo": 0,
      "puxar-vertical": 1,
      "puxar-horizontal": 1,
      "empurrar-vertical": 1,
      "elevacao-lateral": 0,
-     "ombro-posterior": 0,
+     "ombro-posterior": 1,
      "biceps": 0,
-     "triceps-acima-cabeca": 0,
+     "triceps-acima-cabeca": 1,
      "triceps-complemento": 1,
      "agachar": 1,
-     "afundo": 2,
+     "afundo": 3,
      "extensora": 0,
      "flexao-joelho": 2,
      "dobrar-quadril": "via flexao-joelho",
@@ -4224,22 +4225,22 @@
      "aducao": 1,
      "panturrilha-em-pe": 1,
      "panturrilha-sentada": 0,
-     "abdomen": 1
+     "abdomen": 2
     },
     "avancado": {
-     "empurrar-horizontal": 1,
-     "empurrar-inclinado": 1,
+     "empurrar-horizontal": 2,
+     "empurrar-inclinado": 2,
      "crucifixo": 0,
      "puxar-vertical": 1,
      "puxar-horizontal": 1,
      "empurrar-vertical": 1,
      "elevacao-lateral": 0,
-     "ombro-posterior": 0,
+     "ombro-posterior": 1,
      "biceps": 0,
-     "triceps-acima-cabeca": 0,
+     "triceps-acima-cabeca": 1,
      "triceps-complemento": 1,
      "agachar": 1,
-     "afundo": 2,
+     "afundo": 3,
      "extensora": 0,
      "flexao-joelho": 2,
      "dobrar-quadril": "via flexao-joelho",
@@ -4248,7 +4249,7 @@
      "aducao": 1,
      "panturrilha-em-pe": 1,
      "panturrilha-sentada": 0,
-     "abdomen": 1
+     "abdomen": 2
     }
    }
   },
@@ -4265,12 +4266,12 @@
      "puxar-horizontal": 0,
      "empurrar-vertical": 1,
      "elevacao-lateral": 0,
-     "ombro-posterior": 0,
+     "ombro-posterior": 1,
      "biceps": 0,
-     "triceps-acima-cabeca": 0,
+     "triceps-acima-cabeca": 1,
      "triceps-complemento": 1,
      "agachar": 1,
-     "afundo": 2,
+     "afundo": 3,
      "extensora": 0,
      "flexao-joelho": 1,
      "dobrar-quadril": "via flexao-joelho",
@@ -4279,7 +4280,7 @@
      "aducao": 1,
      "panturrilha-em-pe": 1,
      "panturrilha-sentada": 0,
-     "abdomen": 1
+     "abdomen": 2
     },
     "intermediario": {
      "empurrar-horizontal": 1,
@@ -4289,12 +4290,12 @@
      "puxar-horizontal": 0,
      "empurrar-vertical": 1,
      "elevacao-lateral": 0,
-     "ombro-posterior": 0,
+     "ombro-posterior": 1,
      "biceps": 0,
-     "triceps-acima-cabeca": 0,
+     "triceps-acima-cabeca": 1,
      "triceps-complemento": 1,
      "agachar": 1,
-     "afundo": 2,
+     "afundo": 3,
      "extensora": 0,
      "flexao-joelho": 2,
      "dobrar-quadril": "via flexao-joelho",
@@ -4303,7 +4304,7 @@
      "aducao": 1,
      "panturrilha-em-pe": 1,
      "panturrilha-sentada": 0,
-     "abdomen": 1
+     "abdomen": 2
     },
     "avancado": {
      "empurrar-horizontal": 1,
@@ -4313,12 +4314,12 @@
      "puxar-horizontal": 0,
      "empurrar-vertical": 1,
      "elevacao-lateral": 0,
-     "ombro-posterior": 0,
+     "ombro-posterior": 1,
      "biceps": 0,
-     "triceps-acima-cabeca": 0,
+     "triceps-acima-cabeca": 1,
      "triceps-complemento": 1,
      "agachar": 1,
-     "afundo": 2,
+     "afundo": 3,
      "extensora": 0,
      "flexao-joelho": 2,
      "dobrar-quadril": "via flexao-joelho",
@@ -4327,7 +4328,7 @@
      "aducao": 1,
      "panturrilha-em-pe": 1,
      "panturrilha-sentada": 0,
-     "abdomen": 1
+     "abdomen": 2
     }
    }
   },
@@ -4344,12 +4345,12 @@
      "puxar-horizontal": 0,
      "empurrar-vertical": 1,
      "elevacao-lateral": 0,
-     "ombro-posterior": 0,
+     "ombro-posterior": 1,
      "biceps": 0,
-     "triceps-acima-cabeca": 0,
+     "triceps-acima-cabeca": 1,
      "triceps-complemento": 1,
      "agachar": 1,
-     "afundo": 2,
+     "afundo": 3,
      "extensora": 0,
      "flexao-joelho": 1,
      "dobrar-quadril": "via flexao-joelho",
@@ -4358,22 +4359,22 @@
      "aducao": 1,
      "panturrilha-em-pe": 1,
      "panturrilha-sentada": 0,
-     "abdomen": 1
+     "abdomen": 2
     },
     "intermediario": {
-     "empurrar-horizontal": 1,
-     "empurrar-inclinado": 1,
+     "empurrar-horizontal": 2,
+     "empurrar-inclinado": 2,
      "crucifixo": 1,
      "puxar-vertical": 0,
      "puxar-horizontal": 0,
      "empurrar-vertical": 1,
      "elevacao-lateral": 0,
-     "ombro-posterior": 0,
+     "ombro-posterior": 1,
      "biceps": 0,
-     "triceps-acima-cabeca": 0,
+     "triceps-acima-cabeca": 1,
      "triceps-complemento": 1,
      "agachar": 1,
-     "afundo": 2,
+     "afundo": 3,
      "extensora": 0,
      "flexao-joelho": 2,
      "dobrar-quadril": "via flexao-joelho",
@@ -4382,22 +4383,22 @@
      "aducao": 1,
      "panturrilha-em-pe": 1,
      "panturrilha-sentada": 0,
-     "abdomen": 1
+     "abdomen": 2
     },
     "avancado": {
-     "empurrar-horizontal": 1,
-     "empurrar-inclinado": 1,
+     "empurrar-horizontal": 2,
+     "empurrar-inclinado": 2,
      "crucifixo": 1,
      "puxar-vertical": 0,
      "puxar-horizontal": 0,
      "empurrar-vertical": 1,
      "elevacao-lateral": 0,
-     "ombro-posterior": 0,
+     "ombro-posterior": 1,
      "biceps": 0,
-     "triceps-acima-cabeca": 0,
+     "triceps-acima-cabeca": 1,
      "triceps-complemento": 1,
      "agachar": 1,
-     "afundo": 2,
+     "afundo": 3,
      "extensora": 0,
      "flexao-joelho": 2,
      "dobrar-quadril": "via flexao-joelho",
@@ -4406,7 +4407,7 @@
      "aducao": 1,
      "panturrilha-em-pe": 1,
      "panturrilha-sentada": 0,
-     "abdomen": 1
+     "abdomen": 2
     }
    }
   },
@@ -4423,12 +4424,12 @@
      "puxar-horizontal": 0,
      "empurrar-vertical": 1,
      "elevacao-lateral": 0,
-     "ombro-posterior": 0,
+     "ombro-posterior": 1,
      "biceps": 0,
-     "triceps-acima-cabeca": 0,
+     "triceps-acima-cabeca": 1,
      "triceps-complemento": 1,
      "agachar": 1,
-     "afundo": 2,
+     "afundo": 3,
      "extensora": 0,
      "flexao-joelho": 1,
      "dobrar-quadril": "via flexao-joelho",
@@ -4437,22 +4438,22 @@
      "aducao": 1,
      "panturrilha-em-pe": 1,
      "panturrilha-sentada": 0,
-     "abdomen": 1
+     "abdomen": 2
     },
     "intermediario": {
-     "empurrar-horizontal": 1,
-     "empurrar-inclinado": 1,
+     "empurrar-horizontal": 2,
+     "empurrar-inclinado": 2,
      "crucifixo": 0,
      "puxar-vertical": 0,
      "puxar-horizontal": 0,
      "empurrar-vertical": 1,
      "elevacao-lateral": 0,
-     "ombro-posterior": 0,
+     "ombro-posterior": 1,
      "biceps": 0,
-     "triceps-acima-cabeca": 0,
+     "triceps-acima-cabeca": 1,
      "triceps-complemento": 1,
      "agachar": 1,
-     "afundo": 2,
+     "afundo": 3,
      "extensora": 0,
      "flexao-joelho": 2,
      "dobrar-quadril": "via flexao-joelho",
@@ -4461,22 +4462,22 @@
      "aducao": 1,
      "panturrilha-em-pe": 1,
      "panturrilha-sentada": 0,
-     "abdomen": 1
+     "abdomen": 2
     },
     "avancado": {
-     "empurrar-horizontal": 1,
-     "empurrar-inclinado": 1,
+     "empurrar-horizontal": 2,
+     "empurrar-inclinado": 2,
      "crucifixo": 0,
      "puxar-vertical": 0,
      "puxar-horizontal": 0,
      "empurrar-vertical": 1,
      "elevacao-lateral": 0,
-     "ombro-posterior": 0,
+     "ombro-posterior": 1,
      "biceps": 0,
-     "triceps-acima-cabeca": 0,
+     "triceps-acima-cabeca": 1,
      "triceps-complemento": 1,
      "agachar": 1,
-     "afundo": 2,
+     "afundo": 3,
      "extensora": 0,
      "flexao-joelho": 2,
      "dobrar-quadril": "via flexao-joelho",
@@ -4485,7 +4486,7 @@
      "aducao": 1,
      "panturrilha-em-pe": 1,
      "panturrilha-sentada": 0,
-     "abdomen": 1
+     "abdomen": 2
     }
    }
   },
@@ -4502,12 +4503,12 @@
      "puxar-horizontal": 1,
      "empurrar-vertical": 1,
      "elevacao-lateral": 0,
-     "ombro-posterior": 0,
+     "ombro-posterior": 1,
      "biceps": 0,
-     "triceps-acima-cabeca": 0,
+     "triceps-acima-cabeca": 1,
      "triceps-complemento": 1,
      "agachar": 1,
-     "afundo": 2,
+     "afundo": 3,
      "extensora": 0,
      "flexao-joelho": 1,
      "dobrar-quadril": "via flexao-joelho",
@@ -4516,22 +4517,22 @@
      "aducao": 1,
      "panturrilha-em-pe": 1,
      "panturrilha-sentada": 0,
-     "abdomen": 1
+     "abdomen": 2
     },
     "intermediario": {
-     "empurrar-horizontal": 1,
-     "empurrar-inclinado": 1,
+     "empurrar-horizontal": 2,
+     "empurrar-inclinado": 2,
      "crucifixo": 0,
      "puxar-vertical": 0,
      "puxar-horizontal": 1,
      "empurrar-vertical": 1,
      "elevacao-lateral": 0,
-     "ombro-posterior": 0,
+     "ombro-posterior": 1,
      "biceps": 0,
-     "triceps-acima-cabeca": 0,
+     "triceps-acima-cabeca": 1,
      "triceps-complemento": 1,
      "agachar": 1,
-     "afundo": 2,
+     "afundo": 3,
      "extensora": 0,
      "flexao-joelho": 2,
      "dobrar-quadril": "via flexao-joelho",
@@ -4540,22 +4541,22 @@
      "aducao": 1,
      "panturrilha-em-pe": 1,
      "panturrilha-sentada": 0,
-     "abdomen": 1
+     "abdomen": 2
     },
     "avancado": {
-     "empurrar-horizontal": 1,
-     "empurrar-inclinado": 1,
+     "empurrar-horizontal": 2,
+     "empurrar-inclinado": 2,
      "crucifixo": 0,
      "puxar-vertical": 0,
      "puxar-horizontal": 1,
      "empurrar-vertical": 1,
      "elevacao-lateral": 0,
-     "ombro-posterior": 0,
+     "ombro-posterior": 1,
      "biceps": 0,
-     "triceps-acima-cabeca": 0,
+     "triceps-acima-cabeca": 1,
      "triceps-complemento": 1,
      "agachar": 1,
-     "afundo": 2,
+     "afundo": 3,
      "extensora": 0,
      "flexao-joelho": 2,
      "dobrar-quadril": "via flexao-joelho",
@@ -4564,7 +4565,7 @@
      "aducao": 1,
      "panturrilha-em-pe": 1,
      "panturrilha-sentada": 0,
-     "abdomen": 1
+     "abdomen": 2
     }
    }
   },
@@ -4581,12 +4582,12 @@
      "puxar-horizontal": 0,
      "empurrar-vertical": 1,
      "elevacao-lateral": 0,
-     "ombro-posterior": 0,
+     "ombro-posterior": 1,
      "biceps": 0,
-     "triceps-acima-cabeca": 0,
+     "triceps-acima-cabeca": 1,
      "triceps-complemento": 1,
      "agachar": 1,
-     "afundo": 2,
+     "afundo": 3,
      "extensora": 0,
      "flexao-joelho": 1,
      "dobrar-quadril": "via flexao-joelho",
@@ -4595,22 +4596,22 @@
      "aducao": 1,
      "panturrilha-em-pe": 1,
      "panturrilha-sentada": 0,
-     "abdomen": 1
+     "abdomen": 2
     },
     "intermediario": {
-     "empurrar-horizontal": 2,
-     "empurrar-inclinado": 1,
+     "empurrar-horizontal": 3,
+     "empurrar-inclinado": 2,
      "crucifixo": 0,
      "puxar-vertical": 1,
      "puxar-horizontal": 0,
      "empurrar-vertical": 1,
      "elevacao-lateral": 0,
-     "ombro-posterior": 0,
+     "ombro-posterior": 1,
      "biceps": 0,
-     "triceps-acima-cabeca": 0,
+     "triceps-acima-cabeca": 1,
      "triceps-complemento": 1,
      "agachar": 1,
-     "afundo": 2,
+     "afundo": 3,
      "extensora": 0,
      "flexao-joelho": 2,
      "dobrar-quadril": "via flexao-joelho",
@@ -4619,22 +4620,22 @@
      "aducao": 1,
      "panturrilha-em-pe": 1,
      "panturrilha-sentada": 0,
-     "abdomen": 1
+     "abdomen": 2
     },
     "avancado": {
-     "empurrar-horizontal": 2,
-     "empurrar-inclinado": 1,
+     "empurrar-horizontal": 3,
+     "empurrar-inclinado": 2,
      "crucifixo": 0,
      "puxar-vertical": 1,
      "puxar-horizontal": 0,
      "empurrar-vertical": 1,
      "elevacao-lateral": 0,
-     "ombro-posterior": 0,
+     "ombro-posterior": 1,
      "biceps": 0,
-     "triceps-acima-cabeca": 0,
+     "triceps-acima-cabeca": 1,
      "triceps-complemento": 1,
      "agachar": 1,
-     "afundo": 2,
+     "afundo": 3,
      "extensora": 0,
      "flexao-joelho": 2,
      "dobrar-quadril": "via flexao-joelho",
@@ -4643,7 +4644,7 @@
      "aducao": 1,
      "panturrilha-em-pe": 1,
      "panturrilha-sentada": 0,
-     "abdomen": 1
+     "abdomen": 2
     }
    }
   },
@@ -4660,12 +4661,12 @@
      "puxar-horizontal": 0,
      "empurrar-vertical": 1,
      "elevacao-lateral": 0,
-     "ombro-posterior": 0,
+     "ombro-posterior": 1,
      "biceps": 1,
-     "triceps-acima-cabeca": 0,
+     "triceps-acima-cabeca": 1,
      "triceps-complemento": 1,
      "agachar": 1,
-     "afundo": 2,
+     "afundo": 3,
      "extensora": 0,
      "flexao-joelho": 1,
      "dobrar-quadril": "via flexao-joelho",
@@ -4674,22 +4675,22 @@
      "aducao": 1,
      "panturrilha-em-pe": 1,
      "panturrilha-sentada": 0,
-     "abdomen": 1
+     "abdomen": 2
     },
     "intermediario": {
-     "empurrar-horizontal": 1,
-     "empurrar-inclinado": 1,
+     "empurrar-horizontal": 2,
+     "empurrar-inclinado": 2,
      "crucifixo": 0,
      "puxar-vertical": 0,
      "puxar-horizontal": 0,
      "empurrar-vertical": 1,
      "elevacao-lateral": 0,
-     "ombro-posterior": 0,
+     "ombro-posterior": 1,
      "biceps": 1,
-     "triceps-acima-cabeca": 0,
+     "triceps-acima-cabeca": 1,
      "triceps-complemento": 1,
      "agachar": 1,
-     "afundo": 2,
+     "afundo": 3,
      "extensora": 0,
      "flexao-joelho": 2,
      "dobrar-quadril": "via flexao-joelho",
@@ -4698,22 +4699,22 @@
      "aducao": 1,
      "panturrilha-em-pe": 1,
      "panturrilha-sentada": 0,
-     "abdomen": 1
+     "abdomen": 2
     },
     "avancado": {
-     "empurrar-horizontal": 1,
-     "empurrar-inclinado": 1,
+     "empurrar-horizontal": 2,
+     "empurrar-inclinado": 2,
      "crucifixo": 0,
      "puxar-vertical": 0,
      "puxar-horizontal": 0,
      "empurrar-vertical": 1,
      "elevacao-lateral": 0,
-     "ombro-posterior": 0,
+     "ombro-posterior": 1,
      "biceps": 1,
-     "triceps-acima-cabeca": 0,
+     "triceps-acima-cabeca": 1,
      "triceps-complemento": 1,
      "agachar": 1,
-     "afundo": 2,
+     "afundo": 3,
      "extensora": 0,
      "flexao-joelho": 2,
      "dobrar-quadril": "via flexao-joelho",
@@ -4722,7 +4723,7 @@
      "aducao": 1,
      "panturrilha-em-pe": 1,
      "panturrilha-sentada": 0,
-     "abdomen": 1
+     "abdomen": 2
     }
    }
   },
@@ -4739,12 +4740,12 @@
      "puxar-horizontal": 0,
      "empurrar-vertical": 1,
      "elevacao-lateral": 0,
-     "ombro-posterior": 0,
+     "ombro-posterior": 1,
      "biceps": 0,
-     "triceps-acima-cabeca": 0,
+     "triceps-acima-cabeca": 1,
      "triceps-complemento": 1,
      "agachar": 1,
-     "afundo": 2,
+     "afundo": 3,
      "extensora": 0,
      "flexao-joelho": 1,
      "dobrar-quadril": "via flexao-joelho",
@@ -4753,22 +4754,22 @@
      "aducao": 1,
      "panturrilha-em-pe": 1,
      "panturrilha-sentada": 0,
-     "abdomen": 1
+     "abdomen": 2
     },
     "intermediario": {
-     "empurrar-horizontal": 1,
-     "empurrar-inclinado": 1,
+     "empurrar-horizontal": 2,
+     "empurrar-inclinado": 2,
      "crucifixo": 0,
      "puxar-vertical": 0,
      "puxar-horizontal": 0,
      "empurrar-vertical": 1,
      "elevacao-lateral": 0,
-     "ombro-posterior": 0,
+     "ombro-posterior": 1,
      "biceps": 0,
-     "triceps-acima-cabeca": 0,
+     "triceps-acima-cabeca": 1,
      "triceps-complemento": 1,
      "agachar": 1,
-     "afundo": 2,
+     "afundo": 3,
      "extensora": 0,
      "flexao-joelho": 2,
      "dobrar-quadril": "via flexao-joelho",
@@ -4777,22 +4778,22 @@
      "aducao": 1,
      "panturrilha-em-pe": 1,
      "panturrilha-sentada": 0,
-     "abdomen": 1
+     "abdomen": 2
     },
     "avancado": {
-     "empurrar-horizontal": 1,
-     "empurrar-inclinado": 1,
+     "empurrar-horizontal": 2,
+     "empurrar-inclinado": 2,
      "crucifixo": 0,
      "puxar-vertical": 0,
      "puxar-horizontal": 0,
      "empurrar-vertical": 1,
      "elevacao-lateral": 0,
-     "ombro-posterior": 0,
+     "ombro-posterior": 1,
      "biceps": 0,
-     "triceps-acima-cabeca": 0,
+     "triceps-acima-cabeca": 1,
      "triceps-complemento": 1,
      "agachar": 1,
-     "afundo": 2,
+     "afundo": 3,
      "extensora": 0,
      "flexao-joelho": 2,
      "dobrar-quadril": "via flexao-joelho",
@@ -4801,7 +4802,7 @@
      "aducao": 1,
      "panturrilha-em-pe": 1,
      "panturrilha-sentada": 0,
-     "abdomen": 1
+     "abdomen": 2
     }
    }
   },
@@ -4818,12 +4819,12 @@
      "puxar-horizontal": 0,
      "empurrar-vertical": 1,
      "elevacao-lateral": 0,
-     "ombro-posterior": 0,
+     "ombro-posterior": 1,
      "biceps": 0,
-     "triceps-acima-cabeca": 0,
+     "triceps-acima-cabeca": 1,
      "triceps-complemento": 1,
      "agachar": 1,
-     "afundo": 2,
+     "afundo": 3,
      "extensora": 0,
      "flexao-joelho": 1,
      "dobrar-quadril": "via flexao-joelho",
@@ -4835,19 +4836,19 @@
      "abdomen": 1
     },
     "intermediario": {
-     "empurrar-horizontal": 1,
-     "empurrar-inclinado": 1,
+     "empurrar-horizontal": 2,
+     "empurrar-inclinado": 2,
      "crucifixo": 0,
      "puxar-vertical": 0,
      "puxar-horizontal": 0,
      "empurrar-vertical": 1,
      "elevacao-lateral": 0,
-     "ombro-posterior": 0,
+     "ombro-posterior": 1,
      "biceps": 0,
-     "triceps-acima-cabeca": 0,
+     "triceps-acima-cabeca": 1,
      "triceps-complemento": 1,
      "agachar": 1,
-     "afundo": 2,
+     "afundo": 3,
      "extensora": 0,
      "flexao-joelho": 2,
      "dobrar-quadril": "via flexao-joelho",
@@ -4859,19 +4860,19 @@
      "abdomen": 1
     },
     "avancado": {
-     "empurrar-horizontal": 1,
-     "empurrar-inclinado": 1,
+     "empurrar-horizontal": 2,
+     "empurrar-inclinado": 2,
      "crucifixo": 0,
      "puxar-vertical": 0,
      "puxar-horizontal": 0,
      "empurrar-vertical": 1,
      "elevacao-lateral": 0,
-     "ombro-posterior": 0,
+     "ombro-posterior": 1,
      "biceps": 0,
-     "triceps-acima-cabeca": 0,
+     "triceps-acima-cabeca": 1,
      "triceps-complemento": 1,
      "agachar": 1,
-     "afundo": 2,
+     "afundo": 3,
      "extensora": 0,
      "flexao-joelho": 2,
      "dobrar-quadril": "via flexao-joelho",
@@ -4897,12 +4898,12 @@
      "puxar-horizontal": 0,
      "empurrar-vertical": 1,
      "elevacao-lateral": 0,
-     "ombro-posterior": 0,
+     "ombro-posterior": 1,
      "biceps": 0,
-     "triceps-acima-cabeca": 0,
+     "triceps-acima-cabeca": 1,
      "triceps-complemento": 1,
      "agachar": 1,
-     "afundo": 2,
+     "afundo": 3,
      "extensora": 0,
      "flexao-joelho": 1,
      "dobrar-quadril": "via flexao-joelho",
@@ -4911,22 +4912,22 @@
      "aducao": 1,
      "panturrilha-em-pe": 1,
      "panturrilha-sentada": 0,
-     "abdomen": 1
+     "abdomen": 2
     },
     "intermediario": {
-     "empurrar-horizontal": 1,
-     "empurrar-inclinado": 1,
+     "empurrar-horizontal": 2,
+     "empurrar-inclinado": 2,
      "crucifixo": 0,
      "puxar-vertical": 0,
      "puxar-horizontal": 0,
      "empurrar-vertical": 1,
      "elevacao-lateral": 0,
-     "ombro-posterior": 0,
+     "ombro-posterior": 1,
      "biceps": 0,
-     "triceps-acima-cabeca": 0,
+     "triceps-acima-cabeca": 1,
      "triceps-complemento": 1,
      "agachar": 1,
-     "afundo": 2,
+     "afundo": 3,
      "extensora": 0,
      "flexao-joelho": 2,
      "dobrar-quadril": "via flexao-joelho",
@@ -4935,22 +4936,22 @@
      "aducao": 1,
      "panturrilha-em-pe": 1,
      "panturrilha-sentada": 0,
-     "abdomen": 1
+     "abdomen": 2
     },
     "avancado": {
-     "empurrar-horizontal": 1,
-     "empurrar-inclinado": 1,
+     "empurrar-horizontal": 2,
+     "empurrar-inclinado": 2,
      "crucifixo": 0,
      "puxar-vertical": 0,
      "puxar-horizontal": 0,
      "empurrar-vertical": 1,
      "elevacao-lateral": 0,
-     "ombro-posterior": 0,
+     "ombro-posterior": 1,
      "biceps": 0,
-     "triceps-acima-cabeca": 0,
+     "triceps-acima-cabeca": 1,
      "triceps-complemento": 1,
      "agachar": 1,
-     "afundo": 2,
+     "afundo": 3,
      "extensora": 0,
      "flexao-joelho": 2,
      "dobrar-quadril": "via flexao-joelho",
@@ -4959,7 +4960,7 @@
      "aducao": 1,
      "panturrilha-em-pe": 1,
      "panturrilha-sentada": 0,
-     "abdomen": 1
+     "abdomen": 2
     }
    }
   },
@@ -4976,12 +4977,12 @@
      "puxar-horizontal": 0,
      "empurrar-vertical": 1,
      "elevacao-lateral": 0,
-     "ombro-posterior": 0,
+     "ombro-posterior": 1,
      "biceps": 0,
-     "triceps-acima-cabeca": 0,
+     "triceps-acima-cabeca": 1,
      "triceps-complemento": 1,
      "agachar": 1,
-     "afundo": 2,
+     "afundo": 3,
      "extensora": 0,
      "flexao-joelho": 1,
      "dobrar-quadril": "via flexao-joelho",
@@ -4990,22 +4991,22 @@
      "aducao": 1,
      "panturrilha-em-pe": 1,
      "panturrilha-sentada": 0,
-     "abdomen": 1
+     "abdomen": 2
     },
     "intermediario": {
-     "empurrar-horizontal": 1,
-     "empurrar-inclinado": 1,
+     "empurrar-horizontal": 2,
+     "empurrar-inclinado": 2,
      "crucifixo": 0,
      "puxar-vertical": 0,
      "puxar-horizontal": 0,
      "empurrar-vertical": 1,
      "elevacao-lateral": 0,
-     "ombro-posterior": 0,
+     "ombro-posterior": 1,
      "biceps": 0,
-     "triceps-acima-cabeca": 0,
+     "triceps-acima-cabeca": 1,
      "triceps-complemento": 1,
      "agachar": 1,
-     "afundo": 2,
+     "afundo": 3,
      "extensora": 0,
      "flexao-joelho": 2,
      "dobrar-quadril": "via flexao-joelho",
@@ -5014,22 +5015,22 @@
      "aducao": 1,
      "panturrilha-em-pe": 1,
      "panturrilha-sentada": 0,
-     "abdomen": 1
+     "abdomen": 2
     },
     "avancado": {
-     "empurrar-horizontal": 1,
-     "empurrar-inclinado": 1,
+     "empurrar-horizontal": 2,
+     "empurrar-inclinado": 2,
      "crucifixo": 0,
      "puxar-vertical": 0,
      "puxar-horizontal": 0,
      "empurrar-vertical": 1,
      "elevacao-lateral": 0,
-     "ombro-posterior": 0,
+     "ombro-posterior": 1,
      "biceps": 0,
-     "triceps-acima-cabeca": 0,
+     "triceps-acima-cabeca": 1,
      "triceps-complemento": 1,
      "agachar": 1,
-     "afundo": 2,
+     "afundo": 3,
      "extensora": 0,
      "flexao-joelho": 2,
      "dobrar-quadril": "via flexao-joelho",
@@ -5038,7 +5039,7 @@
      "aducao": 1,
      "panturrilha-em-pe": 1,
      "panturrilha-sentada": 0,
-     "abdomen": 1
+     "abdomen": 2
     }
    }
   },
@@ -5055,12 +5056,12 @@
      "puxar-horizontal": 0,
      "empurrar-vertical": 1,
      "elevacao-lateral": 0,
-     "ombro-posterior": 0,
+     "ombro-posterior": 1,
      "biceps": 0,
-     "triceps-acima-cabeca": 0,
+     "triceps-acima-cabeca": 1,
      "triceps-complemento": 1,
      "agachar": 1,
-     "afundo": 2,
+     "afundo": 3,
      "extensora": 0,
      "flexao-joelho": 1,
      "dobrar-quadril": "via flexao-joelho",
@@ -5069,22 +5070,22 @@
      "aducao": 1,
      "panturrilha-em-pe": 1,
      "panturrilha-sentada": 0,
-     "abdomen": 1
+     "abdomen": 2
     },
     "intermediario": {
-     "empurrar-horizontal": 1,
-     "empurrar-inclinado": 1,
+     "empurrar-horizontal": 2,
+     "empurrar-inclinado": 2,
      "crucifixo": 0,
      "puxar-vertical": 0,
      "puxar-horizontal": 0,
      "empurrar-vertical": 1,
      "elevacao-lateral": 0,
-     "ombro-posterior": 0,
+     "ombro-posterior": 1,
      "biceps": 0,
-     "triceps-acima-cabeca": 0,
+     "triceps-acima-cabeca": 1,
      "triceps-complemento": 1,
      "agachar": 1,
-     "afundo": 2,
+     "afundo": 3,
      "extensora": 0,
      "flexao-joelho": 2,
      "dobrar-quadril": "via flexao-joelho",
@@ -5093,22 +5094,22 @@
      "aducao": 1,
      "panturrilha-em-pe": 1,
      "panturrilha-sentada": 0,
-     "abdomen": 1
+     "abdomen": 2
     },
     "avancado": {
-     "empurrar-horizontal": 1,
-     "empurrar-inclinado": 1,
+     "empurrar-horizontal": 2,
+     "empurrar-inclinado": 2,
      "crucifixo": 0,
      "puxar-vertical": 0,
      "puxar-horizontal": 0,
      "empurrar-vertical": 1,
      "elevacao-lateral": 0,
-     "ombro-posterior": 0,
+     "ombro-posterior": 1,
      "biceps": 0,
-     "triceps-acima-cabeca": 0,
+     "triceps-acima-cabeca": 1,
      "triceps-complemento": 1,
      "agachar": 1,
-     "afundo": 2,
+     "afundo": 3,
      "extensora": 0,
      "flexao-joelho": 2,
      "dobrar-quadril": "via flexao-joelho",
@@ -5117,7 +5118,7 @@
      "aducao": 1,
      "panturrilha-em-pe": 1,
      "panturrilha-sentada": 0,
-     "abdomen": 1
+     "abdomen": 2
     }
    }
   },
@@ -5134,12 +5135,12 @@
      "puxar-horizontal": 0,
      "empurrar-vertical": 1,
      "elevacao-lateral": 0,
-     "ombro-posterior": 0,
+     "ombro-posterior": 1,
      "biceps": 0,
-     "triceps-acima-cabeca": 0,
+     "triceps-acima-cabeca": 1,
      "triceps-complemento": 1,
      "agachar": 1,
-     "afundo": 2,
+     "afundo": 3,
      "extensora": 0,
      "flexao-joelho": 1,
      "dobrar-quadril": "via flexao-joelho",
@@ -5148,22 +5149,22 @@
      "aducao": 1,
      "panturrilha-em-pe": 1,
      "panturrilha-sentada": 0,
-     "abdomen": 1
+     "abdomen": 2
     },
     "intermediario": {
-     "empurrar-horizontal": 1,
-     "empurrar-inclinado": 1,
+     "empurrar-horizontal": 2,
+     "empurrar-inclinado": 2,
      "crucifixo": 0,
      "puxar-vertical": 0,
      "puxar-horizontal": 0,
      "empurrar-vertical": 1,
      "elevacao-lateral": 0,
-     "ombro-posterior": 0,
+     "ombro-posterior": 1,
      "biceps": 0,
-     "triceps-acima-cabeca": 0,
+     "triceps-acima-cabeca": 1,
      "triceps-complemento": 1,
      "agachar": 1,
-     "afundo": 2,
+     "afundo": 3,
      "extensora": 0,
      "flexao-joelho": 2,
      "dobrar-quadril": "via flexao-joelho",
@@ -5172,22 +5173,22 @@
      "aducao": 1,
      "panturrilha-em-pe": 1,
      "panturrilha-sentada": 0,
-     "abdomen": 1
+     "abdomen": 2
     },
     "avancado": {
-     "empurrar-horizontal": 1,
-     "empurrar-inclinado": 1,
+     "empurrar-horizontal": 2,
+     "empurrar-inclinado": 2,
      "crucifixo": 0,
      "puxar-vertical": 0,
      "puxar-horizontal": 0,
      "empurrar-vertical": 1,
      "elevacao-lateral": 0,
-     "ombro-posterior": 0,
+     "ombro-posterior": 1,
      "biceps": 0,
-     "triceps-acima-cabeca": 0,
+     "triceps-acima-cabeca": 1,
      "triceps-complemento": 1,
      "agachar": 1,
-     "afundo": 2,
+     "afundo": 3,
      "extensora": 0,
      "flexao-joelho": 2,
      "dobrar-quadril": "via flexao-joelho",
@@ -5196,7 +5197,7 @@
      "aducao": 1,
      "panturrilha-em-pe": 1,
      "panturrilha-sentada": 0,
-     "abdomen": 1
+     "abdomen": 2
     }
    }
   },
@@ -5213,12 +5214,12 @@
      "puxar-horizontal": 0,
      "empurrar-vertical": 1,
      "elevacao-lateral": 0,
-     "ombro-posterior": 0,
+     "ombro-posterior": 1,
      "biceps": 0,
-     "triceps-acima-cabeca": 0,
+     "triceps-acima-cabeca": 1,
      "triceps-complemento": 1,
      "agachar": 1,
-     "afundo": 2,
+     "afundo": 3,
      "extensora": 0,
      "flexao-joelho": 1,
      "dobrar-quadril": "via flexao-joelho",
@@ -5227,22 +5228,22 @@
      "aducao": 1,
      "panturrilha-em-pe": 1,
      "panturrilha-sentada": 1,
-     "abdomen": 1
+     "abdomen": 2
     },
     "intermediario": {
-     "empurrar-horizontal": 1,
-     "empurrar-inclinado": 1,
+     "empurrar-horizontal": 2,
+     "empurrar-inclinado": 2,
      "crucifixo": 0,
      "puxar-vertical": 0,
      "puxar-horizontal": 0,
      "empurrar-vertical": 1,
      "elevacao-lateral": 0,
-     "ombro-posterior": 0,
+     "ombro-posterior": 1,
      "biceps": 0,
-     "triceps-acima-cabeca": 0,
+     "triceps-acima-cabeca": 1,
      "triceps-complemento": 1,
      "agachar": 1,
-     "afundo": 2,
+     "afundo": 3,
      "extensora": 0,
      "flexao-joelho": 2,
      "dobrar-quadril": "via flexao-joelho",
@@ -5251,22 +5252,22 @@
      "aducao": 1,
      "panturrilha-em-pe": 1,
      "panturrilha-sentada": 1,
-     "abdomen": 1
+     "abdomen": 2
     },
     "avancado": {
-     "empurrar-horizontal": 1,
-     "empurrar-inclinado": 1,
+     "empurrar-horizontal": 2,
+     "empurrar-inclinado": 2,
      "crucifixo": 0,
      "puxar-vertical": 0,
      "puxar-horizontal": 0,
      "empurrar-vertical": 1,
      "elevacao-lateral": 0,
-     "ombro-posterior": 0,
+     "ombro-posterior": 1,
      "biceps": 0,
-     "triceps-acima-cabeca": 0,
+     "triceps-acima-cabeca": 1,
      "triceps-complemento": 1,
      "agachar": 1,
-     "afundo": 2,
+     "afundo": 3,
      "extensora": 0,
      "flexao-joelho": 2,
      "dobrar-quadril": "via flexao-joelho",
@@ -5275,7 +5276,7 @@
      "aducao": 1,
      "panturrilha-em-pe": 1,
      "panturrilha-sentada": 1,
-     "abdomen": 1
+     "abdomen": 2
     }
    }
   },
@@ -5292,12 +5293,12 @@
      "puxar-horizontal": 1,
      "empurrar-vertical": 1,
      "elevacao-lateral": 0,
-     "ombro-posterior": 1,
+     "ombro-posterior": 2,
      "biceps": 1,
      "triceps-acima-cabeca": 1,
      "triceps-complemento": 1,
      "agachar": 1,
-     "afundo": 2,
+     "afundo": 3,
      "extensora": 0,
      "flexao-joelho": 2,
      "dobrar-quadril": "via flexao-joelho",
@@ -5306,22 +5307,22 @@
      "aducao": 1,
      "panturrilha-em-pe": 1,
      "panturrilha-sentada": 0,
-     "abdomen": 1
+     "abdomen": 2
     },
     "intermediario": {
-     "empurrar-horizontal": 1,
-     "empurrar-inclinado": 1,
+     "empurrar-horizontal": 2,
+     "empurrar-inclinado": 2,
      "crucifixo": 0,
      "puxar-vertical": 1,
      "puxar-horizontal": 1,
      "empurrar-vertical": 1,
      "elevacao-lateral": 0,
-     "ombro-posterior": 1,
+     "ombro-posterior": 2,
      "biceps": 1,
      "triceps-acima-cabeca": 1,
      "triceps-complemento": 1,
      "agachar": 1,
-     "afundo": 3,
+     "afundo": 4,
      "extensora": 0,
      "flexao-joelho": 3,
      "dobrar-quadril": "via flexao-joelho",
@@ -5330,22 +5331,22 @@
      "aducao": 1,
      "panturrilha-em-pe": 1,
      "panturrilha-sentada": 0,
-     "abdomen": 1
+     "abdomen": 2
     },
     "avancado": {
-     "empurrar-horizontal": 1,
-     "empurrar-inclinado": 1,
+     "empurrar-horizontal": 2,
+     "empurrar-inclinado": 2,
      "crucifixo": 0,
      "puxar-vertical": 1,
      "puxar-horizontal": 1,
      "empurrar-vertical": 1,
      "elevacao-lateral": 0,
-     "ombro-posterior": 1,
+     "ombro-posterior": 2,
      "biceps": 1,
      "triceps-acima-cabeca": 1,
      "triceps-complemento": 1,
      "agachar": 1,
-     "afundo": 3,
+     "afundo": 4,
      "extensora": 0,
      "flexao-joelho": 3,
      "dobrar-quadril": "via flexao-joelho",
@@ -5354,7 +5355,7 @@
      "aducao": 1,
      "panturrilha-em-pe": 1,
      "panturrilha-sentada": 0,
-     "abdomen": 1
+     "abdomen": 2
     }
    }
   },
@@ -5370,70 +5371,70 @@
      "puxar-vertical": 0,
      "puxar-horizontal": 0,
      "empurrar-vertical": 1,
-     "elevacao-lateral": 0,
-     "ombro-posterior": 0,
+     "elevacao-lateral": 1,
+     "ombro-posterior": 1,
      "biceps": 0,
-     "triceps-acima-cabeca": 0,
+     "triceps-acima-cabeca": 1,
      "triceps-complemento": 1,
      "agachar": 1,
-     "afundo": 2,
+     "afundo": 3,
      "extensora": 1,
      "flexao-joelho": 1,
      "dobrar-quadril": "via flexao-joelho",
-     "extensao-quadril": 1,
+     "extensao-quadril": 2,
      "abducao": 1,
      "aducao": 1,
      "panturrilha-em-pe": 1,
      "panturrilha-sentada": 0,
-     "abdomen": 1
+     "abdomen": 2
     },
     "intermediario": {
-     "empurrar-horizontal": 1,
-     "empurrar-inclinado": 1,
+     "empurrar-horizontal": 2,
+     "empurrar-inclinado": 2,
      "crucifixo": 0,
      "puxar-vertical": 0,
      "puxar-horizontal": 0,
      "empurrar-vertical": 1,
-     "elevacao-lateral": 0,
-     "ombro-posterior": 0,
+     "elevacao-lateral": 1,
+     "ombro-posterior": 1,
      "biceps": 0,
-     "triceps-acima-cabeca": 0,
+     "triceps-acima-cabeca": 1,
      "triceps-complemento": 1,
      "agachar": 1,
-     "afundo": 2,
+     "afundo": 3,
      "extensora": 1,
      "flexao-joelho": 2,
      "dobrar-quadril": "via flexao-joelho",
-     "extensao-quadril": 1,
+     "extensao-quadril": 2,
      "abducao": 1,
      "aducao": 1,
      "panturrilha-em-pe": 1,
      "panturrilha-sentada": 0,
-     "abdomen": 1
+     "abdomen": 2
     },
     "avancado": {
-     "empurrar-horizontal": 1,
-     "empurrar-inclinado": 1,
+     "empurrar-horizontal": 2,
+     "empurrar-inclinado": 2,
      "crucifixo": 0,
      "puxar-vertical": 0,
      "puxar-horizontal": 0,
      "empurrar-vertical": 1,
-     "elevacao-lateral": 0,
-     "ombro-posterior": 0,
+     "elevacao-lateral": 1,
+     "ombro-posterior": 1,
      "biceps": 0,
-     "triceps-acima-cabeca": 0,
+     "triceps-acima-cabeca": 1,
      "triceps-complemento": 1,
      "agachar": 1,
-     "afundo": 2,
+     "afundo": 3,
      "extensora": 1,
      "flexao-joelho": 2,
      "dobrar-quadril": "via flexao-joelho",
-     "extensao-quadril": 1,
+     "extensao-quadril": 2,
      "abducao": 1,
      "aducao": 1,
      "panturrilha-em-pe": 1,
      "panturrilha-sentada": 0,
-     "abdomen": 1
+     "abdomen": 2
     }
    }
   },
@@ -5450,69 +5451,69 @@
      "puxar-horizontal": 0,
      "empurrar-vertical": 1,
      "elevacao-lateral": 0,
-     "ombro-posterior": 0,
+     "ombro-posterior": 1,
      "biceps": 0,
-     "triceps-acima-cabeca": 0,
+     "triceps-acima-cabeca": 1,
      "triceps-complemento": 1,
      "agachar": 1,
-     "afundo": 2,
-     "extensora": 0,
+     "afundo": 3,
+     "extensora": 1,
      "flexao-joelho": 1,
      "dobrar-quadril": "via flexao-joelho",
      "extensao-quadril": 1,
-     "abducao": 1,
+     "abducao": 3,
      "aducao": 1,
      "panturrilha-em-pe": 1,
      "panturrilha-sentada": 0,
-     "abdomen": 1
+     "abdomen": 2
     },
     "intermediario": {
-     "empurrar-horizontal": 1,
-     "empurrar-inclinado": 1,
+     "empurrar-horizontal": 2,
+     "empurrar-inclinado": 2,
      "crucifixo": 0,
      "puxar-vertical": 0,
      "puxar-horizontal": 0,
      "empurrar-vertical": 1,
      "elevacao-lateral": 0,
-     "ombro-posterior": 0,
+     "ombro-posterior": 1,
      "biceps": 0,
-     "triceps-acima-cabeca": 0,
+     "triceps-acima-cabeca": 1,
      "triceps-complemento": 1,
      "agachar": 1,
-     "afundo": 2,
-     "extensora": 0,
+     "afundo": 3,
+     "extensora": 1,
      "flexao-joelho": 2,
      "dobrar-quadril": "via flexao-joelho",
      "extensao-quadril": 1,
-     "abducao": 1,
+     "abducao": 3,
      "aducao": 1,
      "panturrilha-em-pe": 1,
      "panturrilha-sentada": 0,
-     "abdomen": 1
+     "abdomen": 2
     },
     "avancado": {
-     "empurrar-horizontal": 1,
-     "empurrar-inclinado": 1,
+     "empurrar-horizontal": 2,
+     "empurrar-inclinado": 2,
      "crucifixo": 0,
      "puxar-vertical": 0,
      "puxar-horizontal": 0,
      "empurrar-vertical": 1,
      "elevacao-lateral": 0,
-     "ombro-posterior": 0,
+     "ombro-posterior": 1,
      "biceps": 0,
-     "triceps-acima-cabeca": 0,
+     "triceps-acima-cabeca": 1,
      "triceps-complemento": 1,
      "agachar": 1,
-     "afundo": 2,
-     "extensora": 0,
+     "afundo": 3,
+     "extensora": 1,
      "flexao-joelho": 2,
      "dobrar-quadril": "via flexao-joelho",
      "extensao-quadril": 1,
-     "abducao": 1,
+     "abducao": 3,
      "aducao": 1,
      "panturrilha-em-pe": 1,
      "panturrilha-sentada": 0,
-     "abdomen": 1
+     "abdomen": 2
     }
    }
   },
@@ -5529,12 +5530,12 @@
      "puxar-horizontal": 0,
      "empurrar-vertical": 1,
      "elevacao-lateral": 0,
-     "ombro-posterior": 0,
+     "ombro-posterior": 1,
      "biceps": 0,
-     "triceps-acima-cabeca": 0,
+     "triceps-acima-cabeca": 1,
      "triceps-complemento": 1,
      "agachar": 1,
-     "afundo": 2,
+     "afundo": 3,
      "extensora": 0,
      "flexao-joelho": 1,
      "dobrar-quadril": "via flexao-joelho",
@@ -5543,22 +5544,22 @@
      "aducao": 1,
      "panturrilha-em-pe": 1,
      "panturrilha-sentada": 0,
-     "abdomen": 1
+     "abdomen": 2
     },
     "intermediario": {
-     "empurrar-horizontal": 1,
-     "empurrar-inclinado": 1,
+     "empurrar-horizontal": 2,
+     "empurrar-inclinado": 2,
      "crucifixo": 0,
      "puxar-vertical": 0,
      "puxar-horizontal": 0,
      "empurrar-vertical": 1,
      "elevacao-lateral": 0,
-     "ombro-posterior": 0,
+     "ombro-posterior": 1,
      "biceps": 0,
-     "triceps-acima-cabeca": 0,
+     "triceps-acima-cabeca": 1,
      "triceps-complemento": 1,
      "agachar": 1,
-     "afundo": 2,
+     "afundo": 3,
      "extensora": 0,
      "flexao-joelho": 2,
      "dobrar-quadril": "via flexao-joelho",
@@ -5567,22 +5568,22 @@
      "aducao": 1,
      "panturrilha-em-pe": 1,
      "panturrilha-sentada": 0,
-     "abdomen": 2
+     "abdomen": 3
     },
     "avancado": {
-     "empurrar-horizontal": 1,
-     "empurrar-inclinado": 1,
+     "empurrar-horizontal": 2,
+     "empurrar-inclinado": 2,
      "crucifixo": 0,
      "puxar-vertical": 0,
      "puxar-horizontal": 0,
      "empurrar-vertical": 1,
      "elevacao-lateral": 0,
-     "ombro-posterior": 0,
+     "ombro-posterior": 1,
      "biceps": 0,
-     "triceps-acima-cabeca": 0,
+     "triceps-acima-cabeca": 1,
      "triceps-complemento": 1,
      "agachar": 1,
-     "afundo": 2,
+     "afundo": 3,
      "extensora": 0,
      "flexao-joelho": 2,
      "dobrar-quadril": "via flexao-joelho",
@@ -5591,7 +5592,7 @@
      "aducao": 1,
      "panturrilha-em-pe": 1,
      "panturrilha-sentada": 0,
-     "abdomen": 2
+     "abdomen": 3
     }
    }
   },
@@ -5608,10 +5609,10 @@
      "puxar-horizontal": 2,
      "empurrar-vertical": 1,
      "elevacao-lateral": 1,
-     "ombro-posterior": 1,
-     "biceps": 2,
-     "triceps-acima-cabeca": 1,
-     "triceps-complemento": 1,
+     "ombro-posterior": 2,
+     "biceps": 3,
+     "triceps-acima-cabeca": 2,
+     "triceps-complemento": 2,
      "agachar": 2,
      "afundo": 2,
      "extensora": 0,
@@ -5622,20 +5623,20 @@
      "aducao": 1,
      "panturrilha-em-pe": 1,
      "panturrilha-sentada": 1,
-     "abdomen": 2
+     "abdomen": 3
     },
     "intermediario": {
-     "empurrar-horizontal": 1,
-     "empurrar-inclinado": 1,
+     "empurrar-horizontal": 2,
+     "empurrar-inclinado": 2,
      "crucifixo": 0,
      "puxar-vertical": 2,
      "puxar-horizontal": 2,
      "empurrar-vertical": 1,
      "elevacao-lateral": 1,
-     "ombro-posterior": 1,
-     "biceps": 2,
-     "triceps-acima-cabeca": 1,
-     "triceps-complemento": 1,
+     "ombro-posterior": 2,
+     "biceps": 3,
+     "triceps-acima-cabeca": 2,
+     "triceps-complemento": 2,
      "agachar": 2,
      "afundo": 2,
      "extensora": 0,
@@ -5646,20 +5647,20 @@
      "aducao": 1,
      "panturrilha-em-pe": 1,
      "panturrilha-sentada": 1,
-     "abdomen": 2
+     "abdomen": 3
     },
     "avancado": {
-     "empurrar-horizontal": 1,
-     "empurrar-inclinado": 1,
+     "empurrar-horizontal": 2,
+     "empurrar-inclinado": 2,
      "crucifixo": 0,
      "puxar-vertical": 2,
      "puxar-horizontal": 2,
      "empurrar-vertical": 1,
      "elevacao-lateral": 1,
-     "ombro-posterior": 1,
-     "biceps": 2,
-     "triceps-acima-cabeca": 1,
-     "triceps-complemento": 1,
+     "ombro-posterior": 2,
+     "biceps": 3,
+     "triceps-acima-cabeca": 2,
+     "triceps-complemento": 2,
      "agachar": 2,
      "afundo": 2,
      "extensora": 0,
@@ -5670,7 +5671,7 @@
      "aducao": 1,
      "panturrilha-em-pe": 1,
      "panturrilha-sentada": 1,
-     "abdomen": 2
+     "abdomen": 3
     }
    }
   },
@@ -5686,70 +5687,70 @@
      "puxar-vertical": 1,
      "puxar-horizontal": 1,
      "empurrar-vertical": 1,
-     "elevacao-lateral": 1,
-     "ombro-posterior": 2,
+     "elevacao-lateral": 2,
+     "ombro-posterior": 4,
      "biceps": 1,
      "triceps-acima-cabeca": 1,
      "triceps-complemento": 1,
      "agachar": 2,
-     "afundo": 2,
+     "afundo": 3,
      "extensora": 1,
      "flexao-joelho": 1,
      "dobrar-quadril": 1,
-     "extensao-quadril": 1,
+     "extensao-quadril": 2,
      "abducao": 1,
      "aducao": 1,
      "panturrilha-em-pe": 1,
      "panturrilha-sentada": 0,
-     "abdomen": 1
+     "abdomen": 2
     },
     "intermediario": {
-     "empurrar-horizontal": 1,
-     "empurrar-inclinado": 1,
+     "empurrar-horizontal": 2,
+     "empurrar-inclinado": 2,
      "crucifixo": 1,
      "puxar-vertical": 1,
      "puxar-horizontal": 1,
      "empurrar-vertical": 1,
-     "elevacao-lateral": 1,
-     "ombro-posterior": 2,
+     "elevacao-lateral": 2,
+     "ombro-posterior": 4,
      "biceps": 1,
      "triceps-acima-cabeca": 1,
      "triceps-complemento": 1,
      "agachar": 2,
-     "afundo": 3,
+     "afundo": 4,
      "extensora": 1,
      "flexao-joelho": 1,
      "dobrar-quadril": 1,
-     "extensao-quadril": 1,
+     "extensao-quadril": 2,
      "abducao": 1,
      "aducao": 1,
      "panturrilha-em-pe": 1,
      "panturrilha-sentada": 0,
-     "abdomen": 1
+     "abdomen": 2
     },
     "avancado": {
-     "empurrar-horizontal": 1,
-     "empurrar-inclinado": 1,
+     "empurrar-horizontal": 2,
+     "empurrar-inclinado": 2,
      "crucifixo": 1,
      "puxar-vertical": 1,
      "puxar-horizontal": 1,
      "empurrar-vertical": 1,
-     "elevacao-lateral": 1,
-     "ombro-posterior": 2,
+     "elevacao-lateral": 2,
+     "ombro-posterior": 4,
      "biceps": 1,
      "triceps-acima-cabeca": 1,
      "triceps-complemento": 1,
      "agachar": 2,
-     "afundo": 3,
+     "afundo": 4,
      "extensora": 1,
      "flexao-joelho": 1,
      "dobrar-quadril": 1,
-     "extensao-quadril": 1,
+     "extensao-quadril": 2,
      "abducao": 1,
      "aducao": 1,
      "panturrilha-em-pe": 1,
      "panturrilha-sentada": 0,
-     "abdomen": 1
+     "abdomen": 2
     }
    }
   },
@@ -5766,10 +5767,10 @@
      "puxar-horizontal": 3,
      "empurrar-vertical": 1,
      "elevacao-lateral": 1,
-     "ombro-posterior": 1,
-     "biceps": 2,
-     "triceps-acima-cabeca": 1,
-     "triceps-complemento": 1,
+     "ombro-posterior": 2,
+     "biceps": 3,
+     "triceps-acima-cabeca": 2,
+     "triceps-complemento": 2,
      "agachar": 3,
      "afundo": 3,
      "extensora": 0,
@@ -5780,7 +5781,7 @@
      "aducao": 1,
      "panturrilha-em-pe": 1,
      "panturrilha-sentada": 1,
-     "abdomen": 1
+     "abdomen": 2
     },
     "intermediario": {
      "empurrar-horizontal": 1,
@@ -5790,10 +5791,10 @@
      "puxar-horizontal": 3,
      "empurrar-vertical": 1,
      "elevacao-lateral": 1,
-     "ombro-posterior": 1,
-     "biceps": 2,
-     "triceps-acima-cabeca": 1,
-     "triceps-complemento": 1,
+     "ombro-posterior": 2,
+     "biceps": 3,
+     "triceps-acima-cabeca": 2,
+     "triceps-complemento": 2,
      "agachar": 3,
      "afundo": 3,
      "extensora": 0,
@@ -5804,7 +5805,7 @@
      "aducao": 1,
      "panturrilha-em-pe": 1,
      "panturrilha-sentada": 1,
-     "abdomen": 1
+     "abdomen": 2
     },
     "avancado": {
      "empurrar-horizontal": 1,
@@ -5814,10 +5815,10 @@
      "puxar-horizontal": 3,
      "empurrar-vertical": 1,
      "elevacao-lateral": 1,
-     "ombro-posterior": 1,
-     "biceps": 2,
-     "triceps-acima-cabeca": 1,
-     "triceps-complemento": 1,
+     "ombro-posterior": 2,
+     "biceps": 3,
+     "triceps-acima-cabeca": 2,
+     "triceps-complemento": 2,
      "agachar": 3,
      "afundo": 3,
      "extensora": 0,
@@ -5828,7 +5829,7 @@
      "aducao": 1,
      "panturrilha-em-pe": 1,
      "panturrilha-sentada": 1,
-     "abdomen": 1
+     "abdomen": 2
     }
    }
   },
@@ -5842,72 +5843,72 @@
      "empurrar-inclinado": 1,
      "crucifixo": 1,
      "puxar-vertical": 1,
-     "puxar-horizontal": 1,
+     "puxar-horizontal": 3,
      "empurrar-vertical": 1,
-     "elevacao-lateral": 1,
-     "ombro-posterior": 1,
-     "biceps": 1,
+     "elevacao-lateral": 2,
+     "ombro-posterior": 2,
+     "biceps": 2,
      "triceps-acima-cabeca": 1,
-     "triceps-complemento": 1,
+     "triceps-complemento": 2,
      "agachar": 2,
-     "afundo": 2,
+     "afundo": 3,
      "extensora": 1,
      "flexao-joelho": 1,
      "dobrar-quadril": 1,
-     "extensao-quadril": 1,
+     "extensao-quadril": 2,
      "abducao": 1,
      "aducao": 1,
      "panturrilha-em-pe": 2,
      "panturrilha-sentada": 0,
-     "abdomen": 1
+     "abdomen": 2
     },
     "intermediario": {
-     "empurrar-horizontal": 1,
-     "empurrar-inclinado": 1,
+     "empurrar-horizontal": 2,
+     "empurrar-inclinado": 2,
      "crucifixo": 1,
      "puxar-vertical": 1,
-     "puxar-horizontal": 1,
+     "puxar-horizontal": 3,
      "empurrar-vertical": 1,
-     "elevacao-lateral": 1,
-     "ombro-posterior": 1,
-     "biceps": 1,
+     "elevacao-lateral": 2,
+     "ombro-posterior": 2,
+     "biceps": 2,
      "triceps-acima-cabeca": 1,
-     "triceps-complemento": 1,
+     "triceps-complemento": 2,
      "agachar": 2,
-     "afundo": 2,
+     "afundo": 3,
      "extensora": 1,
      "flexao-joelho": 1,
      "dobrar-quadril": 1,
-     "extensao-quadril": 1,
+     "extensao-quadril": 2,
      "abducao": 1,
      "aducao": 1,
      "panturrilha-em-pe": 2,
      "panturrilha-sentada": 0,
-     "abdomen": 1
+     "abdomen": 2
     },
     "avancado": {
-     "empurrar-horizontal": 1,
-     "empurrar-inclinado": 1,
+     "empurrar-horizontal": 2,
+     "empurrar-inclinado": 2,
      "crucifixo": 1,
      "puxar-vertical": 1,
-     "puxar-horizontal": 1,
+     "puxar-horizontal": 3,
      "empurrar-vertical": 1,
-     "elevacao-lateral": 1,
-     "ombro-posterior": 1,
-     "biceps": 1,
+     "elevacao-lateral": 2,
+     "ombro-posterior": 2,
+     "biceps": 2,
      "triceps-acima-cabeca": 1,
-     "triceps-complemento": 1,
+     "triceps-complemento": 2,
      "agachar": 2,
-     "afundo": 2,
+     "afundo": 3,
      "extensora": 1,
      "flexao-joelho": 1,
      "dobrar-quadril": 1,
-     "extensao-quadril": 1,
+     "extensao-quadril": 2,
      "abducao": 1,
      "aducao": 1,
      "panturrilha-em-pe": 2,
      "panturrilha-sentada": 0,
-     "abdomen": 1
+     "abdomen": 2
     }
    }
   }
@@ -5916,54 +5917,49 @@
   "programas": 5940,
   "porFuncao": {
    "abdomen": {
-    "aparece2": 4620,
-    "repeteComOpcao": 120,
-    "repeteSemOpcao": 3633
-   },
-   "abducao": {
-    "aparece2": 0,
-    "repeteComOpcao": 0,
-    "repeteSemOpcao": 0
+    "aparece2": 4596,
+    "repeteComOpcao": 90,
+    "repeteSemOpcao": 63
    },
    "afundo": {
-    "aparece2": 3291,
+    "aparece2": 3217,
     "repeteComOpcao": 0,
     "repeteSemOpcao": 69
    },
    "agachar": {
-    "aparece2": 891,
+    "aparece2": 829,
     "repeteComOpcao": 0,
-    "repeteSemOpcao": 699
+    "repeteSemOpcao": 637
    },
    "biceps": {
-    "aparece2": 1404,
-    "repeteComOpcao": 20,
-    "repeteSemOpcao": 804
+    "aparece2": 1386,
+    "repeteComOpcao": 0,
+    "repeteSemOpcao": 366
    },
    "crucifixo": {
-    "aparece2": 348,
-    "repeteComOpcao": 23,
-    "repeteSemOpcao": 228
+    "aparece2": 345,
+    "repeteComOpcao": 15,
+    "repeteSemOpcao": 153
    },
    "dobrar-quadril": {
     "aparece2": 858,
     "repeteComOpcao": 0,
-    "repeteSemOpcao": 270
+    "repeteSemOpcao": 225
    },
    "elevacao-lateral": {
-    "aparece2": 1449,
+    "aparece2": 1527,
     "repeteComOpcao": 75,
-    "repeteSemOpcao": 1224
+    "repeteSemOpcao": 1002
    },
    "empurrar-horizontal": {
     "aparece2": 2970,
-    "repeteComOpcao": 24,
-    "repeteSemOpcao": 2718
+    "repeteComOpcao": 798,
+    "repeteSemOpcao": 1092
    },
    "empurrar-inclinado": {
     "aparece2": 1089,
-    "repeteComOpcao": 27,
-    "repeteSemOpcao": 1008
+    "repeteComOpcao": 309,
+    "repeteSemOpcao": 336
    },
    "empurrar-vertical": {
     "aparece2": 0,
@@ -5972,53 +5968,48 @@
    },
    "extensao-quadril": {
     "aparece2": 495,
-    "repeteComOpcao": 99,
-    "repeteSemOpcao": 360
+    "repeteComOpcao": 108,
+    "repeteSemOpcao": 315
    },
    "extensora": {
-    "aparece2": 702,
+    "aparece2": 756,
     "repeteComOpcao": 54,
-    "repeteSemOpcao": 648
+    "repeteSemOpcao": 702
    },
    "flexao-joelho": {
-    "aparece2": 4209,
+    "aparece2": 4200,
     "repeteComOpcao": 0,
-    "repeteSemOpcao": 1863
+    "repeteSemOpcao": 1773
    },
    "ombro-posterior": {
-    "aparece2": 1149,
-    "repeteComOpcao": 114,
-    "repeteSemOpcao": 693
+    "aparece2": 3663,
+    "repeteComOpcao": 133,
+    "repeteSemOpcao": 2571
    },
    "panturrilha-em-pe": {
-    "aparece2": 3078,
+    "aparece2": 2475,
     "repeteComOpcao": 0,
-    "repeteSemOpcao": 2736
-   },
-   "panturrilha-sentada": {
-    "aparece2": 6,
-    "repeteComOpcao": 0,
-    "repeteSemOpcao": 6
+    "repeteSemOpcao": 2160
    },
    "puxar-horizontal": {
-    "aparece2": 1360,
-    "repeteComOpcao": 69,
-    "repeteSemOpcao": 568
+    "aparece2": 1352,
+    "repeteComOpcao": 57,
+    "repeteSemOpcao": 380
    },
    "puxar-vertical": {
     "aparece2": 1863,
-    "repeteComOpcao": 267,
-    "repeteSemOpcao": 738
+    "repeteComOpcao": 261,
+    "repeteSemOpcao": 729
    },
    "triceps-acima-cabeca": {
-    "aparece2": 756,
-    "repeteComOpcao": 72,
-    "repeteSemOpcao": 540
+    "aparece2": 1980,
+    "repeteComOpcao": 0,
+    "repeteSemOpcao": 1476
    },
    "triceps-complemento": {
-    "aparece2": 1947,
-    "repeteComOpcao": 0,
-    "repeteSemOpcao": 1917
+    "aparece2": 450,
+    "repeteComOpcao": 68,
+    "repeteSemOpcao": 346
    }
   }
  }

@@ -9,6 +9,8 @@
 // horizontal). Dor e exercício evitado não se cruzam entre si, para a rodada caber em minutos (≈ 911 mil programas).
 // Mede, por programa, por dia e por semana: exercícios por dia, uso dos minutos, séries por músculo contra a meta e o
 // piso, músculos a zero, exercícios distintos e repetidos, a fatia do prioritário, as vagas vazias e os avisos.
+// A régua da frente G5 (regua.ts) também é medida aqui, caso a caso: cada defeito vira o suspeito "regua.<id>". A grade
+// própria da régua, com a linha de base e a conferência "nenhum defeito piora", é grade-regua.ts (R5-CL, 07/11/2026).
 // Determinístico: a mesma grade dá os mesmos arquivos (sem relógio nem sorteio na saída; cada caso tem um índice
 // fixo, e a junção dos processos soma contagens e escolhe exemplos pelo menor índice). Só dados fictícios.
 import { spawn } from 'node:child_process';
@@ -22,6 +24,7 @@ import { FUNCAO } from '../../src/domain/gerador/funcoes';
 import { exerciciosPorSessao, TEMPO, VOLUME, type Nivel } from '../../src/domain/regras';
 import { grade, perfil, type Caso, type Prioridade, type SituacaoDeDor } from './cenarios';
 import { CENARIOS_55, type Cen } from './cenarios-55';
+import { medirRegua, NOME_DEFEITO } from './regua';
 
 const args = process.argv.slice(2);
 const arg = (k: string) => (args.includes(k) ? args[args.indexOf(k) + 1] : undefined);
@@ -290,6 +293,10 @@ function medir(c: CasoQ) {
     vd.foraPorMinutos += Math.max(0, comExercicio - base);
   });
 
+  // A régua da G5: os defeitos (regua.ts)
+  const regua = medirRegua(p, pf, ctx);
+  for (const d of regua.defeitos) problema(`regua.${d}`, c, p, `${NOME_DEFEITO[d]}: ${regua.detalhe[d]}`);
+
   // Avisos
   for (const id of new Set(p.avisos.map((a) => a.regraId))) {
     inc(A.avisos, id);
@@ -474,7 +481,7 @@ async function main() {
     '',
   );
   L.push('## Suspeitos (contagem de ocorrências)', '');
-  L.push('`dia.poucos-exercicios`: dia com menos de 5 exercícios tendo 45 min ou mais. `tempo.uso-baixo`: o dia mais longo usa menos de 70% dos minutos (`tempo.sobra`). `volume.zero-sem-aviso`: músculo grande com 0 série e nenhum aviso o cita. `prioridade.abaixo-com-tempo`: prioritário abaixo da meta com o dia mais longo abaixo de 85% dos minutos, sem dor. `monotonia.todos-os-dias-com-opcao`: o mesmo exercício em todos os dias havendo outro equivalente possível.', '');
+  L.push('`dia.poucos-exercicios`: dia com menos de 5 exercícios tendo 45 min ou mais. `tempo.uso-baixo`: o dia mais longo usa menos de 70% dos minutos (`tempo.sobra`). `volume.zero-sem-aviso`: músculo grande com 0 série e nenhum aviso o cita. `prioridade.abaixo-com-tempo`: prioritário abaixo da meta com o dia mais longo abaixo de 85% dos minutos, sem dor. `monotonia.todos-os-dias-com-opcao`: o mesmo exercício em todos os dias havendo outro equivalente possível. `regua.*`: os defeitos da régua da G5 (`scripts/auditoria/regua.ts`; a grade própria dela está em `regua.md`).', '');
   linha('suspeito', 'ocorrências', '% (dos dias ou dos programas)');
   linha('---', '---:', '---:');
   for (const [id, k] of Object.entries(acc.contagem).sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0]))) {
