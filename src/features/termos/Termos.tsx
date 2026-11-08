@@ -1,18 +1,16 @@
 import { useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { CONTATO_EMAIL, RESPONSAVEL } from '../app/contato';
+import { CONTATO_EMAIL, FOTO_LIGADA, RESPONSAVEL } from '../app/contato';
 import { useApp } from '../app/estado';
 import { ParaOndeVaiAFoto } from '../app/privacidade';
 import { Selo, Titulo, Topo } from '../app/ui';
 
-// Termos de uso e aviso de privacidade (R5c, P2). RASCUNHO para um advogado revisar: não é parecer jurídico.
+// Termos de uso e aviso de privacidade (R5c, P2). Sem revisão jurídica: o Gustavo decidiu dispensá-la em 08/11/2026.
 // O conteúdo segue a LGPD (lgpd: arts. 5º, 8º, 9º, 11, 18 e 33), a Res. CD/ANPD 2/2022 (anpd2-2022) e o que a Anthropic
 // diz por escrito (anthropic-retencao, anthropic-servidores, anthropic-termos). Nada aqui promete além disso.
 
 /** Versão dos termos; muda quando o texto mudar. */
 export const TERMOS_VERSAO = '1, de 07/11/2026';
-/** Vira true só depois da revisão do advogado registrada no devlog. */
-export const TERMOS_REVISADOS = false;
 
 export function Termos() {
   const { estado } = useApp();
@@ -22,14 +20,14 @@ export function Termos() {
     if (hash) document.getElementById(hash.slice(1))?.scrollIntoView();
   }, [hash]);
   const voltar = estado.programa ? '/dados' : '/';
-  const responsavel = RESPONSAVEL || 'a definir (rascunho)';
+  const responsavel = RESPONSAVEL || 'quem te mandou o link do app';
   return (
     <div className="wrap app">
       <Topo direita={<Link to={voltar}>{estado.programa ? 'Meus dados' : 'Início'}</Link>} />
       <main className="conteudo termos">
         <Titulo>Termos de uso e privacidade</Titulo>
         <p className="muted">
-          Versão {TERMOS_VERSAO}.{!TERMOS_REVISADOS && ' Rascunho em revisão jurídica.'}
+          Versão {TERMOS_VERSAO}.
         </p>
 
         <section aria-labelledby="t-app">
@@ -61,7 +59,7 @@ export function Termos() {
                 Contato: <a href={`mailto:${CONTATO_EMAIL}`}>{CONTATO_EMAIL}</a>.
               </>
             ) : (
-              'Contato: a definir (rascunho); enquanto isso, fale com quem te mandou o link do app.'
+              'Contato: fale direto com essa pessoa.'
             )}
           </p>
         </section>
@@ -87,6 +85,12 @@ export function Termos() {
 
         <section aria-labelledby="foto-titulo" id="foto">
           <h2 id="foto-titulo">A foto do equipamento</h2>
+          {!FOTO_LIGADA && (
+            <p>
+              <b>Por enquanto, o reconhecimento pela foto está desligado: nada sai do aparelho.</b> Quando for ligado, valerá o que está
+              abaixo.
+            </p>
+          )}
           <p>
             Usar a foto é opcional: a lista de equipamento faz o mesmo. A foto só sai do aparelho com a sua autorização, dada na tela da
             foto antes do 1º envio (LGPD, art. 11, I, e art. 33, VIII). <Selo id="privacidade.foto" />
@@ -107,7 +111,7 @@ export function Termos() {
           <ul className="lista">
             <li>A Vercel, que hospeda o app, recebe os dados técnicos de cada acesso (o endereço IP e o navegador), como acontece com qualquer site.</li>
             <li>O Google recebe o endereço IP quando o navegador baixa a letra usada no app (Google Fonts).</li>
-            <li>A Anthropic recebe só a foto, e só se você autorizar.</li>
+            <li>A Anthropic recebe só a foto, e só se a foto estiver ligada e você autorizar.</li>
           </ul>
         </section>
 
@@ -137,7 +141,7 @@ export function Termos() {
 
         <p className="muted">
           Fontes: LGPD (Lei nº 13.709/2018), arts. 5º, 8º, 9º, 11, 18 e 33; Resolução CD/ANPD nº 2/2022; páginas da Anthropic sobre
-          retenção de dados, localização dos servidores e termos comerciais, lidas em 07/11/2026. Não é parecer jurídico.
+          retenção de dados, localização dos servidores e termos comerciais, lidas em 07/11/2026.
         </p>
       </main>
     </div>
