@@ -27,7 +27,7 @@ test('do zero ao programa em menos de 5 minutos (persona Ana)', async ({ page })
   await expect(painel.getByRole('heading', { name: /Stiff com halteres/ })).toBeVisible();
   // Avisos de meta por músculo em "Sobre o programa".
   await page.getByText('Sobre o programa: avisos e o porquê').click();
-  await expect(page.getByText(/Abaixo da meta/).first()).toBeVisible();
+  await expect(page.locator('details.sobre').getByText(/Abaixo da meta/).first()).toBeVisible();
 
   await page.getByRole('tab', { name: 'Corpo todo A', exact: true }).click();
   await painel.getByRole('link', { name: /Agachamento búlgaro.*ver como fazer/ }).click();
