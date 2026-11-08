@@ -17,7 +17,7 @@ Ideias e requisitos para depois do MVP. Nada aqui entra sem passar pelo plano.
 
 ## Pendências do lado do Gustavo
 - **Antes de mandar o link a alguém (R5c, 07/11/2026; detalhes no devlog, "R5c"):**
-  - **Teto de gasto: US$ 5 por mês** (decidido em 07/11). Confirmar no console: platform.claude.com → Settings → Limits.
+  - **Teto de gasto:** confirmado em 08/11 (saldo de US$ 4,97, recarga automática desligada). Manter a recarga desligada; ao ligar a foto, comprar créditos conforme o uso.
   - **Ligar a foto, quando quiser:** um código de convite por pessoa em `CONVITES` e `VITE_FOTO=ligada` na Vercel, e um novo deploy. Até lá, a foto fica desligada (decisão de 08/11).
   - *(Opcional)* **Quem responde e o contato:** `VITE_RESPONSAVEL` e `VITE_CONTATO_EMAIL` na Vercel. Sem eles, os termos apontam para quem mandou o link. Ficam fora do repositório de propósito.
   - A revisão por um advogado foi **dispensada** pelo Gustavo em 08/11.
