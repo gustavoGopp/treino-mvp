@@ -1042,13 +1042,14 @@ As listas exatas ficam em `tests/unit/metas-r0.test.ts`, para o R0c zerar.
 
 **Imagem:** `img/r5c-abertura.png` (a caixa da foto, a tela de erro, a última cópia, o aviso do iPhone e "Como ler o seu treino").
 
-**Não é parecer jurídico.** Os termos e a caixa da foto são rascunho. A página diz "Rascunho em revisão jurídica" até `TERMOS_REVISADOS` virar `true`.
+**Sem revisão jurídica.** Os textos não são parecer jurídico. O Gustavo decidiu, em 08/11/2026, dispensar a revisão por um advogado para abrir a família e amigos; a página deixou de dizer "rascunho".
 
 **Com o Gustavo, antes de mandar o link a qualquer pessoa** (preencha aqui):
-- [x] **Teto de gasto: US$ 5 por mês** (decisão do Gustavo em 07/11/2026). Falta só confirmar que está ativo no console da Anthropic. Pela estimativa da frente E (até ~US$ 0,14 por envio de 5 fotos no Opus 5.5), dá **~35 envios de 5 fotos por mês**, ou mais com menos fotos por envio [estimativa; o eval mede o valor real]. Com 30 pessoas e 2 envios cada (~US$ 8), o teto pode chegar antes do fim do mês: aí a API recusa, o app mostra "Não foi possível analisar as fotos agora. Use a lista." e a lista funciona igual.
-- [ ] Um código de convite por pessoa em `CONVITES` (Vercel), definido em __/__/____.
-- [ ] `VITE_RESPONSAVEL` e `VITE_CONTATO_EMAIL` cadastrados na Vercel.
-- [ ] Revisão do advogado dos termos e da caixa da foto em __/__/____; o que mudou: ____.
+- [ ] **Teto de gasto: US$ 5 por mês** (decisão do Gustavo em 07/11/2026). Falta o Gustavo confirmar no console (platform.claude.com → Settings → Limits). Com a foto desligada, o gasto é zero até ela ser ligada. Pela estimativa da frente E (até ~US$ 0,14 por envio de 5 fotos no Opus 5.5), dá **~35 envios de 5 fotos por mês**, ou mais com menos fotos por envio [estimativa; o eval mede o valor real]. Com 30 pessoas e 2 envios cada (~US$ 8), o teto pode chegar antes do fim do mês: aí a API recusa, o app mostra "Não foi possível analisar as fotos agora. Use a lista." e a lista funciona igual.
+- [x] **A foto fica desligada por enquanto** (decisão do Gustavo em 08/11/2026): o app abre para família e amigos sem o reconhecimento pela foto, até haver um convite por pessoa. Sem `VITE_FOTO=ligada` no build, a tela da foto some, o pacote nem tem a chamada à API, e as telas dizem "nada sai do aparelho". Os testes ligam a foto (`playwright.config.ts`).
+- [ ] Depois: um código de convite por pessoa em `CONVITES` e `VITE_FOTO=ligada` na Vercel, para ligar a foto.
+- [ ] *(Opcional)* `VITE_RESPONSAVEL` e `VITE_CONTATO_EMAIL` na Vercel. Sem eles, os termos dizem que o responsável é "quem te mandou o link do app" e o "Avisar um problema" mostra um texto para copiar e mandar a essa pessoa.
+- [x] Revisão do advogado: **dispensada** pelo Gustavo (08/11/2026).
 - [ ] Teste num iPhone: o aviso de instalar, o ícone e se o app instalado começa vazio.
 - A triagem continua com as perguntas próprias, e a revisão por um CREF continua "de lado" (decisão de 01/11): **reavaliar antes de abrir o app a desconhecidos**, não para família e amigos.
 
