@@ -61,7 +61,7 @@ test('Meus dados: a última cópia, o armazenamento negado, os termos e o canal 
 
   await page.getByRole('link', { name: 'Termos de uso e privacidade' }).click();
   await expect(page.getByRole('heading', { name: 'Termos de uso e privacidade' })).toBeVisible();
-  await expect(page.getByText('Rascunho em revisão jurídica.', { exact: false })).toBeVisible();
+  await expect(page.getByText(/^Versão 1, de 07\/11\/2026\.$/)).toBeVisible();
   await expect(page.getByRole('heading', { name: 'A foto do equipamento' })).toBeVisible();
   await expect(page.getByRole('heading', { name: 'Seus direitos' })).toBeVisible();
   for (const tema of ['light', 'dark'] as const) {

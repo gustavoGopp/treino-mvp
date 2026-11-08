@@ -17,10 +17,10 @@ Ideias e requisitos para depois do MVP. Nada aqui entra sem passar pelo plano.
 
 ## Pendências do lado do Gustavo
 - **Antes de mandar o link a alguém (R5c, 07/11/2026; detalhes no devlog, "R5c"):**
-  - **Teto de gasto: US$ 5 por mês** (decidido em 07/11). Confirmar que está ativo no console da Anthropic.
-  - **Um código de convite por pessoa** na variável `CONVITES` da Vercel, para desligar só o que vazar; confirmar no devlog.
-  - **Advogado:** revisar `/termos` (`src/features/termos/Termos.tsx`) e a caixa da foto (`src/features/app/privacidade.tsx`); depois, `TERMOS_REVISADOS = true` e a revisão registrada no devlog.
-  - **Quem responde e o contato:** cadastrar na Vercel `VITE_RESPONSAVEL` (o nome) e `VITE_CONTATO_EMAIL` (o e-mail do canal). Sem elas, os termos mostram "a definir (rascunho)" e o "Avisar um problema" mostra o texto para copiar. Ficam fora do repositório de propósito.
+  - **Teto de gasto: US$ 5 por mês** (decidido em 07/11). Confirmar no console: platform.claude.com → Settings → Limits.
+  - **Ligar a foto, quando quiser:** um código de convite por pessoa em `CONVITES` e `VITE_FOTO=ligada` na Vercel, e um novo deploy. Até lá, a foto fica desligada (decisão de 08/11).
+  - *(Opcional)* **Quem responde e o contato:** `VITE_RESPONSAVEL` e `VITE_CONTATO_EMAIL` na Vercel. Sem eles, os termos apontam para quem mandou o link. Ficam fora do repositório de propósito.
+  - A revisão por um advogado foi **dispensada** pelo Gustavo em 08/11.
   - **No iPhone, uma vez:** abrir o link no Safari, ver o aviso de instalar, instalar e conferir se o app instalado começa vazio (o texto já diz "pode começar vazio" e manda exportar antes; não achei documento da Apple que confirme) e se o ícone novo aparece.
 - **Levar a `main` nova para o redesign.** A sessão de qualidade dos treinos foi para a `main` em 06/11 (`6cb49d5`). Colar `prompts/recado-redesign-qualidade-treinos.md` na sessão do redesign visual: o merge não tem conflito, e só o `fontes.json` precisa ser regerado.
 - **Sessão de desenvolvimento:** colar `prompts/sessao-desenvolvimento.md` numa sessão nova. Ela conduz os marcos R5a, R5-CL, R5d, R5-anim, R5b e R5c, um de cada vez, parando ao fim de cada um para a sua revisão (a sessão de próximos passos foi feita em 06–07/11; `revisoes/proximos-passos.md`, parte 3). O R5-anim pode correr numa sessão à parte, junto do R5d, com `prompts/sessao-r5-animacao-corpo-livre.md`.

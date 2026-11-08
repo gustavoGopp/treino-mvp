@@ -1,7 +1,7 @@
 import { useId, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { linkDoProblema, textoDoProblema } from '../../domain/dados';
-import { CONTATO_EMAIL } from './contato';
+import { CONTATO_EMAIL, FOTO_LIGADA } from './contato';
 import { Selo } from './ui';
 
 // Textos e peças da abertura para família e amigos (R5c): a foto (privacidade.foto) e o "Avisar um problema" (P5).
@@ -12,6 +12,7 @@ import { Selo } from './ui';
  * fica na tela da foto; o completo, nos termos.
  */
 export function TextoFotoCurto() {
+  if (!FOTO_LIGADA) return <>Nada sai do aparelho: por enquanto, o reconhecimento pela foto está desligado.</>;
   return (
     <>
       A única coisa que sai do aparelho é a foto do equipamento, se você usar: ela vai reduzida e sem a localização para a

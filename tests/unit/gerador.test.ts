@@ -332,7 +332,7 @@ describe('cortes respeitam a prioridade e avisam o que ficou de fora', () => {
         if ((p.volumeSemanal[m] ?? 0) < limiar) expect(nomes(p), `${v.nome} ${m}`).toContain(m);
       }
     }
-  });
+  }, 30_000); // percorre todas as variações do gerador: leva ~5 s nesta máquina (R5c, 08/11/2026)
   it('nenhum músculo desce do piso nos cortes de tempo (prioritário: mínimo do nível; demais: 4), salvo limite estrutural já presente antes do corte', () => {
     for (const v of variacoes) {
       const p = ok(v.perfil, v.inv);

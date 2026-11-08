@@ -25,5 +25,7 @@ export default defineConfig({
     command: 'npm run build && npm run preview -- --port 4173 --strictPort',
     url: 'http://localhost:4173',
     reuseExistingServer: !process.env.CI,
+    // A foto fica desligada na produção até haver um convite por pessoa (08/11/2026); os testes a ligam.
+    env: { VITE_FOTO: 'ligada' },
   },
 });
