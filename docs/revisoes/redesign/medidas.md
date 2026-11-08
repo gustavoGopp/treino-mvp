@@ -374,3 +374,56 @@ O guia não mudou neste lote. A queda de 90 para 86 é da medida: em 6 rodadas d
 - a tela do "sim" da saúde tem mais palavras, porque mostra a pergunta inteira em cada caixa (aprovado assim, para não perder o conteúdo);
 - o caminho item por item da Ana ficou 2 toques mais longo;
 - os 24 desenhos de equipamento que faltam continuam no lote 5, para a aprovação do Gustavo um a um.
+
+### Lote 5, Meus dados, Locais, Evolução, os desenhos do equipamento e o ícone do app (08/11/2026)
+Medidas em `docs/revisoes/redesign/lote-5/`: `base.json` e `medidas-{claro,escuro,pequeno}.json`. Imagens de antes e depois em `docs/img/redesign-lote-5-*.png`.
+
+**O que mudou:**
+- **Meus dados em 3 grupos de linhas de 56 px:**
+  - **Programa:** rotina e divisão, objetivo, algo a evitar, locais e o estilo do Boneco;
+  - **Cópia de segurança:** guardar e trazer uma cópia, em folhas;
+  - **Saúde:** refazer a triagem.
+
+  "Apagar todos os dados" fica por último e é confirmado num diálogo, o único do app. A versão do app continua no pé.
+- **Evolução e Locais:** mantêm a barra de baixo, com o pai aceso, e ganham "‹ Semana" e "‹ Meus dados" no alto, no lugar dos botões repetidos do pé. Nas páginas curtas, a barra fica no pé da tela.
+- **Os desenhos do equipamento foram refeitos do zero,** a pedido do Gustavo, em 3 rodadas:
+  - linha, com a pessoa ou preenchido;
+  - ilustração realista;
+  - pessoa e detalhes refinados, com e sem a pessoa.
+
+  Ele aprovou o estilo realista e escolheu "só o aparelho em todos": o uso fica no vídeo do guia.
+  - São 49 SVG próprios em `public/equipamento/` (cerca de 860 kB, 166 kB comprimidos), gerados por `scripts/design/redesign/desenhos-v2/todos.mjs`.
+  - Ficam fora da instalação do app e são guardados quando aparecem.
+  - No cartão, o desenho tem o dobro do tamanho de antes (112 × 84), num ladrilho claro nos dois temas.
+  - Os desenhos de linha antigos saíram do pacote de JavaScript.
+- **O ícone do app:** o halter inclinado em Giz e grafite, com os PNG de 192, 512 e 512 sangrado (maskable) e o de 180 para o iOS. O nome continua treino-mvp.
+
+**Critérios nas capturas** (6 personas, 114 telas por tema e tamanho): 0 toque abaixo de 44 px, 0 contraste baixo e 0 rolagem de lado. Os 7 cenários passam inteiros, inclusive as folhas e o diálogo de Meus dados, sem nenhuma pendência.
+
+| Tela (Ana, claro) | Lote 3 | Lote 5 |
+|---|---|---|
+| Meus dados | 111 palavras, 2,8 alturas de tela | **97 palavras, 1,2 tela** |
+| Meus dados a 360 px | 90 palavras, 3,5 telas | **74 palavras, 1,4 tela** |
+| Locais (Bruno) | 73 palavras, 1 tela | 72 palavras, 1 tela, agora com a barra |
+| Evolução | 50 palavras, 1 tela | 47 palavras, 1 tela, agora com a barra |
+| Equipamento, a lista da Ana | 50 palavras, 1,9 tela | 45 palavras, 2 telas (desenhos maiores) |
+
+**Lighthouse, com o app instalado:**
+
+| Rota | Desempenho (lote 3 → lote 5) | Acessibilidade | Bloqueio total (ms) |
+|---|---|---:|---:|
+| `/` (abre o programa) | 98 → 98 | 100 | 156 |
+| `/comecar/triagem` | 100 → 100 | 100 | 35 |
+| `/programa` | 98 → 96 | 100 | 242 |
+| `/guia/bulgaro` | 86 → 93 | 100 | 328 |
+| `/semana` | 100 → 100 | 100 | 22 |
+| `/dados` | 98 → 100 | 100 | 19 |
+
+Uma falha de acessibilidade apareceu na 1ª medição de Meus dados e foi corrigida antes do registro: o nome das linhas não batia com o texto visível.
+
+**O que não melhorou:**
+- os desenhos mais fracos, segundo a própria revisão:
+  - polia simples e puxador alto ficam pequenos no cartão;
+  - supino e desenvolvimento na máquina, extensora e flexora, e smith e rack se parecem no tamanho pequeno;
+  - a máquina de glúteo é genérica;
+- os 49 desenhos somam 860 kB, baixados aos poucos, quando cada um aparece.

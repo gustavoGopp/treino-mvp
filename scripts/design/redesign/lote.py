@@ -26,6 +26,11 @@ GRUPOS = {
         ('cadastro-escuro', 'escuro', ['cadastro/01-boas-vindas', 'cadastro/05d-equipamento-lista-ana']),
         ('cadastro-360', 'pequeno', ['cadastro/01-boas-vindas', 'cadastro/02-triagem']),
     ],
+    'lote-5': [
+        ('meus-dados-e-locais-claro', 'claro', ['ana/20-meus-dados', 'bruno/21-locais']),
+        ('evolucao-e-equipamento-claro', 'claro', ['ana/19-evolucao', 'cadastro/05d-equipamento-lista-ana']),
+        ('meus-dados-escuro', 'escuro', ['ana/20-meus-dados', 'cadastro/05b-equipamento-academia-completa']),
+    ],
     'lote-4': [
         ('inicio-claro', 'claro', ['ana/10-programa', 'bruno/10-programa']),
         ('fim-e-semana-claro', 'claro', ['ana/17-fim-do-treino', 'ana/18-semana']),

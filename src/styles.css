@@ -906,3 +906,6 @@ img.icone-eq{display:block;flex:none;object-fit:contain;background:#F5F3EF;borde
 .marcados img.icone-eq{width:64px;height:48px}
 .sugestao-foto img.icone-eq{width:4rem;height:3rem}
 .cartao-eq img.icone-eq{width:4rem;height:3rem}
+/* a barra de baixo fica no pé da tela também nas páginas curtas (Evolução com poucos treinos, Locais) */
+.wrap.com-nav{min-height:100dvh;padding-bottom:0}
+.wrap.com-nav > main{flex:1 0 auto}

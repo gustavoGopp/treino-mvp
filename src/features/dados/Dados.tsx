@@ -244,11 +244,11 @@ function LinhaDados({ titulo, children, para, aoTocar }: { titulo: string; child
   return (
     <li>
       {para ? (
-        <Link to={para} aria-label={titulo}>
+        <Link to={para}>
           {corpo}
         </Link>
       ) : (
-        <button type="button" aria-haspopup="dialog" aria-label={titulo} onClick={aoTocar}>
+        <button type="button" aria-haspopup="dialog" onClick={aoTocar}>
           {corpo}
         </button>
       )}
