@@ -108,3 +108,15 @@ Achados ao refazer a tela do treino. Nada disso mudou no lote, porque mexe no do
 - **Pedido 2 ao domínio, "Quando você costuma treinar?"** (aprovado em 06/11): pergunta opcional depois do 1º treino, para o início dizer "hoje é dia de treino" ou "próximo: sexta". Muda o estado guardado (versão 8, com migração e teste) e acrescenta uma função ao domínio. Ficou fora do lote 4 para ter uma parada própria: antes, lembrar de exportar os dados ("Meus dados" → "Guardar uma cópia").
 - **O fim do treino com sugestão de semana leve** é a tela mais longa do grupo (cerca de 100 palavras à vista). Uma ideia: a oferta da semana leve no fim do treino em 1 linha, como no início, com o bloco numa folha.
 
+## Do redesign, lotes 3 e 5 (08/11/2026)
+- **Desenhos do equipamento que se confundem no tamanho do cartão** (`scripts/design/redesign/desenhos-v2/`):
+  - supino × desenvolvimento na máquina, extensora × flexora e smith × rack;
+  - polia simples e puxador alto ficam pequenos;
+  - a máquina de glúteo é genérica, a corda parece um garfo e o hack não tem a versão pendular.
+
+  Refazer quando o Gustavo apontar quais incomodam no uso.
+- **O caminho "Item por item" do equipamento** ficou 2 toques mais longo para a Ana (abrir a lista, a categoria "Bancos", o "Pronto" dos halteres). Uma ideia: a categoria abrir pelo 1º item ainda não marcado. Medir com a cronometragem do Gustavo antes de mudar.
+- **Pedido 4 ao domínio, o resumo curto da calibração:** ficou de fora, por decisão do Gustavo em 06/11. O protótipo resolve sem ele.
+- **Tema claro ou escuro escolhido no app:** hoje o app segue o tema do celular. O protótipo tinha a linha "Tema"; ela só entra como função nova.
+- **O nome do app** continua treino-mvp até a validação com usuários (decisão de 06/11). O ícone novo já entrou.
+

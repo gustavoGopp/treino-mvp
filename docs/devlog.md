@@ -940,3 +940,104 @@ As listas exatas ficam em `tests/unit/metas-r0.test.ts`, para o R0c zerar.
 > O detalhe que mais me ensinou: um rótulo de texto em cima do corpo atrapalha mais do que ajuda. A regra nova empurra o rótulo para o lugar livre mais perto, com uma linha fina até o ponto, e mantém o deslocamento fixo no ciclo inteiro, para ele não pular de lado quando a animação roda.
 >
 > Com isso, saíram as doze animações do elástico que esperavam na fila, cada uma com a folha de contatos, a medida em centímetros e a tabela "o que a fonte pede × o que o boneco faz". O elástico afina quando estica: dá para ver onde a tensão está.
+
+---
+
+## Redesign visual: o app inteiro refeito, tela por tela, com medida antes e depois (05 a 08/11/2026)
+
+**Por quê.** O app já tinha passado por duas rodadas de design (03/11), que zeraram as falhas de toque e contraste, mas ainda era a estrutura antiga com uma pintura nova. O Gustavo pediu o melhor app possível para quem usa, sem compromisso com o visual de antes: estrutura, navegação, cor, letra e componentes podiam mudar. O que não podia mudar ficou escrito antes de começar:
+- o Boneco e o motor;
+- a evidência visível;
+- a segurança à mão;
+- a LGPD;
+- o uso na academia;
+- o domínio;
+- poucas dependências;
+- motivação sem culpa.
+
+O plano, as decisões e as medidas estão em `docs/revisoes/redesign/` (`proposta.md`, `medidas.md`).
+
+**Como foi feito.**
+- **Fases 1 a 4, a proposta:**
+  - **Pesquisa:** 5 agentes pesquisaram em paralelo (retenção, cadastro, treino ao vivo, organização, cor), e um 6º, o crítico, conferiu tudo sem ver a minha síntese.
+  - **Protótipo:** um protótipo navegável nos 2 temas, com o Boneco real.
+  - **Decisão:** uma tabela item a item. O Gustavo aprovou os 36 itens recomendados, escolheu a cor "Giz e grafite" e, depois do 1º lote, pediu **menos informação na tela**: a explicação e a fonte ficam a um toque, num "por quê?".
+- **Fase 5, a implementação, em 6 lotes.** Cada lote teve medidas antes e depois e uma parada para ele olhar no celular:
+  1. base visual;
+  2. desempenho;
+  3. treino e guia;
+  4. início, fim e semana;
+  5. cadastro;
+  6. Meus dados, desenhos e ícone.
+
+**O que mudou para quem usa**
+- **Treino:**
+  - "Senti algo" sempre à vista, no cabeçalho;
+  - o descanso no alto, com a série seguinte inteira à vista;
+  - "Desfazer" por 5 s depois de salvar;
+  - o painel da série preso embaixo, com números legíveis de longe;
+  - anterior, próximo, trocar e terminar no "⋯", e terminar pede confirmação;
+  - a tela acesa o treino todo;
+  - a sugestão do dia em 1 linha, com o motivo no "por quê?".
+- **Guia:**
+  - o palco no topo e a nota de segurança em todos os modos;
+  - o motor do Boneco num Worker, sem travar a tela: a nota de desempenho do guia foi de 70 para 93 a 96.
+- **Início:**
+  - o cartão "Hoje" e um aviso por vez;
+  - a volta depois de faltar vira o próprio cartão;
+  - a lista com o nome e "4 × 8–12", e o resto numa folha;
+  - "Começar o treino" sempre à vista.
+- **Fim do treino:** primeiro "O que mudou hoje", com a semana, os recordes do dia e as cargas que sobem. A função nova `marcasDaSessao` e `marcasDaSemana`, aprovada pelo Gustavo, foi testada com o caso E1.
+- **Semana e evolução:**
+  - na semana, os seus números antes das sugestões, com a meta tracejada na barra de cada músculo;
+  - na evolução, o resumo em 1 linha.
+- **Cadastro:** de 6 para 5 telas.
+  - A boas-vindas nova, "Treine onde estiver, com o que tiver", com os 4 lugares e o aviso inteiro antes do botão.
+  - A saúde em uma pergunta, com a frase do PAR-Q+, as perguntas inteiras a um toque e a confirmação das não marcadas.
+  - O objetivo e "algo a evitar" foram para Meus dados.
+  - O equipamento começa pelo lugar e tem uma lista com busca, categorias e "tenho".
+- **Meus dados:** 3 grupos de linhas, e "Apagar" confirmado num diálogo.
+- **Desenhos e ícone:**
+  - os **49 desenhos de equipamento refeitos em ilustração realista**, em 3 rodadas com o Gustavo; ficou "só o aparelho" nos cartões, porque o uso fica no vídeo do guia;
+  - **o ícone do app novo**: o halter inclinado em Giz e grafite.
+
+![Início antes × depois](img/redesign-lote-4-inicio-claro.png)
+![Série e descanso antes × depois](img/redesign-lote-2-serie-e-descanso-claro.png)
+![Boas-vindas e saúde antes × depois](img/redesign-lote-3-boas-vindas-e-saude-claro.png)
+![Os 49 desenhos de equipamento](img/redesign-lote-5-desenhos-49-2.png)
+
+**Medido** (Ana, Pixel 7; o detalhe por lote está em `revisoes/redesign/medidas.md`):
+
+| Medida | Antes (06/11) | Depois (08/11) |
+|---|---:|---:|
+| Desempenho no Lighthouse, app instalado (6 rotas) | 59 a 71 | 93 a 100 |
+| Bloqueio da tela, app instalado | 2,7 a 5,1 s | 0,02 a 0,33 s |
+| Acessibilidade no Lighthouse | 93 a 100 | 100 em todas |
+| JavaScript da 1ª tela, comprimido | 269 kB (o app inteiro) | 147 kB |
+| Pedidos externos na 1ª visita | 3 (a letra) | 0 (a letra é servida pelo app) |
+| Palavras à vista no início | 116 | 66 |
+| Palavras à vista na série | 73 | 61 |
+| Palavras à vista na boas-vindas | 177 | 74 |
+| "Começar o treino" à vista sem rolar | não, em 8 de 10 estados | sim |
+| Telas do cadastro | 6 | 5 |
+| Toques do cadastro, sem o equipamento | 13 | 11 |
+| Alturas de tela: equipamento com "academia completa" | 8,1 | 1,9 |
+| Alturas de tela: Meus dados | 2,8 | 1,2 |
+| Toque < 44 px, contraste baixo e rolagem de lado (342 telas) | 0 | 0 |
+| Texto cortado e foco coberto, 7 tamanhos de tela (incluindo 320 px, zoom de 200% e letra a 125%) | 13 combinações pendentes | 0 pendentes |
+
+Os testes passaram de 647 para 662 unitários e de 46 para 113 de ponta a ponta. `src/engine/` não mudou nenhum byte, e a linha de base do Boneco continua igual.
+
+**O que não melhorou ou ficou para depois** (`backlog.md`):
+- **Equipamento item por item:** o caminho da Ana por "Item por item" ficou 2 toques mais longo.
+- **Desenhos que se confundem no tamanho pequeno:** supino × desenvolvimento, extensora × flexora, smith × rack.
+- **"Quando você costuma treinar?"** (estado novo, versão 8) espera uma parada própria.
+- **2 achados do domínio, para decisão do Gustavo:** a nota de dor do "Senti algo" não é gravada na série, e o passo de 2,5 kg da barra ignora a menor anilha.
+- **Cronometragem:** a do cadastro no celular, feita pelo Gustavo, ainda não foi registrada.
+
+**Rascunho de post para o LinkedIn**
+> Refiz o meu app de treino inteiro em quatro dias, tela por tela, e a regra que mais mudou o resultado não foi de cor nem de letra: foi "uma tela, uma coisa principal". Depois do primeiro lote, eu mesmo achei que tinha informação demais. A fonte de cada regra continua a um toque, num "por quê?", mas sai da frente. O início caiu de 116 para 66 palavras, e o botão de começar o treino, que ficava fora da tela em 8 de 10 situações, agora está sempre à vista.
+>
+> O ganho que eu não esperava veio do desempenho. O app parecia leve, mas travava a tela por até 5 segundos num celular simulado mais lento: o motor que desenha o boneco rodava junto com a interface. Ele foi para um processo separado, e a nota de desempenho saiu de 59–71 para 93–100.
+>
+> E um aprendizado de produto: os desenhos dos aparelhos precisaram de três rodadas. O ícone bonito não basta se quem não conhece o leg press não reconhece o leg press. No fim, ficou a ilustração realista, só do aparelho, porque o vídeo do guia já mostra como usar.
