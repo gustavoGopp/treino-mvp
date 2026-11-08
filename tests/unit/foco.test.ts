@@ -36,14 +36,16 @@ describe('a meta do foco (volume.semanal.alvo)', () => {
 });
 
 describe('o foco usa o tempo primeiro (volume.prioridade.foco-primeiro)', () => {
-  it('o caso que motivou o R5d (sem nada, foco nos superiores, 60 min): peito e tríceps acima das pernas, que ficam no piso', () => {
+  it('o caso que motivou o R5d (sem nada, foco nos superiores, 60 min): peito e tríceps pelo menos 4 séries acima das pernas', () => {
     for (const dias of [3, 4] as const) {
       const v = ok({ ...gael.perfil, diasSemana: dias, divisao: OPCOES_POR_DIAS[dias][0] }, gael.inventario).volumeSemanal;
       for (const foco of ['peito', 'triceps'] as Musculo[])
         for (const outro of ['quadriceps', 'posteriores'] as Musculo[]) expect(v[foco] ?? 0, `${dias} dias: ${foco} × ${outro}`).toBeGreaterThan(v[outro] ?? 0);
+      // Os outros usam o tempo que o foco não usa, mas ficam bem abaixo do foco (no tempo que sobra, até 6 séries abaixo do
+      // foco mais fraco; o que já vem da estrutura do programa pode ficar um pouco acima disso).
       for (const outro of ['quadriceps', 'posteriores'] as Musculo[]) {
         expect(v[outro] ?? 0, `${dias} dias: ${outro}`).toBeGreaterThanOrEqual(VOLUME.minimoEficazPiso);
-        expect(v[outro] ?? 0, `${dias} dias: ${outro}`).toBeLessThanOrEqual(VOLUME.minimoEficaz + 2);
+        expect(Math.min(v.peito ?? 0, v.triceps ?? 0) - (v[outro] ?? 0), `${dias} dias: ${outro}`).toBeGreaterThanOrEqual(4);
       }
     }
   });
@@ -57,7 +59,7 @@ describe('o foco usa o tempo primeiro (volume.prioridade.foco-primeiro)', () => 
       (Object.keys(GRUPOS) as Grupo[]).flatMap((g) => ok({ ...x.perfil, prioridades: [g] }, x.inventario).porque.filter((q) => q.regraId === 'tempo.sobra-series').map((q) => q.texto)),
     );
     // Com foco sem exercício possível (costas sem nada para puxar), o tempo segue para todos, como sem foco.
-    const doFoco = textos.filter((t) => /virou série para o foco, até ~\d+ séries por semana; os outros músculos ficam com ~6\./.test(t));
+    const doFoco = textos.filter((t) => /virou série primeiro para o foco \(até ~\d+ séries por semana\) e só depois para os outros músculos, que ficam pelo menos 6 séries abaixo do foco\./.test(t));
     expect(doFoco.length).toBeGreaterThan(0);
     for (const t of textos) expect(t).toMatch(/para o foco|sobem até ~\d+ séries/);
   });

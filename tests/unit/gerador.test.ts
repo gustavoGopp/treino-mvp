@@ -118,7 +118,7 @@ describe('cenário 2: só halteres e banco (Ana)', () => {
 describe('cenário 3: casa com elásticos e barra fixa (Diego)', () => {
   const p = ok(diego.perfil, diego.inventario);
   it('usa barra fixa, elásticos e peso do corpo; avisa sobre pernas', () => {
-    expect(ids(p)).toContain('barra-fixa');
+    expect(ids(p)).toContain('barra-fixa-negativa'); // R5d: o iniciante recebe a barra só na descida (selecao.barra-negativa-iniciante)
     expect(ids(p).every((id) => ['elastico', 'peso-corpo', 'halter'].includes(POR_ID[id]!.carga))).toBe(true);
     expect(p.avisos.map((a) => a.regraId)).toContain('equipamento.escada-carga-leve');
   });
