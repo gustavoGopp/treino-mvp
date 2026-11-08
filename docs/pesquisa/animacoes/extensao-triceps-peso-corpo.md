@@ -1,10 +1,10 @@
 # Extensão de tríceps com o peso do corpo (`extensao-triceps-peso-corpo`)
 
-Exercício da biblioteca ampliada: `extensao-triceps-peso-corpo` (proposto em `../../pesquisa-v2/16-corpo-livre-e-casa.md`, parte de empurrar; entra na biblioteca no R5-CL). Tríceps, novo nível 3 da vaga do tríceps acima da cabeça, depois do `triceps-suspensao`. Nos programas sem dor, aparece em **59,4%** (`../../revisoes/proximos-passos/g-biblioteca-ampliada.md`, seção 4). Ficha escrita no R5-anim (08/11/2026); **em revisão** até o "aprovar" do Gustavo na folha.
+Exercício da biblioteca ampliada: `extensao-triceps-peso-corpo` (proposto em `../../pesquisa-v2/16-corpo-livre-e-casa.md`, parte de empurrar; entra na biblioteca no R5-CL). Tríceps, novo nível 3 da vaga do tríceps acima da cabeça, depois do `triceps-suspensao`. Nos programas sem dor, aparece em **59,4%** (`../../revisoes/proximos-passos/g-biblioteca-ampliada.md`, seção 4). Ficha escrita no R5-anim (08/11/2026). **Aprovada** pelo Gustavo em 08/11/2026, com a bancada (folha `docs/revisoes/r5-anim/folhas/extensao-triceps-peso-corpo.png`); entra no app quando o R5-CL puser o exercício na biblioteca.
 
 - **Animação:** `extensao-triceps-peso-corpo`, em `src/engine/exercicios/revisao/` (fora do app até a aprovação).
 - **O que o boneco mostra:** o degrau 0 da escada proposta em `16` (mãos numa bancada ou pia da cozinha, ~90 cm). Os outros apoios (a parede, mais fácil; um degrau, o chão de joelhos, mais difíceis) ficam no texto.
-- **Base aprovada:** o corpo em prancha inclinada, o ciclo e os 3 erros do `triceps-suspensao`, com as mãos paradas num apoio fixo. A bancada é desenhada com a mesma caixa do degrau e da parede (BOX), com 90 cm de altura: nenhum desenho novo no motor, mas é um objeto novo na cena (pergunta ao Gustavo na folha).
+- **Base aprovada:** o corpo em prancha inclinada, o ciclo e os 3 erros do `triceps-suspensao`, com as mãos paradas num apoio fixo. A bancada é desenhada com a mesma caixa do degrau e da parede (BOX), com 90 cm de altura: nenhum desenho novo no motor, mas é um objeto novo na cena, aprovado pelo Gustavo em 08/11.
 
 ## Técnica animada
 | Ponto | O que a animação mostra | Selo | Fonte |
