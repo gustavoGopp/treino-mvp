@@ -23,3 +23,13 @@ test('passos do onboarding não podem ser pulados', async ({ page }) => {
   await page.goto('/programa');
   await expect(page).toHaveURL(/\/$/);
 });
+
+test('lote 5: o manifest tem os ícones que o Android pede (192, 512 e o maskable) e os arquivos existem', async ({ page, request }) => {
+  await page.goto('/');
+  const href = await page.locator('link[rel="manifest"]').getAttribute('href');
+  const manifest = await (await request.get(href!)).json();
+  const icones = manifest.icons as { src: string; sizes: string; purpose: string }[];
+  expect(icones.map((i) => `${i.sizes} ${i.purpose}`)).toEqual(expect.arrayContaining(['192x192 any', '512x512 any', '512x512 maskable']));
+  for (const i of icones) expect((await request.get(i.src)).status()).toBe(200);
+  expect((await request.get('/apple-touch-icon.png')).status()).toBe(200);
+});

@@ -28,8 +28,8 @@ export default defineConfig(({ mode }) => ({
     react(),
     VitePWA({
       registerType: 'autoUpdate',
-      includeAssets: ['icon.svg', 'fonts/OFL.txt'],
-      workbox: { globPatterns: ['**/*.{js,css,html,svg,woff2}'] },
+      includeAssets: ['icon.svg', 'apple-touch-icon.png', 'fonts/OFL.txt'],
+      workbox: { globPatterns: ['**/*.{js,css,html,svg,png,woff2}'] },
       manifest: {
         name: 'treino-mvp',
         short_name: 'Treino',
@@ -39,7 +39,14 @@ export default defineConfig(({ mode }) => ({
         display: 'standalone',
         background_color: '#F5F3EF',
         theme_color: '#F5F3EF',
-        icons: [{ src: 'icon.svg', sizes: 'any', type: 'image/svg+xml', purpose: 'any maskable' }],
+        // lote 5 do redesign: o halter inclinado em Giz e grafite (scripts/design/redesign/icones-app.mjs); "any" e
+        // "maskable" em arquivos separados, como o Chrome pede
+        icons: [
+          { src: 'icon-192.png', sizes: '192x192', type: 'image/png', purpose: 'any' },
+          { src: 'icon-512.png', sizes: '512x512', type: 'image/png', purpose: 'any' },
+          { src: 'icon-maskable-512.png', sizes: '512x512', type: 'image/png', purpose: 'maskable' },
+          { src: 'icon.svg', sizes: 'any', type: 'image/svg+xml', purpose: 'any' },
+        ],
       },
     }),
   ],
