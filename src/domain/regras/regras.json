@@ -32,9 +32,9 @@
   },
   {
     "id": "volume.semanal.alvo",
-    "regra": "Alvo semanal padrão dos músculos prioritários. É foco com manutenção: os outros músculos ficam no mínimo eficaz e continuam crescendo, mais devagar; o texto do app diz isso (decisão do Gustavo em 06/11/2026, sessão de qualidade dos treinos)",
+    "regra": "Alvo semanal padrão dos músculos prioritários. É foco com manutenção: os outros músculos ficam no mínimo eficaz e continuam crescendo, mais devagar; o texto do app diz isso (decisão do Gustavo em 06/11/2026, sessão de qualidade dos treinos). **No R5d (08/11/2026), o iniciante foi de 8 para 10:** o 8 era convenção (nenhuma fonte valida volumes por nível, `01-volume-frequencia.md`, item 8), e com ele o foco quase não aparecia, 8 contra os 6 dos outros (régua da G5, C2: 38,5% dos programas do iniciante com foco); 10 é o topo da faixa do iniciante (6–10), a curva de dose-resposta (10 ou mais rendem mais que menos de 10) é robusta e inclui não treinados (`volume.semanal.dose-resposta`), e o começo leve do iniciante serve para passar pela fase de dano muscular, não porque ele cresça com menos (`pesquisa-v2/06`), o que a fase de aprendizado já cobre (`iniciante.fase-aprendizado`, que segue com 3/4 das séries). Medido: o foco invisível do iniciante cai de 21,9% para 15,5% (com as outras regras do R5d), sem piorar nenhum defeito",
     "valores": {
-      "iniciante": "8",
+      "iniciante": "10",
       "intermediario": "12",
       "avancado": "14"
     },
@@ -60,6 +60,41 @@
       "consenso-projeto",
       "remmert2025",
       "pelland2026"
+    ]
+  },
+  {
+    "id": "volume.prioridade.foco-primeiro",
+    "regra": "O foco usa o tempo primeiro (R5d, 08/11/2026; decisão do Gustavo em 07/11, `docs/revisoes/proximos-passos.md`, parte 3; régua da G5, nota C2): quando a pessoa tem um grupo de foco com exercício possível, o tempo que sobra (`tempo.sobra-series`) vai só para os músculos do foco, até a meta; os outros ficam na meta deles, o mínimo eficaz (`volume.semanal.minimo-eficaz`), e não sobem junto até o alvo do nível. A exceção é o equilíbrio do ombro: enquanto empurrar ÷ puxar passar de 1,5, as costas e o ombro de trás sobem como antes (régua da G5, D1; `kolber2010`). Nos cortes de tempo (`tempo.corte`), os isoladores de quem não é foco já saem antes. Sem foco possível (por exemplo, foco nas costas sem nada para puxar), o tempo que sobra continua indo para todos. Os outros continuam crescendo com 4 a 6 séries, mais devagar (moderada, `schoenfeld2017a`, `iversen2021`); usar o tempo assim é escolha do projeto (\"foco com manutenção\", 06/11; \"usar todo o tempo para todos\", E-c, descartado em 07/11)",
+    "valores": {
+      "iniciante": "sobra: o foco até 10; os outros na meta",
+      "intermediario": "sobra: o foco até 12; os outros na meta",
+      "avancado": "sobra: o foco até 14; os outros na meta"
+    },
+    "selo": "consenso",
+    "fontes": [
+      "consenso-projeto",
+      "schoenfeld2017a",
+      "pelland2026",
+      "iversen2021",
+      "kolber2010"
+    ]
+  },
+  {
+    "id": "volume.prioridade.segundo-exercicio",
+    "regra": "O 2º exercício do foco (R5d, 08/11/2026; `docs/revisoes/proximos-passos/a-qualidade.md`, D-4c): o músculo do foco que, com as séries distribuídas (até 4 por exercício e 10 por sessão), fica abaixo da meta ganha 1 exercício de outra função do mesmo músculo (outra função que o dia não tem, e de preferência que o programa ainda não tem), num dia que treina esse músculo ou, sem isso, a mesma região (inferior ou superior; nunca panturrilha num dia de superiores), dentro dos exercícios que cabem nos minutos (`tempo.exercicios-por-sessao`), do teto da sessão e do teto semanal. Funções diferentes crescem regiões diferentes do músculo (moderada); o número e a escolha do dia são consenso, e o selo da linha é o deles (o mais fraco, `00-metodo.md`)",
+    "valores": {
+      "iniciante": "1 exercício a mais por músculo do foco abaixo da meta",
+      "intermediario": "1 exercício a mais por músculo do foco abaixo da meta",
+      "avancado": "1 exercício a mais por músculo do foco abaixo da meta"
+    },
+    "selo": "consenso",
+    "fontes": [
+      "fonseca2014",
+      "costa2021",
+      "zabaletakorta2021",
+      "kassiano2025var",
+      "kassiano2022",
+      "remmert2025"
     ]
   },
   {
@@ -822,7 +857,7 @@
     "id": "iniciante.fase-aprendizado",
     "regra": "Fase de aprendizado do iniciante",
     "valores": {
-      "iniciante": "2–3 semanas com RIR 3–4, volume no mínimo da faixa e foco técnico; carga sobe quando a técnica estiver estável",
+      "iniciante": "2–3 semanas com RIR 3–4, volume no mínimo da faixa (3/4 das séries do programa: 6 de 8; com o foco a 10 desde o R5d, o foco fica com ~7,5) e foco técnico; carga sobe quando a técnica estiver estável",
       "intermediario": "não se aplica (usa `readaptacao.*` se houver pausa)",
       "avancado": "não se aplica (usa `readaptacao.*` se houver pausa)"
     },
@@ -1846,11 +1881,11 @@
   },
   {
     "id": "tempo.sobra-series",
-    "regra": "Séries no tempo que sobra (sessão de qualidade dos treinos, decisão do Gustavo em 06/11/2026): nos dias que têm vaga sem exercício possível por equipamento, as séries dos exercícios do dia sobem até o alvo do nível em cada músculo com meta (o abdômen não prioritário fica na meta dele), enquanto o dia couber nos minutos; o músculo mais longe da meta vem primeiro, e nunca passa de 4 séries por exercício, 10 por músculo na sessão, 20 na semana nem, num músculo que não é prioridade, do máximo do nível (`volume.semanal.maximo`). A direção (mais séries, mais crescimento, com retorno decrescente) é robusta; usar o tempo que sobra assim é escolha do projeto",
+    "regra": "Séries no tempo que sobra (sessão de qualidade dos treinos, decisão do Gustavo em 06/11/2026): nos dias que têm vaga sem exercício possível por equipamento, as séries dos exercícios do dia sobem até o alvo do nível em cada músculo com meta (o abdômen não prioritário fica na meta dele), enquanto o dia couber nos minutos; o músculo mais longe da meta vem primeiro, e nunca passa de 4 séries por exercício, 10 por músculo na sessão, 20 na semana nem, num músculo que não é prioridade, do máximo do nível (`volume.semanal.maximo`). Desde o R5d (08/11/2026; `volume.prioridade.foco-primeiro`), com um grupo de foco possível, só o foco sobe (até a meta dele) e os outros ficam na meta deles; sem foco, todos sobem como antes. A direção (mais séries, mais crescimento, com retorno decrescente) é robusta; usar o tempo que sobra assim é escolha do projeto",
     "valores": {
-      "iniciante": "até 8 por músculo",
-      "intermediario": "até 12 por músculo",
-      "avancado": "até 14 por músculo"
+      "iniciante": "sem foco, até 8 por músculo; com foco, o foco até 10",
+      "intermediario": "sem foco, até 12 por músculo; com foco, o foco até 12",
+      "avancado": "sem foco, até 14 por músculo; com foco, o foco até 14"
     },
     "selo": "consenso",
     "fontes": [
