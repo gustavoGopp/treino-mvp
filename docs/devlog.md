@@ -1046,7 +1046,7 @@ E o do app, para a Ana (halteres e banco, 3 × 45 min, foco nas pernas): "Está 
 
 ![A dobra "Como está o seu programa"](img/r5b-como-esta.png)
 
-**Também:** a flexão (ou o supino reto, ou a remada) em duas vagas conta como 2 funções quando é o que a tabela escolhe para a outra vaga com aquele equipamento; contar 1 marcaria um terço dos programas com "uma função só", metade sem nada a fazer. Gerar um programa ficou ~1,6× mais lento (o gerador consulta o avaliador para os avisos). `npm run check` com 744 testes; 48 de ponta a ponta.
+**Também:** a flexão (ou o supino reto, ou a remada) em duas vagas conta como 2 funções quando é o que a tabela escolhe para a outra vaga com aquele equipamento; contar 1 marcaria um terço dos programas com "uma função só", metade sem nada a fazer. Gerar um programa ficou ~1,6× mais lento (o gerador consulta o avaliador para os avisos). `npm run check` com 730 testes (eram 670); 48 de ponta a ponta; `auditoria:verificar` idêntica nas duas rodadas, e na grade inteira (911.625 programas, com dor) 87,1% "está bom" ou "só limite", sem nenhum suspeito antigo pior.
 
 **Fica para depois** (`backlog.md`, "Do R5b"): o "monte o seu treino" (rascunho em `prompts/sessao-monte-o-seu.md`, com a versão do estado combinada com o redesign); os "ajustar" que o gerador ainda produz com 30 min (uma função só, a coxa, empurrar ÷ puxar), que o R5a e o R5-CL corrigem; a faixa "versão nova" que aparece quando só o texto muda.
 
