@@ -122,7 +122,12 @@ test('"sim" só no osteoarticular pede as regiões e a dor de hoje, e o aviso di
       await expect(p.getByRole('heading', { name: 'Sua experiência com musculação' })).toBeVisible();
     },
   });
-  // "Restrições" não pergunta a dor de novo: só mostra o resumo (o teste passou por ela).
+  // lote 3 do redesign: o resumo da dor da triagem é o 1º aviso do programa novo, com o selo, até o 1º treino
+  await expect(page.locator('.aviso-linha')).toContainText('Pela triagem: ombro (dor 7 hoje).');
+  const avisos = await verAvisos(page);
+  await expect(avisos.getByRole('region', { name: /Pela triagem/ })).toContainText('Ombro, dor 7 hoje: os exercícios que carregam a região ficam de fora.');
+  await expect(avisos.getByRole('region', { name: /Pela triagem/ }).locator('.selo')).toBeVisible();
+  await page.keyboard.press('Escape');
   await sobreOPrograma(page);
   await expect(page.getByText(/peito 0 de \d+ séries por semana\. Os exercícios que carregam o ombro saíram por causa da dor no ombro \(7 hoje\)/)).toBeVisible();
   await expect(page.getByText(/Procure avaliação profissional\. Quando a dor baixar/)).toBeVisible();

@@ -5,7 +5,8 @@ import { ALTERNATIVAS_A_MOSTRA, NOME_MUSCULO, ehAvisoDeMeta, type DiaPrograma, t
 import { mensagemDeVolta, type MensagemDeVolta } from '../../domain/acompanhamento/volta';
 import { opcoesDeAjuste, type Opcao } from '../../domain/gerador/opcoes';
 import { NOME_NIVEL } from '../../domain/nivel';
-import { avaliarTriagem } from '../../domain/triagem';
+import { avaliarTriagem, efeitoDaDor } from '../../domain/triagem';
+import { EFEITO_DA_DOR, NOME_ARTICULACAO } from '../onboarding/articulacoes';
 import { proximoDia, treinoFeito } from '../../domain/sessao';
 import { linkDoGuia } from '../guia/link';
 import { inventarioPrincipal, localDoTreino, perfilDe, primeiroPassoPendente, type Estado } from '../../storage/esquema';
@@ -128,6 +129,33 @@ export function Programa() {
   // sempre) e, embaixo, os outros. No dia da volta de uma pausa, a volta é a mensagem do dia (só a versão nova fica).
   const leve = estado.sessaoAtual ? null : semanaLeveDoEstado(estado, agora, fuso);
   const fila: AvisoDaFila[] = [];
+  // O resumo da dor da triagem (seguranca.dor.programa; lote 3 do redesign: saiu com o "Tudo certo?"): o 1º aviso do
+  // programa novo, até o 1º treino. Depois ele segue nos avisos do programa, em "Sobre o programa".
+  const doresTriagem = estado.triagem?.dores ?? [];
+  if (doresTriagem.length && !estado.historico.some(treinoFeito))
+    fila.push({
+      id: 'dor-triagem',
+      linha: `Pela triagem: ${doresTriagem.map((d) => `${NOME_ARTICULACAO[d.articulacao].toLowerCase()}${d.nota === undefined ? '' : ` (dor ${d.nota} hoje)`}`).join(', ')}.`,
+      bloco: (
+        <section className="box" aria-labelledby="dor-triagem">
+          <h2 id="dor-triagem">
+            Pela triagem <Selo id="seguranca.dor.programa" />
+          </h2>
+          <ul className="lista">
+            {doresTriagem.map((d) => (
+              <li key={d.articulacao}>
+                {NOME_ARTICULACAO[d.articulacao]}, {d.nota === undefined ? 'sem a nota de hoje' : `dor ${d.nota} hoje`}: {EFEITO_DA_DOR[efeitoDaDor(d.nota)]}.
+              </li>
+            ))}
+          </ul>
+          {doresTriagem.some((d) => d.nota === undefined) && (
+            <p className="ajuda">
+              Para dar a nota de hoje, volte à <Link to="/comecar/triagem">triagem</Link>.
+            </p>
+          )}
+        </section>
+      ),
+    });
   if (versaoNova)
     fila.push({
       id: 'versao',

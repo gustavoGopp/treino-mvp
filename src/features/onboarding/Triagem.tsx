@@ -13,15 +13,8 @@ import { Folha } from '../app/Folha';
 // condições em poucas palavras: "Não, nenhuma" marca "não" em todas; "Sim, alguma (ou não tenho certeza)" leva a marcar
 // só as que valem, com a pergunta inteira, e a confirmar as não marcadas (seguranca.triagem.nenhuma).
 
-export const NOME_ARTICULACAO: Record<Articulacao, string> = {
-  ombro: 'Ombro',
-  cotovelo: 'Cotovelo',
-  punho: 'Punho',
-  lombar: 'Lombar',
-  quadril: 'Quadril',
-  joelho: 'Joelho',
-  tornozelo: 'Tornozelo',
-};
+export { NOME_ARTICULACAO } from './articulacoes';
+import { NOME_ARTICULACAO } from './articulacoes';
 
 const NOTAS = Array.from({ length: 11 }, (_, i) => ({ id: i, texto: String(i) }));
 const artigo = (a: Articulacao) => (a === 'lombar' ? 'na' : 'no');
