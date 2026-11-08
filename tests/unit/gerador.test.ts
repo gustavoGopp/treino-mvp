@@ -718,7 +718,8 @@ describe('abdômen e panturrilha (tempo.musculo-protegido; selecao.abdomen-prior
     }
   });
   it('o exercício que entrou para proteger diz por quê', () => {
-    const p = ok(ana.perfil, ana.inventario);
+    // A Ana com 30 min (com 45, desde o R5d, o abdômen dela entra pela vaga comum).
+    const p = ok({ ...ana.perfil, minutosSessao: 30 }, ana.inventario);
     expect(p.dias.flatMap((d) => d.exercicios).some((x) => x.porque.some((q) => q.regraId === 'tempo.musculo-protegido'))).toBe(true);
   });
   it('com o abdômen como prioridade, os dias de superior, empurrar e pernas B ganham uma vaga de abdômen', () => {
@@ -758,11 +759,11 @@ describe('equilíbrio da coxa e o ajuste de 30 min (volume.equilibrio-coxa; temp
       expect(ids(p).some((id) => ['flexao-joelho', 'dobrar-quadril'].includes(POR_ID[id]!.padrao)), v.nome).toBe(true);
     }
   });
-  it('com 30 min, o exercício protegido fica com 2 séries', () => {
+  it('com 30 min, o exercício protegido fica com 2 séries (salvo o do foco: volume.prioridade.foco-primeiro, R5d)', () => {
     let vistos = 0;
     for (const v of grade.filter((x) => x.perfil.minutosSessao === 30))
       for (const x of ok(v.perfil, v.inv).dias.flatMap((d) => d.exercicios))
-        if (x.porque.some((q) => q.regraId === 'tempo.musculo-protegido')) {
+        if (x.porque.some((q) => q.regraId === 'tempo.musculo-protegido') && !POR_ID[x.exId]!.musculos.primarios.some((m) => v.perfil.prioridades.some((g) => (GRUPOS[g] as readonly string[]).includes(m)))) {
           vistos++;
           expect(seriesDeVolume(x), `${v.nome}: ${x.exId}`).toBe(2);
         }

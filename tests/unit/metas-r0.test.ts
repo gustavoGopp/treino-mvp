@@ -50,9 +50,9 @@ describe(`metas do R0 com o inventário da Carla (${m.programas} programas)`, ()
       for (const [mu, meta] of Object.entries(programa.metas) as [Musculo, number][]) {
         const limiar = prio.has(mu) ? meta : Math.min(meta, VOLUME.minimoEficazPiso);
         if ((programa.volumeSemanal[mu] ?? 0) >= limiar) continue;
-        const aviso = avisos.find((a) => musculosDoAviso(a).includes(mu));
+        // O aviso de meta do músculo (o aviso de tempo de um dia também cita músculos, pelo nome do dia: "B: costas e bíceps").
+        const aviso = avisos.find((a) => musculosDoAviso(a).includes(mu) && /por semana\. \S|falta de tempo|^Sem /.test(a.texto));
         expect(aviso, `${perfil.divisao}/${perfil.minutosSessao}/${perfil.nivel} ${mu}`).toBeDefined();
-        expect(aviso!.texto).toMatch(/por semana\. \S|falta de tempo|^Sem /);
       }
     }
   });
