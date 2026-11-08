@@ -15,7 +15,7 @@ test('cadastra o 2º local, escolhe onde treinar hoje, vê a troca explicada e c
   // 1. Meus locais: o 1º local tem o nome neutro.
   // lote 4 do redesign: o convite saiu do início; os locais ficam em Meus dados.
   await page.getByRole('navigation', { name: 'Seções' }).getByRole('link', { name: 'Meus dados' }).click();
-  await page.getByRole('link', { name: 'Ver meus locais' }).click();
+  await page.getByRole('link', { name: 'Meus locais' }).click();
   await expect(page.getByRole('heading', { name: 'Meus locais' })).toBeVisible();
   await expect(page.getByRole('list', { name: 'Locais' })).toContainText('Meu local');
   await page.getByRole('link', { name: 'Cadastrar outro local' }).click();
@@ -32,7 +32,11 @@ test('cadastra o 2º local, escolhe onde treinar hoje, vê a troca explicada e c
   await expect(page.getByRole('list', { name: 'Locais' })).toContainText('Academia');
 
   // 3. Onde vou treinar hoje: um toque; a prévia mostra cada troca com o motivo.
-  await page.getByRole('link', { name: 'Meu programa' }).click();
+  // lote 5 do redesign: Locais tem a barra de baixo, com Meus dados aceso, e "‹ Meus dados" no alto
+  const nav = page.getByRole('navigation', { name: 'Seções' });
+  await expect(nav.getByRole('link', { name: 'Meus dados' })).toHaveAttribute('aria-current', 'page');
+  await expect(page.getByRole('link', { name: '‹ Meus dados' })).toBeVisible();
+  await nav.getByRole('link', { name: 'Treino' }).click();
   const onde = page.getByRole('group', { name: 'Onde vou treinar hoje?' });
   await expect(onde.getByRole('button', { name: 'Meu local' })).toHaveAttribute('aria-pressed', 'true');
   await onde.getByRole('button', { name: 'Academia' }).click();

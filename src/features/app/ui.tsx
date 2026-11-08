@@ -132,14 +132,23 @@ function SeloFolha({ regra }: { regra: (typeof REGRAS)[string] }) {
   );
 }
 
-/** Topo das telas: marca e, à direita, um atalho opcional. */
-export function Topo({ direita }: { direita?: ReactNode }) {
+/**
+ * Topo das telas: marca e, à direita, um atalho opcional. Nas telas filhas (lote 5 do redesign: Evolução, Locais), o
+ * "‹ Pai" ocupa o lugar da marca, e a barra de baixo continua com o pai aceso.
+ */
+export function Topo({ direita, voltar }: { direita?: ReactNode; voltar?: { para: string; rotulo: string } }) {
   return (
     <header className="top">
       <div className="brand">
-        <b>
-          <Link to="/">treino-mvp</Link>
-        </b>
+        {voltar ? (
+          <Link className="topo-volta" to={voltar.para}>
+            ‹ {voltar.rotulo}
+          </Link>
+        ) : (
+          <b>
+            <Link to="/">treino-mvp</Link>
+          </b>
+        )}
         {direita}
       </div>
     </header>

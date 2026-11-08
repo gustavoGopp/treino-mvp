@@ -884,3 +884,18 @@ button.cartao-ex-corpo:focus-visible{outline:3px solid var(--foco);outline-offse
 .equipamento .dois{display:grid;grid-template-columns:1fr 1fr;gap:8px}
 .equipamento .dois .btn{min-width:0;padding:0 8px;white-space:normal}
 @media (max-width:359px){.equipamento .dois{grid-template-columns:1fr}}
+
+/* Lote 5 (08/11/2026): Meus dados em 3 grupos de linhas de 56 px; Evolução e Locais com a barra e o "‹" no alto. */
+.grupo-dados{display:flex;flex-direction:column;gap:8px}
+.grupo-dados .rotulo{margin:0}
+.linhas-dados{list-style:none;margin:0;padding:0;background:var(--surface);border-radius:var(--r2);overflow:hidden}
+.linhas-dados li{border-bottom:1px solid var(--line)}
+.linhas-dados li:last-child{border-bottom:0}
+.linhas-dados a,.linhas-dados button{display:flex;align-items:center;justify-content:space-between;gap:12px;width:100%;min-height:3.5rem;padding:8px 16px;border:0;background:none;font:inherit;color:var(--ink) !important;text-align:left;text-decoration:none;cursor:pointer}
+.linhas-dados a > span:first-child,.linhas-dados button > span:first-child{display:flex;flex-direction:column;min-width:0;overflow-wrap:break-word}
+.linhas-dados small{font-size:var(--t-apoio);color:var(--muted)}
+.linhas-dados a:focus-visible,.linhas-dados button:focus-visible{outline:3px solid var(--foco);outline-offset:-3px}
+.perigo-sec{color:var(--warn) !important;border-color:var(--warn) !important}
+.folha .box:has(.estilos-boneco){padding:0;background:none;box-shadow:none}
+.folha .box:has(.estilos-boneco) > h2{display:none}
+.topo-volta{display:inline-flex;align-items:center;min-height:3rem;font-weight:700}

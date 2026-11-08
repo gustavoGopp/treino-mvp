@@ -41,7 +41,7 @@ test('divisão: escolhida em Meus dados, sem nada marcado, com a recomendada exp
   await ana(page, { minutos: '60' });
   // Saiu do cadastro (design v2, item E): no cadastro não aparece.
   await page.goto('/dados');
-  await page.getByRole('link', { name: 'Mudar a rotina ou a divisão' }).click();
+  await page.getByRole('link', { name: 'Rotina e divisão' }).click();
   const divisao = page.getByRole('group', { name: /Como prefere dividir/ });
   await expect(divisao).toBeVisible();
   for (const r of await divisao.getByRole('radio').all()) await expect(r).not.toBeChecked();
@@ -258,20 +258,30 @@ test('exportar, apagar e importar devolve o mesmo estado', async ({ page }) => {
   const programa = await page.locator('main').innerText();
   await page.getByRole('link', { name: 'Meus dados' }).click();
 
+  // lote 5 do redesign: guardar, trazer e apagar abrem em folhas
+  await page.getByRole('button', { name: 'Guardar uma cópia' }).click();
+  await folhaPronta(page);
   const [download] = await Promise.all([page.waitForEvent('download'), page.getByRole('button', { name: 'Exportar meus dados (JSON)' }).click()]);
   expect(download.suggestedFilename()).toMatch(/^treino-mvp-\d{4}-\d{2}-\d{2}\.json$/);
   const arquivo = await download.path();
   const exportado = JSON.parse(await (await import('node:fs/promises')).readFile(arquivo, 'utf8'));
 
   await page.getByRole('button', { name: 'Apagar todos os dados' }).click();
-  await page.getByRole('button', { name: 'Sim, apagar tudo' }).click();
+  await folhaPronta(page);
+  const apagar = page.getByRole('dialog', { name: 'Apagar todos os dados?' });
+  await expect(apagar).toContainText('O perfil, o programa e os treinos saem deste aparelho e não voltam.');
+  await apagar.getByRole('button', { name: 'Apagar tudo' }).click();
   await expect(page.getByRole('heading', { name: 'Treine onde estiver, com o que tiver' })).toBeVisible();
 
   await page.goto('/dados');
+  await page.getByRole('button', { name: 'Trazer uma cópia' }).click();
+  await folhaPronta(page);
   await page.getByLabel('Arquivo exportado pelo treino-mvp').setInputFiles(arquivo);
   await page.getByRole('button', { name: 'Importar dados' }).click();
   await expect(page.getByRole('status')).toHaveText('Dados importados.');
 
+  await page.getByRole('button', { name: 'Guardar uma cópia' }).click();
+  await folhaPronta(page);
   const [download2] = await Promise.all([page.waitForEvent('download'), page.getByRole('button', { name: 'Exportar meus dados (JSON)' }).click()]);
   const reexportado = JSON.parse(await (await import('node:fs/promises')).readFile(await download2.path(), 'utf8'));
   expect(reexportado.estado).toEqual(exportado.estado);
@@ -283,6 +293,8 @@ test('exportar, apagar e importar devolve o mesmo estado', async ({ page }) => {
 test('importar um arquivo inválido não altera os dados', async ({ page }) => {
   await ana(page);
   await page.goto('/dados');
+  await page.getByRole('button', { name: 'Trazer uma cópia' }).click();
+  await folhaPronta(page);
   await page.getByLabel('Arquivo exportado pelo treino-mvp').setInputFiles({ name: 'x.json', mimeType: 'application/json', buffer: Buffer.from('{"app":"outro"}') });
   await page.getByRole('button', { name: 'Importar dados' }).click();
   await expect(page.getByRole('alert')).toContainText('Seus dados atuais não foram alterados');
@@ -346,7 +358,7 @@ test('catálogo do R0c: equipamento novo sem desenho, estações do multifuncion
 test('lote 3: "algo a evitar" fica em Meus dados e gera o programa de novo sem o exercício escolhido', async ({ page }) => {
   await ana(page);
   await page.getByRole('navigation', { name: 'Seções' }).getByRole('link', { name: 'Meus dados' }).click();
-  await page.getByRole('link', { name: 'Escolher o que evitar' }).click();
+  await page.getByRole('link', { name: 'Algo a evitar' }).click();
   await expect(page.getByRole('heading', { name: 'Algo a evitar' })).toBeVisible();
   await page.getByText('Algum exercício que você quer evitar? (opcional)').click();
   await page.getByLabel('Agachamento búlgaro com apoio', { exact: true }).check();

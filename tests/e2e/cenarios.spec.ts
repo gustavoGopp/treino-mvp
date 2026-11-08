@@ -163,6 +163,13 @@ const GRUPOS: Record<string, (page: Page) => Promise<void>> = {
     await page.goto('/dados');
     await expect(page.getByRole('heading', { level: 1 })).toBeVisible();
     await criterios(page);
+    // lote 5: as folhas de Meus dados e o diálogo de apagar
+    for (const linha of ['Estilo do Boneco', 'Guardar uma cópia', 'Trazer uma cópia', 'Apagar todos os dados']) {
+      await page.getByRole('button', { name: linha }).click();
+      await folhaPronta(page);
+      await criterios(page);
+      await page.keyboard.press('Escape');
+    }
     await page.goto('/locais');
     await expect(page.getByRole('heading', { level: 1 })).toBeVisible();
     await criterios(page);

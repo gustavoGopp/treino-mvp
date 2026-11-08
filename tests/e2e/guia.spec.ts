@@ -35,12 +35,15 @@ test('o boneco novo é o padrão, a silhueta fica em Meus dados e o clássico sa
   await page.getByRole('button', { name: 'Músculos' }).click();
   await expect(page.locator('.stage svg path.ea-mp').first()).toBeAttached();
 
+  // lote 5 do redesign: o estilo fica numa folha de Meus dados
   await page.goto('/dados');
+  await page.getByRole('button', { name: 'Estilo do Boneco' }).click();
   const grupo = page.getByRole('radiogroup', { name: 'Estilo do boneco' });
   await expect(grupo.getByRole('radio', { name: /Boneco \(padrão\)/ })).toBeChecked();
   await expect(grupo.getByRole('radio', { name: /Clássico/ })).toHaveCount(0);
 
   await page.goto('/dados');
+  await page.getByRole('button', { name: 'Estilo do Boneco' }).click();
   await page.getByRole('radiogroup', { name: 'Estilo do boneco' }).getByRole('radio', { name: /Silhueta/ }).check();
   await page.goto('/guia/goblet');
   await expect(page.locator('.stage svg')).toHaveClass(/estilo-b/);

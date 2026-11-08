@@ -103,10 +103,10 @@ export async function ana(
   if (divisao) await escolherDivisao(page, divisao);
 }
 
-/** Escolhe a divisão em "Meus dados" → "Mudar a rotina ou a divisão" e aceita a versão nova do programa. */
+/** Escolhe a divisão em "Meus dados" → "Rotina e divisão" e aceita a versão nova do programa. */
 export async function escolherDivisao(page: Page, divisao: string) {
   await page.goto('/dados');
-  await page.getByRole('link', { name: 'Mudar a rotina ou a divisão' }).click();
+  await page.getByRole('link', { name: 'Rotina e divisão' }).click();
   await grupo(page, /Como prefere dividir/).getByLabel(divisao).check();
   await page.getByRole('button', { name: 'Salvar' }).click();
   await expect(page.getByRole('heading', { name: 'Seu treino', exact: true })).toBeVisible();

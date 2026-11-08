@@ -173,6 +173,9 @@ test('vê a evolução de um exercício: a melhor série de cada treino, com "re
   await expect(pontos.nth(2)).toContainText('9 kg × 8');
   await expect(pontos.nth(2)).toContainText('subiu a carga');
   await expect(page.getByText(/estimad|carga máxima/i)).toHaveCount(0);
+  // lote 5 do redesign: a barra de baixo continua, com Semana acesa, e "‹ Semana" no alto
+  await expect(page.getByRole('navigation', { name: 'Seções' }).getByRole('link', { name: 'Semana' })).toHaveAttribute('aria-current', 'page');
+  await expect(page.getByRole('link', { name: '‹ Semana' })).toBeVisible();
   await print(page, 'evolucao');
   await semToquePequeno(page);
 });

@@ -1,10 +1,10 @@
-import { Link, Navigate, useParams } from 'react-router-dom';
+import { Navigate, useParams } from 'react-router-dom';
 import { BIBLIOTECA } from '../../domain/biblioteca';
 import { evolucaoDoExercicio, type Marca, type PontoDaEvolucao } from '../../domain/acompanhamento/evolucao';
 import { cargaDaMaquina, textoCarga } from '../../domain/sessao';
 import { localDaSessao, localPorId } from '../../storage/esquema';
 import { useApp } from '../app/estado';
-import { Selo, Titulo, Topo } from '../app/ui';
+import { NavInferior, Selo, Titulo, Topo } from '../app/ui';
 
 // Evolução de um exercício (acompanhamento.evolucao): a melhor série de cada treino, com "subiu a carga" e "recorde".
 // Nunca uma carga máxima estimada. Nas máquinas, uma lista por local, com o nome do local. Lote 4 do redesign: o resumo
@@ -22,8 +22,8 @@ export function Evolucao() {
   const variosLocais = (estado.locais?.length ?? 0) > 1;
 
   return (
-    <div className="wrap app">
-      <Topo direita={<Link to="/semana">A sua semana</Link>} />
+    <div className="wrap app com-nav">
+      <Topo voltar={{ para: '/semana', rotulo: 'Semana' }} />
       <main className="conteudo evolucao">
         <Titulo>{ex.nome}</Titulo>
         <p className="ajuda">
@@ -51,10 +51,8 @@ export function Evolucao() {
           </section>
         ))}
         {cargaDaMaquina(exId) && variosLocais && <p className="ajuda">Nas máquinas, cada local tem a sua lista: a placa de uma torre não pesa o mesmo que a de outra.</p>}
-        <Link className="btn sec" to="/semana">
-          Voltar à sua semana
-        </Link>
       </main>
+      <NavInferior atual="semana" />
     </div>
   );
 }
