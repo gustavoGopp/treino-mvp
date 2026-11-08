@@ -29,7 +29,7 @@ const linha = (id, n) => `
 
 const html = `<!doctype html><meta charset="utf-8"><style>
 *{box-sizing:border-box}
-body{font:15px/1.35 system-ui,sans-serif;margin:0;padding:16px;background:#F5F3EF;color:#1B1C1F;width:780px}
+body{font:15px/1.35 system-ui,sans-serif;margin:0;padding:16px;background:#F5F3EF;color:#1B1C1F;width:800px}
 h1{font-size:24px;margin:0 0 4px}
 .intro{margin:0 0 12px;color:#464B51;font-size:16px}
 .legenda{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:16px}
@@ -67,7 +67,7 @@ ${ORDEM.map(linha).join('')}
 
 const saida = process.argv[2] ?? 'docs/img/redesign-lote-5-estilos-desenho.png';
 const b = await chromium.launch();
-const p = await b.newPage({ viewport: { width: 812, height: 900 }, deviceScaleFactor: 2 });
+const p = await b.newPage({ viewport: { width: 800, height: 900 }, deviceScaleFactor: 2 });
 await p.setContent(html);
 await p.screenshot({ path: saida, fullPage: true });
 if (process.env.RECORTE) {
