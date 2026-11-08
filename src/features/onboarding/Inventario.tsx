@@ -4,6 +4,7 @@ import { ITENS, type Inventario as InventarioDados, type ItemId } from '../../do
 import { comInventario, localPrincipal } from '../../storage/esquema';
 import { useApp } from '../app/estado';
 import { Erros, Escolha, Marcar, Numero, Passo, Selo } from '../app/ui';
+import { FOTO_LIGADA } from '../app/contato';
 import { FotoEquipamento } from './FotoEquipamento';
 import { IconeEquipamento } from './icones';
 import { ALTURAS_POLIA, ESTACOES_MULTIFUNCIONAL } from '../../domain/taxonomia/equipamentos';
@@ -469,7 +470,7 @@ export function FormularioInventario({
           )}
         </fieldset>
         {/* Design v2 (item B): o lugar primeiro; a foto e a lista item a item ficam para ajustar */}
-        <FotoEquipamento aoUsar={(sug, conf) => setF((x) => comSugestoes(x, sug, conf))} />
+        {FOTO_LIGADA && <FotoEquipamento aoUsar={(sug, conf) => setF((x) => comSugestoes(x, sug, conf))} />}
         <p className="ajuda">Ou toque item por item. Sem nada marcado, o programa usa o peso do corpo.</p>
         {CATEGORIAS.map((c) => {
           const itens = itensDaCategoria(c.id);
