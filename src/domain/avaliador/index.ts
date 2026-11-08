@@ -682,7 +682,7 @@ function agrupar(brutos: Bruto[]): Achado[] {
 /**
  * Os achados de "ajustar" que o gerador ainda não avisa por conta própria, como avisos do programa gerado
  * (acompanhamento.mensagens: fato + próximo passo). No programa gerado, a pessoa não troca exercícios um a um
- * (o editor vem depois): o próximo passo é a rotina. Na grade reduzida, 15 min a mais por treino resolvem 87% deles
+ * (o editor vem depois): o próximo passo é a rotina. Na grade reduzida, 15 min a mais por treino resolvem 80% deles
  * (docs/revisoes/r5b/medidas.md).
  */
 export const TIPOS_AVISADOS_PELO_AVALIADOR = ['funcoes', 'coxa', 'empurrar-puxar', 'isolador'] as const;
