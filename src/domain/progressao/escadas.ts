@@ -1,5 +1,6 @@
 import { z } from 'zod';
 import { POR_ID } from '../biblioteca';
+import type { Nivel } from '../regras';
 import type { Inventario } from '../taxonomia/equipamentos';
 import dados from './escadas.json';
 
@@ -69,3 +70,18 @@ export function escadaDe(exId: string | undefined, inventario?: Inventario): str
 /** Nome do degrau, para o texto da carga (o elástico e a mini-band não dependem de quantas intensidades a pessoa tem). */
 export const nomeDoDegrau = (exId: string | undefined, d: number): string | undefined =>
   exId && POR_ID[exId]?.carga === 'elastico' ? (pedeMiniBand(exId) ? degrauDaMiniBand(d) : degrauDoElastico(d)) : escadaDe(exId)[d];
+
+/**
+ * O 1º degrau de um exercício pelo nível (progressao.degrau-inicial, R5d): iniciante no 0, intermediário no 1, avançado
+ * no 2 (no elástico, a intensidade do meio das que a pessoa tem, se for mais alta); nunca além do último degrau. É só o
+ * ponto de partida da 1ª vez: o estado guardado continua sendo o índice do degrau.
+ */
+export function degrauInicial(exId: string | undefined, nivel: Nivel, inventario?: Inventario): number {
+  const n = escadaDe(exId, inventario).length;
+  let d = nivel === 'avancado' ? 2 : nivel === 'intermediario' ? 1 : 0;
+  if (nivel === 'avancado' && exId && POR_ID[exId]?.carga === 'elastico') d = Math.max(d, 3 * Math.floor((n / 3 - 1) / 2));
+  return Math.max(0, Math.min(d, n - 1));
+}
+
+/** O exercício para onde a escada leva no último degrau (progressao.negativa-para-barra). */
+export const DEPOIS_DA_ESCADA: Record<string, string> = { 'barra-fixa-negativa': 'barra-fixa' };
