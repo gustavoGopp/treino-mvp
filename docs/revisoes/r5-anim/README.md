@@ -40,6 +40,6 @@ Quando os 5 exercícios estiverem na biblioteca (`src/domain/biblioteca/exercici
    - `tests/unit/anatomia.test.ts`, "achado 5": a lista dos isoladores de ombro de trás ganha `abertura-t-deitado` (se o R5-CL ainda não a acrescentou);
    - `tests/unit/legenda.test.ts`: passa com o passo 2 (falha sem ele);
    - `tests/unit/conteudo.test.ts`: os 5 deixam de ser cartão e passam a ser guia (o teste "todo cartão é de exercício sem animação" falha se o cartão do passo 1 não for apagado);
-   - os snapshots das personas (`tests/unit/cenarios*`): o gerador desempata pela animação aprovada (`selecao.equivalencia`), então os programas com esses 5 podem mudar; rodar `npx vitest run` antes de regravar e registrar o antes × depois, como no elástico (`../elastico/README.md`).
+   - os snapshots das personas (`tests/unit/gerador.test.ts`, "cenários (snapshots revisados)", e `tests/unit/personas-r2.test.ts`): o gerador desempata pela animação aprovada (`selecao.equivalencia`), então os programas com esses 5 podem mudar; rodar `npx vitest run` antes de regravar e registrar o antes × depois, como no elástico (`../elastico/README.md`).
 5. **Medir** a grade de qualidade com os 5 animados (os dias com 3 ou mais cartões nos programas sem dor; a meta é ≤ 20%, e 0% no corpo livre; o protótipo deu 19,5%) e as 6 personas.
 6. `npm run check` e `npm run test:e2e`.
