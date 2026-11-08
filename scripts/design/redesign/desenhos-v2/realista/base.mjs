@@ -164,7 +164,7 @@ export function cena(id, cam) {
     if (o.decalSempre) svg += o.decalSempre(P, vis);
     if (o.contorno !== false) {
       const H = hull(todos.map(P));
-      svg += `<polygon points="${pts2(H)}" fill="none" stroke="${mat[3]}" stroke-width="${o.traco ?? 0.45}" stroke-linejoin="round"/>`;
+      svg += `<polygon points="${pts2(H)}" fill="none" stroke="${mat[3]}" stroke-width="${o.traco ?? 0.55}" stroke-linejoin="round"/>`;
     }
     const z = o.z ?? P(cen)[2];
     itens.push({ z: z + (o.dz ?? 0), svg: `<g>${svg}</g>` });
@@ -306,11 +306,26 @@ export function cena(id, cam) {
     itens.push({ z, svg });
   }
   // enquadra: escala e centraliza tudo no viewBox (w × h) com margem; "chao" alinha a base embaixo
-  function svg({ w = 160, h = 120, margem = 5, max = Infinity } = {}) {
-    const corpo = [...itens].sort((a, b) => b.z - a.z).map((i) => i.svg).join('');
-    const bw = bb[2] - bb[0], bh = bb[3] - bb[1];
+  // enquadra: escala e centraliza no viewBox (w × h) com margem. "foco" = pontos 3D que devem caber (o resto pode
+  // sair do quadro); sem foco, cabe tudo. As espessuras de traço são divididas pela escala, para o traço final ter
+  // a mesma espessura em todos os desenhos (no viewBox 160 × 120).
+  function svg({ w = 160, h = 120, margem = 5, max = Infinity, foco = null } = {}) {
+    let b = bb;
+    if (foco) {
+      b = [Infinity, Infinity, -Infinity, -Infinity];
+      for (const p of foco) {
+        const q = cam.P(p);
+        b = [Math.min(b[0], q[0]), Math.min(b[1], q[1]), Math.max(b[2], q[0]), Math.max(b[3], q[1])];
+      }
+    }
+    const bw = b[2] - b[0], bh = b[3] - b[1];
     const k = Math.min((w - 2 * margem) / bw, (h - 2 * margem) / bh, max);
-    const tx = (w - bw * k) / 2 - bb[0] * k, ty = (h - bh * k) / 2 - bb[1] * k;
+    const tx = (w - bw * k) / 2 - b[0] * k, ty = (h - bh * k) / 2 - b[1] * k;
+    const corpo = [...itens]
+      .sort((a, b) => b.z - a.z)
+      .map((i) => i.svg)
+      .join('')
+      .replace(/stroke-width="([\d.]+)"/g, (_, v) => `stroke-width="${(parseFloat(v) / k).toFixed(3)}"`);
     return (defs.length ? `<defs>${defs.join('')}</defs>` : '') + `<g transform="matrix(${k.toFixed(4)} 0 0 ${k.toFixed(4)} ${f1(tx)} ${f1(ty)})">${corpo}</g>`;
   }
   return { P, rot, s: cam.s, uid, defs, itens, solido, prisma, caixa, tubo, cilindro, estofado, anilha, pilha, furos, linha, polilinha, sombra, bruto, svg, eixos, visivel };
