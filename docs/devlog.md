@@ -1218,3 +1218,74 @@ Os testes passaram de 647 para 662 unitários e de 46 para 113 de ponta a ponta.
 > O ganho que eu não esperava veio do desempenho. O app parecia leve, mas travava a tela por até 5 segundos num celular simulado mais lento: o motor que desenha o boneco rodava junto com a interface. Ele foi para um processo separado, e a nota de desempenho saiu de 59–71 para 93–100.
 >
 > E um aprendizado de produto: os desenhos dos aparelhos precisaram de três rodadas. O ícone bonito não basta se quem não conhece o leg press não reconhece o leg press. No fim, ficou a ilustração realista, só do aparelho, porque o vídeo do guia já mostra como usar.
+
+## R5a: o registro que não engana (08/11/2026)
+
+**Por quê.** A sessão de próximos passos (06/11) percorreu o app como as 6 personas e simulou meses de uso com o código real. O que mais pesou não foi uma função nova, foi o que engana a pessoa sem ela perceber: a nota de dor do "Senti algo" não ficava guardada (0 de 6 personas), então a redução da carga com dor de 3 a 5 e o aviso da "dor que se repete" nunca disparavam; "Começar" e "Terminar" sem série contava como treino e pulava o dia (6 de 6); a calibração da carga não terminava quando o próximo peso era um salto grande; e quem recusava a semana leve a via de novo a cada treino. O redesign já estava na `main`, então este marco mexeu só na lógica, com o mínimo de tela; o resto vai como pedido ao design.
+
+**O que mudou** (branch `claude/dazzling-mendel-lb069v`, a partir da `main` `849a7b5`; o estado guardado **continua na versão 7**)
+- **A dor fica guardada.** A nota do "Senti algo" vai para a última série feita do exercício ou, sem série, para a próxima registrada; duas notas na mesma série guardam a maior. A série mostra "dor 4", e a próxima vez do exercício vem com "Ajustar" (reduzir a carga). A dor que se repete em 2 treinos passa a sugerir a semana leve e a recomendar avaliação, como a regra sempre disse (`seguranca.dor.escala`).
+- **Treino sem série não conta** (regra nova `registro.treino-feito`). A rotação, a semana, a pausa e a semana leve contam só sessões com série. "Terminar" sem nenhuma série pergunta: "Descartar este treino" ou "Guardar mesmo assim". No fim do treino, "Registrei algo errado: apagar este treino", com confirmação. A função de corrigir uma série (`corrigirSerie`) ficou pronta para a tela que o design vai fazer.
+- **A calibração tem fim** (`progressao.calibracao`). Depois de 3 séries de acerto sem cair perto do alvo, a carga com o resultado mais perto da faixa vira a de trabalho (no empate, a mais leve), com a frase "Fim da calibração". O caso medido pela frente D está no teste: halter de 4 kg dá 24, o de 5 kg dá 12, para um alvo de 17,5; fica o de 5 kg.
+- **"Agora não" vale 7 dias** (`deload.semana-leve`). Só a data da recusa, que já era guardada; nenhum campo novo.
+- **Fase de aprendizado protegida.** Nas semanas 1 e 2 do iniciante, nem "estagnado" (o app pede +1 repetição com a técnica firme) nem semana leve.
+- **A estagnação conta o exercício feito.** Quem troca pela alternativa tem a estagnação contada na alternativa, e não na vaga que ninguém fez.
+- **O script que lê um export** (`npm run ler-export -- caminho.json`): refaz, treino a treino, o que o app mostrou e imprime os tipos de sugestão, os "estagnados", as semanas leves, as calibrações longas, a dor e os treinos sem série. O teste usa um export fictício; um export real fica fora do git (`.gitignore` e um teste de privacidade novo).
+- **Quatro ajustes do gerador**, cada um com a regra em `regras.md`, um teste que falha no código de antes e a grade:
+  1. o teto de 10 séries por músculo numa sessão conta as séries indiretas (`volume.sessao.teto`);
+  2. no Corpo todo A/B sem como dobrar o quadril, a ponte de glúteo entra (`selecao.gluteo`);
+  3. um afundo por dia, havendo outra opção: o dia de pernas que tinha búlgaro + afundo para trás fica com búlgaro + goblet (`selecao.funcao-da-vaga`);
+  4. no Corpo todo 6x sem nada, o pike entra nos dias A, C e E, e o ombro deixa de ficar a zero (`divisao.sem-puxar`).
+  O ajuste de 30 min e o "descer um nível antes de repetir" já tinham entrado no R5-CL.
+- **Duas decisões técnicas, medidas.** (a) A ponte que entra pela falta do stiff, na 1ª versão, fazia 855 programas com dor no joelho passarem do tempo nos dias de 30 e 45 min, e a régua pegou (o A3 com dor subiu acima da linha de base). Com 45 min ou menos, ela agora fica com 2 séries, como o abdômen e a panturrilha protegidos: o A3 com dor passa a cair (2.680 → 2.289). (b) A mesma ponte ocupa uma vaga no Corpo todo A/B, e o empurrar ÷ puxar (D1) passa de 1,5 em mais 22 programas sem dor e 16 com dor (1,2% → 1,3%), ainda abaixo da linha de base. Mantive, porque em troca 147 programas deixam de ter o foco abaixo da meta, 391 deixam de passar do tempo com dor e o glúteo ganha extensão de quadril em milhares de programas.
+- **A faixa "Há uma versão nova do seu programa" do Bruno e da Carla era artefato do teste.** O estado semeado sem passar pelo esquema do app muda a ordem das chaves do inventário, e com ela o código de entrada do programa. Pelo esquema, nenhuma das 6 personas vê a faixa, e quem faz o cadastro pela tela também não, nem depois de recarregar (3 testes novos; a prova inversa, com o estado "cru" da Carla, mostra a faixa).
+
+**Medido**
+
+| | Antes | Depois |
+|---|---:|---:|
+| Nota de dor guardada na série (e2e, 6 personas) | 0 de 6 | **6 de 6**, com "Ajustar" na próxima vez |
+| "Começar" + "Terminar" sem série mantém o dia (e2e, 6 personas) | 0 de 6 | **6 de 6**, com "Descartar" |
+| Simulador, 48 corridas de 24 semanas: exercícios com mais de 3 sessões só em séries de acerto | 57 (até 17 sessões) | **0** (no máximo 1 sessão) |
+| Simulador: vezes que a oferta recusada aparece numa semana | até 5 | **no máximo 1** |
+| Simulador: ofertas recusadas em 24 semanas | 0 a 106 | 0 a 22 |
+| Simulador: semana leve na fase de aprendizado | 0 | 0 (o simulador não reproduziu o caso da frente D; o teste novo cobre a regra) |
+| Grade reduzida (5.850 programas): 30 min com um dia acima do tempo | 50,3% | **49,8%** |
+| O mesmo exercício (fora o abdômen) em todos os dias, 3 dias ou mais | 5,6% | 5,6% (o R5-CL já tinha baixado de 29,6%) |
+| Dias com mais de 10 séries de um músculo, contando as indiretas | 27 dias | **0** |
+| Ponte possível e nenhuma extensão de quadril (nem stiff) na semana | 150 programas (2,6%) | **0** |
+| Dias com 2 afundos | 810 (3,5%) | **0** |
+| Sem nada, Corpo todo 6x: ombro lateral a zero | 87,7% | **24,6%** |
+| Grade de 55 cenários (53.625 programas): mais de 10 séries numa sessão / 2 afundos | 238 / 1.215 dias | **0 / 0** |
+| Idem: ponte possível e nenhuma extensão de quadril (nem stiff) | 9,9% (5.299) | **0,8%** (426: todos cortes de tempo de 30 a 60 min, em cenários de um item só) |
+| Com dor 7 (ombro / joelho / lombar), 2 e 3 dias: ponte possível e nenhuma extensão de quadril | 27% / 27% / 40% | **0,3% / 0% / 4,3%** |
+| A régua (108.900 programas): sem nenhum defeito, sem dor | 83,9% | **84,2%**, e nenhum defeito acima da linha de base |
+| Régua: dia acima de 110% dos minutos, com dor (A3) | 2.680 | **2.289** |
+| Régua: foco abaixo da meta com tempo (C1), sem dor | 779 | **632** |
+| Régua: empurrar ÷ puxar acima de 1,5 (D1), sem dor / com dor | 445 / 349 | 467 / 365 (a troca medida, abaixo) |
+| As 6 personas | — | **idênticas** (nenhum snapshot mudou) |
+
+![Dor 4 guardada na série](img/r5a-dor-guardada.png)
+![Para a próxima vez: Ajustar](img/r5a-proxima-ajustar.png)
+![Terminar sem série: Descartar este treino](img/r5a-terminar-sem-serie.png)
+
+(Ana, fictícia: a nota 4 na série 1 do búlgaro; no fim, "Ajustar · próxima: 5 kg", e não os 6 kg de hoje; e o "Terminar" sem nenhuma série.)
+
+**O simulador** foi reconstruído no scratchpad a partir de `revisoes/proximos-passos/d-longo-prazo.md` ("Como reproduzir"): 4 personas (Ana, Bruno, Elisa, Carla) × 3 ritmos × com e sem ruído × aceita ou recusa a semana leve, 24 semanas, com as ações reais do app; só o corpo é modelo. Ele reproduz a ordem de grandeza da frente D (até 106 ofertas recusadas; 57 calibrações longas, contra 62 de 492 lá).
+
+**Pedidos à sessão de design** (já listados em `revisoes/proximos-passos.md`, 2.5, itens 1 a 6; o que existe hoje é o mínimo funcional com os componentes atuais):
+1. a dor registrada na série: hoje, a linha "· dor 4" na lista de séries e a frase "Nota 4 guardada na série 1" no aviso;
+2. o fim do treino com exercício interrompido: ainda não existe;
+3. "Descartar este treino / Guardar mesmo assim": feito na folha "Terminar o treino agora?";
+4. corrigir uma série ou apagar um treino na Semana e na Evolução: hoje só "apagar este treino" no fim do treino, logo depois de terminar; `corrigirSerie` espera a tela;
+5. a semana leve recusada como uma linha discreta em "A sua semana": ainda não existe (a oferta só some por 7 dias);
+6. o fim da calibração: hoje, a frase "Fim da calibração: 5 kg é a carga mais perto da sua faixa…" no lugar da linha "Calibração:".
+
+**Fica para depois** (`backlog.md`, "Do R5a"): a nota de dor dada antes da 1ª série de um exercício que é encerrado (dor acima de 5) não tem série onde ficar; os 0,8% de programas que perdem a extensão de quadril no corte de tempo; os gatilhos numéricos da semana leve e do "estagnado", que esperam o export do R3.
+
+**Rascunho de post para o LinkedIn**
+> No meu app de treino, a pessoa podia dizer "senti dor 4 de 10" no meio de uma série. O app mostrava o conselho certo, reduzir a carga, e esquecia a nota. Na sessão seguinte, sugeria a mesma carga, como se nada tivesse acontecido. A regra de segurança existia, tinha fonte e tinha teste. Só nunca recebia o dado.
+>
+> Achei isso simulando meses de uso com o código real, persona por persona. Junto vieram outras três coisas que enganavam sem ninguém perceber: abrir e fechar o treino sem fazer nada contava como treino feito e pulava o dia; a calibração da carga nunca terminava quando o próximo halter era um salto grande; e quem dizia "agora não" para uma semana mais leve via a mesma oferta a cada treino, até 106 vezes em 6 meses.
+>
+> Nenhuma dessas correções é uma função nova. São o app fazendo o que já dizia que fazia. Agora a dor fica guardada e reduz a carga da próxima vez, o treino vazio pode ser descartado, a calibração para em 3 séries e o "agora não" vale uma semana.

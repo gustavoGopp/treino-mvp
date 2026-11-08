@@ -22,6 +22,7 @@ Ideias e requisitos para depois do MVP. Nada aqui entra sem passar pelo plano.
   - *(Opcional)* **Quem responde e o contato:** `VITE_RESPONSAVEL` e `VITE_CONTATO_EMAIL` na Vercel. Sem eles, os termos apontam para quem mandou o link. Ficam fora do repositório de propósito.
   - A revisão por um advogado foi **dispensada** pelo Gustavo em 08/11.
   - **No iPhone, uma vez:** abrir o link no Safari, ver o aviso de instalar, instalar e conferir se o app instalado começa vazio (o texto já diz "pode começar vazio" e manda exportar antes; não achei documento da Apple que confirme) e se o ícone novo aparece.
+- **Depois do R5a (opcional):** exportar os dados no celular ("Meus dados" → "Guardar uma cópia") e rodar, no computador, `npm run ler-export -- caminho/do/arquivo.json`. Só os números agregados vão para o devlog, se você quiser; o arquivo nunca entra no git. Eles decidem os gatilhos da semana leve e do "estagnado".
 - **Levar a `main` nova para o redesign.** A sessão de qualidade dos treinos foi para a `main` em 06/11 (`6cb49d5`). Colar `prompts/recado-redesign-qualidade-treinos.md` na sessão do redesign visual: o merge não tem conflito, e só o `fontes.json` precisa ser regerado.
 - **Sessão de desenvolvimento:** colar `prompts/sessao-desenvolvimento.md` numa sessão nova. Ela conduz os marcos R5a, R5-CL, R5d, R5-anim, R5b e R5c, um de cada vez, parando ao fim de cada um para a sua revisão (a sessão de próximos passos foi feita em 06–07/11; `revisoes/proximos-passos.md`, parte 3). O R5-anim pode correr numa sessão à parte, junto do R5d, com `prompts/sessao-r5-animacao-corpo-livre.md`.
 - **Chave da Anthropic.** Confirmar que a chave e os convites estão no projeto `treino-mvp` da Vercel, o que atende `treino-mvp-sigma.vercel.app`.
@@ -126,7 +127,7 @@ Detalhes, números e o motivo de cada item em `revisoes/proximos-passos.md` e no
   - **D-4 (a prioridade puxa frequência):** trocada pela **D-4c** (o 2º exercício do prioritário), que entra no R5d. A D-4 como escrita quase não tem efeito (o teto da sessão explica 4 de 5.301 casos).
   - **D-3 ("escolha até 2"):** entra no R5d.
   - **E-c (usar o tempo que sobra para todos):** **descartada em 07/11**: contradiz o foco e o "foco com manutenção" aprovado em 06/11 (medido: o foco cai de 17,4% para 16,2% das séries).
-  - **F.5 e F.9 (30 min acima do tempo; o mesmo exercício em todos os dias; o ombro lateral no Corpo todo 6x):** entram no R5a (pacote A da frente A, com a proteção da coxa).
+  - **F.5 e F.9 (30 min acima do tempo; o mesmo exercício em todos os dias; o ombro lateral no Corpo todo 6x):** feitos (os dois primeiros no R5-CL; o ombro lateral no R5a).
   - **Panturrilha no degrau (B.20):** entra no R5-CL, como apoio, sem item novo no cadastro.
   - **Não recomendados, com a medida:** C.5 (o ombro de trás sai em 273 programas de 45 min), B.17 e B.9 ([opinião]), B.14 (um estudo sem controle), B.4 (sem ganho de volume; risco não estudado), D-5 (+1,1 ponto de foco). C.6 é pequeno demais para um marco.
 - **Recusados na biblioteca ampliada, com o motivo medido** (`proximos-passos/g-biblioteca-ampliada.md`, seção 2): a **rosca sem carga** (um estudo, `counts2016`; a revisão cega mostrou que ela ocupa o tempo do foco; reabrir se o texto completo sustentar e o foco já estiver resolvido); o **crucifixo no chão com halteres** (tirava os multiarticulares do dia de empurrar do iniciante com 30 min); a **elevação lateral na parede sem carga** (nenhum dado no deltoide); a **panturrilha com halter numa perna** para quem só tem halteres (alongava o dia; o corte tirava quadríceps); o desempate **"animado primeiro"** (repetir havendo opção em 29,5% dos programas).
@@ -162,6 +163,15 @@ Detalhes e números em `devlog.md` ("R5-CL") e em `revisoes/qualidade/regua.md`.
 - **Os 5 exercícios novos que só aparecem como alternativa** (o desenvolvimento em pé, a elevação lateral unilateral e a deitado com halter, a remada unilateral com elástico e a caminhada lateral com mini-band): ficam pelo desempate. Rever se a troca do dia mostrar que eles são escolhidos.
 - **Os degraus propostos em `pesquisa-v2/16` e `17` para exercícios que já existem** (o agachamento com uma perna até a cadeira, a flexão arqueiro, a prancha lateral com abdução, o abdominal com a toalha sob a lombar, o texto "no step ou num degrau de escada"): não entraram neste marco, que ficou nos 32 exercícios. Entram com o 1º degrau pelo nível.
 
+
+## Do R5a, o registro que não engana (08/11/2026)
+Detalhes e números em `devlog.md` ("R5a").
+- **As 6 telas pedidas ao design** (`revisoes/proximos-passos.md`, 2.5, itens 1 a 6): a dor registrada na série e no fim; o fim com exercício interrompido ("Interrompido: búlgaro, dor aguda", antes de "Para a próxima vez"); corrigir uma série ou apagar um treino na Semana e na Evolução (a função `corrigirSerie` já existe); a semana leve recusada como uma linha em "A sua semana"; a frase do fim da calibração. Hoje há só o mínimo funcional (ver o devlog).
+- **A nota de dor sem série onde ficar:** quem dá dor acima de 5 antes da 1ª série de um exercício tem o exercício encerrado, e a nota não fica em lugar nenhum (o estado guarda a dor só na série). Guardar a dor no exercício pede um campo novo no estado: decidir junto da v8 do redesign, uma vez só.
+- **Extensão de quadril nos cortes de tempo:** 0,8% dos programas da grade de 55 cenários (426, todos de 30 a 60 min, em cenários de um item só: caneleiras, glúteo na máquina, polia, rack, smith, suspensão…) perdem a ponte ou o coice no corte de tempo, como qualquer complemento que não é foco. Decidir se o glúteo ganha proteção como o abdômen e a panturrilha (`tempo.musculo-protegido`).
+- **O D1 (empurrar ÷ puxar) no Corpo todo A/B:** a ponte que entra pela falta do stiff passa o D1 de 1,5 em mais 22 programas sem dor (1,2% → 1,3%), abaixo da linha de base. Rever junto do R5d (o foco) ou do avaliador (R5b), que já vão mexer no equilíbrio.
+- **O simulador da frente D** ficou no scratchpad, como o relatório pediu. Se ele voltar a ser usado (os gatilhos pelo export, a revisão do nível), vale versioná-lo em `scripts/auditoria/`.
+- **Depois do R3, com o export** (`npm run ler-export`): os gatilhos numéricos da semana leve e do "estagnado" (3 sessões, 2 exercícios), que o R5a não mexeu.
 
 ## Do redesign, lote 2 (06/11/2026)
 Achados ao refazer a tela do treino. Nada disso mudou no lote, porque mexe no domínio ou na regra: fica para o Gustavo decidir.
