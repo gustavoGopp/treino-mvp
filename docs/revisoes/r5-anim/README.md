@@ -8,7 +8,7 @@ Prompt: `docs/prompts/sessao-r5-animacao-corpo-livre.md`. Uma animação por vez
 | 2 | `abdominal-invertido` | 61,7% | `ponte-gluteo` (deitado, braços) + `abdominal-chao` + `elevacao-joelhos` (a pelve) | `folhas/abdominal-invertido.png` | ik 0 (animação e 2 erros) | **aprovada em 08/11**; entra no app com o R5-CL |
 | 3 | `extensao-triceps-peso-corpo` | 59,4% | `triceps-suspensao` (corpo, ciclo e erros), mãos paradas numa bancada | `folhas/extensao-triceps-peso-corpo.png` | ik 0 (animação e 3 erros) | **aprovada em 08/11**, com a bancada; entra no app com o R5-CL |
 | 4 | `abertura-t-deitado` | 56,1% | `flexao-joelho-elastico` (de bruços) + `yt-suspensao` (o T e os erros) | `folhas/abertura-t-deitado.png` | ik 0 (animação e 3 erros) | **aprovada em 08/11** (2ª versão, com as vistas pela cabeça e de cima); entra no app com o R5-CL |
-| 5 | `flexao-pes-elevados` | 53,8% | `flexao` + a cadeira do `bulgaro-peso-corpo` | `folhas/flexao-pes-elevados.png` | ik 0 (animação e 3 erros) | **esperando o "aprovar"** |
+| 5 | `flexao-pes-elevados` | 53,8% | `flexao` + a cadeira do `bulgaro-peso-corpo` | `folhas/flexao-pes-elevados.png` | ik 0 (animação e 3 erros) | **aprovada em 08/11**; entra no app com o R5-CL |
 
 ## Pré-requisito: o R5-CL ainda não está na `main`
 O prompt supõe o R5-CL feito (os 32 exercícios na biblioteca, com cartão e ficha). Em 07/11 a `main` tem 139 exercícios e nenhum dos 5. O que isso muda:
@@ -24,3 +24,4 @@ Nenhuma peça nova até aqui. O degrau da escada é a caixa de 15 cm do step apr
 - `abdominal-invertido`: aprovada pelo Gustavo em 08/11/2026, como está na folha. Mesma espera pelo R5-CL.
 - `extensao-triceps-peso-corpo`: aprovada pelo Gustavo em 08/11/2026, com a bancada desenhada como a caixa de 90 cm. Mesma espera pelo R5-CL.
 - `abertura-t-deitado`: a 1ª folha (vista "por trás") ficou "muito esquisita" para o Gustavo; a 2ª, com as vistas pela cabeça, de cima e de lado, foi aprovada em 08/11/2026. Mesma espera pelo R5-CL.
+- `flexao-pes-elevados`: aprovada pelo Gustavo em 08/11/2026, como está na folha (pés na cadeira do búlgaro). Mesma espera pelo R5-CL.
