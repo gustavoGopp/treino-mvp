@@ -29,7 +29,12 @@ export default defineConfig(({ mode }) => ({
     VitePWA({
       registerType: 'autoUpdate',
       includeAssets: ['icon.svg', 'apple-touch-icon.png', 'fonts/OFL.txt'],
-      workbox: { globPatterns: ['**/*.{js,css,html,svg,png,woff2}'] },
+      workbox: {
+        globPatterns: ['**/*.{js,css,html,svg,png,woff2}'],
+        // lote 5: os 49 desenhos do equipamento (cerca de 860 kB) ficam fora da instalação; são guardados quando aparecem
+        globIgnores: ['equipamento/**'],
+        runtimeCaching: [{ urlPattern: /\/equipamento\/[a-z_]+\.svg$/, handler: 'CacheFirst', options: { cacheName: 'equipamento' } }],
+      },
       manifest: {
         name: 'treino-mvp',
         short_name: 'Treino',

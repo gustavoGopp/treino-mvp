@@ -899,3 +899,10 @@ button.cartao-ex-corpo:focus-visible{outline:3px solid var(--foco);outline-offse
 .folha .box:has(.estilos-boneco){padding:0;background:none;box-shadow:none}
 .folha .box:has(.estilos-boneco) > h2{display:none}
 .topo-volta{display:inline-flex;align-items:center;min-height:3rem;font-weight:700}
+
+/* Lote 5: os desenhos realistas do equipamento, num ladrilho claro nos dois temas (o desenho tem as cores dele). */
+img.icone-eq{display:block;flex:none;object-fit:contain;background:#F5F3EF;border-radius:var(--r1);fill:initial;stroke:initial}
+.item-eq img.icone-eq{width:100%;max-width:112px;height:auto;aspect-ratio:4/3}
+.marcados img.icone-eq{width:64px;height:48px}
+.sugestao-foto img.icone-eq{width:4rem;height:3rem}
+.cartao-eq img.icone-eq{width:4rem;height:3rem}

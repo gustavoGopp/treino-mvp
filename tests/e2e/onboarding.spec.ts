@@ -325,9 +325,11 @@ test('equipamento por toque: anilhas com contador e valor fora da lista em "Outr
 test('catálogo do R0c: equipamento novo sem desenho, estações do multifuncional e cartão de texto do exercício sem animação', async ({ page }) => {
   await ana(page, {
     equipamentoExtra: async (p) => {
-      // Equipamento novo, ainda sem desenho: o cartão mostra só o nome.
+      // Lote 5 do redesign: todo item tem o desenho realista dele (um SVG próprio), com o nome sempre escrito.
       await marcarItem(p, 'Hack ou pendular');
-      await expect(p.locator('label.item-eq', { has: p.getByLabel('Hack ou pendular', { exact: true }) }).locator('svg')).toHaveCount(0);
+      const desenho = p.locator('label.item-eq', { has: p.getByLabel('Hack ou pendular', { exact: true }) }).locator('img.icone-eq');
+      await expect(desenho).toHaveAttribute('src', '/equipamento/hack.svg');
+      await expect.poll(() => desenho.evaluate((i: HTMLImageElement) => i.complete && i.naturalWidth > 0)).toBe(true);
       // Multifuncional: sem estação marcada, a tela pede uma (a folha dele abre de novo ao gerar).
       const multi = await marcarItem(p, 'Multifuncional');
       await multi.getByRole('button', { name: 'Fechar' }).click();
