@@ -24,6 +24,20 @@ Ideias e requisitos para depois do MVP. Nada aqui entra sem passar pelo plano.
 - **Confirmar a menor anilha da sua academia (T8).** Sem resposta, o app usa 2 kg (opinião).
 - **Limite da visão compartilhado** entre instâncias, antes de abrir o app para outras pessoas. Hoje o contador fica na memória de cada instância (`pesquisa/11-decisoes-m4.md`). O Vercel KV foi descontinuado; o caminho é o Redis (Upstash) pelo Marketplace da Vercel.
 
+## Do R5-anim (08/11/2026)
+- **Ligar as 5 animações de corpo livre quando o R5-CL chegar à `main`.** As 5 estão aprovadas e prontas em `src/engine/exercicios/revisao/`; o roteiro (comandos, músculos que só ajudam, testes que mudam e a medida da grade) está em `revisoes/r5-anim/README.md`.
+- **O resto da fila de animação da biblioteca ampliada**, por frequência nos programas sem dor (de 36.300; `revisoes/proximos-passos/g-biblioteca-ampliada.md`, seção 4):
+
+  | Exercício | Programas | % |
+  |---|---:|---:|
+  | Elevação lateral unilateral com halter | 5.935 | 16,3% |
+  | Afundo para trás sem peso | 3.701 | 10,2% |
+  | Crucifixo invertido sentado | 3.021 | 8,3% |
+  | Tríceps testa com halteres | 2.983 | 8,2% |
+  | Os outros 23 | menos de 7% cada | |
+
+  O afundo para trás tem base aprovada (o afundo com o peso do corpo); a elevação unilateral, a elevação lateral; o crucifixo invertido sentado, o crucifixo invertido na polia. Medir de novo depois do R5-CL e do R5d, porque o foco muda a frequência.
+
 ## Decididos no replanejamento de 01/11/2026
 Detalhes em `planejamento/2026-11-diagnostico.md`, `PLANO-MVP.md` e `pesquisa-v2/`.
 - **Não fazer agora:**

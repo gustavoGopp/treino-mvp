@@ -1008,3 +1008,33 @@ As listas exatas ficam em `tests/unit/metas-r0.test.ts`, para o R0c zerar.
 > Depois, testando eu mesmo sem equipamento, recebi treinos curtos e genéricos. Em vez de ajustar o meu caso, o app foi testado em 108.900 combinações de equipamento, nível, dias, tempo e foco, com uma régua de qualidade em duas camadas: o que não pode piorar e o que deve melhorar. Com 32 exercícios novos (de flexão com os pés elevados a abertura com elástico), os programas sem nenhum defeito foram de 73% para 84%, e o mesmo exercício repetido todos os dias por falta de opção caiu de 44% para 16%.
 >
 > E dois revisores, sem saber qual semana era de qual versão, preferiram a nova em 12 de 18 casos e não preferiram a antiga em nenhum. O que eles ainda criticaram (o foco escolhido recebe pouco a mais que o resto) vira o próximo passo. Uma coisa não teve solução: treinar as costas sem nada para puxar. Nenhum estudo, treinador ou vídeo sério mostrou um jeito honesto, e o app continua dizendo isso.
+
+---
+
+## R5-anim: as 5 animações de corpo livre mais prescritas (07 e 08/11/2026)
+
+**Por quê.** Com a biblioteca ampliada (R5-CL), 74,9% dos programas sem dor teriam um dia com 3 ou mais exercícios sem animação, só com cartão de texto. Cinco exercícios de corpo livre respondem pela maior parte, porque valem em quase todo cenário. Animá-los derruba esse número para 19,5% (medido no protótipo) e para 0% no corpo livre.
+
+**O que mudou.**
+- **5 animações aprovadas pelo Gustavo, folha a folha**, no estilo A do Boneco, sem mudar o corpo nem o estilo:
+  - panturrilha no degrau da escada (81,8% dos programas): `revisoes/r5-anim/folhas/panturrilha-degrau.png`;
+  - abdominal invertido (61,7%): `revisoes/r5-anim/folhas/abdominal-invertido.png`;
+  - extensão de tríceps com o peso do corpo, mãos na bancada da cozinha (59,4%): `revisoes/r5-anim/folhas/extensao-triceps-peso-corpo.png`;
+  - abertura em T deitado de bruços (56,1%): `revisoes/r5-anim/folhas/abertura-t-deitado.png`;
+  - flexão com os pés elevados, numa cadeira (53,8%): `revisoes/r5-anim/folhas/flexao-pes-elevados.png`.
+- Cada uma tem a ficha da técnica com selo e fonte (`pesquisa/animacoes/<id>.md`), a conferência ponto a ponto (`revisoes/r5-anim/conferencia/`) e o texto completo do guia (`src/conteudo/revisao/`). Todas com 0 falha de junta (IK) na animação e em cada erro.
+- **Nenhuma peça nova no motor.** O degrau é a caixa do step; a parede, a da panturrilha no chão; o colchonete, o da ponte; a cadeira, a do búlgaro; a bancada da cozinha é a mesma caixa, com 90 cm (aprovada pelo Gustavo).
+- **As animações aprovadas continuam com 0 pixel de diferença**: o motor fora de `revisao/` não mudou, e a regressão visual passa.
+
+**Decisões.**
+- **A abertura em T foi refeita.** A 1ª folha olhava "por trás", dos pés para a cabeça, e as pernas viravam um volume no meio ("muito esquisito"). A 2ª mostra a pessoa pela cabeça (os braços subindo) e de cima (deitada em T).
+- **Evidência dita com honestidade:** a abertura em T só tem estudos de ativação do trapézio (ninguém mediu o ombro de trás sem carga); a flexão com os pés elevados é mais pesada, mas não há medida de que trabalhe mais a parte de cima do peito; o abdominal invertido é uma variação, não um exercício "melhor".
+
+**O que falta.** O R5-CL, que põe os 5 exercícios na biblioteca, ainda não está na `main`. Até lá as animações ficam aprovadas, mas fora do app. O roteiro para ligá-las (comandos, testes que mudam, a medida da grade) está em `revisoes/r5-anim/README.md`. Um ensaio numa cópia descartável mostrou que a ligação só acrescenta as 5 à linha de base, sem mudar nenhuma antiga.
+
+**Rascunho de post para o LinkedIn**
+> O meu app de treino ganhou 5 animações novas, e cada uma passou por mim antes de entrar: uma folha com os quadros-chave, os músculos, a trajetória e os erros mais comuns. Uma delas eu reprovei: a abertura em T, deitado de bruços, vista dos pés para a cabeça, parecia tudo menos uma pessoa. Bastou mudar a câmera: vista pela cabeça e de cima, ficou óbvia.
+>
+> Por que só 5? Porque foram medidas. Com os exercícios novos de treino em casa, 3 em cada 4 programas teriam um dia com 3 ou mais exercícios sem animação, só com texto. Estes 5 (panturrilha no degrau, abdominal invertido, tríceps com o peso do corpo, abertura em T e flexão com os pés no alto) aparecem em mais da metade dos programas. Com eles animados, isso cai para 1 em cada 5.
+>
+> E uma regra que não mudou: o app não promete o que a ciência não mostrou. A flexão com os pés no alto é mais pesada, mas nenhum estudo mostrou que ela trabalha mais a parte de cima do peito. Então o app não diz isso.

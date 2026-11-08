@@ -2,7 +2,7 @@
   "id": "abertura-t-deitado",
   "name": "Abertura em T deitado de bruços, sem carga",
   "short": "Abertura em T deitado",
-  "target": "Ombro de trás e meio das costas",
+  "target": "Ombro (posterior): a parte de trás do ombro. O meio das costas ajuda a juntar as escápulas, mas o app não conta série de costas aqui",
   "feel": "Atrás dos ombros e entre as escápulas.",
   "feelNote": "Cansaço atrás dos ombros é o esperado. Dor na frente do ombro ou formigamento no braço não é: pare e procure avaliação se continuar.",
   "setupEq": [

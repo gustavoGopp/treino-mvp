@@ -25,3 +25,21 @@ Nenhuma peça nova até aqui. O degrau da escada é a caixa de 15 cm do step apr
 - `extensao-triceps-peso-corpo`: aprovada pelo Gustavo em 08/11/2026, com a bancada desenhada como a caixa de 90 cm. Mesma espera pelo R5-CL.
 - `abertura-t-deitado`: a 1ª folha (vista "por trás") ficou "muito esquisita" para o Gustavo; a 2ª, com as vistas pela cabeça, de cima e de lado, foi aprovada em 08/11/2026. Mesma espera pelo R5-CL.
 - `flexao-pes-elevados`: aprovada pelo Gustavo em 08/11/2026, como está na folha (pés na cadeira do búlgaro). Mesma espera pelo R5-CL.
+
+## O que a sessão verificou (08/11/2026)
+- **As animações aprovadas não mudaram:** nenhum arquivo do motor fora de `revisao/` mudou em relação à `main`; a regressão visual (`npx playwright test --project=motor`) passa, com os 2 testes (o guia original e o estilo A); `node referencia/qa/check-motor.cjs check` limpo (0 falha de IK).
+- `npm run check`: 670 testes passando. `npm run test:e2e`: 48 de 48.
+- **Ensaio da ligação** (numa cópia descartável do repositório, fora do git): com os 5 exercícios na biblioteca como `16` os propõe e as 5 animações ligadas pelo script de aprovação, as duas linhas de base ganham só as 5 novas (todas com `ik=0`) e **nenhuma das antigas muda**; os testes de anatomia acharam 2 textos a acertar (o alvo da abertura em T e o "sentir" da flexão com os pés elevados), já acertados em `src/conteudo/revisao/`.
+
+## Depois do R5-CL: o roteiro para ligar as 5
+Quando os 5 exercícios estiverem na biblioteca (`src/domain/biblioteca/exercicios.json`), com os mesmos ids:
+1. `for id in panturrilha-degrau abdominal-invertido extensao-triceps-peso-corpo abertura-t-deitado flexao-pes-elevados; do node scripts/aprovar-animacao.mjs $id $id; done` (move as poses e os textos para fora de `revisao/`, põe na lista `EX` e liga `animacaoId`). O texto do guia substitui o cartão de texto que o R5-CL escrever para esses 5 (apagar o cartão com o mesmo id).
+2. **Os músculos que só ajudam** (desenhados listrados, como nas bases aprovadas): em `src/engine/estilo/musculos.ts` (`SO_AJUDA`), `'abdominal-invertido': ['obliquos']` e `'flexao-pes-elevados': ['retoAbdominal']`; em `scripts/auditoria/anatomia-regras.ts` (`AJUDANTES`), `'flexao-pes-elevados': ['abdomen']`. Na folha aprovada, esses dois músculos saíram laranja cheio, porque a lista só vale para animações ligadas; no app, saem listrados como no abdominal no chão e na flexão. É a única diferença.
+3. `ATUALIZAR_NOVAS=1 ATUALIZAR_ESTILO_A=1 npx playwright test --project=motor` (grava a linha de base das 5) e, de novo, sem as variáveis, para conferir.
+4. **Testes que mudam** (contam exercícios sem animação, ou listam exercícios à mão):
+   - `tests/unit/anatomia.test.ts`, "achado 5": a lista dos isoladores de ombro de trás ganha `abertura-t-deitado` (se o R5-CL ainda não a acrescentou);
+   - `tests/unit/legenda.test.ts`: passa com o passo 2 (falha sem ele);
+   - `tests/unit/conteudo.test.ts`: os 5 deixam de ser cartão e passam a ser guia (o teste "todo cartão é de exercício sem animação" falha se o cartão do passo 1 não for apagado);
+   - os snapshots das personas (`tests/unit/cenarios*`): o gerador desempata pela animação aprovada (`selecao.equivalencia`), então os programas com esses 5 podem mudar; rodar `npx vitest run` antes de regravar e registrar o antes × depois, como no elástico (`../elastico/README.md`).
+5. **Medir** a grade de qualidade com os 5 animados (os dias com 3 ou mais cartões nos programas sem dor; a meta é ≤ 20%, e 0% no corpo livre; o protótipo deu 19,5%) e as 6 personas.
+6. `npm run check` e `npm run test:e2e`.
