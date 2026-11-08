@@ -342,3 +342,15 @@ test('catálogo do R0c: equipamento novo sem desenho, estações do multifuncion
   await page.getByRole('tab', { name: 'Corpo todo B', exact: true }).click();
   await expect(painel.getByRole('button', { name: /Cadeira extensora/ })).toBeVisible();
 });
+
+test('lote 3: "algo a evitar" fica em Meus dados e gera o programa de novo sem o exercício escolhido', async ({ page }) => {
+  await ana(page);
+  await page.getByRole('navigation', { name: 'Seções' }).getByRole('link', { name: 'Meus dados' }).click();
+  await page.getByRole('link', { name: 'Escolher o que evitar' }).click();
+  await expect(page.getByRole('heading', { name: 'Algo a evitar' })).toBeVisible();
+  await page.getByText('Algum exercício que você quer evitar? (opcional)').click();
+  await page.getByLabel('Agachamento búlgaro com apoio', { exact: true }).check();
+  await page.getByRole('button', { name: 'Salvar e gerar o programa' }).click();
+  await expect(page.getByRole('heading', { name: 'Seu treino', exact: true })).toBeVisible();
+  await expect(page.getByRole('tabpanel').getByRole('button', { name: /Agachamento búlgaro com apoio/ })).toHaveCount(0);
+});
