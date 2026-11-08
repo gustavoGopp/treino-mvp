@@ -306,3 +306,71 @@ O protótipo aprovado previa 72 no início. O fim do treino ficou igual, mesmo c
 - o fim do treino ainda é a tela mais longa do grupo quando há sugestão de semana leve;
 - o bloqueio do programa (cerca de 0,3 s, das miniaturas) segue como no lote técnico;
 - o pedido 2 ("Quando você costuma treinar?", com o estado guardado na versão 8) ficou fora deste lote, para ter uma parada própria, com o lembrete de exportar os dados antes.
+
+### Lote 3, cadastro (08/11/2026)
+Medidas em `docs/revisoes/redesign/lote-3/`: `base.json` (pacote e Lighthouse) e `medidas-{claro,escuro,pequeno}.json` (capturas). Imagens de antes (o app de 06/11, antes do redesign) e depois em `docs/img/redesign-lote-3-*.png`.
+
+**O que mudou:**
+- **De 6 para 5 telas:** o "Tudo certo?" saiu, e o equipamento gera o programa.
+  - O resumo da dor da triagem virou o 1º aviso do programa novo, com o selo, até o 1º treino.
+  - "Algo a evitar" foi para Meus dados (pedido 5: sem ele, as listas valem vazias, sem versão nova do estado).
+- **Boas-vindas B** ("o seu lugar"):
+  - os 4 lugares no topo e uma frase sobre o benefício;
+  - o aviso inteiro numa nota calma antes do botão, com o texto intacto;
+  - a privacidade a um toque;
+  - "Começar".
+- **Saúde em uma pergunta:**
+  - a frase do PAR-Q+ e as 9 condições em poucas palavras, com as perguntas inteiras a um toque;
+  - "Não, nenhuma" com 1 toque;
+  - quem tem alguma marca só as que valem e confirma as não marcadas num diálogo;
+  - bloqueio, liberação e dor iguais;
+  - a regra `seguranca.triagem.nenhuma` foi reescrita em `regras.md`.
+- **Rotina:** o objetivo saiu do cadastro ("ganhar músculo" é o padrão) e fica em "Mudar a rotina ou a divisão".
+- **Equipamento:**
+  - o lugar primeiro, em 4 linhas com desenho;
+  - o que o app supôs numa caixa;
+  - "Pela foto" numa folha;
+  - "Item por item" com os marcados (Mudar, Tirar), a busca, as categorias como chips e a grade de 2 colunas;
+  - os detalhes de cada item numa folha, que abre sozinha ao marcar e ao gerar com algo faltando.
+- **Cabeçalho dos passos:** "‹ Voltar" no alto e "Passo N de 4".
+
+**Critérios nas capturas** (6 personas, 114 telas por tema e tamanho): 0 toque abaixo de 44 px, 0 contraste baixo e 0 rolagem de lado. Nos 7 cenários de `tests/e2e/cenarios.spec.ts`, o cadastro passa inteiro, inclusive as folhas novas e a letra a 125%. A pendência `letra125/cadastro` saiu, e **não sobra nenhuma pendência nos cenários**.
+
+**Palavras à vista e altura da tela** (Ana, claro, 412 px; a altura conta quantas telas de celular a página tem):
+
+| Tela | Lote 4 | Lote 3 |
+|---|---|---|
+| Boas-vindas | 177 palavras, 1,4 tela, botão fora da vista | **74 palavras, 1 tela, botão à vista** |
+| Saúde | 140 palavras, 1,6 tela | **111 palavras, 1,4 tela** |
+| Saúde, a tela do "sim" | 120 palavras, 2,2 telas (9 perguntas de sim ou não) | 148 palavras, 1,8 tela (9 caixas, com a pergunta inteira em cada uma) |
+| Rotina, respondida | 95 palavras, 2 telas | 79 palavras, 1,5 tela |
+| Equipamento, vazio | 91 palavras, 4,4 telas | **74 palavras, 1 tela** |
+| Equipamento, academia completa | 71 palavras, 7,1 telas | 91 palavras, **1,9 tela** |
+| Equipamento, a lista da Ana | 38 palavras, 5,2 telas | 50 palavras, **1,9 tela** |
+| "Tudo certo?" | 36 palavras, 1 tela | saiu |
+
+A 360 px, a boas-vindas também cabe em 1 tela (120 → 74 palavras), e o equipamento vazio cai de 5,1 para 1,3 tela.
+
+**Toques da Ana:**
+- **Fora do equipamento:** de 12 para **11**. O teste `onboarding.spec.ts` passou a exigir até 11, com 0 caractere digitado.
+- **Item por item:** o caminho dela ficou com 2 toques a mais (9 contra 6, contando o "Gerar"). Agora se toca em "Item por item" e na categoria "Bancos", e se fecha a folha dos halteres com "Pronto".
+- **Por um lugar ("Academia completa"):** 1 toque a menos, porque o "Gerar" está na mesma tela.
+- **No total, pela lista,** a Ana passou de 18 para 20 toques. Ainda falta a cronometragem do Gustavo no celular.
+
+**Lighthouse, com o app instalado:**
+
+| Rota | Desempenho (lote 4 → lote 3) | Acessibilidade | Bloqueio total (ms) |
+|---|---|---:|---:|
+| `/` (abre o programa) | 99 → 98 | 100 | 161 |
+| `/comecar/triagem` | 100 → 100 | 100 | 32 |
+| `/programa` | 93 → 98 | 100 | 178 |
+| `/guia/bulgaro` | 90 → 86 | 100 | 541 |
+| `/semana` | 100 → 100 | 100 | 70 |
+| `/dados` | 100 → 98 | 100 | 157 |
+
+O guia não mudou neste lote. A queda de 90 para 86 é da medida: em 6 rodadas desde o lote 2, ele ficou entre 86 e 96. O pacote da boas-vindas continua abaixo de 150 kB comprimidos (`orcamento.spec.ts`), com os desenhos dos lugares num arquivo próprio.
+
+**O que não melhorou:**
+- a tela do "sim" da saúde tem mais palavras, porque mostra a pergunta inteira em cada caixa (aprovado assim, para não perder o conteúdo);
+- o caminho item por item da Ana ficou 2 toques mais longo;
+- os 24 desenhos de equipamento que faltam continuam no lote 5, para a aprovação do Gustavo um a um.

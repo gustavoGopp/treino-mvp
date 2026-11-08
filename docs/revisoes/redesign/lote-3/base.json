@@ -1,0 +1,812 @@
+{
+ "medidoEm": "2026-11-08T00:46:14.712Z",
+ "fase": "lote-3",
+ "bundle": [
+  {
+   "arquivo": "Dados-DOi8yA6y.js",
+   "kB": 6.4,
+   "gzipKB": 2.6
+  },
+  {
+   "arquivo": "Evolucao-D8zcfquV.js",
+   "kB": 2.4,
+   "gzipKB": 1.1
+  },
+  {
+   "arquivo": "Guia-ClWC6DHn.js",
+   "kB": 27.5,
+   "gzipKB": 8.8
+  },
+  {
+   "arquivo": "Inventario-C9Ezor3v.js",
+   "kB": 37.2,
+   "gzipKB": 11.5
+  },
+  {
+   "arquivo": "Locais-CotogaBF.js",
+   "kB": 3.6,
+   "gzipKB": 1.5
+  },
+  {
+   "arquivo": "Nivel-7Hw7Gw4I.js",
+   "kB": 2.5,
+   "gzipKB": 1.2
+  },
+  {
+   "arquivo": "Restricoes-D80j6nw0.js",
+   "kB": 1.9,
+   "gzipKB": 0.9
+  },
+  {
+   "arquivo": "Resumo-D4YU8BhB.js",
+   "kB": 4.3,
+   "gzipKB": 1.9
+  },
+  {
+   "arquivo": "Rotina-DwH2XRAH.js",
+   "kB": 4.9,
+   "gzipKB": 2.3
+  },
+  {
+   "arquivo": "Temporizador-CmEBimOY.js",
+   "kB": 2.8,
+   "gzipKB": 1.4
+  },
+  {
+   "arquivo": "Treino-CPxJMozq.js",
+   "kB": 19.2,
+   "gzipKB": 6.3
+  },
+  {
+   "arquivo": "Triagem-CsfgCP2o.js",
+   "kB": 6.2,
+   "gzipKB": 2.5
+  },
+  {
+   "arquivo": "abdominal-bola-kdWffKlJ.js",
+   "kB": 2.7,
+   "gzipKB": 1.3
+  },
+  {
+   "arquivo": "abdominal-chao-DVz1L9ED.js",
+   "kB": 1.8,
+   "gzipKB": 0.9
+  },
+  {
+   "arquivo": "abdominal-maquina-DzQ2O0Qj.js",
+   "kB": 1,
+   "gzipKB": 0.6
+  },
+  {
+   "arquivo": "abdominal-polia-DUpbdLF8.js",
+   "kB": 2.1,
+   "gzipKB": 1.1
+  },
+  {
+   "arquivo": "abducao-caneleira-UzS2vu4p.js",
+   "kB": 2.9,
+   "gzipKB": 1.3
+  },
+  {
+   "arquivo": "abducao-deitado-1glYu4sm.js",
+   "kB": 2.7,
+   "gzipKB": 1.2
+  },
+  {
+   "arquivo": "abducao-maquina-AMGVFTNC.js",
+   "kB": 1.1,
+   "gzipKB": 0.6
+  },
+  {
+   "arquivo": "abducao-mini-band-BQRGhNZX.js",
+   "kB": 2.4,
+   "gzipKB": 1.2
+  },
+  {
+   "arquivo": "abducao-polia-B43YpZj1.js",
+   "kB": 1.2,
+   "gzipKB": 0.6
+  },
+  {
+   "arquivo": "aducao-caneleira-KMa684RH.js",
+   "kB": 2.6,
+   "gzipKB": 1.2
+  },
+  {
+   "arquivo": "aducao-deitado-DeNw8VkK.js",
+   "kB": 2.5,
+   "gzipKB": 1.2
+  },
+  {
+   "arquivo": "aducao-maquina-BvdtRPnp.js",
+   "kB": 1,
+   "gzipKB": 0.6
+  },
+  {
+   "arquivo": "afundo-BG2BGbDx.js",
+   "kB": 2.5,
+   "gzipKB": 1.2
+  },
+  {
+   "arquivo": "afundo-kettlebell-e5aWQd-P.js",
+   "kB": 2.8,
+   "gzipKB": 1.3
+  },
+  {
+   "arquivo": "afundo-peso-corpo-DQh457SD.js",
+   "kB": 2.5,
+   "gzipKB": 1.2
+  },
+  {
+   "arquivo": "agachamento-barra-mIHbHIzp.js",
+   "kB": 2.5,
+   "gzipKB": 1.2
+  },
+  {
+   "arquivo": "agachamento-elastico-C-gyrzTN.js",
+   "kB": 3,
+   "gzipKB": 1.4
+  },
+  {
+   "arquivo": "agachamento-peso-corpo-WTKX4aFc.js",
+   "kB": 2.7,
+   "gzipKB": 1.3
+  },
+  {
+   "arquivo": "agachamento-smith-CzAU1PeN.js",
+   "kB": 1.5,
+   "gzipKB": 0.8
+  },
+  {
+   "arquivo": "barra-fixa-D9Y4FA87.js",
+   "kB": 2.9,
+   "gzipKB": 1.4
+  },
+  {
+   "arquivo": "barra-fixa-graviton-6Qs6dxCk.js",
+   "kB": 1.1,
+   "gzipKB": 0.6
+  },
+  {
+   "arquivo": "barra-fixa-supinada-BwCaboMi.js",
+   "kB": 2.8,
+   "gzipKB": 1.3
+  },
+  {
+   "arquivo": "boneco.worker-BBi3j9bg.js",
+   "kB": 195,
+   "gzipKB": 44.4
+  },
+  {
+   "arquivo": "bulgaro-Djq7izSF.js",
+   "kB": 2.6,
+   "gzipKB": 1.2
+  },
+  {
+   "arquivo": "bulgaro-peso-corpo-BfgyoksT.js",
+   "kB": 2.7,
+   "gzipKB": 1.3
+  },
+  {
+   "arquivo": "bulgaro-suspensao-Cfc7v_tM.js",
+   "kB": 3.2,
+   "gzipKB": 1.5
+  },
+  {
+   "arquivo": "cadeira-extensora-D0nOFpoF.js",
+   "kB": 1.4,
+   "gzipKB": 0.8
+  },
+  {
+   "arquivo": "cadeira-flexora-0WWP3wGs.js",
+   "kB": 1.4,
+   "gzipKB": 0.7
+  },
+  {
+   "arquivo": "coice-maquina-_Te42rco.js",
+   "kB": 1.1,
+   "gzipKB": 0.6
+  },
+  {
+   "arquivo": "coice-polia-BP4tRGru.js",
+   "kB": 1.2,
+   "gzipKB": 0.6
+  },
+  {
+   "arquivo": "crucifixo-elastico-B_vQkjEG.js",
+   "kB": 3.4,
+   "gzipKB": 1.5
+  },
+  {
+   "arquivo": "crucifixo-halteres-BQqLnWv7.js",
+   "kB": 1.4,
+   "gzipKB": 0.7
+  },
+  {
+   "arquivo": "crucifixo-inverso-DSjsW4cK.js",
+   "kB": 1.4,
+   "gzipKB": 0.7
+  },
+  {
+   "arquivo": "crucifixo-invertido-curvado-B3B7xTa5.js",
+   "kB": 1.3,
+   "gzipKB": 0.7
+  },
+  {
+   "arquivo": "crucifixo-invertido-polia-CxO4ea1d.js",
+   "kB": 2.3,
+   "gzipKB": 1.1
+  },
+  {
+   "arquivo": "crucifixo-polia-B2KzvN01.js",
+   "kB": 2.6,
+   "gzipKB": 1.2
+  },
+  {
+   "arquivo": "desenvolvimento-Bp374yN8.js",
+   "kB": 2.3,
+   "gzipKB": 1.1
+  },
+  {
+   "arquivo": "desenvolvimento-elastico-Cd13_b1B.js",
+   "kB": 2.6,
+   "gzipKB": 1.3
+  },
+  {
+   "arquivo": "desenvolvimento-maquina-BbqvRICN.js",
+   "kB": 1,
+   "gzipKB": 0.6
+  },
+  {
+   "arquivo": "desenvolvimento-unilateral-kettlebell-ELBBr0o3.js",
+   "kB": 2.8,
+   "gzipKB": 1.3
+  },
+  {
+   "arquivo": "elevacao-halteres-CukwKfCo.js",
+   "kB": 2.3,
+   "gzipKB": 1.1
+  },
+  {
+   "arquivo": "elevacao-joelhos-BP3YoxHP.js",
+   "kB": 1.9,
+   "gzipKB": 1
+  },
+  {
+   "arquivo": "elevacao-joelhos-paralelas-BxnKnpf4.js",
+   "kB": 2.8,
+   "gzipKB": 1.3
+  },
+  {
+   "arquivo": "elevacao-lateral-BNxdO9Hv.js",
+   "kB": 2.3,
+   "gzipKB": 1.1
+  },
+  {
+   "arquivo": "elevacao-lateral-elastico-DxmwrDBw.js",
+   "kB": 2.6,
+   "gzipKB": 1.2
+  },
+  {
+   "arquivo": "extensao-joelho-caneleira-DoTUeXRP.js",
+   "kB": 3,
+   "gzipKB": 1.4
+  },
+  {
+   "arquivo": "extensao-joelho-elastico-Czq_cKld.js",
+   "kB": 3.2,
+   "gzipKB": 1.4
+  },
+  {
+   "arquivo": "face-pull-aCXXZCwe.js",
+   "kB": 2.2,
+   "gzipKB": 1.1
+  },
+  {
+   "arquivo": "face-pull-elastico-gUcPibuM.js",
+   "kB": 2.8,
+   "gzipKB": 1.3
+  },
+  {
+   "arquivo": "flexao-CEbE6Bjw.js",
+   "kB": 2.1,
+   "gzipKB": 1.1
+  },
+  {
+   "arquivo": "flexao-bola-BQvPmX0M.js",
+   "kB": 2.3,
+   "gzipKB": 1.1
+  },
+  {
+   "arquivo": "flexao-elastico-BGn9EGVu.js",
+   "kB": 2.9,
+   "gzipKB": 1.4
+  },
+  {
+   "arquivo": "flexao-fechada-BfJ5LtAa.js",
+   "kB": 2.7,
+   "gzipKB": 1.3
+  },
+  {
+   "arquivo": "flexao-joelho-deslizante-C8CQ8zwj.js",
+   "kB": 2.8,
+   "gzipKB": 1.3
+  },
+  {
+   "arquivo": "flexao-joelho-elastico-Ch-QfTYO.js",
+   "kB": 2.9,
+   "gzipKB": 1.4
+  },
+  {
+   "arquivo": "flexao-joelho-suspensao-CUI46R1c.js",
+   "kB": 3.2,
+   "gzipKB": 1.5
+  },
+  {
+   "arquivo": "fontes-BNhU6kmA.js",
+   "kB": 48.9,
+   "gzipKB": 16.3
+  },
+  {
+   "arquivo": "goblet-B68bAqxd.js",
+   "kB": 3.1,
+   "gzipKB": 1.5
+  },
+  {
+   "arquivo": "goblet-kettlebell-CBL0SyuB.js",
+   "kB": 1.3,
+   "gzipKB": 0.7
+  },
+  {
+   "arquivo": "hack-Bkl5EvGs.js",
+   "kB": 1.4,
+   "gzipKB": 0.8
+  },
+  {
+   "arquivo": "hip-thrust-C9SWkGG_.js",
+   "kB": 1.6,
+   "gzipKB": 0.8
+  },
+  {
+   "arquivo": "hiperextensao-DE_MU1zI.js",
+   "kB": 1.4,
+   "gzipKB": 0.7
+  },
+  {
+   "arquivo": "index-BFH4BVDz.css",
+   "kB": 63.7,
+   "gzipKB": 11.8
+  },
+  {
+   "arquivo": "index-Y0h4QsfQ.js",
+   "kB": 534.2,
+   "gzipKB": 146
+  },
+  {
+   "arquivo": "mergulho-graviton-CIPiYZMo.js",
+   "kB": 1.2,
+   "gzipKB": 0.6
+  },
+  {
+   "arquivo": "mergulho-xWrikCre.js",
+   "kB": 1.3,
+   "gzipKB": 0.7
+  },
+  {
+   "arquivo": "musculos-DFwozaqH.js",
+   "kB": 27.2,
+   "gzipKB": 9.9
+  },
+  {
+   "arquivo": "nordico-DmK6JY_C.js",
+   "kB": 2.9,
+   "gzipKB": 1.4
+  },
+  {
+   "arquivo": "panturrilha-BCstnHBn.js",
+   "kB": 2.2,
+   "gzipKB": 1.1
+  },
+  {
+   "arquivo": "panturrilha-b-CQ2tTb2c.js",
+   "kB": 2.2,
+   "gzipKB": 1.1
+  },
+  {
+   "arquivo": "panturrilha-chao-NdcQD4t-.js",
+   "kB": 1.9,
+   "gzipKB": 1
+  },
+  {
+   "arquivo": "panturrilha-em-pe-maquina-Cin5dMey.js",
+   "kB": 1.2,
+   "gzipKB": 0.6
+  },
+  {
+   "arquivo": "panturrilha-sentada-D4jmX1Vv.js",
+   "kB": 1.2,
+   "gzipKB": 0.7
+  },
+  {
+   "arquivo": "panturrilha-sentada-halter-vJYYog5y.js",
+   "kB": 2.5,
+   "gzipKB": 1.2
+  },
+  {
+   "arquivo": "pike-C9JlDRqK.js",
+   "kB": 2.5,
+   "gzipKB": 1.2
+  },
+  {
+   "arquivo": "ponte-gluteo-Djdtkajf.js",
+   "kB": 2.3,
+   "gzipKB": 1.1
+  },
+  {
+   "arquivo": "ponte-gluteo-halter-CQUFGXos.js",
+   "kB": 1.6,
+   "gzipKB": 0.8
+  },
+  {
+   "arquivo": "ponte-kettlebell-D_D3-gis.js",
+   "kB": 2.8,
+   "gzipKB": 1.3
+  },
+  {
+   "arquivo": "ponte-pes-bola-BAfQbIy9.js",
+   "kB": 2.8,
+   "gzipKB": 1.3
+  },
+  {
+   "arquivo": "puxada-elastico-D_wr9oti.js",
+   "kB": 2.9,
+   "gzipKB": 1.4
+  },
+  {
+   "arquivo": "puxada-frente-Dt3UIsHI.js",
+   "kB": 1.3,
+   "gzipKB": 0.7
+  },
+  {
+   "arquivo": "puxada-unilateral-BwdcpYAg.js",
+   "kB": 2.2,
+   "gzipKB": 1.1
+  },
+  {
+   "arquivo": "remada-apoiada-ns-XKUy4.js",
+   "kB": 2.5,
+   "gzipKB": 1.2
+  },
+  {
+   "arquivo": "remada-articulada-CAwqivd-.js",
+   "kB": 1.1,
+   "gzipKB": 0.6
+  },
+  {
+   "arquivo": "remada-baixa-PVXiRIWf.js",
+   "kB": 2.8,
+   "gzipKB": 1.4
+  },
+  {
+   "arquivo": "remada-baixa-estacao-BfgR6YQ8.js",
+   "kB": 1.2,
+   "gzipKB": 0.7
+  },
+  {
+   "arquivo": "remada-curvada-halteres-Bzbq-QE5.js",
+   "kB": 1.4,
+   "gzipKB": 0.7
+  },
+  {
+   "arquivo": "remada-elastico-BHzjqwY9.js",
+   "kB": 2.8,
+   "gzipKB": 1.4
+  },
+  {
+   "arquivo": "remada-suspensao-1grVsM47.js",
+   "kB": 3.1,
+   "gzipKB": 1.5
+  },
+  {
+   "arquivo": "remada-unilateral-Dcg6XM7n.js",
+   "kB": 2.4,
+   "gzipKB": 1.2
+  },
+  {
+   "arquivo": "remada-unilateral-kettlebell-DFnsaiTk.js",
+   "kB": 2.7,
+   "gzipKB": 1.2
+  },
+  {
+   "arquivo": "remada-unilateral-polia-DnFORkyi.js",
+   "kB": 2.4,
+   "gzipKB": 1.1
+  },
+  {
+   "arquivo": "remada-unilateral-sem-banco-sh8VnkdT.js",
+   "kB": 2.5,
+   "gzipKB": 1.1
+  },
+  {
+   "arquivo": "roda-abdominal-Cre_-Znm.js",
+   "kB": 2.8,
+   "gzipKB": 1.3
+  },
+  {
+   "arquivo": "rosca-alternada-DNjfVmpO.js",
+   "kB": 1.8,
+   "gzipKB": 0.9
+  },
+  {
+   "arquivo": "rosca-elastico-Ku9nLQPJ.js",
+   "kB": 2.5,
+   "gzipKB": 1.2
+  },
+  {
+   "arquivo": "rosca-inclinada-DjmvJN8J.js",
+   "kB": 2.6,
+   "gzipKB": 1.3
+  },
+  {
+   "arquivo": "rosca-kettlebell-BB4m0cJS.js",
+   "kB": 2.3,
+   "gzipKB": 1.1
+  },
+  {
+   "arquivo": "rosca-maquina-eePcPIQw.js",
+   "kB": 0.9,
+   "gzipKB": 0.5
+  },
+  {
+   "arquivo": "rosca-martelo-V7PTPnOj.js",
+   "kB": 2,
+   "gzipKB": 1
+  },
+  {
+   "arquivo": "rosca-polia-C-O4X24j.js",
+   "kB": 2.1,
+   "gzipKB": 1.1
+  },
+  {
+   "arquivo": "rosca-scott-CMwD6SLy.js",
+   "kB": 1.2,
+   "gzipKB": 0.7
+  },
+  {
+   "arquivo": "rosca-suspensao-CdIXDYR4.js",
+   "kB": 2.9,
+   "gzipKB": 1.3
+  },
+  {
+   "arquivo": "stiff-CM0IgWkD.js",
+   "kB": 2.7,
+   "gzipKB": 1.3
+  },
+  {
+   "arquivo": "stiff-elastico-DxqAY-dB.js",
+   "kB": 3.1,
+   "gzipKB": 1.5
+  },
+  {
+   "arquivo": "stiff-kettlebell-BYxa0GBp.js",
+   "kB": 3.3,
+   "gzipKB": 1.5
+  },
+  {
+   "arquivo": "stiff-unilateral-BWkJQZ6k.js",
+   "kB": 1.9,
+   "gzipKB": 1
+  },
+  {
+   "arquivo": "supino-chao-halteres-oWBetmV9.js",
+   "kB": 1.6,
+   "gzipKB": 0.8
+  },
+  {
+   "arquivo": "supino-inclinado-CCBkvc68.js",
+   "kB": 3.3,
+   "gzipKB": 1.6
+  },
+  {
+   "arquivo": "supino-maquina-CEn2HVeK.js",
+   "kB": 1.2,
+   "gzipKB": 0.6
+  },
+  {
+   "arquivo": "supino-reto-CEEW7-8w.js",
+   "kB": 2.8,
+   "gzipKB": 1.4
+  },
+  {
+   "arquivo": "supino-smith-CTLwP8iq.js",
+   "kB": 1.4,
+   "gzipKB": 0.8
+  },
+  {
+   "arquivo": "terra-hexagonal-DLi907q0.js",
+   "kB": 1.3,
+   "gzipKB": 0.7
+  },
+  {
+   "arquivo": "trabalhoBoneco-Bpk3kjAy.js",
+   "kB": 168.2,
+   "gzipKB": 34.5
+  },
+  {
+   "arquivo": "triceps-corda-DndIKsqX.js",
+   "kB": 2.1,
+   "gzipKB": 1
+  },
+  {
+   "arquivo": "triceps-elastico-acima-BOwHU2RC.js",
+   "kB": 3,
+   "gzipKB": 1.3
+  },
+  {
+   "arquivo": "triceps-frances-Bypgjshg.js",
+   "kB": 2.6,
+   "gzipKB": 1.2
+  },
+  {
+   "arquivo": "triceps-frances-halter-CGpcVM8_.js",
+   "kB": 1.9,
+   "gzipKB": 0.9
+  },
+  {
+   "arquivo": "triceps-frances-kettlebell-YhxZBKoH.js",
+   "kB": 2.7,
+   "gzipKB": 1.2
+  },
+  {
+   "arquivo": "triceps-frances-polia-unilateral-omfRhicx.js",
+   "kB": 2.3,
+   "gzipKB": 1.1
+  },
+  {
+   "arquivo": "triceps-maquina-BdBsQrNe.js",
+   "kB": 1,
+   "gzipKB": 0.6
+  },
+  {
+   "arquivo": "triceps-suspensao-BbvhWKVe.js",
+   "kB": 3.1,
+   "gzipKB": 1.4
+  },
+  {
+   "arquivo": "voador-ZcevDpLT.js",
+   "kB": 1.2,
+   "gzipKB": 0.6
+  },
+  {
+   "arquivo": "voador-invertido-CptBYkzP.js",
+   "kB": 1.1,
+   "gzipKB": 0.6
+  },
+  {
+   "arquivo": "yt-suspensao-CYswB3rt.js",
+   "kB": 3,
+   "gzipKB": 1.4
+  },
+  {
+   "arquivo": "index.html",
+   "kB": 0.9
+  },
+  {
+   "arquivo": "sw.js",
+   "kB": 8.9
+  },
+  {
+   "arquivo": "manifest.webmanifest",
+   "kB": 0.3
+  }
+ ],
+ "letra": {
+  "pedidosExternos": 0,
+  "arquivos": [
+   {
+    "url": "/fonts/atkinson-hyperlegible-next-latin.woff2",
+    "kB": 33.2
+   }
+  ],
+  "totalKB": 33.2,
+  "nota": "servida pelo próprio app (variável, latin)"
+ },
+ "lighthouse": [
+  {
+   "rota": "/",
+   "url": "http://localhost:4173/programa",
+   "desempenho": 98,
+   "acessibilidade": 100,
+   "boasPraticas": 100,
+   "fcpMs": 72,
+   "lcpMs": 72,
+   "tbtMs": 161,
+   "cls": 0,
+   "speedIndexMs": 278,
+   "pedidos": 8,
+   "transferidoKB": 0,
+   "pedidosExternos": 0,
+   "falhasAcessibilidade": []
+  },
+  {
+   "rota": "/comecar/triagem",
+   "url": "http://localhost:4173/comecar/triagem",
+   "desempenho": 100,
+   "acessibilidade": 100,
+   "boasPraticas": 100,
+   "fcpMs": 100,
+   "lcpMs": 100,
+   "tbtMs": 32,
+   "cls": 0,
+   "speedIndexMs": 341,
+   "pedidos": 8,
+   "transferidoKB": 0,
+   "pedidosExternos": 0,
+   "falhasAcessibilidade": []
+  },
+  {
+   "rota": "/programa",
+   "url": "http://localhost:4173/programa",
+   "desempenho": 98,
+   "acessibilidade": 100,
+   "boasPraticas": 100,
+   "fcpMs": 139,
+   "lcpMs": 139,
+   "tbtMs": 178,
+   "cls": 0,
+   "speedIndexMs": 364,
+   "pedidos": 8,
+   "transferidoKB": 0,
+   "pedidosExternos": 0,
+   "falhasAcessibilidade": []
+  },
+  {
+   "rota": "/guia/bulgaro",
+   "url": "http://localhost:4173/guia/bulgaro",
+   "desempenho": 86,
+   "acessibilidade": 100,
+   "boasPraticas": 100,
+   "fcpMs": 184,
+   "lcpMs": 184,
+   "tbtMs": 541,
+   "cls": 0,
+   "speedIndexMs": 1909,
+   "pedidos": 130,
+   "transferidoKB": 0,
+   "pedidosExternos": 0,
+   "falhasAcessibilidade": []
+  },
+  {
+   "rota": "/semana",
+   "url": "http://localhost:4173/semana",
+   "desempenho": 100,
+   "acessibilidade": 100,
+   "boasPraticas": 100,
+   "fcpMs": 76,
+   "lcpMs": 76,
+   "tbtMs": 70,
+   "cls": 0,
+   "speedIndexMs": 392,
+   "pedidos": 7,
+   "transferidoKB": 0,
+   "pedidosExternos": 0,
+   "falhasAcessibilidade": []
+  },
+  {
+   "rota": "/dados",
+   "url": "http://localhost:4173/dados",
+   "desempenho": 98,
+   "acessibilidade": 100,
+   "boasPraticas": 100,
+   "fcpMs": 67,
+   "lcpMs": 67,
+   "tbtMs": 157,
+   "cls": 0,
+   "speedIndexMs": 309,
+   "pedidos": 9,
+   "transferidoKB": 0,
+   "pedidosExternos": 0,
+   "falhasAcessibilidade": []
+  }
+ ]
+}

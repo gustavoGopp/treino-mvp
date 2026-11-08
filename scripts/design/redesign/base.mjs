@@ -54,7 +54,7 @@ const estado = JSON.parse(readFileSync('reports/design/redesign/estados/ana.json
 const ctx = await chromium.launchPersistentContext(PERFIL, { executablePath: CHROME, viewport: { width: 412, height: 915 } });
 const page = await ctx.newPage();
 await page.goto('http://localhost:4173/');
-await page.getByRole('button', { name: 'Entendi, vamos começar' }).waitFor();
+await page.getByRole('button', { name: 'Começar', exact: true }).waitFor();
 await page.evaluate(async (e) => {
   const db = await new Promise((ok, erro) => {
     const r = indexedDB.open('keyval-store');

@@ -19,6 +19,13 @@ GRUPOS = {
         ('senti-e-guia-claro', 'claro', ['ana/14-treino-senti-algo', 'ana/16-guia-tecnica']),
         ('treino-e-guia-escuro', 'escuro', ['ana/11-treino-serie-1', 'ana/16-guia-tecnica']),
     ],
+    'lote-3': [
+        ('boas-vindas-e-saude-claro', 'claro', ['cadastro/01-boas-vindas', 'cadastro/02-triagem']),
+        ('saude-sim-claro', 'claro', ['cadastro/02b-triagem-uma-a-uma', 'cadastro/03-nivel-vazio']),
+        ('equipamento-claro', 'claro', ['cadastro/05-equipamento-vazio', 'cadastro/05b-equipamento-academia-completa']),
+        ('cadastro-escuro', 'escuro', ['cadastro/01-boas-vindas', 'cadastro/05d-equipamento-lista-ana']),
+        ('cadastro-360', 'pequeno', ['cadastro/01-boas-vindas', 'cadastro/02-triagem']),
+    ],
     'lote-4': [
         ('inicio-claro', 'claro', ['ana/10-programa', 'bruno/10-programa']),
         ('fim-e-semana-claro', 'claro', ['ana/17-fim-do-treino', 'ana/18-semana']),
