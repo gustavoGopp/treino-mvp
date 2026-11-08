@@ -44,25 +44,53 @@ export const MAT = {
   ferro: ['#1C1E22', '#34383E', '#646A73', '#0C0D0F'], // kettlebell
 };
 
+// ---------- enquadramento em 2 passos (para os SVG finais) ----------
+// 1º passo: desenha, mede e calcula a escala; 2º passo: desenha de novo com a câmera já ajustada, e as coordenadas
+// saem direto no viewBox 160 × 120 (sem transform), arredondadas a 1 casa.
+let AJUSTE = null;
+let ULTIMO = null;
+export function enquadrado(fn) {
+  return (...args) => {
+    AJUSTE = null;
+    fn(...args);
+    AJUSTE = ULTIMO;
+    try {
+      return fn(...args);
+    } finally {
+      AJUSTE = null;
+    }
+  };
+}
+// tons em 5 níveis (escuro, meio-escuro, base, meio-claro, claro): faces vizinhas do mesmo tom viram um só polígono
+let QUANTIZA = false;
+export const quantizar = (v) => (QUANTIZA = v);
+
 // ---------- câmera ----------
 export function camera({ yaw = 30, pitch = 14, s = 0.45, ox = 80, oy = 108 }) {
+  const aj = AJUSTE;
   const ya = (yaw * Math.PI) / 180, pa = (pitch * Math.PI) / 180;
   const ct = Math.cos(ya), st = Math.sin(ya), cp = Math.cos(pa), sp = Math.sin(pa);
   const rot = ([x, y, z]) => {
     const X = x * ct + z * st, Zc = -x * st + z * ct;
     return [X, y * cp + Zc * sp, -y * sp + Zc * cp];
   };
-  const P = (p) => {
-    const [X, Y, Z] = rot(p);
-    return [ox + s * X, oy - s * Y, Z];
-  };
-  return { P, rot, s };
+  const P = aj
+    ? (p) => {
+        const [X, Y, Z] = rot(p);
+        return [aj.k * (ox + s * X) + aj.tx, aj.k * (oy - s * Y) + aj.ty, Z];
+      }
+    : (p) => {
+        const [X, Y, Z] = rot(p);
+        return [ox + s * X, oy - s * Y, Z];
+      };
+  return { P, rot, s: aj ? s * aj.k : s, ajustada: !!aj };
 }
 // luz no espaço da câmera: de cima, da esquerda e um pouco da frente
 const LUZ = norm([-0.5, 0.72, -0.48]);
 export function tom(mat, nCam) {
   const t = Math.max(0, Math.min(1, 0.5 + 0.5 * dot(nCam, LUZ)));
   const [e, b, c] = mat;
+  if (QUANTIZA) return t < 0.33 ? e : t < 0.5 ? mix(e, b, 0.5) : t < 0.8 ? b : t < 0.9 ? mix(b, c, 0.5) : c;
   // t ≈ 0.2 → escuro, 0.6 → base, 0.95 → claro
   if (t < 0.6) return mix(e, b, Math.max(0, (t - 0.2) / 0.4));
   return mix(b, c, Math.min(1, (t - 0.6) / 0.35));
@@ -171,16 +199,71 @@ export function cena(id, cam) {
     return { cen, vis };
   }
 
-  // prisma: perfil 2D (u, v) no plano (o, e1, e2), extrudado pelo vetor ext
+  // prisma: perfil 2D (u, v) no plano (o, e1, e2), extrudado pelo vetor ext. As laterais visíveis vizinhas com o
+  // mesmo tom saem num polígono só (menos elementos no SVG).
   function prisma(perfil, o3, e1, e2, ext, mat, o = {}) {
     const frente = perfil.map(([u, v]) => add(add(o3, mul(e1, u)), mul(e2, v)));
     const tras = frente.map((p) => add(p, ext));
-    const faces = [frente, [...tras].reverse()];
-    for (let i = 0; i < frente.length; i++) {
-      const j = (i + 1) % frente.length;
-      faces.push([frente[i], frente[j], tras[j], tras[i]]);
+    const n = frente.length;
+    const todos = frente.concat(tras);
+    const cen = mul(todos.reduce((a, p) => add(a, p), [0, 0, 0]), 1 / todos.length);
+    const normal = (f) => {
+      let nx = 0, ny = 0, nz = 0;
+      for (let k = 0; k < f.length; k++) {
+        const a = f[k], b = f[(k + 1) % f.length];
+        nx += (a[1] - b[1]) * (a[2] + b[2]);
+        ny += (a[2] - b[2]) * (a[0] + b[0]);
+        nz += (a[0] - b[0]) * (a[1] + b[1]);
+      }
+      let nn = norm([nx, ny, nz]);
+      const fc = mul(f.reduce((a, p) => add(a, p), [0, 0, 0]), 1 / f.length);
+      if (dot(nn, sub(fc, cen)) < 0) nn = mul(nn, -1);
+      return nn;
+    };
+    const face = (Q, cor) => `<polygon points="${pts2(Q)}" fill="${cor}" stroke="${cor}"/>`;
+    let svg = '';
+    const vis = [];
+    // laterais
+    const lado = [];
+    for (let i = 0; i < n; i++) {
+      const j = (i + 1) % n;
+      const nn = normal([frente[i], frente[j], tras[j], tras[i]]);
+      lado.push(visivel(nn) ? tom(mat, rot(nn)) : null);
     }
-    return solido(faces, mat, o);
+    let ini = lado.findIndex((c, i) => c !== lado[(i - 1 + n) % n]);
+    if (ini < 0) ini = 0;
+    for (let k = 0; k < n; ) {
+      const i = (ini + k) % n;
+      const cor = lado[i];
+      let m = 1;
+      while (k + m < n && lado[(ini + k + m) % n] === cor) m++;
+      if (cor) {
+        const idx = Array.from({ length: m + 1 }, (_, q) => (i + q) % n);
+        const Q = idx.map((q) => P(frente[q])).concat(idx.reverse().map((q) => P(tras[q])));
+        svg += face(Q, cor);
+        for (let q = 0; q < m; q++) vis.push(2 + ((i + q) % n));
+      }
+      k += m;
+    }
+    // tampas
+    for (const [ci, f] of [
+      [0, frente],
+      [1, tras],
+    ]) {
+      const nn = normal(f);
+      if (!visivel(nn)) continue;
+      svg += face(f.map(P), tom(mat, rot(nn)));
+      vis.push(ci);
+      if (o.decal?.[ci]) svg += o.decal[ci](P);
+    }
+    if (o.decalSempre) svg += o.decalSempre(P, vis);
+    if (o.contorno !== false) {
+      const H = hull(todos.map(P));
+      svg += `<polygon points="${pts2(H)}" fill="none" stroke="${mat[3]}" stroke-width="${o.traco ?? 0.55}"/>`;
+    }
+    const z = o.z ?? P(cen)[2];
+    itens.push({ z: z + (o.dz ?? 0), svg: `<g stroke-width="0.3">${svg}</g>` });
+    return { cen, vis };
   }
   // eixos perpendiculares a uma direção
   function eixos(d, up = [0, 1, 0]) {
@@ -210,13 +293,22 @@ export function cena(id, cam) {
   function tubo(a, b, w, h, mat, o = {}) {
     const d = norm(sub(b, a));
     const [e1, e2] = eixos(d, o.up);
-    return prisma(retArred(w, h, o.r ?? 0.8, 2), a, e1, e2, sub(b, a), mat, o);
+    const perfil =
+      o.r != null
+        ? retArred(w, h, o.r, 2)
+        : [
+            [-w / 2, -h / 2],
+            [w / 2, -h / 2],
+            [w / 2, h / 2],
+            [-w / 2, h / 2],
+          ];
+    return prisma(perfil, a, e1, e2, sub(b, a), mat, o);
   }
   // cilindro de a até b, raio r
   function cilindro(a, b, r, mat, o = {}) {
     const d = norm(sub(b, a));
     const [e1, e2] = eixos(d, o.up);
-    return prisma(circulo(r, o.lados ?? 22), a, e1, e2, sub(b, a), mat, o);
+    return prisma(circulo(r, o.lados ?? 16), a, e1, e2, sub(b, a), mat, o);
   }
   // estofado: perfil de cantos redondos (comprimento c ao longo de "ao", espessura e ao longo de "normal"),
   // largura l ao longo de "lado"; centro da face de baixo em base. Costura na tampa visível.
@@ -241,44 +333,52 @@ export function cena(id, cam) {
     const d = norm(sub(b, a));
     const [e1, e2] = eixos(d, o.up);
     const tampa = (c) => (P) => {
-      const aro = circulo(r * 0.78, 28).map(([u, v]) => P(add(add(c, mul(e1, u)), mul(e2, v))));
-      const cubo = circulo(r * 0.3, 20).map(([u, v]) => P(add(add(c, mul(e1, u)), mul(e2, v))));
-      const furo = circulo(r * 0.13, 16).map(([u, v]) => P(add(add(c, mul(e1, u)), mul(e2, v))));
+      const aro = circulo(r * 0.78, 20).map(([u, v]) => P(add(add(c, mul(e1, u)), mul(e2, v))));
+      const cubo = circulo(r * 0.3, 12).map(([u, v]) => P(add(add(c, mul(e1, u)), mul(e2, v))));
+      const furo = circulo(r * 0.13, 8).map(([u, v]) => P(add(add(c, mul(e1, u)), mul(e2, v))));
       return `<polygon points="${pts2(aro)}" fill="none" stroke="${mat[0]}" stroke-width="0.5"/><polygon points="${pts2(cubo)}" fill="${mat[2]}" stroke="${mat[0]}" stroke-width="0.4"/><polygon points="${pts2(furo)}" fill="#0B0C0E"/>`;
     };
-    return prisma(circulo(r, 30), a, e1, e2, sub(b, a), mat, { ...o, decal: { 0: tampa(a), 1: tampa(b) } });
+    return prisma(circulo(r, 22), a, e1, e2, sub(b, a), mat, { ...o, decal: { 0: tampa(a), 1: tampa(b) } });
   }
   // pilha de placas numeradas. base = canto de baixo, na frente, à esquerda; larg = direção da largura,
   // tras = da frente para o fundo (a frente fica virada para -tras); w × h × prof em cm
   function pilha(base, larg, tras, w, h, prof, nPlacas, o = {}) {
+    // um bloco só, com as divisões entre as placas e uma etiqueta clara em cada uma (sem texto)
     const up = [0, 1, 0];
     const hp = h / nPlacas;
     larg = norm(larg);
     tras = norm(tras);
-    for (let i = nPlacas - 1; i >= 0; i--) {
-      const y0 = i * hp;
-      const num = (i + 1) * (o.passo ?? 5);
-      const c = add(add(base, mul(larg, w / 2)), mul(up, y0 + hp / 2));
-      const rotulo = (P) => {
-        const q = P(add(c, mul(tras, -0.05)));
-        const ex = sub(P(add(c, larg)), q), ey = sub(P(add(c, mul(up, -1))), q);
-        const k3 = (v) => v.toFixed(3);
-        return `<text transform="matrix(${k3(ex[0])} ${k3(ex[1])} ${k3(ey[0])} ${k3(ey[1])} ${f1(q[0])} ${f1(q[1])})" font-family="system-ui,sans-serif" font-size="${f1(hp * 0.6)}" font-weight="700" fill="#EEF0F3" text-anchor="middle" dominant-baseline="central">${num}</text>`;
-      };
-      const perfil = [
-        [0, 0.35],
-        [w, 0.35],
-        [w, hp - 0.35],
-        [0, hp - 0.35],
-      ];
-      prisma(perfil, add(base, mul(up, y0)), larg, up, mul(tras, prof), MAT.placa, { decal: { 0: rotulo }, traco: 0.3, dz: o.dz ?? 0 });
-    }
+    const frenteDecal = (P) => {
+      let d = '', et = '';
+      const F = (a, y) => P(add(add(add(base, mul(larg, a)), mul(up, y)), mul(tras, -0.05)));
+      for (let i = 1; i < nPlacas; i++) {
+        const A = F(0, i * hp), B = F(w, i * hp);
+        d += `M${f1(A[0])} ${f1(A[1])}L${f1(B[0])} ${f1(B[1])}`;
+      }
+      for (let i = 0; i < nPlacas; i++) {
+        const q = [
+          [w * 0.37, (i + 0.3) * hp],
+          [w * 0.63, (i + 0.3) * hp],
+          [w * 0.63, (i + 0.7) * hp],
+          [w * 0.37, (i + 0.7) * hp],
+        ].map(([a, y]) => F(a, y));
+        et += `M${q.map((p) => f1(p[0]) + ' ' + f1(p[1])).join('L')}Z`;
+      }
+      return `<path d="${d}" stroke="${MAT.placa[0]}" stroke-width="0.6"/><path d="${et}" fill="#D5D9DE"/>`;
+    };
+    const perfil = [
+      [0, 0],
+      [w, 0],
+      [w, h],
+      [0, h],
+    ];
+    prisma(perfil, base, larg, up, mul(tras, prof), MAT.placa, { decal: { 0: frenteDecal }, traco: 0.4, dz: o.dz ?? 0 });
     return hp;
   }
   // furos de regulagem: pequenos círculos escuros num plano (centro c, eixos e1 e e2)
   function furos(centros, e1, e2, r = 1, o = {}) {
     for (const c of centros) {
-      const Q = circulo(r, 12).map(([u, v]) => P(add(add(c, mul(e1, u)), mul(e2, v))));
+      const Q = circulo(r, 8).map(([u, v]) => P(add(add(c, mul(e1, u)), mul(e2, v))));
       itens.push({ z: P(c)[2] + (o.dz ?? -0.5), svg: `<polygon points="${pts2(Q)}" fill="#0F1113" stroke="#5B616A" stroke-width="0.2"/>` });
     }
   }
@@ -310,6 +410,13 @@ export function cena(id, cam) {
   // sair do quadro); sem foco, cabe tudo. As espessuras de traço são divididas pela escala, para o traço final ter
   // a mesma espessura em todos os desenhos (no viewBox 160 × 120).
   function svg({ w = 160, h = 120, margem = 5, max = Infinity, foco = null } = {}) {
+    if (cam.ajustada) {
+      const corpo = [...itens]
+        .sort((a, b) => b.z - a.z)
+        .map((i) => i.svg)
+        .join('');
+      return (defs.length ? `<defs>${defs.join('')}</defs>` : '') + corpo;
+    }
     let b = bb;
     if (foco) {
       b = [Infinity, Infinity, -Infinity, -Infinity];
@@ -321,6 +428,7 @@ export function cena(id, cam) {
     const bw = b[2] - b[0], bh = b[3] - b[1];
     const k = Math.min((w - 2 * margem) / bw, (h - 2 * margem) / bh, max);
     const tx = (w - bw * k) / 2 - b[0] * k, ty = (h - bh * k) / 2 - b[1] * k;
+    ULTIMO = { k, tx, ty };
     const corpo = [...itens]
       .sort((a, b) => b.z - a.z)
       .map((i) => i.svg)
