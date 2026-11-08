@@ -1,0 +1,79 @@
+{
+  "id": "extensao-triceps-peso-corpo",
+  "name": "Extensão de tríceps com o peso do corpo",
+  "short": "Tríceps com o peso do corpo",
+  "target": "Tríceps",
+  "feel": "Parte de trás do braço, do ombro ao cotovelo.",
+  "feelNote": "Cansaço no tríceps é o esperado. Dor no cotovelo não é: suba o apoio (mãos na parede) ou pare, e procure avaliação se continuar.",
+  "setupEq": [
+    "Só num apoio fixo, na altura do quadril: bancada ou pia da cozinha, ou a parede. Mesa e encosto de sofá podem deslizar.",
+    "Mais difícil: um apoio mais baixo e fixo, como um degrau."
+  ],
+  "setupBody": [
+    "Mãos na beira do apoio, na largura dos ombros.",
+    "Pés para trás, corpo reto como numa prancha inclinada.",
+    "Braços estendidos para começar."
+  ],
+  "exec": [
+    [
+      "hold",
+      "Braços estendidos",
+      "Corpo reto, inclinado à frente."
+    ],
+    [
+      "ecc",
+      "Descida (excêntrica)",
+      "~2 s. Dobre os cotovelos e leve a cabeça para perto do apoio; os braços vão para cima da cabeça."
+    ],
+    [
+      "hold",
+      "Embaixo",
+      "Testa perto do apoio, sem encostar."
+    ],
+    [
+      "conc",
+      "Extensão (concêntrica)",
+      "~1 s. Estique os cotovelos e volte."
+    ]
+  ],
+  "range": [
+    "Início: braços estendidos.",
+    "Fim: a testa perto do apoio, com os cotovelos bem dobrados.",
+    "Pare a 1 ou 2 repetições da falha: se o cotovelo ceder, a testa bate no apoio."
+  ],
+  "breath": "Inspire descendo, solte o ar estendendo.",
+  "cues": [
+    "Corpo reto.",
+    "Cotovelos para baixo.",
+    "Testa perto, sem encostar."
+  ],
+  "check": [
+    "Apoio fixo",
+    "Mãos na largura dos ombros",
+    "Corpo reto",
+    "Cotovelos apontando para baixo",
+    "Parar antes da falha"
+  ],
+  "vary": "Pesado demais? Fique mais em pé (pés mais perto do apoio) ou use a parede. Fácil demais? Pés mais para trás, ou um apoio mais baixo.",
+  "extLabels": [
+    "braços estendidos",
+    "testa perto do apoio"
+  ],
+  "errors": [
+    {
+      "id": "quadril",
+      "title": "Quadril cai",
+      "desc": "A barriga desce e a lombar arqueia. Firme o abdômen e o glúteo para o corpo ficar reto."
+    },
+    {
+      "id": "cotovelo",
+      "title": "Cotovelos abrem",
+      "desc": "Com os cotovelos para os lados e o peito indo ao apoio, vira uma flexão inclinada e o tríceps trabalha menos."
+    },
+    {
+      "id": "curta",
+      "title": "Descer pouco",
+      "desc": "Dobrar só um pouco os cotovelos deixa de fora a parte em que o tríceps trabalha alongado, com os braços acima da cabeça."
+    }
+  ]
+}

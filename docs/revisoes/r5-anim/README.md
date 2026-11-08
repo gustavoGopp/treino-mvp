@@ -6,7 +6,7 @@ Prompt: `docs/prompts/sessao-r5-animacao-corpo-livre.md`. Uma animação por vez
 |---|---|---|---|---|---|---|
 | 1 | `panturrilha-degrau` | 81,8% | `panturrilha-b` (step) + `panturrilha-chao` (mãos na parede) | `folhas/panturrilha-degrau.png` | ik 0 (animação e 2 erros) | **aprovada em 07/11**; entra no app com o R5-CL |
 | 2 | `abdominal-invertido` | 61,7% | `ponte-gluteo` (deitado, braços) + `abdominal-chao` + `elevacao-joelhos` (a pelve) | `folhas/abdominal-invertido.png` | ik 0 (animação e 2 erros) | **aprovada em 08/11**; entra no app com o R5-CL |
-| 3 | `extensao-triceps-peso-corpo` | 59,4% | `triceps-suspensao` | — | — | na fila |
+| 3 | `extensao-triceps-peso-corpo` | 59,4% | `triceps-suspensao` (corpo, ciclo e erros), mãos paradas numa bancada | `folhas/extensao-triceps-peso-corpo.png` | ik 0 (animação e 3 erros) | **esperando o "aprovar"** e a resposta sobre a bancada |
 | 4 | `abertura-t-deitado` | 56,1% | `yt-suspensao` (os braços) | — | — | na fila |
 | 5 | `flexao-pes-elevados` | 53,8% | `flexao` | — | — | na fila |
 
@@ -17,6 +17,7 @@ O prompt supõe o R5-CL feito (os 32 exercícios na biblioteca, com cartão e fi
 
 ## Peças de cena
 Nenhuma peça nova até aqui. O degrau da escada é a caixa de 15 cm do step aprovado; a parede é a da panturrilha no chão; o colchonete é o da ponte de glúteo.
+- **Pergunta (extensão de tríceps):** a bancada da cozinha é desenhada com a mesma caixa do degrau e da parede, com 90 cm de altura. Não há desenho novo no motor, mas é um objeto novo na cena. Fica assim?
 
 ## Aprovações
 - `panturrilha-degrau`: aprovada pelo Gustavo em 07/11/2026, como está na folha (as duas pernas, 1 s embaixo). Fica em `revisao/` até o R5-CL pôr o exercício na biblioteca; aí, `node scripts/aprovar-animacao.mjs panturrilha-degrau panturrilha-degrau` e a linha de base.
