@@ -3,6 +3,8 @@ import { Link, Navigate, useNavigate } from 'react-router-dom';
 import { primeiroPassoPendente } from '../../storage/esquema';
 import { agoraIso, useApp } from '../app/estado';
 import { Folha } from '../app/Folha';
+import { AvisoInstalar } from '../app/avisos';
+import { TextoFotoCurto } from '../app/privacidade';
 import { Selo, Titulo, Topo } from '../app/ui';
 import { IconeLugar } from './lugares';
 
@@ -38,6 +40,7 @@ export function BoasVindas() {
             {erroCarga} Em <Link to="/dados">Meus dados</Link> você pode importar um backup.
           </div>
         )}
+        <AvisoInstalar />
         <p className="lede">Monta o programa, mostra cada exercício e diz o porquê.</p>
         <section className="nota-aviso" aria-labelledby="nao-faz">
           <svg viewBox="0 0 24 24" aria-hidden="true">
@@ -62,13 +65,15 @@ export function BoasVindas() {
         {privacidade && (
           <Folha titulo="Seus dados ficam no aparelho" aoFechar={() => setPrivacidade(false)}>
             <p>
-              O seu perfil, o programa e os treinos ficam guardados só neste aparelho. A única coisa que sai é a foto do equipamento, se
-              você usar: ela vai, sem a localização, para o reconhecimento e não fica guardada no servidor. Você pode exportar ou apagar tudo
-              quando quiser em “Meus dados”.
+              O seu perfil, as respostas de saúde, o programa e os treinos ficam guardados só neste aparelho. <TextoFotoCurto /> Você pode
+              exportar ou apagar tudo quando quiser em “Meus dados”.
             </p>
           </Folha>
         )}
         <div className="acao-boas">
+          <p className="ajuda termos-linha">
+            Ao começar, você concorda com os <Link to="/termos">termos de uso e o aviso de privacidade</Link>.
+          </p>
           <button type="button" className="btn" onClick={comecar}>
             Começar
           </button>

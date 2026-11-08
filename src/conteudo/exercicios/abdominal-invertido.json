@@ -1,0 +1,57 @@
+{
+  "id": "abdominal-invertido",
+  "name": "Abdominal invertido no chão",
+  "short": "Abdominal invertido",
+  "target": "Abdômen (a barriga), enrolando a pelve",
+  "setupEq": [
+    "Um colchonete."
+  ],
+  "setupBody": [
+    "Deite de costas, braços ao lado do corpo, palmas no chão.",
+    "Joelhos dobrados a ~90°, pés fora do chão, coxas na vertical."
+  ],
+  "exec": [
+    [
+      "conc",
+      "Subida",
+      "~1 s. Enrole a pelve em direção ao peito, tirando o quadril do chão."
+    ],
+    [
+      "hold",
+      "No alto",
+      "Segure 1 s, abdômen contraído."
+    ],
+    [
+      "ecc",
+      "Descida",
+      "~2 s, vértebra por vértebra, até o quadril voltar ao chão."
+    ]
+  ],
+  "range": [
+    "Embaixo: quadril no chão, coxas na vertical.",
+    "Em cima: quadril fora do chão, joelhos perto do peito."
+  ],
+  "cues": [
+    "Enrole a pelve.",
+    "Sem embalo das pernas.",
+    "Desça devagar."
+  ],
+  "errors": [
+    {
+      "id": "embalo",
+      "title": "Jogar as pernas",
+      "desc": "O embalo levanta o quadril e o abdômen trabalha menos. Suba devagar, enrolando."
+    },
+    {
+      "id": "maos",
+      "title": "Empurrar com as mãos",
+      "desc": "Os braços fazem a força. As mãos só apoiam."
+    },
+    {
+      "id": "lombar",
+      "title": "Arquear a lombar na descida",
+      "desc": "As pernas vão longe demais e a lombar sai do chão. Volte só até as coxas ficarem na vertical."
+    }
+  ],
+  "carga": "Peso do corpo: suba pela escada de dificuldade do exercício quando a 1ª série chegar ao topo da faixa e as outras ficarem perto dele."
+}

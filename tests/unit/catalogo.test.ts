@@ -56,7 +56,7 @@ describe('itens e exercícios do catálogo (Gustavo, 04/11/2026; doc 11, B.2.3 a
     expect(x?.exId).toBe('extensao-joelho-caneleira');
     // O porquê cita o lado curto (o peso pesa mais com o joelho esticado).
     expect(x!.porque.find((q) => q.regraId === 'equipamento.caneleira')?.texto).toMatch(/joelho esticado/);
-    expect(FUNCAO['extensora']!.niveis).toEqual([['cadeira-extensora'], ['extensao-joelho-caneleira', 'extensao-joelho-elastico']]);
+    expect(FUNCAO['extensora']!.niveis).toEqual([['cadeira-extensora'], ['extensao-joelho-caneleira', 'extensao-joelho-elastico', 'extensao-joelho-mini-band']]); // a mini-band desde o R5-CL
     expect(FUNCAO['aducao']!.niveis).toEqual([['aducao-maquina'], ['aducao-caneleira'], ['aducao-deitado']]);
     // A carga sobe pela lista dos pesos de caneleira, como o kettlebell.
     expect(cargasCaneleiras({ caneleiras: { pesosKg: [3, 1, 2, 1] } })).toEqual([1, 2, 3]);

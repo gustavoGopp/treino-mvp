@@ -1,0 +1,60 @@
+{
+  "id": "elevacao-lateral-unilateral-elastico",
+  "name": "Elevação lateral unilateral com elástico preso sob o pé do outro lado",
+  "short": "Elevação lateral unilateral elástico",
+  "target": "Lateral do ombro (deltoide lateral)",
+  "setupEq": [
+    "Um elástico longo."
+  ],
+  "setupBody": [
+    "Em pé, pise com o pé inteiro numa ponta do elástico.",
+    "A outra ponta na mão do lado oposto, cruzando à frente do corpo, braço ao lado da coxa, cotovelo levemente dobrado."
+  ],
+  "exec": [
+    [
+      "conc",
+      "Subida",
+      "~1 s. Leve o braço para o lado até a altura do ombro."
+    ],
+    [
+      "hold",
+      "No alto",
+      "Pausa curta, ombro baixo."
+    ],
+    [
+      "ecc",
+      "Descida",
+      "~2 s, até o braço voltar ao lado da coxa. Termine um lado e troque."
+    ]
+  ],
+  "range": [
+    "Embaixo: braço ao lado da coxa.",
+    "Em cima: braço na altura do ombro."
+  ],
+  "cues": [
+    "Cotovelo lidera.",
+    "Ombro longe da orelha.",
+    "Pé inteiro no elástico."
+  ],
+  "errors": [
+    {
+      "id": "encolher",
+      "title": "Encolher o ombro",
+      "desc": "O trapézio de cima assume. Ombro baixo."
+    },
+    {
+      "id": "embalo",
+      "title": "Inclinar o tronco",
+      "desc": "O corpo balança para subir. Tronco parado."
+    },
+    {
+      "id": "pe",
+      "title": "Pisar só com a ponta do pé",
+      "desc": "O elástico pode escapar e voltar no rosto. Pise com o pé inteiro."
+    }
+  ],
+  "montagem": [
+    "Antes da série, confira se o elástico tem rachaduras ou está ressecado; pise com o pé inteiro sobre ele. Um elástico que escapa volta no rosto."
+  ],
+  "carga": "Registre a intensidade do elástico. Ela sobe pelas intensidades que você tem; em cada uma, primeiro mais esticado e depois com descida de 3 s."
+}

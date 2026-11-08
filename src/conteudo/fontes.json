@@ -19,10 +19,30 @@
   "link": "https://www.heart.org/health-topics/heart-attack/warning-signs-of-a-heart-attack",
   "leitura": "busca"
  },
+ "andersen2010": {
+  "citacao": "Andersen LL, Andersen CH, Mortensen OS, et al. (2010). Muscle activation and perceived loading during rehabilitation exercises: comparison of dumbbells and elastic resistance. Phys Ther 90(4):538-49.",
+  "link": "https://pubmed.ncbi.nlm.nih.gov/20133444/",
+  "leitura": "resumo"
+ },
  "andersen2014": {
   "citacao": "Andersen V, Fimland MS, Wiik E, Skoglund A, Saeterbakken AH (2014). Effects of grip width on muscle strength and activation in the lat pull-down. J Strength Cond Res 28(4) (páginas não conferidas).",
   "link": "https://pubmed.ncbi.nlm.nih.gov/24662157/",
-  "leitura": "busca"
+  "leitura": "resumo"
+ },
+ "anthropic-retencao": {
+  "citacao": "Anthropic (s.d.). How long do you store my organization's data? Privacy Center.",
+  "link": "https://privacy.anthropic.com/en/articles/7996866-how-long-do-you-store-my-organization-s-data",
+  "leitura": "texto-completo"
+ },
+ "anthropic-servidores": {
+  "citacao": "Anthropic (2026). Where are your servers located? Do you host your models on EU servers? Privacy Center (15/06/2026).",
+  "link": "https://privacy.claude.com/en/articles/7996890-where-are-your-servers-located-do-you-host-your-models-on-eu-servers",
+  "leitura": "texto-completo"
+ },
+ "anthropic-termos": {
+  "citacao": "Anthropic (s.d.). Commercial Terms of Service.",
+  "link": "https://www.anthropic.com/legal/commercial-terms",
+  "leitura": "texto-completo"
  },
  "attarieh2026": {
   "citacao": "Attarieh P, Nunes JP, Khani S, et al. (2026). Regional Hypertrophy of the Gluteal Muscles Is Task-Specific: Differential Responses to 10 Weeks of Hip Extension Versus Hip Abduction Training. J Strength Cond Res (on-line antes da versão impressa, 07/10/2026).",
@@ -34,10 +54,25 @@
   "link": "https://pubmed.ncbi.nlm.nih.gov/32058362/",
   "leitura": "busca"
  },
+ "avelar2019": {
+  "citacao": "Avelar A, Ribeiro AS, Nunes JP, et al. (2019). Effects of order of resistance training exercises on muscle hypertrophy in young adult men. Appl Physiol Nutr Metab 44(4):420–424.",
+  "link": "https://pubmed.ncbi.nlm.nih.gov/30248269/",
+  "leitura": "resumo"
+ },
+ "barbalho2021": {
+  "citacao": "Barbalho M, Souza D, Coswig V, Abrahin O, Paoli A, Gentil P (2021). The Effects of Resistance Exercise Selection on Muscle Size and Strength in Trained Women. Int J Sports Med 42(4):371–376.",
+  "link": "https://pubmed.ncbi.nlm.nih.gov/32252103/",
+  "leitura": "resumo"
+ },
+ "bazvalle2019": {
+  "citacao": "Baz-Valle E, Schoenfeld BJ, Torres-Unda J, Santos-Concejero J, Balsalobre-Fernández C (2019). The effects of exercise variation in muscle thickness, maximal strength and motivation in resistance trained men. PLoS One 14(12):e0226989.",
+  "link": "https://pubmed.ncbi.nlm.nih.gov/31881066/",
+  "leitura": "resumo"
+ },
  "bazvalle2022": {
   "citacao": "Baz-Valle E, Balsalobre-Fernández C, Alix-Fages C, Santos-Concejero J (2022). A Systematic Review of The Effects of Different Resistance Training Volumes on Muscle Hypertrophy. J Hum Kinet 81:199–210.",
   "link": "https://pubmed.ncbi.nlm.nih.gov/35291645/",
-  "leitura": "busca"
+  "leitura": "texto-completo"
  },
  "behan2023": {
   "citacao": "Behan FP, Opar DA, Vermeulen R, et al. (2023). The dose-response of pain throughout a Nordic hamstring exercise intervention. Scand J Med Sci Sports 33(4):542–546.",
@@ -67,11 +102,21 @@
  "bosquet2013": {
   "citacao": "Bosquet L, et al. (2013). Effect of training cessation on muscular performance: a meta-analysis. Scand J Med Sci Sports 23(3):e140–e149.",
   "link": "https://pubmed.ncbi.nlm.nih.gov/23347054/",
-  "leitura": "busca"
+  "leitura": "resumo"
+ },
+ "bourne2017": {
+  "citacao": "Bourne MN, Duhig SJ, Timmins RG, et al. (2017). Impact of the Nordic hamstring and hip extension exercises on hamstring architecture and morphology: implications for injury prevention. Br J Sports Med 51(5):469–477.",
+  "link": "https://pubmed.ncbi.nlm.nih.gov/27660368/",
+  "leitura": "resumo"
  },
  "bradshaw2026": {
   "citacao": "Bradshaw, et al. (2026). Ensaio de 8 semanas com myo-reps (rest-pause) versus séries tradicionais (título não conferido). Periódico não anotado.",
   "link": "https://pubmed.ncbi.nlm.nih.gov/42112925/",
+  "leitura": "resumo"
+ },
+ "brandao2020": {
+  "citacao": "Brandão L, de Salles Painelli V, Lasevicius T, Silva-Batista C, Brendon H, Schoenfeld BJ, Aihara AY, Cardoso FN, de Almeida Peres B, Teixeira EL (2020). Varying the Order of Combinations of Single- and Multi-Joint Exercises Differentially Affects Resistance Training Adaptations. J Strength Cond Res 34(5):1254–1263.",
+  "link": "https://pubmed.ncbi.nlm.nih.gov/32149887/",
   "leitura": "resumo"
  },
  "bredin2013": {
@@ -92,7 +137,7 @@
  "chaves2020": {
   "citacao": "Chaves SFN, et al. (2020). Effects of Horizontal and Incline Bench Press on Neuromuscular Adaptations in Untrained Young Men. Int J Exerc Sci 13(6):859–872.",
   "link": "https://pubmed.ncbi.nlm.nih.gov/32922646/",
-  "leitura": "resumo"
+  "leitura": "texto-completo"
  },
  "chen2012": {
   "citacao": "Chen HL, Nosaka K, Chen TC (2012). Muscle damage protection by low-intensity eccentric contractions remains for 2 weeks but not 3 weeks. Eur J Appl Physiol 112(2):555–565.",
@@ -112,7 +157,7 @@
  "cholp2025": {
   "citacao": "Cholp J, Zemková E (2025). Effect of high vs. low volume of the nordic hamstring curl on hamstring muscle architecture and eccentric strength in soccer players: a systematic review and meta-analysis. Front Physiol 16:1631205.",
   "link": "https://pubmed.ncbi.nlm.nih.gov/41178985/",
-  "leitura": "resumo"
+  "leitura": "texto-completo"
  },
  "coffey2026": {
   "citacao": "Coffey, et al. (2026). Lesões de musculação atendidas em pronto-socorro nos EUA, com foco no aumento de mulheres treinando (título e autores não conferidos; base do cartão de montagem segura do T5). Periódico não anotado.",
@@ -144,15 +189,30 @@
   "link": "https://pubmed.ncbi.nlm.nih.gov/40280182/",
   "leitura": "resumo"
  },
+ "costa2021": {
+  "citacao": "Costa BDV, Kassiano W, Nunes JP, Kunevaliki G, Castro-E-Souza P, Rodacki A, Cyrino LT, Cyrino ES, Fortes LS (2021). Does Performing Different Resistance Exercises for the Same Muscle Group Induce Non-homogeneous Hypertrophy? Int J Sports Med 42(9):803–811.",
+  "link": "https://pubmed.ncbi.nlm.nih.gov/33440446/",
+  "leitura": "resumo"
+ },
  "cotterman2005": {
   "citacao": "Cotterman ML, Darby LA, Skelly WA (2005). Comparison of muscle force production using the Smith machine and free weights for bench press and squat exercises. J Strength Cond Res 19(1):169–176.",
   "link": "https://pubmed.ncbi.nlm.nih.gov/15705030/",
+  "leitura": "resumo"
+ },
+ "crawford2025": {
+  "citacao": "Crawford SK, Sandberg C, Vlisides J, et al. (2025). Hamstrings Muscle Architecture and Morphology Following 6 wk of an Eccentrically Biased Romanian Deadlift or Nordic Hamstring Exercise Intervention. Med Sci Sports Exerc 57(8):1799–1809.",
+  "link": "https://pubmed.ncbi.nlm.nih.gov/40085810/",
   "leitura": "resumo"
  },
  "damas2016": {
   "citacao": "Damas F, et al. (2016). Resistance training-induced changes in integrated myofibrillar protein synthesis are related to hypertrophy only after attenuation of muscle damage. J Physiol 594(18):5209–5222.",
   "link": "https://pubmed.ncbi.nlm.nih.gov/27219125/",
   "leitura": "busca"
+ },
+ "dasilva2025": {
+  "citacao": "da Silva LSL, Gonçalves LDS, Alves Campos PH, et al. (2025). Comparison Between Eccentric vs. Concentric Muscle Actions On Hypertrophy: A Systematic Review and Meta-analysis. J Strength Cond Res 39(1):115-134.",
+  "link": "https://pubmed.ncbi.nlm.nih.gov/39652733/",
+  "leitura": "resumo"
  },
  "davies2021": {
   "citacao": "Davies TB, Tran DL, Hogan CM, Haff GG, Latella C (2021). Chronic Effects of Altering Resistance Training Set Configurations Using Cluster Sets: A Systematic Review and Meta-Analysis. Sports Med 51(4):707–736.",
@@ -167,7 +227,7 @@
  "dickie2017": {
   "citacao": "Dickie JA, et al. (2017). Electromyographic analysis of muscle activation during pull-up variations. J Electromyogr Kinesiol 32:30–36.",
   "link": "https://pubmed.ncbi.nlm.nih.gov/28011412/",
-  "leitura": "busca"
+  "leitura": "resumo"
  },
  "doctify": {
   "citacao": "Doctify (s.d.). Pain after sport: what's normal soreness and what could be an injury. Material de educação ao paciente, não revisado por pares.",
@@ -179,6 +239,16 @@
   "link": "https://pubmed.ncbi.nlm.nih.gov/41920484/",
   "leitura": "busca"
  },
+ "ebben2011": {
+  "citacao": "Ebben WP, Wurm B, VanderZanden TL, Spadavecchia ML, Durocher JJ, Bickham CT, Petushek EJ (2011). Kinetic analysis of several variations of push-ups. J Strength Cond Res 25(10):2891–2894.",
+  "link": "https://pubmed.ncbi.nlm.nih.gov/21873902/",
+  "leitura": "resumo"
+ },
+ "escamilla2006b": {
+  "citacao": "Escamilla RF, Babb E, DeWitt R, et al. (2006). Electromyographic analysis of traditional and nontraditional abdominal exercises: implications for rehabilitation and training. Phys Ther 86(5):656-71.",
+  "link": "https://pubmed.ncbi.nlm.nih.gov/16649890/",
+  "leitura": "resumo"
+ },
  "fenwick2009": {
   "citacao": "Fenwick CM, Brown SH, McGill SM (2009). Comparison of different rowing exercises: trunk muscle activation and lumbar spine motion, load, and stiffness. J Strength Cond Res 23(2):350–358.",
   "link": "https://pubmed.ncbi.nlm.nih.gov/19197209/",
@@ -187,7 +257,12 @@
  "fonseca2014": {
   "citacao": "Fonseca RM, et al. (2014). Changes in exercises are more effective than in loading schemes to improve muscle strength. J Strength Cond Res (volume e páginas não conferidos).",
   "link": "https://pubmed.ncbi.nlm.nih.gov/24832974/",
-  "leitura": "busca"
+  "leitura": "resumo"
+ },
+ "fukunaga2022": {
+  "citacao": "Fukunaga T, Fedge C, Tyler T, et al. (2022). Band Pull-Apart Exercise: Effects of Movement Direction and Hand Position on Shoulder Muscle Activity. Int J Sports Phys Ther 17(3):400-408.",
+  "link": "https://pubmed.ncbi.nlm.nih.gov/35391860/",
+  "leitura": "resumo"
  },
  "garber2011": {
   "citacao": "Garber CE, Blissmer B, Deschenes MR, et al. (2011). American College of Sports Medicine position stand. Quantity and quality of exercise for developing and maintaining cardiorespiratory, musculoskeletal, and neuromotor fitness in apparently healthy adults: guidance for prescribing exercise. Med Sci Sports Exerc 43(7):1334–1359.",
@@ -199,14 +274,24 @@
   "link": "https://pubmed.ncbi.nlm.nih.gov/36418149/",
   "leitura": "resumo"
  },
+ "gentil2013": {
+  "citacao": "Gentil P, Soares SRS, Pereira MC, et al. (2013). Effect of adding single-joint exercises to a multi-joint exercise resistance-training program on strength and hypertrophy in untrained subjects. Appl Physiol Nutr Metab 38(3):341–344.",
+  "link": "https://pubmed.ncbi.nlm.nih.gov/23537028/",
+  "leitura": "resumo"
+ },
  "gentil2015": {
   "citacao": "de França HS, Branco PAN, Guedes Junior DP, Gentil P, Steele J, Teixeira CVLS (2015). The effects of adding single-joint exercises to a multi-joint exercise resistance training program on upper body muscle strength and size in trained men. Appl Physiol Nutr Metab 40(8):822–826.",
   "link": "https://pubmed.ncbi.nlm.nih.gov/26244600/",
-  "leitura": "busca"
+  "leitura": "resumo"
  },
  "glass2004": {
   "citacao": "Glass SC, Stanton DR (2004). Self-selected resistance training intensity in novice weightlifters. J Strength Cond Res 18(2):324–327.",
   "link": "https://pubmed.ncbi.nlm.nih.gov/15142014/",
+  "leitura": "resumo"
+ },
+ "green2018": {
+  "citacao": "Green B, Bourne MN, Pizzari T (2018). Isokinetic strength assessment offers limited predictive validity for detecting risk of future hamstring strain in sport: a systematic review and meta-analysis. Br J Sports Med 52(5):329-336.",
+  "link": "https://pubmed.ncbi.nlm.nih.gov/29187349/",
   "leitura": "resumo"
  },
  "grgic2017a": {
@@ -274,14 +359,24 @@
   "link": "https://pubmed.ncbi.nlm.nih.gov/40056728/",
   "leitura": "resumo"
  },
+ "iversen2017": {
+  "citacao": "Iversen VM, Mork PJ, Vasseljen O, Bergquist R, Fimland MS (2017). Multiple-joint exercises using elastic resistance bands vs. conventional resistance-training equipment: A cross-over study. Eur J Sport Sci 17(8):973–982.",
+  "link": "https://pubmed.ncbi.nlm.nih.gov/28628370/",
+  "leitura": "resumo"
+ },
  "iversen2021": {
   "citacao": "Iversen VM, Norum M, Schoenfeld BJ, Fimland MS (2021). No Time to Lift? Designing Time-Efficient Training Programs for Strength and Hypertrophy: A Narrative Review. Sports Med 51(10):2079–2095.",
   "link": "https://pubmed.ncbi.nlm.nih.gov/34125411/",
-  "leitura": "resumo"
+  "leitura": "texto-completo"
  },
  "iversen2024": {
   "citacao": "Iversen, et al. (2024). Ensaio de superséries de multiarticulares em programa de corpo todo (título não conferido). J Strength Cond Res.",
   "link": "https://pubmed.ncbi.nlm.nih.gov/39072654/",
+  "leitura": "resumo"
+ },
+ "johnson2009": {
+  "citacao": "Johnson D, Lynch J, Nash K, et al. (2009). Relationship of lat-pull repetitions and pull-ups to maximal lat-pull and pull-up strength in men and women. J Strength Cond Res 23(3):1022-8.",
+  "link": "https://pubmed.ncbi.nlm.nih.gov/19387371/",
   "leitura": "resumo"
  },
  "kassiano2022": {
@@ -304,9 +399,19 @@
   "link": "https://pubmed.ncbi.nlm.nih.gov/39794667/",
   "leitura": "resumo"
  },
+ "kassiano2025var": {
+  "citacao": "Kassiano W, Costa B, Kunevaliki G, et al. (2025). Muscle Hypertrophy and Strength Adaptations to Systematically Varying Resistance Exercises. Res Q Exerc Sport 96(2):371–381.",
+  "link": "https://pubmed.ncbi.nlm.nih.gov/39388663/",
+  "leitura": "resumo"
+ },
  "kassiano2026": {
   "citacao": "Kassiano W, Costa B, Kunevaliki G, et al. (2026). Comparison of Muscle Hypertrophy and Strength Adaptations Induced by Back Squat and Leg Extension Resistance Exercises. J Strength Cond Res 40(4):367–376.",
   "link": "https://pubmed.ncbi.nlm.nih.gov/41379528/",
+  "leitura": "resumo"
+ },
+ "kataoka2026": {
+  "citacao": "Kataoka R, Yamada Y, Hammert WB, Sallberg RW, Kang A, Song JS, Kassiano W, Metcalf EE, Loenneke JP (2026). Skeletal Muscles Do Not Compete for Growth: Activating Additional Muscle Mass Does Not Compromise Changes in Muscle Size. J Strength Cond Res 40(9):1043–1049.",
+  "link": "https://pubmed.ncbi.nlm.nih.gov/42647752/",
   "leitura": "resumo"
  },
  "kerr2010": {
@@ -317,7 +422,7 @@
  "kikuchi2017": {
   "citacao": "Kikuchi N, Nakazato K (2017). Low-load bench press and push-up induce similar muscle hypertrophy and strength gain. J Exerc Sci Fit 15(1):37–42.",
   "link": "https://pubmed.ncbi.nlm.nih.gov/29541130/",
-  "leitura": "resumo"
+  "leitura": "texto-completo"
  },
  "kinoshita2023": {
   "citacao": "Kinoshita M, Maeo S, Kobayashi Y, Eihara Y, Ono M, Sato M, Sugiyama T, Kanehisa H, Isaka T (2023). Triceps surae muscle hypertrophy is greater after standing versus seated calf-raise training. Front Physiol 14:1272106. Panturrilha em pé versus sentada para a hipertrofia do tríceps sural (título não conferido). Front Physiol.",
@@ -329,9 +434,19 @@
   "link": "https://pubmed.ncbi.nlm.nih.gov/41630124/",
   "leitura": "texto-completo"
  },
+ "kobayashi2026": {
+  "citacao": "Kobayashi Y, Maeo S, Eihara Y, et al. (2026). Exercise-specific preferential hypertrophy of individual elbow flexor muscles after incline versus preacher dumbbell curl training. J Sports Sci (on-line antes da versão impressa).",
+  "link": "https://pubmed.ncbi.nlm.nih.gov/42829982/",
+  "leitura": "resumo"
+ },
  "kojic2025": {
   "citacao": "Kojic F, Mandic D, Duric S, et al. (2025). The effects of eccentric phase tempo in squats on hypertrophy, strength, and contractile properties of the quadriceps femoris muscle. Front Physiol 15:1531926.",
   "link": "https://pubmed.ncbi.nlm.nih.gov/39850448/",
+  "leitura": "resumo"
+ },
+ "kolber2017": {
+  "citacao": "Kolber MJ, Hanney WJ, Cheatham SW, et al. (2017). Shoulder Joint and Muscle Characteristics Among Weight-Training Participants With and Without Impingement Syndrome. J Strength Cond Res 31(4):1024–1032.",
+  "link": "https://pubmed.ncbi.nlm.nih.gov/27390859/",
   "leitura": "resumo"
  },
  "krieger2010": {
@@ -359,6 +474,11 @@
   "link": "https://pubmed.ncbi.nlm.nih.gov/18076262/",
   "leitura": "resumo"
  },
+ "larsen2025": {
+  "citacao": "Larsen S, Wolf M, Schoenfeld BJ, et al. (2025). Dumbbell versus cable lateral raises for lateral deltoid hypertrophy: an experimental study. Front Physiol 16:1611468.",
+  "link": "https://pubmed.ncbi.nlm.nih.gov/40692697/",
+  "leitura": "texto-completo"
+ },
  "lasevicius2018": {
   "citacao": "Lasevicius T, et al. (2018). Effects of different intensities of resistance training with equated volume load on muscle strength and hypertrophy. Eur J Sport Sci 18(6):772–780 (páginas não conferidas).",
   "link": "https://pubmed.ncbi.nlm.nih.gov/29564973/",
@@ -374,6 +494,11 @@
   "link": "https://pubmed.ncbi.nlm.nih.gov/15228624/",
   "leitura": "busca"
  },
+ "lgpd": {
+  "citacao": "Brasil (2018). Lei nº 13.709, de 14 de agosto de 2018 (Lei Geral de Proteção de Dados Pessoais), texto atualizado.",
+  "link": "https://www2.camara.leg.br/legin/fed/lei/2018/lei-13709-14-agosto-2018-787077-normaatualizada-pl.html",
+  "leitura": "texto-completo"
+ },
  "lixandrao2018": {
   "citacao": "Lixandrão ME, et al. (2018). Magnitude of Muscle Strength and Mass Adaptations Between High-Load Resistance Training Versus Low-Load Resistance Training Associated with Blood-Flow Restriction: A Systematic Review and Meta-Analysis. Sports Med 48(2):361–378.",
   "link": "https://pubmed.ncbi.nlm.nih.gov/29043659/",
@@ -382,7 +507,7 @@
  "lopes2019": {
   "citacao": "Lopes JSS, et al. (2019). Effects of training with elastic resistance versus conventional resistance on muscular strength: A systematic review and meta-analysis. SAGE Open Med 7:2050312119831116.",
   "link": "https://pubmed.ncbi.nlm.nih.gov/30815258/",
-  "leitura": "busca"
+  "leitura": "resumo"
  },
  "lopez2021": {
   "citacao": "Lopez P, et al. (2021). Resistance Training Load Effects on Muscle Hypertrophy and Strength Gain: Systematic Review and Network Meta-analysis. Med Sci Sports Exerc 53(6):1206–1216.",
@@ -399,6 +524,11 @@
   "link": "https://pubmed.ncbi.nlm.nih.gov/20543740/",
   "leitura": "busca"
  },
+ "macadam2015": {
+  "citacao": "Macadam P, Cronin J, Contreras B (2015). AN EXAMINATION OF THE GLUTEAL MUSCLE ACTIVITY ASSOCIATED WITH DYNAMIC HIP ABDUCTION AND HIP EXTERNAL ROTATION EXERCISE: A SYSTEMATIC REVIEW. Int J Sports Phys Ther 10(5):573-91.",
+  "link": "https://pubmed.ncbi.nlm.nih.gov/26491608/",
+  "leitura": "resumo"
+ },
  "maeo2021": {
   "citacao": "Maeo S, Huang M, Wu Y, Sakurai H, Kusagawa Y, Sugiyama T, Kanehisa H, Isaka T (2021). Greater Hamstrings Muscle Hypertrophy but Similar Damage Protection after Training at Long versus Short Muscle Lengths. Med Sci Sports Exerc 53(4):825–837.",
   "link": "https://pubmed.ncbi.nlm.nih.gov/33009197/",
@@ -412,6 +542,11 @@
  "maeo2024": {
   "citacao": "Maeo S, Balshaw TG, Nin DZ, et al. (2024). Hamstrings Hypertrophy Is Specific to the Training Exercise: Nordic Hamstring versus Lengthened State Eccentric Training. Med Sci Sports Exerc 56(10):1893–1905.",
   "link": "https://pubmed.ncbi.nlm.nih.gov/38857522/",
+  "leitura": "texto-completo"
+ },
+ "mannarino2021": {
+  "citacao": "Mannarino P, Matta T, Lima J, Simão R, Freitas de Salles B (2021). Single-Joint Exercise Results in Higher Hypertrophy of Elbow Flexors Than Multijoint Exercise. J Strength Cond Res 35(10):2677–2681.",
+  "link": "https://pubmed.ncbi.nlm.nih.gov/31268995/",
   "leitura": "resumo"
  },
  "mayhew1995": {
@@ -423,6 +558,11 @@
   "citacao": "McKenzie A, Crowley-McHattan Z, Meir R, et al. (2022). Bench, Bar, and Ring Dips: Do Kinematics and Muscle Activity Differ? Int J Environ Res Public Health 19(20):13211.",
   "link": "https://pubmed.ncbi.nlm.nih.gov/36293792/",
   "leitura": "resumo"
+ },
+ "mdn-storage": {
+  "citacao": "MDN Web Docs (s.d.). Storage quotas and eviction criteria.",
+  "link": "https://developer.mozilla.org/en-US/docs/Web/API/Storage_API/Storage_quotas_and_eviction_criteria",
+  "leitura": "texto-completo"
  },
  "michie2009": {
   "citacao": "Michie S, et al. (2009). Meta-regressão de 122 avaliações (44.747 pessoas): o autorregistro com outra técnica de controle (meta, retorno, revisão da meta) explicou mais a diferença entre programas de atividade física e alimentação (título não conferido). Periódico não anotado.",
@@ -445,7 +585,7 @@
   "leitura": "resumo"
  },
  "morin2025": {
-  "citacao": "Morin, et al. (2025). Stiff versus nórdico: hipertrofia de regiões diferentes dos posteriores da coxa (título não conferido). Periódico não anotado.",
+  "citacao": "Morin et al. (2025). Minimal Role of Hamstring Hypertrophy in Strength Transfer Between Nordic Hamstring and Stiff-Leg Deadlift: A Blinded Randomized Controlled Trial. J Strength Cond Res 39(9):924–932.",
   "link": "https://pubmed.ncbi.nlm.nih.gov/40644669/",
   "leitura": "resumo"
  },
@@ -459,10 +599,20 @@
   "link": "https://pubmed.ncbi.nlm.nih.gov/34623696/",
   "leitura": "resumo"
  },
+ "nakamura2025": {
+  "citacao": "Nakamura M, Kamazawa T, Sato S, Yosida R, Nosaka K (2025). Comparison between concentric-eccentric and concentric-only plantar flexor exercise training with body weight for changes in muscle strength, range of motion, and muscle architecture. Eur J Appl Physiol 125(9):2625–2635.",
+  "link": "https://pubmed.ncbi.nlm.nih.gov/40229595/",
+  "leitura": "resumo"
+ },
  "nascimento2013": {
   "citacao": "do Nascimento MA, et al. (2013). Familiarization and reliability of one repetition maximum strength testing in older women. J Strength Cond Res 27(6) (páginas não conferidas).",
   "link": "https://pubmed.ncbi.nlm.nih.gov/22990569/",
   "leitura": "resumo"
+ },
+ "ng2022": {
+  "citacao": "Ng CC, Carrera W, Peng MY, et al. (2022). OCULAR INJURIES ASSOCIATED WITH ELASTIC EXERCISE BANDS. Retin Cases Brief Rep 16(6):786-792.",
+  "link": "https://pubmed.ncbi.nlm.nih.gov/33165305/",
+  "leitura": "texto-completo"
  },
  "noteboom2024": {
   "citacao": "Noteboom L, Belli I, Hoozemans MJM, Seth A, Veeger HEJ, Van Der Helm FCT (2024). Effects of bench press technique variations on musculoskeletal shoulder loads and potential injury risk. Front Physiol 15:1393235.",
@@ -473,6 +623,11 @@
   "citacao": "Baechle TR, Earle RW, Wathen D (2008). Resistance training. In: Baechle TR, Earle RW (eds). Essentials of Strength Training and Conditioning, 3ª ed. Champaign: Human Kinetics (cap. 15; páginas 381–412 não confirmadas). ISBN 978-0-7360-5803-2.",
   "link": "",
   "leitura": "busca"
+ },
+ "nunes2019": {
+  "citacao": "Nunes JP, Marcori AJ, Tomeleri CM, et al. (2019). Starting the Resistance-Training Session with Lower-Body Exercises Provides Lower Session Perceived Exertion without Altering the Training Volume in Older Women. Int J Exerc Sci 12(4):1187–1197.",
+  "link": "https://pubmed.ncbi.nlm.nih.gov/31839851/",
+  "leitura": "resumo"
  },
  "nunes2021": {
   "citacao": "Nunes JP, Grgic J, Cunha PM, Ribeiro AS, Schoenfeld BJ, de Salles BF, Cyrino ES (2021). What influence does resistance exercise order have on muscular strength gains and muscle hypertrophy? A systematic review and meta-analysis. Eur J Sport Sci (volume não conferido; online em 2020).",
@@ -500,7 +655,7 @@
   "leitura": "busca"
  },
  "pancar2026": {
-  "citacao": "Pancar, et al. (2026). Ensaio com 19 homens iniciantes, um braço e uma perna em cada condição: semanas leves na 4ª e na 8ª semana não mudaram o crescimento nem a resistência (título e autores não conferidos). Periódico não anotado.",
+  "citacao": "Pancar Z, Ilhan MT, Darendeli MK, et al. (2026). Effects of deload periods in resistance training on muscle hypertrophy and strength endurance in untrained young men using a randomized within subject design. Ensaio com 19 homens iniciantes, um braço e uma perna em cada condição: semanas leves na 4ª e na 8ª semana não mudaram o crescimento nem a resistência. Sci Rep 16(1).",
   "link": "https://pubmed.ncbi.nlm.nih.gov/41730991/",
   "leitura": "resumo"
  },
@@ -548,6 +703,11 @@
   "citacao": "Prestes J, Tibana RA, de Araujo Sousa E, da Cunha Nascimento D, de Oliveira Rocha P, Camarço NF, Frade de Sousa NM, Willardson JM (2019). Strength and Muscular Adaptations After 6 Weeks of Rest-Pause vs. Traditional Multiple-Sets Resistance Training in Trained Subjects. J Strength Cond Res 33(Suppl 1):S113–S121.",
   "link": "https://pubmed.ncbi.nlm.nih.gov/28617715/",
   "leitura": "busca"
+ },
+ "rabello2024": {
+  "citacao": "Rabello R, Bertozzi F, Hauschild de Freitas IL, et al. (2024). Activation of the three deltoid muscle portions during common strengthening exercises: A systematic review. J Bodyw Mov Ther 40:1309–1325.",
+  "link": "https://pubmed.ncbi.nlm.nih.gov/39593452/",
+  "leitura": "resumo"
  },
  "ramoscampo2024": {
   "citacao": "Ramos-Campo DJ, et al. (2024). Efficacy of Split Versus Full-Body Resistance Training… J Strength Cond Res 38(7):1330–1340.",
@@ -609,6 +769,11 @@
   "link": "https://pubmed.ncbi.nlm.nih.gov/38499934/",
   "leitura": "busca"
  },
+ "rosa2022": {
+  "citacao": "Rosa A, Vazquez G, Grgic J, Balachandran AT, Orazem J, Schoenfeld BJ (2022). Hypertrophic Effects of Single- Versus Multi-Joint Exercise of the Limb Muscles: A Systematic Review and Meta-analysis. Strength Cond J 45(1):49–57 (on-line em abril de 2022; impresso em 2023).",
+  "link": "https://doi.org/10.1519/ssc.0000000000000720",
+  "leitura": "busca"
+ },
  "rossi2018": {
   "citacao": "Rossi FE, et al. (2018). Strength, body composition, and functional outcomes in the squat versus leg press exercises. J Sports Med Phys Fitness 58(3):263–270.",
   "link": "https://pubmed.ncbi.nlm.nih.gov/27735888/",
@@ -627,6 +792,11 @@
  "saeterbakken2011": {
   "citacao": "Saeterbakken AH, van den Tillaar R, Fimland MS (2011). A comparison of muscle activity and 1-RM strength of three chest-press exercises with different stability requirements. J Sports Sci 29(5) (páginas não conferidas).",
   "link": "https://pubmed.ncbi.nlm.nih.gov/21225489/",
+  "leitura": "resumo"
+ },
+ "saeterbakken2013": {
+  "citacao": "Saeterbakken AH, Fimland MS (2013). Effects of body position and loading modality on muscle activity and strength in shoulder presses. J Strength Cond Res 27(7):1824–1831.",
+  "link": "https://pubmed.ncbi.nlm.nih.gov/23096062/",
   "leitura": "resumo"
  },
  "saeterbakken2025": {
@@ -659,10 +829,15 @@
   "link": "https://pubmed.ncbi.nlm.nih.gov/26605807/",
   "leitura": "busca"
  },
+ "schoenfeld2017": {
+  "citacao": "Schoenfeld BJ, Ogborn DI, Vigotsky AD, et al. (2017). Hypertrophic Effects of Concentric vs. Eccentric Muscle Actions: A Systematic Review and Meta-analysis. J Strength Cond Res 31(9):2599-2608.",
+  "link": "https://pubmed.ncbi.nlm.nih.gov/28486337/",
+  "leitura": "resumo"
+ },
  "schoenfeld2017a": {
   "citacao": "Schoenfeld BJ, Ogborn D, Krieger JW (2017). Dose-response relationship between weekly resistance training volume and increases in muscle mass: A systematic review and meta-analysis. J Sports Sci 35(11):1073–1082.",
   "link": "https://pubmed.ncbi.nlm.nih.gov/27433992/",
-  "leitura": "busca"
+  "leitura": "resumo"
  },
  "schoenfeld2017b": {
   "citacao": "Schoenfeld BJ, Grgic J, Ogborn D, Krieger JW (2017). Strength and Hypertrophy Adaptations Between Low- vs. High-Load Resistance Training: A Systematic Review and Meta-analysis. J Strength Cond Res 31(12):3508–3523.",
@@ -689,6 +864,16 @@
   "link": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC8350392/",
   "leitura": "busca"
  },
+ "selkowitz2013": {
+  "citacao": "Selkowitz DM, Beneck GJ, Powers CM (2013). Which exercises target the gluteal muscles while minimizing activation of the tensor fascia lata? Electromyographic assessment using fine-wire electrodes. J Orthop Sports Phys Ther 43(2):54-64.",
+  "link": "https://pubmed.ncbi.nlm.nih.gov/23160432/",
+  "leitura": "resumo"
+ },
+ "shabbir2026": {
+  "citacao": "Shabbir R, Layton B, Kang Z, et al. (2026). The downside of the pull-up: A 10-year national analysis of emergency department visits, 2015-2024. Injury 57(12):113804.",
+  "link": "https://pubmed.ncbi.nlm.nih.gov/42945744/",
+  "leitura": "resumo"
+ },
  "silbernagel2007": {
   "citacao": "Silbernagel KG, Thomeé R, Eriksson BI, Karlsson J (2007). Continued sports activity, using a pain-monitoring model, during rehabilitation in patients with Achilles tendinopathy: a randomized controlled study. Am J Sports Med 35(6):897–906 (volume e páginas não conferidos).",
   "link": "https://pubmed.ncbi.nlm.nih.gov/17307888/",
@@ -697,7 +882,7 @@
  "simao2012": {
   "citacao": "Simão R, et al. (2012). Exercise order in resistance training. Sports Med 42(3) (páginas não conferidas).",
   "link": "https://pubmed.ncbi.nlm.nih.gov/22292516/",
-  "leitura": "busca"
+  "leitura": "resumo"
  },
  "singer2024": {
   "citacao": "Singer A, Wolf M, Generoso L, et al. (2024). Give it a rest: a systematic review with Bayesian meta-analysis on the effect of inter-set rest interval duration on muscle hypertrophy. Front Sports Act Living 6:1429789.",
@@ -719,6 +904,21 @@
   "link": "https://pubmed.ncbi.nlm.nih.gov/33629972/",
   "leitura": "resumo"
  },
+ "svensen2025": {
+  "citacao": "Svensen E, Koscien CP, Alamdari N, et al. (2025). A Novel Low-Impact Resistance Exercise Program Increases Strength and Balance in Females Irrespective of Menopause Status. Med Sci Sports Exerc 57(3):501-513.",
+  "link": "https://pubmed.ncbi.nlm.nih.gov/39480197/",
+  "leitura": "texto-completo"
+ },
+ "sylvester2016": {
+  "citacao": "Sylvester BD, Standage M, McEwan D, et al. (2016). Variety support and exercise adherence behavior: experimental and mediating effects. J Behav Med 39(2):214-24.",
+  "link": "https://pubmed.ncbi.nlm.nih.gov/26546241/",
+  "leitura": "resumo"
+ },
+ "tomeleri2020": {
+  "citacao": "Tomeleri CM, Ribeiro AS, Nunes JP, et al. (2020). Influence of Resistance Training Exercise Order on Muscle Strength, Hypertrophy, and Anabolic Hormones in Older Women: A Randomized Controlled Trial. J Strength Cond Res 34(11):3103–3109.",
+  "link": "https://pubmed.ncbi.nlm.nih.gov/33105360/",
+  "leitura": "resumo"
+ },
  "trindade2019": {
   "citacao": "Trindade TB, et al. (2019). Pre-exhaustion System Does Not Promote Additional Effects on Muscle Strength and Hypertrophy (título conforme a página da revista, possivelmente abreviado). Front Physiol 10:1424.",
   "link": "https://pubmed.ncbi.nlm.nih.gov/31824336/",
@@ -729,10 +929,20 @@
   "link": "https://pubmed.ncbi.nlm.nih.gov/41718208/",
   "leitura": "resumo"
  },
+ "varovic2025": {
+  "citacao": "Varovic D, Wolf M, Schoenfeld BJ, Steele J, Grgic J, Mikulic P (2025). Does Muscle Length Influence Regional Hypertrophy? A Systematic Review and Meta-Analysis. Int J Sports Med 46(14):1027–1036.",
+  "link": "https://pubmed.ncbi.nlm.nih.gov/40570881/",
+  "leitura": "resumo"
+ },
  "verhagen2016": {
   "citacao": "Verhagen AP, et al. (2016). Revisão de diretrizes sobre sinais de alerta em dor lombar (título não conferido). Eur Spine J.",
   "link": "https://rd.springer.com/content/pdf/10.1007/s00586-016-4684-0.pdf",
   "leitura": "busca"
+ },
+ "vigouroux2024": {
+  "citacao": "Vigouroux L, Devise M (2024). Pull-Up Performance Is Affected Differently by the Muscle Contraction Regimens Practiced during Training among Climbers. Bioengineering (Basel) 11(1).",
+  "link": "https://pubmed.ncbi.nlm.nih.gov/38247962/",
+  "leitura": "resumo"
  },
  "viveiros2024": {
   "citacao": "Viveiros, et al. (2024). Aquecimento curto e pesado (80% da carga do treino) versus leve e o volume da sessão (título não conferido). Periódico não anotado.",
@@ -743,6 +953,16 @@
   "citacao": "Warburton DER, Jamnik VK, Bredin SSD, Gledhill N (2011). The Physical Activity Readiness Questionnaire for Everyone (PAR-Q+) and Electronic Physical Activity Readiness Medical Examination (ePARmed-X+). Health Fit J Can 4(2):3–17.",
   "link": "https://hfjc.library.ubc.ca/",
   "leitura": "busca"
+ },
+ "webkit2020": {
+  "citacao": "Wilander J (2020). Full Third-Party Cookie Blocking and More. WebKit blog.",
+  "link": "https://webkit.org/blog/10218/full-third-party-cookie-blocking-and-more/",
+  "leitura": "texto-completo"
+ },
+ "webkit2023": {
+  "citacao": "WebKit (2023). Updates to Storage Policy. WebKit blog.",
+  "link": "https://webkit.org/blog/14403/updates-to-storage-policy/",
+  "leitura": "texto-completo"
  },
  "wei2023": {
   "citacao": "Wei W, Zhu J, Ren S, et al. (2023). Effects of progressive body-weight versus barbell back squat training on strength, hypertrophy and body fat among sedentary young women. Sci Rep 13(1):13505.",
@@ -759,10 +979,25 @@
   "link": "https://pubmed.ncbi.nlm.nih.gov/39959841/",
   "leitura": "resumo"
  },
+ "yasuda2016": {
+  "citacao": "Yasuda T, Fukumura K, Tomaru T, et al. (2016). Thigh muscle size and vascular function after blood flow-restricted elastic band training in older women. Oncotarget 7(23):33595-607.",
+  "link": "https://pubmed.ncbi.nlm.nih.gov/27244884/",
+  "leitura": "resumo"
+ },
  "youdas2010": {
   "citacao": "Youdas JW, et al. (2010). Surface electromyographic activation patterns and elbow joint motion during a pull-up, chin-up, or perfect-pullup rotational exercise. J Strength Cond Res 24(12):3404–3414.",
   "link": "https://pubmed.ncbi.nlm.nih.gov/21068680/",
-  "leitura": "busca"
+  "leitura": "resumo"
+ },
+ "youdas2013": {
+  "citacao": "Youdas JW, Foley BM, Kruger BL, et al. (2013). Electromyographic analysis of trunk and hip muscles during resisted lateral band walking. Physiother Theory Pract 29(2):113-23.",
+  "link": "https://pubmed.ncbi.nlm.nih.gov/22845002/",
+  "leitura": "resumo"
+ },
+ "youdas2021": {
+  "citacao": "Youdas JW, Kleis M, Krueger ET, et al. (2021). Recruitment of Shoulder Complex and Torso Stabilizer Muscles With Rowing Exercises Using a Suspension Strap Training System. Sports Health 13(1):85-90.",
+  "link": "https://pubmed.ncbi.nlm.nih.gov/32940548/",
+  "leitura": "resumo"
  },
  "zabaletakorta2021": {
   "citacao": "Zabaleta-Korta, et al. (2021). Cadeira extensora e hipertrofia regional do quadríceps (título não conferido). Periódico não anotado.",
@@ -772,6 +1007,11 @@
  "zhang2025": {
   "citacao": "Zhang X, Weakley J, Li H, Li Z, García-Ramos A (2025). Superset Versus Traditional Resistance Training Prescriptions: A Systematic Review and Meta-analysis Exploring Acute and Chronic Effects on Mechanical, Metabolic, and Perceptual Variables. Sports Med 55:953–975.",
   "link": "https://pubmed.ncbi.nlm.nih.gov/39903375/",
+  "leitura": "texto-completo"
+ },
+ "zhu2025": {
+  "citacao": "Zhu Q, Chen Z, Feng L (2025). Biomechanical evaluation of posterior deltoid exercises and kinematic trajectory modeling. Acta Bioeng Biomech 27(4):135-147.",
+  "link": "https://pubmed.ncbi.nlm.nih.gov/41964926/",
   "leitura": "resumo"
  },
  "zourdos2015": {

@@ -1,0 +1,57 @@
+{
+  "id": "elevacao-lateral-deitado",
+  "name": "Elevação lateral deitado de lado com halter",
+  "short": "Elevação lateral deitado",
+  "target": "Lateral do ombro (deltoide lateral)",
+  "setupEq": [
+    "Um halter leve. O chão (com colchonete) ou um banco."
+  ],
+  "setupBody": [
+    "Deite de lado, a cabeça apoiada no braço de baixo, joelhos dobrados.",
+    "O halter na mão de cima, braço à frente do corpo e perto da coxa, cotovelo levemente dobrado."
+  ],
+  "exec": [
+    [
+      "conc",
+      "Subida",
+      "~1 s. Leve o braço para cima, em arco, até ele ficar quase na vertical."
+    ],
+    [
+      "hold",
+      "No alto",
+      "Pausa curta."
+    ],
+    [
+      "ecc",
+      "Descida",
+      "~2 s, até o halter voltar perto da coxa. Termine um lado e troque."
+    ]
+  ],
+  "range": [
+    "Embaixo: halter perto da coxa.",
+    "Em cima: braço quase na vertical."
+  ],
+  "cues": [
+    "Corpo de lado, parado.",
+    "Arco, cotovelo levemente dobrado.",
+    "Desça devagar."
+  ],
+  "errors": [
+    {
+      "id": "rola",
+      "title": "Rolar o corpo",
+      "desc": "O tronco gira para ajudar. Fique de lado, parado."
+    },
+    {
+      "id": "embalo",
+      "title": "Jogar o halter",
+      "desc": "O embalo tira o trabalho do ombro. Suba e desça devagar."
+    },
+    {
+      "id": "cotovelo",
+      "title": "Dobrar demais o cotovelo",
+      "desc": "O braço encurta e o ombro trabalha menos. Cotovelo só levemente dobrado."
+    }
+  ],
+  "carga": "Registre o peso do halter. Quando todas as séries chegarem ao topo da faixa, use o próximo peso que você tem; sem um mais pesado, mais repetições e descida de 3 s."
+}

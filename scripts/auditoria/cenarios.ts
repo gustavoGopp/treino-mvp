@@ -2,7 +2,7 @@
 // Nada aqui é dado de uma pessoa real: os inventários seguem os 3 atalhos de cenário (src/domain/taxonomia/atalhos.ts),
 // com e sem os itens "às vezes tem", mais os mínimos e as personas fictícias de tests/personas.
 import type { Grupo, Perfil } from '../../src/domain/gerador';
-import { DIVISAO_IDS, DIVISOES, type DivisaoId } from '../../src/domain/gerador/divisoes';
+import { DIVISOES, DIVISOES_OFERECIDAS, type DivisaoId } from '../../src/domain/gerador/divisoes';
 import type { Articulacao } from '../../src/domain/biblioteca';
 import { NIVEIS, type Nivel } from '../../src/domain/regras';
 import { ATALHOS } from '../../src/domain/taxonomia/atalhos';
@@ -69,7 +69,7 @@ export const PARES_DE_LOCAIS: [string, string][] = [
 ];
 
 export const MINUTOS = [20, 30, 45, 60, 75, 90, 120, 150];
-export const PRIORIDADES: { id: string; grupos: Grupo[] }[] = [
+export const PRIORIDADES: Prioridade[] = [
   { id: 'nenhuma', grupos: [] },
   { id: 'superior', grupos: ['peito', 'costas', 'ombros', 'bracos'] },
   { id: 'inferior', grupos: ['pernas', 'gluteos'] },
@@ -77,7 +77,7 @@ export const PRIORIDADES: { id: string; grupos: Grupo[] }[] = [
   { id: 'todos', grupos: ['peito', 'costas', 'ombros', 'bracos', 'pernas', 'gluteos', 'abdomen'] },
 ];
 export type Dor = { articulacao: Articulacao; nota: number };
-export const DORES: { id: string; dores: Dor[] }[] = [
+export const DORES: SituacaoDeDor[] = [
   { id: 'sem dor', dores: [] },
   { id: 'ombro 7', dores: [{ articulacao: 'ombro', nota: 7 }] },
   { id: 'joelho 7', dores: [{ articulacao: 'joelho', nota: 7 }] },
@@ -88,7 +88,7 @@ export const DORES: { id: string; dores: Dor[] }[] = [
   { id: 'ombro 7 + joelho 4', dores: [{ articulacao: 'ombro', nota: 7 }, { articulacao: 'joelho', nota: 4 }] },
 ];
 
-export function perfil(o: { nivel: Nivel; divisao: DivisaoId; minutos: number; prioridades: Grupo[]; dores: Dor[] }): Perfil {
+export function perfil(o: { nivel: Nivel; divisao: DivisaoId; minutos: number; prioridades: Grupo[]; dores: Dor[]; evitarExercicios?: string[] }): Perfil {
   const respostas = { ...respostasNenhuma(), osteoarticular: o.dores.length > 0 };
   return {
     nivel: o.nivel,
@@ -97,23 +97,28 @@ export function perfil(o: { nivel: Nivel; divisao: DivisaoId; minutos: number; p
     divisao: o.divisao,
     minutosSessao: o.minutos,
     prioridades: o.prioridades,
-    evitarExercicios: [],
+    evitarExercicios: o.evitarExercicios ?? [],
     evitarEquipamentos: [],
     triagem: { respostas, ...(o.dores.length ? { dores: o.dores } : {}) },
   };
 }
 
-export type Caso = { cenario: Cenario; nivel: Nivel; divisao: DivisaoId; minutos: number; prioridade: (typeof PRIORIDADES)[number]; dor: (typeof DORES)[number] };
+export type Prioridade = { id: string; grupos: Grupo[] };
+export type SituacaoDeDor = { id: string; dores: Dor[] };
+export type Caso = { cenario: Cenario; nivel: Nivel; divisao: DivisaoId; minutos: number; prioridade: Prioridade; dor: SituacaoDeDor };
 
-/** A grade completa: cenário × nível × divisão (2 a 6 dias) × minutos × prioridade × dor. */
-export function* grade(opts: { cenarios?: Cenario[]; amostra?: number } = {}): Generator<Caso> {
+/**
+ * A grade completa: cenário × nível × divisão (2 a 6 dias) × minutos × prioridade × dor. Cada dimensão pode ser trocada
+ * (o estresse de qualidade, 05/11/2026, usa outras listas); sem opção, valem as constantes deste módulo.
+ */
+export function* grade(opts: { cenarios?: Cenario[]; divisoes?: readonly DivisaoId[]; minutos?: number[]; prioridades?: Prioridade[]; dores?: SituacaoDeDor[]; amostra?: number } = {}): Generator<Caso> {
   let i = 0;
   for (const cenario of opts.cenarios ?? CENARIOS)
     for (const nivel of NIVEIS)
-      for (const divisao of DIVISAO_IDS)
-        for (const minutos of MINUTOS)
-          for (const prioridade of PRIORIDADES)
-            for (const dor of DORES) {
+      for (const divisao of opts.divisoes ?? DIVISOES_OFERECIDAS)
+        for (const minutos of opts.minutos ?? MINUTOS)
+          for (const prioridade of opts.prioridades ?? PRIORIDADES)
+            for (const dor of opts.dores ?? DORES) {
               // Amostra espalhada (hash multiplicativo), para não cair sempre nas mesmas dores ou prioridades.
               if (opts.amostra && Math.imul(i++, 2654435761) >>> 0 >= 2 ** 32 / opts.amostra) continue;
               yield { cenario, nivel, divisao, minutos, prioridade, dor };

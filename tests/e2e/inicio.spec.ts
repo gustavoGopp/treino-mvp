@@ -11,7 +11,7 @@ test('a página inicial abre em português, com o aviso, e é instalável', asyn
   await expect(page.getByRole('button', { name: 'Começar', exact: true })).toBeInViewport({ ratio: 1 });
   // a privacidade completa a um toque
   await page.getByRole('button', { name: /Seus dados ficam só neste celular/ }).click();
-  await expect(page.getByRole('dialog', { name: 'Seus dados ficam no aparelho' })).toContainText('não fica guardada no servidor');
+  await expect(page.getByRole('dialog', { name: 'Seus dados ficam no aparelho' })).toContainText('O servidor do app não guarda a foto');
   await page.keyboard.press('Escape');
   await expect(page.locator('html')).toHaveAttribute('lang', 'pt-BR');
   await expect(page.locator('link[rel="manifest"]')).toHaveCount(1);

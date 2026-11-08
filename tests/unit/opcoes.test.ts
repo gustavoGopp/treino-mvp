@@ -6,11 +6,14 @@ describe('escolhas calculadas (opcoesDeAjuste)', () => {
   it('sem problema, sem opções', () => {
     expect(opcoesDeAjuste(bruno.perfil, bruno.inventario)).toEqual([]);
   });
-  it('Diego (3 × 45): +15 min aparece e resolve; "manter" sempre por último', () => {
-    const o = opcoesDeAjuste(diego.perfil, diego.inventario);
+  it('Diego (3 × 30): +15 min aparece e resolve; "manter" sempre por último', () => {
+    // Com 45 min, desde 06/11/2026 o Diego já não tem meta abaixo do piso (a barra fixa supinada conta meia série para o
+    // ombro de trás), e não há o que ajustar; com 30 min, o +15 min continua aparecendo e resolvendo.
+    expect(opcoesDeAjuste(diego.perfil, diego.inventario)).toEqual([]);
+    const o = opcoesDeAjuste({ ...diego.perfil, minutosSessao: 30 }, diego.inventario);
     expect(o.at(-1)!.id).toBe('manter');
     const maisTempo = o.find((x) => x.id === 'mais-tempo')!;
-    expect(maisTempo.minutosSessao).toBe(60);
+    expect(maisTempo.minutosSessao).toBe(45);
     expect(maisTempo.diasAcimaDoTempo).toBe(0);
     expect(maisTempo.abaixoDaMeta).toEqual([]);
   });

@@ -1,0 +1,60 @@
+{
+  "id": "crucifixo-invertido-caneleira",
+  "name": "Crucifixo invertido sentado com caneleira presa no punho",
+  "short": "Crucifixo invertido caneleira",
+  "target": "Ombro de trás (deltoide posterior)",
+  "setupEq": [
+    "Um par de caneleiras, presas no antebraço, logo acima do punho, e uma cadeira firme."
+  ],
+  "setupBody": [
+    "Sentado na ponta da cadeira, pés juntos, peito nas coxas.",
+    "Braços pendurados, cotovelos levemente dobrados."
+  ],
+  "exec": [
+    [
+      "conc",
+      "Abertura",
+      "~1 s. Abra os braços para os lados até a altura dos ombros."
+    ],
+    [
+      "hold",
+      "No alto",
+      "Pausa curta."
+    ],
+    [
+      "ecc",
+      "Descida",
+      "~2 s, até os braços voltarem para baixo."
+    ]
+  ],
+  "range": [
+    "Embaixo: braços pendurados.",
+    "Em cima: braços na altura dos ombros."
+  ],
+  "cues": [
+    "Peito nas coxas.",
+    "Abra para os lados.",
+    "Perto da falha."
+  ],
+  "errors": [
+    {
+      "id": "tronco",
+      "title": "Levantar o tronco",
+      "desc": "O tronco sobe para dar embalo. Peito nas coxas."
+    },
+    {
+      "id": "remada",
+      "title": "Virar remada",
+      "desc": "Os cotovelos dobram e puxam para trás. Abra os braços para os lados."
+    },
+    {
+      "id": "longe",
+      "title": "Parar longe da falha",
+      "desc": "Com carga leve, a série só conta perto da falha. Vá até faltar 1 ou 2 repetições."
+    }
+  ],
+  "montagem": [
+    "Velcro firme no antebraço, acima do punho; se a caneleira escorregar, pare."
+  ],
+  "carga": "Registre o peso da caneleira. Quando todas as séries chegarem ao topo da faixa, use a próxima caneleira; sem uma mais pesada, mais repetições e descida de 3 s."
+}

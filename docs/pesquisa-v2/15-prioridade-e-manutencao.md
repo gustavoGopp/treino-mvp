@@ -1,0 +1,82 @@
+# 15. Prioridade de um grupo e manutenção dos outros (sessão de qualidade dos treinos)
+
+> Pesquisa de 06/11/2026, na sessão de qualidade dos treinos gerados (`docs/revisoes/qualidade-treinos.md`, Parte D). Os selos e os status seguem `docs/pesquisa/00-metodo.md`. Um pesquisador respondeu às seis perguntas abaixo partindo do que o app faz hoje (Parte D.1) e dos números da grade. Quem consolidou conferiu no PubMed cada PMID citado. **Nada aqui muda `regras.md`, os dados ou o código: tudo espera a decisão do Gustavo.**
+
+---
+
+## Prioridade de um grupo × manutenção dos outros: o que a evidência diz (06/11/2026)
+
+Termos: **manutenção** = a menor dose que segura o músculo e a força que você já tem. **Mínimo eficaz** = a menor dose que ainda faz crescer. **Meta-regressão** = análise que junta muitos estudos e estima quanto cada série a mais rende.
+
+### 1. Tabela
+
+| pergunta | o que a evidência diz | selo | fontes (PMID ou DOI, status de leitura) |
+|---|---|---|---|
+| 1a. "Foco + manutenção" se sustenta? | Sim, nas duas pontas. **Manter custa pouco**: em jovens, 1/3 e até 1/9 da dose seguraram o crescimento por 32 semanas (com 1/3, as fibras até cresceram um pouco mais); acima de 60 anos, não seguraram. A revisão de Spiering: 1 sessão por semana, 1 série por exercício, com a carga mantida, segura força e tamanho por até 32 semanas nos jovens; os mais velhos podem precisar de 2 sessões e 2 a 3 séries. **Crescer pede mais**: a resposta à dose é positiva, com retorno decrescente (cada série a mais rende menos que a anterior). | manter: **moderada** (um ECR + revisão narrativa); crescer com mais séries: **moderada** | `bickel2011` 21131862 (resumo-PubMed); `spiering2021` 33629972 (resumo-PubMed); `pelland2026` 41343037 (resumo-PubMed + preprint lido); `schoenfeld2017a` 27433992 (**resumo-PubMed, lido hoje**) |
+| 1b. O que é "volume de manutenção" para quem já treina? | Não há número em séries por músculo por semana para treinados. O que existe: (i) em treinados, quem **manteve o volume que já fazia** cresceu tanto quanto quem subiu 30% ou 60% (coxa, 8 semanas) ou subiu as séries (bíceps, 12 semanas); (ii) em déficit calórico, 3 séries por exercício seguraram a massa magra igual a 5; (iii) uma série, de 1 a 3 vezes por semana, ainda aumenta a força máxima de treinados. "1 a 3 séries pesadas" (`volume.manutencao.piso`) vem de estudos com não treinados (Bickel) e de uma revisão narrativa. | **um estudo** para "manter o volume habitual basta" (2 ECRs pequenos); **moderada** para o piso de 1 a 3 (extrapolado a treinados: [opinião]) | Barsuhn 2025 39665246 (resumo-PubMed); Moreno 2025 39557664 (resumo-PubMed); `roth2023` 36114738 (resumo-PubMed); `androulakiskorakakis2020` 31797219 (resumo-PubMed) |
+| 1c. 4 a 6 séries por semana mantêm ou crescem devagar? | **Crescem devagar.** Ficam acima do que mantém (1 a 3) e no mínimo que a revisão de treino eficiente usa (≥ 4 por músculo por semana). Schoenfeld 2017a: cada série semanal a mais rende +0,37% de ganho; a comparação em 3 faixas (< 5, 5 a 9, 10+) deu só tendência (p = 0,074), então "4 a 6 crescem" é apoio fraco. | "acima da manutenção": **moderada**; "crescem, devagar": **moderada** para a direção, **consenso** para o tamanho | `schoenfeld2017a` (resumo-PubMed); `iversen2021` 34125411 (texto-completo); `fyfe2022` 34822137 (resumo-PubMed, metade lida) |
+| 2a. Ensaio de "especialização" em treinados (mais volume num grupo, menos nos outros)? | **Não achei.** O mais perto: (i) num mesmo participante, a perna com 3 séries cresceu mais que a perna com 1 série (34 não treinados, 12 semanas); (ii) treinar mais músculos **não tira** crescimento do músculo-alvo (rosca com ou sem 4 séries extras de extensora: braço +0,18 × +0,19 cm). Ou seja: o custo do foco é **tempo e cansaço**, não "competição" entre músculos. | **um estudo** cada (não treinados) | Hammarström 2020 31813190 (resumo-PubMed); `kataoka2026` 42647752 (resumo-PubMed) |
+| 2b. Ganho extra do prioritário com 12 a 14 séries contra 6 | Estimativa pelas meta-regressões, linear (exagera um pouco no alto, porque o retorno é decrescente): 14 − 6 = 8 séries a mais; × 0,24% por série (Pelland, preprint) ≈ **+2 pontos percentuais** de crescimento no período típico de estudo (8 a 12 semanas); × 0,37% (Schoenfeld 2017a) ≈ **+3 pontos**. Com 12: +1,4 a +2,2 pontos. Na prática: crescer, por exemplo, ~6% em vez de ~4%. | os coeficientes: **moderada**; a conta: [opinião] | `pelland2026` (preprint lido, DOI 10.51224/srxiv.460); `schoenfeld2017a` (resumo-PubMed) |
+| 2c. Quanto os outros perdem com 4 a 6 | Não perdem massa (1c: 4 a 6 > manutenção). Deixam de ganhar: se estavam em 12 e caem para 6, ~1,4 a 2,2 pontos a menos de crescimento no período. Pelo formato de raiz quadrada do modelo de Pelland, **as primeiras séries valem mais que as últimas**: tirar 4 séries de quem tem 10 custa mais do que dar 4 séries a quem tem 10 rende. Foco **troca** crescimento total por crescimento localizado. | direção: **moderada**; a conta: [opinião] | `pelland2026` (preprint lido) |
+| 3a. Teto por sessão | ~11 séries "fracionadas" por músculo por sessão é o ponto a partir do qual a série a mais deixa de ter mais de 50% de chance de render algo detectável (preprint, poucos dados no alto). O teto de 10 do app é coerente. Com 14 séries de meta, o prioritário **precisa de 2 dias** na semana. | **um estudo** (preprint) | `remmert2025` (preprint lido) |
+| 3b. Teto por semana | ~20 séries: acima disso o ganho extra é pequeno e incerto. 3 prioridades a 14 não esbarram nele; esbarram no **tempo**. | **moderada** | `volume.semanal.teto-padrao`: `bazvalle2022`, `pelland2026`, `rantila2026` |
+| 3c. Quantos grupos priorizar ao mesmo tempo ("1 a 2 por bloco") | **Não achei** estudo. É prática comum de fisiculturismo, sem fonte verificada aqui. A conta do app mostra o porquê (seção 3): 60 min ≈ 24 séries por sessão; com 4 dias, ~96 por semana; os 11 músculos com meta no piso já somam ~64; cada músculo prioritário a 14 soma +8. "Pernas" vale 3 músculos (+24). Com pernas + glúteos + braços (6 músculos), +48 → ~112 séries: não cabe. | **consenso** (sem fonte); a conta: [opinião] | — |
+| 4a. "Só este grupo" (zerar os outros): massa | Parar de treinar um músculo por 4 a 8 semanas: a **massa** cai pouco e devagar. Em mais velhos, 12 a 24 semanas de pausa não tiveram queda significativa (d = −0,60, IC −1,21 a 0,01); 31 a 52 semanas, sim (d = −1,11). Em treinados, 1 semana parado não mudou a hipertrofia. Quem mais ganhou tende a perder mais em 6 semanas de pausa. O ganho volta mais rápido ao retomar ("memória muscular", núcleos das fibras que ficam). | **moderada** (meta-análises) para "a perda cresce com a duração"; **um estudo** para os números em 6 semanas | Grgic 2022 36360927 (resumo-PubMed); `coleman2024` 38274324 (resumo-PubMed); Räntilä 2021 34027917 (resumo-PubMed, lido em parte); Rahmati 2022 35961635 (verificado-busca) |
+| 4b. "Só este grupo": força | A **força** cai mais que a massa: −0,46 desvio-padrão na força máxima (103 estudos), maior com mais tempo parado, nos mais velhos (> 65) e nos sedentários. Em atletas de rugby e futebol americano, −14,5% de força em ~7 semanas sem treino. | **moderada** | `bosquet2013` 23347054 (**resumo-PubMed, lido hoje**); McMaster 2013 23529287 (resumo-PubMed) |
+| 4c. Desequilíbrio do ombro | Já coberto: treinar só empurrar sem puxar está ligado a dor no ombro (estudos de associação). | ver relatório de combinações | `kolber2010`, `kolber2014`, `kolber2017` |
+| 5a. Prioritário primeiro na sessão | Força: sim; hipertrofia: só um estudo fraco. Já coberto. | força **moderada**; hipertrofia **consenso** | `simao2012`, `nunes2021`, `avelar2019` (relatório de combinações, 5b) |
+| 5b. Mais frequência (2x por semana) | Com volume igual, a frequência **não muda** a hipertrofia; serve para **caber** o volume sob o teto por sessão (3a). Para força, mais frequência ajuda, com retorno decrescente. | **moderada** | `pelland2026`; `schoenfeld2019a` |
+| 5c. 2ª vaga (outro exercício) × mais séries no mesmo exercício | Até 4 séries por exercício, mais séries no mesmo exercício rendem o mesmo por série; um 2º exercício, de outra função, cobre outra região do músculo. Para o prioritário, a prática é: 1º, mais séries (até 4); 2º, um 2º exercício de outra função; 3º, um 2º dia. | **consenso** (o "2º exercício cobre outra região" é **moderada**, ver P8 do relatório de combinações) | `selecao.exercicios-por-musculo`; `kassiano2022`; posicionamento da IUSCA (Schoenfeld 2021, DOI 10.47206/ijsc.v1i1.81, verificado-busca: só o registro conferido, conteúdo não lido) |
+
+### 2. O que o app faz hoje
+
+- **Metas** (`docs/pesquisa/regras.md:9` `volume.semanal.alvo`, consenso; `:12` `volume.semanal.minimo-eficaz`, moderada): o prioritário vai para 8, 12 ou 14; os outros ficam no piso de 6 (4 no abdômen). O piso de manutenção (`:13`, 1 a 3 séries pesadas) só existe no modo manutenção.
+- **Vagas e ordem** (`regras.md:116` `tempo.exercicios-por-sessao`; `:89` `ordem.sessao`): as vagas marcadas `prioridade` em `src/domain/gerador/divisoes.ts` só entram com a prioridade; os complementos prioritários entram antes dos outros; na ordem, o prioritário vem antes entre exercícios do mesmo tipo.
+- **Cortes** (`regras.md:117` `tempo.corte`): o prioritário nunca perde série antes de um não prioritário; pisos nos cortes: 6/10/12 para o prioritário, 4 para os outros.
+- **A frequência** vem da divisão, não da prioridade; não há 2ª vaga em todos os dias; os outros nunca vão a zero.
+- **Medido** (`docs/revisoes/qualidade-treinos.md`, A.5 e D.1): 1 prioridade ≈ 14% a 17% das séries da semana; 2 ≈ 26% a 30%; 3 ≈ 58% a 61%. No avançado (meta 14), o prioritário fica abaixo da meta em 39% (glúteos) a 96% (pernas) dos programas. Com 2 ou 3 prioridades, em ~metade dos programas uma chega à meta e a outra não (peito + braços 54%, pernas + glúteos 60%, pernas + glúteos + abdômen 67%).
+- **Texto** hoje: "Grupos prioritários com ~N séries semanais; os demais no mínimo eficaz (6)."
+
+### 3. Diferença
+
+| ponto | evidência | app |
+|---|---|---|
+| Os outros no piso de 4 a 6 | 4 a 6 > manutenção: os outros **crescem devagar**, não só mantêm (moderada) | confere. O texto não diz que os outros continuam crescendo |
+| "Mínimo eficaz (6)" | o mínimo eficaz é 4 a 6; "manutenção" é 1 a 3 | o texto mistura os dois quando fala em "manter"; não há margem entre o piso de corte (4) e a manutenção (1 a 3) |
+| Prioridade fica abaixo da meta | 14 séries pede 2 dias com ~7, sob o teto de ~10 a 11 por sessão (um estudo) | o app não aumenta a frequência nem acrescenta vaga quando o prioritário só treina 1 ou 2 vezes; daí os 96% de "pernas" abaixo da meta no avançado |
+| Prioridades que competem | não há estudo; a conta de tempo mostra que 3 grupos (sobretudo "pernas", que vale 3 músculos) não cabem em 4 × 60 min (consenso + [opinião]) | o app aceita até 7 grupos e não avisa que eles competem; quem perde a corrida não é explicado |
+| "Pernas" como uma prioridade | são 3 músculos com meta (+24 séries no avançado), o dobro de "braços" e o triplo de "peito" | a interface trata como 1 grupo; daí 37,7% das séries com pernas e o pior índice de "abaixo da meta" |
+| Ganho extra do foco | +2 a +3 pontos percentuais em 8 a 12 semanas (6 → 14), menos no intermediário ([opinião] sobre coeficientes moderados) | o app não diz o tamanho do ganho, e a pessoa pode esperar mais |
+
+### 4. Proposta com o efeito esperado
+
+| # | mudança concreta | selo | efeito esperado (grade e personas de `tests/personas/index.ts`) | risco |
+|---|---|---|---|---|
+| R1 | **Texto do "porquê"**, `volume.semanal.alvo` (uma das redações abaixo, com N e o selo) | moderada (os outros crescem) + consenso (o número) | nenhum na grade; texto de todas as personas com prioridade | nenhum |
+| R2 | **Aviso de competição**, regra nova `volume.prioridade.competicao`: quando ≥ 2 prioridades e algum prioritário ficar abaixo do `volume.semanal.minimo` do nível, ou quando a soma das metas passar da capacidade estimada (minutos × dias ÷ ~2,5 min por série), avisar e sugerir: menos grupos de foco, mais minutos ou mais dias | consenso | grade: aparece em ~metade dos programas com 2 ou 3 prioridades (54% a 67%, A.5); personas: conferir as de prioridade múltipla | aviso demais: mostrar 1 vez por programa, não por dia |
+| R3 | **Recomendar 1 a 2 grupos** no cadastro ("Escolha até 2 para foco; com mais, o foco se divide"), sem bloquear; "pernas" com a nota "conta como 3 músculos" | consenso | menos programas com 3 prioridades; a fatia por prioridade sobe | tira liberdade se virar bloqueio; não bloquear |
+| R4 | **Prioridade puxa frequência**: se o prioritário treina 1 vez por semana na divisão e a meta passa do teto por sessão (10), preferir uma divisão em que ele treine 2 vezes ou ativar a vaga `prioridade` em outro dia | moderada (frequência permite o volume, `pelland2026`, `remmert2025`) | grade: queda de "abaixo da meta" no avançado, sobretudo pernas (96%) e braços | muda a divisão escolhida; precisa de teste novo em `tests/unit` para `divisaoEscolhida` com prioridade |
+| R5 | **Modo "só este grupo"** (se vier a existir): nunca zerar os outros; usar `volume.manutencao.piso` (1 a 3 séries pesadas por músculo por semana, carga mantida) e avisar que a força geral cai mais que a massa | moderada (`bickel2011`, `spiering2021`, `bosquet2013`) | cada dia ganha ~1 exercício de manutenção; os outros não vão a zero | acima de 60 anos, 1 a 3 pode não bastar (Bickel); o app não pergunta idade, então usar 3 e 2 sessões quando houver triagem de idade |
+| R6 | **Fonte do `volume.semanal.minimo-eficaz`**: acrescentar `iversen2021` (≥ 4 por semana, texto-completo) e atualizar o status de `schoenfeld2017a` para resumo-PubMed (o "+0,37% por série" agora está confirmado no resumo) | moderada | nenhum; só documentação | nenhum |
+
+**Redações propostas (R1), pt-BR simples:**
+
+1. "Foco em **{grupos}**: ~{N} séries por semana, para crescer mais rápido. Os outros músculos seguem com {piso} séries: continuam crescendo, mais devagar. (Mais séries, mais crescimento, com retorno decrescente: evidência moderada. O número exato é prática de treinadores.)"
+2. "Você escolheu **{grupos}** como foco: eles recebem ~{N} séries por semana. O resto do corpo fica com {piso}, que é mais do que o necessário para manter (1 a 3) e ainda faz crescer. Evidência moderada."
+3. (curta) "Foco: {grupos}, ~{N} séries por semana. Demais músculos: {piso} séries, o bastante para manter e crescer devagar (evidência moderada)."
+
+**Aviso quando as prioridades competem (R2):**
+
+- "Seus focos competem pelo mesmo tempo: **{A}** chegou a {x} de {meta} séries e **{B}** a {y} de {meta}. Com {dias} × {min} min não cabe tudo. Para o foco render, escolha 1 ou 2 grupos, ou aumente os minutos ou os dias. (Prática de treinadores; não há estudo sobre quantos grupos priorizar ao mesmo tempo.)"
+- Variante para "pernas": "'Pernas' são 3 músculos (frente da coxa, posterior e panturrilha): como foco, pede o triplo de séries de 'peito'."
+
+### 5. Fontes novas para docs/pesquisa/fontes.md
+
+As fontes novas e os status atualizados foram registrados em `docs/pesquisa/fontes.md` (conferidos por esummary/efetch no PubMed em 2026-11-06 por quem consolidou).
+### 6. Não achei
+
+- **Ensaio de especialização** em treinados (um grupo com mais volume, os outros reduzidos, medindo os dois). Termos: specialization/specialisation/prioritization/priority + "resistance training" + hypertrophy + trained (PubMed: 3 resultados, nenhum serve; Europe PMC 2015–2026: 467 resultados, os 25 primeiros sem nenhum ensaio do tipo).
+- **Ensaio de treinados reduzindo para 4 a 6 séries por semana** e medindo hipertrofia. Termos: "reduced volume" / "reduced training" / maintenance + "resistance training" + hypertrophy + trained (PubMed, 19 resultados): só Barsuhn 2025 e Moreno 2025 (mantêm o volume habitual) e Roth 2023 (3 × 5 séries no déficit).
+- **Quantos grupos priorizar ao mesmo tempo** ("1 a 2 por bloco"): nenhum estudo; o posicionamento da IUSCA foi só conferido no registro, sem leitura do conteúdo. Fica como consenso.
+- **Prática de "priorizar"** (2ª vaga, primeiro, 2x por semana, mais séries) como estudo comparativo: não achei; as peças isoladas têm evidência (ordem, frequência, séries por exercício), a combinação é consenso.
+- O texto completo de `pelland2026` (versão revisada, Springer bloqueia) e de `schoenfeld2017a` (Taylor & Francis): as contas da 2b e 2c usam os coeficientes médios do preprint e do resumo.

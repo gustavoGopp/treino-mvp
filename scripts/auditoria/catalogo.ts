@@ -9,12 +9,12 @@
 import { mkdirSync, writeFileSync } from 'node:fs';
 import { BIBLIOTECA, MUSCULOS, PADROES, POR_ID, type Exercicio, type Musculo, type Padrao } from '../../src/domain/biblioteca';
 import { contextoDeSelecao, gerarPrograma, NOME_MUSCULO, type Programa } from '../../src/domain/gerador';
-import { DIVISAO_IDS, DIVISOES, type DivisaoId } from '../../src/domain/gerador/divisoes';
+import { DIVISOES, DIVISOES_OFERECIDAS, type DivisaoId } from '../../src/domain/gerador/divisoes';
 import { FUNCOES } from '../../src/domain/gerador/funcoes';
 import { NIVEIS, NIVEL_COMPLEXIDADE_MAX, type Nivel } from '../../src/domain/regras';
-import { capacidades, type Inventario } from '../../src/domain/taxonomia/equipamentos';
-import { CENARIOS, perfil } from './cenarios';
-import { CENARIOS_MIN, chaveDaClasse } from './minimo-cenarios';
+import { capacidades } from '../../src/domain/taxonomia/equipamentos';
+import { perfil } from './cenarios';
+import { CENARIOS_55, membrosDaClasse, TODOS_OS_CENARIOS, type Cen } from './cenarios-55';
 
 const arg = (k: string) => {
   const i = process.argv.indexOf(k);
@@ -23,20 +23,10 @@ const arg = (k: string) => {
 const SAIDA = arg('--saida') ?? 'docs/revisoes/catalogo';
 mkdirSync(SAIDA, { recursive: true });
 
-type Cen = { id: string; nome: string; inventario: Inventario; grupo: 'atalho' | 'vazio' | 'item' | 'par' | 'persona' };
-const ATALHOS_IDS = new Set(['casa', 'casa+', 'condominio', 'condominio+', 'academia', 'academia+']);
-const todos: Cen[] = [
-  ...CENARIOS.filter((c) => c.id !== 'peso-corpo').map((c) => ({ id: c.id, nome: c.nome, inventario: c.inventario, grupo: ATALHOS_IDS.has(c.id) ? ('atalho' as const) : ('persona' as const) })),
-  ...CENARIOS_MIN.map((c) => ({ id: c.tipo === 'item' ? `so:${c.id}` : c.id, nome: c.nome, inventario: c.inventario, grupo: c.tipo })),
-];
-// Cenários que abrem exatamente os mesmos exercícios geram o mesmo programa: medidos uma vez (o 1º da lista representa).
-const classes = new Map<string, Cen[]>();
-for (const c of todos) {
-  const k = chaveDaClasse(c.inventario);
-  classes.set(k, [...(classes.get(k) ?? []), c]);
-}
-const REPRESENTANTES = [...classes.values()].map((cs) => cs[0]!);
-const membros = (c: Cen) => classes.get(chaveDaClasse(c.inventario))!;
+// Os 67 cenários e as 55 classes vêm de cenarios-55.ts (sessão de qualidade dos treinos, 05/11/2026).
+const todos = TODOS_OS_CENARIOS;
+const REPRESENTANTES = CENARIOS_55;
+const membros = membrosDaClasse;
 
 const possivel = (caps: Set<string>, e: Exercicio) => e.requer.some((g) => g.every((x) => caps.has(x)));
 const noNivel = (e: Exercicio, n: Nivel) => e.complexidade <= NIVEL_COMPLEXIDADE_MAX[n];
@@ -159,7 +149,7 @@ const novoMon = (): Mon => ({ programas: 0, aparece2: 0, repeteComOpcao: 0, repe
 let programas = 0;
 for (const { c, vagas } of cen)
   for (const nivel of NIVEIS)
-    for (const divisao of DIVISAO_IDS as readonly DivisaoId[])
+    for (const divisao of DIVISOES_OFERECIDAS as readonly DivisaoId[])
       for (const minutos of MINUTOS_MON) {
         const r = gerarPrograma(perfil({ nivel, divisao, minutos, prioridades: [], dores: [] }), c.inventario);
         if (r.status !== 'ok') continue;
@@ -203,7 +193,7 @@ for (const { c, vagas } of cen)
 const md3: string[] = [
   '# Monotonia: o mesmo exercício em todos os dias da vaga',
   '',
-  `> Gerado por \`scripts/auditoria/catalogo.ts\`: ${programas} programas (${REPRESENTANTES.length} classes de cenário × 3 níveis × ${DIVISAO_IDS.length} divisões × ${MINUTOS_MON.join(', ')} min, sem prioridade nem dor).`,
+  `> Gerado por \`scripts/auditoria/catalogo.ts\`: ${programas} programas (${REPRESENTANTES.length} classes de cenário × 3 níveis × ${DIVISOES_OFERECIDAS.length} divisões × ${MINUTOS_MON.join(', ')} min, sem prioridade nem dor).`,
   '> "Repete com opção" = a vaga aparece em 2 dias ou mais, sempre com o mesmo exercício, embora houvesse outro equivalente possível no mesmo nível da função. "Repete sem opção" = repete porque só há um. A regra `selecao.variacao` (moderada) pede manter os exercícios no bloco e variar dentro da função; repetir na semana não é erro por si, mas mostra onde falta variedade possível.',
   '',
   '| Vaga | programas com a vaga | em 2 dias ou mais | repete com opção | repete sem opção | exemplos |',

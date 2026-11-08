@@ -1,6 +1,7 @@
 import { lazy, Suspense, type ComponentType } from 'react';
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
 import { EstadoProvider } from './features/app/estado';
+import { LimiteDeErro, ProvaDeErro } from './features/app/TelaDeErro';
 import { BoasVindas } from './features/onboarding/BoasVindas';
 import { Programa } from './features/programa/Programa';
 
@@ -21,6 +22,7 @@ const Semana = tela(() => import('./features/acompanhamento/Semana'), 'Semana');
 const Evolucao = tela(() => import('./features/acompanhamento/Evolucao'), 'Evolucao');
 const Dados = tela(() => import('./features/dados/Dados'), 'Dados');
 const Guia = tela(() => import('./features/guia/Guia'), 'Guia');
+const Termos = tela(() => import('./features/termos/Termos'), 'Termos');
 
 // Enquanto o pedaço chega (em uso, do service worker, em milissegundos): só o fundo do app, sem spinner.
 const Carregando = () => <div className="wrap app" aria-busy="true" />;
@@ -31,9 +33,12 @@ const GeradorDev = import.meta.env.DEV ? lazy(() => import('./features/dev/Gerad
 const LabBoneco = __LAB__ ? lazy(() => import('./features/dev/LabBoneco').then((m) => ({ default: m.LabBoneco }))) : null;
 
 export function App() {
+  // A tela de erro fica em volta de tudo: um erro em qualquer tela (ou na carga do estado) mostra a saída com "Exportar".
   return (
+    <LimiteDeErro>
     <EstadoProvider>
       <BrowserRouter>
+        <ProvaDeErro />
         <Suspense fallback={<Carregando />}>
           <Routes>
             <Route path="/" element={<BoasVindas />} />
@@ -52,6 +57,7 @@ export function App() {
             <Route path="/dados" element={<Dados />} />
             <Route path="/guia" element={<Navigate to="/guia/supino-inclinado" replace />} />
             <Route path="/guia/:id" element={<Guia />} />
+            <Route path="/termos" element={<Termos />} />
             {GeradorDev && (
               <Route
                 path="/dev/gerador"
@@ -77,5 +83,6 @@ export function App() {
         </Suspense>
       </BrowserRouter>
     </EstadoProvider>
+    </LimiteDeErro>
   );
 }

@@ -5,35 +5,24 @@ import { marcacaoInicial, type Sugestao } from '../../domain/visao';
 import { paraBase64, prepararFoto } from '../../lib/imagem';
 import { IconeEquipamento } from './icones';
 import { NOME_CURTO } from './inventarioForm';
+import { agoraIso } from '../app/estado';
+import { apagarLocal, dataCurta, gravarLocal, lerLocal, LOCAL } from '../app/local';
+import { ParaOndeVaiAFoto } from '../app/privacidade';
+import { Selo } from '../app/ui';
 
 // Foto do equipamento (M4): reduz e limpa as fotos no aparelho, envia para /api/vision e mostra as sugestões.
 // Nada entra na lista sem a confirmação da pessoa (plano, seção g.6). Qualquer erro leva de volta à lista.
+// Antes do 1º envio, a caixa de consentimento diz para onde a foto vai (privacidade.foto; R5c).
 
 const MAX_FOTOS = 5;
-const CHAVE_CONVITE = 'treino-convite';
-const CHAVE_APARELHO = 'treino-aparelho';
 const TEXTO_CONFIANCA = { alta: 'Com certeza', media: 'Provável', baixa: 'Talvez' } as const;
 
-const lerLocal = (k: string) => {
-  try {
-    return localStorage.getItem(k) ?? '';
-  } catch {
-    return '';
-  }
-};
-const gravarLocal = (k: string, v: string) => {
-  try {
-    localStorage.setItem(k, v);
-  } catch {
-    /* sem armazenamento: segue sem lembrar */
-  }
-};
 /** Identificador aleatório do aparelho, só para o limite diário. Não identifica a pessoa. */
 function aparelho(): string {
-  let id = lerLocal(CHAVE_APARELHO);
+  let id = lerLocal(LOCAL.aparelho);
   if (!id) {
     id = crypto.randomUUID();
-    gravarLocal(CHAVE_APARELHO, id);
+    gravarLocal(LOCAL.aparelho, id);
   }
   return id;
 }
@@ -43,8 +32,12 @@ type Escolha = Record<string, boolean | undefined>;
 export function FotoEquipamento({ aoUsar }: { aoUsar: (sugestoes: Sugestao[], confirmados: ItemId[]) => void }) {
   const idConvite = useId();
   const idArquivo = useId();
+  const idConsentimento = useId();
   const arquivo = useRef<HTMLInputElement>(null);
-  const [convite, setConvite] = useState(() => lerLocal(CHAVE_CONVITE));
+  const [convite, setConvite] = useState(() => lerLocal(LOCAL.convite));
+  const [consentidoEm, setConsentidoEm] = useState(() => lerLocal(LOCAL.fotoConsentimento));
+  const [autorizou, setAutorizou] = useState(false);
+  const podeEnviar = !!consentidoEm || autorizou;
   const [estado, setEstado] = useState<'inicio' | 'enviando' | 'sugestoes'>('inicio');
   const [erro, setErro] = useState('');
   const [sugestoes, setSugestoes] = useState<Sugestao[]>([]);
@@ -53,6 +46,10 @@ export function FotoEquipamento({ aoUsar }: { aoUsar: (sugestoes: Sugestao[], co
   const enviar = async (lista: FileList | null) => {
     setErro('');
     if (!lista?.length) return;
+    if (!podeEnviar) {
+      setErro('Para usar a foto, marque a autorização acima. Sem ela, use a lista abaixo.');
+      return;
+    }
     if (!convite.trim()) {
       setErro('Digite o código de convite para usar a foto. Sem código, use a lista abaixo.');
       return;
@@ -61,7 +58,13 @@ export function FotoEquipamento({ aoUsar }: { aoUsar: (sugestoes: Sugestao[], co
       setErro(`Escolha até ${MAX_FOTOS} fotos.`);
       return;
     }
-    gravarLocal(CHAVE_CONVITE, convite.trim());
+    gravarLocal(LOCAL.convite, convite.trim());
+    if (!consentidoEm) {
+      // privacidade.foto: a data do aceite fica só neste aparelho.
+      const em = agoraIso();
+      gravarLocal(LOCAL.fotoConsentimento, em);
+      setConsentidoEm(em);
+    }
     setEstado('enviando');
     try {
       const fotos = await Promise.all([...lista].map(async (f) => paraBase64(await prepararFoto(f))));
@@ -139,17 +142,50 @@ export function FotoEquipamento({ aoUsar }: { aoUsar: (sugestoes: Sugestao[], co
   return (
     <section className="foto-eq" aria-labelledby="titulo-foto">
       <h2 id="titulo-foto">Reconhecer pela foto</h2>
-      <p className="ajuda">
-        Tire ou escolha até {MAX_FOTOS} fotos do lugar onde você treina. As fotos são reduzidas e perdem a localização no seu celular antes
-        de sair; nada fica guardado no servidor.
-      </p>
+      <p className="ajuda">Tire ou escolha até {MAX_FOTOS} fotos do lugar onde você treina. Usar a foto é opcional: a lista abaixo faz o mesmo.</p>
+      {consentidoEm ? (
+        <div className="pilha">
+          <p className="ajuda">
+            Você autorizou o envio das fotos à Anthropic, nos EUA, em {dataCurta(consentidoEm)}.{' '}
+            <button
+              type="button"
+              className="link-texto"
+              onClick={() => {
+                apagarLocal(LOCAL.fotoConsentimento);
+                setConsentidoEm('');
+                setAutorizou(false);
+              }}
+            >
+              Retirar a autorização
+            </button>
+          </p>
+          <details className="mais">
+            <summary>Para onde vai a foto</summary>
+            <div className="mais-corpo">
+              <ParaOndeVaiAFoto />
+            </div>
+          </details>
+        </div>
+      ) : (
+        <section className="consentimento" aria-labelledby="para-onde">
+          <h3 id="para-onde">Antes de enviar: para onde vai a foto</h3>
+          <ParaOndeVaiAFoto />
+          <label className="opcao" htmlFor={idConsentimento}>
+            <input id={idConsentimento} type="checkbox" checked={autorizou} onChange={(e) => setAutorizou(e.target.checked)} />
+            <span>Autorizo enviar as minhas fotos à Anthropic, nos EUA, só para reconhecer o equipamento.</span>
+          </label>
+          <p className="ajuda">
+            Sem autorizar, a lista funciona igual. Você pode retirar a autorização quando quiser. <Selo id="privacidade.foto" />
+          </p>
+        </section>
+      )}
       <label className="rotulo" htmlFor={idConvite}>
         Código de convite
       </label>
       <input id={idConvite} className="campo-texto" value={convite} onChange={(e) => setConvite(e.target.value)} autoCapitalize="characters" autoComplete="off" />
       <div className="arquivo-campo">
-        <input id={idArquivo} ref={arquivo} type="file" accept="image/*" multiple onChange={(e) => void enviar(e.target.files)} disabled={estado === 'enviando'} />
-        <label htmlFor={idArquivo} className="btn sec" aria-disabled={estado === 'enviando'}>
+        <input id={idArquivo} ref={arquivo} type="file" accept="image/*" multiple onChange={(e) => void enviar(e.target.files)} disabled={estado === 'enviando' || !podeEnviar} />
+        <label htmlFor={idArquivo} className="btn sec" aria-disabled={estado === 'enviando' || !podeEnviar}>
           {estado === 'enviando' ? 'Analisando as fotos…' : 'Escolher fotos'}
         </label>
       </div>

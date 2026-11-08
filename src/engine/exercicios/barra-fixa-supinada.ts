@@ -30,7 +30,7 @@ const ex = {
     posterior(sk){for(const k of['R','L']){const sc=scapPts(sk,k);const c=mul(add(add(sc[0],sc[1]),sc[2]),1/3);ARROW3(add(c,[0,7,-3]),add(c,[0,-5,-3]),'gd',1.1,'gda',{layer:3});}TX([0,8,0],'escápulas descem antes de dobrar o braço',{cls:'lbl-g',anchor:'middle'});TX([0,246,0],'mãos na largura dos ombros',{cls:'lbl-g',anchor:'middle'});},
     lateral(sk){L3([0,230,0],[0,20,0],'gd',.9,{layer:2,dash:'2 3'});TX([0,24,0],'corpo sob a barra, sem balanço',{cls:'lbl-g',anchor:'middle',dy:12});TX([0,231,0],'palmas viradas para você',{cls:'lbl-g',anchor:'start',dx:9,dy:-4});}
   },
-  muscles:{p:[['lats','RL']],s:[['midTrap','RL'],['biceps','RL']]},
+  muscles:{p:[['lats','RL']],s:[['midTrap','RL'],['biceps','RL'],['deltPost','RL']]},
   errors:[
     {id:'balanco',view:'lateral',keys:{hang:{lumbar:-8,thor:-6,legR:{th:[180,-78],sh:[180,-68],ft:[0,-60]}},set:{lumbar:6,legR:{th:[0,-55],sh:[0,-86],ft:[0,-40]}},mid:{lumbar:14,thor:2,legR:{th:[0,-12],sh:[0,-70],ft:[0,-20]}},top:{legR:{th:[0,-35],sh:[0,-82],ft:[0,-30]}}}},
     {id:'meia',view:'posterior',keys:{hang:{P:[0,148,1],lumbar:-4,thor:-6,elev:-1,pro:-2,scapRot:10,armR:{ikS:[21,230,1],poleRel:[.3,-1,1]}},set:{P:[0,148,1],lumbar:-4,thor:-6,elev:-1,pro:-2,scapRot:10,armR:{ikS:[21,230,1],poleRel:[.3,-1,1]}}}},

@@ -1,0 +1,60 @@
+{
+  "id": "abertura-elastico",
+  "name": "Abertura com o elástico entre as mãos, sem ponto de ancoragem",
+  "short": "Abertura com elástico",
+  "target": "Ombro de trás (deltoide posterior)",
+  "setupEq": [
+    "Um elástico, segurado com as duas mãos; nada para prender."
+  ],
+  "setupBody": [
+    "Em pé, braços estendidos à frente, na altura do peito, palmas para baixo.",
+    "O elástico entre as mãos, um pouco esticado, seguro com a mão inteira."
+  ],
+  "exec": [
+    [
+      "conc",
+      "Abertura",
+      "~1 s. Abra os braços para os lados e um pouco para cima, em diagonal, esticando o elástico."
+    ],
+    [
+      "hold",
+      "Aberto",
+      "Pausa curta, ombros baixos."
+    ],
+    [
+      "ecc",
+      "Volta",
+      "~2 s, até os braços voltarem à frente."
+    ]
+  ],
+  "range": [
+    "Início: braços à frente, elástico pouco esticado.",
+    "Fim: braços abertos, elástico perto do peito."
+  ],
+  "cues": [
+    "Palmas para baixo.",
+    "Diagonal para cima.",
+    "Ombros longe das orelhas."
+  ],
+  "errors": [
+    {
+      "id": "cotovelos",
+      "title": "Dobrar os cotovelos",
+      "desc": "Vira uma remada e o ombro de trás trabalha menos. Braços quase retos."
+    },
+    {
+      "id": "encolher",
+      "title": "Encolher os ombros",
+      "desc": "O trapézio de cima assume. Ombros baixos."
+    },
+    {
+      "id": "solta",
+      "title": "Soltar uma ponta",
+      "desc": "O elástico volta no rosto. Segure com a mão inteira e mantenha-o abaixo do rosto."
+    }
+  ],
+  "montagem": [
+    "Antes da série, confira se o elástico tem rachaduras ou está ressecado; pise com o pé inteiro sobre ele. Um elástico que escapa volta no rosto."
+  ],
+  "carga": "Registre a intensidade do elástico. Ela sobe pelas intensidades que você tem; em cada uma, primeiro mais esticado e depois com descida de 3 s."
+}

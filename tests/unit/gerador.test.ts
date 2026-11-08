@@ -2,11 +2,12 @@ import { describe, expect, it } from 'vitest';
 import { BIBLIOTECA, POR_ID } from '../../src/domain/biblioteca';
 import { musculosDoAviso, ehAvisoDeMeta, ALTERNATIVAS_A_MOSTRA, contextoDeSelecao, equipamentoDe, GRUPOS, cortarTempo, gerarPrograma, minutos, prescricaoDaSemana, seriesDeVolume, volumePorMusculo, type DiaPrograma, type ExercicioPrescrito, type Grupo, type Perfil, type Programa } from '../../src/domain/gerador';
 import type { Articulacao, Musculo } from '../../src/domain/biblioteca';
-import { DIVISOES, DIVISAO_IDS } from '../../src/domain/gerador/divisoes';
+import { DIVISOES, DIVISAO_IDS, OPCOES_POR_DIAS } from '../../src/domain/gerador/divisoes';
 import { FUNCAO } from '../../src/domain/gerador/funcoes';
 import { DESCANSO, REGRAS, VOLUME, NIVEIS, OBRIGATORIO_CURTO, exerciciosPorSessao } from '../../src/domain/regras';
 import { capacidades, type Inventario } from '../../src/domain/taxonomia/equipamentos';
-import { ana, bruno, carla, diego, PERSONAS } from '../personas';
+import { respostasNenhuma } from '../../src/domain/triagem';
+import { ana, bruno, carla, diego, fabio, PERSONAS } from '../personas';
 
 const ok = (perfil: Perfil, inv: Inventario): Programa => {
   const r = gerarPrograma(perfil, inv);
@@ -104,7 +105,8 @@ describe('cenário 2: só halteres e banco (Ana)', () => {
     const ids = p.dias.flatMap((d) => d.exercicios.flatMap((x) => [x.exId, ...x.alternativas]));
     expect(ids).toContain('crucifixo-invertido-curvado');
     expect(p.avisos.map((a) => a.texto).join(' ')).not.toMatch(/ombro \(posterior\)[^.]*nenhum exercício possível/);
-    expect(ok({ ...ana.perfil, minutosSessao: 60 }, ana.inventario).dias.flatMap((d) => d.exercicios.map((x) => x.exId))).toContain('crucifixo-invertido-curvado');
+    // Desde o R5-CL (07/11/2026), a versão sentada, com o peito nas coxas, ganha o desempate de estabilidade do iniciante.
+    expect(ok({ ...ana.perfil, minutosSessao: 60 }, ana.inventario).dias.flatMap((d) => d.exercicios.map((x) => x.exId))).toContain('crucifixo-invertido-sentado');
   });
   it('teto semanal já no mínimo de séries: no modelo de 6 dias, a 3ª vaga de glúteo fica de fora em vez de passar de 20 (volume.semanal.teto-padrao)', () => {
     const q = ok({ ...ana.perfil, minutosSessao: 55, divisao: 'si-3x', diasSemana: 6, nivel: 'iniciante' }, ana.inventario);
@@ -255,7 +257,8 @@ describe(`propriedades (${variacoes.length} combinações)`, { timeout: 30_000 }
     for (const v of variacoes.filter((_, i) => i % 5 === 0)) {
       const p = ok(v.perfil, v.inv);
       expect(p.dias).toHaveLength(v.perfil.diasSemana);
-      if (!DIVISOES[v.perfil.divisao!].classica) expect(p.divisaoId, v.nome).toBe(v.perfil.divisao);
+      // O Corpo todo 6x só vale como recuo de divisao.sem-puxar: escolhido sem estar entre as opções, vale a recomendada.
+      if (!DIVISOES[v.perfil.divisao!].classica && OPCOES_POR_DIAS[v.perfil.diasSemana].includes(v.perfil.divisao!)) expect(p.divisaoId, v.nome).toBe(v.perfil.divisao);
     }
   });
 });
@@ -330,7 +333,7 @@ describe('cortes respeitam a prioridade e avisam o que ficou de fora', () => {
         if ((p.volumeSemanal[m] ?? 0) < limiar) expect(nomes(p), `${v.nome} ${m}`).toContain(m);
       }
     }
-  });
+  }, 30_000); // percorre todas as variações do gerador: leva ~5 s nesta máquina (R5c, 08/11/2026)
   it('nenhum músculo desce do piso nos cortes de tempo (prioritário: mínimo do nível; demais: 4), salvo limite estrutural já presente antes do corte', () => {
     for (const v of variacoes) {
       const p = ok(v.perfil, v.inv);
@@ -567,5 +570,215 @@ describe('escada de cortes (tempo.corte)', () => {
       }
     }
     expect(viuCorteDePrioritario).toBe(true);
+  });
+});
+
+// Sessão de qualidade dos treinos (decisões do Gustavo em 06/11/2026): a vaga sem exercício possível com o equipamento.
+describe('a vaga sem exercício possível (selecao.vaga-sem-equipamento; tempo.sobra-series; tempo.sobra)', { timeout: 30_000 }, () => {
+  const semNada = (o: Partial<Perfil> = {}): Perfil => ({
+    nivel: 'intermediario',
+    semanasParado: 0,
+    diasSemana: 3,
+    minutosSessao: 60,
+    prioridades: [],
+    evitarExercicios: [],
+    evitarEquipamentos: [],
+    triagem: { respostas: respostasNenhuma() },
+    ...o,
+  });
+  const empurra = (id: string) => ['empurrar-h', 'empurrar-v'].includes(POR_ID[id]!.padrao);
+  const puxa = (id: string) => ['puxar-h', 'puxar-v'].includes(POR_ID[id]!.padrao);
+  // Grade pequena de casos com vaga vazia: sem nada e só barra fixa, níveis, dias e minutos.
+  const casos: { nome: string; perfil: Perfil; inv: Inventario }[] = [];
+  for (const [inv, nomeInv] of [[{}, 'sem nada'], [{ barra_fixa: {} }, 'barra fixa'], [{ halteres_fixos: { minKg: 2, maxKg: 20, passoKg: 2 } }, 'halteres']] as [Inventario, string][])
+    for (const nivel of NIVEIS)
+      for (const diasSemana of [2, 3, 4, 5, 6] as const)
+        for (const minutosSessao of [30, 45, 60, 90])
+          for (const prioridades of [[], ['peito'], ['pernas', 'gluteos']] as Grupo[][])
+            casos.push({ nome: `${nomeInv}/${nivel}/${diasSemana}d/${minutosSessao}min/${prioridades.join('+') || '-'}`, perfil: semNada({ nivel, diasSemana, minutosSessao, prioridades }), inv });
+
+  it('sem nada, 3 dias de 60 min: a vaga da extensora recebe outro exercício de quadríceps (e, desde o R5-CL, o tríceps acima da cabeça tem exercício próprio)', () => {
+    const p = ok(semNada(), {});
+    const entraram = p.dias.flatMap((d) => d.exercicios).filter((x) => x.porque.some((q) => q.regraId === 'selecao.vaga-sem-equipamento'));
+    expect(ids(p)).toContain('extensao-triceps-peso-corpo');
+    expect(entraram.some((x) => ['agachar', 'afundo'].includes(x.funcao!))).toBe(true);
+    // O caso do Gustavo (05/11/2026): os dias deixam de ter 4 exercícios e passam a usar o tempo.
+    expect(p.dias.map((d) => d.exercicios.length).every((n) => n >= 5)).toBe(true);
+    expect(Math.min(...p.dias.map((d) => d.minutosEstimados))).toBeGreaterThanOrEqual(45);
+  });
+  it('só preenche músculo abaixo da meta, nunca com o 3º empurrar de um dia sem puxar, e nunca repete exercício no dia', () => {
+    for (const c of casos) {
+      const p = ok(c.perfil, c.inv);
+      for (const d of p.dias) {
+        const ids = d.exercicios.map((x) => x.exId);
+        expect(new Set(ids).size, `${c.nome} ${d.nome}`).toBe(ids.length);
+        const novos = d.exercicios.filter((x) => x.porque.some((q) => q.regraId === 'selecao.vaga-sem-equipamento'));
+        if (novos.some((x) => empurra(x.exId)) && !ids.some(puxa)) expect(ids.filter(empurra).length, `${c.nome} ${d.nome}`).toBeLessThanOrEqual(2);
+      }
+    }
+  });
+  it('as séries do tempo que sobra ficam dentro de 4 por exercício, 10 por músculo na sessão, 20 na semana e dos minutos', () => {
+    for (const c of casos) {
+      const p = ok(c.perfil, c.inv);
+      for (const [m, n] of Object.entries(p.volumeSemanal)) expect(n, `${c.nome} ${m}`).toBeLessThanOrEqual(VOLUME.teto);
+      for (const d of p.dias) {
+        for (const x of d.exercicios) expect(x.series, `${c.nome} ${x.exId}`).toBeLessThanOrEqual(VOLUME.seriesPorExercicio.max);
+        const v = volumePorMusculo(d.exercicios.map((x) => ({ ex: POR_ID[x.exId]!, series: seriesDeVolume(x) })));
+        for (const m of Object.keys(v) as Musculo[]) {
+          const direto = d.exercicios.filter((x) => POR_ID[x.exId]!.musculos.primarios.includes(m)).reduce((t, x) => t + seriesDeVolume(x), 0);
+          expect(direto, `${c.nome} ${d.nome} ${m}`).toBeLessThanOrEqual(VOLUME.sessaoTeto);
+        }
+        if (d.minutosEstimados > c.perfil.minutosSessao) expect(p.avisos.some((a) => a.regraId === 'tempo.corte' && a.texto.startsWith(d.nome)), `${c.nome} ${d.nome}`).toBe(true);
+      }
+    }
+  });
+  it('com o equipamento completo, nada muda: nenhum exercício entra por vaga vazia e as séries não sobem por sobra', () => {
+    const p = ok(carla.perfil, carla.inventario);
+    expect(p.dias.flatMap((d) => d.exercicios).some((x) => x.porque.some((q) => q.regraId === 'selecao.vaga-sem-equipamento'))).toBe(false);
+    expect(p.porque.some((q) => q.regraId === 'tempo.sobra-series')).toBe(false);
+  });
+  it('só barra fixa (o Fábio): a vaga vazia de puxar horizontal recebe a outra pegada, e as costas chegam ao alvo do intermediário', () => {
+    const p = ok(fabio.perfil, fabio.inventario);
+    // Desde o R5-CL (07/11/2026), a 2ª puxada pode ser a barra só na descida (selecao.barra-negativa).
+    for (const d of p.dias.filter((x) => /Superior/.test(x.nome))) {
+      const ids = d.exercicios.map((x) => x.exId);
+      expect(ids).toContain('barra-fixa');
+      expect(ids.some((id) => id === 'barra-fixa-supinada' || id === 'barra-fixa-negativa'), d.nome).toBe(true);
+    }
+    expect(p.volumeSemanal.costas).toBeGreaterThanOrEqual(VOLUME.alvo.intermediario);
+  });
+  it('divisao.sem-puxar: sem nada e 6 dias, vale o Corpo todo 6x, e nenhum dia fica com menos de 4 exercícios em 60 min', () => {
+    const p = ok(semNada({ diasSemana: 6 }), {});
+    expect(p.divisaoId).toBe('ct-6x');
+    expect(p.porque.some((q) => q.regraId === 'divisao.sem-puxar')).toBe(true);
+    expect(Math.min(...p.dias.map((d) => d.exercicios.length))).toBeGreaterThanOrEqual(4);
+    // Quem escolheu o Empurrar/Puxar/Pernas mantém a escolha, com o aviso.
+    const escolhida = ok(semNada({ diasSemana: 6, divisao: 'ppl-2x' }), {});
+    expect(escolhida.divisaoId).toBe('ppl-2x');
+    expect(escolhida.avisos.some((a) => a.regraId === 'divisao.sem-puxar')).toBe(true);
+  });
+  it('tempo.sobra pelo dia típico: sem nada, 6 dias de 60 min no Empurrar/Puxar/Pernas, o aviso aparece (antes, o dia mais longo o escondia)', () => {
+    const p = ok(semNada({ diasSemana: 6, divisao: 'ppl-2x' }), {});
+    const tipico = [...p.dias.map((d) => d.minutosEstimados)].sort((a, b) => a - b)[Math.floor((p.dias.length - 1) / 2)]!;
+    expect(tipico).toBeLessThan(0.7 * 60);
+    expect(p.avisos.some((a) => a.regraId === 'tempo.sobra')).toBe(true);
+  });
+  it('tempo.sobra também quando a sobra vem da dor, com o texto certo', () => {
+    const comDorForte = semNada({ minutosSessao: 90, triagem: { respostas: { ...respostasNenhuma(), osteoarticular: true }, dores: [{ articulacao: 'ombro', nota: 7 }] } });
+    const p = ok(comDorForte, ana.inventario);
+    const a = p.avisos.find((x) => x.regraId === 'tempo.sobra');
+    if (a) expect(a.texto).toMatch(/^Com (o seu equipamento|o que dá para fazer hoje), o treino dura cerca de \d+ min/);
+  });
+});
+
+describe('o que a prioridade diz (volume.semanal.alvo; volume.prioridade.competicao)', () => {
+  it('o porquê explica foco com manutenção: o foco cresce mais rápido e os outros continuam crescendo', () => {
+    const q = ok(fabio.perfil, fabio.inventario).porque.find((x) => x.regraId === 'volume.semanal.alvo')!;
+    expect(q.texto).toMatch(/^Foco em costas: ~12 séries por semana/);
+    expect(q.texto).toMatch(/continuam crescendo, mais devagar/);
+    const sem = ok({ ...fabio.perfil, prioridades: [] }, fabio.inventario).porque.find((x) => x.regraId === 'volume.semanal.alvo')!;
+    expect(sem.texto).toMatch(/^Sem grupo de foco/);
+  });
+  it('com 2 focos ou mais e um prioritário abaixo da meta, um aviso só, que diz quanto faltou; com 1 foco, nunca', () => {
+    const a = ok(ana.perfil, ana.inventario).avisos.filter((x) => x.regraId === 'volume.prioridade.competicao');
+    expect(a).toHaveLength(1);
+    expect(a[0]!.texto).toMatch(/^Seus focos disputam o mesmo tempo: .+ de \d+/);
+    expect(a[0]!.texto).toMatch(/escolha um grupo só/);
+    expect(a[0]!.texto).toMatch(/"Pernas" são 3 músculos/);
+    for (const v of variacoes.filter((x) => x.perfil.prioridades.length < 2)) expect(ok(v.perfil, v.inv).avisos.some((x) => x.regraId === 'volume.prioridade.competicao'), v.nome).toBe(false);
+  });
+});
+
+describe('selecao.peitoral-inclinado: sem banco inclinável, um 2º empurrar antes do crucifixo', () => {
+  it('a Ana (halteres e banco reto): no dia B, a vaga de empurrar inclinado recebe o supino, não o crucifixo', () => {
+    const b = ok(ana.perfil, ana.inventario).dias.find((d) => d.nome === 'Corpo todo B')!;
+    const x = b.exercicios.find((e) => e.funcao === 'empurrar-inclinado')!;
+    expect(POR_ID[x.exId]!.tipo).toBe('composto');
+  });
+  it('num dia que já tem a vaga de empurrar horizontal, a vaga inclinada não repete um supino reto', () => {
+    for (const v of variacoes.filter((_, i) => i % 3 === 0)) {
+      const p = ok(v.perfil, v.inv);
+      for (const d of p.dias) {
+        const horizontal = d.exercicios.some((e) => e.funcao === 'empurrar-horizontal');
+        const inclinado = d.exercicios.find((e) => e.funcao === 'empurrar-inclinado');
+        if (horizontal && inclinado) expect(POR_ID[inclinado.exId]!.padrao !== 'empurrar-h' || POR_ID[inclinado.exId]!.tags.includes('inclinado'), `${v.nome} ${d.nome} ${inclinado.exId}`).toBe(true);
+      }
+    }
+  });
+});
+
+describe('abdômen e panturrilha (tempo.musculo-protegido; selecao.abdomen-prioridade)', { timeout: 30_000 }, () => {
+  it('sem dor, nenhum programa deixa o abdômen ou a panturrilha com zero série na semana, mesmo com 30 min', () => {
+    for (const v of variacoes.filter((x) => !x.perfil.triagem.dores?.length))
+      for (const m of ['abdomen', 'panturrilha'] as Musculo[]) expect(ok(v.perfil, v.inv).volumeSemanal[m] ?? 0, `${v.nome} ${m}`).toBeGreaterThan(0);
+    for (const m of [20, 30] as const) {
+      const p = ok({ ...ana.perfil, minutosSessao: m }, ana.inventario);
+      expect(p.volumeSemanal.abdomen ?? 0, `Ana ${m} min`).toBeGreaterThan(0);
+      expect(p.volumeSemanal.panturrilha ?? 0, `Ana ${m} min`).toBeGreaterThan(0);
+    }
+  });
+  it('o exercício que entrou para proteger diz por quê', () => {
+    const p = ok(ana.perfil, ana.inventario);
+    expect(p.dias.flatMap((d) => d.exercicios).some((x) => x.porque.some((q) => q.regraId === 'tempo.musculo-protegido'))).toBe(true);
+  });
+  it('com o abdômen como prioridade, os dias de superior, empurrar e pernas B ganham uma vaga de abdômen', () => {
+    for (const id of ['superior-a', 'superior-b'] as const) expect(DIVISOES['si-2x'].dias.find((d) => d.id === id)!.vagas.some((v) => v.funcao === 'abdomen' && v.prioridade?.includes('abdomen')), id).toBe(true);
+    const com = ok({ ...bruno.perfil, prioridades: ['abdomen'] }, bruno.inventario).volumeSemanal.abdomen ?? 0;
+    const sem = ok({ ...bruno.perfil, prioridades: [] }, bruno.inventario).volumeSemanal.abdomen ?? 0;
+    expect(com).toBeGreaterThan(sem);
+  });
+});
+
+
+describe('equilíbrio da coxa e o ajuste de 30 min (volume.equilibrio-coxa; tempo.musculo-protegido; R5-CL)', { timeout: 60_000 }, () => {
+  // Uma grade pequena, sem dor, com os cenários que mais cortavam posteriores: 30 e 45 min, foco nos superiores ou nas pernas.
+  const grade: { nome: string; perfil: Perfil; inv: Inventario }[] = [];
+  for (const [nome, base] of Object.entries(PERSONAS))
+    for (const inv of [base.inventario, {} as Inventario])
+      for (const dias of [2, 3, 4, 5, 6] as const)
+        for (const minutosSessao of [30, 45])
+          for (const prioridades of [[], ['peito', 'costas', 'ombros', 'bracos'], ['pernas']] as Grupo[][])
+            for (const nivel of NIVEIS)
+              grade.push({
+                nome: `${nome}${Object.keys(inv).length ? '' : ' (sem nada)'}/${dias}d/${minutosSessao}min/${prioridades.join('+') || 'sem foco'}/${nivel}`,
+                inv,
+                perfil: { ...base.perfil, semanasParado: 0, diasSemana: dias, divisao: OPCOES_POR_DIAS[dias][0], minutosSessao, prioridades, nivel },
+              });
+  it('quadríceps ÷ posteriores fica entre 0,5 e 2, com 1 exercício direto de posteriores, quando os dois são possíveis', () => {
+    for (const v of grade) {
+      const ctx = contextoDeSelecao(v.perfil, v.inv);
+      const possivel = (m: Musculo) => ctx.possiveis.some((e) => e.musculos.primarios.includes(m));
+      if (!possivel('quadriceps') || !possivel('posteriores')) continue;
+      const p = ok(v.perfil, v.inv);
+      const q = p.volumeSemanal.quadriceps ?? 0;
+      const h = p.volumeSemanal.posteriores ?? 0;
+      expect(h, v.nome).toBeGreaterThan(0);
+      expect(q / h, v.nome).toBeGreaterThanOrEqual(VOLUME.coxa[0]);
+      expect(q / h, v.nome).toBeLessThanOrEqual(VOLUME.coxa[1]);
+      expect(ids(p).some((id) => ['flexao-joelho', 'dobrar-quadril'].includes(POR_ID[id]!.padrao)), v.nome).toBe(true);
+    }
+  });
+  it('com 30 min, o exercício protegido fica com 2 séries', () => {
+    let vistos = 0;
+    for (const v of grade.filter((x) => x.perfil.minutosSessao === 30))
+      for (const x of ok(v.perfil, v.inv).dias.flatMap((d) => d.exercicios))
+        if (x.porque.some((q) => q.regraId === 'tempo.musculo-protegido')) {
+          vistos++;
+          expect(seriesDeVolume(x), `${v.nome}: ${x.exId}`).toBe(2);
+        }
+    expect(vistos).toBeGreaterThan(0);
+  });
+  it('o corte de tempo não tira a coxa da faixa: a flexão de joelho não perde séries que a levariam abaixo de metade do quadríceps', () => {
+    const x = (exId: string, series: number): ExercicioPrescrito => {
+      const e = POR_ID[exId]!;
+      return { exId, nome: e.nome, padrao: e.padrao, tipo: e.tipo, series, reps: e.faixaReps, rir: [1, 2], descansoSeg: 75, unilateral: e.unilateral, animacaoId: e.animacaoId, alternativas: [], porque: [] };
+    };
+    const dias: DiaPrograma[] = [{ id: 'a', nome: 'A', exercicios: [x('agachamento-peso-corpo', 4), x('flexao-joelho-deslizante', 2), x('flexao', 4), x('flexao-fechada', 4)], minutosEstimados: 0 }];
+    dias[0]!.minutosEstimados = minutos(dias[0]!.exercicios);
+    const metas = { quadriceps: 4, posteriores: 2, peito: 4, triceps: 4 } as Partial<Record<Musculo, number>>;
+    const out = cortarTempo(dias, 10, metas, 'intermediario', new Set(), [], () => false);
+    const v = volumePorMusculo(out.flatMap((d) => d.exercicios.map((y) => ({ ex: POR_ID[y.exId]!, series: seriesDeVolume(y) }))));
+    expect(out[0]!.exercicios.some((y) => y.exId === 'flexao-joelho-deslizante')).toBe(true);
+    expect((v.quadriceps ?? 0) / (v.posteriores ?? 1)).toBeLessThanOrEqual(VOLUME.coxa[1]);
   });
 });

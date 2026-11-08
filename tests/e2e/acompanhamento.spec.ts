@@ -83,7 +83,7 @@ test('volta depois de 22 dias: a mensagem sem culpa, menos séries e a carga 10%
   // lote 4 do redesign: a volta é o próprio cartão de hoje; a mensagem inteira, com o selo, fica no "por quê?".
   const volta = page.getByRole('region', { name: 'Bem-vindo de volta!' });
   // 8 de 13 até a auditoria do treino (a ponte com halter); 9 de 14 até a sessão de equipamento mínimo (a flexão deslizante).
-  await expect(volta).toContainText(/Séries no Corpo todo A\s*9 de 15/);
+  await expect(volta).toContainText(/Séries no Corpo todo A\s*9 de 16/);
   await expect(volta).toContainText('3–4 repetições');
   // no dia da volta, ela é a única mensagem, e o "Começar" fica à vista sem rolar
   await expect(page.locator('.aviso-linha')).toHaveCount(0);
@@ -101,7 +101,9 @@ test('volta depois de 22 dias: a mensagem sem culpa, menos séries e a carga 10%
   await page.getByRole('button', { name: 'Começar o treino Corpo todo A' }).click();
   await expect(page.getByRole('heading', { name: 'Agachamento búlgaro com apoio' })).toBeVisible();
   // lote 2 do redesign: a meta curta; a reserva-alvo marcada nos botões do RIR; o motivo no "por quê?"
-  await expect(page.locator('p.meta').first()).toHaveText('2 × 8–12 cada lado');
+  // 1 série desde a sessão de qualidade dos treinos: o búlgaro do programa tem 2 (o abdominal protegido tirou 2), e a
+  // semana 1 da volta tem cerca de metade (revisoes/qualidade-treinos.md, F.5).
+  await expect(page.locator('p.meta').first()).toHaveText('1 × 8–12 cada lado');
   await expect(page.locator('.rir-meta')).toContainText('meta de hoje: 3–4');
   await expect(page.getByText('Hoje: 9 kg')).toBeVisible();
   const motivo = await porQueDaSugestao(page);
@@ -159,7 +161,7 @@ test('abre "a sua semana" pela faixa do Seu treino: treinos, séries por múscul
 test('vê a evolução de um exercício: a melhor série de cada treino, com "recorde" e "subiu a carga"', async ({ page }) => {
   await comHistorico(page, [
     { dia: 0, quando: '2026-10-12T13:00:00.000Z', series: { 'supino-reto': [[8, 10], [8, 9]] } },
-    { dia: 2, quando: '2026-10-16T13:00:00.000Z', series: { 'supino-reto': [[8, 12], [8, 10]] } },
+    { dia: 1, quando: '2026-10-16T13:00:00.000Z', series: { 'supino-reto': [[8, 12], [8, 10]] } },
     { dia: 0, quando: '2026-10-19T13:00:00.000Z', series: { 'supino-reto': [[9, 8], [9, 8]] } },
   ]);
   await page.getByRole('link', { name: /A sua semana/ }).click();
@@ -184,7 +186,8 @@ test('lote 4: o recorde do treino aparece em "O que mudou hoje" e em "O que subi
   // Semana de 02/11: supino 8 kg × 10 na segunda e 8 kg × 12 na terça (recorde).
   await comHistorico(page, [
     { dia: 0, quando: '2026-11-02T13:00:00.000Z', series: { 'supino-reto': [[8, 10], [8, 9]] } },
-    { dia: 2, quando: '2026-11-03T13:00:00.000Z', series: { 'supino-reto': [[8, 12], [8, 10]] } },
+    // o mesmo dia A: desde a biblioteca ampliada (R5-CL), o supino não está mais no C
+    { dia: 0, quando: '2026-11-03T13:00:00.000Z', series: { 'supino-reto': [[8, 12], [8, 10]] } },
   ]);
   // o fim do treino mostra a última sessão
   await page.goto('/treino/fim');

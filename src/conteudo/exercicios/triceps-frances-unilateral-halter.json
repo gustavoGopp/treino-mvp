@@ -1,0 +1,57 @@
+{
+  "id": "triceps-frances-unilateral-halter",
+  "name": "Tríceps francês unilateral com halter",
+  "short": "Francês unilateral",
+  "target": "Tríceps (atrás do braço), com o braço acima da cabeça",
+  "setupEq": [
+    "Um halter. Uma cadeira ou banco, se preferir sentado."
+  ],
+  "setupBody": [
+    "Sentado ou em pé, tronco reto, abdômen firme.",
+    "O halter numa mão, braço estendido acima da cabeça; a outra mão segura o cotovelo de trabalho, se quiser."
+  ],
+  "exec": [
+    [
+      "ecc",
+      "Descida",
+      "~2 a 3 s. Dobre só o cotovelo e leve o halter para trás da cabeça, até o cotovelo ficar bem dobrado."
+    ],
+    [
+      "hold",
+      "Embaixo",
+      "O braço continua apontado para o alto."
+    ],
+    [
+      "conc",
+      "Subida",
+      "Estique o cotovelo até o braço ficar reto acima da cabeça. Termine um lado e troque."
+    ]
+  ],
+  "range": [
+    "Embaixo: halter atrás da cabeça, cotovelo bem dobrado.",
+    "Em cima: braço estendido acima da cabeça."
+  ],
+  "cues": [
+    "Braço apontado para o alto.",
+    "Só o cotovelo mexe.",
+    "Lombar parada."
+  ],
+  "errors": [
+    {
+      "id": "cotovelo",
+      "title": "Abrir o cotovelo",
+      "desc": "O cotovelo vai para o lado e o braço sai do alto. Mantenha-o apontado para cima."
+    },
+    {
+      "id": "curta",
+      "title": "Descer pouco",
+      "desc": "A parte alongada é a que mais faz crescer. Desça até o cotovelo ficar bem dobrado."
+    },
+    {
+      "id": "lombar",
+      "title": "Arquear a lombar",
+      "desc": "O tronco inclina para trás. Abdômen firme."
+    }
+  ],
+  "carga": "Registre o peso do halter. Quando todas as séries chegarem ao topo da faixa, use o próximo peso que você tem; sem um mais pesado, mais repetições e descida de 3 s."
+}

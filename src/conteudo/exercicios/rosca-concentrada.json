@@ -1,0 +1,58 @@
+{
+  "id": "rosca-concentrada",
+  "name": "Rosca concentrada sentado, com halter",
+  "short": "Rosca concentrada",
+  "target": "Bíceps (frente do braço)",
+  "setupEq": [
+    "Um halter e uma cadeira firme ou um banco."
+  ],
+  "setupBody": [
+    "Sentado na ponta da cadeira, pernas afastadas.",
+    "O braço de trabalho apoiado por dentro da coxa, perto do joelho; halter na mão, palma para cima, braço quase estendido.",
+    "A outra mão na outra coxa."
+  ],
+  "exec": [
+    [
+      "conc",
+      "Subida",
+      "~1 s. Dobre o cotovelo, levando o halter em direção ao ombro."
+    ],
+    [
+      "hold",
+      "No alto",
+      "Pausa curta."
+    ],
+    [
+      "ecc",
+      "Descida",
+      "~2 s, até o braço quase estender. Termine um lado e troque."
+    ]
+  ],
+  "range": [
+    "Embaixo: braço quase estendido.",
+    "Em cima: halter perto do ombro."
+  ],
+  "cues": [
+    "Braço apoiado na coxa.",
+    "Só o cotovelo mexe.",
+    "Desça até quase estender."
+  ],
+  "errors": [
+    {
+      "id": "tronco",
+      "title": "Balançar o tronco",
+      "desc": "O tronco sobe para ajudar. Fique parado."
+    },
+    {
+      "id": "tira",
+      "title": "Tirar o braço da coxa",
+      "desc": "O ombro ajuda e o bíceps trabalha menos. Braço apoiado."
+    },
+    {
+      "id": "curta",
+      "title": "Descer pouco",
+      "desc": "O bíceps trabalha menos. Desça até quase estender."
+    }
+  ],
+  "carga": "Registre o peso do halter. Quando todas as séries chegarem ao topo da faixa, use o próximo peso que você tem; sem um mais pesado, mais repetições e descida de 3 s."
+}

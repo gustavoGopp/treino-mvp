@@ -32,7 +32,7 @@
   },
   {
     "id": "volume.semanal.alvo",
-    "regra": "Alvo semanal padrão dos músculos prioritários",
+    "regra": "Alvo semanal padrão dos músculos prioritários. É foco com manutenção: os outros músculos ficam no mínimo eficaz e continuam crescendo, mais devagar; o texto do app diz isso (decisão do Gustavo em 06/11/2026, sessão de qualidade dos treinos)",
     "valores": {
       "iniciante": "8",
       "intermediario": "12",
@@ -42,7 +42,24 @@
     "fontes": [
       "schoenfeld2017a",
       "pelland2026",
-      "bazvalle2022"
+      "bazvalle2022",
+      "bickel2011",
+      "spiering2021"
+    ]
+  },
+  {
+    "id": "volume.prioridade.competicao",
+    "regra": "Quando há 2 grupos de foco ou mais e algum músculo prioritário fica abaixo da meta, um aviso por programa diz quais, quanto faltou e que, para o foco render, vale escolher menos grupos ou mais minutos ou dias; \"pernas\" são 3 músculos e pedem o triplo de séries (decisão do Gustavo em 06/11/2026, sessão de qualidade dos treinos). Quantos grupos dá para priorizar ao mesmo tempo não tem estudo; o teto por sessão é de um estudo",
+    "valores": {
+      "iniciante": "aviso",
+      "intermediario": "aviso",
+      "avancado": "aviso"
+    },
+    "selo": "consenso",
+    "fontes": [
+      "consenso-projeto",
+      "remmert2025",
+      "pelland2026"
     ]
   },
   {
@@ -90,6 +107,20 @@
     ]
   },
   {
+    "id": "volume.semanal.abdomen",
+    "regra": "Meta semanal do abdômen não prioritário: o piso de 4 séries. Não há ensaio de hipertrofia que compare exercícios de abdômen nem programa com e sem trabalho direto; a curva de dose-resposta (`schoenfeld2017a`) é extrapolada; um exercício de flexão do tronco basta (linha criada em 06/11/2026 para o selo da meta, que antes herdava o da linha de cima)",
+    "valores": {
+      "iniciante": "4",
+      "intermediario": "4",
+      "avancado": "4"
+    },
+    "selo": "consenso",
+    "fontes": [
+      "consenso-projeto",
+      "schoenfeld2017a"
+    ]
+  },
+  {
     "id": "volume.manutencao.piso",
     "regra": "Piso do modo manutenção, com carga mantida; o app avisa que mantém e não maximiza",
     "valores": {
@@ -117,17 +148,33 @@
     ]
   },
   {
+    "id": "volume.equilibrio-coxa",
+    "regra": "Equilíbrio da coxa (R5-CL, 07/11/2026; `docs/revisoes/proximos-passos/g-biblioteca-ampliada.md`, decisão 9; régua da G5, D3, em `docs/pesquisa-v2/17-biblioteca-ampliada.md`): quando quadríceps e posteriores têm exercício possível, as séries semanais de quadríceps ÷ posteriores ficam entre 0,5 e 2, com pelo menos 1 exercício direto de posteriores (flexão de joelho ou dobrar o quadril) na semana. Os cortes de tempo (`tempo.corte`) e o ajuste de 30 min (`tempo.musculo-protegido`) não tiram a razão da faixa, salvo se ela já estava fora. A faixa é consenso: a razão de força não prevê lesão (meta-análise), e o agachamento não cresce os posteriores (um estudo), por isso os dois precisam de trabalho direto. Medido no protótipo: o defeito da coxa sai de 1,6% dos programas sem dor para 0%",
+    "valores": {
+      "iniciante": "0,5–2; ≥ 1 exercício direto de posteriores",
+      "intermediario": "0,5–2; ≥ 1 exercício direto de posteriores",
+      "avancado": "0,5–2; ≥ 1 exercício direto de posteriores"
+    },
+    "selo": "consenso",
+    "fontes": [
+      "green2018",
+      "kubo2019",
+      "maeo2021"
+    ]
+  },
+  {
     "id": "volume.serie-indireta.peso",
-    "regra": "Peso da série indireta (sinergista, ex.: remada para o bíceps) na contagem de volume; é uma aproximação estatística",
+    "regra": "Peso da série indireta (sinergista, ex.: remada para o bíceps) na contagem de volume; é uma aproximação estatística. `pelland2026` comparou contar a série indireta como 1, 0,5 e 0, e o 0,5 se ajustou melhor, sem estimar o peso ótimo; na rosca × remada a razão foi 0,47 (`mannarino2021`). O número 0,5 tem selo de um estudo; a direção (entre 0 e 1) é moderada (revisto em 06/11/2026)",
     "valores": {
       "iniciante": "0,5",
       "intermediario": "0,5",
       "avancado": "0,5"
     },
-    "selo": "moderada",
+    "selo": "um estudo",
     "fontes": [
       "pelland2026",
-      "remmert2025"
+      "remmert2025",
+      "mannarino2021"
     ]
   },
   {
@@ -920,6 +967,119 @@
     ]
   },
   {
+    "id": "selecao.variacoes-equivalentes",
+    "regra": "Variações equivalentes entram na biblioteca mesmo sem abrir vaga nova (R5-CL, 07/11/2026; `docs/revisoes/proximos-passos/g-biblioteca-ampliada.md`, decisão 1; antes, `pesquisa-v2/11`, B.2.4, recusava o que \"só duplica\"): com mais de uma opção no mesmo nível da função, o desempate por variedade entre os dias (`selecao.funcao-da-vaga`) troca o exercício de um dia para o outro e a troca do dia ganha alternativas. Variar não muda a hipertrofia e melhora um pouco o prazer e a motivação. O desempate continua a preferir a variedade à animação: \"animado primeiro\" fazia o mesmo exercício se repetir havendo opção em 29,5% dos programas (decisão 8). No último dia de uma semana de 3 dias ou mais, entre os equivalentes do mesmo nível, o exercício que já está em todos os outros dias fica por último, antes até da estabilidade do iniciante (`selecao.estabilidade`): é o defeito B1 da régua da G5 (`docs/pesquisa-v2/17-biblioteca-ampliada.md`, tabela 4.7). Sem equivalente no mesmo nível, o último dia desce um nível da mesma função antes de repetir (o protótipo `m1` da frente A, `docs/revisoes/proximos-passos/a-qualidade.md`, 2.3, do pacote A do R5a; consenso); sem nada abaixo, repete. Medido na grade: o mesmo exercício em todos os dias sem alternativa, de 21,0% para 15,6% dos programas sem dor, sem mudar nenhum defeito",
+    "valores": {
+      "iniciante": "variações no mesmo nível da função",
+      "intermediario": "variações no mesmo nível da função",
+      "avancado": "variações no mesmo nível da função"
+    },
+    "selo": "moderada",
+    "fontes": [
+      "bazvalle2019",
+      "kassiano2022",
+      "sylvester2016"
+    ]
+  },
+  {
+    "id": "selecao.corpo-livre-ampliado",
+    "regra": "Biblioteca ampliada, lote de corpo livre (R5-CL; `docs/pesquisa-v2/16-corpo-livre-e-casa.md`): só pedem apoio (chão, parede, bancada, degrau), sem item novo nem carga. Flexão com os pés elevados no nível da flexão (empurrar horizontal e inclinado), complexidade 3, sem prometer \"peito de cima\" (consenso; `ebben2011`, `kikuchi2017`); extensão de tríceps com o peso do corpo como nível novo do tríceps acima da cabeça, depois da suspensão (um estudo, a posição: `maeo2023`, `brandao2020`); abertura em T deitado como último nível do ombro posterior, sem contar como costas (moderada, a ativação do trapézio; consenso, o deltoide: `rabello2024`, `lim2015`, `yu2024`); panturrilha no degrau da escada como nível antes da panturrilha no chão, que fica de alternativa (um estudo: `kinoshita2023`, `kassiano2023b`, `nakamura2025`; o degrau vale como apoio, decisão 3); afundo para trás e abdominal invertido no nível do afundo e do abdominal no chão (variações equivalentes; `kassiano2025`, `escamilla2006b`). As faixas de repetição seguem `reps.faixa.degrau` (a flexão com os pés elevados, 8–15, como a flexão; a abertura em T e o abdominal invertido, 12–20). Ficam fora a rosca sem carga (um estudo só, `counts2016`; a revisão cega mostrou que ela ocupa o tempo do foco) e tudo o que `16` recusou (porta, toalha, lençol, mesa, objeto como carga)",
+    "valores": {
+      "iniciante": "5 de 6 (a flexão com os pés elevados pela escada da flexão)",
+      "intermediario": "os 6",
+      "avancado": "os 6"
+    },
+    "selo": "consenso",
+    "fontes": [
+      "ebben2011",
+      "kikuchi2017",
+      "maeo2023",
+      "brandao2020",
+      "rabello2024",
+      "kinoshita2023",
+      "kassiano2023b",
+      "nakamura2025",
+      "escamilla2006b"
+    ]
+  },
+  {
+    "id": "selecao.halteres-ampliado",
+    "regra": "Biblioteca ampliada, lote de halteres e banco (R5-CL; `docs/pesquisa-v2/17-biblioteca-ampliada.md`, G2 a G4, \"Onde cada um entra\"): desenvolvimento em pé com halteres num nível próprio, logo depois do desenvolvimento (um estudo, EMG: `saeterbakken2013`), e elevação lateral unilateral com a mão num apoio num nível próprio, logo depois da elevação com halteres (um estudo: `larsen2025`): nos dois casos, como na decisão 5, o exercício animado do nível de cima não perde o lugar para um cartão nos programas da academia (medido: assim Bruno e Carla não mudam, e a grade não piora); tríceps francês unilateral no nível do francês com halter (um estudo, a posição: `maeo2023`); tríceps testa com halteres no nível da flexão fechada (um estudo: `brandao2020`); crucifixo invertido sentado no nível do curvado (um estudo, modelagem: `zhu2025`); rosca Scott no banco inclinado no nível da Scott (um estudo: `kobayashi2026`); crucifixo inclinado no nível do crucifixo com halteres e no último nível do empurrar inclinado (consenso: `chaves2020`); rosca concentrada no nível da rosca alternada (variação, consenso); elevação lateral deitado de lado num nível próprio, depois da elevação com halteres, só como alternativa e sem a tag \"alongado\" (decisão 5 de `g-biblioteca-ampliada.md`; um estudo: `larsen2025`). Ficam fora o crucifixo no chão com halteres (decisão 7: tirava os multiarticulares do dia de empurrar do iniciante com 30 min) e a panturrilha numa perna com halter para quem só tem halteres (alongava o dia, e o corte tirava séries de quadríceps)",
+    "valores": {
+      "iniciante": "os 9",
+      "intermediario": "os 9",
+      "avancado": "os 9"
+    },
+    "selo": "consenso",
+    "fontes": [
+      "saeterbakken2013",
+      "larsen2025",
+      "maeo2023",
+      "brandao2020",
+      "zhu2025",
+      "kobayashi2026",
+      "chaves2020",
+      "kassiano2025"
+    ]
+  },
+  {
+    "id": "selecao.elastico-ampliado",
+    "regra": "Biblioteca ampliada, lote de elástico (R5-CL; `docs/pesquisa-v2/17-biblioteca-ampliada.md`, G3, lote 2, e G4): quase todos sem ponto de ancoragem. Remada curvada em pé e remada unilateral sob o pé da frente no nível da remada com elástico (moderada, a força com elástico = convencional: `lopes2019`; um estudo, EMG: `iversen2017`, `isiklar2026`); abertura com o elástico entre as mãos no nível do face pull com elástico (um estudo, EMG: `fukunaga2022`); abdução em pé com o elástico sob o outro pé no nível da abdução com caneleira (um estudo: `macadam2015`); coice em quatro apoios no nível da ponte (um estudo: `selkowitz2013`); elevação lateral unilateral cruzada e rosca martelo no nível dos exercícios com elástico da função (variações; um estudo, EMG: `andersen2010`); tríceps com o elástico preso no alto (só na âncora do fabricante ou na barra fixa, testada antes; consenso) no nível da flexão fechada. **Segurança:** numa série de 11 casos de lesão de olho, em todos o elástico escapou da ancoragem, preso sob ou à frente da pessoa (`ng2022`, um estudo): todo cartão com elástico pede o pé inteiro sobre ele e conferir rachaduras antes da série",
+    "valores": {
+      "iniciante": "os 9",
+      "intermediario": "os 9",
+      "avancado": "os 9"
+    },
+    "selo": "consenso",
+    "fontes": [
+      "lopes2019",
+      "iversen2017",
+      "fukunaga2022",
+      "macadam2015",
+      "selkowitz2013",
+      "andersen2010",
+      "ng2022"
+    ]
+  },
+  {
+    "id": "selecao.barra-negativa",
+    "regra": "Barra fixa só na descida (R5-CL; `docs/pesquisa-v2/17-biblioteca-ampliada.md`, G4; decisão 4 de `g-biblioteca-ampliada.md`): exercício próprio no último nível do puxar vertical, de 3 a 6 descidas de 3 a 5 s, subindo pelo banco ou degrau. Entra como 2ª puxada de quem só tem a barra e como alternativa de quem ainda não faz a barra; no topo da escada, a sugestão é passar para a barra fixa. Só a descida cresce como só a subida (moderada, certeza baixa); quem não faz 1 repetição precisa de um começo (um estudo). Para o iniciante, falta a regressão pelo nível (a barra entra antes da negativa): fica para o marco seguinte",
+    "valores": {
+      "iniciante": "último nível do puxar vertical",
+      "intermediario": "último nível do puxar vertical",
+      "avancado": "último nível do puxar vertical"
+    },
+    "selo": "moderada",
+    "fontes": [
+      "schoenfeld2017",
+      "dasilva2025",
+      "vigouroux2024",
+      "johnson2009",
+      "shabbir2026"
+    ]
+  },
+  {
+    "id": "selecao.item-sozinho-ampliado",
+    "regra": "Biblioteca ampliada, lote de um equipamento só (R5-CL; `docs/pesquisa-v2/17-biblioteca-ampliada.md`, G2 e G3, lote 3; decisão 6 de `g-biblioteca-ampliada.md`): fecha vagas de quem tem só caneleiras, só mini-band, só kettlebell ou só a suspensão. Elevação lateral e crucifixo invertido sentado com caneleira no punho, no nível dos exercícios com elástico da função (robusta, o princípio da carga baixa perto da falha: `schoenfeld2017b`; um estudo contra, sem ir à falha: `svensen2025`); coice com caneleira no nível da ponte (um estudo, EMG: `selkowitz2013`); extensão de joelho com mini-band no nível da extensão com elástico (moderada, a extensora na máquina: `kinoshita2026`; um estudo contra, com elástico: `yasuda2016`; o cartão diz que a evidência com elástico é fraca); abdução deitado e caminhada lateral com mini-band no nível da abdução com mini-band (um estudo, EMG: `macadam2015`, `youdas2013`); stiff unilateral com kettlebell no nível do stiff com kettlebell (moderada, unilateral = bilateral: `kassiano2025`); remada alta na suspensão com os cotovelos abertos no nível da abertura em Y e T (um estudo, EMG: `youdas2021`). Com carga leve, a série vai perto da falha (`rir.carga-baixa`)",
+    "valores": {
+      "iniciante": "os 8",
+      "intermediario": "os 8",
+      "avancado": "os 8"
+    },
+    "selo": "consenso",
+    "fontes": [
+      "schoenfeld2017b",
+      "svensen2025",
+      "selkowitz2013",
+      "kinoshita2026",
+      "yasuda2016",
+      "macadam2015",
+      "youdas2013",
+      "kassiano2025",
+      "youdas2021"
+    ]
+  },
+  {
     "id": "selecao.complementos",
     "regra": "2 exercícios complementares por semana para quadríceps, isquiotibiais, tríceps e peitoral, quando o equipamento permitir (generalizada pela `selecao.exercicios-por-musculo`)",
     "valores": {
@@ -937,21 +1097,23 @@
   },
   {
     "id": "selecao.peitoral-inclinado",
-    "regra": "Incluir uma variação inclinada para a porção superior do peitoral (razoável, não obrigatória)",
+    "regra": "Incluir uma variação inclinada para a porção superior do peitoral (razoável, não obrigatória): a combinação reto + inclinado não cresceu mais que o reto sozinho no total; o inclinado sozinho cresceu mais a parte de cima (`chaves2020`, não treinados, 1 dia por semana). Sem banco inclinável, num dia que não tem outra vaga de empurrar horizontal, a vaga recebe um 2º empurrar (supino, flexão) antes do crucifixo, porque o isolador sozinho cresceu menos o peitoral que o multiarticular (decisão do Gustavo em 06/11/2026, sessão de qualidade dos treinos)",
     "valores": {
-      "iniciante": "se houver banco regulável",
-      "intermediario": "se houver banco regulável",
-      "avancado": "se houver banco regulável"
+      "iniciante": "se houver banco regulável; senão, 2º empurrar",
+      "intermediario": "se houver banco regulável; senão, 2º empurrar",
+      "avancado": "se houver banco regulável; senão, 2º empurrar"
     },
     "selo": "um estudo",
     "fontes": [
       "chaves2020",
-      "rodriguezridao2020"
+      "rodriguezridao2020",
+      "barbalho2021",
+      "kikuchi2017"
     ]
   },
   {
     "id": "selecao.triceps-acima-cabeca",
-    "regra": "Pelo menos 1 exercício de tríceps com o ombro flexionado (braço acima da cabeça) por semana",
+    "regra": "Pelo menos 1 exercício de tríceps com o ombro flexionado (braço acima da cabeça) por semana. Sem carga, a extensão de tríceps na suspensão (ombro a 90–120°) cobre a vaga como 2º nível: a extensão isolada cresceu a cabeça longa que o supino não cresceu (`brandao2020`; decisão do Gustavo em 06/11/2026). Sem suspensão, a extensão de tríceps com o peso do corpo (mãos num apoio fixo) cobre a vaga como 3º nível, com a mesma posição do ombro (R5-CL, `selecao.corpo-livre-ampliado`)",
     "valores": {
       "iniciante": "≥ 1",
       "intermediario": "≥ 1",
@@ -959,7 +1121,8 @@
     },
     "selo": "um estudo",
     "fontes": [
-      "maeo2023"
+      "maeo2023",
+      "brandao2020"
     ]
   },
   {
@@ -977,7 +1140,7 @@
   },
   {
     "id": "selecao.panturrilha-alongada",
-    "regra": "Panturrilha com ênfase no alongamento (calcanhar abaixo do apoio, pausa embaixo), de preferência em pé",
+    "regra": "Panturrilha com ênfase no alongamento (calcanhar abaixo do apoio, pausa embaixo), de preferência em pé. No chão, sem degrau, o calcanhar não desce: com o peso do corpo, uma perna de cada vez e a descida em 3 s (a metade de cima cresceu bem menos, `kassiano2023b`; com uma perna e a descida lenta cresceu, `nakamura2025`; decisão do Gustavo em 06/11/2026). Desde o R5-CL (07/11/2026), sem máquina nem step, a panturrilha no degrau da escada vem antes da no chão: o calcanhar desce abaixo do apoio (`selecao.corpo-livre-ampliado`)",
     "valores": {
       "iniciante": "ênfase no alongamento",
       "intermediario": "ênfase no alongamento",
@@ -985,21 +1148,26 @@
     },
     "selo": "um estudo",
     "fontes": [
-      "kassiano2023b"
+      "kassiano2023b",
+      "nakamura2025"
     ]
   },
   {
     "id": "selecao.multi-mono",
-    "regra": "Base em multiarticulares; isoladores para braços, cabeças biarticulares, panturrilha e deltoide lateral; isoladores saem primeiro quando falta tempo",
+    "regra": "Base em multiarticulares; isoladores para braços, cabeças biarticulares, panturrilha e deltoide lateral; isoladores saem primeiro quando falta tempo. Revisto em 06/11/2026: o multiarticular basta para o tamanho total do bíceps (meta-análise, `rosa2022`), não por série (a rosca cresceu os flexores do cotovelo 2× a remada, `mannarino2021`) nem para a cabeça longa do tríceps (o supino sozinho não a cresceu, `brandao2020`)",
     "valores": {
       "iniciante": "multi como base",
       "intermediario": "multi como base",
       "avancado": "multi como base"
     },
-    "selo": "um estudo",
+    "selo": "moderada",
     "fontes": [
       "gentil2015",
-      "iversen2021"
+      "iversen2021",
+      "rosa2022",
+      "mannarino2021",
+      "brandao2020",
+      "gentil2013"
     ]
   },
   {
@@ -1028,6 +1196,25 @@
     "selo": "consenso",
     "fontes": [
       "consenso-projeto"
+    ]
+  },
+  {
+    "id": "selecao.vaga-sem-equipamento",
+    "regra": "Vaga sem exercício possível com o equipamento (sessão de qualidade dos treinos, decisão do Gustavo em 06/11/2026): recebe outra função do mesmo músculo (extensora vazia → afundo ou agachar; tríceps acima da cabeça vazio → o complemento de tríceps; puxar horizontal vazio → a outra pegada da barra fixa), só se o músculo estiver abaixo da meta semanal, primeiro uma função que o dia ainda não tem, sem passar do teto semanal e nunca como o 3º empurrar de um dia sem puxar; sem opção, a vaga fica vazia e o aviso diz o que falta. O 2º exercício de outra função cobre outra região do músculo (moderada); repetir o mesmo estímulo não acrescenta; músculos não competem por crescimento (um estudo); o equilíbrio empurrar e puxar é consenso com apoio de caso-controle",
+    "valores": {
+      "iniciante": "1 por vaga vazia, dentro dos exercícios que cabem nos minutos",
+      "intermediario": "1 por vaga vazia, dentro dos exercícios que cabem nos minutos",
+      "avancado": "1 por vaga vazia, dentro dos exercícios que cabem nos minutos"
+    },
+    "selo": "consenso",
+    "fontes": [
+      "kassiano2022",
+      "fonseca2014",
+      "costa2021",
+      "zabaletakorta2021",
+      "maeo2024",
+      "kataoka2026",
+      "kolber2017"
     ]
   },
   {
@@ -1075,7 +1262,7 @@
   },
   {
     "id": "selecao.exercicios-por-musculo",
-    "regra": "Exercícios diferentes por músculo na semana",
+    "regra": "Exercícios diferentes por músculo na semana. O que se sabe (06/11/2026): com o mesmo volume, um exercício só cresce o músculo inteiro como vários (moderada, em coxa e braço); funções diferentes crescem regiões diferentes (moderada: posteriores, quadríceps, peito, bíceps); nenhum ensaio compara 1 exercício com mais séries a 2 exercícios com o mesmo volume. O número 2 é consenso",
     "valores": {
       "iniciante": "grandes (peito, costas, quadríceps, posteriores, glúteos): 2, de funções complementares; pequenos: 1, ou 2 se forem prioridade",
       "intermediario": "grandes (peito, costas, quadríceps, posteriores, glúteos): 2, de funções complementares; pequenos: 1, ou 2 se forem prioridade",
@@ -1084,7 +1271,12 @@
     "selo": "consenso",
     "fontes": [
       "kassiano2022",
-      "morin2025"
+      "morin2025",
+      "kassiano2025var",
+      "fonseca2014",
+      "costa2021",
+      "zabaletakorta2021",
+      "maeo2024"
     ]
   },
   {
@@ -1135,7 +1327,7 @@
   },
   {
     "id": "selecao.gluteo",
-    "regra": "Ordem das funções para glúteos",
+    "regra": "Ordem das funções para glúteos; o coice na polia sobe ao 1º nível da extensão de quadril, ao lado do hip thrust e do coice na máquina, por ser o único com ensaio de ressonância (`attarieh2026`; decisão do Gustavo em 06/11/2026)",
     "valores": {
       "iniciante": "agachar profundo ou afundo → extensão de quadril (hip thrust, glúteo na máquina, ponte, coice) → abdução como complemento (máquina, polia, caneleira, mini-band e, sem nada, deitado de lado sem carga, com repetições altas: auditoria de 04/11/2026)",
       "intermediario": "agachar profundo ou afundo → extensão de quadril (hip thrust, glúteo na máquina, ponte, coice) → abdução como complemento (máquina, polia, caneleira, mini-band e, sem nada, deitado de lado sem carga, com repetições altas: auditoria de 04/11/2026)",
@@ -1150,7 +1342,7 @@
   },
   {
     "id": "selecao.crucifixo-complemento",
-    "regra": "Crucifixo ou voador (peito alongado) como complemento do empurrar, não como substituto",
+    "regra": "Crucifixo ou voador (peito alongado) como complemento do empurrar, não como substituto. O motivo \"peito alongado\" é consenso: a meta-análise do comprimento muscular achou efeito trivial em outros músculos (`varovic2025`); o isolador sozinho cresceu menos o peitoral que o multiarticular (`barbalho2021`), por isso ele complementa e não substitui (revisto em 06/11/2026)",
     "valores": {
       "iniciante": "complemento",
       "intermediario": "complemento",
@@ -1158,7 +1350,9 @@
     },
     "selo": "um estudo",
     "fontes": [
-      "pinto2025"
+      "pinto2025",
+      "varovic2025",
+      "barbalho2021"
     ]
   },
   {
@@ -1189,17 +1383,34 @@
     ]
   },
   {
+    "id": "selecao.abdomen-prioridade",
+    "regra": "Com o abdômen como prioridade, os dias que não têm vaga de abdômen (superior, empurrar, pernas B) ganham uma, como complemento; antes, priorizá-lo não abria vaga e ele ficava abaixo da meta em 24% a 85% dos programas (decisão do Gustavo em 06/11/2026, sessão de qualidade dos treinos). Um exercício de flexão do tronco basta; não há ensaio que compare exercícios de abdômen",
+    "valores": {
+      "iniciante": "complemento",
+      "intermediario": "complemento",
+      "avancado": "complemento"
+    },
+    "selo": "consenso",
+    "fontes": [
+      "consenso-projeto"
+    ]
+  },
+  {
     "id": "ordem.sessao",
-    "regra": "Ordenação determinística dos exercícios da sessão (a ordem não muda a hipertrofia)",
+    "regra": "Ordenação determinística dos exercícios da sessão (a ordem não muda a hipertrofia). A ordem não muda a hipertrofia (meta-análise de 11 estudos, `nunes2021`; ACSM 2026); o exercício que abre a sessão ganha mais força; começar pela perna reduz o esforço percebido no corpo todo (um estudo, `nunes2019`). \"Prioritário primeiro\" tem apoio para força, não para hipertrofia (só `avelar2019`, fraco). Selo revisto em 06/11/2026 (sessão de qualidade dos treinos)",
     "valores": {
       "iniciante": "multiarticular → prioridade do usuário → ordem do modelo de divisão (que segue a exigência técnica) → core por último",
       "intermediario": "multiarticular → prioridade do usuário → ordem do modelo de divisão (que segue a exigência técnica) → core por último",
       "avancado": "multiarticular → prioridade do usuário → ordem do modelo de divisão (que segue a exigência técnica) → core por último"
     },
-    "selo": "consenso",
+    "selo": "moderada",
     "fontes": [
       "nunes2021",
-      "simao2012"
+      "simao2012",
+      "acsm2026",
+      "tomeleri2020",
+      "avelar2019",
+      "nunes2019"
     ]
   },
   {
@@ -1316,7 +1527,7 @@
   },
   {
     "id": "equipamento.sem-puxada-vertical",
-    "regra": "Sem barra fixa nem polia alta",
+    "regra": "Sem barra fixa nem polia alta. O aviso diz o que o programa tem de fato (R5-CL, 07/11/2026; `g-biblioteca-ampliada.md`, seção 5, item 4): com a puxada de elástico no programa, diz que a puxada é só com o elástico, e não que as costas treinam \"só com remadas\"",
     "valores": {
       "iniciante": "manter o volume de costas com remadas (invertida > unilateral com halter > puxada com elástico ancorado alto); pullover só como acessório; mostrar aviso de lacuna",
       "intermediario": "manter o volume de costas com remadas (invertida > unilateral com halter > puxada com elástico ancorado alto); pullover só como acessório; mostrar aviso de lacuna",
@@ -1343,15 +1554,33 @@
   },
   {
     "id": "divisao.sem-puxar",
-    "regra": "Sem nenhum exercício de puxar possível, a divisão recomendada passa a ser a de corpo todo do mesmo número de dias, quando existe; a que a pessoa escolheu é mantida, com um aviso de que os dias de puxar ficam com outros músculos. Com o mesmo volume, as divisões rendem o mesmo",
+    "regra": "Sem nenhum exercício de puxar possível, a divisão recomendada passa a ser a de corpo todo do mesmo número de dias, quando existe; com 6 dias, que não têm corpo todo entre as opções, vale o Corpo todo 6x, que só aparece nesse caso (decisão do Gustavo em 06/11/2026, sessão de qualidade dos treinos: antes, o Empurrar/Puxar/Pernas deixava dois dias de \"Puxar\" com 2 exercícios). A que a pessoa escolheu é mantida, com um aviso de que os dias de puxar ficam com outros músculos. Com o mesmo volume, as divisões rendem o mesmo",
     "valores": {
-      "iniciante": "corpo todo primeiro",
-      "intermediario": "corpo todo primeiro",
-      "avancado": "corpo todo primeiro"
+      "iniciante": "corpo todo primeiro; 6 dias: Corpo todo 6x",
+      "intermediario": "corpo todo primeiro; 6 dias: Corpo todo 6x",
+      "avancado": "corpo todo primeiro; 6 dias: Corpo todo 6x"
     },
     "selo": "consenso",
     "fontes": [
-      "consenso-projeto"
+      "consenso-projeto",
+      "ramoscampo2024",
+      "pelland2026"
+    ]
+  },
+  {
+    "id": "selecao.dobrar-quadril",
+    "regra": "Ordem da função \"dobrar o quadril\" (posteriores): terra romeno e stiff com carga → hiperextensão e pull-through → stiff com elástico; sem nenhum, vale a flexão de joelho (`seNada`). O quadril dobrado cresce a cabeça longa do bíceps femoral e o semimembranoso; a flexão de joelho com o quadril estendido, o semitendíneo (moderada, 3 grupos de pesquisa). Linha criada em 06/11/2026 para registrar as fontes dos níveis, que não mudaram",
+    "valores": {
+      "iniciante": "ordem dos níveis",
+      "intermediario": "ordem dos níveis",
+      "avancado": "ordem dos níveis"
+    },
+    "selo": "moderada",
+    "fontes": [
+      "morin2025",
+      "crawford2025",
+      "bourne2017",
+      "maeo2024"
     ]
   },
   {
@@ -1374,7 +1603,7 @@
     "regra": "Nórdico: complexidade 3 (só intermediário e avançado), calcanhares presos sob um móvel pesado ou por alguém, descida lenta com as mãos amortecendo; começa com poucas séries, porque a 1ª sessão dá dor forte por alguns dias e subir o volume rápido dói mais",
     "valores": {
       "iniciante": "não entra",
-      "intermediario": "faixa de 4 a 8 descidas; a 1ª semana com 2 séries (o mínimo do programa)",
+      "intermediario": "faixa de 6 a 10 descidas (era 4 a 8 até 06/11/2026: o volume baixo não cresceu a espessura, `cholp2025`; o ensaio que cresceu foi até 10, `maeo2024`); a 1ª semana com 2 séries (o mínimo do programa)",
       "avancado": "igual ao intermediário"
     },
     "selo": "um estudo",
@@ -1569,7 +1798,7 @@
   },
   {
     "id": "tempo.exercicios-por-sessao",
-    "regra": "Exercícios por treino conforme os minutos, pelo modelo de tempo do app (~3 séries cada); entre os pontos, proporcional. Quando não cabem todas as vagas do dia: primeiro as vagas-base, depois o complemento que é o único exercício direto de um músculo com meta (ex.: ombro posterior), depois os complementos dos grupos prioritários e, por fim, os outros; um complemento não entra se, já no mínimo de séries, passar do teto semanal de algum músculo (`volume.semanal.minimo-eficaz`, `volume.semanal.teto-padrao`; auditoria de 04/11/2026)",
+    "regra": "Exercícios por treino conforme os minutos, pelo modelo de tempo do app (~3 séries cada); entre os pontos, proporcional. Quando não cabem todas as vagas do dia: primeiro as vagas-base, depois o complemento que é o único exercício direto de um músculo com meta (ex.: ombro posterior), depois os complementos dos grupos prioritários e, por fim, os outros; nenhuma vaga entra se, já no mínimo de séries, passar do teto semanal de algum músculo (`volume.semanal.minimo-eficaz`, `volume.semanal.teto-padrao`; auditoria de 04/11/2026; desde 06/11/2026 vale também para as vagas-base, por causa do Corpo todo 6x). Os ensaios de hipertrofia usam de 2 a 8 exercícios por sessão; a evidência conta séries por músculo por semana, e \"5 a 7 exercícios por treino\" é prática de treinadores (pesquisa-v2/14, 06/11/2026)",
     "valores": {
       "iniciante": "30 min: 4; 45: 6; 60: 8; 75: 10; 90: 12",
       "intermediario": "30 min: 4; 45: 6; 60: 8; 75: 10; 90: 12",
@@ -1577,12 +1806,16 @@
     },
     "selo": "consenso",
     "fontes": [
-      "consenso-projeto"
+      "consenso-projeto",
+      "iversen2024",
+      "bazvalle2019",
+      "tomeleri2020",
+      "acsm2026"
     ]
   },
   {
     "id": "tempo.corte",
-    "regra": "Escada fixa quando a sessão não cabe no tempo: primeiro as técnicas que mantêm o volume; um músculo prioritário nunca perde séries antes de um não prioritário",
+    "regra": "Escada fixa quando a sessão não cabe no tempo: primeiro as técnicas que mantêm o volume; um músculo prioritário nunca perde séries antes de um não prioritário. Desde o R5-CL (07/11/2026; `g-biblioteca-ampliada.md`, decisão 9), nenhum corte tira quadríceps ÷ posteriores da faixa de 0,5 a 2 (se já estava dentro) nem tira o único exercício direto de posteriores da semana (`volume.equilibrio-coxa`): com os exercícios novos de superiores ocupando o dia, o corte tirava séries de posteriores",
     "valores": {
       "iniciante": "1) só aquecimento específico; 2) superséries entre músculos que não competem (isoladores, depois multiarticulares de músculos diferentes); 3) drop set na última série de isoladores com ≥ 3 séries (nunca nas semanas com RIR 3–4); 4) menos exercícios, mantendo multiarticulares e isoladores obrigatórios; 5) por último, menos séries: não prioritários até o piso de 4, depois prioritários",
       "intermediario": "1) só aquecimento específico; 2) superséries entre músculos que não competem (isoladores, depois multiarticulares de músculos diferentes); 3) drop set na última série de isoladores com ≥ 3 séries (nunca nas semanas com RIR 3–4); 4) menos exercícios, mantendo multiarticulares e isoladores obrigatórios; 5) por último, menos séries: não prioritários até o piso de 4, depois prioritários",
@@ -1599,15 +1832,46 @@
   },
   {
     "id": "tempo.sobra",
-    "regra": "Tempo que sobra por falta de exercício (decisão do Gustavo em 04/11/2026, sessão de fechamento do equipamento mínimo): quando alguma vaga fica sem exercício possível com o equipamento e o dia mais longo usa menos de 70% dos minutos escolhidos, o app diz a duração real e que dá para escolher menos tempo sem perder nada; nunca sugere compra. O limite de 70% é escolha do projeto",
+    "regra": "Tempo que sobra por falta de exercício (decisão do Gustavo em 04/11/2026; revista na sessão de qualidade dos treinos, 06/11/2026): quando alguma vaga fica sem exercício possível com o equipamento, ou a dor tira exercícios, e o dia típico (a mediana dos dias da semana) usa menos de 70% dos minutos escolhidos, o app diz a duração real e que dá para escolher menos tempo sem perder nada; nunca sugere compra. Antes, valia o dia mais longo, e um programa com dias de 20, 17 e 43 min em 60 não avisava. O limite de 70% é escolha do projeto",
     "valores": {
-      "iniciante": "< 70% dos minutos",
-      "intermediario": "< 70% dos minutos",
-      "avancado": "< 70% dos minutos"
+      "iniciante": "< 70% dos minutos no dia típico",
+      "intermediario": "< 70% dos minutos no dia típico",
+      "avancado": "< 70% dos minutos no dia típico"
     },
     "selo": "consenso",
     "fontes": [
-      "consenso-projeto"
+      "consenso-projeto",
+      "iversen2021"
+    ]
+  },
+  {
+    "id": "tempo.sobra-series",
+    "regra": "Séries no tempo que sobra (sessão de qualidade dos treinos, decisão do Gustavo em 06/11/2026): nos dias que têm vaga sem exercício possível por equipamento, as séries dos exercícios do dia sobem até o alvo do nível em cada músculo com meta (o abdômen não prioritário fica na meta dele), enquanto o dia couber nos minutos; o músculo mais longe da meta vem primeiro, e nunca passa de 4 séries por exercício, 10 por músculo na sessão, 20 na semana nem, num músculo que não é prioridade, do máximo do nível (`volume.semanal.maximo`). A direção (mais séries, mais crescimento, com retorno decrescente) é robusta; usar o tempo que sobra assim é escolha do projeto",
+    "valores": {
+      "iniciante": "até 8 por músculo",
+      "intermediario": "até 12 por músculo",
+      "avancado": "até 14 por músculo"
+    },
+    "selo": "consenso",
+    "fontes": [
+      "schoenfeld2017a",
+      "pelland2026",
+      "remmert2025",
+      "iversen2021"
+    ]
+  },
+  {
+    "id": "tempo.musculo-protegido",
+    "regra": "Abdômen e panturrilha não ficam com zero série na semana por falta de minutos: quando nenhuma vaga deles coube nos exercícios que cabem, a 1ª vaga possível entra no dia com menos exercícios, mesmo passando do número que cabe; a escada de cortes (`tempo.corte`) ajusta o resto do dia e nunca a tira. Nos treinos curtos eles saíam primeiro (grade de 06/11/2026: panturrilha a zero em ~22% e abdômen em ~21% dos programas da academia, os de 30 min). Decisão do Gustavo em 06/11/2026, sessão de qualidade dos treinos. **Com 30 min ou menos** (R5-CL, 07/11/2026; `docs/revisoes/proximos-passos/a-qualidade.md`, F.9, o protótipo `f9-30`): o exercício protegido fica com 2 séries (a distribuição não o sobe) e, se o dia passar do tempo, sai do dia um isolador não obrigatório e não prioritário, o último da ordem, desde que nenhum músculo dele fique a zero na semana e a coxa continue entre 0,5 e 2 (`volume.equilibrio-coxa`). Medido na frente A, com 30 min: programas com um dia acima do tempo de 69,6% para 48,1%",
+    "valores": {
+      "iniciante": "1 vaga por semana; com 30 min, 2 séries e a troca por um isolador do dia",
+      "intermediario": "1 vaga por semana; com 30 min, 2 séries e a troca por um isolador do dia",
+      "avancado": "1 vaga por semana; com 30 min, 2 séries e a troca por um isolador do dia"
+    },
+    "selo": "consenso",
+    "fontes": [
+      "consenso-projeto",
+      "schoenfeld2017a"
     ]
   },
   {
@@ -1775,7 +2039,7 @@
   },
   {
     "id": "tecnica.flexao.punho",
-    "regra": "Dor leve no punho (3 a 5) nas flexões com as mãos no chão (flexão, flexão com as mãos juntas, pike, flexão com elástico): o porquê do exercício sugere as mãos fechadas numa toalha dobrada, com o punho reto, ou pegadores de flexão (decisão do Gustavo em 04/11/2026). Com dor acima de 5, a flexão continua saindo do programa. O único estudo achado (em cadáver) não foi verificado",
+    "regra": "Dor leve no punho (3 a 5) nas flexões com as mãos no chão (flexão, flexão com as mãos juntas, flexão com os pés elevados, pike, flexão com elástico): o porquê do exercício sugere as mãos fechadas numa toalha dobrada, com o punho reto, ou pegadores de flexão (decisão do Gustavo em 04/11/2026). Com dor acima de 5, a flexão continua saindo do programa. O único estudo achado (em cadáver) não foi verificado",
     "valores": {
       "iniciante": "punho 3 a 5",
       "intermediario": "punho 3 a 5",
@@ -1852,6 +2116,79 @@
     },
     "selo": "consenso",
     "fontes": [
+      "consenso-projeto"
+    ]
+  },
+  {
+    "id": "privacidade.foto",
+    "regra": "Texto da foto do equipamento e consentimento antes do 1º envio (R5c, 07/11/2026). A foto é o único dado que sai do aparelho e pode ser dado pessoal (mostra a casa, o espelho, outras pessoas); ir a uma empresa dos EUA é transferência internacional, que pode se apoiar no consentimento específico e em destaque, com informação prévia do caráter internacional (LGPD, art. 33, VIII); o consentimento pode ser revogado a qualquer momento, de graça (art. 8º, § 5º). O que a Anthropic diz por escrito: apaga o que a API recebe em até 30 dias, salvo envio marcado como violação da política de uso (até 2 anos) ou exigência da lei; não treina modelos com o conteúdo do cliente; guarda o dado nos EUA e pode processá-lo também na Europa, na Ásia e na Austrália. Não é parecer jurídico: o texto vai ao advogado",
+    "valores": {
+      "iniciante": "as 3 telas (boas-vindas, foto e Meus dados) dizem para onde a foto vai, por quanto tempo fica lá e que o servidor do app não a guarda; uma caixa desmarcada antes do 1º envio libera o botão das fotos; a data do aceite fica só no aparelho (`localStorage`) e \"Retirar a autorização\" apaga essa data; sem a caixa, a lista de equipamento funciona igual",
+      "intermediario": "as 3 telas (boas-vindas, foto e Meus dados) dizem para onde a foto vai, por quanto tempo fica lá e que o servidor do app não a guarda; uma caixa desmarcada antes do 1º envio libera o botão das fotos; a data do aceite fica só no aparelho (`localStorage`) e \"Retirar a autorização\" apaga essa data; sem a caixa, a lista de equipamento funciona igual",
+      "avancado": "as 3 telas (boas-vindas, foto e Meus dados) dizem para onde a foto vai, por quanto tempo fica lá e que o servidor do app não a guarda; uma caixa desmarcada antes do 1º envio libera o botão das fotos; a data do aceite fica só no aparelho (`localStorage`) e \"Retirar a autorização\" apaga essa data; sem a caixa, a lista de equipamento funciona igual"
+    },
+    "selo": "consenso",
+    "fontes": [
+      "lgpd",
+      "anthropic-retencao",
+      "anthropic-termos",
+      "anthropic-servidores"
+    ]
+  },
+  {
+    "id": "dados.copia",
+    "regra": "Lembrete de cópia dos dados (R5c, 07/11/2026). Os dados moram só no aparelho, e o navegador pode apagá-los: o Safari, depois de 7 dias de uso do Safari sem visita ao site (quando o app não está instalado na tela de início); qualquer navegador, por falta de espaço, a começar pelos sites menos usados e pulando os que têm armazenamento persistente. Os números 3 e 7 são escolha do projeto",
+    "valores": {
+      "iniciante": "Meus dados mostra a data da última cópia exportada (\"há N dias\") ou \"nenhuma cópia\"; o início lembra de exportar quando há 3 ou mais treinos terminados depois da última cópia (ou desde o começo) e a cópia tem mais de 7 dias (ou nunca houve); \"Agora não\" esconde o lembrete por 7 dias; o lembrete fica abaixo de \"Começar o treino\" e nunca o cobre",
+      "intermediario": "Meus dados mostra a data da última cópia exportada (\"há N dias\") ou \"nenhuma cópia\"; o início lembra de exportar quando há 3 ou mais treinos terminados depois da última cópia (ou desde o começo) e a cópia tem mais de 7 dias (ou nunca houve); \"Agora não\" esconde o lembrete por 7 dias; o lembrete fica abaixo de \"Começar o treino\" e nunca o cobre",
+      "avancado": "Meus dados mostra a data da última cópia exportada (\"há N dias\") ou \"nenhuma cópia\"; o início lembra de exportar quando há 3 ou mais treinos terminados depois da última cópia (ou desde o começo) e a cópia tem mais de 7 dias (ou nunca houve); \"Agora não\" esconde o lembrete por 7 dias; o lembrete fica abaixo de \"Começar o treino\" e nunca o cobre"
+    },
+    "selo": "consenso",
+    "fontes": [
+      "webkit2020",
+      "webkit2023",
+      "mdn-storage",
+      "consenso-projeto"
+    ]
+  },
+  {
+    "id": "dados.instalar-iphone",
+    "regra": "Aviso de instalar no iPhone e no iPad (R5c, 07/11/2026): no Safari, sem instalar, o armazenamento do site é apagado depois de 7 dias de uso do Safari sem visita; o app instalado na tela de início tem contagem própria, e a WebKit trata o apagamento ali como erro",
+    "valores": {
+      "iniciante": "aberto no navegador (fora da tela de início), um aviso com os passos (Compartilhar → Adicionar à Tela de Início) até a pessoa tocar em \"Entendi\"; instalado, nenhum aviso",
+      "intermediario": "aberto no navegador (fora da tela de início), um aviso com os passos (Compartilhar → Adicionar à Tela de Início) até a pessoa tocar em \"Entendi\"; instalado, nenhum aviso",
+      "avancado": "aberto no navegador (fora da tela de início), um aviso com os passos (Compartilhar → Adicionar à Tela de Início) até a pessoa tocar em \"Entendi\"; instalado, nenhum aviso"
+    },
+    "selo": "consenso",
+    "fontes": [
+      "webkit2020"
+    ]
+  },
+  {
+    "id": "dados.persistente",
+    "regra": "Armazenamento persistente (R5c, 07/11/2026): o app pede ao navegador para não apagar os dados por falta de espaço; o navegador decide por heurística (por exemplo, estar instalado) e pode negar sem perguntar à pessoa",
+    "valores": {
+      "iniciante": "Meus dados diz quando o navegador aceitou e também quando negou (\"pode apagar se faltar espaço: instale o app e exporte uma cópia\")",
+      "intermediario": "Meus dados diz quando o navegador aceitou e também quando negou (\"pode apagar se faltar espaço: instale o app e exporte uma cópia\")",
+      "avancado": "Meus dados diz quando o navegador aceitou e também quando negou (\"pode apagar se faltar espaço: instale o app e exporte uma cópia\")"
+    },
+    "selo": "consenso",
+    "fontes": [
+      "webkit2023",
+      "mdn-storage"
+    ]
+  },
+  {
+    "id": "treino.leitura",
+    "regra": "\"Como ler o seu treino\" (R5c, B2, 07/11/2026): o vocabulário do programa em 5 linhas, para quem nunca treinou. Série é um bloco de repetições seguidas; repetição é um movimento completo; carga é o peso usado; descanso é a pausa entre as séries; o RIR segue `rir.leitura`. São termos de uso corrente no treino de força, sem estudo que teste a explicação; não há estudo achado sobre o efeito de explicar os termos na adesão",
+    "valores": {
+      "iniciante": "aberto no programa até o 1º treino terminado, depois recolhido; no iniciante, uma 6ª linha com a fase de aprendizado (`iniciante.fase-aprendizado`)",
+      "intermediario": "aberto no programa até o 1º treino terminado, depois recolhido; no iniciante, uma 6ª linha com a fase de aprendizado (`iniciante.fase-aprendizado`)",
+      "avancado": "aberto no programa até o 1º treino terminado, depois recolhido; no iniciante, uma 6ª linha com a fase de aprendizado (`iniciante.fase-aprendizado`)"
+    },
+    "selo": "consenso",
+    "fontes": [
+      "acsm2009",
       "consenso-projeto"
     ]
   },

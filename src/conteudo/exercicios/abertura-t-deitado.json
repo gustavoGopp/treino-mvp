@@ -1,0 +1,57 @@
+{
+  "id": "abertura-t-deitado",
+  "name": "Abertura em T deitado de bruços, sem carga",
+  "short": "Abertura em T",
+  "target": "Ombro de trás (deltoide posterior); ajuda o meio das costas, sem contar como série de costas",
+  "setupEq": [
+    "Um colchonete e uma toalha dobrada sob a testa."
+  ],
+  "setupBody": [
+    "Deite de bruços, testa na toalha, pescoço alinhado.",
+    "Braços abertos para os lados, em T, cotovelos estendidos, polegares para cima."
+  ],
+  "exec": [
+    [
+      "conc",
+      "Subida",
+      "~1 s. Erga os braços do chão, abrindo para trás, sem levantar a cabeça."
+    ],
+    [
+      "hold",
+      "No alto",
+      "Segure 1 s, ombros longe das orelhas."
+    ],
+    [
+      "ecc",
+      "Descida",
+      "~2 s, até as mãos quase tocarem o chão."
+    ]
+  ],
+  "range": [
+    "Embaixo: as mãos quase tocam o chão.",
+    "Em cima: os braços na altura do corpo ou um pouco acima."
+  ],
+  "cues": [
+    "Polegares para cima.",
+    "Ombros longe das orelhas.",
+    "Testa na toalha."
+  ],
+  "errors": [
+    {
+      "id": "cabeca",
+      "title": "Levantar a cabeça",
+      "desc": "O pescoço dobra para trás. Deixe a testa na toalha."
+    },
+    {
+      "id": "encolher",
+      "title": "Encolher os ombros",
+      "desc": "Os ombros sobem para as orelhas e o trapézio de cima assume. Ombros baixos."
+    },
+    {
+      "id": "embalo",
+      "title": "Jogar os braços",
+      "desc": "O embalo tira o trabalho do ombro de trás. Suba e desça devagar."
+    }
+  ],
+  "carga": "Peso do corpo: suba pela escada de dificuldade do exercício quando a 1ª série chegar ao topo da faixa e as outras ficarem perto dele. Se pesar demais, dobre os cotovelos (W). No fim da escada, mantenha a descida lenta e a pausa."
+}

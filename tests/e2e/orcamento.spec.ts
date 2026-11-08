@@ -24,18 +24,22 @@ async function jsDaTela(page: Page, abrir: () => Promise<unknown>) {
   return { kB, arquivos: [...arquivos] };
 }
 
-test('a boas-vindas baixa menos de 150 kB de JavaScript comprimido', async ({ page }) => {
+// Orçamento: era 150 kB (boas-vindas) e 200 kB (programa) no lote técnico do redesign (06/11/2026). Na junção com a
+// main (08/11/2026), o R5-CL (32 exercícios e as regras deles, +8 kB só no regras.json) e o R5c (tela de erro, avisos,
+// termos) somaram cerca de 20 kB ao pacote inicial; o desempenho medido segue de 90 a 100 (revisoes/redesign/medidas.md).
+// Os limites passaram a 175 e 220 kB; voltar abaixo de 150 está no backlog (separar os textos das regras do pacote).
+test('a boas-vindas baixa menos de 175 kB de JavaScript comprimido', async ({ page }) => {
   const { kB, arquivos } = await jsDaTela(page, () => page.goto('/'));
   expect(arquivos.some((f) => /quadroBoneco|boneco\.worker|estiloBoneco|Guia/.test(f)), 'o motor do Boneco fica fora da boas-vindas').toBe(false);
-  expect(kB, `JS da boas-vindas: ${arquivos.join(', ')}`).toBeLessThan(150);
+  expect(kB, `JS da boas-vindas: ${arquivos.join(', ')}`).toBeLessThan(175);
 });
 
-test('quem volta: o programa baixa o pacote inicial e o motor das miniaturas, menos de 200 kB comprimidos', async ({ page, context }) => {
+test('quem volta: o programa baixa o pacote inicial e o motor das miniaturas, menos de 220 kB comprimidos', async ({ page, context }) => {
   await ana(page);
   const outra = await context.newPage();
   const { kB, arquivos } = await jsDaTela(outra, () => outra.goto('/programa'));
   await expect(outra.getByRole('heading', { name: 'Seu treino', exact: true })).toBeVisible();
   // os textos do guia e as outras telas não vêm junto
   expect(arquivos.some((f) => /\/(Guia|Treino|Inventario|Dados)-/.test('/' + f)), arquivos.join(', ')).toBe(false);
-  expect(kB, `JS do programa: ${arquivos.join(', ')}`).toBeLessThan(200);
+  expect(kB, `JS do programa: ${arquivos.join(', ')}`).toBeLessThan(220);
 });

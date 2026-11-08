@@ -943,6 +943,183 @@ As listas exatas ficam em `tests/unit/metas-r0.test.ts`, para o R0c zerar.
 
 ---
 
+## Qualidade dos treinos gerados: 911 mil programas, 9 pesquisas e o treino de 3 exercícios que virou 5 (05 e 06/11/2026)
+
+**Por quê.** O Gustavo marcou opções aleatórias no cadastro, escolheu 60 minutos e nenhum equipamento, e recebeu um treino de 3 exercícios. Pelo que ele conhece, um treino tem 5 a 7. A pergunta valia para o app inteiro: o gerador está certo, quando está errado e o que mudar.
+
+**O que foi feito.** Um estresse novo (`npm run auditoria:qualidade`): 911.625 programas, com os 55 cenários de equipamento, os 3 níveis, 2 a 6 dias, 30 a 90 min, 13 combinações de prioridade, dor leve e forte em cada região e exercício evitado, em 4 processos com junção determinística. `npm run auditoria:verificar` passou a conferir por hash que a auditoria inteira sai idêntica em duas rodadas. Nove pesquisas por grupamento, uma das combinações por dia e uma da prioridade, com 94 fontes novas conferidas no PubMed ou no Crossref (`docs/pesquisa-v2/13` a `15`). Cada opção para a vaga sem exercício virou um protótipo descartável medido na grade inteira, nas personas e no caso dele; ele aprovou as recomendações das decisões 1 a 7, que entraram uma por vez (`docs/revisoes/qualidade-treinos.md`, Parte F).
+
+**O que se descobriu.** O caso dos 3 exercícios tinha duas origens: um exercício evitado num cenário sem opção (a flexão, o único empurrar sem equipamento) e 6 dias sem como puxar (dois dias de "Puxar" com 2 exercícios). "5 a 7 exercícios" é prática de treinadores; os ensaios usam de 2 a 8, e o ACSM de 2026 conta séries por músculo por semana. Um exercício só, com o volume certo, cresce o músculo inteiro; o 2º serve à região. A prioridade era "foco pequeno, mantendo os outros": 16% das séries com um grupo de foco.
+
+**Medido** (grade de qualidade, antes → depois):
+
+| | Antes | Depois |
+|---|---:|---:|
+| Dias com até 3 exercícios, 45 min ou mais (sem dor nem exercício evitado) | 16,5% | 6,6% |
+| Idem, sem equipamento | 20% | 0% |
+| Programas que usam menos de 70% dos minutos | 35% | 21,8% |
+| Mediana do uso dos minutos com 60 min | 75% | 95% |
+| Abdômen a zero na semana | 11,6% | 5,9% |
+| Músculo acima de 20 séries; dia acima do tempo sem aviso | 0; 0 | 0; 0 |
+
+**Antes × depois nas personas:** o Fábio (só barra fixa) ganha as duas pegadas da barra no mesmo dia (costas de 8 para 12 séries), o búlgaro e o nórdico de 6 a 10; a Ana ganha o supino no lugar do crucifixo no dia B e o abdominal protegido, que custou 2 séries do búlgaro; o Diego chega ao piso do ombro de trás; a Ana e a Carla recebem o aviso de focos que competem. O caso do Gustavo: 4, 4 e 6 exercícios (26 a 45 min) viram 5, 5 e 6 (51 a 58 min).
+
+**Também:** `npm run check` com 670 testes (eram 647); 48 testes de ponta a ponta; as linhas de base visuais regravadas só nas duas puxadas que ganharam o ombro de trás; 7 regras novas e 14 revistas (141 no total).
+
+**Fica para depois** (`backlog.md`, "Da qualidade dos treinos gerados"): a prioridade puxar frequência; o custo da proteção do abdômen em treinos de 30 min (40% com um dia acima do tempo, eram 26%); a repetição no Corpo todo 6x; a panturrilha no degrau; mais séries para todos quando sobra tempo, também na academia.
+
+**Rascunho de post para o LinkedIn**
+> Um treino de 60 minutos com 3 exercícios. Foi o que o meu app de treino gerou quando eu marquei "sem equipamento" no cadastro. Em vez de ajustar o caso, rodei o gerador 911 mil vezes, com todas as combinações de equipamento, dias, minutos, foco e dor, e medi exercício por dia, tempo usado e séries por músculo.
+>
+> O que eu aprendi: "um treino tem 5 a 7 exercícios" não vem de estudo. Os ensaios de hipertrofia usam de 2 a 8, e o que conta é o número de séries por músculo por semana. O app acertava nessa conta e errava na experiência: encurtava o treino em vez de usar o tempo que eu tinha dado.
+>
+> A mudança foi pequena e medida: quando falta o equipamento para um exercício, entra outro movimento do mesmo músculo, e o tempo que sobra vira série. Os dias com até 3 exercícios caíram de 20% para zero no treino sem equipamento. E ficou registrado o que piorou, para eu decidir depois.
+
+## Próximos passos: o retrato medido, 7 frentes de pesquisa, a biblioteca ampliada e a ordem do R5 (06 e 07/11/2026)
+
+**Por quê.** Com os marcos M0 a M5, R0 a R2 e o R4 feitos e o R3 (uso real) em andamento, o Gustavo pediu um retrato honesto do app e uma recomendação de onde investir: a qualidade e a variação dos treinos, as combinações por dia, a experiência de uso, uma opção para a pessoa montar o próprio treino com um avaliador, e o que mais faltasse. No meio da sessão, ele testou o app sem equipamento e com foco nos superiores, recebeu treinos curtos e genéricos, e pediu duas rodadas extras: "cansar os testes" de corpo livre e uma pesquisa ampla (internet, YouTube, fontes confiáveis) para dar opções a todas as combinações. Só documentos: nada do app mudou.
+
+**O que foi feito.**
+- **O retrato** (`revisoes/proximos-passos.md`, parte 1): 670 testes unitários e 48 de ponta a ponta passando; a auditoria completa com os mesmos arquivos da `main`; as 141 regras por selo (66% consenso); o catálogo por cenário; a grade de qualidade; o backlog por frente e estado; o que o redesign está mudando.
+- **Cinco frentes em paralelo** (`revisoes/proximos-passos/a-qualidade.md` a `e-produto.md`): qualidade e variação; "monte o seu treino" e um avaliador (protótipo que achou 3 defeitos reais do gerador); fluxo e função (achou que **a nota de dor do "Senti algo" não fica guardada** e que **um treino vazio conta como feito**, os dois conferidos no código); progressão de longo prazo (4 defeitos de lógica num simulador de 24 e 52 semanas); e o que falta para abrir a família e amigos (o texto da foto, termos, uma tela de erro com "Exportar").
+- **Rodada de corpo livre** (`f-corpo-livre.md`, `pesquisa-v2/16-corpo-livre-e-casa.md`): numa grade de 15.300 programas só sem equipamento, a semana com foco nos superiores tinha 1,9 exercício diferente de superiores; 3 pesquisadores acharam 7 exercícios novos que valem a pena.
+- **Rodada da biblioteca ampliada** (`g-biblioteca-ampliada.md`, `pesquisa-v2/17-biblioteca-ampliada.md`): 5 frentes (programas de treinadores, YouTube, lacunas de equipamento, evidência, o que faz um treino agradável), uma **régua** de qualidade em dois níveis (defeitos que não podem piorar; notas que devem melhorar), 32 exercícios novos medidos em **108.900 programas** e **duas revisões cegas** por treinadores independentes simulados (que não sabiam qual semana era de qual versão).
+- **Fontes:** de 331 para 507 em `pesquisa/fontes.md` (176 chaves novas e 7 atualizadas), cada PMID conferido no PubMed (autor, ano, título; retratados marcados). Sites que bloqueiam robôs não foram contornados.
+
+**Medido** (biblioteca ampliada no protótipo, grade de 108.900 programas, os 36.300 sem dor):
+
+| | Hoje | Proposta |
+|---|---:|---:|
+| Programas sem nenhum defeito | 73,4% | 83,8% |
+| Defeitos que pioram | — | nenhum |
+| O mesmo exercício em todos os dias, sem alternativa | 44,1% | 15,6% |
+| Exercícios diferentes por semana | 12,9 | 15,8 |
+| Sem equipamento: exercícios por dia | 4,9 | 5,4 |
+| Dias com 3 ou mais cartões de texto (sem animação) | 8,4% | 74,9% (19,5% com os 5 animados) |
+| Revisão cega: personas melhores / piores / iguais | — | 12 / 0 / 6 |
+
+**Decidido em 07/11** (`proximos-passos.md`, parte 3; o Gustavo pediu que a sessão decidisse): os cartões de texto ficam até as 5 animações de corpo livre mais prescritas; o foco ganha um marco próprio; a ordem é **R5a** (o registro que não engana) → **R5-CL** (biblioteca ampliada) → **R5d** (o foco que aparece) → **R5-anim** (os 5 de corpo livre) → **R5b** (o avaliador) → **R5c** (abrir para família e amigos). O limiar de empurrar ÷ puxar é 1,5; "usar todo o tempo que sobra" ficou descartado. Uma sessão nova conduz os marcos a partir de `prompts/sessao-desenvolvimento.md`.
+
+**Fica para depois** (`backlog.md`, "Da sessão de próximos passos"): o "monte o seu treino" do zero e a leitura de programa por IA; os gatilhos da semana leve pelo export do R3; a variação por blocos; as costas sem algo para puxar (sem saída honesta).
+
+**Rascunho de post para o LinkedIn**
+> Pedi a uma "equipe" de agentes de IA para responder uma pergunta simples sobre o meu app de treino: o que melhorar primeiro? A resposta mais útil não foi uma função nova. Foi achar duas coisas que enganavam sem ninguém perceber: a dor que a pessoa registrava no meio do treino não ficava guardada, e um treino aberto e fechado sem nenhuma série contava como feito.
+>
+> Depois, testando eu mesmo sem equipamento, recebi treinos curtos e genéricos. Em vez de ajustar o meu caso, o app foi testado em 108.900 combinações de equipamento, nível, dias, tempo e foco, com uma régua de qualidade em duas camadas: o que não pode piorar e o que deve melhorar. Com 32 exercícios novos (de flexão com os pés elevados a abertura com elástico), os programas sem nenhum defeito foram de 73% para 84%, e o mesmo exercício repetido todos os dias por falta de opção caiu de 44% para 16%.
+>
+> E dois revisores, sem saber qual semana era de qual versão, preferiram a nova em 12 de 18 casos e não preferiram a antiga em nenhum. O que eles ainda criticaram (o foco escolhido recebe pouco a mais que o resto) vira o próximo passo. Uma coisa não teve solução: treinar as costas sem nada para puxar. Nenhum estudo, treinador ou vídeo sério mostrou um jeito honesto, e o app continua dizendo isso.
+
+---
+
+## R5c: Abrir para família e amigos (07/11/2026)
+
+**Por quê.** O Gustavo decidiu (06/11) abrir o app para família e amigos, não para o público. A frente E mediu o que faltava para outra pessoa usar sem ele por perto: três telas diziam que a foto "não fica guardada no servidor" sem dizer que ela vai para a Anthropic, nos EUA; um erro de tela deixava a página em branco, sem caminho até "Exportar"; não havia termos nem canal de problema; e "série", "repetição" e "carga" não eram explicados em lugar nenhum. O R5c veio antes dos outros marcos do R5 a pedido do Gustavo; ele não mexe no gerador, então não conflita com eles.
+
+**O que mudou** (branch `claude/kind-cori-879ak9`, a partir da `main` `b92fa13`; o lote do redesign não está na `main`, então tudo é o mínimo funcional com os componentes de hoje, e as telas seguem como pedidos ao design, itens 11 a 17 de `revisoes/proximos-passos.md`)
+- **A foto (P1).** As 3 telas usam o mesmo texto: a foto vai reduzida e sem a localização para a Anthropic, empresa dos EUA; o servidor do app não guarda; a Anthropic diz que apaga em até 30 dias, com exceções. Na tela da foto, uma **caixa de autorização** antes do 1º envio diz para onde a foto vai, por quanto tempo fica lá e que não treina modelos; o botão das fotos fica desligado até a pessoa marcar. A data fica só no aparelho, e "Retirar a autorização" (na foto e em Meus dados) a apaga. Regra nova `privacidade.foto` (consenso, norma).
+- **Uma descoberta ao reler as fontes:** a página da Anthropic sobre servidores (15/06/2026) diz que o dado é **guardado nos EUA, mas pode ser processado também na Europa, na Ásia e na Austrália**; e um envio marcado como violação da política de uso pode ficar **até 2 anos**. As duas coisas entraram no texto (fonte nova `anthropic-servidores`). A retenção especial dos "Covered Models" só vale para quem tem retenção zero contratada, não para o app.
+- **Tela de erro (P4).** Em volta de tudo, sem depender do resto do app: "Exportar meus dados" lê o armazenamento direto (mesmo um dado que o app não consegue mais ler), "Tentar de novo", "Avisar um problema" e a versão.
+- **Não perder os dados (P3).** Meus dados mostra "Última cópia: hoje / há N dias / nenhuma cópia ainda"; diz quando o navegador **negou** guardar de forma permanente; o início lembra de exportar depois de 3 treinos sem cópia (e cópia com mais de 7 dias), abaixo de "Começar", com "Exportar agora" e "Agora não" (7 dias). No iPhone aberto no Safari, um aviso com os passos para instalar, até o "Entendi". Tudo no `localStorage`: o estado guardado **não mudou de versão**. Regras `dados.copia`, `dados.instalar-iphone`, `dados.persistente`.
+- **Termos e canal (P2, P5).** A página `/termos` (rascunho para o advogado): o que o app faz e não faz, os dados no aparelho, a foto, o que Vercel, Google e Anthropic recebem, os direitos do art. 18 da LGPD (lido hoje) e como exercê-los no próprio app. Link nas boas-vindas, em Meus dados e na tela de erro. "Avisar um problema" leva a versão, o aparelho e a tela, e nunca o estado do app. O nome e o e-mail vêm de variáveis da Vercel (`VITE_RESPONSAVEL`, `VITE_CONTATO_EMAIL`): **nenhum dado pessoal no repositório**.
+- **"Como ler o seu treino" (B2).** No programa, aberto até o 1º treino terminado: série, repetição, carga, descanso e RIR, cada um com o seu selo; no iniciante, a linha da fase de aprendizado. Regra nova `treino.leitura`.
+- **Limite compartilhado (B1, feito depois do ok do Gustavo em 07/11).** O limite diário da foto (10 por aparelho, 40 por IP) passa a valer para todas as instâncias da função, num Redis do Upstash, com um comando por pedido e sem dependência nova. Basta criar o banco pelo Marketplace da Vercel (plano grátis), que cria as variáveis `KV_REST_API_URL` e `KV_REST_API_TOKEN`; sem elas, vale o contador em memória, como antes. O script foi rodado num Redis local: os pedidos barrados não somam no IP.
+- **Também:** o limite da foto confere o aparelho e o IP juntos (um pedido barrado pelo aparelho gastava a cota do IP); ícone do iPhone (`apple-touch-icon` de 180 px, gerado do `icon.svg` por `scripts/icone-iphone.mjs`; o lote 5 do redesign pode trocar o desenho); "Apagar tudo" apaga também o que fica no `localStorage`.
+
+**Medido**
+
+| | Antes | Depois |
+|---|---:|---:|
+| Telas com "não fica guardada no servidor" sem dizer para onde a foto vai | 3 | 0 (um teste falha se a frase voltar) |
+| Tela de erro com saída até "Exportar" | 0 | 1, em volta de todas as telas |
+| e2e: erro forçado → a saída aparece e o export baixa o arquivo com o programa | — | passa |
+| e2e: a caixa da foto aparece antes do 1º envio, não depois, e volta ao retirar | — | passa |
+| e2e: "Última cópia" em Meus dados (nenhuma → hoje, também depois de recarregar) | — | passa |
+| Lighthouse de acessibilidade (boas-vindas, termos, programa, Meus dados, caixa da foto, tela de erro) | — | 100 nas 6 (meta ≥ 90) |
+| Toque ≥ 44 px e contraste WCAG nas telas novas, tema claro e escuro | — | 0 falha |
+| `npm run check` | 670 testes | 698 testes passando (um teste antigo do gerador, "todo músculo abaixo do limiar", leva 4,8 a 6 s nesta máquina e às vezes passa do limite de 5 s; já acontecia na `main`, antes do R5c) |
+| `npm run test:e2e` | 48 | 55, todos passando |
+| Regras | 141 | 146 (5 novas, todas consenso) |
+
+**Imagem:** `img/r5c-abertura.png` (a caixa da foto, a tela de erro, a última cópia, o aviso do iPhone e "Como ler o seu treino").
+
+**Sem revisão jurídica.** Os textos não são parecer jurídico. O Gustavo decidiu, em 08/11/2026, dispensar a revisão por um advogado para abrir a família e amigos; a página deixou de dizer "rascunho".
+
+**Com o Gustavo, antes de mandar o link a qualquer pessoa** (preencha aqui):
+- [x] **Teto de gasto confirmado pelo Gustavo em 08/11/2026** (console da Anthropic, Cobrança e pagamentos): saldo de **US$ 4,97** em créditos e **recarga automática desativada**, então a API para quando o saldo acaba. É um teto total, não mensal: para gastar mais, o Gustavo precisa comprar créditos. Com a foto desligada, nada é gasto. Pela estimativa da frente E (até ~US$ 0,14 por envio de 5 fotos no Opus 5.5), dá **~35 envios de 5 fotos por mês**, ou mais com menos fotos por envio [estimativa; o eval mede o valor real]. Com 30 pessoas e 2 envios cada (~US$ 8), o teto pode chegar antes do fim do mês: aí a API recusa, o app mostra "Não foi possível analisar as fotos agora. Use a lista." e a lista funciona igual.
+- [x] **A foto fica desligada por enquanto** (decisão do Gustavo em 08/11/2026): o app abre para família e amigos sem o reconhecimento pela foto, até haver um convite por pessoa. Sem `VITE_FOTO=ligada` no build, a tela da foto some, o pacote nem tem a chamada à API, e as telas dizem "nada sai do aparelho". Os testes ligam a foto (`playwright.config.ts`).
+- [ ] Depois: um código de convite por pessoa em `CONVITES` e `VITE_FOTO=ligada` na Vercel, para ligar a foto.
+- [ ] *(Opcional)* `VITE_RESPONSAVEL` e `VITE_CONTATO_EMAIL` na Vercel. Sem eles, os termos dizem que o responsável é "quem te mandou o link do app" e o "Avisar um problema" mostra um texto para copiar e mandar a essa pessoa.
+- [x] Revisão do advogado: **dispensada** pelo Gustavo (08/11/2026).
+- [ ] Teste num iPhone: o aviso de instalar, o ícone e se o app instalado começa vazio.
+- A triagem continua com as perguntas próprias, e a revisão por um CREF continua "de lado" (decisão de 01/11): **reavaliar antes de abrir o app a desconhecidos**, não para família e amigos.
+
+**Fica para depois** (`backlog.md`, "Do R5c"): a letra do Google Fonts (sai com o lote 1 do redesign); a explicação do RIR no 1º toque em cada tela; medir o uso sem dado pessoal (só com decisão do Gustavo).
+
+**Rascunho de post para o LinkedIn**
+> Antes de mandar o meu app de treino para a família, reli uma frase que eu mesmo tinha aprovado: "a foto não fica guardada no servidor". Era verdade e era incompleta. O meu servidor não guarda, mas a foto vai para a empresa que faz o reconhecimento, nos EUA, que guarda por até 30 dias. Relendo os documentos dela, achei mais duas coisas: o dado pode ser processado em outros países, e um envio suspeito de abuso pode ficar até 2 anos.
+>
+> Agora o app diz isso antes do 1º envio, numa caixa que a pessoa marca (e pode desmarcar quando quiser). Quem não quer, usa a lista de equipamento, que faz o mesmo.
+>
+> Também descobri que, se uma tela desse erro, o app ficava em branco, sem caminho para salvar os dados. Como os dados moram só no celular, isso podia apagar meses de treino. Agora o erro mostra uma saída: exportar os dados, tentar de novo ou me avisar, sem nenhum dado de saúde na mensagem.
+>
+> Abrir para os amigos não foi uma função nova. Foi escrever, com fonte, o que o app faz com os dados de cada pessoa.
+
+## R5-CL: a biblioteca ampliada, 32 exercícios novos e a régua na auditoria (07 e 08/11/2026)
+
+**Por quê.** Em 06/11 o Gustavo testou o app sem equipamento, com foco nos superiores, e recebeu treinos curtos e genéricos. A sessão de próximos passos mediu, num protótipo descartável, 32 exercícios novos e duas proteções do gerador (`revisoes/proximos-passos/g-biblioteca-ampliada.md`). Este marco os põe no app, com a régua de qualidade como teste da auditoria. O R5a (o registro que não engana) ainda não foi feito; dele, entraram aqui só o ajuste de 30 min e o "descer um nível antes de repetir", que o protótipo já usava.
+
+**O que mudou.**
+- **A régua** (`scripts/auditoria/regua.ts`, também medida no estresse de `qualidade.ts`) e a **grade de 108.900 programas** (`npm run auditoria:regua`, ~1,5 min), com a linha de base da `main` gravada (`revisoes/qualidade/regua-linha-de-base.json`): a auditoria falha se algum defeito passar dela. As definições do protótipo se perderam com o rascunho; as de agora reproduzem todos os números publicados da `main`, menos o empurrar ÷ puxar (D1), que segue o limite escrito na tabela da régua (1,5) e por isso é mais rígido (6,1% na `main`, e não 0,9%).
+- **O equilíbrio da coxa** (regra nova `volume.equilibrio-coxa`): nenhum corte de tempo tira quadríceps ÷ posteriores de 0,5–2 nem o único exercício direto de posteriores.
+- **Com 30 min**, o abdômen ou a panturrilha protegidos ficam com 2 séries e, se o dia passar do tempo, sai um isolador do dia (`tempo.musculo-protegido`).
+- **Os 32 exercícios**, em 4 lotes, cada um com a regra (`selecao.corpo-livre-ampliado`, `selecao.halteres-ampliado`, `selecao.elastico-ampliado`, `selecao.barra-negativa`, `selecao.item-sozinho-ampliado`), a ficha de técnica (`pesquisa/animacoes/`), o cartão de texto (`src/conteudo/exercicios/`), a escada quando é de peso do corpo, os testes e a grade. Todos aparecem como **cartão de texto** até a animação ser aprovada.
+- **No último dia da semana**, entre equivalentes do mesmo nível, o exercício que já está em todos os outros dias fica por último; sem equivalente, a função desce um nível antes de repetir (`selecao.variacoes-equivalentes`).
+- **Os avisos dizem o que o programa tem**: sem nada, o ombro de trás sai da lista "fica sem exercício" (a abertura em T está no programa); com a puxada de elástico, o aviso não diz mais que as costas treinam "só com remadas".
+
+**Decisões técnicas desta sessão** (o Gustavo pediu para não decidir as técnicas; cada uma medida):
+1. **As faixas de repetição** dos novos de peso do corpo e elástico seguem `reps.faixa.degrau` (a flexão com os pés elevados, 8–15, como a flexão; a abertura em T, 12–20, e não os 15–30 propostos). Com as faixas propostas, dois defeitos pioravam por 1 programa cada.
+2. **O desenvolvimento em pé e a elevação lateral unilateral com halter** ficam num nível próprio, logo abaixo dos animados, como a elevação deitado (decisão 5 do relatório). No mesmo nível, eles tiravam o lugar do animado nos programas do Bruno e da Carla, que o aceite pede iguais. Medido: a grade fica igual ou melhor.
+3. **A regra do último dia** (acima) entrou porque o lote de corpo livre fazia a hiperextensão ocupar os 6 dias de dois programas com outro exercício possível (o defeito B1). Ela leva o B1 de 0,3% a 0%.
+
+**Medido** (grade de 108.900 programas, os 36.300 sem dor; `revisoes/qualidade/regua.md`):
+
+| | `main` | R5-CL | protótipo (`g-biblioteca-ampliada.md`) |
+|---|---:|---:|---:|
+| Programas sem nenhum defeito | 71,4% | **83,9%** | — |
+| Idem, sem contar o D1 (a medida comparável com o protótipo) | 73,6% | **84,6%** | 73,4% → 83,8% |
+| Algum defeito pior que na `main` | — | **nenhum** (sem dor e com dor) | nenhum |
+| Dia com menos de 3 exercícios ou sem multiarticular (A2) | 7,5% | 1,5% | 7,5% → 1,5% |
+| Dia acima de 110% dos minutos (A3) | 9,8% | 7,0% | 9,8% → 7,3% |
+| O mesmo exercício em todos os dias havendo opção (B1) | 0,3% | 0% | 0,3% → 0,3% |
+| Foco abaixo da meta com tempo (C1) | 4,1% | 2,1% | 4,1% → 2,1% |
+| Empurrar ÷ puxar acima de 1,5 (D1) | 6,1% | 1,2% | 0,9% → 0,9% (outra leitura) |
+| Coxa desequilibrada (D3) | 1,6% | **0%** | 1,6% → 0% |
+| O mesmo exercício em todos os dias sem alternativa (B2, nota) | 44,1% | **15,6%** | 44,1% → 15,6% |
+| Exercícios por dia, média | 5,18 | 5,50 | 5,18 → 5,51 |
+| Exercícios diferentes por semana | 12,9 | 15,6 | 12,9 → 15,8 |
+| Sem nada: exercícios por dia; diferentes por semana | 4,91; 9,5 | **5,38; 12,9** | 5,38; 12,9 |
+| Prescrições sem nenhuma alternativa | 49,1% | 26,9% | 54,3% → 28,4% (outra leitura) |
+| Programas com um dia de 3 ou mais cartões de texto (G1, nota: **o custo**) | 8,4% | 73,1% | 8,4% → 74,9% |
+
+**O caso do Gustavo** (fictício: intermediário, sem nada, 60 min, foco nos superiores):
+- **3 dias, antes:** A (46 min) flexão, flexão com as mãos juntas, agachamento, flexão de joelho deslizante, abdominal; B (53 min) flexão, pike, búlgaro, nórdico, panturrilha no chão, abdominal; C (56 min) flexão, flexão com as mãos juntas, afundo, ponte, flexão de joelho deslizante, abdominal. 11 exercícios diferentes; ombro de trás 0.
+- **3 dias, depois:** A (52 min) flexão, **flexão com os pés elevados**, agachamento, **extensão de tríceps com o peso do corpo**, flexão de joelho deslizante, abdominal; B (60 min) **flexão com os pés elevados**, pike, búlgaro, nórdico, **panturrilha no degrau**, **abertura em T**, **abdominal invertido**; C (56 min) flexão, flexão com as mãos juntas, afundo, ponte, flexão de joelho deslizante, abdominal. 15 exercícios diferentes; ombro de trás 4; peito 12; tríceps 12,5.
+- **4 dias:** de 5, 5, 6 e 5 exercícios (36 a 52 min) para 6 em todos os dias (46 a 49 min); 11 → 15 exercícios diferentes; ombro de trás 0 → 8.
+- **Igual nas duas versões:** costas e bíceps a 0, com o aviso; as pernas, que não são foco, com 11 a 12 séries. Isso é regra do gerador (o foco), não biblioteca: é o marco seguinte (R5d).
+
+**As 6 personas:** Bruno e Carla **iguais**. Ana: o crucifixo invertido sentado no lugar do curvado (estável, para a iniciante), a panturrilha no degrau e a flexão num dos dias no lugar do supino (desce um nível antes de repetir); 13 → 15 exercícios diferentes. Diego: a panturrilha no degrau, a elevação lateral unilateral com elástico e a flexão com elástico num dos dias; 15 → 17. Elisa (30 min): 4, 4 e 3 → 4, 4 e 4 exercícios, com a abertura em T e a extensão de tríceps; 7 → 9. Fábio (só barra fixa): 4, 6, 4 e 6 → 5, 6, 5 e 6 exercícios (33 a 45 → 44 a 45 min), com a barra só na descida como 2ª puxada; 13 → 17. Os snapshots estão em `tests/unit/__snapshots__/` para a revisão.
+
+**Também:** 683 testes unitários (eram 670); 148 regras (eram 141); 32 fichas de técnica e 32 cartões novos. Cinco dos 32 não entram em nenhum programa da grade e servem só de alternativa (o desenvolvimento em pé, as duas elevações laterais com halter, a remada unilateral com elástico e a caminhada lateral).
+
+**Fica para depois** (`backlog.md`, "Do R5-CL"): a fila de animação, com os 5 de corpo livre primeiro (eles respondem pela maior parte dos cartões); o foco que muda a distribuição; o 1º degrau da escada pelo nível; a regressão da barra fixa para o iniciante.
+
+**Rascunho de post para o LinkedIn**
+> No meu app de treino, "sem equipamento" com foco nos superiores gerava 5 exercícios por dia, sempre os mesmos. Agora são 6 ou 7, com 15 exercícios diferentes na semana em vez de 11, e o ombro de trás deixou de ficar a zero.
+>
+> O que mudou não foi uma regra nova de treino. Foram 32 exercícios novos, cada um com a técnica escrita a partir de estudos e de vídeos de profissionais, e uma régua que mede 108.900 combinações de equipamento, nível, dias, tempo, foco e dor antes de cada mudança. A régua tem duas camadas: o que não pode piorar (defeitos com evidência) e o que deve melhorar (gosto e consenso). Os programas sem nenhum defeito foram de 71% para 84%, e o mesmo exercício repetido todos os dias por falta de opção, de 44% para 16%.
+>
+> O preço está medido: os exercícios novos ainda não têm o boneco animado, e aparecem como um cartão de texto. Animar os 5 mais usados devolve a animação à maioria dos treinos. E uma coisa continua sem solução honesta: as costas sem nada para puxar. O app diz isso, em vez de inventar.
+
 ## Redesign visual: o app inteiro refeito, tela por tela, com medida antes e depois (05 a 08/11/2026)
 
 **Por quê.** O app já tinha passado por duas rodadas de design (03/11), que zeraram as falhas de toque e contraste, mas ainda era a estrutura antiga com uma pintura nova. O Gustavo pediu o melhor app possível para quem usa, sem compromisso com o visual de antes: estrutura, navegação, cor, letra e componentes podiam mudar. O que não podia mudar ficou escrito antes de começar:

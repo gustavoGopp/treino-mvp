@@ -4,6 +4,7 @@ import { ITENS, type Inventario as InventarioDados, type ItemId } from '../../do
 import { comInventario, localPrincipal } from '../../storage/esquema';
 import { agoraIso, comProgramaNovo, useApp } from '../app/estado';
 import { Erros, Escolha, Marcar, Numero, Passo, Selo } from '../app/ui';
+import { FOTO_LIGADA } from '../app/contato';
 import { FotoEquipamento } from './FotoEquipamento';
 import { IconeEquipamento } from './icones';
 import { IconeLugar } from './lugares';
@@ -542,10 +543,13 @@ export function FormularioInventario({
         )}
       </fieldset>
 
-      <div className="dois">
-        <button type="button" className="btn sec" aria-haspopup="dialog" onClick={() => setFoto(true)}>
-          Pela foto
-        </button>
+      <div className={FOTO_LIGADA ? 'dois' : undefined}>
+        {/* R5c: a foto fica desligada até haver um convite por pessoa (contato.ts) */}
+        {FOTO_LIGADA && (
+          <button type="button" className="btn sec" aria-haspopup="dialog" onClick={() => setFoto(true)}>
+            Pela foto
+          </button>
+        )}
         <button type="button" className="btn sec" aria-expanded={lista} onClick={() => setLista((v) => !v)}>
           Item por item
         </button>
