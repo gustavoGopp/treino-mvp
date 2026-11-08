@@ -1,5 +1,5 @@
 import { expect, test, type Page } from '@playwright/test';
-import { minutosPorTreino, sobreOPrograma, triagemNenhuma } from './jornada';
+import { marcarItem, minutosPorTreino, sobreOPrograma, triagemNenhuma } from './jornada';
 
 // Sessão de equipamento mínimo: o caminho de quem não tem nada, do cadastro ao 1º treino. Persona fictícia Elisa
 // (tests/personas): iniciante, 3 dias de 30 min, sem prioridade, "Corpo livre" (nenhum equipamento).
@@ -26,10 +26,10 @@ test('Corpo livre: sem nada marcado, o programa sai só com o peso do corpo, diz
   const corpoLivre = page.getByRole('button', { name: /^(✓ )?Corpo livre$/ });
   await expect(corpoLivre).toHaveAttribute('aria-pressed', 'false');
   // Mesmo com algo marcado antes, o toque desmarca tudo.
-  await page.getByLabel('Step', { exact: true }).check();
+  await marcarItem(page, 'Step');
   await corpoLivre.click();
   await expect(corpoLivre).toHaveAttribute('aria-pressed', 'true');
-  await expect(page.getByLabel('Step', { exact: true })).not.toBeChecked();
+  await expect(page.locator('.grade-2').getByLabel('Step', { exact: true })).not.toBeChecked();
   await expect(page.getByText(/Sem equipamento: o programa usa o chão, uma parede e uma cadeira firme/)).toBeVisible();
   // lote 3 do redesign: o equipamento gera o programa (o "Tudo certo?" saiu)
   await page.getByRole('button', { name: 'Gerar meu programa' }).click();

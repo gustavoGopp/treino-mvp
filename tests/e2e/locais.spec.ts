@@ -1,5 +1,5 @@
 import { expect, test, type Page } from '@playwright/test';
-import { abrirExercicio, ana, porQueDaSugestao, terminarTreino } from './jornada';
+import { abrirExercicio, ana, marcarItem, porQueDaSugestao, terminarTreino } from './jornada';
 
 // R1b: vários locais. A Ana (persona fictícia) cadastra a "Academia" como 2º local, escolhe onde treina hoje,
 // vê a troca com o motivo e registra a 1ª série no aparelho novo, com a calibração da carga.
@@ -26,7 +26,7 @@ test('cadastra o 2º local, escolhe onde treinar hoje, vê a troca explicada e c
   await page.getByRole('button', { name: 'Salvar local' }).click();
   await expect(page.getByText(/Dê um nome ao local/)).toBeVisible();
   await page.getByRole('button', { name: 'Academia', exact: true }).click();
-  for (const item of ['Leg press', 'Cadeira flexora', 'Barra fixa', 'Banco reto']) await page.getByLabel(item, { exact: true }).check();
+  for (const item of ['Leg press', 'Cadeira flexora', 'Barra fixa', 'Banco reto']) await marcarItem(page, item);
   await page.getByRole('button', { name: 'Salvar local' }).click();
   await expect(page.getByRole('heading', { name: 'Meus locais' })).toBeVisible();
   await expect(page.getByRole('list', { name: 'Locais' })).toContainText('Academia');

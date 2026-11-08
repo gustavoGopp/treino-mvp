@@ -1,5 +1,5 @@
 import { expect, test } from '@playwright/test';
-import { abrirExercicio, ana, confirmarNaoMarcadas, folhaPronta, sobreOPrograma, triagem, verAvisos } from './jornada';
+import { abrirExercicio, abrirLista, ana, confirmarNaoMarcadas, detalhesDo, folhaPronta, marcarItem, pronto, sobreOPrograma, triagem, verAvisos } from './jornada';
 
 test('do zero ao programa em menos de 5 minutos (persona Ana)', async ({ page }) => {
   const inicio = Date.now();
@@ -128,7 +128,7 @@ test('"sim" só no osteoarticular pede as regiões e a dor de hoje, e o aviso di
   await expect(page.getByText(/Procure avaliação profissional\. Quando a dor baixar/)).toBeVisible();
 });
 
-test('cadastro sem nenhuma condição: 0 caractere digitado e até 13 toques, sem contar a tela de equipamento (critério 1)', async ({ page }) => {
+test('cadastro sem nenhuma condição: 0 caractere digitado e até 11 toques, sem contar a tela de equipamento (critério 1)', async ({ page }) => {
   await page.addInitScript(() => {
     const w = window as unknown as { __toques: number; __caracteres: number };
     w.__toques = 0;
@@ -143,8 +143,10 @@ test('cadastro sem nenhuma condição: 0 caractere digitado e até 13 toques, se
     return { toques: w.__toques, caracteres: w.__caracteres };
   });
   expect(caracteres).toBe(0);
-  // Design v2: a triagem em lista (1 toque) e uma pergunta por vez; eram até 15.
-  expect(toques).toBeLessThanOrEqual(13);
+  // Design v2: a triagem em lista (1 toque) e uma pergunta por vez; eram até 15. Lote 3 do redesign: o "Tudo certo?"
+  // saiu e o "Gerar" fica no equipamento (Ana: Começar, Não nenhuma, 3 no nível, Continuar, 3 dias, 45 min, Pernas,
+  // Glúteos, Continuar); a meta do agente 2 era 11 contando o "Gerar".
+  expect(toques).toBeLessThanOrEqual(11);
 });
 
 test('atalho "academia completa": nada vem marcado, o toque marca o conjunto e os detalhes vêm com valores típicos', async ({ page }) => {
@@ -156,9 +158,14 @@ test('atalho "academia completa": nada vem marcado, o toque marca o conjunto e o
   await expect(page.getByLabel('Esteira', { exact: true })).toHaveCount(0);
   await page.getByRole('button', { name: 'Academia completa' }).click();
   await expect(page.getByRole('button', { name: 'Academia completa' })).toHaveAttribute('aria-pressed', 'true');
-  await expect(page.getByLabel('Leg press', { exact: true })).toBeChecked();
+  // lote 3 do redesign: o que o app supôs em 1 linha; conferir abre os marcados
+  await expect(page.locator('.supos')).toContainText(/Um toque marcou \d+ itens típicos/);
+  // a Ana já tinha itens, então a lista já vem aberta (no cadastro novo, "Conferir os N itens ›" abre)
+  await abrirLista(page);
+  const marcados = page.getByRole('region', { name: /^Marcados/ });
+  await expect(marcados).toContainText('Leg press');
   // O que a Ana já tinha marcado continua marcado.
-  await expect(page.getByLabel('Halteres fixos', { exact: true })).toBeChecked();
+  await expect(marcados).toContainText('Halteres fixos');
   const asVezes = page.getByRole('group', { name: /Às vezes tem/ });
   for (const x of ['Kettlebell', 'Elásticos', 'Bola suíça', 'Suspensão (TRX) ou argolas']) await expect(asVezes.getByLabel(x, { exact: true })).not.toBeChecked();
   // A pergunta única da menor anilha aparece (leg press, hack, smith…), sem resposta marcada.
@@ -166,11 +173,34 @@ test('atalho "academia completa": nada vem marcado, o toque marca o conjunto e o
   for (const r of await anilha.getByRole('radio').all()) await expect(r).not.toBeChecked();
   await anilha.getByLabel('1,25 kg', { exact: true }).check();
   // Design v2 (item D): os detalhes vêm com valores típicos, editáveis; o lado conservador nos "sim ou não".
-  await expect(page.getByRole('group', { name: 'Onde fica a polia?' }).getByLabel('Regulável')).toBeChecked();
-  await expect(page.getByRole('group', { name: /O voador também vira/ }).getByLabel('Não')).toBeChecked();
-  await expect(page.getByRole('group', { name: /O banco também declina/ }).getByLabel('Não')).toBeChecked();
+  await expect((await detalhesDo(page, 'Polia simples')).getByRole('group', { name: 'Onde fica a polia?' }).getByLabel('Regulável')).toBeChecked();
+  await pronto(page);
+  await expect((await detalhesDo(page, 'Voador')).getByRole('group', { name: /O voador também vira/ }).getByLabel('Não')).toBeChecked();
+  await pronto(page);
+  await expect((await detalhesDo(page, 'Banco regulável')).getByRole('group', { name: /O banco também declina/ }).getByLabel('Não')).toBeChecked();
+  await pronto(page);
+  // "Tirar" desmarca na hora
+  await page.getByRole('button', { name: 'Tirar Leg press' }).click();
+  await expect(marcados).not.toContainText('Leg press');
   await page.getByRole('button', { name: 'Gerar meu programa' }).click();
   await expect(page.getByRole('heading', { name: 'Seu treino', exact: true })).toBeVisible();
+});
+
+test('lote 3: a busca acha o item pelo nome em qualquer categoria, e o detalhe que falta abre sozinho ao gerar', async ({ page }) => {
+  await ana(page);
+  await page.goto('/comecar/inventario');
+  await page.getByLabel('Procurar pelo nome').fill('extensora');
+  await expect(page.locator('.grade-2 .item-eq')).toHaveCount(1);
+  await page.locator('.grade-2').getByLabel('Cadeira extensora', { exact: true }).check();
+  await page.getByLabel('Procurar pelo nome').fill('xyz');
+  await expect(page.getByText('Nada com “xyz”. Confira a escrita ou procure pela categoria.')).toBeVisible();
+  // marcar a polia simples abre os detalhes; fechar sem responder e gerar abre de novo, com o erro
+  const polia = await marcarItem(page, 'Polia simples');
+  await expect(polia.getByRole('group', { name: 'Onde fica a polia?' })).toBeVisible();
+  await polia.getByRole('button', { name: 'Fechar' }).click();
+  await page.getByRole('button', { name: 'Gerar meu programa' }).click();
+  await expect(page.getByRole('dialog', { name: 'Polia simples' })).toBeVisible();
+  await expect(page.getByRole('region', { name: /^Marcados/ }).getByText('falta completar')).toBeVisible();
 });
 
 test('escolher uma opção calculada gera o programa de novo com o novo perfil', async ({ page }) => {
@@ -208,8 +238,8 @@ test('recarregar a página mantém perfil, inventário e programa', async ({ pag
   await expect(page).toHaveURL(/\/programa$/);
   // E as respostas continuam nas telas do perfil.
   await page.goto('/comecar/inventario');
-  await expect(page.getByLabel('Halteres fixos', { exact: true })).toBeChecked();
-  await expect(page.getByRole('group', { name: 'O mais pesado' }).getByLabel('12 kg', { exact: true })).toBeChecked();
+  await expect(page.getByRole('region', { name: /^Marcados/ })).toContainText('Halteres fixos');
+  await expect((await detalhesDo(page, 'Halteres fixos')).getByRole('group', { name: 'O mais pesado' }).getByLabel('12 kg', { exact: true })).toBeChecked();
 });
 
 test('Meus dados mostra a versão do app e a data da publicação', async ({ page }) => {
@@ -258,7 +288,7 @@ test('importar um arquivo inválido não altera os dados', async ({ page }) => {
 test('equipamento por toque: anilhas com contador e valor fora da lista em "Outro"', async ({ page }) => {
   await ana(page);
   await page.goto('/comecar/inventario');
-  await page.getByLabel('Anilhas e manoplas', { exact: true }).check();
+  await marcarItem(page, 'Anilhas e manoplas');
   const detalhes = page.getByRole('region', { name: 'Detalhes: Anilhas e manoplas' });
   await detalhes.getByRole('group', { name: 'Quantas manoplas?' }).getByLabel('2').check();
   await detalhes.getByRole('group', { name: 'Peso de cada manopla' }).getByLabel('Outro').check();
@@ -266,9 +296,11 @@ test('equipamento por toque: anilhas com contador e valor fora da lista em "Outr
   await detalhes.getByRole('button', { name: 'Mais anilhas de 5 kg' }).click();
   await detalhes.getByRole('button', { name: 'Mais anilhas de 5 kg' }).click();
   await expect(detalhes.getByLabel('Quantidade de anilhas de 5 kg')).toHaveText('4');
+  await pronto(page);
   await page.getByRole('button', { name: 'Gerar meu programa' }).click();
   await expect(page.getByRole('heading', { name: 'Seu treino', exact: true })).toBeVisible();
   await page.goto('/comecar/inventario');
+  await detalhesDo(page, 'Anilhas e manoplas');
   await expect(page.getByLabel('Peso de cada manopla: outro valor')).toHaveValue('1.8');
   await expect(page.getByLabel('Quantidade de anilhas de 5 kg')).toHaveText('4');
 });
@@ -277,17 +309,19 @@ test('catálogo do R0c: equipamento novo sem desenho, estações do multifuncion
   await ana(page, {
     equipamentoExtra: async (p) => {
       // Equipamento novo, ainda sem desenho: o cartão mostra só o nome.
-      const hack = p.getByLabel('Hack ou pendular', { exact: true });
-      await hack.check();
-      await expect(p.locator('label.cartao-eq', { has: hack }).locator('svg')).toHaveCount(0);
-      // Multifuncional: sem estação marcada, a tela pede uma.
-      await p.getByLabel('Multifuncional', { exact: true }).check();
+      await marcarItem(p, 'Hack ou pendular');
+      await expect(p.locator('label.item-eq', { has: p.getByLabel('Hack ou pendular', { exact: true }) }).locator('svg')).toHaveCount(0);
+      // Multifuncional: sem estação marcada, a tela pede uma (a folha dele abre de novo ao gerar).
+      const multi = await marcarItem(p, 'Multifuncional');
+      await multi.getByRole('button', { name: 'Fechar' }).click();
       await p.getByRole('button', { name: 'Gerar meu programa' }).click();
       await expect(p.getByText('Marque pelo menos uma estação do multifuncional.')).toBeVisible();
       await p.getByRole('group', { name: 'Quais estações o seu tem?' }).getByLabel('Extensora').check();
+      await pronto(p);
       // Polia simples: a altura (no alto, embaixo ou regulável).
-      await p.getByLabel('Polia simples', { exact: true }).check();
-      await p.getByRole('group', { name: 'Onde fica a polia?' }).getByLabel('Embaixo').check();
+      const polia = await marcarItem(p, 'Polia simples');
+      await polia.getByRole('group', { name: 'Onde fica a polia?' }).getByLabel('Embaixo').check();
+      await pronto(p);
     },
   });
   const painel = page.getByRole('tabpanel');

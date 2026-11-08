@@ -1,6 +1,6 @@
 import { expect, test, type Page } from '@playwright/test';
 import { criterios } from './criterios';
-import { abrirExercicio, abrirTrocar, ana, folhaPronta, maisOpcoes, proximoExercicio, sobreOPrograma, terminarTreino, verAvisos } from './jornada';
+import { abrirExercicio, abrirTrocar, ana, detalhesDo, folhaPronta, maisOpcoes, pronto, proximoExercicio, sobreOPrograma, terminarTreino, verAvisos } from './jornada';
 
 // Redesign (06/11/2026), lote 1: os 4 critérios (toque de 44 px, contraste, texto cortado e foco coberto) em todas as
 // telas, nos 7 cenários que o protótipo mediu (docs/revisoes/redesign/proposta.md, seção 13). Os cenários de 320 px,
@@ -22,7 +22,6 @@ const CENARIOS: Cenario[] = [
 // O que ainda falha no fim do lote 1 (medido em 06/11/2026), por cenário e grupo de telas, e o lote que reconstrói a tela.
 // Lote 2 (06/11/2026): treino e guia passaram a cumprir os 4 critérios nos 7 cenários; sobram os de outros lotes.
 const PENDENTE: Record<string, string> = {
-  'letra125/cadastro': 'lote 3: com a letra a 125%, os detalhes do equipamento ("Regulável") passam da borda',
 };
 
 async function preparar(page: Page, c: Cenario) {
@@ -79,6 +78,15 @@ const GRUPOS: Record<string, (page: Page) => Promise<void>> = {
     await criterios(page); // equipamento, vazio
     await page.getByRole('button', { name: 'Academia completa' }).click();
     await criterios(page); // equipamento, com a academia completa
+    await page.getByRole('button', { name: /^Conferir os \d+ itens/ }).click();
+    await criterios(page); // a lista: marcados, busca, categorias e grade
+    await detalhesDo(page, 'Polia simples');
+    await criterios(page); // a folha dos detalhes (era a pendência "Regulável" a 125%)
+    await pronto(page);
+    await page.getByRole('button', { name: 'Pela foto' }).click();
+    await folhaPronta(page);
+    await criterios(page); // a folha da foto
+    await page.keyboard.press('Escape');
     await page.getByRole('button', { name: 'Gerar meu programa' }).click();
     await expect(page.getByRole('heading', { name: 'Seu treino', exact: true })).toBeVisible();
     await criterios(page); // o programa recém-gerado

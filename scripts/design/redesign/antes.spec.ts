@@ -1,6 +1,6 @@
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs';
 import { expect, test, type Page } from '@playwright/test';
-import { abrirTrocar, proximoExercicio, terminarTreino, triagemNenhuma } from '../../../tests/e2e/jornada';
+import { abrirTrocar, marcarItem, pronto, proximoExercicio, terminarTreino, triagemNenhuma } from '../../../tests/e2e/jornada';
 import { medir, type Medida } from '../medir';
 
 // Redesign (06/11/2026), Fase 1: o inventário do app de hoje, por script. Para cada persona fictícia (o estado vem de
@@ -104,11 +104,14 @@ test('cadastro (Ana) e as variantes da tela de equipamento', async ({ page }) =>
   await foto(page, P, '05c-equipamento-corpo-livre');
   await page.reload();
   await expect(page.getByRole('heading', { name: 'Que equipamento você tem?' })).toBeVisible();
-  await page.getByLabel('Halteres fixos', { exact: true }).check();
+  // lote 3: item por item; marcar os halteres abre a folha dos detalhes
+  await marcarItem(page, 'Halteres fixos');
+  await foto(page, P, '05e-equipamento-detalhes');
   await grupo(page, 'O mais leve').getByLabel('1 kg', { exact: true }).check();
   await grupo(page, 'O mais pesado').getByLabel('12 kg', { exact: true }).check();
   await grupo(page, 'De quanto em quanto').getByLabel('1 kg', { exact: true }).check();
-  await page.getByLabel('Banco reto', { exact: true }).check();
+  await pronto(page);
+  await marcarItem(page, 'Banco reto');
   await foto(page, P, '05d-equipamento-lista-ana');
   // lote 3: o "Tudo certo?" saiu; o equipamento gera o programa
   await page.getByRole('button', { name: 'Gerar meu programa' }).click();

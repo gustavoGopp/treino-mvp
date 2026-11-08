@@ -1,4 +1,4 @@
-import { expect, type Page } from '@playwright/test';
+import { expect, type Locator, type Page } from '@playwright/test';
 
 // Percorre o onboarding pela interface, como uma pessoa faria. Usado pelos testes E2E e pelo GIF do devlog.
 // Persona fictícia Ana (tests/personas): iniciante, halteres fixos de 1 a 12 kg e banco reto, 3 x 45 min, prioridade pernas e glúteos.
@@ -6,7 +6,7 @@ import { expect, type Page } from '@playwright/test';
 
 export type Opcoes = { simEm?: string[]; pausa?: number };
 
-const grupo = (page: Page, nome: string | RegExp) => page.getByRole('group', { name: nome });
+const grupo = (page: Page | Locator, nome: string | RegExp) => page.getByRole('group', { name: nome });
 
 /**
  * Triagem com alguma condição (lote 3 do redesign): "Sim, alguma (ou não tenho certeza)", marca as que valem (pelo texto
@@ -88,11 +88,13 @@ export async function ana(
   await page.getByRole('button', { name: 'Continuar' }).click();
 
   await expect(page.getByRole('heading', { name: 'Que equipamento você tem?' })).toBeVisible();
-  await page.getByLabel('Halteres fixos', { exact: true }).check();
-  await grupo(page, 'O mais leve').getByLabel('1 kg', { exact: true }).check();
-  await grupo(page, 'O mais pesado').getByLabel('12 kg', { exact: true }).check();
-  await grupo(page, 'De quanto em quanto').getByLabel('1 kg', { exact: true }).check();
-  await page.getByLabel('Banco reto', { exact: true }).check();
+  // lote 3 do redesign: item por item; marcar um item com detalhes abre a folha dele
+  const halteres = await marcarItem(page, 'Halteres fixos');
+  await grupo(halteres, 'O mais leve').getByLabel('1 kg', { exact: true }).check();
+  await grupo(halteres, 'O mais pesado').getByLabel('12 kg', { exact: true }).check();
+  await grupo(halteres, 'De quanto em quanto').getByLabel('1 kg', { exact: true }).check();
+  await pronto(page);
+  await marcarItem(page, 'Banco reto');
   if (equipamentoExtra) await equipamentoExtra(page);
   await p();
   // lote 3 do redesign: o "Tudo certo?" saiu; o equipamento gera o programa
@@ -167,3 +169,36 @@ export async function verAvisos(page: Page) {
   await folhaPronta(page);
   return page.getByRole('dialog', { name: 'Avisos' });
 }
+
+// Equipamento (redesign, lote 3): o lugar primeiro; "Item por item" abre os marcados, a busca, as categorias e a grade.
+/** Abre a lista item por item, se ainda estiver fechada. */
+export async function abrirLista(page: Page) {
+  const b = page.getByRole('button', { name: 'Item por item' });
+  if ((await b.getAttribute('aria-expanded')) !== 'true') await b.click();
+}
+/**
+ * Marca (ou desmarca) um item pela grade, procurando a categoria pelos chips (sem digitar). Se o item tem detalhes, a
+ * folha dele abre: devolve a folha, pronta para tocar.
+ */
+export async function marcarItem(page: Page, nome: string, marcado = true) {
+  await abrirLista(page);
+  const caixa = page.locator('.grade-2').getByLabel(nome, { exact: true });
+  const chips = page.getByRole('group', { name: 'Categorias' }).getByRole('button');
+  for (let i = 0; i < (await chips.count()) && !(await caixa.count()); i++) await chips.nth(i).click();
+  await caixa.setChecked(marcado);
+  const folha = page.getByRole('dialog', { name: nome });
+  if (marcado && (await folha.count())) await folhaPronta(page);
+  return folha;
+}
+/** Abre os detalhes de um item marcado ("Mudar") e devolve a folha. */
+export async function detalhesDo(page: Page, nome: string) {
+  await abrirLista(page);
+  await page.getByRole('button', { name: `Mudar ${nome}` }).click();
+  await folhaPronta(page);
+  return page.getByRole('dialog', { name: nome });
+}
+/** Fecha a folha de detalhes do item ("Pronto"). */
+export async function pronto(page: Page) {
+  await page.getByRole('dialog').last().getByRole('button', { name: 'Pronto' }).click();
+}
+

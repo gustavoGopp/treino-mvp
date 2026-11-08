@@ -841,3 +841,46 @@ button.cartao-ex-corpo:focus-visible{outline:3px solid var(--foco);outline-offse
 .link-botao{display:inline-flex;align-items:center;min-height:3rem;padding:0;border:0;background:none;font:inherit;font-weight:700;color:var(--link);text-decoration:underline;text-underline-offset:3px;cursor:pointer}
 .nao-marcadas{max-height:40vh;overflow:auto}
 .opcao > span{min-width:0;overflow-wrap:break-word;hyphens:auto}
+
+/* Lote 3: o equipamento. O lugar primeiro (4 linhas com desenho), o que o app supôs, e a lista item por item: os
+   marcados (Mudar, Tirar), a busca, as categorias como chips e a grade de 2 colunas com "+ marcar" ou "✓ tenho". */
+.lugares-lista{display:flex;flex-direction:column;gap:8px}
+.lugar-linha{display:flex;align-items:center;gap:12px;min-height:4rem;width:100%;padding:8px 16px;border:1.5px solid var(--edge);border-radius:var(--r2);background:var(--surface);font:inherit;color:var(--ink);text-align:left;cursor:pointer}
+.lugar-linha svg{width:56px;height:42px;flex:none;fill:none;stroke:currentColor;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round;color:var(--accent)}
+.lugar-linha > span{display:flex;flex-direction:column;min-width:0}
+.lugar-linha b{font-weight:800;font-size:var(--t-corpo)}
+.lugar-linha small{font-size:var(--t-apoio);color:var(--muted)}
+.lugar-linha[aria-pressed="true"]{border:2px solid var(--accent);background:var(--accent-soft)}
+.lugar-linha:focus-visible{outline:3px solid var(--foco);outline-offset:2px}
+.supos{display:flex;flex-direction:column;gap:12px;background:var(--accent-soft);border-radius:var(--r2);padding:16px}
+.supos p{margin:0}
+.equipamento .chips{flex-wrap:wrap;overflow:visible}
+.lista-eq{display:flex;flex-direction:column;gap:24px}
+.marcados{list-style:none;margin:8px 0 0;padding:0;background:var(--surface);border-radius:var(--r2);overflow:hidden}
+.marcados li{display:flex;align-items:center;gap:8px;padding:8px 8px 8px 16px;min-height:4rem;border-bottom:1px solid var(--line)}
+.marcados li:last-child{border-bottom:0}
+.marcados .icone-eq{width:48px;height:36px;flex:none;fill:none;stroke:currentColor;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round;color:var(--accent)}
+.marcado-nome{flex:1;min-width:0;display:flex;flex-direction:column;overflow-wrap:break-word}
+.marcado-nome small{font-size:var(--t-apoio);color:var(--warn);font-weight:700}
+.marcados li.falta{background:var(--warn-soft)}
+.marcados .btn{flex:0 0 auto;width:auto}
+.busca{display:flex;flex-direction:column;gap:6px;font-weight:700}
+.busca input{min-height:3.5rem;border:1.5px solid var(--edge);border-radius:var(--r2);background:var(--surface);padding:0 16px;font:inherit;font-weight:400;color:var(--ink)}
+.grade-2{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.item-eq{position:relative;min-height:7rem;display:flex;flex-direction:column;align-items:flex-start;justify-content:space-between;gap:8px;padding:12px;border:1.5px solid var(--edge);border-radius:var(--r2);background:var(--surface);cursor:pointer;font-weight:700;line-height:1.2;overflow-wrap:break-word;min-width:0}
+.item-eq > span:not(.estado){min-width:0;max-width:100%;hyphens:auto}
+.item-eq .icone-eq{width:56px;height:42px;fill:none;stroke:currentColor;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round;color:var(--muted)}
+.item-eq input{position:absolute;opacity:0;width:1px;height:1px}
+.item-eq .estado{font-size:var(--t-rotulo);font-weight:800;color:var(--muted)}
+.item-eq .estado::before{content:"+ marcar"}
+.item-eq:has(input:checked){border:2px solid var(--accent);background:var(--accent-soft)}
+.item-eq:has(input:checked) .icone-eq,.item-eq:has(input:checked) .estado{color:var(--accent)}
+.item-eq:has(input:checked) .estado::before{content:"✓ tenho"}
+.item-eq:has(input:focus-visible){outline:3px solid var(--foco);outline-offset:2px}
+.opcoes.linha{flex-wrap:wrap}
+@media (max-width:279px){.grade-2{grid-template-columns:1fr}.lugar-linha svg,.marcados .icone-eq{display:none}}
+.folha .detalhes-eq{padding:0;border:0;background:none;box-shadow:none}
+.folha .detalhes-eq > h2{display:none}
+.equipamento .dois{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.equipamento .dois .btn{min-width:0;padding:0 8px;white-space:normal}
+@media (max-width:359px){.equipamento .dois{grid-template-columns:1fr}}
