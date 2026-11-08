@@ -98,6 +98,21 @@
     ]
   },
   {
+    "id": "volume.prioridade.ate-dois",
+    "regra": "Escolha até 2 grupos de foco (R5d, 08/11/2026; D-3 de `docs/revisoes/proximos-passos/a-qualidade.md`; R3 de `pesquisa-v2/15`): o cadastro recomenda até 2 grupos, sem bloquear a escolha; \"pernas\" conta como 3 (frente da coxa, posterior e panturrilha) e \"braços\" como 2. Com mais do que isso, uma nota diz que o foco se divide. Medido na frente A: o prioritário fica abaixo da meta em 44,1% dos casos com 1 grupo e em 50,2% com 3. Quantos grupos priorizar ao mesmo tempo não tem estudo (`pesquisa-v2/15`, 3c); a conta de tempo é do projeto",
+    "valores": {
+      "iniciante": "até 2 (pernas = 3, braços = 2), sem bloquear",
+      "intermediario": "até 2 (pernas = 3, braços = 2), sem bloquear",
+      "avancado": "até 2 (pernas = 3, braços = 2), sem bloquear"
+    },
+    "selo": "consenso",
+    "fontes": [
+      "consenso-projeto",
+      "remmert2025",
+      "pelland2026"
+    ]
+  },
+  {
     "id": "volume.semanal.maximo",
     "regra": "Máximo semanal padrão do nível",
     "valores": {

@@ -1,8 +1,9 @@
 import { describe, expect, it } from 'vitest';
 import { POR_ID } from '../../src/domain/biblioteca';
 import type { Musculo } from '../../src/domain/biblioteca';
-import { GRUPOS, gerarPrograma, metasDoPerfil, type Grupo, type Perfil, type Programa } from '../../src/domain/gerador';
+import { GRUPOS, gerarPrograma, metasDoPerfil, musculosDoAviso, type Grupo, type Perfil, type Programa } from '../../src/domain/gerador';
 import { DIVISOES, OPCOES_POR_DIAS } from '../../src/domain/gerador/divisoes';
+import { notaDoFoco } from '../../src/domain/gerador/opcoes';
 import { FUNCAO } from '../../src/domain/gerador/funcoes';
 import { VOLUME } from '../../src/domain/regras';
 import type { Inventario } from '../../src/domain/taxonomia/equipamentos';
@@ -125,5 +126,35 @@ describe('a barra só na descida antes da barra para o iniciante (selecao.barra-
   });
   it('o intermediário continua com a barra fixa', () => {
     expect(ids(ok({ ...gael.perfil, prioridades: ['costas'] }, soBarra))).toContain('barra-fixa');
+  });
+});
+
+describe('os avisos de lacuna dizem o que o programa tem (R5-CL; conferido no R5d)', () => {
+  it('nenhum músculo com exercício direto no programa aparece como "sem exercício"; "só com remadas" nunca vem com puxada', () => {
+    const invs: Inventario[] = [{}, { elasticos: { intensidades: 3 } }, { barra_fixa: {} }, { halteres_fixos: { minKg: 2, maxKg: 20, passoKg: 2 } }, { suspensao: {} }];
+    for (const inv of invs)
+      for (const nivel of ['iniciante', 'intermediario', 'avancado'] as const)
+        for (const dias of [2, 3, 4, 5, 6] as const)
+          for (const prioridades of [[], ['costas'], ['peito', 'costas', 'ombros', 'bracos']] as Grupo[][]) {
+            const p = ok({ ...gael.perfil, nivel, prioridades, diasSemana: dias, divisao: OPCOES_POR_DIAS[dias][0] }, inv);
+            const nome = `${JSON.stringify(inv)}/${nivel}/${dias}d/${prioridades.join('+')}`;
+            const diretos = new Set(p.dias.flatMap((d) => d.exercicios.flatMap((x) => POR_ID[x.exId]!.musculos.primarios)));
+            for (const a of p.avisos.filter((x) => x.regraId === 'equipamento.sem-ancoragem' || x.texto.startsWith('Sem exercício possível')))
+              for (const m of musculosDoAviso(a)) expect(diretos.has(m), `${nome}: ${a.texto}`).toBe(false);
+            if (p.avisos.some((a) => /só com remadas/.test(a.texto))) expect(p.dias.some((d) => d.exercicios.some((x) => x.padrao === 'puxar-v')), nome).toBe(false);
+          }
+  });
+});
+
+describe('escolha até 2 grupos de foco (volume.prioridade.ate-dois)', () => {
+  it('sem nota com até 2 grupos (braços conta 2); com mais, a nota não bloqueia e diz por quê', () => {
+    expect(notaDoFoco([])).toBeNull();
+    expect(notaDoFoco(['peito'])).toBeNull();
+    expect(notaDoFoco(['peito', 'costas'])).toBeNull();
+    expect(notaDoFoco(['bracos'])).toBeNull();
+    expect(notaDoFoco(['peito', 'costas', 'ombros'])).toMatch(/^Com mais de 2 grupos, o foco se divide e cada um cresce menos\. Dá para seguir assim/);
+    expect(notaDoFoco(['peito', 'bracos'])).toMatch(/^"Braços" conta como 2: bíceps e tríceps\./);
+    expect(notaDoFoco(['pernas'])).toMatch(/^"Pernas" conta como 3: frente da coxa, posterior e panturrilha\. Com isso, o foco se divide/);
+    expect(notaDoFoco(['peito', 'costas', 'pernas'])).toMatch(/"Pernas" conta como 3/);
   });
 });

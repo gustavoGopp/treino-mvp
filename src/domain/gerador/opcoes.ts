@@ -105,3 +105,22 @@ function menosPrioridade(perfil: Perfil, programa: Programa): Grupo[] {
   const cobertura = (g: Grupo) => Math.min(...GRUPOS[g].map((m) => (programa.volumeSemanal[m] ?? 0) / (programa.metas[m] ?? 1)));
   return [[...perfil.prioridades].sort((a, b) => cobertura(a) - cobertura(b) || a.localeCompare(b))[0]!];
 }
+
+/** Quanto cada grupo pesa no foco (volume.prioridade.ate-dois): o número de músculos com meta que ele tem. */
+export const PESO_DO_GRUPO = (g: Grupo): number => GRUPOS[g].length;
+/** Até quanto o foco rende sem se dividir (volume.prioridade.ate-dois). */
+export const FOCO_RECOMENDADO = 2;
+
+/**
+ * A nota do cadastro sobre o foco (volume.prioridade.ate-dois, R5d): recomenda até 2 grupos, sem bloquear; "pernas" conta
+ * como 3 e "braços" como 2. Sem nota quando o foco cabe na recomendação.
+ */
+export function notaDoFoco(prioridades: Grupo[]): string | null {
+  const peso = prioridades.reduce((t, g) => t + PESO_DO_GRUPO(g), 0);
+  if (peso <= FOCO_RECOMENDADO) return null;
+  const fim = 'Dá para seguir assim, mas o foco rende mais com até 2.';
+  const pernas = '"Pernas" conta como 3: frente da coxa, posterior e panturrilha.';
+  if (prioridades.length > FOCO_RECOMENDADO) return `Com mais de 2 grupos, o foco se divide e cada um cresce menos. ${fim}${prioridades.includes('pernas') ? ` ${pernas}` : ''}`;
+  const qual = prioridades.includes('pernas') ? pernas : '"Braços" conta como 2: bíceps e tríceps.';
+  return `${qual} Com isso, o foco se divide e cada músculo cresce menos. ${fim}`;
+}
