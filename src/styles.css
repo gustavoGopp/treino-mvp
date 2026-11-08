@@ -809,3 +809,25 @@ button.cartao-ex-corpo:focus-visible{outline:3px solid var(--foco);outline-offse
 .lista-subiu a .num{font-size:var(--t-apoio);color:var(--muted)}
 .lista-subiu a:focus-visible{outline:3px solid var(--foco);outline-offset:-3px}
 .resumo-evolucao{margin:0;background:var(--accent-soft);border-radius:var(--r2);padding:12px 16px;font-size:var(--t-corpo);color:var(--ink)}
+
+/* Lote 3 (08/11/2026): o cadastro. Cabeçalho dos passos com "‹ Voltar" no alto. */
+.progresso-linha{display:flex;align-items:center;justify-content:space-between;gap:8px;min-height:3rem}
+.progresso-linha > span{margin-left:auto}
+.volta-passo{display:inline-flex;align-items:center;min-height:3rem;padding-right:12px;font-weight:700;font-size:var(--t-corpo)}
+
+/* Lote 3: a apresentação B ("o seu lugar"). Os 4 lugares no topo, o aviso numa nota calma antes do botão. */
+.boas{gap:16px}
+.lugares{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;padding:24px 12px;border-radius:var(--r2);background:var(--accent-soft);color:var(--accent)}
+.lugares svg{width:100%;height:auto;max-height:4.5rem;fill:none;stroke:currentColor;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round}
+.boas .titulo{font-size:1.875rem;line-height:1.15}
+.boas .lede{margin:0}
+.nota-aviso{display:flex;gap:12px;align-items:flex-start;margin:0;padding:16px;border-radius:var(--r2);background:var(--surface)}
+.nota-aviso > svg,.privacidade-linha svg{width:1.5rem;height:1.5rem;flex:none;fill:none;stroke:var(--muted);stroke-width:2;stroke-linecap:round;stroke-linejoin:round;margin-top:2px}
+.nota-aviso h2{margin:0 0 4px;font-size:var(--t-corpo);font-weight:800}
+.nota-aviso p{margin:0;font-size:var(--t-corpo);line-height:1.4}
+.privacidade-linha{margin:0}
+.privacidade-linha button{display:flex;gap:12px;align-items:center;width:100%;min-height:3rem;padding:0;border:0;background:none;font:inherit;font-weight:700;color:var(--ink);text-align:left;text-decoration:underline;text-decoration-color:var(--line);text-underline-offset:4px;cursor:pointer}
+.privacidade-linha svg{stroke:var(--accent);margin-top:0}
+.acao-boas{margin-top:auto}
+.sob-botao{margin:8px 0 0;text-align:center;font-size:var(--t-apoio);color:var(--muted)}
+@media (max-height:800px){.boas{gap:12px}.lugares{padding:12px}.lugares svg{max-height:3.25rem}.boas .titulo{font-size:1.5rem}.nota-aviso{padding:12px}}

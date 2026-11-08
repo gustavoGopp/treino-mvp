@@ -47,7 +47,7 @@ for (const tema of ['light', 'dark'] as const) {
     await page.emulateMedia({ colorScheme: tema });
     await page.goto('/');
     await conferir(page);
-    await page.getByRole('button', { name: 'Entendi, vamos começar' }).click();
+    await page.getByRole('button', { name: 'Começar', exact: true }).click();
     await conferir(page); // triagem em lista
     await page.getByRole('button', { name: 'Sim, alguma vale' }).click();
     await conferir(page); // triagem uma a uma

@@ -54,7 +54,7 @@ export async function ana(
   const p = () => (pausa ? page.waitForTimeout(pausa) : Promise.resolve());
   await page.goto('/');
   await p();
-  await page.getByRole('button', { name: 'Entendi, vamos começar' }).click();
+  await page.getByRole('button', { name: 'Começar', exact: true }).click();
   if (passarTriagem) await passarTriagem(page);
   else await triagemNenhuma(page);
   await p();

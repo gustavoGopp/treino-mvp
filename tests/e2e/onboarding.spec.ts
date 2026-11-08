@@ -65,7 +65,7 @@ test('divisão: escolhida em Meus dados, sem nada marcado, com a recomendada exp
 
 test('triagem com "sim" bloqueia, e confirmar a liberação desbloqueia', async ({ page }) => {
   await page.goto('/');
-  await page.getByRole('button', { name: 'Entendi, vamos começar' }).click();
+  await page.getByRole('button', { name: 'Começar', exact: true }).click();
   await triagem(page, { simEm: ['coração'] });
 
   await expect(page.getByRole('heading', { name: 'Vamos pausar o programa automático' })).toBeVisible();
@@ -201,7 +201,7 @@ test('exportar, apagar e importar devolve o mesmo estado', async ({ page }) => {
 
   await page.getByRole('button', { name: 'Apagar todos os dados' }).click();
   await page.getByRole('button', { name: 'Sim, apagar tudo' }).click();
-  await expect(page.getByRole('heading', { name: 'Seu treino, com o equipamento que você tem' })).toBeVisible();
+  await expect(page.getByRole('heading', { name: 'Treine onde estiver, com o que tiver' })).toBeVisible();
 
   await page.goto('/dados');
   await page.getByLabel('Arquivo exportado pelo treino-mvp').setInputFiles(arquivo);

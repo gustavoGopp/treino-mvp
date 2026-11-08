@@ -209,26 +209,30 @@ export function Passo({ id, titulo, children }: { id: PassoId; titulo: string; c
   const pendente = primeiroPassoPendente(estado);
   if (pendente && PASSOS.findIndex((p) => p.id === pendente.id) < indice) return <Navigate to={pendente.rota} replace />;
   const anterior = PASSOS[indice - 1];
+  // lote 3 do redesign: "‹ Voltar" no alto e "Passo N de 4", sem contar a boas-vindas (que não é uma pergunta)
+  const total = PASSOS.length - 1;
   return (
     <div className="wrap app">
       <Topo direita={estado.programa && !pendente ? <Link to="/programa">Meu programa</Link> : undefined} />
       <div className="progresso">
-        <span>
-          Passo {indice + 1} de {PASSOS.length}
-        </span>
+        <div className="progresso-linha">
+          {anterior && (
+            <Link className="volta-passo" to={anterior.rota} aria-label={`Voltar para ${anterior.titulo.toLowerCase()}`}>
+              ‹ Voltar
+            </Link>
+          )}
+          <span>
+            Passo {indice} de {total}
+          </span>
+        </div>
         <div className="barra" aria-hidden="true">
-          <i style={{ width: `${((indice + 1) / PASSOS.length) * 100}%` }} />
+          <i style={{ width: `${(indice / total) * 100}%` }} />
         </div>
       </div>
       <main className="conteudo">
         <Titulo>{titulo}</Titulo>
         {children}
       </main>
-      {anterior && (
-        <Link className="voltar" to={anterior.rota}>
-          Voltar para {anterior.titulo.toLowerCase()}
-        </Link>
-      )}
     </div>
   );
 }

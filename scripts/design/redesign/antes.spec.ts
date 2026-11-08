@@ -46,7 +46,7 @@ async function foto(page: Page, persona: string, nome: string) {
 async function comEstado(page: Page, persona: string) {
   const estado = JSON.parse(readFileSync(`reports/design/redesign/estados/${persona}.json`, 'utf8'));
   await page.goto('/');
-  await expect(page.getByRole('button', { name: 'Entendi, vamos começar' })).toBeVisible();
+  await expect(page.getByRole('button', { name: 'Começar', exact: true })).toBeVisible();
   await page.evaluate(async (e) => {
     const db = await new Promise<IDBDatabase>((ok, erro) => {
       const r = indexedDB.open('keyval-store');
@@ -68,7 +68,7 @@ test('cadastro (Ana) e as variantes da tela de equipamento', async ({ page }) =>
   const P = 'cadastro';
   await page.goto('/');
   await foto(page, P, '01-boas-vindas');
-  await page.getByRole('button', { name: 'Entendi, vamos começar' }).click();
+  await page.getByRole('button', { name: 'Começar', exact: true }).click();
   await expect(page.getByRole('heading', { name: 'Antes de começar, 9 perguntas rápidas' })).toBeVisible();
   await foto(page, P, '02-triagem');
   await page.getByRole('button', { name: 'Sim, alguma vale' }).click();

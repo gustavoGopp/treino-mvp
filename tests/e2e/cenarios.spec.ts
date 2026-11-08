@@ -53,7 +53,7 @@ const GRUPOS: Record<string, (page: Page) => Promise<void>> = {
   cadastro: async (page) => {
     await page.goto('/');
     await criterios(page); // boas-vindas
-    await page.getByRole('button', { name: 'Entendi, vamos começar' }).click();
+    await page.getByRole('button', { name: 'Começar', exact: true }).click();
     await criterios(page); // triagem em lista
     await page.getByRole('button', { name: 'Sim, alguma vale' }).click();
     await criterios(page); // triagem uma a uma

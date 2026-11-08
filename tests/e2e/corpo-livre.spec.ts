@@ -7,7 +7,7 @@ const grupo = (page: Page, nome: string | RegExp) => page.getByRole('group', { n
 
 test('Corpo livre: sem nada marcado, o programa sai só com o peso do corpo, diz o que falta sem sugerir compra e o 1º treino registra por degrau', async ({ page }) => {
   await page.goto('/');
-  await page.getByRole('button', { name: 'Entendi, vamos começar' }).click();
+  await page.getByRole('button', { name: 'Começar', exact: true }).click();
   await triagemNenhuma(page);
 
   await expect(page.getByRole('heading', { name: 'Sua experiência com musculação' })).toBeVisible();

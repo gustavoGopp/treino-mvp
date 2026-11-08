@@ -223,3 +223,4 @@ export function IconeEquipamento({ id }: { id: ItemId }) {
     </svg>
   );
 }
+

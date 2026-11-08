@@ -2,8 +2,8 @@ import { expect, test } from '@playwright/test';
 import { ana } from './jornada';
 
 test('do início ao guia: troca de exercício, modo e vista', async ({ page }) => {
-  await page.goto('/');
-  await page.getByRole('link', { name: 'Ver o guia de execução' }).click();
+  // lote 3 do redesign: a boas-vindas não tem mais o atalho; o guia abre pelo endereço
+  await page.goto('/guia');
   await expect(page).toHaveURL(/\/guia\/supino-inclinado$/);
   await expect(page.getByRole('heading', { name: 'Supino inclinado com halteres' })).toBeVisible();
   await expect(page.locator('.stage svg line').first()).toBeAttached();
