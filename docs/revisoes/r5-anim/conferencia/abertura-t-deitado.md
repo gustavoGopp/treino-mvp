@@ -1,6 +1,6 @@
 # Conferência da folha: Abertura em T deitado de bruços (`abertura-t-deitado`)
 
-Cada ponto do movimento, a fonte (ficha `docs/pesquisa/animacoes/abertura-t-deitado.md`) e o que foi medido no boneco (`node scripts/medir-animacao.mjs abertura-t-deitado`, centímetros do motor; y para cima, z para a frente, a cabeça para a frente). A folha: `../folhas/abertura-t-deitado.png` (estilo A, R4; a vista "por trás" olha dos pés para a cabeça). Checagem de cinemática: `ik=0` na animação e nos 3 erros.
+Cada ponto do movimento, a fonte (ficha `docs/pesquisa/animacoes/abertura-t-deitado.md`) e o que foi medido no boneco (`node scripts/medir-animacao.mjs abertura-t-deitado`, centímetros do motor; y para cima, z para a frente, a cabeça para a frente). A folha: `../folhas/abertura-t-deitado.png` (estilo A, R4). Vistas: **pela cabeça** (frontal: mostra os braços subindo), **de cima** (mostra a pessoa deitada em T) e de lado. A 1ª versão usava a vista "por trás" (dos pés para a cabeça), que o Gustavo achou esquisita em 08/11: as pernas, vistas de ponta, viravam um volume no meio. Checagem de cinemática: `ik=0` na animação e nos 3 erros.
 
 | Ponto | O que a fonte pede | O que o boneco faz (medido) | Confere? |
 |---|---|---|---|
@@ -12,4 +12,4 @@ Cada ponto do movimento, a fonte (ficha `docs/pesquisa/animacoes/abertura-t-deit
 | Erros | Dobrar os cotovelos; encolher os ombros; tirar o peito do chão | `cotovelo`: as mãos vêm para perto da cabeça, com os cotovelos dobrados para cima (o W); `encolher`: os ombros sobem 7 cm em direção às orelhas; `cabeca`: o tórax sobe 18° e o pescoço 43° | sim |
 | Músculos | Ombro de trás | ombro de trás em vermelho, nos dois lados | sim |
 
-**Limite da vista.** De lado, os braços apontam para a câmera e a subida aparece pequena (é pequena de fato); a vista "por trás" é a que mostra o T.
+**Limite da vista.** De lado, os braços apontam para a câmera e a subida aparece pequena (é pequena de fato); a vista pela cabeça é a que mostra a subida, e a de cima, o T.

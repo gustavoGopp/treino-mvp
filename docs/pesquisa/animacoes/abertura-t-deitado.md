@@ -3,7 +3,7 @@
 Exercício da biblioteca ampliada: `abertura-t-deitado` (proposto em `../../pesquisa-v2/16-corpo-livre-e-casa.md`, parte de puxar e ombro de trás; entra na biblioteca no R5-CL). Ombro de trás, nível 3 novo da função, depois do elástico e da suspensão: o único isolador do ombro de trás sem equipamento. Nos programas sem dor, aparece em **56,1%** (`../../revisoes/proximos-passos/g-biblioteca-ampliada.md`, seção 4). Ficha escrita no R5-anim (08/11/2026); **em revisão** até o "aprovar" do Gustavo na folha.
 
 - **Animação:** `abertura-t-deitado`, em `src/engine/exercicios/revisao/` (fora do app até a aprovação).
-- **Base aprovada:** o corpo de bruços da `flexao-joelho-elastico` (o tronco a +90°, as pernas estendidas) e o T, os guias e dois erros do `yt-suspensao`. Colchonete como nas outras; nenhuma peça nova de cena. A toalha sob a testa fica só no texto.
+- **Base aprovada:** o corpo de bruços da `flexao-joelho-elastico` (o tronco a +90°, as pernas estendidas) e o T, os guias e dois erros do `yt-suspensao`. Colchonete como nas outras; nenhuma peça nova de cena. A toalha sob a testa fica só no texto. Vistas: pela cabeça, de cima e de lado (a vista "por trás" da 1ª versão saiu: as pernas vistas de ponta confundiam).
 
 ## Técnica animada
 | Ponto | O que a animação mostra | Selo | Fonte |
