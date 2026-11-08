@@ -11,17 +11,17 @@
 | Puxar vertical | 2916 | 1863 | 267 (14,3%) | 738 (39,6%) | casa · iniciante · Corpo todo A/B/C · 45 min: remada-unilateral-sem-banco em 2 dias, com remada-curvada-halteres possível<br>casa · iniciante · Corpo todo A/B/C · 60 min: remada-unilateral-sem-banco em 2 dias, com remada-curvada-halteres possível<br>casa · iniciante · Corpo todo A/B/C · 90 min: remada-unilateral-sem-banco em 2 dias, com remada-curvada-halteres possível |
 | Puxar horizontal | 2736 | 1360 | 69 (5,1%) | 568 (41,8%) | casa · iniciante · Corpo todo 4x · 45 min: remada-curvada-halteres em 2 dias, com remada-unilateral-sem-banco possível<br>casa · iniciante · Corpo todo 4x · 60 min: remada-curvada-halteres em 2 dias, com remada-unilateral-sem-banco possível<br>casa · iniciante · Corpo todo 4x · 90 min: remada-curvada-halteres em 2 dias, com remada-unilateral-sem-banco possível |
 | Empurrar vertical | 1980 | 0 | 0 (—) | 0 (—) | — |
-| Elevação lateral | 1950 | 1449 | 75 (5,2%) | 1224 (84,5%) | academia · iniciante · Corpo todo A/B · 90 min: elevacao-lateral em 2 dias, com elevacao-halteres possível<br>academia · iniciante · Corpo todo A/B/C · 45 min: elevacao-lateral em 2 dias, com elevacao-halteres possível<br>academia · iniciante · Corpo todo A/B/C · 60 min: elevacao-lateral em 2 dias, com elevacao-halteres possível |
+| Elevação lateral | 1950 | 1446 | 75 (5,2%) | 1221 (84,4%) | academia · iniciante · Corpo todo A/B · 90 min: elevacao-lateral em 2 dias, com elevacao-halteres possível<br>academia · iniciante · Corpo todo A/B/C · 45 min: elevacao-lateral em 2 dias, com elevacao-halteres possível<br>academia · iniciante · Corpo todo A/B/C · 60 min: elevacao-lateral em 2 dias, com elevacao-halteres possível |
 | Ombro posterior | 1944 | 1149 | 114 (9,9%) | 693 (60,3%) | casa+ · iniciante · Superior/Inferior (2x) · 60 min: crucifixo-inverso em 2 dias, com crucifixo-invertido-curvado possível<br>casa+ · iniciante · Superior/Inferior (2x) · 90 min: crucifixo-inverso em 2 dias, com crucifixo-invertido-curvado possível<br>casa+ · iniciante · Corpo todo 4x · 60 min: crucifixo-inverso em 2 dias, com crucifixo-invertido-curvado possível |
 | Bíceps | 2484 | 1404 | 20 (1,4%) | 804 (57,3%) | bruno · iniciante · Superior/Inferior + Corpo todo · 60 min: rosca-inclinada em 2 dias, com rosca-polia-costas possível<br>bruno · iniciante · Superior/Inferior + Corpo todo · 90 min: rosca-inclinada em 2 dias, com rosca-polia-costas possível<br>bruno · iniciante · Superior/Inferior (2x) · 45 min: rosca-inclinada em 2 dias, com rosca-polia-costas possível |
 | Tríceps acima da cabeça | 2268 | 756 | 72 (9,5%) | 540 (71,4%) | casa · iniciante · Superior/Inferior + Empurrar/Puxar/Pernas · 45 min: triceps-frances-halter em 2 dias, com triceps-elastico-acima possível<br>casa · iniciante · Superior/Inferior + Empurrar/Puxar/Pernas · 60 min: triceps-frances-halter em 2 dias, com triceps-elastico-acima possível<br>casa · iniciante · Superior/Inferior + Empurrar/Puxar/Pernas · 90 min: triceps-frances-halter em 2 dias, com triceps-elastico-acima possível |
 | Tríceps (complemento) | 5380 | 1947 | 0 (0%) | 1917 (98,5%) | — |
-| Agachar | 5940 | 891 | 0 (0%) | 699 (78,5%) | — |
-| Afundo | 5940 | 3291 | 0 (0%) | 69 (2,1%) | — |
+| Agachar | 5940 | 858 | 0 (0%) | 666 (77,6%) | — |
+| Afundo | 5940 | 3183 | 0 (0%) | 69 (2,2%) | — |
 | Extensora | 1404 | 702 | 54 (7,7%) | 648 (92,3%) | casa+ · iniciante · Superior/Inferior (2x) · 45 min: extensao-joelho-caneleira em 2 dias, com extensao-joelho-elastico possível<br>casa+ · iniciante · Superior/Inferior (2x) · 60 min: extensao-joelho-caneleira em 2 dias, com extensao-joelho-elastico possível<br>casa+ · iniciante · Superior/Inferior (2x) · 90 min: extensao-joelho-caneleira em 2 dias, com extensao-joelho-elastico possível |
 | Flexão de joelho | 5940 | 4209 | 0 (0%) | 1863 (44,3%) | — |
 | Dobrar o quadril | 2232 | 858 | 0 (0%) | 270 (31,5%) | — |
-| Extensão de quadril (glúteo) | 5328 | 495 | 99 (20%) | 360 (72,7%) | casa · iniciante · Superior/Inferior (3x) · 45 min: ponte-gluteo-halter em 2 dias, com ponte-gluteo possível<br>casa · iniciante · Superior/Inferior (3x) · 60 min: ponte-gluteo-halter em 2 dias, com ponte-gluteo possível<br>casa · iniciante · Superior/Inferior (3x) · 90 min: ponte-gluteo-halter em 2 dias, com ponte-gluteo possível |
+| Extensão de quadril (glúteo) | 5637 | 495 | 99 (20%) | 360 (72,7%) | casa · iniciante · Superior/Inferior (3x) · 45 min: ponte-gluteo-halter em 2 dias, com ponte-gluteo possível<br>casa · iniciante · Superior/Inferior (3x) · 60 min: ponte-gluteo-halter em 2 dias, com ponte-gluteo possível<br>casa · iniciante · Superior/Inferior (3x) · 90 min: ponte-gluteo-halter em 2 dias, com ponte-gluteo possível |
 | Abdução de quadril | 6 | 0 | 0 (—) | 0 (—) | — |
 | Panturrilha em pé | 5940 | 3078 | 0 (0%) | 2736 (88,9%) | — |
 | Panturrilha sentada (complemento) | 45 | 6 | 0 (0%) | 6 (100%) | — |
@@ -50,7 +50,7 @@
 | Só máquina de abdominal | 108 | 0% | 100% |
 | Só anilhas e manoplas para montar halteres | 108 | 33,3% | 88,9% |
 | Só banco romano (hiperextensão) ou ghd | 108 | 8,3% | 100% |
-| Só barra fixa | 108 | 0% | 75% |
+| Só barra fixa | 108 | 0% | 73,1% |
 | Só barra hexagonal (trap bar) | 108 | 0% | 100% |
 | Só barra longa (olímpica ou comum) | 108 | 0% | 88,9% |
 | Só barra w | 108 | 0% | 91,7% |
