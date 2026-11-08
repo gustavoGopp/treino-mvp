@@ -1,5 +1,5 @@
 import { expect, test } from '@playwright/test';
-import { abrirExercicio, ana, sobreOPrograma, triagem, verAvisos } from './jornada';
+import { abrirExercicio, ana, confirmarNaoMarcadas, folhaPronta, sobreOPrograma, triagem, verAvisos } from './jornada';
 
 test('do zero ao programa em menos de 5 minutos (persona Ana)', async ({ page }) => {
   const inicio = Date.now();
@@ -80,6 +80,30 @@ test('triagem com "sim" bloqueia, e confirmar a liberação desbloqueia', async 
   await expect(page.getByRole('heading', { name: 'Sua experiência com musculação' })).toBeVisible();
 });
 
+test('lote 3: a saúde em uma pergunta mostra as perguntas inteiras a um toque, e "sim" sem nada marcado pede para voltar', async ({ page }) => {
+  await page.goto('/');
+  await page.getByRole('button', { name: 'Começar', exact: true }).click();
+  await expect(page.getByText('Treinar é seguro para a maioria das pessoas. Esta pergunta vê se vale falar com um profissional antes.')).toBeVisible();
+  await page.getByRole('button', { name: 'Ver as perguntas completas' }).click();
+  const completas = page.getByRole('dialog', { name: 'As 9 perguntas completas' });
+  await expect(completas.getByRole('listitem')).toHaveCount(9);
+  await expect(completas).toContainText('Você está grávida ou teve bebê nos últimos 6 meses?');
+  await page.keyboard.press('Escape');
+  await page.getByRole('button', { name: 'Sim, alguma (ou não tenho certeza)' }).click();
+  await page.getByRole('button', { name: 'Continuar' }).click();
+  await expect(page.getByRole('alert')).toContainText('Nenhuma marcada. Se nenhuma vale, volte e toque em “Não, nenhuma”.');
+  // marcar uma e voltar no diálogo mantém a marca; nada é salvo antes de confirmar
+  await page.locator('label.opcao', { hasText: 'Dor no peito' }).getByRole('checkbox').check();
+  await page.getByRole('button', { name: 'Continuar' }).click();
+  const dialogo = page.getByRole('dialog', { name: 'Nenhuma destas vale para você?' });
+  await expect(dialogo.getByRole('listitem')).toHaveCount(8);
+  await folhaPronta(page);
+  await dialogo.getByRole('button', { name: 'Voltar e marcar' }).click();
+  await expect(page.locator('label.opcao', { hasText: 'Dor no peito' }).getByRole('checkbox')).toBeChecked();
+  await page.reload();
+  await expect(page.getByRole('heading', { name: 'Alguma destas vale para você?' })).toBeVisible();
+});
+
 test('"sim" só no osteoarticular pede as regiões e a dor de hoje, e o aviso diz o motivo verdadeiro', async ({ page }) => {
   await ana(page, {
     passarTriagem: async (p) => {
@@ -90,6 +114,11 @@ test('"sim" só no osteoarticular pede as regiões e a dor de hoje, e o aviso di
       await expect(p.getByText('Dê a nota da dor de hoje na região marcada.')).toBeVisible();
       await p.getByRole('group', { name: /E hoje, dói no ombro/ }).getByLabel('7', { exact: true }).check();
       await p.getByRole('button', { name: 'Continuar' }).click();
+      // lote 3 do redesign: as não marcadas são confirmadas, uma a uma, com a pergunta inteira
+      const dialogo = p.getByRole('dialog', { name: 'Nenhuma destas vale para você?' });
+      await expect(dialogo).toContainText('Você não marcou estas 8:');
+      await expect(dialogo).toContainText('Algum médico já disse que você tem problema no coração ou pressão alta?');
+      await confirmarNaoMarcadas(p);
       await expect(p.getByRole('heading', { name: 'Sua experiência com musculação' })).toBeVisible();
     },
   });

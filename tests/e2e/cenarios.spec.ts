@@ -1,6 +1,6 @@
 import { expect, test, type Page } from '@playwright/test';
 import { criterios } from './criterios';
-import { abrirExercicio, abrirTrocar, ana, maisOpcoes, proximoExercicio, sobreOPrograma, terminarTreino, verAvisos } from './jornada';
+import { abrirExercicio, abrirTrocar, ana, folhaPronta, maisOpcoes, proximoExercicio, sobreOPrograma, terminarTreino, verAvisos } from './jornada';
 
 // Redesign (06/11/2026), lote 1: os 4 critérios (toque de 44 px, contraste, texto cortado e foco coberto) em todas as
 // telas, nos 7 cenários que o protótipo mediu (docs/revisoes/redesign/proposta.md, seção 13). Os cenários de 320 px,
@@ -55,10 +55,18 @@ const GRUPOS: Record<string, (page: Page) => Promise<void>> = {
     await criterios(page); // boas-vindas
     await page.getByRole('button', { name: 'Começar', exact: true }).click();
     await criterios(page); // triagem em lista
-    await page.getByRole('button', { name: 'Sim, alguma vale' }).click();
-    await criterios(page); // triagem uma a uma
+    await page.getByRole('button', { name: 'Ver as perguntas completas' }).click();
+    await folhaPronta(page);
+    await criterios(page); // as 9 perguntas inteiras
+    await page.keyboard.press('Escape');
+    await page.getByRole('button', { name: 'Sim, alguma (ou não tenho certeza)' }).click();
+    await criterios(page); // a tela do "sim"
+    await page.locator('label.opcao', { hasText: 'Dor no peito' }).getByRole('checkbox').check();
+    await page.getByRole('button', { name: 'Continuar' }).click();
+    await folhaPronta(page);
+    await criterios(page); // a confirmação das não marcadas
     await page.goto('/comecar/triagem');
-    await page.getByRole('button', { name: 'Nenhuma vale para mim' }).click();
+    await page.getByRole('button', { name: 'Não, nenhuma' }).click();
     await page.getByRole('group', { name: /sem parar/ }).getByLabel('Menos de 6 meses').check();
     await page.getByRole('group', { name: /treinando agora/ }).getByLabel(/^Estou treinando/).check();
     await page.getByRole('group', { name: /confiança na técnica/ }).getByLabel(/^Sim/).check();

@@ -831,3 +831,13 @@ button.cartao-ex-corpo:focus-visible{outline:3px solid var(--foco);outline-offse
 .acao-boas{margin-top:auto}
 .sob-botao{margin:8px 0 0;text-align:center;font-size:var(--t-apoio);color:var(--muted)}
 @media (max-height:800px){.boas{gap:12px}.lugares{padding:12px}.lugares svg{max-height:3.25rem}.boas .titulo{font-size:1.5rem}.nota-aviso{padding:12px}}
+
+/* Lote 3: a saúde em uma pergunta. As 9 condições curtas em lista; na tela do "sim", a curta em negrito e a inteira embaixo. */
+.condicoes{list-style:none;margin:0;padding:0;background:var(--surface);border-radius:var(--r2);overflow:hidden}
+.condicoes li{padding:10px 16px;border-bottom:1px solid var(--line);font-size:var(--t-corpo);font-weight:600}
+.condicoes li:last-child{border-bottom:0}
+.opcao .curta{display:block;font-weight:800}
+.opcao .longa{display:block;margin-top:2px;font-weight:400;font-size:var(--t-apoio);color:var(--muted)}
+.link-botao{display:inline-flex;align-items:center;min-height:3rem;padding:0;border:0;background:none;font:inherit;font-weight:700;color:var(--link);text-decoration:underline;text-underline-offset:3px;cursor:pointer}
+.nao-marcadas{max-height:40vh;overflow:auto}
+.opcao > span{min-width:0;overflow-wrap:break-word;hyphens:auto}

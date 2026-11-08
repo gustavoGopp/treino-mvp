@@ -69,11 +69,14 @@ test('cadastro (Ana) e as variantes da tela de equipamento', async ({ page }) =>
   await page.goto('/');
   await foto(page, P, '01-boas-vindas');
   await page.getByRole('button', { name: 'Começar', exact: true }).click();
-  await expect(page.getByRole('heading', { name: 'Antes de começar, 9 perguntas rápidas' })).toBeVisible();
+  await expect(page.getByRole('heading', { name: 'Alguma destas vale para você?' })).toBeVisible();
   await foto(page, P, '02-triagem');
-  await page.getByRole('button', { name: 'Sim, alguma vale' }).click();
+  await page.getByRole('button', { name: 'Sim, alguma (ou não tenho certeza)' }).click();
   await foto(page, P, '02b-triagem-uma-a-uma');
-  await page.goBack();
+  await page.locator('label.opcao', { hasText: 'Dor no peito' }).getByRole('checkbox').check();
+  await page.getByRole('button', { name: 'Continuar' }).click();
+  await page.locator('.folha').last().evaluate((e) => Promise.all(e.getAnimations().map((a) => a.finished)));
+  await foto(page, P, '02c-triagem-confirmar');
   await page.goto('/comecar/triagem');
   await triagemNenhuma(page);
   await expect(page.getByRole('heading', { name: 'Sua experiência com musculação' })).toBeVisible();

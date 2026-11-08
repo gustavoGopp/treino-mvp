@@ -8,27 +8,38 @@ export type Opcoes = { simEm?: string[]; pausa?: number };
 
 const grupo = (page: Page, nome: string | RegExp) => page.getByRole('group', { name: nome });
 
+/**
+ * Triagem com alguma condição (lote 3 do redesign): "Sim, alguma (ou não tenho certeza)", marca as que valem (pelo texto
+ * da condição ou da pergunta inteira) e toca em "Continuar". Se a tela pedir a confirmação das não marcadas, confirma;
+ * se aparecer um erro (por exemplo, falta a região), para ali para o teste seguir.
+ */
 export async function triagem(page: Page, { simEm = [], pausa = 0 }: Opcoes = {}) {
-  await expect(page.getByRole('heading', { name: 'Antes de começar, 9 perguntas rápidas' })).toBeVisible();
-  // Design v2: a triagem abre na lista das 9; quem tem alguma condição responde uma a uma.
-  await page.getByRole('button', { name: 'Sim, alguma vale' }).click();
-  const grupos = page.locator('fieldset').filter({ has: page.getByRole('radio', { name: 'Sim' }) });
-  const n = await grupos.count();
-  for (let i = 0; i < n; i++) {
-    const g = grupos.nth(i);
-    const texto = (await g.locator('legend').innerText()).trim();
-    const sim = simEm.some((s) => texto.includes(s));
-    await g.getByRole('radio', { name: sim ? 'Sim' : 'Não', exact: true }).check();
+  await expect(page.getByRole('heading', { name: 'Alguma destas vale para você?' })).toBeVisible();
+  await page.getByRole('button', { name: 'Sim, alguma (ou não tenho certeza)' }).click();
+  await expect(page.getByRole('heading', { name: 'Quais valem para você?' })).toBeVisible();
+  for (const s of simEm) {
+    await page.locator('label.opcao', { hasText: s }).first().getByRole('checkbox').check();
     if (pausa) await page.waitForTimeout(pausa / 3);
   }
   await page.getByRole('button', { name: 'Continuar' }).click();
+  await confirmarNaoMarcadas(page);
 }
 
-/** Triagem de quem não tem nenhuma condição: as 9 à vista numa lista, e um toque em "Nenhuma vale para mim". */
+/** Na tela do "sim": confirma que as não marcadas não valem, se o diálogo abrir (sem erro na tela). */
+export async function confirmarNaoMarcadas(page: Page) {
+  const dialogo = page.getByRole('dialog', { name: 'Nenhuma destas vale para você?' });
+  await expect(dialogo.or(page.getByRole('alert')).or(page.getByRole('heading', { name: /Vamos pausar|Sua experiência/ })).first()).toBeVisible();
+  if (await dialogo.isVisible()) {
+    await folhaPronta(page);
+    await dialogo.getByRole('button', { name: 'Isso, nenhuma destas' }).click();
+  }
+}
+
+/** Triagem de quem não tem nenhuma condição: as 9 à vista numa lista, e um toque em "Não, nenhuma". */
 export async function triagemNenhuma(page: Page) {
-  await expect(page.getByRole('heading', { name: 'Antes de começar, 9 perguntas rápidas' })).toBeVisible();
+  await expect(page.getByRole('heading', { name: 'Alguma destas vale para você?' })).toBeVisible();
   await expect(page.getByRole('list', { name: 'As 9 condições' }).getByRole('listitem')).toHaveCount(9);
-  await page.getByRole('button', { name: 'Nenhuma vale para mim' }).click();
+  await page.getByRole('button', { name: 'Não, nenhuma' }).click();
 }
 
 /** Minutos por toque (30, 45, 60, 75, 90); outro valor vai em "Outro". */

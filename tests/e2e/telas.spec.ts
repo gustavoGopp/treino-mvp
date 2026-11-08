@@ -49,11 +49,10 @@ for (const tema of ['light', 'dark'] as const) {
     await conferir(page);
     await page.getByRole('button', { name: 'Começar', exact: true }).click();
     await conferir(page); // triagem em lista
-    await page.getByRole('button', { name: 'Sim, alguma vale' }).click();
-    await conferir(page); // triagem uma a uma
-    await page.goBack();
+    await page.getByRole('button', { name: 'Sim, alguma (ou não tenho certeza)' }).click();
+    await conferir(page); // a tela do "sim"
     await page.goto('/comecar/triagem');
-    await page.getByRole('button', { name: 'Nenhuma vale para mim' }).click();
+    await page.getByRole('button', { name: 'Não, nenhuma' }).click();
     await page.getByRole('group', { name: /sem parar/ }).getByLabel('Menos de 6 meses').check();
     await page.getByRole('group', { name: /treinando agora/ }).getByLabel(/^Estou treinando/).check();
     await page.getByRole('group', { name: /confiança na técnica/ }).getByLabel(/^Sim/).check();
