@@ -28,7 +28,13 @@ export default defineConfig(({ mode }) => ({
     react(),
     VitePWA({
       registerType: 'autoUpdate',
-      includeAssets: ['icon.svg', 'apple-touch-icon.png'],
+      includeAssets: ['icon.svg', 'apple-touch-icon.png', 'fonts/OFL.txt'],
+      workbox: {
+        globPatterns: ['**/*.{js,css,html,svg,png,woff2}'],
+        // lote 5: os 49 desenhos do equipamento (cerca de 860 kB) ficam fora da instalação; são guardados quando aparecem
+        globIgnores: ['equipamento/**'],
+        runtimeCaching: [{ urlPattern: /\/equipamento\/[a-z_]+\.svg$/, handler: 'CacheFirst', options: { cacheName: 'equipamento' } }],
+      },
       manifest: {
         name: 'treino-mvp',
         short_name: 'Treino',
@@ -36,9 +42,16 @@ export default defineConfig(({ mode }) => ({
         lang: 'pt-BR',
         start_url: '/',
         display: 'standalone',
-        background_color: '#F5F4F0',
-        theme_color: '#F5F4F0',
-        icons: [{ src: 'icon.svg', sizes: 'any', type: 'image/svg+xml', purpose: 'any maskable' }],
+        background_color: '#F5F3EF',
+        theme_color: '#F5F3EF',
+        // lote 5 do redesign: o halter inclinado em Giz e grafite (scripts/design/redesign/icones-app.mjs); "any" e
+        // "maskable" em arquivos separados, como o Chrome pede
+        icons: [
+          { src: 'icon-192.png', sizes: '192x192', type: 'image/png', purpose: 'any' },
+          { src: 'icon-512.png', sizes: '512x512', type: 'image/png', purpose: 'any' },
+          { src: 'icon-maskable-512.png', sizes: '512x512', type: 'image/png', purpose: 'maskable' },
+          { src: 'icon.svg', sizes: 'any', type: 'image/svg+xml', purpose: 'any' },
+        ],
       },
     }),
   ],

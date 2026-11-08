@@ -5,19 +5,24 @@ import { r } from '../regras';
 // o texto oficial do PAR-Q+ só entra depois de confirmada a licença (seguranca.triagem.texto).
 // O app não diagnostica (seguranca.sem-diagnostico).
 
+/**
+ * As 9 perguntas. `curta` é o texto da pergunta geral da triagem (lote 3 do redesign; seguranca.triagem.nenhuma): a
+ * condição em poucas palavras, sem mudar o conteúdo; a pergunta inteira fica a um toque e reaparece na tela do "sim".
+ */
 export const PERGUNTAS = [
-  { id: 'coracao', texto: 'Algum médico já disse que você tem problema no coração ou pressão alta?' },
-  { id: 'peito', texto: 'Você sente dor no peito em repouso, no dia a dia ou quando faz esforço?' },
-  { id: 'tontura', texto: 'Nos últimos 12 meses, você perdeu o equilíbrio por tontura ou desmaiou?' },
-  { id: 'doenca-cronica', texto: 'Você tem alguma doença crônica diagnosticada além de problema no coração ou pressão alta?' },
-  { id: 'medicamento', texto: 'Você toma remédio receitado para alguma doença crônica?' },
+  { id: 'coracao', curta: 'Problema no coração ou pressão alta', texto: 'Algum médico já disse que você tem problema no coração ou pressão alta?' },
+  { id: 'peito', curta: 'Dor no peito', texto: 'Você sente dor no peito em repouso, no dia a dia ou quando faz esforço?' },
+  { id: 'tontura', curta: 'Perdeu o equilíbrio por tontura, ou desmaiou, no último ano', texto: 'Nos últimos 12 meses, você perdeu o equilíbrio por tontura ou desmaiou?' },
+  { id: 'doenca-cronica', curta: 'Outra doença crônica', texto: 'Você tem alguma doença crônica diagnosticada além de problema no coração ou pressão alta?' },
+  { id: 'medicamento', curta: 'Remédio para doença crônica', texto: 'Você toma remédio receitado para alguma doença crônica?' },
   {
     id: 'osteoarticular',
+    curta: 'Problema em osso, articulação, músculo ou tendão',
     texto: 'Você tem hoje (ou teve nos últimos 12 meses) problema em osso, articulação, músculo ou tendão que pode piorar com exercício?',
   },
-  { id: 'supervisao', texto: 'Algum médico já disse que você só deveria fazer exercício com acompanhamento?' },
-  { id: 'gravidez', texto: 'Você está grávida ou teve bebê nos últimos 6 meses?' },
-  { id: 'doenca-aguda', texto: 'Você está com febre, gripe forte ou se recuperando de alguma doença agora?' },
+  { id: 'supervisao', curta: 'Médico pediu exercício só com acompanhamento', texto: 'Algum médico já disse que você só deveria fazer exercício com acompanhamento?' },
+  { id: 'gravidez', curta: 'Gravidez, ou bebê nos últimos 6 meses', texto: 'Você está grávida ou teve bebê nos últimos 6 meses?' },
+  { id: 'doenca-aguda', curta: 'Febre, gripe forte ou se recuperando de doença', texto: 'Você está com febre, gripe forte ou se recuperando de alguma doença agora?' },
 ] as const;
 
 export type PerguntaId = (typeof PERGUNTAS)[number]['id'];

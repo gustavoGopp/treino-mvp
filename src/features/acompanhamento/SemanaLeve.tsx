@@ -6,10 +6,14 @@ import { aceitarSemanaLeve, encerrarSemanaLeve, recusarSemanaLeve, semanaLeveDoE
 // (seguranca.dor.escala) aparece sempre que houver, com ou sem a sugestão: a semana leve soma, nunca substitui.
 const dataCurta = (iso: string) => `${iso.slice(8, 10)}/${iso.slice(5, 7)}`;
 
-export function SemanaLeve() {
+type Parte = 'dor' | 'ativa' | 'oferta';
+
+/** `partes` escolhe o que mostrar: no início, a dor fica sempre à vista e a semana leve entra na fila de avisos. */
+export function SemanaLeve({ partes = ['dor', 'ativa', 'oferta'] }: { partes?: Parte[] }) {
   const { estado, atualizar } = useApp();
-  const s = semanaLeveDoEstado(estado, agoraIso(), fusoDoAparelho());
-  if (!s) return null;
+  const s0 = semanaLeveDoEstado(estado, agoraIso(), fusoDoAparelho());
+  if (!s0) return null;
+  const s = { ...s0, dor: partes.includes('dor') && s0.dor, ativa: partes.includes('ativa') && s0.ativa, mostrar: partes.includes('oferta') && s0.mostrar };
   return (
     <>
       {s.dor && (

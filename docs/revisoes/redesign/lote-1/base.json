@@ -1,0 +1,146 @@
+{
+ "medidoEm": "2026-11-06T16:30:50.590Z",
+ "fase": "lote-1",
+ "bundle": [
+  {
+   "arquivo": "fontes-BNhU6kmA.js",
+   "kB": 48.9,
+   "gzipKB": 16.3
+  },
+  {
+   "arquivo": "index-CYNyGoE6.css",
+   "kB": 48.2,
+   "gzipKB": 9.4
+  },
+  {
+   "arquivo": "index-D_rOp_nA.js",
+   "kB": 1065,
+   "gzipKB": 271.5
+  },
+  {
+   "arquivo": "index.html",
+   "kB": 0.9
+  },
+  {
+   "arquivo": "sw.js",
+   "kB": 1.4
+  },
+  {
+   "arquivo": "manifest.webmanifest",
+   "kB": 0.3
+  }
+ ],
+ "letra": {
+  "pedidosExternos": 0,
+  "arquivos": [
+   {
+    "url": "/fonts/atkinson-hyperlegible-next-latin.woff2",
+    "kB": 33.2
+   }
+  ],
+  "totalKB": 33.2,
+  "nota": "servida pelo próprio app (variável, latin)"
+ },
+ "lighthouse": [
+  {
+   "rota": "/",
+   "url": "http://localhost:4173/programa",
+   "desempenho": 70,
+   "acessibilidade": 100,
+   "boasPraticas": 100,
+   "fcpMs": 64,
+   "lcpMs": 64,
+   "tbtMs": 3770,
+   "cls": 0,
+   "speedIndexMs": 2678,
+   "pedidos": 7,
+   "transferidoKB": 0,
+   "pedidosExternos": 0,
+   "falhasAcessibilidade": []
+  },
+  {
+   "rota": "/comecar/triagem",
+   "url": "http://localhost:4173/comecar/triagem",
+   "desempenho": 71,
+   "acessibilidade": 100,
+   "boasPraticas": 100,
+   "fcpMs": 17,
+   "lcpMs": 17,
+   "tbtMs": 2727,
+   "cls": 0,
+   "speedIndexMs": 684,
+   "pedidos": 7,
+   "transferidoKB": 0,
+   "pedidosExternos": 0,
+   "falhasAcessibilidade": []
+  },
+  {
+   "rota": "/programa",
+   "url": "http://localhost:4173/programa",
+   "desempenho": 64,
+   "acessibilidade": 100,
+   "boasPraticas": 100,
+   "fcpMs": 59,
+   "lcpMs": 3082,
+   "tbtMs": 4015,
+   "cls": 0,
+   "speedIndexMs": 2297,
+   "pedidos": 7,
+   "transferidoKB": 0,
+   "pedidosExternos": 0,
+   "falhasAcessibilidade": []
+  },
+  {
+   "rota": "/guia/bulgaro",
+   "url": "http://localhost:4173/guia/bulgaro",
+   "desempenho": 70,
+   "acessibilidade": 93,
+   "boasPraticas": 100,
+   "fcpMs": 60,
+   "lcpMs": 60,
+   "tbtMs": 3412,
+   "cls": 0.004,
+   "speedIndexMs": 2498,
+   "pedidos": 7,
+   "transferidoKB": 0,
+   "pedidosExternos": 0,
+   "falhasAcessibilidade": [
+    "aria-allowed-attr",
+    "landmark-one-main",
+    "label-content-name-mismatch"
+   ]
+  },
+  {
+   "rota": "/semana",
+   "url": "http://localhost:4173/semana",
+   "desempenho": 63,
+   "acessibilidade": 100,
+   "boasPraticas": 100,
+   "fcpMs": 68,
+   "lcpMs": 3354,
+   "tbtMs": 3297,
+   "cls": 0,
+   "speedIndexMs": 855,
+   "pedidos": 7,
+   "transferidoKB": 0,
+   "pedidosExternos": 0,
+   "falhasAcessibilidade": []
+  },
+  {
+   "rota": "/dados",
+   "url": "http://localhost:4173/dados",
+   "desempenho": 64,
+   "acessibilidade": 100,
+   "boasPraticas": 100,
+   "fcpMs": 108,
+   "lcpMs": 3100,
+   "tbtMs": 3038,
+   "cls": 0,
+   "speedIndexMs": 873,
+   "pedidos": 7,
+   "transferidoKB": 0,
+   "pedidosExternos": 0,
+   "falhasAcessibilidade": []
+  }
+ ]
+}

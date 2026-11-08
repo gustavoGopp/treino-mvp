@@ -47,13 +47,12 @@ for (const tema of ['light', 'dark'] as const) {
     await page.emulateMedia({ colorScheme: tema });
     await page.goto('/');
     await conferir(page);
-    await page.getByRole('button', { name: 'Entendi, vamos começar' }).click();
+    await page.getByRole('button', { name: 'Começar', exact: true }).click();
     await conferir(page); // triagem em lista
-    await page.getByRole('button', { name: 'Sim, alguma vale' }).click();
-    await conferir(page); // triagem uma a uma
-    await page.goBack();
+    await page.getByRole('button', { name: 'Sim, alguma (ou não tenho certeza)' }).click();
+    await conferir(page); // a tela do "sim"
     await page.goto('/comecar/triagem');
-    await page.getByRole('button', { name: 'Nenhuma vale para mim' }).click();
+    await page.getByRole('button', { name: 'Não, nenhuma' }).click();
     await page.getByRole('group', { name: /sem parar/ }).getByLabel('Menos de 6 meses').check();
     await page.getByRole('group', { name: /treinando agora/ }).getByLabel(/^Estou treinando/).check();
     await page.getByRole('group', { name: /confiança na técnica/ }).getByLabel(/^Sim/).check();
@@ -65,9 +64,9 @@ for (const tema of ['light', 'dark'] as const) {
     await page.getByRole('button', { name: 'Continuar' }).click();
     await page.getByRole('button', { name: 'Academia completa' }).click();
     await conferir(page); // equipamento
-    await page.getByRole('button', { name: 'Continuar' }).click();
-    await expect(page.getByRole('heading', { name: 'Tudo certo?' })).toBeVisible();
-    await conferir(page); // confirmar
+    await page.getByRole('button', { name: 'Gerar meu programa' }).click();
+    await expect(page.getByRole('heading', { name: 'Seu treino', exact: true })).toBeVisible();
+    await conferir(page); // o programa recém-gerado
   });
 }
 

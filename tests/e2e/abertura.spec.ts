@@ -1,7 +1,7 @@
 import { readFile } from 'node:fs/promises';
 import { expect, test, type Page } from '@playwright/test';
 import { semContrasteBaixo } from './contraste';
-import { ana } from './jornada';
+import { ana, folhaPronta } from './jornada';
 import { semToquePequeno } from './toque';
 
 // R5c, abrir para família e amigos: a tela de erro com saída, a última cópia, o armazenamento negado, os termos,
@@ -52,6 +52,9 @@ test('Meus dados: a última cópia, o armazenamento negado, os termos e o canal 
   // No Chromium sem interação, o pedido de armazenamento persistente é negado: o app avisa (dados.persistente).
   const persistente = await page.evaluate(() => navigator.storage.persisted());
   if (!persistente) await expect(page.getByText('Este navegador não garantiu guardar seus dados de forma permanente:')).toBeVisible();
+  // redesign, lote 5: a cópia abre numa folha a partir da linha "Guardar uma cópia"
+  await page.getByRole('button', { name: /^Guardar uma cópia/ }).click();
+  await folhaPronta(page);
   await Promise.all([page.waitForEvent('download'), page.getByRole('button', { name: 'Exportar meus dados (JSON)' }).click()]);
   await expect(page.getByText('Última cópia: hoje')).toBeVisible();
   await page.reload();
@@ -72,11 +75,14 @@ test('Meus dados: a última cópia, o armazenamento negado, os termos e o canal 
 
 test('boas-vindas: o texto da foto diz para onde ela vai e há link para os termos', async ({ page }) => {
   await page.goto('/');
+  // redesign, lote 3: a privacidade abre numa folha a partir da linha "Seus dados ficam só neste celular"
+  await page.getByRole('button', { name: /Seus dados ficam só neste celular/ }).click();
   await expect(page.getByText(/vai reduzida e sem a localização para a Anthropic, empresa dos EUA/)).toBeVisible();
+  await page.keyboard.press('Escape');
   await page.getByRole('link', { name: 'termos de uso e o aviso de privacidade' }).click();
   await expect(page.getByRole('heading', { name: 'Termos de uso e privacidade' })).toBeVisible();
   await page.getByRole('link', { name: 'Início' }).click();
-  await expect(page.getByRole('button', { name: 'Entendi, vamos começar' })).toBeVisible();
+  await expect(page.getByRole('button', { name: 'Começar', exact: true })).toBeVisible();
 });
 
 test('"Como ler o seu treino" vem aberto antes do 1º treino', async ({ page }) => {
@@ -104,13 +110,13 @@ test.describe('iPhone no Safari, sem instalar', () => {
     await aviso.getByRole('button', { name: 'Entendi' }).click();
     await expect(aviso).toBeHidden();
     await page.reload();
-    await expect(page.getByRole('button', { name: 'Entendi, vamos começar' })).toBeVisible();
+    await expect(page.getByRole('button', { name: 'Começar', exact: true })).toBeVisible();
     await expect(aviso).toBeHidden();
   });
 });
 
 test('no Android o aviso de instalar no iPhone não aparece', async ({ page }) => {
   await page.goto('/');
-  await expect(page.getByRole('button', { name: 'Entendi, vamos começar' })).toBeVisible();
+  await expect(page.getByRole('button', { name: 'Começar', exact: true })).toBeVisible();
   await expect(page.getByRole('region', { name: 'Instale o app para não perder seus dados' })).toHaveCount(0);
 });

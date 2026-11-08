@@ -1,0 +1,810 @@
+[
+ {
+  "tela": "baixo/boas-vindas-a",
+  "toquePequeno": [],
+  "contrasteBaixo": [],
+  "botaoPrincipal": {
+   "texto": "Começar",
+   "topoPct": 91,
+   "visivelSemRolar": true
+  },
+  "palavras": 71,
+  "telas": 1.1,
+  "rolaDeLado": false,
+  "visivel": {
+   "avisoInteiro": true,
+   "avisoTexto": "O que o app não fazO app não diagnostica e não substitui um médico ou um profissional de Educação Física. É uma ferramenta de orientação, não uma prescrição. Se sentir dor, tontura ou mal-estar, pare e procure avaliação. consenso",
+   "sentiAlgo": null,
+   "serieFeita": null,
+   "rir": null,
+   "relogio": null,
+   "cortados": [],
+   "focoCoberto": []
+  }
+ },
+ {
+  "tela": "baixo/boas-vindas",
+  "toquePequeno": [],
+  "contrasteBaixo": [],
+  "botaoPrincipal": {
+   "texto": "Começar",
+   "topoPct": 85,
+   "visivelSemRolar": true
+  },
+  "palavras": 74,
+  "telas": 1,
+  "rolaDeLado": false,
+  "visivel": {
+   "avisoInteiro": true,
+   "avisoTexto": "O que o app não fazO app não diagnostica e não substitui um médico ou um profissional de Educação Física. É uma ferramenta de orientação, não uma prescrição. Se sentir dor, tontura ou mal-estar, pare e procure avaliação. consenso",
+   "sentiAlgo": null,
+   "serieFeita": null,
+   "rir": null,
+   "relogio": null,
+   "cortados": [],
+   "focoCoberto": []
+  }
+ },
+ {
+  "tela": "baixo/triagem",
+  "toquePequeno": [],
+  "contrasteBaixo": [],
+  "botaoPrincipal": {
+   "texto": "Não, nenhuma",
+   "topoPct": 108,
+   "visivelSemRolar": false
+  },
+  "palavras": 118,
+  "telas": 1.4,
+  "rolaDeLado": false,
+  "visivel": {
+   "avisoInteiro": null,
+   "avisoTexto": null,
+   "sentiAlgo": null,
+   "serieFeita": null,
+   "rir": null,
+   "relogio": null,
+   "cortados": [],
+   "focoCoberto": []
+  }
+ },
+ {
+  "tela": "baixo/triagem-sim",
+  "toquePequeno": [],
+  "contrasteBaixo": [],
+  "botaoPrincipal": {
+   "texto": "Continuar",
+   "topoPct": 89,
+   "visivelSemRolar": true
+  },
+  "palavras": 103,
+  "telas": 2.1,
+  "rolaDeLado": false,
+  "visivel": {
+   "avisoInteiro": null,
+   "avisoTexto": null,
+   "sentiAlgo": null,
+   "serieFeita": null,
+   "rir": null,
+   "relogio": null,
+   "cortados": [],
+   "focoCoberto": []
+  }
+ },
+ {
+  "tela": "baixo/experiencia",
+  "toquePequeno": [],
+  "contrasteBaixo": [],
+  "botaoPrincipal": {
+   "texto": "Continuar",
+   "topoPct": 89,
+   "visivelSemRolar": true
+  },
+  "palavras": 70,
+  "telas": 2.1,
+  "rolaDeLado": false,
+  "visivel": {
+   "avisoInteiro": null,
+   "avisoTexto": null,
+   "sentiAlgo": null,
+   "serieFeita": null,
+   "rir": null,
+   "relogio": null,
+   "cortados": [],
+   "focoCoberto": []
+  }
+ },
+ {
+  "tela": "baixo/rotina",
+  "toquePequeno": [],
+  "contrasteBaixo": [],
+  "botaoPrincipal": {
+   "texto": "Continuar",
+   "topoPct": 89,
+   "visivelSemRolar": true
+  },
+  "palavras": 78,
+  "telas": 1.4,
+  "rolaDeLado": false,
+  "visivel": {
+   "avisoInteiro": null,
+   "avisoTexto": null,
+   "sentiAlgo": null,
+   "serieFeita": null,
+   "rir": null,
+   "relogio": null,
+   "cortados": [],
+   "focoCoberto": []
+  }
+ },
+ {
+  "tela": "baixo/equipamento",
+  "toquePequeno": [],
+  "contrasteBaixo": [],
+  "botaoPrincipal": {
+   "texto": "Gerar meu programa",
+   "topoPct": 85,
+   "visivelSemRolar": true
+  },
+  "palavras": 70,
+  "telas": 1.2,
+  "rolaDeLado": false,
+  "visivel": {
+   "avisoInteiro": null,
+   "avisoTexto": null,
+   "sentiAlgo": null,
+   "serieFeita": null,
+   "rir": null,
+   "relogio": null,
+   "cortados": [],
+   "focoCoberto": []
+  }
+ },
+ {
+  "tela": "baixo/equipamento-academia",
+  "toquePequeno": [],
+  "contrasteBaixo": [],
+  "botaoPrincipal": {
+   "texto": "Gerar meu programa",
+   "topoPct": 89,
+   "visivelSemRolar": true
+  },
+  "palavras": 81,
+  "telas": 1.2,
+  "rolaDeLado": false,
+  "visivel": {
+   "avisoInteiro": null,
+   "avisoTexto": null,
+   "sentiAlgo": null,
+   "serieFeita": null,
+   "rir": null,
+   "relogio": null,
+   "cortados": [],
+   "focoCoberto": []
+  }
+ },
+ {
+  "tela": "baixo/equipamento-lista",
+  "toquePequeno": [],
+  "contrasteBaixo": [],
+  "botaoPrincipal": {
+   "texto": "Mudar",
+   "topoPct": 29,
+   "visivelSemRolar": true
+  },
+  "palavras": 55,
+  "telas": 1.7,
+  "rolaDeLado": false,
+  "visivel": {
+   "avisoInteiro": null,
+   "avisoTexto": null,
+   "sentiAlgo": null,
+   "serieFeita": null,
+   "rir": null,
+   "relogio": null,
+   "cortados": [],
+   "focoCoberto": []
+  }
+ },
+ {
+  "tela": "baixo/equipamento-foto",
+  "toquePequeno": [],
+  "contrasteBaixo": [],
+  "botaoPrincipal": {
+   "texto": "Gerar meu programa",
+   "topoPct": 85,
+   "visivelSemRolar": true
+  },
+  "palavras": 151,
+  "telas": 1.2,
+  "rolaDeLado": false,
+  "visivel": {
+   "avisoInteiro": null,
+   "avisoTexto": null,
+   "sentiAlgo": null,
+   "serieFeita": null,
+   "rir": null,
+   "relogio": null,
+   "cortados": [],
+   "focoCoberto": []
+  }
+ },
+ {
+  "tela": "baixo/programa-novo",
+  "toquePequeno": [],
+  "contrasteBaixo": [],
+  "botaoPrincipal": {
+   "texto": "Começar o treino Corpo todo A",
+   "topoPct": 79,
+   "visivelSemRolar": true
+  },
+  "palavras": 51,
+  "telas": 2,
+  "rolaDeLado": false,
+  "visivel": {
+   "avisoInteiro": null,
+   "avisoTexto": null,
+   "sentiAlgo": null,
+   "serieFeita": null,
+   "rir": null,
+   "relogio": null,
+   "cortados": [],
+   "focoCoberto": []
+  }
+ },
+ {
+  "tela": "baixo/inicio",
+  "toquePequeno": [],
+  "contrasteBaixo": [],
+  "botaoPrincipal": {
+   "texto": "Começar o treino Corpo todo B",
+   "topoPct": 79,
+   "visivelSemRolar": true
+  },
+  "palavras": 53,
+  "telas": 1.8,
+  "rolaDeLado": false,
+  "visivel": {
+   "avisoInteiro": null,
+   "avisoTexto": null,
+   "sentiAlgo": null,
+   "serieFeita": null,
+   "rir": null,
+   "relogio": null,
+   "cortados": [],
+   "focoCoberto": []
+  }
+ },
+ {
+  "tela": "baixo/inicio-volta",
+  "toquePequeno": [],
+  "contrasteBaixo": [],
+  "botaoPrincipal": {
+   "texto": "Começar o treino Corpo todo A",
+   "topoPct": 79,
+   "visivelSemRolar": true
+  },
+  "palavras": 60,
+  "telas": 1.8,
+  "rolaDeLado": false,
+  "visivel": {
+   "avisoInteiro": null,
+   "avisoTexto": null,
+   "sentiAlgo": null,
+   "serieFeita": null,
+   "rir": null,
+   "relogio": null,
+   "cortados": [],
+   "focoCoberto": []
+  }
+ },
+ {
+  "tela": "baixo/inicio-semana4",
+  "toquePequeno": [],
+  "contrasteBaixo": [],
+  "botaoPrincipal": {
+   "texto": "Começar o treino Corpo todo C",
+   "topoPct": 79,
+   "visivelSemRolar": true
+  },
+  "palavras": 51,
+  "telas": 1.9,
+  "rolaDeLado": false,
+  "visivel": {
+   "avisoInteiro": null,
+   "avisoTexto": null,
+   "sentiAlgo": null,
+   "serieFeita": null,
+   "rir": null,
+   "relogio": null,
+   "cortados": [],
+   "focoCoberto": []
+  }
+ },
+ {
+  "tela": "baixo/inicio-leve",
+  "toquePequeno": [],
+  "contrasteBaixo": [],
+  "botaoPrincipal": {
+   "texto": "Começar o treino Corpo todo C",
+   "topoPct": 79,
+   "visivelSemRolar": true
+  },
+  "palavras": 89,
+  "telas": 1.9,
+  "rolaDeLado": false,
+  "visivel": {
+   "avisoInteiro": null,
+   "avisoTexto": null,
+   "sentiAlgo": null,
+   "serieFeita": null,
+   "rir": null,
+   "relogio": null,
+   "cortados": [],
+   "focoCoberto": []
+  }
+ },
+ {
+  "tela": "baixo/exercicio",
+  "toquePequeno": [],
+  "contrasteBaixo": [],
+  "botaoPrincipal": {
+   "texto": "Começar o treino Corpo todo B",
+   "topoPct": 79,
+   "visivelSemRolar": true
+  },
+  "palavras": 137,
+  "telas": 1.8,
+  "rolaDeLado": false,
+  "visivel": {
+   "avisoInteiro": null,
+   "avisoTexto": null,
+   "sentiAlgo": null,
+   "serieFeita": null,
+   "rir": null,
+   "relogio": null,
+   "cortados": [],
+   "focoCoberto": []
+  }
+ },
+ {
+  "tela": "baixo/selo",
+  "toquePequeno": [],
+  "contrasteBaixo": [],
+  "botaoPrincipal": {
+   "texto": "Começar o treino Corpo todo B",
+   "topoPct": 79,
+   "visivelSemRolar": true
+  },
+  "palavras": 161,
+  "telas": 1.8,
+  "rolaDeLado": false,
+  "visivel": {
+   "avisoInteiro": null,
+   "avisoTexto": null,
+   "sentiAlgo": null,
+   "serieFeita": null,
+   "rir": null,
+   "relogio": null,
+   "cortados": [],
+   "focoCoberto": []
+  }
+ },
+ {
+  "tela": "baixo/treino",
+  "toquePequeno": [],
+  "contrasteBaixo": [],
+  "botaoPrincipal": {
+   "texto": "Série feita · descansar 1:45",
+   "topoPct": 88,
+   "visivelSemRolar": true
+  },
+  "palavras": 56,
+  "telas": 1,
+  "rolaDeLado": false,
+  "visivel": {
+   "avisoInteiro": null,
+   "avisoTexto": null,
+   "sentiAlgo": true,
+   "serieFeita": true,
+   "rir": true,
+   "relogio": null,
+   "cortados": [],
+   "focoCoberto": []
+  }
+ },
+ {
+  "tela": "baixo/treino-descanso",
+  "toquePequeno": [],
+  "contrasteBaixo": [],
+  "botaoPrincipal": {
+   "texto": "Série feita (encerra o descanso)",
+   "topoPct": 88,
+   "visivelSemRolar": true
+  },
+  "palavras": 72,
+  "telas": 1.3,
+  "rolaDeLado": false,
+  "visivel": {
+   "avisoInteiro": null,
+   "avisoTexto": null,
+   "sentiAlgo": true,
+   "serieFeita": true,
+   "rir": true,
+   "relogio": true,
+   "cortados": [],
+   "focoCoberto": []
+  }
+ },
+ {
+  "tela": "baixo/treino-acabou",
+  "toquePequeno": [],
+  "contrasteBaixo": [],
+  "botaoPrincipal": {
+   "texto": "Série feita (encerra o descanso)",
+   "topoPct": 88,
+   "visivelSemRolar": true
+  },
+  "palavras": 66,
+  "telas": 1.2,
+  "rolaDeLado": false,
+  "visivel": {
+   "avisoInteiro": null,
+   "avisoTexto": null,
+   "sentiAlgo": true,
+   "serieFeita": true,
+   "rir": true,
+   "relogio": true,
+   "cortados": [],
+   "focoCoberto": []
+  }
+ },
+ {
+  "tela": "baixo/treino-senti",
+  "toquePequeno": [],
+  "contrasteBaixo": [],
+  "botaoPrincipal": {
+   "texto": "Série feita · descansar 1:45",
+   "topoPct": 88,
+   "visivelSemRolar": true
+  },
+  "palavras": 95,
+  "telas": 1,
+  "rolaDeLado": false,
+  "visivel": {
+   "avisoInteiro": null,
+   "avisoTexto": null,
+   "sentiAlgo": true,
+   "serieFeita": false,
+   "rir": false,
+   "relogio": null,
+   "cortados": [],
+   "focoCoberto": []
+  }
+ },
+ {
+  "tela": "baixo/treino-porque",
+  "toquePequeno": [],
+  "contrasteBaixo": [],
+  "botaoPrincipal": {
+   "texto": "Série feita · descansar 1:45",
+   "topoPct": 88,
+   "visivelSemRolar": true
+  },
+  "palavras": 98,
+  "telas": 1,
+  "rolaDeLado": false,
+  "visivel": {
+   "avisoInteiro": null,
+   "avisoTexto": null,
+   "sentiAlgo": true,
+   "serieFeita": false,
+   "rir": false,
+   "relogio": null,
+   "cortados": [],
+   "focoCoberto": []
+  }
+ },
+ {
+  "tela": "baixo/treino-mais",
+  "toquePequeno": [],
+  "contrasteBaixo": [],
+  "botaoPrincipal": {
+   "texto": "Série feita · descansar 1:45",
+   "topoPct": 88,
+   "visivelSemRolar": true
+  },
+  "palavras": 67,
+  "telas": 1,
+  "rolaDeLado": false,
+  "visivel": {
+   "avisoInteiro": null,
+   "avisoTexto": null,
+   "sentiAlgo": true,
+   "serieFeita": false,
+   "rir": false,
+   "relogio": null,
+   "cortados": [],
+   "focoCoberto": []
+  }
+ },
+ {
+  "tela": "baixo/treino-trocar",
+  "toquePequeno": [],
+  "contrasteBaixo": [],
+  "botaoPrincipal": {
+   "texto": "Série feita · descansar 1:45",
+   "topoPct": 88,
+   "visivelSemRolar": true
+  },
+  "palavras": 126,
+  "telas": 1,
+  "rolaDeLado": false,
+  "visivel": {
+   "avisoInteiro": null,
+   "avisoTexto": null,
+   "sentiAlgo": true,
+   "serieFeita": false,
+   "rir": false,
+   "relogio": null,
+   "cortados": [],
+   "focoCoberto": []
+  }
+ },
+ {
+  "tela": "baixo/treino-texto",
+  "toquePequeno": [],
+  "contrasteBaixo": [],
+  "botaoPrincipal": {
+   "texto": "Série feita · descansar 1:45",
+   "topoPct": 88,
+   "visivelSemRolar": true
+  },
+  "palavras": 75,
+  "telas": 1.2,
+  "rolaDeLado": false,
+  "visivel": {
+   "avisoInteiro": null,
+   "avisoTexto": null,
+   "sentiAlgo": true,
+   "serieFeita": true,
+   "rir": true,
+   "relogio": null,
+   "cortados": [],
+   "focoCoberto": []
+  }
+ },
+ {
+  "tela": "baixo/treino-terminar",
+  "toquePequeno": [],
+  "contrasteBaixo": [],
+  "botaoPrincipal": {
+   "texto": "Série feita · descansar 1:45",
+   "topoPct": 88,
+   "visivelSemRolar": true
+  },
+  "palavras": 78,
+  "telas": 1,
+  "rolaDeLado": false,
+  "visivel": {
+   "avisoInteiro": null,
+   "avisoTexto": null,
+   "sentiAlgo": true,
+   "serieFeita": false,
+   "rir": false,
+   "relogio": null,
+   "cortados": [],
+   "focoCoberto": []
+  }
+ },
+ {
+  "tela": "baixo/guia",
+  "toquePequeno": [],
+  "contrasteBaixo": [],
+  "botaoPrincipal": null,
+  "palavras": 44,
+  "telas": 1.8,
+  "rolaDeLado": false,
+  "visivel": {
+   "avisoInteiro": null,
+   "avisoTexto": null,
+   "sentiAlgo": true,
+   "serieFeita": null,
+   "rir": null,
+   "relogio": null,
+   "cortados": [],
+   "focoCoberto": []
+  }
+ },
+ {
+  "tela": "baixo/fim",
+  "toquePequeno": [],
+  "contrasteBaixo": [],
+  "botaoPrincipal": {
+   "texto": "Ver a sua semana",
+   "topoPct": 81,
+   "visivelSemRolar": true
+  },
+  "palavras": 85,
+  "telas": 1.6,
+  "rolaDeLado": false,
+  "visivel": {
+   "avisoInteiro": null,
+   "avisoTexto": null,
+   "sentiAlgo": null,
+   "serieFeita": null,
+   "rir": null,
+   "relogio": null,
+   "cortados": [],
+   "focoCoberto": []
+  }
+ },
+ {
+  "tela": "baixo/fim-quando",
+  "toquePequeno": [],
+  "contrasteBaixo": [],
+  "botaoPrincipal": {
+   "texto": "Salvar",
+   "topoPct": 89,
+   "visivelSemRolar": true
+  },
+  "palavras": 70,
+  "telas": 1.1,
+  "rolaDeLado": false,
+  "visivel": {
+   "avisoInteiro": null,
+   "avisoTexto": null,
+   "sentiAlgo": null,
+   "serieFeita": null,
+   "rir": null,
+   "relogio": null,
+   "cortados": [],
+   "focoCoberto": []
+  }
+ },
+ {
+  "tela": "baixo/semana",
+  "toquePequeno": [],
+  "contrasteBaixo": [],
+  "botaoPrincipal": null,
+  "palavras": 78,
+  "telas": 2.2,
+  "rolaDeLado": false,
+  "visivel": {
+   "avisoInteiro": null,
+   "avisoTexto": null,
+   "sentiAlgo": null,
+   "serieFeita": null,
+   "rir": null,
+   "relogio": null,
+   "cortados": [],
+   "focoCoberto": []
+  }
+ },
+ {
+  "tela": "baixo/evolucao",
+  "toquePequeno": [],
+  "contrasteBaixo": [],
+  "botaoPrincipal": null,
+  "palavras": 78,
+  "telas": 1.1,
+  "rolaDeLado": false,
+  "visivel": {
+   "avisoInteiro": null,
+   "avisoTexto": null,
+   "sentiAlgo": null,
+   "serieFeita": null,
+   "rir": null,
+   "relogio": null,
+   "cortados": [],
+   "focoCoberto": []
+  }
+ },
+ {
+  "tela": "baixo/dados",
+  "toquePequeno": [],
+  "contrasteBaixo": [],
+  "botaoPrincipal": {
+   "texto": "Apagar todos os dados",
+   "topoPct": 130,
+   "visivelSemRolar": false
+  },
+  "palavras": 61,
+  "telas": 1.5,
+  "rolaDeLado": false,
+  "visivel": {
+   "avisoInteiro": null,
+   "avisoTexto": null,
+   "sentiAlgo": null,
+   "serieFeita": null,
+   "rir": null,
+   "relogio": null,
+   "cortados": [],
+   "focoCoberto": []
+  }
+ },
+ {
+  "tela": "baixo/dados-apagar",
+  "toquePequeno": [],
+  "contrasteBaixo": [],
+  "botaoPrincipal": {
+   "texto": "Apagar todos os dados",
+   "topoPct": 130,
+   "visivelSemRolar": false
+  },
+  "palavras": 87,
+  "telas": 1.5,
+  "rolaDeLado": false,
+  "visivel": {
+   "avisoInteiro": null,
+   "avisoTexto": null,
+   "sentiAlgo": null,
+   "serieFeita": null,
+   "rir": null,
+   "relogio": null,
+   "cortados": [],
+   "focoCoberto": []
+  }
+ },
+ {
+  "tela": "baixo/locais",
+  "toquePequeno": [],
+  "contrasteBaixo": [],
+  "botaoPrincipal": null,
+  "palavras": 35,
+  "telas": 1,
+  "rolaDeLado": false,
+  "visivel": {
+   "avisoInteiro": null,
+   "avisoTexto": null,
+   "sentiAlgo": null,
+   "serieFeita": null,
+   "rir": null,
+   "relogio": null,
+   "cortados": [],
+   "focoCoberto": []
+  }
+ },
+ {
+  "tela": "baixo/sistema",
+  "toquePequeno": [],
+  "contrasteBaixo": [],
+  "botaoPrincipal": {
+   "texto": "Botão principal",
+   "topoPct": 185,
+   "visivelSemRolar": false
+  },
+  "palavras": 45,
+  "telas": 3,
+  "rolaDeLado": false,
+  "visivel": {
+   "avisoInteiro": null,
+   "avisoTexto": null,
+   "sentiAlgo": null,
+   "serieFeita": null,
+   "rir": null,
+   "relogio": null,
+   "cortados": [],
+   "focoCoberto": []
+  }
+ },
+ {
+  "tela": "baixo/indice",
+  "toquePequeno": [],
+  "contrasteBaixo": [],
+  "botaoPrincipal": null,
+  "palavras": 90,
+  "telas": 4.5,
+  "rolaDeLado": false,
+  "visivel": {
+   "avisoInteiro": null,
+   "avisoTexto": null,
+   "sentiAlgo": null,
+   "serieFeita": null,
+   "rir": null,
+   "relogio": null,
+   "cortados": [],
+   "focoCoberto": []
+  }
+ }
+]

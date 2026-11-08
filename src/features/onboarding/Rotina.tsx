@@ -148,6 +148,11 @@ export function Rotina() {
                 </p>
               )}
             </fieldset>
+            {/* lote 3 do redesign: o objetivo saiu do cadastro ("ganhar músculo" é o padrão) e fica em Meus dados */}
+            {!deDados && (
+              <p className="ajuda">Dá para mudar depois, em Meus dados. O objetivo (“ganhar músculo” é o padrão) e “algo a evitar” também ficam lá.</p>
+            )}
+            {deDados && (
             <Escolha
               nome="objetivo"
               legenda="O que você quer agora? (opcional)"
@@ -161,6 +166,7 @@ export function Rotina() {
               valor={objetivo}
               aoMudar={setObjetivo}
             />
+            )}
           </Revelar>
         )}
         {deDados && dias && opcoesDivisao.length > 1 && (

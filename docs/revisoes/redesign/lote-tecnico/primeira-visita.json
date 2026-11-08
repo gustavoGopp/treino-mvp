@@ -1,0 +1,33 @@
+{
+ "medidoEm": "2026-11-06T19:25:04.646Z",
+ "metodo": "Lighthouse 13.6, celular simulado, perfil vazio, 3 rodadas, o mesmo de lote-1/primeira-visita.json",
+ "loteTecnico": [
+  {
+   "desempenho": 100,
+   "fcpMs": 959,
+   "ttiMs": 2243,
+   "tbtMs": 17,
+   "trabalhoMs": 659,
+   "pedidos": 8,
+   "externos": 0
+  },
+  {
+   "desempenho": 100,
+   "fcpMs": 902,
+   "ttiMs": 2191,
+   "tbtMs": 39,
+   "trabalhoMs": 539,
+   "pedidos": 8,
+   "externos": 0
+  },
+  {
+   "desempenho": 100,
+   "fcpMs": 903,
+   "ttiMs": 2185,
+   "tbtMs": 32,
+   "trabalhoMs": 523,
+   "pedidos": 8,
+   "externos": 0
+  }
+ ]
+}

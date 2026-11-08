@@ -1,6 +1,8 @@
 import { Link, Navigate } from 'react-router-dom';
 import { BIBLIOTECA } from '../../domain/biblioteca';
-import { exerciciosComHistorico } from '../../domain/acompanhamento/evolucao';
+import { exerciciosComHistorico, marcasDaSemana, type Marca } from '../../domain/acompanhamento/evolucao';
+import { textoCarga } from '../../domain/sessao';
+import { localDaSessao } from '../../storage/esquema';
 import { TEXTO_ESTADO, type ResumoDaSemana } from '../../domain/acompanhamento/semana';
 import { agoraIso, fusoDoAparelho, useApp } from '../app/estado';
 import { NavInferior, Selo, Titulo, Topo } from '../app/ui';
@@ -8,9 +10,12 @@ import { aceitarMenosDias, manterDias, semanaDoEstado } from './acoes';
 import { SemanaLeve } from './SemanaLeve';
 
 // "A sua semana" (acompanhamento.semana e acompanhamento.mensagens): registro + meta + retorno, sem culpa e sem vermelho.
+// Lote 4 do redesign: o dado antes da oferta (os treinos, as últimas semanas, o que subiu, as séries por músculo) e só
+// então a revisão da meta e a semana leve.
 const POR_ID = Object.fromEntries(BIBLIOTECA.map((e) => [e.id, e]));
 const dataCurta = (iso: string) => `${iso.slice(8, 10)}/${iso.slice(5, 7)}`;
 const num = (n: number) => n.toLocaleString('pt-BR');
+const TEXTO_MARCA: Record<Marca, string> = { 'subiu-a-carga': 'subiu a carga', recorde: 'recorde' };
 
 /** Os treinos da semana como quadradinhos: cheio = feito. O nome de cada um vai no texto para leitores de tela. */
 export function Pontos({ r }: { r: ResumoDaSemana }) {
@@ -23,18 +28,18 @@ export function Pontos({ r }: { r: ResumoDaSemana }) {
   );
 }
 
-/** A faixa curta no topo do "Seu treino": um toque abre a tela completa (decisão do Gustavo, 02/11/2026). */
+/** A faixa curta no "Seu treino", em 1 linha: as bolinhas e "X de Y"; um toque abre a tela completa (lote 4). */
 export function FaixaSemana({ r }: { r: ResumoDaSemana }) {
   return (
     <Link className="faixa-semana" to="/semana">
-      <span className="fs-topo">
-        <b>A sua semana</b>
-        <span>
-          {r.feitos} de {r.planejados} <span aria-hidden="true">›</span>
-        </span>
-      </span>
+      <b>A sua semana</b>
       <Pontos r={r} />
-      <span className="fs-msg">{r.mensagem}</span>
+      <span className="fs-num">
+        {r.feitos} de {r.planejados}
+      </span>
+      <span className="seta" aria-hidden="true">
+        ›
+      </span>
     </Link>
   );
 }
@@ -44,6 +49,8 @@ export function Semana() {
   const r = semanaDoEstado(estado, agoraIso(), fusoDoAparelho());
   if (!r) return <Navigate to="/programa" replace />;
   const exercicios = exerciciosComHistorico(estado.historico);
+  const subiu = marcasDaSemana(estado.historico, agoraIso(), fusoDoAparelho(), (s) => localDaSessao(estado, s));
+  const escala = Math.max(1, ...r.musculos.map((m) => Math.max(m.meta, m.feitas))) * 1.15;
 
   return (
     <div className="wrap app com-nav">
@@ -62,6 +69,75 @@ export function Semana() {
           </h2>
           <Pontos r={r} />
           <p className="fase">{r.mensagem}</p>
+        </section>
+
+        <section aria-labelledby="semanas" className="pilha">
+          <h2 id="semanas" className="secao">
+            {r.semanas.length === 1 ? 'Esta semana' : `Últimas ${r.semanas.length} semanas`}
+          </h2>
+          <span className="semanas" role="img" aria-label={`${r.comTreino} de ${r.semanas.length} semanas com treino`}>
+            {r.semanas.map((t, i) => (
+              <i key={i} className={t ? 'on' : ''} />
+            ))}
+          </span>
+          <p className="ajuda">
+            {r.semanas.length === 1
+              ? `${r.comTreino ? 'Com treino.' : 'Ainda sem treino.'}`
+              : `${r.comTreino} das últimas ${r.semanas.length} semanas com treino.`}
+          </p>
+        </section>
+
+        {subiu.length > 0 && (
+          <section aria-labelledby="subiu" className="pilha">
+            <h2 id="subiu" className="secao">
+              O que subiu nesta semana
+            </h2>
+            <ul className="lista-subiu">
+              {subiu.map((m) => (
+                <li key={m.exId + (m.localId ?? '')}>
+                  <Link to={`/evolucao/${m.exId}`}>
+                    <span>
+                      <b>{POR_ID[m.exId]?.nome ?? m.exId}</b>
+                      <span className="num">
+                        {textoCarga(m.carga, m.exId)} × {m.reps}
+                      </span>
+                    </span>
+                    {m.marcas.map((x) => (
+                      <span key={x} className="marca">
+                        {TEXTO_MARCA[x]}
+                      </span>
+                    ))}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </section>
+        )}
+
+        <section aria-labelledby="musculos" className="pilha">
+          <h2 id="musculos" className="secao">
+            Séries por músculo
+          </h2>
+          <ul className="musculos" aria-label="Séries efetivas por músculo nesta semana">
+            {r.musculos.map((m) => (
+              <li key={m.musculo} className={`m-${m.estado}`}>
+                <span className="m-nome">{m.nome.charAt(0).toUpperCase() + m.nome.slice(1)}</span>
+                <span className="m-barra" aria-hidden="true">
+                  <i style={{ width: `${Math.round((m.feitas / escala) * 100)}%` }} />
+                  <u style={{ left: `${Math.round((m.meta / escala) * 100)}%` }} />
+                </span>
+                <span className="m-num">
+                  {num(m.feitas)} de {num(m.meta)}
+                </span>
+                <span className="m-estado">{TEXTO_ESTADO[m.estado]}</span>
+              </li>
+            ))}
+          </ul>
+          <p className="ajuda">
+            Conta a série com até 4 repetições de reserva e amplitude completa; a série que trabalha o músculo de forma indireta vale meia.{' '}
+            {r.metaPrescrita ? 'Nesta semana, a meta é o que o programa prescreveu para ela.' : 'A meta é a do seu programa.'} <Selo id="rir.serie-efetiva" />
+          </p>
+          <p className="ajuda legenda-estados">A barra é o que foi feito; o traço tracejado é a meta. Cheio: na meta · médio: crescendo (4 séries ou mais) · claro: mantendo · vazio: ainda não treinou nesta semana.</p>
         </section>
 
         {r.revisao && (
@@ -86,42 +162,6 @@ export function Semana() {
 
         <SemanaLeve />
 
-        <section aria-labelledby="musculos" className="pilha">
-          <h2 id="musculos" className="secao">
-            Séries por músculo
-          </h2>
-          <ul className="musculos" aria-label="Séries efetivas por músculo nesta semana">
-            {r.musculos.map((m) => (
-              <li key={m.musculo} className={`m-${m.estado}`}>
-                <span className="m-nome">{m.nome.charAt(0).toUpperCase() + m.nome.slice(1)}</span>
-                <span className="m-barra" aria-hidden="true">
-                  <i style={{ width: `${Math.min(100, Math.round((m.feitas / m.meta) * 100))}%` }} />
-                </span>
-                <span className="m-num">
-                  {num(m.feitas)} de {num(m.meta)}
-                </span>
-                <span className="m-estado">{TEXTO_ESTADO[m.estado]}</span>
-              </li>
-            ))}
-          </ul>
-          <p className="ajuda">
-            Conta a série com até 4 repetições de reserva e amplitude completa; a série que trabalha o músculo de forma indireta vale meia.{' '}
-            {r.metaPrescrita ? 'Nesta semana, a meta é o que o programa prescreveu para ela.' : 'A meta é a do seu programa.'} <Selo id="rir.serie-efetiva" />
-          </p>
-          <p className="ajuda legenda-estados">Cheio: na meta · médio: crescendo (4 séries ou mais) · claro: mantendo · vazio: ainda não treinou nesta semana.</p>
-        </section>
-
-        <section aria-labelledby="semanas" className="pilha">
-          <h2 id="semanas" className="secao">
-            {r.comTreino} {r.comTreino === 1 ? 'semana' : 'semanas'} com treino {r.semanas.length === 1 ? 'na última semana' : `nas últimas ${r.semanas.length}`}
-          </h2>
-          <span className="semanas" role="img" aria-label={`${r.comTreino} de ${r.semanas.length} semanas com treino`}>
-            {r.semanas.map((t, i) => (
-              <i key={i} className={t ? 'on' : ''} />
-            ))}
-          </span>
-        </section>
-
         {exercicios.length > 0 && (
           <section aria-labelledby="evolucao" className="pilha">
             <h2 id="evolucao" className="secao">
@@ -137,9 +177,6 @@ export function Semana() {
           </section>
         )}
 
-        <Link className="btn sec" to="/programa">
-          Voltar ao seu treino
-        </Link>
       </main>
       <NavInferior atual="semana" />
     </div>

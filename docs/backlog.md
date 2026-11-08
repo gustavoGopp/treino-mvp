@@ -162,6 +162,31 @@ Detalhes e números em `devlog.md` ("R5-CL") e em `revisoes/qualidade/regua.md`.
 - **Os 5 exercícios novos que só aparecem como alternativa** (o desenvolvimento em pé, a elevação lateral unilateral e a deitado com halter, a remada unilateral com elástico e a caminhada lateral com mini-band): ficam pelo desempate. Rever se a troca do dia mostrar que eles são escolhidos.
 - **Os degraus propostos em `pesquisa-v2/16` e `17` para exercícios que já existem** (o agachamento com uma perna até a cadeira, a flexão arqueiro, a prancha lateral com abdução, o abdominal com a toalha sob a lombar, o texto "no step ou num degrau de escada"): não entraram neste marco, que ficou nos 32 exercícios. Entram com o 1º degrau pelo nível.
 
+
+## Do redesign, lote 2 (06/11/2026)
+Achados ao refazer a tela do treino. Nada disso mudou no lote, porque mexe no domínio ou na regra: fica para o Gustavo decidir.
+- **A nota de dor do "Senti algo" não é gravada na série.** A pessoa escolhe de 0 a 10 e o app responde na hora, mas a nota não vai para o registro, e o domínio lê `dor ≥ 3` na série para sugerir a carga seguinte. Corrigir pede gravar a nota na série aberta (e decidir o que fazer se ainda não houver série).
+- **Na barra, o "+/−" da carga anda de 2,5 kg** sem olhar a menor anilha do inventário, embora `opcoesCarga()` já devolva `passoKg`. Quem tem anilhas de 1 kg (2 kg a mais na barra) não consegue marcar 22 kg pelos botões.
+- **Testes:** os toques nas folhas falhavam às vezes porque a folha ainda estava subindo; `folhaPronta` (`tests/e2e/jornada.ts`) espera a animação terminar. Usar em todo teste novo que toque numa folha.
+
+## Do redesign, lote 4 (07/11/2026)
+- **Pedido 2 ao domínio, "Quando você costuma treinar?"** (aprovado em 06/11): pergunta opcional depois do 1º treino, para o início dizer "hoje é dia de treino" ou "próximo: sexta". Muda o estado guardado (versão 8, com migração e teste) e acrescenta uma função ao domínio. Ficou fora do lote 4 para ter uma parada própria: antes, lembrar de exportar os dados ("Meus dados" → "Guardar uma cópia").
+- **O fim do treino com sugestão de semana leve** é a tela mais longa do grupo (cerca de 100 palavras à vista). Uma ideia: a oferta da semana leve no fim do treino em 1 linha, como no início, com o bloco numa folha.
+
+## Do redesign, lotes 3 e 5 (08/11/2026)
+- **Desenhos do equipamento que se confundem no tamanho do cartão** (`scripts/design/redesign/desenhos-v2/`):
+  - supino × desenvolvimento na máquina, extensora × flexora e smith × rack;
+  - polia simples e puxador alto ficam pequenos;
+  - a máquina de glúteo é genérica, a corda parece um garfo e o hack não tem a versão pendular.
+
+  Refazer quando o Gustavo apontar quais incomodam no uso.
+- **O caminho "Item por item" do equipamento** ficou 2 toques mais longo para a Ana (abrir a lista, a categoria "Bancos", o "Pronto" dos halteres). Uma ideia: a categoria abrir pelo 1º item ainda não marcado. Medir com a cronometragem do Gustavo antes de mudar.
+- **Pedido 4 ao domínio, o resumo curto da calibração:** ficou de fora, por decisão do Gustavo em 06/11. O protótipo resolve sem ele.
+- **Tema claro ou escuro escolhido no app:** hoje o app segue o tema do celular. O protótipo tinha a linha "Tema"; ela só entra como função nova.
+- **O nome do app** continua treino-mvp até a validação com usuários (decisão de 06/11). O ícone novo já entrou.
+- **Voltar o pacote inicial para menos de 150 kB.** Na junção do redesign com a main (08/11), o R5-CL e o R5c levaram a boas-vindas de 147 para 167 kB comprimidos, e o programa de 189 para 213 kB. O desempenho segue de 90 a 100, e o teste de orçamento passou a 175 e 220 kB. O maior peso é `regras.json`, com 28 kB comprimidos e o texto de todas as regras: o selo precisa só do nível na hora, e o texto e as fontes poderiam vir quando a folha abre. Isso mexe em como o domínio expõe as regras, então pede uma decisão própria.
+- **Acessibilidade 96 no Lighthouse em 3 rotas (`target-size`):** uma linha da lista fica parcialmente atrás da barra fixa de baixo no momento da medição. Não é um botão pequeno; depende da altura do conteúdo, que cresceu com o R5c. Os testes do app (toque de 44 px e foco coberto) passam. Uma ideia é reservar a altura da barra no fim da página.
+
 ## Do R5d (08/11/2026)
 Detalhes e números em `devlog.md` ("R5d") e em `revisoes/qualidade/regua.md`.
 - **O foco invisível que resta:** 30 min (31,3%) e o foco nas pernas (44,2%). Três músculos com meta alta não cabem em pouco tempo; a nota do "até 2" e o aviso de focos que competem explicam. Ideia a medir: com "pernas" e 30 min, sugerir mais minutos no próprio cadastro.

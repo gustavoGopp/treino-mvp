@@ -63,8 +63,22 @@ describe('esquema do estado', () => {
     const e = estadoDe(PERSONAS.ana);
     expect(primeiroPassoPendente(estadoVazio())?.id).toBe('aviso');
     expect(primeiroPassoPendente({ ...e, rotina: undefined })?.id).toBe('rotina');
-    expect(perfilDe({ ...e, restricoes: undefined })).toBeNull();
+    expect(perfilDe({ ...e, triagem: undefined })).toBeNull();
     expect(primeiroPassoPendente(e)).toBeNull();
+    // lote 3 do redesign: o equipamento é o último passo; o "Tudo certo?" saiu
+    expect(primeiroPassoPendente({ ...e, locais: undefined })?.id).toBe('inventario');
+  });
+
+  it('pedido 5 do redesign: sem "algo a evitar", o perfil sai com as listas vazias, sem versão nova do estado', () => {
+    const e = estadoDe(PERSONAS.ana);
+    const sem = perfilDe({ ...e, restricoes: undefined })!;
+    expect(sem.evitarExercicios).toEqual([]);
+    expect(sem.evitarEquipamentos).toEqual([]);
+    expect(primeiroPassoPendente({ ...e, restricoes: undefined })).toBeNull();
+    expect(gerarPrograma(sem, inv(e)).status).toBe('ok');
+    // quem já tem "algo a evitar" guardado continua igual
+    const com = perfilDe({ ...e, restricoes: { evitarExercicios: ['stiff'], evitarEquipamentos: [] } })!;
+    expect(com.evitarExercicios).toEqual(['stiff']);
   });
 
   it('guarda a liberação da triagem só com a data, e a repassa ao gerador', () => {

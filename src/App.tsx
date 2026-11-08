@@ -1,22 +1,31 @@
-import { lazy, Suspense } from 'react';
+import { lazy, Suspense, type ComponentType } from 'react';
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
 import { EstadoProvider } from './features/app/estado';
 import { LimiteDeErro, ProvaDeErro } from './features/app/TelaDeErro';
-import { Evolucao } from './features/acompanhamento/Evolucao';
-import { Semana } from './features/acompanhamento/Semana';
-import { Dados } from './features/dados/Dados';
-import { Guia } from './features/guia/Guia';
 import { BoasVindas } from './features/onboarding/BoasVindas';
-import { Inventario } from './features/onboarding/Inventario';
-import { EditarLocal, Locais } from './features/locais/Locais';
-import { Nivel } from './features/onboarding/Nivel';
-import { Restricoes } from './features/onboarding/Restricoes';
-import { Rotina } from './features/onboarding/Rotina';
-import { Triagem } from './features/onboarding/Triagem';
 import { Programa } from './features/programa/Programa';
-import { Termos } from './features/termos/Termos';
-import { Resumo } from './features/treino/Resumo';
-import { Treino } from './features/treino/Treino';
+
+// Lote técnico do redesign (06/11/2026): cada rota é um pedaço próprio do JavaScript, baixado quando a pessoa chega
+// nela (e guardado pelo service worker para o uso sem rede). Ficam no pacote inicial só as 1ªs telas: a boas-vindas
+// (pessoa nova) e o programa (quem volta). Antes, toda tela baixava e processava o app inteiro (1 MB).
+const tela = <K extends string>(carregar: () => Promise<Record<K, ComponentType>>, nome: K) => lazy(() => carregar().then((m) => ({ default: m[nome] })));
+const Triagem = tela(() => import('./features/onboarding/Triagem'), 'Triagem');
+const Nivel = tela(() => import('./features/onboarding/Nivel'), 'Nivel');
+const Rotina = tela(() => import('./features/onboarding/Rotina'), 'Rotina');
+const Inventario = tela(() => import('./features/onboarding/Inventario'), 'Inventario');
+const Restricoes = tela(() => import('./features/onboarding/Restricoes'), 'Restricoes');
+const Locais = tela(() => import('./features/locais/Locais'), 'Locais');
+const EditarLocal = tela(() => import('./features/locais/Locais'), 'EditarLocal');
+const Treino = tela(() => import('./features/treino/Treino'), 'Treino');
+const Resumo = tela(() => import('./features/treino/Resumo'), 'Resumo');
+const Semana = tela(() => import('./features/acompanhamento/Semana'), 'Semana');
+const Evolucao = tela(() => import('./features/acompanhamento/Evolucao'), 'Evolucao');
+const Dados = tela(() => import('./features/dados/Dados'), 'Dados');
+const Guia = tela(() => import('./features/guia/Guia'), 'Guia');
+const Termos = tela(() => import('./features/termos/Termos'), 'Termos');
+
+// Enquanto o pedaço chega (em uso, do service worker, em milissegundos): só o fundo do app, sem spinner.
+const Carregando = () => <div className="wrap app" aria-busy="true" />;
 
 // Só em desenvolvimento: fora do bundle de produção.
 const GeradorDev = import.meta.env.DEV ? lazy(() => import('./features/dev/GeradorDev').then((m) => ({ default: m.GeradorDev }))) : null;
@@ -27,9 +36,10 @@ export function App() {
   // A tela de erro fica em volta de tudo: um erro em qualquer tela (ou na carga do estado) mostra a saída com "Exportar".
   return (
     <LimiteDeErro>
-      <EstadoProvider>
-        <BrowserRouter>
-          <ProvaDeErro />
+    <EstadoProvider>
+      <BrowserRouter>
+        <ProvaDeErro />
+        <Suspense fallback={<Carregando />}>
           <Routes>
             <Route path="/" element={<BoasVindas />} />
             <Route path="/comecar/triagem" element={<Triagem />} />
@@ -45,9 +55,9 @@ export function App() {
             <Route path="/semana" element={<Semana />} />
             <Route path="/evolucao/:exId" element={<Evolucao />} />
             <Route path="/dados" element={<Dados />} />
-            <Route path="/termos" element={<Termos />} />
             <Route path="/guia" element={<Navigate to="/guia/supino-inclinado" replace />} />
             <Route path="/guia/:id" element={<Guia />} />
+            <Route path="/termos" element={<Termos />} />
             {GeradorDev && (
               <Route
                 path="/dev/gerador"
@@ -70,8 +80,9 @@ export function App() {
             )}
             <Route path="*" element={<Navigate to="/" replace />} />
           </Routes>
-        </BrowserRouter>
-      </EstadoProvider>
+        </Suspense>
+      </BrowserRouter>
+    </EstadoProvider>
     </LimiteDeErro>
   );
 }

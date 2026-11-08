@@ -1,0 +1,143 @@
+{
+ "medidoEm": "2026-11-06T08:07:01.295Z",
+ "bundle": [
+  {
+   "arquivo": "index-CPpSDvq2.js",
+   "kB": 1060.1,
+   "gzipKB": 269.4
+  },
+  {
+   "arquivo": "index-Ds6MTct_.css",
+   "kB": 42.9,
+   "gzipKB": 8.4
+  },
+  {
+   "arquivo": "index.html",
+   "kB": 1
+  },
+  {
+   "arquivo": "sw.js",
+   "kB": 1.1
+  },
+  {
+   "arquivo": "manifest.webmanifest",
+   "kB": 0.3
+  }
+ ],
+ "letra": {
+  "cssKB": 3.8,
+  "pedidosExternos": 3,
+  "arquivos": [
+   {
+    "url": "…/v7/NaPNcYPdHfdVxJw0IfIP0lvYFqijb-UxCtm5_wdGseiHn3q0pkZ_S2Q.woff2",
+    "kB": 18.6
+   },
+   {
+    "url": "…/v7/NaPNcYPdHfdVxJw0IfIP0lvYFqijb-UxCtm5_wdGseiJn3q0pkZ_.woff2",
+    "kB": 33.2
+   }
+  ],
+  "totalKB": 51.8,
+  "nota": "variável (um arquivo cobre os 4 pesos); a 2ª URL costuma ser o subconjunto latin-ext"
+ },
+ "lighthouse": [
+  {
+   "rota": "/",
+   "url": "http://localhost:4173/programa",
+   "desempenho": 69,
+   "acessibilidade": 96,
+   "boasPraticas": 100,
+   "fcpMs": 167,
+   "lcpMs": 167,
+   "tbtMs": 5064,
+   "cls": 0.033,
+   "speedIndexMs": 3681,
+   "pedidos": 8,
+   "transferidoKB": 0,
+   "falhasAcessibilidade": [
+    "target-size"
+   ]
+  },
+  {
+   "rota": "/comecar/triagem",
+   "url": "http://localhost:4173/comecar/triagem",
+   "desempenho": 59,
+   "acessibilidade": 100,
+   "boasPraticas": 100,
+   "fcpMs": 109,
+   "lcpMs": 3283,
+   "tbtMs": 3111,
+   "cls": 0.119,
+   "speedIndexMs": 2260,
+   "pedidos": 8,
+   "transferidoKB": 0,
+   "falhasAcessibilidade": []
+  },
+  {
+   "rota": "/programa",
+   "url": "http://localhost:4173/programa",
+   "desempenho": 69,
+   "acessibilidade": 96,
+   "boasPraticas": 100,
+   "fcpMs": 286,
+   "lcpMs": 286,
+   "tbtMs": 4409,
+   "cls": 0.033,
+   "speedIndexMs": 3245,
+   "pedidos": 8,
+   "transferidoKB": 0,
+   "falhasAcessibilidade": [
+    "target-size"
+   ]
+  },
+  {
+   "rota": "/guia/bulgaro",
+   "url": "http://localhost:4173/guia/bulgaro",
+   "desempenho": 70,
+   "acessibilidade": 93,
+   "boasPraticas": 100,
+   "fcpMs": 72,
+   "lcpMs": 72,
+   "tbtMs": 3076,
+   "cls": 0.063,
+   "speedIndexMs": 2171,
+   "pedidos": 8,
+   "transferidoKB": 0,
+   "falhasAcessibilidade": [
+    "aria-allowed-attr",
+    "landmark-one-main",
+    "label-content-name-mismatch"
+   ]
+  },
+  {
+   "rota": "/semana",
+   "url": "http://localhost:4173/semana",
+   "desempenho": 70,
+   "acessibilidade": 100,
+   "boasPraticas": 100,
+   "fcpMs": 96,
+   "lcpMs": 96,
+   "tbtMs": 3540,
+   "cls": 0,
+   "speedIndexMs": 2476,
+   "pedidos": 8,
+   "transferidoKB": 0,
+   "falhasAcessibilidade": []
+  },
+  {
+   "rota": "/dados",
+   "url": "http://localhost:4173/dados",
+   "desempenho": 71,
+   "acessibilidade": 100,
+   "boasPraticas": 100,
+   "fcpMs": 23,
+   "lcpMs": 23,
+   "tbtMs": 2747,
+   "cls": 0,
+   "speedIndexMs": 2016,
+   "pedidos": 8,
+   "transferidoKB": 0,
+   "falhasAcessibilidade": []
+  }
+ ]
+}

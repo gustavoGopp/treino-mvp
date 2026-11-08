@@ -232,9 +232,12 @@ export const inventarioDeTodos = (e: Estado): Local['inventario'] =>
 /** Nome neutro do 1º local, que a pessoa troca quando quiser (R1b). */
 export const NOME_LOCAL_PADRAO = 'Meu local';
 
-/** Perfil completo para o gerador, ou null se ainda falta algum passo do onboarding. */
+/**
+ * Perfil completo para o gerador, ou null se ainda falta algum passo do onboarding. "Algo a evitar" é opcional (pedido 5
+ * do redesign, lote 3): sem `restricoes`, as duas listas valem vazias; ele mudou para Meus dados.
+ */
 export function perfilDe(e: Estado): Perfil | null {
-  if (!e.triagem || !e.nivel || !e.rotina || !e.restricoes) return null;
+  if (!e.triagem || !e.nivel || !e.rotina) return null;
   return {
     nivel: e.nivel.escolhido,
     semanasParado: e.nivel.respostas.semanasParado,
@@ -245,8 +248,8 @@ export function perfilDe(e: Estado): Perfil | null {
     prioridades: e.rotina.prioridades,
     ...(e.preferidos && Object.keys(e.preferidos).length ? { preferidos: e.preferidos } : {}),
     ...(e.margemTempo !== undefined ? { margemTempo: e.margemTempo } : {}),
-    evitarExercicios: e.restricoes.evitarExercicios,
-    evitarEquipamentos: e.restricoes.evitarEquipamentos,
+    evitarExercicios: e.restricoes?.evitarExercicios ?? [],
+    evitarEquipamentos: e.restricoes?.evitarEquipamentos ?? [],
     triagem: {
       respostas: e.triagem.respostas,
       ...(e.triagem.dores?.length ? { dores: e.triagem.dores } : {}),
@@ -255,14 +258,16 @@ export function perfilDe(e: Estado): Perfil | null {
   };
 }
 
-/** Passos do onboarding, na ordem. O primeiro incompleto é para onde a pessoa volta. */
+/**
+ * Passos do onboarding, na ordem. O primeiro incompleto é para onde a pessoa volta. Desde o lote 3 do redesign, o
+ * "Tudo certo?" saiu: o equipamento gera o programa.
+ */
 export const PASSOS = [
   { id: 'aviso', rota: '/', titulo: 'Boas-vindas' },
   { id: 'triagem', rota: '/comecar/triagem', titulo: 'Triagem' },
   { id: 'nivel', rota: '/comecar/nivel', titulo: 'Experiência' },
   { id: 'rotina', rota: '/comecar/rotina', titulo: 'Rotina' },
   { id: 'inventario', rota: '/comecar/inventario', titulo: 'Equipamento' },
-  { id: 'restricoes', rota: '/comecar/restricoes', titulo: 'Confirmar' },
 ] as const;
 export type PassoId = (typeof PASSOS)[number]['id'];
 
@@ -278,8 +283,6 @@ export function passoCompleto(e: Estado, id: PassoId): boolean {
       return !!e.rotina;
     case 'inventario':
       return !!e.locais?.length;
-    case 'restricoes':
-      return !!e.restricoes;
   }
 }
 

@@ -1,5 +1,5 @@
 import { expect, test, type Page } from '@playwright/test';
-import { ana } from './jornada';
+import { ana, abrirTrocar, maisOpcoes, proximoExercicio, terminarTreino, porQueDaSugestao } from './jornada';
 
 // M5: treinar com o app. Persona fictícia Ana (halteres de 1 a 12 kg e banco reto).
 
@@ -30,7 +30,9 @@ test('sessão completa: registra as séries, descansa e recebe a sugestão para 
   await comecar(page);
   await expect(page.getByRole('heading', { name: 'Agachamento búlgaro com apoio' })).toBeVisible();
   // 1ª vez: a 1ª série calibra a carga (progressao.calibracao, R1b).
-  await expect(page.getByText(/1ª vez neste exercício: comece com uma carga que pareça fácil/)).toBeVisible();
+  await expect(page.getByText('1ª vez: comece leve.')).toBeVisible();
+  await expect(await porQueDaSugestao(page)).toContainText(/1ª vez neste exercício: comece com uma carga que pareça fácil/);
+  await page.keyboard.press('Escape');
   await expect(page.getByText(/1–2 séries leves de aquecimento/)).toBeVisible();
 
   // 1ª série: sem carga e sem RIR o botão não deixa salvar.
@@ -64,19 +66,25 @@ test('sessão completa: registra as séries, descansa e recebe a sugestão para 
 
   for (;;) {
     await fazerExercicio(page);
-    const proximo = page.getByRole('button', { name: 'Próximo ›' });
+    const proximo = page.getByRole('navigation', { name: 'Exercícios' }).getByRole('button', { name: 'Próximo ›' });
     if (!(await proximo.isVisible())) break;
     await proximo.click();
   }
   await page.getByRole('main').getByRole('button', { name: 'Terminar treino' }).click();
 
   await expect(page.getByRole('heading', { name: 'Treino concluído' })).toBeVisible();
-  await expect(page.getByRole('list', { name: 'Resumo do treino' })).toContainText('Corpo todo A');
+  await expect(page.locator('.subtitulo')).toContainText('Corpo todo A');
+  // lote 4 do redesign: "O que mudou hoje" primeiro, com a semana já contando o treino de hoje
+  await expect(page.getByRole('region', { name: 'O que mudou hoje' })).toContainText('1 de 3');
   await expect(page.getByRole('heading', { name: 'Para a próxima vez' })).toBeVisible();
   await expect(page.locator('.resumo-ex').first()).toContainText('Manter');
+  // o motivo da sugestão, com o selo, fica no "por quê?" de cada linha
+  await page.locator('.resumo-ex').first().getByRole('button', { name: 'por quê?' }).click();
+  await expect(page.getByRole('dialog').locator('.selo-folha').first()).toBeVisible();
+  await page.keyboard.press('Escape');
 
-  // De volta ao programa: o próximo da rotação vem selecionado, e o histórico sobrevive ao recarregar.
-  await page.getByRole('link', { name: 'Voltar ao programa' }).click();
+  // De volta ao início: o próximo da rotação vem selecionado, e o histórico sobrevive ao recarregar.
+  await page.getByRole('link', { name: 'Voltar ao início' }).click();
   await expect(page.getByRole('tab', { name: 'Corpo todo B', exact: true })).toHaveAttribute('aria-selected', 'true');
   await page.reload();
   await expect(page.getByRole('button', { name: 'Começar o treino Corpo todo B' })).toBeVisible();
@@ -102,8 +110,7 @@ test('treino em andamento sobrevive a fechar o app', async ({ page }) => {
 test('trocar pela alternativa vale só para esta sessão', async ({ page }) => {
   await ana(page);
   await comecar(page);
-  await page.getByRole('button', { name: 'Trocar exercício' }).click();
-  await page.getByRole('region', { name: 'Trocar exercício' }).getByRole('button').first().click();
+  await (await abrirTrocar(page)).getByRole('button').first().click();
   await expect(page.getByText(/No lugar de agachamento búlgaro/)).toBeVisible();
 });
 
@@ -131,8 +138,8 @@ test('R1: aberto pelo treino, o guia do búlgaro mostra a prescrição da semana
   await comecar(page);
   await expect(page.getByRole('heading', { name: 'Agachamento búlgaro com apoio' })).toBeVisible();
   const meta = (await page.locator('p.meta').first().innerText()).trim();
-  const series = meta.match(/Meta: (\d+) × 8–12/)![1]!;
-  expect(meta).toContain('RIR 3–4');
+  const series = meta.match(/^(\d+) × 8–12/)![1]!;
+  await expect(page.locator('.rir-meta')).toContainText('meta de hoje: 3–4');
   await page.getByRole('link', { name: 'Ver como fazer' }).click();
   await expect(page).toHaveURL(/\/guia\/bulgaro\?de=treino/);
   const rx = page.getByTestId('prescricao');
@@ -166,3 +173,83 @@ for (const largura of [412, 360]) {
     }
   });
 }
+
+// Lote 2 do redesign: terminar no meio pede confirmação, e "Senti algo" continua ao alcance com a confirmação aberta.
+test('terminar no meio do treino pede confirmação; "Continuar treinando" volta ao exercício', async ({ page }) => {
+  await ana(page);
+  await comecar(page);
+  await (await maisOpcoes(page)).getByRole('button', { name: 'Terminar o treino agora' }).click();
+  const confirma = page.getByRole('dialog', { name: 'Terminar o treino agora?' });
+  // 6 exercícios no dia A da Ana desde o R5d (o abdominal saiu: com foco, os isoladores de quem não é foco entram depois).
+  await expect(confirma).toContainText('Você terminou 0 de 6 exercícios. O que já foi registrado fica salvo.');
+  await expect(page.getByRole('button', { name: 'Senti algo' })).toBeVisible();
+  await confirma.getByRole('button', { name: 'Continuar treinando' }).click();
+  await expect(confirma).toBeHidden();
+  await expect(page).toHaveURL(/\/treino$/);
+  await expect(page.getByRole('heading', { name: 'Agachamento búlgaro com apoio' })).toBeVisible();
+  await terminarTreino(page);
+  await expect(page.getByRole('heading', { name: 'Treino concluído' })).toBeVisible();
+});
+
+// Lote 2 do redesign: depois de "Série feita", "Desfazer" fica 5 s à vista; desfazer apaga a série e para o descanso.
+test('"Desfazer" por 5 s depois de salvar a série apaga a série e para o descanso', async ({ page }) => {
+  await ana(page);
+  await comecar(page);
+  await page.getByLabel('Carga', { exact: true }).selectOption('8');
+  await page.getByRole('radio', { name: '2', exact: true }).check();
+  await page.getByRole('button', { name: /^Série feita/ }).click();
+  const barra = page.getByRole('status').filter({ hasText: 'Série 1 salva' });
+  await expect(barra).toBeVisible();
+  await expect(page.getByRole('region', { name: 'Descanso' })).toBeVisible();
+  await barra.getByRole('button', { name: 'Desfazer' }).click();
+  await expect(page.getByRole('list', { name: 'Séries feitas' })).toHaveCount(0);
+  await expect(page.getByRole('region', { name: 'Descanso' })).toHaveCount(0);
+  await expect(page.getByRole('region', { name: /^Série 1/ })).toBeVisible();
+  // sem desfazer, a barra some sozinha em 5 s e a série fica (a série volta ao começo: carga e reserva de novo)
+  await page.getByLabel('Carga', { exact: true }).selectOption('8');
+  await page.getByRole('radio', { name: '2', exact: true }).check();
+  await page.getByRole('button', { name: /^Série feita/ }).click();
+  await expect(page.getByRole('status').filter({ hasText: 'Série 1 salva' })).toBeVisible();
+  await expect(page.getByRole('status').filter({ hasText: 'Série 1 salva' })).toBeHidden({ timeout: 7000 });
+  await expect(page.getByRole('list', { name: 'Séries feitas' })).toContainText('8 kg × 8');
+});
+
+// Lote 2 do redesign (segurança): no exercício sem animação, a montagem segura vem aberta, com o selo, sem nenhum toque;
+// dicas e erros abrem numa folha.
+test('exercício sem animação: a montagem segura vem sempre aberta, com o selo', async ({ page }) => {
+  await ana(page);
+  await comecar(page);
+  await proximoExercicio(page);
+  await expect(page.getByRole('heading', { name: /Ponte de glúteo/ })).toBeVisible();
+  const montagem = page.getByRole('region', { name: /Montagem segura/ });
+  await expect(montagem).toBeVisible();
+  await expect(montagem.getByRole('listitem').first()).toBeVisible();
+  await expect(montagem.locator('button.selo')).toHaveAccessibleName(/: ver de onde vem$/);
+  await page.getByRole('button', { name: 'Como fazer: dicas e erros ›' }).click();
+  const folha = page.getByRole('dialog', { name: 'Como fazer (em texto)' });
+  await expect(folha.getByRole('heading', { name: 'Dicas' })).toBeVisible();
+  await expect(page.getByRole('button', { name: 'Senti algo' })).toBeVisible();
+  await page.keyboard.press('Escape');
+  await expect(folha).toBeHidden();
+});
+
+// Segurança: "Senti algo" abre e fecha a própria folha, e de qualquer outra folha (o "⋯", a troca) vai direto para ela.
+test('"Senti algo" abre e fecha a folha, e passa por cima de qualquer outra folha do treino', async ({ page }) => {
+  await ana(page);
+  await comecar(page);
+  const senti = page.getByRole('button', { name: 'Senti algo' });
+  const folha = page.getByRole('dialog', { name: 'O que você sentiu?' });
+  await senti.click();
+  await expect(folha).toBeVisible();
+  await senti.click();
+  await expect(folha).toBeHidden();
+  await maisOpcoes(page);
+  await senti.click();
+  await expect(page.getByRole('dialog', { name: 'Mais opções' })).toBeHidden();
+  await expect(folha).toBeVisible();
+  await senti.click();
+  await abrirTrocar(page);
+  await senti.click();
+  await expect(page.getByRole('region', { name: 'Trocar exercício' })).toBeHidden();
+  await expect(folha).toBeVisible();
+});

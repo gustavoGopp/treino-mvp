@@ -1,0 +1,1356 @@
+[
+ {
+  "tela": "claro/cadastro/01-boas-vindas",
+  "toquePequeno": [],
+  "contrasteBaixo": [],
+  "botaoPrincipal": {
+   "texto": "Começar",
+   "topoPct": 76,
+   "visivelSemRolar": true
+  },
+  "palavras": 74,
+  "telas": 1,
+  "rolaDeLado": false
+ },
+ {
+  "tela": "claro/cadastro/02-triagem",
+  "toquePequeno": [],
+  "contrasteBaixo": [],
+  "botaoPrincipal": {
+   "texto": "Não, nenhuma",
+   "topoPct": 117,
+   "visivelSemRolar": false
+  },
+  "palavras": 111,
+  "telas": 1.4,
+  "rolaDeLado": false
+ },
+ {
+  "tela": "claro/cadastro/02b-triagem-uma-a-uma",
+  "toquePequeno": [],
+  "contrasteBaixo": [],
+  "botaoPrincipal": {
+   "texto": "Continuar",
+   "topoPct": 159,
+   "visivelSemRolar": false
+  },
+  "palavras": 148,
+  "telas": 1.8,
+  "rolaDeLado": false
+ },
+ {
+  "tela": "claro/cadastro/02c-triagem-confirmar",
+  "toquePequeno": [],
+  "contrasteBaixo": [],
+  "botaoPrincipal": {
+   "texto": "Continuar",
+   "topoPct": 160,
+   "visivelSemRolar": false
+  },
+  "palavras": 236,
+  "telas": 1.8,
+  "rolaDeLado": false
+ },
+ {
+  "tela": "claro/cadastro/03-nivel-vazio",
+  "toquePequeno": [],
+  "contrasteBaixo": [],
+  "botaoPrincipal": null,
+  "palavras": 41,
+  "telas": 1,
+  "rolaDeLado": false
+ },
+ {
+  "tela": "claro/cadastro/03b-nivel-respondido",
+  "toquePequeno": [],
+  "contrasteBaixo": [],
+  "botaoPrincipal": {
+   "texto": "Continuar",
+   "topoPct": 159,
+   "visivelSemRolar": false
+  },
+  "palavras": 67,
+  "telas": 1.7,
+  "rolaDeLado": false
+ },
+ {
+  "tela": "claro/cadastro/04-rotina-vazia",
+  "toquePequeno": [],
+  "contrasteBaixo": [],
+  "botaoPrincipal": null,
+  "palavras": 44,
+  "telas": 1,
+  "rolaDeLado": false
+ },
+ {
+  "tela": "claro/cadastro/04b-rotina-respondida",
+  "toquePequeno": [],
+  "contrasteBaixo": [],
+  "botaoPrincipal": {
+   "texto": "Continuar",
+   "topoPct": 140,
+   "visivelSemRolar": false
+  },
+  "palavras": 79,
+  "telas": 1.5,
+  "rolaDeLado": false
+ },
+ {
+  "tela": "claro/cadastro/05-equipamento-vazio",
+  "toquePequeno": [],
+  "contrasteBaixo": [],
+  "botaoPrincipal": {
+   "texto": "Gerar meu programa",
+   "topoPct": 83,
+   "visivelSemRolar": true
+  },
+  "palavras": 74,
+  "telas": 1,
+  "rolaDeLado": false
+ },
+ {
+  "tela": "claro/cadastro/05b-equipamento-academia-completa",
+  "toquePequeno": [],
+  "contrasteBaixo": [],
+  "botaoPrincipal": {
+   "texto": "Gerar meu programa",
+   "topoPct": 92,
+   "visivelSemRolar": true
+  },
+  "palavras": 91,
+  "telas": 1.9,
+  "rolaDeLado": false
+ },
+ {
+  "tela": "claro/cadastro/05c-equipamento-corpo-livre",
+  "toquePequeno": [],
+  "contrasteBaixo": [],
+  "botaoPrincipal": {
+   "texto": "Gerar meu programa",
+   "topoPct": 92,
+   "visivelSemRolar": true
+  },
+  "palavras": 96,
+  "telas": 1.2,
+  "rolaDeLado": false
+ },
+ {
+  "tela": "claro/cadastro/05e-equipamento-detalhes",
+  "toquePequeno": [],
+  "contrasteBaixo": [],
+  "botaoPrincipal": {
+   "texto": "Mudar",
+   "topoPct": 79,
+   "visivelSemRolar": true
+  },
+  "palavras": 108,
+  "telas": 1.9,
+  "rolaDeLado": false
+ },
+ {
+  "tela": "claro/cadastro/05d-equipamento-lista-ana",
+  "toquePequeno": [],
+  "contrasteBaixo": [],
+  "botaoPrincipal": {
+   "texto": "Mudar",
+   "topoPct": 79,
+   "visivelSemRolar": true
+  },
+  "palavras": 45,
+  "telas": 2,
+  "rolaDeLado": false
+ },
+ {
+  "tela": "claro/cadastro/07-programa-recem-gerado",
+  "toquePequeno": [],
+  "contrasteBaixo": [],
+  "botaoPrincipal": {
+   "texto": "Começar o treino Corpo todo A",
+   "topoPct": 84,
+   "visivelSemRolar": true
+  },
+  "palavras": 74,
+  "telas": 1.5,
+  "rolaDeLado": false
+ },
+ {
+  "tela": "claro/ana/10-programa",
+  "toquePequeno": [],
+  "contrasteBaixo": [],
+  "botaoPrincipal": {
+   "texto": "Começar o treino Corpo todo A",
+   "topoPct": 84,
+   "visivelSemRolar": true
+  },
+  "palavras": 66,
+  "telas": 1.6,
+  "rolaDeLado": false
+ },
+ {
+  "tela": "claro/ana/10b-programa-dia-2",
+  "toquePequeno": [],
+  "contrasteBaixo": [],
+  "botaoPrincipal": {
+   "texto": "Começar o treino Corpo todo B",
+   "topoPct": 84,
+   "visivelSemRolar": true
+  },
+  "palavras": 65,
+  "telas": 1.6,
+  "rolaDeLado": false
+ },
+ {
+  "tela": "claro/ana/10c-programa-exercicio",
+  "toquePequeno": [],
+  "contrasteBaixo": [],
+  "botaoPrincipal": {
+   "texto": "Começar o treino Corpo todo A",
+   "topoPct": 84,
+   "visivelSemRolar": true
+  },
+  "palavras": 166,
+  "telas": 1.6,
+  "rolaDeLado": false
+ },
+ {
+  "tela": "claro/ana/10d-programa-sobre",
+  "toquePequeno": [],
+  "contrasteBaixo": [],
+  "botaoPrincipal": {
+   "texto": "Começar o treino Corpo todo A",
+   "topoPct": 141,
+   "visivelSemRolar": false
+  },
+  "palavras": 173,
+  "telas": 1.6,
+  "rolaDeLado": false
+ },
+ {
+  "tela": "claro/ana/11-treino-serie-1",
+  "toquePequeno": [],
+  "contrasteBaixo": [],
+  "botaoPrincipal": {
+   "texto": "Série feita · descansar 1:45",
+   "topoPct": 75,
+   "visivelSemRolar": true
+  },
+  "palavras": 61,
+  "telas": 1,
+  "rolaDeLado": false
+ },
+ {
+  "tela": "claro/ana/16-guia-tecnica",
+  "toquePequeno": [],
+  "contrasteBaixo": [],
+  "botaoPrincipal": null,
+  "palavras": 41,
+  "telas": 3.4,
+  "rolaDeLado": false
+ },
+ {
+  "tela": "claro/ana/16b-guia-musculos",
+  "toquePequeno": [],
+  "contrasteBaixo": [],
+  "botaoPrincipal": null,
+  "palavras": 63,
+  "telas": 3.6,
+  "rolaDeLado": false
+ },
+ {
+  "tela": "claro/ana/16c-guia-erros",
+  "toquePequeno": [],
+  "contrasteBaixo": [],
+  "botaoPrincipal": null,
+  "palavras": 41,
+  "telas": 3.7,
+  "rolaDeLado": false
+ },
+ {
+  "tela": "claro/ana/14-treino-senti-algo",
+  "toquePequeno": [],
+  "contrasteBaixo": [],
+  "botaoPrincipal": {
+   "texto": "Série feita · descansar 1:45",
+   "topoPct": 75,
+   "visivelSemRolar": true
+  },
+  "palavras": 116,
+  "telas": 1,
+  "rolaDeLado": false
+ },
+ {
+  "tela": "claro/ana/15-treino-trocar",
+  "toquePequeno": [],
+  "contrasteBaixo": [],
+  "botaoPrincipal": {
+   "texto": "Série feita · descansar 1:45",
+   "topoPct": 75,
+   "visivelSemRolar": true
+  },
+  "palavras": 106,
+  "telas": 1,
+  "rolaDeLado": false
+ },
+ {
+  "tela": "claro/ana/12-treino-descanso",
+  "toquePequeno": [],
+  "contrasteBaixo": [],
+  "botaoPrincipal": {
+   "texto": "Série feita",
+   "topoPct": 92,
+   "visivelSemRolar": true
+  },
+  "palavras": 66,
+  "telas": 1.3,
+  "rolaDeLado": false
+ },
+ {
+  "tela": "claro/ana/13-treino-serie-2",
+  "toquePequeno": [],
+  "contrasteBaixo": [],
+  "botaoPrincipal": {
+   "texto": "Série feita · descansar 1:45",
+   "topoPct": 84,
+   "visivelSemRolar": true
+  },
+  "palavras": 61,
+  "telas": 1,
+  "rolaDeLado": false
+ },
+ {
+  "tela": "claro/ana/17-fim-do-treino",
+  "toquePequeno": [],
+  "contrasteBaixo": [],
+  "botaoPrincipal": {
+   "texto": "Ver a sua semana",
+   "topoPct": 118,
+   "visivelSemRolar": false
+  },
+  "palavras": 106,
+  "telas": 1.4,
+  "rolaDeLado": false
+ },
+ {
+  "tela": "claro/ana/18-semana",
+  "toquePequeno": [],
+  "contrasteBaixo": [],
+  "botaoPrincipal": null,
+  "palavras": 77,
+  "telas": 3,
+  "rolaDeLado": false
+ },
+ {
+  "tela": "claro/ana/19-evolucao",
+  "toquePequeno": [],
+  "contrasteBaixo": [],
+  "botaoPrincipal": null,
+  "palavras": 47,
+  "telas": 1,
+  "rolaDeLado": false
+ },
+ {
+  "tela": "claro/ana/20-meus-dados",
+  "toquePequeno": [],
+  "contrasteBaixo": [],
+  "botaoPrincipal": {
+   "texto": "Apagar todos os dados",
+   "topoPct": 97,
+   "visivelSemRolar": false
+  },
+  "palavras": 97,
+  "telas": 1.2,
+  "rolaDeLado": false
+ },
+ {
+  "tela": "claro/bruno/10-programa",
+  "toquePequeno": [],
+  "contrasteBaixo": [],
+  "botaoPrincipal": {
+   "texto": "Mais 2 avisos",
+   "topoPct": 64,
+   "visivelSemRolar": true
+  },
+  "palavras": 68,
+  "telas": 2.2,
+  "rolaDeLado": false
+ },
+ {
+  "tela": "claro/bruno/10b-programa-dia-2",
+  "toquePequeno": [],
+  "contrasteBaixo": [],
+  "botaoPrincipal": {
+   "texto": "Mais 2 avisos",
+   "topoPct": 64,
+   "visivelSemRolar": true
+  },
+  "palavras": 62,
+  "telas": 1.8,
+  "rolaDeLado": false
+ },
+ {
+  "tela": "claro/bruno/10c-programa-exercicio",
+  "toquePequeno": [],
+  "contrasteBaixo": [],
+  "botaoPrincipal": {
+   "texto": "Mais 2 avisos",
+   "topoPct": 64,
+   "visivelSemRolar": true
+  },
+  "palavras": 189,
+  "telas": 2.2,
+  "rolaDeLado": false
+ },
+ {
+  "tela": "claro/bruno/10d-programa-sobre",
+  "toquePequeno": [],
+  "contrasteBaixo": [],
+  "botaoPrincipal": {
+   "texto": "Mais 2 avisos",
+   "topoPct": 64,
+   "visivelSemRolar": true
+  },
+  "palavras": 149,
+  "telas": 2.2,
+  "rolaDeLado": false
+ },
+ {
+  "tela": "claro/bruno/11-treino-serie-1",
+  "toquePequeno": [],
+  "contrasteBaixo": [],
+  "botaoPrincipal": {
+   "texto": "Série feita · descansar 1:45",
+   "topoPct": 75,
+   "visivelSemRolar": true
+  },
+  "palavras": 57,
+  "telas": 1,
+  "rolaDeLado": false
+ },
+ {
+  "tela": "claro/bruno/16-guia-tecnica",
+  "toquePequeno": [],
+  "contrasteBaixo": [],
+  "botaoPrincipal": null,
+  "palavras": 38,
+  "telas": 3.4,
+  "rolaDeLado": false
+ },
+ {
+  "tela": "claro/bruno/16b-guia-musculos",
+  "toquePequeno": [],
+  "contrasteBaixo": [],
+  "botaoPrincipal": null,
+  "palavras": 61,
+  "telas": 3.6,
+  "rolaDeLado": false
+ },
+ {
+  "tela": "claro/bruno/16c-guia-erros",
+  "toquePequeno": [],
+  "contrasteBaixo": [],
+  "botaoPrincipal": null,
+  "palavras": 45,
+  "telas": 3.7,
+  "rolaDeLado": false
+ },
+ {
+  "tela": "claro/bruno/14-treino-senti-algo",
+  "toquePequeno": [],
+  "contrasteBaixo": [],
+  "botaoPrincipal": {
+   "texto": "Série feita · descansar 1:45",
+   "topoPct": 75,
+   "visivelSemRolar": true
+  },
+  "palavras": 112,
+  "telas": 1,
+  "rolaDeLado": false
+ },
+ {
+  "tela": "claro/bruno/15-treino-trocar",
+  "toquePequeno": [],
+  "contrasteBaixo": [],
+  "botaoPrincipal": {
+   "texto": "Série feita · descansar 1:45",
+   "topoPct": 75,
+   "visivelSemRolar": true
+  },
+  "palavras": 85,
+  "telas": 1,
+  "rolaDeLado": false
+ },
+ {
+  "tela": "claro/bruno/12-treino-descanso",
+  "toquePequeno": [],
+  "contrasteBaixo": [],
+  "botaoPrincipal": {
+   "texto": "Série feita",
+   "topoPct": 92,
+   "visivelSemRolar": true
+  },
+  "palavras": 62,
+  "telas": 1.3,
+  "rolaDeLado": false
+ },
+ {
+  "tela": "claro/bruno/13-treino-serie-2",
+  "toquePequeno": [],
+  "contrasteBaixo": [],
+  "botaoPrincipal": {
+   "texto": "Série feita · descansar 1:45",
+   "topoPct": 84,
+   "visivelSemRolar": true
+  },
+  "palavras": 57,
+  "telas": 1,
+  "rolaDeLado": false
+ },
+ {
+  "tela": "claro/bruno/17-fim-do-treino",
+  "toquePequeno": [],
+  "contrasteBaixo": [],
+  "botaoPrincipal": {
+   "texto": "Ver a sua semana",
+   "topoPct": 118,
+   "visivelSemRolar": false
+  },
+  "palavras": 104,
+  "telas": 1.4,
+  "rolaDeLado": false
+ },
+ {
+  "tela": "claro/bruno/18-semana",
+  "toquePequeno": [],
+  "contrasteBaixo": [],
+  "botaoPrincipal": null,
+  "palavras": 92,
+  "telas": 4,
+  "rolaDeLado": false
+ },
+ {
+  "tela": "claro/bruno/19-evolucao",
+  "toquePequeno": [],
+  "contrasteBaixo": [],
+  "botaoPrincipal": null,
+  "palavras": 47,
+  "telas": 1,
+  "rolaDeLado": false
+ },
+ {
+  "tela": "claro/bruno/20-meus-dados",
+  "toquePequeno": [],
+  "contrasteBaixo": [],
+  "botaoPrincipal": {
+   "texto": "Apagar todos os dados",
+   "topoPct": 97,
+   "visivelSemRolar": false
+  },
+  "palavras": 98,
+  "telas": 1.2,
+  "rolaDeLado": false
+ },
+ {
+  "tela": "claro/bruno/21-locais",
+  "toquePequeno": [],
+  "contrasteBaixo": [],
+  "botaoPrincipal": {
+   "texto": "Cadastrar outro local",
+   "topoPct": 77,
+   "visivelSemRolar": true
+  },
+  "palavras": 72,
+  "telas": 1,
+  "rolaDeLado": false
+ },
+ {
+  "tela": "claro/bruno/22-editar-local",
+  "toquePequeno": [],
+  "contrasteBaixo": [],
+  "botaoPrincipal": {
+   "texto": "Mudar",
+   "topoPct": 108,
+   "visivelSemRolar": false
+  },
+  "palavras": 77,
+  "telas": 3.1,
+  "rolaDeLado": false
+ },
+ {
+  "tela": "claro/carla/10-programa",
+  "toquePequeno": [],
+  "contrasteBaixo": [],
+  "botaoPrincipal": {
+   "texto": "Mais 2 avisos",
+   "topoPct": 50,
+   "visivelSemRolar": true
+  },
+  "palavras": 60,
+  "telas": 1.8,
+  "rolaDeLado": false
+ },
+ {
+  "tela": "claro/carla/10b-programa-dia-2",
+  "toquePequeno": [],
+  "contrasteBaixo": [],
+  "botaoPrincipal": {
+   "texto": "Mais 2 avisos",
+   "topoPct": 50,
+   "visivelSemRolar": true
+  },
+  "palavras": 60,
+  "telas": 1.8,
+  "rolaDeLado": false
+ },
+ {
+  "tela": "claro/carla/10c-programa-exercicio",
+  "toquePequeno": [],
+  "contrasteBaixo": [],
+  "botaoPrincipal": {
+   "texto": "Mais 2 avisos",
+   "topoPct": 50,
+   "visivelSemRolar": true
+  },
+  "palavras": 171,
+  "telas": 2.1,
+  "rolaDeLado": false
+ },
+ {
+  "tela": "claro/carla/10d-programa-sobre",
+  "toquePequeno": [],
+  "contrasteBaixo": [],
+  "botaoPrincipal": {
+   "texto": "Mais 2 avisos",
+   "topoPct": 50,
+   "visivelSemRolar": true
+  },
+  "palavras": 163,
+  "telas": 2.1,
+  "rolaDeLado": false
+ },
+ {
+  "tela": "claro/carla/11-treino-serie-1",
+  "toquePequeno": [],
+  "contrasteBaixo": [],
+  "botaoPrincipal": {
+   "texto": "Série feita · descansar 1:45",
+   "topoPct": 75,
+   "visivelSemRolar": true
+  },
+  "palavras": 57,
+  "telas": 1,
+  "rolaDeLado": false
+ },
+ {
+  "tela": "claro/carla/16-guia-tecnica",
+  "toquePequeno": [],
+  "contrasteBaixo": [],
+  "botaoPrincipal": null,
+  "palavras": 38,
+  "telas": 3.4,
+  "rolaDeLado": false
+ },
+ {
+  "tela": "claro/carla/16b-guia-musculos",
+  "toquePequeno": [],
+  "contrasteBaixo": [],
+  "botaoPrincipal": null,
+  "palavras": 61,
+  "telas": 3.6,
+  "rolaDeLado": false
+ },
+ {
+  "tela": "claro/carla/16c-guia-erros",
+  "toquePequeno": [],
+  "contrasteBaixo": [],
+  "botaoPrincipal": null,
+  "palavras": 45,
+  "telas": 3.7,
+  "rolaDeLado": false
+ },
+ {
+  "tela": "claro/carla/14-treino-senti-algo",
+  "toquePequeno": [],
+  "contrasteBaixo": [],
+  "botaoPrincipal": {
+   "texto": "Série feita · descansar 1:45",
+   "topoPct": 75,
+   "visivelSemRolar": true
+  },
+  "palavras": 112,
+  "telas": 1,
+  "rolaDeLado": false
+ },
+ {
+  "tela": "claro/carla/15-treino-trocar",
+  "toquePequeno": [],
+  "contrasteBaixo": [],
+  "botaoPrincipal": {
+   "texto": "Série feita · descansar 1:45",
+   "topoPct": 75,
+   "visivelSemRolar": true
+  },
+  "palavras": 99,
+  "telas": 1,
+  "rolaDeLado": false
+ },
+ {
+  "tela": "claro/carla/12-treino-descanso",
+  "toquePequeno": [],
+  "contrasteBaixo": [],
+  "botaoPrincipal": {
+   "texto": "Série feita",
+   "topoPct": 92,
+   "visivelSemRolar": true
+  },
+  "palavras": 62,
+  "telas": 1.3,
+  "rolaDeLado": false
+ },
+ {
+  "tela": "claro/carla/13-treino-serie-2",
+  "toquePequeno": [],
+  "contrasteBaixo": [],
+  "botaoPrincipal": {
+   "texto": "Série feita · descansar 1:45",
+   "topoPct": 84,
+   "visivelSemRolar": true
+  },
+  "palavras": 57,
+  "telas": 1,
+  "rolaDeLado": false
+ },
+ {
+  "tela": "claro/carla/17-fim-do-treino",
+  "toquePequeno": [],
+  "contrasteBaixo": [],
+  "botaoPrincipal": {
+   "texto": "Ver a sua semana",
+   "topoPct": 118,
+   "visivelSemRolar": false
+  },
+  "palavras": 102,
+  "telas": 1.4,
+  "rolaDeLado": false
+ },
+ {
+  "tela": "claro/carla/18-semana",
+  "toquePequeno": [],
+  "contrasteBaixo": [],
+  "botaoPrincipal": null,
+  "palavras": 76,
+  "telas": 4.2,
+  "rolaDeLado": false
+ },
+ {
+  "tela": "claro/carla/19-evolucao",
+  "toquePequeno": [],
+  "contrasteBaixo": [],
+  "botaoPrincipal": null,
+  "palavras": 47,
+  "telas": 1,
+  "rolaDeLado": false
+ },
+ {
+  "tela": "claro/carla/20-meus-dados",
+  "toquePequeno": [],
+  "contrasteBaixo": [],
+  "botaoPrincipal": {
+   "texto": "Apagar todos os dados",
+   "topoPct": 99,
+   "visivelSemRolar": false
+  },
+  "palavras": 92,
+  "telas": 1.2,
+  "rolaDeLado": false
+ },
+ {
+  "tela": "claro/diego/10-programa",
+  "toquePequeno": [],
+  "contrasteBaixo": [],
+  "botaoPrincipal": {
+   "texto": "Começar o treino Corpo todo A",
+   "topoPct": 84,
+   "visivelSemRolar": true
+  },
+  "palavras": 57,
+  "telas": 1.6,
+  "rolaDeLado": false
+ },
+ {
+  "tela": "claro/diego/10b-programa-dia-2",
+  "toquePequeno": [],
+  "contrasteBaixo": [],
+  "botaoPrincipal": {
+   "texto": "Começar o treino Corpo todo B",
+   "topoPct": 84,
+   "visivelSemRolar": true
+  },
+  "palavras": 62,
+  "telas": 1.6,
+  "rolaDeLado": false
+ },
+ {
+  "tela": "claro/diego/10c-programa-exercicio",
+  "toquePequeno": [],
+  "contrasteBaixo": [],
+  "botaoPrincipal": {
+   "texto": "Começar o treino Corpo todo A",
+   "topoPct": 84,
+   "visivelSemRolar": true
+  },
+  "palavras": 153,
+  "telas": 1.6,
+  "rolaDeLado": false
+ },
+ {
+  "tela": "claro/diego/10d-programa-sobre",
+  "toquePequeno": [],
+  "contrasteBaixo": [],
+  "botaoPrincipal": {
+   "texto": "Começar o treino Corpo todo A",
+   "topoPct": 139,
+   "visivelSemRolar": false
+  },
+  "palavras": 134,
+  "telas": 1.6,
+  "rolaDeLado": false
+ },
+ {
+  "tela": "claro/diego/11-treino-serie-1",
+  "toquePequeno": [],
+  "contrasteBaixo": [],
+  "botaoPrincipal": {
+   "texto": "Série feita · descansar 1:45",
+   "topoPct": 76,
+   "visivelSemRolar": true
+  },
+  "palavras": 56,
+  "telas": 1,
+  "rolaDeLado": false
+ },
+ {
+  "tela": "claro/diego/16-guia-tecnica",
+  "toquePequeno": [],
+  "contrasteBaixo": [],
+  "botaoPrincipal": null,
+  "palavras": 35,
+  "telas": 3.1,
+  "rolaDeLado": false
+ },
+ {
+  "tela": "claro/diego/16b-guia-musculos",
+  "toquePequeno": [],
+  "contrasteBaixo": [],
+  "botaoPrincipal": null,
+  "palavras": 62,
+  "telas": 3.4,
+  "rolaDeLado": false
+ },
+ {
+  "tela": "claro/diego/16c-guia-erros",
+  "toquePequeno": [],
+  "contrasteBaixo": [],
+  "botaoPrincipal": null,
+  "palavras": 43,
+  "telas": 3.3,
+  "rolaDeLado": false
+ },
+ {
+  "tela": "claro/diego/14-treino-senti-algo",
+  "toquePequeno": [],
+  "contrasteBaixo": [],
+  "botaoPrincipal": {
+   "texto": "Série feita · descansar 1:45",
+   "topoPct": 76,
+   "visivelSemRolar": true
+  },
+  "palavras": 111,
+  "telas": 1,
+  "rolaDeLado": false
+ },
+ {
+  "tela": "claro/diego/15-treino-trocar",
+  "toquePequeno": [],
+  "contrasteBaixo": [],
+  "botaoPrincipal": {
+   "texto": "Série feita · descansar 1:45",
+   "topoPct": 76,
+   "visivelSemRolar": true
+  },
+  "palavras": 70,
+  "telas": 1,
+  "rolaDeLado": false
+ },
+ {
+  "tela": "claro/diego/12-treino-descanso",
+  "toquePequeno": [],
+  "contrasteBaixo": [],
+  "botaoPrincipal": {
+   "texto": "Série feita",
+   "topoPct": 92,
+   "visivelSemRolar": true
+  },
+  "palavras": 62,
+  "telas": 1.3,
+  "rolaDeLado": false
+ },
+ {
+  "tela": "claro/diego/13-treino-serie-2",
+  "toquePequeno": [],
+  "contrasteBaixo": [],
+  "botaoPrincipal": {
+   "texto": "Série feita · descansar 1:45",
+   "topoPct": 85,
+   "visivelSemRolar": true
+  },
+  "palavras": 57,
+  "telas": 1,
+  "rolaDeLado": false
+ },
+ {
+  "tela": "claro/diego/17-fim-do-treino",
+  "toquePequeno": [],
+  "contrasteBaixo": [],
+  "botaoPrincipal": {
+   "texto": "Ver a sua semana",
+   "topoPct": 72,
+   "visivelSemRolar": true
+  },
+  "palavras": 64,
+  "telas": 1,
+  "rolaDeLado": false
+ },
+ {
+  "tela": "claro/diego/18-semana",
+  "toquePequeno": [],
+  "contrasteBaixo": [],
+  "botaoPrincipal": null,
+  "palavras": 81,
+  "telas": 2.7,
+  "rolaDeLado": false
+ },
+ {
+  "tela": "claro/diego/19-evolucao",
+  "toquePequeno": [],
+  "contrasteBaixo": [],
+  "botaoPrincipal": null,
+  "palavras": 72,
+  "telas": 1,
+  "rolaDeLado": false
+ },
+ {
+  "tela": "claro/diego/20-meus-dados",
+  "toquePequeno": [],
+  "contrasteBaixo": [],
+  "botaoPrincipal": {
+   "texto": "Apagar todos os dados",
+   "topoPct": 97,
+   "visivelSemRolar": false
+  },
+  "palavras": 97,
+  "telas": 1.2,
+  "rolaDeLado": false
+ },
+ {
+  "tela": "claro/elisa/10-programa",
+  "toquePequeno": [],
+  "contrasteBaixo": [],
+  "botaoPrincipal": {
+   "texto": "Começar o treino Corpo todo A",
+   "topoPct": 84,
+   "visivelSemRolar": true
+  },
+  "palavras": 61,
+  "telas": 1.4,
+  "rolaDeLado": false
+ },
+ {
+  "tela": "claro/elisa/10b-programa-dia-2",
+  "toquePequeno": [],
+  "contrasteBaixo": [],
+  "botaoPrincipal": {
+   "texto": "Começar o treino Corpo todo B",
+   "topoPct": 84,
+   "visivelSemRolar": true
+  },
+  "palavras": 60,
+  "telas": 1.4,
+  "rolaDeLado": false
+ },
+ {
+  "tela": "claro/elisa/10c-programa-exercicio",
+  "toquePequeno": [],
+  "contrasteBaixo": [],
+  "botaoPrincipal": {
+   "texto": "Começar o treino Corpo todo A",
+   "topoPct": 84,
+   "visivelSemRolar": true
+  },
+  "palavras": 171,
+  "telas": 1.4,
+  "rolaDeLado": false
+ },
+ {
+  "tela": "claro/elisa/10d-programa-sobre",
+  "toquePequeno": [],
+  "contrasteBaixo": [],
+  "botaoPrincipal": {
+   "texto": "Começar o treino Corpo todo A",
+   "topoPct": 118,
+   "visivelSemRolar": false
+  },
+  "palavras": 160,
+  "telas": 1.4,
+  "rolaDeLado": false
+ },
+ {
+  "tela": "claro/elisa/11-treino-serie-1",
+  "toquePequeno": [],
+  "contrasteBaixo": [],
+  "botaoPrincipal": {
+   "texto": "Série feita · descansar 1:45",
+   "topoPct": 79,
+   "visivelSemRolar": true
+  },
+  "palavras": 59,
+  "telas": 1,
+  "rolaDeLado": false
+ },
+ {
+  "tela": "claro/elisa/16-guia-tecnica",
+  "toquePequeno": [],
+  "contrasteBaixo": [],
+  "botaoPrincipal": null,
+  "palavras": 38,
+  "telas": 3.1,
+  "rolaDeLado": false
+ },
+ {
+  "tela": "claro/elisa/16b-guia-musculos",
+  "toquePequeno": [],
+  "contrasteBaixo": [],
+  "botaoPrincipal": null,
+  "palavras": 69,
+  "telas": 3.4,
+  "rolaDeLado": false
+ },
+ {
+  "tela": "claro/elisa/16c-guia-erros",
+  "toquePequeno": [],
+  "contrasteBaixo": [],
+  "botaoPrincipal": null,
+  "palavras": 52,
+  "telas": 3.4,
+  "rolaDeLado": false
+ },
+ {
+  "tela": "claro/elisa/14-treino-senti-algo",
+  "toquePequeno": [],
+  "contrasteBaixo": [],
+  "botaoPrincipal": {
+   "texto": "Série feita · descansar 1:45",
+   "topoPct": 79,
+   "visivelSemRolar": true
+  },
+  "palavras": 114,
+  "telas": 1,
+  "rolaDeLado": false
+ },
+ {
+  "tela": "claro/elisa/15-treino-trocar",
+  "toquePequeno": [],
+  "contrasteBaixo": [],
+  "botaoPrincipal": {
+   "texto": "Série feita · descansar 1:45",
+   "topoPct": 79,
+   "visivelSemRolar": true
+  },
+  "palavras": 74,
+  "telas": 1,
+  "rolaDeLado": false
+ },
+ {
+  "tela": "claro/elisa/12-treino-descanso",
+  "toquePequeno": [],
+  "contrasteBaixo": [],
+  "botaoPrincipal": {
+   "texto": "Série feita",
+   "topoPct": 92,
+   "visivelSemRolar": true
+  },
+  "palavras": 65,
+  "telas": 1.3,
+  "rolaDeLado": false
+ },
+ {
+  "tela": "claro/elisa/13-treino-serie-2",
+  "toquePequeno": [],
+  "contrasteBaixo": [],
+  "botaoPrincipal": {
+   "texto": "Série feita · descansar 1:45",
+   "topoPct": 88,
+   "visivelSemRolar": true
+  },
+  "palavras": 60,
+  "telas": 1,
+  "rolaDeLado": false
+ },
+ {
+  "tela": "claro/elisa/17-fim-do-treino",
+  "toquePequeno": [],
+  "contrasteBaixo": [],
+  "botaoPrincipal": {
+   "texto": "Ver a sua semana",
+   "topoPct": 118,
+   "visivelSemRolar": false
+  },
+  "palavras": 108,
+  "telas": 1.4,
+  "rolaDeLado": false
+ },
+ {
+  "tela": "claro/elisa/18-semana",
+  "toquePequeno": [],
+  "contrasteBaixo": [],
+  "botaoPrincipal": null,
+  "palavras": 93,
+  "telas": 2.7,
+  "rolaDeLado": false
+ },
+ {
+  "tela": "claro/elisa/19-evolucao",
+  "toquePequeno": [],
+  "contrasteBaixo": [],
+  "botaoPrincipal": null,
+  "palavras": 51,
+  "telas": 1,
+  "rolaDeLado": false
+ },
+ {
+  "tela": "claro/elisa/20-meus-dados",
+  "toquePequeno": [],
+  "contrasteBaixo": [],
+  "botaoPrincipal": {
+   "texto": "Apagar todos os dados",
+   "topoPct": 97,
+   "visivelSemRolar": false
+  },
+  "palavras": 97,
+  "telas": 1.2,
+  "rolaDeLado": false
+ },
+ {
+  "tela": "claro/fabio/10-programa",
+  "toquePequeno": [],
+  "contrasteBaixo": [],
+  "botaoPrincipal": {
+   "texto": "Começar o treino Superior B",
+   "topoPct": 84,
+   "visivelSemRolar": true
+  },
+  "palavras": 61,
+  "telas": 1.2,
+  "rolaDeLado": false
+ },
+ {
+  "tela": "claro/fabio/10b-programa-dia-2",
+  "toquePequeno": [],
+  "contrasteBaixo": [],
+  "botaoPrincipal": {
+   "texto": "Começar o treino Inferior A",
+   "topoPct": 84,
+   "visivelSemRolar": true
+  },
+  "palavras": 65,
+  "telas": 1.5,
+  "rolaDeLado": false
+ },
+ {
+  "tela": "claro/fabio/10c-programa-exercicio",
+  "toquePequeno": [],
+  "contrasteBaixo": [],
+  "botaoPrincipal": {
+   "texto": "Começar o treino Superior A",
+   "topoPct": 84,
+   "visivelSemRolar": true
+  },
+  "palavras": 141,
+  "telas": 1.1,
+  "rolaDeLado": false
+ },
+ {
+  "tela": "claro/fabio/10d-programa-sobre",
+  "toquePequeno": [],
+  "contrasteBaixo": [],
+  "botaoPrincipal": {
+   "texto": "Começar o treino Superior A",
+   "topoPct": 92,
+   "visivelSemRolar": true
+  },
+  "palavras": 161,
+  "telas": 1.1,
+  "rolaDeLado": false
+ },
+ {
+  "tela": "claro/fabio/11-treino-serie-1",
+  "toquePequeno": [],
+  "contrasteBaixo": [],
+  "botaoPrincipal": {
+   "texto": "Série feita · descansar 1:45",
+   "topoPct": 76,
+   "visivelSemRolar": true
+  },
+  "palavras": 55,
+  "telas": 1,
+  "rolaDeLado": false
+ },
+ {
+  "tela": "claro/fabio/16-guia-tecnica",
+  "toquePequeno": [],
+  "contrasteBaixo": [],
+  "botaoPrincipal": null,
+  "palavras": 37,
+  "telas": 3.3,
+  "rolaDeLado": false
+ },
+ {
+  "tela": "claro/fabio/16b-guia-musculos",
+  "toquePequeno": [],
+  "contrasteBaixo": [],
+  "botaoPrincipal": null,
+  "palavras": 70,
+  "telas": 3.6,
+  "rolaDeLado": false
+ },
+ {
+  "tela": "claro/fabio/16c-guia-erros",
+  "toquePequeno": [],
+  "contrasteBaixo": [],
+  "botaoPrincipal": null,
+  "palavras": 36,
+  "telas": 3.7,
+  "rolaDeLado": false
+ },
+ {
+  "tela": "claro/fabio/14-treino-senti-algo",
+  "toquePequeno": [],
+  "contrasteBaixo": [],
+  "botaoPrincipal": {
+   "texto": "Série feita · descansar 1:45",
+   "topoPct": 76,
+   "visivelSemRolar": true
+  },
+  "palavras": 110,
+  "telas": 1,
+  "rolaDeLado": false
+ },
+ {
+  "tela": "claro/fabio/15-treino-trocar",
+  "toquePequeno": [],
+  "contrasteBaixo": [],
+  "botaoPrincipal": {
+   "texto": "Série feita · descansar 1:45",
+   "topoPct": 76,
+   "visivelSemRolar": true
+  },
+  "palavras": 75,
+  "telas": 1,
+  "rolaDeLado": false
+ },
+ {
+  "tela": "claro/fabio/12-treino-descanso",
+  "toquePequeno": [],
+  "contrasteBaixo": [],
+  "botaoPrincipal": {
+   "texto": "Série feita",
+   "topoPct": 92,
+   "visivelSemRolar": true
+  },
+  "palavras": 61,
+  "telas": 1.3,
+  "rolaDeLado": false
+ },
+ {
+  "tela": "claro/fabio/13-treino-serie-2",
+  "toquePequeno": [],
+  "contrasteBaixo": [],
+  "botaoPrincipal": {
+   "texto": "Série feita · descansar 1:45",
+   "topoPct": 85,
+   "visivelSemRolar": true
+  },
+  "palavras": 56,
+  "telas": 1,
+  "rolaDeLado": false
+ },
+ {
+  "tela": "claro/fabio/17-fim-do-treino",
+  "toquePequeno": [],
+  "contrasteBaixo": [],
+  "botaoPrincipal": {
+   "texto": "Ver a sua semana",
+   "topoPct": 118,
+   "visivelSemRolar": false
+  },
+  "palavras": 102,
+  "telas": 1.4,
+  "rolaDeLado": false
+ },
+ {
+  "tela": "claro/fabio/18-semana",
+  "toquePequeno": [],
+  "contrasteBaixo": [],
+  "botaoPrincipal": null,
+  "palavras": 88,
+  "telas": 2.9,
+  "rolaDeLado": false
+ },
+ {
+  "tela": "claro/fabio/19-evolucao",
+  "toquePequeno": [],
+  "contrasteBaixo": [],
+  "botaoPrincipal": null,
+  "palavras": 47,
+  "telas": 1,
+  "rolaDeLado": false
+ },
+ {
+  "tela": "claro/fabio/20-meus-dados",
+  "toquePequeno": [],
+  "contrasteBaixo": [],
+  "botaoPrincipal": {
+   "texto": "Apagar todos os dados",
+   "topoPct": 97,
+   "visivelSemRolar": false
+  },
+  "palavras": 96,
+  "telas": 1.2,
+  "rolaDeLado": false
+ },
+ {
+  "tela": "claro/ana/16e-treino-cartao-fechado",
+  "toquePequeno": [],
+  "contrasteBaixo": [],
+  "botaoPrincipal": {
+   "texto": "Série feita · descansar 1:45",
+   "topoPct": 91,
+   "visivelSemRolar": true
+  },
+  "palavras": 76,
+  "telas": 1.1,
+  "rolaDeLado": false
+ },
+ {
+  "tela": "claro/ana/16f-treino-cartao-aberto",
+  "toquePequeno": [],
+  "contrasteBaixo": [],
+  "botaoPrincipal": {
+   "texto": "Série feita · descansar 1:45",
+   "topoPct": 91,
+   "visivelSemRolar": true
+  },
+  "palavras": 145,
+  "telas": 1.1,
+  "rolaDeLado": false
+ }
+]

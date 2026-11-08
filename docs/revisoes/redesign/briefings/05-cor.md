@@ -1,0 +1,23 @@
+# Briefing do agente 5: Cor, tema e identidade
+
+Leia primeiro `docs/revisoes/redesign/briefings/00-comum.md`. Relatório: `docs/revisoes/redesign/agente-5-cor.md`. Scripts: `scripts/design/redesign/agente-5/`; imagens em `reports/design/redesign/agente-5/`.
+
+**Objetivo em uma frase:** qual paleta, nos temas claro e escuro, dá ao app uma identidade própria, legível na academia (sol, suor, relance) e em paz com as cores do Boneco.
+
+**Fronteira:** você é dono da **cor, do tema, da letra e da identidade** (nome provisório e ícone de app, por decisão do Gustavo na Fase 0). Forma e layout são do agente 4; o conteúdo das telas, dos agentes 1 a 3. Para mostrar uma tela de exemplo por direção, aplique a paleta sobre capturas ou sobre um esboço simples da tela de treino e do programa de hoje (sem redesenhar o layout).
+
+**Restrição dura:** as cores internas do palco do Boneco não mudam. Estão em `src/styles.css` nas linhas 9 a 14 (tema claro) e 24 a 28 e 36 a 40 (escuro): `--stage`, `--fig`, `--fig-far`, `--torso`, `--joint`, `--eq`, `--eq-dark`, `--cable`, `--spine`, `--elastic`, `--mus-p` (vermelho do músculo principal), `--mus-s` (laranja do secundário), `--err` (vermelho do erro), `--ghost` (verde), `--path` (azul da trajetória), `--guide`; e no bloco R4: `--ea-pele`, `--m-p`, `--m-s`, `--m-borda`. A paleta do app precisa **conviver** com elas: o vermelho e o laranja dos músculos não podem ser confundidos com a cor de ação nem com o alerta de saúde do app; teste cada cor da paleta **sobre o palco** (`--stage`) e **ao lado** dele (o palco dentro de um cartão do app).
+
+**Hoje (design v2):** uma letra só (Atkinson Hyperlegible Next, 4 pesos via Google Fonts: veja `index.html`), fundo quente `#F5F4F0`, ação azul `#2443CF`, feito verde `#0E7350`, alerta `#B3261E`, escuro `#111316`; tokens em `src/styles.css` linhas 5 a 42. Medido: 0 contraste baixo. O que a v2 não resolveu: identidade (o app não tem cara própria), nome e ícone (`public/icon.svg`), algarismos tabulares da letra não conferidos, letra servida de fora.
+
+**Estude (com fonte e selo):** contraste WCAG 2.2 (1.4.3, 1.4.11, 1.4.6) e APCA como leitura complementar (diga as diferenças e por que o projeto fica na WCAG como critério); daltonismo (Okabe e Ito; prevalência Birch 2012 já no projeto; simulação de protanopia, deuteranopia e tritanopia com o modelo de Machado, Oliveira e Fernandes 2009, que `scripts/design/boneco.mjs` já usa para o Boneco: reaproveite); cor semântica (ação, feito, atenção, alerta de saúde, descanso) separada da cor de marca; tema escuro (Material "Dark theme": cinza em vez de preto, saturação, elevação por tom); legibilidade ao sol (brilho, contraste, o que se sabe sobre telas em luz forte; Piepenbrock 2013 já no projeto sobre polaridade); psicologia da cor em apps de saúde e esporte (o que tem evidência de verdade e o que é folclore: seja duro aqui); a letra: Atkinson Hyperlegible Next (licença para servir do próprio app: confira a licença real no site do Braille Institute e no Google Fonts; `tnum`: meça no navegador; tamanho dos arquivos por peso em woff2; `font-display`), e alternativas **só se houver ganho medido** (legibilidade, tnum, peso); nome e ícone (regras de ícone de PWA: `manifest`, tamanhos, máscara, contraste no launcher claro e escuro).
+
+**Gere por script** (OKLCH ou similar; sem dependências novas no app: o script é ferramenta): para cada direção, a paleta clara e escura, com as **razões de contraste WCAG calculadas** para cada par texto/fundo e controle/fundo (texto, texto secundário, ação, texto sobre ação, feito, atenção, alerta, borda de controle, foco, superfície sobre fundo), e a simulação das 3 deficiências sobre uma tela de treino e uma de programa. Mostre também a paleta ao lado do palco do Boneco (as duas, claro e escuro).
+
+**Entregue:**
+- **2 ou 3 direções de identidade**, cada uma com nome, intenção em uma frase, a tela de exemplo (treino e programa, claro e escuro, PNG), a paleta com as razões calculadas e o resultado nas 3 simulações.
+- A **recomendação sua** e o motivo (e o que perde quem escolher as outras).
+- A **lista de tokens CSS prontos para `:root`** da direção recomendada (e das outras, em anexo), com os nomes semânticos (não "azul-500": "ação", "feito", "alerta", "descanso"...), nos 2 temas.
+- A **letra**: veredito sobre a Atkinson Hyperlegible Next (tnum, licença, peso dos arquivos, servir do próprio app: quais pesos manter), e alternativa só com ganho medido.
+- **Nome provisório (2 ou 3 opções) e ícone de app** (proposta em SVG, claro e escuro, com o motivo; o nome é item separado da tabela de decisões, não decida por ele).
+- Conflitos com as cores do Boneco, se houver, registrados.

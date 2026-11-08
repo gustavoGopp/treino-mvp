@@ -2,7 +2,7 @@ import { readdirSync, readFileSync } from 'node:fs';
 import { expect, test, type Page } from '@playwright/test';
 import { temExif } from '../../src/lib/imagem';
 import { semContrasteBaixo } from './contraste';
-import { ana } from './jornada';
+import { ana, detalhesDo, folhaPronta } from './jornada';
 import { semToquePequeno } from './toque';
 
 // M4: foto do equipamento, com a API simulada (o teste não chama o Claude nem precisa de chave).
@@ -28,6 +28,9 @@ async function irParaEquipamento(page: Page) {
   await ana(page);
   await page.goto('/comecar/inventario');
   await expect(page.getByRole('heading', { name: 'Que equipamento você tem?' })).toBeVisible();
+  // lote 3 do redesign: a foto abre numa folha, pelo botão "Pela foto"
+  await page.getByRole('button', { name: 'Pela foto' }).click();
+  await folhaPronta(page);
 }
 
 test('foto: tira o EXIF no aparelho, mostra as sugestões e só usa o que a pessoa confirma', async ({ page }) => {
@@ -68,11 +71,13 @@ test('foto: tira o EXIF no aparelho, mostra as sugestões e só usa o que a pess
   await sugestoes.getByRole('group', { name: 'Você tem Banco regulável?' }).getByRole('button', { name: 'Tenho', exact: true }).click();
   await usar.click();
 
-  await expect(page.getByLabel('Barra fixa', { exact: true })).toBeChecked();
-  await expect(page.getByLabel('Banco regulável', { exact: true })).toBeChecked();
-  await expect(page.getByLabel('Step', { exact: true })).not.toBeChecked();
+  // a folha fecha e a lista abre com o que foi confirmado
+  const marcados = page.getByRole('region', { name: /^Marcados/ });
+  await expect(marcados).toContainText('Barra fixa');
+  await expect(marcados).toContainText('Banco regulável');
+  await expect(marcados).not.toContainText('Step');
   // O atributo da foto preencheu o detalhe ainda vazio.
-  await expect(page.getByRole('group', { name: /também declina/ }).getByLabel('Não')).toBeChecked();
+  await expect((await detalhesDo(page, 'Banco regulável')).getByRole('group', { name: /também declina/ }).getByLabel('Não')).toBeChecked();
 });
 
 test('foto: convite inválido mostra o motivo e a lista continua funcionando', async ({ page }) => {
@@ -82,8 +87,9 @@ test('foto: convite inválido mostra o motivo e a lista continua funcionando', a
   await page.getByLabel('Código de convite').fill('errado');
   await page.getByLabel('Escolher fotos').setInputFiles({ name: 'a.jpg', mimeType: 'image/jpeg', buffer: await fotoComExif(page) });
   await expect(page.getByRole('alert')).toHaveText('Código de convite inválido.');
-  await page.getByRole('button', { name: 'Continuar' }).click();
-  await expect(page.getByRole('heading', { name: 'Tudo certo?' })).toBeVisible();
+  await page.keyboard.press('Escape');
+  await page.getByRole('button', { name: 'Gerar meu programa' }).click();
+  await expect(page.getByRole('heading', { name: 'Seu treino', exact: true })).toBeVisible();
 });
 
 test('foto: a caixa de consentimento aparece antes do 1º envio e não depois (privacidade.foto)', async ({ page }) => {
@@ -121,7 +127,10 @@ test('foto: a caixa de consentimento aparece antes do 1º envio e não depois (p
   await expect(caixa).toHaveCount(0);
   await expect(page.getByText(/^Você autorizou o envio das fotos à Anthropic, nos EUA, em/)).toBeVisible();
   await page.reload();
-  await expect(page.getByRole('heading', { name: 'Reconhecer pela foto' })).toBeVisible();
+  // lote 3 do redesign: a foto abre numa folha, pelo botão "Pela foto"
+  await page.getByRole('button', { name: 'Pela foto' }).click();
+  await folhaPronta(page);
+  await expect(page.getByRole('heading', { name: 'Reconhecer pela foto' }).first()).toBeVisible();
   await expect(caixa).toHaveCount(0);
   await expect(page.getByLabel('Escolher fotos')).toBeEnabled();
 

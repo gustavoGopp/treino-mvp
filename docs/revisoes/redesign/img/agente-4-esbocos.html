@@ -1,0 +1,776 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>treino-mvp · esboços do agente 4 (organização visual, em cinzas)</title>
+<style>
+/* Esboços em cinzas (a cor é do agente 5). Sem dependência externa: a letra é a do sistema.
+   O sistema abaixo é a proposta do relatório: 7 degraus de letra, 6 passos de espaço, 3 raios, 2 bordas, 3 alturas de toque. */
+:root{
+  --bg:#efeeec; --sf:#ffffff; --sf2:#e6e5e2; --ink:#1b1b1b; --muted:#5a5a5a; --line:#d2d0cc; --edge:#8a8a8a;
+  --acao:#2a2a2a; --acao-ink:#fff; --soft:#e3e3e3; --alerta:#6a1b17; --alerta-soft:#f0e3e1;
+  /* letra: 13 · 15 · 17 · 20 · 24 · 40 · 64 */
+  --t-rotulo:13px; --t-apoio:15px; --t-corpo:17px; --t-pergunta:20px; --t-titulo:24px; --t-numero:40px; --t-relogio:64px;
+  /* espaço: 4 · 8 · 12 · 16 · 24 · 32 */
+  --s1:4px; --s2:8px; --s3:12px; --s4:16px; --s5:24px; --s6:32px;
+  /* raio: 8 · 16 · pílula */
+  --r-s:8px; --r-m:16px; --r-p:999px;
+  /* toque: 48 · 56 · 64 */
+  --h1:48px; --h2:56px; --h3:64px;
+}
+*{box-sizing:border-box}
+body{margin:0;background:#cfcdc9;color:var(--ink);font-family:"Atkinson Hyperlegible Next","Atkinson Hyperlegible",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;font-size:17px;line-height:1.45;padding:24px}
+h1.pagina{font-size:20px;margin:0 0 4px}
+p.nota{margin:0 0 20px;color:#333;font-size:14px;max-width:70ch}
+.folha{background:#bdbab5;padding:16px;border-radius:12px;margin:0 0 28px;display:inline-block;vertical-align:top}
+.folha h2{font-size:16px;margin:0 0 10px;color:#1b1b1b}
+.quadros{display:flex;gap:16px;align-items:flex-start;flex-wrap:nowrap}
+.quadro{width:360px;flex:0 0 360px}
+.quadro .legenda{font-size:12px;line-height:1.3;color:#222;margin:0 0 6px;min-height:32px}
+.tela{position:relative;width:360px;height:740px;background:var(--bg);border-radius:18px;overflow-x:hidden;overflow-y:auto;box-shadow:0 1px 3px rgba(0,0,0,.25);display:flex;flex-direction:column}
+/* Cada quadro tem a altura de um celular pequeno (360 × 740) e rola por dentro: o que aparece na imagem é o que a pessoa vê sem rolar. */
+.tela .dobra{position:absolute;left:0;right:0;top:740px;border-top:2px dashed #7b2d2d;pointer-events:none;z-index:9}
+.tela .dobra::after{content:"dobra: 740 px (celular pequeno)";position:absolute;right:8px;top:-9px;font-size:10px;background:#7b2d2d;color:#fff;padding:1px 6px;border-radius:4px}
+.conteudo{padding:0 16px 0;display:flex;flex-direction:column;gap:var(--s4);flex:1 0 auto}
+/* cabeçalho */
+.cab{position:sticky;top:0;z-index:3;flex:0 0 auto;display:flex;align-items:center;gap:var(--s2);min-height:var(--h2);padding:var(--s1) var(--s2) var(--s1) var(--s4);background:var(--bg)}
+.cab .marca{font-weight:800;font-size:var(--t-corpo)}
+.cab .voltar{display:inline-flex;align-items:center;min-height:var(--h1);min-width:var(--h1);padding:0 var(--s2);font-weight:700;color:var(--ink);text-decoration:none;font-size:var(--t-apoio)}
+.cab .centro{flex:1;text-align:center;font-size:var(--t-apoio);color:var(--muted);font-weight:700}
+.cab .dir{margin-left:auto;display:flex;gap:var(--s1)}
+.passo{display:flex;flex-direction:column;gap:var(--s1);font-size:var(--t-rotulo);color:var(--muted);padding:0 0 var(--s1)}
+.passo .barra{height:6px;border-radius:var(--r-p);background:var(--line);overflow:hidden}
+.passo .barra i{display:block;height:100%;background:var(--acao);border-radius:var(--r-p)}
+/* texto */
+.titulo{font-size:var(--t-titulo);font-weight:800;line-height:1.15;margin:0;letter-spacing:-.01em;text-wrap:balance}
+.pergunta{font-size:var(--t-pergunta);font-weight:700;line-height:1.3;margin:0}
+.corpo{font-size:var(--t-corpo);margin:0}
+.apoio{font-size:var(--t-apoio);color:var(--muted);margin:0}
+.rotulo{font-size:var(--t-rotulo);color:var(--muted);font-weight:700;text-transform:uppercase;letter-spacing:.06em;margin:0}
+.numero{font-size:var(--t-numero);font-weight:800;line-height:1;font-variant-numeric:tabular-nums;margin:0}
+.numero small{font-size:var(--t-corpo);color:var(--muted);font-weight:700}
+.relogio{font-size:var(--t-relogio);font-weight:800;line-height:1;font-variant-numeric:tabular-nums;margin:0}
+/* botões */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:var(--s2);min-height:var(--h2);padding:0 var(--s5);border-radius:var(--r-m);border:0;background:var(--acao);color:var(--acao-ink);font:inherit;font-weight:700;font-size:18px;width:100%;cursor:pointer}
+.btn.sec{background:var(--sf);color:var(--ink);border:2px solid var(--edge)}
+.btn.ter{background:transparent;color:var(--ink);text-decoration:underline;text-underline-offset:3px;min-height:var(--h1);width:auto;padding:0 var(--s2);font-size:var(--t-corpo)}
+.btn.perigo{background:transparent;color:var(--alerta);border:2px solid var(--alerta)}
+.btn.compacto{min-height:var(--h1);width:auto;font-size:16px;padding:0 var(--s4)}
+.btn.grande{min-height:var(--h3);font-size:20px;font-weight:800}
+.btn.icone{width:var(--h1);min-width:var(--h1);padding:0;font-size:20px}
+.btn:disabled,.btn.desab{background:var(--sf2);color:var(--muted);border-color:transparent}
+.btn.foco{outline:3px solid var(--ink);outline-offset:2px}
+.btn.press{background:var(--soft);color:var(--ink);border:2px solid var(--ink)}
+.acao-fixa{position:sticky;bottom:0;z-index:2;margin:auto -16px 0;padding:var(--s3) var(--s4);background:var(--bg);border-top:1px solid var(--line);display:flex;flex-direction:column;gap:var(--s2);align-items:center}
+.acao-fixa.com-nav{bottom:64px}
+/* navegação inferior */
+.nav{position:sticky;bottom:0;z-index:3;flex:0 0 auto;display:flex;background:var(--sf);border-top:1px solid var(--line);margin-top:auto}
+.nav a{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;min-height:var(--h3);font-size:var(--t-rotulo);font-weight:700;color:var(--muted);text-decoration:none}
+.nav a.atual{color:var(--ink)}
+.nav i{display:block;width:24px;height:24px;border:2px solid currentColor;border-radius:6px}
+.nav a.atual i{background:currentColor}
+/* superfície */
+.card{background:var(--sf);border-radius:var(--r-m);padding:var(--s4);display:flex;flex-direction:column;gap:var(--s2)}
+.card.info{background:var(--soft)}
+.card.aviso{background:var(--sf);box-shadow:inset 4px 0 0 var(--edge)}
+.card.erro{background:var(--alerta-soft)}
+.card h3{font-size:var(--t-pergunta);font-weight:700;margin:0;line-height:1.3}
+/* lista */
+.lista{list-style:none;margin:0;padding:0;background:var(--sf);border-radius:var(--r-m);overflow:hidden}
+.lista li{display:flex;align-items:center;gap:var(--s3);min-height:var(--h2);padding:var(--s2) var(--s4);border-bottom:1px solid var(--line);font-size:var(--t-corpo)}
+.lista li:last-child{border-bottom:0}
+.lista .texto{flex:1;display:flex;flex-direction:column;min-width:0}
+.lista .texto small{font-size:var(--t-apoio);color:var(--muted)}
+.lista .cheva{color:var(--muted);font-size:22px}
+.lista.simples{background:transparent}
+.lista.simples li{padding:var(--s1) 0;min-height:0;border-bottom:1px solid var(--line)}
+.lista.numerada{counter-reset:n}
+.lista.numerada li::before{counter-increment:n;content:counter(n);font-weight:800;color:var(--muted);min-width:20px}
+.mini{width:88px;height:66px;border-radius:var(--r-s);background:var(--sf2);flex:0 0 auto;display:grid;place-items:center;font-size:11px;color:var(--muted)}
+.mini.g{width:112px;height:84px}
+/* seletor */
+.opcoes{display:flex;flex-direction:column;gap:var(--s2)}
+.opcao{display:flex;align-items:center;gap:var(--s3);min-height:var(--h2);padding:var(--s2) var(--s4);background:var(--sf);border:2px solid var(--edge);border-radius:var(--r-m);font-weight:600;font-size:var(--t-corpo)}
+.opcao i{width:22px;height:22px;border:2px solid var(--edge);border-radius:50%;flex:0 0 auto}
+.opcao.caixa i{border-radius:5px}
+.opcao.sel{border-color:var(--ink);background:var(--soft)}
+.opcao.sel i{background:var(--ink);border-color:var(--ink)}
+.opcao.erro{border-color:var(--alerta)}
+.opcao.desab{opacity:.45}
+.opcao .ic{width:40px;height:30px;border:2px solid var(--edge);border-radius:4px;flex:0 0 auto}
+.opcao .texto{flex:1;display:flex;flex-direction:column}
+.opcao .texto small{font-size:var(--t-apoio);color:var(--muted);font-weight:400}
+.chips{display:flex;flex-wrap:wrap;gap:var(--s2)}
+.chip{display:inline-flex;align-items:center;justify-content:center;min-height:var(--h1);min-width:var(--h1);padding:0 var(--s4);border:2px solid var(--edge);border-radius:var(--r-p);background:var(--sf);font-weight:600;font-size:16px;font-variant-numeric:tabular-nums}
+.chip.sel{background:var(--ink);color:#fff;border-color:var(--ink)}
+.seg{display:flex;gap:var(--s1);padding:var(--s1);border-radius:var(--r-m);background:var(--sf2)}
+.seg span{flex:1;display:flex;align-items:center;justify-content:center;min-height:var(--h1);border-radius:var(--r-s);font-weight:700;font-size:16px;color:var(--muted)}
+.seg span.sel{background:var(--sf);color:var(--ink);box-shadow:0 1px 2px rgba(0,0,0,.2)}
+.grade{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--s2)}
+.cartao-eq{position:relative;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;gap:var(--s1);min-height:108px;padding:var(--s3) var(--s1);background:var(--sf);border:2px solid var(--edge);border-radius:var(--r-m);font-size:var(--t-rotulo);line-height:1.2;text-align:center}
+.cartao-eq i{position:absolute;top:8px;right:8px;width:18px;height:18px;border:2px solid var(--edge);border-radius:4px}
+.cartao-eq .ic{width:56px;height:40px;border:2px solid var(--edge);border-radius:6px}
+.cartao-eq .ic.falta{border-style:dashed}
+.cartao-eq.sel{border-color:var(--ink);background:var(--soft);font-weight:700}
+.cartao-eq.sel i{background:var(--ink);border-color:var(--ink)}
+/* campo */
+.campo{display:flex;flex-direction:column;gap:var(--s1)}
+.campo label{font-weight:700;font-size:var(--t-corpo)}
+.campo input{font:inherit;font-size:17px;min-height:var(--h2);padding:0 var(--s3);border:2px solid var(--edge);border-radius:var(--r-s);background:var(--sf);width:100%}
+.campo input.foco{outline:3px solid var(--ink);outline-offset:2px}
+.campo.erro input{border-color:var(--alerta)}
+.campo .msg{font-size:var(--t-apoio);color:var(--alerta);font-weight:700}
+/* stepper */
+.stepper{display:flex;align-items:center;gap:var(--s2)}
+.stepper b{width:var(--h2);height:var(--h2);border-radius:var(--r-m);border:2px solid var(--edge);background:var(--sf);display:grid;place-items:center;font-size:26px;font-weight:400}
+.stepper b.desab{opacity:.35}
+.stepper output{min-width:80px;text-align:center;font-size:var(--t-numero);font-weight:800;font-variant-numeric:tabular-nums}
+.stepper.compacto b{width:var(--h1);height:var(--h1);border-radius:var(--r-s);font-size:22px}
+.stepper.compacto output{font-size:22px;min-width:40px}
+.linha{display:flex;align-items:center;justify-content:space-between;gap:var(--s2);flex-wrap:wrap}
+/* pílulas */
+.pil{display:inline-flex;align-items:center;gap:4px;font-size:var(--t-rotulo);font-weight:600;line-height:1.3;padding:2px 10px;border-radius:var(--r-p);background:var(--sf2);color:var(--muted);white-space:nowrap;vertical-align:middle}
+.pil.selo{border:1px solid var(--edge)}
+.pil.selo::after{content:"ⓘ";font-size:12px}
+.pil.ok{background:var(--soft);color:var(--ink)}
+.pil.forte{background:var(--ink);color:#fff}
+.fichas{display:flex;flex-wrap:wrap;gap:var(--s2);margin:0;padding:0;list-style:none}
+/* progresso */
+.barra-h{height:10px;border-radius:var(--r-p);background:var(--sf2);overflow:hidden}
+.barra-h i{display:block;height:100%;background:var(--ink);border-radius:var(--r-p)}
+.pontos{display:flex;gap:var(--s2)}
+.pontos i{width:28px;height:28px;border-radius:50%;border:2px solid var(--ink)}
+.pontos i.on{background:var(--ink)}
+.segs{display:flex;gap:4px;max-width:300px}
+.segs i{flex:1;height:16px;border-radius:4px;background:var(--sf2)}
+.segs i.on{background:var(--ink)}
+.musc{display:grid;grid-template-columns:100px 1fr auto;align-items:center;gap:var(--s2);font-size:16px}
+/* recolher */
+.recolher{background:var(--sf);border-radius:var(--r-m);overflow:hidden}
+.recolher .cabe{display:flex;align-items:center;justify-content:space-between;min-height:var(--h2);padding:0 var(--s4);font-weight:700;font-size:var(--t-corpo)}
+.recolher .cabe::after{content:"⌄";font-size:22px;color:var(--muted)}
+.recolher.aberto .cabe::after{content:"⌃"}
+.recolher .corpo-r{padding:0 var(--s4) var(--s4);display:flex;flex-direction:column;gap:var(--s2);font-size:16px}
+.recolher.plano{background:transparent}
+.recolher.plano .cabe{padding:0;border-bottom:1px solid var(--line)}
+/* folha inferior */
+.folha-inf{position:absolute;left:0;right:0;bottom:0;max-height:100%;overflow-y:auto;background:var(--sf);border-radius:24px 24px 0 0;padding:var(--s2) var(--s4) var(--s4);display:flex;flex-direction:column;gap:var(--s3);box-shadow:0 -8px 28px rgba(0,0,0,.25);z-index:5}
+.folha-inf>*,.conteudo>*{flex-shrink:0}
+.folha-inf::before{content:"";width:40px;height:4px;border-radius:2px;background:var(--line);margin:0 auto var(--s1)}
+.escurece{position:absolute;inset:0;background:rgba(0,0,0,.35);z-index:4}
+.tres{display:grid;grid-template-columns:1fr 1fr 1fr;gap:var(--s2)}
+.tres .btn{width:100%}
+/* palco */
+.palco{background:#e9ecee;aspect-ratio:4/3;border-radius:var(--r-m) var(--r-m) 0 0;display:grid;place-items:center;color:var(--muted);font-size:14px;position:relative}
+.palco .hud{position:absolute;left:10px;top:10px;background:rgba(255,255,255,.9);border-radius:8px;padding:4px 10px;font-size:14px;color:var(--ink)}
+.palco .resp{position:absolute;right:10px;top:10px;background:#444;color:#fff;border-radius:999px;padding:4px 12px;font-size:14px;font-weight:800}
+.bloco-palco{background:var(--sf);border-radius:var(--r-m);overflow:hidden;display:flex;flex-direction:column;gap:var(--s2);padding-bottom:var(--s3)}
+.bloco-palco .controles{display:flex;gap:var(--s2);padding:0 var(--s3);align-items:center}
+.bloco-palco .seg{margin:0 var(--s3)}
+.cues{list-style:none;margin:0;padding:0;counter-reset:c;display:flex;flex-direction:column;gap:var(--s2)}
+.cues li{counter-increment:c;font-size:var(--t-pergunta);font-weight:700;line-height:1.3;display:flex;gap:var(--s3)}
+.cues li::before{content:counter(c);color:var(--muted);font-weight:800}
+.status-vazio{display:flex;flex-direction:column;align-items:center;gap:var(--s2);text-align:center;padding:var(--s5) var(--s4);color:var(--muted)}
+.status-vazio .ic{width:48px;height:48px;border:2px dashed var(--edge);border-radius:12px}
+.skel{height:14px;border-radius:7px;background:linear-gradient(90deg,var(--sf2),#f4f4f4,var(--sf2))}
+/* sistema (folha 1) */
+.sis{background:var(--bg);border-radius:18px;padding:16px;width:1130px;display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px}
+.sis .bloco{background:var(--sf);border-radius:12px;padding:12px;display:flex;flex-direction:column;gap:8px}
+.sis h3{font-size:14px;margin:0 0 4px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted)}
+.escada div{display:flex;align-items:baseline;gap:10px;border-bottom:1px solid var(--line);padding:4px 0}
+.escada em{font-style:normal;font-size:11px;color:var(--muted);min-width:150px}
+.esp{display:flex;flex-direction:column;gap:6px}
+.esp div{display:flex;align-items:center;gap:8px;font-size:12px;color:var(--muted)}
+.esp i{display:block;height:12px;background:var(--ink)}
+.estados{display:flex;flex-direction:column;gap:8px}
+.estados .lin{display:flex;gap:6px;align-items:center;flex-wrap:wrap}
+.estados .lin em{font-style:normal;font-size:11px;color:var(--muted);min-width:68px}
+</style>
+</head>
+<body>
+<h1 class="pagina">treino-mvp · esboços do agente 4 (organização visual e hierarquia), 06/11/2026</h1>
+<p class="nota">‹ › marca um texto que vem da regra e não muda; a pílula "selo" é o selo da regra daquele texto (robusta, moderada, um estudo ou consenso). Tudo em cinzas: a cor é do agente 5. Cada quadro é um celular pequeno (360 × 740 px) e rola por dentro: a imagem mostra só o que a pessoa vê sem rolar; o cabeçalho, a ação principal e a barra inferior ficam presos. Abra este arquivo no navegador e role dentro de cada quadro para ver o resto. As peças seguem o sistema proposto no relatório: 7 degraus de letra (13 · 15 · 17 · 20 · 24 · 40 · 64), 6 passos de espaço (4 · 8 · 12 · 16 · 24 · 32), 3 raios (8 · 16 · pílula), 2 bordas (1 divisor · 2 contorno) e 3 alturas de toque (48 · 56 · 64). Os textos de segurança (triagem, "Senti algo", "O que o app não faz", segurança do guia) estão copiados do app, sem mudança; os das regras com selo também. Títulos, botões e ajudas podem ter sido reescritos (decisão 5 do Gustavo). Os números de exercício, carga e semana são da persona fictícia Ana.</p>
+
+<!-- ===================== FOLHA 1: SISTEMA ===================== -->
+<div class="folha" id="f-sistema">
+<h2>1. O sistema: escala de letra, de espaço e os componentes com os seus estados</h2>
+<div class="sis">
+  <div class="bloco">
+    <h3>Letra: 7 degraus (hoje: 19 no CSS)</h3>
+    <div class="escada">
+      <div><em>relógio · 64 · 800 · 1.0</em><span class="relogio" style="font-size:40px">1:30</span></div>
+      <div><em>número · 40 · 800 · 1.0</em><span class="numero">12</span></div>
+      <div><em>título de tela · 24 · 800 · 1.15</em><span class="titulo">Seu treino</span></div>
+      <div><em>pergunta / seção · 20 · 700 · 1.3</em><span class="pergunta">Quantos dias por semana?</span></div>
+      <div><em>corpo / botão / opção · 17 · 400|700 · 1.45</em><span class="corpo">Conta só o tempo contínuo.</span></div>
+      <div><em>apoio · 15 · 400 · 1.45</em><span class="apoio">Nada vem marcado.</span></div>
+      <div><em>rótulo / pílula · 13 · 600|700 · 1.3</em><span class="rotulo">Passo 2 de 6</span> <span class="pil selo">consenso</span></div>
+    </div>
+    <h3 style="margin-top:8px">Espaço: 6 passos (hoje: 17)</h3>
+    <div class="esp">
+      <div><i style="width:4px"></i>4: entre ícone e rótulo</div>
+      <div><i style="width:8px"></i>8: entre chips, entre linhas de uma lista</div>
+      <div><i style="width:12px"></i>12: dentro de uma pílula ou linha</div>
+      <div><i style="width:16px"></i>16: margem da tela, dentro do cartão, entre blocos</div>
+      <div><i style="width:24px"></i>24: entre seções</div>
+      <div><i style="width:32px"></i>32: antes do título de tela</div>
+    </div>
+    <h3 style="margin-top:8px">Raio 8 · 16 · pílula (hoje: 16 valores) · Borda 1 · 2 (hoje: 1, 1.5, 2, 3) · Toque 48 · 56 · 64 (hoje: 7 alturas)</h3>
+  </div>
+  <div class="bloco">
+    <h3>Botão: 4 variantes × 5 estados</h3>
+    <div class="estados">
+      <div class="lin"><em>primário 56</em><button class="btn compacto">Continuar</button><button class="btn compacto press">Pressionado</button><button class="btn compacto desab">Desabilitado</button><button class="btn compacto foco">Foco</button></div>
+      <div class="lin"><em>secundário</em><button class="btn sec compacto">Trocar exercício</button><button class="btn sec compacto press">✓ Marcado</button><button class="btn sec compacto desab">Desab.</button></div>
+      <div class="lin"><em>terciário</em><button class="btn ter">Desfazer a última série</button><button class="btn ter" style="opacity:.45">Desab.</button></div>
+      <div class="lin"><em>perigo</em><button class="btn perigo compacto">⚠ Senti algo</button><button class="btn perigo compacto" style="background:var(--alerta);color:#fff">Sim, apagar tudo</button></div>
+      <div class="lin"><em>grande 64</em><button class="btn grande" style="max-width:260px">Série feita · 1:30</button></div>
+      <div class="lin"><em>ícone 48</em><button class="btn sec icone">‹</button><button class="btn sec icone">›</button><button class="btn sec icone press">▶</button></div>
+    </div>
+    <h3 style="margin-top:8px">Seletor: opção, chip, cartão, segmentado</h3>
+    <div class="estados">
+      <div class="lin"><em>opção 56</em><span class="opcao" style="flex:1"><i></i>Normal</span><span class="opcao sel" style="flex:1"><i></i>Escolhida</span></div>
+      <div class="lin"><em></em><span class="opcao erro" style="flex:1"><i></i>Com erro</span><span class="opcao desab" style="flex:1"><i></i>Desab.</span></div>
+      <div class="lin"><em>chip 48</em><span class="chip">45 min</span><span class="chip sel">60 min</span><span class="chip" style="opacity:.45">75</span><span class="chip" style="border-color:var(--alerta)">Outro</span></div>
+      <div class="lin"><em>segmentado</em><span class="seg" style="flex:1"><span class="sel">Lateral</span><span>Frontal</span></span></div>
+      <div class="lin"><em>cartão eq.</em><span class="cartao-eq" style="width:100px"><i></i><span class="ic"></span>Banco reto</span><span class="cartao-eq sel" style="width:100px"><i></i><span class="ic"></span>Halteres</span><span class="cartao-eq" style="width:100px"><i></i><span class="ic falta"></span>Kettlebell</span></div>
+    </div>
+  </div>
+  <div class="bloco">
+    <h3>Campo, stepper, pílula, progresso, recolher, lista</h3>
+    <div class="estados">
+      <div class="lin"><em>campo</em><span class="campo" style="flex:1"><input value="Academia"></span><span class="campo erro" style="flex:1"><input value=""><span class="msg">Dê um nome</span></span></div>
+      <div class="lin"><em>stepper 56</em><span class="stepper"><b>−</b><output>12</output><b>+</b></span><span class="stepper compacto"><b class="desab">−</b><output>0</output><b>+</b></span></div>
+      <div class="lin"><em>pílula</em><span class="pil selo">robusta</span><span class="pil selo">moderada</span><span class="pil selo">um estudo</span><span class="pil selo">consenso</span><span class="pil ok">1 · 8 kg × 10</span><span class="pil forte">Recomendada</span><span class="pil">3x por semana</span></div>
+      <div class="lin"><em>progresso</em><span class="barra-h" style="flex:1"><i style="width:33%"></i></span><span class="pontos"><i class="on"></i><i></i><i></i></span></div>
+      <div class="lin"><em></em><span class="segs" style="flex:1"><i class="on"></i><i class="on"></i><i></i><i class="on"></i></span><span class="musc" style="flex:2"><span>Peito</span><span class="barra-h"><i style="width:50%"></i></span><b>3 de 6</b></span></div>
+      <div class="lin"><em>recolher</em><span class="recolher" style="flex:1"><span class="cabe">Detalhes</span></span><span class="recolher aberto" style="flex:1"><span class="cabe">Aberto</span></span></div>
+      <div class="lin"><em>lista</em><ul class="lista" style="flex:1"><li><span class="texto">Rotina<small>3 dias · até 45 min</small></span><span class="cheva">›</span></li><li><span class="mini" style="width:56px;height:42px">mini</span><span class="texto">Agachamento búlgaro<small>3 × 8–12 · RIR 3–4</small></span><span class="cheva">›</span></li></ul></div>
+    </div>
+    <h3 style="margin-top:8px">Estados de tela</h3>
+    <div class="estados">
+      <div class="lin"><em>vazio</em><span class="status-vazio" style="flex:1;padding:8px"><span class="ic"></span><span>Nenhum treino registrado ainda. Ele aparece aqui depois do 1º.</span><button class="btn compacto">Começar o treino</button></span></div>
+      <div class="lin"><em>erro</em><span class="card erro" style="flex:1;padding:10px"><b>Falta pouco:</b> responda a pergunta 3.</span></div>
+      <div class="lin"><em>carregando</em><span style="flex:1;display:flex;flex-direction:column;gap:6px"><span class="skel" style="width:60%"></span><span class="skel"></span><span class="skel" style="width:80%"></span><span class="apoio">esqueleto só se passar de 1 s; a foto usa texto "Analisando…" no botão</span></span></div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- ===================== FOLHA 2: CADASTRO 1 ===================== -->
+<div class="folha" id="f-cadastro-1">
+<h2>2. Cadastro (1 de 2): boas-vindas, triagem, experiência</h2>
+<div class="quadros">
+
+<div class="quadro"><p class="legenda"><b>Boas-vindas</b> (/) · o que muda: o botão principal fica fixo embaixo (hoje começa a 127% da altura no Pixel 7); as 3 caixas viram 3 linhas e 1 aviso; a privacidade fica num recolher.</p>
+<div class="tela"><div class="dobra"></div>
+  <div class="cab"><span class="marca">treino-mvp</span><span class="dir"><a class="voltar" href="#">Meus dados</a></span></div>
+  <div class="conteudo">
+    <div class="passo"><span>Passo 1 de 6</span><div class="barra"><i style="width:16%"></i></div></div>
+    <h1 class="titulo">Seu treino, com o equipamento que você tem</h1>
+    <p class="corpo">Um programa de hipertrofia baseado em evidência, só com o seu equipamento. Leva cerca de 1 minuto.</p>
+    <ul class="lista simples">
+      <li>☐&nbsp; Monta o programa a partir de regras com fonte e selo</li>
+      <li>☐&nbsp; Mostra como executar cada exercício</li>
+      <li>☐&nbsp; Sugere a carga da próxima vez</li>
+    </ul>
+    <div class="card aviso"><h3>O que o app não faz</h3><p class="corpo">O app não diagnostica e não substitui um médico ou um profissional de Educação Física. É uma ferramenta de orientação, não uma prescrição. Se sentir dor, tontura ou mal-estar, pare e procure avaliação. <span class="pil selo">consenso</span></p></div>
+    <div class="recolher"><div class="cabe">Seus dados ficam no aparelho</div></div>
+    <div class="acao-fixa"><button class="btn">Entendi, vamos começar</button><button class="btn ter">Ver o guia de execução</button></div>
+  </div>
+</div></div>
+
+<div class="quadro"><p class="legenda"><b>Triagem</b> (/comecar/triagem) · as 9 condições com o texto de hoje, intacto, numa lista sem caixa e com 16 px; os 2 botões continuam no fim da lista (a pessoa passa pelas 9 antes de responder). Muda só a moldura: cabeçalho, passo e espaço. Hoje: 1,8 alturas de tela no pequeno.</p>
+<div class="tela"><div class="dobra"></div>
+  <div class="cab"><a class="voltar" href="#">‹ Voltar</a><span class="centro">Triagem</span></div>
+  <div class="conteudo">
+    <div class="passo"><span>Passo 2 de 6</span><div class="barra"><i style="width:33%"></i></div></div>
+    <h1 class="titulo">Antes de começar, 9 perguntas rápidas</h1>
+    <p class="apoio">Alguma destas vale para você? São perguntas de segurança próprias do app, inspiradas no PAR-Q+ (não é o questionário oficial). Um “sim” não impede o treino; pede uma avaliação antes do programa automático. <span class="pil selo">consenso</span></p>
+    <ol class="lista simples numerada" style="font-size:16px;line-height:1.35">
+      <li>Algum médico já disse que você tem problema no coração ou pressão alta?</li>
+      <li>Você sente dor no peito em repouso, no dia a dia ou quando faz esforço?</li>
+      <li>Nos últimos 12 meses, você perdeu o equilíbrio por tontura ou desmaiou?</li>
+      <li>Você tem alguma doença crônica diagnosticada além de problema no coração ou pressão alta?</li>
+      <li>Você toma remédio receitado para alguma doença crônica?</li>
+      <li>Você tem hoje (ou teve nos últimos 12 meses) problema em osso, articulação, músculo ou tendão que pode piorar com exercício?</li>
+      <li>Algum médico já disse que você só deveria fazer exercício com acompanhamento?</li>
+      <li>Você está grávida ou teve bebê nos últimos 6 meses?</li>
+      <li>Você está com febre, gripe forte ou se recuperando de alguma doença agora?</li>
+    </ol>
+    <p class="apoio">“Nenhuma vale para mim” responde “não” às 9. <span class="pil selo">consenso</span></p>
+    <div class="opcoes"><button class="btn">Nenhuma vale para mim</button><button class="btn sec">Sim, alguma vale</button></div>
+  </div>
+</div></div>
+
+<div class="quadro"><p class="legenda"><b>Experiência</b> (/comecar/nivel) · uma pergunta por vez (como hoje), mas a pergunta é o título da seção (20 px) e as opções são linhas de 56 px, sem caixa em volta da caixa. O resultado é uma superfície com o selo. Continuar fixo.</p>
+<div class="tela"><div class="dobra"></div>
+  <div class="cab"><a class="voltar" href="#">‹ Voltar</a><span class="centro">Experiência</span></div>
+  <div class="conteudo">
+    <div class="passo"><span>Passo 3 de 6</span><div class="barra"><i style="width:50%"></i></div></div>
+    <h1 class="titulo">Sua experiência com musculação</h1>
+    <p class="pergunta">Há quanto tempo você treina sem parar?</p>
+    <p class="apoio">Conte só o tempo contínuo, sem pausas de meses.</p>
+    <div class="opcoes">
+      <span class="opcao sel"><i></i>Menos de 6 meses</span>
+      <span class="opcao"><i></i>De 6 meses a 2 anos</span>
+      <span class="opcao"><i></i>Mais de 2 anos</span>
+    </div>
+    <p class="pergunta">Você está treinando agora?</p>
+    <div class="opcoes">
+      <span class="opcao sel"><i></i>Estou treinando</span>
+      <span class="opcao"><i></i>Parei há menos de 3 semanas</span>
+      <span class="opcao"><i></i>Parei há mais tempo</span>
+    </div>
+    <p class="pergunta">Tem confiança na técnica básica?</p>
+    <div class="opcoes"><span class="opcao sel"><i></i>Sim</span><span class="opcao"><i></i>Mais ou menos</span><span class="opcao"><i></i>Não</span></div>
+    <div class="card info"><h3>Seu nível: Iniciante</h3><p class="corpo">‹motivo› Na dúvida, classificamos para baixo. <span class="pil selo">selo</span></p><p class="apoio">Quer começar num nível mais leve? Você pode escolher um abaixo, nunca acima.</p></div>
+    <div class="acao-fixa"><button class="btn">Continuar</button></div>
+  </div>
+</div></div>
+
+</div></div>
+
+<!-- ===================== FOLHA 3: CADASTRO 2 ===================== -->
+<div class="folha" id="f-cadastro-2">
+<h2>3. Cadastro (2 de 2): rotina, confirmar</h2>
+<div class="quadros">
+
+<div class="quadro"><p class="legenda"><b>Rotina</b> (/comecar/rotina) · dias e minutos em chips de 48 px numa linha só (hoje: opções de 56 px que quebram em 2 linhas); prioridade e objetivo opcionais abaixo, no mesmo padrão; Continuar fixo.</p>
+<div class="tela"><div class="dobra"></div>
+  <div class="cab"><a class="voltar" href="#">‹ Voltar</a><span class="centro">Rotina</span></div>
+  <div class="conteudo">
+    <div class="passo"><span>Passo 4 de 6</span><div class="barra"><i style="width:66%"></i></div></div>
+    <h1 class="titulo">Sua rotina de treino</h1>
+    <p class="pergunta">Quantos dias por semana?</p>
+    <p class="apoio">Com 2 a 6 dias dá para treinar cada músculo cerca de 2 vezes por semana. <span class="pil selo">consenso</span></p>
+    <div class="chips"><span class="chip">2</span><span class="chip sel">3</span><span class="chip">4</span><span class="chip">5</span><span class="chip">6</span></div>
+    <p class="pergunta">Quantos minutos por treino?</p>
+    <p class="apoio">Tempo total, com aquecimento e descansos.</p>
+    <div class="chips"><span class="chip">30</span><span class="chip sel">45</span><span class="chip">60</span><span class="chip">75</span><span class="chip">90</span><span class="chip">Outro</span></div>
+    <p class="pergunta">Quais grupos priorizar? <span class="apoio" style="font-weight:400">(opcional)</span></p>
+    <p class="apoio">Os grupos prioritários recebem mais séries; os outros ficam no mínimo que já gera resultado. Priorizar muitos grupos pede mais tempo. <span class="pil selo">moderada</span></p>
+    <div class="chips"><span class="chip">Peito</span><span class="chip">Costas</span><span class="chip">Ombros</span><span class="chip">Braços</span><span class="chip sel">Pernas</span><span class="chip sel">Glúteos</span><span class="chip">Abdômen</span></div>
+    <p class="pergunta">O que você quer agora? <span class="apoio" style="font-weight:400">(opcional)</span></p>
+    <div class="opcoes"><span class="opcao"><i></i>Ganhar músculo</span><span class="opcao"><i></i>Manter o músculo enquanto perco peso</span><span class="opcao"><i></i>Ficar mais forte</span><span class="opcao"><i></i>Saúde e disposição</span></div>
+    <div class="acao-fixa"><button class="btn">Continuar</button></div>
+  </div>
+</div></div>
+
+<div class="quadro"><p class="legenda"><b>Confirmar</b> (/comecar/restricoes) · como hoje, só com a lista única (cada linha volta ao passo) e o "Algo a evitar?" como recolher. O que vem da triagem (dor) aparece como linha com selo, não como caixa à parte.</p>
+<div class="tela"><div class="dobra"></div>
+  <div class="cab"><a class="voltar" href="#">‹ Voltar</a><span class="centro">Confirmar</span></div>
+  <div class="conteudo">
+    <div class="passo"><span>Passo 6 de 6</span><div class="barra"><i style="width:100%"></i></div></div>
+    <h1 class="titulo">Tudo certo?</h1>
+    <ul class="lista">
+      <li><span class="texto">Nenhuma condição<small>Saúde</small></span><span class="cheva">›</span></li>
+      <li><span class="texto">Iniciante<small>Nível</small></span><span class="cheva">›</span></li>
+      <li><span class="texto">3 dias por semana · até 45 min<small>Rotina</small></span><span class="cheva">›</span></li>
+      <li><span class="texto">Pernas, glúteos<small>Prioridade</small></span><span class="cheva">›</span></li>
+      <li><span class="texto">2 itens · Meu local<small>Equipamento</small></span><span class="cheva">›</span></li>
+    </ul>
+    <div class="recolher"><div class="cabe">Algo a evitar? (opcional)</div></div>
+    <p class="apoio">O programa é montado com regras com selo e fonte; cada escolha explica o porquê.</p>
+    <div class="acao-fixa"><button class="btn">Gerar meu programa</button></div>
+  </div>
+</div></div>
+
+<div class="quadro"><p class="legenda"><b>Triagem, respondendo uma a uma</b> (estado "Sim, alguma vale") · a pergunta vira o título da seção; Sim/Não como segmentado de 48 px, numa linha; o erro aparece na própria pergunta e num resumo no topo. Continuar no fim (regra).</p>
+<div class="tela"><div class="dobra"></div>
+  <div class="cab"><a class="voltar" href="#">‹ Voltar</a><span class="centro">Triagem</span></div>
+  <div class="conteudo">
+    <div class="passo"><span>Passo 2 de 6</span><div class="barra"><i style="width:33%"></i></div></div>
+    <h1 class="titulo">Responda uma a uma</h1>
+    <div class="card erro">Responda a pergunta que ficou sem resposta.</div>
+    <p class="pergunta">1. Algum médico já disse que você tem problema no coração ou pressão alta?</p>
+    <div class="seg"><span>Sim</span><span class="sel">Não</span></div>
+    <p class="pergunta">2. Você sente dor no peito em repouso, no dia a dia ou quando faz esforço?</p>
+    <div class="seg"><span>Sim</span><span class="sel">Não</span></div>
+    <p class="pergunta" style="color:var(--alerta)">3. Nos últimos 12 meses, você perdeu o equilíbrio por tontura ou desmaiou?</p>
+    <div class="seg" style="outline:2px solid var(--alerta)"><span>Sim</span><span>Não</span></div>
+    <p class="apoio" style="color:var(--alerta);font-weight:700">Responda sim ou não.</p>
+    <p class="pergunta">4. Você tem alguma doença crônica diagnosticada além de problema no coração ou pressão alta?</p>
+    <div class="seg"><span>Sim</span><span class="sel">Não</span></div>
+    <p class="pergunta">5. Você toma remédio receitado para alguma doença crônica?</p>
+    <div class="seg"><span>Sim</span><span class="sel">Não</span></div>
+    <p class="pergunta">6. Você tem hoje (ou teve nos últimos 12 meses) problema em osso, articulação, músculo ou tendão que pode piorar com exercício?</p>
+    <div class="seg"><span class="sel">Sim</span><span>Não</span></div>
+    <div class="card info"><p class="pergunta" style="font-size:17px">Quais regiões?</p><div class="chips"><span class="chip">Ombro</span><span class="chip sel">Joelho</span><span class="chip">Lombar</span><span class="chip">Quadril</span></div><p class="apoio">E hoje, dói no joelho? De 0 a 10 <span class="pil selo">consenso</span></p><div class="chips"><span class="chip">0</span><span class="chip">1</span><span class="chip">2</span><span class="chip sel">3</span><span class="chip">4</span><span class="chip">5</span><span class="chip">…</span></div></div>
+    <p class="apoio">… (7 a 9)</p>
+    <button class="btn">Continuar</button>
+  </div>
+</div></div>
+
+</div></div>
+
+<!-- ===================== FOLHA 4: EQUIPAMENTO ===================== -->
+<div class="folha" id="f-equipamento">
+<h2>4. Equipamento: lugar, lista e foto (o layout; o que a tela precisa fazer e em quantos toques é do agente 2)</h2>
+<div class="quadros">
+
+<div class="quadro"><p class="legenda"><b>Equipamento: lugar</b> (/comecar/inventario) · 1 pergunta, 4 opções grandes com ícone; a foto é 1 botão secundário; a lista fica recolhida por categoria com contagem (hoje: 4,4 a 5,9 alturas de tela e 55 a 76 alvos abertos de uma vez).</p>
+<div class="tela"><div class="dobra"></div>
+  <div class="cab"><a class="voltar" href="#">‹ Voltar</a><span class="centro">Equipamento</span></div>
+  <div class="conteudo">
+    <div class="passo"><span>Passo 5 de 6</span><div class="barra"><i style="width:83%"></i></div></div>
+    <h1 class="titulo">Que equipamento você tem?</h1>
+    <p class="pergunta">Onde você treina?</p>
+    <p class="apoio">Um toque marca o equipamento típico do lugar; depois é só tirar o que não tiver. <span class="pil selo">consenso</span></p>
+    <div class="opcoes">
+      <span class="opcao"><span class="ic"></span><span class="texto">Casa com halteres e elásticos</span></span>
+      <span class="opcao"><span class="ic"></span><span class="texto">Condomínio com multifuncional</span></span>
+      <span class="opcao sel"><span class="ic"></span><span class="texto">Academia completa<small>‹n› itens marcados · confira os halteres</small></span></span>
+      <span class="opcao"><span class="ic"></span><span class="texto">Corpo livre<small>sem equipamento</small></span></span>
+    </div>
+    <button class="btn sec">📷 Reconhecer pela foto</button>
+    <p class="pergunta">Conferir e ajustar a lista</p>
+    <div class="recolher"><div class="cabe">Halteres e anilhas <span class="pil">1 de 4</span></div></div>
+    <div class="recolher"><div class="cabe">Bancos <span class="pil">4 de 4</span></div></div>
+    <div class="recolher"><div class="cabe">Polias e acessórios <span class="pil">7 de 10</span></div></div>
+    <div class="recolher"><div class="cabe">Barras <span class="pil">4 de 5</span></div></div>
+    <div class="recolher"><div class="cabe">Máquinas <span class="pil">17 de 19</span></div></div>
+    <div class="recolher"><div class="cabe">Outros acessórios <span class="pil">1 de 6</span></div></div>
+    <div class="acao-fixa"><button class="btn">Continuar</button></div>
+  </div>
+</div></div>
+
+<div class="quadro"><p class="legenda"><b>Equipamento: lista</b> (categoria aberta) · cartões de 3 colunas com ícone (os 24 sem desenho ganham o ícone; até lá, um contorno tracejado da categoria); os detalhes do item marcado abrem logo abaixo dele, dentro da categoria, como chips.</p>
+<div class="tela"><div class="dobra"></div>
+  <div class="cab"><a class="voltar" href="#">‹ Voltar</a><span class="centro">Equipamento</span></div>
+  <div class="conteudo">
+    <div class="passo"><span>Passo 5 de 6</span><div class="barra"><i style="width:83%"></i></div></div>
+    <h1 class="titulo">Que equipamento você tem?</h1>
+    <div class="recolher"><div class="cabe">Onde você treina? <span class="pil">Academia completa</span></div></div>
+    <div class="recolher aberto"><div class="cabe">Halteres e anilhas <span class="pil">1 de 4</span></div>
+      <div class="corpo-r">
+        <div class="grade">
+          <span class="cartao-eq sel"><i></i><span class="ic"></span>Halteres fixos</span>
+          <span class="cartao-eq"><i></i><span class="ic"></span>Anilhas e manoplas</span>
+          <span class="cartao-eq"><i></i><span class="ic falta"></span>Kettlebell</span>
+          <span class="cartao-eq"><i></i><span class="ic falta"></span>Caneleiras</span>
+        </div>
+        <div class="card info" style="padding:12px">
+          <p class="pergunta" style="font-size:17px">Halteres fixos</p>
+          <p class="apoio">Isso define as cargas que o app pode sugerir.</p>
+          <p class="rotulo">O mais leve</p>
+          <div class="chips"><span class="chip">1</span><span class="chip sel">2</span><span class="chip">3</span><span class="chip">4</span><span class="chip">5</span><span class="chip">Outro</span></div>
+          <p class="rotulo">O mais pesado</p>
+          <div class="chips"><span class="chip">10</span><span class="chip">20</span><span class="chip">30</span><span class="chip sel">40</span><span class="chip">Outro</span></div>
+          <p class="rotulo">De quanto em quanto</p>
+          <div class="chips"><span class="chip">1</span><span class="chip sel">2</span><span class="chip">2,5</span><span class="chip">5</span><span class="chip">Outro</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="recolher"><div class="cabe">Bancos <span class="pil">4 de 4</span></div></div>
+    <div class="recolher"><div class="cabe">Polias e acessórios <span class="pil">7 de 10</span></div></div>
+    <div class="recolher"><div class="cabe">Máquinas <span class="pil">17 de 19</span></div></div>
+    <div class="acao-fixa"><button class="btn">Continuar</button></div>
+  </div>
+</div></div>
+
+<div class="quadro"><p class="legenda"><b>Equipamento: foto</b> · uma folha inferior modal (não um bloco no meio da lista): privacidade em 1 linha, convite, "Escolher fotos" e, depois, as sugestões com Tenho / Não tenho em segmentado. "Usar na lista" fecha a folha.</p>
+<div class="tela"><div class="dobra"></div>
+  <div class="cab"><a class="voltar" href="#">‹ Voltar</a><span class="centro">Equipamento</span></div>
+  <div class="conteudo">
+    <div class="passo"><span>Passo 5 de 6</span><div class="barra"><i style="width:83%"></i></div></div>
+    <h1 class="titulo">Que equipamento você tem?</h1>
+    <p class="pergunta">Onde você treina?</p>
+    <div class="opcoes"><span class="opcao"><span class="ic"></span><span class="texto">Casa com halteres e elásticos</span></span><span class="opcao"><span class="ic"></span><span class="texto">Condomínio com multifuncional</span></span></div>
+  </div>
+  <div class="escurece"></div>
+  <div class="folha-inf">
+    <p class="pergunta">O que encontramos nas fotos</p>
+    <p class="apoio">Confira cada item. Só entra na lista o que você confirmar. As fotos saem sem a localização e não ficam no servidor.</p>
+    <ul class="lista">
+      <li><span class="mini" style="width:56px;height:42px">ícone</span><span class="texto">Banco regulável<small>Com certeza · encosto inclinado</small></span></li>
+      <li style="padding-top:0;border-bottom:1px solid var(--line)"><span class="seg" style="flex:1"><span class="sel">Tenho</span><span>Não tenho</span></span></li>
+      <li><span class="mini" style="width:56px;height:42px">ícone</span><span class="texto">Polia dupla<small>Provável</small></span></li>
+      <li style="padding-top:0"><span class="seg" style="flex:1"><span>Tenho</span><span>Não tenho</span></span></li>
+    </ul>
+    <p class="apoio">Falta responder 1 item.</p>
+    <button class="btn desab">Usar na lista</button>
+    <button class="btn ter">Descartar e voltar</button>
+  </div>
+</div></div>
+
+</div></div>
+
+<!-- ===================== FOLHA 5: PROGRAMA ===================== -->
+<div class="folha" id="f-programa">
+<h2>5. Programa (início): o treino de hoje primeiro; avisos numa linha; detalhes do exercício numa folha</h2>
+<div class="quadros">
+
+<div class="quadro"><p class="legenda"><b>Programa</b> (/programa) · hierarquia: (1) o treino de hoje e "Começar" fixo; (2) a semana numa linha tocável; (3) avisos e ofertas numa linha só, que abre; (4) os dias em abas; (5) a lista. Hoje: 18 caixas, 44 alvos e 61 selos numa página.</p>
+<div class="tela"><div class="dobra"></div>
+  <div class="cab"><span class="marca">treino-mvp</span></div>
+  <div class="conteudo">
+    <h1 class="titulo">Seu treino</h1>
+    <p class="apoio">3x por semana · até 45 min · Iniciante · <u>Meu local</u></p>
+    <ul class="lista">
+      <li><span class="texto"><b>A sua semana: 1 de 3</b><small>Qualquer dia serve. O Corpo todo B cabe até domingo.</small></span><span class="pontos" style="gap:4px"><i class="on" style="width:16px;height:16px"></i><i style="width:16px;height:16px"></i><i style="width:16px;height:16px"></i></span><span class="cheva">›</span></li>
+      <li><span class="texto"><b>Semana 1: fase de aprendizado</b><small>‹texto da fase, intacto› <span class="pil selo">selo</span></small></span></li>
+      <li><span class="texto"><b>1 aviso e 1 ajuste possível</b><small>Alguns músculos ficaram abaixo da meta.</small></span><span class="cheva">›</span></li>
+    </ul>
+    <div class="seg"><span class="sel">Dia A</span><span>Dia B</span><span>Dia C</span></div>
+    <p class="apoio">Corpo todo A · 6 exercícios · ~44 min · próximo da rotação</p>
+    <ul class="lista">
+      <li><span class="mini">boneco</span><span class="texto"><b>1 Agachamento búlgaro com apoio</b><small><b style="font-size:20px;color:var(--ink)">3 × 8–12</b> cada lado · RIR 3–4 · 1:45</small></span><span class="cheva">›</span></li>
+      <li><span class="mini">boneco</span><span class="texto"><b>2 Supino reto com halteres</b><small><b style="font-size:20px;color:var(--ink)">3 × 8–12</b> · RIR 3–4 · 1:45</small></span><span class="cheva">›</span></li>
+      <li><span class="mini">guia em texto</span><span class="texto"><b>3 Ponte de glúteo com halter</b><small><b style="font-size:20px;color:var(--ink)">2 × 10–15</b> · RIR 3–4 · 1:00</small></span><span class="cheva">›</span></li>
+      <li><span class="mini">boneco</span><span class="texto"><b>4 Remada apoiada</b><small><b style="font-size:20px;color:var(--ink)">3 × 8–12</b> · RIR 3–4 · 1:30</small></span><span class="cheva">›</span></li>
+    </ul>
+    <div class="recolher"><div class="cabe">Sobre o programa: o porquê e as metas</div></div>
+    <div class="acao-fixa com-nav"><button class="btn">Começar o treino Corpo todo A</button></div>
+  </div>
+  <div class="nav"><a class="atual"><i></i>Treino</a><a><i></i>Semana</a><a><i></i>Meus dados</a></div>
+</div></div>
+
+<div class="quadro"><p class="legenda"><b>Programa: detalhe do exercício</b> (folha inferior, abre ao tocar na linha) · o que hoje fica em "Detalhes" dentro do cartão: ver como fazer, evolução, alternativas, "prefiro este" e os porquês, cada um com o seu selo. O selo é tocável e abre a fonte.</p>
+<div class="tela"><div class="dobra"></div>
+  <div class="cab"><span class="marca">treino-mvp</span></div>
+  <div class="conteudo"><h1 class="titulo">Seu treino</h1><div class="seg"><span class="sel">Corpo todo A</span><span>B</span><span>C</span></div></div>
+  <div class="escurece"></div>
+  <div class="folha-inf" style="top:120px">
+    <div class="linha"><span class="mini g">boneco</span><div class="texto" style="flex:1"><p class="pergunta">Agachamento búlgaro com apoio</p><p class="apoio">3 × 8–12 cada lado · RIR 3–4 · descanso 1:45</p></div></div>
+    <button class="btn sec">Ver como fazer</button>
+    <ul class="lista simples">
+      <li>Sua evolução neste exercício <span class="cheva" style="margin-left:auto">›</span></li>
+      <li>Se estiver ocupado: <u>afundo</u>, <u>agachamento goblet</u> ou <u>leg press</u></li>
+      <li>Prefere algum destes? Vale no próximo programa. <span class="pil selo">selo</span></li>
+    </ul>
+    <p class="rotulo">Por que este exercício</p>
+    <ul class="lista simples">
+      <li>‹porquê 1, gerado pela regra, texto intacto› <span class="pil selo">selo</span></li>
+      <li>‹porquê 2› <span class="pil selo">selo</span></li>
+    </ul>
+    <div class="card info" style="padding:12px"><p class="rotulo">De onde vem este selo</p><p class="corpo" style="font-size:15px"><b>Consenso de treinadores</b> (sem estudo que teste isso). Regra: ordenação dos exercícios da sessão (a ordem não muda a hipertrofia). Fontes: Nunes et al. 2021 (meta-análise); Simão et al. 2012 (revisão).</p><button class="btn ter" style="padding:0">O que querem dizer os selos ›</button></div>
+    <button class="btn ter">Fechar</button>
+  </div>
+</div></div>
+
+<div class="quadro"><p class="legenda"><b>Programa: estado vazio e carregando</b> · ao abrir sem histórico, a faixa da semana diz o que vai aparecer; enquanto o estado carrega do aparelho (hoje: tela em branco), um esqueleto só se passar de 1 s.</p>
+<div class="tela"><div class="dobra"></div>
+  <div class="cab"><span class="marca">treino-mvp</span></div>
+  <div class="conteudo">
+    <h1 class="titulo">Seu treino</h1>
+    <div class="card"><div class="status-vazio" style="padding:8px"><span class="ic"></span><span><b>A sua semana aparece aqui</b><br>depois do 1º treino registrado.</span></div></div>
+    <div class="seg"><span class="sel">Dia A</span><span>Dia B</span><span>Dia C</span></div>
+    <p class="rotulo" style="margin-top:16px">Carregando (esqueleto, só se passar de 1 s)</p>
+    <div class="card"><div class="linha"><span class="skel" style="width:88px;height:66px;border-radius:8px"></span><span style="flex:1;display:flex;flex-direction:column;gap:8px"><span class="skel" style="width:70%"></span><span class="skel" style="width:40%;height:20px"></span><span class="skel" style="width:60%"></span></span></div></div>
+    <div class="card"><div class="linha"><span class="skel" style="width:88px;height:66px;border-radius:8px"></span><span style="flex:1;display:flex;flex-direction:column;gap:8px"><span class="skel" style="width:60%"></span><span class="skel" style="width:40%;height:20px"></span><span class="skel" style="width:50%"></span></span></div></div>
+    <div class="acao-fixa com-nav"><button class="btn desab">Começar o treino</button></div>
+  </div>
+  <div class="nav"><a class="atual"><i></i>Treino</a><a><i></i>Semana</a><a><i></i>Meus dados</a></div>
+</div></div>
+
+</div></div>
+
+<!-- ===================== FOLHA 6: TREINO ===================== -->
+<div class="folha" id="f-treino">
+<h2>6. Treino: série, descanso (folha padrão) e "Senti algo" (folha modal). O conteúdo e os tamanhos exigidos pela academia são do agente 3; aqui é a moldura.</h2>
+<div class="quadros">
+
+<div class="quadro"><p class="legenda"><b>Treino: série</b> (/treino) · cabeçalho de tarefa: Sair à esquerda, "1 de 6" no centro, "Senti algo" à direita (sempre à vista); sem a marca e sem a barra inferior. Dentro do cartão da série: 1 linha de sugestão com selo (não 2 caixas), carga e repetições com o mesmo stepper, RIR em chips, "Série feita" de 64 px fixo.</p>
+<div class="tela"><div class="dobra"></div>
+  <div class="cab"><a class="voltar" href="#">Sair</a><span class="centro">Exercício 1 de 6</span><span class="dir"><button class="btn perigo compacto">⚠ Senti algo</button></span></div>
+  <div class="conteudo" style="gap:12px">
+    <div class="barra-h" style="height:6px"><i style="width:8%"></i></div>
+    <div class="linha" style="flex-wrap:nowrap;align-items:flex-start"><span class="mini g">boneco</span><div style="flex:1"><p class="titulo" style="font-size:22px">Agachamento búlgaro com apoio</p><p class="apoio">Meta: 3 × 8–12 (cada lado) · RIR 3–4</p><button class="btn ter" style="padding:0">Ver como fazer ›</button></div></div>
+    <div class="card" style="gap:12px">
+      <div class="linha"><h3>Série 1 de 3</h3><span class="pil">descanso 1:45</span></div>
+      <p class="apoio"><b style="color:var(--ink)">Hoje: ‹sugestão›.</b> ‹motivo da regra, texto intacto› <span class="pil selo">selo</span></p>
+      <div class="linha"><span class="pergunta" style="font-size:17px">Carga</span><span class="stepper"><b>−</b><output style="font-size:32px">8 kg</output><b>+</b></span></div>
+      <div class="linha"><span class="pergunta" style="font-size:17px">Repetições</span><span class="stepper"><b>−</b><output>10</output><b>+</b></span></div>
+      <p class="pergunta" style="font-size:17px">Quantas repetições ainda conseguiria? (RIR)</p><p class="apoio">A maioria das pessoas acha que tem menos reserva do que tem. <span class="pil selo">moderada</span></p>
+      <div class="chips"><span class="chip">0</span><span class="chip">1</span><span class="chip">2</span><span class="chip sel">3</span><span class="chip">4 ou mais</span></div>
+    </div>
+    <div class="acao-fixa"><button class="btn grande">Série feita · descansar 1:45</button></div>
+    <div class="linha"><button class="btn ter">Trocar exercício</button><button class="btn ter">Desfazer a última</button></div>
+    <div class="tres" style="grid-template-columns:1fr 1fr"><button class="btn sec compacto" style="width:100%">‹ Anterior</button><button class="btn sec compacto" style="width:100%">Próximo ›</button></div>
+  </div>
+</div></div>
+
+<div class="quadro"><p class="legenda"><b>Treino: descanso</b> · folha inferior padrão (não modal): o relógio de 64 px, a barra, −15 / +15 / Pular, e a próxima série escrita. A tela de trás continua tocável (Senti algo, ver como fazer).</p>
+<div class="tela"><div class="dobra"></div>
+  <div class="cab"><a class="voltar" href="#">Sair</a><span class="centro">Exercício 1 de 6</span><span class="dir"><button class="btn perigo compacto">⚠ Senti algo</button></span></div>
+  <div class="conteudo" style="gap:12px">
+    <div class="barra-h" style="height:6px"><i style="width:8%"></i></div>
+    <div class="linha" style="flex-wrap:nowrap;align-items:flex-start"><span class="mini g">boneco</span><div style="flex:1"><p class="titulo" style="font-size:22px">Agachamento búlgaro com apoio</p><p class="apoio">Meta: 3 × 8–12 (cada lado) · RIR 3–4</p></div></div>
+    <ul class="fichas"><li class="pil ok">1 · 8 kg × 10 · RIR 3</li></ul>
+    <div class="card"><h3>Série 2 de 3</h3><p class="apoio">Hoje: mesma carga.</p></div>
+  </div>
+  <div class="folha-inf">
+    <div class="linha"><span class="pergunta">Descanso</span><span class="relogio">1:30</span></div>
+    <div class="barra-h"><i style="width:15%"></i></div>
+    <p class="apoio">Depois: série 2 de 3 · 8 kg × 8–12</p>
+    <div class="tres"><button class="btn sec">−15 s</button><button class="btn sec">+15 s</button><button class="btn">Pular</button></div>
+  </div>
+</div></div>
+
+<div class="quadro"><p class="legenda"><b>Treino: "Senti algo"</b> · folha modal (interrompe): os 7 sinais como linhas de 56 px, a nota da dor em chips, "O app não diagnostica" com selo. Fechar devolve à série. O aviso da regra aparece depois como superfície de aviso na tela.</p>
+<div class="tela"><div class="dobra"></div>
+  <div class="cab"><a class="voltar" href="#">Sair</a><span class="centro">Exercício 1 de 6</span><span class="dir"><button class="btn perigo compacto press">⚠ Senti algo</button></span></div>
+  <div class="conteudo"><div class="barra-h" style="height:6px"><i style="width:8%"></i></div><p class="titulo" style="font-size:22px">Agachamento búlgaro com apoio</p></div>
+  <div class="escurece"></div>
+  <div class="folha-inf" style="top:90px">
+    <p class="pergunta">O que você sentiu?</p>
+    <ul class="lista">
+      <li>Dor, pressão ou aperto no peito<span class="cheva" style="margin-left:auto">›</span></li>
+      <li>Falta de ar fora do normal<span class="cheva" style="margin-left:auto">›</span></li>
+      <li>Tontura ou quase desmaio<span class="cheva" style="margin-left:auto">›</span></li>
+      <li>Coração batendo muito irregular<span class="cheva" style="margin-left:auto">›</span></li>
+      <li>Dor aguda ou em pontada numa articulação<span class="cheva" style="margin-left:auto">›</span></li>
+      <li>Formigamento ou dormência<span class="cheva" style="margin-left:auto">›</span></li>
+      <li>Perda de força estranha<span class="cheva" style="margin-left:auto">›</span></li>
+    </ul>
+    <p class="pergunta" style="font-size:17px">Ou dê uma nota para a dor (0 a 10)</p>
+    <div class="chips"><span class="chip">0</span><span class="chip">1</span><span class="chip">2</span><span class="chip">3</span><span class="chip">4</span><span class="chip">5</span><span class="chip">6</span><span class="chip">7</span><span class="chip">8</span><span class="chip">9</span><span class="chip">10</span></div>
+    <p class="apoio">O app não diagnostica. <span class="pil selo">consenso</span></p>
+    <button class="btn ter">Voltar à série</button>
+  </div>
+</div></div>
+
+</div></div>
+
+<!-- ===================== FOLHA 7: GUIA E FIM ===================== -->
+<div class="folha" id="f-guia-fim">
+<h2>7. Guia e fim do treino</h2>
+<div class="quadros">
+
+<div class="quadro"><p class="legenda"><b>Guia</b> (/guia/:id) · cabeçalho de tarefa com "Voltar ao treino"; o exercício e a prescrição; o palco sem mudança; os controles em 2 linhas (tocar, início, lento | vista) e os 4 modos em segmentado; as 3 dicas grandes; segurança sempre visível; o resto em recolher; "De onde vem" no fim (pedido ao domínio).</p>
+<div class="tela"><div class="dobra"></div>
+  <div class="cab"><a class="voltar" href="#">‹ Voltar ao treino</a><span class="centro">2 de 6</span><span class="dir"><button class="btn sec icone">‹</button><button class="btn sec icone">›</button></span></div>
+  <div class="conteudo" style="gap:12px">
+    <h1 class="titulo" style="font-size:22px">Supino reto com halteres</h1>
+    <p class="apoio">Semana 1: 3 × 8–12 · RIR 3–4 · descanso 1:45 · <b>Alvo:</b> peito</p>
+    <div class="bloco-palco">
+      <div class="palco"><span class="hud"><b>Descida</b> · 2 s</span><span class="resp">INSPIRA</span>palco do Boneco (não muda)</div>
+      <div class="controles"><button class="btn sec icone">⏸</button><button class="btn sec icone">⏮</button><button class="btn sec compacto">🐢 lento</button><span class="seg" style="flex:1;margin:0"><span class="sel">Lateral</span><span>Frontal</span></span></div>
+      <div class="seg"><span class="sel">Técnica</span><span>Erros</span><span>Músculos</span><span>Trajetória</span></div>
+      <p class="apoio" style="padding:0 12px">▬ linhas de referência · ● articulações</p>
+    </div>
+    <div class="card"><p class="rotulo">3 dicas</p><ol class="cues"><li>Escápulas para trás e para baixo</li><li>Cotovelos a 45° do tronco</li><li>Halteres sobre o peito, não sobre o rosto</li></ol></div>
+    <div class="card aviso"><p class="rotulo">Segurança (sempre à vista)</p><p class="corpo" style="font-size:16px">Dor muscular de treino é esperada: queimação durante a série e dolorimento difuso por 1–3 dias.</p><p class="corpo" style="font-size:16px"><b>Pare o exercício</b> e procure avaliação (fisioterapeuta ou médico do esporte) se aparecer dor articular forte ou em pontada, formigamento, perda de força incomum ou sensação de lesão. Nesses casos, não continue achando que é normal.</p></div>
+    <div class="recolher"><div class="cabe">Checklist de 5 s</div></div>
+    <div class="recolher"><div class="cabe">Setup, execução, amplitude, respiração</div></div>
+    <div class="recolher"><div class="cabe">Erros comuns e o que varia</div></div>
+    <div class="recolher"><div class="cabe">De onde vem este guia <span class="pil selo">fonte</span></div></div>
+  </div>
+</div></div>
+
+<div class="quadro"><p class="legenda"><b>Fim do treino</b> (/treino/fim) · 3 números grandes; "Hoje foi" em 3 chips; "Para a próxima vez" como lista com a ação em pílula e o selo; "Ver a sua semana" fixo. Sem a barra inferior (é uma tela de transição).</p>
+<div class="tela"><div class="dobra"></div>
+  <div class="cab"><span class="centro">Corpo todo A</span></div>
+  <div class="conteudo">
+    <h1 class="titulo">Treino concluído</h1>
+    <div class="tres"><div class="card" style="align-items:center;gap:2px"><p class="numero">14</p><p class="apoio">séries</p></div><div class="card" style="align-items:center;gap:2px"><p class="numero">6</p><p class="apoio">exercícios</p></div><div class="card" style="align-items:center;gap:2px"><p class="numero">41</p><p class="apoio">min</p></div></div>
+    <p class="pergunta" style="font-size:17px">Hoje foi: <span class="apoio" style="font-weight:400">(opcional)</span></p>
+    <div class="chips"><span class="chip">leve</span><span class="chip">normal</span><span class="chip">pesado demais</span></div>
+    <p class="apoio">Nada vem marcado. Com "pesado demais" em 2 dos últimos 3 treinos, o app sugere uma semana leve. <span class="pil selo">consenso</span></p>
+    <p class="pergunta">Para a próxima vez</p>
+    <ul class="lista">
+      <li><span class="texto"><b>Agachamento búlgaro</b><small>8 kg × 10 · 8 kg × 10 · 8 kg × 9</small><small><span class="pil forte">Subir</span> próxima: 9 kg · ‹motivo› <span class="pil selo">selo</span></small></span></li>
+      <li><span class="texto"><b>Supino reto com halteres</b><small>10 kg × 8 · 10 kg × 8 · 10 kg × 7</small><small><span class="pil ok">Manter</span> ‹motivo› <span class="pil selo">selo</span></small></span></li>
+      <li><span class="texto"><b>Ponte de glúteo com halter</b><small>12 kg × 15 · 12 kg × 15</small><small><span class="pil forte">Subir</span> próxima: 14 kg ‹motivo› <span class="pil selo">selo</span></small></span></li>
+    </ul>
+    <div class="acao-fixa"><button class="btn">Ver a sua semana</button><button class="btn ter">Voltar ao treino</button></div>
+  </div>
+</div></div>
+
+</div></div>
+
+<!-- ===================== FOLHA 8: SEMANA, EVOLUÇÃO, DADOS, LOCAIS ===================== -->
+<div class="folha" id="f-semana-dados">
+<h2>8. Semana, evolução, meus dados e locais (as telas de retorno; o conteúdo é do agente 1)</h2>
+<div class="quadros">
+
+<div class="quadro"><p class="legenda"><b>Semana</b> (/semana) · já é a tela mais clara do app: fica. Muda só o que repete: sai o "Voltar ao seu treino" (a barra já leva) e a legenda das barras vira texto ao lado de cada uma.</p>
+<div class="tela"><div class="dobra"></div>
+  <div class="cab"><span class="marca">treino-mvp</span></div>
+  <div class="conteudo">
+    <h1 class="titulo">A sua semana</h1>
+    <p class="apoio">02/11 a 08/11, em qualquer local <span class="pil selo">selo</span></p>
+    <p class="numero">1 <small>de 3 treinos</small></p>
+    <div class="pontos"><i class="on"></i><i></i><i></i></div>
+    <p class="corpo">1 treino nesta semana. Já conta: um treino por semana mantém o que você ganhou. Se der, o Corpo todo B cabe até domingo.</p>
+    <p class="pergunta">Séries por músculo</p>
+    <div class="musc"><span>Peito</span><span class="barra-h"><i style="width:50%"></i></span><b>3 de 6</b></div>
+    <div class="musc"><span>Costas</span><span class="barra-h"><i style="width:50%"></i></span><b>3 de 6</b></div>
+    <div class="musc"><span>Quadríceps</span><span class="barra-h"><i style="width:100%"></i></span><b>6 de 6</b></div>
+    <div class="musc"><span>Glúteos</span><span class="barra-h"><i style="width:66%"></i></span><b>4 de 6</b></div>
+    <div class="musc"><span>Panturrilha</span><span class="barra-h"><i style="width:0"></i></span><b>0 de 4</b></div>
+    <p class="apoio">Conta a série com até 4 repetições de reserva e amplitude completa; a série que trabalha o músculo de forma indireta vale meia. <span class="pil selo">consenso</span></p>
+    <p class="pergunta">3 semanas com treino nas últimas 4</p>
+    <div class="segs"><i class="on"></i><i class="on"></i><i></i><i class="on"></i></div>
+    <p class="pergunta">Sua evolução</p>
+    <ul class="lista"><li>Agachamento búlgaro<span class="cheva" style="margin-left:auto">›</span></li><li>Supino reto com halteres<span class="cheva" style="margin-left:auto">›</span></li></ul>
+  </div>
+  <div class="nav"><a><i></i>Treino</a><a class="atual"><i></i>Semana</a><a><i></i>Meus dados</a></div>
+</div></div>
+
+<div class="quadro"><p class="legenda"><b>Evolução</b> (/evolucao/:exId) · tela filha da Semana: "‹ Semana" no cabeçalho e a barra inferior visível (a pessoa sabe onde está). Sai o botão "Voltar à sua semana" repetido.</p>
+<div class="tela"><div class="dobra"></div>
+  <div class="cab"><a class="voltar" href="#">‹ Semana</a></div>
+  <div class="conteudo">
+    <h1 class="titulo">Agachamento búlgaro com apoio</h1>
+    <p class="apoio">Sua evolução: a melhor série de cada treino. <span class="pil selo">consenso</span></p>
+    <ul class="lista">
+      <li><span class="apoio" style="min-width:48px">05/11</span><span class="texto"><b>8 kg × 10</b><small>RIR 3</small></span><span class="pil">acerto da carga</span></li>
+      <li><span class="apoio" style="min-width:48px">03/11</span><span class="texto"><b>7 kg × 12</b><small>RIR 2</small></span><span class="pil forte">recorde</span></li>
+      <li><span class="apoio" style="min-width:48px">01/11</span><span class="texto"><b>6 kg × 12</b><small>RIR 3</small></span><span class="pil ok">subiu a carga</span></li>
+    </ul>
+    <div class="status-vazio" style="display:none"></div>
+  </div>
+  <div class="nav"><a><i></i>Treino</a><a class="atual"><i></i>Semana</a><a><i></i>Meus dados</a></div>
+</div></div>
+
+<div class="quadro"><p class="legenda"><b>Meus dados</b> (/dados) · 7 caixas com 1 botão cada viram 3 grupos de linhas tocáveis (Programa · Cópia de segurança · Saúde e aparelho). "Apagar tudo" por último, e a confirmação num diálogo. Hoje: 2,5 alturas de tela.</p>
+<div class="tela"><div class="dobra"></div>
+  <div class="cab"><span class="marca">treino-mvp</span></div>
+  <div class="conteudo">
+    <h1 class="titulo">Meus dados</h1>
+    <p class="apoio">Tudo fica guardado só neste aparelho.</p>
+    <p class="rotulo">Programa</p>
+    <ul class="lista">
+      <li><span class="texto">Rotina e divisão do treino<small>3 dias · até 45 min · divisão recomendada</small></span><span class="cheva">›</span></li>
+      <li><span class="texto">Meus locais<small>Meu local (principal)</small></span><span class="cheva">›</span></li>
+      <li><span class="texto">Estilo do boneco<small>Boneco (padrão)</small></span><span class="cheva">›</span></li>
+    </ul>
+    <p class="rotulo">Cópia de segurança</p>
+    <ul class="lista">
+      <li><span class="texto">Exportar meus dados (JSON)<small>Guarde num lugar seguro: tem dados de saúde.</small></span><span class="cheva">›</span></li>
+      <li><span class="texto">Importar uma cópia<small>Substitui os dados deste aparelho.</small></span><span class="cheva">›</span></li>
+    </ul>
+    <p class="rotulo">Saúde e aparelho</p>
+    <ul class="lista">
+      <li><span class="texto">Refazer a triagem e o perfil<small>O programa é gerado de novo no fim.</small></span><span class="cheva">›</span></li>
+      <li><span class="texto" style="color:var(--alerta)">Apagar todos os dados<small>Não dá para desfazer sem uma cópia.</small></span><span class="cheva">›</span></li>
+    </ul>
+    <p class="apoio">Versão 0.0.0, publicada em 06/11/2026.</p>
+  </div>
+  <div class="nav"><a><i></i>Treino</a><a><i></i>Semana</a><a class="atual"><i></i>Meus dados</a></div>
+</div></div>
+
+<div class="quadro"><p class="legenda"><b>Locais</b> (/locais) · tela filha de Meus dados: "‹ Meus dados", a lista dos locais como linhas (nome, nº de itens, pílula "principal"), "Cadastrar outro local" fixo; a barra inferior continua. O diálogo de "Apagar tudo" é o único diálogo do app.</p>
+<div class="tela"><div class="dobra"></div>
+  <div class="cab"><a class="voltar" href="#">‹ Meus dados</a></div>
+  <div class="conteudo">
+    <h1 class="titulo">Meus locais</h1>
+    <p class="apoio">O programa é montado para o principal; nos outros, o treino do dia troca cada aparelho que não houver pelo equivalente, e diz o motivo. <span class="pil selo">consenso</span></p>
+    <ul class="lista">
+      <li><span class="texto"><b>Meu local</b><small>2 equipamentos</small></span><span class="pil forte">principal</span><span class="cheva">›</span></li>
+      <li><span class="texto"><b>Academia do bairro</b><small>14 equipamentos</small></span><span class="cheva">›</span></li>
+    </ul>
+    <div class="acao-fixa com-nav"><button class="btn">Cadastrar outro local</button></div>
+  </div>
+  <div class="escurece"></div>
+  <div class="card" style="position:absolute;left:24px;right:24px;top:260px;z-index:6;gap:12px"><h3>Apagar todos os dados?</h3><p class="corpo" style="font-size:16px">Apaga o perfil, o equipamento e o programa deste aparelho. Não dá para desfazer sem um arquivo exportado.</p><button class="btn" style="background:var(--alerta)">Sim, apagar tudo</button><button class="btn sec">Cancelar</button></div>
+  <div class="nav"><a><i></i>Treino</a><a><i></i>Semana</a><a class="atual"><i></i>Meus dados</a></div>
+</div></div>
+
+</div></div>
+
+</body>
+</html>

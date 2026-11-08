@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Link, Navigate, useNavigate, useParams } from 'react-router-dom';
 import { comInventario, localPorId, localPrincipal, novoLocalId, primeiroPassoPendente } from '../../storage/esquema';
 import { useApp } from '../app/estado';
-import { Selo, Titulo, Topo } from '../app/ui';
+import { NavInferior, Selo, Titulo, Topo } from '../app/ui';
 import { FormularioInventario } from '../onboarding/Inventario';
 
 // Vários locais de treino (R1b; local.treino-do-dia). Cada local tem um nome que a pessoa escolhe e o seu
@@ -19,8 +19,8 @@ export function Locais() {
   const principal = localPrincipal(estado);
   const locais = estado.locais ?? [];
   return (
-    <div className="wrap app">
-      <Topo direita={<Link to="/programa">Meu programa</Link>} />
+    <div className="wrap app com-nav">
+      <Topo voltar={{ para: '/dados', rotulo: 'Meus dados' }} />
       <main className="conteudo">
         <Titulo>Meus locais</Titulo>
         <p className="lede">
@@ -62,9 +62,7 @@ export function Locais() {
           Cadastrar outro local
         </Link>
       </main>
-      <Link className="voltar" to="/programa">
-        Voltar para o programa
-      </Link>
+      <NavInferior atual="dados" />
     </div>
   );
 }
@@ -94,8 +92,8 @@ export function EditarLocal() {
   };
 
   return (
-    <div className="wrap app">
-      <Topo direita={<Link to="/locais">Meus locais</Link>} />
+    <div className="wrap app com-nav">
+      <Topo voltar={{ para: '/locais', rotulo: 'Meus locais' }} />
       <main className="conteudo">
         <Titulo>{novo ? 'Novo local' : `Editar: ${local!.nome}`}</Titulo>
         <div className={`campo${erroNome ? ' com-erro' : ''}`}>
@@ -142,9 +140,7 @@ export function EditarLocal() {
         <h2 className="secao">Que equipamento tem {nome.trim() ? `em "${nome.trim()}"` : 'neste local'}?</h2>
         <FormularioInventario inicial={local?.inventario} aoSalvar={salvar} textoBotao="Salvar local" />
       </main>
-      <Link className="voltar" to="/locais">
-        Voltar para meus locais
-      </Link>
+      <NavInferior atual="dados" />
     </div>
   );
 }

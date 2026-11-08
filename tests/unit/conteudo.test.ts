@@ -1,6 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import { existsSync } from 'node:fs';
 import { CARTOES, CONTEUDO } from '../../src/conteudo';
+import { carregarCartao, temCartao } from '../../src/conteudo/cartoes';
 import { BIBLIOTECA, POR_ID } from '../../src/domain/biblioteca';
 import { EX } from '../../src/engine';
 
@@ -47,5 +48,14 @@ describe('conteúdo dos exercícios', () => {
   it('seguranca.montagem: exercício com travas ou ancoragem (tag "montagem") tem a montagem no cartão, se tiver cartão', () => {
     for (const e of BIBLIOTECA.filter((x) => x.tags.includes('montagem')))
       if (CARTOES[e.id]) expect(CARTOES[e.id]!.montagem, e.id).toBeDefined();
+  });
+
+  // Lote técnico do redesign: o programa e o treino baixam o cartão sozinho (src/conteudo/cartoes.ts). Para todo
+  // exercício sem animação, "tem cartão" e o cartão carregado batem com o índice completo (CARTOES).
+  it('o cartão carregado sob demanda é o mesmo do índice completo, para todo exercício sem animação', async () => {
+    for (const ex of BIBLIOTECA.filter((e) => !e.animacaoId)) {
+      expect(temCartao(ex.id), ex.id).toBe(!!CARTOES[ex.id]);
+      expect(await carregarCartao(ex.id), ex.id).toEqual(CARTOES[ex.id] ?? null);
+    }
   });
 });

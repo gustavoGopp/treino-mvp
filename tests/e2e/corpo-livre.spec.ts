@@ -1,5 +1,5 @@
 import { expect, test, type Page } from '@playwright/test';
-import { minutosPorTreino, triagemNenhuma } from './jornada';
+import { marcarItem, minutosPorTreino, sobreOPrograma, triagemNenhuma } from './jornada';
 
 // Sessão de equipamento mínimo: o caminho de quem não tem nada, do cadastro ao 1º treino. Persona fictícia Elisa
 // (tests/personas): iniciante, 3 dias de 30 min, sem prioridade, "Corpo livre" (nenhum equipamento).
@@ -7,7 +7,7 @@ const grupo = (page: Page, nome: string | RegExp) => page.getByRole('group', { n
 
 test('Corpo livre: sem nada marcado, o programa sai só com o peso do corpo, diz o que falta sem sugerir compra e o 1º treino registra por degrau', async ({ page }) => {
   await page.goto('/');
-  await page.getByRole('button', { name: 'Entendi, vamos começar' }).click();
+  await page.getByRole('button', { name: 'Começar', exact: true }).click();
   await triagemNenhuma(page);
 
   await expect(page.getByRole('heading', { name: 'Sua experiência com musculação' })).toBeVisible();
@@ -26,28 +26,26 @@ test('Corpo livre: sem nada marcado, o programa sai só com o peso do corpo, diz
   const corpoLivre = page.getByRole('button', { name: /^(✓ )?Corpo livre$/ });
   await expect(corpoLivre).toHaveAttribute('aria-pressed', 'false');
   // Mesmo com algo marcado antes, o toque desmarca tudo.
-  await page.getByLabel('Step', { exact: true }).check();
+  await marcarItem(page, 'Step');
   await corpoLivre.click();
   await expect(corpoLivre).toHaveAttribute('aria-pressed', 'true');
-  await expect(page.getByLabel('Step', { exact: true })).not.toBeChecked();
+  await expect(page.locator('.grade-2').getByLabel('Step', { exact: true })).not.toBeChecked();
   await expect(page.getByText(/Sem equipamento: o programa usa o chão, uma parede e uma cadeira firme/)).toBeVisible();
-  await page.getByRole('button', { name: 'Continuar' }).click();
-
-  await expect(page.getByRole('heading', { name: 'Tudo certo?' })).toBeVisible();
-  await expect(page.getByText('Corpo livre (só o peso do corpo)')).toBeVisible();
+  // lote 3 do redesign: o equipamento gera o programa (o "Tudo certo?" saiu)
   await page.getByRole('button', { name: 'Gerar meu programa' }).click();
   await expect(page.getByRole('heading', { name: 'Seu treino', exact: true })).toBeVisible();
 
   // Sem nada para puxar, a divisão é de corpo todo, e o aviso diz o que falta, sem sugerir compra.
   for (const dia of ['Corpo todo A', 'Corpo todo B', 'Corpo todo C']) await expect(page.getByRole('tab', { name: dia, exact: true })).toBeVisible();
-  await page.getByText('Sobre o programa: avisos e o porquê').click();
+  await sobreOPrograma(page);
   await expect(page.getByText(/Sem algo para puxar ou levantar: costas, ombro lateral e bíceps ficam sem exercício/)).toBeVisible();
   await expect(page.getByText(/compr/i)).toHaveCount(0);
+  await page.keyboard.press('Escape');
 
   // A flexão de joelho deslizante cobre os posteriores da coxa sem equipamento.
   const painel = page.getByRole('tabpanel');
   await page.getByRole('tab', { name: 'Corpo todo A', exact: true }).click();
-  await expect(painel.getByRole('heading', { name: /Flexão de joelho deslizando/ })).toBeVisible();
+  await expect(painel.getByRole('button', { name: /Flexão de joelho deslizando/ })).toBeVisible();
 
   // O 1º treino: sem kg, a carga é o degrau da escada do próprio exercício.
   await page.getByRole('button', { name: 'Começar o treino Corpo todo A' }).click();

@@ -1,10 +1,16 @@
-import { useEffect, useId, useRef, type ReactNode } from 'react';
+import { useEffect, useId, useRef, useState, type ReactNode } from 'react';
 import { Link, Navigate } from 'react-router-dom';
 import { REGRAS, type Selo as TipoSelo } from '../../domain/regras';
 import { PASSOS, primeiroPassoPendente, type PassoId } from '../../storage/esquema';
 import { useApp } from './estado';
+import { Folha } from './Folha';
+import { carregarFontes, TEXTO_LEITURA, type Fonte } from '../../conteudo/fontes';
 
 // Peças de interface comuns às telas do app (onboarding, programa, dados).
+
+// A palavra que aparece na tela, curta e apagada (retorno do Gustavo, 06/11: "tem que ser uma coisa muito sutil").
+// O nome completo fica no nome acessível e na folha.
+const CURTO_SELO: Record<TipoSelo, string> = { robusta: 'robusta', moderada: 'moderada', 'um estudo': '1 estudo', consenso: 'consenso' };
 
 const TEXTO_SELO: Record<TipoSelo, string> = {
   robusta: 'evidência robusta',
@@ -13,25 +19,136 @@ const TEXTO_SELO: Record<TipoSelo, string> = {
   consenso: 'consenso de especialistas',
 };
 
-/** Selo de evidência de uma regra de docs/pesquisa/regras.md. */
+// O que cada selo quer dizer (docs/pesquisa/00-metodo.md, tabela dos níveis), em palavras simples.
+const SENTIDO_SELO: Record<TipoSelo, string> = {
+  robusta: 'Várias meta-análises (ou uma grande, com ensaios) apontam na mesma direção.',
+  moderada: 'Uma meta-análise, alguns ensaios coerentes ou um único grupo de pesquisa com resultados consistentes.',
+  'um estudo': 'Um único ensaio, quase sempre com amostra pequena e curta duração.',
+  consenso: 'Prática de treinadores e posicionamentos, sem ensaio que teste este número.',
+};
+
+/**
+ * Selo de evidência de uma regra de docs/pesquisa/regras.md. A pílula mostra o nível; um toque abre uma folha com a
+ * regra, o que o nível quer dizer e as fontes por extenso (src/conteudo/fontes.json, baixado só nessa hora).
+ */
 export function Selo({ id }: { id: string }) {
+  const [aberto, setAberto] = useState(false);
   const regra = REGRAS[id];
   if (!regra) return null;
+  const texto = TEXTO_SELO[regra.selo];
   return (
-    <span className={`selo selo-${regra.selo.replace(' ', '-')}`} title={regra.regra}>
-      {TEXTO_SELO[regra.selo]}
-    </span>
+    <>
+      <button type="button" className={`selo selo-${regra.selo.replace(' ', '-')}`} aria-label={`${texto}: ver de onde vem`} aria-haspopup="dialog" onClick={() => setAberto(true)}>
+        {CURTO_SELO[regra.selo]}
+      </button>
+      {aberto && (
+        <Folha titulo="De onde vem isto" aoFechar={() => setAberto(false)} livre={() => document.querySelector<HTMLElement>('.alerta-topo')}>
+          <SeloFolha regra={regra} />
+        </Folha>
+      )}
+    </>
   );
 }
 
-/** Topo das telas: marca e, à direita, um atalho opcional. */
-export function Topo({ direita }: { direita?: ReactNode }) {
+/**
+ * "por quê?" (retorno do Gustavo, 06/11: menos texto na tela). A explicação e as regras saem da tela e ficam a um toque:
+ * a folha mostra o texto de apoio da tela (se houver) e, para cada regra, o texto da regra, o selo e as fontes, como a
+ * folha do selo. O texto da regra não muda; só muda de lugar.
+ */
+export function PorQue({ regras, titulo = 'Por quê', children }: { regras: string[]; titulo?: string; children?: ReactNode }) {
+  const [aberto, setAberto] = useState(false);
+  const lista = regras.map((id) => REGRAS[id]).filter((r): r is (typeof REGRAS)[string] => !!r);
+  return (
+    <>
+      <button type="button" className="porque" aria-haspopup="dialog" onClick={() => setAberto(true)}>
+        por quê?
+      </button>
+      {aberto && (
+        <Folha titulo={titulo} aoFechar={() => setAberto(false)} livre={() => document.querySelector<HTMLElement>('.alerta-topo')}>
+          {children && <div className="porque-texto">{children}</div>}
+          {lista.map((r) => (
+            <SeloFolha key={r.id} regra={r} />
+          ))}
+        </Folha>
+      )}
+    </>
+  );
+}
+
+function SeloFolha({ regra }: { regra: (typeof REGRAS)[string] }) {
+  const [fontes, setFontes] = useState<Record<string, Fonte> | null | 'erro'>(null);
+  useEffect(() => {
+    let vivo = true;
+    carregarFontes().then(
+      (f) => vivo && setFontes(f),
+      () => vivo && setFontes('erro'),
+    );
+    return () => {
+      vivo = false;
+    };
+  }, []);
+  const texto = TEXTO_SELO[regra.selo];
+  return (
+    <div className="selo-folha">
+      <p className="regra">{regra.regra}</p>
+      <p className="sentido">
+        <b>{texto[0]!.toUpperCase() + texto.slice(1)}.</b> {SENTIDO_SELO[regra.selo]}
+      </p>
+      {regra.fontes.length > 0 && (
+        <div>
+          <p className="rotulo">Fontes</p>
+          {fontes === null ? (
+            <p role="status">Carregando as fontes…</p>
+          ) : fontes === 'erro' ? (
+            <p role="status">Não deu para carregar as fontes agora. As chaves são: {regra.fontes.join(', ')}.</p>
+          ) : (
+            <ol>
+              {regra.fontes.map((k) => {
+                const f = fontes[k];
+                return (
+                  <li key={k}>
+                    {f ? f.citacao : k}
+                    {f && (
+                      <small>
+                        {TEXTO_LEITURA[f.leitura]}
+                        {f.link && (
+                          <>
+                            {' · '}
+                            <a href={f.link} target="_blank" rel="noreferrer">
+                              abrir a fonte
+                            </a>
+                          </>
+                        )}
+                      </small>
+                    )}
+                  </li>
+                );
+              })}
+            </ol>
+          )}
+        </div>
+      )}
+    </div>
+  );
+}
+
+/**
+ * Topo das telas: marca e, à direita, um atalho opcional. Nas telas filhas (lote 5 do redesign: Evolução, Locais), o
+ * "‹ Pai" ocupa o lugar da marca, e a barra de baixo continua com o pai aceso.
+ */
+export function Topo({ direita, voltar }: { direita?: ReactNode; voltar?: { para: string; rotulo: string } }) {
   return (
     <header className="top">
       <div className="brand">
-        <b>
-          <Link to="/">treino-mvp</Link>
-        </b>
+        {voltar ? (
+          <Link className="topo-volta" to={voltar.para}>
+            ‹ {voltar.rotulo}
+          </Link>
+        ) : (
+          <b>
+            <Link to="/">treino-mvp</Link>
+          </b>
+        )}
         {direita}
       </div>
     </header>
@@ -101,26 +218,30 @@ export function Passo({ id, titulo, children }: { id: PassoId; titulo: string; c
   const pendente = primeiroPassoPendente(estado);
   if (pendente && PASSOS.findIndex((p) => p.id === pendente.id) < indice) return <Navigate to={pendente.rota} replace />;
   const anterior = PASSOS[indice - 1];
+  // lote 3 do redesign: "‹ Voltar" no alto e "Passo N de 4", sem contar a boas-vindas (que não é uma pergunta)
+  const total = PASSOS.length - 1;
   return (
     <div className="wrap app">
       <Topo direita={estado.programa && !pendente ? <Link to="/programa">Meu programa</Link> : undefined} />
       <div className="progresso">
-        <span>
-          Passo {indice + 1} de {PASSOS.length}
-        </span>
+        <div className="progresso-linha">
+          {anterior && (
+            <Link className="volta-passo" to={anterior.rota} aria-label={`Voltar para ${anterior.titulo.toLowerCase()}`}>
+              ‹ Voltar
+            </Link>
+          )}
+          <span>
+            Passo {indice} de {total}
+          </span>
+        </div>
         <div className="barra" aria-hidden="true">
-          <i style={{ width: `${((indice + 1) / PASSOS.length) * 100}%` }} />
+          <i style={{ width: `${(indice / total) * 100}%` }} />
         </div>
       </div>
       <main className="conteudo">
         <Titulo>{titulo}</Titulo>
         {children}
       </main>
-      {anterior && (
-        <Link className="voltar" to={anterior.rota}>
-          Voltar para {anterior.titulo.toLowerCase()}
-        </Link>
-      )}
     </div>
   );
 }
