@@ -83,9 +83,10 @@ test('volta depois de 22 dias: a mensagem sem culpa, menos séries e a carga 10%
   const volta = page.getByRole('region', { name: 'Bem-vindo de volta!' });
   await expect(volta).toContainText('Faz 22 dias do último treino. Estas 2 semanas vão mais leves, para o corpo se readaptar sem dor. O músculo não some em 3 semanas.');
   await expect(volta).toContainText('A carga começa 10% abaixo da última vez e já vem preenchida.');
+  // 9 de 15 desde o R5d (o abdominal saiu do A: com foco, os isoladores de quem não é foco entram depois);
   // 9 de 16 desde a sessão de qualidade dos treinos (o abdominal protegido no A; o búlgaro com 2 séries); 9 de 15 antes;
   // 8 de 13 até a auditoria do treino (a ponte com halter); 9 de 14 até a sessão de equipamento mínimo (a flexão deslizante).
-  await expect(volta).toContainText(/Séries no Corpo todo A\s*9 de 16/);
+  await expect(volta).toContainText(/Séries no Corpo todo A\s*9 de 15/);
   await expect(volta).toContainText('3–4 repetições');
   await expect(page.getByText(/Você está na semana 1\. Cerca de metade das séries, RIR 3–4 e carga 10% abaixo da última vez/)).toBeVisible();
   await print(page, 'volta');
@@ -93,9 +94,9 @@ test('volta depois de 22 dias: a mensagem sem culpa, menos séries e a carga 10%
 
   await page.getByRole('button', { name: 'Começar o treino Corpo todo A' }).click();
   await expect(page.getByRole('heading', { name: 'Agachamento búlgaro com apoio' })).toBeVisible();
-  // 1 série desde a sessão de qualidade dos treinos: o búlgaro do programa tem 2 (o abdominal protegido tirou 2), e a
-  // semana 1 da volta tem cerca de metade (revisoes/qualidade-treinos.md, F.5).
-  await expect(page.getByText('Meta: 1 × 8–12 (cada lado) · RIR 3–4')).toBeVisible();
+  // 2 séries desde o R5d: o búlgaro do programa volta a 4 (o abdominal saiu do A), e a semana 1 da volta tem cerca de
+  // metade. 1 série da sessão de qualidade dos treinos até o R5d (o abdominal protegido tirava 2; qualidade-treinos.md, F.5).
+  await expect(page.getByText('Meta: 2 × 8–12 (cada lado) · RIR 3–4')).toBeVisible();
   await expect(page.getByText('Hoje: 9 kg')).toBeVisible();
   await expect(page.getByText(/Última vez: 10 kg\. Volta da pausa: 10% mais leve/)).toBeVisible();
   await expect(page.getByLabel('Carga', { exact: true })).toHaveValue('9');
