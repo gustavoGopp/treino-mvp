@@ -7,7 +7,7 @@ Prompt: `docs/prompts/sessao-r5-animacao-corpo-livre.md`. Uma animação por vez
 | 1 | `panturrilha-degrau` | 81,8% | `panturrilha-b` (step) + `panturrilha-chao` (mãos na parede) | `folhas/panturrilha-degrau.png` | ik 0 (animação e 2 erros) | **aprovada em 07/11**; entra no app com o R5-CL |
 | 2 | `abdominal-invertido` | 61,7% | `ponte-gluteo` (deitado, braços) + `abdominal-chao` + `elevacao-joelhos` (a pelve) | `folhas/abdominal-invertido.png` | ik 0 (animação e 2 erros) | **aprovada em 08/11**; entra no app com o R5-CL |
 | 3 | `extensao-triceps-peso-corpo` | 59,4% | `triceps-suspensao` (corpo, ciclo e erros), mãos paradas numa bancada | `folhas/extensao-triceps-peso-corpo.png` | ik 0 (animação e 3 erros) | **aprovada em 08/11**, com a bancada; entra no app com o R5-CL |
-| 4 | `abertura-t-deitado` | 56,1% | `flexao-joelho-elastico` (de bruços) + `yt-suspensao` (o T e os erros) | `folhas/abertura-t-deitado.png` | ik 0 (animação e 3 erros) | **esperando o "aprovar"** |
+| 4 | `abertura-t-deitado` | 56,1% | `flexao-joelho-elastico` (de bruços) + `yt-suspensao` (o T e os erros) | `folhas/abertura-t-deitado.png` | ik 0 (animação e 3 erros) | **aprovada em 08/11** (2ª versão, com as vistas pela cabeça e de cima); entra no app com o R5-CL |
 | 5 | `flexao-pes-elevados` | 53,8% | `flexao` | — | — | na fila |
 
 ## Pré-requisito: o R5-CL ainda não está na `main`
@@ -23,3 +23,4 @@ Nenhuma peça nova até aqui. O degrau da escada é a caixa de 15 cm do step apr
 - `panturrilha-degrau`: aprovada pelo Gustavo em 07/11/2026, como está na folha (as duas pernas, 1 s embaixo). Fica em `revisao/` até o R5-CL pôr o exercício na biblioteca; aí, `node scripts/aprovar-animacao.mjs panturrilha-degrau panturrilha-degrau` e a linha de base.
 - `abdominal-invertido`: aprovada pelo Gustavo em 08/11/2026, como está na folha. Mesma espera pelo R5-CL.
 - `extensao-triceps-peso-corpo`: aprovada pelo Gustavo em 08/11/2026, com a bancada desenhada como a caixa de 90 cm. Mesma espera pelo R5-CL.
+- `abertura-t-deitado`: a 1ª folha (vista "por trás") ficou "muito esquisita" para o Gustavo; a 2ª, com as vistas pela cabeça, de cima e de lado, foi aprovada em 08/11/2026. Mesma espera pelo R5-CL.
