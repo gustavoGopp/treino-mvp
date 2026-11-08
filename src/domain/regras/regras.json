@@ -637,6 +637,21 @@
     ]
   },
   {
+    "id": "progressao.negativa-para-barra",
+    "regra": "Da barra só na descida para a barra (R5d, 08/11/2026): no último degrau da barra só na descida, com o topo da faixa em 2 sessões, a sugestão é tentar a barra fixa (pela troca de exercício); se a 1ª série não chegar ao mínimo da faixa com repetições completas, voltar à descida. Treinar a descida melhora o desempenho na barra (um estudo, em escaladores: `vigouroux2024`); quando passar é consenso",
+    "valores": {
+      "iniciante": "sugestão de passar para a barra fixa",
+      "intermediario": "sugestão de passar para a barra fixa",
+      "avancado": "sugestão de passar para a barra fixa"
+    },
+    "selo": "consenso",
+    "fontes": [
+      "vigouroux2024",
+      "johnson2009",
+      "consenso-projeto"
+    ]
+  },
+  {
     "id": "progressao.escada-elastico",
     "regra": "Elástico: a escada sobe pelas intensidades que a pessoa informou, da mais leve à mais forte; em cada intensidade, normal → mais esticado (um passo mais longe) → mais esticado com descida de 3 s. Com uma intensidade só, a escada para nela",
     "valores": {
@@ -648,6 +663,22 @@
     "fontes": [
       "lopes2019",
       "harper2025",
+      "consenso-projeto"
+    ]
+  },
+  {
+    "id": "progressao.degrau-inicial",
+    "regra": "O 1º degrau da escada pelo nível (R5d, 08/11/2026; `docs/revisoes/proximos-passos/g-biblioteca-ampliada.md`, seção 5, item 2: as duas revisões cegas apontaram que o avançado sem equipamento começava pela versão do iniciante): no peso do corpo e no elástico, a 1ª vez de um exercício começa num degrau acima conforme o nível, nunca além do último. É só o ponto de partida: o estado guardado é o mesmo (o índice do degrau), e a progressão de sempre ajusta depois (leve demais sobe 2 degraus, `progressao.carga-leve`; pesado demais desce, `progressao.reduzir`). O princípio é o da escada (a série perto da falha numa faixa de ~6–30 repetições, `progressao.escada-por-exercicio`); o degrau de cada nível é consenso",
+    "valores": {
+      "iniciante": "degrau 0 (o exercício como no guia)",
+      "intermediario": "degrau 1 (no elástico: mais esticado)",
+      "avancado": "degrau 2 (no elástico: a intensidade do meio das que a pessoa tem, se for mais alta)"
+    },
+    "selo": "consenso",
+    "fontes": [
+      "schoenfeld2015",
+      "kojic2025",
+      "lopes2019",
       "consenso-projeto"
     ]
   },
@@ -1090,6 +1121,23 @@
       "dasilva2025",
       "vigouroux2024",
       "johnson2009",
+      "shabbir2026"
+    ]
+  },
+  {
+    "id": "selecao.barra-negativa-iniciante",
+    "regra": "A barra só na descida antes da barra para o iniciante (R5d, 08/11/2026; `g-biblioteca-ampliada.md`, seção 5, item 3): onde a vaga de puxar escolheria a barra fixa (pronada ou supinada) para o iniciante, entra a barra só na descida; se ela já está no dia, a vaga segue para a próxima opção da função, sem a barra. Quem ainda não faz uma repetição precisa de um começo (um estudo, `johnson2009`); só a descida cresce o músculo como só a subida (moderada, certeza baixa: `schoenfeld2017`, `dasilva2025`); a passagem para a barra é `progressao.negativa-para-barra`. A ordem para o iniciante é consenso",
+    "valores": {
+      "iniciante": "barra só na descida no lugar da barra fixa",
+      "intermediario": "não se aplica (a barra fixa, como antes)",
+      "avancado": "não se aplica (a barra fixa, como antes)"
+    },
+    "selo": "consenso",
+    "fontes": [
+      "johnson2009",
+      "schoenfeld2017",
+      "dasilva2025",
+      "vigouroux2024",
       "shabbir2026"
     ]
   },
