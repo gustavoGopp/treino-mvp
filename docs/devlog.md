@@ -1008,3 +1008,51 @@ As listas exatas ficam em `tests/unit/metas-r0.test.ts`, para o R0c zerar.
 > Depois, testando eu mesmo sem equipamento, recebi treinos curtos e genéricos. Em vez de ajustar o meu caso, o app foi testado em 108.900 combinações de equipamento, nível, dias, tempo e foco, com uma régua de qualidade em duas camadas: o que não pode piorar e o que deve melhorar. Com 32 exercícios novos (de flexão com os pés elevados a abertura com elástico), os programas sem nenhum defeito foram de 73% para 84%, e o mesmo exercício repetido todos os dias por falta de opção caiu de 44% para 16%.
 >
 > E dois revisores, sem saber qual semana era de qual versão, preferiram a nova em 12 de 18 casos e não preferiram a antiga em nenhum. O que eles ainda criticaram (o foco escolhido recebe pouco a mais que o resto) vira o próximo passo. Uma coisa não teve solução: treinar as costas sem nada para puxar. Nenhum estudo, treinador ou vídeo sério mostrou um jeito honesto, e o app continua dizendo isso.
+
+## R5b: o avaliador e o porquê (07/11/2026)
+
+**Por quê.** O Gustavo quer uma opção para quem já treina e tem um programa próprio montar o seu, com um avaliador que diga se algum músculo ou área deve ser ajustado. Antes do editor, a régua: um avaliador de verdade, que mede qualquer programa (o do app, um digitado, depois um editado), e a explicação do porquê de cada exercício. O R5a, o R5-CL e o R5d ainda não vieram; por isso as 3 correções do gerador que o protótipo achou entraram aqui. Detalhes e decisões em `revisoes/r5b/README.md`; números em `revisoes/r5b/medidas.md`.
+
+**O que foi feito.**
+- **O avaliador** (`src/domain/avaliador/`): uma função pura que devolve "está bom" ou os achados, cada um com a regra, o selo, a gravidade e o fato + o que fazer, agrupados (os 21 exercícios com 5 séries viram uma linha). Ele confere a dor e a triagem (só isso bloqueia), o equipamento, a complexidade, as séries por exercício, por treino e por semana, a frequência, as funções que se complementam nos músculos grandes, os isoladores, empurrar ÷ puxar (limite 1,5), frente × trás da coxa (0,5 a 2), o tempo de cada dia e a ordem. "Ajustar" só quando dá para mudar com o que a pessoa tem; senão é "limite: não precisa fazer nada". Mede pela tabela de funções, como o gerador.
+- **A régua do gerador**: um teste de propriedade na grade reduzida (5.850 programas) e uma seção nova na auditoria de qualidade (911 mil programas).
+- **Os 4 programas publicados** (Schoenfeld 2019 com 3 e 5 séries, Thomas e Burns 2016, Carneiro 2024), lidos no PMC, entram como dado de teste com a fonte.
+- **3 correções do gerador**, os **avisos com o próximo passo**, o **porquê específico** de cada exercício e a **meta do programa na Semana**.
+- **A tela**, por enquanto com os componentes de hoje: a dobra "Como está o seu programa" no treino; o desenho é pedido ao design.
+
+**Medido:**
+
+| | Antes | Depois |
+|---|---:|---:|
+| Grade reduzida: "está bom" ou "só limite" | — | 80,8% (41,2% + 39,6%) |
+| Grade reduzida: achado de segurança; "ajustar" que o gerador não avisa | — | 0; 0 |
+| Dia com mais de 10 séries de um músculo, contando as indiretas | 0,6% | 0% |
+| Glúteo sem extensão de quadril com a ponte possível (sem dor, 30 min ou mais) | 2,3% | 0% (1 de 6.669) |
+| Dia com afundo na vaga de agachar e outra vaga de afundo | 10% | 0,4% |
+| Avisos das personas com o próximo passo | 2 de 20 | 20 de 20 |
+| Exercícios das personas com o porquê específico | 39% | 100% (137) |
+| Snapshots das 6 personas | — | iguais |
+
+**Exemplo** (Thomas e Burns 2016, a divisão ABC clássica, avaliada para uma academia completa, 60 min):
+```
+Veredito: dá para ajustar
+AJUSTAR [volume.series-por-exercicio · moderada] Mais de 4 séries num exercício só: supino reto com halteres, 6 séries (A), …, panturrilha em pé na máquina, 9 séries (C). Divida as séries entre 2 exercícios da mesma função, ou entre 2 dias.
+AJUSTAR [volume.sessao.teto · um estudo] Mais de 10 séries de um músculo num treino (contando as indiretas pela metade): tríceps 15 (A) e bíceps 13,5 (B). Leve as séries que passam para outro dia.
+AJUSTAR [volume.semanal.abdomen · consenso] Abaixo da meta, e cabe mais: abdômen 3 de 4 (suba 1 série em abdominal no chão (crunch), no treino B).
+AJUSTAR [selecao.isolador-obrigatorio · moderada] Falta o isolador que cobre o que os multiarticulares não cobrem. Acrescente: extensora (cadeira extensora) no treino B.
+AJUSTAR [tempo.corte · consenso] Mais longo que os 60 min que você tem: A ~66 min (para caber: tire 1 série de supino inclinado com halteres e tire 2 séries de supino reto com halteres) e C ~68 min (…).
+```
+E o do app, para a Ana (halteres e banco, 3 × 45 min, foco nas pernas): "Está bom dentro do que o seu equipamento, a dor ou o tempo permitem", com dois limites: as pernas abaixo da meta ("com 3 treinos de 45 min não cabe mais; não precisa fazer nada; para chegar lá, mais minutos, mais um dia ou menos grupos de foco") e o dia C com ~46 min em 45.
+
+![A dobra "Como está o seu programa"](img/r5b-como-esta.png)
+
+**Também:** a flexão (ou o supino reto, ou a remada) em duas vagas conta como 2 funções quando é o que a tabela escolhe para a outra vaga com aquele equipamento; contar 1 marcaria um terço dos programas com "uma função só", metade sem nada a fazer. Gerar um programa ficou ~1,6× mais lento (o gerador consulta o avaliador para os avisos). `npm run check` com 744 testes; 48 de ponta a ponta.
+
+**Fica para depois** (`backlog.md`, "Do R5b"): o "monte o seu treino" (rascunho em `prompts/sessao-monte-o-seu.md`, com a versão do estado combinada com o redesign); os "ajustar" que o gerador ainda produz com 30 min (uma função só, a coxa, empurrar ÷ puxar), que o R5a e o R5-CL corrigem; a faixa "versão nova" que aparece quando só o texto muda.
+
+**Rascunho de post para o LinkedIn**
+> O meu app de treino agora tem um avaliador. Você mostra um programa, e ele responde, com a fonte de cada regra, o que um treinador apontaria, ou "está bom".
+>
+> Testei com programas publicados em estudos. Num deles, de 5 séries por exercício, ele achou 21 exercícios acima de 4 séries, zero série para a parte de trás da coxa e para a panturrilha, e dias de 90 minutos para quem tem 60. Num clássico ABC, 15 séries de tríceps num dia só. São programas feitos para comparar grupos num estudo, não para o dia a dia, e é exatamente isso que o avaliador mostra.
+>
+> O teste mais duro foi no próprio app: rodei o avaliador em 5.850 programas que o gerador monta. 81% saíram "está bom" ou "está bom dentro do que o seu equipamento permite", nenhum com problema de segurança, e ele achou 3 erros do gerador, que corrigi. E cada aviso agora diz o que fazer, inclusive "não precisa fazer nada", quando a culpa é do equipamento. Antes, 2 de 20 diziam.

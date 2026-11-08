@@ -180,6 +180,8 @@ As correções da remada baixa e da barra fixa entram depois do M0-R, como mudan
 > Revisado em 01/11/2026. Os marcos M0 a M5, o R0b, o R0c, o R1, o R1b e o R2 estão concluídos (ver `devlog.md`); a tabela original fica no histórico do git. O R1b entrou a pedido do Gustavo, ao fim do R0c, e foi aprovado em 02/11/2026 (pesquisa em `pesquisa-v2/09-trocas-e-locais.md`).
 >
 > **Atualizado em 07/11/2026:** o R4 do boneco está concluído; o R3 (uso real) corre na branch `r3-uso-real`. O **R5 foi decidido** na sessão de próximos passos (06–07/11; `docs/revisoes/proximos-passos.md`, partes 2 e 3) e virou seis marcos, na ordem R5a → R5-CL → R5d → R5-anim → R5b → R5c, conduzidos pela sessão de `docs/prompts/sessao-desenvolvimento.md`, um de cada vez, com parada ao fim de cada um. Cada marco tem o seu prompt em `docs/prompts/`. A régua de qualidade dos programas (a frente G5: defeitos que não podem piorar; notas que devem melhorar) entra na auditoria no R5-CL e passa a medir todos os marcos seguintes.
+>
+> **Atualizado em 07/11/2026 (R5b):** o R5b foi feito antes do R5a, do R5-CL e do R5d (com as 3 correções do gerador que eram do R5a) e espera a revisão do Gustavo: `docs/revisoes/r5b/README.md`. O marco seguinte desta frente, "Monte o seu treino", tem rascunho em `docs/prompts/sessao-monte-o-seu.md`.
 
 | Marco | Entregáveis | Aceite | Esforço |
 |---|---|---|---|

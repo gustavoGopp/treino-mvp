@@ -17,6 +17,7 @@ Ideias e requisitos para depois do MVP. Nada aqui entra sem passar pelo plano.
 
 ## Pendências do lado do Gustavo
 - **Levar a `main` nova para o redesign.** A sessão de qualidade dos treinos foi para a `main` em 06/11 (`6cb49d5`). Colar `prompts/recado-redesign-qualidade-treinos.md` na sessão do redesign visual: o merge não tem conflito, e só o `fontes.json` precisa ser regerado.
+- **Revisar o R5b** (o avaliador e o porquê): os textos novos (avisos, o 1º item do porquê, a linha da Semana, a dobra "Como está o seu programa") e as decisões de `revisoes/r5b/README.md`; o ok para levar à `main` (exportar os dados antes; a faixa "versão nova" vai aparecer por causa dos textos: `prompts/recado-r3-r5b.md`).
 - **Sessão de desenvolvimento:** colar `prompts/sessao-desenvolvimento.md` numa sessão nova. Ela conduz os marcos R5a, R5-CL, R5d, R5-anim, R5b e R5c, um de cada vez, parando ao fim de cada um para a sua revisão (a sessão de próximos passos foi feita em 06–07/11; `revisoes/proximos-passos.md`, parte 3). O R5-anim pode correr numa sessão à parte, junto do R5d, com `prompts/sessao-r5-animacao-corpo-livre.md`.
 - **Chave da Anthropic.** Confirmar que a chave e os convites estão no projeto `treino-mvp` da Vercel, o que atende `treino-mvp-sigma.vercel.app`.
 - **Projetos extras na Vercel.** Avaliar apagar `treino-mvp-huks` e `treino-mvp-yej6`, criados em 31/10/2026. Eles repetem cada deploy.
@@ -134,4 +135,13 @@ Detalhes, números e o motivo de cada item em `revisoes/proximos-passos.md` e no
 - **O resto da fila de animação**, pela frequência medida na grade de 108.900 programas (`proximos-passos/g-biblioteca-ampliada.md`, seção 4), depois dos 5 de corpo livre do R5-anim.
 - **Dívida de fontes:** 14 das fichas de `pesquisa-v2/10-equipamento-minimo.md` ainda fora de `pesquisa/fontes.md` (`alizadeh2020`, `bello2025`, `carvalho2022`, `ekstrom2003`, `gavanda2026`, `hammert2026`, `lees2025`, `martins2013`, `morton2016`, `oranchuk2019`, `schoenfeld2016c`, `terada2022`, `tsuzuku2018`, `vargasmolina2026`) e a `andersen2022` do `10` (meta-análise de resistência variável; a chave `andersen2022b` em `fontes.md` é outro artigo). As 14 "não verificadas" do `10` foram conferidas e registradas em 06/11.
 - **Dependências** (`zod` 4, react-router 7, vitest 5) e os **testes de propriedade** da F.4: numa branch própria, depois do lote técnico do redesign, que mexe nos mesmos arquivos.
+
+## Do R5b (07/11/2026)
+Detalhes em `revisoes/r5b/README.md` e `medidas.md`.
+- **"Monte o seu treino"** (editar o programa gerado e montar do zero, com o avaliador ao lado): o próximo marco desta frente; rascunho em `prompts/sessao-monte-o-seu.md`. Pede uma versão nova do estado, a combinar com a v8 do redesign.
+- **Os "ajustar" que o gerador ainda produz** e agora avisa (uma função só num músculo grande, a coxa fora de 0,5 a 2, empurrar ÷ puxar acima de 1,5, o isolador que faltou): cerca de 7% da grade reduzida, quase todos com 30 min. O ajuste de 30 min do R5a e as proteções da coxa do R5-CL devem levá-los perto de zero; o avaliador mede.
+- **"Pequenos: 2 exercícios se forem prioridade"** (`selecao.exercicios-por-musculo`) não virou achado do avaliador: o gerador só faz isso no R5d. Ligar o achado depois do R5d.
+- **A faixa "Há uma versão nova do seu programa" aparece quando só o texto muda** (`mesmoConteudo` compara o programa inteiro). Vale comparar só exercícios, séries e dias, e trocar os textos sem perguntar (o R5b mudou os textos de todos os programas).
+- **A velocidade do gerador**: ele consulta o avaliador no fim (~1,6× mais lento; a grade de qualidade leva mais). Se pesar, o gerador pode pedir só os 4 tipos de achado que ele avisa.
+- **O desenho das telas** (pedidos 7 a 9 de `revisoes/proximos-passos.md`, seção 2.5, com o que o domínio entrega em `revisoes/r5b/README.md`).
 
