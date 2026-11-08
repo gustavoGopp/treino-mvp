@@ -2,7 +2,7 @@ import { resumoDaSemana, type ResumoDaSemana } from '../../domain/acompanhamento
 import { semanaLeveDeHoje } from '../../domain/acompanhamento/semana-leve';
 import { calibracaoDoTempo } from '../../domain/acompanhamento/tempo';
 import { SEMANA_LEVE } from '../../domain/regras';
-import { semanaLeveAtiva, treinoFeito } from '../../domain/sessao';
+import { diaLocal, semanaLeveAtiva, treinoFeito } from '../../domain/sessao';
 import { localDaSessao, localDoPrograma, localPorId, type Estado } from '../../storage/esquema';
 import { comProgramaNovo } from '../app/estado';
 
@@ -49,9 +49,9 @@ export function semanaLeveDoEstado(e: Estado, agora: string, fusoMin = 0) {
     ...(e.semanaLeve ? { semanaLeve: e.semanaLeve } : {}),
   });
   const ativa = semanaLeveAtiva(e.semanaLeve, agora, fusoMin);
-  // "Agora não" esconde a sugestão até o próximo treino (um sinal novo pode aparecer).
-  const ultimoFim = e.historico.filter(treinoFeito).at(-1)?.fim;
-  const recusada = !!e.respostas?.semanaLeveEm && (!ultimoFim || Date.parse(e.respostas.semanaLeveEm) > Date.parse(ultimoFim));
+  // "Agora não" esconde a sugestão por 7 dias (deload.semana-leve; R5a). Antes, só até o próximo treino.
+  const recusa = e.respostas?.semanaLeveEm;
+  const recusada = !!recusa && diaLocal(agora, fusoMin) - diaLocal(recusa, fusoMin) < SEMANA_LEVE.recusaDias;
   return { ...sug, ativa, mostrar: sug.sugerir && !ativa && !recusada, ...(ativa && e.semanaLeve ? { ate: fimDaSemanaLeve(e.semanaLeve.inicio) } : {}) };
 }
 
@@ -62,7 +62,7 @@ const fimDaSemanaLeve = (inicio: string) => new Date(Date.parse(inicio) + (SEMAN
 export const aceitarSemanaLeve = (e: Estado, agora: string): Estado => ({ ...e, semanaLeve: { inicio: agora } });
 /** "Voltar ao normal": encerra a semana leve antes dos 7 dias. */
 export const encerrarSemanaLeve = (e: Estado, agora: string): Estado => (e.semanaLeve ? { ...e, semanaLeve: { ...e.semanaLeve, encerradaEm: agora } } : e);
-/** "Agora não": a sugestão some até o próximo treino. */
+/** "Agora não": a sugestão some por 7 dias (deload.semana-leve; R5a). */
 export const recusarSemanaLeve = (e: Estado, agora: string): Estado => comResposta(e, 'semanaLeveEm', agora);
 
 /** O toque opcional do fim do treino: um toque marca, tocar de novo desfaz (nada vem marcado). */

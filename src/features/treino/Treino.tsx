@@ -241,9 +241,10 @@ export function Treino() {
                 )}
               </>
             )}
-            {calNaSessao.calibrando && calNaSessao.ultima && (
+            {(calNaSessao.calibrando || calNaSessao.fim) && calNaSessao.ultima && (
               <p className="dica calibracao" role="status">
-                Calibração: {calNaSessao.ultima.motivo} <Selo id={calNaSessao.ultima.regraId} />
+                {calNaSessao.fim ? '' : 'Calibração: '}
+                {calNaSessao.ultima.motivo} <Selo id={calNaSessao.ultima.regraId} />
               </p>
             )}
             <RegistroSerie

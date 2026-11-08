@@ -1,5 +1,6 @@
 import { describe, expect, it } from 'vitest';
-import { calibrar, emCalibracao, semCalibracao } from '../../src/domain/progressao/calibracao';
+import { calibrar, emCalibracao, fimDaCalibracao, semCalibracao } from '../../src/domain/progressao/calibracao';
+import { calibracaoNaSessao, sugestaoDoExercicio, type Sessao } from '../../src/domain/sessao';
 import { sugerirProgressao, type OpcoesCarga } from '../../src/domain/progressao';
 import { cargasHalter } from '../../src/domain/taxonomia/equipamentos';
 import { ana, bruno } from '../personas';
@@ -85,3 +86,51 @@ describe('séries de calibração fora da dupla progressão', () => {
     expect(emCalibracao([{ series: [{ carga: kg(6), reps: 10, rir: 2 }] }])).toBe(false);
   });
 });
+
+describe('progressao.calibracao: a saída (R5a; d-longo-prazo.md, D1)', () => {
+  // Elevação lateral da Ana: 12–20 repetições, RIR 1–2 → A = 17,5; janela de 15,5 a 19,5. Halteres de 1 em 1 kg.
+  const alvo = { reps: [12, 20] as [number, number], rir: [1, 2] as [number, number] };
+  const x = { exId: 'elevacao-lateral', ...alvo };
+  const acerto = (k: number, reps: number, rir: number) => ({ carga: kg(k), reps, rir, calibracao: true });
+  const sessao = (n: number, series: Sessao['exercicios'][number]['series']): Sessao => ({
+    id: `s${n}`, diaId: 'a', semana: 1, inicio: `2026-11-0${n}T10:00:00Z`, fim: `2026-11-0${n}T11:00:00Z`, exercicios: [{ exId: x.exId, series }],
+  });
+
+  it('"4 kg dá R = 24, 5 kg dá R = 12": nenhum peso cai na janela; na 3ª série de acerto, a carga de R mais perto de A vira a de trabalho', () => {
+    expect(calibrar({ carga: kg(4), reps: 21, rir: 3 }, alvo, halterAna).acao).toBe('subir');
+    expect(calibrar({ carga: kg(5), reps: 9, rir: 3 }, alvo, halterAna).acao).toBe('descer');
+    const series = [acerto(3, 30, 5), acerto(4, 21, 3), acerto(5, 9, 3)];
+    expect(fimDaCalibracao(series.slice(0, 2), alvo)).toBeUndefined();
+    const fim = fimDaCalibracao(series, alvo)!;
+    // |24 − 17,5| = 6,5 e |12 − 17,5| = 5,5: fica o de 5 kg.
+    expect(fim).toMatchObject({ proxima: kg(5), perto: true, regraId: 'progressao.calibracao' });
+    expect(fim.motivo).toMatch(/^Fim da calibração: 5 kg/);
+  });
+
+  it('no empate, fica a carga mais leve', () => {
+    // A = 17,5: R = 14,5 (−3) e R = 20,5 (+3).
+    expect(fimDaCalibracao([acerto(5, 12, 2), acerto(4, 18, 2), acerto(6, 4, 2)], alvo)!.proxima).toEqual(kg(4));
+  });
+
+  it('a sugestão da próxima sessão sai da calibração, e a 1ª série dela já conta como trabalho', () => {
+    // A calibração indo e voltando em 2 sessões (o rastro do simulador da frente D).
+    const h = [sessao(2, [acerto(3, 30, 5), acerto(4, 21, 3)]), sessao(4, [acerto(5, 9, 3)])];
+    const sug = sugestaoDoExercicio(h, x, ana.inventario);
+    expect(sug).toMatchObject({ acao: 'manter', proxima: kg(5), regraId: 'progressao.calibracao' });
+    expect(calibracaoNaSessao(h, x, ana.inventario, [])).toMatchObject({ calibrando: false, fim: true });
+    // Com só 2 séries de acerto, ainda calibra.
+    expect(calibracaoNaSessao(h.slice(0, 1), x, ana.inventario, []).calibrando).toBe(true);
+  });
+
+  it('dentro da mesma sessão: depois da 3ª série de acerto, a 4ª é de trabalho, com a carga escolhida', () => {
+    const c = calibracaoNaSessao([], x, ana.inventario, [acerto(3, 30, 5), acerto(4, 21, 3), acerto(5, 9, 3)]);
+    expect(c).toMatchObject({ calibrando: false, fim: true, ultima: { proxima: kg(5) } });
+  });
+
+  it('a calibração que acerta não muda: a série perto do alvo continua virando a de trabalho', () => {
+    const c = calibracaoNaSessao([], x, ana.inventario, [acerto(3, 30, 5), acerto(4, 21, 3)]);
+    expect(c.calibrando).toBe(true);
+    expect(c.fim).toBeUndefined();
+  });
+});
+

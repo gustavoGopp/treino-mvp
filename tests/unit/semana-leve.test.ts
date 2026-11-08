@@ -1,11 +1,11 @@
 import { describe, expect, it } from 'vitest';
 import { dorQueSeRepete, semanaLeveDeHoje } from '../../src/domain/acompanhamento/semana-leve';
-import { hojeNoPrograma, type Sessao } from '../../src/domain/sessao';
+import { hojeNoPrograma, opcoesDeHoje, sugestaoDoExercicio, type Sessao } from '../../src/domain/sessao';
 import type { Estado } from '../../src/storage/esquema';
 import { aceitarSemanaLeve, encerrarSemanaLeve, marcarHojeFoi, recusarSemanaLeve, semanaLeveDoEstado } from '../../src/features/acompanhamento/acoes';
 import { iniciarSessao } from '../../src/features/treino/acoes';
 import { bruno } from '../personas';
-import { dia, estadoDe, serieTipica, treinar } from './apoio-treino';
+import { dia, estadoDe, POR_ID, serieTipica, treinar } from './apoio-treino';
 
 // Semana leve sugerida (deload.semana-leve; pesquisa-v2/07, seção 6): os casos S1 a S5 do T6, o toque "hoje foi" e o
 // aviso de dor, que soma à semana leve e nunca é substituído por ela.
@@ -123,7 +123,7 @@ describe('a semana leve aceita', () => {
     expect(hojeNoPrograma(l.programa!.programa, l.historico, dia(n + 7), { semanaLeve: l.semanaLeve! }).semanaLeve).toBe(false);
   });
 
-  it('"Voltar ao normal" encerra antes; "Agora não" esconde a sugestão até o próximo treino', () => {
+  it('"Voltar ao normal" encerra antes; "Agora não" esconde a sugestão por 7 dias, com ou sem treino no meio (R5a)', () => {
     const e = parado();
     const n = 3 * 7;
     const l = encerrarSemanaLeve(aceitarSemanaLeve(e, dia(n)), dia(n + 2));
@@ -132,8 +132,11 @@ describe('a semana leve aceita', () => {
     expect(semanaLeveDoEstado(l, dia(n + 3))!.mostrar).toBe(false);
     const r = recusarSemanaLeve(e, dia(n));
     expect(semanaLeveDoEstado(r, dia(n))!.mostrar).toBe(false);
+    // Antes do R5a, um treino trazia a oferta de volta (até 106 vezes em 24 semanas, no simulador).
     const depois = treinar(r, n + 1, 'superior-a');
-    expect(semanaLeveDoEstado(depois, dia(n + 2))!.mostrar).toBe(true);
+    expect(semanaLeveDoEstado(depois, dia(n + 2))!.mostrar).toBe(false);
+    expect(semanaLeveDoEstado(depois, dia(n + 6))!.mostrar).toBe(false);
+    expect(semanaLeveDoEstado(depois, dia(n + 7))!.mostrar).toBe(true);
   });
 
   it('o toque "hoje foi" não vem marcado; um toque marca e o mesmo toque desfaz', () => {
@@ -156,3 +159,49 @@ describe('a semana leve aceita', () => {
     expect(sugestao({ ...v, semanaLeve: undefined }, 26).motivos[0]).toMatch(/exercícios sem progresso/);
   });
 });
+
+describe('R5a: a fase de aprendizado e o exercício feito na vaga (deload.semana-leve; iniciante.fase-aprendizado)', () => {
+  it('na fase de aprendizado do iniciante, nem semana leve nem "estagnado"; na semana 3, a semana leve volta a valer', () => {
+    // O Bruno como iniciante: fase de aprendizado nas semanas 1 e 2.
+    const ini = { ...bruno, perfil: { ...bruno.perfil, nivel: 'iniciante' as const } };
+    let e = estadoDe(ini);
+    // 2 semanas com tudo parado e "pesado demais": o sinal existe, mas é fase de aprendizado.
+    for (let w = 0; w < 2; w++) e = semanaDe(e, w);
+    e = comHojeFoi(comHojeFoi(e, -1, 'pesado'), -2, 'pesado');
+    const s = sugestao(e, 13);
+    expect(s.motivos.length).toBeGreaterThan(0);
+    expect(s.carencia).toBe(true);
+    expect(s.sugerir).toBe(false);
+    const h = hojeNoPrograma(e.programa!.programa, e.historico, dia(13));
+    const x = e.programa!.programa.dias[0]!.exercicios[0]!;
+    const sug = sugestaoDoExercicio(e.historico, x, bruno.inventario, opcoesDeHoje(h));
+    expect(sug.acao).not.toBe('estagnado');
+    // Semana 3: fora da fase, o mesmo sinal sugere.
+    e = semanaDe(e, 2);
+    e = comHojeFoi(comHojeFoi(e, -1, 'pesado'), -2, 'pesado');
+    expect(sugestao(e, 3 * 7).sugerir).toBe(true);
+  });
+
+  it('a estagnação conta o exercício feito no lugar da vaga (noLugarDe), e não a vaga que ninguém fez', () => {
+    const e = estadoDe(bruno);
+    const vagas = e.programa!.programa.dias.flatMap((d) => d.exercicios).filter((x) => x.alternativas.length).slice(0, 2);
+    expect(vagas).toHaveLength(2);
+    // Cada sessão faz as 2 vagas: pelo exercício do programa (reps do programa) ou pela alternativa (noLugarDe).
+    const sessao = (n: number, alt: boolean, reps: number): Sessao => ({
+      id: dia(n), diaId: 'superior-a', semana: 1, inicio: dia(n), fim: dia(n, 11), localId: 'local-1',
+      exercicios: vagas.map((v) => {
+        const exId = alt ? v.alternativas[0]! : v.exId;
+        const baixo = alt ? POR_ID[exId]!.faixaReps[0] : v.reps[0];
+        return { exId, ...(alt ? { noLugarDe: v.exId } : {}), series: [{ ...serieTipica(exId), reps: baixo + reps }] };
+      }),
+    });
+    const motivo = (h: Sessao[]) => sugestao({ ...e, historico: h }, h.length > 3 ? 14 : (Date.parse(h.at(-1)!.inicio) - Date.parse(dia(0))) / 86_400_000 + 2).motivos.find((m) => m.includes('sem progresso'));
+    // 1) As vagas paradas há tempo, mas agora a pessoa faz a alternativa e sobe as repetições: nada estagnado.
+    const parado = [0, 2, 4].map((n) => sessao(n, false, 0));
+    expect(motivo(parado)).toBe('2 exercícios sem progresso em 3 treinos');
+    expect(motivo([...parado, ...[8, 10, 12].map((n, k) => sessao(n, true, k))])).toBeUndefined();
+    // 2) A alternativa parada em 3 treinos, com a vaga nunca feita: conta (antes do R5a, ficava de fora).
+    expect(motivo([8, 10, 12].map((n) => sessao(n, true, 0)))).toBe('2 exercícios sem progresso em 3 treinos');
+  });
+});
+

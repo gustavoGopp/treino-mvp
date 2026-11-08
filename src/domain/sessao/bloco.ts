@@ -15,6 +15,12 @@ export const semanaLocal = (dia: number) => Math.floor((dia + 3) / 7);
 /** Dia local da segunda-feira de uma semana. */
 export const segundaDaSemana = (semana: number) => semana * 7 - 3;
 
+/**
+ * Semanas da fase de aprendizado do iniciante (iniciante.fase-aprendizado): RIR 3–4 e foco na técnica. Nelas, nem
+ * "estagnado" nem semana leve sugerida (R5a; d-longo-prazo.md, opção 1c).
+ */
+export const naFaseDeAprendizado = (h: { fase?: Fase }) => h.fase?.regraId === 'iniciante.fase-aprendizado' && !!h.fase.rir;
+
 /** Um treino que conta: sessão terminada com pelo menos 1 série registrada. */
 export const treinoFeito = (s: Sessao) => !!s.fim && s.exercicios.some((e) => e.series.length > 0);
 
