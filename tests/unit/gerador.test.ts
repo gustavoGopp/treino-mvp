@@ -344,7 +344,7 @@ describe('cortes respeitam a prioridade e avisam o que ficou de fora', () => {
         if ((p.volumeSemanal[m] ?? 0) < piso) expect(estrutural, `${v.nome} ${m}`).toContain(m);
       }
     }
-  });
+  }, 20_000); // gera centenas de programas: leva 5 a 6 s nesta máquina (já passava do limite de 5 s às vezes; devlog do R5c)
   it('Ana: com prioridade em pernas, pernas e glúteos ganham volume em relação a sem prioridade', () => {
     const com = ok(ana.perfil, ana.inventario).volumeSemanal;
     const sem = ok({ ...ana.perfil, prioridades: [] }, ana.inventario).volumeSemanal;

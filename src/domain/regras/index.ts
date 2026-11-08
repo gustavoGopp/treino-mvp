@@ -71,6 +71,7 @@ export const TEMPO = {
   dropSet: 35, // tempo.drop-set: 2 quedas curtas com ~10–15 s entre elas, somadas à última série
   sobraFracao: 0.7, // tempo.sobra: abaixo de 70% dos minutos escolhidos, o aviso de que falta exercício, não tempo
   protegidoCurto: 30, // tempo.musculo-protegido: até 30 min, o protegido fica com 2 séries e troca por um isolador do dia
+  extensaoPelaFaltaCurto: 45, // selecao.gluteo (R5a): até 45 min, a extensão de quadril que entra pela falta fica com 2 séries
 };
 
 /** tempo.exercicios-por-sessao: exercícios por treino conforme os minutos (pesquisa-v2/05, seção 1). */

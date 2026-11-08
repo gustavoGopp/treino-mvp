@@ -136,11 +136,11 @@
   },
   {
     "id": "volume.sessao.teto",
-    "regra": "Teto de séries fracionadas por músculo numa sessão",
+    "regra": "Teto de séries fracionadas por músculo numa sessão. Conta as séries indiretas (meia série) de todos os músculos do exercício, na distribuição das séries e no tempo que sobra (R5a, 08/11/2026; `docs/revisoes/proximos-passos/b-monte-e-avaliador.md`, pedido 2): antes, só o músculo principal era conferido, e o glúteo chegava a 10,5–12 num dia de pernas (27 dias na grade reduzida de 5.850 programas; 238 na de 53.625)",
     "valores": {
-      "iniciante": "≤ 10",
-      "intermediario": "≤ 10",
-      "avancado": "≤ 10"
+      "iniciante": "≤ 10, contando as indiretas",
+      "intermediario": "≤ 10, contando as indiretas",
+      "avancado": "≤ 10, contando as indiretas"
     },
     "selo": "um estudo",
     "fontes": [
@@ -1172,11 +1172,11 @@
   },
   {
     "id": "selecao.funcao-da-vaga",
-    "regra": "A vaga do modelo de dia pede uma função (padrão de movimento e, quando há evidência, a posição alongada), nunca um equipamento; o equipamento só diz o que é possível; dentro do mesmo nível da função, o desempate é dor de 3 a 5, estabilidade (só iniciante), carga possível, variedade entre os dias, a preferência da pessoa (`selecao.preferencia`, R1b), animação aprovada e, por fim, a ordem alfabética",
+    "regra": "A vaga do modelo de dia pede uma função (padrão de movimento e, quando há evidência, a posição alongada), nunca um equipamento; o equipamento só diz o que é possível; dentro do mesmo nível da função, o desempate é dor de 3 a 5, estabilidade (só iniciante), carga possível, variedade entre os dias, a preferência da pessoa (`selecao.preferencia`, R1b), animação aprovada e, por fim, a ordem alfabética. Um afundo por dia (R5a, 08/11/2026; `b-monte-e-avaliador.md`, pedido 4): na escolha da vaga e na vaga sem equipamento, um exercício do padrão afundo (búlgaro, afundo) fica por último quando o dia já tem um ou tem uma vaga de afundo; antes, búlgaro + afundo para trás no mesmo dia em 3,5% dos dias da grade reduzida. Sem outra opção, repete",
     "valores": {
-      "iniciante": "por função",
-      "intermediario": "por função",
-      "avancado": "por função"
+      "iniciante": "por função; um afundo por dia, havendo outra opção",
+      "intermediario": "por função; um afundo por dia, havendo outra opção",
+      "avancado": "por função; um afundo por dia, havendo outra opção"
     },
     "selo": "consenso",
     "fontes": [
@@ -1327,11 +1327,11 @@
   },
   {
     "id": "selecao.gluteo",
-    "regra": "Ordem das funções para glúteos; o coice na polia sobe ao 1º nível da extensão de quadril, ao lado do hip thrust e do coice na máquina, por ser o único com ensaio de ressonância (`attarieh2026`; decisão do Gustavo em 06/11/2026)",
+    "regra": "Ordem das funções para glúteos; o coice na polia sobe ao 1º nível da extensão de quadril, ao lado do hip thrust e do coice na máquina, por ser o único com ensaio de ressonância (`attarieh2026`; decisão do Gustavo em 06/11/2026). No Corpo todo A/B, a vaga de extensão de quadril, que é do foco em glúteo, passa a valer também quando a vaga de dobrar o quadril não tem exercício (equipamento ou dor): o glúteo não fica só com agachar e afundo; com 45 min ou menos, ela fica com 2 séries, para o dia não passar do tempo (R5a, 08/11/2026; `b-monte-e-avaliador.md`, pedido 3; 150 programas da grade reduzida, todos do Corpo todo A/B; com dor de 7 no ombro, no joelho ou na lombar, os programas de 2 e 3 dias sem extensão de quadril caem de 27–40% para 0–4%)",
     "valores": {
-      "iniciante": "agachar profundo ou afundo → extensão de quadril (hip thrust, glúteo na máquina, ponte, coice) → abdução como complemento (máquina, polia, caneleira, mini-band e, sem nada, deitado de lado sem carga, com repetições altas: auditoria de 04/11/2026)",
-      "intermediario": "agachar profundo ou afundo → extensão de quadril (hip thrust, glúteo na máquina, ponte, coice) → abdução como complemento (máquina, polia, caneleira, mini-band e, sem nada, deitado de lado sem carga, com repetições altas: auditoria de 04/11/2026)",
-      "avancado": "agachar profundo ou afundo → extensão de quadril (hip thrust, glúteo na máquina, ponte, coice) → abdução como complemento (máquina, polia, caneleira, mini-band e, sem nada, deitado de lado sem carga, com repetições altas: auditoria de 04/11/2026)"
+      "iniciante": "agachar profundo ou afundo → extensão de quadril (hip thrust, glúteo na máquina, ponte, coice) → abdução como complemento (máquina, polia, caneleira, mini-band e, sem nada, deitado de lado sem carga, com repetições altas: auditoria de 04/11/2026); sem exercício de dobrar o quadril, a extensão de quadril entra (2 séries com até 45 min)",
+      "intermediario": "agachar profundo ou afundo → extensão de quadril (hip thrust, glúteo na máquina, ponte, coice) → abdução como complemento (máquina, polia, caneleira, mini-band e, sem nada, deitado de lado sem carga, com repetições altas: auditoria de 04/11/2026); sem exercício de dobrar o quadril, a extensão de quadril entra (2 séries com até 45 min)",
+      "avancado": "agachar profundo ou afundo → extensão de quadril (hip thrust, glúteo na máquina, ponte, coice) → abdução como complemento (máquina, polia, caneleira, mini-band e, sem nada, deitado de lado sem carga, com repetições altas: auditoria de 04/11/2026); sem exercício de dobrar o quadril, a extensão de quadril entra (2 séries com até 45 min)"
     },
     "selo": "um estudo",
     "fontes": [
@@ -1554,11 +1554,11 @@
   },
   {
     "id": "divisao.sem-puxar",
-    "regra": "Sem nenhum exercício de puxar possível, a divisão recomendada passa a ser a de corpo todo do mesmo número de dias, quando existe; com 6 dias, que não têm corpo todo entre as opções, vale o Corpo todo 6x, que só aparece nesse caso (decisão do Gustavo em 06/11/2026, sessão de qualidade dos treinos: antes, o Empurrar/Puxar/Pernas deixava dois dias de \"Puxar\" com 2 exercícios). A que a pessoa escolheu é mantida, com um aviso de que os dias de puxar ficam com outros músculos. Com o mesmo volume, as divisões rendem o mesmo",
+    "regra": "Sem nenhum exercício de puxar possível, a divisão recomendada passa a ser a de corpo todo do mesmo número de dias, quando existe; com 6 dias, que não têm corpo todo entre as opções, vale o Corpo todo 6x, que só aparece nesse caso (decisão do Gustavo em 06/11/2026, sessão de qualidade dos treinos: antes, o Empurrar/Puxar/Pernas deixava dois dias de \"Puxar\" com 2 exercícios). A que a pessoa escolheu é mantida, com um aviso de que os dias de puxar ficam com outros músculos. Com o mesmo volume, as divisões rendem o mesmo. No Corpo todo 6x, os dias A, C e E ganham um complemento de empurrar vertical (o pike, sem nada), sem depender do foco em ombros, porque sem nada a elevação lateral não tem exercício e o ombro lateral só recebe séries indiretas do empurrar vertical (R5a, 08/11/2026; `docs/revisoes/proximos-passos/a-qualidade.md`, pacote A, protótipo `ov6`; antes, ombro lateral a zero em 87,7% dos programas de 6 dias sem nada)",
     "valores": {
-      "iniciante": "corpo todo primeiro; 6 dias: Corpo todo 6x",
-      "intermediario": "corpo todo primeiro; 6 dias: Corpo todo 6x",
-      "avancado": "corpo todo primeiro; 6 dias: Corpo todo 6x"
+      "iniciante": "corpo todo primeiro; 6 dias: Corpo todo 6x; no Corpo todo 6x, empurrar vertical nos dias A, C e E",
+      "intermediario": "corpo todo primeiro; 6 dias: Corpo todo 6x; no Corpo todo 6x, empurrar vertical nos dias A, C e E",
+      "avancado": "corpo todo primeiro; 6 dias: Corpo todo 6x; no Corpo todo 6x, empurrar vertical nos dias A, C e E"
     },
     "selo": "consenso",
     "fontes": [

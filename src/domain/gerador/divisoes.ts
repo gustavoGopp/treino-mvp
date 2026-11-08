@@ -273,6 +273,13 @@ const CL_COSTAS = [v('puxar-vertical'), v('puxar-horizontal'), v('ombro-posterio
 const CL_OMBROS = [v('empurrar-vertical'), v('elevacao-lateral'), c('ombro-posterior')];
 const CL_BRACOS_ABDOMEN = [v('biceps'), v('triceps-acima-cabeca'), v('triceps-complemento'), v('abdomen')];
 
+/**
+ * Corpo todo 6x (divisao.sem-puxar; R5a, a-qualidade.md, protótipo `ov6`): sem nada, a elevação lateral não tem
+ * exercício, e o ombro lateral só recebe as séries indiretas do empurrar vertical. Nos dias A, C e E, um complemento de
+ * empurrar vertical (o pike, sem nada) entra sem depender do foco em ombros.
+ */
+const comEmpurrarVertical = (vagas: Vaga[]): Vaga[] => [...vagas.filter((x) => x.funcao !== 'empurrar-vertical'), c('empurrar-vertical')];
+
 const DEF: Divisao[] = [
   {
     id: 'ct-ab',
@@ -390,11 +397,11 @@ const DEF: Divisao[] = [
     frequencia: '6',
     descricao: 'Os seis treinos passam por todos os grandes grupos; treinos curtos. Para quem não tem como puxar: nas outras divisões de 6 dias, os dias de puxar ficariam com outros músculos.',
     dias: [
-      dia('corpo-a', 'Corpo todo A', CORPO_A),
+      dia('corpo-a', 'Corpo todo A', comEmpurrarVertical(CORPO_A)),
       dia('corpo-b', 'Corpo todo B', CORPO_B),
-      dia('corpo-c', 'Corpo todo C', CORPO_C),
+      dia('corpo-c', 'Corpo todo C', comEmpurrarVertical(CORPO_C)),
       dia('corpo-d', 'Corpo todo D', CORPO2_A),
-      dia('corpo-e', 'Corpo todo E', CORPO2_B),
+      dia('corpo-e', 'Corpo todo E', comEmpurrarVertical(CORPO2_B)),
       dia('corpo-f', 'Corpo todo F', CORPO_SI),
     ],
   },
