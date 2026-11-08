@@ -1,0 +1,77 @@
+{
+  "id": "abertura-t-deitado",
+  "name": "Abertura em T deitado de bruços, sem carga",
+  "short": "Abertura em T deitado",
+  "target": "Ombro de trás e meio das costas",
+  "feel": "Atrás dos ombros e entre as escápulas.",
+  "feelNote": "Cansaço atrás dos ombros é o esperado. Dor na frente do ombro ou formigamento no braço não é: pare e procure avaliação se continuar.",
+  "setupEq": [
+    "Nenhum equipamento: um colchonete ou um tapete no chão. Uma toalha dobrada sob a testa, se quiser."
+  ],
+  "setupBody": [
+    "Deitado de bruços, testa perto do chão (ou na toalha), pernas estendidas.",
+    "Braços abertos em T, na linha dos ombros, quase retos.",
+    "Polegares para cima."
+  ],
+  "exec": [
+    [
+      "hold",
+      "Braços no chão",
+      "Em T, quase retos."
+    ],
+    [
+      "conc",
+      "Subida (concêntrica)",
+      "~1 s. Tire os braços do chão juntando as escápulas, até a linha dos ombros."
+    ],
+    [
+      "hold",
+      "Topo",
+      "Segure 1 s em T."
+    ],
+    [
+      "ecc",
+      "Descida (excêntrica)",
+      "~2 s, até as mãos voltarem ao chão."
+    ]
+  ],
+  "range": [
+    "Início: braços no chão, em T.",
+    "Fim: braços na linha dos ombros, escápulas juntas.",
+    "A subida é pequena: o peito e a cabeça ficam no chão."
+  ],
+  "breath": "Solte o ar subindo, inspire descendo.",
+  "cues": [
+    "Junta as escápulas.",
+    "Braços quase retos.",
+    "Cabeça no chão."
+  ],
+  "check": [
+    "Braços na linha dos ombros",
+    "Polegares para cima",
+    "Peito e cabeça no chão",
+    "Ombros longe das orelhas"
+  ],
+  "vary": "Pesado demais? Dobre os cotovelos (W). Fácil demais? Segure 3 s no alto; depois, braços em Y, acima da cabeça.",
+  "extLabels": [
+    "braços no chão",
+    "T"
+  ],
+  "errors": [
+    {
+      "id": "cotovelo",
+      "title": "Dobrar os cotovelos",
+      "desc": "Com os cotovelos dobrados e as mãos perto da cabeça, vira um W, mais fácil. Use o W só se o T estiver pesado demais."
+    },
+    {
+      "id": "encolher",
+      "title": "Encolher os ombros",
+      "desc": "Os ombros sobem em direção às orelhas e o trabalho vai para o pescoço. Ombros baixos, escápulas para trás."
+    },
+    {
+      "id": "cabeca",
+      "title": "Tirar o peito e a cabeça do chão",
+      "desc": "Levantar o peito arqueia a lombar e não ajuda os ombros. Só os braços sobem."
+    }
+  ]
+}

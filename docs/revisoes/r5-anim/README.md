@@ -7,7 +7,7 @@ Prompt: `docs/prompts/sessao-r5-animacao-corpo-livre.md`. Uma animação por vez
 | 1 | `panturrilha-degrau` | 81,8% | `panturrilha-b` (step) + `panturrilha-chao` (mãos na parede) | `folhas/panturrilha-degrau.png` | ik 0 (animação e 2 erros) | **aprovada em 07/11**; entra no app com o R5-CL |
 | 2 | `abdominal-invertido` | 61,7% | `ponte-gluteo` (deitado, braços) + `abdominal-chao` + `elevacao-joelhos` (a pelve) | `folhas/abdominal-invertido.png` | ik 0 (animação e 2 erros) | **aprovada em 08/11**; entra no app com o R5-CL |
 | 3 | `extensao-triceps-peso-corpo` | 59,4% | `triceps-suspensao` (corpo, ciclo e erros), mãos paradas numa bancada | `folhas/extensao-triceps-peso-corpo.png` | ik 0 (animação e 3 erros) | **aprovada em 08/11**, com a bancada; entra no app com o R5-CL |
-| 4 | `abertura-t-deitado` | 56,1% | `yt-suspensao` (os braços) | — | — | na fila |
+| 4 | `abertura-t-deitado` | 56,1% | `flexao-joelho-elastico` (de bruços) + `yt-suspensao` (o T e os erros) | `folhas/abertura-t-deitado.png` | ik 0 (animação e 3 erros) | **esperando o "aprovar"** |
 | 5 | `flexao-pes-elevados` | 53,8% | `flexao` | — | — | na fila |
 
 ## Pré-requisito: o R5-CL ainda não está na `main`
