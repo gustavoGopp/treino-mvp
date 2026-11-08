@@ -41,7 +41,7 @@ test('Corpo livre: sem nada marcado, o programa sai só com o peso do corpo, diz
   // Sem nada para puxar, a divisão é de corpo todo, e o aviso diz o que falta, sem sugerir compra.
   for (const dia of ['Corpo todo A', 'Corpo todo B', 'Corpo todo C']) await expect(page.getByRole('tab', { name: dia, exact: true })).toBeVisible();
   await page.getByText('Sobre o programa: avisos e o porquê').click();
-  await expect(page.getByText(/Sem algo para puxar ou levantar: costas, ombro lateral, ombro de trás e bíceps ficam sem exercício/)).toBeVisible();
+  await expect(page.getByText(/Sem algo para puxar ou levantar: costas, ombro lateral e bíceps ficam sem exercício/)).toBeVisible();
   await expect(page.getByText(/compr/i)).toHaveCount(0);
 
   // A flexão de joelho deslizante cobre os posteriores da coxa sem equipamento.

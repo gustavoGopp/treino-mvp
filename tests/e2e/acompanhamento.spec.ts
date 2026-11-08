@@ -148,7 +148,7 @@ test('abre "a sua semana" pela faixa do Seu treino: treinos, séries por múscul
 test('vê a evolução de um exercício: a melhor série de cada treino, com "recorde" e "subiu a carga"', async ({ page }) => {
   await comHistorico(page, [
     { dia: 0, quando: '2026-10-12T13:00:00.000Z', series: { 'supino-reto': [[8, 10], [8, 9]] } },
-    { dia: 2, quando: '2026-10-16T13:00:00.000Z', series: { 'supino-reto': [[8, 12], [8, 10]] } },
+    { dia: 1, quando: '2026-10-16T13:00:00.000Z', series: { 'supino-reto': [[8, 12], [8, 10]] } },
     { dia: 0, quando: '2026-10-19T13:00:00.000Z', series: { 'supino-reto': [[9, 8], [9, 8]] } },
   ]);
   await page.getByRole('link', { name: /A sua semana/ }).click();
