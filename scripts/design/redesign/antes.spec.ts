@@ -107,11 +107,7 @@ test('cadastro (Ana) e as variantes da tela de equipamento', async ({ page }) =>
   await grupo(page, 'De quanto em quanto').getByLabel('1 kg', { exact: true }).check();
   await page.getByLabel('Banco reto', { exact: true }).check();
   await foto(page, P, '05d-equipamento-lista-ana');
-  await page.getByRole('button', { name: 'Continuar' }).click();
-  await expect(page.getByRole('heading', { name: 'Tudo certo?' })).toBeVisible();
-  await foto(page, P, '06-confirmar');
-  await page.locator('details.evitar > summary').click();
-  await foto(page, P, '06b-confirmar-evitar-aberto');
+  // lote 3: o "Tudo certo?" saiu; o equipamento gera o programa
   await page.getByRole('button', { name: 'Gerar meu programa' }).click();
   await expect(page.getByRole('heading', { name: 'Seu treino', exact: true })).toBeVisible();
   await foto(page, P, '07-programa-recem-gerado');

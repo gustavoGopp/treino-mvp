@@ -140,8 +140,6 @@ test('atalho "academia completa": nada vem marcado, o toque marca o conjunto e o
   await expect(page.getByRole('group', { name: 'Onde fica a polia?' }).getByLabel('Regulável')).toBeChecked();
   await expect(page.getByRole('group', { name: /O voador também vira/ }).getByLabel('Não')).toBeChecked();
   await expect(page.getByRole('group', { name: /O banco também declina/ }).getByLabel('Não')).toBeChecked();
-  await page.getByRole('button', { name: 'Continuar' }).click();
-  await expect(page.getByRole('heading', { name: 'Tudo certo?' })).toBeVisible();
   await page.getByRole('button', { name: 'Gerar meu programa' }).click();
   await expect(page.getByRole('heading', { name: 'Seu treino', exact: true })).toBeVisible();
 });
@@ -239,8 +237,8 @@ test('equipamento por toque: anilhas com contador e valor fora da lista em "Outr
   await detalhes.getByRole('button', { name: 'Mais anilhas de 5 kg' }).click();
   await detalhes.getByRole('button', { name: 'Mais anilhas de 5 kg' }).click();
   await expect(detalhes.getByLabel('Quantidade de anilhas de 5 kg')).toHaveText('4');
-  await page.getByRole('button', { name: 'Continuar' }).click();
-  await expect(page.getByRole('heading', { name: 'Tudo certo?' })).toBeVisible();
+  await page.getByRole('button', { name: 'Gerar meu programa' }).click();
+  await expect(page.getByRole('heading', { name: 'Seu treino', exact: true })).toBeVisible();
   await page.goto('/comecar/inventario');
   await expect(page.getByLabel('Peso de cada manopla: outro valor')).toHaveValue('1.8');
   await expect(page.getByLabel('Quantidade de anilhas de 5 kg')).toHaveText('4');
@@ -255,7 +253,7 @@ test('catálogo do R0c: equipamento novo sem desenho, estações do multifuncion
       await expect(p.locator('label.cartao-eq', { has: hack }).locator('svg')).toHaveCount(0);
       // Multifuncional: sem estação marcada, a tela pede uma.
       await p.getByLabel('Multifuncional', { exact: true }).check();
-      await p.getByRole('button', { name: 'Continuar' }).click();
+      await p.getByRole('button', { name: 'Gerar meu programa' }).click();
       await expect(p.getByText('Marque pelo menos uma estação do multifuncional.')).toBeVisible();
       await p.getByRole('group', { name: 'Quais estações o seu tem?' }).getByLabel('Extensora').check();
       // Polia simples: a altura (no alto, embaixo ou regulável).

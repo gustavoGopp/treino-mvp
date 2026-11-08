@@ -2,7 +2,7 @@ import { useId, useState, type ReactNode } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ITENS, type Inventario as InventarioDados, type ItemId } from '../../domain/taxonomia/equipamentos';
 import { comInventario, localPrincipal } from '../../storage/esquema';
-import { useApp } from '../app/estado';
+import { agoraIso, comProgramaNovo, useApp } from '../app/estado';
 import { Erros, Escolha, Marcar, Numero, Passo, Selo } from '../app/ui';
 import { FotoEquipamento } from './FotoEquipamento';
 import { IconeEquipamento } from './icones';
@@ -187,9 +187,11 @@ export function Inventario() {
     <Passo id="inventario" titulo="Que equipamento você tem?">
       <FormularioInventario
         inicial={localPrincipal(estado)?.inventario}
+        textoBotao="Gerar meu programa"
         aoSalvar={(inv) => {
-          atualizar((s) => comInventario(s, localPrincipal(s)?.id, inv));
-          navigate('/comecar/restricoes');
+          // lote 3 do redesign: o "Tudo certo?" saiu; o equipamento é o último passo e gera o programa
+          atualizar((s) => ({ ...comProgramaNovo(comInventario(s, localPrincipal(s)?.id, inv), agoraIso(), true), ajustes: undefined }));
+          navigate('/programa');
         }}
       />
     </Passo>

@@ -127,9 +127,19 @@ export function Dados() {
         {estado.rotina && (
           <section className="box">
             <h2>Rotina e divisão do treino</h2>
-            <p>Dias, minutos, prioridades e como dividir os treinos na semana. Sem escolha, o app usa a divisão recomendada.</p>
+            <p>Dias, minutos, prioridades, o objetivo e como dividir os treinos na semana. Sem escolha, o app usa a divisão recomendada.</p>
             <Link className="btn sec" to="/comecar/rotina?de=dados">
               Mudar a rotina ou a divisão
+            </Link>
+          </section>
+        )}
+
+        {estado.programa && (
+          <section className="box">
+            <h2>Algo a evitar</h2>
+            <p>Equipamento que você tem mas prefere não usar, ou exercício que quer evitar. Opcional.</p>
+            <Link className="btn sec" to="/comecar/restricoes">
+              Escolher o que evitar
             </Link>
           </section>
         )}

@@ -57,3 +57,15 @@ describe('dor e sinais de alerta', () => {
     expect(avaliarSinal('formigamento').acao).toBe('encerrar-exercicio');
   });
 });
+
+describe('a pergunta geral (lote 3 do redesign; seguranca.triagem.nenhuma)', () => {
+  it('as 9 perguntas, na mesma ordem, cada uma com a condição em poucas palavras e a pergunta inteira de sempre', () => {
+    expect(PERGUNTAS.map((p) => p.id)).toEqual(['coracao', 'peito', 'tontura', 'doenca-cronica', 'medicamento', 'osteoarticular', 'supervisao', 'gravidez', 'doenca-aguda']);
+    for (const p of PERGUNTAS) {
+      expect(p.curta.length).toBeGreaterThan(5);
+      expect(p.curta.length).toBeLessThan(p.texto.length);
+      expect(p.texto).toMatch(/\?$/);
+    }
+    expect(PERGUNTAS.find((p) => p.id === 'coracao')!.texto).toBe('Algum médico já disse que você tem problema no coração ou pressão alta?');
+  });
+});

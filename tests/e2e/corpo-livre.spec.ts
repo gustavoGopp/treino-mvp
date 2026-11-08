@@ -31,10 +31,7 @@ test('Corpo livre: sem nada marcado, o programa sai só com o peso do corpo, diz
   await expect(corpoLivre).toHaveAttribute('aria-pressed', 'true');
   await expect(page.getByLabel('Step', { exact: true })).not.toBeChecked();
   await expect(page.getByText(/Sem equipamento: o programa usa o chão, uma parede e uma cadeira firme/)).toBeVisible();
-  await page.getByRole('button', { name: 'Continuar' }).click();
-
-  await expect(page.getByRole('heading', { name: 'Tudo certo?' })).toBeVisible();
-  await expect(page.getByText('Corpo livre (só o peso do corpo)')).toBeVisible();
+  // lote 3 do redesign: o equipamento gera o programa (o "Tudo certo?" saiu)
   await page.getByRole('button', { name: 'Gerar meu programa' }).click();
   await expect(page.getByRole('heading', { name: 'Seu treino', exact: true })).toBeVisible();
 

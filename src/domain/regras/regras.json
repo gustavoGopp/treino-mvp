@@ -1692,11 +1692,11 @@
   },
   {
     "id": "seguranca.triagem.nenhuma",
-    "regra": "Atalho da triagem para quem não tem nenhuma condição (R1; lista única desde a design v2)",
+    "regra": "Atalho da triagem para quem não tem nenhuma condição (R1; lista única desde a design v2; uma pergunta geral desde o redesign)",
     "valores": {
-      "iniciante": "a triagem abre com as 9 condições numa lista curta, todas à vista, e dois botões: \"Nenhuma vale para mim\" responde \"não\" às 9 e segue; \"Sim, alguma vale\" leva às 9 perguntas, uma a uma, com as regiões e a dor de hoje como antes (reformulação visual, 03/11/2026)",
-      "intermediario": "a triagem abre com as 9 condições numa lista curta, todas à vista, e dois botões: \"Nenhuma vale para mim\" responde \"não\" às 9 e segue; \"Sim, alguma vale\" leva às 9 perguntas, uma a uma, com as regiões e a dor de hoje como antes (reformulação visual, 03/11/2026)",
-      "avancado": "a triagem abre com as 9 condições numa lista curta, todas à vista, e dois botões: \"Nenhuma vale para mim\" responde \"não\" às 9 e segue; \"Sim, alguma vale\" leva às 9 perguntas, uma a uma, com as regiões e a dor de hoje como antes (reformulação visual, 03/11/2026)"
+      "iniciante": "a triagem abre com uma pergunta, \"Alguma destas vale para você?\", e as 9 condições em poucas palavras, com as 9 perguntas inteiras a um toque; \"Não, nenhuma\" responde \"não\" às 9 e segue; \"Sim, alguma (ou não tenho certeza)\" leva à tela de marcar só as que valem, com a pergunta inteira embaixo de cada uma, as regiões e a dor de hoje como antes, e pede a confirmação das não marcadas, que viram \"não\" (redesign, lote 3, 08/11/2026; aprovado pelo Gustavo em 06/11/2026)",
+      "intermediario": "a triagem abre com uma pergunta, \"Alguma destas vale para você?\", e as 9 condições em poucas palavras, com as 9 perguntas inteiras a um toque; \"Não, nenhuma\" responde \"não\" às 9 e segue; \"Sim, alguma (ou não tenho certeza)\" leva à tela de marcar só as que valem, com a pergunta inteira embaixo de cada uma, as regiões e a dor de hoje como antes, e pede a confirmação das não marcadas, que viram \"não\" (redesign, lote 3, 08/11/2026; aprovado pelo Gustavo em 06/11/2026)",
+      "avancado": "a triagem abre com uma pergunta, \"Alguma destas vale para você?\", e as 9 condições em poucas palavras, com as 9 perguntas inteiras a um toque; \"Não, nenhuma\" responde \"não\" às 9 e segue; \"Sim, alguma (ou não tenho certeza)\" leva à tela de marcar só as que valem, com a pergunta inteira embaixo de cada uma, as regiões e a dor de hoje como antes, e pede a confirmação das não marcadas, que viram \"não\" (redesign, lote 3, 08/11/2026; aprovado pelo Gustavo em 06/11/2026)"
     },
     "selo": "consenso",
     "fontes": [

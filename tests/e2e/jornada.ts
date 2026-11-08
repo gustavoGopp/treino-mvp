@@ -84,10 +84,7 @@ export async function ana(
   await page.getByLabel('Banco reto', { exact: true }).check();
   if (equipamentoExtra) await equipamentoExtra(page);
   await p();
-  await page.getByRole('button', { name: 'Continuar' }).click();
-
-  await expect(page.getByRole('heading', { name: 'Tudo certo?' })).toBeVisible();
-  await p();
+  // lote 3 do redesign: o "Tudo certo?" saiu; o equipamento gera o programa
   await page.getByRole('button', { name: 'Gerar meu programa' }).click();
   await expect(page.getByRole('heading', { name: 'Seu treino', exact: true })).toBeVisible();
   if (divisao) await escolherDivisao(page, divisao);

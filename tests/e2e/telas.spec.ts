@@ -65,9 +65,9 @@ for (const tema of ['light', 'dark'] as const) {
     await page.getByRole('button', { name: 'Continuar' }).click();
     await page.getByRole('button', { name: 'Academia completa' }).click();
     await conferir(page); // equipamento
-    await page.getByRole('button', { name: 'Continuar' }).click();
-    await expect(page.getByRole('heading', { name: 'Tudo certo?' })).toBeVisible();
-    await conferir(page); // confirmar
+    await page.getByRole('button', { name: 'Gerar meu programa' }).click();
+    await expect(page.getByRole('heading', { name: 'Seu treino', exact: true })).toBeVisible();
+    await conferir(page); // o programa recém-gerado
   });
 }
 

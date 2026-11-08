@@ -71,9 +71,9 @@ const GRUPOS: Record<string, (page: Page) => Promise<void>> = {
     await criterios(page); // equipamento, vazio
     await page.getByRole('button', { name: 'Academia completa' }).click();
     await criterios(page); // equipamento, com a academia completa
-    await page.getByRole('button', { name: 'Continuar' }).click();
-    await expect(page.getByRole('heading', { name: 'Tudo certo?' })).toBeVisible();
-    await criterios(page); // confirmar
+    await page.getByRole('button', { name: 'Gerar meu programa' }).click();
+    await expect(page.getByRole('heading', { name: 'Seu treino', exact: true })).toBeVisible();
+    await criterios(page); // o programa recém-gerado
   },
   // lote 4
   inicio: async (page) => {

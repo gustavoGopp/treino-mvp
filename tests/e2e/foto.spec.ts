@@ -78,8 +78,8 @@ test('foto: convite inválido mostra o motivo e a lista continua funcionando', a
   await page.getByLabel('Código de convite').fill('errado');
   await page.getByLabel('Escolher fotos').setInputFiles({ name: 'a.jpg', mimeType: 'image/jpeg', buffer: await fotoComExif(page) });
   await expect(page.getByRole('alert')).toHaveText('Código de convite inválido.');
-  await page.getByRole('button', { name: 'Continuar' }).click();
-  await expect(page.getByRole('heading', { name: 'Tudo certo?' })).toBeVisible();
+  await page.getByRole('button', { name: 'Gerar meu programa' }).click();
+  await expect(page.getByRole('heading', { name: 'Seu treino', exact: true })).toBeVisible();
 });
 
 test('a chave da API não aparece no código que vai para o navegador', async () => {
