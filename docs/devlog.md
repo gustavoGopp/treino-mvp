@@ -1273,6 +1273,8 @@ Os testes passaram de 647 para 662 unitários e de 46 para 113 de ponta a ponta.
 
 **O simulador** foi reconstruído no scratchpad a partir de `revisoes/proximos-passos/d-longo-prazo.md` ("Como reproduzir"): 4 personas (Ana, Bruno, Elisa, Carla) × 3 ritmos × com e sem ruído × aceita ou recusa a semana leve, 24 semanas, com as ações reais do app; só o corpo é modelo. Ele reproduz a ordem de grandeza da frente D (até 106 ofertas recusadas; 57 calibrações longas, contra 62 de 492 lá).
 
+**Também:** 749 testes unitários (eram 726), 141 e2e (eram 133), 154 regras (eram 153: 1 nova, `registro.treino-feito`, e 9 revistas); `npm run check`, `npm run test:e2e` e `npm run auditoria:verificar` limpos (37 arquivos idênticos nas duas rodadas). Um teste lento do gerador, que já passava às vezes do limite de 5 s (devlog do R5c), ganhou 20 s; o gerador ficou tão rápido quanto antes.
+
 **Pedidos à sessão de design** (já listados em `revisoes/proximos-passos.md`, 2.5, itens 1 a 6; o que existe hoje é o mínimo funcional com os componentes atuais):
 1. a dor registrada na série: hoje, a linha "· dor 4" na lista de séries e a frase "Nota 4 guardada na série 1" no aviso;
 2. o fim do treino com exercício interrompido: ainda não existe;
