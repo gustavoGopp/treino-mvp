@@ -6,7 +6,7 @@
  },
  "contagem": {
   "volume.zero.posteriores": 180,
-  "tempo.sobra-com-meta-abaixo": 34908,
+  "tempo.sobra-com-meta-abaixo": 34759,
   "monotonia.repete-com-opcao": 60276,
   "monotonia.todos-os-dias": 6331,
   "volume.excesso.gluteos": 5324,
@@ -423,10 +423,10 @@
    "abaixoPrioPct": {
     "peito": 3404,
     "costas": 3772,
-    "ombro_lateral": 3727,
+    "ombro_lateral": 3728,
     "ombro_posterior": 0,
-    "biceps": 1714,
-    "triceps": 2768,
+    "biceps": 1713,
+    "triceps": 2769,
     "quadriceps": 4639,
     "posteriores": 3744,
     "gluteos": 1244,
@@ -442,7 +442,7 @@
     "triceps": 5.5,
     "quadriceps": 6.6,
     "posteriores": 8.2,
-    "gluteos": 12,
+    "gluteos": 12.1,
     "panturrilha": 7.9,
     "abdomen": 4.2
    },
@@ -615,12 +615,12 @@
   "peso-corpo": {
    "programas": 11520,
    "abaixoPct": {
-    "peito": 45.9,
+    "peito": 45.8,
     "costas": 100,
     "ombro_lateral": 99.3,
     "ombro_posterior": 27.8,
     "biceps": 100,
-    "triceps": 43.4,
+    "triceps": 43.3,
     "quadriceps": 42.5,
     "posteriores": 44.8,
     "gluteos": 10.3,
@@ -628,14 +628,14 @@
     "abdomen": 33.9
    },
    "abaixoPrioPct": {
-    "peito": 3554,
+    "peito": 3552,
     "costas": 6912,
     "ombro_lateral": 6912,
     "ombro_posterior": 0,
     "biceps": 4608,
-    "triceps": 2348,
+    "triceps": 2341,
     "quadriceps": 3745,
-    "posteriores": 3889,
+    "posteriores": 3891,
     "gluteos": 1137,
     "panturrilha": 2597,
     "abdomen": 1131
@@ -646,10 +646,10 @@
     "ombro_lateral": 0.7,
     "ombro_posterior": 4.6,
     "biceps": 0,
-    "triceps": 7.1,
+    "triceps": 7.3,
     "quadriceps": 7.8,
     "posteriores": 7.8,
-    "gluteos": 12.4,
+    "gluteos": 12.5,
     "panturrilha": 9.2,
     "abdomen": 4.8
    },
@@ -679,14 +679,14 @@
    },
    "abaixoPrioPct": {
     "peito": 3797,
-    "costas": 3986,
+    "costas": 3987,
     "ombro_lateral": 3896,
     "ombro_posterior": 0,
     "biceps": 1955,
     "triceps": 2425,
-    "quadriceps": 3672,
+    "quadriceps": 3674,
     "posteriores": 4057,
-    "gluteos": 2139,
+    "gluteos": 2137,
     "panturrilha": 3697,
     "abdomen": 1400
    },
@@ -732,9 +732,9 @@
    "abaixoPrioPct": {
     "peito": 4821,
     "costas": 5120,
-    "ombro_lateral": 3587,
+    "ombro_lateral": 3586,
     "ombro_posterior": 0,
-    "biceps": 1737,
+    "biceps": 1736,
     "triceps": 2671,
     "quadriceps": 4260,
     "posteriores": 3417,
@@ -744,14 +744,14 @@
    },
    "media": {
     "peito": 5.8,
-    "costas": 3.9,
+    "costas": 3.8,
     "ombro_lateral": 6.5,
     "ombro_posterior": 5,
-    "biceps": 7.6,
-    "triceps": 6.4,
+    "biceps": 7.7,
+    "triceps": 6.5,
     "quadriceps": 6.9,
     "posteriores": 8.5,
-    "gluteos": 11.8,
+    "gluteos": 11.9,
     "panturrilha": 8.2,
     "abdomen": 4.3
    },
@@ -782,7 +782,7 @@
    },
    "abaixoPrioPct": {
     "peito": 3839,
-    "costas": 5171,
+    "costas": 5172,
     "ombro_lateral": 3647,
     "ombro_posterior": 0,
     "biceps": 1783,
@@ -796,13 +796,13 @@
    "media": {
     "peito": 7,
     "costas": 3.7,
-    "ombro_lateral": 6.1,
+    "ombro_lateral": 6.2,
     "ombro_posterior": 4.7,
-    "biceps": 7.2,
+    "biceps": 7.3,
     "triceps": 5.5,
     "quadriceps": 6.8,
     "posteriores": 8.3,
-    "gluteos": 11.7,
+    "gluteos": 11.8,
     "panturrilha": 8,
     "abdomen": 4.2
    },
@@ -834,21 +834,21 @@
    },
    "abaixoPrioPct": {
     "peito": 3759,
-    "costas": 3896,
+    "costas": 3898,
     "ombro_lateral": 3876,
     "ombro_posterior": 0,
     "biceps": 1920,
-    "triceps": 2412,
-    "quadriceps": 3660,
+    "triceps": 2411,
+    "quadriceps": 3662,
     "posteriores": 4043,
-    "gluteos": 2123,
+    "gluteos": 2121,
     "panturrilha": 3696,
     "abdomen": 1395
    },
    "media": {
     "peito": 7.1,
     "costas": 6.7,
-    "ombro_lateral": 5.6,
+    "ombro_lateral": 5.7,
     "ombro_posterior": 5.2,
     "biceps": 7.4,
     "triceps": 6.9,
@@ -983,7 +983,7 @@
   "posterioresSobreQuadriceps": {
    "p10": 0.67,
    "mediana": 1,
-   "p90": 1.08
+   "p90": 1.1
   }
  },
  "escolha": {
@@ -1002,10 +1002,10 @@
    "remada-apoiada": 61302,
    "rosca-scott-banco-inclinado": 60044,
    "supino-inclinado": 58710,
-   "crucifixo-halteres": 57063,
+   "crucifixo-halteres": 57065,
    "abdominal-invertido": 56624,
    "panturrilha": 53627,
-   "flexao-joelho-deslizante": 50713,
+   "flexao-joelho-deslizante": 50717,
    "stiff-unilateral": 48943,
    "panturrilha-sentada-halter": 48845,
    "bulgaro": 48628,
@@ -1143,7 +1143,7 @@
    "flexao-joelho-deslizante": 270571,
    "afundo-peso-corpo": 265194,
    "panturrilha-chao": 257466,
-   "flexao": 248085,
+   "flexao": 248087,
    "ponte-gluteo": 208625,
    "abdominal-invertido": 203825,
    "panturrilha-degrau": 203805,
@@ -1153,8 +1153,8 @@
    "elevacao-lateral-unilateral": 194330,
    "afundo-tras-peso-corpo": 182957,
    "rosca-martelo": 181302,
-   "nordico": 177501,
-   "flexao-fechada": 168346,
+   "nordico": 177505,
+   "flexao-fechada": 168348,
    "rosca-alternada": 167957,
    "abdominal-chao": 155854,
    "stiff-unilateral": 154124,
@@ -1168,7 +1168,7 @@
    "agachamento-peso-corpo": 124350,
    "elevacao-lateral-unilateral-elastico": 123975,
    "rosca-martelo-elastico": 123664,
-   "crucifixo-inclinado-halteres": 123405,
+   "crucifixo-inclinado-halteres": 123406,
    "abducao-deitado": 121960,
    "stiff": 118910,
    "barra-fixa": 118779,
@@ -1206,7 +1206,7 @@
    "pike": 61687,
    "supino-polia": 61658,
    "crucifixo-polia-baixo": 61068,
-   "flexao-joelho-elastico": 60630,
+   "flexao-joelho-elastico": 60634,
    "crucifixo-invertido-curvado": 60228,
    "rosca-barra-w": 60140,
    "panturrilha": 60104,
@@ -2928,7 +2928,7 @@
    "programas": 1080,
    "prioritarioAbaixoDaMetaPct": {
     "peito": 13.9,
-    "costas": 21.3,
+    "costas": 21.5,
     "ombro_lateral": 28.7,
     "ombro_posterior": 0,
     "biceps": 22.5,
@@ -3015,7 +3015,7 @@
    "programas": 1080,
    "prioritarioAbaixoDaMetaPct": {
     "peito": 13.1,
-    "costas": 18.8,
+    "costas": 19,
     "ombro_lateral": 28.4,
     "ombro_posterior": 0,
     "biceps": 21.1,
@@ -3119,7 +3119,7 @@
   "peito|minutos (exercícios por treino)": 475,
   "peito|divisão: séries por exercício e por sessão no teto": 427,
   "abdomen|minutos (exercícios por treino)": 376,
-  "costas|corte de tempo": 371,
+  "costas|corte de tempo": 373,
   "triceps|minutos (exercícios por treino)": 350,
   "posteriores|minutos (exercícios por treino)": 302,
   "gluteos|minutos (exercícios por treino)": 286,
@@ -3144,7 +3144,7 @@
   "dias": 624000,
   "acima": 58427,
   "acimaSemAviso": 0,
-  "sobraMuito": 41949,
+  "sobraMuito": 41723,
   "sobraComAbaixoPorMinutos": 0,
   "porMinutos": {
    "20": {
@@ -3159,32 +3159,32 @@
    },
    "45": {
     "programas": 18720,
-    "sobraMaisDe30pct": 77,
+    "sobraMaisDe30pct": 73,
     "diaMaisLongoMediana": 45
    },
    "60": {
     "programas": 18720,
-    "sobraMaisDe30pct": 859,
+    "sobraMaisDe30pct": 856,
     "diaMaisLongoMediana": 59
    },
    "75": {
     "programas": 18720,
-    "sobraMaisDe30pct": 3546,
+    "sobraMaisDe30pct": 3544,
     "diaMaisLongoMediana": 70
    },
    "90": {
     "programas": 18720,
-    "sobraMaisDe30pct": 6762,
+    "sobraMaisDe30pct": 6721,
     "diaMaisLongoMediana": 71
    },
    "120": {
     "programas": 18720,
-    "sobraMaisDe30pct": 13434,
+    "sobraMaisDe30pct": 13344,
     "diaMaisLongoMediana": 71
    },
    "150": {
     "programas": 18720,
-    "sobraMaisDe30pct": 17271,
+    "sobraMaisDe30pct": 17185,
     "diaMaisLongoMediana": 71
    }
   }

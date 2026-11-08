@@ -8,7 +8,7 @@
 | Empurrar horizontal | 5940 | 2970 | 798 (26,9%) | 1092 (36,8%) | casa · intermediário · Corpo todo A/B/C · 45 min: flexao em 2 dias, com flexao-pes-elevados possível<br>casa · intermediário · Corpo todo A/B/C · 60 min: flexao em 2 dias, com flexao-pes-elevados possível<br>casa · intermediário · Corpo todo A/B/C · 90 min: flexao em 2 dias, com flexao-pes-elevados possível |
 | Empurrar inclinado | 3960 | 1089 | 309 (28,4%) | 336 (30,9%) | casa · intermediário · Corpo todo 4x · 45 min: flexao-pes-elevados em 2 dias, com flexao possível<br>casa · intermediário · Corpo todo 4x · 60 min: flexao-pes-elevados em 2 dias, com flexao possível<br>casa · intermediário · Corpo todo 4x · 90 min: flexao-pes-elevados em 2 dias, com flexao possível |
 | Crucifixo (peito alongado) | 1251 | 345 | 15 (4,3%) | 153 (44,3%) | so:estacao_polia_dupla · iniciante · Superior/Inferior + Empurrar/Puxar/Pernas · 60 min: crucifixo-polia em 2 dias, com crucifixo-polia-baixo possível<br>so:estacao_polia_dupla · iniciante · Superior/Inferior + Empurrar/Puxar/Pernas · 90 min: crucifixo-polia em 2 dias, com crucifixo-polia-baixo possível<br>so:estacao_polia_dupla · iniciante · Empurrar/Puxar/Pernas (2x) · 45 min: crucifixo-polia-baixo em 2 dias, com crucifixo-polia possível |
-| Puxar vertical | 2916 | 1863 | 261 (14%) | 729 (39,1%) | casa · iniciante · Corpo todo A/B/C · 45 min: remada-unilateral-sem-banco em 2 dias, com remada-curvada-halteres possível<br>casa · iniciante · Corpo todo A/B/C · 60 min: remada-unilateral-sem-banco em 2 dias, com remada-curvada-halteres possível<br>casa · iniciante · Corpo todo A/B/C · 90 min: remada-unilateral-sem-banco em 2 dias, com remada-curvada-halteres possível |
+| Puxar vertical | 2916 | 1863 | 360 (19,3%) | 729 (39,1%) | casa · iniciante · Corpo todo A/B/C · 45 min: remada-unilateral-sem-banco em 2 dias, com remada-curvada-halteres possível<br>casa · iniciante · Corpo todo A/B/C · 60 min: remada-unilateral-sem-banco em 2 dias, com remada-curvada-halteres possível<br>casa · iniciante · Corpo todo A/B/C · 90 min: remada-unilateral-sem-banco em 2 dias, com remada-curvada-halteres possível |
 | Puxar horizontal | 2736 | 1352 | 57 (4,2%) | 380 (28,1%) | casa · iniciante · Corpo todo 4x · 45 min: remada-curvada-halteres em 2 dias, com remada-unilateral-sem-banco possível<br>casa · iniciante · Corpo todo 4x · 60 min: remada-curvada-halteres em 2 dias, com remada-unilateral-sem-banco possível<br>casa · iniciante · Corpo todo 4x · 90 min: remada-curvada-halteres em 2 dias, com remada-unilateral-sem-banco possível |
 | Empurrar vertical | 1980 | 0 | 0 (—) | 0 (—) | — |
 | Elevação lateral | 2058 | 1527 | 75 (4,9%) | 1002 (65,6%) | academia · iniciante · Corpo todo A/B · 90 min: elevacao-lateral em 2 dias, com elevacao-halteres possível<br>academia · iniciante · Corpo todo A/B/C · 45 min: elevacao-lateral em 2 dias, com elevacao-halteres possível<br>academia · iniciante · Corpo todo A/B/C · 60 min: elevacao-lateral em 2 dias, com elevacao-halteres possível |
@@ -31,12 +31,12 @@
 | Academia completa (atalho) | 108 | 26,9% | 63,9% |
 | Academia completa + kettlebell, elásticos, bola, suspensão, caneleiras, mini-band e roda (a Carla) | 108 | 26,9% | 63,9% |
 | Casa com halteres e elásticos (atalho) | 108 | 50,9% | 69,4% |
-| Casa + os "às vezes tem" (banco, barra fixa, kettlebell, suspensão, step, bola, caneleiras, mini-band, roda) | 108 | 50% | 69,4% |
+| Casa + os "às vezes tem" (banco, barra fixa, kettlebell, suspensão, step, bola, caneleiras, mini-band, roda) | 108 | 55,6% | 69,4% |
 | Condomínio com multifuncional (atalho: puxador e remada) | 108 | 13,9% | 72,2% |
 | Condomínio + os "às vezes tem" e o multifuncional com todas as estações | 108 | 66,7% | 69,4% |
-| Academia do bairro sem polia (2º local do Bruno) | 108 | 10,2% | 69,4% |
+| Academia do bairro sem polia (2º local do Bruno) | 108 | 27,8% | 69,4% |
 | Prédio com polia dupla, halteres e banco regulável (o Bruno) | 108 | 60,2% | 58,3% |
-| Elásticos e barra fixa de porta (o Diego) | 108 | 16,7% | 61,1% |
+| Elásticos e barra fixa de porta (o Diego) | 108 | 38,9% | 61,1% |
 | Só elásticos | 108 | 16,7% | 66,7% |
 | Só halteres (2 a 20 kg), sem banco | 108 | 52,8% | 72,2% |
 | Halteres de 1 a 12 kg e banco reto (a Ana) | 108 | 50,9% | 72,2% |
@@ -48,7 +48,7 @@
 | Só máquina de abdominal | 108 | 16,7% | 86,1% |
 | Só anilhas e manoplas para montar halteres | 108 | 52,8% | 72,2% |
 | Só banco romano (hiperextensão) ou ghd | 108 | 19,4% | 80,6% |
-| Só barra fixa | 108 | 16,7% | 78,7% |
+| Só barra fixa | 108 | 41,7% | 78,7% |
 | Só barra hexagonal (trap bar) | 108 | 16,7% | 86,1% |
 | Só barra longa (olímpica ou comum) | 108 | 16,7% | 88% |
 | Só barra w | 108 | 16,7% | 84,3% |
