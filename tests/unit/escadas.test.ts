@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import { BIBLIOTECA } from '../../src/domain/biblioteca';
 import { sugerirProgressao, type Carga, type SessaoExercicio } from '../../src/domain/progressao';
-import { ESCADAS, escadaDe, nomeDoDegrau } from '../../src/domain/progressao/escadas';
+import { degrauInicial, ESCADAS, escadaDe, nomeDoDegrau } from '../../src/domain/progressao/escadas';
 import { opcoesCarga, textoCarga } from '../../src/domain/sessao';
 
 // Escada por exercício (progressao.escada-por-exercicio), elástico pelas intensidades (progressao.escada-elastico),
@@ -65,5 +65,40 @@ describe('degraus que pedem um móvel (decisão do Gustavo em 04/11/2026)', () =
   it('todo degrau com cadeira, sofá, cama, degrau ou apoio traz a alternativa para quem não tem', () => {
     for (const [id, degraus] of Object.entries(ESCADAS))
       for (const t of degraus) if (/cadeira|sofá|cama|degrau|apoio|elevados/.test(t)) expect(t, id).toMatch(/\(sem |; sem | ou /);
+  });
+});
+
+describe('o 1º degrau pelo nível (progressao.degrau-inicial, R5d)', () => {
+  it('no peso do corpo: iniciante no 0, intermediário no 1, avançado no 2', () => {
+    expect(degrauInicial('flexao', 'iniciante')).toBe(0);
+    expect(degrauInicial('flexao', 'intermediario')).toBe(1);
+    expect(degrauInicial('flexao', 'avancado')).toBe(2);
+  });
+  it('nunca além do último degrau', () => {
+    for (const id of Object.keys(ESCADAS)) expect(degrauInicial(id, 'avancado'), id).toBeLessThan(escadaDe(id).length);
+  });
+  it('no elástico do avançado, a intensidade do meio das que a pessoa tem (com 4: a 2ª; com 1: o 3º degrau da única)', () => {
+    expect(degrauInicial('remada-elastico', 'avancado', { elasticos: { intensidades: 4 } })).toBe(3);
+    expect(nomeDoDegrau('remada-elastico', 3)).toBe('intensidade 2');
+    expect(degrauInicial('remada-elastico', 'avancado', { elasticos: { intensidades: 1 } })).toBe(2);
+    expect(degrauInicial('remada-elastico', 'intermediario', { elasticos: { intensidades: 4 } })).toBe(1);
+  });
+  it('o avançado sem equipamento não começa no degrau do iniciante em nenhum exercício de peso do corpo com escada', () => {
+    for (const id of Object.keys(ESCADAS)) expect(degrauInicial(id, 'avancado'), id).toBeGreaterThan(0);
+  });
+});
+
+describe('da barra só na descida para a barra (progressao.negativa-para-barra, R5d)', () => {
+  const alvo = { reps: [3, 6] as [number, number], rir: [1, 2] as [number, number] };
+  it('no último degrau da negativa, com o topo em 2 sessões, sugere tentar a barra fixa', () => {
+    const o = opcoesCarga('barra-fixa-negativa', { barra_fixa: {} });
+    expect(o.depois).toBe('Barra fixa');
+    const ultimo = d(escadaDe('barra-fixa-negativa').length - 1);
+    const s = sugerirProgressao([sessao(ultimo, [6, 5, 5]), sessao(ultimo, [6, 5, 5])], alvo, o);
+    expect(s).toMatchObject({ acao: 'manter', regraId: 'progressao.negativa-para-barra' });
+    expect(s.motivo).toMatch(/tente a barra fixa \(em "Trocar exercício"\)\. Se a 1ª série não chegar a 3 repetições completas, volte a este\./);
+  });
+  it('nos outros exercícios, o último degrau continua com o aviso de sempre', () => {
+    expect(opcoesCarga('flexao', {}).depois).toBeUndefined();
   });
 });

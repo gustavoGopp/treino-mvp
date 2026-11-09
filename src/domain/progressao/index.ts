@@ -40,6 +40,8 @@ export type OpcoesCarga = {
   menorAnilhaKg?: number;
   /** Degraus do peso do corpo e do elástico (progressao.escada-por-exercicio); sem eles, a escada genérica. */
   degraus?: string[];
+  /** No último degrau, o exercício seguinte (progressao.negativa-para-barra): o nome, para a sugestão. */
+  depois?: string;
   /** Barra sem lista: a carga sobe de 2 × a menor anilha (equipamento.menor-anilha), a partir do peso da barra. */
   passoKg?: number;
   baseKg?: number;
@@ -235,6 +237,12 @@ export function sugerirProgressao(historico: SessaoExercicio[], alvo: Alvo, o: O
         acao: 'subir',
         motivo: 'Topo da faixa com a última placa de contrapeso: passe para a versão livre (barra fixa ou mergulho), sem ajuda.',
         regraId: r('progressao.incremento.assistido'),
+      };
+    if (!prox && carga.tipo === 'degrau' && o.depois)
+      return {
+        acao: 'manter',
+        motivo: `Você chegou ao último degrau e ao topo da faixa: na próxima sessão, tente a ${o.depois.toLowerCase()} (em "Trocar exercício"). Se a 1ª série não chegar a ${alvo.reps[0]} repetições completas, volte a este.`,
+        regraId: r('progressao.negativa-para-barra'),
       };
     if (!prox && carga.tipo === 'degrau')
       return {

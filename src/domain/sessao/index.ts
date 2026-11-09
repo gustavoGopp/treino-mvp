@@ -1,7 +1,7 @@
 import { BIBLIOTECA, type Exercicio } from '../biblioteca';
 import { faseNaSemana, prescricaoDaSemana, type DiaPrograma, type ExercicioPrescrito, type Fase, type Programa } from '../gerador';
 import { blocoAtual, naFaseDeAprendizado, semanaNoBloco, treinoFeito, type Hoje } from './bloco';
-import { escadaDe, nomeDoDegrau, pedeMiniBand } from '../progressao/escadas';
+import { DEPOIS_DA_ESCADA, escadaDe, nomeDoDegrau, pedeMiniBand } from '../progressao/escadas';
 import { noPassoAbaixo, proximaCarga, sugerirProgressao, type Alvo, type Carga, type OpcoesCarga, type SerieRegistrada, type SessaoExercicio, type Sugestao } from '../progressao';
 import { calibrar, emCalibracao, fimDaCalibracao, semCalibracao, type ResultadoCalibracao } from '../progressao/calibracao';
 import { funcoesDoExercicio } from '../gerador/funcoes';
@@ -149,7 +149,7 @@ export function opcoesCarga(exId: string, inventario: Inventario): OpcoesCarga &
     case 'peso-corpo':
     case 'elastico':
       // progressao.escada-por-exercicio e progressao.escada-elastico: a escada do exercício, com as intensidades do local.
-      return { tipo, registro: 'degrau', degraus: escadaDe(exId, inventario) };
+      return { tipo, registro: 'degrau', degraus: escadaDe(exId, inventario), ...(DEPOIS_DA_ESCADA[exId] ? { depois: POR_ID[DEPOIS_DA_ESCADA[exId]!]!.nome } : {}) };
     case 'barra': {
       // Sobe de 2 × a menor anilha (uma de cada lado), a partir do peso da barra quando informado (equipamento.menor-anilha).
       const menor = atributoDoItem(ex, inventario, 'menorAnilhaKg') ?? MENOR_ANILHA_PADRAO_KG;

@@ -32,9 +32,9 @@
   },
   {
     "id": "volume.semanal.alvo",
-    "regra": "Alvo semanal padrão dos músculos prioritários. É foco com manutenção: os outros músculos ficam no mínimo eficaz e continuam crescendo, mais devagar; o texto do app diz isso (decisão do Gustavo em 06/11/2026, sessão de qualidade dos treinos)",
+    "regra": "Alvo semanal padrão dos músculos prioritários. É foco com manutenção: os outros músculos ficam no mínimo eficaz e continuam crescendo, mais devagar; o texto do app diz isso (decisão do Gustavo em 06/11/2026, sessão de qualidade dos treinos). **No R5d (08/11/2026), o iniciante foi de 8 para 10:** o 8 era convenção (nenhuma fonte valida volumes por nível, `01-volume-frequencia.md`, item 8), e com ele o foco quase não aparecia, 8 contra os 6 dos outros (régua da G5, C2: 38,5% dos programas do iniciante com foco); 10 é o topo da faixa do iniciante (6–10), a curva de dose-resposta (10 ou mais rendem mais que menos de 10) é robusta e inclui não treinados (`volume.semanal.dose-resposta`), e o começo leve do iniciante serve para passar pela fase de dano muscular, não porque ele cresça com menos (`pesquisa-v2/06`), o que a fase de aprendizado já cobre (`iniciante.fase-aprendizado`, que segue com 3/4 das séries). Medido: o foco invisível do iniciante cai de 21,9% para 15,5% (com as outras regras do R5d), sem piorar nenhum defeito",
     "valores": {
-      "iniciante": "8",
+      "iniciante": "10",
       "intermediario": "12",
       "avancado": "14"
     },
@@ -54,6 +54,57 @@
       "iniciante": "aviso",
       "intermediario": "aviso",
       "avancado": "aviso"
+    },
+    "selo": "consenso",
+    "fontes": [
+      "consenso-projeto",
+      "remmert2025",
+      "pelland2026"
+    ]
+  },
+  {
+    "id": "volume.prioridade.foco-primeiro",
+    "regra": "O foco usa o tempo primeiro (R5d, 08/11/2026; decisão do Gustavo em 07/11, `docs/revisoes/proximos-passos.md`, parte 3; régua da G5, nota C2): quando a pessoa tem um grupo de foco com exercício possível, o tempo que sobra (`tempo.sobra-series`) vai primeiro para os músculos do foco, até o máximo do nível (`volume.semanal.maximo`) e enquanto as séries diretas do foco (dos exercícios em que ele é o músculo principal) estiverem abaixo da meta (um glúteo do foco que chega à meta só com as séries indiretas do agachamento ainda recebe mais ponte; 2ª revisão cega do R5d), e só depois para os outros, que sobem no máximo até 6 séries abaixo do músculo do foco que tem menos (e nunca acima do alvo de antes, `tempo.sobra-series`). Com foco, a vaga-base de um isolador de quem não é foco (elevação lateral, bíceps, crucifixo, ombro de trás, abdução, abdômen) entra depois das vagas do foco, e o exercício protegido do foco (`tempo.musculo-protegido`) não fica preso em 2 séries com 30 min; se isso deixar um dia acima de 110% dos minutos que a montagem de antes não deixava, vale a de antes. Travas: enquanto empurrar ÷ puxar passar de 1,5, as costas e o ombro de trás sobem como antes, e nenhum empurrar de quem não é foco sobe se passar de 1,5 (`kolber2010`); nenhuma série a mais tira quadríceps ÷ posteriores de 0,5–2 (`volume.equilibrio-coxa`); quem não é foco e está abaixo do piso de 4 sobe até ele também pelas séries indiretas. Sem foco possível (por exemplo, foco nas costas sem nada para puxar), o tempo que sobra vai para todos, como antes. Os outros continuam crescendo com 4 a 6 séries ou mais, mais devagar (moderada, `schoenfeld2017a`, `iversen2021`); a distância de 6 séries e o resto da escolha são do projeto. Medido (revisão cega do R5d): parar o foco na meta e deixar os outros na meta, sem usar o resto do tempo, encurtava os treinos de quem tem pouco equipamento (só barra fixa: de 51–59 para 33–37 min em 60) e a revisão os achou piores",
+    "valores": {
+      "iniciante": "sobra: o foco até 10; os outros até 6 abaixo do foco, no máximo 8",
+      "intermediario": "sobra: o foco até 16; os outros até 6 abaixo do foco, no máximo 12",
+      "avancado": "sobra: o foco até 20; os outros até 6 abaixo do foco, no máximo 14"
+    },
+    "selo": "consenso",
+    "fontes": [
+      "consenso-projeto",
+      "schoenfeld2017a",
+      "pelland2026",
+      "iversen2021",
+      "kolber2010",
+      "green2018"
+    ]
+  },
+  {
+    "id": "volume.prioridade.segundo-exercicio",
+    "regra": "O 2º exercício do foco (R5d, 08/11/2026; `docs/revisoes/proximos-passos/a-qualidade.md`, D-4c): o músculo do foco que, com as séries distribuídas (até 4 por exercício e 10 por sessão), fica abaixo da meta ganha 1 exercício de outra função do mesmo músculo (outra função que o dia não tem, e de preferência que o programa ainda não tem), num dia que treina esse músculo ou, sem isso, a mesma região (inferior ou superior; nunca panturrilha num dia de superiores), dentro dos exercícios que cabem nos minutos (`tempo.exercicios-por-sessao`), do teto da sessão e do teto semanal. Funções diferentes crescem regiões diferentes do músculo (moderada); o número e a escolha do dia são consenso, e o selo da linha é o deles (o mais fraco, `00-metodo.md`)",
+    "valores": {
+      "iniciante": "1 exercício a mais por músculo do foco abaixo da meta",
+      "intermediario": "1 exercício a mais por músculo do foco abaixo da meta",
+      "avancado": "1 exercício a mais por músculo do foco abaixo da meta"
+    },
+    "selo": "consenso",
+    "fontes": [
+      "fonseca2014",
+      "costa2021",
+      "zabaletakorta2021",
+      "kassiano2025var",
+      "kassiano2022",
+      "remmert2025"
+    ]
+  },
+  {
+    "id": "volume.prioridade.ate-dois",
+    "regra": "Escolha até 2 grupos de foco (R5d, 08/11/2026; D-3 de `docs/revisoes/proximos-passos/a-qualidade.md`; R3 de `pesquisa-v2/15`): o cadastro recomenda até 2 grupos, sem bloquear a escolha; \"pernas\" conta como 3 (frente da coxa, posterior e panturrilha) e \"braços\" como 2. Com mais do que isso, uma nota diz que o foco se divide. Medido na frente A: o prioritário fica abaixo da meta em 44,1% dos casos com 1 grupo e em 50,2% com 3. Quantos grupos priorizar ao mesmo tempo não tem estudo (`pesquisa-v2/15`, 3c); a conta de tempo é do projeto",
+    "valores": {
+      "iniciante": "até 2 (pernas = 3, braços = 2), sem bloquear",
+      "intermediario": "até 2 (pernas = 3, braços = 2), sem bloquear",
+      "avancado": "até 2 (pernas = 3, braços = 2), sem bloquear"
     },
     "selo": "consenso",
     "fontes": [
@@ -602,6 +653,21 @@
     ]
   },
   {
+    "id": "progressao.negativa-para-barra",
+    "regra": "Da barra só na descida para a barra (R5d, 08/11/2026): no último degrau da barra só na descida, com o topo da faixa em 2 sessões, a sugestão é tentar a barra fixa (pela troca de exercício); se a 1ª série não chegar ao mínimo da faixa com repetições completas, voltar à descida. Treinar a descida melhora o desempenho na barra (um estudo, em escaladores: `vigouroux2024`); quando passar é consenso",
+    "valores": {
+      "iniciante": "sugestão de passar para a barra fixa",
+      "intermediario": "sugestão de passar para a barra fixa",
+      "avancado": "sugestão de passar para a barra fixa"
+    },
+    "selo": "consenso",
+    "fontes": [
+      "vigouroux2024",
+      "johnson2009",
+      "consenso-projeto"
+    ]
+  },
+  {
     "id": "progressao.escada-elastico",
     "regra": "Elástico: a escada sobe pelas intensidades que a pessoa informou, da mais leve à mais forte; em cada intensidade, normal → mais esticado (um passo mais longe) → mais esticado com descida de 3 s. Com uma intensidade só, a escada para nela",
     "valores": {
@@ -613,6 +679,22 @@
     "fontes": [
       "lopes2019",
       "harper2025",
+      "consenso-projeto"
+    ]
+  },
+  {
+    "id": "progressao.degrau-inicial",
+    "regra": "O 1º degrau da escada pelo nível (R5d, 08/11/2026; `docs/revisoes/proximos-passos/g-biblioteca-ampliada.md`, seção 5, item 2: as duas revisões cegas apontaram que o avançado sem equipamento começava pela versão do iniciante): no peso do corpo e no elástico, a 1ª vez de um exercício começa num degrau acima conforme o nível, nunca além do último. É só o ponto de partida: o estado guardado é o mesmo (o índice do degrau), e a progressão de sempre ajusta depois (leve demais sobe 2 degraus, `progressao.carga-leve`; pesado demais desce, `progressao.reduzir`). O princípio é o da escada (a série perto da falha numa faixa de ~6–30 repetições, `progressao.escada-por-exercicio`); o degrau de cada nível é consenso",
+    "valores": {
+      "iniciante": "degrau 0 (o exercício como no guia)",
+      "intermediario": "degrau 1 (no elástico: mais esticado)",
+      "avancado": "degrau 2 (no elástico: a intensidade do meio das que a pessoa tem, se for mais alta)"
+    },
+    "selo": "consenso",
+    "fontes": [
+      "schoenfeld2015",
+      "kojic2025",
+      "lopes2019",
       "consenso-projeto"
     ]
   },
@@ -822,7 +904,7 @@
     "id": "iniciante.fase-aprendizado",
     "regra": "Fase de aprendizado do iniciante",
     "valores": {
-      "iniciante": "2–3 semanas com RIR 3–4, volume no mínimo da faixa e foco técnico; carga sobe quando a técnica estiver estável; nessas semanas, nem \"estagnado\" nem semana leve sugerida (R5a)",
+      "iniciante": "2–3 semanas com RIR 3–4, volume no mínimo da faixa (3/4 das séries do programa: 6 de 8; com o foco a 10 desde o R5d, o foco fica com ~7,5) e foco técnico; carga sobe quando a técnica estiver estável; nessas semanas, nem \"estagnado\" nem semana leve sugerida (R5a)",
       "intermediario": "não se aplica (usa `readaptacao.*` se houver pausa)",
       "avancado": "não se aplica (usa `readaptacao.*` se houver pausa)"
     },
@@ -1055,6 +1137,23 @@
       "dasilva2025",
       "vigouroux2024",
       "johnson2009",
+      "shabbir2026"
+    ]
+  },
+  {
+    "id": "selecao.barra-negativa-iniciante",
+    "regra": "A barra só na descida antes da barra para o iniciante (R5d, 08/11/2026; `g-biblioteca-ampliada.md`, seção 5, item 3): onde a vaga de puxar escolheria a barra fixa (pronada ou supinada) para o iniciante, entra a barra só na descida; se ela já está no dia, a vaga segue para a próxima opção da função, sem a barra. Quem ainda não faz uma repetição precisa de um começo (um estudo, `johnson2009`); só a descida cresce o músculo como só a subida (moderada, certeza baixa: `schoenfeld2017`, `dasilva2025`); a passagem para a barra é `progressao.negativa-para-barra`. A ordem para o iniciante é consenso",
+    "valores": {
+      "iniciante": "barra só na descida no lugar da barra fixa",
+      "intermediario": "não se aplica (a barra fixa, como antes)",
+      "avancado": "não se aplica (a barra fixa, como antes)"
+    },
+    "selo": "consenso",
+    "fontes": [
+      "johnson2009",
+      "schoenfeld2017",
+      "dasilva2025",
+      "vigouroux2024",
       "shabbir2026"
     ]
   },
@@ -1327,11 +1426,11 @@
   },
   {
     "id": "selecao.gluteo",
-    "regra": "Ordem das funções para glúteos; o coice na polia sobe ao 1º nível da extensão de quadril, ao lado do hip thrust e do coice na máquina, por ser o único com ensaio de ressonância (`attarieh2026`; decisão do Gustavo em 06/11/2026). No Corpo todo A/B, a vaga de extensão de quadril, que é do foco em glúteo, passa a valer também quando a vaga de dobrar o quadril não tem exercício (equipamento ou dor): o glúteo não fica só com agachar e afundo; com 45 min ou menos, ela fica com 2 séries, para o dia não passar do tempo (R5a, 08/11/2026; `b-monte-e-avaliador.md`, pedido 3; 150 programas da grade reduzida, todos do Corpo todo A/B; com dor de 7 no ombro, no joelho ou na lombar, os programas de 2 e 3 dias sem extensão de quadril caem de 27–40% para 0–4%)",
+    "regra": "Ordem das funções para glúteos; o coice na polia sobe ao 1º nível da extensão de quadril, ao lado do hip thrust e do coice na máquina, por ser o único com ensaio de ressonância (`attarieh2026`; decisão do Gustavo em 06/11/2026). No Corpo todo A/B, a vaga de extensão de quadril, que é do foco em glúteo, passa a valer também quando a vaga de dobrar o quadril não tem exercício (equipamento ou dor): o glúteo não fica só com agachar e afundo; com 45 min ou menos, ela só ganha séries enquanto o dia couber nos minutos; num dia que perdeu vaga de pernas para a dor, ela não entra, porque o dia já é refeito com o músculo mais abaixo da meta (`selecao.dia-sem-principal`) e ela tirava o lugar do 2º exercício do foco (R5a, 08/11/2026, revisto ao juntar com o R5d em 09/11; `b-monte-e-avaliador.md`, pedido 3; 150 programas da grade reduzida, todos do Corpo todo A/B; com dor de 7 no ombro, no joelho ou na lombar, os programas de 2 e 3 dias sem extensão de quadril caem de 27–40% para 0–4%)",
     "valores": {
-      "iniciante": "agachar profundo ou afundo → extensão de quadril (hip thrust, glúteo na máquina, ponte, coice) → abdução como complemento (máquina, polia, caneleira, mini-band e, sem nada, deitado de lado sem carga, com repetições altas: auditoria de 04/11/2026); sem exercício de dobrar o quadril, a extensão de quadril entra (2 séries com até 45 min)",
-      "intermediario": "agachar profundo ou afundo → extensão de quadril (hip thrust, glúteo na máquina, ponte, coice) → abdução como complemento (máquina, polia, caneleira, mini-band e, sem nada, deitado de lado sem carga, com repetições altas: auditoria de 04/11/2026); sem exercício de dobrar o quadril, a extensão de quadril entra (2 séries com até 45 min)",
-      "avancado": "agachar profundo ou afundo → extensão de quadril (hip thrust, glúteo na máquina, ponte, coice) → abdução como complemento (máquina, polia, caneleira, mini-band e, sem nada, deitado de lado sem carga, com repetições altas: auditoria de 04/11/2026); sem exercício de dobrar o quadril, a extensão de quadril entra (2 séries com até 45 min)"
+      "iniciante": "agachar profundo ou afundo → extensão de quadril (hip thrust, glúteo na máquina, ponte, coice) → abdução como complemento (máquina, polia, caneleira, mini-band e, sem nada, deitado de lado sem carga, com repetições altas: auditoria de 04/11/2026); sem exercício de dobrar o quadril, a extensão de quadril entra (até 45 min, só enquanto o dia couber)",
+      "intermediario": "agachar profundo ou afundo → extensão de quadril (hip thrust, glúteo na máquina, ponte, coice) → abdução como complemento (máquina, polia, caneleira, mini-band e, sem nada, deitado de lado sem carga, com repetições altas: auditoria de 04/11/2026); sem exercício de dobrar o quadril, a extensão de quadril entra (até 45 min, só enquanto o dia couber)",
+      "avancado": "agachar profundo ou afundo → extensão de quadril (hip thrust, glúteo na máquina, ponte, coice) → abdução como complemento (máquina, polia, caneleira, mini-band e, sem nada, deitado de lado sem carga, com repetições altas: auditoria de 04/11/2026); sem exercício de dobrar o quadril, a extensão de quadril entra (até 45 min, só enquanto o dia couber)"
     },
     "selo": "um estudo",
     "fontes": [
@@ -1846,11 +1945,11 @@
   },
   {
     "id": "tempo.sobra-series",
-    "regra": "Séries no tempo que sobra (sessão de qualidade dos treinos, decisão do Gustavo em 06/11/2026): nos dias que têm vaga sem exercício possível por equipamento, as séries dos exercícios do dia sobem até o alvo do nível em cada músculo com meta (o abdômen não prioritário fica na meta dele), enquanto o dia couber nos minutos; o músculo mais longe da meta vem primeiro, e nunca passa de 4 séries por exercício, 10 por músculo na sessão, 20 na semana nem, num músculo que não é prioridade, do máximo do nível (`volume.semanal.maximo`). A direção (mais séries, mais crescimento, com retorno decrescente) é robusta; usar o tempo que sobra assim é escolha do projeto",
+    "regra": "Séries no tempo que sobra (sessão de qualidade dos treinos, decisão do Gustavo em 06/11/2026): nos dias que têm vaga sem exercício possível por equipamento, as séries dos exercícios do dia sobem até o alvo do nível em cada músculo com meta (o abdômen não prioritário fica na meta dele), enquanto o dia couber nos minutos; o músculo mais longe da meta vem primeiro, e nunca passa de 4 séries por exercício, 10 por músculo na sessão, 20 na semana nem, num músculo que não é prioridade, do máximo do nível (`volume.semanal.maximo`). Desde o R5d (08/11/2026; `volume.prioridade.foco-primeiro`), com um grupo de foco possível, o foco sobe primeiro, até o máximo do nível, e os outros só depois, até 6 séries abaixo do foco mais fraco; sem foco, todos sobem como antes. A direção (mais séries, mais crescimento, com retorno decrescente) é robusta; usar o tempo que sobra assim é escolha do projeto",
     "valores": {
-      "iniciante": "até 8 por músculo",
-      "intermediario": "até 12 por músculo",
-      "avancado": "até 14 por músculo"
+      "iniciante": "sem foco, até 8 por músculo; com foco, o foco até 10 e os outros até 6 abaixo dele",
+      "intermediario": "sem foco, até 12 por músculo; com foco, o foco até 16 e os outros até 6 abaixo dele",
+      "avancado": "sem foco, até 14 por músculo; com foco, o foco até 20 e os outros até 6 abaixo dele"
     },
     "selo": "consenso",
     "fontes": [

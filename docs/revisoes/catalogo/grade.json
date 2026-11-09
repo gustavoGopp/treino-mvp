@@ -5922,14 +5922,14 @@
     "repeteSemOpcao": 63
    },
    "afundo": {
-    "aparece2": 3109,
+    "aparece2": 3217,
     "repeteComOpcao": 0,
     "repeteSemOpcao": 69
    },
    "agachar": {
-    "aparece2": 768,
+    "aparece2": 829,
     "repeteComOpcao": 0,
-    "repeteSemOpcao": 576
+    "repeteSemOpcao": 637
    },
    "biceps": {
     "aparece2": 1386,
@@ -5947,9 +5947,9 @@
     "repeteSemOpcao": 225
    },
    "elevacao-lateral": {
-    "aparece2": 1523,
+    "aparece2": 1527,
     "repeteComOpcao": 75,
-    "repeteSemOpcao": 998
+    "repeteSemOpcao": 1002
    },
    "empurrar-horizontal": {
     "aparece2": 2970,
@@ -5997,9 +5997,9 @@
     "repeteSemOpcao": 380
    },
    "puxar-vertical": {
-    "aparece2": 1854,
-    "repeteComOpcao": 261,
-    "repeteSemOpcao": 723
+    "aparece2": 1863,
+    "repeteComOpcao": 360,
+    "repeteSemOpcao": 729
    },
    "triceps-acima-cabeca": {
     "aparece2": 1980,

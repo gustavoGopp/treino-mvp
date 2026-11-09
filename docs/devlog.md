@@ -1219,6 +1219,74 @@ Os testes passaram de 647 para 662 unitários e de 46 para 113 de ponta a ponta.
 >
 > E um aprendizado de produto: os desenhos dos aparelhos precisaram de três rodadas. O ícone bonito não basta se quem não conhece o leg press não reconhece o leg press. No fim, ficou a ilustração realista, só do aparelho, porque o vídeo do guia já mostra como usar.
 
+## R5d: o foco que aparece (08/11/2026)
+
+**Por quê.** As duas revisões cegas da biblioteca ampliada apontaram, nas duas versões do app, a mesma falha: o grupo escolhido como foco recebia quase o mesmo volume que o resto. Na régua, é a nota C2, "foco invisível": o prioritário não passava da mediana dos outros músculos em 28,8% dos programas sem dor. No caso que motivou a sessão (fictício: intermediário, sem nada, foco nos superiores, 60 min), as pernas, que não são foco, recebiam 11 a 12 séries por semana, tanto quanto o peito. O R5a ainda não foi feito; este marco partiu da `main` com o R5-CL.
+
+**O que mudou para quem usa.**
+- **O foco usa o tempo primeiro** (regra nova `volume.prioridade.foco-primeiro`): o tempo que sobra vai primeiro para o foco (até o máximo do nível, e enquanto as séries diretas dele estiverem abaixo da meta) e só depois para os outros, que ficam pelo menos 6 séries abaixo do foco, sem desequilibrar o ombro (empurrar ÷ puxar até 1,5) nem a coxa. Com foco, os isoladores de quem não é foco entram depois das vagas do foco.
+- **O 2º exercício do foco** (`volume.prioridade.segundo-exercicio`): o músculo do foco que fica abaixo da meta ganha até 2 exercícios de outra função, num dia da mesma região (nunca panturrilha num dia de superiores), se couberem nos minutos.
+- **A meta do foco do iniciante** vai de 8 para 10, e o texto diz por quê (decisão técnica abaixo).
+- **O 1º degrau da escada pelo nível** (`progressao.degrau-inicial`): na 1ª vez de um exercício de peso do corpo ou elástico, o intermediário começa no degrau 1 e o avançado no 2. O estado guardado não muda (o degrau continua sendo um índice).
+- **A barra só na descida antes da barra para o iniciante** (`selecao.barra-negativa-iniciante`) e, no último degrau dela, a sugestão de tentar a barra fixa (`progressao.negativa-para-barra`).
+- **"Escolha até 2" no cadastro** (`volume.prioridade.ate-dois`), sem bloquear: "pernas" conta como 3 e "braços" como 2; com mais, uma nota diz que o foco se divide. Feito com os componentes de hoje; a tela é pedido ao design.
+- **Os avisos de lacuna** já diziam o que o programa tem desde o R5-CL; ficou um teste de regressão (0 contradições numa varredura de 6.600 programas).
+
+**Decisões técnicas desta sessão** (cada uma medida):
+1. **A meta do foco do iniciante vai de 8 para 10** (item 7). O 8 era convenção (nenhuma fonte valida volumes por nível); 10 é o topo da faixa do iniciante (6–10); a dose-resposta "10 ou mais rendem mais que menos de 10" é robusta e inclui não treinados; e o começo leve do iniciante serve para passar pela fase de dano, não porque ele cresça com menos (`pesquisa-v2/06`), o que a fase de aprendizado já cobre. Com 8, o foco invisível do iniciante ficava em 21,9%; com 10, em 15,4%. O tempo que sobra sem foco e a fase de aprendizado não mudam (seguem com 8 e 3/4 das séries).
+2. **O tempo que sobra, revisto depois da 1ª revisão cega.** A 1ª versão deixava os outros na meta e o foco parava na meta: os treinos de quem tem pouco equipamento encurtavam (só barra fixa: de 51–59 para 33–37 min em 60) e a revisão cega os achou piores. Medi três saídas: o foco até o máximo do nível, sozinho, não enche o tempo e piora o ombro (D1 +11); os outros até 2 abaixo do foco piora o ombro (D1 +27); **o foco primeiro e os outros até 6 abaixo**, com as travas do ombro e da coxa, não piora nenhum defeito e usa 91,3% dos minutos no dia mais longo (`main`: 92,0%).
+3. **Uma salvaguarda de tempo:** se adiar os isoladores de quem não é foco deixar um dia acima de 110% dos minutos que a montagem de antes não deixava, vale a de antes (sem ela, o A3 subia em 7 programas).
+4. **O protegido do foco com 30 min** (a panturrilha ou o abdômen que entra para não ficar a zero) não fica preso em 2 séries quando é foco: a trava existe para quem não é foco.
+5. **A fonte `fukunaga2022`, citada no pedido para a barra, não entrou:** é sobre a abertura com elástico. As regras da barra usam as fontes já conferidas da `selecao.barra-negativa`.
+
+**Medido** (grade de 108.900 programas, os 36.300 sem dor; `revisoes/qualidade/regua.md`):
+
+| | `main` (R5-CL) | R5d |
+|---|---:|---:|
+| **C2 foco invisível** (sem dor) | 28,8% | **13,2%** |
+| C2 entre os programas com foco: iniciante / intermediário / avançado | 38,5% / 29,7% / 26,7% | **15,4% / 13,8% / 14,2%** |
+| C2 por foco: pernas / abdômen / superiores / peito | 72,8% / 55,1% / 29,7% / 14,8% | 44,2% / 21,6% / 14,3% / 0,3% |
+| C1 foco abaixo da meta com tempo | 2,1% | **1,5%** |
+| Programas sem nenhum defeito | 83,9% | **85,0%** |
+| Algum defeito pior que na `main` (sem dor e com dor) | — | **nenhum** |
+| A2 / A3 / A4 / D1 / E1 (sem dor) | 532 / 2.553 / 1.877 / 445 / 75 | 385 / 2.512 / 1.831 / 444 / 35 |
+| Uso do dia mais longo (média) | 92,0% | 91,3% |
+| Notas que pioram (o custo) | — | G1 73,1% → 74,1% (a negativa e os 2º exercícios ainda são cartão de texto), A1 9,6% → 10,0%, A5 12,9% → 13,3% |
+
+O que resta do foco invisível está nos treinos de 30 min (31,3%) e no foco nas pernas (44,2%): três músculos com meta alta em pouco tempo, o caso honesto do "não cabe", que o aviso de focos que competem e a nota do "até 2" explicam.
+
+**O caso do Gustavo** (fictício "Gael": intermediário, sem nada, 60 min, foco nos superiores):
+- **3 dias, antes:** 52, 60 e 56 min; peito 12, tríceps 12,5; quadríceps 11, posteriores 12, glúteos 12,5.
+- **3 dias, depois:** 60, 58 e 44 min, os mesmos exercícios; **peito 16, tríceps 15**; quadríceps 9, posteriores 9, glúteos 9,5.
+- **4 dias:** peito e tríceps de 12 para 16; quadríceps e posteriores de 12 para 10.
+- O aceite pedia as pernas "perto do piso" (6). Elas ficam em 9–10: a versão que as deixava em 6 encurtava os treinos e foi a mais criticada na revisão cega (decisão 2). O foco fica 6 séries acima delas.
+
+**As 18 personas** (as 6 de sempre e as 12 de teste, recriadas como fictícias em `tests/personas/regua.ts`): nenhuma ganhou defeito. Mudam de forma visível: Gael (o foco sobe), Fábio e Igor (só barra fixa: costas 12 → 16 e os outros em 9–10), Otto (peito e ombros acima das pernas), Rui (iniciante só com barra fixa: a negativa nos 3 dias, no lugar da barra), Diego (a negativa no lugar da barra; peito 10), Murilo e Pietra (ponte com 3 a 4 séries, glúteos 13,5–15,5), Carla (a panturrilha sentada entra no Inferior e chega a 14). Iguais: Bruno, Elisa, Iara, Joana, Lia, Nara, Kaique (pernas com kettlebell em 45 min: o corte de tempo ainda tira séries do foco). Os snapshots estão em `tests/unit/__snapshots__/` para a revisão.
+
+**Revisão cega** (3 rodadas, cada uma com um treinador simulado diferente, que só via as 36 semanas embaralhadas; é opinião, não evidência):
+
+| | Rodada 1 (1ª versão) | Rodada 2 | Rodada 3 (versão final) |
+|---|---|---|---|
+| Eficiente (`main` → R5d) | 5,28 → 5,11 | 5,22 → **5,39** | 5,11 → **5,33** |
+| Agradável | 5,28 → 5,06 | 5,22 → 5,11 | 5,22 → 5,17 |
+| Adequada | 4,89 → 4,94 | 4,83 → **5,39** | 5,11 → **5,67** |
+| Personas melhores / piores / iguais | 4 / 4 / 10 | 7 / 2 / 9 | **8 / 2 / 8** |
+
+- A rodada 1 achou piores os treinos encurtados (decisão 2); a 2 achou o foco nos glúteos só com séries indiretas (Murilo e Pietra: a ponte em 2 séries), o que levou à regra das séries diretas; na 3, Murilo melhora e Pietra empata.
+- **O aceite "nenhuma persona pior" não fechou ao pé da letra:** na rodada 3, Helena e Otto perdem 1 ponto numa das três notas; nas rodadas anteriores, Helena empatou nas duas e Otto melhorou nas duas. Nenhuma persona piorou em mais de uma rodada.
+- **O que os três treinadores criticaram, nas duas versões, e não é deste marco:** nada de puxar improvisado sem equipamento (remada sob a mesa, toalha na porta); avançado sem carga com agachamento de 12–20 (o degrau inicial muda a 1ª vez, mas a semana mostra o exercício base); abdominal com 4 séries num dia só e elevação lateral no dia de pernas; drop sets e superséries para iniciante; halteres leves sem elevação lateral; a fita e a mini-band pouco usadas.
+
+**Também:** 6 regras novas e 3 revistas (159 linhas em `regras.md`); `tests/unit/foco.test.ts` (as regras novas e os avisos) e os testes das escadas; a coluna "C2 (com foco)" nas tabelas da grade; o recado ao R3 (`prompts/recado-r3-r5d.md`).
+
+**Fica para depois** (`backlog.md`, "Do R5d").
+
+**Rascunho de post para o LinkedIn**
+> No meu app de treino, escolher um grupo de foco quase não mudava nada: quem pedia foco nos braços e no peito sem equipamento recebia tantas séries de perna quanto de peito. Três treinadores simulados, que não sabiam qual versão era qual, apontaram isso.
+>
+> A correção não foi "mais treino". Foi uma ordem: o tempo livre vai primeiro para o foco, e só depois para o resto, que fica sempre bem abaixo. Num caso típico, o peito foi de 12 para 16 séries por semana e as pernas de 12 para 9, com o mesmo tempo de treino. Na grade de 108.900 combinações, o "foco que não aparece" caiu de 29% para 13% dos programas, sem piorar nenhum dos defeitos que o app mede.
+>
+> O que aprendi: a primeira versão deixava o resto "no mínimo" e sobrava tempo sem uso. A revisão cega achou pior. Medir com opinião de fora, além dos números, pegou um erro que a régua não via.
+
 ## R5a: o registro que não engana (08/11/2026)
 
 **Por quê.** A sessão de próximos passos (06/11) percorreu o app como as 6 personas e simulou meses de uso com o código real. O que mais pesou não foi uma função nova, foi o que engana a pessoa sem ela perceber: a nota de dor do "Senti algo" não ficava guardada (0 de 6 personas), então a redução da carga com dor de 3 a 5 e o aviso da "dor que se repete" nunca disparavam; "Começar" e "Terminar" sem série contava como treino e pulava o dia (6 de 6); a calibração da carga não terminava quando o próximo peso era um salto grande; e quem recusava a semana leve a via de novo a cada treino. O redesign já estava na `main`, então este marco mexeu só na lógica, com o mínimo de tela; o resto vai como pedido ao design.
@@ -1284,6 +1352,24 @@ Os testes passaram de 647 para 662 unitários e de 46 para 113 de ponta a ponta.
 6. o fim da calibração: hoje, a frase "Fim da calibração: 5 kg é a carga mais perto da sua faixa…" no lugar da linha "Calibração:".
 
 **Fica para depois** (`backlog.md`, "Do R5a"): a nota de dor dada antes da 1ª série de um exercício que é encerrado (dor acima de 5) não tem série onde ficar; os 0,8% de programas que perdem a extensão de quadril no corte de tempo; os gatilhos numéricos da semana leve e do "estagnado", que esperam o export do R3.
+
+**Junto com o R5d (09/11/2026).** Antes de ir para a `main`, o R5a foi juntado ao R5d (o foco), que tinha chegado lá primeiro e mexe no mesmo gerador. Três acertos, medidos na régua contra a `main` com o R5d:
+- **O 2º exercício do foco também respeita o teto com indiretas e o "um afundo por dia"**: ele punha um afundo num dia que já tinha búlgaro.
+- **A ponte que entra pela falta do stiff** só ganha série, nos treinos de até 45 min, enquanto o dia couber nos minutos; e não entra num dia que perdeu vaga de pernas para a dor, que já é refeito com o músculo mais abaixo da meta. Sem isso, ela tirava o lugar do 2º exercício do foco (um caso da régua: abdômen de foco caindo de 8 para 4 séries, e o glúteo com 2).
+- **Um teste pesado do gerador** ganhou 20 s de limite, e a amostra do teste do R5a passou a ser gerada sem travar o processo do Vitest.
+
+| Régua (108.900 programas) contra a `main` com o R5d | `main` | com o R5a |
+|---|---:|---:|
+| Sem nenhum defeito, sem dor / com dor | 85,0% / 74,1% | **85,1%** / 74,1% (12 programas a menos) |
+| A3, dia acima de 110% dos minutos, sem dor / com dor | 2.512 / 2.535 | **2.506 / 2.532** |
+| C1, foco abaixo da meta com tempo, sem dor / com dor | 529 / 963 | **466** / 980 |
+| D1, empurrar ÷ puxar acima de 1,5, sem dor / com dor | 444 / 341 | 467 / 341 |
+| E1 e os outros defeitos | iguais | iguais |
+| Grade reduzida: teto com indiretas / 2 afundos / ponte sem extensão / ombro lateral a zero (6x) | 44 dias / 820 dias / 150 / 87,7% | **0 / 2 / 0 / 24,6%** |
+| Grade reduzida: 30 min com um dia acima do tempo | 50,6% | 50,1% (a meta era ≤ 50%: ficou 0,1 ponto acima) |
+| Com dor 7, 2 e 3 dias, ponte possível e nenhuma extensão de quadril (ombro / joelho / lombar) | 27% / 27% / 40% | **0,3%** / 27% / **4,3%** |
+
+As personas continuam iguais às aprovadas no R5d.
 
 **Rascunho de post para o LinkedIn**
 > No meu app de treino, a pessoa podia dizer "senti dor 4 de 10" no meio de uma série. O app mostrava o conselho certo, reduzir a carga, e esquecia a nota. Na sessão seguinte, sugeria a mesma carga, como se nada tivesse acontecido. A regra de segurança existia, tinha fonte e tinha teste. Só nunca recebia o dado.

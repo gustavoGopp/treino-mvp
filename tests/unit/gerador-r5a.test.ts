@@ -1,4 +1,4 @@
-import { describe, expect, it } from 'vitest';
+import { beforeAll, describe, expect, it } from 'vitest';
 import { POR_ID } from '../../src/domain/biblioteca';
 import { contextoDeSelecao, gerarPrograma, GRUPOS, seriesDeVolume, volumePorMusculo, type Grupo, type Perfil, type Programa } from '../../src/domain/gerador';
 import { OPCOES_POR_DIAS, type DiasSemana } from '../../src/domain/gerador/divisoes';
@@ -17,16 +17,22 @@ const CENS: { id: string; inventario: Inventario }[] = [
 ];
 type Caso = { cen: string; inv: Inventario; pf: Perfil; p: Programa };
 const AMOSTRA: Caso[] = [];
-for (const c of CENS)
-  for (const nivel of NIVEIS)
-    for (const d of [2, 3, 4, 5, 6] as DiasSemana[])
-      for (const minutos of [30, 60, 90])
-        for (const prioridades of FOCOS) {
-          const pf = perfil({ nivel, divisao: OPCOES_POR_DIAS[d][0]!, minutos, prioridades, dores: [] });
-          delete pf.divisao; // a divisão fica livre, para divisao.sem-puxar valer (o Corpo todo 6x)
-          const r = gerarPrograma(pf, c.inventario);
-          if (r.status === 'ok') AMOSTRA.push({ cen: c.id, inv: c.inventario, pf, p: r.programa });
-        }
+// Gerada antes dos testes, cedendo a vez entre os cenários: um bloco longo sem pausa faz o Vitest perder o contato com
+// o processo do teste ("Timeout calling onTaskUpdate").
+beforeAll(async () => {
+  for (const c of CENS) {
+    for (const nivel of NIVEIS)
+      for (const d of [2, 3, 4, 5, 6] as DiasSemana[])
+        for (const minutos of [30, 60, 90])
+          for (const prioridades of FOCOS) {
+            const pf = perfil({ nivel, divisao: OPCOES_POR_DIAS[d][0]!, minutos, prioridades, dores: [] });
+            delete pf.divisao; // a divisão fica livre, para divisao.sem-puxar valer (o Corpo todo 6x)
+            const r = gerarPrograma(pf, c.inventario);
+            if (r.status === 'ok') AMOSTRA.push({ cen: c.id, inv: c.inventario, pf, p: r.programa });
+          }
+    await new Promise((ok) => setTimeout(ok, 0));
+  }
+}, 60_000);
 const nome = (x: Caso) => `${x.cen} ${x.pf.nivel} ${x.p.divisao} ${x.pf.minutosSessao} min ${x.pf.prioridades.join('+') || 'sem foco'}`;
 const AFUNDOS = new Set(FUNCAO['afundo']!.niveis.flat());
 

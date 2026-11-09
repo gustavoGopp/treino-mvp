@@ -118,7 +118,7 @@ describe('cenário 2: só halteres e banco (Ana)', () => {
 describe('cenário 3: casa com elásticos e barra fixa (Diego)', () => {
   const p = ok(diego.perfil, diego.inventario);
   it('usa barra fixa, elásticos e peso do corpo; avisa sobre pernas', () => {
-    expect(ids(p)).toContain('barra-fixa');
+    expect(ids(p)).toContain('barra-fixa-negativa'); // R5d: o iniciante recebe a barra só na descida (selecao.barra-negativa-iniciante)
     expect(ids(p).every((id) => ['elastico', 'peso-corpo', 'halter'].includes(POR_ID[id]!.carga))).toBe(true);
     expect(p.avisos.map((a) => a.regraId)).toContain('equipamento.escada-carga-leve');
   });
@@ -319,7 +319,7 @@ describe('ordem da sessão (ordem.sessao)', () => {
         expect(tipos, `${v.nome} ${d.nome}`).toEqual([...tipos].sort((a, b) => a - b));
       }
     }
-  });
+  }, 20_000); // gera centenas de programas: com o gerador do R5d, leva ~5,5 s com os testes em paralelo
 });
 
 describe('cortes respeitam a prioridade e avisam o que ficou de fora', () => {
@@ -675,7 +675,10 @@ describe('o que a prioridade diz (volume.semanal.alvo; volume.prioridade.competi
   it('o porquê explica foco com manutenção: o foco cresce mais rápido e os outros continuam crescendo', () => {
     const q = ok(fabio.perfil, fabio.inventario).porque.find((x) => x.regraId === 'volume.semanal.alvo')!;
     expect(q.texto).toMatch(/^Foco em costas: ~12 séries por semana/);
-    expect(q.texto).toMatch(/continuam crescendo, mais devagar/);
+    expect(q.texto).toMatch(/mais do que o necessário para manter \(1 a 3\) e o bastante para continuar crescendo, mais devagar/);
+    // R5d: no iniciante, o texto diz por que o foco é 10.
+    const ini = ok({ ...fabio.perfil, nivel: 'iniciante' }, fabio.inventario).porque.find((x) => x.regraId === 'volume.semanal.alvo')!;
+    expect(ini.texto).toMatch(/^Foco em costas: ~10 séries por semana, o topo da faixa de quem está começando, para crescer mais rápido/);
     const sem = ok({ ...fabio.perfil, prioridades: [] }, fabio.inventario).porque.find((x) => x.regraId === 'volume.semanal.alvo')!;
     expect(sem.texto).toMatch(/^Sem grupo de foco/);
   });
@@ -718,7 +721,8 @@ describe('abdômen e panturrilha (tempo.musculo-protegido; selecao.abdomen-prior
     }
   });
   it('o exercício que entrou para proteger diz por quê', () => {
-    const p = ok(ana.perfil, ana.inventario);
+    // A Ana com 30 min (com 45, desde o R5d, o abdômen dela entra pela vaga comum).
+    const p = ok({ ...ana.perfil, minutosSessao: 30 }, ana.inventario);
     expect(p.dias.flatMap((d) => d.exercicios).some((x) => x.porque.some((q) => q.regraId === 'tempo.musculo-protegido'))).toBe(true);
   });
   it('com o abdômen como prioridade, os dias de superior, empurrar e pernas B ganham uma vaga de abdômen', () => {
@@ -758,11 +762,11 @@ describe('equilíbrio da coxa e o ajuste de 30 min (volume.equilibrio-coxa; temp
       expect(ids(p).some((id) => ['flexao-joelho', 'dobrar-quadril'].includes(POR_ID[id]!.padrao)), v.nome).toBe(true);
     }
   });
-  it('com 30 min, o exercício protegido fica com 2 séries', () => {
+  it('com 30 min, o exercício protegido fica com 2 séries (salvo o do foco: volume.prioridade.foco-primeiro, R5d)', () => {
     let vistos = 0;
     for (const v of grade.filter((x) => x.perfil.minutosSessao === 30))
       for (const x of ok(v.perfil, v.inv).dias.flatMap((d) => d.exercicios))
-        if (x.porque.some((q) => q.regraId === 'tempo.musculo-protegido')) {
+        if (x.porque.some((q) => q.regraId === 'tempo.musculo-protegido') && !POR_ID[x.exId]!.musculos.primarios.some((m) => v.perfil.prioridades.some((g) => (GRUPOS[g] as readonly string[]).includes(m)))) {
           vistos++;
           expect(seriesDeVolume(x), `${v.nome}: ${x.exId}`).toBe(2);
         }
