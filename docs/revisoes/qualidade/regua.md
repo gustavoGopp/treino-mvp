@@ -6,21 +6,21 @@
 
 ## Nenhum defeito pode piorar
 
-**Pioraram em relação à linha de base (`docs/revisoes/qualidade/regua-linha-de-base.json`):** E1 com dor: 0 → 2.
+Nenhum defeito acima da linha de base (`docs/revisoes/qualidade/regua-linha-de-base.json`, a `main` antes da biblioteca ampliada).
 
 | defeito | o que é | sem dor | % | linha de base | com dor | % | linha de base |
 | --- | --- | ---: | ---: | ---: | ---: | ---: | ---: |
 | A2 | dia com menos de 3 exercícios ou sem multiarticular | 385 | 1,1% | 7,5% | 14.995 | 20,7% | 23,5% |
-| A3 | dia mais longo acima de 110% dos minutos | 2.506 | 6,9% | 9,8% | 2.144 | 3,0% | 4,5% |
+| A3 | dia mais longo acima de 110% dos minutos | 2.506 | 6,9% | 9,8% | 2.532 | 3,5% | 4,5% |
 | A4 | dia típico abaixo de 70% dos minutos, sem o aviso | 1.831 | 5,0% | 5,3% | 0 | 0,0% | 0,0% |
 | B1 | o mesmo exercício em todos os dias havendo outro do mesmo nível | 0 | 0,0% | 0,3% | 780 | 1,1% | 1,3% |
-| C1 | prioritário abaixo da meta com tempo e exercício | 466 | 1,3% | 4,1% | 941 | 1,3% | 5,8% |
-| D1 | empurrar ÷ puxar acima de 1,5 havendo como puxar | 467 | 1,3% | 6,1% | 357 | 0,5% | 3,2% |
+| C1 | prioritário abaixo da meta com tempo e exercício | 466 | 1,3% | 4,1% | 980 | 1,3% | 5,8% |
+| D1 | empurrar ÷ puxar acima de 1,5 havendo como puxar | 467 | 1,3% | 6,1% | 341 | 0,5% | 3,2% |
 | D3 | quadríceps ÷ posteriores fora de 0,5–2 (ou sem posteriores direto) | 0 | 0,0% | 1,6% | 0 | 0,0% | 0,3% |
-| E1 | não prioritário com 1 a 3 séries havendo exercício e tempo | 35 | 0,1% | 0,2% | 2 | 0,0% | 0,0% |
+| E1 | não prioritário com 1 a 3 séries havendo exercício e tempo | 35 | 0,1% | 0,2% | 0 | 0,0% | 0,0% |
 | seguranca | exercício impossível, acima da complexidade ou numa região com dor > 5 | 0 | 0,0% | 0,0% | 0 | 0,0% | 0,0% |
-| **sem nenhum defeito** |  | 30.890 | **85,1%** |  | 54.154 | 74,6% |  |
-| sem defeito, fora o D1 |  | 31.179 | 85,9% |  | 54.364 | 74,9% |  |
+| **sem nenhum defeito** |  | 30.890 | **85,1%** |  | 53.774 | 74,1% |  |
+| sem defeito, fora o D1 |  | 31.179 | 85,9% |  | 53.937 | 74,3% |  |
 
 Como cada limite é medido (as definições do protótipo de `g-biblioteca-ampliada.md` foram descartadas com o rascunho; estas reproduzem a linha de base dele em todos os números publicados, menos o D1): o dia típico (A4) é a mediana dos dias; "tem tempo" (C1, E1) é o dia mais longo abaixo de 85% dos minutos; o foco (C1, C2) só conta músculos com exercício possível, e C2 compara com a mediana dos não prioritários que têm exercício possível; D1 e D3 só valem quando o equipamento permite puxar, e treinar quadríceps e posteriores. **O D1 usa o limite escrito na tabela 4.7 (empurrar ÷ puxar acima de 1,5)**: dá 6,1% na `main`, e não os 0,9% do protótipo, cuja leitura exata se perdeu. Por isso a linha "fora o D1" é a comparável com os 73,4% (hoje) e os 83,8% (final) do protótipo.
 
@@ -388,8 +388,6 @@ O 1º programa da grade com cada defeito e nota.
   - Corpo todo A (55 min): goblet 2, stiff 3, rosca-alternada 4, rosca-concentrada 2, triceps-elastico-alto 4, panturrilha-degrau 4, abdominal-chao 2 | Corpo todo B (65 min): afundo 2, ponte-gluteo-halter 3, rosca-martelo 4, triceps-elastico-alto 4, flexao-joelho-elastico 3, extensao-joelho-elastico 2, aducao-deitado 2, abdominal-invertido 2
 - **D1** (com dor), casa · iniciante · 2 dias · 30 min · foco peito · joelho 7: empurrar 8 ÷ puxar 4 séries.
   - Corpo todo A (46 min): flexao 4, remada-unilateral-sem-banco 2, stiff 2, elevacao-halteres 3+drop, panturrilha-degrau 2, abdominal-chao 2 | Corpo todo B (32 min): flexao 4, remada-curvada-halteres 2, stiff-unilateral 2, rosca-alternada 2+drop
-- **E1** (com dor), so:gluteo_maquina · intermediario · 2 dias · 45 min · foco abdomen · joelho 7: gluteos com 2 séries e o dia mais longo em 36 de 45 min.
-  - Corpo todo A (36 min): flexao 2, flexao-pes-elevados 2, extensao-triceps-peso-corpo 2, panturrilha-degrau 4, abdominal-chao 4 | Corpo todo B (36 min): flexao-pes-elevados 2, pike 2, coice-maquina 2, abertura-t-deitado 4, aducao-deitado 2
 - **A1** (com dor), casa · iniciante · 2 dias · 30 min · foco nenhum · joelho 7: Corpo todo A com 6 exercícios em 30 min (faixa 3–5).
   - Corpo todo A (37 min): flexao 2, remada-unilateral-sem-banco 2, stiff 2, elevacao-halteres 3+drop, panturrilha-degrau 2, abdominal-chao 2 | Corpo todo B (29 min): flexao 3, remada-curvada-halteres 3, stiff-unilateral 2, rosca-alternada 2+drop
 - **A5** (com dor), casa · iniciante · 2 dias · 30 min · foco costas · joelho 7: dias de 27 a 46 min.
