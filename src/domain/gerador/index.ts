@@ -305,8 +305,7 @@ function montarPrograma(perfil: Perfil, inventarioOriginal: Inventario, triagem:
   // só a distribuição das séries conferia o teto, e no modelo de 6 dias com três vagas de glúteo o mínimo sozinho
   // chegava a 21 (auditoria de 04/11/2026, Parte C).
   const vMinimo: Partial<Record<Musculo, number>> = {};
-  const cabeNoTetoSemanal = (e: Exercicio) =>
-    (Object.entries(volumePorMusculo([{ ex: e, series: VOLUME.seriesPorExercicio.min }])) as [Musculo, number][]).every(([m, n]) => (vMinimo[m] ?? 0) + n <= VOLUME.teto);
+  const cabeNoTeto = (e: Exercicio) => cabeNoTetoSemanal(e, vMinimo);
   // Músculos com meta que têm alguma vaga-base na semana (fora os complementos). Um complemento que é o único
   // exercício direto de um músculo com meta (o ombro posterior, por exemplo) entra antes dos complementos de músculos
   // que já têm vaga-base, mesmo prioritários: o piso de todo músculo vem antes da 2ª dose do prioritário
@@ -374,7 +373,7 @@ function montarPrograma(perfil: Perfil, inventarioOriginal: Inventario, triagem:
       const { ex: escolhido, nivelFuncao } = achado;
       // Toda vaga confere o teto semanal já no mínimo de séries (antes, só os complementos e as vagas de prioridade:
       // com os seis dias do Corpo todo 6x, as vagas-base sozinhas levavam o glúteo a 23; sessão de qualidade, 06/11/2026).
-      if (!cabeNoTetoSemanal(escolhido)) continue;
+      if (!cabeNoTeto(escolhido)) continue;
       if (nivelFuncao > 0 && funcao.semNivel1) nivelAbaixo.add(funcao.semNivel1);
       usos.set(escolhido.id, (usos.get(escolhido.id) ?? 0) + 1);
       for (const [m, n] of Object.entries(volumePorMusculo([{ ex: escolhido, series: VOLUME.seriesPorExercicio.min }])) as [Musculo, number][]) vMinimo[m] = (vMinimo[m] ?? 0) + n;
@@ -402,7 +401,7 @@ function montarPrograma(perfil: Perfil, inventarioOriginal: Inventario, triagem:
       const afundoNoDia = (e: Exercicio) => AFUNDOS.has(e.id) && d.itens.some((i) => AFUNDOS.has(i.ex.id));
       const tresEmpurrares = (e: Exercicio) => empurra(e) && !d.itens.some((i) => puxa(i.ex)) && d.itens.filter((i) => empurra(i.ex)).length >= 2;
       const achado = possiveis
-        .filter((e) => e.padrao !== 'core' && !d.itens.some((i) => i.ex.id === e.id) && !tresEmpurrares(e) && cabeNoTetoSemanal(e) && !ctx.barraDoIniciante(e.id))
+        .filter((e) => e.padrao !== 'core' && !d.itens.some((i) => i.ex.id === e.id) && !tresEmpurrares(e) && cabeNoTeto(e) && !ctx.barraDoIniciante(e.id))
         .flatMap((e) => {
           const f = funcoesDoExercicio(e.id).find((x) => x.musculo === m && naFuncao(x, e.id));
           return f ? [{ e, f }] : [];
@@ -427,7 +426,7 @@ function montarPrograma(perfil: Perfil, inventarioOriginal: Inventario, triagem:
     if (!alvo) continue;
     const res = resolver(alvo.vaga!)!;
     const achado = ctx.escolher(res.funcao, res.nivel, (id) => alvo.d.itens.some((i) => i.ex.id === id), usos);
-    if (!achado || !cabeNoTetoSemanal(achado.ex)) continue;
+    if (!achado || !cabeNoTeto(achado.ex)) continue;
     usos.set(achado.ex.id, (usos.get(achado.ex.id) ?? 0) + 1);
     for (const [mm, n] of Object.entries(volumePorMusculo([{ ex: achado.ex, series: VOLUME.seriesPorExercicio.min }])) as [Musculo, number][]) vMinimo[mm] = (vMinimo[mm] ?? 0) + n;
     alvo.d.itens.push({ ex: achado.ex, vaga: alvo.vaga!, funcao: res.funcao, nivelFuncao: achado.nivelFuncao, series: VOLUME.seriesPorExercicio.min, ordemVaga: 100, protegido: m });
@@ -454,14 +453,14 @@ function montarPrograma(perfil: Perfil, inventarioOriginal: Inventario, triagem:
     const vagas = Math.max(soCore ? 1 : 0, Math.min(d.perdidas, N - d.itens.length));
     const musculosUsados = new Set<Musculo>(d.itens.map((i) => i.funcao.musculo));
     // Sem passar do teto semanal de nenhum músculo, contando as séries indiretas (volume.semanal.teto-padrao).
-    const cabeNoTeto = (e: Exercicio) => {
+    const cabeNoTetoDoDia = (e: Exercicio) => {
       const extra = volumePorMusculo([{ ex: e, series: VOLUME.seriesPorExercicio.min }]);
       return (Object.keys(extra) as Musculo[]).every((m) => (v[m] ?? 0) + extra[m]! <= VOLUME.teto);
     };
     let k = 0;
     for (const { e, f } of cands) {
       if (k >= vagas) break;
-      if (musculosUsados.has(f.musculo) || !cabeNoTeto(e)) continue;
+      if (musculosUsados.has(f.musculo) || !cabeNoTetoDoDia(e)) continue;
       for (const [m, n] of Object.entries(volumePorMusculo([{ ex: e, series: VOLUME.seriesPorExercicio.min }])) as [Musculo, number][]) v[m] = (v[m] ?? 0) + n;
       musculosUsados.add(f.musculo);
       usos.set(e.id, (usos.get(e.id) ?? 0) + 1);
@@ -698,33 +697,8 @@ function montarPrograma(perfil: Perfil, inventarioOriginal: Inventario, triagem:
     p.push(...lembretesDeDor(e, triagem));
     return p;
   };
-  const prescrever = (it: Item): ExercicioPrescrito => {
-    const e = it.ex;
-    const composto = e.tipo === 'composto';
-    // rir.carga-baixa: com carga baixa (muitas repetições), a proximidade da falha pesa mais; a reserva vai até 2.
-    const rirBase = composto ? RIR.composto[nivel] : RIR.isolador[nivel];
-    const cargaBaixa = (e.faixaReps[0] + e.faixaReps[1]) / 2 >= RIR.cargaBaixa.repsMeio && rirBase[1] > RIR.cargaBaixa.rirMax;
-    const rir: [number, number] = cargaBaixa ? [Math.min(rirBase[0], RIR.cargaBaixa.rirMax - 1), RIR.cargaBaixa.rirMax] : rirBase;
-    return {
-      exId: e.id,
-      nome: e.nome,
-      padrao: e.padrao,
-      tipo: e.tipo,
-      funcao: it.funcao.id,
-      series: it.series,
-      reps: e.faixaReps,
-      rir,
-      descansoSeg: composto ? DESCANSO.composto[nivel] : DESCANSO.isolador[nivel],
-      unilateral: e.unilateral,
-      animacaoId: e.animacaoId,
-      alternativas: ctx.alternativasDe(e, it.funcao),
-      porque: [
-        ...porqueDoExercicio(e, it.funcao, it.nivelFuncao, nivel, ctx.preferido(it.funcao, e)),
-        ...(cargaBaixa ? [{ regraId: r('rir.carga-baixa'), texto: 'Com muitas repetições, a série só conta perto da falha: termine com 1 a 2 repetições de reserva.' }] : []),
-        ...porqueDaDor(e, it.preenchido, it.noLugarDe, it.protegido, it.segundo),
-      ],
-    };
-  };
+  const prescreverItem = (it: Item): ExercicioPrescrito =>
+    prescrever(it.ex, it.funcao, it.nivelFuncao, it.series, ctx, porqueDaDor(it.ex, it.preenchido, it.noLugarDe, it.protegido, it.segundo));
   // Objetivo "ficar mais forte" (objetivo.forca.*): os 2 primeiros multiarticulares com carga de cada treino ficam com a
   // faixa mais baixa e o descanso maior; o peso livre fica com 2 a 3 de reserva. O iniciante segue como na hipertrofia.
   const forca = perfil.objetivo === 'forca' && nivel !== 'iniciante';
@@ -753,7 +727,7 @@ function montarPrograma(perfil: Perfil, inventarioOriginal: Inventario, triagem:
     });
   };
   let programaDias: DiaPrograma[] = dias.map(({ dia, itens }) => {
-    const exercicios = ajustarForca(itens.map(prescrever));
+    const exercicios = ajustarForca(itens.map(prescreverItem));
     return { id: dia.id, nome: dia.nome, exercicios, minutosEstimados: minutos(exercicios, colchaoDe(perfil)) };
   });
 
@@ -997,6 +971,49 @@ function montarPrograma(perfil: Perfil, inventarioOriginal: Inventario, triagem:
     avisos,
     porque,
     regioesExcluidas,
+  };
+}
+
+/**
+ * Cabe no teto semanal (volume.semanal.teto-padrao, "nunca acima"): o exercício, com `series` séries, não leva nenhum
+ * músculo dele (as indiretas a meia série) acima de 20 na semana, somado a `volume`. Usada pelo gerador (no mínimo de
+ * séries) e pelo avaliador (R5b).
+ */
+export function cabeNoTetoSemanal(e: Exercicio, volume: Partial<Record<Musculo, number>>, series: number = VOLUME.seriesPorExercicio.min): boolean {
+  return (Object.entries(volumePorMusculo([{ ex: e, series }])) as [Musculo, number][]).every(([m, n]) => (volume[m] ?? 0) + n <= VOLUME.teto);
+}
+
+/**
+ * A prescrição de um exercício numa vaga (função): repetições, RIR (com rir.carga-baixa: com muitas repetições, a reserva
+ * vai até 2), descanso, alternativas e o porquê, mais o porquê de `extras` (dor, vaga vazia...). Usada pelo gerador e
+ * pelo avaliador (R5b), para dar prescrição a um exercício que não saiu do gerador. O objetivo "ficar mais forte" é
+ * aplicado depois, ao dia inteiro.
+ */
+export function prescrever(e: Exercicio, funcao: Funcao, nivelFuncao: number, series: number, ctx: ContextoDeSelecao, extras: Porque[] = []): ExercicioPrescrito {
+  const nivel = ctx.nivel;
+  const composto = e.tipo === 'composto';
+  // rir.carga-baixa: com carga baixa (muitas repetições), a proximidade da falha pesa mais; a reserva vai até 2.
+  const rirBase = composto ? RIR.composto[nivel] : RIR.isolador[nivel];
+  const cargaBaixa = (e.faixaReps[0] + e.faixaReps[1]) / 2 >= RIR.cargaBaixa.repsMeio && rirBase[1] > RIR.cargaBaixa.rirMax;
+  const rir: [number, number] = cargaBaixa ? [Math.min(rirBase[0], RIR.cargaBaixa.rirMax - 1), RIR.cargaBaixa.rirMax] : rirBase;
+  return {
+    exId: e.id,
+    nome: e.nome,
+    padrao: e.padrao,
+    tipo: e.tipo,
+    funcao: funcao.id,
+    series,
+    reps: e.faixaReps,
+    rir,
+    descansoSeg: composto ? DESCANSO.composto[nivel] : DESCANSO.isolador[nivel],
+    unilateral: e.unilateral,
+    animacaoId: e.animacaoId,
+    alternativas: ctx.alternativasDe(e, funcao),
+    porque: [
+      ...porqueDoExercicio(e, funcao, nivelFuncao, nivel, ctx.preferido(funcao, e)),
+      ...(cargaBaixa ? [{ regraId: r('rir.carga-baixa'), texto: 'Com muitas repetições, a série só conta perto da falha: termine com 1 a 2 repetições de reserva.' }] : []),
+      ...extras,
+    ],
   };
 }
 
