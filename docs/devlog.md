@@ -1357,6 +1357,9 @@ O que resta do foco invisível está nos treinos de 30 min (31,3%) e no foco nas
 - **O 2º exercício do foco também respeita o teto com indiretas e o "um afundo por dia"**: ele punha um afundo num dia que já tinha búlgaro.
 - **A ponte que entra pela falta do stiff** só ganha série, nos treinos de até 45 min, enquanto o dia couber nos minutos; e não entra num dia que perdeu vaga de pernas para a dor, que já é refeito com o músculo mais abaixo da meta. Sem isso, ela tirava o lugar do 2º exercício do foco (um caso da régua: abdômen de foco caindo de 8 para 4 séries, e o glúteo com 2).
 - **Um teste pesado do gerador** ganhou 20 s de limite, e a amostra do teste do R5a passou a ser gerada sem travar o processo do Vitest.
+- **O Vitest deixa um núcleo livre** para o processo principal: na `main` com o R5d, 2 de 3 rodadas acusavam "Timeout calling onTaskUpdate" mesmo com todos os testes passando; assim, 5 de 5 limpas.
+- **O pacote da tela do programa** passava 0,5 kB do orçamento de 220 kB; o texto das regras do R5a ficou mais curto (as medições ficam aqui), e ele fica em 219,8 kB. A folga acabou (backlog).
+- Ao fim: 773 testes unitários e 141 e2e passando.
 
 | Régua (108.900 programas) contra a `main` com o R5d | `main` | com o R5a |
 |---|---:|---:|
