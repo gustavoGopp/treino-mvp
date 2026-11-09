@@ -136,4 +136,6 @@ export const SEMANA_LEVE = {
   carenciaSemanas: 3, // não sugere nas 3 semanas depois de uma volta de pausa ou de uma semana leve
 };
 
+/** selecao.complexidade-nivel (o filtro ganhou regraId no R5b): a complexidade máxima de cada nível. */
+export const REGRA_COMPLEXIDADE = r('selecao.complexidade-nivel');
 export const NIVEL_COMPLEXIDADE_MAX: PorNivel<number> = { iniciante: 2, intermediario: 3, avancado: 3 };
