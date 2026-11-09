@@ -30,7 +30,7 @@
 
 | gravidade e tipo | programas | % |
 | --- | ---: | ---: |
-| limite abaixo-da-meta | 1.943 | 33,2% |
+| limite abaixo-da-meta | 1.945 | 33,2% |
 | limite abaixo-do-piso | 1.389 | 23,7% |
 | limite funcoes | 1.201 | 20,5% |
 | limite sem-exercicio | 975 | 16,7% |
