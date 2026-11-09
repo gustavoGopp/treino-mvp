@@ -1407,10 +1407,10 @@ As personas continuam iguais às aprovadas no R5d.
 
 | | Antes | Depois |
 |---|---:|---:|
-| Grade reduzida (5.850 programas: 6 cenários comuns, sem dor): "está bom" ou só "limite" | 59,8% "está bom" (protótipo, outra amostra) | **87,5%** (44,3% bom, 43,1% só limite) |
+| Grade reduzida (5.850 programas: 6 cenários comuns, sem dor): "está bom" ou só "limite" | 59,8% "está bom" (protótipo, outra amostra) | **88,5%** |
 | Grade reduzida: achados de segurança ou alerta | 0 | **0** |
 | Grade reduzida: "ajustar" que o gerador não avisa | 17,4% (protótipo) / 5,4% (1ª versão deste avaliador) | **0** |
-| Grade de qualidade inteira (911 mil programas, com dor e exercícios evitados): "está bom" ou só "limite" | — | VER_QUALIDADE |
+| Grade de qualidade inteira (911.625 programas, com dor e exercícios evitados): "está bom" ou só "limite" | — | **90,9%** (106 programas, 0,01%, com um "ajustar" sem aviso; backlog) |
 | Régua (108.900 programas): empurrar ÷ puxar acima de 1,5 (D1), sem dor / com dor | 467 / 341 | **373 / 249** |
 | Régua: dia com menos de 3 exercícios ou sem multiarticular (A2), sem dor / com dor | 385 / 14.995 | **359 / 14.978** |
 | Régua: dia acima de 110% dos minutos (A3), sem dor / com dor | 2.506 / 2.532 | **2.458 / 2.505** |
@@ -1422,7 +1422,7 @@ As personas continuam iguais às aprovadas no R5d.
 | Avisos das 6 personas com o próximo passo | 2 de 20 (06/11) | **24 de 24** |
 | Exercícios das 6 personas com o porquê específico | 39% | **140 de 140** |
 | Os 4 programas publicados | os achados do protótipo | **os mesmos**, com a sugestão concreta (tabela abaixo) |
-| Pacote da tela do programa (JS comprimido) | 219,8 kB (limite 220) | VER_PACOTE |
+| Pacote da tela do programa / da boas-vindas (JS comprimido) | 219,8 / ~172 kB (limites 220 e 175) | **195,4 / 149,9 kB** |
 
 **Os 4 programas publicados** (protocolos de ensaios, digitados com exercícios da biblioteca em `tests/unit/programas-publicados.ts`, com a fonte de cada um; avaliados com o equipamento da Carla, intermediário, 60 min, sem foco). Todos ficam em "ajustar", nenhum bloqueado:
 - **Thomas e Burns 2016 (ABC):** 6 a 9 séries num exercício; tríceps 15 e bíceps 13,5 num dia só; abdômen 3; sem extensora; dias de ~70 min em 60; a ordem só informa.
@@ -1451,7 +1451,7 @@ As saídas completas das 6 personas, dos 4 publicados e do Bruno com dor no ombr
 ![Como está o seu programa (Ana, fictícia)](img/r5b-como-esta.png)
 ![O porquê específico do búlgaro da Ana](img/r5b-porque.png)
 
-**Também:** VER_TESTES; 163 regras (eram 160: `avaliador.gravidade`, `avaliador.empurrar-puxar` e `selecao.complexidade-nivel`, e 2 revistas: `selecao.exercicios-por-musculo`, com a decisão da flexão, e `selecao.isolador-obrigatorio`); `npm run auditoria:avaliador` (a grade reduzida, em `revisoes/qualidade/avaliador.md`) e a seção "O avaliador" na auditoria de qualidade, com os suspeitos `avaliador.*-sem-aviso`.
+**Também:** 823 testes unitários (eram 773) e 141 e2e, todos passando; `npm run auditoria:verificar` limpo (39 arquivos idênticos nas duas rodadas); 163 regras (eram 160: `avaliador.gravidade`, `avaliador.empurrar-puxar` e `selecao.complexidade-nivel`, e 2 revistas: `selecao.exercicios-por-musculo`, com a decisão da flexão, e `selecao.isolador-obrigatorio`); `npm run auditoria:avaliador` (a grade reduzida, em `revisoes/qualidade/avaliador.md`) e a seção "O avaliador" na auditoria de qualidade, com os suspeitos `avaliador.*-sem-aviso`.
 
 **Pedidos à sessão de design** (já listados em `revisoes/proximos-passos.md`, 2.5, itens 7 a 9; o que existe hoje é o mínimo funcional com os componentes atuais):
 1. **"Como está o seu programa"**: hoje, em "Sobre o programa", o resumo em 1 linha, os pontos a ajustar em caixas de aviso e os limites numa lista, cada um com o selo. Falta a tela pedida: os achados agrupados por tipo com as superfícies "alerta", "aviso" e "informação", e a tabela por músculo recolhida (séries, meta, dias). O avaliador já devolve a tabela (`musculos`) e os minutos de cada dia.
@@ -1465,4 +1465,4 @@ As saídas completas das 6 personas, dos 4 publicados e do Bruno com dor no ombr
 >
 > Testei com quatro programas de estudos publicados. Ela apontou o que um treinador apontaria: 6 a 10 séries num exercício só, posteriores da coxa e panturrilha sem nenhuma série, treinos de 95 minutos para quem tem 60. E, em vez de só reclamar, diz o que fazer: "troque o leg press pela cadeira extensora no treino C".
 >
-> A surpresa foi usá-la no próprio app. Em 5.850 programas que o app monta, ela achou três coisas que ele fazia sem avisar, como um músculo grande treinado com um movimento só havendo outro. Corrigi o gerador, e hoje a régua diz "está bom" ou "é o limite do seu equipamento" em 87,5% deles, sem nenhum ponto de segurança. O resto, ela aponta e o app já avisa.
+> A surpresa foi usá-la no próprio app. Em 5.850 programas que o app monta, ela achou três coisas que ele fazia sem avisar, como um músculo grande treinado com um movimento só havendo outro. Corrigi o gerador, e hoje a régua diz "está bom" ou "é o limite do seu equipamento" em 88,5% deles, sem nenhum ponto de segurança. O resto, ela aponta e o app já avisa.
