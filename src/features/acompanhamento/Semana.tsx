@@ -129,7 +129,10 @@ export function Semana() {
                 <span className="m-num">
                   {num(m.feitas)} de {num(m.meta)}
                 </span>
-                <span className="m-estado">{TEXTO_ESTADO[m.estado]}</span>
+                <span className="m-estado">
+                  {TEXTO_ESTADO[m.estado]}
+                  {m.planejado !== undefined && ` · o seu programa planeja ${num(m.planejado)} de ${num(m.meta)}: ${m.motivo}`}
+                </span>
               </li>
             ))}
           </ul>
