@@ -132,6 +132,7 @@ export function contextoDeSelecao(perfil: Perfil, inventarioOriginal: Inventario
   const nivel = perfil.nivel;
   const inventario = semItens(inventarioOriginal, perfil.evitarEquipamentos);
   const caps = capacidades(inventario);
+  const capsOriginais = capacidades(inventarioOriginal);
   // Dor de hoje por região (seguranca.dor.programa): > 5 ou sem nota exclui; 3–5 desfavorece no desempate.
   const regioesExcluidas = [...triagem.regioesExcluidas];
   const dorLeve = new Set(triagem.regioesDorLeve);
@@ -225,6 +226,49 @@ export function contextoDeSelecao(perfil: Perfil, inventarioOriginal: Inventario
     return primeiro;
   };
 
+  /**
+   * Por que o exercício ficou com a vaga (o porquê específico, R5b): o nível de cima não é possível (e por quê), ou, entre
+   * os do mesmo nível, o primeiro critério do desempate em que ele ganha do segundo colocado.
+   */
+  const motivoDaEscolha = (e: Exercicio, funcao: Funcao, nivelFuncao: number): string => {
+    if (nivelFuncao > 0) {
+      const acima = funcao.niveis.slice(0, nivelFuncao).flat().map((id) => POR_ID_BIB[id]!);
+      const nome = acima[0]!.nome.toLowerCase();
+      if (acima.some((x) => possivelSemRegiao.has(x.id) && carregaExcluida(x))) return `As opções de cima (como ${nome}) saíram por causa da dor; esta é a melhor que sobra.`;
+      if (acima.some((x) => perfil.evitarExercicios.includes(x.id))) return `Você pediu para evitar as opções de cima (como ${nome}); esta é a melhor que sobra.`;
+      if (acima.some((x) => x.requer.some((g) => g.every((c) => capsOriginais.has(c)) && !g.every((c) => caps.has(c)))))
+        return `As opções de cima (como ${nome}) pedem um equipamento que você pediu para evitar; esta é a melhor que sobra.`;
+      if (acima.some((x) => x.complexidade > NIVEL_COMPLEXIDADE_MAX[nivel] && x.requer.some((g) => g.every((c) => caps.has(c)))))
+        return `As opções de cima (como ${nome}) pedem mais técnica que o seu nível; esta é a melhor que sobra.`;
+      return `As opções de cima (como ${nome}) pedem equipamento que você não tem; esta é a melhor que sobra.`;
+    }
+    const outros = funcao.niveis[nivelFuncao]!.filter((id) => id !== e.id && naFuncao(funcao, id)).map((id) => possivel.get(id)!);
+    if (!outros.length) {
+      const doNivel = funcao.niveis[nivelFuncao]!.filter((id) => id !== e.id).map((id) => POR_ID_BIB[id]!);
+      if (doNivel.some((x) => possivelSemRegiao.has(x.id) && carregaExcluida(x))) return 'As outras opções do mesmo tipo saíram por causa da dor.';
+      return 'É a única opção desta vaga no seu equipamento.';
+    }
+    const criterios: [(x: Exercicio) => number, string][] = [
+      [(x) => (x.articulacoes.some((a) => dorLeve.has(a)) ? 1 : 0), 'poupa a região que você marcou com dor'],
+      [(x) => (nivel === 'iniciante' && !estavel(x) ? 1 : 0), 'é mais estável e apoiado, mais fácil de aprender'],
+      [(x) => -cargaPossivel(x), 'deixa pôr mais carga com o seu equipamento'],
+      [(x) => (preferido(funcao, x) ? 0 : 1), 'você prefere este'],
+      [(x) => (x.animacaoId ? 0 : 1), 'tem o guia animado'],
+    ];
+    const vetor = (x: Exercicio) => criterios.map(([k]) => k(x));
+    const menor = (a: number[], b: number[]) => a.findIndex((v, i) => v !== b[i]);
+    // O 2º colocado: o melhor dos outros pelos mesmos critérios (no empate, o id, como no desempate).
+    const segundo = [...outros].sort((a, b) => {
+      const i = menor(vetor(a), vetor(b));
+      return i < 0 ? a.id.localeCompare(b.id) : vetor(a)[i]! - vetor(b)[i]!;
+    })[0]!;
+    const i = menor(vetor(e), vetor(segundo));
+    const nome = segundo.nome.toLowerCase();
+    if (i < 0) return `Equivale a ${nome}${outros.length > 1 ? ' e às outras do mesmo tipo' : ''}, que ${outros.length > 1 ? 'ficam' : 'fica'} como alternativa.`;
+    if (vetor(e)[i]! < vetor(segundo)[i]!) return `Ganhou de ${nome}${outros.length > 1 ? ' e das outras do mesmo tipo' : ''} porque ${criterios[i]![1]}.`;
+    return `Ficou este, e não ${nome}, para variar os exercícios da semana.`;
+  };
+
   /** Alternativas possíveis neste inventário (selecao.equivalencia). */
   const alternativasDe = (e: Exercicio, funcao: Funcao) =>
     alternativas(e, funcao, possiveis.filter((x) => !funcaoTemExercicio(funcao, x.id) || naFuncao(funcao, x.id)));
@@ -250,6 +294,7 @@ export function contextoDeSelecao(perfil: Perfil, inventarioOriginal: Inventario
     resolver,
     escolher,
     alternativasDe,
+    motivoDaEscolha,
   };
 }
 export type ContextoDeSelecao = ReturnType<typeof contextoDeSelecao>;
@@ -474,6 +519,8 @@ function montarPrograma(perfil: Perfil, inventarioOriginal: Inventario, triagem:
     }
     const causa = regioesExcluidas.length ? `por causa da dor ${regioesExcluidas.map(dorDe).join(' e ')}` : 'com o seu equipamento';
     const semCausa = !regioesExcluidas.length;
+    // acompanhamento.mensagens (R5b): o fato e o próximo passo.
+    const passoDaCausa = semCausa ? 'Não precisa fazer nada: é o que o seu equipamento permite.' : 'Quando a dor baixar, atualize a nota na triagem e o dia volta.';
     const preenchidos = d.itens.filter((i) => i.preenchido);
     const entraram = preenchidos.map((i) => i.ex.nome.toLowerCase());
     // O texto diz a verdade: "de outros músculos" quando o que entrou não é músculo do dia (um dia de puxar com panturrilha).
@@ -482,13 +529,13 @@ function montarPrograma(perfil: Perfil, inventarioOriginal: Inventario, triagem:
       avisos.push({
         regraId: r('selecao.dia-sem-principal'),
         texto: deFora
-          ? `${d.dia.nome}: ${semCausa ? 'sem exercício' : `${causa}, sem exercício`} para os músculos deste dia; entram exercícios de outros músculos (${entraram.join(', ')}).`
-          : `${d.dia.nome}: ${causa}, o dia perdeu exercícios; entram outros dos mesmos músculos (${entraram.join(', ')}).`,
+          ? `${d.dia.nome}: ${semCausa ? 'sem exercício' : `${causa}, sem exercício`} para os músculos deste dia; entram exercícios de outros músculos (${entraram.join(', ')}). ${passoDaCausa}`
+          : `${d.dia.nome}: ${causa}, o dia perdeu exercícios; entram outros dos mesmos músculos (${entraram.join(', ')}). ${passoDaCausa}`,
       });
     else if (soCore)
       avisos.push({
         regraId: r('selecao.dia-sem-principal'),
-        texto: `${d.dia.nome}: ${causa}, só o abdominal é possível neste dia.`,
+        texto: `${d.dia.nome}: ${causa}, só o abdominal é possível neste dia. ${passoDaCausa}`,
       });
   }
   if (regioesExcluidas.length)
@@ -500,7 +547,7 @@ function montarPrograma(perfil: Perfil, inventarioOriginal: Inventario, triagem:
   if (semPuxar && temDiaDeTronco(divisao) && divisao.dias.some((x) => /Puxar|Superior|Costas/.test(x.nome)))
     avisos.push({
       regraId: r('divisao.sem-puxar'),
-      texto: `${divisao.nome}: sem exercício de puxar, os dias de puxar ficam com outros músculos. Corpo todo encaixa melhor.`,
+      texto: `${divisao.nome}: sem exercício de puxar, os dias de puxar ficam com outros músculos. Para trocar, escolha Corpo todo na rotina.`,
     });
   // Sem puxada vertical: quando ela caiu para uma remada, ou quando só a remada existe (ex.: só a barra longa). O texto diz
   // o que o programa tem de fato (R5-CL): com a puxada de elástico no programa, as costas não treinam "só com remadas".
@@ -509,19 +556,19 @@ function montarPrograma(perfil: Perfil, inventarioOriginal: Inventario, triagem:
     avisos.push({
       regraId: r('equipamento.sem-puxada-vertical'),
       texto: puxadaNoPrograma
-        ? 'Sem barra fixa nem polia alta: a puxada é só com o elástico, e as costas treinam também com remadas.'
-        : 'Sem barra fixa nem polia alta: as costas treinam só com remadas.',
+        ? 'Sem barra fixa nem polia alta: a puxada é só com o elástico, e as costas treinam também com remadas. Não precisa fazer nada: as costas seguem treinando.'
+        : 'Sem barra fixa nem polia alta: as costas treinam só com remadas. Não precisa fazer nada: as remadas seguem treinando as costas.',
     });
   }
   const temMaquinaDePerna = caps.has('leg_press') || caps.has('rack');
   if (!temMaquinaDePerna && halterMax < 20)
     avisos.push({
       regraId: r('equipamento.escada-carga-leve'),
-      texto: 'Pouca carga para as pernas: o programa usa uma perna de cada vez, mais repetições e degraus de dificuldade. As pernas podem crescer menos que numa academia.',
+      texto: 'Pouca carga para as pernas: o programa usa uma perna de cada vez, mais repetições e degraus de dificuldade. As pernas podem crescer menos que numa academia. Não precisa fazer nada: quando ficar fácil, o app passa para o degrau seguinte.',
     });
   for (const id of [...lacunas].sort()) {
     const l = FUNCAO[id]!.lacuna;
-    if (l) avisos.push({ regraId: r(l.regra), texto: `Sem ${l.falta}: ${l.texto}` });
+    if (l) avisos.push({ regraId: r(l.regra), texto: `Sem ${l.falta}: ${l.texto} Não precisa fazer nada: os outros exercícios do músculo seguem no programa.` });
   }
 
   // 3. Distribuição das séries até as metas (volume.semanal.*; volume.sessao.teto; volume.series-por-exercicio)
@@ -861,6 +908,26 @@ function montarPrograma(perfil: Perfil, inventarioOriginal: Inventario, triagem:
   programaDias = completarPelaRegua(programaDias, ctx, perfil, N, semPuxar, metas, prioritarios);
 
   const volumeSemanal = volumeDe(programaDias);
+  // O porquê específico (R5b; c-fluxo.md, pedido ao domínio 6): a vaga, o músculo dela, se é foco, quantas séries da semana
+  // este exercício leva e por que ganhou das outras opções. Substitui o texto genérico da vaga (selecao.funcao-da-vaga).
+  programaDias = programaDias.map((d) => ({
+    ...d,
+    exercicios: d.exercicios.map((x) => {
+      const f = x.funcao ? FUNCAO[x.funcao] : undefined;
+      if (!f) return x;
+      const e = POR_ID_BIB[x.exId]!;
+      const m = f.musculo;
+      const s = seriesDeVolume(x);
+      const total = volumeSemanal[m] ?? 0;
+      const foco = prioritarios.has(m) ? ', o seu foco' : '';
+      const nivelFuncao = Math.max(0, f.niveis.findIndex((n) => n.includes(ctx.noLugarDe(x.exId))));
+      const fmt = (n: number) => String(Math.round(n * 10) / 10).replace('.', ',');
+      // A meta só aparece quando o músculo fica abaixo do limiar dos avisos (foco: a meta; os outros: o piso de 4).
+      const limiar = prioritarios.has(m) ? (metas[m] ?? 0) : Math.min(metas[m] ?? 0, VOLUME.minimoEficazPiso);
+      const texto = `Vaga de ${f.nome.toLowerCase()}, para ${COM_ARTIGO[m]}${foco}: ${s} das ${fmt(total)} séries da semana${total < limiar ? ` (a meta é ${metas[m]})` : ''}. ${ctx.motivoDaEscolha(e, f, nivelFuncao)}`;
+      return { ...x, porque: x.porque.map((q) => (q.regraId === 'selecao.funcao-da-vaga' && q.texto.startsWith('Vaga de ') ? { ...q, texto } : q)) };
+    }),
+  }));
   const vezes = (m: Musculo) => programaDias.filter((d) => d.exercicios.some((x) => POR_ID_BIB[x.exId]!.musculos.primarios.includes(m))).length;
   const motivoEstrutural = (m: Musculo): string => {
     // A dor tirou exercícios deste músculo? Então o motivo verdadeiro é a dor, não o equipamento (R1).
@@ -1459,6 +1526,22 @@ export const NOME_MUSCULO_CURTO: Record<Musculo, string> = {
   abdomen: 'abdômen',
   adutores: 'adutores',
 };
+/** O músculo com o artigo, para o porquê ("para os glúteos"). */
+export const COM_ARTIGO: Record<Musculo, string> = {
+  peito: 'o peito',
+  costas: 'as costas',
+  ombro_anterior: 'o ombro da frente',
+  ombro_lateral: 'o ombro lateral',
+  ombro_posterior: 'o ombro de trás',
+  biceps: 'o bíceps',
+  triceps: 'o tríceps',
+  quadriceps: 'o quadríceps',
+  posteriores: 'os posteriores da coxa',
+  gluteos: 'os glúteos',
+  panturrilha: 'a panturrilha',
+  abdomen: 'o abdômen',
+  adutores: 'os adutores',
+};
 const listaDeNomes = (ms: Musculo[]) => {
   const n = ms.map((m) => NOME_MUSCULO_CURTO[m]);
   return n.length > 1 ? `${n.slice(0, -1).join(', ')} e ${n[n.length - 1]}` : n[0]!;
@@ -1612,7 +1695,7 @@ export function cortarTempo(
     if (d.minutosEstimados > limite)
       avisos.push({
         regraId: r('tempo.corte'),
-        texto: `${d.nome}: deve levar ~${d.minutosEstimados} min, mais que os ${limite} min que você tem.`,
+        texto: `${d.nome}: deve levar ~${d.minutosEstimados} min, mais que os ${limite} min que você tem. Reserve uns minutos a mais nesse dia, ou escolha ${Math.ceil(d.minutosEstimados / 5) * 5} min na rotina.`,
       });
   }
   if (usados.size)
@@ -1628,7 +1711,9 @@ export function cortarTempo(
         ]
           .filter(Boolean)
           .join(', ') +
-        '.',
+        (usados.has('corte') || usados.has('series')
+          ? '. Para ter o programa inteiro, escolha mais minutos na rotina.'
+          : '. As séries da semana não mudam: não precisa fazer nada.'),
     });
   return dias;
 }
@@ -1656,13 +1741,24 @@ export function avisosDeMeta(
   if (semExercicio.length)
     out.push(
       semPuxar
-        ? { regraId: r('equipamento.sem-ancoragem'), texto: `Sem algo para puxar ou levantar: ${listaDeNomes(semExercicio)} ficam sem exercício. O resto do corpo segue no programa.` }
-        : { regraId: r('volume.semanal.alvo'), texto: `${SEM_EXERCICIO}: ${listaDeNomes(semExercicio)}.` },
+        ? { regraId: r('equipamento.sem-ancoragem'), texto: `Sem algo para puxar ou levantar: ${listaDeNomes(semExercicio)} ficam sem exercício. Não precisa fazer nada: o resto do corpo segue no programa.` }
+        : { regraId: r('volume.semanal.alvo'), texto: `${SEM_EXERCICIO}: ${listaDeNomes(semExercicio)}. Não precisa fazer nada: o resto do programa segue.` },
     );
-  if (porTempo.length) out.push({ regraId: r('tempo.corte'), texto: `Abaixo da meta por falta de tempo: ${porTempo.map((m) => `${item(m)} séries`).join('; ')}.` });
-  for (const m of porEstrutura.filter((x) => !semExercicio.includes(x)))
-    out.push({ regraId: r('volume.semanal.alvo'), texto: `Abaixo da meta: ${item(m)} séries por semana. ${motivoEstrutural(m)}.` });
+  if (porTempo.length)
+    out.push({ regraId: r('tempo.corte'), texto: `Abaixo da meta por falta de tempo: ${porTempo.map((m) => `${item(m)} séries`).join('; ')}. Para chegar lá, escolha mais minutos ou mais dias na rotina.` });
+  for (const m of porEstrutura.filter((x) => !semExercicio.includes(x))) {
+    const motivo = motivoEstrutural(m);
+    out.push({ regraId: r('volume.semanal.alvo'), texto: `Abaixo da meta: ${item(m)} séries por semana. ${motivo}. ${passoDoMotivo(motivo, prioritarios.has(m))}` });
+  }
   return out;
+}
+
+/** O próximo passo de um músculo abaixo da meta, pelo motivo (acompanhamento.mensagens; R5b). */
+function passoDoMotivo(motivo: string, foco: boolean): string {
+  if (/por causa da dor|a dor .* tirou/.test(motivo) && !/^Com |^A divisão/.test(motivo)) return 'Quando a dor baixar, atualize a nota na triagem.';
+  if (motivo.startsWith(SEM_EXERCICIO)) return 'Não precisa fazer nada: o resto do programa segue.';
+  if (motivo.startsWith('Com ')) return foco ? 'Para chegar lá, escolha mais minutos na rotina, ou menos grupos de foco.' : 'Para chegar lá, escolha mais minutos na rotina.';
+  return foco ? 'Para chegar lá, escolha mais dias na rotina, ou menos grupos de foco.' : 'Não precisa fazer nada: com mais dias na rotina, ele sobe.';
 }
 
 function fases(p: Perfil): Fase[] {
