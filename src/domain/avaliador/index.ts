@@ -257,7 +257,7 @@ export function avaliar(programa: ProgramaParaAvaliar, perfil: Perfil, inventari
         if (!e.musculos.primarios.includes(m) || !filtro(x) || !ctx.possivel.has(e.id)) continue;
         // tempo.musculo-protegido: com 30 min ou menos, o exercício que entrou para o músculo não ficar a zero fica com 2 séries.
         if (orcamento <= TEMPO.protegidoCurto && !prioritarios.has(m) && x.porque?.some((q) => q.regraId === 'tempo.musculo-protegido')) continue;
-        if (x.series >= VOLUME.seriesPorExercicio.max || !cabeNaSessao(di, e, 1) || !cabeNaSemana(e, 1)) continue;
+        if (seriesDeVolume(x) >= VOLUME.seriesPorExercicio.max || !cabeNaSessao(di, e, 1) || !cabeNaSemana(e, 1)) continue;
         if (minutos(d.exercicios.map((y) => (y === x ? { ...y, series: y.series + 1 } : y)), colchao) > orcamento) continue;
         return `suba 1 série em ${nomeEx(e.id)}, no treino ${d.nome}`;
       }

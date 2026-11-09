@@ -1,6 +1,9 @@
 import { beforeAll, describe, expect, it } from 'vitest';
 import { avaliar, type Avaliacao } from '../../src/domain/avaliador';
-import type { Perfil, Programa } from '../../src/domain/gerador';
+import type { Articulacao } from '../../src/domain/biblioteca';
+import { gerarPrograma, seriesDeVolume, type Perfil, type Programa } from '../../src/domain/gerador';
+import { OPCOES_POR_DIAS, type DiasSemana } from '../../src/domain/gerador/divisoes';
+import { CENARIO, perfil } from '../../scripts/auditoria/cenarios';
 import type { Inventario } from '../../src/domain/taxonomia/equipamentos';
 import { CENARIOS_REDUZIDOS, gradeReduzida, naoAvisados } from '../../scripts/auditoria/grade-reduzida';
 
@@ -31,5 +34,24 @@ describe('o avaliador como régua do gerador (grade reduzida)', () => {
   it('"está bom" ou só "limite" em pelo menos 80% dos programas', () => {
     const bons = CASOS.filter((x) => x.a.veredito === 'bom' || x.a.veredito === 'limite').length;
     expect(bons / CASOS.length).toBeGreaterThanOrEqual(0.8);
+  });
+});
+
+describe('o drop set conta 2 séries na régua (R5b: as séries de puxar não passam de 4 com o drop set)', () => {
+  it('com dor e pouco tempo, nenhum exercício passa de 4 séries contando o drop set, e nenhum "ajustar" sem aviso', () => {
+    const casos: [string, 'iniciante' | 'intermediario' | 'avancado', DiasSemana, Articulacao][] = [
+      ['casa', 'avancado', 3, 'cotovelo'],
+      ['halteres', 'intermediario', 2, 'lombar'],
+      ['halteres-banco', 'iniciante', 2, 'lombar'],
+    ];
+    for (const [c, nivel, d, dor] of casos) {
+      const pf = perfil({ nivel, divisao: OPCOES_POR_DIAS[d][0]!, minutos: 45, prioridades: ['peito'], dores: [{ articulacao: dor, nota: 7 }] });
+      delete pf.divisao;
+      const inv = CENARIO[c]!.inventario;
+      const r = gerarPrograma(pf, inv);
+      if (r.status !== 'ok') throw new Error('bloqueado');
+      for (const x of r.programa.dias.flatMap((y) => y.exercicios)) expect(seriesDeVolume(x), `${c} ${x.exId}`).toBeLessThanOrEqual(4);
+      expect(naoAvisados(r.programa, avaliar(r.programa, pf, inv).achados).map((y) => y.texto), c).toEqual([]);
+    }
   });
 });

@@ -1242,7 +1242,7 @@ function completarPelaRegua(
       let feito = false;
       for (let di = 0; di < dias.length && !feito; di++)
         dias[di]!.exercicios.forEach((x, xi) => {
-          if (feito || !ehPuxar(x.exId) || x.series >= VOLUME.seriesPorExercicio.max || !ctx.possivel.has(x.exId)) return;
+          if (feito || !ehPuxar(x.exId) || seriesDeVolume(x) >= VOLUME.seriesPorExercicio.max || !ctx.possivel.has(x.exId)) return; // o drop set conta 2
           const exs = dias[di]!.exercicios.map((y, k) => (k === xi ? { ...y, series: y.series + 1 } : y));
           if (minutos(exs, colchao) > limite || !cabe(di, exs)) return;
           salvar(di, exs);
