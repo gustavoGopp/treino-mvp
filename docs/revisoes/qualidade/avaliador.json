@@ -1,0 +1,62 @@
+{
+ "programas": 5850,
+ "vereditos": {
+  "bom": 2594,
+  "limite": 2522,
+  "ajustar": 734,
+  "bloqueado": 0
+ },
+ "comSemAviso": 0,
+ "porTipo": {
+  "ajustar abaixo-da-meta": 539,
+  "ajustar abaixo-do-piso": 195,
+  "ajustar tempo": 53,
+  "info maximo": 866,
+  "limite abaixo-da-meta": 1917,
+  "limite abaixo-do-piso": 1389,
+  "limite empurrar-puxar": 60,
+  "limite funcoes": 1201,
+  "limite obrigatorio": 475,
+  "limite sem-exercicio": 975,
+  "limite tempo": 748
+ },
+ "semAviso": {},
+ "porCenario": {
+  "academia": {
+   "bom": 515,
+   "limite": 349,
+   "ajustar": 111,
+   "bloqueado": 0
+  },
+  "condominio": {
+   "bom": 564,
+   "limite": 300,
+   "ajustar": 111,
+   "bloqueado": 0
+  },
+  "casa": {
+   "bom": 484,
+   "limite": 360,
+   "ajustar": 131,
+   "bloqueado": 0
+  },
+  "elasticos": {
+   "bom": 472,
+   "limite": 358,
+   "ajustar": 145,
+   "bloqueado": 0
+  },
+  "halteres-banco": {
+   "bom": 559,
+   "limite": 280,
+   "ajustar": 136,
+   "bloqueado": 0
+  },
+  "sem-nada": {
+   "bom": 0,
+   "limite": 875,
+   "ajustar": 100,
+   "bloqueado": 0
+  }
+ }
+}
