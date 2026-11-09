@@ -1,6 +1,8 @@
-import regrasJson from './regras.json';
+import selosJson from './selos.json';
 
-// Regras do gerador, com selo e fontes (geradas de docs/pesquisa/regras.md).
+// As regras do gerador vêm de docs/pesquisa/regras.md (scripts/gerar-regras.mjs). No pacote inicial do app fica só o
+// selo de cada regra (selos.json); o texto, os valores e as fontes (regras.json) ficam em ./completas, carregadas quando a
+// pessoa abre a folha do selo (R5b, 09/11/2026: o pacote da tela do programa tinha chegado ao limite do orçamento).
 export type Selo = 'robusta' | 'moderada' | 'um estudo' | 'consenso';
 export type Regra = {
   id: string;
@@ -9,11 +11,12 @@ export type Regra = {
   selo: Selo;
   fontes: string[];
 };
-export const REGRAS: Record<string, Regra> = Object.fromEntries((regrasJson as Regra[]).map((r) => [r.id, r]));
+/** O selo de cada regra, pelo id. */
+export const SELOS: Record<string, Selo> = selosJson as Record<string, Selo>;
 
 /** Referência a uma regra; falha na hora se o id não existir em regras.md. */
 export function r(id: string): string {
-  if (!REGRAS[id]) throw new Error(`regra inexistente: ${id}`);
+  if (!SELOS[id]) throw new Error(`regra inexistente: ${id}`);
   return id;
 }
 

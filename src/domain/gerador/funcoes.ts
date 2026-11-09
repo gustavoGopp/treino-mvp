@@ -1,7 +1,7 @@
 import { z } from 'zod';
 import { BIBLIOTECA, MUSCULOS } from '../biblioteca';
 import { CAPACIDADES, type Capacidade } from '../taxonomia/equipamentos';
-import { REGRAS } from '../regras';
+import { SELOS } from '../regras';
 import dados from './funcoes.json';
 
 // Funções das vagas (docs/pesquisa-v2/08-equipamentos-v2.md, tabela 2.1; regra selecao.funcao-da-vaga).
@@ -10,7 +10,7 @@ import dados from './funcoes.json';
 // Desde o R0c, a tabela está completa, com os exercícios novos do catálogo.
 
 const POR_ID = new Map(BIBLIOTECA.map((e) => [e.id, e]));
-const regraId = z.string().refine((id) => id in REGRAS, 'regra fora de regras.md');
+const regraId = z.string().refine((id) => id in SELOS, 'regra fora de regras.md');
 
 export const funcaoSchema = z
   .object({

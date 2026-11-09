@@ -1,6 +1,7 @@
 import { useEffect, useId, useRef, useState, type ReactNode } from 'react';
 import { Link, Navigate } from 'react-router-dom';
-import { REGRAS, type Selo as TipoSelo } from '../../domain/regras';
+import { SELOS, type Regra, type Selo as TipoSelo } from '../../domain/regras';
+import { carregarRegras } from '../../domain/regras/carregar';
 import { PASSOS, primeiroPassoPendente, type PassoId } from '../../storage/esquema';
 import { useApp } from './estado';
 import { Folha } from './Folha';
@@ -33,17 +34,17 @@ const SENTIDO_SELO: Record<TipoSelo, string> = {
  */
 export function Selo({ id }: { id: string }) {
   const [aberto, setAberto] = useState(false);
-  const regra = REGRAS[id];
-  if (!regra) return null;
-  const texto = TEXTO_SELO[regra.selo];
+  const selo = SELOS[id];
+  if (!selo) return null;
+  const texto = TEXTO_SELO[selo];
   return (
     <>
-      <button type="button" className={`selo selo-${regra.selo.replace(' ', '-')}`} aria-label={`${texto}: ver de onde vem`} aria-haspopup="dialog" onClick={() => setAberto(true)}>
-        {CURTO_SELO[regra.selo]}
+      <button type="button" className={`selo selo-${selo.replace(' ', '-')}`} aria-label={`${texto}: ver de onde vem`} aria-haspopup="dialog" onClick={() => setAberto(true)}>
+        {CURTO_SELO[selo]}
       </button>
       {aberto && (
         <Folha titulo="De onde vem isto" aoFechar={() => setAberto(false)} livre={() => document.querySelector<HTMLElement>('.alerta-topo')}>
-          <SeloFolha regra={regra} />
+          <RegrasPorExtenso ids={[id]} />
         </Folha>
       )}
     </>
@@ -57,7 +58,6 @@ export function Selo({ id }: { id: string }) {
  */
 export function PorQue({ regras, titulo = 'Por quê', children }: { regras: string[]; titulo?: string; children?: ReactNode }) {
   const [aberto, setAberto] = useState(false);
-  const lista = regras.map((id) => REGRAS[id]).filter((r): r is (typeof REGRAS)[string] => !!r);
   return (
     <>
       <button type="button" className="porque" aria-haspopup="dialog" onClick={() => setAberto(true)}>
@@ -66,16 +66,36 @@ export function PorQue({ regras, titulo = 'Por quê', children }: { regras: stri
       {aberto && (
         <Folha titulo={titulo} aoFechar={() => setAberto(false)} livre={() => document.querySelector<HTMLElement>('.alerta-topo')}>
           {children && <div className="porque-texto">{children}</div>}
-          {lista.map((r) => (
-            <SeloFolha key={r.id} regra={r} />
-          ))}
+          <RegrasPorExtenso ids={regras.filter((id) => SELOS[id])} />
         </Folha>
       )}
     </>
   );
 }
 
-function SeloFolha({ regra }: { regra: (typeof REGRAS)[string] }) {
+/** As regras por extenso, carregadas quando a folha abre (R5b: o texto das regras saiu do pacote inicial). */
+function RegrasPorExtenso({ ids }: { ids: string[] }) {
+  const [regras, setRegras] = useState<Record<string, Regra> | null | 'erro'>(null);
+  useEffect(() => {
+    let vivo = true;
+    carregarRegras().then(
+      (r) => vivo && setRegras(r),
+      () => vivo && setRegras('erro'),
+    );
+    return () => {
+      vivo = false;
+    };
+  }, []);
+  if (regras === null) return <p role="status">Carregando a regra…</p>;
+  if (regras === 'erro') return <p role="status">Não deu para carregar a regra agora. Tente de novo com internet.</p>;
+  return (
+    <>
+      {ids.map((id) => regras[id] && <SeloFolha key={id} regra={regras[id]!} />)}
+    </>
+  );
+}
+
+function SeloFolha({ regra }: { regra: Regra }) {
   const [fontes, setFontes] = useState<Record<string, Fonte> | null | 'erro'>(null);
   useEffect(() => {
     let vivo = true;

@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { gerarPrograma } from '../../domain/gerador';
-import { REGRAS } from '../../domain/regras';
+import { REGRAS } from '../../domain/regras/completas';
 import { PERSONAS } from '../../../tests/personas';
 
 // Tela de inspeção do gerador (só em desenvolvimento): escolhe uma persona fictícia e mostra o programa

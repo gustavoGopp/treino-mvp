@@ -3,7 +3,8 @@ import { avaliar, avisadoPeloGerador, completar, familiasCobertas, type Achado, 
 import { contextoDeSelecao, gerarPrograma, type Grupo, type Perfil, type Programa } from '../../src/domain/gerador';
 import { OPCOES_POR_DIAS, type DiasSemana } from '../../src/domain/gerador/divisoes';
 import { FUNCAO } from '../../src/domain/gerador/funcoes';
-import { REGRAS, type Nivel } from '../../src/domain/regras';
+import { type Nivel } from '../../src/domain/regras';
+import { REGRAS } from '../../src/domain/regras/completas';
 import type { Inventario } from '../../src/domain/taxonomia/equipamentos';
 import { CENARIO, perfil } from '../../scripts/auditoria/cenarios';
 import { ana, bruno, carla, diego, elisa, fabio, PERSONAS } from '../personas';

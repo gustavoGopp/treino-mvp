@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { REGRAS } from '../../src/domain/regras';
+import { REGRAS } from '../../src/domain/regras/completas';
 import { carregarFontes, fontesSchema } from '../../src/conteudo/fontes';
 import fontesJson from '../../src/conteudo/fontes.json';
 
