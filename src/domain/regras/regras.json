@@ -187,7 +187,7 @@
   },
   {
     "id": "volume.sessao.teto",
-    "regra": "Teto de séries fracionadas por músculo numa sessão. Conta as séries indiretas (meia série) de todos os músculos do exercício, na distribuição das séries e no tempo que sobra (R5a, 08/11/2026; `docs/revisoes/proximos-passos/b-monte-e-avaliador.md`, pedido 2): antes, só o músculo principal era conferido, e o glúteo chegava a 10,5–12 num dia de pernas (27 dias na grade reduzida de 5.850 programas; 238 na de 53.625)",
+    "regra": "Teto de séries fracionadas por músculo numa sessão. Conta as séries indiretas (meia série) de todos os músculos do exercício (R5a; `b-monte-e-avaliador.md`, pedido 2)",
     "valores": {
       "iniciante": "≤ 10, contando as indiretas",
       "intermediario": "≤ 10, contando as indiretas",
@@ -758,7 +758,7 @@
   },
   {
     "id": "progressao.calibracao",
-    "regra": "Calibração da carga, série a série (R1b; pesquisa-v2/07, seção 2.3, e pesquisa-v2/09): vale na 1ª vez de um exercício, na 1ª vez de uma máquina de placa, anilhas ou contrapeso num local e na volta de pausa de mais de 26 semanas. **Saída da calibração** (R5a, 08/11/2026; `docs/revisoes/proximos-passos/d-longo-prazo.md`, opção 1a): quando o próximo peso possível é um salto grande, nenhuma carga cai em A ± 2 (ex.: halter de 4 kg dá R = 24 e o de 5 kg, R = 12, para A = 17,5) e a calibração não terminava; no simulador, 57 exercícios em 48 corridas ficaram mais de 3 sessões só em séries de acerto, até 17 sessões",
+    "regra": "Calibração da carga, série a série (R1b; pesquisa-v2/07, seção 2.3, e pesquisa-v2/09): vale na 1ª vez de um exercício, na 1ª vez de uma máquina de placa, anilhas ou contrapeso num local e na volta de pausa de mais de 26 semanas. Com saída (R5a; `d-longo-prazo.md`, opção 1a): com um salto grande entre os pesos, nenhuma carga caía em A ± 2 e a calibração não terminava",
     "valores": {
       "iniciante": "R = repetições + reserva; A = meio da faixa + meio do RIR; perto (A ± 2) mantém; pesada (R < A − 2): carga × (37 − A) / (37 − R) (Brzycki), para baixo no inventário, só em kg conhecido; leve com R ≤ 12: a mesma conta para cima, para baixo no inventário; leve com R > 12: +1 passo (+2 se R ≥ A + 6), no máximo +25% e no mínimo 1 passo; placa, anilhas, contrapeso e degrau só por passos (±1, ou ±2 com folga de 6); a última carga perto do alvo vira a referência da próxima sessão; na semana 1 da volta de pausa só desce; dor ≥ 3 manda; saída: depois de 3 séries de acerto sem cair em A ± 2 (somando as sessões), a carga de R mais perto de A (no empate, a mais leve) vira a de trabalho, com uma frase curta, e a dupla progressão começa dali",
       "intermediario": "R = repetições + reserva; A = meio da faixa + meio do RIR; perto (A ± 2) mantém; pesada (R < A − 2): carga × (37 − A) / (37 − R) (Brzycki), para baixo no inventário, só em kg conhecido; leve com R ≤ 12: a mesma conta para cima, para baixo no inventário; leve com R > 12: +1 passo (+2 se R ≥ A + 6), no máximo +25% e no mínimo 1 passo; placa, anilhas, contrapeso e degrau só por passos (±1, ou ±2 com folga de 6); a última carga perto do alvo vira a referência da próxima sessão; na semana 1 da volta de pausa só desce; dor ≥ 3 manda; saída: depois de 3 séries de acerto sem cair em A ± 2 (somando as sessões), a carga de R mais perto de A (no empate, a mais leve) vira a de trabalho, com uma frase curta, e a dupla progressão começa dali",
@@ -811,7 +811,7 @@
   },
   {
     "id": "progressao.estagnacao",
-    "regra": "Estagnação = 3 sessões seguidas sem melhora de repetições nem de carga num exercício. Na fase de aprendizado do iniciante (`iniciante.fase-aprendizado`) não há \"estagnado\": a carga sobe quando a técnica estiver estável, e o app pede +1 repetição (R5a, 08/11/2026; `d-longo-prazo.md`, opção 1c)",
+    "regra": "Estagnação = 3 sessões seguidas sem melhora de repetições nem de carga num exercício. Sem \"estagnado\" na fase de aprendizado do iniciante: o app pede +1 repetição (R5a)",
     "valores": {
       "iniciante": "escada: 1) faixa mais larga; 2) −10% e reconstruir; 3) semana leve se ≥ 2 exercícios estagnarem; 4) trocar por variação equivalente",
       "intermediario": "escada: 1) faixa mais larga; 2) −10% e reconstruir; 3) semana leve se ≥ 2 exercícios estagnarem; 4) trocar por variação equivalente",
@@ -916,7 +916,7 @@
   },
   {
     "id": "deload.semana-leve",
-    "regra": "Semana leve sugerida, manual e opcional (nunca automática); serve para descansar, não para crescer: duas semanas leves não mudaram a hipertrofia, e uma semana parada reduziu um pouco a força (gatilhos revistos no R2; \"não muda a hipertrofia\" é moderada). **R5a (08/11/2026; `d-longo-prazo.md`, opção 1b a 1d):** \"Agora não\" esconde a oferta por 7 dias (antes, só até o próximo treino: quem recusava a via de novo até 106 vezes em 24 semanas, no simulador); não sugere na fase de aprendizado do iniciante; e a estagnação conta o exercício feito no lugar da vaga (a alternativa), e não a vaga que ninguém fez. Os gatilhos numéricos (2 exercícios, 3 sessões) esperam o export do R3",
+    "regra": "Semana leve sugerida, manual e opcional (nunca automática); serve para descansar, não para crescer: duas semanas leves não mudaram a hipertrofia, e uma semana parada reduziu um pouco a força (gatilhos revistos no R2; \"não muda a hipertrofia\" é moderada). R5a (`d-longo-prazo.md`, opção 1): \"Agora não\" vale 7 dias; nada na fase de aprendizado; a estagnação é a do exercício feito na vaga",
     "valores": {
       "iniciante": "mesma frequência, ~50% das séries, RIR 3–4, carga mantida, por 7 dias a partir do aceite; sugerir só com sinal: ≥ 2 exercícios estagnados, \"pesado demais\" em 2 dos últimos 3 treinos (toque opcional \"hoje foi: leve / normal / pesado demais\" no fim do treino) ou dor de 3 a 5 no mesmo exercício em 2 sessões seguidas, somada ao aviso de dor e de avaliação (`seguranca.dor.escala`), nunca no lugar dele; sem o gatilho de \"6–8 semanas\"; não sugere nas 3 semanas depois de uma volta de pausa nem nas 3 depois de uma semana leve; \"Agora não\" vale 7 dias; nada na fase de aprendizado do iniciante; a estagnação é a do exercício feito na vaga",
       "intermediario": "mesma frequência, ~50% das séries, RIR 3–4, carga mantida, por 7 dias a partir do aceite; sugerir só com sinal: ≥ 2 exercícios estagnados, \"pesado demais\" em 2 dos últimos 3 treinos (toque opcional \"hoje foi: leve / normal / pesado demais\" no fim do treino) ou dor de 3 a 5 no mesmo exercício em 2 sessões seguidas, somada ao aviso de dor e de avaliação (`seguranca.dor.escala`), nunca no lugar dele; sem o gatilho de \"6–8 semanas\"; não sugere nas 3 semanas depois de uma volta de pausa nem nas 3 depois de uma semana leve; \"Agora não\" vale 7 dias; nada na fase de aprendizado do iniciante; a estagnação é a do exercício feito na vaga",
@@ -1271,7 +1271,7 @@
   },
   {
     "id": "selecao.funcao-da-vaga",
-    "regra": "A vaga do modelo de dia pede uma função (padrão de movimento e, quando há evidência, a posição alongada), nunca um equipamento; o equipamento só diz o que é possível; dentro do mesmo nível da função, o desempate é dor de 3 a 5, estabilidade (só iniciante), carga possível, variedade entre os dias, a preferência da pessoa (`selecao.preferencia`, R1b), animação aprovada e, por fim, a ordem alfabética. Um afundo por dia (R5a, 08/11/2026; `b-monte-e-avaliador.md`, pedido 4): na escolha da vaga e na vaga sem equipamento, um exercício do padrão afundo (búlgaro, afundo) fica por último quando o dia já tem um ou tem uma vaga de afundo; antes, búlgaro + afundo para trás no mesmo dia em 3,5% dos dias da grade reduzida. Sem outra opção, repete",
+    "regra": "A vaga do modelo de dia pede uma função (padrão de movimento e, quando há evidência, a posição alongada), nunca um equipamento; o equipamento só diz o que é possível; dentro do mesmo nível da função, o desempate é dor de 3 a 5, estabilidade (só iniciante), carga possível, variedade entre os dias, a preferência da pessoa (`selecao.preferencia`, R1b), animação aprovada e, por fim, a ordem alfabética. Um afundo por dia, havendo outra opção: o afundo (búlgaro, afundo) fica por último quando o dia já tem um (R5a; `b-monte-e-avaliador.md`, pedido 4)",
     "valores": {
       "iniciante": "por função; um afundo por dia, havendo outra opção",
       "intermediario": "por função; um afundo por dia, havendo outra opção",
@@ -1426,7 +1426,7 @@
   },
   {
     "id": "selecao.gluteo",
-    "regra": "Ordem das funções para glúteos; o coice na polia sobe ao 1º nível da extensão de quadril, ao lado do hip thrust e do coice na máquina, por ser o único com ensaio de ressonância (`attarieh2026`; decisão do Gustavo em 06/11/2026). No Corpo todo A/B, a vaga de extensão de quadril, que é do foco em glúteo, passa a valer também quando a vaga de dobrar o quadril não tem exercício (equipamento ou dor): o glúteo não fica só com agachar e afundo; com 45 min ou menos, ela só ganha séries enquanto o dia couber nos minutos; num dia que perdeu vaga de pernas para a dor, ela não entra, porque o dia já é refeito com o músculo mais abaixo da meta (`selecao.dia-sem-principal`) e ela tirava o lugar do 2º exercício do foco (R5a, 08/11/2026, revisto ao juntar com o R5d em 09/11; `b-monte-e-avaliador.md`, pedido 3; 150 programas da grade reduzida, todos do Corpo todo A/B; com dor de 7 no ombro, no joelho ou na lombar, os programas de 2 e 3 dias sem extensão de quadril caem de 27–40% para 0–4%)",
+    "regra": "Ordem das funções para glúteos; o coice na polia sobe ao 1º nível da extensão de quadril, ao lado do hip thrust e do coice na máquina, por ser o único com ensaio de ressonância (`attarieh2026`; decisão do Gustavo em 06/11/2026). No Corpo todo A/B, a vaga de extensão de quadril, que é do foco em glúteo, passa a valer também quando a vaga de dobrar o quadril não tem exercício (equipamento ou dor): o glúteo não fica só com agachar e afundo; com 45 min ou menos, ela só ganha séries enquanto o dia couber nos minutos; num dia que perdeu vaga de pernas para a dor, ela não entra, porque o dia já é refeito com o músculo mais abaixo da meta (`selecao.dia-sem-principal`) e ela tirava o lugar do 2º exercício do foco (R5a; `b-monte-e-avaliador.md`, pedido 3)",
     "valores": {
       "iniciante": "agachar profundo ou afundo → extensão de quadril (hip thrust, glúteo na máquina, ponte, coice) → abdução como complemento (máquina, polia, caneleira, mini-band e, sem nada, deitado de lado sem carga, com repetições altas: auditoria de 04/11/2026); sem exercício de dobrar o quadril, a extensão de quadril entra (até 45 min, só enquanto o dia couber)",
       "intermediario": "agachar profundo ou afundo → extensão de quadril (hip thrust, glúteo na máquina, ponte, coice) → abdução como complemento (máquina, polia, caneleira, mini-band e, sem nada, deitado de lado sem carga, com repetições altas: auditoria de 04/11/2026); sem exercício de dobrar o quadril, a extensão de quadril entra (até 45 min, só enquanto o dia couber)",
@@ -1653,7 +1653,7 @@
   },
   {
     "id": "divisao.sem-puxar",
-    "regra": "Sem nenhum exercício de puxar possível, a divisão recomendada passa a ser a de corpo todo do mesmo número de dias, quando existe; com 6 dias, que não têm corpo todo entre as opções, vale o Corpo todo 6x, que só aparece nesse caso (decisão do Gustavo em 06/11/2026, sessão de qualidade dos treinos: antes, o Empurrar/Puxar/Pernas deixava dois dias de \"Puxar\" com 2 exercícios). A que a pessoa escolheu é mantida, com um aviso de que os dias de puxar ficam com outros músculos. Com o mesmo volume, as divisões rendem o mesmo. No Corpo todo 6x, os dias A, C e E ganham um complemento de empurrar vertical (o pike, sem nada), sem depender do foco em ombros, porque sem nada a elevação lateral não tem exercício e o ombro lateral só recebe séries indiretas do empurrar vertical (R5a, 08/11/2026; `docs/revisoes/proximos-passos/a-qualidade.md`, pacote A, protótipo `ov6`; antes, ombro lateral a zero em 87,7% dos programas de 6 dias sem nada)",
+    "regra": "Sem nenhum exercício de puxar possível, a divisão recomendada passa a ser a de corpo todo do mesmo número de dias, quando existe; com 6 dias, que não têm corpo todo entre as opções, vale o Corpo todo 6x, que só aparece nesse caso (decisão do Gustavo em 06/11/2026, sessão de qualidade dos treinos: antes, o Empurrar/Puxar/Pernas deixava dois dias de \"Puxar\" com 2 exercícios). A que a pessoa escolheu é mantida, com um aviso de que os dias de puxar ficam com outros músculos. Com o mesmo volume, as divisões rendem o mesmo. No Corpo todo 6x, os dias A, C e E têm um complemento de empurrar vertical (o pike, sem nada), sem depender do foco: sem nada, é o que dá séries ao ombro lateral (R5a; `a-qualidade.md`, pacote A)",
     "valores": {
       "iniciante": "corpo todo primeiro; 6 dias: Corpo todo 6x; no Corpo todo 6x, empurrar vertical nos dias A, C e E",
       "intermediario": "corpo todo primeiro; 6 dias: Corpo todo 6x; no Corpo todo 6x, empurrar vertical nos dias A, C e E",
@@ -2110,7 +2110,7 @@
   },
   {
     "id": "seguranca.dor.escala",
-    "regra": "Dor por série numa escala de 0 a 10 (pergunta opcional). A nota dada no \"Senti algo\" fica guardada na série (R5a, 08/11/2026; `docs/revisoes/proximos-passos/c-fluxo.md`, C-1): na última série feita do exercício ou, se ele ainda não tem série, na próxima registrada; duas notas na mesma série guardam a maior. Sem a nota guardada, a redução da próxima sessão e a dor que se repete (`deload.semana-leve`) não disparavam no uso real (0 de 6 personas)",
+    "regra": "Dor por série numa escala de 0 a 10 (pergunta opcional). A nota do \"Senti algo\" fica na última série feita do exercício ou, sem série, na próxima (R5a; `c-fluxo.md`, C-1)",
     "valores": {
       "iniciante": "0–2: segue; 3–5: reduzir carga 10–20%, encurtar a amplitude ou desacelerar, trocar se não cair; > 5 ou aguda: encerra o exercício; piora na sessão seguinte ou dura > 1–2 semanas: recomendar avaliação; a nota fica na série e a 1ª sugestão da próxima sessão do exercício reduz a carga (3–5) ou indica a alternativa (> 5)",
       "intermediario": "0–2: segue; 3–5: reduzir carga 10–20%, encurtar a amplitude ou desacelerar, trocar se não cair; > 5 ou aguda: encerra o exercício; piora na sessão seguinte ou dura > 1–2 semanas: recomendar avaliação; a nota fica na série e a 1ª sugestão da próxima sessão do exercício reduz a carga (3–5) ou indica a alternativa (> 5)",
@@ -2138,7 +2138,7 @@
   },
   {
     "id": "registro.treino-feito",
-    "regra": "O que conta como treino feito, e como desfazer um registro errado (R5a, 08/11/2026; `docs/revisoes/proximos-passos/c-fluxo.md`, opção B). Antes, \"Começar\" e \"Terminar\" sem série gravavam um treino concluído e pulavam o dia na rotação (6 de 6 personas). Desfazer e sair de um estado errado é um princípio de usabilidade (controle e liberdade de quem usa); não há estudo de treino sobre isso",
+    "regra": "O que conta como treino feito, e como desfazer um registro errado (R5a; `c-fluxo.md`, opção B). Desfazer e sair de um estado errado é princípio de usabilidade; não há estudo de treino sobre isso",
     "valores": {
       "iniciante": "só sessões com pelo menos 1 série contam como treino feito: a rotação dos dias, a semana, a pausa e a semana leve; \"Terminar\" sem nenhuma série oferece \"Descartar este treino\" ou \"Guardar mesmo assim\" (guardado, ele não conta); o último treino pode ser apagado, com confirmação",
       "intermediario": "só sessões com pelo menos 1 série contam como treino feito: a rotação dos dias, a semana, a pausa e a semana leve; \"Terminar\" sem nenhuma série oferece \"Descartar este treino\" ou \"Guardar mesmo assim\" (guardado, ele não conta); o último treino pode ser apagado, com confirmação",
