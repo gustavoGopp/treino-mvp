@@ -311,6 +311,8 @@ export function avaliar(programa: ProgramaParaAvaliar, perfil: Perfil, inventari
       for (const x of [...d.exercicios].reverse()) {
         const e = ex(x);
         if (x.supersetCom || x.dropSet || e.musculos.primarios.some((k) => prioritarios.has(k))) continue; // nunca tira do foco
+        // O doador é da mesma região do músculo (o abdômen aceita qualquer uma): não se troca um supino por uma abdução.
+        if (regiaoDe(m) !== 'core' && !e.musculos.primarios.some((k) => regiaoDe(k) === regiaoDe(m))) continue;
         // Só o que sobra: um músculo principal dele acima do máximo do nível, ou a mesma função repetida no mesmo dia.
         const sobra =
           e.musculos.primarios.some((k) => (v[k] ?? 0) > VOLUME.maximo[nivel] + 1e-9) ||
