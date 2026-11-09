@@ -25,6 +25,8 @@ import { exerciciosPorSessao, TEMPO, VOLUME, type Nivel } from '../../src/domain
 import { grade, perfil, type Caso, type SituacaoDeDor } from './cenarios';
 import { CENARIOS_55, type Cen } from './cenarios-55';
 import { medirRegua, NOME_DEFEITO } from './regua';
+import { avaliar } from '../../src/domain/avaliador';
+import { naoAvisados } from './grade-reduzida';
 import { MINUTOS_Q, PRIORIDADES_Q } from './qualidade-grade';
 
 const args = process.argv.slice(2);
@@ -108,13 +110,15 @@ type Acc = {
   /** Vagas vazias: "cenário|nível|função" → { equipamento, dor } e "cenário|nível" → { vagas, comExercicio, foraPorMinutos, programas }. */
   vagas: Record<string, { equipamento: number; dor: number }>;
   vagasDoDia: Record<string, { programas: number; dias: number; vagas: number; comExercicio: number; foraPorMinutos: number }>;
+  /** O avaliador (R5b): veredito → programas, e "cenário|veredito". */
+  avaliador: Contagem;
   /** Avisos: regra → programas com o aviso; e "cenário|regra". */
   avisos: Contagem;
   avisosPorCenario: Contagem;
   /** Os piores casos de cada tipo: por cenário, o pior (pelo valor e depois pelo índice); o relatório mostra os 10 piores cenários. */
   piores: Record<string, Record<string, Pior>>;
 };
-const novo = (): Acc => ({ programas: 0, bloqueados: 0, dias: 0, contagem: {}, exemplos: {}, exerciciosPorDia: {}, usoPorPrograma: {}, volume: {}, fatia: {}, competem: {}, distintos: {}, monotonia: {}, vagas: {}, vagasDoDia: {}, avisos: {}, avisosPorCenario: {}, piores: {} });
+const novo = (): Acc => ({ programas: 0, bloqueados: 0, dias: 0, contagem: {}, exemplos: {}, exerciciosPorDia: {}, usoPorPrograma: {}, volume: {}, fatia: {}, competem: {}, distintos: {}, monotonia: {}, vagas: {}, vagasDoDia: {}, avaliador: {}, avisos: {}, avisosPorCenario: {}, piores: {} });
 const A = novo();
 const inc = (c: Contagem, k: string, n = 1) => (c[k] = (c[k] ?? 0) + n);
 const hist = (h: Hist, k: string, v: number | string) => inc((h[k] ??= {}), String(v));
@@ -288,6 +292,12 @@ function medir(c: CasoQ) {
   const regua = medirRegua(p, pf, ctx);
   for (const d of regua.defeitos) problema(`regua.${d}`, c, p, `${NOME_DEFEITO[d]}: ${regua.detalhe[d]}`);
 
+  // O avaliador (R5b): o veredito, e o que ele pede para ajustar sem aviso do gerador (a régua: deve ser 0).
+  const av = avaliar(p, pf, inv);
+  inc(A.avaliador, av.veredito);
+  inc(A.avaliador, `${cid}|${av.veredito}`);
+  for (const x of naoAvisados(p, av.achados)) problema(`avaliador.${x.gravidade}-sem-aviso`, c, p, `${x.tipo}: ${x.texto} → ${x.passo}`);
+
   // Avisos
   for (const id of new Set(p.avisos.map((a) => a.regraId))) {
     inc(A.avisos, id);
@@ -337,6 +347,7 @@ function somar(a: Acc, b: Acc) {
     const x = (a.vagasDoDia[k] ??= { programas: 0, dias: 0, vagas: 0, comExercicio: 0, foraPorMinutos: 0 });
     for (const f of Object.keys(x) as (keyof typeof x)[]) x[f] += v[f];
   }
+  for (const [k, n] of Object.entries(b.avaliador)) inc(a.avaliador, k, n);
   for (const [k, n] of Object.entries(b.avisos)) inc(a.avisos, k, n);
   for (const [k, n] of Object.entries(b.avisosPorCenario)) inc(a.avisosPorCenario, k, n);
   for (const [id, porCen] of Object.entries(b.piores)) {
@@ -446,6 +457,7 @@ async function main() {
     monotonia: acc.monotonia,
     vagas: acc.vagas,
     vagasDoDia: acc.vagasDoDia,
+    avaliador: acc.avaliador,
     avisos: acc.avisos,
     avisosPorCenario: acc.avisosPorCenario,
     piores: Object.fromEntries(
@@ -603,6 +615,18 @@ async function main() {
       const m = (x: number) => virg(Math.round((10 * x) / vd.programas) / 10);
       linha(c.id, nivel, m(vd.vagas), m(vd.comExercicio), m(eq), m(dor), m(vd.foraPorMinutos), porFuncao.filter((x) => x.eq).map((x) => `${x.f} (${m(x.eq)})`).join(', ') || '—');
     }
+
+  L.push('', '## O avaliador', '', 'O veredito do avaliador de programas (R5b, `src/domain/avaliador`; regra `avaliador.gravidade`) em cada programa: "bom" (nada a ajustar), "limite" (só o que o equipamento, a dor ou o tempo impedem), "ajustar" ou "bloqueado" (segurança). Os "ajustar" que o gerador não avisa aparecem nos suspeitos como `avaliador.*-sem-aviso` (devem ser 0 na grade reduzida, `npm run auditoria:avaliador`).', '');
+  linha('cenário', 'bom', 'limite', 'ajustar', 'bloqueado', 'bom ou só limite');
+  linha('---', '---:', '---:', '---:', '---:', '---:');
+  const vereditos = ['bom', 'limite', 'ajustar', 'bloqueado'];
+  const linhaAv = (rotulo: string, pref: string) => {
+    const k = (v: string) => acc.avaliador[`${pref}${v}`] ?? 0;
+    const t = vereditos.reduce((x, v) => x + k(v), 0);
+    linha(rotulo, ...vereditos.map((v) => pv(k(v), t)), pv(k('bom') + k('limite'), t));
+  };
+  linhaAv('**todos**', '');
+  for (const c of cenariosOrd) linhaAv(c.id, `${c.id}|`);
 
   L.push('', '## Avisos', '', '% dos programas com cada aviso (uma vez por programa, mesmo que repetido).', '');
   linha('regra', 'programas', '%');
