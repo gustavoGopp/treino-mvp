@@ -3,6 +3,7 @@ import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 import { VitePWA } from 'vite-plugin-pwa';
 import { execSync } from 'node:child_process';
+import { availableParallelism } from 'node:os';
 
 // Versão mostrada em "Meus dados" (R3): o commit publicado e a data do build, para a pessoa ver se o app atualizou.
 // Na Vercel vem de VERCEL_GIT_COMMIT_SHA; localmente, do git; sem os dois, "local".
@@ -57,6 +58,9 @@ export default defineConfig(({ mode }) => ({
   ],
   test: {
     include: ['tests/unit/**/*.test.ts', 'tests/repo/**/*.test.ts'],
+    // Um núcleo fica livre para o processo principal: com todos ocupados pelos testes pesados do gerador, ele demorava a
+    // responder e o Vitest acusava "Timeout calling onTaskUpdate" (2 de 3 rodadas na main de 09/11; 0 de 3 assim).
+    maxWorkers: Math.max(1, availableParallelism() - 1),
     coverage: {
       include: ['src/domain/**'],
       thresholds: { lines: 90, statements: 90, functions: 90, branches: 90 },
