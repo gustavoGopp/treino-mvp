@@ -24,7 +24,7 @@
 | `regua.B1` | 2.946 | 0,3% dos programas |
 | `regua.D3` | 1.359 | 0,1% dos programas |
 | `regua.E1` | 481 | 0,1% dos programas |
-| `avaliador.ajustar-sem-aviso` | 386 | 0% dos programas |
+| `avaliador.ajustar-sem-aviso` | 325 | 0% dos programas |
 
 ## Exercícios por dia
 
@@ -589,23 +589,23 @@ O veredito do avaliador de programas (R5b, `src/domain/avaliador`; regra `avalia
 
 | cenário | bom | limite | ajustar | bloqueado | bom ou só limite |
 | --- | ---: | ---: | ---: | ---: | ---: |
-| **todos** | 11,1% | 79,5% | 9,5% | 0% | 90,5% |
-| academia | 34,2% | 55,6% | 10,2% | 0% | 89,8% |
-| academia+ | 34,2% | 55,5% | 10,4% | 0% | 89,6% |
-| bairro | 33,9% | 56,3% | 9,8% | 0% | 90,2% |
-| banco+halteres-leves | 37% | 50% | 12,9% | 0% | 87,1% |
-| bruno | 35% | 56,3% | 8,8% | 0% | 91,2% |
-| casa | 32,1% | 54,9% | 13% | 0% | 87% |
-| casa+ | 35,8% | 55,6% | 8,6% | 0% | 91,4% |
-| condominio | 37,3% | 52,2% | 10,5% | 0% | 89,5% |
-| condominio+ | 33,7% | 57,3% | 9,1% | 0% | 90,9% |
+| **todos** | 11,1% | 79,8% | 9,1% | 0% | 90,9% |
+| academia | 34,2% | 57,6% | 8,2% | 0% | 91,8% |
+| academia+ | 34,2% | 57,5% | 8,3% | 0% | 91,7% |
+| bairro | 33,9% | 56,7% | 9,4% | 0% | 90,6% |
+| banco+halteres-leves | 37% | 51,2% | 11,8% | 0% | 88,2% |
+| bruno | 35% | 57,8% | 7,2% | 0% | 92,8% |
+| casa | 32,1% | 56% | 11,8% | 0% | 88,2% |
+| casa+ | 35,8% | 56,4% | 7,8% | 0% | 92,2% |
+| condominio | 37,3% | 53,1% | 9,5% | 0% | 90,5% |
+| condominio+ | 33,7% | 57,7% | 8,7% | 0% | 91,3% |
 | diego | 28,7% | 58,2% | 13,1% | 0% | 86,9% |
 | elasticos | 28,5% | 57,6% | 14% | 0% | 86% |
-| halteres | 36,3% | 53,5% | 10,3% | 0% | 89,7% |
-| halteres-banco | 37% | 50% | 12,9% | 0% | 87,1% |
-| halteres+bola | 35,9% | 53,4% | 10,7% | 0% | 89,3% |
-| so:abdominal_maquina | 0% | 92,3% | 7,7% | 0% | 92,3% |
-| so:anilhas_e_manoplas | 36,3% | 53,5% | 10,3% | 0% | 89,7% |
+| halteres | 36,3% | 54,5% | 9,2% | 0% | 90,8% |
+| halteres-banco | 37% | 51,2% | 11,8% | 0% | 88,2% |
+| halteres+bola | 35,9% | 54,4% | 9,7% | 0% | 90,3% |
+| so:abdominal_maquina | 0% | 92,7% | 7,3% | 0% | 92,7% |
+| so:anilhas_e_manoplas | 36,3% | 54,5% | 9,2% | 0% | 90,8% |
 | so:banco_romano | 0% | 91,3% | 8,7% | 0% | 91,3% |
 | so:barra_fixa | 0% | 90,5% | 9,5% | 0% | 90,5% |
 | so:barra_hexagonal | 0% | 92,9% | 7,1% | 0% | 92,9% |
@@ -613,35 +613,35 @@ O veredito do avaliador de programas (R5b, `src/domain/avaliador`; regra `avalia
 | so:barra_w | 0% | 90,7% | 9,3% | 0% | 90,7% |
 | so:bola_suica | 0% | 91,9% | 8,1% | 0% | 91,9% |
 | so:cadeira_abdutora_adutora | 0% | 93,1% | 6,9% | 0% | 93,1% |
-| so:cadeira_extensora | 0% | 92,6% | 7,4% | 0% | 92,6% |
-| so:cadeira_flexora | 0% | 91,2% | 8,8% | 0% | 91,2% |
+| so:cadeira_extensora | 0% | 92,8% | 7,2% | 0% | 92,8% |
+| so:cadeira_flexora | 0% | 91,8% | 8,2% | 0% | 91,8% |
 | so:caneleiras | 0% | 89,8% | 10,2% | 0% | 89,8% |
 | so:desenvolvimento_maquina | 0% | 92,1% | 7,9% | 0% | 92,1% |
-| so:estacao_polia_dupla | 0% | 85,8% | 14,2% | 0% | 85,8% |
+| so:estacao_polia_dupla | 0% | 85,9% | 14,1% | 0% | 85,9% |
 | so:estacao_puxada | 0% | 90,4% | 9,6% | 0% | 90,4% |
 | so:estacao_remada | 0% | 90,5% | 9,5% | 0% | 90,5% |
-| so:gluteo_maquina | 0% | 92,7% | 7,3% | 0% | 92,7% |
+| so:gluteo_maquina | 0% | 92,8% | 7,2% | 0% | 92,8% |
 | so:graviton | 0% | 90,2% | 9,8% | 0% | 90,2% |
 | so:hack | 0% | 92% | 8% | 0% | 92% |
 | so:halteres_fixos | 35,9% | 53,9% | 10,2% | 0% | 89,8% |
 | so:kettlebell | 0% | 89,9% | 10,1% | 0% | 89,9% |
-| so:leg_press | 0% | 92,1% | 7,9% | 0% | 92,1% |
-| so:mesa_flexora | 0% | 91,2% | 8,8% | 0% | 91,2% |
+| so:leg_press | 0% | 92,5% | 7,5% | 0% | 92,5% |
+| so:mesa_flexora | 0% | 91,8% | 8,2% | 0% | 91,8% |
 | so:mini_band | 0% | 92,6% | 7,4% | 0% | 92,6% |
 | so:multifuncional | 0% | 91,1% | 8,9% | 0% | 91,1% |
-| so:panturrilha_em_pe_maquina | 0% | 91,8% | 8,2% | 0% | 91,8% |
+| so:panturrilha_em_pe_maquina | 0% | 92,5% | 7,5% | 0% | 92,5% |
 | so:panturrilha_sentada_maquina | 0% | 91,7% | 8,3% | 0% | 91,7% |
 | so:paralelas | 0% | 91,9% | 8,1% | 0% | 91,9% |
 | so:rack_de_agachamento | 0% | 90,6% | 9,4% | 0% | 90,6% |
 | so:remada_articulada | 0% | 90,7% | 9,3% | 0% | 90,7% |
 | so:roda_abdominal | 0% | 92,2% | 7,8% | 0% | 92,2% |
-| so:rosca_maquina | 0% | 90,9% | 9,1% | 0% | 90,9% |
+| so:rosca_maquina | 0% | 91,2% | 8,8% | 0% | 91,2% |
 | so:smith | 0% | 91,2% | 8,8% | 0% | 91,2% |
 | so:step | 0% | 92,3% | 7,7% | 0% | 92,3% |
 | so:supino_maquina | 0% | 92% | 8% | 0% | 92% |
 | so:suspensao | 0% | 90,6% | 9,4% | 0% | 90,6% |
 | so:triceps_maquina | 0% | 92% | 8% | 0% | 92% |
-| so:voador | 0% | 92,8% | 7,2% | 0% | 92,8% |
+| so:voador | 0% | 92,9% | 7,1% | 0% | 92,9% |
 | step+elasticos | 28,6% | 57,5% | 13,9% | 0% | 86,1% |
 | suspensao+elasticos | 28,4% | 57,8% | 13,8% | 0% | 86,2% |
 | vazio | 0% | 92,1% | 7,9% | 0% | 92,1% |
@@ -804,15 +804,15 @@ Os 10 piores cenários de cada medida, um caso por cenário (menor valor primeir
 
 ### `avaliador.ajustar-sem-aviso`
 
-- **casa · avancado · 3 dias · 45 min · prioridade peito · cotovelo 7**: series-por-exercicio: 1 exercício com mais de 4 séries: crucifixo invertido curvado com halteres (5). → Acima de 4 séries, divida entre 2 exercícios diferentes ou entre 2 dias..
-  - Programa: Corpo todo A (41 min): goblet 2, ponte-gluteo-halter 2, crucifixo-elastico 4, flexao-joelho-elastico 2, elevacao-halteres 3, abdominal-chao 2 | Corpo todo B (41 min): stiff 2, crucifixo-elastico 4, extensao-joelho-elastico 2, panturrilha-degrau 4, crucifixo-invertido-curvado 4+drop | Corpo todo C (43 min): afundo 2, ponte-gluteo-halter 2, crucifixo-elastico 4, elevacao-halteres 3, flexao-joelho-elastico 2, abdominal-chao 2
-  - Reproduzir: `gerarPrograma({"nivel":"avancado","semanasParado":0,"diasSemana":3,"minutosSessao":45,"prioridades":["peito"],"evitarExercicios":[],"evitarEquipamentos":[],"triagem":{"respostas":{"coracao":false,"peito":false,"tontura":false,"doenca-cronica":false,"medicamento":false,"osteoarticular":true,"supervisao":false,"gravidez":false,"doenca-aguda":false},"dores":[{"articulacao":"cotovelo","nota":7}]}}, CEN_55['casa'].inventario)`
-- **halteres · intermediario · 2 dias · 45 min · prioridade peito · lombar 7**: series-por-exercicio: 1 exercício com mais de 4 séries: crucifixo invertido sentado, com o peito nas coxas, com halteres (5). → Acima de 4 séries, divida entre 2 exercícios diferentes ou entre 2 dias..
-  - Programa: Corpo todo A (45 min): flexao 4, goblet 3, flexao-joelho-deslizante 3, triceps-frances-halter 2, elevacao-halteres 4, panturrilha-degrau 4 | Corpo todo B (45 min): flexao-pes-elevados 3, afundo 2, ponte-gluteo-halter 2, nordico 2, rosca-alternada 3+drop, crucifixo-invertido-sentado 4+drop
-  - Reproduzir: `gerarPrograma({"nivel":"intermediario","semanasParado":0,"diasSemana":2,"minutosSessao":45,"prioridades":["peito"],"evitarExercicios":[],"evitarEquipamentos":[],"triagem":{"respostas":{"coracao":false,"peito":false,"tontura":false,"doenca-cronica":false,"medicamento":false,"osteoarticular":true,"supervisao":false,"gravidez":false,"doenca-aguda":false},"dores":[{"articulacao":"lombar","nota":7}]}}, CEN_55['halteres'].inventario)`
-- **halteres-banco · iniciante · 2 dias · 45 min · prioridade peito · lombar 7**: series-por-exercicio: 1 exercício com mais de 4 séries: crucifixo invertido sentado, com o peito nas coxas, com halteres (5). → Acima de 4 séries, divida entre 2 exercícios diferentes ou entre 2 dias..
-  - Programa: Corpo todo A (44 min): supino-reto 4, bulgaro 3, flexao-joelho-deslizante 2, triceps-frances-halter 2, elevacao-halteres 3+drop, panturrilha-degrau 4 | Corpo todo B (45 min): supino-reto 3, afundo 2, ponte-gluteo-halter 2, flexao-joelho-deslizante 2, rosca-alternada 3+drop, crucifixo-invertido-sentado 4+drop
-  - Reproduzir: `gerarPrograma({"nivel":"iniciante","semanasParado":0,"diasSemana":2,"minutosSessao":45,"prioridades":["peito"],"evitarExercicios":[],"evitarEquipamentos":[],"triagem":{"respostas":{"coracao":false,"peito":false,"tontura":false,"doenca-cronica":false,"medicamento":false,"osteoarticular":true,"supervisao":false,"gravidez":false,"doenca-aguda":false},"dores":[{"articulacao":"lombar","nota":7}]}}, CEN_55['halteres-banco'].inventario)`
+- **halteres · avancado · 2 dias · 90 min · prioridade costas · joelho 7**: funcoes: Um movimento só para o músculo: glúteos só com extensão de quadril. → Troque supino no chão com halteres por abdução de quadril deitado de lado, sem carga no treino Corpo todo A. Movimentos diferentes crescem partes diferentes do músculo..
+  - Programa: Corpo todo A (89 min): remada-unilateral-sem-banco 4, remada-curvada-halteres 4, flexao 3, stiff 4, supino-chao-halteres 2, triceps-frances-halter 3, elevacao-halteres 4, panturrilha-degrau 4, rosca-martelo 2, abdominal-chao 2 | Corpo todo B (90 min): remada-curvada-halteres 4, remada-unilateral-sem-banco 4, flexao-pes-elevados 4, stiff-unilateral 4, ponte-gluteo-halter 4, rosca-alternada 2, crucifixo-invertido-curvado 2, elevacao-halteres 4, abdominal-invertido 2
+  - Reproduzir: `gerarPrograma({"nivel":"avancado","semanasParado":0,"diasSemana":2,"minutosSessao":90,"prioridades":["costas"],"evitarExercicios":[],"evitarEquipamentos":[],"triagem":{"respostas":{"coracao":false,"peito":false,"tontura":false,"doenca-cronica":false,"medicamento":false,"osteoarticular":true,"supervisao":false,"gravidez":false,"doenca-aguda":false},"dores":[{"articulacao":"joelho","nota":7}]}}, CEN_55['halteres'].inventario)`
+- **bairro · intermediario · 3 dias · 60 min · prioridade pernas · joelho 7**: funcoes: Um movimento só para o músculo: glúteos só com extensão de quadril. → Troque supino reto com halteres por abdução de quadril deitado de lado, sem carga no treino Corpo todo C. Movimentos diferentes crescem partes diferentes do músculo..
+  - Programa: Corpo todo A (52 min): stiff 4, supino-reto 2, barra-fixa 2, triceps-frances-halter 2, elevacao-halteres 3, crucifixo-halteres 2, rosca-alternada 2, abdominal-chao 2 | Corpo todo B (59 min): stiff-unilateral 4, supino-inclinado 2, remada-apoiada 2, panturrilha-leg-press 3+drop, panturrilha-sentada-halter 3+drop, rosca-inclinada 2, crucifixo-inverso 2+drop, aducao-deitado 2 | Corpo todo C (59 min): stiff 4, supino-reto 2, barra-fixa-supinada 2, ponte-gluteo-halter 2, mergulho 2, panturrilha-leg-press 4, elevacao-halteres 3, elevacao-joelhos 2
+  - Reproduzir: `gerarPrograma({"nivel":"intermediario","semanasParado":0,"diasSemana":3,"minutosSessao":60,"prioridades":["pernas"],"evitarExercicios":[],"evitarEquipamentos":[],"triagem":{"respostas":{"coracao":false,"peito":false,"tontura":false,"doenca-cronica":false,"medicamento":false,"osteoarticular":true,"supervisao":false,"gravidez":false,"doenca-aguda":false},"dores":[{"articulacao":"joelho","nota":7}]}}, CEN_55['bairro'].inventario)`
+- **vazio · avancado · 2 dias · 60 min · prioridade abdomen · joelho 7**: funcoes: Um movimento só para o músculo: glúteos só com abdução. → Troque flexão com os pés elevados por ponte de glúteo no treino Corpo todo A. Movimentos diferentes crescem partes diferentes do músculo..
+  - Programa: Corpo todo A (59 min): flexao 4, flexao-pes-elevados 3, extensao-triceps-peso-corpo 4, panturrilha-degrau 4, abdominal-chao 4, abdominal-invertido 4 | Corpo todo B (59 min): flexao-pes-elevados 2, abertura-t-deitado 4, abducao-deitado 4, aducao-deitado 2, abdominal-invertido 4, abdominal-chao 3
+  - Reproduzir: `gerarPrograma({"nivel":"avancado","semanasParado":0,"diasSemana":2,"minutosSessao":60,"prioridades":["abdomen"],"evitarExercicios":[],"evitarEquipamentos":[],"triagem":{"respostas":{"coracao":false,"peito":false,"tontura":false,"doenca-cronica":false,"medicamento":false,"osteoarticular":true,"supervisao":false,"gravidez":false,"doenca-aguda":false},"dores":[{"articulacao":"joelho","nota":7}]}}, CEN_55['vazio'].inventario)`
 
 ### `dia.poucos-exercicios`
 
