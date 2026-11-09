@@ -1,5 +1,5 @@
-import { r } from '../regras';
-import { noPassoAbaixo, proximaCarga, type Alvo, type Carga, type OpcoesCarga, type SerieRegistrada, type SessaoExercicio } from './index';
+import { PROGRESSAO, r } from '../regras';
+import { noPassoAbaixo, proximaCarga, valorDaCarga, type Alvo, type Carga, type OpcoesCarga, type SerieRegistrada, type SessaoExercicio } from './index';
 
 // Calibração da carga, série a série (progressao.calibracao; pesquisa-v2/07, seção 2.3, e pesquisa-v2/09).
 // Vale na 1ª vez de um exercício e na 1ª vez de uma máquina de placa, anilhas ou contrapeso num local.
@@ -85,3 +85,22 @@ export const semCalibracao = (h: SessaoExercicio[]): SessaoExercicio[] =>
 
 /** O exercício ainda está em calibração: nenhuma série de trabalho registrada (nesta chave de local). */
 export const emCalibracao = (h: SessaoExercicio[]) => semCalibracao(h).length === 0;
+
+/**
+ * A saída da calibração (progressao.calibracao; R5a): depois de 3 séries de acerto sem cair em A ± 2, a carga com R mais
+ * perto de A vira a de trabalho (no empate, a mais leve). Acontece quando o próximo peso possível é um salto grande
+ * (halter de 4 kg dá R = 24 e o de 5 kg, R = 12). Devolve undefined enquanto a calibração ainda segue.
+ */
+export function fimDaCalibracao(acertos: Pick<SerieRegistrada, 'carga' | 'reps' | 'rir'>[], alvo: Alvo): ResultadoCalibracao | undefined {
+  if (acertos.length < PROGRESSAO.acertosMax) return undefined;
+  const a = alvoDaCalibracao(alvo);
+  const dist = (x: Pick<SerieRegistrada, 'reps' | 'rir'>) => Math.abs(x.reps + x.rir - a);
+  const melhor = [...acertos].sort((x, y) => dist(x) - dist(y) || valorDaCarga(x.carga) - valorDaCarga(y.carga))[0]!;
+  return {
+    acao: 'manter',
+    proxima: melhor.carga,
+    perto: true,
+    motivo: `Fim da calibração: ${texto(melhor.carga)} é a carga mais perto da sua faixa. Daqui em diante, as repetições sobem e depois a carga.`,
+    regraId: r('progressao.calibracao'),
+  };
+}

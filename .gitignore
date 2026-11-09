@@ -1,5 +1,7 @@
 # Dados pessoais: nunca versionar
 privado/
+# Cópias exportadas pelo app ("Meus dados" → "Guardar uma cópia"): têm dados de saúde
+treino-mvp-*.json
 
 # Segredos
 .env

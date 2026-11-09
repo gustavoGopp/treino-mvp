@@ -10,17 +10,17 @@ Nenhum defeito acima da linha de base (`docs/revisoes/qualidade/regua-linha-de-b
 
 | defeito | o que é | sem dor | % | linha de base | com dor | % | linha de base |
 | --- | --- | ---: | ---: | ---: | ---: | ---: | ---: |
-| A2 | dia com menos de 3 exercícios ou sem multiarticular | 385 | 1,1% | 7,5% | 14.997 | 20,7% | 23,5% |
-| A3 | dia mais longo acima de 110% dos minutos | 2.512 | 6,9% | 9,8% | 2.535 | 3,5% | 4,5% |
+| A2 | dia com menos de 3 exercícios ou sem multiarticular | 385 | 1,1% | 7,5% | 14.995 | 20,7% | 23,5% |
+| A3 | dia mais longo acima de 110% dos minutos | 2.506 | 6,9% | 9,8% | 2.532 | 3,5% | 4,5% |
 | A4 | dia típico abaixo de 70% dos minutos, sem o aviso | 1.831 | 5,0% | 5,3% | 0 | 0,0% | 0,0% |
 | B1 | o mesmo exercício em todos os dias havendo outro do mesmo nível | 0 | 0,0% | 0,3% | 780 | 1,1% | 1,3% |
-| C1 | prioritário abaixo da meta com tempo e exercício | 529 | 1,5% | 4,1% | 963 | 1,3% | 5,8% |
-| D1 | empurrar ÷ puxar acima de 1,5 havendo como puxar | 444 | 1,2% | 6,1% | 341 | 0,5% | 3,2% |
+| C1 | prioritário abaixo da meta com tempo e exercício | 466 | 1,3% | 4,1% | 980 | 1,3% | 5,8% |
+| D1 | empurrar ÷ puxar acima de 1,5 havendo como puxar | 467 | 1,3% | 6,1% | 341 | 0,5% | 3,2% |
 | D3 | quadríceps ÷ posteriores fora de 0,5–2 (ou sem posteriores direto) | 0 | 0,0% | 1,6% | 0 | 0,0% | 0,3% |
 | E1 | não prioritário com 1 a 3 séries havendo exercício e tempo | 35 | 0,1% | 0,2% | 0 | 0,0% | 0,0% |
 | seguranca | exercício impossível, acima da complexidade ou numa região com dor > 5 | 0 | 0,0% | 0,0% | 0 | 0,0% | 0,0% |
-| **sem nenhum defeito** |  | 30.843 | **85,0%** |  | 53.786 | 74,1% |  |
-| sem defeito, fora o D1 |  | 31.110 | 85,7% |  | 53.949 | 74,3% |  |
+| **sem nenhum defeito** |  | 30.890 | **85,1%** |  | 53.774 | 74,1% |  |
+| sem defeito, fora o D1 |  | 31.179 | 85,9% |  | 53.937 | 74,3% |  |
 
 Como cada limite é medido (as definições do protótipo de `g-biblioteca-ampliada.md` foram descartadas com o rascunho; estas reproduzem a linha de base dele em todos os números publicados, menos o D1): o dia típico (A4) é a mediana dos dias; "tem tempo" (C1, E1) é o dia mais longo abaixo de 85% dos minutos; o foco (C1, C2) só conta músculos com exercício possível, e C2 compara com a mediana dos não prioritários que têm exercício possível; D1 e D3 só valem quando o equipamento permite puxar, e treinar quadríceps e posteriores. **O D1 usa o limite escrito na tabela 4.7 (empurrar ÷ puxar acima de 1,5)**: dá 6,1% na `main`, e não os 0,9% do protótipo, cuja leitura exata se perdeu. Por isso a linha "fora o D1" é a comparável com os 73,4% (hoje) e os 83,8% (final) do protótipo.
 
@@ -30,21 +30,21 @@ Como cada limite é medido (as definições do protótipo de `g-biblioteca-ampli
 
 | nota | o que é | programas | % (sem dor) | % (3 dias ou mais) |
 | --- | --- | ---: | ---: | ---: |
-| A1 | exercícios por dia fora da faixa dos minutos | 3.624 | 10,0% |  |
-| A5 | dia mais curto abaixo de 60% do mais longo | 4.829 | 13,3% |  |
+| A1 | exercícios por dia fora da faixa dos minutos | 3.672 | 10,1% |  |
+| A5 | dia mais curto abaixo de 60% do mais longo | 4.809 | 13,2% |  |
 | B2 | o mesmo exercício em todos os dias sem opção do mesmo nível | 5.666 | 15,6% | 19,5% |
 | B3 | dois exercícios ou mais em todos os dias | 2.870 | 7,9% | 9,9% |
-| C2 | o foco não passa da mediana dos outros músculos | 4.778 | 13,2% |  |
-| G1 | dia com 3 ou mais cartões de texto | 26.900 | 74,1% |  |
+| C2 | o foco não passa da mediana dos outros músculos | 4.902 | 13,5% |  |
+| G1 | dia com 3 ou mais cartões de texto | 26.882 | 74,1% |  |
 
 ## Medidas (sem dor)
 
 | medida | valor |
 | --- | ---: |
-| exercícios por dia (média) | 5,53 |
-| exercícios diferentes por semana (média) | 15,6 |
-| prescrições sem nenhuma alternativa | 27,1% |
-| cartões de texto por dia (média) | 1,96 |
+| exercícios por dia (média) | 5,59 |
+| exercícios diferentes por semana (média) | 15,8 |
+| prescrições sem nenhuma alternativa | 27,8% |
+| cartões de texto por dia (média) | 1,95 |
 | funções com 0 opção / com 1, somando os 55 cenários (intermediário) | 277 / 356 |
 
 ## Por grupo de cenário
@@ -55,8 +55,8 @@ Sem dor. "C2 (com foco)": a nota C2 entre os programas com algum grupo de foco (
 | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
 | atalhos (6) | 3.960 | 65,7% | 1,2% | 9,8% | 22,3% | 0,0% | 0,0% | 1,6% | 0,0% | 0,3% | 0,0% | 16,9% | 6,05 | 21 | 0,0% | 68,7% |
 | personas (6) | 3.960 | 68,2% | 3,5% | 11,6% | 16,4% | 0,0% | 0,0% | 1,8% | 0,0% | 0,4% | 0,0% | 19,2% | 5,94 | 19,8 | 0,1% | 61,2% |
-| sem nada (1) | 660 | 94,7% | 0,0% | 3,8% | 0,0% | 0,0% | 1,5% | 0,0% | 0,0% | 0,0% | 0,0% | 10,5% | 5,43 | 12,9 | 26,7% | 82,1% |
-| um item só (38) | 25.080 | 91,9% | 0,2% | 5,1% | 0,0% | 0,0% | 2,1% | 1,1% | 0,0% | 0,0% | 0,0% | 12,8% | 5,35 | 13,8 | 21,9% | 79,2% |
+| sem nada (1) | 660 | 95,6% | 0,0% | 3,3% | 0,0% | 0,0% | 1,1% | 0,0% | 0,0% | 0,0% | 0,0% | 11,2% | 5,54 | 13,2 | 26,7% | 82,1% |
+| um item só (38) | 25.080 | 92,1% | 0,2% | 5,1% | 0,0% | 0,0% | 1,8% | 1,2% | 0,0% | 0,0% | 0,0% | 13,4% | 5,43 | 14 | 21,9% | 79,1% |
 | pares de casa (4) | 2.640 | 70,4% | 5,4% | 13,2% | 11,4% | 0,0% | 0,0% | 1,6% | 0,0% | 0,3% | 0,0% | 20,3% | 5,86 | 18,8 | 0,1% | 51,4% |
 
 ## Por nível
@@ -65,9 +65,9 @@ Sem dor. "C2 (com foco)": a nota C2 entre os programas com algum grupo de foco (
 
 | recorte | programas | sem defeito | A2 | A3 | A4 | B1 | C1 | D1 | D3 | E1 | seguranca | C2 (com foco) | exercícios por dia | diferentes por semana | B2 | 3+ cartões |
 | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
-| iniciante | 12.100 | 86,9% | 1,0% | 4,6% | 5,4% | 0,0% | 1,7% | 0,6% | 0,0% | 0,1% | 0,0% | 15,4% | 5,48 | 14,6 | 40,9% | 63,8% |
-| intermediario | 12.100 | 85,6% | 1,0% | 7,3% | 5,1% | 0,0% | 0,5% | 1,2% | 0,0% | 0,1% | 0,0% | 13,8% | 5,54 | 16,1 | 2,9% | 79,3% |
-| avancado | 12.100 | 82,4% | 1,1% | 8,9% | 4,6% | 0,0% | 2,2% | 1,9% | 0,0% | 0,1% | 0,0% | 14,2% | 5,57 | 16,2 | 3,0% | 79,3% |
+| iniciante | 12.100 | 87,2% | 1,0% | 4,6% | 5,4% | 0,0% | 1,3% | 0,7% | 0,0% | 0,1% | 0,0% | 15,5% | 5,54 | 14,7 | 40,9% | 63,5% |
+| intermediario | 12.100 | 85,6% | 1,0% | 7,2% | 5,1% | 0,0% | 0,4% | 1,3% | 0,0% | 0,1% | 0,0% | 14,4% | 5,59 | 16,3 | 2,9% | 79,3% |
+| avancado | 12.100 | 82,4% | 1,1% | 8,9% | 4,6% | 0,0% | 2,1% | 1,9% | 0,0% | 0,1% | 0,0% | 14,6% | 5,62 | 16,3 | 3,0% | 79,3% |
 
 ## Por minutos
 
@@ -75,10 +75,10 @@ Sem dor. "C2 (com foco)": a nota C2 entre os programas com algum grupo de foco (
 
 | recorte | programas | sem defeito | A2 | A3 | A4 | B1 | C1 | D1 | D3 | E1 | seguranca | C2 (com foco) | exercícios por dia | diferentes por semana | B2 | 3+ cartões |
 | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
-| 30 min | 9.075 | 73,0% | 4,2% | 22,8% | 0,0% | 0,0% | 0,0% | 2,8% | 0,0% | 0,0% | 0,0% | 31,3% | 3,96 | 12,2 | 13,9% | 46,2% |
-| 45 min | 9.075 | 93,6% | 0,0% | 4,6% | 0,6% | 0,0% | 0,3% | 0,9% | 0,0% | 0,0% | 0,0% | 15,7% | 5,56 | 15,6 | 15,4% | 75,7% |
-| 60 min | 9.075 | 92,1% | 0,0% | 0,2% | 6,2% | 0,0% | 0,6% | 0,9% | 0,0% | 0,0% | 0,0% | 7,9% | 6,19 | 17,1 | 16,5% | 85,6% |
-| 90 min | 9.075 | 81,2% | 0,0% | 0,0% | 13,3% | 0,0% | 5,0% | 0,2% | 0,0% | 0,4% | 0,0% | 3,0% | 6,42 | 17,7 | 16,6% | 88,9% |
+| 30 min | 9.075 | 73,3% | 4,2% | 22,5% | 0,0% | 0,0% | 0,0% | 2,9% | 0,0% | 0,0% | 0,0% | 32,2% | 3,97 | 12,3 | 13,9% | 46,5% |
+| 45 min | 9.075 | 93,1% | 0,0% | 4,9% | 0,6% | 0,0% | 0,3% | 1,1% | 0,0% | 0,0% | 0,0% | 15,8% | 5,59 | 15,7 | 15,4% | 75,1% |
+| 60 min | 9.075 | 92,5% | 0,0% | 0,2% | 6,2% | 0,0% | 0,2% | 0,9% | 0,0% | 0,0% | 0,0% | 8,1% | 6,26 | 17,2 | 16,5% | 85,7% |
+| 90 min | 9.075 | 81,5% | 0,0% | 0,0% | 13,3% | 0,0% | 4,7% | 0,2% | 0,0% | 0,4% | 0,0% | 3,3% | 6,51 | 17,8 | 16,6% | 89,0% |
 
 ## Por dias
 
@@ -86,11 +86,11 @@ Sem dor. "C2 (com foco)": a nota C2 entre os programas com algum grupo de foco (
 
 | recorte | programas | sem defeito | A2 | A3 | A4 | B1 | C1 | D1 | D3 | E1 | seguranca | C2 (com foco) | exercícios por dia | diferentes por semana | B2 | 3+ cartões |
 | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
-| 2 dias | 7.260 | 77,7% | 0,0% | 16,7% | 0,0% | 0,0% | 4,0% | 2,4% | 0,0% | 0,5% | 0,0% | 23,5% | 6,57 | 11,7 | 0,0% | 56,3% |
+| 2 dias | 7.260 | 78,4% | 0,0% | 16,7% | 0,0% | 0,0% | 3,1% | 2,7% | 0,0% | 0,5% | 0,0% | 24,7% | 6,72 | 12,1 | 0,0% | 56,1% |
 | 3 dias | 7.260 | 85,9% | 0,0% | 9,1% | 2,9% | 0,0% | 0,4% | 2,5% | 0,0% | 0,0% | 0,0% | 12,5% | 6,02 | 14,5 | 30,9% | 77,4% |
 | 4 dias | 7.260 | 90,7% | 0,0% | 3,7% | 4,5% | 0,0% | 0,9% | 0,2% | 0,0% | 0,0% | 0,0% | 9,5% | 5,59 | 16,2 | 15,8% | 80,6% |
 | 5 dias | 7.260 | 86,0% | 2,5% | 2,9% | 7,9% | 0,0% | 1,1% | 0,3% | 0,0% | 0,0% | 0,0% | 12,6% | 5,27 | 17,2 | 15,8% | 78,3% |
-| 6 dias | 7.260 | 84,4% | 2,8% | 2,1% | 10,0% | 0,0% | 0,8% | 0,7% | 0,0% | 0,0% | 0,0% | 14,3% | 5,13 | 18,5 | 15,6% | 77,9% |
+| 6 dias | 7.260 | 84,4% | 2,8% | 2,1% | 10,0% | 0,0% | 0,8% | 0,7% | 0,0% | 0,0% | 0,0% | 15,0% | 5,25 | 18,8 | 15,6% | 77,9% |
 
 ## Por foco
 
@@ -98,17 +98,17 @@ Sem dor. "C2 (com foco)": a nota C2 entre os programas com algum grupo de foco (
 
 | recorte | programas | sem defeito | A2 | A3 | A4 | B1 | C1 | D1 | D3 | E1 | seguranca | C2 (com foco) | exercícios por dia | diferentes por semana | B2 | 3+ cartões |
 | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
-| nenhum | 3.300 | 89,3% | 1,5% | 1,8% | 6,5% | 0,0% | 0,0% | 0,0% | 0,0% | 0,8% | 0,0% | 0,0% | 5,28 | 15,2 | 15,4% | 73,5% |
-| peito | 3.300 | 80,4% | 0,0% | 5,5% | 6,1% | 0,0% | 2,7% | 9,2% | 0,0% | 0,2% | 0,0% | 0,3% | 5,33 | 15,2 | 15,4% | 73,2% |
-| costas | 3.300 | 84,5% | 1,5% | 4,8% | 6,2% | 0,0% | 2,6% | 0,5% | 0,0% | 0,0% | 0,0% | 0,8% | 5,29 | 15,2 | 15,4% | 74,4% |
-| ombros | 3.300 | 92,2% | 0,0% | 1,8% | 5,5% | 0,0% | 0,1% | 0,5% | 0,0% | 0,0% | 0,0% | 6,9% | 5,54 | 15,7 | 15,4% | 73,0% |
-| bracos | 3.300 | 90,4% | 1,2% | 2,6% | 5,3% | 0,0% | 0,2% | 0,3% | 0,0% | 0,0% | 0,0% | 8,1% | 5,42 | 15,5 | 17,0% | 75,4% |
-| pernas | 3.300 | 82,0% | 1,5% | 13,6% | 2,6% | 0,0% | 1,4% | 0,0% | 0,0% | 0,0% | 0,0% | 44,2% | 5,76 | 16,1 | 15,2% | 73,3% |
-| gluteos | 3.300 | 86,6% | 1,5% | 7,3% | 5,3% | 0,0% | 0,1% | 0,0% | 0,0% | 0,0% | 0,0% | 0,6% | 5,81 | 16,3 | 15,1% | 73,9% |
-| abdomen | 3.300 | 91,0% | 1,5% | 1,6% | 5,9% | 0,0% | 0,0% | 0,0% | 0,0% | 0,0% | 0,0% | 21,6% | 5,42 | 15,2 | 15,4% | 77,1% |
-| superiores | 3.300 | 81,5% | 1,7% | 9,1% | 3,8% | 0,0% | 2,5% | 2,1% | 0,0% | 0,0% | 0,0% | 14,3% | 5,66 | 15,8 | 17,0% | 73,5% |
-| inferiores | 3.300 | 74,8% | 1,5% | 19,7% | 2,5% | 0,0% | 2,6% | 0,0% | 0,0% | 0,0% | 0,0% | 46,4% | 6 | 16,5 | 15,1% | 73,9% |
-| peito+costas | 3.300 | 81,8% | 0,1% | 8,0% | 5,8% | 0,0% | 3,9% | 0,9% | 0,0% | 0,0% | 0,0% | 1,6% | 5,34 | 15,1 | 15,4% | 73,9% |
+| nenhum | 3.300 | 89,0% | 1,5% | 2,2% | 6,5% | 0,0% | 0,0% | 0,0% | 0,0% | 0,8% | 0,0% | 0,0% | 5,34 | 15,4 | 15,4% | 73,5% |
+| peito | 3.300 | 80,8% | 0,0% | 5,5% | 6,1% | 0,0% | 2,2% | 9,3% | 0,0% | 0,2% | 0,0% | 0,4% | 5,39 | 15,4 | 15,4% | 73,2% |
+| costas | 3.300 | 84,2% | 1,5% | 4,9% | 6,2% | 0,0% | 2,6% | 0,7% | 0,0% | 0,0% | 0,0% | 1,3% | 5,36 | 15,4 | 15,4% | 74,4% |
+| ombros | 3.300 | 92,0% | 0,0% | 2,1% | 5,5% | 0,0% | 0,1% | 0,5% | 0,0% | 0,0% | 0,0% | 6,9% | 5,58 | 15,8 | 15,4% | 73,0% |
+| bracos | 3.300 | 90,7% | 1,2% | 2,5% | 5,3% | 0,0% | 0,1% | 0,3% | 0,0% | 0,0% | 0,0% | 8,2% | 5,48 | 15,7 | 17,0% | 75,4% |
+| pernas | 3.300 | 83,8% | 1,5% | 12,0% | 2,6% | 0,0% | 1,1% | 0,0% | 0,0% | 0,0% | 0,0% | 45,3% | 5,81 | 16,2 | 15,2% | 73,2% |
+| gluteos | 3.300 | 86,6% | 1,5% | 7,3% | 5,3% | 0,0% | 0,1% | 0,0% | 0,0% | 0,0% | 0,0% | 0,6% | 5,84 | 16,3 | 15,1% | 73,9% |
+| abdomen | 3.300 | 90,6% | 1,5% | 2,0% | 5,9% | 0,0% | 0,0% | 0,0% | 0,0% | 0,0% | 0,0% | 22,9% | 5,48 | 15,3 | 15,4% | 76,9% |
+| superiores | 3.300 | 81,6% | 1,7% | 9,4% | 3,8% | 0,0% | 1,9% | 2,2% | 0,0% | 0,0% | 0,0% | 14,6% | 5,7 | 15,9 | 17,0% | 73,3% |
+| inferiores | 3.300 | 74,8% | 1,5% | 19,7% | 2,5% | 0,0% | 2,6% | 0,0% | 0,0% | 0,0% | 0,0% | 46,6% | 6,03 | 16,5 | 15,1% | 73,9% |
+| peito+costas | 3.300 | 81,8% | 0,1% | 8,4% | 5,8% | 0,0% | 3,4% | 1,1% | 0,0% | 0,0% | 0,0% | 1,7% | 5,41 | 15,3 | 15,4% | 73,9% |
 
 ## Por cenário
 
@@ -130,47 +130,47 @@ Sem dor. "C2 (com foco)": a nota C2 entre os programas com algum grupo de foco (
 | halteres | 660 | 87,0% | 0,0% | 12,3% | 0,0% | 0,0% | 0,0% | 1,5% | 0,0% | 0,0% | 0,0% | 18,7% | 5,79 | 18,7 | 0,0% | 80,3% |
 | halteres-banco | 660 | 82,4% | 7,4% | 12,1% | 0,0% | 0,0% | 0,0% | 1,1% | 0,0% | 0,0% | 0,0% | 19,2% | 5,82 | 18,9 | 0,0% | 60,5% |
 | halteres+bola | 660 | 87,1% | 0,0% | 12,1% | 0,0% | 0,0% | 0,0% | 1,5% | 0,0% | 0,0% | 0,0% | 18,7% | 5,79 | 18,6 | 0,0% | 78,6% |
-| so:abdominal_maquina | 660 | 95,3% | 0,0% | 3,0% | 0,0% | 0,0% | 1,7% | 0,0% | 0,0% | 0,0% | 0,0% | 10,3% | 5,43 | 12,7 | 26,7% | 88,2% |
+| so:abdominal_maquina | 660 | 95,8% | 0,0% | 2,9% | 0,0% | 0,0% | 1,4% | 0,0% | 0,0% | 0,0% | 0,0% | 11,0% | 5,55 | 13 | 26,7% | 92,3% |
 | so:anilhas_e_manoplas | 660 | 87,0% | 0,0% | 12,3% | 0,0% | 0,0% | 0,0% | 1,5% | 0,0% | 0,0% | 0,0% | 18,7% | 5,79 | 18,7 | 0,0% | 80,3% |
-| so:banco_romano | 660 | 93,8% | 0,0% | 4,7% | 0,0% | 0,0% | 1,5% | 0,0% | 0,0% | 0,0% | 0,0% | 14,0% | 5,42 | 13,5 | 26,7% | 100,0% |
-| so:barra_fixa | 660 | 91,1% | 0,0% | 5,9% | 0,0% | 0,0% | 1,7% | 2,6% | 0,0% | 0,0% | 0,0% | 14,8% | 4,88 | 15 | 6,7% | 66,8% |
-| so:barra_hexagonal | 660 | 95,3% | 0,0% | 2,6% | 0,0% | 0,0% | 2,1% | 0,0% | 0,0% | 0,0% | 0,0% | 12,0% | 5,42 | 12,8 | 26,8% | 92,7% |
-| so:barra_longa | 660 | 88,8% | 0,0% | 5,8% | 0,0% | 0,0% | 3,6% | 2,7% | 0,0% | 0,0% | 0,0% | 17,2% | 5,05 | 13,8 | 33,3% | 84,4% |
-| so:barra_w | 660 | 94,2% | 0,0% | 3,6% | 0,0% | 0,0% | 2,1% | 0,0% | 0,0% | 0,0% | 0,0% | 12,7% | 5,75 | 13,6 | 33,9% | 87,0% |
-| so:bola_suica | 660 | 93,3% | 0,0% | 4,7% | 0,0% | 0,0% | 2,0% | 0,0% | 0,0% | 0,0% | 0,0% | 12,5% | 5,42 | 13,8 | 26,7% | 62,7% |
-| so:cadeira_abdutora_adutora | 660 | 94,4% | 0,0% | 3,8% | 0,0% | 0,0% | 1,8% | 0,0% | 0,0% | 0,0% | 0,0% | 11,0% | 5,44 | 13 | 26,7% | 84,2% |
-| so:cadeira_extensora | 660 | 95,8% | 0,0% | 3,0% | 0,0% | 0,0% | 1,2% | 0,0% | 0,0% | 0,0% | 0,0% | 8,7% | 5,63 | 13,5 | 26,7% | 88,0% |
-| so:cadeira_flexora | 660 | 95,8% | 0,0% | 3,3% | 0,0% | 0,0% | 0,9% | 0,0% | 0,0% | 0,0% | 0,0% | 8,7% | 5,42 | 12,9 | 26,7% | 92,6% |
-| so:caneleiras | 660 | 93,0% | 0,0% | 5,2% | 0,0% | 0,0% | 1,8% | 0,0% | 0,0% | 0,0% | 0,0% | 13,5% | 6 | 14 | 27,7% | 77,7% |
-| so:desenvolvimento_maquina | 660 | 94,7% | 0,0% | 3,8% | 0,0% | 0,0% | 1,5% | 0,0% | 0,0% | 0,0% | 0,0% | 10,5% | 5,43 | 12,9 | 26,7% | 83,0% |
-| so:estacao_polia_dupla | 660 | 80,3% | 6,5% | 11,4% | 0,0% | 0,0% | 0,9% | 3,2% | 0,0% | 0,0% | 0,0% | 24,7% | 5,83 | 16,5 | 7,9% | 22,4% |
-| so:estacao_puxada | 660 | 87,3% | 0,0% | 6,5% | 0,0% | 0,0% | 4,7% | 2,9% | 0,0% | 0,0% | 0,0% | 15,3% | 4,78 | 13,6 | 15,2% | 82,1% |
-| so:estacao_remada | 660 | 87,7% | 0,0% | 4,7% | 0,0% | 0,0% | 4,7% | 4,1% | 0,0% | 0,0% | 0,0% | 16,2% | 4,8 | 13,7 | 13,3% | 82,1% |
-| so:gluteo_maquina | 660 | 96,2% | 0,0% | 2,3% | 0,0% | 0,0% | 1,5% | 0,0% | 0,0% | 0,0% | 0,0% | 10,0% | 5,4 | 12,9 | 26,7% | 83,2% |
-| so:graviton | 660 | 87,7% | 0,0% | 6,5% | 0,0% | 0,0% | 4,5% | 2,6% | 0,0% | 0,0% | 0,0% | 15,0% | 4,8 | 14,1 | 12,7% | 85,6% |
-| so:hack | 660 | 94,8% | 0,0% | 3,5% | 0,0% | 0,0% | 1,7% | 0,0% | 0,0% | 0,0% | 0,0% | 10,5% | 5,44 | 12,8 | 26,7% | 92,7% |
+| so:banco_romano | 660 | 93,8% | 0,0% | 4,7% | 0,0% | 0,0% | 1,5% | 0,0% | 0,0% | 0,0% | 0,0% | 14,3% | 5,51 | 13,6 | 26,7% | 100,0% |
+| so:barra_fixa | 660 | 90,0% | 0,0% | 6,5% | 0,0% | 0,0% | 1,7% | 3,2% | 0,0% | 0,0% | 0,0% | 16,8% | 4,91 | 15,1 | 6,7% | 66,8% |
+| so:barra_hexagonal | 660 | 95,3% | 0,0% | 2,9% | 0,0% | 0,0% | 1,8% | 0,0% | 0,0% | 0,0% | 0,0% | 12,5% | 5,53 | 13 | 26,8% | 92,7% |
+| so:barra_longa | 660 | 89,4% | 0,0% | 5,6% | 0,0% | 0,0% | 3,2% | 2,7% | 0,0% | 0,0% | 0,0% | 17,2% | 5,09 | 13,9 | 33,3% | 84,4% |
+| so:barra_w | 660 | 95,0% | 0,0% | 3,5% | 0,0% | 0,0% | 1,5% | 0,0% | 0,0% | 0,0% | 0,0% | 12,7% | 5,84 | 13,8 | 33,9% | 85,6% |
+| so:bola_suica | 660 | 94,4% | 0,0% | 3,9% | 0,0% | 0,0% | 1,7% | 0,0% | 0,0% | 0,0% | 0,0% | 13,0% | 5,53 | 14,1 | 26,7% | 62,7% |
+| so:cadeira_abdutora_adutora | 660 | 95,2% | 0,0% | 3,3% | 0,0% | 0,0% | 1,5% | 0,0% | 0,0% | 0,0% | 0,0% | 11,7% | 5,55 | 13,2 | 26,7% | 84,2% |
+| so:cadeira_extensora | 660 | 96,5% | 0,0% | 2,6% | 0,0% | 0,0% | 0,9% | 0,0% | 0,0% | 0,0% | 0,0% | 9,0% | 5,73 | 13,7 | 26,7% | 86,7% |
+| so:cadeira_flexora | 660 | 96,1% | 0,0% | 3,0% | 0,0% | 0,0% | 0,9% | 0,0% | 0,0% | 0,0% | 0,0% | 10,2% | 5,53 | 13,2 | 26,7% | 92,6% |
+| so:caneleiras | 660 | 92,9% | 0,0% | 5,6% | 0,0% | 0,0% | 1,5% | 0,0% | 0,0% | 0,0% | 0,0% | 13,5% | 6,08 | 14,2 | 27,7% | 77,7% |
+| so:desenvolvimento_maquina | 660 | 95,6% | 0,0% | 3,3% | 0,0% | 0,0% | 1,1% | 0,0% | 0,0% | 0,0% | 0,0% | 11,2% | 5,54 | 13,2 | 26,7% | 82,7% |
+| so:estacao_polia_dupla | 660 | 79,2% | 6,5% | 12,7% | 0,0% | 0,0% | 0,9% | 3,0% | 0,0% | 0,0% | 0,0% | 24,2% | 5,85 | 16,6 | 7,9% | 22,4% |
+| so:estacao_puxada | 660 | 85,9% | 0,0% | 7,7% | 0,0% | 0,0% | 4,4% | 3,3% | 0,0% | 0,0% | 0,0% | 17,0% | 4,81 | 13,8 | 15,2% | 82,1% |
+| so:estacao_remada | 660 | 87,1% | 0,0% | 4,7% | 0,0% | 0,0% | 4,4% | 5,0% | 0,0% | 0,0% | 0,0% | 16,2% | 4,82 | 13,8 | 13,3% | 80,5% |
+| so:gluteo_maquina | 660 | 97,3% | 0,0% | 1,5% | 0,0% | 0,0% | 1,2% | 0,0% | 0,0% | 0,0% | 0,0% | 10,7% | 5,5 | 13,1 | 26,7% | 85,5% |
+| so:graviton | 660 | 86,2% | 0,0% | 7,7% | 0,0% | 0,0% | 4,4% | 2,9% | 0,0% | 0,0% | 0,0% | 16,7% | 4,83 | 14,2 | 12,7% | 85,6% |
+| so:hack | 660 | 95,5% | 0,0% | 3,2% | 0,0% | 0,0% | 1,4% | 0,0% | 0,0% | 0,0% | 0,0% | 11,2% | 5,55 | 13 | 26,7% | 92,7% |
 | so:halteres_fixos | 660 | 86,8% | 0,0% | 12,4% | 0,0% | 0,0% | 0,0% | 1,5% | 0,0% | 0,0% | 0,0% | 18,5% | 5,78 | 18,7 | 0,0% | 79,7% |
 | so:kettlebell | 660 | 80,8% | 1,1% | 12,1% | 0,0% | 0,0% | 2,7% | 5,0% | 0,0% | 0,0% | 0,0% | 14,2% | 5,11 | 14,7 | 20,0% | 52,0% |
-| so:leg_press | 660 | 94,8% | 0,0% | 3,5% | 0,0% | 0,0% | 1,7% | 0,0% | 0,0% | 0,0% | 0,0% | 9,8% | 5,45 | 12,8 | 26,7% | 92,7% |
-| so:mesa_flexora | 660 | 95,8% | 0,0% | 3,3% | 0,0% | 0,0% | 0,9% | 0,0% | 0,0% | 0,0% | 0,0% | 8,7% | 5,42 | 12,9 | 26,7% | 92,6% |
-| so:mini_band | 660 | 95,3% | 0,0% | 3,8% | 0,0% | 0,0% | 0,9% | 0,0% | 0,0% | 0,0% | 0,0% | 9,5% | 5,62 | 13,5 | 26,7% | 88,0% |
-| so:multifuncional | 660 | 91,8% | 0,0% | 6,2% | 0,0% | 0,0% | 1,4% | 1,4% | 0,0% | 0,0% | 0,0% | 15,7% | 5,03 | 14,5 | 6,7% | 93,3% |
-| so:panturrilha_em_pe_maquina | 660 | 94,7% | 0,0% | 3,6% | 0,0% | 0,0% | 1,7% | 0,0% | 0,0% | 0,0% | 0,0% | 9,8% | 5,44 | 13 | 26,7% | 82,6% |
-| so:panturrilha_sentada_maquina | 660 | 94,5% | 0,0% | 3,9% | 0,0% | 0,0% | 1,5% | 0,0% | 0,0% | 0,0% | 0,0% | 10,0% | 5,44 | 12,9 | 26,7% | 83,0% |
-| so:paralelas | 660 | 94,4% | 0,0% | 3,9% | 0,0% | 0,0% | 1,7% | 0,0% | 0,0% | 0,0% | 0,0% | 11,0% | 5,43 | 14,1 | 26,7% | 62,7% |
-| so:rack_de_agachamento | 660 | 87,9% | 0,0% | 6,2% | 0,0% | 0,0% | 4,7% | 2,0% | 0,0% | 0,0% | 0,0% | 15,7% | 4,78 | 13,4 | 20,0% | 80,2% |
-| so:remada_articulada | 660 | 87,7% | 0,0% | 4,7% | 0,0% | 0,0% | 4,7% | 4,1% | 0,0% | 0,0% | 0,0% | 16,2% | 4,8 | 13,7 | 13,3% | 82,1% |
-| so:roda_abdominal | 660 | 94,5% | 0,0% | 3,8% | 0,0% | 0,0% | 1,7% | 0,0% | 0,0% | 0,0% | 0,0% | 10,5% | 5,43 | 13,3 | 26,7% | 78,8% |
-| so:rosca_maquina | 660 | 94,4% | 0,0% | 3,5% | 0,0% | 0,0% | 2,1% | 0,0% | 0,0% | 0,0% | 0,0% | 11,8% | 5,75 | 13,6 | 33,9% | 87,1% |
-| so:smith | 660 | 88,2% | 0,0% | 5,9% | 0,0% | 0,0% | 4,7% | 2,0% | 0,0% | 0,0% | 0,0% | 15,0% | 4,78 | 13,4 | 20,0% | 94,7% |
-| so:step | 660 | 94,4% | 0,0% | 4,1% | 0,0% | 0,0% | 1,5% | 0,0% | 0,0% | 0,0% | 0,0% | 11,2% | 5,41 | 13,3 | 26,7% | 47,6% |
-| so:supino_maquina | 660 | 95,5% | 0,0% | 3,6% | 0,0% | 0,0% | 0,9% | 0,0% | 0,0% | 0,0% | 0,0% | 10,5% | 5,45 | 13,2 | 18,9% | 100,0% |
-| so:suspensao | 660 | 85,9% | 0,9% | 6,2% | 0,0% | 0,0% | 3,5% | 4,8% | 0,0% | 0,0% | 0,0% | 10,5% | 5,13 | 14,9 | 20,0% | 7,3% |
-| so:triceps_maquina | 660 | 94,5% | 0,0% | 3,8% | 0,0% | 0,0% | 1,7% | 0,0% | 0,0% | 0,0% | 0,0% | 12,5% | 5,44 | 12,9 | 26,7% | 83,0% |
-| so:voador | 660 | 95,3% | 0,0% | 4,2% | 0,0% | 0,0% | 0,5% | 0,0% | 0,0% | 0,0% | 0,0% | 10,7% | 5,61 | 13,7 | 20,8% | 85,8% |
+| so:leg_press | 660 | 95,5% | 0,0% | 3,2% | 0,0% | 0,0% | 1,4% | 0,0% | 0,0% | 0,0% | 0,0% | 10,5% | 5,56 | 13,1 | 26,7% | 92,7% |
+| so:mesa_flexora | 660 | 96,1% | 0,0% | 3,0% | 0,0% | 0,0% | 0,9% | 0,0% | 0,0% | 0,0% | 0,0% | 10,2% | 5,53 | 13,2 | 26,7% | 92,6% |
+| so:mini_band | 660 | 95,9% | 0,0% | 3,3% | 0,0% | 0,0% | 0,8% | 0,0% | 0,0% | 0,0% | 0,0% | 10,0% | 5,73 | 13,8 | 26,7% | 86,7% |
+| so:multifuncional | 660 | 91,4% | 0,0% | 6,2% | 0,0% | 0,0% | 1,4% | 1,8% | 0,0% | 0,0% | 0,0% | 15,3% | 5,05 | 14,5 | 6,7% | 93,3% |
+| so:panturrilha_em_pe_maquina | 660 | 95,3% | 0,0% | 3,3% | 0,0% | 0,0% | 1,4% | 0,0% | 0,0% | 0,0% | 0,0% | 10,5% | 5,56 | 13,2 | 26,7% | 82,6% |
+| so:panturrilha_sentada_maquina | 660 | 95,5% | 0,0% | 3,5% | 0,0% | 0,0% | 1,1% | 0,0% | 0,0% | 0,0% | 0,0% | 10,7% | 5,55 | 13,2 | 26,7% | 83,0% |
+| so:paralelas | 660 | 95,2% | 0,0% | 3,5% | 0,0% | 0,0% | 1,4% | 0,0% | 0,0% | 0,0% | 0,0% | 11,5% | 5,54 | 14,4 | 26,7% | 62,7% |
+| so:rack_de_agachamento | 660 | 87,1% | 0,0% | 6,8% | 0,0% | 0,0% | 4,4% | 2,4% | 0,0% | 0,0% | 0,0% | 15,3% | 4,8 | 13,5 | 20,0% | 80,2% |
+| so:remada_articulada | 660 | 87,1% | 0,0% | 4,7% | 0,0% | 0,0% | 4,4% | 5,0% | 0,0% | 0,0% | 0,0% | 16,2% | 4,82 | 13,8 | 13,3% | 80,5% |
+| so:roda_abdominal | 660 | 95,5% | 0,0% | 3,3% | 0,0% | 0,0% | 1,2% | 0,0% | 0,0% | 0,0% | 0,0% | 11,2% | 5,55 | 13,6 | 26,7% | 78,8% |
+| so:rosca_maquina | 660 | 95,3% | 0,0% | 3,2% | 0,0% | 0,0% | 1,5% | 0,0% | 0,0% | 0,0% | 0,0% | 12,5% | 5,84 | 13,8 | 33,9% | 85,8% |
+| so:smith | 660 | 87,6% | 0,0% | 6,8% | 0,0% | 0,0% | 4,4% | 2,0% | 0,0% | 0,0% | 0,0% | 15,0% | 4,8 | 13,5 | 20,0% | 94,7% |
+| so:step | 660 | 95,2% | 0,0% | 3,8% | 0,0% | 0,0% | 1,1% | 0,0% | 0,0% | 0,0% | 0,0% | 11,8% | 5,52 | 13,5 | 26,7% | 47,6% |
+| so:supino_maquina | 660 | 95,9% | 0,0% | 3,2% | 0,0% | 0,0% | 0,9% | 0,0% | 0,0% | 0,0% | 0,0% | 11,2% | 5,56 | 13,5 | 18,9% | 100,0% |
+| so:suspensao | 660 | 84,8% | 0,9% | 7,7% | 0,0% | 0,0% | 3,5% | 4,4% | 0,0% | 0,0% | 0,0% | 10,5% | 5,15 | 15 | 20,0% | 7,3% |
+| so:triceps_maquina | 660 | 95,5% | 0,0% | 3,3% | 0,0% | 0,0% | 1,2% | 0,0% | 0,0% | 0,0% | 0,0% | 13,8% | 5,55 | 13,2 | 26,7% | 83,0% |
+| so:voador | 660 | 95,8% | 0,0% | 3,8% | 0,0% | 0,0% | 0,5% | 0,0% | 0,0% | 0,0% | 0,0% | 11,5% | 5,71 | 13,9 | 20,8% | 85,8% |
 | step+elasticos | 660 | 54,5% | 6,8% | 16,1% | 22,6% | 0,0% | 0,0% | 2,0% | 0,0% | 0,5% | 0,0% | 22,2% | 5,92 | 19,5 | 0,2% | 48,9% |
 | suspensao+elasticos | 660 | 57,6% | 7,3% | 12,4% | 22,9% | 0,0% | 0,0% | 1,8% | 0,0% | 0,6% | 0,0% | 21,2% | 5,93 | 18,4 | 0,2% | 17,6% |
-| vazio | 660 | 94,7% | 0,0% | 3,8% | 0,0% | 0,0% | 1,5% | 0,0% | 0,0% | 0,0% | 0,0% | 10,5% | 5,43 | 12,9 | 26,7% | 82,1% |
+| vazio | 660 | 95,6% | 0,0% | 3,3% | 0,0% | 0,0% | 1,1% | 0,0% | 0,0% | 0,0% | 0,0% | 11,2% | 5,54 | 13,2 | 26,7% | 82,1% |
 
 ## Uso de cada exercício
 
@@ -183,34 +183,34 @@ Programas sem dor em que o exercício aparece (os sem animação aprovada, que a
 | panturrilha-degrau | **cartão** | 29.721 | 81,9% |
 | afundo-peso-corpo | sim | 26.402 | 72,7% |
 | flexao-joelho-deslizante | sim | 25.545 | 70,4% |
-| abdominal-invertido | **cartão** | 21.725 | 59,8% |
+| ponte-gluteo | sim | 24.051 | 66,3% |
+| abdominal-invertido | **cartão** | 21.718 | 59,8% |
 | extensao-triceps-peso-corpo | **cartão** | 21.647 | 59,6% |
 | agachamento-peso-corpo | sim | 21.127 | 58,2% |
-| ponte-gluteo | sim | 20.748 | 57,2% |
-| abertura-t-deitado | **cartão** | 20.498 | 56,5% |
+| abertura-t-deitado | **cartão** | 20.291 | 55,9% |
 | flexao-pes-elevados | **cartão** | 19.581 | 53,9% |
-| flexao-fechada | sim | 15.840 | 43,6% |
-| bulgaro-peso-corpo | sim | 15.393 | 42,4% |
-| nordico | sim | 15.326 | 42,2% |
+| flexao-fechada | sim | 15.797 | 43,5% |
+| bulgaro-peso-corpo | sim | 15.396 | 42,4% |
+| nordico | sim | 15.294 | 42,1% |
 | afundo | sim | 9.240 | 25,5% |
 | stiff | sim | 9.240 | 25,5% |
 | triceps-frances-halter | sim | 7.168 | 19,7% |
 | elevacao-halteres | sim | 6.751 | 18,6% |
+| pike | sim | 5.981 | 16,5% |
 | supino-reto | sim | 5.940 | 16,4% |
 | ponte-gluteo-halter | **cartão** | 4.914 | 13,5% |
 | remada-apoiada | sim | 4.620 | 12,7% |
 | supino-inclinado | sim | 4.620 | 12,7% |
 | remada-unilateral-sem-banco | sim | 4.538 | 12,5% |
-| pike | sim | 4.326 | 11,9% |
-| aducao-deitado | sim | 4.289 | 11,8% |
+| goblet | sim | 4.327 | 11,9% |
 | remada-curvada-halteres | **cartão** | 4.276 | 11,8% |
+| aducao-deitado | sim | 4.258 | 11,7% |
 | panturrilha | sim | 4.180 | 11,5% |
 | stiff-unilateral | sim | 4.176 | 11,5% |
 | bulgaro | sim | 3.964 | 10,9% |
 | afundo-tras-peso-corpo | **cartão** | 3.874 | 10,7% |
 | rosca-alternada | sim | 3.725 | 10,3% |
 | rosca-inclinada | sim | 3.715 | 10,2% |
-| goblet | sim | 3.643 | 10,0% |
 | flexao-joelho-elastico | sim | 3.609 | 9,9% |
 | extensao-joelho-elastico | sim | 3.564 | 9,8% |
 | crucifixo-halteres | **cartão** | 3.323 | 9,2% |
@@ -235,7 +235,6 @@ Programas sem dor em que o exercício aparece (os sem animação aprovada, que a
 | crucifixo-elastico | sim | 2.077 | 5,7% |
 | elevacao-lateral-elastico | sim | 2.035 | 5,6% |
 | panturrilha-chao | sim | 2.013 | 5,5% |
-| afundo-tras | **cartão** | 1.980 | 5,5% |
 | face-pull-elastico | sim | 1.980 | 5,5% |
 | panturrilha-bilateral-step | sim | 1.951 | 5,4% |
 | elevacao-lateral | sim | 1.901 | 5,2% |
@@ -245,14 +244,14 @@ Programas sem dor em que o exercício aparece (os sem animação aprovada, que a
 | elevacao-lateral-unilateral-elastico | **cartão** | 1.726 | 4,8% |
 | abdominal-maquina | **cartão** | 1.616 | 4,5% |
 | rosca-elastico | sim | 1.607 | 4,4% |
+| coice-maquina | **cartão** | 1.604 | 4,4% |
 | elevacao-joelhos | sim | 1.600 | 4,4% |
 | puxada-barra-reta | **cartão** | 1.597 | 4,4% |
 | abdominal-polia | sim | 1.594 | 4,4% |
 | supino-chao-halteres | **cartão** | 1.556 | 4,3% |
-| coice-maquina | **cartão** | 1.532 | 4,2% |
 | panturrilha-leg-press | **cartão** | 1.532 | 4,2% |
-| crucifixo-invertido-polia | sim | 1.530 | 4,2% |
-| barra-fixa-supinada | sim | 1.467 | 4,0% |
+| crucifixo-invertido-polia | sim | 1.531 | 4,2% |
+| barra-fixa-supinada | sim | 1.455 | 4,0% |
 | rosca-scott-banco-inclinado | **cartão** | 1.427 | 3,9% |
 | desenvolvimento-unilateral | **cartão** | 1.396 | 3,8% |
 | stiff-kettlebell | sim | 1.332 | 3,7% |
@@ -260,14 +259,15 @@ Programas sem dor em que o exercício aparece (os sem animação aprovada, que a
 | remada-baixa-estacao | **cartão** | 1.320 | 3,6% |
 | remada-invertida | **cartão** | 1.320 | 3,6% |
 | remada-suspensao | sim | 1.320 | 3,6% |
-| crucifixo-polia | sim | 1.264 | 3,5% |
+| crucifixo-polia | sim | 1.262 | 3,5% |
 | desenvolvimento | sim | 1.260 | 3,5% |
 | triceps-suspensao | sim | 1.237 | 3,4% |
 | supino-maquina | **cartão** | 1.231 | 3,4% |
 | extensao-joelho-caneleira | sim | 1.221 | 3,4% |
-| rosca-maquina | **cartão** | 1.221 | 3,4% |
+| afundo-tras | **cartão** | 1.214 | 3,3% |
 | remada-curvada-elastico | **cartão** | 1.212 | 3,3% |
 | remada-baixa | sim | 1.211 | 3,3% |
+| rosca-maquina | **cartão** | 1.194 | 3,3% |
 | barra-fixa-negativa | **cartão** | 1.178 | 3,2% |
 | hip-thrust | **cartão** | 1.152 | 3,2% |
 | agachamento-smith | **cartão** | 1.102 | 3,0% |
@@ -279,13 +279,13 @@ Programas sem dor em que o exercício aparece (os sem animação aprovada, que a
 | crucifixo-inclinado-halteres | **cartão** | 945 | 2,6% |
 | agachamento-barra | **cartão** | 880 | 2,4% |
 | triceps-frances-kettlebell | sim | 839 | 2,3% |
-| rosca-polia-costas | **cartão** | 812 | 2,2% |
-| yt-suspensao | sim | 788 | 2,2% |
+| rosca-polia-costas | **cartão** | 816 | 2,2% |
+| yt-suspensao | sim | 786 | 2,2% |
 | abertura-elastico | **cartão** | 747 | 2,1% |
 | desenvolvimento-elastico | sim | 720 | 2,0% |
 | panturrilha-sentada-halter | sim | 703 | 1,9% |
 | elevacao-joelhos-paralelas | sim | 678 | 1,9% |
-| afundo-kettlebell | sim | 664 | 1,8% |
+| afundo-kettlebell | sim | 662 | 1,8% |
 | barra-fixa-graviton | **cartão** | 660 | 1,8% |
 | goblet-kettlebell | **cartão** | 660 | 1,8% |
 | hack | **cartão** | 660 | 1,8% |
@@ -296,30 +296,30 @@ Programas sem dor em que o exercício aparece (os sem animação aprovada, que a
 | remada-unilateral-polia | sim | 660 | 1,8% |
 | terra-hexagonal | **cartão** | 660 | 1,8% |
 | flexao-joelho-suspensao | sim | 646 | 1,8% |
+| coice-caneleira | **cartão** | 645 | 1,8% |
 | extensao-joelho-mini-band | **cartão** | 627 | 1,7% |
 | mergulho | **cartão** | 614 | 1,7% |
-| elevacao-lateral-caneleira | **cartão** | 601 | 1,7% |
-| rosca-barra-w | **cartão** | 585 | 1,6% |
+| elevacao-lateral-caneleira | **cartão** | 603 | 1,7% |
 | triceps-frances-polia-unilateral | sim | 582 | 1,6% |
-| coice-caneleira | **cartão** | 564 | 1,6% |
+| rosca-barra-w | **cartão** | 558 | 1,5% |
 | rosca-kettlebell | sim | 555 | 1,5% |
 | face-pull | sim | 498 | 1,4% |
-| crucifixo-invertido-caneleira | **cartão** | 489 | 1,3% |
 | voador | **cartão** | 485 | 1,3% |
+| crucifixo-invertido-caneleira | **cartão** | 462 | 1,3% |
 | supino-barra | **cartão** | 458 | 1,3% |
 | remada-barra | **cartão** | 440 | 1,2% |
 | terra-romeno-barra | **cartão** | 440 | 1,2% |
-| triceps-maquina | **cartão** | 406 | 1,1% |
+| triceps-maquina | **cartão** | 405 | 1,1% |
 | mergulho-graviton | **cartão** | 392 | 1,1% |
 | roda-abdominal | sim | 390 | 1,1% |
 | rosca-concentrada | **cartão** | 390 | 1,1% |
 | stiff-unilateral-kettlebell | **cartão** | 362 | 1,0% |
 | abducao-elastico | **cartão** | 358 | 1,0% |
+| agachamento-halteres | **cartão** | 330 | 0,9% |
 | coice-elastico | **cartão** | 327 | 0,9% |
 | face-pull-suspensao | **cartão** | 294 | 0,8% |
 | crucifixo-polia-baixo | **cartão** | 272 | 0,7% |
-| aducao-maquina | **cartão** | 257 | 0,7% |
-| agachamento-halteres | **cartão** | 252 | 0,7% |
+| aducao-maquina | **cartão** | 255 | 0,7% |
 | desenvolvimento-unilateral-kettlebell | sim | 248 | 0,7% |
 | triceps-barra-reta | **cartão** | 225 | 0,6% |
 | triceps-elastico-alto | **cartão** | 223 | 0,6% |
@@ -329,9 +329,9 @@ Programas sem dor em que o exercício aparece (os sem animação aprovada, que a
 | ponte-pes-bola | sim | 206 | 0,6% |
 | abducao-caneleira | sim | 204 | 0,6% |
 | panturrilha-sentada | **cartão** | 192 | 0,5% |
+| desenvolvimento-maquina | **cartão** | 187 | 0,5% |
 | flexao-elastico | sim | 176 | 0,5% |
 | coice-polia | **cartão** | 118 | 0,3% |
-| desenvolvimento-maquina | **cartão** | 118 | 0,3% |
 | elevacao-lateral-unilateral | **cartão** | 113 | 0,3% |
 | abdominal-declinado | **cartão** | 81 | 0,2% |
 | abducao-mini-band | sim | 80 | 0,2% |

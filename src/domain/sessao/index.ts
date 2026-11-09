@@ -1,9 +1,9 @@
 import { BIBLIOTECA, type Exercicio } from '../biblioteca';
 import { faseNaSemana, prescricaoDaSemana, type DiaPrograma, type ExercicioPrescrito, type Fase, type Programa } from '../gerador';
-import { blocoAtual, semanaNoBloco, type Hoje } from './bloco';
+import { blocoAtual, naFaseDeAprendizado, semanaNoBloco, treinoFeito, type Hoje } from './bloco';
 import { DEPOIS_DA_ESCADA, escadaDe, nomeDoDegrau, pedeMiniBand } from '../progressao/escadas';
 import { noPassoAbaixo, proximaCarga, sugerirProgressao, type Alvo, type Carga, type OpcoesCarga, type SerieRegistrada, type SessaoExercicio, type Sugestao } from '../progressao';
-import { calibrar, emCalibracao, semCalibracao, type ResultadoCalibracao } from '../progressao/calibracao';
+import { calibrar, emCalibracao, fimDaCalibracao, semCalibracao, type ResultadoCalibracao } from '../progressao/calibracao';
 import { funcoesDoExercicio } from '../gerador/funcoes';
 import { r } from '../regras';
 import { CAPACIDADES, cargasCaneleiras, cargasHalter, cargasKettlebell, ITEM_IDS, MENOR_ANILHA_PADRAO_KG, type Capacidade, type Inventario } from '../taxonomia/equipamentos';
@@ -48,9 +48,12 @@ export type LocalDaCarga = { localId: string; localPadrao?: string };
 
 const POR_ID: Record<string, Exercicio> = Object.fromEntries(BIBLIOTECA.map((e) => [e.id, e]));
 
-/** Próximo dia da rotação: o seguinte ao da última sessão terminada; o primeiro se não há histórico (decisão 1). */
+/**
+ * Próximo dia da rotação: o seguinte ao do último treino feito; o primeiro se não há histórico (decisão 1). Só conta a
+ * sessão com pelo menos 1 série (registro.treino-feito): "Começar" e "Terminar" sem série não pulam o dia.
+ */
 export function proximoDia(programa: Programa, historico: Sessao[]): DiaPrograma {
-  const ultima = [...historico].reverse().find((s) => s.fim && programa.dias.some((d) => d.id === s.diaId));
+  const ultima = [...historico].reverse().find((s) => treinoFeito(s) && programa.dias.some((d) => d.id === s.diaId));
   if (!ultima) return programa.dias[0]!;
   const i = programa.dias.findIndex((d) => d.id === ultima.diaId);
   return programa.dias[(i + 1) % programa.dias.length]!;
@@ -215,6 +218,8 @@ export type OpcoesSugestao = {
   soDesce?: boolean;
   bloco?: { inicio: string; reducao: number; calibrar?: boolean };
   semanaLeve?: boolean;
+  /** Fase de aprendizado do iniciante (iniciante.fase-aprendizado): sem "estagnado" (R5a). */
+  aprendizado?: boolean;
 };
 
 /** As opções da sugestão que saem da prescrição de hoje: a semana 1 da volta, o bloco aberto por pausa e a semana leve. */
@@ -224,6 +229,7 @@ export const opcoesDeHoje = (hoje: Hoje): OpcoesSugestao => {
     ...(hoje.fase?.regraId === 'readaptacao.semana1' ? { soDesce: true } : {}),
     ...(b.pausaDias !== undefined ? { bloco: { inicio: b.inicio, reducao: b.reducao, ...(b.calibrar ? { calibrar: true } : {}) } } : {}),
     ...(hoje.semanaLeve ? { semanaLeve: true } : {}),
+    ...(naFaseDeAprendizado(hoje) ? { aprendizado: true } : {}),
   };
 };
 
@@ -311,6 +317,8 @@ export function sugestaoDoExercicio(
   if (emCalibracao(h)) {
     const s = ultima?.series.at(-1);
     if (!s) return { acao: 'calibrar', motivo: textoPrimeiraVez(historico, x.exId, opcoes.local), regraId: r('progressao.calibracao') };
+    const fim = fimDaCalibracao(acertosDe(h), alvo);
+    if (fim) return { acao: 'manter', proxima: noInventario(fim.proxima, op).carga, motivo: fim.motivo, regraId: fim.regraId };
     const c = calibrar(s, alvo, op, { soDesce: opcoes.soDesce });
     const prox = noInventario(c.proxima, op).carga;
     return { acao: 'calibrar', proxima: prox, motivo: `Ainda calibrando: comece por ${textoCarga(prox, x.exId)} e acerte na 1ª série.`, regraId: r('progressao.calibracao') };
@@ -325,6 +333,8 @@ export function sugestaoDoExercicio(
       const volta = noInventario(cargaDaVolta(base, bloco.reducao, op), op).carga;
       if (bloco.calibrar) {
         const s = noBloco.at(-1)?.series.at(-1);
+        const fim = fimDaCalibracao(acertosDe(noBloco), alvo);
+        if (fim) return { acao: 'manter', proxima: noInventario(fim.proxima, op).carga, motivo: fim.motivo, regraId: fim.regraId };
         if (s) {
           const c = calibrar(s, alvo, op, { soDesce: opcoes.soDesce });
           const prox = noInventario(c.proxima, op).carga;
@@ -352,6 +362,9 @@ export function sugestaoDoExercicio(
   }
   const trabalho = semCalibracao(bloco ? hist({ desde: bloco.inicio, semLeve: true }) : hist({ semLeve: true }));
   const sug = sugerirProgressao(trabalho.length ? trabalho : semCalibracao(noBloco), alvo, op);
+  // Na fase de aprendizado, a carga sobe quando a técnica estiver estável: nada de "estagnado" (R5a).
+  if (sug.acao === 'estagnado' && opcoes.aprendizado)
+    return { acao: 'manter', motivo: 'Fase de aprendizado: mantenha a carga e busque +1 repetição com a técnica firme.', regraId: r('iniciante.fase-aprendizado') };
   if (!sug.proxima) return sug;
   const { carga, ajustada } = noInventario(sug.proxima, op);
   return ajustada ? { ...sug, proxima: carga, motivo: `${sug.motivo} Aqui, o peso mais perto é ${textoCarga(carga, x.exId)}.` } : sug;
@@ -367,15 +380,24 @@ export function calibracaoNaSessao(
   inventario: Inventario,
   seriesDaSessao: SerieRegistrada[],
   opcoes: OpcoesSugestao = {},
-): { calibrando: boolean; ultima?: ResultadoCalibracao } {
+): { calibrando: boolean; ultima?: ResultadoCalibracao; /** A calibração terminou pela saída (R5a): `ultima` traz a carga escolhida. */ fim?: boolean } {
   const h = historicoDoExercicio(historico, x.exId, opcoes.local);
   // Volta de mais de 182 dias (readaptacao.durante-uso): a 1ª série acerta a carga, mesmo com histórico de antes.
-  const longa = !!opcoes.bloco?.calibrar && emCalibracao(historicoDoExercicio(historico, x.exId, opcoes.local, { desde: opcoes.bloco.inicio }));
+  const doBloco = opcoes.bloco?.calibrar ? historicoDoExercicio(historico, x.exId, opcoes.local, { desde: opcoes.bloco.inicio }) : undefined;
+  const longa = !!doBloco && emCalibracao(doBloco);
   const calibrando = (emCalibracao(h) || longa) && !seriesDaSessao.some((s) => !s.calibracao);
+  // A saída da calibração (progressao.calibracao; R5a): 3 séries de acerto, somando o histórico e a sessão.
+  if (calibrando) {
+    const fim = fimDaCalibracao([...acertosDe(longa ? doBloco! : h), ...seriesDaSessao.filter((s) => s.calibracao)], x);
+    if (fim) return { calibrando: false, fim: true, ultima: { ...fim, proxima: noInventario(fim.proxima, opcoesCarga(x.exId, inventario)).carga } };
+  }
   const s = seriesDaSessao.at(-1);
   if (!calibrando || !s) return { calibrando };
   return { calibrando, ultima: avaliarSerieDeCalibracao(s, x, inventario, opcoes) };
 }
+
+/** As séries de acerto da calibração de um histórico (progressao.calibracao). */
+const acertosDe = (h: SessaoExercicio[]) => h.flatMap((e) => e.series.filter((s) => s.calibracao));
 
 /** Avalia uma série feita em calibração: a próxima carga e se ela já caiu perto do alvo (vira série de trabalho). */
 export function avaliarSerieDeCalibracao(

@@ -208,9 +208,23 @@ test('lote 4: o recorde do treino aparece em "O que mudou hoje" e em "O que subi
   await expect(page.getByText(/Começou com 8 kg × 10/)).toBeVisible();
 });
 
-test('com o sinal, recebe a sugestão da semana leve: o toque "hoje foi" no fim do treino, sem nada marcado', async ({ page }) => {
-  // Os 2 treinos de antes: um "pesado demais".
+test('R5a: na fase de aprendizado da iniciante, o mesmo sinal não traz a semana leve', async ({ page }) => {
+  // Semana 1 da Ana: "pesado demais" em 2 dos 3 treinos, mas é fase de aprendizado (iniciante.fase-aprendizado).
   await comHistorico(page, [
+    { dia: 0, quando: '2026-11-02T13:00:00.000Z', hojeFoi: 'pesado' },
+    { dia: 1, quando: '2026-11-03T13:00:00.000Z', hojeFoi: 'pesado' },
+  ]);
+  await expect(page.getByRole('button', { name: 'Começar o treino Corpo todo C' })).toBeVisible();
+  await expect(page.getByRole('region', { name: 'Semana leve? (opcional)' })).toHaveCount(0);
+  await expect(page.locator('.aviso-linha', { hasText: 'Semana leve' })).toHaveCount(0);
+});
+
+test('com o sinal, recebe a sugestão da semana leve: o toque "hoje foi" no fim do treino, sem nada marcado', async ({ page }) => {
+  // A Ana é iniciante: nas semanas 1 e 2 (fase de aprendizado), nem semana leve (R5a). Por isso o histórico começa 2
+  // semanas antes, e hoje é a semana 3. Os 2 treinos desta semana: um "pesado demais".
+  await comHistorico(page, [
+    { dia: 2, quando: '2026-10-20T13:00:00.000Z' },
+    { dia: 1, quando: '2026-10-27T13:00:00.000Z' },
     { dia: 0, quando: '2026-11-02T13:00:00.000Z', hojeFoi: 'pesado' },
     { dia: 1, quando: '2026-11-03T13:00:00.000Z' },
   ]);

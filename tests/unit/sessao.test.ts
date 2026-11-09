@@ -40,9 +40,19 @@ const kg = (k: number, reps: number, rir = 2) => ({ carga: { tipo: 'kg' as const
 describe('rotação e semana', () => {
   it('sem histórico, começa no primeiro dia; depois segue a rotação e volta ao início', () => {
     const [a, b, c] = prog.dias.map((d) => d.id) as [string, string, string];
+    const feita = (d: string, t: string) => sessao(d, t, [{ exId: 'supino-reto', series: [kg(8, 10)] }]);
     expect(proximoDia(prog, []).id).toBe(a);
-    expect(proximoDia(prog, [sessao(a, '2026-11-02T10:00:00Z')]).id).toBe(b);
-    expect(proximoDia(prog, [sessao(a, '2026-11-02T10:00:00Z'), sessao(c, '2026-11-04T10:00:00Z')]).id).toBe(a);
+    expect(proximoDia(prog, [feita(a, '2026-11-02T10:00:00Z')]).id).toBe(b);
+    expect(proximoDia(prog, [feita(a, '2026-11-02T10:00:00Z'), feita(c, '2026-11-04T10:00:00Z')]).id).toBe(a);
+  });
+
+  it('registro.treino-feito: "Começar" e "Terminar" sem série não andam a rotação', () => {
+    const [a, b] = prog.dias.map((d) => d.id) as [string, string];
+    const feita = sessao(a, '2026-11-02T10:00:00Z', [{ exId: 'supino-reto', series: [kg(8, 10)] }]);
+    // B começado e terminado sem nenhuma série (com os exercícios do dia na lista, vazios): o próximo continua B.
+    const vazia = sessao(b, '2026-11-04T10:00:00Z', [{ exId: 'supino-reto', series: [] }]);
+    expect(proximoDia(prog, [feita, vazia]).id).toBe(b);
+    expect(proximoDia(prog, [vazia]).id).toBe(a);
   });
 
   it('sessão não terminada não conta para a rotação', () => {

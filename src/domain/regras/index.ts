@@ -77,6 +77,7 @@ export const TEMPO = {
   dropSet: 35, // tempo.drop-set: 2 quedas curtas com ~10–15 s entre elas, somadas à última série
   sobraFracao: 0.7, // tempo.sobra: abaixo de 70% dos minutos escolhidos, o aviso de que falta exercício, não tempo
   protegidoCurto: 30, // tempo.musculo-protegido: até 30 min, o protegido fica com 2 séries e troca por um isolador do dia
+  extensaoPelaFaltaCurto: 45, // selecao.gluteo (R5a): até 45 min, a extensão de quadril que entra pela falta só sobe enquanto o dia couber
 };
 
 /** tempo.exercicios-por-sessao: exercícios por treino conforme os minutos (pesquisa-v2/05, seção 1). */
@@ -118,6 +119,7 @@ export const PROGRESSAO = {
   saltoGrande: 0.1, // salto relativo acima de ~10%
   janelaFalha: 6, // sessões em que uma carga que ficou pesada não volta a ser sugerida
   folgaDegrau: 2, // progressao.criterio-degrau: as séries depois da 1ª podem ficar até 2 repetições abaixo do topo
+  acertosMax: 3, // progressao.calibracao (R5a): depois de 3 séries de acerto sem cair em A ± 2, a calibração termina
 };
 
 /** deload.semana-leve: o conteúdo da semana leve e quando sugerir. */
@@ -125,6 +127,7 @@ export const SEMANA_LEVE = {
   fatorSeries: 0.5,
   rir: [3, 4] as [number, number],
   dias: 7, // decisão do Gustavo (02/11/2026): 7 dias a partir do aceite
+  recusaDias: 7, // R5a: "Agora não" esconde a oferta por 7 dias (só a data é guardada)
   estagnados: 2,
   pesadoEm: 2, // "pesado demais" em 2 dos últimos 3 treinos
   pesadoDe: 3,

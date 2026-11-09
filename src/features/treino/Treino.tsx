@@ -27,7 +27,7 @@ import { Folha } from '../app/Folha';
 import { PorQue, Selo, Titulo } from '../app/ui';
 import { Miniatura } from '../programa/Miniatura';
 import { BotaoPrefiro } from '../programa/Prefiro';
-import { alternarPreferencia, desfazerSerie, diaDoTreino, interromperExercicio, inventarioDoTreino, opcoesDaCarga, registrarSerie, terminarSessao, trocarExercicio } from './acoes';
+import { alternarPreferencia, anotarDor, comDor, descartarSessao, desfazerSerie, diaDoTreino, interromperExercicio, inventarioDoTreino, opcoesDaCarga, registrarSerie, semSerie, terminarSessao, trocarExercicio } from './acoes';
 import { PainelDescanso, useDescanso, useTelaAcesa } from './Temporizador';
 
 // Treino em andamento: um exercício por vez, séries registradas com um toque, descanso entre séries,
@@ -65,6 +65,8 @@ export function Treino() {
     if (params.has('sentir')) setParams({}, { replace: true });
   }, [params, setParams]);
   const [aviso, setAviso] = useState<{ texto: string; regraId: string } | null>(null);
+  // A nota de dor dada antes da 1ª série de um exercício vai na próxima série registrada dele (seguranca.dor.escala; R5a).
+  const [dorPendente, setDorPendente] = useState<Record<number, number>>({});
   // "Desfazer" por 5 s depois de salvar a série (redesign, lote 2): o toque errado em "Série feita" se corrige na hora.
   const [salva, setSalva] = useState<{ indice: number; numero: number } | null>(null);
   useEffect(() => {
@@ -108,7 +110,9 @@ export function Treino() {
     // Série de acerto da calibração (progressao.calibracao): fica no histórico, fora da dupla progressão.
     const cal = calibracaoNaSessao(estado.historico, x, inventario, feito.series, opcoesCargaHoje);
     const acerto = cal.calibrando && !avaliarSerieDeCalibracao(serie, x, inventario, opcoesCargaHoje).perto;
-    atualizar((s) => registrarSerie(s, i, acerto ? { ...serie, calibracao: true } : serie));
+    const comNota = comDor(serie, dorPendente[i]);
+    atualizar((s) => registrarSerie(s, i, acerto ? { ...comNota, calibracao: true } : comNota));
+    if (dorPendente[i] !== undefined) setDorPendente((d) => Object.fromEntries(Object.entries(d).filter(([k]) => Number(k) !== i)));
     setSalva({ indice: i, numero: feito.series.length + 1 });
     if (feito.series.length + 1 < x.series) descanso.iniciar(x.descansoSeg);
     else if (!ultimo) descanso.iniciar(x.descansoSeg);
@@ -238,9 +242,10 @@ export function Treino() {
                 )}
               </>
             )}
-            {calNaSessao.calibrando && calNaSessao.ultima && (
+            {(calNaSessao.calibrando || calNaSessao.fim) && calNaSessao.ultima && (
               <p className="dica calibracao" role="status">
-                Calibração: {calNaSessao.ultima.motivo} <Selo id={calNaSessao.ultima.regraId} />
+                {calNaSessao.fim ? '' : 'Calibração: '}
+                {calNaSessao.ultima.motivo} <Selo id={calNaSessao.ultima.regraId} />
               </p>
             )}
             <RegistroSerie
@@ -286,7 +291,16 @@ export function Treino() {
             <Sentir
               aoDor={(nota) => {
                 const r = avaliarDor(nota);
-                setAviso({ texto: r.mensagem, regraId: r.regraId });
+                // A nota fica guardada (seguranca.dor.escala; R5a): na última série feita ou, sem série, na próxima.
+                let guardada = '';
+                if (nota > 0 && feito.series.length > 0) {
+                  atualizar((s) => anotarDor(s, i, nota).estado);
+                  guardada = ` Nota ${nota} guardada na série ${feito.series.length}.`;
+                } else if (nota > 0 && r.acao !== 'encerrar-exercicio') {
+                  setDorPendente((d) => ({ ...d, [i]: Math.max(d[i] ?? 0, nota) }));
+                  guardada = ` Nota ${nota} guardada na próxima série que você registrar.`;
+                }
+                setAviso({ texto: r.mensagem + guardada, regraId: r.regraId });
                 if (r.acao === 'encerrar-exercicio') {
                   atualizar((s) => interromperExercicio(s, i));
                   descanso.parar();
@@ -342,16 +356,43 @@ export function Treino() {
         )}
         {painel === 'terminar' && (
           <Folha titulo="Terminar o treino agora?" aoFechar={() => setPainel('nenhum')} livre={() => document.querySelector<HTMLElement>('.alerta-topo')} fecharAoTocarLivre={false} rotuloFechar="Voltar">
-            <p>
-              Você terminou {itens.filter((t) => t.feito.series.length >= t.x.series || t.feito.interrompido).length} de {itens.length} exercícios. O que já foi registrado fica
-              salvo.
-            </p>
+            {semSerie(estado) ? (
+              // registro.treino-feito (R5a): sem nenhuma série, o treino não conta e o dia não muda; descartar é a saída principal.
+              <p>
+                Você não registrou nenhuma série. Um treino sem série não conta, e o próximo continua sendo este dia.{' '}
+                <Selo id="registro.treino-feito" />
+              </p>
+            ) : (
+              <p>
+                Você terminou {itens.filter((t) => t.feito.series.length >= t.x.series || t.feito.interrompido).length} de {itens.length} exercícios. O que já foi registrado fica
+                salvo.
+              </p>
+            )}
             <button type="button" className="btn" onClick={() => setPainel('nenhum')}>
               Continuar treinando
             </button>
-            <button type="button" className="btn sec" onClick={() => terminar()}>
-              Terminar o treino
-            </button>
+            {semSerie(estado) ? (
+              <>
+                <button
+                  type="button"
+                  className="btn sec"
+                  onClick={() => {
+                    descanso.parar();
+                    atualizar((s) => descartarSessao(s));
+                    navigate('/programa', { replace: true });
+                  }}
+                >
+                  Descartar este treino
+                </button>
+                <button type="button" className="btn ter" onClick={() => terminar()}>
+                  Guardar mesmo assim
+                </button>
+              </>
+            ) : (
+              <button type="button" className="btn sec" onClick={() => terminar()}>
+                Terminar o treino
+              </button>
+            )}
           </Folha>
         )}
       </main>

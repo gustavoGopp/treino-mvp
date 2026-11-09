@@ -1,8 +1,8 @@
-import type { Programa } from '../gerador';
+import type { ExercicioPrescrito, Programa } from '../gerador';
 import { sugerirProgressao, sugerirSemanaLeve } from '../progressao';
 import { semCalibracao } from '../progressao/calibracao';
 import { r, SEMANA_LEVE } from '../regras';
-import { diaLocal, hojeNoPrograma, historicoDoExercicio, opcoesCarga, treinoFeito, type LocalDaCarga, type Sessao } from '../sessao';
+import { diaLocal, hojeNoPrograma, historicoDoExercicio, naFaseDeAprendizado, opcoesCarga, prescricaoDaVaga, treinoFeito, type LocalDaCarga, type Sessao } from '../sessao';
 import type { Inventario } from '../taxonomia/equipamentos';
 
 // Os sinais da semana leve (deload.semana-leve; pesquisa-v2/07, seção 6): 2 exercícios estagnados, "pesado demais" em
@@ -46,13 +46,19 @@ export function semanaLeveDeHoje(programa: Programa, historico: Sessao[], hojeIs
   const treinos = historico.filter(treinoFeito);
   const hoje = hojeNoPrograma(programa, historico, hojeIso, { fusoMin: fuso, ...(o.semanaLeve ? { semanaLeve: o.semanaLeve } : {}) });
 
-  // 1) Exercícios estagnados (progressao.estagnacao), na dupla progressão do bloco de hoje.
+  // 1) Exercícios estagnados (progressao.estagnacao), na dupla progressão do bloco de hoje. Conta o exercício feito na
+  // vaga da última vez (a alternativa, numa troca: `noLugarDe`), e não a vaga que ninguém fez (R5a; D2).
   const vagas = new Map(programa.dias.flatMap((d) => d.exercicios.map((x) => [x.exId, x] as const)));
   const desde = hoje.bloco.pausaDias !== undefined ? hoje.bloco.inicio : undefined;
+  const feitos = new Map<string, { x: Pick<ExercicioPrescrito, 'reps' | 'rir'>; ultima: Sessao }>();
+  for (const [vaga, prescrito] of vagas) {
+    const ultima = [...treinos].reverse().find((s) => s.exercicios.some((e) => (e.noLugarDe ?? e.exId) === vaga && e.series.length));
+    const feito = [...(ultima?.exercicios ?? [])].reverse().find((e) => (e.noLugarDe ?? e.exId) === vaga && e.series.length);
+    if (!ultima || !feito || feitos.has(feito.exId)) continue;
+    feitos.set(feito.exId, { x: prescricaoDaVaga(prescrito, feito.exId), ultima });
+  }
   let estagnados = 0;
-  for (const [exId, x] of vagas) {
-    const ultima = [...treinos].reverse().find((s) => s.exercicios.some((e) => e.exId === exId && e.series.length));
-    if (!ultima) continue;
+  for (const [exId, { x, ultima }] of feitos) {
     const localId = o.localDe(ultima);
     const local: LocalDaCarga | undefined = localId ? { localId, ...(o.localPadrao ? { localPadrao: o.localPadrao } : {}) } : undefined;
     const h = semCalibracao(historicoDoExercicio(historico, exId, local, { semLeve: true, ...(desde ? { desde } : {}) }));
@@ -77,7 +83,8 @@ export function semanaLeveDeHoje(programa: Programa, historico: Sessao[], hojeIs
   const dias = SEMANA_LEVE.carenciaSemanas * 7;
   const depoisDaVolta = hoje.bloco.pausaDias !== undefined && hoje.semana <= SEMANA_LEVE.carenciaSemanas;
   const depoisDaLeve = !!o.semanaLeve && diaLocal(hojeIso, fuso) - diaLocal(o.semanaLeve.inicio, fuso) < SEMANA_LEVE.dias + dias;
-  const carencia = depoisDaVolta || depoisDaLeve;
+  // A fase de aprendizado do iniciante também é carência (iniciante.fase-aprendizado; R5a).
+  const carencia = depoisDaVolta || depoisDaLeve || naFaseDeAprendizado(hoje);
 
   const s = sugerirSemanaLeve({ exerciciosEstagnados: estagnados, pesadoNosUltimos3: pesado, dorQueSeRepete: comDor.length, carencia });
   return { ...s, carencia, ...(dor ? { dor } : {}) };

@@ -95,6 +95,21 @@ const mudarExercicio = (e: Estado, i: number, f: (x: Sessao['exercicios'][number
 
 export const registrarSerie = (e: Estado, i: number, s: SerieRegistrada) => mudarExercicio(e, i, (x) => ({ ...x, series: [...x.series, s] }));
 export const desfazerSerie = (e: Estado, i: number) => mudarExercicio(e, i, (x) => ({ ...x, series: x.series.slice(0, -1) }));
+/**
+ * A nota de dor do "Senti algo" (seguranca.dor.escala; R5a): fica na última série feita do exercício, com a maior nota
+ * se já havia uma. Sem série feita, não há onde guardar: `guardada` volta falso, e quem chama leva a nota para a
+ * próxima série registrada dele (`comDor`).
+ */
+export function anotarDor(e: Estado, i: number, nota: number): { estado: Estado; guardada: boolean } {
+  const x = e.sessaoAtual?.exercicios[i];
+  if (!x?.series.length) return { estado: e, guardada: false };
+  return { estado: mudarExercicio(e, i, (y) => ({ ...y, series: y.series.map((s, n) => (n === y.series.length - 1 ? comDor(s, nota) : s)) })), guardada: true };
+}
+
+/** A série com a nota de dor (a maior, se já havia uma); notas abaixo de 1 não são guardadas. */
+export const comDor = (s: SerieRegistrada, nota?: number): SerieRegistrada =>
+  nota && nota > 0 ? { ...s, dor: Math.max(s.dor ?? 0, Math.round(nota)) } : s;
+
 export const interromperExercicio = (e: Estado, i: number) => mudarExercicio(e, i, (x) => ({ ...x, interrompido: true }));
 
 /** Troca pela alternativa só nesta sessão (decisão 7). Se já havia séries, o exercício original fica registrado e a alternativa entra depois dele. */
@@ -117,6 +132,23 @@ export function terminarSessao(e: Estado, agora: string, porAlerta = false): Est
   const { sessaoAtual, ...resto } = e;
   void sessaoAtual;
   return { ...resto, historico: [...e.historico, feita] };
+}
+
+/** O treino em andamento ainda não tem nenhuma série (registro.treino-feito): "Terminar" oferece descartar. */
+export const semSerie = (e: Estado) => !!e.sessaoAtual && !e.sessaoAtual.exercicios.some((x) => x.series.length > 0);
+
+/** Apaga o último treino do histórico (registro.treino-feito), depois da confirmação de quem usa. */
+export function apagarUltimoTreino(e: Estado, sessaoId: string): Estado {
+  if (e.historico.at(-1)?.id !== sessaoId) return e;
+  return { ...e, historico: e.historico.slice(0, -1) };
+}
+
+/** Corrige uma série do último treino (registro.treino-feito): a carga, as repetições, o RIR ou a dor digitados errado. */
+export function corrigirSerie(e: Estado, sessaoId: string, exercicio: number, serie: number, nova: SerieRegistrada): Estado {
+  const ult = e.historico.at(-1);
+  if (ult?.id !== sessaoId || !ult.exercicios[exercicio]?.series[serie]) return e;
+  const exercicios = ult.exercicios.map((x, j) => (j === exercicio ? { ...x, series: x.series.map((s, n) => (n === serie ? nova : s)) } : x));
+  return { ...e, historico: [...e.historico.slice(0, -1), { ...ult, exercicios }] };
 }
 
 /** Descarta o treino em andamento sem guardar. */

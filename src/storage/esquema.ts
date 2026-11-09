@@ -180,7 +180,7 @@ export const estadoSchema = z.object({
       revisaoMetaEm: data.optional(),
       /** Resposta à proposta de refazer o nível depois de mais de 26 semanas (readaptacao.durante-uso). */
       voltaLongaEm: data.optional(),
-      /** "Agora não" na sugestão da semana leve: esconde até aparecer um sinal novo. */
+      /** "Agora não" na sugestão da semana leve: esconde a oferta por 7 dias (R5a). */
       semanaLeveEm: data.optional(),
       /** "Não" ao ajuste do tempo estimado (tempo.calibracao). */
       tempoEm: data.optional(),

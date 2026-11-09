@@ -13,6 +13,10 @@ describe('repositório', () => {
     expect(tracked.filter((f) => /(^|\/)\.env(\.|$)/.test(f) && !f.endsWith('.env.example'))).toEqual([]);
   });
 
+  it('não versiona uma cópia exportada pelo app (R5a: o script scripts/export/ler-export.ts lê um export real só localmente)', () => {
+    expect(tracked.filter((f) => /(^|\/)treino-mvp-\d{4}-\d{2}-\d{2}\.json$/.test(f))).toEqual([]);
+  });
+
   it('não versiona fotos fora de public/', () => {
     expect(tracked.filter((f) => /\.(jpe?g|heic)$/i.test(f) && !f.startsWith('public/'))).toEqual([]);
   });

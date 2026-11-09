@@ -1,10 +1,11 @@
-import { Link, Navigate } from 'react-router-dom';
+import { useState } from 'react';
+import { Link, Navigate, useNavigate } from 'react-router-dom';
 import { BIBLIOTECA } from '../../domain/biblioteca';
 import { marcasDaSessao, type Marca } from '../../domain/acompanhamento/evolucao';
 import { resumoSessao, sugestaoDoExercicio, textoCarga } from '../../domain/sessao';
 import { localDaSessao } from '../../storage/esquema';
 import { agoraIso, fusoDoAparelho, useApp } from '../app/estado';
-import { hojeDoTreino, inventarioDoTreino, opcoesDaCarga } from './acoes';
+import { apagarUltimoTreino, hojeDoTreino, inventarioDoTreino, opcoesDaCarga } from './acoes';
 import { marcarHojeFoi, semanaDoEstado } from '../acompanhamento/acoes';
 import { Pontos } from '../acompanhamento/Semana';
 import { SemanaLeve } from '../acompanhamento/SemanaLeve';
@@ -36,6 +37,9 @@ const plural = (n: number, um: string, varios: string) => `${n} ${n === 1 ? um :
 
 export function Resumo() {
   const { estado, atualizar } = useApp();
+  const navigate = useNavigate();
+  // "Apagar este treino" (registro.treino-feito; R5a): o mínimo funcional, com confirmação; a tela é pedido ao design.
+  const [apagar, setApagar] = useState(false);
   const s = estado.historico.at(-1);
   const programa = estado.programa?.programa;
   if (!s || !programa) return <Navigate to="/programa" replace />;
@@ -150,6 +154,32 @@ export function Resumo() {
         <Link className="btn sec" to="/programa">
           Voltar ao início
         </Link>
+        {apagar ? (
+          <div className="warnbox" role="alert">
+            <p>
+              Apagar este treino? As séries dele saem do histórico, e o próximo treino volta a ser {dia.nome}. <Selo id="registro.treino-feito" />
+            </p>
+            <div className="dois">
+              <button type="button" className="btn sec" onClick={() => setApagar(false)}>
+                Manter
+              </button>
+              <button
+                type="button"
+                className="btn ter"
+                onClick={() => {
+                  atualizar((e) => apagarUltimoTreino(e, s.id));
+                  navigate('/programa', { replace: true });
+                }}
+              >
+                Apagar
+              </button>
+            </div>
+          </div>
+        ) : (
+          <button type="button" className="link-sec" onClick={() => setApagar(true)}>
+            Registrei algo errado: apagar este treino
+          </button>
+        )}
       </main>
     </div>
   );
