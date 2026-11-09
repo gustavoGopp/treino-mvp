@@ -22,6 +22,9 @@ import { FaixaSemana } from '../acompanhamento/Semana';
 import { SemanaLeve } from '../acompanhamento/SemanaLeve';
 import { aceitarMargemTempo, recusarMargemTempo, semanaDoEstado, semanaLeveDoEstado, tempoDoEstado } from '../acompanhamento/acoes';
 import { CartaoTexto, temCartao } from './CartaoTexto';
+import { ComoEsta } from './ComoEsta';
+import type { Perfil } from '../../domain/gerador';
+import type { Inventario } from '../../domain/taxonomia/equipamentos';
 
 // Tela do treino: vai direto ao que importa (o treino de cada dia, com a imagem de cada exercício e
 // séries × repetições em destaque). Ajustes, avisos e o porquê ficam um toque abaixo. Nada muda sem a escolha da pessoa.
@@ -368,6 +371,7 @@ export function Programa() {
         <Sobre
           programa={salvo}
           perfil={perfil!}
+          inventario={inventario}
           semana={semana}
           fase={hoje.fase ?? faseAtual}
           reabrirAjustes={
@@ -593,12 +597,14 @@ function LinhaExercicio({
 function Sobre({
   programa,
   perfil,
+  inventario,
   semana,
   fase,
   reabrirAjustes,
 }: {
   programa: TipoPrograma;
-  perfil: { diasSemana: number; minutosSessao: number; nivel: keyof typeof NOME_NIVEL };
+  perfil: Perfil;
+  inventario: Inventario | null | undefined;
   semana: number;
   fase?: TipoPrograma['fases'][number];
   reabrirAjustes?: () => void;
@@ -628,6 +634,8 @@ function Sobre({
           <p>
             <b>{programa.divisao}.</b>
           </p>
+          {inventario && <ComoEsta programa={programa} perfil={perfil} inventario={inventario} />}
+          {programa.avisos.length > 0 && <h3>Avisos</h3>}
           {programa.avisos.map((a, i) => (
             <div key={i} className="warnbox">
               {a.texto} <Selo id={a.regraId} />
