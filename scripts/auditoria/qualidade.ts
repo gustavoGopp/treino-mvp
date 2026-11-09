@@ -22,9 +22,10 @@ import { ehAvisoDeMeta, musculosDoAviso, contextoDeSelecao, gerarPrograma, GRUPO
 import { DIVISOES, OPCOES_POR_DIAS, type DiasSemana, type DivisaoId, type Vaga } from '../../src/domain/gerador/divisoes';
 import { FUNCAO } from '../../src/domain/gerador/funcoes';
 import { exerciciosPorSessao, TEMPO, VOLUME, type Nivel } from '../../src/domain/regras';
-import { grade, perfil, type Caso, type Prioridade, type SituacaoDeDor } from './cenarios';
+import { grade, perfil, type Caso, type SituacaoDeDor } from './cenarios';
 import { CENARIOS_55, type Cen } from './cenarios-55';
 import { medirRegua, NOME_DEFEITO } from './regua';
+import { MINUTOS_Q, PRIORIDADES_Q } from './qualidade-grade';
 
 const args = process.argv.slice(2);
 const arg = (k: string) => (args.includes(k) ? args[args.indexOf(k) + 1] : undefined);
@@ -36,17 +37,7 @@ const processos = Math.max(1, Number(arg('--processos')) || Math.min(4, availabl
 const SAIDA = arg('--saida') ?? 'docs/revisoes/qualidade';
 
 // ---------- a grade ----------
-export const MINUTOS_Q = [30, 45, 60, 75, 90];
-export const GRUPOS_IDS = Object.keys(GRUPOS) as Grupo[];
-export const PRIORIDADES_Q: Prioridade[] = [
-  { id: 'nenhuma', grupos: [] },
-  ...GRUPOS_IDS.map((g) => ({ id: g, grupos: [g] })),
-  { id: 'peito+costas', grupos: ['peito', 'costas'] },
-  { id: 'pernas+gluteos', grupos: ['pernas', 'gluteos'] },
-  { id: 'peito+bracos', grupos: ['peito', 'bracos'] },
-  { id: 'costas+ombros', grupos: ['costas', 'ombros'] },
-  { id: 'pernas+gluteos+abdomen', grupos: ['pernas', 'gluteos', 'abdomen'] },
-];
+export { GRUPOS_IDS, MINUTOS_Q, PRIORIDADES_Q } from './qualidade-grade';
 export const DORES_Q: SituacaoDeDor[] = [{ id: 'sem dor', dores: [] }, ...ARTICULACOES.flatMap((a) => [4, 7].map((nota) => ({ id: `${a} ${nota}`, dores: [{ articulacao: a, nota }] })))];
 /** A divisão recomendada de cada número de dias; no perfil ela fica livre, para divisao.sem-puxar valer. */
 export const DIVISOES_RECOMENDADAS: DivisaoId[] = ([2, 3, 4, 5, 6] as DiasSemana[]).map((d) => OPCOES_POR_DIAS[d][0]!);
