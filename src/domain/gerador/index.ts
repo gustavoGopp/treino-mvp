@@ -1120,7 +1120,12 @@ function completarPelaRegua(
   const bib = (x: { exId: string }) => POR_ID_BIB[x.exId]!;
   const volumeDe = (exs: ExercicioPrescrito[]) => volumePorMusculo(exs.map((x) => ({ ex: bib(x), series: seriesDeVolume(x) })));
   const todos = () => dias.flatMap((d) => d.exercicios);
-  const melhorNivel = (fid: string) => FUNCAO[fid]!.niveis.findIndex((ids) => ids.some((id) => ctx.naFuncao(FUNCAO[fid]!, id)));
+  const niveis = new Map<string, number>();
+  const melhorNivel = (fid: string) => {
+    let n = niveis.get(fid);
+    if (n === undefined) niveis.set(fid, (n = FUNCAO[fid]!.niveis.findIndex((ids) => ids.some((id) => ctx.naFuncao(FUNCAO[fid]!, id)))));
+    return n;
+  };
   const cobertas = (exs: ExercicioPrescrito[]) => Object.fromEntries(Object.keys(FAMILIAS).map((m) => [m, familiasCobertas(m as Musculo, exs, melhorNivel, ctx.noLugarDe).length]));
   const regiao = (m: Musculo) => (m === 'abdomen' ? 'core' : INFERIORES.includes(m) || m === 'adutores' ? 'inferior' : 'superior');
   /** O dia com os exercícios novos cabe: minutos (ou não piora um dia que já passava), sessão e semana. */

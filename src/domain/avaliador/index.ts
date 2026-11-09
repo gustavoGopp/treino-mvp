@@ -22,7 +22,7 @@ import {
 import { contaPara, ehDe, funcoesProprias, EMPURRAR_PUXAR_MAX, ehEmpurrar, ehPuxar, FAMILIAS, familiasCobertas } from '../gerador/familias';
 import { FUNCAO, FUNCOES, funcoesDoExercicio, type Funcao } from '../gerador/funcoes';
 export { ehEmpurrar, ehPuxar, FAMILIAS, familiasCobertas, FUNCOES_EMPURRAR, FUNCOES_PUXAR } from '../gerador/familias';
-import { exerciciosPorSessao, NIVEL_COMPLEXIDADE_MAX, r, REGRAS, TEMPO, VOLUME, type Nivel, type Selo } from '../regras';
+import { exerciciosPorSessao, NIVEL_COMPLEXIDADE_MAX, r, SELOS, TEMPO, VOLUME, type Nivel, type Selo } from '../regras';
 import type { Inventario } from '../taxonomia/equipamentos';
 import { avaliarTriagem } from '../triagem';
 
@@ -207,7 +207,12 @@ export function avaliar(programa: ProgramaParaAvaliar, perfil: Perfil, inventari
   });
 
   /** O melhor nível possível de uma função no equipamento (-1: nenhum). */
-  const melhorNivel = (fid: string) => FUNCAO[fid]!.niveis.findIndex((ids) => ids.some((id) => ctx.naFuncao(FUNCAO[fid]!, id)));
+  const niveis = new Map<string, number>();
+  const melhorNivel = (fid: string) => {
+    let n = niveis.get(fid);
+    if (n === undefined) niveis.set(fid, (n = FUNCAO[fid]!.niveis.findIndex((ids) => ids.some((id) => ctx.naFuncao(FUNCAO[fid]!, id)))));
+    return n;
+  };
   /** O melhor exercício possível da função (o desempate do gerador), fora os de `fora`. */
   const melhorDa = (fid: string, fora: (id: string) => boolean): string | undefined => {
     const n = melhorNivel(fid);
@@ -533,7 +538,7 @@ function agrupar(brutos: Bruto[], c: Contexto): Achado[] {
       tipo: b0.tipo,
       gravidade: b0.gravidade,
       regraId: b0.regraId,
-      selo: REGRAS[b0.regraId]!.selo,
+      selo: SELOS[b0.regraId]!,
       texto,
       passo,
       itens: bs.map((b) => b.item),

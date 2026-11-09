@@ -9,15 +9,11 @@ import { CENARIOS_REDUZIDOS, gradeReduzida, naoAvisados } from '../../scripts/au
 // não avise, e "está bom" ou só "limite" em pelo menos 80% (o aceite do R5b).
 type Caso = { cen: string; inv: Inventario; pf: Perfil; p: Programa; a: Avaliacao };
 const CASOS: Caso[] = [];
-// Gerada antes dos testes, cedendo a vez entre os cenários (um bloco longo sem pausa faz o Vitest perder o contato).
+// Gerada antes dos testes, cedendo a vez a cada 50 programas (um bloco longo sem pausa faz o Vitest perder o contato).
 beforeAll(async () => {
-  let ultimo = '';
   for (const x of gradeReduzida()) {
-    if (x.cen !== ultimo) {
-      ultimo = x.cen;
-      await new Promise((ok) => setTimeout(ok, 0));
-    }
     CASOS.push({ ...x, a: avaliar(x.p, x.pf, x.inv) });
+    if (CASOS.length % 50 === 0) await new Promise((ok) => setTimeout(ok, 0));
   }
 }, 120_000);
 const nome = (x: Caso) => `${x.cen} ${x.pf.nivel} ${x.p.divisao} ${x.pf.minutosSessao} min ${x.pf.prioridades.join('+') || 'sem foco'}`;

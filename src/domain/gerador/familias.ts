@@ -42,10 +42,15 @@ export function contaPara(m: Musculo, id: string): boolean {
 }
 
 /** As funções próprias de um exercício: entre as funções em que ele aparece, as do nível mais alto (o índice menor). */
+const PROPRIAS = new Map<string, string[]>();
 export function funcoesProprias(id: string): string[] {
+  const memo = PROPRIAS.get(id);
+  if (memo) return memo;
   const nivelEm = funcoesDoExercicio(id).map((f) => ({ f: f.id, n: f.niveis.findIndex((ids) => ids.includes(id)) }));
   const menor = Math.min(...nivelEm.map((x) => x.n));
-  return nivelEm.filter((x) => x.n === menor).map((x) => x.f);
+  const out = nivelEm.filter((x) => x.n === menor).map((x) => x.f);
+  PROPRIAS.set(id, out);
+  return out;
 }
 /**
  * As famílias de funções que o programa cobre num músculo grande (selecao.exercicios-por-musculo), pela tabela de funções,

@@ -4,14 +4,23 @@ import { musculosDoAviso, ehAvisoDeMeta, ALTERNATIVAS_A_MOSTRA, contextoDeSeleca
 import type { Articulacao, Musculo } from '../../src/domain/biblioteca';
 import { DIVISOES, DIVISAO_IDS, OPCOES_POR_DIAS } from '../../src/domain/gerador/divisoes';
 import { FUNCAO } from '../../src/domain/gerador/funcoes';
-import { DESCANSO, REGRAS, VOLUME, NIVEIS, OBRIGATORIO_CURTO, exerciciosPorSessao } from '../../src/domain/regras';
+import { DESCANSO, VOLUME, NIVEIS, OBRIGATORIO_CURTO, exerciciosPorSessao } from '../../src/domain/regras';
+import { REGRAS } from '../../src/domain/regras/completas';
 import { capacidades, type Inventario } from '../../src/domain/taxonomia/equipamentos';
 import { respostasNenhuma } from '../../src/domain/triagem';
 import { ana, bruno, carla, diego, fabio, PERSONAS } from '../personas';
 
+// O gerador é determinístico (mesma entrada, mesma saída, testado abaixo): o programa de cada par perfil × inventário é
+// gerado uma vez e reaproveitado pelos testes de propriedade, que antes geravam as mesmas variações a cada teste (R5b).
+const gerados = new WeakMap<Perfil, WeakMap<Inventario, Programa>>();
 const ok = (perfil: Perfil, inv: Inventario): Programa => {
+  const doPerfil = gerados.get(perfil) ?? new WeakMap<Inventario, Programa>();
+  gerados.set(perfil, doPerfil);
+  const pronto = doPerfil.get(inv);
+  if (pronto) return pronto;
   const r = gerarPrograma(perfil, inv);
   if (r.status !== 'ok') throw new Error('bloqueado');
+  doPerfil.set(inv, r.programa);
   return r.programa;
 };
 const resumo = (p: Programa) => ({
