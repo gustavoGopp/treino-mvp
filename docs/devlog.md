@@ -1380,3 +1380,89 @@ As personas continuam iguais às aprovadas no R5d.
 > Achei isso simulando meses de uso com o código real, persona por persona. Junto vieram outras três coisas que enganavam sem ninguém perceber: abrir e fechar o treino sem fazer nada contava como treino feito e pulava o dia; a calibração da carga nunca terminava quando o próximo halter era um salto grande; e quem dizia "agora não" para uma semana mais leve via a mesma oferta a cada treino, até 106 vezes em 6 meses.
 >
 > Nenhuma dessas correções é uma função nova. São o app fazendo o que já dizia que fazia. Agora a dor fica guardada e reduz a carga da próxima vez, o treino vazio pode ser descartado, a calibração para em 3 séries e o "agora não" vale uma semana.
+
+## R5b: o avaliador e o porquê (09/11/2026)
+
+**Por quê.** O Gustavo quer, mais adiante, que a pessoa que já treina possa montar o próprio programa e ouvir de um avaliador se algum músculo ou área deve ser ajustado. Antes do editor, faltava a régua: uma função que olhe qualquer programa, o gerado ou um digitado com exercícios da biblioteca, e diga o que um treinador diria, com a regra e o selo de cada ponto. A sessão de próximos passos tinha um protótipo descartável; este marco faz o avaliador de verdade, usa-o como régua do próprio gerador e resolve o que a frente C mediu nos textos: só 2 de 20 avisos diziam o que fazer, e 61% dos exercícios só tinham o "porquê" genérico.
+
+**O que mudou** (branch `claude/lucid-maxwell-sr3ewo`, a partir da `main` `6d03ad3`, com o R5a; o estado guardado **continua na versão 7**, nada novo é guardado)
+- **O avaliador** (`src/domain/avaliador/`, regra nova `avaliador.gravidade`): uma função pura que recebe o programa, o perfil e o equipamento e devolve o veredito, os achados e a tabela por músculo. Cada achado tem a regra, o selo, o fato e o próximo passo, e os iguais saem numa linha só ("7 exercícios com mais de 4 séries", e não 21 linhas). Ele confere, por músculo, as séries da semana contra a meta e o piso (a série indireta vale meia), o teto da sessão e da semana, a frequência e as funções que se complementam; os isoladores obrigatórios; o equilíbrio do ombro (empurrar ÷ puxar até 1,5, regra nova `avaliador.empurrar-puxar`) e da coxa (0,5 a 2); o tempo de cada dia; e a ordem.
+- **Cinco gravidades.** Só a segurança bloqueia (a triagem sem liberação e o exercício que carrega uma região com dor acima de 5). Alerta forte, sem bloquear: equipamento que o local não tem, exercício que a pessoa pediu para evitar, complexidade acima do nível (regra nova `selecao.complexidade-nivel`: o filtro do gerador ganhou um `regraId`). O resto orienta: **ajustar** quando há como mudar nos mesmos dias e minutos (com a sugestão concreta: "suba 1 série em…", "acrescente…", "troque leg press por cadeira extensora no treino C"); **limite** quando o equipamento, a dor ou o tempo não deixam, e então o texto diz "não precisa fazer nada"; **informação** para o que não muda o resultado.
+- **Ele mede pela tabela de funções, como o gerador.** As famílias de funções de cada músculo grande ficam em `src/domain/gerador/familias.ts`, usadas pelos dois.
+- **O avaliador como régua do gerador.** Ele achou três coisas que o gerador fazia sem avisar, e o gerador passou a corrigir, depois dos cortes de tempo, sem passar dos minutos, dos tetos nem dos pisos: (1) o músculo grande com um movimento só, havendo outro (ex.: stiff em dois dias e nenhuma flexora na academia de 30 min): a vaga repetida troca pela família que falta, ou ela entra num dia da mesma região com lugar; (2) o isolador obrigatório que coube; (3) as séries de puxar, enquanto empurrar ÷ puxar passar de 1,5.
+- **O porquê específico.** A 1ª linha do "Por que este exercício" diz a vaga, o músculo dela (e se é o seu foco), quantas séries da semana o exercício leva e por que ficou com a vaga: a opção de cima não é possível (e por quê: equipamento, dor, algo a evitar, nível), o critério do desempate em que ele ganhou do 2º colocado, ou que ele equivale aos outros.
+- **Os avisos com o próximo passo** (`acompanhamento.mensagens`), inclusive "não precisa fazer nada" quando a causa é o equipamento (o app não sugere compra).
+- **A semana com a meta do programa.** Quando o programa planeja menos que a meta do nível, a linha do músculo diz "o seu programa planeja 6 de 10: falta tempo".
+- **"Como está o seu programa"** em "Sobre o programa", com os componentes de hoje: o resumo em 1 linha, os pontos a ajustar numa caixa de aviso, os limites numa lista. A tela própria é pedido ao design.
+- **O texto das regras saiu do pacote inicial.** O pacote da tela do programa estava a 0,2 kB do limite (backlog do R5a) e o R5b somava ~6 kB. O app passa a levar só o selo de cada regra (1,6 kB); o texto e as fontes vêm quando a pessoa abre o selo.
+
+**Decisões técnicas desta sessão** (cada uma medida)
+1. **A flexão em duas vagas conta como 2 funções do peito quando não há banco inclinável, e como 1 quando há.** A regra é a da própria tabela de funções: a vaga só desce de nível quando o de cima não é possível. Então um exercício vale numa função no nível igual ou acima do melhor possível no equipamento (e sempre na sua função própria), e cada vaga conta. Sem o banco, a flexão (ou o supino reto) na vaga inclinada é o "2º empurrar" que a decisão do Gustavo de 06/11 escolheu antes do crucifixo (`selecao.peitoral-inclinado`); com o banco, o avaliador pede o inclinado. Contar pela posição em qualquer nível fazia o avaliador sugerir trocas sem sentido ("troque a flexão por supino no chão"); contar só a função própria contradizia a tabela (a remada vale como puxada quando não há barra nem polia alta). Medido: com qualquer nível, 615 programas da grade reduzida tinham "ajustar" de funções sem aviso; com a regra da tabela, 258, todos defeitos reais do gerador, que este marco corrige.
+2. **A barra só na descida do iniciante vale como a barra fixa que ela substitui** (o Diego tinha "costas só com remada").
+3. **A troca a partir do que sobra só tira de um músculo acima do máximo do nível ou da mesma função repetida no dia**, nunca do foco: sem isso, o avaliador sugeria trocar o único agachamento do dia pela extensora.
+4. **A troca de exercício do gerador não muda o uso do tempo da semana** (o dia mais longo não cai abaixo de 85% dos minutos se antes não estava). Sem isso, um caso com dor no joelho ganhava o defeito E1 da régua (um ombro lateral com 1 série num dia que passava a ter tempo sobrando), e a linha de base do E1 com dor é 0.
+5. **O teste do gerador guarda o programa de cada variação** (o gerador é determinístico): ele estava em 58 s, perto do limite em que o Vitest acusa "Timeout calling onTaskUpdate"; agora leva 19 s, e a suíte inteira 43 s (na `main`, 60 s).
+
+**Medido**
+
+| | Antes | Depois |
+|---|---:|---:|
+| Grade reduzida (5.850 programas: 6 cenários comuns, sem dor): "está bom" ou só "limite" | 59,8% "está bom" (protótipo, outra amostra) | **87,5%** (44,3% bom, 43,1% só limite) |
+| Grade reduzida: achados de segurança ou alerta | 0 | **0** |
+| Grade reduzida: "ajustar" que o gerador não avisa | 17,4% (protótipo) / 5,4% (1ª versão deste avaliador) | **0** |
+| Grade de qualidade inteira (911 mil programas, com dor e exercícios evitados): "está bom" ou só "limite" | — | VER_QUALIDADE |
+| Régua (108.900 programas): empurrar ÷ puxar acima de 1,5 (D1), sem dor / com dor | 467 / 341 | **373 / 249** |
+| Régua: dia com menos de 3 exercícios ou sem multiarticular (A2), sem dor / com dor | 385 / 14.995 | **359 / 14.978** |
+| Régua: dia acima de 110% dos minutos (A3), sem dor / com dor | 2.506 / 2.532 | **2.458 / 2.505** |
+| Régua: foco abaixo da meta com tempo (C1), com dor | 980 | **921** |
+| Régua: algum defeito pior que na `main` | — | **nenhum** |
+| Régua: sem nenhum defeito, sem dor / com dor | 30.890 / 53.774 | **31.023 / 53.932** |
+| Régua: notas que pioram (o custo) | — | G1 26.882 → 26.952 sem dor (+70 dias com 3 cartões de texto); A5 22.875 → 22.966 com dor |
+| Programas da grade reduzida que mudam | — | **4,9%** (86% deles de 30 min); as 6 personas **idênticas** |
+| Avisos das 6 personas com o próximo passo | 2 de 20 (06/11) | **24 de 24** |
+| Exercícios das 6 personas com o porquê específico | 39% | **140 de 140** |
+| Os 4 programas publicados | os achados do protótipo | **os mesmos**, com a sugestão concreta (tabela abaixo) |
+| Pacote da tela do programa (JS comprimido) | 219,8 kB (limite 220) | VER_PACOTE |
+
+**Os 4 programas publicados** (protocolos de ensaios, digitados com exercícios da biblioteca em `tests/unit/programas-publicados.ts`, com a fonte de cada um; avaliados com o equipamento da Carla, intermediário, 60 min, sem foco). Todos ficam em "ajustar", nenhum bloqueado:
+- **Thomas e Burns 2016 (ABC):** 6 a 9 séries num exercício; tríceps 15 e bíceps 13,5 num dia só; abdômen 3; sem extensora; dias de ~70 min em 60; a ordem só informa.
+- **Schoenfeld 2019, 3 séries:** quadríceps 27 (teto 20); posteriores, panturrilha e abdômen a zero; peito e glúteo com um movimento só; faltam o tríceps acima da cabeça e a panturrilha em pé; nenhum exercício direto para a parte de trás da coxa; costas 18 só informa. Aqui o passo é trocar, não acrescentar: "troque cadeira extensora por flexão de joelho na cadeira flexora".
+- **Schoenfeld 2019, 5 séries:** 7 exercícios × 3 dias com 5 séries (uma linha só), quadríceps com 15 numa sessão, dias de ~95 min em 60.
+- **Carneiro 2024 (5 dias, 1x por músculo):** 10 séries num exercício; peito, costas e quadríceps com um movimento só; sem extensora nem tríceps acima da cabeça.
+
+**Um exemplo da saída** (Thomas e Burns 2016, como o teste imprime; na tela, cada linha tem o selo):
+```
+Dá para melhorar: 6 pontos a ajustar.
+AJUSTAR [volume.series-por-exercicio · moderada] 7 exercícios com mais de 4 séries: supino reto com halteres (6), …
+        → Acima de 4 séries, divida entre 2 exercícios diferentes ou entre 2 dias.
+AJUSTAR [volume.sessao.teto · um estudo] Mais de 10 séries de um músculo no mesmo treino: A: tríceps 15 e B: bíceps 13,5.
+        → Leve parte dessas séries para outro dia: acima de 10 no mesmo treino, as séries a mais rendem pouco.
+AJUSTAR [volume.semanal.abdomen · consenso] Abaixo do mínimo que faz crescer: abdômen 3 de 4 séries por semana.
+        → Suba 1 série em abdominal no chão (crunch), no treino B.
+AJUSTAR [selecao.isolador-obrigatorio · moderada] Falta extensora: cobre a parte da frente da coxa que vai até o quadril…
+        → Troque leg press por cadeira extensora no treino C (pernas).
+AJUSTAR [tempo.corte · consenso] Mais longo que os 60 min: A ~70 min e C ~70 min.
+        → Faça elevação lateral e tríceps na corda em sequência (bi-set) no treino A… Ou escolha mais minutos.
+INFO    [ordem.sessao · moderada] Isolador antes de um exercício grande: C (pernas).
+        → Não precisa fazer nada: a ordem quase não muda o crescimento; os grandes primeiro ganham mais força.
+```
+As saídas completas das 6 personas, dos 4 publicados e do Bruno com dor no ombro (bloqueado, 17 exercícios numa linha só) estão em `revisoes/r5b/textos.md`, com os avisos e o porquê de antes e de depois, para a revisão do Gustavo.
+
+![Como está o seu programa (Ana, fictícia)](img/r5b-como-esta.png)
+![O porquê específico do búlgaro da Ana](img/r5b-porque.png)
+
+**Também:** VER_TESTES; 163 regras (eram 160: `avaliador.gravidade`, `avaliador.empurrar-puxar` e `selecao.complexidade-nivel`, e 2 revistas: `selecao.exercicios-por-musculo`, com a decisão da flexão, e `selecao.isolador-obrigatorio`); `npm run auditoria:avaliador` (a grade reduzida, em `revisoes/qualidade/avaliador.md`) e a seção "O avaliador" na auditoria de qualidade, com os suspeitos `avaliador.*-sem-aviso`.
+
+**Pedidos à sessão de design** (já listados em `revisoes/proximos-passos.md`, 2.5, itens 7 a 9; o que existe hoje é o mínimo funcional com os componentes atuais):
+1. **"Como está o seu programa"**: hoje, em "Sobre o programa", o resumo em 1 linha, os pontos a ajustar em caixas de aviso e os limites numa lista, cada um com o selo. Falta a tela pedida: os achados agrupados por tipo com as superfícies "alerta", "aviso" e "informação", e a tabela por músculo recolhida (séries, meta, dias). O avaliador já devolve a tabela (`musculos`) e os minutos de cada dia.
+2. **A folha do exercício começa pelo porquê específico**: hoje ele é a 1ª linha da lista "Por que este exercício"; os 4 genéricos seguem abaixo, sem recolher.
+3. **A semana com a meta do programa**: hoje, a frase "· o seu programa planeja 6 de 10: falta tempo" ao lado do estado do músculo.
+
+**Fica para depois** (`backlog.md`, "Do R5b").
+
+**Rascunho de post para o LinkedIn**
+> No meu app de treino, eu queria que a pessoa que já treina pudesse trazer o próprio programa e ouvir o que um treinador diria. Antes de fazer o editor, fiz a régua: uma função que olha qualquer programa e aponta, com a fonte e o nível de evidência de cada ponto, o que ajustar.
+>
+> Testei com quatro programas de estudos publicados. Ela apontou o que um treinador apontaria: 6 a 10 séries num exercício só, posteriores da coxa e panturrilha sem nenhuma série, treinos de 95 minutos para quem tem 60. E, em vez de só reclamar, diz o que fazer: "troque o leg press pela cadeira extensora no treino C".
+>
+> A surpresa foi usá-la no próprio app. Em 5.850 programas que o app monta, ela achou três coisas que ele fazia sem avisar, como um músculo grande treinado com um movimento só havendo outro. Corrigi o gerador, e hoje a régua diz "está bom" ou "é o limite do seu equipamento" em 87,5% deles, sem nenhum ponto de segurança. O resto, ela aponta e o app já avisa.
