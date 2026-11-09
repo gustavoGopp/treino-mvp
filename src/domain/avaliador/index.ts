@@ -259,7 +259,7 @@ export function avaliar(programa: ProgramaParaAvaliar, perfil: Perfil, inventari
         if (orcamento <= TEMPO.protegidoCurto && !prioritarios.has(m) && x.porque?.some((q) => q.regraId === 'tempo.musculo-protegido')) continue;
         if (x.series >= VOLUME.seriesPorExercicio.max || !cabeNaSessao(di, e, 1) || !cabeNaSemana(e, 1)) continue;
         if (minutos(d.exercicios.map((y) => (y === x ? { ...y, series: y.series + 1 } : y)), colchao) > orcamento) continue;
-        return `suba 1 série em ${nomeEx(e.id)} (${d.nome})`;
+        return `suba 1 série em ${nomeEx(e.id)}, no treino ${d.nome}`;
       }
     }
     return undefined;
@@ -288,7 +288,7 @@ export function avaliar(programa: ProgramaParaAvaliar, perfil: Perfil, inventari
         const novo = completar({ exId: e.id, series: serie, funcao: f.id }, ctx);
         const exs = inserirNaOrdem(d.exercicios, novo);
         if (minutos(exs, colchao) > orcamento || !valido(di, exs) || !vale([...dias.flatMap((z, k) => (k === di ? [] : z.exercicios)), ...exs])) continue;
-        return { texto: `acrescente ${nomeEx(e.id)} (${serie} séries) em ${d.nome}`, id: e.id };
+        return { texto: `acrescente ${nomeEx(e.id)} (${serie} séries) no treino ${d.nome}`, id: e.id };
       }
     }
     return undefined;
@@ -326,7 +326,7 @@ export function avaliar(programa: ProgramaParaAvaliar, perfil: Perfil, inventari
           const depois = coberturas(semana);
           // Trocar um exercício por outro muda o tempo em 1 ou 2 minutos: vale até 5% acima do dia de antes ou dos minutos.
           if (!valido(di, exs, 1.05) || Object.keys(coberturaAgora).some((k) => depois[k]! < coberturaAgora[k]!) || !vale(semana)) continue;
-          return `troque ${nomeEx(x.exId)} por ${nomeEx(achado)} em ${d.nome}`;
+          return `troque ${nomeEx(x.exId)} por ${nomeEx(achado)} no treino ${d.nome}`;
         }
       }
     }
@@ -340,7 +340,7 @@ export function avaliar(programa: ProgramaParaAvaliar, perfil: Perfil, inventari
         const e = ex(x);
         if (!filtro(x) || x.series <= VOLUME.seriesPorExercicio.min || e.musculos.primarios.some((m) => prioritarios.has(m))) continue;
         if (e.musculos.primarios.some((m) => (v[m] ?? 0) - 1 < (metas[m] ?? 0))) continue;
-        return `tire 1 série de ${nomeEx(e.id)} (${d.nome})`;
+        return `tire 1 série de ${nomeEx(e.id)}, no treino ${d.nome}`;
       }
     return undefined;
   };
@@ -358,14 +358,14 @@ export function avaliar(programa: ProgramaParaAvaliar, perfil: Perfil, inventari
     const isoladores = d.exercicios.filter((x) => x.tipo === 'isolador' && x.padrao !== 'core' && !x.supersetCom);
     for (let i = 0; i < isoladores.length; i++)
       for (const y of isoladores.slice(i + 1))
-        if (!ex(isoladores[i]!).musculos.primarios.some((m) => ex(y).musculos.primarios.includes(m))) return `faça ${nomeEx(isoladores[i]!.exId)} e ${nomeEx(y.exId)} em sequência (bi-set) em ${d.nome}`;
+        if (!ex(isoladores[i]!).musculos.primarios.some((m) => ex(y).musculos.primarios.includes(m))) return `faça ${nomeEx(isoladores[i]!.exId)} e ${nomeEx(y.exId)} em sequência (bi-set) no treino ${d.nome}`;
     const unicoPosterior = (x: ExercicioPrescrito) => ehPosteriorDireto(x.exId) && todos.filter((y) => ehPosteriorDireto(y.exId)).length === 1;
     const tirar = [...d.exercicios]
       .reverse()
       .find((x) => x.tipo === 'isolador' && !obrigatorio(x) && !ex(x).musculos.primarios.some((m) => prioritarios.has(m)) && ficaNoPiso(ex(x), seriesDeVolume(x)) && ex(x).musculos.primarios.every((m) => (v[m] ?? 0) - seriesDeVolume(x) > 0) && !unicoPosterior(x));
-    if (tirar) return `tire ${nomeEx(tirar.exId)} de ${d.nome}`;
+    if (tirar) return `tire ${nomeEx(tirar.exId)} do treino ${d.nome}`;
     const menos = [...d.exercicios].sort((a, b) => b.series - a.series).find((x) => x.series > VOLUME.seriesPorExercicio.min && ficaNoPiso(ex(x), 1));
-    return menos ? `tire 1 série de ${nomeEx(menos.exId)} (${d.nome})` : undefined;
+    return menos ? `tire 1 série de ${nomeEx(menos.exId)}, no treino ${d.nome}` : undefined;
   };
 
   // ---- 2. séries por exercício e por sessão (volume.series-por-exercicio; volume.sessao.teto) ----
@@ -438,7 +438,7 @@ export function avaliar(programa: ProgramaParaAvaliar, perfil: Perfil, inventari
           if (!achado || sugestao) continue;
           const exs = inserirNaOrdem(d.exercicios.filter((y) => y !== x), completar({ exId: achado, series: x.series, funcao: fid }, ctx));
           if (valido(di, exs) && melhora([...dias.flatMap((z, k) => (k === di ? [] : z.exercicios)), ...exs]))
-            sugestao = `troque ${nomeEx(x.exId)} por ${nomeEx(achado)} em ${d.nome}`;
+            sugestao = `troque ${nomeEx(x.exId)} por ${nomeEx(achado)} no treino ${d.nome}`;
         }
       }
     sugestao ??= acrescentar(m, faltam.flatMap((f) => f.funcoes), melhora)?.texto ?? trocarDoExcesso(m, faltam.flatMap((f) => f.funcoes), melhora);

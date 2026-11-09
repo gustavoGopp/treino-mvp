@@ -37,10 +37,11 @@ describe('o porquê específico de cada exercício', () => {
     const anaQuad = ok(ana.perfil, ana.inventario).dias.flatMap((d) => d.exercicios).find((x) => x.funcao === 'agachar')!;
     expect(anaQuad.porque[0]!.texto).toMatch(/para o quadríceps, o seu foco: \d+ das 6 séries da semana \(a meta é 10\)\./);
   });
-  it('por que ganhou: o nível de cima sem equipamento, a única opção, o critério do desempate ou a equivalência', () => {
+  it('por que ganhou: o nível de cima sem equipamento (e, entre os que sobram, por quê), a melhor opção, o critério do desempate ou a equivalência', () => {
     const textos = Object.values(PERSONAS).flatMap((p) => ok(p.perfil, p.inventario).dias.flatMap((d) => d.exercicios.map((x) => x.porque[0]!.texto)));
     expect(textos.some((t) => t.includes('pedem equipamento que você não tem; esta é a melhor que sobra.'))).toBe(true);
-    expect(textos.some((t) => t.includes('É a única opção desta vaga no seu equipamento.'))).toBe(true);
+    expect(textos.some((t) => /pedem equipamento que você não tem\. Entre as que sobram, (ganhou|equivale|ficou)/.test(t))).toBe(true);
+    expect(textos.some((t) => /É a melhor opção desta vaga no seu equipamento; .+ fica como alternativa./.test(t))).toBe(true);
     expect(textos.some((t) => /Ganhou de .+ porque (tem o guia animado|é mais estável e apoiado)/.test(t))).toBe(true);
     expect(textos.some((t) => /Equivale a .+ como alternativa\./.test(t))).toBe(true);
   });

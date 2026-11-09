@@ -231,22 +231,29 @@ export function contextoDeSelecao(perfil: Perfil, inventarioOriginal: Inventario
    * os do mesmo nível, o primeiro critério do desempate em que ele ganha do segundo colocado.
    */
   const motivoDaEscolha = (e: Exercicio, funcao: Funcao, nivelFuncao: number): string => {
+    // 1. O nível de cima: por que não ele.
+    let acimaTexto = '';
     if (nivelFuncao > 0) {
       const acima = funcao.niveis.slice(0, nivelFuncao).flat().map((id) => POR_ID_BIB[id]!);
       const nome = acima[0]!.nome.toLowerCase();
-      if (acima.some((x) => possivelSemRegiao.has(x.id) && carregaExcluida(x))) return `As opções de cima (como ${nome}) saíram por causa da dor; esta é a melhor que sobra.`;
-      if (acima.some((x) => perfil.evitarExercicios.includes(x.id))) return `Você pediu para evitar as opções de cima (como ${nome}); esta é a melhor que sobra.`;
-      if (acima.some((x) => x.requer.some((g) => g.every((c) => capsOriginais.has(c)) && !g.every((c) => caps.has(c)))))
-        return `As opções de cima (como ${nome}) pedem um equipamento que você pediu para evitar; esta é a melhor que sobra.`;
-      if (acima.some((x) => x.complexidade > NIVEL_COMPLEXIDADE_MAX[nivel] && x.requer.some((g) => g.every((c) => caps.has(c)))))
-        return `As opções de cima (como ${nome}) pedem mais técnica que o seu nível; esta é a melhor que sobra.`;
-      return `As opções de cima (como ${nome}) pedem equipamento que você não tem; esta é a melhor que sobra.`;
+      acimaTexto = acima.some((x) => possivelSemRegiao.has(x.id) && carregaExcluida(x))
+        ? `As opções de cima (como ${nome}) saíram por causa da dor`
+        : acima.some((x) => perfil.evitarExercicios.includes(x.id))
+          ? `Você pediu para evitar as opções de cima (como ${nome})`
+          : acima.some((x) => x.requer.some((g) => g.every((c) => capsOriginais.has(c)) && !g.every((c) => caps.has(c))))
+            ? `As opções de cima (como ${nome}) pedem um equipamento que você pediu para evitar`
+            : acima.some((x) => x.complexidade > NIVEL_COMPLEXIDADE_MAX[nivel] && x.requer.some((g) => g.every((c) => caps.has(c))))
+              ? `As opções de cima (como ${nome}) pedem mais técnica que o seu nível`
+              : `As opções de cima (como ${nome}) pedem equipamento que você não tem`;
     }
+    // 2. Entre as do mesmo nível: o primeiro critério do desempate em que ele ganha do 2º colocado.
     const outros = funcao.niveis[nivelFuncao]!.filter((id) => id !== e.id && naFuncao(funcao, id)).map((id) => possivel.get(id)!);
     if (!outros.length) {
+      if (acimaTexto) return `${acimaTexto}; esta é a melhor que sobra.`;
       const doNivel = funcao.niveis[nivelFuncao]!.filter((id) => id !== e.id).map((id) => POR_ID_BIB[id]!);
       if (doNivel.some((x) => possivelSemRegiao.has(x.id) && carregaExcluida(x))) return 'As outras opções do mesmo tipo saíram por causa da dor.';
-      return 'É a única opção desta vaga no seu equipamento.';
+      const abaixo = funcao.niveis.slice(nivelFuncao + 1).flat().find((id) => naFuncao(funcao, id));
+      return abaixo ? `É a melhor opção desta vaga no seu equipamento; ${POR_ID_BIB[abaixo]!.nome.toLowerCase()} fica como alternativa.` : 'É a única opção desta vaga no seu equipamento.';
     }
     const criterios: [(x: Exercicio) => number, string][] = [
       [(x) => (x.articulacoes.some((a) => dorLeve.has(a)) ? 1 : 0), 'poupa a região que você marcou com dor'],
@@ -264,9 +271,14 @@ export function contextoDeSelecao(perfil: Perfil, inventarioOriginal: Inventario
     })[0]!;
     const i = menor(vetor(e), vetor(segundo));
     const nome = segundo.nome.toLowerCase();
-    if (i < 0) return `Equivale a ${nome}${outros.length > 1 ? ' e às outras do mesmo tipo' : ''}, que ${outros.length > 1 ? 'ficam' : 'fica'} como alternativa.`;
-    if (vetor(e)[i]! < vetor(segundo)[i]!) return `Ganhou de ${nome}${outros.length > 1 ? ' e das outras do mesmo tipo' : ''} porque ${criterios[i]![1]}.`;
-    return `Ficou este, e não ${nome}, para variar os exercícios da semana.`;
+    const varios = outros.length > 1;
+    const entre =
+      i < 0
+        ? `equivale a ${nome}${varios ? ' e às outras do mesmo tipo' : ''}, que ${varios ? 'ficam' : 'fica'} como alternativa`
+        : vetor(e)[i]! < vetor(segundo)[i]!
+          ? `ganhou de ${nome}${varios ? ' e das outras do mesmo tipo' : ''} porque ${criterios[i]![1]}`
+          : `ficou este, e não ${nome}, para variar os exercícios da semana`;
+    return acimaTexto ? `${acimaTexto}. Entre as que sobram, ${entre}.` : `${entre.charAt(0).toUpperCase()}${entre.slice(1)}.`;
   };
 
   /** Alternativas possíveis neste inventário (selecao.equivalencia). */

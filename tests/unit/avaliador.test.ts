@@ -204,7 +204,7 @@ describe('avaliador: funções que se complementam e isoladores obrigatórios (p
     expect(doTipo(a, 'funcoes')).toHaveLength(0);
   });
   it('selecao.isolador-obrigatorio: a extensora que falta em Thomas entra no lugar do 2º agachar do dia; sem lugar, é limite', () => {
-    expect(um(publicado('thomas'), 'obrigatorio', 'ajustar').passo).toBe('Troque leg press por cadeira extensora em C (pernas).');
+    expect(um(publicado('thomas'), 'obrigatorio', 'ajustar').passo).toBe('Troque leg press por cadeira extensora no treino C (pernas).');
     const pf = daGrade('iniciante', 2, 30);
     expect(um(avaliar(ok(pf, academia), pf, academia), 'obrigatorio', 'limite').itens).toEqual(['tríceps acima da cabeça', 'extensora']);
   });
