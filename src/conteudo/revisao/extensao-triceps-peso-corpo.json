@@ -1,0 +1,77 @@
+{
+ "id": "extensao-triceps-peso-corpo",
+ "name": "Extensão de tríceps com o peso do corpo",
+ "short": "Tríceps peso do corpo",
+ "target": "Tríceps (atrás do braço), com o braço acima da cabeça",
+ "feel": "Atrás do braço, do cotovelo até perto do ombro.",
+ "feelNote": "Queimação atrás do braço é normal. Dor dentro do cotovelo ou no ombro não é: diminua a descida e procure avaliação se continuar.",
+ "setupEq": [
+  "Um apoio fixo na altura da cintura: bancada da cozinha, pia ou parede. Mais difícil: um degrau; no fim, o chão de joelhos.",
+  "Só apoio fixo: mesa e encosto de sofá podem deslizar."
+ ],
+ "setupBody": [
+  "Mãos no apoio na largura dos ombros, braços estendidos.",
+  "Pés para trás, corpo inclinado e reto, abdômen firme."
+ ],
+ "exec": [
+  [
+   "hold",
+   "Em cima",
+   "Braços estendidos, corpo reto."
+  ],
+  [
+   "ecc",
+   "Descida (excêntrica)",
+   "~2 a 3 s. Dobre só os cotovelos, que apontam para a frente, até a testa chegar perto do apoio."
+  ],
+  [
+   "hold",
+   "Embaixo",
+   "Braços acima da cabeça, cotovelos dobrados."
+  ],
+  [
+   "conc",
+   "Volta (concêntrica)",
+   "~1 s. Estique os cotovelos até os braços ficarem retos."
+  ]
+ ],
+ "range": [
+  "Embaixo: a testa perto do apoio, cotovelos bem dobrados.",
+  "Em cima: braços estendidos."
+ ],
+ "breath": "Inspire descendo, solte o ar esticando os braços.",
+ "cues": [
+  "Só o cotovelo dobra.",
+  "Corpo reto.",
+  "Pare a 1 ou 2 repetições da falha."
+ ],
+ "check": [
+  "Apoio fixo, que não desliza",
+  "Mãos na largura dos ombros",
+  "Corpo reto, do calcanhar à cabeça",
+  "Cotovelos apontando para a frente",
+  "Parar a 1 ou 2 repetições da falha"
+ ],
+ "vary": "Fácil demais? Desça em 3 s; depois, use um apoio mais baixo (um degrau); por fim, no chão, de joelhos. Difícil demais: as mãos na parede, em pé.",
+ "extLabels": [
+  "em cima",
+  "embaixo"
+ ],
+ "errors": [
+  {
+   "id": "quadril",
+   "title": "Dobrar o quadril",
+   "desc": "O corpo dobra e a série fica mais fácil. Mantenha o corpo reto."
+  },
+  {
+   "id": "cotovelos",
+   "title": "Abrir os cotovelos",
+   "desc": "Os cotovelos vão para os lados e o tríceps trabalha menos. Aponte-os para a frente."
+  },
+  {
+   "id": "falha",
+   "title": "Ir até a falha",
+   "desc": "Se o cotovelo ceder no fim da série, a testa bate no apoio. Pare a 1 ou 2 repetições da falha."
+  }
+ ]
+}
