@@ -1,0 +1,72 @@
+{
+ "id": "panturrilha-degrau",
+ "name": "Panturrilha no degrau da escada",
+ "short": "Panturrilha no degrau",
+ "target": "Panturrilha (gastrocnêmio e sóleo), com o calcanhar abaixo do degrau",
+ "feel": "Batata da perna, do calcanhar até atrás do joelho; embaixo, um alongamento forte.",
+ "feelNote": "Queimação no fim da série é normal. Dor no tendão de Aquiles não é: diminua a descida e procure avaliação se continuar.",
+ "setupEq": [
+  "Um degrau de escada ou uma soleira firme, e o corrimão ou a parede para a mão. Sem degrau, faça a panturrilha no chão (a alternativa).",
+  "Degrau firme, sem tapete solto; o calcanhar desce devagar."
+ ],
+ "setupBody": [
+  "A ponta dos pés na beirada do degrau; os calcanhares para fora, no ar.",
+  "Pés na largura do quadril, apontando para a frente.",
+  "Uma mão no corrimão ou na parede, só para equilibrar."
+ ],
+ "exec": [
+  [
+   "hold",
+   "Embaixo",
+   "Pausa de 1 a 2 s no alongamento, sem quicar."
+  ],
+  [
+   "conc",
+   "Subida (concêntrica)",
+   "~1 s. Suba na ponta dos pés o máximo que der."
+  ],
+  [
+   "ecc",
+   "Descida (excêntrica)",
+   "~2 a 3 s, até o calcanhar ficar bem abaixo do degrau."
+  ]
+ ],
+ "range": [
+  "Embaixo: o calcanhar bem abaixo do degrau.",
+  "Em cima: na ponta dos pés."
+ ],
+ "breath": "Solte o ar subindo, inspire descendo.",
+ "cues": [
+  "Calcanhar bem embaixo.",
+  "Pausa no alongamento.",
+  "A mão só equilibra."
+ ],
+ "check": [
+  "Degrau firme, sem tapete solto",
+  "Ponta dos pés na beirada",
+  "Pausa embaixo, sem quicar",
+  "A mão só equilibra"
+ ],
+ "vary": "Fica fácil? Faça numa perna só; depois, numa perna só com pausa de 2 s embaixo e, por fim, com descida de 3 s.",
+ "extLabels": [
+  "embaixo",
+  "em cima"
+ ],
+ "errors": [
+  {
+   "id": "quicar",
+   "title": "Quicar embaixo",
+   "desc": "O tendão devolve a força e o músculo trabalha menos. Pare 1 a 2 s embaixo."
+  },
+  {
+   "id": "curta",
+   "title": "Descer pouco",
+   "desc": "A parte de baixo, a do alongamento, é a que mais faz crescer. Desça até o calcanhar ficar abaixo do degrau."
+  },
+  {
+   "id": "puxar",
+   "title": "Puxar com a mão",
+   "desc": "O braço ajuda a subir. A mão só equilibra."
+  }
+ ]
+}

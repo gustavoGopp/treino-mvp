@@ -4,7 +4,7 @@
 // --estilo: desenha no estilo novo (a = boneco padrão, b = silhueta, a2 = boneco com o acabamento de 04/11); sem ele, a folha é a do estilo clássico.
 // Animações em revisão ficam em src/engine/exercicios/revisao/ (fora do app até a aprovação).
 import { build } from 'esbuild';
-import { existsSync, writeFileSync } from 'node:fs';
+import { existsSync, readFileSync, writeFileSync } from 'node:fs';
 import { createRequire } from 'node:module';
 
 const opcoes = process.argv.slice(2).filter((a) => a.startsWith('--'));
@@ -37,8 +37,12 @@ const ik = (K) => {
 const qa = `${id} ik=${ik(ex.K)} errs ${ex.errors.map((e) => `${e.id}:${ik(e.K)}`).join(' ')}`;
 const tempos = ex.seq.map((g) => ({ t: g.t0 + (g.kind === 'hold' ? g.dur / 2 : g.dur * 0.5), rot: g.label }));
 const css = (await import('node:fs')).readFileSync('src/styles.css', 'utf8');
+// O título de cada erro vem do texto do guia (aprovado ou em revisão), como no app (R5-anim, 10/11/2026).
+const textoGuia = [`src/conteudo/exercicios/${id}.json`, `src/conteudo/revisao/${id}.json`].find((f) => existsSync(f));
+const titulos = textoGuia ? Object.fromEntries((JSON.parse(readFileSync(textoGuia, 'utf8')).errors ?? []).map((e) => [e.id, e.title])) : {};
 const quadro = (view, mode, t, err = 0, rot = '') => {
-  const q = estilo ? motor.montarSvgEstilo(ex, view, mode, t, err, 300, estilo) : { ...motor.montarSvg(ex, view, mode, t, err, 300), classe: '' };
+  const tituloErro = mode === 'err' ? titulos[ex.errors[err]?.id] : undefined;
+  const q = estilo ? motor.montarSvgEstilo(ex, view, mode, t, err, 300, estilo, false, { tituloErro }) : { ...motor.montarSvg(ex, view, mode, t, err, 300), classe: '' };
   return `<figure><svg class="${q.classe}" viewBox="${q.viewBox}">${q.html}</svg><figcaption>${rot}</figcaption></figure>`;
 };
 let html = `<style>${css}body{background:#fff;font:13px sans-serif;margin:12px}h2{font-size:15px;margin:14px 0 4px}.l{display:flex;flex-wrap:wrap;gap:8px}figure{margin:0;width:260px;background:var(--stage);border:1px solid #ddd}figure svg{width:260px;height:195px;display:block}figcaption{padding:3px 6px;font-size:12px}</style>`;
