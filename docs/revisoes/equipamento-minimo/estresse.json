@@ -298,8 +298,8 @@
   "vaga.so-aviso-do-musculo.puxar-horizontal": 307855,
   "vaga.so-aviso-do-musculo.biceps": 336550,
   "equilibrio.sem-puxar": 36480,
-  "vaga.so-aviso-do-musculo.crucifixo": 201351,
-  "dia.superior-sem-superior": 58862,
+  "vaga.so-aviso-do-musculo.crucifixo": 201354,
+  "dia.superior-sem-superior": 58768,
   "volume.zero.posteriores": 210,
   "equilibrio.sem-posteriores": 210,
   "dia.so-core": 16
@@ -378,11 +378,11 @@
    "motivoFalso": 0,
    "abaixoDoLimiarSemAviso": 22768,
    "guia": {
-    "animacao": 149116,
-    "cartao": 67207,
+    "animacao": 213304,
+    "cartao": 3017,
     "nada": 0,
     "semNadaPct": 0,
-    "animacaoPct": 68.9
+    "animacaoPct": 98.6
    },
    "dor": {
     "sem dor": {
@@ -440,7 +440,7 @@
     "punho 7": {
      "programas": 1440,
      "diasSoCore": 0,
-     "diasDeSuperiorSemSuperior": 55,
+     "diasDeSuperiorSemSuperior": 53,
      "diasVazios": 0,
      "violacao": 0,
      "articulacaoIncompleta": 0,
@@ -514,7 +514,7 @@
     "cotovelo 7": {
      "programas": 1440,
      "diasSoCore": 0,
-     "diasDeSuperiorSemSuperior": 55,
+     "diasDeSuperiorSemSuperior": 53,
      "diasVazios": 0,
      "violacao": 0,
      "articulacaoIncompleta": 0,
@@ -717,11 +717,11 @@
    "motivoFalso": 0,
    "abaixoDoLimiarSemAviso": 0,
    "guia": {
-    "animacao": 222843,
-    "cartao": 34095,
+    "animacao": 254978,
+    "cartao": 1960,
     "nada": 21839,
     "semNadaPct": 7.8,
-    "animacaoPct": 79.9
+    "animacaoPct": 91.5
    },
    "dor": {
     "sem dor": {
@@ -1071,13 +1071,13 @@
     "costas": 1.7,
     "ombro_lateral": 100,
     "ombro_posterior": 3.9,
-    "biceps": 20.5,
+    "biceps": 20.6,
     "triceps": 3,
     "quadriceps": 0,
     "posteriores": 6.2,
     "gluteos": 1.1,
     "panturrilha": 18.4,
-    "abdomen": 15.6
+    "abdomen": 15.7
    },
    "vagasSemOpcao": {
     "elevacao-lateral": {
@@ -1110,11 +1110,11 @@
    "motivoFalso": 0,
    "abaixoDoLimiarSemAviso": 18875,
    "guia": {
-    "animacao": 162765,
-    "cartao": 72157,
+    "animacao": 221073,
+    "cartao": 13840,
     "nada": 0,
     "semNadaPct": 0,
-    "animacaoPct": 69.3
+    "animacaoPct": 94.1
    },
    "dor": {
     "sem dor": {
@@ -1261,7 +1261,7 @@
     "cotovelo 7": {
      "programas": 1440,
      "diasSoCore": 0,
-     "diasDeSuperiorSemSuperior": 71,
+     "diasDeSuperiorSemSuperior": 69,
      "diasVazios": 0,
      "violacao": 0,
      "articulacaoIncompleta": 0,
@@ -1346,7 +1346,7 @@
      "exerciciosPorDia": 3.2,
      "cabem": 3,
      "seriesPorExercicio": 2.7,
-     "noTetoDeSeriesPct": 23.9,
+     "noTetoDeSeriesPct": 23.7,
      "diaMaisLongoMediana": 30,
      "sobraMaisDe30Pct": 0
     },
@@ -1364,7 +1364,7 @@
      "exerciciosPorDia": 5.1,
      "cabem": 6,
      "seriesPorExercicio": 2.8,
-     "noTetoDeSeriesPct": 29.4,
+     "noTetoDeSeriesPct": 29.5,
      "diaMaisLongoMediana": 45,
      "sobraMaisDe30Pct": 0.6
     },
@@ -1373,7 +1373,7 @@
      "exerciciosPorDia": 6,
      "cabem": 8,
      "seriesPorExercicio": 2.8,
-     "noTetoDeSeriesPct": 32.9,
+     "noTetoDeSeriesPct": 32.7,
      "diaMaisLongoMediana": 59,
      "sobraMaisDe30Pct": 1.7
     },
@@ -1382,7 +1382,7 @@
      "exerciciosPorDia": 6.4,
      "cabem": 10,
      "seriesPorExercicio": 2.9,
-     "noTetoDeSeriesPct": 38.3,
+     "noTetoDeSeriesPct": 38.4,
      "diaMaisLongoMediana": 72,
      "sobraMaisDe30Pct": 10
     },
@@ -1391,9 +1391,9 @@
      "exerciciosPorDia": 6.5,
      "cabem": 12,
      "seriesPorExercicio": 2.9,
-     "noTetoDeSeriesPct": 41.4,
+     "noTetoDeSeriesPct": 41.5,
      "diaMaisLongoMediana": 78,
-     "sobraMaisDe30Pct": 26.1
+     "sobraMaisDe30Pct": 25.6
     },
     "120": {
      "programas": 180,
@@ -1472,11 +1472,11 @@
    "motivoFalso": 0,
    "abaixoDoLimiarSemAviso": 0,
    "guia": {
-    "animacao": 160275,
-    "cartao": 96479,
+    "animacao": 192111,
+    "cartao": 64643,
     "nada": 13384,
     "semNadaPct": 5,
-    "animacaoPct": 59.3
+    "animacaoPct": 71.1
    },
    "dor": {
     "sem dor": {
@@ -1898,11 +1898,11 @@
    "motivoFalso": 0,
    "abaixoDoLimiarSemAviso": 0,
    "guia": {
-    "animacao": 160748,
-    "cartao": 96742,
+    "animacao": 192625,
+    "cartao": 64865,
     "nada": 13382,
     "semNadaPct": 4.9,
-    "animacaoPct": 59.3
+    "animacaoPct": 71.1
    },
    "dor": {
     "sem dor": {
@@ -2342,11 +2342,11 @@
    "motivoFalso": 0,
    "abaixoDoLimiarSemAviso": 21140,
    "guia": {
-    "animacao": 136040,
-    "cartao": 64618,
+    "animacao": 198033,
+    "cartao": 2625,
     "nada": 21450,
     "semNadaPct": 9.7,
-    "animacaoPct": 61.2
+    "animacaoPct": 89.2
    },
    "dor": {
     "sem dor": {
@@ -2408,7 +2408,7 @@
     "punho 7": {
      "programas": 1440,
      "diasSoCore": 0,
-     "diasDeSuperiorSemSuperior": 24,
+     "diasDeSuperiorSemSuperior": 22,
      "diasVazios": 0,
      "violacao": 0,
      "articulacaoIncompleta": 0,
@@ -2485,7 +2485,7 @@
     "cotovelo 7": {
      "programas": 1440,
      "diasSoCore": 0,
-     "diasDeSuperiorSemSuperior": 74,
+     "diasDeSuperiorSemSuperior": 72,
      "diasVazios": 0,
      "violacao": 0,
      "articulacaoIncompleta": 0,
@@ -2705,11 +2705,11 @@
    "motivoFalso": 0,
    "abaixoDoLimiarSemAviso": 11452,
    "guia": {
-    "animacao": 143909,
-    "cartao": 65761,
+    "animacao": 207101,
+    "cartao": 2567,
     "nada": 20491,
     "semNadaPct": 8.9,
-    "animacaoPct": 62.5
+    "animacaoPct": 90
    },
    "dor": {
     "sem dor": {
@@ -2769,7 +2769,7 @@
     "punho 7": {
      "programas": 1440,
      "diasSoCore": 0,
-     "diasDeSuperiorSemSuperior": 55,
+     "diasDeSuperiorSemSuperior": 53,
      "diasVazios": 0,
      "violacao": 0,
      "articulacaoIncompleta": 0,
@@ -2845,7 +2845,7 @@
     "cotovelo 7": {
      "programas": 1440,
      "diasSoCore": 0,
-     "diasDeSuperiorSemSuperior": 55,
+     "diasDeSuperiorSemSuperior": 53,
      "diasVazios": 0,
      "violacao": 0,
      "articulacaoIncompleta": 0,
@@ -3062,11 +3062,11 @@
    "motivoFalso": 0,
    "abaixoDoLimiarSemAviso": 18970,
    "guia": {
-    "animacao": 144779,
-    "cartao": 63515,
+    "animacao": 205612,
+    "cartao": 2681,
     "nada": 24474,
     "semNadaPct": 10.5,
-    "animacaoPct": 62.2
+    "animacaoPct": 88.3
    },
    "dor": {
     "sem dor": {
@@ -3202,7 +3202,7 @@
     "cotovelo 7": {
      "programas": 1440,
      "diasSoCore": 0,
-     "diasDeSuperiorSemSuperior": 71,
+     "diasDeSuperiorSemSuperior": 69,
      "diasVazios": 0,
      "violacao": 0,
      "articulacaoIncompleta": 0,
@@ -3419,11 +3419,11 @@
    "motivoFalso": 0,
    "abaixoDoLimiarSemAviso": 18970,
    "guia": {
-    "animacao": 133179,
-    "cartao": 75411,
+    "animacao": 194077,
+    "cartao": 14514,
     "nada": 24477,
     "semNadaPct": 10.5,
-    "animacaoPct": 57.1
+    "animacaoPct": 83.3
    },
    "dor": {
     "sem dor": {
@@ -3562,7 +3562,7 @@
     "cotovelo 7": {
      "programas": 1440,
      "diasSoCore": 0,
-     "diasDeSuperiorSemSuperior": 59,
+     "diasDeSuperiorSemSuperior": 57,
      "diasVazios": 0,
      "violacao": 0,
      "articulacaoIncompleta": 0,
@@ -3786,11 +3786,11 @@
    "motivoFalso": 0,
    "abaixoDoLimiarSemAviso": 22768,
    "guia": {
-    "animacao": 131157,
-    "cartao": 45012,
+    "animacao": 175863,
+    "cartao": 306,
     "nada": 41170,
     "semNadaPct": 18.9,
-    "animacaoPct": 60.3
+    "animacaoPct": 80.9
    },
    "dor": {
     "sem dor": {
@@ -3851,7 +3851,7 @@
     "punho 7": {
      "programas": 1440,
      "diasSoCore": 0,
-     "diasDeSuperiorSemSuperior": 43,
+     "diasDeSuperiorSemSuperior": 40,
      "diasVazios": 0,
      "violacao": 0,
      "articulacaoIncompleta": 0,
@@ -3931,7 +3931,7 @@
     "cotovelo 7": {
      "programas": 1440,
      "diasSoCore": 0,
-     "diasDeSuperiorSemSuperior": 43,
+     "diasDeSuperiorSemSuperior": 40,
      "diasVazios": 0,
      "violacao": 0,
      "articulacaoIncompleta": 0,
@@ -4153,11 +4153,11 @@
    "motivoFalso": 0,
    "abaixoDoLimiarSemAviso": 22768,
    "guia": {
-    "animacao": 142497,
-    "cartao": 78113,
+    "animacao": 205901,
+    "cartao": 14711,
     "nada": 0,
     "semNadaPct": 0,
-    "animacaoPct": 64.6
+    "animacaoPct": 93.3
    },
    "dor": {
     "sem dor": {
@@ -4215,7 +4215,7 @@
     "punho 7": {
      "programas": 1440,
      "diasSoCore": 0,
-     "diasDeSuperiorSemSuperior": 54,
+     "diasDeSuperiorSemSuperior": 50,
      "diasVazios": 0,
      "violacao": 0,
      "articulacaoIncompleta": 0,
@@ -4289,7 +4289,7 @@
     "cotovelo 7": {
      "programas": 1440,
      "diasSoCore": 0,
-     "diasDeSuperiorSemSuperior": 54,
+     "diasDeSuperiorSemSuperior": 50,
      "diasVazios": 0,
      "violacao": 0,
      "articulacaoIncompleta": 0,
@@ -4509,11 +4509,11 @@
    "motivoFalso": 0,
    "abaixoDoLimiarSemAviso": 22780,
    "guia": {
-    "animacao": 129103,
-    "cartao": 66916,
+    "animacao": 193192,
+    "cartao": 2827,
     "nada": 21969,
     "semNadaPct": 10.1,
-    "animacaoPct": 59.2
+    "animacaoPct": 88.6
    },
    "dor": {
     "sem dor": {
@@ -4871,11 +4871,11 @@
    "motivoFalso": 0,
    "abaixoDoLimiarSemAviso": 22780,
    "guia": {
-    "animacao": 129103,
-    "cartao": 88885,
+    "animacao": 193192,
+    "cartao": 24796,
     "nada": 0,
     "semNadaPct": 0,
-    "animacaoPct": 59.2
+    "animacaoPct": 88.6
    },
    "dor": {
     "sem dor": {
@@ -5233,11 +5233,11 @@
    "motivoFalso": 0,
    "abaixoDoLimiarSemAviso": 22768,
    "guia": {
-    "animacao": 146838,
-    "cartao": 70120,
+    "animacao": 206356,
+    "cartao": 10594,
     "nada": 0,
     "semNadaPct": 0,
-    "animacaoPct": 67.7
+    "animacaoPct": 95.1
    },
    "dor": {
     "sem dor": {
@@ -5299,7 +5299,7 @@
     "punho 7": {
      "programas": 1440,
      "diasSoCore": 0,
-     "diasDeSuperiorSemSuperior": 11,
+     "diasDeSuperiorSemSuperior": 9,
      "diasVazios": 0,
      "violacao": 0,
      "articulacaoIncompleta": 0,
@@ -5376,7 +5376,7 @@
     "cotovelo 7": {
      "programas": 1440,
      "diasSoCore": 0,
-     "diasDeSuperiorSemSuperior": 55,
+     "diasDeSuperiorSemSuperior": 53,
      "diasVazios": 0,
      "violacao": 0,
      "articulacaoIncompleta": 0,
@@ -5458,7 +5458,7 @@
      "exerciciosPorDia": 3,
      "cabem": 3,
      "seriesPorExercicio": 2.6,
-     "noTetoDeSeriesPct": 22.7,
+     "noTetoDeSeriesPct": 22.6,
      "diaMaisLongoMediana": 28,
      "sobraMaisDe30Pct": 0
     },
@@ -5476,7 +5476,7 @@
      "exerciciosPorDia": 4.8,
      "cabem": 6,
      "seriesPorExercicio": 2.8,
-     "noTetoDeSeriesPct": 29.4,
+     "noTetoDeSeriesPct": 29.1,
      "diaMaisLongoMediana": 45,
      "sobraMaisDe30Pct": 0.6
     },
@@ -5485,7 +5485,7 @@
      "exerciciosPorDia": 5.5,
      "cabem": 8,
      "seriesPorExercicio": 2.9,
-     "noTetoDeSeriesPct": 35.6,
+     "noTetoDeSeriesPct": 35.4,
      "diaMaisLongoMediana": 59,
      "sobraMaisDe30Pct": 5
     },
@@ -5503,9 +5503,9 @@
      "exerciciosPorDia": 5.9,
      "cabem": 12,
      "seriesPorExercicio": 2.9,
-     "noTetoDeSeriesPct": 41.7,
+     "noTetoDeSeriesPct": 41.8,
      "diaMaisLongoMediana": 76,
-     "sobraMaisDe30Pct": 34.4
+     "sobraMaisDe30Pct": 33.9
     },
     "120": {
      "programas": 180,
@@ -5530,7 +5530,7 @@
   "elasticos": {
    "programas": 11520,
    "mediaSeries": {
-    "peito": 7.9,
+    "peito": 7.8,
     "costas": 7.9,
     "ombro_lateral": 6.6,
     "ombro_posterior": 6.1,
@@ -5580,11 +5580,11 @@
    "motivoFalso": 0,
    "abaixoDoLimiarSemAviso": 0,
    "guia": {
-    "animacao": 210874,
-    "cartao": 72514,
+    "animacao": 242215,
+    "cartao": 41169,
     "nada": 0,
     "semNadaPct": 0,
-    "animacaoPct": 74.4
+    "animacaoPct": 85.5
    },
    "dor": {
     "sem dor": {
@@ -5762,6 +5762,7 @@
       "elevacao-lateral-elastico",
       "elevacao-lateral-unilateral-elastico",
       "extensao-joelho-elastico",
+      "extensao-triceps-peso-corpo",
       "face-pull-elastico",
       "flexao",
       "flexao-elastico",
@@ -5873,6 +5874,7 @@
       "desenvolvimento-elastico",
       "elevacao-lateral-elastico",
       "elevacao-lateral-unilateral-elastico",
+      "extensao-triceps-peso-corpo",
       "face-pull-elastico",
       "flexao",
       "flexao-elastico",
@@ -6039,11 +6041,11 @@
    "motivoFalso": 0,
    "abaixoDoLimiarSemAviso": 22784,
    "guia": {
-    "animacao": 169096,
-    "cartao": 46912,
+    "animacao": 212989,
+    "cartao": 3017,
     "nada": 0,
     "semNadaPct": 0,
-    "animacaoPct": 78.3
+    "animacaoPct": 98.6
    },
    "dor": {
     "sem dor": {
@@ -6105,7 +6107,7 @@
     "punho 7": {
      "programas": 1440,
      "diasSoCore": 0,
-     "diasDeSuperiorSemSuperior": 55,
+     "diasDeSuperiorSemSuperior": 53,
      "diasVazios": 0,
      "violacao": 0,
      "articulacaoIncompleta": 0,
@@ -6185,7 +6187,7 @@
     "cotovelo 7": {
      "programas": 1440,
      "diasSoCore": 0,
-     "diasDeSuperiorSemSuperior": 55,
+     "diasDeSuperiorSemSuperior": 53,
      "diasVazios": 0,
      "violacao": 0,
      "articulacaoIncompleta": 0,
@@ -6411,11 +6413,11 @@
    "motivoFalso": 0,
    "abaixoDoLimiarSemAviso": 22768,
    "guia": {
-    "animacao": 155816,
-    "cartao": 62399,
+    "animacao": 215380,
+    "cartao": 2835,
     "nada": 0,
     "semNadaPct": 0,
-    "animacaoPct": 71.4
+    "animacaoPct": 98.7
    },
    "dor": {
     "sem dor": {
@@ -6785,11 +6787,11 @@
    "motivoFalso": 0,
    "abaixoDoLimiarSemAviso": 22768,
    "guia": {
-    "animacao": 137363,
-    "cartao": 78422,
+    "animacao": 201770,
+    "cartao": 14015,
     "nada": 0,
     "semNadaPct": 0,
-    "animacaoPct": 63.7
+    "animacaoPct": 93.5
    },
    "dor": {
     "sem dor": {
@@ -7137,11 +7139,11 @@
    "motivoFalso": 0,
    "abaixoDoLimiarSemAviso": 11308,
    "guia": {
-    "animacao": 175448,
-    "cartao": 67806,
+    "animacao": 225214,
+    "cartao": 18040,
     "nada": 0,
     "semNadaPct": 0,
-    "animacaoPct": 72.1
+    "animacaoPct": 92.6
    },
    "dor": {
     "sem dor": {
@@ -7518,11 +7520,11 @@
    "motivoFalso": 0,
    "abaixoDoLimiarSemAviso": 22816,
    "guia": {
-    "animacao": 135090,
-    "cartao": 82993,
+    "animacao": 198824,
+    "cartao": 19259,
     "nada": 0,
     "semNadaPct": 0,
-    "animacaoPct": 61.9
+    "animacaoPct": 91.2
    },
    "dor": {
     "sem dor": {
@@ -7879,11 +7881,11 @@
    "motivoFalso": 0,
    "abaixoDoLimiarSemAviso": 19185,
    "guia": {
-    "animacao": 144616,
-    "cartao": 86686,
+    "animacao": 206356,
+    "cartao": 24945,
     "nada": 0,
     "semNadaPct": 0,
-    "animacaoPct": 62.5
+    "animacaoPct": 89.2
    },
    "dor": {
     "sem dor": {
@@ -8019,7 +8021,7 @@
     "cotovelo 7": {
      "programas": 1440,
      "diasSoCore": 0,
-     "diasDeSuperiorSemSuperior": 71,
+     "diasDeSuperiorSemSuperior": 69,
      "diasVazios": 0,
      "violacao": 0,
      "articulacaoIncompleta": 0,
@@ -8240,11 +8242,11 @@
    "motivoFalso": 0,
    "abaixoDoLimiarSemAviso": 20403,
    "guia": {
-    "animacao": 146555,
-    "cartao": 79295,
+    "animacao": 208567,
+    "cartao": 17282,
     "nada": 0,
     "semNadaPct": 0,
-    "animacaoPct": 64.9
+    "animacaoPct": 92.3
    },
    "dor": {
     "sem dor": {
@@ -8379,7 +8381,7 @@
     "cotovelo 7": {
      "programas": 1440,
      "diasSoCore": 0,
-     "diasDeSuperiorSemSuperior": 71,
+     "diasDeSuperiorSemSuperior": 69,
      "diasVazios": 0,
      "violacao": 0,
      "articulacaoIncompleta": 0,
@@ -8595,11 +8597,11 @@
    "motivoFalso": 0,
    "abaixoDoLimiarSemAviso": 18640,
    "guia": {
-    "animacao": 145817,
-    "cartao": 92235,
+    "animacao": 206092,
+    "cartao": 31959,
     "nada": 0,
     "semNadaPct": 0,
-    "animacaoPct": 61.3
+    "animacaoPct": 86.6
    },
    "dor": {
     "sem dor": {
@@ -8738,7 +8740,7 @@
     "cotovelo 7": {
      "programas": 1440,
      "diasSoCore": 0,
-     "diasDeSuperiorSemSuperior": 71,
+     "diasDeSuperiorSemSuperior": 69,
      "diasVazios": 0,
      "violacao": 0,
      "articulacaoIncompleta": 0,
@@ -8961,11 +8963,11 @@
    "motivoFalso": 0,
    "abaixoDoLimiarSemAviso": 22768,
    "guia": {
-    "animacao": 135887,
-    "cartao": 81788,
+    "animacao": 192969,
+    "cartao": 24705,
     "nada": 0,
     "semNadaPct": 0,
-    "animacaoPct": 62.4
+    "animacaoPct": 88.7
    },
    "dor": {
     "sem dor": {
@@ -9101,7 +9103,7 @@
     "cotovelo 7": {
      "programas": 1440,
      "diasSoCore": 0,
-     "diasDeSuperiorSemSuperior": 55,
+     "diasDeSuperiorSemSuperior": 53,
      "diasVazios": 0,
      "violacao": 0,
      "articulacaoIncompleta": 0,
@@ -9319,11 +9321,11 @@
    "motivoFalso": 0,
    "abaixoDoLimiarSemAviso": 22768,
    "guia": {
-    "animacao": 143528,
-    "cartao": 81830,
+    "animacao": 205276,
+    "cartao": 20082,
     "nada": 0,
     "semNadaPct": 0,
-    "animacaoPct": 63.7
+    "animacaoPct": 91.1
    },
    "dor": {
     "sem dor": {
@@ -9682,11 +9684,11 @@
    "motivoFalso": 0,
    "abaixoDoLimiarSemAviso": 22610,
    "guia": {
-    "animacao": 140421,
-    "cartao": 76054,
+    "animacao": 204293,
+    "cartao": 12181,
     "nada": 0,
     "semNadaPct": 0,
-    "animacaoPct": 64.9
+    "animacaoPct": 94.4
    },
    "dor": {
     "sem dor": {
@@ -9819,7 +9821,7 @@
     "cotovelo 7": {
      "programas": 1440,
      "diasSoCore": 0,
-     "diasDeSuperiorSemSuperior": 55,
+     "diasDeSuperiorSemSuperior": 53,
      "diasVazios": 0,
      "violacao": 0,
      "articulacaoIncompleta": 0,
@@ -10038,11 +10040,11 @@
    "motivoFalso": 0,
    "abaixoDoLimiarSemAviso": 19234,
    "guia": {
-    "animacao": 145144,
-    "cartao": 86510,
+    "animacao": 207019,
+    "cartao": 24634,
     "nada": 0,
     "semNadaPct": 0,
-    "animacaoPct": 62.7
+    "animacaoPct": 89.4
    },
    "dor": {
     "sem dor": {
@@ -10178,7 +10180,7 @@
     "cotovelo 7": {
      "programas": 1440,
      "diasSoCore": 0,
-     "diasDeSuperiorSemSuperior": 71,
+     "diasDeSuperiorSemSuperior": 69,
      "diasVazios": 0,
      "violacao": 0,
      "articulacaoIncompleta": 0,
@@ -10337,7 +10339,7 @@
     "biceps": 3.3,
     "triceps": 8.7,
     "quadriceps": 7.3,
-    "posteriores": 7.4,
+    "posteriores": 7.3,
     "gluteos": 11.8,
     "panturrilha": 8.5,
     "abdomen": 4.5
@@ -10399,11 +10401,11 @@
    "motivoFalso": 0,
    "abaixoDoLimiarSemAviso": 19255,
    "guia": {
-    "animacao": 138395,
-    "cartao": 94275,
+    "animacao": 197947,
+    "cartao": 34722,
     "nada": 0,
     "semNadaPct": 0,
-    "animacaoPct": 59.5
+    "animacaoPct": 85.1
    },
    "dor": {
     "sem dor": {
@@ -10543,7 +10545,7 @@
     "cotovelo 7": {
      "programas": 1440,
      "diasSoCore": 0,
-     "diasDeSuperiorSemSuperior": 71,
+     "diasDeSuperiorSemSuperior": 69,
      "diasVazios": 0,
      "violacao": 0,
      "articulacaoIncompleta": 0,
@@ -10764,11 +10766,11 @@
    "motivoFalso": 0,
    "abaixoDoLimiarSemAviso": 11452,
    "guia": {
-    "animacao": 143027,
-    "cartao": 90054,
+    "animacao": 206035,
+    "cartao": 27049,
     "nada": 0,
     "semNadaPct": 0,
-    "animacaoPct": 61.4
+    "animacaoPct": 88.4
    },
    "dor": {
     "sem dor": {
@@ -10905,7 +10907,7 @@
     "cotovelo 7": {
      "programas": 1440,
      "diasSoCore": 0,
-     "diasDeSuperiorSemSuperior": 55,
+     "diasDeSuperiorSemSuperior": 53,
      "diasVazios": 0,
      "violacao": 0,
      "articulacaoIncompleta": 0,
@@ -11127,11 +11129,11 @@
    "motivoFalso": 0,
    "abaixoDoLimiarSemAviso": 22768,
    "guia": {
-    "animacao": 138796,
-    "cartao": 79154,
+    "animacao": 203341,
+    "cartao": 14608,
     "nada": 0,
     "semNadaPct": 0,
-    "animacaoPct": 63.7
+    "animacaoPct": 93.3
    },
    "dor": {
     "sem dor": {
@@ -11265,7 +11267,7 @@
     "cotovelo 7": {
      "programas": 1440,
      "diasSoCore": 0,
-     "diasDeSuperiorSemSuperior": 55,
+     "diasDeSuperiorSemSuperior": 53,
      "diasVazios": 0,
      "violacao": 0,
      "articulacaoIncompleta": 0,
@@ -11485,11 +11487,11 @@
    "motivoFalso": 0,
    "abaixoDoLimiarSemAviso": 22768,
    "guia": {
-    "animacao": 138424,
-    "cartao": 78036,
+    "animacao": 193618,
+    "cartao": 22842,
     "nada": 0,
     "semNadaPct": 0,
-    "animacaoPct": 63.9
+    "animacaoPct": 89.4
    },
    "dor": {
     "sem dor": {
@@ -11549,7 +11551,7 @@
     "punho 7": {
      "programas": 1440,
      "diasSoCore": 0,
-     "diasDeSuperiorSemSuperior": 54,
+     "diasDeSuperiorSemSuperior": 52,
      "diasVazios": 0,
      "violacao": 0,
      "articulacaoIncompleta": 0,
@@ -11625,7 +11627,7 @@
     "cotovelo 7": {
      "programas": 1440,
      "diasSoCore": 0,
-     "diasDeSuperiorSemSuperior": 54,
+     "diasDeSuperiorSemSuperior": 52,
      "diasVazios": 0,
      "violacao": 0,
      "articulacaoIncompleta": 0,
@@ -11847,11 +11849,11 @@
    "motivoFalso": 0,
    "abaixoDoLimiarSemAviso": 22768,
    "guia": {
-    "animacao": 135401,
-    "cartao": 81139,
+    "animacao": 199662,
+    "cartao": 16876,
     "nada": 0,
     "semNadaPct": 0,
-    "animacaoPct": 62.5
+    "animacaoPct": 92.2
    },
    "dor": {
     "sem dor": {
@@ -11910,7 +11912,7 @@
     "punho 7": {
      "programas": 1440,
      "diasSoCore": 0,
-     "diasDeSuperiorSemSuperior": 47,
+     "diasDeSuperiorSemSuperior": 45,
      "diasVazios": 0,
      "violacao": 0,
      "articulacaoIncompleta": 0,
@@ -11987,7 +11989,7 @@
     "cotovelo 7": {
      "programas": 1440,
      "diasSoCore": 0,
-     "diasDeSuperiorSemSuperior": 47,
+     "diasDeSuperiorSemSuperior": 45,
      "diasVazios": 0,
      "violacao": 0,
      "articulacaoIncompleta": 0,
@@ -12209,11 +12211,11 @@
    "motivoFalso": 0,
    "abaixoDoLimiarSemAviso": 22752,
    "guia": {
-    "animacao": 127009,
-    "cartao": 90522,
+    "animacao": 191389,
+    "cartao": 26140,
     "nada": 0,
     "semNadaPct": 0,
-    "animacaoPct": 58.4
+    "animacaoPct": 88
    },
    "dor": {
     "sem dor": {
@@ -12271,7 +12273,7 @@
     "punho 7": {
      "programas": 1440,
      "diasSoCore": 0,
-     "diasDeSuperiorSemSuperior": 52,
+     "diasDeSuperiorSemSuperior": 50,
      "diasVazios": 0,
      "violacao": 0,
      "articulacaoIncompleta": 0,
@@ -12345,7 +12347,7 @@
     "cotovelo 7": {
      "programas": 1440,
      "diasSoCore": 0,
-     "diasDeSuperiorSemSuperior": 52,
+     "diasDeSuperiorSemSuperior": 50,
      "diasVazios": 0,
      "violacao": 0,
      "articulacaoIncompleta": 0,
@@ -12565,11 +12567,11 @@
    "motivoFalso": 0,
    "abaixoDoLimiarSemAviso": 22768,
    "guia": {
-    "animacao": 127368,
-    "cartao": 87588,
+    "animacao": 191640,
+    "cartao": 23314,
     "nada": 0,
     "semNadaPct": 0,
-    "animacaoPct": 59.3
+    "animacaoPct": 89.2
    },
    "dor": {
     "sem dor": {
@@ -12627,7 +12629,7 @@
     "punho 7": {
      "programas": 1440,
      "diasSoCore": 0,
-     "diasDeSuperiorSemSuperior": 54,
+     "diasDeSuperiorSemSuperior": 52,
      "diasVazios": 0,
      "violacao": 0,
      "articulacaoIncompleta": 0,
@@ -12701,7 +12703,7 @@
     "cotovelo 7": {
      "programas": 1440,
      "diasSoCore": 0,
-     "diasDeSuperiorSemSuperior": 54,
+     "diasDeSuperiorSemSuperior": 52,
      "diasVazios": 0,
      "violacao": 0,
      "articulacaoIncompleta": 0,
@@ -12921,11 +12923,11 @@
    "motivoFalso": 0,
    "abaixoDoLimiarSemAviso": 22768,
    "guia": {
-    "animacao": 144702,
-    "cartao": 72413,
+    "animacao": 189364,
+    "cartao": 27743,
     "nada": 0,
     "semNadaPct": 0,
-    "animacaoPct": 66.6
+    "animacaoPct": 87.2
    },
    "dor": {
     "sem dor": {
@@ -12985,7 +12987,7 @@
     "punho 7": {
      "programas": 1440,
      "diasSoCore": 0,
-     "diasDeSuperiorSemSuperior": 43,
+     "diasDeSuperiorSemSuperior": 41,
      "diasVazios": 0,
      "violacao": 0,
      "articulacaoIncompleta": 0,
@@ -13062,7 +13064,7 @@
     "cotovelo 7": {
      "programas": 1440,
      "diasSoCore": 0,
-     "diasDeSuperiorSemSuperior": 43,
+     "diasDeSuperiorSemSuperior": 41,
      "diasVazios": 0,
      "violacao": 0,
      "articulacaoIncompleta": 0,
@@ -13282,11 +13284,11 @@
    "motivoFalso": 0,
    "abaixoDoLimiarSemAviso": 22768,
    "guia": {
-    "animacao": 138579,
-    "cartao": 77994,
+    "animacao": 202435,
+    "cartao": 14138,
     "nada": 0,
     "semNadaPct": 0,
-    "animacaoPct": 64
+    "animacaoPct": 93.5
    },
    "dor": {
     "sem dor": {
@@ -13346,7 +13348,7 @@
     "punho 7": {
      "programas": 1440,
      "diasSoCore": 0,
-     "diasDeSuperiorSemSuperior": 46,
+     "diasDeSuperiorSemSuperior": 44,
      "diasVazios": 0,
      "violacao": 0,
      "articulacaoIncompleta": 0,
@@ -13422,7 +13424,7 @@
     "cotovelo 7": {
      "programas": 1440,
      "diasSoCore": 0,
-     "diasDeSuperiorSemSuperior": 46,
+     "diasDeSuperiorSemSuperior": 44,
      "diasVazios": 0,
      "violacao": 0,
      "articulacaoIncompleta": 0,
@@ -13581,7 +13583,7 @@
     "biceps": 7.4,
     "triceps": 7.9,
     "quadriceps": 7.1,
-    "posteriores": 7.6,
+    "posteriores": 7.5,
     "gluteos": 12.1,
     "panturrilha": 8.5,
     "abdomen": 4.4
@@ -13618,8 +13620,8 @@
      "músculo coberto por outra vaga": 34
     },
     "crucifixo": {
-     "músculo coberto por outra vaga": 5963,
-     "só aviso do músculo": 5557
+     "músculo coberto por outra vaga": 5961,
+     "só aviso do músculo": 5559
     },
     "extensora": {
      "aviso da vaga": 11520
@@ -13635,11 +13637,11 @@
    "motivoFalso": 0,
    "abaixoDoLimiarSemAviso": 11486,
    "guia": {
-    "animacao": 206981,
-    "cartao": 42318,
+    "animacao": 243685,
+    "cartao": 5610,
     "nada": 0,
     "semNadaPct": 0,
-    "animacaoPct": 83
+    "animacaoPct": 97.7
    },
    "dor": {
     "sem dor": {
@@ -13795,7 +13797,7 @@
     "cotovelo 7": {
      "programas": 1440,
      "diasSoCore": 0,
-     "diasDeSuperiorSemSuperior": 75,
+     "diasDeSuperiorSemSuperior": 69,
      "diasVazios": 0,
      "violacao": 0,
      "articulacaoIncompleta": 0,
@@ -14021,11 +14023,11 @@
    "motivoFalso": 0,
    "abaixoDoLimiarSemAviso": 0,
    "guia": {
-    "animacao": 134478,
-    "cartao": 102465,
+    "animacao": 179510,
+    "cartao": 57433,
     "nada": 0,
     "semNadaPct": 0,
-    "animacaoPct": 56.8
+    "animacaoPct": 75.8
    },
    "dor": {
     "sem dor": {
@@ -14381,11 +14383,11 @@
    "motivoFalso": 0,
    "abaixoDoLimiarSemAviso": 22752,
    "guia": {
-    "animacao": 140727,
-    "cartao": 79744,
+    "animacao": 204123,
+    "cartao": 16346,
     "nada": 0,
     "semNadaPct": 0,
-    "animacaoPct": 63.8
+    "animacaoPct": 92.6
    },
    "dor": {
     "sem dor": {
@@ -14447,7 +14449,7 @@
     "punho 7": {
      "programas": 1440,
      "diasSoCore": 0,
-     "diasDeSuperiorSemSuperior": 63,
+     "diasDeSuperiorSemSuperior": 62,
      "diasVazios": 0,
      "violacao": 0,
      "articulacaoIncompleta": 0,
@@ -14532,7 +14534,7 @@
     "cotovelo 7": {
      "programas": 1440,
      "diasSoCore": 0,
-     "diasDeSuperiorSemSuperior": 63,
+     "diasDeSuperiorSemSuperior": 62,
      "diasVazios": 0,
      "violacao": 0,
      "articulacaoIncompleta": 0,
@@ -14737,8 +14739,8 @@
      "músculo coberto por outra vaga": 80
     },
     "crucifixo": {
-     "músculo coberto por outra vaga": 6240,
-     "só aviso do músculo": 5280
+     "músculo coberto por outra vaga": 6239,
+     "só aviso do músculo": 5281
     },
     "puxar-horizontal": {
      "só aviso do músculo": 11520
@@ -14760,11 +14762,11 @@
    "motivoFalso": 0,
    "abaixoDoLimiarSemAviso": 22768,
    "guia": {
-    "animacao": 151285,
-    "cartao": 65094,
+    "animacao": 213317,
+    "cartao": 3017,
     "nada": 0,
     "semNadaPct": 0,
-    "animacaoPct": 69.9
+    "animacaoPct": 98.6
    },
    "dor": {
     "sem dor": {
@@ -14824,7 +14826,7 @@
     "punho 7": {
      "programas": 1440,
      "diasSoCore": 0,
-     "diasDeSuperiorSemSuperior": 55,
+     "diasDeSuperiorSemSuperior": 53,
      "diasVazios": 0,
      "violacao": 0,
      "articulacaoIncompleta": 0,
@@ -14899,7 +14901,7 @@
     "cotovelo 7": {
      "programas": 1440,
      "diasSoCore": 0,
-     "diasDeSuperiorSemSuperior": 55,
+     "diasDeSuperiorSemSuperior": 53,
      "diasVazios": 0,
      "violacao": 0,
      "articulacaoIncompleta": 0,
@@ -14997,7 +14999,7 @@
      "exerciciosPorDia": 4.8,
      "cabem": 6,
      "seriesPorExercicio": 2.8,
-     "noTetoDeSeriesPct": 29.7,
+     "noTetoDeSeriesPct": 29.6,
      "diaMaisLongoMediana": 45,
      "sobraMaisDe30Pct": 0.6
     },
@@ -15006,7 +15008,7 @@
      "exerciciosPorDia": 5.5,
      "cabem": 8,
      "seriesPorExercicio": 2.9,
-     "noTetoDeSeriesPct": 35.5,
+     "noTetoDeSeriesPct": 35.4,
      "diaMaisLongoMediana": 59,
      "sobraMaisDe30Pct": 5
     },
@@ -15015,7 +15017,7 @@
      "exerciciosPorDia": 5.8,
      "cabem": 10,
      "seriesPorExercicio": 2.9,
-     "noTetoDeSeriesPct": 38.9,
+     "noTetoDeSeriesPct": 38.8,
      "diaMaisLongoMediana": 71,
      "sobraMaisDe30Pct": 17.8
     },
@@ -15025,7 +15027,7 @@
      "cabem": 12,
      "seriesPorExercicio": 2.9,
      "noTetoDeSeriesPct": 41.7,
-     "diaMaisLongoMediana": 75,
+     "diaMaisLongoMediana": 76,
      "sobraMaisDe30Pct": 36.1
     },
     "120": {
@@ -15034,7 +15036,7 @@
      "cabem": 14,
      "seriesPorExercicio": 2.9,
      "noTetoDeSeriesPct": 43,
-     "diaMaisLongoMediana": 75,
+     "diaMaisLongoMediana": 76,
      "sobraMaisDe30Pct": 68.3
     },
     "150": {
@@ -15043,7 +15045,7 @@
      "cabem": 14,
      "seriesPorExercicio": 2.9,
      "noTetoDeSeriesPct": 43,
-     "diaMaisLongoMediana": 75,
+     "diaMaisLongoMediana": 76,
      "sobraMaisDe30Pct": 96.7
     }
    }
@@ -15101,11 +15103,11 @@
    "motivoFalso": 0,
    "abaixoDoLimiarSemAviso": 0,
    "guia": {
-    "animacao": 207957,
-    "cartao": 75707,
+    "animacao": 236786,
+    "cartao": 46848,
     "nada": 0,
     "semNadaPct": 0,
-    "animacaoPct": 73.3
+    "animacaoPct": 83.5
    },
    "dor": {
     "sem dor": {
@@ -15295,6 +15297,7 @@
       "elevacao-lateral-elastico",
       "elevacao-lateral-unilateral-elastico",
       "extensao-joelho-elastico",
+      "extensao-triceps-peso-corpo",
       "face-pull-elastico",
       "flexao",
       "flexao-elastico",
@@ -15412,6 +15415,7 @@
       "desenvolvimento-elastico",
       "elevacao-lateral-elastico",
       "elevacao-lateral-unilateral-elastico",
+      "extensao-triceps-peso-corpo",
       "face-pull-elastico",
       "flexao",
       "flexao-elastico",
@@ -15472,7 +15476,7 @@
      "cabem": 10,
      "seriesPorExercicio": 2.5,
      "noTetoDeSeriesPct": 15.3,
-     "diaMaisLongoMediana": 73,
+     "diaMaisLongoMediana": 74,
      "sobraMaisDe30Pct": 8.3
     },
     "90": {
@@ -15480,8 +15484,8 @@
      "exerciciosPorDia": 8.2,
      "cabem": 12,
      "seriesPorExercicio": 2.5,
-     "noTetoDeSeriesPct": 17.5,
-     "diaMaisLongoMediana": 86,
+     "noTetoDeSeriesPct": 17.6,
+     "diaMaisLongoMediana": 87,
      "sobraMaisDe30Pct": 23.3
     },
     "120": {
@@ -15561,11 +15565,11 @@
    "motivoFalso": 0,
    "abaixoDoLimiarSemAviso": 0,
    "guia": {
-    "animacao": 165126,
-    "cartao": 92842,
+    "animacao": 193115,
+    "cartao": 64853,
     "nada": 13281,
     "semNadaPct": 4.9,
-    "animacaoPct": 60.9
+    "animacaoPct": 71.2
    },
    "dor": {
     "sem dor": {
@@ -15990,11 +15994,11 @@
    "motivoFalso": 0,
    "abaixoDoLimiarSemAviso": 0,
    "guia": {
-    "animacao": 226409,
-    "cartao": 57173,
+    "animacao": 257746,
+    "cartao": 25832,
     "nada": 0,
     "semNadaPct": 0,
-    "animacaoPct": 79.8
+    "animacaoPct": 90.9
    },
    "dor": {
     "sem dor": {
@@ -16176,10 +16180,10 @@
       "elevacao-lateral-elastico",
       "elevacao-lateral-unilateral-elastico",
       "extensao-joelho-elastico",
+      "extensao-triceps-peso-corpo",
       "face-pull-elastico",
       "flexao",
       "flexao-elastico",
-      "flexao-fechada",
       "flexao-joelho-deslizante",
       "flexao-joelho-elastico",
       "flexao-joelho-suspensao",
@@ -16294,10 +16298,10 @@
       "desenvolvimento-elastico",
       "elevacao-lateral-elastico",
       "elevacao-lateral-unilateral-elastico",
+      "extensao-triceps-peso-corpo",
       "face-pull-elastico",
       "flexao",
       "flexao-elastico",
-      "flexao-fechada",
       "flexao-pes-elevados",
       "panturrilha-chao",
       "panturrilha-degrau",
@@ -16443,11 +16447,11 @@
    "motivoFalso": 0,
    "abaixoDoLimiarSemAviso": 0,
    "guia": {
-    "animacao": 177415,
-    "cartao": 90690,
+    "animacao": 203961,
+    "cartao": 64144,
     "nada": 9131,
     "semNadaPct": 3.3,
-    "animacaoPct": 64
+    "animacaoPct": 73.6
    },
    "dor": {
     "sem dor": {
@@ -16880,11 +16884,11 @@
    "motivoFalso": 0,
    "abaixoDoLimiarSemAviso": 0,
    "guia": {
-    "animacao": 229794,
-    "cartao": 53367,
+    "animacao": 242092,
+    "cartao": 41065,
     "nada": 0,
     "semNadaPct": 0,
-    "animacaoPct": 81.2
+    "animacaoPct": 85.5
    },
    "dor": {
     "sem dor": {
@@ -17069,6 +17073,7 @@
       "elevacao-lateral-elastico",
       "elevacao-lateral-unilateral-elastico",
       "extensao-joelho-elastico",
+      "extensao-triceps-peso-corpo",
       "face-pull-elastico",
       "flexao",
       "flexao-elastico",
@@ -17186,6 +17191,7 @@
       "desenvolvimento-elastico",
       "elevacao-lateral-elastico",
       "elevacao-lateral-unilateral-elastico",
+      "extensao-triceps-peso-corpo",
       "face-pull-elastico",
       "flexao",
       "flexao-elastico",
