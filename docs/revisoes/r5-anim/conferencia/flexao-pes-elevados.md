@@ -7,7 +7,7 @@ Cada ponto do movimento, a fonte (ficha `docs/pesquisa/animacoes/flexao-pes-elev
 | Ponto | O que a fonte pede | O que o boneco faz (medido) | Confere? |
 |---|---|---|---|
 | Apoio | Firme para os pés: degrau, cama ou sofá (consenso; `seguranca.montagem`) | Caixa de 45 cm; a ponta dos pés na beirada | sim |
-| Posição | Mãos no chão um pouco mais abertas que os ombros; corpo reto da cabeça aos calcanhares (`ebben2011`; consenso) | Mãos a 60 cm uma da outra (ombros a 38), sob os ombros; do tornozelo à cabeça em linha (joelho a 169°, como na flexão aprovada); em cima, o corpo fica quase na horizontal, com a cabeça 10 cm abaixo do tornozelo | sim |
+| Posição | Mãos no chão um pouco mais abertas que os ombros; corpo reto da cabeça aos calcanhares (`ebben2011`; consenso) | Mãos a 60 cm uma da outra (ombros a 38), sob os ombros; do tornozelo à cabeça em linha (joelho a 169°, como na flexão aprovada); em cima, com a caixa de 45 cm, o corpo fica quase na horizontal (a cabeça 4 cm acima do quadril); na descida, a cabeça passa a ficar abaixo do quadril (embaixo, 17 cm abaixo) | sim |
 | Descida | ~2 a 3 s; cotovelos a ~45° do corpo, até o peito quase tocar o chão (consenso) | 2,5 s; os ombros descem de 64 a 20 cm (o peito a ~11 cm do chão); os cotovelos como na flexão aprovada (~45°, de cima) | sim |
 | Embaixo | Sem encostar nem soltar o corpo | 0,35 s parado; a cabeça a 6 cm do chão, sem encostar | sim |
 | Subida | Empurra até os braços estenderem, sem travar (`ebben2011`) | ~1 s; o cotovelo volta a 161° (estendido, sem travar) | sim |
