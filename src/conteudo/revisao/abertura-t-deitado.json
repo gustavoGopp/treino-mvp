@@ -1,0 +1,76 @@
+{
+ "id": "abertura-t-deitado",
+ "name": "Abertura em T deitado de bruços, sem carga",
+ "short": "Abertura em T",
+ "target": "Ombro de trás (deltoide posterior); ajuda o meio das costas, sem contar como série de costas",
+ "feel": "Atrás do ombro e entre as escápulas.",
+ "feelNote": "Sem carga, a queimação vem perto do fim da série. Dor na frente do ombro não é normal: diminua a subida e procure avaliação se continuar.",
+ "setupEq": [
+  "Um colchonete e uma toalha dobrada sob a testa."
+ ],
+ "setupBody": [
+  "Deite de bruços, testa na toalha, pescoço alinhado.",
+  "Braços abertos para os lados, em T, cotovelos estendidos, polegares para cima."
+ ],
+ "exec": [
+  [
+   "hold",
+   "Embaixo",
+   "As mãos quase tocam o chão."
+  ],
+  [
+   "conc",
+   "Subida (concêntrica)",
+   "~1 s. Erga os braços do chão, abrindo para trás, sem levantar a cabeça."
+  ],
+  [
+   "hold",
+   "No alto",
+   "Segure 1 s, ombros longe das orelhas."
+  ],
+  [
+   "ecc",
+   "Descida (excêntrica)",
+   "~2 s, até as mãos quase tocarem o chão."
+  ]
+ ],
+ "range": [
+  "Embaixo: as mãos quase tocam o chão.",
+  "Em cima: os braços na altura do corpo ou um pouco acima."
+ ],
+ "breath": "Solte o ar subindo, inspire descendo.",
+ "cues": [
+  "Polegares para cima.",
+  "Ombros longe das orelhas.",
+  "Testa na toalha."
+ ],
+ "check": [
+  "Testa na toalha",
+  "Braços em T, cotovelos estendidos",
+  "Polegares para cima",
+  "Ombros longe das orelhas",
+  "Subida e descida lentas"
+ ],
+ "vary": "Fica fácil? Segure 3 s no alto; depois, desça em 3 s; depois, braços em Y (polegares para cima); por fim, Y com pausa de 3 s no alto. Pesado demais: dobre os cotovelos (W).",
+ "extLabels": [
+  "embaixo",
+  "no alto"
+ ],
+ "errors": [
+  {
+   "id": "cabeca",
+   "title": "Levantar a cabeça",
+   "desc": "O pescoço dobra para trás. Deixe a testa na toalha."
+  },
+  {
+   "id": "encolher",
+   "title": "Encolher os ombros",
+   "desc": "Os ombros sobem para as orelhas e o trapézio de cima assume. Ombros baixos."
+  },
+  {
+   "id": "embalo",
+   "title": "Jogar os braços",
+   "desc": "O embalo tira o trabalho do ombro de trás. Suba e desça devagar."
+  }
+ ]
+}
