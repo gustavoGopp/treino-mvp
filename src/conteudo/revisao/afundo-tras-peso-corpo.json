@@ -1,0 +1,75 @@
+{
+ "id": "afundo-tras-peso-corpo",
+ "name": "Afundo para trás com o peso do corpo",
+ "short": "Afundo para trás",
+ "target": "Frente da coxa (quadríceps); ajudam o glúteo e a parte de dentro da coxa (adutores)",
+ "feel": "Frente da coxa e glúteo da perna da frente. A parte de dentro da coxa também ajuda; a perna de trás ajuda menos.",
+ "feelNote": "Sentir alongar a frente do quadril da perna de trás é normal. Dor no joelho da frente não é: desça menos e procure avaliação se continuar.",
+ "setupEq": [
+  "Espaço livre atrás de você. Mais fácil: uma mão numa cadeira firme ao lado, só para equilibrar."
+ ],
+ "setupBody": [
+  "Em pé, pés na largura do quadril, mãos na cintura ou à frente do peito."
+ ],
+ "exec": [
+  [
+   "hold",
+   "Em pé",
+   "Pés juntos, na largura do quadril, abdômen firme."
+  ],
+  [
+   "ecc",
+   "Passo e descida (excêntrica)",
+   "Dê um passo largo para trás e desça em ~2 a 3 s, até o joelho de trás quase tocar o chão."
+  ],
+  [
+   "hold",
+   "Embaixo",
+   "Tronco quase vertical, o peso no pé da frente."
+  ],
+  [
+   "conc",
+   "Volta (concêntrica)",
+   "~1 a 1,5 s. Empurre com o pé da frente e volte a ficar em pé. Termine as repetições de um lado e troque."
+  ]
+ ],
+ "range": [
+  "Embaixo: o joelho de trás quase toca o chão; a coxa da frente perto da horizontal.",
+  "Em cima: em pé, pés juntos."
+ ],
+ "breath": "Inspire descendo, solte o ar voltando.",
+ "cues": [
+  "Passo largo para trás.",
+  "Peso no pé da frente.",
+  "Joelho alinhado com o pé."
+ ],
+ "check": [
+  "Espaço livre atrás",
+  "Passo largo para trás",
+  "Tronco quase vertical",
+  "Joelho da frente alinhado com o pé",
+  "Peso no pé da frente"
+ ],
+ "vary": "Difícil equilibrar? Uma mão numa cadeira firme ao lado. Ficou fácil? Desça em 3 s; depois, pausa de 2 s embaixo; por fim, o pé da frente num degrau (mais amplitude).",
+ "extLabels": [
+  "em pé",
+  "embaixo"
+ ],
+ "errors": [
+  {
+   "id": "joelho",
+   "title": "Joelho da frente para dentro",
+   "desc": "O joelho cai para dentro na descida. Aponte-o na direção dos dedos."
+  },
+  {
+   "id": "curta",
+   "title": "Descer pouco",
+   "desc": "A coxa trabalha menos. Desça até o joelho de trás quase tocar o chão."
+  },
+  {
+   "id": "tras",
+   "title": "Empurrar com o pé de trás",
+   "desc": "A perna de trás faz a força e a da frente descansa. O peso fica no pé da frente."
+  }
+ ]
+}
