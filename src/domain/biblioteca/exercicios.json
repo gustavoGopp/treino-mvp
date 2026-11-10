@@ -4793,7 +4793,7 @@
    "peso-corpo"
   ],
   "carga": "peso-corpo",
-  "animacaoId": null
+  "animacaoId": "flexao-pes-elevados"
  },
  {
   "id": "extensao-triceps-peso-corpo",

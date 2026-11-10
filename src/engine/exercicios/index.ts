@@ -88,6 +88,7 @@ import panturrilhaDegrau from './panturrilha-degrau';
 import abdominalInvertido from './abdominal-invertido';
 import extensaoTricepsPesoCorpo from './extensao-triceps-peso-corpo';
 import aberturaTDeitado from './abertura-t-deitado';
+import flexaoPesElevados from './flexao-pes-elevados';
 
 // Mesma ordem do guia original (a ordem define os treinos e a ordem de preparação).
 export const EX = [
@@ -177,4 +178,5 @@ export const EX = [
   abdominalInvertido,
   extensaoTricepsPesoCorpo,
   aberturaTDeitado,
+  flexaoPesElevados,
 ];

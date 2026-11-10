@@ -100,6 +100,7 @@ export const AJUDANTES: Record<string, Musculo[]> = {
   // R4 (05/11/2026): as versões com elástico, como as suas bases
   'elevacao-lateral-elastico': ['ombro_anterior'],
   'flexao-elastico': ['abdomen'],
+  'flexao-pes-elevados': ['abdomen'],
   'triceps-elastico-acima': ['abdomen'],
 };
 

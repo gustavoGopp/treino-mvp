@@ -11,7 +11,7 @@ Nada aqui muda o corpo do Boneco, o estilo ou as animações já aprovadas: as p
 | 2 | `abdominal-invertido` (abdominal invertido no chão) | 61,7% | abdominal no chão (o colchonete e o corpo deitado) | `folhas/abdominal-invertido.png`, `folhas/abdominal-invertido-erros.png` | **aprovada em 10/11** |
 | 3 | `extensao-triceps-peso-corpo` (extensão de tríceps com o peso do corpo) | 59,4% | tríceps na suspensão (o corpo reto inclinado) + uma bancada (caixa) | `folhas/extensao-triceps-peso-corpo.png`, `folhas/extensao-triceps-peso-corpo-erros.png` | **aprovada em 10/11** |
 | 4 | `abertura-t-deitado` (abertura em T deitado de bruços) | 56,1% | corpo de bruços da flexão de joelho com elástico + braço em T do T na suspensão | `folhas/abertura-t-deitado.png`, `folhas/abertura-t-deitado-erros.png` | **aprovada em 10/11** |
-| 5 | `flexao-pes-elevados` (flexão com os pés elevados) | 53,8% | flexão (as mesmas mãos e erros) + uma caixa de 45 cm | `folhas/flexao-pes-elevados.png`, `folhas/flexao-pes-elevados-erros.png` | **espera o "aprovar"** |
+| 5 | `flexao-pes-elevados` (flexão com os pés elevados) | 53,8% | flexão (as mesmas mãos e erros) + uma caixa de 45 cm | `folhas/flexao-pes-elevados.png`, `folhas/flexao-pes-elevados-erros.png` | **aprovada em 10/11** |
 
 ## Como ler cada folha
 - **Técnica:** os quadros de cada fase (embaixo, subida, descida), com os rótulos verdes.
@@ -24,3 +24,4 @@ Nada aqui muda o corpo do Boneco, o estilo ou as animações já aprovadas: as p
 - **Abdominal invertido:** só o **Fábio**. No Inferior B, a elevação de joelhos na barra (2×10–15) dá lugar ao abdominal invertido (2×12–20). As duas valem para a mesma vaga, no mesmo nível. Antes, a elevação ganhava porque só ela tinha animação. Agora as duas têm, e o empate cai no último critério, a ordem do nome. O gerador não mudou.
 - **Extensão de tríceps com o peso do corpo:** nada muda.
 - **Abertura em T deitado:** nada muda.
+- **Flexão com os pés elevados:** nada muda. O abdômen entra na lista dos que "só ajudam" (listrado de laranja), como na flexão e na flexão com elástico (`SO_AJUDA` no motor e `AJUDANTES` na auditoria de anatomia).

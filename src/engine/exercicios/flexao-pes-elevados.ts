@@ -1,13 +1,13 @@
 // @ts-nocheck
-// Animação nova (em revisão). Flexão com os pés elevados: as mãos no chão um pouco mais abertas que os ombros, a ponta
+// Animação nova (aprovada). Flexão com os pés elevados: as mãos no chão um pouco mais abertas que os ombros, a ponta
 // dos pés na beirada de uma cama ou sofá firme (45 cm), o corpo reto; desce com os cotovelos a ~45° até o peito quase
 // tocar o chão e empurra de volta. Técnica e fontes: docs/pesquisa/animacoes/flexao-pes-elevados.md.
 // Base: a flexão aprovada (flexao): as mesmas mãos, os mesmos braços e cotovelos, o mesmo pescoço e os mesmos erros. A
 // diferença: o tornozelo sobe para a altura do apoio (y 54,5) e o corpo reto gira em torno dele. Os ombros (N) ficam onde
 // a flexão os põe em cima (64 cm) e descem até 20 cm (o queixo não bate no chão); o ângulo do corpo sai de
 // cos φ = (N.y − 54,5) / 136,6 (do tornozelo ao ombro), e P = N − 51·(cos φ, sen φ). O apoio é uma caixa (BOX).
-import { BOX, L3, TX } from '../../desenho';
-import { X, Y, Z, add, mul, sub } from '../../math';
+import { BOX, L3, TX } from '../desenho';
+import { X, Y, Z, add, mul, sub } from '../math';
 
 const ex = {
   id:'flexao-pes-elevados',
