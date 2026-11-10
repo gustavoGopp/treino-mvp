@@ -730,8 +730,12 @@ a.cartao-ex-corpo:focus-visible{outline:3px solid var(--foco);outline-offset:-3p
   .ex-sessao .mais-op{grid-column:2;grid-row:1}
   .ex-sessao > div:not(.miniatura){grid-column:1 / -1;grid-row:2}
 }
-@media (max-width:279px){
+/* R5-anim (10/11/2026): abaixo de 360 px, os 4 modos do guia em 2 linhas de 2. Em 4 colunas, com a fonte do CI, "Erros"
+   ficava com 42 px de largura numa tela de 320 px (as colunas crescem com o texto de "Trajetória" e "Músculos"). */
+@media (max-width:359px){
   .modes{grid-template-columns:1fr 1fr}
+}
+@media (max-width:279px){
   /* com zoom de 200%, o controle de carga e de repetições ocupa a linha toda: − número + */
   .registro .stepper{display:grid;grid-template-columns:var(--toque) minmax(0,1fr) var(--toque);width:100%}
   .registro .stepper select,.registro .stepper output{min-width:0;width:100%;font-size:var(--t-pergunta)}
