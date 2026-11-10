@@ -8,7 +8,7 @@ Nada aqui muda o corpo do Boneco, o estilo ou as animações já aprovadas: as p
 | # | Animação | Em quantos programas aparece | Base aprovada | Folha | Situação |
 |---|---|---|---|---|---|
 | 1 | `panturrilha-degrau` (panturrilha no degrau da escada) | 81,8% | panturrilha no step (`panturrilha-b`) + parede da panturrilha no chão | `folhas/panturrilha-degrau.png`, `folhas/panturrilha-degrau-erros.png` | **aprovada em 10/11** |
-| 2 | `abdominal-invertido` (abdominal invertido no chão) | 61,7% | abdominal no chão (o colchonete e o corpo deitado) | `folhas/abdominal-invertido.png`, `folhas/abdominal-invertido-erros.png` | **espera o "aprovar"** |
+| 2 | `abdominal-invertido` (abdominal invertido no chão) | 61,7% | abdominal no chão (o colchonete e o corpo deitado) | `folhas/abdominal-invertido.png`, `folhas/abdominal-invertido-erros.png` | **aprovada em 10/11** |
 | 3 | `extensao-triceps-peso-corpo` | 59,4% | flexão | — | depois da 2 |
 | 4 | `abertura-t-deitado` | 56,1% | — | — | depois da 3 |
 | 5 | `flexao-pes-elevados` | 53,8% | flexão | — | depois da 4 |
@@ -18,3 +18,7 @@ Nada aqui muda o corpo do Boneco, o estilo ou as animações já aprovadas: as p
 - **Músculos e trajetória:** o músculo principal em vermelho; o caminho do calcanhar (ou da mão) em azul.
 - **Erros:** o certo é a figura cheia; a parte do corpo que erra aparece em vermelho tracejado, com o nome do erro. A folha `-erros` mostra cada erro em 6 instantes do ciclo, para ver o erro se mexendo.
 - A conferência escrita (`conferencia/<id>.md`) compara, ponto a ponto, o que a fonte pede com o que o boneco faz (medido em cm).
+
+## O que muda nos programas das personas (medido a cada aprovação)
+- **Panturrilha no degrau:** nada muda.
+- **Abdominal invertido:** só o **Fábio**. No Inferior B, a elevação de joelhos na barra (2×10–15) dá lugar ao abdominal invertido (2×12–20). As duas valem para a mesma vaga, no mesmo nível. Antes, a elevação ganhava porque só ela tinha animação. Agora as duas têm, e o empate cai no último critério, a ordem do nome. O gerador não mudou.

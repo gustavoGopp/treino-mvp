@@ -1,11 +1,11 @@
 // @ts-nocheck
-// Animação nova (em revisão). Abdominal invertido no chão: de costas, braços ao lado do corpo com as palmas no chão,
+// Animação nova (aprovada). Abdominal invertido no chão: de costas, braços ao lado do corpo com as palmas no chão,
 // joelhos a ~90° e coxas na vertical. A pelve enrola em direção ao peito e o quadril sai do chão; os ombros e as costas
 // de cima ficam no chão. Técnica e fontes: docs/pesquisa/animacoes/abdominal-invertido.md.
 // O colchonete, o corpo deitado e a cabeça são os do abdominal no chão aprovado (abdominal-chao). A pelve gira em torno
 // do meio das costas (M, parado): P = M − 22·uL, com o tronco de cima parado; assim os ombros não se mexem.
-import { BOX, L3, TX } from '../../desenho';
-import { X, Y, Z } from '../../math';
+import { BOX, L3, TX } from '../desenho';
+import { X, Y, Z } from '../math';
 
 const MAOS = { ikS: [24, 2, 10], poleRel: [1, .4, 0] };
 const ex = {

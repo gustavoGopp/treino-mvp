@@ -4961,7 +4961,7 @@
    "peso-corpo"
   ],
   "carga": "peso-corpo",
-  "animacaoId": null
+  "animacaoId": "abdominal-invertido"
  },
  {
   "id": "desenvolvimento-em-pe-halteres",
