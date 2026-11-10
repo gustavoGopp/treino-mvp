@@ -20,7 +20,7 @@ describe('a vista do modo Técnica pelo movimento (R4)', () => {
       'crucifixo-elastico: frontal → top',
       'face-pull-elastico: lateral → top',
     ]);
-  });
+  }, 30_000); // mede a trajetória de todas as animações (87 no R5-anim): ~4,6 s com cobertura nesta máquina, 8 s no CI
 
   it('o resultado é sempre uma vista do exercício; no clássico, a 1ª; a vista zoom não concorre', () => {
     for (const ex of EX as Animacao[]) {

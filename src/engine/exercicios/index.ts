@@ -84,6 +84,11 @@ import abducaoDeitado from './abducao-deitado';
 import aducaoDeitado from './aducao-deitado';
 import extensaoJoelhoElastico from './extensao-joelho-elastico';
 import panturrilhaSentadaHalter from './panturrilha-sentada-halter';
+import panturrilhaDegrau from './panturrilha-degrau';
+import abdominalInvertido from './abdominal-invertido';
+import extensaoTricepsPesoCorpo from './extensao-triceps-peso-corpo';
+import aberturaTDeitado from './abertura-t-deitado';
+import flexaoPesElevados from './flexao-pes-elevados';
 
 // Mesma ordem do guia original (a ordem define os treinos e a ordem de preparação).
 export const EX = [
@@ -169,4 +174,9 @@ export const EX = [
   aducaoDeitado,
   extensaoJoelhoElastico,
   panturrilhaSentadaHalter,
+  panturrilhaDegrau,
+  abdominalInvertido,
+  extensaoTricepsPesoCorpo,
+  aberturaTDeitado,
+  flexaoPesElevados,
 ];

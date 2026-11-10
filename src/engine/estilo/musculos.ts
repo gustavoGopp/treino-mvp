@@ -494,6 +494,8 @@ export const SO_AJUDA: Record<string, string[]> = {
   'desenvolvimento-elastico': ['trapSuperior'],
   'triceps-elastico-acima': ['retoAbdominal'],
   'flexao-elastico': ['retoAbdominal'],
+  // R5-anim (10/11/2026): a flexão com os pés elevados, como a flexão
+  'flexao-pes-elevados': ['retoAbdominal'],
 };
 // O padrão das listras (as cores vêm do CSS: .mh-fundo e .mh-listra).
 const LISTRAS = `<defs><pattern id="mh-listras" width="3.2" height="3.2" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="3.2" height="3.2" class="mh-fundo"/><rect width="1.6" height="3.2" class="mh-listra"/></pattern></defs>`;

@@ -8,8 +8,8 @@
 
 | problema | ocorrências |
 | --- | ---: |
-| `monotonia.repete-com-opcao` | 58.174 |
-| `tempo.sobra-com-meta-abaixo` | 34.861 |
+| `monotonia.repete-com-opcao` | 58.182 |
+| `tempo.sobra-com-meta-abaixo` | 34.857 |
 | `volume.abaixo-sem-aviso` | 11.440 |
 | `monotonia.todos-os-dias` | 5.653 |
 | `volume.excesso.gluteos` | 5.266 |
@@ -37,16 +37,16 @@ Limiar: a meta, se o músculo é prioridade; senão, 4 séries (o piso do mínim
 | casa | 44% | 48.7% | 47.6% | 28.2% | 25.6% | 31.9% | 41.7% | 38.3% | 20.3% | 37.2% | 39.3% |
 | casa+ | 39.8% | 47.5% | 46.9% | 28.7% | 25.3% | 31.6% | 41.4% | 37.5% | 16.6% | 36.5% | 39.1% |
 | condominio | 39.6% | 47.7% | 46.7% | 27.9% | 24.6% | 49.6% | 51.8% | 39.1% | 11.3% | 31.7% | 38.8% |
-| condominio+ | 39.6% | 47.8% | 46.8% | 28.7% | 25.3% | 31.5% | 39.9% | 35.9% | 18.8% | 36.2% | 39% |
+| condominio+ | 39.6% | 47.8% | 46.8% | 28.7% | 25.3% | 31.5% | 39.8% | 35.9% | 18.8% | 36.2% | 39% |
 | academia | 39.9% | 48.6% | 46.8% | 28.7% | 25.1% | 28.2% | 38.2% | 34.1% | 17.2% | 35% | 38.2% |
 | academia+ | 39.9% | 48.6% | 46.8% | 28.7% | 25.2% | 28.2% | 38.2% | 34% | 17.2% | 35.2% | 38.2% |
 | peso-corpo | 45.8% | 100% | 99.3% | 28% | 100% | 43.3% | 43.4% | 45.2% | 9.9% | 24.5% | 34.3% |
 | elasticos | 43.4% | 49.6% | 48.2% | 28.2% | 26.8% | 33% | 41.9% | 41.5% | 21.3% | 39.1% | 39.3% |
 | halteres | 56.8% | 69.4% | 44.6% | 28.9% | 25.2% | 47.6% | 48.1% | 36.1% | 11.9% | 30.6% | 38.7% |
 | halteres-banco | 43.4% | 69.9% | 45.3% | 29.5% | 25.6% | 48.8% | 48.7% | 37.2% | 12.2% | 31.3% | 38.9% |
-| diego | 43.1% | 48.8% | 48% | 28.2% | 26.5% | 32.8% | 41.8% | 41.3% | 21.1% | 39.1% | 39.3% |
+| diego | 43.1% | 48.9% | 48% | 28.2% | 26.5% | 32.8% | 41.8% | 41.3% | 21.2% | 39.1% | 39.3% |
 | bruno | 40.3% | 49% | 47.4% | 28.7% | 25.6% | 28.7% | 42.8% | 37.6% | 15.3% | 37% | 38.8% |
-| bairro | 39% | 47.2% | 46.5% | 28.7% | 24.6% | 50.2% | 38.3% | 34.3% | 17.2% | 33.6% | 38.5% |
+| bairro | 39% | 47.2% | 46.5% | 28.7% | 24.6% | 50.2% | 38.3% | 34.3% | 17.2% | 33.6% | 38.4% |
 
 ### Sem dor e com 45 min ou mais
 
@@ -55,25 +55,25 @@ Prioritário abaixo da meta (% dos programas em que o músculo é prioridade) / 
 | cenário | peito | costas | ombro (lateral) | ombro (posterior) | bíceps | tríceps | quadríceps | posteriores da coxa | glúteos | panturrilha | abdômen |
 | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
 | casa | 16.8% / 0% | 17.3% / 0% | 29.3% / 5.3% | 0% / 1.9% | 17.1% / 0.5% | 20.6% / 0% | 23.3% / 0% | 37.8% / 0% | 34.3% / 7.4% | 44.8% / 0% | 43.1% / 0% |
-| casa+ | 11.7% / 0% | 13.6% / 0% | 27.6% / 4.9% | 0% / 1.9% | 13.9% / 0.5% | 19.7% / 0% | 22.4% / 0% | 34.9% / 0% | 23.8% / 0% | 42.7% / 0% | 38% / 0% |
+| casa+ | 11.7% / 0% | 13.6% / 0% | 27.6% / 4.9% | 0% / 1.9% | 13.9% / 0.5% | 19.7% / 0% | 22.5% / 0% | 34.9% / 0% | 24.1% / 0% | 42.7% / 0% | 38% / 0% |
 | condominio | 12.2% / 0% | 14.5% / 0% | 26.7% / 5.3% | 0% / 0.8% | 13.4% / 0% | 18.3% / 0% | 54.8% / 0% | 42.9% / 0% | 10% / 0% | 38% / 0% | 37% / 0% |
-| condominio+ | 11.7% / 0% | 14.5% / 0% | 27.8% / 5.3% | 0% / 1.9% | 14.4% / 0.5% | 17.6% / 0% | 16.7% / 0% | 31.2% / 0% | 27.1% / 7.4% | 40.6% / 0% | 35.2% / 0% |
+| condominio+ | 11.7% / 0% | 15% / 0% | 27.8% / 5.3% | 0% / 1.9% | 14.8% / 0.5% | 17.6% / 0% | 16.5% / 0% | 31.3% / 0% | 27.1% / 7.4% | 40.6% / 0% | 35.6% / 0% |
 | academia | 12.5% / 0% | 14.8% / 0% | 27% / 5.3% | 0% / 1.9% | 15% / 0.5% | 18.3% / 0% | 14.4% / 0% | 27.9% / 0% | 25% / 7.4% | 39% / 0% | 34.3% / 0% |
 | academia+ | 12.5% / 0% | 14.8% / 0% | 27% / 5.3% | 0% / 1.9% | 15% / 0.5% | 18.3% / 0% | 14.4% / 0% | 27.6% / 0% | 25% / 7.4% | 39.4% / 0% | 34.3% / 0% |
 | peso-corpo | 10.6% / 0% | 100% / 100% | 100% / 100% | 0% / 0% | 100% / 100% | 7.6% / 0% | 31.5% / 0% | 35% / 0% | 10.9% / 0% | 34% / 0% | 19.4% / 0% |
 | elasticos | 13.7% / 0% | 21.5% / 0% | 28.7% / 5.3% | 0% / 1.9% | 22.5% / 0.5% | 24.5% / 0% | 23.6% / 0% | 38.1% / 0% | 38.9% / 7.4% | 49.8% / 0% | 43.1% / 0% |
 | halteres | 26.5% / 0% | 15.9% / 0% | 26.7% / 4.6% | 0% / 0.8% | 14.6% / 0% | 16.7% / 0% | 46.9% / 0% | 33% / 0% | 14.4% / 0% | 38.9% / 0% | 37.5% / 0% |
 | halteres-banco | 15.3% / 0% | 17.1% / 0% | 27.6% / 5.3% | 0% / 0.8% | 16.2% / 0% | 20.1% / 0% | 47.1% / 0% | 34.4% / 0% | 15% / 0% | 39.2% / 0% | 39.8% / 0% |
-| diego | 13% / 0% | 19% / 0% | 28.4% / 5.3% | 0% / 1.9% | 21.1% / 0.5% | 23.8% / 0% | 23.1% / 0% | 38% / 0% | 37.5% / 7.4% | 49.8% / 0% | 43.1% / 0% |
+| diego | 12.8% / 0% | 19% / 0% | 28.4% / 5.3% | 0% / 1.9% | 21.3% / 0.5% | 23.8% / 0% | 23.1% / 0% | 37.8% / 0% | 37.5% / 7.4% | 49.8% / 0% | 42.6% / 0% |
 | bruno | 14.5% / 0% | 16.5% / 0% | 28.5% / 5.3% | 0% / 1.9% | 16.9% / 0.5% | 20.4% / 0% | 26.9% / 0% | 36.4% / 0% | 24.3% / 0% | 43.2% / 0% | 37.5% / 0% |
-| bairro | 10.2% / 0% | 13.1% / 0% | 26.7% / 5.3% | 0% / 1.9% | 14.6% / 0.5% | 22% / 0% | 14.5% / 0% | 28.7% / 0% | 25.5% / 7.4% | 39.2% / 0% | 34.3% / 0% |
+| bairro | 10.2% / 0% | 13.1% / 0% | 26.7% / 5.3% | 0% / 1.9% | 14.6% / 0.5% | 22% / 0% | 14.7% / 0% | 28.9% / 0% | 25.9% / 7.4% | 39.5% / 0% | 33.3% / 0% |
 
 ### Motivo do aviso "abaixo da meta" (sem dor, 45 min ou mais)
 
 | músculo | motivo | avisos |
 | --- | --- | ---: |
-| panturrilha | divisão: séries por exercício e por sessão no teto | 1.985 |
-| posteriores da coxa | divisão: séries por exercício e por sessão no teto | 1.811 |
+| panturrilha | divisão: séries por exercício e por sessão no teto | 1.987 |
+| posteriores da coxa | divisão: séries por exercício e por sessão no teto | 1.812 |
 | quadríceps | divisão: séries por exercício e por sessão no teto | 1.580 |
 | panturrilha | minutos (exercícios por treino) | 1.403 |
 | ombro (lateral) | divisão: séries por exercício e por sessão no teto | 1.230 |
@@ -81,26 +81,26 @@ Prioritário abaixo da meta (% dos programas em que o músculo é prioridade) / 
 | ombro (lateral) | nenhum exercício possível | 1.080 |
 | bíceps | nenhum exercício possível | 1.080 |
 | ombro (lateral) | minutos (exercícios por treino) | 1.065 |
-| glúteos | corte de tempo | 934 |
-| costas | divisão: séries por exercício e por sessão no teto | 875 |
+| glúteos | corte de tempo | 937 |
+| costas | divisão: séries por exercício e por sessão no teto | 876 |
 | posteriores da coxa | corte de tempo | 777 |
-| quadríceps | corte de tempo | 749 |
+| quadríceps | corte de tempo | 750 |
 | tríceps | divisão: séries por exercício e por sessão no teto | 580 |
 | bíceps | minutos (exercícios por treino) | 510 |
-| abdômen | divisão: séries por exercício e por sessão no teto | 506 |
+| abdômen | divisão: séries por exercício e por sessão no teto | 503 |
 | peito | minutos (exercícios por treino) | 475 |
 | peito | divisão: séries por exercício e por sessão no teto | 425 |
 | abdômen | minutos (exercícios por treino) | 376 |
-| costas | corte de tempo | 373 |
+| costas | corte de tempo | 375 |
 | tríceps | minutos (exercícios por treino) | 350 |
 | posteriores da coxa | minutos (exercícios por treino) | 302 |
 | glúteos | minutos (exercícios por treino) | 286 |
-| peito | corte de tempo | 275 |
-| bíceps | corte de tempo | 275 |
+| bíceps | corte de tempo | 278 |
+| peito | corte de tempo | 274 |
 | glúteos | divisão sem vaga própria | 252 |
 | glúteos | divisão: séries por exercício e por sessão no teto | 210 |
 | ombro (posterior) | minutos (exercícios por treino) | 207 |
-| abdômen | corte de tempo | 147 |
+| abdômen | corte de tempo | 148 |
 | tríceps | corte de tempo | 141 |
 | panturrilha | corte de tempo | 102 |
 | bíceps | divisão: séries por exercício e por sessão no teto | 83 |
@@ -137,30 +137,30 @@ Prioritário abaixo da meta (% dos programas em que o músculo é prioridade) / 
 | exercício | vezes | guia |
 | --- | ---: | --- |
 | elevacao-halteres | 153.635 | animação |
-| panturrilha-degrau | 136.808 | sem animação |
-| abdominal-chao | 104.599 | animação |
-| stiff | 99.156 | animação |
-| ponte-gluteo-halter | 97.695 | sem animação |
+| panturrilha-degrau | 136.808 | animação |
+| abdominal-chao | 104.602 | animação |
+| stiff | 99.159 | animação |
+| ponte-gluteo-halter | 97.692 | sem animação |
 | afundo | 87.421 | animação |
 | supino-reto | 84.489 | animação |
-| aducao-deitado | 81.577 | animação |
-| flexao | 65.947 | animação |
+| aducao-deitado | 81.572 | animação |
+| flexao | 65.955 | animação |
 | cadeira-flexora | 64.438 | sem animação |
-| flexao-joelho-elastico | 62.270 | animação |
+| abdominal-invertido | 62.366 | animação |
+| flexao-joelho-elastico | 62.268 | animação |
 | remada-apoiada | 61.302 | animação |
 | rosca-scott-banco-inclinado | 60.032 | sem animação |
 | supino-inclinado | 58.710 | animação |
 | crucifixo-halteres | 57.161 | sem animação |
-| abdominal-invertido | 56.606 | sem animação |
 | panturrilha | 53.625 | animação |
-| flexao-joelho-deslizante | 51.069 | animação |
-| panturrilha-sentada-halter | 48.996 | animação |
+| flexao-joelho-deslizante | 51.052 | animação |
+| panturrilha-sentada-halter | 48.995 | animação |
 | triceps-frances-halter | 48.504 | animação |
 | cadeira-extensora | 48.221 | sem animação |
 | extensao-joelho-elastico | 47.847 | animação |
-| stiff-unilateral | 46.360 | animação |
+| stiff-unilateral | 46.358 | animação |
 | bulgaro | 44.070 | animação |
-| abducao-deitado | 42.318 | animação |
+| abducao-deitado | 42.315 | animação |
 
 ### Possíveis que nunca aparecem como vaga, por cenário
 
@@ -173,10 +173,10 @@ Prioritário abaixo da meta (% dos programas em que o músculo é prioridade) / 
 | academia | 118 | 72 | supino-polia, flexao, barra-fixa, barra-fixa-supinada, remada-barra, remada-invertida, desenvolvimento-unilateral, rosca-barra-w, goblet, agachamento-halteres, agachamento-peso-corpo, afundo-tras, afundo-peso-corpo, bulgaro-peso-corpo, ponte-gluteo, elevacao-joelhos, terra-hexagonal, mergulho, mergulho-graviton, barra-fixa-graviton, remada-baixa-estacao, hiperextensao, remada-curvada-halteres, crucifixo-invertido-curvado, ponte-gluteo-halter, supino-chao-halteres, flexao-fechada, pike, nordico, remada-unilateral-sem-banco, triceps-frances-polia-unilateral, remada-unilateral-polia, elevacao-joelhos-paralelas, abducao-deitado, aducao-deitado, flexao-pes-elevados, extensao-triceps-peso-corpo, abertura-t-deitado, panturrilha-degrau, afundo-tras-peso-corpo, abdominal-invertido, desenvolvimento-em-pe-halteres, triceps-frances-unilateral-halter, triceps-testa-halteres, rosca-concentrada, barra-fixa-negativa | — |
 | academia+ | 171 | 78 | supino-polia, flexao, flexao-elastico, crucifixo-elastico, barra-fixa, barra-fixa-supinada, puxada-elastico, remada-barra, remada-invertida, remada-elastico, desenvolvimento-unilateral, desenvolvimento-elastico, elevacao-lateral-elastico, face-pull-elastico, rosca-barra-w, rosca-elastico, triceps-elastico-acima, goblet, agachamento-halteres, agachamento-elastico, agachamento-peso-corpo, bulgaro, afundo-tras, afundo-peso-corpo, bulgaro-peso-corpo, stiff-elastico, ponte-gluteo, flexao-joelho-elastico, elevacao-joelhos, abdominal-chao, terra-hexagonal, goblet-kettlebell, mergulho, mergulho-graviton, barra-fixa-graviton, remada-baixa-estacao, remada-suspensao, hiperextensao, remada-curvada-halteres, crucifixo-invertido-curvado, ponte-gluteo-halter, supino-chao-halteres, flexao-fechada, pike, flexao-joelho-deslizante, nordico, remada-unilateral-sem-banco, triceps-frances-polia-unilateral, remada-unilateral-polia, rosca-suspensao, yt-suspensao, triceps-suspensao, flexao-joelho-suspensao, bulgaro-suspensao, elevacao-joelhos-paralelas, abdominal-bola, ponte-pes-bola, extensao-joelho-caneleira, abducao-caneleira, aducao-caneleira, abducao-mini-band, roda-abdominal, remada-unilateral-kettlebell, triceps-frances-kettlebell, abducao-deitado, aducao-deitado, extensao-joelho-elastico, flexao-pes-elevados, extensao-triceps-peso-corpo, abertura-t-deitado, panturrilha-degrau, afundo-tras-peso-corpo, abdominal-invertido, desenvolvimento-em-pe-halteres, triceps-frances-unilateral-halter, triceps-testa-halteres, rosca-concentrada, remada-curvada-elastico, remada-unilateral-elastico, abertura-elastico, abducao-elastico, coice-elastico, elevacao-lateral-unilateral-elastico, rosca-martelo-elastico, triceps-elastico-alto, barra-fixa-negativa, caminhada-lateral-mini-band, elevacao-lateral-caneleira, crucifixo-invertido-caneleira, coice-caneleira, extensao-joelho-mini-band, abducao-deitado-mini-band, face-pull-suspensao | — |
 | peso-corpo | 19 | 19 | — | — |
-| elasticos | 40 | 37 | extensao-triceps-peso-corpo, abertura-t-deitado, afundo-tras-peso-corpo | — |
+| elasticos | 40 | 38 | abertura-t-deitado, afundo-tras-peso-corpo | — |
 | halteres | 43 | 35 | agachamento-peso-corpo, afundo-peso-corpo, bulgaro-peso-corpo, ponte-gluteo, flexao-fechada, extensao-triceps-peso-corpo, abertura-t-deitado, afundo-tras-peso-corpo | — |
 | halteres-banco | 47 | 37 | agachamento-peso-corpo, afundo-peso-corpo, bulgaro-peso-corpo, ponte-gluteo, supino-chao-halteres, flexao-fechada, flexao-pes-elevados, extensao-triceps-peso-corpo, abertura-t-deitado, afundo-tras-peso-corpo | — |
-| diego | 44 | 40 | puxada-elastico, extensao-triceps-peso-corpo, abertura-t-deitado, afundo-tras-peso-corpo | — |
+| diego | 44 | 41 | puxada-elastico, abertura-t-deitado, afundo-tras-peso-corpo | — |
 | bruno | 107 | 56 | supino-polia, flexao, flexao-elastico, crucifixo-elastico, barra-fixa, barra-fixa-supinada, puxada-elastico, remada-barra, remada-elastico, desenvolvimento-elastico, elevacao-lateral-elastico, face-pull-elastico, rosca-elastico, triceps-elastico-acima, agachamento-halteres, agachamento-elastico, agachamento-peso-corpo, afundo-peso-corpo, bulgaro-peso-corpo, stiff-elastico, ponte-gluteo, elevacao-joelhos, abdominal-chao, remada-curvada-halteres, crucifixo-invertido-curvado, supino-chao-halteres, flexao-fechada, pike, nordico, remada-unilateral-sem-banco, triceps-frances-polia-unilateral, remada-unilateral-polia, abdominal-bola, ponte-pes-bola, abducao-deitado, flexao-pes-elevados, extensao-triceps-peso-corpo, abertura-t-deitado, panturrilha-degrau, afundo-tras-peso-corpo, abdominal-invertido, triceps-frances-unilateral-halter, triceps-testa-halteres, rosca-concentrada, remada-curvada-elastico, remada-unilateral-elastico, abertura-elastico, coice-elastico, elevacao-lateral-unilateral-elastico, rosca-martelo-elastico, barra-fixa-negativa | — |
 | bairro | 64 | 49 | flexao, agachamento-halteres, agachamento-peso-corpo, afundo-tras, afundo-peso-corpo, bulgaro-peso-corpo, ponte-gluteo, remada-curvada-halteres, supino-chao-halteres, flexao-fechada, pike, flexao-pes-elevados, extensao-triceps-peso-corpo, abertura-t-deitado, afundo-tras-peso-corpo | — |
 
@@ -201,12 +201,12 @@ Prioritário abaixo da meta (% dos programas em que o músculo é prioridade) / 
 ## Monotonia
 
 - Programas de 3 dias ou mais com um exercício (fora o abdominal) em **todos** os dias: 5.653 de 137.280 (4.1%).
-- Programas que repetem um exercício em 2 dias ou mais com outro do mesmo nível da função possível e sem uso: 58.174 (42.4%).
+- Programas que repetem um exercício em 2 dias ou mais com outro do mesmo nível da função possível e sem uso: 58.182 (42.4%).
 
 ## Tempo
 
-- Dias acima dos minutos: 57.475 de 624.000 (9.2%); **sem aviso: 0**.
-- Programas cujo dia mais longo usa menos de 70% dos minutos: 41.855 (27.9%); destes, 0 ainda dizem que a meta ficou de fora "porque cabem cerca de N exercícios".
+- Dias acima dos minutos: 57.454 de 624.000 (9.2%); **sem aviso: 0**.
+- Programas cujo dia mais longo usa menos de 70% dos minutos: 41.852 (27.9%); destes, 0 ainda dizem que a meta ficou de fora "porque cabem cerca de N exercícios".
 
 | minutos | programas | dia mais longo (mediana, min) | sobra > 30% |
 | ---: | ---: | ---: | ---: |
@@ -349,7 +349,7 @@ Prioritário abaixo da meta (% dos programas em que o músculo é prioridade) / 
 - **casa · iniciante · Superior/Inferior (3x) (6 dias) · 45 min · prioridade nenhuma · lombar 7**: posteriores da coxa sem prioridade com 12 séries (máximo do nível 10).
   - Programa: Superior A (33 min): flexao 2, puxada-elastico 2, remada-elastico 2, triceps-frances-halter 2, elevacao-halteres 2, rosca-alternada 2 | Inferior A (36 min): goblet 2, ponte-gluteo-halter 2, flexao-joelho-elastico 2, flexao-joelho-deslizante 2, extensao-joelho-elastico 2, panturrilha-degrau 2 | Superior B (33 min): flexao 2, remada-elastico 2, puxada-elastico 2, elevacao-halteres 2, rosca-martelo 2, crucifixo-invertido-sentado 2 | Inferior B (37 min): afundo 2, ponte-gluteo-halter 2, flexao-joelho-elastico 2, extensao-joelho-elastico 2, panturrilha-degrau 2, flexao-joelho-deslizante 2 | Superior C (36 min): flexao 2, puxada-elastico 2, remada-elastico 2, triceps-frances-unilateral-halter 2, elevacao-halteres 2, rosca-concentrada 2 | Inferior C (37 min): afundo-tras 2, ponte-gluteo-halter 2, flexao-joelho-elastico 2, extensao-joelho-elastico 2, panturrilha-degrau 2, flexao-joelho-deslizante 2
 - **casa+ · iniciante · Superior/Inferior (3x) (6 dias) · 45 min · prioridade nenhuma · joelho 7**: posteriores da coxa sem prioridade com 12 séries (máximo do nível 10).
-  - Programa: Superior A (31 min): supino-reto 2, barra-fixa-negativa 2, remada-apoiada 2, triceps-frances-halter 2, elevacao-halteres 2, rosca-inclinada 2 | Inferior A (39 min): stiff 2, stiff-kettlebell 2, panturrilha 2, aducao-caneleira 2, abducao-caneleira 2, abdominal-bola 2 | Superior B (35 min): supino-inclinado 2, remada-unilateral-halter 2, barra-fixa-negativa 2, elevacao-halteres 2, rosca-scott-banco-inclinado 2, crucifixo-inverso 2 | Inferior B (37 min): ponte-kettlebell 2, stiff-unilateral 2, stiff-unilateral-kettlebell 2, panturrilha-bilateral-step 2, elevacao-lateral-caneleira 2, abdominal-chao 2 | Superior C (31 min): supino-reto 2, barra-fixa-negativa 2, remada-apoiada 2, triceps-frances-kettlebell 2, elevacao-halteres 2, rosca-inclinada 2 | Inferior C (38 min): stiff 2, stiff-kettlebell 2, coice-caneleira 2, panturrilha 2, elevacao-lateral-deitado 2, elevacao-joelhos 2
+  - Programa: Superior A (31 min): supino-reto 2, barra-fixa-negativa 2, remada-apoiada 2, triceps-frances-halter 2, elevacao-halteres 2, rosca-inclinada 2 | Inferior A (39 min): stiff 2, stiff-kettlebell 2, panturrilha 2, aducao-caneleira 2, abducao-caneleira 2, abdominal-bola 2 | Superior B (35 min): supino-inclinado 2, remada-unilateral-halter 2, barra-fixa-negativa 2, elevacao-halteres 2, rosca-scott-banco-inclinado 2, crucifixo-inverso 2 | Inferior B (37 min): ponte-kettlebell 2, stiff-unilateral 2, stiff-unilateral-kettlebell 2, panturrilha-bilateral-step 2, elevacao-lateral-caneleira 2, abdominal-chao 2 | Superior C (31 min): supino-reto 2, barra-fixa-negativa 2, remada-apoiada 2, triceps-frances-kettlebell 2, elevacao-halteres 2, rosca-inclinada 2 | Inferior C (38 min): stiff 2, stiff-kettlebell 2, coice-caneleira 2, panturrilha 2, elevacao-lateral-deitado 2, abdominal-invertido 2
 - **condominio · iniciante · Empurrar/Puxar/Pernas (2x) (6 dias) · 45 min · prioridade nenhuma · ombro 7**: posteriores da coxa sem prioridade com 12 séries (máximo do nível 10).
   - Programa: Empurrar A (41 min): afundo-tras 2, stiff 2, ponte-gluteo-halter 2, rosca-scott-banco-inclinado 2, panturrilha-chao 2, aducao-deitado 2 | Puxar A (9 min): rosca-scott-banco-inclinado 2, abdominal-bola 2 | Pernas A (34 min): bulgaro 2, stiff 2, goblet 2, flexao-bola 2, panturrilha-degrau 2, abdominal-chao 2 | Empurrar B (41 min): agachamento-halteres 2, stiff-unilateral 2, ponte-gluteo-halter 2, rosca-scott-banco-inclinado 2, panturrilha-sentada-halter 2, aducao-deitado 2 | Puxar B (9 min): rosca-scott-banco-inclinado 2, abdominal-invertido 2 | Pernas B (33 min): afundo 2, stiff-unilateral 2, ponte-gluteo-halter 2, panturrilha-degrau 2, flexao-bola 2
 

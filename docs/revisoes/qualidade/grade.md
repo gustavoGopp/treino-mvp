@@ -11,15 +11,15 @@
 | suspeito | ocorrências | % (dos dias ou dos programas) |
 | --- | ---: | ---: |
 | `dia.poucos-exercicios` | 379.539 | 10,4% dos dias |
-| `tempo.uso-baixo` | 178.342 | 19,6% dos programas |
-| `monotonia.todos-os-dias` | 161.748 | 17,7% dos programas |
+| `tempo.uso-baixo` | 178.385 | 19,6% dos programas |
+| `monotonia.todos-os-dias` | 161.746 | 17,7% dos programas |
 | `regua.A2` | 90.751 | 10% dos programas |
-| `regua.A3` | 43.540 | 4,8% dos programas |
-| `regua.A4` | 31.233 | 3,4% dos programas |
-| `prioridade.abaixo-com-tempo` | 23.953 | 2,6% dos programas |
-| `regua.C1` | 18.214 | 2% dos programas |
+| `regua.A3` | 43.585 | 4,8% dos programas |
+| `regua.A4` | 31.225 | 3,4% dos programas |
+| `prioridade.abaixo-com-tempo` | 23.943 | 2,6% dos programas |
+| `regua.C1` | 18.180 | 2% dos programas |
 | `tempo.uso-baixo-sem-aviso` | 16.523 | 1,8% dos programas |
-| `regua.D1` | 7.314 | 0,8% dos programas |
+| `regua.D1` | 7.315 | 0,8% dos programas |
 | `monotonia.todos-os-dias-com-opcao` | 2.946 | 0,3% dos programas |
 | `regua.B1` | 2.946 | 0,3% dos programas |
 | `regua.D3` | 1.359 | 0,1% dos programas |
@@ -66,14 +66,14 @@ Por dias por semana (sem dor e sem exercício evitado; % dos dias com ≤ 3 exer
 | --- | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
 | academia | atalho | 0% | 0% | 64,5% | 35,5% | 6 | 4,8% | 21,5% |
 | academia+ | atalho | 0% | 0% | 64,5% | 35,5% | 6 | 4,8% | 21,3% |
-| bairro | persona | 0% | 0% | 64,3% | 35,7% | 6 | 4% | 24% |
+| bairro | persona | 0% | 0% | 64,3% | 35,7% | 6 | 4% | 23,9% |
 | banco+halteres-leves | par | 0% | 0,1% | 67,6% | 32,3% | 6 | 5,8% | 14,8% |
 | bruno | persona | 0% | 0% | 65,6% | 34,4% | 6 | 4,8% | 16,8% |
 | casa | atalho | 0% | 0% | 66,1% | 33,9% | 6 | 5% | 17,1% |
 | casa+ | atalho | 0% | 0% | 65,2% | 34,8% | 6 | 4,8% | 21,7% |
 | condominio | atalho | 0% | 0,1% | 66,8% | 33% | 6 | 4,5% | 17,6% |
 | condominio+ | atalho | 0% | 0% | 64,7% | 35,3% | 6 | 4,8% | 21,8% |
-| diego | persona | 0% | 0% | 66,5% | 33,5% | 6 | 5% | 17,8% |
+| diego | persona | 0% | 0% | 66,5% | 33,5% | 6 | 5% | 17,7% |
 | elasticos | persona | 0% | 0% | 66,5% | 33,5% | 6 | 5% | 17,5% |
 | halteres | persona | 0% | 1,8% | 67,2% | 31,1% | 6 | 5,9% | 12,2% |
 | halteres-banco | persona | 0% | 0,1% | 67,6% | 32,3% | 6 | 5,8% | 14,8% |
@@ -102,13 +102,13 @@ Por dias por semana (sem dor e sem exercício evitado; % dos dias com ≤ 3 exer
 | so:leg_press | item | 0% | 0,1% | 90% | 9,8% | 6 | 0,1% | 27,6% |
 | so:mesa_flexora | item | 0% | 0% | 90,4% | 9,6% | 6 | 0% | 23,5% |
 | so:mini_band | item | 0% | 0,1% | 88,5% | 11,4% | 6 | 0,1% | 23,9% |
-| so:multifuncional | item | 6,9% | 24,5% | 54,7% | 13,9% | 5 | 10,4% | 22,6% |
+| so:multifuncional | item | 6,9% | 24,5% | 54,7% | 13,9% | 5 | 10,4% | 22,7% |
 | so:panturrilha_em_pe_maquina | item | 0% | 0,1% | 90,3% | 9,6% | 6 | 0,1% | 26,5% |
 | so:panturrilha_sentada_maquina | item | 0% | 0,2% | 89,4% | 10,4% | 6 | 0% | 26,2% |
-| so:paralelas | item | 0% | 0,1% | 90,5% | 9,4% | 6 | 0,1% | 26,4% |
+| so:paralelas | item | 0% | 0,1% | 90,6% | 9,3% | 6 | 0,1% | 26,2% |
 | so:rack_de_agachamento | item | 20,4% | 17,7% | 48,4% | 13,5% | 5 | 21,9% | 24,4% |
 | so:remada_articulada | item | 20,4% | 17,7% | 48,4% | 13,6% | 5 | 22,7% | 24,6% |
-| so:roda_abdominal | item | 0% | 0,1% | 90,4% | 9,5% | 6 | 0,1% | 26,4% |
+| so:roda_abdominal | item | 0% | 0,1% | 90,5% | 9,4% | 6 | 0,1% | 26,3% |
 | so:rosca_maquina | item | 0% | 0% | 84,6% | 15,4% | 6 | 0% | 17,5% |
 | so:smith | item | 20,4% | 17,7% | 48,2% | 13,8% | 5 | 21,9% | 25% |
 | so:step | item | 0% | 0,2% | 90,6% | 9,3% | 6 | 0,1% | 24,4% |
@@ -127,10 +127,10 @@ Minutos estimados do dia mais longo ÷ minutos escolhidos (% dos programas).
 | minutos | mediana do uso | < 50% | < 70% | ≥ 100% |
 | ---: | ---: | ---: | ---: | ---: |
 | 30 | 100% | 0% | 0% | 77,7% |
-| 45 | 100% | 0% | 0,1% | 71,8% |
+| 45 | 100% | 0% | 0,1% | 71,9% |
 | 60 | 95% | 0,1% | 8% | 43,4% |
-| 75 | 80% | 2% | 28,5% | 21,3% |
-| 90 | 65% | 10,9% | 50,6% | 10,5% |
+| 75 | 80% | 2% | 28,5% | 21,2% |
+| 90 | 65% | 10,9% | 50,6% | 10,6% |
 
 ## Séries por músculo
 
@@ -178,7 +178,7 @@ Por nível, somando os cenários: média de séries semanais; prioritário abaix
 | ombro (posterior) | 6,2 | 0% | 13,2% | 8,7% | 0 |
 | bíceps | 3,7 | 75,7% | 52,4% | 47,1% | 0 |
 | tríceps | 8,9 | 41,1% | 17,1% | 13,8% | 0 |
-| quadríceps | 8,5 | 64,3% | 10,4% | 10,4% | 0 |
+| quadríceps | 8,5 | 64,4% | 10,4% | 10,4% | 0 |
 | posteriores da coxa | 9,4 | 48,8% | 6,9% | 3,6% | 0 |
 | glúteos | 10,7 | 39,4% | 5% | 0,6% | 0 |
 | panturrilha | 6,6 | 63,8% | 11,8% | 5,9% | 0 |
@@ -282,8 +282,8 @@ Séries diretas mais meia série indireta, como o app conta o volume. Média (%)
 | bracos | 18,4% | 71,5% | — | 19,6% | 77,3% | — | 20,1% | 79,8% | — |
 | pernas | 33% | 57,7% | — | 36,5% | 55,9% | — | 37,8% | 65,6% | — |
 | gluteos | 18,1% | 22,3% | — | 17,9% | 27,4% | — | 18,7% | 32,9% | — |
-| abdomen | 13,2% | 25,1% | — | 15,1% | 27,7% | — | 15,8% | 32,3% | — |
-| peito+costas | 17,4% | 68,6% | 36,1% | 19,9% | 69,5% | 43,5% | 20,6% | 79,6% | 40,9% |
+| abdomen | 13,2% | 25,1% | — | 15,1% | 27,8% | — | 15,8% | 32,3% | — |
+| peito+costas | 17,4% | 68,6% | 36,1% | 19,9% | 69,6% | 43,5% | 20,6% | 79,6% | 40,9% |
 | pernas+gluteos | 49,3% | 63,7% | 49% | 51,4% | 68,2% | 43,6% | 52,6% | 86,8% | 54,3% |
 | peito+bracos | 30,4% | 75,3% | 51,4% | 32,6% | 77,3% | 54% | 33,5% | 82,5% | 49,1% |
 | costas+ombros | 10,3% | 81,4% | 18,9% | 11,2% | 82% | 18,7% | 11,6% | 85,7% | 11,9% |
@@ -337,7 +337,7 @@ Séries diretas mais meia série indireta, como o app conta o volume. Média (%)
 | so:paralelas | 15,2% |
 | so:rack_de_agachamento | 15,9% |
 | so:remada_articulada | 15,9% |
-| so:roda_abdominal | 15,2% |
+| so:roda_abdominal | 15,1% |
 | so:rosca_maquina | 16% |
 | so:smith | 15,9% |
 | so:step | 15,1% |
@@ -592,14 +592,14 @@ O veredito do avaliador de programas (R5b, `src/domain/avaliador`; regra `avalia
 | **todos** | 11,1% | 79,8% | 9,1% | 0% | 90,9% |
 | academia | 34,2% | 57,7% | 8,1% | 0% | 91,9% |
 | academia+ | 34,2% | 57,6% | 8,2% | 0% | 91,8% |
-| bairro | 33,9% | 56,9% | 9,2% | 0% | 90,8% |
+| bairro | 33,9% | 56,8% | 9,3% | 0% | 90,7% |
 | banco+halteres-leves | 37% | 51,2% | 11,7% | 0% | 88,3% |
 | bruno | 35% | 57,9% | 7,2% | 0% | 92,8% |
 | casa | 32,1% | 56,1% | 11,8% | 0% | 88,2% |
-| casa+ | 35,8% | 56,5% | 7,7% | 0% | 92,3% |
+| casa+ | 35,8% | 56,4% | 7,8% | 0% | 92,2% |
 | condominio | 37,3% | 53,2% | 9,5% | 0% | 90,5% |
 | condominio+ | 33,7% | 57,7% | 8,6% | 0% | 91,4% |
-| diego | 28,7% | 58,3% | 13,1% | 0% | 86,9% |
+| diego | 28,7% | 58,1% | 13,2% | 0% | 86,8% |
 | elasticos | 28,5% | 57,6% | 13,9% | 0% | 86,1% |
 | halteres | 36,3% | 54,6% | 9,2% | 0% | 90,8% |
 | halteres-banco | 37% | 51,2% | 11,7% | 0% | 88,3% |
@@ -607,7 +607,7 @@ O veredito do avaliador de programas (R5b, `src/domain/avaliador`; regra `avalia
 | so:abdominal_maquina | 0% | 92,7% | 7,3% | 0% | 92,7% |
 | so:anilhas_e_manoplas | 36,3% | 54,6% | 9,2% | 0% | 90,8% |
 | so:banco_romano | 0% | 91,3% | 8,7% | 0% | 91,3% |
-| so:barra_fixa | 0% | 90,6% | 9,4% | 0% | 90,6% |
+| so:barra_fixa | 0% | 90,7% | 9,3% | 0% | 90,7% |
 | so:barra_hexagonal | 0% | 92,9% | 7,1% | 0% | 92,9% |
 | so:barra_longa | 0% | 91,5% | 8,5% | 0% | 91,5% |
 | so:barra_w | 0% | 90,9% | 9,1% | 0% | 90,9% |
@@ -634,7 +634,7 @@ O veredito do avaliador de programas (R5b, `src/domain/avaliador`; regra `avalia
 | so:paralelas | 0% | 92% | 8% | 0% | 92% |
 | so:rack_de_agachamento | 0% | 90,6% | 9,4% | 0% | 90,6% |
 | so:remada_articulada | 0% | 90,8% | 9,2% | 0% | 90,8% |
-| so:roda_abdominal | 0% | 92,2% | 7,8% | 0% | 92,2% |
+| so:roda_abdominal | 0% | 92,1% | 7,9% | 0% | 92,1% |
 | so:rosca_maquina | 0% | 91,4% | 8,6% | 0% | 91,4% |
 | so:smith | 0% | 91,2% | 8,8% | 0% | 91,2% |
 | so:step | 0% | 92,3% | 7,7% | 0% | 92,3% |
@@ -654,15 +654,15 @@ O veredito do avaliador de programas (R5b, `src/domain/avaliador`; regra `avalia
 | --- | ---: | ---: |
 | `equipamento.escada-carga-leve` | 762.450 | 83,6% |
 | `selecao.isolador-obrigatorio` | 679.575 | 74,5% |
-| `volume.semanal.alvo` | 616.299 | 67,6% |
+| `volume.semanal.alvo` | 616.300 | 67,6% |
 | `equipamento.sem-ancoragem` | 419.900 | 46,1% |
 | `seguranca.dor.programa` | 375.375 | 41,2% |
-| `tempo.sobra` | 341.399 | 37,4% |
-| `tempo.corte` | 330.209 | 36,2% |
+| `tempo.sobra` | 341.363 | 37,4% |
+| `tempo.corte` | 330.464 | 36,2% |
 | `selecao.dia-sem-principal` | 243.650 | 26,7% |
 | `equipamento.sem-puxada-vertical` | 242.125 | 26,6% |
 | `selecao.alongado` | 153.000 | 16,8% |
-| `volume.prioridade.competicao` | 146.398 | 16,1% |
+| `volume.prioridade.competicao` | 146.413 | 16,1% |
 
 ## Piores casos
 
@@ -707,7 +707,7 @@ Os 10 piores cenários de cada medida, um caso por cenário (menor valor primeir
   - Programa: Superior (29 min): remada-invertida 4, flexao 2, extensao-triceps-peso-corpo 2, abertura-t-deitado 2 | Inferior (32 min): agachamento-smith 2, bulgaro-peso-corpo 2, flexao-joelho-deslizante 3, panturrilha-degrau 3, abdominal-chao 2 | Empurrar (23 min): remada-invertida 2, flexao 2, flexao-fechada 2, extensao-triceps-peso-corpo 2 | Puxar (22 min): remada-invertida 4, abertura-t-deitado 2, abdominal-invertido 2 | Pernas (30 min): afundo-peso-corpo 2, ponte-gluteo 2, flexao-joelho-deslizante 3, panturrilha-degrau 3
   - Reproduzir: `gerarPrograma({"nivel":"iniciante","semanasParado":0,"diasSemana":5,"minutosSessao":90,"prioridades":["costas"],"evitarExercicios":[],"evitarEquipamentos":[],"triagem":{"respostas":{"coracao":false,"peito":false,"tontura":false,"doenca-cronica":false,"medicamento":false,"osteoarticular":false,"supervisao":false,"gravidez":false,"doenca-aguda":false}}}, CEN_55['so:smith'].inventario)`
 - **so:barra_fixa · iniciante · 5 dias · 90 min · prioridade peito · sem dor**: 33 de 90 min.
-  - Programa: Superior (33 min): flexao 4, barra-fixa-negativa 4, extensao-triceps-peso-corpo 2, abertura-t-deitado 2 | Inferior (33 min): agachamento-peso-corpo 2, bulgaro-peso-corpo 2, flexao-joelho-deslizante 3, panturrilha-degrau 3, abdominal-chao 2 | Empurrar (22 min): flexao 3, flexao-fechada 3, extensao-triceps-peso-corpo 2 | Puxar (20 min): barra-fixa-negativa 4, abertura-t-deitado 2, elevacao-joelhos 2 | Pernas (30 min): afundo-peso-corpo 2, ponte-gluteo 2, flexao-joelho-deslizante 3, panturrilha-degrau 3
+  - Programa: Superior (33 min): flexao 4, barra-fixa-negativa 4, extensao-triceps-peso-corpo 2, abertura-t-deitado 2 | Inferior (33 min): agachamento-peso-corpo 2, bulgaro-peso-corpo 2, flexao-joelho-deslizante 3, panturrilha-degrau 3, abdominal-chao 2 | Empurrar (22 min): flexao 3, flexao-fechada 3, extensao-triceps-peso-corpo 2 | Puxar (21 min): barra-fixa-negativa 4, abertura-t-deitado 2, abdominal-invertido 2 | Pernas (30 min): afundo-peso-corpo 2, ponte-gluteo 2, flexao-joelho-deslizante 3, panturrilha-degrau 3
   - Reproduzir: `gerarPrograma({"nivel":"iniciante","semanasParado":0,"diasSemana":5,"minutosSessao":90,"prioridades":["peito"],"evitarExercicios":[],"evitarEquipamentos":[],"triagem":{"respostas":{"coracao":false,"peito":false,"tontura":false,"doenca-cronica":false,"medicamento":false,"osteoarticular":false,"supervisao":false,"gravidez":false,"doenca-aguda":false}}}, CEN_55['so:barra_fixa'].inventario)`
 - **so:rack_de_agachamento · iniciante · 5 dias · 90 min · prioridade costas · sem dor**: 33 de 90 min.
   - Programa: Superior (29 min): remada-invertida 4, flexao 2, extensao-triceps-peso-corpo 2, abertura-t-deitado 2 | Inferior (33 min): agachamento-peso-corpo 2, bulgaro-peso-corpo 2, flexao-joelho-deslizante 3, panturrilha-degrau 3, abdominal-chao 2 | Empurrar (23 min): remada-invertida 2, flexao 2, flexao-fechada 2, extensao-triceps-peso-corpo 2 | Puxar (22 min): remada-invertida 4, abertura-t-deitado 2, abdominal-invertido 2 | Pernas (30 min): afundo-peso-corpo 2, ponte-gluteo 2, flexao-joelho-deslizante 3, panturrilha-degrau 3
@@ -770,7 +770,7 @@ Os 10 piores cenários de cada medida, um caso por cenário (menor valor primeir
 ### menos-exercicios-com-45min-ou-mais-sem-dor-nem-evitado
 
 - **so:barra_fixa · iniciante · 5 dias · 45 min · prioridade nenhuma · sem dor**: dia com 3 exercícios em 45 min.
-  - Programa: Superior (33 min): flexao 4, barra-fixa-negativa 4, extensao-triceps-peso-corpo 2, abertura-t-deitado 2 | Inferior (44 min): agachamento-peso-corpo 4, bulgaro-peso-corpo 2, flexao-joelho-deslizante 4, panturrilha-degrau 4, abdominal-chao 2 | Empurrar (17 min): flexao 2, flexao-fechada 2, extensao-triceps-peso-corpo 2 | Puxar (20 min): barra-fixa-negativa 4, abertura-t-deitado 2, elevacao-joelhos 2 | Pernas (35 min): afundo-peso-corpo 2, ponte-gluteo 2, flexao-joelho-deslizante 4, panturrilha-degrau 4
+  - Programa: Superior (33 min): flexao 4, barra-fixa-negativa 4, extensao-triceps-peso-corpo 2, abertura-t-deitado 2 | Inferior (44 min): agachamento-peso-corpo 4, bulgaro-peso-corpo 2, flexao-joelho-deslizante 4, panturrilha-degrau 4, abdominal-chao 2 | Empurrar (17 min): flexao 2, flexao-fechada 2, extensao-triceps-peso-corpo 2 | Puxar (21 min): barra-fixa-negativa 4, abertura-t-deitado 2, abdominal-invertido 2 | Pernas (35 min): afundo-peso-corpo 2, ponte-gluteo 2, flexao-joelho-deslizante 4, panturrilha-degrau 4
   - Reproduzir: `gerarPrograma({"nivel":"iniciante","semanasParado":0,"diasSemana":5,"minutosSessao":45,"prioridades":[],"evitarExercicios":[],"evitarEquipamentos":[],"triagem":{"respostas":{"coracao":false,"peito":false,"tontura":false,"doenca-cronica":false,"medicamento":false,"osteoarticular":false,"supervisao":false,"gravidez":false,"doenca-aguda":false}}}, CEN_55['so:barra_fixa'].inventario)`
 - **so:barra_longa · intermediario · 5 dias · 45 min · prioridade nenhuma · sem dor**: dia com 3 exercícios em 45 min.
   - Programa: Superior (38 min): flexao 4, remada-barra 4, extensao-triceps-peso-corpo 2, abertura-t-deitado 4 | Inferior (45 min): agachamento-peso-corpo 3, terra-romeno-barra 3, bulgaro-peso-corpo 2, flexao-joelho-deslizante 2, panturrilha-degrau 4, abdominal-chao 2 | Empurrar (27 min): flexao-pes-elevados 4, flexao-fechada 4, extensao-triceps-peso-corpo 2 | Puxar (26 min): remada-barra 4, abertura-t-deitado 4, abdominal-invertido 2 | Pernas (44 min): afundo-peso-corpo 4, terra-romeno-barra 2, ponte-gluteo 2, panturrilha-degrau 4, nordico 2
@@ -805,7 +805,7 @@ Os 10 piores cenários de cada medida, um caso por cenário (menor valor primeir
 ### `avaliador.ajustar-sem-aviso`
 
 - **bairro · avancado · 4 dias · 45 min · prioridade abdomen · joelho 7**: funcoes: Um movimento só para o músculo: glúteos só com extensão de quadril. → Troque stiff unilateral com halter por abdução de quadril deitado de lado, sem carga no treino Inferior B. Movimentos diferentes crescem partes diferentes do músculo..
-  - Programa: Superior A (42 min): supino-reto 3, barra-fixa 2, remada-apoiada 2, triceps-frances-halter 3, crucifixo-inverso 2, abdominal-chao 4 | Inferior A (45 min): stiff 2, stiff-unilateral 2, ponte-gluteo-halter 2, panturrilha-leg-press 3, aducao-deitado 2, elevacao-joelhos 4 | Superior B (41 min): supino-inclinado 3, remada-unilateral-halter 2, barra-fixa-supinada 2, elevacao-halteres 3, crucifixo-invertido-curvado 2, elevacao-joelhos-paralelas 3 | Inferior B (45 min): ponte-gluteo-halter 2, stiff 2, stiff-unilateral 2, panturrilha-leg-press 3, elevacao-lateral-deitado 3, abdominal-invertido 3
+  - Programa: Superior A (42 min): supino-reto 3, barra-fixa 2, remada-apoiada 2, triceps-frances-halter 3, crucifixo-inverso 2, abdominal-chao 4 | Inferior A (45 min): stiff 2, stiff-unilateral 2, ponte-gluteo-halter 2, panturrilha-leg-press 3, aducao-deitado 2, abdominal-invertido 4 | Superior B (41 min): supino-inclinado 3, remada-unilateral-halter 2, barra-fixa-supinada 2, elevacao-halteres 3, crucifixo-invertido-curvado 2, elevacao-joelhos 3 | Inferior B (44 min): ponte-gluteo-halter 2, stiff 2, stiff-unilateral 2, panturrilha-leg-press 3, elevacao-lateral-deitado 3, elevacao-joelhos-paralelas 3
   - Reproduzir: `gerarPrograma({"nivel":"avancado","semanasParado":0,"diasSemana":4,"minutosSessao":45,"prioridades":["abdomen"],"evitarExercicios":[],"evitarEquipamentos":[],"triagem":{"respostas":{"coracao":false,"peito":false,"tontura":false,"doenca-cronica":false,"medicamento":false,"osteoarticular":true,"supervisao":false,"gravidez":false,"doenca-aguda":false},"dores":[{"articulacao":"joelho","nota":7}]}}, CEN_55['bairro'].inventario)`
 - **so:cadeira_extensora · intermediario · 3 dias · 30 min · prioridade pernas+gluteos+abdomen · quadril 7**: coxa: A coxa está desequilibrada: frente da coxa 4 × posteriores 12 séries por semana (a faixa é de metade ao dobro). → Acrescente cadeira extensora (2 séries) no treino Corpo todo C..
   - Programa: Corpo todo A (30 min): flexao 2, flexao-joelho-deslizante 4, extensao-triceps-peso-corpo 3, abdominal-chao 4 | Corpo todo B (29 min): flexao-pes-elevados 2, nordico 4, cadeira-extensora 4, panturrilha-degrau 4 | Corpo todo C (21 min): flexao 2, panturrilha-degrau 4, flexao-joelho-deslizante 4
@@ -892,10 +892,10 @@ Os 10 piores cenários de cada medida, um caso por cenário (menor valor primeir
   - Programa: Corpo todo A (50 min): goblet 2, flexao 2, remada-unilateral-sem-banco 2, flexao-joelho-elastico 2, triceps-frances-halter 2, elevacao-halteres 3, crucifixo-elastico 2, abdominal-chao 2 | Corpo todo B (58 min): stiff 2, flexao 2, remada-curvada-halteres 2, extensao-joelho-elastico 2, rosca-alternada 3, panturrilha-degrau 4, crucifixo-invertido-sentado 3, abdominal-invertido 2 | Corpo todo C (56 min): afundo 2, supino-chao-halteres 2, remada-unilateral-sem-banco 2, ponte-gluteo-halter 3, elevacao-halteres 3, triceps-testa-halteres 2, flexao-joelho-elastico 2, abdominal-chao 2
   - Reproduzir: `gerarPrograma({"nivel":"iniciante","semanasParado":0,"diasSemana":3,"minutosSessao":90,"prioridades":[],"evitarExercicios":[],"evitarEquipamentos":[],"triagem":{"respostas":{"coracao":false,"peito":false,"tontura":false,"doenca-cronica":false,"medicamento":false,"osteoarticular":false,"supervisao":false,"gravidez":false,"doenca-aguda":false}}}, CEN_55['casa'].inventario)`
 - **casa+ · iniciante · 3 dias · 75 min · prioridade nenhuma · sem dor**: dia típico abaixo de 70% dos minutos, sem o aviso: dia típico de 51 min em 75, sem o aviso.
-  - Programa: Corpo todo A (48 min): bulgaro 2, supino-reto 2, barra-fixa-negativa 2, flexao-bola 2, triceps-frances-halter 2, elevacao-halteres 3, crucifixo-halteres 2, abdominal-bola 2 | Corpo todo B (58 min): stiff 2, supino-inclinado 2, remada-apoiada 2, extensao-joelho-caneleira 2, rosca-inclinada 3, panturrilha 4, crucifixo-inverso 3, abdominal-chao 2 | Corpo todo C (51 min): afundo 2, supino-reto 2, barra-fixa-negativa 2, ponte-kettlebell 2, elevacao-halteres 3, triceps-suspensao 2, flexao-joelho-elastico 2, elevacao-joelhos 2
+  - Programa: Corpo todo A (48 min): bulgaro 2, supino-reto 2, barra-fixa-negativa 2, flexao-bola 2, triceps-frances-halter 2, elevacao-halteres 3, crucifixo-halteres 2, abdominal-bola 2 | Corpo todo B (58 min): stiff 2, supino-inclinado 2, remada-apoiada 2, extensao-joelho-caneleira 2, rosca-inclinada 3, panturrilha 4, crucifixo-inverso 3, abdominal-chao 2 | Corpo todo C (51 min): afundo 2, supino-reto 2, barra-fixa-negativa 2, ponte-kettlebell 2, elevacao-halteres 3, triceps-suspensao 2, flexao-joelho-elastico 2, abdominal-invertido 2
   - Reproduzir: `gerarPrograma({"nivel":"iniciante","semanasParado":0,"diasSemana":3,"minutosSessao":75,"prioridades":[],"evitarExercicios":[],"evitarEquipamentos":[],"triagem":{"respostas":{"coracao":false,"peito":false,"tontura":false,"doenca-cronica":false,"medicamento":false,"osteoarticular":false,"supervisao":false,"gravidez":false,"doenca-aguda":false}}}, CEN_55['casa+'].inventario)`
-- **condominio+ · iniciante · 3 dias · 90 min · prioridade nenhuma · sem dor**: dia típico abaixo de 70% dos minutos, sem o aviso: dia típico de 53 min em 90, sem o aviso.
-  - Programa: Corpo todo A (49 min): bulgaro 2, supino-reto 2, puxada-frente 2, cadeira-flexora 2, triceps-frances-halter 2, elevacao-halteres 3, crucifixo-halteres 2, abdominal-bola 2 | Corpo todo B (57 min): stiff 2, supino-inclinado 2, remada-apoiada 2, cadeira-extensora 2, rosca-inclinada 3, panturrilha 4, crucifixo-inverso 3, abdominal-chao 2 | Corpo todo C (53 min): afundo 2, supino-maquina 2, puxada-frente 2, hip-thrust 3, elevacao-halteres 3, triceps-testa-halteres 2, cadeira-flexora 2, elevacao-joelhos 2
+- **condominio+ · iniciante · 3 dias · 90 min · prioridade nenhuma · sem dor**: dia típico abaixo de 70% dos minutos, sem o aviso: dia típico de 54 min em 90, sem o aviso.
+  - Programa: Corpo todo A (49 min): bulgaro 2, supino-reto 2, puxada-frente 2, cadeira-flexora 2, triceps-frances-halter 2, elevacao-halteres 3, crucifixo-halteres 2, abdominal-bola 2 | Corpo todo B (57 min): stiff 2, supino-inclinado 2, remada-apoiada 2, cadeira-extensora 2, rosca-inclinada 3, panturrilha 4, crucifixo-inverso 3, abdominal-chao 2 | Corpo todo C (54 min): afundo 2, supino-maquina 2, puxada-frente 2, hip-thrust 3, elevacao-halteres 3, triceps-testa-halteres 2, cadeira-flexora 2, abdominal-invertido 2
   - Reproduzir: `gerarPrograma({"nivel":"iniciante","semanasParado":0,"diasSemana":3,"minutosSessao":90,"prioridades":[],"evitarExercicios":[],"evitarEquipamentos":[],"triagem":{"respostas":{"coracao":false,"peito":false,"tontura":false,"doenca-cronica":false,"medicamento":false,"osteoarticular":false,"supervisao":false,"gravidez":false,"doenca-aguda":false}}}, CEN_55['condominio+'].inventario)`
 
 ### `regua.B1`
@@ -976,8 +976,8 @@ Os 10 piores cenários de cada medida, um caso por cenário (menor valor primeir
   - Programa: Corpo todo A (50 min): goblet 2, flexao 2, remada-unilateral-sem-banco 2, flexao-joelho-elastico 2, triceps-frances-halter 2, elevacao-halteres 3, crucifixo-elastico 2, abdominal-chao 2 | Corpo todo B (58 min): stiff 2, flexao 2, remada-curvada-halteres 2, extensao-joelho-elastico 2, rosca-alternada 3, panturrilha-degrau 4, crucifixo-invertido-sentado 3, abdominal-invertido 2 | Corpo todo C (56 min): afundo 2, supino-chao-halteres 2, remada-unilateral-sem-banco 2, ponte-gluteo-halter 3, elevacao-halteres 3, triceps-testa-halteres 2, flexao-joelho-elastico 2, abdominal-chao 2
   - Reproduzir: `gerarPrograma({"nivel":"iniciante","semanasParado":0,"diasSemana":3,"minutosSessao":90,"prioridades":[],"evitarExercicios":[],"evitarEquipamentos":[],"triagem":{"respostas":{"coracao":false,"peito":false,"tontura":false,"doenca-cronica":false,"medicamento":false,"osteoarticular":false,"supervisao":false,"gravidez":false,"doenca-aguda":false}}}, CEN_55['casa'].inventario)`
 - **casa+ · iniciante · 3 dias · 90 min · prioridade nenhuma · sem dor**: o dia mais longo usa 58 de 90 min e não há aviso de sobra.
-  - Programa: Corpo todo A (48 min): bulgaro 2, supino-reto 2, barra-fixa-negativa 2, flexao-bola 2, triceps-frances-halter 2, elevacao-halteres 3, crucifixo-halteres 2, abdominal-bola 2 | Corpo todo B (58 min): stiff 2, supino-inclinado 2, remada-apoiada 2, extensao-joelho-caneleira 2, rosca-inclinada 3, panturrilha 4, crucifixo-inverso 3, abdominal-chao 2 | Corpo todo C (51 min): afundo 2, supino-reto 2, barra-fixa-negativa 2, ponte-kettlebell 2, elevacao-halteres 3, triceps-suspensao 2, flexao-joelho-elastico 2, elevacao-joelhos 2
+  - Programa: Corpo todo A (48 min): bulgaro 2, supino-reto 2, barra-fixa-negativa 2, flexao-bola 2, triceps-frances-halter 2, elevacao-halteres 3, crucifixo-halteres 2, abdominal-bola 2 | Corpo todo B (58 min): stiff 2, supino-inclinado 2, remada-apoiada 2, extensao-joelho-caneleira 2, rosca-inclinada 3, panturrilha 4, crucifixo-inverso 3, abdominal-chao 2 | Corpo todo C (51 min): afundo 2, supino-reto 2, barra-fixa-negativa 2, ponte-kettlebell 2, elevacao-halteres 3, triceps-suspensao 2, flexao-joelho-elastico 2, abdominal-invertido 2
   - Reproduzir: `gerarPrograma({"nivel":"iniciante","semanasParado":0,"diasSemana":3,"minutosSessao":90,"prioridades":[],"evitarExercicios":[],"evitarEquipamentos":[],"triagem":{"respostas":{"coracao":false,"peito":false,"tontura":false,"doenca-cronica":false,"medicamento":false,"osteoarticular":false,"supervisao":false,"gravidez":false,"doenca-aguda":false}}}, CEN_55['casa+'].inventario)`
 - **condominio+ · iniciante · 3 dias · 90 min · prioridade nenhuma · sem dor**: o dia mais longo usa 57 de 90 min e não há aviso de sobra.
-  - Programa: Corpo todo A (49 min): bulgaro 2, supino-reto 2, puxada-frente 2, cadeira-flexora 2, triceps-frances-halter 2, elevacao-halteres 3, crucifixo-halteres 2, abdominal-bola 2 | Corpo todo B (57 min): stiff 2, supino-inclinado 2, remada-apoiada 2, cadeira-extensora 2, rosca-inclinada 3, panturrilha 4, crucifixo-inverso 3, abdominal-chao 2 | Corpo todo C (53 min): afundo 2, supino-maquina 2, puxada-frente 2, hip-thrust 3, elevacao-halteres 3, triceps-testa-halteres 2, cadeira-flexora 2, elevacao-joelhos 2
+  - Programa: Corpo todo A (49 min): bulgaro 2, supino-reto 2, puxada-frente 2, cadeira-flexora 2, triceps-frances-halter 2, elevacao-halteres 3, crucifixo-halteres 2, abdominal-bola 2 | Corpo todo B (57 min): stiff 2, supino-inclinado 2, remada-apoiada 2, cadeira-extensora 2, rosca-inclinada 3, panturrilha 4, crucifixo-inverso 3, abdominal-chao 2 | Corpo todo C (54 min): afundo 2, supino-maquina 2, puxada-frente 2, hip-thrust 3, elevacao-halteres 3, triceps-testa-halteres 2, cadeira-flexora 2, abdominal-invertido 2
   - Reproduzir: `gerarPrograma({"nivel":"iniciante","semanasParado":0,"diasSemana":3,"minutosSessao":90,"prioridades":[],"evitarExercicios":[],"evitarEquipamentos":[],"triagem":{"respostas":{"coracao":false,"peito":false,"tontura":false,"doenca-cronica":false,"medicamento":false,"osteoarticular":false,"supervisao":false,"gravidez":false,"doenca-aguda":false}}}, CEN_55['condominio+'].inventario)`

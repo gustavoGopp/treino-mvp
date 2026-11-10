@@ -1466,3 +1466,49 @@ As saídas completas das 6 personas, dos 4 publicados e do Bruno com dor no ombr
 > Testei com quatro programas de estudos publicados. Ela apontou o que um treinador apontaria: 6 a 10 séries num exercício só, posteriores da coxa e panturrilha sem nenhuma série, treinos de 95 minutos para quem tem 60. E, em vez de só reclamar, diz o que fazer: "troque o leg press pela cadeira extensora no treino C".
 >
 > A surpresa foi usá-la no próprio app. Em 5.850 programas que o app monta, ela achou três coisas que ele fazia sem avisar, como um músculo grande treinado com um movimento só havendo outro. Corrigi o gerador, e hoje a régua diz "está bom" ou "é o limite do seu equipamento" em 88,5% deles, sem nenhum ponto de segurança. O resto, ela aponta e o app já avisa.
+
+---
+
+## R5-anim: os 5 exercícios de corpo livre ganham animação (10/11/2026)
+
+**Por quê.** O R5-CL pôs 32 exercícios na biblioteca, todos como cartão de texto (exercício sem animação aprovada nunca ganha animação improvisada). Com isso, **74,2%** dos programas sem dor passaram a ter um dia com 3 ou mais exercícios sem animação. Cinco exercícios de corpo livre, que valem em quase todo cenário, respondiam pela maior parte.
+
+**O que mudou**
+- **5 animações novas, aprovadas pelo Gustavo folha a folha**, na ordem da frequência: panturrilha no degrau da escada, abdominal invertido, extensão de tríceps com o peso do corpo, abertura em T deitado de bruços e flexão com os pés elevados. Cada uma saiu de uma animação já aprovada (a panturrilha no step, o abdominal no chão, o tríceps na suspensão, a flexão de joelho com elástico e o T na suspensão, a flexão), com o mesmo corpo e o mesmo estilo A. O degrau, a bancada, o apoio dos pés, o colchonete e a toalha são caixas, a peça que já existia: nenhuma peça nova de cena.
+- Cada folha veio com a conferência escrita "o que a fonte pede × o que o boneco faz (medido em cm) × confere?" e uma folha extra com cada erro em 6 instantes do ciclo, para ver o erro se mexendo (`revisoes/r5-anim/`).
+- Duas vistas novas onde o movimento pede: a extensão de tríceps ganhou a vista de cima (o "abrir os cotovelos" só aparece de cima) e a abertura em T abre de frente (de lado, os braços apontam para a câmera).
+- A folha de contatos (`scripts/folha-animacao.mjs`) passou a escrever o título de cada erro, tirado do texto do guia, como no app.
+- O texto completo do guia (sensação, respiração, checklist, variações) substituiu o cartão dos 5, com os mesmos erros do cartão.
+
+**Medido** (régua da G5, 108.900 programas, 36.300 sem dor; `revisoes/qualidade/regua.md`)
+| | antes | depois |
+|---|---|---|
+| programas sem dor com um dia de 3 ou mais cartões (G1) | 74,2% | **17,4%** |
+| o mesmo, só no corpo livre ("sem nada") | 82,1% | **0%** |
+| cartões de texto por dia (média) | 1,95 | 0,79 |
+| programas sem dor sem nenhum defeito | 85,5% | 85,5% |
+
+O aceite pedia ≤ 20% (o protótipo de 07/11 mediu 19,5%). Nenhum defeito passou da linha de base. Com dor, o A3 (dia mais longo que o tempo) sobe de 2.505 para 2.537 programas (3,5%; a linha de base é 4,5%), porque o desempate pela animação troca alguns exercícios equivalentes.
+
+**As 6 personas.** Só o **Fábio** muda: no Inferior B, a elevação de joelhos na barra dá lugar ao abdominal invertido (os dois são do mesmo nível e agora os dois têm animação; o empate cai na ordem do nome). Cartões que restam por dia: Elisa nenhum (tinha 1 e 2), Fábio 1 no Superior A e nenhum nos outros (tinha 3, 1, 2 e 1), Ana e Diego no máximo 1; Bruno e Carla seguem com os cartões de máquina e barra (o resto da fila).
+
+**Sem mudar o que já estava aprovado.** As 82 animações anteriores continuam com os mesmos quadros nas duas linhas de base (`estilo-a.json` e `novas.json`: só as 5 novas entraram), 0 falha de cinemática em todas, e `node referencia/qa/check-motor.cjs check` limpo. O gerador não mudou.
+
+**Testes que mudaram:** o snapshot do programa do Fábio (`tests/unit/__snapshots__/gerador.test.ts.snap`, a troca acima); a lista dos músculos que "só ajudam" (o abdômen na flexão com os pés elevados, como na flexão: `SO_AJUDA` no motor e `AJUDANTES` em `scripts/auditoria/anatomia-regras.ts`); as linhas de base do motor. Os testes de conteúdo (todo exercício animado tem texto e os mesmos erros) passaram a cobrir os 5. Nenhum teste e2e precisou mudar: os que abrem um exercício sem animação usam exercícios que seguem em cartão.
+
+**Também:** `npm run check` limpo (828 testes unitários, eram 823); `npm run test:e2e` com os 141 passando; `npm run auditoria` regerou os relatórios (`revisoes/auditoria`, `anatomia`, `equipamento-minimo`, `qualidade`) com as 5 animadas.
+
+![As 5 animações novas, no modo Técnica](img/r5-anim-5-animacoes.png)
+
+As folhas completas, com os músculos, a trajetória e os erros: `revisoes/r5-anim/folhas/`.
+
+**Fica para depois** (`backlog.md`, "Do R5-anim"): o resto da fila (84 exercícios ainda em cartão, os mais frequentes com 7% a 14% dos programas), o desempate entre equivalentes animados e os limites de desenho (o polegar, o boneco de bruços visto de frente).
+
+**Rascunho de post para o LinkedIn**
+> No meu app de treino, cada exercício tem um boneco animado que mostra a execução e os erros mais comuns. Quando acrescentei 32 exercícios novos, eles entraram só como texto, porque a regra do projeto é não pôr animação improvisada. O efeito: em 3 de cada 4 programas, algum dia tinha 3 ou mais exercícios sem o boneco.
+>
+> Medi quais eram os culpados. Cinco exercícios de corpo livre (panturrilha no degrau, abdominal invertido, tríceps com o peso do corpo, abertura em T deitado e flexão com os pés no sofá) apareciam em mais da metade dos programas. Animei esses cinco, um por vez, cada um com uma folha que compara o que a fonte pede com o que o boneco faz, em centímetros.
+>
+> Resultado: os programas com um dia de 3 ou mais exercícios sem animação caíram de 74% para 17%. Para quem treina sem nenhum equipamento, para zero. E nenhuma das 82 animações anteriores mudou um pixel: o teste visual garante.
+>
+> O que aprendi: antes de fazer mais, medir onde está o buraco. Cinco animações resolveram o que 32 teriam resolvido no papel.
