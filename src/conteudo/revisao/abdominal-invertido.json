@@ -1,0 +1,75 @@
+{
+ "id": "abdominal-invertido",
+ "name": "Abdominal invertido no chão",
+ "short": "Abdominal invertido",
+ "target": "Abdômen (a barriga), enrolando a pelve",
+ "feel": "Barriga, sobretudo a parte de baixo, perto do umbigo.",
+ "feelNote": "A frente do quadril também trabalha. Dor na lombar não é normal: diminua a subida e procure avaliação se continuar.",
+ "setupEq": [
+  "Um colchonete."
+ ],
+ "setupBody": [
+  "Deite de costas, braços ao lado do corpo, palmas no chão.",
+  "Joelhos dobrados a ~90°, pés fora do chão, coxas na vertical."
+ ],
+ "exec": [
+  [
+   "hold",
+   "Embaixo",
+   "Quadril no chão, coxas na vertical."
+  ],
+  [
+   "conc",
+   "Subida (concêntrica)",
+   "~1 s. Enrole a pelve em direção ao peito, tirando o quadril do chão."
+  ],
+  [
+   "hold",
+   "No alto",
+   "Segure 1 s, abdômen contraído."
+  ],
+  [
+   "ecc",
+   "Descida (excêntrica)",
+   "~2 s, vértebra por vértebra, até o quadril voltar ao chão."
+  ]
+ ],
+ "range": [
+  "Embaixo: quadril no chão, coxas na vertical.",
+  "Em cima: quadril fora do chão, joelhos perto do peito."
+ ],
+ "breath": "Solte o ar subindo, inspire descendo.",
+ "cues": [
+  "Enrole a pelve.",
+  "Sem embalo das pernas.",
+  "Desça devagar."
+ ],
+ "check": [
+  "Costas de cima no chão",
+  "Joelhos a ~90°",
+  "Mãos só apoiam",
+  "Descida lenta, até as coxas na vertical"
+ ],
+ "vary": "Fica fácil? Desça em 3 s; depois, segure 2 s no alto; por fim, as duas coisas juntas.",
+ "extLabels": [
+  "embaixo",
+  "no alto"
+ ],
+ "errors": [
+  {
+   "id": "embalo",
+   "title": "Jogar as pernas",
+   "desc": "O embalo levanta o quadril e o abdômen trabalha menos. Suba devagar, enrolando."
+  },
+  {
+   "id": "maos",
+   "title": "Empurrar com as mãos",
+   "desc": "Os braços fazem a força. As mãos só apoiam."
+  },
+  {
+   "id": "lombar",
+   "title": "Arquear a lombar na descida",
+   "desc": "As pernas vão longe demais e a lombar sai do chão. Volte só até as coxas ficarem na vertical."
+  }
+ ]
+}

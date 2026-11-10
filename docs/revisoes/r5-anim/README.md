@@ -7,8 +7,8 @@ Nada aqui muda o corpo do Boneco, o estilo ou as animações já aprovadas: as p
 ## A fila
 | # | Animação | Em quantos programas aparece | Base aprovada | Folha | Situação |
 |---|---|---|---|---|---|
-| 1 | `panturrilha-degrau` (panturrilha no degrau da escada) | 81,8% | panturrilha no step (`panturrilha-b`) + parede da panturrilha no chão | `folhas/panturrilha-degrau.png`, `folhas/panturrilha-degrau-erros.png` | **espera o "aprovar"** |
-| 2 | `abdominal-invertido` | 61,7% | abdominal no chão | — | depois da 1 |
+| 1 | `panturrilha-degrau` (panturrilha no degrau da escada) | 81,8% | panturrilha no step (`panturrilha-b`) + parede da panturrilha no chão | `folhas/panturrilha-degrau.png`, `folhas/panturrilha-degrau-erros.png` | **aprovada em 10/11** |
+| 2 | `abdominal-invertido` (abdominal invertido no chão) | 61,7% | abdominal no chão (o colchonete e o corpo deitado) | `folhas/abdominal-invertido.png`, `folhas/abdominal-invertido-erros.png` | **espera o "aprovar"** |
 | 3 | `extensao-triceps-peso-corpo` | 59,4% | flexão | — | depois da 2 |
 | 4 | `abertura-t-deitado` | 56,1% | — | — | depois da 3 |
 | 5 | `flexao-pes-elevados` | 53,8% | flexão | — | depois da 4 |
