@@ -1,0 +1,77 @@
+{
+ "id": "flexao-pes-elevados",
+ "name": "Flexão com os pés elevados",
+ "short": "Flexão pés elevados",
+ "target": "Peito; ajudam o tríceps e a frente do ombro",
+ "feel": "Peito, frente do ombro e atrás do braço.",
+ "feelNote": "A cabeça fica abaixo do quadril: se der tontura, pare e use a flexão comum. Dor no ombro, no cotovelo ou no punho não é normal: procure avaliação se continuar.",
+ "setupEq": [
+  "Um degrau de escada, a cama ou um sofá firme para os pés. Sem móvel firme, um degrau de escada.",
+  "O apoio dos pés não pode deslizar: degrau de escada, cama ou sofá encostado na parede. Nada de cadeira com rodinhas."
+ ],
+ "setupBody": [
+  "Mãos no chão, um pouco mais abertas que os ombros, dedos para a frente.",
+  "Pés no apoio, corpo reto da cabeça aos calcanhares, abdômen e glúteos firmes."
+ ],
+ "exec": [
+  [
+   "hold",
+   "Em cima",
+   "Braços estendidos, corpo em prancha."
+  ],
+  [
+   "ecc",
+   "Descida (excêntrica)",
+   "~2 a 3 s, cotovelos a ~45° do corpo, até o peito quase tocar o chão."
+  ],
+  [
+   "hold",
+   "Embaixo",
+   "Sem encostar nem soltar o corpo."
+  ],
+  [
+   "conc",
+   "Subida (concêntrica)",
+   "~1 s. Empurre o chão até os braços estenderem, sem travar os cotovelos."
+  ]
+ ],
+ "range": [
+  "Embaixo: o peito quase toca o chão.",
+  "Em cima: braços estendidos."
+ ],
+ "breath": "Inspire descendo, solte o ar empurrando.",
+ "cues": [
+  "Corpo em prancha.",
+  "Cotovelos a ~45°.",
+  "Desça até perto do chão."
+ ],
+ "check": [
+  "Apoio dos pés firme, que não desliza",
+  "Mãos um pouco mais abertas que os ombros",
+  "Corpo reto da cabeça aos calcanhares",
+  "Cotovelos a ~45°",
+  "Peito perto do chão"
+ ],
+ "vary": "Fica fácil? Desça em 3 s; depois, pés mais altos (de uma cama para uma cadeira firme encostada na parede); depois, pausa de 2 s embaixo; por fim, as mãos em dois apoios firmes (déficit). Difícil demais: a flexão comum, com os pés no chão.",
+ "extLabels": [
+  "em cima",
+  "embaixo"
+ ],
+ "errors": [
+  {
+   "id": "quadril",
+   "title": "Quadril caído ou alto demais",
+   "desc": "O corpo perde a linha reta e a lombar arqueia ou o quadril sobe. Abdômen e glúteos firmes."
+  },
+  {
+   "id": "curta",
+   "title": "Descer pouco",
+   "desc": "A série fica mais fácil e o peito trabalha menos. Desça até o peito quase tocar o chão."
+  },
+  {
+   "id": "cotovelos",
+   "title": "Cotovelos abertos em T",
+   "desc": "Os cotovelos a 90° do corpo carregam mais o ombro. Deixe-os a ~45°."
+  }
+ ]
+}
