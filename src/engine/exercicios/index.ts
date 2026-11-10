@@ -90,6 +90,7 @@ import extensaoTricepsPesoCorpo from './extensao-triceps-peso-corpo';
 import aberturaTDeitado from './abertura-t-deitado';
 import flexaoPesElevados from './flexao-pes-elevados';
 import ponteGluteoHalter from './ponte-gluteo-halter';
+import remadaCurvadaHalteres from './remada-curvada-halteres';
 
 // Mesma ordem do guia original (a ordem define os treinos e a ordem de preparação).
 export const EX = [
@@ -181,4 +182,5 @@ export const EX = [
   aberturaTDeitado,
   flexaoPesElevados,
   ponteGluteoHalter,
+  remadaCurvadaHalteres,
 ];

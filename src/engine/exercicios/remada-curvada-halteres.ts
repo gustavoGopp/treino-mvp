@@ -1,13 +1,13 @@
 // @ts-nocheck
-// Animação nova (em revisão). Remada curvada com halteres, sem banco: em pé, pés paralelos na largura do quadril,
+// Animação nova (aprovada). Remada curvada com halteres, sem banco: em pé, pés paralelos na largura do quadril,
 // joelhos levemente dobrados, quadril para trás e tronco bem inclinado (~60°) com as costas retas; os dois halteres
 // pendurados, pegada neutra; leva os dois cotovelos para trás, perto do corpo, até os halteres chegarem perto do quadril.
 // Técnica e fontes: docs/pesquisa/animacoes/remada-curvada-halteres.md.
 // Base: a remada unilateral sem banco aprovada (remada-unilateral-sem-banco): o mesmo tronco e o mesmo caminho do braço
 // que puxa, agora nos dois braços. As pernas ficam paralelas, com o tornozelo 36 cm à frente do quadril, como no stiff
 // aprovado (o joelho fica levemente dobrado). Sem peça nova: os halteres são os da remada sem banco.
-import { TX, dumbbell3 } from '../../desenho';
-import { Z } from '../../math';
+import { TX, dumbbell3 } from '../desenho';
+import { Z } from '../math';
 
 const BRACO = (x, y, z, pole) => ({ ikS: [x, y, z], poleRel: pole });
 const ex = {
