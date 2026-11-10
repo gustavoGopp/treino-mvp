@@ -9,7 +9,8 @@
 import { BOX, L3, TX, dumbbell3 } from '../../desenho';
 import { X, Y, Z, add, comb, mid } from '../../math';
 
-const MAO = (y, z) => ({ ikS: [10.5, y, z], poleRel: [1, .4, 0] });
+const MAO = (y, z) => ({ ikS: [10.5, y, z], poleRel: [.6, -.8, .2] });
+// os cotovelos apoiados no chão ao lado da cintura (pedido do Gustavo, 10/11: abertos e no ar, "o braço está estranho")
 // o halter: no meio das duas mãos, 3 cm acima delas (as mãos seguram as anilhas pelos lados)
 const halter = (sk) => {
   const r = sk.pose.rola || 0;

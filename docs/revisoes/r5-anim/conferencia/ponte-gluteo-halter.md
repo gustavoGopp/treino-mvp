@@ -7,6 +7,7 @@ Cada ponto do movimento, a fonte (ficha `docs/pesquisa/animacoes/ponte-gluteo-ha
 | Ponto | O que a fonte pede | O que o boneco faz | Confere? |
 |---|---|---|---|
 | Montagem | O halter deitado sobre a dobra do quadril, com uma toalha embaixo; as duas mãos seguram o halter o tempo todo (consenso; `seguranca-t5`) | O halter de través sobre o quadril, as duas mãos nas pontas (21 cm uma da outra, nas anilhas) do começo ao fim; a toalha fica no texto (o desenho não a mostra, como na ponte com kettlebell) | sim |
+| Braços | As duas mãos seguram o halter (consenso) | Os cotovelos ficam apoiados no chão, ao lado da cintura (a 25 cm do meio do corpo), e os antebraços sobem até o halter; no topo, com o quadril alto, o cotovelo sai 16 cm do chão. Corrigido a pedido do Gustavo (10/11): na 1ª folha, os cotovelos ficavam abertos e no ar, como na ponte com kettlebell | sim |
 | Posição | De costas, joelhos dobrados, pés no chão na largura do quadril (consenso) | O mesmo da ponte com kettlebell: pés a 22 cm um do outro, a ~um palmo dos glúteos | sim |
 | Subida | Empurra pelos calcanhares até ombros, quadril e joelhos ficarem em linha (consenso) | ~1 s; o quadril sobe de 12 a 32 cm; no topo, ombro, quadril e joelho em linha (a linha tracejada) | sim |
 | Topo | Pausa de ~1 s, costelas para baixo | 1 s parado | sim |
