@@ -8,7 +8,7 @@ Cada ponto do movimento, a fonte (ficha `docs/pesquisa/animacoes/afundo-tras-pes
 |---|---|---|---|
 | Início | Em pé, pés na largura do quadril, mãos na cintura (consenso) | Em pé, os dois pés juntos sob o quadril (20 cm de um ao outro), mãos na cintura | sim |
 | Passo | Passo largo para trás (consenso; Kyle Sela, Hinge Health, vídeos) | O pé esquerdo sai do chão, passa a 22 cm de altura e apoia na ponta, 80 cm atrás do pé da frente; o pé da frente não se mexe | sim |
-| Descida | ~2 a 3 s, até o joelho de trás quase tocar o chão (consenso) | 2,6 s ao todo (o passo e a descida); embaixo, o quadril a 51 cm e o joelho de trás a poucos cm do chão (a mesma posição do afundo aprovado) | sim |
+| Descida | ~2 a 3 s, até o joelho de trás quase tocar o chão (consenso) | 2,6 s ao todo (o passo e a descida); embaixo, o quadril a 51 cm e o joelho de trás a 8 cm do chão (a mesma posição do afundo aprovado) | sim |
 | Tronco e peso | Tronco quase vertical, o peso no pé da frente (consenso) | Tronco a 4° da vertical; o quadril fica entre os pés, mais perto do da frente | sim |
 | Joelho | Alinhado com o pé da frente (consenso; Hinge Health) | De frente, o joelho da frente fica sobre o pé (a linha tracejada) | sim |
 | Volta | Empurra com o pé da frente e volta à posição inicial | ~1,5 s, o mesmo caminho ao contrário, até os pés juntos | sim |
