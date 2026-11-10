@@ -31,7 +31,7 @@ Pela régua com os 5 de corpo livre animados (`revisoes/qualidade/regua.md`, "Us
 
 | # | Animação | Em quantos programas aparece | Base aprovada | Folha | Situação |
 |---|---|---|---|---|---|
-| 6 | `ponte-gluteo-halter` (ponte de glúteo com halter) | 13,5% | ponte com kettlebell | `folhas/ponte-gluteo-halter.png`, `folhas/ponte-gluteo-halter-erros.png` | **espera o "aprovar"** |
+| 6 | `ponte-gluteo-halter` (ponte de glúteo com halter) | 13,5% | ponte com kettlebell | `folhas/ponte-gluteo-halter.png`, `folhas/ponte-gluteo-halter-erros.png` | **aprovada em 10/11** (depois de apoiar os cotovelos no chão); nenhum programa das personas muda |
 | 7 | `remada-curvada-halteres` | 11,8% | — | — | depois da 6 |
 | 8 | `afundo-tras-peso-corpo` | 10,7% | — | — | depois da 7 |
 

@@ -89,6 +89,7 @@ import abdominalInvertido from './abdominal-invertido';
 import extensaoTricepsPesoCorpo from './extensao-triceps-peso-corpo';
 import aberturaTDeitado from './abertura-t-deitado';
 import flexaoPesElevados from './flexao-pes-elevados';
+import ponteGluteoHalter from './ponte-gluteo-halter';
 
 // Mesma ordem do guia original (a ordem define os treinos e a ordem de preparação).
 export const EX = [
@@ -179,4 +180,5 @@ export const EX = [
   extensaoTricepsPesoCorpo,
   aberturaTDeitado,
   flexaoPesElevados,
+  ponteGluteoHalter,
 ];

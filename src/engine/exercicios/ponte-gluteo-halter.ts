@@ -1,13 +1,13 @@
 // @ts-nocheck
-// Animação nova (em revisão). Ponte de glúteo com halter: deitado de costas, o halter deitado de través sobre a dobra
+// Animação nova (aprovada). Ponte de glúteo com halter: deitado de costas, o halter deitado de través sobre a dobra
 // do quadril (com uma toalha embaixo), as duas mãos segurando as pontas do halter o tempo todo; empurra o chão pelos
 // calcanhares até ombros, quadril e joelhos ficarem em linha. Técnica e fontes: docs/pesquisa/animacoes/ponte-gluteo-halter.md.
 // Base: a ponte com kettlebell aprovada (ponte-kettlebell): o mesmo corpo, as mesmas poses, as mesmas mãos e os mesmos
 // erros de corpo. Muda o objeto: o halter (dumbbell3) de través, com o cabo no eixo X, entre as duas mãos.
 // O erro "halter rolando" usa um número da pose (`rola`, de 0 a 1): o halter escorrega para o lado direito e para baixo,
 // e a mão esquerda solta. O motor interpola esse número como as juntas.
-import { BOX, L3, TX, dumbbell3 } from '../../desenho';
-import { X, Y, Z, add, comb, mid } from '../../math';
+import { BOX, L3, TX, dumbbell3 } from '../desenho';
+import { X, Y, Z, add, comb, mid } from '../math';
 
 const MAO = (y, z) => ({ ikS: [10.5, y, z], poleRel: [.6, -.8, .2] });
 // os cotovelos apoiados no chão ao lado da cintura (pedido do Gustavo, 10/11: abertos e no ar, "o braço está estranho")
