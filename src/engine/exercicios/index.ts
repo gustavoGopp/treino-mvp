@@ -86,6 +86,7 @@ import extensaoJoelhoElastico from './extensao-joelho-elastico';
 import panturrilhaSentadaHalter from './panturrilha-sentada-halter';
 import panturrilhaDegrau from './panturrilha-degrau';
 import abdominalInvertido from './abdominal-invertido';
+import extensaoTricepsPesoCorpo from './extensao-triceps-peso-corpo';
 
 // Mesma ordem do guia original (a ordem define os treinos e a ordem de preparação).
 export const EX = [
@@ -173,4 +174,5 @@ export const EX = [
   panturrilhaSentadaHalter,
   panturrilhaDegrau,
   abdominalInvertido,
+  extensaoTricepsPesoCorpo,
 ];

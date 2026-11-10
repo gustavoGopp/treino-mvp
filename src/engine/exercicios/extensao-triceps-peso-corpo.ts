@@ -1,13 +1,13 @@
 // @ts-nocheck
-// Animação nova (em revisão). Extensão de tríceps com o peso do corpo: as mãos na beirada de uma bancada fixa (altura
+// Animação nova (aprovada). Extensão de tríceps com o peso do corpo: as mãos na beirada de uma bancada fixa (altura
 // da cintura), os pés para trás, o corpo reto e inclinado; dobra só os cotovelos, que apontam para a frente, e o corpo
 // desce à frente até a testa chegar perto da bancada; estica os cotovelos de volta.
 // Técnica e fontes: docs/pesquisa/animacoes/extensao-triceps-peso-corpo.md.
 // Base: o tríceps na suspensão aprovado (triceps-suspensao): o mesmo corpo reto inclinado, os cotovelos para a frente e
 // os mesmos erros de corpo. Aqui as mãos ficam paradas na bancada e o corpo gira em torno dos tornozelos: a pelve sai do
 // tornozelo ao longo do corpo (P = tornozelo + 85,85·(sen φ, cos φ), a perna quase reta), com o tronco no mesmo ângulo φ das pernas.
-import { BOX, L3, TX } from '../../desenho';
-import { X, Y, Z } from '../../math';
+import { BOX, L3, TX } from '../desenho';
+import { X, Y, Z } from '../math';
 
 // Mãos na beirada da bancada (tampo a 90 cm, beirada em z = 42), na largura dos ombros.
 const MAO = [17, 92, 42];
