@@ -186,7 +186,7 @@ exports[`cenários (snapshots revisados) > fabio 1`] = `
   ],
   "dias": [
     "Superior A (44 min): barra-fixa 4×5–10 | barra-fixa-negativa 4×3–6 | flexao 4×8–15 | extensao-triceps-peso-corpo 3×10–15 | abertura-t-deitado 2×12–20",
-    "Inferior A (45 min): agachamento-peso-corpo 4×12–20 | bulgaro-peso-corpo 2×8–15 | flexao-joelho-deslizante 2×8–15 | nordico 3×6–10 | panturrilha-degrau 4×12–20 | abdominal-chao 2×12–20",
+    "Inferior A (44 min): agachamento-peso-corpo 4×12–20 | afundo-tras-peso-corpo 2×10–16 | flexao-joelho-deslizante 2×8–15 | nordico 2×6–10 | panturrilha-degrau 4×12–20 | abdominal-chao 2×12–20",
     "Superior B (43 min): barra-fixa-supinada 4×5–10 | barra-fixa 4×5–10 | flexao-pes-elevados 3×8–15 | flexao-fechada 3×8–15 | abertura-t-deitado 2×12–20",
     "Inferior B (45 min): afundo-peso-corpo 3×10–16 | ponte-gluteo 2×12–20 | flexao-joelho-deslizante 3×8–15 | panturrilha-degrau 4×12–20 | nordico 2×6–10 | abdominal-invertido 2×12–20",
   ],
@@ -202,7 +202,7 @@ exports[`cenários (snapshots revisados) > fabio 1`] = `
     "ombro_posterior": 12,
     "panturrilha": 8,
     "peito": 10,
-    "posteriores": 10,
+    "posteriores": 9,
     "quadriceps": 9,
     "triceps": 9.5,
   },
