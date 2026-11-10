@@ -1,10 +1,10 @@
 // @ts-nocheck
-// Animação nova (em revisão). Panturrilha no degrau da escada: as duas pernas, a ponta dos pés na beirada do degrau,
+// Animação nova (aprovada). Panturrilha no degrau da escada: as duas pernas, a ponta dos pés na beirada do degrau,
 // os calcanhares no ar, uma mão na parede só para equilibrar. Técnica e fontes: docs/pesquisa/animacoes/panturrilha-degrau.md.
 // O corpo e as poses-chave das pernas são os da panturrilha no step aprovada (panturrilha-b); o degrau é a peça do step
 // (mesma caixa de 15 cm) e a parede é a da panturrilha no chão. Sem halter e sem torre.
-import { BOX, L3, TX } from '../../desenho';
-import { X, Y, Z } from '../../math';
+import { BOX, L3, TX } from '../desenho';
+import { X, Y, Z } from '../math';
 
 // A mão esquerda fica parada na parede (a 43 cm à frente, na altura do peito); a direita solta ao lado do corpo.
 const MAO_PAREDE = { ikS: [14, 128, 43], poleRel: [.3, -1, -.2] };
