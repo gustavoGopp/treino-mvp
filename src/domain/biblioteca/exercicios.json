@@ -4928,7 +4928,7 @@
    "peso-corpo"
   ],
   "carga": "peso-corpo",
-  "animacaoId": null
+  "animacaoId": "afundo-tras-peso-corpo"
  },
  {
   "id": "abdominal-invertido",

@@ -1,5 +1,5 @@
 // @ts-nocheck
-// Animação nova (em revisão). Afundo para trás com o peso do corpo: em pé com os pés juntos (na largura do quadril),
+// Animação nova (aprovada). Afundo para trás com o peso do corpo: em pé com os pés juntos (na largura do quadril),
 // mãos na cintura; dá um passo largo para trás com a perna esquerda e desce até o joelho de trás quase tocar o chão,
 // tronco quase vertical e o peso no pé da frente; empurra com o pé da frente e volta a ficar em pé.
 // Técnica e fontes: docs/pesquisa/animacoes/afundo-tras-peso-corpo.md.
@@ -7,8 +7,8 @@
 // (fixo no chão o ciclo inteiro) e a mesma posição embaixo. O que é novo é o passo: em pé, com o pé de trás ao lado do da
 // frente; no meio do passo, o pé de trás no ar, indo para trás; e o apoio, que é a posição de cima do afundo aprovado.
 // O calcanhar do pé de trás (heelV) vai de apoiado (em pé) a levantado (no afundo), como o motor interpola as juntas.
-import { L3, TX } from '../../desenho';
-import { add } from '../../math';
+import { L3, TX } from '../desenho';
+import { add } from '../math';
 
 const PE_FRENTE = { ikS: [10, 7, 28], poleRel: [.1, .4, 1], ft: [5, -18] };
 const ex = {

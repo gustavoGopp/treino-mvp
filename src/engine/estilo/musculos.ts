@@ -378,6 +378,13 @@ export const LISTA = {
     ['quadriceps', 'L', 's'],
     ['quadriceps', 'R', 'p'],
   ],
+  // R5-anim (10/11/2026): o afundo para trás desenha os mesmos músculos do afundo com o peso do corpo.
+  'afundo-tras-peso-corpo': [
+    ['gluteos', 'R', 's'],
+    ['adutores', 'R', 's'],
+    ['quadriceps', 'L', 's'],
+    ['quadriceps', 'R', 'p'],
+  ],
   'afundo-kettlebell': [
     ['gluteos', 'R', 's'],
     ['adutores', 'R', 's'],
