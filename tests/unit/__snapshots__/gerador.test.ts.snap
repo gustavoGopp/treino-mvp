@@ -16,7 +16,7 @@ exports[`cenários (snapshots revisados) > ana 1`] = `
   "dias": [
     "Corpo todo A (44 min): bulgaro 4×8–12 [bi-set] | ponte-gluteo-halter 2×10–20 [bi-set] | supino-reto 2×6–10 [bi-set] | remada-unilateral-halter 2×8–12 [bi-set] | flexao-joelho-deslizante 3×8–15 [bi-set] | triceps-frances-halter 2×10–15 [bi-set] [drop set]",
     "Corpo todo B (43 min): stiff 4×8–12 [bi-set] | supino-reto 2×6–10 [bi-set] | remada-unilateral-halter 2×8–12 | panturrilha-degrau 3×12–20 [bi-set] | rosca-alternada 2×8–12 [bi-set] [drop set] | crucifixo-invertido-sentado 2×12–20 [drop set]",
-    "Corpo todo C (43 min): afundo 2×8–12 [bi-set] | ponte-gluteo-halter 2×10–20 [bi-set] | flexao 2×8–15 [bi-set] | remada-unilateral-sem-banco 2×8–12 [bi-set] | panturrilha-degrau 3×12–20 | abdominal-chao 4×12–20",
+    "Corpo todo C (41 min): afundo 2×8–12 [bi-set] | ponte-gluteo-halter 2×10–20 [bi-set] | flexao 2×8–15 [bi-set] | remada-curvada-halteres 2×8–12 [bi-set] | panturrilha-degrau 3×12–20 | abdominal-chao 4×12–20",
   ],
   "divisao": "Corpo todo A/B/C",
   "fases": [

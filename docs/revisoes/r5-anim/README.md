@@ -32,6 +32,6 @@ Pela régua com os 5 de corpo livre animados (`revisoes/qualidade/regua.md`, "Us
 | # | Animação | Em quantos programas aparece | Base aprovada | Folha | Situação |
 |---|---|---|---|---|---|
 | 6 | `ponte-gluteo-halter` (ponte de glúteo com halter) | 13,5% | ponte com kettlebell | `folhas/ponte-gluteo-halter.png`, `folhas/ponte-gluteo-halter-erros.png` | **aprovada em 10/11** (depois de apoiar os cotovelos no chão); nenhum programa das personas muda |
-| 7 | `remada-curvada-halteres` (remada curvada com halteres) | 11,8% | remada unilateral sem banco (os dois braços) + as pernas do stiff | `folhas/remada-curvada-halteres.png`, `folhas/remada-curvada-halteres-erros.png` | **aprovada em 10/11**; muda o programa da Ana (Corpo todo C: a remada sem banco vira a curvada), **à espera da decisão do Gustavo** |
+| 7 | `remada-curvada-halteres` (remada curvada com halteres) | 11,8% | remada unilateral sem banco (os dois braços) + as pernas do stiff | `folhas/remada-curvada-halteres.png`, `folhas/remada-curvada-halteres-erros.png` | **aprovada em 10/11**; muda o programa da Ana (Corpo todo C: a remada sem banco vira a curvada, 43 → 41 min; aceito pelo Gustavo em 10/11) |
 | 8 | `afundo-tras-peso-corpo` | 10,7% | — | — | depois da 7 |
 
