@@ -1542,6 +1542,14 @@ As folhas completas, com os músculos, a trajetória e os erros: `revisoes/r5-an
 - **Fábio, Inferior A:** o búlgaro vira o afundo para trás, e o nórdico cai de 3 para 2 séries (posteriores: 10 → 9 por semana).
 - Nos dois casos o desempate cai na ordem do nome; a regra fica para o marco do gerador (`backlog.md`, "Do R5-anim").
 
+**Testes que mudaram:**
+- **Registros dos programas da Ana e do Fábio:** as trocas acima.
+- **O afundo para trás na lista de músculos do motor:** com os adutores, como o afundo aprovado.
+- **4 testes no navegador que abriam a ponte com halter como "exercício sem animação":** o onboarding, a folha do exercício, o treino e os 7 cenários de acessibilidade do treino.
+  - O onboarding passa a conferir 0 cartão no dia A e 1 no dia B (o crucifixo invertido sentado).
+  - Os outros abrem a barra só na descida, que entra com uma barra fixa no equipamento da Ana dos testes e tem a montagem segura.
+- **Resultado:** `npm run check` com 831 testes e os 141 e2e passando; `npm run auditoria` regerada.
+
 ![As 3 animações do lote 2, no modo Técnica](img/r5-anim-lote2.png)
 
 **Rascunho de post para o LinkedIn**

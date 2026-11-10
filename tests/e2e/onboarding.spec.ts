@@ -13,9 +13,10 @@ test('do zero ao programa em menos de 5 minutos (persona Ana)', async ({ page })
   await expect(painel.locator('.series').first()).toHaveText(/^\d × 8–12 cada lado$/);
   // Exercício com animação mostra a imagem.
   await expect(painel.locator('.miniatura svg').first()).toBeVisible();
-  // Sem animação aprovada: "guia em texto" (ponte com halter), nunca uma animação improvisada. A flexão de joelho
-  // deslizante ganhou a animação em 04/11/2026.
-  await expect(painel.locator('.miniatura.vazia')).toHaveCount(1);
+  // Sem animação aprovada: "guia em texto", nunca uma animação improvisada. A flexão de joelho deslizante ganhou a
+  // animação em 04/11/2026 e a ponte com halter em 10/11/2026 (R5-anim, lote 2): o dia A não tem mais cartão; o B tem
+  // um (o crucifixo invertido sentado), conferido abaixo.
+  await expect(painel.locator('.miniatura.vazia')).toHaveCount(0);
   // Semana 1 (fase de aprendizado da iniciante): RIR 3–4; o porquê, com o selo de evidência, fica na folha do exercício.
   let folha = await abrirExercicio(page, /Agachamento búlgaro/);
   await expect(folha.locator('.sub-rx')).toContainText('RIR 3–4');
@@ -25,6 +26,7 @@ test('do zero ao programa em menos de 5 minutos (persona Ana)', async ({ page })
   await folha.getByRole('button', { name: 'Fechar' }).click();
   // Outro dia.
   await page.getByRole('tab', { name: 'Corpo todo B', exact: true }).click();
+  await expect(painel.locator('.miniatura.vazia')).toHaveCount(1);
   // O stiff (bilateral) no B desde a sessão de equipamento mínimo: o stiff unilateral saiu para a flexão deslizante no A.
   await expect(painel.getByRole('button', { name: /Stiff com halteres/ })).toBeVisible();
   // Avisos de meta por músculo em "Sobre o programa".

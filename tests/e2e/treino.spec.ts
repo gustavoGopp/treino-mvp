@@ -1,5 +1,5 @@
 import { expect, test, type Page } from '@playwright/test';
-import { ana, abrirTrocar, maisOpcoes, proximoExercicio, terminarTreino, porQueDaSugestao } from './jornada';
+import { ana, abrirTrocar, maisOpcoes, marcarItem, proximoExercicio, terminarTreino, porQueDaSugestao } from './jornada';
 
 // M5: treinar com o app. Persona fictícia Ana (halteres de 1 a 12 kg e banco reto).
 
@@ -217,11 +217,13 @@ test('"Desfazer" por 5 s depois de salvar a série apaga a série e para o desca
 
 // Lote 2 do redesign (segurança): no exercício sem animação, a montagem segura vem aberta, com o selo, sem nenhum toque;
 // dicas e erros abrem numa folha.
+// R5-anim, lote 2 (10/11/2026): a ponte com halter ganhou animação; o exercício sem animação do dia A passa a ser a
+// barra só na descida (o 4º), que entra com uma barra fixa no equipamento da Ana.
 test('exercício sem animação: a montagem segura vem sempre aberta, com o selo', async ({ page }) => {
-  await ana(page);
+  await ana(page, { equipamentoExtra: async (p) => void (await marcarItem(p, 'Barra fixa')) });
   await comecar(page);
-  await proximoExercicio(page);
-  await expect(page.getByRole('heading', { name: /Ponte de glúteo/ })).toBeVisible();
+  for (let i = 0; i < 3; i++) await proximoExercicio(page);
+  await expect(page.getByRole('heading', { name: /Barra fixa só na descida/ })).toBeVisible();
   const montagem = page.getByRole('region', { name: /Montagem segura/ });
   await expect(montagem).toBeVisible();
   await expect(montagem.getByRole('listitem').first()).toBeVisible();

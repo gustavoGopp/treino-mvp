@@ -1,5 +1,5 @@
 import { expect, test } from '@playwright/test';
-import { ana, verAvisos } from './jornada';
+import { ana, marcarItem, verAvisos } from './jornada';
 
 // Redesign, lote 4 (07/11/2026): o "Seu treino" com uma coisa principal. O "Começar" fica à vista sem rolar e no máximo
 // um aviso aparece na tela, em 1 linha; o bloco inteiro dele (os textos e os selos de sempre) abre numa folha.
@@ -21,15 +21,17 @@ for (const [largura, altura] of [
   });
 }
 
+// R5-anim, lote 2 (10/11/2026): a ponte com halter ganhou animação; o exercício sem animação com montagem segura do
+// dia A passa a ser a barra só na descida, que entra com uma barra fixa no equipamento da Ana.
 test('a folha do exercício sem animação traz a montagem segura aberta, o porquê com os selos e as alternativas', async ({ page }) => {
-  await ana(page);
-  await page.getByRole('tabpanel').getByRole('button', { name: /Ponte de glúteo/ }).click();
-  const folha = page.getByRole('dialog', { name: /Ponte de glúteo/ });
+  await ana(page, { equipamentoExtra: async (p) => void (await marcarItem(p, 'Barra fixa')) });
+  await page.getByRole('tabpanel').getByRole('button', { name: /Barra fixa só na descida/ }).click();
+  const folha = page.getByRole('dialog', { name: /Barra fixa só na descida/ });
   await expect(folha.getByText('Montagem segura')).toBeVisible();
   await expect(folha.getByRole('heading', { name: 'Por que este exercício' })).toBeVisible();
   await expect(folha.locator('.selo').first()).toBeVisible();
   await expect(folha.getByText(/^Se o equipamento estiver ocupado/)).toBeVisible();
   await page.keyboard.press('Escape');
   await expect(folha).toBeHidden();
-  await expect(page.getByRole('tabpanel').getByRole('button', { name: /Ponte de glúteo/ })).toBeFocused();
+  await expect(page.getByRole('tabpanel').getByRole('button', { name: /Barra fixa só na descida/ })).toBeFocused();
 });
