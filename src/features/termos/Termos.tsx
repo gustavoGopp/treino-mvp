@@ -110,7 +110,6 @@ export function Termos() {
           <h2 id="t-outras">O que outras empresas recebem</h2>
           <ul className="lista">
             <li>A Vercel, que hospeda o app, recebe os dados técnicos de cada acesso (o endereço IP e o navegador), como acontece com qualquer site.</li>
-            <li>O Google recebe o endereço IP quando o navegador baixa a letra usada no app (Google Fonts).</li>
             <li>A Anthropic recebe só a foto, e só se a foto estiver ligada e você autorizar.</li>
           </ul>
         </section>

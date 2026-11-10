@@ -143,7 +143,7 @@ Detalhes, números e o motivo de cada item em `revisoes/proximos-passos.md` e no
 - **Dependências** (`zod` 4, react-router 7, vitest 5) e os **testes de propriedade** da F.4: numa branch própria, depois do lote técnico do redesign, que mexe nos mesmos arquivos.
 
 ## Do R5c, abrir para família e amigos (07/11/2026)
-- **A letra do Google Fonts** manda o IP de quem abre o app ao Google (os termos dizem isso). O lote 1 do redesign já tira o pedido externo; quando ele chegar à `main`, tirar a linha dos termos.
+- ~~**A letra do Google Fonts**~~ feito em 10/11/2026: o redesign serve a letra do próprio app (`tests/e2e/letra.spec.ts`), e a linha do Google saiu dos termos.
 - **"Como ler o seu treino" no 1º toque em "RIR"** em cada tela (B2, 2ª parte): ficou só a folha no programa. Pedido ao design (item 16).
 - **Medir sem dado pessoal (B7):** formulário de opinião fora do app e a soma diária do log da visão (só números). Não feito: não colete nada sem decisão do Gustavo.
 - **Lembrete de cópia por e-mail ou na nuvem:** fora do MVP (login e nuvem). O lembrete fica no aparelho (`dados.copia`).
