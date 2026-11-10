@@ -1,7 +1,7 @@
 import { readdirSync, readFileSync } from 'node:fs';
 import { describe, expect, it } from 'vitest';
 import { BIBLIOTECA, PADROES } from '../../src/domain/biblioteca';
-import { REGRAS } from '../../src/domain/regras';
+import { REGRAS } from '../../src/domain/regras/completas';
 import { FUNCOES } from '../../src/domain/gerador/funcoes';
 import {
   CAPACIDADES,

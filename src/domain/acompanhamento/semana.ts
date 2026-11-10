@@ -1,5 +1,5 @@
 import { BIBLIOTECA, type Exercicio, type Musculo } from '../biblioteca';
-import { MUSCULOS_COM_META, NOME_MUSCULO, seriesDeVolume, volumePorMusculo, type DiaPrograma, type Programa } from '../gerador';
+import { ehAvisoDeMeta, MUSCULOS_COM_META, musculosDoAviso, NOME_MUSCULO, SEM_EXERCICIO, seriesDeVolume, volumePorMusculo, type DiaPrograma, type Programa } from '../gerador';
 import { serieEfetiva } from '../progressao';
 import { r, VOLUME } from '../regras';
 import { diaLocal, hojeNoPrograma, proximoDia, segundaDaSemana, semanaLocal, treinoFeito, type Sessao } from '../sessao';
@@ -18,7 +18,19 @@ export const TEXTO_ESTADO: Record<EstadoMusculo, string> = {
   'sem-treino': 'ainda não treinou nesta semana',
 };
 
-export type MusculoNaSemana = { musculo: Musculo; nome: string; feitas: number; meta: number; estado: EstadoMusculo };
+export type MusculoNaSemana = {
+  musculo: Musculo;
+  nome: string;
+  feitas: number;
+  meta: number;
+  estado: EstadoMusculo;
+  /**
+   * R5b (c-fluxo.md, pedido ao domínio 7): quando o programa planeja menos que a meta do nível, quanto ele planeja e o
+   * motivo ("falta tempo"), para a semana não cobrar uma meta que o programa não tem.
+   */
+  planejado?: number;
+  motivo?: string;
+};
 
 export type ResumoDaSemana = {
   /** Segunda e domingo da semana (AAAA-MM-DD, no calendário local). */
@@ -94,7 +106,18 @@ export function resumoDaSemana(programa: Programa, historico: Sessao[], hojeIso:
     const meta = metaPrescrita ? (prescrito[m] ?? 0) : (programa.metas[m] ?? 0);
     if (meta <= 0) return [];
     const f = Math.round((feitas[m] ?? 0) * 10) / 10;
-    return [{ musculo: m, nome: NOME_MUSCULO[m], feitas: f, meta: Math.round(meta * 10) / 10, estado: estadoDoMusculo(f, meta) }];
+    const planejado = programa.volumeSemanal[m] ?? 0;
+    const abaixo = !metaPrescrita && planejado < meta - 1e-9;
+    return [
+      {
+        musculo: m,
+        nome: NOME_MUSCULO[m],
+        feitas: f,
+        meta: Math.round(meta * 10) / 10,
+        estado: estadoDoMusculo(f, meta),
+        ...(abaixo ? { planejado: Math.round(planejado * 10) / 10, motivo: motivoDaMeta(programa, m) } : {}),
+      },
+    ];
   });
 
   // Os treinos da semana: os feitos, na ordem, e depois os que faltam na rotação.
@@ -143,6 +166,21 @@ export function resumoDaSemana(programa: Programa, historico: Sessao[], hojeIso:
     ...(revisao ? { revisao } : {}),
     regraId: r('acompanhamento.semana'),
   };
+}
+
+/**
+ * O motivo curto de o programa planejar menos que a meta de um músculo, lido dos avisos de meta do programa (o mesmo
+ * motivo que "Sobre o programa" explica por extenso).
+ */
+export function motivoDaMeta(programa: Programa, m: Musculo): string {
+  const aviso = programa.avisos.find((a) => (ehAvisoDeMeta(a) || a.regraId === 'tempo.corte' || a.regraId === 'volume.prioridade.competicao') && musculosDoAviso(a).includes(m));
+  if (!aviso) return 'não coube mais nos seus dias';
+  if (/por causa da dor|a dor .* tirou/.test(aviso.texto)) return 'por causa da dor';
+  if (aviso.texto.startsWith(SEM_EXERCICIO) || aviso.regraId === 'equipamento.sem-ancoragem') return 'sem exercício no seu equipamento';
+  if (aviso.regraId === 'volume.prioridade.competicao') return 'os seus focos dividem o tempo';
+  if (aviso.regraId === 'tempo.corte' || /Com \d+ min cabem/.test(aviso.texto)) return 'falta tempo';
+  if (/A divisão/.test(aviso.texto)) return 'a divisão não tem mais lugar';
+  return 'não coube mais nos seus dias';
 }
 
 /** Volume prescrito na semana, por músculo (a meta da semana na volta, no aprendizado e na semana leve). */

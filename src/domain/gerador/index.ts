@@ -3,7 +3,8 @@ import { DESCANSO, OBJETIVO_FORCA, READAPTACAO, RIR, TEMPO, VOLUME, NIVEL_COMPLE
 import { capacidades, cargaMaxHalter, cargasCaneleiras, cargasHalter, cargasKettlebell, ITENS, type Capacidade, type Inventario, type ItemId } from '../taxonomia/equipamentos';
 import { avaliarTriagem, efeitoDaDor, type ResultadoTriagem, type Triagem } from '../triagem';
 import { divisaoEscolhida, temDiaDeTronco, type DiasSemana, type Divisao, type DivisaoId, type Vaga } from './divisoes';
-import { FUNCAO, funcoesDoExercicio, type Funcao } from './funcoes';
+import { contaPara, EMPURRAR_PUXAR_MAX as EMPURRAR_PUXAR_FUNCOES, ehEmpurrar, ehPuxar, FAMILIAS, familiasCobertas } from './familias';
+import { FUNCAO, FUNCOES, funcoesDoExercicio, type Funcao } from './funcoes';
 
 // Gerador de programa: função pura e determinística (mesma entrada → mesma saída).
 // Cada decisão grava o id da regra de docs/pesquisa/regras.md que a justifica.
@@ -131,6 +132,7 @@ export function contextoDeSelecao(perfil: Perfil, inventarioOriginal: Inventario
   const nivel = perfil.nivel;
   const inventario = semItens(inventarioOriginal, perfil.evitarEquipamentos);
   const caps = capacidades(inventario);
+  const capsOriginais = capacidades(inventarioOriginal);
   // Dor de hoje por região (seguranca.dor.programa): > 5 ou sem nota exclui; 3–5 desfavorece no desempate.
   const regioesExcluidas = [...triagem.regioesExcluidas];
   const dorLeve = new Set(triagem.regioesDorLeve);
@@ -201,6 +203,8 @@ export function contextoDeSelecao(perfil: Perfil, inventarioOriginal: Inventario
   // descida, quando ela é possível; se a descida já está no dia, a vaga segue para a próxima opção, sem a barra.
   const barraDoIniciante = (id: string) => nivel === 'iniciante' && BARRA_LIVRE.includes(id) && possivel.has(BARRA_NEGATIVA);
   const regressaoDoIniciante = (id: string) => (barraDoIniciante(id) ? BARRA_NEGATIVA : id);
+  /** O exercício que a regressão substitui (a barra só na descida do iniciante vale como a barra fixa; R5b, para medir as funções). */
+  const noLugarDe = (id: string) => (id === BARRA_NEGATIVA && BARRA_LIVRE.some((b) => barraDoIniciante(b) && naFuncao(FUNCAO['puxar-vertical']!, b)) ? BARRA_LIVRE.find((b) => possivel.has(b))! : id);
 
   /** Melhor exercício da função, do nível n em diante, fora os já usados no dia. */
   const escolher = (funcao: Funcao, desde: number, usados: (id: string) => boolean, usos: Map<string, number>, evitar?: (e: Exercicio) => boolean, depois?: (e: Exercicio) => boolean) => {
@@ -222,6 +226,61 @@ export function contextoDeSelecao(perfil: Perfil, inventarioOriginal: Inventario
     return primeiro;
   };
 
+  /**
+   * Por que o exercício ficou com a vaga (o porquê específico, R5b): o nível de cima não é possível (e por quê), ou, entre
+   * os do mesmo nível, o primeiro critério do desempate em que ele ganha do segundo colocado.
+   */
+  const motivoDaEscolha = (e: Exercicio, funcao: Funcao, nivelFuncao: number): string => {
+    // 1. O nível de cima: por que não ele.
+    let acimaTexto = '';
+    if (nivelFuncao > 0) {
+      const acima = funcao.niveis.slice(0, nivelFuncao).flat().map((id) => POR_ID_BIB[id]!);
+      const nome = acima[0]!.nome.toLowerCase();
+      acimaTexto = acima.some((x) => possivelSemRegiao.has(x.id) && carregaExcluida(x))
+        ? `As opções de cima (como ${nome}) saíram por causa da dor`
+        : acima.some((x) => perfil.evitarExercicios.includes(x.id))
+          ? `Você pediu para evitar as opções de cima (como ${nome})`
+          : acima.some((x) => x.requer.some((g) => g.every((c) => capsOriginais.has(c)) && !g.every((c) => caps.has(c))))
+            ? `As opções de cima (como ${nome}) pedem um equipamento que você pediu para evitar`
+            : acima.some((x) => x.complexidade > NIVEL_COMPLEXIDADE_MAX[nivel] && x.requer.some((g) => g.every((c) => caps.has(c))))
+              ? `As opções de cima (como ${nome}) pedem mais técnica que o seu nível`
+              : `As opções de cima (como ${nome}) pedem equipamento que você não tem`;
+    }
+    // 2. Entre as do mesmo nível: o primeiro critério do desempate em que ele ganha do 2º colocado.
+    const outros = funcao.niveis[nivelFuncao]!.filter((id) => id !== e.id && naFuncao(funcao, id)).map((id) => possivel.get(id)!);
+    if (!outros.length) {
+      if (acimaTexto) return `${acimaTexto}; esta é a melhor que sobra.`;
+      const doNivel = funcao.niveis[nivelFuncao]!.filter((id) => id !== e.id).map((id) => POR_ID_BIB[id]!);
+      if (doNivel.some((x) => possivelSemRegiao.has(x.id) && carregaExcluida(x))) return 'As outras opções do mesmo tipo saíram por causa da dor.';
+      const abaixo = funcao.niveis.slice(nivelFuncao + 1).flat().find((id) => naFuncao(funcao, id));
+      return abaixo ? `É a melhor opção desta vaga no seu equipamento; ${POR_ID_BIB[abaixo]!.nome.toLowerCase()} fica como alternativa.` : 'É a única opção desta vaga no seu equipamento.';
+    }
+    const criterios: [(x: Exercicio) => number, string][] = [
+      [(x) => (x.articulacoes.some((a) => dorLeve.has(a)) ? 1 : 0), 'poupa a região que você marcou com dor'],
+      [(x) => (nivel === 'iniciante' && !estavel(x) ? 1 : 0), 'é mais estável e apoiado, mais fácil de aprender'],
+      [(x) => -cargaPossivel(x), 'deixa pôr mais carga com o seu equipamento'],
+      [(x) => (preferido(funcao, x) ? 0 : 1), 'você prefere este'],
+      [(x) => (x.animacaoId ? 0 : 1), 'tem o guia animado'],
+    ];
+    const vetor = (x: Exercicio) => criterios.map(([k]) => k(x));
+    const menor = (a: number[], b: number[]) => a.findIndex((v, i) => v !== b[i]);
+    // O 2º colocado: o melhor dos outros pelos mesmos critérios (no empate, o id, como no desempate).
+    const segundo = [...outros].sort((a, b) => {
+      const i = menor(vetor(a), vetor(b));
+      return i < 0 ? a.id.localeCompare(b.id) : vetor(a)[i]! - vetor(b)[i]!;
+    })[0]!;
+    const i = menor(vetor(e), vetor(segundo));
+    const nome = segundo.nome.toLowerCase();
+    const varios = outros.length > 1;
+    const entre =
+      i < 0
+        ? `equivale a ${nome}${varios ? ' e às outras do mesmo tipo' : ''}, que ${varios ? 'ficam' : 'fica'} como alternativa`
+        : vetor(e)[i]! < vetor(segundo)[i]!
+          ? `ganhou de ${nome}${varios ? ' e das outras do mesmo tipo' : ''} porque ${criterios[i]![1]}`
+          : `ficou este, e não ${nome}, para variar os exercícios da semana`;
+    return acimaTexto ? `${acimaTexto}. Entre as que sobram, ${entre}.` : `${entre.charAt(0).toUpperCase()}${entre.slice(1)}.`;
+  };
+
   /** Alternativas possíveis neste inventário (selecao.equivalencia). */
   const alternativasDe = (e: Exercicio, funcao: Funcao) =>
     alternativas(e, funcao, possiveis.filter((x) => !funcaoTemExercicio(funcao, x.id) || naFuncao(funcao, x.id)));
@@ -241,11 +300,13 @@ export function contextoDeSelecao(perfil: Perfil, inventarioOriginal: Inventario
     perdidaPorDor,
     halterMax,
     barraDoIniciante,
+    noLugarDe,
     preferido,
     comparar,
     resolver,
     escolher,
     alternativasDe,
+    motivoDaEscolha,
   };
 }
 export type ContextoDeSelecao = ReturnType<typeof contextoDeSelecao>;
@@ -305,8 +366,7 @@ function montarPrograma(perfil: Perfil, inventarioOriginal: Inventario, triagem:
   // só a distribuição das séries conferia o teto, e no modelo de 6 dias com três vagas de glúteo o mínimo sozinho
   // chegava a 21 (auditoria de 04/11/2026, Parte C).
   const vMinimo: Partial<Record<Musculo, number>> = {};
-  const cabeNoTetoSemanal = (e: Exercicio) =>
-    (Object.entries(volumePorMusculo([{ ex: e, series: VOLUME.seriesPorExercicio.min }])) as [Musculo, number][]).every(([m, n]) => (vMinimo[m] ?? 0) + n <= VOLUME.teto);
+  const cabeNoTeto = (e: Exercicio) => cabeNoTetoSemanal(e, vMinimo);
   // Músculos com meta que têm alguma vaga-base na semana (fora os complementos). Um complemento que é o único
   // exercício direto de um músculo com meta (o ombro posterior, por exemplo) entra antes dos complementos de músculos
   // que já têm vaga-base, mesmo prioritários: o piso de todo músculo vem antes da 2ª dose do prioritário
@@ -374,7 +434,7 @@ function montarPrograma(perfil: Perfil, inventarioOriginal: Inventario, triagem:
       const { ex: escolhido, nivelFuncao } = achado;
       // Toda vaga confere o teto semanal já no mínimo de séries (antes, só os complementos e as vagas de prioridade:
       // com os seis dias do Corpo todo 6x, as vagas-base sozinhas levavam o glúteo a 23; sessão de qualidade, 06/11/2026).
-      if (!cabeNoTetoSemanal(escolhido)) continue;
+      if (!cabeNoTeto(escolhido)) continue;
       if (nivelFuncao > 0 && funcao.semNivel1) nivelAbaixo.add(funcao.semNivel1);
       usos.set(escolhido.id, (usos.get(escolhido.id) ?? 0) + 1);
       for (const [m, n] of Object.entries(volumePorMusculo([{ ex: escolhido, series: VOLUME.seriesPorExercicio.min }])) as [Musculo, number][]) vMinimo[m] = (vMinimo[m] ?? 0) + n;
@@ -402,7 +462,7 @@ function montarPrograma(perfil: Perfil, inventarioOriginal: Inventario, triagem:
       const afundoNoDia = (e: Exercicio) => AFUNDOS.has(e.id) && d.itens.some((i) => AFUNDOS.has(i.ex.id));
       const tresEmpurrares = (e: Exercicio) => empurra(e) && !d.itens.some((i) => puxa(i.ex)) && d.itens.filter((i) => empurra(i.ex)).length >= 2;
       const achado = possiveis
-        .filter((e) => e.padrao !== 'core' && !d.itens.some((i) => i.ex.id === e.id) && !tresEmpurrares(e) && cabeNoTetoSemanal(e) && !ctx.barraDoIniciante(e.id))
+        .filter((e) => e.padrao !== 'core' && !d.itens.some((i) => i.ex.id === e.id) && !tresEmpurrares(e) && cabeNoTeto(e) && !ctx.barraDoIniciante(e.id))
         .flatMap((e) => {
           const f = funcoesDoExercicio(e.id).find((x) => x.musculo === m && naFuncao(x, e.id));
           return f ? [{ e, f }] : [];
@@ -427,7 +487,7 @@ function montarPrograma(perfil: Perfil, inventarioOriginal: Inventario, triagem:
     if (!alvo) continue;
     const res = resolver(alvo.vaga!)!;
     const achado = ctx.escolher(res.funcao, res.nivel, (id) => alvo.d.itens.some((i) => i.ex.id === id), usos);
-    if (!achado || !cabeNoTetoSemanal(achado.ex)) continue;
+    if (!achado || !cabeNoTeto(achado.ex)) continue;
     usos.set(achado.ex.id, (usos.get(achado.ex.id) ?? 0) + 1);
     for (const [mm, n] of Object.entries(volumePorMusculo([{ ex: achado.ex, series: VOLUME.seriesPorExercicio.min }])) as [Musculo, number][]) vMinimo[mm] = (vMinimo[mm] ?? 0) + n;
     alvo.d.itens.push({ ex: achado.ex, vaga: alvo.vaga!, funcao: res.funcao, nivelFuncao: achado.nivelFuncao, series: VOLUME.seriesPorExercicio.min, ordemVaga: 100, protegido: m });
@@ -454,14 +514,14 @@ function montarPrograma(perfil: Perfil, inventarioOriginal: Inventario, triagem:
     const vagas = Math.max(soCore ? 1 : 0, Math.min(d.perdidas, N - d.itens.length));
     const musculosUsados = new Set<Musculo>(d.itens.map((i) => i.funcao.musculo));
     // Sem passar do teto semanal de nenhum músculo, contando as séries indiretas (volume.semanal.teto-padrao).
-    const cabeNoTeto = (e: Exercicio) => {
+    const cabeNoTetoDoDia = (e: Exercicio) => {
       const extra = volumePorMusculo([{ ex: e, series: VOLUME.seriesPorExercicio.min }]);
       return (Object.keys(extra) as Musculo[]).every((m) => (v[m] ?? 0) + extra[m]! <= VOLUME.teto);
     };
     let k = 0;
     for (const { e, f } of cands) {
       if (k >= vagas) break;
-      if (musculosUsados.has(f.musculo) || !cabeNoTeto(e)) continue;
+      if (musculosUsados.has(f.musculo) || !cabeNoTetoDoDia(e)) continue;
       for (const [m, n] of Object.entries(volumePorMusculo([{ ex: e, series: VOLUME.seriesPorExercicio.min }])) as [Musculo, number][]) v[m] = (v[m] ?? 0) + n;
       musculosUsados.add(f.musculo);
       usos.set(e.id, (usos.get(e.id) ?? 0) + 1);
@@ -471,6 +531,8 @@ function montarPrograma(perfil: Perfil, inventarioOriginal: Inventario, triagem:
     }
     const causa = regioesExcluidas.length ? `por causa da dor ${regioesExcluidas.map(dorDe).join(' e ')}` : 'com o seu equipamento';
     const semCausa = !regioesExcluidas.length;
+    // acompanhamento.mensagens (R5b): o fato e o próximo passo.
+    const passoDaCausa = semCausa ? 'Não precisa fazer nada: é o que o seu equipamento permite.' : 'Quando a dor baixar, atualize a nota na triagem e o dia volta.';
     const preenchidos = d.itens.filter((i) => i.preenchido);
     const entraram = preenchidos.map((i) => i.ex.nome.toLowerCase());
     // O texto diz a verdade: "de outros músculos" quando o que entrou não é músculo do dia (um dia de puxar com panturrilha).
@@ -479,13 +541,13 @@ function montarPrograma(perfil: Perfil, inventarioOriginal: Inventario, triagem:
       avisos.push({
         regraId: r('selecao.dia-sem-principal'),
         texto: deFora
-          ? `${d.dia.nome}: ${semCausa ? 'sem exercício' : `${causa}, sem exercício`} para os músculos deste dia; entram exercícios de outros músculos (${entraram.join(', ')}).`
-          : `${d.dia.nome}: ${causa}, o dia perdeu exercícios; entram outros dos mesmos músculos (${entraram.join(', ')}).`,
+          ? `${d.dia.nome}: ${semCausa ? 'sem exercício' : `${causa}, sem exercício`} para os músculos deste dia; entram exercícios de outros músculos (${entraram.join(', ')}). ${passoDaCausa}`
+          : `${d.dia.nome}: ${causa}, o dia perdeu exercícios; entram outros dos mesmos músculos (${entraram.join(', ')}). ${passoDaCausa}`,
       });
     else if (soCore)
       avisos.push({
         regraId: r('selecao.dia-sem-principal'),
-        texto: `${d.dia.nome}: ${causa}, só o abdominal é possível neste dia.`,
+        texto: `${d.dia.nome}: ${causa}, só o abdominal é possível neste dia. ${passoDaCausa}`,
       });
   }
   if (regioesExcluidas.length)
@@ -497,7 +559,7 @@ function montarPrograma(perfil: Perfil, inventarioOriginal: Inventario, triagem:
   if (semPuxar && temDiaDeTronco(divisao) && divisao.dias.some((x) => /Puxar|Superior|Costas/.test(x.nome)))
     avisos.push({
       regraId: r('divisao.sem-puxar'),
-      texto: `${divisao.nome}: sem exercício de puxar, os dias de puxar ficam com outros músculos. Corpo todo encaixa melhor.`,
+      texto: `${divisao.nome}: sem exercício de puxar, os dias de puxar ficam com outros músculos. Para trocar, escolha Corpo todo na rotina.`,
     });
   // Sem puxada vertical: quando ela caiu para uma remada, ou quando só a remada existe (ex.: só a barra longa). O texto diz
   // o que o programa tem de fato (R5-CL): com a puxada de elástico no programa, as costas não treinam "só com remadas".
@@ -506,19 +568,19 @@ function montarPrograma(perfil: Perfil, inventarioOriginal: Inventario, triagem:
     avisos.push({
       regraId: r('equipamento.sem-puxada-vertical'),
       texto: puxadaNoPrograma
-        ? 'Sem barra fixa nem polia alta: a puxada é só com o elástico, e as costas treinam também com remadas.'
-        : 'Sem barra fixa nem polia alta: as costas treinam só com remadas.',
+        ? 'Sem barra fixa nem polia alta: a puxada é só com o elástico, e as costas treinam também com remadas. Não precisa fazer nada: as costas seguem treinando.'
+        : 'Sem barra fixa nem polia alta: as costas treinam só com remadas. Não precisa fazer nada: as remadas seguem treinando as costas.',
     });
   }
   const temMaquinaDePerna = caps.has('leg_press') || caps.has('rack');
   if (!temMaquinaDePerna && halterMax < 20)
     avisos.push({
       regraId: r('equipamento.escada-carga-leve'),
-      texto: 'Pouca carga para as pernas: o programa usa uma perna de cada vez, mais repetições e degraus de dificuldade. As pernas podem crescer menos que numa academia.',
+      texto: 'Pouca carga para as pernas: o programa usa uma perna de cada vez, mais repetições e degraus de dificuldade. As pernas podem crescer menos que numa academia. Não precisa fazer nada: quando ficar fácil, o app passa para o degrau seguinte.',
     });
   for (const id of [...lacunas].sort()) {
     const l = FUNCAO[id]!.lacuna;
-    if (l) avisos.push({ regraId: r(l.regra), texto: `Sem ${l.falta}: ${l.texto}` });
+    if (l) avisos.push({ regraId: r(l.regra), texto: `Sem ${l.falta}: ${l.texto} Não precisa fazer nada: os outros exercícios do músculo seguem no programa.` });
   }
 
   // 3. Distribuição das séries até as metas (volume.semanal.*; volume.sessao.teto; volume.series-por-exercicio)
@@ -698,33 +760,8 @@ function montarPrograma(perfil: Perfil, inventarioOriginal: Inventario, triagem:
     p.push(...lembretesDeDor(e, triagem));
     return p;
   };
-  const prescrever = (it: Item): ExercicioPrescrito => {
-    const e = it.ex;
-    const composto = e.tipo === 'composto';
-    // rir.carga-baixa: com carga baixa (muitas repetições), a proximidade da falha pesa mais; a reserva vai até 2.
-    const rirBase = composto ? RIR.composto[nivel] : RIR.isolador[nivel];
-    const cargaBaixa = (e.faixaReps[0] + e.faixaReps[1]) / 2 >= RIR.cargaBaixa.repsMeio && rirBase[1] > RIR.cargaBaixa.rirMax;
-    const rir: [number, number] = cargaBaixa ? [Math.min(rirBase[0], RIR.cargaBaixa.rirMax - 1), RIR.cargaBaixa.rirMax] : rirBase;
-    return {
-      exId: e.id,
-      nome: e.nome,
-      padrao: e.padrao,
-      tipo: e.tipo,
-      funcao: it.funcao.id,
-      series: it.series,
-      reps: e.faixaReps,
-      rir,
-      descansoSeg: composto ? DESCANSO.composto[nivel] : DESCANSO.isolador[nivel],
-      unilateral: e.unilateral,
-      animacaoId: e.animacaoId,
-      alternativas: ctx.alternativasDe(e, it.funcao),
-      porque: [
-        ...porqueDoExercicio(e, it.funcao, it.nivelFuncao, nivel, ctx.preferido(it.funcao, e)),
-        ...(cargaBaixa ? [{ regraId: r('rir.carga-baixa'), texto: 'Com muitas repetições, a série só conta perto da falha: termine com 1 a 2 repetições de reserva.' }] : []),
-        ...porqueDaDor(e, it.preenchido, it.noLugarDe, it.protegido, it.segundo),
-      ],
-    };
-  };
+  const prescreverItem = (it: Item): ExercicioPrescrito =>
+    prescrever(it.ex, it.funcao, it.nivelFuncao, it.series, ctx, porqueDaDor(it.ex, it.preenchido, it.noLugarDe, it.protegido, it.segundo));
   // Objetivo "ficar mais forte" (objetivo.forca.*): os 2 primeiros multiarticulares com carga de cada treino ficam com a
   // faixa mais baixa e o descanso maior; o peso livre fica com 2 a 3 de reserva. O iniciante segue como na hipertrofia.
   const forca = perfil.objetivo === 'forca' && nivel !== 'iniciante';
@@ -753,7 +790,7 @@ function montarPrograma(perfil: Perfil, inventarioOriginal: Inventario, triagem:
     });
   };
   let programaDias: DiaPrograma[] = dias.map(({ dia, itens }) => {
-    const exercicios = ajustarForca(itens.map(prescrever));
+    const exercicios = ajustarForca(itens.map(prescreverItem));
     return { id: dia.id, nome: dia.nome, exercicios, minutosEstimados: minutos(exercicios, colchaoDe(perfil)) };
   });
 
@@ -880,8 +917,29 @@ function montarPrograma(perfil: Perfil, inventarioOriginal: Inventario, triagem:
     );
   };
   programaDias = cortarTempo(programaDias, perfil.minutosSessao, metas, nivel, prioritarios, avisos, podeDrop, colchaoDe(perfil), trocouProtegido);
+  programaDias = completarPelaRegua(programaDias, ctx, perfil, N, semPuxar, metas, prioritarios);
 
   const volumeSemanal = volumeDe(programaDias);
+  // O porquê específico (R5b; c-fluxo.md, pedido ao domínio 6): a vaga, o músculo dela, se é foco, quantas séries da semana
+  // este exercício leva e por que ganhou das outras opções. Substitui o texto genérico da vaga (selecao.funcao-da-vaga).
+  programaDias = programaDias.map((d) => ({
+    ...d,
+    exercicios: d.exercicios.map((x) => {
+      const f = x.funcao ? FUNCAO[x.funcao] : undefined;
+      if (!f) return x;
+      const e = POR_ID_BIB[x.exId]!;
+      const m = f.musculo;
+      const s = seriesDeVolume(x);
+      const total = volumeSemanal[m] ?? 0;
+      const foco = prioritarios.has(m) ? ', o seu foco' : '';
+      const nivelFuncao = Math.max(0, f.niveis.findIndex((n) => n.includes(ctx.noLugarDe(x.exId))));
+      const fmt = (n: number) => String(Math.round(n * 10) / 10).replace('.', ',');
+      // A meta só aparece quando o músculo fica abaixo do limiar dos avisos (foco: a meta; os outros: o piso de 4).
+      const limiar = prioritarios.has(m) ? (metas[m] ?? 0) : Math.min(metas[m] ?? 0, VOLUME.minimoEficazPiso);
+      const texto = `Vaga de ${f.nome.toLowerCase()}, para ${COM_ARTIGO[m]}${foco}: ${s} das ${fmt(total)} séries da semana${total < limiar ? ` (a meta é ${metas[m]})` : ''}. ${ctx.motivoDaEscolha(e, f, nivelFuncao)}`;
+      return { ...x, porque: x.porque.map((q) => (q.regraId === 'selecao.funcao-da-vaga' && q.texto.startsWith('Vaga de ') ? { ...q, texto } : q)) };
+    }),
+  }));
   const vezes = (m: Musculo) => programaDias.filter((d) => d.exercicios.some((x) => POR_ID_BIB[x.exId]!.musculos.primarios.includes(m))).length;
   const motivoEstrutural = (m: Musculo): string => {
     // A dor tirou exercícios deste músculo? Então o motivo verdadeiro é a dor, não o equipamento (R1).
@@ -998,6 +1056,201 @@ function montarPrograma(perfil: Perfil, inventarioOriginal: Inventario, triagem:
     porque,
     regioesExcluidas,
   };
+}
+
+/**
+ * Cabe no teto semanal (volume.semanal.teto-padrao, "nunca acima"): o exercício, com `series` séries, não leva nenhum
+ * músculo dele (as indiretas a meia série) acima de 20 na semana, somado a `volume`. Usada pelo gerador (no mínimo de
+ * séries) e pelo avaliador (R5b).
+ */
+export function cabeNoTetoSemanal(e: Exercicio, volume: Partial<Record<Musculo, number>>, series: number = VOLUME.seriesPorExercicio.min): boolean {
+  return (Object.entries(volumePorMusculo([{ ex: e, series }])) as [Musculo, number][]).every(([m, n]) => (volume[m] ?? 0) + n <= VOLUME.teto);
+}
+
+/**
+ * A prescrição de um exercício numa vaga (função): repetições, RIR (com rir.carga-baixa: com muitas repetições, a reserva
+ * vai até 2), descanso, alternativas e o porquê, mais o porquê de `extras` (dor, vaga vazia...). Usada pelo gerador e
+ * pelo avaliador (R5b), para dar prescrição a um exercício que não saiu do gerador. O objetivo "ficar mais forte" é
+ * aplicado depois, ao dia inteiro.
+ */
+export function prescrever(e: Exercicio, funcao: Funcao, nivelFuncao: number, series: number, ctx: ContextoDeSelecao, extras: Porque[] = []): ExercicioPrescrito {
+  const nivel = ctx.nivel;
+  const composto = e.tipo === 'composto';
+  // rir.carga-baixa: com carga baixa (muitas repetições), a proximidade da falha pesa mais; a reserva vai até 2.
+  const rirBase = composto ? RIR.composto[nivel] : RIR.isolador[nivel];
+  const cargaBaixa = (e.faixaReps[0] + e.faixaReps[1]) / 2 >= RIR.cargaBaixa.repsMeio && rirBase[1] > RIR.cargaBaixa.rirMax;
+  const rir: [number, number] = cargaBaixa ? [Math.min(rirBase[0], RIR.cargaBaixa.rirMax - 1), RIR.cargaBaixa.rirMax] : rirBase;
+  return {
+    exId: e.id,
+    nome: e.nome,
+    padrao: e.padrao,
+    tipo: e.tipo,
+    funcao: funcao.id,
+    series,
+    reps: e.faixaReps,
+    rir,
+    descansoSeg: composto ? DESCANSO.composto[nivel] : DESCANSO.isolador[nivel],
+    unilateral: e.unilateral,
+    animacaoId: e.animacaoId,
+    alternativas: ctx.alternativasDe(e, funcao),
+    porque: [
+      ...porqueDoExercicio(e, funcao, nivelFuncao, nivel, ctx.preferido(funcao, e)),
+      ...(cargaBaixa ? [{ regraId: r('rir.carga-baixa'), texto: 'Com muitas repetições, a série só conta perto da falha: termine com 1 a 2 repetições de reserva.' }] : []),
+      ...extras,
+    ],
+  };
+}
+
+/** Insere um exercício na ordem da sessão (ordem.sessao): multiarticular depois dos multiarticulares; isolador antes do core. */
+export function inserirNaOrdem(exs: ExercicioPrescrito[], novo: ExercicioPrescrito): ExercicioPrescrito[] {
+  const i = novo.tipo === 'composto' ? exs.filter((x) => x.tipo === 'composto' && x.padrao !== 'core').length : exs.findIndex((x) => x.padrao === 'core');
+  const k = i < 0 ? exs.length : i;
+  return [...exs.slice(0, k), novo, ...exs.slice(k)];
+}
+
+/**
+ * A régua do avaliador no gerador (R5b), depois dos cortes de tempo, sem passar dos minutos, de 4 séries por exercício,
+ * de 10 por músculo na sessão nem de 20 na semana:
+ * 1. selecao.exercicios-por-musculo: o músculo grande com uma família de funções só, havendo outra possível, troca a
+ *    última vaga repetida por um exercício da família que falta ou, sem repetida, ganha um exercício num dia da mesma
+ *    região que tem lugar; a troca nunca tira a família de outro músculo;
+ * 2. selecao.isolador-obrigatorio: o obrigatório possível que ficou de fora entra num dia da mesma região com lugar;
+ * 3. avaliador.empurrar-puxar: enquanto empurrar ÷ puxar passar de 1,5, as séries de puxar sobem.
+ * Antes, o avaliador achava isso em 5,4% da grade reduzida, sem nenhum aviso do gerador.
+ */
+function completarPelaRegua(
+  dias: DiaPrograma[],
+  ctx: ContextoDeSelecao,
+  perfil: Perfil,
+  N: number,
+  semPuxar: boolean,
+  metas: Partial<Record<Musculo, number>>,
+  prioritarios: Set<Musculo>,
+): DiaPrograma[] {
+  const colchao = colchaoDe(perfil);
+  const limite = perfil.minutosSessao;
+  const bib = (x: { exId: string }) => POR_ID_BIB[x.exId]!;
+  const volumeDe = (exs: ExercicioPrescrito[]) => volumePorMusculo(exs.map((x) => ({ ex: bib(x), series: seriesDeVolume(x) })));
+  const todos = () => dias.flatMap((d) => d.exercicios);
+  const niveis = new Map<string, number>();
+  const melhorNivel = (fid: string) => {
+    let n = niveis.get(fid);
+    if (n === undefined) niveis.set(fid, (n = FUNCAO[fid]!.niveis.findIndex((ids) => ids.some((id) => ctx.naFuncao(FUNCAO[fid]!, id)))));
+    return n;
+  };
+  const cobertas = (exs: ExercicioPrescrito[]) => Object.fromEntries(Object.keys(FAMILIAS).map((m) => [m, familiasCobertas(m as Musculo, exs, melhorNivel, ctx.noLugarDe).length]));
+  const regiao = (m: Musculo) => (m === 'abdomen' ? 'core' : INFERIORES.includes(m) || m === 'adutores' ? 'inferior' : 'superior');
+  /** O dia com os exercícios novos cabe: minutos (ou não piora um dia que já passava), sessão e semana. */
+  const cabe = (di: number, exs: ExercicioPrescrito[]) => {
+    const antes = dias[di]!.minutosEstimados;
+    const depois = minutos(exs, colchao);
+    if (depois > Math.max(limite, antes)) return false;
+    if (Object.values(volumeDe(exs)).some((n) => n! > VOLUME.sessaoTeto + 1e-9)) return false;
+    const semana = volumeDe([...dias.flatMap((d, k) => (k === di ? [] : d.exercicios)), ...exs]);
+    if (Object.values(semana).some((n) => n! > VOLUME.teto + 1e-9)) return false;
+    // Nenhum músculo desce do piso dos cortes (tempo.corte: foco no mínimo do nível; os outros, 4) nem vai a zero.
+    const agora = volumeDe(todos());
+    const piso = (m: Musculo) => Math.min(metas[m] ?? 0, prioritarios.has(m) ? VOLUME.minimo[ctx.nivel] : VOLUME.minimoEficazPiso);
+    if ((Object.keys(agora) as Musculo[]).some((m) => (semana[m] ?? 0) < agora[m]! && ((semana[m] ?? 0) < piso(m) || !semana[m]))) return false;
+    // O foco não perde série abaixo da meta (régua da G5, C1).
+    if ([...prioritarios].some((m) => (semana[m] ?? 0) < (agora[m] ?? 0) - 1e-9 && (semana[m] ?? 0) < (metas[m] ?? 0))) return false;
+    // selecao.peitoral-inclinado: num dia com a vaga de empurrar horizontal, a vaga inclinada não repete um empurrar reto.
+    const reto = (x: ExercicioPrescrito) => x.funcao === 'empurrar-inclinado' && bib(x).padrao === 'empurrar-h' && !bib(x).tags.includes('inclinado');
+    return !(exs.some(reto) && exs.some((x) => x.funcao === 'empurrar-horizontal') && !dias[di]!.exercicios.some(reto));
+  };
+  const salvar = (di: number, exs: ExercicioPrescrito[]) => (dias[di] = { ...dias[di]!, exercicios: exs, minutosEstimados: minutos(exs, colchao) });
+  const nova = (e: Exercicio, fid: string, series: number, texto: string, regraId: string) =>
+    prescrever(e, FUNCAO[fid]!, Math.max(0, FUNCAO[fid]!.niveis.findIndex((n) => n.includes(e.id))), series, ctx, [{ regraId: r(regraId), texto }, ...lembretesDeDor(e, ctx.triagem)]);
+  const diasDaRegiao = (m: Musculo) =>
+    dias
+      .map((d, di) => ({ d, di, mesmo: d.exercicios.some((x) => bib(x).musculos.primarios.includes(m)) }))
+      .filter(({ d }) => d.exercicios.length < N && (regiao(m) === 'core' || d.exercicios.some((x) => bib(x).musculos.primarios.some((y) => regiao(y) === regiao(m)))))
+      .sort((a, b) => Number(b.mesmo) - Number(a.mesmo) || a.d.exercicios.length - b.d.exercicios.length || a.di - b.di);
+  /** Acrescenta o melhor exercício de uma das funções num dia da região com lugar. */
+  const acrescentar = (m: Musculo, funcoes: string[], texto: string, regraId: string, vale: (todos: ExercicioPrescrito[]) => boolean = () => true) => {
+    for (const { d, di } of diasDaRegiao(m))
+      for (const fid of funcoes) {
+        const n = melhorNivel(fid);
+        if (n < 0) continue;
+        const achado = ctx.escolher(FUNCAO[fid]!, n, (id) => d.exercicios.some((x) => x.exId === id), new Map());
+        if (!achado) continue;
+        const exs = inserirNaOrdem(d.exercicios, nova(achado.ex, fid, VOLUME.seriesPorExercicio.min, texto, regraId));
+        if (!cabe(di, exs) || !vale([...dias.flatMap((z, k) => (k === di ? [] : z.exercicios)), ...exs])) continue;
+        salvar(di, exs);
+        return true;
+      }
+    return false;
+  };
+
+  // 1. A 2ª família de funções dos músculos grandes.
+  for (const m of Object.keys(FAMILIAS) as Musculo[]) {
+    const familias = FAMILIAS[m]!;
+    const atual = familiasCobertas(m, todos(), melhorNivel, ctx.noLugarDe);
+    if (atual.length >= 2 || !todos().some((x) => contaPara(m, x.exId) && familias.some((f) => f.funcoes.some((fid) => FUNCAO[fid]!.niveis.flat().includes(x.exId))))) continue;
+    const faltam = familias.filter((f) => !atual.includes(f.nome) && f.funcoes.some((fid) => melhorNivel(fid) >= 0));
+    if (!faltam.length) continue;
+    const texto = `${NOME_MUSCULO_CURTO[m][0]!.toUpperCase()}${NOME_MUSCULO_CURTO[m].slice(1)} já tinha ${atual[0] ?? 'um movimento'}: este trabalha o músculo de outro jeito (${faltam.map((f) => f.nome).join(' ou ')}).`;
+    let feito = false;
+    // A troca: a última vez que o músculo aparece com a mesma família, num exercício sem bi-set nem drop set.
+    const ocorrencias = dias.flatMap((d, di) => d.exercicios.map((x, xi) => ({ x, di, xi }))).filter(({ x }) => contaPara(m, x.exId) && familias.some((f) => f.funcoes.some((fid) => FUNCAO[fid]!.niveis.flat().includes(x.exId))));
+    if (ocorrencias.length >= 2) {
+      const antes = cobertas(todos());
+      for (const { x, di, xi } of [...ocorrencias].reverse()) {
+        if (feito) break;
+        if (x.supersetCom || x.dropSet || x.porque.some((q) => q.regraId === 'objetivo.forca.faixa-compostos')) continue;
+        for (const f of faltam) {
+          if (feito) break;
+          for (const fid of f.funcoes) {
+            const n = melhorNivel(fid);
+            if (n < 0) continue;
+            const d = dias[di]!;
+            const achado = ctx.escolher(FUNCAO[fid]!, n, (id) => d.exercicios.some((y) => y.exId === id), new Map());
+            if (!achado) continue;
+            const exs = inserirNaOrdem(
+              d.exercicios.filter((_, k) => k !== xi),
+              nova(achado.ex, fid, x.series, texto, 'selecao.exercicios-por-musculo'),
+            );
+            // A troca não muda o uso do tempo da semana: o dia mais longo não cai abaixo de 85% dos minutos se antes não
+            // estava (o "tem tempo" da régua da G5; sem isso, um caso com dor ganhava o defeito E1).
+            const maisLongo = (ds: number[]) => Math.max(...ds);
+            const tempos = dias.map((z) => z.minutosEstimados);
+            const depoisT = tempos.map((t, k) => (k === di ? minutos(exs, colchao) : t));
+            if (!cabe(di, exs) || (maisLongo(tempos) >= 0.85 * limite && maisLongo(depoisT) < 0.85 * limite)) continue;
+            const depois = cobertas([...dias.flatMap((z, k) => (k === di ? [] : z.exercicios)), ...exs]);
+            if (Object.keys(antes).some((k) => depois[k]! < antes[k]!) || depois[m]! <= antes[m]!) continue;
+            salvar(di, exs);
+            feito = true;
+            break;
+          }
+        }
+      }
+    }
+    if (!feito) acrescentar(m, faltam.flatMap((f) => f.funcoes), texto, 'selecao.exercicios-por-musculo', (exs) => familiasCobertas(m, exs, melhorNivel, ctx.noLugarDe).length > atual.length);
+  }
+
+  // 2. Os isoladores obrigatórios que couberem.
+  for (const f of FUNCOES.filter((x) => x.obrigatoria)) {
+    if (todos().some((x) => f.niveis.flat().includes(x.exId) && (f.condicoes?.[x.exId] ?? []).every((c) => ctx.caps.has(c))) || melhorNivel(f.id) < 0) continue;
+    acrescentar(f.musculo, [f.id], 'Isolador que cobre o que os exercícios grandes não cobrem; entrou porque havia lugar no treino.', 'selecao.isolador-obrigatorio');
+  }
+
+  // 3. O ombro: séries de puxar enquanto empurrar ÷ puxar passar de 1,5.
+  if (!semPuxar)
+    for (;;) {
+      const soma = (f: (id: string) => boolean) => todos().filter((x) => f(x.exId)).reduce((t, x) => t + seriesDeVolume(x), 0);
+      if (soma(ehEmpurrar) <= EMPURRAR_PUXAR_FUNCOES * soma(ehPuxar) + 1e-9) break;
+      let feito = false;
+      for (let di = 0; di < dias.length && !feito; di++)
+        dias[di]!.exercicios.forEach((x, xi) => {
+          if (feito || !ehPuxar(x.exId) || seriesDeVolume(x) >= VOLUME.seriesPorExercicio.max || !ctx.possivel.has(x.exId)) return; // o drop set conta 2
+          const exs = dias[di]!.exercicios.map((y, k) => (k === xi ? { ...y, series: y.series + 1 } : y));
+          if (minutos(exs, colchao) > limite || !cabe(di, exs)) return;
+          salvar(di, exs);
+          feito = true;
+        });
+      if (!feito) break;
+    }
+  return dias;
 }
 
 /** O texto do objetivo (objetivo.*; pesquisa-v2/12). "Ganhar músculo" (ou sem resposta) não tem texto próprio. */
@@ -1290,6 +1543,22 @@ export const NOME_MUSCULO_CURTO: Record<Musculo, string> = {
   abdomen: 'abdômen',
   adutores: 'adutores',
 };
+/** O músculo com o artigo, para o porquê ("para os glúteos"). */
+export const COM_ARTIGO: Record<Musculo, string> = {
+  peito: 'o peito',
+  costas: 'as costas',
+  ombro_anterior: 'o ombro da frente',
+  ombro_lateral: 'o ombro lateral',
+  ombro_posterior: 'o ombro de trás',
+  biceps: 'o bíceps',
+  triceps: 'o tríceps',
+  quadriceps: 'o quadríceps',
+  posteriores: 'os posteriores da coxa',
+  gluteos: 'os glúteos',
+  panturrilha: 'a panturrilha',
+  abdomen: 'o abdômen',
+  adutores: 'os adutores',
+};
 const listaDeNomes = (ms: Musculo[]) => {
   const n = ms.map((m) => NOME_MUSCULO_CURTO[m]);
   return n.length > 1 ? `${n.slice(0, -1).join(', ')} e ${n[n.length - 1]}` : n[0]!;
@@ -1443,7 +1712,7 @@ export function cortarTempo(
     if (d.minutosEstimados > limite)
       avisos.push({
         regraId: r('tempo.corte'),
-        texto: `${d.nome}: deve levar ~${d.minutosEstimados} min, mais que os ${limite} min que você tem.`,
+        texto: `${d.nome}: deve levar ~${d.minutosEstimados} min, mais que os ${limite} min que você tem. Reserve uns minutos a mais nesse dia, ou escolha ${Math.ceil(d.minutosEstimados / 5) * 5} min na rotina.`,
       });
   }
   if (usados.size)
@@ -1459,7 +1728,9 @@ export function cortarTempo(
         ]
           .filter(Boolean)
           .join(', ') +
-        '.',
+        (usados.has('corte') || usados.has('series')
+          ? '. Para ter o programa inteiro, escolha mais minutos na rotina.'
+          : '. As séries da semana não mudam: não precisa fazer nada.'),
     });
   return dias;
 }
@@ -1487,13 +1758,24 @@ export function avisosDeMeta(
   if (semExercicio.length)
     out.push(
       semPuxar
-        ? { regraId: r('equipamento.sem-ancoragem'), texto: `Sem algo para puxar ou levantar: ${listaDeNomes(semExercicio)} ficam sem exercício. O resto do corpo segue no programa.` }
-        : { regraId: r('volume.semanal.alvo'), texto: `${SEM_EXERCICIO}: ${listaDeNomes(semExercicio)}.` },
+        ? { regraId: r('equipamento.sem-ancoragem'), texto: `Sem algo para puxar ou levantar: ${listaDeNomes(semExercicio)} ficam sem exercício. Não precisa fazer nada: o resto do corpo segue no programa.` }
+        : { regraId: r('volume.semanal.alvo'), texto: `${SEM_EXERCICIO}: ${listaDeNomes(semExercicio)}. Não precisa fazer nada: o resto do programa segue.` },
     );
-  if (porTempo.length) out.push({ regraId: r('tempo.corte'), texto: `Abaixo da meta por falta de tempo: ${porTempo.map((m) => `${item(m)} séries`).join('; ')}.` });
-  for (const m of porEstrutura.filter((x) => !semExercicio.includes(x)))
-    out.push({ regraId: r('volume.semanal.alvo'), texto: `Abaixo da meta: ${item(m)} séries por semana. ${motivoEstrutural(m)}.` });
+  if (porTempo.length)
+    out.push({ regraId: r('tempo.corte'), texto: `Abaixo da meta por falta de tempo: ${porTempo.map((m) => `${item(m)} séries`).join('; ')}. Para chegar lá, escolha mais minutos ou mais dias na rotina.` });
+  for (const m of porEstrutura.filter((x) => !semExercicio.includes(x))) {
+    const motivo = motivoEstrutural(m);
+    out.push({ regraId: r('volume.semanal.alvo'), texto: `Abaixo da meta: ${item(m)} séries por semana. ${motivo}. ${passoDoMotivo(motivo, prioritarios.has(m))}` });
+  }
   return out;
+}
+
+/** O próximo passo de um músculo abaixo da meta, pelo motivo (acompanhamento.mensagens; R5b). */
+function passoDoMotivo(motivo: string, foco: boolean): string {
+  if (/por causa da dor|a dor .* tirou/.test(motivo) && !/^Com |^A divisão/.test(motivo)) return 'Quando a dor baixar, atualize a nota na triagem.';
+  if (motivo.startsWith(SEM_EXERCICIO)) return 'Não precisa fazer nada: o resto do programa segue.';
+  if (motivo.startsWith('Com ')) return foco ? 'Para chegar lá, escolha mais minutos na rotina, ou menos grupos de foco.' : 'Para chegar lá, escolha mais minutos na rotina.';
+  return foco ? 'Para chegar lá, escolha mais dias na rotina, ou menos grupos de foco.' : 'Não precisa fazer nada: com mais dias na rotina, ele sobe.';
 }
 
 function fases(p: Perfil): Fase[] {

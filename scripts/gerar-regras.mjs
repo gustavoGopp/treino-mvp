@@ -21,5 +21,7 @@ export function lerRegras(md) {
 if (import.meta.url === `file://${process.argv[1]}`) {
   const regras = lerRegras(readFileSync('docs/pesquisa/regras.md', 'utf8'));
   writeFileSync('src/domain/regras/regras.json', JSON.stringify(regras, null, 2) + '\n');
+  // R5b: o pacote inicial do app leva só o selo de cada regra; o texto e as fontes vêm quando a folha do selo abre.
+  writeFileSync('src/domain/regras/selos.json', JSON.stringify(Object.fromEntries(regras.map((r) => [r.id, r.selo])), null, 1) + '\n');
   console.log(`regras: ${regras.length} → src/domain/regras/regras.json`);
 }

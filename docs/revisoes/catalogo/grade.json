@@ -5921,6 +5921,11 @@
     "repeteComOpcao": 90,
     "repeteSemOpcao": 63
    },
+   "abducao": {
+    "aparece2": 0,
+    "repeteComOpcao": 0,
+    "repeteSemOpcao": 0
+   },
    "afundo": {
     "aparece2": 3109,
     "repeteComOpcao": 0,
@@ -5952,8 +5957,8 @@
     "repeteSemOpcao": 998
    },
    "empurrar-horizontal": {
-    "aparece2": 2970,
-    "repeteComOpcao": 798,
+    "aparece2": 2964,
+    "repeteComOpcao": 792,
     "repeteSemOpcao": 1092
    },
    "empurrar-inclinado": {

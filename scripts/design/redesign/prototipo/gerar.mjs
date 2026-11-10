@@ -16,6 +16,7 @@ const M = {
   ...(await import('../../../../src/engine/estilo/index.ts')),
   ...(await import('../../../../src/conteudo/index.ts')),
   ...(await import('../../../../src/domain/regras/index.ts')),
+  ...(await import('../../../../src/domain/regras/completas.ts')),
   ...(await import('../../../../src/domain/triagem/index.ts')),
   ...(await import('../../../../src/domain/nivel/index.ts')),
   ...(await import('../../../../src/domain/biblioteca/index.ts')),

@@ -1361,7 +1361,7 @@
   },
   {
     "id": "selecao.exercicios-por-musculo",
-    "regra": "Exercícios diferentes por músculo na semana. O que se sabe (06/11/2026): com o mesmo volume, um exercício só cresce o músculo inteiro como vários (moderada, em coxa e braço); funções diferentes crescem regiões diferentes (moderada: posteriores, quadríceps, peito, bíceps); nenhum ensaio compara 1 exercício com mais séries a 2 exercícios com o mesmo volume. O número 2 é consenso",
+    "regra": "Exercícios diferentes por músculo na semana. O que se sabe (06/11/2026): com o mesmo volume, um exercício só cresce o músculo inteiro como vários (moderada, em coxa e braço); funções diferentes crescem regiões diferentes (moderada: posteriores, quadríceps, peito, bíceps); nenhum ensaio compara 1 exercício com mais séries a 2 exercícios com o mesmo volume. O número 2 é consenso. **R5b (09/11/2026):** medido pela tabela de funções, em famílias (peito: reto, inclinado, crucifixo; costas: de cima, remada; quadríceps: agachar, afundo, extensora; posteriores: flexão de joelho, dobrar o quadril; glúteo: agachar ou afundo, extensão de quadril, abdução). Um exercício vale numa função no nível igual ou acima do melhor possível no equipamento; por isso a flexão (ou o supino reto) em duas vagas conta como 2 funções do peito só quando não há banco inclinável. Depois dos cortes de tempo, o gerador troca a vaga repetida pela família que falta ou a acrescenta num dia da mesma região com lugar, sem passar dos minutos nem dos pisos",
     "valores": {
       "iniciante": "grandes (peito, costas, quadríceps, posteriores, glúteos): 2, de funções complementares; pequenos: 1, ou 2 se forem prioridade",
       "intermediario": "grandes (peito, costas, quadríceps, posteriores, glúteos): 2, de funções complementares; pequenos: 1, ou 2 se forem prioridade",
@@ -1380,7 +1380,7 @@
   },
   {
     "id": "selecao.isolador-obrigatorio",
-    "regra": "Quando o equipamento permite, entra o isolador que cobre o que os multiarticulares não cobrem; ele não sai nos cortes de tempo. Em treinos curtos (até 4 exercícios), entra depois das vagas-base do dia, para não deixar um músculo grande sem nenhuma série na semana (revista na auditoria do treino, 02/11/2026; `selecao.multi-mono`)",
+    "regra": "Quando o equipamento permite, entra o isolador que cobre o que os multiarticulares não cobrem; ele não sai nos cortes de tempo. Em treinos curtos (até 4 exercícios), entra depois das vagas-base do dia, para não deixar um músculo grande sem nenhuma série na semana (revista na auditoria do treino, 02/11/2026; `selecao.multi-mono`). R5b (09/11/2026): o obrigatório que ficou de fora entra depois dos cortes, num dia da mesma região com lugar",
     "valores": {
       "iniciante": "extensora (reto femoral; sem a máquina, com caneleira ou com elástico, no lado curto do músculo: `equipamento.caneleira`); tríceps acima da cabeça (cabeça longa); panturrilha em pé (gastrocnêmio); com até 4 exercícios por treino, entram depois das vagas-base do dia",
       "intermediario": "extensora (reto femoral; sem a máquina, com caneleira ou com elástico, no lado curto do músculo: `equipamento.caneleira`); tríceps acima da cabeça (cabeça longa); panturrilha em pé (gastrocnêmio); com até 4 exercícios por treino, entram depois das vagas-base do dia",
@@ -1492,6 +1492,50 @@
     "selo": "consenso",
     "fontes": [
       "consenso-projeto"
+    ]
+  },
+  {
+    "id": "selecao.complexidade-nivel",
+    "regra": "Complexidade do exercício até o nível (R5b, 09/11/2026: o filtro `NIVEL_COMPLEXIDADE_MAX` do gerador ganha `regraId`). Cada exercício da biblioteca tem complexidade de 1 a 3; o iniciante fica até 2 (o mergulho nas paralelas, o nórdico e a roda abdominal ficam de fora: ombro, dor forte na 1ª sessão, lombar). Máquinas e apoiados crescem igual e são mais fáceis de aprender. No avaliador, um exercício acima do nível é alerta forte, sem bloquear",
+    "valores": {
+      "iniciante": "até 2",
+      "intermediario": "até 3",
+      "avancado": "até 3"
+    },
+    "selo": "consenso",
+    "fontes": [
+      "haugen2023",
+      "mckenzie2022",
+      "coratella2025",
+      "behan2023"
+    ]
+  },
+  {
+    "id": "avaliador.gravidade",
+    "regra": "O avaliador de programas (R5b, 09/11/2026; `docs/revisoes/proximos-passos/b-monte-e-avaliador.md`) mede qualquer programa (o gerado, ou um digitado com exercícios da biblioteca) pelas mesmas regras e pela mesma tabela de funções (`FUNCAO`) do gerador, e dá a cada achado a regra, o selo e o próximo passo. Só a segurança bloqueia (princípio do projeto): a triagem com um \"sim\" sem liberação e o exercício que carrega uma região com dor acima de 5. Alerta forte, sem bloquear: equipamento que o local não tem, exercício que a pessoa pediu para evitar, complexidade acima do nível. O resto só orienta: \"ajustar\" quando há como mudar nos mesmos dias e minutos (uma série a mais, um exercício a mais, uma troca); \"limite\" quando o equipamento, a dor ou o tempo não deixam, e então o texto diz que não precisa fazer nada; \"informação\" para o que não muda o resultado (a ordem, o máximo do nível). Achados iguais saem numa linha só. \"Está bom\" = nenhum de segurança, alerta ou ajustar",
+    "valores": {
+      "iniciante": "idem",
+      "intermediario": "idem",
+      "avancado": "idem"
+    },
+    "selo": "consenso",
+    "fontes": [
+      "consenso-projeto"
+    ]
+  },
+  {
+    "id": "avaliador.empurrar-puxar",
+    "regra": "Equilíbrio do ombro (R5b, 09/11/2026; decisão de 07/11, `docs/revisoes/proximos-passos.md`, parte 3; o mesmo limite da régua da G5, D1, e do gerador desde o R5d): quando há como puxar, as séries semanais das funções de empurrar (horizontal, inclinado, vertical, crucifixo) ÷ as de puxar (vertical, horizontal, ombro posterior) ficam em até 1,5. Não há ensaio prospectivo do limite; o apoio é de caso-controle: quem treina com dor no ombro tende a ter mais força de empurrar que de puxar. Sem nada para puxar, o avaliador não pede empurrar a menos. O gerador, depois dos cortes de tempo, sobe as séries de puxar enquanto passar de 1,5 e houver lugar (R5b)",
+    "valores": {
+      "iniciante": "≤ 1,5",
+      "intermediario": "≤ 1,5",
+      "avancado": "≤ 1,5"
+    },
+    "selo": "consenso",
+    "fontes": [
+      "kolber2010",
+      "kolber2014",
+      "kolber2017"
     ]
   },
   {

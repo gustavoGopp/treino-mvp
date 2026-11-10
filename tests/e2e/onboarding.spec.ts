@@ -20,6 +20,8 @@ test('do zero ao programa em menos de 5 minutos (persona Ana)', async ({ page })
   let folha = await abrirExercicio(page, /Agachamento búlgaro/);
   await expect(folha.locator('.sub-rx')).toContainText('RIR 3–4');
   await expect(folha.locator('.selo').first()).toBeVisible();
+  // R5b: o porquê começa pelo específico (a vaga, o músculo, o foco, as séries da semana e por que ganhou).
+  await expect(folha.getByText(/^Vaga de agachar, para o quadríceps, o seu foco: \d+ das \d+ séries da semana/)).toBeVisible();
   await folha.getByRole('button', { name: 'Fechar' }).click();
   // Outro dia.
   await page.getByRole('tab', { name: 'Corpo todo B', exact: true }).click();
@@ -28,6 +30,10 @@ test('do zero ao programa em menos de 5 minutos (persona Ana)', async ({ page })
   // Avisos de meta por músculo em "Sobre o programa".
   folha = await sobreOPrograma(page);
   await expect(folha.getByText(/Abaixo da meta/).first()).toBeVisible();
+  // R5b: "Como está o seu programa", a saída do avaliador, com o selo e o próximo passo de cada achado.
+  await expect(folha.getByRole('heading', { name: 'Como está o seu programa' })).toBeVisible();
+  await expect(folha.getByText(/^(Está bom|Dá para melhorar)/)).toBeVisible();
+  await expect(folha.getByText(/Foco abaixo da meta: .* Para chegar lá, mais minutos, mais dias ou menos grupos de foco\./)).toBeVisible();
   await folha.getByRole('button', { name: 'Fechar' }).click();
 
   await page.getByRole('tab', { name: 'Corpo todo A', exact: true }).click();
