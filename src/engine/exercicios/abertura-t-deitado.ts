@@ -1,5 +1,5 @@
 // @ts-nocheck
-// Animação nova (em revisão). Abertura em T deitado de bruços, sem carga: de bruços no colchonete, a testa numa toalha
+// Animação nova (aprovada). Abertura em T deitado de bruços, sem carga: de bruços no colchonete, a testa numa toalha
 // dobrada, os braços abertos para os lados em T, cotovelos estendidos; ergue os braços do chão abrindo para trás, sem
 // levantar a cabeça nem encolher os ombros, e desce até as mãos quase tocarem o chão.
 // Técnica e fontes: docs/pesquisa/animacoes/abertura-t-deitado.md.
@@ -7,8 +7,8 @@
 // aprovada (flexao-joelho-elastico); o braço em T e os erros vêm do T na suspensão aprovado (yt-suspensao). Os braços
 // vão retos, a 90° do corpo (azimute 90), e só a elevação muda: a mão sai a 4 cm do chão e sobe a 28 cm (13 cm acima da
 // linha dos ombros). Sem peça nova: o colchonete e a toalha são caixas (BOX).
-import { L3, TX, BOX } from '../../desenho';
-import { X, Y, Z, add } from '../../math';
+import { L3, TX, BOX } from '../desenho';
+import { X, Y, Z, add } from '../math';
 
 const T = (el) => ({ ua: [90, el], fa: [90, el] });
 const ex = {

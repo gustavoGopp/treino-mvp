@@ -10,7 +10,7 @@ Nada aqui muda o corpo do Boneco, o estilo ou as animações já aprovadas: as p
 | 1 | `panturrilha-degrau` (panturrilha no degrau da escada) | 81,8% | panturrilha no step (`panturrilha-b`) + parede da panturrilha no chão | `folhas/panturrilha-degrau.png`, `folhas/panturrilha-degrau-erros.png` | **aprovada em 10/11** |
 | 2 | `abdominal-invertido` (abdominal invertido no chão) | 61,7% | abdominal no chão (o colchonete e o corpo deitado) | `folhas/abdominal-invertido.png`, `folhas/abdominal-invertido-erros.png` | **aprovada em 10/11** |
 | 3 | `extensao-triceps-peso-corpo` (extensão de tríceps com o peso do corpo) | 59,4% | tríceps na suspensão (o corpo reto inclinado) + uma bancada (caixa) | `folhas/extensao-triceps-peso-corpo.png`, `folhas/extensao-triceps-peso-corpo-erros.png` | **aprovada em 10/11** |
-| 4 | `abertura-t-deitado` (abertura em T deitado de bruços) | 56,1% | corpo de bruços da flexão de joelho com elástico + braço em T do T na suspensão | `folhas/abertura-t-deitado.png`, `folhas/abertura-t-deitado-erros.png` | **espera o "aprovar"** |
+| 4 | `abertura-t-deitado` (abertura em T deitado de bruços) | 56,1% | corpo de bruços da flexão de joelho com elástico + braço em T do T na suspensão | `folhas/abertura-t-deitado.png`, `folhas/abertura-t-deitado-erros.png` | **aprovada em 10/11** |
 | 5 | `flexao-pes-elevados` | 53,8% | flexão | — | depois da 4 |
 
 ## Como ler cada folha
@@ -23,3 +23,4 @@ Nada aqui muda o corpo do Boneco, o estilo ou as animações já aprovadas: as p
 - **Panturrilha no degrau:** nada muda.
 - **Abdominal invertido:** só o **Fábio**. No Inferior B, a elevação de joelhos na barra (2×10–15) dá lugar ao abdominal invertido (2×12–20). As duas valem para a mesma vaga, no mesmo nível. Antes, a elevação ganhava porque só ela tinha animação. Agora as duas têm, e o empate cai no último critério, a ordem do nome. O gerador não mudou.
 - **Extensão de tríceps com o peso do corpo:** nada muda.
+- **Abertura em T deitado:** nada muda.

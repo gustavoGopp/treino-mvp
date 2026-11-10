@@ -4859,7 +4859,7 @@
    "peso-corpo"
   ],
   "carga": "peso-corpo",
-  "animacaoId": null
+  "animacaoId": "abertura-t-deitado"
  },
  {
   "id": "panturrilha-degrau",
