@@ -1,0 +1,86 @@
+{
+ "id": "ponte-gluteo-halter",
+ "name": "Ponte de glúteo com halter",
+ "short": "Ponte com halter",
+ "target": "Glúteos",
+ "feel": "Glúteos, na parte de trás do quadril.",
+ "feelNote": "Se sentir mais a parte de trás da coxa ou a lombar do que o glúteo, aproxime um pouco os pés e não arqueie a lombar no topo. Cãibra atrás da coxa às vezes acontece: pare, alongue e recomece.",
+ "setupEq": [
+  "Um halter.",
+  "Uma toalha dobrada para apoiar o halter.",
+  "O chão (um colchonete ajuda)."
+ ],
+ "setupBody": [
+  "Sentado no chão, apoie o halter deitado de través na dobra do quadril, sobre a toalha.",
+  "Deite de costas segurando as pontas do halter com as duas mãos; joelhos dobrados.",
+  "Pés no chão na largura do quadril, calcanhares a cerca de um palmo dos glúteos."
+ ],
+ "exec": [
+  [
+   "hold",
+   "Deitado",
+   "Abdômen firme, costelas para baixo, as duas mãos no halter."
+  ],
+  [
+   "conc",
+   "Subida (concêntrica)",
+   "~1 s. Empurre o chão pelos calcanhares até ombros, quadril e joelhos ficarem em linha."
+  ],
+  [
+   "hold",
+   "Topo · segura",
+   "Segure ~1 s, apertando o glúteo, costelas para baixo."
+  ],
+  [
+   "ecc",
+   "Descida (excêntrica)",
+   "~2 s, controlada, até o quadril quase encostar no chão."
+  ]
+ ],
+ "range": [
+  "Embaixo: quadril quase no chão.",
+  "Em cima: ombros, quadril e joelhos em linha, sem arquear a lombar.",
+  "Ombros e cabeça ficam no chão o tempo todo."
+ ],
+ "breath": "Solte o ar subindo, inspire descendo.",
+ "cues": [
+  "Duas mãos no halter.",
+  "Empurra pelos calcanhares.",
+  "Pausa no topo."
+ ],
+ "check": [
+  "Toalha embaixo do halter",
+  "As duas mãos no halter",
+  "Pés a um palmo dos glúteos",
+  "Calcanhares no chão",
+  "Ombros no chão"
+ ],
+ "vary": "Os joelhos seguem a direção dos pés: não deixe que caiam para dentro na subida. Se os pés ficarem longe demais, a parte de trás da coxa trabalha mais; perto demais, o calcanhar tende a sair do chão. Ficou leve? Use o próximo halter da sua lista.",
+ "note": "<b>Segurança:</b> o halter pode rolar e cair do quadril. As duas mãos ficam nele o tempo todo, da montagem até você sentar de novo.",
+ "extLabels": [
+  "embaixo",
+  "topo"
+ ],
+ "errors": [
+  {
+   "id": "e1",
+   "title": "Arquear a lombar no topo",
+   "desc": "A lombar arqueia em vez de o quadril estender. Pare quando ombros, quadril e joelhos ficarem em linha."
+  },
+  {
+   "id": "e2",
+   "title": "Halter rolando",
+   "desc": "Uma das mãos solta e o halter escorrega do quadril. Segure com as duas mãos o tempo todo."
+  },
+  {
+   "id": "e3",
+   "title": "Empurrar pela ponta dos pés",
+   "desc": "O calcanhar sai do chão e a coxa trabalha mais que o glúteo. Empurre pelos calcanhares."
+  },
+  {
+   "id": "e4",
+   "title": "Subir pouco",
+   "desc": "O quadril não alinha e o glúteo trabalha menos. Suba até ombros, quadril e joelhos ficarem em linha."
+  }
+ ]
+}

@@ -25,3 +25,13 @@ Nada aqui muda o corpo do Boneco, o estilo ou as animações já aprovadas: as p
 - **Extensão de tríceps com o peso do corpo:** nada muda.
 - **Abertura em T deitado:** nada muda.
 - **Flexão com os pés elevados:** nada muda. O abdômen entra na lista dos que "só ajudam" (listrado de laranja), como na flexão e na flexão com elástico (`SO_AJUDA` no motor e `AJUDANTES` na auditoria de anatomia).
+
+## Lote 2 (10/11/2026): os 3 mais frequentes de halter e banco
+Pela régua com os 5 de corpo livre animados (`revisoes/qualidade/regua.md`, "Uso de cada exercício"); nenhum pede peça nova.
+
+| # | Animação | Em quantos programas aparece | Base aprovada | Folha | Situação |
+|---|---|---|---|---|---|
+| 6 | `ponte-gluteo-halter` (ponte de glúteo com halter) | 13,5% | ponte com kettlebell | `folhas/ponte-gluteo-halter.png`, `folhas/ponte-gluteo-halter-erros.png` | **espera o "aprovar"** |
+| 7 | `remada-curvada-halteres` | 11,8% | — | — | depois da 6 |
+| 8 | `afundo-tras-peso-corpo` | 10,7% | — | — | depois da 7 |
+
