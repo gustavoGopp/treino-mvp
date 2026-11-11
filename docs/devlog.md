@@ -1512,3 +1512,49 @@ As folhas completas, com os músculos, a trajetória e os erros: `revisoes/r5-an
 > Resultado: os programas com um dia de 3 ou mais exercícios sem animação caíram de 74% para 17%. Para quem treina sem nenhum equipamento, para zero. E nenhuma das 82 animações anteriores mudou um pixel: o teste visual garante.
 >
 > O que aprendi: antes de fazer mais, medir onde está o buraco. Cinco animações resolveram o que 32 teriam resolvido no papel.
+
+---
+
+## R5-anim, lote 2: ponte com halter, remada curvada e afundo para trás (10/11/2026)
+
+**Por quê.** Depois dos 5 de corpo livre, os exercícios em cartão que mais aparecem são os de halter e banco. Os 3 primeiros da fila não pedem peça nova: a ponte de glúteo com halter (13,5% dos programas sem dor), a remada curvada com halteres (11,8%) e o afundo para trás com o peso do corpo (10,7%).
+
+**O que mudou**
+- **3 animações novas, aprovadas pelo Gustavo folha a folha**, cada uma a partir de uma aprovada:
+  - **Ponte com halter:** sai da ponte com kettlebell, com o halter de través sobre o quadril e uma vista de cima para o erro "halter rolando".
+  - **Remada curvada:** sai da remada sem banco, com os dois braços, e das pernas do stiff.
+  - **Afundo para trás:** sai do afundo com o peso do corpo, mais o passo para trás.
+- **Correção pedida pelo Gustavo:** na 1ª folha da ponte com halter, "o braço está estranho" (os cotovelos abertos e no ar). Agora os cotovelos ficam apoiados no chão, ao lado da cintura. A ponte com kettlebell, já aprovada, tem o mesmo braço; a correção dela ficou no backlog.
+- **Texto completo do guia** dos 3, no lugar do cartão, com os mesmos erros.
+
+**Medido** (régua, 36.300 programas sem dor)
+| | depois dos 5 de corpo livre | depois do lote 2 |
+|---|---|---|
+| programas com um dia de 3 ou mais cartões (G1) | 17,4% | **14,1%** |
+| cartões de texto por dia (média) | 0,79 | 0,68 |
+| programas sem dor sem nenhum defeito | 85,5% | **85,9%** |
+
+- **Defeitos:** nenhum passou da linha de base. Sem dor, o A3 (dia longo demais) caiu de 2.458 para 2.281 programas. Três subiram por poucos programas: C1 de 463 para 479, D1 de 373 para 379 e E1 de 35 para 38.
+- **As animações anteriores** continuam com os mesmos quadros nas duas linhas de base, com 0 falha de cinemática.
+
+**As personas** (trocas pelo desempate entre equivalentes animados, aceitas pelo Gustavo):
+- **Ana, Corpo todo C:** a remada sem banco vira a remada curvada (43 → 41 min).
+- **Fábio, Inferior A:** o búlgaro vira o afundo para trás, e o nórdico cai de 3 para 2 séries (posteriores: 10 → 9 por semana).
+- Nos dois casos o desempate cai na ordem do nome; a regra fica para o marco do gerador (`backlog.md`, "Do R5-anim").
+
+**Testes que mudaram:**
+- **Registros dos programas da Ana e do Fábio:** as trocas acima.
+- **O afundo para trás na lista de músculos do motor:** com os adutores, como o afundo aprovado.
+- **4 testes no navegador que abriam a ponte com halter como "exercício sem animação":** o onboarding, a folha do exercício, o treino e os 7 cenários de acessibilidade do treino.
+  - O onboarding passa a conferir 0 cartão no dia A e 1 no dia B (o crucifixo invertido sentado).
+  - Os outros abrem a barra só na descida, que entra com uma barra fixa no equipamento da Ana dos testes e tem a montagem segura.
+- **Resultado:** `npm run check` com 831 testes e os 141 e2e passando; `npm run auditoria` regerada.
+
+![As 3 animações do lote 2, no modo Técnica](img/r5-anim-lote2.png)
+
+**Rascunho de post para o LinkedIn**
+> Mais três exercícios ganharam o boneco animado no meu app de treino: a ponte de glúteo com halter, a remada curvada e o afundo para trás. Com eles, os treinos com um dia de 3 ou mais exercícios só em texto caíram de 17% para 14%.
+>
+> O momento bom foi uma frase do dono do produto na revisão: "o braço está estranho". Estava mesmo: copiei o braço de outra animação, e nela os cotovelos ficavam no ar. Na ponte com halter, quem faz apoia os cotovelos no chão. Corrigi, e a frase virou um item na fila para a animação de origem.
+>
+> Animar também muda o treino: o app prefere o exercício que tem guia animado, e com mais animações alguns empates passaram a cair na ordem alfabética. Cada troca foi mostrada antes de entrar, e a regra de desempate entrou na fila do gerador.

@@ -1,6 +1,6 @@
 import { expect, test, type Page } from '@playwright/test';
 import { criterios } from './criterios';
-import { abrirExercicio, abrirTrocar, ana, detalhesDo, folhaPronta, maisOpcoes, pronto, proximoExercicio, sobreOPrograma, terminarTreino, verAvisos } from './jornada';
+import { abrirExercicio, abrirTrocar, ana, detalhesDo, folhaPronta, maisOpcoes, marcarItem, pronto, proximoExercicio, sobreOPrograma, terminarTreino, verAvisos } from './jornada';
 
 // Redesign (06/11/2026), lote 1: os 4 critérios (toque de 44 px, contraste, texto cortado e foco coberto) em todas as
 // telas, nos 7 cenários que o protótipo mediu (docs/revisoes/redesign/proposta.md, seção 13). Os cenários de 320 px,
@@ -41,8 +41,10 @@ async function salvarSerie(page: Page) {
   await page.getByRole('button', { name: /^Série feita/ }).click();
 }
 
-async function comecar(page: Page) {
-  await ana(page);
+async function comecar(page: Page, { barraFixa = false } = {}) {
+  // R5-anim, lote 2 (10/11/2026): com a ponte com halter animada, o dia A da Ana só tem exercício sem animação se ela
+  // tiver uma barra fixa (a barra só na descida, o 4º exercício).
+  await ana(page, barraFixa ? { equipamentoExtra: async (p) => void (await marcarItem(p, 'Barra fixa')) } : {});
   await page.getByRole('button', { name: /^Começar o treino/ }).click();
   await expect(page).toHaveURL(/\/treino$/);
 }
@@ -111,7 +113,7 @@ const GRUPOS: Record<string, (page: Page) => Promise<void>> = {
   },
   // lote 2
   treino: async (page) => {
-    await comecar(page);
+    await comecar(page, { barraFixa: true });
     await criterios(page); // série 1
     await page.getByRole('button', { name: 'Senti algo' }).click();
     await criterios(page);
@@ -127,8 +129,8 @@ const GRUPOS: Record<string, (page: Page) => Promise<void>> = {
     await criterios(page); // descanso
     await page.getByRole('button', { name: 'Pular' }).click();
     await criterios(page); // série 2
-    await proximoExercicio(page);
-    await expect(page.getByRole('heading', { name: /Ponte de glúteo/ })).toBeVisible();
+    for (let i = 0; i < 3; i++) await proximoExercicio(page);
+    await expect(page.getByRole('heading', { name: /Barra fixa só na descida/ })).toBeVisible();
     await criterios(page); // exercício sem animação, cartão fechado
     await page.getByRole('button', { name: 'Como fazer: dicas e erros ›' }).click();
     await criterios(page); // cartão aberto

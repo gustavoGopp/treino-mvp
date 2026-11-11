@@ -3550,7 +3550,7 @@
    "halter"
   ],
   "carga": "halter",
-  "animacaoId": null
+  "animacaoId": "remada-curvada-halteres"
  },
  {
   "id": "crucifixo-invertido-curvado",
@@ -3614,7 +3614,7 @@
    "montagem"
   ],
   "carga": "halter",
-  "animacaoId": null
+  "animacaoId": "ponte-gluteo-halter"
  },
  {
   "id": "supino-chao-halteres",
@@ -4928,7 +4928,7 @@
    "peso-corpo"
   ],
   "carga": "peso-corpo",
-  "animacaoId": null
+  "animacaoId": "afundo-tras-peso-corpo"
  },
  {
   "id": "abdominal-invertido",

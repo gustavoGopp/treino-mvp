@@ -16,7 +16,7 @@ exports[`cenários (snapshots revisados) > ana 1`] = `
   "dias": [
     "Corpo todo A (44 min): bulgaro 4×8–12 [bi-set] | ponte-gluteo-halter 2×10–20 [bi-set] | supino-reto 2×6–10 [bi-set] | remada-unilateral-halter 2×8–12 [bi-set] | flexao-joelho-deslizante 3×8–15 [bi-set] | triceps-frances-halter 2×10–15 [bi-set] [drop set]",
     "Corpo todo B (43 min): stiff 4×8–12 [bi-set] | supino-reto 2×6–10 [bi-set] | remada-unilateral-halter 2×8–12 | panturrilha-degrau 3×12–20 [bi-set] | rosca-alternada 2×8–12 [bi-set] [drop set] | crucifixo-invertido-sentado 2×12–20 [drop set]",
-    "Corpo todo C (43 min): afundo 2×8–12 [bi-set] | ponte-gluteo-halter 2×10–20 [bi-set] | flexao 2×8–15 [bi-set] | remada-unilateral-sem-banco 2×8–12 [bi-set] | panturrilha-degrau 3×12–20 | abdominal-chao 4×12–20",
+    "Corpo todo C (41 min): afundo 2×8–12 [bi-set] | ponte-gluteo-halter 2×10–20 [bi-set] | flexao 2×8–15 [bi-set] | remada-curvada-halteres 2×8–12 [bi-set] | panturrilha-degrau 3×12–20 | abdominal-chao 4×12–20",
   ],
   "divisao": "Corpo todo A/B/C",
   "fases": [
@@ -186,7 +186,7 @@ exports[`cenários (snapshots revisados) > fabio 1`] = `
   ],
   "dias": [
     "Superior A (44 min): barra-fixa 4×5–10 | barra-fixa-negativa 4×3–6 | flexao 4×8–15 | extensao-triceps-peso-corpo 3×10–15 | abertura-t-deitado 2×12–20",
-    "Inferior A (45 min): agachamento-peso-corpo 4×12–20 | bulgaro-peso-corpo 2×8–15 | flexao-joelho-deslizante 2×8–15 | nordico 3×6–10 | panturrilha-degrau 4×12–20 | abdominal-chao 2×12–20",
+    "Inferior A (44 min): agachamento-peso-corpo 4×12–20 | afundo-tras-peso-corpo 2×10–16 | flexao-joelho-deslizante 2×8–15 | nordico 2×6–10 | panturrilha-degrau 4×12–20 | abdominal-chao 2×12–20",
     "Superior B (43 min): barra-fixa-supinada 4×5–10 | barra-fixa 4×5–10 | flexao-pes-elevados 3×8–15 | flexao-fechada 3×8–15 | abertura-t-deitado 2×12–20",
     "Inferior B (45 min): afundo-peso-corpo 3×10–16 | ponte-gluteo 2×12–20 | flexao-joelho-deslizante 3×8–15 | panturrilha-degrau 4×12–20 | nordico 2×6–10 | abdominal-invertido 2×12–20",
   ],
@@ -202,7 +202,7 @@ exports[`cenários (snapshots revisados) > fabio 1`] = `
     "ombro_posterior": 12,
     "panturrilha": 8,
     "peito": 10,
-    "posteriores": 10,
+    "posteriores": 9,
     "quadriceps": 9,
     "triceps": 9.5,
   },

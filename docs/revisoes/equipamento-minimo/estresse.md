@@ -60,17 +60,17 @@ Os itens que, sozinhos, não abrem nenhum exercício a mais que o inventário va
 
 | problema | ocorrências |
 | --- | ---: |
-| `volume.abaixo-sem-aviso` | 721.164 |
-| `vaga.so-aviso-do-musculo.elevacao-lateral` | 400.489 |
-| `vaga.so-aviso-do-musculo.biceps` | 336.550 |
+| `volume.abaixo-sem-aviso` | 721.169 |
+| `vaga.so-aviso-do-musculo.elevacao-lateral` | 400.488 |
+| `vaga.so-aviso-do-musculo.biceps` | 336.557 |
 | `vaga.so-aviso-do-musculo.puxar-vertical` | 310.367 |
 | `vaga.so-aviso-do-musculo.puxar-horizontal` | 307.855 |
-| `vaga.so-aviso-do-musculo.crucifixo` | 201.354 |
-| `dia.superior-sem-superior` | 58.768 |
+| `vaga.so-aviso-do-musculo.crucifixo` | 201.329 |
+| `dia.superior-sem-superior` | 58.795 |
 | `equilibrio.sem-puxar` | 36.480 |
 | `volume.zero.costas` | 36.480 |
 | `volume.zero.biceps` | 33.792 |
-| `volume.zero.ombro_lateral` | 23.179 |
+| `volume.zero.ombro_lateral` | 23.175 |
 | `volume.zero.ombro_posterior` | 2.928 |
 | `equilibrio.sem-posteriores` | 210 |
 | `volume.zero.posteriores` | 210 |
@@ -81,12 +81,12 @@ Os itens que, sozinhos, não abrem nenhum exercício a mais que o inventário va
 | cenário | peito | costas | ombro (lateral) | ombro (posterior) | bíceps | tríceps | quadríceps | posteriores da coxa | glúteos | panturrilha | abdômen |
 | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
 | vazio (= 10 outros) | 7,1 | 0 | 0,7 | 5,4 | 0 | 7,4 | 7,7 | 7,7 | 12,4 | 9 | 4,8 |
-| estacao_polia_dupla | 8,9 | 6,9 | 6,7 | 6,2 | 6,7 | 5,9 | 7 | 6,9 | 11,2 | 7,9 | 4,2 |
+| estacao_polia_dupla | 8,9 | 6,9 | 6,7 | 6,2 | 6,7 | 5,9 | 7 | 6,9 | 11,1 | 7,9 | 4,2 |
 | barra_fixa | 7 | 7,7 | 0,6 | 7,4 | 3,8 | 7,1 | 7,5 | 7,5 | 12 | 8,8 | 4,5 |
 | halteres_fixos | 6,9 | 5,1 | 7,4 | 6 | 7,6 | 7,8 | 6,7 | 8,2 | 11,6 | 7,9 | 4,2 |
 | anilhas_e_manoplas | 6,9 | 5,1 | 7,5 | 6 | 7,7 | 7,8 | 6,7 | 8,2 | 11,6 | 7,9 | 4,2 |
 | barra_longa | 6,9 | 3,1 | 0,7 | 6,1 | 1,6 | 7,3 | 7,2 | 8,1 | 12,4 | 8,7 | 4,5 |
-| barra_w | 7 | 0 | 0,6 | 5,2 | 5,8 | 7,2 | 7,4 | 7,5 | 12 | 8,7 | 4,7 |
+| barra_w | 7 | 0 | 0,6 | 5,2 | 5,8 | 7,2 | 7,4 | 7,4 | 12 | 8,7 | 4,7 |
 | rack_de_agachamento | 7,1 | 7,1 | 0,6 | 7 | 3,6 | 7,1 | 7,4 | 7,4 | 11,9 | 8,7 | 4,5 |
 | smith | 7,1 | 7,1 | 0,6 | 7 | 3,6 | 7,1 | 7,5 | 7,5 | 11,9 | 8,7 | 4,5 |
 | leg_press | 7,1 | 0 | 0,7 | 5,4 | 0 | 7,4 | 7,7 | 7,7 | 12,5 | 9,3 | 4,8 |
@@ -99,7 +99,7 @@ Os itens que, sozinhos, não abrem nenhum exercício a mais que o inventário va
 | bola_suica | 7,1 | 0 | 0,7 | 5,4 | 0 | 7,4 | 7,3 | 7,8 | 13 | 9,1 | 4,8 |
 | barra_hexagonal | 7,1 | 0 | 0,7 | 5,4 | 0 | 7,4 | 7,3 | 8,4 | 13,3 | 9,1 | 4,8 |
 | kettlebell | 6,8 | 4,5 | 0,8 | 6 | 7,6 | 7,9 | 6,9 | 8,5 | 12 | 8 | 4,3 |
-| banco_romano | 7,1 | 0 | 0,7 | 5,3 | 0 | 7,3 | 7,1 | 8,7 | 13,7 | 9 | 4,8 |
+| banco_romano | 7,1 | 0 | 0,7 | 5,3 | 0 | 7,3 | 7,1 | 8,7 | 13,7 | 9 | 4,7 |
 | estacao_puxada | 7 | 6,7 | 0,6 | 7 | 3,4 | 7,1 | 7,4 | 7,4 | 11,9 | 8,7 | 4,5 |
 | estacao_remada | 6,9 | 4,4 | 0,7 | 6,4 | 2,2 | 7,3 | 7,4 | 7,5 | 12 | 8,8 | 4,6 |
 | multifuncional | 7 | 7,8 | 0,7 | 7,3 | 3,9 | 7,1 | 7,5 | 7,5 | 12 | 8,7 | 4,5 |
@@ -121,7 +121,7 @@ Os itens que, sozinhos, não abrem nenhum exercício a mais que o inventário va
 | mini_band | 7,1 | 0 | 0,7 | 5,3 | 0 | 7,4 | 8,4 | 7,6 | 11,5 | 8,7 | 4,8 |
 | roda_abdominal | 7,1 | 0 | 0,7 | 5,4 | 0 | 7,4 | 7,7 | 7,7 | 12,4 | 9 | 4,8 |
 | barra-porta+elasticos | 7,9 | 8 | 6,6 | 6,2 | 7,6 | 6,9 | 7,3 | 7,6 | 9 | 7 | 4 |
-| halteres+bola | 6,9 | 5,1 | 7,5 | 6 | 7,7 | 7,8 | 6,5 | 8,2 | 12 | 7,9 | 4,2 |
+| halteres+bola | 6,9 | 5,1 | 7,5 | 6 | 7,7 | 7,8 | 6,6 | 8,2 | 12 | 7,9 | 4,2 |
 | suspensao+elasticos | 7,5 | 7,9 | 6,6 | 6,2 | 7,6 | 6,9 | 7,3 | 7,6 | 9,1 | 7 | 4 |
 | banco+halteres-leves | 8,2 | 5 | 7,1 | 5,9 | 7,3 | 6,5 | 6,6 | 8,1 | 11,5 | 7,8 | 4,1 |
 | step+elasticos | 7,8 | 7,9 | 6,6 | 6,1 | 7,5 | 6,9 | 7,3 | 7,6 | 9 | 7 | 4 |
@@ -134,7 +134,7 @@ Os itens que, sozinhos, não abrem nenhum exercício a mais que o inventário va
 | estacao_polia_dupla | 0% | 0% | 16,8% | 0% | 0% | 0% | 0% | 1% | 0% | 0% | 0% |
 | barra_fixa | 0% | 0% | 42% | 0% | 0% | 0% | 0% | 0% | 0% | 0% | 0% |
 | halteres_fixos | 0% | 0% | 16,4% | 0% | 0% | 0% | 0% | 1% | 0% | 0% | 0% |
-| anilhas_e_manoplas | 0% | 0% | 16,4% | 0% | 0% | 0% | 0% | 1% | 0% | 0% | 0% |
+| anilhas_e_manoplas | 0% | 0% | 16,3% | 0% | 0% | 0% | 0% | 1% | 0% | 0% | 0% |
 | barra_longa | 0% | 33,3% | 41,7% | 1,7% | 33,3% | 0% | 0% | 0% | 0% | 0% | 0% |
 | barra_w | 0% | 100% | 43% | 12,6% | 6,7% | 0% | 0% | 0% | 0% | 0% | 0% |
 | rack_de_agachamento | 0% | 0% | 44% | 0% | 0% | 0% | 0% | 1% | 0% | 0% | 0% |
@@ -171,7 +171,7 @@ Os itens que, sozinhos, não abrem nenhum exercício a mais que o inventário va
 | mini_band | 0% | 100% | 41,1% | 12,7% | 100% | 0% | 0% | 0% | 0% | 0% | 0% |
 | roda_abdominal | 0% | 100% | 40,1% | 6,9% | 100% | 0% | 0% | 0% | 0% | 0% | 0% |
 | barra-porta+elasticos | 0% | 0% | 16,8% | 0% | 0% | 0% | 0% | 1% | 0% | 0% | 0% |
-| halteres+bola | 0% | 0% | 16,4% | 0% | 0% | 0% | 0% | 1% | 0% | 0% | 0% |
+| halteres+bola | 0% | 0% | 16,3% | 0% | 0% | 0% | 0% | 1% | 0% | 0% | 0% |
 | suspensao+elasticos | 0% | 0% | 16,8% | 0% | 0% | 0% | 0% | 1% | 0% | 0% | 0% |
 | banco+halteres-leves | 0% | 0% | 16,8% | 0% | 0% | 0% | 0% | 1% | 0% | 0% | 0% |
 | step+elasticos | 0% | 0% | 16,8% | 0% | 0% | 0% | 0% | 1% | 0% | 0% | 0% |
@@ -197,9 +197,9 @@ Por programa e por função da divisão que ficou sem exercício possível por f
 | barra_fixa | extensora | 11520 | 0 | 0 | 0 | 0 |
 | barra_fixa | panturrilha-sentada | 6912 | 0 | 0 | 0 | 0 |
 | barra_fixa | puxar-horizontal | 0 | 4600 | 6920 | 0 | 0 |
-| halteres_fixos | crucifixo | 0 | 5628 | 5892 | 0 | 0 |
+| halteres_fixos | crucifixo | 0 | 5617 | 5903 | 0 | 0 |
 | halteres_fixos | extensora | 11520 | 0 | 0 | 0 | 0 |
-| anilhas_e_manoplas | crucifixo | 0 | 5618 | 5902 | 0 | 0 |
+| anilhas_e_manoplas | crucifixo | 0 | 5601 | 5919 | 0 | 0 |
 | anilhas_e_manoplas | extensora | 11520 | 0 | 0 | 0 | 0 |
 | barra_longa | biceps | 0 | 9804 | 1716 | 0 | 0 |
 | barra_longa | crucifixo | 0 | 5444 | 6076 | 0 | 0 |
@@ -215,12 +215,12 @@ Por programa e por função da divisão que ficou sem exercício possível por f
 | barra_w | puxar-horizontal | 0 | 11520 | 0 | 0 | 0 |
 | barra_w | puxar-vertical | 0 | 11520 | 0 | 0 | 0 |
 | rack_de_agachamento | biceps | 0 | 7490 | 4030 | 0 | 0 |
-| rack_de_agachamento | crucifixo | 0 | 5279 | 6241 | 0 | 0 |
+| rack_de_agachamento | crucifixo | 0 | 5282 | 6238 | 0 | 0 |
 | rack_de_agachamento | elevacao-lateral | 0 | 11480 | 40 | 0 | 0 |
 | rack_de_agachamento | extensora | 11520 | 0 | 0 | 0 | 0 |
 | rack_de_agachamento | panturrilha-sentada | 6912 | 0 | 0 | 0 | 0 |
 | smith | biceps | 0 | 7490 | 4030 | 0 | 0 |
-| smith | crucifixo | 0 | 5273 | 6247 | 0 | 0 |
+| smith | crucifixo | 0 | 5276 | 6244 | 0 | 0 |
 | smith | elevacao-lateral | 0 | 11480 | 40 | 0 | 0 |
 | smith | extensora | 11520 | 0 | 0 | 0 | 0 |
 | smith | panturrilha-sentada | 6912 | 0 | 0 | 0 | 0 |
@@ -232,7 +232,7 @@ Por programa e por função da divisão que ficou sem exercício possível por f
 | leg_press | puxar-horizontal | 0 | 11520 | 0 | 0 | 0 |
 | leg_press | puxar-vertical | 0 | 11520 | 0 | 0 | 0 |
 | cadeira_extensora | biceps | 0 | 11520 | 0 | 0 | 0 |
-| cadeira_extensora | crucifixo | 0 | 5283 | 6237 | 0 | 0 |
+| cadeira_extensora | crucifixo | 0 | 5289 | 6231 | 0 | 0 |
 | cadeira_extensora | elevacao-lateral | 0 | 11440 | 80 | 0 | 0 |
 | cadeira_extensora | panturrilha-sentada | 6912 | 0 | 0 | 0 | 0 |
 | cadeira_extensora | puxar-horizontal | 0 | 11520 | 0 | 0 | 0 |
@@ -260,7 +260,7 @@ Por programa e por função da divisão que ficou sem exercício possível por f
 | paralelas | puxar-vertical | 0 | 11520 | 0 | 0 | 0 |
 | elasticos | panturrilha-sentada | 6912 | 0 | 0 | 0 | 0 |
 | step | biceps | 0 | 11520 | 0 | 0 | 0 |
-| step | crucifixo | 0 | 5303 | 6217 | 0 | 0 |
+| step | crucifixo | 0 | 5307 | 6213 | 0 | 0 |
 | step | elevacao-lateral | 0 | 11448 | 72 | 0 | 0 |
 | step | extensora | 11520 | 0 | 0 | 0 | 0 |
 | step | panturrilha-sentada | 6912 | 0 | 0 | 0 | 0 |
@@ -274,7 +274,7 @@ Por programa e por função da divisão que ficou sem exercício possível por f
 | bola_suica | puxar-horizontal | 0 | 11520 | 0 | 0 | 0 |
 | bola_suica | puxar-vertical | 0 | 11520 | 0 | 0 | 0 |
 | barra_hexagonal | biceps | 0 | 11520 | 0 | 0 | 0 |
-| barra_hexagonal | crucifixo | 0 | 5273 | 6247 | 0 | 0 |
+| barra_hexagonal | crucifixo | 0 | 5275 | 6245 | 0 | 0 |
 | barra_hexagonal | elevacao-lateral | 0 | 11440 | 80 | 0 | 0 |
 | barra_hexagonal | extensora | 11520 | 0 | 0 | 0 | 0 |
 | barra_hexagonal | panturrilha-sentada | 6912 | 0 | 0 | 0 | 0 |
@@ -303,8 +303,8 @@ Por programa e por função da divisão que ficou sem exercício possível por f
 | estacao_remada | extensora | 11520 | 0 | 0 | 0 | 0 |
 | estacao_remada | panturrilha-sentada | 6912 | 0 | 0 | 0 | 0 |
 | estacao_remada | puxar-vertical | 0 | 7621 | 3899 | 0 | 0 |
-| multifuncional | biceps | 0 | 7232 | 4288 | 0 | 0 |
-| multifuncional | crucifixo | 0 | 5378 | 6142 | 0 | 0 |
+| multifuncional | biceps | 0 | 7238 | 4282 | 0 | 0 |
+| multifuncional | crucifixo | 0 | 5380 | 6140 | 0 | 0 |
 | multifuncional | elevacao-lateral | 0 | 11408 | 112 | 0 | 0 |
 | multifuncional | extensora | 11520 | 0 | 0 | 0 | 0 |
 | multifuncional | panturrilha-sentada | 6912 | 0 | 0 | 0 | 0 |
@@ -323,12 +323,12 @@ Por programa e por função da divisão que ficou sem exercício possível por f
 | voador | puxar-vertical | 0 | 11520 | 0 | 0 | 0 |
 | desenvolvimento_maquina | biceps | 0 | 11520 | 0 | 0 | 0 |
 | desenvolvimento_maquina | crucifixo | 0 | 5284 | 6236 | 0 | 0 |
-| desenvolvimento_maquina | elevacao-lateral | 0 | 11361 | 159 | 0 | 0 |
+| desenvolvimento_maquina | elevacao-lateral | 0 | 11360 | 160 | 0 | 0 |
 | desenvolvimento_maquina | extensora | 11520 | 0 | 0 | 0 | 0 |
 | desenvolvimento_maquina | panturrilha-sentada | 6912 | 0 | 0 | 0 | 0 |
 | desenvolvimento_maquina | puxar-horizontal | 0 | 11520 | 0 | 0 | 0 |
 | desenvolvimento_maquina | puxar-vertical | 0 | 11520 | 0 | 0 | 0 |
-| remada_articulada | biceps | 0 | 7754 | 3766 | 0 | 0 |
+| remada_articulada | biceps | 0 | 7755 | 3765 | 0 | 0 |
 | remada_articulada | crucifixo | 0 | 5304 | 6216 | 0 | 0 |
 | remada_articulada | elevacao-lateral | 0 | 11480 | 40 | 0 | 0 |
 | remada_articulada | extensora | 11520 | 0 | 0 | 0 | 0 |
@@ -417,7 +417,7 @@ Por programa e por função da divisão que ficou sem exercício possível por f
 | roda_abdominal | puxar-horizontal | 0 | 11520 | 0 | 0 | 0 |
 | roda_abdominal | puxar-vertical | 0 | 11520 | 0 | 0 | 0 |
 | barra-porta+elasticos | panturrilha-sentada | 6912 | 0 | 0 | 0 | 0 |
-| halteres+bola | crucifixo | 0 | 5617 | 5903 | 0 | 0 |
+| halteres+bola | crucifixo | 0 | 5600 | 5920 | 0 | 0 |
 | halteres+bola | extensora | 11520 | 0 | 0 | 0 | 0 |
 | suspensao+elasticos | panturrilha-sentada | 6912 | 0 | 0 | 0 | 0 |
 | banco+halteres-leves | extensora | 11520 | 0 | 0 | 0 | 0 |
@@ -425,7 +425,7 @@ Por programa e por função da divisão que ficou sem exercício possível por f
 
 - Avisos que sugerem comprar algo, em todos os cenários: **0**.
 - "Nenhum exercício possível" dito para um músculo que tinha exercício possível: **0**.
-- Músculo com meta abaixo do limiar (a meta, se prioridade; senão, 4 séries) sem aviso: **721164**.
+- Músculo com meta abaixo do limiar (a meta, se prioridade; senão, 4 séries) sem aviso: **721169**.
 - Programas sem nenhuma série de puxar com o aviso `equipamento.sem-puxada-vertical`: **0** (ele só dispara quando a puxada cai para uma remada).
 
 ## Equilíbrio (sem dor)
@@ -485,75 +485,75 @@ Exercícios por dia no programa × os que cabem nos minutos (`tempo.exercicios-p
 | cenário | minutos | cabem | exercícios por dia | séries por exercício | no teto de 4 séries | dia mais longo (mediana, min) | sobra > 30% |
 | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
 | vazio (= 10 outros) | 20 | 3 | 3 | 2,6 | 22,4% | 28 | 0% |
-| vazio (= 10 outros) | 30 | 4 | 3,7 | 2,7 | 26,6% | 30 | 0% |
+| vazio (= 10 outros) | 30 | 4 | 3,7 | 2,7 | 26,5% | 30 | 0% |
 | vazio (= 10 outros) | 45 | 6 | 4,8 | 2,8 | 29,5% | 45 | 0,6% |
 | vazio (= 10 outros) | 60 | 8 | 5,5 | 2,9 | 35,4% | 59 | 5% |
-| vazio (= 10 outros) | 90 | 12 | 5,9 | 2,9 | 41,7% | 76 | 36,1% |
+| vazio (= 10 outros) | 90 | 12 | 5,9 | 2,9 | 41,7% | 76 | 35,6% |
 | estacao_polia_dupla | 20 | 3 | 3,3 | 2,5 | 16,4% | 31 | 0% |
 | estacao_polia_dupla | 30 | 4 | 4 | 2,6 | 18,8% | 35 | 0% |
-| estacao_polia_dupla | 45 | 6 | 5,6 | 2,6 | 17,7% | 45 | 0% |
+| estacao_polia_dupla | 45 | 6 | 5,6 | 2,6 | 17,6% | 45 | 0% |
 | estacao_polia_dupla | 60 | 8 | 6,9 | 2,6 | 16,1% | 59 | 0% |
 | estacao_polia_dupla | 90 | 12 | 8 | 2,6 | 22,7% | 86 | 13,9% |
 | barra_fixa | 20 | 3 | 3,2 | 2,7 | 23,7% | 30 | 0% |
 | barra_fixa | 30 | 4 | 3,9 | 2,8 | 28,5% | 31 | 0% |
-| barra_fixa | 45 | 6 | 5,1 | 2,8 | 29,5% | 45 | 0,6% |
+| barra_fixa | 45 | 6 | 5,1 | 2,8 | 29,4% | 45 | 0,6% |
 | barra_fixa | 60 | 8 | 6 | 2,8 | 32,7% | 59 | 1,7% |
-| barra_fixa | 90 | 12 | 6,5 | 2,9 | 41,5% | 78 | 25,6% |
-| halteres_fixos | 20 | 3 | 3,3 | 2,5 | 16,6% | 31 | 0% |
-| halteres_fixos | 30 | 4 | 4 | 2,7 | 20,7% | 35 | 0% |
+| barra_fixa | 90 | 12 | 6,5 | 2,9 | 41,5% | 79 | 25,6% |
+| halteres_fixos | 20 | 3 | 3,3 | 2,5 | 16,4% | 32 | 0% |
+| halteres_fixos | 30 | 4 | 4 | 2,7 | 20,5% | 35 | 0% |
 | halteres_fixos | 45 | 6 | 5,5 | 2,7 | 24,2% | 45 | 0% |
-| halteres_fixos | 60 | 8 | 6,8 | 2,7 | 25,9% | 60 | 0% |
+| halteres_fixos | 60 | 8 | 6,8 | 2,7 | 26,4% | 60 | 0% |
 | halteres_fixos | 90 | 12 | 8 | 2,8 | 31,7% | 85 | 14,4% |
-| anilhas_e_manoplas | 20 | 3 | 3,3 | 2,5 | 16,2% | 31 | 0% |
-| anilhas_e_manoplas | 30 | 4 | 4 | 2,6 | 18,7% | 34 | 0% |
-| anilhas_e_manoplas | 45 | 6 | 5,6 | 2,7 | 22% | 45 | 0% |
-| anilhas_e_manoplas | 60 | 8 | 6,8 | 2,7 | 23,7% | 59 | 0% |
+| anilhas_e_manoplas | 20 | 3 | 3,3 | 2,5 | 15,9% | 32 | 0% |
+| anilhas_e_manoplas | 30 | 4 | 4 | 2,6 | 18,7% | 35 | 0% |
+| anilhas_e_manoplas | 45 | 6 | 5,5 | 2,7 | 22% | 45 | 0% |
+| anilhas_e_manoplas | 60 | 8 | 6,8 | 2,7 | 24,3% | 60 | 0% |
 | anilhas_e_manoplas | 90 | 12 | 8 | 2,8 | 31% | 85 | 14,4% |
 | barra_longa | 20 | 3 | 3,1 | 2,6 | 23,6% | 31 | 0% |
-| barra_longa | 30 | 4 | 3,8 | 2,7 | 27,5% | 33 | 0% |
+| barra_longa | 30 | 4 | 3,8 | 2,7 | 27,5% | 34 | 0% |
 | barra_longa | 45 | 6 | 4,9 | 2,8 | 28,4% | 45 | 0,6% |
 | barra_longa | 60 | 8 | 5,7 | 2,8 | 32,7% | 59 | 3,9% |
-| barra_longa | 90 | 12 | 6,2 | 2,9 | 39,5% | 76 | 33,3% |
+| barra_longa | 90 | 12 | 6,2 | 2,9 | 39,5% | 76 | 30% |
 | barra_w | 20 | 3 | 3,2 | 2,7 | 23,9% | 28 | 0% |
 | barra_w | 30 | 4 | 3,8 | 2,8 | 28,1% | 31 | 0% |
-| barra_w | 45 | 6 | 5,1 | 2,8 | 30,5% | 45 | 0,6% |
-| barra_w | 60 | 8 | 5,9 | 2,9 | 36,2% | 59 | 1,1% |
-| barra_w | 90 | 12 | 6,4 | 3 | 42,7% | 78 | 30,6% |
+| barra_w | 45 | 6 | 5,1 | 2,8 | 30,4% | 45 | 0,6% |
+| barra_w | 60 | 8 | 5,9 | 2,9 | 36,1% | 59 | 1,1% |
+| barra_w | 90 | 12 | 6,4 | 3 | 42,8% | 79 | 30,6% |
 | rack_de_agachamento | 20 | 3 | 3,1 | 2,7 | 23,7% | 30 | 0% |
 | rack_de_agachamento | 30 | 4 | 3,8 | 2,8 | 27,2% | 31 | 0% |
-| rack_de_agachamento | 45 | 6 | 5,1 | 2,8 | 27,4% | 45 | 0,6% |
+| rack_de_agachamento | 45 | 6 | 5,1 | 2,8 | 27,3% | 45 | 0,6% |
 | rack_de_agachamento | 60 | 8 | 5,9 | 2,8 | 31,5% | 59 | 1,1% |
-| rack_de_agachamento | 90 | 12 | 6,5 | 2,9 | 39,4% | 79 | 31,1% |
+| rack_de_agachamento | 90 | 12 | 6,4 | 2,9 | 39,5% | 79 | 31,1% |
 | smith | 20 | 3 | 3,1 | 2,7 | 23,6% | 30 | 0% |
 | smith | 30 | 4 | 3,8 | 2,8 | 27,3% | 30 | 0% |
-| smith | 45 | 6 | 5,1 | 2,8 | 27,8% | 45 | 0,6% |
-| smith | 60 | 8 | 5,9 | 2,8 | 32,3% | 58 | 1,1% |
+| smith | 45 | 6 | 5,1 | 2,8 | 27,7% | 45 | 0,6% |
+| smith | 60 | 8 | 5,9 | 2,8 | 32,2% | 58 | 1,1% |
 | smith | 90 | 12 | 6,5 | 2,9 | 39,5% | 77 | 31,7% |
 | leg_press | 20 | 3 | 3 | 2,6 | 22% | 27 | 0% |
-| leg_press | 30 | 4 | 3,7 | 2,7 | 26,1% | 30 | 0% |
-| leg_press | 45 | 6 | 4,9 | 2,8 | 28,3% | 45 | 0,6% |
+| leg_press | 30 | 4 | 3,7 | 2,7 | 26,3% | 30 | 0% |
+| leg_press | 45 | 6 | 4,9 | 2,8 | 28,2% | 45 | 0,6% |
 | leg_press | 60 | 8 | 5,5 | 2,8 | 34,1% | 59 | 5% |
 | leg_press | 90 | 12 | 5,9 | 2,9 | 41,6% | 74 | 36,7% |
 | cadeira_extensora | 20 | 3 | 3,1 | 2,6 | 19,8% | 28 | 0% |
 | cadeira_extensora | 30 | 4 | 3,8 | 2,7 | 22,8% | 30 | 0% |
 | cadeira_extensora | 45 | 6 | 5 | 2,7 | 25,7% | 45 | 0% |
-| cadeira_extensora | 60 | 8 | 5,7 | 2,8 | 30,7% | 59 | 11,1% |
+| cadeira_extensora | 60 | 8 | 5,7 | 2,8 | 30,6% | 59 | 11,1% |
 | cadeira_extensora | 90 | 12 | 6 | 2,9 | 39,4% | 74 | 40% |
 | mesa_flexora | 20 | 3 | 3 | 2,5 | 16,8% | 28 | 0% |
-| mesa_flexora | 30 | 4 | 3,7 | 2,7 | 23% | 30 | 0% |
-| mesa_flexora | 45 | 6 | 4,8 | 2,8 | 28% | 45 | 0% |
-| mesa_flexora | 60 | 8 | 5,5 | 2,9 | 35,1% | 59 | 3,9% |
+| mesa_flexora | 30 | 4 | 3,7 | 2,7 | 23% | 31 | 0% |
+| mesa_flexora | 45 | 6 | 4,8 | 2,8 | 27,7% | 45 | 0% |
+| mesa_flexora | 60 | 8 | 5,5 | 2,9 | 35% | 60 | 3,9% |
 | mesa_flexora | 90 | 12 | 6 | 2,9 | 41,7% | 77 | 33,3% |
 | cadeira_flexora | 20 | 3 | 3 | 2,5 | 16,8% | 28 | 0% |
-| cadeira_flexora | 30 | 4 | 3,7 | 2,7 | 23% | 30 | 0% |
-| cadeira_flexora | 45 | 6 | 4,8 | 2,8 | 28% | 45 | 0% |
-| cadeira_flexora | 60 | 8 | 5,5 | 2,9 | 35,1% | 59 | 3,9% |
+| cadeira_flexora | 30 | 4 | 3,7 | 2,7 | 23% | 31 | 0% |
+| cadeira_flexora | 45 | 6 | 4,8 | 2,8 | 27,7% | 45 | 0% |
+| cadeira_flexora | 60 | 8 | 5,5 | 2,9 | 35% | 60 | 3,9% |
 | cadeira_flexora | 90 | 12 | 6 | 2,9 | 41,7% | 77 | 33,3% |
 | paralelas | 20 | 3 | 3 | 2,6 | 22,6% | 28 | 0% |
-| paralelas | 30 | 4 | 3,7 | 2,7 | 26,3% | 30 | 0% |
+| paralelas | 30 | 4 | 3,7 | 2,7 | 26,2% | 30 | 0% |
 | paralelas | 45 | 6 | 4,8 | 2,8 | 29,1% | 45 | 0,6% |
 | paralelas | 60 | 8 | 5,5 | 2,9 | 35,4% | 59 | 5% |
-| paralelas | 90 | 12 | 5,9 | 2,9 | 41,8% | 76 | 33,9% |
+| paralelas | 90 | 12 | 5,9 | 2,9 | 41,8% | 76 | 32,8% |
 | elasticos | 20 | 3 | 3,3 | 2,6 | 19,1% | 32 | 0% |
 | elasticos | 30 | 4 | 4 | 2,6 | 21,4% | 37 | 0% |
 | elasticos | 45 | 6 | 5,7 | 2,6 | 17,2% | 45 | 0% |
@@ -562,17 +562,17 @@ Exercícios por dia no programa × os que cabem nos minutos (`tempo.exercicios-p
 | step | 20 | 3 | 3 | 2,6 | 21,8% | 31 | 0% |
 | step | 30 | 4 | 3,7 | 2,7 | 25,7% | 32 | 0% |
 | step | 45 | 6 | 4,8 | 2,8 | 28,3% | 45 | 0% |
-| step | 60 | 8 | 5,4 | 2,9 | 35% | 59 | 5% |
-| step | 90 | 12 | 5,9 | 2,9 | 41,2% | 76 | 35% |
+| step | 60 | 8 | 5,4 | 2,9 | 34,8% | 60 | 5% |
+| step | 90 | 12 | 5,9 | 2,9 | 41,3% | 76 | 35% |
 | bola_suica | 20 | 3 | 3 | 2,6 | 22,1% | 30 | 0% |
 | bola_suica | 30 | 4 | 3,7 | 2,7 | 26,1% | 31 | 0% |
-| bola_suica | 45 | 6 | 4,8 | 2,8 | 29,3% | 45 | 0% |
-| bola_suica | 60 | 8 | 5,5 | 2,8 | 34% | 59 | 5% |
+| bola_suica | 45 | 6 | 4,8 | 2,8 | 29,1% | 45 | 0% |
+| bola_suica | 60 | 8 | 5,5 | 2,8 | 33,9% | 59 | 5% |
 | bola_suica | 90 | 12 | 6 | 2,9 | 38,3% | 73 | 39,4% |
 | barra_hexagonal | 20 | 3 | 3 | 2,6 | 20% | 26 | 0% |
-| barra_hexagonal | 30 | 4 | 3,7 | 2,7 | 26,4% | 30 | 0% |
-| barra_hexagonal | 45 | 6 | 4,8 | 2,8 | 29,5% | 44 | 0,6% |
-| barra_hexagonal | 60 | 8 | 5,5 | 2,8 | 33% | 58 | 7,2% |
+| barra_hexagonal | 30 | 4 | 3,7 | 2,7 | 26,5% | 30 | 0% |
+| barra_hexagonal | 45 | 6 | 4,8 | 2,8 | 29,6% | 44 | 0,6% |
+| barra_hexagonal | 60 | 8 | 5,5 | 2,8 | 32,9% | 59 | 7,2% |
 | barra_hexagonal | 90 | 12 | 5,9 | 2,8 | 38% | 69 | 42,2% |
 | kettlebell | 20 | 3 | 3,1 | 2,6 | 23,5% | 32 | 0% |
 | kettlebell | 30 | 4 | 3,8 | 2,7 | 26% | 37 | 0% |
@@ -582,128 +582,128 @@ Exercícios por dia no programa × os que cabem nos minutos (`tempo.exercicios-p
 | banco_romano | 20 | 3 | 3 | 2,6 | 21,6% | 30 | 0% |
 | banco_romano | 30 | 4 | 3,7 | 2,7 | 24,7% | 31 | 0% |
 | banco_romano | 45 | 6 | 4,8 | 2,7 | 27% | 45 | 0% |
-| banco_romano | 60 | 8 | 5,5 | 2,8 | 32,6% | 59 | 6,7% |
+| banco_romano | 60 | 8 | 5,5 | 2,8 | 32,5% | 59 | 6,7% |
 | banco_romano | 90 | 12 | 5,9 | 2,8 | 36,1% | 71 | 33,3% |
 | estacao_puxada | 20 | 3 | 3,1 | 2,7 | 23,8% | 30 | 0% |
 | estacao_puxada | 30 | 4 | 3,8 | 2,8 | 28,2% | 32 | 0% |
-| estacao_puxada | 45 | 6 | 5,1 | 2,8 | 28,2% | 45 | 0,6% |
+| estacao_puxada | 45 | 6 | 5,1 | 2,8 | 28,1% | 45 | 0,6% |
 | estacao_puxada | 60 | 8 | 5,9 | 2,8 | 32,1% | 59 | 1,1% |
-| estacao_puxada | 90 | 12 | 6,4 | 2,9 | 40,1% | 78 | 31,1% |
+| estacao_puxada | 90 | 12 | 6,4 | 2,9 | 40,2% | 79 | 31,1% |
 | estacao_remada | 20 | 3 | 3,2 | 2,6 | 23,3% | 31 | 0% |
 | estacao_remada | 30 | 4 | 3,8 | 2,8 | 28,5% | 31 | 0% |
-| estacao_remada | 45 | 6 | 5,1 | 2,8 | 27,8% | 45 | 0,6% |
+| estacao_remada | 45 | 6 | 5,1 | 2,8 | 27,7% | 45 | 0,6% |
 | estacao_remada | 60 | 8 | 5,9 | 2,8 | 32,5% | 59 | 1,1% |
-| estacao_remada | 90 | 12 | 6,4 | 2,9 | 40,1% | 79 | 31,7% |
+| estacao_remada | 90 | 12 | 6,4 | 2,9 | 40,2% | 79 | 31,7% |
 | multifuncional | 20 | 3 | 3,3 | 2,6 | 19% | 30 | 0% |
 | multifuncional | 30 | 4 | 3,9 | 2,7 | 23,2% | 30 | 0% |
 | multifuncional | 45 | 6 | 5,3 | 2,7 | 26% | 45 | 0,6% |
 | multifuncional | 60 | 8 | 6,1 | 2,8 | 29,4% | 59 | 1,1% |
 | multifuncional | 90 | 12 | 6,7 | 2,9 | 38,9% | 79 | 26,1% |
 | supino_maquina | 20 | 3 | 3,1 | 2,6 | 22,1% | 28 | 0% |
-| supino_maquina | 30 | 4 | 3,7 | 2,7 | 26,7% | 30 | 0% |
+| supino_maquina | 30 | 4 | 3,7 | 2,7 | 26,6% | 30 | 0% |
 | supino_maquina | 45 | 6 | 4,8 | 2,8 | 29,7% | 45 | 0,6% |
-| supino_maquina | 60 | 8 | 5,5 | 2,9 | 35% | 59 | 5% |
-| supino_maquina | 90 | 12 | 5,9 | 2,9 | 41,4% | 74 | 36,1% |
+| supino_maquina | 60 | 8 | 5,5 | 2,9 | 35,1% | 59 | 5% |
+| supino_maquina | 90 | 12 | 5,9 | 2,9 | 41,5% | 74 | 36,1% |
 | voador | 20 | 3 | 3 | 2,6 | 23,1% | 28 | 0% |
-| voador | 30 | 4 | 3,8 | 2,7 | 27,2% | 30 | 0% |
+| voador | 30 | 4 | 3,8 | 2,7 | 27,1% | 30 | 0% |
 | voador | 45 | 6 | 5 | 2,7 | 27% | 45 | 0,6% |
 | voador | 60 | 8 | 5,7 | 2,8 | 33% | 59 | 2,8% |
-| voador | 90 | 12 | 6,2 | 2,9 | 39,5% | 76 | 36,7% |
+| voador | 90 | 12 | 6,2 | 2,9 | 39,6% | 76 | 36,7% |
 | desenvolvimento_maquina | 20 | 3 | 3 | 2,6 | 22,4% | 28 | 0% |
 | desenvolvimento_maquina | 30 | 4 | 3,7 | 2,7 | 26,4% | 30 | 0% |
 | desenvolvimento_maquina | 45 | 6 | 4,8 | 2,8 | 29,5% | 45 | 0,6% |
 | desenvolvimento_maquina | 60 | 8 | 5,5 | 2,9 | 35,4% | 59 | 5% |
-| desenvolvimento_maquina | 90 | 12 | 5,9 | 2,9 | 41,7% | 76 | 36,1% |
+| desenvolvimento_maquina | 90 | 12 | 5,9 | 2,9 | 41,7% | 76 | 35,6% |
 | remada_articulada | 20 | 3 | 3,2 | 2,6 | 23,3% | 31 | 0% |
 | remada_articulada | 30 | 4 | 3,8 | 2,8 | 28,5% | 31 | 0% |
-| remada_articulada | 45 | 6 | 5,1 | 2,8 | 27,8% | 45 | 0,6% |
+| remada_articulada | 45 | 6 | 5,1 | 2,8 | 27,7% | 45 | 0,6% |
 | remada_articulada | 60 | 8 | 5,9 | 2,8 | 32,5% | 59 | 1,1% |
-| remada_articulada | 90 | 12 | 6,4 | 2,9 | 40,1% | 79 | 31,7% |
+| remada_articulada | 90 | 12 | 6,4 | 2,9 | 40,2% | 79 | 31,7% |
 | graviton | 20 | 3 | 3,2 | 2,7 | 22,9% | 30 | 0% |
-| graviton | 30 | 4 | 3,8 | 2,7 | 28,1% | 31 | 0% |
+| graviton | 30 | 4 | 3,8 | 2,7 | 28% | 31 | 0% |
 | graviton | 45 | 6 | 5,1 | 2,7 | 27,2% | 45 | 0,6% |
 | graviton | 60 | 8 | 5,9 | 2,8 | 30,9% | 59 | 1,7% |
-| graviton | 90 | 12 | 6,5 | 2,9 | 38,1% | 76 | 31,1% |
+| graviton | 90 | 12 | 6,4 | 2,9 | 38,1% | 76 | 31,1% |
 | rosca_maquina | 20 | 3 | 3,2 | 2,6 | 21,5% | 28 | 0% |
 | rosca_maquina | 30 | 4 | 3,8 | 2,8 | 26,7% | 31 | 0% |
-| rosca_maquina | 45 | 6 | 5,1 | 2,8 | 29,6% | 45 | 0,6% |
+| rosca_maquina | 45 | 6 | 5,1 | 2,8 | 29,5% | 45 | 0,6% |
 | rosca_maquina | 60 | 8 | 5,9 | 2,9 | 35,6% | 59 | 1,1% |
-| rosca_maquina | 90 | 12 | 6,4 | 3 | 42,4% | 78 | 30,6% |
+| rosca_maquina | 90 | 12 | 6,4 | 3 | 42,6% | 79 | 30,6% |
 | triceps_maquina | 20 | 3 | 3 | 2,6 | 22,6% | 28 | 0% |
 | triceps_maquina | 30 | 4 | 3,8 | 2,7 | 26,5% | 30 | 0% |
 | triceps_maquina | 45 | 6 | 4,9 | 2,8 | 29,9% | 45 | 0,6% |
-| triceps_maquina | 60 | 8 | 5,5 | 2,9 | 35,7% | 59 | 5,6% |
-| triceps_maquina | 90 | 12 | 6 | 2,9 | 42% | 76 | 32,2% |
+| triceps_maquina | 60 | 8 | 5,5 | 2,9 | 35,6% | 59 | 5,6% |
+| triceps_maquina | 90 | 12 | 6 | 2,9 | 42% | 76 | 31,7% |
 | abdominal_maquina | 20 | 3 | 3 | 2,6 | 22% | 28 | 0% |
-| abdominal_maquina | 30 | 4 | 3,7 | 2,7 | 25,7% | 30 | 0% |
+| abdominal_maquina | 30 | 4 | 3,7 | 2,7 | 25,6% | 30 | 0% |
 | abdominal_maquina | 45 | 6 | 4,8 | 2,8 | 29,2% | 45 | 0,6% |
 | abdominal_maquina | 60 | 8 | 5,5 | 2,9 | 35,3% | 59 | 5% |
 | abdominal_maquina | 90 | 12 | 5,9 | 2,9 | 41,6% | 76 | 36,1% |
 | hack | 20 | 3 | 3 | 2,6 | 22,4% | 28 | 0% |
-| hack | 30 | 4 | 3,7 | 2,8 | 26,6% | 30 | 0% |
+| hack | 30 | 4 | 3,7 | 2,7 | 26,8% | 30 | 0% |
 | hack | 45 | 6 | 4,8 | 2,8 | 29,9% | 45 | 0,6% |
 | hack | 60 | 8 | 5,5 | 2,9 | 35,7% | 59 | 5% |
 | hack | 90 | 12 | 5,9 | 2,9 | 41,7% | 74 | 36,7% |
 | cadeira_abdutora_adutora | 20 | 3 | 3 | 2,6 | 22,4% | 28 | 0% |
-| cadeira_abdutora_adutora | 30 | 4 | 3,7 | 2,7 | 26,6% | 30 | 0% |
+| cadeira_abdutora_adutora | 30 | 4 | 3,7 | 2,7 | 26,5% | 30 | 0% |
 | cadeira_abdutora_adutora | 45 | 6 | 4,9 | 2,8 | 29,7% | 45 | 0,6% |
 | cadeira_abdutora_adutora | 60 | 8 | 5,6 | 2,9 | 35,9% | 59 | 5% |
-| cadeira_abdutora_adutora | 90 | 12 | 5,9 | 2,9 | 42% | 71 | 36,7% |
+| cadeira_abdutora_adutora | 90 | 12 | 5,9 | 2,9 | 42,1% | 71 | 36,1% |
 | gluteo_maquina | 20 | 3 | 2,9 | 2,6 | 22,2% | 26 | 0% |
-| gluteo_maquina | 30 | 4 | 3,6 | 2,9 | 30,4% | 30 | 0% |
-| gluteo_maquina | 45 | 6 | 4,7 | 2,9 | 32,7% | 45 | 0,6% |
-| gluteo_maquina | 60 | 8 | 5,4 | 2,9 | 36,4% | 59 | 5% |
-| gluteo_maquina | 90 | 12 | 5,9 | 2,9 | 41,9% | 75 | 36,7% |
+| gluteo_maquina | 30 | 4 | 3,5 | 2,8 | 30,4% | 30 | 0% |
+| gluteo_maquina | 45 | 6 | 4,7 | 2,9 | 32,8% | 45 | 0,6% |
+| gluteo_maquina | 60 | 8 | 5,4 | 2,9 | 36,5% | 59 | 5% |
+| gluteo_maquina | 90 | 12 | 5,9 | 2,9 | 41,9% | 75 | 36,1% |
 | panturrilha_em_pe_maquina | 20 | 3 | 3 | 2,6 | 22% | 28 | 0% |
-| panturrilha_em_pe_maquina | 30 | 4 | 3,7 | 2,7 | 26% | 30 | 0% |
-| panturrilha_em_pe_maquina | 45 | 6 | 4,9 | 2,8 | 27,6% | 45 | 0,6% |
-| panturrilha_em_pe_maquina | 60 | 8 | 5,5 | 2,8 | 33,7% | 59 | 5% |
-| panturrilha_em_pe_maquina | 90 | 12 | 5,9 | 2,9 | 41,6% | 75 | 36,1% |
+| panturrilha_em_pe_maquina | 30 | 4 | 3,7 | 2,7 | 26,2% | 30 | 0% |
+| panturrilha_em_pe_maquina | 45 | 6 | 4,9 | 2,8 | 27,5% | 45 | 0,6% |
+| panturrilha_em_pe_maquina | 60 | 8 | 5,5 | 2,8 | 33,6% | 59 | 5% |
+| panturrilha_em_pe_maquina | 90 | 12 | 5,9 | 2,9 | 41,7% | 75 | 36,1% |
 | panturrilha_sentada_maquina | 20 | 3 | 3 | 2,6 | 22,4% | 28 | 0% |
-| panturrilha_sentada_maquina | 30 | 4 | 3,7 | 2,7 | 26,6% | 30 | 0% |
+| panturrilha_sentada_maquina | 30 | 4 | 3,7 | 2,7 | 26,5% | 30 | 0% |
 | panturrilha_sentada_maquina | 45 | 6 | 4,9 | 2,8 | 29% | 45 | 0,6% |
 | panturrilha_sentada_maquina | 60 | 8 | 5,5 | 2,9 | 35,6% | 59 | 5% |
-| panturrilha_sentada_maquina | 90 | 12 | 5,9 | 2,9 | 41,6% | 76 | 36,1% |
+| panturrilha_sentada_maquina | 90 | 12 | 5,9 | 2,9 | 41,7% | 76 | 35,6% |
 | suspensao | 20 | 3 | 3,1 | 2,7 | 24,2% | 30 | 0% |
-| suspensao | 30 | 4 | 3,8 | 2,8 | 28,7% | 33 | 0% |
+| suspensao | 30 | 4 | 3,8 | 2,8 | 28,7% | 34 | 0% |
 | suspensao | 45 | 6 | 5,3 | 2,8 | 27,8% | 45 | 0% |
-| suspensao | 60 | 8 | 6,3 | 2,8 | 30,4% | 59 | 1,1% |
-| suspensao | 90 | 12 | 7,1 | 2,8 | 36,6% | 80 | 23,9% |
+| suspensao | 60 | 8 | 6,3 | 2,8 | 30,3% | 60 | 1,1% |
+| suspensao | 90 | 12 | 7,1 | 2,8 | 36,5% | 80 | 23,9% |
 | caneleiras | 20 | 3 | 3,1 | 2,6 | 22,8% | 28 | 0% |
-| caneleiras | 30 | 4 | 3,8 | 2,8 | 25% | 30 | 0% |
+| caneleiras | 30 | 4 | 3,8 | 2,8 | 25,1% | 30 | 0% |
 | caneleiras | 45 | 6 | 5,1 | 2,8 | 27,9% | 45 | 0% |
 | caneleiras | 60 | 8 | 6,1 | 2,8 | 30,8% | 59 | 3,3% |
 | caneleiras | 90 | 12 | 6,6 | 2,9 | 40,2% | 77 | 32,2% |
 | mini_band | 20 | 3 | 3,1 | 2,6 | 20,5% | 28 | 0% |
 | mini_band | 30 | 4 | 3,8 | 2,7 | 22,7% | 30 | 0% |
 | mini_band | 45 | 6 | 5 | 2,7 | 24,6% | 45 | 0% |
-| mini_band | 60 | 8 | 5,6 | 2,8 | 30,4% | 60 | 7,8% |
+| mini_band | 60 | 8 | 5,6 | 2,8 | 30,4% | 59 | 7,8% |
 | mini_band | 90 | 12 | 6 | 2,9 | 39,1% | 76 | 38,3% |
 | roda_abdominal | 20 | 3 | 3 | 2,6 | 22,4% | 28 | 0% |
-| roda_abdominal | 30 | 4 | 3,7 | 2,7 | 26,6% | 30 | 0% |
+| roda_abdominal | 30 | 4 | 3,7 | 2,7 | 26,5% | 30 | 0% |
 | roda_abdominal | 45 | 6 | 4,8 | 2,8 | 29,6% | 45 | 0,6% |
 | roda_abdominal | 60 | 8 | 5,5 | 2,9 | 35,4% | 59 | 5% |
-| roda_abdominal | 90 | 12 | 5,9 | 2,9 | 41,7% | 76 | 36,1% |
+| roda_abdominal | 90 | 12 | 5,9 | 2,9 | 41,7% | 76 | 35,6% |
 | barra-porta+elasticos | 20 | 3 | 3,3 | 2,6 | 19,2% | 32 | 0% |
 | barra-porta+elasticos | 30 | 4 | 4,1 | 2,6 | 21,4% | 36 | 0% |
 | barra-porta+elasticos | 45 | 6 | 5,7 | 2,6 | 17,6% | 45 | 0% |
 | barra-porta+elasticos | 60 | 8 | 6,9 | 2,5 | 15,7% | 59 | 0% |
 | barra-porta+elasticos | 90 | 12 | 8,2 | 2,5 | 17,6% | 87 | 23,3% |
-| halteres+bola | 20 | 3 | 3,3 | 2,5 | 15,7% | 31 | 0% |
+| halteres+bola | 20 | 3 | 3,3 | 2,5 | 15,4% | 32 | 0% |
 | halteres+bola | 30 | 4 | 4 | 2,6 | 18,4% | 34 | 0% |
-| halteres+bola | 45 | 6 | 5,6 | 2,7 | 21,8% | 45 | 0% |
-| halteres+bola | 60 | 8 | 6,8 | 2,7 | 23,5% | 59 | 0% |
-| halteres+bola | 90 | 12 | 8 | 2,7 | 29,7% | 84 | 14,4% |
+| halteres+bola | 45 | 6 | 5,5 | 2,7 | 22% | 45 | 0% |
+| halteres+bola | 60 | 8 | 6,8 | 2,7 | 24,1% | 60 | 0% |
+| halteres+bola | 90 | 12 | 8 | 2,7 | 29,6% | 84 | 14,4% |
 | suspensao+elasticos | 20 | 3 | 3,2 | 2,6 | 19,4% | 32 | 0% |
 | suspensao+elasticos | 30 | 4 | 4 | 2,7 | 22,2% | 37 | 0% |
 | suspensao+elasticos | 45 | 6 | 5,7 | 2,6 | 17,9% | 45 | 0% |
 | suspensao+elasticos | 60 | 8 | 6,9 | 2,6 | 16,7% | 59 | 0% |
 | suspensao+elasticos | 90 | 12 | 8,2 | 2,6 | 18,4% | 86 | 22,2% |
-| banco+halteres-leves | 20 | 3 | 3,3 | 2,5 | 18,3% | 32 | 0% |
-| banco+halteres-leves | 30 | 4 | 4 | 2,7 | 19,7% | 35 | 0% |
-| banco+halteres-leves | 45 | 6 | 5,5 | 2,7 | 18,6% | 45 | 0% |
-| banco+halteres-leves | 60 | 8 | 6,9 | 2,6 | 19,1% | 59 | 0% |
-| banco+halteres-leves | 90 | 12 | 8,1 | 2,6 | 22% | 84 | 20,6% |
+| banco+halteres-leves | 20 | 3 | 3,3 | 2,6 | 18,2% | 32 | 0% |
+| banco+halteres-leves | 30 | 4 | 4 | 2,7 | 20,2% | 35 | 0% |
+| banco+halteres-leves | 45 | 6 | 5,5 | 2,7 | 18,9% | 45 | 0% |
+| banco+halteres-leves | 60 | 8 | 6,9 | 2,7 | 19,9% | 60 | 0% |
+| banco+halteres-leves | 90 | 12 | 8,1 | 2,6 | 22,1% | 84 | 20,6% |
 | step+elasticos | 20 | 3 | 3,3 | 2,6 | 19,1% | 33 | 0% |
 | step+elasticos | 30 | 4 | 4 | 2,6 | 21,4% | 38 | 0% |
 | step+elasticos | 45 | 6 | 5,7 | 2,6 | 17,2% | 45 | 0% |
@@ -714,50 +714,50 @@ Exercícios por dia no programa × os que cabem nos minutos (`tempo.exercicios-p
 
 | cenário | com animação | só cartão de texto | sem guia nenhum |
 | --- | ---: | ---: | ---: |
-| vazio (= 10 outros) | 98,6% | 1,4% | 0% |
-| estacao_polia_dupla | 91,5% | 0,7% | 7,8% |
-| barra_fixa | 94,1% | 5,9% | 0% |
-| halteres_fixos | 71,1% | 23,9% | 5% |
-| anilhas_e_manoplas | 71,1% | 23,9% | 4,9% |
-| barra_longa | 89,2% | 1,2% | 9,7% |
-| barra_w | 90% | 1,1% | 8,9% |
-| rack_de_agachamento | 88,3% | 1,2% | 10,5% |
-| smith | 83,3% | 6,2% | 10,5% |
-| leg_press | 80,9% | 0,1% | 18,9% |
+| vazio (= 10 outros) | 100% | 0% | 0% |
+| estacao_polia_dupla | 92,2% | 0% | 7,8% |
+| barra_fixa | 95,2% | 4,8% | 0% |
+| halteres_fixos | 81,4% | 13,7% | 4,9% |
+| anilhas_e_manoplas | 81,3% | 13,7% | 4,9% |
+| barra_longa | 90,3% | 0% | 9,7% |
+| barra_w | 91,1% | 0% | 8,9% |
+| rack_de_agachamento | 89,5% | 0% | 10,5% |
+| smith | 83,5% | 6% | 10,5% |
+| leg_press | 81,1% | 0% | 18,9% |
 | cadeira_extensora | 93,3% | 6,7% | 0% |
-| mesa_flexora | 88,6% | 1,3% | 10,1% |
-| cadeira_flexora | 88,6% | 11,4% | 0% |
-| paralelas | 95,1% | 4,9% | 0% |
+| mesa_flexora | 89,9% | 0% | 10,1% |
+| cadeira_flexora | 89,9% | 10,1% | 0% |
+| paralelas | 96,4% | 3,6% | 0% |
 | elasticos | 85,5% | 14,5% | 0% |
-| step | 98,6% | 1,4% | 0% |
-| bola_suica | 98,7% | 1,3% | 0% |
-| barra_hexagonal | 93,5% | 6,5% | 0% |
+| step | 100% | 0% | 0% |
+| bola_suica | 100% | 0% | 0% |
+| barra_hexagonal | 93,8% | 6,2% | 0% |
 | kettlebell | 92,6% | 7,4% | 0% |
-| banco_romano | 91,2% | 8,8% | 0% |
-| estacao_puxada | 89,2% | 10,8% | 0% |
-| estacao_remada | 92,3% | 7,7% | 0% |
-| multifuncional | 86,6% | 13,4% | 0% |
-| supino_maquina | 88,7% | 11,3% | 0% |
-| voador | 91,1% | 8,9% | 0% |
-| desenvolvimento_maquina | 94,4% | 5,6% | 0% |
-| remada_articulada | 89,4% | 10,6% | 0% |
-| graviton | 85,1% | 14,9% | 0% |
-| rosca_maquina | 88,4% | 11,6% | 0% |
-| triceps_maquina | 93,3% | 6,7% | 0% |
-| abdominal_maquina | 89,4% | 10,6% | 0% |
-| hack | 92,2% | 7,8% | 0% |
-| cadeira_abdutora_adutora | 88% | 12% | 0% |
-| gluteo_maquina | 89,2% | 10,8% | 0% |
-| panturrilha_em_pe_maquina | 87,2% | 12,8% | 0% |
-| panturrilha_sentada_maquina | 93,5% | 6,5% | 0% |
-| suspensao | 97,7% | 2,3% | 0% |
+| banco_romano | 92,4% | 7,6% | 0% |
+| estacao_puxada | 90,4% | 9,6% | 0% |
+| estacao_remada | 93,5% | 6,5% | 0% |
+| multifuncional | 87,7% | 12,3% | 0% |
+| supino_maquina | 89,9% | 10,1% | 0% |
+| voador | 92,1% | 7,9% | 0% |
+| desenvolvimento_maquina | 95,7% | 4,3% | 0% |
+| remada_articulada | 90,5% | 9,5% | 0% |
+| graviton | 86,1% | 13,9% | 0% |
+| rosca_maquina | 89,5% | 10,5% | 0% |
+| triceps_maquina | 94,4% | 5,6% | 0% |
+| abdominal_maquina | 90,8% | 9,2% | 0% |
+| hack | 92,3% | 7,7% | 0% |
+| cadeira_abdutora_adutora | 89,4% | 10,6% | 0% |
+| gluteo_maquina | 90,6% | 9,4% | 0% |
+| panturrilha_em_pe_maquina | 88,6% | 11,4% | 0% |
+| panturrilha_sentada_maquina | 94,8% | 5,2% | 0% |
+| suspensao | 98,2% | 1,8% | 0% |
 | caneleiras | 75,8% | 24,2% | 0% |
-| mini_band | 92,6% | 7,4% | 0% |
-| roda_abdominal | 98,6% | 1,4% | 0% |
+| mini_band | 92,9% | 7,1% | 0% |
+| roda_abdominal | 100% | 0% | 0% |
 | barra-porta+elasticos | 83,5% | 16,5% | 0% |
-| halteres+bola | 71,2% | 23,9% | 4,9% |
+| halteres+bola | 81,4% | 13,7% | 4,9% |
 | suspensao+elasticos | 90,9% | 9,1% | 0% |
-| banco+halteres-leves | 73,6% | 23,1% | 3,3% |
+| banco+halteres-leves | 81,6% | 15,1% | 3,3% |
 | step+elasticos | 85,5% | 14,5% | 0% |
 
 ## Segurança: o que sobra com dor, no inventário vazio e com um aparelho só
@@ -802,7 +802,7 @@ Exercícios por dia no programa × os que cabem nos minutos (`tempo.exercicios-p
 | barra_longa | joelho 7 + lombar 7 | 0 | 0 | 0 | 0 | 0 | abducao-deitado, abertura-t-deitado, aducao-deitado, extensao-triceps-peso-corpo, flexao, flexao-fechada, flexao-pes-elevados, panturrilha-chao, panturrilha-degrau, pike, ponte-gluteo |
 | barra_w | joelho 7 | 0 | 0 | 0 | 0 | 0 | abdominal-chao, abdominal-invertido, abducao-deitado, abertura-t-deitado, aducao-deitado, extensao-triceps-peso-corpo, flexao, flexao-fechada, flexao-pes-elevados, panturrilha-chao, panturrilha-degrau, pike, ponte-gluteo, rosca-barra-w |
 | barra_w | punho 7 | 0 | 53 | 0 | 0 | 0 | abdominal-chao, abdominal-invertido, abducao-deitado, abertura-t-deitado, aducao-deitado, afundo-peso-corpo, afundo-tras-peso-corpo, agachamento-peso-corpo, bulgaro-peso-corpo, flexao-joelho-deslizante, nordico, panturrilha-chao, panturrilha-degrau, ponte-gluteo |
-| barra_w | ombro 7 | 0 | 30 | 0 | 0 | 0 | abdominal-chao, abdominal-invertido, abducao-deitado, aducao-deitado, afundo-peso-corpo, afundo-tras-peso-corpo, agachamento-peso-corpo, bulgaro-peso-corpo, flexao-joelho-deslizante, nordico, panturrilha-chao, panturrilha-degrau, ponte-gluteo, rosca-barra-w |
+| barra_w | ombro 7 | 0 | 29 | 0 | 0 | 0 | abdominal-chao, abdominal-invertido, abducao-deitado, aducao-deitado, afundo-peso-corpo, afundo-tras-peso-corpo, agachamento-peso-corpo, bulgaro-peso-corpo, flexao-joelho-deslizante, nordico, panturrilha-chao, panturrilha-degrau, ponte-gluteo, rosca-barra-w |
 | barra_w | lombar 7 | 0 | 0 | 0 | 0 | 0 | abducao-deitado, abertura-t-deitado, aducao-deitado, afundo-peso-corpo, afundo-tras-peso-corpo, agachamento-peso-corpo, bulgaro-peso-corpo, extensao-triceps-peso-corpo, flexao, flexao-fechada, flexao-joelho-deslizante, flexao-pes-elevados, nordico, panturrilha-chao, panturrilha-degrau, pike, ponte-gluteo, rosca-barra-w |
 | barra_w | cotovelo 7 | 0 | 53 | 0 | 0 | 0 | abdominal-chao, abdominal-invertido, abducao-deitado, abertura-t-deitado, aducao-deitado, afundo-peso-corpo, afundo-tras-peso-corpo, agachamento-peso-corpo, bulgaro-peso-corpo, flexao-joelho-deslizante, nordico, panturrilha-chao, panturrilha-degrau, ponte-gluteo |
 | barra_w | joelho 7 + lombar 7 | 0 | 0 | 0 | 0 | 0 | abducao-deitado, abertura-t-deitado, aducao-deitado, extensao-triceps-peso-corpo, flexao, flexao-fechada, flexao-pes-elevados, panturrilha-chao, panturrilha-degrau, pike, ponte-gluteo, rosca-barra-w |
@@ -825,10 +825,10 @@ Exercícios por dia no programa × os que cabem nos minutos (`tempo.exercicios-p
 | leg_press | cotovelo 7 | 0 | 40 | 0 | 0 | 0 | abdominal-chao, abdominal-invertido, abducao-deitado, abertura-t-deitado, aducao-deitado, afundo-peso-corpo, afundo-tras-peso-corpo, agachamento-peso-corpo, bulgaro-peso-corpo, flexao-joelho-deslizante, leg-press, nordico, panturrilha-chao, panturrilha-degrau, panturrilha-leg-press, ponte-gluteo |
 | leg_press | joelho 7 + lombar 7 | 0 | 0 | 0 | 0 | 0 | abducao-deitado, abertura-t-deitado, aducao-deitado, extensao-triceps-peso-corpo, flexao, flexao-fechada, flexao-pes-elevados, panturrilha-chao, panturrilha-degrau, panturrilha-leg-press, pike, ponte-gluteo |
 | cadeira_extensora | joelho 7 | 0 | 0 | 0 | 0 | 0 | abdominal-chao, abdominal-invertido, abducao-deitado, abertura-t-deitado, aducao-deitado, extensao-triceps-peso-corpo, flexao, flexao-fechada, flexao-pes-elevados, panturrilha-chao, panturrilha-degrau, pike, ponte-gluteo |
-| cadeira_extensora | punho 7 | 0 | 50 | 0 | 0 | 0 | abdominal-chao, abdominal-invertido, abducao-deitado, abertura-t-deitado, aducao-deitado, afundo-peso-corpo, agachamento-peso-corpo, bulgaro-peso-corpo, cadeira-extensora, flexao-joelho-deslizante, nordico, panturrilha-chao, panturrilha-degrau, ponte-gluteo |
-| cadeira_extensora | ombro 7 | 0 | 1560 | 0 | 0 | 0 | abdominal-chao, abdominal-invertido, abducao-deitado, aducao-deitado, afundo-peso-corpo, agachamento-peso-corpo, bulgaro-peso-corpo, cadeira-extensora, flexao-joelho-deslizante, nordico, panturrilha-chao, panturrilha-degrau, ponte-gluteo |
-| cadeira_extensora | lombar 7 | 0 | 0 | 0 | 0 | 0 | abducao-deitado, abertura-t-deitado, aducao-deitado, afundo-peso-corpo, agachamento-peso-corpo, bulgaro-peso-corpo, cadeira-extensora, extensao-triceps-peso-corpo, flexao, flexao-fechada, flexao-joelho-deslizante, flexao-pes-elevados, nordico, panturrilha-chao, panturrilha-degrau, pike, ponte-gluteo |
-| cadeira_extensora | cotovelo 7 | 0 | 50 | 0 | 0 | 0 | abdominal-chao, abdominal-invertido, abducao-deitado, abertura-t-deitado, aducao-deitado, afundo-peso-corpo, agachamento-peso-corpo, bulgaro-peso-corpo, cadeira-extensora, flexao-joelho-deslizante, nordico, panturrilha-chao, panturrilha-degrau, ponte-gluteo |
+| cadeira_extensora | punho 7 | 0 | 50 | 0 | 0 | 0 | abdominal-chao, abdominal-invertido, abducao-deitado, abertura-t-deitado, aducao-deitado, afundo-peso-corpo, afundo-tras-peso-corpo, agachamento-peso-corpo, cadeira-extensora, flexao-joelho-deslizante, nordico, panturrilha-chao, panturrilha-degrau, ponte-gluteo |
+| cadeira_extensora | ombro 7 | 0 | 1560 | 0 | 0 | 0 | abdominal-chao, abdominal-invertido, abducao-deitado, aducao-deitado, afundo-peso-corpo, afundo-tras-peso-corpo, agachamento-peso-corpo, cadeira-extensora, flexao-joelho-deslizante, nordico, panturrilha-chao, panturrilha-degrau, ponte-gluteo |
+| cadeira_extensora | lombar 7 | 0 | 0 | 0 | 0 | 0 | abducao-deitado, abertura-t-deitado, aducao-deitado, afundo-peso-corpo, afundo-tras-peso-corpo, agachamento-peso-corpo, cadeira-extensora, extensao-triceps-peso-corpo, flexao, flexao-fechada, flexao-joelho-deslizante, flexao-pes-elevados, nordico, panturrilha-chao, panturrilha-degrau, pike, ponte-gluteo |
+| cadeira_extensora | cotovelo 7 | 0 | 50 | 0 | 0 | 0 | abdominal-chao, abdominal-invertido, abducao-deitado, abertura-t-deitado, aducao-deitado, afundo-peso-corpo, afundo-tras-peso-corpo, agachamento-peso-corpo, cadeira-extensora, flexao-joelho-deslizante, nordico, panturrilha-chao, panturrilha-degrau, ponte-gluteo |
 | cadeira_extensora | joelho 7 + lombar 7 | 0 | 0 | 0 | 0 | 0 | abducao-deitado, abertura-t-deitado, aducao-deitado, extensao-triceps-peso-corpo, flexao, flexao-fechada, flexao-pes-elevados, panturrilha-chao, panturrilha-degrau, pike, ponte-gluteo |
 | mesa_flexora | joelho 7 | 0 | 0 | 0 | 0 | 0 | abdominal-chao, abdominal-invertido, abducao-deitado, abertura-t-deitado, aducao-deitado, extensao-triceps-peso-corpo, flexao, flexao-fechada, flexao-pes-elevados, panturrilha-chao, panturrilha-degrau, pike, ponte-gluteo |
 | mesa_flexora | punho 7 | 0 | 67 | 0 | 0 | 0 | abdominal-chao, abdominal-invertido, abducao-deitado, abertura-t-deitado, aducao-deitado, afundo-peso-corpo, afundo-tras-peso-corpo, agachamento-peso-corpo, bulgaro-peso-corpo, flexao-joelho-deslizante, mesa-flexora, nordico, panturrilha-chao, panturrilha-degrau, ponte-gluteo |
@@ -849,10 +849,10 @@ Exercícios por dia no programa × os que cabem nos minutos (`tempo.exercicios-p
 | paralelas | cotovelo 7 | 0 | 53 | 0 | 0 | 0 | abdominal-chao, abdominal-invertido, abducao-deitado, abertura-t-deitado, aducao-deitado, afundo-peso-corpo, afundo-tras-peso-corpo, agachamento-peso-corpo, bulgaro-peso-corpo, elevacao-joelhos-paralelas, flexao-joelho-deslizante, nordico, panturrilha-chao, panturrilha-degrau, ponte-gluteo |
 | paralelas | joelho 7 + lombar 7 | 0 | 0 | 0 | 0 | 0 | abducao-deitado, abertura-t-deitado, aducao-deitado, extensao-triceps-peso-corpo, flexao, flexao-fechada, flexao-pes-elevados, mergulho, panturrilha-chao, panturrilha-degrau, pike, ponte-gluteo |
 | elasticos | joelho 7 | 0 | 0 | 0 | 0 | 0 | abdominal-chao, abdominal-invertido, abducao-deitado, abducao-elastico, abertura-elastico, aducao-deitado, coice-elastico, crucifixo-elastico, desenvolvimento-elastico, elevacao-lateral-elastico, elevacao-lateral-unilateral-elastico, face-pull-elastico, flexao, flexao-elastico, flexao-fechada, flexao-pes-elevados, panturrilha-chao, panturrilha-degrau, pike, ponte-gluteo, puxada-elastico, remada-curvada-elastico, remada-elastico, remada-unilateral-elastico, rosca-elastico, rosca-martelo-elastico, stiff-elastico, triceps-elastico-acima, triceps-elastico-alto |
-| elasticos | punho 7 | 0 | 0 | 0 | 0 | 0 | abdominal-chao, abdominal-invertido, abducao-deitado, abducao-elastico, abertura-elastico, aducao-deitado, afundo-peso-corpo, agachamento-elastico, agachamento-peso-corpo, bulgaro-peso-corpo, coice-elastico, crucifixo-elastico, desenvolvimento-elastico, elevacao-lateral-elastico, elevacao-lateral-unilateral-elastico, extensao-joelho-elastico, face-pull-elastico, flexao-joelho-elastico, panturrilha-chao, panturrilha-degrau, ponte-gluteo, puxada-elastico, remada-curvada-elastico, remada-elastico, remada-unilateral-elastico, rosca-elastico, rosca-martelo-elastico, stiff-elastico, triceps-elastico-acima, triceps-elastico-alto |
-| elasticos | ombro 7 | 0 | 0 | 0 | 0 | 0 | abdominal-chao, abdominal-invertido, abducao-deitado, abducao-elastico, aducao-deitado, afundo-peso-corpo, agachamento-elastico, agachamento-peso-corpo, bulgaro-peso-corpo, coice-elastico, extensao-joelho-elastico, flexao-joelho-deslizante, flexao-joelho-elastico, panturrilha-chao, panturrilha-degrau, ponte-gluteo, rosca-elastico, rosca-martelo-elastico, stiff-elastico, triceps-elastico-alto |
-| elasticos | lombar 7 | 0 | 0 | 0 | 0 | 0 | abducao-deitado, abducao-elastico, abertura-elastico, aducao-deitado, afundo-peso-corpo, agachamento-elastico, agachamento-peso-corpo, bulgaro-peso-corpo, coice-elastico, crucifixo-elastico, desenvolvimento-elastico, elevacao-lateral-elastico, elevacao-lateral-unilateral-elastico, extensao-joelho-elastico, extensao-triceps-peso-corpo, face-pull-elastico, flexao, flexao-elastico, flexao-fechada, flexao-joelho-deslizante, flexao-joelho-elastico, flexao-pes-elevados, nordico, panturrilha-chao, panturrilha-degrau, pike, ponte-gluteo, puxada-elastico, remada-elastico, rosca-elastico, rosca-martelo-elastico, triceps-elastico-acima, triceps-elastico-alto |
-| elasticos | cotovelo 7 | 0 | 0 | 0 | 0 | 0 | abdominal-chao, abdominal-invertido, abducao-deitado, abducao-elastico, abertura-elastico, aducao-deitado, afundo-peso-corpo, agachamento-elastico, agachamento-peso-corpo, bulgaro-peso-corpo, coice-elastico, crucifixo-elastico, elevacao-lateral-elastico, elevacao-lateral-unilateral-elastico, extensao-joelho-elastico, face-pull-elastico, flexao-joelho-deslizante, flexao-joelho-elastico, panturrilha-chao, panturrilha-degrau, ponte-gluteo, stiff-elastico |
+| elasticos | punho 7 | 0 | 0 | 0 | 0 | 0 | abdominal-chao, abdominal-invertido, abducao-deitado, abducao-elastico, abertura-elastico, aducao-deitado, afundo-peso-corpo, afundo-tras-peso-corpo, agachamento-elastico, agachamento-peso-corpo, coice-elastico, crucifixo-elastico, desenvolvimento-elastico, elevacao-lateral-elastico, elevacao-lateral-unilateral-elastico, extensao-joelho-elastico, face-pull-elastico, flexao-joelho-elastico, panturrilha-chao, panturrilha-degrau, ponte-gluteo, puxada-elastico, remada-curvada-elastico, remada-elastico, remada-unilateral-elastico, rosca-elastico, rosca-martelo-elastico, stiff-elastico, triceps-elastico-acima, triceps-elastico-alto |
+| elasticos | ombro 7 | 0 | 0 | 0 | 0 | 0 | abdominal-chao, abdominal-invertido, abducao-deitado, abducao-elastico, aducao-deitado, afundo-peso-corpo, afundo-tras-peso-corpo, agachamento-elastico, agachamento-peso-corpo, coice-elastico, extensao-joelho-elastico, flexao-joelho-deslizante, flexao-joelho-elastico, nordico, panturrilha-chao, panturrilha-degrau, ponte-gluteo, rosca-elastico, rosca-martelo-elastico, stiff-elastico, triceps-elastico-alto |
+| elasticos | lombar 7 | 0 | 0 | 0 | 0 | 0 | abducao-deitado, abducao-elastico, abertura-elastico, aducao-deitado, afundo-peso-corpo, afundo-tras-peso-corpo, agachamento-elastico, agachamento-peso-corpo, coice-elastico, crucifixo-elastico, desenvolvimento-elastico, elevacao-lateral-elastico, elevacao-lateral-unilateral-elastico, extensao-joelho-elastico, extensao-triceps-peso-corpo, face-pull-elastico, flexao, flexao-elastico, flexao-fechada, flexao-joelho-deslizante, flexao-joelho-elastico, flexao-pes-elevados, nordico, panturrilha-chao, panturrilha-degrau, pike, ponte-gluteo, puxada-elastico, remada-elastico, rosca-elastico, rosca-martelo-elastico, triceps-elastico-acima, triceps-elastico-alto |
+| elasticos | cotovelo 7 | 0 | 0 | 0 | 0 | 0 | abdominal-chao, abdominal-invertido, abducao-deitado, abducao-elastico, abertura-elastico, aducao-deitado, afundo-peso-corpo, afundo-tras-peso-corpo, agachamento-elastico, agachamento-peso-corpo, coice-elastico, crucifixo-elastico, elevacao-lateral-elastico, elevacao-lateral-unilateral-elastico, extensao-joelho-elastico, face-pull-elastico, flexao-joelho-deslizante, flexao-joelho-elastico, panturrilha-chao, panturrilha-degrau, ponte-gluteo, stiff-elastico |
 | elasticos | joelho 7 + lombar 7 | 0 | 0 | 0 | 0 | 0 | abducao-deitado, abducao-elastico, abertura-elastico, aducao-deitado, coice-elastico, crucifixo-elastico, desenvolvimento-elastico, elevacao-lateral-elastico, elevacao-lateral-unilateral-elastico, extensao-triceps-peso-corpo, face-pull-elastico, flexao, flexao-elastico, flexao-fechada, flexao-pes-elevados, panturrilha-chao, panturrilha-degrau, pike, ponte-gluteo, puxada-elastico, remada-elastico, rosca-elastico, rosca-martelo-elastico, triceps-elastico-acima, triceps-elastico-alto |
 | step | joelho 7 | 0 | 0 | 0 | 0 | 0 | abdominal-chao, abdominal-invertido, abducao-deitado, abertura-t-deitado, aducao-deitado, extensao-triceps-peso-corpo, flexao, flexao-fechada, flexao-pes-elevados, panturrilha, panturrilha-bilateral-step, panturrilha-chao, panturrilha-degrau, pike, ponte-gluteo |
 | step | punho 7 | 0 | 53 | 0 | 0 | 0 | abdominal-chao, abdominal-invertido, abducao-deitado, abertura-t-deitado, aducao-deitado, afundo-peso-corpo, afundo-tras-peso-corpo, agachamento-peso-corpo, bulgaro-peso-corpo, flexao-joelho-deslizante, nordico, panturrilha, panturrilha-bilateral-step, panturrilha-chao, panturrilha-degrau, ponte-gluteo |
@@ -861,10 +861,10 @@ Exercícios por dia no programa × os que cabem nos minutos (`tempo.exercicios-p
 | step | cotovelo 7 | 0 | 53 | 0 | 0 | 0 | abdominal-chao, abdominal-invertido, abducao-deitado, abertura-t-deitado, aducao-deitado, afundo-peso-corpo, afundo-tras-peso-corpo, agachamento-peso-corpo, bulgaro-peso-corpo, flexao-joelho-deslizante, nordico, panturrilha, panturrilha-bilateral-step, panturrilha-chao, panturrilha-degrau, ponte-gluteo |
 | step | joelho 7 + lombar 7 | 0 | 0 | 0 | 0 | 0 | abducao-deitado, abertura-t-deitado, aducao-deitado, extensao-triceps-peso-corpo, flexao, flexao-fechada, flexao-pes-elevados, panturrilha, panturrilha-bilateral-step, panturrilha-chao, panturrilha-degrau, pike, ponte-gluteo |
 | bola_suica | joelho 7 | 0 | 0 | 0 | 0 | 0 | abdominal-bola, abdominal-chao, abdominal-invertido, abducao-deitado, abertura-t-deitado, aducao-deitado, extensao-triceps-peso-corpo, flexao, flexao-fechada, flexao-pes-elevados, panturrilha-chao, panturrilha-degrau, pike, ponte-gluteo |
-| bola_suica | punho 7 | 0 | 58 | 0 | 0 | 0 | abdominal-bola, abdominal-chao, abdominal-invertido, abducao-deitado, abertura-t-deitado, aducao-deitado, afundo-peso-corpo, afundo-tras-peso-corpo, agachamento-peso-corpo, bulgaro-peso-corpo, flexao-bola, flexao-joelho-deslizante, nordico, panturrilha-chao, panturrilha-degrau, ponte-gluteo, ponte-pes-bola |
+| bola_suica | punho 7 | 0 | 59 | 0 | 0 | 0 | abdominal-bola, abdominal-chao, abdominal-invertido, abducao-deitado, abertura-t-deitado, aducao-deitado, afundo-peso-corpo, afundo-tras-peso-corpo, agachamento-peso-corpo, bulgaro-peso-corpo, flexao-bola, flexao-joelho-deslizante, nordico, panturrilha-chao, panturrilha-degrau, ponte-gluteo, ponte-pes-bola |
 | bola_suica | ombro 7 | 0 | 1560 | 0 | 0 | 0 | abdominal-bola, abdominal-chao, abdominal-invertido, abducao-deitado, aducao-deitado, afundo-peso-corpo, afundo-tras-peso-corpo, agachamento-peso-corpo, bulgaro-peso-corpo, flexao-bola, flexao-joelho-deslizante, nordico, panturrilha-chao, panturrilha-degrau, ponte-gluteo, ponte-pes-bola |
 | bola_suica | lombar 7 | 0 | 0 | 0 | 0 | 0 | abducao-deitado, abertura-t-deitado, aducao-deitado, afundo-peso-corpo, afundo-tras-peso-corpo, agachamento-peso-corpo, bulgaro-peso-corpo, extensao-triceps-peso-corpo, flexao, flexao-bola, flexao-fechada, flexao-joelho-deslizante, flexao-pes-elevados, nordico, panturrilha-chao, panturrilha-degrau, pike, ponte-gluteo, ponte-pes-bola |
-| bola_suica | cotovelo 7 | 0 | 58 | 0 | 0 | 0 | abdominal-bola, abdominal-chao, abdominal-invertido, abducao-deitado, abertura-t-deitado, aducao-deitado, afundo-peso-corpo, afundo-tras-peso-corpo, agachamento-peso-corpo, bulgaro-peso-corpo, flexao-bola, flexao-joelho-deslizante, nordico, panturrilha-chao, panturrilha-degrau, ponte-gluteo, ponte-pes-bola |
+| bola_suica | cotovelo 7 | 0 | 59 | 0 | 0 | 0 | abdominal-bola, abdominal-chao, abdominal-invertido, abducao-deitado, abertura-t-deitado, aducao-deitado, afundo-peso-corpo, afundo-tras-peso-corpo, agachamento-peso-corpo, bulgaro-peso-corpo, flexao-bola, flexao-joelho-deslizante, nordico, panturrilha-chao, panturrilha-degrau, ponte-gluteo, ponte-pes-bola |
 | bola_suica | joelho 7 + lombar 7 | 0 | 0 | 0 | 0 | 0 | abducao-deitado, abertura-t-deitado, aducao-deitado, extensao-triceps-peso-corpo, flexao, flexao-fechada, flexao-pes-elevados, panturrilha-chao, panturrilha-degrau, pike, ponte-gluteo |
 | barra_hexagonal | joelho 7 | 0 | 0 | 0 | 0 | 0 | abdominal-chao, abdominal-invertido, abducao-deitado, abertura-t-deitado, aducao-deitado, extensao-triceps-peso-corpo, flexao, flexao-fechada, flexao-pes-elevados, panturrilha-chao, panturrilha-degrau, pike, ponte-gluteo |
 | barra_hexagonal | punho 7 | 0 | 40 | 0 | 0 | 0 | abdominal-chao, abdominal-invertido, abducao-deitado, abertura-t-deitado, aducao-deitado, afundo-peso-corpo, afundo-tras-peso-corpo, agachamento-peso-corpo, bulgaro-peso-corpo, flexao-joelho-deslizante, nordico, panturrilha-chao, panturrilha-degrau, ponte-gluteo, terra-hexagonal |
@@ -879,10 +879,10 @@ Exercícios por dia no programa × os que cabem nos minutos (`tempo.exercicios-p
 | kettlebell | cotovelo 7 | 0 | 81 | 0 | 0 | 0 | abdominal-chao, abdominal-invertido, abducao-deitado, abertura-t-deitado, aducao-deitado, afundo-kettlebell, afundo-peso-corpo, agachamento-peso-corpo, flexao-joelho-deslizante, goblet-kettlebell, nordico, panturrilha-chao, panturrilha-degrau, ponte-kettlebell, stiff-kettlebell, stiff-unilateral-kettlebell |
 | kettlebell | joelho 7 + lombar 7 | 0 | 0 | 0 | 0 | 0 | abducao-deitado, abertura-t-deitado, aducao-deitado, flexao, flexao-fechada, flexao-pes-elevados, panturrilha-chao, panturrilha-degrau, pike, ponte-kettlebell, rosca-kettlebell, triceps-frances-kettlebell |
 | banco_romano | joelho 7 | 0 | 0 | 0 | 0 | 0 | abdominal-chao, abdominal-invertido, abducao-deitado, abertura-t-deitado, aducao-deitado, extensao-triceps-peso-corpo, flexao, flexao-fechada, flexao-pes-elevados, hiperextensao, panturrilha-chao, panturrilha-degrau, pike, ponte-gluteo |
-| banco_romano | punho 7 | 0 | 58 | 0 | 0 | 0 | abdominal-chao, abdominal-invertido, abducao-deitado, abertura-t-deitado, aducao-deitado, afundo-peso-corpo, afundo-tras-peso-corpo, agachamento-peso-corpo, bulgaro-peso-corpo, flexao-joelho-deslizante, hiperextensao, nordico, panturrilha-chao, panturrilha-degrau, ponte-gluteo |
+| banco_romano | punho 7 | 0 | 61 | 0 | 0 | 0 | abdominal-chao, abdominal-invertido, abducao-deitado, abertura-t-deitado, aducao-deitado, afundo-peso-corpo, afundo-tras-peso-corpo, agachamento-peso-corpo, bulgaro-peso-corpo, flexao-joelho-deslizante, hiperextensao, nordico, panturrilha-chao, panturrilha-degrau, ponte-gluteo |
 | banco_romano | ombro 7 | 0 | 1560 | 0 | 0 | 0 | abdominal-chao, abdominal-invertido, abducao-deitado, aducao-deitado, afundo-peso-corpo, afundo-tras-peso-corpo, agachamento-peso-corpo, bulgaro-peso-corpo, flexao-joelho-deslizante, hiperextensao, nordico, panturrilha-chao, panturrilha-degrau, ponte-gluteo |
 | banco_romano | lombar 7 | 0 | 0 | 0 | 0 | 0 | abducao-deitado, abertura-t-deitado, aducao-deitado, afundo-peso-corpo, afundo-tras-peso-corpo, agachamento-peso-corpo, bulgaro-peso-corpo, extensao-triceps-peso-corpo, flexao, flexao-fechada, flexao-joelho-deslizante, flexao-pes-elevados, nordico, panturrilha-chao, panturrilha-degrau, pike, ponte-gluteo |
-| banco_romano | cotovelo 7 | 0 | 58 | 0 | 0 | 0 | abdominal-chao, abdominal-invertido, abducao-deitado, abertura-t-deitado, aducao-deitado, afundo-peso-corpo, afundo-tras-peso-corpo, agachamento-peso-corpo, bulgaro-peso-corpo, flexao-joelho-deslizante, hiperextensao, nordico, panturrilha-chao, panturrilha-degrau, ponte-gluteo |
+| banco_romano | cotovelo 7 | 0 | 61 | 0 | 0 | 0 | abdominal-chao, abdominal-invertido, abducao-deitado, abertura-t-deitado, aducao-deitado, afundo-peso-corpo, afundo-tras-peso-corpo, agachamento-peso-corpo, bulgaro-peso-corpo, flexao-joelho-deslizante, hiperextensao, nordico, panturrilha-chao, panturrilha-degrau, ponte-gluteo |
 | banco_romano | joelho 7 + lombar 7 | 0 | 0 | 0 | 0 | 0 | abducao-deitado, abertura-t-deitado, aducao-deitado, extensao-triceps-peso-corpo, flexao, flexao-fechada, flexao-pes-elevados, panturrilha-chao, panturrilha-degrau, pike, ponte-gluteo |
 | estacao_puxada | joelho 7 | 0 | 0 | 0 | 0 | 0 | abdominal-chao, abdominal-invertido, abducao-deitado, abertura-t-deitado, aducao-deitado, extensao-triceps-peso-corpo, flexao, flexao-fechada, flexao-pes-elevados, panturrilha-chao, panturrilha-degrau, pike, ponte-gluteo, puxada-frente |
 | estacao_puxada | punho 7 | 0 | 17 | 0 | 0 | 0 | abdominal-chao, abdominal-invertido, abducao-deitado, abertura-t-deitado, aducao-deitado, afundo-peso-corpo, afundo-tras-peso-corpo, agachamento-peso-corpo, bulgaro-peso-corpo, flexao-joelho-deslizante, nordico, panturrilha-chao, panturrilha-degrau, ponte-gluteo, puxada-frente |
@@ -933,8 +933,8 @@ Exercícios por dia no programa × os que cabem nos minutos (`tempo.exercicios-p
 | graviton | cotovelo 7 | 0 | 69 | 0 | 0 | 0 | abdominal-chao, abdominal-invertido, abducao-deitado, abertura-t-deitado, aducao-deitado, afundo-peso-corpo, afundo-tras-peso-corpo, agachamento-peso-corpo, bulgaro-peso-corpo, flexao-joelho-deslizante, nordico, panturrilha-chao, panturrilha-degrau, ponte-gluteo |
 | graviton | joelho 7 + lombar 7 | 0 | 0 | 0 | 0 | 0 | abducao-deitado, abertura-t-deitado, aducao-deitado, barra-fixa-graviton, extensao-triceps-peso-corpo, flexao, flexao-fechada, flexao-pes-elevados, mergulho-graviton, panturrilha-chao, panturrilha-degrau, pike, ponte-gluteo |
 | rosca_maquina | joelho 7 | 0 | 0 | 0 | 0 | 0 | abdominal-chao, abdominal-invertido, abducao-deitado, abertura-t-deitado, aducao-deitado, extensao-triceps-peso-corpo, flexao, flexao-fechada, flexao-pes-elevados, panturrilha-chao, panturrilha-degrau, pike, ponte-gluteo, rosca-maquina |
-| rosca_maquina | punho 7 | 0 | 27 | 0 | 0 | 0 | abdominal-chao, abdominal-invertido, abducao-deitado, abertura-t-deitado, aducao-deitado, afundo-peso-corpo, afundo-tras-peso-corpo, agachamento-peso-corpo, bulgaro-peso-corpo, flexao-joelho-deslizante, nordico, panturrilha-chao, panturrilha-degrau, ponte-gluteo, rosca-maquina |
-| rosca_maquina | ombro 7 | 0 | 30 | 0 | 0 | 0 | abdominal-chao, abdominal-invertido, abducao-deitado, aducao-deitado, afundo-peso-corpo, afundo-tras-peso-corpo, agachamento-peso-corpo, bulgaro-peso-corpo, flexao-joelho-deslizante, nordico, panturrilha-chao, panturrilha-degrau, ponte-gluteo, rosca-maquina |
+| rosca_maquina | punho 7 | 0 | 26 | 0 | 0 | 0 | abdominal-chao, abdominal-invertido, abducao-deitado, abertura-t-deitado, aducao-deitado, afundo-peso-corpo, afundo-tras-peso-corpo, agachamento-peso-corpo, bulgaro-peso-corpo, flexao-joelho-deslizante, nordico, panturrilha-chao, panturrilha-degrau, ponte-gluteo, rosca-maquina |
+| rosca_maquina | ombro 7 | 0 | 29 | 0 | 0 | 0 | abdominal-chao, abdominal-invertido, abducao-deitado, aducao-deitado, afundo-peso-corpo, afundo-tras-peso-corpo, agachamento-peso-corpo, bulgaro-peso-corpo, flexao-joelho-deslizante, nordico, panturrilha-chao, panturrilha-degrau, ponte-gluteo, rosca-maquina |
 | rosca_maquina | lombar 7 | 0 | 0 | 0 | 0 | 0 | abducao-deitado, abertura-t-deitado, aducao-deitado, afundo-peso-corpo, afundo-tras-peso-corpo, agachamento-peso-corpo, bulgaro-peso-corpo, extensao-triceps-peso-corpo, flexao, flexao-fechada, flexao-joelho-deslizante, flexao-pes-elevados, nordico, panturrilha-chao, panturrilha-degrau, pike, ponte-gluteo, rosca-maquina |
 | rosca_maquina | cotovelo 7 | 0 | 53 | 0 | 0 | 0 | abdominal-chao, abdominal-invertido, abducao-deitado, abertura-t-deitado, aducao-deitado, afundo-peso-corpo, afundo-tras-peso-corpo, agachamento-peso-corpo, bulgaro-peso-corpo, flexao-joelho-deslizante, nordico, panturrilha-chao, panturrilha-degrau, ponte-gluteo |
 | rosca_maquina | joelho 7 + lombar 7 | 0 | 0 | 0 | 0 | 0 | abducao-deitado, abertura-t-deitado, aducao-deitado, extensao-triceps-peso-corpo, flexao, flexao-fechada, flexao-pes-elevados, panturrilha-chao, panturrilha-degrau, pike, ponte-gluteo, rosca-maquina |
@@ -969,34 +969,34 @@ Exercícios por dia no programa × os que cabem nos minutos (`tempo.exercicios-p
 | gluteo_maquina | cotovelo 7 | 0 | 52 | 0 | 0 | 0 | abdominal-chao, abdominal-invertido, abducao-deitado, abertura-t-deitado, aducao-deitado, afundo-peso-corpo, afundo-tras-peso-corpo, agachamento-peso-corpo, bulgaro-peso-corpo, coice-maquina, flexao-joelho-deslizante, nordico, panturrilha-chao, panturrilha-degrau |
 | gluteo_maquina | joelho 7 + lombar 7 | 0 | 0 | 0 | 0 | 0 | abducao-deitado, abertura-t-deitado, aducao-deitado, coice-maquina, extensao-triceps-peso-corpo, flexao, flexao-fechada, flexao-pes-elevados, panturrilha-chao, panturrilha-degrau, pike |
 | panturrilha_em_pe_maquina | joelho 7 | 0 | 0 | 0 | 0 | 0 | abdominal-chao, abdominal-invertido, abducao-deitado, abertura-t-deitado, aducao-deitado, extensao-triceps-peso-corpo, flexao, flexao-fechada, flexao-pes-elevados, panturrilha-chao, panturrilha-degrau, panturrilha-em-pe-maquina, pike, ponte-gluteo |
-| panturrilha_em_pe_maquina | punho 7 | 0 | 41 | 0 | 0 | 0 | abdominal-chao, abdominal-invertido, abducao-deitado, abertura-t-deitado, aducao-deitado, afundo-peso-corpo, afundo-tras-peso-corpo, agachamento-peso-corpo, bulgaro-peso-corpo, flexao-joelho-deslizante, nordico, panturrilha-chao, panturrilha-degrau, panturrilha-em-pe-maquina, ponte-gluteo |
+| panturrilha_em_pe_maquina | punho 7 | 0 | 44 | 0 | 0 | 0 | abdominal-chao, abdominal-invertido, abducao-deitado, abertura-t-deitado, aducao-deitado, afundo-peso-corpo, afundo-tras-peso-corpo, agachamento-peso-corpo, bulgaro-peso-corpo, flexao-joelho-deslizante, nordico, panturrilha-chao, panturrilha-degrau, panturrilha-em-pe-maquina, ponte-gluteo |
 | panturrilha_em_pe_maquina | ombro 7 | 0 | 1560 | 0 | 0 | 0 | abdominal-chao, abdominal-invertido, abducao-deitado, aducao-deitado, afundo-peso-corpo, afundo-tras-peso-corpo, agachamento-peso-corpo, bulgaro-peso-corpo, flexao-joelho-deslizante, nordico, panturrilha-chao, panturrilha-degrau, panturrilha-em-pe-maquina, ponte-gluteo |
 | panturrilha_em_pe_maquina | lombar 7 | 0 | 0 | 0 | 0 | 0 | abducao-deitado, abertura-t-deitado, aducao-deitado, afundo-peso-corpo, afundo-tras-peso-corpo, agachamento-peso-corpo, bulgaro-peso-corpo, extensao-triceps-peso-corpo, flexao, flexao-fechada, flexao-joelho-deslizante, flexao-pes-elevados, nordico, panturrilha-chao, panturrilha-degrau, panturrilha-em-pe-maquina, pike, ponte-gluteo |
-| panturrilha_em_pe_maquina | cotovelo 7 | 0 | 41 | 0 | 0 | 0 | abdominal-chao, abdominal-invertido, abducao-deitado, abertura-t-deitado, aducao-deitado, afundo-peso-corpo, afundo-tras-peso-corpo, agachamento-peso-corpo, bulgaro-peso-corpo, flexao-joelho-deslizante, nordico, panturrilha-chao, panturrilha-degrau, panturrilha-em-pe-maquina, ponte-gluteo |
+| panturrilha_em_pe_maquina | cotovelo 7 | 0 | 44 | 0 | 0 | 0 | abdominal-chao, abdominal-invertido, abducao-deitado, abertura-t-deitado, aducao-deitado, afundo-peso-corpo, afundo-tras-peso-corpo, agachamento-peso-corpo, bulgaro-peso-corpo, flexao-joelho-deslizante, nordico, panturrilha-chao, panturrilha-degrau, panturrilha-em-pe-maquina, ponte-gluteo |
 | panturrilha_em_pe_maquina | joelho 7 + lombar 7 | 0 | 0 | 0 | 0 | 0 | abducao-deitado, abertura-t-deitado, aducao-deitado, extensao-triceps-peso-corpo, flexao, flexao-fechada, flexao-pes-elevados, panturrilha-chao, panturrilha-degrau, panturrilha-em-pe-maquina, pike, ponte-gluteo |
 | panturrilha_sentada_maquina | joelho 7 | 0 | 0 | 0 | 0 | 0 | abdominal-chao, abdominal-invertido, abducao-deitado, abertura-t-deitado, aducao-deitado, extensao-triceps-peso-corpo, flexao, flexao-fechada, flexao-pes-elevados, panturrilha-chao, panturrilha-degrau, panturrilha-sentada, pike, ponte-gluteo |
-| panturrilha_sentada_maquina | punho 7 | 0 | 44 | 0 | 0 | 0 | abdominal-chao, abdominal-invertido, abducao-deitado, abertura-t-deitado, aducao-deitado, afundo-peso-corpo, afundo-tras-peso-corpo, agachamento-peso-corpo, bulgaro-peso-corpo, flexao-joelho-deslizante, nordico, panturrilha-chao, panturrilha-degrau, panturrilha-sentada, ponte-gluteo |
+| panturrilha_sentada_maquina | punho 7 | 0 | 50 | 0 | 0 | 0 | abdominal-chao, abdominal-invertido, abducao-deitado, abertura-t-deitado, aducao-deitado, afundo-peso-corpo, afundo-tras-peso-corpo, agachamento-peso-corpo, bulgaro-peso-corpo, flexao-joelho-deslizante, nordico, panturrilha-chao, panturrilha-degrau, panturrilha-sentada, ponte-gluteo |
 | panturrilha_sentada_maquina | ombro 7 | 0 | 1560 | 0 | 0 | 0 | abdominal-chao, abdominal-invertido, abducao-deitado, aducao-deitado, afundo-peso-corpo, afundo-tras-peso-corpo, agachamento-peso-corpo, bulgaro-peso-corpo, flexao-joelho-deslizante, nordico, panturrilha-chao, panturrilha-degrau, panturrilha-sentada, ponte-gluteo |
 | panturrilha_sentada_maquina | lombar 7 | 0 | 0 | 0 | 0 | 0 | abducao-deitado, abertura-t-deitado, aducao-deitado, afundo-peso-corpo, afundo-tras-peso-corpo, agachamento-peso-corpo, bulgaro-peso-corpo, extensao-triceps-peso-corpo, flexao, flexao-fechada, flexao-joelho-deslizante, flexao-pes-elevados, nordico, panturrilha-degrau, panturrilha-sentada, pike, ponte-gluteo |
-| panturrilha_sentada_maquina | cotovelo 7 | 0 | 44 | 0 | 0 | 0 | abdominal-chao, abdominal-invertido, abducao-deitado, abertura-t-deitado, aducao-deitado, afundo-peso-corpo, afundo-tras-peso-corpo, agachamento-peso-corpo, bulgaro-peso-corpo, flexao-joelho-deslizante, nordico, panturrilha-chao, panturrilha-degrau, panturrilha-sentada, ponte-gluteo |
+| panturrilha_sentada_maquina | cotovelo 7 | 0 | 50 | 0 | 0 | 0 | abdominal-chao, abdominal-invertido, abducao-deitado, abertura-t-deitado, aducao-deitado, afundo-peso-corpo, afundo-tras-peso-corpo, agachamento-peso-corpo, bulgaro-peso-corpo, flexao-joelho-deslizante, nordico, panturrilha-chao, panturrilha-degrau, panturrilha-sentada, ponte-gluteo |
 | panturrilha_sentada_maquina | joelho 7 + lombar 7 | 0 | 0 | 0 | 0 | 0 | abducao-deitado, abertura-t-deitado, aducao-deitado, extensao-triceps-peso-corpo, flexao, flexao-fechada, flexao-pes-elevados, panturrilha-degrau, panturrilha-sentada, pike, ponte-gluteo |
 | suspensao | joelho 7 | 0 | 0 | 0 | 0 | 0 | abdominal-chao, abdominal-invertido, abducao-deitado, aducao-deitado, face-pull-suspensao, flexao, flexao-fechada, flexao-pes-elevados, panturrilha-chao, panturrilha-degrau, pike, ponte-gluteo, remada-suspensao, rosca-suspensao, triceps-suspensao, yt-suspensao |
-| suspensao | punho 7 | 0 | 0 | 0 | 0 | 0 | abdominal-chao, abdominal-invertido, abducao-deitado, abertura-t-deitado, aducao-deitado, afundo-peso-corpo, afundo-tras-peso-corpo, agachamento-peso-corpo, bulgaro-peso-corpo, bulgaro-suspensao, face-pull-suspensao, flexao-joelho-deslizante, flexao-joelho-suspensao, nordico, panturrilha-chao, panturrilha-degrau, ponte-gluteo, remada-suspensao, rosca-suspensao, triceps-suspensao, yt-suspensao |
+| suspensao | punho 7 | 0 | 0 | 0 | 0 | 0 | abdominal-chao, abdominal-invertido, abducao-deitado, abertura-t-deitado, aducao-deitado, afundo-peso-corpo, afundo-tras-peso-corpo, agachamento-peso-corpo, bulgaro-peso-corpo, face-pull-suspensao, flexao-joelho-deslizante, flexao-joelho-suspensao, nordico, panturrilha-chao, panturrilha-degrau, ponte-gluteo, remada-suspensao, rosca-suspensao, triceps-suspensao, yt-suspensao |
 | suspensao | ombro 7 | 0 | 1880 | 0 | 0 | 0 | abdominal-chao, abdominal-invertido, abducao-deitado, aducao-deitado, afundo-peso-corpo, afundo-tras-peso-corpo, agachamento-peso-corpo, bulgaro-peso-corpo, bulgaro-suspensao, flexao-joelho-deslizante, flexao-joelho-suspensao, nordico, panturrilha-chao, panturrilha-degrau, ponte-gluteo |
-| suspensao | lombar 7 | 0 | 0 | 0 | 0 | 0 | abducao-deitado, abertura-t-deitado, aducao-deitado, afundo-peso-corpo, afundo-tras-peso-corpo, agachamento-peso-corpo, bulgaro-peso-corpo, bulgaro-suspensao, extensao-triceps-peso-corpo, face-pull-suspensao, flexao, flexao-fechada, flexao-joelho-deslizante, flexao-joelho-suspensao, flexao-pes-elevados, nordico, panturrilha-chao, panturrilha-degrau, pike, ponte-gluteo, remada-suspensao, rosca-suspensao, triceps-suspensao, yt-suspensao |
+| suspensao | lombar 7 | 0 | 0 | 0 | 0 | 0 | abducao-deitado, abertura-t-deitado, aducao-deitado, afundo-peso-corpo, afundo-tras-peso-corpo, agachamento-peso-corpo, bulgaro-peso-corpo, extensao-triceps-peso-corpo, face-pull-suspensao, flexao, flexao-fechada, flexao-joelho-deslizante, flexao-joelho-suspensao, flexao-pes-elevados, nordico, panturrilha-chao, panturrilha-degrau, pike, ponte-gluteo, remada-suspensao, rosca-suspensao, triceps-suspensao, yt-suspensao |
 | suspensao | cotovelo 7 | 0 | 69 | 0 | 0 | 0 | abdominal-chao, abdominal-invertido, abducao-deitado, abertura-t-deitado, aducao-deitado, afundo-peso-corpo, afundo-tras-peso-corpo, agachamento-peso-corpo, bulgaro-peso-corpo, bulgaro-suspensao, flexao-joelho-deslizante, flexao-joelho-suspensao, nordico, panturrilha-chao, panturrilha-degrau, ponte-gluteo, yt-suspensao |
 | suspensao | joelho 7 + lombar 7 | 0 | 0 | 0 | 0 | 0 | abducao-deitado, abertura-t-deitado, aducao-deitado, extensao-triceps-peso-corpo, face-pull-suspensao, flexao, flexao-fechada, flexao-pes-elevados, panturrilha-chao, panturrilha-degrau, pike, ponte-gluteo, remada-suspensao, rosca-suspensao, triceps-suspensao, yt-suspensao |
 | caneleiras | joelho 7 | 0 | 0 | 0 | 0 | 0 | abdominal-chao, abdominal-invertido, abducao-caneleira, aducao-caneleira, coice-caneleira, crucifixo-invertido-caneleira, elevacao-lateral-caneleira, extensao-triceps-peso-corpo, flexao, flexao-fechada, flexao-pes-elevados, panturrilha-chao, panturrilha-degrau, pike |
-| caneleiras | punho 7 | 0 | 0 | 0 | 0 | 0 | abdominal-chao, abdominal-invertido, abducao-caneleira, aducao-caneleira, afundo-peso-corpo, agachamento-peso-corpo, bulgaro-peso-corpo, coice-caneleira, crucifixo-invertido-caneleira, elevacao-lateral-caneleira, extensao-joelho-caneleira, flexao-joelho-deslizante, nordico, panturrilha-chao, panturrilha-degrau |
-| caneleiras | ombro 7 | 0 | 1560 | 0 | 0 | 0 | abdominal-chao, abdominal-invertido, abducao-caneleira, aducao-caneleira, afundo-peso-corpo, agachamento-peso-corpo, bulgaro-peso-corpo, coice-caneleira, extensao-joelho-caneleira, flexao-joelho-deslizante, nordico, panturrilha-chao, panturrilha-degrau |
-| caneleiras | lombar 7 | 0 | 0 | 0 | 0 | 0 | abducao-caneleira, aducao-caneleira, afundo-peso-corpo, agachamento-peso-corpo, bulgaro-peso-corpo, coice-caneleira, crucifixo-invertido-caneleira, elevacao-lateral-caneleira, extensao-joelho-caneleira, extensao-triceps-peso-corpo, flexao, flexao-fechada, flexao-joelho-deslizante, flexao-pes-elevados, nordico, panturrilha-chao, panturrilha-degrau, pike |
-| caneleiras | cotovelo 7 | 0 | 0 | 0 | 0 | 0 | abdominal-chao, abdominal-invertido, abducao-caneleira, aducao-caneleira, afundo-peso-corpo, agachamento-peso-corpo, bulgaro-peso-corpo, coice-caneleira, crucifixo-invertido-caneleira, elevacao-lateral-caneleira, extensao-joelho-caneleira, flexao-joelho-deslizante, nordico, panturrilha-chao, panturrilha-degrau |
+| caneleiras | punho 7 | 0 | 0 | 0 | 0 | 0 | abdominal-chao, abdominal-invertido, abducao-caneleira, aducao-caneleira, afundo-peso-corpo, afundo-tras-peso-corpo, agachamento-peso-corpo, coice-caneleira, crucifixo-invertido-caneleira, elevacao-lateral-caneleira, extensao-joelho-caneleira, flexao-joelho-deslizante, nordico, panturrilha-chao, panturrilha-degrau |
+| caneleiras | ombro 7 | 0 | 1560 | 0 | 0 | 0 | abdominal-chao, abdominal-invertido, abducao-caneleira, aducao-caneleira, afundo-peso-corpo, afundo-tras-peso-corpo, agachamento-peso-corpo, coice-caneleira, extensao-joelho-caneleira, flexao-joelho-deslizante, nordico, panturrilha-chao, panturrilha-degrau |
+| caneleiras | lombar 7 | 0 | 0 | 0 | 0 | 0 | abducao-caneleira, aducao-caneleira, afundo-peso-corpo, afundo-tras-peso-corpo, agachamento-peso-corpo, coice-caneleira, crucifixo-invertido-caneleira, elevacao-lateral-caneleira, extensao-joelho-caneleira, extensao-triceps-peso-corpo, flexao, flexao-fechada, flexao-joelho-deslizante, flexao-pes-elevados, nordico, panturrilha-chao, panturrilha-degrau, pike |
+| caneleiras | cotovelo 7 | 0 | 0 | 0 | 0 | 0 | abdominal-chao, abdominal-invertido, abducao-caneleira, aducao-caneleira, afundo-peso-corpo, afundo-tras-peso-corpo, agachamento-peso-corpo, coice-caneleira, crucifixo-invertido-caneleira, elevacao-lateral-caneleira, extensao-joelho-caneleira, flexao-joelho-deslizante, nordico, panturrilha-chao, panturrilha-degrau |
 | caneleiras | joelho 7 + lombar 7 | 0 | 0 | 0 | 0 | 0 | abducao-caneleira, aducao-caneleira, coice-caneleira, crucifixo-invertido-caneleira, elevacao-lateral-caneleira, extensao-triceps-peso-corpo, flexao, flexao-fechada, flexao-pes-elevados, panturrilha-chao, panturrilha-degrau, pike |
 | mini_band | joelho 7 | 0 | 0 | 0 | 0 | 0 | abdominal-chao, abdominal-invertido, abducao-deitado, abducao-deitado-mini-band, abducao-mini-band, abertura-t-deitado, aducao-deitado, extensao-triceps-peso-corpo, flexao, flexao-fechada, flexao-pes-elevados, panturrilha-chao, panturrilha-degrau, pike, ponte-gluteo |
-| mini_band | punho 7 | 0 | 62 | 0 | 0 | 0 | abdominal-chao, abdominal-invertido, abducao-deitado, abducao-deitado-mini-band, abducao-mini-band, abertura-t-deitado, aducao-deitado, afundo-peso-corpo, afundo-tras-peso-corpo, agachamento-peso-corpo, bulgaro-peso-corpo, caminhada-lateral-mini-band, extensao-joelho-mini-band, flexao-joelho-deslizante, nordico, panturrilha-chao, panturrilha-degrau, ponte-gluteo |
+| mini_band | punho 7 | 0 | 64 | 0 | 0 | 0 | abdominal-chao, abdominal-invertido, abducao-deitado, abducao-deitado-mini-band, abducao-mini-band, abertura-t-deitado, aducao-deitado, afundo-peso-corpo, afundo-tras-peso-corpo, agachamento-peso-corpo, bulgaro-peso-corpo, caminhada-lateral-mini-band, extensao-joelho-mini-band, flexao-joelho-deslizante, nordico, panturrilha-chao, panturrilha-degrau, ponte-gluteo |
 | mini_band | ombro 7 | 0 | 1560 | 0 | 0 | 0 | abdominal-chao, abdominal-invertido, abducao-deitado, abducao-deitado-mini-band, abducao-mini-band, aducao-deitado, afundo-peso-corpo, afundo-tras-peso-corpo, agachamento-peso-corpo, bulgaro-peso-corpo, caminhada-lateral-mini-band, extensao-joelho-mini-band, flexao-joelho-deslizante, nordico, panturrilha-chao, panturrilha-degrau, ponte-gluteo |
-| mini_band | lombar 7 | 0 | 0 | 0 | 0 | 0 | abducao-deitado, abducao-deitado-mini-band, abducao-mini-band, abertura-t-deitado, aducao-deitado, afundo-peso-corpo, agachamento-peso-corpo, bulgaro-peso-corpo, caminhada-lateral-mini-band, extensao-joelho-mini-band, extensao-triceps-peso-corpo, flexao, flexao-fechada, flexao-joelho-deslizante, flexao-pes-elevados, nordico, panturrilha-chao, panturrilha-degrau, pike, ponte-gluteo |
-| mini_band | cotovelo 7 | 0 | 62 | 0 | 0 | 0 | abdominal-chao, abdominal-invertido, abducao-deitado, abducao-deitado-mini-band, abducao-mini-band, abertura-t-deitado, aducao-deitado, afundo-peso-corpo, afundo-tras-peso-corpo, agachamento-peso-corpo, bulgaro-peso-corpo, caminhada-lateral-mini-band, extensao-joelho-mini-band, flexao-joelho-deslizante, nordico, panturrilha-chao, panturrilha-degrau, ponte-gluteo |
+| mini_band | lombar 7 | 0 | 0 | 0 | 0 | 0 | abducao-deitado, abducao-deitado-mini-band, abducao-mini-band, abertura-t-deitado, aducao-deitado, afundo-peso-corpo, afundo-tras-peso-corpo, agachamento-peso-corpo, caminhada-lateral-mini-band, extensao-joelho-mini-band, extensao-triceps-peso-corpo, flexao, flexao-fechada, flexao-joelho-deslizante, flexao-pes-elevados, nordico, panturrilha-chao, panturrilha-degrau, pike, ponte-gluteo |
+| mini_band | cotovelo 7 | 0 | 64 | 0 | 0 | 0 | abdominal-chao, abdominal-invertido, abducao-deitado, abducao-deitado-mini-band, abducao-mini-band, abertura-t-deitado, aducao-deitado, afundo-peso-corpo, afundo-tras-peso-corpo, agachamento-peso-corpo, bulgaro-peso-corpo, caminhada-lateral-mini-band, extensao-joelho-mini-band, flexao-joelho-deslizante, nordico, panturrilha-chao, panturrilha-degrau, ponte-gluteo |
 | mini_band | joelho 7 + lombar 7 | 0 | 0 | 0 | 0 | 0 | abducao-deitado, abducao-deitado-mini-band, abducao-mini-band, abertura-t-deitado, aducao-deitado, extensao-triceps-peso-corpo, flexao, flexao-fechada, flexao-pes-elevados, panturrilha-chao, panturrilha-degrau, pike, ponte-gluteo |
 | roda_abdominal | joelho 7 | 0 | 0 | 0 | 0 | 0 | abdominal-chao, abdominal-invertido, abducao-deitado, abertura-t-deitado, aducao-deitado, extensao-triceps-peso-corpo, flexao, flexao-fechada, flexao-pes-elevados, panturrilha-chao, panturrilha-degrau, pike, ponte-gluteo, roda-abdominal |
 | roda_abdominal | punho 7 | 0 | 53 | 0 | 0 | 0 | abdominal-chao, abdominal-invertido, abducao-deitado, abertura-t-deitado, aducao-deitado, afundo-peso-corpo, afundo-tras-peso-corpo, agachamento-peso-corpo, bulgaro-peso-corpo, flexao-joelho-deslizante, nordico, panturrilha-chao, panturrilha-degrau, ponte-gluteo, roda-abdominal |
@@ -1005,10 +1005,10 @@ Exercícios por dia no programa × os que cabem nos minutos (`tempo.exercicios-p
 | roda_abdominal | cotovelo 7 | 0 | 53 | 0 | 0 | 0 | abdominal-chao, abdominal-invertido, abducao-deitado, abertura-t-deitado, aducao-deitado, afundo-peso-corpo, afundo-tras-peso-corpo, agachamento-peso-corpo, bulgaro-peso-corpo, flexao-joelho-deslizante, nordico, panturrilha-chao, panturrilha-degrau, ponte-gluteo, roda-abdominal |
 | roda_abdominal | joelho 7 + lombar 7 | 0 | 0 | 0 | 0 | 0 | abducao-deitado, abertura-t-deitado, aducao-deitado, extensao-triceps-peso-corpo, flexao, flexao-fechada, flexao-pes-elevados, panturrilha-chao, panturrilha-degrau, pike, ponte-gluteo |
 | barra-porta+elasticos | joelho 7 | 0 | 0 | 0 | 0 | 0 | abdominal-chao, abdominal-invertido, abducao-deitado, abducao-elastico, abertura-elastico, aducao-deitado, barra-fixa, barra-fixa-negativa, barra-fixa-supinada, coice-elastico, crucifixo-elastico, desenvolvimento-elastico, elevacao-joelhos, elevacao-lateral-elastico, elevacao-lateral-unilateral-elastico, face-pull-elastico, flexao, flexao-elastico, flexao-fechada, flexao-pes-elevados, panturrilha-chao, panturrilha-degrau, pike, ponte-gluteo, remada-curvada-elastico, remada-elastico, remada-unilateral-elastico, rosca-elastico, rosca-martelo-elastico, stiff-elastico, triceps-elastico-acima, triceps-elastico-alto |
-| barra-porta+elasticos | punho 7 | 0 | 0 | 0 | 0 | 0 | abdominal-chao, abdominal-invertido, abducao-deitado, abducao-elastico, abertura-elastico, aducao-deitado, afundo-peso-corpo, agachamento-elastico, agachamento-peso-corpo, barra-fixa, barra-fixa-negativa, barra-fixa-supinada, bulgaro-peso-corpo, coice-elastico, crucifixo-elastico, desenvolvimento-elastico, elevacao-joelhos, elevacao-lateral-elastico, elevacao-lateral-unilateral-elastico, extensao-joelho-elastico, face-pull-elastico, flexao-joelho-elastico, panturrilha-chao, panturrilha-degrau, ponte-gluteo, remada-curvada-elastico, remada-elastico, remada-unilateral-elastico, rosca-elastico, rosca-martelo-elastico, stiff-elastico, triceps-elastico-acima, triceps-elastico-alto |
-| barra-porta+elasticos | ombro 7 | 0 | 0 | 0 | 0 | 0 | abdominal-chao, abdominal-invertido, abducao-deitado, abducao-elastico, aducao-deitado, afundo-peso-corpo, agachamento-elastico, agachamento-peso-corpo, bulgaro-peso-corpo, coice-elastico, extensao-joelho-elastico, flexao-joelho-deslizante, flexao-joelho-elastico, panturrilha-chao, panturrilha-degrau, ponte-gluteo, rosca-elastico, rosca-martelo-elastico, stiff-elastico, triceps-elastico-alto |
-| barra-porta+elasticos | lombar 7 | 0 | 0 | 0 | 0 | 0 | abducao-deitado, abducao-elastico, abertura-elastico, aducao-deitado, afundo-peso-corpo, agachamento-elastico, agachamento-peso-corpo, barra-fixa, barra-fixa-negativa, barra-fixa-supinada, bulgaro-peso-corpo, coice-elastico, crucifixo-elastico, desenvolvimento-elastico, elevacao-lateral-elastico, elevacao-lateral-unilateral-elastico, extensao-joelho-elastico, extensao-triceps-peso-corpo, face-pull-elastico, flexao, flexao-elastico, flexao-fechada, flexao-joelho-deslizante, flexao-joelho-elastico, flexao-pes-elevados, nordico, panturrilha-chao, panturrilha-degrau, pike, ponte-gluteo, remada-elastico, rosca-elastico, rosca-martelo-elastico, triceps-elastico-acima, triceps-elastico-alto |
-| barra-porta+elasticos | cotovelo 7 | 0 | 0 | 0 | 0 | 0 | abdominal-chao, abdominal-invertido, abducao-deitado, abducao-elastico, abertura-elastico, aducao-deitado, afundo-peso-corpo, agachamento-elastico, agachamento-peso-corpo, bulgaro-peso-corpo, coice-elastico, crucifixo-elastico, elevacao-joelhos, elevacao-lateral-elastico, elevacao-lateral-unilateral-elastico, extensao-joelho-elastico, face-pull-elastico, flexao-joelho-deslizante, flexao-joelho-elastico, panturrilha-chao, panturrilha-degrau, ponte-gluteo, stiff-elastico |
+| barra-porta+elasticos | punho 7 | 0 | 0 | 0 | 0 | 0 | abdominal-chao, abdominal-invertido, abducao-deitado, abducao-elastico, abertura-elastico, aducao-deitado, afundo-peso-corpo, afundo-tras-peso-corpo, agachamento-elastico, agachamento-peso-corpo, barra-fixa, barra-fixa-negativa, barra-fixa-supinada, coice-elastico, crucifixo-elastico, desenvolvimento-elastico, elevacao-joelhos, elevacao-lateral-elastico, elevacao-lateral-unilateral-elastico, extensao-joelho-elastico, face-pull-elastico, flexao-joelho-elastico, panturrilha-chao, panturrilha-degrau, ponte-gluteo, remada-curvada-elastico, remada-elastico, remada-unilateral-elastico, rosca-elastico, rosca-martelo-elastico, stiff-elastico, triceps-elastico-acima, triceps-elastico-alto |
+| barra-porta+elasticos | ombro 7 | 0 | 0 | 0 | 0 | 0 | abdominal-chao, abdominal-invertido, abducao-deitado, abducao-elastico, aducao-deitado, afundo-peso-corpo, afundo-tras-peso-corpo, agachamento-elastico, agachamento-peso-corpo, coice-elastico, extensao-joelho-elastico, flexao-joelho-deslizante, flexao-joelho-elastico, nordico, panturrilha-chao, panturrilha-degrau, ponte-gluteo, rosca-elastico, rosca-martelo-elastico, stiff-elastico, triceps-elastico-alto |
+| barra-porta+elasticos | lombar 7 | 0 | 0 | 0 | 0 | 0 | abducao-deitado, abducao-elastico, abertura-elastico, aducao-deitado, afundo-peso-corpo, afundo-tras-peso-corpo, agachamento-elastico, agachamento-peso-corpo, barra-fixa, barra-fixa-negativa, barra-fixa-supinada, coice-elastico, crucifixo-elastico, desenvolvimento-elastico, elevacao-lateral-elastico, elevacao-lateral-unilateral-elastico, extensao-joelho-elastico, extensao-triceps-peso-corpo, face-pull-elastico, flexao, flexao-elastico, flexao-fechada, flexao-joelho-deslizante, flexao-joelho-elastico, flexao-pes-elevados, nordico, panturrilha-chao, panturrilha-degrau, pike, ponte-gluteo, remada-elastico, rosca-elastico, rosca-martelo-elastico, triceps-elastico-acima, triceps-elastico-alto |
+| barra-porta+elasticos | cotovelo 7 | 0 | 0 | 0 | 0 | 0 | abdominal-chao, abdominal-invertido, abducao-deitado, abducao-elastico, abertura-elastico, aducao-deitado, afundo-peso-corpo, afundo-tras-peso-corpo, agachamento-elastico, agachamento-peso-corpo, coice-elastico, crucifixo-elastico, elevacao-joelhos, elevacao-lateral-elastico, elevacao-lateral-unilateral-elastico, extensao-joelho-elastico, face-pull-elastico, flexao-joelho-deslizante, flexao-joelho-elastico, panturrilha-chao, panturrilha-degrau, ponte-gluteo, stiff-elastico |
 | barra-porta+elasticos | joelho 7 + lombar 7 | 0 | 0 | 0 | 0 | 0 | abducao-deitado, abducao-elastico, abertura-elastico, aducao-deitado, barra-fixa, barra-fixa-negativa, barra-fixa-supinada, coice-elastico, crucifixo-elastico, desenvolvimento-elastico, elevacao-lateral-elastico, elevacao-lateral-unilateral-elastico, extensao-triceps-peso-corpo, face-pull-elastico, flexao, flexao-elastico, flexao-fechada, flexao-pes-elevados, panturrilha-chao, panturrilha-degrau, pike, ponte-gluteo, remada-elastico, rosca-elastico, rosca-martelo-elastico, triceps-elastico-acima, triceps-elastico-alto |
 | halteres+bola | joelho 7 | 0 | 0 | 0 | 0 | 0 | abdominal-bola, abdominal-chao, abdominal-invertido, abducao-deitado, aducao-deitado, crucifixo-invertido-curvado, crucifixo-invertido-sentado, desenvolvimento-em-pe-halteres, desenvolvimento-unilateral, elevacao-halteres, elevacao-lateral-deitado, elevacao-lateral-unilateral, flexao, flexao-pes-elevados, panturrilha-chao, panturrilha-degrau, panturrilha-sentada-halter, ponte-gluteo-halter, remada-curvada-halteres, remada-unilateral-sem-banco, rosca-alternada, rosca-concentrada, rosca-martelo, stiff, stiff-unilateral, supino-chao-halteres, triceps-frances-halter, triceps-frances-unilateral-halter, triceps-testa-halteres |
 | halteres+bola | punho 7 | 0 | 0 | 0 | 0 | 0 | abdominal-bola, abdominal-chao, abdominal-invertido, abducao-deitado, aducao-deitado, afundo, afundo-tras, agachamento-halteres, crucifixo-invertido-curvado, crucifixo-invertido-sentado, desenvolvimento-unilateral, elevacao-halteres, elevacao-lateral-deitado, elevacao-lateral-unilateral, flexao-bola, goblet, nordico, panturrilha-degrau, panturrilha-sentada-halter, ponte-gluteo-halter, remada-curvada-halteres, remada-unilateral-sem-banco, rosca-alternada, rosca-concentrada, rosca-martelo, stiff, stiff-unilateral, supino-chao-halteres, triceps-frances-halter, triceps-frances-unilateral-halter, triceps-testa-halteres |
@@ -1017,10 +1017,10 @@ Exercícios por dia no programa × os que cabem nos minutos (`tempo.exercicios-p
 | halteres+bola | cotovelo 7 | 0 | 0 | 0 | 0 | 0 | abdominal-bola, abdominal-chao, abdominal-invertido, abducao-deitado, aducao-deitado, afundo, afundo-tras, agachamento-halteres, crucifixo-invertido-curvado, crucifixo-invertido-sentado, elevacao-halteres, elevacao-lateral-deitado, elevacao-lateral-unilateral, flexao-bola, goblet, nordico, panturrilha-chao, panturrilha-degrau, panturrilha-sentada-halter, ponte-gluteo-halter, stiff, stiff-unilateral |
 | halteres+bola | joelho 7 + lombar 7 | 0 | 0 | 0 | 0 | 0 | abducao-deitado, aducao-deitado, crucifixo-invertido-sentado, elevacao-halteres, elevacao-lateral-deitado, elevacao-lateral-unilateral, flexao, flexao-pes-elevados, panturrilha-chao, panturrilha-degrau, panturrilha-sentada-halter, pike, ponte-gluteo-halter, rosca-alternada, rosca-concentrada, rosca-martelo, supino-chao-halteres, triceps-frances-halter, triceps-frances-unilateral-halter, triceps-testa-halteres |
 | suspensao+elasticos | joelho 7 | 0 | 0 | 0 | 0 | 0 | abdominal-chao, abdominal-invertido, abducao-deitado, abducao-elastico, abertura-elastico, aducao-deitado, coice-elastico, crucifixo-elastico, desenvolvimento-elastico, elevacao-lateral-elastico, elevacao-lateral-unilateral-elastico, face-pull-elastico, flexao, flexao-elastico, flexao-pes-elevados, panturrilha-chao, panturrilha-degrau, pike, ponte-gluteo, puxada-elastico, remada-curvada-elastico, remada-elastico, remada-suspensao, rosca-elastico, rosca-martelo-elastico, rosca-suspensao, stiff-elastico, triceps-elastico-acima, triceps-suspensao, yt-suspensao |
-| suspensao+elasticos | punho 7 | 0 | 0 | 0 | 0 | 0 | abdominal-chao, abdominal-invertido, abducao-deitado, abducao-elastico, abertura-elastico, aducao-deitado, afundo-peso-corpo, agachamento-elastico, agachamento-peso-corpo, bulgaro-peso-corpo, coice-elastico, crucifixo-elastico, desenvolvimento-elastico, elevacao-lateral-elastico, elevacao-lateral-unilateral-elastico, extensao-joelho-elastico, face-pull-elastico, flexao-joelho-elastico, panturrilha-chao, panturrilha-degrau, ponte-gluteo, puxada-elastico, remada-curvada-elastico, remada-elastico, remada-suspensao, rosca-elastico, rosca-martelo-elastico, rosca-suspensao, stiff-elastico, triceps-elastico-acima, triceps-suspensao, yt-suspensao |
-| suspensao+elasticos | ombro 7 | 0 | 0 | 0 | 0 | 0 | abdominal-chao, abdominal-invertido, abducao-deitado, abducao-elastico, aducao-deitado, afundo-peso-corpo, agachamento-elastico, agachamento-peso-corpo, bulgaro-peso-corpo, coice-elastico, extensao-joelho-elastico, flexao-joelho-deslizante, flexao-joelho-elastico, flexao-joelho-suspensao, panturrilha-chao, panturrilha-degrau, ponte-gluteo, rosca-elastico, rosca-martelo-elastico, stiff-elastico, triceps-elastico-alto |
-| suspensao+elasticos | lombar 7 | 0 | 0 | 0 | 0 | 0 | abducao-deitado, abducao-elastico, abertura-elastico, aducao-deitado, afundo-peso-corpo, agachamento-elastico, agachamento-peso-corpo, bulgaro-peso-corpo, coice-elastico, crucifixo-elastico, desenvolvimento-elastico, elevacao-lateral-elastico, elevacao-lateral-unilateral-elastico, extensao-joelho-elastico, extensao-triceps-peso-corpo, face-pull-elastico, flexao, flexao-elastico, flexao-joelho-deslizante, flexao-joelho-elastico, flexao-joelho-suspensao, flexao-pes-elevados, nordico, panturrilha-chao, panturrilha-degrau, pike, ponte-gluteo, puxada-elastico, remada-elastico, remada-suspensao, rosca-elastico, rosca-martelo-elastico, rosca-suspensao, triceps-elastico-acima, triceps-suspensao, yt-suspensao |
-| suspensao+elasticos | cotovelo 7 | 0 | 0 | 0 | 0 | 0 | abdominal-chao, abdominal-invertido, abducao-deitado, abducao-elastico, abertura-elastico, aducao-deitado, afundo-peso-corpo, agachamento-elastico, agachamento-peso-corpo, bulgaro-peso-corpo, coice-elastico, crucifixo-elastico, elevacao-lateral-elastico, elevacao-lateral-unilateral-elastico, extensao-joelho-elastico, face-pull-elastico, flexao-joelho-deslizante, flexao-joelho-elastico, panturrilha-chao, panturrilha-degrau, ponte-gluteo, stiff-elastico, yt-suspensao |
+| suspensao+elasticos | punho 7 | 0 | 0 | 0 | 0 | 0 | abdominal-chao, abdominal-invertido, abducao-deitado, abducao-elastico, abertura-elastico, aducao-deitado, afundo-peso-corpo, afundo-tras-peso-corpo, agachamento-elastico, agachamento-peso-corpo, coice-elastico, crucifixo-elastico, desenvolvimento-elastico, elevacao-lateral-elastico, elevacao-lateral-unilateral-elastico, extensao-joelho-elastico, face-pull-elastico, flexao-joelho-elastico, panturrilha-chao, panturrilha-degrau, ponte-gluteo, puxada-elastico, remada-curvada-elastico, remada-elastico, remada-suspensao, rosca-elastico, rosca-martelo-elastico, rosca-suspensao, stiff-elastico, triceps-elastico-acima, triceps-suspensao, yt-suspensao |
+| suspensao+elasticos | ombro 7 | 0 | 0 | 0 | 0 | 0 | abdominal-chao, abdominal-invertido, abducao-deitado, abducao-elastico, aducao-deitado, afundo-peso-corpo, afundo-tras-peso-corpo, agachamento-elastico, agachamento-peso-corpo, coice-elastico, extensao-joelho-elastico, flexao-joelho-deslizante, flexao-joelho-elastico, flexao-joelho-suspensao, panturrilha-chao, panturrilha-degrau, ponte-gluteo, rosca-elastico, rosca-martelo-elastico, stiff-elastico, triceps-elastico-alto |
+| suspensao+elasticos | lombar 7 | 0 | 0 | 0 | 0 | 0 | abducao-deitado, abducao-elastico, abertura-elastico, aducao-deitado, afundo-peso-corpo, afundo-tras-peso-corpo, agachamento-elastico, agachamento-peso-corpo, coice-elastico, crucifixo-elastico, desenvolvimento-elastico, elevacao-lateral-elastico, elevacao-lateral-unilateral-elastico, extensao-joelho-elastico, extensao-triceps-peso-corpo, face-pull-elastico, flexao, flexao-elastico, flexao-joelho-deslizante, flexao-joelho-elastico, flexao-joelho-suspensao, flexao-pes-elevados, nordico, panturrilha-chao, panturrilha-degrau, pike, ponte-gluteo, puxada-elastico, remada-elastico, remada-suspensao, rosca-elastico, rosca-martelo-elastico, rosca-suspensao, triceps-elastico-acima, triceps-suspensao, yt-suspensao |
+| suspensao+elasticos | cotovelo 7 | 0 | 0 | 0 | 0 | 0 | abdominal-chao, abdominal-invertido, abducao-deitado, abducao-elastico, abertura-elastico, aducao-deitado, afundo-peso-corpo, afundo-tras-peso-corpo, agachamento-elastico, agachamento-peso-corpo, coice-elastico, crucifixo-elastico, elevacao-lateral-elastico, elevacao-lateral-unilateral-elastico, extensao-joelho-elastico, face-pull-elastico, flexao-joelho-deslizante, flexao-joelho-elastico, panturrilha-chao, panturrilha-degrau, ponte-gluteo, stiff-elastico, yt-suspensao |
 | suspensao+elasticos | joelho 7 + lombar 7 | 0 | 0 | 0 | 0 | 0 | abducao-deitado, abducao-elastico, abertura-elastico, aducao-deitado, coice-elastico, crucifixo-elastico, desenvolvimento-elastico, elevacao-lateral-elastico, elevacao-lateral-unilateral-elastico, extensao-triceps-peso-corpo, face-pull-elastico, flexao, flexao-elastico, flexao-pes-elevados, panturrilha-chao, panturrilha-degrau, pike, ponte-gluteo, puxada-elastico, remada-elastico, remada-suspensao, rosca-elastico, rosca-martelo-elastico, rosca-suspensao, triceps-elastico-acima, triceps-suspensao, yt-suspensao |
 | banco+halteres-leves | joelho 7 | 0 | 0 | 0 | 0 | 0 | abdominal-chao, abdominal-invertido, abducao-deitado, aducao-deitado, crucifixo-halteres, crucifixo-invertido-curvado, crucifixo-invertido-sentado, desenvolvimento-em-pe-halteres, desenvolvimento-unilateral, elevacao-halteres, elevacao-lateral-deitado, elevacao-lateral-unilateral, flexao, panturrilha-chao, panturrilha-degrau, panturrilha-sentada-halter, ponte-gluteo-halter, remada-curvada-halteres, remada-unilateral-halter, remada-unilateral-sem-banco, rosca-alternada, rosca-concentrada, rosca-martelo, stiff, stiff-unilateral, supino-reto, triceps-frances-halter, triceps-frances-unilateral-halter, triceps-testa-halteres |
 | banco+halteres-leves | punho 7 | 0 | 0 | 0 | 0 | 0 | abdominal-chao, abdominal-invertido, abducao-deitado, aducao-deitado, afundo, afundo-tras, agachamento-halteres, bulgaro, crucifixo-halteres, crucifixo-invertido-curvado, crucifixo-invertido-sentado, desenvolvimento-unilateral, elevacao-halteres, elevacao-lateral-unilateral, flexao-joelho-deslizante, goblet, nordico, panturrilha-chao, panturrilha-degrau, panturrilha-sentada-halter, ponte-gluteo-halter, remada-curvada-halteres, remada-unilateral-halter, remada-unilateral-sem-banco, rosca-alternada, rosca-concentrada, rosca-martelo, stiff, stiff-unilateral, supino-chao-halteres, supino-reto, triceps-frances-halter, triceps-frances-unilateral-halter, triceps-testa-halteres |
@@ -1029,10 +1029,10 @@ Exercícios por dia no programa × os que cabem nos minutos (`tempo.exercicios-p
 | banco+halteres-leves | cotovelo 7 | 0 | 0 | 0 | 0 | 0 | abdominal-chao, abdominal-invertido, abducao-deitado, aducao-deitado, afundo, afundo-tras, agachamento-halteres, bulgaro, crucifixo-halteres, crucifixo-invertido-curvado, crucifixo-invertido-sentado, elevacao-halteres, elevacao-lateral-deitado, elevacao-lateral-unilateral, flexao-joelho-deslizante, goblet, nordico, panturrilha-chao, panturrilha-degrau, panturrilha-sentada-halter, ponte-gluteo-halter, stiff, stiff-unilateral |
 | banco+halteres-leves | joelho 7 + lombar 7 | 0 | 0 | 0 | 0 | 0 | abducao-deitado, aducao-deitado, crucifixo-halteres, crucifixo-invertido-sentado, elevacao-halteres, elevacao-lateral-deitado, elevacao-lateral-unilateral, flexao, panturrilha-chao, panturrilha-degrau, panturrilha-sentada-halter, pike, ponte-gluteo-halter, rosca-alternada, rosca-concentrada, rosca-martelo, supino-reto, triceps-frances-halter, triceps-frances-unilateral-halter, triceps-testa-halteres |
 | step+elasticos | joelho 7 | 0 | 0 | 0 | 0 | 0 | abdominal-chao, abdominal-invertido, abducao-deitado, abducao-elastico, abertura-elastico, aducao-deitado, coice-elastico, crucifixo-elastico, desenvolvimento-elastico, elevacao-lateral-elastico, elevacao-lateral-unilateral-elastico, face-pull-elastico, flexao, flexao-elastico, flexao-fechada, flexao-pes-elevados, panturrilha, panturrilha-bilateral-step, panturrilha-chao, panturrilha-degrau, pike, ponte-gluteo, puxada-elastico, remada-curvada-elastico, remada-elastico, remada-unilateral-elastico, rosca-elastico, rosca-martelo-elastico, stiff-elastico, triceps-elastico-acima, triceps-elastico-alto |
-| step+elasticos | punho 7 | 0 | 0 | 0 | 0 | 0 | abdominal-chao, abdominal-invertido, abducao-deitado, abducao-elastico, abertura-elastico, aducao-deitado, afundo-peso-corpo, agachamento-elastico, agachamento-peso-corpo, bulgaro-peso-corpo, coice-elastico, crucifixo-elastico, desenvolvimento-elastico, elevacao-lateral-elastico, elevacao-lateral-unilateral-elastico, extensao-joelho-elastico, face-pull-elastico, flexao-joelho-elastico, panturrilha, panturrilha-bilateral-step, panturrilha-chao, panturrilha-degrau, ponte-gluteo, puxada-elastico, remada-curvada-elastico, remada-elastico, remada-unilateral-elastico, rosca-elastico, rosca-martelo-elastico, stiff-elastico, triceps-elastico-acima, triceps-elastico-alto |
-| step+elasticos | ombro 7 | 0 | 0 | 0 | 0 | 0 | abdominal-chao, abdominal-invertido, abducao-deitado, abducao-elastico, aducao-deitado, afundo-peso-corpo, agachamento-elastico, agachamento-peso-corpo, bulgaro-peso-corpo, coice-elastico, extensao-joelho-elastico, flexao-joelho-deslizante, flexao-joelho-elastico, panturrilha, panturrilha-bilateral-step, panturrilha-chao, panturrilha-degrau, ponte-gluteo, rosca-elastico, rosca-martelo-elastico, stiff-elastico, triceps-elastico-alto |
-| step+elasticos | lombar 7 | 0 | 0 | 0 | 0 | 0 | abducao-deitado, abducao-elastico, abertura-elastico, aducao-deitado, afundo-peso-corpo, agachamento-elastico, agachamento-peso-corpo, bulgaro-peso-corpo, coice-elastico, crucifixo-elastico, desenvolvimento-elastico, elevacao-lateral-elastico, elevacao-lateral-unilateral-elastico, extensao-joelho-elastico, extensao-triceps-peso-corpo, face-pull-elastico, flexao, flexao-elastico, flexao-fechada, flexao-joelho-deslizante, flexao-joelho-elastico, flexao-pes-elevados, nordico, panturrilha, panturrilha-bilateral-step, panturrilha-chao, panturrilha-degrau, pike, ponte-gluteo, puxada-elastico, remada-elastico, rosca-elastico, rosca-martelo-elastico, triceps-elastico-acima, triceps-elastico-alto |
-| step+elasticos | cotovelo 7 | 0 | 0 | 0 | 0 | 0 | abdominal-chao, abdominal-invertido, abducao-deitado, abducao-elastico, abertura-elastico, aducao-deitado, afundo-peso-corpo, agachamento-elastico, agachamento-peso-corpo, bulgaro-peso-corpo, coice-elastico, crucifixo-elastico, elevacao-lateral-elastico, elevacao-lateral-unilateral-elastico, extensao-joelho-elastico, face-pull-elastico, flexao-joelho-deslizante, flexao-joelho-elastico, panturrilha, panturrilha-bilateral-step, panturrilha-chao, panturrilha-degrau, ponte-gluteo, stiff-elastico |
+| step+elasticos | punho 7 | 0 | 0 | 0 | 0 | 0 | abdominal-chao, abdominal-invertido, abducao-deitado, abducao-elastico, abertura-elastico, aducao-deitado, afundo-peso-corpo, afundo-tras-peso-corpo, agachamento-elastico, agachamento-peso-corpo, coice-elastico, crucifixo-elastico, desenvolvimento-elastico, elevacao-lateral-elastico, elevacao-lateral-unilateral-elastico, extensao-joelho-elastico, face-pull-elastico, flexao-joelho-elastico, panturrilha, panturrilha-bilateral-step, panturrilha-chao, panturrilha-degrau, ponte-gluteo, puxada-elastico, remada-curvada-elastico, remada-elastico, remada-unilateral-elastico, rosca-elastico, rosca-martelo-elastico, stiff-elastico, triceps-elastico-acima, triceps-elastico-alto |
+| step+elasticos | ombro 7 | 0 | 0 | 0 | 0 | 0 | abdominal-chao, abdominal-invertido, abducao-deitado, abducao-elastico, aducao-deitado, afundo-peso-corpo, afundo-tras-peso-corpo, agachamento-elastico, agachamento-peso-corpo, coice-elastico, extensao-joelho-elastico, flexao-joelho-deslizante, flexao-joelho-elastico, nordico, panturrilha, panturrilha-bilateral-step, panturrilha-chao, panturrilha-degrau, ponte-gluteo, rosca-elastico, rosca-martelo-elastico, stiff-elastico, triceps-elastico-alto |
+| step+elasticos | lombar 7 | 0 | 0 | 0 | 0 | 0 | abducao-deitado, abducao-elastico, abertura-elastico, aducao-deitado, afundo-peso-corpo, afundo-tras-peso-corpo, agachamento-elastico, agachamento-peso-corpo, coice-elastico, crucifixo-elastico, desenvolvimento-elastico, elevacao-lateral-elastico, elevacao-lateral-unilateral-elastico, extensao-joelho-elastico, extensao-triceps-peso-corpo, face-pull-elastico, flexao, flexao-elastico, flexao-fechada, flexao-joelho-deslizante, flexao-joelho-elastico, flexao-pes-elevados, nordico, panturrilha, panturrilha-bilateral-step, panturrilha-chao, panturrilha-degrau, pike, ponte-gluteo, puxada-elastico, remada-elastico, rosca-elastico, rosca-martelo-elastico, triceps-elastico-acima, triceps-elastico-alto |
+| step+elasticos | cotovelo 7 | 0 | 0 | 0 | 0 | 0 | abdominal-chao, abdominal-invertido, abducao-deitado, abducao-elastico, abertura-elastico, aducao-deitado, afundo-peso-corpo, afundo-tras-peso-corpo, agachamento-elastico, agachamento-peso-corpo, coice-elastico, crucifixo-elastico, elevacao-lateral-elastico, elevacao-lateral-unilateral-elastico, extensao-joelho-elastico, face-pull-elastico, flexao-joelho-deslizante, flexao-joelho-elastico, panturrilha, panturrilha-bilateral-step, panturrilha-chao, panturrilha-degrau, ponte-gluteo, stiff-elastico |
 | step+elasticos | joelho 7 + lombar 7 | 0 | 0 | 0 | 0 | 0 | abducao-deitado, abducao-elastico, abertura-elastico, aducao-deitado, coice-elastico, crucifixo-elastico, desenvolvimento-elastico, elevacao-lateral-elastico, elevacao-lateral-unilateral-elastico, extensao-triceps-peso-corpo, face-pull-elastico, flexao, flexao-elastico, flexao-fechada, flexao-pes-elevados, panturrilha, panturrilha-bilateral-step, panturrilha-chao, panturrilha-degrau, pike, ponte-gluteo, puxada-elastico, remada-elastico, rosca-elastico, rosca-martelo-elastico, triceps-elastico-acima, triceps-elastico-alto |
 
 ## Exemplos (3 por problema, de cenários diferentes)
@@ -1048,21 +1048,21 @@ Exercícios por dia no programa × os que cabem nos minutos (`tempo.exercicios-p
 
 ### `dia.superior-sem-superior`
 
-- **vazio · iniciante · Superior/Inferior + Corpo todo (3 dias) · 20 min · prioridade nenhuma · ombro 7**: Superior A sem nenhum exercício de tronco ou braço (afundo-tras-peso-corpo, panturrilha-chao, flexao-joelho-deslizante).
-  - Programa: Superior A (19 min): afundo-tras-peso-corpo 2, panturrilha-chao 3, flexao-joelho-deslizante 2 | Inferior A (24 min): agachamento-peso-corpo 2, bulgaro-peso-corpo 2, panturrilha-degrau 2, abdominal-chao 2 | Corpo todo (20 min): afundo-peso-corpo 2, ponte-gluteo 2, flexao-joelho-deslizante 2
-- **estacao_polia_dupla · iniciante · Superior/Inferior + Corpo todo (3 dias) · 20 min · prioridade nenhuma · ombro 7**: Superior A sem nenhum exercício de tronco ou braço (afundo-tras-peso-corpo, panturrilha-chao, flexao-joelho-deslizante).
-  - Programa: Superior A (19 min): afundo-tras-peso-corpo 2, panturrilha-chao 3, flexao-joelho-deslizante 2 | Inferior A (24 min): agachamento-peso-corpo 2, bulgaro-peso-corpo 2, panturrilha-degrau 2, abdominal-chao 2 | Corpo todo (20 min): afundo-peso-corpo 2, ponte-gluteo 2, flexao-joelho-deslizante 2
-- **barra_fixa · iniciante · Superior/Inferior + Corpo todo (3 dias) · 20 min · prioridade nenhuma · ombro 7**: Superior A sem nenhum exercício de tronco ou braço (afundo-tras-peso-corpo, panturrilha-chao, flexao-joelho-deslizante).
-  - Programa: Superior A (19 min): afundo-tras-peso-corpo 2, panturrilha-chao 3, flexao-joelho-deslizante 2 | Inferior A (24 min): agachamento-peso-corpo 2, bulgaro-peso-corpo 2, panturrilha-degrau 2, abdominal-chao 2 | Corpo todo (20 min): afundo-peso-corpo 2, ponte-gluteo 2, flexao-joelho-deslizante 2
+- **vazio · iniciante · Superior/Inferior + Corpo todo (3 dias) · 20 min · prioridade nenhuma · ombro 7**: Superior A sem nenhum exercício de tronco ou braço (bulgaro-peso-corpo, panturrilha-chao, flexao-joelho-deslizante).
+  - Programa: Superior A (19 min): bulgaro-peso-corpo 2, panturrilha-chao 3, flexao-joelho-deslizante 2 | Inferior A (24 min): agachamento-peso-corpo 2, afundo-tras-peso-corpo 2, panturrilha-degrau 2, abdominal-chao 2 | Corpo todo (20 min): afundo-peso-corpo 2, ponte-gluteo 2, flexao-joelho-deslizante 2
+- **estacao_polia_dupla · iniciante · Superior/Inferior + Corpo todo (3 dias) · 20 min · prioridade nenhuma · ombro 7**: Superior A sem nenhum exercício de tronco ou braço (bulgaro-peso-corpo, panturrilha-chao, flexao-joelho-deslizante).
+  - Programa: Superior A (19 min): bulgaro-peso-corpo 2, panturrilha-chao 3, flexao-joelho-deslizante 2 | Inferior A (24 min): agachamento-peso-corpo 2, afundo-tras-peso-corpo 2, panturrilha-degrau 2, abdominal-chao 2 | Corpo todo (20 min): afundo-peso-corpo 2, ponte-gluteo 2, flexao-joelho-deslizante 2
+- **barra_fixa · iniciante · Superior/Inferior + Corpo todo (3 dias) · 20 min · prioridade nenhuma · ombro 7**: Superior A sem nenhum exercício de tronco ou braço (bulgaro-peso-corpo, panturrilha-chao, flexao-joelho-deslizante).
+  - Programa: Superior A (19 min): bulgaro-peso-corpo 2, panturrilha-chao 3, flexao-joelho-deslizante 2 | Inferior A (24 min): agachamento-peso-corpo 2, afundo-tras-peso-corpo 2, panturrilha-degrau 2, abdominal-chao 2 | Corpo todo (20 min): afundo-peso-corpo 2, ponte-gluteo 2, flexao-joelho-deslizante 2
 
 ### `equilibrio.sem-posteriores`
 
 - **estacao_polia_dupla · iniciante · Corpo todo A/B (2 dias) · 20 min · prioridade nenhuma · sem dor**: 4 séries de joelho (agachar, afundo), 0 de quadril e 0 de posteriores da coxa.
   - Programa: Corpo todo A (31 min): agachamento-peso-corpo 2, flexao 2, puxada-unilateral 2, panturrilha-degrau 2, abdominal-chao 2 | Corpo todo B (22 min): afundo-peso-corpo 2, flexao 2, remada-unilateral-polia 2
 - **halteres_fixos · iniciante · Corpo todo A/B (2 dias) · 20 min · prioridade nenhuma · sem dor**: 4 séries de joelho (agachar, afundo), 0 de quadril e 0 de posteriores da coxa.
-  - Programa: Corpo todo A (30 min): goblet 2, flexao 2, remada-unilateral-sem-banco 2, panturrilha-degrau 2, abdominal-chao 2 | Corpo todo B (20 min): afundo 2, flexao 2, remada-curvada-halteres 2
+  - Programa: Corpo todo A (29 min): goblet 2, flexao 2, remada-curvada-halteres 2, panturrilha-degrau 2, abdominal-chao 2 | Corpo todo B (21 min): afundo 2, flexao 2, remada-unilateral-sem-banco 2
 - **anilhas_e_manoplas · iniciante · Corpo todo A/B (2 dias) · 20 min · prioridade nenhuma · sem dor**: 4 séries de joelho (agachar, afundo), 0 de quadril e 0 de posteriores da coxa.
-  - Programa: Corpo todo A (30 min): goblet 2, flexao 2, remada-unilateral-sem-banco 2, panturrilha-degrau 2, abdominal-chao 2 | Corpo todo B (20 min): afundo 2, flexao 2, remada-curvada-halteres 2
+  - Programa: Corpo todo A (29 min): goblet 2, flexao 2, remada-curvada-halteres 2, panturrilha-degrau 2, abdominal-chao 2 | Corpo todo B (21 min): afundo 2, flexao 2, remada-unilateral-sem-banco 2
 
 ### `equilibrio.sem-puxar`
 
@@ -1168,6 +1168,6 @@ Exercícios por dia no programa × os que cabem nos minutos (`tempo.exercicios-p
 - **estacao_polia_dupla · iniciante · Corpo todo A/B (2 dias) · 20 min · prioridade nenhuma · sem dor**: posteriores da coxa com 0 série na semana, sem dor nenhuma.
   - Programa: Corpo todo A (31 min): agachamento-peso-corpo 2, flexao 2, puxada-unilateral 2, panturrilha-degrau 2, abdominal-chao 2 | Corpo todo B (22 min): afundo-peso-corpo 2, flexao 2, remada-unilateral-polia 2
 - **halteres_fixos · iniciante · Corpo todo A/B (2 dias) · 20 min · prioridade nenhuma · sem dor**: posteriores da coxa com 0 série na semana, sem dor nenhuma.
-  - Programa: Corpo todo A (30 min): goblet 2, flexao 2, remada-unilateral-sem-banco 2, panturrilha-degrau 2, abdominal-chao 2 | Corpo todo B (20 min): afundo 2, flexao 2, remada-curvada-halteres 2
+  - Programa: Corpo todo A (29 min): goblet 2, flexao 2, remada-curvada-halteres 2, panturrilha-degrau 2, abdominal-chao 2 | Corpo todo B (21 min): afundo 2, flexao 2, remada-unilateral-sem-banco 2
 - **anilhas_e_manoplas · iniciante · Corpo todo A/B (2 dias) · 20 min · prioridade nenhuma · sem dor**: posteriores da coxa com 0 série na semana, sem dor nenhuma.
-  - Programa: Corpo todo A (30 min): goblet 2, flexao 2, remada-unilateral-sem-banco 2, panturrilha-degrau 2, abdominal-chao 2 | Corpo todo B (20 min): afundo 2, flexao 2, remada-curvada-halteres 2
+  - Programa: Corpo todo A (29 min): goblet 2, flexao 2, remada-curvada-halteres 2, panturrilha-degrau 2, abdominal-chao 2 | Corpo todo B (21 min): afundo 2, flexao 2, remada-unilateral-sem-banco 2

@@ -1,63 +1,82 @@
 {
-  "id": "remada-curvada-halteres",
-  "name": "Remada curvada com halteres",
-  "short": "Remada curvada",
-  "target": "Costas",
-  "setupEq": [
-    "Um par de halteres."
+ "id": "remada-curvada-halteres",
+ "name": "Remada curvada com halteres",
+ "short": "Remada curvada",
+ "target": "Costas; ajudam o bíceps e o ombro de trás",
+ "feel": "Costas, entre as escápulas e nas laterais; um pouco atrás do braço e atrás do ombro.",
+ "feelNote": "A lombar trabalha para segurar o tronco inclinado. Dor na lombar não é normal: incline menos o tronco, use halteres mais leves e procure avaliação se continuar.",
+ "setupEq": [
+  "Um par de halteres."
+ ],
+ "setupBody": [
+  "Em pé, pés na largura do quadril, joelhos levemente dobrados.",
+  "Dobre o quadril até o tronco ficar bem inclinado, costas retas, abdômen firme.",
+  "Halteres pendurados, pegada neutra (palmas uma para a outra)."
+ ],
+ "exec": [
+  [
+   "hold",
+   "Braços estendidos",
+   "Tronco inclinado e parado, halteres pendurados embaixo dos ombros."
   ],
-  "setupBody": [
-    "Em pé, pés na largura do quadril, joelhos levemente dobrados.",
-    "Dobre o quadril até o tronco ficar bem inclinado, costas retas, abdômen firme.",
-    "Halteres pendurados, pegada neutra (palmas uma para a outra)."
+  [
+   "conc",
+   "Puxada (concêntrica)",
+   "~1 s. Leve os cotovelos para trás, perto do corpo, até os halteres chegarem perto do quadril."
   ],
-  "exec": [
-    [
-      "conc",
-      "Puxada",
-      "Leva os cotovelos para trás, perto do corpo, até os halteres chegarem perto do quadril."
-    ],
-    [
-      "hold",
-      "Fim",
-      "Pausa curta, tronco parado."
-    ],
-    [
-      "ecc",
-      "Volta",
-      "Controlada, até os braços estenderem."
-    ]
+  [
+   "hold",
+   "Fim",
+   "Pausa curta, tronco parado."
   ],
-  "range": [
-    "Início: braços estendidos.",
-    "Fim: cotovelos atrás do tronco, halteres perto do quadril."
-  ],
-  "cues": [
-    "Costas retas.",
-    "Cotovelos para trás.",
-    "Tronco parado."
-  ],
-  "errors": [
-    {
-      "id": "e1",
-      "title": "Arredondar as costas",
-      "desc": "A lombar perde a posição."
-    },
-    {
-      "id": "e2",
-      "title": "Subir o tronco",
-      "desc": "Embalo para levantar o peso."
-    },
-    {
-      "id": "e3",
-      "title": "Encolher os ombros",
-      "desc": "O trapézio assume."
-    },
-    {
-      "id": "e4",
-      "title": "Puxar só com os braços",
-      "desc": "Os cotovelos não vão para trás."
-    }
-  ],
-  "carga": "Pela lista dos seus halteres: o próximo peso quando todas as séries chegarem ao topo da faixa."
+  [
+   "ecc",
+   "Volta (excêntrica)",
+   "~2 s, controlada, até os braços estenderem."
+  ]
+ ],
+ "range": [
+  "Início: braços estendidos.",
+  "Fim: cotovelos atrás do tronco, halteres perto do quadril."
+ ],
+ "breath": "Solte o ar puxando, inspire na volta.",
+ "cues": [
+  "Costas retas.",
+  "Cotovelos para trás.",
+  "Tronco parado."
+ ],
+ "check": [
+  "Pés na largura do quadril, joelhos levemente dobrados",
+  "Tronco bem inclinado, costas retas",
+  "Pegada neutra",
+  "Cotovelos perto do corpo",
+  "Tronco parado na puxada"
+ ],
+ "vary": "Lombar cansada antes das costas? Incline um pouco menos o tronco ou faça a remada unilateral, com uma mão apoiada. Ficou leve? Use o próximo halter da sua lista.",
+ "extLabels": [
+  "braços estendidos",
+  "cotovelos atrás"
+ ],
+ "errors": [
+  {
+   "id": "e1",
+   "title": "Arredondar as costas",
+   "desc": "A lombar perde a posição e carrega o peso. Peito aberto, costas retas."
+  },
+  {
+   "id": "e2",
+   "title": "Subir o tronco",
+   "desc": "O tronco levanta para dar embalo e as costas trabalham menos. Tronco parado; se não der, use um halter mais leve."
+  },
+  {
+   "id": "e3",
+   "title": "Encolher os ombros",
+   "desc": "Os ombros sobem para as orelhas e o trapézio de cima assume. Ombros baixos."
+  },
+  {
+   "id": "e4",
+   "title": "Puxar só com os braços",
+   "desc": "O cotovelo fica embaixo do ombro e só dobra, como uma rosca. Leve os cotovelos para trás, até o quadril."
+  }
+ ]
 }

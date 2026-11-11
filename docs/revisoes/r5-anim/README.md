@@ -25,3 +25,13 @@ Nada aqui muda o corpo do Boneco, o estilo ou as animações já aprovadas: as p
 - **Extensão de tríceps com o peso do corpo:** nada muda.
 - **Abertura em T deitado:** nada muda.
 - **Flexão com os pés elevados:** nada muda. O abdômen entra na lista dos que "só ajudam" (listrado de laranja), como na flexão e na flexão com elástico (`SO_AJUDA` no motor e `AJUDANTES` na auditoria de anatomia).
+
+## Lote 2 (10/11/2026): os 3 mais frequentes de halter e banco
+Pela régua com os 5 de corpo livre animados (`revisoes/qualidade/regua.md`, "Uso de cada exercício"); nenhum pede peça nova.
+
+| # | Animação | Em quantos programas aparece | Base aprovada | Folha | Situação |
+|---|---|---|---|---|---|
+| 6 | `ponte-gluteo-halter` (ponte de glúteo com halter) | 13,5% | ponte com kettlebell | `folhas/ponte-gluteo-halter.png`, `folhas/ponte-gluteo-halter-erros.png` | **aprovada em 10/11** (depois de apoiar os cotovelos no chão); nenhum programa das personas muda |
+| 7 | `remada-curvada-halteres` (remada curvada com halteres) | 11,8% | remada unilateral sem banco (os dois braços) + as pernas do stiff | `folhas/remada-curvada-halteres.png`, `folhas/remada-curvada-halteres-erros.png` | **aprovada em 10/11**; muda o programa da Ana (Corpo todo C: a remada sem banco vira a curvada, 43 → 41 min; aceito pelo Gustavo em 10/11) |
+| 8 | `afundo-tras-peso-corpo` (afundo para trás) | 10,7% | afundo com o peso do corpo + o passo | `folhas/afundo-tras-peso-corpo.png`, `folhas/afundo-tras-peso-corpo-erros.png` | **aprovada em 10/11**; muda o programa do Fábio (Inferior A: o búlgaro vira o afundo para trás, e o nórdico cai de 3 para 2 séries; aceito pelo Gustavo em 10/11) |
+
