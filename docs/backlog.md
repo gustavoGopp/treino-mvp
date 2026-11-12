@@ -242,4 +242,4 @@ O que a auditoria achou e não corrigiu, porque pede uma decisão do Gustavo ou 
 
 **Repositório**
 - **Histórico do git**: os e-mails pessoais e o nome do empregador saíram dos arquivos, mas continuam nos commits antigos. Apagar de lá pede reescrever o histórico. **Fica como está (decidido em 12/11/2026):** reescrever muda todos os hashes, quebra os ramos e os PRs abertos e pede `push --force` na `main`.
-- **`scripts/design/**` (74 arquivos) e `scripts/gif/divisao.spec.ts`**: sobras das sessões de design; 8 clicam em "Entendi, vamos começar", que não existe mais. O motor (`src/engine`) segue com `@ts-nocheck` em 101 de 103 arquivos.
+- **O motor segue com `@ts-nocheck` em 96 de 105 arquivos** (os exercícios do port e os 4 arquivos de base dele: `esqueleto.ts`, `math.ts`, `svg.ts`, `qa.ts`): tipá-los pede reescrever a animação. Em 12/11/2026 saiu de `desenho.ts`, `cena.ts` e `estilo/` (tipos em `engine/tipos.ts`, sem `any`, regressão do motor sem diferença). Achado da tipagem, sem mudança de comportamento: o estilo `a2` chega a funções cujo tipo declarado é `a` ou `b` (`vistaDaMiniatura`, `montarSvgEstilo`), e as classes saem `ea2-…`; conferir se é o desejado.
