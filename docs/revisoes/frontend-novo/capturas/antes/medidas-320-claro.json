@@ -2,6 +2,7 @@
   "medidas": [
     {
       "tela": "01-boas-vindas",
+      "esperaDasMiniaturasMs": 0,
       "alturaDaPagina": 775,
       "alturaDaTela": 640,
       "palavrasAVista": 83,
@@ -10,6 +11,7 @@
     },
     {
       "tela": "02-saude",
+      "esperaDasMiniaturasMs": 0,
       "alturaDaPagina": 1320,
       "alturaDaTela": 640,
       "palavrasAVista": 80,
@@ -18,6 +20,7 @@
     },
     {
       "tela": "02b-saude-quais-valem",
+      "esperaDasMiniaturasMs": 0,
       "alturaDaPagina": 1709,
       "alturaDaTela": 640,
       "palavrasAVista": 83,
@@ -26,6 +29,7 @@
     },
     {
       "tela": "03-nivel-vazio",
+      "esperaDasMiniaturasMs": 0,
       "alturaDaPagina": 640,
       "alturaDaTela": 640,
       "palavrasAVista": 42,
@@ -34,6 +38,7 @@
     },
     {
       "tela": "03b-nivel-respondido",
+      "esperaDasMiniaturasMs": 0,
       "alturaDaPagina": 1555,
       "alturaDaTela": 640,
       "palavrasAVista": 46,
@@ -42,6 +47,7 @@
     },
     {
       "tela": "04-rotina-vazia",
+      "esperaDasMiniaturasMs": 0,
       "alturaDaPagina": 640,
       "alturaDaTela": 640,
       "palavrasAVista": 45,
@@ -50,6 +56,7 @@
     },
     {
       "tela": "04b-rotina-respondida",
+      "esperaDasMiniaturasMs": 0,
       "alturaDaPagina": 1579,
       "alturaDaTela": 640,
       "palavrasAVista": 95,
@@ -58,6 +65,7 @@
     },
     {
       "tela": "05-equipamento-lugar",
+      "esperaDasMiniaturasMs": 0,
       "alturaDaPagina": 1053,
       "alturaDaTela": 640,
       "palavrasAVista": 53,
@@ -66,6 +74,7 @@
     },
     {
       "tela": "05b-equipamento-foto",
+      "esperaDasMiniaturasMs": 0,
       "alturaDaPagina": 1053,
       "alturaDaTela": 640,
       "palavrasAVista": 128,
@@ -74,6 +83,7 @@
     },
     {
       "tela": "05c-equipamento-folha-do-item",
+      "esperaDasMiniaturasMs": 0,
       "alturaDaPagina": 1917,
       "alturaDaTela": 640,
       "palavrasAVista": 56,
@@ -82,6 +92,7 @@
     },
     {
       "tela": "05d-equipamento-item-por-item",
+      "esperaDasMiniaturasMs": 0,
       "alturaDaPagina": 1982,
       "alturaDaTela": 640,
       "palavrasAVista": 30,
@@ -90,6 +101,7 @@
     },
     {
       "tela": "06-inicio",
+      "esperaDasMiniaturasMs": 1099,
       "alturaDaPagina": 2357,
       "alturaDaTela": 640,
       "palavrasAVista": 61,
@@ -98,6 +110,7 @@
     },
     {
       "tela": "07-folha-do-exercicio",
+      "esperaDasMiniaturasMs": 7,
       "alturaDaPagina": 2357,
       "alturaDaTela": 640,
       "palavrasAVista": 79,
@@ -106,6 +119,7 @@
     },
     {
       "tela": "06b-inicio-sobre-o-programa",
+      "esperaDasMiniaturasMs": 23,
       "alturaDaPagina": 2357,
       "alturaDaTela": 640,
       "palavrasAVista": 77,
@@ -114,6 +128,7 @@
     },
     {
       "tela": "08-treino-serie-vazia",
+      "esperaDasMiniaturasMs": 6,
       "alturaDaPagina": 1014,
       "alturaDaTela": 640,
       "palavrasAVista": 50,
@@ -122,6 +137,7 @@
     },
     {
       "tela": "12-guia-tecnica",
+      "esperaDasMiniaturasMs": 0,
       "alturaDaPagina": 3188,
       "alturaDaTela": 640,
       "palavrasAVista": 28,
@@ -130,6 +146,7 @@
     },
     {
       "tela": "12b-guia-erros",
+      "esperaDasMiniaturasMs": 0,
       "alturaDaPagina": 3422,
       "alturaDaTela": 640,
       "palavrasAVista": 41,
@@ -138,6 +155,7 @@
     },
     {
       "tela": "12c-guia-musculos",
+      "esperaDasMiniaturasMs": 0,
       "alturaDaPagina": 3373,
       "alturaDaTela": 640,
       "palavrasAVista": 31,
@@ -146,6 +164,7 @@
     },
     {
       "tela": "12d-guia-trajetoria",
+      "esperaDasMiniaturasMs": 0,
       "alturaDaPagina": 3341,
       "alturaDaTela": 640,
       "palavrasAVista": 37,
@@ -154,6 +173,7 @@
     },
     {
       "tela": "08b-treino-serie-preenchida",
+      "esperaDasMiniaturasMs": 8,
       "alturaDaPagina": 1014,
       "alturaDaTela": 640,
       "palavrasAVista": 62,
@@ -162,6 +182,7 @@
     },
     {
       "tela": "09-treino-descanso",
+      "esperaDasMiniaturasMs": 7,
       "alturaDaPagina": 1380,
       "alturaDaTela": 640,
       "palavrasAVista": 36,
@@ -170,6 +191,7 @@
     },
     {
       "tela": "10-treino-senti-algo",
+      "esperaDasMiniaturasMs": 6,
       "alturaDaPagina": 1380,
       "alturaDaTela": 640,
       "palavrasAVista": 37,
@@ -178,6 +200,7 @@
     },
     {
       "tela": "11-treino-mais-opcoes",
+      "esperaDasMiniaturasMs": 11,
       "alturaDaPagina": 1380,
       "alturaDaTela": 640,
       "palavrasAVista": 15,
@@ -186,6 +209,7 @@
     },
     {
       "tela": "11b-treino-por-que",
+      "esperaDasMiniaturasMs": 6,
       "alturaDaPagina": 1380,
       "alturaDaTela": 640,
       "palavrasAVista": 89,
@@ -194,6 +218,7 @@
     },
     {
       "tela": "08c-treino-exercicio-2",
+      "esperaDasMiniaturasMs": 8,
       "alturaDaPagina": 1142,
       "alturaDaTela": 640,
       "palavrasAVista": 41,
@@ -202,6 +227,7 @@
     },
     {
       "tela": "08c-treino-exercicio-3",
+      "esperaDasMiniaturasMs": 9,
       "alturaDaPagina": 1223,
       "alturaDaTela": 640,
       "palavrasAVista": 44,
@@ -210,6 +236,7 @@
     },
     {
       "tela": "08c-treino-exercicio-4",
+      "esperaDasMiniaturasMs": 7,
       "alturaDaPagina": 1166,
       "alturaDaTela": 640,
       "palavrasAVista": 41,
@@ -218,6 +245,7 @@
     },
     {
       "tela": "08c-treino-exercicio-5",
+      "esperaDasMiniaturasMs": 6,
       "alturaDaPagina": 1162,
       "alturaDaTela": 640,
       "palavrasAVista": 40,
@@ -226,6 +254,7 @@
     },
     {
       "tela": "08c-treino-exercicio-6",
+      "esperaDasMiniaturasMs": 8,
       "alturaDaPagina": 1166,
       "alturaDaTela": 640,
       "palavrasAVista": 37,
@@ -234,6 +263,7 @@
     },
     {
       "tela": "11c-treino-terminar",
+      "esperaDasMiniaturasMs": 8,
       "alturaDaPagina": 1166,
       "alturaDaTela": 640,
       "palavrasAVista": 25,
@@ -242,6 +272,7 @@
     },
     {
       "tela": "13-fim-do-treino",
+      "esperaDasMiniaturasMs": 0,
       "alturaDaPagina": 1001,
       "alturaDaTela": 640,
       "palavrasAVista": 64,
@@ -250,6 +281,7 @@
     },
     {
       "tela": "14-semana",
+      "esperaDasMiniaturasMs": 0,
       "alturaDaPagina": 1749,
       "alturaDaTela": 640,
       "palavrasAVista": 69,
@@ -258,6 +290,7 @@
     },
     {
       "tela": "15-evolucao",
+      "esperaDasMiniaturasMs": 0,
       "alturaDaPagina": 640,
       "alturaDaTela": 640,
       "palavrasAVista": 30,
@@ -266,6 +299,7 @@
     },
     {
       "tela": "06c-inicio-depois-do-1o-treino",
+      "esperaDasMiniaturasMs": 904,
       "alturaDaPagina": 1642,
       "alturaDaTela": 640,
       "palavrasAVista": 60,
@@ -274,6 +308,7 @@
     },
     {
       "tela": "16-meus-dados",
+      "esperaDasMiniaturasMs": 0,
       "alturaDaPagina": 1581,
       "alturaDaTela": 640,
       "palavrasAVista": 115,
@@ -282,6 +317,7 @@
     },
     {
       "tela": "16b-meus-dados-estilo-do-boneco",
+      "esperaDasMiniaturasMs": 0,
       "alturaDaPagina": 1581,
       "alturaDaTela": 640,
       "palavrasAVista": 46,
@@ -290,6 +326,7 @@
     },
     {
       "tela": "17-locais",
+      "esperaDasMiniaturasMs": 0,
       "alturaDaPagina": 640,
       "alturaDaTela": 640,
       "palavrasAVista": 60,
@@ -298,6 +335,7 @@
     },
     {
       "tela": "17b-locais-editar",
+      "esperaDasMiniaturasMs": 0,
       "alturaDaPagina": 2247,
       "alturaDaTela": 640,
       "palavrasAVista": 52,
@@ -306,6 +344,7 @@
     },
     {
       "tela": "18-termos",
+      "esperaDasMiniaturasMs": 0,
       "alturaDaPagina": 4024,
       "alturaDaTela": 640,
       "palavrasAVista": 113,

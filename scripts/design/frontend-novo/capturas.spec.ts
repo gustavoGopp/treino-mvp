@@ -13,7 +13,7 @@ import { abrirExercicio, folhaPronta, maisOpcoes, marcarItem, minutosPorTreino, 
 
 const RAIZ = resolve(process.cwd(), process.env.CAPTURAS ?? 'docs/revisoes/frontend-novo/capturas/antes');
 
-type Medida = { tela: string; alturaDaPagina: number; alturaDaTela: number; palavrasAVista: number; acaoPrincipal: string | null; acaoAVista: boolean | null };
+type Medida = { tela: string; esperaDasMiniaturasMs: number | null; alturaDaPagina: number; alturaDaTela: number; palavrasAVista: number; acaoPrincipal: string | null; acaoAVista: boolean | null };
 
 test('o app de hoje, tela por tela, com a Ana', async ({ page }, info) => {
   const pasta = resolve(RAIZ, info.project.name);
@@ -25,6 +25,13 @@ test('o app de hoje, tela por tela, com a Ana', async ({ page }, info) => {
   async function foto(tela: string, { acao, inteira = false }: { acao?: string | RegExp; inteira?: boolean } = {}) {
     await page.evaluate(() => document.fonts.ready);
     await page.waitForTimeout(250);
+    // as miniaturas do Boneco chegam do Worker depois da tela: espera até 8 s e anota quanto demorou (null = não chegaram)
+    const t0 = Date.now();
+    const temMiniatura = (await page.locator('.miniatura:not(.vazia)').count()) > 0;
+    const chegaram = await page
+      .waitForFunction(() => Array.from(document.querySelectorAll('.miniatura:not(.vazia)')).every((e) => e.querySelector('svg')), undefined, { timeout: 8000 })
+      .then(() => true, () => false);
+    const esperaDasMiniaturasMs = !temMiniatura ? 0 : chegaram ? Date.now() - t0 : null;
     await page.screenshot({ path: resolve(pasta, `${tela}.png`), animations: 'disabled' });
     if (inteira && info.project.name === '390-claro') await page.screenshot({ path: resolve(pasta, `${tela}-inteira.png`), fullPage: true, animations: 'disabled' });
     const m = await page.evaluate(() => {
@@ -48,7 +55,7 @@ test('o app de hoje, tela por tela, com a Ana', async ({ page }, info) => {
       const caixa = (await alvo.count()) ? await alvo.boundingBox() : null;
       acaoAVista = !!caixa && caixa.y >= 0 && caixa.y + caixa.height <= m.alturaDaTela;
     }
-    medidas.push({ tela, ...m, acaoPrincipal: acao ? String(acao) : null, acaoAVista });
+    medidas.push({ tela, esperaDasMiniaturasMs, ...m, acaoPrincipal: acao ? String(acao) : null, acaoAVista });
   }
 
   /** Um passo que pode falhar sem derrubar as capturas seguintes; a falha fica anotada. */
@@ -212,7 +219,7 @@ test('o app de hoje, tela por tela, com a Ana', async ({ page }, info) => {
   await foto('16-meus-dados', { inteira: true });
   await passo('meus dados, estilo do Boneco', async () => {
     await page.getByRole('button', { name: 'Estilo do Boneco' }).click();
-    await page.waitForTimeout(600);
+    await page.waitForTimeout(2500);
     await foto('16b-meus-dados-estilo-do-boneco');
     await fecharFolha();
   });
