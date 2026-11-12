@@ -2,7 +2,8 @@ import { readdirSync, readFileSync } from 'node:fs';
 import { describe, expect, it } from 'vitest';
 import { diaEMes, faixaTexto, numeroBr, porCento, tempoNoRelogio, tempoPorExtenso } from '../../src/domain/numero';
 import { serieEfetiva } from '../../src/domain/progressao';
-import { DESCANSO, DOR, REDUCAO, RIR } from '../../src/domain/regras';
+import { DESCANSO, DOR, REDUCAO, RIR, SELOS } from '../../src/domain/regras';
+import { porId, regrasSchema, selosSchema } from '../../src/domain/regras/schema';
 import { avaliarDor } from '../../src/domain/triagem';
 import { gerarPrograma as gerarProgramaDoTeste } from '../../src/domain/gerador';
 import { PERSONAS as PERSONAS_DO_TESTE } from '../personas';
@@ -232,5 +233,30 @@ describe('os números dos textos saem das constantes', () => {
     expect(avaliarDor(4).mensagem).toContain(`${porCento(DOR.reducaoCarga[0])}–${porCento(DOR.reducaoCarga[1])}%`);
     expect(REDUCAO.dor).toBeGreaterThanOrEqual(DOR.reducaoCarga[0]);
     expect(REDUCAO.dor).toBeLessThanOrEqual(DOR.reducaoCarga[1]);
+  });
+});
+
+// Auditoria de 12/11/2026: regras.json e selos.json entravam só com `as`, sem validação.
+describe('regras.json e selos.json são validados na carga', () => {
+  const regra = { id: 'volume.teste', regra: 'Texto', valores: { iniciante: 'a', intermediario: 'b', avancado: 'c' }, selo: 'consenso', fontes: ['fonte2020'] };
+
+  it('os arquivos de hoje passam, e cada regra tem o seu selo', () => {
+    expect(Object.keys(REGRAS).length).toBeGreaterThan(100);
+    expect(Object.keys(SELOS).sort()).toEqual(Object.keys(REGRAS).sort());
+    for (const id of Object.keys(REGRAS)) expect(SELOS[id]).toBe(REGRAS[id]!.selo);
+  });
+
+  it('um arquivo gerado errado falha na carga, com o motivo', () => {
+    expect(regrasSchema.safeParse([regra]).success).toBe(true);
+    expect(regrasSchema.safeParse([{ ...regra, selo: 'forte' }]).success).toBe(false);
+    expect(regrasSchema.safeParse([{ ...regra, fontes: [] }]).success).toBe(false);
+    expect(regrasSchema.safeParse([{ ...regra, valores: { iniciante: 'a', intermediario: 'b' } }]).success).toBe(false);
+    expect(regrasSchema.safeParse([{ ...regra, extra: 1 }]).success).toBe(false);
+    expect(regrasSchema.safeParse([regra, regra]).success).toBe(false);
+    expect(regrasSchema.safeParse([{ ...regra, id: 'Sem Formato' }]).success).toBe(false);
+    expect(selosSchema.safeParse({ 'volume.teste': 'consenso' }).success).toBe(true);
+    expect(selosSchema.safeParse({ 'volume.teste': 'forte' }).success).toBe(false);
+    expect(selosSchema.safeParse({}).success).toBe(false);
+    expect(() => porId([{ ...regra, selo: undefined }])).toThrow();
   });
 });
