@@ -96,7 +96,7 @@
   function quadro(agora) {
     const g = B.guia[S.modo];
     const reduz = matchMedia('(prefers-reduced-motion: reduce)').matches || parado || S.pausado;
-    const fr = reduz ? Math.floor(g.quadros.length * 0.3) : Math.floor((((agora - inicio) / 1000) % g.T) / g.T * g.quadros.length);
+    const fr = reduz ? Math.floor(g.quadros.length * 0.3) : Math.min(g.quadros.length - 1, Math.floor(((Math.max(0, agora - inicio) / 1000) % g.T) / g.T * g.quadros.length));
     if (fr !== ultimoQuadro || modoPintado !== S.modo) {
       const q = g.quadros[fr];
       for (const p of $$('[data-palco]')) {
