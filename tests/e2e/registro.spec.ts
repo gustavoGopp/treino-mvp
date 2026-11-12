@@ -40,19 +40,36 @@ async function comecar(page: Page): Promise<string> {
   return dia;
 }
 
-/** Registra 1 série do exercício aberto, com a carga que vier (ou a 7ª da lista, ou um degrau), RIR 2. */
-async function umaSerie(page: Page) {
+/**
+ * Registra 1 série do exercício aberto, com a carga que vier (ou a mais leve da lista, ou um degrau), RIR 2.
+ * Com `acimaDaMaisLeve`, escolhe uma carga que tenha outra menor abaixo (a 3ª da lista, ou 3 toques em "Mais carga").
+ * Devolve se existe uma carga menor que a registrada (no 1º degrau do peso do corpo e do elástico, não existe).
+ */
+async function umaSerie(page: Page, { acimaDaMaisLeve = false } = {}): Promise<boolean> {
   const registro = page.getByRole('region', { name: /^Série \d/ });
   await expect(registro).toBeVisible();
+  let temMenor = false;
   const carga = page.getByLabel('Carga', { exact: true });
-  if ((await carga.count()) && (await carga.evaluate((e) => e.tagName === 'SELECT')) && !(await carga.inputValue())) await carga.selectOption({ index: 1 });
-  if ((await page.getByRole('button', { name: 'Mais carga' }).count()) && (await page.locator('output.carga-valor').first().innerText()) === '—')
-    await page.getByRole('button', { name: 'Mais carga' }).click();
+  const mais = page.getByRole('button', { name: 'Mais carga' });
+  if ((await carga.count()) && (await carga.evaluate((e) => e.tagName === 'SELECT'))) {
+    if (acimaDaMaisLeve) {
+      await carga.selectOption({ index: 3 });
+      temMenor = true;
+    } else if (!(await carga.inputValue())) await carga.selectOption({ index: 1 });
+  } else if (await mais.count()) {
+    if ((await page.locator('.carga-valor').first().innerText()) === '—') await mais.click();
+    if (acimaDaMaisLeve) {
+      await mais.click();
+      await mais.click();
+      temMenor = true;
+    }
+  }
   const rir = registro.getByRole('radio', { name: '2', exact: true });
   if (!(await rir.isChecked())) await rir.check();
   await registro.getByRole('button', { name: /^Série feita/ }).click();
   const pular = page.getByRole('button', { name: 'Pular' });
   if (await pular.isVisible()) await pular.click();
+  return temMenor;
 }
 
 for (const nome of NOMES) {
@@ -60,10 +77,17 @@ for (const nome of NOMES) {
     test('a nota de dor 4 fica na série guardada e reduz a carga da próxima vez', async ({ page }) => {
       await semear(page, estadoDaPersona(nome));
       await comecar(page);
-      await umaSerie(page);
+      // Uma carga com outra menor abaixo, para a redução ter para onde ir (auditoria de 12/11/2026: com a carga mais
+      // leve, o app passou a dizer que não há carga menor, em vez de mandar reduzir).
+      const escolhidaAcima = await umaSerie(page, { acimaDaMaisLeve: true });
       await page.getByRole('button', { name: 'Senti algo' }).click();
       await page.getByRole('region', { name: 'Senti algo' }).getByRole('button', { name: '4', exact: true }).click();
       await expect(page.getByRole('alert')).toContainText('Nota 4 guardada na série 1.');
+      // A orientação na hora e a sugestão da próxima vez dizem a mesma coisa. Onde o teste escolheu a carga (lista ou
+      // "Mais carga"), há uma menor e o app manda reduzir; no degrau do peso do corpo, depende do degrau de partida.
+      await expect(page.getByRole('alert')).toContainText(/Reduza a carga em 10–20%|Não há carga menor aqui/);
+      const temMenor = /Reduza a carga/.test(await page.getByRole('alert').innerText());
+      if (escolhidaAcima) expect(temMenor).toBe(true);
       await expect(page.getByRole('list', { name: 'Séries feitas' })).toContainText('dor 4');
       // A nota sobrevive a fechar o app (está no treino salvo, não só na tela).
       await page.reload();
@@ -75,7 +99,7 @@ for (const nome of NOMES) {
       const linha = page.locator('.resumo-ex').first();
       await expect(linha).toContainText('Ajustar');
       await linha.getByRole('button', { name: 'por quê?' }).click();
-      await expect(page.getByRole('dialog')).toContainText('Dor entre 3 e 5/10: reduza a carga');
+      await expect(page.getByRole('dialog')).toContainText(temMenor ? 'Dor entre 3 e 5/10: reduza a carga' : 'Dor entre 3 e 5/10, e não há carga menor aqui');
       await expect(page.getByRole('dialog')).toContainText('Hoje:');
     });
 

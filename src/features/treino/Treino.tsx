@@ -746,7 +746,7 @@ function ControleCarga({
           −
         </button>
         {lista ? (
-          <select id={idCarga} value={k ?? ''} onChange={(e) => aoMudar({ tipo: 'kg', kg: Number(e.target.value) })}>
+          <select id={idCarga} className="carga-valor" value={k ?? ''} onChange={(e) => aoMudar({ tipo: 'kg', kg: Number(e.target.value) })}>
             <option value="" disabled>
               Escolha
             </option>
