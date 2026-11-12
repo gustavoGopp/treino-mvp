@@ -57,12 +57,17 @@ export const noPassoAbaixo = (x: number, o: OpcoesCarga) => {
   return Math.round((b + Math.floor((x - b) / p + 1e-9) * p) * 100) / 100;
 };
 
+/**
+ * A carga existe no passo da barra: é positiva e não fica abaixo da barra vazia (`baseKg`). Sem isto, com a barra de
+ * 20 kg e o passo de 4 kg, o app sugeria 16 kg, uma carga que a pessoa não tem como montar.
+ */
+export const existeNoPasso = (k: number, o: OpcoesCarga) => k > 0 && k >= baseDe(o) - 1e-9;
+
 // progressao.incremento.peso-corporal: a escada genérica; cada exercício pode ter a sua (escadas.ts).
 export { ESCADA_GENERICA as ESCADA_PESO_CORPO } from './escadas';
 import { ESCADA_GENERICA } from './escadas';
 
 const igual = (a: Carga, b: Carga) => JSON.stringify(a) === JSON.stringify(b);
-/** Quanto maior, mais difícil. No contrapeso é ao contrário: mais placa = mais ajuda. */
 /** Quanto maior, mais difícil (no contrapeso, menos placa = mais difícil). */
 export const valorDaCarga = (c: Carga) => valor(c);
 const valor = (c: Carga) => {
@@ -130,7 +135,7 @@ export function proximaCarga(c: Carga, passos: number, o: OpcoesCarga): Carga | 
   const b = baseDe(o);
   const i = (c.kg - b) / p;
   const k = Math.round((b + (passos > 0 ? Math.floor(i + 1e-9) + passos : Math.ceil(i - 1e-9) + passos) * p) * 100) / 100;
-  return k > 0 ? { tipo: 'kg', kg: k } : undefined;
+  return existeNoPasso(k, o) ? { tipo: 'kg', kg: k } : undefined;
 }
 
 /** Redução de 5–10% (progressao.reduzir) ou de 10–20% (seguranca.dor.escala). */
@@ -151,7 +156,7 @@ function reduzir(c: Carga, fator: number, o: OpcoesCarga): Carga | undefined {
   const baixo = noPassoAbaixo(alvo, o);
   const cima = Math.round((baixo + passoDe(o)) * 100) / 100;
   const k = cima < c.kg - 1e-9 && cima - alvo < alvo - baixo ? cima : Math.min(baixo, noPassoAbaixo(c.kg - passoDe(o), o));
-  return k > 0 ? { tipo: 'kg', kg: k } : undefined;
+  return existeNoPasso(k, o) ? { tipo: 'kg', kg: k } : undefined;
 }
 
 const validas = (s: SessaoExercicio) => s.series.filter((x) => x.amplitudeCompleta !== false);
@@ -196,13 +201,19 @@ export function sugerirProgressao(historico: SessaoExercicio[], alvo: Alvo, o: O
 
   // Abaixo do mínimo em 2 sessões seguidas → reduzir 5–10%
   const abaixo = (s?: SessaoExercicio) => !!s && (validas(s)[0]?.reps ?? 0) < alvo.reps[0];
-  if (abaixo(ultima) && abaixo(anterior) && anterior && igual(anterior.series[0]!.carga, carga))
+  if (abaixo(ultima) && abaixo(anterior) && anterior && igual(anterior.series[0]!.carga, carga)) {
+    const menor = reduzir(carga, 0.075, o);
+    // Sem carga menor para sugerir (a barra vazia, o halter mais leve), o texto não manda reduzir o que não dá.
+    const haMenor = !!menor && !igual(menor, carga);
     return {
       acao: 'reduzir',
-      proxima: reduzir(carga, 0.075, o),
-      motivo: 'Duas sessões abaixo do mínimo da faixa: reduza um pouco a carga e reconstrua.',
+      proxima: haMenor ? menor : undefined,
+      motivo: haMenor
+        ? 'Duas sessões abaixo do mínimo da faixa: reduza um pouco a carga e reconstrua.'
+        : 'Duas sessões abaixo do mínimo da faixa, e não há carga menor aqui: faça menos repetições ou use a alternativa.',
       regraId: r('progressao.reduzir'),
     };
+  }
 
   // Uma carga que ficou pesada há pouco (a 1ª série abaixo do mínimo da faixa) não volta a ser sugerida dentro da
   // janela: antes, a escada de dificuldade. Sem isso, subir → voltar → subir… sem fim (auditoria, achado 3).

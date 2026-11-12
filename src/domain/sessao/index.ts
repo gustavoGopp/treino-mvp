@@ -2,7 +2,7 @@ import { BIBLIOTECA, type Exercicio } from '../biblioteca';
 import { faseNaSemana, prescricaoDaSemana, type DiaPrograma, type ExercicioPrescrito, type Fase, type Programa } from '../gerador';
 import { blocoAtual, naFaseDeAprendizado, semanaNoBloco, treinoFeito, type Hoje } from './bloco';
 import { DEPOIS_DA_ESCADA, escadaDe, nomeDoDegrau, pedeMiniBand } from '../progressao/escadas';
-import { noPassoAbaixo, proximaCarga, sugerirProgressao, type Alvo, type Carga, type OpcoesCarga, type SerieRegistrada, type SessaoExercicio, type Sugestao } from '../progressao';
+import { existeNoPasso, noPassoAbaixo, proximaCarga, sugerirProgressao, type Alvo, type Carga, type OpcoesCarga, type SerieRegistrada, type SessaoExercicio, type Sugestao } from '../progressao';
 import { calibrar, emCalibracao, fimDaCalibracao, semCalibracao, type ResultadoCalibracao } from '../progressao/calibracao';
 import { funcoesDoExercicio } from '../gerador/funcoes';
 import { r } from '../regras';
@@ -246,7 +246,7 @@ export function cargaDaVolta(c: Carga, reducao: number, o: OpcoesCarga): Carga {
       const lista = o.lista ?? [];
       if (lista.length) return { tipo: 'kg', kg: [...lista].reverse().find((k) => k <= alvo + 1e-9) ?? lista[0]! };
       const k = noPassoAbaixo(alvo, o);
-      return { tipo: 'kg', kg: k > 0 ? k : c.kg };
+      return { tipo: 'kg', kg: existeNoPasso(k, o) ? k : c.kg };
     }
     case 'placa':
       return { tipo: 'placa', placa: Math.max(1, Math.floor(c.placa * f + 1e-9)) };

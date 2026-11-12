@@ -102,6 +102,15 @@ describe('dupla progressão', () => {
     // Com a menor anilha de 2 kg (passo de 4 kg a partir da barra de 20): 40 → 36.
     expect(sugerirProgressao(h, alvo, { tipo: 'barra', passoKg: 4, baseKg: 20 })).toMatchObject({ acao: 'reduzir', proxima: kg(36) });
   });
+  it('a barra vazia é o piso: nunca sugere menos que o peso da barra', () => {
+    const barra = { tipo: 'barra' as const, passoKg: 4, baseKg: 20 };
+    expect(proximaCarga(kg(24), -1, barra)).toEqual(kg(20));
+    expect(proximaCarga(kg(20), -1, barra)).toBeUndefined();
+    const h = [sessao(kg(20), [7, 6]), sessao(kg(20), [6, 6])];
+    expect(sugerirProgressao(h, alvo, barra)).toMatchObject({ acao: 'reduzir' });
+    expect(sugerirProgressao(h, alvo, barra).proxima).toBeUndefined();
+    expect(sugerirProgressao(h, alvo, barra).motivo).toContain('não há carga menor');
+  });
 });
 
 describe('segurança na progressão', () => {

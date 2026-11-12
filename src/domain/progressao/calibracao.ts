@@ -1,5 +1,5 @@
 import { PROGRESSAO, r } from '../regras';
-import { noPassoAbaixo, proximaCarga, valorDaCarga, type Alvo, type Carga, type OpcoesCarga, type SerieRegistrada, type SessaoExercicio } from './index';
+import { existeNoPasso, noPassoAbaixo, proximaCarga, valorDaCarga, type Alvo, type Carga, type OpcoesCarga, type SerieRegistrada, type SessaoExercicio } from './index';
 
 // Calibração da carga, série a série (progressao.calibracao; pesquisa-v2/07, seção 2.3, e pesquisa-v2/09).
 // Vale na 1ª vez de um exercício e na 1ª vez de uma máquina de placa, anilhas ou contrapeso num local.
@@ -29,7 +29,7 @@ function paraBaixo(x: number, o: OpcoesCarga): number | undefined {
   const lista = o.lista ?? [];
   if (lista.length) return [...lista].reverse().find((k) => k <= x + 1e-9);
   const k = noPassoAbaixo(x, o);
-  return k > 0 ? k : undefined;
+  return existeNoPasso(k, o) ? k : undefined;
 }
 
 const mesma = (a: Carga, b: Carga | undefined) => !!b && JSON.stringify(a) === JSON.stringify(b);
