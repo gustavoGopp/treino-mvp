@@ -1,7 +1,7 @@
 import { execFileSync } from 'node:child_process';
 import { mkdirSync, readdirSync, writeFileSync } from 'node:fs';
 import { resolve } from 'node:path';
-import { expect, test, type Page } from '@playwright/test';
+import { expect, test } from '@playwright/test';
 import { abrirExercicio, folhaPronta, maisOpcoes, marcarItem, minutosPorTreino, pronto, sobreOPrograma, terminarTreino, triagemNenhuma } from '../../../tests/e2e/jornada';
 
 // Fotografa o app de hoje, tela por tela, com a persona fictícia Ana (tests/personas): iniciante, halteres fixos de 1 a
