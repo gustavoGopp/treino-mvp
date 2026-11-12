@@ -27,10 +27,12 @@ import type { Estado } from '../../storage/esquema';
 import { AvisoSalvar } from '../app/avisos';
 import { agoraIso, fusoDoAparelho, useApp } from '../app/estado';
 import { Folha } from '../app/Folha';
+import { Icone } from '../app/icones';
 import { PorQue, Selo, Titulo } from '../app/ui';
 import { Miniatura } from '../programa/Miniatura';
 import { BotaoPrefiro } from '../programa/Prefiro';
 import { alternarPreferencia, anotarDor, descartarSessao, desfazerSerie, diaDoTreino, interromperExercicio, inventarioDoTreino, opcoesDaCarga, registrarSerie, semSerie, terminarSessao, trocarExercicio } from './acoes';
+import { PalcoTreino } from './PalcoTreino';
 import { PainelDescanso, useDescanso, useTelaAcesa } from './Temporizador';
 
 // Treino em andamento: um exercício por vez, séries registradas com um toque, descanso entre séries,
@@ -93,6 +95,13 @@ export function Treino() {
   const [aviso, setAviso] = useState<{ texto: string; regraId: string } | null>(null);
   // "Desfazer" por 5 s depois de salvar a série (redesign, lote 2): o toque errado em "Série feita" se corrige na hora.
   const [salva, setSalva] = useState<{ indice: number; numero: number } | null>(null);
+  // Frontend novo (12/11/2026): o descanso toma a tela, com o relógio grande; "Mudar" (ou a faixa do descanso) alterna
+  // para os números da série sem parar o relógio. O que está preenchido para a próxima série (o rascunho) vale nas duas
+  // vistas: "Série N feita" na tela do descanso registra o mesmo que "Série feita" no registro.
+  const [verSerie, setVerSerie] = useState(false);
+  const [rascunho, setRascunho] = useState<Rascunho | null>(null);
+  const noRelogio = descanso.ativo && !verSerie;
+  const preso = usePainelPreso(`${noRelogio}`);
   useEffect(() => {
     if (!salva) return;
     const t = setTimeout(() => setSalva(null), 5000);
@@ -118,6 +127,8 @@ export function Treino() {
 
   const irPara = (n: number) => {
     setIndice(n);
+    setVerSerie(true);
+    setRascunho(null);
     setSalva(null);
     setPainel('nenhum');
     setAviso(null);
@@ -128,6 +139,13 @@ export function Treino() {
     atualizar((s) => terminarSessao(s, agoraIso(), porAlerta));
     navigate('/treino/fim', { replace: true });
   };
+  const desfazerSalva = () => {
+    if (!salva) return;
+    atualizar((s) => desfazerSerie(s, salva.indice));
+    descanso.parar();
+    setSalva(null);
+    setIndice(salva.indice);
+  };
   // Terminar pede confirmação, menos quando tudo já foi feito (redesign, lote 2). Os alertas de segurança encerram direto.
   const pedirTerminar = () => (itens.every((t) => t.feito.series.length >= t.x.series || t.feito.interrompido) ? terminar() : setPainel('terminar'));
   const feita = (serie: SerieRegistrada) => {
@@ -137,64 +155,138 @@ export function Treino() {
     // A nota de dor dada antes da 1ª série está guardada no exercício e passa para esta série (registrarSerie).
     atualizar((s) => registrarSerie(s, i, acerto ? { ...serie, calibracao: true } : serie));
     setSalva({ indice: i, numero: feito.series.length + 1 });
+    setVerSerie(false);
     if (feito.series.length + 1 < x.series) descanso.iniciar(x.descansoSeg);
     else if (!ultimo) descanso.iniciar(x.descansoSeg);
     window.scrollTo?.(0, 0);
   };
 
   return (
-    <div className="wrap app">
-      {/* Cabeçalho do treino (redesign, lote 2): voltar ao início sem perder nada e "Senti algo" sempre à vista. */}
+    <div className={`wrap app treino-tela${noRelogio && descanso.resta <= 0 ? ' invertida' : ''}`}>
+      {/* Cabeçalho do treino: voltar ao início sem perder nada, o guia completo, as outras opções e "Senti algo" sempre à vista. */}
       <header className="top">
         <div className="brand cab-treino">
           <Link to="/programa" className="volta-inicio" aria-label="Voltar ao início; o treino fica salvo">
-            ‹ Início
+            <Icone nome="chevron-left" />
           </Link>
           {/* menos texto (lote 2): só "1 de 6" à vista; o nome do treino fica para o leitor de tela */}
           <span className="onde-treino">
             <span className="sr">{dia.nome}, exercício </span>
             {i + 1} de {itens.length}
           </span>
+          {x.animacaoId && (
+            <Link className="iconbtn" aria-label="Ver como fazer" to={linkDoGuia(x.animacaoId, { de: 'treino', diaId: sessao.diaId, exId: x.exId, vaga: feito.noLugarDe })}>
+              <Icone nome="book-open" />
+            </Link>
+          )}
+          <button type="button" className="mais-op" aria-label="Mais opções: anterior, próximo, trocar, terminar" aria-haspopup="dialog" onClick={() => setPainel('mais')}>
+            <Icone nome="ellipsis" />
+          </button>
           <button type="button" className="alerta-topo" aria-expanded={painel === 'sentir'} onClick={() => setPainel(painel === 'sentir' ? 'nenhum' : 'sentir')}>
-            <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-              <path d="M12 4l9 16H3z" />
-              <path d="M12 10v4M12 17h.01" />
-            </svg>
+            <Icone nome="triangle-alert" />
             Senti algo
           </button>
         </div>
+        {/* onde a pessoa está no treino: um traço por exercício */}
+        <ol className="prog-treino" aria-hidden="true">
+          {itens.map((t, n) => (
+            <li key={n} className={t.feito.series.length >= t.x.series || t.feito.interrompido ? 'feito' : n === i ? 'atual' : undefined} />
+          ))}
+        </ol>
       </header>
       <main className="conteudo sessao">
         <AvisoSalvar />
-        <PainelDescanso d={descanso} />
-        {salva && (
-          <div className="desfazer" role="status">
-            <span>{erroAoSalvar ? `Série ${salva.numero} anotada, mas não salva` : `Série ${salva.numero} salva`}</span>
-            <button
-              type="button"
-              onClick={() => {
-                atualizar((s) => desfazerSerie(s, salva.indice));
-                descanso.parar();
-                setSalva(null);
-                setIndice(salva.indice);
-              }}
-            >
-              Desfazer
-            </button>
-          </div>
+        {noRelogio && (
+          <PainelDescanso
+            d={descanso}
+            acao={
+              completo ? (
+                <button type="button" className="btn" onClick={() => irPara(i + 1)}>
+                  Próximo exercício
+                </button>
+              ) : (
+                <button type="button" className="btn salvar" disabled={!rascunho?.pronto} onClick={() => rascunho?.pronto && feita(rascunho.serie())}>
+                  Série {feito.series.length + 1} feita
+                </button>
+              )
+            }
+          >
+            <div className="tabela-descanso">
+              <div className="aseguir">
+                <Miniatura animacaoId={(completo ? itens[i + 1]?.x : x)?.animacaoId ?? null} temTexto={temCartao((completo ? itens[i + 1]?.x : x)?.exId ?? '')} />
+                <div className="txt">
+                  {completo ? (
+                    <>
+                      <span className="rotulo">A seguir · exercício {i + 2} de {itens.length}</span>
+                      <b>{itens[i + 1]?.x.nome}</b>
+                    </>
+                  ) : (
+                    <>
+                      <span className="rotulo">
+                        A seguir · série {feito.series.length + 1} de {x.series}
+                      </span>
+                      <b>{rascunho?.carga ? `${textoCarga(rascunho.carga, x.exId)} × ${rascunho.reps}` : `${rascunho?.reps ?? ''} repetições`}</b>
+                      <span className="apoio">{x.nome}</span>
+                    </>
+                  )}
+                </div>
+                {!completo && (
+                  <button type="button" className="link-botao" onClick={() => setVerSerie(true)}>
+                    Mudar
+                  </button>
+                )}
+              </div>
+              {salva && (
+                <p className="salva-linha" role="status">
+                  <span>
+                    <Icone nome="check" />
+                    {erroAoSalvar ? `Série ${salva.numero} anotada, mas não salva` : `Série ${salva.numero} salva`}
+                  </span>
+                  <button type="button" className="link-botao" onClick={desfazerSalva}>
+                    Desfazer
+                  </button>
+                </p>
+              )}
+            </div>
+          </PainelDescanso>
         )}
-        <div className="progresso">
-          <div className="barra" aria-hidden="true">
-            <i style={{ width: `${((i + (completo ? 1 : 0)) / itens.length) * 100}%` }} />
-          </div>
+
+        <div className="guia-do-treino" hidden={noRelogio}>
+          {descanso.ativo && (
+            <button type="button" className="faixa-descanso" onClick={() => setVerSerie(false)}>
+              <span>{descanso.resta <= 0 ? 'Hora da próxima série' : 'Descanso'}</span>
+              <span className="num">{descanso.resta <= 0 ? `+${tempo(Math.floor(-descanso.resta))}` : tempo(Math.ceil(descanso.resta))}</span>
+            </button>
+          )}
+          {salva && !noRelogio && (
+            <div className="desfazer" role="status">
+              <span>{erroAoSalvar ? `Série ${salva.numero} anotada, mas não salva` : `Série ${salva.numero} salva`}</span>
+              <button type="button" onClick={desfazerSalva}>
+                Desfazer
+              </button>
+            </div>
+          )}
+          {x.animacaoId ? <PalcoTreino key={x.animacaoId} animacaoId={x.animacaoId} /> : <CartaoTexto exId={x.exId} />}
+          {!x.animacaoId && !temCartao(x.exId) && (
+            <p className="ajuda">Sem guia ainda. Se não conhece este exercício, troque por um com guia em "Trocar exercício".</p>
+          )}
+          {trocaDoLocal ? (
+            <p className="ajuda troca-local">
+              {trocaDoLocal.motivo.charAt(0).toUpperCase() + trocaDoLocal.motivo.slice(1)}. <Selo id={trocaDoLocal.regraId} />
+            </p>
+          ) : (
+            feito.noLugarDe && <p className="ajuda">No lugar de {POR_ID[feito.noLugarDe]?.nome.toLowerCase()}, só neste treino.</p>
+          )}
+          {aviso && painel === 'nenhum' && (
+            <div className="warnbox" role="alert">
+              {aviso.texto} <Selo id={aviso.regraId} />
+            </div>
+          )}
         </div>
 
-        <div className="ex-sessao">
-          <Miniatura animacaoId={x.animacaoId} temTexto={temCartao(x.exId)} />
-          <button type="button" className="mais-op" aria-label="Mais opções: anterior, próximo, trocar, terminar" aria-haspopup="dialog" onClick={() => setPainel('mais')}>
-            ⋯
-          </button>
-          <div>
+        {/* o nome, as séries feitas, os números, a reserva e o botão: um bloco só, preso embaixo, perto do polegar */}
+        <div ref={preso.ref} className={`registro-bloco${preso.solto ? ' solto' : ''}`} hidden={noRelogio}>
+          <div className="ex-sessao">
             <Titulo>{x.nome}</Titulo>
             <p className="meta">
               {x.series} × {faixa(x.reps)}
@@ -206,87 +298,74 @@ export function Treino() {
                 </>
               )}
             </p>
-            {x.animacaoId && (
-              <Link className="link-guia" to={linkDoGuia(x.animacaoId, { de: 'treino', diaId: sessao.diaId, exId: x.exId, vaga: feito.noLugarDe })}>
-                Ver como fazer
-              </Link>
-            )}
           </div>
+
+          {feito.series.length > 0 && (
+            <ol className="series-feitas" aria-label="Séries feitas">
+              {feito.series.map((s, n) => (
+                <li key={n}>
+                  <span className="n">{n + 1}</span> {textoCarga(s.carga, feito.exId)} × {s.reps} · RIR {textoDoRir(s.rir, RIR.registroMax)}
+                  {s.calibracao ? ' · acerto da carga' : ''}
+                  {s.dor ? ` · dor ${s.dor}` : ''}
+                  {s.quedas?.length ? ` · quedas: ${s.quedas.map((q) => `${textoCarga(q.carga, feito.exId)} × ${q.reps}`).join(', ')}` : ''}
+                </li>
+              ))}
+            </ol>
+          )}
+
+          {feito.interrompido ? (
+            <div className="warnbox">
+              Exercício encerrado. Se quiser, troque pela alternativa abaixo ou siga para o próximo.
+            </div>
+          ) : !completo ? (
+            <>
+              {feito.series.length === 0 && (
+                <>
+                  <Sugestao x={x} estado={estado} inventario={inventario} opcoes={opcoesCargaHoje} />
+                  {precisaAquecer(dia, dia.exercicios.findIndex((y) => y === vaga)) && (
+                    <p className="dica">
+                      Antes: 1–2 séries leves de aquecimento, sem contar. <Selo id={REGRA_AQUECIMENTO} />
+                    </p>
+                  )}
+                </>
+              )}
+              {(calNaSessao.calibrando || calNaSessao.fim) && calNaSessao.ultima && (
+                <p className="dica calibracao" role="status">
+                  {calNaSessao.fim ? '' : 'Calibração: '}
+                  {calNaSessao.ultima.motivo} <Selo id={calNaSessao.ultima.regraId} />
+                </p>
+              )}
+              <RegistroSerie
+                key={`${i}-${feito.exId}-${feito.series.length}`}
+                x={x}
+                numero={feito.series.length + 1}
+                anteriores={feito.series}
+                aoFazer={feita}
+                aoRascunho={setRascunho}
+                estado={estado}
+                inventario={inventario}
+                opcoes={opcoesCargaHoje}
+                descansando={descanso.ativo}
+              />
+            </>
+          ) : (
+            <p className="status-ok">Séries completas.</p>
+          )}
+
+          {completo && (
+            <nav className="nav-sessao" aria-label="Exercícios">
+              {ultimo ? (
+                <button type="button" className="btn" onClick={pedirTerminar}>
+                  Terminar treino
+                </button>
+              ) : (
+                <button type="button" className="btn" onClick={() => irPara(i + 1)}>
+                  Próximo exercício
+                </button>
+              )}
+            </nav>
+          )}
         </div>
-        {!x.animacaoId && <CartaoTexto exId={x.exId} />}
-        {!x.animacaoId && !temCartao(x.exId) && (
-          <p className="ajuda">Sem guia ainda. Se não conhece este exercício, troque por um com guia em "Trocar exercício".</p>
-        )}
-        {trocaDoLocal ? (
-          <p className="ajuda troca-local">
-            {trocaDoLocal.motivo.charAt(0).toUpperCase() + trocaDoLocal.motivo.slice(1)}. <Selo id={trocaDoLocal.regraId} />
-          </p>
-        ) : (
-          feito.noLugarDe && <p className="ajuda">No lugar de {POR_ID[feito.noLugarDe]?.nome.toLowerCase()}, só neste treino.</p>
-        )}
-
-
-        {feito.series.length > 0 && (
-          <ol className="series-feitas" aria-label="Séries feitas">
-            {feito.series.map((s, n) => (
-              <li key={n}>
-                <span className="n">{n + 1}</span> {textoCarga(s.carga, feito.exId)} × {s.reps} · RIR {textoDoRir(s.rir, RIR.registroMax)}
-                {s.calibracao ? ' · acerto da carga' : ''}
-                {s.dor ? ` · dor ${s.dor}` : ''}
-                {s.quedas?.length ? ` · quedas: ${s.quedas.map((q) => `${textoCarga(q.carga, feito.exId)} × ${q.reps}`).join(', ')}` : ''}
-              </li>
-            ))}
-            <li>
-              <button type="button" className="link-sec" onClick={() => atualizar((s) => desfazerSerie(s, i))}>
-                Desfazer a última série
-              </button>
-            </li>
-          </ol>
-        )}
-
-        {aviso && painel === 'nenhum' && (
-          <div className="warnbox" role="alert">
-            {aviso.texto} <Selo id={aviso.regraId} />
-          </div>
-        )}
-
-        {feito.interrompido ? (
-          <div className="warnbox">
-            Exercício encerrado. Se quiser, troque pela alternativa abaixo ou siga para o próximo.
-          </div>
-        ) : !completo ? (
-          <>
-            {feito.series.length === 0 && (
-              <>
-                <Sugestao x={x} estado={estado} inventario={inventario} opcoes={opcoesCargaHoje} />
-                {precisaAquecer(dia, dia.exercicios.findIndex((y) => y === vaga)) && (
-                  <p className="dica">
-                    Antes: 1–2 séries leves de aquecimento, sem contar. <Selo id={REGRA_AQUECIMENTO} />
-                  </p>
-                )}
-              </>
-            )}
-            {(calNaSessao.calibrando || calNaSessao.fim) && calNaSessao.ultima && (
-              <p className="dica calibracao" role="status">
-                {calNaSessao.fim ? '' : 'Calibração: '}
-                {calNaSessao.ultima.motivo} <Selo id={calNaSessao.ultima.regraId} />
-              </p>
-            )}
-            <RegistroSerie
-              key={`${i}-${feito.exId}-${feito.series.length}`}
-              x={x}
-              numero={feito.series.length + 1}
-              anteriores={feito.series}
-              aoFazer={feita}
-              estado={estado}
-              inventario={inventario}
-              opcoes={opcoesCargaHoje}
-              descansando={descanso.ativo}
-            />
-          </>
-        ) : (
-          <p className="status-ok">Séries completas.</p>
-        )}
 
         {painel === 'trocar' && (
           <Folha titulo="Trocar só neste treino por:" aoFechar={() => setPainel('nenhum')} livre={() => document.querySelector<HTMLElement>('.alerta-topo')} fecharAoTocarLivre={false}>
@@ -351,33 +430,33 @@ export function Treino() {
           </Folha>
         )}
 
-        {completo && (
-          <nav className="nav-sessao" aria-label="Exercícios">
-            {ultimo ? (
-              <button type="button" className="btn" onClick={pedirTerminar}>
-                Terminar treino
-              </button>
-            ) : (
-              <button type="button" className="btn" onClick={() => irPara(i + 1)}>
-                Próximo ›
-              </button>
-            )}
-          </nav>
-        )}
-
         {painel === 'mais' && (
           <Folha titulo="Mais opções" aoFechar={() => setPainel('nenhum')} livre={() => document.querySelector<HTMLElement>('.alerta-topo')} fecharAoTocarLivre={false}>
             <div className="dois">
               <button type="button" className="btn sec" disabled={i === 0} onClick={() => irPara(i - 1)}>
-                ‹ Anterior
+                <Icone nome="chevron-left" />
+                Anterior
               </button>
               <button type="button" className="btn sec" disabled={ultimo} onClick={() => irPara(i + 1)}>
-                Próximo ›
+                Próximo
+                <Icone nome="chevron-right" />
               </button>
             </div>
             <button type="button" className="btn sec" onClick={() => setPainel('trocar')}>
               Trocar exercício
             </button>
+            {feito.series.length > 0 && (
+              <button
+                type="button"
+                className="btn sec"
+                onClick={() => {
+                  atualizar((s) => desfazerSerie(s, i));
+                  setPainel('nenhum');
+                }}
+              >
+                Desfazer a última série
+              </button>
+            )}
             <button type="button" className="btn ter" onClick={() => setPainel('terminar')}>
               Terminar o treino agora
             </button>
@@ -456,22 +535,25 @@ function Sugestao({ x, estado, inventario, opcoes }: { x: ExercicioPrescrito; es
   );
 }
 
+/** O que está preenchido para a série que vem: vale no registro e no botão "Série N feita" da tela do descanso. */
+type Rascunho = { carga?: Carga; reps: number; pronto: boolean; serie: () => SerieRegistrada };
+
 /**
- * O painel da série fica preso embaixo, perto do polegar (redesign, lote 2). Quando ele passa de 55% da altura da tela
- * (celular baixo, zoom ou letra grande), volta para o fluxo da página, para não esconder o resto. Enquanto está preso,
- * a folga de rolagem do foco do teclado é a altura dele (WCAG 2.4.11).
+ * O bloco do registro (o nome, os números, a reserva e o botão) fica preso embaixo, perto do polegar. Quando ele passa
+ * de 75% da altura da tela (zoom ou letra muito grande), volta para o fluxo da página, para não esconder o resto.
+ * Enquanto está preso, a folga de rolagem do foco do teclado é a altura dele (WCAG 2.4.11).
  */
-function usePainelPreso() {
-  const ref = useRef<HTMLElement>(null);
+function usePainelPreso(chave: string) {
+  const ref = useRef<HTMLDivElement>(null);
   const [solto, setSolto] = useState(false);
   useLayoutEffect(() => {
     const el = ref.current;
     if (!el) return;
     const medir = () => {
       const h = el.getBoundingClientRect().height;
-      const soltar = h > window.innerHeight * 0.55;
+      const soltar = h > window.innerHeight * 0.75;
       setSolto(soltar);
-      document.documentElement.style.scrollPaddingBottom = soltar ? '' : `${Math.ceil(h) + 16}px`;
+      document.documentElement.style.scrollPaddingBottom = soltar || !h ? '' : `${Math.ceil(h) + 16}px`;
     };
     medir();
     const ro = typeof ResizeObserver !== 'undefined' ? new ResizeObserver(medir) : null;
@@ -482,8 +564,40 @@ function usePainelPreso() {
       window.removeEventListener('resize', medir);
       document.documentElement.style.scrollPaddingBottom = '';
     };
-  }, []);
+  }, [chave]);
   return { ref, solto };
+}
+
+/** Menos e mais, lado a lado, embaixo do número: os dois alvos grandes da série. */
+function MenosMais({
+  rotuloMenos,
+  rotuloMais,
+  semMenos,
+  semMais,
+  aoMenos,
+  aoMais,
+  rotuladoPor,
+  rotulo,
+}: {
+  rotuloMenos: string;
+  rotuloMais: string;
+  semMenos?: boolean;
+  semMais?: boolean;
+  aoMenos: () => void;
+  aoMais: () => void;
+  rotuladoPor?: string;
+  rotulo?: string;
+}) {
+  return (
+    <div className="stepper" role="group" aria-labelledby={rotuladoPor} aria-label={rotulo}>
+      <button type="button" aria-label={rotuloMenos} disabled={semMenos} onClick={aoMenos}>
+        <Icone nome="minus" />
+      </button>
+      <button type="button" aria-label={rotuloMais} disabled={semMais} onClick={aoMais}>
+        <Icone nome="plus" />
+      </button>
+    </div>
+  );
 }
 
 function RegistroSerie({
@@ -491,6 +605,7 @@ function RegistroSerie({
   numero,
   anteriores,
   aoFazer,
+  aoRascunho,
   estado,
   inventario,
   opcoes,
@@ -501,6 +616,7 @@ function RegistroSerie({
   numero: number;
   anteriores: SerieRegistrada[];
   aoFazer: (s: SerieRegistrada) => void;
+  aoRascunho?: (r: Rascunho | null) => void;
   estado: Estado;
   inventario: Inventario;
   opcoes: OpcoesSugestao;
@@ -525,51 +641,75 @@ function RegistroSerie({
     { reps: 0 },
   ]);
   const quedasFeitas = quedas.filter((q): q is { carga: Carga; reps: number } => !!q.carga && q.reps > 0);
-  const { ref, solto } = usePainelPreso();
   // a reserva-alvo de hoje marcada nos próprios botões (no lugar de uma frase); 4 vale "4 ou mais"
   const naMeta = (n: number) => n >= x.rir[0] && (n <= x.rir[1] || (n === 4 && x.rir[1] >= 4));
+  const uid = useId();
+
+  // o que está preenchido sobe para a tela do treino, que o usa no botão "Série N feita" do descanso
+  const montar = useRef<() => SerieRegistrada>(() => ({ carga: carga!, reps, rir: rir! }));
+  montar.current = () => ({ carga: carga!, reps, rir: rir!, ...(comQuedas && quedasFeitas.length ? { quedas: quedasFeitas } : {}) });
+  useEffect(() => {
+    aoRascunho?.({ carga, reps, pronto, serie: () => montar.current() });
+    // só quando o que aparece na tela do descanso muda
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [carga, reps, pronto]);
+  useEffect(() => () => aoRascunho?.(null), [aoRascunho]);
 
   return (
-    <section ref={ref} className={`registro${solto ? ' solto' : ''}`} aria-label={`Série ${numero}`}>
+    <section className="registro" aria-label={`Série ${numero}`}>
       <div className="serie-tit">
         <h2>
           Série {numero} de {x.series}
+          {x.unilateral && <span> · cada lado</span>}
         </h2>
-        {x.unilateral && <span>cada lado</span>}
-      </div>
-      <ControleCarga registro={op.registro} cargas={op.lista} placasMax={op.placasMax} menorAnilhaKg={op.menorAnilhaKg} degraus={op.degraus} valor={carga} aoMudar={setCarga} />
-      <div className="linha-registro">
-        <span className="rotulo-curto" id={`reps-${numero}`}>
-          Repetições
-        </span>
-        <div className="stepper" role="group" aria-labelledby={`reps-${numero}`}>
-          <button type="button" aria-label="Menos uma repetição" disabled={reps <= 0} onClick={() => setReps((r) => Math.max(0, r - 1))}>
-            −
-          </button>
-          <output aria-live="polite">{reps}</output>
-          <button type="button" aria-label="Mais uma repetição" onClick={() => setReps((r) => r + 1)}>
-            +
-          </button>
-        </div>
-      </div>
-      <fieldset className="campo">
-        <legend>Quantas ainda conseguiria? (RIR)</legend>
-        <div className="chips-valor">
-          {RIRS.map((n) => (
-            <label key={n} className={`chip-valor${naMeta(n) ? ' meta' : ''}`}>
-              <input type="radio" name={`rir-${numero}`} checked={rir === n} onChange={() => setRir(n)} aria-describedby={naMeta(n) ? `rir-meta-${numero}` : undefined} />
-              <span>{n === RIR.registroMax ? `${n} ou mais` : n}</span>
-            </label>
+        <ol className="pips" aria-hidden="true">
+          {Array.from({ length: x.series }, (_, n) => (
+            <li key={n} className={n < anteriores.length ? 'feita' : n === anteriores.length ? 'atual' : undefined} />
           ))}
+        </ol>
+      </div>
+      <div className="colunas">
+        <ControleCarga registro={op.registro} cargas={op.lista} placasMax={op.placasMax} menorAnilhaKg={op.menorAnilhaKg} degraus={op.degraus} valor={carga} aoMudar={setCarga} />
+        <div className="coluna">
+          <span className="rotulo-curto" id={`${uid}-reps`}>
+            Repetições
+          </span>
+          <output className="valor-grande" aria-live="polite">
+            {reps}
+          </output>
+          <MenosMais rotuladoPor={`${uid}-reps`} rotuloMenos="Menos uma repetição" rotuloMais="Mais uma repetição" semMenos={reps <= 0} aoMenos={() => setReps((r) => Math.max(0, r - 1))} aoMais={() => setReps((r) => r + 1)} />
         </div>
+      </div>
+      <fieldset className="campo rir">
+        <legend className="sr">Quantas ainda conseguiria? (RIR)</legend>
         <div className="rir-pe">
+          <span className="rir-pergunta" aria-hidden="true">
+            Quantas ainda conseguiria?
+          </span>
           <span className="rir-meta" id={`rir-meta-${numero}`}>
-            <i aria-hidden="true" />
-            meta de hoje: {faixa(x.rir)}
+            meta<span className="sr"> de hoje:</span> {faixa(x.rir)}
           </span>
           <PorQue regras={['rir.leitura']}>
             <p>A maioria das pessoas acha que tem menos reserva do que tem.</p>
           </PorQue>
+        </div>
+        <div className="chips-valor">
+          {RIRS.map((n) => (
+            <label key={n} className={`chip-valor${naMeta(n) ? ' meta' : ''}`}>
+              <input type="radio" name={`rir-${numero}`} checked={rir === n} onChange={() => setRir(n)} aria-describedby={naMeta(n) ? `rir-meta-${numero}` : undefined} />
+              <span>
+                {n === RIR.registroMax ? (
+                  <>
+                    {n}
+                    <span className="sr"> ou mais</span>
+                    <span aria-hidden="true">+</span>
+                  </>
+                ) : (
+                  n
+                )}
+              </span>
+            </label>
+          ))}
         </div>
       </fieldset>
       {comQuedas && (
@@ -582,48 +722,42 @@ function RegistroSerie({
           {quedas.map((q, n) => (
             <div key={n} className="queda">
               <span className="rotulo-curto">Queda {n + 1}</span>
-              <ControleCarga
-                registro={op.registro}
-                cargas={op.lista}
-                placasMax={op.placasMax}
-                menorAnilhaKg={op.menorAnilhaKg}
-                valor={q.carga}
-                aoMudar={(c) => setQuedas((qs) => qs.map((y, k) => (k === n ? { ...y, carga: c } : y)))}
-              />
-              <div className="stepper" role="group" aria-label={`Repetições da queda ${n + 1}`}>
-                <button
-                  type="button"
-                  aria-label={`Menos uma repetição na queda ${n + 1}`}
-                  disabled={q.reps <= 0}
-                  onClick={() => setQuedas((qs) => qs.map((y, k) => (k === n ? { ...y, reps: Math.max(0, y.reps - 1) } : y)))}
-                >
-                  −
-                </button>
-                <output aria-live="polite">{q.reps}</output>
-                <button
-                  type="button"
-                  aria-label={`Mais uma repetição na queda ${n + 1}`}
-                  onClick={() => setQuedas((qs) => qs.map((y, k) => (k === n ? { ...y, reps: y.reps + 1 } : y)))}
-                >
-                  +
-                </button>
+              <div className="colunas">
+                <ControleCarga
+                  registro={op.registro}
+                  cargas={op.lista}
+                  placasMax={op.placasMax}
+                  menorAnilhaKg={op.menorAnilhaKg}
+                  valor={q.carga}
+                  aoMudar={(c) => setQuedas((qs) => qs.map((y, k) => (k === n ? { ...y, carga: c } : y)))}
+                />
+                <div className="coluna">
+                  <span className="rotulo-curto">Repetições</span>
+                  <output className="valor-grande" aria-live="polite">
+                    {q.reps}
+                  </output>
+                  <MenosMais
+                    rotulo={`Repetições da queda ${n + 1}`}
+                    rotuloMenos={`Menos uma repetição na queda ${n + 1}`}
+                    rotuloMais={`Mais uma repetição na queda ${n + 1}`}
+                    semMenos={q.reps <= 0}
+                    aoMenos={() => setQuedas((qs) => qs.map((y, k) => (k === n ? { ...y, reps: Math.max(0, y.reps - 1) } : y)))}
+                    aoMais={() => setQuedas((qs) => qs.map((y, k) => (k === n ? { ...y, reps: y.reps + 1 } : y)))}
+                  />
+                </div>
               </div>
             </div>
           ))}
         </fieldset>
       )}
-      <button
-        type="button"
-        className="btn salvar"
-        disabled={!pronto}
-        onClick={() => carga && rir !== undefined && aoFazer({ carga, reps, rir, ...(comQuedas && quedasFeitas.length ? { quedas: quedasFeitas } : {}) })}
-      >
+      <button type="button" className="btn salvar" disabled={!pronto} onClick={() => pronto && aoFazer(montar.current())}>
         {descansando ? 'Série feita' : `Série feita · descansar ${tempo(x.descansoSeg)}`}
       </button>
     </section>
   );
 }
 
+/** A carga: o número grande com a unidade pequena, e menos e mais embaixo. O tipo de registro vem do equipamento. */
 function ControleCarga({
   registro,
   cargas,
@@ -647,25 +781,29 @@ function ControleCarga({
   const uid = useId();
   const idRotulo = `${uid}-rotulo`;
   const idCarga = `${uid}-carga`;
+  const numero = (n: number | string | undefined, unidade?: string) =>
+    n === undefined ? (
+      '—'
+    ) : (
+      <>
+        {n}
+        {unidade && <small>{unidade}</small>}
+      </>
+    );
   if (registro === 'anilha') {
     // progressao.incremento.maquina-anilha: kg de anilhas de cada lado, de menor anilha em menor anilha.
     const k = valor?.tipo === 'anilha' ? valor.kgPorLado : undefined;
     const passo = menorAnilhaKg ?? MENOR_ANILHA_PADRAO_KG;
     const mudar = (dir: 1 | -1) => aoMudar({ tipo: 'anilha', kgPorLado: Math.max(0, Math.round(((k ?? 0) + dir * passo) * 100) / 100) });
     return (
-      <div className="linha-registro">
+      <div className="coluna">
         <span className="rotulo-curto" id={idRotulo}>
           Anilhas por lado
         </span>
-        <div className="stepper" role="group" aria-labelledby={idRotulo}>
-          <button type="button" aria-label="Menos anilha de cada lado" disabled={k === undefined || k <= 0} onClick={() => mudar(-1)}>
-            −
-          </button>
-          <output aria-live="polite">{k === undefined ? '—' : `${numeroBr(k)} kg`}</output>
-          <button type="button" aria-label="Mais anilha de cada lado" onClick={() => mudar(1)}>
-            +
-          </button>
-        </div>
+        <output className="valor-grande carga-valor" aria-live="polite">
+          {numero(k === undefined ? undefined : numeroBr(k), 'kg')}
+        </output>
+        <MenosMais rotuladoPor={idRotulo} rotuloMenos="Menos anilha de cada lado" rotuloMais="Mais anilha de cada lado" semMenos={k === undefined || k <= 0} aoMenos={() => mudar(-1)} aoMais={() => mudar(1)} />
         <p className="ajuda">Sem contar o peso do trenó ou da barra da máquina.</p>
       </div>
     );
@@ -675,19 +813,22 @@ function ControleCarga({
     const p = valor?.tipo === 'contrapeso' ? valor.placa : undefined;
     const max = placasMax ?? 30;
     return (
-      <div className="linha-registro">
+      <div className="coluna">
         <span className="rotulo-curto" id={idRotulo}>
           Contrapeso (placa)
         </span>
-        <div className="stepper" role="group" aria-labelledby={idRotulo}>
-          <button type="button" aria-label="Menos contrapeso (mais difícil)" disabled={!p || p <= 1} onClick={() => p && aoMudar({ tipo: 'contrapeso', placa: p - 1 })}>
-            −
-          </button>
-          <output aria-live="polite">{p ?? '—'}</output>
-          <button type="button" aria-label="Mais contrapeso (mais fácil)" disabled={!!p && p >= max} onClick={() => aoMudar({ tipo: 'contrapeso', placa: (p ?? 0) + 1 })}>
-            +
-          </button>
-        </div>
+        <output className="valor-grande carga-valor" aria-live="polite">
+          {numero(p)}
+        </output>
+        <MenosMais
+          rotuladoPor={idRotulo}
+          rotuloMenos="Menos contrapeso (mais difícil)"
+          rotuloMais="Mais contrapeso (mais fácil)"
+          semMenos={!p || p <= 1}
+          semMais={!!p && p >= max}
+          aoMenos={() => p && aoMudar({ tipo: 'contrapeso', placa: p - 1 })}
+          aoMais={() => aoMudar({ tipo: 'contrapeso', placa: (p ?? 0) + 1 })}
+        />
         <p className="ajuda">Aqui é ao contrário: mais placa = mais ajuda. Para progredir, tire uma placa.</p>
       </div>
     );
@@ -695,7 +836,7 @@ function ControleCarga({
   if (registro === 'degrau') {
     const d = valor?.tipo === 'degrau' ? valor.degrau : 0;
     return (
-      <label className="campo">
+      <label className="coluna dificuldade">
         <span className="rotulo-curto">Dificuldade</span>
         <select value={d} onChange={(e) => aoMudar({ tipo: 'degrau', degrau: Number(e.target.value) })}>
           {(degraus ?? ESCADA_PESO_CORPO).map((t, n) => (
@@ -711,19 +852,22 @@ function ControleCarga({
     const p = valor?.tipo === 'placa' ? valor.placa : undefined;
     const max = placasMax ?? 30;
     return (
-      <div className="linha-registro">
+      <div className="coluna">
         <span className="rotulo-curto" id={idRotulo}>
           Placa
         </span>
-        <div className="stepper" role="group" aria-labelledby={idRotulo}>
-          <button type="button" aria-label="Placa anterior" disabled={!p || p <= 1} onClick={() => p && aoMudar({ tipo: 'placa', placa: p - 1 })}>
-            −
-          </button>
-          <output aria-live="polite">{p ?? '—'}</output>
-          <button type="button" aria-label="Próxima placa" disabled={!!p && p >= max} onClick={() => aoMudar({ tipo: 'placa', placa: (p ?? 0) + 1 })}>
-            +
-          </button>
-        </div>
+        <output className="valor-grande carga-valor" aria-live="polite">
+          {numero(p)}
+        </output>
+        <MenosMais
+          rotuladoPor={idRotulo}
+          rotuloMenos="Placa anterior"
+          rotuloMais="Próxima placa"
+          semMenos={!p || p <= 1}
+          semMais={!!p && p >= max}
+          aoMenos={() => p && aoMudar({ tipo: 'placa', placa: p - 1 })}
+          aoMais={() => aoMudar({ tipo: 'placa', placa: (p ?? 0) + 1 })}
+        />
       </div>
     );
   }
@@ -738,15 +882,20 @@ function ControleCarga({
     } else aoMudar({ tipo: 'kg', kg: Math.max(0, Math.round(((k ?? 0) + dir * 2.5) * 10) / 10) });
   };
   return (
-    <div className="linha-registro">
+    <div className="coluna">
       <label className="rotulo-curto" htmlFor={idCarga}>
         Carga
       </label>
-      <div className="stepper">
-        <button type="button" aria-label="Menos carga" disabled={k === undefined || (lista ? k <= lista[0]! : k <= 0)} onClick={() => passo(-1)}>
-          −
-        </button>
-        {lista ? (
+      {lista ? (
+        // o número grande é o que se vê; por cima dele, invisível, o seletor do aparelho: um toque no número abre a
+        // lista das cargas que a pessoa tem, para escolher qualquer uma de uma vez
+        <span className="valor-grande com-lista">
+          <span aria-hidden="true">{numero(k === undefined ? undefined : numeroBr(k), 'kg')}</span>
+          {k === undefined && (
+            <small className="escolha" aria-hidden="true">
+              toque para escolher
+            </small>
+          )}
           <select id={idCarga} className="carga-valor" value={k ?? ''} onChange={(e) => aoMudar({ tipo: 'kg', kg: Number(e.target.value) })}>
             <option value="" disabled>
               Escolha
@@ -757,15 +906,13 @@ function ControleCarga({
               </option>
             ))}
           </select>
-        ) : (
-          <output id={idCarga} className="carga-valor" aria-live="polite">
-            {k === undefined ? '—' : `${numeroBr(k)} kg`}
-          </output>
-        )}
-        <button type="button" aria-label="Mais carga" onClick={() => passo(1)}>
-          +
-        </button>
-      </div>
+        </span>
+      ) : (
+        <output id={idCarga} className="valor-grande carga-valor" aria-live="polite">
+          {numero(k === undefined ? undefined : numeroBr(k), 'kg')}
+        </output>
+      )}
+      <MenosMais rotuloMenos="Menos carga" rotuloMais="Mais carga" semMenos={k === undefined || (lista ? k <= lista[0]! : k <= 0)} aoMenos={() => passo(-1)} aoMais={() => passo(1)} rotulo="Ajustar a carga" />
     </div>
   );
 }

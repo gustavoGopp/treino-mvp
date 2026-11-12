@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState, type ReactNode } from 'react';
 
 // Temporizador de descanso, portado do guia original (referencia/guia-execucao-fase1.html):
 // bipes (Web Audio), vibração e ±15 s. A tela ligada vale para o treino todo (useTelaAcesa, abaixo).
@@ -181,7 +181,12 @@ export function useDescanso(treino = '') {
   return { ativo: !!estado, resta, dur: estado?.dur ?? 0, iniciar, ajustar, parar };
 }
 
-export function PainelDescanso({ d }: { d: ReturnType<typeof useDescanso> }) {
+/**
+ * O descanso toma a tela (frontend novo, 12/11/2026): o relógio é o maior elemento, para ler com o celular no chão.
+ * Quando o tempo acaba, a tela do treino inteira inverte (quem monta decide) e o rótulo vira "Hora da próxima série":
+ * o aviso não depende de cor nem só do som. `children` é o que vem a seguir; `acao`, o botão principal, que fica por último, perto do polegar.
+ */
+export function PainelDescanso({ d, children, acao }: { d: ReturnType<typeof useDescanso>; children?: ReactNode; acao?: ReactNode }) {
   if (!d.ativo) return null;
   const acabou = d.resta <= 0;
   return (
@@ -191,10 +196,11 @@ export function PainelDescanso({ d }: { d: ReturnType<typeof useDescanso> }) {
         <span className="tclock-mini" role="timer" aria-live="off">
           {acabou ? `+${fmt(-d.resta)}` : fmt(Math.ceil(d.resta))}
         </span>
+        <div className="tbar" aria-hidden="true">
+          <i style={{ width: `${acabou ? 100 : (100 * (1 - d.resta / d.dur)).toFixed(1)}%` }} />
+        </div>
       </div>
-      <div className="tbar" aria-hidden="true">
-        <i style={{ width: `${acabou ? 100 : (100 * (1 - d.resta / d.dur)).toFixed(1)}%` }} />
-      </div>
+      {children && <div className="descanso-seguir">{children}</div>}
       <div className="tctl">
         <button type="button" onClick={() => d.ajustar(-15)}>
           −15 s
@@ -206,6 +212,7 @@ export function PainelDescanso({ d }: { d: ReturnType<typeof useDescanso> }) {
           {acabou ? 'Ok' : 'Pular'}
         </button>
       </div>
+      {acao}
       {acabou && (
         <p className="sr" role="status">
           Descanso terminado.

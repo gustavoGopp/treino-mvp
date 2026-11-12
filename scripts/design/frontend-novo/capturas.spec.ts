@@ -182,7 +182,7 @@ test('o app de hoje, tela por tela, com a Ana', async ({ page }, info) => {
   await passo('treino, os outros exercícios', async () => {
     for (let i = 2; i <= 7; i++) {
       const folha = await maisOpcoes(page);
-      const proximo = folha.getByRole('button', { name: 'Próximo ›' });
+      const proximo = folha.getByRole('button', { name: 'Próximo', exact: true });
       if (!(await proximo.count()) || !(await proximo.isEnabled())) {
         await fecharFolha();
         break;

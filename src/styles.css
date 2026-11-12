@@ -79,6 +79,7 @@
 
 /* ---------- base ---------- */
 *{box-sizing:border-box}
+[hidden]{display:none !important}
 html,body{margin:0;background:var(--fundo);color:var(--texto);font-family:var(--fonte);line-height:1.45;-webkit-text-size-adjust:100%}
 /* números de largura igual em tudo: relógio, carga e repetição não "dançam" quando mudam */
 body{font-size:var(--t-corpo);font-variant-numeric:tabular-nums lining-nums;-webkit-tap-highlight-color:transparent;overscroll-behavior-y:none}
@@ -608,64 +609,105 @@ a.cartao-ex-corpo:focus-visible,button.cartao-ex-corpo:focus-visible{outline:3px
 .preferencias{display:flex;flex-direction:column;gap:var(--s4);margin-top:var(--s8)}
 
 /* ---------- o treino em andamento ---------- */
-.sessao{gap:var(--s16);padding-bottom:var(--s24)}
+/* A tela ocupa a altura do aparelho: em cima o guia (o Boneco, que encolhe se faltar altura), embaixo o registro. */
+.treino-tela{min-height:100dvh;padding-bottom:0;background:var(--fundo);color:var(--texto)}
+/* o fim do descanso inverte a tela inteira: um aviso para ler de longe, sem depender de cor nem só do som */
+.invertida{--fundo:var(--inv-fundo);--superficie-2:var(--inv-superficie-2);--linha:var(--inv-linha);--texto:var(--inv-texto);--texto-2:var(--inv-texto-2);--acao:var(--inv-texto);--sobre-acao:var(--inv-fundo);--foco:var(--inv-texto)}
+body:has(.invertida){background:var(--inv-fundo)}
+.sessao{flex:1;display:flex;flex-direction:column;gap:0;min-height:0}
+.cab-treino{gap:var(--s4)}
 .cab-treino .onde-treino{flex:1;font-size:var(--t-corpo);font-weight:600;color:var(--texto)}
-.cab-treino .volta-inicio{width:var(--h48);min-height:var(--h48);display:inline-grid;place-items:center;margin-left:calc(-1 * var(--s16));font-weight:600;color:var(--texto);text-decoration:none}
+.cab-treino .volta-inicio{width:var(--h48);min-height:var(--h48);display:inline-grid;place-items:center;margin-left:calc(-1 * var(--s16));color:var(--texto)}
+.cab-treino .iconbtn,.cab-treino .mais-op{background:none;color:var(--texto)}
 /* "Senti algo": a única cor da interface, sempre no mesmo lugar */
 .alerta-topo{display:inline-flex;align-items:center;gap:var(--s8);min-height:var(--h48);padding:0 var(--s16);border-radius:var(--r8);border:0;background:var(--alerta-suave);color:var(--alerta);font-weight:600;font-size:var(--t-corpo);cursor:pointer;white-space:nowrap;flex:none}
 .alerta-topo .icone{width:1.25rem}
-.ex-sessao{display:grid;grid-template-columns:7rem 1fr auto;gap:var(--s8) var(--s16);align-items:center}
-.ex-sessao .mais-op{grid-column:3;grid-row:1;align-self:start}
-.ex-sessao > div:not(.miniatura){grid-column:2;grid-row:1;min-width:0}
+.prog-treino{list-style:none;margin:0;padding:0;display:flex;gap:var(--s4)}
+.prog-treino li{flex:1;height:var(--s4);background:var(--superficie-2)}
+.prog-treino li.feito{background:var(--texto)}
+.prog-treino li.atual{background:var(--texto-2)}
+/* o guia: o palco ocupa o que sobra da tela, até 16:9; em celular baixo é ele que encolhe, nunca o registro */
+.guia-do-treino{flex:1 1 auto;display:flex;flex-direction:column;gap:var(--s8);min-height:0}
+.palco-treino{flex:1 1 auto;display:flex;flex-direction:column;min-height:0;margin:0 calc(-1 * var(--s16))}
+.palco-btn{position:relative;display:block;width:100%;flex:1 1 calc(var(--h48) * 3);min-height:calc(var(--h48) * 3);max-height:56.25vw;border:0;padding:0;background:var(--stage);cursor:pointer}
+@media (min-width:560px){.palco-btn{max-height:calc(var(--s64) * 5)}}
+.palco-btn .stage{position:absolute;inset:0;aspect-ratio:auto;display:block}
+.palco-btn .stage.esperando{animation:espera 1.2s ease-in-out infinite alternate}
+.palco-btn .fase-do-movimento{position:absolute;top:var(--s8);left:var(--s16);font-size:var(--t-rotulo);font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--st-muted);text-align:left}
+.palco-btn .toca{position:absolute;top:var(--s8);right:var(--s16);width:1.25rem;color:var(--st-muted)}
+.modos-treino{display:grid;grid-template-columns:repeat(4,1fr);padding:0 var(--s8)}
+.modos-treino button{position:relative;border:0;background:transparent;min-height:var(--h48);padding:0 var(--s4);font-size:var(--t-apoio);cursor:pointer;font-weight:600;color:var(--texto-2)}
+.modos-treino button[aria-pressed="true"]{color:var(--texto)}
+.modos-treino button[aria-pressed="true"]::after{content:"";position:absolute;left:var(--s8);right:var(--s8);bottom:var(--s4);height:2px;background:var(--texto)}
+.legenda-do-modo{margin:0;padding:var(--s8) var(--s16) 0;font-size:var(--t-apoio);color:var(--texto-2);min-height:calc(2.9em + var(--s8))}
+.legenda-do-modo b{color:var(--texto);font-weight:600}
+.guia-do-treino > .ajuda,.guia-do-treino > .warnbox,.guia-do-treino > .cartao-texto{margin-top:var(--s8)}
+.faixa-descanso{display:flex;align-items:center;justify-content:space-between;gap:var(--s16);min-height:var(--h48);width:100%;border:0;border-radius:var(--r8);background:var(--superficie-2);padding:0 var(--s16);font-weight:600;cursor:pointer;color:var(--texto)}
+/* o registro: o nome, as séries feitas, os números, a reserva e o botão, num bloco só, preso embaixo */
+.registro-bloco{display:flex;flex-direction:column;gap:var(--s16);padding:var(--s16) 0 calc(var(--s16) + env(safe-area-inset-bottom,0px));background:var(--fundo);margin-top:auto}
+.registro-bloco:not(.solto){position:sticky;bottom:0;z-index:3}
+.ex-sessao{display:flex;flex-direction:column;gap:var(--s4)}
 .ex-sessao .titulo{font-size:var(--t-pergunta);font-weight:600;line-height:1.2;letter-spacing:-.01em}
-.meta{margin:var(--s4) 0 0;font-size:var(--t-apoio);color:var(--texto-2)}
+.meta{margin:0;font-size:var(--t-apoio);color:var(--texto-2)}
 .sugestao{display:flex;flex-direction:column;gap:var(--s4);font-size:var(--t-apoio);color:var(--texto-2)}
 .sugestao b{font-size:var(--t-corpo);font-weight:600;color:var(--texto)}
 .dica{margin:0;display:flex;flex-wrap:wrap;gap:var(--s4) var(--s8);align-items:baseline;font-size:var(--t-apoio);color:var(--texto-2)}
-.dica b{color:var(--texto);font-size:var(--t-corpo);font-weight:600}
-.series-feitas{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:var(--s4) var(--s16);align-items:center;font-size:var(--t-apoio);color:var(--texto-2)}
-.series-feitas li:last-child{flex-basis:100%}
-.series-feitas .n{color:var(--texto);font-weight:600;margin-right:var(--s8)}
+.dica b{color:var(--texto);font-weight:600}
+.series-feitas{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:var(--s4) var(--s16);font-size:var(--t-apoio);color:var(--texto-2)}
+.series-feitas .n{color:var(--texto);font-weight:600;margin-right:var(--s4)}
 .registro{display:flex;flex-direction:column;gap:var(--s16)}
-/* o registro da série preso embaixo, perto do polegar; com mais de 55% da tela ele fica solto, no fluxo */
-.registro:not(.solto){position:sticky;bottom:0;z-index:3;margin:0 calc(-1 * var(--s16));padding:var(--s16) var(--s16) calc(var(--s16) + env(safe-area-inset-bottom,0px));background:var(--fundo)}
-.registro .serie-tit{display:flex;justify-content:space-between;align-items:baseline;gap:var(--s16)}
-.registro .serie-tit span{color:var(--texto-2);font-size:var(--t-rotulo);font-weight:600;letter-spacing:.08em;text-transform:uppercase}
+.serie-tit{display:flex;justify-content:space-between;align-items:center;gap:var(--s16)}
 .registro h2{margin:0;font-size:var(--t-rotulo);font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--texto-2)}
-.registro .campo{gap:var(--s8)}
-.registro .campo legend{font-size:var(--t-apoio);font-weight:600;letter-spacing:0;margin:0}
-.linha-registro{display:flex;align-items:center;justify-content:space-between;gap:var(--s16);flex-wrap:wrap}
-.registro .linha-registro{flex-wrap:nowrap}
+.pips{list-style:none;margin:0;padding:0;display:flex;gap:var(--s4);flex:none}
+.pips li{width:var(--s16);height:var(--s8);background:var(--superficie-2)}
+.pips li.feita{background:var(--texto)}
+.pips li.atual{box-shadow:inset 0 0 0 2px var(--texto)}
+/* carga e repetições: os maiores números da tela, cada um com menos e mais embaixo */
+.colunas{display:grid;grid-template-columns:1fr 1fr;gap:var(--s16);align-items:start}
+.coluna{display:flex;flex-direction:column;gap:var(--s8);min-width:0}
 .rotulo-curto{font-size:var(--t-rotulo);font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--texto-2)}
-.stepper{display:flex;align-items:center;gap:var(--s8)}
-.stepper button{width:var(--h56);height:var(--h56);border-radius:var(--r8);border:0;background:var(--superficie-2);font-size:var(--t-pergunta);line-height:1;cursor:pointer;color:var(--texto);display:grid;place-items:center;transition:transform .1s ease-out}
-.stepper button:active:not(:disabled){transform:scale(.94)}
+.valor-grande{display:block;font-size:var(--t-numero);font-weight:700;line-height:1;letter-spacing:-.04em;white-space:nowrap}
+.valor-grande small{font-size:var(--t-pergunta);font-weight:500;letter-spacing:0;color:var(--texto-2);margin-left:var(--s4)}
+.valor-grande small.escolha{font-size:var(--t-rotulo);font-weight:600;letter-spacing:.08em;text-transform:uppercase}
+/* por cima do número, invisível, o seletor do aparelho: um toque no número abre a lista das cargas */
+.valor-grande.com-lista{position:relative}
+.valor-grande.com-lista select{position:absolute;inset:0;width:100%;height:100%;min-height:0;max-width:none;padding:0;opacity:0;cursor:pointer;font-size:var(--t-corpo);box-shadow:none}
+.valor-grande.com-lista:has(select:focus-visible){outline:3px solid var(--foco);outline-offset:2px}
+.stepper{display:grid;grid-template-columns:1fr 1fr;gap:var(--s8)}
+.stepper button{min-height:var(--h56);border-radius:var(--r8);border:0;background:var(--superficie-2);cursor:pointer;color:var(--texto);display:grid;place-items:center;transition:transform .1s ease-out}
+.stepper button:active:not(:disabled){transform:scale(.96)}
 .stepper button:disabled{opacity:.35;cursor:default}
-.stepper output{min-width:var(--h64);text-align:center;font-size:var(--t-destaque);font-weight:700;line-height:1;letter-spacing:-.03em}
-.stepper select{max-width:none;width:auto;min-width:7.5rem;font-size:var(--t-titulo);font-weight:700;text-align:center;min-height:var(--h56);box-shadow:none;letter-spacing:-.02em}
-.registro .chips-valor{display:grid;grid-template-columns:repeat(4,minmax(var(--h48),1fr)) minmax(5.5rem,1.6fr);gap:var(--s8)}
-.registro .chip-valor{padding:0 var(--s4)}
-.registro .salvar{min-height:var(--h64)}
-/* a meta de reserva marcada nos botões: um traço embaixo, e a legenda ao lado do "por quê?" */
+.coluna.dificuldade select{max-width:none;font-size:var(--t-corpo);box-shadow:none}
+.coluna .ajuda{font-size:var(--t-rotulo)}
+/* a reserva: a pergunta, a meta do dia e o "por quê?" numa linha; os 5 valores embaixo, com a meta marcada */
+.registro .rir{gap:var(--s8)}
+.rir-pe{display:flex;align-items:baseline;gap:var(--s8);flex-wrap:wrap}
+.rir-pergunta{font-size:var(--t-apoio);font-weight:600}
+.rir-meta{font-size:var(--t-apoio);color:var(--texto-2);margin-right:auto}
+.registro .chips-valor{display:grid;grid-template-columns:repeat(5,1fr);gap:var(--s8)}
+.registro .chip-valor{padding:0;min-width:0}
 .chip-valor.meta::after{content:"";position:absolute;left:30%;right:30%;bottom:var(--s8);height:2px;background:currentColor;opacity:.55}
-.rir-pe{display:flex;justify-content:space-between;align-items:center;gap:var(--s16);flex-wrap:wrap}
-.rir-meta{display:inline-flex;align-items:center;gap:var(--s8);font-size:var(--t-rotulo);color:var(--texto-2)}
-.rir-meta i{display:inline-block;width:var(--s16);height:2px;background:currentColor}
-@media (max-height:700px){
-  .registro:not(.solto){gap:var(--s8);padding-top:var(--s8)}
-  .registro .campo{gap:var(--s4)}
-  .registro .rir-meta{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
-  .registro .rir-pe{justify-content:flex-end}
-}
+.registro .salvar,.descanso .salvar{min-height:var(--h64)}
+.queda{display:flex;flex-direction:column;gap:var(--s8);padding:var(--s16) 0 0;border-top:1px solid var(--linha)}
+.queda .valor-grande{font-size:var(--t-titulo)}
 .nav-sessao{display:grid;grid-template-columns:1fr;gap:var(--s8)}
-/* o descanso: o relógio é o maior elemento da tela */
-.descanso{display:flex;flex-direction:column;gap:var(--s16);padding:var(--s16) 0}
-.descanso-topo{display:flex;flex-direction:column;align-items:flex-start;gap:var(--s8);font-size:var(--t-rotulo);font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--texto-2)}
+/* o descanso toma a tela: o relógio é o maior elemento, para ler com o celular no chão */
+.descanso{flex:1;display:flex;flex-direction:column;gap:var(--s16);padding:var(--s16) 0 calc(var(--s16) + env(safe-area-inset-bottom,0px))}
+.descanso-topo{flex:1;display:flex;flex-direction:column;justify-content:center;gap:var(--s16);min-height:calc(var(--h64) * 3);font-size:var(--t-rotulo);font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--texto-2)}
 .tclock-mini{font-weight:700;font-size:var(--t-relogio);line-height:.9;letter-spacing:-.05em;color:var(--texto);text-transform:none}
 .tbar{height:var(--s4);background:var(--superficie-2);overflow:hidden}
 .tbar i{display:block;height:100%;width:0;background:var(--texto)}
 .descanso .tbar i{transition:width .25s linear}
-@media (prefers-reduced-motion: reduce){.descanso .tbar i{transition:none}}
+@media (prefers-reduced-motion: reduce){.descanso .tbar i{transition:none}.palco-btn .stage.esperando{animation:none}}
+.descanso-seguir{display:flex;flex-direction:column}
+.tabela-descanso{border-top:1px solid var(--linha);border-bottom:1px solid var(--linha)}
+.aseguir{display:flex;align-items:center;gap:var(--s16);padding:var(--s16) 0}
+.aseguir .miniatura{width:5rem}
+.aseguir .txt{flex:1;display:flex;flex-direction:column;gap:var(--s4);min-width:0}
+.aseguir b{font-size:var(--t-pergunta);font-weight:700;letter-spacing:-.01em}
+.salva-linha{display:flex;align-items:center;justify-content:space-between;gap:var(--s8);margin:0;font-size:var(--t-apoio);color:var(--texto-2);border-top:1px solid var(--linha)}
+.salva-linha > span{display:inline-flex;align-items:center;gap:var(--s8)}
+.salva-linha .icone{width:1.25rem}
 .tctl{display:grid;grid-template-columns:1fr 1fr 1fr;gap:var(--s8)}
 .tctl button{min-height:var(--h56);border-radius:var(--r8);border:0;background:var(--superficie-2);font-size:var(--t-corpo);font-weight:600;cursor:pointer;color:var(--texto)}
 /* "Série N salva · Desfazer", por 5 s depois de salvar */
@@ -673,6 +715,18 @@ a.cartao-ex-corpo:focus-visible,button.cartao-ex-corpo:focus-visible{outline:3px
 .desfazer button{min-height:var(--h48);padding:0 var(--s16);border:0;background:none;color:var(--texto);font:inherit;font-weight:600;text-decoration:underline;text-underline-offset:var(--s4);cursor:pointer}
 .acao{font-weight:600;color:var(--texto)}
 .resumo-ex h3{margin:0;font-size:var(--t-corpo)}
+/* celular baixo: os números e os botões encolhem um degrau, para o palco não sumir */
+@media (max-height:800px){
+  .treino-tela{--t-numero:3.5rem;--t-relogio:7rem}
+  .stepper button{min-height:var(--h48)}
+  .palco-btn{flex-basis:calc(var(--h48) * 2 + var(--s24));min-height:calc(var(--h48) * 2 + var(--s24))}
+  .legenda-do-modo{min-height:0;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+  .registro-bloco,.registro{gap:var(--s8)}
+  .descanso-topo{min-height:calc(var(--h48) * 3)}
+  .aseguir{padding:var(--s8) 0}
+}
+/* celular muito baixo: os modos e a legenda saem do treino (ficam no guia completo); o Boneco e o registro cabem */
+@media (max-height:700px){.modos-treino,.legenda-do-modo{display:none}}
 
 /* ---------- o fim do treino ---------- */
 .mudou{display:flex;flex-direction:column;gap:var(--s8)}
@@ -752,26 +806,21 @@ a.cartao-ex-corpo:focus-visible,button.cartao-ex-corpo:focus-visible{outline:3px
 /* ---------- telas estreitas: 320 px e zoom de 200% (206 px) ---------- */
 @media (max-width:359px){
   :root{--t-relogio:6.5rem;--t-numero:3.5rem;--t-destaque:2rem;--t-titulo:1.75rem}
-  .registro .linha-registro{flex-wrap:wrap}
-  .registro .chips-valor{display:flex;flex-wrap:wrap}
-  .registro .chip-valor{flex:1 0 var(--h48)}
-  .ex-sessao{grid-template-columns:1fr auto}
-  .ex-sessao .miniatura{grid-column:1;grid-row:1}
-  .ex-sessao .mais-op{grid-column:2;grid-row:1}
-  .ex-sessao > div:not(.miniatura){grid-column:1 / -1;grid-row:2}
+  .treino-tela{--t-relogio:6.5rem}
   .modes{grid-template-columns:1fr 1fr}
+  .cab-treino .onde-treino{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+  .cab-treino .volta-inicio{margin-right:auto}
 }
 @media (max-width:279px){
-  /* com zoom de 200%, o controle de carga e de repetições ocupa a linha toda: − número + */
-  .registro .stepper{display:grid;grid-template-columns:var(--h48) minmax(0,1fr) var(--h48);width:100%}
-  .registro .stepper button{width:100%;height:var(--h48)}
-  .registro .stepper select,.registro .stepper output{min-width:0;width:100%;font-size:var(--t-pergunta)}
-  .registro .stepper:has(select){grid-template-columns:1fr 1fr}
-  .registro .stepper:has(select) select{grid-column:1 / -1;grid-row:1}
+  /* com zoom de 200%, carga e repetições ficam uma embaixo da outra, e os 5 valores da reserva quebram a linha */
+  .colunas{grid-template-columns:1fr}
+  .registro .chips-valor{display:flex;flex-wrap:wrap}
+  .registro .chip-valor{flex:1 0 var(--h48)}
+  .valor-grande{white-space:normal}
   .tctl{grid-template-columns:1fr 1fr}
   .tctl button:last-child{grid-column:1 / -1}
   .marca{white-space:normal}
-  .cab-treino .onde-treino{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+  .alerta-topo{white-space:normal;padding:0 var(--s8)}
   .stage .hud{flex-wrap:wrap}
   button.cartao-ex-corpo{grid-template-columns:1fr auto}
   button.cartao-ex-corpo .miniatura{display:none}

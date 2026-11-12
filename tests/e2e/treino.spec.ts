@@ -62,11 +62,14 @@ test('sessão completa: registra as séries, descansa e recebe a sugestão para 
   await feita.click();
   await page.getByRole('region', { name: 'Descanso' }).getByRole('button', { name: 'Pular' }).click();
   // 7 kg × 11 com 2 de reserva: perto do alvo, vira a série de trabalho (sem a marca de acerto).
-  await expect(page.getByRole('list', { name: 'Séries feitas' })).toContainText(/7 kg × 11 · RIR 2\s*Desfazer/);
+  await expect(page.getByRole('list', { name: 'Séries feitas' })).toContainText('7 kg × 11 · RIR 2');
+  // frontend novo: o "Desfazer a última série" saiu do meio da tela e mora no "⋯" (Mais opções)
+  await expect((await maisOpcoes(page)).getByRole('button', { name: 'Desfazer a última série' })).toBeVisible();
+  await page.keyboard.press('Escape');
 
   for (;;) {
     await fazerExercicio(page);
-    const proximo = page.getByRole('navigation', { name: 'Exercícios' }).getByRole('button', { name: 'Próximo ›' });
+    const proximo = page.getByRole('navigation', { name: 'Exercícios' }).getByRole('button', { name: 'Próximo exercício' });
     if (!(await proximo.isVisible())) break;
     await proximo.click();
   }

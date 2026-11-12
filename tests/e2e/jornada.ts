@@ -139,9 +139,9 @@ export async function abrirTrocar(page: Page) {
 }
 /** Vai ao próximo exercício: pelo botão que aparece quando o exercício acabou, ou pelo "⋯". */
 export async function proximoExercicio(page: Page) {
-  const fora = page.getByRole('navigation', { name: 'Exercícios' }).getByRole('button', { name: 'Próximo ›' });
+  const fora = page.getByRole('navigation', { name: 'Exercícios' }).getByRole('button', { name: 'Próximo exercício' });
   if (await fora.isVisible()) return fora.click();
-  await (await maisOpcoes(page)).getByRole('button', { name: 'Próximo ›' }).click();
+  await (await maisOpcoes(page)).getByRole('button', { name: 'Próximo', exact: true }).click();
 }
 
 /** Abre o "por quê?" da linha da sugestão do dia (acima do painel da série) e devolve a folha, com o motivo e o selo. */
