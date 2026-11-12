@@ -830,7 +830,7 @@ function montarPrograma(perfil: Perfil, inventarioOriginal: Inventario, triagem:
           ...x.porque,
           {
             regraId: r('objetivo.forca.faixa-compostos'),
-            texto: `Objetivo "ficar mais forte": ${OBJETIVO_FORCA.reps[0]} a ${OBJETIVO_FORCA.reps[1]} repetições e descanso de 2 min 30 s neste exercício grande.${pesoLivre(e) ? ' Com peso livre, termine com 2 a 3 repetições de reserva.' : ''}`,
+            texto: `Objetivo "ficar mais forte": ${OBJETIVO_FORCA.reps[0]} a ${OBJETIVO_FORCA.reps[1]} repetições e descanso de ${tempoPorExtenso(OBJETIVO_FORCA.descansoSeg)} neste exercício grande.${pesoLivre(e) ? ` Com peso livre, termine com ${OBJETIVO_FORCA.rirPesoLivre[0]} a ${OBJETIVO_FORCA.rirPesoLivre[1]} repetições de reserva.` : ''}`,
           },
         ],
       };
@@ -1321,8 +1321,8 @@ export function textoDoObjetivo(objetivo: Objetivo | undefined, nivel: Nivel): P
         regraId: r('objetivo.forca.faixa-compostos'),
         texto:
           nivel === 'iniciante'
-            ? 'Objetivo "ficar mais forte": no começo, o treino é o mesmo, e a força sobe com ele. A partir do nível intermediário, os 2 primeiros exercícios grandes de cada treino passam a usar menos repetições e mais descanso.'
-            : `Objetivo "ficar mais forte": os 2 primeiros exercícios grandes com carga de cada treino usam ${OBJETIVO_FORCA.reps[0]} a ${OBJETIVO_FORCA.reps[1]} repetições e descanso de 2 min 30 s; o resto segue como no treino de músculo. O app não testa a carga máxima nem prepara para competição.`,
+            ? `Objetivo "ficar mais forte": no começo, o treino é o mesmo, e a força sobe com ele. A partir do nível intermediário, os ${OBJETIVO_FORCA.compostosPorTreino} primeiros exercícios grandes de cada treino passam a usar menos repetições e mais descanso.`
+            : `Objetivo "ficar mais forte": os ${OBJETIVO_FORCA.compostosPorTreino} primeiros exercícios grandes com carga de cada treino usam ${OBJETIVO_FORCA.reps[0]} a ${OBJETIVO_FORCA.reps[1]} repetições e descanso de ${tempoPorExtenso(OBJETIVO_FORCA.descansoSeg)}; o resto segue como no treino de músculo. O app não testa a carga máxima nem prepara para competição.`,
       },
     ];
   if (objetivo === 'saude')

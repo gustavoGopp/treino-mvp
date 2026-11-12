@@ -45,8 +45,18 @@ describe('local.treino-do-dia: o Bruno faz o Superior A na academia do bairro', 
   });
 
   it('o que é possível ali não muda; as alternativas são só as do local', () => {
-    const supino = dia.exercicios.find((x) => x.exId === 'supino-reto')!;
-    expect(supino.noLugarDe).toBeUndefined();
+    // todo exercício do programa que é possível na academia do bairro fica como estava, menos as alternativas
+    const ficam = superiorA().exercicios.filter((x) => possivelNoLocal(x.exId, brunoAcademiaDoBairro));
+    expect(ficam.map((x) => x.exId)).toContain('supino-reto');
+    expect(ficam.length + trocas.length).toBe(superiorA().exercicios.length);
+    for (const original of ficam) {
+      const aqui = dia.exercicios.find((x) => x.exId === original.exId)!;
+      expect(aqui, original.exId).toBeDefined();
+      expect(aqui.noLugarDe).toBeUndefined();
+      // o par da supersérie acompanha a troca: aponta sempre para um exercício que está no dia
+      expect({ ...aqui, alternativas: [], supersetCom: undefined }, original.exId).toEqual({ ...original, alternativas: [], supersetCom: undefined });
+      if (aqui.supersetCom) expect(dia.exercicios.map((x) => x.exId)).toContain(aqui.supersetCom);
+    }
     for (const x of dia.exercicios) for (const a of x.alternativas) expect(possivelNoLocal(a, brunoAcademiaDoBairro), `${x.exId} → ${a}`).toBe(true);
   });
 
@@ -74,6 +84,15 @@ describe('sem equivalente no local (selecao.dia-sem-principal)', () => {
       const r = diaNoLocal(d, bruno.perfil, soBarra);
       expect(r.dia.exercicios.some((x) => x.padrao !== 'core')).toBe(true);
       for (const t of r.trocas.filter((x) => !x.entrou)) expect(r.avisos.some((a) => a.texto.includes(t.motivo))).toBe(true);
+      // o que entrou no lugar treina o mesmo músculo principal da vaga, e é possível só com a barra fixa
+      for (const t of r.trocas.filter((x) => x.entrou)) {
+        // o motivo diz a verdade sobre o que entrou: o mesmo músculo principal da vaga ou, sem ele, "outro músculo do dia"
+        const mesmoMusculo = POR_ID[t.entrou!]!.musculos.primarios.some((m) => POR_ID[t.vaga]!.musculos.primarios.includes(m));
+        expect(/outro músculo do dia/.test(t.motivo), `${d.nome}: ${t.vaga} → ${t.entrou}`).toBe(!mesmoMusculo);
+        if (/mesmo músculo, outro movimento/.test(t.motivo)) expect(mesmoMusculo).toBe(true);
+        expect(possivelNoLocal(t.entrou!, soBarra), t.entrou).toBe(true);
+      }
+      expect(r.trocas.length).toBeGreaterThan(0);
     }
   });
   it('motivo verdadeiro: quando o único equivalente possível já está no treino de hoje, o aviso diz isso (auditoria, achado 10)', () => {

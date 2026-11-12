@@ -36,6 +36,8 @@ describe('lembrarCopia (dados.copia)', () => {
   });
   it('cópia com menos de 7 dias: não lembra, mesmo com treinos depois', () => {
     expect(lembrarCopia({ ultimaCopia: dia(15), fins: [dia(16), dia(17), dia(18)], agora: AGORA })).toBe(false);
+    // os mesmos 3 treinos, com a cópia feita há 7 dias ou mais: lembra
+    expect(lembrarCopia({ ultimaCopia: dia(13), fins: [dia(16), dia(17), dia(18)], agora: AGORA })).toBe(true);
   });
   it('cópia antiga: conta só os treinos depois dela', () => {
     expect(lembrarCopia({ ultimaCopia: dia(10), fins: [dia(5), dia(6), dia(7), dia(12), dia(14)], agora: AGORA })).toBe(false);
@@ -57,7 +59,10 @@ describe('avisarInstalar (dados.instalar-iphone)', () => {
   });
   it('não avisa instalado, no Mac de verdade nem no Android', () => {
     expect(avisarInstalar({ userAgent: iphone, maxTouchPoints: 5, instalado: true })).toBe(false);
+    // o Mac de verdade tem o mesmo userAgent do iPad e nenhum ponto de toque
     expect(ehAppleMovel({ userAgent: ipadComoMac, maxTouchPoints: 0 })).toBe(false);
+    expect(avisarInstalar({ userAgent: ipadComoMac, maxTouchPoints: 0, instalado: false })).toBe(false);
+    expect(avisarInstalar({ userAgent: ipadComoMac, maxTouchPoints: 5, instalado: true })).toBe(false);
     expect(avisarInstalar({ userAgent: android, maxTouchPoints: 5, instalado: false })).toBe(false);
   });
 });
@@ -68,8 +73,11 @@ describe('textoDoProblema e linkDoProblema (P5)', () => {
     const t = textoDoProblema(base);
     expect(t).toContain('Versão: abc1234 (publicada em 07/11/2026)');
     expect(t).toContain('Aparelho: Mozilla/5.0 (Linux; Android 14)');
-    expect(t).toContain('Tela: /evolucao/supino\n'.trim());
+    // a linha inteira: nem a busca (?x=1) nem a âncora (#a) da URL
+    expect(t.split('\n')).toContain('Tela: /evolucao/supino');
     expect(t).not.toContain('x=1');
+    expect(t).not.toContain('#a');
+    expect(textoDoProblema({ ...base, tela: '?x=1' }).split('\n')).toContain('Tela: /');
     expect(t).toMatch(/sem dados de saúde/);
     expect(t).not.toContain('Erro:');
   });
@@ -79,7 +87,8 @@ describe('textoDoProblema e linkDoProblema (P5)', () => {
     const linha = t.split('\n').find((l) => l.startsWith('Erro:'))!;
     expect(linha).toBe(`Erro: TypeError: ${'a'.repeat(MAX_MENSAGEM_ERRO)}`);
     expect(t).not.toContain('segunda linha');
-    expect(textoDoProblema({ ...base, erro: { nome: 'Error', mensagem: '' } })).toContain('Erro: Error\n'.trim());
+    // sem mensagem, a linha é só o tipo, sem os dois-pontos soltos
+    expect(textoDoProblema({ ...base, erro: { nome: 'Error', mensagem: '' } }).split('\n').at(-1)).toBe('Erro: Error');
   });
   it('monta o mailto só com um e-mail válido', () => {
     expect(linkDoProblema('', 'x')).toBeNull();
