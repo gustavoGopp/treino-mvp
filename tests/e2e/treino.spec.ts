@@ -9,7 +9,7 @@ async function fazerExercicio(page: Page) {
   while (await registro.isVisible()) {
     const carga = page.getByLabel('Carga', { exact: true });
     if ((await carga.count()) && (await carga.evaluate((e) => e.tagName === 'SELECT')) && !(await carga.inputValue())) await carga.selectOption({ index: 6 });
-    if ((await page.getByRole('button', { name: 'Mais carga' }).count()) && (await page.locator('#carga-kg').innerText()) === '—')
+    if ((await page.getByRole('button', { name: 'Mais carga' }).count()) && (await page.locator('output.carga-valor').first().innerText()) === '—')
       await page.getByRole('button', { name: 'Mais carga' }).click();
     const rir = registro.getByRole('radio', { name: '2', exact: true });
     if (!(await rir.isChecked())) await rir.check();

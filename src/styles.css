@@ -653,7 +653,7 @@ a.cartao-ex-corpo:focus-visible{outline:3px solid var(--foco);outline-offset:-3p
 .ea-mp{fill:var(--m-p);stroke:var(--m-borda);stroke-linejoin:round}
 .ea-ms{fill:var(--m-s);stroke:var(--m-borda);stroke-linejoin:round}
 /* músculo que só ajuda a firmar: listras de laranja sobre a pele (legenda A, 03/11/2026) */
-.ea-mh,.eb-mh{fill:url(#mh-listras);stroke:var(--m-borda);stroke-linejoin:round}
+.ea-mh,.eb-mh{fill:var(--mh-listras,url(#mh-listras));stroke:var(--m-borda);stroke-linejoin:round}
 .eb-mh{stroke:var(--stage)}
 .mh-fundo{fill:var(--ea-pele)}
 .mh-listra{fill:var(--m-s)}

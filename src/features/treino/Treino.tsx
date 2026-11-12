@@ -1,4 +1,4 @@
-import { useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
+import { useEffect, useLayoutEffect, useMemo, useRef, useState, useId } from 'react';
 import { Link, Navigate, useNavigate, useSearchParams } from 'react-router-dom';
 import { POR_ID } from '../../domain/biblioteca';
 import { ALTERNATIVAS_A_MOSTRA, type ExercicioPrescrito } from '../../domain/gerador';
@@ -641,6 +641,11 @@ function ControleCarga({
   valor: Carga | undefined;
   aoMudar: (c: Carga) => void;
 }) {
+  // Um id por controle: no drop set há três na tela (a série e as duas quedas), e com o id fixo o rótulo de todos
+  // apontava para o 1º.
+  const uid = useId();
+  const idRotulo = `${uid}-rotulo`;
+  const idCarga = `${uid}-carga`;
   if (registro === 'anilha') {
     // progressao.incremento.maquina-anilha: kg de anilhas de cada lado, de menor anilha em menor anilha.
     const k = valor?.tipo === 'anilha' ? valor.kgPorLado : undefined;
@@ -648,10 +653,10 @@ function ControleCarga({
     const mudar = (dir: 1 | -1) => aoMudar({ tipo: 'anilha', kgPorLado: Math.max(0, Math.round(((k ?? 0) + dir * passo) * 100) / 100) });
     return (
       <div className="linha-registro">
-        <span className="rotulo-curto" id="carga-rotulo">
+        <span className="rotulo-curto" id={idRotulo}>
           Anilhas por lado
         </span>
-        <div className="stepper" role="group" aria-labelledby="carga-rotulo">
+        <div className="stepper" role="group" aria-labelledby={idRotulo}>
           <button type="button" aria-label="Menos anilha de cada lado" disabled={k === undefined || k <= 0} onClick={() => mudar(-1)}>
             −
           </button>
@@ -670,10 +675,10 @@ function ControleCarga({
     const max = placasMax ?? 30;
     return (
       <div className="linha-registro">
-        <span className="rotulo-curto" id="carga-rotulo">
+        <span className="rotulo-curto" id={idRotulo}>
           Contrapeso (placa)
         </span>
-        <div className="stepper" role="group" aria-labelledby="carga-rotulo">
+        <div className="stepper" role="group" aria-labelledby={idRotulo}>
           <button type="button" aria-label="Menos contrapeso (mais difícil)" disabled={!p || p <= 1} onClick={() => p && aoMudar({ tipo: 'contrapeso', placa: p - 1 })}>
             −
           </button>
@@ -706,10 +711,10 @@ function ControleCarga({
     const max = placasMax ?? 30;
     return (
       <div className="linha-registro">
-        <span className="rotulo-curto" id="carga-rotulo">
+        <span className="rotulo-curto" id={idRotulo}>
           Placa
         </span>
-        <div className="stepper" role="group" aria-labelledby="carga-rotulo">
+        <div className="stepper" role="group" aria-labelledby={idRotulo}>
           <button type="button" aria-label="Placa anterior" disabled={!p || p <= 1} onClick={() => p && aoMudar({ tipo: 'placa', placa: p - 1 })}>
             −
           </button>
@@ -733,7 +738,7 @@ function ControleCarga({
   };
   return (
     <div className="linha-registro">
-      <label className="rotulo-curto" htmlFor="carga-kg">
+      <label className="rotulo-curto" htmlFor={idCarga}>
         Carga
       </label>
       <div className="stepper">
@@ -741,7 +746,7 @@ function ControleCarga({
           −
         </button>
         {lista ? (
-          <select id="carga-kg" value={k ?? ''} onChange={(e) => aoMudar({ tipo: 'kg', kg: Number(e.target.value) })}>
+          <select id={idCarga} value={k ?? ''} onChange={(e) => aoMudar({ tipo: 'kg', kg: Number(e.target.value) })}>
             <option value="" disabled>
               Escolha
             </option>
@@ -752,7 +757,7 @@ function ControleCarga({
             ))}
           </select>
         ) : (
-          <output id="carga-kg" aria-live="polite">
+          <output id={idCarga} className="carga-valor" aria-live="polite">
             {k === undefined ? '—' : `${numeroBr(k)} kg`}
           </output>
         )}

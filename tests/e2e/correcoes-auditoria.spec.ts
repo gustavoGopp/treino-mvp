@@ -139,3 +139,52 @@ test('com dor acima de 5 em todas as regiões, a tela não oferece um treino vaz
   await expect(page.getByRole('button', { name: /^Começar o treino/ })).toHaveCount(0);
   await expect(page.getByRole('link', { name: 'Rever a triagem' })).toBeVisible();
 });
+
+const idsRepetidos = (page: Page) =>
+  page.evaluate(() => {
+    const vistos = new Map<string, number>();
+    document.querySelectorAll('[id]').forEach((el) => vistos.set(el.id, (vistos.get(el.id) ?? 0) + 1));
+    return [...vistos].filter(([, n]) => n > 1).map(([id]) => id);
+  });
+
+// Auditoria de 12/11/2026: ids repetidos nas miniaturas do programa e nos controles de carga do drop set.
+test('nenhum id se repete na tela do programa, com as miniaturas desenhadas, nem no drop set', async ({ page }) => {
+  await ana(page);
+  // as miniaturas chegam do Worker: espera a 1ª ter desenho, e as listras de um músculo que ajuda
+  await expect(page.locator('.miniatura svg').first()).toBeVisible();
+  await expect.poll(() => page.locator('.miniatura svg [id]').count()).toBeGreaterThan(1);
+  expect(await idsRepetidos(page)).toEqual([]);
+  // cada desenho pinta as listras com o padrão dele
+  const listrado = page.locator('.miniatura svg .ea-mh, .miniatura svg .eb-mh').first();
+  if (await listrado.count()) expect(await listrado.evaluate((el) => getComputedStyle(el).fill)).toMatch(/url\(.*#mh-listras-/);
+
+  // o 1º exercício com 1 série em drop set: a série e as duas quedas têm um controle de carga cada
+  await page.evaluate(async () => {
+    const db = await new Promise<IDBDatabase>((ok, erro) => {
+      const r = indexedDB.open('keyval-store');
+      r.onsuccess = () => ok(r.result);
+      r.onerror = () => erro(r.error);
+    });
+    const loja = (modo: IDBTransactionMode) => db.transaction('keyval', modo).objectStore('keyval');
+    type Guardado = { programa: { programa: { fases: unknown[]; dias: { exercicios: Record<string, unknown>[] }[] } } };
+    const atual = await new Promise<Guardado>((ok) => {
+      const r = loja('readonly').get('estado');
+      r.onsuccess = () => ok(r.result);
+    });
+    atual.programa.programa.fases = [];
+    // um exercício com carga em halter (o supino), para o drop set poder reduzir a carga
+    const dia = atual.programa.programa.dias[0]!;
+    const i = dia.exercicios.findIndex((x) => x.exId === 'supino-reto');
+    const [x] = dia.exercicios.splice(i, 1);
+    dia.exercicios.unshift({ ...x, series: 1, dropSet: true });
+    await new Promise<void>((ok) => {
+      const r = loja('readwrite').put(atual, 'estado');
+      r.onsuccess = () => ok();
+    });
+  });
+  await page.reload();
+  await comecar(page);
+  await expect(page.getByRole('group', { name: 'Drop set (opcional)' })).toBeVisible();
+  await expect(page.locator('.quedas .queda')).toHaveCount(2);
+  expect(await idsRepetidos(page)).toEqual([]);
+});
