@@ -1,4 +1,5 @@
 import { z } from 'zod';
+import { umaVezSeDerCerto } from '../domain/umaVez';
 
 // As fontes por extenso que as regras citam (pedido ao domínio 1 do redesign, 06/11/2026), geradas de
 // docs/pesquisa/fontes.md por scripts/gerar-fontes.mjs. O selo de evidência abre a regra e estas referências.
@@ -22,8 +23,5 @@ export const TEXTO_LEITURA: Record<Fonte['leitura'], string> = {
   'nao-verificado': 'não verificado',
 };
 
-let promessa: Promise<Record<string, Fonte>> | undefined;
-export function carregarFontes(): Promise<Record<string, Fonte>> {
-  promessa ??= import('./fontes.json').then((m) => fontesSchema.parse(m.default));
-  return promessa;
-}
+/** As fontes, baixadas uma vez; se a importação falhar, a próxima chamada tenta de novo. */
+export const carregarFontes: () => Promise<Record<string, Fonte>> = umaVezSeDerCerto(() => import('./fontes.json').then((m) => fontesSchema.parse(m.default)));

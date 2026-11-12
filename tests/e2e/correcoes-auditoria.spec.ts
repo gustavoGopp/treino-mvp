@@ -1,5 +1,5 @@
 import { expect, test, type Page } from '@playwright/test';
-import { ana, proximoExercicio, terminarTreino, triagem, verAvisos } from './jornada';
+import { ana, marcarItem, proximoExercicio, terminarTreino, triagem, verAvisos } from './jornada';
 
 // Três correções da auditoria de 12/11/2026, cada uma com o caso que falhava.
 
@@ -238,4 +238,31 @@ test('a folha recebe as regras de .app, a de baixo fica inerte e o foco volta a 
   await trocar.getByRole('button', { name: 'Fechar' }).click();
   await expect(trocar).toHaveCount(0);
   await expect(mais).toBeFocused();
+});
+
+// Auditoria de 12/11/2026: uma importação que falhava (sem rede, versão nova publicada) ficava guardada até recarregar.
+test('o cartão de texto que não baixou avisa, tenta de novo e, se o navegador guardou a falha, oferece recarregar', async ({ browser }) => {
+  // sem o service worker, para o pedido do pedaço do cartão passar pela rede do teste
+  const contexto = await browser.newContext({ serviceWorkers: 'block', baseURL: 'http://localhost:4173' });
+  const page = await contexto.newPage();
+  let falhar = true;
+  await page.route(/\/assets\/barra-fixa-negativa-[\w-]+\.js$/, (rota) => (falhar ? rota.abort() : rota.fallback()));
+  await ana(page, { equipamentoExtra: async (p) => void (await marcarItem(p, 'Barra fixa')) });
+  await comecar(page);
+  for (let i = 0; i < 3; i++) await proximoExercicio(page);
+  await expect(page.getByRole('heading', { name: /Barra fixa só na descida/ })).toBeVisible();
+  await expect(page.getByText('Não deu para carregar o guia em texto deste exercício agora.')).toBeVisible();
+  await expect(page.getByRole('region', { name: /Montagem segura/ })).toHaveCount(0);
+  // a rede volta. O app tenta de novo; o Chromium guarda a falha do arquivo, então a saída é recarregar, que o app
+  // oferece na 2ª falha. O treino continua onde estava.
+  falhar = false;
+  await page.getByRole('button', { name: 'Tentar de novo' }).click();
+  const montagem = page.getByRole('region', { name: /Montagem segura/ });
+  const recarregar = page.getByRole('button', { name: 'Recarregar o app' });
+  await expect(montagem.or(recarregar)).toBeVisible();
+  if (await recarregar.isVisible()) await recarregar.click();
+  await expect(page.getByRole('heading', { name: /Barra fixa só na descida/ })).toBeVisible();
+  await expect(montagem).toBeVisible();
+  await expect(page.getByText('Não deu para carregar o guia em texto')).toHaveCount(0);
+  await contexto.close();
 });

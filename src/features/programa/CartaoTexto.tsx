@@ -13,21 +13,46 @@ export { temCartao };
 
 /** O cartão do exercício, baixado na 1ª vez em que aparece (do service worker, em milissegundos, depois da instalação). */
 function useCartao(exId: string) {
-  const [c, setC] = useState<Cartao | null>(null);
+  const [c, setC] = useState<Cartao | null | 'erro'>(null);
+  const [tentativa, setTentativa] = useState(0);
   useEffect(() => {
     let vivo = true;
     setC(null);
-    carregarCartao(exId).then((x) => vivo && setC(x));
+    carregarCartao(exId).then(
+      (x) => vivo && setC(x),
+      () => vivo && setC('erro'),
+    );
     return () => {
       vivo = false;
     };
-  }, [exId]);
-  return c;
+  }, [exId, tentativa]);
+  return { c, tentativa, tentarDeNovo: () => setTentativa((n) => n + 1) };
 }
 
 export function CartaoTexto({ exId }: { exId: string }) {
-  const c = useCartao(exId);
+  const { c, tentativa, tentarDeNovo } = useCartao(exId);
   const [aberto, setAberto] = useState(false);
+  // O cartão traz a montagem segura: se ele não baixou (sem rede, versão nova publicada), a tela diz e deixa tentar de
+  // novo. Antes, a falha ficava guardada até recarregar a página e o cartão sumia sem aviso.
+  if (c === 'erro')
+    return (
+      <div className="cartao-texto">
+        <p role="status" className="ajuda">
+          Não deu para carregar o guia em texto deste exercício agora.
+        </p>
+        {/* O navegador costuma guardar a falha de um arquivo que não baixou: se a 2ª tentativa também falhar, só
+            recarregando. O treino em andamento e o descanso ficam guardados e voltam. */}
+        {tentativa === 0 ? (
+          <button type="button" className="btn sec pequeno" onClick={tentarDeNovo}>
+            Tentar de novo
+          </button>
+        ) : (
+          <button type="button" className="btn sec pequeno" onClick={() => window.location.reload()}>
+            Recarregar o app
+          </button>
+        )}
+      </div>
+    );
   if (!c) return null;
   // Redesign, lote 2: a montagem segura fica sempre aberta, com o selo (nunca recolhida: segurança à mão); as dicas,
   // os erros e o passo a passo abrem numa folha, sem empurrar o painel da série.
