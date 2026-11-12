@@ -2,7 +2,7 @@ import { readFileSync } from 'node:fs';
 import { describe, expect, it } from 'vitest';
 import { LIMITE_APARELHO, LIMITE_CONVITE_ERRADO, LIMITE_IP, Limite, MAX_BASE64, MAX_BASE64_TOTAL, MAX_FOTOS, processarPedido, type Contexto } from '../../api/_lib/pedido';
 import { reconhecer, TEMPO_MAX_MODELO_MS } from '../../api/_lib/modelo';
-import { LIMITES_FOTO } from '../../src/domain/visao';
+import { ERRO_DA_FOTO, erroDaResposta, erroSemResposta, ESPERA_MAX_FOTO_MS, LIMITES_FOTO } from '../../src/domain/visao';
 
 const ctx: Contexto = { ip: '1.2.3.4', hoje: '2026-11-01', convites: ['BETA1'], chaveConfigurada: true };
 const foto = '/9j/' + 'A'.repeat(100);
@@ -126,5 +126,25 @@ describe('api/vision: cota devolvida, tamanho do pedido e tempo máximo', () => 
     // o tempo da chamada cabe na duração máxima da função, com folga para o resto do pedido
     const vercel = JSON.parse(readFileSync('vercel.json', 'utf8')) as { functions: Record<string, { maxDuration: number }> };
     expect(vercel.functions['api/vision.ts']!.maxDuration * 1000).toBeGreaterThanOrEqual(TEMPO_MAX_MODELO_MS + 5000);
+  });
+});
+
+describe('mensagens de erro da foto, no aparelho', () => {
+  it('sem resposta: a demora, a falta de rede e o servidor têm mensagens diferentes', () => {
+    expect(erroSemResposta('TimeoutError', true)).toBe(ERRO_DA_FOTO.demora);
+    expect(erroSemResposta('AbortError', true)).toBe(ERRO_DA_FOTO.demora);
+    expect(erroSemResposta('TypeError', true)).toBe(ERRO_DA_FOTO.servidor);
+    expect(erroSemResposta('TypeError', false)).toBe(ERRO_DA_FOTO.semConexao);
+    expect(erroSemResposta(undefined, true)).toBe(ERRO_DA_FOTO.servidor);
+  });
+  it('com resposta: vale a mensagem do servidor; sem ela, o código da resposta', () => {
+    expect(erroDaResposta(429, 'Limite de fotos de hoje atingido.')).toBe('Limite de fotos de hoje atingido.');
+    expect(erroDaResposta(413)).toBe(ERRO_DA_FOTO.tamanho);
+    expect(erroDaResposta(500, '')).toBe(ERRO_DA_FOTO.analise);
+    expect(erroDaResposta(502, { erro: 'objeto' })).toBe(ERRO_DA_FOTO.analise);
+  });
+  it('todas as mensagens são em português e levam à lista', () => {
+    for (const t of Object.values(ERRO_DA_FOTO)) expect(t).toMatch(/lista/);
+    expect(ESPERA_MAX_FOTO_MS).toBeGreaterThan(60_000);
   });
 });

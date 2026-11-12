@@ -149,3 +149,51 @@ test('a chave da API não aparece no código que vai para o navegador', async ()
     .join('\n');
   for (const proibido of ['sk-ant-', 'ANTHROPIC_API_KEY', '@anthropic-ai/sdk', 'x-api-key']) expect(conteudo, proibido).not.toContain(proibido);
 });
+
+// Auditoria de 12/11/2026: qualquer erro de rede virava "Sem conexão", e a foto que o navegador não abre (HEIC)
+// mostrava o texto do navegador, em inglês.
+test('foto: cada tipo de erro tem a mensagem dele, em português', async ({ page }) => {
+  await irParaEquipamento(page);
+  const jpeg = await fotoComExif(page);
+  await page.getByLabel(/^Autorizo enviar as minhas fotos/).check();
+  await page.getByLabel('Código de convite').fill('beta1');
+  const enviar = (arquivo: { name: string; mimeType: string; buffer: Buffer }) => page.getByLabel('Escolher fotos').setInputFiles(arquivo);
+  const erro = page.locator('.foto-eq [role="alert"]');
+
+  // a foto que o navegador não abre: nada é enviado
+  let pedidos = 0;
+  await page.route('**/api/vision', async (route) => {
+    pedidos++;
+    await route.abort();
+  });
+  await enviar({ name: 'foto.heic', mimeType: 'image/heic', buffer: Buffer.from('isto não é uma imagem') });
+  await expect(erro).toHaveText(/Não foi possível abrir .* foto.* neste navegador/);
+  await expect(erro).not.toHaveText(/source image|could not be decoded|InvalidStateError/i);
+  expect(pedidos).toBe(0);
+
+  // o servidor não respondeu, com o aparelho conectado: não é "Sem conexão"
+  await enviar({ name: 'a.jpg', mimeType: 'image/jpeg', buffer: jpeg });
+  await expect(erro).toHaveText(/Não foi possível falar com o servidor agora/);
+  expect(pedidos).toBe(1);
+
+  // sem rede no aparelho
+  await page.context().setOffline(true);
+  await enviar({ name: 'a.jpg', mimeType: 'image/jpeg', buffer: jpeg });
+  await expect(erro).toHaveText(/^Sem conexão\./);
+  await page.context().setOffline(false);
+
+  // o servidor recusou sem dizer por quê (a Vercel, com o corpo grande demais, não responde em JSON)
+  await page.unroute('**/api/vision');
+  await page.route('**/api/vision', (route) => route.fulfill({ status: 413, contentType: 'text/plain', body: 'Request Entity Too Large' }));
+  await enviar({ name: 'a.jpg', mimeType: 'image/jpeg', buffer: jpeg });
+  await expect(erro).toHaveText(/As fotos ficaram grandes demais/);
+  await page.unroute('**/api/vision');
+  await page.route('**/api/vision', (route) => route.fulfill({ status: 500, contentType: 'text/html', body: '<h1>Internal Server Error</h1>' }));
+  await enviar({ name: 'a.jpg', mimeType: 'image/jpeg', buffer: jpeg });
+  await expect(erro).toHaveText(/Não foi possível analisar as fotos agora/);
+  // a mensagem do servidor, quando ele manda uma, continua valendo
+  await page.unroute('**/api/vision');
+  await page.route('**/api/vision', (route) => route.fulfill({ status: 429, json: { codigo: 'limite', erro: 'Limite de fotos de hoje atingido. Use a lista ou tente amanhã.' } }));
+  await enviar({ name: 'a.jpg', mimeType: 'image/jpeg', buffer: jpeg });
+  await expect(erro).toHaveText(/Limite de fotos de hoje atingido/);
+});
