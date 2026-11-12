@@ -1,41 +1,41 @@
-// @ts-nocheck
 // Port do guia original (referencia/guia-execucao-fase1.html), feito por scripts/extrair-motor.mjs no M1. Desde então é mantido à mão: o script só roda com --forcar.
 import { CTX } from './contexto';
-import { B, scapPts } from './esqueleto';
-import { X, Y, Z, add, comb, cross, dot, len, mid, mul, norm, sub } from './math';
+import { B } from './esqueleto';
+import { X, Y, Z, add, comb, cross, dot, len, mid, mul, norm, scapPts, sub } from './port';
+import type { Eixos, Esqueleto, Exercicio, FormaClassica, IdMusculo, Lado, MusculoDoExercicio, OpcoesCaminho, OpcoesPrim, OpcoesTexto, Paleta, PontoTela, ProjecaoDaVista, Torre, V2, V3, Vista } from './tipos';
 
 /* ================= projeção e primitivas ================= */
-export const VIEWS={
-  lateral:{name:'Lateral',proj:v=>[v[2],-v[1],-v[0]]},
-  frontal:{name:'Frontal',proj:v=>[v[0],-v[1],v[2]]},
-  posterior:{name:'Por trás',proj:v=>[-v[0],-v[1],-v[2]]},
-  top:{name:'De cima',proj:v=>[v[0],v[2],v[1]]},
-  zoom:{name:'Detalhe',proj:v=>[v[2],-v[1],-v[0]]}
+export const VIEWS:Record<Vista,{name:string;proj:ProjecaoDaVista}>={
+  lateral:{name:'Lateral',proj:v=>[v[2]!,-v[1]!,-v[0]!]},
+  frontal:{name:'Frontal',proj:v=>[v[0]!,-v[1]!,v[2]!]},
+  posterior:{name:'Por trás',proj:v=>[-v[0]!,-v[1]!,-v[2]!]},
+  top:{name:'De cima',proj:v=>[v[0]!,v[2]!,v[1]!]},
+  zoom:{name:'Detalhe',proj:v=>[v[2]!,-v[1]!,-v[0]!]}
 };
 export const isSide=()=>CTX.VIEW==='lateral'||CTX.VIEW==='zoom';
-export const f1=n=>Math.round(n*10)/10;
-export function bb(x,y,r){if(CTX.MEAS){r=r||0;CTX.MEAS[0]=Math.min(CTX.MEAS[0],x-r);CTX.MEAS[1]=Math.max(CTX.MEAS[1],x+r);CTX.MEAS[2]=Math.min(CTX.MEAS[2],y-r);CTX.MEAS[3]=Math.max(CTX.MEAS[3],y+r);}}
-export function push(l,d,s){CTX.prims.push({l,d,s});}
-export function at(o){return(o.dash?` stroke-dasharray="${o.dash}"`:'')+(o.op!=null?` opacity="${o.op}"`:'');}
-export function L3(a,b,cls,w,o={}){const A=CTX.PJ(a),C=CTX.PJ(b);bb(A[0],A[1],w/2);bb(C[0],C[1],w/2);push(o.layer??1,(A[2]+C[2])/2+(o.bias||0),`<line x1="${f1(A[0])}" y1="${f1(A[1])}" x2="${f1(C[0])}" y2="${f1(C[1])}" class="${cls}" stroke-width="${f1(w)}"${at(o)}/>`);}
-export function PL3(pts,cls,w,o={}){const Q=pts.map(CTX.PJ);Q.forEach(q=>bb(q[0],q[1],w/2));push(o.layer??1,Q.reduce((s,q)=>s+q[2],0)/Q.length+(o.bias||0),`<polyline points="${Q.map(q=>f1(q[0])+','+f1(q[1])).join(' ')}" class="${cls}" stroke-width="${f1(w)}" fill="none"${at(o)}/>`);}
-export function PG3(pts,cls,o={}){const Q=pts.map(CTX.PJ);Q.forEach(q=>bb(q[0],q[1],(o.w||0)/2));push(o.layer??1,Q.reduce((s,q)=>s+q[2],0)/Q.length+(o.bias||0),`<polygon points="${Q.map(q=>f1(q[0])+','+f1(q[1])).join(' ')}" class="${cls}"${o.w?` stroke-width="${f1(o.w)}"`:''}${at(o)}/>`);}
-export function C3(c,r,cls,o={}){const A=CTX.PJ(c);bb(A[0],A[1],r);push(o.layer??1,A[2]+(o.bias||0),`<circle cx="${f1(A[0])}" cy="${f1(A[1])}" r="${f1(r)}" class="${cls}"${o.w?` stroke-width="${f1(o.w)}"`:''}${at(o)}/>`);}
-export function hull(P){const p=P.map(q=>[q[0],q[1]]).sort((a,b)=>a[0]-b[0]||a[1]-b[1]);if(p.length<3)return p;const cr=(o,a,b)=>(a[0]-o[0])*(b[1]-o[1])-(a[1]-o[1])*(b[0]-o[0]);const lo=[],up=[];for(const q of p){while(lo.length>=2&&cr(lo[lo.length-2],lo[lo.length-1],q)<=0)lo.pop();lo.push(q);}for(let i=p.length-1;i>=0;i--){const q=p[i];while(up.length>=2&&cr(up[up.length-2],up[up.length-1],q)<=0)up.pop();up.push(q);}up.pop();lo.pop();return lo.concat(up);}
-export function BOX(c,ax,cls,o={}){const pts=[];for(const a of[-1,1])for(const b of[-1,1])for(const d of[-1,1])pts.push(comb(1,c,a*ax[0][1],ax[0][0],b*ax[1][1],ax[1][0],d*ax[2][1],ax[2][0]));const Q=pts.map(CTX.PJ);Q.forEach(q=>bb(q[0],q[1],1));const h=hull(Q);push(o.layer??1,Q.reduce((s,q)=>s+q[2],0)/8+(o.bias||0),`<polygon points="${h.map(q=>f1(q[0])+','+f1(q[1])).join(' ')}" class="${cls}" stroke-width="${f1(o.w||0.8)}"${at(o)}/>`);}
-export function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;');}
+export const f1=(n:number)=>Math.round(n*10)/10;
+export function bb(x:number,y:number,r?:number){if(CTX.MEAS){r=r||0;CTX.MEAS[0]=Math.min(CTX.MEAS[0],x-r);CTX.MEAS[1]=Math.max(CTX.MEAS[1],x+r);CTX.MEAS[2]=Math.min(CTX.MEAS[2],y-r);CTX.MEAS[3]=Math.max(CTX.MEAS[3],y+r);}}
+export function push(l:number,d:number,s:string){CTX.prims.push({l,d,s});}
+export function at(o:OpcoesPrim){return(o.dash?` stroke-dasharray="${o.dash}"`:'')+(o.op!=null?` opacity="${o.op}"`:'');}
+export function L3(a:V3,b:V3,cls:string,w:number,o:OpcoesPrim={}){const A=CTX.PJ(a),C=CTX.PJ(b);bb(A[0],A[1],w/2);bb(C[0],C[1],w/2);push(o.layer??1,(A[2]+C[2])/2+(o.bias||0),`<line x1="${f1(A[0])}" y1="${f1(A[1])}" x2="${f1(C[0])}" y2="${f1(C[1])}" class="${cls}" stroke-width="${f1(w)}"${at(o)}/>`);}
+export function PL3(pts:V3[],cls:string,w:number,o:OpcoesPrim={}){const Q=pts.map(CTX.PJ);Q.forEach(q=>bb(q[0],q[1],w/2));push(o.layer??1,Q.reduce((s,q)=>s+q[2],0)/Q.length+(o.bias||0),`<polyline points="${Q.map(q=>f1(q[0])+','+f1(q[1])).join(' ')}" class="${cls}" stroke-width="${f1(w)}" fill="none"${at(o)}/>`);}
+export function PG3(pts:V3[],cls:string,o:OpcoesPrim={}){const Q=pts.map(CTX.PJ);Q.forEach(q=>bb(q[0],q[1],(o.w||0)/2));push(o.layer??1,Q.reduce((s,q)=>s+q[2],0)/Q.length+(o.bias||0),`<polygon points="${Q.map(q=>f1(q[0])+','+f1(q[1])).join(' ')}" class="${cls}"${o.w?` stroke-width="${f1(o.w)}"`:''}${at(o)}/>`);}
+export function C3(c:V3,r:number,cls:string,o:OpcoesPrim={}){const A=CTX.PJ(c);bb(A[0],A[1],r);push(o.layer??1,A[2]+(o.bias||0),`<circle cx="${f1(A[0])}" cy="${f1(A[1])}" r="${f1(r)}" class="${cls}"${o.w?` stroke-width="${f1(o.w)}"`:''}${at(o)}/>`);}
+export function hull(P:PontoTela[]):V2[]{const p=P.map((q):V2=>[q[0],q[1]]).sort((a,b)=>a[0]-b[0]||a[1]-b[1]);if(p.length<3)return p;const cr=(o:V2,a:V2,b:V2)=>(a[0]-o[0])*(b[1]-o[1])-(a[1]-o[1])*(b[0]-o[0]);const lo:V2[]=[],up:V2[]=[];for(const q of p){while(lo.length>=2&&cr(lo[lo.length-2]!,lo[lo.length-1]!,q)<=0)lo.pop();lo.push(q);}for(let i=p.length-1;i>=0;i--){const q=p[i]!;while(up.length>=2&&cr(up[up.length-2]!,up[up.length-1]!,q)<=0)up.pop();up.push(q);}up.pop();lo.pop();return lo.concat(up);}
+export function BOX(c:V3,ax:Eixos,cls:string,o:OpcoesPrim={}){const pts:V3[]=[];for(const a of[-1,1])for(const b of[-1,1])for(const d of[-1,1])pts.push(comb(1,c,a*ax[0][1],ax[0][0],b*ax[1][1],ax[1][0],d*ax[2][1],ax[2][0]));const Q=pts.map(CTX.PJ);Q.forEach(q=>bb(q[0],q[1],1));const h=hull(Q);push(o.layer??1,Q.reduce((s,q)=>s+q[2],0)/8+(o.bias||0),`<polygon points="${h.map(q=>f1(q[0])+','+f1(q[1])).join(' ')}" class="${cls}" stroke-width="${f1(o.w||0.8)}"${at(o)}/>`);}
+export function esc(s:string|number){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;');}
 /** O <text> de um rótulo (a mesma string de sempre; separada para a cena do Boneco poder reescrever um rótulo movido). */
-export function textoSvg(x,y,cls,size,anchor,str){return`<text x="${f1(x)}" y="${f1(y)}" class="${cls}" font-size="${f1(size)}" text-anchor="${anchor}" stroke-width="${f1(3.2*CTX.KS)}">${esc(str)}</text>`;}
+export function textoSvg(x:number,y:number,cls:string,size:number,anchor:string,str:string){return`<text x="${f1(x)}" y="${f1(y)}" class="${cls}" font-size="${f1(size)}" text-anchor="${anchor}" stroke-width="${f1(3.2*CTX.KS)}">${esc(str)}</text>`;}
 // A prim do rótulo guarda a âncora projetada (ax, ay: antes de dx/dy) e o texto em `tx` (R4, 05/11/2026): o SVG não muda.
-export function TX(v,str,o={}){if(CTX.MEAS)return;const A=o.scr?v:CTX.PJ(v);const x=A[0]+(o.dx||0)*CTX.KS,y=A[1]+(o.dy||0)*CTX.KS;const cls=o.cls||'lbl',size=(o.size||11)*CTX.KS,anchor=o.anchor||'start';CTX.prims.push({l:o.layer??4,d:0,s:textoSvg(x,y,cls,size,anchor,str),tx:{ax:A[0],ay:A[1],x,y,cls,size,anchor,str}});}
-export function arrowHead(p,q,cls,size){const dx=q[0]-p[0],dy=q[1]-p[1],l=Math.hypot(dx,dy)||1,ux=dx/l,uy=dy/l,s=size;const a=[q[0]-ux*s+uy*s*.55,q[1]-uy*s-ux*s*.55],b=[q[0]-ux*s-uy*s*.55,q[1]-uy*s+ux*s*.55];return`<polygon points="${f1(q[0])},${f1(q[1])} ${f1(a[0])},${f1(a[1])} ${f1(b[0])},${f1(b[1])}" class="${cls}"/>`;}
-export function PATH2(Q,cls,w,o={}){if(CTX.MEAS||Q.length<2)return;let s=`<polyline points="${Q.map(q=>f1(q[0])+','+f1(q[1])).join(' ')}" class="${cls}" stroke-width="${f1(w)}" fill="none"${at(o)}/>`;if(o.arrow!==false){let i=Q.length-2;while(i>0&&Math.hypot(Q[Q.length-1][0]-Q[i][0],Q[Q.length-1][1]-Q[i][1])<3)i--;s+=arrowHead(Q[i],Q[Q.length-1],o.acls||'pta',(o.asz||4.2)*CTX.KS);}push(o.layer??3,0,s);}
-export function ARROW3(a,b,cls,w,acls,o={}){if(CTX.MEAS)return;const A=CTX.PJ(a),C=CTX.PJ(b);push(o.layer??3,0,`<line x1="${f1(A[0])}" y1="${f1(A[1])}" x2="${f1(C[0])}" y2="${f1(C[1])}" class="${cls}" stroke-width="${f1(w)}"${at(o)}/>`+arrowHead(A,C,acls,4*CTX.KS));}
+export function TX(v:V3|V2,str:string,o:OpcoesTexto={}){if(CTX.MEAS)return;const A=o.scr?v:CTX.PJ(v as V3);const x=A[0]+(o.dx||0)*CTX.KS,y=A[1]+(o.dy||0)*CTX.KS;const cls=o.cls||'lbl',size=(o.size||11)*CTX.KS,anchor=o.anchor||'start';CTX.prims.push({l:o.layer??4,d:0,s:textoSvg(x,y,cls,size,anchor,str),tx:{ax:A[0],ay:A[1],x,y,cls,size,anchor,str}});}
+export function arrowHead(p:PontoTela,q:PontoTela,cls:string,size:number){const dx=q[0]-p[0],dy=q[1]-p[1],l=Math.hypot(dx,dy)||1,ux=dx/l,uy=dy/l,s=size;const a:V2=[q[0]-ux*s+uy*s*.55,q[1]-uy*s-ux*s*.55],b:V2=[q[0]-ux*s-uy*s*.55,q[1]-uy*s+ux*s*.55];return`<polygon points="${f1(q[0])},${f1(q[1])} ${f1(a[0])},${f1(a[1])} ${f1(b[0])},${f1(b[1])}" class="${cls}"/>`;}
+export function PATH2(Q:PontoTela[],cls:string,w:number,o:OpcoesCaminho={}){if(CTX.MEAS||Q.length<2)return;let s=`<polyline points="${Q.map(q=>f1(q[0])+','+f1(q[1])).join(' ')}" class="${cls}" stroke-width="${f1(w)}" fill="none"${at(o)}/>`;if(o.arrow!==false){let i=Q.length-2;while(i>0&&Math.hypot(Q[Q.length-1]![0]-Q[i]![0],Q[Q.length-1]![1]-Q[i]![1])<3)i--;s+=arrowHead(Q[i]!,Q[Q.length-1]!,o.acls||'pta',(o.asz||4.2)*CTX.KS);}push(o.layer??3,0,s);}
+export function ARROW3(a:V3,b:V3,cls:string,w:number,acls:string,o:OpcoesPrim={}){if(CTX.MEAS)return;const A=CTX.PJ(a),C=CTX.PJ(b);push(o.layer??3,0,`<line x1="${f1(A[0])}" y1="${f1(A[1])}" x2="${f1(C[0])}" y2="${f1(C[1])}" class="${cls}" stroke-width="${f1(w)}"${at(o)}/>`+arrowHead(A,C,acls,4*CTX.KS));}
 
 /* ================= desenho do corpo ================= */
-export function body(sk,pal){
+export function body(sk:Esqueleto,pal:Paleta){
   const g=pal==='g'||pal==='g2';
-  const cl=b=>g?pal==='g'?'gh':'gh2':pal==='e'?b+'-e':b;
+  const cl=(b:string)=>g?pal==='g'?'gh':'gh2':pal==='e'?b+'-e':b;
   const ws=g?0.32:1;
   const dN=CTX.PJ(sk.N)[2],dP=CTX.PJ(sk.P)[2];
   const R=sk.side.R,Lf=sk.side.L;
@@ -50,16 +50,16 @@ export function body(sk,pal){
     const back=isSide()?-5:-7.5;
     const sp=[comb(1,sk.P,back,sk.fL),comb(1,sk.M,back-1,sk.fT),comb(1,sk.N,back+1,sk.fT),comb(1,sk.N,0.45,sub(sk.Hc,sk.N),back+2,sk.fN)];
     PL3(sp,'sp',1.5,{bias:3,dash:''});
-    for(let i=0;i<3;i++)for(let j=0;j<4;j++){const t=j/4;C3(add(mul(sp[i],1-t),mul(sp[i+1],t)),1.25,'spd',{bias:3.1});}
+    for(let i=0;i<3;i++)for(let j=0;j<4;j++){const t=j/4;C3(add(mul(sp[i]!,1-t),mul(sp[i+1]!,t)),1.25,'spd',{bias:3.1});}
   }
   // escápulas (vista de trás)
-  if(!g&&CTX.VIEW==='posterior'){for(const k of['R','L'])PG3(scapPts(sk,k),pal==='e'?'tor-e':'scap',{w:1.2,bias:2.5});}
+  if(!g&&CTX.VIEW==='posterior'){for(const k of['R','L'] as const)PG3(scapPts(sk,k),pal==='e'?'tor-e':'scap',{w:1.2,bias:2.5});}
   // pescoço e cabeça
   L3(sk.N,add(sk.N,mul(sub(sk.Hc,sk.N),.6)),g?cl(''):cl('bn'),6.5*ws,{bias:0.3});
   C3(sk.Hc,B.head,g?cl(''):cl('hd'),{w:2.2*(g?.6:1),bias:0.6});
   if(isSide()||CTX.VIEW==='top'){L3(comb(1,sk.Hc,7,sk.fN,.5,sk.uN),comb(1,sk.Hc,12.5,sk.fN,0,sk.uN),g?cl(''):cl('ns'),2.4*(g?.6:1),{bias:0.7});}
   // membros
-  for(const k of['L','R']){
+  for(const k of['L','R'] as const){
     const sd=sk.side[k];
     const side=isSide();
     const nearA=!side||CTX.PJ(sd.S)[2]>=dN-1, nearL=!side||CTX.PJ(sd.Hp)[2]>=dP-1;
@@ -70,7 +70,7 @@ export function body(sk,pal){
   }
 }
 /* músculos */
-export const MUS={
+export const MUS:Record<IdMusculo,(sk:Esqueleto,k:Lado)=>FormaClassica>={
   pecClav(sk,k){const sd=sk.side[k],s=sd.s,{N,uT,fT,xT}=sk;const ins=comb(1,sd.S,.22,sub(sd.E,sd.S),2,fT);return[comb(1,N,10,fT,-3,uT,s*1,xT),comb(1,N,8,fT,-1,uT,s*10,xT),comb(1,sd.S,4,fT,-1,uT),ins,comb(1,N,10.5,fT,-9,uT,s*6,xT),comb(1,N,10.5,fT,-8,uT,s*1,xT)];},
   pecStern(sk,k){const sd=sk.side[k],s=sd.s,{N,uT,fT,xT}=sk;const ins=comb(1,sd.S,.22,sub(sd.E,sd.S),2,fT);return[comb(1,N,10.5,fT,-8,uT,s*1,xT),comb(1,N,10.5,fT,-9,uT,s*6,xT),ins,comb(1,N,10,fT,-17,uT,s*12,xT),comb(1,N,11,fT,-19,uT,s*1,xT)];},
   deltAnt(sk,k){const sd=sk.side[k];return{c:comb(1,sd.S,6,sd.uad,4,sk.fT),r:6};},
@@ -92,9 +92,9 @@ export const MUS={
   // adutores (catálogo, 11/2026): fuso na face interna da coxa, do púbis ao joelho (a adução com caneleira os tem como principal)
   adutores(sk,k){const sd=sk.side[k];const t=norm(sub(sd.K,sd.Hp));let m=mul(sk.xL,-sd.s);m=norm(sub(m,mul(t,dot(m,t))));return{a:comb(1,sd.Hp,.12,sub(sd.K,sd.Hp),3,m),b:comb(1,sd.Hp,.72,sub(sd.K,sd.Hp),2.5,m),w:7};}
 };
-export function muscles(sk,list,cls){
+export function muscles(sk:Esqueleto,list:MusculoDoExercicio[],cls:string){
   for(const[id,sides]of list){
-    let ks=sides==='RL'?['R','L']:[sides];
+    let ks:Lado[]=sides==='RL'?['R','L']:[sides];
     // na vista lateral, só o lado de perto (o de longe ficaria por cima do corpo)
     if(isSide()&&sides==='RL')ks=['R'];
     for(const k of ks){
@@ -107,10 +107,10 @@ export function muscles(sk,list,cls){
 }
 
 /* ================= equipamentos ================= */
-export function dumbbell(G,hd,cls){L3(add(G,mul(hd,-9)),add(G,mul(hd,9)),cls,2.6);C3(add(G,mul(hd,-9)),7,cls,{bias:.1});C3(add(G,mul(hd,9)),7,cls,{bias:.1});}
+export function dumbbell(G:V3,hd:V3,cls:string){L3(add(G,mul(hd,-9)),add(G,mul(hd,9)),cls,2.6);C3(add(G,mul(hd,-9)),7,cls,{bias:.1});C3(add(G,mul(hd,9)),7,cls,{bias:.1});}
 // torre da estação Movement: base [x,z], across = vetor da largura, out = vetor de frente; pulleyY = altura do carro
-export function tower(t,lift){
-  const base=[t.x,0,t.z],ac=t.ac,out=t.out;
+export function tower(t:Torre,lift:number){
+  const base:V3=[t.x,0,t.z],ac=t.ac,out=t.out;
   const zb=-400;
   BOX(comb(1,base,119,Y,-7,out),[[ac,10],[Y,119],[out,7]],'eqp',{bias:zb,w:.6});
   for(const s of[-1,1])L3(comb(1,base,s*8,ac,1,out),comb(1,base,s*8,ac,1,out,238,Y),'eql',2.2,{bias:zb+1});
@@ -121,14 +121,14 @@ export function tower(t,lift){
   C3(pul,3.2,'eqp',{w:1,bias:zb+4});
   return pul;
 }
-export function liftOf(ex,id,L){const L0=ex.L0&&ex.L0[id]!=null?ex.L0[id]:L;return Math.max(0,Math.min(95,(L-L0)*0.5));}
-export function cable(ex,id,from,to){const L=len(sub(from,to));if(CTX.MEAS&&ex._cab){ex._cab[id]=Math.min(ex._cab[id]??1e9,L);}L3(from,to,'cb',1,{bias:-1});return L;}
+export function liftOf(ex:Exercicio,id:string,L:number){const L0=ex.L0&&ex.L0[id]!=null?ex.L0[id]:L;return Math.max(0,Math.min(95,(L-L0)*0.5));}
+export function cable(ex:Exercicio,id:string,from:V3,to:V3){const L=len(sub(from,to));if(CTX.MEAS&&ex._cab){ex._cab[id]=Math.min(ex._cab[id]??1e9,L);}L3(from,to,'cb',1,{bias:-1});return L;}
 /**
  * Elástico (peça nova do motor, 04/11/2026; pesquisa-v2/08, seção 6): uma faixa entre a âncora e a mão (ou o pé). O
  * comprimento de repouso é o menor medido na calibração (como o cabo da polia); a faixa afina quando estica, até
  * ~55% da largura com o dobro do comprimento, para a pessoa ver a tensão subir. Devolve o comprimento.
  */
-export function band(ex,id,from,to,o={}){
+export function band(ex:Exercicio,id:string,from:V3,to:V3,o:OpcoesPrim={}){
   const L=len(sub(from,to));
   if(CTX.MEAS&&ex._cab){ex._cab[id]=Math.min(ex._cab[id]??1e9,L);}
   const L0=ex.L0&&ex.L0[id]!=null?ex.L0[id]+10:L;
@@ -141,7 +141,7 @@ export function band(ex,id,from,to,o={}){
  * está preso. Escolha de desenho: a ficha fala em porta, pilar ou barra firme; de lado, uma porta cobriria o corpo e,
  * de frente, sumiria; o poste lê em todas as vistas e é a convenção da torre da polia. Devolve o ponto do anel.
  */
-export function poste(x,z,alt,o={}){
+export function poste(x:number,z:number,alt:number,o:{h?:number}={}):V3{
   const h=o.h??Math.max(alt+12,60);
   BOX([x,h/2,z],[[X,2.5],[Y,h/2],[Z,2.5]],'eqp',{bias:-400,w:.6});
   BOX([x,2,z],[[X,7],[Y,2],[Z,7]],'eqd',{bias:-399});
@@ -149,17 +149,17 @@ export function poste(x,z,alt,o={}){
   return[x,alt,z];
 }
 /** Pegador do elástico na mão: uma barrinha curta atravessada. */
-export function bandHandle(G,dir,o={}){L3(add(G,mul(dir,-4.5)),add(G,mul(dir,4.5)),'eqd',2.6,{bias:o.bias??.3});}
+export function bandHandle(G:V3,dir:V3,o:OpcoesPrim={}){L3(add(G,mul(dir,-4.5)),add(G,mul(dir,4.5)),'eqd',2.6,{bias:o.bias??.3});}
 /**
  * Halter em 3D (catálogo, 04/11/2026): o cabo e as anilhas como cilindros de verdade, projetados na vista. De lado,
  * a anilha vista de frente é um círculo e vista de perfil é um retângulo fino, como na vida real (o `dumbbell` antigo
  * desenha sempre dois círculos). hd = direção do cabo.
  */
-export function dumbbell3(G,hd,cls,o={}){
+export function dumbbell3(G:V3,hd:V3,cls:string,o:OpcoesPrim={}){
   // Sem o acabamento A2 (estilo clássico e o A aprovado), o halter antigo: o clássico é conferido contra o guia original.
   if(!CTX.ACABAMENTO)return dumbbell(G,hd,cls);
   const u=norm(hd),a=norm(Math.abs(u[1])<.9?cross(u,[0,1,0]):cross(u,[1,0,0])),b=cross(u,a);
-  const disco=(c)=>{const pts=[];for(let i=0;i<20;i++){const t=i/20*2*Math.PI;pts.push(comb(1,c,7*Math.cos(t),a,7*Math.sin(t),b));}return pts;};
+  const disco=(c:V3)=>{const pts:V3[]=[];for(let i=0;i<20;i++){const t=i/20*2*Math.PI;pts.push(comb(1,c,7*Math.cos(t),a,7*Math.sin(t),b));}return pts;};
   L3(add(G,mul(u,-8)),add(G,mul(u,8)),cls,2.6,{bias:(o.bias??0),layer:o.layer});
   for(const s of[-1,1]){
     const pts=[...disco(add(G,mul(u,s*7))),...disco(add(G,mul(u,s*11)))];
@@ -172,7 +172,7 @@ export function dumbbell3(G,hd,cls,o={}){
  * pendurado; ao longo do antebraço, quando apoiado nele). A bola é uma esfera: um círculo em qualquer vista. `eixo` é a
  * direção da alça (de um "chifre" ao outro).
  */
-export function kettlebell(G,baixo,eixo,cls,o={}){
+export function kettlebell(G:V3,baixo:V3,eixo:V3,cls:string,o:OpcoesPrim&{maos?:[V3,V3]}={}){
   // Com as duas mãos (o.maos = [mão direita, mão esquerda]), a alça passa pelas duas, e a bola fica embaixo do meio:
   // o kettlebell nunca fica solto entre as mãos (pedido do Gustavo, 04/11/2026).
   if(o.maos){G=mid(o.maos[0],o.maos[1]);eixo=sub(o.maos[1],o.maos[0]);}
@@ -182,9 +182,9 @@ export function kettlebell(G,baixo,eixo,cls,o={}){
   PL3(pts,cls.endsWith('-e')?'kb-alca-e':'kb-alca',2.4,{bias:(o.bias??0)+.2,layer:o.layer});
   C3(c,9,cls,{bias:o.bias??0,layer:o.layer});
 }
-export function dumbbellV(top,cls){const bot=add(top,[0,-20,0]);L3(top,bot,cls,2.6,{bias:.4});for(const c of[top,bot]){L3(add(c,[-9,0,0]),add(c,[9,0,0]),cls,4,{bias:.45});L3(add(c,[0,0,-9]),add(c,[0,0,9]),cls,4,{bias:.45});}}
-export function ropeC(sk,pul){const hr=sk.side.R.G,hl=sk.side.L.G,m=mid(hr,hl);const half=len(sub(hr,hl))/2;return add(m,mul(norm(sub(pul,m)),Math.sqrt(Math.max(30,784-half*half))));}
-export function rope(ex,id,sk,pul){
+export function dumbbellV(top:V3,cls:string){const bot=add(top,[0,-20,0]);L3(top,bot,cls,2.6,{bias:.4});for(const c of[top,bot]){L3(add(c,[-9,0,0]),add(c,[9,0,0]),cls,4,{bias:.45});L3(add(c,[0,0,-9]),add(c,[0,0,9]),cls,4,{bias:.45});}}
+export function ropeC(sk:Esqueleto,pul:V3){const hr=sk.side.R.G,hl=sk.side.L.G,m=mid(hr,hl);const half=len(sub(hr,hl))/2;return add(m,mul(norm(sub(pul,m)),Math.sqrt(Math.max(30,784-half*half))));}
+export function rope(ex:Exercicio,id:string,sk:Esqueleto,pul:V3){
   const hr=sk.side.R.G,hl=sk.side.L.G,m=mid(hr,hl);const u=norm(sub(pul,m));const half=len(sub(hr,hl))/2;const d=Math.sqrt(Math.max(30,28*28-half*half));
   const c=add(m,mul(u,d));L3(c,hr,'rope',2,{bias:.2});L3(c,hl,'rope',2,{bias:.2});C3(hr,2.4,'eqd',{bias:.3});C3(hl,2.4,'eqd',{bias:.3});C3(c,1.6,'eqd',{bias:.2});
   return cable(ex,id,c,pul);
@@ -206,8 +206,8 @@ export function pullBar(){
  * pegadores = [ponto direito, ponto esquerdo] (ou um ponto só: uma fita só). o.tira = comprimento do trecho único (cm). o.pe = pegador de pé (berço
  * largo, sem anel). cls = 'db' ou 'db-e' (o pegador fica vermelho na figura do erro, como o halter).
  */
-export function suspensao(ex,id,ancora,pegadores,cls,o={}){
-  const m=pegadores.length>1?mid(pegadores[0],pegadores[1]):pegadores[0],L=len(sub(m,ancora)); // um pegador só: uma fita
+export function suspensao(ex:Exercicio,id:string,ancora:V3,pegadores:V3[],cls:string,o:{tira?:number;pe?:boolean}={}){
+  const m=pegadores.length>1?mid(pegadores[0]!,pegadores[1]!):pegadores[0]!,L=len(sub(m,ancora)); // um pegador só: uma fita
   const u=norm(sub(m,ancora)),tira=Math.min(o.tira??30,L*.6),split=add(ancora,mul(u,tira));
   if(CTX.MEAS){ // caminho da fita até cada pegador: trecho único + fita própria
     ex._fita=ex._fita||{};const f=ex._fita[id]||{min:1e9,max:0};
@@ -237,7 +237,7 @@ export function paralelas(h=105,meia=25){
  * Caneleira de peso (catálogo, 11/2026): uma caixa presa logo acima do tornozelo, atravessada por uma tira. k = lado.
  * cls = 'eqd' (normal) ou 'db-e' (vermelha, na figura do erro).
  */
-export function caneleira(sk,k,cls,o={}){
+export function caneleira(sk:Esqueleto,k:Lado,cls:string,o:OpcoesPrim={}){
   const sd=sk.side[k],u=norm(sub(sd.K,sd.A)),a=norm(Math.abs(u[1])<.9?cross(u,Y):cross(u,X)),b=cross(u,a);
   const c=add(sd.A,mul(u,7));
   BOX(c,[[u,4.5],[a,6.5],[b,6.5]],cls,{bias:o.bias??.3,w:.9});
@@ -248,18 +248,18 @@ export function caneleira(sk,k,cls,o={}){
  * (`band`, ids 'f' e 't': frente e trás) entre as duas coxas e uma "tampa" em cada coxa. Herda da `band` a calibração
  * do repouso e o afinamento com a tensão: a faixa afina quando os joelhos abrem.
  */
-export function miniBand(ex,sk,o={}){
-  const p={};for(const k of['R','L']){const sd=sk.side[k];p[k]=add(sd.K,mul(sub(sd.Hp,sd.K),.18));}
+export function miniBand(ex:Exercicio,sk:Esqueleto,o:OpcoesPrim={}){
+  const p={} as Record<Lado,V3>;for(const k of['R','L'] as const){const sd=sk.side[k];p[k]=add(sd.K,mul(sub(sd.Hp,sd.K),.18));}
   const f=mul(norm(sub(sk.fL,mul(sk.uL,dot(sk.fL,sk.uL)))),6);
   band(ex,'f',add(p.R,f),add(p.L,f),{w:o.w??3.4,bias:.4});
   band(ex,'t',sub(p.R,f),sub(p.L,f),{w:o.w??3.4,bias:-2});
-  for(const k of['R','L'])L3(add(p[k],f),sub(p[k],f),'elas',o.w??3.4,{bias:.5});
+  for(const k of['R','L'] as const)L3(add(p[k],f),sub(p[k],f),'elas',o.w??3.4,{bias:.5});
 }
 /**
  * Roda abdominal (catálogo, 11/2026): uma roda de raio 9 no chão, com o eixo passando pelas duas mãos e um pegador
  * de cada lado. De lado, a roda é um círculo; de frente, um retângulo fino. cls = 'db' ou 'db-e' (pegadores).
  */
-export function roda(GR,GL,cls,o={}){
+export function roda(GR:V3,GL:V3,cls:string,o:OpcoesPrim={}){
   const c=mid(GR,GL),a=norm(sub(GL,GR));
   if(isSide()){C3(c,9,'eqp',{w:1.2,bias:o.bias??.5});C3(c,2.2,'eqd',{bias:(o.bias??.5)+.1});}
   else BOX(c,[[a,1.6],[Y,9],[Z,9]],'eqp',{bias:o.bias??.5,w:.9});
