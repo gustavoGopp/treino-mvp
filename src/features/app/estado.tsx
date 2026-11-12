@@ -45,8 +45,9 @@ export function EstadoProvider({ children }: { children: ReactNode }) {
     carregar()
       .then((c) => {
         if (!vivo) return;
-        atual.current = c.estado;
-        setEstado(c.estado);
+        const lido = comProgramaQueFalta(c.estado, agoraIso());
+        atual.current = lido;
+        setEstado(lido);
         setErroCarga(c.erro);
         if (c.naoSalvo) setErroAoSalvar(true);
         if (c.erro) marcarFalha();
@@ -138,6 +139,18 @@ export function comProgramaNovo(e: Estado, agora: string, semAnterior = false): 
   const local = localPrincipal(e);
   if (!p) return semAnterior ? { ...e, programa: undefined } : e;
   return { ...e, programa: { programa: p, geradoEm: agora, ...(local ? { localId: local.id } : {}) } };
+}
+
+/**
+ * Cadastro completo e nenhum programa salvo: acontece quando o programa guardado citava um exercício que saiu da
+ * biblioteca (storage/ids.ts). O programa é derivado do cadastro, então é gerado de novo ao abrir, mesmo com um treino
+ * aberto (não há programa antigo para proteger). Com a triagem bloqueando, continua sem programa.
+ */
+export function comProgramaQueFalta(e: Estado, agora: string): Estado {
+  if (e.programa) return e;
+  const p = gerarDoEstado(e);
+  const local = localPrincipal(e);
+  return p ? { ...e, programa: { programa: p, geradoEm: agora, ...(local ? { localId: local.id } : {}) } } : e;
 }
 
 export const agoraIso = () => new Date().toISOString();

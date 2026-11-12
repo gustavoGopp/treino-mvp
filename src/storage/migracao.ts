@@ -1,4 +1,5 @@
 import type { z } from 'zod';
+import { acertarIds } from './ids';
 import { estadoSchema, NOME_LOCAL_PADRAO, VERSAO_ESTADO, type Estado } from './esquema';
 
 // Migrações do estado guardado. Cada entrada leva da versão N para N + 1.
@@ -52,6 +53,8 @@ export const MIGRACOES: Record<number, Migracao> = {
   // O campo é opcional e nasce ausente: nada é inventado para as sessões antigas. A versão nova também cobre dois
   // campos que tinham entrado na 7 sem versão própria (`rotina.objetivo` e `respostas.semanaLeveEm`): um app da
   // versão 7 que ainda não conhece esses campos passa a recusar o dado, em vez de regravá-lo sem eles.
+  // Também na 8: a sessão ganha `foraDaBiblioteca`, onde fica o exercício registrado cujo id saiu da biblioteca
+  // (storage/ids.ts). Opcional e ausente nas sessões antigas.
   7: (anterior) => ({ ...anterior }),
 };
 
@@ -76,7 +79,8 @@ export function migrar(
     dados = { ...passo(dados), versao: v + 1 };
   }
 
-  const r = esquema.safeParse(dados);
+  // Ids de exercício renomeados ou que saíram da biblioteca não deixam o estado ilegível (storage/ids.ts).
+  const r = esquema.safeParse(acertarIds(dados));
   if (!r.success) {
     const p = r.error.issues[0]!;
     return { ok: false, erro: `Dado inválido em "${p.path.join('.') || 'raiz'}": ${p.message}.` };

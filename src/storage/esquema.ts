@@ -135,6 +135,11 @@ export const sessaoSchema = z.object({
       dorSemSerie: z.number().int().min(1).max(10).optional(),
     }),
   ),
+  /**
+   * Exercícios registrados cujo id saiu da biblioteca (versão 8; storage/ids.ts): ficam guardados como estavam, fora
+   * das regras e das telas, para o registro não se perder nem deixar o estado ilegível.
+   */
+  foraDaBiblioteca: z.array(z.object({ exId: z.string(), series: z.array(serie) }).passthrough()).optional(),
   /** Toque opcional no fim do treino (R2; deload.semana-leve). Nada vem marcado: ausente = a pessoa não tocou. */
   hojeFoi: z.enum(['leve', 'normal', 'pesado']).optional(),
   /** Feita durante uma semana leve aceita (R2): fora da dupla progressão e da estagnação. */

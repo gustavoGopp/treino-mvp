@@ -4,6 +4,7 @@ import { z } from 'zod';
 import { gerarPrograma } from '../../src/domain/gerador';
 import { exportarJson, importarJson, nomeDoArquivo } from '../../src/storage/arquivo';
 import { estadoSchema, estadoVazio, perfilDe, primeiroPassoPendente, VERSAO_ESTADO, type Estado } from '../../src/storage/esquema';
+import { acertarIds } from '../../src/storage/ids';
 import { migrar, MIGRACOES, type Migracao } from '../../src/storage/migracao';
 import { capacidades } from '../../src/domain/taxonomia/equipamentos';
 import { avaliarTriagem } from '../../src/domain/triagem';
@@ -351,5 +352,59 @@ describe('versão 7 → 8 (auditoria de 12/11/2026)', () => {
     expect(comNota(7)).toBe(true);
     expect(comNota(0)).toBe(false);
     expect(comNota(11)).toBe(false);
+  });
+});
+
+// Auditoria de 12/11/2026: um id de exercício fora da biblioteca deixava o estado inteiro ilegível.
+describe('ids de exercício que saíram da biblioteca (storage/ids.ts)', () => {
+  const base = () => {
+    const r = migrar(estadoV7());
+    if (!r.ok) throw new Error(r.erro);
+    return structuredClone(r.estado) as Estado & Record<string, unknown>;
+  };
+
+  it('o estado continua legível: o registro do exercício desconhecido fica guardado à parte, na própria sessão', () => {
+    const e = base();
+    const sessao = e.historico[0]!;
+    const feito = sessao.exercicios[0]!;
+    const conhecido = sessao.exercicios[1]!.exId;
+    sessao.exercicios[0] = { ...feito, exId: 'exercicio-que-saiu' };
+    sessao.exercicios[1] = { ...sessao.exercicios[1]!, noLugarDe: 'exercicio-que-saiu' };
+    e.restricoes = { evitarExercicios: ['exercicio-que-saiu', conhecido], evitarEquipamentos: [] };
+    e.preferidos = { 'funcao-a': 'exercicio-que-saiu', 'funcao-b': conhecido };
+    e.programa!.programa.dias[0]!.exercicios[0]!.alternativas.push('exercicio-que-saiu');
+    const r = migrar(e);
+    if (!r.ok) throw new Error(r.erro);
+    const lida = r.estado.historico[0]!;
+    expect(lida.exercicios.map((x) => x.exId)).not.toContain('exercicio-que-saiu');
+    expect(lida.exercicios).toHaveLength(sessao.exercicios.length - 1);
+    expect(lida.foraDaBiblioteca).toEqual([{ ...feito, exId: 'exercicio-que-saiu' }]);
+    expect(lida.exercicios[0]).not.toHaveProperty('noLugarDe');
+    expect(r.estado.restricoes!.evitarExercicios).toEqual([conhecido]);
+    expect(r.estado.preferidos).toEqual({ 'funcao-b': conhecido });
+    expect(r.estado.programa!.programa.dias[0]!.exercicios[0]!.alternativas).not.toContain('exercicio-que-saiu');
+    // ler de novo não muda mais nada, e o que ficou à parte continua lá
+    expect(migrar(r.estado)).toEqual({ ok: true, estado: r.estado });
+  });
+
+  it('se o programa salvo prescreve o exercício desconhecido, ele sai; o histórico e o cadastro ficam', () => {
+    const e = base();
+    e.programa!.programa.dias[0]!.exercicios[0]!.exId = 'exercicio-que-saiu';
+    const r = migrar(e);
+    if (!r.ok) throw new Error(r.erro);
+    expect(r.estado.programa).toBeUndefined();
+    expect(r.estado.historico).toEqual(e.historico);
+    expect(r.estado.rotina).toEqual(e.rotina);
+  });
+
+  it('o id renomeado troca para o novo em todo lugar, sem perder nada', () => {
+    const e = base();
+    const feito = e.historico[0]!.exercicios[0]!;
+    // o id da animação é outro campo (o nome do desenho no motor) e não muda com o id do exercício
+    const texto = JSON.stringify(e).replaceAll(`"${feito.exId}"`, '"nome-antigo"').replaceAll('"animacaoId":"nome-antigo"', `"animacaoId":"${feito.exId}"`);
+    const bruto = JSON.parse(texto) as Record<string, unknown>;
+    const lido = acertarIds(bruto, { 'nome-antigo': feito.exId });
+    expect(lido).toEqual(JSON.parse(JSON.stringify(e)));
+    expect(estadoSchema.safeParse(lido).success).toBe(true);
   });
 });
