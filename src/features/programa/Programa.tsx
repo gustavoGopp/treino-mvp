@@ -13,7 +13,7 @@ import { inventarioPrincipal, localDoTreino, perfilDe, primeiroPassoPendente, ty
 import { alternarPreferencia, diaDoTreino, hojeDoEstado, iniciarSessao } from '../treino/acoes';
 import { Preferencias } from './Prefiro';
 import { agoraIso, comProgramaNovo, fusoDoAparelho, gerarDoEstado, mesmoConteudo, useApp } from '../app/estado';
-import { AvisoInstalar, LembreteCopia } from '../app/avisos';
+import { AvisoInstalar, AvisoSalvar, LembreteCopia } from '../app/avisos';
 import { NavInferior, PorQue, Selo, Titulo, Topo } from '../app/ui';
 import { ComoLer } from './ComoLer';
 import { Folha } from '../app/Folha';
@@ -63,6 +63,7 @@ export function Programa() {
       <div className="wrap app">
         <Topo direita={<Link to="/dados">Meus dados</Link>} />
         <main className="conteudo">
+        <AvisoSalvar />
           <Titulo>Programa pausado</Titulo>
           <div className="warnbox">
             {triagem.mensagem} <Selo id={triagem.regraId} />
@@ -227,6 +228,7 @@ export function Programa() {
     <div className="wrap app com-nav">
       <Topo />
       <main className="conteudo treino">
+        <AvisoSalvar />
         <Titulo>Seu treino</Titulo>
 
         <section className="cartao-hoje" aria-labelledby="hoje-t">

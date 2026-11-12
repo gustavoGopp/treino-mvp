@@ -1,7 +1,7 @@
 import { createContext, useCallback, useContext, useEffect, useMemo, useRef, useState, type ReactNode } from 'react';
 import { gerarPrograma, type Programa } from '../../domain/gerador';
 import { estadoVazio, inventarioPrincipal, localPrincipal, perfilDe, type Estado } from '../../storage/esquema';
-import { apagar, carregar, guardarIlegivel, pedirPersistencia, salvar } from '../../storage/idb';
+import { anotarPendente, apagar, carregar, guardarIlegivel, pedirPersistencia, salvar } from '../../storage/idb';
 
 // Estado do app: carregado do IndexedDB uma vez e salvo a cada mudança feita pela pessoa.
 // Sem biblioteca de estado: um contexto e funções puras sobre o Estado.
@@ -13,6 +13,8 @@ type Contexto = {
   erroCarga?: string;
   /** A carga falhou e nada foi salvo por cima ainda: o que está guardado é o dado antigo, que o app não leu. */
   cargaFalhou: boolean;
+  /** A última gravação foi recusada pelo aparelho (sem espaço, aba anônima): o que está na tela pode se perder. */
+  erroAoSalvar: boolean;
   /** null = ainda não pediu; true/false = resposta do navegador. */
   persistente: boolean | null;
   atualizar: (f: (e: Estado) => Estado) => void;
@@ -30,6 +32,7 @@ export function EstadoProvider({ children }: { children: ReactNode }) {
   const atual = useRef(estado);
   const [cargaFalhou, setCargaFalhou] = useState(false);
   const falhou = useRef(false);
+  const [erroAoSalvar, setErroAoSalvar] = useState(false);
   // As gravações saem em fila: depois de uma carga com erro, a primeira espera a cópia do dado antigo (guardarIlegivel).
   const fila = useRef<Promise<void>>(Promise.resolve());
   const marcarFalha = () => {
@@ -45,6 +48,7 @@ export function EstadoProvider({ children }: { children: ReactNode }) {
         atual.current = c.estado;
         setEstado(c.estado);
         setErroCarga(c.erro);
+        if (c.naoSalvo) setErroAoSalvar(true);
         if (c.erro) marcarFalha();
       })
       .catch(() => {
@@ -62,14 +66,23 @@ export function EstadoProvider({ children }: { children: ReactNode }) {
     atual.current = novo;
     setEstado(novo);
     setErroCarga(undefined);
+    // Na hora do toque, antes de qualquer espera: se a página sair agora, a carga seguinte recupera daqui.
+    const anotacao = anotarPendente(novo);
     if (falhou.current) {
       // O dado antigo (ilegível) é guardado à parte antes de ser trocado; se nem isso der, nada é salvo por cima dele.
       falhou.current = false;
       setCargaFalhou(false);
-      fila.current = guardarIlegivel();
+      // Se a cópia falhar, a gravação desta vez não acontece e a próxima tenta copiar de novo.
+      fila.current = guardarIlegivel().catch((e: unknown) => {
+        marcarFalha();
+        throw e;
+      });
     }
-    fila.current = fila.current.then(() => salvar(novo));
-    fila.current.catch(() => setErroCarga('Não foi possível salvar neste aparelho. Exporte seus dados para não perdê-los.'));
+    // Uma gravação recusada não trava as seguintes: cada uma tenta de novo, e o aviso some quando uma der certo.
+    fila.current = fila.current.then(() => salvar(novo, anotacao)).then(
+      () => setErroAoSalvar(false),
+      () => setErroAoSalvar(true),
+    );
     if (persistente === null) void pedirPersistencia().then(setPersistente);
   }, [persistente]);
 
@@ -79,6 +92,7 @@ export function EstadoProvider({ children }: { children: ReactNode }) {
       carregado,
       erroCarga,
       cargaFalhou,
+      erroAoSalvar,
       persistente,
       atualizar: (f) => gravar(f(atual.current)),
       substituir: gravar,
@@ -90,9 +104,10 @@ export function EstadoProvider({ children }: { children: ReactNode }) {
         atual.current = estadoVazio();
         setEstado(atual.current);
         setErroCarga(undefined);
+        setErroAoSalvar(false);
       },
     }),
-    [estado, carregado, erroCarga, cargaFalhou, persistente, gravar],
+    [estado, carregado, erroCarga, cargaFalhou, erroAoSalvar, persistente, gravar],
   );
   // As telas só aparecem depois da carga: os formulários leem o estado salvo na primeira renderização.
   return <Ctx.Provider value={valor}>{carregado ? children : null}</Ctx.Provider>;

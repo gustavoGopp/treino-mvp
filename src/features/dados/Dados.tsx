@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { textoUltimaCopia } from '../../domain/dados';
 import { importarJson } from '../../storage/arquivo';
 import { consultarPersistencia, lerBruto, lerIlegivel } from '../../storage/idb';
+import { AvisoSalvar } from '../app/avisos';
 import { baixarCopia } from '../app/copia';
 import { agoraIso, useApp } from '../app/estado';
 import { apagarLocal, apagarTodosLocais, dataCurta, lerLocal, LOCAL } from '../app/local';
@@ -115,6 +116,7 @@ export function Dados() {
     <div className={estado.programa ? 'wrap app com-nav' : 'wrap app'}>
       <Topo direita={estado.programa ? undefined : <Link to="/">Início</Link>} />
       <main className="conteudo dados">
+        <AvisoSalvar />
         <Titulo>Meus dados</Titulo>
         <p className="ajuda">
           Tudo fica guardado só neste aparelho. <TextoFotoCurto />

@@ -22,6 +22,7 @@ import {
 import type { Inventario } from '../../domain/taxonomia/equipamentos';
 import { avaliarDor, avaliarSinal, type Sinal } from '../../domain/triagem';
 import type { Estado } from '../../storage/esquema';
+import { AvisoSalvar } from '../app/avisos';
 import { agoraIso, fusoDoAparelho, useApp } from '../app/estado';
 import { Folha } from '../app/Folha';
 import { PorQue, Selo, Titulo } from '../app/ui';
@@ -60,7 +61,7 @@ function gravarExercicioAberto(sessaoId: string, indice: number): void {
 type Item = { x: ExercicioPrescrito; feito: { exId: string; series: SerieRegistrada[]; interrompido?: boolean; noLugarDe?: string } };
 
 export function Treino() {
-  const { estado, atualizar } = useApp();
+  const { estado, atualizar, erroAoSalvar } = useApp();
   const navigate = useNavigate();
   const descanso = useDescanso();
   useTelaAcesa();
@@ -168,10 +169,11 @@ export function Treino() {
         </div>
       </header>
       <main className="conteudo sessao">
+        <AvisoSalvar />
         <PainelDescanso d={descanso} />
         {salva && (
           <div className="desfazer" role="status">
-            <span>Série {salva.numero} salva</span>
+            <span>{erroAoSalvar ? `Série ${salva.numero} anotada, mas não salva` : `Série ${salva.numero} salva`}</span>
             <button
               type="button"
               onClick={() => {

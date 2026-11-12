@@ -226,7 +226,6 @@ Detalhes e números em `devlog.md` ("R5-anim"), `revisoes/r5-anim/README.md` e `
 O que a auditoria achou e não corrigiu, porque pede uma decisão do Gustavo ou muda uma regra. Em ordem de gravidade.
 
 **Segurança e dados**
-- **Erro ao salvar não aparece durante o treino** (`features/app/estado.tsx`): se o aparelho recusa a gravação (sem espaço, aba anônima), "Série N salva" continua aparecendo e tudo se perde ao recarregar. O erro só é mostrado na boas-vindas e em Meus dados. Mostrar também no treino, no programa e no resumo.
 - **Dor acima de 5 antes da 1ª série não fica registrada** (`Treino.tsx`): o exercício é interrompido, mas a nota não vai para lugar nenhum, e o aviso de dor repetida só lê as séries.
 - **O programa pode ser gerado de novo no meio de um treino** ("Atualizar", a semana com N dias, restrições, inventário): o exercício que saiu do dia passa a usar as séries e o descanso da 1ª vaga. Esconder ou travar enquanto há treino aberto.
 - **Um id de exercício desconhecido deixa o estado inteiro ilegível** (`storage/esquema.ts`): hoje nenhum id foi removido, mas o primeiro que for renomeado sem migração quebra a carga de quem o registrou (o dado agora fica guardado à parte, mas o app abre vazio). Aceitar qualquer texto no histórico ou criar um teste que exija a migração.

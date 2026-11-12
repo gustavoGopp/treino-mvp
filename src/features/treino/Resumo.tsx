@@ -4,6 +4,7 @@ import { BIBLIOTECA } from '../../domain/biblioteca';
 import { marcasDaSessao, type Marca } from '../../domain/acompanhamento/evolucao';
 import { resumoSessao, sugestaoDoExercicio, textoCarga } from '../../domain/sessao';
 import { localDaSessao } from '../../storage/esquema';
+import { AvisoSalvar } from '../app/avisos';
 import { agoraIso, fusoDoAparelho, useApp } from '../app/estado';
 import { apagarUltimoTreino, hojeDoTreino, inventarioDoTreino, opcoesDaCarga } from './acoes';
 import { marcarHojeFoi, semanaDoEstado } from '../acompanhamento/acoes';
@@ -64,6 +65,7 @@ export function Resumo() {
     <div className="wrap app">
       <Topo direita={<Link to="/programa">Início</Link>} />
       <main className="conteudo">
+        <AvisoSalvar />
         <Titulo>{s.encerradaPorAlerta ? 'Treino encerrado por segurança' : 'Treino concluído'}</Titulo>
         {s.encerradaPorAlerta && (
           <div className="caixa-erro" role="alert">
