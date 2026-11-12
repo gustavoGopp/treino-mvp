@@ -20,11 +20,6 @@ const cil = (C, a, b, r, m = M.cromo, o = {}) => C.cilindro(a, b, r, m, { lados:
 const pega = (C, a, b, r = 2.1) => C.cilindro(a, b, r, M.borracha, { lados: 12 });
 const rolo = (C, c, eixo, comp, r = 5) => C.cilindro(sub(c, mul(eixo, comp / 2)), add(c, mul(eixo, comp / 2)), r, M.estofado, { lados: 18 });
 const disco = (C, c, eixo, r, esp = 3.4, m = M.anilha) => C.anilha(sub(c, mul(eixo, esp / 2)), add(c, mul(eixo, esp / 2)), r, m);
-// estofado pelo centro: c = centro do volume, ao = comprimento, nrm = espessura (para "cima" do estofado), largura no 3º eixo
-function almofada(C, c, ao, nrm, comp, esp, larg) {
-  const a = norm(ao), n = norm(nrm), l = norm(V.cross(a, n));
-  C.estofado(add(add(c, mul(n, -esp / 2)), mul(l, 0)), a, n, l, comp, esp, larg);
-}
 // moldura retangular no chão
 function base(C, x0, x1, z0, z1, w = 6) {
   for (const z of [z0, z1]) tubo(C, [x0, 3, z], [x1, 3, z], w);

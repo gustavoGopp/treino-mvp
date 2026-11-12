@@ -2,7 +2,7 @@
 // a direção escolhida pelo Gustavo). Gera o SVG (aba do navegador) e os PNG que o Android e o iOS pedem: 192 e 512 com
 // cantos redondos (purpose "any"), 512 sangrado (purpose "maskable", o halter dentro da zona segura de 40%) e 180 para
 // o iOS (sangrado; o iOS arredonda sozinho). Usa o Chromium do Playwright, sem dependência nova.
-// Uso: node scripts/design/redesign/icones-app.mjs
+// Uso: node scripts/icones-app.mjs
 import { chromium } from '@playwright/test';
 import { writeFileSync } from 'node:fs';
 

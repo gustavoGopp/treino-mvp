@@ -1,7 +1,7 @@
 // Redesign, lote 5 (08/11/2026): os 49 desenhos de equipamento, só o aparelho, no estilo realista aprovado na 3ª
 // rodada. Escreve um SVG autossuficiente por item em public/equipamento/<id>.svg (viewBox 0 0 160 120, fundo
 // transparente, sem texto, sem fonte, sem referência externa) e as folhas de conferência para o Gustavo.
-// Uso: node scripts/design/redesign/desenhos-v2/todos.mjs
+// Uso: node scripts/desenhos-equipamento/todos.mjs
 //      (opcional: node .../todos.mjs <pasta-das-folhas> para gravar as folhas em outro lugar)
 import { chromium } from '@playwright/test';
 import { mkdirSync, writeFileSync } from 'node:fs';

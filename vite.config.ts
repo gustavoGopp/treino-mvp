@@ -54,7 +54,7 @@ export default defineConfig(({ mode }) => ({
         display: 'standalone',
         background_color: '#F5F3EF',
         theme_color: '#F5F3EF',
-        // lote 5 do redesign: o halter inclinado em Giz e grafite (scripts/design/redesign/icones-app.mjs); "any" e
+        // lote 5 do redesign: o halter inclinado em Giz e grafite (scripts/icones-app.mjs); "any" e
         // "maskable" em arquivos separados, como o Chrome pede
         icons: [
           { src: 'icon-192.png', sizes: '192x192', type: 'image/png', purpose: 'any' },

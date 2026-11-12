@@ -245,7 +245,5 @@ O que a auditoria achou e não corrigiu, porque pede uma decisão do Gustavo ou 
 
 **Repositório**
 - **Histórico do git**: os e-mails pessoais e o nome do empregador saíram dos arquivos, mas continuam nos commits antigos. Apagar de lá pede reescrever o histórico. **Fica como está (decidido em 12/11/2026):** reescrever muda todos os hashes, quebra os ramos e os PRs abertos e pede `push --force` na `main`.
-- **`LEIA-ME.md` e `PROMPT-INICIAL.md`** são do kit inicial (falam em "antes de publicar o repositório" e em 26 exercícios). Apagar ou mover para o histórico.
-- **27 imagens em `docs/img/` sem nenhuma referência** (cerca de 10 MB).
 - **`scripts/design/**` (74 arquivos) e `scripts/gif/divisao.spec.ts`**: sobras das sessões de design; 8 clicam em "Entendi, vamos começar", que não existe mais. O motor (`src/engine`) segue com `@ts-nocheck` em 101 de 103 arquivos.
 - **CI**: roda duas vezes em cada PR (`push` e `pull_request`) e não tem `permissions`. `vite-node`, `playwright` e `tsx` são usados pelos scripts sem estar no `package.json`.

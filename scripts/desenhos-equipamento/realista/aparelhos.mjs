@@ -1,12 +1,10 @@
 // As 8 amostras na ilustração realista. Cada aparelho é uma função que monta a cena (medidas em cm) e devolve
 // o conteúdo SVG para o viewBox 0 0 160 120. Para os 49 itens: uma função por item, com as mesmas peças.
 import { MAT, V, camera, cena, f1, retArred } from './base.mjs';
-import { pessoa, MEDIDAS, ALTURA_TORNOZELO as AT, junta } from './pessoa.mjs';
+import { pessoa, ALTURA_TORNOZELO as AT } from './pessoa.mjs';
 
 const { add, sub, mul, norm } = V;
 export const VIEWBOX = '0 0 160 120';
-const r2 = (deg) => (deg * Math.PI) / 180;
-const dirAng = (deg) => [Math.cos(r2(deg)), Math.sin(r2(deg)), 0];
 
 // ---------- kettlebell (peso livre: o objeto, desenhado à mão com volume) ----------
 function kettlebellForma(id, cx, base, R, kg) {

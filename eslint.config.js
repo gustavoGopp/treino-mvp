@@ -13,6 +13,13 @@ export default tseslint.config(
     rules: { ...reactHooks.configs.recommended.rules },
   },
   {
+    // Os scripts de apoio em JavaScript (geradores, QA do motor, auditoria) rodam no Node; alguns levam código para
+    // dentro do navegador do Playwright, daí os globais do navegador também.
+    extends: [js.configs.recommended],
+    files: ['scripts/**/*.{mjs,cjs,js}', 'tests/**/*.{mjs,cjs,js}', '*.{mjs,cjs,js}'],
+    languageOptions: { ecmaVersion: 2023, sourceType: 'module', globals: { ...globals.browser, ...globals.node } },
+  },
+  {
     // Port mecânico do guia original (scripts/extrair-motor.mjs): o código fica como no original até a tipagem real.
     files: ['src/engine/**/*.ts'],
     rules: {
