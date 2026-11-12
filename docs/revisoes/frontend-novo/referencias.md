@@ -476,7 +476,7 @@ O que isso diz para o app:
 | https://github.com/hemanth/awesome-pwa | repositório ou registro de pacote | Lista com checklist de PWA, apps por categoria e casos de estudo. Licença não conferida. | - | consenso | 01 |
 
 O que isso diz para o app:
-- O limite é de 175 kB na 1ª tela, com cerca de 170 kB já usados; qualquer biblioteca com mais de uns 5 kB só entra sob demanda (01). Por isso a indicação da pesquisa 01 é escrever à mão a folha, o campo de carga, o aviso temporário e o gráfico, e usar o que o navegador já tem (`<dialog>`, CSS, Web Animations).
+- O limite é de 175 kB de JavaScript na 1ª tela. O teste do app mede 154,4 kB hoje, ou seja, 20,6 kB de folga (a pesquisa 01 partiu de "cerca de 170 kB", um número do briefing que não tinha sido medido; a correção está no topo daquele arquivo). Cada biblioteca de peças medida pesa de 10 a 32 kB, então qualquer uma gastaria metade da folga ou mais. A indicação da pesquisa 01 é escrever à mão a folha, o campo de carga, o aviso temporário e o gráfico, e usar o que o navegador já tem (`<dialog>`, CSS, Web Animations).
 - Ícones: copiar só os usados de Lucide (ISC) ou Tabler (MIT), guardando o aviso de licença. Remix Icon tem licença própria e fica fora; Vaul não é mantida (01).
 - Letras: Figtree (20 kB), Geist (29 kB) e Atkinson Next (34 kB) são variáveis e OFL, com números tabulares no recorte medido. Escolher por teste visual dos números em tamanho grande, não só pela tabela (01; a escolha entre elas é opinião).
 - Os apps abertos de treino são AGPL ou GPL: servem para aprender princípios, nunca para copiar código ou tela (01).

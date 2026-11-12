@@ -7,6 +7,8 @@ Como ler os pesos: "min+gzip" é o tamanho do JavaScript depois de minificado e 
 - **Medido aqui**: instalei o pacote numa pasta isolada, empacotei só as peças citadas com esbuild (minificado) e comprimi com gzip -9. React e react-dom ficaram de fora (o app já os tem). Esse é o número mais confiável para decidir.
 - **Bundlephobia / npm**: número do pacote inteiro, consultado na API do Bundlephobia (bundlephobia.com/api/size). Serve para comparar, mas superestima quando só se usa uma peça.
 
+> **Correção de 12/11/2026, feita por quem encomendou esta pesquisa.** O número de partida abaixo ("cerca de 170 kB") veio do briefing e estava errado: não tinha sido medido. O teste do próprio app (`tests/e2e/orcamento.spec.ts`) mede **154,4 kB** na boas-vindas, contra o limite de 175 (folga de 20,6 kB), e **202,8 kB** no programa, contra 220 (folga de 17,2 kB). Onde este arquivo diz "sobram uns 5 kB" ou "não dá para colocar nenhuma biblioteca de 10 kB", leia com a folga real. Os pesos medidos de cada biblioteca continuam valendo; a recomendação de escrever à mão passa a se apoiar na simplicidade, não na falta de espaço.
+
 O app está com cerca de 170 kB na 1ª tela e o limite é 175 kB: sobram uns 5 kB. Não medi o app em si. Isso significa que qualquer biblioteca com mais de uns 5 kB só entra se for carregada sob demanda (depois da 1ª tela), ou se uma coisa que já existe for trocada por ela.
 
 ## 1. Em 10 linhas
