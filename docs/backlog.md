@@ -228,7 +228,6 @@ O que a auditoria achou e não corrigiu, porque pede uma decisão do Gustavo ou 
 - **Dependências com alerta no `npm audit`** (20; 3 em produção: zod 3, react-router 6; os críticos são do vitest 3, só no desenvolvimento): todas as correções são versões maiores (zod 4, react-router 7, vitest 5). **Fica (decidido em 12/11/2026):** conferido de novo, `npm audit fix` sem `--force` não tira nenhum dos 20 alertas; cada versão maior entra num PR próprio, fora da sessão de correções.
 
 **Regras do treino**
-- **Dias vazios com aviso falso**: com todas as regiões excluídas pela dor, o programa sai "ok" com dias sem exercício e o texto "só o abdominal é possível neste dia".
 - **A oferta de menos dias aparece depois de uma pausa**, com "você treinou cerca de 1 vez por semana" para 4 semanas sem treino (`acompanhamento/semana.ts`).
 - **"Suba dois degraus" quando só existe um degrau acima** (`progressao/index.ts`).
 - **`panturrilha-chao` está como bilateral**, mas o texto manda fazer uma perna de cada vez.

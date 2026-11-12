@@ -1,5 +1,5 @@
 import { createContext, useCallback, useContext, useEffect, useMemo, useRef, useState, type ReactNode } from 'react';
-import { gerarPrograma, type Programa } from '../../domain/gerador';
+import { gerarPrograma, type Programa, type Resultado } from '../../domain/gerador';
 import { estadoVazio, inventarioPrincipal, localPrincipal, perfilDe, type Estado } from '../../storage/esquema';
 import { anotarPendente, apagar, carregar, guardarIlegivel, pedirPersistencia, salvar } from '../../storage/idb';
 
@@ -122,11 +122,15 @@ export function useApp(): Contexto {
 
 /** Gera o programa com o perfil e o inventário do local principal. Devolve null se falta algo ou se a triagem bloqueia. */
 export function gerarDoEstado(e: Estado): Programa | null {
+  const r = resultadoDoEstado(e);
+  return r?.status === 'ok' ? r.programa : null;
+}
+
+/** O resultado do gerador para o cadastro atual (ok, bloqueado pela triagem ou sem exercício possível); null se falta algo. */
+export function resultadoDoEstado(e: Estado): Resultado | null {
   const perfil = perfilDe(e);
   const inventario = inventarioPrincipal(e);
-  if (!perfil || !inventario) return null;
-  const r = gerarPrograma(perfil, inventario);
-  return r.status === 'ok' ? r.programa : null;
+  return perfil && inventario ? gerarPrograma(perfil, inventario) : null;
 }
 
 /** Programa salvo gerado de novo, montado para o local principal (R1b); se não dá para gerar, fica o anterior. */

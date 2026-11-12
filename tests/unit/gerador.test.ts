@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { BIBLIOTECA, POR_ID } from '../../src/domain/biblioteca';
+import { ARTICULACOES, BIBLIOTECA, POR_ID } from '../../src/domain/biblioteca';
 import { musculosDoAviso, ehAvisoDeMeta, ALTERNATIVAS_A_MOSTRA, contextoDeSelecao, equipamentoDe, GRUPOS, cortarTempo, gerarPrograma, minutos, prescricaoDaSemana, seriesDeVolume, volumePorMusculo, type DiaPrograma, type ExercicioPrescrito, type Grupo, type Perfil, type Programa } from '../../src/domain/gerador';
 import type { Articulacao, Musculo } from '../../src/domain/biblioteca';
 import { DIVISOES, DIVISAO_IDS, OPCOES_POR_DIAS } from '../../src/domain/gerador/divisoes';
@@ -793,5 +793,36 @@ describe('equilíbrio da coxa e o ajuste de 30 min (volume.equilibrio-coxa; temp
     const v = volumePorMusculo(out.flatMap((d) => d.exercicios.map((y) => ({ ex: POR_ID[y.exId]!, series: seriesDeVolume(y) }))));
     expect(out[0]!.exercicios.some((y) => y.exId === 'flexao-joelho-deslizante')).toBe(true);
     expect((v.quadriceps ?? 0) / (v.posteriores ?? 1)).toBeLessThanOrEqual(VOLUME.coxa[1]);
+  });
+});
+
+// Auditoria de 12/11/2026: com todas as regiões excluídas pela dor, o programa saía "ok", com dias sem exercício e o
+// aviso "só o abdominal é possível neste dia".
+describe('quando a dor não deixa nenhum exercício possível', () => {
+  const comDorEm = (p: (typeof PERSONAS)[keyof typeof PERSONAS], regioes: readonly Articulacao[]) =>
+    gerarPrograma({ ...p.perfil, triagem: { ...p.perfil.triagem, dores: regioes.map((articulacao) => ({ articulacao, nota: 7 })) } }, p.inventario);
+
+  it.each(['ana', 'bruno'] as const)('%s com dor 7 nas 7 regiões: o programa não sai como "ok", e o aviso diz o motivo e o próximo passo', (nome) => {
+    const r = comDorEm(PERSONAS[nome], ARTICULACOES);
+    expect(r.status).toBe('sem-exercicio');
+    if (r.status !== 'sem-exercicio') return;
+    expect(r.aviso.regraId).toBe('seguranca.dor.programa');
+    expect(r.aviso.texto).toMatch(/nenhum exercício é possível/);
+    expect(r.aviso.texto).toMatch(/avaliação profissional/);
+    expect(r.aviso.texto).toMatch(/triagem/);
+    expect(r.aviso.texto).not.toMatch(/abdominal/);
+  });
+
+  it('nenhum programa "ok" tem dia sem exercício, e nenhum aviso diz "só o abdominal" num dia sem abdominal', () => {
+    for (const p of Object.values(PERSONAS))
+      for (let n = 0; n <= ARTICULACOES.length; n++) {
+        const r = comDorEm(p, ARTICULACOES.slice(0, n));
+        if (r.status !== 'ok') continue;
+        for (const d of r.programa.dias) {
+          expect(d.exercicios.length, `${d.nome} com ${n} regiões`).toBeGreaterThan(0);
+          const soAbdominal = r.programa.avisos.find((a) => a.texto.startsWith(`${d.nome}:`) && /só o abdominal/.test(a.texto));
+          if (soAbdominal) expect(d.exercicios.every((x) => x.padrao === 'core')).toBe(true);
+        }
+      }
   });
 });

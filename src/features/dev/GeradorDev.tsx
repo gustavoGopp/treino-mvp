@@ -40,8 +40,8 @@ export function GeradorDev() {
         <p className="note">{persona.descricao}</p>
       </header>
 
-      {resultado.status === 'bloqueado' ? (
-        <div className="warnbox">{resultado.triagem.mensagem}</div>
+      {resultado.status !== 'ok' ? (
+        <div className="warnbox">{resultado.status === 'bloqueado' ? resultado.triagem.mensagem : resultado.aviso.texto}</div>
       ) : (
         <>
           <section className="box">

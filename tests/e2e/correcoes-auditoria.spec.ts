@@ -108,3 +108,34 @@ test('com um treino aberto, o programa não é gerado de novo: a mudança espera
   await page.getByRole('button', { name: 'Atualizar', exact: true }).click();
   await expect(page.getByRole('tabpanel').getByRole('button', { name: /Agachamento búlgaro com apoio/ })).toHaveCount(0);
 });
+
+// Auditoria de 12/11/2026: com todas as regiões excluídas pela dor, o programa saía "ok" com dias vazios e o texto
+// "só o abdominal é possível neste dia". Agora não há programa para começar, e a tela diz o motivo e o próximo passo.
+test('com dor acima de 5 em todas as regiões, a tela não oferece um treino vazio: diz o motivo e leva à triagem', async ({ page }) => {
+  await ana(page);
+  await expect(page.getByRole('button', { name: /^Começar o treino/ })).toBeVisible();
+  await page.evaluate(async () => {
+    const db = await new Promise<IDBDatabase>((ok, erro) => {
+      const r = indexedDB.open('keyval-store');
+      r.onsuccess = () => ok(r.result);
+      r.onerror = () => erro(r.error);
+    });
+    const loja = (modo: IDBTransactionMode) => db.transaction('keyval', modo).objectStore('keyval');
+    const atual = await new Promise<{ triagem: { respostas: Record<string, boolean> } }>((ok) => {
+      const r = loja('readonly').get('estado');
+      r.onsuccess = () => ok(r.result);
+    });
+    const regioes = ['ombro', 'cotovelo', 'punho', 'lombar', 'quadril', 'joelho', 'tornozelo'];
+    const triagem = { respostas: { ...atual.triagem.respostas, osteoarticular: true }, dores: regioes.map((articulacao) => ({ articulacao, nota: 7 })), liberacaoConfirmada: true };
+    await new Promise<void>((ok) => {
+      const r = loja('readwrite').put({ ...atual, triagem }, 'estado');
+      r.onsuccess = () => ok();
+    });
+  });
+  await page.reload();
+  await expect(page.getByRole('heading', { name: 'Programa pausado' })).toBeVisible();
+  await expect(page.getByText(/nenhum exercício é possível hoje/)).toBeVisible();
+  await expect(page.getByText(/só o abdominal/)).toHaveCount(0);
+  await expect(page.getByRole('button', { name: /^Começar o treino/ })).toHaveCount(0);
+  await expect(page.getByRole('link', { name: 'Rever a triagem' })).toBeVisible();
+});

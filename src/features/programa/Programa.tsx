@@ -12,7 +12,7 @@ import { linkDoGuia } from '../guia/link';
 import { inventarioPrincipal, localDoTreino, perfilDe, primeiroPassoPendente, type Estado } from '../../storage/esquema';
 import { alternarPreferencia, diaDoTreino, hojeDoEstado, iniciarSessao } from '../treino/acoes';
 import { Preferencias } from './Prefiro';
-import { agoraIso, comProgramaNovo, fusoDoAparelho, gerarDoEstado, mesmoConteudo, useApp } from '../app/estado';
+import { agoraIso, comProgramaNovo, fusoDoAparelho, mesmoConteudo, resultadoDoEstado, useApp } from '../app/estado';
 import { AvisoInstalar, AvisoSalvar, LembreteCopia } from '../app/avisos';
 import { NavInferior, PorQue, Selo, Titulo, Topo } from '../app/ui';
 import { ComoLer } from './ComoLer';
@@ -50,7 +50,8 @@ export function Programa() {
   const perfil = useMemo(() => perfilDe(estado), [estado]);
   const inventario = inventarioPrincipal(estado);
   const opcoes = useMemo(() => (perfil && inventario ? opcoesDeAjuste(perfil, inventario) : []), [perfil, inventario]);
-  const atualizado = useMemo(() => gerarDoEstado(estado), [estado]);
+  const gerado = useMemo(() => resultadoDoEstado(estado), [estado]);
+  const atualizado = gerado?.status === 'ok' ? gerado.programa : null;
 
   const pendente = primeiroPassoPendente(estado);
   if (pendente) return <Navigate to={pendente.rota} replace />;
@@ -58,7 +59,10 @@ export function Programa() {
   const triagem = avaliarTriagem(perfil!.triagem);
   const salvo = estado.programa?.programa;
 
-  if (triagem.bloqueado || !salvo) {
+  // Sem exercício possível com o cadastro de hoje (a dor tirou todas as regiões): o programa salvo não é mostrado,
+  // como na triagem que bloqueia, porque ele ainda traz os exercícios que a dor de hoje exclui.
+  const semExercicio = gerado?.status === 'sem-exercicio' ? gerado.aviso : null;
+  if (triagem.bloqueado || !salvo || semExercicio) {
     return (
       <div className="wrap app">
         <Topo direita={<Link to="/dados">Meus dados</Link>} />
@@ -66,7 +70,15 @@ export function Programa() {
         <AvisoSalvar />
           <Titulo>Programa pausado</Titulo>
           <div className="warnbox">
-            {triagem.mensagem} <Selo id={triagem.regraId} />
+            {semExercicio && !triagem.bloqueado ? (
+              <>
+                {semExercicio.texto} <Selo id={semExercicio.regraId} />
+              </>
+            ) : (
+              <>
+                {triagem.mensagem} <Selo id={triagem.regraId} />
+              </>
+            )}
           </div>
           <Link className="btn" to="/comecar/triagem">
             Rever a triagem

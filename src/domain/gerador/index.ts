@@ -112,7 +112,14 @@ export type Programa = {
   margemTempo?: number;
 };
 
-export type Resultado = { status: 'bloqueado'; triagem: ResultadoTriagem } | { status: 'ok'; programa: Programa; triagem: ResultadoTriagem };
+export type Resultado =
+  | { status: 'bloqueado'; triagem: ResultadoTriagem }
+  | { status: 'ok'; programa: Programa; triagem: ResultadoTriagem }
+  /**
+   * Nenhum exercício é possível em dia nenhum (a dor de hoje tirou todas as regiões, ou o equipamento e o que a pessoa
+   * pediu para evitar não deixam nada): não há programa para mostrar, e o aviso diz o motivo e o próximo passo.
+   */
+  | { status: 'sem-exercicio'; triagem: ResultadoTriagem; aviso: Porque };
 
 export const MUSCULOS_COM_META = MUSCULOS.filter((m) => m !== 'ombro_anterior' && m !== 'adutores');
 
@@ -326,9 +333,34 @@ export function gerarPrograma(perfil: Perfil, inventarioOriginal: Inventario): R
   // minutos (régua da G5, A3) que a montagem de antes não deixava.
   const comFoco = montarPrograma(perfil, inventarioOriginal, triagem, true);
   const passa = (p: Programa) => p.dias.some((d) => d.minutosEstimados > LIMITE_DO_DIA * perfil.minutosSessao);
-  if (!perfil.prioridades.length || !passa(comFoco)) return { status: 'ok', triagem, programa: comFoco };
+  if (!perfil.prioridades.length || !passa(comFoco)) return fechar(comFoco, triagem);
   const antes = montarPrograma(perfil, inventarioOriginal, triagem, false);
-  return { status: 'ok', triagem, programa: passa(antes) ? comFoco : antes };
+  return fechar(passa(antes) ? comFoco : antes, triagem);
+}
+
+/**
+ * O programa só sai "ok" com exercício em todos os dias (auditoria de 12/11/2026: com as 7 regiões excluídas pela dor,
+ * saía "ok" com dias vazios). Sem exercício em dia nenhum, não há programa; um dia vazio no meio dos outros sai do
+ * programa, e o aviso dele (selecao.dia-sem-principal) já diz isso.
+ */
+function fechar(programa: Programa, triagem: ResultadoTriagem): Resultado {
+  const dias = programa.dias.filter((d) => d.exercicios.length > 0);
+  if (dias.length === programa.dias.length) return { status: 'ok', triagem, programa };
+  if (dias.length) return { status: 'ok', triagem, programa: { ...programa, dias } };
+  const dores = programa.regioesExcluidas.map((a) => textoDor(a, triagem.dores.find((d) => d.articulacao === a)?.nota));
+  return {
+    status: 'sem-exercicio',
+    triagem,
+    aviso: dores.length
+      ? {
+          regraId: r('seguranca.dor.programa'),
+          texto: `Por causa da dor ${dores.join(' e ')}, nenhum exercício é possível hoje com o seu equipamento, e o app não monta o programa. Procure avaliação profissional. Quando a dor baixar, atualize a nota na triagem.`,
+        }
+      : {
+          regraId: r('selecao.dia-sem-principal'),
+          texto: 'Com o seu equipamento e o que você pediu para evitar, nenhum exercício é possível, e o app não monta o programa. Revise "Algo a evitar" ou o equipamento.',
+        },
+  };
 }
 
 function montarPrograma(perfil: Perfil, inventarioOriginal: Inventario, triagem: ResultadoTriagem, focoPrimeiro: boolean): Programa {
@@ -550,6 +582,12 @@ function montarPrograma(perfil: Perfil, inventarioOriginal: Inventario, triagem:
         texto: deFora
           ? `${d.dia.nome}: ${semCausa ? 'sem exercício' : `${causa}, sem exercício`} para os músculos deste dia; entram exercícios de outros músculos (${entraram.join(', ')}). ${passoDaCausa}`
           : `${d.dia.nome}: ${causa}, o dia perdeu exercícios; entram outros dos mesmos músculos (${entraram.join(', ')}). ${passoDaCausa}`,
+      });
+    else if (!d.itens.length)
+      // Nem o abdominal: o dia fica sem exercício e sai do programa (`fechar`). Antes, o texto dizia "só o abdominal".
+      avisos.push({
+        regraId: r('selecao.dia-sem-principal'),
+        texto: `${d.dia.nome}: ${causa}, nenhum exercício é possível neste dia, e ele sai do programa. ${semCausa ? 'Revise "Algo a evitar" ou o equipamento.' : 'Quando a dor baixar, atualize a nota na triagem e o dia volta.'}`,
       });
     else if (soCore)
       avisos.push({
