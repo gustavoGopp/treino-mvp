@@ -9,8 +9,18 @@ import { createPortal } from 'react-dom';
 
 const FOCAVEIS = 'a[href], button:not([disabled]), input:not([disabled]), select:not([disabled]), textarea:not([disabled]), summary, [tabindex="0"]';
 
-/** Deixa inerte tudo no #root, menos o caminho até `livre` (que fica ao alcance). Devolve como desfazer. */
-function inertizar(livre: HTMLElement | null): () => void {
+/**
+ * De quem a folha tomou o foco, da mais recente para a mais antiga. Uma folha aberta por um botão de outra folha que
+ * fecha em seguida (o "Trocar exercício" dentro do "⋯") guarda também quem abriu a primeira: ao fechar, o foco volta
+ * ao 1º da cadeia que ainda está na página. Antes, o foco se perdia no corpo da página.
+ */
+const origens = new WeakMap<Element, HTMLElement[]>();
+
+/**
+ * Deixa inerte tudo no #root, menos o caminho até `livre` (que fica ao alcance), e as folhas que já estavam abertas
+ * (elas ficam fora do #root: antes, a folha de baixo continuava ao alcance do Tab e do leitor de tela). Devolve como desfazer.
+ */
+function inertizar(livre: HTMLElement | null, propria: HTMLElement | null): () => void {
   const raiz = document.getElementById('root');
   if (!raiz) return () => {};
   const marcados: HTMLElement[] = [];
@@ -25,6 +35,7 @@ function inertizar(livre: HTMLElement | null): () => void {
     for (let no: HTMLElement = livre; no !== raiz; no = no.parentElement!) {
       for (const irmao of Array.from(no.parentElement!.children)) if (irmao !== no) marca(irmao);
     }
+  for (const outra of Array.from(document.querySelectorAll('body > .veu'))) if (outra !== propria) marca(outra);
   return () => marcados.forEach((e) => (e.inert = false));
 }
 
@@ -55,7 +66,10 @@ export function Folha({
 
   useEffect(() => {
     const origem = document.activeElement as HTMLElement | null;
-    const desfazer = inertizar(livreEl);
+    const daFolha = origem?.closest('.folha');
+    const cadeia = [...(origem && origem !== document.body ? [origem] : []), ...((daFolha && origens.get(daFolha)) ?? [])];
+    if (folha.current) origens.set(folha.current, cadeia);
+    const desfazer = inertizar(livreEl, veu.current);
     // abaixo do cabeçalho de quem fica livre, para ele continuar à vista e tocável
     const cab = livreEl?.closest('header');
     if (cab && veu.current) veu.current.style.top = `${Math.max(0, cab.getBoundingClientRect().bottom)}px`;
@@ -84,7 +98,8 @@ export function Folha({
       document.removeEventListener('keydown', tecla);
       livreEl?.removeEventListener('click', tocarLivre, { capture: true });
       desfazer();
-      if (origem && document.contains(origem) && origem !== document.body) origem.focus();
+      // o foco volta a quem abriu; se ele saiu da página (era um botão de uma folha que fechou), a quem abriu aquela
+      cadeia.find((e) => document.contains(e) && !e.closest('[inert]'))?.focus();
     };
     // abre uma vez; quem chama desmonta a folha para fechar
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -93,7 +108,9 @@ export function Folha({
   return createPortal(
     <div
       ref={veu}
-      className={`veu${livreEl ? ' abaixo-cab' : ''}`}
+      // "app": a folha fica fora da página (portal), e as regras de .app (a cor dos links, prefers-reduced-motion)
+      // precisam alcançar o conteúdo dela
+      className={`veu app${livreEl ? ' abaixo-cab' : ''}`}
       onClick={(e) => {
         if (e.target === e.currentTarget) aoFechar();
       }}

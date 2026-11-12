@@ -188,3 +188,54 @@ test('nenhum id se repete na tela do programa, com as miniaturas desenhadas, nem
   await expect(page.locator('.quedas .queda')).toHaveCount(2);
   expect(await idsRepetidos(page)).toEqual([]);
 });
+
+// Auditoria de 12/11/2026: a folha fica fora da página (portal). As regras de .app não a alcançavam (a cor dos links,
+// prefers-reduced-motion), a folha de baixo continuava ao alcance com outra aberta por cima, e o foco se perdia
+// quando o botão que abriu a folha já tinha saído da página.
+test('a folha recebe as regras de .app, a de baixo fica inerte e o foco volta a quem abriu', async ({ page }) => {
+  await page.emulateMedia({ reducedMotion: 'reduce' });
+  await ana(page);
+  // uma folha (o exercício) e outra por cima (o selo de uma regra)
+  await page.getByRole('tabpanel').getByRole('button', { name: /Agachamento búlgaro com apoio/ }).first().click();
+  const deBaixo = page.getByRole('dialog').first();
+  await expect(deBaixo).toBeVisible();
+  const selo = deBaixo.getByRole('button', { name: /ver de onde vem$/ }).first();
+  await selo.click();
+  const deCima = page.getByRole('dialog', { name: 'De onde vem isto' });
+  await expect(deCima).toBeVisible();
+  // a de baixo fica inerte enquanto a de cima está aberta
+  await expect(page.locator('body > .veu')).toHaveCount(2);
+  expect(await page.locator('body > .veu').first().evaluate((e) => (e as HTMLElement).inert)).toBe(true);
+  expect(await page.locator('body > .veu').last().evaluate((e) => (e as HTMLElement).inert)).toBe(false);
+  // as regras de .app chegam ao conteúdo: o link das fontes tem a cor de link do app, e nada tem transição
+  const link = deCima.getByRole('link').first();
+  await expect(link).toBeVisible();
+  const cores = await link.evaluate((a) => {
+    const prova = document.createElement('span');
+    prova.style.color = 'var(--link)';
+    a.parentElement!.appendChild(prova);
+    const esperado = getComputedStyle(prova).color;
+    prova.remove();
+    return { link: getComputedStyle(a).color, esperado, transicao: getComputedStyle(a).transitionDuration };
+  });
+  expect(cores.link).toBe(cores.esperado);
+  expect(cores.transicao).toBe('0s');
+  // fechar a de cima devolve o foco ao selo, e a de baixo volta ao alcance
+  await page.keyboard.press('Escape');
+  await expect(deCima).toHaveCount(0);
+  await expect(selo).toBeFocused();
+  expect(await page.locator('body > .veu').first().evaluate((e) => (e as HTMLElement).inert)).toBe(false);
+  await page.keyboard.press('Escape');
+  await expect(page.getByRole('dialog')).toHaveCount(0);
+
+  // no treino: "⋯" → "Trocar exercício" troca uma folha pela outra; ao fechar, o foco volta ao "⋯"
+  await comecar(page);
+  const mais = page.getByRole('button', { name: /^Mais opções/ });
+  await mais.click();
+  await page.getByRole('dialog', { name: 'Mais opções' }).getByRole('button', { name: 'Trocar exercício' }).click();
+  const trocar = page.getByRole('dialog', { name: 'Trocar só neste treino por:' });
+  await expect(trocar).toBeVisible();
+  await trocar.getByRole('button', { name: 'Fechar' }).click();
+  await expect(trocar).toHaveCount(0);
+  await expect(mais).toBeFocused();
+});

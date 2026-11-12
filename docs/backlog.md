@@ -231,7 +231,6 @@ O que a auditoria achou e não corrigiu, porque pede uma decisão do Gustavo ou 
 - **A animação da `panturrilha-chao` mostra a descida com as duas pernas**: em 12/11/2026 os dados, o porquê e o cartão foram alinhados à fonte (subir com as duas e descer em 3 s com uma só; `nakamura2025`), e o cartão avisa da diferença. Falta o Gustavo decidir: refazer a animação (folha a folha) ou mostrar o exercício como cartão de texto.
 
 **Tela**
-- **A folha fica fora de `.app`**: a cor dos links e o `prefers-reduced-motion` do CSS não chegam ao conteúdo dela.
 - **Uma importação que falha (sem rede, versão nova publicada) fica guardada até recarregar** (`regras/carregar.ts`, `conteudo/cartoes.ts`, `programa/desenhoFora.ts`).
 - **Mensagens da foto**: qualquer erro de rede vira "Sem conexão", e a foto que o navegador não abre (HEIC) mostra o texto em inglês.
 - **Os termos citam botões que não existem** ("Refazer a triagem e o perfil", "Exportar meus dados").
