@@ -1,3 +1,4 @@
+import { ordemFixa } from '../ordem';
 import type { Articulacao } from '../biblioteca';
 import { r } from '../regras';
 
@@ -68,7 +69,7 @@ export function efeitoDaDor(nota: number | undefined): EfeitoDor {
 }
 
 function porDor(dores: DorRegiao[] | undefined) {
-  const lista = [...(dores ?? [])].sort((a, b) => a.articulacao.localeCompare(b.articulacao));
+  const lista = [...(dores ?? [])].sort((a, b) => ordemFixa(a.articulacao, b.articulacao));
   const de = (e: EfeitoDor) => lista.filter((d) => efeitoDaDor(d.nota) === e).map((d) => d.articulacao);
   return { dores: lista, regioesExcluidas: de('exclui'), regioesDorLeve: de('prefere-outros') };
 }

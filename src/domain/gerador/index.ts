@@ -1,3 +1,4 @@
+import { ordemFixa } from '../ordem';
 import { BIBLIOTECA, MUSCULOS, type Articulacao, type Exercicio, type Musculo, type Padrao } from '../biblioteca';
 import { DESCANSO, OBJETIVO_FORCA, READAPTACAO, RIR, TEMPO, VOLUME, NIVEL_COMPLEXIDADE_MAX, OBRIGATORIO_CURTO, exerciciosPorSessao, r, type Nivel } from '../regras';
 import { capacidades, cargaMaxHalter, cargasCaneleiras, cargasHalter, cargasKettlebell, ITENS, type Capacidade, type Inventario, type ItemId } from '../taxonomia/equipamentos';
@@ -187,7 +188,7 @@ export function contextoDeSelecao(perfil: Perfil, inventarioOriginal: Inventario
     (a: Exercicio, b: Exercicio) => {
       const [ka, kb] = [chave(a, funcaoDe(a), usos, evitar, depois), chave(b, funcaoDe(b), usos, evitar, depois)];
       for (let i = 0; i < ka.length; i++) if (ka[i] !== kb[i]) return ka[i]! - kb[i]!;
-      return a.id.localeCompare(b.id);
+      return ordemFixa(a.id, b.id);
     };
 
   /** 1º nível com exercício possível; se nada, a função substituta (seNada). */
@@ -267,7 +268,7 @@ export function contextoDeSelecao(perfil: Perfil, inventarioOriginal: Inventario
     // O 2º colocado: o melhor dos outros pelos mesmos critérios (no empate, o id, como no desempate).
     const segundo = [...outros].sort((a, b) => {
       const i = menor(vetor(a), vetor(b));
-      return i < 0 ? a.id.localeCompare(b.id) : vetor(a)[i]! - vetor(b)[i]!;
+      return i < 0 ? ordemFixa(a.id, b.id) : vetor(a)[i]! - vetor(b)[i]!;
     })[0]!;
     const i = menor(vetor(e), vetor(segundo));
     const nome = segundo.nome.toLowerCase();
@@ -556,7 +557,8 @@ function montarPrograma(perfil: Perfil, inventarioOriginal: Inventario, triagem:
       texto: `Por causa da dor ${regioesExcluidas.map(dorDe).join(' e ')}, saíram os exercícios que carregam a região. Procure avaliação profissional. Quando a dor baixar, atualize a nota na triagem.`,
     });
 
-  if (semPuxar && temDiaDeTronco(divisao) && divisao.dias.some((x) => /Puxar|Superior|Costas/.test(x.nome)))
+  // Sem distinguir maiúsculas: nas divisões clássicas o dia chama "B: costas", e o aviso nunca aparecia.
+  if (semPuxar && temDiaDeTronco(divisao) && divisao.dias.some((x) => /puxar|superior|costas/i.test(x.nome)))
     avisos.push({
       regraId: r('divisao.sem-puxar'),
       texto: `${divisao.nome}: sem exercício de puxar, os dias de puxar ficam com outros músculos. Para trocar, escolha Corpo todo na rotina.`,
@@ -1364,13 +1366,13 @@ function alternativas(e: Exercicio, funcao: Funcao, possiveis: Exercicio[]): str
   const outro = (x: Exercicio) => (equipamentoDe(x) !== equipamentoDe(e) ? 0 : 1);
   const mesmaFuncao = possiveis
     .filter((x) => x.id !== e.id && nivelDe(x.id) >= 0)
-    .sort((a, b) => outro(a) - outro(b) || nivelDe(a.id) - nivelDe(b.id) || a.id.localeCompare(b.id));
+    .sort((a, b) => outro(a) - outro(b) || nivelDe(a.id) - nivelDe(b.id) || ordemFixa(a.id, b.id));
   const ids = mesmaFuncao.map((x) => x.id);
   const deOutro = mesmaFuncao.filter((x) => outro(x) === 0).length;
   if (deOutro < 2) {
     const mesmoMusculo = possiveis
       .filter((x) => x.id !== e.id && !ids.includes(x.id) && x.musculos.primarios.includes(funcao.musculo) && outro(x) === 0)
-      .sort((a, b) => Number(a.tipo !== e.tipo) - Number(b.tipo !== e.tipo) || a.id.localeCompare(b.id));
+      .sort((a, b) => Number(a.tipo !== e.tipo) - Number(b.tipo !== e.tipo) || ordemFixa(a.id, b.id));
     // Do mesmo músculo, de outro equipamento, entram antes das da mesma função com o mesmo equipamento.
     const daFuncaoOutro = mesmaFuncao.filter((x) => outro(x) === 0).map((x) => x.id);
     const daFuncaoMesmo = mesmaFuncao.filter((x) => outro(x) === 1).map((x) => x.id);
