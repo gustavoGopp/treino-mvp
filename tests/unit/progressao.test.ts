@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { proximaCarga, serieEfetiva, sugerirProgressao, sugerirSemanaLeve, type Carga, type SessaoExercicio } from '../../src/domain/progressao';
+import { haCargaMenor, proximaCarga, serieEfetiva, sugerirProgressao, sugerirSemanaLeve, type Carga, type SessaoExercicio } from '../../src/domain/progressao';
 
 const kg = (k: number): Carga => ({ tipo: 'kg', kg: k });
 const sessao = (c: Carga, reps: number[], rir = 1, extra: Partial<SessaoExercicio['series'][number]> = {}): SessaoExercicio => ({
@@ -208,3 +208,51 @@ describe('tipos de carga do R0c (pesquisa-v2/08, seção 1.1)', () => {
     expect(sugerirProgressao(h2, alvo, kb)).toMatchObject({ acao: 'subir', proxima: kg(12) });
   });
 });
+
+// Auditoria de 12/11/2026: "reduza a carga" e o ajuste por dor quando não há carga menor para usar.
+describe('quando não há carga menor', () => {
+  const comDor = (c: Carga, dor = 4): SessaoExercicio => ({ series: [10, 10, 10].map((reps) => ({ carga: c, reps, rir: 1, dor })) });
+
+  it('dor de 3 a 5 no halter mais leve: ajusta sem sugerir carga, e o texto não manda reduzir', () => {
+    const s = sugerirProgressao([comDor(kg(8))], alvo, halter);
+    expect(s.acao).toBe('ajustar');
+    expect(s.proxima).toBeUndefined();
+    expect(s.motivo).toBe('Dor entre 3 e 5/10, e não há carga menor aqui: encurte a amplitude ou desacelere; se não melhorar, troque pela alternativa.');
+    // com carga menor, sugere a carga e manda reduzir, como antes
+    const comMenor = sugerirProgressao([comDor(kg(12))], alvo, halter);
+    expect(comMenor).toMatchObject({ acao: 'ajustar', proxima: kg(10) });
+    expect(comMenor.motivo).toMatch(/reduza a carga/);
+  });
+
+  it('dor de 3 a 5 na placa 1 e no 1º degrau: a mesma coisa (antes, a "carga reduzida" era a própria placa 1)', () => {
+    const placa = sugerirProgressao([comDor({ tipo: 'placa', placa: 1 })], alvo, { tipo: 'maquina', placasMax: 10 });
+    expect(placa.proxima).toBeUndefined();
+    expect(placa.motivo).toMatch(/não há carga menor aqui/);
+    const degrau = sugerirProgressao([comDor({ tipo: 'degrau', degrau: 0 })], alvo, { tipo: 'peso-corpo', degraus: ['a', 'b', 'c'] });
+    expect(degrau.proxima).toBeUndefined();
+    expect(degrau.motivo).toMatch(/não há carga menor aqui/);
+    expect(haCargaMenor({ tipo: 'placa', placa: 1 }, { tipo: 'maquina' })).toBe(false);
+    expect(haCargaMenor({ tipo: 'placa', placa: 2 }, { tipo: 'maquina' })).toBe(true);
+    expect(haCargaMenor(kg(8), halter)).toBe(false);
+    expect(haCargaMenor(kg(9), halter)).toBe(true);
+  });
+
+  it('um degrau registrado acima do fim da escada desce para o último degrau que existe', () => {
+    const o = { tipo: 'peso-corpo' as const, degraus: ['a', 'b', 'c'] };
+    expect(proximaCarga({ tipo: 'degrau', degrau: 6 }, -1, o)).toEqual({ tipo: 'degrau', degrau: 2 });
+    expect(proximaCarga({ tipo: 'degrau', degrau: 6 }, 1, o)).toBeUndefined();
+    expect(haCargaMenor({ tipo: 'degrau', degrau: 6 }, o)).toBe(true);
+    expect(sugerirProgressao([comDor({ tipo: 'degrau', degrau: 6 })], alvo, o)).toMatchObject({ acao: 'ajustar', proxima: { tipo: 'degrau', degrau: 2 } });
+  });
+
+  it('estagnado sem carga menor: a lista de saídas não inclui reduzir', () => {
+    const h = [sessao(kg(8), [10, 10, 10]), sessao(kg(8), [10, 10, 10]), sessao(kg(8), [10, 10, 10])];
+    const s = sugerirProgressao(h, alvo, halter);
+    expect(s.acao).toBe('estagnado');
+    expect(s.motivo).not.toMatch(/reduza/);
+    expect(s.motivo).toMatch(/alargue a faixa/);
+    const comMenor = sugerirProgressao(h.map((x) => ({ series: x.series.map((y) => ({ ...y, carga: kg(10) })) })), alvo, halter);
+    expect(comMenor.motivo).toMatch(/reduza 10% e reconstrua/);
+  });
+});
+

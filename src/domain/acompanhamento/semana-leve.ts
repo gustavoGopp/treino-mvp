@@ -88,7 +88,7 @@ export function semanaLeveDeHoje(programa: Programa, historico: Sessao[], hojeIs
         exIds: repetida.map((d) => d.exId),
         texto: alta
           ? `Dor no mesmo exercício em 2 treinos seguidos, com nota acima de ${DOR.ajustarAte}: use a alternativa e procure avaliação profissional.`
-          : `Dor de ${DOR.ajustarDe} a ${DOR.ajustarAte} no mesmo exercício em 2 treinos seguidos: reduza a carga, encurte a amplitude ou use a alternativa. Se piorar ou durar mais de 1 a 2 semanas, procure avaliação profissional.`,
+          : `Dor de ${DOR.ajustarDe} a ${DOR.ajustarAte} no mesmo exercício em 2 treinos seguidos: use uma carga menor, se houver, encurte a amplitude ou use a alternativa. Se piorar ou durar mais de 1 a 2 semanas, procure avaliação profissional.`,
         regraId: r('seguranca.dor.escala'),
       }
     : undefined;

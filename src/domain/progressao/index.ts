@@ -1,5 +1,5 @@
 import type { Exercicio } from '../biblioteca';
-import { DOR, PROGRESSAO, r, SEMANA_LEVE } from '../regras';
+import { DOR, PROGRESSAO, r, REDUCAO, SEMANA_LEVE } from '../regras';
 import { MENOR_ANILHA_PADRAO_KG } from '../taxonomia/equipamentos';
 
 // Dupla progressão (progressao.*): primeiro as repetições sobem dentro da faixa; com todas as séries
@@ -104,8 +104,11 @@ export function proximaCarga(c: Carga, passos: number, o: OpcoesCarga): Carga | 
     return o.placasMax && p > o.placasMax ? undefined : { tipo: 'placa', placa: Math.max(1, p) };
   }
   if (c.tipo === 'degrau') {
+    const n = (o.degraus ?? ESCADA_GENERICA).length;
+    // Um degrau registrado acima do fim da escada (a escada do exercício encurtou): para baixo, o último que existe.
+    if (c.degrau >= n) return passos < 0 && n > 0 ? { tipo: 'degrau', degrau: n - 1 } : undefined;
     const d = c.degrau + passos;
-    return d < 0 || d >= (o.degraus ?? ESCADA_GENERICA).length ? undefined : { tipo: 'degrau', degrau: d };
+    return d < 0 || d >= n ? undefined : { tipo: 'degrau', degrau: d };
   }
   if (c.tipo === 'anilha') {
     // progressao.incremento.maquina-anilha: o menor par de anilhas, um de cada lado.
@@ -138,8 +141,18 @@ export function proximaCarga(c: Carga, passos: number, o: OpcoesCarga): Carga | 
   return existeNoPasso(k, o) ? { tipo: 'kg', kg: k } : undefined;
 }
 
-/** Redução de 5–10% (progressao.reduzir) ou de 10–20% (seguranca.dor.escala). */
+/**
+ * Redução de 5–10% (progressao.reduzir) ou de 10–20% (seguranca.dor.escala). Devolve undefined quando não há carga
+ * menor para usar (a placa 1, o halter mais leve, o 1º degrau, a barra vazia): nunca a mesma carga de hoje.
+ */
 function reduzir(c: Carga, fator: number, o: OpcoesCarga): Carga | undefined {
+  const menor = cargaReduzida(c, fator, o);
+  return menor && valor(menor) < valor(c) - 1e-9 ? menor : undefined;
+}
+/** Existe uma carga menor que esta, neste equipamento, para o ajuste por dor ou a redução. */
+export const haCargaMenor = (c: Carga, o: OpcoesCarga) => reduzir(c, REDUCAO.dor, o) !== undefined;
+
+function cargaReduzida(c: Carga, fator: number, o: OpcoesCarga): Carga | undefined {
   if (c.tipo === 'anilha') {
     const passo = passoAnilha(o);
     const k = Math.min(c.kgPorLado - passo, Math.floor((c.kgPorLado * (1 - fator)) / passo + 1e-9) * passo);
@@ -186,11 +199,15 @@ export function sugestaoPorDor(dor: number, carga: Carga | undefined, o: OpcoesC
   if (dor > DOR.ajustarAte)
     return { acao: 'interromper', motivo: `Dor acima de ${DOR.ajustarAte}/10: use a alternativa e procure avaliação se continuar.`, regraId: r('seguranca.dor.escala') };
   if (dor >= DOR.ajustarDe) {
-    const proxima = carga && reduzir(carga, 0.15, o);
+    const proxima = carga && reduzir(carga, REDUCAO.dor, o);
     return {
       acao: 'ajustar',
       ...(proxima ? { proxima } : {}),
-      motivo: `Dor entre ${DOR.ajustarDe} e ${DOR.ajustarAte}/10: reduza a carga, encurte a amplitude ou desacelere; se não melhorar, troque pela alternativa.`,
+      // Sem carga menor para usar, o texto não manda reduzir o que não dá (auditoria de 12/11/2026).
+      motivo:
+        carga && !proxima
+          ? `Dor entre ${DOR.ajustarDe} e ${DOR.ajustarAte}/10, e não há carga menor aqui: encurte a amplitude ou desacelere; se não melhorar, troque pela alternativa.`
+          : `Dor entre ${DOR.ajustarDe} e ${DOR.ajustarAte}/10: reduza a carga, encurte a amplitude ou desacelere; se não melhorar, troque pela alternativa.`,
       regraId: r('seguranca.dor.escala'),
     };
   }
@@ -223,9 +240,9 @@ export function sugerirProgressao(historico: SessaoExercicio[], alvo: Alvo, o: O
   // Abaixo do mínimo em 2 sessões seguidas → reduzir 5–10%
   const abaixo = (s?: SessaoExercicio) => !!s && (validas(s)[0]?.reps ?? 0) < alvo.reps[0];
   if (abaixo(ultima) && abaixo(anterior) && anterior && igual(anterior.series[0]!.carga, carga)) {
-    const menor = reduzir(carga, 0.075, o);
+    const menor = reduzir(carga, REDUCAO.abaixoDoMinimo, o);
     // Sem carga menor para sugerir (a barra vazia, o halter mais leve), o texto não manda reduzir o que não dá.
-    const haMenor = !!menor && !igual(menor, carga);
+    const haMenor = !!menor;
     return {
       acao: 'reduzir',
       proxima: haMenor ? menor : undefined,
@@ -319,7 +336,8 @@ export function sugerirProgressao(historico: SessaoExercicio[], alvo: Alvo, o: O
   )
     return {
       acao: 'estagnado',
-      motivo: 'Três sessões sem melhora: 1) alargue a faixa; 2) reduza 10% e reconstrua; 3) semana leve; 4) troque por uma variação equivalente.',
+      // A saída "reduza 10%" só entra quando há uma carga menor para usar.
+      motivo: `Três sessões sem melhora: ${(haCargaMenor(carga, o) ? ['alargue a faixa', 'reduza 10% e reconstrua', 'semana leve', 'troque por uma variação equivalente'] : ['alargue a faixa', 'semana leve', 'troque por uma variação equivalente']).map((t, i) => `${i + 1}) ${t}`).join('; ')}.`,
       regraId: r('progressao.estagnacao'),
     };
 

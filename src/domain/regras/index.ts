@@ -125,6 +125,12 @@ export const PROGRESSAO = {
   acertosMax: 3, // progressao.calibracao (R5a): depois de 3 séries de acerto sem cair em A ± 2, a calibração termina
 };
 
+/**
+ * Quanto a carga sugerida desce: o meio da faixa de cada regra (progressao.reduzir: 5–10%; seguranca.dor.escala:
+ * 10–20%). A carga sugerida é a que existe no equipamento mais perto disso, sempre abaixo da de hoje.
+ */
+export const REDUCAO = { abaixoDoMinimo: 0.075, dor: 0.15 };
+
 /** seguranca.dor.escala: de 3 a 5, ajustar (carga, amplitude, ritmo); acima de 5, encerrar o exercício. */
 export const DOR = { ajustarDe: 3, ajustarAte: 5 };
 

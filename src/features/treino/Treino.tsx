@@ -3,7 +3,7 @@ import { Link, Navigate, useNavigate, useSearchParams } from 'react-router-dom';
 import { BIBLIOTECA } from '../../domain/biblioteca';
 import { ALTERNATIVAS_A_MOSTRA, type ExercicioPrescrito } from '../../domain/gerador';
 import { linkDoGuia } from '../guia/link';
-import { ESCADA_PESO_CORPO, type Carga, type SerieRegistrada } from '../../domain/progressao';
+import { ESCADA_PESO_CORPO, haCargaMenor, type Carga, type SerieRegistrada } from '../../domain/progressao';
 import { degrauInicial } from '../../domain/progressao/escadas';
 import { MENOR_ANILHA_PADRAO_KG } from '../../domain/taxonomia/equipamentos';
 import { CartaoTexto, temCartao } from '../programa/CartaoTexto';
@@ -315,7 +315,10 @@ export function Treino() {
           <Folha titulo="O que você sentiu?" aoFechar={() => setPainel('nenhum')} livre={() => document.querySelector<HTMLElement>('.alerta-topo')} fecharAoTocarLivre={false}>
             <Sentir
               aoDor={(nota) => {
-                const r = avaliarDor(nota);
+                // A carga de agora: a da última série feita ou, antes da 1ª, a da última vez. Sem carga menor para
+                // usar (a placa 1, o halter mais leve), a orientação não manda reduzir.
+                const cargaAgora = feito.series.at(-1)?.carga ?? ultimaSerie(estado.historico, x.exId, opcoesCargaHoje.local)?.carga;
+                const r = avaliarDor(nota, false, cargaAgora ? haCargaMenor(cargaAgora, opcoesCarga(x.exId, inventario)) : true);
                 // A nota fica guardada (seguranca.dor.escala; R5a): na última série feita ou, sem série, no exercício
                 // (e passa para a próxima série; se a dor encerra o exercício antes dela, a nota fica nele).
                 let guardada = '';

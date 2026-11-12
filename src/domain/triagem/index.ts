@@ -116,8 +116,12 @@ export function avaliarTriagem(t: Triagem): ResultadoTriagem {
 
 export type AcaoDor = { acao: 'seguir' | 'ajustar' | 'encerrar-exercicio'; mensagem: string; regraId: string };
 
-/** Dor relatada numa série, de 0 a 10 (seguranca.dor.escala). Dor aguda encerra o exercício em qualquer nota. */
-export function avaliarDor(nota: number, aguda = false): AcaoDor {
+/**
+ * Dor relatada numa série, de 0 a 10 (seguranca.dor.escala). Dor aguda encerra o exercício em qualquer nota.
+ * `haCargaMenor`: se existe uma carga menor que a de agora neste equipamento; sem ela (a placa 1, o halter mais leve),
+ * o texto não manda reduzir a carga.
+ */
+export function avaliarDor(nota: number, aguda = false, haCargaMenor = true): AcaoDor {
   const regraId = r('seguranca.dor.escala');
   if (aguda || nota > DOR.ajustarAte)
     return {
@@ -128,7 +132,9 @@ export function avaliarDor(nota: number, aguda = false): AcaoDor {
   if (nota >= DOR.ajustarDe)
     return {
       acao: 'ajustar',
-      mensagem: 'Reduza a carga em 10–20%, encurte a amplitude ou desacelere. Se a dor não diminuir, troque pela alternativa.',
+      mensagem: haCargaMenor
+        ? 'Reduza a carga em 10–20%, encurte a amplitude ou desacelere. Se a dor não diminuir, troque pela alternativa.'
+        : 'Não há carga menor aqui: encurte a amplitude ou desacelere. Se a dor não diminuir, troque pela alternativa.',
       regraId,
     };
   return { acao: 'seguir', mensagem: 'Pode seguir.', regraId };

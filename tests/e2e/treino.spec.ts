@@ -128,6 +128,19 @@ test('dor acima de 5 encerra o exercício e oferece a alternativa', async ({ pag
   await expect(page.getByText('Exercício encerrado.')).toBeVisible();
 });
 
+// Auditoria de 12/11/2026: com o halter mais leve (ou a placa 1), a orientação mandava reduzir a carga em 10–20%.
+test('dor de 3 a 5 com o halter mais leve: a orientação não manda reduzir a carga', async ({ page }) => {
+  await ana(page);
+  await comecar(page);
+  await page.getByLabel('Carga', { exact: true }).selectOption('1');
+  await page.getByRole('radio', { name: '2', exact: true }).check();
+  await page.getByRole('button', { name: /^Série feita/ }).click();
+  await page.getByRole('button', { name: 'Senti algo' }).click();
+  await page.getByRole('region', { name: 'Senti algo' }).getByRole('button', { name: '4', exact: true }).click();
+  await expect(page.getByRole('alert')).toContainText('Não há carga menor aqui: encurte a amplitude ou desacelere.');
+  await expect(page.getByRole('alert')).not.toContainText('Reduza a carga');
+});
+
 // Auditoria de 12/11/2026: a nota de 3 a 5 dada antes da 1ª série vivia só na tela e se perdia ao abrir o guia.
 test('a nota de dor dada antes da 1ª série sobrevive à ida ao guia e entra na série registrada', async ({ page }) => {
   await ana(page);
