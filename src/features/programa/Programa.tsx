@@ -96,6 +96,8 @@ export function Programa() {
           ...(o.perfil.divisao ? { divisao: o.perfil.divisao } : {}),
           minutosSessao: o.perfil.minutosSessao,
           prioridades: o.perfil.prioridades,
+          // O objetivo não muda com o ajuste (antes, sumia daqui e o programa voltava a "ganhar músculo" sem avisar).
+          ...(s.rotina?.objetivo ? { objetivo: s.rotina.objetivo } : {}),
         },
         ajustes: undefined,
       }),

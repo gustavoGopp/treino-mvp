@@ -38,6 +38,24 @@ const faixa = ([a, b]: [number, number]) => (a === b ? `${a}` : `${a}–${b}`);
 const tempo = (seg: number) => (seg % 60 ? `${Math.floor(seg / 60)}:${String(seg % 60).padStart(2, '0')}` : `${seg / 60} min`);
 const RIRS = [0, 1, 2, 3, 4] as const;
 
+// O exercício aberto no treino em andamento, lembrado só nesta aba (sessionStorage): não é dado de treino nem de saúde.
+const CHAVE_ABERTO = 'treino-mvp:exercicio-aberto';
+function lerExercicioAberto(sessaoId: string): number | null {
+  try {
+    const v = JSON.parse(sessionStorage.getItem(CHAVE_ABERTO) ?? 'null') as { sessaoId?: unknown; indice?: unknown } | null;
+    return v && v.sessaoId === sessaoId && typeof v.indice === 'number' && Number.isInteger(v.indice) && v.indice >= 0 ? v.indice : null;
+  } catch {
+    return null;
+  }
+}
+function gravarExercicioAberto(sessaoId: string, indice: number): void {
+  try {
+    sessionStorage.setItem(CHAVE_ABERTO, JSON.stringify({ sessaoId, indice }));
+  } catch {
+    /* sem armazenamento: vale a regra do primeiro exercício incompleto */
+  }
+}
+
 /** Prescrição de um item da sessão: a do programa, ou a da vaga que a alternativa ocupou. */
 type Item = { x: ExercicioPrescrito; feito: { exId: string; series: SerieRegistrada[]; interrompido?: boolean; noLugarDe?: string } };
 
@@ -53,11 +71,19 @@ export function Treino() {
   const dia = doTreino?.dia ?? null;
   const vagaDe = (exId: string) => dia?.exercicios.find((x) => (x.noLugarDe ?? x.exId) === exId);
   // Ao voltar para um treino em andamento, abre o primeiro exercício que ainda não terminou.
+  // Na mesma aba (ida ao guia e volta), abre o exercício que estava aberto: antes, "Senti algo" tocado no guia do 4º
+  // exercício voltava para o 1º ainda incompleto e interrompia o exercício errado.
   const [indice, setIndice] = useState(() => {
+    const aberto = sessao ? lerExercicioAberto(sessao.id) : null;
+    if (sessao && aberto !== null && aberto < sessao.exercicios.length) return aberto;
     const meta = (exId: string) => vagaDe(exId)?.series ?? 1;
     const i = sessao?.exercicios.findIndex((e) => !e.interrompido && e.series.length < meta(e.noLugarDe ?? e.exId)) ?? 0;
     return Math.max(0, i);
   });
+  const sessaoId = sessao?.id;
+  useEffect(() => {
+    if (sessaoId) gravarExercicioAberto(sessaoId, indice);
+  }, [sessaoId, indice]);
   // "Senti algo" tocado no guia aberto pelo treino volta aqui com a folha aberta (?sentir=1): uma lógica de segurança só.
   const [params, setParams] = useSearchParams();
   const [painel, setPainel] = useState<'nenhum' | 'trocar' | 'sentir' | 'mais' | 'terminar'>(() => (params.get('sentir') === '1' ? 'sentir' : 'nenhum'));
