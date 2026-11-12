@@ -115,11 +115,35 @@ describe('os casos W1 a W7 do T6', () => {
     expect(JSON.stringify(e)).toBe(antes);
     // "Manter" esconde a oferta por 4 semanas.
     expect(semana(e, 28, { revisaoRespondidaEm: dia(27) }).revisao).toBeUndefined();
-    expect(semana(e, 28 + 28, { revisaoRespondidaEm: dia(27) }).revisao).toBeDefined();
+    // Passadas as 4 semanas, a oferta volta se a pessoa seguiu treinando abaixo do planejado (antes, este teste
+    // conferia a volta da oferta depois de 4 semanas paradas, que era justamente o defeito).
+    let depois = e;
+    for (let w = 4; w < 8; w++) for (const [k, d] of [[0, 'superior-a'], [2, 'inferior-a']] as [number, string][]) depois = treinar(depois, w * 7 + k, d);
+    expect(semana(depois, 28 + 28, { revisaoRespondidaEm: dia(27) }).revisao).toBeDefined();
+    expect(semana(e, 28 + 28, { revisaoRespondidaEm: dia(27) }).revisao).toBeUndefined();
     // Com 2 das 4 semanas abaixo, nada é oferecido.
     let f = estadoDe(bruno);
     for (let w = 0; w < 4; w++) for (const [k, d] of [[0, 'superior-a'], [1, 'inferior-a'], ...(w < 2 ? [[3, 'superior-b'], [4, 'inferior-b']] : [])] as [number, string][]) f = treinar(f, w * 7 + k, d);
     expect(semana(f, 28).revisao).toBeUndefined();
+  });
+
+  // Auditoria de 12/11/2026: depois de 4 semanas sem treino, a oferta aparecia com "você treinou cerca de 1 vez por
+  // semana". A semana sem nenhum treino é pausa (quem cuida dela é a volta da pausa), não uma semana abaixo do planejado.
+  it('a oferta de menos dias não aparece depois de uma pausa, nem conta a semana sem treino como "1 vez"', () => {
+    let e = estadoDe(bruno);
+    for (let w = 0; w < 2; w++) DIAS.forEach((d, k) => (e = treinar(e, w * 7 + k, d)));
+    // 4 semanas paradas
+    expect(semana(e, 14 + 28).revisao).toBeUndefined();
+    // 2 semanas paradas e 2 com 1 treino: só 2 semanas abaixo do planejado, nada é oferecido
+    let f = e;
+    for (const w of [4, 5]) f = treinar(f, w * 7, 'superior-a');
+    expect(semana(f, 6 * 7).revisao).toBeUndefined();
+    // 1 semana parada e 3 com 1 treino: oferece, e a conta é a das semanas em que houve treino
+    let g = e;
+    for (const w of [3, 4, 5]) g = treinar(g, w * 7, 'superior-a');
+    const r = semana(g, 6 * 7).revisao!;
+    expect(r.media).toBe(1);
+    expect(r.texto).toMatch(/^Nas semanas em que treinou, das últimas 4, você fez cerca de 1 treino por semana\./);
   });
 
   it('W7: 1 treino na semana → "já conta"; os músculos sem treino ficam "ainda não treinou nesta semana", sem alerta', () => {
