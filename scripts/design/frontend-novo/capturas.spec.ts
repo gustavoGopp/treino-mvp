@@ -159,7 +159,7 @@ test('o app de hoje, tela por tela, com a Ana', async ({ page }, info) => {
   await foto('08b-treino-serie-preenchida', { acao: /^Série feita/ });
   await page.getByRole('button', { name: /^Série feita/ }).click();
   await expect(page.getByRole('region', { name: 'Descanso' })).toBeVisible();
-  await foto('09-treino-descanso', { acao: /^Série feita/, inteira: true });
+  await foto('09-treino-descanso', { acao: /^Série \d feita/, inteira: true });
   await passo('treino, senti algo', async () => {
     await page.getByRole('button', { name: 'Senti algo' }).click();
     await page.waitForTimeout(300);
@@ -171,6 +171,11 @@ test('o app de hoje, tela por tela, com a Ana', async ({ page }, info) => {
     await maisOpcoes(page);
     await foto('11-treino-mais-opcoes');
     await fecharFolha();
+  });
+  // frontend novo: no descanso o registro sai da tela; "Mudar" volta aos números da série, com o descanso numa faixa
+  await passo('treino, a série durante o descanso', async () => {
+    await page.getByRole('button', { name: 'Mudar' }).click();
+    await foto('09b-treino-serie-com-descanso', { acao: /^Série feita/ });
   });
   await passo('treino, por quê', async () => {
     await page.getByRole('button', { name: 'por quê?' }).first().click();
@@ -190,6 +195,16 @@ test('o app de hoje, tela por tela, com a Ana', async ({ page }, info) => {
       await proximo.click();
       await page.waitForTimeout(400);
       await foto(`08c-treino-exercicio-${i}`, { acao: /^Série feita/ });
+      if (i === 2) {
+        // o fim do descanso: o relógio passa de zero e a tela inverte (os 2 min saem do relógio do navegador)
+        const voltar = page.getByRole('button', { name: /^(Descanso|Hora da próxima série)/ });
+        if (await voltar.count()) {
+          await voltar.click();
+          for (let k = 0; k < 9; k++) await page.getByRole('button', { name: '−15 s' }).click();
+          await foto('09c-treino-hora-da-proxima-serie');
+          await page.getByRole('button', { name: 'Ok' }).click();
+        }
+      }
     }
   });
   await passo('treino, terminar', async () => {

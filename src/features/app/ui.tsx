@@ -221,13 +221,15 @@ export function Revelar({ children }: { children: ReactNode }) {
 }
 
 /** Título que recebe o foco quando a tela abre (leitores de tela anunciam a troca de tela). */
-export function Titulo({ children }: { children: ReactNode }) {
+export function Titulo({ children, soLeitor }: { children: ReactNode; soLeitor?: boolean }) {
   const ref = useRef<HTMLHeadingElement>(null);
   useEffect(() => {
     ref.current?.focus();
   }, []);
+  // `soLeitor`: o nome da tela fica para o leitor de tela, e o título à vista é o conteúdo dela (o treino de hoje, o
+  // número da semana), que vem logo em seguida, num h2. Frontend novo: título específico, não o nome do tipo da tela.
   return (
-    <h1 ref={ref} tabIndex={-1} className="titulo">
+    <h1 ref={ref} tabIndex={-1} className={soLeitor ? 'titulo sr' : 'titulo'}>
       {children}
     </h1>
   );

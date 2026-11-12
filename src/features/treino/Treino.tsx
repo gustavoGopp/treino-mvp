@@ -139,6 +139,19 @@ export function Treino() {
     atualizar((s) => terminarSessao(s, agoraIso(), porAlerta));
     navigate('/treino/fim', { replace: true });
   };
+  // as séries já feitas neste exercício: à vista no registro e, durante o descanso, na tela do relógio
+  const seriesFeitas = feito.series.length > 0 && (
+    <ol className="series-feitas" aria-label="Séries feitas">
+      {feito.series.map((s, n) => (
+        <li key={n}>
+          <span className="n">{n + 1}</span> {textoCarga(s.carga, feito.exId)} × {s.reps} · RIR {textoDoRir(s.rir, RIR.registroMax)}
+          {s.calibracao ? ' · acerto da carga' : ''}
+          {s.dor ? ` · dor ${s.dor}` : ''}
+          {s.quedas?.length ? ` · quedas: ${s.quedas.map((q) => `${textoCarga(q.carga, feito.exId)} × ${q.reps}`).join(', ')}` : ''}
+        </li>
+      ))}
+    </ol>
+  );
   const desfazerSalva = () => {
     if (!salva) return;
     atualizar((s) => desfazerSerie(s, salva.indice));
@@ -196,6 +209,12 @@ export function Treino() {
       </header>
       <main className="conteudo sessao">
         <AvisoSalvar />
+        {/* a orientação de segurança (dor, sinal de alerta) fica sempre à vista, na série e no descanso */}
+        {aviso && painel === 'nenhum' && (
+          <div className="warnbox aviso-seguranca" role="alert">
+            {aviso.texto} <Selo id={aviso.regraId} />
+          </div>
+        )}
         {noRelogio && (
           <PainelDescanso
             d={descanso}
@@ -205,9 +224,15 @@ export function Treino() {
                   Próximo exercício
                 </button>
               ) : (
-                <button type="button" className="btn salvar" disabled={!rascunho?.pronto} onClick={() => rascunho?.pronto && feita(rascunho.serie())}>
-                  Série {feito.series.length + 1} feita
-                </button>
+                rascunho?.pronto ? (
+                  <button type="button" className="btn salvar" onClick={() => feita(rascunho.serie())}>
+                    Série {feito.series.length + 1} feita
+                  </button>
+                ) : (
+                  <button type="button" className="btn" onClick={() => setVerSerie(true)}>
+                    Preencher a série {feito.series.length + 1}
+                  </button>
+                )
               )
             }
           >
@@ -225,17 +250,18 @@ export function Treino() {
                       <span className="rotulo">
                         A seguir · série {feito.series.length + 1} de {x.series}
                       </span>
-                      <b>{rascunho?.carga ? `${textoCarga(rascunho.carga, x.exId)} × ${rascunho.reps}` : `${rascunho?.reps ?? ''} repetições`}</b>
+                      <b>{rascunho?.carga ? `${textoCarga(rascunho.carga, x.exId)} × ${rascunho.reps}` : 'Falta escolher a carga'}</b>
                       <span className="apoio">{x.nome}</span>
                     </>
                   )}
                 </div>
-                {!completo && (
+                {!completo && rascunho?.pronto && (
                   <button type="button" className="link-botao" onClick={() => setVerSerie(true)}>
                     Mudar
                   </button>
                 )}
               </div>
+              {seriesFeitas && <div className="feitas-linha">{seriesFeitas}</div>}
               {salva && (
                 <p className="salva-linha" role="status">
                   <span>
@@ -258,7 +284,7 @@ export function Treino() {
               <span className="num">{descanso.resta <= 0 ? `+${tempo(Math.floor(-descanso.resta))}` : tempo(Math.ceil(descanso.resta))}</span>
             </button>
           )}
-          {salva && !noRelogio && (
+          {salva && !descanso.ativo && (
             <div className="desfazer" role="status">
               <span>{erroAoSalvar ? `Série ${salva.numero} anotada, mas não salva` : `Série ${salva.numero} salva`}</span>
               <button type="button" onClick={desfazerSalva}>
@@ -277,18 +303,13 @@ export function Treino() {
           ) : (
             feito.noLugarDe && <p className="ajuda">No lugar de {POR_ID[feito.noLugarDe]?.nome.toLowerCase()}, só neste treino.</p>
           )}
-          {aviso && painel === 'nenhum' && (
-            <div className="warnbox" role="alert">
-              {aviso.texto} <Selo id={aviso.regraId} />
-            </div>
-          )}
         </div>
 
         {/* o nome, as séries feitas, os números, a reserva e o botão: um bloco só, preso embaixo, perto do polegar */}
         <div ref={preso.ref} className={`registro-bloco${preso.solto ? ' solto' : ''}`} hidden={noRelogio}>
           <div className="ex-sessao">
             <Titulo>{x.nome}</Titulo>
-            <p className="meta">
+            <p className={x.dropSet ? 'meta' : 'meta sr'}>
               {x.series} × {faixa(x.reps)}
               {x.unilateral ? ' cada lado' : ''}
               {x.dropSet && (
@@ -300,18 +321,7 @@ export function Treino() {
             </p>
           </div>
 
-          {feito.series.length > 0 && (
-            <ol className="series-feitas" aria-label="Séries feitas">
-              {feito.series.map((s, n) => (
-                <li key={n}>
-                  <span className="n">{n + 1}</span> {textoCarga(s.carga, feito.exId)} × {s.reps} · RIR {textoDoRir(s.rir, RIR.registroMax)}
-                  {s.calibracao ? ' · acerto da carga' : ''}
-                  {s.dor ? ` · dor ${s.dor}` : ''}
-                  {s.quedas?.length ? ` · quedas: ${s.quedas.map((q) => `${textoCarga(q.carga, feito.exId)} × ${q.reps}`).join(', ')}` : ''}
-                </li>
-              ))}
-            </ol>
-          )}
+          {!noRelogio && seriesFeitas}
 
           {feito.interrompido ? (
             <div className="warnbox">
@@ -320,14 +330,14 @@ export function Treino() {
           ) : !completo ? (
             <>
               {feito.series.length === 0 && (
-                <>
+                <div className="dicas-serie">
                   <Sugestao x={x} estado={estado} inventario={inventario} opcoes={opcoesCargaHoje} />
                   {precisaAquecer(dia, dia.exercicios.findIndex((y) => y === vaga)) && (
                     <p className="dica">
                       Antes: 1–2 séries leves de aquecimento, sem contar. <Selo id={REGRA_AQUECIMENTO} />
                     </p>
                   )}
-                </>
+                </div>
               )}
               {(calNaSessao.calibrando || calNaSessao.fim) && calNaSessao.ultima && (
                 <p className="dica calibracao" role="status">
@@ -576,8 +586,6 @@ function MenosMais({
   semMais,
   aoMenos,
   aoMais,
-  rotuladoPor,
-  rotulo,
 }: {
   rotuloMenos: string;
   rotuloMais: string;
@@ -585,11 +593,9 @@ function MenosMais({
   semMais?: boolean;
   aoMenos: () => void;
   aoMais: () => void;
-  rotuladoPor?: string;
-  rotulo?: string;
 }) {
   return (
-    <div className="stepper" role="group" aria-labelledby={rotuladoPor} aria-label={rotulo}>
+    <div className="stepper">
       <button type="button" aria-label={rotuloMenos} disabled={semMenos} onClick={aoMenos}>
         <Icone nome="minus" />
       </button>
@@ -659,8 +665,8 @@ function RegistroSerie({
     <section className="registro" aria-label={`Série ${numero}`}>
       <div className="serie-tit">
         <h2>
-          Série {numero} de {x.series}
-          {x.unilateral && <span> · cada lado</span>}
+          Série {numero} de {x.series} · {faixa(x.reps)}
+          {x.unilateral && <span> cada lado</span>}
         </h2>
         <ol className="pips" aria-hidden="true">
           {Array.from({ length: x.series }, (_, n) => (
@@ -670,14 +676,14 @@ function RegistroSerie({
       </div>
       <div className="colunas">
         <ControleCarga registro={op.registro} cargas={op.lista} placasMax={op.placasMax} menorAnilhaKg={op.menorAnilhaKg} degraus={op.degraus} valor={carga} aoMudar={setCarga} />
-        <div className="coluna">
+        <div className="coluna" role="group" aria-labelledby={`${uid}-reps`}>
           <span className="rotulo-curto" id={`${uid}-reps`}>
             Repetições
           </span>
           <output className="valor-grande" aria-live="polite">
             {reps}
           </output>
-          <MenosMais rotuladoPor={`${uid}-reps`} rotuloMenos="Menos uma repetição" rotuloMais="Mais uma repetição" semMenos={reps <= 0} aoMenos={() => setReps((r) => Math.max(0, r - 1))} aoMais={() => setReps((r) => r + 1)} />
+          <MenosMais rotuloMenos="Menos uma repetição" rotuloMais="Mais uma repetição" semMenos={reps <= 0} aoMenos={() => setReps((r) => Math.max(0, r - 1))} aoMais={() => setReps((r) => r + 1)} />
         </div>
       </div>
       <fieldset className="campo rir">
@@ -731,13 +737,12 @@ function RegistroSerie({
                   valor={q.carga}
                   aoMudar={(c) => setQuedas((qs) => qs.map((y, k) => (k === n ? { ...y, carga: c } : y)))}
                 />
-                <div className="coluna">
+                <div className="coluna" role="group" aria-label={`Repetições da queda ${n + 1}`}>
                   <span className="rotulo-curto">Repetições</span>
                   <output className="valor-grande" aria-live="polite">
                     {q.reps}
                   </output>
                   <MenosMais
-                    rotulo={`Repetições da queda ${n + 1}`}
                     rotuloMenos={`Menos uma repetição na queda ${n + 1}`}
                     rotuloMais={`Mais uma repetição na queda ${n + 1}`}
                     semMenos={q.reps <= 0}
@@ -756,6 +761,8 @@ function RegistroSerie({
     </section>
   );
 }
+
+const nomeDoDegrau = (t: string) => (t ? t[0]!.toUpperCase() + t.slice(1) : t);
 
 /** A carga: o número grande com a unidade pequena, e menos e mais embaixo. O tipo de registro vem do equipamento. */
 function ControleCarga({
@@ -787,7 +794,7 @@ function ControleCarga({
     ) : (
       <>
         {n}
-        {unidade && <small>{unidade}</small>}
+        {unidade && <small> {unidade}</small>}
       </>
     );
   if (registro === 'anilha') {
@@ -796,14 +803,14 @@ function ControleCarga({
     const passo = menorAnilhaKg ?? MENOR_ANILHA_PADRAO_KG;
     const mudar = (dir: 1 | -1) => aoMudar({ tipo: 'anilha', kgPorLado: Math.max(0, Math.round(((k ?? 0) + dir * passo) * 100) / 100) });
     return (
-      <div className="coluna">
+      <div className="coluna" role="group" aria-labelledby={idRotulo}>
         <span className="rotulo-curto" id={idRotulo}>
           Anilhas por lado
         </span>
         <output className="valor-grande carga-valor" aria-live="polite">
           {numero(k === undefined ? undefined : numeroBr(k), 'kg')}
         </output>
-        <MenosMais rotuladoPor={idRotulo} rotuloMenos="Menos anilha de cada lado" rotuloMais="Mais anilha de cada lado" semMenos={k === undefined || k <= 0} aoMenos={() => mudar(-1)} aoMais={() => mudar(1)} />
+        <MenosMais rotuloMenos="Menos anilha de cada lado" rotuloMais="Mais anilha de cada lado" semMenos={k === undefined || k <= 0} aoMenos={() => mudar(-1)} aoMais={() => mudar(1)} />
         <p className="ajuda">Sem contar o peso do trenó ou da barra da máquina.</p>
       </div>
     );
@@ -813,7 +820,7 @@ function ControleCarga({
     const p = valor?.tipo === 'contrapeso' ? valor.placa : undefined;
     const max = placasMax ?? 30;
     return (
-      <div className="coluna">
+      <div className="coluna" role="group" aria-labelledby={idRotulo}>
         <span className="rotulo-curto" id={idRotulo}>
           Contrapeso (placa)
         </span>
@@ -821,7 +828,7 @@ function ControleCarga({
           {numero(p)}
         </output>
         <MenosMais
-          rotuladoPor={idRotulo}
+         
           rotuloMenos="Menos contrapeso (mais difícil)"
           rotuloMais="Mais contrapeso (mais fácil)"
           semMenos={!p || p <= 1}
@@ -838,13 +845,17 @@ function ControleCarga({
     return (
       <label className="coluna dificuldade">
         <span className="rotulo-curto">Dificuldade</span>
-        <select value={d} onChange={(e) => aoMudar({ tipo: 'degrau', degrau: Number(e.target.value) })}>
-          {(degraus ?? ESCADA_PESO_CORPO).map((t, n) => (
-            <option key={n} value={n}>
-              {t[0]!.toUpperCase() + t.slice(1)}
-            </option>
-          ))}
-        </select>
+        <span className="valor-texto com-lista">
+          <span aria-hidden="true">{nomeDoDegrau((degraus ?? ESCADA_PESO_CORPO)[d] ?? '')}</span>
+          <Icone nome="chevron-down" />
+          <select value={d} onChange={(e) => aoMudar({ tipo: 'degrau', degrau: Number(e.target.value) })}>
+            {(degraus ?? ESCADA_PESO_CORPO).map((t, n) => (
+              <option key={n} value={n}>
+                {nomeDoDegrau(t)}
+              </option>
+            ))}
+          </select>
+        </span>
       </label>
     );
   }
@@ -852,7 +863,7 @@ function ControleCarga({
     const p = valor?.tipo === 'placa' ? valor.placa : undefined;
     const max = placasMax ?? 30;
     return (
-      <div className="coluna">
+      <div className="coluna" role="group" aria-labelledby={idRotulo}>
         <span className="rotulo-curto" id={idRotulo}>
           Placa
         </span>
@@ -860,7 +871,7 @@ function ControleCarga({
           {numero(p)}
         </output>
         <MenosMais
-          rotuladoPor={idRotulo}
+         
           rotuloMenos="Placa anterior"
           rotuloMais="Próxima placa"
           semMenos={!p || p <= 1}
@@ -893,7 +904,8 @@ function ControleCarga({
           <span aria-hidden="true">{numero(k === undefined ? undefined : numeroBr(k), 'kg')}</span>
           {k === undefined && (
             <small className="escolha" aria-hidden="true">
-              toque para escolher
+              {' '}
+              escolha
             </small>
           )}
           <select id={idCarga} className="carga-valor" value={k ?? ''} onChange={(e) => aoMudar({ tipo: 'kg', kg: Number(e.target.value) })}>
@@ -912,7 +924,7 @@ function ControleCarga({
           {numero(k === undefined ? undefined : numeroBr(k), 'kg')}
         </output>
       )}
-      <MenosMais rotuloMenos="Menos carga" rotuloMais="Mais carga" semMenos={k === undefined || (lista ? k <= lista[0]! : k <= 0)} aoMenos={() => passo(-1)} aoMais={() => passo(1)} rotulo="Ajustar a carga" />
+      <MenosMais rotuloMenos="Menos carga" rotuloMais="Mais carga" semMenos={k === undefined || (lista ? k <= lista[0]! : k <= 0)} aoMenos={() => passo(-1)} aoMais={() => passo(1)} />
     </div>
   );
 }

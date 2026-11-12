@@ -541,11 +541,16 @@ img.icone-eq{display:block;flex:none;object-fit:contain;background:#F6F6F4;borde
 .aviso-linha .btn{flex:0 0 auto;width:auto}
 /* os dias do programa: blocos lado a lado; o que está aberto inverte */
 .abas{display:grid;grid-auto-flow:column;grid-auto-columns:1fr;gap:var(--s8)}
-.abas [role="tab"]{min-width:0;min-height:var(--h56);padding:var(--s4) var(--s8);border-radius:var(--r8);border:0;background:var(--superficie-2);font-weight:600;font-size:var(--t-corpo);line-height:1.2;cursor:pointer;color:var(--texto);white-space:normal}
+.abas [role="tab"]{display:flex;flex-direction:column;align-items:flex-start;justify-content:center;gap:var(--s4);min-width:0;min-height:var(--h64);padding:var(--s8) var(--s16);border-radius:var(--r8);border:0;background:var(--superficie-2);line-height:1.1;cursor:pointer;color:var(--texto);white-space:normal;text-align:left}
+.abas [role="tab"] b{font-size:var(--t-pergunta);font-weight:700}
+.abas [role="tab"] small{font-size:var(--t-rotulo);font-weight:600;color:var(--texto-2)}
+.abas [role="tab"][aria-selected="true"] small{color:inherit;opacity:.8}
 .abas [role="tab"][aria-selected="true"]{background:var(--acao);color:var(--sobre-acao)}
 .painel-dia{display:flex;flex-direction:column;gap:0}
-.cartao-ex-corpo{display:grid;grid-template-columns:4rem 1fr;gap:var(--s16);align-items:center;padding:var(--s8) 0;min-height:var(--h64);color:var(--texto) !important;text-decoration:none}
-button.cartao-ex-corpo{width:100%;border:0;background:transparent;font:inherit;text-align:left;cursor:pointer;grid-template-columns:4rem 1fr auto}
+.cartoes-ex{counter-reset:ex}
+.cartao-ex-corpo::before{counter-increment:ex;content:counter(ex);color:var(--texto-2);font-size:var(--t-apoio)}
+.cartao-ex-corpo{display:grid;grid-template-columns:var(--s16) 4rem 1fr;gap:var(--s16);align-items:center;padding:var(--s8) 0;min-height:var(--h64);color:var(--texto) !important;text-decoration:none}
+button.cartao-ex-corpo{width:100%;border:0;background:transparent;font:inherit;text-align:left;cursor:pointer;grid-template-columns:var(--s16) 4rem 1fr auto}
 a.cartao-ex-corpo:focus-visible,button.cartao-ex-corpo:focus-visible{outline:3px solid var(--foco);outline-offset:-3px}
 .miniatura{width:7rem;aspect-ratio:4/3;background:var(--stage);border-radius:var(--r8);overflow:hidden;display:grid;place-items:center;flex:none}
 .cartao-ex-corpo .miniatura{width:4rem}
@@ -639,7 +644,7 @@ body:has(.invertida){background:var(--inv-fundo)}
 .modos-treino button{position:relative;border:0;background:transparent;min-height:var(--h48);padding:0 var(--s4);font-size:var(--t-apoio);cursor:pointer;font-weight:600;color:var(--texto-2)}
 .modos-treino button[aria-pressed="true"]{color:var(--texto)}
 .modos-treino button[aria-pressed="true"]::after{content:"";position:absolute;left:var(--s8);right:var(--s8);bottom:var(--s4);height:2px;background:var(--texto)}
-.legenda-do-modo{margin:0;padding:var(--s8) var(--s16) 0;font-size:var(--t-apoio);color:var(--texto-2);min-height:calc(2.9em + var(--s8))}
+.legenda-do-modo{margin:0;padding:var(--s8) var(--s16) 0;font-size:var(--t-apoio);color:var(--texto-2)}
 .legenda-do-modo b{color:var(--texto);font-weight:600}
 .guia-do-treino > .ajuda,.guia-do-treino > .warnbox,.guia-do-treino > .cartao-texto{margin-top:var(--s8)}
 .faixa-descanso{display:flex;align-items:center;justify-content:space-between;gap:var(--s16);min-height:var(--h48);width:100%;border:0;border-radius:var(--r8);background:var(--superficie-2);padding:0 var(--s16);font-weight:600;cursor:pointer;color:var(--texto)}
@@ -651,8 +656,9 @@ body:has(.invertida){background:var(--inv-fundo)}
 .meta{margin:0;font-size:var(--t-apoio);color:var(--texto-2)}
 .sugestao{display:flex;flex-direction:column;gap:var(--s4);font-size:var(--t-apoio);color:var(--texto-2)}
 .sugestao b{font-size:var(--t-corpo);font-weight:600;color:var(--texto)}
-.dica{margin:0;display:flex;flex-wrap:wrap;gap:var(--s4) var(--s8);align-items:baseline;font-size:var(--t-apoio);color:var(--texto-2)}
-.dica b{color:var(--texto);font-weight:600}
+.dica{margin:0;font-size:var(--t-apoio);color:var(--texto-2)}
+.dica b{color:var(--texto);font-weight:600;margin-right:var(--s8)}
+.dicas-serie{display:flex;flex-direction:column;gap:var(--s4)}
 .series-feitas{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:var(--s4) var(--s16);font-size:var(--t-apoio);color:var(--texto-2)}
 .series-feitas .n{color:var(--texto);font-weight:600;margin-right:var(--s4)}
 .registro{display:flex;flex-direction:column;gap:var(--s16)}
@@ -667,17 +673,18 @@ body:has(.invertida){background:var(--inv-fundo)}
 .coluna{display:flex;flex-direction:column;gap:var(--s8);min-width:0}
 .rotulo-curto{font-size:var(--t-rotulo);font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--texto-2)}
 .valor-grande{display:block;font-size:var(--t-numero);font-weight:700;line-height:1;letter-spacing:-.04em;white-space:nowrap}
-.valor-grande small{font-size:var(--t-pergunta);font-weight:500;letter-spacing:0;color:var(--texto-2);margin-left:var(--s4)}
+.valor-grande small{font-size:var(--t-pergunta);font-weight:500;letter-spacing:0;color:var(--texto-2)}
 .valor-grande small.escolha{font-size:var(--t-rotulo);font-weight:600;letter-spacing:.08em;text-transform:uppercase}
 /* por cima do número, invisível, o seletor do aparelho: um toque no número abre a lista das cargas */
-.valor-grande.com-lista{position:relative}
-.valor-grande.com-lista select{position:absolute;inset:0;width:100%;height:100%;min-height:0;max-width:none;padding:0;opacity:0;cursor:pointer;font-size:var(--t-corpo);box-shadow:none}
-.valor-grande.com-lista:has(select:focus-visible){outline:3px solid var(--foco);outline-offset:2px}
+.com-lista{position:relative}
+.com-lista select{position:absolute;inset:0;width:100%;height:100%;min-height:0;max-width:none;padding:0;opacity:0;cursor:pointer;font-size:var(--t-corpo);box-shadow:none}
+.com-lista:has(select:focus-visible){outline:3px solid var(--foco);outline-offset:2px}
+/* a dificuldade do exercício com o peso do corpo: o texto inteiro, que pode quebrar a linha, num bloco tocável */
+.valor-texto{display:flex;align-items:center;justify-content:space-between;gap:var(--s8);min-height:var(--h56);padding:var(--s8) var(--s16);border-radius:var(--r8);background:var(--superficie-2);font-weight:600;line-height:1.25}
 .stepper{display:grid;grid-template-columns:1fr 1fr;gap:var(--s8)}
 .stepper button{min-height:var(--h56);border-radius:var(--r8);border:0;background:var(--superficie-2);cursor:pointer;color:var(--texto);display:grid;place-items:center;transition:transform .1s ease-out}
 .stepper button:active:not(:disabled){transform:scale(.96)}
 .stepper button:disabled{opacity:.35;cursor:default}
-.coluna.dificuldade select{max-width:none;font-size:var(--t-corpo);box-shadow:none}
 .coluna .ajuda{font-size:var(--t-rotulo)}
 /* a reserva: a pergunta, a meta do dia e o "por quê?" numa linha; os 5 valores embaixo, com a meta marcada */
 .registro .rir{gap:var(--s8)}
@@ -705,6 +712,8 @@ body:has(.invertida){background:var(--inv-fundo)}
 .aseguir .miniatura{width:5rem}
 .aseguir .txt{flex:1;display:flex;flex-direction:column;gap:var(--s4);min-width:0}
 .aseguir b{font-size:var(--t-pergunta);font-weight:700;letter-spacing:-.01em}
+.feitas-linha{padding:var(--s16) 0;border-top:1px solid var(--linha)}
+.aviso-seguranca{margin:var(--s8) 0}
 .salva-linha{display:flex;align-items:center;justify-content:space-between;gap:var(--s8);margin:0;font-size:var(--t-apoio);color:var(--texto-2);border-top:1px solid var(--linha)}
 .salva-linha > span{display:inline-flex;align-items:center;gap:var(--s8)}
 .salva-linha .icone{width:1.25rem}
@@ -720,7 +729,7 @@ body:has(.invertida){background:var(--inv-fundo)}
   .treino-tela{--t-numero:3.5rem;--t-relogio:7rem}
   .stepper button{min-height:var(--h48)}
   .palco-btn{flex-basis:calc(var(--h48) * 2 + var(--s24));min-height:calc(var(--h48) * 2 + var(--s24))}
-  .legenda-do-modo{min-height:0;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+  .legenda-do-modo{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
   .registro-bloco,.registro{gap:var(--s8)}
   .descanso-topo{min-height:calc(var(--h48) * 3)}
   .aseguir{padding:var(--s8) 0}
@@ -822,7 +831,7 @@ body:has(.invertida){background:var(--inv-fundo)}
   .marca{white-space:normal}
   .alerta-topo{white-space:normal;padding:0 var(--s8)}
   .stage .hud{flex-wrap:wrap}
-  button.cartao-ex-corpo{grid-template-columns:1fr auto}
+  button.cartao-ex-corpo{grid-template-columns:var(--s16) 1fr auto}
   button.cartao-ex-corpo .miniatura{display:none}
   /* com zoom de 200%, o "Começar" quebra em 2 ou 3 linhas: o foco que rola até um selo precisa de mais folga */
   html:has(.nav-inferior):has(.acao-fixa){scroll-padding-bottom:calc(var(--h64) * 4)}

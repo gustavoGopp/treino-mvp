@@ -15,6 +15,7 @@ import { alternarPreferencia, diaDoTreino, hojeDoEstado, iniciarSessao } from '.
 import { Preferencias } from './Prefiro';
 import { agoraIso, comProgramaNovo, fusoDoAparelho, mesmoConteudo, resultadoDoEstado, useApp } from '../app/estado';
 import { AvisoInstalar, AvisoSalvar, LembreteCopia } from '../app/avisos';
+import { Icone } from '../app/icones';
 import { NavInferior, PorQue, Selo, Titulo, Topo } from '../app/ui';
 import { ComoLer } from './ComoLer';
 import { Folha } from '../app/Folha';
@@ -239,7 +240,35 @@ export function Programa() {
       <Topo />
       <main className="conteudo treino">
         <AvisoSalvar />
-        <Titulo>Seu treino</Titulo>
+        <Titulo soLeitor>Seu treino</Titulo>
+
+        <div className="abas" role="tablist" aria-label="Dias de treino">
+          {diasDaSemana.map((d, i) => (
+            <button
+              key={d.id}
+              type="button"
+              role="tab"
+              id={`aba-${d.id}`}
+              aria-selected={d === diaDoPrograma}
+              aria-controls={`painel-${d.id}`}
+              tabIndex={d === diaDoPrograma ? 0 : -1}
+              onClick={() => setDiaSel(i)}
+              onKeyDown={(e) => {
+                if (e.key === 'ArrowRight' || e.key === 'ArrowLeft') {
+                  const n = (i + (e.key === 'ArrowRight' ? 1 : diasDaSemana.length - 1)) % diasDaSemana.length;
+                  setDiaSel(n);
+                  document.getElementById(`aba-${diasDaSemana[n]!.id}`)?.focus();
+                }
+              }}
+            >
+              <b>
+                {prefixoAbas && <span className="sr">{prefixoAbas}</span>}
+                {d.nome.slice(prefixoAbas.length)}
+              </b>
+              <small aria-hidden="true">~{d.minutosEstimados} min</small>
+            </button>
+          ))}
+        </div>
 
         <section className="cartao-hoje" aria-labelledby="hoje-t">
           {mostrarVolta ? (
@@ -259,11 +288,18 @@ export function Programa() {
             />
           ) : (
             <>
-              <p className="rotulo">Hoje</p>
+              <p className="rotulo">Semana {semana}</p>
               <h2 id="hoje-t">{dia.nome}</h2>
-              <p className="apoio num">
-                {dia.exercicios.length} exercícios · ~{dia.minutosEstimados} min
-              </p>
+              <div className="numeros num">
+                <div>
+                  <b>{dia.exercicios.length}</b>
+                  <span className="rotulo">exercícios</span>
+                </div>
+                <div>
+                  <b>~{dia.minutosEstimados}</b>
+                  <span className="rotulo">minutos</span>
+                </div>
+              </div>
             </>
           )}
           {!estado.sessaoAtual && locais.length > 1 && (
@@ -337,31 +373,6 @@ export function Programa() {
         </p>
         {versaoNova && estado.sessaoAtual && <p className="ajuda">O programa será atualizado depois do treino em andamento.</p>}
         <AvisoInstalar />
-
-        <div className="abas" role="tablist" aria-label="Dias de treino">
-          {diasDaSemana.map((d, i) => (
-            <button
-              key={d.id}
-              type="button"
-              role="tab"
-              id={`aba-${d.id}`}
-              aria-selected={d === diaDoPrograma}
-              aria-controls={`painel-${d.id}`}
-              tabIndex={d === diaDoPrograma ? 0 : -1}
-              onClick={() => setDiaSel(i)}
-              onKeyDown={(e) => {
-                if (e.key === 'ArrowRight' || e.key === 'ArrowLeft') {
-                  const n = (i + (e.key === 'ArrowRight' ? 1 : diasDaSemana.length - 1)) % diasDaSemana.length;
-                  setDiaSel(n);
-                  document.getElementById(`aba-${diasDaSemana[n]!.id}`)?.focus();
-                }
-              }}
-            >
-              {prefixoAbas && <span className="sr">{prefixoAbas}</span>}
-              {d.nome.slice(prefixoAbas.length)}
-            </button>
-          ))}
-        </div>
 
         <section className="painel-dia" role="tabpanel" id={`painel-${dia.id}`} aria-labelledby={`aba-${dia.id}`}>
           <ol className="cartoes-ex">
@@ -557,7 +568,7 @@ function LinhaExercicio({
           <span className="series">{prescricao}</span>
         </span>
         <span className="seta" aria-hidden="true">
-          ›
+          <Icone nome="chevron-right" />
         </span>
       </button>
       {aberta && (
@@ -631,7 +642,7 @@ function Sobre({
       <button type="button" className="linha-sobre" aria-haspopup="dialog" onClick={() => setAberta(true)}>
         Sobre o programa
         <span className="seta" aria-hidden="true">
-          ›
+          <Icone nome="chevron-right" />
         </span>
       </button>
       {aberta && (

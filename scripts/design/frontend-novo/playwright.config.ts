@@ -22,7 +22,8 @@ export default defineConfig({
   reporter: 'list',
   workers: 4,
   timeout: 180_000,
-  use: { baseURL: 'http://localhost:4173', trace: 'off' },
+  // um toque que não acha o alvo falha em 8 s (e o passo fica anotado), em vez de segurar a captura inteira
+  use: { baseURL: 'http://localhost:4173', trace: 'off', actionTimeout: 8000 },
   projects: tamanhos
     .flatMap((t) =>
       temas.map((m) => ({
