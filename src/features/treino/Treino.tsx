@@ -28,7 +28,7 @@ import { Folha } from '../app/Folha';
 import { PorQue, Selo, Titulo } from '../app/ui';
 import { Miniatura } from '../programa/Miniatura';
 import { BotaoPrefiro } from '../programa/Prefiro';
-import { alternarPreferencia, anotarDor, comDor, descartarSessao, desfazerSerie, diaDoTreino, interromperExercicio, inventarioDoTreino, opcoesDaCarga, registrarSerie, semSerie, terminarSessao, trocarExercicio } from './acoes';
+import { alternarPreferencia, anotarDor, descartarSessao, desfazerSerie, diaDoTreino, interromperExercicio, inventarioDoTreino, opcoesDaCarga, registrarSerie, semSerie, terminarSessao, trocarExercicio } from './acoes';
 import { PainelDescanso, useDescanso, useTelaAcesa } from './Temporizador';
 
 // Treino em andamento: um exercício por vez, séries registradas com um toque, descanso entre séries,
@@ -92,8 +92,6 @@ export function Treino() {
     if (params.has('sentir')) setParams({}, { replace: true });
   }, [params, setParams]);
   const [aviso, setAviso] = useState<{ texto: string; regraId: string } | null>(null);
-  // A nota de dor dada antes da 1ª série de um exercício vai na próxima série registrada dele (seguranca.dor.escala; R5a).
-  const [dorPendente, setDorPendente] = useState<Record<number, number>>({});
   // "Desfazer" por 5 s depois de salvar a série (redesign, lote 2): o toque errado em "Série feita" se corrige na hora.
   const [salva, setSalva] = useState<{ indice: number; numero: number } | null>(null);
   useEffect(() => {
@@ -137,9 +135,8 @@ export function Treino() {
     // Série de acerto da calibração (progressao.calibracao): fica no histórico, fora da dupla progressão.
     const cal = calibracaoNaSessao(estado.historico, x, inventario, feito.series, opcoesCargaHoje);
     const acerto = cal.calibrando && !avaliarSerieDeCalibracao(serie, x, inventario, opcoesCargaHoje).perto;
-    const comNota = comDor(serie, dorPendente[i]);
-    atualizar((s) => registrarSerie(s, i, acerto ? { ...comNota, calibracao: true } : comNota));
-    if (dorPendente[i] !== undefined) setDorPendente((d) => Object.fromEntries(Object.entries(d).filter(([k]) => Number(k) !== i)));
+    // A nota de dor dada antes da 1ª série está guardada no exercício e passa para esta série (registrarSerie).
+    atualizar((s) => registrarSerie(s, i, acerto ? { ...serie, calibracao: true } : serie));
     setSalva({ indice: i, numero: feito.series.length + 1 });
     if (feito.series.length + 1 < x.series) descanso.iniciar(x.descansoSeg);
     else if (!ultimo) descanso.iniciar(x.descansoSeg);
@@ -319,14 +316,16 @@ export function Treino() {
             <Sentir
               aoDor={(nota) => {
                 const r = avaliarDor(nota);
-                // A nota fica guardada (seguranca.dor.escala; R5a): na última série feita ou, sem série, na próxima.
+                // A nota fica guardada (seguranca.dor.escala; R5a): na última série feita ou, sem série, no exercício
+                // (e passa para a próxima série; se a dor encerra o exercício antes dela, a nota fica nele).
                 let guardada = '';
-                if (nota > 0 && feito.series.length > 0) {
+                if (nota > 0) {
                   atualizar((s) => anotarDor(s, i, nota).estado);
-                  guardada = ` Nota ${nota} guardada na série ${feito.series.length}.`;
-                } else if (nota > 0 && r.acao !== 'encerrar-exercicio') {
-                  setDorPendente((d) => ({ ...d, [i]: Math.max(d[i] ?? 0, nota) }));
-                  guardada = ` Nota ${nota} guardada na próxima série que você registrar.`;
+                  guardada = feito.series.length
+                    ? ` Nota ${nota} guardada na série ${feito.series.length}.`
+                    : r.acao === 'encerrar-exercicio'
+                      ? ` Nota ${nota} guardada neste exercício.`
+                      : ` Nota ${nota} guardada na próxima série que você registrar.`;
                 }
                 setAviso({ texto: r.mensagem + guardada, regraId: r.regraId });
                 if (r.acao === 'encerrar-exercicio') {

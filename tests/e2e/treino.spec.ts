@@ -120,8 +120,29 @@ test('dor acima de 5 encerra o exercício e oferece a alternativa', async ({ pag
   await page.getByRole('button', { name: 'Senti algo' }).click();
   await page.getByRole('region', { name: 'Senti algo' }).getByRole('button', { name: '7', exact: true }).click();
   await expect(page.getByRole('alert')).toContainText('Pare este exercício e use a alternativa');
+  // Auditoria de 12/11/2026: antes da 1ª série, a nota não ia para lugar nenhum; agora fica no exercício.
+  await expect(page.getByRole('alert')).toContainText('Nota 7 guardada neste exercício.');
   await expect(page.getByText('Exercício encerrado.')).toBeVisible();
   await expect(page.getByRole('region', { name: 'Trocar exercício' })).toBeVisible();
+  await page.reload();
+  await expect(page.getByText('Exercício encerrado.')).toBeVisible();
+});
+
+// Auditoria de 12/11/2026: a nota de 3 a 5 dada antes da 1ª série vivia só na tela e se perdia ao abrir o guia.
+test('a nota de dor dada antes da 1ª série sobrevive à ida ao guia e entra na série registrada', async ({ page }) => {
+  await ana(page);
+  await comecar(page);
+  await page.getByRole('button', { name: 'Senti algo' }).click();
+  await page.getByRole('region', { name: 'Senti algo' }).getByRole('button', { name: '4', exact: true }).click();
+  await expect(page.getByRole('alert')).toContainText('Nota 4 guardada na próxima série que você registrar.');
+  await page.getByRole('link', { name: 'Ver como fazer' }).click();
+  await expect(page).toHaveURL(/\/guia\/.+de=treino/);
+  await page.goBack();
+  await expect(page).toHaveURL(/\/treino$/);
+  await page.getByLabel('Carga', { exact: true }).selectOption('8');
+  await page.getByRole('radio', { name: '2', exact: true }).check();
+  await page.getByRole('button', { name: /^Série feita/ }).click();
+  await expect(page.getByRole('list', { name: 'Séries feitas' })).toContainText('dor 4');
 });
 
 test('dor no peito encerra o treino e orienta ligar para o SAMU', async ({ page }) => {

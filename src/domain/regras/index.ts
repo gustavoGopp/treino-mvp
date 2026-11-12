@@ -125,6 +125,9 @@ export const PROGRESSAO = {
   acertosMax: 3, // progressao.calibracao (R5a): depois de 3 séries de acerto sem cair em A ± 2, a calibração termina
 };
 
+/** seguranca.dor.escala: de 3 a 5, ajustar (carga, amplitude, ritmo); acima de 5, encerrar o exercício. */
+export const DOR = { ajustarDe: 3, ajustarAte: 5 };
+
 /** deload.semana-leve: o conteúdo da semana leve e quando sugerir. */
 export const SEMANA_LEVE = {
   fatorSeries: 0.5,
@@ -134,8 +137,8 @@ export const SEMANA_LEVE = {
   estagnados: 2,
   pesadoEm: 2, // "pesado demais" em 2 dos últimos 3 treinos
   pesadoDe: 3,
-  dorMin: 3,
-  dorMax: 5,
+  dorMin: DOR.ajustarDe,
+  dorMax: DOR.ajustarAte,
   carenciaSemanas: 3, // não sugere nas 3 semanas depois de uma volta de pausa ou de uma semana leve
 };
 

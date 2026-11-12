@@ -1,6 +1,6 @@
 import { ordemFixa } from '../ordem';
 import type { Articulacao } from '../biblioteca';
-import { r } from '../regras';
+import { DOR, r } from '../regras';
 
 // Triagem de prontidão no estilo do PAR-Q+ (seguranca.triagem). As perguntas são próprias do app:
 // o texto oficial do PAR-Q+ só entra depois de confirmada a licença (seguranca.triagem.texto).
@@ -119,13 +119,13 @@ export type AcaoDor = { acao: 'seguir' | 'ajustar' | 'encerrar-exercicio'; mensa
 /** Dor relatada numa série, de 0 a 10 (seguranca.dor.escala). Dor aguda encerra o exercício em qualquer nota. */
 export function avaliarDor(nota: number, aguda = false): AcaoDor {
   const regraId = r('seguranca.dor.escala');
-  if (aguda || nota > 5)
+  if (aguda || nota > DOR.ajustarAte)
     return {
       acao: 'encerrar-exercicio',
       mensagem: 'Pare este exercício e use a alternativa. Se a dor continuar ou voltar, procure avaliação profissional.',
       regraId,
     };
-  if (nota >= 3)
+  if (nota >= DOR.ajustarDe)
     return {
       acao: 'ajustar',
       mensagem: 'Reduza a carga em 10–20%, encurte a amplitude ou desacelere. Se a dor não diminuir, troque pela alternativa.',

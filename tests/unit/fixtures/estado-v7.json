@@ -1,0 +1,2238 @@
+{
+ "versao": 7,
+ "avisoAceitoEm": "2026-10-04T12:00:00.000Z",
+ "triagem": {
+  "respostas": {
+   "coracao": false,
+   "peito": false,
+   "tontura": false,
+   "doenca-cronica": false,
+   "medicamento": false,
+   "osteoarticular": false,
+   "supervisao": false,
+   "gravidez": false,
+   "doenca-aguda": false
+  }
+ },
+ "nivel": {
+  "respostas": {
+   "tempoContinuo": "6-24m",
+   "semanasParado": 0,
+   "tecnica": "sim"
+  },
+  "escolhido": "intermediario"
+ },
+ "rotina": {
+  "diasSemana": 4,
+  "minutosSessao": 70,
+  "prioridades": [
+   "peito",
+   "costas",
+   "ombros",
+   "bracos"
+  ],
+  "objetivo": "forca"
+ },
+ "locais": [
+  {
+   "id": "local-1",
+   "nome": "Meu local",
+   "inventario": {
+    "estacao_polia_dupla": {},
+    "halteres_fixos": {
+     "minKg": 1,
+     "maxKg": 10,
+     "passoKg": 1
+    },
+    "anilhas_e_manoplas": {
+     "manoplas": 2,
+     "manoplaKg": 2,
+     "anilhas": [
+      {
+       "kg": 2,
+       "qtd": 4
+      },
+      {
+       "kg": 3,
+       "qtd": 4
+      },
+      {
+       "kg": 5,
+       "qtd": 4
+      }
+     ]
+    },
+    "banco_regulavel": {
+     "declina": true
+    },
+    "elasticos": {
+     "intensidades": 3
+    },
+    "barra_longa": {},
+    "barra_fixa": {},
+    "acessorio_polia_barra_reta": {},
+    "acessorio_polia_corda": {},
+    "acessorio_polia_triangulo": {},
+    "step": {},
+    "bola_suica": {},
+    "esteira": {}
+   }
+  }
+ ],
+ "restricoes": {
+  "evitarExercicios": [],
+  "evitarEquipamentos": [
+   "barra_longa"
+  ]
+ },
+ "programa": {
+  "programa": {
+   "versao": 1,
+   "entradasHash": "9aeb9c00",
+   "divisao": "Superior/Inferior (2x)",
+   "divisaoId": "si-2x",
+   "dias": [
+    {
+     "id": "superior-a",
+     "nome": "Superior A",
+     "exercicios": [
+      {
+       "exId": "supino-reto",
+       "nome": "Supino reto com halteres",
+       "padrao": "empurrar-h",
+       "tipo": "composto",
+       "funcao": "empurrar-horizontal",
+       "series": 3,
+       "reps": [
+        6,
+        10
+       ],
+       "rir": [
+        1,
+        2
+       ],
+       "descansoSeg": 105,
+       "unilateral": false,
+       "animacaoId": "supino-reto",
+       "alternativas": [
+        "flexao",
+        "flexao-pes-elevados",
+        "supino-polia",
+        "flexao-elastico",
+        "supino-chao-halteres"
+       ],
+       "porque": [
+        {
+         "regraId": "selecao.funcao-da-vaga",
+         "texto": "Vaga de empurrar horizontal, para o peito, o seu foco: 3 das 12 séries da semana. É a melhor opção desta vaga no seu equipamento; supino na polia com o banco plano entre as torres fica como alternativa."
+        },
+        {
+         "regraId": "selecao.equivalencia",
+         "texto": "As alternativas fazem a mesma função; dá para trocar se o aparelho estiver ocupado."
+        },
+        {
+         "regraId": "reps.faixa.por-tipo",
+         "texto": "Multiarticular: faixa de repetições mais baixa."
+        },
+        {
+         "regraId": "rir.alvo",
+         "texto": "Terminar a série perto da falha, sem precisar chegar nela."
+        },
+        {
+         "regraId": "descanso.por-tipo",
+         "texto": "Descanso de 1 min 45 s: acima de ~90 s, descansar mais não rende mais crescimento."
+        }
+       ]
+      },
+      {
+       "exId": "puxada-unilateral",
+       "nome": "Puxada unilateral ajoelhado na polia alta",
+       "padrao": "puxar-v",
+       "tipo": "composto",
+       "funcao": "puxar-vertical",
+       "series": 3,
+       "reps": [
+        10,
+        15
+       ],
+       "rir": [
+        1,
+        2
+       ],
+       "descansoSeg": 105,
+       "unilateral": true,
+       "animacaoId": "puxada-unilateral",
+       "alternativas": [
+        "barra-fixa",
+        "barra-fixa-supinada",
+        "remada-curvada-halteres",
+        "remada-unilateral-halter",
+        "remada-unilateral-sem-banco",
+        "puxada-elastico",
+        "barra-fixa-negativa",
+        "puxada-barra-reta"
+       ],
+       "porque": [
+        {
+         "regraId": "selecao.funcao-da-vaga",
+         "texto": "Vaga de puxar vertical, para as costas, o seu foco: 3 das 12 séries da semana. Ganhou de puxada ajoelhado na polia alta com barra reta e das outras do mesmo tipo porque tem o guia animado."
+        },
+        {
+         "regraId": "selecao.equivalencia",
+         "texto": "As alternativas fazem a mesma função; dá para trocar se o aparelho estiver ocupado."
+        },
+        {
+         "regraId": "reps.faixa.por-tipo",
+         "texto": "Multiarticular: faixa de repetições mais baixa."
+        },
+        {
+         "regraId": "rir.alvo",
+         "texto": "Terminar a série perto da falha, sem precisar chegar nela."
+        },
+        {
+         "regraId": "descanso.por-tipo",
+         "texto": "Descanso de 1 min 45 s: acima de ~90 s, descansar mais não rende mais crescimento."
+        }
+       ]
+      },
+      {
+       "exId": "remada-apoiada",
+       "nome": "Remada com halteres, peito apoiado no banco inclinado",
+       "padrao": "puxar-h",
+       "tipo": "composto",
+       "funcao": "puxar-horizontal",
+       "series": 3,
+       "reps": [
+        8,
+        12
+       ],
+       "rir": [
+        1,
+        2
+       ],
+       "descansoSeg": 105,
+       "unilateral": false,
+       "animacaoId": "remada-apoiada",
+       "alternativas": [
+        "remada-baixa",
+        "remada-unilateral-polia",
+        "remada-curvada-elastico",
+        "remada-elastico",
+        "remada-unilateral-elastico",
+        "remada-curvada-halteres",
+        "remada-unilateral-halter",
+        "remada-unilateral-sem-banco"
+       ],
+       "porque": [
+        {
+         "regraId": "selecao.funcao-da-vaga",
+         "texto": "Vaga de puxar horizontal, para as costas, o seu foco: 3 das 12 séries da semana. Equivale a remada baixa com triângulo e às outras do mesmo tipo, que ficam como alternativa."
+        },
+        {
+         "regraId": "selecao.equivalencia",
+         "texto": "As alternativas fazem a mesma função; dá para trocar se o aparelho estiver ocupado."
+        },
+        {
+         "regraId": "reps.faixa.por-tipo",
+         "texto": "Multiarticular: faixa de repetições mais baixa."
+        },
+        {
+         "regraId": "rir.alvo",
+         "texto": "Terminar a série perto da falha, sem precisar chegar nela."
+        },
+        {
+         "regraId": "descanso.por-tipo",
+         "texto": "Descanso de 1 min 45 s: acima de ~90 s, descansar mais não rende mais crescimento."
+        }
+       ]
+      },
+      {
+       "exId": "desenvolvimento",
+       "nome": "Desenvolvimento sentado com halteres",
+       "padrao": "empurrar-v",
+       "tipo": "composto",
+       "funcao": "empurrar-vertical",
+       "series": 2,
+       "reps": [
+        8,
+        12
+       ],
+       "rir": [
+        1,
+        2
+       ],
+       "descansoSeg": 105,
+       "unilateral": false,
+       "animacaoId": "desenvolvimento",
+       "alternativas": [
+        "desenvolvimento-elastico",
+        "pike",
+        "desenvolvimento-unilateral",
+        "desenvolvimento-em-pe-halteres"
+       ],
+       "porque": [
+        {
+         "regraId": "selecao.funcao-da-vaga",
+         "texto": "Vaga de empurrar vertical, para o ombro da frente: 2 das 10 séries da semana. Ganhou de desenvolvimento unilateral com halter, em pé porque tem o guia animado."
+        },
+        {
+         "regraId": "selecao.equivalencia",
+         "texto": "As alternativas fazem a mesma função; dá para trocar se o aparelho estiver ocupado."
+        },
+        {
+         "regraId": "reps.faixa.por-tipo",
+         "texto": "Multiarticular: faixa de repetições mais baixa."
+        },
+        {
+         "regraId": "rir.alvo",
+         "texto": "Terminar a série perto da falha, sem precisar chegar nela."
+        },
+        {
+         "regraId": "descanso.por-tipo",
+         "texto": "Descanso de 1 min 45 s: acima de ~90 s, descansar mais não rende mais crescimento."
+        }
+       ]
+      },
+      {
+       "exId": "triceps-frances",
+       "nome": "Tríceps francês na polia com corda",
+       "padrao": "isolador-triceps",
+       "tipo": "isolador",
+       "funcao": "triceps-acima-cabeca",
+       "series": 4,
+       "reps": [
+        10,
+        15
+       ],
+       "rir": [
+        0,
+        1
+       ],
+       "descansoSeg": 75,
+       "unilateral": false,
+       "animacaoId": "triceps-frances",
+       "supersetCom": "elevacao-halteres",
+       "alternativas": [
+        "triceps-elastico-acima",
+        "triceps-frances-halter",
+        "triceps-frances-unilateral-halter",
+        "extensao-triceps-peso-corpo",
+        "triceps-frances-polia-unilateral"
+       ],
+       "porque": [
+        {
+         "regraId": "selecao.funcao-da-vaga",
+         "texto": "Vaga de tríceps acima da cabeça, para o tríceps, o seu foco: 4 das 12 séries da semana. Equivale a tríceps francês sentado com halter e às outras do mesmo tipo, que ficam como alternativa."
+        },
+        {
+         "regraId": "selecao.triceps-acima-cabeca",
+         "texto": "Braço acima da cabeça para alongar a cabeça longa do tríceps."
+        },
+        {
+         "regraId": "selecao.alongado",
+         "texto": "Na função, vem primeiro a opção com o músculo mais alongado, que cresceu mais nos estudos."
+        },
+        {
+         "regraId": "selecao.equivalencia",
+         "texto": "As alternativas fazem a mesma função; dá para trocar se o aparelho estiver ocupado."
+        },
+        {
+         "regraId": "reps.faixa.por-tipo",
+         "texto": "Isolador: faixa de repetições mais alta."
+        },
+        {
+         "regraId": "rir.alvo",
+         "texto": "Terminar a série perto da falha, sem precisar chegar nela."
+        },
+        {
+         "regraId": "descanso.por-tipo",
+         "texto": "Descanso de 1 min 15 s entre as séries."
+        }
+       ]
+      },
+      {
+       "exId": "elevacao-halteres",
+       "nome": "Elevação lateral com halteres",
+       "padrao": "isolador-ombro-lateral",
+       "tipo": "isolador",
+       "funcao": "elevacao-lateral",
+       "series": 4,
+       "reps": [
+        12,
+        20
+       ],
+       "rir": [
+        0,
+        1
+       ],
+       "descansoSeg": 75,
+       "unilateral": false,
+       "animacaoId": "elevacao-halteres",
+       "supersetCom": "triceps-frances",
+       "alternativas": [
+        "elevacao-lateral",
+        "elevacao-lateral-elastico",
+        "elevacao-lateral-unilateral-elastico",
+        "elevacao-lateral-unilateral",
+        "elevacao-lateral-deitado"
+       ],
+       "porque": [
+        {
+         "regraId": "selecao.funcao-da-vaga",
+         "texto": "Vaga de elevação lateral, para o ombro lateral, o seu foco: 4 das 12 séries da semana. Equivale a elevação lateral unilateral na polia, que fica como alternativa."
+        },
+        {
+         "regraId": "selecao.equivalencia",
+         "texto": "As alternativas fazem a mesma função; dá para trocar se o aparelho estiver ocupado."
+        },
+        {
+         "regraId": "reps.faixa.por-tipo",
+         "texto": "Isolador: faixa de repetições mais alta."
+        },
+        {
+         "regraId": "rir.alvo",
+         "texto": "Terminar a série perto da falha, sem precisar chegar nela."
+        },
+        {
+         "regraId": "descanso.por-tipo",
+         "texto": "Descanso de 1 min 15 s entre as séries."
+        }
+       ]
+      },
+      {
+       "exId": "rosca-inclinada",
+       "nome": "Rosca inclinada com halteres",
+       "padrao": "isolador-biceps",
+       "tipo": "isolador",
+       "funcao": "biceps",
+       "series": 4,
+       "reps": [
+        8,
+        12
+       ],
+       "rir": [
+        0,
+        1
+       ],
+       "descansoSeg": 75,
+       "unilateral": false,
+       "animacaoId": "rosca-inclinada",
+       "alternativas": [
+        "rosca-polia-costas",
+        "rosca-polia",
+        "rosca-elastico",
+        "rosca-martelo-elastico",
+        "rosca-scott-banco-inclinado",
+        "rosca-alternada",
+        "rosca-concentrada",
+        "rosca-martelo"
+       ],
+       "porque": [
+        {
+         "regraId": "selecao.funcao-da-vaga",
+         "texto": "Vaga de bíceps, para o bíceps, o seu foco: 4 das 12,5 séries da semana. Ganhou de rosca na polia baixa, de costas para a torre e das outras do mesmo tipo porque tem o guia animado."
+        },
+        {
+         "regraId": "selecao.equivalencia",
+         "texto": "As alternativas fazem a mesma função; dá para trocar se o aparelho estiver ocupado."
+        },
+        {
+         "regraId": "reps.faixa.por-tipo",
+         "texto": "Isolador: faixa de repetições mais alta."
+        },
+        {
+         "regraId": "rir.alvo",
+         "texto": "Terminar a série perto da falha, sem precisar chegar nela."
+        },
+        {
+         "regraId": "descanso.por-tipo",
+         "texto": "Descanso de 1 min 15 s entre as séries."
+        }
+       ]
+      },
+      {
+       "exId": "crucifixo-polia",
+       "nome": "Crucifixo na polia (crossover)",
+       "padrao": "isolador-peito",
+       "tipo": "isolador",
+       "funcao": "crucifixo",
+       "series": 3,
+       "reps": [
+        10,
+        15
+       ],
+       "rir": [
+        0,
+        1
+       ],
+       "descansoSeg": 75,
+       "unilateral": false,
+       "animacaoId": "crucifixo-polia",
+       "alternativas": [
+        "crucifixo-halteres",
+        "crucifixo-inclinado-halteres",
+        "crucifixo-elastico",
+        "crucifixo-polia-baixo"
+       ],
+       "porque": [
+        {
+         "regraId": "selecao.funcao-da-vaga",
+         "texto": "Vaga de crucifixo (peito alongado), para o peito, o seu foco: 3 das 12 séries da semana. Ganhou de crucifixo com halteres no banco plano e das outras do mesmo tipo porque tem o guia animado."
+        },
+        {
+         "regraId": "selecao.crucifixo-complemento",
+         "texto": "Complemento do peito com o músculo alongado."
+        },
+        {
+         "regraId": "selecao.equivalencia",
+         "texto": "As alternativas fazem a mesma função; dá para trocar se o aparelho estiver ocupado."
+        },
+        {
+         "regraId": "reps.faixa.por-tipo",
+         "texto": "Isolador: faixa de repetições mais alta."
+        },
+        {
+         "regraId": "rir.alvo",
+         "texto": "Terminar a série perto da falha, sem precisar chegar nela."
+        },
+        {
+         "regraId": "descanso.por-tipo",
+         "texto": "Descanso de 1 min 15 s entre as séries."
+        }
+       ]
+      },
+      {
+       "exId": "crucifixo-invertido-polia",
+       "nome": "Crucifixo invertido na polia, com os cabos cruzados",
+       "padrao": "isolador-ombro-posterior",
+       "tipo": "isolador",
+       "funcao": "ombro-posterior",
+       "series": 2,
+       "reps": [
+        12,
+        20
+       ],
+       "rir": [
+        0,
+        1
+       ],
+       "descansoSeg": 75,
+       "unilateral": false,
+       "animacaoId": "crucifixo-invertido-polia",
+       "alternativas": [
+        "crucifixo-inverso",
+        "crucifixo-invertido-curvado",
+        "crucifixo-invertido-sentado",
+        "abertura-elastico",
+        "face-pull-elastico",
+        "abertura-t-deitado",
+        "face-pull"
+       ],
+       "porque": [
+        {
+         "regraId": "selecao.funcao-da-vaga",
+         "texto": "Vaga de ombro posterior, para o ombro de trás: 2 das 9,5 séries da semana. Equivale a face pull com corda e às outras do mesmo tipo, que ficam como alternativa."
+        },
+        {
+         "regraId": "selecao.equivalencia",
+         "texto": "As alternativas fazem a mesma função; dá para trocar se o aparelho estiver ocupado."
+        },
+        {
+         "regraId": "reps.faixa.por-tipo",
+         "texto": "Isolador: faixa de repetições mais alta."
+        },
+        {
+         "regraId": "rir.alvo",
+         "texto": "Terminar a série perto da falha, sem precisar chegar nela."
+        },
+        {
+         "regraId": "descanso.por-tipo",
+         "texto": "Descanso de 1 min 15 s entre as séries."
+        }
+       ]
+      }
+     ],
+     "minutosEstimados": 70
+    },
+    {
+     "id": "inferior-a",
+     "nome": "Inferior A",
+     "exercicios": [
+      {
+       "exId": "bulgaro",
+       "nome": "Agachamento búlgaro com apoio",
+       "padrao": "afundo",
+       "tipo": "composto",
+       "funcao": "agachar",
+       "series": 2,
+       "reps": [
+        8,
+        12
+       ],
+       "rir": [
+        1,
+        2
+       ],
+       "descansoSeg": 105,
+       "unilateral": true,
+       "animacaoId": "bulgaro",
+       "alternativas": [
+        "agachamento-elastico",
+        "agachamento-peso-corpo",
+        "agachamento-halteres",
+        "goblet"
+       ],
+       "porque": [
+        {
+         "regraId": "selecao.funcao-da-vaga",
+         "texto": "Vaga de agachar, para o quadríceps: 2 das 8 séries da semana. As opções de cima (como agachamento livre com barra (profundo)) pedem equipamento que você não tem. Entre as que sobram, equivale a agachamento goblet com calcanhar elevado e às outras do mesmo tipo, que ficam como alternativa."
+        },
+        {
+         "regraId": "selecao.equivalencia",
+         "texto": "As alternativas fazem a mesma função; dá para trocar se o aparelho estiver ocupado."
+        },
+        {
+         "regraId": "reps.faixa.por-tipo",
+         "texto": "Multiarticular: faixa de repetições mais baixa."
+        },
+        {
+         "regraId": "rir.alvo",
+         "texto": "Terminar a série perto da falha, sem precisar chegar nela."
+        },
+        {
+         "regraId": "descanso.por-tipo",
+         "texto": "Descanso de 1 min 45 s: acima de ~90 s, descansar mais não rende mais crescimento."
+        }
+       ]
+      },
+      {
+       "exId": "stiff",
+       "nome": "Stiff com halteres",
+       "padrao": "dobrar-quadril",
+       "tipo": "composto",
+       "funcao": "dobrar-quadril",
+       "series": 2,
+       "reps": [
+        8,
+        12
+       ],
+       "rir": [
+        1,
+        2
+       ],
+       "descansoSeg": 105,
+       "unilateral": false,
+       "animacaoId": "stiff",
+       "alternativas": [
+        "pull-through",
+        "stiff-elastico",
+        "stiff-unilateral"
+       ],
+       "porque": [
+        {
+         "regraId": "selecao.funcao-da-vaga",
+         "texto": "Vaga de dobrar o quadril, para os posteriores da coxa: 2 das 8 séries da semana. Equivale a stiff unilateral com halter, que fica como alternativa."
+        },
+        {
+         "regraId": "selecao.equivalencia",
+         "texto": "As alternativas fazem a mesma função; dá para trocar se o aparelho estiver ocupado."
+        },
+        {
+         "regraId": "reps.faixa.por-tipo",
+         "texto": "Multiarticular: faixa de repetições mais baixa."
+        },
+        {
+         "regraId": "rir.alvo",
+         "texto": "Terminar a série perto da falha, sem precisar chegar nela."
+        },
+        {
+         "regraId": "descanso.por-tipo",
+         "texto": "Descanso de 1 min 45 s: acima de ~90 s, descansar mais não rende mais crescimento."
+        }
+       ]
+      },
+      {
+       "exId": "flexao-bola",
+       "nome": "Flexão de joelho na bola suíça",
+       "padrao": "flexao-joelho",
+       "tipo": "isolador",
+       "funcao": "flexao-joelho",
+       "series": 2,
+       "reps": [
+        8,
+        15
+       ],
+       "rir": [
+        0,
+        1
+       ],
+       "descansoSeg": 75,
+       "unilateral": false,
+       "animacaoId": "flexao-bola",
+       "alternativas": [
+        "flexao-joelho-elastico",
+        "pull-through",
+        "flexao-joelho-deslizante",
+        "nordico"
+       ],
+       "porque": [
+        {
+         "regraId": "selecao.funcao-da-vaga",
+         "texto": "Vaga de flexão de joelho, para os posteriores da coxa: 2 das 8 séries da semana. As opções de cima (como flexão de joelho na cadeira flexora (sentado)) pedem equipamento que você não tem. Entre as que sobram, equivale a flexão de joelho com elástico, que fica como alternativa."
+        },
+        {
+         "regraId": "selecao.equivalencia",
+         "texto": "As alternativas fazem a mesma função; dá para trocar se o aparelho estiver ocupado."
+        },
+        {
+         "regraId": "reps.faixa.por-tipo",
+         "texto": "Isolador: faixa de repetições mais alta."
+        },
+        {
+         "regraId": "rir.alvo",
+         "texto": "Terminar a série perto da falha, sem precisar chegar nela."
+        },
+        {
+         "regraId": "descanso.por-tipo",
+         "texto": "Descanso de 1 min 15 s entre as séries."
+        }
+       ]
+      },
+      {
+       "exId": "extensao-joelho-elastico",
+       "nome": "Extensão de joelho sentado com elástico",
+       "padrao": "isolador-quadriceps",
+       "tipo": "isolador",
+       "funcao": "extensora",
+       "series": 2,
+       "reps": [
+        12,
+        20
+       ],
+       "rir": [
+        0,
+        1
+       ],
+       "descansoSeg": 75,
+       "unilateral": true,
+       "animacaoId": "extensao-joelho-elastico",
+       "alternativas": [
+        "afundo",
+        "afundo-peso-corpo"
+       ],
+       "porque": [
+        {
+         "regraId": "selecao.funcao-da-vaga",
+         "texto": "Vaga de extensora, para o quadríceps: 2 das 8 séries da semana. As opções de cima (como cadeira extensora) pedem equipamento que você não tem; esta é a melhor que sobra."
+        },
+        {
+         "regraId": "selecao.isolador-obrigatorio",
+         "texto": "Isolador que cobre o que os multiarticulares não cobrem (o reto femoral, na frente da coxa)."
+        },
+        {
+         "regraId": "selecao.alongado",
+         "texto": "Na função, vem primeiro a opção com o músculo mais alongado, que cresceu mais nos estudos."
+        },
+        {
+         "regraId": "selecao.equivalencia",
+         "texto": "As alternativas fazem a mesma função; dá para trocar se o aparelho estiver ocupado."
+        },
+        {
+         "regraId": "reps.faixa.por-tipo",
+         "texto": "Isolador: faixa de repetições mais alta."
+        },
+        {
+         "regraId": "rir.alvo",
+         "texto": "Terminar a série perto da falha, sem precisar chegar nela."
+        },
+        {
+         "regraId": "descanso.por-tipo",
+         "texto": "Descanso de 1 min 15 s entre as séries."
+        }
+       ]
+      },
+      {
+       "exId": "panturrilha",
+       "nome": "Panturrilha unilateral no step",
+       "padrao": "panturrilha",
+       "tipo": "isolador",
+       "funcao": "panturrilha-em-pe",
+       "series": 3,
+       "reps": [
+        10,
+        15
+       ],
+       "rir": [
+        0,
+        1
+       ],
+       "descansoSeg": 75,
+       "unilateral": true,
+       "animacaoId": "panturrilha",
+       "alternativas": [
+        "panturrilha-degrau",
+        "panturrilha-bilateral-step",
+        "panturrilha-chao"
+       ],
+       "porque": [
+        {
+         "regraId": "selecao.funcao-da-vaga",
+         "texto": "Vaga de panturrilha em pé, para a panturrilha: 3 das 6 séries da semana. Equivale a panturrilha em pé no step, que fica como alternativa."
+        },
+        {
+         "regraId": "selecao.panturrilha-alongada",
+         "texto": "Ênfase no alongamento: calcanhar abaixo do apoio e pausa embaixo."
+        },
+        {
+         "regraId": "selecao.alongado",
+         "texto": "Na função, vem primeiro a opção com o músculo mais alongado, que cresceu mais nos estudos."
+        },
+        {
+         "regraId": "selecao.equivalencia",
+         "texto": "As alternativas fazem a mesma função; dá para trocar se o aparelho estiver ocupado."
+        },
+        {
+         "regraId": "reps.faixa.por-tipo",
+         "texto": "Isolador: faixa de repetições mais alta."
+        },
+        {
+         "regraId": "rir.alvo",
+         "texto": "Terminar a série perto da falha, sem precisar chegar nela."
+        },
+        {
+         "regraId": "descanso.por-tipo",
+         "texto": "Descanso de 1 min 15 s entre as séries."
+        }
+       ]
+      },
+      {
+       "exId": "abdominal-polia",
+       "nome": "Abdominal na polia com corda, ajoelhado",
+       "padrao": "core",
+       "tipo": "isolador",
+       "funcao": "abdomen",
+       "series": 2,
+       "reps": [
+        10,
+        15
+       ],
+       "rir": [
+        0,
+        1
+       ],
+       "descansoSeg": 75,
+       "unilateral": false,
+       "animacaoId": "abdominal-polia",
+       "alternativas": [
+        "abdominal-declinado",
+        "abdominal-bola",
+        "abdominal-chao",
+        "abdominal-invertido",
+        "elevacao-joelhos"
+       ],
+       "porque": [
+        {
+         "regraId": "selecao.funcao-da-vaga",
+         "texto": "Vaga de abdômen, para o abdômen: 2 das 4 séries da semana. Ganhou de abdominal no banco declinado porque deixa pôr mais carga com o seu equipamento."
+        },
+        {
+         "regraId": "selecao.equivalencia",
+         "texto": "As alternativas fazem a mesma função; dá para trocar se o aparelho estiver ocupado."
+        },
+        {
+         "regraId": "reps.faixa.por-tipo",
+         "texto": "Isolador: faixa de repetições mais alta."
+        },
+        {
+         "regraId": "rir.alvo",
+         "texto": "Terminar a série perto da falha, sem precisar chegar nela."
+        },
+        {
+         "regraId": "descanso.por-tipo",
+         "texto": "Descanso de 1 min 15 s entre as séries."
+        }
+       ]
+      }
+     ],
+     "minutosEstimados": 40
+    },
+    {
+     "id": "superior-b",
+     "nome": "Superior B",
+     "exercicios": [
+      {
+       "exId": "supino-inclinado",
+       "nome": "Supino inclinado com halteres",
+       "padrao": "empurrar-h",
+       "tipo": "composto",
+       "funcao": "empurrar-inclinado",
+       "series": 3,
+       "reps": [
+        6,
+        10
+       ],
+       "rir": [
+        1,
+        2
+       ],
+       "descansoSeg": 105,
+       "unilateral": false,
+       "animacaoId": "supino-inclinado",
+       "alternativas": [
+        "supino-inclinado-polia",
+        "flexao",
+        "flexao-pes-elevados",
+        "supino-polia",
+        "flexao-elastico",
+        "crucifixo-polia",
+        "crucifixo-polia-baixo",
+        "supino-reto",
+        "supino-chao-halteres",
+        "crucifixo-halteres",
+        "crucifixo-inclinado-halteres"
+       ],
+       "porque": [
+        {
+         "regraId": "selecao.funcao-da-vaga",
+         "texto": "Vaga de empurrar inclinado, para o peito, o seu foco: 3 das 12 séries da semana. Ganhou de supino inclinado na polia, com o banco entre as torres porque tem o guia animado."
+        },
+        {
+         "regraId": "selecao.peitoral-inclinado",
+         "texto": "Variação inclinada para a parte de cima do peitoral."
+        },
+        {
+         "regraId": "selecao.equivalencia",
+         "texto": "As alternativas fazem a mesma função; dá para trocar se o aparelho estiver ocupado."
+        },
+        {
+         "regraId": "reps.faixa.por-tipo",
+         "texto": "Multiarticular: faixa de repetições mais baixa."
+        },
+        {
+         "regraId": "rir.alvo",
+         "texto": "Terminar a série perto da falha, sem precisar chegar nela."
+        },
+        {
+         "regraId": "descanso.por-tipo",
+         "texto": "Descanso de 1 min 45 s: acima de ~90 s, descansar mais não rende mais crescimento."
+        }
+       ]
+      },
+      {
+       "exId": "remada-baixa",
+       "nome": "Remada baixa com triângulo",
+       "padrao": "puxar-h",
+       "tipo": "composto",
+       "funcao": "puxar-horizontal",
+       "series": 3,
+       "reps": [
+        8,
+        12
+       ],
+       "rir": [
+        1,
+        2
+       ],
+       "descansoSeg": 105,
+       "unilateral": false,
+       "animacaoId": "remada-baixa",
+       "alternativas": [
+        "remada-apoiada",
+        "remada-curvada-halteres",
+        "remada-unilateral-halter",
+        "remada-unilateral-sem-banco",
+        "remada-curvada-elastico",
+        "remada-elastico",
+        "remada-unilateral-elastico",
+        "remada-unilateral-polia"
+       ],
+       "porque": [
+        {
+         "regraId": "selecao.funcao-da-vaga",
+         "texto": "Vaga de puxar horizontal, para as costas, o seu foco: 3 das 12 séries da semana. Equivale a remada com halteres, peito apoiado no banco inclinado e às outras do mesmo tipo, que ficam como alternativa."
+        },
+        {
+         "regraId": "selecao.equivalencia",
+         "texto": "As alternativas fazem a mesma função; dá para trocar se o aparelho estiver ocupado."
+        },
+        {
+         "regraId": "reps.faixa.por-tipo",
+         "texto": "Multiarticular: faixa de repetições mais baixa."
+        },
+        {
+         "regraId": "rir.alvo",
+         "texto": "Terminar a série perto da falha, sem precisar chegar nela."
+        },
+        {
+         "regraId": "descanso.por-tipo",
+         "texto": "Descanso de 1 min 45 s: acima de ~90 s, descansar mais não rende mais crescimento."
+        }
+       ]
+      },
+      {
+       "exId": "puxada-barra-reta",
+       "nome": "Puxada ajoelhado na polia alta com barra reta",
+       "padrao": "puxar-v",
+       "tipo": "composto",
+       "funcao": "puxar-vertical",
+       "series": 2,
+       "reps": [
+        8,
+        12
+       ],
+       "rir": [
+        1,
+        2
+       ],
+       "descansoSeg": 105,
+       "unilateral": false,
+       "animacaoId": null,
+       "alternativas": [
+        "barra-fixa",
+        "barra-fixa-supinada",
+        "remada-curvada-halteres",
+        "remada-unilateral-halter",
+        "remada-unilateral-sem-banco",
+        "puxada-elastico",
+        "barra-fixa-negativa",
+        "puxada-unilateral"
+       ],
+       "porque": [
+        {
+         "regraId": "selecao.funcao-da-vaga",
+         "texto": "Vaga de puxar vertical, para as costas, o seu foco: 2 das 12 séries da semana. Ficou este, e não puxada unilateral ajoelhado na polia alta, para variar os exercícios da semana."
+        },
+        {
+         "regraId": "selecao.equivalencia",
+         "texto": "As alternativas fazem a mesma função; dá para trocar se o aparelho estiver ocupado."
+        },
+        {
+         "regraId": "reps.faixa.por-tipo",
+         "texto": "Multiarticular: faixa de repetições mais baixa."
+        },
+        {
+         "regraId": "rir.alvo",
+         "texto": "Terminar a série perto da falha, sem precisar chegar nela."
+        },
+        {
+         "regraId": "descanso.por-tipo",
+         "texto": "Descanso de 1 min 45 s: acima de ~90 s, descansar mais não rende mais crescimento."
+        }
+       ]
+      },
+      {
+       "exId": "desenvolvimento-unilateral",
+       "nome": "Desenvolvimento unilateral com halter, em pé",
+       "padrao": "empurrar-v",
+       "tipo": "composto",
+       "funcao": "empurrar-vertical",
+       "series": 2,
+       "reps": [
+        8,
+        12
+       ],
+       "rir": [
+        1,
+        2
+       ],
+       "descansoSeg": 105,
+       "unilateral": true,
+       "animacaoId": null,
+       "alternativas": [
+        "desenvolvimento-elastico",
+        "pike",
+        "desenvolvimento",
+        "desenvolvimento-em-pe-halteres"
+       ],
+       "porque": [
+        {
+         "regraId": "selecao.funcao-da-vaga",
+         "texto": "Vaga de empurrar vertical, para o ombro da frente: 2 das 10 séries da semana. Ficou este, e não desenvolvimento sentado com halteres, para variar os exercícios da semana."
+        },
+        {
+         "regraId": "selecao.equivalencia",
+         "texto": "As alternativas fazem a mesma função; dá para trocar se o aparelho estiver ocupado."
+        },
+        {
+         "regraId": "reps.faixa.por-tipo",
+         "texto": "Multiarticular: faixa de repetições mais baixa."
+        },
+        {
+         "regraId": "rir.alvo",
+         "texto": "Terminar a série perto da falha, sem precisar chegar nela."
+        },
+        {
+         "regraId": "descanso.por-tipo",
+         "texto": "Descanso de 1 min 45 s: acima de ~90 s, descansar mais não rende mais crescimento."
+        }
+       ]
+      },
+      {
+       "exId": "elevacao-lateral",
+       "nome": "Elevação lateral unilateral na polia",
+       "padrao": "isolador-ombro-lateral",
+       "tipo": "isolador",
+       "funcao": "elevacao-lateral",
+       "series": 3,
+       "reps": [
+        10,
+        15
+       ],
+       "rir": [
+        0,
+        1
+       ],
+       "descansoSeg": 75,
+       "unilateral": true,
+       "animacaoId": "elevacao-lateral",
+       "alternativas": [
+        "elevacao-halteres",
+        "elevacao-lateral-unilateral",
+        "elevacao-lateral-deitado",
+        "elevacao-lateral-elastico",
+        "elevacao-lateral-unilateral-elastico"
+       ],
+       "porque": [
+        {
+         "regraId": "selecao.funcao-da-vaga",
+         "texto": "Vaga de elevação lateral, para o ombro lateral, o seu foco: 3 das 12 séries da semana. Equivale a elevação lateral com halteres, que fica como alternativa."
+        },
+        {
+         "regraId": "selecao.equivalencia",
+         "texto": "As alternativas fazem a mesma função; dá para trocar se o aparelho estiver ocupado."
+        },
+        {
+         "regraId": "reps.faixa.por-tipo",
+         "texto": "Isolador: faixa de repetições mais alta."
+        },
+        {
+         "regraId": "rir.alvo",
+         "texto": "Terminar a série perto da falha, sem precisar chegar nela."
+        },
+        {
+         "regraId": "descanso.por-tipo",
+         "texto": "Descanso de 1 min 15 s entre as séries."
+        }
+       ]
+      },
+      {
+       "exId": "rosca-polia-costas",
+       "nome": "Rosca na polia baixa, de costas para a torre",
+       "padrao": "isolador-biceps",
+       "tipo": "isolador",
+       "funcao": "biceps",
+       "series": 3,
+       "reps": [
+        10,
+        15
+       ],
+       "rir": [
+        0,
+        1
+       ],
+       "descansoSeg": 75,
+       "unilateral": true,
+       "animacaoId": null,
+       "alternativas": [
+        "rosca-inclinada",
+        "rosca-scott-banco-inclinado",
+        "rosca-alternada",
+        "rosca-concentrada",
+        "rosca-martelo",
+        "rosca-elastico",
+        "rosca-martelo-elastico",
+        "rosca-polia"
+       ],
+       "porque": [
+        {
+         "regraId": "selecao.funcao-da-vaga",
+         "texto": "Vaga de bíceps, para o bíceps, o seu foco: 3 das 12,5 séries da semana. Ficou este, e não rosca inclinada com halteres, para variar os exercícios da semana."
+        },
+        {
+         "regraId": "selecao.equivalencia",
+         "texto": "As alternativas fazem a mesma função; dá para trocar se o aparelho estiver ocupado."
+        },
+        {
+         "regraId": "reps.faixa.por-tipo",
+         "texto": "Isolador: faixa de repetições mais alta."
+        },
+        {
+         "regraId": "rir.alvo",
+         "texto": "Terminar a série perto da falha, sem precisar chegar nela."
+        },
+        {
+         "regraId": "descanso.por-tipo",
+         "texto": "Descanso de 1 min 15 s entre as séries."
+        }
+       ]
+      },
+      {
+       "exId": "triceps-corda",
+       "nome": "Tríceps na polia com corda",
+       "padrao": "isolador-triceps",
+       "tipo": "isolador",
+       "funcao": "triceps-complemento",
+       "series": 3,
+       "reps": [
+        10,
+        15
+       ],
+       "rir": [
+        0,
+        1
+       ],
+       "descansoSeg": 75,
+       "unilateral": false,
+       "animacaoId": "triceps-corda",
+       "alternativas": [
+        "flexao-fechada",
+        "triceps-elastico-alto",
+        "triceps-testa-halteres",
+        "triceps-barra-reta"
+       ],
+       "porque": [
+        {
+         "regraId": "selecao.funcao-da-vaga",
+         "texto": "Vaga de tríceps (complemento), para o tríceps, o seu foco: 3 das 12 séries da semana. Ganhou de tríceps na polia com barra reta porque tem o guia animado."
+        },
+        {
+         "regraId": "selecao.equivalencia",
+         "texto": "As alternativas fazem a mesma função; dá para trocar se o aparelho estiver ocupado."
+        },
+        {
+         "regraId": "reps.faixa.por-tipo",
+         "texto": "Isolador: faixa de repetições mais alta."
+        },
+        {
+         "regraId": "rir.alvo",
+         "texto": "Terminar a série perto da falha, sem precisar chegar nela."
+        },
+        {
+         "regraId": "descanso.por-tipo",
+         "texto": "Descanso de 1 min 15 s entre as séries."
+        }
+       ]
+      },
+      {
+       "exId": "crucifixo-halteres",
+       "nome": "Crucifixo com halteres no banco plano",
+       "padrao": "isolador-peito",
+       "tipo": "isolador",
+       "funcao": "crucifixo",
+       "series": 3,
+       "reps": [
+        10,
+        15
+       ],
+       "rir": [
+        0,
+        1
+       ],
+       "descansoSeg": 75,
+       "unilateral": false,
+       "animacaoId": null,
+       "alternativas": [
+        "crucifixo-polia",
+        "crucifixo-polia-baixo",
+        "crucifixo-elastico",
+        "crucifixo-inclinado-halteres"
+       ],
+       "porque": [
+        {
+         "regraId": "selecao.funcao-da-vaga",
+         "texto": "Vaga de crucifixo (peito alongado), para o peito, o seu foco: 3 das 12 séries da semana. Ficou este, e não crucifixo na polia (crossover), para variar os exercícios da semana."
+        },
+        {
+         "regraId": "selecao.crucifixo-complemento",
+         "texto": "Complemento do peito com o músculo alongado."
+        },
+        {
+         "regraId": "selecao.equivalencia",
+         "texto": "As alternativas fazem a mesma função; dá para trocar se o aparelho estiver ocupado."
+        },
+        {
+         "regraId": "reps.faixa.por-tipo",
+         "texto": "Isolador: faixa de repetições mais alta."
+        },
+        {
+         "regraId": "rir.alvo",
+         "texto": "Terminar a série perto da falha, sem precisar chegar nela."
+        },
+        {
+         "regraId": "descanso.por-tipo",
+         "texto": "Descanso de 1 min 15 s entre as séries."
+        }
+       ]
+      },
+      {
+       "exId": "face-pull",
+       "nome": "Face pull com corda",
+       "padrao": "isolador-ombro-posterior",
+       "tipo": "isolador",
+       "funcao": "ombro-posterior",
+       "series": 2,
+       "reps": [
+        12,
+        20
+       ],
+       "rir": [
+        0,
+        1
+       ],
+       "descansoSeg": 75,
+       "unilateral": false,
+       "animacaoId": "face-pull",
+       "alternativas": [
+        "crucifixo-inverso",
+        "crucifixo-invertido-curvado",
+        "crucifixo-invertido-sentado",
+        "abertura-elastico",
+        "face-pull-elastico",
+        "abertura-t-deitado",
+        "crucifixo-invertido-polia"
+       ],
+       "porque": [
+        {
+         "regraId": "selecao.funcao-da-vaga",
+         "texto": "Vaga de ombro posterior, para o ombro de trás: 2 das 9,5 séries da semana. Equivale a crucifixo invertido na polia, com os cabos cruzados e às outras do mesmo tipo, que ficam como alternativa."
+        },
+        {
+         "regraId": "selecao.equivalencia",
+         "texto": "As alternativas fazem a mesma função; dá para trocar se o aparelho estiver ocupado."
+        },
+        {
+         "regraId": "reps.faixa.por-tipo",
+         "texto": "Isolador: faixa de repetições mais alta."
+        },
+        {
+         "regraId": "rir.alvo",
+         "texto": "Terminar a série perto da falha, sem precisar chegar nela."
+        },
+        {
+         "regraId": "descanso.por-tipo",
+         "texto": "Descanso de 1 min 15 s entre as séries."
+        }
+       ]
+      }
+     ],
+     "minutosEstimados": 69
+    },
+    {
+     "id": "inferior-b",
+     "nome": "Inferior B",
+     "exercicios": [
+      {
+       "exId": "afundo",
+       "nome": "Afundo estático com halteres",
+       "padrao": "afundo",
+       "tipo": "composto",
+       "funcao": "afundo",
+       "series": 2,
+       "reps": [
+        8,
+        12
+       ],
+       "rir": [
+        1,
+        2
+       ],
+       "descansoSeg": 105,
+       "unilateral": true,
+       "animacaoId": "afundo",
+       "alternativas": [
+        "afundo-peso-corpo",
+        "afundo-tras-peso-corpo",
+        "bulgaro-peso-corpo",
+        "afundo-tras",
+        "bulgaro"
+       ],
+       "porque": [
+        {
+         "regraId": "selecao.funcao-da-vaga",
+         "texto": "Vaga de afundo, para o quadríceps: 2 das 8 séries da semana. Equivale a agachamento búlgaro com apoio e às outras do mesmo tipo, que ficam como alternativa."
+        },
+        {
+         "regraId": "selecao.equivalencia",
+         "texto": "As alternativas fazem a mesma função; dá para trocar se o aparelho estiver ocupado."
+        },
+        {
+         "regraId": "reps.faixa.por-tipo",
+         "texto": "Multiarticular: faixa de repetições mais baixa."
+        },
+        {
+         "regraId": "rir.alvo",
+         "texto": "Terminar a série perto da falha, sem precisar chegar nela."
+        },
+        {
+         "regraId": "descanso.por-tipo",
+         "texto": "Descanso de 1 min 45 s: acima de ~90 s, descansar mais não rende mais crescimento."
+        }
+       ]
+      },
+      {
+       "exId": "ponte-gluteo-halter",
+       "nome": "Ponte de glúteo com halter",
+       "padrao": "extensao-quadril",
+       "tipo": "composto",
+       "funcao": "extensao-quadril",
+       "series": 2,
+       "reps": [
+        10,
+        20
+       ],
+       "rir": [
+        1,
+        2
+       ],
+       "descansoSeg": 105,
+       "unilateral": false,
+       "animacaoId": "ponte-gluteo-halter",
+       "alternativas": [
+        "coice-elastico",
+        "ponte-gluteo",
+        "ponte-pes-bola"
+       ],
+       "porque": [
+        {
+         "regraId": "selecao.funcao-da-vaga",
+         "texto": "Vaga de extensão de quadril (glúteo), para os glúteos: 2 das 7 séries da semana. As opções de cima (como hip thrust) pedem um equipamento que você pediu para evitar. Entre as que sobram, ganhou de ponte de glúteo e das outras do mesmo tipo porque deixa pôr mais carga com o seu equipamento."
+        },
+        {
+         "regraId": "selecao.gluteo",
+         "texto": "Glúteo: depois do agachar e do afundo, a extensão de quadril e, como complemento, a abdução."
+        },
+        {
+         "regraId": "seguranca.montagem",
+         "texto": "Antes da 1ª série, monte com segurança: travas, apoios e ancoragem, como no cartão do exercício."
+        },
+        {
+         "regraId": "selecao.equivalencia",
+         "texto": "As alternativas fazem a mesma função; dá para trocar se o aparelho estiver ocupado."
+        },
+        {
+         "regraId": "reps.faixa.por-tipo",
+         "texto": "Multiarticular: faixa de repetições mais baixa."
+        },
+        {
+         "regraId": "rir.alvo",
+         "texto": "Terminar a série perto da falha, sem precisar chegar nela."
+        },
+        {
+         "regraId": "descanso.por-tipo",
+         "texto": "Descanso de 1 min 45 s: acima de ~90 s, descansar mais não rende mais crescimento."
+        }
+       ]
+      },
+      {
+       "exId": "stiff-unilateral",
+       "nome": "Stiff unilateral com halter",
+       "padrao": "dobrar-quadril",
+       "tipo": "composto",
+       "funcao": "dobrar-quadril",
+       "series": 2,
+       "reps": [
+        8,
+        12
+       ],
+       "rir": [
+        1,
+        2
+       ],
+       "descansoSeg": 105,
+       "unilateral": true,
+       "animacaoId": "stiff-unilateral",
+       "alternativas": [
+        "pull-through",
+        "stiff-elastico",
+        "stiff"
+       ],
+       "porque": [
+        {
+         "regraId": "selecao.funcao-da-vaga",
+         "texto": "Vaga de dobrar o quadril, para os posteriores da coxa: 2 das 8 séries da semana. Equivale a stiff com halteres, que fica como alternativa."
+        },
+        {
+         "regraId": "selecao.equivalencia",
+         "texto": "As alternativas fazem a mesma função; dá para trocar se o aparelho estiver ocupado."
+        },
+        {
+         "regraId": "reps.faixa.por-tipo",
+         "texto": "Multiarticular: faixa de repetições mais baixa."
+        },
+        {
+         "regraId": "rir.alvo",
+         "texto": "Terminar a série perto da falha, sem precisar chegar nela."
+        },
+        {
+         "regraId": "descanso.por-tipo",
+         "texto": "Descanso de 1 min 45 s: acima de ~90 s, descansar mais não rende mais crescimento."
+        }
+       ]
+      },
+      {
+       "exId": "elevacao-halteres",
+       "nome": "Elevação lateral com halteres",
+       "padrao": "isolador-ombro-lateral",
+       "tipo": "isolador",
+       "funcao": "elevacao-lateral",
+       "series": 3,
+       "reps": [
+        12,
+        20
+       ],
+       "rir": [
+        0,
+        1
+       ],
+       "descansoSeg": 75,
+       "unilateral": false,
+       "animacaoId": "elevacao-halteres",
+       "alternativas": [
+        "elevacao-lateral",
+        "elevacao-lateral-elastico",
+        "elevacao-lateral-unilateral-elastico",
+        "elevacao-lateral-unilateral",
+        "elevacao-lateral-deitado"
+       ],
+       "porque": [
+        {
+         "regraId": "selecao.funcao-da-vaga",
+         "texto": "Vaga de elevação lateral, para o ombro lateral, o seu foco: 3 das 12 séries da semana. Equivale a elevação lateral unilateral na polia, que fica como alternativa."
+        },
+        {
+         "regraId": "selecao.equivalencia",
+         "texto": "As alternativas fazem a mesma função; dá para trocar se o aparelho estiver ocupado."
+        },
+        {
+         "regraId": "reps.faixa.por-tipo",
+         "texto": "Isolador: faixa de repetições mais alta."
+        },
+        {
+         "regraId": "rir.alvo",
+         "texto": "Terminar a série perto da falha, sem precisar chegar nela."
+        },
+        {
+         "regraId": "descanso.por-tipo",
+         "texto": "Descanso de 1 min 15 s entre as séries."
+        }
+       ]
+      },
+      {
+       "exId": "flexao-joelho-elastico",
+       "nome": "Flexão de joelho com elástico",
+       "padrao": "flexao-joelho",
+       "tipo": "isolador",
+       "funcao": "flexao-joelho",
+       "series": 2,
+       "reps": [
+        12,
+        20
+       ],
+       "rir": [
+        0,
+        1
+       ],
+       "descansoSeg": 75,
+       "unilateral": false,
+       "animacaoId": "flexao-joelho-elastico",
+       "alternativas": [
+        "flexao-bola",
+        "flexao-joelho-deslizante",
+        "nordico"
+       ],
+       "porque": [
+        {
+         "regraId": "selecao.funcao-da-vaga",
+         "texto": "Vaga de flexão de joelho, para os posteriores da coxa: 2 das 8 séries da semana. As opções de cima (como flexão de joelho na cadeira flexora (sentado)) pedem equipamento que você não tem. Entre as que sobram, equivale a flexão de joelho na bola suíça, que fica como alternativa."
+        },
+        {
+         "regraId": "selecao.equivalencia",
+         "texto": "As alternativas fazem a mesma função; dá para trocar se o aparelho estiver ocupado."
+        },
+        {
+         "regraId": "reps.faixa.por-tipo",
+         "texto": "Isolador: faixa de repetições mais alta."
+        },
+        {
+         "regraId": "rir.alvo",
+         "texto": "Terminar a série perto da falha, sem precisar chegar nela."
+        },
+        {
+         "regraId": "descanso.por-tipo",
+         "texto": "Descanso de 1 min 15 s entre as séries."
+        }
+       ]
+      },
+      {
+       "exId": "extensao-joelho-elastico",
+       "nome": "Extensão de joelho sentado com elástico",
+       "padrao": "isolador-quadriceps",
+       "tipo": "isolador",
+       "funcao": "extensora",
+       "series": 2,
+       "reps": [
+        12,
+        20
+       ],
+       "rir": [
+        0,
+        1
+       ],
+       "descansoSeg": 75,
+       "unilateral": true,
+       "animacaoId": "extensao-joelho-elastico",
+       "alternativas": [
+        "afundo",
+        "afundo-peso-corpo"
+       ],
+       "porque": [
+        {
+         "regraId": "selecao.funcao-da-vaga",
+         "texto": "Vaga de extensora, para o quadríceps: 2 das 8 séries da semana. As opções de cima (como cadeira extensora) pedem equipamento que você não tem; esta é a melhor que sobra."
+        },
+        {
+         "regraId": "selecao.isolador-obrigatorio",
+         "texto": "Isolador que cobre o que os multiarticulares não cobrem (o reto femoral, na frente da coxa)."
+        },
+        {
+         "regraId": "selecao.alongado",
+         "texto": "Na função, vem primeiro a opção com o músculo mais alongado, que cresceu mais nos estudos."
+        },
+        {
+         "regraId": "selecao.equivalencia",
+         "texto": "As alternativas fazem a mesma função; dá para trocar se o aparelho estiver ocupado."
+        },
+        {
+         "regraId": "reps.faixa.por-tipo",
+         "texto": "Isolador: faixa de repetições mais alta."
+        },
+        {
+         "regraId": "rir.alvo",
+         "texto": "Terminar a série perto da falha, sem precisar chegar nela."
+        },
+        {
+         "regraId": "descanso.por-tipo",
+         "texto": "Descanso de 1 min 15 s entre as séries."
+        }
+       ]
+      },
+      {
+       "exId": "panturrilha-bilateral-step",
+       "nome": "Panturrilha em pé no step",
+       "padrao": "panturrilha",
+       "tipo": "isolador",
+       "funcao": "panturrilha-em-pe",
+       "series": 3,
+       "reps": [
+        12,
+        20
+       ],
+       "rir": [
+        0,
+        1
+       ],
+       "descansoSeg": 75,
+       "unilateral": false,
+       "animacaoId": "panturrilha-b",
+       "alternativas": [
+        "panturrilha-degrau",
+        "panturrilha",
+        "panturrilha-chao"
+       ],
+       "porque": [
+        {
+         "regraId": "selecao.funcao-da-vaga",
+         "texto": "Vaga de panturrilha em pé, para a panturrilha: 3 das 6 séries da semana. Equivale a panturrilha unilateral no step, que fica como alternativa."
+        },
+        {
+         "regraId": "selecao.panturrilha-alongada",
+         "texto": "Ênfase no alongamento: calcanhar abaixo do apoio e pausa embaixo."
+        },
+        {
+         "regraId": "selecao.alongado",
+         "texto": "Na função, vem primeiro a opção com o músculo mais alongado, que cresceu mais nos estudos."
+        },
+        {
+         "regraId": "selecao.equivalencia",
+         "texto": "As alternativas fazem a mesma função; dá para trocar se o aparelho estiver ocupado."
+        },
+        {
+         "regraId": "reps.faixa.por-tipo",
+         "texto": "Isolador: faixa de repetições mais alta."
+        },
+        {
+         "regraId": "rir.alvo",
+         "texto": "Terminar a série perto da falha, sem precisar chegar nela."
+        },
+        {
+         "regraId": "descanso.por-tipo",
+         "texto": "Descanso de 1 min 15 s entre as séries."
+        }
+       ]
+      },
+      {
+       "exId": "abdominal-polia",
+       "nome": "Abdominal na polia com corda, ajoelhado",
+       "padrao": "core",
+       "tipo": "isolador",
+       "funcao": "abdomen",
+       "series": 2,
+       "reps": [
+        10,
+        15
+       ],
+       "rir": [
+        0,
+        1
+       ],
+       "descansoSeg": 75,
+       "unilateral": false,
+       "animacaoId": "abdominal-polia",
+       "alternativas": [
+        "abdominal-declinado",
+        "abdominal-bola",
+        "abdominal-chao",
+        "abdominal-invertido",
+        "elevacao-joelhos"
+       ],
+       "porque": [
+        {
+         "regraId": "selecao.funcao-da-vaga",
+         "texto": "Vaga de abdômen, para o abdômen: 2 das 4 séries da semana. Ganhou de abdominal no banco declinado porque deixa pôr mais carga com o seu equipamento."
+        },
+        {
+         "regraId": "selecao.equivalencia",
+         "texto": "As alternativas fazem a mesma função; dá para trocar se o aparelho estiver ocupado."
+        },
+        {
+         "regraId": "reps.faixa.por-tipo",
+         "texto": "Isolador: faixa de repetições mais alta."
+        },
+        {
+         "regraId": "rir.alvo",
+         "texto": "Terminar a série perto da falha, sem precisar chegar nela."
+        },
+        {
+         "regraId": "descanso.por-tipo",
+         "texto": "Descanso de 1 min 15 s entre as séries."
+        }
+       ]
+      }
+     ],
+     "minutosEstimados": 55
+    }
+   ],
+   "volumeSemanal": {
+    "peito": 12,
+    "ombro_anterior": 10,
+    "triceps": 12,
+    "costas": 12,
+    "biceps": 12.5,
+    "ombro_posterior": 9.5,
+    "ombro_lateral": 12,
+    "quadriceps": 8,
+    "gluteos": 7,
+    "adutores": 2,
+    "posteriores": 8,
+    "panturrilha": 6,
+    "abdomen": 4
+   },
+   "metas": {
+    "peito": 12,
+    "costas": 12,
+    "ombro_lateral": 12,
+    "ombro_posterior": 6,
+    "biceps": 12,
+    "triceps": 12,
+    "quadriceps": 6,
+    "posteriores": 6,
+    "gluteos": 6,
+    "panturrilha": 6,
+    "abdomen": 4
+   },
+   "fases": [],
+   "avisos": [
+    {
+     "regraId": "tempo.corte",
+     "texto": "Para caber no tempo: superséries entre músculos que não competem. As séries da semana não mudam: não precisa fazer nada."
+    }
+   ],
+   "porque": [
+    {
+     "regraId": "divisao.recomendacao",
+     "texto": "Superior/Inferior (2x): a recomendada para 4 dias (você pode escolher outra na rotina)."
+    },
+    {
+     "regraId": "divisao.equivalencia",
+     "texto": "Com o mesmo volume semanal, as divisões rendem o mesmo crescimento; a escolha é pelo encaixe na sua rotina."
+    },
+    {
+     "regraId": "frequencia.musculo",
+     "texto": "Superior/Inferior (2x): cada músculo treina cerca de 2 vezes por semana."
+    },
+    {
+     "regraId": "tempo.exercicios-por-sessao",
+     "texto": "Com 70 min por treino, cabem cerca de 9 exercícios."
+    },
+    {
+     "regraId": "selecao.funcao-da-vaga",
+     "texto": "Cada vaga pede uma função (por exemplo, \"tríceps com o braço acima da cabeça\"), não um aparelho: máquina e peso livre valem o mesmo."
+    },
+    {
+     "regraId": "volume.semanal.alvo",
+     "texto": "Foco em peito, costas, ombros e braços: ~12 séries por semana para crescer mais rápido. Os outros músculos ficam com ~6: mais do que o necessário para manter (1 a 3) e o bastante para continuar crescendo, mais devagar."
+    },
+    {
+     "regraId": "volume.serie-indireta.peso",
+     "texto": "Séries indiretas (ex.: remada para o bíceps) contam como meia série."
+    },
+    {
+     "regraId": "rir.serie-efetiva",
+     "texto": "Só contam séries de trabalho com até 4 repetições de reserva."
+    },
+    {
+     "regraId": "ordem.sessao",
+     "texto": "Ordem da sessão: multiarticulares primeiro, depois os grupos que você priorizou, core por último. A ordem quase não muda a hipertrofia."
+    },
+    {
+     "regraId": "selecao.manter-no-bloco",
+     "texto": "Os exercícios ficam os mesmos por 4 a 8 semanas; o programa só muda quando você pede."
+    }
+   ],
+   "regioesExcluidas": []
+  },
+  "geradoEm": "2026-10-04T10:00:00.000Z",
+  "localId": "local-1"
+ },
+ "historico": [
+  {
+   "id": "2026-10-05T10:00:00.000Z",
+   "diaId": "superior-a",
+   "semana": 1,
+   "inicio": "2026-10-05T10:00:00.000Z",
+   "fim": "2026-10-05T11:00:00.000Z",
+   "localId": "local-1",
+   "exercicios": [
+    {
+     "exId": "supino-reto",
+     "series": [
+      {
+       "carga": {
+        "tipo": "kg",
+        "kg": 10
+       },
+       "reps": 10,
+       "rir": 2,
+       "dor": 4
+      },
+      {
+       "carga": {
+        "tipo": "kg",
+        "kg": 10
+       },
+       "reps": 10,
+       "rir": 2,
+       "dor": 4
+      },
+      {
+       "carga": {
+        "tipo": "kg",
+        "kg": 10
+       },
+       "reps": 10,
+       "rir": 2,
+       "dor": 4
+      }
+     ]
+    },
+    {
+     "exId": "puxada-unilateral",
+     "series": [
+      {
+       "carga": {
+        "tipo": "placa",
+        "placa": 8
+       },
+       "reps": 10,
+       "rir": 2
+      },
+      {
+       "carga": {
+        "tipo": "placa",
+        "placa": 8
+       },
+       "reps": 10,
+       "rir": 2
+      },
+      {
+       "carga": {
+        "tipo": "placa",
+        "placa": 8
+       },
+       "reps": 10,
+       "rir": 2
+      }
+     ]
+    },
+    {
+     "exId": "remada-apoiada",
+     "series": [
+      {
+       "carga": {
+        "tipo": "kg",
+        "kg": 10
+       },
+       "reps": 10,
+       "rir": 2
+      },
+      {
+       "carga": {
+        "tipo": "kg",
+        "kg": 10
+       },
+       "reps": 10,
+       "rir": 2
+      },
+      {
+       "carga": {
+        "tipo": "kg",
+        "kg": 10
+       },
+       "reps": 10,
+       "rir": 2
+      }
+     ]
+    },
+    {
+     "exId": "desenvolvimento",
+     "series": [
+      {
+       "carga": {
+        "tipo": "kg",
+        "kg": 10
+       },
+       "reps": 10,
+       "rir": 2
+      },
+      {
+       "carga": {
+        "tipo": "kg",
+        "kg": 10
+       },
+       "reps": 10,
+       "rir": 2
+      }
+     ]
+    },
+    {
+     "exId": "triceps-frances",
+     "series": [
+      {
+       "carga": {
+        "tipo": "placa",
+        "placa": 8
+       },
+       "reps": 10,
+       "rir": 2
+      },
+      {
+       "carga": {
+        "tipo": "placa",
+        "placa": 8
+       },
+       "reps": 10,
+       "rir": 2
+      },
+      {
+       "carga": {
+        "tipo": "placa",
+        "placa": 8
+       },
+       "reps": 10,
+       "rir": 2
+      },
+      {
+       "carga": {
+        "tipo": "placa",
+        "placa": 8
+       },
+       "reps": 10,
+       "rir": 2
+      }
+     ]
+    },
+    {
+     "exId": "elevacao-halteres",
+     "series": [
+      {
+       "carga": {
+        "tipo": "kg",
+        "kg": 10
+       },
+       "reps": 10,
+       "rir": 2
+      },
+      {
+       "carga": {
+        "tipo": "kg",
+        "kg": 10
+       },
+       "reps": 10,
+       "rir": 2
+      },
+      {
+       "carga": {
+        "tipo": "kg",
+        "kg": 10
+       },
+       "reps": 10,
+       "rir": 2
+      },
+      {
+       "carga": {
+        "tipo": "kg",
+        "kg": 10
+       },
+       "reps": 10,
+       "rir": 2
+      }
+     ]
+    },
+    {
+     "exId": "rosca-inclinada",
+     "series": [
+      {
+       "carga": {
+        "tipo": "kg",
+        "kg": 10
+       },
+       "reps": 10,
+       "rir": 2
+      },
+      {
+       "carga": {
+        "tipo": "kg",
+        "kg": 10
+       },
+       "reps": 10,
+       "rir": 2
+      },
+      {
+       "carga": {
+        "tipo": "kg",
+        "kg": 10
+       },
+       "reps": 10,
+       "rir": 2
+      },
+      {
+       "carga": {
+        "tipo": "kg",
+        "kg": 10
+       },
+       "reps": 10,
+       "rir": 2
+      }
+     ]
+    },
+    {
+     "exId": "crucifixo-polia",
+     "series": [
+      {
+       "carga": {
+        "tipo": "placa",
+        "placa": 8
+       },
+       "reps": 10,
+       "rir": 2
+      },
+      {
+       "carga": {
+        "tipo": "placa",
+        "placa": 8
+       },
+       "reps": 10,
+       "rir": 2
+      },
+      {
+       "carga": {
+        "tipo": "placa",
+        "placa": 8
+       },
+       "reps": 10,
+       "rir": 2
+      }
+     ]
+    },
+    {
+     "exId": "crucifixo-invertido-polia",
+     "series": [
+      {
+       "carga": {
+        "tipo": "placa",
+        "placa": 8
+       },
+       "reps": 10,
+       "rir": 2
+      },
+      {
+       "carga": {
+        "tipo": "placa",
+        "placa": 8
+       },
+       "reps": 10,
+       "rir": 2
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "2026-10-06T10:00:00.000Z",
+   "diaId": "inferior-a",
+   "semana": 1,
+   "inicio": "2026-10-06T10:00:00.000Z",
+   "fim": "2026-10-06T11:00:00.000Z",
+   "localId": "local-1",
+   "exercicios": [
+    {
+     "exId": "bulgaro",
+     "series": [
+      {
+       "carga": {
+        "tipo": "kg",
+        "kg": 10
+       },
+       "reps": 10,
+       "rir": 2
+      },
+      {
+       "carga": {
+        "tipo": "kg",
+        "kg": 10
+       },
+       "reps": 10,
+       "rir": 2
+      }
+     ]
+    },
+    {
+     "exId": "stiff",
+     "series": [
+      {
+       "carga": {
+        "tipo": "kg",
+        "kg": 10
+       },
+       "reps": 10,
+       "rir": 2
+      },
+      {
+       "carga": {
+        "tipo": "kg",
+        "kg": 10
+       },
+       "reps": 10,
+       "rir": 2
+      }
+     ]
+    },
+    {
+     "exId": "flexao-bola",
+     "series": [
+      {
+       "carga": {
+        "tipo": "degrau",
+        "degrau": 2
+       },
+       "reps": 10,
+       "rir": 2
+      },
+      {
+       "carga": {
+        "tipo": "degrau",
+        "degrau": 2
+       },
+       "reps": 10,
+       "rir": 2
+      }
+     ]
+    },
+    {
+     "exId": "extensao-joelho-elastico",
+     "series": [
+      {
+       "carga": {
+        "tipo": "degrau",
+        "degrau": 2
+       },
+       "reps": 10,
+       "rir": 2
+      },
+      {
+       "carga": {
+        "tipo": "degrau",
+        "degrau": 2
+       },
+       "reps": 10,
+       "rir": 2
+      }
+     ]
+    },
+    {
+     "exId": "panturrilha",
+     "series": [
+      {
+       "carga": {
+        "tipo": "kg",
+        "kg": 10
+       },
+       "reps": 10,
+       "rir": 2
+      },
+      {
+       "carga": {
+        "tipo": "kg",
+        "kg": 10
+       },
+       "reps": 10,
+       "rir": 2
+      },
+      {
+       "carga": {
+        "tipo": "kg",
+        "kg": 10
+       },
+       "reps": 10,
+       "rir": 2
+      }
+     ]
+    },
+    {
+     "exId": "abdominal-polia",
+     "series": [
+      {
+       "carga": {
+        "tipo": "placa",
+        "placa": 8
+       },
+       "reps": 10,
+       "rir": 2
+      },
+      {
+       "carga": {
+        "tipo": "placa",
+        "placa": 8
+       },
+       "reps": 10,
+       "rir": 2
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "respostas": {
+  "semanaLeveEm": "2026-10-09T12:00:00.000Z"
+ }
+}

@@ -48,6 +48,11 @@ export const MIGRACOES: Record<number, Migracao> = {
   // semana leve, nenhuma resposta e nenhuma margem de tempo. A semana do programa e as pausas saem do histórico que já
   // existe, sem gravar nada.
   6: (anterior) => ({ ...anterior }),
+  // 7 → 8 (auditoria de 12/11/2026): a nota de dor dada antes da 1ª série fica no exercício da sessão (`dorSemSerie`).
+  // O campo é opcional e nasce ausente: nada é inventado para as sessões antigas. A versão nova também cobre dois
+  // campos que tinham entrado na 7 sem versão própria (`rotina.objetivo` e `respostas.semanaLeveEm`): um app da
+  // versão 7 que ainda não conhece esses campos passa a recusar o dado, em vez de regravá-lo sem eles.
+  7: (anterior) => ({ ...anterior }),
 };
 
 export type ResultadoMigracao = { ok: true; estado: Estado } | { ok: false; erro: string };

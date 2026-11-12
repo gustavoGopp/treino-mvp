@@ -1,5 +1,5 @@
 import type { Exercicio } from '../biblioteca';
-import { PROGRESSAO, r, SEMANA_LEVE } from '../regras';
+import { DOR, PROGRESSAO, r, SEMANA_LEVE } from '../regras';
 import { MENOR_ANILHA_PADRAO_KG } from '../taxonomia/equipamentos';
 
 // Dupla progressão (progressao.*): primeiro as repetições sobem dentro da faixa; com todas as séries
@@ -168,6 +168,25 @@ const noTopo = (s: SessaoExercicio, a: Alvo) => {
 };
 const totalReps = (s: SessaoExercicio) => validas(s).reduce((t, x) => t + x.reps, 0);
 
+/**
+ * O que a nota de dor da última vez pede (seguranca.dor.escala; consenso): acima de 5, a alternativa; de 3 a 5, a
+ * carga reduzida (quando há uma carga de onde reduzir). Abaixo de 3, nada: devolve undefined.
+ */
+export function sugestaoPorDor(dor: number, carga: Carga | undefined, o: OpcoesCarga): Sugestao | undefined {
+  if (dor > DOR.ajustarAte)
+    return { acao: 'interromper', motivo: `Dor acima de ${DOR.ajustarAte}/10: use a alternativa e procure avaliação se continuar.`, regraId: r('seguranca.dor.escala') };
+  if (dor >= DOR.ajustarDe) {
+    const proxima = carga && reduzir(carga, 0.15, o);
+    return {
+      acao: 'ajustar',
+      ...(proxima ? { proxima } : {}),
+      motivo: `Dor entre ${DOR.ajustarDe} e ${DOR.ajustarAte}/10: reduza a carga, encurte a amplitude ou desacelere; se não melhorar, troque pela alternativa.`,
+      regraId: r('seguranca.dor.escala'),
+    };
+  }
+  return undefined;
+}
+
 export function sugerirProgressao(historico: SessaoExercicio[], alvo: Alvo, o: OpcoesCarga): Sugestao {
   const ultima = historico.at(-1);
   if (!ultima || !ultima.series.length)
@@ -176,16 +195,8 @@ export function sugerirProgressao(historico: SessaoExercicio[], alvo: Alvo, o: O
   const anterior = historico.at(-2);
 
   // Segurança primeiro (seguranca.dor.escala)
-  const dor = Math.max(0, ...ultima.series.map((x) => x.dor ?? 0));
-  if (dor > 5)
-    return { acao: 'interromper', motivo: 'Dor acima de 5/10: use a alternativa e procure avaliação se continuar.', regraId: r('seguranca.dor.escala') };
-  if (dor >= 3)
-    return {
-      acao: 'ajustar',
-      proxima: reduzir(carga, 0.15, o),
-      motivo: 'Dor entre 3 e 5/10: reduza a carga, encurte a amplitude ou desacelere; se não melhorar, troque pela alternativa.',
-      regraId: r('seguranca.dor.escala'),
-    };
+  const porDor = sugestaoPorDor(Math.max(0, ...ultima.series.map((x) => x.dor ?? 0)), carga, o);
+  if (porDor) return porDor;
 
   const primeira = validas(ultima)[0];
   const subiuAgora = anterior && anterior.series[0] && valor(carga) > valor(anterior.series[0].carga);

@@ -2,10 +2,10 @@ import { BIBLIOTECA, type Exercicio } from '../biblioteca';
 import { faseNaSemana, prescricaoDaSemana, type DiaPrograma, type ExercicioPrescrito, type Fase, type Programa } from '../gerador';
 import { blocoAtual, naFaseDeAprendizado, semanaNoBloco, treinoFeito, type Hoje } from './bloco';
 import { DEPOIS_DA_ESCADA, escadaDe, nomeDoDegrau, pedeMiniBand } from '../progressao/escadas';
-import { existeNoPasso, noPassoAbaixo, proximaCarga, sugerirProgressao, type Alvo, type Carga, type OpcoesCarga, type SerieRegistrada, type SessaoExercicio, type Sugestao } from '../progressao';
+import { existeNoPasso, noPassoAbaixo, proximaCarga, sugerirProgressao, sugestaoPorDor, type Alvo, type Carga, type OpcoesCarga, type SerieRegistrada, type SessaoExercicio, type Sugestao } from '../progressao';
 import { calibrar, emCalibracao, fimDaCalibracao, semCalibracao, type ResultadoCalibracao } from '../progressao/calibracao';
 import { funcoesDoExercicio } from '../gerador/funcoes';
-import { r } from '../regras';
+import { DOR, r } from '../regras';
 import { CAPACIDADES, cargasCaneleiras, cargasHalter, cargasKettlebell, ITEM_IDS, MENOR_ANILHA_PADRAO_KG, type Capacidade, type Inventario } from '../taxonomia/equipamentos';
 export * from './bloco';
 
@@ -21,7 +21,16 @@ export type ExercicioFeito = {
   series: SerieRegistrada[];
   /** Encerrado por dor ou sinal de alerta. */
   interrompido?: boolean;
+  /**
+   * Nota de dor (1 a 10) dada antes de qualquer série do exercício (seguranca.dor.escala). Quando uma série é
+   * registrada, a nota passa para ela; se o exercício foi encerrado sem série, fica aqui.
+   */
+  dorSemSerie?: number;
 };
+
+/** A maior nota de dor do exercício na sessão: a das séries ou a dada antes da 1ª (0 = sem nota). */
+export const dorDoExercicio = (e: Pick<ExercicioFeito, 'series' | 'dorSemSerie'>): number =>
+  Math.max(0, e.dorSemSerie ?? 0, ...e.series.map((s) => s.dor ?? 0));
 
 export type Sessao = {
   id: string;
@@ -312,8 +321,14 @@ export function sugestaoDoExercicio(
   const h = hist();
   const alvo: Alvo = { reps: x.reps, rir: x.rir };
   const ultima = h.at(-1);
-  // A dor manda antes de tudo (seguranca.dor.escala), em qualquer semana.
-  if (ultima?.series.some((s) => (s.dor ?? 0) >= 3)) return sugerirProgressao(h, alvo, op);
+  // A dor manda antes de tudo (seguranca.dor.escala), em qualquer semana. Se na última vez o exercício foi encerrado
+  // pela dor antes da 1ª série, a nota está no exercício, e não numa série.
+  const tentativa = [...historico.flatMap((s) => s.exercicios)].reverse().find((e) => e.exId === x.exId && (e.series.length > 0 || e.dorSemSerie !== undefined));
+  if (tentativa && !tentativa.series.length) {
+    const porDor = sugestaoPorDor(tentativa.dorSemSerie ?? 0, ultima?.series[0]?.carga, op);
+    if (porDor) return porDor;
+  }
+  if (ultima?.series.some((s) => (s.dor ?? 0) >= DOR.ajustarDe)) return sugerirProgressao(h, alvo, op);
   if (emCalibracao(h)) {
     const s = ultima?.series.at(-1);
     if (!s) return { acao: 'calibrar', motivo: textoPrimeiraVez(historico, x.exId, opcoes.local), regraId: r('progressao.calibracao') };

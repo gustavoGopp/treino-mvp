@@ -1,9 +1,10 @@
+import { readFileSync } from 'node:fs';
 import { describe, expect, it } from 'vitest';
 import { z } from 'zod';
 import { gerarPrograma } from '../../src/domain/gerador';
 import { exportarJson, importarJson, nomeDoArquivo } from '../../src/storage/arquivo';
 import { estadoSchema, estadoVazio, perfilDe, primeiroPassoPendente, VERSAO_ESTADO, type Estado } from '../../src/storage/esquema';
-import { migrar, type Migracao } from '../../src/storage/migracao';
+import { migrar, MIGRACOES, type Migracao } from '../../src/storage/migracao';
 import { capacidades } from '../../src/domain/taxonomia/equipamentos';
 import { avaliarTriagem } from '../../src/domain/triagem';
 import { PERSONAS, type Persona } from '../personas';
@@ -310,5 +311,45 @@ describe('exportação e importação', () => {
 
   it('dá ao arquivo um nome com a data', () => {
     expect(nomeDoArquivo(new Date(DATA))).toBe('treino-mvp-2026-10-31.json');
+  });
+});
+
+// Um estado da versão 7 de verdade: gravado pelo app de 12/11/2026 (persona fictícia Bruno, 2 treinos, uma nota de dor,
+// o objetivo e o "Agora não" da semana leve), antes de a versão 8 existir.
+const estadoV7 = () => JSON.parse(readFileSync('tests/unit/fixtures/estado-v7.json', 'utf8')) as Record<string, unknown> & { versao: number };
+
+describe('versão 7 → 8 (auditoria de 12/11/2026)', () => {
+  it('o estado antigo é lido inteiro: programa, histórico, objetivo e respostas ficam como estavam', () => {
+    const antigo = estadoV7();
+    expect(antigo.versao).toBe(7);
+    const r = migrar(antigo);
+    if (!r.ok) throw new Error(r.erro);
+    expect(r.estado.versao).toBe(8);
+    const { versao: _a, ...antes } = antigo;
+    const { versao: _b, ...depois } = r.estado;
+    void _a;
+    void _b;
+    expect(depois).toEqual(antes);
+    expect(r.estado.rotina?.objetivo).toBe('forca');
+    expect(r.estado.respostas?.semanaLeveEm).toBe('2026-10-09T12:00:00.000Z');
+    expect(r.estado.historico).toHaveLength(2);
+  });
+
+  it('um app da versão 7 recusa o dado da 8 em vez de regravá-lo sem os campos novos', () => {
+    const r = migrar({ ...estadoV7(), versao: 8 }, MIGRACOES, 7);
+    expect(r).toEqual({ ok: false, erro: expect.stringMatching(/versão mais nova/) });
+  });
+
+  it('a nota de dor antes da 1ª série cabe no esquema novo, de 1 a 10', () => {
+    const r = migrar(estadoV7());
+    if (!r.ok) throw new Error(r.erro);
+    const comNota = (dorSemSerie: number) => {
+      const e = structuredClone(r.estado);
+      e.historico[0]!.exercicios[0] = { ...e.historico[0]!.exercicios[0]!, series: [], interrompido: true, dorSemSerie };
+      return estadoSchema.safeParse(e).success;
+    };
+    expect(comNota(7)).toBe(true);
+    expect(comNota(0)).toBe(false);
+    expect(comNota(11)).toBe(false);
   });
 });
