@@ -1,0 +1,22 @@
+# Leitura, toque e acessibilidade em uso real (academia)
+
+Rascunho em andamento (gravado cedo). Selos: robusta, moderada, um estudo, consenso, analogia, opinião.
+
+## Assunto 1: luz forte, contraste, polaridade
+
+| Endereço | Tipo | O que diz | O que eu li | Selo |
+|---|---|---|---|---|
+| https://www.w3.org/WAI/WCAG22/Understanding/contrast-minimum.html | norma (WCAG 1.4.3) | 4,5:1 para texto, 3:1 para texto grande (18 pt ou 14 pt negrito, cerca de 24 px e 18,5 px). Os 4,5 vêm de 3 vezes uma perda de sensibilidade ao contraste de cerca de 1,5 (visão em torno de 20/40). | texto completo da página "Understanding" | robusta |
+| https://www.w3.org/WAI/WCAG22/Understanding/contrast-enhanced.html | norma (WCAG 1.4.6, AAA) | 7:1 para texto, 4,5:1 para texto grande; 7:1 cobre cerca de 20/80 sem tecnologia assistiva. A página não fala de halação nem de sensibilidade à luz. | texto completo | robusta |
+| https://www.w3.org/WAI/WCAG22/Understanding/non-text-contrast.html | norma (WCAG 1.4.11) | 3:1 para componentes de interface, estados (selecionado, foco) e partes de gráficos necessárias. Desativado fica de fora. | texto completo | robusta |
+| https://git.apcacontrast.com/documentation/WhyAPCA | documentação do projeto APCA | APCA é "candidato" para o WCAG 3, ainda em desenvolvimento, não normativo. Sugere Lc 90 preferido para texto corrido (14 px/400 ou mais), Lc 75 mínimo para colunas de texto a 18 px/400, Lc 45 para títulos grandes. Diz que a razão do WCAG 2 superestima o contraste de cores escuras. Depende de tamanho e peso. | texto da página | opinião (do autor do APCA; proposta não normativa) |
+| https://www.nngroup.com/articles/dark-mode/ | artigo de revisão (NN/g) | Resume Piepenbrock et al. 2013 (adultos 18-33 e 60-85 anos): tema claro (texto escuro em fundo claro) melhor em acuidade e revisão de texto; a vantagem cresce quando a letra diminui; sem diferença de fadiga. Dobres et al. 2017: sem efeito da polaridade na luz do dia simulada, mas tema claro melhor à noite. Aleman et al. 2018 (7 pessoas): a coroide afinou após 1 h no tema claro. Legge 1985: 7 de 7 com meios turvos (catarata) liam mais rápido no escuro. | texto completo do artigo (fonte secundária dos estudos) | moderada |
+| https://cogsci.nl/blog/is-bright-text-on-a-dark-background-a-good-idea | blog de pesquisador (S. Mathôt, 2014) | A vantagem do texto escuro sobre claro seria "uma vantagem de pupila pequena": fundo claro contrai a pupila, o que dá visão mais nítida. Cita Buchner, Mayr e Brandt 2009 e Piepenbrock, Mayr e Buchner 2014. Não fala de halação nem de astigmatismo. | texto completo do blog | opinião (de um autor; cita estudos) |
+| https://pmc.ncbi.nlm.nih.gov/articles/PMC6925951 | estudo (Mathôt e Ivanov 2019, PeerJ) | 3 experimentos (9, 9 e 20 pessoas). Pupila grande ajudou a detectar; pupila pequena só ajudou a discriminar letras no limite da acuidade. A ligação pupila-acuidade é mais fraca do que se diz. | texto completo | um estudo |
+| https://docserv.uni-duesseldorf.de/servlets/DerivateServlet/Derivate-31413 | tese (Düsseldorf, grupo Buchner) | só o resumo da busca: vantagem consistente da polaridade positiva em revisão de texto e acuidade, atribuída à luminância e à pupila. | só o resumo da busca | moderada |
+
+| https://pubmed.ncbi.nlm.nih.gov/28166901/ | estudo (Dobres, Chahine e Reimer 2017, Applied Ergonomics 60:68-73) | Tarefa de decisão lexical em olhada rápida, 2 polaridades, 2 tamanhos, 2 luzes (quase escuro e "luz do dia"). Pior resultado: texto claro em fundo escuro com ambiente escuro. Com luz forte, todas as condições foram boas. | só o resumo (pela busca) | um estudo (analogia: feito para painéis de carro) |
+| https://pmc.ncbi.nlm.nih.gov/articles/PMC5213401 | estudo (Dobres, Chahine, Reimer, Gould, Mehler e Coughlin 2016, Ergonomics, "Utilising psychophysical techniques... glance legibility", estudos I e II; é outro artigo que o de 2017 acima) | Estudo I: 48 pessoas (20-75 anos), sala a cerca de 23 lux, tela 1 a 113 cd/m2; limiar de leitura ~82 ms (polaridade positiva) contra ~113 ms (negativa) na fonte humanista. Estudo II (32 pessoas): em polaridade negativa, letra de 3 mm exigiu 136 ms e a de 4 mm 108 ms (humanista). Tudo em sala pouco iluminada; os autores dizem que luz e tipo de tela exigem mais pesquisa. | texto completo (primeiros 100 mil de 133 mil caracteres) | um estudo (analogia: carro) |
+
+## Assuntos 2 a 8
+(a preencher)
