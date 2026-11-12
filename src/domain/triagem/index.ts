@@ -1,5 +1,7 @@
+import { ordemFixa } from '../ordem';
 import type { Articulacao } from '../biblioteca';
-import { r } from '../regras';
+import { porCento } from '../numero';
+import { DOR, r } from '../regras';
 
 // Triagem de prontidão no estilo do PAR-Q+ (seguranca.triagem). As perguntas são próprias do app:
 // o texto oficial do PAR-Q+ só entra depois de confirmada a licença (seguranca.triagem.texto).
@@ -68,7 +70,7 @@ export function efeitoDaDor(nota: number | undefined): EfeitoDor {
 }
 
 function porDor(dores: DorRegiao[] | undefined) {
-  const lista = [...(dores ?? [])].sort((a, b) => a.articulacao.localeCompare(b.articulacao));
+  const lista = [...(dores ?? [])].sort((a, b) => ordemFixa(a.articulacao, b.articulacao));
   const de = (e: EfeitoDor) => lista.filter((d) => efeitoDaDor(d.nota) === e).map((d) => d.articulacao);
   return { dores: lista, regioesExcluidas: de('exclui'), regioesDorLeve: de('prefere-outros') };
 }
@@ -115,19 +117,25 @@ export function avaliarTriagem(t: Triagem): ResultadoTriagem {
 
 export type AcaoDor = { acao: 'seguir' | 'ajustar' | 'encerrar-exercicio'; mensagem: string; regraId: string };
 
-/** Dor relatada numa série, de 0 a 10 (seguranca.dor.escala). Dor aguda encerra o exercício em qualquer nota. */
-export function avaliarDor(nota: number, aguda = false): AcaoDor {
+/**
+ * Dor relatada numa série, de 0 a 10 (seguranca.dor.escala). Dor aguda encerra o exercício em qualquer nota.
+ * `haCargaMenor`: se existe uma carga menor que a de agora neste equipamento; sem ela (a placa 1, o halter mais leve),
+ * o texto não manda reduzir a carga.
+ */
+export function avaliarDor(nota: number, aguda = false, haCargaMenor = true): AcaoDor {
   const regraId = r('seguranca.dor.escala');
-  if (aguda || nota > 5)
+  if (aguda || nota > DOR.ajustarAte)
     return {
       acao: 'encerrar-exercicio',
       mensagem: 'Pare este exercício e use a alternativa. Se a dor continuar ou voltar, procure avaliação profissional.',
       regraId,
     };
-  if (nota >= 3)
+  if (nota >= DOR.ajustarDe)
     return {
       acao: 'ajustar',
-      mensagem: 'Reduza a carga em 10–20%, encurte a amplitude ou desacelere. Se a dor não diminuir, troque pela alternativa.',
+      mensagem: haCargaMenor
+        ? `Reduza a carga em ${porCento(DOR.reducaoCarga[0])}–${porCento(DOR.reducaoCarga[1])}%, encurte a amplitude ou desacelere. Se a dor não diminuir, troque pela alternativa.`
+        : 'Não há carga menor aqui: encurte a amplitude ou desacelere. Se a dor não diminuir, troque pela alternativa.',
       regraId,
     };
   return { acao: 'seguir', mensagem: 'Pode seguir.', regraId };

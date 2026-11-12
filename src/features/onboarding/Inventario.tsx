@@ -1,4 +1,5 @@
 import { useId, useState, type ReactNode } from 'react';
+import { numeroBr } from '../../domain/numero';
 import { useNavigate } from 'react-router-dom';
 import { ITENS, type Inventario as InventarioDados, type ItemId } from '../../domain/taxonomia/equipamentos';
 import { comInventario, localPrincipal } from '../../storage/esquema';
@@ -33,7 +34,7 @@ const SIM_NAO = [
   { id: 'nao', texto: 'Não' },
 ] as const;
 const simNao = (v: boolean | undefined) => (v === undefined ? undefined : v ? 'sim' : 'nao');
-const kg = (n: number) => `${n.toLocaleString('pt-BR')} kg`;
+const kg = (n: number) => `${numeroBr(n)} kg`;
 const normalizar = (s: string) => s.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
 /** Os lugares na ordem do protótipo aprovado, com o subtítulo de cada um (lote 3 do redesign). */
 const ORDEM_LUGAR = ['academia', 'condominio', 'casa', 'corpo'] as const;

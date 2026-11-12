@@ -1,6 +1,8 @@
+import { numeroBr } from '../../domain/numero';
 import {
   ALTURAS_POLIA,
   ESTACOES_MULTIFUNCIONAL,
+  HALTER,
   inventarioSchema,
   ITENS,
   ITEM_IDS,
@@ -235,6 +237,9 @@ export function deForm(f: FormInventario): { inventario: Inventario | null; erro
         if (minKg !== undefined && maxKg !== undefined && minKg > maxKg) erros['halteres.max'] = 'O mais pesado precisa ser maior ou igual ao mais leve.';
         if (minKg !== undefined && maxKg !== undefined && passoKg !== undefined && passoKg > maxKg - minKg && maxKg > minKg)
           erros['halteres.passo'] = 'O passo não pode ser maior que a diferença entre o mais leve e o mais pesado.';
+        // Limites de bom senso (taxonomia/equipamentos.ts, HALTER): o mesmo que o esquema recusa.
+        if (passoKg !== undefined && passoKg < HALTER.passoMinKg) erros['halteres.passo'] = `O passo precisa ser de pelo menos ${numeroBr(HALTER.passoMinKg)} kg.`;
+        if (maxKg !== undefined && maxKg > HALTER.maxKg) erros['halteres.max'] = `Confira o peso: o app aceita até ${HALTER.maxKg} kg por halter.`;
         inv[id] = { minKg, maxKg, passoKg };
         break;
       }

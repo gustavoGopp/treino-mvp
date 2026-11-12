@@ -1,4 +1,4 @@
-import { BIBLIOTECA, type Exercicio, type Musculo } from '../biblioteca';
+import { POR_ID, type Musculo } from '../biblioteca';
 import { ehAvisoDeMeta, MUSCULOS_COM_META, musculosDoAviso, NOME_MUSCULO, SEM_EXERCICIO, seriesDeVolume, volumePorMusculo, type DiaPrograma, type Programa } from '../gerador';
 import { serieEfetiva } from '../progressao';
 import { r, VOLUME } from '../regras';
@@ -8,7 +8,6 @@ import { diaLocal, hojeNoPrograma, proximoDia, segundaDaSemana, semanaLocal, tre
 // Treinos feitos × planejados de segunda a domingo, em qualquer local; séries efetivas por músculo contra a meta da
 // semana; "X das últimas 8 semanas com treino"; e mensagens sem culpa, com a revisão da meta (decisão 5 do T6).
 
-const POR_ID: Record<string, Exercicio> = Object.fromEntries(BIBLIOTECA.map((e) => [e.id, e]));
 
 export type EstadoMusculo = 'na-meta' | 'crescendo' | 'mantendo' | 'sem-treino';
 export const TEXTO_ESTADO: Record<EstadoMusculo, string> = {
@@ -204,17 +203,21 @@ function revisaoDaMeta(
   if (!treinos.length || semanaHoje - 4 < primeira || o.planejados <= 2) return undefined;
   if (o.revisaoRespondidaEm && diaLocal(hojeIso, o.fusoMin) - diaLocal(o.revisaoRespondidaEm, o.fusoMin) < 28) return undefined;
   const ultimas = [1, 2, 3, 4].map((k) => daSemana(semanaHoje - k).length);
-  if (ultimas.filter((n) => n < o.planejados).length < 3) return undefined;
-  const media = ultimas.reduce((t, n) => t + n, 0) / 4;
+  // A semana sem nenhum treino é pausa, não uma semana "abaixo do planejado": quem cuida dela é a volta da pausa
+  // (readaptacao.durante-uso). Antes, 4 semanas paradas ofereciam menos dias com "cerca de 1 vez por semana".
+  const comTreino = ultimas.filter((n) => n > 0);
+  if (comTreino.filter((n) => n < o.planejados).length < 3) return undefined;
+  const media = comTreino.reduce((t, n) => t + n, 0) / comTreino.length;
   const lo = Math.max(2, Math.floor(media));
   const hi = o.planejados - 1;
   if (lo > hi) return undefined;
   const opcoes = [...new Set([lo, Math.min(lo + 1, hi)])];
   const vezes = Math.max(1, Math.floor(media));
+  const quando = comTreino.length === ultimas.length ? `Nas últimas ${ultimas.length} semanas você treinou cerca de ${vezes} ${vezes === 1 ? 'vez' : 'vezes'} por semana.` : `Nas semanas em que treinou, das últimas ${ultimas.length}, você fez cerca de ${vezes} ${vezes === 1 ? 'treino' : 'treinos'} por semana.`;
   return {
     media,
     opcoes,
-    texto: `Nas últimas 4 semanas você treinou cerca de ${vezes} ${vezes === 1 ? 'vez' : 'vezes'} por semana. Quer um programa de ${juntar(opcoes.map(String)).replace(' e ', ' ou ')} dias? Ele cabe melhor e rende o mesmo por treino.`,
+    texto: `${quando} Quer um programa de ${juntar(opcoes.map(String)).replace(' e ', ' ou ')} dias? Ele cabe melhor e rende o mesmo por treino.`,
     regraId: r('acompanhamento.mensagens'),
   };
 }

@@ -1,5 +1,7 @@
 import { Link, Navigate } from 'react-router-dom';
-import { BIBLIOTECA } from '../../domain/biblioteca';
+import { RIR, VOLUME } from '../../domain/regras';
+import { diaEMes as dataCurta, numeroBr } from '../../domain/numero';
+import { POR_ID } from '../../domain/biblioteca';
 import { exerciciosComHistorico, marcasDaSemana, type Marca } from '../../domain/acompanhamento/evolucao';
 import { textoCarga } from '../../domain/sessao';
 import { localDaSessao } from '../../storage/esquema';
@@ -12,9 +14,7 @@ import { SemanaLeve } from './SemanaLeve';
 // "A sua semana" (acompanhamento.semana e acompanhamento.mensagens): registro + meta + retorno, sem culpa e sem vermelho.
 // Lote 4 do redesign: o dado antes da oferta (os treinos, as últimas semanas, o que subiu, as séries por músculo) e só
 // então a revisão da meta e a semana leve.
-const POR_ID = Object.fromEntries(BIBLIOTECA.map((e) => [e.id, e]));
-const dataCurta = (iso: string) => `${iso.slice(8, 10)}/${iso.slice(5, 7)}`;
-const num = (n: number) => n.toLocaleString('pt-BR');
+const num = numeroBr;
 const TEXTO_MARCA: Record<Marca, string> = { 'subiu-a-carga': 'subiu a carga', recorde: 'recorde' };
 
 /** Os treinos da semana como quadradinhos: cheio = feito. O nome de cada um vai no texto para leitores de tela. */
@@ -137,13 +137,14 @@ export function Semana() {
             ))}
           </ul>
           <p className="ajuda">
-            Conta a série com até 4 repetições de reserva e amplitude completa; a série que trabalha o músculo de forma indireta vale meia.{' '}
+            Conta a série com até {RIR.serieEfetivaMax} repetições de reserva e amplitude completa; a série que trabalha o músculo de forma indireta vale meia.{' '}
             {r.metaPrescrita ? 'Nesta semana, a meta é o que o programa prescreveu para ela.' : 'A meta é a do seu programa.'} <Selo id="rir.serie-efetiva" />
           </p>
-          <p className="ajuda legenda-estados">A barra é o que foi feito; o traço tracejado é a meta. Cheio: na meta · médio: crescendo (4 séries ou mais) · claro: mantendo · vazio: ainda não treinou nesta semana.</p>
+          <p className="ajuda legenda-estados">A barra é o que foi feito; o traço tracejado é a meta. Cheio: na meta · médio: crescendo ({VOLUME.minimoEficazPiso} séries ou mais) · claro: mantendo · vazio: ainda não treinou nesta semana.</p>
         </section>
 
-        {r.revisao && (
+        {/* Com um treino aberto, o programa não é gerado de novo: a oferta volta quando ele terminar. */}
+        {r.revisao && !estado.sessaoAtual && (
           <section className="box volta" aria-labelledby="revisao">
             <h2 id="revisao">Um programa que cabe melhor?</h2>
             <p>

@@ -1,4 +1,4 @@
-import { readFileSync } from 'node:fs';
+import { readdirSync, readFileSync } from 'node:fs';
 import { describe, expect, it } from 'vitest';
 
 // Garante o princípio de evidência: toda regra tem selo e fonte, e toda fonte citada está na bibliografia.
@@ -48,5 +48,14 @@ describe('docs/pesquisa', () => {
       expect(f.linha, f.key).toMatch(/\*\*status:\*\* (verificado-busca|resumo-PubMed|texto-completo|NÃO VERIFICADO)/);
       expect(f.linha, f.key).toMatch(/conferido em \d{4}-\d{2}-\d{2}/);
     }
+  });
+
+  // Auditoria de 12/11/2026: 29 chaves citadas na pesquisa v2 não estavam na bibliografia. A mesma conta do script
+  // scripts/pesquisa/chaves-faltando.py: texto entre crases com cara de chave (letras, ano de 4 dígitos, letra opcional).
+  it('toda chave de fonte citada em docs/pesquisa-v2 está em fontes.md', () => {
+    const faltam = new Set<string>();
+    for (const arq of readdirSync('docs/pesquisa-v2').filter((a) => a.endsWith('.md')))
+      for (const m of readFileSync(`docs/pesquisa-v2/${arq}`, 'utf8').matchAll(/`([a-z][a-z-]*(?:19|20)\d{2}[a-z]?)`/g)) if (!chaves.has(m[1]!)) faltam.add(`${m[1]} (${arq})`);
+    expect([...faltam].sort()).toEqual([]);
   });
 });

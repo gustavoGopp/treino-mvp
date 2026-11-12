@@ -30,6 +30,10 @@ describe('progressao.calibracao: casos do T6', () => {
       proxima: { tipo: 'placa', placa: 7 },
     });
   });
+  it('na barra, não manda descer abaixo da barra vazia', () => {
+    const c = calibrar({ carga: kg(20), reps: 4, rir: 0 }, { reps: [8, 12], rir: [1, 2] }, { tipo: 'barra', passoKg: 4, baseKg: 20 });
+    expect(c.proxima === undefined || (c.proxima.tipo === 'kg' && c.proxima.kg >= 20)).toBe(true);
+  });
   it('C6: semana 1 da volta de pausa, remada 9 kg, 12 repetições com reserva 5 → não sobe → mantém 9 kg', () => {
     const c = calibrar({ carga: kg(9), reps: 12, rir: 5 }, { reps: [8, 12], rir: [3, 4] }, halterBruno, { soDesce: true });
     expect(c).toMatchObject({ acao: 'manter', proxima: kg(9), perto: false });

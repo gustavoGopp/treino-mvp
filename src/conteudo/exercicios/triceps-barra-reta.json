@@ -1,0 +1,52 @@
+{
+  "id": "triceps-barra-reta",
+  "name": "Tríceps na polia com barra reta",
+  "short": "Tríceps com barra reta",
+  "target": "Tríceps",
+  "setupEq": [
+    "Polia no alto, com a barra reta."
+  ],
+  "setupBody": [
+    "Em pé de frente para a torre, tronco um pouco inclinado.",
+    "Cotovelos junto ao corpo, mãos na barra na largura dos ombros."
+  ],
+  "exec": [
+    [
+      "conc",
+      "Descer a barra",
+      "Estende os cotovelos até os braços ficarem retos, com os cotovelos parados."
+    ],
+    [
+      "ecc",
+      "Volta",
+      "~2 s. Volta até os antebraços passarem um pouco da horizontal."
+    ]
+  ],
+  "range": [
+    "Início: cotovelos bem dobrados.",
+    "Fim: braços estendidos."
+  ],
+  "cues": [
+    "Cotovelos colados.",
+    "Estende até o fim.",
+    "Volta devagar."
+  ],
+  "errors": [
+    {
+      "id": "e1",
+      "title": "Abrir os cotovelos",
+      "desc": "Cotovelos para fora viram um empurrar com o peito."
+    },
+    {
+      "id": "e2",
+      "title": "Usar o tronco",
+      "desc": "Debruçar sobre a barra para descer a carga."
+    },
+    {
+      "id": "e3",
+      "title": "Volta curta",
+      "desc": "Não dobrar os cotovelos até o fim encurta o trabalho."
+    }
+  ],
+  "carga": "Registre o número da placa da torre. Para progredir, +1 placa."
+}

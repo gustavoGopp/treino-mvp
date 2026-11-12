@@ -1,4 +1,4 @@
-import { POR_ID, type Articulacao, type Exercicio, type Musculo } from '../biblioteca';
+import { ehEmpurrar, ehPuxar, POR_ID, regiaoDoMusculo as regiaoDe, type Articulacao, type Exercicio, type Musculo } from '../biblioteca';
 import {
   colchaoDe,
   contextoDeSelecao,
@@ -18,11 +18,14 @@ import {
   type ExercicioPrescrito,
   type Perfil,
   type Porque,
+  razaoCoxa,
 } from '../gerador';
-import { contaPara, ehDe, funcoesProprias, EMPURRAR_PUXAR_MAX, ehEmpurrar, ehPuxar, FAMILIAS, familiasCobertas } from '../gerador/familias';
+import { contaPara, ehDe, funcoesProprias, EMPURRAR_PUXAR_MAX, FAMILIAS, familiasCobertas } from '../gerador/familias';
 import { FUNCAO, FUNCOES, funcoesDoExercicio, type Funcao } from '../gerador/funcoes';
-export { ehEmpurrar, ehPuxar, FAMILIAS, familiasCobertas, FUNCOES_EMPURRAR, FUNCOES_PUXAR } from '../gerador/familias';
-import { exerciciosPorSessao, NIVEL_COMPLEXIDADE_MAX, r, SELOS, TEMPO, VOLUME, type Nivel, type Selo } from '../regras';
+export { ehEmpurrar, ehPuxar } from '../biblioteca';
+export { FAMILIAS, familiasCobertas } from '../gerador/familias';
+import { porCento } from '../numero';
+import { exerciciosPorSessao, LIMITE_DO_DIA, NIVEL_COMPLEXIDADE_MAX, r, SELOS, TEMPO, VOLUME, type Nivel, type Selo } from '../regras';
 import type { Inventario } from '../taxonomia/equipamentos';
 import { avaliarTriagem } from '../triagem';
 
@@ -102,11 +105,6 @@ const COBRE: Record<string, string> = {
   'triceps-acima-cabeca': 'a cabeça longa do tríceps, que o supino e a flexão não crescem',
   'panturrilha-em-pe': 'a panturrilha com o joelho esticado, a que mais cresce',
 };
-/** A região de um músculo, como no gerador (volume.prioridade.segundo-exercicio). */
-const INFERIORES: Musculo[] = ['quadriceps', 'posteriores', 'gluteos', 'panturrilha', 'adutores'];
-const regiaoDe = (m: Musculo) => (m === 'abdomen' ? 'core' : INFERIORES.includes(m) ? 'inferior' : 'superior');
-/** A régua da G5 (A3): o dia passa do tempo acima disto; a estimativa já inclui a margem de fila. */
-const LIMITE_DO_DIA = 1.1;
 
 const naFuncao = (f: Funcao, id: string) => f.niveis.some((n) => n.includes(id));
 /** volume.equilibrio-coxa: as funções de trabalho direto dos posteriores. */
@@ -466,7 +464,7 @@ export function avaliar(programa: ProgramaParaAvaliar, perfil: Perfil, inventari
   if (possivelPara('quadriceps') && possivelPara('posteriores')) {
     const q = v.quadriceps ?? 0;
     const h = v.posteriores ?? 0;
-    const razao = h ? q / h : q ? Infinity : 1;
+    const razao = razaoCoxa(v);
     const direto = todos.some((x) => ehPosteriorDireto(x.exId));
     if (razao < VOLUME.coxa[0] - 1e-9 || razao > VOLUME.coxa[1] + 1e-9 || !direto) {
       const maisTras = razao > 1 || !direto;
@@ -587,8 +585,8 @@ function textoDoGrupo(bs: Bruto[], c: Contexto): { texto: string; passo: string 
       };
     case 'series-por-exercicio':
       return b.grupo === 'acima'
-        ? { texto: `${n} ${plural(n, 'exercício com', 'exercícios com')} mais de 4 séries: ${listaCurta(unicos)}.`, passo: 'Acima de 4 séries, divida entre 2 exercícios diferentes ou entre 2 dias.' }
-        : { texto: `${maiusc(listaCurta(unicos))} com 1 série.`, passo: 'Use de 2 a 4 séries: 1 série só não é o padrão.' };
+        ? { texto: `${n} ${plural(n, 'exercício com', 'exercícios com')} mais de ${VOLUME.seriesPorExercicio.max} séries: ${listaCurta(unicos)}.`, passo: `Acima de ${VOLUME.seriesPorExercicio.max} séries, divida entre 2 exercícios diferentes ou entre 2 dias.` }
+        : { texto: `${maiusc(listaCurta(unicos))} com 1 série.`, passo: `Use de ${VOLUME.seriesPorExercicio.min} a ${VOLUME.seriesPorExercicio.max} séries: 1 série só não é o padrão.` };
     case 'sessao':
       return { texto: `Mais de 10 séries de um músculo no mesmo treino: ${listaCurta(unicos)}.`, passo: 'Leve parte dessas séries para outro dia: acima de 10 no mesmo treino, as séries a mais rendem pouco.' };
     case 'teto':
@@ -638,7 +636,7 @@ function textoDoGrupo(bs: Bruto[], c: Contexto): { texto: string; passo: string 
         ? { texto: `Mais longo que os ${c.orcamento} min: ${listaCurta(unicos)}.`, passo: `${comSugestao('Tire um exercício de quem não é foco.')} Ou escolha mais minutos.` }
         : b.grupo === 'sem-corte'
           ? { texto: `Mais longo que os ${c.orcamento} min: ${listaCurta(unicos)}; o que ficou segura o mínimo de cada músculo.`, passo: `${NADA} além de reservar uns minutos a mais nesses dias, ou escolher uma duração maior.` }
-          : { texto: `Um pouco acima dos ${c.orcamento} min: ${listaCurta(unicos)}.`, passo: `${NADA}: fica dentro de 10% a mais. Se o tempo apertar no dia, faça dois exercícios em sequência (bi-set).` };
+          : { texto: `Um pouco acima dos ${c.orcamento} min: ${listaCurta(unicos)}.`, passo: `${NADA}: fica dentro de ${porCento(LIMITE_DO_DIA - 1)}% a mais. Se o tempo apertar no dia, faça dois exercícios em sequência (bi-set).` };
     case 'ordem':
       return { texto: `Isolador antes de um exercício grande: ${listaCurta(unicos)}.`, passo: `${NADA}: a ordem quase não muda o crescimento; os grandes primeiro ganham mais força.` };
   }

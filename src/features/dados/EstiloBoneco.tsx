@@ -1,4 +1,6 @@
+import { useId } from 'react';
 import type { Estilo } from '../../engine/estilo';
+import { comIdsUnicos, estiloDasListras } from '../programa/idsDoDesenho';
 import { useDesenho } from '../programa/desenhoFora';
 import { definirEstiloBoneco, useEstiloBoneco } from '../app/estiloBoneco';
 
@@ -12,9 +14,10 @@ const OPCOES: { id: Estilo; nome: string; desc: string }[] = [
 
 /** A prévia de um estilo, calculada no Worker do Boneco; até chegar, o quadro fica vazio. */
 function Previa({ estilo }: { estilo: Estilo }) {
+  const uid = useId();
   const q = useDesenho({ tipo: 'previa', estilo });
   if (!q) return <svg viewBox="0 0 4 3" aria-hidden="true" />;
-  return <svg className={q.classe || undefined} viewBox={q.viewBox} aria-hidden="true" dangerouslySetInnerHTML={{ __html: q.html }} />;
+  return <svg className={q.classe || undefined} viewBox={q.viewBox} aria-hidden="true" style={estiloDasListras(uid)} dangerouslySetInnerHTML={{ __html: comIdsUnicos(q.html, uid) }} />;
 }
 
 export function EscolhaEstiloBoneco() {

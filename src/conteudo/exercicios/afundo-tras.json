@@ -1,0 +1,52 @@
+{
+  "id": "afundo-tras",
+  "name": "Afundo para trás alternado",
+  "short": "Afundo para trás",
+  "target": "Quadríceps e glúteo da perna da frente",
+  "setupEq": [
+    "Dois halteres do mesmo peso (ou sem peso, para aprender)."
+  ],
+  "setupBody": [
+    "Em pé, pés na largura do quadril, um halter em cada mão ao lado do corpo.",
+    "Tronco reto, olhar à frente."
+  ],
+  "exec": [
+    [
+      "ecc",
+      "Passo e descida",
+      "Dá um passo longo para trás e desce até o joelho de trás chegar perto do chão; o peso fica na perna da frente."
+    ],
+    [
+      "conc",
+      "Subida",
+      "Empurra o chão com a perna da frente e volta à posição em pé. Troca de perna."
+    ]
+  ],
+  "range": [
+    "Início: em pé, pés juntos.",
+    "Fim: joelho de trás perto do chão, joelho da frente sobre o pé."
+  ],
+  "cues": [
+    "Peso na perna da frente.",
+    "Tronco reto.",
+    "Passo longo."
+  ],
+  "errors": [
+    {
+      "id": "e1",
+      "title": "Passo curto",
+      "desc": "O joelho da frente passa muito do pé e o calcanhar sai do chão."
+    },
+    {
+      "id": "e2",
+      "title": "Impulso com a perna de trás",
+      "desc": "Empurrar com a de trás tira o trabalho da perna da frente."
+    },
+    {
+      "id": "e3",
+      "title": "Joelho da frente para dentro",
+      "desc": "O joelho cai para dentro na subida."
+    }
+  ],
+  "carga": "Pela lista dos seus halteres: o próximo peso quando todas as séries chegarem ao topo da faixa."
+}

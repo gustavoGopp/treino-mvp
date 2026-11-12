@@ -1,4 +1,3 @@
-// @ts-nocheck
 // Estilos do boneco (R4, levado a todos os exercícios a pedido do Gustavo em 02/11/2026).
 // 'a' é o boneco padrão do app; 'atual' é o clássico (o do guia original); 'b' é a silhueta.
 // Com 'atual', tudo vai para montarSvg (../svg.ts) e a saída é a de sempre, caractere por caractere: é esse estilo
@@ -8,11 +7,29 @@ import { concTimes, getPt, poseAt, scene, segAt } from '../cena';
 import { CTX } from '../contexto';
 import { ARROW3, C3, L3, PATH2, TX, VIEWS, body, f1, textoSvg } from '../desenho';
 import { B } from '../esqueleto';
-import { skel } from '../esqueleto';
-import { Z, add, comb, len, sub } from '../math';
-import { caixa, montarSvg } from '../svg';
+import { Z, add, comb, len, skel, sub } from '../port';
+import { caixa as caixaSemTipo, montarSvg as montarSvgSemTipo } from '../svg';
+import type { Acabamento, Caixa, Esqueleto, Exercicio, Lado, Limites, Modo, Paleta, PontoCentral, PontoDoLado, PontoTela, Quadro, Retangulo, TextoDaPrim, V2, V3, Vista } from '../tipos';
 import { corpoNovo } from './corpo';
+import type { EstiloNovo } from './corpo';
 import { medida, musculosNovos } from './musculos';
+
+// ../svg.ts é do port e continua sem tipo: as duas funções dele ganham tipo aqui (são as mesmas funções).
+// A vista e o modo entram como string em montarSvgEstilo, caixaPerto e fracaoDoCorpo, porque é assim que as telas e os
+// testes os guardam (como em ../svg.ts); dali para dentro do motor, valem como Vista e Modo.
+const caixa = caixaSemTipo as (ex: Exercicio, view: string) => Caixa;
+const montarSvg = montarSvgSemTipo as (ex: Exercicio, view: string, mode: string, t: number, err: number | undefined, largura: number) => Quadro;
+
+/** Um elo de uma cadeia do corpo: um ponto do eixo ou [lado, junta]. */
+type Elo = [PontoCentral] | [Lado, PontoDoLado];
+/** Uma parte do corpo na tela: [x0, y0, x1, y1, raio]. */
+type Capsula = [number, number, number, number, number];
+/** Um instante do ciclo, para os rótulos: as cápsulas do corpo e a âncora de cada rótulo de técnica. */
+type QuadroDoCiclo = { caps: Capsula[]; ancoras: V2[] };
+/** Um rótulo de técnica: os índices das suas prims (uma por linha) e a ordem em que apareceu. */
+type Grupo = { prims: number[]; ordem: number };
+/** Para onde um rótulo vai: o deslocamento em relação à âncora, o tamanho e, se foi quebrado, as duas linhas. */
+type Decisao = { dx: number; dy: number; w: number; h: number; fs: number; linha: number; mg: number; textos: [string, string] | null };
 
 // O Boneco ('a') usa o acabamento da auditoria (proposta 2, escolhida pelo Gustavo em 04/11/2026; piloto e lote
 // aprovados no mesmo dia; docs/revisoes/boneco-acabamento/). 'a2' ficou como outro nome do mesmo boneco, para as
@@ -25,11 +42,11 @@ export const EXERCICIOS_R4 = ['puxada-unilateral', 'goblet'];
 
 // Guias que mudam nos estilos novos. Face pull, vista de cima: o rótulo saía no topo do palco, atrás da caixa da
 // fase do app; desce para perto do cabo (pedido do Gustavo no R3, corrigido no estilo novo em 02/11/2026).
-const GUIAS = {
+const GUIAS: Record<string, Partial<Record<Vista, (this: Exercicio, sk: Esqueleto) => void>>> = {
   'face-pull': {
     top(sk) {
       // ao lado do cabo, abaixo do ponto em que a corda se junta (fora do alcance dos braços)
-      const p = [sk.N[0], sk.N[1], sk.N[2] + 100];
+      const p: V3 = [sk.N[0], sk.N[1], sk.N[2] + 100];
       TX(p, 'mãos abrem ao lado', { cls: 'lbl-g', dx: 6 });
       TX(p, 'da cabeça', { cls: 'lbl-g', dx: 6, dy: 14 });
     },
@@ -39,23 +56,23 @@ const GUIAS = {
 // As cadeias do corpo (tronco e cabeça, cada braço, cada perna) e a distância 3D entre duas juntas: servem ao fantasma
 // do acabamento A2, ao "erro sobre o certo" e ao instante do erro (R4, 05/11/2026).
 const CADEIAS = (() => {
-  const c = [[['P'], ['M'], ['N'], ['Hc']]];
-  for (const k of ['R', 'L']) {
+  const c: Elo[][] = [[['P'], ['M'], ['N'], ['Hc']]];
+  for (const k of ['R', 'L'] as const) {
     c.push([['N'], [k, 'S'], [k, 'E'], [k, 'W'], [k, 'G']]);
     c.push([['P'], [k, 'Hp'], [k, 'K'], [k, 'A'], [k, 'toe']]);
   }
   return c;
 })();
-const junta = (s, c) => (c.length === 1 ? s[c[0]] : s.side[c[0]][c[1]]);
-const dist3 = (a, b) => Math.hypot(a[0] - b[0], a[1] - b[1], a[2] - b[2]);
+const junta = (s: Esqueleto, c: Elo) => (c.length === 1 ? s[c[0]] : s.side[c[0]][c[1]]);
+const dist3 = (a: V3, b: V3) => Math.hypot(a[0] - b[0], a[1] - b[1], a[2] - b[2]);
 /** Diferença (cm) entre o certo e o errado: a maior distância entre juntas homólogas. */
-const difDasPoses = (sk, ske) => Math.max(...CADEIAS.flatMap((cad) => cad.map((c) => dist3(junta(sk, c), junta(ske, c)))));
+const difDasPoses = (sk: Esqueleto, ske: Esqueleto) => Math.max(...CADEIAS.flatMap((cad) => cad.map((c) => dist3(junta(sk, c), junta(ske, c)))));
 /** Diferença mínima (cm) para uma cadeia contar como "o que muda" no modo Erros. */
 export const DIF_MINIMA_DA_CADEIA = 3;
 
 // Acabamento A2: o fantasma verde só nas cadeias (tronco e cabeça, cada braço, cada perna) em que o certo e o
 // errado diferem mais de 3 cm; o resto do corpo, igual nos dois, fica só com a figura que erra.
-function fantasmaDif(sk, ske) {
+function fantasmaDif(sk: Esqueleto, ske: Esqueleto) {
   let desenhadas = 0;
   for (const cad of CADEIAS) {
     const dif = Math.max(...cad.map((c) => dist3(junta(sk, c), junta(ske, c))));
@@ -63,9 +80,9 @@ function fantasmaDif(sk, ske) {
     desenhadas++;
     const Q = cad.map((c) => junta(sk, c));
     const n0 = CTX.prims.length;
-    for (let i = 0; i < Q.length - 1; i++) L3(Q[i], Q[i + 1], 'gh', 3.2);
-    if (cad[cad.length - 1][0] === 'Hc') C3(sk.Hc, B.head, 'gh', { w: 1.6 });
-    for (let i = n0; i < CTX.prims.length; i++) CTX.prims[i].l = 1.5;
+    for (let i = 0; i < Q.length - 1; i++) L3(Q[i]!, Q[i + 1]!, 'gh', 3.2);
+    if (cad[cad.length - 1]![0] === 'Hc') C3(sk.Hc, B.head, 'gh', { w: 1.6 });
+    for (let i = n0; i < CTX.prims.length; i++) CTX.prims[i]!.l = 1.5;
   }
   return desenhadas;
 }
@@ -73,8 +90,8 @@ function fantasmaDif(sk, ske) {
 // "Erro sobre o certo" (R4; piloto na auditoria de 04/11/2026, docs/revisoes/auditoria-fable.md, Parte D): desenha, em
 // vermelho tracejado, só as cadeias da pose errada que diferem mais de 3 cm da certa, e escreve o nome do erro ao lado
 // da junta que mais se afasta, do lado do palco (box) em que há espaço. Devolve quantas cadeias desenhou.
-function erroSobreOCerto(sk, ske, titulo, box) {
-  let desenhadas = 0, maior = 0, ondeRotulo = null;
+function erroSobreOCerto(sk: Esqueleto, ske: Esqueleto, titulo: string, box: Caixa) {
+  let desenhadas = 0, maior = 0, ondeRotulo: V3 | null = null;
   for (const cad of CADEIAS) {
     const difs = cad.map((c) => dist3(junta(sk, c), junta(ske, c)));
     const dif = Math.max(...difs);
@@ -82,22 +99,22 @@ function erroSobreOCerto(sk, ske, titulo, box) {
     desenhadas++;
     const Q = cad.map((c) => junta(ske, c));
     const n0 = CTX.prims.length;
-    for (let i = 0; i < Q.length - 1; i++) L3(Q[i], Q[i + 1], 'gh-e', 3.6);
-    if (cad[cad.length - 1][0] === 'Hc') C3(ske.Hc, B.head, 'hd-ge', { w: 2 });
-    for (let i = n0; i < CTX.prims.length; i++) CTX.prims[i].l = 1.6;
-    if (dif > maior) { maior = dif; ondeRotulo = Q[difs.indexOf(dif)]; }
+    for (let i = 0; i < Q.length - 1; i++) L3(Q[i]!, Q[i + 1]!, 'gh-e', 3.6);
+    if (cad[cad.length - 1]![0] === 'Hc') C3(ske.Hc, B.head, 'hd-ge', { w: 2 });
+    for (let i = n0; i < CTX.prims.length; i++) CTX.prims[i]!.l = 1.6;
+    if (dif > maior) { maior = dif; ondeRotulo = Q[difs.indexOf(dif)]!; }
   }
   if (desenhadas && titulo) {
     // o rótulo fica do lado em que há espaço: à direita da junta na metade esquerda do palco, e vice-versa; se mesmo
     // assim não cabe no palco (texto longo numa figura larga), fica centrado acima da junta, dentro do palco
-    const q = CTX.PJ(ondeRotulo);
+    const q = CTX.PJ(ondeRotulo!);
     const larg = 0.55 * 11 * CTX.KS * titulo.length;
     let direita = q[0] > box[0] + box[2] / 2;
     if (direita && q[0] - 9 * CTX.KS - larg < box[0]) direita = false;
     if (!direita && q[0] + 9 * CTX.KS + larg > box[0] + box[2]) {
       const x = Math.max(box[0] + larg / 2 + 2 * CTX.KS, Math.min(box[0] + box[2] - larg / 2 - 2 * CTX.KS, q[0]));
       TX([x, q[1] - 14 * CTX.KS], titulo, { scr: true, cls: 'lbl-e', anchor: 'middle', layer: 4.5 });
-    } else TX(ondeRotulo, titulo, { cls: 'lbl-e', dx: direita ? -9 : 9, dy: -9, anchor: direita ? 'end' : 'start', layer: 4.5 });
+    } else TX(ondeRotulo!, titulo, { cls: 'lbl-e', dx: direita ? -9 : 9, dy: -9, anchor: direita ? 'end' : 'start', layer: 4.5 });
   }
   return desenhadas;
 }
@@ -107,11 +124,11 @@ function erroSobreOCerto(sk, ske, titulo, box) {
  * amostras; empate fica com o menor t). É onde o guia abre o modo Erros e a folha tira o quadro do erro (R4; antes,
  * o meio da 3ª fase, em que alguns erros quase não apareciam). Em 3D: independe da vista. Determinístico.
  */
-const instantes = {};
-export function instanteDoErro(ex, errIdx = 0) {
+const instantes: Record<string, number> = {};
+export function instanteDoErro(ex: Exercicio, errIdx = 0) {
   const k = ex.id + '|' + errIdx;
   if (instantes[k] !== undefined) return instantes[k];
-  const e = ex.errors[errIdx];
+  const e = ex.errors[errIdx]!;
   let melhor = 0, maior = -1;
   for (let i = 0; i < 48; i++) {
     const t = (i / 48) * ex.T;
@@ -121,43 +138,43 @@ export function instanteDoErro(ex, errIdx = 0) {
   return (instantes[k] = melhor);
 }
 /** A maior diferença (cm) entre o certo e o errado ao longo do ciclo: abaixo de 3 cm, o erro é "pequeno" (escápulas, pegada). */
-export function difMaximaDoErro(ex, errIdx = 0) {
+export function difMaximaDoErro(ex: Exercicio, errIdx = 0) {
   let maior = 0;
   for (let i = 0; i < 48; i++) {
     const t = (i / 48) * ex.T;
-    maior = Math.max(maior, difDasPoses(skel(poseAt(ex, ex.K, t)), skel(poseAt(ex, ex.errors[errIdx].K, t))));
+    maior = Math.max(maior, difDasPoses(skel(poseAt(ex, ex.K, t)), skel(poseAt(ex, ex.errors[errIdx]!.K, t))));
   }
   return maior;
 }
 
 /** Mesmos passos de scene() (../cena.ts), com o corpo e os músculos do estilo novo. */
-export function cenaEstilo(ex, view, mode, t, estilo, errIdx = 0, box = null) {
+export function cenaEstilo(ex: Exercicio, view: Vista, mode: Modo, t: number, estilo: EstiloNovo, errIdx = 0, box: Caixa | null = null) {
   CTX.VIEW = view;
   CTX.PJ = VIEWS[view].proj;
   CTX.prims = [];
   const sk = skel(poseAt(ex, ex.K, t));
   // a figura fantasma (o certo, no modo Erros; o início e o fim, na Trajetória) fica por cima, em traço fino
-  const fantasma = (s, pal) => {
+  const fantasma = (s: Esqueleto, pal: Paleta) => {
     const n0 = CTX.prims.length;
     body(s, pal);
-    for (let i = n0; i < CTX.prims.length; i++) CTX.prims[i].l = 1.5;
+    for (let i = n0; i < CTX.prims.length; i++) CTX.prims[i]!.l = 1.5;
   };
-  const AC = CTX.ACABAMENTO || {};
+  const AC: Acabamento = CTX.ACABAMENTO || {};
   if (mode === 'err' && AC.erroInvertido && !(AC.erroPequeno === 'hoje' && difMaximaDoErro(ex, errIdx || 0) < DIF_MINIMA_DA_CADEIA)) {
     // R4 (decisão do Gustavo, 05/11/2026; piloto na auditoria de 04/11): o certo é a figura cheia, e o erro aparece
     // só na cadeia que muda, em vermelho tracejado, com o nome do erro (CTX.ROTULO_ERRO, o título do texto do guia).
-    const e = ex.errors[errIdx || 0];
+    const e = ex.errors[errIdx || 0]!;
     const ske = skel(poseAt(ex, e.K, t));
     ex._pal = 'n';
     ex.equip(sk);
     corpoNovo(sk, estilo);
-    if (AC.erroEquip && ['R', 'L'].some((k) => dist3(sk.side[k].G, ske.side[k].G) >= DIF_MINIMA_DA_CADEIA)) {
+    if (AC.erroEquip && (['R', 'L'] as const).some((k) => dist3(sk.side[k].G, ske.side[k].G) >= DIF_MINIMA_DA_CADEIA)) {
       // decisão (b) do Gustavo (05/11/2026): o equipamento da pose errada, em vermelho translúcido, quando a mão que erra se move
       const n0 = CTX.prims.length;
       ex._pal = 'e';
       ex.equip(ske);
       ex._pal = 'n';
-      for (let i = n0; i < CTX.prims.length; i++) { CTX.prims[i].l = 1.6; CTX.prims[i].s = CTX.prims[i].s.replace(/class="/, 'class="eq-err '); }
+      for (let i = n0; i < CTX.prims.length; i++) { CTX.prims[i]!.l = 1.6; CTX.prims[i]!.s = CTX.prims[i]!.s.replace(/class="/, 'class="eq-err '); }
     }
     const b = box ?? caixa(ex, view);
     if (!erroSobreOCerto(sk, ske, CTX.ROTULO_ERRO ?? e.id, b)) {
@@ -167,12 +184,12 @@ export function cenaEstilo(ex, view, mode, t, estilo, errIdx = 0, box = null) {
       const n0 = CTX.prims.length;
       if (AC.erroPequeno === 'contorno') {
         body(ske, 'e');
-        for (let i = n0; i < CTX.prims.length; i++) CTX.prims[i].l = 1.5;
+        for (let i = n0; i < CTX.prims.length; i++) CTX.prims[i]!.l = 1.5;
       } else {
         ex._pal = 'e';
         ex.equip(ske);
         ex._pal = 'n';
-        for (let i = n0; i < CTX.prims.length; i++) { CTX.prims[i].l = 1.6; CTX.prims[i].s = CTX.prims[i].s.replace(/class="/, 'class="eq-err '); }
+        for (let i = n0; i < CTX.prims.length; i++) { CTX.prims[i]!.l = 1.6; CTX.prims[i]!.s = CTX.prims[i]!.s.replace(/class="/, 'class="eq-err '); }
         const titulo = CTX.ROTULO_ERRO ?? e.id;
         const q = CTX.PJ(ske.side.R.G);
         const direita = q[0] > b[0] + b[2] / 2;
@@ -182,7 +199,7 @@ export function cenaEstilo(ex, view, mode, t, estilo, errIdx = 0, box = null) {
     return sk;
   }
   if (mode === 'err') {
-    const e = ex.errors[errIdx || 0];
+    const e = ex.errors[errIdx || 0]!;
     const ske = skel(poseAt(ex, e.K, t));
     ex._pal = 'e';
     ex.equip(ske);
@@ -202,8 +219,8 @@ export function cenaEstilo(ex, view, mode, t, estilo, errIdx = 0, box = null) {
     if (AC.rotulosFora) rotulosForaDoCorpo(ex, view, box ?? caixa(ex, view));
   }
   if (mode === 'traj') {
-    const a = skel(ex.K[ex.ext[0]]),
-      b = skel(ex.K[ex.ext[1]]);
+    const a = skel(ex.K[ex.ext[0]]!),
+      b = skel(ex.K[ex.ext[1]]!);
     fantasma(a, 'g2');
     fantasma(b, 'g');
     const ts = concTimes(ex, 36);
@@ -212,11 +229,11 @@ export function cenaEstilo(ex, view, mode, t, estilo, errIdx = 0, box = null) {
       const Q = ts.map((tt) => CTX.PJ(getPt(skel(poseAt(ex, ex.K, tt)), key, side)));
       const elbow = key === 'E' || key === 'S' || key === 'K' || (key === 'P' && i > 0);
       PATH2(Q, elbow ? 'pt2' : 'pt', elbow ? 1.2 : 1.8, { dash: elbow ? '2.5 2' : '', asz: elbow ? 3.4 : 4.4 });
-      if (label && i === 0) TX(Q[Q.length - 1], label, { scr: true, cls: 'lbl-p', dx: 7, dy: -7 });
+      if (label && i === 0) TX(Q[Q.length - 1]!, label, { scr: true, cls: 'lbl-p', dx: 7, dy: -7 });
     });
     const tw = ex.tower || (ex.towers && ex.towers[0]);
     if (tw && ex._liftRange && view !== 'top' && Math.abs(CTX.PJ([tw.x, 0, tw.z])[0] - CTX.PJ(sk.P)[0]) > 40) {
-      const base = [tw.x, 0, tw.z];
+      const base: V3 = [tw.x, 0, tw.z];
       const pos = comb(1, base, 18, ex.tower ? ex.tower.ac : Z, -7, tw.out);
       const a3 = add(pos, [0, 36 + ex._liftRange[0], 0]),
         b3 = add(pos, [0, 36 + ex._liftRange[1], 0]);
@@ -231,16 +248,16 @@ export function cenaEstilo(ex, view, mode, t, estilo, errIdx = 0, box = null) {
 }
 
 /** A caixa do corpo na tela, ao longo do ciclo ([x0, y0, x1, y1]; as juntas com o raio da cabeça e dos membros), com cache. */
-const corpos = {};
-export function caixaDoCorpo(ex, view) {
+const corpos: Record<string, Retangulo> = {};
+export function caixaDoCorpo(ex: Exercicio, view: Vista): Retangulo {
   const k = ex.id + '|' + view;
   if (corpos[k]) return corpos[k];
   const PJ = VIEWS[view].proj;
-  const m = [1e9, -1e9, 1e9, -1e9];
+  const m: Limites = [1e9, -1e9, 1e9, -1e9];
   for (let i = 0; i < 24; i++) {
     const sk = skel(poseAt(ex, ex.K, (i / 24) * ex.T));
     const pts = [sk.P, sk.M, sk.N, sk.Hc];
-    for (const s of ['R', 'L']) { const d = sk.side[s]; pts.push(d.S, d.E, d.W, d.G, d.Hp, d.K, d.A, d.heel, d.toe); }
+    for (const s of ['R', 'L'] as const) { const d = sk.side[s]; pts.push(d.S, d.E, d.W, d.G, d.Hp, d.K, d.A, d.heel, d.toe); }
     for (const p of pts) { const q = PJ(p); const r = p === sk.Hc ? 12 : 9; m[0] = Math.min(m[0], q[0] - r); m[1] = Math.max(m[1], q[0] + r); m[2] = Math.min(m[2], q[1] - r); m[3] = Math.max(m[3], q[1] + r); }
   }
   return (corpos[k] = [m[0], m[2], m[1], m[3]]);
@@ -248,11 +265,11 @@ export function caixaDoCorpo(ex, view) {
 
 // Enquadramento "perto do corpo": a mesma conta de fit() (../cena.ts), mas só com o esqueleto ao longo do ciclo,
 // sem a torre e o equipamento alto. Serve para separar o efeito do estilo do efeito do tamanho da figura na tela.
-const caixasPerto = {};
-export function caixaPerto(ex, view) {
+const caixasPerto: Record<string, Caixa> = {};
+export function caixaPerto(ex: Exercicio, view: string): Caixa {
   const k = ex.id + '|' + view;
   if (caixasPerto[k]) return caixasPerto[k];
-  let [x0, y0, x1, y1] = caixaDoCorpo(ex, view);
+  let [x0, y0, x1, y1] = caixaDoCorpo(ex, view as Vista);
   if (view !== 'top') y1 = Math.max(y1, 0);
   let w = x1 - x0, h = y1 - y0;
   // folga maior em cima: a mão e a pegada passam do topo da cabeça na puxada (03/11/2026)
@@ -275,15 +292,15 @@ export function caixaPerto(ex, view) {
 const EM = 0.6;
 /** Fração do alto do palco coberta pela caixa da fase e da respiração do app (styles.css, .hud). */
 const HUD = 0.2;
-const larguraDoTexto = (tx) => EM * tx.size * tx.str.length + 2 * CTX.KS;
-function caixaDoTexto(tx) {
+const larguraDoTexto = (tx: TextoDaPrim) => EM * tx.size * tx.str.length + 2 * CTX.KS;
+function caixaDoTexto(tx: TextoDaPrim): Retangulo {
   const w = larguraDoTexto(tx);
   const x0 = tx.anchor === 'end' ? tx.x - w : tx.anchor === 'middle' ? tx.x - w / 2 : tx.x;
   return [x0, tx.y - 0.8 * tx.size, x0 + w, tx.y + 0.25 * tx.size];
 }
-const cruza = (a, b) => a[0] < b[2] && a[2] > b[0] && a[1] < b[3] && a[3] > b[1];
+const cruza = (a: Retangulo, b: Retangulo) => a[0] < b[2] && a[2] > b[0] && a[1] < b[3] && a[3] > b[1];
 /** O retângulo [x0, y0, x1, y1] encosta numa cápsula [ax, ay, bx, by, raio]? (a cápsula amostrada em 6 pontos). */
-function tocaOCorpo(ret, caps) {
+function tocaOCorpo(ret: Retangulo, caps: Capsula[]) {
   for (const [x0, y0, x1, y1, r] of caps)
     for (let i = 0; i <= 5; i++) {
       const x = x0 + ((x1 - x0) * i) / 5, y = y0 + ((y1 - y0) * i) / 5;
@@ -293,7 +310,7 @@ function tocaOCorpo(ret, caps) {
   return false;
 }
 /** O segmento (a, b) passa por dentro de alguma cápsula? (amostrado em 8 pontos). */
-function atravessaOCorpo(a, b, caps) {
+function atravessaOCorpo(a: PontoTela, b: PontoTela, caps: Capsula[]) {
   for (let i = 1; i < 8; i++) {
     const x = a[0] + ((b[0] - a[0]) * i) / 8, y = a[1] + ((b[1] - a[1]) * i) / 8;
     if (tocaOCorpo([x, y, x, y], caps)) return true;
@@ -306,26 +323,26 @@ const N_CICLO = 24;
  * [x0, y0, x1, y1, raio] na tela, e as âncoras dos rótulos de técnica em cada instante (as guias são desenhadas de
  * novo, com as prims descartadas). Cache por exercício e vista.
  */
-const ciclos = {};
-function cicloDosRotulos(ex, view) {
+const ciclos: Record<string, { quadros: QuadroDoCiclo[] }> = {};
+function cicloDosRotulos(ex: Exercicio, view: Vista) {
   const k = ex.id + '|' + view;
   if (ciclos[k]) return ciclos[k];
   const PJ = VIEWS[view].proj;
-  const quadros = [];
+  const quadros: QuadroDoCiclo[] = [];
   const g = GUIAS[ex.id]?.[view] ?? ex.guides?.[view];
   const prims = CTX.prims, meas = CTX.MEAS;
   CTX.MEAS = null;
   for (let i = 0; i < N_CICLO; i++) {
     const sk = skel(poseAt(ex, ex.K, (i / N_CICLO) * ex.T));
-    const caps = [];
-    const cap = (a, b, r) => { const A = PJ(a), Bq = PJ(b); caps.push([A[0], A[1], Bq[0], Bq[1], r]); };
+    const caps: Capsula[] = [];
+    const cap = (a: V3, b: V3, r: number) => { const A = PJ(a), Bq = PJ(b); caps.push([A[0], A[1], Bq[0], Bq[1], r]); };
     cap(sk.P, sk.M, 9); cap(sk.M, sk.N, 9); cap(sk.N, sk.Hc, 5); cap(sk.Hc, sk.Hc, B.head);
-    for (const s of ['R', 'L']) { const d = sk.side[s]; cap(d.S, d.E, 5); cap(d.E, d.W, 4); cap(d.W, d.G, 4); cap(d.Hp, d.K, 7); cap(d.K, d.A, 5); cap(d.heel, d.toe, 3); }
+    for (const s of ['R', 'L'] as const) { const d = sk.side[s]; cap(d.S, d.E, 5); cap(d.E, d.W, 4); cap(d.W, d.G, 4); cap(d.Hp, d.K, 7); cap(d.K, d.A, 5); cap(d.heel, d.toe, 3); }
     CTX.prims = [];
     if (g) g.call(ex, sk);
     // uma âncora por rótulo (as linhas de um rótulo de 2 linhas têm a mesma âncora), na ordem do desenho
-    const ancoras = [];
-    const vistas = new Set();
+    const ancoras: V2[] = [];
+    const vistas = new Set<string>();
     for (const p of CTX.prims) {
       if (p.tx?.cls !== 'lbl-g') continue;
       const kk = f1(p.tx.ax) + ',' + f1(p.tx.ay);
@@ -340,7 +357,7 @@ function cicloDosRotulos(ex, view) {
   return (ciclos[k] = { quadros });
 }
 /** Quebra um texto em duas linhas, na vírgula ou no espaço mais perto do meio; null se não dá para quebrar. */
-function quebrar(str) {
+function quebrar(str: string): [string, string] | null {
   const meio = str.length / 2;
   let melhor = -1, dist = 1e9;
   for (let i = 1; i < str.length - 1; i++) {
@@ -352,16 +369,16 @@ function quebrar(str) {
   return melhor < 0 ? null : [str.slice(0, melhor).trimEnd(), str.slice(melhor + 1).trimStart()];
 }
 /** As decisões de cada rótulo (mover ou não, e o deslocamento), por exercício, vista e escala de texto. */
-const decisoes = {};
-function rotulosForaDoCorpo(ex, view, box) {
-  const grupos = []; // índices das prims de cada rótulo (as linhas de um rótulo de 2 linhas têm a mesma âncora)
-  const porAncora = new Map();
+const decisoes: Record<string, (Decisao | null)[]> = {};
+function rotulosForaDoCorpo(ex: Exercicio, view: Vista, box: Caixa) {
+  const grupos: Grupo[] = []; // índices das prims de cada rótulo (as linhas de um rótulo de 2 linhas têm a mesma âncora)
+  const porAncora = new Map<string, number>();
   let ordem = 0;
   CTX.prims.forEach((p, i) => {
     if (p.tx?.cls !== 'lbl-g') return;
     const k = f1(p.tx.ax) + ',' + f1(p.tx.ay);
     if (!porAncora.has(k)) { porAncora.set(k, grupos.length); grupos.push({ prims: [], ordem: ordem }); }
-    grupos[porAncora.get(k)].prims.push(i);
+    grupos[porAncora.get(k)!]!.prims.push(i);
     ordem++;
   });
   if (!grupos.length) return;
@@ -371,39 +388,39 @@ function rotulosForaDoCorpo(ex, view, box) {
   grupos.forEach((g, gi) => {
     const d = dec[gi];
     if (!d) return;
-    const txs = g.prims.map((i) => CTX.prims[i].tx);
-    const ax = txs[0].ax, ay = txs[0].ay;
-    const ret = [ax + d.dx, ay + d.dy, ax + d.dx + d.w, ay + d.dy + d.h];
-    const linhas = d.textos ? d.textos.map((str) => ({ ...txs[0], str })) : txs;
+    const txs = g.prims.map((i) => CTX.prims[i]!.tx!);
+    const ax = txs[0]!.ax, ay = txs[0]!.ay;
+    const ret: Retangulo = [ax + d.dx, ay + d.dy, ax + d.dx + d.w, ay + d.dy + d.h];
+    const linhas = d.textos ? d.textos.map((str) => ({ ...txs[0]!, str })) : txs;
     linhas.forEach((tx, j) => {
       const y = ret[1] + 0.8 * d.fs + j * d.linha;
       const novo = { ...tx, x: ret[0], y, anchor: 'start' };
       const sv = textoSvg(ret[0], y, tx.cls, tx.size, 'start', tx.str);
-      if (g.prims[j] !== undefined) { const p = CTX.prims[g.prims[j]]; p.tx = novo; p.s = sv; }
-      else CTX.prims.push({ l: CTX.prims[g.prims[0]].l, d: 0, s: sv, tx: novo });
+      if (g.prims[j] !== undefined) { const p = CTX.prims[g.prims[j]]!; p.tx = novo; p.s = sv; }
+      else CTX.prims.push({ l: CTX.prims[g.prims[0]!]!.l, d: 0, s: sv, tx: novo });
     });
     // a linha fina da âncora até a borda mais próxima do texto (só quando o rótulo ficou longe do ponto)
     const bx = Math.max(ret[0], Math.min(ret[2], ax)), by = Math.max(ret[1], Math.min(ret[3], ay));
     if (Math.hypot(bx - ax, by - ay) > 2 * d.mg) CTX.prims.push({ l: 3, d: 0, s: `<line x1="${f1(ax)}" y1="${f1(ay)}" x2="${f1(bx)}" y2="${f1(by)}" class="gd" stroke-width="${f1(0.8 * CTX.KS)}" stroke-dasharray="2 2"/>` });
   });
 }
-function decidirRotulos(ex, view, box, grupos) {
+function decidirRotulos(ex: Exercicio, view: Vista, box: Caixa, grupos: Grupo[]): (Decisao | null)[] {
   const { quadros } = cicloDosRotulos(ex, view);
   const fs = 11 * CTX.KS, linha = 1.25 * fs, mg = 4 * CTX.KS;
   const xMin = box[0] + mg, xMax = box[0] + box[2] - mg;
   const yTopo = box[1] + box[3] * HUD + mg, yFundo = box[1] + box[3] - mg;
-  const noPalco = (ret) => ret[0] >= xMin && ret[2] <= xMax && ret[1] >= yTopo && ret[3] <= yFundo;
+  const noPalco = (ret: Retangulo) => ret[0] >= xMin && ret[2] <= xMax && ret[1] >= yTopo && ret[3] <= yFundo;
   // o retângulo de um rótulo num instante: a âncora daquele instante mais o deslocamento
-  const retEm = (q, gi, dx, dy, w, h) => { const a = q.ancoras[gi]; return a ? [a[0] + dx, a[1] + dy, a[0] + dx + w, a[1] + dy + h] : null; };
-  const postos = []; // [gi, dx, dy, w, h] dos rótulos que ficam (no lugar do autor) e dos já movidos
-  const livreEmTodos = (gi, dx, dy, w, h, semAtravessar) =>
+  const retEm = (q: QuadroDoCiclo, gi: number, dx: number, dy: number, w: number, h: number): Retangulo | null => { const a = q.ancoras[gi]; return a ? [a[0] + dx, a[1] + dy, a[0] + dx + w, a[1] + dy + h] : null; };
+  const postos: Capsula[] = []; // [gi, dx, dy, w, h] dos rótulos que ficam (no lugar do autor) e dos já movidos
+  const livreEmTodos = (gi: number, dx: number, dy: number, w: number, h: number, semAtravessar: boolean) =>
     quadros.every((q) => {
       const ret = retEm(q, gi, dx, dy, w, h);
       if (!ret) return true;
       if (!noPalco(ret) || tocaOCorpo(ret, q.caps)) return false;
       if (postos.some(([gj, ddx, ddy, ww, hh]) => { const o = retEm(q, gj, ddx, ddy, ww, hh); return gj !== gi && o && cruza([ret[0] - mg, ret[1] - mg, ret[2] + mg, ret[3] + mg], o); })) return false;
       if (semAtravessar) {
-        const a = q.ancoras[gi];
+        const a = q.ancoras[gi]!;
         const bx = Math.max(ret[0], Math.min(ret[2], a[0])), by = Math.max(ret[1], Math.min(ret[3], a[1]));
         if (atravessaOCorpo(a, [bx, by], q.caps)) return false;
       }
@@ -412,42 +429,42 @@ function decidirRotulos(ex, view, box, grupos) {
   // 1) quem precisa mover: só o rótulo em que, em algum instante do ciclo, uma linha do corpo passa por dentro do
   // texto (no lugar que o autor deu; o miolo do texto, sem a folga das letras: encostar de leve no pé ou na mão não
   // move). Os outros ficam, e viram obstáculo para os que se movem.
-  const medidas = grupos.map((g) => {
-    const txs = g.prims.map((i) => CTX.prims[i].tx);
+  const medidas = grupos.map((g): { txs: TextoDaPrim[]; n: number; w: number; h: number; off0: V2 } => {
+    const txs = g.prims.map((i) => CTX.prims[i]!.tx!);
     const n = txs.length, w = Math.max(...txs.map(larguraDoTexto)), h = (n - 1) * linha + 1.05 * fs;
-    const ret0 = caixaDoTexto(txs[0]);
-    return { txs, n, w, h, off0: [ret0[0] - txs[0].ax, ret0[1] - txs[0].ay] };
+    const ret0 = caixaDoTexto(txs[0]!);
+    return { txs, n, w, h, off0: [ret0[0] - txs[0]!.ax, ret0[1] - txs[0]!.ay] };
   });
   const mexem = medidas.map(({ off0, w, h }, gi) =>
-    quadros.some((q) => { const r = retEm(q, gi, off0[0] + 0.5 * fs, off0[1] + 0.25 * fs, Math.max(1, w - fs), Math.max(1, h - 0.5 * fs)); return r && tocaOCorpo(r, q.caps.map((c) => [c[0], c[1], c[2], c[3], 0.5])); }),
+    quadros.some((q) => { const r = retEm(q, gi, off0[0] + 0.5 * fs, off0[1] + 0.25 * fs, Math.max(1, w - fs), Math.max(1, h - 0.5 * fs)); return r && tocaOCorpo(r, q.caps.map((c): Capsula => [c[0], c[1], c[2], c[3], 0.5])); }),
   );
   medidas.forEach(({ off0, w, h }, gi) => { if (!mexem[gi]) postos.push([gi, off0[0], off0[1], w, h]); });
   // 2) cada um dos que se movem, na ordem, procura o seu lugar; quem não acha fica onde está e vira obstáculo para os
   // outros (a colocação recomeça, no máximo uma vez por rótulo: determinístico)
-  const quebras = {};
-  const semLugar = new Set();
+  const quebras: Record<number, [string, string] | null> = {};
+  const semLugar = new Set<number>();
   for (;;) {
     postos.length = 0;
     medidas.forEach(({ off0, w, h }, gi) => { if (!mexem[gi] || semLugar.has(gi)) postos.push([gi, off0[0], off0[1], w, h]); });
-    const dec = [];
+    const dec: (Decisao | null)[] = [];
     let falhou = -1;
     for (let gi = 0; gi < grupos.length && falhou < 0; gi++) {
       if (!mexem[gi] || semLugar.has(gi)) { dec.push(null); continue; }
-      const { txs } = medidas[gi];
-      let { n, w, h } = medidas[gi];
+      const { txs } = medidas[gi]!;
+      let { n, w, h } = medidas[gi]!;
       // um rótulo de uma linha largo demais para caber ao lado do corpo é quebrado em duas (na vírgula ou no espaço
       // mais perto do meio), para ter onde ficar
-      let textos = null;
+      let textos: [string, string] | null = null;
       if (n === 1 && w > 0.4 * box[2]) {
-        textos = quebras[gi] ?? (quebras[gi] = quebrar(txs[0].str));
-        if (textos) { n = 2; w = Math.max(...textos.map((t) => larguraDoTexto({ ...txs[0], str: t }))); h = linha + 1.05 * fs; }
+        textos = quebras[gi] ?? (quebras[gi] = quebrar(txs[0]!.str));
+        if (textos) { n = 2; w = Math.max(...textos.map((t) => larguraDoTexto({ ...txs[0]!, str: t }))); h = linha + 1.05 * fs; }
       }
       // em volta da âncora, do mais perto ao mais longe: para o lado do palco com mais espaço, o outro lado, acima,
       // abaixo e as diagonais; primeiro só os lugares cuja linha até o ponto não atravessa o corpo
-      const ax = txs[0].ax;
+      const ax = txs[0]!.ax;
       const lado = ax < box[0] + box[2] / 2 ? -1 : 1;
-      const dirs = [[lado, 0], [-lado, 0], [0, -1], [0, 1], [lado, -1], [-lado, -1], [lado, 1], [-lado, 1]];
-      let achou = null;
+      const dirs: V2[] = [[lado, 0], [-lado, 0], [0, -1], [0, 1], [lado, -1], [-lado, -1], [lado, 1], [-lado, 1]];
+      let achou: { dx: number; dy: number } | null = null;
       for (const semAtravessar of [true, false]) {
         for (let d = 1.2 * fs; !achou && d < Math.max(box[2], box[3]); d += 0.9 * fs)
           for (const [dx, dy] of dirs) {
@@ -469,12 +486,12 @@ function decidirRotulos(ex, view, box, grupos) {
  * Prévia pequena (a escolha do estilo em "Meus dados"): o mesmo quadro de montarSvgEstilo, com a câmera
  * fechada no corpo daquele instante (sem o chão vazio nem o resto do ciclo). Só muda o enquadramento.
  */
-export function montarPrevia(ex, view, mode, t, estilo: Estilo) {
+export function montarPrevia(ex: Exercicio, view: Vista, mode: Modo, t: number, estilo: Estilo) {
   const q = montarSvgEstilo(ex, view, mode, t, 0, 120, estilo, true);
   const PJ = VIEWS[view].proj;
   const sk = skel(poseAt(ex, ex.K, t));
   const pts = [sk.P, sk.M, sk.N, sk.Hc];
-  for (const k of ['R', 'L']) {
+  for (const k of ['R', 'L'] as const) {
     const d = sk.side[k];
     pts.push(d.S, d.E, d.W, d.G, d.Hp, d.K, d.A, d.heel, d.toe);
   }
@@ -494,12 +511,12 @@ export function montarPrevia(ex, view, mode, t, estilo: Estilo) {
  * Vista da miniatura do cartão: no estilo clássico, a principal (como sempre); nos novos, a vista em que os
  * músculos principais ocupam mais espaço no palco (no supino, de cima, porque de lado o braço cobre o peitoral).
  */
-export function vistaDaMiniatura(ex, t, estilo: Estilo) {
+export function vistaDaMiniatura(ex: Exercicio, t: number, estilo: Estilo) {
   if (estilo === 'atual' || ex.views.length < 2) return ex.views[0];
   let melhor = ex.views[0],
     maior = -1;
   for (const v of ex.views) {
-    cenaEstilo(ex, v, 'mus', t, estilo);
+    cenaEstilo(ex, v, 'mus', t, estilo as EstiloNovo); // 'a2' é outro nome do 'a' (só mede a área dos músculos)
     const b = caixa(ex, v);
     const frac = medida.areaPrincipal / (b[2] * b[3]);
     if (frac > maior * 1.15) {
@@ -517,12 +534,12 @@ export function vistaDaMiniatura(ex, t, estilo: Estilo) {
  * lateral com a câmera fechada) não concorre. No
  * estilo clássico, e sem `paths`, a 1ª vista, como sempre. Só escolhe a vista: nenhum quadro muda.
  */
-const vistasDoMovimento = {};
-export function comprimentosDoMovimento(ex) {
-  if (vistasDoMovimento[ex.id]) return vistasDoMovimento[ex.id];
+const vistasDoMovimento: Record<string, Partial<Record<Vista, number>>> = {};
+export function comprimentosDoMovimento(ex: Exercicio) {
+  if (vistasDoMovimento[ex.id]) return vistasDoMovimento[ex.id]!;
   const v0 = ex.views[0];
   const traj = ex.paths?.[v0]?.[0];
-  const out = {};
+  const out: Partial<Record<Vista, number>> = {};
   if (traj) {
     const [key, side] = traj;
     const pontos = concTimes(ex, 36).map((t) => getPt(skel(poseAt(ex, ex.K, t)), key, side));
@@ -530,13 +547,13 @@ export function comprimentosDoMovimento(ex) {
       if (v === 'zoom') continue;
       const Q = pontos.map(VIEWS[v].proj);
       let L = 0;
-      for (let i = 1; i < Q.length; i++) L += Math.hypot(Q[i][0] - Q[i - 1][0], Q[i][1] - Q[i - 1][1]);
+      for (let i = 1; i < Q.length; i++) L += Math.hypot(Q[i]![0] - Q[i - 1]![0], Q[i]![1] - Q[i - 1]![1]);
       out[v] = L / caixa(ex, v)[2];
     }
   }
   return (vistasDoMovimento[ex.id] = out);
 }
-export function vistaDoMovimento(ex, estilo: Estilo) {
+export function vistaDoMovimento(ex: Exercicio, estilo: Estilo) {
   const v0 = ex.views[0];
   if (estilo === 'atual' || ex.views.length < 2) return v0;
   const c = comprimentosDoMovimento(ex);
@@ -552,16 +569,16 @@ export const MOVIMENTO_MINIMO = 0.08;
  * Quanto do palco o corpo ocupa, de 0 a 1 (a maior das duas medidas, largura ou altura, ao longo do ciclo). Nos
  * exercícios de polia a câmera enquadra a torre inteira e o corpo fica pequeno (46% a 62%; design.md, achado 6).
  */
-const fracoes = {};
-export function fracaoDoCorpo(ex, view) {
+const fracoes: Record<string, number> = {};
+export function fracaoDoCorpo(ex: Exercicio, view: string) {
   const k = ex.id + '|' + view;
   if (fracoes[k] !== undefined) return fracoes[k];
-  const PJ = VIEWS[view].proj;
+  const PJ = VIEWS[view as Vista].proj;
   let y0 = 1e9, y1 = -1e9, x0 = 1e9, x1 = -1e9;
   for (let i = 0; i < 24; i++) {
     const sk = skel(poseAt(ex, ex.K, (i / 24) * ex.T));
     const pts = [sk.P, sk.M, sk.N, sk.Hc];
-    for (const s of ['R', 'L']) { const d = sk.side[s]; pts.push(d.S, d.E, d.W, d.G, d.Hp, d.K, d.A, d.heel, d.toe); }
+    for (const s of ['R', 'L'] as const) { const d = sk.side[s]; pts.push(d.S, d.E, d.W, d.G, d.Hp, d.K, d.A, d.heel, d.toe); }
     for (const p of pts) { const q = PJ(p); y0 = Math.min(y0, q[1]); y1 = Math.max(y1, q[1]); x0 = Math.min(x0, q[0]); x1 = Math.max(x1, q[0]); }
   }
   const box = caixa(ex, view);
@@ -577,16 +594,16 @@ export const PERTO_ABAIXO_DE = 0.7;
  * "erro sobre o certo" (erroInvertido), com o equipamento da pose errada em vermelho translúcido (erroEquip; decisão
  * (b) do Gustavo, 05/11), e os rótulos de técnica saem de cima do corpo (rotulosFora).
  */
-const JUNTA_DA_TRAJETORIA = { E: 'E', S: 'S', K: 'K', A: 'A', P: 'Hp', Hp: 'Hp' };
-export function acabamento(ex) {
-  const juntas = [...new Set((Object.values(ex.paths ?? {}) as string[][][]).flatMap((ps) => ps.map((p) => JUNTA_DA_TRAJETORIA[p[0]!]).filter(Boolean)))];
+const JUNTA_DA_TRAJETORIA: Record<string, string> = { E: 'E', S: 'S', K: 'K', A: 'A', P: 'Hp', Hp: 'Hp' };
+export function acabamento(ex: Exercicio): Acabamento {
+  const juntas = [...new Set((Object.values(ex.paths ?? {}) as string[][][]).flatMap((ps) => ps.map((p) => JUNTA_DA_TRAJETORIA[p[0]!]).filter(Boolean)))] as string[]; // o filter(Boolean) já tirou os undefined
   return { tronco1: 1, quadril: 1, folga: 1, mao: 1, conico: 1, fantasmaDif: 1, erroInvertido: 1, erroEquip: 1, rotulosFora: 1, juntas };
 }
 
 /** Opções da cena do Boneco: o título do erro (o texto do guia), escrito ao lado da parte que erra no modo Erros. */
 export type OpcoesEstilo = { tituloErro?: string };
 /** Igual a montarSvg, com o estilo, nos 4 modos. `classe` vai no <svg> (o B apaga o equipamento; a vista de cima afina a corda). */
-export function montarSvgEstilo(ex, view, mode, t, err, largura, estilo: Estilo = 'atual', perto = false, opcoes: OpcoesEstilo = {}) {
+export function montarSvgEstilo(ex: Exercicio, view: string, mode: string, t: number, err: number | undefined, largura: number, estilo: Estilo = 'atual', perto = false, opcoes: OpcoesEstilo = {}) {
   if ((estilo === 'a' || estilo === 'a2') && !CTX.ACABAMENTO) {
     CTX.ACABAMENTO = acabamento(ex);
     CTX.ROTULO_ERRO = opcoes.tituloErro ?? null;
@@ -602,8 +619,9 @@ export function montarSvgEstilo(ex, view, mode, t, err, largura, estilo: Estilo 
   if (novo && mode === 'mus' && !perto && fracaoDoCorpo(ex, view) < PERTO_ABAIXO_DE) perto = true;
   const box = perto ? caixaPerto(ex, view) : caixa(ex, view);
   CTX.KS = box[2] / Math.max(260, largura || 360);
-  if (novo) cenaEstilo(ex, view, mode, t, estilo, err, box);
-  else scene(ex, view, mode, t, err);
+  // 'a2' chega aqui como 'a' (acima); só continua 'a2' se CTX.ACABAMENTO já estiver ligado por fora
+  if (novo) cenaEstilo(ex, view as Vista, mode as Modo, t, estilo as EstiloNovo, err, box);
+  else scene(ex, view as Vista, mode as Modo, t, err);
   if (view !== 'top')
     CTX.prims.push({ l: 0, d: -1e9, s: `<line x1="${f1(box[0])}" y1="0" x2="${f1(box[0] + box[2])}" y2="0" class="floor" stroke-width="${f1(1.5 * CTX.KS)}"/>` });
   CTX.prims.sort((a, b) => a.l - b.l || a.d - b.d);

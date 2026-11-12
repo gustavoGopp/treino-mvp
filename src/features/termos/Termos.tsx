@@ -122,10 +122,10 @@ export function Termos() {
             retirar o consentimento. Como os dados ficam no seu aparelho, quase tudo você faz sozinho:
           </p>
           <ul className="lista">
-            <li>ver e levar os dados: “Meus dados” → “Exportar meus dados”;</li>
-            <li>corrigir: “Meus dados” → “Refazer a triagem e o perfil”;</li>
+            <li>ver e levar os dados: “Meus dados” → “Guardar uma cópia”;</li>
+            <li>corrigir: “Meus dados” → “Refazer a triagem”, “Rotina e divisão”, “Objetivo”, “Algo a evitar” ou “Meus locais”;</li>
             <li>apagar: “Meus dados” → “Apagar todos os dados”;</li>
-            <li>retirar a autorização da foto: na tela da foto ou em “Meus dados”.</li>
+            <li>retirar a autorização da foto: “Meus dados” → “Foto do equipamento”.</li>
           </ul>
           <p>
             Para o resto, ou para qualquer dúvida, fale com o contato acima; o pedido é atendido sem custo (art. 18, § 5º). Você também

@@ -1,6 +1,13 @@
 import { readdirSync, readFileSync } from 'node:fs';
 import { describe, expect, it } from 'vitest';
-import { BIBLIOTECA, PADROES } from '../../src/domain/biblioteca';
+import { diaEMes, faixaTexto, numeroBr, porCento, tempoNoRelogio, tempoPorExtenso, textoDoRir } from '../../src/domain/numero';
+import { serieEfetiva } from '../../src/domain/progressao';
+import { DESCANSO, DOR, REDUCAO, RIR, SELOS } from '../../src/domain/regras';
+import { porId, regrasSchema, selosSchema } from '../../src/domain/regras/schema';
+import { avaliarDor } from '../../src/domain/triagem';
+import { gerarPrograma as gerarProgramaDoTeste } from '../../src/domain/gerador';
+import { PERSONAS as PERSONAS_DO_TESTE } from '../personas';
+import { BIBLIOTECA, ehEmpurrar, ehPuxar, MUSCULOS, MUSCULOS_INFERIORES, PADROES, PADROES_EMPURRAR, PADROES_PUXAR, regiaoDoMusculo } from '../../src/domain/biblioteca';
 import { REGRAS } from '../../src/domain/regras/completas';
 import { FUNCOES } from '../../src/domain/gerador/funcoes';
 import {
@@ -158,4 +165,100 @@ it('todo id de regra citado em src/domain existe em regras.md', () => {
     .flatMap((f) => [...readFileSync(f, 'utf8').matchAll(/\br\('([^']+)'\)/g)].map((m) => m[1]!));
   expect(ids.length).toBeGreaterThan(0);
   for (const id of ids) expect(REGRAS, id).toHaveProperty([id]);
+});
+
+// Auditoria de 12/11/2026: definições repetidas que podiam divergir (e divergiam) passam a ter um lugar só.
+describe('uma definição de cada', () => {
+  it('empurrar e puxar valem pelo padrão do movimento: a flexão fechada é empurrar', () => {
+    expect(ehEmpurrar('flexao-fechada')).toBe(true);
+    for (const e of BIBLIOTECA) {
+      expect(ehEmpurrar(e.id), e.id).toBe(PADROES_EMPURRAR.includes(e.padrao));
+      expect(ehPuxar(e.id), e.id).toBe(PADROES_PUXAR.includes(e.padrao));
+    }
+    expect(ehEmpurrar('exercicio-que-nao-existe')).toBe(false);
+  });
+
+  it('os adutores são músculos de baixo, o abdômen é core e o resto é de cima', () => {
+    expect(regiaoDoMusculo('adutores')).toBe('inferior');
+    expect(regiaoDoMusculo('abdomen')).toBe('core');
+    expect(MUSCULOS.filter((m) => regiaoDoMusculo(m) === 'inferior').sort()).toEqual([...MUSCULOS_INFERIORES].sort());
+    expect(regiaoDoMusculo('peito')).toBe('superior');
+  });
+
+  it('cada definição existe num arquivo só de src/', () => {
+    const fonte = (arq: string) => readFileSync(arq, 'utf8');
+    const arquivos = (pasta: string): string[] =>
+      readdirSync(pasta, { withFileTypes: true }).flatMap((d) => (d.isDirectory() ? arquivos(`${pasta}/${d.name}`) : /\.tsx?$/.test(d.name) ? [`${pasta}/${d.name}`] : []));
+    const fora = arquivos('src').filter((a) => !a.startsWith('src/engine/'));
+    const onde = (padrao: RegExp) => fora.filter((a) => padrao.test(fonte(a)));
+    expect(onde(/const POR_ID\b[^=]*=/)).toEqual(['src/domain/biblioteca/index.ts']);
+    expect(onde(/const LIMITE_DO_DIA\b/)).toEqual(['src/domain/regras/index.ts']);
+    expect(onde(/const EMPURRAR_PUXAR_MAX\b/)).toEqual(['src/domain/gerador/familias.ts']);
+    expect(onde(/const (MUSCULOS_)?INFERIORES\b/)).toEqual(['src/domain/biblioteca/index.ts']);
+    expect(onde(/h \? q \/ h : q \? Infinity : 1/)).toEqual(['src/domain/gerador/index.ts']);
+  });
+});
+
+
+// Auditoria de 12/11/2026: textos com números escritos à mão ("1 min 45 s", "4", "10", "20") saem das constantes.
+describe('os números dos textos saem das constantes', () => {
+  it('os ajudantes de texto', () => {
+    expect(numeroBr(7.5)).toBe('7,5');
+    expect(numeroBr(10)).toBe('10');
+    expect(tempoPorExtenso(105)).toBe('1 min 45 s');
+    expect(tempoPorExtenso(120)).toBe('2 min');
+    expect(tempoPorExtenso(45)).toBe('45 s');
+    expect(tempoNoRelogio(105)).toBe('1:45');
+    expect(tempoNoRelogio(120)).toBe('2 min');
+    expect(faixaTexto([8, 12])).toBe('8–12');
+    expect(faixaTexto([8, 8])).toBe('8');
+    expect(porCento(0.15)).toBe('15');
+    expect(diaEMes('2026-11-12T10:00:00.000Z')).toBe('12/11');
+    // a reserva registrada: a última opção vale "4 ou mais" e aparece como "4+" no treino e na evolução
+    expect([0, 3, 4, 6].map((n) => textoDoRir(n, RIR.registroMax))).toEqual(['0', '3', '4+', '4+']);
+  });
+
+  it('o porquê do descanso diz o descanso que a regra prescreve', () => {
+    const r = gerarProgramaDoTeste(PERSONAS_DO_TESTE.bruno.perfil, PERSONAS_DO_TESTE.bruno.inventario);
+    if (r.status !== 'ok') throw new Error('sem programa');
+    for (const x of r.programa.dias.flatMap((d) => d.exercicios)) {
+      const texto = x.porque.find((q) => q.regraId === 'descanso.por-tipo')!.texto;
+      const seg = (x.tipo === 'composto' ? DESCANSO.composto : DESCANSO.isolador)[PERSONAS_DO_TESTE.bruno.perfil.nivel];
+      expect(texto).toContain(`Descanso de ${tempoPorExtenso(seg)}`);
+    }
+  });
+
+  it('a série efetiva, a dor e a estagnação usam os limites das regras', () => {
+    const s = { carga: { tipo: 'kg' as const, kg: 10 }, reps: 10 };
+    expect(serieEfetiva({ ...s, rir: RIR.serieEfetivaMax })).toBe(true);
+    expect(serieEfetiva({ ...s, rir: RIR.serieEfetivaMax + 1 })).toBe(false);
+    expect(avaliarDor(4).mensagem).toContain(`${porCento(DOR.reducaoCarga[0])}–${porCento(DOR.reducaoCarga[1])}%`);
+    expect(REDUCAO.dor).toBeGreaterThanOrEqual(DOR.reducaoCarga[0]);
+    expect(REDUCAO.dor).toBeLessThanOrEqual(DOR.reducaoCarga[1]);
+  });
+});
+
+// Auditoria de 12/11/2026: regras.json e selos.json entravam só com `as`, sem validação.
+describe('regras.json e selos.json são validados na carga', () => {
+  const regra = { id: 'volume.teste', regra: 'Texto', valores: { iniciante: 'a', intermediario: 'b', avancado: 'c' }, selo: 'consenso', fontes: ['fonte2020'] };
+
+  it('os arquivos de hoje passam, e cada regra tem o seu selo', () => {
+    expect(Object.keys(REGRAS).length).toBeGreaterThan(100);
+    expect(Object.keys(SELOS).sort()).toEqual(Object.keys(REGRAS).sort());
+    for (const id of Object.keys(REGRAS)) expect(SELOS[id]).toBe(REGRAS[id]!.selo);
+  });
+
+  it('um arquivo gerado errado falha na carga, com o motivo', () => {
+    expect(regrasSchema.safeParse([regra]).success).toBe(true);
+    expect(regrasSchema.safeParse([{ ...regra, selo: 'forte' }]).success).toBe(false);
+    expect(regrasSchema.safeParse([{ ...regra, fontes: [] }]).success).toBe(false);
+    expect(regrasSchema.safeParse([{ ...regra, valores: { iniciante: 'a', intermediario: 'b' } }]).success).toBe(false);
+    expect(regrasSchema.safeParse([{ ...regra, extra: 1 }]).success).toBe(false);
+    expect(regrasSchema.safeParse([regra, regra]).success).toBe(false);
+    expect(regrasSchema.safeParse([{ ...regra, id: 'Sem Formato' }]).success).toBe(false);
+    expect(selosSchema.safeParse({ 'volume.teste': 'consenso' }).success).toBe(true);
+    expect(selosSchema.safeParse({ 'volume.teste': 'forte' }).success).toBe(false);
+    expect(selosSchema.safeParse({}).success).toBe(false);
+    expect(() => porId([{ ...regra, selo: undefined }])).toThrow();
+  });
 });

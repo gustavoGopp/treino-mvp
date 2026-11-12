@@ -1,0 +1,52 @@
+{
+  "id": "agachamento-halteres",
+  "name": "Agachamento com 2 halteres ao lado do corpo",
+  "short": "Agachamento com halteres",
+  "target": "Quadríceps e glúteos",
+  "setupEq": [
+    "Dois halteres do mesmo peso."
+  ],
+  "setupBody": [
+    "Em pé, pés na largura dos ombros, pontas um pouco para fora.",
+    "Um halter em cada mão, ao lado do corpo, braços estendidos."
+  ],
+  "exec": [
+    [
+      "ecc",
+      "Descida",
+      "~2–3 s. Senta para trás e para baixo, com o peito aberto, até a coxa passar da horizontal ou até onde a coluna fica reta."
+    ],
+    [
+      "conc",
+      "Subida",
+      "Sobe empurrando o chão, sem travar os joelhos no topo."
+    ]
+  ],
+  "range": [
+    "Início: em pé.",
+    "Fim: coxa na horizontal ou abaixo, calcanhares no chão."
+  ],
+  "cues": [
+    "Peito aberto.",
+    "Joelhos na direção dos pés.",
+    "Calcanhar no chão."
+  ],
+  "errors": [
+    {
+      "id": "e1",
+      "title": "Calcanhar sai do chão",
+      "desc": "O peso vai para a ponta do pé e o joelho."
+    },
+    {
+      "id": "e2",
+      "title": "Tronco cai para a frente",
+      "desc": "Dobrar a coluna para alcançar o fundo."
+    },
+    {
+      "id": "e3",
+      "title": "Joelhos para dentro",
+      "desc": "Fechar os joelhos na subida."
+    }
+  ],
+  "carga": "Pela lista dos seus halteres: o próximo peso quando todas as séries chegarem ao topo da faixa."
+}

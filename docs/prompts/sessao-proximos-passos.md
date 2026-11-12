@@ -64,7 +64,7 @@ Ele também pediu "qualquer outro ponto que você puder sugerir". O resultado é
   - as invariantes de `tests/unit/gerador.test.ts`.
 
 **Regras desta sessão**
-- **Conta:** o projeto é acessado só pelas contas pessoais do Gustavo (gustavogopp@gmail.com ou gustavogopp2@gmail.com), nunca pela da Futurum. Tudo o que é produzido fica no git, e só no git: nada de publicar páginas, artefatos ou documentos fora do repositório.
+- **Conta:** o projeto é acessado só pelas contas pessoais do Gustavo, nunca pela conta de trabalho. Tudo o que é produzido fica no git, e só no git: nada de publicar páginas, artefatos ou documentos fora do repositório.
 - **Branches e dados:** não mexa no branch `r3-uso-real` nem na branch do redesign. `privado/` nunca é versionado nem usado; as personas de teste são fictícias (`tests/personas/`).
 - **Branch de trabalho:** uma nova a partir da `main` (`6cb49d5` ou mais recente), ou a que a sessão indicar. **Só documentos:** `docs/revisoes/`, `docs/prompts/`, `docs/pesquisa*/` (fontes e pesquisa nova), `docs/backlog.md` e `docs/devlog.md`. Nada em `src/`, `tests/` ou `scripts/` vai para o git. Protótipos para medir (um avaliador de teste, uma variação de exercícios, uma grade nova) ficam no scratchpad ou na árvore de trabalho sem commit, e são descartados depois que os números forem registrados.
 - **Rede:** está liberada. Leia o que precisar (PubMed, PMC, Crossref, periódicos abertos) e registre cada fonte nova em `docs/pesquisa/fontes.md` com o status de leitura. Nunca contorne bloqueio anti-robô: Springer, Wiley, LWW e Taylor & Francis bloqueiam, então a fonte fica `NÃO VERIFICADO` ou o PDF entra por `privado/`. **Nada de inventar estudo.**

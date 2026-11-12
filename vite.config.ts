@@ -3,6 +3,7 @@ import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 import { VitePWA } from 'vite-plugin-pwa';
 import { execSync } from 'node:child_process';
+import { readFileSync } from 'node:fs';
 import { availableParallelism } from 'node:os';
 
 // Versão mostrada em "Meus dados" (R3): o commit publicado e a data do build, para a pessoa ver se o app atualizou.
@@ -19,7 +20,15 @@ const commit = () => {
 // Rota de laboratório do boneco (R4): só em `npm run dev` e nas prévias da Vercel (nunca na produção).
 const lab = (mode: string) => mode === 'development' || process.env.VERCEL_ENV === 'preview';
 
+// A prévia local (`npm run preview`, usada pelo e2e) responde com os mesmos cabeçalhos da produção (vercel.json):
+// assim a Content-Security-Policy é exercitada por toda a suíte, com o service worker e os desenhos do guia.
+const cabecalhosDaVercel = (): Record<string, string> => {
+  const v = JSON.parse(readFileSync(new URL('./vercel.json', import.meta.url), 'utf8')) as { headers: { source: string; headers: { key: string; value: string }[] }[] };
+  return Object.fromEntries(v.headers.filter((h) => h.source === '/(.*)').flatMap((h) => h.headers.map((c) => [c.key, c.value])));
+};
+
 export default defineConfig(({ mode }) => ({
+  preview: { headers: cabecalhosDaVercel() },
   define: {
     __LAB__: JSON.stringify(lab(mode)),
     __VERSAO__: JSON.stringify(commit().slice(0, 7) || 'local'),
@@ -45,7 +54,7 @@ export default defineConfig(({ mode }) => ({
         display: 'standalone',
         background_color: '#F5F3EF',
         theme_color: '#F5F3EF',
-        // lote 5 do redesign: o halter inclinado em Giz e grafite (scripts/design/redesign/icones-app.mjs); "any" e
+        // lote 5 do redesign: o halter inclinado em Giz e grafite (scripts/icones-app.mjs); "any" e
         // "maskable" em arquivos separados, como o Chrome pede
         icons: [
           { src: 'icon-192.png', sizes: '192x192', type: 'image/png', purpose: 'any' },

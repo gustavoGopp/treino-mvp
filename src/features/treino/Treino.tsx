@@ -1,9 +1,11 @@
-import { useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
+import { useEffect, useLayoutEffect, useMemo, useRef, useState, useId } from 'react';
 import { Link, Navigate, useNavigate, useSearchParams } from 'react-router-dom';
-import { BIBLIOTECA } from '../../domain/biblioteca';
+import { POR_ID } from '../../domain/biblioteca';
 import { ALTERNATIVAS_A_MOSTRA, type ExercicioPrescrito } from '../../domain/gerador';
 import { linkDoGuia } from '../guia/link';
-import { ESCADA_PESO_CORPO, type Carga, type SerieRegistrada } from '../../domain/progressao';
+import { ESCADA_PESO_CORPO, haCargaMenor, type Carga, type SerieRegistrada } from '../../domain/progressao';
+import { faixaTexto as faixa, numeroBr, tempoNoRelogio as tempo, textoDoRir } from '../../domain/numero';
+import { RIR } from '../../domain/regras';
 import { degrauInicial } from '../../domain/progressao/escadas';
 import { MENOR_ANILHA_PADRAO_KG } from '../../domain/taxonomia/equipamentos';
 import { CartaoTexto, temCartao } from '../programa/CartaoTexto';
@@ -22,29 +24,45 @@ import {
 import type { Inventario } from '../../domain/taxonomia/equipamentos';
 import { avaliarDor, avaliarSinal, type Sinal } from '../../domain/triagem';
 import type { Estado } from '../../storage/esquema';
+import { AvisoSalvar } from '../app/avisos';
 import { agoraIso, fusoDoAparelho, useApp } from '../app/estado';
 import { Folha } from '../app/Folha';
 import { PorQue, Selo, Titulo } from '../app/ui';
 import { Miniatura } from '../programa/Miniatura';
 import { BotaoPrefiro } from '../programa/Prefiro';
-import { alternarPreferencia, anotarDor, comDor, descartarSessao, desfazerSerie, diaDoTreino, interromperExercicio, inventarioDoTreino, opcoesDaCarga, registrarSerie, semSerie, terminarSessao, trocarExercicio } from './acoes';
+import { alternarPreferencia, anotarDor, descartarSessao, desfazerSerie, diaDoTreino, interromperExercicio, inventarioDoTreino, opcoesDaCarga, registrarSerie, semSerie, terminarSessao, trocarExercicio } from './acoes';
 import { PainelDescanso, useDescanso, useTelaAcesa } from './Temporizador';
 
 // Treino em andamento: um exercício por vez, séries registradas com um toque, descanso entre séries,
 // troca pela alternativa e o botão "Senti algo" (dor e sinais de alerta). Decisões: docs/pesquisa/10-decisoes-m5.md.
 
-const POR_ID = Object.fromEntries(BIBLIOTECA.map((e) => [e.id, e]));
-const faixa = ([a, b]: [number, number]) => (a === b ? `${a}` : `${a}–${b}`);
-const tempo = (seg: number) => (seg % 60 ? `${Math.floor(seg / 60)}:${String(seg % 60).padStart(2, '0')}` : `${seg / 60} min`);
 const RIRS = [0, 1, 2, 3, 4] as const;
+
+// O exercício aberto no treino em andamento, lembrado só nesta aba (sessionStorage): não é dado de treino nem de saúde.
+const CHAVE_ABERTO = 'treino-mvp:exercicio-aberto';
+function lerExercicioAberto(sessaoId: string): number | null {
+  try {
+    const v = JSON.parse(sessionStorage.getItem(CHAVE_ABERTO) ?? 'null') as { sessaoId?: unknown; indice?: unknown } | null;
+    return v && v.sessaoId === sessaoId && typeof v.indice === 'number' && Number.isInteger(v.indice) && v.indice >= 0 ? v.indice : null;
+  } catch {
+    return null;
+  }
+}
+function gravarExercicioAberto(sessaoId: string, indice: number): void {
+  try {
+    sessionStorage.setItem(CHAVE_ABERTO, JSON.stringify({ sessaoId, indice }));
+  } catch {
+    /* sem armazenamento: vale a regra do primeiro exercício incompleto */
+  }
+}
 
 /** Prescrição de um item da sessão: a do programa, ou a da vaga que a alternativa ocupou. */
 type Item = { x: ExercicioPrescrito; feito: { exId: string; series: SerieRegistrada[]; interrompido?: boolean; noLugarDe?: string } };
 
 export function Treino() {
-  const { estado, atualizar } = useApp();
+  const { estado, atualizar, erroAoSalvar } = useApp();
   const navigate = useNavigate();
-  const descanso = useDescanso();
+  const descanso = useDescanso(estado.sessaoAtual?.id);
   useTelaAcesa();
   const sessao = estado.sessaoAtual;
   const programa = estado.programa?.programa;
@@ -53,11 +71,19 @@ export function Treino() {
   const dia = doTreino?.dia ?? null;
   const vagaDe = (exId: string) => dia?.exercicios.find((x) => (x.noLugarDe ?? x.exId) === exId);
   // Ao voltar para um treino em andamento, abre o primeiro exercício que ainda não terminou.
+  // Na mesma aba (ida ao guia e volta), abre o exercício que estava aberto: antes, "Senti algo" tocado no guia do 4º
+  // exercício voltava para o 1º ainda incompleto e interrompia o exercício errado.
   const [indice, setIndice] = useState(() => {
+    const aberto = sessao ? lerExercicioAberto(sessao.id) : null;
+    if (sessao && aberto !== null && aberto < sessao.exercicios.length) return aberto;
     const meta = (exId: string) => vagaDe(exId)?.series ?? 1;
     const i = sessao?.exercicios.findIndex((e) => !e.interrompido && e.series.length < meta(e.noLugarDe ?? e.exId)) ?? 0;
     return Math.max(0, i);
   });
+  const sessaoId = sessao?.id;
+  useEffect(() => {
+    if (sessaoId) gravarExercicioAberto(sessaoId, indice);
+  }, [sessaoId, indice]);
   // "Senti algo" tocado no guia aberto pelo treino volta aqui com a folha aberta (?sentir=1): uma lógica de segurança só.
   const [params, setParams] = useSearchParams();
   const [painel, setPainel] = useState<'nenhum' | 'trocar' | 'sentir' | 'mais' | 'terminar'>(() => (params.get('sentir') === '1' ? 'sentir' : 'nenhum'));
@@ -65,8 +91,6 @@ export function Treino() {
     if (params.has('sentir')) setParams({}, { replace: true });
   }, [params, setParams]);
   const [aviso, setAviso] = useState<{ texto: string; regraId: string } | null>(null);
-  // A nota de dor dada antes da 1ª série de um exercício vai na próxima série registrada dele (seguranca.dor.escala; R5a).
-  const [dorPendente, setDorPendente] = useState<Record<number, number>>({});
   // "Desfazer" por 5 s depois de salvar a série (redesign, lote 2): o toque errado em "Série feita" se corrige na hora.
   const [salva, setSalva] = useState<{ indice: number; numero: number } | null>(null);
   useEffect(() => {
@@ -110,9 +134,8 @@ export function Treino() {
     // Série de acerto da calibração (progressao.calibracao): fica no histórico, fora da dupla progressão.
     const cal = calibracaoNaSessao(estado.historico, x, inventario, feito.series, opcoesCargaHoje);
     const acerto = cal.calibrando && !avaliarSerieDeCalibracao(serie, x, inventario, opcoesCargaHoje).perto;
-    const comNota = comDor(serie, dorPendente[i]);
-    atualizar((s) => registrarSerie(s, i, acerto ? { ...comNota, calibracao: true } : comNota));
-    if (dorPendente[i] !== undefined) setDorPendente((d) => Object.fromEntries(Object.entries(d).filter(([k]) => Number(k) !== i)));
+    // A nota de dor dada antes da 1ª série está guardada no exercício e passa para esta série (registrarSerie).
+    atualizar((s) => registrarSerie(s, i, acerto ? { ...serie, calibracao: true } : serie));
     setSalva({ indice: i, numero: feito.series.length + 1 });
     if (feito.series.length + 1 < x.series) descanso.iniciar(x.descansoSeg);
     else if (!ultimo) descanso.iniciar(x.descansoSeg);
@@ -142,10 +165,11 @@ export function Treino() {
         </div>
       </header>
       <main className="conteudo sessao">
+        <AvisoSalvar />
         <PainelDescanso d={descanso} />
         {salva && (
           <div className="desfazer" role="status">
-            <span>Série {salva.numero} salva</span>
+            <span>{erroAoSalvar ? `Série ${salva.numero} anotada, mas não salva` : `Série ${salva.numero} salva`}</span>
             <button
               type="button"
               onClick={() => {
@@ -206,7 +230,7 @@ export function Treino() {
           <ol className="series-feitas" aria-label="Séries feitas">
             {feito.series.map((s, n) => (
               <li key={n}>
-                <span className="n">{n + 1}</span> {textoCarga(s.carga, feito.exId)} × {s.reps} · RIR {s.rir === 4 ? '4+' : s.rir}
+                <span className="n">{n + 1}</span> {textoCarga(s.carga, feito.exId)} × {s.reps} · RIR {textoDoRir(s.rir, RIR.registroMax)}
                 {s.calibracao ? ' · acerto da carga' : ''}
                 {s.dor ? ` · dor ${s.dor}` : ''}
                 {s.quedas?.length ? ` · quedas: ${s.quedas.map((q) => `${textoCarga(q.carga, feito.exId)} × ${q.reps}`).join(', ')}` : ''}
@@ -290,15 +314,20 @@ export function Treino() {
           <Folha titulo="O que você sentiu?" aoFechar={() => setPainel('nenhum')} livre={() => document.querySelector<HTMLElement>('.alerta-topo')} fecharAoTocarLivre={false}>
             <Sentir
               aoDor={(nota) => {
-                const r = avaliarDor(nota);
-                // A nota fica guardada (seguranca.dor.escala; R5a): na última série feita ou, sem série, na próxima.
+                // A carga de agora: a da última série feita ou, antes da 1ª, a da última vez. Sem carga menor para
+                // usar (a placa 1, o halter mais leve), a orientação não manda reduzir.
+                const cargaAgora = feito.series.at(-1)?.carga ?? ultimaSerie(estado.historico, x.exId, opcoesCargaHoje.local)?.carga;
+                const r = avaliarDor(nota, false, cargaAgora ? haCargaMenor(cargaAgora, opcoesCarga(x.exId, inventario)) : true);
+                // A nota fica guardada (seguranca.dor.escala; R5a): na última série feita ou, sem série, no exercício
+                // (e passa para a próxima série; se a dor encerra o exercício antes dela, a nota fica nele).
                 let guardada = '';
-                if (nota > 0 && feito.series.length > 0) {
+                if (nota > 0) {
                   atualizar((s) => anotarDor(s, i, nota).estado);
-                  guardada = ` Nota ${nota} guardada na série ${feito.series.length}.`;
-                } else if (nota > 0 && r.acao !== 'encerrar-exercicio') {
-                  setDorPendente((d) => ({ ...d, [i]: Math.max(d[i] ?? 0, nota) }));
-                  guardada = ` Nota ${nota} guardada na próxima série que você registrar.`;
+                  guardada = feito.series.length
+                    ? ` Nota ${nota} guardada na série ${feito.series.length}.`
+                    : r.acao === 'encerrar-exercicio'
+                      ? ` Nota ${nota} guardada neste exercício.`
+                      : ` Nota ${nota} guardada na próxima série que você registrar.`;
                 }
                 setAviso({ texto: r.mensagem + guardada, regraId: r.regraId });
                 if (r.acao === 'encerrar-exercicio') {
@@ -529,7 +558,7 @@ function RegistroSerie({
           {RIRS.map((n) => (
             <label key={n} className={`chip-valor${naMeta(n) ? ' meta' : ''}`}>
               <input type="radio" name={`rir-${numero}`} checked={rir === n} onChange={() => setRir(n)} aria-describedby={naMeta(n) ? `rir-meta-${numero}` : undefined} />
-              <span>{n === 4 ? '4 ou mais' : n}</span>
+              <span>{n === RIR.registroMax ? `${n} ou mais` : n}</span>
             </label>
           ))}
         </div>
@@ -613,6 +642,11 @@ function ControleCarga({
   valor: Carga | undefined;
   aoMudar: (c: Carga) => void;
 }) {
+  // Um id por controle: no drop set há três na tela (a série e as duas quedas), e com o id fixo o rótulo de todos
+  // apontava para o 1º.
+  const uid = useId();
+  const idRotulo = `${uid}-rotulo`;
+  const idCarga = `${uid}-carga`;
   if (registro === 'anilha') {
     // progressao.incremento.maquina-anilha: kg de anilhas de cada lado, de menor anilha em menor anilha.
     const k = valor?.tipo === 'anilha' ? valor.kgPorLado : undefined;
@@ -620,14 +654,14 @@ function ControleCarga({
     const mudar = (dir: 1 | -1) => aoMudar({ tipo: 'anilha', kgPorLado: Math.max(0, Math.round(((k ?? 0) + dir * passo) * 100) / 100) });
     return (
       <div className="linha-registro">
-        <span className="rotulo-curto" id="carga-rotulo">
+        <span className="rotulo-curto" id={idRotulo}>
           Anilhas por lado
         </span>
-        <div className="stepper" role="group" aria-labelledby="carga-rotulo">
+        <div className="stepper" role="group" aria-labelledby={idRotulo}>
           <button type="button" aria-label="Menos anilha de cada lado" disabled={k === undefined || k <= 0} onClick={() => mudar(-1)}>
             −
           </button>
-          <output aria-live="polite">{k === undefined ? '—' : `${k.toLocaleString('pt-BR')} kg`}</output>
+          <output aria-live="polite">{k === undefined ? '—' : `${numeroBr(k)} kg`}</output>
           <button type="button" aria-label="Mais anilha de cada lado" onClick={() => mudar(1)}>
             +
           </button>
@@ -642,10 +676,10 @@ function ControleCarga({
     const max = placasMax ?? 30;
     return (
       <div className="linha-registro">
-        <span className="rotulo-curto" id="carga-rotulo">
+        <span className="rotulo-curto" id={idRotulo}>
           Contrapeso (placa)
         </span>
-        <div className="stepper" role="group" aria-labelledby="carga-rotulo">
+        <div className="stepper" role="group" aria-labelledby={idRotulo}>
           <button type="button" aria-label="Menos contrapeso (mais difícil)" disabled={!p || p <= 1} onClick={() => p && aoMudar({ tipo: 'contrapeso', placa: p - 1 })}>
             −
           </button>
@@ -678,10 +712,10 @@ function ControleCarga({
     const max = placasMax ?? 30;
     return (
       <div className="linha-registro">
-        <span className="rotulo-curto" id="carga-rotulo">
+        <span className="rotulo-curto" id={idRotulo}>
           Placa
         </span>
-        <div className="stepper" role="group" aria-labelledby="carga-rotulo">
+        <div className="stepper" role="group" aria-labelledby={idRotulo}>
           <button type="button" aria-label="Placa anterior" disabled={!p || p <= 1} onClick={() => p && aoMudar({ tipo: 'placa', placa: p - 1 })}>
             −
           </button>
@@ -705,7 +739,7 @@ function ControleCarga({
   };
   return (
     <div className="linha-registro">
-      <label className="rotulo-curto" htmlFor="carga-kg">
+      <label className="rotulo-curto" htmlFor={idCarga}>
         Carga
       </label>
       <div className="stepper">
@@ -713,19 +747,19 @@ function ControleCarga({
           −
         </button>
         {lista ? (
-          <select id="carga-kg" value={k ?? ''} onChange={(e) => aoMudar({ tipo: 'kg', kg: Number(e.target.value) })}>
+          <select id={idCarga} className="carga-valor" value={k ?? ''} onChange={(e) => aoMudar({ tipo: 'kg', kg: Number(e.target.value) })}>
             <option value="" disabled>
               Escolha
             </option>
             {lista.map((v) => (
               <option key={v} value={v}>
-                {v.toLocaleString('pt-BR')} kg
+                {numeroBr(v)} kg
               </option>
             ))}
           </select>
         ) : (
-          <output id="carga-kg" aria-live="polite">
-            {k === undefined ? '—' : `${k.toLocaleString('pt-BR')} kg`}
+          <output id={idCarga} className="carga-valor" aria-live="polite">
+            {k === undefined ? '—' : `${numeroBr(k)} kg`}
           </output>
         )}
         <button type="button" aria-label="Mais carga" onClick={() => passo(1)}>

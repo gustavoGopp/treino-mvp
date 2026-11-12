@@ -1,9 +1,10 @@
 import { useState } from 'react';
 import { Link, Navigate, useNavigate } from 'react-router-dom';
-import { BIBLIOTECA } from '../../domain/biblioteca';
+import { POR_ID } from '../../domain/biblioteca';
 import { marcasDaSessao, type Marca } from '../../domain/acompanhamento/evolucao';
 import { resumoSessao, sugestaoDoExercicio, textoCarga } from '../../domain/sessao';
 import { localDaSessao } from '../../storage/esquema';
+import { AvisoSalvar } from '../app/avisos';
 import { agoraIso, fusoDoAparelho, useApp } from '../app/estado';
 import { apagarUltimoTreino, hojeDoTreino, inventarioDoTreino, opcoesDaCarga } from './acoes';
 import { marcarHojeFoi, semanaDoEstado } from '../acompanhamento/acoes';
@@ -14,7 +15,6 @@ import { PorQue, Selo, Titulo, Topo } from '../app/ui';
 // Fim do treino: resumo e a sugestão de cada exercício para a próxima vez (decisão 9 do M5). Lote 4 do redesign: primeiro
 // "O que mudou hoje" (a semana, os recordes e as cargas que sobem), depois "Hoje foi" e a próxima vez, com o motivo no
 // "por quê?". Sem confete e sem som.
-const POR_ID = Object.fromEntries(BIBLIOTECA.map((e) => [e.id, e]));
 const ACAO: Record<string, string> = {
   subir: 'Subir',
   manter: 'Manter',
@@ -64,6 +64,7 @@ export function Resumo() {
     <div className="wrap app">
       <Topo direita={<Link to="/programa">Início</Link>} />
       <main className="conteudo">
+        <AvisoSalvar />
         <Titulo>{s.encerradaPorAlerta ? 'Treino encerrado por segurança' : 'Treino concluído'}</Titulo>
         {s.encerradaPorAlerta && (
           <div className="caixa-erro" role="alert">
@@ -132,8 +133,9 @@ export function Resumo() {
             Para a próxima vez
           </h2>
           <ul className="lista-proxima">
-            {itens.map(({ e, sug }) => (
-              <li key={e.exId} className="resumo-ex">
+            {/* a chave leva a posição: o mesmo exercício pode aparecer duas vezes no treino (feito e, depois, como alternativa de outra vaga) */}
+            {itens.map(({ e, sug }, i) => (
+              <li key={`${e.exId}-${i}`} className="resumo-ex">
                 <b>{POR_ID[e.exId]?.nome}</b>
                 <span>
                   <span className={`acao acao-${sug.acao}`}>{ACAO[sug.acao]}</span>

@@ -1,5 +1,6 @@
 import { describe, expect, it } from 'vitest';
-import { gerarPrograma, type Programa } from '../../src/domain/gerador';
+import { POR_ID } from '../../src/domain/biblioteca';
+import { aplicarFase, fasesDeReadaptacao, gerarPrograma, minutos, prescricaoDaSemana, type Programa } from '../../src/domain/gerador';
 import { proximaCarga, type Carga } from '../../src/domain/progressao';
 import {
   cargaDaVolta,
@@ -56,7 +57,12 @@ describe('rotação e semana', () => {
   });
 
   it('sessão não terminada não conta para a rotação', () => {
-    expect(proximoDia(prog, [sessao(prog.dias[0]!.id, '2026-11-02T10:00:00Z', [], null)]).id).toBe(prog.dias[0]!.id);
+    // Com série registrada: sem o fim, o dia continua sendo o próximo; terminada, a rotação anda. (Antes, o teste
+    // usava uma sessão sem série nenhuma, que não andaria a rotação nem terminada.)
+    const [a, b] = prog.dias.map((d) => d.id) as [string, string];
+    const comSerie = [{ exId: 'supino-reto', series: [kg(8, 10)] }];
+    expect(proximoDia(prog, [sessao(a, '2026-11-02T10:00:00Z', comSerie, null)]).id).toBe(a);
+    expect(proximoDia(prog, [sessao(a, '2026-11-02T10:00:00Z', comSerie)]).id).toBe(b);
   });
 
   it('a semana conta as semanas com treino desde o início do bloco, e não o calendário (readaptacao.durante-uso)', () => {
@@ -139,7 +145,8 @@ describe('carga conforme o equipamento', () => {
       expect(opcoesCarga('panturrilha-chao', ana.inventario)).toMatchObject({ registro: 'kg', lista: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12] });
       const h = [0, 1].map((i) => ({ ...topo({ tipo: 'kg', kg: 0 })[0]!, id: `s${i}`, exercicios: [{ exId: 'panturrilha-chao', series: [1, 2, 3].map(() => ({ carga: { tipo: 'kg' as const, kg: 0 }, reps: 22, rir: 0 })) }] }));
       const s = sugestaoDoExercicio(h, { exId: 'panturrilha-chao', reps: [12, 20], rir: [0, 1] }, so);
-      expect(s.proxima?.tipo).toBe('degrau');
+      // 22 repetições com a faixa de 12 a 20: leve demais, sobe um degrau a partir do 1º (o "0 kg" antigo é o degrau 0)
+      expect(s).toMatchObject({ acao: 'subir', proxima: { tipo: 'degrau', degrau: 1 }, regraId: 'progressao.carga-leve' });
     });
     it('Scott com halteres e hip thrust no smith: a carga segue o equipamento da versão possível', () => {
       expect(opcoesCarga('rosca-scott', { banco_scott: {}, halteres_fixos: { minKg: 2, maxKg: 10, passoKg: 2 } })).toMatchObject({ registro: 'kg', lista: [2, 4, 6, 8, 10] });
@@ -148,13 +155,14 @@ describe('carga conforme o equipamento', () => {
     });
   });
 
-  it('registro antigo em kg de uma máquina que agora usa outro tipo não quebra: a sugestão segue, e a tela ignora a carga de outro tipo', () => {
+  it('registro antigo em kg de uma máquina que agora usa outro tipo não quebra: a sugestão é manter, sem propor uma carga em kg', () => {
     const inv = PERSONAS.carla.inventario;
     const kgAntigo = { carga: { tipo: 'kg' as const, kg: 80 }, reps: 10, rir: 2 };
     const historico = [{ id: 's1', diaId: 'inferior', semana: 1, inicio: '2026-10-20T10:00:00.000Z', fim: '2026-10-20T11:00:00.000Z', exercicios: [{ exId: 'leg-press', series: [kgAntigo, kgAntigo] }] }];
     const s = sugestaoDoExercicio(historico, { exId: 'leg-press', reps: [8, 15], rir: [1, 2] }, inv);
-    expect(s.acao).toBeDefined();
-    expect(s.proxima?.tipo === 'anilha').toBe(false);
+    // Uma sessão só, dentro da faixa: manter, sem carga sugerida (a tela, então, não pré-preenche um kg numa máquina
+    // que registra anilhas por lado; quem filtra o tipo é o Treino, coberto no e2e).
+    expect(s).toEqual({ acao: 'manter', motivo: 'Mantenha a carga e busque +1 repetição.', regraId: 'progressao.manter' });
     expect(opcoesCarga('leg-press', inv).registro).toBe('anilha');
   });
 });
@@ -196,9 +204,10 @@ describe('aquecimento e resumo', () => {
     expect(precisaAquecer(dia, 99)).toBe(false);
   });
 
-  it('resume séries feitas, efetivas e duração', () => {
+  it('resume os exercícios e as séries feitas e a duração', () => {
     const s = sessao('a', '2026-11-02T10:00:00Z', [{ exId: 'x', series: [kg(10, 10, 2), kg(10, 10, 5)] }, { exId: 'y', series: [] }], '2026-11-02T10:47:00Z');
-    expect(resumoSessao(s)).toEqual({ exercicios: 1, series: 2, efetivas: 1, minutos: 47 });
+    // As séries efetivas têm uma conta só, a de `seriesEfetivas` (o drop set conta 2); o resumo não tem outra.
+    expect(resumoSessao(s)).toEqual({ exercicios: 1, series: 2, minutos: 47 });
     expect(resumoSessao({ ...s, fim: undefined }).minutos).toBeUndefined();
   });
 });
@@ -224,10 +233,18 @@ describe('guia com a prescrição da pessoa (R1)', () => {
   it('na troca pela alternativa, vale a vaga (séries, RIR, descanso) com as repetições da alternativa', () => {
     const alt = bulgaro.alternativas[0]!;
     const r = prescricaoNoGuia(programa, { diaId: diaA.id, exId: alt, vaga: 'bulgaro' }, 1)!;
+    const daVaga = prescricaoNoGuia(programa, { diaId: diaA.id, exId: 'bulgaro' }, 1)!.x;
     expect(r.x.exId).toBe(alt);
+    // da vaga, na semana 1: as séries, a reserva e o descanso
     expect(r.x.rir).toEqual([3, 4]);
-    expect(prescricaoDaVaga(bulgaro, alt).exId).toBe(alt);
+    expect(r.x.series).toBe(daVaga.series);
+    expect(r.x.descansoSeg).toBe(daVaga.descansoSeg);
+    // da alternativa: o nome, as repetições, o lado e a animação dela
+    const naBiblioteca = POR_ID[alt]!;
+    expect(r.x).toMatchObject({ nome: naBiblioteca.nome, reps: naBiblioteca.faixaReps, unilateral: naBiblioteca.unilateral, animacaoId: naBiblioteca.animacaoId });
+    expect(prescricaoDaVaga(bulgaro, alt)).toEqual({ ...bulgaro, exId: alt, nome: naBiblioteca.nome, reps: naBiblioteca.faixaReps, unilateral: naBiblioteca.unilateral, animacaoId: naBiblioteca.animacaoId, alternativas: [] });
     expect(prescricaoDaVaga(bulgaro)).toBe(bulgaro);
+    expect(prescricaoDaVaga(bulgaro, 'bulgaro')).toBe(bulgaro);
   });
   it('dia ou exercício fora do programa: sem prescrição (o guia mostra o catálogo)', () => {
     expect(prescricaoNoGuia(programa, { diaId: 'nao-existe', exId: 'bulgaro' }, 1)).toBeNull();
@@ -239,5 +256,42 @@ describe('guia com a prescrição da pessoa (R1)', () => {
     const bruno = programaDe(PERSONAS.bruno);
     expect([1, 2, 3].map((s) => faseDaSemana(bruno, s)?.regraId)).toEqual(['readaptacao.semana1', 'readaptacao.semana2', 'readaptacao.semana3']);
     expect(faseDaSemana(bruno, 1)?.texto).not.toContain('última registrada');
+  });
+});
+
+// Auditoria de 12/11/2026: a fase mudava as séries e os minutos do dia ficavam os do programa completo (na volta de
+// uma pausa longa, a tela mostrava 51 min para um treino de cerca de 31).
+describe('os minutos do dia acompanham as séries da fase', () => {
+  const bruno = PERSONAS.bruno;
+  const programaDe = (margemTempo?: number) => {
+    const r = gerarPrograma({ ...bruno.perfil, ...(margemTempo !== undefined ? { margemTempo } : {}) }, bruno.inventario);
+    if (r.status !== 'ok') throw new Error('persona bloqueada');
+    return r.programa;
+  };
+
+  it('na semana 1 da volta de uma pausa, cada dia mostra os minutos das séries reduzidas', () => {
+    const p = programaDe();
+    const fase = fasesDeReadaptacao()[0]!;
+    expect(fase.fatorSeries).toBeLessThan(1);
+    const dias = aplicarFase(p.dias, fase);
+    dias.forEach((d, i) => {
+      expect(d.minutosEstimados).toBe(minutos(d.exercicios));
+      expect(d.minutosEstimados).toBeLessThan(p.dias[i]!.minutosEstimados);
+    });
+    // sem fase, ou com o programa completo, nada muda (nem a identidade)
+    expect(aplicarFase(p.dias, undefined)).toBe(p.dias);
+    expect(prescricaoDaSemana(p, 3, fasesDeReadaptacao())).toBe(p.dias);
+  });
+
+  it('com a margem pessoal de tempo, a fase usa a mesma margem do programa', () => {
+    const p = programaDe(0.3);
+    expect(p.margemTempo).toBe(0.3);
+    expect(programaDe().margemTempo).toBeUndefined();
+    p.dias.forEach((d) => expect(d.minutosEstimados).toBe(minutos(d.exercicios, 0.3)));
+    const dias = prescricaoDaSemana(p, 1, fasesDeReadaptacao());
+    dias.forEach((d) => {
+      expect(d.minutosEstimados).toBe(minutos(d.exercicios, 0.3));
+      expect(d.minutosEstimados).not.toBe(minutos(d.exercicios));
+    });
   });
 });

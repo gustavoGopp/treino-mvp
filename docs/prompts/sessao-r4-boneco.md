@@ -18,7 +18,7 @@ Leia primeiro:
 - `src/engine/estilo/index.ts` (a cena do Boneco: `cenaEstilo`, `fantasmaDif`, `erroSobreOCerto`, `caixaPerto`, `vistaDaMiniatura`), `src/engine/estilo/corpo.ts` (o corpo), `src/engine/desenho.ts` (`TX`, os rótulos; `VIEWS`), `src/features/guia/Guia.tsx` (a tela do guia: qual vista e qual modo abrem).
 
 ## Regras desta sessão
-- **Conta:** o projeto é acessado só pelas contas pessoais do Gustavo (gustavogopp@gmail.com ou gustavogopp2@gmail.com), nunca pela da Futurum. Tudo o que é produzido fica no git, e só no git: **nada de publicar páginas, artefatos ou documentos fora do repositório.**
+- **Conta:** o projeto é acessado só pelas contas pessoais do Gustavo, nunca pela conta de trabalho. Tudo o que é produzido fica no git, e só no git: **nada de publicar páginas, artefatos ou documentos fora do repositório.**
 - **Não mexa no branch `r3-uso-real`** (o R3, uso real, roda noutra sessão). `privado/` nunca é versionado nem usado; as personas de teste são fictícias (`tests/personas/`).
 - **Branch de trabalho:** crie uma nova a partir da `main` (`d3d2711` ou mais recente), com um nome como `r4-boneco`. A `main` já tem tudo da auditoria. Ida para a `main` só no fim, depois de `npm run check`, `npm run test:e2e` e `npm run auditoria` (duas rodadas com arquivos idênticos), por merge ou rebase, **sem forçar push**, e avisando o Gustavo para exportar os dados do app antes ("Meus dados" → "Guardar uma cópia").
 - **Rede:** está 100% liberada. Leia o que precisar, registre em `docs/pesquisa/fontes.md` com o status de leitura (`00-metodo.md` define `verificado-busca`, `resumo-PubMed`, `texto-completo` e `NÃO VERIFICADO`), e nunca contorne bloqueio anti-robô. Nada de inventar estudo.

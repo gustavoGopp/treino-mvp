@@ -414,7 +414,7 @@ As linhas de base do motor (`novas.json`, `estilo-a.json`) ganharam só os 9 exe
 | 7 | Flexão com as mãos fechadas para dor leve no punho | **entra**, só para quem marcou punho de 3 a 5 (flexão, flexão com as mãos juntas e pike) |
 | 8 | Juntar os avisos | **juntar e encurtar todos** (os textos novos passam pelo Gustavo antes) |
 | 9 | Animações do elástico | **agora**, logo depois do fechamento (peça nova no motor e 12 folhas) |
-| 10 | Página "Diagnóstico do treino-mvp" | **este projeto não usa a conta da Futurum** (só gustavogopp@gmail.com ou gustavogopp2@gmail.com). A sessão rodou nessa conta; por decisão do Gustavo, tudo fica só no git. A seção atualizada fica em `docs/revisoes/equipamento-minimo/secao-diagnostico.html`, para colar a partir da conta certa |
+| 10 | Página "Diagnóstico do treino-mvp" | **este projeto não usa a conta de trabalho** (só as contas pessoais do Gustavo). A sessão rodou nessa conta; por decisão do Gustavo, tudo fica só no git. A seção atualizada fica em `docs/revisoes/equipamento-minimo/secao-diagnostico.html`, para colar a partir da conta certa |
 | 11 | Levar para a `main` | **direto, sem commit de merge**, depois de `check`, e2e e auditoria passarem e de o Gustavo exportar os dados |
 
 ### Animações do elástico: o R4 vem antes (04/11/2026)

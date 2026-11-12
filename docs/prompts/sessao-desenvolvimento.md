@@ -39,7 +39,7 @@ Você vai conduzir a **sessão de desenvolvimento** do **treino-mvp**, um web ap
 7. **Pare e espere o Gustavo** ao fim de cada marco: mostre, em linguagem simples, o que mudou para quem usa, os números e o que ficou de fora. Com o ok dele, leve à `main` por merge, sem forçar push, avisando-o antes para exportar os dados do app ("Meus dados" → "Guardar uma cópia"). Só então comece o marco seguinte.
 
 **Regras de sempre**
-- **Conta:** o projeto é acessado só pelas contas pessoais do Gustavo (gustavogopp@gmail.com ou gustavogopp2@gmail.com), nunca pela da Futurum. Tudo o que é produzido fica no git, e só no git: nada de publicar páginas, artefatos ou documentos fora do repositório.
+- **Conta:** o projeto é acessado só pelas contas pessoais do Gustavo, nunca pela conta de trabalho. Tudo o que é produzido fica no git, e só no git: nada de publicar páginas, artefatos ou documentos fora do repositório.
 - **Dados:** `privado/` nunca é versionado, copiado nem usado em fixtures, README, devlog ou posts. As personas de teste são fictícias (`tests/personas/`). `tests/repo/privacidade.test.ts` tem de continuar passando.
 - **Não mexa no branch `r3-uso-real`** (o uso real do Gustavo). O que mudar para ele vai como recado.
 - **Gerador determinístico:** a mesma entrada dá a mesma saída; sem `Math.random` nem `Date.now` em `src/domain/`. A lógica "vaga por função, nunca por equipamento" fica.

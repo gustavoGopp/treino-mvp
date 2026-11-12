@@ -196,6 +196,8 @@ describe('a carga da volta em cada tipo de carga (readaptacao.semana1)', () => {
   it('kg pela lista do inventário de hoje, sempre para baixo; barra sem lista em degraus de 2,5 kg', () => {
     expect(cargaDaVolta({ tipo: 'kg', kg: 10 }, 0.1, op('supino-reto', bruno.inventario))).toEqual({ tipo: 'kg', kg: 9 });
     expect(cargaDaVolta({ tipo: 'kg', kg: 40 }, 0.15, { tipo: 'barra' })).toEqual({ tipo: 'kg', kg: 32.5 });
+    // a barra vazia é o piso: na volta, quem usava só a barra continua com ela (antes, 16 kg, que não existe)
+    expect(cargaDaVolta({ tipo: 'kg', kg: 20 }, 0.1, { tipo: 'barra', passoKg: 4, baseKg: 20 })).toEqual({ tipo: 'kg', kg: 20 });
   });
   it('placa × (1 − redução), para baixo; anilhas no múltiplo da menor anilha; contrapeso com uma placa a mais; degrau um abaixo', () => {
     expect(cargaDaVolta({ tipo: 'placa', placa: 8 }, 0.1, { tipo: 'polia' })).toEqual({ tipo: 'placa', placa: 7 });

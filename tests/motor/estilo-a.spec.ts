@@ -7,14 +7,14 @@ import { build } from 'esbuild';
 // vista e modo e em cada erro, a 24 tempos por ciclo. Ela só é gravada depois que o Gustavo aprova as folhas de
 // contatos; depois disso, qualquer mudança no desenho do boneco falha aqui.
 // Gravar depois de uma aprovação: ATUALIZAR_ESTILO_A=1 npx playwright test --project=motor estilo-a
-// O estilo clássico continua comparado com o guia original em equivalencia.spec.ts e no guia-visual.spec.ts.
+// O estilo clássico continua comparado com o guia original em equivalencia.spec.ts.
 const CAMINHO = 'tests/visual/linha-de-base/estilo-a.json';
 const N = 24;
 const sha = (s: string) => createHash('sha256').update(s).digest('hex');
 type Base = { nTempos: number; exercicios: { id: string; quadros: Record<string, string[]> }[] };
 
 test('o boneco padrão (estilo A) continua igual ao aprovado', async ({ page }) => {
-  test.setTimeout(240_000); // 82 animações × vistas × modos × 24 tempos (R4, 05/11/2026)
+  test.setTimeout(240_000); // todas as animações da linha de base × vistas × modos × 24 tempos
   const gerar = !!process.env.ATUALIZAR_ESTILO_A;
   test.skip(!gerar && !existsSync(CAMINHO), 'linha de base do estilo A ainda não aprovada');
   const bundle = await build({

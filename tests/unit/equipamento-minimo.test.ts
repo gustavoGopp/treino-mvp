@@ -110,6 +110,13 @@ describe(`equipamento mínimo: o vazio e cada item sozinho (${casos.length} prog
     }
   });
 
+  it('sem nada para puxar, a divisão escolhida avisa que os dias de puxar ficam com outros músculos, também nas clássicas ("B: costas")', () => {
+    for (const [divisao, dias] of [['si-2x', 4], ['classica-3', 3], ['classica-4', 4], ['classica-5', 5]] as const) {
+      const p = gerar({ ...perfil('intermediario', 'ct-abc'), diasSemana: dias, divisao }, {});
+      expect(p.avisos.filter((a) => a.regraId === 'divisao.sem-puxar'), divisao).toHaveLength(1);
+    }
+  });
+
   it('sem nada para puxar e sem divisão escolhida, a recomendada é a de corpo todo (divisao.sem-puxar)', () => {
     for (const dias of [4, 5] as const) {
       const p = gerar({ ...perfil('intermediario', 'ct-abc'), diasSemana: dias, divisao: undefined }, {});

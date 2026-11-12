@@ -4,6 +4,41 @@ import { ALTURAS_POLIA, ESTACOES_MULTIFUNCIONAL, inventarioSchema, ITENS, ITEM_I
 // Visão (M4): o modelo só sugere; a pessoa confirma. Funções puras, sem rede.
 // Plano: docs/PLANO-MVP.md, seção g. Decisões: docs/pesquisa/11-decisoes-m4.md.
 
+/**
+ * Limites do pedido da foto, os mesmos no aparelho e no servidor. A Vercel recusa corpo acima de 4,5 MB antes de a
+ * função rodar (vercel.com/docs/functions/limitations), então a soma das fotos tem teto próprio, com folga: a foto
+ * reduzida no aparelho (1568 px, JPEG 0,8) costuma ficar bem abaixo de 1 MB em base64.
+ */
+export const LIMITES_FOTO = { maxFotos: 5, maxBase64PorFoto: 2_000_000, maxBase64Total: 4_000_000 };
+
+/** Quanto o aparelho espera pela análise antes de desistir: um pouco mais que a duração máxima da função (60 s). */
+export const ESPERA_MAX_FOTO_MS = 70_000;
+
+/**
+ * As mensagens de erro da foto, uma por tipo (auditoria de 12/11/2026: qualquer erro de rede virava "Sem conexão", e
+ * a foto que o navegador não abre mostrava o texto dele, em inglês). Todas levam à lista, que faz o mesmo.
+ */
+export const ERRO_DA_FOTO = {
+  abrir: 'Não foi possível abrir uma das fotos neste navegador (alguns formatos, como o HEIC, não abrem). Tire a foto de novo ou escolha outra, ou use a lista abaixo.',
+  tamanho: 'As fotos ficaram grandes demais para enviar juntas. Envie menos fotos por vez, ou use a lista abaixo.',
+  semConexao: 'Sem conexão. Use a lista abaixo.',
+  servidor: 'Não foi possível falar com o servidor agora. Tente de novo em instantes, ou use a lista abaixo.',
+  demora: 'A análise demorou demais e foi interrompida. Tente com menos fotos, ou use a lista abaixo.',
+  analise: 'Não foi possível analisar as fotos agora. Use a lista.',
+} as const;
+
+/** A mensagem de uma resposta de erro do servidor: a que ele mandou, se mandou; senão, pelo código da resposta. */
+export function erroDaResposta(status: number, doServidor?: unknown): string {
+  if (typeof doServidor === 'string' && doServidor.trim()) return doServidor;
+  return status === 413 ? ERRO_DA_FOTO.tamanho : ERRO_DA_FOTO.analise;
+}
+
+/** A mensagem de um pedido que não teve resposta: o tempo acabou, o aparelho está sem rede, ou o servidor não respondeu. */
+export function erroSemResposta(nomeDoErro: string | undefined, conectado: boolean): string {
+  if (nomeDoErro === 'TimeoutError' || nomeDoErro === 'AbortError') return ERRO_DA_FOTO.demora;
+  return conectado ? ERRO_DA_FOTO.servidor : ERRO_DA_FOTO.semConexao;
+}
+
 export const CONFIANCAS = ['alta', 'media', 'baixa'] as const;
 export type Confianca = (typeof CONFIANCAS)[number];
 

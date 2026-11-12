@@ -42,7 +42,7 @@ sessão do Claude Code com o repositório.
 São 4 etapas: créditos, chave, convites e ligar. Faça na ordem.
 
 ### Etapa A. Créditos na Anthropic (o seu teto de gasto)
-1. Entre em https://platform.claude.com com a sua conta pessoal (não a da Futurum).
+1. Entre em https://platform.claude.com com a sua conta pessoal (não a conta de trabalho).
 2. Menu da esquerda → **Gastos** → **Cobrança e pagamentos**.
 3. Confira que aparece **"A recarga automática está desativada"**. Deixe assim: é ela que garante que o gasto nunca passa do saldo.
 4. Hoje o saldo é **US$ 4,97**. Dá para uns 35 envios de 5 fotos (estimativa). Se quiser mais, toque em **Comprar créditos**

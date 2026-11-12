@@ -1,4 +1,7 @@
 import type { z } from 'zod';
+import { minutos, type ExercicioPrescrito } from '../domain/gerador';
+import { sanarInventario } from '../domain/taxonomia/equipamentos';
+import { acertarIds } from './ids';
 import { estadoSchema, NOME_LOCAL_PADRAO, VERSAO_ESTADO, type Estado } from './esquema';
 
 // Migrações do estado guardado. Cada entrada leva da versão N para N + 1.
@@ -48,7 +51,42 @@ export const MIGRACOES: Record<number, Migracao> = {
   // semana leve, nenhuma resposta e nenhuma margem de tempo. A semana do programa e as pausas saem do histórico que já
   // existe, sem gravar nada.
   6: (anterior) => ({ ...anterior }),
+  // 7 → 8 (auditoria de 12/11/2026): a nota de dor dada antes da 1ª série fica no exercício da sessão (`dorSemSerie`).
+  // O campo é opcional e nasce ausente: nada é inventado para as sessões antigas. A versão nova também cobre dois
+  // campos que tinham entrado na 7 sem versão própria (`rotina.objetivo` e `respostas.semanaLeveEm`): um app da
+  // versão 7 que ainda não conhece esses campos passa a recusar o dado, em vez de regravá-lo sem eles.
+  // Também na 8: a sessão ganha `foraDaBiblioteca`, onde fica o exercício registrado cujo id saiu da biblioteca
+  // (storage/ids.ts). Opcional e ausente nas sessões antigas.
+  // E os inventários guardados com halteres de mínimo acima do máximo, passo fora do limite ou manoplas sem anilha,
+  // que o esquema passa a recusar, são acertados antes (taxonomia/equipamentos.ts, sanarInventario).
+  // Por fim, o programa passa a dizer com que margem de tempo foi estimado (`margemTempo`; tempo.calibracao), para os
+  // minutos de uma fase saírem com a mesma margem. No programa antigo ela é reconhecida pelos próprios números: se os
+  // minutos guardados do 1º dia batem com a margem pessoal e não com a padrão, o programa foi gerado com a pessoal.
+  7: (anterior) => {
+    const saida = comMargemDoPrograma(anterior);
+    if (!Array.isArray(saida.locais)) return saida;
+    const locais = saida.locais.map((l: unknown) => {
+      const local = l as Record<string, unknown> | null;
+      const inv = local?.inventario;
+      return local && inv && typeof inv === 'object' && !Array.isArray(inv) ? { ...local, inventario: sanarInventario(inv as Record<string, unknown>) } : l;
+    });
+    return { ...saida, locais };
+  },
 };
+
+/** 7 → 8: grava no programa salvo a margem pessoal de tempo, quando os minutos guardados mostram que ele a usou. */
+function comMargemDoPrograma(anterior: Record<string, unknown>): Record<string, unknown> {
+  const margem = anterior.margemTempo;
+  const guardado = anterior.programa as { programa?: { dias?: { exercicios: ExercicioPrescrito[]; minutosEstimados: number }[]; margemTempo?: number } } | undefined;
+  const dia = guardado?.programa?.dias?.[0];
+  if (typeof margem !== 'number' || !guardado?.programa || !dia || guardado.programa.margemTempo !== undefined) return { ...anterior };
+  try {
+    if (minutos(dia.exercicios, margem) !== dia.minutosEstimados || minutos(dia.exercicios) === dia.minutosEstimados) return { ...anterior };
+  } catch {
+    return { ...anterior }; // formato inesperado: o esquema decide
+  }
+  return { ...anterior, programa: { ...guardado, programa: { ...guardado.programa, margemTempo: margem } } };
+}
 
 export type ResultadoMigracao = { ok: true; estado: Estado } | { ok: false; erro: string };
 
@@ -71,7 +109,8 @@ export function migrar(
     dados = { ...passo(dados), versao: v + 1 };
   }
 
-  const r = esquema.safeParse(dados);
+  // Ids de exercício renomeados ou que saíram da biblioteca não deixam o estado ilegível (storage/ids.ts).
+  const r = esquema.safeParse(acertarIds(dados));
   if (!r.success) {
     const p = r.error.issues[0]!;
     return { ok: false, erro: `Dado inválido em "${p.path.join('.') || 'raiz'}": ${p.message}.` };

@@ -1,7 +1,6 @@
-import type { Porque } from '../../domain/gerador';
-import { diaNoLocal, type DiaNoLocal, type Troca } from '../../domain/locais';
+import { diaNoLocal, type DiaNoLocal } from '../../domain/locais';
 import type { SerieRegistrada } from '../../domain/progressao';
-import { hojeDaSessao, hojeNoPrograma, opcoesDeHoje, proximoDia, semanaLeveAtiva, type Hoje, type OpcoesSugestao, type Sessao } from '../../domain/sessao';
+import { hojeDaSessao, hojeNoPrograma, opcoesDeHoje, proximoDia, type Hoje, type OpcoesSugestao, type Sessao } from '../../domain/sessao';
 import type { Inventario } from '../../domain/taxonomia/equipamentos';
 import { localDoPrograma, localDoTreino, localPorId, perfilDe, type Estado } from '../../storage/esquema';
 
@@ -53,12 +52,6 @@ export function opcoesDaCarga(e: Estado, s: Pick<Sessao, 'id' | 'inicio' | 'loca
   };
 }
 
-/** Prévia do dia num local, antes de começar ("onde vou treinar hoje?"). */
-export function previaDoDia(e: Estado, agora: string, diaId: string, localId?: string, fusoMin = 0): { trocas: Troca[]; avisos: Porque[] } {
-  const d = diaDoTreino(e, { id: agora, inicio: agora, diaId, ...(localId ? { localId } : {}), ...(semanaLeveAtiva(e.semanaLeve, agora, fusoMin) ? { semanaLeve: true } : {}) }, fusoMin);
-  return { trocas: d?.trocas ?? [], avisos: d?.avisos ?? [] };
-}
-
 /**
  * Começa o treino de um dia (ou o próximo da rotação), no local escolhido (ou no lembrado). O local fica lembrado
  * para a próxima vez. Se já há um treino em andamento, mantém o atual.
@@ -93,17 +86,27 @@ export function alternarPreferencia(e: Estado, funcaoId: string, exId: string): 
 const mudarExercicio = (e: Estado, i: number, f: (x: Sessao['exercicios'][number]) => Sessao['exercicios'][number]): Estado =>
   e.sessaoAtual ? { ...e, sessaoAtual: { ...e.sessaoAtual, exercicios: e.sessaoAtual.exercicios.map((x, j) => (j === i ? f(x) : x)) } } : e;
 
-export const registrarSerie = (e: Estado, i: number, s: SerieRegistrada) => mudarExercicio(e, i, (x) => ({ ...x, series: [...x.series, s] }));
-export const desfazerSerie = (e: Estado, i: number) => mudarExercicio(e, i, (x) => ({ ...x, series: x.series.slice(0, -1) }));
+/** Registra a série. A nota de dor dada antes da 1ª série (`dorSemSerie`) passa para ela. */
+export const registrarSerie = (e: Estado, i: number, s: SerieRegistrada) =>
+  mudarExercicio(e, i, ({ dorSemSerie, ...x }) => ({ ...x, series: [...x.series, comDor(s, dorSemSerie)] }));
+/** Desfaz a última série. Se era a única e levava a nota de dor, a nota volta para o exercício: ela não se perde. */
+export const desfazerSerie = (e: Estado, i: number) =>
+  mudarExercicio(e, i, (x) => {
+    const tirada = x.series.at(-1);
+    const series = x.series.slice(0, -1);
+    return { ...x, series, ...(!series.length && tirada?.dor ? { dorSemSerie: tirada.dor } : {}) };
+  });
 /**
  * A nota de dor do "Senti algo" (seguranca.dor.escala; R5a): fica na última série feita do exercício, com a maior nota
- * se já havia uma. Sem série feita, não há onde guardar: `guardada` volta falso, e quem chama leva a nota para a
- * próxima série registrada dele (`comDor`).
+ * se já havia uma. Sem série feita, fica no próprio exercício (`dorSemSerie`) e passa para a 1ª série que for
+ * registrada; se o exercício for encerrado antes disso, a nota continua nele. `naSerie` diz onde ela ficou.
  */
-export function anotarDor(e: Estado, i: number, nota: number): { estado: Estado; guardada: boolean } {
+export function anotarDor(e: Estado, i: number, nota: number): { estado: Estado; naSerie: boolean } {
   const x = e.sessaoAtual?.exercicios[i];
-  if (!x?.series.length) return { estado: e, guardada: false };
-  return { estado: mudarExercicio(e, i, (y) => ({ ...y, series: y.series.map((s, n) => (n === y.series.length - 1 ? comDor(s, nota) : s)) })), guardada: true };
+  const n = Math.round(nota);
+  if (!x || n < 1) return { estado: e, naSerie: false };
+  if (!x.series.length) return { estado: mudarExercicio(e, i, (y) => ({ ...y, dorSemSerie: Math.max(y.dorSemSerie ?? 0, n) })), naSerie: false };
+  return { estado: mudarExercicio(e, i, (y) => ({ ...y, series: y.series.map((s, k) => (k === y.series.length - 1 ? comDor(s, n) : s)) })), naSerie: true };
 }
 
 /** A série com a nota de dor (a maior, se já havia uma); notas abaixo de 1 não são guardadas. */

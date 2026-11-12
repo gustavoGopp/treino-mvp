@@ -1,26 +1,38 @@
-// @ts-nocheck
 // R4: músculos com forma anatômica simplificada, presos aos ossos do esqueleto, para os estilos A e B.
 // Cada forma segue a origem e a inserção do músculo (fonte em docs/pesquisa/animacoes/r4-estilo-do-boneco.md,
 // seção 3). O contorno exato é simplificação de design: o objetivo é reconhecer o músculo, não um atlas.
 // Um músculo só aparece se a face dele estiver virada para quem olha (o bíceps não aparece na vista de trás).
 import { CTX } from '../contexto';
 import { f1, isSide, push } from '../desenho';
-import { scapPts } from '../esqueleto';
-import { add, comb, dot, len, mul, norm, sub } from '../math';
+import { add, comb, dot, len, mul, norm, scapPts, sub } from '../port';
+import type { Esqueleto, Exercicio, IdMusculo, Lado, PartesDoCorpo, PontoTela, V2, V3 } from '../tipos';
+import type { EstiloNovo } from './corpo';
 
-const lerp = (a, b, t) => add(a, mul(sub(b, a), t));
+/** As formas anatômicas dos estilos novos (as chaves de FORMAS). */
+export type IdForma =
+  | 'dorsal' | 'redondoMaior' | 'romboides' | 'trapMedio' | 'trapInferior' | 'deltPost' | 'biceps' | 'quadriceps'
+  | 'adutores' | 'gluteos' | 'peitoralClav' | 'peitoralEst' | 'deltAnt' | 'deltLat' | 'trapSuperior' | 'triceps'
+  | 'antebraco' | 'posteriores' | 'panturrilha' | 'eretores' | 'retoAbdominal' | 'obliquos';
+/** Um músculo desenhado: a parte do corpo em que fica, a normal da face visível (null = sempre visível) e o contorno, em 3D (p) ou já na tela (q). */
+export type Forma =
+  | { host: 'tronco' | 'braco' | 'perna'; n: V3 | null; p: V3[]; q?: undefined }
+  | { host: 'tronco' | 'braco' | 'perna'; n: V3 | null; q: V2[]; p?: undefined };
+/** Um item da lista de um exercício: [forma, lado ('C' = músculo central, um só), principal ou secundário]. */
+export type ItemDaLista = [IdForma, Lado | 'RL' | 'C', 'p' | 's'];
+
+const lerp = (a: V3, b: V3, t: number) => add(a, mul(sub(b, a), t));
 
 /** Caminho fechado suave (Catmull-Rom) pelos pontos já projetados. */
-export function caminhoSuave(Q) {
+export function caminhoSuave(Q: PontoTela[]) {
   const n = Q.length;
-  let d = `M${f1(Q[0][0])},${f1(Q[0][1])}`;
+  let d = `M${f1(Q[0]![0])},${f1(Q[0]![1])}`;
   for (let i = 0; i < n; i++) {
-    const p0 = Q[(i - 1 + n) % n],
-      p1 = Q[i],
-      p2 = Q[(i + 1) % n],
-      p3 = Q[(i + 2) % n];
-    const c1 = [p1[0] + (p2[0] - p0[0]) / 6, p1[1] + (p2[1] - p0[1]) / 6],
-      c2 = [p2[0] - (p3[0] - p1[0]) / 6, p2[1] - (p3[1] - p1[1]) / 6];
+    const p0 = Q[(i - 1 + n) % n]!,
+      p1 = Q[i]!,
+      p2 = Q[(i + 1) % n]!,
+      p3 = Q[(i + 2) % n]!;
+    const c1: V2 = [p1[0] + (p2[0] - p0[0]) / 6, p1[1] + (p2[1] - p0[1]) / 6],
+      c2: V2 = [p2[0] - (p3[0] - p1[0]) / 6, p2[1] - (p3[1] - p1[1]) / 6];
     d += `C${f1(c1[0])},${f1(c1[1])} ${f1(c2[0])},${f1(c2[1])} ${f1(p2[0])},${f1(p2[1])}`;
   }
   return d + 'Z';
@@ -31,7 +43,7 @@ export function caminhoSuave(Q) {
  * quando o membro aponta para quem olha. `fora` puxa o fuso para a face do músculo, sem passar da borda do membro
  * (raio r). Meia-largura máxima w.
  */
-function fuso2(a, b, fora, w, r, t0 = 0.08, t1 = 0.92, n = 8) {
+function fuso2(a: V3, b: V3, fora: V3, w: number, r: number, t0 = 0.08, t1 = 0.92, n = 8): V2[] {
   const A = CTX.PJ(lerp(a, b, t0)),
     Bp = CTX.PJ(lerp(a, b, t1));
   const dx = Bp[0] - A[0],
@@ -48,8 +60,8 @@ function fuso2(a, b, fora, w, r, t0 = 0.08, t1 = 0.92, n = 8) {
     fx *= lim / fl;
     fy *= lim / fl;
   }
-  const ida = [],
-    volta = [];
+  const ida: V2[] = [],
+    volta: V2[] = [];
   for (let i = 0; i <= n; i++) {
     const t = i / n,
       u = Math.pow(Math.sin(Math.PI * t), 0.7);
@@ -62,13 +74,13 @@ function fuso2(a, b, fora, w, r, t0 = 0.08, t1 = 0.92, n = 8) {
 }
 
 // eixos do braço e da coxa (os mesmos critérios de MUS.biceps e MUS.quads em ../desenho.ts)
-function eixoBraco(sk, k) {
+function eixoBraco(sk: Esqueleto, k: Lado) {
   const sd = sk.side[k];
   let an = sub(sd.fa, mul(sd.uad, dot(sd.fa, sd.uad)));
   an = len(an) < 0.15 ? sk.fT : norm(an);
   return { sd, an };
 }
-function eixoCoxa(sk, k) {
+function eixoCoxa(sk: Esqueleto, k: Lado) {
   const sd = sk.side[k];
   const t = norm(sub(sd.K, sd.Hp)),
     sh = norm(sub(sd.A, sd.K));
@@ -84,7 +96,7 @@ function eixoCoxa(sk, k) {
 }
 
 // Cada músculo devolve { p: pontos 3D do contorno, n: normal da face visível, host: parte do corpo }.
-export const FORMAS = {
+export const FORMAS: Record<IdForma, (sk: Esqueleto, k: Lado) => Forma> = {
   // Grande dorsal: origem nos processos espinhosos de T7 a L5, fáscia toracolombar, crista ilíaca e últimas costelas;
   // inserção no sulco intertubercular do úmero. Leque do quadril/lombar até a axila.
   dorsal(sk, k) {
@@ -281,7 +293,7 @@ export const FORMAS = {
   eretores(sk) {
     const { N, M, P, uT, fT, xT, uL, fL, xL } = sk;
     const lado = isSide();
-    const fx = (base, h, uu, ff, xx, a, b) => comb(1, base, h, uu, a, xx, b, ff);
+    const fx = (base: V3, h: number, uu: V3, ff: V3, xx: V3, a: number, b: number) => comb(1, base, h, uu, a, xx, b, ff);
     const borda = lado
       ? [fx(P, 3, uL, fL, xL, 0, -11), fx(M, 0, uT, fT, xT, 0, -9.8), fx(N, -8, uT, fT, xT, 0, -9), fx(N, -8, uT, fT, xT, 0, -5.5), fx(M, 0, uT, fT, xT, 0, -6.3), fx(P, 3, uL, fL, xL, 0, -7.5)]
       : [fx(P, 3, uL, fL, xL, -4, -10), fx(M, 0, uT, fT, xT, -4.5, -9.5), fx(N, -8, uT, fT, xT, -3.5, -8.5), fx(N, -8, uT, fT, xT, 3.5, -8.5), fx(M, 0, uT, fT, xT, 4.5, -9.5), fx(P, 3, uL, fL, xL, 4, -10)];
@@ -290,7 +302,7 @@ export const FORMAS = {
   // Reto do abdome: origem na crista e na sínfise púbica; inserção no processo xifoide e nas cartilagens das costelas 5 a 7.
   retoAbdominal(sk) {
     const { N, M, P, uT, fT, xT, uL, fL, xL } = sk;
-    const fx = (base, h, uu, ff, xx, a, b) => comb(1, base, h, uu, a, xx, b, ff);
+    const fx = (base: V3, h: number, uu: V3, ff: V3, xx: V3, a: number, b: number) => comb(1, base, h, uu, a, xx, b, ff);
     const borda = isSide()
       ? [fx(N, -13, uT, fT, xT, 0, 11), fx(M, 2, uT, fT, xT, 0, 10), fx(P, 2, uL, fL, xL, 0, 9.3), fx(P, 2, uL, fL, xL, 0, 4.5), fx(M, 2, uT, fT, xT, 0, 4.5), fx(N, -13, uT, fT, xT, 0, 5.5)]
       : [fx(N, -13, uT, fT, xT, -5, 11), fx(M, 2, uT, fT, xT, -4.5, 10), fx(P, 2, uL, fL, xL, -3, 9.3), fx(P, 2, uL, fL, xL, 3, 9.3), fx(M, 2, uT, fT, xT, 4.5, 10), fx(N, -13, uT, fT, xT, 5, 11)];
@@ -311,7 +323,7 @@ export const FORMAS = {
 // Os músculos de cada exercício vêm de ex.muscles (os mesmos do estilo clássico), trocando cada id pelas formas novas.
 // Puxada unilateral e goblet têm a lista do R4 (decisão do Gustavo em 02/11/2026: todos os músculos na vista de trás
 // da puxada; adutores no goblet, por kubo2019).
-const MAPA = {
+const MAPA: Record<IdMusculo, IdForma[]> = {
   lats: ['redondoMaior', 'dorsal'],
   midTrap: ['romboides', 'trapMedio', 'trapInferior'],
   upTrap: ['trapSuperior'],
@@ -333,10 +345,10 @@ const MAPA = {
   adutores: ['adutores'],
 };
 // do mais profundo para o mais superficial (o trapézio cobre os romboides; o peitoral, as costelas)
-const ORDEM = ['romboides', 'redondoMaior', 'dorsal', 'eretores', 'trapMedio', 'trapInferior', 'trapSuperior', 'obliquos', 'retoAbdominal', 'peitoralEst', 'peitoralClav', 'gluteos', 'adutores', 'posteriores', 'quadriceps', 'panturrilha', 'deltPost', 'deltLat', 'deltAnt', 'triceps', 'biceps', 'antebraco'];
-const CENTRAIS = new Set(['eretores', 'retoAbdominal']);
+const ORDEM: IdForma[] = ['romboides', 'redondoMaior', 'dorsal', 'eretores', 'trapMedio', 'trapInferior', 'trapSuperior', 'obliquos', 'retoAbdominal', 'peitoralEst', 'peitoralClav', 'gluteos', 'adutores', 'posteriores', 'quadriceps', 'panturrilha', 'deltPost', 'deltLat', 'deltAnt', 'triceps', 'biceps', 'antebraco'];
+const CENTRAIS = new Set<IdForma>(['eretores', 'retoAbdominal']);
 
-export const LISTA = {
+export const LISTA: Record<string, ItemDaLista[]> = {
   'puxada-unilateral': [
     ['romboides', 'R', 's'],
     ['redondoMaior', 'R', 'p'],
@@ -451,17 +463,17 @@ export const LISTA = {
 };
 
 /** Lista de [forma, lado, tipo] do exercício, do mais profundo para o mais superficial. */
-export function listaDe(ex) {
-  if (LISTA[ex.id]) return LISTA[ex.id];
-  const out = new Map();
-  for (const [tipo, lista] of [['s', ex.muscles.s], ['p', ex.muscles.p]])
+export function listaDe(ex: Exercicio): ItemDaLista[] {
+  if (LISTA[ex.id]) return LISTA[ex.id]!;
+  const out = new Map<string, ItemDaLista>();
+  for (const [tipo, lista] of [['s', ex.muscles.s], ['p', ex.muscles.p]] as const)
     for (const [id, lados] of lista)
       for (const f of MAPA[id] ?? []) {
-        const ks = CENTRAIS.has(f) ? ['C'] : lados === 'RL' ? ['R', 'L'] : [lados];
+        const ks: ItemDaLista[1][] = CENTRAIS.has(f) ? ['C'] : lados === 'RL' ? ['R', 'L'] : [lados];
         for (const k of ks) out.set(f + k, [f, k, tipo]); // o principal vence o secundário
       }
   // as 3 partes do deltoide são vizinhas (não se cobrem no corpo): entre elas, o principal fica por cima
-  const pos = ([f, , tipo]) => (f.startsWith('delt') ? ORDEM.indexOf('deltPost') + (tipo === 'p' ? 0.5 : 0) : ORDEM.indexOf(f));
+  const pos = ([f, , tipo]: ItemDaLista) => (f.startsWith('delt') ? ORDEM.indexOf('deltPost') + (tipo === 'p' ? 0.5 : 0) : ORDEM.indexOf(f));
   return [...out.values()].sort((a, b) => pos(a) - pos(b));
 }
 
@@ -509,18 +521,18 @@ const LISTRAS = `<defs><pattern id="mh-listras" width="3.2" height="3.2" pattern
 
 /** Área na tela dos músculos principais do último desenho (para escolher a vista da miniatura do cartão). */
 export const medida = { areaPrincipal: 0 };
-const area = (Q) => Math.abs(Q.reduce((s, q, i) => { const r = Q[(i + 1) % Q.length]; return s + q[0] * r[1] - r[0] * q[1]; }, 0)) / 2;
+const area = (Q: PontoTela[]) => Math.abs(Q.reduce((s, q, i) => { const r = Q[(i + 1) % Q.length]!; return s + q[0] * r[1] - r[0] * q[1]; }, 0)) / 2;
 
-export function musculosNovos(ex, sk, partes, estilo) {
+export function musculosNovos(ex: Exercicio, sk: Esqueleto, partes: PartesDoCorpo, estilo: EstiloNovo) {
   medida.areaPrincipal = 0;
   const soAjuda = SO_AJUDA[ex.id] ?? [];
   let listras = false;
   for (const [id, lados, tipo0] of listaDe(ex)) {
     const tipo = tipo0 === 's' && soAjuda.includes(id) ? 'h' : tipo0;
-    for (const k of lados === 'RL' ? ['R', 'L'] : [lados]) {
+    for (const k of lados === 'RL' ? (['R', 'L'] as const) : [lados]) {
       const m = FORMAS[id](sk, k === 'C' ? 'R' : k);
       if (m.n && CTX.PJ(m.n)[2] < -0.25) continue; // face virada para o outro lado
-      const d = m.host === 'tronco' ? partes.tronco : partes[m.host][k === 'C' ? 'R' : k]; // por cima da parte, por baixo do que está na frente
+      const d = m.host === 'tronco' ? partes.tronco : partes[m.host][k === 'C' ? 'R' : k]!; // por cima da parte, por baixo do que está na frente
       const Q = m.q ?? m.p.map(CTX.PJ);
       if (tipo === 'p') medida.areaPrincipal += area(Q);
       if (tipo === 'h' && !listras) {

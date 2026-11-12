@@ -22,7 +22,7 @@ Você vai conduzir o **R5d, "o foco que aparece"**, do treino-mvp, um web app (P
 **Leia primeiro:** o `CLAUDE.md`; a parte 3 de `docs/revisoes/proximos-passos.md`; `docs/revisoes/proximos-passos/a-qualidade.md` (pacote B, a D-4c medida, os pedidos ao domínio 4); `g-biblioteca-ampliada.md` (seções 1, 5 e 6: a régua, o que os treinadores criticaram, como foi a revisão cega); `docs/pesquisa-v2/15-prioridade-e-manutencao.md`, `14-combinacoes-por-dia.md` e `17-biblioteca-ampliada.md` (parte G5, a régua); `docs/revisoes/qualidade-treinos.md` (Parte D, o que a prioridade faz); `src/domain/gerador/index.ts` (`metasDoPerfil`, `cortarTempo`, a sobra de tempo, os avisos), `divisoes.ts`, `funcoes.json`; `src/domain/progressao/escadas.json`.
 
 **Regras desta sessão**
-- Conta: só as contas pessoais do Gustavo (gustavogopp@gmail.com ou gustavogopp2@gmail.com), nunca a da Futurum. Tudo fica no git, e só no git.
+- Conta: só as contas pessoais do Gustavo, nunca a conta de trabalho. Tudo fica no git, e só no git.
 - Não mexa no branch `r3-uso-real` nem na branch do redesign. `privado/` nunca é versionado nem usado; as personas são fictícias.
 - Branch nova a partir da `main`. Commits pequenos, em pt-BR e no imperativo, com push. Ida para a `main` só com o ok do Gustavo, por merge sem forçar.
 - Toda regra nova ou mudada entra primeiro em `docs/pesquisa/regras.md`, com selo e fonte. Gerador determinístico. **Nenhuma mudança no gerador sem o antes e o depois das 6 personas** e da grade (`npm run auditoria:qualidade`, com a régua da G5 que o R5-CL pôs na auditoria).

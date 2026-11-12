@@ -2,7 +2,8 @@ import { useEffect, useId, useRef, useState, type ReactNode } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { textoUltimaCopia } from '../../domain/dados';
 import { importarJson } from '../../storage/arquivo';
-import { consultarPersistencia } from '../../storage/idb';
+import { consultarPersistencia, lerBruto, lerIlegivel } from '../../storage/idb';
+import { AvisoSalvar } from '../app/avisos';
 import { baixarCopia } from '../app/copia';
 import { agoraIso, useApp } from '../app/estado';
 import { apagarLocal, apagarTodosLocais, dataCurta, lerLocal, LOCAL } from '../app/local';
@@ -10,6 +11,7 @@ import { AvisarProblema, TextoFotoCurto } from '../app/privacidade';
 import { NavInferior, Selo, Titulo, Topo } from '../app/ui';
 import { Folha } from '../app/Folha';
 import { EscolhaEstiloBoneco } from './EstiloBoneco';
+import { apagarEstiloBoneco } from '../app/estiloBoneco';
 
 // Meus dados: exportar e importar em JSON, apagar tudo e refazer a triagem. Nada sai do aparelho sem a pessoa.
 // R5c: a data da última cópia (dados.copia), o aviso quando o navegador nega o armazenamento persistente
@@ -18,7 +20,7 @@ import { EscolhaEstiloBoneco } from './EstiloBoneco';
 // por último, confirmado num diálogo.
 const OBJETIVO = { cutting: 'Manter o músculo enquanto perco peso', forca: 'Ficar mais forte', saude: 'Saúde e disposição', hipertrofia: 'Ganhar músculo' } as const;
 export function Dados() {
-  const { estado, carregado, persistente, erroCarga, substituir, limpar } = useApp();
+  const { estado, carregado, persistente, erroCarga, cargaFalhou, substituir, limpar } = useApp();
   const navigate = useNavigate();
   const arquivo = useRef<HTMLInputElement>(null);
   const [msg, setMsg] = useState('');
@@ -37,6 +39,17 @@ export function Dados() {
       vivo = false;
     };
   }, []);
+  // O dado antigo que o app não leu: ainda na chave principal (cargaFalhou) ou já guardado à parte, depois de um salvar.
+  const [temIlegivel, setTemIlegivel] = useState(false);
+  useEffect(() => {
+    let vivo = true;
+    lerIlegivel()
+      .then((b) => vivo && setTemIlegivel(b !== undefined))
+      .catch(() => undefined);
+    return () => {
+      vivo = false;
+    };
+  }, [cargaFalhou]);
   if (!carregado) return null;
   const guardaPermanente = persistente ?? consultada;
 
@@ -47,6 +60,22 @@ export function Dados() {
     setUltimaCopia(lerLocal(LOCAL.ultimaCopia));
     setErro('');
     setMsg('Arquivo exportado. Guarde-o num lugar seguro: ele tem seus dados de saúde.');
+  };
+
+  const exportarNaoLido = async () => {
+    setMsg('');
+    try {
+      const bruto = cargaFalhou ? await lerBruto() : await lerIlegivel();
+      if (bruto === undefined) {
+        setErro('Não há dados antigos guardados neste aparelho.');
+        return;
+      }
+      baixarCopia(bruto);
+      setErro('');
+      setMsg('Arquivo exportado com os dados que o app não conseguiu ler. Guarde-o: ele tem seus dados de saúde.');
+    } catch {
+      setErro('Não foi possível ler os dados deste aparelho.');
+    }
   };
 
   /** Devolve true quando importou (a folha fecha e a mensagem aparece na página). */
@@ -73,6 +102,7 @@ export function Dados() {
   const apagar = async () => {
     await limpar();
     apagarTodosLocais();
+    apagarEstiloBoneco();
     setFolha(null);
     navigate('/');
   };
@@ -86,6 +116,7 @@ export function Dados() {
     <div className={estado.programa ? 'wrap app com-nav' : 'wrap app'}>
       <Topo direita={estado.programa ? undefined : <Link to="/">Início</Link>} />
       <main className="conteudo dados">
+        <AvisoSalvar />
         <Titulo>Meus dados</Titulo>
         <p className="ajuda">
           Tudo fica guardado só neste aparelho. <TextoFotoCurto />
@@ -101,6 +132,14 @@ export function Dados() {
         {erroCarga && (
           <div className="caixa-erro" role="alert">
             {erroCarga}
+          </div>
+        )}
+        {(cargaFalhou || temIlegivel) && (
+          <div className="warnbox pilha" role="note">
+            <p>Os dados que o app não conseguiu ler continuam guardados neste aparelho. Exporte-os para não perdê-los.</p>
+            <button type="button" className="btn sec" onClick={() => void exportarNaoLido()}>
+              Exportar os dados que não foram lidos
+            </button>
           </div>
         )}
         <p role="status" className="status">

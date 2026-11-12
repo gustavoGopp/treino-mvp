@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { proximaCarga, serieEfetiva, sugerirProgressao, sugerirSemanaLeve, type Carga, type SessaoExercicio } from '../../src/domain/progressao';
+import { haCargaMenor, proximaCarga, serieEfetiva, sugerirProgressao, sugerirSemanaLeve, type Carga, type SessaoExercicio } from '../../src/domain/progressao';
 
 const kg = (k: number): Carga => ({ tipo: 'kg', kg: k });
 const sessao = (c: Carga, reps: number[], rir = 1, extra: Partial<SessaoExercicio['series'][number]> = {}): SessaoExercicio => ({
@@ -16,6 +16,26 @@ describe('dupla progressão', () => {
   it('topo da faixa em 2 sessões seguidas: subir para o próximo halter', () => {
     const h = [sessao(kg(20), [12, 12, 12]), sessao(kg(20), [12, 12, 12])];
     expect(sugerirProgressao(h, alvo, { tipo: 'halter', lista: [20, 22] })).toMatchObject({ acao: 'subir', proxima: kg(22), regraId: 'progressao.subir' });
+  });
+  // Auditoria de 12/11/2026: o topo conferia a carga só na 1ª série (20 kg × 12, depois 14 kg × 12 e 14 kg × 12, duas
+  // vezes, sugeria 22 kg). Decisão do Gustavo: a carga vale em todas as séries; série mais leve não conta como topo.
+  it('série mais leve que a 1ª não conta como topo: não sobe', () => {
+    const mista = (): SessaoExercicio => ({ series: [20, 14, 14].map((k) => ({ carga: kg(k), reps: 12, rir: 1 })) });
+    const s = sugerirProgressao([mista(), mista()], alvo, { tipo: 'halter', lista: [14, 20, 22] });
+    expect(s).toEqual({ acao: 'manter', motivo: 'Para subir, faça todas as séries com a carga de 20 kg: a série mais leve não conta como topo da faixa.', regraId: 'progressao.subir' });
+    // uma sessão mista e outra inteira na carga também não bastam: são 2 sessões seguidas com a carga em todas
+    expect(sugerirProgressao([mista(), sessao(kg(20), [12, 12, 12])], alvo, { tipo: 'halter', lista: [14, 20, 22] }).acao).toBe('manter');
+    // série mais pesada que a 1ª não atrapalha: o topo foi feito com pelo menos a carga da 1ª
+    const maisPesada = (): SessaoExercicio => ({ series: [20, 22, 22].map((k) => ({ carga: kg(k), reps: 12, rir: 1 })) });
+    expect(sugerirProgressao([maisPesada(), maisPesada()], alvo, { tipo: 'halter', lista: [20, 22, 24] })).toMatchObject({ acao: 'subir', proxima: kg(22) });
+  });
+  it('no peso do corpo, a série num degrau mais fácil também não conta como topo', () => {
+    const degrau = (d: number): Carga => ({ tipo: 'degrau', degrau: d });
+    const mista = (): SessaoExercicio => ({ series: [2, 1, 1].map((d) => ({ carga: degrau(d), reps: 12, rir: 1 })) });
+    const o = { tipo: 'peso-corpo' as const, degraus: ['a', 'b', 'c', 'd'] };
+    expect(sugerirProgressao([mista(), mista()], alvo, o).acao).toBe('manter');
+    const inteira = (): SessaoExercicio => ({ series: [2, 2, 2].map((d) => ({ carga: degrau(d), reps: 12, rir: 1 })) });
+    expect(sugerirProgressao([inteira(), inteira()], alvo, o).acao).toBe('subir');
   });
   it('topo em uma sessão só: ainda manter', () => {
     expect(sugerirProgressao([sessao(kg(10), [11, 10, 10]), sessao(kg(10), [12, 12, 12])], alvo, halter).acao).toBe('manter');
@@ -35,6 +55,17 @@ describe('dupla progressão', () => {
     expect(s).toMatchObject({ acao: 'manter', regraId: 'progressao.salto-grande' });
     const h2 = [sessao(kg(8), [13, 13, 13]), sessao(kg(8), [13, 13, 13])];
     expect(sugerirProgressao(h2, alvo, { tipo: 'halter', lista: [8, 10] })).toMatchObject({ acao: 'subir', proxima: kg(10) });
+  });
+  // Auditoria de 12/11/2026: com um degrau só acima da carga, o texto mandava subir dois.
+  it('carga leve demais com um degrau só acima: sobe esse degrau e o texto diz "um degrau"', () => {
+    const h = [sessao(kg(20), [15, 14, 14])];
+    const s = sugerirProgressao(h, alvo, { tipo: 'halter', lista: [18, 20, 21] });
+    expect(s).toMatchObject({ acao: 'subir', proxima: kg(21), regraId: 'progressao.carga-leve' });
+    expect(s.motivo).toBe('A carga está leve demais para a faixa: suba um degrau.');
+    // com dois degraus acima e o salto dentro do limite, continua mandando subir dois
+    const dois = sugerirProgressao(h, alvo, { tipo: 'halter', lista: [20, 21, 22, 24] });
+    expect(dois).toMatchObject({ acao: 'subir', proxima: kg(22) });
+    expect(dois.motivo).toBe('A carga está leve demais para a faixa: suba dois degraus.');
   });
   it('carga leve demais: 2 incrementos, se o salto total ficar em até ~10%', () => {
     const fina = { tipo: 'halter' as const, lista: [20, 21, 22, 24] };
@@ -102,6 +133,15 @@ describe('dupla progressão', () => {
     // Com a menor anilha de 2 kg (passo de 4 kg a partir da barra de 20): 40 → 36.
     expect(sugerirProgressao(h, alvo, { tipo: 'barra', passoKg: 4, baseKg: 20 })).toMatchObject({ acao: 'reduzir', proxima: kg(36) });
   });
+  it('a barra vazia é o piso: nunca sugere menos que o peso da barra', () => {
+    const barra = { tipo: 'barra' as const, passoKg: 4, baseKg: 20 };
+    expect(proximaCarga(kg(24), -1, barra)).toEqual(kg(20));
+    expect(proximaCarga(kg(20), -1, barra)).toBeUndefined();
+    const h = [sessao(kg(20), [7, 6]), sessao(kg(20), [6, 6])];
+    expect(sugerirProgressao(h, alvo, barra)).toMatchObject({ acao: 'reduzir' });
+    expect(sugerirProgressao(h, alvo, barra).proxima).toBeUndefined();
+    expect(sugerirProgressao(h, alvo, barra).motivo).toContain('não há carga menor');
+  });
 });
 
 describe('segurança na progressão', () => {
@@ -168,3 +208,51 @@ describe('tipos de carga do R0c (pesquisa-v2/08, seção 1.1)', () => {
     expect(sugerirProgressao(h2, alvo, kb)).toMatchObject({ acao: 'subir', proxima: kg(12) });
   });
 });
+
+// Auditoria de 12/11/2026: "reduza a carga" e o ajuste por dor quando não há carga menor para usar.
+describe('quando não há carga menor', () => {
+  const comDor = (c: Carga, dor = 4): SessaoExercicio => ({ series: [10, 10, 10].map((reps) => ({ carga: c, reps, rir: 1, dor })) });
+
+  it('dor de 3 a 5 no halter mais leve: ajusta sem sugerir carga, e o texto não manda reduzir', () => {
+    const s = sugerirProgressao([comDor(kg(8))], alvo, halter);
+    expect(s.acao).toBe('ajustar');
+    expect(s.proxima).toBeUndefined();
+    expect(s.motivo).toBe('Dor entre 3 e 5/10, e não há carga menor aqui: encurte a amplitude ou desacelere; se não melhorar, troque pela alternativa.');
+    // com carga menor, sugere a carga e manda reduzir, como antes
+    const comMenor = sugerirProgressao([comDor(kg(12))], alvo, halter);
+    expect(comMenor).toMatchObject({ acao: 'ajustar', proxima: kg(10) });
+    expect(comMenor.motivo).toMatch(/reduza a carga/);
+  });
+
+  it('dor de 3 a 5 na placa 1 e no 1º degrau: a mesma coisa (antes, a "carga reduzida" era a própria placa 1)', () => {
+    const placa = sugerirProgressao([comDor({ tipo: 'placa', placa: 1 })], alvo, { tipo: 'maquina', placasMax: 10 });
+    expect(placa.proxima).toBeUndefined();
+    expect(placa.motivo).toMatch(/não há carga menor aqui/);
+    const degrau = sugerirProgressao([comDor({ tipo: 'degrau', degrau: 0 })], alvo, { tipo: 'peso-corpo', degraus: ['a', 'b', 'c'] });
+    expect(degrau.proxima).toBeUndefined();
+    expect(degrau.motivo).toMatch(/não há carga menor aqui/);
+    expect(haCargaMenor({ tipo: 'placa', placa: 1 }, { tipo: 'maquina' })).toBe(false);
+    expect(haCargaMenor({ tipo: 'placa', placa: 2 }, { tipo: 'maquina' })).toBe(true);
+    expect(haCargaMenor(kg(8), halter)).toBe(false);
+    expect(haCargaMenor(kg(9), halter)).toBe(true);
+  });
+
+  it('um degrau registrado acima do fim da escada desce para o último degrau que existe', () => {
+    const o = { tipo: 'peso-corpo' as const, degraus: ['a', 'b', 'c'] };
+    expect(proximaCarga({ tipo: 'degrau', degrau: 6 }, -1, o)).toEqual({ tipo: 'degrau', degrau: 2 });
+    expect(proximaCarga({ tipo: 'degrau', degrau: 6 }, 1, o)).toBeUndefined();
+    expect(haCargaMenor({ tipo: 'degrau', degrau: 6 }, o)).toBe(true);
+    expect(sugerirProgressao([comDor({ tipo: 'degrau', degrau: 6 })], alvo, o)).toMatchObject({ acao: 'ajustar', proxima: { tipo: 'degrau', degrau: 2 } });
+  });
+
+  it('estagnado sem carga menor: a lista de saídas não inclui reduzir', () => {
+    const h = [sessao(kg(8), [10, 10, 10]), sessao(kg(8), [10, 10, 10]), sessao(kg(8), [10, 10, 10])];
+    const s = sugerirProgressao(h, alvo, halter);
+    expect(s.acao).toBe('estagnado');
+    expect(s.motivo).not.toMatch(/reduza/);
+    expect(s.motivo).toMatch(/alargue a faixa/);
+    const comMenor = sugerirProgressao(h.map((x) => ({ series: x.series.map((y) => ({ ...y, carga: kg(10) })) })), alvo, halter);
+    expect(comMenor.motivo).toMatch(/reduza 10% e reconstrua/);
+  });
+});
+

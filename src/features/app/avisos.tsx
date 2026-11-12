@@ -2,7 +2,7 @@ import { useId, useState } from 'react';
 import { avisarInstalar, lembrarCopia } from '../../domain/dados';
 import type { Estado } from '../../storage/esquema';
 import { baixarCopia } from './copia';
-import { agoraIso } from './estado';
+import { agoraIso, useApp } from './estado';
 import { gravarLocal, lerLocal, LOCAL } from './local';
 import { Selo } from './ui';
 
@@ -12,6 +12,26 @@ import { Selo } from './ui';
 function estaInstalado(): boolean {
   const nav = navigator as Navigator & { standalone?: boolean };
   return nav.standalone === true || !!window.matchMedia?.('(display-mode: standalone)').matches;
+}
+
+/**
+ * O aparelho recusou a gravação (sem espaço, aba anônima): avisa em toda tela onde a pessoa registra ou confere algo,
+ * com a saída ali mesmo, porque o que está na memória ainda pode ser exportado.
+ */
+export function AvisoSalvar() {
+  const { erroAoSalvar, estado } = useApp();
+  if (!erroAoSalvar) return null;
+  return (
+    <div className="caixa-erro pilha" role="alert">
+      <p>
+        <b>Não foi possível salvar neste aparelho.</b> O que você registrar agora pode se perder ao fechar o app. Exporte uma cópia para
+        não perder seus dados.
+      </p>
+      <button type="button" className="btn sec" onClick={() => baixarCopia(estado)}>
+        Exportar meus dados
+      </button>
+    </div>
+  );
 }
 
 /** dados.instalar-iphone: no iPhone ou iPad aberto no navegador, os passos para instalar, até a pessoa tocar em "Entendi". */

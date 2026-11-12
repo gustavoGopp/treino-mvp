@@ -1,5 +1,6 @@
 import type { Exercicio } from '../biblioteca';
-import { PROGRESSAO, r, SEMANA_LEVE } from '../regras';
+import { numeroBr, porCento } from '../numero';
+import { DOR, PROGRESSAO, r, REDUCAO, RIR, SEMANA_LEVE } from '../regras';
 import { MENOR_ANILHA_PADRAO_KG } from '../taxonomia/equipamentos';
 
 // Dupla progressão (progressao.*): primeiro as repetições sobem dentro da faixa; com todas as séries
@@ -57,12 +58,17 @@ export const noPassoAbaixo = (x: number, o: OpcoesCarga) => {
   return Math.round((b + Math.floor((x - b) / p + 1e-9) * p) * 100) / 100;
 };
 
+/**
+ * A carga existe no passo da barra: é positiva e não fica abaixo da barra vazia (`baseKg`). Sem isto, com a barra de
+ * 20 kg e o passo de 4 kg, o app sugeria 16 kg, uma carga que a pessoa não tem como montar.
+ */
+export const existeNoPasso = (k: number, o: OpcoesCarga) => k > 0 && k >= baseDe(o) - 1e-9;
+
 // progressao.incremento.peso-corporal: a escada genérica; cada exercício pode ter a sua (escadas.ts).
 export { ESCADA_GENERICA as ESCADA_PESO_CORPO } from './escadas';
 import { ESCADA_GENERICA } from './escadas';
 
 const igual = (a: Carga, b: Carga) => JSON.stringify(a) === JSON.stringify(b);
-/** Quanto maior, mais difícil. No contrapeso é ao contrário: mais placa = mais ajuda. */
 /** Quanto maior, mais difícil (no contrapeso, menos placa = mais difícil). */
 export const valorDaCarga = (c: Carga) => valor(c);
 const valor = (c: Carga) => {
@@ -80,17 +86,30 @@ const valor = (c: Carga) => {
   }
 };
 const arred = (x: number) => Math.round(x * 100) / 100;
-/** "A carga de 10 kg", "a placa 9"…, para a mensagem da escada. */
-const textoDaCarga = (c: Carga) =>
-  c.tipo === 'kg'
-    ? `A carga de ${String(c.kg).replace('.', ',')} kg`
-    : c.tipo === 'placa'
-      ? `A placa ${c.placa}`
-      : c.tipo === 'anilha'
-        ? `A carga de ${String(c.kgPorLado).replace('.', ',')} kg por lado`
-        : c.tipo === 'contrapeso'
-          ? `O contrapeso ${c.placa}`
-          : 'Esse degrau';
+/**
+ * O texto de uma carga, num lugar só: "10 kg", "placa 9", "20 kg por lado", "contrapeso 3". O degrau (peso do corpo,
+ * elástico) não tem texto aqui: o nome dele depende do exercício (sessao/textoCarga). Antes havia três formatadores,
+ * dois deles com `toLocaleString`.
+ */
+export function textoDaCargaSimples(c: Carga): string | undefined {
+  switch (c.tipo) {
+    case 'kg':
+      return `${numeroBr(c.kg)} kg`;
+    case 'placa':
+      return `placa ${c.placa}`;
+    case 'anilha':
+      return `${numeroBr(c.kgPorLado)} kg por lado`;
+    case 'contrapeso':
+      return `contrapeso ${c.placa}`;
+    case 'degrau':
+      return undefined;
+  }
+}
+/** "A carga de 10 kg", "A placa 9"…, para começar a frase da sugestão. */
+const textoDaCarga = (c: Carga) => {
+  const t = textoDaCargaSimples(c);
+  return !t ? 'Esse degrau' : c.tipo === 'placa' ? `A ${t}` : c.tipo === 'contrapeso' ? `O ${t}` : `A carga de ${t}`;
+};
 const passoAnilha = (o: OpcoesCarga) => o.menorAnilhaKg ?? MENOR_ANILHA_PADRAO_KG;
 
 export function proximaCarga(c: Carga, passos: number, o: OpcoesCarga): Carga | undefined {
@@ -99,8 +118,11 @@ export function proximaCarga(c: Carga, passos: number, o: OpcoesCarga): Carga | 
     return o.placasMax && p > o.placasMax ? undefined : { tipo: 'placa', placa: Math.max(1, p) };
   }
   if (c.tipo === 'degrau') {
+    const n = (o.degraus ?? ESCADA_GENERICA).length;
+    // Um degrau registrado acima do fim da escada (a escada do exercício encurtou): para baixo, o último que existe.
+    if (c.degrau >= n) return passos < 0 && n > 0 ? { tipo: 'degrau', degrau: n - 1 } : undefined;
     const d = c.degrau + passos;
-    return d < 0 || d >= (o.degraus ?? ESCADA_GENERICA).length ? undefined : { tipo: 'degrau', degrau: d };
+    return d < 0 || d >= n ? undefined : { tipo: 'degrau', degrau: d };
   }
   if (c.tipo === 'anilha') {
     // progressao.incremento.maquina-anilha: o menor par de anilhas, um de cada lado.
@@ -130,11 +152,21 @@ export function proximaCarga(c: Carga, passos: number, o: OpcoesCarga): Carga | 
   const b = baseDe(o);
   const i = (c.kg - b) / p;
   const k = Math.round((b + (passos > 0 ? Math.floor(i + 1e-9) + passos : Math.ceil(i - 1e-9) + passos) * p) * 100) / 100;
-  return k > 0 ? { tipo: 'kg', kg: k } : undefined;
+  return existeNoPasso(k, o) ? { tipo: 'kg', kg: k } : undefined;
 }
 
-/** Redução de 5–10% (progressao.reduzir) ou de 10–20% (seguranca.dor.escala). */
+/**
+ * Redução de 5–10% (progressao.reduzir) ou de 10–20% (seguranca.dor.escala). Devolve undefined quando não há carga
+ * menor para usar (a placa 1, o halter mais leve, o 1º degrau, a barra vazia): nunca a mesma carga de hoje.
+ */
 function reduzir(c: Carga, fator: number, o: OpcoesCarga): Carga | undefined {
+  const menor = cargaReduzida(c, fator, o);
+  return menor && valor(menor) < valor(c) - 1e-9 ? menor : undefined;
+}
+/** Existe uma carga menor que esta, neste equipamento, para o ajuste por dor ou a redução. */
+export const haCargaMenor = (c: Carga, o: OpcoesCarga) => reduzir(c, REDUCAO.dor, o) !== undefined;
+
+function cargaReduzida(c: Carga, fator: number, o: OpcoesCarga): Carga | undefined {
   if (c.tipo === 'anilha') {
     const passo = passoAnilha(o);
     const k = Math.min(c.kgPorLado - passo, Math.floor((c.kgPorLado * (1 - fator)) / passo + 1e-9) * passo);
@@ -151,17 +183,50 @@ function reduzir(c: Carga, fator: number, o: OpcoesCarga): Carga | undefined {
   const baixo = noPassoAbaixo(alvo, o);
   const cima = Math.round((baixo + passoDe(o)) * 100) / 100;
   const k = cima < c.kg - 1e-9 && cima - alvo < alvo - baixo ? cima : Math.min(baixo, noPassoAbaixo(c.kg - passoDe(o), o));
-  return k > 0 ? { tipo: 'kg', kg: k } : undefined;
+  return existeNoPasso(k, o) ? { tipo: 'kg', kg: k } : undefined;
 }
 
 const validas = (s: SessaoExercicio) => s.series.filter((x) => x.amplitudeCompleta !== false);
-const noTopo = (s: SessaoExercicio, a: Alvo) => {
+/** As repetições e o RIR de todas as séries chegaram ao topo da faixa (sem olhar a carga de cada série). */
+const repsNoTopo = (s: SessaoExercicio, a: Alvo) => {
   if (!s.series.length || !s.series.every((x) => x.amplitudeCompleta !== false && x.rir <= a.rir[1])) return false;
   // progressao.criterio-degrau: no peso do corpo e no elástico, a 1ª série no topo e as outras a até 2 repetições dele.
   if (s.series[0]!.carga.tipo === 'degrau') return s.series[0]!.reps >= a.reps[1] && s.series.every((x) => x.reps >= a.reps[1] - PROGRESSAO.folgaDegrau);
   return s.series.every((x) => x.reps >= a.reps[1]);
 };
+/**
+ * Todas as séries com a carga da 1ª, ou mais (progressao.subir; decisão do Gustavo em 12/11/2026). A sessão é
+ * comparada pela carga da 1ª série; antes, 20 kg × 12 seguido de duas séries de 14 kg × 12 contava como topo em 20 kg.
+ */
+const cargaEmTodas = (s: SessaoExercicio) => {
+  const primeira = s.series[0]?.carga;
+  return !!primeira && s.series.every((x) => x.carga.tipo === primeira.tipo && valor(x.carga) >= valor(primeira) - 1e-9);
+};
+const noTopo = (s: SessaoExercicio, a: Alvo) => repsNoTopo(s, a) && cargaEmTodas(s);
 const totalReps = (s: SessaoExercicio) => validas(s).reduce((t, x) => t + x.reps, 0);
+
+/**
+ * O que a nota de dor da última vez pede (seguranca.dor.escala; consenso): acima de 5, a alternativa; de 3 a 5, a
+ * carga reduzida (quando há uma carga de onde reduzir). Abaixo de 3, nada: devolve undefined.
+ */
+export function sugestaoPorDor(dor: number, carga: Carga | undefined, o: OpcoesCarga): Sugestao | undefined {
+  if (dor > DOR.ajustarAte)
+    return { acao: 'interromper', motivo: `Dor acima de ${DOR.ajustarAte}/10: use a alternativa e procure avaliação se continuar.`, regraId: r('seguranca.dor.escala') };
+  if (dor >= DOR.ajustarDe) {
+    const proxima = carga && reduzir(carga, REDUCAO.dor, o);
+    return {
+      acao: 'ajustar',
+      ...(proxima ? { proxima } : {}),
+      // Sem carga menor para usar, o texto não manda reduzir o que não dá (auditoria de 12/11/2026).
+      motivo:
+        carga && !proxima
+          ? `Dor entre ${DOR.ajustarDe} e ${DOR.ajustarAte}/10, e não há carga menor aqui: encurte a amplitude ou desacelere; se não melhorar, troque pela alternativa.`
+          : `Dor entre ${DOR.ajustarDe} e ${DOR.ajustarAte}/10: reduza a carga, encurte a amplitude ou desacelere; se não melhorar, troque pela alternativa.`,
+      regraId: r('seguranca.dor.escala'),
+    };
+  }
+  return undefined;
+}
 
 export function sugerirProgressao(historico: SessaoExercicio[], alvo: Alvo, o: OpcoesCarga): Sugestao {
   const ultima = historico.at(-1);
@@ -171,16 +236,8 @@ export function sugerirProgressao(historico: SessaoExercicio[], alvo: Alvo, o: O
   const anterior = historico.at(-2);
 
   // Segurança primeiro (seguranca.dor.escala)
-  const dor = Math.max(0, ...ultima.series.map((x) => x.dor ?? 0));
-  if (dor > 5)
-    return { acao: 'interromper', motivo: 'Dor acima de 5/10: use a alternativa e procure avaliação se continuar.', regraId: r('seguranca.dor.escala') };
-  if (dor >= 3)
-    return {
-      acao: 'ajustar',
-      proxima: reduzir(carga, 0.15, o),
-      motivo: 'Dor entre 3 e 5/10: reduza a carga, encurte a amplitude ou desacelere; se não melhorar, troque pela alternativa.',
-      regraId: r('seguranca.dor.escala'),
-    };
+  const porDor = sugestaoPorDor(Math.max(0, ...ultima.series.map((x) => x.dor ?? 0)), carga, o);
+  if (porDor) return porDor;
 
   const primeira = validas(ultima)[0];
   const subiuAgora = anterior && anterior.series[0] && valor(carga) > valor(anterior.series[0].carga);
@@ -196,13 +253,19 @@ export function sugerirProgressao(historico: SessaoExercicio[], alvo: Alvo, o: O
 
   // Abaixo do mínimo em 2 sessões seguidas → reduzir 5–10%
   const abaixo = (s?: SessaoExercicio) => !!s && (validas(s)[0]?.reps ?? 0) < alvo.reps[0];
-  if (abaixo(ultima) && abaixo(anterior) && anterior && igual(anterior.series[0]!.carga, carga))
+  if (abaixo(ultima) && abaixo(anterior) && anterior && igual(anterior.series[0]!.carga, carga)) {
+    const menor = reduzir(carga, REDUCAO.abaixoDoMinimo, o);
+    // Sem carga menor para sugerir (a barra vazia, o halter mais leve), o texto não manda reduzir o que não dá.
+    const haMenor = !!menor;
     return {
       acao: 'reduzir',
-      proxima: reduzir(carga, 0.075, o),
-      motivo: 'Duas sessões abaixo do mínimo da faixa: reduza um pouco a carga e reconstrua.',
+      proxima: haMenor ? menor : undefined,
+      motivo: haMenor
+        ? 'Duas sessões abaixo do mínimo da faixa: reduza um pouco a carga e reconstrua.'
+        : 'Duas sessões abaixo do mínimo da faixa, e não há carga menor aqui: faça menos repetições ou use a alternativa.',
       regraId: r('progressao.reduzir'),
     };
+  }
 
   // Uma carga que ficou pesada há pouco (a 1ª série abaixo do mínimo da faixa) não volta a ser sugerida dentro da
   // janela: antes, a escada de dificuldade. Sem isso, subir → voltar → subir… sem fim (auditoria, achado 3).
@@ -217,8 +280,11 @@ export function sugerirProgressao(historico: SessaoExercicio[], alvo: Alvo, o: O
   // Carga leve demais: 1ª série passou do topo por 2+ repetições no RIR alvo → 2 incrementos, se o salto total ficar
   // em até ~10% (só dá para medir em kg); senão, 1 incremento (progressao.carga-leve, progressao.salto-grande).
   if (primeira && primeira.reps >= alvo.reps[1] + 2 && primeira.rir <= alvo.rir[1]) {
-    const dois = proximaCarga(carga, 2, o);
-    const prox = dois && carga.tipo === 'kg' && dois.tipo === 'kg' && (dois.kg - carga.kg) / carga.kg <= PROGRESSAO.saltoGrande + 1e-9 ? dois : proximaCarga(carga, 1, o);
+    const um = proximaCarga(carga, 1, o);
+    // Na lista de halteres, pedir 2 degraus com um só acima devolve esse um: só são "dois" se forem cargas diferentes.
+    const segundo = proximaCarga(carga, 2, o);
+    const dois = segundo && um && !igual(segundo, um) ? segundo : undefined;
+    const prox = dois && carga.tipo === 'kg' && dois.tipo === 'kg' && (dois.kg - carga.kg) / carga.kg <= PROGRESSAO.saltoGrande + 1e-9 ? dois : um;
     if (prox && falhouHaPouco(prox)) return escada(prox);
     if (prox)
       return {
@@ -267,6 +333,14 @@ export function sugerirProgressao(historico: SessaoExercicio[], alvo: Alvo, o: O
     return { acao: 'subir', proxima: prox, motivo: 'Topo da faixa em todas as séries, no RIR certo, por 2 sessões: suba a carga.', regraId: r('progressao.subir') };
   }
 
+  // Topo nas repetições, mas com alguma série mais leve que a 1ª: não sobe, e a sugestão diz o que falta.
+  if (repsNoTopo(ultima, alvo) && !cargaEmTodas(ultima))
+    return {
+      acao: 'manter',
+      motivo: `Para subir, faça todas as séries com ${textoDaCarga(carga).replace(/^./, (l) => l.toLowerCase())}: a série mais leve não conta como topo da faixa.`,
+      regraId: r('progressao.subir'),
+    };
+
   // Estagnação: 3 sessões seguidas, mesma carga, sem melhora de repetições
   const ult3 = historico.slice(-3);
   if (
@@ -276,7 +350,8 @@ export function sugerirProgressao(historico: SessaoExercicio[], alvo: Alvo, o: O
   )
     return {
       acao: 'estagnado',
-      motivo: 'Três sessões sem melhora: 1) alargue a faixa; 2) reduza 10% e reconstrua; 3) semana leve; 4) troque por uma variação equivalente.',
+      // A saída "reduza 10%" só entra quando há uma carga menor para usar.
+      motivo: `Três sessões sem melhora: ${(haCargaMenor(carga, o) ? ['alargue a faixa', `reduza ${porCento(PROGRESSAO.reducaoEstagnacao)}% e reconstrua`, 'semana leve', 'troque por uma variação equivalente'] : ['alargue a faixa', 'semana leve', 'troque por uma variação equivalente']).map((t, i) => `${i + 1}) ${t}`).join('; ')}.`,
       regraId: r('progressao.estagnacao'),
     };
 
@@ -293,7 +368,7 @@ export function sugerirSemanaLeve(sinais: { exerciciosEstagnados: number; pesado
   const motivos = [
     sinais.exerciciosEstagnados >= SEMANA_LEVE.estagnados && `${sinais.exerciciosEstagnados} exercícios sem progresso em 3 treinos`,
     sinais.pesadoNosUltimos3 >= SEMANA_LEVE.pesadoEm && `"pesado demais" em ${sinais.pesadoNosUltimos3} dos últimos ${SEMANA_LEVE.pesadoDe} treinos`,
-    sinais.dorQueSeRepete > 0 && 'dor de 3 a 5 no mesmo exercício em 2 treinos seguidos',
+    sinais.dorQueSeRepete > 0 && `dor de ${SEMANA_LEVE.dorMin} a ${SEMANA_LEVE.dorMax} no mesmo exercício em 2 treinos seguidos`,
   ].filter((m): m is string => !!m);
   return {
     sugerir: motivos.length > 0 && !sinais.carencia,
@@ -304,4 +379,4 @@ export function sugerirSemanaLeve(sinais: { exerciciosEstagnados: number; pesado
 }
 
 /** Série efetiva (rir.serie-efetiva): série de trabalho com até 4 repetições de reserva. */
-export const serieEfetiva = (s: SerieRegistrada) => s.rir <= 4 && s.amplitudeCompleta !== false;
+export const serieEfetiva = (s: SerieRegistrada) => s.rir <= RIR.serieEfetivaMax && s.amplitudeCompleta !== false;

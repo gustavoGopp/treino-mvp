@@ -12,6 +12,8 @@ describe('preparo da foto', () => {
     expect(dimensoesReduzidas(4032, 3024)).toEqual({ largura: LADO_MAXIMO, altura: 1176 });
     expect(dimensoesReduzidas(3024, 4032)).toEqual({ largura: 1176, altura: LADO_MAXIMO });
     expect(dimensoesReduzidas(800, 600)).toEqual({ largura: 800, altura: 600 });
+    // foto muito comprida: o lado menor nunca chega a 0
+    expect(dimensoesReduzidas(20000, 5)).toEqual({ largura: LADO_MAXIMO, altura: 1 });
   });
 
   it('detecta o segmento EXIF (onde fica o GPS) e ignora os outros', () => {

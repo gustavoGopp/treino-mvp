@@ -3,7 +3,7 @@ import { Link, Navigate, useNavigate } from 'react-router-dom';
 import { primeiroPassoPendente } from '../../storage/esquema';
 import { agoraIso, useApp } from '../app/estado';
 import { Folha } from '../app/Folha';
-import { AvisoInstalar } from '../app/avisos';
+import { AvisoInstalar, AvisoSalvar } from '../app/avisos';
 import { TextoFotoCurto } from '../app/privacidade';
 import { Selo, Titulo, Topo } from '../app/ui';
 import { IconeLugar } from './lugares';
@@ -40,6 +40,7 @@ export function BoasVindas() {
             {erroCarga} Em <Link to="/dados">Meus dados</Link> você pode importar um backup.
           </div>
         )}
+        <AvisoSalvar />
         <AvisoInstalar />
         <p className="lede">Monta o programa, mostra cada exercício e diz o porquê.</p>
         <section className="nota-aviso" aria-labelledby="nao-faz">

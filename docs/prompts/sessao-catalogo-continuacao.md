@@ -14,7 +14,7 @@ Leia primeiro:
 - os documentos citados em cada item.
 
 ## Regras desta continuação
-- **Conta:** o projeto é acessado só pelas contas pessoais do Gustavo (gustavogopp@gmail.com ou gustavogopp2@gmail.com), nunca pela da Futurum. Tudo o que é produzido fica no git, e só no git: **nada de publicar páginas, artefatos ou documentos fora do repositório**.
+- **Conta:** o projeto é acessado só pelas contas pessoais do Gustavo, nunca pela conta de trabalho. Tudo o que é produzido fica no git, e só no git: **nada de publicar páginas, artefatos ou documentos fora do repositório**.
 - **Não mexa no branch `r3-uso-real`** (o R3, uso real, roda noutra sessão). `privado/` nunca é versionado nem usado.
 - **Branch de trabalho:** `claude/focused-shannon-7243on`. Ela tem **~23 commits à frente da `main`** (`b7cbb7b`) e ainda **não foi para a `main`**.
   - Inclui um commit de lint duplicado com a `main` (`7da03ee` × `b7cbb7b`).

@@ -1,7 +1,17 @@
 name: CI
+# Uma execução por mudança: os ramos são conferidos pelo PR, e a main quando o PR entra. Antes, cada commit de um ramo
+# com PR aberto rodava duas vezes (push e pull_request).
 on:
   push:
+    branches: [main]
   pull_request:
+# O fluxo só lê o código: nenhuma permissão de escrita no repositório.
+permissions:
+  contents: read
+# Um commit novo no mesmo ramo cancela a execução anterior dele.
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
 jobs:
   checar:
     runs-on: ubuntu-latest

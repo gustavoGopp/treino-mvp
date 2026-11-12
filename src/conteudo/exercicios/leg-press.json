@@ -1,0 +1,62 @@
+{
+  "id": "leg-press",
+  "name": "Leg press",
+  "short": "Leg press",
+  "target": "Quadríceps e glúteos",
+  "setupEq": [
+    "Encosto e assento ajustados para o quadril ficar apoiado no fundo do movimento.",
+    "Anilhas iguais dos dois lados."
+  ],
+  "setupBody": [
+    "Costas e quadril apoiados, pés no meio da plataforma, na largura do quadril ou dos ombros.",
+    "Mãos nos pegadores."
+  ],
+  "exec": [
+    [
+      "ecc",
+      "Descida",
+      "~2–3 s. Dobra os joelhos até passarem de 90°, sem o quadril descolar do assento."
+    ],
+    [
+      "conc",
+      "Subida",
+      "Empurra a plataforma até quase estender os joelhos, sem travar."
+    ]
+  ],
+  "range": [
+    "Início: joelhos quase estendidos.",
+    "Fim: joelhos dobrados além de 90°, quadril apoiado."
+  ],
+  "cues": [
+    "Quadril no assento.",
+    "Joelhos na direção dos pés.",
+    "Sem travar no topo."
+  ],
+  "errors": [
+    {
+      "id": "e1",
+      "title": "Descer pouco",
+      "desc": "Amplitude curta com carga alta trabalha menos a coxa."
+    },
+    {
+      "id": "e2",
+      "title": "Quadril descola no fundo",
+      "desc": "A lombar arredonda e recebe a carga: desça só até onde o quadril fica apoiado."
+    },
+    {
+      "id": "e3",
+      "title": "Travar os joelhos",
+      "desc": "Esticar com força no topo joga a carga na articulação."
+    },
+    {
+      "id": "e4",
+      "title": "Joelhos para dentro",
+      "desc": "Fechar os joelhos na subida."
+    }
+  ],
+  "montagem": [
+    "Solte a trava de segurança só com os pés firmes na plataforma e trave de novo antes de tirar os pés.",
+    "Nunca ponha as mãos nos joelhos nem entre a plataforma e o batente."
+  ],
+  "carga": "Registre os kg de anilhas de cada lado (sem contar o trenó ou a barra da máquina). Para progredir, o menor par de anilhas."
+}

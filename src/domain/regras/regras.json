@@ -531,9 +531,9 @@
     "id": "progressao.subir",
     "regra": "Dupla progressão: quando subir a carga",
     "valores": {
-      "iniciante": "todas as séries no topo da faixa com o RIR alvo em 2 sessões seguidas → menor incremento disponível e volta ao fundo da faixa",
-      "intermediario": "todas as séries no topo da faixa com o RIR alvo em 2 sessões seguidas → menor incremento disponível e volta ao fundo da faixa",
-      "avancado": "todas as séries no topo da faixa com o RIR alvo em 2 sessões seguidas → menor incremento disponível e volta ao fundo da faixa"
+      "iniciante": "todas as séries no topo da faixa com o RIR alvo e com a carga da 1ª série ou mais (série mais leve não conta; decisão de 12/11/2026) em 2 sessões seguidas → menor incremento disponível e volta ao fundo da faixa",
+      "intermediario": "todas as séries no topo da faixa com o RIR alvo e com a carga da 1ª série ou mais (série mais leve não conta; decisão de 12/11/2026) em 2 sessões seguidas → menor incremento disponível e volta ao fundo da faixa",
+      "avancado": "todas as séries no topo da faixa com o RIR alvo e com a carga da 1ª série ou mais (série mais leve não conta; decisão de 12/11/2026) em 2 sessões seguidas → menor incremento disponível e volta ao fundo da faixa"
     },
     "selo": "consenso",
     "fontes": [
@@ -950,9 +950,9 @@
     "id": "acompanhamento.mensagens",
     "regra": "Mensagens do acompanhamento sem culpa (R2; pesquisa-v2/07, seção 4.4): fato + próximo passo; nunca \"você falhou\", \"perdeu\" ou \"deveria\"; nada de risco de morte na tela; nenhuma comparação com outras pessoas",
     "valores": {
-      "iniciante": "semana completa: \"4 de 4\"; menos, com dias pela frente: \"2 de 4 treinos. Se der, o treino C cabe até domingo.\"; 1 treino: \"já conta\"; 0: nenhum aviso (\"Nova semana. O próximo treino é o B.\"); 3 das últimas 4 semanas abaixo do planejado: oferece um programa com menos dias, que só muda com o aceite",
-      "intermediario": "semana completa: \"4 de 4\"; menos, com dias pela frente: \"2 de 4 treinos. Se der, o treino C cabe até domingo.\"; 1 treino: \"já conta\"; 0: nenhum aviso (\"Nova semana. O próximo treino é o B.\"); 3 das últimas 4 semanas abaixo do planejado: oferece um programa com menos dias, que só muda com o aceite",
-      "avancado": "semana completa: \"4 de 4\"; menos, com dias pela frente: \"2 de 4 treinos. Se der, o treino C cabe até domingo.\"; 1 treino: \"já conta\"; 0: nenhum aviso (\"Nova semana. O próximo treino é o B.\"); 3 das últimas 4 semanas abaixo do planejado: oferece um programa com menos dias, que só muda com o aceite"
+      "iniciante": "semana completa: \"4 de 4\"; menos, com dias pela frente: \"2 de 4 treinos. Se der, o treino C cabe até domingo.\"; 1 treino: \"já conta\"; 0: nenhum aviso (\"Nova semana. O próximo treino é o B.\"); 3 das últimas 4 semanas abaixo do planejado (a semana sem nenhum treino é pausa e não conta): oferece um programa com menos dias, que só muda com o aceite",
+      "intermediario": "semana completa: \"4 de 4\"; menos, com dias pela frente: \"2 de 4 treinos. Se der, o treino C cabe até domingo.\"; 1 treino: \"já conta\"; 0: nenhum aviso (\"Nova semana. O próximo treino é o B.\"); 3 das últimas 4 semanas abaixo do planejado (a semana sem nenhum treino é pausa e não conta): oferece um programa com menos dias, que só muda com o aceite",
+      "avancado": "semana completa: \"4 de 4\"; menos, com dias pela frente: \"2 de 4 treinos. Se der, o treino C cabe até domingo.\"; 1 treino: \"já conta\"; 0: nenhum aviso (\"Nova semana. O próximo treino é o B.\"); 3 das últimas 4 semanas abaixo do planejado (a semana sem nenhum treino é pausa e não conta): oferece um programa com menos dias, que só muda com o aceite"
     },
     "selo": "consenso",
     "fontes": [
@@ -2154,11 +2154,11 @@
   },
   {
     "id": "seguranca.dor.escala",
-    "regra": "Dor por série numa escala de 0 a 10 (pergunta opcional). A nota do \"Senti algo\" fica na última série feita do exercício ou, sem série, na próxima (R5a; `c-fluxo.md`, C-1)",
+    "regra": "Dor por série numa escala de 0 a 10 (pergunta opcional). A nota do \"Senti algo\" fica na última série feita do exercício ou, sem série, no próprio exercício, de onde passa para a próxima série; se a dor encerra o exercício antes da 1ª série, a nota continua nele e vale como a de uma série (R5a; `c-fluxo.md`, C-1; auditoria de 12/11/2026)",
     "valores": {
-      "iniciante": "0–2: segue; 3–5: reduzir carga 10–20%, encurtar a amplitude ou desacelerar, trocar se não cair; > 5 ou aguda: encerra o exercício; piora na sessão seguinte ou dura > 1–2 semanas: recomendar avaliação; a nota fica na série e a 1ª sugestão da próxima sessão do exercício reduz a carga (3–5) ou indica a alternativa (> 5)",
-      "intermediario": "0–2: segue; 3–5: reduzir carga 10–20%, encurtar a amplitude ou desacelerar, trocar se não cair; > 5 ou aguda: encerra o exercício; piora na sessão seguinte ou dura > 1–2 semanas: recomendar avaliação; a nota fica na série e a 1ª sugestão da próxima sessão do exercício reduz a carga (3–5) ou indica a alternativa (> 5)",
-      "avancado": "0–2: segue; 3–5: reduzir carga 10–20%, encurtar a amplitude ou desacelerar, trocar se não cair; > 5 ou aguda: encerra o exercício; piora na sessão seguinte ou dura > 1–2 semanas: recomendar avaliação; a nota fica na série e a 1ª sugestão da próxima sessão do exercício reduz a carga (3–5) ou indica a alternativa (> 5)"
+      "iniciante": "0–2: segue; 3–5: reduzir carga 10–20% (se houver uma menor: na placa 1, no halter mais leve e no 1º degrau, o app não manda reduzir), encurtar a amplitude ou desacelerar, trocar se não cair; > 5 ou aguda: encerra o exercício; piora na sessão seguinte ou dura > 1–2 semanas: recomendar avaliação; a nota fica na série e a 1ª sugestão da próxima sessão do exercício reduz a carga (3–5) ou indica a alternativa (> 5); nota de 3 ou mais no mesmo exercício em 2 sessões seguidas: aviso de dor e de avaliação (com alguma nota > 5, o aviso indica a alternativa)",
+      "intermediario": "0–2: segue; 3–5: reduzir carga 10–20% (se houver uma menor: na placa 1, no halter mais leve e no 1º degrau, o app não manda reduzir), encurtar a amplitude ou desacelerar, trocar se não cair; > 5 ou aguda: encerra o exercício; piora na sessão seguinte ou dura > 1–2 semanas: recomendar avaliação; a nota fica na série e a 1ª sugestão da próxima sessão do exercício reduz a carga (3–5) ou indica a alternativa (> 5); nota de 3 ou mais no mesmo exercício em 2 sessões seguidas: aviso de dor e de avaliação (com alguma nota > 5, o aviso indica a alternativa)",
+      "avancado": "0–2: segue; 3–5: reduzir carga 10–20% (se houver uma menor: na placa 1, no halter mais leve e no 1º degrau, o app não manda reduzir), encurtar a amplitude ou desacelerar, trocar se não cair; > 5 ou aguda: encerra o exercício; piora na sessão seguinte ou dura > 1–2 semanas: recomendar avaliação; a nota fica na série e a 1ª sugestão da próxima sessão do exercício reduz a carga (3–5) ou indica a alternativa (> 5); nota de 3 ou mais no mesmo exercício em 2 sessões seguidas: aviso de dor e de avaliação (com alguma nota > 5, o aviso indica a alternativa)"
     },
     "selo": "consenso",
     "fontes": [
@@ -2170,9 +2170,9 @@
     "id": "seguranca.dor.programa",
     "regra": "Dor de hoje por região, perguntada uma vez só (na triagem), usada para montar o programa (R1)",
     "valores": {
-      "iniciante": "> 5, ou sem nota (dado antigo): tira os exercícios que carregam a região, e o aviso de meta diz o motivo (\"por causa da dor no ombro\"); 3–5: no desempate, prefere os que poupam a região; 0–5: lembrete no exercício (\"se doer acima de 5 numa série, pare e use a alternativa\"); a regra por série (`seguranca.dor.escala`) continua valendo",
-      "intermediario": "> 5, ou sem nota (dado antigo): tira os exercícios que carregam a região, e o aviso de meta diz o motivo (\"por causa da dor no ombro\"); 3–5: no desempate, prefere os que poupam a região; 0–5: lembrete no exercício (\"se doer acima de 5 numa série, pare e use a alternativa\"); a regra por série (`seguranca.dor.escala`) continua valendo",
-      "avancado": "> 5, ou sem nota (dado antigo): tira os exercícios que carregam a região, e o aviso de meta diz o motivo (\"por causa da dor no ombro\"); 3–5: no desempate, prefere os que poupam a região; 0–5: lembrete no exercício (\"se doer acima de 5 numa série, pare e use a alternativa\"); a regra por série (`seguranca.dor.escala`) continua valendo"
+      "iniciante": "> 5, ou sem nota (dado antigo): tira os exercícios que carregam a região, e o aviso de meta diz o motivo (\"por causa da dor no ombro\"); se não sobra exercício em dia nenhum, o app não monta o programa, diz o motivo e recomenda avaliação (auditoria de 12/11/2026); 3–5: no desempate, prefere os que poupam a região; 0–5: lembrete no exercício (\"se doer acima de 5 numa série, pare e use a alternativa\"); a regra por série (`seguranca.dor.escala`) continua valendo",
+      "intermediario": "> 5, ou sem nota (dado antigo): tira os exercícios que carregam a região, e o aviso de meta diz o motivo (\"por causa da dor no ombro\"); se não sobra exercício em dia nenhum, o app não monta o programa, diz o motivo e recomenda avaliação (auditoria de 12/11/2026); 3–5: no desempate, prefere os que poupam a região; 0–5: lembrete no exercício (\"se doer acima de 5 numa série, pare e use a alternativa\"); a regra por série (`seguranca.dor.escala`) continua valendo",
+      "avancado": "> 5, ou sem nota (dado antigo): tira os exercícios que carregam a região, e o aviso de meta diz o motivo (\"por causa da dor no ombro\"); se não sobra exercício em dia nenhum, o app não monta o programa, diz o motivo e recomenda avaliação (auditoria de 12/11/2026); 3–5: no desempate, prefere os que poupam a região; 0–5: lembrete no exercício (\"se doer acima de 5 numa série, pare e use a alternativa\"); a regra por série (`seguranca.dor.escala`) continua valendo"
     },
     "selo": "consenso",
     "fontes": [

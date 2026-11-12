@@ -1,6 +1,6 @@
 // Extrai os textos dos exercícios do guia original para src/conteudo/exercicios/<id>.json.
 // Os valores vêm dos objetos já avaliados no navegador (inclui os clones, como elevacao-lateral-b).
-// Uso: node scripts/extrair-conteudo.mjs
+// Uso (histórico, só no M1): node scripts/extrair-conteudo.mjs --forcar
 import { mkdirSync, readFileSync, writeFileSync } from 'node:fs';
 import { createRequire } from 'node:module';
 import { dirname, resolve } from 'node:path';
@@ -10,6 +10,12 @@ import { CAMPOS_TEXTO, LEGADO_PRESCRICAO } from './campos-texto.mjs';
 const require = createRequire(import.meta.url);
 const { chromium } = require('playwright');
 
+
+// Histórico (M1): o port já foi feito e o código seguiu à mão. Rodar de novo regrava os textos dos 25 exercícios originais em src/conteudo/exercicios a partir do guia original — só com --forcar.
+if (!process.argv.includes('--forcar')) {
+  console.error('Este script é do port do M1 e hoje é destrutivo: regrava os textos dos 25 exercícios originais em src/conteudo/exercicios a partir do guia original e desfaz as correções feitas depois.\nSe é isso mesmo que você quer, rode de novo com --forcar.');
+  process.exit(1);
+}
 
 const raiz = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const html = readFileSync(resolve(raiz, 'referencia/guia-execucao-fase1.html'), 'utf8');

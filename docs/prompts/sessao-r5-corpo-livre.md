@@ -20,7 +20,7 @@ Você vai conduzir o **R5-CL, "biblioteca ampliada"**, do treino-mvp, um web app
 **Leia primeiro:** o `CLAUDE.md`; `docs/revisoes/proximos-passos/g-biblioteca-ampliada.md` inteiro; `docs/pesquisa-v2/17-biblioteca-ampliada.md` (resumo, partes G3 e G4, as entradas JSON e a tabela "Onde cada um entra") e `16-corpo-livre-e-casa.md` (as entradas de corpo livre); `docs/revisoes/proximos-passos/a-qualidade.md` (pacote A, o ajuste de 30 min); `docs/pesquisa/00-metodo.md`, `docs/pesquisa/regras.md`; `src/domain/biblioteca/`, `src/domain/gerador/` (`funcoes.json`, `index.ts`: `contextoDeSelecao`, `cortarTempo`), `src/domain/progressao/escadas.json`, `scripts/auditoria/qualidade.ts` e `cenarios-55.ts`.
 
 **Regras desta sessão**
-- Conta: só as contas pessoais do Gustavo (gustavogopp@gmail.com ou gustavogopp2@gmail.com), nunca a da Futurum. Tudo fica no git, e só no git.
+- Conta: só as contas pessoais do Gustavo, nunca a conta de trabalho. Tudo fica no git, e só no git.
 - Não mexa no branch `r3-uso-real`. `privado/` nunca é versionado nem usado; as personas são fictícias.
 - **Exercício sem animação aprovada aparece como cartão textual**, nunca com animação improvisada (`CLAUDE.md`). Os 32 cartões são escritos a partir de uma ficha de técnica, com a montagem segura (`16` e `17` trazem a de cada um, e os vídeos de referência visual de `17`, G2, servem ao autor do cartão).
 - O visual é do redesign: cartões, avisos e a fila de animação são pedidos ao design (`g-biblioteca-ampliada.md`). Faça o mínimo funcional com os componentes de hoje.

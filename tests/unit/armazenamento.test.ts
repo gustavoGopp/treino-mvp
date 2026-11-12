@@ -1,9 +1,11 @@
+import { readFileSync } from 'node:fs';
 import { describe, expect, it } from 'vitest';
 import { z } from 'zod';
-import { gerarPrograma } from '../../src/domain/gerador';
+import { gerarPrograma, type Programa } from '../../src/domain/gerador';
 import { exportarJson, importarJson, nomeDoArquivo } from '../../src/storage/arquivo';
 import { estadoSchema, estadoVazio, perfilDe, primeiroPassoPendente, VERSAO_ESTADO, type Estado } from '../../src/storage/esquema';
-import { migrar, type Migracao } from '../../src/storage/migracao';
+import { acertarIds } from '../../src/storage/ids';
+import { migrar, MIGRACOES, type Migracao } from '../../src/storage/migracao';
 import { capacidades } from '../../src/domain/taxonomia/equipamentos';
 import { avaliarTriagem } from '../../src/domain/triagem';
 import { PERSONAS, type Persona } from '../personas';
@@ -310,5 +312,116 @@ describe('exportação e importação', () => {
 
   it('dá ao arquivo um nome com a data', () => {
     expect(nomeDoArquivo(new Date(DATA))).toBe('treino-mvp-2026-10-31.json');
+  });
+});
+
+// Um estado da versão 7 de verdade: gravado pelo app de 12/11/2026 (persona fictícia Bruno, 2 treinos, uma nota de dor,
+// o objetivo e o "Agora não" da semana leve), antes de a versão 8 existir.
+const estadoV7 = () => JSON.parse(readFileSync('tests/unit/fixtures/estado-v7.json', 'utf8')) as Record<string, unknown> & { versao: number };
+
+describe('versão 7 → 8 (auditoria de 12/11/2026)', () => {
+  it('o estado antigo é lido inteiro: programa, histórico, objetivo e respostas ficam como estavam', () => {
+    const antigo = estadoV7();
+    expect(antigo.versao).toBe(7);
+    const r = migrar(antigo);
+    if (!r.ok) throw new Error(r.erro);
+    expect(r.estado.versao).toBe(8);
+    const { versao: _a, ...antes } = antigo;
+    const { versao: _b, ...depois } = r.estado;
+    void _a;
+    void _b;
+    expect(depois).toEqual(antes);
+    expect(r.estado.rotina?.objetivo).toBe('forca');
+    expect(r.estado.respostas?.semanaLeveEm).toBe('2026-10-09T12:00:00.000Z');
+    expect(r.estado.historico).toHaveLength(2);
+  });
+
+  it('o programa antigo gerado com a margem pessoal de tempo passa a dizer isso; o gerado com a padrão, não', () => {
+    const antigo = estadoV7() as unknown as Record<string, unknown> & { programa: { programa: Programa } };
+    // gerado com a margem padrão, e a pessoa aceitou a margem depois, sem atualizar o programa: nada a marcar
+    const semAtualizar = migrar({ ...antigo, margemTempo: 0.3 });
+    if (!semAtualizar.ok) throw new Error(semAtualizar.erro);
+    expect(semAtualizar.estado.programa!.programa.margemTempo).toBeUndefined();
+    // gerado com a margem pessoal (como o app da versão 7 fazia, sem guardar a margem no programa)
+    const r = gerarPrograma({ ...PERSONAS.bruno.perfil, semanasParado: 0, margemTempo: 0.3 }, PERSONAS.bruno.inventario);
+    if (r.status !== 'ok') throw new Error('persona bloqueada');
+    const { margemTempo: _m, ...comoNaV7 } = r.programa;
+    void _m;
+    const comMargem = migrar({ ...antigo, margemTempo: 0.3, programa: { ...antigo.programa, programa: comoNaV7 } });
+    if (!comMargem.ok) throw new Error(comMargem.erro);
+    expect(comMargem.estado.programa!.programa.margemTempo).toBe(0.3);
+    expect(comMargem.estado.programa!.programa).toEqual(r.programa);
+  });
+
+  it('um app da versão 7 recusa o dado da 8 em vez de regravá-lo sem os campos novos', () => {
+    const r = migrar({ ...estadoV7(), versao: 8 }, MIGRACOES, 7);
+    expect(r).toEqual({ ok: false, erro: expect.stringMatching(/versão mais nova/) });
+  });
+
+  it('a nota de dor antes da 1ª série cabe no esquema novo, de 1 a 10', () => {
+    const r = migrar(estadoV7());
+    if (!r.ok) throw new Error(r.erro);
+    const comNota = (dorSemSerie: number) => {
+      const e = structuredClone(r.estado);
+      e.historico[0]!.exercicios[0] = { ...e.historico[0]!.exercicios[0]!, series: [], interrompido: true, dorSemSerie };
+      return estadoSchema.safeParse(e).success;
+    };
+    expect(comNota(7)).toBe(true);
+    expect(comNota(0)).toBe(false);
+    expect(comNota(11)).toBe(false);
+  });
+});
+
+// Auditoria de 12/11/2026: um id de exercício fora da biblioteca deixava o estado inteiro ilegível.
+describe('ids de exercício que saíram da biblioteca (storage/ids.ts)', () => {
+  const base = () => {
+    const r = migrar(estadoV7());
+    if (!r.ok) throw new Error(r.erro);
+    return structuredClone(r.estado) as Estado & Record<string, unknown>;
+  };
+
+  it('o estado continua legível: o registro do exercício desconhecido fica guardado à parte, na própria sessão', () => {
+    const e = base();
+    const sessao = e.historico[0]!;
+    const feito = sessao.exercicios[0]!;
+    const conhecido = sessao.exercicios[1]!.exId;
+    sessao.exercicios[0] = { ...feito, exId: 'exercicio-que-saiu' };
+    sessao.exercicios[1] = { ...sessao.exercicios[1]!, noLugarDe: 'exercicio-que-saiu' };
+    e.restricoes = { evitarExercicios: ['exercicio-que-saiu', conhecido], evitarEquipamentos: [] };
+    e.preferidos = { 'funcao-a': 'exercicio-que-saiu', 'funcao-b': conhecido };
+    e.programa!.programa.dias[0]!.exercicios[0]!.alternativas.push('exercicio-que-saiu');
+    const r = migrar(e);
+    if (!r.ok) throw new Error(r.erro);
+    const lida = r.estado.historico[0]!;
+    expect(lida.exercicios.map((x) => x.exId)).not.toContain('exercicio-que-saiu');
+    expect(lida.exercicios).toHaveLength(sessao.exercicios.length - 1);
+    expect(lida.foraDaBiblioteca).toEqual([{ ...feito, exId: 'exercicio-que-saiu' }]);
+    expect(lida.exercicios[0]).not.toHaveProperty('noLugarDe');
+    expect(r.estado.restricoes!.evitarExercicios).toEqual([conhecido]);
+    expect(r.estado.preferidos).toEqual({ 'funcao-b': conhecido });
+    expect(r.estado.programa!.programa.dias[0]!.exercicios[0]!.alternativas).not.toContain('exercicio-que-saiu');
+    // ler de novo não muda mais nada, e o que ficou à parte continua lá
+    expect(migrar(r.estado)).toEqual({ ok: true, estado: r.estado });
+  });
+
+  it('se o programa salvo prescreve o exercício desconhecido, ele sai; o histórico e o cadastro ficam', () => {
+    const e = base();
+    e.programa!.programa.dias[0]!.exercicios[0]!.exId = 'exercicio-que-saiu';
+    const r = migrar(e);
+    if (!r.ok) throw new Error(r.erro);
+    expect(r.estado.programa).toBeUndefined();
+    expect(r.estado.historico).toEqual(e.historico);
+    expect(r.estado.rotina).toEqual(e.rotina);
+  });
+
+  it('o id renomeado troca para o novo em todo lugar, sem perder nada', () => {
+    const e = base();
+    const feito = e.historico[0]!.exercicios[0]!;
+    // o id da animação é outro campo (o nome do desenho no motor) e não muda com o id do exercício
+    const texto = JSON.stringify(e).replaceAll(`"${feito.exId}"`, '"nome-antigo"').replaceAll('"animacaoId":"nome-antigo"', `"animacaoId":"${feito.exId}"`);
+    const bruto = JSON.parse(texto) as Record<string, unknown>;
+    const lido = acertarIds(bruto, { 'nome-antigo': feito.exId });
+    expect(lido).toEqual(JSON.parse(JSON.stringify(e)));
+    expect(estadoSchema.safeParse(lido).success).toBe(true);
   });
 });

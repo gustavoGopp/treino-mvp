@@ -32,6 +32,17 @@ export function definirEstiloBoneco(e: Estilo) {
   ouvintes.forEach((f) => f());
 }
 
+/** "Apagar tudo" em Meus dados: a preferência volta ao padrão. */
+export function apagarEstiloBoneco() {
+  atual = ESTILO_PADRAO;
+  try {
+    localStorage.removeItem(CHAVE);
+  } catch {
+    // sem armazenamento: nada a apagar
+  }
+  ouvintes.forEach((f) => f());
+}
+
 export function useEstiloBoneco(): Estilo {
   return useSyncExternalStore(
     (f) => {

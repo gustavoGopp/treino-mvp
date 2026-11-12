@@ -1,10 +1,10 @@
 import { agoraIso, fusoDoAparelho, useApp } from '../app/estado';
+import { diaEMes as dataCurta } from '../../domain/numero';
 import { Selo } from '../app/ui';
 import { aceitarSemanaLeve, encerrarSemanaLeve, recusarSemanaLeve, semanaLeveDoEstado } from './acoes';
 
 // A semana leve (deload.semana-leve): sugerida só com sinal, sempre opcional e manual. O aviso de dor que se repete
 // (seguranca.dor.escala) aparece sempre que houver, com ou sem a sugestão: a semana leve soma, nunca substitui.
-const dataCurta = (iso: string) => `${iso.slice(8, 10)}/${iso.slice(5, 7)}`;
 
 type Parte = 'dor' | 'ativa' | 'oferta';
 

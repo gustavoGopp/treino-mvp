@@ -1,24 +1,24 @@
 {
  "programas": 5850,
  "vereditos": {
-  "bom": 2600,
-  "limite": 2579,
-  "ajustar": 671,
+  "bom": 2599,
+  "limite": 2583,
+  "ajustar": 668,
   "bloqueado": 0
  },
  "comSemAviso": 0,
  "porTipo": {
-  "ajustar abaixo-da-meta": 475,
+  "ajustar abaixo-da-meta": 470,
   "ajustar abaixo-do-piso": 192,
-  "ajustar tempo": 55,
+  "ajustar tempo": 57,
   "info maximo": 866,
-  "limite abaixo-da-meta": 1939,
-  "limite abaixo-do-piso": 1396,
-  "limite empurrar-puxar": 59,
+  "limite abaixo-da-meta": 1951,
+  "limite abaixo-do-piso": 1398,
+  "limite empurrar-puxar": 60,
   "limite funcoes": 1203,
   "limite obrigatorio": 476,
   "limite sem-exercicio": 975,
-  "limite tempo": 741
+  "limite tempo": 742
  },
  "semAviso": {},
  "porCenario": {
@@ -30,32 +30,32 @@
   },
   "condominio": {
    "bom": 564,
-   "limite": 305,
-   "ajustar": 106,
+   "limite": 310,
+   "ajustar": 101,
    "bloqueado": 0
   },
   "casa": {
    "bom": 487,
-   "limite": 368,
-   "ajustar": 120,
+   "limite": 367,
+   "ajustar": 121,
    "bloqueado": 0
   },
   "elasticos": {
-   "bom": 472,
-   "limite": 358,
-   "ajustar": 145,
+   "bom": 471,
+   "limite": 360,
+   "ajustar": 144,
    "bloqueado": 0
   },
   "halteres-banco": {
    "bom": 562,
-   "limite": 298,
-   "ajustar": 115,
+   "limite": 299,
+   "ajustar": 114,
    "bloqueado": 0
   },
   "sem-nada": {
    "bom": 0,
-   "limite": 876,
-   "ajustar": 99,
+   "limite": 873,
+   "ajustar": 102,
    "bloqueado": 0
   }
  }
