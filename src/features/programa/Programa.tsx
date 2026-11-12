@@ -4,7 +4,7 @@ import { POR_ID, type Musculo } from '../../domain/biblioteca';
 import { ALTERNATIVAS_A_MOSTRA, NOME_MUSCULO, ehAvisoDeMeta, type DiaPrograma, type ExercicioPrescrito, type Programa as TipoPrograma } from '../../domain/gerador';
 import { mensagemDeVolta, type MensagemDeVolta } from '../../domain/acompanhamento/volta';
 import { opcoesDeAjuste, type Opcao } from '../../domain/gerador/opcoes';
-import { numeroBr } from '../../domain/numero';
+import { diaEMes as dataCurta, faixaTexto as faixa, numeroBr, tempoNoRelogio as tempo } from '../../domain/numero';
 import { NOME_NIVEL } from '../../domain/nivel';
 import { avaliarTriagem, efeitoDaDor } from '../../domain/triagem';
 import { EFEITO_DA_DOR, NOME_ARTICULACAO } from '../onboarding/articulacoes';
@@ -30,10 +30,7 @@ import type { Inventario } from '../../domain/taxonomia/equipamentos';
 // Tela do treino: vai direto ao que importa (o treino de cada dia, com a imagem de cada exercício e
 // séries × repetições em destaque). Ajustes, avisos e o porquê ficam um toque abaixo. Nada muda sem a escolha da pessoa.
 
-const tempo = (seg: number) => (seg % 60 ? `${Math.floor(seg / 60)}:${String(seg % 60).padStart(2, '0')}` : `${seg / 60} min`);
-const faixa = ([a, b]: [number, number]) => (a === b ? `${a}` : `${a}–${b}`);
 const musculos = (ms: readonly Musculo[]) => ms.map((m) => NOME_MUSCULO[m]).join(', ');
-const dataCurta = (iso: string) => `${iso.slice(8, 10)}/${iso.slice(5, 7)}`;
 
 export function Programa() {
   const { estado, atualizar } = useApp();

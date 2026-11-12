@@ -122,20 +122,21 @@ export const PROGRESSAO = {
   saltoGrande: 0.1, // salto relativo acima de ~10%
   janelaFalha: 6, // sessões em que uma carga que ficou pesada não volta a ser sugerida
   folgaDegrau: 2, // progressao.criterio-degrau: as séries depois da 1ª podem ficar até 2 repetições abaixo do topo
+  reducaoEstagnacao: 0.1, // progressao.estagnacao: uma das saídas é reduzir 10% e reconstruir
   acertosMax: 3, // progressao.calibracao (R5a): depois de 3 séries de acerto sem cair em A ± 2, a calibração termina
 };
 
 /** O dia passa do tempo acima disto vezes os minutos escolhidos (a estimativa já inclui a margem de fila; régua da G5, A3). */
 export const LIMITE_DO_DIA = 1.1;
 
+/** seguranca.dor.escala: de 3 a 5, ajustar (carga, amplitude, ritmo); acima de 5, encerrar o exercício. */
+export const DOR = { ajustarDe: 3, ajustarAte: 5, reducaoCarga: [0.1, 0.2] as [number, number] };
+
 /**
  * Quanto a carga sugerida desce: o meio da faixa de cada regra (progressao.reduzir: 5–10%; seguranca.dor.escala:
  * 10–20%). A carga sugerida é a que existe no equipamento mais perto disso, sempre abaixo da de hoje.
  */
-export const REDUCAO = { abaixoDoMinimo: 0.075, dor: 0.15 };
-
-/** seguranca.dor.escala: de 3 a 5, ajustar (carga, amplitude, ritmo); acima de 5, encerrar o exercício. */
-export const DOR = { ajustarDe: 3, ajustarAte: 5 };
+export const REDUCAO = { abaixoDoMinimo: 0.075, dor: (DOR.reducaoCarga[0] + DOR.reducaoCarga[1]) / 2 };
 
 /** deload.semana-leve: o conteúdo da semana leve e quando sugerir. */
 export const SEMANA_LEVE = {

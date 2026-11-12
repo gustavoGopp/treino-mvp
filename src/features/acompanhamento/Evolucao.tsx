@@ -1,4 +1,5 @@
 import { Navigate, useParams } from 'react-router-dom';
+import { diaEMes as dataCurta } from '../../domain/numero';
 import { POR_ID } from '../../domain/biblioteca';
 import { evolucaoDoExercicio, type Marca, type PontoDaEvolucao } from '../../domain/acompanhamento/evolucao';
 import { cargaDaMaquina, textoCarga } from '../../domain/sessao';
@@ -10,7 +11,6 @@ import { NavInferior, Selo, Titulo, Topo } from '../app/ui';
 // Nunca uma carga máxima estimada. Nas máquinas, uma lista por local, com o nome do local. Lote 4 do redesign: o resumo
 // em 1 linha em cima ("Começou com 8 kg × 10 · agora 9 kg × 12 · 5 treinos").
 const TEXTO_MARCA: Record<Marca, string> = { 'subiu-a-carga': 'subiu a carga', recorde: 'recorde' };
-const dataCurta = (iso: string) => `${iso.slice(8, 10)}/${iso.slice(5, 7)}`;
 
 export function Evolucao() {
   const { exId = '' } = useParams();

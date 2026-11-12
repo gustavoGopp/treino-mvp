@@ -4,7 +4,7 @@ import { POR_ID } from '../../domain/biblioteca';
 import { ALTERNATIVAS_A_MOSTRA, type ExercicioPrescrito } from '../../domain/gerador';
 import { linkDoGuia } from '../guia/link';
 import { ESCADA_PESO_CORPO, haCargaMenor, type Carga, type SerieRegistrada } from '../../domain/progressao';
-import { numeroBr } from '../../domain/numero';
+import { faixaTexto as faixa, numeroBr, tempoNoRelogio as tempo } from '../../domain/numero';
 import { degrauInicial } from '../../domain/progressao/escadas';
 import { MENOR_ANILHA_PADRAO_KG } from '../../domain/taxonomia/equipamentos';
 import { CartaoTexto, temCartao } from '../programa/CartaoTexto';
@@ -35,8 +35,6 @@ import { PainelDescanso, useDescanso, useTelaAcesa } from './Temporizador';
 // Treino em andamento: um exercício por vez, séries registradas com um toque, descanso entre séries,
 // troca pela alternativa e o botão "Senti algo" (dor e sinais de alerta). Decisões: docs/pesquisa/10-decisoes-m5.md.
 
-const faixa = ([a, b]: [number, number]) => (a === b ? `${a}` : `${a}–${b}`);
-const tempo = (seg: number) => (seg % 60 ? `${Math.floor(seg / 60)}:${String(seg % 60).padStart(2, '0')}` : `${seg / 60} min`);
 const RIRS = [0, 1, 2, 3, 4] as const;
 
 // O exercício aberto no treino em andamento, lembrado só nesta aba (sessionStorage): não é dado de treino nem de saúde.

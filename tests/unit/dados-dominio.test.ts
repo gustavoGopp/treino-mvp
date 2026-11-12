@@ -1,5 +1,11 @@
 import { readdirSync, readFileSync } from 'node:fs';
 import { describe, expect, it } from 'vitest';
+import { diaEMes, faixaTexto, numeroBr, porCento, tempoNoRelogio, tempoPorExtenso } from '../../src/domain/numero';
+import { serieEfetiva } from '../../src/domain/progressao';
+import { DESCANSO, DOR, REDUCAO, RIR } from '../../src/domain/regras';
+import { avaliarDor } from '../../src/domain/triagem';
+import { gerarPrograma as gerarProgramaDoTeste } from '../../src/domain/gerador';
+import { PERSONAS as PERSONAS_DO_TESTE } from '../personas';
 import { BIBLIOTECA, ehEmpurrar, ehPuxar, MUSCULOS, MUSCULOS_INFERIORES, PADROES, PADROES_EMPURRAR, PADROES_PUXAR, regiaoDoMusculo } from '../../src/domain/biblioteca';
 import { REGRAS } from '../../src/domain/regras/completas';
 import { FUNCOES } from '../../src/domain/gerador/funcoes';
@@ -192,3 +198,39 @@ describe('uma definição de cada', () => {
   });
 });
 
+
+// Auditoria de 12/11/2026: textos com números escritos à mão ("1 min 45 s", "4", "10", "20") saem das constantes.
+describe('os números dos textos saem das constantes', () => {
+  it('os ajudantes de texto', () => {
+    expect(numeroBr(7.5)).toBe('7,5');
+    expect(numeroBr(10)).toBe('10');
+    expect(tempoPorExtenso(105)).toBe('1 min 45 s');
+    expect(tempoPorExtenso(120)).toBe('2 min');
+    expect(tempoPorExtenso(45)).toBe('45 s');
+    expect(tempoNoRelogio(105)).toBe('1:45');
+    expect(tempoNoRelogio(120)).toBe('2 min');
+    expect(faixaTexto([8, 12])).toBe('8–12');
+    expect(faixaTexto([8, 8])).toBe('8');
+    expect(porCento(0.15)).toBe('15');
+    expect(diaEMes('2026-11-12T10:00:00.000Z')).toBe('12/11');
+  });
+
+  it('o porquê do descanso diz o descanso que a regra prescreve', () => {
+    const r = gerarProgramaDoTeste(PERSONAS_DO_TESTE.bruno.perfil, PERSONAS_DO_TESTE.bruno.inventario);
+    if (r.status !== 'ok') throw new Error('sem programa');
+    for (const x of r.programa.dias.flatMap((d) => d.exercicios)) {
+      const texto = x.porque.find((q) => q.regraId === 'descanso.por-tipo')!.texto;
+      const seg = (x.tipo === 'composto' ? DESCANSO.composto : DESCANSO.isolador)[PERSONAS_DO_TESTE.bruno.perfil.nivel];
+      expect(texto).toContain(`Descanso de ${tempoPorExtenso(seg)}`);
+    }
+  });
+
+  it('a série efetiva, a dor e a estagnação usam os limites das regras', () => {
+    const s = { carga: { tipo: 'kg' as const, kg: 10 }, reps: 10 };
+    expect(serieEfetiva({ ...s, rir: RIR.serieEfetivaMax })).toBe(true);
+    expect(serieEfetiva({ ...s, rir: RIR.serieEfetivaMax + 1 })).toBe(false);
+    expect(avaliarDor(4).mensagem).toContain(`${porCento(DOR.reducaoCarga[0])}–${porCento(DOR.reducaoCarga[1])}%`);
+    expect(REDUCAO.dor).toBeGreaterThanOrEqual(DOR.reducaoCarga[0]);
+    expect(REDUCAO.dor).toBeLessThanOrEqual(DOR.reducaoCarga[1]);
+  });
+});

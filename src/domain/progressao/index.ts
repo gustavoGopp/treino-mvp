@@ -1,6 +1,6 @@
 import type { Exercicio } from '../biblioteca';
-import { numeroBr } from '../numero';
-import { DOR, PROGRESSAO, r, REDUCAO, SEMANA_LEVE } from '../regras';
+import { numeroBr, porCento } from '../numero';
+import { DOR, PROGRESSAO, r, REDUCAO, RIR, SEMANA_LEVE } from '../regras';
 import { MENOR_ANILHA_PADRAO_KG } from '../taxonomia/equipamentos';
 
 // Dupla progressão (progressao.*): primeiro as repetições sobem dentro da faixa; com todas as séries
@@ -351,7 +351,7 @@ export function sugerirProgressao(historico: SessaoExercicio[], alvo: Alvo, o: O
     return {
       acao: 'estagnado',
       // A saída "reduza 10%" só entra quando há uma carga menor para usar.
-      motivo: `Três sessões sem melhora: ${(haCargaMenor(carga, o) ? ['alargue a faixa', 'reduza 10% e reconstrua', 'semana leve', 'troque por uma variação equivalente'] : ['alargue a faixa', 'semana leve', 'troque por uma variação equivalente']).map((t, i) => `${i + 1}) ${t}`).join('; ')}.`,
+      motivo: `Três sessões sem melhora: ${(haCargaMenor(carga, o) ? ['alargue a faixa', `reduza ${porCento(PROGRESSAO.reducaoEstagnacao)}% e reconstrua`, 'semana leve', 'troque por uma variação equivalente'] : ['alargue a faixa', 'semana leve', 'troque por uma variação equivalente']).map((t, i) => `${i + 1}) ${t}`).join('; ')}.`,
       regraId: r('progressao.estagnacao'),
     };
 
@@ -368,7 +368,7 @@ export function sugerirSemanaLeve(sinais: { exerciciosEstagnados: number; pesado
   const motivos = [
     sinais.exerciciosEstagnados >= SEMANA_LEVE.estagnados && `${sinais.exerciciosEstagnados} exercícios sem progresso em 3 treinos`,
     sinais.pesadoNosUltimos3 >= SEMANA_LEVE.pesadoEm && `"pesado demais" em ${sinais.pesadoNosUltimos3} dos últimos ${SEMANA_LEVE.pesadoDe} treinos`,
-    sinais.dorQueSeRepete > 0 && 'dor de 3 a 5 no mesmo exercício em 2 treinos seguidos',
+    sinais.dorQueSeRepete > 0 && `dor de ${SEMANA_LEVE.dorMin} a ${SEMANA_LEVE.dorMax} no mesmo exercício em 2 treinos seguidos`,
   ].filter((m): m is string => !!m);
   return {
     sugerir: motivos.length > 0 && !sinais.carencia,
@@ -379,4 +379,4 @@ export function sugerirSemanaLeve(sinais: { exerciciosEstagnados: number; pesado
 }
 
 /** Série efetiva (rir.serie-efetiva): série de trabalho com até 4 repetições de reserva. */
-export const serieEfetiva = (s: SerieRegistrada) => s.rir <= 4 && s.amplitudeCompleta !== false;
+export const serieEfetiva = (s: SerieRegistrada) => s.rir <= RIR.serieEfetivaMax && s.amplitudeCompleta !== false;

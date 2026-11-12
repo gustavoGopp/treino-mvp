@@ -1,5 +1,6 @@
 import { ordemFixa } from '../ordem';
 import { BIBLIOTECA, ehEmpurrar, ehPuxar, MUSCULOS, MUSCULOS_INFERIORES, PADROES_EMPURRAR, PADROES_PUXAR, POR_ID, regiaoDoMusculo, type Articulacao, type Exercicio, type Musculo, type Padrao } from '../biblioteca';
+import { faixaTexto, porCento, tempoPorExtenso } from '../numero';
 import { DESCANSO, LIMITE_DO_DIA, OBJETIVO_FORCA, READAPTACAO, RIR, TEMPO, VOLUME, NIVEL_COMPLEXIDADE_MAX, OBRIGATORIO_CURTO, exerciciosPorSessao, r, type Nivel } from '../regras';
 import { capacidades, cargaMaxHalter, cargasCaneleiras, cargasHalter, cargasKettlebell, ITENS, type Capacidade, type Inventario, type ItemId } from '../taxonomia/equipamentos';
 import { avaliarTriagem, efeitoDaDor, type ResultadoTriagem, type Triagem } from '../triagem';
@@ -1498,7 +1499,10 @@ export function porqueDoExercicio(e: Exercicio, funcao: Funcao, nivelFuncao: num
   p.push({ regraId: r('rir.alvo'), texto: 'Terminar a série perto da falha, sem precisar chegar nela.' });
   p.push({
     regraId: r('descanso.por-tipo'),
-    texto: e.tipo === 'composto' ? 'Descanso de 1 min 45 s: acima de ~90 s, descansar mais não rende mais crescimento.' : 'Descanso de 1 min 15 s entre as séries.',
+    texto:
+      e.tipo === 'composto'
+        ? `Descanso de ${tempoPorExtenso(DESCANSO.composto[nivel])}: acima de ~90 s, descansar mais não rende mais crescimento.`
+        : `Descanso de ${tempoPorExtenso(DESCANSO.isolador[nivel])} entre as séries.`,
   });
   return p;
 }
@@ -1838,7 +1842,7 @@ function fases(p: Perfil): Fase[] {
 export function fasesDeReadaptacao(volta?: { reducao: number; calibrar?: boolean }): Fase[] {
   const pct = volta ? Math.round(volta.reducao * 100) : 0;
   const texto1 = !volta
-    ? 'Cerca de metade das séries, RIR 3–4 e carga 10–20% abaixo da que você usava antes da pausa (na dúvida, comece leve).'
+    ? `Cerca de metade das séries, RIR ${faixaTexto(READAPTACAO.semana1.rir)} e carga ${faixaTexto([Number(porCento(READAPTACAO.semana1.reducaoCarga[0])), Number(porCento(READAPTACAO.semana1.reducaoCarga[1]))])}% abaixo da que você usava antes da pausa (na dúvida, comece leve).`
     : volta.calibrar
       ? `Cerca de metade das séries e RIR 3–4. A 1ª série de cada exercício acerta a carga, começando ${pct}% abaixo da última vez.`
       : `Cerca de metade das séries, RIR 3–4 e carga ${pct}% abaixo da última vez (já vem preenchida).`;

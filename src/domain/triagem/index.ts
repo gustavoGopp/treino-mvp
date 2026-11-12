@@ -1,5 +1,6 @@
 import { ordemFixa } from '../ordem';
 import type { Articulacao } from '../biblioteca';
+import { porCento } from '../numero';
 import { DOR, r } from '../regras';
 
 // Triagem de prontidão no estilo do PAR-Q+ (seguranca.triagem). As perguntas são próprias do app:
@@ -133,7 +134,7 @@ export function avaliarDor(nota: number, aguda = false, haCargaMenor = true): Ac
     return {
       acao: 'ajustar',
       mensagem: haCargaMenor
-        ? 'Reduza a carga em 10–20%, encurte a amplitude ou desacelere. Se a dor não diminuir, troque pela alternativa.'
+        ? `Reduza a carga em ${porCento(DOR.reducaoCarga[0])}–${porCento(DOR.reducaoCarga[1])}%, encurte a amplitude ou desacelere. Se a dor não diminuir, troque pela alternativa.`
         : 'Não há carga menor aqui: encurte a amplitude ou desacelere. Se a dor não diminuir, troque pela alternativa.',
       regraId,
     };
