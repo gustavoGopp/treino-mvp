@@ -61,7 +61,7 @@ type Item = { x: ExercicioPrescrito; feito: { exId: string; series: SerieRegistr
 export function Treino() {
   const { estado, atualizar, erroAoSalvar } = useApp();
   const navigate = useNavigate();
-  const descanso = useDescanso();
+  const descanso = useDescanso(estado.sessaoAtual?.id);
   useTelaAcesa();
   const sessao = estado.sessaoAtual;
   const programa = estado.programa?.programa;

@@ -290,3 +290,70 @@ test('"Senti algo" abre e fecha a folha, e passa por cima de qualquer outra folh
   await expect(page.getByRole('region', { name: 'Trocar exercício' })).toBeHidden();
   await expect(folha).toBeVisible();
 });
+
+// Auditoria de 12/11/2026: o descanso vivia só na tela do treino. Abrir o guia no meio do descanso parava o
+// temporizador; o contexto de áudio nunca era fechado; e, ao passar de zero com "−15 s", os bipes já agendados para
+// o horário antigo ainda tocavam.
+test('o descanso sobrevive à ida ao guia, o áudio é fechado ao sair e os bipes param quando o tempo passa de zero', async ({ page }) => {
+  await page.addInitScript(() => {
+    const w = window as unknown as { __audio: { criados: number; fechados: number; osciladores: { cedo: boolean }[] } };
+    w.__audio = { criados: 0, fechados: 0, osciladores: [] };
+    const AC = window.AudioContext;
+    window.AudioContext = class extends AC {
+      constructor() {
+        super();
+        w.__audio.criados++;
+      }
+      close() {
+        w.__audio.fechados++;
+        return super.close();
+      }
+      createOscillator() {
+        const o = super.createOscillator();
+        const marca = { cedo: false };
+        w.__audio.osciladores.push(marca);
+        const parar = o.stop.bind(o);
+        o.stop = (quando?: number) => {
+          if (!quando) marca.cedo = true;
+          parar(quando);
+        };
+        return o;
+      }
+    };
+  });
+  const audio = () => page.evaluate(() => (window as unknown as { __audio: { criados: number; fechados: number; osciladores: { cedo: boolean }[] } }).__audio);
+  await ana(page);
+  await comecar(page);
+  await page.getByLabel('Carga', { exact: true }).selectOption('8');
+  await page.getByRole('radio', { name: '2', exact: true }).check();
+  await page.getByRole('button', { name: /^Série feita/ }).click();
+  const descanso = page.getByRole('region', { name: 'Descanso' });
+  await expect(descanso).toBeVisible();
+  expect((await audio()).criados).toBe(1);
+
+  // vai ao guia e volta: o descanso continua contando, e o áudio da tela que saiu foi fechado
+  await page.getByRole('link', { name: 'Ver como fazer' }).click();
+  await expect(page).toHaveURL(/\/guia\/.+de=treino/);
+  // a tela do treino só sai quando o pedaço do guia termina de carregar
+  await expect.poll(async () => (await audio()).fechados).toBe(1);
+  await page.goBack();
+  await expect(page).toHaveURL(/\/treino$/);
+  await expect(descanso).toBeVisible();
+  await expect(descanso.getByRole('timer')).toHaveText(/^\d:\d\d$/);
+  // recarregar a página também não perde o descanso
+  await page.reload();
+  await expect(descanso).toBeVisible();
+
+  // "−15 s" até passar de zero: nenhum bipe fica agendado para o horário antigo
+  for (let i = 0; i < 12 && !(await descanso.getByText('Hora da próxima série').isVisible()); i++) await descanso.getByRole('button', { name: '−15 s' }).click();
+  await expect(descanso.getByText('Hora da próxima série')).toBeVisible();
+  const a = await audio();
+  expect(a.osciladores.length).toBeGreaterThan(0);
+  expect(a.osciladores.every((o) => o.cedo)).toBe(true);
+  // "Ok" encerra o descanso, e ele não volta ao recarregar
+  await descanso.getByRole('button', { name: 'Ok' }).click();
+  await expect(descanso).toHaveCount(0);
+  await page.reload();
+  await expect(page.getByRole('region', { name: /^Série 2/ })).toBeVisible();
+  await expect(descanso).toHaveCount(0);
+});

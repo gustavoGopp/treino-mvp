@@ -45,8 +45,30 @@ export function useTelaAcesa(ligada = true) {
   }, [ligada]);
 }
 
-export function useDescanso() {
-  const [estado, setEstado] = useState<Estado>(null);
+// O descanso em curso fica guardado na sessão do navegador (só o horário de término e a duração, nada do treino), para
+// sobreviver à ida ao guia e a um recarregar: antes, sair da tela do treino no meio do descanso parava o temporizador.
+// A chave leva o id do treino: o descanso de um treino nunca aparece em outro.
+const CHAVE_DESCANSO = 'treino-mvp:descanso';
+function lerDescanso(treino: string): Estado {
+  try {
+    const d = JSON.parse(sessionStorage.getItem(CHAVE_DESCANSO) ?? 'null') as { treino?: string; fim?: number; dur?: number } | null;
+    return d && d.treino === treino && typeof d.fim === 'number' && typeof d.dur === 'number' ? { fim: d.fim, dur: d.dur } : null;
+  } catch {
+    return null;
+  }
+}
+function guardarDescanso(treino: string, e: Estado) {
+  try {
+    if (e) sessionStorage.setItem(CHAVE_DESCANSO, JSON.stringify({ treino, ...e }));
+    else sessionStorage.removeItem(CHAVE_DESCANSO);
+  } catch {
+    // sem sessionStorage: o descanso vale só enquanto a tela estiver aberta, como antes
+  }
+}
+
+/** `treino`: o id do treino em andamento (a chave do descanso guardado). */
+export function useDescanso(treino = '') {
+  const [estado, setEstado] = useState<Estado>(() => lerDescanso(treino));
   const [agora, setAgora] = useState(() => Date.now());
   const audio = useRef<AudioContext | null>(null);
   const bipes = useRef<OscillatorNode[]>([]);
@@ -92,7 +114,9 @@ export function useDescanso() {
 
   const iniciar = (seg: number) => {
     vibrou.current = false;
-    setEstado({ fim: Date.now() + seg * 1000, dur: seg });
+    const novo = { fim: Date.now() + seg * 1000, dur: seg };
+    guardarDescanso(treino, novo);
+    setEstado(novo);
     agendarBipes(seg);
   };
   const ajustar = (d: number) =>
@@ -103,11 +127,13 @@ export function useDescanso() {
       if (resta > 0) {
         vibrou.current = false;
         agendarBipes(resta);
-      }
+      } else pararBipes(); // passou de zero: os bipes agendados para o horário antigo não tocam mais
+      guardarDescanso(treino, n);
       return n;
     });
   const parar = () => {
     pararBipes();
+    guardarDescanso(treino, null);
     setEstado(null);
   };
 
@@ -116,6 +142,15 @@ export function useDescanso() {
     const id = setInterval(() => setAgora(Date.now()), 250);
     return () => clearInterval(id);
   }, [estado]);
+  // Descanso que veio guardado (a pessoa voltou do guia): os bipes são agendados de novo para o tempo que falta.
+  useEffect(() => {
+    const guardado = lerDescanso(treino);
+    const falta = guardado ? (guardado.fim - Date.now()) / 1000 : 0;
+    if (falta > 0) agendarBipes(falta);
+    // só na montagem: depois, quem agenda é iniciar e ajustar
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+  // Ao sair da tela: os bipes param e o contexto de áudio é fechado (antes, ficava um aberto a cada entrada no treino).
   useEffect(
     () => () => {
       bipes.current.forEach((o) => {
@@ -125,6 +160,9 @@ export function useDescanso() {
           /* já parou */
         }
       });
+      bipes.current = [];
+      void audio.current?.close().catch(() => {});
+      audio.current = null;
     },
     [],
   );

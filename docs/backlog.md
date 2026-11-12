@@ -231,7 +231,6 @@ O que a auditoria achou e não corrigiu, porque pede uma decisão do Gustavo ou 
 - **A animação da `panturrilha-chao` mostra a descida com as duas pernas**: em 12/11/2026 os dados, o porquê e o cartão foram alinhados à fonte (subir com as duas e descer em 3 s com uma só; `nakamura2025`), e o cartão avisa da diferença. Falta o Gustavo decidir: refazer a animação (folha a folha) ou mostrar o exercício como cartão de texto.
 
 **Tela**
-- **O descanso e a nota de dor pendente se perdem ao sair do treino** (abrir o guia no meio do descanso para o temporizador).
 - **Ids repetidos no drop set** (`ControleCarga`: `carga-rotulo`, `carga-kg`) e nas miniaturas (`mh-listras`, os recortes do corpo): o rótulo aponta para o 1º controle.
 - **A folha fica fora de `.app`**: a cor dos links e o `prefers-reduced-motion` do CSS não chegam ao conteúdo dela.
 - **Uma importação que falha (sem rede, versão nova publicada) fica guardada até recarregar** (`regras/carregar.ts`, `conteudo/cartoes.ts`, `programa/desenhoFora.ts`).
