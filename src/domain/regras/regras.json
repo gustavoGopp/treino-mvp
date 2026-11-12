@@ -531,9 +531,9 @@
     "id": "progressao.subir",
     "regra": "Dupla progressão: quando subir a carga",
     "valores": {
-      "iniciante": "todas as séries no topo da faixa com o RIR alvo em 2 sessões seguidas → menor incremento disponível e volta ao fundo da faixa",
-      "intermediario": "todas as séries no topo da faixa com o RIR alvo em 2 sessões seguidas → menor incremento disponível e volta ao fundo da faixa",
-      "avancado": "todas as séries no topo da faixa com o RIR alvo em 2 sessões seguidas → menor incremento disponível e volta ao fundo da faixa"
+      "iniciante": "todas as séries no topo da faixa com o RIR alvo e com a carga da 1ª série ou mais (série mais leve não conta; decisão de 12/11/2026) em 2 sessões seguidas → menor incremento disponível e volta ao fundo da faixa",
+      "intermediario": "todas as séries no topo da faixa com o RIR alvo e com a carga da 1ª série ou mais (série mais leve não conta; decisão de 12/11/2026) em 2 sessões seguidas → menor incremento disponível e volta ao fundo da faixa",
+      "avancado": "todas as séries no topo da faixa com o RIR alvo e com a carga da 1ª série ou mais (série mais leve não conta; decisão de 12/11/2026) em 2 sessões seguidas → menor incremento disponível e volta ao fundo da faixa"
     },
     "selo": "consenso",
     "fontes": [

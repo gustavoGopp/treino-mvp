@@ -17,6 +17,26 @@ describe('dupla progressão', () => {
     const h = [sessao(kg(20), [12, 12, 12]), sessao(kg(20), [12, 12, 12])];
     expect(sugerirProgressao(h, alvo, { tipo: 'halter', lista: [20, 22] })).toMatchObject({ acao: 'subir', proxima: kg(22), regraId: 'progressao.subir' });
   });
+  // Auditoria de 12/11/2026: o topo conferia a carga só na 1ª série (20 kg × 12, depois 14 kg × 12 e 14 kg × 12, duas
+  // vezes, sugeria 22 kg). Decisão do Gustavo: a carga vale em todas as séries; série mais leve não conta como topo.
+  it('série mais leve que a 1ª não conta como topo: não sobe', () => {
+    const mista = (): SessaoExercicio => ({ series: [20, 14, 14].map((k) => ({ carga: kg(k), reps: 12, rir: 1 })) });
+    const s = sugerirProgressao([mista(), mista()], alvo, { tipo: 'halter', lista: [14, 20, 22] });
+    expect(s).toEqual({ acao: 'manter', motivo: 'Para subir, faça todas as séries com a carga de 20 kg: a série mais leve não conta como topo da faixa.', regraId: 'progressao.subir' });
+    // uma sessão mista e outra inteira na carga também não bastam: são 2 sessões seguidas com a carga em todas
+    expect(sugerirProgressao([mista(), sessao(kg(20), [12, 12, 12])], alvo, { tipo: 'halter', lista: [14, 20, 22] }).acao).toBe('manter');
+    // série mais pesada que a 1ª não atrapalha: o topo foi feito com pelo menos a carga da 1ª
+    const maisPesada = (): SessaoExercicio => ({ series: [20, 22, 22].map((k) => ({ carga: kg(k), reps: 12, rir: 1 })) });
+    expect(sugerirProgressao([maisPesada(), maisPesada()], alvo, { tipo: 'halter', lista: [20, 22, 24] })).toMatchObject({ acao: 'subir', proxima: kg(22) });
+  });
+  it('no peso do corpo, a série num degrau mais fácil também não conta como topo', () => {
+    const degrau = (d: number): Carga => ({ tipo: 'degrau', degrau: d });
+    const mista = (): SessaoExercicio => ({ series: [2, 1, 1].map((d) => ({ carga: degrau(d), reps: 12, rir: 1 })) });
+    const o = { tipo: 'peso-corpo' as const, degraus: ['a', 'b', 'c', 'd'] };
+    expect(sugerirProgressao([mista(), mista()], alvo, o).acao).toBe('manter');
+    const inteira = (): SessaoExercicio => ({ series: [2, 2, 2].map((d) => ({ carga: degrau(d), reps: 12, rir: 1 })) });
+    expect(sugerirProgressao([inteira(), inteira()], alvo, o).acao).toBe('subir');
+  });
   it('topo em uma sessão só: ainda manter', () => {
     expect(sugerirProgressao([sessao(kg(10), [11, 10, 10]), sessao(kg(10), [12, 12, 12])], alvo, halter).acao).toBe('manter');
   });

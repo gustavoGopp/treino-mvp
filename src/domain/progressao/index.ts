@@ -160,12 +160,22 @@ function reduzir(c: Carga, fator: number, o: OpcoesCarga): Carga | undefined {
 }
 
 const validas = (s: SessaoExercicio) => s.series.filter((x) => x.amplitudeCompleta !== false);
-const noTopo = (s: SessaoExercicio, a: Alvo) => {
+/** As repetições e o RIR de todas as séries chegaram ao topo da faixa (sem olhar a carga de cada série). */
+const repsNoTopo = (s: SessaoExercicio, a: Alvo) => {
   if (!s.series.length || !s.series.every((x) => x.amplitudeCompleta !== false && x.rir <= a.rir[1])) return false;
   // progressao.criterio-degrau: no peso do corpo e no elástico, a 1ª série no topo e as outras a até 2 repetições dele.
   if (s.series[0]!.carga.tipo === 'degrau') return s.series[0]!.reps >= a.reps[1] && s.series.every((x) => x.reps >= a.reps[1] - PROGRESSAO.folgaDegrau);
   return s.series.every((x) => x.reps >= a.reps[1]);
 };
+/**
+ * Todas as séries com a carga da 1ª, ou mais (progressao.subir; decisão do Gustavo em 12/11/2026). A sessão é
+ * comparada pela carga da 1ª série; antes, 20 kg × 12 seguido de duas séries de 14 kg × 12 contava como topo em 20 kg.
+ */
+const cargaEmTodas = (s: SessaoExercicio) => {
+  const primeira = s.series[0]?.carga;
+  return !!primeira && s.series.every((x) => x.carga.tipo === primeira.tipo && valor(x.carga) >= valor(primeira) - 1e-9);
+};
+const noTopo = (s: SessaoExercicio, a: Alvo) => repsNoTopo(s, a) && cargaEmTodas(s);
 const totalReps = (s: SessaoExercicio) => validas(s).reduce((t, x) => t + x.reps, 0);
 
 /**
@@ -288,6 +298,14 @@ export function sugerirProgressao(historico: SessaoExercicio[], alvo: Alvo, o: O
       };
     return { acao: 'subir', proxima: prox, motivo: 'Topo da faixa em todas as séries, no RIR certo, por 2 sessões: suba a carga.', regraId: r('progressao.subir') };
   }
+
+  // Topo nas repetições, mas com alguma série mais leve que a 1ª: não sobe, e a sugestão diz o que falta.
+  if (repsNoTopo(ultima, alvo) && !cargaEmTodas(ultima))
+    return {
+      acao: 'manter',
+      motivo: `Para subir, faça todas as séries com ${textoDaCarga(carga).replace(/^./, (l) => l.toLowerCase())}: a série mais leve não conta como topo da faixa.`,
+      regraId: r('progressao.subir'),
+    };
 
   // Estagnação: 3 sessões seguidas, mesma carga, sem melhora de repetições
   const ult3 = historico.slice(-3);
