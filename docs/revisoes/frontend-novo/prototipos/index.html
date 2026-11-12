@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Direções do frontend novo</title>
+<style>
+:root{--fundo:#F4F4F2;--sup:#FFFFFF;--texto:#16181D;--texto2:#4A4F59;--linha:#DCDDDF;--foco:#16181D}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--fundo:#111214;--sup:#1C1D21;--texto:#F1F1EF;--texto2:#B3B6BD;--linha:#2E3036;--foco:#F1F1EF;color-scheme:dark}}
+:root[data-theme="dark"]{--fundo:#111214;--sup:#1C1D21;--texto:#F1F1EF;--texto2:#B3B6BD;--linha:#2E3036;--foco:#F1F1EF;color-scheme:dark}
+*{box-sizing:border-box}
+body{margin:0;background:var(--fundo);color:var(--texto);font:400 1.0625rem/1.45 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+main{max-width:40rem;margin:0 auto;padding:32px max(16px,env(safe-area-inset-right,0px)) 48px max(16px,env(safe-area-inset-left,0px));display:flex;flex-direction:column;gap:32px}
+h1{font-size:1.75rem;line-height:1.15;margin:0 0 8px;text-wrap:balance}
+h2{font-size:1.25rem;margin:0}
+p{margin:0}
+.apoio{color:var(--texto2);font-size:.9375rem}
+ol{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:16px}
+li a{display:flex;flex-direction:column;gap:8px;padding:24px;background:var(--sup);border-radius:16px;color:inherit;text-decoration:none}
+li a:focus-visible{outline:2px solid var(--foco);outline-offset:2px}
+li a b{text-decoration:underline;text-underline-offset:3px}
+</style>
+</head>
+<body>
+<main>
+  <header>
+    <h1>Três direções para o frontend novo</h1>
+    <p class="apoio">Cada uma tem duas telas, o início e o treino (a série e o descanso), com o programa da persona fictícia Ana e o Boneco do motor, sem mudança. Abra no celular. A faixa escura do topo troca de tela e de tema; ela é do protótipo, não do desenho.</p>
+  </header>
+  <ol>
+    <li><a href="a-giz/index.html"><h2>A · Giz</h2><p>A identidade de hoje, sem contornos: o Boneco no topo do treino, o registro da série num painel embaixo e o relógio do descanso no lugar do Boneco.</p><p class="apoio">Letra Atkinson Hyperlegible Next · índigo</p><b>Abrir a direção A</b></a></li>
+    <li><a href="b-placar/index.html"><h2>B · Placar</h2><p>Preto e branco: a única cor na tela é a do Boneco. Carga e repetições gigantes, a lista do dia como tabela e o descanso tomando a tela inteira, para ler de longe.</p><p class="apoio">Letra Geist · sem cor de destaque</p><b>Abrir a direção B</b></a></li>
+    <li><a href="c-ficha/index.html"><h2>C · Ficha</h2><p>O Boneco nunca sai da tela do treino, nem no descanso. A série vem numa linha só, já preenchida: a pessoa toca só no que mudou.</p><p class="apoio">Letra Figtree · ameixa</p><b>Abrir a direção C</b></a></li>
+  </ol>
+  <p class="apoio">Feito em 12/11/2026. O que cada direção ganha e perde está em <code>docs/revisoes/frontend-novo/proposta.md</code>.</p>
+</main>
+</body>
+</html>

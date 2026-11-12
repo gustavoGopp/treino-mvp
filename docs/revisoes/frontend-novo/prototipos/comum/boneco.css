@@ -1,0 +1,104 @@
+/* Gerado por scripts/design/frontend-novo/prototipo/gerar.mjs a partir de src/styles.css: só o desenho do Boneco (não muda). */
+.palco{--stage:#f7f9fa; --fig:#1a2833; --fig-far:#a2afb9; --torso:#8fa0ab; --joint:#0a7c72; --eq:#cdd6dc; --eq-dark:#8796a1; --cable:#4e5a64; --spine:#d29400; --elastic:#6d4bb3; --mus-p:rgba(214,46,38,.62); --mus-s:rgba(236,150,28,.5); --err:#d1342b; --ghost:#1c9a53; --path:#2457d6; --guide:#0a7c72; --st-ink:#14202a; --st-muted:#566673; --st-line:#d3dbe1; --ea-pele:#c3cdd4; --ea-pele-longe:#e3e8ec; --ea-cont-longe:#9eacb6;
+  --eb-pele:#93a2ad; --eb-pele-longe:#cdd5db;
+  --m-p:#d62e26; --m-s:#ec961c; --m-borda:#5c1410;
+  --e-pele-erro:#f6d3cf; --ink:var(--st-ink); --muted:var(--st-muted); --line:var(--st-line); --font-b:var(--fonte);}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .palco{--stage:#10171b; --fig:#e7eef2; --fig-far:#4f5e69; --torso:#5d6e7a; --joint:#2bb3a6; --eq:#2a353e; --eq-dark:#53626d; --cable:#a3b3bf; --spine:#f0b429; --elastic:#b49ce6; --mus-p:rgba(244,82,72,.6); --mus-s:rgba(245,170,60,.45); --err:#f2564c; --ghost:#3ccf7d; --path:#6c96ff; --guide:#2bb3a6; --st-ink:#e5ecf0; --st-muted:#97a5b0; --st-line:#25313a; --ea-pele:#56656f; --ea-pele-longe:#2c3740; --ea-cont-longe:#4f5e69;
+  --eb-pele:#6e7f8b; --eb-pele-longe:#36434c;
+  --m-p:#f4524a; --m-s:#f5aa3c; --m-borda:#10171b;
+  --e-pele-erro:#4a2220;}}
+:root[data-theme="dark"] .palco{--stage:#10171b; --fig:#e7eef2; --fig-far:#4f5e69; --torso:#5d6e7a; --joint:#2bb3a6; --eq:#2a353e; --eq-dark:#53626d; --cable:#a3b3bf; --spine:#f0b429; --elastic:#b49ce6; --mus-p:rgba(244,82,72,.6); --mus-s:rgba(245,170,60,.45); --err:#f2564c; --ghost:#3ccf7d; --path:#6c96ff; --guide:#2bb3a6; --st-ink:#e5ecf0; --st-muted:#97a5b0; --st-line:#25313a; --ea-pele:#56656f; --ea-pele-longe:#2c3740; --ea-cont-longe:#4f5e69;
+  --eb-pele:#6e7f8b; --eb-pele-longe:#36434c;
+  --m-p:#f4524a; --m-s:#f5aa3c; --m-borda:#10171b;
+  --e-pele-erro:#4a2220;}
+/* svg */
+.bn{stroke:var(--fig);stroke-linecap:round;fill:none}
+.bf{stroke:var(--fig-far);stroke-linecap:round;fill:none}
+.tor{stroke:var(--torso);fill:var(--torso);stroke-linejoin:round}
+.hd{fill:var(--stage);stroke:var(--fig)}
+.ns{stroke:var(--fig);stroke-linecap:round}
+.jt{fill:var(--stage);stroke:var(--joint)}
+.bn-e{stroke:var(--err);stroke-linecap:round;fill:none}
+.bf-e{stroke:var(--err);stroke-linecap:round;fill:none;opacity:.45}
+.tor-e{stroke:var(--err);fill:var(--err);stroke-linejoin:round;opacity:.85}
+.hd-e{fill:var(--stage);stroke:var(--err)}
+.ns-e{stroke:var(--err);stroke-linecap:round}
+.gh{stroke:var(--ghost);fill:none;stroke-linecap:round;stroke-linejoin:round;opacity:.75}
+/* piloto da auditoria (04/11/2026): o erro desenhado por cima do certo, em vermelho tracejado, com o nome do erro */
+.gh-e{stroke:var(--err);fill:none;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:4.5 3;opacity:.95}
+.hd-ge{fill:none;stroke:var(--err);stroke-dasharray:4.5 3}
+.lbl-e{fill:var(--err);paint-order:stroke;stroke:var(--stage);stroke-linejoin:round;font-family:var(--font-b);font-weight:700}
+/* opção (b) do R4: o equipamento da pose errada, translúcido e tracejado, por cima do certo */
+.eq-err{opacity:.55;stroke-dasharray:4 3}
+.gh2{stroke:var(--muted);fill:none;stroke-linecap:round;stroke-linejoin:round;opacity:.6;stroke-dasharray:3 3}
+.sp{stroke:var(--spine);fill:none;stroke-linecap:round;stroke-linejoin:round}
+.spd{fill:var(--spine)}
+.eqp{fill:var(--eq);stroke:var(--eq-dark);stroke-linejoin:round}
+.eqd{fill:var(--eq-dark);stroke:var(--eq-dark);stroke-linejoin:round}
+.eqs{fill:var(--eq-dark);stroke:var(--fig-far);stroke-linejoin:round}
+.eql{stroke:var(--eq-dark);stroke-linecap:round;fill:none}
+.ball{fill:var(--eq);fill-opacity:.6;stroke:var(--eq-dark);stroke-width:.9}
+.cb{stroke:var(--cable);fill:none;stroke-linecap:round}
+.rope{stroke:#b0763a;fill:none;stroke-linecap:round}
+.elas{stroke:var(--elastic);fill:none;stroke-linecap:round}
+.db{fill:var(--fig);stroke:var(--fig)}
+.db-e{fill:var(--err);stroke:var(--err)}
+.kb-alca{fill:none;stroke:var(--fig);stroke-linejoin:round;stroke-linecap:round}
+.kb-alca-e{fill:none;stroke:var(--err);stroke-linejoin:round;stroke-linecap:round}
+.mp{fill:var(--mus-p);stroke:var(--mus-p);stroke-width:2.5;stroke-linejoin:round}
+.ms{fill:var(--mus-s);stroke:var(--mus-s);stroke-width:2.5;stroke-linejoin:round}
+.scap{fill:var(--stage);stroke:var(--fig);stroke-linejoin:round;opacity:.9}
+.mpl{stroke:var(--mus-p);fill:none;stroke-linecap:round}
+.msl{stroke:var(--mus-s);fill:none;stroke-linecap:round}
+.pt{stroke:var(--path);fill:none;stroke-linecap:round;stroke-linejoin:round}
+.pta{fill:var(--path)}
+.pt2{stroke:var(--path);fill:none;stroke-linecap:round;opacity:.55}
+.gd{stroke:var(--guide);fill:none;stroke-linecap:round}
+.gda{fill:var(--guide)}
+.floor{stroke:var(--line);stroke-linecap:round}
+.lbl{fill:var(--ink);paint-order:stroke;stroke:var(--stage);stroke-linejoin:round;font-family:var(--font-b);font-weight:500}
+.lbl-g{fill:var(--guide);paint-order:stroke;stroke:var(--stage);stroke-linejoin:round;font-family:var(--font-b);font-weight:600}
+.lbl-p{fill:var(--path);paint-order:stroke;stroke:var(--stage);stroke-linejoin:round;font-family:var(--font-b);font-weight:600}
+.lbl-m{fill:var(--muted);paint-order:stroke;stroke:var(--stage);stroke-linejoin:round;font-family:var(--font-b);font-weight:500}
+
+.ea-cont{stroke:var(--fig);fill:var(--fig);stroke-linecap:round;stroke-linejoin:round}
+.ea-cont-longe{stroke:var(--ea-cont-longe);fill:none;stroke-linecap:round}
+.ea-pele{fill:var(--ea-pele);stroke:var(--fig)}
+.ea-pele-t{fill:var(--ea-pele);stroke:var(--ea-pele);stroke-width:.6;stroke-linejoin:round}
+.ea-pele-l{stroke:var(--ea-pele);fill:none;stroke-linecap:round}
+.ea-pele-l-longe{stroke:var(--ea-pele-longe);fill:none;stroke-linecap:round}
+.ea-jt{fill:var(--stage);stroke:var(--joint)}
+.ea-sp{stroke:var(--fig);stroke-linecap:round;stroke-linejoin:round;opacity:.45}
+.ea-mp{fill:var(--m-p);stroke:var(--m-borda);stroke-linejoin:round}
+.ea-ms{fill:var(--m-s);stroke:var(--m-borda);stroke-linejoin:round}
+/* músculo que só ajuda a firmar: listras de laranja sobre a pele (legenda A, 03/11/2026) */
+.ea-mh,.eb-mh{fill:var(--mh-listras,url(#mh-listras));stroke:var(--m-borda);stroke-linejoin:round}
+.eb-mh{stroke:var(--stage)}
+.mh-fundo{fill:var(--ea-pele)}
+.mh-listra{fill:var(--m-s)}
+.sw.listras{background:repeating-linear-gradient(45deg,var(--m-s) 0 2px,var(--ea-pele) 2px 4px);box-shadow:inset 0 0 0 1px var(--m-borda)}
+.eb-pele{fill:var(--eb-pele)}
+.eb-pele-t{fill:var(--eb-pele);stroke:var(--eb-pele);stroke-width:.6;stroke-linejoin:round}
+.eb-pele-l{stroke:var(--eb-pele);fill:none;stroke-linecap:round}
+.eb-pele-l-longe{stroke:var(--eb-pele-longe);fill:none;stroke-linecap:round}
+.eb-folga{stroke:var(--stage);fill:none;stroke-linecap:round}
+.eb-mp{fill:var(--m-p);stroke:var(--stage);stroke-linejoin:round}
+.eb-ms{fill:var(--m-s);stroke:var(--stage);stroke-linejoin:round}
+.estilo-b .eqp,.estilo-b .eqd,.estilo-b .eqs,.estilo-b .eql{opacity:.55}
+/* modo Erros nos estilos novos: a figura que erra em tons da cor de erro (o certo continua como fantasma verde) */
+.ea-cont-e{stroke:var(--err);fill:var(--err);stroke-linecap:round;stroke-linejoin:round}
+.ea-cont-longe-e{stroke:var(--err);fill:none;stroke-linecap:round;opacity:.5}
+.ea-pele-e,.eb-pele-e{fill:var(--e-pele-erro);stroke:var(--err)}
+.ea-pele-t-e,.eb-pele-t-e{fill:var(--e-pele-erro);stroke:var(--e-pele-erro);stroke-width:.6;stroke-linejoin:round}
+.ea-pele-l-e,.eb-pele-l-e{stroke:var(--e-pele-erro);fill:none;stroke-linecap:round}
+.ea-pele-l-longe-e,.eb-pele-l-longe-e{stroke:var(--e-pele-erro);fill:none;stroke-linecap:round;opacity:.6}
+.eb-pele-l-e{stroke:var(--err)}
+/* vista de cima: a corda e o cabo até a polia mais leves (o "triângulo comprido" do face pull, R3) */
+.estilo-a.vista-top .rope,.estilo-b.vista-top .rope{stroke-width:1.2px}
+.estilo-a.vista-top .cb,.estilo-b.vista-top .cb{opacity:.45;stroke-dasharray:3 3}
+/* Acabamento A2 do boneco (auditoria de 04/11/2026; estilo/corpo.ts, membros que afinam e folga do braço) */
+.ea-pele-t-longe{fill:var(--ea-pele-longe);stroke:var(--ea-pele-longe);stroke-width:.6;stroke-linejoin:round}
+.ea-pele-t-longe-e{fill:var(--e-pele-erro);stroke:var(--e-pele-erro);stroke-linejoin:round;opacity:.6}
+.ea-cont-longe{stroke-linejoin:round}
+.eb-folga-t{fill:var(--stage);stroke:var(--stage);stroke-linejoin:round}
+

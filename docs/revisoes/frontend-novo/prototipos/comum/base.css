@@ -1,0 +1,45 @@
+/* Protótipos do frontend novo: o que é comum às três direções e não é desenho delas.
+   A grade de 8 pontos (bloco A do pedido): uma escala só, 4 · 8 · 16 · 24 · 32 · 48 · 64, e alturas de toque de 48, 56 e 64
+   (em rem, para a letra maior do sistema valer). Nenhuma direção usa espaço, altura ou canto fora destes tokens. */
+:root{
+  --e4:4px; --e8:8px; --e16:16px; --e24:24px; --e32:32px; --e48:48px; --e64:64px;
+  --h48:3rem; --h56:3.5rem; --h64:4rem;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;min-height:100dvh;background:var(--fundo);color:var(--texto);font-family:var(--fonte);line-height:1.4;
+  font-variant-numeric:tabular-nums lining-nums;-webkit-tap-highlight-color:transparent;overscroll-behavior-y:none}
+button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:pointer;touch-action:manipulation;-webkit-user-select:none;user-select:none}
+button:disabled{cursor:default}
+h1,h2,h3,p,ol,ul{margin:0;padding:0}
+ol,ul{list-style:none}
+h1,h2,h3{text-wrap:balance}
+:focus-visible{outline:2px solid var(--foco);outline-offset:2px}
+[hidden]{display:none!important}
+.so-leitor{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+[data-icone]{display:inline-grid;place-items:center;flex:none}
+[data-icone] svg{width:var(--icone,24px);height:var(--icone,24px);display:block}
+
+/* a coluna do celular: no computador, a tela fica com a largura de um celular, no meio */
+.celular{max-width:430px;margin:0 auto;min-height:100dvh;display:flex;flex-direction:column;position:relative;background:var(--fundo)}
+.tela{display:none;flex:1;flex-direction:column;min-height:0}
+body[data-tela="inicio"] .tela-inicio,body[data-tela="treino"] .tela-treino{display:flex}
+.na-serie,.no-descanso{display:none}
+body[data-fase="serie"] .na-serie,body[data-fase="descanso"] .no-descanso{display:revert}
+
+/* a base presa embaixo (o botão principal e a barra) fica por cima do que rola */
+.base{z-index:5}
+
+/* o palco do Boneco: o desenho e as cores dele vêm de boneco.css (do app, sem mudança) */
+.palco{background:var(--stage);overflow:hidden;display:grid;place-items:center}
+.palco svg{width:100%;height:100%;display:block}
+
+/* a faixa do protótipo (não faz parte do desenho): troca de tela e de tema. Some com ?limpo, para as capturas. */
+.proto{display:flex;align-items:center;gap:var(--e8);padding:var(--e4) max(var(--e16),env(safe-area-inset-right,0px)) var(--e4) max(var(--e16),env(safe-area-inset-left,0px));
+  background:#1d1d1f;color:#f5f5f2;font:600 .8125rem/1.2 system-ui,sans-serif;position:sticky;top:0;z-index:20}
+.proto b{flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-weight:700}
+.proto a,.proto button{color:inherit;text-decoration:none;min-height:var(--h48);min-width:var(--h48);padding:0 var(--e8);display:inline-grid;place-items:center;border-radius:8px}
+.proto a:active,.proto button:active{background:#3a3a3d}
+.limpo .proto{display:none}
+
+@media (prefers-reduced-motion: reduce){*{animation:none!important;transition:none!important}}

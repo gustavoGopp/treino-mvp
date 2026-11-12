@@ -1,0 +1,215 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Direção C, Ficha</title>
+<link rel="stylesheet" href="../comum/boneco.css">
+<link rel="stylesheet" href="../comum/base.css">
+<style>
+/* Direção C, "Ficha": o Boneco nunca sai da tela do treino, nem no descanso. A série vem preenchida numa linha só
+   (carga, repetições, reserva): a pessoa toca só no que mudou. Letra Figtree, cantos largos, uma cor (ameixa). */
+@font-face{font-family:"Figtree";font-weight:300 900;font-display:swap;src:url("../comum/fontes/figtree-latin.woff2") format("woff2")}
+:root{
+  --fonte:"Figtree",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  --fundo:#F2F3F5; --sup:#FFFFFF; --sup2:#E4E6EB; --texto:#16181D; --texto2:#4A4F59;
+  --acao:#722987; --sobre-acao:#FFFFFF; --acao-suave:#F1E2F6; --foco:#722987;
+  --alerta:#AF283D; --alerta-suave:#FCE5E8; --feito:#0F6B3E; --inativo:#8B909A;
+  --r8:8px; --r16:16px; --r24:24px; --rp:999px;
+  --t-relogio:5.5rem; --t-numero:1.75rem; --t-titulo:1.75rem; --t-ex:1.25rem; --t-corpo:1.0625rem; --t-apoio:.9375rem; --t-rotulo:.8125rem;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --fundo:#121317; --sup:#1C1E24; --sup2:#2A2D35; --texto:#F0F1F4; --texto2:#B4B8C2;
+  --acao:#DFA1F3; --sobre-acao:#2B0F35; --acao-suave:#33203B; --foco:#DFA1F3;
+  --alerta:#EE8A95; --alerta-suave:#3B1C22; --feito:#65AE80; --inativo:#737884; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --fundo:#121317; --sup:#1C1E24; --sup2:#2A2D35; --texto:#F0F1F4; --texto2:#B4B8C2;
+  --acao:#DFA1F3; --sobre-acao:#2B0F35; --acao-suave:#33203B; --foco:#DFA1F3;
+  --alerta:#EE8A95; --alerta-suave:#3B1C22; --feito:#65AE80; --inativo:#737884; color-scheme:dark}
+body{font-size:var(--t-corpo)}
+.rotulo{font-size:var(--t-rotulo);font-weight:700;color:var(--texto2)}
+.apoio{font-size:var(--t-apoio);color:var(--texto2)}
+.gutter{padding-left:max(var(--e16),env(safe-area-inset-left,0px));padding-right:max(var(--e16),env(safe-area-inset-right,0px))}
+.btn{min-height:var(--h56);padding:0 var(--e24);border-radius:var(--rp);font-weight:700;display:inline-flex;align-items:center;justify-content:center;gap:var(--e8);transition:transform .1s ease-out}
+.btn:active{transform:scale(.97)}
+.btn.pri{background:var(--acao);color:var(--sobre-acao);min-height:var(--h64);width:100%;font-size:1.1875rem}
+.btn.pri:disabled{background:var(--sup2);color:var(--inativo);transform:none}
+.btn.pri .sub{font-weight:500;font-size:var(--t-apoio);opacity:.9}
+.btn.quieto{background:var(--sup2);min-height:var(--h48);padding:0 var(--e16)}
+
+/* ---------- início ---------- */
+.tela-inicio .miolo{flex:1;display:flex;flex-direction:column;gap:var(--e24);padding-top:var(--e16);padding-bottom:var(--e24)}
+.cartao-hoje{background:var(--sup);border-radius:var(--r24);padding:var(--e8);display:flex;flex-direction:column;gap:var(--e16)}
+.cartao-hoje .palco{aspect-ratio:2/1;border-radius:var(--r16)}
+.cartao-hoje .txt{padding:0 var(--e8) var(--e16);display:flex;flex-direction:column;gap:var(--e4)}
+.cartao-hoje h1{font-size:var(--t-titulo);font-weight:800;line-height:1.15;letter-spacing:-.01em}
+.semana{display:flex;align-items:center;gap:var(--e8);padding-top:var(--e8)}
+.semana i{width:var(--e16);height:var(--e16);border-radius:var(--rp);background:var(--sup2);display:block}
+.secao{display:flex;flex-direction:column;gap:var(--e16)}
+.secao h2{font-size:var(--t-corpo);font-weight:800}
+.trilha{display:flex;flex-direction:column}
+.trilha li{display:grid;grid-template-columns:var(--e32) 4.5rem 1fr;align-items:center;gap:var(--e16);padding-bottom:var(--e16);position:relative}
+.trilha .n{width:var(--e32);height:var(--e32);border-radius:var(--rp);background:var(--sup);display:grid;place-items:center;font-size:var(--t-apoio);font-weight:700;position:relative;z-index:1}
+.trilha li[data-atual] .n{background:var(--acao);color:var(--sobre-acao)}
+.trilha li:not(:last-child)::before{content:"";position:absolute;left:calc(var(--e16) - 1px);top:50%;bottom:-50%;width:2px;background:var(--sup2)}
+.trilha .mini{aspect-ratio:4/3;border-radius:var(--r8)}
+.trilha .txt{display:flex;flex-direction:column;gap:var(--e4);min-width:0}
+.trilha b{font-weight:700;line-height:1.25;text-wrap:balance}
+.linhas{display:flex;flex-direction:column;gap:var(--e8)}
+.linhas button{display:flex;align-items:center;justify-content:space-between;gap:var(--e16);min-height:var(--h64);padding:0 var(--e16);background:var(--sup);border-radius:var(--r16);text-align:left;width:100%}
+.linhas span:first-child{display:flex;flex-direction:column}
+.linhas [data-icone]{color:var(--inativo);--icone:20px}
+.base{position:sticky;bottom:0;background:var(--fundo);padding-top:var(--e16);display:flex;flex-direction:column;gap:var(--e8);padding-bottom:env(safe-area-inset-bottom,0px)}
+.barra{display:flex}
+.barra button{flex:1;min-height:var(--h64);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:var(--e4);font-size:var(--t-rotulo);font-weight:700;color:var(--texto2)}
+.barra button[aria-current]{color:var(--acao)}
+
+/* ---------- treino ---------- */
+.treino-topo{display:flex;align-items:center;gap:var(--e8);min-height:var(--h64);padding-top:var(--e8);padding-bottom:var(--e8)}
+.treino-topo .volta{width:var(--h48);height:var(--h48);display:grid;place-items:center;border-radius:var(--rp);margin-left:calc(-1 * var(--e8))}
+.treino-topo p{flex:1;font-weight:700;color:var(--texto2)}
+.senti{min-height:var(--h48);padding:0 var(--e16);border-radius:var(--rp);background:var(--alerta-suave);color:var(--alerta);font-weight:700;display:inline-flex;align-items:center;gap:var(--e8)}
+.senti [data-icone]{--icone:20px}
+.corpo-treino{flex:1;display:flex;flex-direction:column;gap:var(--e16);padding-bottom:calc(var(--e16) + env(safe-area-inset-bottom,0px))}
+.moldura{position:relative;background:var(--sup);border-radius:var(--r24);padding:var(--e8)}
+.moldura .palco{aspect-ratio:3/2;width:100%;border-radius:var(--r16)}
+.moldura .fase{position:absolute;top:var(--e16);left:var(--e24);font-size:var(--t-apoio);font-weight:700;color:var(--texto2)}
+.moldura-pe{display:flex;align-items:center;justify-content:space-between;gap:var(--e8);padding-top:var(--e8)}
+.seg{display:flex;gap:var(--e4)}
+.seg button{min-height:var(--h48);padding:0 var(--e16);border-radius:var(--rp);font-size:var(--t-apoio);font-weight:700;color:var(--texto2)}
+.seg button[aria-pressed="true"]{background:var(--sup2);color:var(--texto)}
+.redondo{width:var(--h48);height:var(--h48);border-radius:var(--rp);background:var(--sup2);display:grid;place-items:center;flex:none}
+.redondo [data-icone]{--icone:20px}
+.ex{display:flex;align-items:center;gap:var(--e16)}
+.ex .txt{flex:1;min-width:0;display:flex;flex-direction:column;gap:var(--e4)}
+.ex h1{font-size:var(--t-ex);font-weight:800;line-height:1.2}
+.series-linha{display:flex;align-items:center;justify-content:space-between;gap:var(--e8);flex-wrap:wrap}
+.series{display:flex;gap:var(--e8);flex-wrap:wrap}
+.series li{min-height:var(--e32);padding:0 var(--e16);border-radius:var(--rp);background:var(--sup2);display:inline-flex;align-items:center;gap:var(--e8);font-size:var(--t-apoio);font-weight:700;color:var(--texto2)}
+.series li[data-atual]{background:var(--acao-suave);color:var(--acao)}
+.series li[data-feita]{background:transparent;color:var(--feito);padding-left:0}
+.series li [data-icone]{--icone:16px;display:none}
+.series li[data-feita] [data-icone]{display:inline-grid}
+.desfazer{min-height:var(--h48);padding:0 var(--e8);text-decoration:underline;text-underline-offset:3px;font-size:var(--t-apoio);font-weight:700;display:none}
+body[data-tem-feita] .desfazer{display:inline-block}
+.fim{margin-top:auto;display:flex;flex-direction:column;gap:var(--e16)}
+/* a série numa linha: cada valor é um botão; tocar abre o ajuste dele logo abaixo */
+.valores{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--e8)}
+.valores button{min-height:var(--h64);border-radius:var(--r16);background:var(--sup);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:var(--e4);transition:transform .1s ease-out}
+.valores button:active{transform:scale(.97)}
+.valores b{font-size:var(--t-numero);font-weight:800;line-height:1}
+.valores b small{font-size:var(--t-apoio);font-weight:500;color:var(--texto2);margin-left:var(--e4)}
+.valores button[aria-expanded="true"]{background:var(--acao-suave);color:var(--acao)}
+.valores .falta b{color:var(--acao)}
+.ajuste{display:none;background:var(--sup);border-radius:var(--r16);padding:var(--e8);align-items:center;gap:var(--e8)}
+body[data-ajuste="carga"] .ajuste-carga,body[data-ajuste="reps"] .ajuste-reps,body[data-ajuste="rir"] .ajuste-rir{display:flex}
+.ajuste .rotulo{flex:1;padding-left:var(--e8)}
+.ajuste button{min-width:var(--h48);min-height:var(--h48);border-radius:calc(var(--r16) - var(--e8));background:var(--sup2);display:grid;place-items:center;font-weight:700;position:relative}
+.ajuste button:disabled{color:var(--inativo)}
+.ajuste-rir{flex-wrap:wrap}
+.ajuste-rir .rotulo{flex-basis:100%;padding-top:var(--e8);display:flex;justify-content:space-between;gap:var(--e8);padding-right:var(--e8)}
+.ajuste-rir button{flex:1}
+.ajuste-rir button[data-na-meta]::after{content:"";position:absolute;left:var(--e16);right:var(--e16);bottom:var(--e8);height:2px;border-radius:var(--rp);background:currentColor;opacity:.55}
+.ajuste-rir button[aria-pressed="true"]{background:var(--acao);color:var(--sobre-acao)}
+.hora{display:none;font-size:var(--t-ex);font-weight:800;color:var(--acao)}
+body[data-acabou] .hora{display:block}
+/* o descanso entra no lugar dos valores; o Boneco continua no palco */
+.descanso{display:none;background:var(--sup);border-radius:var(--r24);padding:var(--e16);flex-direction:column;gap:var(--e16)}
+body[data-fase="descanso"] .descanso{display:flex}
+body[data-fase="descanso"] .so-serie{display:none}
+.descanso-linha{display:flex;align-items:center;justify-content:space-between;gap:var(--e16)}
+.relogio{font-size:var(--t-relogio);font-weight:800;line-height:.9;letter-spacing:-.03em}
+.descanso-lado{display:flex;flex-direction:column;gap:var(--e8)}
+.trilho{height:var(--e8);border-radius:var(--rp);background:var(--sup2);overflow:hidden}
+.trilho i{display:block;height:100%;width:calc(var(--p,0) * 100%);background:var(--acao);border-radius:var(--rp);transition:width 1s linear}
+@media (max-width:359px){:root{--t-relogio:4.5rem;--t-numero:1.5rem}.trilha li{grid-template-columns:var(--e32) 4rem 1fr;gap:var(--e8)}}
+@media (max-height:700px){.moldura .palco{aspect-ratio:2/1}}
+</style>
+</head>
+<body data-tela="inicio" data-fase="serie">
+<nav class="proto" aria-label="Protótipo"><b>C · Ficha</b><a href="../index.html">Direções</a><button type="button" data-acao="ir-inicio">Início</button><button type="button" data-acao="ir-treino">Treino</button><button type="button" data-acao="tema" aria-label="Trocar o tema"><i data-icone="sun-moon"></i></button></nav>
+<div class="celular">
+
+<!-- ===== INÍCIO ===== -->
+<section class="tela tela-inicio" aria-label="Início">
+  <main class="miolo gutter">
+    <div class="cartao-hoje">
+      <span class="palco" data-mini="bulgaro" role="img" aria-label="O Boneco no 1º exercício de hoje, o agachamento búlgaro com apoio"></span>
+      <div class="txt">
+        <p class="rotulo">Hoje · semana <span data-t="semana"></span></p>
+        <h1 data-t="diaNome"></h1>
+        <p class="apoio"><span data-t="nExercicios"></span> exercícios · ~<span data-t="minutos"></span> min</p>
+        <p class="semana apoio"><i></i><i></i><i></i><span>0 de <span data-t="diasPorSemana"></span> treinos nesta semana</span></p>
+      </div>
+    </div>
+    <section class="secao" aria-labelledby="seq">
+      <h2 id="seq">A sequência de hoje</h2>
+      <ol class="trilha" data-lista="exercicios"><template><li><span class="n" data-i="n"></span><span class="palco mini" data-mini-i></span><span class="txt"><b data-i="nome"></b><span class="apoio" data-i="prescricao"></span></span></li></template></ol>
+    </section>
+    <section class="secao" aria-labelledby="out">
+      <h2 id="out">Outros dias</h2>
+      <div class="linhas" data-lista="outros-dias"><template><button type="button"><span><b data-i="nome"></b><span class="apoio" data-i="resumo"></span></span><i data-icone="chevron-right"></i></button></template></div>
+    </section>
+  </main>
+  <footer class="base gutter">
+    <button type="button" class="btn pri" data-acao="ir-treino">Começar o treino</button>
+    <nav class="barra" aria-label="Seções"><button type="button" aria-current="page"><i data-icone="dumbbell"></i>Treino</button><button type="button"><i data-icone="calendar-days"></i>Semana</button><button type="button"><i data-icone="user"></i>Meus dados</button></nav>
+  </footer>
+</section>
+
+<!-- ===== TREINO ===== -->
+<section class="tela tela-treino" aria-label="Treino">
+  <header class="treino-topo gutter">
+    <button type="button" class="volta" data-acao="ir-inicio" aria-label="Voltar ao início"><i data-icone="chevron-left"></i></button>
+    <p><span data-t="posicao"></span></p>
+    <button type="button" class="senti"><i data-icone="triangle-alert"></i>Senti algo</button>
+  </header>
+
+  <div class="corpo-treino gutter">
+    <div class="moldura">
+      <div class="palco" data-palco role="img" aria-label="O Boneco fazendo o exercício"></div>
+      <p class="fase" data-fase-do-movimento></p>
+      <div class="moldura-pe">
+        <div class="seg" role="group" aria-label="O que o guia mostra"><button type="button" data-acao="modo" data-v="tec">Técnica</button><button type="button" data-acao="modo" data-v="mus">Músculos</button></div>
+        <button type="button" class="redondo" data-acao="pausar" aria-label="Pausar ou tocar o guia"><i data-icone="pause" data-pausa-icone></i></button>
+      </div>
+    </div>
+
+    <div class="ex">
+      <div class="txt"><h1 data-t="exNome"></h1><p class="apoio"><span data-t="prescricao"></span> · descanso <span data-t="descanso"></span></p></div>
+      <button type="button" class="redondo" aria-label="Mais opções"><i data-icone="ellipsis"></i></button>
+    </div>
+
+    <div class="fim">
+      <div class="series-linha"><ol class="series" data-lista="series" aria-label="Séries"><template><li><i data-icone="check"></i><span>Série <span data-i="n"></span></span><span data-i="feita"></span></li></template></ol><button type="button" class="desfazer" data-acao="desfazer">Desfazer</button></div>
+
+      <p class="hora">Hora da próxima série</p>
+      <div class="valores so-serie">
+        <button type="button" data-acao="ajuste" data-v="carga" aria-label="Mudar a carga"><span class="rotulo">Carga</span><b><span data-t="carga"></span><small>kg</small></b></button>
+        <button type="button" data-acao="ajuste" data-v="reps" aria-label="Mudar as repetições"><span class="rotulo">Repetições</span><b data-t="reps"></b></button>
+        <button type="button" data-acao="ajuste" data-v="rir" aria-label="Quantas ainda conseguiria? (RIR)"><span class="rotulo">Ainda conseguiria</span><b data-t="rir"></b></button>
+      </div>
+      <div class="ajuste ajuste-carga so-serie"><span class="rotulo">Carga</span><button type="button" data-acao="carga-menos" aria-label="Menos carga"><i data-icone="minus"></i></button><button type="button" data-acao="carga-mais" aria-label="Mais carga"><i data-icone="plus"></i></button></div>
+      <div class="ajuste ajuste-reps so-serie"><span class="rotulo">Repetições</span><button type="button" data-acao="reps-menos" aria-label="Menos uma repetição"><i data-icone="minus"></i></button><button type="button" data-acao="reps-mais" aria-label="Mais uma repetição"><i data-icone="plus"></i></button></div>
+      <div class="ajuste ajuste-rir so-serie" role="group" aria-label="Quantas ainda conseguiria? (RIR)"><span class="rotulo"><span>Quantas ainda conseguiria?</span><span>meta de hoje: <span data-t="metaRir"></span></span></span><button type="button" data-acao="rir" data-v="0" data-meta-rir>0</button><button type="button" data-acao="rir" data-v="1" data-meta-rir>1</button><button type="button" data-acao="rir" data-v="2" data-meta-rir>2</button><button type="button" data-acao="rir" data-v="3" data-meta-rir>3</button><button type="button" data-acao="rir" data-v="4" data-meta-rir aria-label="4 ou mais">4+</button></div>
+      <button type="button" class="btn pri so-serie" data-acao="feita">Série feita <span class="sub">· descansar <span data-t="descanso"></span></span></button>
+
+      <div class="descanso" data-progresso>
+        <div class="descanso-linha">
+          <div><p class="rotulo">Descanso</p><p class="relogio" role="timer" data-t="relogio"></p></div>
+          <div class="descanso-lado"><button type="button" class="btn quieto" data-acao="mais15">+15 s</button><button type="button" class="btn quieto" data-acao="menos15">−15 s</button></div>
+        </div>
+        <div class="trilho" aria-hidden="true"><i></i></div>
+        <button type="button" class="btn quieto" data-acao="pular">Pular o descanso</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+</div>
+<script src="../comum/dados.js"></script>
+<script src="../comum/boneco.js"></script>
+<script src="../comum/icones.js"></script>
+<script src="../comum/proto.js"></script>
+</body>
+</html>
