@@ -22,7 +22,20 @@ export async function carregar(): Promise<Carga> {
 export const lerBruto = (): Promise<unknown> => get(CHAVE);
 
 export const salvar = (estado: Estado) => set(CHAVE, estado);
-export const apagar = () => del(CHAVE);
+export const apagar = () => Promise.all([del(CHAVE), del(CHAVE_ILEGIVEL)]).then(() => undefined);
+
+// Quando a carga falha (dado ilegível), o app abre vazio e o primeiro "salvar" trocaria o que estava guardado pelo
+// estado vazio: o histórico inteiro sumia num toque. Antes desse primeiro salvar, o dado antigo vai para esta chave.
+const CHAVE_ILEGIVEL = 'estado-ilegivel';
+
+/** Copia o que está guardado (sem validar) para a chave de reserva. Se a leitura falhar, rejeita: nada é sobrescrito. */
+export async function guardarIlegivel(): Promise<void> {
+  const bruto = await get(CHAVE);
+  if (bruto !== undefined) await set(CHAVE_ILEGIVEL, bruto);
+}
+
+/** O dado antigo que o app não conseguiu ler e guardou antes de salvar por cima; undefined se não há. */
+export const lerIlegivel = (): Promise<unknown> => get(CHAVE_ILEGIVEL);
 
 /**
  * Pede ao navegador para não apagar os dados por falta de espaço (docs/pesquisa/09-decisoes-m3.md, seção 5).

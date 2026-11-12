@@ -1,7 +1,7 @@
 import { createContext, useCallback, useContext, useEffect, useMemo, useRef, useState, type ReactNode } from 'react';
 import { gerarPrograma, type Programa } from '../../domain/gerador';
 import { estadoVazio, inventarioPrincipal, localPrincipal, perfilDe, type Estado } from '../../storage/esquema';
-import { apagar, carregar, pedirPersistencia, salvar } from '../../storage/idb';
+import { apagar, carregar, guardarIlegivel, pedirPersistencia, salvar } from '../../storage/idb';
 
 // Estado do app: carregado do IndexedDB uma vez e salvo a cada mudança feita pela pessoa.
 // Sem biblioteca de estado: um contexto e funções puras sobre o Estado.
@@ -11,6 +11,8 @@ type Contexto = {
   carregado: boolean;
   /** Erro ao ler os dados guardados (ex.: formato inválido). Os dados não são apagados na carga. */
   erroCarga?: string;
+  /** A carga falhou e nada foi salvo por cima ainda: o que está guardado é o dado antigo, que o app não leu. */
+  cargaFalhou: boolean;
   /** null = ainda não pediu; true/false = resposta do navegador. */
   persistente: boolean | null;
   atualizar: (f: (e: Estado) => Estado) => void;
@@ -26,6 +28,14 @@ export function EstadoProvider({ children }: { children: ReactNode }) {
   const [erroCarga, setErroCarga] = useState<string>();
   const [persistente, setPersistente] = useState<boolean | null>(null);
   const atual = useRef(estado);
+  const [cargaFalhou, setCargaFalhou] = useState(false);
+  const falhou = useRef(false);
+  // As gravações saem em fila: depois de uma carga com erro, a primeira espera a cópia do dado antigo (guardarIlegivel).
+  const fila = useRef<Promise<void>>(Promise.resolve());
+  const marcarFalha = () => {
+    falhou.current = true;
+    setCargaFalhou(true);
+  };
 
   useEffect(() => {
     let vivo = true;
@@ -35,8 +45,13 @@ export function EstadoProvider({ children }: { children: ReactNode }) {
         atual.current = c.estado;
         setEstado(c.estado);
         setErroCarga(c.erro);
+        if (c.erro) marcarFalha();
       })
-      .catch(() => vivo && setErroCarga('Não foi possível ler os dados guardados neste aparelho.'))
+      .catch(() => {
+        if (!vivo) return;
+        setErroCarga('Não foi possível ler os dados guardados neste aparelho.');
+        marcarFalha();
+      })
       .finally(() => vivo && setCarregado(true));
     return () => {
       vivo = false;
@@ -47,7 +62,14 @@ export function EstadoProvider({ children }: { children: ReactNode }) {
     atual.current = novo;
     setEstado(novo);
     setErroCarga(undefined);
-    salvar(novo).catch(() => setErroCarga('Não foi possível salvar neste aparelho. Exporte seus dados para não perdê-los.'));
+    if (falhou.current) {
+      // O dado antigo (ilegível) é guardado à parte antes de ser trocado; se nem isso der, nada é salvo por cima dele.
+      falhou.current = false;
+      setCargaFalhou(false);
+      fila.current = guardarIlegivel();
+    }
+    fila.current = fila.current.then(() => salvar(novo));
+    fila.current.catch(() => setErroCarga('Não foi possível salvar neste aparelho. Exporte seus dados para não perdê-los.'));
     if (persistente === null) void pedirPersistencia().then(setPersistente);
   }, [persistente]);
 
@@ -56,17 +78,21 @@ export function EstadoProvider({ children }: { children: ReactNode }) {
       estado,
       carregado,
       erroCarga,
+      cargaFalhou,
       persistente,
       atualizar: (f) => gravar(f(atual.current)),
       substituir: gravar,
       limpar: async () => {
         await apagar();
+        falhou.current = false;
+        setCargaFalhou(false);
+        fila.current = Promise.resolve();
         atual.current = estadoVazio();
         setEstado(atual.current);
         setErroCarga(undefined);
       },
     }),
-    [estado, carregado, erroCarga, persistente, gravar],
+    [estado, carregado, erroCarga, cargaFalhou, persistente, gravar],
   );
   // As telas só aparecem depois da carga: os formulários leem o estado salvo na primeira renderização.
   return <Ctx.Provider value={valor}>{carregado ? children : null}</Ctx.Provider>;
