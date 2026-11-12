@@ -83,7 +83,6 @@ header.top{position:sticky;top:0;z-index:4;background:var(--bg);padding:8px 0;di
 .brand{display:flex;justify-content:space-between;align-items:center;gap:8px;min-height:3rem}
 .brand b{font-size:var(--t-corpo);font-weight:800;letter-spacing:0}
 .brand span{color:var(--muted);font-size:var(--t-apoio)}
-.brand-acoes{display:flex;gap:4px;align-items:center}
 
 /* Guia: cabeçalho, palco, controles e modos (o desenho dentro do palco não muda) */
 .days{display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;padding:2px}
@@ -230,12 +229,11 @@ footer a{color:var(--link)}
 .lbl-m{fill:var(--muted);paint-order:stroke;stroke:var(--stage);stroke-linejoin:round;font-family:var(--font-b);font-weight:500}
 
 /* Telas do app: coluna única, toques de 48 px ou mais, a ação principal embaixo */
-.shell{max-width:560px;margin:0 auto;padding:32px 16px;display:flex;flex-direction:column;gap:16px}
-.shell h1{font-size:var(--t-titulo);font-weight:800;margin:0}
+
 .muted{color:var(--muted);font-size:var(--t-apoio)}
 .brand a{color:inherit;text-decoration:none}
 .brand > b > a{min-height:3rem;display:inline-flex;align-items:center}
-.cta{display:inline-flex;align-items:center;justify-content:center;min-height:3.5rem;padding:0 24px;border-radius:var(--r2);background:var(--accent);color:var(--accent-ink);font-weight:700;text-decoration:none;align-self:flex-start}
+
 /* Inspeção do gerador (só desenvolvimento) */
 .dev .box h2{color:var(--ink)}
 .porques{margin:0;padding-left:16px;display:flex;flex-direction:column;gap:4px;font-size:var(--t-apoio)}
@@ -370,14 +368,7 @@ details.campo .opcoes{margin-top:8px}
 @media (prefers-reduced-motion: reduce){ .app *{scroll-behavior:auto;transition:none !important} }
 
 /* Equipamento: cartões com desenho, valores por toque e contador */
-.cartoes-eq{display:grid;grid-template-columns:repeat(auto-fill,minmax(100px,1fr));gap:8px}
-.cartao-eq{position:relative;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;gap:8px;min-height:108px;padding:12px 8px;background:var(--surface);border:1.5px solid var(--edge);border-radius:var(--r2);cursor:pointer;text-align:center;font-size:var(--t-apoio);line-height:1.2;color:var(--ink)}
-.cartao-eq input{position:absolute;top:8px;right:8px;width:20px;height:20px;margin:0;accent-color:var(--accent)}
-.cartao-eq .icone-eq{width:4rem;height:3rem;fill:none;stroke:currentColor;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round;color:var(--muted)}
-.cartao-eq:has(input:checked){border:2px solid var(--accent);background:var(--accent-soft);font-weight:700}
-.cartao-eq:has(input:checked) .icone-eq{color:var(--accent)}
-.cartao-eq:has(input:focus-visible){outline:3px solid var(--accent);outline-offset:2px}
-.cartao-eq:not(:has(svg)){justify-content:center;padding-top:16px}
+
 .detalhes-eq{margin-top:12px;padding:16px;border-radius:var(--r2);background:var(--surface);display:flex;flex-direction:column;gap:16px;box-shadow:inset 0 0 0 2px var(--accent-soft)}
 .detalhes-eq h2{margin:0;font-size:var(--t-pergunta);font-weight:800}
 .chips-valor{display:flex;flex-wrap:wrap;gap:8px}
@@ -399,16 +390,13 @@ details.campo .opcoes{margin-top:8px}
 .cabeca-treino{display:flex;flex-direction:column;gap:12px}
 .fichas{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:8px}
 .fichas li{background:var(--surface-2);border-radius:var(--rp);padding:3px 12px;font-size:var(--t-apoio);font-weight:600;color:var(--ink)}
-.faixa{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px;background:var(--surface);border-radius:var(--r2);padding:12px 12px 12px 16px;font-size:var(--t-apoio)}
-.faixa.destaque{box-shadow:inset 0 0 0 2px var(--accent-soft)}
-.faixa .btn{flex:0 0 auto}
 .fase{margin:0;font-size:var(--t-apoio);background:var(--accent-soft);border-radius:var(--r1);padding:8px 12px;color:var(--ink)}
 .abas{display:flex;gap:4px;overflow-x:auto;scrollbar-width:none;padding:4px;border-radius:var(--r2);background:var(--surface-2)}
 .abas::-webkit-scrollbar{display:none}
 .abas [role="tab"]{flex:1 0 auto;min-height:3rem;padding:0 16px;border-radius:var(--r2);border:0;background:transparent;font-weight:700;font-size:var(--t-corpo);cursor:pointer;color:var(--muted)}
 .abas [role="tab"][aria-selected="true"]{background:var(--surface);color:var(--ink);box-shadow:0 1px 2px rgba(0,0,0,.14)}
 .painel-dia{display:flex;flex-direction:column;gap:12px}
-.info-dia{margin:0;font-size:var(--t-apoio);font-weight:600;color:var(--muted)}
+
 .cartoes-ex{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:2px;background:var(--surface);border-radius:var(--r2);overflow:hidden}
 .cartao-ex{background:var(--surface);border-bottom:1px solid var(--line)}
 .cartao-ex:last-child{border-bottom:0}
@@ -511,7 +499,7 @@ a.cartao-ex-corpo:focus-visible{outline:3px solid var(--foco);outline-offset:-3p
   .registro .rir-pe{justify-content:flex-end;margin-top:calc(-1 * var(--e1))}
 }
 .status-ok{margin:0;font-weight:700;color:var(--ok)}
-.acoes-sessao{display:flex;gap:8px;flex-wrap:wrap}
+
 .btn.alerta{color:var(--alert) !important;border-color:var(--alert)}
 .alerta-topo{display:inline-flex;align-items:center;gap:8px;min-height:3rem;padding:0 16px;border-radius:var(--r2);border:1.5px solid var(--alert);background:transparent;color:var(--alert);font-weight:700;font-size:var(--t-apoio);cursor:pointer}
 .nav-sessao{display:grid;grid-template-columns:1fr;gap:var(--e2)}
@@ -579,9 +567,7 @@ a.cartao-ex-corpo:focus-visible{outline:3px solid var(--foco);outline-offset:-3p
 .barra-volta{flex:1;height:10px;border-radius:var(--r1);background:var(--surface-2);overflow:hidden;max-width:160px}
 .barra-volta i{display:block;height:100%;background:var(--accent);opacity:.7;border-radius:var(--r1)}
 .faixa-semana{display:flex;flex-direction:column;gap:8px;background:var(--surface);border-radius:var(--r2);padding:12px 16px;color:var(--ink) !important;text-decoration:none;min-height:3rem}
-.faixa-semana .fs-topo{display:flex;justify-content:space-between;align-items:baseline;gap:8px;font-size:var(--t-corpo);font-weight:700}
-.faixa-semana .fs-topo span{font-size:var(--t-pergunta);font-weight:800;color:var(--accent)}
-.faixa-semana .fs-msg{font-size:var(--t-apoio);color:var(--muted)}
+
 .pontos{display:flex;gap:8px}
 .pontos i{width:30px;height:30px;border-radius:50%;border:2px solid var(--accent);background:transparent}
 .pontos i.on{background:var(--accent)}
@@ -702,15 +688,10 @@ a.cartao-ex-corpo:focus-visible{outline:3px solid var(--foco);outline-offset:-3p
 /* com zoom de 200% (206 px) a prévia sobe para cima do texto; o desenho dentro dela não muda */
 @media (max-width:279px){.estilo-boneco{grid-template-columns:auto 1fr}.estilo-boneco svg{grid-column:1 / -1;grid-row:1}}
 /* Cadastro: o resumo do passo "Tudo certo?" (cada linha leva de volta ao passo) e a lista da triagem */
-.resumo-cadastro{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:2px;background:var(--surface);border-radius:var(--r2);overflow:hidden}
-.resumo-cadastro a{display:flex;align-items:center;gap:12px;min-height:3.75rem;padding:8px 16px;color:var(--ink) !important;text-decoration:none;border-bottom:1px solid var(--line);font-weight:700}
-.resumo-cadastro li:last-child a{border-bottom:0}
-.resumo-cadastro a > span:first-child{flex:1;display:flex;flex-direction:column}
-.resumo-cadastro small{font-weight:400;font-size:var(--t-apoio);color:var(--muted)}
+
 .evitar > summary{min-height:3.5rem;padding:0 16px;border:1.5px dashed var(--edge);border-radius:var(--r2)}
 .evitar[open] > summary{margin-bottom:12px}
-.lista-triagem{list-style:decimal;padding-left:24px;gap:0}
-.lista-triagem li{padding:12px 0;border-bottom:1px solid var(--line);font-size:var(--t-corpo);line-height:1.35}
+
 .revelar{display:block}
 .nw{white-space:nowrap}
 .resumo-ex{padding:16px 16px}
@@ -749,7 +730,6 @@ a.cartao-ex-corpo:focus-visible{outline:3px solid var(--foco);outline-offset:-3p
   .cab-treino .onde-treino{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
   .stage .hud{flex-wrap:wrap}
 }
-
 
 /* Lote 4 (07/11/2026): o início. O cartão "Hoje", a semana em 1 linha, um aviso por vez, as abas que cabem a 320 px,
    a lista enxuta (a folha do exercício guarda o resto), "Sobre o programa" a um toque e o "Começar" preso embaixo. */
@@ -912,7 +892,7 @@ img.icone-eq{display:block;flex:none;object-fit:contain;background:#F5F3EF;borde
 .item-eq img.icone-eq{width:100%;max-width:112px;height:auto;aspect-ratio:4/3}
 .marcados img.icone-eq{width:64px;height:48px}
 .sugestao-foto img.icone-eq{width:4rem;height:3rem}
-.cartao-eq img.icone-eq{width:4rem;height:3rem}
+
 /* a barra de baixo fica no pé da tela também nas páginas curtas (Evolução com poucos treinos, Locais) */
 .wrap.com-nav{min-height:100dvh;padding-bottom:0}
 .wrap.com-nav > main{flex:1 0 auto}

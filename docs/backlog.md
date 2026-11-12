@@ -232,7 +232,7 @@ O que a auditoria achou e não corrigiu, porque pede uma decisão do Gustavo ou 
 - **A animação da `panturrilha-chao` mostra a descida com as duas pernas**: em 12/11/2026 os dados, o porquê e o cartão foram alinhados à fonte (subir com as duas e descer em 3 s com uma só; `nakamura2025`), e o cartão avisa da diferença. Falta o Gustavo decidir: refazer a animação (folha a folha) ou mostrar o exercício como cartão de texto.
 
 **Tela**
-- **CSS sem uso** (cerca de 25 classes: `.shell`, `.cta`, `.faixa`, `.cartoes-eq`, `.fs-topo`…) e ajudantes repetidos (`faixa`, `tempo`, `dataCurta`, `POR_ID`, três formatadores de carga).
+- **CSS do motor sem uso aparente** (`.ea-*`, `.eb-*`, `.lbl-m` e outras, cerca de 30): os nomes são montados no motor por prefixo e sufixo, então o `grep` não prova que estão sem uso; ficaram. Em 12/11/2026 saíram as 12 classes das telas que o `grep` confirmou (28 regras, cerca de 3 kB) e os ajudantes repetidos.
 
 **Repositório**
 - **Histórico do git**: os e-mails pessoais e o nome do empregador saíram dos arquivos, mas continuam nos commits antigos. Apagar de lá pede reescrever o histórico. **Fica como está (decidido em 12/11/2026):** reescrever muda todos os hashes, quebra os ramos e os PRs abertos e pede `push --force` na `main`.
