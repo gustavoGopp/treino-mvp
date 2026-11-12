@@ -1,4 +1,4 @@
-import { BIBLIOTECA, type Exercicio, type Musculo } from '../biblioteca';
+import { POR_ID, type Musculo } from '../biblioteca';
 import { ehAvisoDeMeta, MUSCULOS_COM_META, musculosDoAviso, NOME_MUSCULO, SEM_EXERCICIO, seriesDeVolume, volumePorMusculo, type DiaPrograma, type Programa } from '../gerador';
 import { serieEfetiva } from '../progressao';
 import { r, VOLUME } from '../regras';
@@ -8,7 +8,6 @@ import { diaLocal, hojeNoPrograma, proximoDia, segundaDaSemana, semanaLocal, tre
 // Treinos feitos × planejados de segunda a domingo, em qualquer local; séries efetivas por músculo contra a meta da
 // semana; "X das últimas 8 semanas com treino"; e mensagens sem culpa, com a revisão da meta (decisão 5 do T6).
 
-const POR_ID: Record<string, Exercicio> = Object.fromEntries(BIBLIOTECA.map((e) => [e.id, e]));
 
 export type EstadoMusculo = 'na-meta' | 'crescendo' | 'mantendo' | 'sem-treino';
 export const TEXTO_ESTADO: Record<EstadoMusculo, string> = {

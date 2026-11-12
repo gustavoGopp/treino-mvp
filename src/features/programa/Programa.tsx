@@ -1,6 +1,6 @@
 import { useMemo, useState, type ReactNode } from 'react';
 import { Link, Navigate, useNavigate } from 'react-router-dom';
-import { BIBLIOTECA, type Musculo } from '../../domain/biblioteca';
+import { POR_ID, type Musculo } from '../../domain/biblioteca';
 import { ALTERNATIVAS_A_MOSTRA, NOME_MUSCULO, ehAvisoDeMeta, type DiaPrograma, type ExercicioPrescrito, type Programa as TipoPrograma } from '../../domain/gerador';
 import { mensagemDeVolta, type MensagemDeVolta } from '../../domain/acompanhamento/volta';
 import { opcoesDeAjuste, type Opcao } from '../../domain/gerador/opcoes';
@@ -30,7 +30,6 @@ import type { Inventario } from '../../domain/taxonomia/equipamentos';
 // Tela do treino: vai direto ao que importa (o treino de cada dia, com a imagem de cada exercício e
 // séries × repetições em destaque). Ajustes, avisos e o porquê ficam um toque abaixo. Nada muda sem a escolha da pessoa.
 
-const POR_ID = Object.fromEntries(BIBLIOTECA.map((e) => [e.id, e]));
 const tempo = (seg: number) => (seg % 60 ? `${Math.floor(seg / 60)}:${String(seg % 60).padStart(2, '0')}` : `${seg / 60} min`);
 const faixa = ([a, b]: [number, number]) => (a === b ? `${a}` : `${a}–${b}`);
 const musculos = (ms: readonly Musculo[]) => ms.map((m) => NOME_MUSCULO[m]).join(', ');

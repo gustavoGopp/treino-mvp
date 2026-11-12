@@ -1,10 +1,10 @@
 import { ordemFixa } from '../ordem';
-import { BIBLIOTECA, MUSCULOS, type Articulacao, type Exercicio, type Musculo, type Padrao } from '../biblioteca';
-import { DESCANSO, OBJETIVO_FORCA, READAPTACAO, RIR, TEMPO, VOLUME, NIVEL_COMPLEXIDADE_MAX, OBRIGATORIO_CURTO, exerciciosPorSessao, r, type Nivel } from '../regras';
+import { BIBLIOTECA, ehEmpurrar, ehPuxar, MUSCULOS, MUSCULOS_INFERIORES, PADROES_EMPURRAR, PADROES_PUXAR, POR_ID, regiaoDoMusculo, type Articulacao, type Exercicio, type Musculo, type Padrao } from '../biblioteca';
+import { DESCANSO, LIMITE_DO_DIA, OBJETIVO_FORCA, READAPTACAO, RIR, TEMPO, VOLUME, NIVEL_COMPLEXIDADE_MAX, OBRIGATORIO_CURTO, exerciciosPorSessao, r, type Nivel } from '../regras';
 import { capacidades, cargaMaxHalter, cargasCaneleiras, cargasHalter, cargasKettlebell, ITENS, type Capacidade, type Inventario, type ItemId } from '../taxonomia/equipamentos';
 import { avaliarTriagem, efeitoDaDor, type ResultadoTriagem, type Triagem } from '../triagem';
 import { divisaoEscolhida, temDiaDeTronco, type DiasSemana, type Divisao, type DivisaoId, type Vaga } from './divisoes';
-import { contaPara, EMPURRAR_PUXAR_MAX as EMPURRAR_PUXAR_FUNCOES, ehEmpurrar, ehPuxar, FAMILIAS, familiasCobertas } from './familias';
+import { contaPara, EMPURRAR_PUXAR_MAX, FAMILIAS, familiasCobertas } from './familias';
 import { FUNCAO, FUNCOES, funcoesDoExercicio, type Funcao } from './funcoes';
 
 // Gerador de programa: função pura e determinística (mesma entrada → mesma saída).
@@ -248,7 +248,7 @@ export function contextoDeSelecao(perfil: Perfil, inventarioOriginal: Inventario
     // 1. O nível de cima: por que não ele.
     let acimaTexto = '';
     if (nivelFuncao > 0) {
-      const acima = funcao.niveis.slice(0, nivelFuncao).flat().map((id) => POR_ID_BIB[id]!);
+      const acima = funcao.niveis.slice(0, nivelFuncao).flat().map((id) => POR_ID[id]!);
       const nome = acima[0]!.nome.toLowerCase();
       acimaTexto = acima.some((x) => possivelSemRegiao.has(x.id) && carregaExcluida(x))
         ? `As opções de cima (como ${nome}) saíram por causa da dor`
@@ -264,10 +264,10 @@ export function contextoDeSelecao(perfil: Perfil, inventarioOriginal: Inventario
     const outros = funcao.niveis[nivelFuncao]!.filter((id) => id !== e.id && naFuncao(funcao, id)).map((id) => possivel.get(id)!);
     if (!outros.length) {
       if (acimaTexto) return `${acimaTexto}; esta é a melhor que sobra.`;
-      const doNivel = funcao.niveis[nivelFuncao]!.filter((id) => id !== e.id).map((id) => POR_ID_BIB[id]!);
+      const doNivel = funcao.niveis[nivelFuncao]!.filter((id) => id !== e.id).map((id) => POR_ID[id]!);
       if (doNivel.some((x) => possivelSemRegiao.has(x.id) && carregaExcluida(x))) return 'As outras opções do mesmo tipo saíram por causa da dor.';
       const abaixo = funcao.niveis.slice(nivelFuncao + 1).flat().find((id) => naFuncao(funcao, id));
-      return abaixo ? `É a melhor opção desta vaga no seu equipamento; ${POR_ID_BIB[abaixo]!.nome.toLowerCase()} fica como alternativa.` : 'É a única opção desta vaga no seu equipamento.';
+      return abaixo ? `É a melhor opção desta vaga no seu equipamento; ${POR_ID[abaixo]!.nome.toLowerCase()} fica como alternativa.` : 'É a única opção desta vaga no seu equipamento.';
     }
     const criterios: [(x: Exercicio) => number, string][] = [
       [(x) => (x.articulacoes.some((a) => dorLeve.has(a)) ? 1 : 0), 'poupa a região que você marcou com dor'],
@@ -422,7 +422,7 @@ function montarPrograma(perfil: Perfil, inventarioOriginal: Inventario, triagem:
     const repeteEmTodos = (e: Exercicio) => ultimoDia && (diasCom.get(e.id) ?? 0) === di;
     // Num dia que perdeu vaga de pernas para a dor, a extensão de quadril não entra pela falta: o dia é refeito com o músculo mais
     // abaixo da meta (selecao.dia-sem-principal), e ela tirava o lugar do 2º exercício do foco (R5a sobre o R5d).
-    const perdeuPelaDor = dia.vagas.some((w) => ativaPeloFoco(w) && INFERIORES.includes(FUNCAO[w.funcao]!.musculo) && !resolver(w) && perdidaPorDor(w));
+    const perdeuPelaDor = dia.vagas.some((w) => ativaPeloFoco(w) && MUSCULOS_INFERIORES.includes(FUNCAO[w.funcao]!.musculo) && !resolver(w) && perdidaPorDor(w));
     const resolvidas = dia.vagas
       .filter((w) => ativa(w) && !(perdeuPelaDor && !ativaPeloFoco(w)))
       .map((vaga, ordem) => ({ vaga, ordem, res: resolver(vaga) }));
@@ -464,7 +464,7 @@ function montarPrograma(perfil: Perfil, inventarioOriginal: Inventario, triagem:
       // selecao.peitoral-inclinado: o 2º empurrar (sem banco inclinável) só num dia sem outra vaga de empurrar horizontal,
       // para não pôr dois supinos retos no mesmo dia; nesse caso a vaga segue para o crucifixo.
       const segundoEmpurrar = funcao.id === 'empurrar-inclinado' && dia.vagas.some((w) => ativa(w) && w.funcao === 'empurrar-horizontal');
-      const fora = (id: string) => itens.some((i) => i.ex.id === id) || (segundoEmpurrar && POR_ID_BIB[id]!.padrao === 'empurrar-h' && !POR_ID_BIB[id]!.tags.includes('inclinado'));
+      const fora = (id: string) => itens.some((i) => i.ex.id === id) || (segundoEmpurrar && POR_ID[id]!.padrao === 'empurrar-h' && !POR_ID[id]!.tags.includes('inclinado'));
       // Um afundo por dia (selecao.funcao-da-vaga; R5a): fora da vaga de afundo, o afundo fica por último no nível
       // quando o dia já tem um ou ainda vai ter (a vaga de afundo com exercício).
       const comAfundo = funcao.id !== 'afundo' && (vagaDeAfundo || itens.some((i) => AFUNDOS.has(i.ex.id)));
@@ -488,8 +488,8 @@ function montarPrograma(perfil: Perfil, inventarioOriginal: Inventario, triagem:
   // selecao.vaga-sem-equipamento: a vaga vazia por equipamento recebe outra função do mesmo músculo, se ele estiver
   // abaixo da meta, primeiro uma função que o dia ainda não tem; nunca o 3º empurrar de um dia sem puxar; dentro do
   // teto semanal e dos exercícios que cabem nos minutos (sessão de qualidade dos treinos, 06/11/2026).
-  const empurra = (e: Exercicio) => e.padrao === 'empurrar-h' || e.padrao === 'empurrar-v';
-  const puxa = (e: Exercicio) => e.padrao === 'puxar-h' || e.padrao === 'puxar-v';
+  const empurra = (e: Exercicio) => PADROES_EMPURRAR.includes(e.padrao);
+  const puxa = (e: Exercicio) => PADROES_PUXAR.includes(e.padrao);
   for (const d of dias) {
     for (const vaga of d.vazias) {
       if (d.itens.length >= N) break;
@@ -685,7 +685,7 @@ function montarPrograma(perfil: Perfil, inventarioOriginal: Inventario, triagem:
   // ficou abaixo da meta ganha um exercício de outra função do mesmo músculo (até SEGUNDOS_POR_MUSCULO), num dia que
   // treina o músculo ou a mesma região (nunca panturrilha num dia de superiores), dentro dos exercícios e dos minutos que
   // cabem, do teto da sessão, do teto semanal e do equilíbrio do ombro; depois as séries são distribuídas de novo.
-  const regiaoDe = (m: Musculo) => (m === 'abdomen' ? 'core' : INFERIORES.includes(m) || m === 'adutores' ? 'inferior' : 'superior');
+  const regiaoDe = regiaoDoMusculo;
   /** Minutos estimados de um dia ainda em itens (o mesmo modelo de tempo da prescrição, sem superséries). */
   const minutosDosItens = (its: { ex: Exercicio; series: number }[]) =>
     minutos(
@@ -738,7 +738,7 @@ function montarPrograma(perfil: Perfil, inventarioOriginal: Inventario, triagem:
         const passaDoTeto = (e: Exercicio) =>
           (Object.entries(volumePorMusculo([{ ex: e, series: VOLUME.seriesPorExercicio.min }])) as [Musculo, number][]).some(([mm, k]) => (v[mm] ?? 0) + k > VOLUME.teto);
         const fora = (id: string) => {
-          const e = POR_ID_BIB[id]!;
+          const e = POR_ID[id]!;
           return d.itens.some((i) => i.ex.id === id) || tresEmpurrares(e) || passaDoTeto(e) || (segundoEmpurrar && reto(e));
         };
         const comAfundo = f.id !== 'afundo' && d.itens.some((i) => AFUNDOS.has(i.ex.id));
@@ -750,10 +750,10 @@ function montarPrograma(perfil: Perfil, inventarioOriginal: Inventario, triagem:
         // Só se o dia, com ele no mínimo de séries, couber nos minutos; e um empurrar só se o ombro continuar equilibrado
         // (empurrar ÷ puxar até 1,5; régua da G5, D1).
         if (minutosDosItens([...d.itens, { ex: achado.ex, series: VOLUME.seriesPorExercicio.min }]) > perfil.minutosSessao) continue;
-        if (EMPURRA_PADROES.includes(achado.ex.padrao) && !semPuxar) {
+        if (PADROES_EMPURRAR.includes(achado.ex.padrao) && !semPuxar) {
           const its = dias.flatMap((x) => x.itens);
           const soma = (ps: Padrao[]) => its.filter((i) => ps.includes(i.ex.padrao)).reduce((t, i) => t + i.series, 0);
-          if (soma(EMPURRA_PADROES) + VOLUME.seriesPorExercicio.min > EMPURRAR_PUXAR_MAX * soma(PUXA_PADROES)) continue;
+          if (soma(PADROES_EMPURRAR) + VOLUME.seriesPorExercicio.min > EMPURRAR_PUXAR_MAX * soma(PADROES_PUXAR)) continue;
         }
         // Entra, as séries são distribuídas de novo e, se o dia passar dos minutos, tudo volta como estava (o corte de
         // tempo não tira séries do foco abaixo do piso dele, e o dia ficaria acima do tempo).
@@ -817,7 +817,7 @@ function montarPrograma(perfil: Perfil, inventarioOriginal: Inventario, triagem:
     if (!forca) return exs;
     let k = 0;
     return exs.map((x) => {
-      const e = POR_ID_BIB[x.exId]!;
+      const e = POR_ID[x.exId]!;
       if (k >= OBJETIVO_FORCA.compostosPorTreino || x.tipo !== 'composto' || !comCarga(e)) return x;
       k++;
       return {
@@ -842,7 +842,7 @@ function montarPrograma(perfil: Perfil, inventarioOriginal: Inventario, triagem:
 
   // 5. Orçamento de tempo (tempo.corte)
   const volumeDe = (ds: DiaPrograma[]) =>
-    volumePorMusculo(ds.flatMap((d) => d.exercicios.map((x) => ({ ex: POR_ID_BIB[x.exId]!, series: seriesDeVolume(x) }))));
+    volumePorMusculo(ds.flatMap((d) => d.exercicios.map((x) => ({ ex: POR_ID[x.exId]!, series: seriesDeVolume(x) }))));
 
   // tempo.musculo-protegido, com 30 min ou menos (R5-CL; a-qualidade.md, F.9): o dia em que o exercício protegido
   // entrou e que passou do tempo perde um isolador não obrigatório e não prioritário (o último da ordem), sem zerar
@@ -855,7 +855,7 @@ function montarPrograma(perfil: Perfil, inventarioOriginal: Inventario, triagem:
       if (d.minutosEstimados <= perfil.minutosSessao || !d.exercicios.some(ehProtegido)) continue;
       const v = volumeDe(programaDias);
       const alvo = d.exercicios
-        .map((x, i) => ({ x, i, e: POR_ID_BIB[x.exId]! }))
+        .map((x, i) => ({ x, i, e: POR_ID[x.exId]! }))
         .filter(
           ({ x, e }) =>
             x.tipo === 'isolador' &&
@@ -883,7 +883,7 @@ function montarPrograma(perfil: Perfil, inventarioOriginal: Inventario, triagem:
   // costas e o ombro de trás sobem como antes; e nenhum empurrar de quem não é foco sobe se passar de 1,5.
   const empurraDemais = (ds: DiaPrograma[]) => {
     const series = (ps: Padrao[]) => ds.flatMap((d) => d.exercicios).filter((x) => ps.includes(x.padrao)).reduce((t, x) => t + seriesDeVolume(x), 0);
-    return series(EMPURRA_PADROES) > EMPURRAR_PUXAR_MAX * series(PUXA_PADROES);
+    return series(PADROES_EMPURRAR) > EMPURRAR_PUXAR_MAX * series(PADROES_PUXAR);
   };
   /** O músculo do foco (com exercício possível) com menos séries na semana. */
   const menorFoco = (ds: DiaPrograma[]) => {
@@ -911,7 +911,7 @@ function montarPrograma(perfil: Perfil, inventarioOriginal: Inventario, triagem:
       // O foco também sobe enquanto as séries diretas dele (os exercícios em que ele é o músculo principal) estiverem abaixo
       // da meta: um glúteo do foco que chega à meta só com séries indiretas do agachamento ainda pede mais ponte (R5d).
       const direto = prioritarios.has(m)
-        ? programaDias.flatMap((z) => z.exercicios).filter((x) => POR_ID_BIB[x.exId]!.musculos.primarios.includes(m)).reduce((t, x) => t + seriesDeVolume(x), 0)
+        ? programaDias.flatMap((z) => z.exercicios).filter((x) => POR_ID[x.exId]!.musculos.primarios.includes(m)).reduce((t, x) => t + seriesDeVolume(x), 0)
         : 0;
       const deficitDireto = prioritarios.has(m) && metas[m] ? (metas[m]! - direto) / metas[m]! : 0;
       const deficit = Math.max(alvo ? (alvo - (v[m] ?? 0)) / alvo : 0, deficitDireto);
@@ -920,7 +920,7 @@ function montarPrograma(perfil: Perfil, inventarioOriginal: Inventario, triagem:
         const d = programaDias[di]!;
         const noDia = volumeDe([d]);
         d.exercicios.forEach((x, xi) => {
-          const e = POR_ID_BIB[x.exId]!;
+          const e = POR_ID[x.exId]!;
           // Uma série a mais conta para todos os músculos do exercício, com as indiretas: nenhum passa do teto da sessão (R5a).
           const acerta = e.musculos.primarios.includes(m) || (viaIndireta && e.musculos.secundarios.includes(m));
           if (!acerta || x.series >= VOLUME.seriesPorExercicio.max) return;
@@ -932,7 +932,7 @@ function montarPrograma(perfil: Perfil, inventarioOriginal: Inventario, triagem:
           // volume.equilibrio-coxa: a série a mais não tira quadríceps ÷ posteriores da faixa de 0,5 a 2.
           if (!mantemCoxa(e, -1, v)) return;
           // Quem não é foco não sobe um empurrar que passe empurrar ÷ puxar de 1,5 (régua da G5, D1).
-          if (!prioritarios.has(m) && podePuxar && EMPURRA_PADROES.includes(x.padrao) && empurraDemais(programaDias.map((z, k) => (k === di ? { ...z, exercicios: z.exercicios.map((y, j) => (j === xi ? { ...y, series: y.series + 1 } : y)) } : z)))) return;
+          if (!prioritarios.has(m) && podePuxar && PADROES_EMPURRAR.includes(x.padrao) && empurraDemais(programaDias.map((z, k) => (k === di ? { ...z, exercicios: z.exercicios.map((y, j) => (j === xi ? { ...y, series: y.series + 1 } : y)) } : z)))) return;
           // O foco vem antes dos outros (volume.prioridade.foco-primeiro); entre iguais, o mais longe da meta.
           const foco = prioritarios.has(m) ? 0 : 1;
           if (!melhor || foco < melhor.foco || (foco === melhor.foco && deficit > melhor.deficit)) melhor = { di, xi, deficit, foco };
@@ -951,7 +951,7 @@ function montarPrograma(perfil: Perfil, inventarioOriginal: Inventario, triagem:
   const cargasDeKettlebell = cargasKettlebell(inventario).length;
   const cargasDeCaneleira = cargasCaneleiras(inventario).length;
   const podeDrop = (x: ExercicioPrescrito) => {
-    const c = POR_ID_BIB[x.exId]!.carga;
+    const c = POR_ID[x.exId]!.carga;
     return (
       x.tipo === 'isolador' &&
       (c === 'maquina' ||
@@ -973,7 +973,7 @@ function montarPrograma(perfil: Perfil, inventarioOriginal: Inventario, triagem:
     exercicios: d.exercicios.map((x) => {
       const f = x.funcao ? FUNCAO[x.funcao] : undefined;
       if (!f) return x;
-      const e = POR_ID_BIB[x.exId]!;
+      const e = POR_ID[x.exId]!;
       const m = f.musculo;
       const s = seriesDeVolume(x);
       const total = volumeSemanal[m] ?? 0;
@@ -986,7 +986,7 @@ function montarPrograma(perfil: Perfil, inventarioOriginal: Inventario, triagem:
       return { ...x, porque: x.porque.map((q) => (q.regraId === 'selecao.funcao-da-vaga' && q.texto.startsWith('Vaga de ') ? { ...q, texto } : q)) };
     }),
   }));
-  const vezes = (m: Musculo) => programaDias.filter((d) => d.exercicios.some((x) => POR_ID_BIB[x.exId]!.musculos.primarios.includes(m))).length;
+  const vezes = (m: Musculo) => programaDias.filter((d) => d.exercicios.some((x) => POR_ID[x.exId]!.musculos.primarios.includes(m))).length;
   const motivoEstrutural = (m: Musculo): string => {
     // A dor tirou exercícios deste músculo? Então o motivo verdadeiro é a dor, não o equipamento (R1).
     const tirados = possiveisSemRegiao.filter((e) => e.musculos.primarios.includes(m) && carregaExcluida(e));
@@ -1177,7 +1177,7 @@ function completarPelaRegua(
 ): DiaPrograma[] {
   const colchao = colchaoDe(perfil);
   const limite = perfil.minutosSessao;
-  const bib = (x: { exId: string }) => POR_ID_BIB[x.exId]!;
+  const bib = (x: { exId: string }) => POR_ID[x.exId]!;
   const volumeDe = (exs: ExercicioPrescrito[]) => volumePorMusculo(exs.map((x) => ({ ex: bib(x), series: seriesDeVolume(x) })));
   const todos = () => dias.flatMap((d) => d.exercicios);
   const niveis = new Map<string, number>();
@@ -1187,7 +1187,7 @@ function completarPelaRegua(
     return n;
   };
   const cobertas = (exs: ExercicioPrescrito[]) => Object.fromEntries(Object.keys(FAMILIAS).map((m) => [m, familiasCobertas(m as Musculo, exs, melhorNivel, ctx.noLugarDe).length]));
-  const regiao = (m: Musculo) => (m === 'abdomen' ? 'core' : INFERIORES.includes(m) || m === 'adutores' ? 'inferior' : 'superior');
+  const regiao = regiaoDoMusculo;
   /** O dia com os exercícios novos cabe: minutos (ou não piora um dia que já passava), sessão e semana. */
   const cabe = (di: number, exs: ExercicioPrescrito[]) => {
     const antes = dias[di]!.minutosEstimados;
@@ -1286,7 +1286,7 @@ function completarPelaRegua(
   if (!semPuxar)
     for (;;) {
       const soma = (f: (id: string) => boolean) => todos().filter((x) => f(x.exId)).reduce((t, x) => t + seriesDeVolume(x), 0);
-      if (soma(ehEmpurrar) <= EMPURRAR_PUXAR_FUNCOES * soma(ehPuxar) + 1e-9) break;
+      if (soma(ehEmpurrar) <= EMPURRAR_PUXAR_MAX * soma(ehPuxar) + 1e-9) break;
       let feito = false;
       for (let di = 0; di < dias.length && !feito; di++)
         dias[di]!.exercicios.forEach((x, xi) => {
@@ -1376,7 +1376,6 @@ function frequenciaTexto(d: Divisao): string {
   return `${d.nome}: cada músculo treina cerca de ${d.frequencia.replace('~', '')} vezes por semana.`;
 }
 
-const POR_ID_BIB: Record<string, Exercicio> = Object.fromEntries(BIBLIOTECA.map((e) => [e.id, e]));
 /** Os exercícios do padrão afundo (búlgaro e afundos): um por dia, havendo outra opção (selecao.funcao-da-vaga; R5a). */
 const AFUNDOS = new Set(FUNCAO['afundo']!.niveis.flat());
 const ehAfundo = (e: Exercicio) => AFUNDOS.has(e.id);
@@ -1516,11 +1515,11 @@ export function minutos(exs: ExercicioPrescrito[], colchao: number = TEMPO.colch
     if (par && exs.indexOf(par) < i) return; // já contado junto com o par
     if (i > 0) seg += TEMPO.transicao;
     for (const y of par ? [x, par] : [x]) {
-      const e = POR_ID_BIB[y.exId]!;
+      const e = POR_ID[y.exId]!;
       if (y.tipo === 'composto' && !e.musculos.primarios.some((m) => aquecidos.has(m))) {
         // tempo.aquecimento: completo no 1º multiarticular de cada região (superior/inferior), curto nos seguintes.
         // Valor a recalibrar com o tempo real registrado no app (R2).
-        const regiao = e.musculos.primarios.some((m) => INFERIORES.includes(m)) ? 'inferior' : 'superior';
+        const regiao = e.musculos.primarios.some((m) => MUSCULOS_INFERIORES.includes(m)) ? 'inferior' : 'superior';
         seg += aquecidos.has(regiao) ? TEMPO.aquecimentoCurto : TEMPO.aquecimento;
         aquecidos.add(regiao);
         e.musculos.primarios.forEach((m) => aquecidos.add(m));
@@ -1534,11 +1533,6 @@ export function minutos(exs: ExercicioPrescrito[], colchao: number = TEMPO.colch
   return Math.round((seg * (1 + colchao)) / 60);
 }
 
-const INFERIORES: Musculo[] = ['quadriceps', 'posteriores', 'gluteos', 'panturrilha'];
-/** Empurrar ÷ puxar acima disto desequilibra o ombro (consenso, kolber2010; régua da G5, D1). */
-const EMPURRAR_PUXAR_MAX = 1.5;
-const EMPURRA_PADROES: Padrao[] = ['empurrar-h', 'empurrar-v', 'isolador-peito'];
-const PUXA_PADROES: Padrao[] = ['puxar-h', 'puxar-v', 'isolador-ombro-posterior'];
 const PUXAM: Musculo[] = ['costas', 'ombro_posterior'];
 /**
  * Funções só de isolador que, com foco, entram depois das vagas do foco (volume.prioridade.foco-primeiro). Ficam de fora
@@ -1552,8 +1546,6 @@ const DISTANCIA_DO_FOCO = 6;
 /** selecao.barra-negativa-iniciante: a barra fixa livre e a regressão dela. */
 const BARRA_LIVRE = ['barra-fixa', 'barra-fixa-supinada'];
 const BARRA_NEGATIVA = 'barra-fixa-negativa';
-/** O dia passa do tempo acima disto (a estimativa já inclui a margem de fila; régua da G5, A3). */
-const LIMITE_DO_DIA = 1.1;
 
 /** volume.equilibrio-coxa: quadríceps ÷ posteriores nas séries semanais (sem posteriores e com quadríceps, infinito). */
 export const razaoCoxa = (v: Partial<Record<Musculo, number>>) => {
@@ -1656,16 +1648,16 @@ export function cortarTempo(
 ): DiaPrograma[] {
   const recalcular = (d: DiaPrograma) => ({ ...d, minutosEstimados: minutos(d.exercicios, colchao) });
   const volume = () =>
-    volumePorMusculo(dias.flatMap((d) => d.exercicios.map((x) => ({ ex: POR_ID_BIB[x.exId]!, series: seriesDeVolume(x) }))));
+    volumePorMusculo(dias.flatMap((d) => d.exercicios.map((x) => ({ ex: POR_ID[x.exId]!, series: seriesDeVolume(x) }))));
   // Piso de cada músculo nos cortes: prioritários não descem do mínimo do nível; os demais, do
   // mínimo eficaz (4). Assim os cortes saem primeiro dos grupos que a pessoa não priorizou.
   const piso = (m: Musculo) => Math.min(metas[m] ?? 0, prioritarios.has(m) ? VOLUME.minimo[nivel] : VOLUME.minimoEficazPiso);
-  const prioritario = (x: ExercicioPrescrito) => POR_ID_BIB[x.exId]!.musculos.primarios.some((m) => prioritarios.has(m));
+  const prioritario = (x: ExercicioPrescrito) => POR_ID[x.exId]!.musculos.primarios.some((m) => prioritarios.has(m));
   const obrigatorio = (x: ExercicioPrescrito) => !!(x.funcao && FUNCAO[x.funcao]?.obrigatoria);
   // Um corte só vale se nenhum músculo atingido (principal: série inteira; secundário: meia série)
   // cruzar o piso. Músculo que já estava abaixo do piso antes (limite estrutural) não trava o corte.
   const cabe = (x: ExercicioPrescrito, menos: number, v: Partial<Record<Musculo, number>>) => {
-    const e = POR_ID_BIB[x.exId]!;
+    const e = POR_ID[x.exId]!;
     const ok = (m: Musculo, delta: number) => (v[m] ?? 0) < piso(m) || (v[m] ?? 0) - delta >= piso(m);
     // volume.equilibrio-coxa: o corte não tira quadríceps ÷ posteriores da faixa de 0,5 a 2 (R5-CL).
     return e.musculos.primarios.every((m) => ok(m, menos)) && e.musculos.secundarios.every((m) => ok(m, menos * VOLUME.pesoIndireta)) && mantemCoxa(e, menos, v);
@@ -1673,7 +1665,7 @@ export function cortarTempo(
   // O corte nunca tira o único exercício de um músculo: mesmo abaixo do piso, ele não vai a zero (sessão de equipamento
   // mínimo: com 20 min e prioridade pernas, a flexão de joelho deslizante saía e os posteriores zeravam).
   const naoZera = (x: ExercicioPrescrito, v: Partial<Record<Musculo, number>>) =>
-    POR_ID_BIB[x.exId]!.musculos.primarios.every((m) => (v[m] ?? 0) - seriesDeVolume(x) > 0);
+    POR_ID[x.exId]!.musculos.primarios.every((m) => (v[m] ?? 0) - seriesDeVolume(x) > 0);
   const naoPrioPrimeiro = <T extends { x: ExercicioPrescrito; i: number }>(a: T, b: T) => Number(prioritario(a.x)) - Number(prioritario(b.x));
   const usados = new Set<string>(jaTirouExercicio ? ['corte'] : []);
 
@@ -1701,11 +1693,11 @@ export function cortarTempo(
         }
       };
       const naoCompetem = (a: ExercicioPrescrito, b: ExercicioPrescrito) => {
-        const ma = POR_ID_BIB[a.exId]!.musculos.primarios;
-        const mb = POR_ID_BIB[b.exId]!.musculos.primarios;
+        const ma = POR_ID[a.exId]!.musculos.primarios;
+        const mb = POR_ID[b.exId]!.musculos.primarios;
         return !ma.some((m) => mb.includes(m));
       };
-      const deInferior = (x: ExercicioPrescrito) => POR_ID_BIB[x.exId]!.musculos.primarios.some((m) => INFERIORES.includes(m));
+      const deInferior = (x: ExercicioPrescrito) => POR_ID[x.exId]!.musculos.primarios.some((m) => MUSCULOS_INFERIORES.includes(m));
       parear(
         exs.filter((x) => x.tipo === 'isolador' && x.padrao !== 'core'),
         naoCompetem,

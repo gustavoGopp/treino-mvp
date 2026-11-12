@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Link, Navigate, useNavigate } from 'react-router-dom';
-import { BIBLIOTECA } from '../../domain/biblioteca';
+import { POR_ID } from '../../domain/biblioteca';
 import { marcasDaSessao, type Marca } from '../../domain/acompanhamento/evolucao';
 import { resumoSessao, sugestaoDoExercicio, textoCarga } from '../../domain/sessao';
 import { localDaSessao } from '../../storage/esquema';
@@ -15,7 +15,6 @@ import { PorQue, Selo, Titulo, Topo } from '../app/ui';
 // Fim do treino: resumo e a sugestão de cada exercício para a próxima vez (decisão 9 do M5). Lote 4 do redesign: primeiro
 // "O que mudou hoje" (a semana, os recordes e as cargas que sobem), depois "Hoje foi" e a próxima vez, com o motivo no
 // "por quê?". Sem confete e sem som.
-const POR_ID = Object.fromEntries(BIBLIOTECA.map((e) => [e.id, e]));
 const ACAO: Record<string, string> = {
   subir: 'Subir',
   manter: 'Manter',

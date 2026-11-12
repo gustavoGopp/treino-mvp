@@ -1,6 +1,6 @@
 import { readdirSync, readFileSync } from 'node:fs';
 import { describe, expect, it } from 'vitest';
-import { BIBLIOTECA, PADROES } from '../../src/domain/biblioteca';
+import { BIBLIOTECA, ehEmpurrar, ehPuxar, MUSCULOS, MUSCULOS_INFERIORES, PADROES, PADROES_EMPURRAR, PADROES_PUXAR, regiaoDoMusculo } from '../../src/domain/biblioteca';
 import { REGRAS } from '../../src/domain/regras/completas';
 import { FUNCOES } from '../../src/domain/gerador/funcoes';
 import {
@@ -159,3 +159,36 @@ it('todo id de regra citado em src/domain existe em regras.md', () => {
   expect(ids.length).toBeGreaterThan(0);
   for (const id of ids) expect(REGRAS, id).toHaveProperty([id]);
 });
+
+// Auditoria de 12/11/2026: definições repetidas que podiam divergir (e divergiam) passam a ter um lugar só.
+describe('uma definição de cada', () => {
+  it('empurrar e puxar valem pelo padrão do movimento: a flexão fechada é empurrar', () => {
+    expect(ehEmpurrar('flexao-fechada')).toBe(true);
+    for (const e of BIBLIOTECA) {
+      expect(ehEmpurrar(e.id), e.id).toBe(PADROES_EMPURRAR.includes(e.padrao));
+      expect(ehPuxar(e.id), e.id).toBe(PADROES_PUXAR.includes(e.padrao));
+    }
+    expect(ehEmpurrar('exercicio-que-nao-existe')).toBe(false);
+  });
+
+  it('os adutores são músculos de baixo, o abdômen é core e o resto é de cima', () => {
+    expect(regiaoDoMusculo('adutores')).toBe('inferior');
+    expect(regiaoDoMusculo('abdomen')).toBe('core');
+    expect(MUSCULOS.filter((m) => regiaoDoMusculo(m) === 'inferior').sort()).toEqual([...MUSCULOS_INFERIORES].sort());
+    expect(regiaoDoMusculo('peito')).toBe('superior');
+  });
+
+  it('cada definição existe num arquivo só de src/', () => {
+    const fonte = (arq: string) => readFileSync(arq, 'utf8');
+    const arquivos = (pasta: string): string[] =>
+      readdirSync(pasta, { withFileTypes: true }).flatMap((d) => (d.isDirectory() ? arquivos(`${pasta}/${d.name}`) : /\.tsx?$/.test(d.name) ? [`${pasta}/${d.name}`] : []));
+    const fora = arquivos('src').filter((a) => !a.startsWith('src/engine/'));
+    const onde = (padrao: RegExp) => fora.filter((a) => padrao.test(fonte(a)));
+    expect(onde(/const POR_ID\b[^=]*=/)).toEqual(['src/domain/biblioteca/index.ts']);
+    expect(onde(/const LIMITE_DO_DIA\b/)).toEqual(['src/domain/regras/index.ts']);
+    expect(onde(/const EMPURRAR_PUXAR_MAX\b/)).toEqual(['src/domain/gerador/familias.ts']);
+    expect(onde(/const (MUSCULOS_)?INFERIORES\b/)).toEqual(['src/domain/biblioteca/index.ts']);
+    expect(onde(/h \? q \/ h : q \? Infinity : 1/)).toEqual(['src/domain/gerador/index.ts']);
+  });
+});
+

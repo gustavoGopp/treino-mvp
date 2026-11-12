@@ -196,9 +196,10 @@ describe('aquecimento e resumo', () => {
     expect(precisaAquecer(dia, 99)).toBe(false);
   });
 
-  it('resume séries feitas, efetivas e duração', () => {
+  it('resume os exercícios e as séries feitas e a duração', () => {
     const s = sessao('a', '2026-11-02T10:00:00Z', [{ exId: 'x', series: [kg(10, 10, 2), kg(10, 10, 5)] }, { exId: 'y', series: [] }], '2026-11-02T10:47:00Z');
-    expect(resumoSessao(s)).toEqual({ exercicios: 1, series: 2, efetivas: 1, minutos: 47 });
+    // As séries efetivas têm uma conta só, a de `seriesEfetivas` (o drop set conta 2); o resumo não tem outra.
+    expect(resumoSessao(s)).toEqual({ exercicios: 1, series: 2, minutos: 47 });
     expect(resumoSessao({ ...s, fim: undefined }).minutos).toBeUndefined();
   });
 });

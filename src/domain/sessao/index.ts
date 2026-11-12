@@ -1,4 +1,4 @@
-import { BIBLIOTECA, type Exercicio } from '../biblioteca';
+import { MUSCULOS_INFERIORES, POR_ID, type Exercicio } from '../biblioteca';
 import { faseNaSemana, prescricaoDaSemana, type DiaPrograma, type ExercicioPrescrito, type Fase, type Programa } from '../gerador';
 import { blocoAtual, naFaseDeAprendizado, semanaNoBloco, treinoFeito, type Hoje } from './bloco';
 import { DEPOIS_DA_ESCADA, escadaDe, nomeDoDegrau, pedeMiniBand } from '../progressao/escadas';
@@ -55,7 +55,6 @@ export type Sessao = {
  */
 export type LocalDaCarga = { localId: string; localPadrao?: string };
 
-const POR_ID: Record<string, Exercicio> = Object.fromEntries(BIBLIOTECA.map((e) => [e.id, e]));
 
 /**
  * Próximo dia da rotação: o seguinte ao do último treino feito; o primeiro se não há histórico (decisão 1). Só conta a
@@ -425,8 +424,7 @@ export function avaliarSerieDeCalibracao(
 
 /** Lembrete de aquecimento antes do primeiro multiarticular de cada região (tempo.aquecimento; decisão 10). */
 export function precisaAquecer(dia: DiaPrograma, indice: number): boolean {
-  const INFERIORES = ['quadriceps', 'posteriores', 'gluteos', 'panturrilha'];
-  const regiao = (x: ExercicioPrescrito) => (POR_ID[x.exId]?.musculos.primarios.some((m) => INFERIORES.includes(m)) ? 'inf' : 'sup');
+  const regiao = (x: ExercicioPrescrito) => (POR_ID[x.exId]?.musculos.primarios.some((m) => MUSCULOS_INFERIORES.includes(m)) ? 'inf' : 'sup');
   const x = dia.exercicios[indice];
   if (!x || x.tipo !== 'composto') return false;
   return !dia.exercicios.slice(0, indice).some((y) => y.tipo === 'composto' && regiao(y) === regiao(x));
@@ -440,7 +438,6 @@ export function resumoSessao(s: Sessao) {
   return {
     exercicios: s.exercicios.filter((e) => e.series.length > 0).length,
     series: series.length,
-    efetivas: series.filter((x) => x.rir <= 4 && x.amplitudeCompleta !== false).length,
     minutos: s.fim ? Math.max(1, Math.round((Date.parse(s.fim) - Date.parse(s.inicio)) / 60_000)) : undefined,
   };
 }

@@ -1,6 +1,6 @@
 import { Link, Navigate } from 'react-router-dom';
 import { numeroBr } from '../../domain/numero';
-import { BIBLIOTECA } from '../../domain/biblioteca';
+import { POR_ID } from '../../domain/biblioteca';
 import { exerciciosComHistorico, marcasDaSemana, type Marca } from '../../domain/acompanhamento/evolucao';
 import { textoCarga } from '../../domain/sessao';
 import { localDaSessao } from '../../storage/esquema';
@@ -13,7 +13,6 @@ import { SemanaLeve } from './SemanaLeve';
 // "A sua semana" (acompanhamento.semana e acompanhamento.mensagens): registro + meta + retorno, sem culpa e sem vermelho.
 // Lote 4 do redesign: o dado antes da oferta (os treinos, as últimas semanas, o que subiu, as séries por músculo) e só
 // então a revisão da meta e a semana leve.
-const POR_ID = Object.fromEntries(BIBLIOTECA.map((e) => [e.id, e]));
 const dataCurta = (iso: string) => `${iso.slice(8, 10)}/${iso.slice(5, 7)}`;
 const num = numeroBr;
 const TEXTO_MARCA: Record<Marca, string> = { 'subiu-a-carga': 'subiu a carga', recorde: 'recorde' };

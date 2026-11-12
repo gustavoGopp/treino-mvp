@@ -1,6 +1,6 @@
 import { useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
 import { Link, Navigate, useNavigate, useSearchParams } from 'react-router-dom';
-import { BIBLIOTECA } from '../../domain/biblioteca';
+import { POR_ID } from '../../domain/biblioteca';
 import { ALTERNATIVAS_A_MOSTRA, type ExercicioPrescrito } from '../../domain/gerador';
 import { linkDoGuia } from '../guia/link';
 import { ESCADA_PESO_CORPO, haCargaMenor, type Carga, type SerieRegistrada } from '../../domain/progressao';
@@ -35,7 +35,6 @@ import { PainelDescanso, useDescanso, useTelaAcesa } from './Temporizador';
 // Treino em andamento: um exercício por vez, séries registradas com um toque, descanso entre séries,
 // troca pela alternativa e o botão "Senti algo" (dor e sinais de alerta). Decisões: docs/pesquisa/10-decisoes-m5.md.
 
-const POR_ID = Object.fromEntries(BIBLIOTECA.map((e) => [e.id, e]));
 const faixa = ([a, b]: [number, number]) => (a === b ? `${a}` : `${a}–${b}`);
 const tempo = (seg: number) => (seg % 60 ? `${Math.floor(seg / 60)}:${String(seg % 60).padStart(2, '0')}` : `${seg / 60} min`);
 const RIRS = [0, 1, 2, 3, 4] as const;

@@ -125,6 +125,9 @@ export const PROGRESSAO = {
   acertosMax: 3, // progressao.calibracao (R5a): depois de 3 séries de acerto sem cair em A ± 2, a calibração termina
 };
 
+/** O dia passa do tempo acima disto vezes os minutos escolhidos (a estimativa já inclui a margem de fila; régua da G5, A3). */
+export const LIMITE_DO_DIA = 1.1;
+
 /**
  * Quanto a carga sugerida desce: o meio da faixa de cada regra (progressao.reduzir: 5–10%; seguranca.dor.escala:
  * 10–20%). A carga sugerida é a que existe no equipamento mais perto disso, sempre abaixo da de hoje.

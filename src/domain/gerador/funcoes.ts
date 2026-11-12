@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { BIBLIOTECA, MUSCULOS } from '../biblioteca';
+import { MUSCULOS, POR_ID } from '../biblioteca';
 import { CAPACIDADES, type Capacidade } from '../taxonomia/equipamentos';
 import { SELOS } from '../regras';
 import dados from './funcoes.json';
@@ -9,7 +9,6 @@ import dados from './funcoes.json';
 // são equivalentes (selecao.equivalencia). O nível seguinte só entra se nada do anterior for possível.
 // Desde o R0c, a tabela está completa, com os exercícios novos do catálogo.
 
-const POR_ID = new Map(BIBLIOTECA.map((e) => [e.id, e]));
 const regraId = z.string().refine((id) => id in SELOS, 'regra fora de regras.md');
 
 export const funcaoSchema = z
@@ -39,7 +38,7 @@ export const funcaoSchema = z
   .superRefine((f, ctx) => {
     const vistos = new Set<string>();
     for (const id of f.niveis.flat()) {
-      const e = POR_ID.get(id);
+      const e = POR_ID[id];
       if (!e) ctx.addIssue({ code: 'custom', message: `${f.id}: exercício fora da biblioteca: ${id}` });
       else if (!e.musculos.primarios.includes(f.musculo))
         ctx.addIssue({ code: 'custom', message: `${f.id}: ${id} não tem ${f.musculo} como músculo principal` });
