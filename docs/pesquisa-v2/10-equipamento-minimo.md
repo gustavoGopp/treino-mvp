@@ -666,7 +666,7 @@ Proposta de lista de "o que tem em casa" para `equipamento.casa-apoios` **[opini
 
 ## Fontes novas (formato de `docs/pesquisa/fontes.md`)
 
-Chaves conferidas contra `fontes.md`: nenhuma colide. Duplicatas entre as três frentes foram fundidas (`wei2023`, `soligon2020`; `flexao-maos2005` = `cogley2005`; `nordico-volume2025` = `cholp2025`). Só entram em `fontes.md` com a aprovação do Gustavo e quando forem citadas por uma regra ou ficha.
+Chaves conferidas contra `fontes.md`: nenhuma colide. Duplicatas entre as três frentes foram fundidas (`wei2023`, `soligon2020`; "flexao-maos2005" virou `cogley2005`; "nordico-volume2025" virou `cholp2025`). Entraram em `fontes.md` em 12/11/2026, a pedido do Gustavo, com a referência conferida de novo no PubMed.
 
 ### Resumo oficial lido
 

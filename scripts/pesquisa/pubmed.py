@@ -4,6 +4,7 @@
 Uso:
   python3 -I scripts/pesquisa/pubmed.py s termos da busca      # lista PMID | título | revista
   python3 -I scripts/pesquisa/pubmed.py a 38595233 41343037    # título, autores, revista, DOI e resumo
+  python3 -I scripts/pesquisa/pubmed.py c 38595233 41343037    # confere a referência (sem o resumo) na API oficial
 
 Observações:
 - Lê as páginas públicas do PubMed (pubmed.ncbi.nlm.nih.gov). O PMC e as editoras costumam estar
@@ -12,8 +13,11 @@ Observações:
 - O PubMed limita pedidos seguidos: o script espera entre pedidos e guarda cópia em /tmp/pubmed-cache.
   Se um resumo vier vazio, espere alguns segundos e rode de novo (as cópias ruins são descartadas).
 - Buscas longas podem não achar nada: prefira 3 a 6 termos.
+- "c" usa a API oficial E-utilities (esummary), que responde mesmo quando as páginas do PubMed devolvem o desafio
+  anti-robô (que não é contornado). Ela confirma autores, ano, título, revista, volume, páginas e DOI, mas não traz o
+  resumo: serve para conferir uma citação, não para dizer que o resumo foi lido.
 """
-import html, os, re, sys, time, urllib.parse, urllib.request
+import html, json, os, re, sys, time, urllib.parse, urllib.request
 
 CACHE = '/tmp/pubmed-cache'
 UA = {'User-Agent': 'Mozilla/5.0'}
@@ -71,10 +75,37 @@ def resumo(pmid):
     }
 
 
+def conferir(pmids):
+    """Referência de cada PMID pela API oficial (esummary): uma linha por artigo, na ordem pedida."""
+    url = 'https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esummary.fcgi?' + urllib.parse.urlencode({'db': 'pubmed', 'id': ','.join(pmids), 'retmode': 'json'})
+    r = json.loads(urllib.request.urlopen(urllib.request.Request(url, headers=UA), timeout=30).read().decode('utf-8'))['result']
+    for pmid in pmids:
+        x = r.get(pmid)
+        if not x or x.get('error'):
+            yield pmid, None
+            continue
+        autores = [a['name'] for a in x.get('authors', [])]
+        doi = next((i['value'] for i in x.get('articleids', []) if i.get('idtype') == 'doi'), '')
+        local = x.get('volume', '') + (f"({x['issue']})" if x.get('issue') else '') + (f":{x['pages']}" if x.get('pages') else '')
+        yield pmid, {
+            'autores': ', '.join(autores[:3]) + (', et al.' if len(autores) > 3 else ''),
+            'ano': (x.get('pubdate') or x.get('epubdate') or '')[:4],
+            'titulo': html.unescape(x.get('title', '')),
+            'revista': x.get('source', ''),
+            'local': local,
+            'doi': doi,
+            'tipos': ', '.join(x.get('pubtype', [])),
+        }
+
+
 if __name__ == '__main__':
-    if len(sys.argv) < 3 or sys.argv[1] not in ('s', 'a'):
+    if len(sys.argv) < 3 or sys.argv[1] not in ('s', 'a', 'c'):
         print(__doc__)
         sys.exit(1)
+    if sys.argv[1] == 'c':
+        for pmid, x in conferir(sys.argv[2:]):
+            print(f'{pmid} | NÃO ENCONTRADO' if x is None else f"{pmid} | {x['autores']} ({x['ano']}). {x['titulo']} {x['revista']} {x['local']} | DOI: {x['doi'] or '—'} | {x['tipos']}")
+        sys.exit(0)
     if sys.argv[1] == 's':
         for linha in buscar(' '.join(sys.argv[2:])):
             print(' | '.join(linha))
