@@ -36,8 +36,6 @@ export function aceitarMenosDias(e: Estado, dias: 2 | 3 | 4 | 5, agora: string):
 /** "Manter": o programa não muda, e a oferta some por 4 semanas. */
 export const manterDias = (e: Estado, agora: string): Estado => comResposta(e, 'revisaoMetaEm', agora);
 
-export { comResposta };
-
 /** A semana leve de hoje (sugestão, carência e aviso de dor), a partir do estado salvo. */
 export function semanaLeveDoEstado(e: Estado, agora: string, fusoMin = 0) {
   if (!e.programa) return null;

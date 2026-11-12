@@ -1,7 +1,6 @@
-import type { Porque } from '../../domain/gerador';
-import { diaNoLocal, type DiaNoLocal, type Troca } from '../../domain/locais';
+import { diaNoLocal, type DiaNoLocal } from '../../domain/locais';
 import type { SerieRegistrada } from '../../domain/progressao';
-import { hojeDaSessao, hojeNoPrograma, opcoesDeHoje, proximoDia, semanaLeveAtiva, type Hoje, type OpcoesSugestao, type Sessao } from '../../domain/sessao';
+import { hojeDaSessao, hojeNoPrograma, opcoesDeHoje, proximoDia, type Hoje, type OpcoesSugestao, type Sessao } from '../../domain/sessao';
 import type { Inventario } from '../../domain/taxonomia/equipamentos';
 import { localDoPrograma, localDoTreino, localPorId, perfilDe, type Estado } from '../../storage/esquema';
 
@@ -51,12 +50,6 @@ export function opcoesDaCarga(e: Estado, s: Pick<Sessao, 'id' | 'inicio' | 'loca
     ...(localId ? { local: { localId, ...(e.locais?.[0] ? { localPadrao: e.locais[0].id } : {}) } } : {}),
     ...(hoje ? opcoesDeHoje(hoje) : {}),
   };
-}
-
-/** Prévia do dia num local, antes de começar ("onde vou treinar hoje?"). */
-export function previaDoDia(e: Estado, agora: string, diaId: string, localId?: string, fusoMin = 0): { trocas: Troca[]; avisos: Porque[] } {
-  const d = diaDoTreino(e, { id: agora, inicio: agora, diaId, ...(localId ? { localId } : {}), ...(semanaLeveAtiva(e.semanaLeve, agora, fusoMin) ? { semanaLeve: true } : {}) }, fusoMin);
-  return { trocas: d?.trocas ?? [], avisos: d?.avisos ?? [] };
 }
 
 /**

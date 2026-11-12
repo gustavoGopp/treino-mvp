@@ -411,9 +411,6 @@ export function avaliarSerieDeCalibracao(
   return { ...c, proxima: noInventario(c.proxima, op).carga };
 }
 
-/** Semana 1 de uma volta de pausa (readaptacao.semana1): a calibração não sobe a carga. */
-export const soDesceNaSemana = (p: Programa, semana: number, fases: Fase[] = p.fases) => faseDaSemana(p, semana, fases)?.regraId === 'readaptacao.semana1';
-
 /** Lembrete de aquecimento antes do primeiro multiarticular de cada região (tempo.aquecimento; decisão 10). */
 export function precisaAquecer(dia: DiaPrograma, indice: number): boolean {
   const INFERIORES = ['quadriceps', 'posteriores', 'gluteos', 'panturrilha'];
