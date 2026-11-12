@@ -1570,4 +1570,4 @@ Uma leitura do projeto inteiro, em 6 frentes (gerador, sessão e armazenamento, 
 - **Função da foto.** Convites errados passam a contar por IP (20 por dia); corpo nulo responde 400; o teto de tokens subiu de 4.000 para 16.000, porque o raciocínio do modelo conta nele.
 - **Privacidade.** Dois e-mails pessoais e o nome do empregador saíram de 17 documentos, e o teste de privacidade passou a procurar e-mails.
 - **Casa arrumada.** Os dois scripts do port do M1, que hoje apagariam as animações novas, só rodam com `--forcar`; cabeçalhos de segurança na Vercel; `.env.example` completo; README com o estado real.
-- **Resultado:** `npm run check` com 838 testes e os 146 e2e passando.
+- **Resultado:** `npm run check` com 837 testes e os 145 e2e passando.
