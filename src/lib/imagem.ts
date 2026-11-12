@@ -9,7 +9,8 @@ export function dimensoesReduzidas(largura: number, altura: number, max = LADO_M
   const maior = Math.max(largura, altura);
   if (maior <= max) return { largura, altura };
   const k = max / maior;
-  return { largura: Math.round(largura * k), altura: Math.round(altura * k) };
+  // Nunca 0: uma foto muito comprida (20000 × 5) dava altura 0, e o canvas não gerava a imagem.
+  return { largura: Math.max(1, Math.round(largura * k)), altura: Math.max(1, Math.round(altura * k)) };
 }
 
 /** true se o JPEG tem um segmento APP1 de EXIF (onde ficam câmera, data e GPS). */
