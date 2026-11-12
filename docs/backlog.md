@@ -220,3 +220,45 @@ Detalhes e números em `devlog.md` ("R5-anim"), `revisoes/r5-anim/README.md` e `
 - **Limites de desenho que apareceram nas folhas** (aprovadas assim): os polegares para cima da abertura em T não aparecem (a mão é uma luva); de frente, o boneco deitado de bruços parece de pé; o "encolher" deitado (7 cm) fica pequeno na vista de cima; o "quicar" e o "ir até a falha" são erros de ritmo, que o quadro parado não mostra (a animação, sim). Um traço do polegar entra com a proposta 6 da auditoria (mão por cima do disco), que é mudança de corpo.
 - **Os cotovelos da ponte com kettlebell** (aprovada em 04/11): ficam abertos e no ar, como os da ponte com halter que o Gustavo achou estranhos em 10/11 (corrigidos lá: apoiados no chão, ao lado da cintura). Corrigir também na ponte com kettlebell pede uma folha própria, a aprovação e a regravação da linha de base dessa animação.
 
+
+## Da auditoria geral (12/11/2026)
+
+O que a auditoria achou e não corrigiu, porque pede uma decisão do Gustavo ou muda uma regra. Em ordem de gravidade.
+
+**Segurança e dados**
+- **Erro ao salvar não aparece durante o treino** (`features/app/estado.tsx`): se o aparelho recusa a gravação (sem espaço, aba anônima), "Série N salva" continua aparecendo e tudo se perde ao recarregar. O erro só é mostrado na boas-vindas e em Meus dados. Mostrar também no treino, no programa e no resumo.
+- **Dor acima de 5 antes da 1ª série não fica registrada** (`Treino.tsx`): o exercício é interrompido, mas a nota não vai para lugar nenhum, e o aviso de dor repetida só lê as séries.
+- **O programa pode ser gerado de novo no meio de um treino** ("Atualizar", a semana com N dias, restrições, inventário): o exercício que saiu do dia passa a usar as séries e o descanso da 1ª vaga. Esconder ou travar enquanto há treino aberto.
+- **Um id de exercício desconhecido deixa o estado inteiro ilegível** (`storage/esquema.ts`): hoje nenhum id foi removido, mas o primeiro que for renomeado sem migração quebra a carga de quem o registrou (o dado agora fica guardado à parte, mas o app abre vazio). Aceitar qualquer texto no histórico ou criar um teste que exija a migração.
+- **Mudanças de formato sem versão nova** (`rotina.objetivo`, `respostas.semanaLeveEm` entraram na versão 7): uma aba com o app antigo apaga os campos novos ao salvar.
+- **`halteres_fixos` aceita mínimo maior que o máximo** (`taxonomia/equipamentos.ts`): a lista de cargas fica vazia, mas o programa prescreve exercícios com halter. Validar no formulário e tratar o que já estiver salvo antes de endurecer o esquema.
+- **O limite por aparelho da foto é fraco** (`api/_lib/pedido.ts`): o id do aparelho vem do cliente; o que vale é o limite por IP e o teto mensal na Anthropic. A cota também não é devolvida quando o modelo falha.
+- **Sem Content-Security-Policy** (`vercel.json`): os outros cabeçalhos entraram; a CSP pede um teste na prévia (o service worker e os estilos em linha).
+- **Dependências com alerta no `npm audit`** (20; 3 em produção: zod 3, react-router 6; os críticos são do vitest 3, só no desenvolvimento): todas as correções são versões maiores (zod 4, react-router 7, vitest 5).
+
+**Regras do treino**
+- **"Subir" confere a carga só na 1ª série** (`progressao/index.ts`, `noTopo`): 20 kg × 12 e depois 14 kg × 12 e 14 kg × 12, duas vezes, sugere subir para 22 kg.
+- **Os minutos do dia ficam os mesmos quando uma fase muda as séries** (`gerador/index.ts`, `aplicarFase`): na volta de 12 semanas de pausa, a tela mostra 51 min para um treino de cerca de 31. Falta decidir de onde vem a margem pessoal do tempo.
+- **Dias vazios com aviso falso**: com todas as regiões excluídas pela dor, o programa sai "ok" com dias sem exercício e o texto "só o abdominal é possível neste dia".
+- **A oferta de menos dias aparece depois de uma pausa**, com "você treinou cerca de 1 vez por semana" para 4 semanas sem treino (`acompanhamento/semana.ts`).
+- **"Suba dois degraus" quando só existe um degrau acima** (`progressao/index.ts`).
+- **`panturrilha-chao` está como bilateral**, mas o texto manda fazer uma perna de cada vez.
+- **20 exercícios da biblioteca não têm animação nem cartão** (supino com barra, leg press, mesa flexora, remada com barra…): aparecem como "Sem guia ainda", e o CLAUDE.md pede o cartão de texto.
+
+**Tela**
+- **O descanso e a nota de dor pendente se perdem ao sair do treino** (abrir o guia no meio do descanso para o temporizador).
+- **Ids repetidos no drop set** (`ControleCarga`: `carga-rotulo`, `carga-kg`) e nas miniaturas (`mh-listras`, os recortes do corpo): o rótulo aponta para o 1º controle.
+- **A folha fica fora de `.app`**: a cor dos links e o `prefers-reduced-motion` do CSS não chegam ao conteúdo dela.
+- **Uma importação que falha (sem rede, versão nova publicada) fica guardada até recarregar** (`regras/carregar.ts`, `conteudo/cartoes.ts`, `programa/desenhoFora.ts`).
+- **Mensagens da foto**: qualquer erro de rede vira "Sem conexão", e a foto que o navegador não abre (HEIC) mostra o texto em inglês.
+- **Os termos citam botões que não existem** ("Refazer a triagem e o perfil", "Exportar meus dados").
+- **CSS sem uso** (cerca de 25 classes: `.shell`, `.cta`, `.faixa`, `.cartoes-eq`, `.fs-topo`…) e ajudantes repetidos (`faixa`, `tempo`, `dataCurta`, `POR_ID`, três formatadores de carga).
+
+**Repositório**
+- **Histórico do git**: os e-mails pessoais e o nome do empregador saíram dos arquivos, mas continuam nos commits antigos. Apagar de lá pede reescrever o histórico.
+- **`LEIA-ME.md` e `PROMPT-INICIAL.md`** são do kit inicial (falam em "antes de publicar o repositório" e em 26 exercícios). Apagar ou mover para o histórico.
+- **`docs/PLANO-MVP.md`** está "atualizado em 07/11" e ainda lista R5a, R5b e R5c como pendentes; `docs/pesquisa-v2/README.md` diz que o próximo passo é o R2.
+- **27 imagens em `docs/img/` sem nenhuma referência** (cerca de 10 MB).
+- **Fontes citadas em `pesquisa-v2` que não estão em `pesquisa/fontes.md`**: o backlog diz 17 numa linha e 14 em outra; a contagem por script deu até 27. Em `pesquisa-v2/01`, a citação "Currier et al. 2026" tem um PMID de 7 dígitos, cortado.
+- **`scripts/design/**` (74 arquivos) e `scripts/gif/divisao.spec.ts`**: sobras das sessões de design; 8 clicam em "Entendi, vamos começar", que não existe mais. O motor (`src/engine`) segue com `@ts-nocheck` em 101 de 103 arquivos.
+- **CI**: roda duas vezes em cada PR (`push` e `pull_request`) e não tem `permissions`. `vite-node`, `playwright` e `tsx` são usados pelos scripts sem estar no `package.json`.

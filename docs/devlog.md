@@ -1558,3 +1558,16 @@ As folhas completas, com os músculos, a trajetória e os erros: `revisoes/r5-an
 > O momento bom foi uma frase do dono do produto na revisão: "o braço está estranho". Estava mesmo: copiei o braço de outra animação, e nela os cotovelos ficavam no ar. Na ponte com halter, quem faz apoia os cotovelos no chão. Corrigi, e a frase virou um item na fila para a animação de origem.
 >
 > Animar também muda o treino: o app prefere o exercício que tem guia animado, e com mais animações alguns empates passaram a cair na ordem alfabética. Cada troca foi mostrada antes de entrar, e a regra de desempate entrou na fila do gerador.
+
+## Auditoria geral do projeto (12/11/2026)
+
+Uma leitura do projeto inteiro, em 6 frentes (gerador, sessão e armazenamento, telas, função da foto e configuração, motor e scripts, documentos), com correção do que era seguro corrigir. O que ficou para decidir está em `backlog.md`, "Da auditoria geral".
+
+- **Dados que não se perdem.** Quando o app não conseguia ler o que estava guardado, abria vazio e o primeiro toque gravava por cima: o histórico sumia. Agora o dado antigo é guardado à parte antes do primeiro salvar, e Meus dados deixa exportá-lo.
+- **Segurança no treino.** "Senti algo" tocado no guia voltava para o 1º exercício incompleto e podia interromper o exercício errado; agora volta ao que estava aberto. Refazer a triagem com um "sim" que bloqueia passa a pausar o programa mesmo se a pessoa sair da tela.
+- **Carga que existe.** Com a barra de 20 kg, o app sugeria 16 kg na redução, na volta da pausa e na calibração. A barra vazia virou o piso.
+- **Gerador.** O aviso de "sem exercício de puxar" nunca aparecia nas divisões clássicas (o dia chama "B: costas", com minúscula). Os desempates deixaram de depender do idioma do aparelho. Escolher um ajuste do programa não apaga mais o objetivo.
+- **Função da foto.** Convites errados passam a contar por IP (20 por dia); corpo nulo responde 400; o teto de tokens subiu de 4.000 para 16.000, porque o raciocínio do modelo conta nele.
+- **Privacidade.** Dois e-mails pessoais e o nome do empregador saíram de 17 documentos, e o teste de privacidade passou a procurar e-mails.
+- **Casa arrumada.** Os dois scripts do port do M1, que hoje apagariam as animações novas, só rodam com `--forcar`; cabeçalhos de segurança na Vercel; `.env.example` completo; README com o estado real.
+- **Resultado:** `npm run check` com 838 testes e os 146 e2e passando.
