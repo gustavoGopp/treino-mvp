@@ -13,7 +13,7 @@ Você vai conduzir o marco **"Monte o seu treino"** do treino-mvp, um web app (P
 **Leia primeiro:** o `CLAUDE.md`; `docs/revisoes/proximos-passos/b-monte-e-avaliador.md` (opção c, "O desenho da edição" e "Riscos: o que bloqueia e o que só orienta"); o devlog do R5b; `src/domain/avaliador/index.ts` (`avaliar`, `completar`, `ProgramaParaAvaliar`); `src/storage/esquema.ts` e `tests/unit/armazenamento.test.ts` (as migrações); `src/features/programa/Programa.tsx` ("Atualizar programa" e "Sobre o programa"); a proposta do redesign para a folha do exercício.
 
 **Regras desta sessão**
-- Conta: só as contas pessoais do Gustavo (gustavogopp@gmail.com ou gustavogopp2@gmail.com), nunca a da Futurum. Tudo fica no git, e só no git.
+- Conta: só as contas pessoais do Gustavo, nunca a conta de trabalho. Tudo fica no git, e só no git.
 - Não mexa no branch `r3-uso-real`. `privado/` nunca é versionado nem usado; as personas são fictícias (`tests/personas/`).
 - **A versão nova do estado** é a combinada com o redesign (uma só), com migração N → N+1 testada e o teste "exporta e volta igual".
 - Branch nova a partir da `main`. Commits pequenos, em pt-BR e no imperativo, com push. Ida para a `main` só com o ok do Gustavo, por merge sem forçar.
