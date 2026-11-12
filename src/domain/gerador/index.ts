@@ -104,6 +104,12 @@ export type Programa = {
   avisos: Porque[];
   porque: Porque[];
   regioesExcluidas: Articulacao[];
+  /**
+   * A margem pessoal de tempo com que os minutos dos dias foram estimados (tempo.calibracao); ausente = a margem
+   * padrão (tempo.colchao). Fica no programa para os minutos de uma fase (readaptação, aprendizado, semana leve)
+   * serem recalculados com a mesma margem dos minutos do programa completo.
+   */
+  margemTempo?: number;
 };
 
 export type Resultado = { status: 'bloqueado'; triagem: ResultadoTriagem } | { status: 'ok'; programa: Programa; triagem: ResultadoTriagem };
@@ -1057,6 +1063,8 @@ function montarPrograma(perfil: Perfil, inventarioOriginal: Inventario, triagem:
     avisos,
     porque,
     regioesExcluidas,
+    // só quando muda a estimativa: com a margem igual à padrão, o programa sai idêntico ao de quem não tem margem
+    ...(perfil.margemTempo !== undefined && perfil.margemTempo !== TEMPO.colchao ? { margemTempo: perfil.margemTempo } : {}),
   };
 }
 
@@ -1828,17 +1836,21 @@ export function faseNaSemana(fases: Fase[], semana: number): Fase | undefined {
  * não há drop set, porque ele pede chegar perto da falha (tempo.corte); a série do drop set volta a ser normal.
  */
 export function prescricaoDaSemana(programa: Programa, semana: number, fases: Fase[] = programa.fases): DiaPrograma[] {
-  return aplicarFase(programa.dias, faseNaSemana(fases, semana));
+  return aplicarFase(programa.dias, faseNaSemana(fases, semana), colchaoDe(programa));
 }
 
-/** Aplica uma fase (readaptação, aprendizado ou semana leve) aos dias: séries, RIR, supersérie e drop set. */
-export function aplicarFase(dias: DiaPrograma[], fase: Fase | undefined): DiaPrograma[] {
+/**
+ * Aplica uma fase (readaptação, aprendizado ou semana leve) aos dias: séries, RIR, supersérie e drop set. Os minutos
+ * de cada dia são estimados de novo com as séries da fase, pelo mesmo modelo de tempo do programa (`minutos`) e com a
+ * margem dele (`colchao`: a pessoal, se o programa foi gerado com ela; senão, a padrão). Antes, ficavam os minutos do
+ * programa completo (auditoria de 12/11/2026).
+ */
+export function aplicarFase(dias: DiaPrograma[], fase: Fase | undefined, colchao: number = TEMPO.colchao): DiaPrograma[] {
   if (!fase || fase.fatorSeries === 1) return dias;
   const semSuperserie = fase.regraId === 'iniciante.fase-aprendizado';
   const semDropSet = !!fase.rir && fase.rir[0] >= 3;
-  return dias.map((d) => ({
-    ...d,
-    exercicios: d.exercicios.map((x) => {
+  return dias.map((d) => {
+    const exercicios = d.exercicios.map((x) => {
       const { supersetCom, dropSet, ...resto } = x;
       const series = semDropSet && dropSet ? x.series + 1 : x.series;
       return {
@@ -1848,8 +1860,9 @@ export function aplicarFase(dias: DiaPrograma[], fase: Fase | undefined): DiaPro
         series: Math.max(1, Math.round(series * fase.fatorSeries)),
         rir: fase.rir ?? x.rir,
       };
-    }),
-  }));
+    });
+    return { ...d, exercicios, minutosEstimados: minutos(exercicios, colchao) };
+  });
 }
 
 function hash(s: string): string {

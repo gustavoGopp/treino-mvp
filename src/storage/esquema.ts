@@ -96,6 +96,8 @@ export const programaSchema = z.object({
   avisos: z.array(porque),
   porque: z.array(porque),
   regioesExcluidas: z.array(articulacao),
+  /** A margem pessoal de tempo com que o programa foi estimado (versão 8; tempo.calibracao). */
+  margemTempo: z.number().min(-0.1).max(0.5).optional(),
 }) satisfies z.ZodType<Programa, z.ZodTypeDef, unknown>;
 
 const carga = z.discriminatedUnion('tipo', [

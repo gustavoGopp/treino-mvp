@@ -1,7 +1,7 @@
 import { readFileSync } from 'node:fs';
 import { describe, expect, it } from 'vitest';
 import { z } from 'zod';
-import { gerarPrograma } from '../../src/domain/gerador';
+import { gerarPrograma, type Programa } from '../../src/domain/gerador';
 import { exportarJson, importarJson, nomeDoArquivo } from '../../src/storage/arquivo';
 import { estadoSchema, estadoVazio, perfilDe, primeiroPassoPendente, VERSAO_ESTADO, type Estado } from '../../src/storage/esquema';
 import { acertarIds } from '../../src/storage/ids';
@@ -334,6 +334,23 @@ describe('versão 7 → 8 (auditoria de 12/11/2026)', () => {
     expect(r.estado.rotina?.objetivo).toBe('forca');
     expect(r.estado.respostas?.semanaLeveEm).toBe('2026-10-09T12:00:00.000Z');
     expect(r.estado.historico).toHaveLength(2);
+  });
+
+  it('o programa antigo gerado com a margem pessoal de tempo passa a dizer isso; o gerado com a padrão, não', () => {
+    const antigo = estadoV7() as unknown as Record<string, unknown> & { programa: { programa: Programa } };
+    // gerado com a margem padrão, e a pessoa aceitou a margem depois, sem atualizar o programa: nada a marcar
+    const semAtualizar = migrar({ ...antigo, margemTempo: 0.3 });
+    if (!semAtualizar.ok) throw new Error(semAtualizar.erro);
+    expect(semAtualizar.estado.programa!.programa.margemTempo).toBeUndefined();
+    // gerado com a margem pessoal (como o app da versão 7 fazia, sem guardar a margem no programa)
+    const r = gerarPrograma({ ...PERSONAS.bruno.perfil, semanasParado: 0, margemTempo: 0.3 }, PERSONAS.bruno.inventario);
+    if (r.status !== 'ok') throw new Error('persona bloqueada');
+    const { margemTempo: _m, ...comoNaV7 } = r.programa;
+    void _m;
+    const comMargem = migrar({ ...antigo, margemTempo: 0.3, programa: { ...antigo.programa, programa: comoNaV7 } });
+    if (!comMargem.ok) throw new Error(comMargem.erro);
+    expect(comMargem.estado.programa!.programa.margemTempo).toBe(0.3);
+    expect(comMargem.estado.programa!.programa).toEqual(r.programa);
   });
 
   it('um app da versão 7 recusa o dado da 8 em vez de regravá-lo sem os campos novos', () => {

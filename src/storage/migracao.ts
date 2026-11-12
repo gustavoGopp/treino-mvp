@@ -1,4 +1,5 @@
 import type { z } from 'zod';
+import { minutos, type ExercicioPrescrito } from '../domain/gerador';
 import { sanarInventario } from '../domain/taxonomia/equipamentos';
 import { acertarIds } from './ids';
 import { estadoSchema, NOME_LOCAL_PADRAO, VERSAO_ESTADO, type Estado } from './esquema';
@@ -58,16 +59,34 @@ export const MIGRACOES: Record<number, Migracao> = {
   // (storage/ids.ts). Opcional e ausente nas sessões antigas.
   // E os inventários guardados com halteres de mínimo acima do máximo, passo fora do limite ou manoplas sem anilha,
   // que o esquema passa a recusar, são acertados antes (taxonomia/equipamentos.ts, sanarInventario).
+  // Por fim, o programa passa a dizer com que margem de tempo foi estimado (`margemTempo`; tempo.calibracao), para os
+  // minutos de uma fase saírem com a mesma margem. No programa antigo ela é reconhecida pelos próprios números: se os
+  // minutos guardados do 1º dia batem com a margem pessoal e não com a padrão, o programa foi gerado com a pessoal.
   7: (anterior) => {
-    if (!Array.isArray(anterior.locais)) return { ...anterior };
-    const locais = anterior.locais.map((l: unknown) => {
+    const saida = comMargemDoPrograma(anterior);
+    if (!Array.isArray(saida.locais)) return saida;
+    const locais = saida.locais.map((l: unknown) => {
       const local = l as Record<string, unknown> | null;
       const inv = local?.inventario;
       return local && inv && typeof inv === 'object' && !Array.isArray(inv) ? { ...local, inventario: sanarInventario(inv as Record<string, unknown>) } : l;
     });
-    return { ...anterior, locais };
+    return { ...saida, locais };
   },
 };
+
+/** 7 → 8: grava no programa salvo a margem pessoal de tempo, quando os minutos guardados mostram que ele a usou. */
+function comMargemDoPrograma(anterior: Record<string, unknown>): Record<string, unknown> {
+  const margem = anterior.margemTempo;
+  const guardado = anterior.programa as { programa?: { dias?: { exercicios: ExercicioPrescrito[]; minutosEstimados: number }[]; margemTempo?: number } } | undefined;
+  const dia = guardado?.programa?.dias?.[0];
+  if (typeof margem !== 'number' || !guardado?.programa || !dia || guardado.programa.margemTempo !== undefined) return { ...anterior };
+  try {
+    if (minutos(dia.exercicios, margem) !== dia.minutosEstimados || minutos(dia.exercicios) === dia.minutosEstimados) return { ...anterior };
+  } catch {
+    return { ...anterior }; // formato inesperado: o esquema decide
+  }
+  return { ...anterior, programa: { ...guardado, programa: { ...guardado.programa, margemTempo: margem } } };
+}
 
 export type ResultadoMigracao = { ok: true; estado: Estado } | { ok: false; erro: string };
 

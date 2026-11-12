@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { gerarPrograma, type Programa } from '../../src/domain/gerador';
+import { aplicarFase, fasesDeReadaptacao, gerarPrograma, minutos, prescricaoDaSemana, type Programa } from '../../src/domain/gerador';
 import { proximaCarga, type Carga } from '../../src/domain/progressao';
 import {
   cargaDaVolta,
@@ -239,5 +239,42 @@ describe('guia com a prescrição da pessoa (R1)', () => {
     const bruno = programaDe(PERSONAS.bruno);
     expect([1, 2, 3].map((s) => faseDaSemana(bruno, s)?.regraId)).toEqual(['readaptacao.semana1', 'readaptacao.semana2', 'readaptacao.semana3']);
     expect(faseDaSemana(bruno, 1)?.texto).not.toContain('última registrada');
+  });
+});
+
+// Auditoria de 12/11/2026: a fase mudava as séries e os minutos do dia ficavam os do programa completo (na volta de
+// uma pausa longa, a tela mostrava 51 min para um treino de cerca de 31).
+describe('os minutos do dia acompanham as séries da fase', () => {
+  const bruno = PERSONAS.bruno;
+  const programaDe = (margemTempo?: number) => {
+    const r = gerarPrograma({ ...bruno.perfil, ...(margemTempo !== undefined ? { margemTempo } : {}) }, bruno.inventario);
+    if (r.status !== 'ok') throw new Error('persona bloqueada');
+    return r.programa;
+  };
+
+  it('na semana 1 da volta de uma pausa, cada dia mostra os minutos das séries reduzidas', () => {
+    const p = programaDe();
+    const fase = fasesDeReadaptacao()[0]!;
+    expect(fase.fatorSeries).toBeLessThan(1);
+    const dias = aplicarFase(p.dias, fase);
+    dias.forEach((d, i) => {
+      expect(d.minutosEstimados).toBe(minutos(d.exercicios));
+      expect(d.minutosEstimados).toBeLessThan(p.dias[i]!.minutosEstimados);
+    });
+    // sem fase, ou com o programa completo, nada muda (nem a identidade)
+    expect(aplicarFase(p.dias, undefined)).toBe(p.dias);
+    expect(prescricaoDaSemana(p, 3, fasesDeReadaptacao())).toBe(p.dias);
+  });
+
+  it('com a margem pessoal de tempo, a fase usa a mesma margem do programa', () => {
+    const p = programaDe(0.3);
+    expect(p.margemTempo).toBe(0.3);
+    expect(programaDe().margemTempo).toBeUndefined();
+    p.dias.forEach((d) => expect(d.minutosEstimados).toBe(minutos(d.exercicios, 0.3)));
+    const dias = prescricaoDaSemana(p, 1, fasesDeReadaptacao());
+    dias.forEach((d) => {
+      expect(d.minutosEstimados).toBe(minutos(d.exercicios, 0.3));
+      expect(d.minutosEstimados).not.toBe(minutos(d.exercicios));
+    });
   });
 });
