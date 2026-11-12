@@ -41,7 +41,6 @@ const resultado = await page.evaluate((N) => {
   };
   const exercicios = g.EX.map((ex) => {
     const frames = {};
-    const chave = {};
     const fits = {};
     for (const view of ex.views) {
       fits[view] = g.fit(ex, view);
@@ -49,7 +48,6 @@ const resultado = await page.evaluate((N) => {
         const arr = [];
         for (let i = 0; i < N; i++) arr.push(quadro(ex, view, mode, (i / N) * ex.T, 0));
         frames[`${view}|${mode}`] = arr;
-        if (mode === 'tec') chave[view] = [arr[0], arr[N / 2]];
       }
     }
     ex.errors.forEach((e, j) => {
@@ -58,7 +56,7 @@ const resultado = await page.evaluate((N) => {
       for (let i = 0; i < N; i++) arr.push(quadro(ex, e.view, 'err', (i / N) * ex.T, j));
       frames[`${e.view}|err|${e.id}`] = arr;
     });
-    return { id: ex.id, T: ex.T, L0: ex.L0, lift: ex._liftRange ?? null, fits, frames, chave };
+    return { id: ex.id, T: ex.T, L0: ex.L0, lift: ex._liftRange ?? null, fits, frames };
   });
   return { exercicios, check: g.check() };
 }, N_TEMPOS);
@@ -83,7 +81,6 @@ const out = {
     lift: e.lift,
     fits: e.fits,
     frames: Object.fromEntries(Object.entries(e.frames).map(([k, arr]) => [k, arr.map(sha)])),
-    chave: e.chave,
   })),
 };
 mkdirSync(dirname(saida), { recursive: true });

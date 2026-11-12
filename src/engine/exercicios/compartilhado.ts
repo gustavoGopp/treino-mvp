@@ -1,5 +1,5 @@
 // @ts-nocheck
-// Gerado por scripts/extrair-motor.mjs a partir de referencia/guia-execucao-fase1.html. Port mecânico: não editar à mão antes do M1 terminar.
+// Port do guia original (referencia/guia-execucao-fase1.html), feito por scripts/extrair-motor.mjs no M1. Desde então é mantido à mão: o script só roda com --forcar.
 import { cs, sn, tFr, tUp } from '../math';
 
 export const benchInc={u:tUp(-60,0),f:tFr(-60,0)};
