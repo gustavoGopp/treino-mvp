@@ -47,7 +47,22 @@ const dados = {
   semana: SEMANA,
   dias,
   cargas,
-  guia: { id: primeiro.animacaoId, nome: c.name, alvo: c.target, sentir: c.feel, dicas: c.cues },
+  // os textos do guia do 1º exercício, como estão em src/conteudo (o protótipo B2 mostra as legendas de cada modo)
+  guia: {
+    id: primeiro.animacaoId,
+    nome: c.name,
+    alvo: c.target,
+    sentir: c.feel,
+    sentirNota: c.feelNote,
+    dicas: c.cues,
+    montagemEq: c.setupEq,
+    montagemCorpo: c.setupBody,
+    conferir: c.check,
+    respiracao: c.breath,
+    erros: c.errors.map((e) => ({ titulo: e.title, desc: e.desc })),
+    extremos: c.extLabels,
+    amplitude: c.range[c.range.length - 1],
+  },
 };
 writeFileSync(`${SAIDA}/dados.js`, '// Gerado por scripts/design/frontend-novo/prototipo/gerar.mjs. Não editar.\nwindow.DADOS=' + JSON.stringify(dados) + ';\n');
 
@@ -82,6 +97,19 @@ for (const [k, s] of Object.entries(seqs)) {
   for (let i = 0; i < N; i++) quadros.push(pack(M.montarSvgEstilo(b, s.vista, s.modo, (i / N) * b.T, 0, 360, ESTILO)));
   out.guia[k] = { T: b.T, vista: s.vista, quadros };
 }
+// os outros dois modos do guia (Erros e Trajetória) vão num arquivo à parte: só o protótipo B2 os carrega
+const tituloErro = c.errors[0].title;
+const extras = {
+  err: { vista: b.errors[0].view, modo: 'err', t0: M.instanteDoErro(b, 0), opcoes: { tituloErro } },
+  traj: { vista: M.vistaDoMovimento(b, ESTILO), modo: 'traj', t0: 0, opcoes: {} },
+};
+const outModos = {};
+for (const [k, s] of Object.entries(extras)) {
+  const quadros = [];
+  for (let i = 0; i < N; i++) quadros.push(pack(M.montarSvgEstilo(b, s.vista, s.modo, s.t0 + (i / N) * b.T, 0, 360, ESTILO, false, s.opcoes)));
+  outModos[k] = { T: b.T, vista: s.vista, quadros };
+}
+writeFileSync(`${SAIDA}/boneco-modos.js`, '// Gerado por scripts/design/frontend-novo/prototipo/gerar.mjs a partir do motor (src/engine), sem mudança.\nObject.assign(window.BONECO.guia,' + JSON.stringify(outModos) + ');\n');
 writeFileSync(`${SAIDA}/boneco.js`, '// Gerado por scripts/design/frontend-novo/prototipo/gerar.mjs a partir do motor (src/engine), sem mudança.\nwindow.BONECO=' + JSON.stringify(out) + ';\n');
 
 // --- CSS do desenho: os blocos do Boneco de src/styles.css, sem os estilos das telas ---
@@ -111,6 +139,7 @@ saida += bloco('.ea-cont{', '/* R4: tela de laboratório') + '\n';
 saida += bloco('/* Acabamento A2', '/* Treino e guia em tela estreita') + '\n';
 writeFileSync(`${SAIDA}/boneco.css`, saida);
 
+console.log(`boneco-modos.js ${Math.round(readFileSync(`${SAIDA}/boneco-modos.js`).length / 1024)} kB (Erros e Trajetória)`);
 const kb = (f) => Math.round(readFileSync(`${SAIDA}/${f}`).length / 1024);
 console.log(`dados.js ${kb('dados.js')} kB · boneco.js ${kb('boneco.js')} kB (${Object.keys(out.mini).length} miniaturas, ${Object.keys(out.guia).length} sequências de ${N} quadros) · boneco.css ${kb('boneco.css')} kB`);
 console.log(dias[0].nome, dias[0].minutos, 'min:', dias[0].exercicios.map((x) => `${x.nome} ${x.series}×${x.reps.join('–')} RIR ${x.rir.join('–')} ${x.descansoSeg}s${x.animacaoId ? '' : ' [sem animação]'}`).join(' | '));

@@ -21,9 +21,9 @@ h1,h2,h3{text-wrap:balance}
 [data-icone] svg{width:var(--icone,24px);height:var(--icone,24px);display:block}
 
 /* a coluna do celular: no computador, a tela fica com a largura de um celular, no meio */
-.celular{max-width:430px;margin:0 auto;min-height:100dvh;display:flex;flex-direction:column;position:relative;background:var(--fundo)}
+.celular{max-width:430px;margin:0 auto;min-height:calc(100dvh - var(--proto,0px));display:flex;flex-direction:column;position:relative;background:var(--fundo)}
 .tela{display:none;flex:1;flex-direction:column;min-height:0}
-body[data-tela="inicio"] .tela-inicio,body[data-tela="treino"] .tela-treino{display:flex}
+body[data-tela="inicio"] .tela-inicio,body[data-tela="treino"] .tela-treino,body[data-tela="fim"] .tela-fim,body[data-tela="semana"] .tela-semana{display:flex}
 .na-serie,.no-descanso{display:none}
 body[data-fase="serie"] .na-serie,body[data-fase="descanso"] .no-descanso{display:revert}
 
@@ -41,5 +41,8 @@ body[data-fase="serie"] .na-serie,body[data-fase="descanso"] .no-descanso{displa
 .proto a,.proto button{color:inherit;text-decoration:none;min-height:var(--h48);min-width:var(--h48);padding:0 var(--e8);display:inline-grid;place-items:center;border-radius:8px}
 .proto a:active,.proto button:active{background:#3a3a3d}
 .limpo .proto{display:none}
+/* a altura da faixa do protótipo, para o que fica preso no topo ou sobe de baixo descontar (sem a faixa, zero) */
+:root{--proto:3.5rem}
+:root.limpo{--proto:0px}
 
 @media (prefers-reduced-motion: reduce){*{animation:none!important;transition:none!important}}

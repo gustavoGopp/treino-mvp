@@ -9,9 +9,9 @@ const RAIZ = resolve('docs/revisoes/frontend-novo/prototipos');
 const SAIDA = resolve(process.argv[2] ?? 'reports/design/frontend-novo/empacotado');
 mkdirSync(SAIDA, { recursive: true });
 const ler = (...p) => readFileSync(resolve(RAIZ, ...p), 'utf8');
-const embutirScript = (arquivo) => `<script>\n${ler('comum', arquivo).replaceAll('</script', '<\\/script')}\n</script>`;
+const embutirScript = (d, src) => `<script>\n${ler(d, src).replaceAll('</script', '<\\/script')}\n</script>`;
 
-for (const d of readdirSync(RAIZ).filter((x) => /^[a-z]-/.test(x) && existsSync(resolve(RAIZ, x, 'index.html')))) {
+for (const d of readdirSync(RAIZ).filter((x) => /^[a-z]\d?-/.test(x) && existsSync(resolve(RAIZ, x, 'index.html')))) {
   const html = ler(d, 'index.html');
   const titulo = html.match(/<title>([^<]*)<\/title>/)[1];
   let css = html.match(/<style>([\s\S]*?)<\/style>/)[1];
@@ -20,6 +20,8 @@ for (const d of readdirSync(RAIZ).filter((x) => /^[a-z]-/.test(x) && existsSync(
   const corpo = html
     .slice(html.indexOf('>', html.indexOf('<body')) + 1, html.indexOf('<script src='))
     .replace('<a href="../index.html">Direções</a>', '');
+  // os scripts da página, na ordem em que ela os pede (os comuns e o da própria direção)
+  const scripts = Array.from(html.matchAll(/<script src="([^"]+)"><\/script>/g), (m) => m[1]);
   const pagina = `<title>${titulo}</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <style>
@@ -29,11 +31,11 @@ ${css}
 /* na página de prévia: a altura vem da moldura, e a faixa do protótipo respeita a área segura de cima */
 html,body{height:100%}
 body{min-height:0}
-.celular{min-height:100%}
+.celular{min-height:calc(100% - var(--proto,0px))}
 .proto{top:env(safe-area-inset-top,0px)}
 </style>
 ${corpo.trim()}
-${['dados.js', 'boneco.js', 'icones.js', 'proto.js'].map(embutirScript).join('\n')}
+${scripts.map((src) => embutirScript(d, src)).join('\n')}
 `;
   const nome = `direcao-${d}.html`;
   writeFileSync(resolve(SAIDA, nome), pagina);

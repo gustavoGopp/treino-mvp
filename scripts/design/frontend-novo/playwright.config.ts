@@ -17,17 +17,20 @@ const temas = [
 
 export default defineConfig({
   testDir: '.',
-  testMatch: 'capturas.spec.ts',
+  // COLHER=1 troca as capturas pela colheita dos textos do protótipo (prototipo/colher.spec.ts), num formato só
+  testMatch: process.env.COLHER ? 'prototipo/colher.spec.ts' : 'capturas.spec.ts',
   reporter: 'list',
   workers: 4,
   timeout: 180_000,
   use: { baseURL: 'http://localhost:4173', trace: 'off' },
-  projects: tamanhos.flatMap((t) =>
-    temas.map((m) => ({
-      name: `${t.nome}-${m.nome}`,
-      use: { viewport: t.viewport, colorScheme: m.colorScheme, deviceScaleFactor: t.escala, isMobile: true, hasTouch: true },
-    })),
-  ),
+  projects: tamanhos
+    .flatMap((t) =>
+      temas.map((m) => ({
+        name: `${t.nome}-${m.nome}`,
+        use: { viewport: t.viewport, colorScheme: m.colorScheme, deviceScaleFactor: t.escala, isMobile: true, hasTouch: true, locale: 'pt-BR', timezoneId: 'America/Sao_Paulo' },
+      })),
+    )
+    .slice(0, process.env.COLHER ? 1 : undefined),
   webServer: {
     command: 'npm run build && npm run preview -- --port 4173 --strictPort',
     url: 'http://localhost:4173',

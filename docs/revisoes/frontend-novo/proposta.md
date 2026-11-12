@@ -283,3 +283,74 @@ python3 scripts/design/frontend-novo/prototipo/folha.py
 ```
 
 O primeiro comando refaz as capturas do app de hoje; os outros três geram os dados e o Boneco dos protótipos, fotografam as três direções e montam as folhas de comparação.
+
+## 10. A escolha do Gustavo e a B aprofundada (B2)
+
+Em 12/11/2026 o Gustavo escolheu a **B** e pediu para desenvolvê-la mais antes de reconstruir o app. O B2 é esse trabalho: a mesma direção, levada às telas que provam se ela se sustenta como sistema. **O app continua sem mudança.**
+
+- Abrir no celular: https://claude.ai/artifact/DKLFpxiyKJ9c4voJfjNZi1 (página privada)
+- Arquivo: `prototipos/b2-placar/index.html` e `prototipos/b2-placar/b2.js`
+- Capturas: `prototipos/capturas-b2/folha-claro.png`, `folha-escuro.png` e `folha-320.png` (53 imagens na pasta)
+
+![B2, tema claro](prototipos/capturas-b2/folha-claro.png)
+![B2, tema escuro](prototipos/capturas-b2/folha-escuro.png)
+
+### O que o B2 tem
+
+Quatro telas e quatro folhas: o início, o treino (a série, o guia nos 4 modos, o descanso e o fim do descanso), o fim do treino e a semana; e as folhas "Senti algo", "por quê?", "Como fazer" e "Mais opções".
+
+**Nada foi escrito à mão.** Um script faz a Ana treinar o dia A inteiro no app de verdade, com o relógio do navegador adiantado a cada descanso, e colhe das telas os textos e os números (`scripts/design/frontend-novo/prototipo/colher.spec.ts`). Vêm daí:
+
+- a folha do "por quê?": a regra, o selo, o que o selo quer dizer e as fontes com o estado da leitura;
+- os 7 sinais e a nota de dor do "Senti algo";
+- o fim do treino: 29 min, 13 séries, o texto de "O que mudou hoje" e a indicação de cada exercício para a próxima vez (4 "Manter" e 2 "Calibrar");
+- a semana: "1 de 3 treinos" e as séries por músculo, com a meta de cada um.
+
+Os 4 modos do guia saem do motor, e as legendas de cada modo, de `src/conteudo`.
+
+### O que mudou em relação à B, e por quê
+
+| Mudança | Por quê |
+|---|---|
+| A lista do início ganhou as miniaturas do Boneco | era a perda que eu tinha apontado na B; com elas, a cor do Boneco é a única da tela também no início |
+| Os dias A, B e C viraram três blocos no topo, com o de hoje invertido | servem de troca de dia e de placar da semana ao mesmo tempo; a lista "Outros dias" saiu |
+| O guia tem os 4 modos dentro do treino, com a legenda de cada um | o pedido diz que o guia é a peça central do treino; hoje ele está em outra tela |
+| O nome, os números, a reserva e o botão formam um bloco preso embaixo | em celular baixo é o Boneco que encolhe, nunca o registro; no teste a 760 px de altura, a linha da reserva ficava escondida atrás do botão antes dessa mudança |
+| No descanso, o botão principal é "Série 2 feita" | a B custava 1 toque a mais para começar a série antes de o relógio zerar; agora a série seguinte, já preenchida, custa 1 toque, como no app de hoje. "Mudar" leva aos números |
+| Quando o tempo acaba, a tela inteira inverte e o rótulo vira "Hora da próxima série" | é um sinal para ler de longe sem depender de cor nem de som; a vibração não existe no iPhone **[fonte: `pesquisa/05`]** |
+| "Como fazer" e "Mais opções" subiram para o topo, ao lado do "Senti algo" | o nome do exercício passou a caber numa linha e o palco ganhou altura |
+| O selo saiu do meio das frases e está na folha do "por quê?" | é a decisão 5 da seção 7, já desenhada |
+
+### O que medi no B2
+
+| | 390 × 844 | 320 × 640 |
+|---|---|---|
+| Console sem erros, nenhuma tela rola de lado (claro e escuro) | sim | sim |
+| Treino, a série: cabe em quantas telas | 1,00 | 1,00 |
+| "Série feita" à vista ao abrir | sim | sim |
+| Descanso e fim do descanso | 1,00 tela, ação à vista | 1,00 tela, ação à vista |
+| Os 4 modos do guia à vista no treino | sim | **não** (abaixo de 700 px de altura eles saem do treino) |
+| Início, fim do treino e semana | 1,22, 1,38 e 1,30 tela | 1,73, 1,98 e 1,80 tela |
+| Menor contraste de texto, com a tela invertida incluída | 5,8 : 1 | o mesmo |
+| Espaço fora da escala; uso do 12 | 0; 0 | 0; 0 |
+
+Tudo **[medido]** por `scripts/design/frontend-novo/prototipo/capturar-b2.mjs`. A B (a primeira versão) não cabia em 320 px sem rolar; o B2 cabe.
+
+### O que a colheita mostrou do app de hoje
+
+- **Títulos em inglês no guia.** A tela do guia usa "3 cues", "Setup" e "Checklist de 5 s" como títulos (`src/features/guia/Guia.tsx`). No B2 a folha "Como fazer" usa "Montagem" e "Confira antes de começar". São rótulos de tela, não texto técnico; fica como decisão.
+- **O "por quê?" mostra o estado da leitura de cada fonte** ("lido só o resumo", "citação conferida por busca; o texto não foi lido"). O B2 mantém essa linha, palavra por palavra.
+
+### Limites do B2
+
+- O treino do protótipo percorre só o 1º exercício; depois da última série, o botão leva ao fim do treino colhido do app, que é o do treino inteiro.
+- "meta de hoje: 3–4" virou "meta 3–4" para a linha caber; a 320 px a meta fica só na marca embaixo dos botões. É mudança de texto de tela e está em "Decisões".
+- Faltam desenho: o cadastro, Meus dados, locais, a evolução (o gráfico) e o cartão de texto do exercício sem animação (o dia A da Ana não tem nenhum).
+- O modo Erros anima só o 1º dos 3 erros do exercício.
+- O Boneco roda a 12 quadros por segundo no protótipo, para o arquivo não pesar; no app ele roda a 30.
+
+### As decisões, agora
+
+1. **O B2 serve de referência para a reconstrução?** Se sim, a etapa 2 começa pelo sistema (tokens, `conferir:tokens`, peças) e pelo treino. Se ainda não, diga o que ajustar olhando o protótipo.
+
+Seguem na fila, uma por vez, as da seção 7 que continuam abertas (a letra, o 12, a faixa "treino-mvp", o tema padrão) e as três novas: os títulos do guia em português, "meta 3–4" no lugar de "meta de hoje: 3–4", e o descanso com "Série 2 feita" como botão principal.
