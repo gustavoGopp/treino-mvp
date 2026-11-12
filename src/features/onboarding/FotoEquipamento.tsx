@@ -1,7 +1,7 @@
 import { SO_NA_FOTO } from '../../domain/taxonomia/atalhos';
 import { useId, useRef, useState } from 'react';
 import type { ItemId } from '../../domain/taxonomia/equipamentos';
-import { marcacaoInicial, type Sugestao } from '../../domain/visao';
+import { ERRO_DA_FOTO, erroDaResposta, erroSemResposta, ESPERA_MAX_FOTO_MS, LIMITES_FOTO, marcacaoInicial, type Sugestao } from '../../domain/visao';
 import { paraBase64, prepararFoto } from '../../lib/imagem';
 import { IconeEquipamento } from './icones';
 import { NOME_CURTO } from './inventarioForm';
@@ -14,7 +14,7 @@ import { Selo } from '../app/ui';
 // Nada entra na lista sem a confirmação da pessoa (plano, seção g.6). Qualquer erro leva de volta à lista.
 // Antes do 1º envio, a caixa de consentimento diz para onde a foto vai (privacidade.foto; R5c).
 
-const MAX_FOTOS = 5;
+const MAX_FOTOS = LIMITES_FOTO.maxFotos;
 const TEXTO_CONFIANCA = { alta: 'Com certeza', media: 'Provável', baixa: 'Talvez' } as const;
 
 /** Identificador aleatório do aparelho, só para o limite diário. Não identifica a pessoa. */
@@ -66,21 +66,42 @@ export function FotoEquipamento({ aoUsar }: { aoUsar: (sugestoes: Sugestao[], co
       setConsentidoEm(em);
     }
     setEstado('enviando');
-    try {
-      const fotos = await Promise.all([...lista].map(async (f) => paraBase64(await prepararFoto(f))));
-      const r = await fetch('/api/vision', {
-        method: 'POST',
-        headers: { 'content-type': 'application/json' },
-        body: JSON.stringify({ convite: convite.trim(), aparelho: aparelho(), fotos }),
-      });
-      const corpo = (await r.json().catch(() => ({}))) as { itens?: Sugestao[]; erro?: string };
-      if (!r.ok || !corpo.itens) throw new Error(corpo.erro || 'Não foi possível analisar as fotos agora. Use a lista.');
-      setSugestoes(corpo.itens);
-      setEscolha(Object.fromEntries(corpo.itens.map((s) => [s.itemId, { marcado: true, perguntar: undefined, desmarcado: false }[marcacaoInicial(s.confianca)]])));
-      setEstado('sugestoes');
-    } catch (e) {
-      setErro(e instanceof TypeError ? 'Sem conexão. Use a lista abaixo.' : (e as Error).message);
+    const falhar = (mensagem: string) => {
+      setErro(mensagem);
       setEstado('inicio');
+    };
+    try {
+      // 1) Preparar no aparelho: a foto que o navegador não abre (HEIC, arquivo corrompido) para aqui, sem envio.
+      let fotos: string[];
+      try {
+        fotos = await Promise.all([...lista].map(async (f) => paraBase64(await prepararFoto(f))));
+      } catch {
+        return falhar(ERRO_DA_FOTO.abrir);
+      }
+      // O servidor da Vercel recusa o pedido acima de 4,5 MB sem dizer por quê: confere aqui, com os mesmos limites.
+      if (fotos.some((f) => f.length > LIMITES_FOTO.maxBase64PorFoto) || fotos.reduce((t, f) => t + f.length, 0) > LIMITES_FOTO.maxBase64Total)
+        return falhar(ERRO_DA_FOTO.tamanho);
+      // 2) Enviar, com tempo máximo: sem resposta, a mensagem diz se foi a rede do aparelho, o servidor ou a demora.
+      let r: Response;
+      try {
+        r = await fetch('/api/vision', {
+          method: 'POST',
+          headers: { 'content-type': 'application/json' },
+          body: JSON.stringify({ convite: convite.trim(), aparelho: aparelho(), fotos }),
+          signal: AbortSignal.timeout(ESPERA_MAX_FOTO_MS),
+        });
+      } catch (e) {
+        return falhar(erroSemResposta((e as { name?: string } | null)?.name, navigator.onLine !== false));
+      }
+      // 3) A resposta: a mensagem do servidor, quando ele manda uma; senão, pelo código.
+      const corpo = (await r.json().catch(() => ({}))) as { itens?: Sugestao[]; erro?: unknown };
+      if (!r.ok || !Array.isArray(corpo.itens)) return falhar(erroDaResposta(r.status, corpo.erro));
+      const itens = corpo.itens;
+      setSugestoes(itens);
+      setEscolha(Object.fromEntries(itens.map((s) => [s.itemId, { marcado: true, perguntar: undefined, desmarcado: false }[marcacaoInicial(s.confianca)]])));
+      setEstado('sugestoes');
+    } catch {
+      falhar(ERRO_DA_FOTO.analise);
     } finally {
       if (arquivo.current) arquivo.current.value = '';
     }

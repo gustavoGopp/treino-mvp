@@ -1,3 +1,4 @@
+import { porChaveSeDerCerto } from '../domain/umaVez';
 import { cartaoTextoSchema, type CartaoTexto } from './schema';
 
 // Lote técnico do redesign (06/11/2026): o cartão de texto de um exercício sem animação é baixado sozinho, só quando
@@ -12,19 +13,12 @@ const caminho = (exId: string) => `./exercicios/${exId}.json`;
  */
 export const temCartao = (exId: string) => caminho(exId) in arquivos;
 
-const cache = new Map<string, Promise<CartaoTexto | null>>();
-export function carregarCartao(exId: string): Promise<CartaoTexto | null> {
-  if (!cache.has(exId)) {
-    const f = arquivos[caminho(exId)];
-    cache.set(
-      exId,
-      f
-        ? f().then((m) => {
-            const bruto = m.default as Record<string, unknown>;
-            return 'carga' in bruto ? cartaoTextoSchema.parse(bruto) : null;
-          })
-        : Promise.resolve(null),
-    );
-  }
-  return cache.get(exId)!;
-}
+/** O cartão de um exercício, baixado uma vez; se a importação falhar, a próxima chamada tenta de novo. */
+export const carregarCartao: (exId: string) => Promise<CartaoTexto | null> = porChaveSeDerCerto((exId) => {
+  const f = arquivos[caminho(exId)];
+  if (!f) return Promise.resolve(null);
+  return f().then((m) => {
+    const bruto = m.default as Record<string, unknown>;
+    return 'carga' in bruto ? cartaoTextoSchema.parse(bruto) : null;
+  });
+});

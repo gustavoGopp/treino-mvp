@@ -2369,7 +2369,7 @@
    12,
    20
   ],
-  "unilateral": false,
+  "unilateral": true,
   "articulacoes": [
    "tornozelo"
   ],

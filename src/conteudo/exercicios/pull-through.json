@@ -1,0 +1,52 @@
+{
+  "id": "pull-through",
+  "name": "Pull-through na polia baixa com corda",
+  "short": "Pull-through",
+  "target": "Glúteos e posteriores da coxa",
+  "setupEq": [
+    "Polia embaixo, com a corda."
+  ],
+  "setupBody": [
+    "De costas para a torre, a corda passando entre as pernas, segura com as duas mãos.",
+    "Dois passos à frente, pés um pouco mais abertos que o quadril, joelhos um pouco dobrados."
+  ],
+  "exec": [
+    [
+      "ecc",
+      "Descida",
+      "~2 s. Empurra o quadril para trás, deixando as mãos passarem entre as pernas, com a coluna reta."
+    ],
+    [
+      "conc",
+      "Subida",
+      "Leva o quadril para a frente até ficar em pé, apertando os glúteos; os braços só seguram a corda."
+    ]
+  ],
+  "range": [
+    "Início: quadril para trás, posteriores alongados.",
+    "Fim: em pé, quadril estendido."
+  ],
+  "cues": [
+    "Quadril para trás.",
+    "Braços só seguram.",
+    "Aperta o glúteo em pé."
+  ],
+  "errors": [
+    {
+      "id": "e1",
+      "title": "Puxar com os braços",
+      "desc": "Os braços levantam a corda no lugar do quadril."
+    },
+    {
+      "id": "e2",
+      "title": "Arredondar a lombar",
+      "desc": "Perder a coluna reta na descida."
+    },
+    {
+      "id": "e3",
+      "title": "Inclinar para trás no topo",
+      "desc": "Passar da posição em pé arqueia a lombar."
+    }
+  ],
+  "carga": "Registre o número da placa da torre. Para progredir, +1 placa."
+}

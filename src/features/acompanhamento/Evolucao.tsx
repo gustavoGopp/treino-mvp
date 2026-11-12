@@ -1,5 +1,7 @@
 import { Navigate, useParams } from 'react-router-dom';
-import { BIBLIOTECA } from '../../domain/biblioteca';
+import { diaEMes as dataCurta, textoDoRir } from '../../domain/numero';
+import { RIR } from '../../domain/regras';
+import { POR_ID } from '../../domain/biblioteca';
 import { evolucaoDoExercicio, type Marca, type PontoDaEvolucao } from '../../domain/acompanhamento/evolucao';
 import { cargaDaMaquina, textoCarga } from '../../domain/sessao';
 import { localDaSessao, localPorId } from '../../storage/esquema';
@@ -9,9 +11,7 @@ import { NavInferior, Selo, Titulo, Topo } from '../app/ui';
 // Evolução de um exercício (acompanhamento.evolucao): a melhor série de cada treino, com "subiu a carga" e "recorde".
 // Nunca uma carga máxima estimada. Nas máquinas, uma lista por local, com o nome do local. Lote 4 do redesign: o resumo
 // em 1 linha em cima ("Começou com 8 kg × 10 · agora 9 kg × 12 · 5 treinos").
-const POR_ID = Object.fromEntries(BIBLIOTECA.map((e) => [e.id, e]));
 const TEXTO_MARCA: Record<Marca, string> = { 'subiu-a-carga': 'subiu a carga', recorde: 'recorde' };
-const dataCurta = (iso: string) => `${iso.slice(8, 10)}/${iso.slice(5, 7)}`;
 
 export function Evolucao() {
   const { exId = '' } = useParams();
@@ -40,7 +40,7 @@ export function Evolucao() {
                   <span className="pe-data">{dataCurta(p.data)}</span>
                   <span className="pe-serie">
                     {textoCarga(p.carga, exId)} × {p.reps}
-                    <small> · RIR {p.rir}</small>
+                    <small> · RIR {textoDoRir(p.rir, RIR.registroMax)}</small>
                   </span>
                   <span className="pe-marcas">
                     {p.acerto ? <span className="marca neutra">acerto da carga</span> : p.marcas.map((m) => <span key={m} className="marca">{TEXTO_MARCA[m]}</span>)}

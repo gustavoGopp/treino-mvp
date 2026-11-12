@@ -1558,3 +1558,67 @@ As folhas completas, com os músculos, a trajetória e os erros: `revisoes/r5-an
 > O momento bom foi uma frase do dono do produto na revisão: "o braço está estranho". Estava mesmo: copiei o braço de outra animação, e nela os cotovelos ficavam no ar. Na ponte com halter, quem faz apoia os cotovelos no chão. Corrigi, e a frase virou um item na fila para a animação de origem.
 >
 > Animar também muda o treino: o app prefere o exercício que tem guia animado, e com mais animações alguns empates passaram a cair na ordem alfabética. Cada troca foi mostrada antes de entrar, e a regra de desempate entrou na fila do gerador.
+
+## Auditoria geral do projeto (12/11/2026)
+
+Uma leitura do projeto inteiro, em 6 frentes (gerador, sessão e armazenamento, telas, função da foto e configuração, motor e scripts, documentos), com correção do que era seguro corrigir. O que ficou para decidir está em `backlog.md`, "Da auditoria geral".
+
+- **Dados que não se perdem.** Quando o app não conseguia ler o que estava guardado, abria vazio e o primeiro toque gravava por cima: o histórico sumia. Agora o dado antigo é guardado à parte antes do primeiro salvar, e Meus dados deixa exportá-lo.
+- **Segurança no treino.** "Senti algo" tocado no guia voltava para o 1º exercício incompleto e podia interromper o exercício errado; agora volta ao que estava aberto. Refazer a triagem com um "sim" que bloqueia passa a pausar o programa mesmo se a pessoa sair da tela.
+- **Carga que existe.** Com a barra de 20 kg, o app sugeria 16 kg na redução, na volta da pausa e na calibração. A barra vazia virou o piso.
+- **Gerador.** O aviso de "sem exercício de puxar" nunca aparecia nas divisões clássicas (o dia chama "B: costas", com minúscula). Os desempates deixaram de depender do idioma do aparelho. Escolher um ajuste do programa não apaga mais o objetivo.
+- **Função da foto.** Convites errados passam a contar por IP (20 por dia); corpo nulo responde 400; o teto de tokens subiu de 4.000 para 16.000, porque o raciocínio do modelo conta nele.
+- **Privacidade.** Dois e-mails pessoais e o nome do empregador saíram de 17 documentos, e o teste de privacidade passou a procurar e-mails.
+- **Casa arrumada.** Os dois scripts do port do M1, que hoje apagariam as animações novas, só rodam com `--forcar`; cabeçalhos de segurança na Vercel; `.env.example` completo; README com o estado real.
+- **Resultado:** `npm run check` com 837 testes e os 145 e2e passando.
+
+## Correções da auditoria geral (12/11/2026)
+
+A sessão que corrigiu, do mais grave ao menos grave, o que a auditoria geral tinha achado e deixado em aberto. Regra de trabalho: reproduzir com um teste que falha, corrigir a causa, um commit por ponto. O que não foi feito está em `backlog.md`, "Da auditoria geral", com o motivo.
+
+![O aviso de erro ao salvar, no meio do treino, com o botão de exportar](img/correcoes-erro-ao-salvar.png)
+
+**Antes de começar.** A linha de base não bateu: 837 testes unitários, mas 144 de 145 e2e. O teste da triagem refeita falhava na suíte inteira e passava sozinho. A causa era do app, não do teste: a gravação no IndexedDB é assíncrona, e quem recarregava a página logo depois do toque perdia a última mudança (o "sim" que pausa o programa). O estado agora vai, de forma síncrona, para um diário no `localStorage` antes da gravação, e a carga seguinte recupera o que ficou nele.
+
+**Dados e segurança.**
+- O erro ao salvar aparece no treino, no programa, no resumo, em Meus dados e na boas-vindas, com o botão de exportar ali mesmo; "Série N salva" vira "anotada, mas não salva". Uma gravação recusada não trava mais as seguintes.
+- A nota de dor dada antes da 1ª série fica no exercício (`dorSemSerie`), passa para a 1ª série registrada e, se a dor encerra o exercício antes, vale na sugestão da próxima sessão e no aviso de 2 treinos seguidos. De quebra, a nota pendente sobrevive à ida ao guia.
+- Com um treino aberto, o programa não é gerado de novo: a mudança do cadastro fica guardada e a tela oferece "Atualizar" depois.
+- Um id de exercício que saia da biblioteca não deixa mais o estado ilegível: o renomeado troca para o novo, o registro do desconhecido fica guardado na própria sessão, e um teste do repositório falha se um id publicado sair sem entrar em `IDS_ANTIGOS`.
+- O estado foi para a **versão 8**, com migração e um estado real da 7 no teste. Ela cobre os campos que tinham entrado sem versão, os inventários de halteres com mínimo acima do máximo, passo fora do limite ou manoplas sem anilha (acertados antes de o esquema recusar) e a margem pessoal de tempo, que passa a ficar no programa.
+- Foto: a cota volta quando o modelo falha; a soma das fotos cabe nos 4,5 MB de corpo da Vercel; a chamada ao modelo tem 50 s e a função, 60 s; o limite que cai para a memória vai para o log; cada tipo de erro tem a mensagem dele, em português.
+- Content-Security-Policy no `vercel.json`, sem `unsafe-inline` nem `unsafe-eval`. A prévia local passou a servir os mesmos cabeçalhos, então a suíte e2e inteira roda sob a política.
+
+**Regras do treino.**
+- "Subir" confere a carga em todas as séries: série mais leve que a 1ª não conta como topo (decisão desta sessão; consenso, sem estudo novo).
+- Os minutos do dia são estimados de novo quando uma fase muda as séries, com a margem do programa.
+- Sem exercício possível em dia nenhum, o gerador não devolve mais um programa "ok" com dias vazios e o texto "só o abdominal é possível": devolve o motivo e o próximo passo, e a tela não oferece treino.
+- A oferta de menos dias não conta a semana sem treino como "1 vez por semana". "Suba dois degraus" só quando existem dois. "Reduza a carga" só quando há carga menor (placa 1, halter mais leve, 1º degrau).
+- A panturrilha no chão foi alinhada à fonte (`nakamura2025`): subir com as duas pernas e descer em 3 s com uma só, nos dados, no porquê e no cartão. A animação aprovada ainda mostra as duas pernas na descida: o cartão avisa, e a decisão está no backlog.
+- Uma definição só de empurrar e puxar (pelo padrão do movimento), de região do músculo, do limite do dia, do `POR_ID` e da razão da coxa; um formatador de carga só; `regras.json` e `selos.json` validados com zod; os números dos textos saem das constantes; um teste do repositório barra relógio, sorteio e idioma em `src/domain/`.
+- Os 20 exercícios que apareciam como "Sem guia ainda" ganharam cartão de texto e ficha de técnica (consenso, `nsca2021` não verificado, como nas outras fichas; nenhum estudo novo citado). A auditoria de base passou de 20 para 0 exercício sem guia.
+
+**A régua, antes e depois (108.900 programas).** Nenhum defeito passa da linha de base. D1 (empurrar ÷ puxar) 379 → 314 sem dor e 248 → 190 com dor; C1 479 → 437; A3 (dia acima de 110% dos minutos) 2.281 → 2.309, porque a panturrilha no chão passou a contar o tempo das duas pernas; sem nenhum defeito 85,9% → 86,1%. Na grade de 911.625 programas, o suspeito "ajuste sem aviso" foi de 106 para 210 (0,02%): o avaliador agora enxerga a flexão fechada como empurrar, e nesses casos o gerador não aplica nem avisa (backlog).
+
+**Tela.** O descanso sobrevive à ida ao guia e a um recarregar; o áudio é fechado ao sair; os bipes não tocam depois de zero. Ids próprios nos controles de carga do drop set e nos desenhos das miniaturas. A folha recebe as regras de `.app`, deixa inerte a folha de baixo e devolve o foco a quem abriu. A importação que falha não fica guardada (e, como o Chromium guarda a falha por conta própria, na 2ª falha o app oferece recarregar). Os termos citam só o que existe em Meus dados. Saíram 28 regras de CSS sem uso.
+
+**Repositório.** `PLANO-MVP.md` e o README da pesquisa v2 com o estado real dos marcos; as 27 fontes citadas na pesquisa v2 que faltavam em `fontes.md` (25 conferidas na API oficial do PubMed, 2 marcadas como não verificadas, e um teste que exige toda chave citada); CI uma vez por mudança e sem permissão de escrita; `vite-node`, `tsx` e `playwright` declarados; `scripts/` inteiro no lint e no typecheck; saíram 67 arquivos de `scripts/design`, 27 imagens sem referência e os dois arquivos do kit inicial (ficaram os geradores dos desenhos do equipamento e dos ícones). O `@ts-nocheck` saiu de `desenho.ts`, `cena.ts` e `estilo/`, com tipos de verdade e a regressão do motor sem diferença.
+
+**Não se reproduziu:** o PMID "cortado" de Currier 2026 no documento 01 (tem 8 dígitos, 41843416, e confere no PubMed).
+
+**Não foi feito, por decisão:** reescrever o histórico do git; subir zod, react-router e vitest de versão maior (os 20 alertas do `npm audit` continuam; `npm audit fix` sem `--force` não tira nenhum).
+
+**Resultado:** `npm run check` com 896 testes (eram 837), 157 e2e (eram 145, com 1 falhando) e `npm run auditoria` passando.
+
+**Rascunho de post para o LinkedIn**
+
+> Passei um dia inteiro corrigindo o que uma auditoria do meu próprio app tinha achado. O que mais me marcou não foi nenhum erro grande.
+>
+> Foi um teste que falhava só de vez em quando. Parecia teste ruim. Era o app: se você respondesse "sim" a uma pergunta de saúde e fechasse a aba no mesmo segundo, a resposta se perdia, e o programa de treino seguia como se nada tivesse mudado.
+>
+> Outras coisas do mesmo tipo: o app dizia "série salva" mesmo quando o aparelho recusava a gravação. Mandava "reduzir a carga" de quem já estava no halter mais leve. Sugeria subir o peso para quem tinha feito duas séries com menos carga.
+>
+> Nenhuma delas quebra a tela. Todas fazem o app dizer uma coisa que não é verdade. Num app que orienta treino, isso é o defeito mais caro.
+>
+> A regra que usei: primeiro um teste que mostra o erro, depois a correção. Foram 59 testes de regra e 12 de tela a mais, e a lista do que eu não corrigi fica escrita, com o motivo.
+

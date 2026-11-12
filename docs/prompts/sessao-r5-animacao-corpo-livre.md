@@ -13,7 +13,7 @@ Você vai conduzir o **R5-anim**, do treino-mvp, um web app (PWA) em pt-BR que m
 **Leia primeiro:** o `CLAUDE.md` (qualidade do guia: precisão vale mais que quantidade; mudanças no motor passam pela regressão visual); `docs/pesquisa/animacoes/README.md` (o ritual: ficha da técnica, poses, verificação automática, folha de contatos, aprovação do Gustavo, linha de base); `docs/prompts/sessao-r4-boneco.md` e `docs/revisoes/r4/README.md` (o estilo A do Boneco, o padrão do app; a cena, os rótulos e a vista); as fichas e os cartões dos 5 exercícios (escritos no R5-CL, a partir de `docs/pesquisa-v2/16-corpo-livre-e-casa.md` e `17-biblioteca-ampliada.md`, com as referências visuais da parte G2 de `17`); as animações de base em `src/engine/exercicios/` (`panturrilha-chao.ts`, a flexão e o abdominal no chão); `scripts/aprovar-animacao.mjs`, `scripts/folha-animacao.mjs`, `tests/motor/` e `referencia/qa/check-motor.cjs`.
 
 **Regras desta sessão**
-- Conta: só as contas pessoais do Gustavo (gustavogopp@gmail.com ou gustavogopp2@gmail.com), nunca a da Futurum. Tudo fica no git, e só no git.
+- Conta: só as contas pessoais do Gustavo, nunca a conta de trabalho. Tudo fica no git, e só no git.
 - Não mexa no branch `r3-uso-real` nem na branch do redesign. `privado/` nunca é versionado nem usado.
 - Branch nova a partir da `main`. Commits pequenos, em pt-BR e no imperativo, com push. Ida para a `main` só com o ok do Gustavo, por merge sem forçar.
 - **Sem estilo novo de boneco nem mudança de corpo:** as poses novas usam o esqueleto e o estilo A como estão. Se uma animação pedir peça nova de cena (o degrau, por exemplo), use a do step se servir; se não servir, mostre a folha e pergunte antes de criar.

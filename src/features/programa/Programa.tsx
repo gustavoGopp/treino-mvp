@@ -1,9 +1,10 @@
 import { useMemo, useState, type ReactNode } from 'react';
 import { Link, Navigate, useNavigate } from 'react-router-dom';
-import { BIBLIOTECA, type Musculo } from '../../domain/biblioteca';
+import { POR_ID, type Musculo } from '../../domain/biblioteca';
 import { ALTERNATIVAS_A_MOSTRA, NOME_MUSCULO, ehAvisoDeMeta, type DiaPrograma, type ExercicioPrescrito, type Programa as TipoPrograma } from '../../domain/gerador';
 import { mensagemDeVolta, type MensagemDeVolta } from '../../domain/acompanhamento/volta';
 import { opcoesDeAjuste, type Opcao } from '../../domain/gerador/opcoes';
+import { diaEMes as dataCurta, faixaTexto as faixa, numeroBr, tempoNoRelogio as tempo } from '../../domain/numero';
 import { NOME_NIVEL } from '../../domain/nivel';
 import { avaliarTriagem, efeitoDaDor } from '../../domain/triagem';
 import { EFEITO_DA_DOR, NOME_ARTICULACAO } from '../onboarding/articulacoes';
@@ -12,8 +13,8 @@ import { linkDoGuia } from '../guia/link';
 import { inventarioPrincipal, localDoTreino, perfilDe, primeiroPassoPendente, type Estado } from '../../storage/esquema';
 import { alternarPreferencia, diaDoTreino, hojeDoEstado, iniciarSessao } from '../treino/acoes';
 import { Preferencias } from './Prefiro';
-import { agoraIso, comProgramaNovo, fusoDoAparelho, gerarDoEstado, mesmoConteudo, useApp } from '../app/estado';
-import { AvisoInstalar, LembreteCopia } from '../app/avisos';
+import { agoraIso, comProgramaNovo, fusoDoAparelho, mesmoConteudo, resultadoDoEstado, useApp } from '../app/estado';
+import { AvisoInstalar, AvisoSalvar, LembreteCopia } from '../app/avisos';
 import { NavInferior, PorQue, Selo, Titulo, Topo } from '../app/ui';
 import { ComoLer } from './ComoLer';
 import { Folha } from '../app/Folha';
@@ -29,11 +30,7 @@ import type { Inventario } from '../../domain/taxonomia/equipamentos';
 // Tela do treino: vai direto ao que importa (o treino de cada dia, com a imagem de cada exercício e
 // séries × repetições em destaque). Ajustes, avisos e o porquê ficam um toque abaixo. Nada muda sem a escolha da pessoa.
 
-const POR_ID = Object.fromEntries(BIBLIOTECA.map((e) => [e.id, e]));
-const tempo = (seg: number) => (seg % 60 ? `${Math.floor(seg / 60)}:${String(seg % 60).padStart(2, '0')}` : `${seg / 60} min`);
-const faixa = ([a, b]: [number, number]) => (a === b ? `${a}` : `${a}–${b}`);
 const musculos = (ms: readonly Musculo[]) => ms.map((m) => NOME_MUSCULO[m]).join(', ');
-const dataCurta = (iso: string) => `${iso.slice(8, 10)}/${iso.slice(5, 7)}`;
 
 export function Programa() {
   const { estado, atualizar } = useApp();
@@ -50,7 +47,8 @@ export function Programa() {
   const perfil = useMemo(() => perfilDe(estado), [estado]);
   const inventario = inventarioPrincipal(estado);
   const opcoes = useMemo(() => (perfil && inventario ? opcoesDeAjuste(perfil, inventario) : []), [perfil, inventario]);
-  const atualizado = useMemo(() => gerarDoEstado(estado), [estado]);
+  const gerado = useMemo(() => resultadoDoEstado(estado), [estado]);
+  const atualizado = gerado?.status === 'ok' ? gerado.programa : null;
 
   const pendente = primeiroPassoPendente(estado);
   if (pendente) return <Navigate to={pendente.rota} replace />;
@@ -58,14 +56,26 @@ export function Programa() {
   const triagem = avaliarTriagem(perfil!.triagem);
   const salvo = estado.programa?.programa;
 
-  if (triagem.bloqueado || !salvo) {
+  // Sem exercício possível com o cadastro de hoje (a dor tirou todas as regiões): o programa salvo não é mostrado,
+  // como na triagem que bloqueia, porque ele ainda traz os exercícios que a dor de hoje exclui.
+  const semExercicio = gerado?.status === 'sem-exercicio' ? gerado.aviso : null;
+  if (triagem.bloqueado || !salvo || semExercicio) {
     return (
       <div className="wrap app">
         <Topo direita={<Link to="/dados">Meus dados</Link>} />
         <main className="conteudo">
+        <AvisoSalvar />
           <Titulo>Programa pausado</Titulo>
           <div className="warnbox">
-            {triagem.mensagem} <Selo id={triagem.regraId} />
+            {semExercicio && !triagem.bloqueado ? (
+              <>
+                {semExercicio.texto} <Selo id={semExercicio.regraId} />
+              </>
+            ) : (
+              <>
+                {triagem.mensagem} <Selo id={triagem.regraId} />
+              </>
+            )}
           </div>
           <Link className="btn" to="/comecar/triagem">
             Rever a triagem
@@ -82,6 +92,7 @@ export function Programa() {
 
   const escolher = (o: Opcao) => {
     setVerAvisos(false);
+    if (estado.sessaoAtual) return;
     if (o.id === 'manter') {
       atualizar((s) => ({ ...s, ajustes: { recolhido: true } }));
       setAviso('Programa mantido.');
@@ -96,6 +107,8 @@ export function Programa() {
           ...(o.perfil.divisao ? { divisao: o.perfil.divisao } : {}),
           minutosSessao: o.perfil.minutosSessao,
           prioridades: o.perfil.prioridades,
+          // O objetivo não muda com o ajuste (antes, sumia daqui e o programa voltava a "ganhar músculo" sem avisar).
+          ...(s.rotina?.objetivo ? { objetivo: s.rotina.objetivo } : {}),
         },
         ajustes: undefined,
       }),
@@ -161,7 +174,7 @@ export function Programa() {
         </section>
       ),
     });
-  if (versaoNova)
+  if (versaoNova && !estado.sessaoAtual)
     fila.push({
       id: 'versao',
       linha: 'Há uma versão nova do seu programa.',
@@ -225,6 +238,7 @@ export function Programa() {
     <div className="wrap app com-nav">
       <Topo />
       <main className="conteudo treino">
+        <AvisoSalvar />
         <Titulo>Seu treino</Titulo>
 
         <section className="cartao-hoje" aria-labelledby="hoje-t">
@@ -321,6 +335,7 @@ export function Programa() {
         <p role="status" className="status">
           {aviso}
         </p>
+        {versaoNova && estado.sessaoAtual && <p className="ajuda">O programa será atualizado depois do treino em andamento.</p>}
         <AvisoInstalar />
 
         <div className="abas" role="tablist" aria-label="Dias de treino">
@@ -375,7 +390,7 @@ export function Programa() {
           semana={semana}
           fase={hoje.fase ?? faseAtual}
           reabrirAjustes={
-            opcoes.length > 0 && !!estado.ajustes?.recolhido
+            opcoes.length > 0 && !!estado.ajustes?.recolhido && !estado.sessaoAtual
               ? () => {
                   atualizar((s) => ({ ...s, ajustes: { recolhido: false } }));
                   setVerAvisos(true);
@@ -679,7 +694,7 @@ function Sobre({
                   <th scope="row">{NOME_MUSCULO[m]}</th>
                   <td>{meta}</td>
                   <td>
-                    {v.toLocaleString('pt-BR')}
+                    {numeroBr(v)}
                     {v < meta && <span className="sr"> (abaixo da meta)</span>}
                   </td>
                 </tr>

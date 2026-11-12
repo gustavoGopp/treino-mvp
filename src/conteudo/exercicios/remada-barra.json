@@ -1,0 +1,57 @@
+{
+  "id": "remada-barra",
+  "name": "Remada curvada com barra",
+  "short": "Remada curvada",
+  "target": "Costas",
+  "setupEq": [
+    "Barra no chão ou num suporte baixo, com anilhas iguais dos dois lados."
+  ],
+  "setupBody": [
+    "Pés na largura do quadril, joelhos um pouco dobrados.",
+    "Tronco inclinado a ~45° ou mais, coluna reta, olhar um pouco à frente.",
+    "Pegada um pouco mais aberta que os ombros."
+  ],
+  "exec": [
+    [
+      "conc",
+      "Puxar",
+      "Puxa a barra até a barriga, com os cotovelos passando rente ao corpo."
+    ],
+    [
+      "ecc",
+      "Volta",
+      "~2 s. Volta até os braços estenderem, sem mexer o tronco."
+    ]
+  ],
+  "range": [
+    "Início: braços estendidos, costas alongadas.",
+    "Fim: barra encostando na barriga."
+  ],
+  "cues": [
+    "Coluna reta.",
+    "Barra na barriga.",
+    "Tronco parado."
+  ],
+  "errors": [
+    {
+      "id": "e1",
+      "title": "Arredondar a lombar",
+      "desc": "Perder a coluna reta sobrecarrega a lombar: diminua a carga."
+    },
+    {
+      "id": "e2",
+      "title": "Subir o tronco a cada puxada",
+      "desc": "Balançar o corpo faz a carga subir sem as costas."
+    },
+    {
+      "id": "e3",
+      "title": "Puxar para o peito",
+      "desc": "Barra alta e cotovelos abertos tiram o trabalho do dorsal."
+    }
+  ],
+  "montagem": [
+    "Travas nas anilhas.",
+    "Se a lombar cansar antes das costas, apoie o peito num banco inclinado ou use a remada apoiada."
+  ],
+  "carga": "Registre o kg total (barra + anilhas). Para progredir, o menor par de anilhas."
+}

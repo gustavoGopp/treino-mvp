@@ -1,3 +1,4 @@
+import { ordemFixa } from '../ordem';
 import type { Musculo } from '../biblioteca';
 import { VOLUME, r } from '../regras';
 import type { Inventario } from '../taxonomia/equipamentos';
@@ -103,7 +104,7 @@ function maisUmDia(perfil: Perfil): Perfil {
 function menosPrioridade(perfil: Perfil, programa: Programa): Grupo[] {
   if (perfil.prioridades.length < 2) return [];
   const cobertura = (g: Grupo) => Math.min(...GRUPOS[g].map((m) => (programa.volumeSemanal[m] ?? 0) / (programa.metas[m] ?? 1)));
-  return [[...perfil.prioridades].sort((a, b) => cobertura(a) - cobertura(b) || a.localeCompare(b))[0]!];
+  return [[...perfil.prioridades].sort((a, b) => cobertura(a) - cobertura(b) || ordemFixa(a, b))[0]!];
 }
 
 /** Quanto cada grupo pesa no foco (volume.prioridade.ate-dois): o número de músculos com meta que ele tem. */

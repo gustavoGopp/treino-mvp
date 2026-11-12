@@ -1,0 +1,56 @@
+{
+  "id": "desenvolvimento-barra",
+  "name": "Desenvolvimento em pé com barra",
+  "short": "Desenvolvimento com barra",
+  "target": "Frente do ombro; ajudam a lateral do ombro e o tríceps",
+  "setupEq": [
+    "Barra no rack na altura do peito, anilhas iguais dos dois lados."
+  ],
+  "setupBody": [
+    "Em pé, pés na largura do quadril, abdômen e glúteos firmes.",
+    "Barra apoiada na parte de cima do peito, pegada pouco mais aberta que os ombros, cotovelos um pouco à frente da barra."
+  ],
+  "exec": [
+    [
+      "conc",
+      "Subida",
+      "Empurra a barra para cima, rente ao rosto, até quase estender os cotovelos, com a barra sobre os ombros."
+    ],
+    [
+      "ecc",
+      "Descida",
+      "~2 s. Desce até a barra voltar à parte de cima do peito."
+    ]
+  ],
+  "range": [
+    "Início: barra na parte de cima do peito.",
+    "Fim: braços quase estendidos, barra sobre os ombros."
+  ],
+  "cues": [
+    "Abdômen firme.",
+    "Barra rente ao rosto.",
+    "Sem jogar o tronco."
+  ],
+  "errors": [
+    {
+      "id": "e1",
+      "title": "Arquear a lombar",
+      "desc": "Inclinar para trás para subir a carga sobrecarrega a lombar: diminua a carga."
+    },
+    {
+      "id": "e2",
+      "title": "Impulso com as pernas",
+      "desc": "Dobrar os joelhos para dar embalo tira o trabalho do ombro."
+    },
+    {
+      "id": "e3",
+      "title": "Descida curta",
+      "desc": "Parar na altura da testa deixa de fora metade do movimento."
+    }
+  ],
+  "montagem": [
+    "Travas nas anilhas.",
+    "Tire e devolva a barra no rack; nunca a levante do chão até os ombros com carga pesada."
+  ],
+  "carga": "Registre o kg total (barra + anilhas). Para progredir, o menor par de anilhas."
+}

@@ -1,18 +1,12 @@
 import selosJson from './selos.json';
+import { selosSchema, type Selo } from './schema';
 
 // As regras do gerador vêm de docs/pesquisa/regras.md (scripts/gerar-regras.mjs). No pacote inicial do app fica só o
 // selo de cada regra (selos.json); o texto, os valores e as fontes (regras.json) ficam em ./completas, carregadas quando a
 // pessoa abre a folha do selo (R5b, 09/11/2026: o pacote da tela do programa tinha chegado ao limite do orçamento).
-export type Selo = 'robusta' | 'moderada' | 'um estudo' | 'consenso';
-export type Regra = {
-  id: string;
-  regra: string;
-  valores: { iniciante: string; intermediario: string; avancado: string };
-  selo: Selo;
-  fontes: string[];
-};
-/** O selo de cada regra, pelo id. */
-export const SELOS: Record<string, Selo> = selosJson as Record<string, Selo>;
+export type { Regra, Selo } from './schema';
+/** O selo de cada regra, pelo id (validado na carga: regras/schema.ts). */
+export const SELOS: Record<string, Selo> = selosSchema.parse(selosJson);
 
 /** Referência a uma regra; falha na hora se o id não existir em regras.md. */
 export function r(id: string): string {
@@ -51,6 +45,8 @@ export const RIR = {
   composto: { iniciante: [2, 3], intermediario: [1, 2], avancado: [1, 2] } as PorNivel<[number, number]>,
   isolador: { iniciante: [1, 2], intermediario: [0, 1], avancado: [0, 1] } as PorNivel<[number, number]>,
   serieEfetivaMax: 4, // rir.serie-efetiva
+  // No registro, a última opção é "4 ou mais": acima de 4 a série não é efetiva, e o número exato não muda nada.
+  registroMax: 4,
   // rir.carga-baixa: com o meio da faixa em 15 repetições ou mais, a reserva vai no máximo a 2 (fora da fase de aprendizado).
   cargaBaixa: { repsMeio: 15, rirMax: 2 },
 };
@@ -122,8 +118,21 @@ export const PROGRESSAO = {
   saltoGrande: 0.1, // salto relativo acima de ~10%
   janelaFalha: 6, // sessões em que uma carga que ficou pesada não volta a ser sugerida
   folgaDegrau: 2, // progressao.criterio-degrau: as séries depois da 1ª podem ficar até 2 repetições abaixo do topo
+  reducaoEstagnacao: 0.1, // progressao.estagnacao: uma das saídas é reduzir 10% e reconstruir
   acertosMax: 3, // progressao.calibracao (R5a): depois de 3 séries de acerto sem cair em A ± 2, a calibração termina
 };
+
+/** O dia passa do tempo acima disto vezes os minutos escolhidos (a estimativa já inclui a margem de fila; régua da G5, A3). */
+export const LIMITE_DO_DIA = 1.1;
+
+/** seguranca.dor.escala: de 3 a 5, ajustar (carga, amplitude, ritmo); acima de 5, encerrar o exercício. */
+export const DOR = { ajustarDe: 3, ajustarAte: 5, reducaoCarga: [0.1, 0.2] as [number, number] };
+
+/**
+ * Quanto a carga sugerida desce: o meio da faixa de cada regra (progressao.reduzir: 5–10%; seguranca.dor.escala:
+ * 10–20%). A carga sugerida é a que existe no equipamento mais perto disso, sempre abaixo da de hoje.
+ */
+export const REDUCAO = { abaixoDoMinimo: 0.075, dor: (DOR.reducaoCarga[0] + DOR.reducaoCarga[1]) / 2 };
 
 /** deload.semana-leve: o conteúdo da semana leve e quando sugerir. */
 export const SEMANA_LEVE = {
@@ -134,8 +143,8 @@ export const SEMANA_LEVE = {
   estagnados: 2,
   pesadoEm: 2, // "pesado demais" em 2 dos últimos 3 treinos
   pesadoDe: 3,
-  dorMin: 3,
-  dorMax: 5,
+  dorMin: DOR.ajustarDe,
+  dorMax: DOR.ajustarAte,
   carenciaSemanas: 3, // não sugere nas 3 semanas depois de uma volta de pausa ou de uma semana leve
 };
 

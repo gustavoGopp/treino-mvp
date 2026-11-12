@@ -28,7 +28,7 @@
     "test:privado": "vitest run --config privado/vitest.config.ts",
     "gif:jornada": "bash scripts/gif/gerar.sh",
     "gif:sessao": "bash scripts/gif/gerar.sh sessao docs/img/m5-treino.gif",
-    "eval:visao": "npx tsx scripts/eval-vision.ts",
+    "eval:visao": "tsx scripts/eval-vision.ts",
     "auditoria:catalogo": "vite-node scripts/auditoria/catalogo.ts",
     "auditoria:qualidade": "vite-node scripts/auditoria/qualidade.ts --",
     "auditoria:regua": "vite-node scripts/auditoria/grade-regua.ts --",
@@ -56,9 +56,12 @@
     "eslint": "^9.39.5",
     "eslint-plugin-react-hooks": "^5.2.0",
     "globals": "^17.13.0",
+    "playwright": "1.63.0",
+    "tsx": "^4.23.15",
     "typescript": "^5.9.3",
     "typescript-eslint": "^8.72.1",
     "vite": "^6.4.5",
+    "vite-node": "^3.2.4",
     "vite-plugin-pwa": "^1.3.0",
     "vitest": "^3.2.7"
   }

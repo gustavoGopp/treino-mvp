@@ -26,3 +26,20 @@ describe('textos do app', () => {
     for (const trecho of ['Anthropic', 'EUA', '30 dias', 'O servidor do app não guarda a foto', 'privacidade.foto']) expect(t).toContain(trecho);
   });
 });
+
+// Auditoria de 12/11/2026: os termos mandavam a pessoa a "Exportar meus dados" e "Refazer a triagem e o perfil",
+// botões que não existem em Meus dados.
+describe('os termos citam só o que existe em Meus dados', () => {
+  it('cada caminho "Meus dados → X" dos termos é um título ou botão da tela Meus dados', () => {
+    const termos = readFileSync('src/features/termos/Termos.tsx', 'utf8');
+    const dados = readFileSync('src/features/dados/Dados.tsx', 'utf8');
+    const linhas = termos.split('\n').filter((l) => l.includes('“Meus dados” →'));
+    expect(linhas.length).toBeGreaterThanOrEqual(4);
+    for (const linha of linhas) {
+      const citados = [...linha.slice(linha.indexOf('→')).matchAll(/“([^”]+)”/g)].map((m) => m[1]!);
+      expect(citados.length, linha).toBeGreaterThan(0);
+      for (const nome of citados) expect(dados.includes(`titulo="${nome}"`) || dados.includes(`>\n          ${nome}\n`) || new RegExp(`>\\s*${nome}\\s*<`).test(dados), `"${nome}" não existe em Meus dados`).toBe(true);
+    }
+  });
+});
+

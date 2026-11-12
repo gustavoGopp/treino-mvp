@@ -12,6 +12,7 @@ import {
   type Porque,
 } from '../gerador';
 import { FUNCAO, funcoesDoExercicio, type Funcao } from '../gerador/funcoes';
+import { ordemFixa } from '../ordem';
 import { r } from '../regras';
 import { capacidades, NOME_CAPACIDADE, type Capacidade, type Inventario } from '../taxonomia/equipamentos';
 
@@ -46,7 +47,7 @@ function motivoDaFalta(e: Exercicio, f: Funcao | undefined, perfil: Perfil, inve
   }
   const brutas = capacidades(inventario);
   const faltas = (caps: Set<Capacidade>) =>
-    e.requer.map((g) => g.filter((c) => !caps.has(c))).sort((a, b) => a.length - b.length || a.join().localeCompare(b.join()))[0] ?? [];
+    e.requer.map((g) => g.filter((c) => !caps.has(c))).sort((a, b) => a.length - b.length || ordemFixa(a.join(), b.join()))[0] ?? [];
   // Sem a polia, o acessório que falta é detalhe: "aqui não tem polia alta", e não "polia alta nem corda".
   const ACESSORIOS: Capacidade[] = ['corda', 'triangulo', 'barra_reta_polia', 'estribo', 'tornozeleira'];
   const principais = (cs: Capacidade[]) => (cs.some((c) => !ACESSORIOS.includes(c)) ? cs.filter((c) => !ACESSORIOS.includes(c)) : cs);

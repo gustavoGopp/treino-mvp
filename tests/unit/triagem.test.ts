@@ -49,6 +49,10 @@ describe('dor e sinais de alerta', () => {
     expect(avaliarDor(4).acao).toBe('ajustar');
     expect(avaliarDor(6).acao).toBe('encerrar-exercicio');
     expect(avaliarDor(1, true).acao).toBe('encerrar-exercicio');
+    // Auditoria de 12/11/2026: sem carga menor para usar (placa 1, o halter mais leve), o texto não manda reduzir.
+    expect(avaliarDor(4).mensagem).toMatch(/^Reduza a carga em 10–20%/);
+    expect(avaliarDor(4, false, false).mensagem).toBe('Não há carga menor aqui: encurte a amplitude ou desacelere. Se a dor não diminuir, troque pela alternativa.');
+    expect(avaliarDor(4, false, false).acao).toBe('ajustar');
   });
   it('sinais cardiovasculares encerram a sessão e citam o SAMU', () => {
     const s = avaliarSinal('peito');

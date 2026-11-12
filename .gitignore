@@ -21,6 +21,9 @@ test-results/
 playwright-report/
 *.qa.png
 
+# Cópias de trabalho de sessões paralelas
+.claude/worktrees/
+
 # Sistema
 .DS_Store
 Thumbs.db

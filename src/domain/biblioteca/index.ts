@@ -78,3 +78,21 @@ export type Exercicio = z.infer<typeof exercicioSchema>;
 
 export const BIBLIOTECA: Exercicio[] = z.array(exercicioSchema).parse(dados);
 export const POR_ID: Record<string, Exercicio> = Object.fromEntries(BIBLIOTECA.map((e) => [e.id, e]));
+
+// Definições usadas pelo gerador, pelo avaliador e pela sessão, num lugar só (auditoria de 12/11/2026: havia três
+// listas de "inferiores", uma delas sem os adutores, e duas definições de empurrar e puxar).
+
+/** Os músculos de baixo; o abdômen é "core" e o resto é de cima. */
+export const MUSCULOS_INFERIORES: Musculo[] = ['quadriceps', 'posteriores', 'gluteos', 'panturrilha', 'adutores'];
+export type Regiao = 'inferior' | 'superior' | 'core';
+export const regiaoDoMusculo = (m: Musculo): Regiao => (m === 'abdomen' ? 'core' : MUSCULOS_INFERIORES.includes(m) ? 'inferior' : 'superior');
+
+/**
+ * Empurrar e puxar, para o equilíbrio do ombro (avaliador.empurrar-puxar; régua D1): pelo padrão do movimento, que
+ * diz o que o ombro faz. Pela função do exercício, a flexão fechada (função de tríceps) ficava fora do empurrar.
+ */
+export const PADROES_EMPURRAR: Padrao[] = ['empurrar-h', 'empurrar-v', 'isolador-peito'];
+export const PADROES_PUXAR: Padrao[] = ['puxar-h', 'puxar-v', 'isolador-ombro-posterior'];
+export const ehEmpurrar = (id: string): boolean => !!POR_ID[id] && PADROES_EMPURRAR.includes(POR_ID[id]!.padrao);
+export const ehPuxar = (id: string): boolean => !!POR_ID[id] && PADROES_PUXAR.includes(POR_ID[id]!.padrao);
+

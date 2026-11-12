@@ -41,10 +41,15 @@ Essas decisões foram copiadas do programa de referência para o código, sem pe
 | [09-trocas-e-locais.md](09-trocas-e-locais.md) | Tema T9: o que se leva do progresso ao trocar de aparelho ou de local, o que recomeça pela calibração na 1ª série e o "prefiro este"; base do marco R1b | Aprovado em 01/11/2026 |
 | [10-equipamento-minimo.md](10-equipamento-minimo.md) | Quem não tem nada, ou tem um aparelho só: peso do corpo, puxar sem equipamento, escadas por exercício | Decidido em 03 e 04/11/2026 (`docs/revisoes/equipamento-minimo.md`) |
 | [11-catalogo-completo.md](11-catalogo-completo.md) | O catálogo completo, por músculo, nível e equipamento: os buracos medidos, 17 equipamentos candidatos (com o sandbag), os exercícios que faltam, escadas, segurança e a lista de entrada ordenada por ganho ÷ custo de animação | Para a decisão do Gustavo |
-| [12-outros-objetivos.md](12-outros-objetivos.md) | Cutting, força máxima e saúde: o que muda no treino e o que o app pode fazer sem sair do MVP | Para a decisão do Gustavo |
+| [12-outros-objetivos.md](12-outros-objetivos.md) | Cutting, força máxima e saúde: o que muda no treino e o que o app pode fazer sem sair do MVP | Decidido em 04/11/2026: a pergunta de objetivo entrou no MVP, só dentro do treino de força (`CLAUDE.md`, "Escopo") |
+| [13-exercicios-por-grupamento.md](13-exercicios-por-grupamento.md) | Quantos exercícios e quais por grupamento, e o que fazer quando a vaga fica vazia (sessão de qualidade dos treinos, 05 e 06/11/2026) | Base das decisões de `docs/revisoes/qualidade-treinos.md` |
+| [14-combinacoes-por-dia.md](14-combinacoes-por-dia.md) | Quantos exercícios por treino, o que combina no mesmo dia e a vaga vazia (06/11/2026) | Base das decisões de `docs/revisoes/qualidade-treinos.md` |
+| [15-prioridade-e-manutencao.md](15-prioridade-e-manutencao.md) | Prioridade de um grupo e manutenção dos outros (06/11/2026) | Base do marco R5d (`devlog.md`, 08/11/2026) |
+| [16-corpo-livre-e-casa.md](16-corpo-livre-e-casa.md) | O que dá para treinar sem equipamento, só com apoio (06/11/2026) | Base do marco R5-CL (`devlog.md`, 07 e 08/11/2026) |
+| [17-biblioteca-ampliada.md](17-biblioteca-ampliada.md) | Exercícios para todas as combinações de equipamento e o que faz um treino agradável (06/11/2026) | Base do marco R5-CL (`devlog.md`, 07 e 08/11/2026) |
 
-## Próxima sessão
-Os temas T1 a T7 e o T9 estão aprovados, e os marcos R0b, R0c, R1 e R1b já os aplicaram. O próximo passo é o marco de código **R2**, com o T6; o prompt está em [`docs/prompts/sessao-r2.md`](../prompts/sessao-r2.md). O T8 (o programa do Gustavo) é feito na máquina dele, com `privado/`. Para ler os resumos do PubMed, use `scripts/pesquisa/pubmed.py`.
+## Estado (atualizado em 12/11/2026)
+Os temas T1 a T7 e o T9 estão aprovados e aplicados: os marcos R0b, R0c, R1, R1b e R2 (este com o T6, em 02/11/2026); os marcos do R5 vieram depois (`docs/devlog.md`). Os documentos 10 a 17 vieram das sessões seguintes (equipamento mínimo, catálogo completo, outros objetivos, qualidade dos treinos e próximos passos). Falta só o T8 (o programa do Gustavo), que é feito na máquina dele, com `privado/`. Para ler os resumos do PubMed, use `scripts/pesquisa/pubmed.py`.
 
 ## Plano dos próximos temas (em ordem)
 

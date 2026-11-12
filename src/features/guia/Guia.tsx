@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
+import { faixaTexto as faixa, tempoNoRelogio as tempo } from '../../domain/numero';
 import { Link, Navigate, useNavigate, useParams, useSearchParams } from 'react-router-dom';
 import { CONTEUDO } from '../../conteudo';
 import { prescricaoNoGuia } from '../../domain/sessao';
@@ -52,8 +53,6 @@ function useDoBoneco<T>(pedido: Parameters<typeof pedirAoBoneco>[0] | null): T |
   return r && r.chave === chave ? r.v : undefined;
 }
 
-const faixa = ([a, b]: [number, number]) => (a === b ? `${a}` : `${a}–${b}`);
-const tempo = (seg: number) => (seg % 60 ? `${Math.floor(seg / 60)}:${String(seg % 60).padStart(2, '0')}` : `${seg / 60} min`);
 
 /** No checklist, o "RIR do seu programa" vira o RIR desta semana; sem esse item, ele entra no fim. */
 function checklistComRir(itens: string[], rir: string): string[] {

@@ -12,7 +12,7 @@ const esperado = (ex: any, view: string, mode: string, estilo: string, base: str
 // R4 (experimento do boneco): os estilos novos são uma opção paralela do motor.
 // Com o estilo desligado ('atual'), a saída tem que ser a de sempre, caractere por caractere; e desenhar
 // A ou B antes não pode mudar o que o estilo atual desenha depois (o estado do motor, CTX, é compartilhado).
-// A comparação pixel a pixel com o guia original continua em tests/motor e tests/e2e/guia-visual.spec.ts.
+// A comparação com o guia original (o mesmo SVG, quadro a quadro) continua em tests/motor/equivalencia.spec.ts.
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 type Animacao = any;

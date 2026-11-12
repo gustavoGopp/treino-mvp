@@ -1,0 +1,56 @@
+{
+  "id": "supino-polia",
+  "name": "Supino na polia com o banco plano entre as torres",
+  "short": "Supino na polia",
+  "target": "Peito",
+  "setupEq": [
+    "Banco plano no meio das duas torres, com as polias embaixo.",
+    "Um estribo em cada polia."
+  ],
+  "setupBody": [
+    "Deitado, escápulas juntas e apoiadas, pés no chão.",
+    "Mãos na altura do peito, cotovelos a ~30–60° do tronco."
+  ],
+  "exec": [
+    [
+      "conc",
+      "Empurrar",
+      "Empurra para cima e um pouco para dentro, até quase estender os cotovelos."
+    ],
+    [
+      "ecc",
+      "Volta",
+      "~2 s. Volta até um alongamento confortável do peito."
+    ]
+  ],
+  "range": [
+    "Início: mãos ao lado do peito, peito alongado.",
+    "Fim: braços quase estendidos acima do peito."
+  ],
+  "cues": [
+    "Escápulas no banco.",
+    "Sobe e fecha um pouco.",
+    "Volta devagar."
+  ],
+  "errors": [
+    {
+      "id": "e1",
+      "title": "Banco fora do meio",
+      "desc": "Com o banco torto, um lado puxa mais que o outro."
+    },
+    {
+      "id": "e2",
+      "title": "Cotovelos abertos a 90°",
+      "desc": "Braços em cruz sobrecarregam o ombro."
+    },
+    {
+      "id": "e3",
+      "title": "Soltar a volta",
+      "desc": "Deixar a placa puxar o braço de uma vez perde a parte alongada."
+    }
+  ],
+  "montagem": [
+    "Banco firme e centrado entre as torres; pegue um estribo de cada vez e só então deite."
+  ],
+  "carga": "Registre o número da placa da torre. Para progredir, +1 placa."
+}

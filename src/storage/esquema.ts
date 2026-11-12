@@ -10,7 +10,7 @@ import { PERGUNTAS, type PerguntaId } from '../domain/triagem';
 // Estado guardado no aparelho (IndexedDB) e no arquivo de exportação. Versionado: toda mudança de formato
 // ganha uma versão nova e uma migração em src/storage/migracao.ts, com teste.
 
-export const VERSAO_ESTADO = 7;
+export const VERSAO_ESTADO = 8;
 
 const enumDe = <T extends string>(xs: readonly T[]) => z.enum(xs as unknown as [T, ...T[]]);
 const ids = <T extends { id: string }>(xs: readonly T[]) => xs.map((x) => x.id) as T['id'][];
@@ -96,6 +96,8 @@ export const programaSchema = z.object({
   avisos: z.array(porque),
   porque: z.array(porque),
   regioesExcluidas: z.array(articulacao),
+  /** A margem pessoal de tempo com que o programa foi estimado (versão 8; tempo.calibracao). */
+  margemTempo: z.number().min(-0.1).max(0.5).optional(),
 }) satisfies z.ZodType<Programa, z.ZodTypeDef, unknown>;
 
 const carga = z.discriminatedUnion('tipo', [
@@ -126,8 +128,20 @@ export const sessaoSchema = z.object({
   /** Local onde o treino foi feito (R1b). Sessão sem local = de antes do R1b, feita no 1º local (o único que existia). */
   localId: z.string().optional(),
   exercicios: z.array(
-    z.object({ exId: exercicioId, noLugarDe: exercicioId.optional(), series: z.array(serie), interrompido: z.boolean().optional() }),
+    z.object({
+      exId: exercicioId,
+      noLugarDe: exercicioId.optional(),
+      series: z.array(serie),
+      interrompido: z.boolean().optional(),
+      /** Nota de dor dada antes de qualquer série (versão 8; seguranca.dor.escala). */
+      dorSemSerie: z.number().int().min(1).max(10).optional(),
+    }),
   ),
+  /**
+   * Exercícios registrados cujo id saiu da biblioteca (versão 8; storage/ids.ts): ficam guardados como estavam, fora
+   * das regras e das telas, para o registro não se perder nem deixar o estado ilegível.
+   */
+  foraDaBiblioteca: z.array(z.object({ exId: z.string(), series: z.array(serie) }).passthrough()).optional(),
   /** Toque opcional no fim do treino (R2; deload.semana-leve). Nada vem marcado: ausente = a pessoa não tocou. */
   hojeFoi: z.enum(['leve', 'normal', 'pesado']).optional(),
   /** Feita durante uma semana leve aceita (R2): fora da dupla progressão e da estagnação. */

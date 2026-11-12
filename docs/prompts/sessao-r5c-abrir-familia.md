@@ -20,7 +20,7 @@ Você vai conduzir o **R5c, "abrir para família e amigos"**, do treino-mvp, um 
 **Leia primeiro:** o `CLAUDE.md` (o princípio de privacidade); `docs/revisoes/proximos-passos.md` (parte 2); `docs/revisoes/proximos-passos/e-produto.md` inteiro (P1 a P6, B1, B2, os pedidos e as fontes); `docs/pesquisa/11-decisoes-m4.md` (a visão); `api/`; `src/storage/`; `src/features/onboarding/BoasVindas.tsx`, `FotoEquipamento.tsx`, `src/features/dados/Dados.tsx`; as fontes `lgpd`, `anpd2-2022`, `anthropic-retencao`, `anthropic-termos`, `webkit2020`, `webkit2023`, `mdn-storage` em `docs/pesquisa/fontes.md`.
 
 **Regras desta sessão**
-- Conta: só as contas pessoais do Gustavo (gustavogopp@gmail.com ou gustavogopp2@gmail.com), nunca a da Futurum. Tudo fica no git, e só no git.
+- Conta: só as contas pessoais do Gustavo, nunca a conta de trabalho. Tudo fica no git, e só no git.
 - Não mexa no branch `r3-uso-real`. `privado/` nunca é versionado nem usado.
 - **Não é parecer jurídico.** Os textos de termos e privacidade saem como rascunho para um advogado revisar; o devlog registra a revisão antes de mandar o link a alguém.
 - **O redesign visual** é de outra sessão e refaz a tela da foto (lote 3) e o `App.tsx` (lote técnico). Combine a ordem com o Gustavo; as telas novas (caixa de consentimento, tela de erro, aviso de instalar no iPhone, "última cópia", link dos termos, "Como ler o seu treino", ícone do iPhone) são pedidos ao design (`proximos-passos.md`, seção 2.5, itens 11 a 17). Se o lote dele não estiver na `main`, faça o mínimo funcional com os componentes de hoje.

@@ -66,6 +66,10 @@ export function pedirAoBoneco<T = unknown>(pedido: Pedido, guardar = true): Prom
       : import('./trabalhoBoneco').then((m) => m.responder(pedido));
     if (!guardar) return resposta as Promise<T>;
     prontos.set(chave, resposta);
+    // uma resposta que falha (o motor não baixou) não fica guardada: o próximo pedido tenta de novo
+    resposta.catch(() => {
+      if (prontos.get(chave) === resposta) prontos.delete(chave);
+    });
   }
   return prontos.get(chave)! as Promise<T>;
 }

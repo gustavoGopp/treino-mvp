@@ -73,6 +73,10 @@ export function Triagem() {
     if (r.bloqueado) {
       setBloqueio({ respostas, dores: ds });
       setLiberado(false);
+      // Ao refazer a triagem com um programa já montado, as respostas antigas (sem "sim") continuavam salvas, e bastava
+      // sair desta tela para o programa seguir como se nada tivesse mudado. As novas ficam salvas, sem a liberação, e o
+      // programa aparece pausado até a pessoa confirmar. No 1º cadastro nada é salvo, como antes.
+      atualizar((s) => (s.triagem ? { ...s, triagem: { respostas, ...(ds.length ? { dores: ds } : {}) } } : s));
       return;
     }
     atualizar((s) => ({ ...s, triagem: { respostas, ...(ds.length ? { dores: ds } : {}) } }));

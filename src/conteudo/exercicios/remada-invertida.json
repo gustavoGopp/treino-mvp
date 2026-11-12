@@ -1,0 +1,56 @@
+{
+  "id": "remada-invertida",
+  "name": "Remada invertida",
+  "short": "Remada invertida",
+  "target": "Costas",
+  "setupEq": [
+    "Barra firme na altura da cintura (no rack, no smith ou uma barra baixa de praça)."
+  ],
+  "setupBody": [
+    "Embaixo da barra, pegada um pouco mais aberta que os ombros.",
+    "Corpo reto dos calcanhares à cabeça, calcanhares no chão."
+  ],
+  "exec": [
+    [
+      "conc",
+      "Puxar",
+      "Puxa o peito até a barra, com o corpo reto e os cotovelos indo para trás."
+    ],
+    [
+      "ecc",
+      "Descida",
+      "~2 s. Desce até os braços estenderem."
+    ]
+  ],
+  "range": [
+    "Início: braços estendidos, corpo reto.",
+    "Fim: peito encostando na barra."
+  ],
+  "cues": [
+    "Corpo reto.",
+    "Peito na barra.",
+    "Desce devagar."
+  ],
+  "errors": [
+    {
+      "id": "e1",
+      "title": "Quadril caído",
+      "desc": "Deixar o quadril cair encurta o movimento."
+    },
+    {
+      "id": "e2",
+      "title": "Puxar com o queixo",
+      "desc": "Esticar o pescoço para alcançar a barra no lugar de subir o peito."
+    },
+    {
+      "id": "e3",
+      "title": "Descida solta",
+      "desc": "Cair de uma vez perde metade do trabalho."
+    }
+  ],
+  "montagem": [
+    "Barra presa e que não gira nem escorrega: teste com o peso do corpo antes da 1ª série.",
+    "No smith, barra travada nos ganchos."
+  ],
+  "carga": "Peso do corpo: suba pela escada de dificuldade do exercício quando a 1ª série chegar ao topo da faixa e as outras ficarem perto dele. Mais difícil: pés mais à frente, corpo mais deitado."
+}

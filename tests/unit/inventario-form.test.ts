@@ -1,8 +1,10 @@
+import { readFileSync } from 'node:fs';
 import { describe, expect, it } from 'vitest';
 import { aplicarAtalho, CATEGORIAS, comSugestoes, deForm, formVazio, itensDaCategoria, paraForm, type FormInventario } from '../../src/features/onboarding/inventarioForm';
 import { ATALHOS, ITENS_DE_ANILHA } from '../../src/domain/taxonomia/atalhos';
 import { gerarPrograma } from '../../src/domain/gerador';
-import { ITEM_IDS, type Inventario } from '../../src/domain/taxonomia/equipamentos';
+import { cargasHalter, HALTER, inventarioSchema, ITEM_IDS, sanarInventario, type Inventario } from '../../src/domain/taxonomia/equipamentos';
+import { migrar } from '../../src/storage/migracao';
 import { carla, PERSONAS } from '../personas';
 
 describe('checklist do inventário', () => {
@@ -245,5 +247,60 @@ describe('esteira (R1): reconhecida na foto, fora do treino', () => {
   it('a sugestão da foto não marca a esteira, mesmo confirmada', () => {
     const f = comSugestoes(formVazio(), [{ itemId: 'esteira' }, { itemId: 'step' }], ['esteira', 'step']);
     expect(f.marcados).toEqual(['step']);
+  });
+});
+
+// Auditoria de 12/11/2026: halteres com o mínimo acima do máximo, passo absurdo e anilhas sem anilha.
+describe('halteres e anilhas: o que o formulário, o esquema e a migração aceitam', () => {
+  const halteres = (min: string, max: string, passo: string) => deForm({ ...formVazio(), marcados: ['halteres_fixos'], halteres: { min, max, passo } });
+
+  it('o formulário recusa passo menor que o mínimo e halter acima do máximo, com o limite na mensagem', () => {
+    expect(halteres('1', '12', '0,001').erros['halteres.passo']).toBe(`O passo precisa ser de pelo menos ${String(HALTER.passoMinKg).replace('.', ',')} kg.`);
+    expect(halteres('1', '1200', '1').erros['halteres.max']).toBe(`Confira o peso: o app aceita até ${HALTER.maxKg} kg por halter.`);
+    expect(halteres('1', '12', '1')).toMatchObject({ erros: {}, inventario: { halteres_fixos: { minKg: 1, maxKg: 12, passoKg: 1 } } });
+    // um par só (mínimo igual ao máximo) continua valendo
+    expect(halteres('5', '5', '5').erros).toEqual({});
+  });
+
+  it('o esquema recusa o que deixaria a lista de cargas vazia ou sem fim', () => {
+    const ok = (inv: unknown) => inventarioSchema.safeParse(inv).success;
+    expect(ok({ halteres_fixos: { minKg: 2, maxKg: 20, passoKg: 2 } })).toBe(true);
+    expect(ok({ halteres_fixos: { minKg: 5, maxKg: 5, passoKg: 5 } })).toBe(true);
+    expect(ok({ halteres_fixos: { minKg: 20, maxKg: 2, passoKg: 2 } })).toBe(false);
+    expect(ok({ halteres_fixos: { minKg: 2, maxKg: 20, passoKg: 0.001 } })).toBe(false);
+    expect(ok({ halteres_fixos: { minKg: 2, maxKg: 20, passoKg: 50 } })).toBe(false);
+    expect(ok({ halteres_fixos: { minKg: 2, maxKg: 2000, passoKg: 2 } })).toBe(false);
+    expect(ok({ anilhas_e_manoplas: { manoplas: 2, manoplaKg: 2, anilhas: [{ kg: 1, qtd: 4 }] } })).toBe(true);
+    expect(ok({ anilhas_e_manoplas: { manoplas: 2, manoplaKg: 2, anilhas: [] } })).toBe(false);
+  });
+
+  it('sanarInventario corrige o que dá para corrigir sem inventar, e a lista de cargas deixa de ser vazia', () => {
+    const invertido = { halteres_fixos: { minKg: 20, maxKg: 2, passoKg: 2 } } as Inventario;
+    expect(cargasHalter(invertido)).toEqual([]);
+    expect(sanarInventario(invertido)).toEqual({ halteres_fixos: { minKg: 2, maxKg: 20, passoKg: 2 } });
+    expect(cargasHalter(sanarInventario(invertido) as Inventario)).toHaveLength(10);
+    // passo maior que a diferença: vira a diferença (o mais leve e o mais pesado existem)
+    expect(sanarInventario({ halteres_fixos: { minKg: 2, maxKg: 20, passoKg: 50 } })).toEqual({ halteres_fixos: { minKg: 2, maxKg: 20, passoKg: 18 } });
+    // passo e peso fora dos limites: ficam no limite
+    expect(sanarInventario({ halteres_fixos: { minKg: 2, maxKg: 2000, passoKg: 0.001 } })).toEqual({
+      halteres_fixos: { minKg: 2, maxKg: HALTER.maxKg, passoKg: HALTER.passoMinKg },
+    });
+    // manoplas sem nenhuma anilha não montam halter: o item sai, o resto fica
+    expect(sanarInventario({ anilhas_e_manoplas: { manoplas: 2, manoplaKg: 2, anilhas: [] }, barra_fixa: {} })).toEqual({ barra_fixa: {} });
+    // o que já está certo não muda (nem de identidade)
+    const certo = { halteres_fixos: { minKg: 2, maxKg: 20, passoKg: 2 }, barra_fixa: {} };
+    expect(sanarInventario(certo)).toBe(certo);
+    for (const inv of [invertido, { halteres_fixos: { minKg: 2, maxKg: 2000, passoKg: 0.001 } }, { anilhas_e_manoplas: { manoplas: 2, manoplaKg: 2, anilhas: [] } }])
+      expect(inventarioSchema.safeParse(sanarInventario(inv)).success).toBe(true);
+  });
+
+  it('um estado da versão 7 com esses inventários continua legível depois da migração', () => {
+    const antigo = JSON.parse(readFileSync('tests/unit/fixtures/estado-v7.json', 'utf8')) as { locais: { id: string; nome: string; inventario: unknown }[] };
+    antigo.locais[0]!.inventario = { ...(antigo.locais[0]!.inventario as object), halteres_fixos: { minKg: 20, maxKg: 2, passoKg: 2 } };
+    antigo.locais.push({ id: 'local-2', nome: 'Casa', inventario: { anilhas_e_manoplas: { manoplas: 2, manoplaKg: 2, anilhas: [] }, barra_fixa: {} } });
+    const r = migrar(antigo);
+    if (!r.ok) throw new Error(r.erro);
+    expect(r.estado.locais![0]!.inventario.halteres_fixos).toEqual({ minKg: 2, maxKg: 20, passoKg: 2 });
+    expect(r.estado.locais![1]!.inventario).toEqual({ barra_fixa: {} });
   });
 });

@@ -1,11 +1,11 @@
-import { BIBLIOTECA, type Exercicio } from '../biblioteca';
+import { MUSCULOS_INFERIORES, POR_ID, type Exercicio } from '../biblioteca';
 import { faseNaSemana, prescricaoDaSemana, type DiaPrograma, type ExercicioPrescrito, type Fase, type Programa } from '../gerador';
 import { blocoAtual, naFaseDeAprendizado, semanaNoBloco, treinoFeito, type Hoje } from './bloco';
 import { DEPOIS_DA_ESCADA, escadaDe, nomeDoDegrau, pedeMiniBand } from '../progressao/escadas';
-import { noPassoAbaixo, proximaCarga, sugerirProgressao, type Alvo, type Carga, type OpcoesCarga, type SerieRegistrada, type SessaoExercicio, type Sugestao } from '../progressao';
+import { existeNoPasso, noPassoAbaixo, proximaCarga, sugerirProgressao, sugestaoPorDor, textoDaCargaSimples, type Alvo, type Carga, type OpcoesCarga, type SerieRegistrada, type SessaoExercicio, type Sugestao } from '../progressao';
 import { calibrar, emCalibracao, fimDaCalibracao, semCalibracao, type ResultadoCalibracao } from '../progressao/calibracao';
 import { funcoesDoExercicio } from '../gerador/funcoes';
-import { r } from '../regras';
+import { DOR, r } from '../regras';
 import { CAPACIDADES, cargasCaneleiras, cargasHalter, cargasKettlebell, ITEM_IDS, MENOR_ANILHA_PADRAO_KG, type Capacidade, type Inventario } from '../taxonomia/equipamentos';
 export * from './bloco';
 
@@ -21,7 +21,16 @@ export type ExercicioFeito = {
   series: SerieRegistrada[];
   /** Encerrado por dor ou sinal de alerta. */
   interrompido?: boolean;
+  /**
+   * Nota de dor (1 a 10) dada antes de qualquer série do exercício (seguranca.dor.escala). Quando uma série é
+   * registrada, a nota passa para ela; se o exercício foi encerrado sem série, fica aqui.
+   */
+  dorSemSerie?: number;
 };
+
+/** A maior nota de dor do exercício na sessão: a das séries ou a dada antes da 1ª (0 = sem nota). */
+export const dorDoExercicio = (e: Pick<ExercicioFeito, 'series' | 'dorSemSerie'>): number =>
+  Math.max(0, e.dorSemSerie ?? 0, ...e.series.map((s) => s.dor ?? 0));
 
 export type Sessao = {
   id: string;
@@ -46,7 +55,6 @@ export type Sessao = {
  */
 export type LocalDaCarga = { localId: string; localPadrao?: string };
 
-const POR_ID: Record<string, Exercicio> = Object.fromEntries(BIBLIOTECA.map((e) => [e.id, e]));
 
 /**
  * Próximo dia da rotação: o seguinte ao do último treino feito; o primeiro se não há histórico (decisão 1). Só conta a
@@ -170,10 +178,7 @@ export function textoCarga(c: Carga, exId?: string): string {
     if (c.degrau === 0) return base;
     return `${base} · ${nomeDoDegrau(exId, c.degrau) ?? `degrau ${c.degrau + 1}`}`;
   }
-  if (c.tipo === 'kg') return `${c.kg.toLocaleString('pt-BR')} kg`;
-  if (c.tipo === 'placa') return `placa ${c.placa}`;
-  if (c.tipo === 'anilha') return `${c.kgPorLado.toLocaleString('pt-BR')} kg por lado`;
-  return `contrapeso ${c.placa}`;
+  return textoDaCargaSimples(c)!;
 }
 
 /**
@@ -246,7 +251,7 @@ export function cargaDaVolta(c: Carga, reducao: number, o: OpcoesCarga): Carga {
       const lista = o.lista ?? [];
       if (lista.length) return { tipo: 'kg', kg: [...lista].reverse().find((k) => k <= alvo + 1e-9) ?? lista[0]! };
       const k = noPassoAbaixo(alvo, o);
-      return { tipo: 'kg', kg: k > 0 ? k : c.kg };
+      return { tipo: 'kg', kg: existeNoPasso(k, o) ? k : c.kg };
     }
     case 'placa':
       return { tipo: 'placa', placa: Math.max(1, Math.floor(c.placa * f + 1e-9)) };
@@ -312,8 +317,14 @@ export function sugestaoDoExercicio(
   const h = hist();
   const alvo: Alvo = { reps: x.reps, rir: x.rir };
   const ultima = h.at(-1);
-  // A dor manda antes de tudo (seguranca.dor.escala), em qualquer semana.
-  if (ultima?.series.some((s) => (s.dor ?? 0) >= 3)) return sugerirProgressao(h, alvo, op);
+  // A dor manda antes de tudo (seguranca.dor.escala), em qualquer semana. Se na última vez o exercício foi encerrado
+  // pela dor antes da 1ª série, a nota está no exercício, e não numa série.
+  const tentativa = [...historico.flatMap((s) => s.exercicios)].reverse().find((e) => e.exId === x.exId && (e.series.length > 0 || e.dorSemSerie !== undefined));
+  if (tentativa && !tentativa.series.length) {
+    const porDor = sugestaoPorDor(tentativa.dorSemSerie ?? 0, ultima?.series[0]?.carga, op);
+    if (porDor) return porDor;
+  }
+  if (ultima?.series.some((s) => (s.dor ?? 0) >= DOR.ajustarDe)) return sugerirProgressao(h, alvo, op);
   if (emCalibracao(h)) {
     const s = ultima?.series.at(-1);
     if (!s) return { acao: 'calibrar', motivo: textoPrimeiraVez(historico, x.exId, opcoes.local), regraId: r('progressao.calibracao') };
@@ -411,13 +422,9 @@ export function avaliarSerieDeCalibracao(
   return { ...c, proxima: noInventario(c.proxima, op).carga };
 }
 
-/** Semana 1 de uma volta de pausa (readaptacao.semana1): a calibração não sobe a carga. */
-export const soDesceNaSemana = (p: Programa, semana: number, fases: Fase[] = p.fases) => faseDaSemana(p, semana, fases)?.regraId === 'readaptacao.semana1';
-
 /** Lembrete de aquecimento antes do primeiro multiarticular de cada região (tempo.aquecimento; decisão 10). */
 export function precisaAquecer(dia: DiaPrograma, indice: number): boolean {
-  const INFERIORES = ['quadriceps', 'posteriores', 'gluteos', 'panturrilha'];
-  const regiao = (x: ExercicioPrescrito) => (POR_ID[x.exId]?.musculos.primarios.some((m) => INFERIORES.includes(m)) ? 'inf' : 'sup');
+  const regiao = (x: ExercicioPrescrito) => (POR_ID[x.exId]?.musculos.primarios.some((m) => MUSCULOS_INFERIORES.includes(m)) ? 'inf' : 'sup');
   const x = dia.exercicios[indice];
   if (!x || x.tipo !== 'composto') return false;
   return !dia.exercicios.slice(0, indice).some((y) => y.tipo === 'composto' && regiao(y) === regiao(x));
@@ -431,7 +438,6 @@ export function resumoSessao(s: Sessao) {
   return {
     exercicios: s.exercicios.filter((e) => e.series.length > 0).length,
     series: series.length,
-    efetivas: series.filter((x) => x.rir <= 4 && x.amplitudeCompleta !== false).length,
     minutos: s.fim ? Math.max(1, Math.round((Date.parse(s.fim) - Date.parse(s.inicio)) / 60_000)) : undefined,
   };
 }

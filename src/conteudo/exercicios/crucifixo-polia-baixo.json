@@ -1,0 +1,52 @@
+{
+  "id": "crucifixo-polia-baixo",
+  "name": "Crucifixo na polia de baixo para cima",
+  "short": "Crucifixo de baixo para cima",
+  "target": "Peito (parte de cima)",
+  "setupEq": [
+    "As duas polias embaixo, um estribo em cada."
+  ],
+  "setupBody": [
+    "Em pé no meio das torres, um pé à frente, tronco reto.",
+    "Braços ao lado do corpo, um pouco atrás, cotovelos levemente dobrados."
+  ],
+  "exec": [
+    [
+      "conc",
+      "Subida",
+      "Leva as mãos para a frente e para cima, até se encontrarem na altura do peito ou do queixo."
+    ],
+    [
+      "ecc",
+      "Volta",
+      "~2 s. Volta abrindo os braços até sentir o peito alongar."
+    ]
+  ],
+  "range": [
+    "Início: braços abertos e baixos, peito alongado.",
+    "Fim: mãos juntas à frente, na altura do peito ou do queixo."
+  ],
+  "cues": [
+    "Cotovelo no mesmo ângulo.",
+    "Sobe em arco.",
+    "Volta devagar."
+  ],
+  "errors": [
+    {
+      "id": "e1",
+      "title": "Dobrar e esticar os cotovelos",
+      "desc": "Vira um empurrar e tira o trabalho do peito."
+    },
+    {
+      "id": "e2",
+      "title": "Balançar o tronco",
+      "desc": "Usar o corpo para subir a carga."
+    },
+    {
+      "id": "e3",
+      "title": "Encolher os ombros",
+      "desc": "Subir os ombros junto leva o trabalho para o trapézio."
+    }
+  ],
+  "carga": "Registre o número da placa da torre. Para progredir, +1 placa."
+}

@@ -1,8 +1,8 @@
 import type { ExercicioPrescrito, Programa } from '../gerador';
 import { sugerirProgressao, sugerirSemanaLeve } from '../progressao';
 import { semCalibracao } from '../progressao/calibracao';
-import { r, SEMANA_LEVE } from '../regras';
-import { diaLocal, hojeNoPrograma, historicoDoExercicio, naFaseDeAprendizado, opcoesCarga, prescricaoDaVaga, treinoFeito, type LocalDaCarga, type Sessao } from '../sessao';
+import { DOR, r, SEMANA_LEVE } from '../regras';
+import { diaLocal, dorDoExercicio, hojeNoPrograma, historicoDoExercicio, naFaseDeAprendizado, opcoesCarga, prescricaoDaVaga, treinoFeito, type LocalDaCarga, type Sessao } from '../sessao';
 import type { Inventario } from '../taxonomia/equipamentos';
 
 // Os sinais da semana leve (deload.semana-leve; pesquisa-v2/07, seção 6): 2 exercícios estagnados, "pesado demais" em
@@ -26,18 +26,28 @@ export type OpcoesSemanaLeve = {
   semanaLeve?: { inicio: string; encerradaEm?: string };
 };
 
-/** Os exercícios do programa com dor de 3 a 5 nas 2 últimas sessões em que foram feitos. */
-export function dorQueSeRepete(historico: Sessao[]): string[] {
+/**
+ * Dor que se repete (seguranca.dor.escala): os exercícios com nota de 3 ou mais nas 2 últimas sessões em que foram
+ * tentados. Conta a nota das séries e a dada antes da 1ª série (o exercício encerrado pela dor não tem série).
+ */
+export function dorRepetida(historico: Sessao[]): { exId: string; notas: number[] }[] {
   const ids = [...new Set(historico.flatMap((s) => s.exercicios.map((e) => e.exId)))];
-  return ids.filter((id) => {
-    const ult = historico
-      .filter(treinoFeito)
-      .map((s) => s.exercicios.filter((e) => e.exId === id).flatMap((e) => e.series))
-      .filter((xs) => xs.length > 0)
-      .slice(-2);
-    const max = (xs: { dor?: number }[]) => Math.max(0, ...xs.map((x) => x.dor ?? 0));
-    return ult.length === 2 && ult.every((xs) => max(xs) >= SEMANA_LEVE.dorMin && max(xs) <= SEMANA_LEVE.dorMax);
+  return ids.flatMap((exId) => {
+    const notas = historico
+      .filter((s) => !!s.fim)
+      .map((s) => s.exercicios.filter((e) => e.exId === exId && (e.series.length > 0 || e.dorSemSerie !== undefined)))
+      .filter((es) => es.length > 0)
+      .slice(-2)
+      .map((es) => Math.max(...es.map(dorDoExercicio)));
+    return notas.length === 2 && notas.every((n) => n >= DOR.ajustarDe) ? [{ exId, notas }] : [];
   });
+}
+
+/** O gatilho da semana leve (deload.semana-leve): dor de 3 a 5 nas 2 vezes. Acima de 5, a saída é a alternativa. */
+export function dorQueSeRepete(historico: Sessao[]): string[] {
+  return dorRepetida(historico)
+    .filter((d) => d.notas.every((n) => n <= SEMANA_LEVE.dorMax))
+    .map((d) => d.exId);
 }
 
 /** A sugestão da semana leve de hoje, com os motivos, a carência e o aviso de dor. */
@@ -68,13 +78,17 @@ export function semanaLeveDeHoje(programa: Programa, historico: Sessao[], hojeIs
   // 2) "Pesado demais" nos últimos 3 treinos (o toque opcional do fim do treino).
   const pesado = treinos.slice(-SEMANA_LEVE.pesadoDe).filter((s) => s.hojeFoi === 'pesado').length;
 
-  // 3) Dor que se repete: soma à regra de dor, nunca no lugar dela.
+  // 3) Dor que se repete: soma à regra de dor, nunca no lugar dela. O aviso vale para toda dor de 3 ou mais nas 2
+  // últimas vezes; a semana leve, só para a de 3 a 5 (acima de 5 o exercício já foi encerrado).
+  const repetida = dorRepetida(historico);
   const comDor = dorQueSeRepete(historico);
-  const dor: AvisoDeDor | undefined = comDor.length
+  const alta = repetida.some((d) => d.notas.some((n) => n > DOR.ajustarAte));
+  const dor: AvisoDeDor | undefined = repetida.length
     ? {
-        exIds: comDor,
-        texto:
-          'Dor de 3 a 5 no mesmo exercício em 2 treinos seguidos: reduza a carga, encurte a amplitude ou use a alternativa. Se piorar ou durar mais de 1 a 2 semanas, procure avaliação profissional.',
+        exIds: repetida.map((d) => d.exId),
+        texto: alta
+          ? `Dor no mesmo exercício em 2 treinos seguidos, com nota acima de ${DOR.ajustarAte}: use a alternativa e procure avaliação profissional.`
+          : `Dor de ${DOR.ajustarDe} a ${DOR.ajustarAte} no mesmo exercício em 2 treinos seguidos: use uma carga menor, se houver, encurte a amplitude ou use a alternativa. Se piorar ou durar mais de 1 a 2 semanas, procure avaliação profissional.`,
         regraId: r('seguranca.dor.escala'),
       }
     : undefined;

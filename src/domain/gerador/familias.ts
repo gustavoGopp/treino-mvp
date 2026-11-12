@@ -93,12 +93,7 @@ export function familiasCobertas(
 }
 
 
-/** avaliador.empurrar-puxar: as funções de cada lado do ombro (empurrar ÷ puxar até 1,5). */
-export const FUNCOES_EMPURRAR = ['empurrar-horizontal', 'empurrar-inclinado', 'empurrar-vertical', 'crucifixo'];
-export const FUNCOES_PUXAR = ['puxar-vertical', 'puxar-horizontal', 'ombro-posterior'];
 /** O exercício está em alguma das funções (em qualquer nível). */
 export const ehDe = (funcoes: string[]) => (id: string) => funcoes.some((f) => FUNCAO[f]!.niveis.some((n) => n.includes(id)));
-export const ehEmpurrar = ehDe(FUNCOES_EMPURRAR);
-export const ehPuxar = ehDe(FUNCOES_PUXAR);
 /** avaliador.empurrar-puxar: o limite (o mesmo da régua da G5, D1, e do gerador desde o R5d). */
 export const EMPURRAR_PUXAR_MAX = 1.5;

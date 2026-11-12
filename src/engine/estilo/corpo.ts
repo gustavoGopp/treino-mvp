@@ -1,4 +1,3 @@
-// @ts-nocheck
 // R4 (experimento do boneco): o corpo nos estilos novos, A (boneco aprimorado) e B (silhueta limpa).
 // Opção paralela do motor: não muda nada do estilo atual (body() em ../desenho.ts). Usa o mesmo esqueleto
 // (skel), as mesmas poses aprovadas e as mesmas primitivas de saída (push), só com outro desenho.
@@ -16,17 +15,25 @@
 import { CTX } from '../contexto';
 import { f1, hull, isSide, push } from '../desenho';
 import { B } from '../esqueleto';
-import { add, comb, mul, norm, sub } from '../math';
+import { add, comb, mul, norm, sub } from '../port';
+import type { Acabamento, Esqueleto, PartesDoCorpo, PontoTela, V2, V3 } from '../tipos';
 
 export type EstiloNovo = 'a' | 'b';
+/** Segmentos dos membros (as chaves de RAIO). */
+type Segmento = 'ua' | 'fa' | 'mao' | 'th' | 'sk' | 'calc' | 'pe';
+/** Um segmento de membro: [começo, fim, espessura, nome]; em 3D na montagem e já projetado no desenho. */
+type Seg = [V3, V3, number, Segmento];
+type Classe = (base: string, longe?: boolean) => string;
+/** O que o membro precisa saber do corpo: o acabamento, se é braço ou perna e, na perna, as cascas do tronco. */
+type OpcoesMembro = { PR: Acabamento; braco?: boolean; perna?: boolean; sk?: Esqueleto; cascas?: V2[][] };
 
-const pts = (Q) => Q.map((q) => f1(q[0]) + ',' + f1(q[1])).join(' ');
-const zMedio = (V) => V.reduce((s, v) => s + CTX.PJ(v)[2], 0) / V.length;
-const P_ = () => CTX.ACABAMENTO || {};
+const pts = (Q: PontoTela[]) => Q.map((q) => f1(q[0]) + ',' + f1(q[1])).join(' ');
+const zMedio = (V: V3[]) => V.reduce((s, v) => s + CTX.PJ(v)[2], 0) / V.length;
+const P_ = (): Acabamento => CTX.ACABAMENTO || {};
 
 /** Seção elíptica do tronco: centro c, eixos x (largura) e f (profundidade), semieixos a e b. */
-function anel(c, x, f, a, b, n = 18) {
-  const out = [];
+function anel(c: V3, x: V3, f: V3, a: number, b: number, n = 18) {
+  const out: V3[] = [];
   for (let i = 0; i < n; i++) {
     const th = (2 * Math.PI * i) / n;
     out.push(comb(1, c, a * Math.cos(th), x, b * Math.sin(th), f));
@@ -36,20 +43,20 @@ function anel(c, x, f, a, b, n = 18) {
 
 // Seções do tronco, de baixo para cima: [altura no eixo, semilargura, semiprofundidade, desvio para a frente].
 // Abaixo da cintura seguem a pelve (P, uL/fL/xL); acima, o tórax (M, uT/fT/xT).
-const PELVE = [
+const PELVE: [number, number, number, number][] = [
   [-4, 12, 8.5, -1],
   [2, 16, 10.5, -1.5],
   [12, 13.5, 9, 0],
 ];
-const TORAX = [
+const TORAX: [number, number, number, number][] = [
   [3, 14, 9.5, 0.5],
   [15, 16.5, 11, 1],
   [24, 17.5, 9.5, 0],
   [29.5, 10.5, 7, -1],
 ];
 
-export function aneisTronco(sk) {
-  const r = [];
+export function aneisTronco(sk: Esqueleto) {
+  const r: V3[][] = [];
   for (const [h, a, b, d] of PELVE) r.push(anel(comb(1, sk.P, h, sk.uL, d, sk.fL), sk.xL, sk.fL, a, b));
   for (const [h, a, b, d] of TORAX) r.push(anel(comb(1, sk.M, h, sk.uT, d, sk.fT), sk.xT, sk.fT, a, b));
   return r;
@@ -60,7 +67,7 @@ export function aneisTronco(sk) {
 const RAIO_OMBRO = 5.4;
 /** Direções em volta de um ponto (para o contorno de uma esfera em qualquer vista). */
 const DIRS = (() => {
-  const r = [];
+  const r: V3[] = [];
   for (let i = 0; i < 6; i++)
     for (let j = 0; j < 12; j++) {
       const t = (i / 5) * Math.PI, f = (j / 12) * 2 * Math.PI;
@@ -70,20 +77,20 @@ const DIRS = (() => {
 })();
 const ESP = { ua: 9, fa: 7.5, mao: 5.5, th: 14, sk: 10, pe: 5, pesc: 8 };
 // "conico": raio (cm) no começo e no fim de cada segmento
-const RAIO = { ua: [4.4, 3.6], fa: [3.6, 2.6], mao: [2.8, 3.9], th: [8, 5.4], sk: [5.2, 3.1], calc: [3.4, 3.4], pe: [3.4, 2.1] };
+const RAIO: Record<Segmento, V2> = { ua: [4.4, 3.6], fa: [3.6, 2.6], mao: [2.8, 3.9], th: [8, 5.4], sk: [5.2, 3.1], calc: [3.4, 3.4], pe: [3.4, 2.1] };
 
-const hashStr = (t) => { let h = 2166136261; for (let i = 0; i < t.length; i++) { h ^= t.charCodeAt(i); h = Math.imul(h, 16777619); } return (h >>> 0).toString(36); };
-const dPath = (h) => 'M' + h.map((q) => f1(q[0]) + ' ' + f1(q[1])).join('L') + 'Z';
+const hashStr = (t: string) => { let h = 2166136261; for (let i = 0; i < t.length; i++) { h ^= t.charCodeAt(i); h = Math.imul(h, 16777619); } return (h >>> 0).toString(36); };
+const dPath = (h: PontoTela[]) => 'M' + h.map((q) => f1(q[0]) + ' ' + f1(q[1])).join('L') + 'Z';
 
 /** Cone 2D (dois círculos ligados pelas tangentes externas), como polígono. */
-function cone(a, ra, b, rb) {
+function cone(a: PontoTela, ra: number, b: PontoTela, rb: number): V2[] {
   const dx = b[0] - a[0], dy = b[1] - a[1], d = Math.hypot(dx, dy);
   if (d < Math.abs(ra - rb) + 0.01) {
     const [c, r] = ra > rb ? [a, ra] : [b, rb];
-    return Array.from({ length: 16 }, (_, i) => [c[0] + r * Math.cos((i / 16) * 2 * Math.PI), c[1] + r * Math.sin((i / 16) * 2 * Math.PI)]);
+    return Array.from({ length: 16 }, (_, i): V2 => [c[0] + r * Math.cos((i / 16) * 2 * Math.PI), c[1] + r * Math.sin((i / 16) * 2 * Math.PI)]);
   }
   const tu = Math.atan2(dy, dx), k = (ra - rb) / d, phi = Math.acos(Math.max(-1, Math.min(1, k)));
-  const out = [];
+  const out: V2[] = [];
   const n2 = 10, n1 = 14;
   for (let i = 0; i <= n2; i++) { const t = tu + phi - (2 * phi * i) / n2; out.push([b[0] + rb * Math.cos(t), b[1] + rb * Math.sin(t)]); }
   for (let i = 0; i <= n1; i++) { const t = tu - phi - ((2 * Math.PI - 2 * phi) * i) / n1; out.push([a[0] + ra * Math.cos(t), a[1] + ra * Math.sin(t)]); }
@@ -94,28 +101,28 @@ function cone(a, ra, b, rb) {
  * Desenha o corpo e devolve a profundidade de cada parte (para os músculos ficarem por cima da parte certa
  * e por baixo do que estiver na frente dela).
  */
-export function corpoNovo(sk, estilo: EstiloNovo, erro = false) {
+export function corpoNovo(sk: Esqueleto, estilo: EstiloNovo, erro = false) {
   const A = estilo === 'a';
   const PR = P_();
   const ow = A ? 1.3 : 0; // espessura do contorno (só no A)
-  const c = (n) => (erro ? n + '-e' : n);
-  const cls = (base, longe) => c(`e${estilo}-${base}${longe ? '-longe' : ''}`);
-  const partes = { tronco: 0, cabeca: 0, braco: {}, perna: {} };
+  const c = (n: string) => (erro ? n + '-e' : n);
+  const cls: Classe = (base, longe) => c(`e${estilo}-${base}${longe ? '-longe' : ''}`);
+  const partes: PartesDoCorpo = { tronco: 0, cabeca: 0, braco: {}, perna: {} };
 
   const aneis = aneisTronco(sk);
   const dT = zMedio([sk.P, sk.M, sk.N]);
   partes.tronco = dT;
-  const cascas = [];
-  for (let i = 0; i < aneis.length - 1; i++) cascas.push(hull([...aneis[i], ...aneis[i + 1]].map(CTX.PJ)));
+  const cascas: V2[][] = [];
+  for (let i = 0; i < aneis.length - 1; i++) cascas.push(hull([...aneis[i]!, ...aneis[i + 1]!].map(CTX.PJ)));
   // ombros (acabamento A2): o alto do tórax vai até os dois ombros, arredondados (uma esfera em volta de cada S), e
   // desce do pescoço para o ombro como o trapézio; o braço sai de dentro do ombro em vez de pender do canto do tronco
   if (PR.conico) {
-    const esfera = (c, r) => DIRS.map((u) => comb(1, c, r, u));
+    const esfera = (c: V3, r: number) => DIRS.map((u) => comb(1, c, r, u));
     const n = aneis.length;
-    cascas.push(hull([...aneis[n - 2], ...aneis[n - 1], ...esfera(comb(1, sk.side.R.S, -2.5, sk.uT), RAIO_OMBRO), ...esfera(comb(1, sk.side.L.S, -2.5, sk.uT), RAIO_OMBRO)].map(CTX.PJ)));
+    cascas.push(hull([...aneis[n - 2]!, ...aneis[n - 1]!, ...esfera(comb(1, sk.side.R.S, -2.5, sk.uT), RAIO_OMBRO), ...esfera(comb(1, sk.side.L.S, -2.5, sk.uT), RAIO_OMBRO)].map(CTX.PJ)));
   }
   const nTopo = add(sk.N, mul(sub(sk.Hc, sk.N), 0.62));
-  const qN = [CTX.PJ(sk.N), CTX.PJ(nTopo)];
+  const qN: [V3, V3] = [CTX.PJ(sk.N), CTX.PJ(nTopo)];
   if (A) {
     if (PR.tronco1) push(1, dT, `<path d="${cascas.map(dPath).join('')}" class="${c('ea-cont')}" stroke-width="${f1(ow * 2)}"/>`);
     else for (const h of cascas) push(1, dT, `<polygon points="${pts(h)}" class="${c('ea-cont')}" stroke-width="${f1(ow * 2)}"/>`);
@@ -142,40 +149,40 @@ export function corpoNovo(sk, estilo: EstiloNovo, erro = false) {
 
   const dN = CTX.PJ(sk.N)[2],
     dP = CTX.PJ(sk.P)[2];
-  for (const k of ['L', 'R']) {
+  for (const k of ['L', 'R'] as const) {
     const sd = sk.side[k];
     const side = isSide();
     const longeA = side && CTX.PJ(sd.S)[2] < dN - 1,
       longeL = side && CTX.PJ(sd.Hp)[2] < dP - 1;
     // mão: a luva vai um pouco além do ponto de pegada (os dedos fecham em volta do cabo)
     const fimMao = PR.mao ? add(sd.G, mul(norm(sub(sd.G, sd.W)), 2.2)) : sd.G;
-    const perna = [
+    const perna: Seg[] = [
       [sd.Hp, sd.K, ESP.th, 'th'],
       [sd.K, sd.A, ESP.sk, 'sk'],
       [sd.heel, sd.A, ESP.pe, 'calc'],
       [sd.A, sd.toe, ESP.pe, 'pe'],
     ];
-    const braco = [
+    const braco: Seg[] = [
       [sd.S, sd.E, ESP.ua, 'ua'],
       [sd.E, sd.W, ESP.fa, 'fa'],
       [sd.W, fimMao, PR.mao ? 7.6 : ESP.mao, 'mao'],
     ];
-    const jL = [['Hp', sd.Hp], ['K', sd.K], ['A', sd.A]],
-      jA = [['S', sd.S], ['E', sd.E]];
-    const filtra = (js) => (PR.juntas ? js.filter(([n]) => PR.juntas.includes(n)) : js).map(([, p]) => p);
+    const jL: [string, V3][] = [['Hp', sd.Hp], ['K', sd.K], ['A', sd.A]],
+      jA: [string, V3][] = [['S', sd.S], ['E', sd.E]];
+    const filtra = (js: [string, V3][]) => (PR.juntas ? js.filter(([n]) => PR.juntas!.includes(n)) : js).map(([, p]) => p);
     partes.perna[k] = membro(perna, longeL, filtra(jL), A, ow, cls, c, erro, { perna: true, sk, PR, cascas });
     partes.braco[k] = membro(braco, longeA, filtra(jA), A, ow, cls, c, erro, { braco: true, PR });
   }
   return partes;
 }
 
-function membro(segs, longe, juntas, A, ow, cls, c, erro, o) {
+function membro(segs: Seg[], longe: boolean, juntas: V3[], A: boolean, ow: number, cls: Classe, c: (n: string) => string, erro: boolean, o: OpcoesMembro) {
   const PR = o.PR;
   const d = zMedio(segs.flatMap((s) => [s[0], s[1]])) + 0.05;
-  const Q = segs.map(([a, b, w, nome]) => [CTX.PJ(a), CTX.PJ(b), w, nome]);
-  const linha = ([a, b, w], c, extra) =>
+  const Q = segs.map(([a, b, w, nome]): Seg => [CTX.PJ(a), CTX.PJ(b), w, nome]);
+  const linha = ([a, b, w]: Seg, c: string, extra: number) =>
     `<line x1="${f1(a[0])}" y1="${f1(a[1])}" x2="${f1(b[0])}" y2="${f1(b[1])}" class="${c}" stroke-width="${f1(w + extra)}"/>`;
-  const forma = (s, c, extra) => {
+  const forma = (s: Seg, c: string, extra: number) => {
     if (!PR.conico) return linha(s, c, extra);
     const [a, b, w, nome] = s;
     const [ra, rb] = RAIO[nome] || [w / 2, w / 2];
@@ -186,11 +193,11 @@ function membro(segs, longe, juntas, A, ow, cls, c, erro, o) {
   // folga da cor do fundo em volta do braço de perto (só no A, de lado): separa o braço do tronco
   if (A && PR.folga && o.braco && !longe && (isSide())) for (const s of Q) push(1, d, forma(s, PR.conico ? 'eb-folga-t' : 'eb-folga', ow * 2 + 2.4));
   // mão de perto por cima do equipamento (os dedos fecham em volta do cabo) e de lado
-  const camada = (s) => (PR.mao && o.braco && s[3] === 'mao' && !longe && (isSide()) ? 1.45 : 1);
+  const camada = (s: Seg) => (PR.mao && o.braco && s[3] === 'mao' && !longe && (isSide()) ? 1.45 : 1);
   // ombro (deltoide): o recheio de uma calota redonda no começo do braço cobre a emenda entre o braço e o ombro do
   // tronco, para o braço sair do ombro (pedido do Gustavo no piloto do acabamento, 04/11/2026)
-  const ombro = A && PR.conico && o.braco && !longe ? Q[0][0] : null;
-  const circ = (q, r, cl, w) => `<circle cx="${f1(q[0])}" cy="${f1(q[1])}" r="${f1(r)}" class="${cl}" stroke-width="${f1(w)}"/>`;
+  const ombro = A && PR.conico && o.braco && !longe ? Q[0]![0] : null;
+  const circ = (q: PontoTela, r: number, cl: string, w: number) => `<circle cx="${f1(q[0])}" cy="${f1(q[1])}" r="${f1(r)}" class="${cl}" stroke-width="${f1(w)}"/>`;
   if (A) for (const s of Q) push(camada(s), d, forma(s, cCont, ow * 2));
   else if (!longe) for (const s of Q) push(1, d, linha(s, 'eb-folga', 1.8));
   if (ombro) push(1, d, circ(ombro, RAIO_OMBRO - 0.4, cPele, 0));
@@ -198,15 +205,15 @@ function membro(segs, longe, juntas, A, ow, cls, c, erro, o) {
   // a pelve cobre o começo da coxa de perto (só a cor, sem contorno): a coxa sai do quadril
   if (A && PR.quadril && o.perna && !longe) {
     // recorte: só onde a coxa (com o contorno) passa por cima da pelve
-    const [a, b, w, nome] = Q[0];
+    const [a, b, w, nome] = Q[0]!;
     const [ra, rb] = PR.conico ? RAIO[nome] : [w / 2, w / 2];
     const coxa = cone(a, ra + ow + 0.3, b, rb + ow + 0.3);
     const id = 'qd' + hashStr(pts(coxa) + CTX.VIEW);
-    const cs = o.cascas.slice(0, 2);
+    const cs = o.cascas!.slice(0, 2);
     push(1, d, `<clipPath id="${id}"><polygon points="${pts(coxa)}"/></clipPath><path d="${cs.map(dPath).join('')}" class="${c('ea-pele-t')}" clip-path="url(#${id})"/>`);
   }
   if (A && !longe && !erro) {
-    let ant = null;
+    let ant: V3 | null = null;
     for (const j of juntas) {
       const p = CTX.PJ(j);
       if (!ant || Math.hypot(p[0] - ant[0], p[1] - ant[1]) > 5) push(1, d, `<circle cx="${f1(p[0])}" cy="${f1(p[1])}" r="1.9" class="ea-jt" stroke-width="1.1"/>`);

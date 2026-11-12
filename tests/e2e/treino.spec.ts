@@ -9,7 +9,7 @@ async function fazerExercicio(page: Page) {
   while (await registro.isVisible()) {
     const carga = page.getByLabel('Carga', { exact: true });
     if ((await carga.count()) && (await carga.evaluate((e) => e.tagName === 'SELECT')) && !(await carga.inputValue())) await carga.selectOption({ index: 6 });
-    if ((await page.getByRole('button', { name: 'Mais carga' }).count()) && (await page.locator('#carga-kg').innerText()) === '—')
+    if ((await page.getByRole('button', { name: 'Mais carga' }).count()) && (await page.locator('.carga-valor').first().innerText()) === '—')
       await page.getByRole('button', { name: 'Mais carga' }).click();
     const rir = registro.getByRole('radio', { name: '2', exact: true });
     if (!(await rir.isChecked())) await rir.check();
@@ -120,8 +120,42 @@ test('dor acima de 5 encerra o exercício e oferece a alternativa', async ({ pag
   await page.getByRole('button', { name: 'Senti algo' }).click();
   await page.getByRole('region', { name: 'Senti algo' }).getByRole('button', { name: '7', exact: true }).click();
   await expect(page.getByRole('alert')).toContainText('Pare este exercício e use a alternativa');
+  // Auditoria de 12/11/2026: antes da 1ª série, a nota não ia para lugar nenhum; agora fica no exercício.
+  await expect(page.getByRole('alert')).toContainText('Nota 7 guardada neste exercício.');
   await expect(page.getByText('Exercício encerrado.')).toBeVisible();
   await expect(page.getByRole('region', { name: 'Trocar exercício' })).toBeVisible();
+  await page.reload();
+  await expect(page.getByText('Exercício encerrado.')).toBeVisible();
+});
+
+// Auditoria de 12/11/2026: com o halter mais leve (ou a placa 1), a orientação mandava reduzir a carga em 10–20%.
+test('dor de 3 a 5 com o halter mais leve: a orientação não manda reduzir a carga', async ({ page }) => {
+  await ana(page);
+  await comecar(page);
+  await page.getByLabel('Carga', { exact: true }).selectOption('1');
+  await page.getByRole('radio', { name: '2', exact: true }).check();
+  await page.getByRole('button', { name: /^Série feita/ }).click();
+  await page.getByRole('button', { name: 'Senti algo' }).click();
+  await page.getByRole('region', { name: 'Senti algo' }).getByRole('button', { name: '4', exact: true }).click();
+  await expect(page.getByRole('alert')).toContainText('Não há carga menor aqui: encurte a amplitude ou desacelere.');
+  await expect(page.getByRole('alert')).not.toContainText('Reduza a carga');
+});
+
+// Auditoria de 12/11/2026: a nota de 3 a 5 dada antes da 1ª série vivia só na tela e se perdia ao abrir o guia.
+test('a nota de dor dada antes da 1ª série sobrevive à ida ao guia e entra na série registrada', async ({ page }) => {
+  await ana(page);
+  await comecar(page);
+  await page.getByRole('button', { name: 'Senti algo' }).click();
+  await page.getByRole('region', { name: 'Senti algo' }).getByRole('button', { name: '4', exact: true }).click();
+  await expect(page.getByRole('alert')).toContainText('Nota 4 guardada na próxima série que você registrar.');
+  await page.getByRole('link', { name: 'Ver como fazer' }).click();
+  await expect(page).toHaveURL(/\/guia\/.+de=treino/);
+  await page.goBack();
+  await expect(page).toHaveURL(/\/treino$/);
+  await page.getByLabel('Carga', { exact: true }).selectOption('8');
+  await page.getByRole('radio', { name: '2', exact: true }).check();
+  await page.getByRole('button', { name: /^Série feita/ }).click();
+  await expect(page.getByRole('list', { name: 'Séries feitas' })).toContainText('dor 4');
 });
 
 test('dor no peito encerra o treino e orienta ligar para o SAMU', async ({ page }) => {
@@ -255,4 +289,71 @@ test('"Senti algo" abre e fecha a folha, e passa por cima de qualquer outra folh
   await senti.click();
   await expect(page.getByRole('region', { name: 'Trocar exercício' })).toBeHidden();
   await expect(folha).toBeVisible();
+});
+
+// Auditoria de 12/11/2026: o descanso vivia só na tela do treino. Abrir o guia no meio do descanso parava o
+// temporizador; o contexto de áudio nunca era fechado; e, ao passar de zero com "−15 s", os bipes já agendados para
+// o horário antigo ainda tocavam.
+test('o descanso sobrevive à ida ao guia, o áudio é fechado ao sair e os bipes param quando o tempo passa de zero', async ({ page }) => {
+  await page.addInitScript(() => {
+    const w = window as unknown as { __audio: { criados: number; fechados: number; osciladores: { cedo: boolean }[] } };
+    w.__audio = { criados: 0, fechados: 0, osciladores: [] };
+    const AC = window.AudioContext;
+    window.AudioContext = class extends AC {
+      constructor() {
+        super();
+        w.__audio.criados++;
+      }
+      close() {
+        w.__audio.fechados++;
+        return super.close();
+      }
+      createOscillator() {
+        const o = super.createOscillator();
+        const marca = { cedo: false };
+        w.__audio.osciladores.push(marca);
+        const parar = o.stop.bind(o);
+        o.stop = (quando?: number) => {
+          if (!quando) marca.cedo = true;
+          parar(quando);
+        };
+        return o;
+      }
+    };
+  });
+  const audio = () => page.evaluate(() => (window as unknown as { __audio: { criados: number; fechados: number; osciladores: { cedo: boolean }[] } }).__audio);
+  await ana(page);
+  await comecar(page);
+  await page.getByLabel('Carga', { exact: true }).selectOption('8');
+  await page.getByRole('radio', { name: '2', exact: true }).check();
+  await page.getByRole('button', { name: /^Série feita/ }).click();
+  const descanso = page.getByRole('region', { name: 'Descanso' });
+  await expect(descanso).toBeVisible();
+  expect((await audio()).criados).toBe(1);
+
+  // vai ao guia e volta: o descanso continua contando, e o áudio da tela que saiu foi fechado
+  await page.getByRole('link', { name: 'Ver como fazer' }).click();
+  await expect(page).toHaveURL(/\/guia\/.+de=treino/);
+  // a tela do treino só sai quando o pedaço do guia termina de carregar
+  await expect.poll(async () => (await audio()).fechados).toBe(1);
+  await page.goBack();
+  await expect(page).toHaveURL(/\/treino$/);
+  await expect(descanso).toBeVisible();
+  await expect(descanso.getByRole('timer')).toHaveText(/^\d:\d\d$/);
+  // recarregar a página também não perde o descanso
+  await page.reload();
+  await expect(descanso).toBeVisible();
+
+  // "−15 s" até passar de zero: nenhum bipe fica agendado para o horário antigo
+  for (let i = 0; i < 12 && !(await descanso.getByText('Hora da próxima série').isVisible()); i++) await descanso.getByRole('button', { name: '−15 s' }).click();
+  await expect(descanso.getByText('Hora da próxima série')).toBeVisible();
+  const a = await audio();
+  expect(a.osciladores.length).toBeGreaterThan(0);
+  expect(a.osciladores.every((o) => o.cedo)).toBe(true);
+  // "Ok" encerra o descanso, e ele não volta ao recarregar
+  await descanso.getByRole('button', { name: 'Ok' }).click();
+  await expect(descanso).toHaveCount(0);
+  await page.reload();
+  await expect(page.getByRole('region', { name: /^Série 2/ })).toBeVisible();
+  await expect(descanso).toHaveCount(0);
 });

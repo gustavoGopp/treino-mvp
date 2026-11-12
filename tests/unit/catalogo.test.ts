@@ -1,3 +1,4 @@
+import { readFileSync } from 'node:fs';
 import { describe, expect, it } from 'vitest';
 import { POR_ID } from '../../src/domain/biblioteca';
 import { gerarPrograma, type Perfil, type Programa } from '../../src/domain/gerador';
@@ -7,6 +8,7 @@ import { type Nivel } from '../../src/domain/regras';
 import { opcoesCarga, textoCarga } from '../../src/domain/sessao';
 import { capacidades, cargasCaneleiras, type Inventario } from '../../src/domain/taxonomia/equipamentos';
 import { respostasNenhuma } from '../../src/domain/triagem';
+import { PERSONAS } from '../personas';
 
 // Decisões da sessão de catálogo (docs/pesquisa-v2/11-catalogo-completo.md; Gustavo, 04/11/2026).
 const perfil = (nivel: Nivel): Perfil => ({
@@ -110,3 +112,21 @@ describe('itens e exercícios do catálogo (Gustavo, 04/11/2026; doc 11, B.2.3 a
     for (const x of vagas) expect([x.exId, ...x.alternativas]).toEqual(expect.arrayContaining(['flexao-joelho-deslizante', 'nordico', 'flexao-joelho-suspensao']));
   });
 });
+
+// Auditoria de 12/11/2026: a panturrilha no chão era bilateral nos dados e "uma perna de cada vez" no texto do porquê.
+// A fonte (nakamura2025, na regra selecao.panturrilha-alongada) é subir com as duas e descer em 3 s com uma só.
+describe('panturrilha no chão: os dados e os textos dizem a mesma coisa', () => {
+  it('é uma perna de cada vez na biblioteca, na prescrição, no porquê e no cartão', () => {
+    expect(POR_ID['panturrilha-chao']!.unilateral).toBe(true);
+    const r = gerarPrograma({ ...PERSONAS.ana.perfil, evitarExercicios: ['panturrilha-degrau', 'panturrilha'] }, {});
+    if (r.status !== 'ok') throw new Error('sem programa');
+    const x = r.programa.dias.flatMap((d) => d.exercicios).find((e) => e.exId === 'panturrilha-chao')!;
+    expect(x).toBeDefined();
+    expect(x.unilateral).toBe(true);
+    expect(x.porque.map((q) => q.texto).join(' ')).toMatch(/suba com as duas pernas e desça em 3 s com uma só/);
+    const cartao = JSON.parse(readFileSync('src/conteudo/exercicios/panturrilha-chao.json', 'utf8')) as { exec: string[][]; setupBody: string[] };
+    expect(cartao.exec.find((f) => f[0] === 'ecc')![2]).toMatch(/3 s, numa perna só/);
+    expect(cartao.setupBody.join(' ')).toMatch(/Uma perna de cada vez/);
+  });
+});
+

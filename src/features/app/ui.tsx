@@ -87,7 +87,15 @@ function RegrasPorExtenso({ ids }: { ids: string[] }) {
     };
   }, []);
   if (regras === null) return <p role="status">Carregando a regra…</p>;
-  if (regras === 'erro') return <p role="status">Não deu para carregar a regra agora. Tente de novo com internet.</p>;
+  if (regras === 'erro')
+    return (
+      <>
+        <p role="status">Não deu para carregar a regra agora. Tente de novo com internet.</p>
+        <button type="button" className="btn sec pequeno" onClick={() => window.location.reload()}>
+          Recarregar o app
+        </button>
+      </>
+    );
   return (
     <>
       {ids.map((id) => regras[id] && <SeloFolha key={id} regra={regras[id]!} />)}

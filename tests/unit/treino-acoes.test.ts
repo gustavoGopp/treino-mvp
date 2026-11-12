@@ -80,19 +80,45 @@ describe('o registro que não engana (R5a; seguranca.dor.escala, registro.treino
     let e = registrarSerie(iniciarSessao(estadoAna(), T0), 0, serie);
     e = registrarSerie(e, 0, serie);
     const r = anotarDor(e, 0, 4);
-    expect(r.guardada).toBe(true);
+    expect(r.naSerie).toBe(true);
     expect(r.estado.sessaoAtual!.exercicios[0]!.series.map((s) => s.dor)).toEqual([undefined, 4]);
     expect(anotarDor(r.estado, 0, 3).estado.sessaoAtual!.exercicios[0]!.series[1]!.dor).toBe(4);
     expect(estadoSchema.parse(r.estado)).toEqual(r.estado);
   });
 
-  it('sem série feita, a nota não tem onde ficar: quem chama a leva para a próxima série (comDor)', () => {
+  it('sem série feita, a nota fica no exercício e passa para a 1ª série registrada', () => {
     const e = iniciarSessao(estadoAna(), T0);
-    expect(anotarDor(e, 0, 4)).toEqual({ estado: e, guardada: false });
+    const r = anotarDor(e, 0, 4);
+    expect(r.naSerie).toBe(false);
+    expect(r.estado.sessaoAtual!.exercicios[0]!.dorSemSerie).toBe(4);
+    // a maior nota fica; nota 0 não é guardada
+    expect(anotarDor(r.estado, 0, 3).estado.sessaoAtual!.exercicios[0]!.dorSemSerie).toBe(4);
+    expect(anotarDor(e, 0, 0).estado).toBe(e);
+    expect(estadoSchema.parse(r.estado)).toEqual(r.estado);
+    const comSerie = registrarSerie(r.estado, 0, serie);
+    expect(comSerie.sessaoAtual!.exercicios[0]).toMatchObject({ series: [{ ...serie, dor: 4 }] });
+    expect(comSerie.sessaoAtual!.exercicios[0]).not.toHaveProperty('dorSemSerie');
+    // desfazer a única série devolve a nota ao exercício: ela não some com a série
+    expect(desfazerSerie(comSerie, 0).sessaoAtual!.exercicios[0]).toMatchObject({ series: [], dorSemSerie: 4 });
     expect(comDor(serie, 4)).toEqual({ ...serie, dor: 4 });
     expect(comDor({ ...serie, dor: 5 }, 4).dor).toBe(5);
     expect(comDor(serie, 0)).toEqual(serie);
     expect(comDor(serie)).toEqual(serie);
+  });
+
+  // Auditoria de 12/11/2026: a dor acima de 5 antes da 1ª série encerrava o exercício e a nota não ia para lugar nenhum.
+  it('dor acima de 5 antes da 1ª série: a nota fica no exercício encerrado e vale na próxima sessão', () => {
+    let e = iniciarSessao(estadoAna(), T0);
+    const exId = e.sessaoAtual!.exercicios[0]!.exId;
+    e = interromperExercicio(anotarDor(e, 0, 7).estado, 0);
+    e = registrarSerie(e, 1, serie);
+    e = terminarSessao(e, T1);
+    expect(e.historico[0]!.exercicios[0]).toMatchObject({ exId, series: [], interrompido: true, dorSemSerie: 7 });
+    expect(estadoSchema.parse(e)).toEqual(e);
+    const x = e.programa!.programa.dias[0]!.exercicios[0]!;
+    const s = sugestaoDoExercicio(e.historico, x, e.locais![0]!.inventario);
+    expect(s).toMatchObject({ acao: 'interromper', regraId: 'seguranca.dor.escala' });
+    expect(s.motivo).toMatch(/use a alternativa/);
   });
 
   it('dor 4 guardada reduz a carga da próxima sessão do exercício', () => {

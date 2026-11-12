@@ -4,7 +4,7 @@
 //  - cada declaração de topo ganha `export`, e cada módulo importa o que usa dos outros;
 //  - cada EX.push vira um arquivo em exercicios/, na mesma ordem, sem os campos de texto
 //    (que vão para src/conteudo/ via scripts/extrair-conteudo.mjs).
-// Uso: node scripts/extrair-motor.mjs   (sobrescreve src/engine/; o teste de equivalência confere o resultado)
+// Uso (histórico, só no M1): node scripts/extrair-motor.mjs --forcar   (sobrescreve src/engine/)
 import { mkdirSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
 import { createRequire } from 'node:module';
 import { dirname, resolve } from 'node:path';
@@ -13,6 +13,12 @@ import { CAMPOS_TEXTO, CAMPOS_TEXTO_ERRO } from './campos-texto.mjs';
 
 const require = createRequire(import.meta.url);
 const ts = require('typescript');
+
+// Histórico (M1): o port já foi feito e o código seguiu à mão. Rodar de novo apaga src/engine/exercicios — só com --forcar.
+if (!process.argv.includes('--forcar')) {
+  console.error('Este script é do port do M1 e hoje é destrutivo: apaga src/engine/exercicios e regrava desenho.ts, cena.ts e contexto.ts a partir do guia original: as animações novas e o código escrito à mão depois do M1 se perdem.\nSe é isso mesmo que você quer, rode de novo com --forcar.');
+  process.exit(1);
+}
 
 const raiz = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const html = readFileSync(resolve(raiz, 'referencia/guia-execucao-fase1.html'), 'utf8');

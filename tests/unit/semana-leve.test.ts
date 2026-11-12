@@ -1,9 +1,9 @@
 import { describe, expect, it } from 'vitest';
-import { dorQueSeRepete, semanaLeveDeHoje } from '../../src/domain/acompanhamento/semana-leve';
+import { dorQueSeRepete, dorRepetida, semanaLeveDeHoje } from '../../src/domain/acompanhamento/semana-leve';
 import { hojeNoPrograma, opcoesDeHoje, sugestaoDoExercicio, type Sessao } from '../../src/domain/sessao';
 import type { Estado } from '../../src/storage/esquema';
 import { aceitarSemanaLeve, encerrarSemanaLeve, marcarHojeFoi, recusarSemanaLeve, semanaLeveDoEstado } from '../../src/features/acompanhamento/acoes';
-import { iniciarSessao } from '../../src/features/treino/acoes';
+import { anotarDor, iniciarSessao, interromperExercicio, registrarSerie, terminarSessao } from '../../src/features/treino/acoes';
 import { bruno } from '../personas';
 import { dia, estadoDe, POR_ID, serieTipica, treinar } from './apoio-treino';
 
@@ -72,6 +72,30 @@ describe('os casos S1 a S5 do T6', () => {
     const forte = (exId: string) => ({ ...serieTipica(exId), ...(exId === 'supino-reto' ? { dor: 7 } : {}) });
     g = treinar(treinar(g, 0, 'superior-a', 'local-1', forte), 3, 'superior-a', 'local-1', forte);
     expect(dorQueSeRepete(g.historico)).toEqual([]);
+  });
+
+  // Auditoria de 12/11/2026: a dor acima de 5 antes da 1ª série não ficava registrada, e o aviso só lia as séries.
+  it('dor 7 antes da 1ª série do supino em 2 treinos seguidos → mostra o aviso de dor e de avaliação, sem sugerir a semana leve', () => {
+    let e = estadoDe(bruno);
+    const comDorAntes = (est: Estado, n: number) => {
+      let s = iniciarSessao(est, dia(n), 'superior-a', 'local-1');
+      const i = s.sessaoAtual!.exercicios.findIndex((x) => x.exId === 'supino-reto');
+      s = interromperExercicio(anotarDor(s, i, 7).estado, i);
+      s.sessaoAtual!.exercicios.forEach((x, k) => {
+        if (k !== i) s = registrarSerie(s, k, { ...serieTipica(x.exId), reps: 9 });
+      });
+      return terminarSessao(s, dia(n, 11));
+    };
+    e = comDorAntes(e, 0);
+    expect(dorRepetida(e.historico)).toEqual([]);
+    e = comDorAntes(e, 3);
+    expect(dorRepetida(e.historico)).toEqual([{ exId: 'supino-reto', notas: [7, 7] }]);
+    const s = sugestao(e, 4);
+    expect(s.dor).toMatchObject({ exIds: ['supino-reto'], regraId: 'seguranca.dor.escala' });
+    expect(s.dor!.texto).toMatch(/nota acima de 5: use a alternativa e procure avaliação profissional/);
+    // acima de 5 não é gatilho da semana leve: o exercício já foi encerrado
+    expect(dorQueSeRepete(e.historico)).toEqual([]);
+    expect(s.sugerir).toBe(false);
   });
 
   it('S5: 2 exercícios estagnados na semana 2 depois de uma volta de pausa → não sugere', () => {

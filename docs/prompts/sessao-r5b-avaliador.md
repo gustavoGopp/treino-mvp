@@ -20,7 +20,7 @@ Este marco faz o avaliador de verdade, sem editor, e a explicação do porquê. 
 **Leia primeiro:** o `CLAUDE.md`; `docs/revisoes/proximos-passos.md` (parte 2); `docs/revisoes/proximos-passos/b-monte-e-avaliador.md` inteiro (o desenho, as saídas completas do protótipo, os riscos, os pedidos ao domínio e ao design) e `c-fluxo.md` (opção A e os pedidos ao domínio 4, 6 e 7); `docs/pesquisa/00-metodo.md`, `docs/pesquisa/regras.md` (`volume.*`, `selecao.*`, `tempo.*`, `seguranca.*`, `acompanhamento.mensagens`); `src/domain/gerador/index.ts`, `funcoes.json`, `src/domain/sessao/`, `src/domain/triagem/`; `tests/unit/gerador.test.ts`.
 
 **Regras desta sessão**
-- Conta: só as contas pessoais do Gustavo (gustavogopp@gmail.com ou gustavogopp2@gmail.com), nunca a da Futurum. Tudo fica no git, e só no git.
+- Conta: só as contas pessoais do Gustavo, nunca a conta de trabalho. Tudo fica no git, e só no git.
 - Não mexa no branch `r3-uso-real`. `privado/` nunca é versionado nem usado; as personas são fictícias (`tests/personas/`).
 - **O redesign visual** é de outra sessão. A tela "Como está o seu programa", a folha do exercício com o porquê primeiro e a semana com a meta do programa são pedidos ao design (`proximos-passos.md`, seção 2.5, itens 7 a 10). Se o lote dele ainda não estiver na `main`, mostre a saída do avaliador com os componentes de hoje, sem estilo novo, e registre o pedido.
 - **O estado guardado não muda de versão.** O avaliador roda sobre o programa salvo; nada novo é guardado.

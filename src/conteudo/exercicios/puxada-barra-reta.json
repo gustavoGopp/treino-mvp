@@ -1,0 +1,52 @@
+{
+  "id": "puxada-barra-reta",
+  "name": "Puxada ajoelhado na polia alta com barra reta",
+  "short": "Puxada ajoelhado",
+  "target": "Costas",
+  "setupEq": [
+    "Polia no alto, com a barra reta."
+  ],
+  "setupBody": [
+    "Ajoelhado de frente para a torre, a uma distância em que os braços ficam estendidos para cima.",
+    "Pegada um pouco mais aberta que os ombros, tronco reto."
+  ],
+  "exec": [
+    [
+      "conc",
+      "Puxar",
+      "Puxa a barra até a parte de cima do peito, levando os cotovelos para baixo e para trás."
+    ],
+    [
+      "ecc",
+      "Volta",
+      "~2 s. Volta até os braços estenderem, deixando as costas alongarem."
+    ]
+  ],
+  "range": [
+    "Início: braços estendidos para cima, costas alongadas.",
+    "Fim: barra na parte de cima do peito."
+  ],
+  "cues": [
+    "Cotovelos para baixo.",
+    "Peito aberto.",
+    "Estende tudo na volta."
+  ],
+  "errors": [
+    {
+      "id": "e1",
+      "title": "Deitar o tronco para trás",
+      "desc": "Jogar o corpo para trás usa o peso do corpo no lugar das costas."
+    },
+    {
+      "id": "e2",
+      "title": "Puxar pela nuca",
+      "desc": "Atrás da cabeça força o ombro; puxe pela frente."
+    },
+    {
+      "id": "e3",
+      "title": "Volta curta",
+      "desc": "Não estender os braços deixa de fora a parte alongada."
+    }
+  ],
+  "carga": "Registre o número da placa da torre. Para progredir, +1 placa."
+}
