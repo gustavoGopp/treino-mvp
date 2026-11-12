@@ -12,6 +12,9 @@ Exercício da biblioteca: `panturrilha-chao`. Panturrilha (padrão panturrilha).
 ## Por que assim
 No chão, o calcanhar não desce abaixo da linha do pé, então a parte mais alongada do movimento fica de fora. Treinar a panturrilha na parte alongada rendeu mais hipertrofia do gastrocnêmio que só a parte encurtada (Kassiano et al. 2023, resumo lido no PubMed; selo: um estudo, regra `selecao.panturrilha-alongada`). Por isso o gerador prefere a versão no step quando há step; esta versão é a alternativa sem equipamento.
 
+## Uma perna de cada vez (12/11/2026)
+A regra `selecao.panturrilha-alongada` (decisão do Gustavo em 06/11/2026) pede, no chão e com o peso do corpo, **subir com as duas pernas e descer em 3 s com uma só**: foi o que cresceu no ensaio de `nakamura2025` (15 sedentários, 8 semanas; um estudo), enquanto a metade de cima do movimento, sozinha, cresceu bem menos (`kassiano2023b`). A auditoria de 12/11 achou o exercício como bilateral nos dados e unilateral só no texto do porquê. Agora os dados (`unilateral: true`, "cada lado" na prescrição e o tempo em dobro), o porquê e o cartão dizem a mesma coisa. **A animação aprovada em 01/11 ainda mostra a descida com as duas pernas**, e o cartão avisa disso; refazer a animação ou trocá-la pelo cartão de texto é decisão do Gustavo (`docs/backlog.md`).
+
 ## Erros animados
 1. **Subida curta** (não sobe o calcanhar até o fim).
 2. **Dobrar os joelhos** para dar impulso.

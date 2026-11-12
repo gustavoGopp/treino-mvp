@@ -228,7 +228,7 @@ O que a auditoria achou e não corrigiu, porque pede uma decisão do Gustavo ou 
 - **Dependências com alerta no `npm audit`** (20; 3 em produção: zod 3, react-router 6; os críticos são do vitest 3, só no desenvolvimento): todas as correções são versões maiores (zod 4, react-router 7, vitest 5). **Fica (decidido em 12/11/2026):** conferido de novo, `npm audit fix` sem `--force` não tira nenhum dos 20 alertas; cada versão maior entra num PR próprio, fora da sessão de correções.
 
 **Regras do treino**
-- **`panturrilha-chao` está como bilateral**, mas o texto manda fazer uma perna de cada vez.
+- **A animação da `panturrilha-chao` mostra a descida com as duas pernas**: em 12/11/2026 os dados, o porquê e o cartão foram alinhados à fonte (subir com as duas e descer em 3 s com uma só; `nakamura2025`), e o cartão avisa da diferença. Falta o Gustavo decidir: refazer a animação (folha a folha) ou mostrar o exercício como cartão de texto.
 - **20 exercícios da biblioteca não têm animação nem cartão** (supino com barra, leg press, mesa flexora, remada com barra…): aparecem como "Sem guia ainda", e o CLAUDE.md pede o cartão de texto.
 
 **Tela**

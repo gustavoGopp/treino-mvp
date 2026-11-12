@@ -1433,7 +1433,7 @@ const TEXTO_REGRA_FUNCAO: Record<string, (e: Exercicio) => string | null> = {
   'selecao.flexora-sentada': (e) => (e.tags.includes('sentada') ? 'Flexão de joelho sentada, com o posterior mais alongado.' : null),
   'selecao.panturrilha-alongada': (e) =>
     e.id === 'panturrilha-chao'
-      ? 'No chão o calcanhar não desce abaixo da ponta do pé: faça com uma perna de cada vez e desça em 3 s, para a série contar.'
+      ? 'No chão o calcanhar não desce abaixo da ponta do pé: suba com as duas pernas e desça em 3 s com uma só, uma perna de cada vez, para a série contar.'
       : e.tags.includes('alongado')
         ? 'Ênfase no alongamento: calcanhar abaixo do apoio e pausa embaixo.'
         : null,
