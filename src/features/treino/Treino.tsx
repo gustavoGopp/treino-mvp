@@ -4,6 +4,7 @@ import { BIBLIOTECA } from '../../domain/biblioteca';
 import { ALTERNATIVAS_A_MOSTRA, type ExercicioPrescrito } from '../../domain/gerador';
 import { linkDoGuia } from '../guia/link';
 import { ESCADA_PESO_CORPO, haCargaMenor, type Carga, type SerieRegistrada } from '../../domain/progressao';
+import { numeroBr } from '../../domain/numero';
 import { degrauInicial } from '../../domain/progressao/escadas';
 import { MENOR_ANILHA_PADRAO_KG } from '../../domain/taxonomia/equipamentos';
 import { CartaoTexto, temCartao } from '../programa/CartaoTexto';
@@ -657,7 +658,7 @@ function ControleCarga({
           <button type="button" aria-label="Menos anilha de cada lado" disabled={k === undefined || k <= 0} onClick={() => mudar(-1)}>
             −
           </button>
-          <output aria-live="polite">{k === undefined ? '—' : `${k.toLocaleString('pt-BR')} kg`}</output>
+          <output aria-live="polite">{k === undefined ? '—' : `${numeroBr(k)} kg`}</output>
           <button type="button" aria-label="Mais anilha de cada lado" onClick={() => mudar(1)}>
             +
           </button>
@@ -749,13 +750,13 @@ function ControleCarga({
             </option>
             {lista.map((v) => (
               <option key={v} value={v}>
-                {v.toLocaleString('pt-BR')} kg
+                {numeroBr(v)} kg
               </option>
             ))}
           </select>
         ) : (
           <output id="carga-kg" aria-live="polite">
-            {k === undefined ? '—' : `${k.toLocaleString('pt-BR')} kg`}
+            {k === undefined ? '—' : `${numeroBr(k)} kg`}
           </output>
         )}
         <button type="button" aria-label="Mais carga" onClick={() => passo(1)}>

@@ -1,4 +1,5 @@
 import { Link, Navigate } from 'react-router-dom';
+import { numeroBr } from '../../domain/numero';
 import { BIBLIOTECA } from '../../domain/biblioteca';
 import { exerciciosComHistorico, marcasDaSemana, type Marca } from '../../domain/acompanhamento/evolucao';
 import { textoCarga } from '../../domain/sessao';
@@ -14,7 +15,7 @@ import { SemanaLeve } from './SemanaLeve';
 // então a revisão da meta e a semana leve.
 const POR_ID = Object.fromEntries(BIBLIOTECA.map((e) => [e.id, e]));
 const dataCurta = (iso: string) => `${iso.slice(8, 10)}/${iso.slice(5, 7)}`;
-const num = (n: number) => n.toLocaleString('pt-BR');
+const num = numeroBr;
 const TEXTO_MARCA: Record<Marca, string> = { 'subiu-a-carga': 'subiu a carga', recorde: 'recorde' };
 
 /** Os treinos da semana como quadradinhos: cheio = feito. O nome de cada um vai no texto para leitores de tela. */

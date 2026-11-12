@@ -4,6 +4,7 @@ import { BIBLIOTECA, type Musculo } from '../../domain/biblioteca';
 import { ALTERNATIVAS_A_MOSTRA, NOME_MUSCULO, ehAvisoDeMeta, type DiaPrograma, type ExercicioPrescrito, type Programa as TipoPrograma } from '../../domain/gerador';
 import { mensagemDeVolta, type MensagemDeVolta } from '../../domain/acompanhamento/volta';
 import { opcoesDeAjuste, type Opcao } from '../../domain/gerador/opcoes';
+import { numeroBr } from '../../domain/numero';
 import { NOME_NIVEL } from '../../domain/nivel';
 import { avaliarTriagem, efeitoDaDor } from '../../domain/triagem';
 import { EFEITO_DA_DOR, NOME_ARTICULACAO } from '../onboarding/articulacoes';
@@ -697,7 +698,7 @@ function Sobre({
                   <th scope="row">{NOME_MUSCULO[m]}</th>
                   <td>{meta}</td>
                   <td>
-                    {v.toLocaleString('pt-BR')}
+                    {numeroBr(v)}
                     {v < meta && <span className="sr"> (abaixo da meta)</span>}
                   </td>
                 </tr>

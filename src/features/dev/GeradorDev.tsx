@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { numeroBr } from '../../domain/numero';
 import { Link } from 'react-router-dom';
 import { gerarPrograma } from '../../domain/gerador';
 import { REGRAS } from '../../domain/regras/completas';
@@ -81,7 +82,7 @@ export function GeradorDev() {
               {d.exercicios.map((x) => (
                 <details key={x.exId} className="exdev">
                   <summary>
-                    <b>{x.nome}</b> — {x.series} × {x.reps.join('–')} · RIR {x.rir.join('–')} · {(Math.round(x.descansoSeg / 15) / 4).toLocaleString('pt-BR')} min
+                    <b>{x.nome}</b> — {x.series} × {x.reps.join('–')} · RIR {x.rir.join('–')} · {numeroBr(Math.round(x.descansoSeg / 15) / 4)} min
                     {x.supersetCom && ' · bi-set'}
                     {x.dropSet && ' · drop set'}
                   </summary>

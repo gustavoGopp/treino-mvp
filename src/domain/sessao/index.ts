@@ -2,7 +2,7 @@ import { BIBLIOTECA, type Exercicio } from '../biblioteca';
 import { faseNaSemana, prescricaoDaSemana, type DiaPrograma, type ExercicioPrescrito, type Fase, type Programa } from '../gerador';
 import { blocoAtual, naFaseDeAprendizado, semanaNoBloco, treinoFeito, type Hoje } from './bloco';
 import { DEPOIS_DA_ESCADA, escadaDe, nomeDoDegrau, pedeMiniBand } from '../progressao/escadas';
-import { existeNoPasso, noPassoAbaixo, proximaCarga, sugerirProgressao, sugestaoPorDor, type Alvo, type Carga, type OpcoesCarga, type SerieRegistrada, type SessaoExercicio, type Sugestao } from '../progressao';
+import { existeNoPasso, noPassoAbaixo, proximaCarga, sugerirProgressao, sugestaoPorDor, textoDaCargaSimples, type Alvo, type Carga, type OpcoesCarga, type SerieRegistrada, type SessaoExercicio, type Sugestao } from '../progressao';
 import { calibrar, emCalibracao, fimDaCalibracao, semCalibracao, type ResultadoCalibracao } from '../progressao/calibracao';
 import { funcoesDoExercicio } from '../gerador/funcoes';
 import { DOR, r } from '../regras';
@@ -179,10 +179,7 @@ export function textoCarga(c: Carga, exId?: string): string {
     if (c.degrau === 0) return base;
     return `${base} · ${nomeDoDegrau(exId, c.degrau) ?? `degrau ${c.degrau + 1}`}`;
   }
-  if (c.tipo === 'kg') return `${c.kg.toLocaleString('pt-BR')} kg`;
-  if (c.tipo === 'placa') return `placa ${c.placa}`;
-  if (c.tipo === 'anilha') return `${c.kgPorLado.toLocaleString('pt-BR')} kg por lado`;
-  return `contrapeso ${c.placa}`;
+  return textoDaCargaSimples(c)!;
 }
 
 /**

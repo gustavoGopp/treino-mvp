@@ -1,4 +1,5 @@
 import type { Exercicio } from '../biblioteca';
+import { numeroBr } from '../numero';
 import { DOR, PROGRESSAO, r, REDUCAO, SEMANA_LEVE } from '../regras';
 import { MENOR_ANILHA_PADRAO_KG } from '../taxonomia/equipamentos';
 
@@ -85,17 +86,30 @@ const valor = (c: Carga) => {
   }
 };
 const arred = (x: number) => Math.round(x * 100) / 100;
-/** "A carga de 10 kg", "a placa 9"…, para a mensagem da escada. */
-const textoDaCarga = (c: Carga) =>
-  c.tipo === 'kg'
-    ? `A carga de ${String(c.kg).replace('.', ',')} kg`
-    : c.tipo === 'placa'
-      ? `A placa ${c.placa}`
-      : c.tipo === 'anilha'
-        ? `A carga de ${String(c.kgPorLado).replace('.', ',')} kg por lado`
-        : c.tipo === 'contrapeso'
-          ? `O contrapeso ${c.placa}`
-          : 'Esse degrau';
+/**
+ * O texto de uma carga, num lugar só: "10 kg", "placa 9", "20 kg por lado", "contrapeso 3". O degrau (peso do corpo,
+ * elástico) não tem texto aqui: o nome dele depende do exercício (sessao/textoCarga). Antes havia três formatadores,
+ * dois deles com `toLocaleString`.
+ */
+export function textoDaCargaSimples(c: Carga): string | undefined {
+  switch (c.tipo) {
+    case 'kg':
+      return `${numeroBr(c.kg)} kg`;
+    case 'placa':
+      return `placa ${c.placa}`;
+    case 'anilha':
+      return `${numeroBr(c.kgPorLado)} kg por lado`;
+    case 'contrapeso':
+      return `contrapeso ${c.placa}`;
+    case 'degrau':
+      return undefined;
+  }
+}
+/** "A carga de 10 kg", "A placa 9"…, para começar a frase da sugestão. */
+const textoDaCarga = (c: Carga) => {
+  const t = textoDaCargaSimples(c);
+  return !t ? 'Esse degrau' : c.tipo === 'placa' ? `A ${t}` : c.tipo === 'contrapeso' ? `O ${t}` : `A carga de ${t}`;
+};
 const passoAnilha = (o: OpcoesCarga) => o.menorAnilhaKg ?? MENOR_ANILHA_PADRAO_KG;
 
 export function proximaCarga(c: Carga, passos: number, o: OpcoesCarga): Carga | undefined {
