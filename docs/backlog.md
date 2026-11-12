@@ -226,7 +226,6 @@ Detalhes e números em `devlog.md` ("R5-anim"), `revisoes/r5-anim/README.md` e `
 O que a auditoria achou e não corrigiu, porque pede uma decisão do Gustavo ou muda uma regra. Em ordem de gravidade.
 
 **Segurança e dados**
-- **`halteres_fixos` aceita mínimo maior que o máximo** (`taxonomia/equipamentos.ts`): a lista de cargas fica vazia, mas o programa prescreve exercícios com halter. Validar no formulário e tratar o que já estiver salvo antes de endurecer o esquema.
 - **O limite por aparelho da foto é fraco** (`api/_lib/pedido.ts`): o id do aparelho vem do cliente; o que vale é o limite por IP e o teto mensal na Anthropic. A cota também não é devolvida quando o modelo falha.
 - **Sem Content-Security-Policy** (`vercel.json`): os outros cabeçalhos entraram; a CSP pede um teste na prévia (o service worker e os estilos em linha).
 - **Dependências com alerta no `npm audit`** (20; 3 em produção: zod 3, react-router 6; os críticos são do vitest 3, só no desenvolvimento): todas as correções são versões maiores (zod 4, react-router 7, vitest 5). **Fica (decidido em 12/11/2026):** conferido de novo, `npm audit fix` sem `--force` não tira nenhum dos 20 alertas; cada versão maior entra num PR próprio, fora da sessão de correções.

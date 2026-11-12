@@ -1,4 +1,5 @@
 import type { z } from 'zod';
+import { sanarInventario } from '../domain/taxonomia/equipamentos';
 import { acertarIds } from './ids';
 import { estadoSchema, NOME_LOCAL_PADRAO, VERSAO_ESTADO, type Estado } from './esquema';
 
@@ -55,7 +56,17 @@ export const MIGRACOES: Record<number, Migracao> = {
   // versão 7 que ainda não conhece esses campos passa a recusar o dado, em vez de regravá-lo sem eles.
   // Também na 8: a sessão ganha `foraDaBiblioteca`, onde fica o exercício registrado cujo id saiu da biblioteca
   // (storage/ids.ts). Opcional e ausente nas sessões antigas.
-  7: (anterior) => ({ ...anterior }),
+  // E os inventários guardados com halteres de mínimo acima do máximo, passo fora do limite ou manoplas sem anilha,
+  // que o esquema passa a recusar, são acertados antes (taxonomia/equipamentos.ts, sanarInventario).
+  7: (anterior) => {
+    if (!Array.isArray(anterior.locais)) return { ...anterior };
+    const locais = anterior.locais.map((l: unknown) => {
+      const local = l as Record<string, unknown> | null;
+      const inv = local?.inventario;
+      return local && inv && typeof inv === 'object' && !Array.isArray(inv) ? { ...local, inventario: sanarInventario(inv as Record<string, unknown>) } : l;
+    });
+    return { ...anterior, locais };
+  },
 };
 
 export type ResultadoMigracao = { ok: true; estado: Estado } | { ok: false; erro: string };

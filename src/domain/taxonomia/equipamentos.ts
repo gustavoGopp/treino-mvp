@@ -64,6 +64,15 @@ export const ITEM_IDS = Object.keys(ITENS) as ItemId[];
 
 const kg = z.number().positive();
 const inteiro = z.number().int().positive();
+/**
+ * Limites de bom senso dos halteres fixos (opinião do projeto, sem fonte): passo menor que 250 g ou halter acima de
+ * 200 kg é erro de digitação, e deixaria a lista de cargas sem fim. Valem no formulário, no esquema e na migração.
+ */
+export const HALTER = { passoMinKg: 0.25, maxKg: 200 };
+const halteresFixos = z
+  .object({ minKg: kg, maxKg: kg.max(HALTER.maxKg), passoKg: kg.min(HALTER.passoMinKg) })
+  .refine((h) => h.minKg <= h.maxKg, 'o halter mais leve é mais pesado que o mais pesado')
+  .refine((h) => h.maxKg === h.minKg || h.passoKg <= h.maxKg - h.minKg + 1e-9, 'o passo é maior que a diferença entre o mais leve e o mais pesado');
 /** Máquinas e estações com torre de placas (registro por placa; progressao.incremento.polia). */
 const torre = z.object({ placas: inteiro.optional(), kgPorPlaca: kg.optional() }).strict();
 /** Máquinas de anilha: o peso do trenó é desconhecido (progressao.incremento.maquina-anilha). */
@@ -80,12 +89,13 @@ export const inventarioSchema = z
     estacao_polia_dupla: torre.optional(),
     // Sem altura (dado antigo de polia fixa, migração 3 → 4): a tela pede a altura, e até lá a polia não abre exercício.
     polia_simples: torre.extend({ altura: z.enum(ALTURAS_POLIA).optional() }).strict().optional(),
-    halteres_fixos: z.object({ minKg: kg, maxKg: kg, passoKg: kg }).optional(),
+    halteres_fixos: halteresFixos.optional(),
     anilhas_e_manoplas: z
       .object({
         manoplas: inteiro,
         manoplaKg: kg.default(2),
-        anilhas: z.array(z.object({ kg, qtd: inteiro })),
+        // Sem nenhuma anilha, as manoplas não montam um halter (a lista de cargas teria só o peso da manopla).
+        anilhas: z.array(z.object({ kg, qtd: inteiro })).min(1),
       })
       .optional(),
     banco_regulavel: z.object({ declina: z.boolean() }).optional(),
@@ -264,6 +274,34 @@ export const NOME_CAPACIDADE: Record<Capacidade, string> = {
 };
 export const capacidades = (inv: Inventario) =>
   new Set((Object.keys(CAPACIDADES) as Capacidade[]).filter((c) => CAPACIDADES[c](inv)));
+
+/**
+ * Acerta um inventário guardado antes de o esquema recusar estes casos (auditoria de 12/11/2026). Só o que dá para
+ * corrigir sem inventar: mínimo e máximo dos halteres trocados voltam à ordem; o passo fica entre o mínimo aceito e a
+ * diferença entre o mais leve e o mais pesado; o halter acima do limite fica no limite; manoplas sem nenhuma anilha
+ * saem (não montam um halter). O que já está certo volta o mesmo objeto; o que tem outro formato fica como está.
+ */
+export function sanarInventario<T extends Record<string, unknown>>(inv: T): T {
+  const num = (v: unknown): v is number => typeof v === 'number' && Number.isFinite(v) && v > 0;
+  const saida: Record<string, unknown> = { ...inv };
+  let mudou = false;
+  const h = inv.halteres_fixos as { minKg?: unknown; maxKg?: unknown; passoKg?: unknown } | undefined;
+  if (h && num(h.minKg) && num(h.maxKg) && num(h.passoKg)) {
+    const minKg = Math.min(h.minKg, h.maxKg, HALTER.maxKg);
+    const maxKg = Math.min(Math.max(h.minKg, h.maxKg), HALTER.maxKg);
+    const passoKg = Math.max(HALTER.passoMinKg, maxKg > minKg ? Math.min(h.passoKg, arred(maxKg - minKg)) : h.passoKg);
+    if (minKg !== h.minKg || maxKg !== h.maxKg || passoKg !== h.passoKg) {
+      saida.halteres_fixos = { ...h, minKg, maxKg, passoKg };
+      mudou = true;
+    }
+  }
+  const m = inv.anilhas_e_manoplas as { anilhas?: unknown } | undefined;
+  if (m && Array.isArray(m.anilhas) && m.anilhas.length === 0) {
+    delete saida.anilhas_e_manoplas;
+    mudou = true;
+  }
+  return mudou ? (saida as T) : inv;
+}
 
 /**
  * Cargas possíveis por halter (kg), em ordem crescente: pares fixos + montagens com as anilhas
