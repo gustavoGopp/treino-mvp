@@ -1,7 +1,7 @@
 import { SO_NA_FOTO } from '../../domain/taxonomia/atalhos';
 import { useId, useRef, useState } from 'react';
 import type { ItemId } from '../../domain/taxonomia/equipamentos';
-import { marcacaoInicial, type Sugestao } from '../../domain/visao';
+import { LIMITES_FOTO, marcacaoInicial, type Sugestao } from '../../domain/visao';
 import { paraBase64, prepararFoto } from '../../lib/imagem';
 import { IconeEquipamento } from './icones';
 import { NOME_CURTO } from './inventarioForm';
@@ -14,7 +14,7 @@ import { Selo } from '../app/ui';
 // Nada entra na lista sem a confirmação da pessoa (plano, seção g.6). Qualquer erro leva de volta à lista.
 // Antes do 1º envio, a caixa de consentimento diz para onde a foto vai (privacidade.foto; R5c).
 
-const MAX_FOTOS = 5;
+const MAX_FOTOS = LIMITES_FOTO.maxFotos;
 const TEXTO_CONFIANCA = { alta: 'Com certeza', media: 'Provável', baixa: 'Talvez' } as const;
 
 /** Identificador aleatório do aparelho, só para o limite diário. Não identifica a pessoa. */
@@ -68,6 +68,9 @@ export function FotoEquipamento({ aoUsar }: { aoUsar: (sugestoes: Sugestao[], co
     setEstado('enviando');
     try {
       const fotos = await Promise.all([...lista].map(async (f) => paraBase64(await prepararFoto(f))));
+      // O servidor da Vercel recusa o pedido acima de 4,5 MB sem dizer por quê: confere aqui, com os mesmos limites.
+      if (fotos.some((f) => f.length > LIMITES_FOTO.maxBase64PorFoto) || fotos.reduce((t, f) => t + f.length, 0) > LIMITES_FOTO.maxBase64Total)
+        throw new Error('As fotos ficaram grandes demais para enviar juntas. Envie menos fotos por vez, ou use a lista abaixo.');
       const r = await fetch('/api/vision', {
         method: 'POST',
         headers: { 'content-type': 'application/json' },

@@ -57,6 +57,25 @@ describe('limite compartilhado (Upstash)', () => {
     expect((await processarPedido(ok, ctx, estranho, modelo)).corpo.codigo).toBe('limite');
   });
 
+  it('sem o Upstash configurado, o limite fica na memória de cada instância e isso vai para o log', () => {
+    const log: string[] = [];
+    expect(criarLimite({}, (l) => log.push(l))).toBeInstanceOf(Limite);
+    expect(log).toEqual([JSON.stringify({ evento: 'limite', compartilhado: false })]);
+    criarLimite({ KV_REST_API_URL: 'https://x.upstash.io/', KV_REST_API_TOKEN: 't' }, (l) => log.push(l));
+    expect(log).toHaveLength(1);
+  });
+
+  it('a devolução da cota (modelo com falha) chega ao contador compartilhado', async () => {
+    const u = upstashFalso();
+    const l = new LimiteCompartilhado('https://x.upstash.io', 'token-teste', new Limite(), u.buscar);
+    const falha = async () => {
+      throw new Error('fora do ar');
+    };
+    expect((await processarPedido(ok, ctx, l, falha)).status).toBe(502);
+    expect(u.banco.get('treino:ap:aparelho-123:2026-11-07')).toBe(0);
+    expect(u.banco.get('treino:ip:1.2.3.4:2026-11-07')).toBe(0);
+  });
+
   it('usa o Upstash só com a URL e o token', () => {
     expect(criarLimite({})).toBeInstanceOf(Limite);
     expect(criarLimite({ KV_REST_API_URL: 'https://x.upstash.io' })).toBeInstanceOf(Limite);

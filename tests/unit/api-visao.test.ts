@@ -1,5 +1,8 @@
+import { readFileSync } from 'node:fs';
 import { describe, expect, it } from 'vitest';
-import { LIMITE_APARELHO, LIMITE_CONVITE_ERRADO, LIMITE_IP, Limite, MAX_FOTOS, processarPedido, type Contexto } from '../../api/_lib/pedido';
+import { LIMITE_APARELHO, LIMITE_CONVITE_ERRADO, LIMITE_IP, Limite, MAX_BASE64, MAX_BASE64_TOTAL, MAX_FOTOS, processarPedido, type Contexto } from '../../api/_lib/pedido';
+import { reconhecer, TEMPO_MAX_MODELO_MS } from '../../api/_lib/modelo';
+import { LIMITES_FOTO } from '../../src/domain/visao';
 
 const ctx: Contexto = { ip: '1.2.3.4', hoje: '2026-11-01', convites: ['BETA1'], chaveConfigurada: true };
 const foto = '/9j/' + 'A'.repeat(100);
@@ -72,5 +75,56 @@ describe('api/vision: regras do pedido', () => {
       throw new Error('segredo interno');
     });
     expect(r).toEqual({ status: 502, corpo: { codigo: 'modelo', erro: 'Não foi possível analisar as fotos agora. Use a lista.' } });
+  });
+});
+
+// Auditoria de 12/11/2026: a cota, o tamanho do pedido e o tempo da chamada.
+describe('api/vision: cota devolvida, tamanho do pedido e tempo máximo', () => {
+  it('quando o modelo falha, a cota do aparelho e a do IP voltam: a pessoa pode tentar de novo', async () => {
+    const limite = new Limite();
+    const falha = async () => {
+      throw new Error('modelo fora do ar');
+    };
+    const cinco = { ...ok, fotos: Array(MAX_FOTOS).fill(foto) };
+    // sem a devolução, o 3º pedido de 5 fotos já estouraria o limite de 10 por aparelho
+    for (let i = 0; i < 6; i++) expect((await processarPedido(cinco, ctx, limite, falha)).status).toBe(502);
+    expect((await processarPedido(cinco, ctx, limite, modelo)).status).toBe(200);
+    expect((await processarPedido(cinco, ctx, limite, modelo)).status).toBe(200);
+    expect((await processarPedido(cinco, ctx, limite, modelo)).corpo.codigo).toBe('limite');
+  });
+
+  it('o pedido inteiro cabe no corpo que a Vercel aceita (4,5 MB): a soma das fotos tem teto próprio', async () => {
+    expect(MAX_BASE64_TOTAL).toBeLessThan(4.5 * 1024 * 1024 - 100_000);
+    expect(MAX_BASE64).toBeLessThanOrEqual(MAX_BASE64_TOTAL);
+    // o cliente confere com os mesmos números antes de enviar
+    expect(LIMITES_FOTO).toEqual({ maxFotos: MAX_FOTOS, maxBase64PorFoto: MAX_BASE64, maxBase64Total: MAX_BASE64_TOTAL });
+    const grande = '/9j/' + 'A'.repeat(1_500_000);
+    const limite = new Limite();
+    const r = await processarPedido({ ...ok, fotos: [grande, grande, grande] }, ctx, limite, modelo);
+    expect(r.status).toBe(413);
+    expect(r.corpo.codigo).toBe('tamanho');
+    // o pedido recusado pelo tamanho não gasta cota
+    for (let i = 0; i < LIMITE_APARELHO; i++) expect((await processarPedido(ok, ctx, limite, modelo)).status).toBe(200);
+    expect((await processarPedido({ ...ok, fotos: [grande, grande] }, { ...ctx, hoje: '2026-11-02' }, limite, modelo)).status).toBe(200);
+  });
+
+  it('a chamada ao modelo tem tempo máximo e não é refeita sozinha', async () => {
+    let opcoes: unknown;
+    const cliente = {
+      beta: {
+        messages: {
+          create: async (_p: unknown, o: unknown) => {
+            opcoes = o;
+            return { stop_reason: 'end_turn', model: 'm', usage: { input_tokens: 1, output_tokens: 1 }, content: [{ type: 'text', text: '{"itens":[]}' }] };
+          },
+        },
+      },
+    };
+    const r = await reconhecer(cliente as never, [foto]);
+    expect(r.json).toEqual({ itens: [] });
+    expect(opcoes).toEqual({ timeout: TEMPO_MAX_MODELO_MS, maxRetries: 0 });
+    // o tempo da chamada cabe na duração máxima da função, com folga para o resto do pedido
+    const vercel = JSON.parse(readFileSync('vercel.json', 'utf8')) as { functions: Record<string, { maxDuration: number }> };
+    expect(vercel.functions['api/vision.ts']!.maxDuration * 1000).toBeGreaterThanOrEqual(TEMPO_MAX_MODELO_MS + 5000);
   });
 });

@@ -10,7 +10,10 @@ import { Limite, type Contador, type LimiteDoPedido } from './pedido.js';
 /** As chaves levam a data do dia; 2 dias de validade bastam e limpam o banco sozinhas. */
 export const VALIDADE_SEG = 2 * 24 * 60 * 60;
 
-/** KEYS = as chaves; ARGV = n, os máximos na ordem das chaves e a validade. Devolve 1 se gastou, 0 se não coube. */
+/**
+ * KEYS = as chaves; ARGV = n, os máximos na ordem das chaves e a validade. Devolve 1 se gastou, 0 se não coube.
+ * Com n negativo (devolução da cota), a conferência sempre passa e o INCRBY subtrai.
+ */
 export const SCRIPT = `local n = tonumber(ARGV[1])
 for i, k in ipairs(KEYS) do
   if (tonumber(redis.call('GET', k) or '0') + n) > tonumber(ARGV[i + 1]) then return 0 end
@@ -49,9 +52,14 @@ export class LimiteCompartilhado implements Contador {
   }
 }
 
-/** Escolhe o contador pelas variáveis de ambiente. */
-export function criarLimite(env: Record<string, string | undefined>): Contador {
+/**
+ * Escolhe o contador pelas variáveis de ambiente. Sem o Upstash, o limite vale por instância da função, e isso fica
+ * no log uma vez por instância (sem chave nem IP), para quem opera saber que o limite diário está mais frouxo.
+ */
+export function criarLimite(env: Record<string, string | undefined>, registrar: (linha: string) => void = console.log): Contador {
   const url = env.KV_REST_API_URL || env.UPSTASH_REDIS_REST_URL;
   const token = env.KV_REST_API_TOKEN || env.UPSTASH_REDIS_REST_TOKEN;
-  return url && token ? new LimiteCompartilhado(url.replace(/\/+$/, ''), token) : new Limite();
+  if (url && token) return new LimiteCompartilhado(url.replace(/\/+$/, ''), token);
+  registrar(JSON.stringify({ evento: 'limite', compartilhado: false }));
+  return new Limite();
 }

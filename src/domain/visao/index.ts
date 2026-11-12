@@ -4,6 +4,13 @@ import { ALTURAS_POLIA, ESTACOES_MULTIFUNCIONAL, inventarioSchema, ITENS, ITEM_I
 // Visão (M4): o modelo só sugere; a pessoa confirma. Funções puras, sem rede.
 // Plano: docs/PLANO-MVP.md, seção g. Decisões: docs/pesquisa/11-decisoes-m4.md.
 
+/**
+ * Limites do pedido da foto, os mesmos no aparelho e no servidor. A Vercel recusa corpo acima de 4,5 MB antes de a
+ * função rodar (vercel.com/docs/functions/limitations), então a soma das fotos tem teto próprio, com folga: a foto
+ * reduzida no aparelho (1568 px, JPEG 0,8) costuma ficar bem abaixo de 1 MB em base64.
+ */
+export const LIMITES_FOTO = { maxFotos: 5, maxBase64PorFoto: 2_000_000, maxBase64Total: 4_000_000 };
+
 export const CONFIANCAS = ['alta', 'media', 'baixa'] as const;
 export type Confianca = (typeof CONFIANCAS)[number];
 
