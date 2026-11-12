@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef, useState } from 'react';
+import { useEffect, useMemo, useRef, useState, type CSSProperties } from 'react';
 import { faixaTexto as faixa, tempoNoRelogio as tempo } from '../../domain/numero';
 import { Link, Navigate, useNavigate, useParams, useSearchParams } from 'react-router-dom';
 import { CONTEUDO } from '../../conteudo';
@@ -350,7 +350,7 @@ function GuiaExercicio({ ex, grupos }: { ex: Ficha; grupos: Grupo[] }) {
           </div>
           <div className="timeline" ref={linha}>
             {ex.seq.map((g: Animacao, i: number) => (
-              <div key={i} className={`tseg ${g.kind}`} style={{ flexGrow: g.dur }}>
+              <div key={i} className={`tseg ${g.kind}`} style={{ '--peso': g.dur } as CSSProperties}>
                 {g.kind !== 'hold' && g.dur >= 0.8 ? g.label.split(' · ')[0].toLowerCase() : ''}
               </div>
             ))}
@@ -495,18 +495,18 @@ function InfoModo({
       <>
         <div className="legend">
           <span>
-            <i className="sw" style={{ background: 'var(--guide)' }} />
+            <i className="sw c-guide" />
             linhas de referência
           </span>
           {classico && (
             <span>
-              <i className="sw" style={{ background: 'var(--spine)' }} />
+              <i className="sw c-spine" />
               coluna
             </span>
           )}
           {estilo !== 'b' && (
             <span>
-              <i className="sw" style={{ background: 'var(--joint)' }} />
+              <i className="sw c-joint" />
               articulações
             </span>
           )}
@@ -528,22 +528,22 @@ function InfoModo({
           // R4 (05/11/2026): no Boneco, o certo é a figura cheia e só a parte que erra aparece em vermelho tracejado
           <div className="legend">
             <span>
-              <i className="sw" style={{ background: 'var(--ea-pele)', border: '1.5px solid var(--fig)' }} />
+              <i className="sw c-pele contorno" />
               execução correta
             </span>
             <span>
-              <i className="sw" style={{ background: 'var(--err)' }} />
+              <i className="sw c-err" />
               a parte que erra (tracejado)
             </span>
           </div>
         ) : (
           <div className="legend">
             <span>
-              <i className="sw" style={{ background: 'var(--err)' }} />
+              <i className="sw c-err" />
               erro
             </span>
             <span>
-              <i className="sw" style={{ background: 'var(--ghost)' }} />
+              <i className="sw c-ghost" />
               execução correta
             </span>
           </div>
@@ -555,11 +555,11 @@ function InfoModo({
       <>
         <div className="legend">
           <span>
-            <i className="sw" style={{ background: classico ? 'var(--mus-p)' : 'var(--m-p)' }} />
+            <i className={`sw ${classico ? 'c-mus-p' : 'c-m-p'}`} />
             alvo principal
           </span>
           <span>
-            <i className="sw" style={{ background: classico ? 'var(--mus-s)' : 'var(--m-s)' }} />
+            <i className={`sw ${classico ? 'c-mus-s' : 'c-m-s'}`} />
             {classico ? 'secundários' : 'também trabalha (conta meia série)'}
           </span>
           {soAjuda && !classico && (
@@ -579,19 +579,19 @@ function InfoModo({
     <>
       <div className="legend">
         <span>
-          <i className="sw" style={{ background: 'var(--path)' }} />
+          <i className="sw c-path" />
           trajetória da carga/mão (a seta mostra a fase concêntrica)
         </span>
         <span>
-          <i className="sw" style={{ background: 'var(--path)', opacity: 0.55 }} />
+          <i className="sw c-path meio" />
           pontilhado: cotovelo ou ombro
         </span>
         <span>
-          <i className="sw" style={{ background: 'var(--muted)' }} />
+          <i className="sw c-muted" />
           contorno cinza: {txt.extLabels[0]}
         </span>
         <span>
-          <i className="sw" style={{ background: 'var(--ghost)' }} />
+          <i className="sw c-ghost" />
           contorno verde: {txt.extLabels[1]}
         </span>
       </div>
@@ -635,7 +635,7 @@ const Lista = ({ itens }: { itens: string[] }) => (
 
 function Detalhes({ txt }: { txt: (typeof CONTEUDO)[string] }) {
   return (
-    <section style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
+    <section className="secao-guia">
       <details className="box" open>
         <summary>Setup</summary>
         <div className="dbody">

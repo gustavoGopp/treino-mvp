@@ -58,7 +58,8 @@ const valido = M.estadoSchema.safeParse(estado);
 if (!valido.success) throw new Error(`estado da Ana inválido: ${JSON.stringify(valido.error.issues.slice(0, 3))}`);
 
 // 3. O app servido, como em produção
-const servidor = spawn('npx', ['vite', 'preview', '--port', '4173', '--strictPort'], { stdio: 'ignore' });
+// num grupo próprio, para o fim do script derrubar o servidor inteiro (o npx abre o vite como filho)
+const servidor = spawn('npx', ['vite', 'preview', '--port', '4173', '--strictPort'], { stdio: 'ignore', detached: true });
 const noAr = async () => { for (let i = 0; i < 60; i++) { try { if ((await fetch('http://localhost:4173/')).ok) return; } catch { /* ainda subindo */ } await new Promise((ok) => setTimeout(ok, 500)); } throw new Error('o app não subiu em 4173'); };
 try {
   await noAr();
@@ -118,7 +119,7 @@ try {
   for (const rota of ['/', '/comecar/triagem', '/programa', '/treino', '/guia/bulgaro', '/semana', '/dados']) medir(rota, `${PASTA}/perfil-ana`, 'instalado');
   medir('/', `${PASTA}/perfil-vazio`, 'primeira-visita');
 } finally {
-  servidor.kill();
+  try { process.kill(-servidor.pid); } catch { /* já tinha saído */ }
 }
 mkdirSync('docs/revisoes/frontend-novo/medidas', { recursive: true });
 writeFileSync(`docs/revisoes/frontend-novo/medidas/${FASE}.json`, JSON.stringify(saida, null, 2) + '\n');

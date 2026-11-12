@@ -5,6 +5,7 @@ import { carregarRegras } from '../../domain/regras/carregar';
 import { PASSOS, primeiroPassoPendente, type PassoId } from '../../storage/esquema';
 import { useApp } from './estado';
 import { Folha } from './Folha';
+import { Icone, type NomeIcone } from './icones';
 import { carregarFontes, TEXTO_LEITURA, type Fonte } from '../../conteudo/fontes';
 
 // Peças de interface comuns às telas do app (onboarding, programa, dados).
@@ -165,17 +166,16 @@ function SeloFolha({ regra }: { regra: Regra }) {
  * "‹ Pai" ocupa o lugar da marca, e a barra de baixo continua com o pai aceso.
  */
 export function Topo({ direita, voltar }: { direita?: ReactNode; voltar?: { para: string; rotulo: string } }) {
+  // Frontend novo (12/11/2026): a faixa com o nome do app saiu das telas. Sem "voltar" e sem atalho, não há topo.
+  if (!voltar && !direita) return null;
   return (
     <header className="top">
       <div className="brand">
-        {voltar ? (
+        {voltar && (
           <Link className="topo-volta" to={voltar.para}>
-            ‹ {voltar.rotulo}
+            <Icone nome="chevron-left" />
+            {voltar.rotulo}
           </Link>
-        ) : (
-          <b>
-            <Link to="/">treino-mvp</Link>
-          </b>
         )}
         {direita}
       </div>
@@ -188,19 +188,17 @@ export function Topo({ direita, voltar }: { direita?: ReactNode; voltar?: { para
  * Fica nas telas de início; no treino em andamento e no cadastro, não (ali a tela é uma tarefa só).
  */
 export function NavInferior({ atual }: { atual: 'treino' | 'semana' | 'dados' }) {
-  const item = (id: typeof atual, para: string, rotulo: string, d: string) => (
+  const item = (id: typeof atual, para: string, rotulo: string, icone: NomeIcone) => (
     <Link to={para} aria-current={atual === id ? 'page' : undefined}>
-      <svg viewBox="0 0 24 24" aria-hidden="true">
-        <path d={d} />
-      </svg>
+      <Icone nome={icone} />
       {rotulo}
     </Link>
   );
   return (
     <nav className="nav-inferior" aria-label="Seções">
-      {item('treino', '/programa', 'Treino', 'M6.5 6.5v11M17.5 6.5v11M3.5 9v6M20.5 9v6M6.5 12h11')}
-      {item('semana', '/semana', 'Semana', 'M4 5h16v15H4zM4 10h16M9 3v4M15 3v4')}
-      {item('dados', '/dados', 'Meus dados', 'M12 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8zM4 21a8 8 0 0 1 16 0')}
+      {item('treino', '/programa', 'Treino', 'dumbbell')}
+      {item('semana', '/semana', 'Semana', 'calendar-days')}
+      {item('dados', '/dados', 'Meus dados', 'user')}
     </nav>
   );
 }
@@ -255,7 +253,8 @@ export function Passo({ id, titulo, children }: { id: PassoId; titulo: string; c
         <div className="progresso-linha">
           {anterior && (
             <Link className="volta-passo" to={anterior.rota} aria-label={`Voltar para ${anterior.titulo.toLowerCase()}`}>
-              ‹ Voltar
+              <Icone nome="chevron-left" />
+              Voltar
             </Link>
           )}
           <span>
