@@ -1,0 +1,3 @@
+# 02 - Sistemas de design públicos (rascunho em andamento)
+
+Rascunho salvo cedo. Referências já abertas e conferidas: WCAG 2.2 (2.5.5 e 2.5.8), Carbon (espaço, tipografia, botão, modal, movimento, campo), Atlassian (espaço, elevação), Apple HIG (JSON público das páginas: acessibilidade, botões, folhas, movimento, abas, campos, tipografia, cor, layout), Material Components Android (BottomSheet, Dialog, Motion, Shape, Dark, Color, TextField), Primer (tamanho, carregando, vazio, botão, segmentado, formulários), GOV.UK (botão, espaçamento, escala de texto, campo de texto, mensagem de erro). Versão final vem a seguir.
