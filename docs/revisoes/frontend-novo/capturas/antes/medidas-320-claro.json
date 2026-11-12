@@ -1,0 +1,317 @@
+{
+  "medidas": [
+    {
+      "tela": "01-boas-vindas",
+      "alturaDaPagina": 775,
+      "alturaDaTela": 640,
+      "palavrasAVista": 83,
+      "acaoPrincipal": "Começar",
+      "acaoAVista": false
+    },
+    {
+      "tela": "02-saude",
+      "alturaDaPagina": 1320,
+      "alturaDaTela": 640,
+      "palavrasAVista": 80,
+      "acaoPrincipal": "Não, nenhuma",
+      "acaoAVista": false
+    },
+    {
+      "tela": "02b-saude-quais-valem",
+      "alturaDaPagina": 1709,
+      "alturaDaTela": 640,
+      "palavrasAVista": 83,
+      "acaoPrincipal": "Continuar",
+      "acaoAVista": false
+    },
+    {
+      "tela": "03-nivel-vazio",
+      "alturaDaPagina": 640,
+      "alturaDaTela": 640,
+      "palavrasAVista": 42,
+      "acaoPrincipal": "Continuar",
+      "acaoAVista": false
+    },
+    {
+      "tela": "03b-nivel-respondido",
+      "alturaDaPagina": 1555,
+      "alturaDaTela": 640,
+      "palavrasAVista": 46,
+      "acaoPrincipal": "Continuar",
+      "acaoAVista": true
+    },
+    {
+      "tela": "04-rotina-vazia",
+      "alturaDaPagina": 640,
+      "alturaDaTela": 640,
+      "palavrasAVista": 45,
+      "acaoPrincipal": "Continuar",
+      "acaoAVista": false
+    },
+    {
+      "tela": "04b-rotina-respondida",
+      "alturaDaPagina": 1579,
+      "alturaDaTela": 640,
+      "palavrasAVista": 95,
+      "acaoPrincipal": "Continuar",
+      "acaoAVista": true
+    },
+    {
+      "tela": "05-equipamento-lugar",
+      "alturaDaPagina": 1053,
+      "alturaDaTela": 640,
+      "palavrasAVista": 53,
+      "acaoPrincipal": "Gerar meu programa",
+      "acaoAVista": true
+    },
+    {
+      "tela": "05b-equipamento-foto",
+      "alturaDaPagina": 1053,
+      "alturaDaTela": 640,
+      "palavrasAVista": 128,
+      "acaoPrincipal": null,
+      "acaoAVista": null
+    },
+    {
+      "tela": "05c-equipamento-folha-do-item",
+      "alturaDaPagina": 1917,
+      "alturaDaTela": 640,
+      "palavrasAVista": 56,
+      "acaoPrincipal": null,
+      "acaoAVista": null
+    },
+    {
+      "tela": "05d-equipamento-item-por-item",
+      "alturaDaPagina": 1982,
+      "alturaDaTela": 640,
+      "palavrasAVista": 30,
+      "acaoPrincipal": "Gerar meu programa",
+      "acaoAVista": true
+    },
+    {
+      "tela": "06-inicio",
+      "alturaDaPagina": 2357,
+      "alturaDaTela": 640,
+      "palavrasAVista": 61,
+      "acaoPrincipal": "/^Começar o treino/",
+      "acaoAVista": true
+    },
+    {
+      "tela": "07-folha-do-exercicio",
+      "alturaDaPagina": 2357,
+      "alturaDaTela": 640,
+      "palavrasAVista": 79,
+      "acaoPrincipal": null,
+      "acaoAVista": null
+    },
+    {
+      "tela": "06b-inicio-sobre-o-programa",
+      "alturaDaPagina": 2357,
+      "alturaDaTela": 640,
+      "palavrasAVista": 77,
+      "acaoPrincipal": null,
+      "acaoAVista": null
+    },
+    {
+      "tela": "08-treino-serie-vazia",
+      "alturaDaPagina": 1014,
+      "alturaDaTela": 640,
+      "palavrasAVista": 50,
+      "acaoPrincipal": "/^Série feita/",
+      "acaoAVista": false
+    },
+    {
+      "tela": "12-guia-tecnica",
+      "alturaDaPagina": 3188,
+      "alturaDaTela": 640,
+      "palavrasAVista": 28,
+      "acaoPrincipal": null,
+      "acaoAVista": null
+    },
+    {
+      "tela": "12b-guia-erros",
+      "alturaDaPagina": 3422,
+      "alturaDaTela": 640,
+      "palavrasAVista": 41,
+      "acaoPrincipal": null,
+      "acaoAVista": null
+    },
+    {
+      "tela": "12c-guia-musculos",
+      "alturaDaPagina": 3373,
+      "alturaDaTela": 640,
+      "palavrasAVista": 31,
+      "acaoPrincipal": null,
+      "acaoAVista": null
+    },
+    {
+      "tela": "12d-guia-trajetoria",
+      "alturaDaPagina": 3341,
+      "alturaDaTela": 640,
+      "palavrasAVista": 37,
+      "acaoPrincipal": null,
+      "acaoAVista": null
+    },
+    {
+      "tela": "08b-treino-serie-preenchida",
+      "alturaDaPagina": 1014,
+      "alturaDaTela": 640,
+      "palavrasAVista": 62,
+      "acaoPrincipal": "/^Série feita/",
+      "acaoAVista": true
+    },
+    {
+      "tela": "09-treino-descanso",
+      "alturaDaPagina": 1380,
+      "alturaDaTela": 640,
+      "palavrasAVista": 36,
+      "acaoPrincipal": "/^Série feita/",
+      "acaoAVista": false
+    },
+    {
+      "tela": "10-treino-senti-algo",
+      "alturaDaPagina": 1380,
+      "alturaDaTela": 640,
+      "palavrasAVista": 37,
+      "acaoPrincipal": null,
+      "acaoAVista": null
+    },
+    {
+      "tela": "11-treino-mais-opcoes",
+      "alturaDaPagina": 1380,
+      "alturaDaTela": 640,
+      "palavrasAVista": 15,
+      "acaoPrincipal": null,
+      "acaoAVista": null
+    },
+    {
+      "tela": "11b-treino-por-que",
+      "alturaDaPagina": 1380,
+      "alturaDaTela": 640,
+      "palavrasAVista": 89,
+      "acaoPrincipal": null,
+      "acaoAVista": null
+    },
+    {
+      "tela": "08c-treino-exercicio-2",
+      "alturaDaPagina": 1142,
+      "alturaDaTela": 640,
+      "palavrasAVista": 41,
+      "acaoPrincipal": "/^Série feita/",
+      "acaoAVista": false
+    },
+    {
+      "tela": "08c-treino-exercicio-3",
+      "alturaDaPagina": 1223,
+      "alturaDaTela": 640,
+      "palavrasAVista": 44,
+      "acaoPrincipal": "/^Série feita/",
+      "acaoAVista": false
+    },
+    {
+      "tela": "08c-treino-exercicio-4",
+      "alturaDaPagina": 1166,
+      "alturaDaTela": 640,
+      "palavrasAVista": 41,
+      "acaoPrincipal": "/^Série feita/",
+      "acaoAVista": false
+    },
+    {
+      "tela": "08c-treino-exercicio-5",
+      "alturaDaPagina": 1162,
+      "alturaDaTela": 640,
+      "palavrasAVista": 40,
+      "acaoPrincipal": "/^Série feita/",
+      "acaoAVista": false
+    },
+    {
+      "tela": "08c-treino-exercicio-6",
+      "alturaDaPagina": 1166,
+      "alturaDaTela": 640,
+      "palavrasAVista": 37,
+      "acaoPrincipal": "/^Série feita/",
+      "acaoAVista": false
+    },
+    {
+      "tela": "11c-treino-terminar",
+      "alturaDaPagina": 1166,
+      "alturaDaTela": 640,
+      "palavrasAVista": 25,
+      "acaoPrincipal": null,
+      "acaoAVista": null
+    },
+    {
+      "tela": "13-fim-do-treino",
+      "alturaDaPagina": 1001,
+      "alturaDaTela": 640,
+      "palavrasAVista": 64,
+      "acaoPrincipal": null,
+      "acaoAVista": null
+    },
+    {
+      "tela": "14-semana",
+      "alturaDaPagina": 1749,
+      "alturaDaTela": 640,
+      "palavrasAVista": 69,
+      "acaoPrincipal": null,
+      "acaoAVista": null
+    },
+    {
+      "tela": "15-evolucao",
+      "alturaDaPagina": 640,
+      "alturaDaTela": 640,
+      "palavrasAVista": 30,
+      "acaoPrincipal": null,
+      "acaoAVista": null
+    },
+    {
+      "tela": "06c-inicio-depois-do-1o-treino",
+      "alturaDaPagina": 1642,
+      "alturaDaTela": 640,
+      "palavrasAVista": 60,
+      "acaoPrincipal": "/^Começar o treino/",
+      "acaoAVista": true
+    },
+    {
+      "tela": "16-meus-dados",
+      "alturaDaPagina": 1581,
+      "alturaDaTela": 640,
+      "palavrasAVista": 115,
+      "acaoPrincipal": null,
+      "acaoAVista": null
+    },
+    {
+      "tela": "16b-meus-dados-estilo-do-boneco",
+      "alturaDaPagina": 1581,
+      "alturaDaTela": 640,
+      "palavrasAVista": 46,
+      "acaoPrincipal": null,
+      "acaoAVista": null
+    },
+    {
+      "tela": "17-locais",
+      "alturaDaPagina": 640,
+      "alturaDaTela": 640,
+      "palavrasAVista": 60,
+      "acaoPrincipal": null,
+      "acaoAVista": null
+    },
+    {
+      "tela": "17b-locais-editar",
+      "alturaDaPagina": 2247,
+      "alturaDaTela": 640,
+      "palavrasAVista": 52,
+      "acaoPrincipal": null,
+      "acaoAVista": null
+    },
+    {
+      "tela": "18-termos",
+      "alturaDaPagina": 4024,
+      "alturaDaTela": 640,
+      "palavrasAVista": 113,
+      "acaoPrincipal": null,
+      "acaoAVista": null
+    }
+  ],
+  "falhas": []
+}
