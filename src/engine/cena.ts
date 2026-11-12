@@ -68,7 +68,7 @@ export function fit(ex:Exercicio,view:Vista):Caixa{
 }
 export function calib(ex:Exercicio){
   ex._cab={};CTX.MEAS=[1e9,-1e9,1e9,-1e9];
-  for(let i=0;i<60;i++)scene(ex,ex.views[0]!,'tec',i/60*ex.T);
+  for(let i=0;i<60;i++)scene(ex,ex.views[0],'tec',i/60*ex.T);
   for(const e of ex.errors)for(let i=0;i<30;i++)scene(ex,e.view,'err',i/30*ex.T,ex.errors.indexOf(e));
   CTX.MEAS=null;ex.L0={};for(const k in ex._cab)ex.L0[k]=ex._cab[k]!-10;ex._cab=null;
   // faixa de subida da pilha no ciclo correto

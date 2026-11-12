@@ -10,6 +10,8 @@ export type V2 = [number, number];
 export type PontoTela = readonly [number, number, ...number[]];
 /** Caixa de visualização: [x0, y0, largura, altura]. */
 export type Caixa = [number, number, number, number];
+/** Retângulo na tela, pelos cantos: [x0, y0, x1, y1]. */
+export type Retangulo = [number, number, number, number];
 /** Limites medidos: [x mínimo, x máximo, y mínimo, y máximo]. */
 export type Limites = [number, number, number, number];
 
@@ -199,7 +201,8 @@ export type Trajetoria = [PontoDaTrajetoria, Lado, string?];
  */
 export interface Exercicio {
   id: string;
-  views: Vista[];
+  /** As vistas do exercício; a 1ª é a principal (sempre há pelo menos uma). */
+  views: [Vista, ...Vista[]];
   base: Partial<Pose>;
   keys: Record<string, Partial<Pose>>;
   seq: Fase[];
@@ -232,6 +235,13 @@ export interface Exercicio {
   _fita?: Record<string, { min: number; max: number }>;
 }
 
+/** Um quadro montado (a saída de montarSvg): o viewBox, o miolo do <svg> e a fase do ciclo naquele instante. */
+export interface Quadro {
+  viewBox: string;
+  html: string;
+  fase: Fase;
+}
+
 /* ================= estilos novos (./estilo/) ================= */
 /** Acabamento A2 do boneco (./estilo/corpo.ts explica cada opção); 1 = ligado. */
 export interface Acabamento {
@@ -248,6 +258,13 @@ export interface Acabamento {
   juntas?: string[];
   /** Erro pequeno demais para uma cadeia: 'hoje' = a figura do erro de antes; 'contorno' = a figura errada em contorno. */
   erroPequeno?: 'hoje' | 'contorno';
+}
+/** Profundidade de cada parte do corpo desenhada (./estilo/corpo.ts), para os músculos ficarem por cima da parte certa. */
+export interface PartesDoCorpo {
+  tronco: number;
+  cabeca: number;
+  braco: Partial<Record<Lado, number>>;
+  perna: Partial<Record<Lado, number>>;
 }
 /** O texto de um rótulo guardado na prim (./contexto.ts): a âncora projetada, a posição final e o texto. */
 export interface TextoDaPrim {
