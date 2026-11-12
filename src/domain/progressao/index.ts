@@ -249,8 +249,11 @@ export function sugerirProgressao(historico: SessaoExercicio[], alvo: Alvo, o: O
   // Carga leve demais: 1ª série passou do topo por 2+ repetições no RIR alvo → 2 incrementos, se o salto total ficar
   // em até ~10% (só dá para medir em kg); senão, 1 incremento (progressao.carga-leve, progressao.salto-grande).
   if (primeira && primeira.reps >= alvo.reps[1] + 2 && primeira.rir <= alvo.rir[1]) {
-    const dois = proximaCarga(carga, 2, o);
-    const prox = dois && carga.tipo === 'kg' && dois.tipo === 'kg' && (dois.kg - carga.kg) / carga.kg <= PROGRESSAO.saltoGrande + 1e-9 ? dois : proximaCarga(carga, 1, o);
+    const um = proximaCarga(carga, 1, o);
+    // Na lista de halteres, pedir 2 degraus com um só acima devolve esse um: só são "dois" se forem cargas diferentes.
+    const segundo = proximaCarga(carga, 2, o);
+    const dois = segundo && um && !igual(segundo, um) ? segundo : undefined;
+    const prox = dois && carga.tipo === 'kg' && dois.tipo === 'kg' && (dois.kg - carga.kg) / carga.kg <= PROGRESSAO.saltoGrande + 1e-9 ? dois : um;
     if (prox && falhouHaPouco(prox)) return escada(prox);
     if (prox)
       return {

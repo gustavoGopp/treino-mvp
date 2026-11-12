@@ -56,6 +56,17 @@ describe('dupla progressão', () => {
     const h2 = [sessao(kg(8), [13, 13, 13]), sessao(kg(8), [13, 13, 13])];
     expect(sugerirProgressao(h2, alvo, { tipo: 'halter', lista: [8, 10] })).toMatchObject({ acao: 'subir', proxima: kg(10) });
   });
+  // Auditoria de 12/11/2026: com um degrau só acima da carga, o texto mandava subir dois.
+  it('carga leve demais com um degrau só acima: sobe esse degrau e o texto diz "um degrau"', () => {
+    const h = [sessao(kg(20), [15, 14, 14])];
+    const s = sugerirProgressao(h, alvo, { tipo: 'halter', lista: [18, 20, 21] });
+    expect(s).toMatchObject({ acao: 'subir', proxima: kg(21), regraId: 'progressao.carga-leve' });
+    expect(s.motivo).toBe('A carga está leve demais para a faixa: suba um degrau.');
+    // com dois degraus acima e o salto dentro do limite, continua mandando subir dois
+    const dois = sugerirProgressao(h, alvo, { tipo: 'halter', lista: [20, 21, 22, 24] });
+    expect(dois).toMatchObject({ acao: 'subir', proxima: kg(22) });
+    expect(dois.motivo).toBe('A carga está leve demais para a faixa: suba dois degraus.');
+  });
   it('carga leve demais: 2 incrementos, se o salto total ficar em até ~10%', () => {
     const fina = { tipo: 'halter' as const, lista: [20, 21, 22, 24] };
     expect(sugerirProgressao([sessao(kg(20), [15, 13, 12])], alvo, fina)).toMatchObject({ acao: 'subir', proxima: kg(22), regraId: 'progressao.carga-leve' });
