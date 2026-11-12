@@ -233,7 +233,7 @@ O que a auditoria achou e não corrigiu, porque pede uma decisão do Gustavo ou 
 - **`halteres_fixos` aceita mínimo maior que o máximo** (`taxonomia/equipamentos.ts`): a lista de cargas fica vazia, mas o programa prescreve exercícios com halter. Validar no formulário e tratar o que já estiver salvo antes de endurecer o esquema.
 - **O limite por aparelho da foto é fraco** (`api/_lib/pedido.ts`): o id do aparelho vem do cliente; o que vale é o limite por IP e o teto mensal na Anthropic. A cota também não é devolvida quando o modelo falha.
 - **Sem Content-Security-Policy** (`vercel.json`): os outros cabeçalhos entraram; a CSP pede um teste na prévia (o service worker e os estilos em linha).
-- **Dependências com alerta no `npm audit`** (20; 3 em produção: zod 3, react-router 6; os críticos são do vitest 3, só no desenvolvimento): todas as correções são versões maiores (zod 4, react-router 7, vitest 5).
+- **Dependências com alerta no `npm audit`** (20; 3 em produção: zod 3, react-router 6; os críticos são do vitest 3, só no desenvolvimento): todas as correções são versões maiores (zod 4, react-router 7, vitest 5). **Fica (decidido em 12/11/2026):** conferido de novo, `npm audit fix` sem `--force` não tira nenhum dos 20 alertas; cada versão maior entra num PR próprio, fora da sessão de correções.
 
 **Regras do treino**
 - **"Subir" confere a carga só na 1ª série** (`progressao/index.ts`, `noTopo`): 20 kg × 12 e depois 14 kg × 12 e 14 kg × 12, duas vezes, sugere subir para 22 kg.
@@ -254,7 +254,7 @@ O que a auditoria achou e não corrigiu, porque pede uma decisão do Gustavo ou 
 - **CSS sem uso** (cerca de 25 classes: `.shell`, `.cta`, `.faixa`, `.cartoes-eq`, `.fs-topo`…) e ajudantes repetidos (`faixa`, `tempo`, `dataCurta`, `POR_ID`, três formatadores de carga).
 
 **Repositório**
-- **Histórico do git**: os e-mails pessoais e o nome do empregador saíram dos arquivos, mas continuam nos commits antigos. Apagar de lá pede reescrever o histórico.
+- **Histórico do git**: os e-mails pessoais e o nome do empregador saíram dos arquivos, mas continuam nos commits antigos. Apagar de lá pede reescrever o histórico. **Fica como está (decidido em 12/11/2026):** reescrever muda todos os hashes, quebra os ramos e os PRs abertos e pede `push --force` na `main`.
 - **`LEIA-ME.md` e `PROMPT-INICIAL.md`** são do kit inicial (falam em "antes de publicar o repositório" e em 26 exercícios). Apagar ou mover para o histórico.
 - **`docs/PLANO-MVP.md`** está "atualizado em 07/11" e ainda lista R5a, R5b e R5c como pendentes; `docs/pesquisa-v2/README.md` diz que o próximo passo é o R2.
 - **27 imagens em `docs/img/` sem nenhuma referência** (cerca de 10 MB).
