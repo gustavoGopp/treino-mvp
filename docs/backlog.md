@@ -221,7 +221,7 @@ Detalhes e números em `devlog.md` ("R5-anim"), `revisoes/r5-anim/README.md` e `
 
 ## Da auditoria geral (12/11/2026)
 
-O que a auditoria achou e não corrigiu, porque pede uma decisão do Gustavo ou muda uma regra. Em ordem de gravidade.
+O que sobrou depois da sessão de correções de 12/11/2026 (`devlog.md`, "Correções da auditoria geral"), cada item com o motivo. O resto da lista original foi corrigido e saiu daqui.
 
 **Segurança e dados**
 - **O id do aparelho da foto vem do cliente** (`api/_lib/pedido.ts`): sem login (fora do MVP) não há como conferi-lo; o que segura o gasto é o limite por IP e o teto mensal na Anthropic. Fica como está. O resto do ponto foi corrigido em 12/11/2026 (cota devolvida, log, tamanho, tempo máximo).
@@ -232,6 +232,8 @@ O que a auditoria achou e não corrigiu, porque pede uma decisão do Gustavo ou 
 - **A animação da `panturrilha-chao` mostra a descida com as duas pernas**: em 12/11/2026 os dados, o porquê e o cartão foram alinhados à fonte (subir com as duas e descer em 3 s com uma só; `nakamura2025`), e o cartão avisa da diferença. Falta o Gustavo decidir: refazer a animação (folha a folha) ou mostrar o exercício como cartão de texto.
 
 **Tela**
+- **Não medido nesta sessão**: o tempo máximo de 50 s da chamada ao modelo da foto (sem fotos reais nem chave); as listras das miniaturas por variável de CSS no Safari (conferido só no Chromium); o cabeçalho Content-Security-Policy na Vercel de verdade (o e2e roda a mesma política na prévia local; a barra de ferramentas das prévias da Vercel deve ser barrada por ela).
+- **Para a revisão do Gustavo**: os textos dos 20 cartões novos e das fichas de técnica; a troca dos rótulos citados nos termos (o texto jurídico não mudou, mas o advogado revisa os termos); os limites dos halteres (passo de 0,25 kg, 200 kg), que são opinião do projeto.
 - **CSS do motor sem uso aparente** (`.ea-*`, `.eb-*`, `.lbl-m` e outras, cerca de 30): os nomes são montados no motor por prefixo e sufixo, então o `grep` não prova que estão sem uso; ficaram. Em 12/11/2026 saíram as 12 classes das telas que o `grep` confirmou (28 regras, cerca de 3 kB) e os ajudantes repetidos.
 
 **Repositório**
