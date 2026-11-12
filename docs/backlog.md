@@ -248,7 +248,6 @@ O que a auditoria achou e não corrigiu, porque pede uma decisão do Gustavo ou 
 **Repositório**
 - **Histórico do git**: os e-mails pessoais e o nome do empregador saíram dos arquivos, mas continuam nos commits antigos. Apagar de lá pede reescrever o histórico. **Fica como está (decidido em 12/11/2026):** reescrever muda todos os hashes, quebra os ramos e os PRs abertos e pede `push --force` na `main`.
 - **`LEIA-ME.md` e `PROMPT-INICIAL.md`** são do kit inicial (falam em "antes de publicar o repositório" e em 26 exercícios). Apagar ou mover para o histórico.
-- **`docs/PLANO-MVP.md`** está "atualizado em 07/11" e ainda lista R5a, R5b e R5c como pendentes; `docs/pesquisa-v2/README.md` diz que o próximo passo é o R2.
 - **27 imagens em `docs/img/` sem nenhuma referência** (cerca de 10 MB).
 - **Fontes citadas em `pesquisa-v2` que não estão em `pesquisa/fontes.md`**: o backlog diz 17 numa linha e 14 em outra; a contagem por script deu até 27. Em `pesquisa-v2/01`, a citação "Currier et al. 2026" tem um PMID de 7 dígitos, cortado.
 - **`scripts/design/**` (74 arquivos) e `scripts/gif/divisao.spec.ts`**: sobras das sessões de design; 8 clicam em "Entendi, vamos começar", que não existe mais. O motor (`src/engine`) segue com `@ts-nocheck` em 101 de 103 arquivos.
