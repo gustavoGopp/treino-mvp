@@ -1,6 +1,6 @@
 import { readdirSync, readFileSync } from 'node:fs';
 import { describe, expect, it } from 'vitest';
-import { diaEMes, faixaTexto, numeroBr, porCento, tempoNoRelogio, tempoPorExtenso } from '../../src/domain/numero';
+import { diaEMes, faixaTexto, numeroBr, porCento, tempoNoRelogio, tempoPorExtenso, textoDoRir } from '../../src/domain/numero';
 import { serieEfetiva } from '../../src/domain/progressao';
 import { DESCANSO, DOR, REDUCAO, RIR, SELOS } from '../../src/domain/regras';
 import { porId, regrasSchema, selosSchema } from '../../src/domain/regras/schema';
@@ -214,6 +214,8 @@ describe('os números dos textos saem das constantes', () => {
     expect(faixaTexto([8, 8])).toBe('8');
     expect(porCento(0.15)).toBe('15');
     expect(diaEMes('2026-11-12T10:00:00.000Z')).toBe('12/11');
+    // a reserva registrada: a última opção vale "4 ou mais" e aparece como "4+" no treino e na evolução
+    expect([0, 3, 4, 6].map((n) => textoDoRir(n, RIR.registroMax))).toEqual(['0', '3', '4+', '4+']);
   });
 
   it('o porquê do descanso diz o descanso que a regra prescreve', () => {

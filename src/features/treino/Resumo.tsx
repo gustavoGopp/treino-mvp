@@ -133,8 +133,9 @@ export function Resumo() {
             Para a próxima vez
           </h2>
           <ul className="lista-proxima">
-            {itens.map(({ e, sug }) => (
-              <li key={e.exId} className="resumo-ex">
+            {/* a chave leva a posição: o mesmo exercício pode aparecer duas vezes no treino (feito e, depois, como alternativa de outra vaga) */}
+            {itens.map(({ e, sug }, i) => (
+              <li key={`${e.exId}-${i}`} className="resumo-ex">
                 <b>{POR_ID[e.exId]?.nome}</b>
                 <span>
                   <span className={`acao acao-${sug.acao}`}>{ACAO[sug.acao]}</span>

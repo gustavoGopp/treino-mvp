@@ -1,5 +1,6 @@
 import { Navigate, useParams } from 'react-router-dom';
-import { diaEMes as dataCurta } from '../../domain/numero';
+import { diaEMes as dataCurta, textoDoRir } from '../../domain/numero';
+import { RIR } from '../../domain/regras';
 import { POR_ID } from '../../domain/biblioteca';
 import { evolucaoDoExercicio, type Marca, type PontoDaEvolucao } from '../../domain/acompanhamento/evolucao';
 import { cargaDaMaquina, textoCarga } from '../../domain/sessao';
@@ -39,7 +40,7 @@ export function Evolucao() {
                   <span className="pe-data">{dataCurta(p.data)}</span>
                   <span className="pe-serie">
                     {textoCarga(p.carga, exId)} × {p.reps}
-                    <small> · RIR {p.rir}</small>
+                    <small> · RIR {textoDoRir(p.rir, RIR.registroMax)}</small>
                   </span>
                   <span className="pe-marcas">
                     {p.acerto ? <span className="marca neutra">acerto da carga</span> : p.marcas.map((m) => <span key={m} className="marca">{TEXTO_MARCA[m]}</span>)}

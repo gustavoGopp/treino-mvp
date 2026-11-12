@@ -4,7 +4,8 @@ import { POR_ID } from '../../domain/biblioteca';
 import { ALTERNATIVAS_A_MOSTRA, type ExercicioPrescrito } from '../../domain/gerador';
 import { linkDoGuia } from '../guia/link';
 import { ESCADA_PESO_CORPO, haCargaMenor, type Carga, type SerieRegistrada } from '../../domain/progressao';
-import { faixaTexto as faixa, numeroBr, tempoNoRelogio as tempo } from '../../domain/numero';
+import { faixaTexto as faixa, numeroBr, tempoNoRelogio as tempo, textoDoRir } from '../../domain/numero';
+import { RIR } from '../../domain/regras';
 import { degrauInicial } from '../../domain/progressao/escadas';
 import { MENOR_ANILHA_PADRAO_KG } from '../../domain/taxonomia/equipamentos';
 import { CartaoTexto, temCartao } from '../programa/CartaoTexto';
@@ -229,7 +230,7 @@ export function Treino() {
           <ol className="series-feitas" aria-label="Séries feitas">
             {feito.series.map((s, n) => (
               <li key={n}>
-                <span className="n">{n + 1}</span> {textoCarga(s.carga, feito.exId)} × {s.reps} · RIR {s.rir === 4 ? '4+' : s.rir}
+                <span className="n">{n + 1}</span> {textoCarga(s.carga, feito.exId)} × {s.reps} · RIR {textoDoRir(s.rir, RIR.registroMax)}
                 {s.calibracao ? ' · acerto da carga' : ''}
                 {s.dor ? ` · dor ${s.dor}` : ''}
                 {s.quedas?.length ? ` · quedas: ${s.quedas.map((q) => `${textoCarga(q.carga, feito.exId)} × ${q.reps}`).join(', ')}` : ''}
@@ -557,7 +558,7 @@ function RegistroSerie({
           {RIRS.map((n) => (
             <label key={n} className={`chip-valor${naMeta(n) ? ' meta' : ''}`}>
               <input type="radio" name={`rir-${numero}`} checked={rir === n} onChange={() => setRir(n)} aria-describedby={naMeta(n) ? `rir-meta-${numero}` : undefined} />
-              <span>{n === 4 ? '4 ou mais' : n}</span>
+              <span>{n === RIR.registroMax ? `${n} ou mais` : n}</span>
             </label>
           ))}
         </div>

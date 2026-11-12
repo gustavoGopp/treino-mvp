@@ -23,3 +23,10 @@ export function tempoPorExtenso(seg: number): string {
 
 /** Dia e mês de uma data ISO, sem depender do fuso nem do idioma: "2026-11-12T…" → "12/11". */
 export const diaEMes = (iso: string): string => `${iso.slice(8, 10)}/${iso.slice(5, 7)}`;
+
+/**
+ * A reserva registrada, como a tela mostra: a última opção do registro vale "esse número ou mais" (`maximo`, de
+ * RIR.registroMax), e aparece como "4+" em todo lugar (antes, o treino dizia "4+" e a evolução, "4").
+ */
+export const textoDoRir = (rir: number, maximo: number): string => (rir >= maximo ? `${maximo}+` : String(rir));
+
