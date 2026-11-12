@@ -11,7 +11,9 @@ export type Uso = { modelo: string; input: number; output: number };
 export async function reconhecer(client: Anthropic, fotosBase64: string[], modelo = MODELO_PADRAO): Promise<{ json: unknown; uso: Uso }> {
   const resposta = await client.beta.messages.create({
     model: modelo,
-    max_tokens: 4000,
+    // O raciocínio do modelo (sempre ligado no Opus 5.5) conta neste teto: com 4000, uma foto cheia podia parar em
+    // "max_tokens" e virar erro 502 com a cota já gasta. É só o teto; o gasto continua sendo o que o modelo usa.
+    max_tokens: 16000,
     // Se o modelo recusar, a API refaz o pedido em outro modelo na mesma chamada.
     betas: ['server-side-fallback-2026-07-01'],
     fallbacks: 'default',

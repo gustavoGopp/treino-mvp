@@ -10,6 +10,8 @@ export const LIMITE_APARELHO = 10;
 export const LIMITE_IP = 40;
 /** ~1,5 MB por foto em base64; a foto reduzida no aparelho fica bem abaixo disso. */
 export const MAX_BASE64 = 2_000_000;
+/** Convites errados por IP por dia: sem este teto, o código podia ser adivinhado por tentativa, sem custo nenhum. */
+export const LIMITE_CONVITE_ERRADO = 20;
 
 export type Pedido = { convite?: unknown; aparelho?: unknown; fotos?: unknown };
 export type Resposta = { status: number; corpo: { itens?: Sugestao[]; erro?: string; codigo?: string } };
@@ -45,8 +47,15 @@ const ehJpegBase64 = (s: string) => s.startsWith('/9j/'); // FF D8 FF em base64
 
 export async function processarPedido(p: Pedido, ctx: Contexto, limite: Contador, chamar: ChamarModelo): Promise<Resposta> {
   if (!ctx.chaveConfigurada) return erro(503, 'indisponivel', 'O reconhecimento por foto ainda não está configurado. Use a lista.');
-  if (typeof p.convite !== 'string' || !ctx.convites.includes(p.convite.trim().toUpperCase()))
+  if (!p || typeof p !== 'object') return erro(400, 'pedido', 'Pedido inválido.');
+  // Quem já errou o convite vezes demais hoje não tenta mais, nem com o código certo (n = 0 só consulta, sem gastar).
+  const chaveConvite = `cv:${ctx.ip}:${ctx.hoje}`;
+  if (!(await limite.usarTodos([{ chave: chaveConvite, max: LIMITE_CONVITE_ERRADO - 1 }], 0)))
+    return erro(429, 'limite', 'Muitas tentativas com o código errado hoje. Use a lista ou tente amanhã.');
+  if (typeof p.convite !== 'string' || !ctx.convites.includes(p.convite.trim().toUpperCase())) {
+    await limite.usarTodos([{ chave: chaveConvite, max: LIMITE_CONVITE_ERRADO }], 1);
     return erro(403, 'convite', 'Código de convite inválido.');
+  }
   if (typeof p.aparelho !== 'string' || !/^[a-zA-Z0-9-]{8,64}$/.test(p.aparelho)) return erro(400, 'pedido', 'Pedido inválido.');
   if (!Array.isArray(p.fotos) || p.fotos.length === 0 || p.fotos.length > MAX_FOTOS)
     return erro(400, 'fotos', `Envie de 1 a ${MAX_FOTOS} fotos.`);

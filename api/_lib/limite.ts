@@ -1,7 +1,8 @@
 import { Limite, type Contador, type LimiteDoPedido } from './pedido.js';
 
 // Limite diário compartilhado entre as instâncias da função (R5c, B1): Redis no Upstash, pela API REST (sem dependência
-// nova). Um comando por pedido (um script que confere todas as chaves e só então soma), com validade de 2 dias.
+// nova). Um comando por conferência (um script que confere todas as chaves e só então soma), com validade de 2 dias;
+// cada pedido faz duas: a dos convites errados do IP e a das fotos.
 // Sem as variáveis, ou se o Upstash não responder, vale o contador em memória de cada instância (como antes).
 // Variáveis (a integração do Upstash no Marketplace da Vercel cria as KV_*): KV_REST_API_URL e KV_REST_API_TOKEN,
 // ou UPSTASH_REDIS_REST_URL e UPSTASH_REDIS_REST_TOKEN.

@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { LIMITE_APARELHO, LIMITE_IP, Limite, MAX_FOTOS, processarPedido, type Contexto } from '../../api/_lib/pedido';
+import { LIMITE_APARELHO, LIMITE_CONVITE_ERRADO, LIMITE_IP, Limite, MAX_FOTOS, processarPedido, type Contexto } from '../../api/_lib/pedido';
 
 const ctx: Contexto = { ip: '1.2.3.4', hoje: '2026-11-01', convites: ['BETA1'], chaveConfigurada: true };
 const foto = '/9j/' + 'A'.repeat(100);
@@ -14,6 +14,24 @@ describe('api/vision: regras do pedido', () => {
   it('exige convite válido (sem diferenciar maiúsculas) e aparelho identificado', async () => {
     expect((await processarPedido({ ...ok, convite: 'errado' }, ctx, new Limite(), modelo)).corpo.codigo).toBe('convite');
     expect((await processarPedido({ ...ok, aparelho: 'x' }, ctx, new Limite(), modelo)).status).toBe(400);
+  });
+
+  it('um corpo que não é objeto (null) vira 400, não erro interno', async () => {
+    expect((await processarPedido(null as never, ctx, new Limite(), modelo)).status).toBe(400);
+  });
+
+  it('depois de muitos convites errados no dia, o IP não tenta mais, nem com o código certo', async () => {
+    const limite = new Limite();
+    for (let i = 0; i < LIMITE_CONVITE_ERRADO; i++)
+      expect((await processarPedido({ ...ok, convite: `chute-${i}` }, ctx, limite, modelo)).status).toBe(403);
+    expect((await processarPedido({ ...ok, convite: 'chute' }, ctx, limite, modelo)).status).toBe(429);
+    expect((await processarPedido(ok, ctx, limite, modelo)).status).toBe(429);
+    // outro IP e o dia seguinte não são afetados; e poucos erros não barram quem acerta depois
+    expect((await processarPedido(ok, { ...ctx, ip: '5.6.7.8' }, limite, modelo)).status).toBe(200);
+    expect((await processarPedido(ok, { ...ctx, hoje: '2026-11-02' }, limite, modelo)).status).toBe(200);
+    const outro = new Limite();
+    await processarPedido({ ...ok, convite: 'errado' }, ctx, outro, modelo);
+    expect((await processarPedido(ok, ctx, outro, modelo)).status).toBe(200);
   });
 
   it('aceita de 1 a 5 fotos JPEG em base64, dentro do tamanho', async () => {

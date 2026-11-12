@@ -39,9 +39,11 @@ describe('limite compartilhado (Upstash)', () => {
     expect((await processarPedido(ok, ctx, a, modelo)).corpo.codigo).toBe('limite');
     expect((await processarPedido(ok, ctx, b, modelo)).corpo.codigo).toBe('limite');
     expect(u.banco.get('treino:ap:aparelho-123:2026-11-07')).toBe(LIMITE_APARELHO);
-    // O pedido barrado não somou no IP: 1 comando por pedido, e o IP ficou só com os que passaram.
+    // O pedido barrado não somou no IP, que ficou só com os que passaram. São 2 comandos por pedido: a consulta dos
+    // convites errados do IP (que não soma nada) e o gasto das fotos.
     expect(u.banco.get('treino:ip:1.2.3.4:2026-11-07')).toBe(LIMITE_APARELHO);
-    expect(u.comandos).toHaveLength(LIMITE_APARELHO + 2);
+    expect(u.banco.get('treino:cv:1.2.3.4:2026-11-07') ?? 0).toBe(0);
+    expect(u.comandos).toHaveLength(2 * (LIMITE_APARELHO + 2));
   });
 
   it('se o Upstash falha, vale o contador em memória e o pedido segue', async () => {
