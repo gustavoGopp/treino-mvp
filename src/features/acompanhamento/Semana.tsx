@@ -143,7 +143,8 @@ export function Semana() {
           <p className="ajuda legenda-estados">A barra é o que foi feito; o traço tracejado é a meta. Cheio: na meta · médio: crescendo (4 séries ou mais) · claro: mantendo · vazio: ainda não treinou nesta semana.</p>
         </section>
 
-        {r.revisao && (
+        {/* Com um treino aberto, o programa não é gerado de novo: a oferta volta quando ele terminar. */}
+        {r.revisao && !estado.sessaoAtual && (
           <section className="box volta" aria-labelledby="revisao">
             <h2 id="revisao">Um programa que cabe melhor?</h2>
             <p>

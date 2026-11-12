@@ -130,6 +130,10 @@ export function gerarDoEstado(e: Estado): Programa | null {
 
 /** Programa salvo gerado de novo, montado para o local principal (R1b); se não dá para gerar, fica o anterior. */
 export function comProgramaNovo(e: Estado, agora: string, semAnterior = false): Estado {
+  // Com um treino aberto, o programa salvo não muda: o treino lê dele as séries e o descanso de cada vaga, e um
+  // exercício que saísse do dia passava a usar os da 1ª vaga. A mudança do cadastro fica guardada, e a tela do
+  // programa oferece "Atualizar" quando o treino terminar.
+  if (e.sessaoAtual) return e;
   const p = gerarDoEstado(e);
   const local = localPrincipal(e);
   if (!p) return semAnterior ? { ...e, programa: undefined } : e;

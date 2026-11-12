@@ -226,7 +226,6 @@ Detalhes e números em `devlog.md` ("R5-anim"), `revisoes/r5-anim/README.md` e `
 O que a auditoria achou e não corrigiu, porque pede uma decisão do Gustavo ou muda uma regra. Em ordem de gravidade.
 
 **Segurança e dados**
-- **O programa pode ser gerado de novo no meio de um treino** ("Atualizar", a semana com N dias, restrições, inventário): o exercício que saiu do dia passa a usar as séries e o descanso da 1ª vaga. Esconder ou travar enquanto há treino aberto.
 - **Um id de exercício desconhecido deixa o estado inteiro ilegível** (`storage/esquema.ts`): hoje nenhum id foi removido, mas o primeiro que for renomeado sem migração quebra a carga de quem o registrou (o dado agora fica guardado à parte, mas o app abre vazio). Aceitar qualquer texto no histórico ou criar um teste que exija a migração.
 - **`halteres_fixos` aceita mínimo maior que o máximo** (`taxonomia/equipamentos.ts`): a lista de cargas fica vazia, mas o programa prescreve exercícios com halter. Validar no formulário e tratar o que já estiver salvo antes de endurecer o esquema.
 - **O limite por aparelho da foto é fraco** (`api/_lib/pedido.ts`): o id do aparelho vem do cliente; o que vale é o limite por IP e o teto mensal na Anthropic. A cota também não é devolvida quando o modelo falha.

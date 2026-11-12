@@ -83,6 +83,7 @@ export function Programa() {
 
   const escolher = (o: Opcao) => {
     setVerAvisos(false);
+    if (estado.sessaoAtual) return;
     if (o.id === 'manter') {
       atualizar((s) => ({ ...s, ajustes: { recolhido: true } }));
       setAviso('Programa mantido.');
@@ -164,7 +165,7 @@ export function Programa() {
         </section>
       ),
     });
-  if (versaoNova)
+  if (versaoNova && !estado.sessaoAtual)
     fila.push({
       id: 'versao',
       linha: 'Há uma versão nova do seu programa.',
@@ -325,6 +326,7 @@ export function Programa() {
         <p role="status" className="status">
           {aviso}
         </p>
+        {versaoNova && estado.sessaoAtual && <p className="ajuda">O programa será atualizado depois do treino em andamento.</p>}
         <AvisoInstalar />
 
         <div className="abas" role="tablist" aria-label="Dias de treino">
@@ -379,7 +381,7 @@ export function Programa() {
           semana={semana}
           fase={hoje.fase ?? faseAtual}
           reabrirAjustes={
-            opcoes.length > 0 && !!estado.ajustes?.recolhido
+            opcoes.length > 0 && !!estado.ajustes?.recolhido && !estado.sessaoAtual
               ? () => {
                   atualizar((s) => ({ ...s, ajustes: { recolhido: false } }));
                   setVerAvisos(true);
