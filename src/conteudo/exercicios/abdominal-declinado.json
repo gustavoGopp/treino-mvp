@@ -1,0 +1,55 @@
+{
+  "id": "abdominal-declinado",
+  "name": "Abdominal no banco declinado",
+  "short": "Abdominal declinado",
+  "target": "Abdômen",
+  "setupEq": [
+    "Banco declinado, com os pés presos nos rolos."
+  ],
+  "setupBody": [
+    "Deitado no banco, joelhos dobrados, pés presos.",
+    "Mãos cruzadas no peito ou ao lado da cabeça, sem puxar o pescoço."
+  ],
+  "exec": [
+    [
+      "conc",
+      "Subida",
+      "Enrola a coluna, levando as costelas na direção do quadril, até as costas saírem do banco."
+    ],
+    [
+      "ecc",
+      "Descida",
+      "~2–3 s. Desenrola até as costas encostarem de novo, sem relaxar no fundo."
+    ]
+  ],
+  "range": [
+    "Início: costas no banco.",
+    "Fim: tronco enrolado, costas fora do banco."
+  ],
+  "cues": [
+    "Enrola a coluna.",
+    "Sem puxar o pescoço.",
+    "Desce devagar."
+  ],
+  "errors": [
+    {
+      "id": "e1",
+      "title": "Puxar o pescoço",
+      "desc": "As mãos puxam a cabeça para a frente."
+    },
+    {
+      "id": "e2",
+      "title": "Subir com a coluna reta",
+      "desc": "Subir como uma tábua usa os flexores do quadril no lugar do abdômen."
+    },
+    {
+      "id": "e3",
+      "title": "Impulso",
+      "desc": "Jogar os braços para ganhar embalo."
+    }
+  ],
+  "montagem": [
+    "Confira se os pés estão bem presos antes de deitar; para sair, segure no banco e sente primeiro."
+  ],
+  "carga": "Peso do corpo: registre o degrau da escada de dificuldade (mais repetições, descida lenta, variação mais difícil, carga extra). Depois, segure uma anilha ou um halter junto ao peito, em kg."
+}

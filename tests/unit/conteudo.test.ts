@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { existsSync } from 'node:fs';
+import { existsSync, readFileSync } from 'node:fs';
 import { CARTOES, CONTEUDO } from '../../src/conteudo';
 import { carregarCartao, temCartao } from '../../src/conteudo/cartoes';
 import { BIBLIOTECA, POR_ID } from '../../src/domain/biblioteca';
@@ -28,6 +28,19 @@ describe('conteúdo dos exercícios', () => {
     for (const id of Object.keys(CARTOES)) {
       expect(POR_ID[id], id).toBeDefined();
       expect(POR_ID[id]!.animacaoId, id).toBeNull();
+    }
+  });
+
+  // Auditoria de 12/11/2026: 20 exercícios da biblioteca não tinham animação nem cartão e apareciam como "Sem guia
+  // ainda". O CLAUDE.md pede o cartão de texto para todo exercício sem animação aprovada.
+  it('todo exercício da biblioteca tem guia: a animação aprovada ou o cartão de texto, com a ficha de técnica e a fonte', () => {
+    const semGuia = BIBLIOTECA.filter((e) => e.animacaoId === null && !CARTOES[e.id]).map((e) => e.id);
+    expect(semGuia).toEqual([]);
+    for (const e of BIBLIOTECA.filter((x) => x.animacaoId === null)) {
+      const ficha = `docs/pesquisa/animacoes/${e.id}.md`;
+      expect(existsSync(ficha), `${e.id} sem ficha de técnica`).toBe(true);
+      expect(readFileSync(ficha, 'utf8'), `${e.id}: a ficha não diz a fonte`).toMatch(/## Fontes\n- `[a-z0-9-]+`/);
+      expect(CARTOES[e.id]!.name, e.id).toBe(e.nome);
     }
   });
 

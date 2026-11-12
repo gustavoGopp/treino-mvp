@@ -1,0 +1,62 @@
+{
+  "id": "panturrilha-leg-press",
+  "name": "Panturrilha no leg press",
+  "short": "Panturrilha no leg press",
+  "target": "Panturrilha",
+  "setupEq": [
+    "Leg press com a trava de segurança fechada durante toda a série.",
+    "Anilhas iguais dos dois lados."
+  ],
+  "setupBody": [
+    "Costas e quadril apoiados, joelhos estendidos, sem travar.",
+    "Só a ponta dos pés na borda de baixo da plataforma, calcanhares para fora."
+  ],
+  "exec": [
+    [
+      "ecc",
+      "Descida",
+      "~2 s. Deixa os calcanhares descerem até a panturrilha alongar bem."
+    ],
+    [
+      "hold",
+      "Embaixo",
+      "Segura 1 s alongado."
+    ],
+    [
+      "conc",
+      "Subida",
+      "Empurra com a ponta dos pés o máximo que conseguir."
+    ]
+  ],
+  "range": [
+    "Início: calcanhares abaixo da ponta dos pés, panturrilha alongada.",
+    "Fim: na ponta dos pés."
+  ],
+  "cues": [
+    "Alonga embaixo.",
+    "Joelhos estendidos.",
+    "Sobe o máximo."
+  ],
+  "errors": [
+    {
+      "id": "e1",
+      "title": "Movimento curto",
+      "desc": "Subir e descer só um pouco, com carga alta."
+    },
+    {
+      "id": "e2",
+      "title": "Dobrar os joelhos",
+      "desc": "Usar as coxas para empurrar a plataforma."
+    },
+    {
+      "id": "e3",
+      "title": "Quicar embaixo",
+      "desc": "Bater e voltar sem a pausa tira o trabalho da parte alongada."
+    }
+  ],
+  "montagem": [
+    "Mantenha a trava de segurança fechada: com só a ponta dos pés na plataforma, o pé pode escapar.",
+    "Pés secos e tênis que não escorrega."
+  ],
+  "carga": "Registre os kg de anilhas de cada lado (sem contar o trenó ou a barra da máquina). Para progredir, o menor par de anilhas."
+}

@@ -1,0 +1,55 @@
+{
+  "id": "rosca-barra-w",
+  "name": "Rosca com barra W",
+  "short": "Rosca com barra W",
+  "target": "Bíceps",
+  "setupEq": [
+    "Barra W com anilhas iguais dos dois lados."
+  ],
+  "setupBody": [
+    "Em pé, pés na largura do quadril, tronco reto.",
+    "Pegada nas partes inclinadas da barra, palmas para cima, cotovelos ao lado do corpo."
+  ],
+  "exec": [
+    [
+      "conc",
+      "Subida",
+      "Dobra os cotovelos até a barra chegar perto dos ombros, com os cotovelos parados."
+    ],
+    [
+      "ecc",
+      "Descida",
+      "~2 s. Desce até os braços quase estenderem."
+    ]
+  ],
+  "range": [
+    "Início: braços quase estendidos.",
+    "Fim: barra perto dos ombros."
+  ],
+  "cues": [
+    "Cotovelos parados.",
+    "Tronco reto.",
+    "Desce devagar."
+  ],
+  "errors": [
+    {
+      "id": "e1",
+      "title": "Balançar o tronco",
+      "desc": "Jogar o corpo para trás faz a carga subir sem o bíceps."
+    },
+    {
+      "id": "e2",
+      "title": "Cotovelos para a frente",
+      "desc": "Levar os cotovelos à frente no topo descansa o bíceps."
+    },
+    {
+      "id": "e3",
+      "title": "Descida curta",
+      "desc": "Não estender os braços deixa de fora a parte alongada."
+    }
+  ],
+  "montagem": [
+    "Travas nas anilhas."
+  ],
+  "carga": "Registre os kg (barra W com anilhas). Para progredir, o menor par de anilhas."
+}

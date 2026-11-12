@@ -1,0 +1,52 @@
+{
+  "id": "mesa-flexora",
+  "name": "Mesa flexora (deitado)",
+  "short": "Mesa flexora",
+  "target": "Posteriores da coxa",
+  "setupEq": [
+    "Rolo ajustado logo acima do calcanhar; o joelho alinhado com o eixo da máquina."
+  ],
+  "setupBody": [
+    "Deitado de bruços, quadril apoiado, mãos nos pegadores.",
+    "Pés relaxados, pernas quase estendidas."
+  ],
+  "exec": [
+    [
+      "conc",
+      "Dobrar",
+      "Dobra os joelhos até o rolo chegar perto do glúteo, sem levantar o quadril."
+    ],
+    [
+      "ecc",
+      "Volta",
+      "~2–3 s. Volta até as pernas quase estenderem."
+    ]
+  ],
+  "range": [
+    "Início: pernas quase estendidas.",
+    "Fim: rolo perto do glúteo."
+  ],
+  "cues": [
+    "Quadril no apoio.",
+    "Dobra até o fim.",
+    "Volta devagar."
+  ],
+  "errors": [
+    {
+      "id": "e1",
+      "title": "Levantar o quadril",
+      "desc": "O quadril sobe para ajudar e a lombar arqueia."
+    },
+    {
+      "id": "e2",
+      "title": "Volta solta",
+      "desc": "Deixar a placa cair perde a parte alongada."
+    },
+    {
+      "id": "e3",
+      "title": "Rolo no lugar errado",
+      "desc": "Rolo na panturrilha ou no pé muda o braço de alavanca."
+    }
+  ],
+  "carga": "Registre o número da placa da torre. Para progredir, +1 placa. Na máquina de anilhas, kg por lado."
+}

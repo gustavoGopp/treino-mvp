@@ -1,0 +1,52 @@
+{
+  "id": "rosca-polia-costas",
+  "name": "Rosca na polia baixa, de costas para a torre",
+  "short": "Rosca de costas para a torre",
+  "target": "Bíceps",
+  "setupEq": [
+    "Polia embaixo, com o estribo."
+  ],
+  "setupBody": [
+    "De costas para a torre, um passo à frente, com o estribo numa mão.",
+    "O braço fica um pouco atrás do corpo, palma para a frente."
+  ],
+  "exec": [
+    [
+      "conc",
+      "Subida",
+      "Dobra o cotovelo até a mão chegar perto do ombro, com o cotovelo parado atrás do corpo."
+    ],
+    [
+      "ecc",
+      "Descida",
+      "~2 s. Desce até o braço quase estender, atrás do corpo."
+    ]
+  ],
+  "range": [
+    "Início: braço quase estendido atrás do corpo, bíceps alongado.",
+    "Fim: mão perto do ombro."
+  ],
+  "cues": [
+    "Cotovelo atrás do corpo.",
+    "Tronco parado.",
+    "Desce devagar."
+  ],
+  "errors": [
+    {
+      "id": "e1",
+      "title": "Trazer o cotovelo para a frente",
+      "desc": "Perde a posição alongada, que é o motivo deste exercício."
+    },
+    {
+      "id": "e2",
+      "title": "Girar o tronco",
+      "desc": "Rodar o corpo para ajudar a subir."
+    },
+    {
+      "id": "e3",
+      "title": "Carga demais",
+      "desc": "Se o ombro for para a frente, a carga está alta."
+    }
+  ],
+  "carga": "Registre o número da placa da torre. Para progredir, +1 placa."
+}

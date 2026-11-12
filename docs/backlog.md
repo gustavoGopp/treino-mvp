@@ -229,7 +229,6 @@ O que a auditoria achou e não corrigiu, porque pede uma decisão do Gustavo ou 
 
 **Regras do treino**
 - **A animação da `panturrilha-chao` mostra a descida com as duas pernas**: em 12/11/2026 os dados, o porquê e o cartão foram alinhados à fonte (subir com as duas e descer em 3 s com uma só; `nakamura2025`), e o cartão avisa da diferença. Falta o Gustavo decidir: refazer a animação (folha a folha) ou mostrar o exercício como cartão de texto.
-- **20 exercícios da biblioteca não têm animação nem cartão** (supino com barra, leg press, mesa flexora, remada com barra…): aparecem como "Sem guia ainda", e o CLAUDE.md pede o cartão de texto.
 
 **Tela**
 - **O descanso e a nota de dor pendente se perdem ao sair do treino** (abrir o guia no meio do descanso para o temporizador).
