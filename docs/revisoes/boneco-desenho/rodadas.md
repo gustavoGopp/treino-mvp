@@ -56,3 +56,18 @@ O que ficou de fora desta rodada, de propósito: a segunda pessoa (mulher), a ca
 **Como li a frase:** os dois finalistas com as duas variações (D e C em ambos). A outra leitura possível é "1 com D e 10 com C"; por isso a rodada 3 mostra o 10 também sem o contorno suave, numa célula de comparação.
 
 **Leitura minha:** ele tirou o 2 (a soma das escolhas dele nas perguntas de gosto) e ficou com os dois em que o tronco está à mostra e o músculo é desenhado direto no corpo, um cinza e um com cor de pele. O que os dois têm em comum: corpo de medidas reais, forma curva, traço fino em volta, sem regata por cima do músculo. O que os separa: cinza sem roupa e músculo só quando trabalha (1) contra cor de pele, short e todos os grupos musculares sempre desenhados (10).
+
+## Rodada 3 (13/11/2026): os dois finalistas nas poses difíceis
+
+- **Quadro:** `rodada-3/quadro.png`. Como gerar de novo: `node scripts/boneco-desenho/rodada3.mjs`.
+- Os dois lado a lado, com o mesmo corpo, o traço fino (D) e a mão com polegar e dedos (C).
+
+Poses de cada finalista: em pé de frente, de lado e de costas (de costas, com o músculo das costas); braços acima da cabeça, com halteres; agachamento e flexão, com o músculo; deitado no banco (supino), com o músculo; ajoelhado puxando o cabo, com o músculo; a mão segurando o halter e o pé apoiado, em tamanho grande; agachamento e supino no tema escuro; miniaturas de 96 px. No 10 há uma célula a mais, sem o contorno suave, para comparar (a frase dele na rodada 2 podia ser lida dos dois jeitos).
+
+O que apareceu de novo no desenho para esta rodada: o membro do lado de longe (o braço que não puxa, no cabo) num tom próprio; a mão fechada no cabo e no halter, com polegar e linhas dos dedos; a mão espalmada no chão; o pé descalço (no 1) e o tênis com sola (no 10); o banco, o cabo, o pegador e o tapete como peças simples.
+
+Limites que continuam: um corpo só (homem, tom de pele médio no 10); a vista de costas só existe em pé; as poses vêm do esqueleto da sessão da animação nova (goblet, flexão, supino e puxada) e de uma pose de braços para cima montada para esta prancha.
+
+**Minha recomendação (opinião):** o 1. Nas poses difíceis e na miniatura ele se lê mais rápido, e o músculo é a única cor da figura, então salta sem esforço. O 10 é mais fiel e mais "gente", mas fica carregado no supino e no cabo, e o músculo que trabalha se destaca menos sobre a cor de pele. Do 10 eu aproveitaria uma coisa: o desenho de todos os grupos musculares, como uma opção do modo Músculos, e não o tempo todo.
+
+**Decisão do Gustavo:** (aguardando)
