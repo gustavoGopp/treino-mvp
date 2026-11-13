@@ -77,3 +77,25 @@ Limites que continuam: um corpo só (homem, tom de pele médio no 10); a vista d
 - **10 (o da direita):** gostou um pouco. O problema é a vista de costas: os glúteos muito marcados, e a figura parece estar sem o short. Causa no desenho: nessa célula o short virou véu (regra do modo Músculos) mesmo sem nenhum músculo ativo debaixo dele, e os glúteos parados apareceram por baixo. Conserto: o short só vira véu quando há músculo que trabalha debaixo dele; fora disso é um short de verdade, opaco, e nada aparece por baixo.
 - **1 (o da esquerda):** está bom, mas simples demais: ele teme que, na hora de ver um treino, não seja preciso o bastante. Falta referência no corpo (onde fica o peito, o abdômen, o joelho, a escápula) para se ler a inclinação do tronco e a posição das articulações.
 - Os dois seguem como referência; a próxima prancha traz versões mais desenvolvidas de cada um, e a escolha fica para depois.
+
+## Rodada 4 (13/11/2026): os dois finalistas, mais desenvolvidos
+
+- **Quadro:** `rodada-4/quadro.png`. Como gerar de novo: `node scripts/boneco-desenho/rodada4.mjs`.
+- Seis faixas: cada finalista como referência e duas versões novas. Colunas: em pé de frente; de costas; agachamento sem o músculo; agachamento com o músculo; supino com o músculo; ajoelhado no cabo com o músculo; miniatura nos dois temas.
+
+| Versão | O que muda | Que ponto fraco ataca |
+|---|---|---|
+| 1 · Referência | cinza, traço fino, sem roupa | (referência) |
+| 1.1 · Com as linhas do corpo | os grupos musculares e a rótula em linha fina cinza, sempre desenhados | "muito simples", "não vai ser tão preciso": o corpo ganha referências |
+| 1.2 · Com as linhas, de short e tênis | o 1.1 com short, tênis com sola e cabelo | o short separa o quadril da coxa, o tênis mostra o apoio do pé, o cabelo mostra para onde a cabeça olha |
+| 10 · Referência | cor de pele, contorno suave, de short, grupos com tom claro por dentro | (referência, já com o short corrigido) |
+| 10.1 · Mais calmo, com o short de verdade | os grupos só em linha fina, sem o tom claro por dentro | "bunda muito marcada", carregado |
+| 10.2 · Mais calmo, com traço escuro | o 10.1 com traço fino escuro no lugar do contorno suave | bordas mais nítidas (precisão) |
+
+**Correção de regra que vale para todas as versões com roupa:** cada peça de roupa só vira véu (clara, deixando ver o músculo) quando há um músculo que trabalha debaixo dela. Na rodada 3 o short virava véu sempre que qualquer músculo aparecia, e de costas os glúteos parados apareciam por baixo: era isso que dava a impressão de "sem o short". O quadro da rodada 3 foi regerado com a regra nova (`rodada-3/quadro.png`); a versão que ele viu está no histórico do git (commit `6be0ea7`).
+
+**O que eu noto (opinião):** as duas linhas convergiram. O 1.2 e o 10.1 são quase o mesmo desenho (corpo de medidas reais, linhas dos grupos musculares, short, tênis, cabelo, traço fino): o que sobra de diferença é o corpo cinza ou com cor de pele, e a cor do traço.
+
+**Minha recomendação (opinião):** o 1.2. Ele resolve a simplicidade do 1 (as linhas do corpo, o short e o tênis dão as referências que faltavam) e mantém a vantagem do cinza: o músculo que trabalha é a única cor da figura. Se a cor de pele pesar mais para ele, o 10.2 é a melhor das três versões de pele, porque o traço escuro deixa as bordas mais nítidas.
+
+**Decisão do Gustavo:** (aguardando)

@@ -118,7 +118,7 @@ function musculos(formas, papeis, C, { parados = 'nada', veus = [], soFora = nul
     if (veus.length) ativos += foraDe(veus.flatMap((v) => v.ds), desenhar(null)) + veus.map((v) => recorte(v.ds, desenhar(v.cor))).join('');
     else ativos += desenhar(null);
   }
-  if (quietos && soFora) quietos = foraDe(soFora, quietos);
+  if (quietos && soFora?.length) quietos = foraDe(soFora, quietos);
   return quietos + ativos;
 }
 musculos.n = 0;
@@ -178,12 +178,16 @@ export function figura(pose, vista, c, o = {}) {
   const g = esc.gordura * esc.corpo;
   const mostra = !!o.papeis;
   // a roupa: no modo Músculos, se o conceito mostra o músculo por baixo da roupa, ela vira véu
-  const veu = mostra && c.musculo === 'veu' && !!c.roupa;
+  // cada peça de roupa só vira véu quando há um músculo que trabalha debaixo dela; fora disso é roupa de verdade,
+  // opaca, e nada aparece por baixo (na rodada 3, o short em véu sem motivo deixava os glúteos marcados de costas)
+  const ativo = (ids) => mostra && ids.some((id) => o.papeis[id]);
+  const veuRegata = c.musculo === 'veu' && c.roupa === 'regata-short' && ativo(['peitoral', 'abdomen', 'dorsal', 'obliquos', 'trapezio']);
+  const veuShort = c.musculo === 'veu' && !!c.roupa && ativo(['gluteo', 'quadriceps', 'adutores', 'posteriores']);
   const temRegata = c.roupa === 'regata-short', temShort = !!c.roupa;
   const par = (cor, sombra, luz) => ({ cor, sombra: sombra ?? cor, luz: luz ?? cor });
   const pelePar = par(C.pele, C.peleSombra, C.peleLuz);
-  const regataPar = !temRegata ? pelePar : veu ? par(C.roupaVeu) : par(C.roupa, C.roupaSombra, C.roupaLuz);
-  const shortPar = !temShort ? pelePar : veu ? par(C.shortVeu) : par(C.short, C.shortSombra, C.shortLuz);
+  const regataPar = !temRegata ? pelePar : veuRegata ? par(C.roupaVeu) : par(C.roupa, C.roupaSombra, C.roupaLuz);
+  const shortPar = !temShort ? pelePar : veuShort ? par(C.shortVeu) : par(C.short, C.shortSombra, C.shortLuz);
   const pePar = c.descalco ? pelePar : par(C.calcado);
   const cabeloPar = par(C.cabelo);
   const R = p.R, J = (n) => p2(R[n]);
@@ -253,9 +257,9 @@ export function figura(pose, vista, c, o = {}) {
 
     const onde = { membros: { coxa: [J('quadril'), J('joelho'), COXA_L, g], canela: [J('joelho'), J('tornozelo'), CANELA_L, g], braco: [J('ombro'), J('cotovelo'), BRACO_L, g], ante: [J('cotovelo'), J('punho'), ANTE_L, g] }, tronco: noTronco, pelve: { o: p2(rp.o), ex: rp.z, ey: rp.y, k: g } };
     const todos = c.forma === 'barra' ? [] : montar(DE_LADO, onde);
-    const veus = veu ? [{ ds: [tronco], cor: C.roupaVeu }, { ds: [pelve, short], cor: C.shortVeu }] : [];
-    const roupaOpaca = [...(temRegata ? [tronco] : []), ...(temShort ? [pelve, short] : [])];
-    const mus = (ids) => (mostra || parados !== 'nada' ? musculos(todos.filter(ids), o.papeis, C, { parados, veus, soFora: veu ? null : roupaOpaca, fino }) : '');
+    const veus = [...(veuRegata ? [{ ds: [tronco], cor: C.roupaVeu }] : []), ...(veuShort ? [{ ds: [pelve, short], cor: C.shortVeu }] : [])];
+    const roupaOpaca = [...(temRegata && !veuRegata ? [tronco] : []), ...(temShort && !veuShort ? [pelve, short] : [])];
+    const mus = (ids) => (mostra || parados !== 'nada' ? musculos(todos.filter(ids), o.papeis, C, { parados, veus, soFora: roupaOpaca, fino }) : '');
     const desenhadas = [];
     const grupoDe = (formas, extra = {}) => {
       const fs = formas.filter((f) => f.d);
@@ -373,9 +377,9 @@ export function figura(pose, vista, c, o = {}) {
   };
   const onde = { membros: { coxa: [J('quadril'), J('joelho'), COXA_F, g], canela: [J('joelho'), J('tornozelo'), CANELA_F, g], braco: [J('ombro'), cot, BRACO_F, g], ante: [cot, pun, ANTE_F, g] }, abs: E, espelhar: true };
   const todos = c.forma === 'barra' ? [] : montar(deCostas ? DE_COSTAS : DE_FRENTE, onde);
-  const veus = veu ? [{ ds: [tronco], cor: C.roupaVeu }, { ds: [pelve], cor: C.shortVeu }] : [];
-  const roupaOpaca = [...(temRegata ? [tronco] : []), ...(temShort ? [pelve] : [])];
-  const mus = (ids) => (mostra || parados !== 'nada' ? musculos(todos.filter(ids), o.papeis, C, { parados, veus, soFora: veu ? null : roupaOpaca, fino }) : '');
+  const veus = [...(veuRegata ? [{ ds: [tronco], cor: C.roupaVeu }] : []), ...(veuShort ? [{ ds: [pelve], cor: C.shortVeu }] : [])];
+  const roupaOpaca = [...(temRegata && !veuRegata ? [tronco] : []), ...(temShort && !veuShort ? [pelve] : [])];
+  const mus = (ids) => (mostra || parados !== 'nada' ? musculos(todos.filter(ids), o.papeis, C, { parados, veus, soFora: roupaOpaca, fino }) : '');
 
   if (c.pecas || c.forma === 'barra') {
     if (c.forma === 'barra') {

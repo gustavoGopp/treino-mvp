@@ -11,7 +11,7 @@ import { POSES, corpoPadrao as corpo, motor as m, pontos } from './poses.mjs';
 import { zerarIds } from './tinta.mjs';
 
 const SAIDA = 'docs/revisoes/boneco-desenho/rodada-3';
-const C = (n) => CONCEITOS.find((c) => c.n === n);
+export const C = (n) => CONCEITOS.find((c) => c.n === n);
 /** Os finalistas, com as variações escolhidas na rodada 2: D (traço) e C (mão com polegar e dedos). */
 export const FINALISTAS = [
   { ...C(1), contorno: 0.6, mao: 'polegar', rotulo: '1 · Hoje, com corpo de gente', sub: 'Cinza, traço fino, sem roupa; o músculo aparece só quando trabalha.' },
@@ -29,7 +29,8 @@ const P = {
 };
 const HALTER = [[8.7, 52.1], [16.7, 84.2]];
 const PAPEL = { ...PAPEIS, supino: { peitoral: 'p', triceps: 's', deltoide: 's' }, puxada: { dorsal: 'p', biceps: 's', deltoide: 's', trapezio: 's' } };
-const FUNDO = { claro: '#f7f9fa', escuro: '#10171b' }, CHAO = { claro: '#d5dce1', escuro: '#33414b' }, FERRO = { claro: '#27343f', escuro: '#cfd8de' }, PECA = { claro: ['#7f8b96', '#aab4bc'], escuro: ['#56656f', '#3d4b55'] };
+export const FUNDO = { claro: '#f7f9fa', escuro: '#10171b' };
+const CHAO = { claro: '#d5dce1', escuro: '#33414b' }, FERRO = { claro: '#27343f', escuro: '#cfd8de' }, PECA = { claro: ['#7f8b96', '#aab4bc'], escuro: ['#56656f', '#3d4b55'] };
 
 /* ----- as peças de cena (medidas lidas das cenas da sessão da animação nova) ----- */
 const anilha = (t) => `<rect x="-15" y="0" width="22.8" height="2.4" rx="0.6" fill="${FERRO[t]}"/>`;
@@ -41,7 +42,7 @@ const cabo = (K) => `<path d="M10 110.5L40.9 195.3" stroke="${K.ferro}" stroke-w
 const ESC = 1.62; // px por cm no palco
 const CAIXA = { empe: [-43, -8, 86, 196], alto: [-45, -8, 90, 234], agach: [-52, -8, 100, 138], flex: [-16, -8, 200, 72], supino: [-84, -8, 180, 104], puxada: [-72, -8, 132, 180] };
 /** Uma pose de um finalista. tipo: frente | lado | costas | alto | agach | flex | supino | puxada. */
-function pose(c, tipo, { tema = 'claro', mus = true, px = null, mini = false } = {}) {
+export function pose(c, tipo, { tema = 'claro', mus = true, px = null, mini = false } = {}) {
   const t = tema, base = { tema };
   let svg, caixa;
   if (tipo === 'frente') [svg, caixa] = [figura(P.frente, 'frente', c, base), CAIXA.empe];
