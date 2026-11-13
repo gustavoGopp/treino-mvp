@@ -6,6 +6,7 @@ import type { Lado, PoseBraco, PosePerna } from '../esqueleto';
 import { daFicha, fichaSchema } from '../movimento';
 import type { Exercicio, Quadro } from '../movimento';
 import { bancoReto, chao, halter } from '../pecas';
+import type { Peca } from '../pecas';
 import type { Corpo } from '../tabelas';
 import { obj } from '../tabelas';
 import { mix, norm } from '../vec';
@@ -36,13 +37,15 @@ function quadro(corpo: Corpo, u: number, erro?: string): Quadro {
   const perna = (k: Lado): PosePerna => ({ pe: { bola: [sinal(k) * w, 0, zPelve + m('coxa.comp') + 9], dir: [sinal(k) * 0.2, 0, 1] }, polo: [sinal(k) * 0.35, 1, 0.4] });
   const e = resolverMembros(t, { R: braco('R'), L: braco('L') }, { R: perna('R'), L: perna('L') });
   const prims = [chao(-90, 90, -90, 130), ...bancoReto(0, zPelve - obj('bancoReto', 'comp') / 2 + 22)];
+  const pecas: Peca[] = [{ t: 'bancoReto', x0: 0, z0: zPelve - obj('bancoReto', 'comp') / 2 + 22 }];
   const cargas = [];
   for (const k of ['R', 'L'] as Lado[]) {
     const L = e.lado[k];
     prims.push(...halter(L.pegada, L.mao.x, 0.2));
+    pecas.push({ t: 'halter', centro: L.pegada, eixo: L.mao.x });
     cargas.push({ massa: f('carga'), pos: L.pegada });
   }
-  return { esq: e, prims, fios: [], cargas, marcas: { halter: e.lado.R.pegada }, vies: { maoR: 1, maoL: 1 } };
+  return { esq: e, prims, pecas, fios: [], cargas, marcas: { halter: e.lado.R.pegada }, vies: { maoR: 1, maoL: 1 } };
 }
 
 export const supinoReto: Exercicio = {

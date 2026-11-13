@@ -22,7 +22,7 @@ Comece por **`proposta.md`**: ela resume tudo, lista as decisões pedidas e diz 
 | Tabelas do bloco A | `tabelas.md` (gerado de `src/engine/novo/dados/`) |
 | Pesquisa por assunto | `pesquisa/01` a `08` |
 | Protótipos, folhas, conferências, cartões e medidas | `prototipos/` |
-| Motor novo (fora do app) | `src/engine/novo/` |
+| Motor novo (fora do app) | `src/engine/novo/` (o gerador realista do equipamento está em `src/engine/novo/realista/`) |
 | Scripts | `scripts/animacao-nova/` |
 
 ## Comandos
@@ -30,7 +30,7 @@ Comece por **`proposta.md`**: ela resume tudo, lista as decisões pedidas e diz 
 - `npm run conferir:animacao`: a conferência automática das animações novas.
 - `node scripts/animacao-nova/conferir-desenho.mjs [cinza|pele]`: o aprovado, o do motor e a diferença.
 - `node scripts/animacao-nova/prototipos.mjs`: a página, as folhas e as medidas.
-- `node scripts/animacao-nova/cartoes.mjs`: os três cartões de equipamento.
+- `node scripts/animacao-nova/cena-realista.mjs`: o equipamento das cenas, peças simples ao lado do desenho realista.
 - `node scripts/animacao-nova/tabelas-md.mjs`: regenera `tabelas.md`.
 - `node scripts/animacao-nova/levar-desenho.mjs`: traz as tabelas do desenho aprovado para os dados do motor.
 

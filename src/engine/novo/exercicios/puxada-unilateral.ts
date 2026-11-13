@@ -7,7 +7,7 @@ import type { Esq, Lado, PoseBraco, PosePerna } from '../esqueleto';
 import { daFicha, fichaSchema } from '../movimento';
 import type { Exercicio, Quadro } from '../movimento';
 import { cabo, centroDaRoldana, chao, colchonete, estribo, saidaDoCabo, torre } from '../pecas';
-import type { Torre } from '../pecas';
+import type { Torre, Peca } from '../pecas';
 import type { Corpo } from '../tabelas';
 import { obj } from '../tabelas';
 import { add, dist, dirRef, mix, mul, norm, sub } from '../vec';
@@ -18,7 +18,7 @@ const f = daFicha(F);
 const rad = Math.PI / 180;
 const REPOUSO = new WeakMap<Corpo, number>();
 
-function montar(corpo: Corpo, u: number, erro?: string): { e: Esq; elo: V3; saida: V3; t: Torre; prims: ReturnType<typeof estribo>['prims'] } {
+function montar(corpo: Corpo, u: number, erro?: string): { e: Esq; elo: V3; saida: V3; t: Torre; prims: ReturnType<typeof estribo>['prims']; estribo: { pegada: V3; eixo: V3 } } {
   const m = (id: string) => corpo.m(id);
   const esp = obj('colchonete', 'esp');
   const hq = f('joelhos.meiaDistancia');
@@ -67,7 +67,7 @@ function montar(corpo: Corpo, u: number, erro?: string): { e: Esq; elo: V3; said
   }
   const L = e.lado.R;
   const { prims, elo } = estribo(L.pegada, L.mao.x, sub(roldana, L.pegada));
-  return { e, elo, saida: saidaDoCabo(torreDaPolia, elo), t: torreDaPolia, prims };
+  return { e, elo, saida: saidaDoCabo(torreDaPolia, elo), t: torreDaPolia, prims, estribo: { pegada: L.pegada, eixo: L.mao.x } };
 }
 
 function quadro(corpo: Corpo, u: number, erro?: string): Quadro {
@@ -82,7 +82,8 @@ function quadro(corpo: Corpo, u: number, erro?: string): Quadro {
   const comp = dist(r.elo, r.saida);
   const subida = Math.max(0, comp - rep) / obj('torre', 'relacao') + 2;
   const prims = [chao(-110, 80, -110, 110), ...colchonete(0, -22), ...torre(r.t, subida), ...r.prims, cabo(r.elo, r.saida)];
-  return { esq: r.e, prims, fios: [{ id: 'cabo', comp, estica: true }], cargas: [], marcas: { mao: r.e.lado.R.pegada, pilha: [0, subida, 0] }, vies: { maoR: 1 } };
+  const pecas: Peca[] = [{ t: 'colchonete', x0: 0, z0: -22 }, { t: 'torre', torre: r.t, subida }, { t: 'estribo', ...r.estribo, elo: r.elo }, { t: 'cabo', a: r.elo, b: r.saida }];
+  return { esq: r.e, prims, pecas, fios: [{ id: 'cabo', comp, estica: true }], cargas: [], marcas: { mao: r.e.lado.R.pegada, pilha: [0, subida, 0] }, vies: { maoR: 1 } };
 }
 
 export const puxadaUnilateral: Exercicio = {

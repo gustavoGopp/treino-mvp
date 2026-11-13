@@ -6,7 +6,7 @@
 // código à parte: não importa nem muda o motor.
 // O tronco é a união dos cascos de cada par de anéis vizinhos (assim aparecem a cintura e a curva da lombar); o
 // contorno é desenhado por trás do recheio, para ficar só a borda de fora.
-import { V, f1, hull, mix } from './base.mjs';
+import { V, f1, hull, mix } from '../../../src/engine/novo/realista/base.mjs';
 
 const { add, sub, mul, dot, cross, norm, len } = V;
 

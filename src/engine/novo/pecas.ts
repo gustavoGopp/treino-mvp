@@ -106,6 +106,19 @@ export function anilhaNoChao(x: number, z: number): Prim[] {
   return [{ t: 'volume', vol: cilindro([x, 0, z], [x, e, z], r, r, [0, 0, 1]), cls: 'ferro', vies: -2 }];
 }
 
+/**
+ * Uma peça de equipamento da cena, pelo nome: é dela que o desenho realista sai (./equipamento.ts). As peças simples
+ * (Prim) continuam servindo à conferência: onde o corpo encosta, onde o cabo passa.
+ */
+export type Peca =
+  | { t: 'halter'; centro: V3; eixo: V3 }
+  | { t: 'anilha'; x: number; z: number }
+  | { t: 'bancoReto'; x0: number; z0: number }
+  | { t: 'torre'; torre: Torre; subida: number }
+  | { t: 'estribo'; pegada: V3; eixo: V3; elo: V3 }
+  | { t: 'cabo'; a: V3; b: V3 }
+  | { t: 'colchonete'; x0: number; z0: number };
+
 export interface Torre {
   /** Centro da base no chão e a direção para onde a polia aponta (para a pessoa). */
   base: V3;

@@ -14,11 +14,21 @@ Ele olhou as folhas e apontou três coisas. O que foi feito em cada uma:
 
    O que descobri: os 49 cartões de hoje não são desenhos soltos. Saem de um gerador por código (`scripts/desenhos-equipamento/realista/`), em 3D, com materiais em quatro tons, estofado com costura, anilha com aro e sombra macia. Por isso dá para usar **o mesmo gerador** para desenhar o equipamento dentro das cenas das animações, em qualquer vista, com as medidas da tabela de objetos.
 
-   A prova está em `prototipos/equipamento-realista.png` (script `scripts/animacao-nova/cena-realista.mjs`): o banco reto, os halteres sextavados e as anilhas do supino e do goblet, de lado, de frente, de cima e em três quartos, com o Boneco novo, ao lado das peças simples e dos cartões de hoje.
+   **Feito, com o sim dele ("pode seguir com o equipamento realista e refazer a polia"):**
 
-   **Proposta:** os 49 cartões de hoje ficam. O equipamento das cenas passa a ser desenhado pelo mesmo gerador, com o mesmo acabamento, e cada aparelho ganha as medidas reais (o diagnóstico mostrou cartões com máquinas de 30% a 60% mais estreitas que as fichas dos fabricantes). As peças simples do motor novo deixam de ser o desenho final e ficam só para a conferência (onde o corpo encosta, onde o cabo passa).
+   - O gerador dos cartões foi levado para dentro do motor (`src/engine/novo/realista/base.mjs`, com os tipos ao lado). Os scripts dos 49 cartões passaram a importá-lo de lá: é um arquivo só, sem cópia.
+   - Cada exercício agora diz, pelo nome, as peças que usa (halter, anilha, banco reto, coluna de polia, estribo, cabo, colchonete), e `src/engine/novo/equipamento.ts` desenha cada uma com o gerador, com as medidas da tabela de objetos, na vista da cena.
+   - **A coluna da polia foi refeita:** base, estrutura de quatro colunas, guias cromadas, pilha de placas (as de cima sobem com o cabo, pelo curso do cabo dividido pela relação da máquina), trilho com os furos de regulagem, carrinho e roldana na altura pedida, estribo com fita e o cabo.
+   - No tema escuro os materiais escuros (grafite, ferro, borracha) sobem de tom, para não sumirem no fundo.
+   - As quatro animações, a página e as folhas já usam o equipamento realista. As peças simples ficaram só para a conferência (onde o corpo encosta, onde o cabo passa).
 
-   O que a prova ainda não resolve: no tema escuro a estrutura grafite quase some no fundo (os cartões de hoje têm o mesmo limite); a coluna da polia ainda não foi refeita assim; o gerador está em `scripts/` e precisa ir para dentro do motor para rodar no app; e o peso e o tempo por quadro com o equipamento realista não foram medidos.
+   A comparação está em `prototipos/equipamento-realista.png` (peças simples, realista, tema escuro, cor de pele, e os cartões de hoje dessas peças). Os três cartões simples que eu tinha feito saíram do ramo: os 49 cartões de hoje ficam.
+
+   Peso e tempo, medidos de novo com o equipamento realista: o gerador soma cerca de 6,5 kB ao pacote (o motor novo com as 4 âncoras vai a 41,4 kB compactados) e o tempo por quadro ficou na mesma faixa de antes (tabela da seção 5).
+
+   Conferido: depois da mudança de lugar do gerador, regerei os 49 cartões e nenhum arquivo de `public/equipamento/` mudou (saem idênticos, byte a byte).
+
+   O que falta no equipamento: refazer com medidas reais os aparelhos que o diagnóstico mostrou mais estreitos que os de verdade; e as peças dos próximos lotes (banco regulável, barra fixa, kettlebell, elástico e outras), que hoje só existem como cartão.
 
    A pegada do goblet também foi refinada depois: a mão agora é uma concha, com os dedos dobrando sobre a cabeça de cima do halter.
 
@@ -127,22 +137,22 @@ Medidas em `prototipos/medidas.json`, geradas por `scripts/animacao-nova/prototi
 | Pacote | Compactado |
 |---|---|
 | Motor de hoje, com os 90 exercícios | 48,0 kB |
-| Motor novo, sem nenhum exercício (motor, corpo, desenho, objetos) | 24,5 kB |
-| Motor novo com as 4 âncoras | 35,6 kB (mais o zod, que o app já carrega) |
+| Motor novo, sem nenhum exercício (motor, corpo, desenho, objetos e o gerador do equipamento) | 31,0 kB |
+| Motor novo com as 4 âncoras | 41,4 kB (mais o zod, que o app já carrega) |
 | Cada exercício novo | cerca de 1,7 kB (medido: 5,1 kB para 3) |
 
-Projeção minha (não medida): com os 90 exercícios, o novo ficaria perto de 175 kB, mais de três vezes o de hoje. Quase metade de cada ficha é texto de fonte, que o app não precisa carregar para desenhar. Proponho duas medidas, a confirmar com medição na etapa 2: tirar os textos de fonte do que vai para o app (eles continuam nos arquivos e nos documentos) e carregar cada exercício só quando for aberto, guardando para uso sem rede.
+Projeção minha (não medida): com os 90 exercícios, o novo ficaria perto de 180 kB, mais de três vezes o de hoje. Quase metade de cada ficha é texto de fonte, que o app não precisa carregar para desenhar. Proponho duas medidas, a confirmar com medição na etapa 2: tirar os textos de fonte do que vai para o app (eles continuam nos arquivos e nos documentos) e carregar cada exercício só quando for aberto, guardando para uso sem rede.
 
 **Tempo por quadro**, no Chromium com a CPU 4 vezes mais lenta, palco de 360 px (montar o SVG, trocar no palco e forçar o layout):
 
 | Animação | Hoje (média) | Novo, cinza (média) | Novo, cinza (95% dos quadros abaixo de) | SVG de um quadro: hoje / novo |
 |---|---|---|---|---|
-| Goblet | 7,4 a 7,5 ms | 11,0 a 13,7 ms | 21,5 ms | 14 kB / 52 kB |
-| Supino reto | 5,3 a 6,0 ms | 10,6 a 11,8 ms | 19,8 ms | 14 kB / 54 kB |
-| Puxada unilateral | 6,7 a 8,1 ms | 18,1 a 19,0 ms | 25,6 ms | 15 kB / 94 kB |
-| Flexão | 4,9 a 6,6 ms | 8,9 a 9,1 ms | 11,7 ms | 14 kB / 44 kB |
+| Goblet | 4,9 a 6,8 ms | 12,6 a 12,9 ms | 18,9 ms | 14 kB / 51 kB |
+| Supino reto | 6,0 a 6,7 ms | 11,8 a 13,2 ms | 19,5 ms | 14 kB / 58 kB |
+| Puxada unilateral | 5,6 a 7,1 ms | 19,1 a 20,4 ms | 33,6 ms | 15 kB / 104 kB |
+| Flexão | 5,0 a 6,3 ms | 9,9 a 10,4 ms | 14,3 ms | 14 kB / 44 kB |
 
-Cada faixa junta os modos Técnica e Músculos. A medição oscila alguns milissegundos de uma rodada para outra (numa rodada anterior a puxada chegou a 24 ms de média e 35 ms no pior caso); o que se repete em todas é a proporção: o novo leva de 2 a 3 vezes o tempo do de hoje.
+Esta é a medição com o equipamento realista. Cada faixa junta os modos Técnica e Músculos. A medição oscila alguns milissegundos de uma rodada para outra (numa rodada anterior a puxada chegou a 24 ms de média e 35 ms no pior caso); o que se repete em todas é a proporção: o novo leva de 2 a 3 vezes o tempo do de hoje.
 
 O limite para 60 quadros por segundo é 16,7 ms. O novo fica dentro dele em três das quatro âncoras na média, encosta ou passa no pior caso do goblet e do supino, e a puxada passa sempre. **Isto é um risco real e não está resolvido.** Mais da metade do tempo é só montar o texto do SVG (7 a 12 ms). O plano, em ordem de ganho esperado:
 
@@ -171,7 +181,7 @@ Ordem pela reutilização das cenas e das peças já feitas, e não por frequên
 
 Soma: 90. Cada lote segue o mesmo rito: ficha de movimento com fonte, animação, conferência sem falha, folha ao lado da de hoje, o seu ok por exercício, e só então a entrada no app. Os exercícios que hoje são cartão de texto continuam cartão de texto.
 
-Os 49 desenhos de cartão de equipamento entram junto com o lote que usa a peça. Os três cartões desta etapa estão em `prototipos/cartoes/` (banco regulável, coluna de polia e halteres). Os halteres e o banco melhoraram depois do retorno do Gustavo (seção 0); a coluna da polia continua pobre. Eles provam que o cartão sai das mesmas peças e medidas da cena, mas ainda perdem para os cartões de hoje: por isso os 49 de hoje ficam, e o equipamento vira um trabalho próprio.
+Os 49 desenhos de cartão de equipamento entram junto com o lote que usa a peça. Os três cartões simples que esta etapa tinha feito saíram do ramo depois do retorno do Gustavo (seção 0): os 49 cartões de hoje ficam, e o equipamento das cenas passou a sair do mesmo gerador deles.
 
 ## 7. Como o velho e o novo convivem
 
@@ -230,7 +240,6 @@ Nenhum texto técnico nem lista de músculos foi alterado. Não encontrei, nas q
 | Aprovado × motor × diferença | `prototipos/conferencia-do-desenho-cinza.png` e `-pele.png` |
 | Conferência automática | `prototipos/conferencia.md` |
 | Os 12 erros das âncoras, hoje e novo | `prototipos/erros.png` |
-| Cartões de equipamento | `prototipos/cartoes/cartoes.png` |
 | Equipamento das cenas com o realismo dos cartões de hoje | `prototipos/equipamento-realista.png` |
 | Peso e tempo por quadro | `prototipos/medidas.json` |
 | Tabelas do bloco A | `tabelas.md` |

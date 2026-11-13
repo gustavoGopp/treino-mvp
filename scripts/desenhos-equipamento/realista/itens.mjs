@@ -2,7 +2,7 @@
 // rodada: vista 3/4, volume, tons por material, sombra macia, traço de espessura igual em todos. Os 7 aparelhos
 // das amostras vêm de aparelhos.mjs (sem a pessoa); o kettlebell é o desenho 2D de lá.
 // Medidas em cm, aproximadas de aparelhos reais (escolha de desenho, não especificação de fabricante).
-import { MAT, V, camera, cena, f1, retArred, circulo } from './base.mjs';
+import { MAT, V, camera, cena, f1, retArred, circulo } from '../../../src/engine/novo/realista/base.mjs';
 import { ILUSTRACOES } from './aparelhos.mjs';
 
 const { add, sub, mul, norm } = V;

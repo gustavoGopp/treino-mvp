@@ -3,6 +3,8 @@ import { DEFS_DO_BONECO, desenharBoneco } from './boneco';
 import type { IdEstilo } from './boneco';
 import { VISTAS, caixaDosItens, desenharPrim, naTela, pintar } from './desenho';
 import type { Camera, IdVista, Item, P2 } from './desenho';
+import { equipamentoRealista } from './equipamento';
+import type { Tema } from './equipamento';
 import { duracao, instante } from './movimento';
 import { noRef } from './vec';
 import type { V3 } from './vec';
@@ -19,13 +21,28 @@ export interface OpcoesCena {
   erro?: string;
   /** Miniatura: sem as linhas do corpo, sem as divisões do músculo e sem o polegar. */
   mini?: boolean;
+  /** Equipamento: 'realista' (o desenho dos cartões do app; o padrão) ou 'simples' (as peças da conferência). */
+  equipamento?: 'realista' | 'simples';
+  /** O tema decide os tons do equipamento realista (as cores do corpo vêm do CSS). */
+  tema?: Tema;
 }
 const f1 = (n: number) => (Math.round(n * 10) / 10).toString();
 
+/** Os filtros (sombra macia) que o equipamento realista do último quadro montado precisa dentro do <svg>. */
+let DEFS = '';
+/** O equipamento de um quadro: o desenho dos cartões, ou as peças simples quando pedido (ou quando o quadro não diz as peças). */
+function equipamento(cam: Camera, q: Quadro, ex: Exercicio, o: OpcoesCena): Item[] {
+  if (o.equipamento !== 'simples' && q.pecas) {
+    const r = equipamentoRealista(q.pecas, cam, o.tema ?? 'claro', `${ex.ficha.id}-${o.vista}-`);
+    DEFS += r.defs;
+    return r.itens;
+  }
+  return q.prims.filter((p) => p.t !== 'chao').flatMap((p) => desenharPrim(cam, p, 'volume'));
+}
 function itensDoQuadro(cam: Camera, q: Quadro, ex: Exercicio, o: OpcoesCena, suf = ''): Item[] {
   const itens: Item[] = [];
   // o chão não é desenhado como placa: de perfil ele é a linha do chão (ver svgDaCena) e, de cima, é o próprio fundo
-  if (suf !== '-f') for (const p of q.prims) if (p.t !== 'chao') itens.push(...desenharPrim(cam, p, 'volume'));
+  if (suf !== '-f') itens.push(...equipamento(cam, q, ex, o));
   itens.push(...desenharBoneco(q.esq, cam, { estilo: o.boneco, papeis: o.modo === 'mus' ? ex.papeis : undefined, mini: o.mini, suf, vies: q.vies }));
   return itens;
 }
@@ -63,7 +80,7 @@ export function itensDaCena(ex: Exercicio, t: number, o: OpcoesCena): Item[] {
     const erroEm = (def?.destaca ?? []).flatMap((g) => GRUPOS[g] ?? []);
     // o corpo errado, com a parte que erra em vermelho; o certo fica tracejado por trás
     const itens: Item[] = [...itensDoQuadro(cam, certo, ex, o, '-f').map((it) => ({ ...it, camada: 0.5 }))];
-    for (const p of errado.prims) if (p.t !== 'chao') itens.push(...desenharPrim(cam, p, 'volume'));
+    itens.push(...equipamento(cam, errado, ex, o));
     const corpoErrado = desenharBoneco(errado.esq, cam, { estilo: o.boneco, mini: o.mini, erroEm, vies: errado.vies });
     itens.push(...corpoErrado);
     if (def) {
@@ -145,6 +162,8 @@ export function enquadrar(ex: Exercicio, o: Omit<OpcoesCena, 'modo' | 'erro'>, m
 export function svgDaCena(ex: Exercicio, t: number, o: OpcoesCena, vb: [number, number, number, number], tema: 'claro' | 'escuro' = 'claro'): string {
   // a linha do chão (y = 0), nas vistas em que o chão fica de perfil
   const chao = VISTAS[o.vista].para[1] === 0 ? `<line class="n-chao-l" x1="${f1(vb[0])}" y1="0" x2="${f1(vb[0] + vb[2])}" y2="0"/>` : '';
-  return `<svg class="novo boneco ${o.boneco}${tema === 'escuro' ? ' escuro' : ''}${o.mini ? ' mini' : ''}" viewBox="${vb.map(f1).join(' ')}">${DEFS_DO_BONECO}${chao}${pintar(itensDaCena(ex, t, o))}</svg>`;
+  DEFS = '';
+  const corpo = pintar(itensDaCena(ex, t, { ...o, tema }));
+  return `<svg class="novo boneco ${o.boneco}${tema === 'escuro' ? ' escuro' : ''}${o.mini ? ' mini' : ''}" viewBox="${vb.map(f1).join(' ')}">${DEFS_DO_BONECO}${DEFS ? `<defs>${DEFS}</defs>` : ''}${chao}${corpo}</svg>`;
 }
 export { pintar };

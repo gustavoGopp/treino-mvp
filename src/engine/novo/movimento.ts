@@ -1,6 +1,7 @@
 // Motor novo: o tempo e o equilíbrio. Fases do ciclo, o perfil de velocidade de cada fase e o centro de massa.
 import { z } from 'zod';
 import type { Prim } from './desenho';
+import type { Peca } from './pecas';
 import type { Esq, Lado } from './esqueleto';
 import type { Corpo } from './tabelas';
 import { SEGMENTOS } from './tabelas';
@@ -68,6 +69,8 @@ export interface Quadro {
   esq: Esq;
   /** Objetos da cena neste instante. */
   prims: Prim[];
+  /** As mesmas peças pelo nome (halter, banco, coluna de polia), para o desenho realista. */
+  pecas?: Peca[];
   /** Cabos, elásticos e fitas: comprimento neste instante (cm) e se podem mudar. */
   fios: { id: string; comp: number; estica: boolean }[];
   /** Cargas presas ao corpo (kg e posição), para o equilíbrio. */

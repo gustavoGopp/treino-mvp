@@ -8,6 +8,7 @@ import type { Esq, Lado, PoseBraco, PosePerna } from '../esqueleto';
 import { centroDeMassa, daFicha, fichaSchema, resolver1 } from '../movimento';
 import type { Exercicio, Quadro } from '../movimento';
 import { anilhaNoChao, chao, halter } from '../pecas';
+import type { Peca } from '../pecas';
 import type { Corpo } from '../tabelas';
 import { obj } from '../tabelas';
 import { add, dirRef, mix, mul, noRef, norm, sub } from '../vec';
@@ -86,12 +87,14 @@ function quadro(corpo: Corpo, u: number, erro?: string): Quadro {
   const [y, z] = quadrilEm(alfa);
   const r = montar(y, z);
   const prims = [chao(-70, 70, -70, 80), ...halter(r.centro, r.eixo, 0.4)];
+  const pecas: Peca[] = [{ t: 'halter', centro: r.centro, eixo: r.eixo }];
   for (const s of [-1, 1]) {
     const b = bola(s),
       d = dirPe(s);
     prims.push(...anilhaNoChao(b[0] - d[0] * (dBola - 3), b[2] - d[2] * (dBola - 3)));
+    pecas.push({ t: 'anilha', x: b[0] - d[0] * (dBola - 3), z: b[2] - d[2] * (dBola - 3) });
   }
-  return { esq: r.e, prims, fios: [], cargas: [{ massa, pos: r.centro }], marcas: { halter: r.centro }, };
+  return { esq: r.e, prims, pecas, fios: [], cargas: [{ massa, pos: r.centro }], marcas: { halter: r.centro }, };
 }
 
 export const goblet: Exercicio = {
