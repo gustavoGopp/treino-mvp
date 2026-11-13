@@ -71,21 +71,24 @@ export function Semana() {
           <p className="fase">{r.mensagem}</p>
         </section>
 
-        <section aria-labelledby="semanas" className="pilha">
-          <h2 id="semanas" className="secao">
-            {r.semanas.length === 1 ? 'Esta semana' : `Últimas ${r.semanas.length} semanas`}
-          </h2>
-          <span className="semanas" role="img" aria-label={`${r.comTreino} de ${r.semanas.length} semanas com treino`}>
-            {r.semanas.map((t, i) => (
-              <i key={i} className={t ? 'on' : ''} />
-            ))}
-          </span>
-          <p className="ajuda">
-            {r.semanas.length === 1
-              ? `${r.comTreino ? 'Com treino.' : 'Ainda sem treino.'}`
-              : `${r.comTreino} das últimas ${r.semanas.length} semanas com treino.`}
-          </p>
-        </section>
+        {/* sem semana nenhuma contada ainda (programa novo, sem treino), a faixa das semanas não aparece */}
+        {r.semanas.length > 0 && (
+          <section aria-labelledby="semanas" className="pilha">
+            <h2 id="semanas" className="secao">
+              {r.semanas.length === 1 ? 'Esta semana' : `Últimas ${r.semanas.length} semanas`}
+            </h2>
+            <span className="semanas" role="img" aria-label={`${r.comTreino} de ${r.semanas.length} semanas com treino`}>
+              {r.semanas.map((t, i) => (
+                <i key={i} className={t ? 'on' : ''} />
+              ))}
+            </span>
+            <p className="ajuda">
+              {r.semanas.length === 1
+                ? `${r.comTreino ? 'Com treino.' : 'Ainda sem treino.'}`
+                : `${r.comTreino} das últimas ${r.semanas.length} semanas com treino.`}
+            </p>
+          </section>
+        )}
 
         {subiu.length > 0 && (
           <section aria-labelledby="subiu" className="pilha">

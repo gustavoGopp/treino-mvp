@@ -72,7 +72,8 @@ try {
     }, estado);
     if (process.env.ERRO) await page.evaluate(() => sessionStorage.setItem('treino-teste-erro', '1'));
     await page.goto(`http://localhost:4173${rota}`);
-    if (process.env.LETRA) await page.addStyleTag({ content: `html{font-size:${process.env.LETRA}% !important}` });
+    // a letra maior do sistema, como nos testes (pelo estilo do elemento: a política de segurança do app barra uma folha de estilo embutida)
+    if (process.env.LETRA) await page.evaluate((p) => (document.documentElement.style.fontSize = `${p}%`), process.env.LETRA);
     await page.waitForTimeout(1200);
     for (const t of toques) {
       if (t.startsWith('html:')) {
