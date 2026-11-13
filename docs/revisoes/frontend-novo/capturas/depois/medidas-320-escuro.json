@@ -3,27 +3,27 @@
     {
       "tela": "01-boas-vindas",
       "esperaDasMiniaturasMs": 0,
-      "alturaDaPagina": 789,
+      "alturaDaPagina": 806,
       "alturaDaTela": 640,
-      "palavrasAVista": 82,
+      "palavrasAVista": 88,
       "acaoPrincipal": "Começar",
-      "acaoAVista": false
+      "acaoAVista": true
     },
     {
       "tela": "02-saude",
       "esperaDasMiniaturasMs": 0,
-      "alturaDaPagina": 1252,
+      "alturaDaPagina": 1170,
       "alturaDaTela": 640,
-      "palavrasAVista": 82,
+      "palavrasAVista": 89,
       "acaoPrincipal": "Não, nenhuma",
       "acaoAVista": false
     },
     {
       "tela": "02b-saude-quais-valem",
       "esperaDasMiniaturasMs": 0,
-      "alturaDaPagina": 1688,
+      "alturaDaPagina": 1631,
       "alturaDaTela": 640,
-      "palavrasAVista": 94,
+      "palavrasAVista": 97,
       "acaoPrincipal": "Continuar",
       "acaoAVista": false
     },
@@ -39,7 +39,7 @@
     {
       "tela": "03b-nivel-respondido",
       "esperaDasMiniaturasMs": 0,
-      "alturaDaPagina": 1532,
+      "alturaDaPagina": 1517,
       "alturaDaTela": 640,
       "palavrasAVista": 39,
       "acaoPrincipal": "Continuar",
@@ -57,16 +57,16 @@
     {
       "tela": "04b-rotina-respondida",
       "esperaDasMiniaturasMs": 0,
-      "alturaDaPagina": 1542,
+      "alturaDaPagina": 1431,
       "alturaDaTela": 640,
-      "palavrasAVista": 84,
+      "palavrasAVista": 90,
       "acaoPrincipal": "Continuar",
       "acaoAVista": true
     },
     {
       "tela": "05-equipamento-lugar",
       "esperaDasMiniaturasMs": 0,
-      "alturaDaPagina": 1046,
+      "alturaDaPagina": 1031,
       "alturaDaTela": 640,
       "palavrasAVista": 51,
       "acaoPrincipal": "Gerar meu programa",
@@ -75,7 +75,7 @@
     {
       "tela": "05b-equipamento-foto",
       "esperaDasMiniaturasMs": 0,
-      "alturaDaPagina": 1046,
+      "alturaDaPagina": 1031,
       "alturaDaTela": 640,
       "palavrasAVista": 125,
       "acaoPrincipal": null,
@@ -84,16 +84,16 @@
     {
       "tela": "05c-equipamento-folha-do-item",
       "esperaDasMiniaturasMs": 0,
-      "alturaDaPagina": 1910,
+      "alturaDaPagina": 1895,
       "alturaDaTela": 640,
-      "palavrasAVista": 56,
+      "palavrasAVista": 50,
       "acaoPrincipal": null,
       "acaoAVista": null
     },
     {
       "tela": "05d-equipamento-item-por-item",
       "esperaDasMiniaturasMs": 0,
-      "alturaDaPagina": 1996,
+      "alturaDaPagina": 1981,
       "alturaDaTela": 640,
       "palavrasAVista": 27,
       "acaoPrincipal": "Gerar meu programa",
@@ -101,26 +101,26 @@
     },
     {
       "tela": "06-inicio",
-      "esperaDasMiniaturasMs": 901,
-      "alturaDaPagina": 2117,
+      "esperaDasMiniaturasMs": 1104,
+      "alturaDaPagina": 2081,
       "alturaDaTela": 640,
-      "palavrasAVista": 81,
+      "palavrasAVista": 76,
       "acaoPrincipal": "/^Começar o treino/",
       "acaoAVista": true
     },
     {
       "tela": "07-folha-do-exercicio",
-      "esperaDasMiniaturasMs": 7,
-      "alturaDaPagina": 2117,
+      "esperaDasMiniaturasMs": 5,
+      "alturaDaPagina": 2081,
       "alturaDaTela": 640,
-      "palavrasAVista": 79,
+      "palavrasAVista": 48,
       "acaoPrincipal": null,
       "acaoAVista": null
     },
     {
       "tela": "06b-inicio-sobre-o-programa",
       "esperaDasMiniaturasMs": 7,
-      "alturaDaPagina": 2117,
+      "alturaDaPagina": 2081,
       "alturaDaTela": 640,
       "palavrasAVista": 77,
       "acaoPrincipal": null,
@@ -129,7 +129,7 @@
     {
       "tela": "08-treino-serie-vazia",
       "esperaDasMiniaturasMs": 0,
-      "alturaDaPagina": 808,
+      "alturaDaPagina": 801,
       "alturaDaTela": 640,
       "palavrasAVista": 70,
       "acaoPrincipal": "/^Série feita/",
@@ -174,7 +174,7 @@
     {
       "tela": "08b-treino-serie-preenchida",
       "esperaDasMiniaturasMs": 0,
-      "alturaDaPagina": 756,
+      "alturaDaPagina": 749,
       "alturaDaTela": 640,
       "palavrasAVista": 70,
       "acaoPrincipal": "/^Série feita/",
@@ -182,7 +182,7 @@
     },
     {
       "tela": "09-treino-descanso",
-      "esperaDasMiniaturasMs": 7,
+      "esperaDasMiniaturasMs": 8,
       "alturaDaPagina": 640,
       "alturaDaTela": 640,
       "palavrasAVista": 56,
@@ -191,7 +191,7 @@
     },
     {
       "tela": "10-treino-senti-algo",
-      "esperaDasMiniaturasMs": 8,
+      "esperaDasMiniaturasMs": 12,
       "alturaDaPagina": 640,
       "alturaDaTela": 640,
       "palavrasAVista": 45,
@@ -200,7 +200,7 @@
     },
     {
       "tela": "11-treino-mais-opcoes",
-      "esperaDasMiniaturasMs": 9,
+      "esperaDasMiniaturasMs": 7,
       "alturaDaPagina": 640,
       "alturaDaTela": 640,
       "palavrasAVista": 17,
@@ -221,7 +221,7 @@
       "esperaDasMiniaturasMs": 0,
       "alturaDaPagina": 809,
       "alturaDaTela": 640,
-      "palavrasAVista": 89,
+      "palavrasAVista": 65,
       "acaoPrincipal": null,
       "acaoAVista": null
     },
@@ -236,7 +236,7 @@
     },
     {
       "tela": "09c-treino-hora-da-proxima-serie",
-      "esperaDasMiniaturasMs": 9,
+      "esperaDasMiniaturasMs": 10,
       "alturaDaPagina": 640,
       "alturaDaTela": 640,
       "palavrasAVista": 38,
@@ -246,16 +246,16 @@
     {
       "tela": "08c-treino-exercicio-3",
       "esperaDasMiniaturasMs": 0,
-      "alturaDaPagina": 765,
+      "alturaDaPagina": 758,
       "alturaDaTela": 640,
-      "palavrasAVista": 70,
+      "palavrasAVista": 67,
       "acaoPrincipal": "/^Série feita/",
       "acaoAVista": false
     },
     {
       "tela": "08c-treino-exercicio-4",
       "esperaDasMiniaturasMs": 0,
-      "alturaDaPagina": 742,
+      "alturaDaPagina": 734,
       "alturaDaTela": 640,
       "palavrasAVista": 70,
       "acaoPrincipal": "/^Série feita/",
@@ -264,7 +264,7 @@
     {
       "tela": "08c-treino-exercicio-5",
       "esperaDasMiniaturasMs": 0,
-      "alturaDaPagina": 720,
+      "alturaDaPagina": 713,
       "alturaDaTela": 640,
       "palavrasAVista": 67,
       "acaoPrincipal": "/^Série feita/",
@@ -273,7 +273,7 @@
     {
       "tela": "08c-treino-exercicio-6",
       "esperaDasMiniaturasMs": 0,
-      "alturaDaPagina": 742,
+      "alturaDaPagina": 734,
       "alturaDaTela": 640,
       "palavrasAVista": 64,
       "acaoPrincipal": "/^Série feita/",
@@ -282,7 +282,7 @@
     {
       "tela": "11c-treino-terminar",
       "esperaDasMiniaturasMs": 0,
-      "alturaDaPagina": 742,
+      "alturaDaPagina": 734,
       "alturaDaTela": 640,
       "palavrasAVista": 25,
       "acaoPrincipal": null,
@@ -291,7 +291,7 @@
     {
       "tela": "13-fim-do-treino",
       "esperaDasMiniaturasMs": 0,
-      "alturaDaPagina": 959,
+      "alturaDaPagina": 949,
       "alturaDaTela": 640,
       "palavrasAVista": 73,
       "acaoPrincipal": null,
@@ -300,9 +300,9 @@
     {
       "tela": "14-semana",
       "esperaDasMiniaturasMs": 0,
-      "alturaDaPagina": 1577,
+      "alturaDaPagina": 1361,
       "alturaDaTela": 640,
-      "palavrasAVista": 73,
+      "palavrasAVista": 67,
       "acaoPrincipal": null,
       "acaoAVista": null
     },
@@ -311,32 +311,32 @@
       "esperaDasMiniaturasMs": 0,
       "alturaDaPagina": 640,
       "alturaDaTela": 640,
-      "palavrasAVista": 29,
+      "palavrasAVista": 28,
       "acaoPrincipal": null,
       "acaoAVista": null
     },
     {
       "tela": "06c-inicio-depois-do-1o-treino",
-      "esperaDasMiniaturasMs": 848,
-      "alturaDaPagina": 1420,
+      "esperaDasMiniaturasMs": 804,
+      "alturaDaPagina": 1378,
       "alturaDaTela": 640,
-      "palavrasAVista": 77,
+      "palavrasAVista": 71,
       "acaoPrincipal": "/^Começar o treino/",
       "acaoAVista": true
     },
     {
       "tela": "16-meus-dados",
       "esperaDasMiniaturasMs": 0,
-      "alturaDaPagina": 1630,
+      "alturaDaPagina": 1660,
       "alturaDaTela": 640,
-      "palavrasAVista": 118,
+      "palavrasAVista": 112,
       "acaoPrincipal": null,
       "acaoAVista": null
     },
     {
       "tela": "16b-meus-dados-estilo-do-boneco",
       "esperaDasMiniaturasMs": 0,
-      "alturaDaPagina": 1630,
+      "alturaDaPagina": 1660,
       "alturaDaTela": 640,
       "palavrasAVista": 46,
       "acaoPrincipal": null,
@@ -354,9 +354,9 @@
     {
       "tela": "17b-locais-editar",
       "esperaDasMiniaturasMs": 0,
-      "alturaDaPagina": 2317,
+      "alturaDaPagina": 2222,
       "alturaDaTela": 640,
-      "palavrasAVista": 45,
+      "palavrasAVista": 41,
       "acaoPrincipal": null,
       "acaoAVista": null
     },

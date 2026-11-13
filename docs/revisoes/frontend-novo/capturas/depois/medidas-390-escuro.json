@@ -3,7 +3,7 @@
     {
       "tela": "01-boas-vindas",
       "esperaDasMiniaturasMs": 0,
-      "alturaDaPagina": 844,
+      "alturaDaPagina": 872,
       "alturaDaTela": 844,
       "palavrasAVista": 88,
       "acaoPrincipal": "Começar",
@@ -12,18 +12,18 @@
     {
       "tela": "02-saude",
       "esperaDasMiniaturasMs": 0,
-      "alturaDaPagina": 1155,
+      "alturaDaPagina": 1073,
       "alturaDaTela": 844,
-      "palavrasAVista": 110,
+      "palavrasAVista": 124,
       "acaoPrincipal": "Não, nenhuma",
       "acaoAVista": false
     },
     {
       "tela": "02b-saude-quais-valem",
       "esperaDasMiniaturasMs": 0,
-      "alturaDaPagina": 1501,
+      "alturaDaPagina": 1421,
       "alturaDaTela": 844,
-      "palavrasAVista": 132,
+      "palavrasAVista": 141,
       "acaoPrincipal": "Continuar",
       "acaoAVista": false
     },
@@ -39,7 +39,7 @@
     {
       "tela": "03b-nivel-respondido",
       "esperaDasMiniaturasMs": 0,
-      "alturaDaPagina": 1465,
+      "alturaDaPagina": 1466,
       "alturaDaTela": 844,
       "palavrasAVista": 66,
       "acaoPrincipal": "Continuar",
@@ -57,16 +57,16 @@
     {
       "tela": "04b-rotina-respondida",
       "esperaDasMiniaturasMs": 0,
-      "alturaDaPagina": 1349,
+      "alturaDaPagina": 1382,
       "alturaDaTela": 844,
-      "palavrasAVista": 119,
+      "palavrasAVista": 115,
       "acaoPrincipal": "Continuar",
       "acaoAVista": true
     },
     {
       "tela": "05-equipamento-lugar",
       "esperaDasMiniaturasMs": 0,
-      "alturaDaPagina": 901,
+      "alturaDaPagina": 902,
       "alturaDaTela": 844,
       "palavrasAVista": 73,
       "acaoPrincipal": "Gerar meu programa",
@@ -75,7 +75,7 @@
     {
       "tela": "05b-equipamento-foto",
       "esperaDasMiniaturasMs": 0,
-      "alturaDaPagina": 901,
+      "alturaDaPagina": 902,
       "alturaDaTela": 844,
       "palavrasAVista": 170,
       "acaoPrincipal": null,
@@ -84,7 +84,7 @@
     {
       "tela": "05c-equipamento-folha-do-item",
       "esperaDasMiniaturasMs": 0,
-      "alturaDaPagina": 1770,
+      "alturaDaPagina": 1771,
       "alturaDaTela": 844,
       "palavrasAVista": 62,
       "acaoPrincipal": null,
@@ -93,7 +93,7 @@
     {
       "tela": "05d-equipamento-item-por-item",
       "esperaDasMiniaturasMs": 0,
-      "alturaDaPagina": 1815,
+      "alturaDaPagina": 1816,
       "alturaDaTela": 844,
       "palavrasAVista": 49,
       "acaoPrincipal": "Gerar meu programa",
@@ -101,8 +101,8 @@
     },
     {
       "tela": "06-inicio",
-      "esperaDasMiniaturasMs": 963,
-      "alturaDaPagina": 1910,
+      "esperaDasMiniaturasMs": 946,
+      "alturaDaPagina": 1957,
       "alturaDaTela": 844,
       "palavrasAVista": 105,
       "acaoPrincipal": "/^Começar o treino/",
@@ -110,19 +110,19 @@
     },
     {
       "tela": "07-folha-do-exercicio",
-      "esperaDasMiniaturasMs": 6,
-      "alturaDaPagina": 1910,
+      "esperaDasMiniaturasMs": 8,
+      "alturaDaPagina": 1957,
       "alturaDaTela": 844,
-      "palavrasAVista": 129,
+      "palavrasAVista": 90,
       "acaoPrincipal": null,
       "acaoAVista": null
     },
     {
       "tela": "06b-inicio-sobre-o-programa",
       "esperaDasMiniaturasMs": 7,
-      "alturaDaPagina": 1910,
+      "alturaDaPagina": 1957,
       "alturaDaTela": 844,
-      "palavrasAVista": 171,
+      "palavrasAVista": 121,
       "acaoPrincipal": null,
       "acaoAVista": null
     },
@@ -176,13 +176,13 @@
       "esperaDasMiniaturasMs": 0,
       "alturaDaPagina": 844,
       "alturaDaTela": 844,
-      "palavrasAVista": 80,
+      "palavrasAVista": 79,
       "acaoPrincipal": "/^Série feita/",
       "acaoAVista": true
     },
     {
       "tela": "09-treino-descanso",
-      "esperaDasMiniaturasMs": 7,
+      "esperaDasMiniaturasMs": 9,
       "alturaDaPagina": 844,
       "alturaDaTela": 844,
       "palavrasAVista": 56,
@@ -200,7 +200,7 @@
     },
     {
       "tela": "11-treino-mais-opcoes",
-      "esperaDasMiniaturasMs": 8,
+      "esperaDasMiniaturasMs": 12,
       "alturaDaPagina": 844,
       "alturaDaTela": 844,
       "palavrasAVista": 17,
@@ -221,7 +221,7 @@
       "esperaDasMiniaturasMs": 0,
       "alturaDaPagina": 844,
       "alturaDaTela": 844,
-      "palavrasAVista": 133,
+      "palavrasAVista": 128,
       "acaoPrincipal": null,
       "acaoAVista": null
     },
@@ -236,7 +236,7 @@
     },
     {
       "tela": "09c-treino-hora-da-proxima-serie",
-      "esperaDasMiniaturasMs": 6,
+      "esperaDasMiniaturasMs": 8,
       "alturaDaPagina": 844,
       "alturaDaTela": 844,
       "palavrasAVista": 38,
@@ -291,7 +291,7 @@
     {
       "tela": "13-fim-do-treino",
       "esperaDasMiniaturasMs": 0,
-      "alturaDaPagina": 980,
+      "alturaDaPagina": 969,
       "alturaDaTela": 844,
       "palavrasAVista": 80,
       "acaoPrincipal": null,
@@ -300,9 +300,9 @@
     {
       "tela": "14-semana",
       "esperaDasMiniaturasMs": 0,
-      "alturaDaPagina": 1510,
+      "alturaDaPagina": 1293,
       "alturaDaTela": 844,
-      "palavrasAVista": 101,
+      "palavrasAVista": 87,
       "acaoPrincipal": null,
       "acaoAVista": null
     },
@@ -317,26 +317,26 @@
     },
     {
       "tela": "06c-inicio-depois-do-1o-treino",
-      "esperaDasMiniaturasMs": 716,
-      "alturaDaPagina": 1273,
+      "esperaDasMiniaturasMs": 825,
+      "alturaDaPagina": 1288,
       "alturaDaTela": 844,
-      "palavrasAVista": 107,
+      "palavrasAVista": 106,
       "acaoPrincipal": "/^Começar o treino/",
       "acaoAVista": true
     },
     {
       "tela": "16-meus-dados",
       "esperaDasMiniaturasMs": 0,
-      "alturaDaPagina": 1542,
+      "alturaDaPagina": 1550,
       "alturaDaTela": 844,
-      "palavrasAVista": 147,
+      "palavrasAVista": 139,
       "acaoPrincipal": null,
       "acaoAVista": null
     },
     {
       "tela": "16b-meus-dados-estilo-do-boneco",
       "esperaDasMiniaturasMs": 0,
-      "alturaDaPagina": 1542,
+      "alturaDaPagina": 1550,
       "alturaDaTela": 844,
       "palavrasAVista": 46,
       "acaoPrincipal": null,
@@ -354,9 +354,9 @@
     {
       "tela": "17b-locais-editar",
       "esperaDasMiniaturasMs": 0,
-      "alturaDaPagina": 2173,
+      "alturaDaPagina": 2094,
       "alturaDaTela": 844,
-      "palavrasAVista": 71,
+      "palavrasAVista": 67,
       "acaoPrincipal": null,
       "acaoAVista": null
     },

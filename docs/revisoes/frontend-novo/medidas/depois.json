@@ -1,14 +1,14 @@
 {
-  "medidoEm": "2026-11-13T04:38:10.475Z",
+  "medidoEm": "2026-11-13T05:33:04.409Z",
   "fase": "depois",
-  "commit": "c6a87ac",
+  "commit": "4eeca5b",
   "bundle": {
     "arquivosJs": 191,
-    "totalJsGzipKB": 545.8,
+    "totalJsGzipKB": 546.4,
     "maiorJs": [
       {
         "arquivo": "index.js",
-        "gzipKB": 156.1
+        "gzipKB": 156.3
       },
       {
         "arquivo": "boneco.worker.js",
@@ -30,7 +30,7 @@
     "css": [
       {
         "arquivo": "index.css",
-        "gzipKB": 13.2
+        "gzipKB": 13.8
       }
     ],
     "letras": [
@@ -46,16 +46,18 @@
       "rota": "/",
       "url": "/programa",
       "versao": "13.6.0",
-      "desempenho": 99,
-      "acessibilidade": 100,
+      "desempenho": 98,
+      "acessibilidade": 97,
       "boasPraticas": 100,
-      "fcpMs": 18,
-      "lcpMs": 18,
-      "tbtMs": 132,
+      "fcpMs": 66,
+      "lcpMs": 66,
+      "tbtMs": 175,
       "cls": 0,
       "pedidos": 8,
       "pedidosExternos": 0,
-      "falhasAcessibilidade": []
+      "falhasAcessibilidade": [
+        "target-size"
+      ]
     },
     {
       "situacao": "instalado",
@@ -65,9 +67,9 @@
       "desempenho": 100,
       "acessibilidade": 100,
       "boasPraticas": 100,
-      "fcpMs": 80,
-      "lcpMs": 80,
-      "tbtMs": 0,
+      "fcpMs": 60,
+      "lcpMs": 60,
+      "tbtMs": 21,
       "cls": 0,
       "pedidos": 8,
       "pedidosExternos": 0,
@@ -79,43 +81,47 @@
       "url": "/programa",
       "versao": "13.6.0",
       "desempenho": 98,
-      "acessibilidade": 100,
+      "acessibilidade": 97,
       "boasPraticas": 100,
-      "fcpMs": 58,
-      "lcpMs": 58,
-      "tbtMs": 180,
+      "fcpMs": 61,
+      "lcpMs": 61,
+      "tbtMs": 163,
       "cls": 0,
       "pedidos": 8,
       "pedidosExternos": 0,
-      "falhasAcessibilidade": []
+      "falhasAcessibilidade": [
+        "target-size"
+      ]
     },
     {
       "situacao": "instalado",
       "rota": "/treino",
       "url": "/programa",
       "versao": "13.6.0",
-      "desempenho": 96,
-      "acessibilidade": 100,
+      "desempenho": 97,
+      "acessibilidade": 97,
       "boasPraticas": 100,
-      "fcpMs": 60,
-      "lcpMs": 60,
-      "tbtMs": 232,
+      "fcpMs": 70,
+      "lcpMs": 70,
+      "tbtMs": 184,
       "cls": 0,
       "pedidos": 10,
       "pedidosExternos": 0,
-      "falhasAcessibilidade": []
+      "falhasAcessibilidade": [
+        "target-size"
+      ]
     },
     {
       "situacao": "instalado",
       "rota": "/guia/bulgaro",
       "url": "/guia/bulgaro",
       "versao": "13.6.0",
-      "desempenho": 93,
+      "desempenho": 85,
       "acessibilidade": 100,
       "boasPraticas": 100,
-      "fcpMs": 180,
-      "lcpMs": 180,
-      "tbtMs": 303,
+      "fcpMs": 161,
+      "lcpMs": 161,
+      "tbtMs": 589,
       "cls": 0,
       "pedidos": 182,
       "pedidosExternos": 0,
@@ -129,9 +135,9 @@
       "desempenho": 100,
       "acessibilidade": 100,
       "boasPraticas": 100,
-      "fcpMs": 72,
-      "lcpMs": 72,
-      "tbtMs": 15,
+      "fcpMs": 61,
+      "lcpMs": 61,
+      "tbtMs": 14,
       "cls": 0,
       "pedidos": 7,
       "pedidosExternos": 0,
@@ -142,13 +148,13 @@
       "rota": "/dados",
       "url": "/dados",
       "versao": "13.6.0",
-      "desempenho": 93,
+      "desempenho": 94,
       "acessibilidade": 96,
       "boasPraticas": 100,
-      "fcpMs": 71,
-      "lcpMs": 166,
-      "tbtMs": 45,
-      "cls": 0.161,
+      "fcpMs": 17,
+      "lcpMs": 109,
+      "tbtMs": 19,
+      "cls": 0.157,
       "pedidos": 8,
       "pedidosExternos": 0,
       "falhasAcessibilidade": [
@@ -163,9 +169,9 @@
       "desempenho": 100,
       "acessibilidade": 100,
       "boasPraticas": 100,
-      "fcpMs": 909,
-      "lcpMs": 909,
-      "tbtMs": 17,
+      "fcpMs": 905,
+      "lcpMs": 905,
+      "tbtMs": 32,
       "cls": 0,
       "pedidos": 8,
       "pedidosExternos": 0,

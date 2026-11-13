@@ -1656,18 +1656,20 @@ As outras 4 folhas (cadastro, guia, fim e semana, Meus dados e locais) estão em
 | Medida | Antes | Depois |
 |---|---|---|
 | Valores fora da escala (`conferir:tokens`) | 528 | 0 |
-| JavaScript da 1ª tela (limite 175 kB) | 154,4 kB | 156,2 kB |
-| JavaScript de quem volta ao programa (limite 220 kB) | 202,8 kB | 204,7 kB |
-| CSS comprimido | 12,2 kB | 13,2 kB |
+| JavaScript da 1ª tela (limite 175 kB) | 154,4 kB | 156,4 kB |
+| JavaScript de quem volta ao programa (limite 220 kB) | 202,8 kB | 204,9 kB |
+| CSS comprimido | 12,2 kB | 13,8 kB |
 | Letra | 34,0 kB | 29,4 kB |
 | Pedidos a outros servidores | 0 | 0 |
 | Altura da tela do treino em 390 × 844 (6 exercícios da Ana) | 844 a 1.020 px; descanso 1.176 | 844 px em todos |
-| Lighthouse, desempenho: início · programa · guia · semana · Meus dados (varia alguns pontos por rodada) | 98 · 96 · 83 · 99 · 95 | 99 · 98 · 93 · 100 · 93 |
-| Lighthouse, acessibilidade (as mesmas telas) | 100 · 100 · 100 · 100 · 96 | 100 · 100 · 100 · 100 · 96 |
+| Lighthouse, desempenho: início · programa · guia · semana · Meus dados (varia alguns pontos por rodada) | 98 · 96 · 83 · 99 · 95 | 98 · 98 · 85 · 100 · 94 |
+| Lighthouse, acessibilidade (as mesmas telas) | 100 · 100 · 100 · 100 · 96 | 97 · 97 · 100 · 100 · 96 (uma linha da lista meio coberta pela barra presa; ver `qa.md`) |
 
 **Resultado:** `npm run check` com 896 testes, 157 e2e (155 de celular e 2 do motor) e `npm run conferir:tokens` sem exceção além do Boneco.
 
-**Fica para decidir** (`backlog.md`, "Do frontend novo"): os pontos do revisor que sobraram, os 9 pedidos ao domínio (`pedidos-ao-dominio.md`) e a revisão independente dos blocos que só eu conferi.
+**2ª rodada de revisão (13/11).** A pedido do Gustavo, mais dois revisores independentes olharam o resto do app (início, fim, semana e evolução; cadastro, Meus dados, locais, termos e erro). 85 achados, nenhum que bloqueie e nenhuma função perdida: 37 corrigidos, 18 em parte e 30 no backlog. O que mudou de mais visível: a prescrição ("3 × 8–12") voltou a ter destaque no início; "Fechar" fica preso no alto das folhas; a boas-vindas tem o "Começar" preso embaixo em qualquer celular; "Rotina e divisão" aberta por Meus dados virou uma tela de edição, sem a moldura do cadastro; "Apagar tudo" é o único bloco vermelho de Meus dados; no fim de um treino encerrado por segurança, o SAMU é um botão de ligar; a semana não repete "ainda não treinou" em 10 linhas.
+
+**Fica para decidir** (`backlog.md`, "Do frontend novo"): 4 decisões que os revisores deixaram para o Gustavo (`qa.md`, seção 6.2), os pontos que sobraram dos 3 pareceres e os 12 pedidos ao domínio (`pedidos-ao-dominio.md`).
 
 **Rascunho de post para o LinkedIn**
 
