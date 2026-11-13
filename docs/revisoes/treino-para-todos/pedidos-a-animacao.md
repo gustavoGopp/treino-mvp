@@ -10,9 +10,9 @@ Hoje, entre exercícios equivalentes, o app escolhe o que tem animação. Isso p
 |---|---:|---:|
 | Programas com um dia de 3 cartões de texto ou mais (ponderada) | 59,8% | 57,2% |
 | Idem, na grade | 14,4% | 12,0% |
-| Cartões de texto por dia (média ponderada) | 1,83 | {CARTOES} |
+| Cartões de texto por dia (média ponderada) | 1,83 | 1,95 |
 
-O total de cartões quase não muda; **muda quais são**. Os exercícios de referência que passam a aparecer muito são cartão hoje.
+Os cartões por dia sobem um pouco e os dias com 3 ou mais caem um pouco; o que muda de verdade é **quais são**. Os exercícios de referência que passam a aparecer muito são cartão hoje.
 
 ## Os exercícios sem animação mais usados
 
