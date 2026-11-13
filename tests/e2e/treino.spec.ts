@@ -187,7 +187,7 @@ test('R1: aberto pelo treino, o guia do búlgaro mostra a prescrição da semana
   // O checklist pede a carga para o RIR desta semana, e as abas são as do dia dela.
   await expect(page.getByText('Carga para RIR 3–4')).toBeVisible();
   await expect(page.getByRole('button', { name: 'Torso A' })).toHaveCount(0);
-  await page.getByRole('link', { name: '‹ Voltar ao treino' }).click();
+  await page.getByRole('link', { name: 'Voltar ao treino' }).click();
   await expect(page).toHaveURL(/\/treino$/);
 });
 

@@ -12,6 +12,7 @@ import { useEstiloBoneco } from '../app/estiloBoneco';
 import { agoraIso, fusoDoAparelho, useApp } from '../app/estado';
 import { lerContexto, linkDoGuia } from './link';
 import { useTelaAcesa } from '../treino/Temporizador';
+import { Icone } from '../app/icones';
 import { Selo } from '../app/ui';
 
 // Tela do guia de execução: mesma interface do guia original (referencia/guia-execucao-fase1.html),
@@ -228,8 +229,8 @@ function GuiaExercicio({ ex, grupos }: { ex: Ficha; grupos: Grupo[] }) {
           const b = document.createElement('b');
           const sp = document.createElement('span');
           if (s.modo === 'err') {
-            b.style.color = 'var(--err)';
-            b.textContent = `❌ ${nomeErro}`;
+            b.className = 'erro-no-palco';
+            b.textContent = nomeErro;
             sp.textContent = q.fase.label;
           } else {
             b.textContent = q.fase.label;
@@ -294,15 +295,13 @@ function GuiaExercicio({ ex, grupos }: { ex: Ficha; grupos: Grupo[] }) {
       <header className="top">
         {minha ? (
           <div className="brand cab-treino">
-            <Link className="volta-inicio" to={ctx!.de === 'treino' ? '/treino' : '/programa'}>
-              ‹ Voltar {ctx!.de === 'treino' ? 'ao treino' : 'ao programa'}
+            <Link className="topo-volta" to={ctx!.de === 'treino' ? '/treino' : '/programa'}>
+              <Icone nome="chevron-left" />
+              Voltar {ctx!.de === 'treino' ? 'ao treino' : 'ao programa'}
             </Link>
             {ctx!.de === 'treino' && (
               <button type="button" className="alerta-topo" onClick={() => navigate('/treino?sentir=1')}>
-                <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                  <path d="M12 4l9 16H3z" />
-                  <path d="M12 10v4M12 17h.01" />
-                </svg>
+                <Icone nome="triangle-alert" />
                 Senti algo
               </button>
             )}
@@ -358,7 +357,7 @@ function GuiaExercicio({ ex, grupos }: { ex: Ficha; grupos: Grupo[] }) {
           </div>
           <div className="controls">
             <button className="ctl" aria-label={tocando ? 'Pausar' : 'Reproduzir'} onClick={() => setTocando(!tocando)}>
-              {tocando ? '⏸' : '▶'}
+              <Icone nome={tocando ? 'pause' : 'play'} />
             </button>
             <button
               className="ctl"
@@ -368,10 +367,10 @@ function GuiaExercicio({ ex, grupos }: { ex: Ficha; grupos: Grupo[] }) {
                 setTocando(false);
               }}
             >
-              ⏮
+              <Icone nome="skip-back" />
             </button>
             <button className="ctl" aria-pressed={lento} onClick={() => setLento(!lento)}>
-              <span aria-hidden="true">🐢</span> Lento
+              <Icone nome="turtle" /> Lento
             </button>
             <div className="seg" role="group" aria-label="Visão">
               {vistas.map((v) => (
@@ -407,7 +406,19 @@ function GuiaExercicio({ ex, grupos }: { ex: Ficha; grupos: Grupo[] }) {
         {txt.note && <NotaDoGuia nota={txt.note} />}
 
         <section className="exhead">
-          <div className="n">{pos + 1}</div>
+          <div className="exhead-topo">
+            <p className="rotulo">
+              Exercício {pos + 1} de {dia.ex.length}
+            </p>
+            <div className="nav">
+              <button className="iconbtn" aria-label="Exercício anterior" onClick={() => irPara(pos - 1)}>
+                <Icone nome="chevron-left" />
+              </button>
+              <button className="iconbtn" aria-label="Próximo exercício" onClick={() => irPara(pos + 1)}>
+                <Icone nome="chevron-right" />
+              </button>
+            </div>
+          </div>
           <div>
             <h1>{txt.name}</h1>
             {minha ? (
@@ -431,19 +442,11 @@ function GuiaExercicio({ ex, grupos }: { ex: Ficha; grupos: Grupo[] }) {
               <b>Alvo:</b> {txt.target}
             </div>
           </div>
-          <div className="nav">
-            <button className="iconbtn" aria-label="Exercício anterior" onClick={() => irPara(pos - 1)}>
-              ‹
-            </button>
-            <button className="iconbtn" aria-label="Próximo exercício" onClick={() => irPara(pos + 1)}>
-              ›
-            </button>
-          </div>
         </section>
 
         <section className="quick">
-          <div className="box">
-            <h2>3 cues</h2>
+          <div className="bloco-guia">
+            <h2 className="rotulo">As 3 dicas</h2>
             <ol className="cues">
               {txt.cues.map((c) => (
                 <li key={c}>{c}</li>
@@ -519,7 +522,7 @@ function InfoModo({
         <div className="errchips">
           {txt.errors.map((x, i) => (
             <button key={x.id} className="errchip" aria-pressed={i === erro} onClick={() => onErro(i)}>
-              ❌ {x.title}
+              {x.title}
             </button>
           ))}
         </div>
@@ -603,8 +606,8 @@ function InfoModo({
 function Checklist({ itens, id }: { itens: string[]; id: string }) {
   const [marcados, setMarcados] = useState(() => itens.map(() => false));
   return (
-    <div className="box">
-      <h2>Checklist de 5 s</h2>
+    <div className="bloco-guia">
+      <h2 className="rotulo">Confira em 5 segundos</h2>
       <div className="check">
         {itens.map((c, i) => (
           <label key={c} htmlFor={`ck-${id}-${i}`}>
@@ -618,7 +621,7 @@ function Checklist({ itens, id }: { itens: string[]; id: string }) {
           </label>
         ))}
         <button className="reset" onClick={() => setMarcados(itens.map(() => false))}>
-          Limpar checklist
+          Desmarcar tudo
         </button>
       </div>
     </div>
@@ -637,7 +640,7 @@ function Detalhes({ txt }: { txt: (typeof CONTEUDO)[string] }) {
   return (
     <section className="secao-guia">
       <details className="box" open>
-        <summary>Setup</summary>
+        <summary>Montagem</summary>
         <div className="dbody">
           <h3>Equipamento</h3>
           <Lista itens={txt.setupEq} />
@@ -684,7 +687,7 @@ function Detalhes({ txt }: { txt: (typeof CONTEUDO)[string] }) {
           <ul>
             {txt.errors.map((e) => (
               <li key={e.id}>
-                <b>❌ {e.title}.</b> {e.desc}
+                <b>{e.title}.</b> {e.desc}
               </li>
             ))}
           </ul>
