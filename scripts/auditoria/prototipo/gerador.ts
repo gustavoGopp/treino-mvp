@@ -136,8 +136,18 @@ const estavel = (e: Exercicio) => e.tags.some((t) => t === 'estavel' || t === 'a
  * programa quase não mudava. Fica registrada para a etapa 2 (docs/revisoes/treino-para-todos/proposta.md).
  */
 const LIGAR_SEM_CARGA = false;
+/**
+ * PROTÓTIPO (joelho): os exercícios feitos de joelhos no chão carregam o joelho (pressão direta, joelho todo dobrado), e
+ * a biblioteca não dizia isso: com dor forte no joelho, o programa de hoje ainda prescreve a puxada e o abdominal
+ * ajoelhados (achado da revisão cega). Na etapa 2, a correção é no dado (`exercicios.json`), não aqui.
+ */
+const AJOELHADOS = new Set(['puxada-unilateral', 'puxada-barra-reta', 'abdominal-polia']);
+const articulacoesDe = (e: Exercicio): Articulacao[] => (prot('joelho') && AJOELHADOS.has(e.id) && !e.articulacoes.includes('joelho') ? [...e.articulacoes, 'joelho'] : e.articulacoes);
+/** PROTÓTIPO (usa-tempo): até quantos grupos de foco o tempo que sobra leva o foco além da meta. */
+const FOCOS_COM_BONUS = 2;
 /** PROTÓTIPO (iniciante-simples): exercícios por treino do iniciante. */
-const INICIANTE_MAX_EXERCICIOS = 6;
+const INICIANTE_MAX_EXERCICIOS = 99;
+const INICIANTE_LIMITE_DESDE_DIAS = 3;
 /** PROTÓTIPO (fadiga): o exercício carrega a lombar sem apoio (fora os abdominais). */
 const carregaLombar = (e: Exercicio) => e.padrao !== 'core' && e.articulacoes.includes('lombar') && !e.tags.includes('apoiado');
 
@@ -171,7 +181,7 @@ export function contextoDeSelecao(perfil: Perfil, inventarioOriginal: Inventario
       !perfil.evitarExercicios.includes(e.id) &&
       e.complexidade <= NIVEL_COMPLEXIDADE_MAX[nivel],
   );
-  const carregaExcluida = (e: Exercicio) => e.articulacoes.some((a) => regioesExcluidas.includes(a));
+  const carregaExcluida = (e: Exercicio) => articulacoesDe(e).some((a) => regioesExcluidas.includes(a));
   const possiveis = possiveisSemRegiao.filter((e) => !carregaExcluida(e));
   const possivel = new Map(possiveis.map((e) => [e.id, e]));
   /** O exercício vale na função: é possível e cumpre as condições dela (funcoes.json, campo condicoes). */
@@ -203,23 +213,32 @@ export function contextoDeSelecao(perfil: Perfil, inventarioOriginal: Inventario
   const umLadoSemPrecisar = (e: Exercicio) => (prot('escolha') && e.unilateral && cargaPossivel(e) === 2 ? 1 : 0);
   /** PROTÓTIPO: os critérios de treino do desempate (para a régua medir o que decidiu a escolha). */
   const criteriosDeTreino = (e: Exercicio): number[] => [
-    e.articulacoes.some((a) => dorLeve.has(a)) ? 1 : 0,
+    articulacoesDe(e).some((a) => dorLeve.has(a)) ? 1 : 0,
+    prot('escolha') && nivel === 'iniciante' ? e.complexidade : 0,
     nivel === 'iniciante' && !estavel(e) ? 1 : 0,
     -cargaPossivel(e),
     umLadoSemPrecisar(e),
     pernaSemCarga(e),
   ];
+  // PROTÓTIPO (iniciante-simples): o iniciante repete o exercício que já está na semana (prática antes de variedade), mas
+  // nunca em todos os dias: o que já aparece em todos os dias menos um fica por último (régua, B1).
+  const limiteDeRepeticao = perfil.diasSemana >= 3 ? perfil.diasSemana - 1 : Infinity;
+  const praticaDoIniciante = (u: number) => (u >= limiteDeRepeticao ? 1000 + u : -u);
   const chave = (e: Exercicio, f: Funcao | undefined, usos: Map<string, number>, evitar?: (e: Exercicio) => boolean, depois?: (e: Exercicio) => boolean, cansa?: (e: Exercicio) => boolean) => [
     evitar?.(e) ? 1 : 0, // selecao.variacoes-equivalentes: no último dia, o que já está em todos os outros fica por último
+    // PROTÓTIPO (sem-repetir): em qualquer caminho (vaga vazia, dia refeito pela dor, 2º exercício), o exercício que já
+    // está em todos os dias menos um fica por último entre os do mesmo nível (régua, B1).
+    prot('sem-repetir') && (usos.get(e.id) ?? 0) >= limiteDeRepeticao ? 1 : 0,
     depois?.(e) ? 1 : 0, // selecao.funcao-da-vaga (R5a): um afundo por dia, havendo outra opção no mesmo nível
-    e.articulacoes.some((a) => dorLeve.has(a)) ? 1 : 0,
+    articulacoesDe(e).some((a) => dorLeve.has(a)) ? 1 : 0,
+    prot('escolha') && nivel === 'iniciante' ? e.complexidade : 0, // PROTÓTIPO (escolha): para o iniciante, o mais simples primeiro
     nivel === 'iniciante' && !estavel(e) ? 1 : 0,
     cansa?.(e) ? 1 : 0, // PROTÓTIPO (fadiga): o que carrega a lombar sem apoio fica depois, se o dia já tem outro que carrega
     -cargaPossivel(e),
     umLadoSemPrecisar(e),
     pernaSemCarga(e),
     // PROTÓTIPO (iniciante-simples): para o iniciante, o exercício que já está na semana vem antes (prática antes de variedade).
-    prot('iniciante-simples') && nivel === 'iniciante' ? -(usos.get(e.id) ?? 0) : (usos.get(e.id) ?? 0),
+    prot('iniciante-simples') && nivel === 'iniciante' ? praticaDoIniciante(usos.get(e.id) ?? 0) : (usos.get(e.id) ?? 0),
     preferido(f, e) ? 0 : 1,
     e.animacaoId ? 0 : 1, // entre equivalentes, o que o guia já mostra animado (CLAUDE.md, qualidade do guia)
   ];
@@ -462,8 +481,10 @@ function montarPrograma(perfil: Perfil, inventarioOriginal: Inventario, triagem:
   const comparar = ctx.comparar(usos, funcaoPossivel);
 
   // 4. Preenchimento das vagas por função
-  // PROTÓTIPO (iniciante-simples): o iniciante fica com até 6 exercícios por treino, mesmo com mais minutos.
-  const N = prot('iniciante-simples') && nivel === 'iniciante' ? Math.min(INICIANTE_MAX_EXERCICIOS, exerciciosPorSessao(perfil.minutosSessao)) : exerciciosPorSessao(perfil.minutosSessao);
+  // PROTÓTIPO (iniciante-simples): com 3 dias ou mais, o iniciante fica com até 6 exercícios por treino, mesmo com mais
+  // minutos (com 2 dias, cada treino precisa cobrir o corpo todo); o 2º exercício do foco pode ser o 7º.
+  const limiteDoIniciante = prot('iniciante-simples') && nivel === 'iniciante' && perfil.diasSemana >= INICIANTE_LIMITE_DESDE_DIAS && exerciciosPorSessao(perfil.minutosSessao) > INICIANTE_MAX_EXERCICIOS;
+  const N = limiteDoIniciante ? INICIANTE_MAX_EXERCICIOS : exerciciosPorSessao(perfil.minutosSessao);
   const ativaPeloFoco = (v: Vaga) => !v.prioridade || v.prioridade.some((g) => grupos.has(g));
   // selecao.gluteo (R5a): numa semana sem vaga de extensão de quadril valendo (o Corpo todo A/B sem foco em glúteo), a
   // vaga do foco passa a valer quando dobrar o quadril não tem exercício (equipamento ou dor): o glúteo não fica só
@@ -791,7 +812,7 @@ function montarPrograma(perfil: Perfil, inventarioOriginal: Inventario, triagem:
           const mesmaRegiao = regiaoDe(m) === 'core' || [...musculosDoModelo].some((x) => regiaoDe(x) === regiaoDe(m));
           return { d, di, mesmoMusculo: musculosDoModelo.has(m), mesmaRegiao };
         })
-        .filter((x) => x.mesmaRegiao && x.d.itens.length < N && volumeNoDia(x.di, m) + VOLUME.seriesPorExercicio.min <= VOLUME.sessaoTeto)
+        .filter((x) => x.mesmaRegiao && x.d.itens.length < N + (limiteDoIniciante ? 1 : 0) && volumeNoDia(x.di, m) + VOLUME.seriesPorExercicio.min <= VOLUME.sessaoTeto)
         .flatMap((x) => {
           const funcoesDoDia = new Set(x.d.itens.filter((i) => i.funcao.musculo === m).map((i) => i.funcao.id));
           return funcoes.map((f) => ({ ...x, f, repete: funcoesDoDia.has(f.id) }));
@@ -1005,6 +1026,10 @@ function montarPrograma(perfil: Perfil, inventarioOriginal: Inventario, triagem:
       if (deficit <= 0) continue;
       for (const di of diasComVaga) {
         const d = programaDias[di]!;
+        // PROTÓTIPO (usa-tempo): nos dias sem vaga vazia (a parte nova), o foco só sobe além da meta, até o máximo do
+        // nível, quando a pessoa tem até 2 grupos de foco (volume.prioridade.ate-dois); com 3 ou mais, fica na meta. Na
+        // revisão cega, a pessoa com 4 focos ia a 122 séries por semana e os 3 revisores baixaram a nota.
+        if (prot('usa-tempo') && !dias[di]!.vazias.length && prioritarios.has(m) && perfil.prioridades.length > FOCOS_COM_BONUS && (v[m] ?? 0) >= (metas[m] ?? 0) && deficitDireto <= 0) continue;
         const noDia = volumeDe([d]);
         d.exercicios.forEach((x, xi) => {
           const e = POR_ID[x.exId]!;
@@ -1805,9 +1830,10 @@ export function cortarTempo(
         exs.filter((x) => x.tipo === 'isolador' && x.padrao !== 'core'),
         naoCompetem,
       );
-      // PROTÓTIPO (tecnicas): o iniciante não faz bi-set de multiarticulares; nos outros níveis, nunca dois que carregam
-      // a lombar sem apoio, nem um exercício livre com barra.
-      if (d.minutosEstimados > limite && !(prot('tecnicas') && nivel === 'iniciante'))
+      // PROTÓTIPO (tecnicas): o bi-set de multiarticulares nunca junta dois que carregam a lombar sem apoio, nem usa um
+      // exercício livre com barra. Proibir o bi-set de multiarticulares ao iniciante foi medido e recusado: 1 em cada 4
+      // programas de 30 min do iniciante passava do tempo (10,7% → 24,3%).
+      if (d.minutosEstimados > limite)
         parear(
           exs.filter((x) => x.tipo === 'composto'),
           (a, b) =>
@@ -1818,6 +1844,18 @@ export function cortarTempo(
             !(prot('tecnicas') && (POR_ID[a.exId]!.carga === 'barra' || POR_ID[b.exId]!.carga === 'barra')),
         );
       if (exs.some((x) => x.supersetCom)) usados.add('superserie');
+      // PROTÓTIPO (tecnicas): os dois exercícios de um bi-set ficam um depois do outro na lista do dia (antes, o par do 1º
+      // exercício podia aparecer em 3º; achado da revisão cega).
+      if (prot('tecnicas') && exs.some((x) => x.supersetCom)) {
+        const juntos: ExercicioPrescrito[] = [];
+        for (const x of exs) {
+          if (juntos.includes(x)) continue;
+          juntos.push(x);
+          const par = x.supersetCom ? exs.find((y) => y.exId === x.supersetCom) : undefined;
+          if (par && !juntos.includes(par)) juntos.push(par);
+        }
+        salvar(juntos);
+      }
     }
     // 3) drop set na última série de isoladores com 3 séries ou mais (a série com drop set vale 2 no volume).
     // PROTÓTIPO (tecnicas): o iniciante não faz drop set (a saída dele é menos exercícios ou menos séries).

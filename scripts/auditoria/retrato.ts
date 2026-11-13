@@ -23,14 +23,18 @@ const processos = Math.max(1, Number(arg('--processos')) || Math.min(4, availabl
 const SAIDA = arg('--saida') ?? 'docs/revisoes/treino-para-todos/medidas/hoje';
 const MOTOR = arg('--motor') ?? 'src/domain/gerador/index.ts';
 const OBJETIVO = arg('--objetivo') as Perfil['objetivo'] | undefined;
+/** Recorte para medidas rápidas de protótipo: só um nível (os índices dos casos não mudam). */
+const SO_NIVEL = arg('--nivel');
 const PIORES = 400;
 
 type Motor = { gerarPrograma: typeof Gerar; contextoDeSelecao: typeof Ctx };
 type Soma = Record<string, number>;
 type Exemplo = { indice: number; caso: string; detalhe: string; programa: string };
 type Pior = { indice: number; caso: string; chave: string; pontos: number; falhas: string[]; detalhes: string[]; programa: string };
-type Acc = { n: Soma; w: Soma; exemplos: Record<string, Exemplo>; piores: Pior[] };
-const A: Acc = { n: {}, w: {}, exemplos: {}, piores: [] };
+/** `pioresPorMin`: os piores de cada duração (os de 30 min ocupam a lista geral inteira). */
+type Acc = { n: Soma; w: Soma; exemplos: Record<string, Exemplo>; piores: Pior[]; pioresPorMin: Record<string, Pior[]> };
+const A: Acc = { n: {}, w: {}, exemplos: {}, piores: [], pioresPorMin: {} };
+const POR_MIN = 80;
 const resumo = (p: Programa) => p.dias.map((d) => `${d.nome} (${d.minutosEstimados} min): ${d.exercicios.map((x) => `${x.exId} ${x.series}${x.dropSet ? '+drop' : ''}${x.supersetCom ? '+bi' : ''}`).join(', ')}`).join(' | ');
 
 function medir(motor: Motor, caso: CasoP) {
@@ -98,8 +102,7 @@ function medir(motor: Motor, caso: CasoP) {
     if (!A.exemplos[chave] || A.exemplos[chave].indice > caso.indice) A.exemplos[chave] = { indice: caso.indice, caso: nomeDoCasoP(caso), detalhe: c.detalhe[k]!, programa: resumo(p) };
   }
   const pontos = comDefeito.size * 10 + comNota.size;
-  if (A.piores.length < PIORES || pontos > A.piores[A.piores.length - 1]!.pontos) {
-    A.piores.push({
+  const novoPior = (): Pior => ({
       indice: caso.indice,
       caso: nomeDoCasoP(caso),
       chave: `${caso.cen.id}|${caso.pf.diasSemana}|${caso.pf.minutosSessao}`,
@@ -107,9 +110,17 @@ function medir(motor: Motor, caso: CasoP) {
       falhas: [...c.falhas].sort(),
       detalhes: [...c.falhas].sort().map((k) => `${k}: ${c.detalhe[k]}`),
       programa: resumo(p),
-    });
+  });
+  if (A.piores.length < PIORES || pontos > A.piores[A.piores.length - 1]!.pontos) {
+    A.piores.push(novoPior());
     A.piores.sort((a, b) => b.pontos - a.pontos || a.indice - b.indice);
     A.piores.length = Math.min(A.piores.length, PIORES);
+  }
+  const lista = (A.pioresPorMin[String(caso.pf.minutosSessao)] ??= []);
+  if (lista.length < POR_MIN || pontos > lista[lista.length - 1]!.pontos) {
+    lista.push(novoPior());
+    lista.sort((a, b) => b.pontos - a.pontos || a.indice - b.indice);
+    lista.length = Math.min(lista.length, POR_MIN);
   }
 }
 
@@ -118,6 +129,7 @@ function somar(a: Acc, b: Acc) {
   for (const [k, x] of Object.entries(b.w)) a.w[k] = (a.w[k] ?? 0) + x;
   for (const [k, e] of Object.entries(b.exemplos)) if (!a.exemplos[k] || a.exemplos[k].indice > e.indice) a.exemplos[k] = e;
   a.piores = [...a.piores, ...b.piores].sort((x, y) => y.pontos - x.pontos || x.indice - y.indice).slice(0, PIORES);
+  for (const [m, lista] of Object.entries(b.pioresPorMin ?? {})) a.pioresPorMin[m] = [...(a.pioresPorMin[m] ?? []), ...lista].sort((x, y) => y.pontos - x.pontos || x.indice - y.indice).slice(0, POR_MIN);
 }
 
 const casos = () => populacao(OBJETIVO ? { objetivo: OBJETIVO, dores: [DORES_P[0]!] } : {});
@@ -126,7 +138,7 @@ async function rodar(): Promise<Acc> {
   if (parte || processos === 1) {
     const motor = (await import(/* @vite-ignore */ resolve(MOTOR))) as Motor;
     const [i, n] = (parte ?? '0/1').split('/').map(Number) as [number, number];
-    for (const c of casos()) if (c.indice % n === i) medir(motor, c);
+    for (const c of casos()) if (c.indice % n === i && (!SO_NIVEL || c.pf.nivel === SO_NIVEL)) medir(motor, c);
     return A;
   }
   const pasta = join(tmpdir(), `retrato-${process.pid}`);
@@ -134,12 +146,12 @@ async function rodar(): Promise<Acc> {
   const filhos = Array.from({ length: processos }, (_, i) => {
     const arquivo = join(pasta, `parte-${i}.json`);
     return new Promise<string>((ok, erro) => {
-      const extra = [...(OBJETIVO ? ['--objetivo', OBJETIVO] : []), '--motor', MOTOR];
+      const extra = [...(OBJETIVO ? ['--objetivo', OBJETIVO] : []), ...(SO_NIVEL ? ['--nivel', SO_NIVEL] : []), '--motor', MOTOR];
       const ch = spawn(process.execPath, [join('node_modules', '.bin', 'vite-node'), 'scripts/auditoria/retrato.ts', '--', '--parte', `${i}/${processos}`, '--saida-parcial', arquivo, ...extra], { stdio: ['ignore', 'inherit', 'inherit'] });
       ch.on('exit', (code) => (code === 0 ? ok(arquivo) : erro(new Error(`processo ${i} saiu com ${code}`))));
     });
   });
-  const total: Acc = { n: {}, w: {}, exemplos: {}, piores: [] };
+  const total: Acc = { n: {}, w: {}, exemplos: {}, piores: [], pioresPorMin: {} };
   for (const f of await Promise.all(filhos)) somar(total, JSON.parse(readFileSync(f, 'utf8')) as Acc);
   rmSync(pasta, { recursive: true, force: true });
   return total;
@@ -292,7 +304,7 @@ async function main() {
     L.push(`| ${id} | ${POR_ID[id]?.animacaoId ? 'sim' : '**cartão**'} | ${pv((acc.n[`uso|${id}`] ?? 0) / total)} | ${pv((acc.w[`uso|${id}`] ?? 0) / wt)} |`);
   L.push('');
   writeFileSync(join(SAIDA, 'retrato.md'), L.join('\n'));
-  writeFileSync(join(SAIDA, 'retrato.json'), `${JSON.stringify(ordenar({ motor: MOTOR, objetivo: OBJETIVO ?? null, n: acc.n, w: acc.w, exemplos: acc.exemplos, piores: acc.piores }), null, 1)}\n`);
+  writeFileSync(join(SAIDA, 'retrato.json'), `${JSON.stringify(ordenar({ motor: MOTOR, objetivo: OBJETIVO ?? null, n: acc.n, w: acc.w, exemplos: acc.exemplos, piores: acc.piores, pioresPorMin: acc.pioresPorMin }), null, 1)}\n`);
   console.log(`${total} programas; sem defeito: grade ${pv(fr('todos', 'semDefeito'))}, ponderada ${pv(fw('todos', 'semDefeito'))}. Gravado em ${SAIDA}.`);
 }
 

@@ -1,0 +1,56 @@
+# Revisão cega 3 (treinador): foco em "bom treinador ou máquina" e em querer continuar
+
+| página | eficiente | adequada | agradável | principal problema | o que mudaria primeiro |
+|---|---|---|---|---|---|
+| S01 | 5 | 5 | 5 | Avançado com 5 dias de 90 min recebe sessões de 26 a 46 min, com 8 exercícios de só 2 séries cada: lista de "um pouquinho de tudo", volume baixo (6 a 10 séries por músculo) e três terços do tempo sobrando. | Usar o tempo disponível: menos exercícios por dia, 3 a 4 séries nos principais, e subir o volume semanal para 12 a 16 por músculo. |
+| S02 | 4 | 4 | 4 | Com dor no ombro, a semana inteira tem zero peito, costas e ombros em 4 dias, e vira um treino só de perna, braço e panturrilha (A e D quase iguais); Rosca Scott ainda estressa o ombro. | Incluir puxadas/remadas e empurrar em amplitude e pegada neutras que poupam o ombro, ou assumir um dia a menos, em vez de abandonar o tronco todo. |
+| S03 | 6 | 7 | 6 | Só há trabalho de costas na "abertura em T" sem carga e três dias começam com flexão; bi-sets de dois exercícios sem relação (joelho + tríceps) parecem montagem de planilha. | Trocar a abertura em T por um exercício de puxar melhor possível sem equipamento e deixar os bi-sets só onde economizam tempo de verdade. |
+| S04 | 3 | 3 | 4 | Para 67 anos, nunca treinou: agachamento búlgaro em bi-set com supino, flexão de joelho na bola suíça e drop set; é treino de intermediário jovem, com risco de queda e fadiga. | Trocar búlgaro e bola suíça por agachamento com apoio de cadeira/goblet e flexão em aparelho estável; tirar bi-sets e drop set. |
+| S05 | 6 | 7 | 6 | Iniciante com 8 exercícios por dia e muita isolação (elevação lateral 4 séries duas vezes, voador e voador invertido) enquanto não há agachamento nem extensora por causa do joelho; falta o básico bem feito. | Reduzir para 5 ou 6 exercícios por dia, repetir os movimentos-base mais vezes e tirar a isolação extra de ombro. |
+| S06 | 6 | 6 | 6 | Pede 36 min num dia de 30 (e 31 no outro); parece apertado, mas a escolha em si é sensata (goblet, flexão, remada, stiff). | Cortar o excesso para caber nos 30 min (por exemplo, tirar o abdominal ou uma série). |
+| S07 | 6 | 8 | 6 | Elevação lateral 4 séries em três dias, inclusive no dia de puxar, e duas panturrilhas por dia de perna; sobra tempo em um dia e Inferior com 68 min. Sensação de "somar séries" em vez de planejar. | Tirar a elevação lateral do dia de puxar e dividir o volume do ombro em dois dias; concentrar a panturrilha em dois exercícios no total. |
+| S08 | 6 | 7 | 6 | Dois dias, bom para o tempo, mas 32 min no dia A (30 pedidos) e costas só com 4 séries contra 5 de peito. | Reduzir um pouco o dia A e igualar costas e peito. |
+| S09 | 6 | 6 | 5 | Em casa sem equipamento, os três dias são cheios de flexão (A, B e C, com "mãos juntas" repetindo a mesma ideia), sem trabalho de costas além da abertura em T; monótono. | Variar o empurrar (ou cortar a flexão repetida) e dar mais peso ao glúteo, que é o pedido, com variações unilaterais. |
+| S10 | 6 | 5 | 5 | 38 min no dia A para quem só tem 30; bi-set de agachamento pesado com supino e outro de puxada com stiff deixa a sessão cansativa e confusa. | Cortar o dia A para 30 min e não parear agachamento pesado com outro exercício grande. |
+| S11 | 6 | 5 | 5 | Iniciante com búlgaro 4 séries como primeiro exercício, drop sets em tríceps, rosca e posterior de ombro, e bi-sets listados fora de ordem (o par do 1º aparece no 3º): confuso e pesado. | Tirar os drop sets, trocar o búlgaro por goblet/afundo simples e listar cada bi-set com os dois exercícios seguidos. |
+| S12 | 5 | 6 | 5 | O pedido é glúteo, mas o principal exercício é a ponte sem carga (4 × 12 a 20) para intermediária; bi-sets com séries diferentes (4 + 2) e listados fora de ordem. | Trazer ponte com elástico/unilateral e outros movimentos de glúteo com carga relativa maior, e ordenar os bi-sets. |
+| S13 | 7 | 7 | 7 | Pernas curtas (quadríceps 6 séries só com goblet/agachamento com halteres leves) e ordem um pouco solta no dia A (agachamento depois da puxada, crucifixo antes da flexora). | Colocar o exercício de perna maior no início do dia e dar 2 séries a mais de quadríceps. |
+| S14 | 6 | 6 | 5 | Mesmo problema da S09: flexão em todos os dias, sem costas, treino monótono para quem quer glúteo. | Variar o empurrar e reforçar glúteo com mais variações. |
+| S15 | 6 | 6 | 6 | 33 min no dia A para quem tem 30; volume baixo (21 séries) é aceitável pelo tempo, mas o dia B fica sem posterior de coxa. | Cortar um pouco o dia A e pôr um exercício de posterior no B. |
+| S16 | 5 | 6 | 6 | Objetivo força, mas os levantamentos principais têm só 2 séries com 2 a 3 de sobra, e as sessões ficam em 37 a 46 de 60 min; sobra espaço e há muita isolação de bomba. | Passar para 3 a 4 séries nos exercícios principais com menos repetições de sobra e cortar isolação para caber. |
+| S17 | 7 | 7 | 7 | Peito e costas bem atendidos, mas o bloco de pernas (6 séries de quadríceps) é fraco e há 8 exercícios por dia. | Cortar um acessório por dia e dar ao quadríceps 8 séries. |
+| S18 | 6 | 7 | 6 | Superior A tem 8 séries de barra fixa em sequência (barra + negativa) e nenhuma remada horizontal; pernas só com agachamento sem peso 4 × 12 a 20 para intermediário. | Dividir a barra fixa em variações (pegadas) e dar às pernas séries mais próximas da falha. |
+| S19 | 6 | 7 | 6 | Mesmo defeito da S18: barra fixa dominante, agachamento sem carga para intermediário; o búlgaro e a elevação de joelhos na barra são melhorias. | Distribuir melhor as séries de barra entre os dias e aumentar a dificuldade das pernas. |
+| S20 | 5 | 6 | 5 | Avançada com halteres de até 12 kg: pernas viram pilha de volume (panturrilha 14 séries, adução sem carga) e os dois dias superiores quase iguais; os 74 min pesam. | Trocar adução e panturrilhas repetidas por unilaterais com mais dificuldade e diferenciar os dias superiores. |
+| S21 | 6 | 7 | 6 | Igual à S03: costas só com abertura em T, bi-sets artificiais. | Mesma mudança da S03. |
+| S22 | 5 | 5 | 5 | Quem volta de 3 meses parado recebe 83 séries e sessões superiores de 70 min, e elevação lateral 3 × 12 a 20 em dia de perna; pernas com só 8 séries. | Reduzir o volume inicial, tirar a elevação lateral do dia de perna e equilibrar membros. |
+| S23 | 8 | 8 | 7 | Dias bem montados (14 séries por músculo), mas só usa 40 a 65 min dos 90 e o abdômen tem 4 séries. | Aproveitar a folga com mais um acessório de abdômen e mais variação de pernas. |
+| S24 | 6 | 6 | 6 | Iniciante com elevação de joelhos na barra (4 × 10 a 15) é pesado demais; bi-sets com contagens diferentes de séries. | Trocar a elevação de joelhos por abdominal no chão e igualar as séries nos pares. |
+| S25 | 5 | 6 | 4 | Avançada sem equipamento: zero costas e bíceps em 4 dias, dias B e D quase iguais e agachamento sem carga 4 × 12 a 20; sensação de repetição. | Dar ao menos uma puxada ou remada possível (toalha/porta fora de regra, então variação com mais dificuldade nas pernas) e diferenciar os dias. |
+| S26 | 4 | 5 | 5 | Mesmo problema da S22, pior no equilíbrio: dias superiores com 9 exercícios e 67 a 69 min, dias de perna com 37 min e elevação lateral 4 séries no dia de perna. | Tirar a elevação lateral do dia de perna, passar volume para as pernas e baixar o volume geral. |
+| S27 | 6 | 6 | 6 | Para 67 anos ainda há bi-sets, e a bola suíça para o posterior de coxa não é a escolha mais segura. | Tirar os bi-sets e trocar a bola suíça por flexão em aparelho estável. |
+| S28 | 3 | 4 | 3 | Dois dos quatro dias viram sessões de 12 min (rosca e tríceps), e não há peito, costas ou ombro em toda a semana. | Montar um superior útil com remadas e empurrar neutros, ou fundir em 3 dias. |
+| S29 | 5 | 3 | 5 | Com dor no joelho nota 7, prescreve três exercícios ajoelhados (puxada unilateral/reta ajoelhado e abdominal na polia) e panturrilha no leg press; quebra a regra de segurança. | Trocar os exercícios ajoelhados por sentado/em pé e tirar o leg press. |
+| S30 | 5 | 6 | 4 | Mesmo defeito da S25: sem costas nem bíceps, dias B e D quase iguais. | Mesma mudança da S25. |
+| S31 | 6 | 7 | 7 | Boa carga de força e bom uso dos 60 min, mas muita isolação (elevação lateral 8 séries, crucifixo invertido 4 séries) atrapalha a recuperação. | Cortar isolação de ombro e dar mais um exercício de força às costas. |
+| S32 | 6 | 6 | 5 | 122 séries, dias de 73 a 75 min no limite, elevação lateral em três dias (inclusive o de puxar) e quatro panturrilhas por dia de perna. | Tirar lateral do dia de puxar, deixar uma panturrilha por dia e baixar o tempo dos dias de 75. |
+| S33 | 6 | 6 | 6 | Bi-sets listados fora de ordem (o par do 1º aparece no 3º) e o glúteo, que é o pedido, tem poucas séries da ponte (2 × 10 a 20). | Listar os bi-sets em sequência e subir as séries de ponte para 3 a 4. |
+| S34 | 6 | 6 | 6 | Igual à S24: elevação de joelhos na barra pesada para iniciante e séries diferentes nos bi-sets. | Mesma mudança da S24. |
+| S35 | 5 | 6 | 5 | Avançada com halteres de até 12 kg: inferior de 74 min cheio de séries de panturrilha e adução sem carga, e superior com apenas 6 séries de peito. | Trocar o volume de panturrilha por exercícios mais exigentes e subir o superior para 8 a 10 séries. |
+| S36 | 5 | 6 | 5 | Igual à S12: o glúteo depende de ponte sem carga e de bi-sets com séries diferentes e fora de ordem. | Mesma mudança da S12. |
+
+## Observações gerais
+
+Cinco defeitos que mais se repetem:
+
+1. **Treino que parece soma de planilha, não plano de treinador.** Muitos exercícios de 2 séries cada (S01, S05, S22, S26), mesmo movimento em quase todos os dias (elevação lateral em três dias, flexão em três dias) e bi-sets sem lógica (joelho + tríceps, ponte + remada), às vezes listados fora de ordem (S11, S12, S33).
+2. **Dias que não combinam com o tempo da pessoa.** Ora sobra tempo (S01 usa 26 a 46 de 90 min), ora estoura (S06, S10, S15 passam dos 30 min), ora fica absurdamente curto (S28 com dois dias de 12 min).
+3. **Dor tratada como "tirar o músculo da semana".** S02 e S28 ficam sem peito, costas e ombros; S29 manda ajoelhar e fazer leg press com dor no joelho; S02 mantém Rosca Scott com dor no ombro. Falta encontrar variações que poupem a articulação e mantenham o treino inteiro.
+4. **Iniciantes e idosos recebem técnicas de intermediário.** Búlgaro em bi-set, bola suíça, drop set (S04, S11), elevação de joelhos na barra (S24, S34), bi-sets nos 67 anos (S04, S27).
+5. **Isolação em excesso e volume empilhado, mais ainda quando o equipamento é limitado.** Panturrilha até 14 a 16 séries, adução sem carga, elevação lateral no dia de perna ou puxar (S07, S20, S22, S26, S32, S35). Em casa (S09, S14, S25, S30), faltam costas e o treino repete flexão.
+
+Três coisas que mais gostei:
+
+1. **S23 e S13/S17:** dias bem equilibrados, com ordem lógica (principal primeiro, isolação depois), exercícios conhecidos e volume por músculo na faixa certa.
+2. **Descanso e "parar com X de sobra" diferenciados por tipo de exercício**, com mais descanso e mais de sobra nos principais e menos nos isoladores: soa como treinador de verdade.
+3. **Adaptação ao equipamento sem improviso**: elásticos, barra de porta (negativa, nórdico), halteres leves e a opção do degrau para panturrilha mostram boa cobertura de materiais.

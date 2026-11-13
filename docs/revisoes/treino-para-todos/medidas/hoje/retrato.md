@@ -18,6 +18,28 @@
 | escolhas decididas pela animação (% das prescrições) | 4,5% | 15,0% |
 | escolhas decididas pela ordem alfabética (% das prescrições) | 9,8% | 26,9% |
 
+## A régua oficial (G5) na mesma população
+
+| defeito ou nota | grade | ponderada | sem dor | com dor |
+| --- | ---: | ---: | ---: | ---: |
+| **sem nenhum defeito da régua** | 80,3% | 79,0% | 86,4% | 79,9% |
+| A2 | 10,6% | 2,0% | 0,8% | 11,3% |
+| A3 | 4,0% | 3,0% | 5,1% | 3,9% |
+| A4 | 3,2% | 15,2% | 6,0% | 3,0% |
+| B1 | 0,4% | 0,2% | 0,0% | 0,4% |
+| C1 | 1,7% | 0,1% | 1,4% | 1,8% |
+| D1 | 0,5% | 0,4% | 0,7% | 0,5% |
+| D3 | 0,1% | 0,0% | 0,0% | 0,1% |
+| E1 | 0,1% | 0,2% | 0,1% | 0,1% |
+| seguranca | 0,0% | 0,0% | 0,0% | 0,0% |
+| A1 | 20,2% | 4,6% | 10,1% | 20,9% |
+| A5 | 22,5% | 13,5% | 15,2% | 23,0% |
+| B2 | 16,6% | 5,5% | 15,8% | 16,6% |
+| B3 | 7,0% | 3,9% | 8,5% | 6,9% |
+| C2 | 9,7% | 7,2% | 11,4% | 9,6% |
+| G1 | 14,4% | 59,8% | 15,1% | 14,3% |
+| cartões de texto por dia (média) | 0,71 | 1,83 | | |
+
 ## Cada cuidado
 
 % dos programas que falham. "Pior grupo": o recorte (equipamento, nível, minutos, dias, foco ou dor) com a maior fatia na grade.
@@ -158,20 +180,20 @@ Nas tabelas por recorte: `c03a` dia mais longo acima de 110% dos minutos (A3); `
 | recorte | programas | peso | sem defeito | ponderada | uso do tempo | séries por músculo | c03a | c03c | c04b | c04c | c05a | c06b | c08a | c09b | c12a | c13a | c14b | c15a | c17a |
 | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
 | sem dor | 45.375 | 78,0% | 37,5% | 35,8% | 79,6% | 8,4 | 5,1% | 33,5% | 16,5% | 36,3% | 0,7% | 11,4% | 34,4% | 15,8% | 5,1% | 12,3% | 0,8% | 11,2% | 0,0% |
-| cotovelo 4 | 45.375 | 0,9% | 37,5% | 35,8% | 79,6% | 8,4 | 5,1% | 33,5% | 16,5% | 36,3% | 0,7% | 11,4% | 33,7% | 15,8% | 5,1% | 12,3% | 0,8% | 11,2% | 0,0% |
-| punho 7 | 45.375 | 0,6% | 30,2% | 38,9% | 75,2% | 8,7 | 3,9% | 40,5% | 10,8% | 39,2% | 0,2% | 8,8% | 34,6% | 18,6% | 5,2% | 13,3% | 20,6% | 8,3% | 0,0% |
-| quadril 4 | 45.375 | 0,9% | 37,6% | 35,8% | 79,6% | 8,4 | 5,1% | 33,5% | 16,5% | 36,3% | 0,7% | 11,4% | 34,4% | 15,8% | 5,1% | 12,3% | 0,8% | 11,2% | 0,0% |
+| cotovelo 7 | 45.375 | 0,6% | 17,5% | 17,4% | 66,9% | 8,9 | 2,0% | 53,4% | 4,6% | 49,6% | 0,0% | 5,3% | 29,2% | 13,6% | 4,2% | 2,9% | 46,4% | 5,7% | 0,0% |
+| lombar 7 | 45.375 | 2,4% | 42,0% | 44,0% | 78,8% | 8,8 | 2,9% | 33,2% | 10,2% | 34,4% | 0,6% | 10,3% | 33,9% | 16,6% | 5,2% | 0,0% | 11,7% | 10,3% | 0,0% |
 | joelho 7 | 45.375 | 2,0% | 40,4% | 50,7% | 75,9% | 8,6 | 4,4% | 39,2% | 6,4% | 39,0% | 0,4% | 7,3% | 31,1% | 18,3% | 5,0% | 21,1% | 9,7% | 9,3% | 0,0% |
 | ombro 4 | 45.375 | 3,0% | 37,6% | 36,0% | 79,6% | 8,3 | 5,1% | 33,5% | 16,5% | 36,2% | 0,7% | 11,4% | 33,9% | 15,8% | 5,1% | 12,3% | 0,8% | 11,3% | 0,0% |
-| cotovelo 7 | 45.375 | 0,6% | 17,5% | 17,4% | 66,9% | 8,9 | 2,0% | 53,4% | 4,6% | 49,6% | 0,0% | 5,3% | 29,2% | 13,6% | 4,2% | 2,9% | 46,4% | 5,7% | 0,0% |
-| lombar 4 | 45.375 | 3,6% | 37,6% | 35,7% | 79,6% | 8,3 | 5,1% | 33,5% | 16,5% | 36,3% | 0,7% | 11,4% | 33,7% | 15,8% | 5,1% | 9,8% | 0,8% | 11,2% | 0,0% |
-| quadril 7 | 45.375 | 0,6% | 28,5% | 22,0% | 69,4% | 9,0 | 0,7% | 49,5% | 6,7% | 47,4% | 0,4% | 7,6% | 30,5% | 22,0% | 5,2% | 8,9% | 32,4% | 5,6% | 0,0% |
+| punho 4 | 45.375 | 0,9% | 37,5% | 35,9% | 79,6% | 8,4 | 5,1% | 33,5% | 16,5% | 36,3% | 0,7% | 11,4% | 33,6% | 15,8% | 5,2% | 12,3% | 0,8% | 11,2% | 0,0% |
+| quadril 4 | 45.375 | 0,9% | 37,6% | 35,8% | 79,6% | 8,4 | 5,1% | 33,5% | 16,5% | 36,3% | 0,7% | 11,4% | 34,4% | 15,8% | 5,1% | 12,3% | 0,8% | 11,2% | 0,0% |
 | tornozelo 4 | 45.375 | 0,9% | 37,5% | 35,8% | 79,6% | 8,4 | 5,1% | 33,5% | 16,5% | 36,3% | 0,7% | 11,4% | 34,4% | 15,8% | 5,1% | 12,3% | 0,8% | 11,2% | 0,0% |
 | ombro 7 | 45.375 | 2,0% | 42,7% | 23,3% | 66,3% | 10,2 | 1,4% | 55,4% | 3,3% | 32,6% | 0,0% | 7,2% | 26,9% | 17,0% | 4,2% | 2,9% | 30,8% | 4,1% | 0,0% |
-| punho 4 | 45.375 | 0,9% | 37,5% | 35,9% | 79,6% | 8,4 | 5,1% | 33,5% | 16,5% | 36,3% | 0,7% | 11,4% | 33,6% | 15,8% | 5,2% | 12,3% | 0,8% | 11,2% | 0,0% |
-| lombar 7 | 45.375 | 2,4% | 42,0% | 44,0% | 78,8% | 8,8 | 2,9% | 33,2% | 10,2% | 34,4% | 0,6% | 10,3% | 33,9% | 16,6% | 5,2% | 0,0% | 11,7% | 10,3% | 0,0% |
-| joelho 4 | 45.375 | 3,0% | 37,5% | 35,8% | 79,6% | 8,4 | 5,1% | 33,5% | 16,5% | 36,3% | 0,7% | 11,4% | 34,3% | 15,8% | 5,1% | 12,3% | 0,8% | 11,2% | 0,0% |
+| punho 7 | 45.375 | 0,6% | 30,2% | 38,9% | 75,2% | 8,7 | 3,9% | 40,5% | 10,8% | 39,2% | 0,2% | 8,8% | 34,6% | 18,6% | 5,2% | 13,3% | 20,6% | 8,3% | 0,0% |
+| quadril 7 | 45.375 | 0,6% | 28,5% | 22,0% | 69,4% | 9,0 | 0,7% | 49,5% | 6,7% | 47,4% | 0,4% | 7,6% | 30,5% | 22,0% | 5,2% | 8,9% | 32,4% | 5,6% | 0,0% |
 | tornozelo 7 | 45.375 | 0,6% | 42,9% | 46,8% | 77,6% | 9,0 | 3,5% | 35,8% | 12,7% | 35,4% | 0,6% | 7,9% | 34,6% | 15,8% | 5,1% | 12,4% | 0,8% | 9,0% | 0,0% |
+| cotovelo 4 | 45.375 | 0,9% | 37,5% | 35,8% | 79,6% | 8,4 | 5,1% | 33,5% | 16,5% | 36,3% | 0,7% | 11,4% | 33,7% | 15,8% | 5,1% | 12,3% | 0,8% | 11,2% | 0,0% |
+| lombar 4 | 45.375 | 3,6% | 37,6% | 35,7% | 79,6% | 8,3 | 5,1% | 33,5% | 16,5% | 36,3% | 0,7% | 11,4% | 33,7% | 15,8% | 5,1% | 9,8% | 0,8% | 11,2% | 0,0% |
+| joelho 4 | 45.375 | 3,0% | 37,5% | 35,8% | 79,6% | 8,4 | 5,1% | 33,5% | 16,5% | 36,3% | 0,7% | 11,4% | 34,3% | 15,8% | 5,1% | 12,3% | 0,8% | 11,2% | 0,0% |
 
 ## Por nível e minutos
 
@@ -275,7 +297,7 @@ Nas tabelas por recorte: `c03a` dia mais longo acima de 110% dos minutos (A3); `
 
 ## Os piores perfis
 
-Os programas com mais cuidados em falta (10 pontos por cuidado com defeito, 1 por cuidado só com nota), um por cenário, nível e dor, para não repetir o mesmo caso.
+Os programas com mais cuidados em falta (10 pontos por cuidado com defeito, 1 por cuidado só com nota), um por cenário, dias e minutos, para não repetir o mesmo caso.
 
 1. **so:paralelas · avancado · 4 dias · 30 min · foco inferiores · punho 7** (67 pontos)
    - Corpo todo A (41 min): agachamento-peso-corpo 4+bi, ponte-gluteo 2, mergulho 2+bi, flexao-joelho-deslizante 4, abdominal-chao 2 | Corpo todo B (28 min): nordico 4+bi, panturrilha-degrau 4+bi, abducao-deitado 2, abertura-t-deitado 3 | Corpo todo C (35 min): afundo-peso-corpo 4+bi, ponte-gluteo 2, mergulho 2+bi, panturrilha-degrau 2 | Corpo todo D (37 min): afundo-tras-peso-corpo 4, ponte-gluteo 2, flexao-joelho-deslizante 4+bi, abertura-t-deitado 2+bi
@@ -311,175 +333,7 @@ Os programas com mais cuidados em falta (10 pontos por cuidado com defeito, 1 po
    - c15c: Corpo todo A: remada-curvada-halteres + stiff
    - c16b: média de 3,4 séries por músculo (faixa do intermediario: a partir de 10)
    - c20a: o texto diz 4 e há dia com 6
-3. **so:halteres_fixos · intermediario · 2 dias · 30 min · foco peito · ombro 4** (66 pontos)
-   - Corpo todo A (40 min): flexao 4+bi, goblet 2+bi, remada-curvada-halteres 2+bi, stiff 2+bi, panturrilha-degrau 2, abdominal-chao 2 | Corpo todo B (35 min): flexao-pes-elevados 4+bi, afundo 2+bi, remada-unilateral-sem-banco 2, flexao-joelho-deslizante 2
-   - c02a: Corpo todo A com 6 exercícios em 30 min (faixa 3 a 5)
-   - c02b: Corpo todo A com 14 séries em 30 min
-   - c03a: dia de 40 min em 30
-   - c04a: ombro_lateral sem nenhuma série
-   - c04b: ombro_posterior com 2 séries
-   - c04d: peito com 8 (faixa do intermediario: 10 a 16)
-   - c04f: ombro_lateral sem exercício direto (0 séries indiretas)
-   - c05a: empurrar 8 ÷ puxar 4 séries
-   - c06d: ombro_lateral com 0 séries, com foco em peito
-   - c08a: Corpo todo A: goblet, e não agachamento-halteres
-   - c08b: Corpo todo A: stiff, e não stiff-unilateral
-   - c12a: goblet: uma carga só
-   - c13a: Corpo todo A: remada-curvada-halteres → stiff
-   - c15b: Corpo todo A: flexao + goblet
-   - c15c: Corpo todo A: remada-curvada-halteres + stiff
-   - c16b: média de 3,4 séries por músculo (faixa do intermediario: a partir de 10)
-   - c20a: o texto diz 4 e há dia com 6
-4. **so:halteres_fixos · intermediario · 2 dias · 30 min · foco peito · cotovelo 4** (66 pontos)
-   - Corpo todo A (40 min): flexao 4+bi, goblet 2+bi, remada-curvada-halteres 2+bi, stiff 2+bi, panturrilha-degrau 2, abdominal-chao 2 | Corpo todo B (35 min): flexao-pes-elevados 4+bi, afundo 2+bi, remada-unilateral-sem-banco 2, flexao-joelho-deslizante 2
-   - c02a: Corpo todo A com 6 exercícios em 30 min (faixa 3 a 5)
-   - c02b: Corpo todo A com 14 séries em 30 min
-   - c03a: dia de 40 min em 30
-   - c04a: ombro_lateral sem nenhuma série
-   - c04b: ombro_posterior com 2 séries
-   - c04d: peito com 8 (faixa do intermediario: 10 a 16)
-   - c04f: ombro_lateral sem exercício direto (0 séries indiretas)
-   - c05a: empurrar 8 ÷ puxar 4 séries
-   - c06d: ombro_lateral com 0 séries, com foco em peito
-   - c08a: Corpo todo A: goblet, e não agachamento-halteres
-   - c08b: Corpo todo A: stiff, e não stiff-unilateral
-   - c12a: goblet: uma carga só
-   - c13a: Corpo todo A: remada-curvada-halteres → stiff
-   - c15b: Corpo todo A: flexao + goblet
-   - c15c: Corpo todo A: remada-curvada-halteres + stiff
-   - c16b: média de 3,4 séries por músculo (faixa do intermediario: a partir de 10)
-   - c20a: o texto diz 4 e há dia com 6
-5. **so:halteres_fixos · intermediario · 2 dias · 30 min · foco peito · punho 4** (66 pontos)
-   - Corpo todo A (40 min): flexao 4+bi, goblet 2+bi, remada-curvada-halteres 2+bi, stiff 2+bi, panturrilha-degrau 2, abdominal-chao 2 | Corpo todo B (35 min): flexao-pes-elevados 4+bi, afundo 2+bi, remada-unilateral-sem-banco 2, flexao-joelho-deslizante 2
-   - c02a: Corpo todo A com 6 exercícios em 30 min (faixa 3 a 5)
-   - c02b: Corpo todo A com 14 séries em 30 min
-   - c03a: dia de 40 min em 30
-   - c04a: ombro_lateral sem nenhuma série
-   - c04b: ombro_posterior com 2 séries
-   - c04d: peito com 8 (faixa do intermediario: 10 a 16)
-   - c04f: ombro_lateral sem exercício direto (0 séries indiretas)
-   - c05a: empurrar 8 ÷ puxar 4 séries
-   - c06d: ombro_lateral com 0 séries, com foco em peito
-   - c08a: Corpo todo A: goblet, e não agachamento-halteres
-   - c08b: Corpo todo A: stiff, e não stiff-unilateral
-   - c12a: goblet: uma carga só
-   - c13a: Corpo todo A: remada-curvada-halteres → stiff
-   - c15b: Corpo todo A: flexao + goblet
-   - c15c: Corpo todo A: remada-curvada-halteres + stiff
-   - c16b: média de 3,4 séries por músculo (faixa do intermediario: a partir de 10)
-   - c20a: o texto diz 4 e há dia com 6
-6. **so:halteres_fixos · intermediario · 2 dias · 30 min · foco peito · punho 7** (66 pontos)
-   - Corpo todo A (40 min): supino-chao-halteres 4+bi, goblet 2+bi, remada-curvada-halteres 2+bi, stiff 2+bi, panturrilha-degrau 2, abdominal-chao 2 | Corpo todo B (34 min): supino-chao-halteres 4+bi, afundo 2+bi, remada-unilateral-sem-banco 2, flexao-joelho-deslizante 2
-   - c02a: Corpo todo A com 6 exercícios em 30 min (faixa 3 a 5)
-   - c02b: Corpo todo A com 14 séries em 30 min
-   - c03a: dia de 40 min em 30
-   - c04a: ombro_lateral sem nenhuma série
-   - c04b: ombro_posterior com 2 séries
-   - c04d: peito com 8 (faixa do intermediario: 10 a 16)
-   - c04f: ombro_lateral sem exercício direto (0 séries indiretas)
-   - c05a: empurrar 8 ÷ puxar 4 séries
-   - c06d: ombro_lateral com 0 séries, com foco em peito
-   - c08a: Corpo todo A: goblet, e não agachamento-halteres
-   - c08b: Corpo todo A: stiff, e não stiff-unilateral
-   - c12a: supino-chao-halteres: uma carga só
-   - c13a: Corpo todo A: remada-curvada-halteres → stiff
-   - c15b: Corpo todo A: supino-chao-halteres + goblet
-   - c15c: Corpo todo A: remada-curvada-halteres + stiff
-   - c16b: média de 3,4 séries por músculo (faixa do intermediario: a partir de 10)
-   - c20a: o texto diz 4 e há dia com 6
-7. **so:halteres_fixos · intermediario · 2 dias · 30 min · foco peito · lombar 4** (66 pontos)
-   - Corpo todo A (40 min): flexao 4+bi, goblet 2+bi, remada-curvada-halteres 2+bi, stiff 2+bi, panturrilha-degrau 2, abdominal-chao 2 | Corpo todo B (35 min): flexao-pes-elevados 4+bi, afundo 2+bi, remada-unilateral-sem-banco 2, flexao-joelho-deslizante 2
-   - c02a: Corpo todo A com 6 exercícios em 30 min (faixa 3 a 5)
-   - c02b: Corpo todo A com 14 séries em 30 min
-   - c03a: dia de 40 min em 30
-   - c04a: ombro_lateral sem nenhuma série
-   - c04b: ombro_posterior com 2 séries
-   - c04d: peito com 8 (faixa do intermediario: 10 a 16)
-   - c04f: ombro_lateral sem exercício direto (0 séries indiretas)
-   - c05a: empurrar 8 ÷ puxar 4 séries
-   - c06d: ombro_lateral com 0 séries, com foco em peito
-   - c08a: Corpo todo A: goblet, e não agachamento-halteres
-   - c08b: Corpo todo A: stiff, e não stiff-unilateral
-   - c12a: goblet: uma carga só
-   - c13a: Corpo todo A: remada-curvada-halteres → stiff
-   - c15b: Corpo todo A: flexao + goblet
-   - c15c: Corpo todo A: remada-curvada-halteres + stiff
-   - c16b: média de 3,4 séries por músculo (faixa do intermediario: a partir de 10)
-   - c20a: o texto diz 4 e há dia com 6
-8. **so:halteres_fixos · intermediario · 2 dias · 30 min · foco peito · quadril 4** (66 pontos)
-   - Corpo todo A (40 min): flexao 4+bi, goblet 2+bi, remada-curvada-halteres 2+bi, stiff 2+bi, panturrilha-degrau 2, abdominal-chao 2 | Corpo todo B (35 min): flexao-pes-elevados 4+bi, afundo 2+bi, remada-unilateral-sem-banco 2, flexao-joelho-deslizante 2
-   - c02a: Corpo todo A com 6 exercícios em 30 min (faixa 3 a 5)
-   - c02b: Corpo todo A com 14 séries em 30 min
-   - c03a: dia de 40 min em 30
-   - c04a: ombro_lateral sem nenhuma série
-   - c04b: ombro_posterior com 2 séries
-   - c04d: peito com 8 (faixa do intermediario: 10 a 16)
-   - c04f: ombro_lateral sem exercício direto (0 séries indiretas)
-   - c05a: empurrar 8 ÷ puxar 4 séries
-   - c06d: ombro_lateral com 0 séries, com foco em peito
-   - c08a: Corpo todo A: goblet, e não agachamento-halteres
-   - c08b: Corpo todo A: stiff, e não stiff-unilateral
-   - c12a: goblet: uma carga só
-   - c13a: Corpo todo A: remada-curvada-halteres → stiff
-   - c15b: Corpo todo A: flexao + goblet
-   - c15c: Corpo todo A: remada-curvada-halteres + stiff
-   - c16b: média de 3,4 séries por músculo (faixa do intermediario: a partir de 10)
-   - c20a: o texto diz 4 e há dia com 6
-9. **so:halteres_fixos · intermediario · 2 dias · 30 min · foco peito · joelho 4** (66 pontos)
-   - Corpo todo A (40 min): flexao 4+bi, goblet 2+bi, remada-curvada-halteres 2+bi, stiff 2+bi, panturrilha-degrau 2, abdominal-chao 2 | Corpo todo B (35 min): flexao-pes-elevados 4+bi, afundo 2+bi, remada-unilateral-sem-banco 2, flexao-joelho-deslizante 2
-   - c02a: Corpo todo A com 6 exercícios em 30 min (faixa 3 a 5)
-   - c02b: Corpo todo A com 14 séries em 30 min
-   - c03a: dia de 40 min em 30
-   - c04a: ombro_lateral sem nenhuma série
-   - c04b: ombro_posterior com 2 séries
-   - c04d: peito com 8 (faixa do intermediario: 10 a 16)
-   - c04f: ombro_lateral sem exercício direto (0 séries indiretas)
-   - c05a: empurrar 8 ÷ puxar 4 séries
-   - c06d: ombro_lateral com 0 séries, com foco em peito
-   - c08a: Corpo todo A: goblet, e não agachamento-halteres
-   - c08b: Corpo todo A: stiff, e não stiff-unilateral
-   - c12a: goblet: uma carga só
-   - c13a: Corpo todo A: remada-curvada-halteres → stiff
-   - c15b: Corpo todo A: flexao + goblet
-   - c15c: Corpo todo A: remada-curvada-halteres + stiff
-   - c16b: média de 3,4 séries por músculo (faixa do intermediario: a partir de 10)
-   - c20a: o texto diz 4 e há dia com 6
-10. **so:halteres_fixos · intermediario · 2 dias · 30 min · foco peito · joelho 7** (66 pontos)
-   - Corpo todo A (46 min): flexao 4+bi, remada-curvada-halteres 2+bi, stiff 2, elevacao-halteres 4+bi, panturrilha-degrau 2+bi, abdominal-chao 2 | Corpo todo B (34 min): flexao-pes-elevados 4+bi, remada-unilateral-sem-banco 2+bi, stiff-unilateral 2, rosca-alternada 2
-   - c02a: Corpo todo A com 6 exercícios em 30 min (faixa 3 a 5)
-   - c02b: Corpo todo A com 16 séries em 30 min
-   - c03a: dia de 46 min em 30
-   - c04b: ombro_posterior com 2 séries
-   - c04d: peito com 8 (faixa do intermediario: 10 a 16)
-   - c04f: ombro_posterior sem exercício direto (2 séries indiretas)
-   - c05a: empurrar 8 ÷ puxar 4 séries
-   - c06d: ombro_posterior com 2 séries, com foco em peito
-   - c08b: Corpo todo A: abdominal-chao, e não abdominal-invertido
-   - c12a: remada-curvada-halteres: uma carga só
-   - c13a: Corpo todo A: remada-curvada-halteres → stiff
-   - c15b: Corpo todo A: flexao + remada-curvada-halteres
-   - c16b: média de 3,8 séries por músculo (faixa do intermediario: a partir de 10)
-   - c20a: o texto diz 4 e há dia com 6
-11. **so:halteres_fixos · intermediario · 2 dias · 30 min · foco peito · tornozelo 4** (66 pontos)
-   - Corpo todo A (40 min): flexao 4+bi, goblet 2+bi, remada-curvada-halteres 2+bi, stiff 2+bi, panturrilha-degrau 2, abdominal-chao 2 | Corpo todo B (35 min): flexao-pes-elevados 4+bi, afundo 2+bi, remada-unilateral-sem-banco 2, flexao-joelho-deslizante 2
-   - c02a: Corpo todo A com 6 exercícios em 30 min (faixa 3 a 5)
-   - c02b: Corpo todo A com 14 séries em 30 min
-   - c03a: dia de 40 min em 30
-   - c04a: ombro_lateral sem nenhuma série
-   - c04b: ombro_posterior com 2 séries
-   - c04d: peito com 8 (faixa do intermediario: 10 a 16)
-   - c04f: ombro_lateral sem exercício direto (0 séries indiretas)
-   - c05a: empurrar 8 ÷ puxar 4 séries
-   - c06d: ombro_lateral com 0 séries, com foco em peito
-   - c08a: Corpo todo A: goblet, e não agachamento-halteres
-   - c08b: Corpo todo A: stiff, e não stiff-unilateral
-   - c12a: goblet: uma carga só
-   - c13a: Corpo todo A: remada-curvada-halteres → stiff
-   - c15b: Corpo todo A: flexao + goblet
-   - c15c: Corpo todo A: remada-curvada-halteres + stiff
-   - c16b: média de 3,4 séries por músculo (faixa do intermediario: a partir de 10)
-   - c20a: o texto diz 4 e há dia com 6
-12. **so:halteres_fixos · intermediario · 4 dias · 30 min · foco inferiores · ombro 7** (66 pontos)
+3. **so:halteres_fixos · intermediario · 4 dias · 30 min · foco inferiores · ombro 7** (66 pontos)
    - Superior A (5 min): rosca-alternada 3 | Inferior A (35 min): goblet 2, stiff 3, ponte-gluteo-halter 2, flexao-joelho-deslizante 3, abdominal-chao 2 | Superior B (5 min): rosca-martelo 3 | Inferior B (35 min): afundo 4, ponte-gluteo-halter 2, nordico 4+bi, panturrilha-degrau 2+bi
    - c02a: Superior A com 1 exercícios em 30 min (faixa 3 a 5)
    - c03a: dia de 35 min em 30
@@ -497,229 +351,7 @@ Os programas com mais cuidados em falta (10 pontos por cuidado com defeito, 1 po
    - c14b: Superior A com 1 exercício
    - c16b: média de 6,8 séries por músculo (faixa do intermediario: a partir de 10)
    - c20a: o texto diz 4 e há dia com 5
-13. **so:halteres_fixos · intermediario · 4 dias · 30 min · foco inferiores · cotovelo 7** (66 pontos)
-   - Superior A (13 min): elevacao-halteres 3, crucifixo-invertido-curvado 3 | Inferior A (35 min): goblet 2, stiff 3, ponte-gluteo-halter 2, flexao-joelho-deslizante 3, abdominal-chao 2 | Superior B (13 min): elevacao-halteres 3, crucifixo-invertido-sentado 3 | Inferior B (35 min): afundo 4, ponte-gluteo-halter 2, nordico 4+bi, panturrilha-degrau 2+bi
-   - c02a: Superior A com 2 exercícios em 30 min (faixa 3 a 5)
-   - c03a: dia de 35 min em 30
-   - c03d: dia típico de 24 min em 30
-   - c04b: panturrilha com 2 séries
-   - c04c: ombro_lateral com 6 de 10 e o dia típico em 24 de 30 min
-   - c04d: ombro_lateral com 6 (faixa do intermediario: 10 a 16)
-   - c06b: quadriceps com 6, mediana dos outros 6
-   - c06c: quadriceps com 6, mediana dos outros 6
-   - c06d: abdomen com 2 séries, com foco em pernas, gluteos
-   - c08a: Inferior A: goblet, e não agachamento-halteres
-   - c08b: Inferior A: stiff, e não stiff-unilateral
-   - c12a: elevacao-halteres: uma carga só
-   - c14b: Superior A com 2 exercícios
-   - c16b: média de 6,7 séries por músculo (faixa do intermediario: a partir de 10)
-   - c20a: o texto diz 4 e há dia com 5
-14. **so:halteres_fixos · avancado · 2 dias · 30 min · foco peito · sem dor** (66 pontos)
-   - Corpo todo A (40 min): flexao 4+bi, goblet 2+bi, remada-curvada-halteres 2+bi, stiff 2+bi, panturrilha-degrau 2, abdominal-chao 2 | Corpo todo B (35 min): flexao-pes-elevados 4+bi, afundo 2+bi, remada-unilateral-sem-banco 2, flexao-joelho-deslizante 2
-   - c02a: Corpo todo A com 6 exercícios em 30 min (faixa 3 a 5)
-   - c02b: Corpo todo A com 14 séries em 30 min
-   - c03a: dia de 40 min em 30
-   - c04a: ombro_lateral sem nenhuma série
-   - c04b: ombro_posterior com 2 séries
-   - c04d: peito com 8 (faixa do avancado: 12 a 20)
-   - c04f: ombro_lateral sem exercício direto (0 séries indiretas)
-   - c05a: empurrar 8 ÷ puxar 4 séries
-   - c06d: ombro_lateral com 0 séries, com foco em peito
-   - c08a: Corpo todo A: goblet, e não agachamento-halteres
-   - c08b: Corpo todo A: stiff, e não stiff-unilateral
-   - c12a: goblet: uma carga só
-   - c13a: Corpo todo A: remada-curvada-halteres → stiff
-   - c15b: Corpo todo A: flexao + goblet
-   - c15c: Corpo todo A: remada-curvada-halteres + stiff
-   - c16b: média de 3,4 séries por músculo (faixa do avancado: a partir de 12)
-   - c20a: o texto diz 4 e há dia com 6
-15. **so:halteres_fixos · avancado · 2 dias · 30 min · foco peito · ombro 4** (66 pontos)
-   - Corpo todo A (40 min): flexao 4+bi, goblet 2+bi, remada-curvada-halteres 2+bi, stiff 2+bi, panturrilha-degrau 2, abdominal-chao 2 | Corpo todo B (35 min): flexao-pes-elevados 4+bi, afundo 2+bi, remada-unilateral-sem-banco 2, flexao-joelho-deslizante 2
-   - c02a: Corpo todo A com 6 exercícios em 30 min (faixa 3 a 5)
-   - c02b: Corpo todo A com 14 séries em 30 min
-   - c03a: dia de 40 min em 30
-   - c04a: ombro_lateral sem nenhuma série
-   - c04b: ombro_posterior com 2 séries
-   - c04d: peito com 8 (faixa do avancado: 12 a 20)
-   - c04f: ombro_lateral sem exercício direto (0 séries indiretas)
-   - c05a: empurrar 8 ÷ puxar 4 séries
-   - c06d: ombro_lateral com 0 séries, com foco em peito
-   - c08a: Corpo todo A: goblet, e não agachamento-halteres
-   - c08b: Corpo todo A: stiff, e não stiff-unilateral
-   - c12a: goblet: uma carga só
-   - c13a: Corpo todo A: remada-curvada-halteres → stiff
-   - c15b: Corpo todo A: flexao + goblet
-   - c15c: Corpo todo A: remada-curvada-halteres + stiff
-   - c16b: média de 3,4 séries por músculo (faixa do avancado: a partir de 12)
-   - c20a: o texto diz 4 e há dia com 6
-16. **so:halteres_fixos · avancado · 2 dias · 30 min · foco peito · cotovelo 4** (66 pontos)
-   - Corpo todo A (40 min): flexao 4+bi, goblet 2+bi, remada-curvada-halteres 2+bi, stiff 2+bi, panturrilha-degrau 2, abdominal-chao 2 | Corpo todo B (35 min): flexao-pes-elevados 4+bi, afundo 2+bi, remada-unilateral-sem-banco 2, flexao-joelho-deslizante 2
-   - c02a: Corpo todo A com 6 exercícios em 30 min (faixa 3 a 5)
-   - c02b: Corpo todo A com 14 séries em 30 min
-   - c03a: dia de 40 min em 30
-   - c04a: ombro_lateral sem nenhuma série
-   - c04b: ombro_posterior com 2 séries
-   - c04d: peito com 8 (faixa do avancado: 12 a 20)
-   - c04f: ombro_lateral sem exercício direto (0 séries indiretas)
-   - c05a: empurrar 8 ÷ puxar 4 séries
-   - c06d: ombro_lateral com 0 séries, com foco em peito
-   - c08a: Corpo todo A: goblet, e não agachamento-halteres
-   - c08b: Corpo todo A: stiff, e não stiff-unilateral
-   - c12a: goblet: uma carga só
-   - c13a: Corpo todo A: remada-curvada-halteres → stiff
-   - c15b: Corpo todo A: flexao + goblet
-   - c15c: Corpo todo A: remada-curvada-halteres + stiff
-   - c16b: média de 3,4 séries por músculo (faixa do avancado: a partir de 12)
-   - c20a: o texto diz 4 e há dia com 6
-17. **so:halteres_fixos · avancado · 2 dias · 30 min · foco peito · punho 4** (66 pontos)
-   - Corpo todo A (40 min): flexao 4+bi, goblet 2+bi, remada-curvada-halteres 2+bi, stiff 2+bi, panturrilha-degrau 2, abdominal-chao 2 | Corpo todo B (35 min): flexao-pes-elevados 4+bi, afundo 2+bi, remada-unilateral-sem-banco 2, flexao-joelho-deslizante 2
-   - c02a: Corpo todo A com 6 exercícios em 30 min (faixa 3 a 5)
-   - c02b: Corpo todo A com 14 séries em 30 min
-   - c03a: dia de 40 min em 30
-   - c04a: ombro_lateral sem nenhuma série
-   - c04b: ombro_posterior com 2 séries
-   - c04d: peito com 8 (faixa do avancado: 12 a 20)
-   - c04f: ombro_lateral sem exercício direto (0 séries indiretas)
-   - c05a: empurrar 8 ÷ puxar 4 séries
-   - c06d: ombro_lateral com 0 séries, com foco em peito
-   - c08a: Corpo todo A: goblet, e não agachamento-halteres
-   - c08b: Corpo todo A: stiff, e não stiff-unilateral
-   - c12a: goblet: uma carga só
-   - c13a: Corpo todo A: remada-curvada-halteres → stiff
-   - c15b: Corpo todo A: flexao + goblet
-   - c15c: Corpo todo A: remada-curvada-halteres + stiff
-   - c16b: média de 3,4 séries por músculo (faixa do avancado: a partir de 12)
-   - c20a: o texto diz 4 e há dia com 6
-18. **so:halteres_fixos · avancado · 2 dias · 30 min · foco peito · punho 7** (66 pontos)
-   - Corpo todo A (40 min): supino-chao-halteres 4+bi, goblet 2+bi, remada-curvada-halteres 2+bi, stiff 2+bi, panturrilha-degrau 2, abdominal-chao 2 | Corpo todo B (34 min): supino-chao-halteres 4+bi, afundo 2+bi, remada-unilateral-sem-banco 2, flexao-joelho-deslizante 2
-   - c02a: Corpo todo A com 6 exercícios em 30 min (faixa 3 a 5)
-   - c02b: Corpo todo A com 14 séries em 30 min
-   - c03a: dia de 40 min em 30
-   - c04a: ombro_lateral sem nenhuma série
-   - c04b: ombro_posterior com 2 séries
-   - c04d: peito com 8 (faixa do avancado: 12 a 20)
-   - c04f: ombro_lateral sem exercício direto (0 séries indiretas)
-   - c05a: empurrar 8 ÷ puxar 4 séries
-   - c06d: ombro_lateral com 0 séries, com foco em peito
-   - c08a: Corpo todo A: goblet, e não agachamento-halteres
-   - c08b: Corpo todo A: stiff, e não stiff-unilateral
-   - c12a: supino-chao-halteres: uma carga só
-   - c13a: Corpo todo A: remada-curvada-halteres → stiff
-   - c15b: Corpo todo A: supino-chao-halteres + goblet
-   - c15c: Corpo todo A: remada-curvada-halteres + stiff
-   - c16b: média de 3,4 séries por músculo (faixa do avancado: a partir de 12)
-   - c20a: o texto diz 4 e há dia com 6
-19. **so:halteres_fixos · avancado · 2 dias · 30 min · foco peito · lombar 4** (66 pontos)
-   - Corpo todo A (40 min): flexao 4+bi, goblet 2+bi, remada-curvada-halteres 2+bi, stiff 2+bi, panturrilha-degrau 2, abdominal-chao 2 | Corpo todo B (35 min): flexao-pes-elevados 4+bi, afundo 2+bi, remada-unilateral-sem-banco 2, flexao-joelho-deslizante 2
-   - c02a: Corpo todo A com 6 exercícios em 30 min (faixa 3 a 5)
-   - c02b: Corpo todo A com 14 séries em 30 min
-   - c03a: dia de 40 min em 30
-   - c04a: ombro_lateral sem nenhuma série
-   - c04b: ombro_posterior com 2 séries
-   - c04d: peito com 8 (faixa do avancado: 12 a 20)
-   - c04f: ombro_lateral sem exercício direto (0 séries indiretas)
-   - c05a: empurrar 8 ÷ puxar 4 séries
-   - c06d: ombro_lateral com 0 séries, com foco em peito
-   - c08a: Corpo todo A: goblet, e não agachamento-halteres
-   - c08b: Corpo todo A: stiff, e não stiff-unilateral
-   - c12a: goblet: uma carga só
-   - c13a: Corpo todo A: remada-curvada-halteres → stiff
-   - c15b: Corpo todo A: flexao + goblet
-   - c15c: Corpo todo A: remada-curvada-halteres + stiff
-   - c16b: média de 3,4 séries por músculo (faixa do avancado: a partir de 12)
-   - c20a: o texto diz 4 e há dia com 6
-20. **so:halteres_fixos · avancado · 2 dias · 30 min · foco peito · quadril 4** (66 pontos)
-   - Corpo todo A (40 min): flexao 4+bi, goblet 2+bi, remada-curvada-halteres 2+bi, stiff 2+bi, panturrilha-degrau 2, abdominal-chao 2 | Corpo todo B (35 min): flexao-pes-elevados 4+bi, afundo 2+bi, remada-unilateral-sem-banco 2, flexao-joelho-deslizante 2
-   - c02a: Corpo todo A com 6 exercícios em 30 min (faixa 3 a 5)
-   - c02b: Corpo todo A com 14 séries em 30 min
-   - c03a: dia de 40 min em 30
-   - c04a: ombro_lateral sem nenhuma série
-   - c04b: ombro_posterior com 2 séries
-   - c04d: peito com 8 (faixa do avancado: 12 a 20)
-   - c04f: ombro_lateral sem exercício direto (0 séries indiretas)
-   - c05a: empurrar 8 ÷ puxar 4 séries
-   - c06d: ombro_lateral com 0 séries, com foco em peito
-   - c08a: Corpo todo A: goblet, e não agachamento-halteres
-   - c08b: Corpo todo A: stiff, e não stiff-unilateral
-   - c12a: goblet: uma carga só
-   - c13a: Corpo todo A: remada-curvada-halteres → stiff
-   - c15b: Corpo todo A: flexao + goblet
-   - c15c: Corpo todo A: remada-curvada-halteres + stiff
-   - c16b: média de 3,4 séries por músculo (faixa do avancado: a partir de 12)
-   - c20a: o texto diz 4 e há dia com 6
-21. **so:halteres_fixos · avancado · 2 dias · 30 min · foco peito · joelho 4** (66 pontos)
-   - Corpo todo A (40 min): flexao 4+bi, goblet 2+bi, remada-curvada-halteres 2+bi, stiff 2+bi, panturrilha-degrau 2, abdominal-chao 2 | Corpo todo B (35 min): flexao-pes-elevados 4+bi, afundo 2+bi, remada-unilateral-sem-banco 2, flexao-joelho-deslizante 2
-   - c02a: Corpo todo A com 6 exercícios em 30 min (faixa 3 a 5)
-   - c02b: Corpo todo A com 14 séries em 30 min
-   - c03a: dia de 40 min em 30
-   - c04a: ombro_lateral sem nenhuma série
-   - c04b: ombro_posterior com 2 séries
-   - c04d: peito com 8 (faixa do avancado: 12 a 20)
-   - c04f: ombro_lateral sem exercício direto (0 séries indiretas)
-   - c05a: empurrar 8 ÷ puxar 4 séries
-   - c06d: ombro_lateral com 0 séries, com foco em peito
-   - c08a: Corpo todo A: goblet, e não agachamento-halteres
-   - c08b: Corpo todo A: stiff, e não stiff-unilateral
-   - c12a: goblet: uma carga só
-   - c13a: Corpo todo A: remada-curvada-halteres → stiff
-   - c15b: Corpo todo A: flexao + goblet
-   - c15c: Corpo todo A: remada-curvada-halteres + stiff
-   - c16b: média de 3,4 séries por músculo (faixa do avancado: a partir de 12)
-   - c20a: o texto diz 4 e há dia com 6
-22. **so:halteres_fixos · avancado · 2 dias · 30 min · foco peito · joelho 7** (66 pontos)
-   - Corpo todo A (46 min): flexao 4+bi, remada-curvada-halteres 2+bi, stiff 2, elevacao-halteres 4+bi, panturrilha-degrau 2+bi, abdominal-chao 2 | Corpo todo B (34 min): flexao-pes-elevados 4+bi, remada-unilateral-sem-banco 2+bi, stiff-unilateral 2, rosca-alternada 2
-   - c02a: Corpo todo A com 6 exercícios em 30 min (faixa 3 a 5)
-   - c02b: Corpo todo A com 16 séries em 30 min
-   - c03a: dia de 46 min em 30
-   - c04b: ombro_posterior com 2 séries
-   - c04d: peito com 8 (faixa do avancado: 12 a 20)
-   - c04f: ombro_posterior sem exercício direto (2 séries indiretas)
-   - c05a: empurrar 8 ÷ puxar 4 séries
-   - c06d: ombro_posterior com 2 séries, com foco em peito
-   - c08b: Corpo todo A: abdominal-chao, e não abdominal-invertido
-   - c12a: remada-curvada-halteres: uma carga só
-   - c13a: Corpo todo A: remada-curvada-halteres → stiff
-   - c15b: Corpo todo A: flexao + remada-curvada-halteres
-   - c16b: média de 3,8 séries por músculo (faixa do avancado: a partir de 12)
-   - c20a: o texto diz 4 e há dia com 6
-23. **so:halteres_fixos · avancado · 2 dias · 30 min · foco peito · tornozelo 4** (66 pontos)
-   - Corpo todo A (40 min): flexao 4+bi, goblet 2+bi, remada-curvada-halteres 2+bi, stiff 2+bi, panturrilha-degrau 2, abdominal-chao 2 | Corpo todo B (35 min): flexao-pes-elevados 4+bi, afundo 2+bi, remada-unilateral-sem-banco 2, flexao-joelho-deslizante 2
-   - c02a: Corpo todo A com 6 exercícios em 30 min (faixa 3 a 5)
-   - c02b: Corpo todo A com 14 séries em 30 min
-   - c03a: dia de 40 min em 30
-   - c04a: ombro_lateral sem nenhuma série
-   - c04b: ombro_posterior com 2 séries
-   - c04d: peito com 8 (faixa do avancado: 12 a 20)
-   - c04f: ombro_lateral sem exercício direto (0 séries indiretas)
-   - c05a: empurrar 8 ÷ puxar 4 séries
-   - c06d: ombro_lateral com 0 séries, com foco em peito
-   - c08a: Corpo todo A: goblet, e não agachamento-halteres
-   - c08b: Corpo todo A: stiff, e não stiff-unilateral
-   - c12a: goblet: uma carga só
-   - c13a: Corpo todo A: remada-curvada-halteres → stiff
-   - c15b: Corpo todo A: flexao + goblet
-   - c15c: Corpo todo A: remada-curvada-halteres + stiff
-   - c16b: média de 3,4 séries por músculo (faixa do avancado: a partir de 12)
-   - c20a: o texto diz 4 e há dia com 6
-24. **so:halteres_fixos · avancado · 4 dias · 30 min · foco inferiores · ombro 7** (66 pontos)
-   - Superior A (5 min): rosca-alternada 3 | Inferior A (40 min): goblet 2, stiff 4, ponte-gluteo-halter 2, flexao-joelho-deslizante 4, abdominal-chao 2 | Superior B (5 min): rosca-martelo 3 | Inferior B (38 min): afundo 4, ponte-gluteo-halter 3, nordico 4+bi, panturrilha-degrau 2+bi
-   - c02a: Superior A com 1 exercícios em 30 min (faixa 3 a 5)
-   - c02b: Inferior A com 14 séries em 30 min
-   - c03a: dia de 40 min em 30
-   - c03d: dia típico de 21.5 min em 30
-   - c04b: panturrilha com 2 séries
-   - c04c: biceps com 6 de 12 e o dia típico em 21.5 de 30 min
-   - c04d: biceps com 6 (faixa do avancado: 12 a 20)
-   - c06b: panturrilha com 2, mediana dos outros 4
-   - c06c: panturrilha com 2, mediana dos outros 4
-   - c06d: abdomen com 2 séries, com foco em pernas, gluteos
-   - c08a: Superior A: rosca-alternada, e não rosca-concentrada
-   - c08b: Inferior A: stiff, e não stiff-unilateral
-   - c12a: rosca-alternada: uma carga só
-   - c14b: Superior A com 1 exercício
-   - c16b: média de 7,6 séries por músculo (faixa do avancado: a partir de 12)
-   - c20a: o texto diz 4 e há dia com 5
-25. **so:kettlebell · intermediario · 2 dias · 30 min · foco peito · sem dor** (66 pontos)
+4. **so:kettlebell · intermediario · 2 dias · 30 min · foco peito · sem dor** (66 pontos)
    - Corpo todo A (41 min): flexao 4+bi, goblet-kettlebell 2+bi, remada-unilateral-kettlebell 2+bi, stiff-kettlebell 2+bi, panturrilha-degrau 2, abdominal-chao 2 | Corpo todo B (35 min): flexao-pes-elevados 4+bi, afundo-kettlebell 2+bi, remada-unilateral-kettlebell 2, flexao-joelho-deslizante 2
    - c02a: Corpo todo A com 6 exercícios em 30 min (faixa 3 a 5)
    - c02b: Corpo todo A com 14 séries em 30 min
@@ -737,133 +369,7 @@ Os programas com mais cuidados em falta (10 pontos por cuidado com defeito, 1 po
    - c15c: Corpo todo A: remada-unilateral-kettlebell + stiff-kettlebell
    - c16b: média de 3,8 séries por músculo (faixa do intermediario: a partir de 10)
    - c20a: o texto diz 4 e há dia com 6
-26. **so:kettlebell · intermediario · 2 dias · 30 min · foco peito · ombro 4** (66 pontos)
-   - Corpo todo A (41 min): flexao 4+bi, goblet-kettlebell 2+bi, remada-unilateral-kettlebell 2+bi, stiff-kettlebell 2+bi, panturrilha-degrau 2, abdominal-chao 2 | Corpo todo B (35 min): flexao-pes-elevados 4+bi, afundo-kettlebell 2+bi, remada-unilateral-kettlebell 2, flexao-joelho-deslizante 2
-   - c02a: Corpo todo A com 6 exercícios em 30 min (faixa 3 a 5)
-   - c02b: Corpo todo A com 14 séries em 30 min
-   - c03a: dia de 41 min em 30
-   - c04b: ombro_posterior com 2 séries
-   - c04d: peito com 8 (faixa do intermediario: 10 a 16)
-   - c04f: ombro_posterior sem exercício direto (2 séries indiretas)
-   - c05a: empurrar 8 ÷ puxar 4 séries
-   - c06d: ombro_posterior com 2 séries, com foco em peito
-   - c08a: Corpo todo A: stiff-kettlebell, e não stiff-unilateral-kettlebell
-   - c08b: Corpo todo A: abdominal-chao, e não abdominal-invertido
-   - c12a: goblet-kettlebell: uma carga só
-   - c13a: Corpo todo A: remada-unilateral-kettlebell → stiff-kettlebell
-   - c15b: Corpo todo A: flexao + goblet-kettlebell
-   - c15c: Corpo todo A: remada-unilateral-kettlebell + stiff-kettlebell
-   - c16b: média de 3,8 séries por músculo (faixa do intermediario: a partir de 10)
-   - c20a: o texto diz 4 e há dia com 6
-27. **so:kettlebell · intermediario · 2 dias · 30 min · foco peito · cotovelo 4** (66 pontos)
-   - Corpo todo A (41 min): flexao 4+bi, goblet-kettlebell 2+bi, remada-unilateral-kettlebell 2+bi, stiff-kettlebell 2+bi, panturrilha-degrau 2, abdominal-chao 2 | Corpo todo B (35 min): flexao-pes-elevados 4+bi, afundo-kettlebell 2+bi, remada-unilateral-kettlebell 2, flexao-joelho-deslizante 2
-   - c02a: Corpo todo A com 6 exercícios em 30 min (faixa 3 a 5)
-   - c02b: Corpo todo A com 14 séries em 30 min
-   - c03a: dia de 41 min em 30
-   - c04b: ombro_posterior com 2 séries
-   - c04d: peito com 8 (faixa do intermediario: 10 a 16)
-   - c04f: ombro_posterior sem exercício direto (2 séries indiretas)
-   - c05a: empurrar 8 ÷ puxar 4 séries
-   - c06d: ombro_posterior com 2 séries, com foco em peito
-   - c08a: Corpo todo A: stiff-kettlebell, e não stiff-unilateral-kettlebell
-   - c08b: Corpo todo A: abdominal-chao, e não abdominal-invertido
-   - c12a: goblet-kettlebell: uma carga só
-   - c13a: Corpo todo A: remada-unilateral-kettlebell → stiff-kettlebell
-   - c15b: Corpo todo A: flexao + goblet-kettlebell
-   - c15c: Corpo todo A: remada-unilateral-kettlebell + stiff-kettlebell
-   - c16b: média de 3,8 séries por músculo (faixa do intermediario: a partir de 10)
-   - c20a: o texto diz 4 e há dia com 6
-28. **so:kettlebell · intermediario · 2 dias · 30 min · foco peito · punho 4** (66 pontos)
-   - Corpo todo A (41 min): flexao 4+bi, goblet-kettlebell 2+bi, remada-unilateral-kettlebell 2+bi, stiff-kettlebell 2+bi, panturrilha-degrau 2, abdominal-chao 2 | Corpo todo B (35 min): flexao-pes-elevados 4+bi, afundo-kettlebell 2+bi, remada-unilateral-kettlebell 2, flexao-joelho-deslizante 2
-   - c02a: Corpo todo A com 6 exercícios em 30 min (faixa 3 a 5)
-   - c02b: Corpo todo A com 14 séries em 30 min
-   - c03a: dia de 41 min em 30
-   - c04b: ombro_posterior com 2 séries
-   - c04d: peito com 8 (faixa do intermediario: 10 a 16)
-   - c04f: ombro_posterior sem exercício direto (2 séries indiretas)
-   - c05a: empurrar 8 ÷ puxar 4 séries
-   - c06d: ombro_posterior com 2 séries, com foco em peito
-   - c08a: Corpo todo A: stiff-kettlebell, e não stiff-unilateral-kettlebell
-   - c08b: Corpo todo A: abdominal-chao, e não abdominal-invertido
-   - c12a: goblet-kettlebell: uma carga só
-   - c13a: Corpo todo A: remada-unilateral-kettlebell → stiff-kettlebell
-   - c15b: Corpo todo A: flexao + goblet-kettlebell
-   - c15c: Corpo todo A: remada-unilateral-kettlebell + stiff-kettlebell
-   - c16b: média de 3,8 séries por músculo (faixa do intermediario: a partir de 10)
-   - c20a: o texto diz 4 e há dia com 6
-29. **so:kettlebell · intermediario · 2 dias · 30 min · foco peito · lombar 4** (66 pontos)
-   - Corpo todo A (41 min): flexao 4+bi, goblet-kettlebell 2+bi, remada-unilateral-kettlebell 2+bi, stiff-kettlebell 2+bi, panturrilha-degrau 2, abdominal-chao 2 | Corpo todo B (35 min): flexao-pes-elevados 4+bi, afundo-kettlebell 2+bi, remada-unilateral-kettlebell 2, flexao-joelho-deslizante 2
-   - c02a: Corpo todo A com 6 exercícios em 30 min (faixa 3 a 5)
-   - c02b: Corpo todo A com 14 séries em 30 min
-   - c03a: dia de 41 min em 30
-   - c04b: ombro_posterior com 2 séries
-   - c04d: peito com 8 (faixa do intermediario: 10 a 16)
-   - c04f: ombro_posterior sem exercício direto (2 séries indiretas)
-   - c05a: empurrar 8 ÷ puxar 4 séries
-   - c06d: ombro_posterior com 2 séries, com foco em peito
-   - c08a: Corpo todo A: stiff-kettlebell, e não stiff-unilateral-kettlebell
-   - c08b: Corpo todo A: abdominal-chao, e não abdominal-invertido
-   - c12a: goblet-kettlebell: uma carga só
-   - c13a: Corpo todo A: remada-unilateral-kettlebell → stiff-kettlebell
-   - c15b: Corpo todo A: flexao + goblet-kettlebell
-   - c15c: Corpo todo A: remada-unilateral-kettlebell + stiff-kettlebell
-   - c16b: média de 3,8 séries por músculo (faixa do intermediario: a partir de 10)
-   - c20a: o texto diz 4 e há dia com 6
-30. **so:kettlebell · intermediario · 2 dias · 30 min · foco peito · quadril 4** (66 pontos)
-   - Corpo todo A (41 min): flexao 4+bi, goblet-kettlebell 2+bi, remada-unilateral-kettlebell 2+bi, stiff-kettlebell 2+bi, panturrilha-degrau 2, abdominal-chao 2 | Corpo todo B (35 min): flexao-pes-elevados 4+bi, afundo-kettlebell 2+bi, remada-unilateral-kettlebell 2, flexao-joelho-deslizante 2
-   - c02a: Corpo todo A com 6 exercícios em 30 min (faixa 3 a 5)
-   - c02b: Corpo todo A com 14 séries em 30 min
-   - c03a: dia de 41 min em 30
-   - c04b: ombro_posterior com 2 séries
-   - c04d: peito com 8 (faixa do intermediario: 10 a 16)
-   - c04f: ombro_posterior sem exercício direto (2 séries indiretas)
-   - c05a: empurrar 8 ÷ puxar 4 séries
-   - c06d: ombro_posterior com 2 séries, com foco em peito
-   - c08a: Corpo todo A: stiff-kettlebell, e não stiff-unilateral-kettlebell
-   - c08b: Corpo todo B: flexao-joelho-deslizante, e não nordico
-   - c12a: goblet-kettlebell: uma carga só
-   - c13a: Corpo todo A: remada-unilateral-kettlebell → stiff-kettlebell
-   - c15b: Corpo todo A: flexao + goblet-kettlebell
-   - c15c: Corpo todo A: remada-unilateral-kettlebell + stiff-kettlebell
-   - c16b: média de 3,8 séries por músculo (faixa do intermediario: a partir de 10)
-   - c20a: o texto diz 4 e há dia com 6
-31. **so:kettlebell · intermediario · 2 dias · 30 min · foco peito · joelho 4** (66 pontos)
-   - Corpo todo A (41 min): flexao 4+bi, goblet-kettlebell 2+bi, remada-unilateral-kettlebell 2+bi, stiff-kettlebell 2+bi, panturrilha-degrau 2, abdominal-chao 2 | Corpo todo B (35 min): flexao-pes-elevados 4+bi, afundo-kettlebell 2+bi, remada-unilateral-kettlebell 2, flexao-joelho-deslizante 2
-   - c02a: Corpo todo A com 6 exercícios em 30 min (faixa 3 a 5)
-   - c02b: Corpo todo A com 14 séries em 30 min
-   - c03a: dia de 41 min em 30
-   - c04b: ombro_posterior com 2 séries
-   - c04d: peito com 8 (faixa do intermediario: 10 a 16)
-   - c04f: ombro_posterior sem exercício direto (2 séries indiretas)
-   - c05a: empurrar 8 ÷ puxar 4 séries
-   - c06d: ombro_posterior com 2 séries, com foco em peito
-   - c08a: Corpo todo A: stiff-kettlebell, e não stiff-unilateral-kettlebell
-   - c08b: Corpo todo A: abdominal-chao, e não abdominal-invertido
-   - c12a: goblet-kettlebell: uma carga só
-   - c13a: Corpo todo A: remada-unilateral-kettlebell → stiff-kettlebell
-   - c15b: Corpo todo A: flexao + goblet-kettlebell
-   - c15c: Corpo todo A: remada-unilateral-kettlebell + stiff-kettlebell
-   - c16b: média de 3,8 séries por músculo (faixa do intermediario: a partir de 10)
-   - c20a: o texto diz 4 e há dia com 6
-32. **so:kettlebell · intermediario · 2 dias · 30 min · foco peito · tornozelo 4** (66 pontos)
-   - Corpo todo A (41 min): flexao 4+bi, goblet-kettlebell 2+bi, remada-unilateral-kettlebell 2+bi, stiff-kettlebell 2+bi, panturrilha-degrau 2, abdominal-chao 2 | Corpo todo B (35 min): flexao-pes-elevados 4+bi, afundo-kettlebell 2+bi, remada-unilateral-kettlebell 2, flexao-joelho-deslizante 2
-   - c02a: Corpo todo A com 6 exercícios em 30 min (faixa 3 a 5)
-   - c02b: Corpo todo A com 14 séries em 30 min
-   - c03a: dia de 41 min em 30
-   - c04b: ombro_posterior com 2 séries
-   - c04d: peito com 8 (faixa do intermediario: 10 a 16)
-   - c04f: ombro_posterior sem exercício direto (2 séries indiretas)
-   - c05a: empurrar 8 ÷ puxar 4 séries
-   - c06d: ombro_posterior com 2 séries, com foco em peito
-   - c08a: Corpo todo A: stiff-kettlebell, e não stiff-unilateral-kettlebell
-   - c08b: Corpo todo A: abdominal-chao, e não abdominal-invertido
-   - c12a: goblet-kettlebell: uma carga só
-   - c13a: Corpo todo A: remada-unilateral-kettlebell → stiff-kettlebell
-   - c15b: Corpo todo A: flexao + goblet-kettlebell
-   - c15c: Corpo todo A: remada-unilateral-kettlebell + stiff-kettlebell
-   - c16b: média de 3,8 séries por músculo (faixa do intermediario: a partir de 10)
-   - c20a: o texto diz 4 e há dia com 6
-33. **so:kettlebell · intermediario · 4 dias · 30 min · foco inferiores · ombro 7** (66 pontos)
+5. **so:kettlebell · intermediario · 4 dias · 30 min · foco inferiores · ombro 7** (66 pontos)
    - Superior A (7 min): rosca-kettlebell 3 | Inferior A (35 min): goblet-kettlebell 2, stiff-kettlebell 3, ponte-kettlebell 2, flexao-joelho-deslizante 3, abdominal-chao 2 | Superior B (7 min): rosca-kettlebell 3 | Inferior B (35 min): afundo-kettlebell 4, ponte-kettlebell 2, nordico 4+bi, panturrilha-degrau 2+bi
    - c02a: Superior A com 1 exercícios em 30 min (faixa 3 a 5)
    - c03a: dia de 35 min em 30
@@ -880,10 +386,132 @@ Os programas com mais cuidados em falta (10 pontos por cuidado com defeito, 1 po
    - c14b: Superior A com 1 exercício
    - c16b: média de 6,8 séries por músculo (faixa do intermediario: a partir de 10)
    - c20a: o texto diz 4 e há dia com 5
-34. **so:kettlebell · intermediario · 4 dias · 30 min · foco inferiores · cotovelo 7** (66 pontos)
-   - Superior A (6 min): abertura-t-deitado 3 | Inferior A (35 min): goblet-kettlebell 2, stiff-kettlebell 3, ponte-kettlebell 2, flexao-joelho-deslizante 3, abdominal-chao 2 | Superior B (6 min): abertura-t-deitado 3 | Inferior B (35 min): afundo-kettlebell 4, ponte-kettlebell 2, nordico 4+bi, panturrilha-degrau 2+bi
-   - c02a: Superior A com 1 exercícios em 30 min (faixa 3 a 5)
+6. **so:halteres_fixos · intermediario · 3 dias · 30 min · foco superiores · punho 7** (58 pontos)
+   - Corpo todo A (31 min): supino-chao-halteres 2+bi, remada-curvada-halteres 4+bi, goblet 2, abdominal-chao 2 | Corpo todo B (45 min): supino-chao-halteres 4+bi, remada-unilateral-sem-banco 4+bi, stiff 3, rosca-alternada 4+bi, panturrilha-degrau 2+bi | Corpo todo C (34 min): supino-chao-halteres 4+bi, remada-curvada-halteres 4+bi, afundo 2, ponte-gluteo-halter 2
+   - c02b: Corpo todo B com 17 séries em 30 min
+   - c03a: dia de 45 min em 30
+   - c04a: ombro_lateral sem nenhuma série
+   - c04b: posteriores com 3 séries
+   - c04d: ombro_lateral com 0 (faixa do intermediario: 10 a 16)
+   - c04f: ombro_lateral sem exercício direto (0 séries indiretas)
+   - c06b: ombro_lateral com 0, mediana dos outros 3,5
+   - c06c: ombro_lateral com 0, mediana dos outros 3,5
+   - c06d: posteriores com 3 séries, com foco em peito, costas, ombros, bracos
+   - c08a: Corpo todo A: goblet, e não agachamento-halteres
+   - c08b: Corpo todo A: abdominal-chao, e não abdominal-invertido
+   - c09b: supino-chao-halteres em todos os dias, sem outro do mesmo nível
+   - c12a: supino-chao-halteres: uma carga só
+   - c13a: Corpo todo B: remada-unilateral-sem-banco → stiff
+   - c15b: Corpo todo A: supino-chao-halteres + remada-curvada-halteres
+   - c16b: média de 5,8 séries por músculo (faixa do intermediario: a partir de 10)
+   - c20a: o texto diz 4 e há dia com 5
+7. **so:paralelas · avancado · 5 dias · 30 min · foco inferiores · sem dor** (58 pontos)
+   - Corpo todo A (30 min): agachamento-peso-corpo 2+bi, ponte-gluteo 2, flexao 2+bi, flexao-joelho-deslizante 2, abdominal-chao 2 | Corpo todo B (30 min): flexao-pes-elevados 2, nordico 4+bi, panturrilha-degrau 4+bi, abertura-t-deitado 4 | Corpo todo C (35 min): afundo-peso-corpo 4+bi, ponte-gluteo 2, mergulho 2+bi, panturrilha-degrau 2 | Corpo todo D (30 min): agachamento-peso-corpo 3, flexao 2, flexao-joelho-deslizante 3, extensao-triceps-peso-corpo 2 | Corpo todo E (32 min): afundo-tras-peso-corpo 3+bi, ponte-gluteo 2, flexao-pes-elevados 2+bi, nordico 3
+   - c02b: Corpo todo B com 14 séries em 30 min
+   - c02c: Corpo todo A: 5 exercícios, todos com 2 séries
    - c03a: dia de 35 min em 30
+   - c04b: abdomen com 2 séries
+   - c04d: peito com 10 (faixa do avancado: 12 a 20)
+   - c06b: panturrilha com 6, mediana dos outros 6
+   - c06c: panturrilha com 6, mediana dos outros 6
+   - c06d: abdomen com 2 séries, com foco em pernas, gluteos
+   - c07c: quadriceps em Corpo todo D e Corpo todo E
+   - c08b: Corpo todo A: abdominal-chao, e não elevacao-joelhos-paralelas
+   - c11a: mergulho 6 a 12
+   - c12a: mergulho: começa no último degrau
+   - c15b: Corpo todo A: agachamento-peso-corpo + flexao
+   - c16b: média de 9,5 séries por músculo (faixa do avancado: a partir de 12)
+   - c20a: o texto diz 4 e há dia com 5
+8. **academia · intermediario · 4 dias · 30 min · foco inferiores · ombro 7** (57 pontos)
+   - Superior A (12 min): rosca-maquina 3, triceps-barra-reta 3 | Inferior A (31 min): agachamento-barra 2, stiff 3, cadeira-flexora 2+drop+bi, coice-maquina 2+drop+bi, abdominal-polia 2 | Superior B (12 min): rosca-scott 3, triceps-corda 3 | Inferior B (45 min): afundo 4, coice-polia 2+drop+bi, cadeira-flexora 3+drop+bi, cadeira-extensora 3+drop+bi, panturrilha 2+drop+bi
+   - c02a: Superior A com 2 exercícios em 30 min (faixa 3 a 5)
+   - c02b: Inferior B com 14 séries em 30 min
+   - c03a: dia de 45 min em 30
+   - c03d: dia típico de 21.5 min em 30
+   - c04b: panturrilha com 3 séries
+   - c04c: biceps com 6 de 10 e o dia típico em 21.5 de 30 min
+   - c04d: biceps com 6 (faixa do intermediario: 10 a 16)
+   - c06b: panturrilha com 3, mediana dos outros 6
+   - c06c: panturrilha com 3, mediana dos outros 6
+   - c06d: abdomen com 2 séries, com foco em pernas, gluteos
+   - c08a: Inferior A: abdominal-polia, e não abdominal-maquina
+   - c08b: Superior A: rosca-maquina, e não rosca-scott-banco-inclinado
+   - c13a: Inferior A: agachamento-barra → stiff
+   - c14b: Superior A com 2 exercícios
+   - c16b: média de 7,6 séries por músculo (faixa do intermediario: a partir de 10)
+   - c20a: o texto diz 4 e há dia com 5
+9. **academia+ · intermediario · 4 dias · 30 min · foco inferiores · ombro 7** (57 pontos)
+   - Superior A (12 min): rosca-maquina 3, triceps-barra-reta 3 | Inferior A (31 min): agachamento-barra 2, stiff 3, cadeira-flexora 2+drop+bi, coice-maquina 2+drop+bi, abdominal-polia 2 | Superior B (12 min): rosca-scott 3, triceps-corda 3 | Inferior B (45 min): afundo 4, coice-polia 2+drop+bi, cadeira-flexora 3+drop+bi, cadeira-extensora 3+drop+bi, panturrilha 2+drop+bi
+   - c02a: Superior A com 2 exercícios em 30 min (faixa 3 a 5)
+   - c02b: Inferior B com 14 séries em 30 min
+   - c03a: dia de 45 min em 30
+   - c03d: dia típico de 21.5 min em 30
+   - c04b: panturrilha com 3 séries
+   - c04c: biceps com 6 de 10 e o dia típico em 21.5 de 30 min
+   - c04d: biceps com 6 (faixa do intermediario: 10 a 16)
+   - c06b: panturrilha com 3, mediana dos outros 6
+   - c06c: panturrilha com 3, mediana dos outros 6
+   - c06d: abdomen com 2 séries, com foco em pernas, gluteos
+   - c08a: Inferior A: abdominal-polia, e não abdominal-maquina
+   - c08b: Superior A: rosca-maquina, e não rosca-scott-banco-inclinado
+   - c13a: Inferior A: agachamento-barra → stiff
+   - c14b: Superior A com 2 exercícios
+   - c16b: média de 7,6 séries por músculo (faixa do intermediario: a partir de 10)
+   - c20a: o texto diz 4 e há dia com 5
+10. **so:estacao_polia_dupla · avancado · 5 dias · 30 min · foco inferiores · sem dor** (57 pontos)
+   - Superior (28 min): flexao 2+bi, puxada-unilateral 2+bi, remada-unilateral-polia 2, triceps-frances-polia-unilateral 3 | Inferior (37 min): agachamento-peso-corpo 2, ponte-gluteo 2, flexao-joelho-deslizante 4, nordico 4, abdominal-chao 2 | Empurrar (26 min): crucifixo-polia 2, elevacao-lateral 4, triceps-frances-polia-unilateral 2, crucifixo-polia-baixo 2 | Puxar (26 min): remada-unilateral-polia 2, puxada-unilateral 2, crucifixo-invertido-polia 2, rosca-polia-costas 2 | Pernas (40 min): afundo-peso-corpo 4, ponte-gluteo 3, flexao-joelho-deslizante 4+bi, panturrilha-degrau 2+bi
+   - c02b: Inferior com 14 séries em 30 min
+   - c03a: dia de 40 min em 30
+   - c04b: panturrilha com 2 séries
+   - c04d: peito com 6 (faixa do avancado: 12 a 20)
+   - c06b: quadriceps com 6, mediana dos outros 6
+   - c06c: quadriceps com 6, mediana dos outros 6
+   - c06d: abdomen com 2 séries, com foco em pernas, gluteos
+   - c08b: Superior: flexao, e não flexao-pes-elevados
+   - c10a: Inferior: duas vezes flexão de joelho
+   - c14b: Empurrar sem multiarticular
+   - c15b: Superior: flexao + puxada-unilateral
+   - c16b: média de 6,8 séries por músculo (faixa do avancado: a partir de 12)
+   - c20a: o texto diz 4 e há dia com 5
+11. **so:barra_fixa · intermediario · 4 dias · 30 min · foco inferiores · cotovelo 7** (57 pontos)
+   - Superior A (6 min): abertura-t-deitado 3 | Inferior A (32 min): agachamento-peso-corpo 2, ponte-gluteo 2, flexao-joelho-deslizante 3, nordico 3, abdominal-chao 2 | Superior B (6 min): abertura-t-deitado 3 | Inferior B (34 min): afundo-peso-corpo 3, ponte-gluteo 2, flexao-joelho-deslizante 4+bi, panturrilha-degrau 2+bi
+   - c02a: Superior A com 1 exercícios em 30 min (faixa 3 a 5)
+   - c03a: dia de 34 min em 30
+   - c03c: dia típico de 19 min em 30
+   - c03d: dia típico de 19 min em 30
+   - c04b: panturrilha com 2 séries
+   - c04c: ombro_posterior com 6 de 10 e o dia típico em 19 de 30 min
+   - c04d: ombro_posterior com 6 (faixa do intermediario: 10 a 16)
+   - c06b: panturrilha com 2, mediana dos outros 4
+   - c06c: quadriceps com 5, mediana dos outros 4
+   - c06d: abdomen com 2 séries, com foco em pernas, gluteos
+   - c08b: Inferior A: abdominal-chao, e não elevacao-joelhos
+   - c10a: Inferior A: duas vezes flexão de joelho
+   - c14b: Superior A com 1 exercício
+   - c16b: média de 6,6 séries por músculo (faixa do intermediario: a partir de 10)
+   - c20a: o texto diz 4 e há dia com 5
+12. **so:halteres_fixos · intermediario · 5 dias · 30 min · foco inferiores · tornozelo 7** (57 pontos)
+   - Superior (24 min): flexao 2, remada-curvada-halteres 2, remada-unilateral-sem-banco 2, triceps-frances-halter 2 | Inferior (30 min): goblet 2, stiff 2, ponte-gluteo-halter 2, flexao-joelho-deslizante 2, abdominal-chao 2 | Empurrar (28 min): flexao-pes-elevados 2, supino-chao-halteres 2, elevacao-halteres 4, triceps-frances-unilateral-halter 2 | Puxar (22 min): remada-curvada-halteres 2, remada-unilateral-sem-banco 2, crucifixo-invertido-curvado 2, rosca-alternada 2 | Pernas (36 min): afundo 3, stiff-unilateral 3, ponte-gluteo-halter 2, nordico 3
+   - c02c: Inferior: 5 exercícios, todos com 2 séries
+   - c03a: dia de 36 min em 30
+   - c04b: abdomen com 2 séries
+   - c04d: peito com 6 (faixa do intermediario: 10 a 16)
+   - c06b: quadriceps com 5, mediana dos outros 6
+   - c06c: quadriceps com 5, mediana dos outros 6
+   - c06d: abdomen com 2 séries, com foco em pernas, gluteos
+   - c08a: Inferior: goblet, e não agachamento-halteres
+   - c08b: Inferior: abdominal-chao, e não abdominal-invertido
+   - c10a: Empurrar: duas vezes empurrar horizontal
+   - c12a: remada-curvada-halteres: uma carga só
+   - c13a: Superior: remada-curvada-halteres → remada-unilateral-sem-banco
+   - c13b: Puxar: remada-curvada-halteres, remada-unilateral-sem-banco, crucifixo-invertido-curvado
+   - c16b: média de 6,9 séries por músculo (faixa do intermediario: a partir de 10)
+   - c20a: o texto diz 4 e há dia com 5
+13. **so:barra_longa · intermediario · 4 dias · 30 min · foco inferiores · cotovelo 7** (57 pontos)
+   - Superior A (6 min): abertura-t-deitado 3 | Inferior A (35 min): agachamento-peso-corpo 2, terra-romeno-barra 3, ponte-gluteo 2, flexao-joelho-deslizante 3, abdominal-chao 2 | Superior B (6 min): abertura-t-deitado 3 | Inferior B (36 min): afundo-peso-corpo 4, ponte-gluteo 2, nordico 4+bi, panturrilha-degrau 2+bi
+   - c01c: Inferior A: terra-romeno-barra depois de agachamento-peso-corpo
+   - c02a: Superior A com 1 exercícios em 30 min (faixa 3 a 5)
+   - c03a: dia de 36 min em 30
    - c03c: dia típico de 20.5 min em 30
    - c03d: dia típico de 20.5 min em 30
    - c04b: panturrilha com 2 séries
@@ -892,120 +520,453 @@ Os programas com mais cuidados em falta (10 pontos por cuidado com defeito, 1 po
    - c06b: panturrilha com 2, mediana dos outros 4
    - c06c: panturrilha com 2, mediana dos outros 4
    - c06d: abdomen com 2 séries, com foco em pernas, gluteos
-   - c08a: Inferior A: stiff-kettlebell, e não stiff-unilateral-kettlebell
    - c08b: Inferior A: abdominal-chao, e não abdominal-invertido
-   - c12a: goblet-kettlebell: uma carga só
    - c14b: Superior A com 1 exercício
    - c16b: média de 6,8 séries por músculo (faixa do intermediario: a partir de 10)
    - c20a: o texto diz 4 e há dia com 5
-35. **so:kettlebell · avancado · 2 dias · 30 min · foco peito · sem dor** (66 pontos)
-   - Corpo todo A (41 min): flexao 4+bi, goblet-kettlebell 2+bi, remada-unilateral-kettlebell 2+bi, stiff-kettlebell 2+bi, panturrilha-degrau 2, abdominal-chao 2 | Corpo todo B (35 min): flexao-pes-elevados 4+bi, afundo-kettlebell 2+bi, remada-unilateral-kettlebell 2, flexao-joelho-deslizante 2
-   - c02a: Corpo todo A com 6 exercícios em 30 min (faixa 3 a 5)
-   - c02b: Corpo todo A com 14 séries em 30 min
-   - c03a: dia de 41 min em 30
-   - c04b: ombro_posterior com 2 séries
-   - c04d: peito com 8 (faixa do avancado: 12 a 20)
-   - c04f: ombro_posterior sem exercício direto (2 séries indiretas)
-   - c05a: empurrar 8 ÷ puxar 4 séries
-   - c06d: ombro_posterior com 2 séries, com foco em peito
-   - c08a: Corpo todo A: stiff-kettlebell, e não stiff-unilateral-kettlebell
+14. **so:rack_de_agachamento · intermediario · 4 dias · 30 min · foco inferiores · cotovelo 7** (57 pontos)
+   - Superior A (6 min): abertura-t-deitado 3 | Inferior A (32 min): agachamento-peso-corpo 2, ponte-gluteo 2, flexao-joelho-deslizante 3, nordico 3, abdominal-chao 2 | Superior B (6 min): abertura-t-deitado 3 | Inferior B (34 min): afundo-peso-corpo 3, ponte-gluteo 2, flexao-joelho-deslizante 4+bi, panturrilha-degrau 2+bi
+   - c02a: Superior A com 1 exercícios em 30 min (faixa 3 a 5)
+   - c03a: dia de 34 min em 30
+   - c03c: dia típico de 19 min em 30
+   - c03d: dia típico de 19 min em 30
+   - c04b: panturrilha com 2 séries
+   - c04c: ombro_posterior com 6 de 10 e o dia típico em 19 de 30 min
+   - c04d: ombro_posterior com 6 (faixa do intermediario: 10 a 16)
+   - c06b: panturrilha com 2, mediana dos outros 4
+   - c06c: quadriceps com 5, mediana dos outros 4
+   - c06d: abdomen com 2 séries, com foco em pernas, gluteos
+   - c08b: Inferior A: abdominal-chao, e não abdominal-invertido
+   - c10a: Inferior A: duas vezes flexão de joelho
+   - c14b: Superior A com 1 exercício
+   - c16b: média de 6,6 séries por músculo (faixa do intermediario: a partir de 10)
+   - c20a: o texto diz 4 e há dia com 5
+15. **so:smith · intermediario · 4 dias · 30 min · foco inferiores · cotovelo 7** (57 pontos)
+   - Superior A (6 min): abertura-t-deitado 3 | Inferior A (32 min): agachamento-smith 2, ponte-gluteo 2, flexao-joelho-deslizante 3, nordico 3, abdominal-chao 2 | Superior B (6 min): abertura-t-deitado 3 | Inferior B (34 min): afundo-peso-corpo 3, ponte-gluteo 2, flexao-joelho-deslizante 4+bi, panturrilha-degrau 2+bi
+   - c02a: Superior A com 1 exercícios em 30 min (faixa 3 a 5)
+   - c03a: dia de 34 min em 30
+   - c03c: dia típico de 19 min em 30
+   - c03d: dia típico de 19 min em 30
+   - c04b: panturrilha com 2 séries
+   - c04c: ombro_posterior com 6 de 10 e o dia típico em 19 de 30 min
+   - c04d: ombro_posterior com 6 (faixa do intermediario: 10 a 16)
+   - c06b: panturrilha com 2, mediana dos outros 4
+   - c06c: quadriceps com 5, mediana dos outros 4
+   - c06d: abdomen com 2 séries, com foco em pernas, gluteos
+   - c08b: Inferior A: abdominal-chao, e não abdominal-invertido
+   - c10a: Inferior A: duas vezes flexão de joelho
+   - c14b: Superior A com 1 exercício
+   - c16b: média de 6,6 séries por músculo (faixa do intermediario: a partir de 10)
+   - c20a: o texto diz 4 e há dia com 5
+16. **so:paralelas · avancado · 6 dias · 30 min · foco inferiores · punho 7** (57 pontos)
+   - Corpo todo A (29 min): agachamento-peso-corpo 2+bi, ponte-gluteo 2, mergulho 2+bi, flexao-joelho-deslizante 2, abdominal-chao 2 | Corpo todo B (28 min): nordico 4+bi, panturrilha-degrau 4+bi, abducao-deitado 2, abertura-t-deitado 3 | Corpo todo C (31 min): afundo-peso-corpo 3+bi, ponte-gluteo 2, mergulho 2+bi, panturrilha-degrau 2 | Corpo todo D (30 min): agachamento-peso-corpo 3, mergulho 2, flexao-joelho-deslizante 2, panturrilha-degrau 3 | Corpo todo E (29 min): afundo-tras-peso-corpo 2, ponte-gluteo 2, nordico 3, abertura-t-deitado 3 | Corpo todo F (30 min): bulgaro-peso-corpo 2, ponte-gluteo 2, flexao-joelho-deslizante 2, panturrilha-degrau 4
+   - c02c: Corpo todo A: 5 exercícios, todos com 2 séries
+   - c04b: abdomen com 2 séries
+   - c04d: peito com 6 (faixa do avancado: 12 a 20)
+   - c06d: abdomen com 2 séries, com foco em pernas, gluteos
+   - c07c: quadriceps em Corpo todo C e Corpo todo D
+   - c08b: Corpo todo A: abdominal-chao, e não elevacao-joelhos-paralelas
+   - c11a: mergulho 6 a 12
+   - c12a: mergulho: começa no último degrau
+   - c14b: Corpo todo B sem multiarticular
+   - c15b: Corpo todo A: agachamento-peso-corpo + mergulho
+   - c16b: média de 10,7 séries por músculo (faixa do avancado: a partir de 12)
+   - c20a: o texto diz 4 e há dia com 5
+17. **so:kettlebell · intermediario · 3 dias · 30 min · foco superiores · sem dor** (57 pontos)
+   - Corpo todo A (34 min): flexao 2+bi, remada-unilateral-kettlebell 4+bi, goblet-kettlebell 2, abdominal-chao 2 | Corpo todo B (48 min): flexao-pes-elevados 4+bi, remada-unilateral-kettlebell 4+bi, stiff-kettlebell 3, rosca-kettlebell 4+bi, panturrilha-degrau 2+bi | Corpo todo C (37 min): flexao 4+bi, remada-unilateral-kettlebell 4+bi, afundo-kettlebell 2, ponte-kettlebell 2
+   - c02b: Corpo todo B com 17 séries em 30 min
+   - c03a: dia de 48 min em 30
+   - c04b: posteriores com 3 séries
+   - c04d: ombro_posterior com 6 (faixa do intermediario: 10 a 16)
+   - c04f: ombro_posterior sem exercício direto (6 séries indiretas)
+   - c06d: posteriores com 3 séries, com foco em peito, costas, ombros, bracos
+   - c08a: Corpo todo B: stiff-kettlebell, e não stiff-unilateral-kettlebell
    - c08b: Corpo todo A: abdominal-chao, e não abdominal-invertido
-   - c12a: goblet-kettlebell: uma carga só
-   - c13a: Corpo todo A: remada-unilateral-kettlebell → stiff-kettlebell
-   - c15b: Corpo todo A: flexao + goblet-kettlebell
-   - c15c: Corpo todo A: remada-unilateral-kettlebell + stiff-kettlebell
-   - c16b: média de 3,8 séries por músculo (faixa do avancado: a partir de 12)
-   - c20a: o texto diz 4 e há dia com 6
-36. **so:kettlebell · avancado · 2 dias · 30 min · foco peito · ombro 4** (66 pontos)
-   - Corpo todo A (41 min): flexao 4+bi, goblet-kettlebell 2+bi, remada-unilateral-kettlebell 2+bi, stiff-kettlebell 2+bi, panturrilha-degrau 2, abdominal-chao 2 | Corpo todo B (35 min): flexao-pes-elevados 4+bi, afundo-kettlebell 2+bi, remada-unilateral-kettlebell 2, flexao-joelho-deslizante 2
-   - c02a: Corpo todo A com 6 exercícios em 30 min (faixa 3 a 5)
-   - c02b: Corpo todo A com 14 séries em 30 min
-   - c03a: dia de 41 min em 30
-   - c04b: ombro_posterior com 2 séries
-   - c04d: peito com 8 (faixa do avancado: 12 a 20)
-   - c04f: ombro_posterior sem exercício direto (2 séries indiretas)
-   - c05a: empurrar 8 ÷ puxar 4 séries
-   - c06d: ombro_posterior com 2 séries, com foco em peito
-   - c08a: Corpo todo A: stiff-kettlebell, e não stiff-unilateral-kettlebell
+   - c09b: remada-unilateral-kettlebell em todos os dias, sem outro do mesmo nível
+   - c12a: remada-unilateral-kettlebell: uma carga só
+   - c13a: Corpo todo B: remada-unilateral-kettlebell → stiff-kettlebell
+   - c15b: Corpo todo A: flexao + remada-unilateral-kettlebell
+   - c16b: média de 6,4 séries por músculo (faixa do intermediario: a partir de 10)
+   - c20a: o texto diz 4 e há dia com 5
+18. **so:kettlebell · intermediario · 6 dias · 30 min · foco bracos · sem dor** (57 pontos)
+   - Empurrar A (29 min): flexao-fechada 3, flexao 2, desenvolvimento-unilateral-kettlebell 2, triceps-frances-kettlebell 3 | Puxar A (29 min): remada-unilateral-kettlebell 2, rosca-kettlebell 4, abdominal-chao 4 | Pernas A (30 min): goblet-kettlebell 3, stiff-kettlebell 2, flexao-joelho-deslizante 3, panturrilha-degrau 3 | Empurrar B (30 min): flexao-fechada 4, flexao-pes-elevados 2, triceps-frances-kettlebell 2, rosca-kettlebell 3 | Puxar B (26 min): remada-unilateral-kettlebell 4, rosca-kettlebell 4 | Pernas B (28 min): afundo-kettlebell 2, stiff-unilateral-kettlebell 2, ponte-kettlebell 2, panturrilha-degrau 2
+   - c01c: Empurrar B: flexao-pes-elevados depois de flexao-fechada
+   - c02a: Puxar B com 2 exercícios em 30 min (faixa 3 a 5)
+   - c04b: ombro_posterior com 3 séries
+   - c04d: costas com 6 (faixa do intermediario: 10 a 16)
+   - c04f: ombro_posterior sem exercício direto (3 séries indiretas)
+   - c05a: empurrar 13 ÷ puxar 6 séries
+   - c05c: ombro da frente 7,5 ÷ de trás 3
+   - c06d: ombro_posterior com 3 séries, com foco em bracos
+   - c07c: biceps em Empurrar B e Puxar B
+   - c08b: Puxar A: abdominal-chao, e não abdominal-invertido
+   - c12a: desenvolvimento-unilateral-kettlebell: uma carga só
+   - c14b: Puxar B com 2 exercícios
+   - c16b: média de 8,2 séries por músculo (faixa do intermediario: a partir de 10)
+19. **so:estacao_puxada · intermediario · 4 dias · 30 min · foco inferiores · cotovelo 7** (57 pontos)
+   - Superior A (6 min): abertura-t-deitado 3 | Inferior A (32 min): agachamento-peso-corpo 2, ponte-gluteo 2, flexao-joelho-deslizante 3, nordico 3, abdominal-chao 2 | Superior B (6 min): abertura-t-deitado 3 | Inferior B (34 min): afundo-peso-corpo 3, ponte-gluteo 2, flexao-joelho-deslizante 4+bi, panturrilha-degrau 2+bi
+   - c02a: Superior A com 1 exercícios em 30 min (faixa 3 a 5)
+   - c03a: dia de 34 min em 30
+   - c03c: dia típico de 19 min em 30
+   - c03d: dia típico de 19 min em 30
+   - c04b: panturrilha com 2 séries
+   - c04c: ombro_posterior com 6 de 10 e o dia típico em 19 de 30 min
+   - c04d: ombro_posterior com 6 (faixa do intermediario: 10 a 16)
+   - c06b: panturrilha com 2, mediana dos outros 4
+   - c06c: quadriceps com 5, mediana dos outros 4
+   - c06d: abdomen com 2 séries, com foco em pernas, gluteos
+   - c08b: Inferior A: abdominal-chao, e não abdominal-invertido
+   - c10a: Inferior A: duas vezes flexão de joelho
+   - c14b: Superior A com 1 exercício
+   - c16b: média de 6,6 séries por músculo (faixa do intermediario: a partir de 10)
+   - c20a: o texto diz 4 e há dia com 5
+20. **so:estacao_remada · intermediario · 4 dias · 30 min · foco inferiores · cotovelo 7** (57 pontos)
+   - Superior A (6 min): abertura-t-deitado 3 | Inferior A (32 min): agachamento-peso-corpo 2, ponte-gluteo 2, flexao-joelho-deslizante 3, nordico 3, abdominal-chao 2 | Superior B (6 min): abertura-t-deitado 3 | Inferior B (34 min): afundo-peso-corpo 3, ponte-gluteo 2, flexao-joelho-deslizante 4+bi, panturrilha-degrau 2+bi
+   - c02a: Superior A com 1 exercícios em 30 min (faixa 3 a 5)
+   - c03a: dia de 34 min em 30
+   - c03c: dia típico de 19 min em 30
+   - c03d: dia típico de 19 min em 30
+   - c04b: panturrilha com 2 séries
+   - c04c: ombro_posterior com 6 de 10 e o dia típico em 19 de 30 min
+   - c04d: ombro_posterior com 6 (faixa do intermediario: 10 a 16)
+   - c06b: panturrilha com 2, mediana dos outros 4
+   - c06c: quadriceps com 5, mediana dos outros 4
+   - c06d: abdomen com 2 séries, com foco em pernas, gluteos
+   - c08b: Inferior A: abdominal-chao, e não abdominal-invertido
+   - c10a: Inferior A: duas vezes flexão de joelho
+   - c14b: Superior A com 1 exercício
+   - c16b: média de 6,6 séries por músculo (faixa do intermediario: a partir de 10)
+   - c20a: o texto diz 4 e há dia com 5
+21. **so:multifuncional · intermediario · 4 dias · 30 min · foco inferiores · cotovelo 7** (57 pontos)
+   - Superior A (6 min): abertura-t-deitado 3 | Inferior A (32 min): agachamento-peso-corpo 2, ponte-gluteo 2, flexao-joelho-deslizante 3, nordico 3, abdominal-chao 2 | Superior B (6 min): abertura-t-deitado 3 | Inferior B (34 min): afundo-peso-corpo 3, ponte-gluteo 2, flexao-joelho-deslizante 4+bi, panturrilha-degrau 2+bi
+   - c02a: Superior A com 1 exercícios em 30 min (faixa 3 a 5)
+   - c03a: dia de 34 min em 30
+   - c03c: dia típico de 19 min em 30
+   - c03d: dia típico de 19 min em 30
+   - c04b: panturrilha com 2 séries
+   - c04c: ombro_posterior com 6 de 10 e o dia típico em 19 de 30 min
+   - c04d: ombro_posterior com 6 (faixa do intermediario: 10 a 16)
+   - c06b: panturrilha com 2, mediana dos outros 4
+   - c06c: quadriceps com 5, mediana dos outros 4
+   - c06d: abdomen com 2 séries, com foco em pernas, gluteos
+   - c08b: Inferior A: abdominal-chao, e não abdominal-invertido
+   - c10a: Inferior A: duas vezes flexão de joelho
+   - c14b: Superior A com 1 exercício
+   - c16b: média de 6,6 séries por músculo (faixa do intermediario: a partir de 10)
+   - c20a: o texto diz 4 e há dia com 5
+22. **so:remada_articulada · intermediario · 4 dias · 30 min · foco inferiores · cotovelo 7** (57 pontos)
+   - Superior A (6 min): abertura-t-deitado 3 | Inferior A (32 min): agachamento-peso-corpo 2, ponte-gluteo 2, flexao-joelho-deslizante 3, nordico 3, abdominal-chao 2 | Superior B (6 min): abertura-t-deitado 3 | Inferior B (34 min): afundo-peso-corpo 3, ponte-gluteo 2, flexao-joelho-deslizante 4+bi, panturrilha-degrau 2+bi
+   - c02a: Superior A com 1 exercícios em 30 min (faixa 3 a 5)
+   - c03a: dia de 34 min em 30
+   - c03c: dia típico de 19 min em 30
+   - c03d: dia típico de 19 min em 30
+   - c04b: panturrilha com 2 séries
+   - c04c: ombro_posterior com 6 de 10 e o dia típico em 19 de 30 min
+   - c04d: ombro_posterior com 6 (faixa do intermediario: 10 a 16)
+   - c06b: panturrilha com 2, mediana dos outros 4
+   - c06c: quadriceps com 5, mediana dos outros 4
+   - c06d: abdomen com 2 séries, com foco em pernas, gluteos
+   - c08b: Inferior A: abdominal-chao, e não abdominal-invertido
+   - c10a: Inferior A: duas vezes flexão de joelho
+   - c14b: Superior A com 1 exercício
+   - c16b: média de 6,6 séries por músculo (faixa do intermediario: a partir de 10)
+   - c20a: o texto diz 4 e há dia com 5
+23. **so:graviton · intermediario · 2 dias · 30 min · foco peito+costas · punho 4** (57 pontos)
+   - Corpo todo A (29 min): mergulho-graviton 2+bi, barra-fixa-graviton 2+bi, agachamento-peso-corpo 2, panturrilha-degrau 2, abdominal-chao 2 | Corpo todo B (35 min): flexao 4+bi, afundo-peso-corpo 2+bi, ponte-gluteo 2, nordico 2
+   - c02c: Corpo todo A: 5 exercícios, todos com 2 séries
+   - c03a: dia de 35 min em 30
+   - c04b: costas com 2 séries
+   - c04d: peito com 6 (faixa do intermediario: 10 a 16)
+   - c04f: ombro_posterior sem exercício direto (1 séries indiretas)
+   - c05a: empurrar 6 ÷ puxar 2 séries
+   - c05c: ombro da frente 3 ÷ de trás 1
+   - c06b: costas com 2, mediana dos outros 2
+   - c06c: costas com 2, mediana dos outros 2
+   - c06d: ombro_posterior com 1 séries, com foco em peito, costas
    - c08b: Corpo todo A: abdominal-chao, e não abdominal-invertido
-   - c12a: goblet-kettlebell: uma carga só
-   - c13a: Corpo todo A: remada-unilateral-kettlebell → stiff-kettlebell
-   - c15b: Corpo todo A: flexao + goblet-kettlebell
-   - c15c: Corpo todo A: remada-unilateral-kettlebell + stiff-kettlebell
-   - c16b: média de 3,8 séries por músculo (faixa do avancado: a partir de 12)
+   - c15b: Corpo todo A: mergulho-graviton + barra-fixa-graviton
+   - c16b: média de 3,1 séries por músculo (faixa do intermediario: a partir de 10)
+   - c20a: o texto diz 4 e há dia com 5
+24. **so:graviton · intermediario · 4 dias · 30 min · foco inferiores · cotovelo 7** (57 pontos)
+   - Superior A (6 min): abertura-t-deitado 3 | Inferior A (32 min): agachamento-peso-corpo 2, ponte-gluteo 2, flexao-joelho-deslizante 3, nordico 3, abdominal-chao 2 | Superior B (6 min): abertura-t-deitado 3 | Inferior B (34 min): afundo-peso-corpo 3, ponte-gluteo 2, flexao-joelho-deslizante 4+bi, panturrilha-degrau 2+bi
+   - c02a: Superior A com 1 exercícios em 30 min (faixa 3 a 5)
+   - c03a: dia de 34 min em 30
+   - c03c: dia típico de 19 min em 30
+   - c03d: dia típico de 19 min em 30
+   - c04b: panturrilha com 2 séries
+   - c04c: ombro_posterior com 6 de 10 e o dia típico em 19 de 30 min
+   - c04d: ombro_posterior com 6 (faixa do intermediario: 10 a 16)
+   - c06b: panturrilha com 2, mediana dos outros 4
+   - c06c: quadriceps com 5, mediana dos outros 4
+   - c06d: abdomen com 2 séries, com foco em pernas, gluteos
+   - c08b: Inferior A: abdominal-chao, e não abdominal-invertido
+   - c10a: Inferior A: duas vezes flexão de joelho
+   - c14b: Superior A com 1 exercício
+   - c16b: média de 6,6 séries por músculo (faixa do intermediario: a partir de 10)
+   - c20a: o texto diz 4 e há dia com 5
+25. **so:suspensao · intermediario · 4 dias · 30 min · foco inferiores · cotovelo 7** (57 pontos)
+   - Superior A (6 min): yt-suspensao 3 | Inferior A (33 min): agachamento-peso-corpo 2, ponte-gluteo 2, flexao-joelho-deslizante 3, flexao-joelho-suspensao 3, abdominal-chao 2 | Superior B (6 min): yt-suspensao 3 | Inferior B (36 min): afundo-peso-corpo 4, ponte-gluteo 2, nordico 4+bi, panturrilha-degrau 2+bi
+   - c02a: Superior A com 1 exercícios em 30 min (faixa 3 a 5)
+   - c03a: dia de 36 min em 30
+   - c03c: dia típico de 19.5 min em 30
+   - c03d: dia típico de 19.5 min em 30
+   - c04b: panturrilha com 2 séries
+   - c04c: ombro_posterior com 6 de 10 e o dia típico em 19.5 de 30 min
+   - c04d: ombro_posterior com 6 (faixa do intermediario: 10 a 16)
+   - c06b: panturrilha com 2, mediana dos outros 4
+   - c06c: panturrilha com 2, mediana dos outros 4
+   - c06d: abdomen com 2 séries, com foco em pernas, gluteos
+   - c08b: Inferior A: abdominal-chao, e não abdominal-invertido
+   - c10a: Inferior A: duas vezes flexão de joelho
+   - c14b: Superior A com 1 exercício
+   - c16b: média de 6,8 séries por músculo (faixa do intermediario: a partir de 10)
+   - c20a: o texto diz 4 e há dia com 5
+26. **casa · iniciante · 4 dias · 30 min · foco inferiores · ombro 7** (56 pontos)
+   - Superior A (12 min): rosca-alternada 3, triceps-elastico-alto 3 | Inferior A (28 min): goblet 2, stiff 3, ponte-gluteo-halter 2, abdominal-chao 2 | Superior B (12 min): rosca-martelo 3, triceps-elastico-alto 3 | Inferior B (35 min): afundo 2, ponte-gluteo-halter 2, flexao-joelho-elastico 3+bi, extensao-joelho-elastico 2+bi, panturrilha-degrau 2
+   - c02a: Superior A com 2 exercícios em 30 min (faixa 3 a 5)
+   - c03a: dia de 35 min em 30
+   - c03c: dia típico de 20 min em 30
+   - c03d: dia típico de 20 min em 30
+   - c04b: panturrilha com 2 séries
+   - c04c: panturrilha com 2 de 6 e o dia típico em 20 de 30 min
+   - c04d: panturrilha com 2 (faixa do iniciante: 6 a 10)
+   - c06b: quadriceps com 6, mediana dos outros 6
+   - c06c: quadriceps com 6, mediana dos outros 6
+   - c06d: abdomen com 2 séries, com foco em pernas, gluteos
+   - c08a: Superior A: rosca-alternada, e não rosca-concentrada
+   - c08b: Inferior A: stiff, e não stiff-unilateral
+   - c14b: Superior A com 2 exercícios
+   - c15a: Inferior B: flexao-joelho-elastico em bi-set
+   - c20a: o texto diz 4 e há dia com 5
+27. **casa · iniciante · 5 dias · 30 min · foco inferiores · sem dor** (56 pontos)
+   - Superior (29 min): flexao 3, remada-curvada-halteres 2, remada-unilateral-sem-banco 2, triceps-frances-halter 3 | Inferior (28 min): goblet 2, stiff 3, ponte-gluteo-halter 2, abdominal-chao 2 | Empurrar (22 min): elevacao-halteres 4, triceps-frances-unilateral-halter 2, crucifixo-elastico 3 | Puxar (22 min): remada-curvada-halteres 2, remada-unilateral-sem-banco 2, crucifixo-invertido-sentado 2, rosca-alternada 2 | Pernas (36 min): afundo 2, stiff-unilateral 3, ponte-gluteo-halter 2, extensao-joelho-elastico 2+bi, panturrilha-degrau 2+bi
+   - c03a: dia de 36 min em 30
+   - c04b: panturrilha com 2 séries
+   - c04d: ombro_lateral com 4 (faixa do iniciante: 6 a 10)
+   - c06b: quadriceps com 6, mediana dos outros 6
+   - c06c: quadriceps com 6, mediana dos outros 6
+   - c06d: abdomen com 2 séries, com foco em pernas, gluteos
+   - c08a: Inferior: goblet, e não agachamento-halteres
+   - c08b: Inferior: abdominal-chao, e não abdominal-invertido
+   - c13a: Superior: remada-curvada-halteres → remada-unilateral-sem-banco
+   - c14b: Empurrar sem multiarticular
+   - c15a: Pernas: extensao-joelho-elastico em bi-set
+   - c16a: 17 exercícios diferentes na semana
+   - c20a: o texto diz 4 e há dia com 5
+28. **casa · intermediario · 2 dias · 30 min · foco peito · sem dor** (56 pontos)
+   - Corpo todo A (40 min): flexao 4+bi, goblet 3+bi, remada-curvada-halteres 2+bi, stiff 2+bi, panturrilha-degrau 2, abdominal-chao 2 | Corpo todo B (35 min): flexao-pes-elevados 4+bi, afundo 3+bi, remada-unilateral-sem-banco 2, flexao-joelho-elastico 2
+   - c02a: Corpo todo A com 6 exercícios em 30 min (faixa 3 a 5)
+   - c02b: Corpo todo A com 15 séries em 30 min
+   - c03a: dia de 40 min em 30
+   - c04a: ombro_lateral sem nenhuma série
+   - c04b: ombro_posterior com 2 séries
+   - c04d: peito com 8 (faixa do intermediario: 10 a 16)
+   - c04f: ombro_lateral sem exercício direto (0 séries indiretas)
+   - c05a: empurrar 8 ÷ puxar 4 séries
+   - c06d: ombro_lateral com 0 séries, com foco em peito
+   - c08a: Corpo todo A: goblet, e não agachamento-halteres
+   - c08b: Corpo todo A: stiff, e não stiff-unilateral
+   - c13a: Corpo todo A: remada-curvada-halteres → stiff
+   - c15b: Corpo todo A: flexao + goblet
+   - c15c: Corpo todo A: remada-curvada-halteres + stiff
+   - c16b: média de 3,6 séries por músculo (faixa do intermediario: a partir de 10)
    - c20a: o texto diz 4 e há dia com 6
-37. **so:kettlebell · avancado · 2 dias · 30 min · foco peito · cotovelo 4** (66 pontos)
-   - Corpo todo A (41 min): flexao 4+bi, goblet-kettlebell 2+bi, remada-unilateral-kettlebell 2+bi, stiff-kettlebell 2+bi, panturrilha-degrau 2, abdominal-chao 2 | Corpo todo B (35 min): flexao-pes-elevados 4+bi, afundo-kettlebell 2+bi, remada-unilateral-kettlebell 2, flexao-joelho-deslizante 2
+29. **casa+ · iniciante · 4 dias · 30 min · foco inferiores · ombro 7** (56 pontos)
+   - Superior A (14 min): rosca-scott-banco-inclinado 3, triceps-elastico-alto 3 | Inferior A (29 min): bulgaro 2, stiff 3, ponte-gluteo-halter 2, abdominal-bola 2 | Superior B (14 min): rosca-scott-banco-inclinado 3, triceps-elastico-alto 3 | Inferior B (35 min): afundo 2, ponte-kettlebell 2, flexao-joelho-elastico 3+bi, extensao-joelho-caneleira 2+drop+bi, panturrilha 2+drop
+   - c02a: Superior A com 2 exercícios em 30 min (faixa 3 a 5)
+   - c03a: dia de 35 min em 30
+   - c03d: dia típico de 21.5 min em 30
+   - c04b: panturrilha com 3 séries
+   - c04c: panturrilha com 3 de 6 e o dia típico em 21.5 de 30 min
+   - c04d: panturrilha com 3 (faixa do iniciante: 6 a 10)
+   - c06b: posteriores com 6, mediana dos outros 6
+   - c06c: quadriceps com 7, mediana dos outros 6
+   - c06d: abdomen com 2 séries, com foco em pernas, gluteos
+   - c08a: Inferior A: ponte-gluteo-halter, e não coice-caneleira
+   - c08b: Inferior A: bulgaro, e não goblet
+   - c14b: Superior A com 2 exercícios
+   - c15a: Inferior B: flexao-joelho-elastico em bi-set
+   - c20a: o texto diz 4 e há dia com 5
+30. **condominio · intermediario · 4 dias · 30 min · foco inferiores · ombro 7** (56 pontos)
+   - Superior A (7 min): rosca-scott-banco-inclinado 3 | Inferior A (36 min): bulgaro 2, stiff 3, ponte-gluteo-halter 2, flexao-bola 3, abdominal-bola 2 | Superior B (7 min): rosca-scott-banco-inclinado 3 | Inferior B (32 min): afundo 3, ponte-gluteo-halter 2, flexao-bola 4+bi, panturrilha-degrau 2+bi
+   - c02a: Superior A com 1 exercícios em 30 min (faixa 3 a 5)
+   - c03a: dia de 36 min em 30
+   - c03c: dia típico de 19.5 min em 30
+   - c03d: dia típico de 19.5 min em 30
+   - c04b: panturrilha com 2 séries
+   - c04c: biceps com 6 de 10 e o dia típico em 19.5 de 30 min
+   - c04d: biceps com 6 (faixa do intermediario: 10 a 16)
+   - c06b: panturrilha com 2, mediana dos outros 4
+   - c06c: quadriceps com 5, mediana dos outros 4
+   - c06d: abdomen com 2 séries, com foco em pernas, gluteos
+   - c08a: Inferior B: afundo, e não afundo-tras
+   - c08b: Inferior A: bulgaro, e não goblet
+   - c14b: Superior A com 1 exercício
+   - c16b: média de 6,9 séries por músculo (faixa do intermediario: a partir de 10)
+   - c20a: o texto diz 4 e há dia com 5
+31. **elasticos · intermediario · 2 dias · 30 min · foco costas · quadril 7** (56 pontos)
+   - Corpo todo A (38 min): puxada-elastico 4+bi, flexao 2+bi, elevacao-lateral-elastico 4+bi, panturrilha-degrau 2+bi, abdominal-chao 2 | Corpo todo B (30 min): remada-elastico 4+bi, flexao-pes-elevados 3+bi, flexao-joelho-elastico 3+bi, rosca-elastico 2+bi
+   - c01c: Corpo todo B: flexao-pes-elevados depois de remada-elastico
+   - c02b: Corpo todo A com 14 séries em 30 min
+   - c03a: dia de 38 min em 30
+   - c04a: quadriceps sem nenhuma série
+   - c04b: triceps com 2,5 séries
+   - c04d: peito com 5 (faixa do intermediario: 10 a 16)
+   - c04f: ombro_posterior sem exercício direto (4 séries indiretas)
+   - c05b: quadríceps 0 ÷ posteriores 3
+   - c06d: triceps com 2,5 séries, com foco em costas
+   - c08a: Corpo todo A: elevacao-lateral-elastico, e não elevacao-lateral-unilateral-elastico
+   - c15b: Corpo todo A: puxada-elastico + flexao
+   - c16b: média de 3,8 séries por músculo (faixa do intermediario: a partir de 10)
+   - c20a: o texto diz 4 e há dia com 5
+32. **halteres · intermediario · 2 dias · 30 min · foco peito · sem dor** (56 pontos)
+   - Corpo todo A (40 min): flexao 4+bi, goblet 2+bi, remada-curvada-halteres 2+bi, stiff 2+bi, panturrilha-degrau 2, abdominal-chao 2 | Corpo todo B (35 min): flexao-pes-elevados 4+bi, afundo 2+bi, remada-unilateral-sem-banco 2, flexao-joelho-deslizante 2
    - c02a: Corpo todo A com 6 exercícios em 30 min (faixa 3 a 5)
    - c02b: Corpo todo A com 14 séries em 30 min
-   - c03a: dia de 41 min em 30
+   - c03a: dia de 40 min em 30
+   - c04a: ombro_lateral sem nenhuma série
    - c04b: ombro_posterior com 2 séries
-   - c04d: peito com 8 (faixa do avancado: 12 a 20)
-   - c04f: ombro_posterior sem exercício direto (2 séries indiretas)
+   - c04d: peito com 8 (faixa do intermediario: 10 a 16)
+   - c04f: ombro_lateral sem exercício direto (0 séries indiretas)
    - c05a: empurrar 8 ÷ puxar 4 séries
-   - c06d: ombro_posterior com 2 séries, com foco em peito
-   - c08a: Corpo todo A: stiff-kettlebell, e não stiff-unilateral-kettlebell
-   - c08b: Corpo todo A: abdominal-chao, e não abdominal-invertido
-   - c12a: goblet-kettlebell: uma carga só
-   - c13a: Corpo todo A: remada-unilateral-kettlebell → stiff-kettlebell
-   - c15b: Corpo todo A: flexao + goblet-kettlebell
-   - c15c: Corpo todo A: remada-unilateral-kettlebell + stiff-kettlebell
-   - c16b: média de 3,8 séries por músculo (faixa do avancado: a partir de 12)
+   - c06d: ombro_lateral com 0 séries, com foco em peito
+   - c08a: Corpo todo A: goblet, e não agachamento-halteres
+   - c08b: Corpo todo A: stiff, e não stiff-unilateral
+   - c13a: Corpo todo A: remada-curvada-halteres → stiff
+   - c15b: Corpo todo A: flexao + goblet
+   - c15c: Corpo todo A: remada-curvada-halteres + stiff
+   - c16b: média de 3,4 séries por músculo (faixa do intermediario: a partir de 10)
    - c20a: o texto diz 4 e há dia com 6
-38. **so:kettlebell · avancado · 2 dias · 30 min · foco peito · punho 4** (66 pontos)
-   - Corpo todo A (41 min): flexao 4+bi, goblet-kettlebell 2+bi, remada-unilateral-kettlebell 2+bi, stiff-kettlebell 2+bi, panturrilha-degrau 2, abdominal-chao 2 | Corpo todo B (35 min): flexao-pes-elevados 4+bi, afundo-kettlebell 2+bi, remada-unilateral-kettlebell 2, flexao-joelho-deslizante 2
+33. **halteres · intermediario · 4 dias · 30 min · foco inferiores · ombro 7** (56 pontos)
+   - Superior A (5 min): rosca-alternada 3 | Inferior A (35 min): goblet 2, stiff 3, ponte-gluteo-halter 2, flexao-joelho-deslizante 3, abdominal-chao 2 | Superior B (5 min): rosca-martelo 3 | Inferior B (35 min): afundo 4, ponte-gluteo-halter 2, nordico 4+bi, panturrilha-degrau 2+bi
+   - c02a: Superior A com 1 exercícios em 30 min (faixa 3 a 5)
+   - c03a: dia de 35 min em 30
+   - c03c: dia típico de 20 min em 30
+   - c03d: dia típico de 20 min em 30
+   - c04b: panturrilha com 2 séries
+   - c04c: biceps com 6 de 10 e o dia típico em 20 de 30 min
+   - c04d: biceps com 6 (faixa do intermediario: 10 a 16)
+   - c06b: panturrilha com 2, mediana dos outros 4
+   - c06c: panturrilha com 2, mediana dos outros 4
+   - c06d: abdomen com 2 séries, com foco em pernas, gluteos
+   - c08a: Superior A: rosca-alternada, e não rosca-concentrada
+   - c08b: Inferior A: stiff, e não stiff-unilateral
+   - c14b: Superior A com 1 exercício
+   - c16b: média de 6,8 séries por músculo (faixa do intermediario: a partir de 10)
+   - c20a: o texto diz 4 e há dia com 5
+34. **halteres-banco · intermediario · 2 dias · 30 min · foco peito · sem dor** (56 pontos)
+   - Corpo todo A (42 min): supino-reto 4+bi, bulgaro 2+bi, remada-curvada-halteres 2+bi, stiff 2+bi, panturrilha-degrau 2, abdominal-chao 2 | Corpo todo B (34 min): supino-reto 4+bi, afundo 2+bi, remada-unilateral-halter 2, flexao-joelho-deslizante 2
    - c02a: Corpo todo A com 6 exercícios em 30 min (faixa 3 a 5)
    - c02b: Corpo todo A com 14 séries em 30 min
-   - c03a: dia de 41 min em 30
+   - c03a: dia de 42 min em 30
+   - c04a: ombro_lateral sem nenhuma série
    - c04b: ombro_posterior com 2 séries
-   - c04d: peito com 8 (faixa do avancado: 12 a 20)
-   - c04f: ombro_posterior sem exercício direto (2 séries indiretas)
+   - c04d: peito com 8 (faixa do intermediario: 10 a 16)
+   - c04f: ombro_lateral sem exercício direto (0 séries indiretas)
    - c05a: empurrar 8 ÷ puxar 4 séries
-   - c06d: ombro_posterior com 2 séries, com foco em peito
-   - c08a: Corpo todo A: stiff-kettlebell, e não stiff-unilateral-kettlebell
-   - c08b: Corpo todo A: abdominal-chao, e não abdominal-invertido
-   - c12a: goblet-kettlebell: uma carga só
-   - c13a: Corpo todo A: remada-unilateral-kettlebell → stiff-kettlebell
-   - c15b: Corpo todo A: flexao + goblet-kettlebell
-   - c15c: Corpo todo A: remada-unilateral-kettlebell + stiff-kettlebell
-   - c16b: média de 3,8 séries por músculo (faixa do avancado: a partir de 12)
+   - c06d: ombro_lateral com 0 séries, com foco em peito
+   - c08a: Corpo todo B: afundo, e não afundo-tras
+   - c08b: Corpo todo A: bulgaro, e não goblet
+   - c13a: Corpo todo A: remada-curvada-halteres → stiff
+   - c15b: Corpo todo A: supino-reto + bulgaro
+   - c15c: Corpo todo A: remada-curvada-halteres + stiff
+   - c16b: média de 3,4 séries por músculo (faixa do intermediario: a partir de 10)
    - c20a: o texto diz 4 e há dia com 6
-39. **so:kettlebell · avancado · 2 dias · 30 min · foco peito · lombar 4** (66 pontos)
-   - Corpo todo A (41 min): flexao 4+bi, goblet-kettlebell 2+bi, remada-unilateral-kettlebell 2+bi, stiff-kettlebell 2+bi, panturrilha-degrau 2, abdominal-chao 2 | Corpo todo B (35 min): flexao-pes-elevados 4+bi, afundo-kettlebell 2+bi, remada-unilateral-kettlebell 2, flexao-joelho-deslizante 2
-   - c02a: Corpo todo A com 6 exercícios em 30 min (faixa 3 a 5)
+35. **halteres-banco · intermediario · 4 dias · 30 min · foco inferiores · ombro 7** (56 pontos)
+   - Superior A (5 min): rosca-alternada 3 | Inferior A (36 min): bulgaro 2, stiff 3, ponte-gluteo-halter 2, flexao-joelho-deslizante 3, abdominal-chao 2 | Superior B (5 min): rosca-martelo 3 | Inferior B (35 min): afundo 4, ponte-gluteo-halter 2, nordico 4+bi, panturrilha-degrau 2+bi
+   - c02a: Superior A com 1 exercícios em 30 min (faixa 3 a 5)
+   - c03a: dia de 36 min em 30
+   - c03c: dia típico de 20 min em 30
+   - c03d: dia típico de 20 min em 30
+   - c04b: panturrilha com 2 séries
+   - c04c: biceps com 6 de 10 e o dia típico em 20 de 30 min
+   - c04d: biceps com 6 (faixa do intermediario: 10 a 16)
+   - c06b: panturrilha com 2, mediana dos outros 4
+   - c06c: panturrilha com 2, mediana dos outros 4
+   - c06d: abdomen com 2 séries, com foco em pernas, gluteos
+   - c08a: Superior A: rosca-alternada, e não rosca-concentrada
+   - c08b: Inferior A: bulgaro, e não goblet
+   - c14b: Superior A com 1 exercício
+   - c16b: média de 6,8 séries por músculo (faixa do intermediario: a partir de 10)
+   - c20a: o texto diz 4 e há dia com 5
+36. **halteres-banco · intermediario · 5 dias · 30 min · foco inferiores · tornozelo 7** (56 pontos)
+   - Superior (29 min): supino-reto 3, remada-curvada-halteres 2, remada-unilateral-halter 2, triceps-frances-halter 3 | Inferior (31 min): bulgaro 2, stiff 2, ponte-gluteo-halter 2, flexao-joelho-deslizante 2, abdominal-chao 2 | Empurrar (21 min): crucifixo-halteres 3, elevacao-halteres 4, triceps-frances-unilateral-halter 2 | Puxar (22 min): remada-unilateral-sem-banco 2, remada-curvada-halteres 2, crucifixo-invertido-curvado 2, rosca-alternada 2 | Pernas (36 min): afundo 3, stiff-unilateral 3, ponte-gluteo-halter 2, nordico 3
+   - c02c: Inferior: 5 exercícios, todos com 2 séries
+   - c03a: dia de 36 min em 30
+   - c04b: abdomen com 2 séries
+   - c04d: peito com 6 (faixa do intermediario: 10 a 16)
+   - c06b: quadriceps com 5, mediana dos outros 6
+   - c06c: quadriceps com 5, mediana dos outros 6
+   - c06d: abdomen com 2 séries, com foco em pernas, gluteos
+   - c08a: Pernas: afundo, e não afundo-tras
+   - c08b: Inferior: bulgaro, e não goblet
+   - c13a: Puxar: remada-unilateral-sem-banco → remada-curvada-halteres → crucifixo-invertido-curvado
+   - c13b: Puxar: remada-unilateral-sem-banco, remada-curvada-halteres, crucifixo-invertido-curvado
+   - c14b: Empurrar sem multiarticular
+   - c16b: média de 6,8 séries por músculo (faixa do intermediario: a partir de 10)
+   - c20a: o texto diz 4 e há dia com 5
+37. **diego · intermediario · 2 dias · 30 min · foco costas · quadril 7** (56 pontos)
+   - Corpo todo A (37 min): barra-fixa 4+bi, flexao 2+bi, elevacao-lateral-elastico 4+bi, panturrilha-degrau 2+bi, abdominal-chao 2 | Corpo todo B (30 min): remada-elastico 4+bi, flexao-pes-elevados 3+bi, flexao-joelho-elastico 3+bi, rosca-elastico 2+bi
+   - c01c: Corpo todo B: flexao-pes-elevados depois de remada-elastico
    - c02b: Corpo todo A com 14 séries em 30 min
+   - c03a: dia de 37 min em 30
+   - c04a: quadriceps sem nenhuma série
+   - c04b: triceps com 2,5 séries
+   - c04d: peito com 5 (faixa do intermediario: 10 a 16)
+   - c04f: ombro_posterior sem exercício direto (4 séries indiretas)
+   - c05b: quadríceps 0 ÷ posteriores 3
+   - c06d: triceps com 2,5 séries, com foco em costas
+   - c08a: Corpo todo A: elevacao-lateral-elastico, e não elevacao-lateral-unilateral-elastico
+   - c08b: Corpo todo A: barra-fixa, e não barra-fixa-supinada
+   - c15b: Corpo todo A: barra-fixa + flexao
+   - c16b: média de 3,8 séries por músculo (faixa do intermediario: a partir de 10)
+   - c20a: o texto diz 4 e há dia com 5
+38. **bruno · iniciante · 4 dias · 30 min · foco inferiores · ombro 7** (56 pontos)
+   - Superior A (14 min): rosca-scott-banco-inclinado 3, triceps-barra-reta 3 | Inferior A (28 min): bulgaro 2, stiff 3, hip-thrust 2, abdominal-polia 2 | Superior B (14 min): rosca-scott-banco-inclinado 3, triceps-corda 3 | Inferior B (37 min): afundo 2, hip-thrust 2, flexao-joelho-elastico 3+bi, extensao-joelho-elastico 2+bi, panturrilha 2+drop
+   - c02a: Superior A com 2 exercícios em 30 min (faixa 3 a 5)
+   - c03a: dia de 37 min em 30
+   - c03d: dia típico de 21 min em 30
+   - c04b: panturrilha com 3 séries
+   - c04c: panturrilha com 3 de 6 e o dia típico em 21 de 30 min
+   - c04d: panturrilha com 3 (faixa do iniciante: 6 a 10)
+   - c06b: quadriceps com 6, mediana dos outros 6
+   - c06c: quadriceps com 6, mediana dos outros 6
+   - c06d: abdomen com 2 séries, com foco em pernas, gluteos
+   - c08a: Inferior B: afundo, e não afundo-tras
+   - c08b: Inferior A: bulgaro, e não goblet
+   - c14b: Superior A com 2 exercícios
+   - c15a: Inferior B: flexao-joelho-elastico em bi-set
+   - c20a: o texto diz 4 e há dia com 5
+39. **bairro · intermediario · 4 dias · 30 min · foco inferiores · ombro 7** (56 pontos)
+   - Superior A (7 min): rosca-scott-banco-inclinado 3 | Inferior A (36 min): leg-press 3, stiff 3, ponte-gluteo-halter 2, cadeira-flexora 2+drop, abdominal-chao 2 | Superior B (7 min): rosca-scott-banco-inclinado 3 | Inferior B (41 min): afundo 4, ponte-gluteo-halter 3, cadeira-flexora 3+drop+bi, cadeira-extensora 2+drop+bi, panturrilha-leg-press 2+drop
+   - c02a: Superior A com 1 exercícios em 30 min (faixa 3 a 5)
+   - c02b: Inferior B com 14 séries em 30 min
    - c03a: dia de 41 min em 30
-   - c04b: ombro_posterior com 2 séries
-   - c04d: peito com 8 (faixa do avancado: 12 a 20)
-   - c04f: ombro_posterior sem exercício direto (2 séries indiretas)
-   - c05a: empurrar 8 ÷ puxar 4 séries
-   - c06d: ombro_posterior com 2 séries, com foco em peito
-   - c08a: Corpo todo A: stiff-kettlebell, e não stiff-unilateral-kettlebell
-   - c08b: Corpo todo A: abdominal-chao, e não abdominal-invertido
-   - c12a: goblet-kettlebell: uma carga só
-   - c13a: Corpo todo A: remada-unilateral-kettlebell → stiff-kettlebell
-   - c15b: Corpo todo A: flexao + goblet-kettlebell
-   - c15c: Corpo todo A: remada-unilateral-kettlebell + stiff-kettlebell
-   - c16b: média de 3,8 séries por músculo (faixa do avancado: a partir de 12)
-   - c20a: o texto diz 4 e há dia com 6
-40. **so:kettlebell · avancado · 2 dias · 30 min · foco peito · quadril 4** (66 pontos)
-   - Corpo todo A (41 min): flexao 4+bi, goblet-kettlebell 2+bi, remada-unilateral-kettlebell 2+bi, stiff-kettlebell 2+bi, panturrilha-degrau 2, abdominal-chao 2 | Corpo todo B (35 min): flexao-pes-elevados 4+bi, afundo-kettlebell 2+bi, remada-unilateral-kettlebell 2, flexao-joelho-deslizante 2
-   - c02a: Corpo todo A com 6 exercícios em 30 min (faixa 3 a 5)
-   - c02b: Corpo todo A com 14 séries em 30 min
-   - c03a: dia de 41 min em 30
-   - c04b: ombro_posterior com 2 séries
-   - c04d: peito com 8 (faixa do avancado: 12 a 20)
-   - c04f: ombro_posterior sem exercício direto (2 séries indiretas)
-   - c05a: empurrar 8 ÷ puxar 4 séries
-   - c06d: ombro_posterior com 2 séries, com foco em peito
-   - c08a: Corpo todo A: stiff-kettlebell, e não stiff-unilateral-kettlebell
-   - c08b: Corpo todo B: flexao-joelho-deslizante, e não nordico
-   - c12a: goblet-kettlebell: uma carga só
-   - c13a: Corpo todo A: remada-unilateral-kettlebell → stiff-kettlebell
-   - c15b: Corpo todo A: flexao + goblet-kettlebell
-   - c15c: Corpo todo A: remada-unilateral-kettlebell + stiff-kettlebell
-   - c16b: média de 3,8 séries por músculo (faixa do avancado: a partir de 12)
-   - c20a: o texto diz 4 e há dia com 6
+   - c03d: dia típico de 21.5 min em 30
+   - c04b: panturrilha com 3 séries
+   - c04c: biceps com 6 de 10 e o dia típico em 21.5 de 30 min
+   - c04d: biceps com 6 (faixa do intermediario: 10 a 16)
+   - c06b: panturrilha com 3, mediana dos outros 4
+   - c06c: panturrilha com 3, mediana dos outros 4
+   - c06d: abdomen com 2 séries, com foco em pernas, gluteos
+   - c08b: Inferior A: stiff, e não stiff-unilateral
+   - c14b: Superior A com 1 exercício
+   - c16b: média de 7,8 séries por músculo (faixa do intermediario: a partir de 10)
+   - c20a: o texto diz 4 e há dia com 5
+40. **so:estacao_polia_dupla · avancado · 4 dias · 30 min · foco inferiores · cotovelo 7** (56 pontos)
+   - Superior A (22 min): elevacao-lateral 3, crucifixo-polia 3, crucifixo-invertido-polia 3 | Inferior A (37 min): agachamento-peso-corpo 2, ponte-gluteo 2, flexao-joelho-deslizante 4, nordico 4, abdominal-chao 2 | Superior B (22 min): crucifixo-polia-baixo 3, elevacao-lateral 3, crucifixo-invertido-polia 3 | Inferior B (40 min): afundo-peso-corpo 4, ponte-gluteo 3, flexao-joelho-deslizante 4+bi, panturrilha-degrau 2+bi
+   - c02b: Inferior A com 14 séries em 30 min
+   - c03a: dia de 40 min em 30
+   - c04b: panturrilha com 2 séries
+   - c04d: peito com 6 (faixa do avancado: 12 a 20)
+   - c06b: quadriceps com 6, mediana dos outros 6
+   - c06c: quadriceps com 6, mediana dos outros 6
+   - c06d: abdomen com 2 séries, com foco em pernas, gluteos
+   - c08b: Inferior A: abdominal-chao, e não abdominal-invertido
+   - c10a: Inferior A: duas vezes flexão de joelho
+   - c14b: Superior A sem multiarticular
+   - c16b: média de 7,1 séries por músculo (faixa do avancado: a partir de 12)
+   - c20a: o texto diz 4 e há dia com 5
 
 ## Exemplos
 

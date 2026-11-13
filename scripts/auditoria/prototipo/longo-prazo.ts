@@ -77,18 +77,6 @@ function cargaInicial(caso: Caso, reps: [number, number], rir: number): Carga {
   return [...cands].sort((a, b) => valorDaCarga(b) - valorDaCarga(a)).find(cabe) ?? cands[0]!;
 }
 
-/** A carga existe? Halter, kettlebell e caneleira: na lista; barra: barra + pares da menor anilha. */
-function existe(c: Carga, caso: Caso, lista: number[]): boolean {
-  if (c.tipo !== 'kg') return true;
-  if (lista.length) return lista.some((k) => Math.abs(k - c.kg) < 1e-9);
-  if (caso.barraKg !== undefined) {
-    const lados = (c.kg - caso.barraKg) / (2 * (caso.menorAnilha ?? 1));
-    return Math.abs(lados - Math.round(lados)) < 1e-9 && lados >= 0;
-  }
-  return false; // sem lista e sem barra: o app sugere kg que o inventário não diz ter
-}
-
-
 const RITMO: Record<Nivel, number> = { iniciante: 0.01, intermediario: 0.004, avancado: 0.0015 };
 const JANELAS: Record<string, Record<Nivel, number>> = { 'janela 3, 5, 8': { iniciante: 3, intermediario: 5, avancado: 8 }, 'janela 4, 8, 16': { iniciante: 4, intermediario: 8, avancado: 16 } };
 const SESSOES = 48; // 24 semanas, 2 sessões por semana do mesmo exercício
@@ -129,7 +117,6 @@ function simular(caso: Caso, nivel: Nivel, janela: number) {
   return acoes;
 }
 
-void valorDaCarga;
 const NIVEIS: Nivel[] = ['iniciante', 'intermediario', 'avancado'];
 const VARIANTES = ['hoje (3 sessões)', ...Object.keys(JANELAS)];
 const janelaDe = (v: string, n: Nivel) => JANELAS[v]?.[n] ?? 3;

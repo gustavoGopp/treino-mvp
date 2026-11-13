@@ -83,6 +83,7 @@ export const MEDIDAS = {
   c15a: { cuidado: 15, tipo: 'nota', nome: 'iniciante com bi-set ou drop set' },
   c15b: { cuidado: 15, tipo: 'nota', nome: 'bi-set entre dois multiarticulares' },
   c15c: { cuidado: 15, tipo: 'nota', nome: 'bi-set em que os dois carregam a lombar ou dependem da pegada' },
+  c15d: { cuidado: 15, tipo: 'nota', nome: 'bi-set com os dois exercícios separados na lista do dia' },
   c16a: { cuidado: 16, tipo: 'nota', nome: 'iniciante com mais de 12 exercícios diferentes na semana' },
   c16b: { cuidado: 16, tipo: 'nota', nome: 'intermediário ou avançado com a média dos músculos abaixo da faixa do nível' },
   c17a: { cuidado: 17, tipo: 'defeito', nome: 'músculo com menos de 4 séries (ou a zero) sem aviso que o cite' },
@@ -315,6 +316,8 @@ export function medirCuidados(p: Programa, pf: Perfil, inventario: Inventario, c
     for (const x of d.exercicios) {
       if (nivel === 'iniciante' && (x.supersetCom || x.dropSet)) marca('c15a', `${d.nome}: ${x.exId} ${x.dropSet ? 'com drop set' : 'em bi-set'}`);
       if (!x.supersetCom) continue;
+      const iPar = d.exercicios.findIndex((y) => y.exId === x.supersetCom);
+      if (iPar >= 0 && Math.abs(iPar - d.exercicios.indexOf(x)) > 1) marca('c15d', `${d.nome}: ${x.exId} e ${x.supersetCom}`);
       const par = POR_ID[x.supersetCom]!;
       const e = bib(x);
       if (e.tipo === 'composto' && par.tipo === 'composto') marca('c15b', `${d.nome}: ${e.id} + ${par.id}`);

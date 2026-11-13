@@ -91,6 +91,7 @@ const hash = (s: string) => {
   return h >>> 0;
 };
 
+const RODADA = arg('--rodada') ?? '';
 const saida = arg('--saida');
 const cega = arg('--cega');
 if (saida) {
@@ -109,7 +110,7 @@ if (cega) {
       { caso: c, versao: 'proposta', semana: nova },
     ];
   });
-  const ordem = [...paginas].sort((a, b) => hash(`${a.caso.id}:${a.versao}:cega`) - hash(`${b.caso.id}:${b.versao}:cega`));
+  const ordem = [...paginas].sort((a, b) => hash(`${a.caso.id}:${a.versao}:cega${RODADA}`) - hash(`${b.caso.id}:${b.versao}:cega${RODADA}`));
   const chave: Record<string, { pessoa: string; versao: string }> = {};
   ordem.forEach((pg, i) => {
     const cod = `S${String(i + 1).padStart(2, '0')}`;
