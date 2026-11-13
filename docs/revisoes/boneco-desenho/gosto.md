@@ -81,3 +81,7 @@ Pedido feito em 13/11/2026, junto com o resumo de links (`referencias-resumo.md`
 Na régua de realismo (1 a 7), isso aponta para as notas 3 e 4: uma pessoa de proporção real, com pouco detalhe, vestida, em cores chapadas. É a faixa de Bend, Pocket Yoga e do painel-guia do Ring Fit (`referencias.md`).
 
 **O que isso pede das propostas:** (1) partir de uma pessoa, não de um manequim; (2) resolver o músculo sem brigar com a roupa e com a pele; (3) ter um desenho com autoria (acabamento e personalidade) sem perder a leitura de relance; (4) abrir o leque de verdade, incluindo propostas que contrariem as escolhas leves, porque elas vieram com "pode ser".
+
+## Rodada 1 (13/11/2026)
+
+Dos onze conceitos, ficou com cinco: "pode ser 1, 2, 3, 6 e 10" (Hoje com corpo de gente, Gente simples, Traço e cor, Marionete de papel, Atlas). O que isso acrescenta ao retrato do gosto: forma curva e proporção real, sim; forma estilizada (recorte, barras, cabeça grande) e sombra (recortada ou em degradê), não; contorno continua em jogo (dois dos cinco têm traço); o cinza sem roupa do boneco de hoje continua em jogo ao lado da pessoa com cor de pele. Detalhes em `rodadas.md`.

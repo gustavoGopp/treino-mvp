@@ -28,4 +28,6 @@ Limites do que foi desenhado (para ele saber o que está julgando): é um corpo 
 
 **Minha recomendação (opinião):** ficar com 2, 4, 6, 8 e 10. O 2 é a resposta direta ao gosto dele; o 4 dá personalidade sem perder a leveza; o 6 é o que mais tem cara de diagrama; o 8 e o 10 atacam o "corpo e músculos mais fiéis". Eu eliminaria o 1 (volta ao cinza), o 3 e o 7 (traço, que ele já tinha deixado de lado), o 5 (não mostra o músculo), o 9 (quase igual ao 2, com um degradê que ele não pediu) e o 11 (o caminho que costuma ser chamado de infantil).
 
-**Decisão do Gustavo:** (aguardando)
+**Decisão do Gustavo (13/11/2026):** "pode ser 1, 2, 3, 6 e 10". Ficam **1 (Hoje, com corpo de gente), 2 (Gente simples), 3 (Traço e cor), 6 (Marionete de papel) e 10 (Atlas)**. Saem 4 (Recorte), 5 (Pictograma vestido), 7 (Prancheta), 8 (Cartaz), 9 (Massa leve) e 11 (Compacto).
+
+**Leitura minha:** ele manteve todos os de forma curva e proporção real e tirou os de forma estilizada (recorte, barras, compacto) e os de sombra (cartaz, massa leve). Manteve dois com contorno (1 e 3), que eu teria tirado: o "sem contorno" da pergunta 1 era mesmo uma preferência leve. Manteve o cinza do boneco de hoje (1) ao lado da pessoa com cor de pele (2, 3, 6, 10): a comparação entre os dois mundos continua aberta. E tirou o 8 e o 4, que eu teria mantido.
