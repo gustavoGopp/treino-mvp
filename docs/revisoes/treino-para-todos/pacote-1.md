@@ -233,7 +233,16 @@ Testes novos: `tests/unit/tempo-que-sobra.test.ts` (15 testes, em 156 combinaç�
 
 ## 7. Conferências
 
-CONFERENCIAS
+| Conferência | Resultado |
+|---|---|
+| `npm run check` (lint, tipos, testes) | lint e tipos limpos; 932 testes passam; **5 falham: são os 5 registros da seção 6**, que esperam o seu ok |
+| `npm run test:e2e` (o app no navegador, de ponta a ponta) | 157 de 157 passam |
+| O gerador continua determinístico | a mesma entrada dá o mesmo programa (teste novo e as 2.106 combinações do teste antigo) |
+| O protótipo com a regra ligada dá o mesmo programa que o app | sim, nas 12 personas (`prototipo-treino-para-todos.test.ts`) |
+| A régua antes e depois, por grupo | [`qa.md`](qa.md): nenhum defeito sobe em nenhum grupo |
+| A simulação de meses (o aviso de "sem melhora") | refeita: idêntica à da etapa 1 (ela segue um exercício com séries fixas; este pacote não mexe na progressão) |
+| `npm run auditoria:verificar` (a auditoria oficial, duas rodadas com arquivos idênticos, e a linha de base da régua) | em andamento quando este relatório foi escrito; o resultado entra aqui |
+| `src/engine/`, telas, `api/`, `src/storage/` | sem mudança. Fora de `src/domain/`, mudou só `src/conteudo/fontes.json`, que é gerado a partir de `docs/pesquisa/fontes.md` (entrou a fonte `schoenfeld2021b`, citada pela regra) |
 
 ## 8. Para quem já usa
 
