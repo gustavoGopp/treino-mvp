@@ -6,7 +6,7 @@
 //   um toque é o nome acessível de um botão ou link; "css:<seletor>" toca num seletor; "html:<seletor>" imprime o HTML;
 //   "lista:<seletor>=<n>" escolhe a opção n de uma lista
 // Opções por variável: LETRA=125 (letra do sistema em 125%), PARADO=1 (prefers-reduced-motion), INTEIRA=1 (página inteira),
-// ERRO=1 (força a tela de erro, pela chave de teste do app)
+// ERRO=1 (força a tela de erro, pela chave de teste do app), MARGEM=1 (lista quem passa da margem de 16 px da página)
 import { spawn } from 'node:child_process';
 import { mkdirSync } from 'node:fs';
 import { build } from 'esbuild';
@@ -103,6 +103,27 @@ try {
             .map((el) => `${el.tagName.toLowerCase()}.${String(el.className?.baseVal ?? el.className).replace(/\s+/g, '.')} (${Math.round(el.getBoundingClientRect().right)})`),
         )
       : [];
+    // MARGEM=1: quem passa da margem da página (16 px) sem ser peça de borda a borda. Serve para achar o que cabe por
+    // poucos pixels aqui e estoura onde a letra renderiza um pouco mais larga (aconteceu na verificação do GitHub).
+    if (process.env.MARGEM) {
+      const fora = await page.evaluate(() => {
+        const w = document.documentElement.clientWidth;
+        const folhas = [...document.querySelectorAll('.folha')].filter((f) => !f.closest('[inert]'));
+        const raiz = folhas.at(-1) ?? document.body;
+        const limite = folhas.length ? raiz.getBoundingClientRect().right - 23.5 : w - 15.5;
+        return [...raiz.querySelectorAll('*')]
+          .filter((el) => {
+            const r = el.getBoundingClientRect();
+            // quem começa na borda esquerda é o contêiner da página (ou uma peça de borda a borda), não conteúdo
+            if (r.left < 1) return false;
+            return r.width > 0 && r.height > 0 && r.right > limite && el.checkVisibility() && !el.closest('svg, [inert], .acao-fixa, .nav-inferior, .palco-treino, .stage, .folha-cab, .veu > :not(.folha), .sr');
+          })
+          .filter((el) => !['acao-fixa', 'nav-inferior', 'folha', 'veu'].some((c) => el.classList.contains(c)))
+          .slice(0, 5)
+          .map((el) => `${el.tagName.toLowerCase()}.${String(el.getAttribute('class') || '').split(' ')[0]} "${(el.textContent || '').trim().slice(0, 18)}" +${(el.getBoundingClientRect().right - limite).toFixed(1)}`);
+      });
+      if (fora.length) console.log(`  [${nome}] passa da margem: ${fora.join(' | ')}`);
+    }
     console.log(`${nome}: erros no console ${erros.length}${erros.length ? ` (${erros[0].slice(0, 120)})` : ''}; rola para o lado: ${rolaDeLado ? `SIM → ${passam.join(', ')}` : 'não'}`);
     await ctx.close();
   }

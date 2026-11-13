@@ -266,7 +266,7 @@ details.campo .opcoes{margin-top:var(--s8)}
 .selo{position:relative;display:inline-block;font:inherit;font-size:var(--t-rotulo);font-weight:600;line-height:1.35;padding:0;border:0;border-radius:var(--r8);background:none;color:var(--texto-2);white-space:nowrap;vertical-align:baseline;cursor:pointer;text-decoration:underline dotted;text-decoration-thickness:1px;text-underline-offset:var(--s4)}
 .selo::after,.porque::after{content:"";position:absolute;left:min(0%,calc(50% - var(--s24)));right:min(0%,calc(50% - var(--s24)));top:calc(50% - var(--s24));bottom:calc(50% - var(--s24))}
 @media (max-width:359px){.selo{white-space:normal;max-width:100%;text-align:left}}
-.porque{position:relative;display:inline-block;font:inherit;font-size:var(--t-apoio);font-weight:600;padding:0 var(--s4);border:0;background:none;color:var(--texto);cursor:pointer;text-decoration:underline;text-underline-offset:var(--s4);white-space:nowrap}
+.porque{position:relative;display:inline-block;font:inherit;font-size:var(--t-apoio);font-weight:600;padding:0 var(--s4);border:0;background:none;color:var(--texto);cursor:pointer;text-decoration:underline;text-underline-offset:var(--s4);white-space:normal;text-align:left;max-width:100%}
 .porque-texto{display:flex;flex-direction:column;gap:var(--s8)}
 .porque-texto p{margin:0}
 .campo > .porque{align-self:flex-start}
@@ -486,6 +486,7 @@ footer ul{margin:0;padding-left:var(--s24);font-size:var(--t-apoio);display:flex
 .nota-aviso{display:flex;gap:var(--s16);align-items:flex-start;margin:0;padding:var(--s16) 0;border-top:1px solid var(--linha);border-bottom:1px solid var(--linha)}
 .nota-aviso > svg,.privacidade-linha svg{width:var(--s24);height:var(--s24);flex:none;fill:none;stroke:var(--texto-2);stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
 .nota-aviso h2{margin:0 0 var(--s4);font-size:var(--t-corpo);font-weight:600}
+.nota-aviso > div{min-width:0}
 .nota-aviso p{margin:0;font-size:var(--t-apoio);line-height:1.45;color:var(--texto-2)}
 .privacidade-linha{margin:0}
 .privacidade-linha button{display:flex;gap:var(--s16);align-items:center;width:100%;min-height:var(--h48);padding:0;border:0;background:none;font:inherit;font-weight:600;font-size:var(--t-apoio);color:var(--texto);text-align:left;text-decoration:underline;text-underline-offset:var(--s4);cursor:pointer}
@@ -942,6 +943,10 @@ header.top:has(.cab-treino){container-type:inline-size;container-name:cab}
   .cab-treino .topo-volta{white-space:normal}
   /* e o que estava numa linha só quebra: o título da série com os traços, o contador do guia com as setas, a prescrição */
   .serie-tit,.exhead-topo{flex-wrap:wrap}
+  /* a folha do exercício empilha a miniatura e a prescrição; a etiqueta "Recomendada" pode quebrar */
+  .ex-folha-topo{flex-direction:column;align-items:flex-start}
+  .sub-rx .nw{white-space:normal}
+  .etiqueta{display:block;margin-left:0;letter-spacing:0}
   .seg{flex-wrap:wrap}
   .seg button{min-width:0;padding:0 var(--s4)}
   /* semana e evolução: cada linha empilha (nome e número em cima, a barra embaixo; a série e a marca, uma por linha) */
