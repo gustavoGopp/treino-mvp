@@ -159,7 +159,7 @@
     },
     {
       "tela": "06-inicio",
-      "esperaDasMiniaturasMs": 747,
+      "esperaDasMiniaturasMs": 816,
       "alturaDaPagina": 1226,
       "alturaDaTela": 844,
       "palavrasAVista": 105,
@@ -185,7 +185,7 @@
     },
     {
       "tela": "06b-inicio-sobre-o-programa",
-      "esperaDasMiniaturasMs": 9,
+      "esperaDasMiniaturasMs": 8,
       "alturaDaPagina": 1226,
       "alturaDaTela": 844,
       "palavrasAVista": 92,
@@ -206,8 +206,8 @@
       "esperaDasMiniaturasMs": 0,
       "alturaDaPagina": 844,
       "alturaDaTela": 844,
-      "palavrasAVista": 87,
-      "palavrasNaTela": 69,
+      "palavrasAVista": 88,
+      "palavrasNaTela": 70,
       "blocosLongos": [],
       "selos": 1,
       "porques": 2,
@@ -307,8 +307,8 @@
       "esperaDasMiniaturasMs": 0,
       "alturaDaPagina": 844,
       "alturaDaTela": 844,
-      "palavrasAVista": 79,
-      "palavrasNaTela": 61,
+      "palavrasAVista": 80,
+      "palavrasNaTela": 62,
       "blocosLongos": [],
       "selos": 1,
       "porques": 2,
@@ -317,7 +317,7 @@
     },
     {
       "tela": "09-treino-descanso",
-      "esperaDasMiniaturasMs": 13,
+      "esperaDasMiniaturasMs": 8,
       "alturaDaPagina": 844,
       "alturaDaTela": 844,
       "palavrasAVista": 56,
@@ -330,7 +330,7 @@
     },
     {
       "tela": "10-treino-senti-algo",
-      "esperaDasMiniaturasMs": 7,
+      "esperaDasMiniaturasMs": 12,
       "alturaDaPagina": 844,
       "alturaDaTela": 844,
       "palavrasAVista": 65,
@@ -416,7 +416,7 @@
     },
     {
       "tela": "09c-treino-hora-da-proxima-serie",
-      "esperaDasMiniaturasMs": 11,
+      "esperaDasMiniaturasMs": 7,
       "alturaDaPagina": 844,
       "alturaDaTela": 844,
       "palavrasAVista": 38,
@@ -495,7 +495,7 @@
     {
       "tela": "13-fim-do-treino",
       "esperaDasMiniaturasMs": 0,
-      "alturaDaPagina": 893,
+      "alturaDaPagina": 926,
       "alturaDaTela": 844,
       "palavrasAVista": 62,
       "palavrasNaTela": 62,
@@ -533,7 +533,7 @@
     },
     {
       "tela": "06c-inicio-depois-do-1o-treino",
-      "esperaDasMiniaturasMs": 863,
+      "esperaDasMiniaturasMs": 802,
       "alturaDaPagina": 1288,
       "alturaDaTela": 844,
       "palavrasAVista": 106,
@@ -547,7 +547,7 @@
     {
       "tela": "16-meus-dados",
       "esperaDasMiniaturasMs": 0,
-      "alturaDaPagina": 1345,
+      "alturaDaPagina": 1367,
       "alturaDaTela": 844,
       "palavrasAVista": 88,
       "palavrasNaTela": 144,
@@ -560,7 +560,7 @@
     {
       "tela": "16b-meus-dados-estilo-do-boneco",
       "esperaDasMiniaturasMs": 0,
-      "alturaDaPagina": 1345,
+      "alturaDaPagina": 1367,
       "alturaDaTela": 844,
       "palavrasAVista": 46,
       "palavrasNaTela": 46,

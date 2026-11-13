@@ -13,4 +13,5 @@ Para aplicar uma delas: `git apply docs/revisoes/frontend-novo/capturas/decisoes
 ## Andamento
 
 - **Decisão 1 (selo "fonte"): aplicada em 13/11/2026**, a pedido do Gustavo (opção 1 de 3). O arquivo `1-selo-fonte.patch` fica só como registro: não aplicar de novo.
-- Decisões 2 e 3: abertas.
+- **Decisão 2 (fim do treino): aplicada em 13/11/2026**, opção 2 de 3 ("Voltar ao início" presa embaixo). Os dois arquivos `2-*.patch` ficam só como registro.
+- Decisão 3 (contorno nos botões cinza): aberta.

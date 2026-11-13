@@ -1732,3 +1732,5 @@ As outras 4 folhas (cadastro, guia, fim e semana, Meus dados e locais) estão em
 > A tela de 829 palavras ficou com 104. Nada foi apagado: cada motivo e cada fonte continuam a um toque.
 >
 > Duas coisas eu não escondi: o que a pessoa precisa para decidir, e o aviso de segurança. Esse ficou mais curto e com a ação dentro: "Sentiu dor ou tontura? Pare e procure avaliação."
+
+**Mais uma decisão dos revisores, tomada em 13/11.** No fim do treino, a ação principal passou a ser "Voltar ao início", presa embaixo; "Ver a sua semana" virou o botão secundário. O revisor tinha notado que o botão principal levava a uma tela que repetia o "1 de 3" que a pessoa acabara de ler. O Gustavo escolheu entre três opções lado a lado (`revisoes/frontend-novo/capturas/decisoes/2-fim-do-treino.png`).

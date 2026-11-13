@@ -159,7 +159,7 @@
     },
     {
       "tela": "06-inicio",
-      "esperaDasMiniaturasMs": 1007,
+      "esperaDasMiniaturasMs": 843,
       "alturaDaPagina": 1226,
       "alturaDaTela": 844,
       "palavrasAVista": 105,
@@ -172,7 +172,7 @@
     },
     {
       "tela": "07-folha-do-exercicio",
-      "esperaDasMiniaturasMs": 13,
+      "esperaDasMiniaturasMs": 9,
       "alturaDaPagina": 1226,
       "alturaDaTela": 844,
       "palavrasAVista": 85,
@@ -185,7 +185,7 @@
     },
     {
       "tela": "06b-inicio-sobre-o-programa",
-      "esperaDasMiniaturasMs": 10,
+      "esperaDasMiniaturasMs": 7,
       "alturaDaPagina": 1226,
       "alturaDaTela": 844,
       "palavrasAVista": 92,
@@ -317,7 +317,7 @@
     },
     {
       "tela": "09-treino-descanso",
-      "esperaDasMiniaturasMs": 10,
+      "esperaDasMiniaturasMs": 9,
       "alturaDaPagina": 844,
       "alturaDaTela": 844,
       "palavrasAVista": 56,
@@ -330,7 +330,7 @@
     },
     {
       "tela": "10-treino-senti-algo",
-      "esperaDasMiniaturasMs": 6,
+      "esperaDasMiniaturasMs": 14,
       "alturaDaPagina": 844,
       "alturaDaTela": 844,
       "palavrasAVista": 65,
@@ -343,7 +343,7 @@
     },
     {
       "tela": "11-treino-mais-opcoes",
-      "esperaDasMiniaturasMs": 7,
+      "esperaDasMiniaturasMs": 11,
       "alturaDaPagina": 844,
       "alturaDaTela": 844,
       "palavrasAVista": 17,
@@ -416,7 +416,7 @@
     },
     {
       "tela": "09c-treino-hora-da-proxima-serie",
-      "esperaDasMiniaturasMs": 9,
+      "esperaDasMiniaturasMs": 15,
       "alturaDaPagina": 844,
       "alturaDaTela": 844,
       "palavrasAVista": 38,
@@ -495,7 +495,7 @@
     {
       "tela": "13-fim-do-treino",
       "esperaDasMiniaturasMs": 0,
-      "alturaDaPagina": 893,
+      "alturaDaPagina": 926,
       "alturaDaTela": 844,
       "palavrasAVista": 62,
       "palavrasNaTela": 62,
@@ -533,7 +533,7 @@
     },
     {
       "tela": "06c-inicio-depois-do-1o-treino",
-      "esperaDasMiniaturasMs": 1037,
+      "esperaDasMiniaturasMs": 849,
       "alturaDaPagina": 1288,
       "alturaDaTela": 844,
       "palavrasAVista": 106,
@@ -547,7 +547,7 @@
     {
       "tela": "16-meus-dados",
       "esperaDasMiniaturasMs": 0,
-      "alturaDaPagina": 1345,
+      "alturaDaPagina": 1367,
       "alturaDaTela": 844,
       "palavrasAVista": 88,
       "palavrasNaTela": 144,
@@ -560,7 +560,7 @@
     {
       "tela": "16b-meus-dados-estilo-do-boneco",
       "esperaDasMiniaturasMs": 0,
-      "alturaDaPagina": 1345,
+      "alturaDaPagina": 1367,
       "alturaDaTela": 844,
       "palavrasAVista": 46,
       "palavrasNaTela": 46,

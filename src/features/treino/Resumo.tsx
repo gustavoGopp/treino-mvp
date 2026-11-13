@@ -167,11 +167,8 @@ export function Resumo() {
           </ul>
         </section>
         <SemanaLeve />
-        <Link className="btn" to="/semana">
+        <Link className="btn sec" to="/semana">
           Ver a sua semana
-        </Link>
-        <Link className="btn sec" to="/programa">
-          Voltar ao início
         </Link>
         {apagar ? (
           <div className="warnbox" role="group" aria-label="Apagar este treino?">
@@ -199,6 +196,12 @@ export function Resumo() {
             Registrei algo errado: apagar este treino
           </button>
         )}
+        {/* a ação principal do fim do treino fica presa embaixo, à vista sem rolar */}
+        <div className="acao-fixa">
+          <Link className="btn" to="/programa">
+            Voltar ao início
+          </Link>
+        </div>
       </main>
     </div>
   );
