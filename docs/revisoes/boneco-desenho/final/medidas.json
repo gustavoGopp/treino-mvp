@@ -1,0 +1,167 @@
+{
+ "contraste": {
+  "cinza/claro": {
+   "corpo × fundo": 1.3,
+   "traço × fundo": 13.84,
+   "traço × corpo": 10.64,
+   "linhas do corpo × corpo": 1.7,
+   "principal × corpo": 3.57,
+   "secundário × corpo": 1.71,
+   "principal × secundário": 2.09,
+   "principal × fundo": 4.65
+  },
+  "cinza/escuro": {
+   "corpo × fundo": 3.44,
+   "traço × fundo": 15.43,
+   "traço × corpo": 4.49,
+   "linhas do corpo × corpo": 1.55,
+   "principal × corpo": 1.54,
+   "secundário × corpo": 2.68,
+   "principal × secundário": 1.74,
+   "principal × fundo": 5.3
+  },
+  "pele/claro": {
+   "corpo × fundo": 2.08,
+   "traço × fundo": 4.56,
+   "traço × corpo": 2.19,
+   "linhas do corpo × corpo": 1.34,
+   "principal × corpo": 1.91,
+   "secundário × corpo": 1.08,
+   "principal × secundário": 2.06,
+   "principal × fundo": 3.98,
+   "short × fundo": 10.52,
+   "short × corpo": 5.05,
+   "cabelo × fundo": 14.45
+  },
+  "pele/escuro": {
+   "corpo × fundo": 7.34,
+   "traço × fundo": 3.45,
+   "traço × corpo": 2.13,
+   "linhas do corpo × corpo": 1.58,
+   "principal × corpo": 1.71,
+   "secundário × corpo": 1.21,
+   "principal × secundário": 2.06,
+   "principal × fundo": 4.3,
+   "short × fundo": 8.93,
+   "short × corpo": 1.22,
+   "cabelo × fundo": 3.89
+  }
+ },
+ "quadro": {
+  "cinza/agach": {
+   "bytes": 15986,
+   "gzip": 3784,
+   "caminhos": 38,
+   "recortes": 1,
+   "bytesMini": 11876,
+   "recortesMini": 1,
+   "msPorQuadro": 0.55
+  },
+  "cinza/supino": {
+   "bytes": 16075,
+   "gzip": 3735,
+   "caminhos": 38,
+   "recortes": 1,
+   "bytesMini": 11912,
+   "recortesMini": 1,
+   "msPorQuadro": 0.52
+  },
+  "cinza/puxada": {
+   "bytes": 18693,
+   "gzip": 4275,
+   "caminhos": 47,
+   "recortes": 1,
+   "bytesMini": 14675,
+   "recortesMini": 1,
+   "msPorQuadro": 0.59
+  },
+  "cinza/frente": {
+   "bytes": 26900,
+   "gzip": 4857,
+   "caminhos": 69,
+   "recortes": 0,
+   "bytesMini": 15970,
+   "recortesMini": 0,
+   "msPorQuadro": 1.16
+  },
+  "pele/agach": {
+   "bytes": 21955,
+   "gzip": 4320,
+   "caminhos": 53,
+   "recortes": 7,
+   "bytesMini": 17626,
+   "recortesMini": 7,
+   "msPorQuadro": 0.62
+  },
+  "pele/supino": {
+   "bytes": 20189,
+   "gzip": 4183,
+   "caminhos": 48,
+   "recortes": 7,
+   "bytesMini": 13608,
+   "recortesMini": 1,
+   "msPorQuadro": 0.51
+  },
+  "pele/puxada": {
+   "bytes": 22752,
+   "gzip": 4732,
+   "caminhos": 57,
+   "recortes": 7,
+   "bytesMini": 16343,
+   "recortesMini": 1,
+   "msPorQuadro": 0.59
+  },
+  "pele/frente": {
+   "bytes": 29418,
+   "gzip": 5199,
+   "caminhos": 73,
+   "recortes": 2,
+   "bytesMini": 17250,
+   "recortesMini": 0,
+   "msPorQuadro": 0.8
+  }
+ },
+ "hoje": {
+  "Em pé": {
+   "bytes": 16093,
+   "gzip": 2745,
+   "caminhos": 54,
+   "recortes": 2
+  },
+  "Agachamento": {
+   "bytes": 13515,
+   "gzip": 1979,
+   "caminhos": 51,
+   "recortes": 1
+  },
+  "Com o músculo": {
+   "bytes": 14214,
+   "gzip": 2244,
+   "caminhos": 54,
+   "recortes": 1
+  },
+  "Flexão, com o músculo": {
+   "bytes": 16203,
+   "gzip": 2478,
+   "caminhos": 49,
+   "recortes": 1
+  },
+  "Supino, com o músculo": {
+   "bytes": 16483,
+   "gzip": 2552,
+   "caminhos": 58,
+   "recortes": 1
+  },
+  "No cabo, com o músculo": {
+   "bytes": 15883,
+   "gzip": 2991,
+   "caminhos": 61,
+   "recortes": 1
+  }
+ },
+ "codigo": {
+  "arquivos": "figura.mjs + tinta.mjs + musculos-prova.mjs + as tabelas de boneco-prova.mjs",
+  "minificado": 28262,
+  "gzip": 11037
+ }
+}
