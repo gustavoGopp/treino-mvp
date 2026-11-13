@@ -9,6 +9,21 @@ import { colocar, comSombra, entre, espelhar, faixa, foraDe, grupo, membro, meno
 
 const p2 = (v) => [v[0], v[1]];
 const pt = (p) => `${r1(p[0])} ${r1(p[1])}`;
+// tons de pele (ideia 28: a pessoa escolhe em "Meus dados"); o padrão é o 'media'
+const PELES = {
+  clara: { claro: { pele: '#efc8a8', peleSombra: '#d5a683', peleLuz: '#f8ddc5', linhaMus: '#d0a07c', musculoParado: '#f4d2b6' }, escuro: { pele: '#e6bd9c', peleSombra: '#c59a78', peleLuz: '#f1d2b8', linhaMus: '#c39874', musculoParado: '#ecc6a7' } },
+  morena: { claro: { pele: '#b97f57', peleSombra: '#9a643f', peleLuz: '#cd966e', linhaMus: '#9c6742', musculoParado: '#c48a62', cabelo: '#1f1a17', musS: '#e39f8c', musSb: '#b8705c' }, escuro: { pele: '#b47a53', peleSombra: '#93603c', peleLuz: '#c8926a', linhaMus: '#97633f', musculoParado: '#bf855d', cabelo: '#6b5546', musS: '#e39f8c', musSb: '#b8705c' } },
+  escura: { claro: { pele: '#7f5237', peleSombra: '#653f28', peleLuz: '#97664a', linhaMus: '#643f29', musculoParado: '#8b5c40', cabelo: '#17120f', musP: '#de5d4b', musPb: '#b23f2f', musS: '#d99380', musSb: '#b06a57', musA: '#d08571' }, escuro: { pele: '#8a5b3f', peleSombra: '#6e452d', peleLuz: '#a17053', linhaMus: '#6d4630', musculoParado: '#966548', cabelo: '#57463b', musP: '#de5d4b', musPb: '#b23f2f', musS: '#d99380', musSb: '#b06a57', musA: '#d08571' } },
+};
+// boné: [para a frente, para cima] a partir da base do crânio (de lado) e metade direita (de frente)
+const BONE_L = [[-1.2, 4.2], [-0.4, 8.4], [3.6, 12.5], [9.2, 14.1], [14.6, 12.7], [18.2, 8.9], [19.2, 6.2], [10, 6.0], [3, 4.4]];
+const ABA_L = [[17.4, 7.9], [24.4, 6.1], [25.1, 4.9], [19, 4.9], [17.6, 5.6]];
+const BONE_F = [[0, 14.2], [-5, 13.4], [-8.6, 10], [-9.4, 5.3], [-4, 6.3], [0, 6.7]];
+const ABA_F = [[-6.9, 6.5], [-4.2, 4.5], [0, 3.9], [4.2, 4.5], [6.9, 6.5], [0, 7.1]];
+// polegar por cima da mão que segura (de lado) e da mão solta (de frente), e as linhas dos dedos
+const POLEGAR_L = [[1.2, 3.0], [4.6, 6.0], [8.2, 6.6], [9.6, 5.2], [7, 4.0], [3.6, 2.0]];
+const DEDOS_L = [[[7.2, 2.4], [9.8, 1.8]], [[7.5, 0], [10.3, -0.5]], [[7.1, -2.4], [9.5, -3.1]]];
+const POLEGAR_F = [[1.6, 1.4], [5, 3.5], [8.4, 4.1], [9.3, 2.9], [6.4, 1.9], [3, 0.5]];
 // mão espalmada no chão, vista de lado: [do punho para a ponta dos dedos, para cima]
 const MAO_CHAO = [[-1.6, 1.9], [3, 2.1], [9, 0.7], [16, -0.9], [18.6, -1.7], [18.4, -2.3, 'c'], [-1.6, -2.3, 'c']];
 
@@ -64,7 +79,8 @@ function paleta(c, tema) {
     linhaMus: claro ? '#c08b64' : '#a67750', musculoParado: claro ? '#dfad87' : '#d5a27b',
     pino: claro ? '#5d4a3c' : '#2a1f18',
   };
-  const C = { ...base, ...(c.cores ? c.cores(tema, base) : {}) };
+  const C = { ...base, ...(c.tom ? PELES[c.tom][tema] : {}), ...(c.cores ? c.cores(tema, base) : {}) };
+  C.bone ??= C.short;
   // a roupa em véu (quando o músculo aparece por baixo dela): meio caminho entre o tecido calmo e a pele
   C.roupaVeu ??= misturar(C.pele, claro ? '#aeb7bf' : '#5d6975', 0.5);
   C.shortVeu ??= misturar(C.pele, claro ? '#6a7682' : '#3d4954', 0.5);
@@ -124,7 +140,7 @@ degrade.n = 0;
 function pintar(formas, c, C, { sobre = [], semLinhaSobre = null, luz = [1.9, 2.4] } = {}) {
   const op = {};
   if (c.contorno) {
-    op.contorno = { cor: C.contorno, esp: c.contorno };
+    op.contorno = { cor: c.contornoNaCor ? 'propria' : C.contorno, esp: c.contorno };
     if (semLinhaSobre) op.semLinhaSobre = semLinhaSobre;
   } else if (c.folga && sobre.length) op.linhaSoSobre = { cor: C.fundo, esp: c.folga, sobre };
   if (c.sombra === 'recortada') op.preencher = comSombra(luz);
@@ -266,10 +282,16 @@ export function figura(pose, vista, c, o = {}) {
       s += pintar(perna, c, C, { sobre: [tronco, pescoco].filter(Boolean), semLinhaSobre: c.forma === 'barra' ? null : [pelve] });
       desenhadas.push(coxa, canela, pe, short);
     }
+    if (c.bone) s += pintar([{ d: suave(colocar(BONE_L, p2(rc.o), rc.z, rc.y, kc)), ...par(C.bone) }, { d: suave(colocar(ABA_L, p2(rc.o), rc.z, rc.y, kc)), ...par(C.bone) }], c, C, { sobre: [cabeca, cabelo].filter(Boolean) });
     s += mus((m) => !DO_TRONCO.includes(m.id) && !DO_BRACO.includes(m.id));
     if (o.halter) s += halter(o.halter.map((q) => vezes(q, esc.corpo)), c, C);
     if (c.pecas) s += grupoDe([{ d: braco, ...pelePar }]) + grupoDe([{ d: ante, ...pelePar }]) + grupoDe([{ d: mao, ...pelePar }]);
     else s += grupoDe([{ d: braco, ...Z.braco }, { d: ante, ...pelePar }, { d: mao, ...pelePar }]);
+    if (c.mao === 'polegar' && mao && !maoNoChao && o.halter) {
+      const km = esc.extremo * esc.corpo, la = (pts) => colocar(pts, J('punho'), uMao, normal(uMao), km);
+      s += pintar([{ d: suave(la(POLEGAR_L)), ...pelePar }], c, C, { sobre: [mao] });
+      s += DEDOS_L.map((l) => `<path d="${suave(la(l), false)}" fill="none" stroke="${C.peleSombra}" stroke-width="0.45" stroke-linecap="round"/>`).join('');
+    }
     s += mus((m) => DO_BRACO.includes(m.id));
     if (c.juntas) for (const n of c.juntas === 'pino' ? ['quadril', 'joelho', 'tornozelo', 'ombro', 'cotovelo', 'punho'] : ['quadril', 'joelho', 'ombro', 'cotovelo']) s += junta(c.juntas, J(n), C);
     return s;
@@ -320,7 +342,10 @@ export function figura(pose, vista, c, o = {}) {
     const uMao = uni(menos(m(peg), m(pun)));
     const maoPts = colocar(espelha ? MAO_F.map(([x, y]) => [x, -y]) : MAO_F, m(pun), uMao, normal(uMao), esc.extremo * k);
     const mao = c.forma === 'barra' ? null : c.forma === 'recorte' ? poli(rarear(maoPts, 2), 0.9) : suave(maoPts);
-    return { coxa, canela, pe, braco, ante, mao, shortPerna };
+    const naMao = (pts) => colocar(espelha ? pts.map(([x, y]) => [x, -y]) : pts, m(pun), uMao, normal(uMao), esc.extremo * k);
+    const polegar = c.mao === 'polegar' && mao ? suave(naMao(POLEGAR_F)) : null;
+    const dedo = c.mao === 'polegar' && mao ? suave(naMao([[9.6, 0.5], [15.6, 0.2]]), false) : null;
+    return { coxa, canela, pe, braco, ante, mao, shortPerna, polegar, dedo };
   };
   const d = lado(false), e = lado(true);
   const desenhadas = [];
@@ -355,11 +380,13 @@ export function figura(pose, vista, c, o = {}) {
     if (c.cabelo) corpo.push({ d: cabelo, ...cabeloPar });
     s += grupoDe(corpo);
   }
+  if (c.bone) s += pintar([{ d: suave(inteiro(cab(BONE_F))), ...par(C.bone) }, ...(deCostas ? [] : [{ d: suave(cab(ABA_F)), ...par(C.bone) }])], c, C, { sobre: [cabeca, cabelo].filter(Boolean), luz: [-2.0, 2.3] });
   if (c.rostoDeFrente && !deCostas) for (const sx of [-1, 1]) s += `<circle cx="${r1(rc.o[0] + sx * 3.2 * kc)}" cy="${r1(rc.o[1] + 0.6 * kc)}" r="${r1(0.8 * kc)}" fill="${C.cabelo}"/>`;
   s += mus((m) => !DO_BRACO.includes(m.id));
   for (const l of [d, e]) {
     if (c.pecas) s += grupoDe([{ d: l.braco, ...pelePar }]) + grupoDe([{ d: l.ante, ...pelePar }]) + grupoDe([{ d: l.mao, ...pelePar }]);
     else s += pintar([{ d: l.braco, ...Z.braco }, { d: l.ante, ...pelePar }, { d: l.mao, ...pelePar }].filter((f) => f.d), c, C, { sobre: desenhadas.slice(), luz: [-2.0, 2.3] });
+    if (l.polegar) s += pintar([{ d: l.polegar, ...pelePar }], c, C, { sobre: [l.mao], luz: [-2.0, 2.3] }) + `<path d="${l.dedo}" fill="none" stroke="${C.peleSombra}" stroke-width="0.45" stroke-linecap="round"/>`;
   }
   s += mus((m) => DO_BRACO.includes(m.id));
   if (c.juntas) for (const sx of [1, -1]) for (const q of [J('quadril'), J('joelho'), ...(c.juntas === 'pino' ? [J('tornozelo')] : []), J('ombro'), cot, ...(c.juntas === 'pino' ? [pun] : [])]) s += junta(c.juntas, [sx * q[0], q[1]], C);

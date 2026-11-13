@@ -31,3 +31,24 @@ Limites do que foi desenhado (para ele saber o que está julgando): é um corpo 
 **Decisão do Gustavo (13/11/2026):** "pode ser 1, 2, 3, 6 e 10". Ficam **1 (Hoje, com corpo de gente), 2 (Gente simples), 3 (Traço e cor), 6 (Marionete de papel) e 10 (Atlas)**. Saem 4 (Recorte), 5 (Pictograma vestido), 7 (Prancheta), 8 (Cartaz), 9 (Massa leve) e 11 (Compacto).
 
 **Leitura minha:** ele manteve todos os de forma curva e proporção real e tirou os de forma estilizada (recorte, barras, compacto) e os de sombra (cartaz, massa leve). Manteve dois com contorno (1 e 3), que eu teria tirado: o "sem contorno" da pergunta 1 era mesmo uma preferência leve. Manteve o cinza do boneco de hoje (1) ao lado da pessoa com cor de pele (2, 3, 6, 10): a comparação entre os dois mundos continua aberta. E tirou o 8 e o 4, que eu teria mantido.
+
+## Rodada 2 (13/11/2026): os cinco que ficaram, com variações de detalhe
+
+- **Quadro:** `rodada-2/quadro.png`. Como gerar de novo: `node scripts/boneco-desenho/rodada2.mjs`.
+- Em cada faixa, A é a base da rodada 1 e as outras células mudam uma coisa só. Cada célula mostra a figura em pé e no fundo do agachamento, com o músculo. A última célula é a base no tema escuro.
+
+| Conceito | B · cabeça | C · mão | D · traço ou junta | E · cor |
+|---|---|---|---|---|
+| 1 · Hoje, com corpo de gente | com cabelo | com polegar e dedos | traço fino | cinza quente, de short e tênis (o músculo passa a aparecer por baixo do short) |
+| 2 · Gente simples | de boné | com polegar e dedos | contorno suave, na cor de cada parte | roupa na cor do app e outro tom de pele |
+| 3 · Traço e cor | de boné | com polegar e dedos | traço grosso | roupa na cor do app e outro tom de pele |
+| 6 · Marionete de papel | de boné | com polegar e dedos | sem o pino, só as peças | roupa na cor do app e outro tom de pele |
+| 10 · Atlas | de boné | com polegar e dedos | contorno suave, na cor de cada parte | short na cor do app e outro tom de pele |
+
+O "outro tom de pele" é um exemplo da ideia 28 (a pessoa escolhe o tom em "Meus dados"). As variações podem ser combinadas.
+
+O que ficou de fora desta rodada, de propósito: a segunda pessoa (mulher), a camiseta com manga e o mapa de músculos ao lado. Entram na ficha final como perguntas próprias, depois de escolhido o desenho.
+
+**Minha recomendação (opinião):** finalistas 2 e 10, os dois com a mão C (com polegar) e a cor E (tom de pele à escolha). O 2 é a pessoa simples e vestida; o 10 é o mesmo corpo com os músculos sempre à mostra, que é o pedido de "corpo e músculos mais fiéis". Os dois são diferentes o bastante para a rodada 3 valer a pena. O 3 é o 2 com traço: se ele preferir com traço, o 3 entra no lugar do 2. O 1 volta ao cinza, e o pino do 6 pesa no tamanho pequeno.
+
+**Decisão do Gustavo:** (aguardando)

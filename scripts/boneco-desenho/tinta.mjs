@@ -148,7 +148,11 @@ export function recorte(ds, conteudo) {
  */
 export function grupo(formas, { contorno = null, semLinhaSobre = null, linhaSoSobre = null, preencher = null } = {}) {
   let s = '';
-  const traco = (cor, esp) => formas.map((f) => `<path d="${f.d}" fill="${cor}" stroke="${cor}" stroke-width="${r1(esp * 2)}" stroke-linejoin="round"/>`).join('');
+  // cor 'propria' = cada forma ganha o traço num tom escuro da sua própria cor (contorno colorido, mais suave)
+  const traco = (cor, esp) => formas.map((f) => {
+    const c = cor === 'propria' ? misturar(f.cor, '#16202a', 0.42) : cor;
+    return `<path d="${f.d}" fill="${c}" stroke="${c}" stroke-width="${r1(esp * 2)}" stroke-linejoin="round"/>`;
+  }).join('');
   if (contorno) {
     if (semLinhaSobre?.length) {
       s += foraDe(semLinhaSobre, traco(contorno.cor, contorno.esp));
