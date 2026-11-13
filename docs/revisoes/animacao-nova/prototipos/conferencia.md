@@ -187,7 +187,7 @@ Estas linhas ainda não têm fonte lida. Não são falha de uma animação, e si
 - escapula.altura = 15.5 cm (do ângulo superior ao inferior: a conferir (pesquisa 03))
 - escapula.largura = 10.5 cm (da borda medial à cavidade do ombro: a conferir (pesquisa 03))
 
-### Objetos (14)
+### Objetos (16)
 - halter.caboComp = 13 cm (comprimento livre do cabo entre as cabeças: nenhuma ficha lida informa)
 - bancoReto.tubo = 5 cm (lado do tubo da estrutura: nenhuma ficha lida informa)
 - anilhaCalcanhar.esp = 2.4 cm (espessura da anilha de 10 lb: a Rogue não informa)
@@ -202,3 +202,5 @@ Estas linhas ainda não têm fonte lida. Não são falha de uma animação, e si
 - colchonete.comp = 100 cm (sem medida lida)
 - colchonete.larg = 50 cm (sem medida lida)
 - colchonete.esp = 1.5 cm (sem medida lida)
+- bancoRegulavel.assentoComp = 34 cm (comprimento só do assento: nenhuma ficha lida separa assento e encosto)
+- bancoRegulavel.tubo = 6 cm (lado do tubo da estrutura: nenhuma ficha lida informa)

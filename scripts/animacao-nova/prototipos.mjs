@@ -4,7 +4,7 @@
 //   folha-<id>.png       folha de contato de cada âncora, ao lado da versão de hoje (motor do app, só leitura)
 //   medidas.json         peso do pacote e tempo por quadro, hoje e novo (no Chromium com a CPU 4x mais lenta)
 // Uso: node scripts/animacao-nova/prototipos.mjs [so-pagina|so-folhas|so-medidas]
-/* global MOTOR, HOJE, document, performance */
+/* global MOTOR, HOJE */
 import { build } from 'esbuild';
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs';
 import { gzipSync } from 'node:zlib';
