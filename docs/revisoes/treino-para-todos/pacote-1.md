@@ -241,7 +241,7 @@ Testes novos: `tests/unit/tempo-que-sobra.test.ts` (15 testes, em 156 combinaç�
 | O protótipo com a regra ligada dá o mesmo programa que o app | sim, nas 12 personas (`prototipo-treino-para-todos.test.ts`) |
 | A régua antes e depois, por grupo | [`qa.md`](qa.md): nenhum defeito sobe em nenhum grupo |
 | A simulação de meses (o aviso de "sem melhora") | refeita: idêntica à da etapa 1 (ela segue um exercício com séries fixas; este pacote não mexe na progressão) |
-| `npm run auditoria:verificar` (a auditoria oficial, duas rodadas com arquivos idênticos, e a linha de base da régua) | em andamento quando este relatório foi escrito; o resultado entra aqui |
+| `npm run auditoria:verificar` (a auditoria oficial, duas rodadas com arquivos idênticos, e a linha de base da régua) | limpo: **39 arquivos idênticos nas duas rodadas**; a régua oficial não acusa nenhum defeito acima da linha de base (que não foi regravada). Nela, sem dor, os programas sem defeito vão de 86,1% para 91,2%; com dor, ficam em 74,3% |
 | `src/engine/`, telas, `api/`, `src/storage/` | sem mudança. Fora de `src/domain/`, mudou só `src/conteudo/fontes.json`, que é gerado a partir de `docs/pesquisa/fontes.md` (entrou a fonte `schoenfeld2021b`, citada pela regra) |
 
 ## 8. Para quem já usa
