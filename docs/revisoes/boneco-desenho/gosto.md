@@ -41,7 +41,7 @@ Cada pergunta mostra o mesmo "boneco de prova" (um desenho feito só para estas 
 | 4 | Chapado ou com volume? | `gosto/par-4-volume.png` | **A, chapado** ("pode ser A", 13/11/2026). |
 | 5 | Proporção real ou levemente estilizada? | `gosto/par-5-proporcao.png` | **A, proporção real** ("pode ser A", 13/11/2026). |
 | 6 | Cinza neutro, cor de pele ou a cor do app? | `gosto/par-6-cor.png` | **B, cor de pele** ("b", 13/11/2026). Foi a primeira resposta sem "pode ser" e a primeira contra a minha opinião (eu tinha dito A, cinza). |
-| 7 | Traço fino ou traço grosso? | `gosto/par-7-traco.png` | |
+| 7 | E se fosse um desenho de linha: traço fino, traço grosso, ou formas preenchidas? (adaptada, porque ele escolheu "sem contorno" na 1) | `gosto/par-7-traco.png` | **C, formas preenchidas** ("pode ser C", 13/11/2026). O desenho só de linha não o atraiu. |
 | 8 | O músculo no corpo ou num mapa ao lado? | `gosto/par-8-musculo.png` | |
 
 As pranchas 2 a 8 são regeradas com o que ele já tiver escolhido nas anteriores (a base passa como JSON para o script).
