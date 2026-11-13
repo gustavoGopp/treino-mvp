@@ -458,10 +458,25 @@ export function resolverMembros(t: Tronco, braco: Record<Lado, PoseBraco>, perna
 export const resolver = (corpo: Corpo, pose: Pose): Esq => resolverMembros(resolverTronco(corpo, pose.tronco), pose.braco, pose.perna);
 
 /** A pose em pé, braços ao lado do corpo e palmas para as coxas (para a calibração, os testes e a folha do corpo). */
-export function poseEmPe(corpo: Corpo): Pose {
+/**
+ * Em pé, parado. `abrir` afasta os braços do corpo, em graus, girando em torno do ombro (0 = pendurados na vertical).
+ * No desenho aprovado do Boneco, os braços pendurados aparecem 6° afastados (scripts/boneco-desenho/figura.mjs).
+ */
+export function poseEmPe(corpo: Corpo, abrir = 0): Pose {
   const m = (id: string) => corpo.m(id);
   const h = m('quadril.meiaDistancia');
   const braco = (s: number): PoseBraco => ({ pegada: [s * (m('ombro.meiaDistancia') + 3.5), m('altura.punho') - m('mao.punhoAoCentroDaPegada'), 1], polo: [0, 0, -1], mao: { polegar: [0, 0, 1], forma: 'relaxada' } });
   const perna = (s: number): PosePerna => ({ pe: { bola: [s * (h + 1), 0, m('pe.calcanharABola') - m('pe.calcanharAoTornozelo')], dir: [s * 0.12, 0, 1] }, polo: [s * 0.1, 0, 1] });
-  return { tronco: { pelve: [0, m('altura.trocanter'), 0] }, braco: { R: braco(-1), L: braco(1) }, perna: { R: perna(-1), L: perna(1) } };
+  const pose: Pose = { tronco: { pelve: [0, m('altura.trocanter'), 0] }, braco: { R: braco(-1), L: braco(1) }, perna: { R: perna(-1), L: perna(1) } };
+  if (!abrir) return pose;
+  const e = resolver(corpo, pose);
+  for (const k of LADOS) {
+    const o = e.lado[k].ombro,
+      p = pose.braco[k].pegada as V3,
+      a = (sinal(k) * abrir * Math.PI) / 180;
+    const dx = p[0] - o[0],
+      dy = p[1] - o[1];
+    pose.braco[k] = { ...pose.braco[k], pegada: [o[0] + dx * Math.cos(a) - dy * Math.sin(a), o[1] + dx * Math.sin(a) + dy * Math.cos(a), p[2]] };
+  }
+  return pose;
 }

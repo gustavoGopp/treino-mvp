@@ -16,3 +16,4 @@ export { puxadaUnilateral } from './exercicios/puxada-unilateral';
 export * from './conferir';
 export * from './manequim';
 export * from './figuras';
+export * from './boneco';
