@@ -86,7 +86,16 @@ try {
     await page.waitForTimeout(1200);
     await page.screenshot({ path: `${pasta}/${nome}.png`, fullPage: !!process.env.INTEIRA });
     const rolaDeLado = await page.evaluate(() => document.documentElement.scrollWidth > innerWidth + 1);
-    console.log(`${nome}: erros no console ${erros.length}${erros.length ? ` (${erros[0].slice(0, 120)})` : ''}; rola para o lado: ${rolaDeLado ? 'SIM' : 'não'}`);
+    // quem passa da borda direita (os 6 primeiros), para achar o culpado da rolagem de lado
+    const passam = rolaDeLado
+      ? await page.evaluate(() =>
+          [...document.querySelectorAll('body *')]
+            .filter((el) => el.getBoundingClientRect().right > innerWidth + 1 && el.getBoundingClientRect().width > 0)
+            .slice(0, 6)
+            .map((el) => `${el.tagName.toLowerCase()}.${String(el.className?.baseVal ?? el.className).replace(/\s+/g, '.')} (${Math.round(el.getBoundingClientRect().right)})`),
+        )
+      : [];
+    console.log(`${nome}: erros no console ${erros.length}${erros.length ? ` (${erros[0].slice(0, 120)})` : ''}; rola para o lado: ${rolaDeLado ? `SIM → ${passam.join(', ')}` : 'não'}`);
     await ctx.close();
   }
 } finally {

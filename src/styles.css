@@ -669,7 +669,8 @@ body:has(.invertida){background:var(--inv-fundo)}
 .app .cab-treino > a.volta-inicio{width:var(--h48);min-height:var(--h48);display:inline-grid;place-items:center start;margin-left:calc(-1 * var(--s4));padding:0;color:var(--texto)}
 /* com uma folha aberta, o que não responde ao toque no cabeçalho fica apagado (só o "Senti algo" segue vivo) */
 .cab-treino > [inert]{opacity:.35}
-.cab-treino .iconbtn,.cab-treino .mais-op{background:none;color:var(--texto)}
+.cab-treino .iconbtn,.cab-treino .mais-op{background:none;color:var(--texto);flex:none}
+.app .cab-treino > a.volta-inicio,.cab-treino .alerta-topo{flex:none}
 .cab-treino .topo-volta{margin-right:auto;margin-left:calc(-1 * var(--s8));gap:var(--s4);color:var(--texto);text-decoration:none}
 /* "Senti algo": a única cor da interface, sempre no mesmo lugar */
 .alerta-topo{display:inline-flex;align-items:center;gap:var(--s8);min-height:var(--h48);padding:0 var(--s16);border-radius:var(--r8);border:0;background:var(--alerta-suave);color:var(--alerta);font-weight:600;font-size:var(--t-corpo);cursor:pointer;white-space:nowrap;flex:none}
@@ -868,8 +869,10 @@ a.faixa-descanso{text-decoration:none}
 .como-ler dd{margin:0}
 .resumo-ex{padding:var(--s16) 0}
 
-/* abaixo de 390 px o "1 de 6" não cabe ao lado do "Senti algo": fica só para o leitor de tela (o traço do progresso mostra) */
-@media (max-width:389px){
+/* quando o cabeçalho não tem largura para o "1 de 6" ao lado do "Senti algo" (celular estreito, letra do sistema maior),
+   ele fica só para o leitor de tela: o traço do progresso continua mostrando. A medida é em rem, pelo cabeçalho. */
+header.top:has(.cab-treino){container-type:inline-size;container-name:cab}
+@container cab (max-width:21.75rem){
   .app .cab-treino > .onde-treino{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
   .app .cab-treino > a.volta-inicio{margin-right:auto}
 }
@@ -900,6 +903,17 @@ a.faixa-descanso{text-decoration:none}
   .cab-treino{flex-wrap:wrap}
   .cab-treino .alerta-topo{flex:1 1 100%;justify-content:center;white-space:normal}
   .cab-treino .topo-volta{white-space:normal}
+  /* e o que estava numa linha só quebra: o título da série com os traços, o contador do guia com as setas, a prescrição */
+  .serie-tit,.exhead-topo{flex-wrap:wrap}
+  .seg{flex-wrap:wrap}
+  .seg button{min-width:0;padding:0 var(--s4)}
+  /* semana e evolução: cada linha empilha (nome e número em cima, a barra embaixo; a série e a marca, uma por linha) */
+  .musculos li{grid-template-columns:1fr auto;grid-template-areas:"nome num" "barra barra" "estado estado";gap:var(--s4) var(--s8)}
+  .m-num{min-width:0}
+  .pontos-evolucao li{grid-template-columns:1fr}
+  .pe-marcas{justify-content:flex-start}
+  .rx .nw{white-space:normal}
+  .treino-tela{--t-relogio:4.5rem}
   .stage .hud{flex-wrap:wrap}
   button.cartao-ex-corpo{grid-template-columns:var(--s16) 1fr auto}
   button.cartao-ex-corpo .miniatura{display:none}

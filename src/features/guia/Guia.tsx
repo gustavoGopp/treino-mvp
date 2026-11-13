@@ -438,13 +438,18 @@ function GuiaExercicio({ ex, grupos }: { ex: Ficha; grupos: Grupo[] }) {
                       {t}
                     </span>
                   </span>
-                ))}{' '}
+                ))}
+              </div>
+            ) : (
+              <div className="rx">As séries, as repetições e o RIR vêm do seu programa.</div>
+            )}
+            {/* a evidência da prescrição a um toque, com o que é o RIR */}
+            {minha && (
+              <div className="rx">
                 <PorQue regras={['rir.leitura', ...(minha.fase?.rir ? [minha.fase.regraId] : [])]} titulo="A prescrição de hoje">
                   <p>RIR é “repetições na reserva”: quantas repetições ainda sobravam quando você parou. RIR 2 quer dizer que dava para fazer mais 2.</p>
                 </PorQue>
               </div>
-            ) : (
-              <div className="rx">As séries, as repetições e o RIR vêm do seu programa.</div>
             )}
             <div className="tg">
               <b>Alvo:</b> {txt.target}
