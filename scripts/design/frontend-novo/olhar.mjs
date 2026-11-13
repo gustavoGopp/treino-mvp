@@ -4,7 +4,8 @@
 // Uso (com o build pronto em dist/):
 //   node scripts/design/frontend-novo/olhar.mjs <pasta> <largura>x<altura> <claro|escuro> <nome>=<rota>[>>toque>>toque…] …
 //   um toque é o nome acessível de um botão ou link; "css:<seletor>" toca num seletor; "html:<seletor>" imprime o HTML
-// Opções por variável: LETRA=125 (letra do sistema em 125%), PARADO=1 (prefers-reduced-motion), INTEIRA=1 (página inteira)
+// Opções por variável: LETRA=125 (letra do sistema em 125%), PARADO=1 (prefers-reduced-motion), INTEIRA=1 (página inteira),
+// ERRO=1 (força a tela de erro, pela chave de teste do app)
 import { spawn } from 'node:child_process';
 import { mkdirSync } from 'node:fs';
 import { build } from 'esbuild';
@@ -69,6 +70,7 @@ try {
         p.onerror = () => erro(p.error);
       });
     }, estado);
+    if (process.env.ERRO) await page.evaluate(() => sessionStorage.setItem('treino-teste-erro', '1'));
     await page.goto(`http://localhost:4173${rota}`);
     if (process.env.LETRA) await page.addStyleTag({ content: `html{font-size:${process.env.LETRA}% !important}` });
     await page.waitForTimeout(1200);

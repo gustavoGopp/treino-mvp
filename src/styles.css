@@ -213,7 +213,7 @@ header.top{position:sticky;top:0;z-index:4;background:var(--fundo);padding:var(-
 .opcao.divisao small{color:var(--texto-2);font-size:var(--t-apoio);font-weight:400}
 .opcao .curta{display:block;font-weight:600}
 .opcao .longa{display:block;margin-top:var(--s4);font-weight:400;font-size:var(--t-apoio);color:var(--texto-2)}
-.opcao > span{min-width:0;overflow-wrap:break-word;hyphens:auto}
+.opcao > span{min-width:0;overflow-wrap:break-word;hyphens:manual}
 .etiqueta{display:inline-block;margin-left:var(--s8);font-size:var(--t-rotulo);font-weight:600;letter-spacing:.08em;text-transform:uppercase;opacity:.8}
 .numero{display:flex;align-items:center;gap:var(--s8)}
 .numero input,select,.campo-texto,#nome-local,.busca input{font:inherit;font-size:var(--t-pergunta);min-height:var(--h56);padding:var(--s8) var(--s16);border:0;border-radius:var(--r8);background:var(--superficie-2);color:var(--texto);width:100%;box-shadow:inset 0 -2px 0 var(--borda)}
@@ -417,6 +417,10 @@ details.campo .opcoes{margin-top:var(--s8)}
 .errchip[aria-pressed="true"]{color:var(--texto);font-weight:600}
 .quick{display:grid;grid-template-columns:1fr;gap:var(--s32)}
 .bloco-guia{border-top:1px solid var(--linha);padding-top:var(--s16)}
+/* um bloco separado por linha fina, no lugar de uma caixa (tela de erro) */
+.bloco-linha{border-top:1px solid var(--linha);padding-top:var(--s24)}
+.bloco-linha > h2{margin:0;font-size:var(--t-pergunta);font-weight:600;letter-spacing:-.01em}
+.bloco-linha > p{margin:0}
 .bloco-guia > h2.rotulo{margin:0 0 var(--s8)}
 .box h2.rotulo-caixa{font-size:var(--t-rotulo);font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--texto-2)}
 .cues{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:var(--s8);counter-reset:c}
@@ -499,10 +503,12 @@ footer ul{margin:0;padding-left:var(--s24);font-size:var(--t-apoio);display:flex
 .marcados li{display:flex;align-items:center;gap:var(--s8);padding:var(--s8) 0;min-height:var(--h64)}
 .marcado-nome{flex:1;min-width:0;display:flex;flex-direction:column;overflow-wrap:break-word;font-weight:500}
 .marcado-nome small{font-size:var(--t-apoio);color:var(--atencao);font-weight:600}
-.marcados .btn{flex:0 0 auto;width:auto}
+.marcados .btn{flex:0 0 auto;width:auto;align-self:center}
+/* na folha, o título da folha já diz "Reconhecer pela foto" */
+.folha .foto-eq > h2{display:none}
 .grade-2{display:grid;grid-template-columns:1fr 1fr;gap:var(--s8)}
 .item-eq{position:relative;min-height:calc(var(--h56) * 2);display:flex;flex-direction:column;align-items:flex-start;justify-content:space-between;gap:var(--s8);padding:var(--s16);border-radius:var(--r8);background:var(--superficie-2);cursor:pointer;font-weight:600;line-height:1.2;overflow-wrap:break-word;min-width:0}
-.item-eq > span:not(.estado){min-width:0;max-width:100%;hyphens:auto}
+.item-eq > span:not(.estado){min-width:0;max-width:100%;hyphens:manual}
 .item-eq input{position:absolute;opacity:0;width:1px;height:1px}
 .item-eq .estado{font-size:var(--t-rotulo);font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--texto-2)}
 .item-eq .estado::before{content:"+ marcar"}
@@ -520,8 +526,8 @@ footer ul{margin:0;padding-left:var(--s24);font-size:var(--t-apoio);display:flex
 /* os desenhos realistas do equipamento, num ladrilho claro nos dois temas (o desenho tem as cores dele) */
 img.icone-eq{display:block;flex:none;object-fit:contain;background:#F6F6F4;border-radius:var(--r8)}
 .item-eq img.icone-eq{width:100%;max-width:7rem;height:auto;aspect-ratio:4/3}
-.marcados img.icone-eq{width:4rem;aspect-ratio:4/3}
-.sugestao-foto img.icone-eq{width:4rem;aspect-ratio:4/3}
+.marcados img.icone-eq{width:4rem;height:auto;aspect-ratio:4/3}
+.sugestao-foto img.icone-eq{width:4rem;height:auto;aspect-ratio:4/3}
 /* a foto do equipamento: sugestões com confirmação "Tenho / Não tenho" */
 .foto-eq{display:flex;flex-direction:column;gap:var(--s16)}
 .foto-eq h2{margin:0;font-size:var(--t-pergunta);font-weight:600}
@@ -619,7 +625,9 @@ a.cartao-ex-corpo:focus-visible,button.cartao-ex-corpo:focus-visible{outline:3px
 .cartao-texto-corpo p,.cartao-texto-corpo ul,.cartao-texto-corpo ol{margin:0}
 .cartao-texto .dicas li{font-size:var(--t-pergunta);font-weight:600;line-height:1.3;letter-spacing:-.01em}
 /* locais, troca explicada e "prefiro este" */
-.lista-locais{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:var(--s16)}
+.lista-locais{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:0;border-top:1px solid var(--linha)}
+/* cada local é uma linha da lista (o botão cinza some dentro de uma caixa cinza) */
+.lista-locais > .box{background:none;border-radius:0;padding:var(--s16) 0;border-bottom:1px solid var(--linha);display:flex;flex-direction:column;gap:var(--s8)}
 .acoes-local{display:flex;flex-wrap:wrap;gap:var(--s8);margin-top:var(--s8)}
 .onde-hoje{display:flex;flex-direction:column;gap:var(--s8)}
 .onde-hoje .opcoes{flex-direction:row;flex-wrap:wrap}
@@ -841,6 +849,8 @@ body:has(.invertida){background:var(--inv-fundo)}
   .cab-treino .volta-inicio{margin-right:auto}
   /* o nome do treino já é o título da tela: no botão ele fica só para o leitor de tela */
   .so-largo{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+  /* só na tela estreita a palavra comprida pode ser partida com hífen */
+  .opcao > span,.item-eq > span:not(.estado){hyphens:auto}
   .cab-treino .topo-volta{font-size:var(--t-apoio);white-space:nowrap}
   .cab-treino .alerta-topo{padding:0 var(--s8);white-space:nowrap}
 }
