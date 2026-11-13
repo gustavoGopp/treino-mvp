@@ -53,6 +53,10 @@ export function paleta({ cor = 'cinza', tema = 'claro', contorno = true }) {
     marca: claro
       ? { pele: '#9a97e6', peleSombra: '#7b77d0', roupa: '#5a55c4', roupaSombra: '#4843a8', short: '#3f3aa8', shortSombra: '#302c86', calcado: '#2a2675', cabelo: '#2a2675' }
       : { pele: '#7f86e6', peleSombra: '#646bcb', roupa: '#a9b3ff', roupaSombra: '#8d97ea', short: '#dfe3ff', shortSombra: '#c9cfff', calcado: '#e8eaff', cabelo: '#e8eaff' },
+    // desenho de linha: o corpo fica da cor do fundo e quem desenha é o traço; a roupa entra em blocos
+    linha: claro
+      ? { pele: FUNDO.claro, peleSombra: '#e3e8ec', roupa: '#e3e8ec', roupaSombra: '#cfd7dd', short: '#4b5a67', shortSombra: '#3a4853', calcado: '#2d3a45', cabelo: '#2d3a45' }
+      : { pele: FUNDO.escuro, peleSombra: '#1c262d', roupa: '#27323b', roupaSombra: '#1c262d', short: '#c3ced6', shortSombra: '#a9b5be', calcado: '#e7eef2', cabelo: '#e7eef2' },
   }[cor];
   return { ...base, fundo: FUNDO[tema], contorno: claro ? '#1d2a36' : '#e7eef2', ferro: claro ? '#27343f' : '#cfd8de', aco: '#8a98a3', chao: claro ? '#d5dce1' : '#33414b', musP: claro ? '#d62e26' : '#f45248', musS: claro ? '#ec961c' : '#f5aa3c', rosto: claro ? '#1d2a36' : '#10171b' };
 }

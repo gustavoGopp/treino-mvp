@@ -20,7 +20,7 @@ const anilha = (C) => `<rect x="-15" y="0" width="22.8" height="2.4" rx="0.6" fi
 /** As duas poses lado a lado num palco só, e a miniatura do agachamento. */
 function cena(o, extra = '') {
   const C = paleta(o);
-  const emPe = `<g transform="translate(-62 0)">${deFrente(empe, { ...o, musculo: null })}</g>`;
+  const emPe = `<g transform="translate(-62 0)">${deFrente(empe, { ...o, musculo: o.musculo ? 'frente' : null })}</g>`;
   const agacha = `<g transform="translate(52 0)">${anilha(C)}${deLado(agachado, { ...o, halter: HALTER })}</g>`;
   const grande = palco(emPe + agacha + extra, [-112, -10, 232, 200], 640, { fundo: C.fundo, chao: C.chao, raio: 14 });
   const mini = palco(`<g transform="translate(0 0)">${anilha(C)}${deLado(agachado, { ...o, halter: HALTER })}</g>`, [-68, -8, 136, 136], 96, { fundo: C.fundo, chao: C.chao, raio: 10 });
@@ -41,8 +41,8 @@ const PARES = [
   { n: 4, slug: 'volume', titulo: 'Chapado ou com volume?', opcoes: [['A · chapado', 'Cada parte de uma cor só.', { volume: false }], ['B · com volume', 'Uma sombra leve em dois tons dá corpo às formas.', { volume: true }]] },
   { n: 5, slug: 'proporcao', titulo: 'Proporção real ou levemente estilizada?', opcoes: [['A · proporção real', 'As medidas de uma pessoa (cerca de 7,7 cabeças de altura).', { proporcao: 'real' }], ['B · levemente estilizada', 'Cabeça um pouco maior e membros mais cheios (cerca de 6,3 cabeças).', { proporcao: 'estilizada' }]] },
   { n: 6, slug: 'cor', titulo: 'Cinza neutro, cor de pele ou a cor do app?', opcoes: [['A · cinza neutro', 'Como hoje: não é a pele de ninguém.', { cor: 'cinza' }], ['B · cor de pele', 'Uma pessoa. Obriga a escolher um tom de pele (aqui, um tom médio).', { cor: 'pele' }], ['C · cor do app', 'O roxo-azulado dos botões: o boneco vira parte da marca.', { cor: 'marca' }]] },
-  { n: 7, slug: 'traco', titulo: 'Traço fino ou traço grosso?', opcoes: [['A · traço fino', 'Linha delicada, de desenho técnico.', { contorno: true, esp: 0.65 }], ['B · traço grosso', 'Linha firme, que aguenta o tamanho pequeno.', { contorno: true, esp: 1.9 }]] },
-  { n: 8, slug: 'musculo', titulo: 'O músculo pintado no corpo ou num mapa ao lado?', opcoes: [['A · no próprio corpo', 'O músculo que trabalha aparece na figura que se mexe.', { musculo: 'corpo', roupa: false }], ['B · num mapa ao lado', 'A figura fica limpa; um corpo parado, de frente e de costas, mostra o músculo.', { musculo: null, mapa: true }]] },
+  { n: 7, slug: 'traco', titulo: 'E se fosse um desenho de linha: traço fino ou traço grosso?', opcoes: [['A · traço fino', 'Só a linha, delicada, de desenho técnico; a roupa em blocos.', { cor: 'linha', contorno: true, esp: 0.6 }], ['B · traço grosso', 'Só a linha, firme, que aguenta o tamanho pequeno.', { cor: 'linha', contorno: true, esp: 1.5 }], ['C · fico com as formas preenchidas', 'O que você escolheu na pergunta 1, para comparar.', {}]] },
+  { n: 8, slug: 'musculo', titulo: 'O músculo pintado no corpo ou num mapa ao lado?', opcoes: [['A · no próprio corpo', 'O músculo que trabalha aparece na figura que se mexe, por cima da roupa, como num diagrama.', { musculo: 'corpo' }], ['B · num mapa ao lado', 'A figura fica limpa; um corpo parado, de frente e de costas, mostra o músculo.', { musculo: null, mapa: true }]] },
 ];
 
 mkdirSync('docs/revisoes/boneco-desenho/gosto', { recursive: true });
