@@ -239,3 +239,33 @@ O que sobrou depois da sessão de correções de 12/11/2026 (`devlog.md`, "Corre
 **Repositório**
 - **Histórico do git**: os e-mails pessoais e o nome do empregador saíram dos arquivos, mas continuam nos commits antigos. Apagar de lá pede reescrever o histórico. **Fica como está (decidido em 12/11/2026):** reescrever muda todos os hashes, quebra os ramos e os PRs abertos e pede `push --force` na `main`.
 - **O motor segue com `@ts-nocheck` em 96 de 105 arquivos** (os exercícios do port e os 4 arquivos de base dele: `esqueleto.ts`, `math.ts`, `svg.ts`, `qa.ts`): tipá-los pede reescrever a animação. Em 12/11/2026 saiu de `desenho.ts`, `cena.ts` e `estilo/` (tipos em `engine/tipos.ts`, sem `any`, regressão do motor sem diferença). Achado da tipagem, sem mudança de comportamento: o estilo `a2` chega a funções cujo tipo declarado é `a` ou `b` (`vistaDaMiniatura`, `montarSvgEstilo`), e as classes saem `ea2-…`; conferir se é o desejado.
+
+## Do frontend novo (13/11/2026)
+
+O que sobrou da reconstrução na direção "Placar" (`devlog.md`, "Frontend novo"; conferência em `revisoes/frontend-novo/qa.md`).
+
+**Do revisor independente** (`revisoes/frontend-novo/revisao-bloco-2.md`; os números são os do parecer)
+- **23. A etiqueta "FIRME" no palco do guia** não se explica (é a respiração). O texto vem do motor: pedido 5 em `pedidos-ao-dominio.md`.
+- **25. Legenda do modo Técnica com duas amostras da mesma cor** ("linhas de referência" e "articulações", o mesmo verde): diferenciar pela forma (traço e círculo). As amostras usam as cores do desenho do Boneco.
+- **26. Linha de controles do guia**: pausar, voltar e "Lento" ficam à esquerda, com a vista (Lateral, Frontal) na linha de baixo; e o cartão marca "escolhido" de 3 jeitos (bloco preto, traço sob a aba, negrito na lista de erros). Pede um redesenho do cartão do palco.
+- **29. Folha do "por quê?"**: o texto da regra é o maior elemento e traz referências internas ("revista no R2"); o link "abrir a fonte" quebra no meio e tem cerca de 18 px de altura; fonte "título não conferido" aparece para a pessoa (pedido 8).
+- **31. Acessibilidade, o que faltou**: depois de salvar a série, o foco cai no corpo da página (deveria ir para o descanso); o botão "Série feita" desligado sai da ordem de foco (hoje a frase "Falta…" fica logo abaixo dele); no guia, nada recebe o foco ao abrir; o nome do exercício vem depois do palco na ordem de leitura.
+- **32. Miudezas**: "Calibração: Ficou pesada: …" com dois dois-pontos (pedido 6); as notas de dor de 0 a 10 quebram em 6 + 5; ícones de 20 e de 24 px na mesma barra; na tela invertida do fim do descanso, a miniatura continua clara e uma folha aberta sai no tema normal; "Desmarcar tudo" ligado sem nada marcado; o título da folha "Trocar só neste treino por:" termina em dois-pontos.
+- **10 (em parte). "Senti algo" em 320 px**: a nota de dor de 0 a 10, o uso mais comum, fica abaixo da dobra da folha, depois das 7 opções; e encerrar o treino por um sinal de alerta não pede confirmação (pedido 7).
+- **22 (em parte). Linha do tempo do guia**: o cursor passa por cima das palavras "descida" e "subida".
+- **30 (em parte). O guia completo sem estado de carregando nem de erro**: tela em branco enquanto carrega; se um arquivo de texto falhar, cai na tela de erro (pedido 9).
+
+**Do que só eu conferi**
+- **Revisão independente dos outros blocos**: início e folhas, fim do treino, semana e evolução, cadastro, Meus dados, locais e termos foram conferidos nas capturas e pelos testes, sem um revisor de fora. Vale repetir o que foi feito no treino e no guia.
+- **O "selo" atrás do "por quê?"**: a proposta B2 previa um "por quê?" por bloco, juntando as regras do bloco. Ficou feito no treino (reserva, sugestão de carga) e na prescrição do guia; em "Sobre o programa", na folha do exercício e na semana, o selo continua no fim de cada frase.
+- **Contraste dos fundos cinza**: o fundo do botão secundário e dos botões de valor (#E9E9E6 sobre #F6F6F4) passa nos testes de texto, mas é fraco como forma sob luz forte. Opção: uma borda fina na cor da borda.
+- **Celular de 320 × 640**: o registro da série não cabe em 75% da tela, então a tela rola e o palco fica em cima, sem as abas dos modos (que seguem no guia completo, pelo livro do cabeçalho). Emagrecer o registro nesse tamanho devolveria as abas.
+- **O conferidor de tokens não olha letra nem largura**: o botão principal usa um 9º tamanho de letra (1,1875rem), fora dos 8 tokens, e passa.
+- **Um teste intermitente**: "o cartão de texto que não baixou avisa, tenta de novo e, se o navegador guardou a falha, oferece recarregar" (`correcoes-auditoria.spec.ts:244`) falhou 1 vez em 3 rodadas completas do estado final e passou 3 vezes seguidas sozinho. Depende de o Chromium guardar a falha de um arquivo e espera só 5 s pela montagem depois de recarregar.
+- **Não medido**: o app instalado num iPhone e num Android de verdade (tudo foi conferido no Chromium, em tamanhos simulados); o leitor de tela de verdade (TalkBack, VoiceOver).
+
+**Pedidos ao domínio e ao conteúdo**: os 9 itens de `revisoes/frontend-novo/pedidos-ao-dominio.md` (título curto dos avisos, nome curto do exercício, legenda da trajetória por exercício, a reserva em palavras, o rótulo da respiração, a frase da calibração, confirmar o encerramento por sinal de alerta, fonte não conferida, o índice de textos do guia).
+
+**Para conciliar com a `main`**
+- `package.json` ganhou o comando `conferir:tokens`; `vite.config.ts` trocou a cor de fundo do app instalado e incluiu o arquivo de licença dos ícones; `index.html` pré-carrega a letra nova. Os três ficam fora da lista do que a sessão podia alterar e foram mudados no mínimo necessário.
+- `scripts/icones-app.mjs` (fora da lista) continua gerando o ícone índigo; o ícone novo sai de `scripts/design/frontend-novo/icone-app.mjs`. Na junção, vale ficar com um só.

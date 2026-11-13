@@ -773,10 +773,13 @@ function RegistroSerie({
         </fieldset>
       )}
       <button type="button" className="btn salvar" disabled={!pronto} aria-describedby={pronto ? undefined : `${uid}-falta`} onClick={() => pronto && aoFazer(montar.current())}>
-        {descansando ? 'Série feita' : (
-          <>
+        {descansando ? (
+          'Série feita'
+        ) : (
+          // um bloco só de texto: o botão é uma linha flexível, e dois pedaços soltos virariam duas colunas
+          <span>
             Série feita · <span className="nw">descansar {tempo(x.descansoSeg)}</span>
-          </>
+          </span>
         )}
       </button>
       {!pronto && (

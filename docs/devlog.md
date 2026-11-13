@@ -1622,3 +1622,64 @@ A sessão que corrigiu, do mais grave ao menos grave, o que a auditoria geral ti
 >
 > A regra que usei: primeiro um teste que mostra o erro, depois a correção. Foram 59 testes de regra e 12 de tela a mais, e a lista do que eu não corrigi fica escrita, com o motivo.
 
+
+## Frontend novo: o app refeito na direção "Placar" (12 e 13/11/2026)
+
+**Por quê.** O redesign de 05 a 08/11 arrumou a estrutura das telas, mas o app ainda não tinha acabamento de aplicativo profissional: 528 espaços, alturas e cantos fora de uma escala, emojis no lugar de ícones, caixa dentro de caixa, três cores disputando com o Boneco. O Gustavo pediu o frontend refeito por completo, em duas etapas: primeiro pesquisa e direção, depois a reconstrução.
+
+**Etapa 1: pesquisa e direção (12/11).**
+- 277 referências em 15 temas (`docs/revisoes/frontend-novo/referencias.md`), o diagnóstico do app de então, com capturas (`diagnostico.md`), e 3 direções em protótipo navegável com o Boneco real (`prototipos/`): "Giz", "Placar" e "Ficha".
+- O Gustavo escolheu a **B, "Placar"**, pediu para aprofundá-la e aprovou a versão de 8 telas (B2) como referência (`proposta.md`, seção 10).
+
+**Etapa 2: a reconstrução (12 e 13/11).**
+- **O sistema antes das telas.** Uma escala só de espaço (4, 8, 16, 24, 32, 48, 64, sem o 12), alturas de 48, 56 e 64 em `rem`, cantos de 8 e 16, 8 tamanhos de letra. O comando novo `npm run conferir:tokens` falha se aparecer um valor fora da escala no CSS ou um estilo embutido nas telas; a única exceção é o desenho do Boneco. De 528 valores fora da escala para 0.
+- **Preto e branco.** A interface não tem cor de destaque: o que está escolhido e a ação principal ficam invertidos (preto no claro, branco no escuro). A única cor é o vermelho da segurança ("Senti algo", o aviso de dor, a triagem que pausa o programa, "Apagar todos os dados"). As cores do Boneco não disputam com nada.
+- **Letra e ícones servidos pelo app.** A letra passou da Atkinson (34 kB) para a Geist (29 kB, licença OFL); 34 ícones da família Lucide (licença ISC) no lugar dos emojis e das setas de texto. Nenhum pedido a outro servidor.
+- **O treino.** O Boneco animado entrou na tela da série, com os 4 modos (Técnica, Erros, Músculos, Trajetória). Carga e repetições são os maiores elementos; o botão "Série feita" fica preso embaixo. O descanso toma a tela, com o relógio de até 128 px, e a tela inteira inverte quando o tempo acaba. A tela do treino cabe em 844 px sem rolar nos 6 exercícios da persona Ana (antes, de 844 a 1.176 px).
+- **As outras telas.** O início abre com o treino de hoje e os números dele; o fim do treino abre com o placar (séries, minutos, exercícios); os avisos de "Sobre o programa" viraram lista; o guia perdeu os emojis e ganhou o "por quê?" na prescrição; cadastro, locais, Meus dados, termos e tela de erro entraram no mesmo padrão.
+- **O ícone do app** acompanha: o mesmo halter inclinado, agora em fundo preto.
+
+**Revisão independente.** Um revisor no modelo mais capaz recebeu só o código, as capturas e as regras, sem a minha conclusão, e achou 32 defeitos no treino e no guia. O mais grave: em celular pequeno, o bloco do registro cobria o Boneco pela metade. A tela passou a ter altura fixa: o guia ocupa o que sobra e, se o espaço aperta, larga a legenda, depois as abas e, por fim, o palco inteiro (nunca um Boneco cortado). Outros achados corrigidos: um toque duplo em "Série feita" podia gravar a série seguinte; a seta do cabeçalho parecia "exercício anterior" e saía do treino (virou um X); o botão desligado não dizia o que faltava; "Senti algo" não dizia quais opções encerram o treino e quais encerram só o exercício; ir ao guia no descanso sumia com o relógio. 22 corrigidos, 5 em parte, 5 no backlog (`revisao-bloco-2.md`, `qa.md`).
+
+**Dois defeitos que os testes acharam.** Com "movimento reduzido" ligado, o toque num botão de valor escapava do campo. E a falha ao baixar um único arquivo de texto derrubava a tela do treino: o treino agora baixa só o texto do exercício da vez e avisa se falhar.
+
+**O que não mudou.** O motor do Boneco, o domínio, o estado guardado, as regras de treino, os textos técnicos, os selos e as fontes: `git diff origin/main -- src/engine src/domain` vazio. Nenhum teste foi apagado ou pulado.
+
+![O treino, antes e depois](revisoes/frontend-novo/capturas/antes-depois/3-treino.png)
+
+![O início, antes e depois](revisoes/frontend-novo/capturas/antes-depois/2-inicio.png)
+
+As outras 4 folhas (cadastro, guia, fim e semana, Meus dados e locais) estão em `docs/revisoes/frontend-novo/capturas/antes-depois/`.
+
+**Medidas, antes e depois.**
+
+| Medida | Antes | Depois |
+|---|---|---|
+| Valores fora da escala (`conferir:tokens`) | 528 | 0 |
+| JavaScript da 1ª tela (limite 175 kB) | 154,4 kB | 156,2 kB |
+| JavaScript de quem volta ao programa (limite 220 kB) | 202,8 kB | 204,7 kB |
+| CSS comprimido | 12,2 kB | 13,2 kB |
+| Letra | 34,0 kB | 29,4 kB |
+| Pedidos a outros servidores | 0 | 0 |
+| Altura da tela do treino em 390 × 844 (6 exercícios da Ana) | 844 a 1.020 px; descanso 1.176 | 844 px em todos |
+| Lighthouse, desempenho: início · programa · guia · semana · Meus dados (varia alguns pontos por rodada) | 98 · 96 · 83 · 99 · 95 | 99 · 98 · 93 · 100 · 93 |
+| Lighthouse, acessibilidade (as mesmas telas) | 100 · 100 · 100 · 100 · 96 | 100 · 100 · 100 · 100 · 96 |
+
+**Resultado:** `npm run check` com 896 testes, 157 e2e (155 de celular e 2 do motor) e `npm run conferir:tokens` sem exceção além do Boneco.
+
+**Fica para decidir** (`backlog.md`, "Do frontend novo"): os pontos do revisor que sobraram, os 9 pedidos ao domínio (`pedidos-ao-dominio.md`) e a revisão independente dos blocos que só eu conferi.
+
+**Rascunho de post para o LinkedIn**
+
+> Refiz a interface inteira do meu app de treino. A parte que mais me ensinou não foi desenhar.
+>
+> Foi pedir a um revisor que olhasse o resultado sem ouvir a minha opinião antes. Ele recebeu o código, as capturas de tela e as regras. Achou 32 defeitos em duas telas que eu considerava prontas.
+>
+> O pior: em celular pequeno, o bloco de registrar a série cobria o boneco animado pela metade. Eu tinha conferido em três tamanhos de tela e não vi, porque nos meus três cabia.
+>
+> Outros dois eu só entendi quando li: um toque duplo em "Série feita" gravava a série seguinte sem ninguém pedir, porque o botão novo aparecia no lugar exato do antigo. E a seta de "voltar" ficava colada no "1 de 6", parecia "exercício anterior" e tirava a pessoa do treino.
+>
+> Três coisas que levo:
+> 1. Quem fez a tela não é quem deve aprová-la.
+> 2. Regra de espaçamento só vale com conferência automática. Eram 528 valores fora da escala; hoje um comando falha se aparecer o primeiro.
+> 3. Tirar cor dá mais trabalho que pôr. A interface ficou preta e branca; a única cor é o vermelho do botão "Senti algo".

@@ -101,7 +101,7 @@
     },
     {
       "tela": "06-inicio",
-      "esperaDasMiniaturasMs": 891,
+      "esperaDasMiniaturasMs": 963,
       "alturaDaPagina": 1910,
       "alturaDaTela": 844,
       "palavrasAVista": 105,
@@ -110,7 +110,7 @@
     },
     {
       "tela": "07-folha-do-exercicio",
-      "esperaDasMiniaturasMs": 11,
+      "esperaDasMiniaturasMs": 6,
       "alturaDaPagina": 1910,
       "alturaDaTela": 844,
       "palavrasAVista": 129,
@@ -119,7 +119,7 @@
     },
     {
       "tela": "06b-inicio-sobre-o-programa",
-      "esperaDasMiniaturasMs": 6,
+      "esperaDasMiniaturasMs": 7,
       "alturaDaPagina": 1910,
       "alturaDaTela": 844,
       "palavrasAVista": 171,
@@ -149,7 +149,7 @@
       "esperaDasMiniaturasMs": 0,
       "alturaDaPagina": 3135,
       "alturaDaTela": 844,
-      "palavrasAVista": 50,
+      "palavrasAVista": 52,
       "acaoPrincipal": null,
       "acaoAVista": null
     },
@@ -182,7 +182,7 @@
     },
     {
       "tela": "09-treino-descanso",
-      "esperaDasMiniaturasMs": 12,
+      "esperaDasMiniaturasMs": 7,
       "alturaDaPagina": 844,
       "alturaDaTela": 844,
       "palavrasAVista": 56,
@@ -200,7 +200,7 @@
     },
     {
       "tela": "11-treino-mais-opcoes",
-      "esperaDasMiniaturasMs": 7,
+      "esperaDasMiniaturasMs": 8,
       "alturaDaPagina": 844,
       "alturaDaTela": 844,
       "palavrasAVista": 17,
@@ -230,13 +230,13 @@
       "esperaDasMiniaturasMs": 0,
       "alturaDaPagina": 844,
       "alturaDaTela": 844,
-      "palavrasAVista": 71,
+      "palavrasAVista": 75,
       "acaoPrincipal": "/^Série feita/",
       "acaoAVista": true
     },
     {
       "tela": "09c-treino-hora-da-proxima-serie",
-      "esperaDasMiniaturasMs": 8,
+      "esperaDasMiniaturasMs": 6,
       "alturaDaPagina": 844,
       "alturaDaTela": 844,
       "palavrasAVista": 38,
@@ -317,7 +317,7 @@
     },
     {
       "tela": "06c-inicio-depois-do-1o-treino",
-      "esperaDasMiniaturasMs": 963,
+      "esperaDasMiniaturasMs": 716,
       "alturaDaPagina": 1273,
       "alturaDaTela": 844,
       "palavrasAVista": 107,

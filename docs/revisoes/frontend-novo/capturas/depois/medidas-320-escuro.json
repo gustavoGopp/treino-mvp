@@ -101,7 +101,7 @@
     },
     {
       "tela": "06-inicio",
-      "esperaDasMiniaturasMs": 816,
+      "esperaDasMiniaturasMs": 901,
       "alturaDaPagina": 2117,
       "alturaDaTela": 640,
       "palavrasAVista": 81,
@@ -110,7 +110,7 @@
     },
     {
       "tela": "07-folha-do-exercicio",
-      "esperaDasMiniaturasMs": 12,
+      "esperaDasMiniaturasMs": 7,
       "alturaDaPagina": 2117,
       "alturaDaTela": 640,
       "palavrasAVista": 79,
@@ -119,7 +119,7 @@
     },
     {
       "tela": "06b-inicio-sobre-o-programa",
-      "esperaDasMiniaturasMs": 8,
+      "esperaDasMiniaturasMs": 7,
       "alturaDaPagina": 2117,
       "alturaDaTela": 640,
       "palavrasAVista": 77,
@@ -129,9 +129,9 @@
     {
       "tela": "08-treino-serie-vazia",
       "esperaDasMiniaturasMs": 0,
-      "alturaDaPagina": 832,
+      "alturaDaPagina": 808,
       "alturaDaTela": 640,
-      "palavrasAVista": 62,
+      "palavrasAVista": 70,
       "acaoPrincipal": "/^Série feita/",
       "acaoAVista": false
     },
@@ -174,11 +174,11 @@
     {
       "tela": "08b-treino-serie-preenchida",
       "esperaDasMiniaturasMs": 0,
-      "alturaDaPagina": 780,
+      "alturaDaPagina": 756,
       "alturaDaTela": 640,
-      "palavrasAVista": 73,
+      "palavrasAVista": 70,
       "acaoPrincipal": "/^Série feita/",
-      "acaoAVista": true
+      "acaoAVista": false
     },
     {
       "tela": "09-treino-descanso",
@@ -191,7 +191,7 @@
     },
     {
       "tela": "10-treino-senti-algo",
-      "esperaDasMiniaturasMs": 10,
+      "esperaDasMiniaturasMs": 8,
       "alturaDaPagina": 640,
       "alturaDaTela": 640,
       "palavrasAVista": 45,
@@ -200,7 +200,7 @@
     },
     {
       "tela": "11-treino-mais-opcoes",
-      "esperaDasMiniaturasMs": 6,
+      "esperaDasMiniaturasMs": 9,
       "alturaDaPagina": 640,
       "alturaDaTela": 640,
       "palavrasAVista": 17,
@@ -210,7 +210,7 @@
     {
       "tela": "09b-treino-serie-com-descanso",
       "esperaDasMiniaturasMs": 0,
-      "alturaDaPagina": 833,
+      "alturaDaPagina": 809,
       "alturaDaTela": 640,
       "palavrasAVista": 68,
       "acaoPrincipal": "/^Série feita/",
@@ -219,7 +219,7 @@
     {
       "tela": "11b-treino-por-que",
       "esperaDasMiniaturasMs": 0,
-      "alturaDaPagina": 833,
+      "alturaDaPagina": 809,
       "alturaDaTela": 640,
       "palavrasAVista": 89,
       "acaoPrincipal": null,
@@ -228,15 +228,15 @@
     {
       "tela": "08c-treino-exercicio-2",
       "esperaDasMiniaturasMs": 0,
-      "alturaDaPagina": 790,
+      "alturaDaPagina": 766,
       "alturaDaTela": 640,
-      "palavrasAVista": 61,
+      "palavrasAVista": 63,
       "acaoPrincipal": "/^Série feita/",
       "acaoAVista": false
     },
     {
       "tela": "09c-treino-hora-da-proxima-serie",
-      "esperaDasMiniaturasMs": 6,
+      "esperaDasMiniaturasMs": 9,
       "alturaDaPagina": 640,
       "alturaDaTela": 640,
       "palavrasAVista": 38,
@@ -246,18 +246,18 @@
     {
       "tela": "08c-treino-exercicio-3",
       "esperaDasMiniaturasMs": 0,
-      "alturaDaPagina": 789,
+      "alturaDaPagina": 765,
       "alturaDaTela": 640,
-      "palavrasAVista": 67,
+      "palavrasAVista": 70,
       "acaoPrincipal": "/^Série feita/",
       "acaoAVista": false
     },
     {
       "tela": "08c-treino-exercicio-4",
       "esperaDasMiniaturasMs": 0,
-      "alturaDaPagina": 766,
+      "alturaDaPagina": 742,
       "alturaDaTela": 640,
-      "palavrasAVista": 68,
+      "palavrasAVista": 70,
       "acaoPrincipal": "/^Série feita/",
       "acaoAVista": false
     },
@@ -273,16 +273,16 @@
     {
       "tela": "08c-treino-exercicio-6",
       "esperaDasMiniaturasMs": 0,
-      "alturaDaPagina": 766,
+      "alturaDaPagina": 742,
       "alturaDaTela": 640,
-      "palavrasAVista": 62,
+      "palavrasAVista": 64,
       "acaoPrincipal": "/^Série feita/",
       "acaoAVista": false
     },
     {
       "tela": "11c-treino-terminar",
       "esperaDasMiniaturasMs": 0,
-      "alturaDaPagina": 766,
+      "alturaDaPagina": 742,
       "alturaDaTela": 640,
       "palavrasAVista": 25,
       "acaoPrincipal": null,
@@ -317,7 +317,7 @@
     },
     {
       "tela": "06c-inicio-depois-do-1o-treino",
-      "esperaDasMiniaturasMs": 973,
+      "esperaDasMiniaturasMs": 848,
       "alturaDaPagina": 1420,
       "alturaDaTela": 640,
       "palavrasAVista": 77,

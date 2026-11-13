@@ -654,6 +654,9 @@ a.cartao-ex-corpo:focus-visible,button.cartao-ex-corpo:focus-visible{outline:3px
 .presa .palco-treino{flex:1 1 0;min-height:0;container-type:size;container-name:palco}
 .presa .palco-btn{flex:1 1 0;min-height:0}
 .presa .registro-bloco:not(.solto){position:static;flex:none;margin-top:0}
+/* exercício sem animação (cartão de texto): o que houver do guia fica junto do nome, embaixo; o vazio fica em cima */
+/* (pela margem, não por justify-content: quando o cartão é maior que a área, ele rola desde o começo, sem sumir em cima) */
+.presa .guia-do-treino:not(:has(.palco-treino)) > :first-child{margin-top:auto}
 @container palco (max-height:15rem){.presa .legenda-do-modo{display:none}}
 @container palco (max-height:10rem){.presa .modos-treino{display:none}}
 @container palco (max-height:5rem){.presa .palco-btn{display:none}}
@@ -725,7 +728,7 @@ body:has(.invertida){background:var(--inv-fundo)}
 .valor-grande small.escolha{font-size:var(--t-rotulo);font-weight:600;letter-spacing:.08em;text-transform:uppercase}
 /* por cima do número, invisível, o seletor do aparelho: um toque no número abre a lista das cargas */
 .com-lista{position:relative}
-.valor-grande .abre-lista{display:inline-block;vertical-align:baseline;width:1.25rem;height:1.25rem;margin-left:var(--s4);color:var(--texto-2)}
+.valor-grande .abre-lista{display:inline-block;vertical-align:baseline;width:1.25rem;margin-left:var(--s4);color:var(--texto-2)}
 .valor-grande.vazio{color:var(--texto-2)}
 .com-lista select{position:absolute;inset:0;width:100%;height:100%;min-height:0;max-width:none;padding:0;opacity:0;cursor:pointer;font-size:var(--t-corpo);box-shadow:none}
 .com-lista:has(select:focus-visible){outline:3px solid var(--foco);outline-offset:2px}

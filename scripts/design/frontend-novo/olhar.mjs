@@ -3,7 +3,8 @@
 // pedidos são dados e a tela é fotografada. Também diz se houve erro no console e se a página rola para o lado.
 // Uso (com o build pronto em dist/):
 //   node scripts/design/frontend-novo/olhar.mjs <pasta> <largura>x<altura> <claro|escuro> <nome>=<rota>[>>toque>>toque…] …
-//   um toque é o nome acessível de um botão ou link; "css:<seletor>" toca num seletor; "html:<seletor>" imprime o HTML
+//   um toque é o nome acessível de um botão ou link; "css:<seletor>" toca num seletor; "html:<seletor>" imprime o HTML;
+//   "lista:<seletor>=<n>" escolhe a opção n de uma lista
 // Opções por variável: LETRA=125 (letra do sistema em 125%), PARADO=1 (prefers-reduced-motion), INTEIRA=1 (página inteira),
 // ERRO=1 (força a tela de erro, pela chave de teste do app)
 import { spawn } from 'node:child_process';
@@ -78,6 +79,12 @@ try {
     for (const t of toques) {
       if (t.startsWith('html:')) {
         console.log((await page.locator(t.slice(5)).first().evaluate((el) => el.outerHTML)).slice(0, 6000));
+        continue;
+      }
+      if (t.startsWith('lista:')) {
+        // "lista:<seletor>=<n>": escolhe a opção de número n numa lista (a carga, por exemplo)
+        const [seletor, n] = t.slice(6).split(/=(\d+)$/);
+        await page.locator(seletor).first().selectOption({ index: Number(n) }).catch((e) => console.log(`  [${nome}] lista "${seletor}": ${String(e).split('\n')[0]}`));
         continue;
       }
       const alvo = t.startsWith('css:') ? page.locator(t.slice(4)).first() : page.getByRole('button', { name: t }).or(page.getByRole('link', { name: t })).or(page.getByRole('tab', { name: t })).first();
