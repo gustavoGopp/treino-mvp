@@ -55,7 +55,7 @@
    "recortes": 1,
    "bytesMini": 11876,
    "recortesMini": 1,
-   "msPorQuadro": 0.55
+   "msPorQuadro": 0.51
   },
   "cinza/supino": {
    "bytes": 16075,
@@ -64,7 +64,7 @@
    "recortes": 1,
    "bytesMini": 11912,
    "recortesMini": 1,
-   "msPorQuadro": 0.52
+   "msPorQuadro": 0.46
   },
   "cinza/puxada": {
    "bytes": 18693,
@@ -73,7 +73,7 @@
    "recortes": 1,
    "bytesMini": 14675,
    "recortesMini": 1,
-   "msPorQuadro": 0.59
+   "msPorQuadro": 0.54
   },
   "cinza/frente": {
    "bytes": 26900,
@@ -82,34 +82,34 @@
    "recortes": 0,
    "bytesMini": 15970,
    "recortesMini": 0,
-   "msPorQuadro": 1.16
+   "msPorQuadro": 0.9
   },
   "pele/agach": {
    "bytes": 21955,
-   "gzip": 4320,
+   "gzip": 4306,
    "caminhos": 53,
    "recortes": 7,
    "bytesMini": 17626,
    "recortesMini": 7,
-   "msPorQuadro": 0.62
+   "msPorQuadro": 0.55
   },
   "pele/supino": {
    "bytes": 20189,
-   "gzip": 4183,
+   "gzip": 4178,
    "caminhos": 48,
    "recortes": 7,
    "bytesMini": 13608,
    "recortesMini": 1,
-   "msPorQuadro": 0.51
+   "msPorQuadro": 0.48
   },
   "pele/puxada": {
    "bytes": 22752,
-   "gzip": 4732,
+   "gzip": 4727,
    "caminhos": 57,
    "recortes": 7,
    "bytesMini": 16343,
    "recortesMini": 1,
-   "msPorQuadro": 0.59
+   "msPorQuadro": 0.62
   },
   "pele/frente": {
    "bytes": 29418,

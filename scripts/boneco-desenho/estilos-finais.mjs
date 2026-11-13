@@ -14,13 +14,15 @@ export const CINZA = {
 };
 
 /** A opção: cor de pele, contorno suave na cor de cada parte, de short e tênis, com cabelo, e as linhas do corpo. */
+// A borda do músculo secundário é a mesma do principal (#a43d2d): com a borda clara de antes, o secundário quase
+// não se distinguia da pele (1,4:1). Aprovado pelo Gustavo em 13/11/2026 ("pode ser a borda mais escura no secundário").
 export const PELE = {
   id: 'pele', nome: 'Cor de pele, de short', papel: 'opção',
   forma: 'curva', contorno: 0.55, contornoNaCor: true, folga: 0, cabelo: true, roupa: 'short', mao: 'polegar',
   definicao: 'linhas', musculo: 'veu',
   cores: (t) => (claro(t)
-    ? { pele: '#d9a47c', peleSombra: '#bd865f', peleLonge: '#c28e68', cabelo: '#2b2420', short: '#2c3d50', calcado: '#27343f', linhaMus: '#c08b64', musP: '#cb5747', musPb: '#a43d2d', musS: '#eaa594', musSb: '#c77f6c', musA: '#d98a76' }
-    : { pele: '#cf9a72', peleSombra: '#a87852', peleLonge: '#b3825c', cabelo: '#8b6f5a', short: '#a9b8c6', calcado: '#e7eef2', linhaMus: '#a67750', musP: '#cb5747', musPb: '#a43d2d', musS: '#eaa594', musSb: '#c77f6c', musA: '#d98a76' }),
+    ? { pele: '#d9a47c', peleSombra: '#bd865f', peleLonge: '#c28e68', cabelo: '#2b2420', short: '#2c3d50', calcado: '#27343f', linhaMus: '#c08b64', musP: '#cb5747', musPb: '#a43d2d', musS: '#eaa594', musSb: '#a43d2d', musA: '#d98a76' }
+    : { pele: '#cf9a72', peleSombra: '#a87852', peleLonge: '#b3825c', cabelo: '#8b6f5a', short: '#a9b8c6', calcado: '#e7eef2', linhaMus: '#a67750', musP: '#cb5747', musPb: '#a43d2d', musS: '#eaa594', musSb: '#a43d2d', musA: '#d98a76' }),
 };
 
 /** O traço em pixels: 1,25 px no palco e 1 px na miniatura, qualquer que seja o zoom; as linhas de dentro, 0,8 px. */

@@ -7,7 +7,7 @@ Da sessão do desenho do Boneco (13/11/2026), ramo `claude/vigilant-lovelace-rkq
 O Gustavo escolheu **dois desenhos do mesmo corpo**: "pode ser 1.1 e 10.1. Vamos deixar esses 2 como opções para a pessoa escolher na configuração e o cinza como default".
 
 - **Cinza (padrão):** cinza, traço fino escuro, sem roupa, descalço, cabeça de ovo sem rosto e sem cabelo, com os grupos musculares e a rótula sempre desenhados em linha fina; músculo vermelho (principal) e laranja (secundário), com borda escura.
-- **Cor de pele (opção):** o mesmo corpo com cor de pele, contorno suave na cor de cada parte, short opaco, tênis e cabelo curto; o músculo aparece por baixo do short, que só fica claro quando o músculo que trabalha está debaixo dele; principal num vermelho mais suave e secundário num tom claro dele.
+- **Cor de pele (opção):** o mesmo corpo com cor de pele, contorno suave na cor de cada parte, short opaco, tênis e cabelo curto; o músculo aparece por baixo do short, que só fica claro quando o músculo que trabalha está debaixo dele; principal num vermelho mais suave e secundário num tom claro dele, com a mesma borda escura do principal (aprovada depois do fecho, para o secundário não sumir na pele).
 - Nos dois: proporção real, formas curvas, chapado (sem sombra), mão com polegar e dedos, três níveis de músculo (cor cheia com divisões; tom claro; listrado), traço de 1,25 px no palco e de 1 px na miniatura.
 
 A ficha completa, com o contraste medido e o selo de cada item (decisão dele, herdada, escolha de desenho, em aberto), está em **`decisao.md`**. As pranchas finais, ao lado do boneco de hoje, estão em **`final/prancha-cinza.png`** e **`final/prancha-pele.png`**.
@@ -30,13 +30,12 @@ A ficha completa, com o contraste medido e o selo de cada item (decisão dele, h
 
 ## O que ficou em aberto (perguntas para ele)
 
-1. O músculo secundário na cor de pele tem contraste de 1,1:1 com a pele: aceitar uma borda mais escura?
-2. Secundário laranja no cinza e tom claro do principal na cor de pele: duas regras ou uma?
-3. O short claro no tema escuro se confunde com a pele (1,2:1).
-4. Um tom de pele só, ou a pessoa escolhe?
-5. Um corpo só (homem), ou uma segunda pessoa?
-6. A bolinha da junta-chave do boneco de hoje entra no desenho novo?
-7. O estilo "Silhueta" continua na configuração?
+1. Secundário laranja no cinza e tom claro do principal na cor de pele: duas regras ou uma?
+2. O short claro no tema escuro se confunde com a pele (1,2:1).
+3. Um tom de pele só, ou a pessoa escolhe?
+4. Um corpo só (homem), ou uma segunda pessoa?
+5. A bolinha da junta-chave do boneco de hoje entra no desenho novo?
+6. O estilo "Silhueta" continua na configuração?
 
 ## Avisos
 

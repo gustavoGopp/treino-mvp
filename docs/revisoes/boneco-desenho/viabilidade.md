@@ -70,7 +70,7 @@ Tudo: são regras e tabelas no próprio pacote do app, sem imagem, sem fonte ext
 4. **Vistas nunca desenhadas.** De cima e de frente fora da pose em pé não têm gabarito: o Gustavo ainda não viu o desenho nessas vistas.
 5. **Reaprovação.** O corpo é um só para as 90 animações: todas mudam, as linhas de base da regressão visual mudam, e a regra do projeto é não regravar linha de base só para o teste passar.
 6. **Dois desenhos.** O cinza e o de cor de pele diferem na geometria (short, tênis, cabelo), não só na cor: a regressão precisa cobrir os dois, nos dois temas.
-7. **Contraste.** Os pontos fracos medidos estão em `decisao.md` (o músculo secundário na cor de pele; o short claro no tema escuro).
+7. **Contraste.** Os pontos fracos medidos estão em `decisao.md` (o músculo secundário na cor de pele, que melhorou com a borda escura mas ainda fica um pouco abaixo de 3:1; o short claro no tema escuro).
 8. **Fora do desenho.** Rótulos, linhas-guia, modo Erros e modo Trajetória não foram redesenhados para a figura nova.
 
 ## O que precisa ser testado, nesta ordem
@@ -80,4 +80,4 @@ Tudo: são regras e tabelas no próprio pacote do app, sem imagem, sem fonte ext
 3. Redesenhar os grupos musculares como regiões da superfície e conferir contra as pranchas.
 4. Medir num celular simples: quadros por segundo com cerca de 50 a 70 caminhos por quadro, com e sem os recortes, no Safari do iPhone e no Chrome do Android.
 5. Conferir o traço de 1,25 px e as linhas de 0,8 px em tela de densidade 1 e de densidade 3, nos dois temas.
-6. Fechar os itens em aberto de `decisao.md` com o Gustavo (contraste do secundário, tom de pele, segunda pessoa, junta-chave, Silhueta).
+6. Fechar os itens em aberto de `decisao.md` com o Gustavo (as duas regras do secundário, o short no tema escuro, tom de pele, segunda pessoa, junta-chave, Silhueta).

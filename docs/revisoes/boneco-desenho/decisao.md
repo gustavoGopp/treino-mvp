@@ -81,12 +81,15 @@ Leitura: o corpo claro quase não contrasta com o fundo claro, e quem desenha a 
 | Músculo secundário (`#eaa594`) × corpo | **1,1** | **1,2** |
 | Principal × secundário | 2,1 | 2,1 |
 | Borda do principal (`#a43d2d`) × corpo | 2,9 | 2,6 |
-| Borda do secundário (`#c77f6c`) × corpo | **1,4** | **1,3** |
+| Borda do secundário (`#a43d2d`, a mesma do principal) × corpo | 2,9 | 2,6 |
+| Borda do secundário × o próprio secundário | 3,1 | 3,1 |
 | Short (`#2c3d50` / `#a9b8c6`) × fundo | 10,5 | 8,9 |
 | Short × corpo | 5,1 | **1,2** |
 | Cabelo × fundo | 14,5 | 3,9 |
 
-Leitura: este desenho depende mais do tom do que da claridade. **O músculo secundário é o ponto fraco:** o tom claro sobre a pele tem 1,1:1 e a borda dele 1,4:1, então quem não distingue bem as cores pode não vê-lo. Proposta minha, que não foi mostrada ao Gustavo: dar ao secundário a borda do principal (`#a43d2d`, 2,9:1 sobre a pele). No tema escuro, o short claro quase se confunde com a pele (1,2:1); proposta: um short mais escuro ou mais frio nesse tema. **em aberto**
+Leitura: este desenho depende mais do tom do que da claridade. **O músculo secundário era o ponto fraco:** o tom claro sobre a pele tem 1,1:1, e a borda clara que ele tinha nas rodadas dava só 1,4:1. Com a borda do principal (`#a43d2d`), a forma do secundário passa a ter 2,9:1 sobre a pele no tema claro e 2,6:1 no escuro. **decisão** (13/11/2026, depois do fecho: "pode ser a borda mais escura no secundário"; as pranchas finais já estão assim). Continua abaixo de 3:1 por pouco: é uma melhora, não uma garantia.
+
+No tema escuro, o short claro quase se confunde com a pele (1,2:1); proposta minha: um short mais escuro ou mais frio nesse tema. **em aberto**
 
 ### Como o músculo aparece
 
@@ -94,7 +97,7 @@ Leitura: este desenho depende mais do tom do que da claridade. **O músculo secu
 - Três níveis, que não dependem só da cor: **principal** em cor cheia, com borda e as divisões por dentro; **também trabalha** em cor mais clara, com borda e sem divisões; **só ajuda a firmar** listrado, com a borda tracejada. **herdada** (os três níveis e as listras) e **desenho** (as divisões e a borda tracejada)
 - Com forma de músculo, e não mancha. **decisão** (pergunta 8b: "o formato do músculo" incomodava)
 - Cinza: vermelho no principal e laranja no secundário, com borda escura. **herdada**
-- Cor de pele: o principal num vermelho mais suave (`#cb5747`) e o secundário num tom claro dele (`#eaa594`), porque o laranja some sobre a pele. Isso muda, só nesta opção, a regra antiga "laranja no secundário": ele escolheu as versões que já vinham assim, mas a troca foi um teste meu e não foi discutida em separado. **em aberto** (reconfirmar)
+- Cor de pele: o principal num vermelho mais suave (`#cb5747`) e o secundário num tom claro dele (`#eaa594`), com a mesma borda escura do principal, porque o laranja some sobre a pele. Isso muda, só nesta opção, a regra antiga "laranja no secundário": ele escolheu as versões que já vinham assim, mas a troca foi um teste meu e não foi discutida em separado. **em aberto** (reconfirmar)
 - Na opção cor de pele, o músculo nunca fica por cima da roupa: aparece por baixo do short, que fica claro. **decisão** (pergunta 8c)
 
 ### O lado de longe
@@ -124,13 +127,12 @@ Na régua de 1 (pictograma de placa) a 7 (foto) de `referencias.md`: o boneco de
 
 Nada disto foi decidido pelo Gustavo; cada item é uma pergunta para ele.
 
-1. **Contraste do músculo secundário na cor de pele** (1,1:1): aceitar a borda mais escura que proponho?
-2. **Secundário laranja (cinza) ou tom claro do principal (cor de pele):** duas regras, uma por opção, ou uma só?
-3. **Short claro no tema escuro**, que se confunde com a pele (1,2:1): trocar por um short mais escuro?
-4. **Tom de pele:** foi desenhado um tom médio. Um tom só, ou a pessoa escolhe entre três ou quatro? (Há tabelas prontas para clara, morena e escura em `scripts/boneco-desenho/figura.mjs`, não mostradas a ele como decisão.)
-5. **Um corpo só (homem):** nas avaliações lidas na pesquisa, figura de um só gênero gera queixa em todas as faixas de estilo (`pesquisa/d-critica-e-gosto.md`). Uma segunda pessoa não foi desenhada.
-6. **A junta-chave marcada** (a bolinha verde do boneco de hoje): entra no desenho novo?
-7. **O estilo "Silhueta"** continua como terceira opção?
+1. **Secundário laranja (cinza) ou tom claro do principal (cor de pele):** duas regras, uma por opção, ou uma só?
+2. **Short claro no tema escuro**, que se confunde com a pele (1,2:1): trocar por um short mais escuro?
+3. **Tom de pele:** foi desenhado um tom médio. Um tom só, ou a pessoa escolhe entre três ou quatro? (Há tabelas prontas para clara, morena e escura em `scripts/boneco-desenho/figura.mjs`, não mostradas a ele como decisão.)
+4. **Um corpo só (homem):** nas avaliações lidas na pesquisa, figura de um só gênero gera queixa em todas as faixas de estilo (`pesquisa/d-critica-e-gosto.md`). Uma segunda pessoa não foi desenhada.
+5. **A junta-chave marcada** (a bolinha verde do boneco de hoje): entra no desenho novo?
+6. **O estilo "Silhueta"** continua como terceira opção?
 
 ## O que não foi desenhado
 

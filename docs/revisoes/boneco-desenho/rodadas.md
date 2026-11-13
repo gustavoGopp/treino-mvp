@@ -101,3 +101,7 @@ Limites que continuam: um corpo só (homem, tom de pele médio no 10); a vista d
 **Decisão do Gustavo (13/11/2026):** "pode ser 1.1 e 10.1. Vamos deixar esses 2 como opções para a pessoa escolher na configuração e o cinza como default".
 
 Ficam os dois desenhos: **o 1.1 (cinza, com as linhas do corpo) como padrão** e **o 10.1 (cor de pele, de short, com as linhas do corpo) como opção**, à escolha da pessoa na configuração (hoje, "Meus dados" → "Estilo do boneco"). A ficha está em `decisao.md`.
+
+## Depois do fecho (13/11/2026): a borda do músculo secundário na cor de pele
+
+Na ficha, o músculo secundário da opção cor de pele ficou com contraste fraco (tom claro sobre a pele, 1,1:1; borda clara, 1,4:1). Propus dar a ele a borda escura do principal. Resposta do Gustavo: "pode ser a borda mais escura no secundário". Aplicado em `scripts/boneco-desenho/estilos-finais.mjs`; as pranchas finais e `final/medidas.json` foram regerados. Contraste da borda nova sobre a pele: 2,9:1 no tema claro e 2,6:1 no escuro.
