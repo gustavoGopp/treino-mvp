@@ -98,7 +98,7 @@ export function deLado(pose, o = {}) {
   const pelePar = { cor: C.pele, sombra: C.peleSombra };
   const roupaPar = o.roupa ? { cor: C.roupa, sombra: C.roupaSombra } : pelePar;
   const shortPar = o.roupa ? { cor: C.short, sombra: C.shortSombra } : pelePar;
-  const luz = [1.3, 1.7];
+  const luz = [1.9, 2.4];
 
   const espinha = p.coluna.slice(0, p.iC7 + 1).map(p2).reverse();
   const tronco = D(faixa(espinha, TRONCO_L.map(([t, f, tr]) => [t, f * g, tr * g])));
@@ -170,7 +170,7 @@ export function deFrente(pose, o = {}) {
   const pelePar = { cor: C.pele, sombra: C.peleSombra };
   const roupaPar = o.roupa ? { cor: C.roupa, sombra: C.roupaSombra } : pelePar;
   const shortPar = o.roupa ? { cor: C.short, sombra: C.shortSombra } : pelePar;
-  const luz = [-1.4, 1.6];
+  const luz = [-2.0, 2.3];
   const E = (pts) => pts.map((q) => (q[2] ? [q[0] * k * (o.proporcao === 'estilizada' ? 1.06 : 1), q[1] * k, q[2]] : [q[0] * k * (o.proporcao === 'estilizada' ? 1.06 : 1), q[1] * k]));
   const inteiro = (metade) => D([...metade, ...espelhar(metade).slice(metade[metade.length - 1][0] === 0 ? 1 : 0, metade[0][0] === 0 ? -1 : undefined)]);
 
