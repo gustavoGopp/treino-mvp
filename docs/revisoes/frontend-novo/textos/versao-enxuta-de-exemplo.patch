@@ -1,0 +1,418 @@
+diff --git a/src/features/acompanhamento/Semana.tsx b/src/features/acompanhamento/Semana.tsx
+index 001f755..d94abe0 100644
+--- a/src/features/acompanhamento/Semana.tsx
++++ b/src/features/acompanhamento/Semana.tsx
+@@ -142,11 +142,14 @@ export function Semana() {
+               </li>
+             ))}
+           </ul>
++          <details className="box dobra">
++            <summary>Como ler este quadro</summary>
+           <p className="ajuda">
+             Conta a série com até {RIR.serieEfetivaMax} repetições de reserva e amplitude completa; a série que trabalha o músculo de forma indireta vale meia.{' '}
+             {r.metaPrescrita ? 'Nesta semana, a meta é o que o programa prescreveu para ela.' : 'A meta é a do seu programa.'} <Selo id="rir.serie-efetiva" />
+           </p>
+           <p className="ajuda legenda-estados">A barra é o que foi feito; o traço tracejado é a meta. Cheio: na meta · médio: crescendo ({VOLUME.minimoEficazPiso} séries ou mais) · claro: mantendo · vazio: ainda sem treino na semana.</p>
++          </details>
+         </section>
+ 
+         {/* Com um treino aberto, o programa não é gerado de novo: a oferta volta quando ele terminar. */}
+diff --git a/src/features/app/ui.tsx b/src/features/app/ui.tsx
+index 16c5989..d8c19b3 100644
+--- a/src/features/app/ui.tsx
++++ b/src/features/app/ui.tsx
+@@ -60,12 +60,12 @@ export function Selo({ id }: { id: string }) {
+  * a folha mostra o texto de apoio da tela (se houver) e, para cada regra, o texto da regra, o selo e as fontes, como a
+  * folha do selo. O texto da regra não muda; só muda de lugar.
+  */
+-export function PorQue({ regras, titulo = 'Por quê', children }: { regras: string[]; titulo?: string; children?: ReactNode }) {
++export function PorQue({ regras, titulo = 'Por quê', rotulo = 'por quê?', children }: { regras: string[]; titulo?: string; rotulo?: string; children?: ReactNode }) {
+   const [aberto, setAberto] = useState(false);
+   return (
+     <>
+       <button type="button" className="porque" aria-haspopup="dialog" onClick={() => setAberto(true)}>
+-        por quê?
++        {rotulo}
+       </button>
+       {aberto && (
+         <Folha titulo={titulo} aoFechar={() => setAberto(false)} livre={() => document.querySelector<HTMLElement>('.alerta-topo')}>
+diff --git a/src/features/dados/Dados.tsx b/src/features/dados/Dados.tsx
+index 39fb9dc..3c95baf 100644
+--- a/src/features/dados/Dados.tsx
++++ b/src/features/dados/Dados.tsx
+@@ -9,7 +9,7 @@ import { agoraIso, useApp } from '../app/estado';
+ import { apagarLocal, apagarTodosLocais, dataCurta, lerLocal, LOCAL } from '../app/local';
+ import { AvisarProblema, TextoFotoCurto } from '../app/privacidade';
+ import { Icone } from '../app/icones';
+-import { NavInferior, Selo, Titulo, Topo } from '../app/ui';
++import { NavInferior, PorQue, Selo, Titulo, Topo } from '../app/ui';
+ import { Folha } from '../app/Folha';
+ import { EscolhaEstiloBoneco } from './EstiloBoneco';
+ import { apagarEstiloBoneco } from '../app/estiloBoneco';
+@@ -126,13 +126,23 @@ export function Dados() {
+         <AvisoSalvar />
+         <Titulo>Meus dados</Titulo>
+         <p className="ajuda">
+-          Tudo fica guardado só neste aparelho. <TextoFotoCurto />
++          Tudo fica guardado só neste aparelho.{' '}
++          <PorQue regras={[]} titulo="O que sai deste aparelho" rotulo="o que sai daqui">
++            <p>
++              <TextoFotoCurto />
++            </p>
++          </PorQue>
+         </p>
+         {guardaPermanente === false && (
+           <div className="warnbox" role="note">
+             <p>
+-              <b>Este navegador não garantiu guardar seus dados de forma permanente:</b> ele pode apagá-los se faltar espaço. Instalar o app
+-              na tela inicial ajuda; exportar uma cópia protege. <Selo id="dados.persistente" />
++              <b>Este navegador pode apagar seus dados.</b> Guarde uma cópia.{' '}
++              <PorQue regras={['dados.persistente']} titulo="O navegador e os seus dados">
++                <p>
++                  Este navegador não garantiu guardar seus dados de forma permanente: ele pode apagá-los se faltar espaço. Instalar o app na
++                  tela inicial ajuda; exportar uma cópia protege.
++                </p>
++              </PorQue>
+             </p>
+           </div>
+         )}
+diff --git a/src/features/locais/Locais.tsx b/src/features/locais/Locais.tsx
+index 76669ab..59deed0 100644
+--- a/src/features/locais/Locais.tsx
++++ b/src/features/locais/Locais.tsx
+@@ -2,7 +2,7 @@ import { useState } from 'react';
+ import { Link, Navigate, useNavigate, useParams } from 'react-router-dom';
+ import { comInventario, localPorId, localPrincipal, novoLocalId, primeiroPassoPendente } from '../../storage/esquema';
+ import { useApp } from '../app/estado';
+-import { NavInferior, Selo, Titulo, Topo } from '../app/ui';
++import { NavInferior, PorQue, Titulo, Topo } from '../app/ui';
+ import { FormularioInventario } from '../onboarding/Inventario';
+ 
+ // Vários locais de treino (R1b; local.treino-do-dia). Cada local tem um nome que a pessoa escolhe e o seu
+@@ -24,8 +24,13 @@ export function Locais() {
+       <main className="conteudo">
+         <Titulo>Meus locais</Titulo>
+         <p className="lede">
+-          Cadastre cada lugar onde você treina. O programa é montado para o principal; nos outros, o treino do dia troca cada aparelho que não houver
+-          pelo equivalente, e diz o motivo. <Selo id="local.treino-do-dia" />
++          O programa é montado para o local principal.{' '}
++          <PorQue regras={['local.treino-do-dia']} titulo="Vários locais" rotulo="e nos outros?">
++            <p>
++              Cadastre cada lugar onde você treina. O programa é montado para o principal; nos outros, o treino do dia troca cada aparelho que não
++              houver pelo equivalente, e diz o motivo.
++            </p>
++          </PorQue>
+         </p>
+         <p role="status" className="status">
+           {aviso}
+diff --git a/src/features/onboarding/BoasVindas.tsx b/src/features/onboarding/BoasVindas.tsx
+index 578f51e..7ed93c3 100644
+--- a/src/features/onboarding/BoasVindas.tsx
++++ b/src/features/onboarding/BoasVindas.tsx
+@@ -6,7 +6,7 @@ import { Folha } from '../app/Folha';
+ import { AvisoInstalar, AvisoSalvar } from '../app/avisos';
+ import { TextoFotoCurto } from '../app/privacidade';
+ import { Icone } from '../app/icones';
+-import { Selo, Titulo, Topo } from '../app/ui';
++import { PorQue, Titulo, Topo } from '../app/ui';
+ import { IconeLugar } from './lugares';
+ 
+ // A apresentação (redesign, lote 3; a proposta B, "o seu lugar", escolhida pelo Gustavo em 06/11/2026;
+@@ -46,10 +46,15 @@ export function BoasVindas() {
+         <section className="nota-aviso" aria-labelledby="nao-faz">
+           <Icone nome="info" />
+           <div>
+-            <h2 id="nao-faz">O que o app não faz</h2>
++            <h2 id="nao-faz">O app orienta, não diagnostica</h2>
+             <p>
+-              O app não diagnostica e não substitui um médico ou um profissional de Educação Física. É uma ferramenta de orientação, não uma
+-              prescrição. Se sentir dor, tontura ou mal-estar, pare e procure avaliação. <Selo id="seguranca.sem-diagnostico" />
++              Sentiu dor, tontura ou mal-estar? Pare e procure avaliação.{' '}
++              <PorQue regras={['seguranca.sem-diagnostico']} titulo="O que o app não faz" rotulo="o que o app não faz">
++                <p>
++                  O app não diagnostica e não substitui um médico ou um profissional de Educação Física. É uma ferramenta de orientação, não
++                  uma prescrição. Se sentir dor, tontura ou mal-estar, pare e procure avaliação.
++                </p>
++              </PorQue>
+             </p>
+           </div>
+         </section>
+diff --git a/src/features/onboarding/Rotina.tsx b/src/features/onboarding/Rotina.tsx
+index 5db59b0..a917d83 100644
+--- a/src/features/onboarding/Rotina.tsx
++++ b/src/features/onboarding/Rotina.tsx
+@@ -5,7 +5,7 @@ import { opcoesDeDivisao, type DivisaoId } from '../../domain/gerador/divisoes';
+ import { exerciciosPorSessao } from '../../domain/regras';
+ import { NOME_GRUPO, notaDoFoco } from '../../domain/gerador/opcoes';
+ import { useApp } from '../app/estado';
+-import { Erros, Escolha, Marcar, Numero, Passo, Revelar, Selo, numeroOu } from '../app/ui';
++import { Erros, Escolha, Marcar, Numero, Passo, PorQue, Revelar, numeroOu } from '../app/ui';
+ 
+ // Passo 4: dias por semana, minutos por sessão e grupos prioritários, uma pergunta por vez. A divisão (opcional) saiu
+ // do cadastro na reformulação visual (design v2, item E): sem escolha, o gerador usa a recomendada; ela é escolhida
+@@ -92,7 +92,9 @@ export function Rotina() {
+           legenda="Quantos dias por semana você pode treinar?"
+           ajuda={
+             <>
+-              Com 2 a 6 dias dá para treinar cada músculo cerca de 2 vezes por semana. <Selo id="divisao.seis-dias" />
++              <PorQue regras={['divisao.seis-dias']} titulo="Quantos dias">
++                <p>Com 2 a 6 dias dá para treinar cada músculo cerca de 2 vezes por semana.</p>
++              </PorQue>
+             </>
+           }
+           opcoes={DIAS.map((d) => ({ id: d, texto: `${d} dias` }))}
+@@ -139,8 +141,10 @@ export function Rotina() {
+             <fieldset className="campo">
+               <legend>Quais grupos você quer priorizar? (opcional)</legend>
+               <p className="ajuda">
+-                Os grupos prioritários recebem mais séries; os outros ficam no mínimo que já gera resultado. Escolha até 2: com mais, o foco se divide.{' '}
+-                <Selo id="volume.semanal.minimo-eficaz" /> <Selo id="volume.prioridade.ate-dois" />
++                Escolha até 2.{' '}
++                <PorQue regras={['volume.semanal.minimo-eficaz', 'volume.prioridade.ate-dois']} titulo="Grupos prioritários">
++                  <p>Os grupos prioritários recebem mais séries; os outros ficam no mínimo que já gera resultado. Escolha até 2: com mais, o foco se divide.</p>
++                </PorQue>
+               </p>
+               <div className="opcoes grade">
+                 {GRUPOS_IDS.map((g) => (
+@@ -157,7 +161,7 @@ export function Rotina() {
+             </fieldset>
+             {/* lote 3 do redesign: o objetivo saiu do cadastro ("ganhar músculo" é o padrão) e fica em Meus dados */}
+             {!deDados && (
+-              <p className="ajuda">Dá para mudar depois, em Meus dados. O objetivo (“ganhar músculo” é o padrão) e “algo a evitar” também ficam lá.</p>
++              <p className="ajuda">Dá para mudar depois, em Meus dados.</p>
+             )}
+             {deDados && (
+             <div ref={noObjetivo} className="ancora-objetivo">
+@@ -166,8 +170,13 @@ export function Rotina() {
+               legenda="O que você quer agora? (opcional)"
+               ajuda={
+                 <>
+-                  O treino é de força em todos. Só "ficar mais forte" muda números: menos repetições e mais descanso nos exercícios grandes. Sem escolha,
+-                  o programa é para ganhar músculo. O app não cuida de alimentação nem de cardio. <Selo id="objetivo.pergunta" />
++                  Sem escolha, o programa é para ganhar músculo.{' '}
++                  <PorQue regras={['objetivo.pergunta']} titulo="O objetivo" rotulo="o que muda">
++                    <p>
++                      O treino é de força em todos. Só "ficar mais forte" muda números: menos repetições e mais descanso nos exercícios grandes. O
++                      app não cuida de alimentação nem de cardio.
++                    </p>
++                  </PorQue>
+                 </>
+               }
+               opcoes={OBJETIVOS_TEXTO}
+@@ -182,8 +191,10 @@ export function Rotina() {
+           <fieldset className="campo">
+             <legend>Como prefere dividir? (opcional)</legend>
+             <p className="ajuda">
+-              Com o mesmo volume, as divisões rendem o mesmo crescimento; escolha a que encaixa melhor na sua semana. Se não escolher, o app usa a
+-              recomendada. <Selo id="divisao.equivalencia" /> <Selo id="divisao.recomendacao" />
++              Rendem o mesmo: escolha a que cabe na sua semana.{' '}
++              <PorQue regras={['divisao.equivalencia', 'divisao.recomendacao']} titulo="As divisões">
++                <p>Com o mesmo volume, as divisões rendem o mesmo crescimento. Se não escolher, o app usa a recomendada.</p>
++              </PorQue>
+             </p>
+             <div className="opcoes">
+               {opcoesDivisao.map((o) => (
+diff --git a/src/features/onboarding/Triagem.tsx b/src/features/onboarding/Triagem.tsx
+index 6c568d4..e8e33d3 100644
+--- a/src/features/onboarding/Triagem.tsx
++++ b/src/features/onboarding/Triagem.tsx
+@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
+ import { ARTICULACOES, type Articulacao } from '../../domain/biblioteca';
+ import { avaliarTriagem, PERGUNTAS, respostasNenhuma, type DorRegiao, type PerguntaId, type Respostas } from '../../domain/triagem';
+ import { agoraIso, useApp } from '../app/estado';
+-import { Erros, Escolha, Marcar, Passo, Selo } from '../app/ui';
++import { Erros, Escolha, Marcar, Passo, PorQue, Selo } from '../app/ui';
+ import { Folha } from '../app/Folha';
+ 
+ // Passo 2: triagem no estilo do PAR-Q+ (seguranca.triagem). Perguntas próprias do app (seguranca.triagem.texto).
+@@ -129,12 +129,13 @@ export function Triagem() {
+   if (geral)
+     return (
+       <Passo id="triagem" titulo="Alguma destas vale para você?">
+-        <p className="lede">
+-          Treinar é seguro para a maioria das pessoas. Esta pergunta vê se vale falar com um profissional antes. <Selo id="seguranca.triagem" />
+-        </p>
+         <p className="ajuda">
+-          Hoje, ou algo que um médico já disse. Um “sim” não impede o treino; pede uma avaliação antes do programa automático. Suas respostas
+-          ficam só neste celular.
++          Hoje, ou algo que um médico já disse.{' '}
++          <PorQue regras={['seguranca.triagem', 'seguranca.triagem.nenhuma']} titulo="Por que esta pergunta" rotulo="por que perguntamos">
++            <p>Treinar é seguro para a maioria das pessoas. Esta pergunta vê se vale falar com um profissional antes.</p>
++            <p>Um “sim” não impede o treino; pede uma avaliação antes do programa automático. Suas respostas ficam só neste celular.</p>
++            <p>Se nenhuma vale, um toque responde “não” a todas.</p>
++          </PorQue>
+         </p>
+         <ul className="condicoes" aria-label="As 9 condições">
+           {PERGUNTAS.map((p) => (
+@@ -142,7 +143,6 @@ export function Triagem() {
+           ))}
+         </ul>
+         <p className="ajuda">
+-          Se nenhuma vale, um toque responde “não” a todas. <Selo id="seguranca.triagem.nenhuma" />{' '}
+           <button type="button" className="link-botao" aria-haspopup="dialog" onClick={() => setCompletas(true)}>
+             Ver as perguntas completas
+           </button>
+diff --git a/src/features/programa/ComoEsta.tsx b/src/features/programa/ComoEsta.tsx
+index 3c40626..1c58072 100644
+--- a/src/features/programa/ComoEsta.tsx
++++ b/src/features/programa/ComoEsta.tsx
+@@ -55,13 +55,16 @@ export function ComoEsta({ programa, perfil, inventario }: { programa: Programa;
+         <LinhaDoAchado key={`${a.gravidade}-${a.tipo}-${a.regraId}`} a={a} className="warnbox" />
+       ))}
+       {leves.length > 0 && (
+-        <ul className="lista">
+-          {leves.map((a) => (
+-            <li key={`${a.gravidade}-${a.tipo}-${a.regraId}-${a.itens[0]}`}>
+-              <LinhaDoAchado a={a} />
+-            </li>
+-          ))}
+-        </ul>
++        <details className="box dobra">
++          <summary>Limites e observações ({leves.length})</summary>
++          <ul className="lista">
++            {leves.map((a) => (
++              <li key={`${a.gravidade}-${a.tipo}-${a.regraId}-${a.itens[0]}`}>
++                <LinhaDoAchado a={a} />
++              </li>
++            ))}
++          </ul>
++        </details>
+       )}
+     </section>
+   );
+diff --git a/src/features/programa/ComoLer.tsx b/src/features/programa/ComoLer.tsx
+index 7c64440..954499f 100644
+--- a/src/features/programa/ComoLer.tsx
++++ b/src/features/programa/ComoLer.tsx
+@@ -4,7 +4,7 @@ import { Selo } from '../app/ui';
+ // Aberto até o 1º treino terminado; depois, recolhido. No iniciante, uma linha a mais com a fase de aprendizado.
+ export function ComoLer({ aberto, iniciante }: { aberto: boolean; iniciante: boolean }) {
+   return (
+-    <details className="box dobra como-ler" open={aberto}>
++    <details className="box dobra como-ler" open={aberto && false}>
+       <summary>Como ler o seu treino</summary>
+       <dl>
+         <div>
+diff --git a/src/features/programa/Programa.tsx b/src/features/programa/Programa.tsx
+index 4e664db..6b546db 100644
+--- a/src/features/programa/Programa.tsx
++++ b/src/features/programa/Programa.tsx
+@@ -626,14 +626,16 @@ function LinhaExercicio({
+               Ver a evolução deste exercício
+             </Link>
+           )}
+-          <h3 className="rotulo">Por que este exercício</h3>
+-          <ul className="lista">
+-            {x.porque.map((q) => (
+-              <li key={q.regraId}>
+-                {q.texto} <Selo id={q.regraId} />
+-              </li>
+-            ))}
+-          </ul>
++          <details className="box dobra">
++            <summary>Por que este exercício ({x.porque.length === 1 ? '1 motivo' : `${x.porque.length} motivos`})</summary>
++            <ul className="lista">
++              {x.porque.map((q) => (
++                <li key={q.regraId}>
++                  {q.texto} <Selo id={q.regraId} />
++                </li>
++              ))}
++            </ul>
++          </details>
+         </Folha>
+       )}
+     </li>
+@@ -683,8 +685,8 @@ function Sobre({
+           </p>
+           {inventario && <ComoEsta programa={programa} perfil={perfil} inventario={inventario} />}
+           {programa.avisos.length > 0 && (
+-            <>
+-              <h3>Avisos</h3>
++            <details className="box dobra">
++              <summary>Avisos ({programa.avisos.length})</summary>
+               <div className="avisos-lista">
+                 {programa.avisos.map((a, i) => (
+                   <div key={i} className="warnbox">
+@@ -692,11 +694,11 @@ function Sobre({
+                   </div>
+                 ))}
+               </div>
+-            </>
++            </details>
+           )}
+           {programa.fases.length > 0 && (
+-            <>
+-              <h3>Fases</h3>
++            <details className="box dobra">
++              <summary>Fases ({programa.fases.length})</summary>
+               <ul className="lista">
+                 {programa.fases.map((f) => (
+                   <li key={f.semanas}>
+@@ -704,17 +706,20 @@ function Sobre({
+                   </li>
+                 ))}
+               </ul>
+-            </>
++            </details>
+           )}
+-          <h3>Por que este programa</h3>
+-          <ul className="lista">
+-            {programa.porque.map((q) => (
+-              <li key={q.regraId}>
+-                {q.texto} <Selo id={q.regraId} />
+-              </li>
+-            ))}
+-          </ul>
+-          <h3>Séries por músculo na semana</h3>
++          <details className="box dobra">
++            <summary>Por que este programa ({programa.porque.length})</summary>
++            <ul className="lista">
++              {programa.porque.map((q) => (
++                <li key={q.regraId}>
++                  {q.texto} <Selo id={q.regraId} />
++                </li>
++              ))}
++            </ul>
++          </details>
++          <details className="box dobra">
++            <summary>Séries por músculo na semana</summary>
+           <p className="ajuda">
+             Séries indiretas contam como meia série. <Selo id="volume.serie-indireta.peso" />
+           </p>
+@@ -739,6 +744,7 @@ function Sobre({
+               ))}
+             </tbody>
+           </table>
++          </details>
+           {reabrirAjustes && (
+             <button
+               type="button"
+diff --git a/src/features/treino/Resumo.tsx b/src/features/treino/Resumo.tsx
+index c7aa323..c75c61a 100644
+--- a/src/features/treino/Resumo.tsx
++++ b/src/features/treino/Resumo.tsx
+@@ -103,10 +103,10 @@ export function Resumo() {
+                   <b>A sua semana</b> <Pontos r={semana} />{' '}
+                   <b className="num">
+                     {semana.feitos} de {semana.planejados}
+-                  </b>
+-                </p>
+-                <p>
+-                  {semana.mensagem} <Selo id={semana.regraId} />
++                  </b>{' '}
++                  <PorQue regras={[semana.regraId]} titulo="A sua semana" rotulo="o que conta">
++                    <p>{semana.mensagem}</p>
++                  </PorQue>
+                 </p>
+               </>
+             )}
+@@ -140,8 +140,7 @@ export function Resumo() {
+             ))}
+           </div>
+           <p className="ajuda">
+-            Nada vem marcado.{' '}
+-            <PorQue regras={['deload.semana-leve']} titulo="Hoje foi">
++            <PorQue regras={['deload.semana-leve']} titulo="Hoje foi" rotulo="para que serve">
+               <p>Nada vem marcado. Com "pesado demais" em 2 dos últimos 3 treinos, o app sugere uma semana leve.</p>
+             </PorQue>
+           </p>

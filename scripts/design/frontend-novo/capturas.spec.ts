@@ -58,7 +58,7 @@ test('o app de hoje, tela por tela, com a Ana', async ({ page }, info) => {
         if (!pai || !texto || pai.closest('svg, [inert], [hidden], script, style')) continue;
         const r = pai.getBoundingClientRect();
         const s = getComputedStyle(pai);
-        if (r.width === 0 || r.height === 0 || r.bottom <= 0 || r.top >= h || s.visibility === 'hidden') continue;
+        if (r.width === 0 || r.height === 0 || r.bottom <= 0 || r.top >= h || s.visibility === 'hidden' || !pai.checkVisibility()) continue;
         palavras += texto.split(/\s+/).length;
       }
       // o texto da tela inteira: da folha aberta por cima, se houver; senão, da página
@@ -66,7 +66,8 @@ test('o app de hoje, tela por tela, com a Ana', async ({ page }, info) => {
       const raiz = folhas.at(-1) ?? document.body;
       const visivel = (el: Element) => {
         const r = el.getBoundingClientRect();
-        return r.width > 0 && r.height > 0 && getComputedStyle(el).visibility !== 'hidden' && !el.closest('svg, [inert], [hidden], script, style');
+        // checkVisibility: o que está dentro de um bloco fechado (<details>) não conta, mesmo tendo caixa
+        return r.width > 0 && r.height > 0 && getComputedStyle(el).visibility !== 'hidden' && el.checkVisibility() && !el.closest('svg, [inert], [hidden], script, style');
       };
       const conta = (t: string) => (t.trim() ? t.trim().split(/\s+/).length : 0);
       let naTela = 0;

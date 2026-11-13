@@ -278,3 +278,6 @@ O que sobrou da reconstrução na direção "Placar" (`devlog.md`, "Frontend nov
 **Para conciliar com a `main`**
 - `package.json` ganhou o comando `conferir:tokens`; `vite.config.ts` trocou a cor de fundo do app instalado e incluiu o arquivo de licença dos ícones; `index.html` pré-carrega a letra nova. Os três ficam fora da lista do que a sessão podia alterar e foram mudados no mínimo necessário.
 - `scripts/icones-app.mjs` (fora da lista) continua gerando o ícone índigo; o ícone novo sai de `scripts/design/frontend-novo/icone-app.mjs`. Na junção, vale ficar com um só.
+
+**Estudo dos textos (13/11/2026), esperando a decisão do Gustavo**
+- O app tem texto corrido demais fora do treino ("Sobre o programa" com 829 palavras, termos com 793, início com 256 antes do 1º treino). O estudo, as referências, as 10 regras propostas e uma versão enxuta de exemplo em 11 telas estão em `revisoes/frontend-novo/textos/estudo-dos-textos.md`. Nada do exemplo está aplicado. As 6 decisões que ele pede estão na seção 7 do estudo; as etapas, na seção 8.

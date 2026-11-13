@@ -173,7 +173,7 @@
     },
     {
       "tela": "06-inicio",
-      "esperaDasMiniaturasMs": 668,
+      "esperaDasMiniaturasMs": 590,
       "alturaDaPagina": 1957,
       "alturaDaTela": 844,
       "palavrasAVista": 105,
@@ -198,8 +198,8 @@
       "esperaDasMiniaturasMs": 6,
       "alturaDaPagina": 1957,
       "alturaDaTela": 844,
-      "palavrasAVista": 90,
-      "palavrasNaTela": 201,
+      "palavrasAVista": 85,
+      "palavrasNaTela": 196,
       "blocosLongos": [
         {
           "palavras": 57,
@@ -213,7 +213,7 @@
     },
     {
       "tela": "06b-inicio-sobre-o-programa",
-      "esperaDasMiniaturasMs": 8,
+      "esperaDasMiniaturasMs": 6,
       "alturaDaPagina": 1957,
       "alturaDaTela": 844,
       "palavrasAVista": 121,
@@ -300,7 +300,7 @@
       "alturaDaPagina": 2879,
       "alturaDaTela": 844,
       "palavrasAVista": 59,
-      "palavrasNaTela": 547,
+      "palavrasNaTela": 295,
       "blocosLongos": [
         {
           "palavras": 36,
@@ -322,7 +322,7 @@
       "alturaDaPagina": 3135,
       "alturaDaTela": 844,
       "palavrasAVista": 52,
-      "palavrasNaTela": 575,
+      "palavrasNaTela": 323,
       "blocosLongos": [
         {
           "palavras": 36,
@@ -344,7 +344,7 @@
       "alturaDaPagina": 3080,
       "alturaDaTela": 844,
       "palavrasAVista": 73,
-      "palavrasNaTela": 592,
+      "palavrasNaTela": 340,
       "blocosLongos": [
         {
           "palavras": 36,
@@ -366,7 +366,7 @@
       "alturaDaPagina": 3049,
       "alturaDaTela": 844,
       "palavrasAVista": 59,
-      "palavrasNaTela": 578,
+      "palavrasNaTela": 326,
       "blocosLongos": [
         {
           "palavras": 36,
@@ -410,7 +410,7 @@
     },
     {
       "tela": "10-treino-senti-algo",
-      "esperaDasMiniaturasMs": 6,
+      "esperaDasMiniaturasMs": 9,
       "alturaDaPagina": 844,
       "alturaDaTela": 844,
       "palavrasAVista": 65,
@@ -423,7 +423,7 @@
     },
     {
       "tela": "11-treino-mais-opcoes",
-      "esperaDasMiniaturasMs": 9,
+      "esperaDasMiniaturasMs": 6,
       "alturaDaPagina": 844,
       "alturaDaTela": 844,
       "palavrasAVista": 17,
@@ -439,8 +439,8 @@
       "esperaDasMiniaturasMs": 0,
       "alturaDaPagina": 844,
       "alturaDaTela": 844,
-      "palavrasAVista": 80,
-      "palavrasNaTela": 62,
+      "palavrasAVista": 82,
+      "palavrasNaTela": 64,
       "blocosLongos": [],
       "selos": 1,
       "porques": 1,
@@ -627,13 +627,13 @@
     },
     {
       "tela": "06c-inicio-depois-do-1o-treino",
-      "esperaDasMiniaturasMs": 492,
+      "esperaDasMiniaturasMs": 451,
       "alturaDaPagina": 1288,
       "alturaDaTela": 844,
       "palavrasAVista": 106,
-      "palavrasNaTela": 260,
+      "palavrasNaTela": 109,
       "blocosLongos": [],
-      "selos": 5,
+      "selos": 0,
       "porques": 0,
       "acaoPrincipal": "/^Começar o treino/",
       "acaoAVista": true
@@ -641,7 +641,7 @@
     {
       "tela": "16-meus-dados",
       "esperaDasMiniaturasMs": 0,
-      "alturaDaPagina": 1528,
+      "alturaDaPagina": 1550,
       "alturaDaTela": 844,
       "palavrasAVista": 139,
       "palavrasNaTela": 216,
@@ -663,7 +663,7 @@
     {
       "tela": "16b-meus-dados-estilo-do-boneco",
       "esperaDasMiniaturasMs": 0,
-      "alturaDaPagina": 1528,
+      "alturaDaPagina": 1550,
       "alturaDaTela": 844,
       "palavrasAVista": 46,
       "palavrasNaTela": 46,

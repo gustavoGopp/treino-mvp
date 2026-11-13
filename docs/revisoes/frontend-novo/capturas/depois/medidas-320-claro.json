@@ -173,7 +173,7 @@
     },
     {
       "tela": "06-inicio",
-      "esperaDasMiniaturasMs": 756,
+      "esperaDasMiniaturasMs": 757,
       "alturaDaPagina": 2081,
       "alturaDaTela": 640,
       "palavrasAVista": 76,
@@ -195,11 +195,11 @@
     },
     {
       "tela": "07-folha-do-exercicio",
-      "esperaDasMiniaturasMs": 6,
+      "esperaDasMiniaturasMs": 5,
       "alturaDaPagina": 2081,
       "alturaDaTela": 640,
       "palavrasAVista": 48,
-      "palavrasNaTela": 201,
+      "palavrasNaTela": 196,
       "blocosLongos": [
         {
           "palavras": 57,
@@ -213,7 +213,7 @@
     },
     {
       "tela": "06b-inicio-sobre-o-programa",
-      "esperaDasMiniaturasMs": 6,
+      "esperaDasMiniaturasMs": 5,
       "alturaDaPagina": 2081,
       "alturaDaTela": 640,
       "palavrasAVista": 77,
@@ -300,7 +300,7 @@
       "alturaDaPagina": 3064,
       "alturaDaTela": 640,
       "palavrasAVista": 24,
-      "palavrasNaTela": 547,
+      "palavrasNaTela": 295,
       "blocosLongos": [
         {
           "palavras": 36,
@@ -322,7 +322,7 @@
       "alturaDaPagina": 3290,
       "alturaDaTela": 640,
       "palavrasAVista": 31,
-      "palavrasNaTela": 575,
+      "palavrasNaTela": 323,
       "blocosLongos": [
         {
           "palavras": 36,
@@ -344,7 +344,7 @@
       "alturaDaPagina": 3282,
       "alturaDaTela": 640,
       "palavrasAVista": 27,
-      "palavrasNaTela": 592,
+      "palavrasNaTela": 340,
       "blocosLongos": [
         {
           "palavras": 36,
@@ -366,7 +366,7 @@
       "alturaDaPagina": 3226,
       "alturaDaTela": 640,
       "palavrasAVista": 33,
-      "palavrasNaTela": 578,
+      "palavrasNaTela": 326,
       "blocosLongos": [
         {
           "palavras": 36,
@@ -397,7 +397,7 @@
     },
     {
       "tela": "09-treino-descanso",
-      "esperaDasMiniaturasMs": 12,
+      "esperaDasMiniaturasMs": 5,
       "alturaDaPagina": 640,
       "alturaDaTela": 640,
       "palavrasAVista": 56,
@@ -410,7 +410,7 @@
     },
     {
       "tela": "10-treino-senti-algo",
-      "esperaDasMiniaturasMs": 5,
+      "esperaDasMiniaturasMs": 9,
       "alturaDaPagina": 640,
       "alturaDaTela": 640,
       "palavrasAVista": 45,
@@ -423,7 +423,7 @@
     },
     {
       "tela": "11-treino-mais-opcoes",
-      "esperaDasMiniaturasMs": 5,
+      "esperaDasMiniaturasMs": 7,
       "alturaDaPagina": 640,
       "alturaDaTela": 640,
       "palavrasAVista": 17,
@@ -496,7 +496,7 @@
     },
     {
       "tela": "09c-treino-hora-da-proxima-serie",
-      "esperaDasMiniaturasMs": 6,
+      "esperaDasMiniaturasMs": 8,
       "alturaDaPagina": 640,
       "alturaDaTela": 640,
       "palavrasAVista": 38,
@@ -627,13 +627,13 @@
     },
     {
       "tela": "06c-inicio-depois-do-1o-treino",
-      "esperaDasMiniaturasMs": 642,
+      "esperaDasMiniaturasMs": 635,
       "alturaDaPagina": 1378,
       "alturaDaTela": 640,
       "palavrasAVista": 71,
-      "palavrasNaTela": 255,
+      "palavrasNaTela": 104,
       "blocosLongos": [],
-      "selos": 5,
+      "selos": 0,
       "porques": 0,
       "acaoPrincipal": "/^Começar o treino/",
       "acaoAVista": true
