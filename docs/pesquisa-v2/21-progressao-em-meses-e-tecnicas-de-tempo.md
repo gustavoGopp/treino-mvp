@@ -1,4 +1,16 @@
-# R5. A progressão ao longo de meses e as técnicas para economizar tempo
+# A progressão ao longo de meses, a semana leve, o platô, a volta de pausa e as técnicas para economizar tempo
+
+> **Tema 21 da pesquisa v2** (sessão "treino para todos", 12 e 13/11/2026). Como os temas 13 a 17, este arquivo é o relatório de um pesquisador de leitura (subagente, modelo mais simples), com briefing fechado e a regra de não inventar; a síntese abaixo e as decisões são da sessão. As afirmações centrais foram conferidas na fonte por um verificador independente, que não viu as conclusões (`26-verificacao-independente.md`). Selos e status de leitura: `docs/pesquisa/00-metodo.md`. "texto-completo" aqui quer dizer que o artigo foi aberto e os números conferidos no texto, muitas vezes por trechos e não de ponta a ponta; cada fonte diz o que foi lido. Nada daqui entrou em `regras.md` ainda: as mudanças propostas estão em `docs/revisoes/treino-para-todos/proposta.md` e esperam a decisão do Gustavo.
+
+## Síntese da sessão (o que muda regra)
+- **Dupla progressão confirmada** (moderada): subir repetições ou carga rende parecido em 8 a 10 semanas (`plotkin2022`, conferido: diferenças pequenas, só pernas, treinados).
+- **Periodizar não rende mais hipertrofia** (robusta) e **semana leve planejada não mostrou ganho** (`coleman2024`: uma semana de pausa total, hipertrofia igual e força pior). Os treinadores a usam assim mesmo (`bell2023`, `rogerson2024`). A regra do app (oferecer só com sinal, reduzindo séries) fica.
+- **Platô:** nenhum ensaio diz o que destrava. O ganho de força desacelera muito depois do 1º ano (`steele2023`). O aviso de "três sessões sem melhora" do app dispara em 24 a 41 de cada 48 sessões no praticante simulado (`docs/revisoes/treino-para-todos/medidas/longo-prazo.md`): a janela deveria crescer com o nível (consenso).
+- **Subir séries com o tempo:** mais força em treinados (moderada, um laboratório); para músculo, um estudo inconsistente. Séries fixas não são erro.
+- **Volta de pausa:** a direção das faixas do app é compatível com a literatura; os percentuais são consenso.
+- **Bi-set e drop set:** mesma hipertrofia com menos tempo (`zhang2025`, `sodal2023`, conferidos), com mais esforço percebido. `iversen2021` (revisão narrativa) não os aconselha em exercícios livres pesados, e não fala de iniciantes: a restrição para iniciantes é consenso de treinadores.
+
+---
 
 Pesquisador R5, 12/11/2026. Lido no texto completo (Europe PMC, XML aberto): plotkin2022, coleman2024, bell2023, rogerson2024, pancar2026, iversen2021, sodal2023, zhang2025, andersen2022b, hickmott2022, acsm2026, vangstad2026, latella2020, vargasmolina2026 (parcial). Só resumo-PubMed: chaves2024, nobrega2023, scarpelli2022, enes2024, enes2025, camargo2026, moesgaard2022, grgic2017b, bosquet2013, ogasawara2013, hwang2017, halonen2024, hulmi2025, steele2023, demarco2024, acsm2009. Resumo via Crossref: santosjunior2021.
 

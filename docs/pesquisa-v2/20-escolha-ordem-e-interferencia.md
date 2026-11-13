@@ -1,4 +1,16 @@
-# R3. Que exercício escolher, em que ordem, e a interferência entre exercícios e entre dias
+# Que exercício escolher, em que ordem, e a interferência entre exercícios e entre dias
+
+> **Tema 20 da pesquisa v2** (sessão "treino para todos", 12 e 13/11/2026). Como os temas 13 a 17, este arquivo é o relatório de um pesquisador de leitura (subagente, modelo mais simples), com briefing fechado e a regra de não inventar; a síntese abaixo e as decisões são da sessão. As afirmações centrais foram conferidas na fonte por um verificador independente, que não viu as conclusões (`26-verificacao-independente.md`). Selos e status de leitura: `docs/pesquisa/00-metodo.md`. "texto-completo" aqui quer dizer que o artigo foi aberto e os números conferidos no texto, muitas vezes por trechos e não de ponta a ponta; cada fonte diz o que foi lido. Nada daqui entrou em `regras.md` ainda: as mudanças propostas estão em `docs/revisoes/treino-para-todos/proposta.md` e esperam a decisão do Gustavo.
+
+## Síntese da sessão (o que muda regra)
+- **O desempate de hoje não tem base de treino no fim da fila:** entre equivalentes, decide a animação e depois a ordem alfabética. A pesquisa propõe: segurança e dor; posição alongada com ensaio direto; exercício de referência e de dois lados antes do raro e de um lado só; estabilidade (iniciante); carga; preferência; variedade; e só então a animação.
+- **Máquina × peso livre e um lado × dois lados:** nenhuma diferença de hipertrofia detectada, com intervalos largos (`haugen2023`, `kassiano2025`). O verificador lembra: é falta de evidência de diferença, não prova de igualdade. O motivo de preferir os dois lados com carga à vontade é o tempo (o dobro por série) e a simplicidade, consenso.
+- **Posição alongada:** moderada, em ensaios pequenos (tríceps acima da cabeça, flexora sentada, panturrilha em pé, extensora); sem ensaio para peito, dorsal e trapézio.
+- **Ordem:** não muda a hipertrofia (`nunes2021`, ES 0,03, conferido); o que vem primeiro ganha mais força. "Pesado e técnico primeiro" é consenso de segurança e desempenho.
+- **Fadiga da lombar e da pegada, e sinergistas:** nenhum ensaio; tudo consenso. Proposta: no máximo um exercício de tronco que carrega a lombar sem apoio depois de outro que já carrega, havendo opção do mesmo nível.
+- **Dias seguidos:** dois ensaios pequenos sem prejuízo em volume moderado (`yang2018`, `carvalho2018`); para volume alto, a regra das ~48 h fica como consenso.
+
+---
 
 Pesquisador R3, sessão de 12/11/2026. Só li o que está marcado como lido. Onde não achei, escrevo "não achei".
 Resumo de leitura: texto completo (por busca de trechos e leitura de métodos/resultados) de Wolf 2023 (PDF aberto), Pedrosa 2026, Zabaleta-Korta 2023, Trindade 2019, Yang 2018, Bonilla 2022; os demais são resumo-PubMed. Várias fontes que o projeto já tinha em texto completo (Haugen, Maeo 2021/2024, Kinoshita, Larsen 2025, Plotkin, Chaves) eu usei pelo status que já está em fontes.md, sem reler.
@@ -28,7 +40,7 @@ Resumo de leitura: texto completo (por busca de trechos e leitura de métodos/re
   - `mcmahon2026` (**do resumo**, 45 pessoas, 4 grupos, 8 sem, extensora): parcial alongada a 55% de 1RM ≈ completa a 80% de 1RM em espessura do vasto lateral; os dois maiores que o parcial encurtado em alguns pontos.
 - **Em treinados?** `pedrosa2026` (revisão não sistemática, **texto completo lido**): quase todos os estudos incluídos são com não treinados (exceto três), de 5 a 15 semanas; o texto diz que falta saber se o benefício persiste com o tempo e em treinados, e que "peitoral, grande dorsal e trapézio ainda não foram investigados". Conclusão dos autores: comprimento muscular importa, "moderado a longo parece importante", mas há interação com torque externo (o benefício aparece quando há torque externo importante na posição alongada).
 - `warneke2023` (**do resumo**, revisão narrativa): alongamento estático como estímulo de hipertrofia em humanos usou > 30 min por sessão e, para quem tem acesso à musculação, é menos eficiente; os autores dizem que o mecanismo em humanos é só especulativo. Não é base para regra de gerador.
-- `ottinger2023`: **não achei** (busca "Ottinger" no PubMed sem resultado útil). Não cito.
+- ottinger2023: **não achei** (busca "Ottinger" no PubMed sem resultado útil). Não cito.
 - **SELO e regra:** "preferir, entre variantes equivalentes, a que dá carga na posição alongada, onde há ensaio direto (tríceps overhead, posteriores sentada, panturrilha em pé, reto femoral com extensora, bíceps com apoio)": **moderada** (vários ensaios pequenos, coerentes, não treinados, sem repetição independente na maioria). "Fazer amplitude parcial de propósito": **não recomendar como regra** (meta-análises nulas). Para peito, dorsal e trapézio: **a ciência não sabe**; não criar regra de comprimento para eles.
 
 ### P1(b). Estabilidade: máquina × peso livre; superfície instável
@@ -121,7 +133,7 @@ Ver P1(a): `wolf2023` e `varovic2025` nulos; `pallares2021` a favor da completa 
 - Fonte principal que li: `bonilla2022` (**texto completo**, revisão integrativa de 39 artigos; PRISMA-PERSiST). As recomendações específicas que li no texto, todas vindas de artigos citados e na maior parte narrativas ou opinião de especialistas (**consenso**): puxada e desenvolvimento por trás da nuca devem ser modificados para a frente (barra no peito, evitando a "posição de high-five"); supino de pegada aberta deve evitar abdução horizontal excessiva e rotação externa; rosca e tríceps com barra reta trocar por barra W, corda ou pegada neutra; evitar o "alongamento máximo" em voador, mergulho (dips) e pullover; a revisão listou ombro, cotovelo, coluna e joelho como as regiões mais lesionadas.
 - `kolber2010` (**do resumo**): até 36% das lesões de treino de força documentadas ocorrem no ombro; fatores: desequilíbrio muscular e técnica ruim; a maioria dos dados é retrospectiva e não há estudo prospectivo para predizer lesão.
 - `keogh2017` (**do resumo**): ombro, lombar, joelho, cotovelo e punho/mão são os locais mais comuns; a maior parte dos estudos é retrospectiva e de atletas de competição; musculação tem taxa de lesão baixa em comparação com esportes coletivos.
-- **"Remada alta" (upright row) e "flexão de punho":** busquei no texto de `bonilla2022` e **não aparece "upright row"**; não achei fonte para essas duas. `bukhary2023`: **não achei** (nenhum artigo com esse sobrenome relacionado a lesões na musculação no PubMed).
+- **"Remada alta" (upright row) e "flexão de punho":** busquei no texto de `bonilla2022` e **não aparece "upright row"**; não achei fonte para essas duas. bukhary2023: **não achei** (nenhum artigo com esse sobrenome relacionado a lesões na musculação no PubMed).
 - **Conflito importante para o gerador:** a regra de "posição alongada" (P1a) e o conselho de lesões de "não ir ao alongamento máximo em voador/dips" empurram em sentidos opostos. Para o iniciante e para quem tem ombro sensível, vale o conselho de segurança (consenso), porque os ensaios de comprimento são com não treinados jovens e não medem lesão.
 - **SELO:** tudo da lista acima é **consenso**; nenhum ensaio testa a taxa de lesão por exercício. A cautela que vira regra é a do "dor → alternativa", que o projeto já tem (PAR-Q+).
 
@@ -192,7 +204,7 @@ Lidas por mim nesta sessão:
 
 Usadas pelo status que já têm em fontes.md (**não reli nesta sessão**): `haugen2023` (texto-completo no projeto), `maeo2021` (texto-completo), `maeo2024` (texto-completo), `kinoshita2023` (texto-completo), `kinoshita2026` (texto-completo), `larsen2025` (texto-completo), `plotkin2023` (texto-completo), `chaves2020` (texto-completo), `larsen2025c` / `larsen2026` / `kassiano2025c` / `kassiano2024` / `kassiano2023b` / `larsen2025a` / `larsen2025e` / `nunes2020` / `nunes2019` / `mannarino2021` / `brandao2020` / `costa2021` / `fonseca2014` (todas resumo-PubMed no projeto), `rosa2022` (verificado-busca, **NÃO VERIFICADO por mim**), `pelland2026`, `schoenfeld2019a`.
 
-Procurei e **não achei**: `ottinger2023` (hipertrofia alongada), `bukhary2023` (lesões em musculação), "Zhang 2023" (meta unilateral × bilateral para força), ensaio de straps com hipertrofia, ensaio de fadiga lombar em sequência, ensaio de remada alta ou flexão de punho.
+Procurei e **não achei**: ottinger2023 (hipertrofia alongada), bukhary2023 (lesões em musculação), "Zhang 2023" (meta unilateral × bilateral para força), ensaio de straps com hipertrofia, ensaio de fadiga lombar em sequência, ensaio de remada alta ou flexão de punho.
 
 ## 5. Buscas feitas
 

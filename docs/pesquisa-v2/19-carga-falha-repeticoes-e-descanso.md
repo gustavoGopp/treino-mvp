@@ -1,4 +1,16 @@
-# R2. Quão pesado, quão perto da falha, repetições por tipo, descanso, e carga leve para quem é forte
+# Quão pesado, quão perto da falha, repetições por tipo de exercício e de equipamento, descanso; carga leve em quem é forte
+
+> **Tema 19 da pesquisa v2** (sessão "treino para todos", 12 e 13/11/2026). Como os temas 13 a 17, este arquivo é o relatório de um pesquisador de leitura (subagente, modelo mais simples), com briefing fechado e a regra de não inventar; a síntese abaixo e as decisões são da sessão. As afirmações centrais foram conferidas na fonte por um verificador independente, que não viu as conclusões (`26-verificacao-independente.md`). Selos e status de leitura: `docs/pesquisa/00-metodo.md`. "texto-completo" aqui quer dizer que o artigo foi aberto e os números conferidos no texto, muitas vezes por trechos e não de ponta a ponta; cada fonte diz o que foi lido. Nada daqui entrou em `regras.md` ainda: as mudanças propostas estão em `docs/revisoes/treino-para-todos/proposta.md` e esperam a decisão do Gustavo.
+
+## Síntese da sessão (o que muda regra)
+- **Carga:** de ~30% a 100% de 1RM a hipertrofia é parecida quando a série vai perto da falha (robusta; o verificador corrigiu a faixa do `acsm2026`, que vai a 100%, e não a 85%). Faixa de repetições por tipo de exercício é consenso: nenhum ensaio mostra que multiarticular "pede" menos repetições.
+- **Falha:** não é necessária (robusta). Chegar perto ajuda um pouco a hipertrofia e não a força (moderada).
+- **A reserva (RIR) que a pessoa relata erra ~1 repetição para menos, e mais em séries acima de 12** (`halperin2022`, conferido). O iniciante com "2 a 3 de reserva" em séries de 12 a 20 treina mais longe da falha do que pensa.
+- **Descanso:** o do app (1 min 45 s nos multiarticulares, 1 min 15 s nos isoladores) fica abaixo do consenso da IUSCA (2 min ou mais; 60 a 90 s). A evidência (`singer2024`) vê só um benefício pequeno acima de 60 s e nada claro acima de ~90 s. O número é consenso; o custo de mudar é tempo de treino (medido em `proposta.md`).
+- **Carga leve em quem é forte:** unilateral, descida lenta e parcial alongada não rendem mais músculo por si; servem para a série acabar na faixa. Não achamos ensaio de programa só com peso do corpo em avançados.
+- **Não usar:** `hughes2020` (retratado), pré-exaustão, números só do resumo de `robinson2024`.
+
+---
 
 Pesquisa de 12/11/2026. Selos e status de leitura seguem o INSTRUCOES.md. "(do resumo)" = número tirado só do resumo oficial.
 Observação geral: dos 8 a 15 itens centrais, li em texto completo (ou em seções do texto completo) o ACSM 2026, o IUSCA 2021, o Singer 2024, o Wolf 2023 e o Lopes 2019; o resto foi resumo. O Robinson 2024 (pedido como leitura obrigatória) NÃO abriu: o PDF do repositório de Abertay devolveu 403 e o Springer pediu JavaScript/desafio anti-robô. Não contornei. Fica como resumo-PubMed.

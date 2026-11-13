@@ -1,4 +1,15 @@
-# R6. As pessoas diferentes: iniciantes, mulheres, 60+, sobrepeso; e o que o cadastro deveria perguntar (idade, sexo, peso)
+# As pessoas diferentes (iniciantes, mulheres, 60 anos ou mais, acima do peso) e o que o cadastro deveria perguntar
+
+> **Tema 22 da pesquisa v2** (sessão "treino para todos", 12 e 13/11/2026). Como os temas 13 a 17, este arquivo é o relatório de um pesquisador de leitura (subagente, modelo mais simples), com briefing fechado e a regra de não inventar; a síntese abaixo e as decisões são da sessão. As afirmações centrais foram conferidas na fonte por um verificador independente, que não viu as conclusões (`26-verificacao-independente.md`). Selos e status de leitura: `docs/pesquisa/00-metodo.md`. "texto-completo" aqui quer dizer que o artigo foi aberto e os números conferidos no texto, muitas vezes por trechos e não de ponta a ponta; cada fonte diz o que foi lido. Nada daqui entrou em `regras.md` ainda: as mudanças propostas estão em `docs/revisoes/treino-para-todos/proposta.md` e esperam a decisão do Gustavo.
+
+## Síntese da sessão (o que muda regra)
+- **Sexo: nenhuma regra muda.** O ganho relativo de músculo é igual (`refalo2025`, conferido); ciclo menstrual e menopausa não dão base para ajuste. Recomendação: **não perguntar sexo**.
+- **60 anos ou mais:** as diferenças são pequenas e quase todas consenso: volume baixo já serve (`radaelli2025`, conferido; para força, volumes maiores), a pausa pesa mais, mais apoio e máquinas no começo, potência com certeza baixa. Recomendação a decidir: uma pergunta opcional de sim ou não ("tenho 60 anos ou mais"), nunca a idade exata.
+- **Menores de 18:** os posicionamentos pedem supervisão; o app deveria perguntar "tenho 18 anos ou mais" (decisão do Gustavo; toca os termos e o estado guardado).
+- **Acima do peso:** não achamos evidência de programa de força diferente; o ajuste é dos exercícios com o peso do corpo, e a calibração na 1ª série já o faz. **Não perguntar peso nem altura.**
+- **Iniciante:** nenhum estudo testa a fase de aprendizado de 2 semanas (consenso); máquina e peso livre rendem o mesmo.
+
+---
 
 Pesquisa de 12/11/2026. Leitura: texto completo no PMC/Europe PMC para ACSM 2026, Refalo 2025 (sexo), ICFSR 2021, Haugen 2023, Aerenhouts 2020 (só o resumo), Balachandran 2022, Colenso-Semple 2023 (abertura e resumo), van Baak 2021, Hunter 2014. Os demais: só o resumo oficial do PubMed. Onde a editora bloqueou (Fragala 2019, Radaelli 2025, Roberts 2020, AAP 2020, Lloyd 2014, Oppert 2021 no PMC), está dito.
 

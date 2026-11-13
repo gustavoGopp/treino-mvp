@@ -47,8 +47,19 @@ Essas decisões foram copiadas do programa de referência para o código, sem pe
 | [15-prioridade-e-manutencao.md](15-prioridade-e-manutencao.md) | Prioridade de um grupo e manutenção dos outros (06/11/2026) | Base do marco R5d (`devlog.md`, 08/11/2026) |
 | [16-corpo-livre-e-casa.md](16-corpo-livre-e-casa.md) | O que dá para treinar sem equipamento, só com apoio (06/11/2026) | Base do marco R5-CL (`devlog.md`, 07 e 08/11/2026) |
 | [17-biblioteca-ampliada.md](17-biblioteca-ampliada.md) | Exercícios para todas as combinações de equipamento e o que faz um treino agradável (06/11/2026) | Base do marco R5-CL (`devlog.md`, 07 e 08/11/2026) |
+| [18-volume-pelo-tempo-e-pelo-nivel.md](18-volume-pelo-tempo-e-pelo-nivel.md) | Quanto fazer: dose-resposta, dose mínima, nível, frequência, teto por sessão (12/11/2026) | Para a decisão do Gustavo (`docs/revisoes/treino-para-todos/proposta.md`) |
+| [19-carga-falha-repeticoes-e-descanso.md](19-carga-falha-repeticoes-e-descanso.md) | Carga, falha, precisão da reserva, repetições por equipamento, descanso, carga leve em quem é forte (12/11/2026) | Idem |
+| [20-escolha-ordem-e-interferencia.md](20-escolha-ordem-e-interferencia.md) | O desempate entre exercícios, a ordem, a fadiga da lombar e da pegada, dias seguidos (12/11/2026) | Idem |
+| [21-progressao-em-meses-e-tecnicas-de-tempo.md](21-progressao-em-meses-e-tecnicas-de-tempo.md) | Dupla progressão, periodização, semana leve, platô, volta de pausa, bi-set e drop set (12/11/2026) | Idem |
+| [22-pessoas-diferentes-e-cadastro.md](22-pessoas-diferentes-e-cadastro.md) | Iniciantes, mulheres, 60 anos ou mais, acima do peso; idade, sexo e peso no cadastro (13/11/2026) | Idem |
+| [23-dor-pressao-alta-e-gestacao.md](23-dor-pressao-alta-e-gestacao.md) | Dor por articulação, pressão alta e gestação: treino × triagem; o PAR-Q+ 2025 lido (13/11/2026) | Pauta da revisão por profissional; nada muda na segurança |
+| [24-objetivos-e-adesao.md](24-objetivos-e-adesao.md) | Manter na dieta, ficar mais forte, saúde; o que faz a pessoa continuar (13/11/2026) | Para a decisão do Gustavo |
+| [25-treinadores-e-aplicativos.md](25-treinadores-e-aplicativos.md) | Como treinadores montam, o que se critica em treinos de aplicativo, o que os aplicativos fazem; só consenso (13/11/2026) | Base das medidas do retrato |
+| [26-verificacao-independente.md](26-verificacao-independente.md) | 23 afirmações centrais conferidas na fonte por verificadores que não viram as conclusões (13/11/2026) | 16 confirmadas, 7 em parte |
 
-## Estado (atualizado em 12/11/2026)
+## Estado (atualizado em 13/11/2026)
+Os temas 18 a 26 são da sessão "treino para todos" (12 e 13/11/2026): começaram pelo que os 17 anteriores não respondiam ou respondiam com evidência fraca (o mapa das lacunas está em `docs/revisoes/treino-para-todos/mapa-das-lacunas/`). Trouxeram 114 fontes novas e releram 116. Nenhuma regra mudou ainda.
+
 Os temas T1 a T7 e o T9 estão aprovados e aplicados: os marcos R0b, R0c, R1, R1b e R2 (este com o T6, em 02/11/2026); os marcos do R5 vieram depois (`docs/devlog.md`). Os documentos 10 a 17 vieram das sessões seguintes (equipamento mínimo, catálogo completo, outros objetivos, qualidade dos treinos e próximos passos). Falta só o T8 (o programa do Gustavo), que é feito na máquina dele, com `privado/`. Para ler os resumos do PubMed, use `scripts/pesquisa/pubmed.py`.
 
 ## Plano dos próximos temas (em ordem)

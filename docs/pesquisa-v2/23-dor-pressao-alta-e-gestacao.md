@@ -1,4 +1,15 @@
-# R7. Dor por articulação, pressão alta e gestação: o que muda no TREINO e o que é só da TRIAGEM
+# Quem tem dor em cada articulação, pressão alta ou está grávida: o que muda no treino e o que é só da triagem
+
+> **Tema 23 da pesquisa v2** (sessão "treino para todos", 12 e 13/11/2026). Como os temas 13 a 17, este arquivo é o relatório de um pesquisador de leitura (subagente, modelo mais simples), com briefing fechado e a regra de não inventar; a síntese abaixo e as decisões são da sessão. As afirmações centrais foram conferidas na fonte por um verificador independente, que não viu as conclusões (`26-verificacao-independente.md`). Selos e status de leitura: `docs/pesquisa/00-metodo.md`. "texto-completo" aqui quer dizer que o artigo foi aberto e os números conferidos no texto, muitas vezes por trechos e não de ponta a ponta; cada fonte diz o que foi lido. Nada daqui entrou em `regras.md` ainda: as mudanças propostas estão em `docs/revisoes/treino-para-todos/proposta.md` e esperam a decisão do Gustavo.
+
+## Síntese da sessão (o que muda regra)
+- **Nada na regra de segurança muda nesta sessão.** O que a pesquisa encontrou vira pauta para a revisão de um profissional (`proposta.md`, seção da revisão por profissional de Educação Física e de fisioterapia).
+- **O limiar de dor 5/10** vem de ensaios com fisioterapeuta em dor crônica (`smith2017`, conferido): pequeno benefício a curto prazo de permitir dor, nada depois. Não há ensaio de "dor acima de 5 tira tudo" contra "trocar por variações toleradas". Trocar por variação é consenso apoiado por diretrizes de artrose e de lombar.
+- **O que dá para fazer sem mexer na segurança:** quando a dor esvazia um dia da divisão, montar a semana em corpo todo com o que sobrou (medido em `proposta.md`, pacote 3). Nada do que a dor tirou volta.
+- **Pressão alta, doença crônica e remédio:** o PAR-Q+ 2025 (conferido) libera com "não" nas perguntas de seguimento; a declaração da AHA trata a hipertensão controlada como contraindicação relativa (consultar médico) e a não controlada acima de 180/110 como absoluta. O bloqueio do app é mais rígido que o PAR-Q+; afrouxá-lo exige profissional e a licença do PAR-Q+.
+- **Gestação:** a diretriz canadense libera quem não tem contraindicação; manter o bloqueio no MVP é defensável.
+
+---
 
 Pesquisador R7, 12/11/2026. Lido em 2026-11-12. Nenhum arquivo do repositório foi alterado.
 

@@ -9,7 +9,7 @@ import { FUNCAO } from '../../src/domain/gerador/funcoes';
 import { degrauInicial, escadaDe } from '../../src/domain/progressao/escadas';
 import type { Nivel } from '../../src/domain/regras';
 import { cargasHalter, cargasKettlebell, type Inventario } from '../../src/domain/taxonomia/equipamentos';
-import { faixaA1, medirRegua } from './regua';
+import { faixaA1, medirRegua, type Medida } from './regua';
 
 /** Limites da régua dos cuidados, cada um com o selo e a fonte (docs/pesquisa-v2/18 a 22 e docs/pesquisa/regras.md). */
 export const LIMITES = {
@@ -93,6 +93,8 @@ export type MedidaId = keyof typeof MEDIDAS;
 export const MEDIDA_IDS = Object.keys(MEDIDAS) as MedidaId[];
 
 export type Cuidados = {
+  /** A régua da G5 no mesmo programa (os defeitos e as notas oficiais), para o retrato somar os dois. */
+  regua: Medida;
   falhas: Set<MedidaId>;
   detalhe: Partial<Record<MedidaId, string>>;
   /** Números do programa, para as médias: uso do tempo, séries, exercícios. */
@@ -231,7 +233,8 @@ export function medirCuidados(p: Programa, pf: Perfil, inventario: Inventario, c
   const cargaPossivel = (e: Exercicio) =>
     e.carga === 'peso-corpo' || e.carga === 'elastico' || e.carga === 'assistida' ? 0 : (e.carga === 'halter' && halterMax < 20) || (e.carga === 'kettlebell' && kettlebellMax < 20) || e.carga === 'caneleira' ? 1 : 2;
   const estavel = (e: Exercicio) => e.tags.some((t) => t === 'estavel' || t === 'apoiado' || t === 'maquina');
-  const doMotor = (ctx as ContextoDeSelecao & { criteriosDeTreino?: (e: Exercicio, funcao: string) => number[] }).criteriosDeTreino;
+  const motor = ctx as ContextoDeSelecao & { criteriosDeTreino?: (e: Exercicio, funcao: string) => number[]; temOrdemDeReferencia?: boolean };
+  const doMotor = motor.criteriosDeTreino;
   const vetor = (e: Exercicio, funcao: string) =>
     (doMotor ? doMotor(e, funcao) : [e.articulacoes.some((a) => ctx.dorLeve.has(a)) ? 1 : 0, nivel === 'iniciante' && !estavel(e) ? 1 : 0, -cargaPossivel(e)]).join(',');
   const noPrograma = new Set(todos.map((x) => x.exId));
@@ -247,6 +250,8 @@ export function medirCuidados(p: Programa, pf: Perfil, inventario: Inventario, c
       const empatados = f.niveis[n]!.filter((id) => id !== x.exId && ctx.naFuncao(f, id) && !noPrograma.has(id) && !ctx.barraDoIniciante(id)).map((id) => POR_ID[id]!).filter((o) => vetor(o, f.id) === vetor(e, f.id));
       if (!empatados.length) continue;
       if (empatados.some((o) => !!o.animacaoId === !!e.animacaoId)) {
+        // Com a ordem de referência da lista da função (protótipo), o empate total não é decidido pelo alfabeto.
+        if (motor.temOrdemDeReferencia) continue;
         porAlfabeto++;
         marca('c08b', `${d.nome}: ${x.exId}, e não ${empatados.find((o) => !!o.animacaoId === !!e.animacaoId)!.id}`);
       } else if (e.animacaoId) {
@@ -336,6 +341,7 @@ export function medirCuidados(p: Programa, pf: Perfil, inventario: Inventario, c
   return {
     falhas,
     detalhe,
+    regua,
     n: {
       uso,
       series: todos.reduce((t, x) => t + seriesDeVolume(x), 0),

@@ -69,6 +69,11 @@ function medir(motor: Motor, caso: CasoP) {
   if (!comDefeito.size) inc('semDefeito');
   if (!comDefeito.size && !comNota.size) inc('semNada');
   for (const k of c.falhas) inc(`m:${k}`);
+  // A régua oficial da G5 (regua.ts), na mesma população: defeitos e notas.
+  if (!c.regua.defeitos.size) inc('reguaSemDefeito');
+  for (const k of c.regua.defeitos) inc(`r:${k}`);
+  for (const k of c.regua.notas) inc(`r:${k}`);
+  inc('cartoes', c.regua.cartoesPorDia.reduce((t, x) => t + x, 0));
   for (const k of comDefeito) inc(`cd:${k}`);
   for (const k of new Set([...comDefeito, ...comNota])) inc(`c:${k}`);
   inc('cuidadosComDefeito', comDefeito.size);
@@ -97,7 +102,7 @@ function medir(motor: Motor, caso: CasoP) {
     A.piores.push({
       indice: caso.indice,
       caso: nomeDoCasoP(caso),
-      chave: `${caso.cen.id}|${caso.pf.nivel}|${caso.dor}`,
+      chave: `${caso.cen.id}|${caso.pf.diasSemana}|${caso.pf.minutosSessao}`,
       pontos,
       falhas: [...c.falhas].sort(),
       detalhes: [...c.falhas].sort().map((k) => `${k}: ${c.detalhe[k]}`),
@@ -201,6 +206,15 @@ async function main() {
   L.push(`| escolhas decididas pela animação (% das prescrições) | ${pv((acc.n['todos|porAnimacao'] ?? 0) / (acc.n['todos|prescricoes'] ?? 1))} | ${pv((acc.w['todos|porAnimacao'] ?? 0) / (acc.w['todos|prescricoes'] ?? 1))} |`);
   L.push(`| escolhas decididas pela ordem alfabética (% das prescrições) | ${pv((acc.n['todos|porAlfabeto'] ?? 0) / (acc.n['todos|prescricoes'] ?? 1))} | ${pv((acc.w['todos|porAlfabeto'] ?? 0) / (acc.w['todos|prescricoes'] ?? 1))} |`);
   L.push('');
+  L.push('## A régua oficial (G5) na mesma população');
+  L.push('');
+  L.push('| defeito ou nota | grade | ponderada | sem dor | com dor |');
+  L.push('| --- | ---: | ---: | ---: | ---: |');
+  L.push(`| **sem nenhum defeito da régua** | ${pv(fr('todos', 'reguaSemDefeito'))} | ${pv(fw('todos', 'reguaSemDefeito'))} | ${pv(fr('semdor', 'reguaSemDefeito'))} | ${pv(fr('comdor', 'reguaSemDefeito'))} |`);
+  for (const k of ['A2', 'A3', 'A4', 'B1', 'C1', 'D1', 'D3', 'E1', 'seguranca', 'A1', 'A5', 'B2', 'B3', 'C2', 'G1'])
+    L.push(`| ${k} | ${pv(fr('todos', `r:${k}`))} | ${pv(fw('todos', `r:${k}`))} | ${pv(fr('semdor', `r:${k}`))} | ${pv(fr('comdor', `r:${k}`))} |`);
+  L.push(`| cartões de texto por dia (média) | ${num((acc.n['todos|cartoes'] ?? 0) / (acc.n['todos|dias'] ?? 1), 2)} | ${num((acc.w['todos|cartoes'] ?? 0) / (acc.w['todos|dias'] ?? 1), 2)} | | |`);
+  L.push('');
   L.push('## Cada cuidado');
   L.push('');
   L.push('% dos programas que falham. "Pior grupo": o recorte (equipamento, nível, minutos, dias, foco ou dor) com a maior fatia na grade.');
@@ -245,7 +259,7 @@ async function main() {
 
   L.push('## Os piores perfis');
   L.push('');
-  L.push('Os programas com mais cuidados em falta (10 pontos por cuidado com defeito, 1 por cuidado só com nota), um por cenário, nível e dor, para não repetir o mesmo caso.');
+  L.push('Os programas com mais cuidados em falta (10 pontos por cuidado com defeito, 1 por cuidado só com nota), um por cenário, dias e minutos, para não repetir o mesmo caso.');
   L.push('');
   const vistos = new Set<string>();
   const piores = acc.piores.filter((x) => (vistos.has(x.chave) ? false : (vistos.add(x.chave), true))).slice(0, 40);
