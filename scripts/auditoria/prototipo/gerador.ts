@@ -143,6 +143,21 @@ const LIGAR_SEM_CARGA = false;
  */
 const AJOELHADOS = new Set(['puxada-unilateral', 'puxada-barra-reta', 'abdominal-polia']);
 const articulacoesDe = (e: Exercicio): Articulacao[] => (prot('joelho') && AJOELHADOS.has(e.id) && !e.articulacoes.includes('joelho') ? [...e.articulacoes, 'joelho'] : e.articulacoes);
+/**
+ * PROTÓTIPO (escolha): a ordem de referência dentro de um nível da função (o exercício mais comum e mais simples
+ * primeiro), para os níveis em que a ordem de `funcoes.json` não serve. Na etapa 2, isto vira a própria ordem das listas
+ * de `funcoes.json` (dado curado); aqui fica à parte para o protótipo desligado continuar idêntico ao app.
+ */
+const ORDEM_DE_REFERENCIA: Record<string, string[]> = {
+  'puxar-vertical': ['puxada-frente', 'puxada-barra-reta', 'barra-fixa', 'barra-fixa-supinada', 'barra-fixa-graviton', 'puxada-unilateral'],
+  'empurrar-horizontal': ['flexao', 'supino-polia', 'mergulho-graviton', 'mergulho', 'flexao-pes-elevados'],
+  afundo: ['afundo', 'afundo-tras', 'bulgaro', 'afundo-kettlebell'],
+  abdomen: ['abdominal-chao', 'abdominal-bola', 'abdominal-invertido', 'elevacao-joelhos', 'elevacao-joelhos-paralelas', 'roda-abdominal'],
+};
+const posicaoDeReferencia = (f: Funcao, id: string) => {
+  const i = ORDEM_DE_REFERENCIA[f.id]?.indexOf(id) ?? -1;
+  return i >= 0 ? i : 100 + f.niveis.flat().indexOf(id);
+};
 /** PROTÓTIPO (usa-tempo): até quantos grupos de foco o tempo que sobra leva o foco além da meta. */
 const FOCOS_COM_BONUS = 2;
 /** PROTÓTIPO (iniciante-simples): exercícios por treino do iniciante. */
@@ -252,7 +267,7 @@ export function contextoDeSelecao(perfil: Perfil, inventarioOriginal: Inventario
       // a ordem alfabética.
       if (prot('escolha')) {
         const [fa, fb] = [funcaoDe(a), funcaoDe(b)];
-        const [pa, pb] = [fa ? fa.niveis.flat().indexOf(a.id) : -1, fb ? fb.niveis.flat().indexOf(b.id) : -1];
+        const [pa, pb] = [fa ? posicaoDeReferencia(fa, a.id) : -1, fb ? posicaoDeReferencia(fb, b.id) : -1];
         if (fa && fa === fb && pa !== pb) return pa - pb;
       }
       return ordemFixa(a.id, b.id);
@@ -1831,8 +1846,8 @@ export function cortarTempo(
         naoCompetem,
       );
       // PROTÓTIPO (tecnicas): o bi-set de multiarticulares nunca junta dois que carregam a lombar sem apoio, nem usa um
-      // exercício livre com barra. Proibir o bi-set de multiarticulares ao iniciante foi medido e recusado: 1 em cada 4
-      // programas de 30 min do iniciante passava do tempo (10,7% → 24,3%).
+      // exercício livre com barra. Proibir o bi-set de multiarticulares ao iniciante foi medido e recusado: na 1ª versão do
+      // protótipo, que tinha a proibição, 1 em cada 4 programas de 30 min do iniciante passava do tempo (10,7% → 24,3%).
       if (d.minutosEstimados > limite)
         parear(
           exs.filter((x) => x.tipo === 'composto'),

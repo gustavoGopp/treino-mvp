@@ -1622,3 +1622,38 @@ A sessão que corrigiu, do mais grave ao menos grave, o que a auditoria geral ti
 >
 > A regra que usei: primeiro um teste que mostra o erro, depois a correção. Foram 59 testes de regra e 12 de tela a mais, e a lista do que eu não corrigi fica escrita, com o motivo.
 
+
+## Treino para todos, etapa 1: pesquisa, retrato medido e proposta (12 e 13/11/2026)
+
+O Gustavo pediu levar o treino recomendado ao nível mais alto possível, para qualquer pessoa que o app possa atender, e não só para ele. Esta etapa só pesquisa, mede e propõe: **nada em `src/domain/` mudou**, e o app gera os mesmos programas de antes. Tudo está em `docs/revisoes/treino-para-todos/`; a parada é para a decisão dele (`proposta.md`, seção 10).
+
+**A pesquisa.** Nove temas novos em `docs/pesquisa-v2/` (18 a 26), começando pelo que os 17 anteriores não respondiam: volume pelo tempo e pelo nível; carga, falha e descanso; escolha, ordem e fadiga; progressão em meses; as pessoas diferentes e o que o cadastro não pergunta; dor, pressão alta e gestação; os outros objetivos e a adesão; como treinadores montam e o que os aplicativos fazem. 114 fontes novas em `fontes.md` e 116 relidas. Dois verificadores independentes conferiram 23 afirmações centrais na fonte, sem ver as conclusões: 16 confirmadas, 7 em parte, e as correções entraram no texto (tema 26).
+
+**O retrato.** A régua virou os "20 cuidados" de um bom treinador (`scripts/auditoria/cuidados.ts`), medidos em 680.625 programas fictícios (55 cenários de equipamento × 3 níveis × 2 a 6 dias × 5 durações × 11 focos × 15 situações de dor), em duas contas: a grade e a ponderada pelas combinações mais prováveis (os pesos são estimativa). O que apareceu:
+- sem foco, o nível e o tempo quase não mudam o treino: ~6 séries por músculo; 1 em cada 4 programas com o dia típico abaixo de 70% do tempo pedido (ponderada); um avançado com academia completa e 5 dias de 90 min recebe dias de 26 a 46 min;
+- quem tem 30 min é o pior grupo: 9 em cada 100 programas sem nenhum defeito (ponderada);
+- com dor forte no cotovelo, no quadril ou no ombro, 1 em cada 3 programas tem um dia de menos de 3 exercícios;
+- entre exercícios equivalentes, a escolha cai na animação (8 em cada 10 programas) e no alfabeto (9 em cada 10);
+- com dor forte no joelho, 43 em cada 100 programas ainda prescrevem um exercício ajoelhado (a biblioteca não dizia que eles carregam o joelho);
+- o aviso de "três sessões sem melhora" aparece em 24 a 41 de cada 48 sessões do praticante simulado.
+
+**A proposta, medida num protótipo** (`scripts/auditoria/prototipo/`, uma cópia do gerador, idêntica ao app com tudo desligado):
+
+| | Hoje | Proposta |
+|---|---:|---:|
+| Programas sem nenhum defeito da régua oficial (ponderada) | 79,0% | 96,2% |
+| Idem, na grade | 80,3% | 89,8% |
+| O pior grupo (dor forte no cotovelo) | 50,0% | 71,9% |
+| Dia típico abaixo de 70% do tempo, sem aviso (ponderada) | 15,2% | 0,0% |
+| Dia de 5 exercícios ou mais com 2 séries em todos (ponderada) | 21,8% | 11,3% |
+| Revisão cega, 2ª rodada: eficiente · adequada · agradável | 5,5 · 5,8 · 5,3 | 6,0 · 6,4 · 5,8 |
+
+As três mudanças que mais pesam: o tempo que sobra vira série em todos os dias, até o alvo do nível (reabre o E-c descartado em 07/11, agora com a régua, os pesos e a revisão cega); o desempate entre exercícios passa pelo exercício de referência e de dois lados antes da animação e do alfabeto; com dor forte, a semana é montada em corpo todo quando um dia ficaria quase vazio. Três ideias foram medidas e recusadas (limite de 6 exercícios para o iniciante com os dias de hoje; proibir o bi-set de exercícios grandes ao iniciante; trocar o agachamento comum por um de uma perna para quem é forte e não tem carga).
+
+**A revisão cega.** 18 pessoas fictícias, hoje × proposta, 36 páginas embaralhadas, 3 revisores no papel de treinadores, duas rodadas. A 1ª derrubou a 1ª versão da proposta para quem tem 4 focos (122 séries por semana) e apontou o exercício ajoelhado com dor no joelho; a 2ª, depois dos ajustes: 9 pessoas com nota melhor, 8 iguais, 1 pior (0,3 ponto numa nota). É opinião de treinador simulado, não evidência.
+
+**As doze pessoas.** `docs/revisoes/treino-para-todos/exemplos/`: as 6 personas do projeto e 6 novas (`tests/personas/todos.ts`: 67 anos começando, só elásticos, 2 dias de 30 min, avançada sem equipamento, dor no joelho, ficar mais forte), cada uma com a semana de hoje ao lado da proposta, o que mudou e por quê, e o que os revisores disseram.
+
+**O que a proposta não resolve:** 30 minutos continua o pior grupo; quem é forte e não tem equipamento recebe quase a mesma semana; sem nada para puxar, costas e bíceps continuam a zero; o iniciante continua com duplas de exercícios. E o protótipo ainda tem pioras de 0,1 a 0,6 ponto em dois defeitos de equilíbrio em alguns grupos: o critério de pronto da etapa 2 (nenhum defeito pior em nenhum grupo) ainda não fecha.
+
+**Rascunho de post.** "Medi 680 mil programas de treino que o meu app pode gerar, para gente fictícia do iniciante ao avançado, da academia completa à sala de casa. O defeito mais comum não era um exercício errado: era o app dar o mesmo treino curto a quem tinha 30 e a quem tinha 90 minutos. Antes de mexer, a proposta passou por uma revisão cega, e a 1ª versão dela piorou o treino de quem tinha 4 focos. Voltei, corrigi, medi de novo."

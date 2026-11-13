@@ -239,3 +239,33 @@ O que sobrou depois da sessão de correções de 12/11/2026 (`devlog.md`, "Corre
 **Repositório**
 - **Histórico do git**: os e-mails pessoais e o nome do empregador saíram dos arquivos, mas continuam nos commits antigos. Apagar de lá pede reescrever o histórico. **Fica como está (decidido em 12/11/2026):** reescrever muda todos os hashes, quebra os ramos e os PRs abertos e pede `push --force` na `main`.
 - **O motor segue com `@ts-nocheck` em 96 de 105 arquivos** (os exercícios do port e os 4 arquivos de base dele: `esqueleto.ts`, `math.ts`, `svg.ts`, `qa.ts`): tipá-los pede reescrever a animação. Em 12/11/2026 saiu de `desenho.ts`, `cena.ts` e `estilo/` (tipos em `engine/tipos.ts`, sem `any`, regressão do motor sem diferença). Achado da tipagem, sem mudança de comportamento: o estilo `a2` chega a funções cujo tipo declarado é `a` ou `b` (`vistaDaMiniatura`, `montarSvgEstilo`), e as classes saem `ea2-…`; conferir se é o desejado.
+
+## Da sessão "treino para todos", etapa 1 (12 e 13/11/2026)
+
+Detalhes e números em `revisoes/treino-para-todos/` (`diagnostico.md`, `proposta.md`, `exemplos/`). Nada mudou no app; o que está abaixo é o que **não** entra na proposta, ou o que espera decisão.
+
+**Esperando a decisão do Gustavo** (`proposta.md`, seção 10)
+- As 9 decisões da proposta: o tempo que sobra vira série para todos (reabre o E-c descartado em 07/11), os exercícios de referência antes da animação, os ajoelhados fora com dor forte no joelho, a semana em corpo todo quando a dor esvazia um dia, o iniciante sem drop set, a janela do aviso de "sem melhora", a pergunta "60 anos ou mais", a revisão por profissional, a ordem das entregas.
+
+**Para a etapa 2 (se a proposta for aprovada), com protótipo e medida antes de entrar**
+- **Zerar os resíduos do protótipo:** empurrar ÷ puxar acima de 1,5 sobe 0,1 a 0,4 ponto em alguns grupos; frente ÷ trás da coxa, 0,1 a 0,6 ponto com dor forte no quadril; o dia acima do tempo com 3 dias, de 4,9% para 5,2%. O critério de pronto é nenhum defeito pior em nenhum grupo.
+- **Dias próprios para o iniciante** (dois treinos que se alternam, com 5 ou 6 exercícios): os três revisores pedem; o limite de 6 com os dias de hoje foi medido e recusado (músculos esquecidos: 10,4% → 14,1% dos iniciantes).
+- **Quem é forte e não tem carga:** uma perna de cada vez na vaga de agachar; hoje a regra das 2 famílias do quadríceps devolve o agachamento comum. Mexer nas duas regras juntas.
+- **A ordem da lista do afundo sem carga** (o mais simples primeiro): o Fábio trocou o afundo para trás pelo búlgaro sem motivo de treino, e um revisor baixou a nota.
+- **"Ficar mais forte":** o mesmo movimento 2 vezes por semana, mais séries nos levantamentos, e o iniciante incluído (`pesquisa-v2/24`); hoje só os 2 primeiros exercícios grandes de cada dia mudam.
+- **Mais séries por igual dentro do dia:** a Marina recebe 4 séries de supino e 2 de puxada no mesmo treino; a regra leva cada músculo ao alvo, e não iguala os exercícios do dia.
+- **A reserva (RIR) em séries longas:** a pessoa erra ~1 repetição para menos, e mais acima de 12 (`halperin2022`); texto, não número.
+- **O descanso dos exercícios grandes** (1 min 45 s × os 2 min do consenso da IUSCA): não medido; custaria 2 a 3 min por treino de 60.
+
+**Para um profissional de Educação Física e um fisioterapeuta (pauta em `proposta.md`, seção 9)**
+- Dor acima de 5: tirar tudo o que carrega a articulação ou trocar por variações toleradas (com dor 7 no joelho, o quadríceps fica com zero séries).
+- O que carrega cada articulação: a panturrilha no leg press com dor no joelho; o agachamento com a barra nas costas e a rosca Scott com dor no ombro.
+- A triagem mais rígida que o PAR-Q+ 2025 (pressão alta, doença crônica e remédio contínuo controlados; gestação).
+- Barra fixa só na descida, flexão nórdica sem apoio e duplas de exercícios grandes para iniciantes e pessoas de 60 anos ou mais.
+
+**Fora do escopo (a pesquisa sugere; o MVP não cobre)**
+- Nutrição no objetivo "manter na dieta"; atividade aeróbia no objetivo "saúde"; treino de potência para 60 anos ou mais; semana leve planejada e periodização (sem ganho nos ensaios); restrição de fluxo sanguíneo e excêntrica acentuada.
+
+**Medidas e scripts que ficaram**
+- `scripts/auditoria/retrato.ts` (os 20 cuidados em 680.625 programas, grade e ponderada), `cuidados.ts`, `populacao.ts` (os pesos são estimativa: recalibrar quando houver uso real), `estabilidade.ts`, `biblioteca-cobertura.ts`, `comparar-retratos.ts`, `piores.ts`, `exemplos.ts`, `exemplos-paginas.ts`, `ver.ts` e o protótipo em `scripts/auditoria/prototipo/`. O retrato ainda não entrou em `npm run auditoria` nem em `auditoria:verificar`: entra na etapa 2, quando as medidas virarem parte da régua e do avaliador do app.
+- O retrato não cobre: as semanas de aprendizado e de volta de pausa, as divisões escolhidas à mão, os exercícios a evitar, o 2º local, duas dores ao mesmo tempo, e os objetivos (só "ficar mais forte" muda números, e não foi medido nesta etapa).

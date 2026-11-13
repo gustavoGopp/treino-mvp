@@ -14,7 +14,7 @@
 8. **Ao longo dos meses, o aviso de "três sessões sem melhora" aparece em metade dos treinos** de quem progride no ritmo normal (24 de 48 sessões do iniciante simulado, 36 do intermediário, 41 do avançado).
 9. **O que está bem:** a segurança da régua (0 exercício impossível, acima do nível ou numa região com dor forte, em 680.625 programas), a ordem do dia (0 isolador antes de exercício grande), o equilíbrio empurrar × puxar e frente × trás da coxa (menos de 1 em 100 fora da faixa), a honestidade dos avisos (0 músculo abaixo de 4 séries sem aviso) e a estabilidade (15 min a mais não tiram nenhum exercício).
 
-Na revisão cega, três revisores no papel de treinadores deram ao treino de hoje, em média, **5,6 em eficiência, 5,8 em adequação à pessoa e 5,4 em "agradável de fazer"** (de 1 a 10), em 18 pessoas. As críticas que mais se repetem batem com a medida: tempo mal usado, 2 séries de tudo, dor que vira "tirar o músculo da semana", técnica de intermediário para iniciante.
+Na revisão cega, três revisores no papel de treinadores deram ao treino de hoje, em média, **5,5 em eficiência, 5,8 em adequação à pessoa e 5,3 em "agradável de fazer"** (de 1 a 10; 2ª rodada, 18 pessoas; na 1ª rodada, 5,6, 5,8 e 5,4). As críticas que mais se repetem batem com a medida: tempo mal usado, 2 séries de tudo, dor que vira "tirar o músculo da semana", técnica de intermediário para iniciante.
 
 ---
 
