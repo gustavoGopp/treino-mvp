@@ -1669,7 +1669,9 @@ As outras 4 folhas (cadastro, guia, fim e semana, Meus dados e locais) estão em
 
 **2ª rodada de revisão (13/11).** A pedido do Gustavo, mais dois revisores independentes olharam o resto do app (início, fim, semana e evolução; cadastro, Meus dados, locais, termos e erro). 85 achados, nenhum que bloqueie e nenhuma função perdida: 37 corrigidos, 18 em parte e 30 no backlog. O que mudou de mais visível: a prescrição ("3 × 8–12") voltou a ter destaque no início; "Fechar" fica preso no alto das folhas; a boas-vindas tem o "Começar" preso embaixo em qualquer celular; "Rotina e divisão" aberta por Meus dados virou uma tela de edição, sem a moldura do cadastro; "Apagar tudo" é o único bloco vermelho de Meus dados; no fim de um treino encerrado por segurança, o SAMU é um botão de ligar; a semana não repete "ainda não treinou" em 10 linhas.
 
-**Fica para decidir** (`backlog.md`, "Do frontend novo"): 4 decisões que os revisores deixaram para o Gustavo (`qa.md`, seção 6.2), os pontos que sobraram dos 3 pareceres e os 12 pedidos ao domínio (`pedidos-ao-dominio.md`).
+**Uma decisão tomada (13/11).** O revisor notou que a opção escolhida e a ação principal tinham a mesma cara: numa tela do cadastro com 4 respostas marcadas, "Continuar" era só mais um bloco preto. O Gustavo viu as duas versões lado a lado (`revisoes/frontend-novo/capturas/decisao-escolhido/`) e escolheu o meio-termo: no cadastro e no equipamento, o escolhido virou contorno; no treino, nas abas do início e no guia, continua um bloco, para ser lido de longe.
+
+**Fica para decidir** (`backlog.md`, "Do frontend novo"): 3 decisões que os revisores deixaram para o Gustavo (`qa.md`, seção 6.2), os pontos que sobraram dos 3 pareceres e os 12 pedidos ao domínio (`pedidos-ao-dominio.md`).
 
 **Rascunho de post para o LinkedIn**
 

@@ -211,9 +211,10 @@ header.top{position:sticky;top:0;z-index:4;background:var(--fundo);padding:var(-
 .opcao{display:flex;align-items:center;gap:var(--s16);min-height:var(--h56);padding:var(--s8) var(--s16);background:var(--superficie-2);border-radius:var(--r8);cursor:pointer;font-size:var(--t-corpo);font-weight:500;line-height:1.3;transition:transform .1s ease-out}
 .opcao:active{transform:scale(.98)}
 .opcao input{width:var(--s24);height:var(--s24);margin:0;flex:0 0 auto;accent-color:var(--acao)}
-.opcao:has(input:checked){background:var(--acao);color:var(--sobre-acao)}
-.opcao:has(input:checked) input{accent-color:var(--sobre-acao)}
-.opcao:has(input:checked) .longa,.opcao:has(input:checked) small{color:inherit;opacity:.8}
+/* Decisão do Gustavo (13/11/2026; revisão, achado I4): no cadastro e no equipamento, o escolhido é um contorno, e a
+   inversão (bloco preto) fica só para a ação principal. No treino, nas abas do início e no guia, o escolhido continua
+   um bloco invertido, para ser lido de relance. */
+.opcao:has(input:checked){box-shadow:inset 0 0 0 2px var(--acao)}
 .opcao:has(input:focus-visible){outline:3px solid var(--foco);outline-offset:2px}
 .opcao.divisao{align-items:flex-start}
 .opcao.divisao small{color:var(--texto-2);font-size:var(--t-apoio);font-weight:400}
@@ -506,12 +507,12 @@ html:has(.acao-boas){scroll-padding-bottom:calc(var(--h64) * 3 + var(--s16))}
 .lugar-linha > span{display:flex;flex-direction:column;gap:var(--s4);min-width:0}
 .lugar-linha b{font-weight:600;font-size:var(--t-corpo)}
 .lugar-linha small{font-size:var(--t-apoio);color:var(--texto-2)}
-.lugar-linha[aria-pressed="true"]{background:var(--acao);color:var(--sobre-acao)}
-.lugar-linha[aria-pressed="true"] small{color:inherit;opacity:.8}
+.lugar-linha[aria-pressed="true"]{box-shadow:inset 0 0 0 2px var(--acao)}
 .lugar-linha:focus-visible{outline:3px solid var(--foco);outline-offset:2px}
 .supos{display:flex;flex-direction:column;gap:var(--s16);background:var(--superficie-2);border-radius:var(--r8);padding:var(--s16)}
 .supos p{margin:0}
 .equipamento .chips{flex-wrap:wrap;overflow:visible;padding:0}
+.equipamento .chip[aria-pressed="true"],.detalhes-eq .chip-valor:has(input:checked){background:var(--superficie-2);color:var(--texto);box-shadow:inset 0 0 0 2px var(--acao)}
 .lista-eq{display:flex;flex-direction:column;gap:var(--s24)}
 .marcados{margin-top:var(--s8)}
 .marcados li{display:flex;align-items:center;gap:var(--s8);padding:var(--s8) 0;min-height:var(--h64)}
@@ -526,8 +527,8 @@ html:has(.acao-boas){scroll-padding-bottom:calc(var(--h64) * 3 + var(--s16))}
 .item-eq input{position:absolute;opacity:0;width:1px;height:1px}
 .item-eq .estado{font-size:var(--t-rotulo);font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--texto-2)}
 .item-eq .estado::before{content:"+ marcar"}
-.item-eq:has(input:checked){background:var(--acao);color:var(--sobre-acao)}
-.item-eq:has(input:checked) .estado{color:inherit}
+.item-eq:has(input:checked){box-shadow:inset 0 0 0 2px var(--acao)}
+.item-eq:has(input:checked) .estado{color:var(--texto)}
 .item-eq:has(input:checked) .estado::before{content:"✓ tenho"}
 .item-eq:has(input:focus-visible){outline:3px solid var(--foco);outline-offset:2px}
 @media (max-width:279px){.grade-2{grid-template-columns:1fr}.lugar-linha svg,.marcados .icone-eq{display:none}}
@@ -554,7 +555,7 @@ img.icone-eq{display:block;flex:none;object-fit:contain;background:#F6F6F4;borde
 .sugestao-texto span{font-size:var(--t-apoio);color:var(--texto-2)}
 .sim-nao{grid-column:1 / -1;display:grid;grid-template-columns:1fr 1fr;gap:var(--s8)}
 .sim-nao button{min-height:var(--h48);border-radius:var(--r8);border:0;background:var(--superficie-2);font:inherit;font-weight:600;cursor:pointer;color:var(--texto)}
-.sim-nao button[aria-pressed="true"]{background:var(--acao);color:var(--sobre-acao)}
+.sim-nao button[aria-pressed="true"]{box-shadow:inset 0 0 0 2px var(--acao)}
 .quedas .queda{display:flex;flex-wrap:wrap;align-items:center;gap:var(--s8);padding:var(--s8) 0;border-top:1px solid var(--linha)}
 
 /* ---------- o início (o programa) ---------- */
@@ -916,6 +917,8 @@ header.top:has(.cab-treino){container-type:inline-size;container-name:cab}
   .opcoes.linha{display:grid;grid-template-columns:repeat(3,minmax(0,1fr))}
   .opcoes.linha .opcao{position:relative;justify-content:center;min-width:0;text-align:center}
   .opcoes.linha .opcao input{position:absolute;inset:0;width:100%;height:100%;margin:0;opacity:0;cursor:pointer}
+  /* sem o círculo, o contorno sozinho é pouco: aqui o escolhido continua um bloco */
+  .opcoes.linha .opcao:has(input:checked){background:var(--acao);color:var(--sobre-acao);box-shadow:none}
   .grade-2 .opcao{gap:var(--s8);padding:var(--s8)}
   .estilo-boneco{grid-template-columns:auto 1fr}
   .estilo-boneco svg{grid-column:1 / -1;grid-row:1}
