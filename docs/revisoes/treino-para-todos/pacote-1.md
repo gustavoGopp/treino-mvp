@@ -253,5 +253,5 @@ Quem treina com 60 min ou mais, sem foco ou com 1 ou 2 focos, e tinha tempo sobr
 Uma por vez, com a minha recomendação; nada vem marcado.
 
 1. ~~Posso regravar os 5 registros de teste da seção 6?~~ **Decidido em 13/11/2026: sim.** Regravados.
-2. **O iniciante com série a mais só nos exercícios grandes, até 3 (seção 4)?** *Recomendo sim.* É a versão que não piorou ninguém. A outra (encher a hora) fica guardada para o pacote 4, quando o treino do iniciante tiver menos exercícios por dia.
+2. ~~O iniciante com série a mais só nos exercícios grandes, até 3 (seção 4)?~~ **Decidido em 13/11/2026: sim, fica assim.** A outra versão (encher a hora) fica guardada para o pacote 4, quando o treino do iniciante tiver menos exercícios por dia.
 3. **O próximo pacote.** *Recomendo o pacote 0 (os exercícios feitos de joelhos saem com dor forte no joelho):* é de segurança, é pequeno, e os revisores voltaram a apontar o problema no Leandro nas três rodadas. É a decisão 3 da proposta, que ainda não foi tomada.
