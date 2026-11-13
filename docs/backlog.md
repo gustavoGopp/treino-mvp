@@ -269,3 +269,19 @@ Detalhes e números em `revisoes/treino-para-todos/` (`diagnostico.md`, `propost
 **Medidas e scripts que ficaram**
 - `scripts/auditoria/retrato.ts` (os 20 cuidados em 680.625 programas, grade e ponderada), `cuidados.ts`, `populacao.ts` (os pesos são estimativa: recalibrar quando houver uso real), `estabilidade.ts`, `biblioteca-cobertura.ts`, `comparar-retratos.ts`, `piores.ts`, `exemplos.ts`, `exemplos-paginas.ts`, `ver.ts` e o protótipo em `scripts/auditoria/prototipo/`. O retrato ainda não entrou em `npm run auditoria` nem em `auditoria:verificar`: entra na etapa 2, quando as medidas virarem parte da régua e do avaliador do app.
 - O retrato não cobre: as semanas de aprendizado e de volta de pausa, as divisões escolhidas à mão, os exercícios a evitar, o 2º local, duas dores ao mesmo tempo, e os objetivos (só "ficar mais forte" muda números, e não foi medido nesta etapa).
+
+## Da sessão "treino para todos", etapa 2, pacote 1 (13/11/2026)
+
+Detalhes em `revisoes/treino-para-todos/pacote-1.md` e `qa.md`. O pacote está no ramo da sessão, esperando a revisão do Gustavo.
+
+**Medido e recusado (não tentar de novo sem motivo novo)**
+- **As séries a mais no meio da montagem do dia** (a 1ª versão do protótipo): tomavam o lugar de exercícios; em treinos de 30 min, um dia ficava sem exercício grande, e o empurrar passava do puxar com foco em peito. Entrou a versão que age no fim, com o programa pronto.
+- **O iniciante com séries em todos os exercícios até o alvo de 8** (`PROT=usa-tempo,inic-tudo` no protótipo): na revisão cega, a nota caiu em 2 de 5 iniciantes com tempo sobrando (dia no limite, 3 a 4 séries nos exercícios pequenos). Entrou "só os exercícios grandes, até 3 séries". Rever no pacote 4, quando o iniciante tiver menos exercícios por dia: em dois perfis com folga de tempo (4 dias de 60 min e 3 de 75), a versão recusada teve a nota mais alta.
+- **Séries a mais em dia com bi-set ou drop set:** o dia já está no limite; a série a mais deixava os dois exercícios da dupla com séries diferentes e passava de 0,45 série por minuto.
+
+**Ficou de fora, com o número**
+- **Dias de treino seguidos:** "o mesmo músculo com 3 séries diretas ou mais em dias seguidos" foi de 4,8% para 5,3% dos programas (ponderada). O gerador não sabe quais dias são seguidos na semana da pessoa, e não há regra sobre isso em `regras.md`; pede pesquisa (recuperação entre sessões) e, talvez, a ordem dos dias na rotina.
+- **Quem tem 3 grupos de foco ou mais** continua com dias curtos (o Inferior A do Bruno, 40 min em 70): o foco fica na meta e os outros músculos, 6 séries abaixo. O aviso novo de `tempo.sobra` diz isso quando o dia típico fica abaixo de 70%.
+- **O iniciante:** quase todo o ganho na régua vem do aviso, e não do tempo usado; as séries sobem de 56,5 para 57,1 por semana, em média.
+- **O dia de 5 exercícios ou mais com 2 séries em todos** cai de 21,8% para 15,1% (ponderada); a 1ª versão chegava a 11,4%, à custa dos defeitos acima.
+

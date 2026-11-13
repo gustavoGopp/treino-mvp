@@ -10,6 +10,22 @@
 | Aviso de tempo que sobra, quando não falta exercício | não existe (o dia fica curto sem aviso em 15 de cada 100 programas, ponderada) | "O seu treino completo dura cerca de 45 min: as séries já chegaram ao que rende bem no nível iniciante. Dá para escolher uma duração menor sem perder nada; para usar mais tempo, escolha um grupo de foco." | cuidado 3 (o treino usa o tempo pedido, ou avisa) |
 | Aviso quando a dor muda a divisão | não existe | "Por causa da dor no ombro (7 hoje), a semana foi montada em Corpo todo 4x: na divisão recomendada, um dos dias ficaria quase vazio. Quando a dor baixar, atualize a nota na triagem e a divisão recomendada volta." | com dor forte no ombro, no cotovelo ou no quadril, 1 em cada 3 programas tem hoje um dia de menos de 3 exercícios |
 
+### 1.1 Os textos que já estão no ramo, com o pacote 1 (13/11/2026)
+
+O pacote 1 da etapa 2 (`pacote-1.md`) já escreve estes textos; substituem as duas primeiras linhas da tabela acima. São rascunho do domínio, para o design revisar.
+
+| Onde aparece | Texto no ramo |
+|---|---|
+| "Por que este programa", volume, sem foco (intermediário e avançado) | "Sem grupo de foco: o tempo do treino é dividido por igual entre os músculos, até ~12 séries por semana cada, o alvo do seu nível. Com pouco tempo, cada um fica com ~6, o bastante para crescer, mais devagar. Para acelerar um grupo, escolha-o como prioridade." |
+| Idem, iniciante | "Sem grupo de foco: cada músculo fica com ~6 séries por semana, o bastante para crescer, mais devagar que com foco; quando sobra tempo, os exercícios grandes ganham uma série a mais. Para acelerar um grupo, escolha-o como prioridade." |
+| Idem, com foco | "Foco em peito: ~12 séries por semana para crescer mais rápido. Os outros músculos ficam com ~6 ou mais: mais do que o necessário para manter (1 a 3) e o bastante para continuar crescendo, mais devagar." (só mudou "~6" para "~6 ou mais") |
+| "Por que este programa", séries no tempo que sobra, sem foco | "O tempo que sobrava nos treinos virou série: cada músculo sobe até ~12 séries por semana, o alvo do seu nível, enquanto o treino couber nos 60 min." |
+| Idem, iniciante | "O tempo que sobrava nos treinos virou uma série a mais nos exercícios grandes (até 3 por exercício): para quem está começando, praticar o básico rende mais do que somar séries nos exercícios pequenos." |
+| Idem, com 1 ou 2 grupos de foco | "O tempo que sobrava nos treinos virou série primeiro para o foco (até ~16 séries por semana) e só depois para os outros músculos, que ficam pelo menos 6 séries abaixo do foco." |
+| Idem, com 3 grupos de foco ou mais | "O tempo que sobrava nos treinos virou série, sem passar o foco da meta de ~12 séries por semana: com mais de 2 grupos de foco, o tempo se divide. Os outros músculos ficam pelo menos 6 séries abaixo do foco." |
+| Aviso de tempo que sobra, sem faltar exercício, sem foco | "O seu treino completo dura cerca de 45 min: as séries já chegaram ao que rende bem no nível iniciante. Dá para escolher uma duração menor sem perder nada; para usar mais tempo, escolha um grupo de foco." |
+| Idem, com foco | "O seu treino completo dura cerca de 55 min: o foco já recebeu o tempo que rende, e os outros músculos ficam abaixo dele de propósito. Dá para escolher uma duração menor sem perder nada." |
+
 ## 2. Juntar os avisos de "abaixo da meta" (tela do programa)
 
 - **O que acontece hoje:** o Jonas (2 dias de 30 min, academia) recebe 8 avisos, um por músculo ("Abaixo da meta: bíceps 2 de 6 séries… Com 30 min cabem ~4 exercícios por treino…"). A Ana recebe 9.

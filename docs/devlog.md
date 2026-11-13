@@ -1657,3 +1657,33 @@ As três mudanças que mais pesam: o tempo que sobra vira série em todos os dia
 **O que a proposta não resolve:** 30 minutos continua o pior grupo; quem é forte e não tem equipamento recebe quase a mesma semana; sem nada para puxar, costas e bíceps continuam a zero; o iniciante continua com duplas de exercícios. E o protótipo ainda tem pioras de 0,1 a 0,6 ponto em dois defeitos de equilíbrio em alguns grupos: o critério de pronto da etapa 2 (nenhum defeito pior em nenhum grupo) ainda não fecha.
 
 **Rascunho de post.** "Medi 680 mil programas de treino que o meu app pode gerar, para gente fictícia do iniciante ao avançado, da academia completa à sala de casa. O defeito mais comum não era um exercício errado: era o app dar o mesmo treino curto a quem tinha 30 e a quem tinha 90 minutos. Antes de mexer, a proposta passou por uma revisão cega, e a 1ª versão dela piorou o treino de quem tinha 4 focos. Voltei, corrigi, medi de novo."
+
+## Treino para todos, etapa 2, pacote 1: o treino usa o tempo que sobra (13/11/2026)
+
+O Gustavo disse sim à decisão 1 da proposta. Este pacote está **no ramo da sessão, não na `main`**, parado para a revisão dele. O relatório completo, com o antes e o depois, é `docs/revisoes/treino-para-todos/pacote-1.md`; a régua por grupo, `qa.md`.
+
+**O que mudou.** `tempo.sobra-series` ganhou um 2º passo: com o programa já montado, cortado e completado, o tempo que ainda sobra vira série em todos os dias, e não só nos que tinham vaga vazia por falta de equipamento. Os exercícios são os de antes; só as séries sobem. Sem foco, cada músculo sobe até o alvo do nível; com 1 ou 2 grupos de foco, o foco primeiro; com 3 ou mais, o foco fica na meta. Para o iniciante, só os exercícios grandes ganham série, e até 3. Quando o tempo ainda sobra, o app avisa a duração real. Nenhuma tela mudou (por isso não há imagem): mudam os números do programa e três textos do "por que este programa".
+
+**Em pessoas.** A Marina (intermediária, academia completa, 4 dias de 60 min, sem foco) recebia dias de 37 a 46 min com 2 séries de quase tudo, 60 séries na semana; recebe dias de 58 a 60 min, 83 séries, com os mesmos 26 exercícios. O Leandro (iniciante, 3 dias de 60 min) ganha uma série em 4 exercícios grandes e fica com dias de 54 a 57 min. O Bruno e a Carla ganham uma série cada. Oito das doze pessoas dos exemplos ficam iguais.
+
+**Medido em 680.625 programas fictícios:**
+
+| | Antes (main) | Agora (ramo) |
+|---|---:|---:|
+| Programas sem nenhum defeito na régua oficial (ponderada) | 79,0% | 94,4% |
+| Idem, na grade | 80,3% | 83,6% |
+| Dia típico abaixo de 70% do tempo, sem aviso (ponderada) | 15,2% | 0,0% |
+| Dia de 5 exercícios ou mais com 2 séries em todos (ponderada) | 21,8% | 15,1% |
+| Séries por músculo por semana (média ponderada) | 7,3 | 7,8 |
+| O pior grupo (dor forte no cotovelo), na grade | 50,0% | 50,0% |
+
+Nenhum dos 9 defeitos da régua sobe em nenhum grupo nem em nenhum recorte. O pior grupo e os treinos de 30 min não mudam (são dos pacotes seguintes). Para o iniciante, o ganho na régua vem quase todo do aviso novo, e não do tempo usado.
+
+**O que a medida mudou na regra.** A 1ª versão (a do protótipo da etapa 1) punha as séries no meio da montagem e, em treinos de 30 min, tirava o lugar de exercícios; a versão que entrou age no fim. E a 1ª versão dava séries ao iniciante em tudo, até encher a hora: na revisão cega, o Leandro piorou em duas rodadas seguidas. Numa 3ª rodada, com cinco iniciantes e três versões de cada, "só os exercícios grandes, até 3 séries" não baixou a nota de nenhum; "tudo até encher" baixou a de 2. Entrou a primeira; a segunda fica registrada no backlog como medida e recusada.
+
+**A revisão cega** (três revisores simulados, três rodadas, 65 páginas; opinião, não evidência): com as 18 pessoas de sempre, as médias foram de 5,5 · 5,6 · 5,2 para 5,8 · 5,8 · 5,4 (eficiente · adequada · agradável). A Marina sobe 5,3 e 3,3 pontos na soma das três notas, nas duas rodadas; o avançado de 5 dias de 90 min, 7,0 e 9,3.
+
+**Pendente da revisão do Gustavo:** cinco registros de teste mudam (uma série a mais no Bruno e na Carla) e não foram regravados; `npm run check` acusa essas cinco diferenças, e só elas.
+
+**Rascunho de post.** "A primeira mudança do 'treino para todos' entrou no ramo: o app deixa de dar 2 séries de tudo a quem tem uma hora e academia completa. Parece simples (sobrou tempo, mais séries), mas a medida mudou a regra duas vezes. Primeiro, as séries a mais estavam tomando o lugar de exercícios em treinos curtos; passaram a entrar só no fim. Depois, três treinadores simulados, sem saber qual versão liam, baixaram a nota do iniciante que ganhou séries em tudo: 8 exercícios com 3 ou 4 séries, no limite da hora, é demais para quem está aprendendo. Para ele, a série a mais agora vai só para os exercícios grandes. Regra que não melhora a medida não entra, mesmo quando parece certa."
+

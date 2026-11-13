@@ -1,4 +1,8 @@
-# Treino para todos: etapa 1 (12 e 13/11/2026)
+# Treino para todos (12 e 13/11/2026)
+
+> **Etapa 2 em andamento, no ramo da sessão.** O Gustavo disse sim à decisão 1 (o tempo que sobra vira série para todos). O pacote 1 está feito e parado para a revisão dele: [`pacote-1.md`](pacote-1.md) (o antes e o depois, a revisão cega, os registros de teste que mudam e as decisões) e [`qa.md`](qa.md) (a régua por grupo). O resto desta página descreve a etapa 1.
+
+## Etapa 1
 
 O pedido do Gustavo: levar o treino recomendado ao nível mais alto possível, para qualquer pessoa que o app possa atender. Esta pasta é a etapa 1: pesquisa, retrato medido e proposta. **Nada mudou no app.** A etapa 2 (as mudanças) só começa com a decisão dele.
 
@@ -27,7 +31,7 @@ npx vite-node scripts/auditoria/retrato.ts -- --motor scripts/auditoria/prototip
 PROT=usa-tempo npx vite-node scripts/auditoria/retrato.ts -- --motor scripts/auditoria/prototipo/gerador.ts --saida /tmp/usa-tempo
 ```
 
-`PROT` liga uma regra do protótipo por vez (`joelho`, `usa-tempo`, `escolha`, `sem-repetir`, `fadiga`, `dor`, `curto`, `tecnicas`, `iniciante-simples`); sem ele, todas; `PROT=nada` deixa o protótipo igual ao app. Cada rodada mede 680.625 programas e leva cerca de 9 minutos em 4 processos.
+`PROT` liga uma regra do protótipo por vez (`joelho`, `usa-tempo`, `escolha`, `sem-repetir`, `fadiga`, `dor`, `curto`, `tecnicas`, `iniciante-simples`); sem ele, todas; `PROT=nada` deixa o protótipo igual à `main` de antes da etapa 2; `PROT=app`, igual ao app do ramo (só as regras já adotadas). Para comparar dois geradores caso a caso (onde um defeito aparece ou some), `scripts/auditoria/novos-defeitos.ts`. Cada rodada mede 680.625 programas e leva cerca de 9 minutos em 4 processos.
 
 ```bash
 npx vite-node scripts/auditoria/comparar-retratos.ts -- antes/retrato.json depois/retrato.json --grupos

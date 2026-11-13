@@ -1,0 +1,58 @@
+{
+ "T01": {
+  "pessoa": "x6",
+  "versao": "hoje"
+ },
+ "T02": {
+  "pessoa": "x2",
+  "versao": "hoje"
+ },
+ "T03": {
+  "pessoa": "x6",
+  "versao": "proposta"
+ },
+ "T04": {
+  "pessoa": "leandro",
+  "versao": "proposta"
+ },
+ "T05": {
+  "pessoa": "x3",
+  "versao": "hoje"
+ },
+ "T06": {
+  "pessoa": "x3",
+  "versao": "proposta"
+ },
+ "T07": {
+  "pessoa": "x2",
+  "versao": "proposta"
+ },
+ "T08": {
+  "pessoa": "bruno",
+  "versao": "proposta"
+ },
+ "T09": {
+  "pessoa": "leandro",
+  "versao": "hoje"
+ },
+ "T10": {
+  "pessoa": "marina",
+  "versao": "hoje"
+ },
+ "T11": {
+  "pessoa": "marina",
+  "versao": "proposta"
+ },
+ "T12": {
+  "pessoa": "carla",
+  "versao": "proposta"
+ },
+ "T13": {
+  "pessoa": "carla",
+  "versao": "hoje"
+ },
+ "T14": {
+  "pessoa": "bruno",
+  "versao": "hoje"
+ }
+}

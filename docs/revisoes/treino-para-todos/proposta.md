@@ -1,5 +1,7 @@
 # Proposta: o que mudar no treino recomendado, com o efeito medido
 
+> **Atualização de 13/11/2026 (etapa 2):** o Gustavo disse sim à decisão 1. O pacote 1 foi feito no ramo e ficou diferente do descrito abaixo em três pontos (as séries entram no fim da montagem; travas novas; o iniciante só ganha série nos exercícios grandes), para não piorar nenhum defeito nem nenhuma pessoa. O que vale para o pacote 1 é [`pacote-1.md`](pacote-1.md); os números desta página são os do protótipo da etapa 1.
+
 > Sessão "treino para todos", etapa 1 (12 e 13/11/2026). **Nada mudou no app.** Cada mudança abaixo foi escrita num protótipo (`scripts/auditoria/prototipo/`, uma cópia do gerador que, com tudo desligado, dá programas idênticos aos do app) e medida em 680.625 programas fictícios, em duas contas: a grade (cada combinação vale igual) e a ponderada (as combinações mais prováveis valem mais; os pesos são estimativa, `diagnostico.md`, seção 1.2). O retrato de hoje está em [`diagnostico.md`](diagnostico.md); as doze pessoas, em [`exemplos/`](exemplos/README.md). Nada entra sem a decisão do Gustavo (seção 10).
 
 ## 1. Em uma olhada
