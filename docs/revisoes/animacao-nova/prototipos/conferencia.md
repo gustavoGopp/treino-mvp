@@ -15,7 +15,7 @@ Gerado por `npm run conferir:animacao` (60 quadros por segundo, ciclo inteiro). 
 
 279 quadros conferidos. 0 falha(s), 2 aviso(s).
 
-Ângulos no ciclo (lado direito, graus): joelho 8 a 126; cotovelo 148 a 148; quadril 10 a 125; ombro 13 a 13; dorsiflexao -7 a 23; punho 31 a 31; pronacao 42 a 42; clavicula 11 a 11.
+Ângulos no ciclo (lado direito, graus): joelho 8 a 126; cotovelo 146 a 146; quadril 10 a 124; ombro 12 a 12; dorsiflexao -7 a 23; punho 35 a 35; pronacao 42 a 42; clavicula 11 a 11.
 
 | grupo | o que foi medido | resultado | limite | |
 |---|---|---|---|---|
@@ -25,27 +25,27 @@ Gerado por `npm run conferir:animacao` (60 quadros por segundo, ciclo inteiro). 
 | Proporções | comprimento do osso: perna | desvio máximo 0 cm | tabela: 42,1 cm; tolerância 0,1 cm | ok |
 | Proporções | membro que não alcança o alvo | falta máxima 0 cm | tolerância 0,1 cm | ok |
 | Amplitudes | flexão do joelho (máxima no ciclo) | 126° | média 140°, máximo observado 164° (cdc) | ok |
-| Amplitudes | flexão do cotovelo | 147,8° | média 148°, máximo observado 166° (cdc) | ok |
-| Amplitudes | flexão do quadril | 124,6° | média 132°, máximo observado 159° (cdc) | ok |
+| Amplitudes | flexão do cotovelo | 146,3° | média 148°, máximo observado 166° (cdc) | ok |
+| Amplitudes | flexão do quadril | 124,4° | média 132°, máximo observado 159° (cdc) | ok |
 | Amplitudes | extensão do quadril | 0° | média 18,5°, máximo observado 42° (cdc) | ok |
 | Amplitudes | abertura do quadril para o lado | 16,4° | média 40°, máximo observado 60° (aaos) | ok |
-| Amplitudes | elevação do braço | 12,5° | média 170°, máximo observado 192° (cdc) | ok |
-| Amplitudes | dorsiflexão do tornozelo | 23,3° | média 14,8°, máximo observado 48° (cdc) | AVISO |
+| Amplitudes | elevação do braço | 12,2° | média 170°, máximo observado 192° (cdc) | ok |
+| Amplitudes | dorsiflexão do tornozelo | 23,4° | média 14,8°, máximo observado 48° (cdc) | AVISO |
 | Amplitudes | flexão plantar do tornozelo | 7,4° | média 56,7°, máximo observado 90° (cdc) | ok |
-| Amplitudes | pronação do antebraço (a partir do polegar para cima) | 41,8° | média 80°, máximo observado 108° (cdc) | ok |
+| Amplitudes | pronação do antebraço (a partir do polegar para cima) | 41,9° | média 80°, máximo observado 108° (cdc) | ok |
 | Amplitudes | supinação do antebraço | 0° | média 87,5°, máximo observado 131° (cdc) | ok |
-| Amplitudes | extensão do punho | 31,3° | média 70°, máximo observado 95° (aaos) | ok |
+| Amplitudes | extensão do punho | 34,7° | média 70°, máximo observado 95° (aaos) | ok |
 | Amplitudes | extensão dos dedos do pé | 6,9° | média 70°, máximo observado 90° (aaos) | ok |
 | Contatos | preso no lugar: pe.R | desloca no máximo 0 cm no ciclo | tolerância 0,1 cm | ok |
 | Contatos | preso no lugar: pe.L | desloca no máximo 0 cm no ciclo | tolerância 0,1 cm | ok |
 | Chão | ponto mais baixo do corpo | 0 cm | não pode passar de −1,5 cm (a sola e o joelho amassam um pouco) | ok |
-| Objetos | a carga fica na mão: halter | distância da mão ao centro do objeto de 13,7 a 13,7 cm | não pode variar mais de 0,5 cm no ciclo | ok |
+| Objetos | a carga fica na mão: halter | distância da mão ao centro do objeto de 12,6 a 12,6 cm | não pode variar mais de 0,5 cm no ciclo | ok |
 | Objetos | o corpo atravessa uma peça (banco, coluna) | não atravessa | tolerância 2,5 cm (o corpo amassa o estofado) | ok |
-| Ritmo | maior salto de velocidade entre dois quadros (a 60 quadros por segundo) | 6% da velocidade de pico (joelho direito, Subida · concêntrica); pico de 104,3 cm/s | movimento suave: até 15%; acima de 25% é tranco | ok |
+| Ritmo | maior salto de velocidade entre dois quadros (a 60 quadros por segundo) | 6% da velocidade de pico (joelho direito, Subida · concêntrica); pico de 104,1 cm/s | movimento suave: até 15%; acima de 25% é tranco | ok |
 | Simetria | esquerda contra o espelho da direita (mão, cotovelo, joelho, tornozelo) | diferença máxima 0 cm | tolerância 0,1 cm | ok |
 | Ciclo | o último quadro emenda no primeiro | distância máxima 0 cm | até 0,5 cm | ok |
 | Equilíbrio | centro de massa (corpo + carga) sobre o apoio dos pés | sempre dentro do apoio | do calcanhar à ponta do pé | ok |
-| Ficha | embaixo, o quadril fica na altura do joelho ou abaixo (consenso) | embaixo, o centro do quadril fica 5,3 cm abaixo do centro do joelho | como a ficha pede | ok |
+| Ficha | embaixo, o quadril fica na altura do joelho ou abaixo (consenso) | embaixo, o centro do quadril fica 5,2 cm abaixo do centro do joelho | como a ficha pede | ok |
 | Ficha | o joelho segue a direção da ponta do pé (consenso) | o joelho anda numa direção a 4,4° da direção do pé (visto de cima) | como a ficha pede | ok |
 | Ficha | o peso fica no meio do pé, com o calcanhar apoiado (consenso) | o centro de massa (corpo + carga) fica a no máximo 0,4 cm do meio do pé (pé de 19,9 cm do calcanhar à bola) | como a ficha pede | ok |
 | Ficha | a lombar não arredonda (consenso) | flexão da lombar além da curva de repouso: 0° | como a ficha pede | ok |

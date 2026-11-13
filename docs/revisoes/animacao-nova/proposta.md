@@ -10,7 +10,17 @@ Ele olhou as folhas e apontou três coisas. O que foi feito em cada uma:
 
 1. **O erro não ficava claro, principalmente de frente** (o joelho para dentro no agachamento). O modo Erros foi refeito: só a parte do corpo que erra fica em vermelho, uma linha vermelha mostra onde ela está, uma linha tracejada verde mostra onde deveria estar, o corpo do movimento certo continua tracejado por trás e o nome do erro fica fora do corpo, com um fio até o ponto. No agachamento, o joelho agora cai para dentro conforme a pessoa desce e continua assim embaixo (antes o erro sumia justamente no fundo), com 9 cm de desvio medidos na ficha. Os 12 erros das quatro âncoras estão em `prototipos/erros.png`, ao lado dos de hoje.
 2. **A mão no halter parecia solta.** No goblet, as mãos deixaram de ser punhos fechados ao lado do halter: agora ficam em concha, com a palma encostada nos dois lados da cabeça de cima, os dedos para cima e o polegar para o peito, como a ficha da técnica descreve.
-3. **Os equipamentos ficaram piores que os de hoje.** Concordo. Duas melhoras já entraram: as peças passaram a ter faces em três tons (antes eram só a silhueta) e o halter ganhou a cabeça sextavada. Não basta: a coluna da polia e os bancos continuam mais pobres que os desenhos de hoje. **Proposta:** os 49 cartões de hoje ficam como estão até um cartão novo ser claramente melhor, comparado lado a lado e aprovado por você; e o equipamento vira um trabalho próprio, com a sua aprovação por folha, como foi com o corpo.
+3. **Os equipamentos ficaram piores que os de hoje.** Concordo. A direção que ele deu depois: partir dos cartões de hoje, com aquele realismo (pode simplificar um pouco, não muito), para a pessoa chegar na academia, olhar e reconhecer o aparelho.
+
+   O que descobri: os 49 cartões de hoje não são desenhos soltos. Saem de um gerador por código (`scripts/desenhos-equipamento/realista/`), em 3D, com materiais em quatro tons, estofado com costura, anilha com aro e sombra macia. Por isso dá para usar **o mesmo gerador** para desenhar o equipamento dentro das cenas das animações, em qualquer vista, com as medidas da tabela de objetos.
+
+   A prova está em `prototipos/equipamento-realista.png` (script `scripts/animacao-nova/cena-realista.mjs`): o banco reto, os halteres sextavados e as anilhas do supino e do goblet, de lado, de frente, de cima e em três quartos, com o Boneco novo, ao lado das peças simples e dos cartões de hoje.
+
+   **Proposta:** os 49 cartões de hoje ficam. O equipamento das cenas passa a ser desenhado pelo mesmo gerador, com o mesmo acabamento, e cada aparelho ganha as medidas reais (o diagnóstico mostrou cartões com máquinas de 30% a 60% mais estreitas que as fichas dos fabricantes). As peças simples do motor novo deixam de ser o desenho final e ficam só para a conferência (onde o corpo encosta, onde o cabo passa).
+
+   O que a prova ainda não resolve: no tema escuro a estrutura grafite quase some no fundo (os cartões de hoje têm o mesmo limite); a coluna da polia ainda não foi refeita assim; o gerador está em `scripts/` e precisa ir para dentro do motor para rodar no app; e o peso e o tempo por quadro com o equipamento realista não foram medidos.
+
+   A pegada do goblet também foi refinada depois: a mão agora é uma concha, com os dedos dobrando sobre a cabeça de cima do halter.
 
 O que ainda não ficou bom depois dessas mudanças: o nome do erro sai pequeno nas cenas largas (a puxada, com a coluna inteira no quadro), e o rótulo é só o título do erro, sem os rótulos de técnica.
 
@@ -221,6 +231,7 @@ Nenhum texto técnico nem lista de músculos foi alterado. Não encontrei, nas q
 | Conferência automática | `prototipos/conferencia.md` |
 | Os 12 erros das âncoras, hoje e novo | `prototipos/erros.png` |
 | Cartões de equipamento | `prototipos/cartoes/cartoes.png` |
+| Equipamento das cenas com o realismo dos cartões de hoje | `prototipos/equipamento-realista.png` |
 | Peso e tempo por quadro | `prototipos/medidas.json` |
 | Tabelas do bloco A | `tabelas.md` |
 | Referências | `referencias.md` |

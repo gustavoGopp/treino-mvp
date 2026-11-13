@@ -361,7 +361,9 @@ export function formaDoBoneco(e: Esq, o: { roupa?: boolean; cabeloAtrasPrimeiro?
         f = Math.max(0.3, esp[1]);
         b = Math.max(0.3, -esp[0]);
       }
-      maoAneis.push({ c: comb([1, L.punho], [u, dedos], [(lg[0] + lg[1]) / 2, polegar]), x: polegar, z: L.mao.z, a: Math.max(0.3, (lg[1] - lg[0]) / 2), f, b });
+      // mão em concha: dos nós dos dedos em diante, os dedos dobram para o lado da palma (abraçam o que seguram)
+      const dobra = L.formaMao === 'concha' && u > 8.5 ? (u - 8.5) * 0.62 : 0;
+      maoAneis.push({ c: comb([1, L.punho], [u - dobra * 0.25, dedos], [(lg[0] + lg[1]) / 2, polegar], [dobra, L.mao.z]), x: polegar, z: L.mao.z, a: Math.max(0.3, (lg[1] - lg[0]) / 2), f, b });
     }
     // polegar: três pontos [ao longo dos dedos, para o lado do polegar, para o lado da palma, raio], tirados do
     // polegar desenhado de lado (POLEGAR_L, e a saliência de MAO_SOLTA) e de frente (POLEGAR_F)

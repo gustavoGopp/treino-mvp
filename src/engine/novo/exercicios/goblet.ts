@@ -61,9 +61,9 @@ function quadro(corpo: Corpo, u: number, erro?: string): Quadro {
     // frente, o polegar para o peito (a ficha da técnica: "mãos em concha embaixo da anilha de cima")
     const braco = (k: Lado): PoseBraco => {
       const s = sinal(k);
-      const dedos = norm(add(mul(eixo, 0.92), mul(dirRef(T, [0, 0, 1]), 0.3)));
-      const palma = add(add(topo, mul(dirRef(T, [s, 0, 0]), ra + 2.7)), mul(eixo, -cabeca * 0.2));
-      return { punho: add(palma, mul(dedos, -m('mao.punhoAoCentroDaPegada'))), polo: dirRef(T, [s * 0.45, -1, -0.15]), mao: { polegar: dirRef(T, [0, 0.3, -1]), dedos, forma: 'relaxada' } };
+      const dedos = norm(add(mul(eixo, 0.9), mul(dirRef(T, [0, 0, 1]), 0.35)));
+      const palma = add(add(topo, mul(dirRef(T, [s, 0, 0]), ra + 2.6)), mul(eixo, -cabeca * 0.35));
+      return { punho: add(palma, mul(dedos, -m('mao.punhoAoCentroDaPegada'))), polo: dirRef(T, [s * 0.45, -1, -0.15]), mao: { polegar: dirRef(T, [0, 0.3, -1]), dedos, forma: 'concha' } };
     };
     return { e: resolverMembros(t, { R: braco('R'), L: braco('L') }, pernas), centro, eixo };
   };

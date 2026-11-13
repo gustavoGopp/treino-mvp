@@ -38,7 +38,7 @@ export interface PoseTronco {
   toracicaGiro?: number;
   cervicalGiro?: number;
 }
-export type FormaMao = 'pegada' | 'aberta' | 'relaxada';
+export type FormaMao = 'pegada' | 'aberta' | 'relaxada' | 'concha';
 export interface PoseMao {
   /** Para onde aponta o polegar (o eixo do cabo, numa pegada). */
   polegar: V3;

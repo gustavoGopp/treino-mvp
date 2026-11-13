@@ -48,14 +48,14 @@
    {
     "grupo": "Amplitudes",
     "oQue": "flexão do cotovelo",
-    "medido": "147,8°",
+    "medido": "146,3°",
     "limite": "média 148°, máximo observado 166° (cdc)",
     "nivel": "ok"
    },
    {
     "grupo": "Amplitudes",
     "oQue": "flexão do quadril",
-    "medido": "124,6°",
+    "medido": "124,4°",
     "limite": "média 132°, máximo observado 159° (cdc)",
     "nivel": "ok"
    },
@@ -76,14 +76,14 @@
    {
     "grupo": "Amplitudes",
     "oQue": "elevação do braço",
-    "medido": "12,5°",
+    "medido": "12,2°",
     "limite": "média 170°, máximo observado 192° (cdc)",
     "nivel": "ok"
    },
    {
     "grupo": "Amplitudes",
     "oQue": "dorsiflexão do tornozelo",
-    "medido": "23,3°",
+    "medido": "23,4°",
     "limite": "média 14,8°, máximo observado 48° (cdc)",
     "nivel": "aviso"
    },
@@ -97,7 +97,7 @@
    {
     "grupo": "Amplitudes",
     "oQue": "pronação do antebraço (a partir do polegar para cima)",
-    "medido": "41,8°",
+    "medido": "41,9°",
     "limite": "média 80°, máximo observado 108° (cdc)",
     "nivel": "ok"
    },
@@ -111,7 +111,7 @@
    {
     "grupo": "Amplitudes",
     "oQue": "extensão do punho",
-    "medido": "31,3°",
+    "medido": "34,7°",
     "limite": "média 70°, máximo observado 95° (aaos)",
     "nivel": "ok"
    },
@@ -146,7 +146,7 @@
    {
     "grupo": "Objetos",
     "oQue": "a carga fica na mão: halter",
-    "medido": "distância da mão ao centro do objeto de 13,7 a 13,7 cm",
+    "medido": "distância da mão ao centro do objeto de 12,6 a 12,6 cm",
     "limite": "não pode variar mais de 0,5 cm no ciclo",
     "nivel": "ok"
    },
@@ -160,7 +160,7 @@
    {
     "grupo": "Ritmo",
     "oQue": "maior salto de velocidade entre dois quadros (a 60 quadros por segundo)",
-    "medido": "6% da velocidade de pico (joelho direito, Subida · concêntrica); pico de 104,3 cm/s",
+    "medido": "6% da velocidade de pico (joelho direito, Subida · concêntrica); pico de 104,1 cm/s",
     "limite": "movimento suave: até 15%; acima de 25% é tranco",
     "nivel": "ok"
    },
@@ -188,7 +188,7 @@
    {
     "grupo": "Ficha",
     "oQue": "embaixo, o quadril fica na altura do joelho ou abaixo (consenso)",
-    "medido": "embaixo, o centro do quadril fica 5,3 cm abaixo do centro do joelho",
+    "medido": "embaixo, o centro do quadril fica 5,2 cm abaixo do centro do joelho",
     "limite": "como a ficha pede",
     "nivel": "ok"
    },
@@ -223,32 +223,32 @@
   ],
   "angulos": {
    "joelho": [
-    7.999999999999569,
+    7.9999999999994325,
     126
    ],
    "cotovelo": [
-    147.76087701562818,
-    147.76087701562835
+    146.29592461339547,
+    146.29592461339564
    ],
    "quadril": [
-    9.690283374080293,
-    124.55188281239849
+    9.634597468283452,
+    124.41200257948233
    ],
    "ombro": [
-    12.533036860460307,
-    12.533036860460452
+    12.231703982748817,
+    12.231703982748966
    ],
    "dorsiflexao": [
-    -7.432679852268521,
-    23.25692231169006
+    -7.3791381011259745,
+    23.36672234353614
    ],
    "punho": [
-    31.27620082471837,
-    31.276200824718842
+    34.711882850224484,
+    34.71188285022487
    ],
    "pronacao": [
-    41.780742036921566,
-    41.78074203692168
+    41.919302998459074,
+    41.919302998459216
    ],
    "clavicula": [
     11,
