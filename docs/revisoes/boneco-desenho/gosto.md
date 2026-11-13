@@ -40,7 +40,7 @@ Cada pergunta mostra o mesmo "boneco de prova" (um desenho feito só para estas 
 | 3 | Com roupa ou sem roupa? | `gosto/par-3-roupa.png` | **A, com roupa** ("pode ser A", 13/11/2026). Perguntei se o "pode ser" vinha de o desenho de prova não agradar; ele não comentou. |
 | 4 | Chapado ou com volume? | `gosto/par-4-volume.png` | **A, chapado** ("pode ser A", 13/11/2026). |
 | 5 | Proporção real ou levemente estilizada? | `gosto/par-5-proporcao.png` | **A, proporção real** ("pode ser A", 13/11/2026). |
-| 6 | Cinza neutro, cor de pele ou a cor do app? | `gosto/par-6-cor.png` | |
+| 6 | Cinza neutro, cor de pele ou a cor do app? | `gosto/par-6-cor.png` | **B, cor de pele** ("b", 13/11/2026). Foi a primeira resposta sem "pode ser" e a primeira contra a minha opinião (eu tinha dito A, cinza). |
 | 7 | Traço fino ou traço grosso? | `gosto/par-7-traco.png` | |
 | 8 | O músculo no corpo ou num mapa ao lado? | `gosto/par-8-musculo.png` | |
 
