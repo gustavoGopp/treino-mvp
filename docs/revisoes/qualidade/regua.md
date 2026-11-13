@@ -12,15 +12,15 @@ Nenhum defeito acima da linha de base (`docs/revisoes/qualidade/regua-linha-de-b
 | --- | --- | ---: | ---: | ---: | ---: | ---: | ---: |
 | A2 | dia com menos de 3 exercícios ou sem multiarticular | 357 | 1,0% | 7,5% | 14.974 | 20,6% | 23,5% |
 | A3 | dia mais longo acima de 110% dos minutos | 2.309 | 6,4% | 9,8% | 2.622 | 3,6% | 4,5% |
-| A4 | dia típico abaixo de 70% dos minutos, sem o aviso | 1.831 | 5,0% | 5,3% | 0 | 0,0% | 0,0% |
+| A4 | dia típico abaixo de 70% dos minutos, sem o aviso | 0 | 0,0% | 5,3% | 0 | 0,0% | 0,0% |
 | B1 | o mesmo exercício em todos os dias havendo outro do mesmo nível | 0 | 0,0% | 0,3% | 780 | 1,1% | 1,3% |
-| C1 | prioritário abaixo da meta com tempo e exercício | 437 | 1,2% | 4,1% | 858 | 1,2% | 5,8% |
+| C1 | prioritário abaixo da meta com tempo e exercício | 436 | 1,2% | 4,1% | 838 | 1,2% | 5,8% |
 | D1 | empurrar ÷ puxar acima de 1,5 havendo como puxar | 314 | 0,9% | 6,1% | 190 | 0,3% | 3,2% |
 | D3 | quadríceps ÷ posteriores fora de 0,5–2 (ou sem posteriores direto) | 0 | 0,0% | 1,6% | 0 | 0,0% | 0,3% |
-| E1 | não prioritário com 1 a 3 séries havendo exercício e tempo | 38 | 0,1% | 0,2% | 0 | 0,0% | 0,0% |
+| E1 | não prioritário com 1 a 3 séries havendo exercício e tempo | 0 | 0,0% | 0,2% | 0 | 0,0% | 0,0% |
 | seguranca | exercício impossível, acima da complexidade ou numa região com dor > 5 | 0 | 0,0% | 0,0% | 0 | 0,0% | 0,0% |
-| **sem nenhum defeito** |  | 31.255 | **86,1%** |  | 53.923 | 74,3% |  |
-| sem defeito, fora o D1 |  | 31.419 | 86,6% |  | 54.007 | 74,4% |  |
+| **sem nenhum defeito** |  | 33.122 | **91,2%** |  | 53.943 | 74,3% |  |
+| sem defeito, fora o D1 |  | 33.286 | 91,7% |  | 54.027 | 74,4% |  |
 
 Como cada limite é medido (as definições do protótipo de `g-biblioteca-ampliada.md` foram descartadas com o rascunho; estas reproduzem a linha de base dele em todos os números publicados, menos o D1): o dia típico (A4) é a mediana dos dias; "tem tempo" (C1, E1) é o dia mais longo abaixo de 85% dos minutos; o foco (C1, C2) só conta músculos com exercício possível, e C2 compara com a mediana dos não prioritários que têm exercício possível; D1 e D3 só valem quando o equipamento permite puxar, e treinar quadríceps e posteriores. **O D1 usa o limite escrito na tabela 4.7 (empurrar ÷ puxar acima de 1,5)**: dá 6,1% na `main`, e não os 0,9% do protótipo, cuja leitura exata se perdeu. Por isso a linha "fora o D1" é a comparável com os 73,4% (hoje) e os 83,8% (final) do protótipo.
 
@@ -31,10 +31,10 @@ Como cada limite é medido (as definições do protótipo de `g-biblioteca-ampli
 | nota | o que é | programas | % (sem dor) | % (3 dias ou mais) |
 | --- | --- | ---: | ---: | ---: |
 | A1 | exercícios por dia fora da faixa dos minutos | 3.644 | 10,0% |  |
-| A5 | dia mais curto abaixo de 60% do mais longo | 4.829 | 13,3% |  |
+| A5 | dia mais curto abaixo de 60% do mais longo | 4.383 | 12,1% |  |
 | B2 | o mesmo exercício em todos os dias sem opção do mesmo nível | 5.665 | 15,6% | 19,5% |
 | B3 | dois exercícios ou mais em todos os dias | 2.870 | 7,9% | 9,9% |
-| C2 | o foco não passa da mediana dos outros músculos | 4.877 | 13,4% |  |
+| C2 | o foco não passa da mediana dos outros músculos | 4.880 | 13,4% |  |
 | G1 | dia com 3 ou mais cartões de texto | 5.122 | 14,1% |  |
 
 ## Medidas (sem dor)
@@ -53,11 +53,11 @@ Sem dor. "C2 (com foco)": a nota C2 entre os programas com algum grupo de foco (
 
 | recorte | programas | sem defeito | A2 | A3 | A4 | B1 | C1 | D1 | D3 | E1 | seguranca | C2 (com foco) | exercícios por dia | diferentes por semana | B2 | 3+ cartões |
 | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
-| atalhos (6) | 3.960 | 66,5% | 1,1% | 9,5% | 22,2% | 0,0% | 0,1% | 1,1% | 0,0% | 0,4% | 0,0% | 16,9% | 6,05 | 21 | 0,0% | 56,2% |
-| personas (6) | 3.960 | 70,3% | 3,2% | 9,9% | 16,4% | 0,0% | 0,1% | 1,0% | 0,0% | 0,4% | 0,0% | 19,0% | 5,94 | 19,8 | 0,1% | 43,2% |
+| atalhos (6) | 3.960 | 89,1% | 1,1% | 9,5% | 0,0% | 0,0% | 0,0% | 1,1% | 0,0% | 0,0% | 0,0% | 16,9% | 6,05 | 21 | 0,0% | 56,2% |
+| personas (6) | 3.960 | 87,1% | 3,2% | 9,9% | 0,0% | 0,0% | 0,1% | 1,0% | 0,0% | 0,0% | 0,0% | 19,1% | 5,94 | 19,8 | 0,1% | 43,2% |
 | sem nada (1) | 660 | 95,5% | 0,0% | 3,6% | 0,0% | 0,0% | 0,9% | 0,0% | 0,0% | 0,0% | 0,0% | 11,2% | 5,54 | 13,2 | 26,7% | 0,0% |
 | um item só (38) | 25.080 | 92,8% | 0,2% | 4,9% | 0,0% | 0,0% | 1,7% | 0,8% | 0,0% | 0,0% | 0,0% | 13,3% | 5,43 | 14 | 21,9% | 2,0% |
-| pares de casa (4) | 2.640 | 73,3% | 4,9% | 10,8% | 11,4% | 0,0% | 0,1% | 1,2% | 0,0% | 0,3% | 0,0% | 20,0% | 5,87 | 18,9 | 0,1% | 26,3% |
+| pares de casa (4) | 2.640 | 84,9% | 4,9% | 10,8% | 0,0% | 0,0% | 0,1% | 1,2% | 0,0% | 0,0% | 0,0% | 20,0% | 5,87 | 18,9 | 0,1% | 26,3% |
 
 ## Por nível
 
@@ -65,9 +65,9 @@ Sem dor. "C2 (com foco)": a nota C2 entre os programas com algum grupo de foco (
 
 | recorte | programas | sem defeito | A2 | A3 | A4 | B1 | C1 | D1 | D3 | E1 | seguranca | C2 (com foco) | exercícios por dia | diferentes por semana | B2 | 3+ cartões |
 | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
-| iniciante | 12.100 | 87,9% | 1,0% | 4,1% | 5,4% | 0,0% | 1,3% | 0,5% | 0,0% | 0,1% | 0,0% | 15,5% | 5,54 | 14,7 | 40,9% | 15,6% |
-| intermediario | 12.100 | 86,6% | 1,0% | 6,7% | 5,1% | 0,0% | 0,4% | 0,9% | 0,0% | 0,1% | 0,0% | 14,4% | 5,59 | 16,3 | 2,9% | 13,4% |
-| avancado | 12.100 | 83,8% | 1,0% | 8,4% | 4,6% | 0,0% | 1,9% | 1,1% | 0,0% | 0,1% | 0,0% | 14,5% | 5,62 | 16,3 | 3,0% | 13,3% |
+| iniciante | 12.100 | 93,5% | 1,0% | 4,1% | 0,0% | 0,0% | 1,3% | 0,5% | 0,0% | 0,0% | 0,0% | 15,4% | 5,54 | 14,7 | 40,9% | 15,6% |
+| intermediario | 12.100 | 91,7% | 1,0% | 6,7% | 0,0% | 0,0% | 0,4% | 0,9% | 0,0% | 0,0% | 0,0% | 14,4% | 5,59 | 16,3 | 2,9% | 13,4% |
+| avancado | 12.100 | 88,5% | 1,0% | 8,4% | 0,0% | 0,0% | 1,9% | 1,1% | 0,0% | 0,0% | 0,0% | 14,5% | 5,62 | 16,3 | 3,0% | 13,3% |
 
 ## Por minutos
 
@@ -76,9 +76,9 @@ Sem dor. "C2 (com foco)": a nota C2 entre os programas com algum grupo de foco (
 | recorte | programas | sem defeito | A2 | A3 | A4 | B1 | C1 | D1 | D3 | E1 | seguranca | C2 (com foco) | exercícios por dia | diferentes por semana | B2 | 3+ cartões |
 | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
 | 30 min | 9.075 | 75,8% | 3,9% | 20,5% | 0,0% | 0,0% | 0,0% | 2,4% | 0,0% | 0,0% | 0,0% | 32,0% | 3,98 | 12,3 | 13,9% | 5,6% |
-| 45 min | 9.075 | 94,0% | 0,0% | 4,4% | 0,6% | 0,0% | 0,3% | 0,7% | 0,0% | 0,0% | 0,0% | 15,7% | 5,59 | 15,7 | 15,4% | 13,8% |
-| 60 min | 9.075 | 92,7% | 0,0% | 0,6% | 6,2% | 0,0% | 0,2% | 0,3% | 0,0% | 0,0% | 0,0% | 8,1% | 6,26 | 17,2 | 16,5% | 17,5% |
-| 90 min | 9.075 | 81,9% | 0,0% | 0,0% | 13,4% | 0,0% | 4,3% | 0,0% | 0,0% | 0,4% | 0,0% | 3,3% | 6,51 | 17,8 | 16,6% | 19,6% |
+| 45 min | 9.075 | 94,6% | 0,0% | 4,4% | 0,0% | 0,0% | 0,3% | 0,7% | 0,0% | 0,0% | 0,0% | 15,7% | 5,59 | 15,7 | 15,4% | 13,8% |
+| 60 min | 9.075 | 98,9% | 0,0% | 0,6% | 0,0% | 0,0% | 0,2% | 0,3% | 0,0% | 0,0% | 0,0% | 8,1% | 6,26 | 17,2 | 16,5% | 17,5% |
+| 90 min | 9.075 | 95,7% | 0,0% | 0,0% | 0,0% | 0,0% | 4,3% | 0,0% | 0,0% | 0,0% | 0,0% | 3,3% | 6,51 | 17,8 | 16,6% | 19,6% |
 
 ## Por dias
 
@@ -86,11 +86,11 @@ Sem dor. "C2 (com foco)": a nota C2 entre os programas com algum grupo de foco (
 
 | recorte | programas | sem defeito | A2 | A3 | A4 | B1 | C1 | D1 | D3 | E1 | seguranca | C2 (com foco) | exercícios por dia | diferentes por semana | B2 | 3+ cartões |
 | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
-| 2 dias | 7.260 | 80,3% | 0,0% | 15,2% | 0,0% | 0,0% | 2,9% | 2,5% | 0,0% | 0,5% | 0,0% | 24,5% | 6,72 | 12,1 | 0,0% | 5,9% |
-| 3 dias | 7.260 | 87,1% | 0,0% | 8,5% | 2,9% | 0,0% | 0,4% | 1,6% | 0,0% | 0,0% | 0,0% | 12,5% | 6,01 | 14,5 | 30,8% | 7,9% |
-| 4 dias | 7.260 | 90,9% | 0,0% | 3,7% | 4,5% | 0,0% | 0,9% | 0,1% | 0,0% | 0,0% | 0,0% | 9,5% | 5,59 | 16,2 | 15,8% | 15,5% |
-| 5 dias | 7.260 | 86,8% | 2,4% | 2,5% | 7,8% | 0,0% | 1,0% | 0,0% | 0,0% | 0,0% | 0,0% | 12,6% | 5,27 | 17,2 | 15,8% | 17,7% |
-| 6 dias | 7.260 | 85,4% | 2,5% | 1,9% | 10,0% | 0,0% | 0,8% | 0,1% | 0,0% | 0,0% | 0,0% | 14,9% | 5,25 | 18,8 | 15,6% | 23,6% |
+| 2 dias | 7.260 | 80,8% | 0,0% | 15,2% | 0,0% | 0,0% | 2,9% | 2,5% | 0,0% | 0,0% | 0,0% | 24,5% | 6,72 | 12,1 | 0,0% | 5,9% |
+| 3 dias | 7.260 | 90,0% | 0,0% | 8,5% | 0,0% | 0,0% | 0,4% | 1,6% | 0,0% | 0,0% | 0,0% | 12,5% | 6,01 | 14,5 | 30,8% | 7,9% |
+| 4 dias | 7.260 | 95,3% | 0,0% | 3,7% | 0,0% | 0,0% | 0,9% | 0,1% | 0,0% | 0,0% | 0,0% | 9,5% | 5,59 | 16,2 | 15,8% | 15,5% |
+| 5 dias | 7.260 | 94,7% | 2,4% | 2,5% | 0,0% | 0,0% | 1,0% | 0,0% | 0,0% | 0,0% | 0,0% | 12,5% | 5,27 | 17,2 | 15,8% | 17,7% |
+| 6 dias | 7.260 | 95,4% | 2,5% | 1,9% | 0,0% | 0,0% | 0,8% | 0,1% | 0,0% | 0,0% | 0,0% | 15,0% | 5,25 | 18,8 | 15,6% | 23,6% |
 
 ## Por foco
 
@@ -98,17 +98,17 @@ Sem dor. "C2 (com foco)": a nota C2 entre os programas com algum grupo de foco (
 
 | recorte | programas | sem defeito | A2 | A3 | A4 | B1 | C1 | D1 | D3 | E1 | seguranca | C2 (com foco) | exercícios por dia | diferentes por semana | B2 | 3+ cartões |
 | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
-| nenhum | 3.300 | 89,5% | 1,5% | 1,7% | 6,5% | 0,0% | 0,0% | 0,0% | 0,0% | 0,8% | 0,0% | 0,0% | 5,34 | 15,4 | 15,4% | 13,4% |
-| peito | 3.300 | 83,5% | 0,0% | 5,2% | 6,1% | 0,0% | 2,4% | 6,0% | 0,0% | 0,3% | 0,0% | 0,4% | 5,39 | 15,4 | 15,4% | 14,7% |
-| costas | 3.300 | 84,4% | 1,5% | 4,7% | 6,2% | 0,0% | 2,6% | 0,7% | 0,0% | 0,0% | 0,0% | 1,3% | 5,36 | 15,4 | 15,4% | 12,9% |
-| ombros | 3.300 | 92,7% | 0,0% | 1,6% | 5,5% | 0,0% | 0,1% | 0,0% | 0,0% | 0,0% | 0,0% | 6,9% | 5,59 | 15,8 | 15,4% | 16,8% |
-| bracos | 3.300 | 91,7% | 0,9% | 2,0% | 5,3% | 0,0% | 0,1% | 0,2% | 0,0% | 0,0% | 0,0% | 8,2% | 5,48 | 15,7 | 17,0% | 15,6% |
-| pernas | 3.300 | 84,8% | 1,5% | 11,0% | 2,6% | 0,0% | 1,1% | 0,0% | 0,0% | 0,0% | 0,0% | 45,4% | 5,81 | 16,2 | 15,2% | 12,4% |
-| gluteos | 3.300 | 87,5% | 1,5% | 6,3% | 5,3% | 0,0% | 0,1% | 0,0% | 0,0% | 0,0% | 0,0% | 0,4% | 5,84 | 16,3 | 15,1% | 13,0% |
-| abdomen | 3.300 | 91,6% | 1,0% | 1,5% | 5,9% | 0,0% | 0,0% | 0,0% | 0,0% | 0,0% | 0,0% | 22,8% | 5,48 | 15,4 | 15,4% | 12,1% |
-| superiores | 3.300 | 83,6% | 1,7% | 8,7% | 3,8% | 0,0% | 1,3% | 1,6% | 0,0% | 0,0% | 0,0% | 14,1% | 5,7 | 15,9 | 17,0% | 16,7% |
-| inferiores | 3.300 | 75,4% | 1,5% | 19,5% | 2,5% | 0,0% | 2,2% | 0,0% | 0,0% | 0,0% | 0,0% | 46,7% | 6,02 | 16,5 | 15,0% | 13,1% |
-| peito+costas | 3.300 | 82,5% | 0,0% | 7,8% | 5,8% | 0,0% | 3,4% | 1,1% | 0,0% | 0,0% | 0,0% | 1,7% | 5,41 | 15,3 | 15,4% | 14,6% |
+| nenhum | 3.300 | 96,9% | 1,5% | 1,7% | 0,0% | 0,0% | 0,0% | 0,0% | 0,0% | 0,0% | 0,0% | 0,0% | 5,34 | 15,4 | 15,4% | 13,4% |
+| peito | 3.300 | 89,8% | 0,0% | 5,2% | 0,0% | 0,0% | 2,3% | 6,0% | 0,0% | 0,0% | 0,0% | 0,4% | 5,39 | 15,4 | 15,4% | 14,7% |
+| costas | 3.300 | 90,5% | 1,5% | 4,7% | 0,0% | 0,0% | 2,6% | 0,7% | 0,0% | 0,0% | 0,0% | 1,3% | 5,36 | 15,4 | 15,4% | 12,9% |
+| ombros | 3.300 | 98,3% | 0,0% | 1,6% | 0,0% | 0,0% | 0,1% | 0,0% | 0,0% | 0,0% | 0,0% | 6,9% | 5,59 | 15,8 | 15,4% | 16,8% |
+| bracos | 3.300 | 97,0% | 0,9% | 2,0% | 0,0% | 0,0% | 0,1% | 0,2% | 0,0% | 0,0% | 0,0% | 8,2% | 5,48 | 15,7 | 17,0% | 15,6% |
+| pernas | 3.300 | 87,4% | 1,5% | 11,0% | 0,0% | 0,0% | 1,1% | 0,0% | 0,0% | 0,0% | 0,0% | 45,3% | 5,81 | 16,2 | 15,2% | 12,4% |
+| gluteos | 3.300 | 92,8% | 1,5% | 6,3% | 0,0% | 0,0% | 0,1% | 0,0% | 0,0% | 0,0% | 0,0% | 0,4% | 5,84 | 16,3 | 15,1% | 13,0% |
+| abdomen | 3.300 | 97,5% | 1,0% | 1,5% | 0,0% | 0,0% | 0,0% | 0,0% | 0,0% | 0,0% | 0,0% | 22,7% | 5,48 | 15,4 | 15,4% | 12,1% |
+| superiores | 3.300 | 87,3% | 1,7% | 8,7% | 0,0% | 0,0% | 1,3% | 1,6% | 0,0% | 0,0% | 0,0% | 14,3% | 5,7 | 15,9 | 17,0% | 16,7% |
+| inferiores | 3.300 | 77,8% | 1,5% | 19,5% | 0,0% | 0,0% | 2,2% | 0,0% | 0,0% | 0,0% | 0,0% | 46,7% | 6,02 | 16,5 | 15,0% | 13,1% |
+| peito+costas | 3.300 | 88,3% | 0,0% | 7,8% | 0,0% | 0,0% | 3,4% | 1,1% | 0,0% | 0,0% | 0,0% | 1,7% | 5,41 | 15,3 | 15,4% | 14,6% |
 
 ## Por cenário
 
@@ -116,17 +116,17 @@ Sem dor. "C2 (com foco)": a nota C2 entre os programas com algum grupo de foco (
 
 | recorte | programas | sem defeito | A2 | A3 | A4 | B1 | C1 | D1 | D3 | E1 | seguranca | C2 (com foco) | exercícios por dia | diferentes por semana | B2 | 3+ cartões |
 | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
-| academia | 660 | 63,8% | 0,0% | 8,8% | 26,4% | 0,0% | 0,0% | 1,1% | 0,0% | 0,5% | 0,0% | 15,7% | 6,1 | 22,4 | 0,0% | 88,5% |
-| academia+ | 660 | 63,3% | 0,0% | 8,8% | 26,8% | 0,0% | 0,0% | 1,1% | 0,0% | 0,5% | 0,0% | 15,3% | 6,1 | 22,4 | 0,0% | 88,5% |
-| bairro | 660 | 63,6% | 0,0% | 8,0% | 26,7% | 0,0% | 0,2% | 0,9% | 0,0% | 1,2% | 0,0% | 15,5% | 6,11 | 20,7 | 0,0% | 76,8% |
+| academia | 660 | 90,6% | 0,0% | 8,8% | 0,0% | 0,0% | 0,0% | 1,1% | 0,0% | 0,0% | 0,0% | 15,7% | 6,1 | 22,4 | 0,0% | 88,5% |
+| academia+ | 660 | 90,6% | 0,0% | 8,8% | 0,0% | 0,0% | 0,0% | 1,1% | 0,0% | 0,0% | 0,0% | 15,3% | 6,1 | 22,4 | 0,0% | 88,5% |
+| bairro | 660 | 91,4% | 0,0% | 8,0% | 0,0% | 0,0% | 0,2% | 0,9% | 0,0% | 0,0% | 0,0% | 15,5% | 6,11 | 20,7 | 0,0% | 76,8% |
 | banco+halteres-leves | 660 | 85,8% | 7,3% | 8,3% | 0,0% | 0,0% | 0,2% | 0,8% | 0,0% | 0,0% | 0,0% | 18,5% | 5,82 | 18,9 | 0,0% | 35,8% |
-| bruno | 660 | 62,3% | 0,0% | 12,0% | 25,3% | 0,0% | 0,0% | 1,1% | 0,0% | 0,0% | 0,0% | 17,7% | 6,08 | 21,8 | 0,0% | 34,5% |
-| casa | 660 | 53,9% | 6,5% | 12,0% | 27,9% | 0,0% | 0,2% | 1,2% | 0,0% | 0,9% | 0,0% | 18,8% | 5,94 | 18,4 | 0,0% | 7,3% |
-| casa+ | 660 | 62,1% | 0,0% | 10,8% | 26,4% | 0,0% | 0,0% | 1,2% | 0,0% | 0,0% | 0,0% | 17,3% | 6,09 | 21,8 | 0,0% | 17,3% |
+| bruno | 660 | 87,6% | 0,0% | 12,0% | 0,0% | 0,0% | 0,0% | 1,1% | 0,0% | 0,0% | 0,0% | 17,7% | 6,08 | 21,8 | 0,0% | 34,5% |
+| casa | 660 | 82,6% | 6,5% | 12,0% | 0,0% | 0,0% | 0,0% | 1,2% | 0,0% | 0,0% | 0,0% | 19,0% | 5,94 | 18,4 | 0,0% | 7,3% |
+| casa+ | 660 | 88,5% | 0,0% | 10,8% | 0,0% | 0,0% | 0,0% | 1,2% | 0,0% | 0,0% | 0,0% | 17,0% | 6,09 | 21,8 | 0,0% | 17,3% |
 | condominio | 660 | 93,2% | 0,0% | 6,4% | 0,0% | 0,0% | 0,2% | 0,8% | 0,0% | 0,0% | 0,0% | 18,0% | 5,95 | 19,9 | 0,0% | 47,7% |
-| condominio+ | 660 | 62,7% | 0,0% | 10,2% | 26,1% | 0,0% | 0,0% | 1,1% | 0,0% | 0,5% | 0,0% | 16,2% | 6,1 | 21,1 | 0,0% | 87,9% |
-| diego | 660 | 58,9% | 6,1% | 12,1% | 23,5% | 0,0% | 0,0% | 1,1% | 0,0% | 0,6% | 0,0% | 22,0% | 5,93 | 19,9 | 0,2% | 42,6% |
-| elasticos | 660 | 58,6% | 6,1% | 12,7% | 23,0% | 0,0% | 0,0% | 1,4% | 0,0% | 0,6% | 0,0% | 22,0% | 5,93 | 19,1 | 0,2% | 37,7% |
+| condominio+ | 660 | 89,2% | 0,0% | 10,2% | 0,0% | 0,0% | 0,0% | 1,1% | 0,0% | 0,0% | 0,0% | 16,2% | 6,1 | 21,1 | 0,0% | 87,9% |
+| diego | 660 | 83,0% | 6,1% | 12,1% | 0,0% | 0,0% | 0,0% | 1,1% | 0,0% | 0,0% | 0,0% | 22,2% | 5,93 | 19,9 | 0,2% | 42,6% |
+| elasticos | 660 | 82,3% | 6,1% | 12,7% | 0,0% | 0,0% | 0,0% | 1,4% | 0,0% | 0,0% | 0,0% | 22,2% | 5,93 | 19,1 | 0,2% | 37,7% |
 | halteres | 660 | 92,7% | 0,0% | 6,5% | 0,0% | 0,0% | 0,2% | 1,1% | 0,0% | 0,0% | 0,0% | 18,3% | 5,79 | 18,7 | 0,0% | 31,8% |
 | halteres-banco | 660 | 85,8% | 7,3% | 8,3% | 0,0% | 0,0% | 0,2% | 0,8% | 0,0% | 0,0% | 0,0% | 18,5% | 5,82 | 18,9 | 0,0% | 35,8% |
 | halteres+bola | 660 | 92,9% | 0,0% | 6,4% | 0,0% | 0,0% | 0,2% | 1,1% | 0,0% | 0,0% | 0,0% | 18,3% | 5,79 | 18,6 | 0,0% | 31,8% |
@@ -139,7 +139,7 @@ Sem dor. "C2 (com foco)": a nota C2 entre os programas com algum grupo de foco (
 | so:barra_w | 660 | 94,7% | 0,0% | 3,8% | 0,0% | 0,0% | 1,5% | 0,0% | 0,0% | 0,0% | 0,0% | 13,0% | 5,84 | 13,8 | 33,9% | 0,0% |
 | so:bola_suica | 660 | 95,0% | 0,0% | 4,1% | 0,0% | 0,0% | 0,9% | 0,0% | 0,0% | 0,0% | 0,0% | 13,0% | 5,53 | 14,1 | 26,7% | 0,0% |
 | so:cadeira_abdutora_adutora | 660 | 95,5% | 0,0% | 3,3% | 0,0% | 0,0% | 1,2% | 0,0% | 0,0% | 0,0% | 0,0% | 11,7% | 5,55 | 13,2 | 26,7% | 0,0% |
-| so:cadeira_extensora | 660 | 96,7% | 0,0% | 2,6% | 0,0% | 0,0% | 0,8% | 0,0% | 0,0% | 0,0% | 0,0% | 9,0% | 5,73 | 13,7 | 26,7% | 0,0% |
+| so:cadeira_extensora | 660 | 96,7% | 0,0% | 2,6% | 0,0% | 0,0% | 0,8% | 0,0% | 0,0% | 0,0% | 0,0% | 8,8% | 5,73 | 13,7 | 26,7% | 0,0% |
 | so:cadeira_flexora | 660 | 96,2% | 0,0% | 3,0% | 0,0% | 0,0% | 0,8% | 0,0% | 0,0% | 0,0% | 0,0% | 10,2% | 5,53 | 13,2 | 26,7% | 0,0% |
 | so:caneleiras | 660 | 92,9% | 0,0% | 5,6% | 0,0% | 0,0% | 1,5% | 0,0% | 0,0% | 0,0% | 0,0% | 12,5% | 6,09 | 14,2 | 27,7% | 10,9% |
 | so:desenvolvimento_maquina | 660 | 95,5% | 0,0% | 3,6% | 0,0% | 0,0% | 0,9% | 0,0% | 0,0% | 0,0% | 0,0% | 11,2% | 5,54 | 13,2 | 26,7% | 0,0% |
@@ -162,14 +162,14 @@ Sem dor. "C2 (com foco)": a nota C2 entre os programas com algum grupo de foco (
 | so:remada_articulada | 660 | 87,7% | 0,0% | 4,7% | 0,0% | 0,0% | 4,4% | 4,4% | 0,0% | 0,0% | 0,0% | 16,2% | 4,81 | 13,8 | 13,3% | 0,0% |
 | so:roda_abdominal | 660 | 95,5% | 0,0% | 3,6% | 0,0% | 0,0% | 0,9% | 0,0% | 0,0% | 0,0% | 0,0% | 11,2% | 5,54 | 13,6 | 26,7% | 0,0% |
 | so:rosca_maquina | 660 | 95,0% | 0,0% | 3,5% | 0,0% | 0,0% | 1,5% | 0,0% | 0,0% | 0,0% | 0,0% | 12,8% | 5,84 | 13,8 | 33,9% | 0,0% |
-| so:smith | 660 | 88,3% | 0,0% | 6,8% | 0,0% | 0,0% | 4,4% | 1,1% | 0,0% | 0,0% | 0,0% | 15,0% | 4,8 | 13,5 | 20,0% | 0,0% |
+| so:smith | 660 | 88,3% | 0,0% | 6,8% | 0,0% | 0,0% | 4,4% | 1,1% | 0,0% | 0,0% | 0,0% | 15,2% | 4,8 | 13,5 | 20,0% | 0,0% |
 | so:step | 660 | 95,3% | 0,0% | 3,8% | 0,0% | 0,0% | 0,9% | 0,0% | 0,0% | 0,0% | 0,0% | 11,8% | 5,52 | 13,5 | 26,7% | 0,0% |
 | so:supino_maquina | 660 | 95,8% | 0,0% | 3,5% | 0,0% | 0,0% | 0,8% | 0,0% | 0,0% | 0,0% | 0,0% | 11,2% | 5,56 | 13,5 | 18,9% | 0,0% |
 | so:suspensao | 660 | 87,3% | 0,9% | 7,7% | 0,0% | 0,0% | 3,5% | 2,0% | 0,0% | 0,0% | 0,0% | 10,3% | 5,15 | 15 | 20,0% | 0,0% |
 | so:triceps_maquina | 660 | 95,2% | 0,0% | 3,6% | 0,0% | 0,0% | 1,2% | 0,0% | 0,0% | 0,0% | 0,0% | 13,8% | 5,55 | 13,2 | 26,7% | 0,0% |
 | so:voador | 660 | 95,8% | 0,0% | 3,8% | 0,0% | 0,0% | 0,5% | 0,0% | 0,0% | 0,0% | 0,0% | 11,5% | 5,71 | 13,9 | 20,8% | 0,0% |
-| step+elasticos | 660 | 55,6% | 6,1% | 16,2% | 22,6% | 0,0% | 0,0% | 1,5% | 0,0% | 0,5% | 0,0% | 22,0% | 5,92 | 19,6 | 0,2% | 37,7% |
-| suspensao+elasticos | 660 | 58,8% | 6,4% | 12,4% | 22,9% | 0,0% | 0,0% | 1,4% | 0,0% | 0,6% | 0,0% | 21,0% | 5,93 | 18,5 | 0,2% | 0,0% |
+| step+elasticos | 660 | 78,6% | 6,1% | 16,2% | 0,0% | 0,0% | 0,0% | 1,5% | 0,0% | 0,0% | 0,0% | 22,2% | 5,92 | 19,6 | 0,2% | 37,7% |
+| suspensao+elasticos | 660 | 82,3% | 6,4% | 12,4% | 0,0% | 0,0% | 0,0% | 1,4% | 0,0% | 0,0% | 0,0% | 21,2% | 5,93 | 18,5 | 0,2% | 0,0% |
 | vazio | 660 | 95,5% | 0,0% | 3,6% | 0,0% | 0,0% | 0,9% | 0,0% | 0,0% | 0,0% | 0,0% | 11,2% | 5,54 | 13,2 | 26,7% | 0,0% |
 
 ## Uso de cada exercício
@@ -355,23 +355,19 @@ Programas sem dor em que o exercício aparece (os sem animação aprovada, que a
 O 1º programa da grade com cada defeito e nota.
 
 - **A2** (sem dor), casa · iniciante · 5 dias · 30 min · foco nenhum · sem dor: Empurrar sem multiarticular.
-  - Superior (30 min): flexao 3, remada-curvada-halteres 2, remada-unilateral-sem-banco 2, elevacao-halteres 3 | Inferior (28 min): goblet 2, stiff 2, panturrilha-degrau 2, abdominal-chao 4 | Empurrar (22 min): elevacao-halteres 3, triceps-frances-halter 4, crucifixo-elastico 3 | Puxar (22 min): remada-curvada-halteres 2, remada-unilateral-sem-banco 2, crucifixo-invertido-sentado 2, rosca-alternada 2 | Pernas (27 min): afundo 2, ponte-gluteo-halter 2, extensao-joelho-elastico 2, flexao-joelho-elastico 2
+  - Superior (30 min): flexao 3, remada-curvada-halteres 2, remada-unilateral-sem-banco 2, elevacao-halteres 3 | Inferior (28 min): goblet 2, stiff 2, panturrilha-degrau 2, abdominal-chao 4 | Empurrar (22 min): elevacao-halteres 3, triceps-frances-halter 4, crucifixo-elastico 3 | Puxar (22 min): remada-curvada-halteres 2, remada-unilateral-sem-banco 2, crucifixo-invertido-sentado 2, rosca-alternada 2 | Pernas (30 min): afundo 2, ponte-gluteo-halter 3, extensao-joelho-elastico 2, flexao-joelho-elastico 2
 - **A3** (sem dor), casa · iniciante · 2 dias · 30 min · foco nenhum · sem dor: dia de 36 min em 30.
   - Corpo todo A (36 min): goblet 3, flexao 2, remada-curvada-halteres 2, stiff 2, panturrilha-degrau 2, abdominal-chao 2 | Corpo todo B (31 min): afundo 3, flexao 2, remada-unilateral-sem-banco 2, flexao-joelho-elastico 2
-- **A4** (sem dor), casa · iniciante · 3 dias · 90 min · foco nenhum · sem dor: dia típico de 55 min em 90, sem o aviso.
-  - Corpo todo A (49 min): goblet 2, flexao 2, remada-curvada-halteres 2, flexao-joelho-elastico 2, triceps-frances-halter 2, elevacao-halteres 3, crucifixo-elastico 2, abdominal-chao 2 | Corpo todo B (59 min): stiff 2, flexao 2, remada-unilateral-sem-banco 2, extensao-joelho-elastico 2, rosca-alternada 3, panturrilha-degrau 4, crucifixo-invertido-sentado 3, abdominal-invertido 2 | Corpo todo C (55 min): afundo 2, supino-chao-halteres 2, remada-curvada-halteres 2, ponte-gluteo-halter 3, elevacao-halteres 3, triceps-testa-halteres 2, flexao-joelho-elastico 2, abdominal-chao 2
-- **C1** (sem dor), casa · avancado · 2 dias · 90 min · foco peito · sem dor: peito com 12 de 14 e o dia mais longo em 76 de 90 min.
-  - Corpo todo A (76 min): flexao 4, goblet 2, remada-curvada-halteres 3, stiff 3, crucifixo-elastico 4, triceps-frances-halter 2, elevacao-halteres 3, panturrilha-degrau 4, abdominal-chao 2 | Corpo todo B (74 min): flexao-pes-elevados 4, afundo 2, remada-unilateral-sem-banco 3, flexao-joelho-elastico 3, extensao-joelho-elastico 2, rosca-alternada 3, crucifixo-invertido-curvado 3, elevacao-halteres 3, abdominal-invertido 2
+- **C1** (sem dor), condominio · avancado · 2 dias · 90 min · foco peito · sem dor: peito com 12 de 14 e o dia mais longo em 76 de 90 min.
+  - Corpo todo A (76 min): supino-reto 4, bulgaro 2, puxada-frente 3, stiff 3, crucifixo-halteres 4, triceps-frances-halter 2, elevacao-halteres 3, panturrilha-degrau 4, abdominal-bola 2 | Corpo todo B (68 min): supino-inclinado 4, afundo 2, remada-apoiada 3, goblet 2, flexao-bola 3, rosca-inclinada 3, crucifixo-inverso 3, elevacao-halteres 3, abdominal-chao 2
 - **D1** (sem dor), casa · iniciante · 2 dias · 30 min · foco peito · sem dor: empurrar 8 ÷ puxar 4 séries.
   - Corpo todo A (40 min): flexao 4, goblet 3, remada-curvada-halteres 2, stiff 2, panturrilha-degrau 2, abdominal-chao 2 | Corpo todo B (35 min): flexao 4, afundo 3, remada-unilateral-sem-banco 2, flexao-joelho-elastico 2
-- **E1** (sem dor), casa · iniciante · 2 dias · 90 min · foco nenhum · sem dor: gluteos com 3,5 séries e o dia mais longo em 70 de 90 min.
-  - Corpo todo A (70 min): goblet 2, flexao 2, remada-curvada-halteres 3, stiff 3, triceps-frances-halter 4, elevacao-halteres 3, panturrilha-degrau 4, crucifixo-elastico 2, abdominal-chao 2 | Corpo todo B (69 min): afundo 2, flexao 2, remada-unilateral-sem-banco 3, flexao-joelho-elastico 3, extensao-joelho-elastico 2, rosca-alternada 3, crucifixo-invertido-sentado 3, elevacao-halteres 3, abdominal-invertido 2
 - **A1** (sem dor), casa · iniciante · 2 dias · 30 min · foco nenhum · sem dor: Corpo todo A com 6 exercícios em 30 min (faixa 3–5).
   - Corpo todo A (36 min): goblet 3, flexao 2, remada-curvada-halteres 2, stiff 2, panturrilha-degrau 2, abdominal-chao 2 | Corpo todo B (31 min): afundo 3, flexao 2, remada-unilateral-sem-banco 2, flexao-joelho-elastico 2
 - **A5** (sem dor), casa · iniciante · 4 dias · 90 min · foco superiores · sem dor: dias de 38 a 70 min.
   - Superior A (70 min): flexao 3, remada-curvada-halteres 3, remada-unilateral-sem-banco 3, desenvolvimento-unilateral 2, triceps-frances-halter 3, elevacao-halteres 3, rosca-alternada 3, crucifixo-elastico 3, crucifixo-invertido-sentado 2 | Inferior A (38 min): goblet 2, stiff 2, flexao-joelho-elastico 2, extensao-joelho-elastico 2, panturrilha-degrau 3, abdominal-chao 2 | Superior B (57 min): flexao 2, remada-curvada-halteres 2, remada-unilateral-sem-banco 2, desenvolvimento-unilateral 2, elevacao-halteres 3, rosca-martelo 2, triceps-testa-halteres 3, crucifixo-elastico 2, crucifixo-invertido-sentado 2 | Inferior B (53 min): afundo 2, ponte-gluteo-halter 2, stiff-unilateral 2, elevacao-halteres 2, flexao-joelho-elastico 2, extensao-joelho-elastico 2, panturrilha-degrau 3, abdominal-invertido 2
 - **B2** (sem dor), elasticos · avancado · 3 dias · 90 min · foco superiores · sem dor: elevacao-lateral-elastico em todos os dias, sem outro do mesmo nível.
-  - Corpo todo A (81 min): flexao 3, puxada-elastico 4, remada-curvada-elastico 2, agachamento-elastico 2, triceps-elastico-acima 4, elevacao-lateral-elastico 4, crucifixo-elastico 3, rosca-elastico 3, flexao-joelho-elastico 2, abdominal-chao 2 | Corpo todo B (79 min): flexao-pes-elevados 2, remada-elastico 4, stiff-elastico 2, desenvolvimento-elastico 2, rosca-martelo-elastico 3, elevacao-lateral-elastico 4, extensao-joelho-elastico 2, panturrilha-degrau 4, face-pull-elastico 2, abdominal-invertido 2 | Corpo todo C (89 min): flexao 2, puxada-elastico 4, flexao-fechada 4, afundo-peso-corpo 2, ponte-gluteo 3, elevacao-lateral-unilateral-elastico 4, rosca-elastico 2, elevacao-lateral-elastico 2, triceps-elastico-acima 2, flexao-joelho-elastico 2, abdominal-chao 2
+  - Corpo todo A (88 min): flexao 3, puxada-elastico 4, remada-curvada-elastico 2, agachamento-elastico 3, triceps-elastico-acima 4, elevacao-lateral-elastico 4, crucifixo-elastico 3, rosca-elastico 4, flexao-joelho-elastico 3, abdominal-chao 2 | Corpo todo B (88 min): flexao-pes-elevados 2, remada-elastico 4, stiff-elastico 3, desenvolvimento-elastico 2, rosca-martelo-elastico 4, elevacao-lateral-elastico 4, extensao-joelho-elastico 3, panturrilha-degrau 4, face-pull-elastico 2, abdominal-invertido 2 | Corpo todo C (89 min): flexao 2, puxada-elastico 4, flexao-fechada 4, afundo-peso-corpo 2, ponte-gluteo 3, elevacao-lateral-unilateral-elastico 4, rosca-elastico 2, elevacao-lateral-elastico 2, triceps-elastico-acima 2, flexao-joelho-elastico 2, abdominal-chao 2
 - **B3** (sem dor), vazio · iniciante · 3 dias · 45 min · foco nenhum · sem dor: flexao, flexao-joelho-deslizante em todos os dias.
   - Corpo todo A (42 min): agachamento-peso-corpo 4, flexao 2, flexao-joelho-deslizante 4, extensao-triceps-peso-corpo 3, abdominal-chao 2 | Corpo todo B (43 min): flexao 2, afundo-tras-peso-corpo 2, flexao-joelho-deslizante 2, panturrilha-degrau 4, abertura-t-deitado 4, abdominal-invertido 2 | Corpo todo C (39 min): afundo-peso-corpo 2, flexao 2, ponte-gluteo 2, flexao-fechada 2, flexao-joelho-deslizante 2, abdominal-chao 2
 - **C2** (sem dor), casa · iniciante · 2 dias · 30 min · foco ombros · sem dor: ombro_lateral com 0, mediana dos outros 3.
@@ -383,7 +379,7 @@ O 1º programa da grade com cada defeito e nota.
 - **A3** (com dor), casa · iniciante · 2 dias · 30 min · foco nenhum · joelho 7: dia de 36 min em 30.
   - Corpo todo A (36 min): flexao 2, remada-curvada-halteres 2, stiff 2, elevacao-halteres 3+drop, panturrilha-degrau 2, abdominal-chao 2 | Corpo todo B (26 min): flexao 2, remada-unilateral-sem-banco 2, stiff-unilateral 2, rosca-alternada 2+drop
 - **B1** (com dor), casa · iniciante · 3 dias · 45 min · foco nenhum · ombro 7: ponte-gluteo-halter em todos os dias, com outro do mesmo nível possível e sem uso.
-  - Corpo todo A (38 min): goblet 2, ponte-gluteo-halter 2, flexao-joelho-elastico 2, rosca-martelo 3, triceps-elastico-alto 3, abdominal-chao 2 | Corpo todo B (40 min): stiff 2, ponte-gluteo-halter 2, extensao-joelho-elastico 2, rosca-alternada 3, panturrilha-degrau 3, abdominal-invertido 2 | Corpo todo C (43 min): afundo 2, ponte-gluteo-halter 2, triceps-elastico-alto 3, flexao-joelho-elastico 2, panturrilha-chao 3, abdominal-chao 2
+  - Corpo todo A (41 min): goblet 3, ponte-gluteo-halter 2, flexao-joelho-elastico 2, rosca-martelo 3, triceps-elastico-alto 3, abdominal-chao 2 | Corpo todo B (42 min): stiff 3, ponte-gluteo-halter 2, extensao-joelho-elastico 2, rosca-alternada 3, panturrilha-degrau 3, abdominal-invertido 2 | Corpo todo C (43 min): afundo 2, ponte-gluteo-halter 2, triceps-elastico-alto 3, flexao-joelho-elastico 2, panturrilha-chao 3, abdominal-chao 2
 - **C1** (com dor), casa · iniciante · 2 dias · 90 min · foco bracos · ombro 7: triceps com 8 de 10 e o dia mais longo em 65 de 90 min.
   - Corpo todo A (55 min): goblet 2, stiff 3, rosca-alternada 4, rosca-concentrada 2, triceps-elastico-alto 4, panturrilha-degrau 4, abdominal-chao 2 | Corpo todo B (65 min): afundo 2, ponte-gluteo-halter 3, rosca-martelo 4, triceps-elastico-alto 4, flexao-joelho-elastico 3, extensao-joelho-elastico 2, aducao-deitado 2, abdominal-invertido 2
 - **D1** (com dor), casa · iniciante · 2 dias · 30 min · foco peito · joelho 7: empurrar 8 ÷ puxar 4 séries.
