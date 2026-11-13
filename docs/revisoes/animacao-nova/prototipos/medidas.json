@@ -1,0 +1,228 @@
+{
+ "comoFoiMedido": "Chromium com a CPU 4x mais lenta (Emulation.setCPUThrottlingRate), palco de 360 px; 90 quadros do ciclo; cada quadro = montar o SVG, trocar no palco e forçar o layout. No novo, \"primeiraVolta\" inclui a conta que posiciona o corpo; depois dela os quadros ficam guardados.",
+ "pacote": {
+  "novo": {
+   "minificado": 168096,
+   "gzip": 47980
+  },
+  "novoSemZod": {
+   "minificado": 108640,
+   "gzip": 34063
+  },
+  "nota": "o app já carrega o zod; \"novoSemZod\" é o que o motor novo acrescenta. O de hoje traz os 90 exercícios; o novo, 4.",
+  "hoje": {
+   "minificado": 212907,
+   "gzip": 47980
+  }
+ },
+ "quadro": {
+  "goblet": {
+   "novo/cinza/tec": {
+    "primeiraVolta": {
+     "mediaMs": 19.25,
+     "p95Ms": 31.6
+    },
+    "mediaMs": 14.82,
+    "p95Ms": 21,
+    "soMontarOTextoMs": 9.38,
+    "bytes": 52563
+   },
+   "novo/cinza/mus": {
+    "primeiraVolta": {
+     "mediaMs": 18.87,
+     "p95Ms": 23.1
+    },
+    "mediaMs": 13.42,
+    "p95Ms": 19.2,
+    "soMontarOTextoMs": 7.68,
+    "bytes": 52566
+   },
+   "novo/pele/tec": {
+    "primeiraVolta": {
+     "mediaMs": 16.12,
+     "p95Ms": 23.6
+    },
+    "mediaMs": 15.74,
+    "p95Ms": 21.3,
+    "soMontarOTextoMs": 8.1,
+    "bytes": 59729
+   },
+   "novo/pele/mus": {
+    "primeiraVolta": {
+     "mediaMs": 18.02,
+     "p95Ms": 22.5
+    },
+    "mediaMs": 14.14,
+    "p95Ms": 19.5,
+    "soMontarOTextoMs": 9.53,
+    "bytes": 61100
+   },
+   "hoje/tec": {
+    "mediaMs": 9.24,
+    "p95Ms": 10.2,
+    "bytes": 13703
+   },
+   "hoje/mus": {
+    "mediaMs": 8.79,
+    "p95Ms": 12.1,
+    "bytes": 14402
+   }
+  },
+  "supino-reto": {
+   "novo/cinza/tec": {
+    "primeiraVolta": {
+     "mediaMs": 16.39,
+     "p95Ms": 24.6
+    },
+    "mediaMs": 17.45,
+    "p95Ms": 24.2,
+    "soMontarOTextoMs": 9.8,
+    "bytes": 57772
+   },
+   "novo/cinza/mus": {
+    "primeiraVolta": {
+     "mediaMs": 11.68,
+     "p95Ms": 14.3
+    },
+    "mediaMs": 12.08,
+    "p95Ms": 17.1,
+    "soMontarOTextoMs": 8.53,
+    "bytes": 57775
+   },
+   "novo/pele/tec": {
+    "primeiraVolta": {
+     "mediaMs": 18.57,
+     "p95Ms": 23.4
+    },
+    "mediaMs": 16.1,
+    "p95Ms": 22.1,
+    "soMontarOTextoMs": 7.56,
+    "bytes": 64959
+   },
+   "novo/pele/mus": {
+    "primeiraVolta": {
+     "mediaMs": 14.5,
+     "p95Ms": 21.1
+    },
+    "mediaMs": 14.48,
+    "p95Ms": 20.9,
+    "soMontarOTextoMs": 8.8,
+    "bytes": 64962
+   },
+   "hoje/tec": {
+    "mediaMs": 8.22,
+    "p95Ms": 10.2,
+    "bytes": 14363
+   },
+   "hoje/mus": {
+    "mediaMs": 6.87,
+    "p95Ms": 10.5,
+    "bytes": 16535
+   }
+  },
+  "puxada-unilateral": {
+   "novo/cinza/tec": {
+    "primeiraVolta": {
+     "mediaMs": 24.85,
+     "p95Ms": 36.7
+    },
+    "mediaMs": 23.83,
+    "p95Ms": 34.5,
+    "soMontarOTextoMs": 11.36,
+    "bytes": 93382
+   },
+   "novo/cinza/mus": {
+    "primeiraVolta": {
+     "mediaMs": 17.86,
+     "p95Ms": 24.4
+    },
+    "mediaMs": 17.98,
+    "p95Ms": 21.8,
+    "soMontarOTextoMs": 12.09,
+    "bytes": 93385
+   },
+   "novo/pele/tec": {
+    "primeiraVolta": {
+     "mediaMs": 22.62,
+     "p95Ms": 37.2
+    },
+    "mediaMs": 20.19,
+    "p95Ms": 27.7,
+    "soMontarOTextoMs": 14.12,
+    "bytes": 100781
+   },
+   "novo/pele/mus": {
+    "primeiraVolta": {
+     "mediaMs": 23.23,
+     "p95Ms": 31.4
+    },
+    "mediaMs": 20.36,
+    "p95Ms": 30.9,
+    "soMontarOTextoMs": 11.28,
+    "bytes": 100784
+   },
+   "hoje/tec": {
+    "mediaMs": 6.72,
+    "p95Ms": 8.4,
+    "bytes": 15195
+   },
+   "hoje/mus": {
+    "mediaMs": 7.6,
+    "p95Ms": 13.1,
+    "bytes": 16447
+   }
+  },
+  "flexao": {
+   "novo/cinza/tec": {
+    "primeiraVolta": {
+     "mediaMs": 11.85,
+     "p95Ms": 18.9
+    },
+    "mediaMs": 9.25,
+    "p95Ms": 14.8,
+    "soMontarOTextoMs": 7.18,
+    "bytes": 44469
+   },
+   "novo/cinza/mus": {
+    "primeiraVolta": {
+     "mediaMs": 12.86,
+     "p95Ms": 17.6
+    },
+    "mediaMs": 9.85,
+    "p95Ms": 14.9,
+    "soMontarOTextoMs": 6.72,
+    "bytes": 44473
+   },
+   "novo/pele/tec": {
+    "primeiraVolta": {
+     "mediaMs": 11.7,
+     "p95Ms": 16.8
+    },
+    "mediaMs": 11.68,
+    "p95Ms": 16.9,
+    "soMontarOTextoMs": 6.74,
+    "bytes": 50846
+   },
+   "novo/pele/mus": {
+    "primeiraVolta": {
+     "mediaMs": 11.54,
+     "p95Ms": 17.2
+    },
+    "mediaMs": 12.05,
+    "p95Ms": 20.3,
+    "soMontarOTextoMs": 7.02,
+    "bytes": 50850
+   },
+   "hoje/tec": {
+    "mediaMs": 5.95,
+    "p95Ms": 7.5,
+    "bytes": 13983
+   },
+   "hoje/mus": {
+    "mediaMs": 4.64,
+    "p95Ms": 6.5,
+    "bytes": 16534
+   }
+  }
+ }
+}

@@ -327,9 +327,9 @@ export function formaDoBoneco(e: Esq, o: { roupa?: boolean; cabeloAtrasPrimeiro?
       id: `perna${k}`,
       lado: k,
       volumes: [
-        { vol: volumeDe(coxa, passos(10), 0), mat: 'pele' },
-        { vol: volumeDe(canela, passos(10), 0), mat: 'pele' },
-        { vol: { aneis: peVol }, mat: o.roupa ? 'calcado' : 'pele' },
+        { vol: volumeDe(coxa, passos(10), 0), mat: 'pele', nome: 'coxa' },
+        { vol: volumeDe(canela, passos(10), 0), mat: 'pele', nome: 'canela' },
+        { vol: { aneis: peVol }, mat: o.roupa ? 'calcado' : 'pele', nome: 'pe' },
         ...(o.roupa ? [{ vol: volumeDe(supMembro(L.coxa, m('coxa.comp'), s, PERFIS.COXA_L!, PERFIS.COXA_F!, dados.short.folga), passos(5, 0, dados.short.ate), 0, true, false), mat: 'short' }] : []),
       ],
     });
@@ -387,7 +387,7 @@ export function formaDoBoneco(e: Esq, o: { roupa?: boolean; cabeloAtrasPrimeiro?
       return { c: comb([1, L.punho], [v[0]! + (du * eixo[0]!) / le, dedos], [v[1]! + (du * eixo[1]!) / le, polegar], [v[2]! + (du * eixo[2]!) / le, L.mao.z]), x: L.mao.z, z: polegar, a: r, f: r, b: r };
     });
     sup[`mao${k}`] = { em: (t) => ({ o: add(L.punho, mul(dedos, t)), fora: polegar, z: L.mao.z, a: 4, des: 0, f: 3.4, b: 2.3 }) };
-    grupos.push({ id: `braco${k}`, lado: k, volumes: [{ vol: volumeDe(braco, passos(8), 0), mat: 'pele' }, { vol: volumeDe(ante, passos(8), 0), mat: 'pele' }, { vol: { aneis: maoAneis }, mat: 'pele', nome: 'mao' }, { vol: { aneis: polAneis }, mat: 'pele', nome: 'polegar' }] });
+    grupos.push({ id: `braco${k}`, lado: k, volumes: [{ vol: volumeDe(braco, passos(8), 0), mat: 'pele', nome: 'braco' }, { vol: volumeDe(ante, passos(8), 0), mat: 'pele', nome: 'ante' }, { vol: { aneis: maoAneis }, mat: 'pele', nome: 'mao' }, { vol: { aneis: polAneis }, mat: 'pele', nome: 'polegar' }] });
   }
   const noCorpo = (x: number, y: number, tras: boolean): V3 => {
     const yBase = P.yDoTronco(1);
@@ -397,6 +397,23 @@ export function formaDoBoneco(e: Esq, o: { roupa?: boolean; cabeloAtrasPrimeiro?
     return comb([1, s.o], [x, s.fora], [w, s.z]);
   };
   return { grupos, sup, noCorpo };
+}
+
+/**
+ * Pontos da superfície do Boneco (12 por seção), com o nome da parte: é com eles que a conferência mede se o corpo
+ * atravessa o chão ou uma peça, e que a flexão mede a folga do peito ao chão.
+ */
+export function pontosDoBoneco(e: Esq): { p: V3; parte: string }[] {
+  const out: { p: V3; parte: string }[] = [];
+  for (const g of formaDoBoneco(e).grupos)
+    for (const v of g.volumes)
+      for (const an of v.vol.aneis)
+        for (let k = 0; k < 12; k++) {
+          const th = (k * Math.PI) / 6,
+            sn = Math.sin(th);
+          out.push({ p: comb([1, an.c], [an.a * Math.cos(th), an.x], [(sn >= 0 ? an.f : an.b) * sn, an.z]), parte: v.nome ?? g.id });
+        }
+  return out;
 }
 
 /* ============================== desenhos presos à superfície (músculos, rótula) ============================== */
@@ -440,10 +457,12 @@ export function musculosVisiveis(e: Esq, forma: FormaDoBoneco, cam: Camera): Des
   const faceDe = (fora: V3, z: V3): Face | null => {
     const lx = dot(cam.para, fora),
       lz = dot(cam.para, z);
-    // a face mais virada para quem olha; a face de dentro (entre as pernas, ou contra o tronco) não tem desenho
-    if (lx >= Math.abs(lz)) return 'fora';
-    if (-lx > Math.abs(lz) + 0.15) return null;
-    return lz >= 0 ? 'frente' : 'tras';
+    // a face mais virada para quem olha (de fora, da frente ou de trás); a de dentro (entre as pernas, ou contra o
+    // tronco) não tem desenho. Numa parte que aponta para quem olha (a coxa no fundo do agachamento, de frente),
+    // todas ficam de viés: vale a que ainda aparece.
+    const melhor = Math.max(lx, lz, -lz);
+    if (melhor < 0.06) return null;
+    return melhor === lx ? 'fora' : lz >= 0 ? 'frente' : 'tras';
   };
   const lista = (f: Face) => (f === 'fora' ? MUSCULOS.lado : f === 'frente' ? MUSCULOS.frente : MUSCULOS.costas);
   const nomeDaParte: Record<string, string> = { coxa: 'coxa', canela: 'canela', braco: 'braco', ante: 'ante' };

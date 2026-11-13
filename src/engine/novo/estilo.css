@@ -46,3 +46,4 @@
 .novo .n-traj-p{fill:var(--n-traj)}
 .novo .n-m,.novo .n-m-e{fill:var(--n-cont)}
 .novo .n-m-f{fill:none}
+.novo .n-chao-l{stroke:var(--n-chao-l,#d5dce1);stroke-width:1.5px;vector-effect:non-scaling-stroke}.novo.escuro .n-chao-l{stroke:#33414b}

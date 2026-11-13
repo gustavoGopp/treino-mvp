@@ -5,7 +5,7 @@
 import amplitudesJson from './dados/amplitudes.json';
 import { LADOS, sinal } from './esqueleto';
 import type { Esq, Lado } from './esqueleto';
-import { malhaBase, pele } from './malha';
+import { pontosDoBoneco } from './boneco';
 import { centroDeMassa, duracao, instante } from './movimento';
 import type { Exercicio, Quadro } from './movimento';
 import type { Corpo } from './tabelas';
@@ -90,13 +90,13 @@ const REGRAS: Record<string, Regra> = {
     return { medido: `de lado, ombro, quadril e tornozelo fazem no mínimo ${f1(pior)}° (180° = linha reta)`, ok: pior >= 172 };
   },
   'peito-perto-do-chao': (q) => {
-    const P = pele(q[q.length - 1]!.esq);
     const esq = q[q.length - 1]!.esq;
     let min = 1e9;
     // o ponto mais baixo do tronco entre os ombros e a cintura
-    for (let i = 0; i < P.length; i += 3) {
-      const l = paraRef(esq.torax, [P[i]!, P[i + 1]!, P[i + 2]!]);
-      if (l[1] < -4 && l[1] > -32 && Math.abs(l[0]) < 12) min = Math.min(min, P[i + 1]!);
+    for (const { p, parte } of pontosDoBoneco(esq)) {
+      if (parte !== 'tronco') continue;
+      const l = paraRef(esq.torax, p);
+      if (l[1] < -4 && l[1] > -32 && Math.abs(l[0]) < 12) min = Math.min(min, p[1]);
     }
     return { medido: `embaixo, o peito fica a ${f1(min)} cm do chão`, ok: min >= 1 && min <= 9 };
   },
@@ -196,12 +196,9 @@ export function conferir(ex: Exercicio, corpo: Corpo, qps = 60): Relatorio {
     add('Contatos', `preso no lugar: ${c}`, `desloca no máximo ${f1(d)} cm no ciclo`, 'tolerância 0,1 cm', d <= 0.1 ? 'ok' : 'falha');
   }
 
-  // 4) chão: nenhum ponto do corpo passa para baixo do chão (medido na malha, em 8 quadros do ciclo)
+  // 4) chão: nenhum ponto do corpo passa para baixo do chão (medido na superfície do Boneco, em 8 quadros do ciclo)
   let maisBaixo = 1e9;
-  for (let i = 0; i < 8; i++) {
-    const P = pele(quadros[Math.floor((i / 8) * n)]!.esq);
-    for (let j = 1; j < P.length; j += 3) maisBaixo = Math.min(maisBaixo, P[j]!);
-  }
+  for (let i = 0; i < 8; i++) for (const { p } of pontosDoBoneco(quadros[Math.floor((i / 8) * n)]!.esq)) maisBaixo = Math.min(maisBaixo, p[1]);
   add('Chão', 'ponto mais baixo do corpo', `${f1(maisBaixo)} cm`, 'não pode passar de −1,5 cm (a sola e o joelho amassam um pouco)', maisBaixo >= -1.5 ? 'ok' : 'falha');
 
   // 5) objetos: a carga não voa (fica na mão) e o corpo não atravessa caixas (banco, colchonete)
@@ -211,21 +208,17 @@ export function conferir(ex: Exercicio, corpo: Corpo, qps = 60): Relatorio {
     add('Objetos', `a carga fica na mão: ${nome}`, `distância da mão ao centro do objeto de ${f1(a)} a ${f1(b)} cm`, 'não pode variar mais de 0,5 cm no ciclo', b - a <= 0.5 ? 'ok' : 'falha');
   }
   {
-    const malha = malhaBase();
-    const doCorpo = (i: number) => {
-      const s = malha.segs[malha.segIdx[i * malha.inf]!]!;
-      return !/^(mao|f\d\d|pe|dedos)/.test(s);
-    };
+    // mãos e pés ficam de fora: eles encostam nas peças de propósito
+    const fora = new Set(['mao', 'polegar', 'pe']);
     let pior = 0,
       qual = '';
     for (let i = 0; i < 6; i++) {
       const q = quadros[Math.floor((i / 6) * n)]!;
-      const P = pele(q.esq);
+      const P = pontosDoBoneco(q.esq).filter((x) => !fora.has(x.parte));
       for (const p of q.prims) {
         if (p.t !== 'caixa' || p.cls === 'tapete') continue;
-        for (let j = 0; j < malha.pontos; j++) {
-          if (!doCorpo(j)) continue;
-          const l = paraRef(p.ref, [P[j * 3]!, P[j * 3 + 1]!, P[j * 3 + 2]!]);
+        for (const { p: pt } of P) {
+          const l = paraRef(p.ref, pt);
           const dentro = Math.min(p.meias[0] - Math.abs(l[0]), p.meias[1] - Math.abs(l[1]), p.meias[2] - Math.abs(l[2]));
           if (dentro > pior) {
             pior = dentro;

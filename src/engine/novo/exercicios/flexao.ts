@@ -3,7 +3,7 @@
 import ficha from '../dados/movimentos/flexao.json';
 import { resolverMembros, resolverTronco, sinal } from '../esqueleto';
 import type { Esq, Lado, PoseBraco, PosePerna } from '../esqueleto';
-import { pele } from '../malha';
+import { pontosDoBoneco } from '../boneco';
 import { daFicha, fichaSchema, resolver1 } from '../movimento';
 import type { Exercicio, Quadro } from '../movimento';
 import { chao } from '../pecas';
@@ -42,13 +42,13 @@ function prancha(corpo: Corpo, beta: number, zMao: number, o: { cot?: number; qu
   };
   return resolverMembros(t, { R: braco('R'), L: braco('L') }, pernas);
 }
-/** Altura do ponto mais baixo do peito (cm), medida na malha: entre os ombros e a cintura. */
+/** Altura do ponto mais baixo do peito (cm), medida na superfície do Boneco: entre os ombros e a cintura. */
 function peitoAoChao(e: Esq): number {
-  const P = pele(e);
   let min = 1e9;
-  for (let i = 0; i < P.length; i += 3) {
-    const l = paraRef(e.torax, [P[i]!, P[i + 1]!, P[i + 2]!]);
-    if (l[1] < -4 && l[1] > -32 && Math.abs(l[0]) < 12) min = Math.min(min, P[i + 1]!);
+  for (const { p, parte } of pontosDoBoneco(e)) {
+    if (parte !== 'tronco') continue;
+    const l = paraRef(e.torax, p);
+    if (l[1] < -4 && l[1] > -32 && Math.abs(l[0]) < 12) min = Math.min(min, p[1]);
   }
   return min;
 }

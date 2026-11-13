@@ -22,24 +22,41 @@ const f1 = (n: number) => (Math.round(n * 10) / 10).toString();
 
 function itensDoQuadro(cam: Camera, q: Quadro, ex: Exercicio, o: OpcoesCena, suf = ''): Item[] {
   const itens: Item[] = [];
-  if (suf !== '-f') for (const p of q.prims) itens.push(...desenharPrim(cam, p, 'prancha'));
+  // o chão não é desenhado como placa: de perfil ele é a linha do chão (ver svgDaCena) e, de cima, é o próprio fundo
+  if (suf !== '-f') for (const p of q.prims) if (p.t !== 'chao') itens.push(...desenharPrim(cam, p, 'prancha'));
   itens.push(...desenharBoneco(q.esq, cam, { estilo: o.boneco, papeis: o.modo === 'mus' ? ex.papeis : undefined, mini: o.mini, suf, vies: q.vies }));
   return itens;
+}
+/**
+ * O quadro do movimento em u, guardado: u é arredondado a 1/400 do percurso (menos de 0,3 cm no movimento mais longo),
+ * para a animação não refazer a cada volta do ciclo a conta que posiciona o corpo. O mesmo u dá sempre o mesmo quadro.
+ */
+const QUADROS = new WeakMap<Exercicio, WeakMap<Corpo, Map<string, Quadro>>>();
+function quadroDe(ex: Exercicio, corpo: Corpo, u: number, erro?: string): Quadro {
+  let porCorpo = QUADROS.get(ex);
+  if (!porCorpo) QUADROS.set(ex, (porCorpo = new WeakMap()));
+  let m = porCorpo.get(corpo);
+  if (!m) porCorpo.set(corpo, (m = new Map()));
+  const k = Math.round(u * 400),
+    chave = `${erro ?? ''}|${k}`;
+  let q = m.get(chave);
+  if (!q) m.set(chave, (q = ex.quadro(corpo, k / 400, erro)));
+  return q;
 }
 /** Linha da trajetória de um ponto ao longo da fase concêntrica (ou do ciclo), já na tela. */
 function trajetoria(cam: Camera, ex: Exercicio, corpo: Corpo, ponto: string, n = 24): P2[] {
   const le = ex.trajetorias[ponto]!;
   const out: P2[] = [];
-  for (let i = 0; i <= n; i++) out.push(naTela(cam, le(ex.quadro(corpo, i / n))));
+  for (let i = 0; i <= n; i++) out.push(naTela(cam, le(quadroDe(ex, corpo, i / n))));
   return out;
 }
 export function itensDaCena(ex: Exercicio, t: number, o: OpcoesCena): Item[] {
   const cam = VISTAS[o.vista];
   const { u } = instante(ex.ficha.fases, t);
-  const certo = ex.quadro(o.corpo, u);
+  const certo = quadroDe(ex, o.corpo, u);
   if (o.modo === 'err' && o.erro) {
     // o certo em fantasma (contorno tracejado, por trás) e o errado por cima, na cor de erro
-    const errado = ex.quadro(o.corpo, u, o.erro);
+    const errado = quadroDe(ex, o.corpo, u, o.erro);
     return [...itensDoQuadro(cam, certo, ex, o, '-f').map((it) => ({ ...it, camada: 0.5 })), ...itensDoQuadro(cam, errado, ex, o, '-e')];
   }
   const itens = itensDoQuadro(cam, certo, ex, o);
@@ -90,6 +107,8 @@ export function enquadrar(ex: Exercicio, o: Omit<OpcoesCena, 'modo' | 'erro'>, m
 }
 /** O <svg> de um quadro. `tema`: 'claro' ou 'escuro'. As classes levam as cores (ver cssDoBoneco e estilo.css). */
 export function svgDaCena(ex: Exercicio, t: number, o: OpcoesCena, vb: [number, number, number, number], tema: 'claro' | 'escuro' = 'claro'): string {
-  return `<svg class="novo boneco ${o.boneco}${tema === 'escuro' ? ' escuro' : ''}${o.mini ? ' mini' : ''}" viewBox="${vb.map(f1).join(' ')}">${DEFS_DO_BONECO}${pintar(itensDaCena(ex, t, o))}</svg>`;
+  // a linha do chão (y = 0), nas vistas em que o chão fica de perfil
+  const chao = VISTAS[o.vista].para[1] === 0 ? `<line class="n-chao-l" x1="${f1(vb[0])}" y1="0" x2="${f1(vb[0] + vb[2])}" y2="0"/>` : '';
+  return `<svg class="novo boneco ${o.boneco}${tema === 'escuro' ? ' escuro' : ''}${o.mini ? ' mini' : ''}" viewBox="${vb.map(f1).join(' ')}">${DEFS_DO_BONECO}${chao}${pintar(itensDaCena(ex, t, o))}</svg>`;
 }
 export { pintar };

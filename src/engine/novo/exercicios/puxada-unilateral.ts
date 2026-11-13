@@ -45,23 +45,24 @@ function montar(corpo: Corpo, u: number, erro?: string): { e: Esq; elo: V3; said
   const flexIni = f('cotovelo.alongado') * rad;
   const polegar = norm(add(mul(dirRef(T, [1, 0, 0]), 1 - fundo), mul(dirRef(T, [0.2, 0.6, -0.8]), fundo)));
   const com = (umero: V3, antebraco: V3) => resolverMembros(tr, { R: { umero, antebraco, polo: dirRef(T, [-0.5, -0.2, -1]), mao: { polegar, forma: 'pegada', diam: obj('estribo', 'pegadaDiam') }, elev }, L: apoio }, pernas);
-  // O ombro sobe e desce com o braço (ritmo da escápula), então a direção do braço e a do antebraço são achadas em
-  // passadas: a cada uma, o ombro e o cotovelo de verdade corrigem a mira para a polia.
+  // O antebraço fica sempre na linha do cabo: a mão é puxada pelo cabo, que é reto da polia até ela. Por isso só o
+  // braço (ombro → cotovelo) é dirigido: ele gira, no plano do braço, da direção da polia até a posição final ao lado
+  // das costelas; o antebraço aponta do cotovelo para a polia, e a flexão do cotovelo é consequência.
+  // No início o cotovelo tem a flexão da ficha (cotovelo.alongado): no triângulo ombro–cotovelo–polia, isso dá o
+  // pequeno ângulo de partida entre o braço e a linha ombro–polia.
+  // O ombro sobe e desce com o braço (ritmo da escápula); por isso a conta é repetida com o ombro e o cotovelo de verdade.
   let umero = fim,
     antebraco = fim,
     e = com(umero, antebraco);
   for (let i = 0; i < 4; i++) {
-    const paraPolia = norm(sub(roldana, e.lado.R.ombro));
+    const ombro = e.lado.R.ombro;
+    const paraPolia = norm(sub(roldana, ombro));
     const ang = Math.acos(Math.max(-1, Math.min(1, paraPolia[0] * fim[0] + paraPolia[1] * fim[1] + paraPolia[2] * fim[2])));
-    const a = Math.sin((1 - fundo) * ang) / Math.sin(ang),
-      b = Math.sin(fundo * ang) / Math.sin(ang);
-    umero = norm(add(mul(paraPolia, a), mul(fim, b)));
+    const partida = flexIni - Math.asin(Math.min(1, (m('braco.comp') * Math.sin(flexIni)) / dist(roldana, ombro)));
+    const alfa = mix(partida, ang, fundo);
+    umero = norm(add(mul(paraPolia, Math.sin(ang - alfa) / Math.sin(ang)), mul(fim, Math.sin(alfa) / Math.sin(ang))));
     e = com(umero, antebraco);
-    // antebraço na linha do cabo; no início, com o cotovelo quase estendido, ele quase coincide com o braço
-    const noCabo = norm(sub(roldana, e.lado.R.cotovelo));
-    const quase = norm(add(mul(umero, Math.cos(flexIni)), mul(dirRef(T, [0, 0, 1]), Math.sin(flexIni))));
-    const w = (1 - fundo) ** 3;
-    antebraco = norm(add(mul(quase, w), mul(noCabo, 1 - w)));
+    antebraco = norm(sub(roldana, e.lado.R.cotovelo));
     e = com(umero, antebraco);
   }
   const L = e.lado.R;
