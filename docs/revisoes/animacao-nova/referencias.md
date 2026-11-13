@@ -13,18 +13,20 @@ Como ler as tabelas:
 
 | tipo de fonte | referências úteis (lidas) | onde aparecem |
 |---|---|---|
-| Levantamento ou dado público | RESUMO_1 | proporções, articulações |
-| Artigo científico | RESUMO_2 | todos os assuntos |
-| Livro, atlas ou relatório | RESUMO_3 | músculos e ossos |
-| Norma ou regra | RESUMO_4 | objetos, ilustração |
-| Ficha de fabricante | RESUMO_5 | objetos |
-| Software, modelo ou dado aberto (licença) | RESUMO_6 | músculos, técnica de desenho, Boneco |
-| Ilustração ou animação | RESUMO_7 | estilos, Boneco |
-| App ou produto visto | RESUMO_8 | ilustração, estilos, Boneco |
-| Fonte secundária (enciclopédia, blog, notícia, fórum) | RESUMO_9 | ilustração, estilos |
-| **Total de referências úteis** | **RESUMO_T** | |
-| **Total de tipos de fonte** | **RESUMO_TIPOS** | |
-| Não verificadas (fora da contagem) | RESUMO_NV | seção 5 |
+| Levantamento ou dado público | 5 | proporções, articulações |
+| Artigo científico | 105 | todos os assuntos |
+| Livro, atlas ou relatório | 2 | músculos e ossos |
+| Norma ou regra | 8 | objetos, ilustração |
+| Ficha de fabricante | 32 | objetos |
+| Software, modelo ou dado aberto (licença) | 66 | músculos, técnica de desenho, Boneco |
+| Ilustração ou animação | 22 | estilos, Boneco |
+| App ou produto visto | 39 | ilustração, estilos, Boneco |
+| Fonte secundária (enciclopédia, blog, notícia, fórum) | 22 | ilustração, estilos |
+| **Total de referências úteis** | **301** | |
+| **Total de tipos de fonte** | **9** | |
+| Não verificadas (fora da contagem) | 64 linhas (algumas agrupam obras pagas ou citações só de busca) | seção 5 |
+
+Conferência: os números acima foram obtidos contando as linhas das tabelas da seção 2 (301 linhas, cada uma com uma referência distinta, sendo a meta de pelo menos 60 referências úteis e 6 tipos) e somam 301 em 9 tipos.
 
 Nomes completos dos tipos: levantamento antropométrico ou dado público; artigo científico revisado por pares (inclui revisões, meta-análises, resumos de congresso e preprints); livro, atlas ou relatório técnico; norma ou regra de federação ou de órgão de padrões; ficha técnica de fabricante (catálogo, manual, página do produto); documentação de software, biblioteca, modelo ou conjunto de dados abertos, com a sua licença; referência de ilustração ou animação (pictogramas, livros de desenho, convenções); app, jogo ou produto visto como referência visual; fonte secundária (enciclopédia, blog, notícia, fórum).
 
@@ -214,7 +216,7 @@ Os estudos de aprendizagem por animação que só foram vistos em resultado de b
 | WCAG-222 | W3C. WCAG 2.2, Understanding SC 2.2.2 Pause, Stop, Hide (A) | https://www.w3.org/WAI/WCAG22/Understanding/pause-stop-hide.html | Norma ou regra | texto-completo | Animação em loop precisa de botão de pausa | pesquisa/06 |
 | WCAG-233 | W3C. WCAG 2.2, Understanding SC 2.3.3 Animation from Interactions (AAA) | https://www.w3.org/WAI/WCAG22/Understanding/animation-from-interactions.html | Norma ou regra | texto-completo | Respeitar prefers-reduced-motion | pesquisa/06 |
 | WCAG-258 | W3C. WCAG 2.2, Understanding SC 2.5.8 Target Size (Minimum) (AA) | https://www.w3.org/WAI/WCAG22/Understanding/target-size-minimum.html | Norma ou regra | texto-completo | Área de toque mínima (o projeto adota 44 px, mais exigente) | pesquisa/06 |
-| MDN-PRM | MDN Web Docs. prefers-reduced-motion | https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-reduced-motion | Software, modelo ou dado aberto | texto-completo (primeiros 100 mil de 130 mil caracteres) | Como tratar o pedido de menos movimento (quadros estáticos em sequência) | pesquisa/06 |
+| MDN-PRM | MDN Web Docs. prefers-reduced-motion | https://developer.mozilla.org/en-US/docs/Web/CSS/%40media/prefers-reduced-motion | Software, modelo ou dado aberto | texto-completo (primeiros 100 mil de 130 mil caracteres) | Como tratar o pedido de menos movimento (quadros estáticos em sequência) | pesquisa/06 |
 | OKABE | Okabe M, Ito K. Color Universal Design (CUD): how to make figures and presentations that are friendly to colorblind people, 2002 (rev. 2008) | https://jfly.uni-koeln.de/color/ | Ilustração ou animação | texto-completo (os códigos de cor só aparecem em figura) | Regras de paleta para daltonismo (forma, padrão, quente e frio alternados) | pesquisa/06 |
 | NEI | National Eye Institute. Types of color vision deficiency | https://www.nei.nih.gov/learn-about-eye-health/eye-conditions-and-diseases/color-blindness/types-color-vision-deficiency | Fonte secundária | texto-completo (sem números de prevalência) | Tipos de daltonismo (deuteranomalia é o mais comum) | pesquisa/06 |
 | HL2007 | Höffler TN, Leutner D. Instructional animation versus static pictures: a meta-analysis. Learning and Instruction 17(6):722-738, 2007 | https://www.leibniz-ipn.de/en/research/publications/instructional-animation-versus-static-pictures-a-meta-analysis ; DOI 10.1016/j.learninstruc.2007.09.013 | Artigo científico | resumo lido (pesquisa/08); em pesquisa/06, só trecho de busca | Animação supera imagem parada, mais para conhecimento procedimental-motor | pesquisa/06, pesquisa/08 |
@@ -251,7 +253,7 @@ Os tamanhos citados no arquivo de origem foram medidos por quem pesquisou nos ar
 | FIT3D | Fit3D (AIFit, CVPR 2021) | https://fit3d.imar.ro/ | Software, modelo ou dado aberto | lido (WebFetch); página de licença não lida | 37 exercícios de captura; sem confirmação de agachamento, supino, puxada ou flexão | pesquisa/07 |
 | EC3D | EC3D, repositório do artigo ACCV 2022 | https://github.com/Jacoo-Zhao/3D-Pose-Based-Feedback-For-Physical-Exercises | Software, modelo ou dado aberto | lido (WebFetch); sem arquivo de licença | Sem licença declarada: tratar como sem permissão | pesquisa/07 |
 | three.js | three.js (core, mais CCDIKSolver dos exemplos) v0.187.0 | ver NPM e JSD (registro npm e jsDelivr) | Software, modelo ou dado aberto | licença MIT lida no LICENSE; tamanho medido (teto de 814.239 min e 194.668 gzip) | Alternativa 3D descartada por peso e por regressão por pixel | pesquisa/07 |
-| Babylon | Babylon.js (@babylonjs/core) v9.36.0 | ver NPM e JSD (registro npm e jsDelivr) | Software, modelo ou dado aberto | licença Apache-2.0 lida no license.md; tamanho não medido | Só para constar; grande demais | pesquisa/07 |
+| Babylon | Babylon.js (pacote babylonjs/core) v9.36.0 | ver NPM e JSD (registro npm e jsDelivr) | Software, modelo ou dado aberto | licença Apache-2.0 lida no license.md; tamanho não medido | Só para constar; grande demais | pesquisa/07 |
 | regl | regl v2.1.1 | ver NPM e JSD (registro npm e jsDelivr) | Software, modelo ou dado aberto | licença MIT lida; tamanho medido (86.652 min e 28.438 gzip) | Wrapper de WebGL, sem cena nem esqueleto | pesquisa/07 |
 | OGL | OGL v1.0.11 | ver NPM e JSD (registro npm e jsDelivr) | Software, modelo ou dado aberto | licença Unlicense lida no package.json; tamanho não medido | Mini 3D, domínio público | pesquisa/07 |
 | PixiJS | PixiJS v8.23.0 | ver NPM e JSD (registro npm e jsDelivr) | Software, modelo ou dado aberto | licença MIT lida; tamanho medido (912.519 min e 255.257 gzip) | Pesado para 2D simples | pesquisa/07 |
@@ -259,12 +261,12 @@ Os tamanhos citados no arquivo de origem foram medidos por quem pesquisou nos ar
 | Paper.js | Paper.js v0.17.0 | ver NPM e JSD (registro npm e jsDelivr) | Software, modelo ou dado aberto | licença MIT lida; tamanho medido (311.756 min e 105.423 gzip) | Vetores sobre Canvas | pesquisa/07 |
 | Rough.js | Rough.js v4.6.6 | ver NPM e JSD (registro npm e jsDelivr) | Software, modelo ou dado aberto | licença MIT lida; tamanho medido (build CJS, 30.719 e 9.756 gzip) | Traço "à mão" com semente fixa; estilo não serve ao guia técnico | pesquisa/07 |
 | Zdog | Zdog v1.1.3 e demos (zzz.dog) | https://zzz.dog | Software, modelo ou dado aberto | licença MIT lida no package.json; tamanho medido (29.737 min e 7.269 gzip); demos vistas (A12) | Pseudo-3D em Canvas e SVG; cápsulas com roupa em blocos de cor | pesquisa/07, boneco (A12) |
-| Rive | Rive runtime (@rive-app/canvas) v2.50.0 | ver NPM e JSD (registro npm e jsDelivr) | Software, modelo ou dado aberto | licença MIT do runtime lida no package.json; tamanhos medidos; termos do editor não lidos | Animação por arquivos feitos no editor, fora das regras do gerador | pesquisa/07 |
+| Rive | Rive runtime (pacote rive-app/canvas) v2.50.0 | ver NPM e JSD (registro npm e jsDelivr) | Software, modelo ou dado aberto | licença MIT do runtime lida no package.json; tamanhos medidos; termos do editor não lidos | Animação por arquivos feitos no editor, fora das regras do gerador | pesquisa/07 |
 | Lottie | lottie-web v5.13.0 | ver NPM e JSD (registro npm e jsDelivr) | Software, modelo ou dado aberto | licença MIT lida; tamanho medido (variante leve 168.394 min e 46.410 gzip) | Reproduz animação pronta, não calcula movimento | pesquisa/07 |
-| dotLottie | @lottiefiles/dotlottie-web v0.83.2 | ver NPM e JSD (registro npm e jsDelivr) | Software, modelo ou dado aberto | licença MIT lida no registro; tamanho medido | Player WASM de arquivos .lottie | pesquisa/07 |
-| Spine | Spine runtimes (@esotericsoftware/spine-webgl) v4.3.13 | ver NPM e JSD (registro npm e jsDelivr) | Software, modelo ou dado aberto | LICENSE lido: exige licença do Spine Editor para cada usuário do produto; tamanho não medido | Descartado por risco jurídico | pesquisa/07 |
+| dotLottie | lottiefiles/dotlottie-web v0.83.2 | ver NPM e JSD (registro npm e jsDelivr) | Software, modelo ou dado aberto | licença MIT lida no registro; tamanho medido | Player WASM de arquivos .lottie | pesquisa/07 |
+| Spine | Spine runtimes (pacote esotericsoftware/spine-webgl) v4.3.13 | ver NPM e JSD (registro npm e jsDelivr) | Software, modelo ou dado aberto | LICENSE lido: exige licença do Spine Editor para cada usuário do produto; tamanho não medido | Descartado por risco jurídico | pesquisa/07 |
 | DragonBones | DragonBones v1.0.2 | ver NPM e JSD (registro npm e jsDelivr) | Software, modelo ou dado aberto | LICENSE (MIT) e campo license (ISC) divergem; tamanho medido (160.416 min e 28.914 gzip) | Animação por ossos; projeto aparentemente parado | pesquisa/07 |
-| Theatre.js | @theatre/core v0.7.2 | ver NPM e JSD (registro npm e jsDelivr) | Software, modelo ou dado aberto | licença Apache-2.0 lida; tamanho não medido | Curvas de tempo, não renderiza | pesquisa/07 |
+| Theatre.js | theatre/core v0.7.2 | ver NPM e JSD (registro npm e jsDelivr) | Software, modelo ou dado aberto | licença Apache-2.0 lida; tamanho não medido | Curvas de tempo, não renderiza | pesquisa/07 |
 | three-ik | three-ik v0.1.0 | ver NPM e JSD (registro npm e jsDelivr) | Software, modelo ou dado aberto | licença MIT lida no package.json; tamanho medido (16.055 min e 4.929 gzip) | IK (FABRIK) sobre ossos do three | pesquisa/07 |
 | closed-chain-ik | closed-chain-ik v0.0.3 | ver NPM e JSD (registro npm e jsDelivr) | Software, modelo ou dado aberto | licença Apache-2.0 lida; tamanho não medido | IK de cadeia fechada para pés e mãos fixos no aparelho | pesquisa/07 |
 | fabrik | fabrik (npm) v1.0.0-rc2 | ver NPM e JSD (registro npm e jsDelivr) | Software, modelo ou dado aberto | licença MIT lida no registro; código não lido | FABRIK genérico | pesquisa/07 |
@@ -386,4 +388,144 @@ Em todas as linhas desta tabela, "imagem aberta e vista" quer dizer que um pesqu
 | D67 | Sworkit | https://apps.apple.com/us/app/id527219710 | App ou produto visto | imagem aberta e vista (d) | Tamanho pequeno da figura prejudica a leitura | boneco (D67) |
 | D51 | Gentler Streak (iOS) | https://apps.apple.com/us/app/id1576857102 | App ou produto visto | imagem aberta e vista (d) | Personagem que não é corpo humano evita a discussão de gênero, raça e corpo; risco de parecer infantil | boneco (D51) |
 
-<!--FIM-->
+## 3. Licenças de código, modelos e dados considerados
+
+Regra do projeto: são permitidas MIT, Apache 2.0, ISC, BSD, CC0 e CC BY com crédito; são proibidas as licenças "só para pesquisa" e "não comercial". A coluna "compatível" aplica essa regra ao que o arquivo de origem leu. Licença não lida, divergente ou copyleft com ShareAlike (CC BY-SA, GPL, AGPL) não está na lista permitida: fica como "não usar sem decisão" e o motivo está escrito. Nenhuma foto, imagem ou desenho de terceiros foi copiado para o repositório; produtos e obras protegidas servem só como referência de princípio.
+
+| item | licença lida | onde foi lida | compatível com a regra? | arquivo de origem |
+|---|---|---|---|---|
+| Gait2392 (OpenSim, modelo de perna, pelve e tronco) | CC BY 3.0 | campo credits do arquivo .osim | Sim, com crédito aos autores | pesquisa/03 |
+| Gait2354 (versão reduzida) | CC BY 3.0 | credits do .osim | Sim, com crédito (não foi usado) | pesquisa/03 |
+| Arm26 (OpenSim, braço) | CC BY 3.0 | credits do .osim | Sim, com crédito | pesquisa/03 |
+| Rajagopal2016 (OpenSim, corpo inteiro) | MIT (acordo de uso do SimTK); o .osim e o README do repositório não trazem licença | página do SimTK | Sim, mantendo o aviso de copyright; o artigo do IEEE tem direitos próprios (só leitura) | pesquisa/03 |
+| MoBL-ARMS (modelo de membro superior) | BSD 3-Clause "solely for non-commercial purposes"; o wiki do OpenSim diz MIT, vale a mais restritiva | página do SimTK | Não: uso não comercial | pesquisa/03 |
+| Modelo da articulação escapulotorácica (Seth) | Creative Commons Attribution-NonCommercial | página do SimTK | Não: não comercial | pesquisa/03 |
+| OpenStax Anatomy and Physiology 2e | CC BY-NC-SA 4.0 | rodapé das páginas | Não: não comercial; só leitura para conferir | pesquisa/03 |
+| Gray 1918 (texto) | Domínio público (edição de 1918) | Internet Archive | Sim (texto; imagens do livro não foram usadas) | pesquisa/03 |
+| RAITERI2016, ZAPPALA2021, GUO2018, OSNAYA2025, SINGH2026 | CC BY 4.0 | página do artigo | Sim, com crédito (SINGH2026 sem dado aproveitável) | pesquisa/03 |
+| BEREDJIKIAN2025 | CC BY-NC 4.0 | página do artigo | Não: não comercial; só leitura | pesquisa/03 |
+| IIO2026 | CC BY-NC-ND 4.0 | página do artigo | Não: não comercial; só leitura | pesquisa/03 |
+| DICK2017, PATTED2020, WELCOME2014, FIORENTINO2015, SINCLAIR2013, RAJ2016 (texto) | não declarada ou direitos do editor | página do artigo | Só leitura: nenhum dado ou texto entra no app | pesquisa/03 |
+| DELEVA-BMC (tabelas de de Leva no repositório BMClab/BMC) | CC BY 4.0 (LICENSE.txt do repositório) | repositório | Sim, com crédito a de Leva e ao repositório; é cópia secundária | pesquisa/03 |
+| PYCGM2 (código dos coeficientes de Bell e Harrington) | NÃO VERIFICADA (LICENSE não encontrado) | repositório | Não usar o código; reimplementar a partir dos artigos | pesquisa/03 |
+| ANSUR II (CSV públicos) | NÃO VERIFICADA (a página diz "publicly available data files") | página do openlab | Só como fonte de medida (valores ficam no arquivo de pesquisa); licença a confirmar | pesquisa/01 |
+| NASA ASB1 | Domínio público, por inferência (a licença não aparece no PDF) | PDF | Provável sim; inferência, não leitura | pesquisa/01 |
+| IBGE POF | NÃO VERIFICADA (publicação oficial) | PDF | A confirmar | pesquisa/01 |
+| Z-Anatomy | CC BY-SA 4.0 (README); exige atribuir o BodyParts3D | README | Não usar sem decisão: ShareAlike | pesquisa/07, pesquisa/03 |
+| BodyParts3D | CC BY 4.0 no README atual (27/02/2025); versões antigas CC BY-SA 2.1 Japão | README | Sim com crédito na versão atual; a licença depende da versão do arquivo | pesquisa/07, pesquisa/03 |
+| SMPL-Body (subconjunto) | CC BY 4.0 | página de licença | Sim, com atribuição | pesquisa/07 |
+| SMPL completo | licença comercial paga (só resumo de busca) | não lida | Não: exige licença paga | pesquisa/07 |
+| SMPL-X, SMPLify-X, SPEC | licença científica não comercial (resumo de busca; página do SPEC) | não lida em leitura direta | Não: não comercial | pesquisa/07 |
+| MakeHuman (ativos) | CC0 | FAQ do MakeHuman | Sim; conferir o arquivo exato exportado e ativos de terceiros | pesquisa/07 |
+| MB-Lab | modelos AGPL-3 e código GPL-3 (resumo de busca) | não lida | Não: copyleft | pesquisa/07 |
+| AMASS | só pesquisa, educação ou artístico não comercial; uso comercial proibido | página de licença | Não: só pesquisa e não comercial | pesquisa/07 |
+| FLAG3D | só pesquisa científica, acordo assinado (resumo de busca) | não lida | Não: só pesquisa | pesquisa/07 |
+| CMU Graphics Lab MoCap | "grátis para pesquisa" (resumo de busca); conversão FBX do 4TU.nl em CC BY-NC 4.0 | site não abriu | Não: não comercial na conversão; termos oficiais não lidos | pesquisa/07 |
+| EC3D | sem arquivo de licença no repositório | repositório | Não: sem licença declarada, tratar como sem permissão | pesquisa/07 |
+| Fit3D, Human3.6M, Mixamo, VRoid | licença não lida | página de licença não aberta ou não abriu | Não usar sem confirmar | pesquisa/07 |
+| three.js | MIT | LICENSE do pacote | Sim | pesquisa/07 |
+| Babylon.js, Theatre.js (pacote theatre/core), closed-chain-ik, seen.js, opensim-core | Apache-2.0 | LICENSE ou README | Sim | pesquisa/07 |
+| regl, PixiJS, two.js, Paper.js, Rough.js, Zdog, Rive (runtime), lottie-web, dotLottie, three-ik, fabrik, skewed, canvas-js-3d | MIT | LICENSE ou campo license do package.json ou do registro | Sim (Rive: termos do editor e dos arquivos .riv não lidos) | pesquisa/07 |
+| DragonBones | ISC no campo license e MIT no LICENSE (divergem) | pacote | Sim (as duas são permitidas); projeto aparentemente parado | pesquisa/07 |
+| OGL | Unlicense (domínio público) | package.json | A Unlicense não está na lista da regra; equivale a domínio público, decidir antes de usar | pesquisa/07 |
+| Spine runtimes | exige a licença do Spine Editor para cada usuário do produto | LICENSE do pacote | Não: risco jurídico alto | pesquisa/07 |
+| three-svg-renderer | GPLv3 | registro npm | Não: copyleft | pesquisa/07 |
+| body-highlighter (lahaxearnaud) | licença não identificada | repositório | Não usar sem confirmar | pesquisa/08 |
+| MDN, Can I use, WCAG | documentação e normas, sem código copiado | páginas | Não se aplica (só regras e dados de suporte citados) | pesquisa/06, pesquisa/07 |
+| Boneco: react-body-highlighter, MuscleMap, Tabler Icons, Phosphor Icons | MIT | fichas (a) | Sim | boneco |
+| Boneco: Open Peeps, Kenney (Animated e Toon), Quaternius, Health Icons | CC0 | fichas (a) | Sim | boneco |
+| Boneco: Material Symbols | Apache 2.0 | ficha (a) | Sim | boneco |
+| Boneco: Font Awesome Free (ícones), Twemoji (gráficos) | CC BY 4.0 | fichas (a) | Sim, com crédito | boneco |
+| Boneco: conjunto DOT/AIGA; Loomis e Bridgman (Commons) | Domínio público | fichas (c) | Sim | boneco |
+| Boneco: Humaaans | CONFLITO: CC0 na página oficial, CC BY 4.0 no espelho do GitHub | ficha (a) | Resolver antes de qualquer uso; as duas seriam permitidas, mas o conflito precisa de decisão | boneco |
+| Boneco: wger e OpenMoji | CC BY-SA | fichas (a) | Não: ShareAlike; só princípio | boneco |
+| Boneco: mannequin.js | GPL-3.0 | ficha (a) | Não: copyleft; só princípio | boneco |
+| Boneco: free-exercise-db | Unlicense declarada; origem das fotos NÃO VERIFICADA | ficha (a) | Não usar as fotos; só o enquadramento como princípio | boneco |
+| Boneco: Zdog | código MIT; imagens das demos NÃO VERIFICADO | ficha (a) | Código sim; imagens não | boneco, pesquisa/07 |
+| Boneco: pictogramas olímpicos, cartões de segurança, jogos, produtos, livros | protegidos (avisos dos comitês e das empresas; alguns arquivos da Commons em CC BY, CC BY-SA ou CC0; licença de vários arquivos da Wikipedia NÃO LIDA) | fichas (b, c, d) | Não copiar o desenho de ninguém; só princípio | boneco |
+| Wikimedia Commons (imagens de anatomia) | varia por arquivo; nenhuma imagem foi consultada | não aplicável | Verificar arquivo por arquivo antes de qualquer uso | pesquisa/03 |
+
+## 4. Lacunas
+
+O que os arquivos de origem dizem que não foi encontrado ou não foi lido. Nada disto pode entrar como fato.
+
+- Proporções (pesquisa/01): tabela original de Drillis e Contini e a de Winter (só a figura reproduzida em resumo de congresso, com cotas ambíguas); de Leva 1996 em texto completo; Dempster 1955 no original; coeficientes de regressão do centro do quadril e do glenoumeral; distância entre as EIAS, altura da cabeça (menton-vértex) e braço relaxado (não existem no CSV do ANSUR II); falanges, polegar e altura do peito do pé; cifose torácica, lordose cervical e comprimentos de região da coluna; tabelas brasileiras de segmentos; médias (não medianas) de estatura do IBGE; licença formal do ANSUR II.
+- Articulações (pesquisa/02): AAOS 1965, Norkin e White, AMA Guides e Kapandji (livros pagos); definições ISB de Wu 2002 e 2005; repouso da escápula no tórax e protração e retração em empurrar e puxar; pelve no agachamento profundo e na ponte; amplitude torácica por região; eixo do antebraço na pronação; ângulo Q normal, rotação tibial no fim da extensão, tripé do pé, linha de flexão do antepé e posição neutra de cabeça e pescoço; valores de Boone e Azen, Roach e Ellenbecker (só resumo); Lindenmann 2022 lido só até 100.000 de 154.575 caracteres.
+- Músculos e ossos (pesquisa/03): nenhum modelo aberto utilizável com músculos do ombro e do tronco superior (peitoral, deltoide, grande dorsal, trapézio, romboides, serrátil), então essas posições vêm só dos textos, sem coordenadas; Meskers 1998, Rab 2002, Leardini 1999 e Bell 1990; de Leva 1996 original; Buryanov e Kotiuk 2010 (bloqueio anti-robô); falanges e polegar; mudança de forma ao contrair só para o tibial anterior e o gastrocnêmio medial; formas (leque, fuso, faixa, penado) só onde Gray usa a palavra; licença de vários artigos não declarada.
+- Objetos (pesquisa/04): edição vigente da IWF (lida a de 2020); espessura das anilhas de ferro de academia; posição do eixo e comprimento separado de encosto e assento nos bancos; diâmetro das cabeças redondas de halter; diâmetro do corpo do kettlebell Eleiko; cabo de polia com capa e espessura das placas da pilha; ângulo das pontas da barra de puxada; altura de instalação e distância entre barras de paralelas; alongamento máximo dos elásticos; caneleiras; fita de suspensão; ângulo do leg press, do smith e do hack; divergências entre fichas da mesma marca (Life Fitness) não resolvidas.
+- Biomecânica (pesquisa/05): ângulos absolutos de quadril, joelho e tornozelo no fundo do agachamento e do goblet; inclinação do tronco e quanto o joelho passa da ponta do pé; ângulo do cotovelo no fundo do supino e formato da trajetória; nenhum estudo de cinemática do supino com halteres, da puxada unilateral na polia ou do goblet com halter; amplitude do ombro na puxada de polia; ângulos de cotovelo e punho na flexão; perfil de velocidade de repetições de hipertrofia e a fórmula do mínimo jerk; remada, desenvolvimento, tríceps na polia, panturrilha e afundo búlgaro; o "~9%" citado nas notas do projeto não está no resumo de Lusk 2010.
+- Ilustração e movimento (pesquisa/06): nenhum fio de Reddit, Hacker News ou X (o leitor não abre); texto integral das meta-análises de aprendizagem por animação (só resumos, trechos de busca ou citações de terceiros), e os números delas devem ser conferidos antes de citar; Lucas 2019 e Ploetzner 2020 não encontrados; Lasseter 1987, Thomas e Johnston e Lacquaniti 1983 não lidos; convenções de AMI e Hopkins para cor no alvo, contorno, corte e setas não achadas; prevalência de daltonismo só em fonte secundária e hexadecimais da paleta Okabe-Ito não conferidos; ColorBrewer, tamanho mínimo de detalhe e leitura sob luz forte sem fonte; MuscleWiki, ExRx e Fitbod deram 403; Strong, Gymshark e Kaia não achados nessa pesquisa; nenhum produto confirmado com tema escuro.
+- Técnica de desenho (pesquisa/07): site do CMU MoCap, Human3.6M, licença do Fit3D, texto de licença do FLAG3D e Kinetics; Mixamo, Ready Player Me, VRoid, MB-Lab e SMPL completo só por resumo de busca; tamanho minificado de Babylon, OGL, Spine, Theatre e de pacotes sem arquivo único; build mínimo do three com tree-shaking; determinismo e suporte a Worker de Rive, dotLottie, DragonBones, Spine e Theatre; nenhum benchmark recente de celular, custo de pattern e limite prático de nós sem fonte; nenhuma medição feita em aparelho; efeito jurídico do CC BY-SA do Z-Anatomy não avaliado.
+- Estilos de figura (pesquisa/08): páginas que não abriram (AIGA, ISO 7001, Fast Company, MuscleWiki, Fitbod, Gymvisual, Human Kinetics, Physioupdate, WIRED UK, Reddit); LEGO, Calm, Down Dog (estilo), apps de corrida e yoga com silhueta, PhysioTools, HEP2go e boneco de palito em fisioterapia sem fonte aberta; estudos citados só por busca (Rey 2012, Berney e Bétrancourt só metadados, Castro-Alonso, o de "stick figure", Stanford sobre silhueta); nenhuma evidência direta sobre figuras cinzas, sem rosto ou nuas e vale do estranho, sobre preferência contra aprendizado em figuras de exercício, nem crítica pública específica à figura de app de treino; nenhuma imagem foi vista nesse arquivo.
+- Desenho do Boneco (boneco-desenho/referencias.md): não foram vistos o personagem do manual da IKEA, as instruções da LEGO e a instrutora do Wii Fit; Darebee (403), o app do Bend por dentro, Seven, Sworkit e BetterMe no Google Play; as animações de exercício do Apple Watch, Galaxy Watch, Fitbit e Zepp (só o Garmin, em foto de terceiros); ilustração editorial de esporte além do cartaz de 1972; Proko, Hampton, Vilppu e Body-kun; discussões no Reddit (bloqueado) e avaliações em português. As notas da régua de realismo são opinião de quem olhou.
+
+## 5. Não verificadas: não usar como fonte de medida
+
+Estas referências foram marcadas nos arquivos de origem como "NÃO VERIFICADO", "só resultado de busca" ou "não abriu". Não entram na contagem da seção 1 e nenhum número ou regra deve sair delas.
+
+| id | referência | status no arquivo de origem | arquivo de origem |
+|---|---|---|---|
+| ANSUR2-REL | Gordon CC et al. 2012 Anthropometric Survey of U.S. Army Personnel: Methods and Summary Statistics, NATICK/TR-15/007, 2015 | só a referência; o PDF não foi lido | pesquisa/01 |
+| DC1966 | Drillis R, Contini R. Body segment parameters, relatório da New York University, 1966 | NÃO VERIFICADO (original não localizado) | pesquisa/01 |
+| Winter | Winter DA. Biomechanics and Motor Control of Human Movement | NÃO VERIFICADO (não abriu) | pesquisa/01 |
+| Dempster55 | Dempster WT. Space requirements of the seated operator. WADC TR 55-159, 1955 | NÃO VERIFICADO no original; trechos só via ASB1 | pesquisa/01 |
+| Wu02, Wu05 | Wu G et al. ISB recommendation on definitions of joint coordinate system, partes I (2002) e II (2005) | pesquisa/01: resumo sem definições; pesquisa/02: NÃO VERIFICADO (originais pagos, URLs deram 404) | pesquisa/01, pesquisa/02 |
+| PNS-guia | Fiocruz/PNS. Guia para a realização do exame de antropometria 2019 | baixado, tabelas não lidas (só resultados de busca) | pesquisa/01 |
+| Inman1944 | Inman VT et al. Observations on the function of the shoulder joint. J Bone Joint Surg 26:1-30, 1944 | NÃO VERIFICADO; só citado dentro de McClure2001 | pesquisa/02 |
+| Livros pagos | AAOS 1965; Norkin e White; AMA Guides; Kapandji; White e Panjabi; Bogduk (livro); Hartmann e Bagwell (agachamento e pelve) | NÃO VERIFICADO (não abriram) | pesquisa/02 |
+| Soy2026 | Soy et al., 2026 (artigo sobre hallux rigidus citado só em uma linha de divergência) | resumo de busca, sem identificação completa | pesquisa/02 |
+| AZIZI2008 | Azizi E et al. Variable gearing in pennate muscles. PNAS 105(5):1745-1750, 2008 | verificado-busca (só o resumo, via resultado de busca) | pesquisa/03 |
+| BELL1990 | Bell AL et al. A comparison of the accuracy of several hip center location prediction methods. J Biomech 23:617-621, 1990 | NÃO VERIFICADO (valores vistos só em PYCGM2 e SINCLAIR2013) | pesquisa/03 |
+| LEARDINI1999 | Leardini A et al. Validation of a functional method for the estimation of hip joint centre location. J Biomech 32(1):99-103, 1999 | NÃO VERIFICADO | pesquisa/03 |
+| MESKERS1998 | Meskers CGM et al. In vivo estimation of the glenohumeral joint rotation center from scapular bony landmarks by linear regression. J Biomech 31(1):93-96, 1998 | NÃO VERIFICADO (só confirmei a existência) | pesquisa/03 |
+| RAB2002 | Rab G et al. A method for determination of upper extremity kinematics. Gait Posture 15(2):113-119, 2002 | NÃO VERIFICADO (só resumo de busca) | pesquisa/03 |
+| BURYANOV2010 | Buryanov A, Kotiuk V. Proportions of hand segments. Int J Morphol 28(3):755-758, 2010 | não abriu (bloqueio Cloudflare); NÃO VERIFICADO | pesquisa/03 |
+| WIKIMEDIA-COMMONS | Wikimedia Commons, imagens de anatomia | NÃO consultado | pesquisa/03 |
+| BARTLEBY | Gray 1918 em bartleby.com/107 | não abriu (403) | pesquisa/03 |
+| ANATOMYTOOL | AnatomyTOOL | não abriu (503) | pesquisa/03 |
+| KENHUB-TMA | Kenhub e TeachMeAnatomy | NÃO consultados (conteúdo proprietário) | pesquisa/03 |
+| IWF-SITE | IWF. Equipamento e downloads do TCRR em iwf.sport | não abriu (403) | pesquisa/04 |
+| BUSCA (objetos) | Rogue Stainless Lat Bar, REP 48" Solid Lat Bar, Rogue P-3, Rig Mount Parallel Bars, Parallette Set, Ab Wheel, Matrix Versa, Technogym Selection, Precor Vitality e Life Fitness Smith, Eleiko Evo (ELEIKO-DB), barras de halter regulável, argolas de 32 mm, anúncios do TRX | verificado-busca = NÃO VERIFICADO | pesquisa/04 |
+| difonza2026 | Di Fonza D et al. Electromyographic Analysis of Latissimus Dorsi Activation During Common Resistance Training Exercises: A Narrative Review. J Funct Morphol Kinesiol 11(3):315, 2026 | verificado-busca; não relida | pesquisa/05 |
+| nsca2021 | NSCA. Exercise Technique Manual for Resistance Training, 4ª ed., Human Kinetics, 2021 | NÃO VERIFICADO (livro pago) | pesquisa/05 |
+| Artigos não achados (05) | Green e Comfort 2007, Fees 1998, Duffey e Challis 2011, Contreras 2012, Snarr 2015 | não achei o artigo | pesquisa/05 |
+| DALT-WP | Prevalência de daltonismo (8% e 0,5%), cópia arquivada da Wikipedia e clínicas | verificado-busca; fonte primária NÃO VERIFICADA | pesquisa/06 |
+| BB2016 | Berney S, Bétrancourt M. Does animation enhance learning? A meta-analysis. Comput Educ 101:150-167, 2016 | verificado-busca (06); só metadados (08) | pesquisa/06, pesquisa/08 |
+| PBB2021 | Ploetzner R et al. When learning from animations is more successful than learning from static pictures. Instr Sci 49:497-514, 2021 | verificado-busca (página pediu login) | pesquisa/06 |
+| RSE2016 | Richter J et al. Signaling text-picture relations in multimedia learning: a comprehensive meta-analysis. Educ Res Rev 17:19-36, 2016 | verificado-busca | pesquisa/06 |
+| SBNR2018 | Schneider S et al. A meta-analysis of how signaling affects learning with media. Educ Res Rev 23:1-24, 2018 | verificado-busca (números de resumo secundário) | pesquisa/06 |
+| DK2009 | de Koning BB et al. Towards a framework for attention cueing in instructional animations. Educ Psychol Rev 21(2):113-140, 2009 | só trecho de busca (PDF pediu login) | pesquisa/06 |
+| AP2007 | Ayres P, Paas F. Can the cognitive load approach make instructional animations more effective? Appl Cogn Psychol 21:811-820, 2007 | verificado-busca (via citações de terceiros) | pesquisa/06 |
+| SCH2009 | Scheiter K et al. The effects of realism in learning with dynamic visualizations. Learn Instr 19:481-494, 2009 | verificado-busca (só como citado por terceiros) | pesquisa/06 |
+| LUCAS | Lucas 2019 (realismo x esquemático) | NÃO VERIFICADO (não encontrado) | pesquisa/06 |
+| SR2018 | Skulmowski A, Rey GD (2018); Skulmowski (2021); Koh et al. (2023), codificação por cor em modelos anatômicos | verificado-busca | pesquisa/06 |
+| ALF2013 | Alfieri L et al. (2013) comparação de casos; Alemdag et al. (exemplos errôneos); Booth et al. (2013) | verificado-busca | pesquisa/06 |
+| LEL | Lelievre (tese) e artigo do JEMS sobre velocidade de vídeo e aprendizagem de pirueta | verificado-busca | pesquisa/06 |
+| MORI2017 | Moriuchi et al. (2017), velocidade do vídeo e excitabilidade motora, Front Hum Neurosci | verificado-busca | pesquisa/06 |
+| PERSP | Estudos de perspectiva (1ª contra 3ª pessoa): circuito, caixa-quebra-cabeça, judô 2024, dança | verificado-busca (autores e DOI não confirmados) | pesquisa/06 |
+| LTV1983 | Lacquaniti F, Terzuolo C, Viviani P. The law relating the kinematic and figural aspects of drawing movements. Acta Psychol 54:115-130, 1983 | verificado-busca (PDF não aberto) | pesquisa/06 |
+| LAS1987 | Lasseter J. Principles of traditional animation applied to 3D computer animation. SIGGRAPH 87 | verificado-busca (PDF deu 404; texto não lido) | pesquisa/06 |
+| TJ1981 | Thomas F, Johnston O. The Illusion of Life: Disney Animation, 1981 | verificado-busca (livro não lido) | pesquisa/06 |
+| AMI, JHU | Association of Medical Illustrators; Johns Hopkins, Art as Applied to Medicine (entrevista no AMA Journal of Ethics) | verificado-busca (JHU deu 403) | pesquisa/06 |
+| EXRX | ExRx.net | não abriu (403) | pesquisa/06 |
+| CAL, NTC, PELO | Caliber; Nike Training Club; Peloton Strength+ (páginas e análises) | verificado-busca | pesquisa/06 |
+| Outros produtos (06) | Strong, Gymshark Training e Kaia | NÃO pesquisados ou não encontrados | pesquisa/06 |
+| AAFP, TOKTOK | AAFP, correção de folheto de paciente; reportagem sobre estudo de treinos no TikTok | verificado-busca | pesquisa/06 |
+| Resenhas (06 e 08) | Resenha do Fitbod no Indie Hackers; blog agregador de Reddit (setgraph); resenha de app citando avatar 3D (getfitcraft/compare) | só trecho de busca; frase exata não conferida | pesquisa/06, pesquisa/08 |
+| WK-253431, WK-CLIP, MOZ-WC | WebKit Bugzilla 253431, 226321 e 256380; Mozilla Bugzilla 1535159 | resumo de busca | pesquisa/07 |
+| MESHCAPADE, SMPLX-SPEC | Meshcapade (modelos de corpo, licença comercial); licença do SPEC e SMPL-X | resumo de busca | pesquisa/07 |
+| MH-2020 | MakeHuman: mudança de licença em 2020 | resumo de busca (README do GitHub ainda cita AGPL: conflito) | pesquisa/07 |
+| MIXAMO-HELP, MIXAMO-COM | Adobe Mixamo FAQ; fórum da comunidade Adobe | não abriu (403); resumo de busca | pesquisa/07 |
+| RPM, VROID, MBLAB | Ready Player Me (encerramento); VRoid Studio Guidelines; MB-Lab | resumo de busca | pesquisa/07 |
+| CMU, CMU-FBX | CMU Graphics Lab MoCap; conversão FBX do 4TU.nl | não abriu (503); resumo de busca | pesquisa/07 |
+| H36M, FLAG3D | Human3.6M; FLAG3D | não abriu ou PDF sem texto legível; NÃO VERIFICADO | pesquisa/07 |
+| OPENSIM-MOD | Modelos OpenSim de agachamento e supino (SimTK, artigos) | resumo de busca | pesquisa/07 |
+| HORAK, SVG-W3C, W3C-GPU, MOMENTIC, THREE-FORUM | Horak et al. 2018 (desempenho de grafos); lista www-svg 2009 e 2016; guia de teste de WebGL; fórum do three.js | resumo de busca | pesquisa/07 |
+| FSS, glTF e BVH, AnyBody | Flat Surface Shader; especificações glTF e BVH; AnyBody | NÃO VERIFICADO | pesquisa/07 |
+| S11 | Gabert-Doyon J, 2021 (WIRED UK). Why does every advert look the same? Blame Corporate Memphis | verificado-busca (só trechos e cópias; endereço não confirmado) | pesquisa/08 |
+| S16 | Tamashii Nations. S.H.Figuarts Body-kun e Body-chan | verificado-busca (redirecionou; não abriu) | pesquisa/08 |
+| S20 | Physioupdate (patrocinado). Rehab My Patient: making exercise plans easy | não abriu (HTTP 300); só trecho de busca | pesquisa/08 |
+| S29 | MuscleWiki, site e API | verificado-busca (o site deu 403) | pesquisa/08 |
+| S31 | Fitbod, site e resenha do TechRadar | verificado-busca (site deu 403; TechRadar truncado) | pesquisa/08 |
+| S47, S48 | Berney e Bétrancourt (só metadados); Rey GD, 2012, efeito dos detalhes sedutores | verificado-busca | pesquisa/08 |
+| Outros (08) | ISO 7001 (a página deu 403); estudo de Castro-Alonso; pesquisa de Stanford sobre silhueta; relato de David Hanson sobre traços neotênicos; "stick figure" ajuda mais no reconhecimento | só citados por busca ou fonte secundária | pesquisa/08 |
