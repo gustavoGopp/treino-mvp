@@ -98,4 +98,6 @@ Limites que continuam: um corpo só (homem, tom de pele médio no 10); a vista d
 
 **Minha recomendação (opinião):** o 1.2. Ele resolve a simplicidade do 1 (as linhas do corpo, o short e o tênis dão as referências que faltavam) e mantém a vantagem do cinza: o músculo que trabalha é a única cor da figura. Se a cor de pele pesar mais para ele, o 10.2 é a melhor das três versões de pele, porque o traço escuro deixa as bordas mais nítidas.
 
-**Decisão do Gustavo:** (aguardando)
+**Decisão do Gustavo (13/11/2026):** "pode ser 1.1 e 10.1. Vamos deixar esses 2 como opções para a pessoa escolher na configuração e o cinza como default".
+
+Ficam os dois desenhos: **o 1.1 (cinza, com as linhas do corpo) como padrão** e **o 10.1 (cor de pele, de short, com as linhas do corpo) como opção**, à escolha da pessoa na configuração (hoje, "Meus dados" → "Estilo do boneco"). A ficha está em `decisao.md`.

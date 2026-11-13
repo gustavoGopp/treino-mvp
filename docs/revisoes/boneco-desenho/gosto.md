@@ -95,3 +95,7 @@ Dos onze conceitos, ficou com cinco: "pode ser 1, 2, 3, 6 e 10" (Hoje com corpo 
 Não escolheu entre os dois finalistas: quer os dois como referência e versões mais evoluídas. Do 10 (Atlas): "gostei um pouco dele", mas de costas "essa bunda tá muito marcada, fica esquisito", e parece sem o short. Do 1 (cinza): "tá bom, mas acho que ainda tá muito simples [...] na hora de ver um treino com ele, ele não vai ser tão preciso". Frase-resumo dele: "cada um tem um ponto bom e um ponto ruim que ainda tem que ser mais desenvolvido".
 
 **Leitura minha:** o que ele chama de precisão é o corpo dar referências (os grupos musculares, o joelho, a linha do tronco), que é o que o 10 tem e o 1 não tem; e o que incomoda no 10 é excesso de marcação em lugar errado. Os dois caminham para o meio: o 1 ganha as linhas do corpo, e o 10 fica mais calmo e com o short de verdade.
+
+## Rodada 4 e decisão (13/11/2026)
+
+"pode ser 1.1 e 10.1. Vamos deixar esses 2 como opções para a pessoa escolher na configuração e o cinza como default". Ele não escolheu um só: ficou com os dois desenhos, o cinza com as linhas do corpo como padrão e o de cor de pele como opção. O que pesou, pelas falas dele ao longo da sessão: o cinza é simples e leve e ganhou a precisão que faltava com as linhas do corpo; o de cor de pele é "gente", e ele gostou "um pouco" dele desde que o short seja um short de verdade. Não preferiu o short e o tênis no cinza (1.2) nem o traço escuro no de pele (10.2).

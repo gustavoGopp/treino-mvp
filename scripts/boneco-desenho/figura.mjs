@@ -96,7 +96,7 @@ const DO_TRONCO = ['peitoral', 'abdomen', 'dorsal', 'obliquos', 'trapezio'];
  * `veus`: peças de roupa em véu ({ ds, cor }), debaixo das quais o músculo aparece misturado com o tecido.
  * `soFora`: caminhos (roupa opaca) fora dos quais os músculos parados podem aparecer.
  */
-function musculos(formas, papeis, C, { parados = 'nada', veus = [], soFora = null, fino = 1 } = {}) {
+function musculos(formas, papeis, C, { parados = 'nada', veus = [], soFora = null, fino = 1, semDivisoes = false } = {}) {
   const linha = (d, cor, esp) => `<path d="${d}" fill="none" stroke="${cor}" stroke-width="${r1(esp * fino)}" stroke-linecap="round" stroke-linejoin="round"/>`;
   const cheio = (f, cor, borda, div = true) => `<path d="${suave(f.pts)}" fill="${cor}" stroke="${borda}" stroke-width="${r1(0.4 * fino)}" stroke-linejoin="round"/>${div ? f.div.map((l) => linha(suave(l, false), borda, 0.35)).join('') : ''}`;
   let quietos = '', ativos = '';
@@ -109,7 +109,7 @@ function musculos(formas, papeis, C, { parados = 'nada', veus = [], soFora = nul
     }
     const desenhar = (mist) => {
       const m = (cor) => (mist ? misturar(cor, mist, 0.38) : cor);
-      if (r === 'p') return cheio(f, m(C.musP), m(C.musPb));
+      if (r === 'p') return cheio(f, m(C.musP), m(C.musPb), !semDivisoes);
       if (r === 's') return cheio(f, m(C.musS), m(C.musSb), false);
       // só ajuda: listras na cor do secundário, com a borda tracejada
       const id = `lis${musculos.n++}`;
@@ -198,7 +198,9 @@ export function figura(pose, vista, c, o = {}) {
     return suave(membro(a, b, perfil, { ...op, gordura: g * (op.gordura ?? 1) }));
   };
   const parados = c.definicao ?? 'nada';
-  const fino = 1;
+  // `fino` engrossa ou afina as linhas de dentro (grupos musculares, divisões); `semDivisoes` tira as divisões do
+  // músculo principal (na miniatura)
+  const fino = c.fino ?? 1, semDivisoes = !!c.semDivisoes;
   // no pictograma não há forma de músculo: a parte do corpo que trabalha fica inteira na cor do músculo
   const zonaDe = (ids, padrao) => {
     if (c.forma !== 'barra' || !mostra) return padrao;
@@ -259,7 +261,7 @@ export function figura(pose, vista, c, o = {}) {
     const todos = c.forma === 'barra' ? [] : montar(DE_LADO, onde);
     const veus = [...(veuRegata ? [{ ds: [tronco], cor: C.roupaVeu }] : []), ...(veuShort ? [{ ds: [pelve, short], cor: C.shortVeu }] : [])];
     const roupaOpaca = [...(temRegata && !veuRegata ? [tronco] : []), ...(temShort && !veuShort ? [pelve, short] : [])];
-    const mus = (ids) => (mostra || parados !== 'nada' ? musculos(todos.filter(ids), o.papeis, C, { parados, veus, soFora: roupaOpaca, fino }) : '');
+    const mus = (ids) => (mostra || parados !== 'nada' ? musculos(todos.filter(ids), o.papeis, C, { parados, veus, soFora: roupaOpaca, fino, semDivisoes }) : '');
     const desenhadas = [];
     const grupoDe = (formas, extra = {}) => {
       const fs = formas.filter((f) => f.d);
@@ -379,7 +381,7 @@ export function figura(pose, vista, c, o = {}) {
   const todos = c.forma === 'barra' ? [] : montar(deCostas ? DE_COSTAS : DE_FRENTE, onde);
   const veus = [...(veuRegata ? [{ ds: [tronco], cor: C.roupaVeu }] : []), ...(veuShort ? [{ ds: [pelve], cor: C.shortVeu }] : [])];
   const roupaOpaca = [...(temRegata && !veuRegata ? [tronco] : []), ...(temShort && !veuShort ? [pelve] : [])];
-  const mus = (ids) => (mostra || parados !== 'nada' ? musculos(todos.filter(ids), o.papeis, C, { parados, veus, soFora: roupaOpaca, fino }) : '');
+  const mus = (ids) => (mostra || parados !== 'nada' ? musculos(todos.filter(ids), o.papeis, C, { parados, veus, soFora: roupaOpaca, fino, semDivisoes }) : '');
 
   if (c.pecas || c.forma === 'barra') {
     if (c.forma === 'barra') {
