@@ -185,4 +185,6 @@ O roteiro de capturas (`scripts/design/frontend-novo/capturas.spec.ts`) fotograf
 
 **Resultado:** `npm run check` com 896 testes, 157 e2e e `npm run conferir:tokens` limpos; motor e domínio sem mudança.
 
+**Um defeito que a verificação do GitHub pegou depois da junção** (13/11/2026): com zoom de 200% (206 px de largura), o rótulo "o que o app não faz" não quebrava e empurrava a boas-vindas para fora da margem. Na máquina da sessão passava por 2,6 px; no GitHub, onde a letra sai um pouco mais larga, a tela rolava de lado e o teste `cenarios.spec.ts` (zoom200 · cadastro) falhou. Correção: o rótulo do toque quebra em tela estreita. Para não depender mais desses poucos pixels, a ferramenta `olhar.mjs` ganhou `MARGEM=1`, que lista o que passa da margem de 16 px da página; a varredura de 30 telas a 206 px achou mais dois apertos que os testes não pegavam (a prescrição na folha do exercício, 61 px para fora, e a etiqueta "Recomendada", 1,7 px), também corrigidos.
+
 **O que continua longo** (etapas 2 a 5 da seção 8): termos (793 palavras), folha da foto (194), perguntas completas da saúde (195), guia (cerca de 300) e, por dentro dos blocos que abrem, as frases do domínio (avisos e porquês).
