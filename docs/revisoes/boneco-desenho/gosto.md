@@ -28,3 +28,24 @@ Pergunta: o que falta no boneco de hoje para ser o final? (opções: acabamento;
 - Não marcou: mãos, pés e cabeça de verdade.
 
 **Leitura minha:** o que ele valoriza no boneco de hoje é o efeito (entender de relance, não pesar, parecer esquema), e não o desenho em si; o contorno não é o que segura esse efeito. O pedido de "corpo e músculos mais fiéis" junto com "simplicidade" aponta para uma figura de formas simples, mas com a silhueta de gente (ombro, tronco, coxa com forma), e não para mais detalhe (mão, pé e rosto não foram pedidos). "Personalidade" e "acabamento" pedem um desenho com autoria, que pareça feito por alguém. E o aviso dele vale como regra desta sessão: as propostas não podem ser só variações do boneco de hoje.
+
+### 2. Perguntas de escolha entre dois (a partir de 13/11/2026)
+
+Cada pergunta mostra o mesmo "boneco de prova" (um desenho feito só para estas perguntas, `scripts/boneco-desenho/boneco-prova.mjs`; não é proposta de boneco) com uma coisa trocada. As pranchas estão em `gosto/par-N-*.png` e saem de `node scripts/boneco-desenho/pares.mjs`.
+
+| # | Pergunta | Prancha | Resposta do Gustavo |
+|---|---|---|---|
+| 1 | Com contorno ou sem contorno? | `gosto/par-1-contorno.png` | (aguardando) |
+| 2 | Cabeça lisa, só o cabelo, ou cabelo e rosto? | `gosto/par-2-cabeca.png` | |
+| 3 | Com roupa ou sem roupa? | `gosto/par-3-roupa.png` | |
+| 4 | Chapado ou com volume? | `gosto/par-4-volume.png` | |
+| 5 | Proporção real ou levemente estilizada? | `gosto/par-5-proporcao.png` | |
+| 6 | Cinza neutro, cor de pele ou a cor do app? | `gosto/par-6-cor.png` | |
+| 7 | Traço fino ou traço grosso? | `gosto/par-7-traco.png` | |
+| 8 | O músculo no corpo ou num mapa ao lado? | `gosto/par-8-musculo.png` | |
+
+As pranchas 2 a 8 são regeradas com o que ele já tiver escolhido nas anteriores (a base passa como JSON para o script).
+
+### 3. Referências de que ele gosta e de que não gosta
+
+Pedido feito em 13/11/2026, junto com o resumo de links (`referencias-resumo.md`). (aguardando)
