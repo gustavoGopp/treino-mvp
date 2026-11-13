@@ -13,7 +13,8 @@ import { agoraIso, fusoDoAparelho, useApp } from '../app/estado';
 import { lerContexto, linkDoGuia } from './link';
 import { useTelaAcesa } from '../treino/Temporizador';
 import { Icone } from '../app/icones';
-import { Selo } from '../app/ui';
+import { PorQue, Selo } from '../app/ui';
+import { useDescanso } from '../treino/Temporizador';
 
 // Tela do guia de execução: mesma interface do guia original (referencia/guia-execucao-fase1.html),
 // sem o temporizador de descanso (que entra no M5). O motor não sabe de React: o palco só recebe o SVG.
@@ -99,6 +100,8 @@ function GuiaExercicio({ ex, grupos }: { ex: Ficha; grupos: Grupo[] }) {
   const ctx = lerContexto(params);
   const programa = app.estado.programa?.programa;
   const sessao = app.estado.sessaoAtual;
+  // o descanso em curso segue contando (e avisando no fim) com o guia aberto pelo treino
+  const descanso = useDescanso(ctx?.de === 'treino' ? sessao?.id : undefined);
   const hoje = ctx?.de === 'treino' && sessao && sessao.diaId === ctx.diaId ? hojeDoTreino(app.estado, sessao, fusoDoAparelho()) : hojeDoEstado(app.estado, agoraIso(), fusoDoAparelho());
   const minha = ctx && programa && hoje ? prescricaoNoGuia(programa, ctx, hoje) : null;
   const meus =
@@ -228,14 +231,8 @@ function GuiaExercicio({ ex, grupos }: { ex: Ficha; grupos: Grupo[] }) {
           fase.current.replaceChildren();
           const b = document.createElement('b');
           const sp = document.createElement('span');
-          if (s.modo === 'err') {
-            b.className = 'erro-no-palco';
-            b.textContent = nomeErro;
-            sp.textContent = q.fase.label;
-          } else {
-            b.textContent = q.fase.label;
-            sp.textContent = q.fase.tempo || '';
-          }
+          b.textContent = q.fase.label;
+          sp.textContent = q.fase.tempo || '';
           fase.current.append(b, sp);
         }
         if (resp.current) {
@@ -262,7 +259,7 @@ function GuiaExercicio({ ex, grupos }: { ex: Ficha; grupos: Grupo[] }) {
     return () => mq.removeEventListener?.('change', mudou);
   }, []);
 
-  const vistas: string[] = useMemo(() => (modo === 'err' ? [...new Set([vista, ...ex.views])] : ex.views), [modo, vista, ex]);
+  const vistas: string[] = useMemo(() => (modo === 'err' ? [...new Set([...ex.views, vista])] : ex.views), [modo, vista, ex]);
   const irPara = (i: number) => {
     const n = (i + dia.ex.length) % dia.ex.length;
     navigate(minha ? linkMeu(meus[n]!.x.exId, meus[n]!.x.animacaoId!) : `/guia/${dia.ex[n]!}`);
@@ -293,6 +290,12 @@ function GuiaExercicio({ ex, grupos }: { ex: Ficha; grupos: Grupo[] }) {
       {/* Redesign, lote 2: o palco no topo. Aberto pelo treino, o cabeçalho é o do treino: voltar e "Senti algo" (que
           volta ao treino com a folha aberta, para a segurança ter uma lógica só). No catálogo, os dias e os exercícios. */}
       <header className="top">
+        {minha && ctx!.de === 'treino' && descanso.ativo && (
+          <Link className="faixa-descanso" to="/treino">
+            <span>{descanso.resta <= 0 ? 'Hora da próxima série' : 'Descanso'}</span>
+            <span className="num">{descanso.resta <= 0 ? `+${tempo(Math.floor(-descanso.resta))}` : tempo(Math.ceil(descanso.resta))}</span>
+          </Link>
+        )}
         {minha ? (
           <div className="brand cab-treino">
             <Link className="topo-volta" to={ctx!.de === 'treino' ? '/treino' : '/programa'}>
@@ -335,7 +338,7 @@ function GuiaExercicio({ ex, grupos }: { ex: Ficha; grupos: Grupo[] }) {
       <main className="conteudo-guia">
         <section className="card" aria-label="Animação">
           <div className="stage" data-testid="palco">
-            <svg ref={svg} xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Animação do exercício" />
+            <svg ref={svg} xmlns="http://www.w3.org/2000/svg" role="img" aria-label={`O Boneco fazendo ${txt.name.toLowerCase()}`} />
             <div className="hud">
               <div className="phase" ref={fase}>
                 <b>—</b>
@@ -345,9 +348,8 @@ function GuiaExercicio({ ex, grupos }: { ex: Ficha; grupos: Grupo[] }) {
                 EXPIRA
               </div>
             </div>
-            <div className="errbanner" />
           </div>
-          <div className="timeline" ref={linha}>
+          <div className="timeline" ref={linha} aria-hidden="true">
             {ex.seq.map((g: Animacao, i: number) => (
               <div key={i} className={`tseg ${g.kind}`} style={{ '--peso': g.dur } as CSSProperties}>
                 {g.kind !== 'hold' && g.dur >= 0.8 ? g.label.split(' · ')[0].toLowerCase() : ''}
@@ -430,10 +432,16 @@ function GuiaExercicio({ ex, grupos }: { ex: Ficha; grupos: Grupo[] }) {
                   ...(minha.fase?.rir ? [minha.fase.regraId === 'iniciante.fase-aprendizado' ? 'fase de aprendizado' : 'volta da pausa'] : []),
                 ].map((t, i) => (
                   <span key={t}>
-                    {i > 0 && ' · '}
-                    <span className="nw">{t}</span>
+                    {i > 0 && ' '}
+                    <span className="nw">
+                      {i > 0 && '· '}
+                      {t}
+                    </span>
                   </span>
-                ))}
+                ))}{' '}
+                <PorQue regras={['rir.leitura', ...(minha.fase?.rir ? [minha.fase.regraId] : [])]} titulo="A prescrição de hoje">
+                  <p>RIR é “repetições na reserva”: quantas repetições ainda sobravam quando você parou. RIR 2 quer dizer que dava para fazer mais 2.</p>
+                </PorQue>
               </div>
             ) : (
               <div className="rx">As séries, as repetições e o RIR vêm do seu programa.</div>
@@ -469,9 +477,14 @@ function GuiaExercicio({ ex, grupos }: { ex: Ficha; grupos: Grupo[] }) {
           </p>
           <p className="note">
             As animações usam um modelo simplificado com medidas aproximadas e não substituem uma avaliação presencial. A sensação
-            muscular sozinha não prova que a execução está certa: confira também setup, trajetória e amplitude.
+            muscular sozinha não prova que a execução está certa: confira também a montagem, a trajetória e a amplitude.
           </p>
         </div>
+        {minha && (
+          <Link className="btn sec" to={ctx!.de === 'treino' ? '/treino' : '/programa'}>
+            Voltar para {ctx!.de === 'treino' ? 'o treino' : 'o programa'}
+          </Link>
+        )}
       </footer>
     </div>
   );

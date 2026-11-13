@@ -172,6 +172,7 @@ header.top{position:sticky;top:0;z-index:4;background:var(--fundo);padding:var(-
 .btn:disabled{background:var(--superficie-2);color:var(--texto-2) !important;cursor:not-allowed}
 .btn.sec{min-height:var(--h56);background:var(--superficie-2);color:var(--texto) !important;font-size:var(--t-corpo)}
 .btn.sec[aria-pressed="true"]{background:var(--acao);color:var(--sobre-acao) !important}
+.btn.sec:disabled{background:none;box-shadow:inset 0 0 0 1px var(--linha);color:var(--texto-2) !important}
 .btn.perigo{background:var(--alerta);color:var(--fundo) !important}
 .btn.pequeno{min-height:var(--h48);padding:var(--s4) var(--s16);font-size:var(--t-corpo);width:auto;max-width:100%;align-self:flex-start}
 .btn.ter{background:transparent;color:var(--texto) !important;min-height:var(--h48);padding:0 var(--s8);font-size:var(--t-corpo);text-decoration:underline;text-underline-offset:var(--s4)}
@@ -186,7 +187,8 @@ header.top{position:sticky;top:0;z-index:4;background:var(--fundo);padding:var(-
 .iconbtn:active,.mais-op:active{transform:scale(.94)}
 /* a ação principal da tela fica embaixo, ao alcance do polegar */
 .acao-fixa{position:sticky;bottom:0;z-index:3;margin:0 calc(-1 * var(--s16));padding:var(--s16) var(--s16) calc(var(--s16) + env(safe-area-inset-bottom,0px));background:var(--fundo)}
-.dois{display:grid;grid-template-columns:1fr 1fr;gap:var(--s8)}
+.dois{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:var(--s8)}
+.dois .btn{min-width:0;padding-left:var(--s8);padding-right:var(--s8)}
 
 /* ---------- formulários: rótulo e ajuda sempre visíveis, sem placeholder ---------- */
 .form{display:flex;flex-direction:column;gap:var(--s32)}
@@ -240,7 +242,8 @@ details.campo .opcoes{margin-top:var(--s8)}
 .chips-valor{display:flex;flex-wrap:wrap;gap:var(--s8)}
 .chip-valor{position:relative;display:inline-flex;align-items:center;justify-content:center;min-height:var(--h48);min-width:var(--h48);padding:0 var(--s16);border:0;border-radius:var(--r8);background:var(--superficie-2);cursor:pointer;font-size:var(--t-corpo);font-weight:600;transition:transform .1s ease-out}
 .chip-valor:active{transform:scale(.96)}
-.chip-valor input{position:absolute;opacity:0;width:1px;height:1px}
+/* o campo cobre o botão inteiro: o toque cai sempre nele, mesmo com o botão encolhendo ao ser apertado */
+.chip-valor input{position:absolute;inset:0;width:100%;height:100%;margin:0;opacity:0;cursor:pointer}
 .chip-valor:has(input:checked){background:var(--acao);color:var(--sobre-acao)}
 .chip-valor:has(input:focus-visible){outline:3px solid var(--foco);outline-offset:2px}
 .contadores{display:flex;flex-direction:column;gap:var(--s8)}
@@ -397,10 +400,10 @@ details.campo .opcoes{margin-top:var(--s8)}
 .seg button{border:0;background:var(--fundo);padding:0 var(--s16);min-height:var(--h48);min-width:var(--h56);border-radius:var(--r8);font-size:var(--t-apoio);font-weight:600;cursor:pointer;color:var(--texto-2)}
 .seg button[aria-pressed="true"]{background:var(--acao);color:var(--sobre-acao)}
 /* os 4 modos: abas de texto, com um traço embaixo da escolhida */
-.modes{display:grid;grid-template-columns:repeat(4,1fr);margin:0 var(--s8)}
-.modes button{position:relative;border:0;background:transparent;min-height:var(--h48);padding:0 var(--s4);font-size:var(--t-apoio);cursor:pointer;font-weight:600;color:var(--texto-2)}
-.modes button[aria-pressed="true"]{color:var(--texto)}
-.modes button[aria-pressed="true"]::after{content:"";position:absolute;left:var(--s8);right:var(--s8);bottom:var(--s4);height:2px;background:var(--texto)}
+.modes,.modos-treino{display:flex;gap:var(--s8);padding:0 var(--s8);margin:0}
+.modes button,.modos-treino button{position:relative;border:0;background:transparent;min-height:var(--h48);min-width:var(--h48);padding:0 var(--s8);font-size:var(--t-apoio);cursor:pointer;font-weight:600;color:var(--texto-2)}
+.modes button[aria-pressed="true"],.modos-treino button[aria-pressed="true"]{color:var(--texto)}
+.modes button[aria-pressed="true"]::after,.modos-treino button[aria-pressed="true"]::after{content:"";position:absolute;left:var(--s8);right:var(--s8);bottom:var(--s4);height:2px;background:var(--texto)}
 .modeinfo{padding:var(--s16);font-size:var(--t-corpo);display:flex;flex-direction:column;gap:var(--s16)}
 .legend{display:flex;flex-wrap:wrap;gap:var(--s8) var(--s16);font-size:var(--t-apoio);color:var(--texto-2)}
 .legend span{display:flex;align-items:center;gap:var(--s8)}
@@ -643,22 +646,39 @@ a.cartao-ex-corpo:focus-visible,button.cartao-ex-corpo:focus-visible{outline:3px
 /* ---------- o treino em andamento ---------- */
 /* A tela ocupa a altura do aparelho: em cima o guia (o Boneco, que encolhe se faltar altura), embaixo o registro. */
 .treino-tela{min-height:100dvh;padding-bottom:0;background:var(--fundo);color:var(--texto)}
+/* "presa": o registro cabe na tela (Treino.tsx, usePainelPreso). A tela não rola; o guia ocupa o que sobra entre o
+   cabeçalho e o registro e, conforme o espaço, larga primeiro a legenda, depois as abas e, por fim, o palco (o guia
+   completo continua a um toque, no livro do cabeçalho). Um Boneco coberto pela metade nunca aparece. */
+.treino-tela.presa{height:100dvh;min-height:0;overflow:hidden}
+.presa .guia-do-treino{flex:1 1 0;min-height:0;overflow-y:auto;overscroll-behavior:contain}
+.presa .palco-treino{flex:1 1 0;min-height:0;container-type:size;container-name:palco}
+.presa .palco-btn{flex:1 1 0;min-height:0}
+.presa .registro-bloco:not(.solto){position:static;flex:none;margin-top:0}
+@container palco (max-height:15rem){.presa .legenda-do-modo{display:none}}
+@container palco (max-height:10rem){.presa .modos-treino{display:none}}
+@container palco (max-height:5rem){.presa .palco-btn{display:none}}
+/* quando o registro não cabe na tela (letra grande, zoom, celular muito pequeno), a página rola: o palco fica sozinho
+   em cima, sem as abas e a legenda (que seguem no guia completo), para o registro não ir longe demais */
+.treino-tela:not(.presa) .modos-treino,.treino-tela:not(.presa) .legenda-do-modo{display:none}
 /* o fim do descanso inverte a tela inteira: um aviso para ler de longe, sem depender de cor nem só do som */
 .invertida{--fundo:var(--inv-fundo);--superficie-2:var(--inv-superficie-2);--linha:var(--inv-linha);--texto:var(--inv-texto);--texto-2:var(--inv-texto-2);--acao:var(--inv-texto);--sobre-acao:var(--inv-fundo);--foco:var(--inv-texto);--feito:var(--inv-texto);--atencao:var(--inv-texto);--feito-suave:var(--inv-superficie-2);--atencao-suave:var(--inv-superficie-2)}
 body:has(.invertida){background:var(--inv-fundo)}
 .sessao{flex:1;display:flex;flex-direction:column;gap:0;min-height:0}
 .cab-treino{gap:var(--s4)}
-.cab-treino .onde-treino{flex:1;font-size:var(--t-corpo);font-weight:600;color:var(--texto)}
-.cab-treino .volta-inicio{width:var(--h48);min-height:var(--h48);display:inline-grid;place-items:center;margin-left:calc(-1 * var(--s16));color:var(--texto)}
+.app .cab-treino > .onde-treino{flex:1;font-size:var(--t-corpo);font-weight:600;color:var(--texto);white-space:nowrap}
+.app .cab-treino > a.volta-inicio{width:var(--h48);min-height:var(--h48);display:inline-grid;place-items:center start;margin-left:calc(-1 * var(--s4));padding:0;color:var(--texto)}
+/* com uma folha aberta, o que não responde ao toque no cabeçalho fica apagado (só o "Senti algo" segue vivo) */
+.cab-treino > [inert]{opacity:.35}
 .cab-treino .iconbtn,.cab-treino .mais-op{background:none;color:var(--texto)}
 .cab-treino .topo-volta{margin-right:auto;margin-left:calc(-1 * var(--s8));gap:var(--s4);color:var(--texto);text-decoration:none}
 /* "Senti algo": a única cor da interface, sempre no mesmo lugar */
 .alerta-topo{display:inline-flex;align-items:center;gap:var(--s8);min-height:var(--h48);padding:0 var(--s16);border-radius:var(--r8);border:0;background:var(--alerta-suave);color:var(--alerta);font-weight:600;font-size:var(--t-corpo);cursor:pointer;white-space:nowrap;flex:none}
 .alerta-topo .icone{width:1.25rem}
 .prog-treino{list-style:none;margin:0;padding:0;display:flex;gap:var(--s4)}
-.prog-treino li{flex:1;height:var(--s4);background:var(--superficie-2)}
-.prog-treino li.feito{background:var(--texto)}
-.prog-treino li.atual{background:var(--texto-2)}
+.prog-treino{align-items:center}
+.prog-treino li{flex:1;height:2px;background:var(--borda)}
+.prog-treino li.feito{height:var(--s4);background:var(--texto-2)}
+.prog-treino li.atual{height:var(--s4);background:var(--texto)}
 /* o guia: o palco ocupa o que sobra da tela, até 16:9; em celular baixo é ele que encolhe, nunca o registro */
 .guia-do-treino{flex:1 1 auto;display:flex;flex-direction:column;gap:var(--s8);min-height:0}
 .palco-treino{flex:1 1 auto;display:flex;flex-direction:column;min-height:0;margin:0 calc(-1 * var(--s16))}
@@ -666,14 +686,13 @@ body:has(.invertida){background:var(--inv-fundo)}
 @media (min-width:560px){.palco-btn{max-height:calc(var(--s64) * 5)}}
 .palco-btn .stage{position:absolute;inset:0;aspect-ratio:auto;display:block}
 .palco-btn .stage.esperando{animation:espera 1.2s ease-in-out infinite alternate}
-.palco-btn .fase-do-movimento{position:absolute;top:var(--s8);left:var(--s16);font-size:var(--t-rotulo);font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--st-muted);text-align:left}
+.palco-btn .fase-do-movimento{position:absolute;top:var(--s8);left:var(--s8);z-index:1;padding:var(--s4) var(--s8);background:var(--stage);font-size:var(--t-rotulo);font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--st-muted);text-align:left}
+.palco-btn .fase-do-movimento:empty{display:none}
 .palco-btn .toca{position:absolute;top:var(--s8);right:var(--s16);width:1.25rem;color:var(--st-muted)}
-.modos-treino{display:grid;grid-template-columns:repeat(4,1fr);padding:0 var(--s8)}
-.modos-treino button{position:relative;border:0;background:transparent;min-height:var(--h48);padding:0 var(--s4);font-size:var(--t-apoio);cursor:pointer;font-weight:600;color:var(--texto-2)}
-.modos-treino button[aria-pressed="true"]{color:var(--texto)}
-.modos-treino button[aria-pressed="true"]::after{content:"";position:absolute;left:var(--s8);right:var(--s8);bottom:var(--s4);height:2px;background:var(--texto)}
 .legenda-do-modo{margin:0;padding:var(--s8) var(--s16) 0;font-size:var(--t-apoio);color:var(--texto-2)}
 .legenda-do-modo b{color:var(--texto);font-weight:600}
+.palco-falhou{gap:var(--s8);padding:var(--s16);margin:0;container-type:normal}
+.palco-falhou .ajuda{margin:0}
 .guia-do-treino > .ajuda,.guia-do-treino > .warnbox,.guia-do-treino > .cartao-texto{margin-top:var(--s8)}
 .faixa-descanso{display:flex;align-items:center;justify-content:space-between;gap:var(--s16);min-height:var(--h48);width:100%;border:0;border-radius:var(--r8);background:var(--superficie-2);padding:0 var(--s16);font-weight:600;cursor:pointer;color:var(--texto)}
 /* o registro: o nome, as séries feitas, os números, a reserva e o botão, num bloco só, preso embaixo */
@@ -693,8 +712,8 @@ body:has(.invertida){background:var(--inv-fundo)}
 .serie-tit{display:flex;justify-content:space-between;align-items:center;gap:var(--s16)}
 .registro h2{margin:0;font-size:var(--t-rotulo);font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--texto-2)}
 .pips{list-style:none;margin:0;padding:0;display:flex;gap:var(--s4);flex:none}
-.pips li{width:var(--s16);height:var(--s8);background:var(--superficie-2)}
-.pips li.feita{background:var(--texto)}
+.pips li{width:var(--s16);height:var(--s8);box-shadow:inset 0 0 0 1px var(--borda)}
+.pips li.feita{background:var(--texto);box-shadow:none}
 .pips li.atual{box-shadow:inset 0 0 0 2px var(--texto)}
 /* carga e repetições: os maiores números da tela, cada um com menos e mais embaixo */
 .colunas{display:grid;grid-template-columns:1fr 1fr;gap:var(--s16);align-items:start}
@@ -705,6 +724,8 @@ body:has(.invertida){background:var(--inv-fundo)}
 .valor-grande small.escolha{font-size:var(--t-rotulo);font-weight:600;letter-spacing:.08em;text-transform:uppercase}
 /* por cima do número, invisível, o seletor do aparelho: um toque no número abre a lista das cargas */
 .com-lista{position:relative}
+.valor-grande .abre-lista{width:1.25rem;margin-left:var(--s4);color:var(--texto-2)}
+.valor-grande.vazio{color:var(--texto-2)}
 .com-lista select{position:absolute;inset:0;width:100%;height:100%;min-height:0;max-width:none;padding:0;opacity:0;cursor:pointer;font-size:var(--t-corpo);box-shadow:none}
 .com-lista:has(select:focus-visible){outline:3px solid var(--foco);outline-offset:2px}
 /* a dificuldade do exercício com o peso do corpo: o texto inteiro, que pode quebrar a linha, num bloco tocável */
@@ -721,7 +742,7 @@ body:has(.invertida){background:var(--inv-fundo)}
 .rir-meta{font-size:var(--t-apoio);color:var(--texto-2);margin-right:auto}
 .registro .chips-valor{display:grid;grid-template-columns:repeat(5,1fr);gap:var(--s8)}
 .registro .chip-valor{padding:0;min-width:0}
-.chip-valor.meta::after{content:"";position:absolute;left:30%;right:30%;bottom:var(--s8);height:2px;background:currentColor;opacity:.55}
+.chip-valor.na-meta::after{content:"";position:absolute;left:30%;right:30%;bottom:var(--s8);height:2px;background:currentColor}
 .registro .salvar,.descanso .salvar{min-height:var(--h64)}
 .queda{display:flex;flex-direction:column;gap:var(--s8);padding:var(--s16) 0 0;border-top:1px solid var(--linha)}
 .queda .valor-grande{font-size:var(--t-titulo)}
@@ -730,7 +751,7 @@ body:has(.invertida){background:var(--inv-fundo)}
 .descanso{flex:1;display:flex;flex-direction:column;gap:var(--s16);padding:var(--s16) 0 calc(var(--s16) + env(safe-area-inset-bottom,0px))}
 .descanso-topo{flex:1;display:flex;flex-direction:column;justify-content:center;gap:var(--s16);min-height:calc(var(--h64) * 3);font-size:var(--t-rotulo);font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--texto-2)}
 .tclock-mini{font-weight:700;font-size:var(--t-relogio);line-height:.9;letter-spacing:-.05em;color:var(--texto);text-transform:none}
-.tbar{height:var(--s4);background:var(--superficie-2);overflow:hidden}
+.tbar{height:var(--s4);overflow:hidden;box-shadow:inset 0 -1px 0 var(--borda),inset 0 1px 0 var(--borda)}
 .tbar i{display:block;height:100%;width:0;background:var(--texto)}
 .descanso .tbar i{transition:width .25s linear}
 @media (prefers-reduced-motion: reduce){.descanso .tbar i{transition:none}.palco-btn .stage.esperando{animation:none}}
@@ -742,10 +763,17 @@ body:has(.invertida){background:var(--inv-fundo)}
 .aseguir b{font-size:var(--t-pergunta);font-weight:700;letter-spacing:-.01em}
 .feitas-linha{padding:var(--s16) 0;border-top:1px solid var(--linha)}
 .aviso-seguranca{margin:var(--s8) 0}
-.salva-linha{display:flex;align-items:center;justify-content:space-between;gap:var(--s8);margin:0;font-size:var(--t-apoio);color:var(--texto-2);border-top:1px solid var(--linha)}
+.salva-linha{display:flex;align-items:center;justify-content:space-between;gap:var(--s8);margin:0;min-height:var(--h48);font-size:var(--t-apoio);color:var(--texto-2);border-top:1px solid var(--linha)}
 .salva-linha > span{display:inline-flex;align-items:center;gap:var(--s8)}
 .salva-linha .icone{width:1.25rem}
 .tctl{display:grid;grid-template-columns:1fr 1fr 1fr;gap:var(--s8)}
+.tctl.so-um{grid-template-columns:1fr}
+/* (6) o botão desligado diz o que falta */
+.falta{margin:0;font-size:var(--t-apoio);color:var(--texto-2);text-align:center}
+/* (10) "Senti algo": cada grupo diz o que acontece ao tocar */
+.grupo-sinais{display:flex;flex-direction:column;gap:var(--s8)}
+.grupo-sinais .rotulo{margin:0}
+a.faixa-descanso{text-decoration:none}
 .tctl button{min-height:var(--h56);border-radius:var(--r8);border:0;background:var(--superficie-2);font-size:var(--t-corpo);font-weight:600;cursor:pointer;color:var(--texto)}
 /* "Série N salva · Desfazer", por 5 s depois de salvar */
 .desfazer{display:flex;align-items:center;justify-content:space-between;gap:var(--s16);padding:0 0 0 var(--s16);border-radius:var(--r8);background:var(--superficie-2);color:var(--texto);font-weight:500;font-size:var(--t-apoio)}
@@ -762,8 +790,8 @@ body:has(.invertida){background:var(--inv-fundo)}
   .descanso-topo{min-height:calc(var(--h48) * 3)}
   .aseguir{padding:var(--s8) 0}
 }
-/* celular muito baixo: os modos e a legenda saem do treino (ficam no guia completo); o Boneco e o registro cabem */
-@media (max-height:700px){.modos-treino,.legenda-do-modo{display:none}}
+/* celular muito baixo: o descanso larga o piso do relógio e a miniatura, para a ação principal caber na 1ª tela */
+@media (max-height:700px){.descanso-topo{min-height:0;gap:var(--s8)}.aseguir .miniatura{display:none}.descanso{gap:var(--s8)}}
 
 /* ---------- o fim do treino ---------- */
 .mudou{display:flex;flex-direction:column;gap:var(--s8)}
@@ -840,13 +868,16 @@ body:has(.invertida){background:var(--inv-fundo)}
 .como-ler dd{margin:0}
 .resumo-ex{padding:var(--s16) 0}
 
+/* abaixo de 390 px o "1 de 6" não cabe ao lado do "Senti algo": fica só para o leitor de tela (o traço do progresso mostra) */
+@media (max-width:389px){
+  .app .cab-treino > .onde-treino{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+  .app .cab-treino > a.volta-inicio{margin-right:auto}
+}
 /* ---------- telas estreitas: 320 px e zoom de 200% (206 px) ---------- */
 @media (max-width:359px){
   :root{--t-relogio:6.5rem;--t-numero:3.5rem;--t-destaque:2rem;--t-titulo:1.75rem}
   .treino-tela{--t-relogio:6.5rem}
-  .modes{grid-template-columns:1fr 1fr}
-  .cab-treino .onde-treino{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
-  .cab-treino .volta-inicio{margin-right:auto}
+  .modes,.modos-treino{display:grid;grid-template-columns:1fr 1fr}
   /* o nome do treino já é o título da tela: no botão ele fica só para o leitor de tela */
   .so-largo{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
   /* só na tela estreita a palavra comprida pode ser partida com hífen */
@@ -862,8 +893,13 @@ body:has(.invertida){background:var(--inv-fundo)}
   .valor-grande{white-space:normal}
   .tctl{grid-template-columns:1fr 1fr}
   .tctl button:last-child{grid-column:1 / -1}
+  .tctl.so-um{grid-template-columns:1fr}
   .marca{white-space:normal}
   .alerta-topo{white-space:normal;padding:0 var(--s8)}
+  /* com zoom de 200%, o cabeçalho do treino e do guia quebra em duas linhas: "Senti algo" fica inteiro, na linha dele */
+  .cab-treino{flex-wrap:wrap}
+  .cab-treino .alerta-topo{flex:1 1 100%;justify-content:center;white-space:normal}
+  .cab-treino .topo-volta{white-space:normal}
   .stage .hud{flex-wrap:wrap}
   button.cartao-ex-corpo{grid-template-columns:var(--s16) 1fr auto}
   button.cartao-ex-corpo .miniatura{display:none}

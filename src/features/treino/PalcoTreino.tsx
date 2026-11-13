@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import { CONTEUDO } from '../../conteudo';
+import type { ConteudoExercicio } from '../../conteudo/schema';
 import { useEstiloBoneco } from '../app/estiloBoneco';
 import { Icone } from '../app/icones';
 import { largarCiclo, pedirAoBoneco, pedirCiclo, type Ficha, type QuadroGuia } from '../programa/desenhoFora';
@@ -17,6 +17,11 @@ const MODOS: [ModoDoGuia, string][] = [
   ['traj', 'Trajetória'],
 ];
 
+// O texto do guia do exercício da vez (dicas, 1º erro, onde sentir), baixado só quando a tela precisa dele. A tela do
+// treino não carrega os textos de todos os exercícios: se um arquivo falhar, o palco avisa e o registro segue de pé.
+const TEXTOS = import.meta.glob<{ default: ConteudoExercicio }>('../../conteudo/exercicios/*.json');
+const carregarTexto = (id: string) => TEXTOS[`../../conteudo/exercicios/${id}.json`]?.().then((m) => m.default) ?? Promise.reject(new Error(`sem texto para ${id}`));
+
 const reduzMovimento = () => typeof window !== 'undefined' && !!window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
 
 /** A vista de cada modo: a mesma regra com que a tela do guia abre cada um. */
@@ -28,8 +33,11 @@ function vistaDo(modo: ModoDoGuia, ficha: Ficha): string {
 
 export function PalcoTreino({ animacaoId }: { animacaoId: string }) {
   const estilo = useEstiloBoneco();
-  const txt = CONTEUDO[animacaoId];
+  const [txt, setTxt] = useState<ConteudoExercicio | null>(null);
   const [ficha, setFicha] = useState<Ficha | null>(null);
+  // o guia não chegou (sem rede e sem o arquivo guardado, versão nova publicada): a tela diz e deixa tentar de novo
+  const [falhou, setFalhou] = useState(false);
+  const [tentativa, setTentativa] = useState(0);
   const [modo, setModo] = useState<ModoDoGuia>('tec');
   const [tocando, setTocando] = useState(() => !reduzMovimento());
   const [desenhou, setDesenhou] = useState(false);
@@ -37,13 +45,20 @@ export function PalcoTreino({ animacaoId }: { animacaoId: string }) {
   useEffect(() => {
     let vivo = true;
     setFicha(null);
+    setTxt(null);
+    setFalhou(false);
     setDesenhou(false);
     setModo('tec');
-    void pedirAoBoneco<Ficha | null>({ tipo: 'ficha', animacaoId, estilo }).then((f) => vivo && setFicha(f));
+    const falha = () => vivo && setFalhou(true);
+    pedirAoBoneco<Ficha | null>({ tipo: 'ficha', animacaoId, estilo }).then((f) => vivo && (f ? setFicha(f) : setFalhou(true)), falha);
+    carregarTexto(animacaoId).then((x) => vivo && setTxt(x), falha);
+    // o Worker do Boneco que não responde não devolve erro: depois de 10 s sem a ficha, a tela para de esperar
+    const prazo = setTimeout(() => vivo && setFicha((f) => (f ? f : (setFalhou(true), f))), 10_000);
     return () => {
       vivo = false;
+      clearTimeout(prazo);
     };
-  }, [animacaoId, estilo]);
+  }, [animacaoId, estilo, tentativa]);
 
   const svg = useRef<SVGSVGElement>(null);
   const fase = useRef<HTMLSpanElement>(null);
@@ -139,7 +154,17 @@ export function PalcoTreino({ animacaoId }: { animacaoId: string }) {
     return () => mq.removeEventListener?.('change', mudou);
   }, []);
 
-  if (!txt) return null;
+  if (falhou)
+    return (
+      <section className="palco-treino palco-falhou" aria-label="Guia de execução">
+        <p className="ajuda" role="status">
+          O guia animado não carregou agora. O registro da série continua funcionando.
+        </p>
+        <button type="button" className="btn sec pequeno" onClick={() => setTentativa((n) => n + 1)}>
+          Tentar de novo
+        </button>
+      </section>
+    );
   const trocarModo = (m: ModoDoGuia) => {
     setModo(m);
     // o modo Erros abre no instante em que o certo e o errado mais se afastam, como na tela do guia
@@ -150,7 +175,7 @@ export function PalcoTreino({ animacaoId }: { animacaoId: string }) {
     <section className="palco-treino" aria-label="Guia de execução" aria-busy={!desenhou}>
       <button type="button" className="palco-btn" aria-label={tocando ? 'Pausar o guia' : 'Tocar o guia'} onClick={() => setTocando((v) => !v)}>
         <span className={`stage${desenhou ? '' : ' esperando'}`}>
-          <svg ref={svg} role="img" aria-label={`O Boneco fazendo ${txt.name.toLowerCase()}`} />
+          <svg ref={svg} role="img" aria-label={txt ? `O Boneco fazendo ${txt.name.toLowerCase()}` : 'O Boneco fazendo o exercício'} />
         </span>
         <span className="fase-do-movimento" ref={fase} aria-hidden="true" />
         <Icone nome={tocando ? 'pause' : 'play'} className="toca" />
@@ -163,13 +188,13 @@ export function PalcoTreino({ animacaoId }: { animacaoId: string }) {
         ))}
       </div>
       <p className="legenda-do-modo">
-        {modo === 'tec' && txt.cues.join(' ')}
-        {modo === 'err' && (
+        {txt && modo === 'tec' && txt.cues.join(' ')}
+        {txt && modo === 'err' && (
           <>
             <b>{txt.errors[0]!.title}.</b> {txt.errors[0]!.desc}
           </>
         )}
-        {modo === 'mus' && (
+        {txt && modo === 'mus' && (
           <>
             <b>Onde sentir:</b> {txt.feel}
           </>

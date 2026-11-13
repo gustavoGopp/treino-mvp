@@ -100,6 +100,14 @@ export function Treino() {
   // vistas: "Série N feita" na tela do descanso registra o mesmo que "Série feita" no registro.
   const [verSerie, setVerSerie] = useState(false);
   const [rascunho, setRascunho] = useState<Rascunho | null>(null);
+  // logo depois de salvar, "Série N feita" aparece no lugar exato de "Série feita": por 1 s o botão não responde,
+  // para um toque duplo não registrar a série seguinte (revisão do bloco 2, item 2)
+  const [recemSalva, setRecemSalva] = useState(false);
+  useEffect(() => {
+    if (!recemSalva) return;
+    const t = setTimeout(() => setRecemSalva(false), 1000);
+    return () => clearTimeout(t);
+  }, [recemSalva]);
   const noRelogio = descanso.ativo && !verSerie;
   const preso = usePainelPreso(`${noRelogio}`);
   useEffect(() => {
@@ -144,7 +152,7 @@ export function Treino() {
     <ol className="series-feitas" aria-label="Séries feitas">
       {feito.series.map((s, n) => (
         <li key={n}>
-          <span className="n">{n + 1}</span> {textoCarga(s.carga, feito.exId)} × {s.reps} · RIR {textoDoRir(s.rir, RIR.registroMax)}
+          <span className="n">{n + 1}ª</span> {textoCarga(s.carga, feito.exId)} × {s.reps} · RIR {textoDoRir(s.rir, RIR.registroMax)}
           {s.calibracao ? ' · acerto da carga' : ''}
           {s.dor ? ` · dor ${s.dor}` : ''}
           {s.quedas?.length ? ` · quedas: ${s.quedas.map((q) => `${textoCarga(q.carga, feito.exId)} × ${q.reps}`).join(', ')}` : ''}
@@ -168,6 +176,7 @@ export function Treino() {
     // A nota de dor dada antes da 1ª série está guardada no exercício e passa para esta série (registrarSerie).
     atualizar((s) => registrarSerie(s, i, acerto ? { ...serie, calibracao: true } : serie));
     setSalva({ indice: i, numero: feito.series.length + 1 });
+    setRecemSalva(true);
     setVerSerie(false);
     if (feito.series.length + 1 < x.series) descanso.iniciar(x.descansoSeg);
     else if (!ultimo) descanso.iniciar(x.descansoSeg);
@@ -175,12 +184,12 @@ export function Treino() {
   };
 
   return (
-    <div className={`wrap app treino-tela${noRelogio && descanso.resta <= 0 ? ' invertida' : ''}`}>
+    <div className={`wrap app treino-tela${noRelogio && descanso.resta <= 0 ? ' invertida' : ''}${!noRelogio && !preso.solto ? ' presa' : ''}`}>
       {/* Cabeçalho do treino: voltar ao início sem perder nada, o guia completo, as outras opções e "Senti algo" sempre à vista. */}
       <header className="top">
         <div className="brand cab-treino">
           <Link to="/programa" className="volta-inicio" aria-label="Voltar ao início; o treino fica salvo">
-            <Icone nome="chevron-left" />
+            <Icone nome="x" />
           </Link>
           {/* menos texto (lote 2): só "1 de 6" à vista; o nome do treino fica para o leitor de tela */}
           <span className="onde-treino">
@@ -220,16 +229,16 @@ export function Treino() {
             d={descanso}
             acao={
               completo ? (
-                <button type="button" className="btn" onClick={() => irPara(i + 1)}>
+                <button type="button" className="btn" disabled={recemSalva} onClick={() => irPara(i + 1)}>
                   Próximo exercício
                 </button>
               ) : (
                 rascunho?.pronto ? (
-                  <button type="button" className="btn salvar" onClick={() => feita(rascunho.serie())}>
+                  <button type="button" className="btn salvar" disabled={recemSalva} onClick={() => feita(rascunho.serie())}>
                     Série {feito.series.length + 1} feita
                   </button>
                 ) : (
-                  <button type="button" className="btn" onClick={() => setVerSerie(true)}>
+                  <button type="button" className="btn" disabled={recemSalva} onClick={() => setVerSerie(true)}>
                     Preencher a série {feito.series.length + 1}
                   </button>
                 )
@@ -248,9 +257,12 @@ export function Treino() {
                   ) : (
                     <>
                       <span className="rotulo">
-                        A seguir · série {feito.series.length + 1} de {x.series}
+                        A seguir · <span className="nw">série {feito.series.length + 1} de {x.series}</span>
                       </span>
-                      <b>{rascunho?.carga ? `${textoCarga(rascunho.carga, x.exId)} × ${rascunho.reps}` : 'Falta escolher a carga'}</b>
+                      <b>
+                        {rascunho?.carga ? `${textoCarga(rascunho.carga, x.exId)} × ${rascunho.reps}` : 'Falta escolher a carga'}
+                        {rascunho?.pronto && <small> · RIR {textoDoRir(rascunho.serie().rir, RIR.registroMax)}</small>}
+                      </b>
                       <span className="apoio">{x.nome}</span>
                     </>
                   )}
@@ -262,17 +274,19 @@ export function Treino() {
                 )}
               </div>
               {seriesFeitas && <div className="feitas-linha">{seriesFeitas}</div>}
-              {salva && (
-                <p className="salva-linha" role="status">
-                  <span>
-                    <Icone nome="check" />
-                    {erroAoSalvar ? `Série ${salva.numero} anotada, mas não salva` : `Série ${salva.numero} salva`}
-                  </span>
-                  <button type="button" className="link-botao" onClick={desfazerSalva}>
-                    Desfazer
-                  </button>
-                </p>
-              )}
+              <p className="salva-linha" role="status">
+                {salva && (
+                  <>
+                    <span>
+                      <Icone nome="check" />
+                      {erroAoSalvar ? `Série ${salva.numero} anotada, mas não salva` : `Série ${salva.numero} salva`}
+                    </span>
+                    <button type="button" className="link-botao" onClick={desfazerSalva}>
+                      Desfazer
+                    </button>
+                  </>
+                )}
+              </p>
             </div>
           </PainelDescanso>
         )}
@@ -308,7 +322,7 @@ export function Treino() {
         {/* o nome, as séries feitas, os números, a reserva e o botão: um bloco só, preso embaixo, perto do polegar */}
         <div ref={preso.ref} className={`registro-bloco${preso.solto ? ' solto' : ''}`} hidden={noRelogio}>
           <div className="ex-sessao">
-            <Titulo>{x.nome}</Titulo>
+            <Titulo key={x.exId}>{x.nome}</Titulo>
             <p className={x.dropSet ? 'meta' : 'meta sr'}>
               {x.series} × {faixa(x.reps)}
               {x.unilateral ? ' cada lado' : ''}
@@ -665,8 +679,11 @@ function RegistroSerie({
     <section className="registro" aria-label={`Série ${numero}`}>
       <div className="serie-tit">
         <h2>
-          Série {numero} de {x.series} · {faixa(x.reps)}
-          {x.unilateral && <span> cada lado</span>}
+          <span className="nw">Série {numero} de {x.series}</span> ·{' '}
+          <span className="nw">
+            {faixa(x.reps)}
+            {x.unilateral && <span> cada lado</span>}
+          </span>
         </h2>
         <ol className="pips" aria-hidden="true">
           {Array.from({ length: x.series }, (_, n) => (
@@ -701,7 +718,7 @@ function RegistroSerie({
         </div>
         <div className="chips-valor">
           {RIRS.map((n) => (
-            <label key={n} className={`chip-valor${naMeta(n) ? ' meta' : ''}`}>
+            <label key={n} className={`chip-valor${naMeta(n) ? ' na-meta' : ''}`}>
               <input type="radio" name={`rir-${numero}`} checked={rir === n} onChange={() => setRir(n)} aria-describedby={naMeta(n) ? `rir-meta-${numero}` : undefined} />
               <span>
                 {n === RIR.registroMax ? (
@@ -755,9 +772,18 @@ function RegistroSerie({
           ))}
         </fieldset>
       )}
-      <button type="button" className="btn salvar" disabled={!pronto} onClick={() => pronto && aoFazer(montar.current())}>
-        {descansando ? 'Série feita' : `Série feita · descansar ${tempo(x.descansoSeg)}`}
+      <button type="button" className="btn salvar" disabled={!pronto} aria-describedby={pronto ? undefined : `${uid}-falta`} onClick={() => pronto && aoFazer(montar.current())}>
+        {descansando ? 'Série feita' : (
+          <>
+            Série feita · <span className="nw">descansar {tempo(x.descansoSeg)}</span>
+          </>
+        )}
       </button>
+      {!pronto && (
+        <p className="falta" id={`${uid}-falta`}>
+          {!carga && rir === undefined ? 'Falta escolher a carga e quantas ainda conseguiria.' : !carga ? 'Falta escolher a carga.' : 'Falta dizer quantas ainda conseguiria.'}
+        </p>
+      )}
     </section>
   );
 }
@@ -900,7 +926,7 @@ function ControleCarga({
       {lista ? (
         // o número grande é o que se vê; por cima dele, invisível, o seletor do aparelho: um toque no número abre a
         // lista das cargas que a pessoa tem, para escolher qualquer uma de uma vez
-        <span className="valor-grande com-lista">
+        <span className={`valor-grande com-lista${k === undefined ? ' vazio' : ''}`}>
           <span aria-hidden="true">{numero(k === undefined ? undefined : numeroBr(k), 'kg')}</span>
           {k === undefined && (
             <small className="escolha" aria-hidden="true">
@@ -908,6 +934,8 @@ function ControleCarga({
               escolha
             </small>
           )}
+          {/* a seta diz que o número abre a lista das cargas */}
+          <Icone nome="chevron-down" className="abre-lista" />
           <select id={idCarga} className="carga-valor" value={k ?? ''} onChange={(e) => aoMudar({ tipo: 'kg', kg: Number(e.target.value) })}>
             <option value="" disabled>
               Escolha
@@ -981,13 +1009,24 @@ const SINAIS: { id: Sinal; texto: string }[] = [
 function Sentir({ aoDor, aoSinal }: { aoDor: (nota: number) => void; aoSinal: (s: Sinal) => void }) {
   return (
     <section className="sentir" aria-label="Senti algo">
-      <div className="pilha">
-        {SINAIS.map((s) => (
-          <button key={s.id} type="button" className="opcao-ajuste" onClick={() => aoSinal(s.id)}>
-            <b>{s.texto}</b>
-          </button>
-        ))}
-      </div>
+      {(['encerrar-sessao', 'encerrar-exercicio'] as const).map((acao) => {
+        const sinais = SINAIS.filter((s) => (avaliarSinal(s.id).acao === 'encerrar-sessao') === (acao === 'encerrar-sessao'));
+        if (!sinais.length) return null;
+        return (
+          <div key={acao} className="grupo-sinais" role="group" aria-label={acao === 'encerrar-sessao' ? 'Encerra o treino de hoje' : 'Encerra este exercício'}>
+            <p className="rotulo" aria-hidden="true">
+              {acao === 'encerrar-sessao' ? 'Encerra o treino de hoje' : 'Encerra este exercício'}
+            </p>
+            <div className="pilha">
+              {sinais.map((s) => (
+                <button key={s.id} type="button" className="opcao-ajuste" onClick={() => aoSinal(s.id)}>
+                  <b>{s.texto}</b>
+                </button>
+              ))}
+            </div>
+          </div>
+        );
+      })}
       <fieldset className="campo">
         <legend>Ou dê uma nota para a dor (0 a 10)</legend>
         <div className="chips-valor">

@@ -200,7 +200,8 @@ test('o app de hoje, tela por tela, com a Ana', async ({ page }, info) => {
         const voltar = page.getByRole('button', { name: /^(Descanso|Hora da próxima série)/ });
         if (await voltar.count()) {
           await voltar.click();
-          for (let k = 0; k < 9; k++) await page.getByRole('button', { name: '−15 s' }).click();
+          // no fim do descanso os ±15 s saem da tela: toca até o rótulo virar "Hora da próxima série"
+          for (let k = 0; k < 12 && !(await page.getByText('Hora da próxima série').isVisible()); k++) await page.getByRole('button', { name: '−15 s' }).click();
           await foto('09c-treino-hora-da-proxima-serie');
           await page.getByRole('button', { name: 'Ok' }).click();
         }

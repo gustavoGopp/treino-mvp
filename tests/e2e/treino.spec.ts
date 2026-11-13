@@ -265,7 +265,7 @@ test('exercício sem animação: a montagem segura vem sempre aberta, com o selo
   await expect(montagem).toBeVisible();
   await expect(montagem.getByRole('listitem').first()).toBeVisible();
   await expect(montagem.locator('button.selo')).toHaveAccessibleName(/: ver de onde vem$/);
-  await page.getByRole('button', { name: 'Como fazer: dicas e erros ›' }).click();
+  await page.getByRole('button', { name: 'Como fazer: dicas e erros' }).click();
   const folha = page.getByRole('dialog', { name: 'Como fazer (em texto)' });
   await expect(folha.getByRole('heading', { name: 'Dicas' })).toBeVisible();
   await expect(page.getByRole('button', { name: 'Senti algo' })).toBeVisible();

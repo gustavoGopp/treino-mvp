@@ -201,13 +201,17 @@ export function PainelDescanso({ d, children, acao }: { d: ReturnType<typeof use
         </div>
       </div>
       {children && <div className="descanso-seguir">{children}</div>}
-      <div className="tctl">
-        <button type="button" onClick={() => d.ajustar(-15)}>
-          −15 s
-        </button>
-        <button type="button" onClick={() => d.ajustar(15)}>
-          +15 s
-        </button>
+      <div className={`tctl${acabou ? ' so-um' : ''}`}>
+        {!acabou && (
+          <>
+            <button type="button" onClick={() => d.ajustar(-15)}>
+              −15 s
+            </button>
+            <button type="button" onClick={() => d.ajustar(15)}>
+              +15 s
+            </button>
+          </>
+        )}
         <button type="button" onClick={d.parar}>
           {acabou ? 'Ok' : 'Pular'}
         </button>
