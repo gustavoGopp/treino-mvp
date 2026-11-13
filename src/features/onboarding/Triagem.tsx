@@ -101,7 +101,7 @@ export function Triagem() {
     const r = avaliarTriagem({ respostas: bloqueio.respostas, dores: bloqueio.dores });
     return (
       <Passo id="triagem" titulo="Vamos pausar o programa automático">
-        <div className="warnbox">
+        <div className="warnbox seguranca">
           <p>Você respondeu “sim” em:</p>
           <ul className="lista">
             {r.motivos.map((m) => (

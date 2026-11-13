@@ -10,7 +10,7 @@ import { apagarUltimoTreino, hojeDoTreino, inventarioDoTreino, opcoesDaCarga } f
 import { marcarHojeFoi, semanaDoEstado } from '../acompanhamento/acoes';
 import { Pontos } from '../acompanhamento/Semana';
 import { SemanaLeve } from '../acompanhamento/SemanaLeve';
-import { PorQue, Selo, Titulo, Topo } from '../app/ui';
+import { PorQue, Selo, Titulo } from '../app/ui';
 
 // Fim do treino: resumo e a sugestão de cada exercício para a próxima vez (decisão 9 do M5). Lote 4 do redesign: primeiro
 // "O que mudou hoje" (a semana, os recordes e as cargas que sobem), depois "Hoje foi" e a próxima vez, com o motivo no
@@ -33,7 +33,6 @@ const HOJE_FOI = [
 ] as const;
 
 const TEXTO_MARCA: Record<Marca, string> = { 'subiu-a-carga': 'subiu a carga', recorde: 'recorde' };
-const plural = (n: number, um: string, varios: string) => `${n} ${n === 1 ? um : varios}`;
 
 export function Resumo() {
   const { estado, atualizar } = useApp();
@@ -62,9 +61,9 @@ export function Resumo() {
 
   return (
     <div className="wrap app">
-      <Topo direita={<Link to="/programa">Início</Link>} />
-      <main className="conteudo">
+      <main className="conteudo fim-do-treino">
         <AvisoSalvar />
+        <p className="rotulo subtitulo">{dia.nome}</p>
         <Titulo>{s.encerradaPorAlerta ? 'Treino encerrado por segurança' : 'Treino concluído'}</Titulo>
         {s.encerradaPorAlerta && (
           <div className="caixa-erro" role="alert">
@@ -72,10 +71,23 @@ export function Resumo() {
             voltar a treinar, procure avaliação. <Selo id="seguranca.alerta.cardiovascular" />
           </div>
         )}
-        <p className="apoio num subtitulo">
-          {dia.nome}
-          {r.minutos !== undefined && ` · ${r.minutos} min`} · {plural(r.series, 'série', 'séries')}
-        </p>
+        {/* o placar do treino: os números de hoje são o maior elemento da tela */}
+        <div className="numeros placar num">
+          <div>
+            <b>{r.series}</b>
+            <span className="rotulo">{r.series === 1 ? 'série' : 'séries'}</span>
+          </div>
+          {r.minutos !== undefined && (
+            <div>
+              <b>{r.minutos}</b>
+              <span className="rotulo">{r.minutos === 1 ? 'minuto' : 'minutos'}</span>
+            </div>
+          )}
+          <div>
+            <b>{itens.length}</b>
+            <span className="rotulo">{itens.length === 1 ? 'exercício' : 'exercícios'}</span>
+          </div>
+        </div>
         {(semana || marcas.length > 0 || sobem > 0) && (
           <section className="mudou" aria-labelledby="mudou">
             <h2 id="mudou">O que mudou hoje</h2>

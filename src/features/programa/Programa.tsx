@@ -67,7 +67,7 @@ export function Programa() {
         <main className="conteudo">
         <AvisoSalvar />
           <Titulo>Programa pausado</Titulo>
-          <div className="warnbox">
+          <div className="warnbox seguranca">
             {semExercicio && !triagem.bloqueado ? (
               <>
                 {semExercicio.texto} <Selo id={semExercicio.regraId} />
@@ -418,7 +418,7 @@ export function Programa() {
             </Link>
           ) : (
             <button type="button" className="btn" onClick={iniciar}>
-              Começar o treino {dia.nome}
+              Começar o treino <span className="so-largo">{dia.nome}</span>
               {locais.length > 1 && nomeLocal ? ` em ${nomeLocal}` : ''}
             </button>
           )}
@@ -661,12 +661,18 @@ function Sobre({
             <b>{programa.divisao}.</b>
           </p>
           {inventario && <ComoEsta programa={programa} perfil={perfil} inventario={inventario} />}
-          {programa.avisos.length > 0 && <h3>Avisos</h3>}
-          {programa.avisos.map((a, i) => (
-            <div key={i} className="warnbox">
-              {a.texto} <Selo id={a.regraId} />
-            </div>
-          ))}
+          {programa.avisos.length > 0 && (
+            <>
+              <h3>Avisos</h3>
+              <div className="avisos-lista">
+                {programa.avisos.map((a, i) => (
+                  <div key={i} className="warnbox">
+                    {a.texto} <Selo id={a.regraId} />
+                  </div>
+                ))}
+              </div>
+            </>
+          )}
           {programa.fases.length > 0 && (
             <>
               <h3>Fases</h3>
