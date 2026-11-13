@@ -4,7 +4,7 @@
 
 ## Síntese da sessão (o que muda regra)
 - **A direção é robusta, os números são consenso.** Mais séries por semana rendem mais músculo, com retorno decrescente (`pelland2026`, `schoenfeld2017a`, `bazvalle2022`). O verificador ajustou a leitura: o artigo diz "sem platô claro", com poucos estudos acima de ~25 séries; não é "sem platô até 25".
-- **Dose mínima: ~4 séries fracionadas por semana** (moderada). **Recomendação das diretrizes: 10 ou mais por músculo** (`acsm2026`, IUSCA `schoenfeld2021`; consenso sobre curva robusta). As 6 séries que o app dá a todo músculo sem foco ficam entre o mínimo detectável e o recomendado, mesmo quando sobra tempo.
+- **Dose mínima: ~4 séries fracionadas por semana** (moderada). **Recomendação das diretrizes: 10 ou mais por músculo** (`acsm2026`, IUSCA `schoenfeld2021b`; consenso sobre curva robusta). As 6 séries que o app dá a todo músculo sem foco ficam entre o mínimo detectável e o recomendado, mesmo quando sobra tempo.
 - **O nível não tem ensaio que valide faixas** (6–10, 10–16, 12–20 são consenso). O que decide o volume que dá para ajustar é o tempo e a tolerância.
 - **Série indireta = 0,5** foi o melhor ajuste de `pelland2026` (moderada); o teto de ~10 por sessão é consenso da IUSCA com um preprint a favor (`remmert2025`).
 - **Força:** dose pequena basta (1 série já passa do limiar; acima de ~4 séries fracionadas o ganho quase não aumenta), e a frequência ajuda.

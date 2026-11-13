@@ -27,6 +27,10 @@ export const VOLUME = {
   alvo: { iniciante: 10, intermediario: 12, avancado: 14 } as PorNivel<number>,
   // tempo.sobra-series: sem foco, até onde o tempo que sobra leva cada músculo (o alvo de antes do R5d; decisão de 06/11).
   sobraAte: { iniciante: 8, intermediario: 12, avancado: 14 } as PorNivel<number>,
+  // tempo.sobra-series, 2º passo (13/11/2026): até quantos grupos de foco o tempo que sobra leva o foco além da meta.
+  focosComSobra: 2,
+  // tempo.sobra-series, 2º passo, iniciante: fora do foco, só os multiarticulares sobem, até este número de séries.
+  sobraDoIniciante: 3,
   // iniciante.fase-aprendizado: a fração das séries nas semanas 1–2 (6 de 8, a mesma de antes do R5d).
   faseAprendizado: 6 / 8,
   maximo: { iniciante: 10, intermediario: 16, avancado: 20 } as PorNivel<number>,

@@ -5,15 +5,16 @@ import { populacao } from '../../scripts/auditoria/populacao';
 import { PERSONAS } from '../personas';
 import { PERSONAS_NOVAS } from '../personas/todos';
 
-// Sessão "treino para todos", etapa 1: o protótipo (scripts/auditoria/prototipo) é uma cópia do gerador para medir
-// regras novas sem mudar o app. Com todas as regras desligadas (PROT=nada), ele tem de dar o mesmo programa que o app:
-// é isso que garante que o "antes" das medidas é o app de verdade.
+// Sessão "treino para todos": o protótipo (scripts/auditoria/prototipo) é uma cópia do gerador para medir regras novas
+// sem mudar o app. Na etapa 1, com tudo desligado (PROT=nada), ele dava o mesmo programa que o app. Na etapa 2, as regras
+// entram no app uma a uma: com só as já adotadas ligadas (PROT=app), ele tem de continuar igual ao app, e PROT=nada fica
+// sendo a `main` de antes da etapa 2, o "antes" das medidas e de tests/unit/tempo-que-sobra.test.ts.
 const TODAS = { ...PERSONAS, ...PERSONAS_NOVAS };
 
-describe('protótipo do gerador, com tudo desligado', () => {
+describe('protótipo do gerador, só com as regras já adotadas', () => {
   let gerarNoPrototipo: typeof gerarPrograma;
   beforeAll(async () => {
-    vi.stubEnv('PROT', 'nada');
+    vi.stubEnv('PROT', 'app');
     vi.resetModules();
     gerarNoPrototipo = ((await import('../../scripts/auditoria/prototipo/gerador')) as unknown as { gerarPrograma: typeof gerarPrograma }).gerarPrograma;
   });

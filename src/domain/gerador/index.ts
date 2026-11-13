@@ -31,6 +31,7 @@ export const NOME_GRUPO: Record<Grupo, string> = {
   gluteos: 'glúteos',
   abdomen: 'abdômen',
 };
+const NOME_NIVEL: Record<Nivel, string> = { iniciante: 'iniciante', intermediario: 'intermediário', avancado: 'avançado' };
 const emLista = (xs: string[]) => (xs.length > 1 ? `${xs.slice(0, -1).join(', ')} e ${xs[xs.length - 1]}` : (xs[0] ?? ''));
 
 /** O que a pessoa quer agora (objetivo.pergunta). Ausente = ganhar músculo. Só "forca" muda números. */
@@ -874,9 +875,10 @@ function montarPrograma(perfil: Perfil, inventarioOriginal: Inventario, triagem:
       trocouProtegido = true;
     }
 
-  // tempo.sobra-series: nos dias com vaga sem exercício possível por equipamento, as séries sobem até o alvo do nível
-  // (o abdômen não prioritário fica na meta), enquanto o dia couber nos minutos; o músculo mais longe da meta primeiro;
-  // nunca acima de 4 por exercício, 10 por músculo na sessão nem 20 na semana.
+  // tempo.sobra-series, 1º passo: nos dias com vaga sem exercício possível por equipamento, as séries sobem até o alvo do
+  // nível (o abdômen não prioritário fica na meta), enquanto o dia couber nos minutos; o músculo mais longe da meta
+  // primeiro; nunca acima de 4 por exercício, 10 por músculo na sessão nem 20 na semana. O 2º passo (todos os dias, com o
+  // programa já cortado e completado) usa o mesmo laço, mais abaixo.
   const diasComVaga = dias.flatMap((d, i) => (d.vazias.length ? [i] : []));
   // R5d (volume.prioridade.foco-primeiro): com um grupo de foco que tem exercício possível, o tempo que sobra vai primeiro
   // para o foco, até o máximo do nível, e só depois para os outros, que ficam pelo menos DISTANCIA_DO_FOCO séries abaixo
@@ -892,61 +894,98 @@ function montarPrograma(perfil: Perfil, inventarioOriginal: Inventario, triagem:
     return Math.min(...[...prioritarios].filter((m) => possiveis.some((e) => e.musculos.primarios.includes(m))).map((m) => v[m] ?? 0));
   };
   const podePuxar = !!resolver({ funcao: 'puxar-vertical' }) || !!resolver({ funcao: 'puxar-horizontal' });
-  const alvoDaSobra = (m: Musculo, ds: DiaPrograma[]) =>
+  /** Mais uma série de empurrar já passaria empurrar ÷ puxar de 1,5 (2º passo: aí as costas e o ombro de trás sobem antes). */
+  const empurrarNoLimite = (ds: DiaPrograma[]) => {
+    const series = (ps: Padrao[]) => ds.flatMap((d) => d.exercicios).filter((x) => ps.includes(x.padrao)).reduce((t, x) => t + seriesDeVolume(x), 0);
+    return series(PADROES_EMPURRAR) + 1 > EMPURRAR_PUXAR_MAX * series(PADROES_PUXAR);
+  };
+  const alvoDaSobra = (m: Musculo, ds: DiaPrograma[], emTodos: boolean) =>
     m === 'abdomen' && !prioritarios.has(m)
       ? (metas[m] ?? 0)
       : prioritarios.has(m)
         ? Math.max(metas[m] ?? 0, VOLUME.maximo[nivel])
-        : !focoPossivel || (PUXAM.includes(m) && empurraDemais(ds))
+        : !focoPossivel || (PUXAM.includes(m) && (empurraDemais(ds) || (emTodos && empurrarNoLimite(ds))))
           ? Math.max(metas[m] ?? 0, VOLUME.sobraAte[nivel])
           : Math.max(metas[m] ?? 0, Math.min(VOLUME.sobraAte[nivel], menorFoco(ds) - DISTANCIA_DO_FOCO));
   let seriesNaSobra = false;
-  for (;;) {
-    const v = volumeDe(programaDias);
-    let melhor: { di: number; xi: number; deficit: number; foco: number } | null = null;
-    for (const m of MUSCULOS_COM_META) {
-      // Com foco, quem não é foco e está abaixo do piso de 4 (volume.semanal.minimo-eficaz) sobe até o piso também pelas
-      // séries indiretas (o glúteo sem exercício próprio sobe com o agachamento): os outros não ficam abaixo do piso.
-      const viaIndireta = focoPossivel && !prioritarios.has(m) && (v[m] ?? 0) < VOLUME.minimoEficazPiso;
-      const alvo = viaIndireta ? VOLUME.minimoEficazPiso : alvoDaSobra(m, programaDias);
-      // O foco também sobe enquanto as séries diretas dele (os exercícios em que ele é o músculo principal) estiverem abaixo
-      // da meta: um glúteo do foco que chega à meta só com séries indiretas do agachamento ainda pede mais ponte (R5d).
-      const direto = prioritarios.has(m)
-        ? programaDias.flatMap((z) => z.exercicios).filter((x) => POR_ID[x.exId]!.musculos.primarios.includes(m)).reduce((t, x) => t + seriesDeVolume(x), 0)
-        : 0;
-      const deficitDireto = prioritarios.has(m) && metas[m] ? (metas[m]! - direto) / metas[m]! : 0;
-      const deficit = Math.max(alvo ? (alvo - (v[m] ?? 0)) / alvo : 0, deficitDireto);
-      if (deficit <= 0) continue;
-      for (const di of diasComVaga) {
-        const d = programaDias[di]!;
-        const noDia = volumeDe([d]);
-        d.exercicios.forEach((x, xi) => {
-          const e = POR_ID[x.exId]!;
-          // Uma série a mais conta para todos os músculos do exercício, com as indiretas: nenhum passa do teto da sessão (R5a).
-          const acerta = e.musculos.primarios.includes(m) || (viaIndireta && e.musculos.secundarios.includes(m));
-          if (!acerta || x.series >= VOLUME.seriesPorExercicio.max) return;
-          if (deUmaSerie(e).some(([k, n]) => (noDia[k] ?? 0) + n > VOLUME.sessaoTeto + 1e-9)) return;
-          // Nenhum músculo do exercício passa do teto (20) nem, se não for prioridade, do máximo do nível (volume.semanal.maximo).
-          const limite = (k: Musculo) => (prioritarios.has(k) ? VOLUME.teto : VOLUME.maximo[nivel]);
-          if (!(Object.entries(volumePorMusculo([{ ex: e, series: 1 }])) as [Musculo, number][]).every(([k, n]) => (v[k] ?? 0) + n <= limite(k))) return;
-          if (minutos(d.exercicios.map((y, j) => (j === xi ? { ...y, series: y.series + 1 } : y)), colchaoDe(perfil)) > perfil.minutosSessao) return;
-          // volume.equilibrio-coxa: a série a mais não tira quadríceps ÷ posteriores da faixa de 0,5 a 2.
-          if (!mantemCoxa(e, -1, v)) return;
-          // Quem não é foco não sobe um empurrar que passe empurrar ÷ puxar de 1,5 (régua da G5, D1).
-          if (!prioritarios.has(m) && podePuxar && PADROES_EMPURRAR.includes(x.padrao) && empurraDemais(programaDias.map((z, k) => (k === di ? { ...z, exercicios: z.exercicios.map((y, j) => (j === xi ? { ...y, series: y.series + 1 } : y)) } : z)))) return;
-          // O foco vem antes dos outros (volume.prioridade.foco-primeiro); entre iguais, o mais longe da meta.
-          const foco = prioritarios.has(m) ? 0 : 1;
-          if (!melhor || foco < melhor.foco || (foco === melhor.foco && deficit > melhor.deficit)) melhor = { di, xi, deficit, foco };
-        });
+  let seriesEmTodos = false;
+  /**
+   * O laço dos dois passos de tempo.sobra-series. `emTodos` é o 2º passo (13/11/2026): todos os dias, depois dos cortes
+   * e do complemento, com as travas dele: nem o foco passa do máximo do nível; com 3 grupos de foco ou mais, o foco não
+   * sobe além da meta; o dia com bi-set ou drop set fica como está; nenhum empurrar passa empurrar ÷ puxar de 1,5; e,
+   * no empate, o exercício com menos séries e o dia que usa menos tempo. Para o iniciante, fora do foco, só os
+   * multiarticulares sobem, e até 3 séries.
+   */
+  const subirSeries = (diasDoPasso: number[], emTodos: boolean) => {
+    for (;;) {
+      const v = volumeDe(programaDias);
+      let melhor: { di: number; xi: number; deficit: number; foco: number; series: number; usoDoDia: number } | null = null;
+      for (const m of MUSCULOS_COM_META) {
+        // Com foco, quem não é foco e está abaixo do piso de 4 (volume.semanal.minimo-eficaz) sobe até o piso também pelas
+        // séries indiretas (o glúteo sem exercício próprio sobe com o agachamento): os outros não ficam abaixo do piso.
+        const viaIndireta = focoPossivel && !prioritarios.has(m) && (v[m] ?? 0) < VOLUME.minimoEficazPiso;
+        const alvo = viaIndireta ? VOLUME.minimoEficazPiso : alvoDaSobra(m, programaDias, emTodos);
+        // O foco também sobe enquanto as séries diretas dele (os exercícios em que ele é o músculo principal) estiverem abaixo
+        // da meta: um glúteo do foco que chega à meta só com séries indiretas do agachamento ainda pede mais ponte (R5d).
+        const direto = prioritarios.has(m)
+          ? programaDias.flatMap((z) => z.exercicios).filter((x) => POR_ID[x.exId]!.musculos.primarios.includes(m)).reduce((t, x) => t + seriesDeVolume(x), 0)
+          : 0;
+        const deficitDireto = prioritarios.has(m) && metas[m] ? (metas[m]! - direto) / metas[m]! : 0;
+        const deficit = Math.max(alvo ? (alvo - (v[m] ?? 0)) / alvo : 0, deficitDireto);
+        if (deficit <= 0) continue;
+        // 2º passo: com 3 grupos de foco ou mais, o foco fica na meta (volume.prioridade.ate-dois): só os outros sobem.
+        if (emTodos && prioritarios.has(m) && perfil.prioridades.length > VOLUME.focosComSobra && (v[m] ?? 0) >= (metas[m] ?? 0) && deficitDireto <= 0) continue;
+        for (const di of diasDoPasso) {
+          const d = programaDias[di]!;
+          // 2º passo: o dia que precisou de bi-set ou drop set para caber já está no limite do tempo.
+          if (emTodos && d.exercicios.some((x) => x.supersetCom || x.dropSet)) continue;
+          const noDia = volumeDe([d]);
+          d.exercicios.forEach((x, xi) => {
+            const e = POR_ID[x.exId]!;
+            // Uma série a mais conta para todos os músculos do exercício, com as indiretas: nenhum passa do teto da sessão (R5a).
+            const acerta = e.musculos.primarios.includes(m) || (viaIndireta && e.musculos.secundarios.includes(m));
+            if (!acerta || x.series >= VOLUME.seriesPorExercicio.max) return;
+            // 2º passo, iniciante: fora do foco, só os multiarticulares sobem, e até 3 séries (praticar o básico, com folga no dia).
+            if (emTodos && nivel === 'iniciante' && !prioritarios.has(m) && (x.tipo !== 'composto' || x.series >= VOLUME.sobraDoIniciante)) return;
+            // 2º passo: com 30 min ou menos, o exercício protegido que não é do foco fica com 2 séries (tempo.musculo-protegido).
+            if (emTodos && perfil.minutosSessao <= TEMPO.protegidoCurto && !prioritarios.has(m) && x.porque.some((q) => q.regraId === 'tempo.musculo-protegido')) return;
+            if (deUmaSerie(e).some(([k, n]) => (noDia[k] ?? 0) + n > VOLUME.sessaoTeto + 1e-9)) return;
+            // Nenhum músculo do exercício passa do teto (20) nem, se não for prioridade, do máximo do nível (volume.semanal.maximo).
+            // No 2º passo, nem o foco passa do máximo do nível.
+            const limite = (k: Musculo) => (prioritarios.has(k) && !emTodos ? VOLUME.teto : VOLUME.maximo[nivel]);
+            if (!(Object.entries(volumePorMusculo([{ ex: e, series: 1 }])) as [Musculo, number][]).every(([k, n]) => (v[k] ?? 0) + n <= limite(k))) return;
+            if (minutos(d.exercicios.map((y, j) => (j === xi ? { ...y, series: y.series + 1 } : y)), colchaoDe(perfil)) > perfil.minutosSessao) return;
+            // volume.equilibrio-coxa: a série a mais não tira quadríceps ÷ posteriores da faixa de 0,5 a 2.
+            if (!mantemCoxa(e, -1, v)) return;
+            // Quem não é foco não sobe um empurrar que passe empurrar ÷ puxar de 1,5 (régua da G5, D1); no 2º passo, nem o foco.
+            if ((emTodos || !prioritarios.has(m)) && podePuxar && PADROES_EMPURRAR.includes(x.padrao) && empurraDemais(programaDias.map((z, k) => (k === di ? { ...z, exercicios: z.exercicios.map((y, j) => (j === xi ? { ...y, series: y.series + 1 } : y)) } : z)))) return;
+            // O foco vem antes dos outros (volume.prioridade.foco-primeiro); entre iguais, o mais longe da meta.
+            const foco = prioritarios.has(m) ? 0 : 1;
+            // No 2º passo, entre as séries possíveis do músculo mais longe do alvo, primeiro o exercício com menos séries e,
+            // no empate, o dia que usa menos do tempo: as séries sobem por igual, e não todas no 1º dia.
+            const cand = { di, xi, deficit, foco, series: x.series, usoDoDia: d.minutosEstimados };
+            const antes = (a: typeof cand, b: typeof cand) =>
+              a.foco !== b.foco
+                ? a.foco < b.foco
+                : Math.abs(a.deficit - b.deficit) > 1e-9
+                  ? a.deficit > b.deficit
+                  : emTodos && a.series !== b.series
+                    ? a.series < b.series
+                    : emTodos && a.usoDoDia < b.usoDoDia;
+            if (!melhor || antes(cand, melhor)) melhor = cand;
+          });
+        }
       }
+      if (!melhor) break;
+      const { di, xi } = melhor as { di: number; xi: number };
+      const d = programaDias[di]!;
+      const exercicios = d.exercicios.map((y, j) => (j === xi ? { ...y, series: y.series + 1 } : y));
+      programaDias[di] = { ...d, exercicios, minutosEstimados: minutos(exercicios, colchaoDe(perfil)) };
+      if (emTodos) seriesEmTodos = true;
+      else seriesNaSobra = true;
     }
-    if (!melhor) break;
-    const { di, xi } = melhor as { di: number; xi: number };
-    const d = programaDias[di]!;
-    const exercicios = d.exercicios.map((y, j) => (j === xi ? { ...y, series: y.series + 1 } : y));
-    programaDias[di] = { ...d, exercicios, minutosEstimados: minutos(exercicios, colchaoDe(perfil)) };
-    seriesNaSobra = true;
-  }
+  };
+  subirSeries(diasComVaga, false);
   const volumeAntesDoCorte = volumeDe(programaDias);
   const cargasDeHalter = cargasHalter(inventario).length;
   const cargasDeKettlebell = cargasKettlebell(inventario).length;
@@ -965,6 +1004,9 @@ function montarPrograma(perfil: Perfil, inventarioOriginal: Inventario, triagem:
   };
   programaDias = cortarTempo(programaDias, perfil.minutosSessao, metas, nivel, prioritarios, avisos, podeDrop, colchaoDe(perfil), trocouProtegido);
   programaDias = completarPelaRegua(programaDias, ctx, perfil, N, semPuxar, metas, prioritarios);
+  // tempo.sobra-series, 2º passo (13/11/2026): com o programa montado, cortado e completado, o tempo que ainda sobra vira
+  // série em todos os dias. Os exercícios não mudam: só as séries sobem.
+  subirSeries(programaDias.map((_, i) => i), true);
 
   const volumeSemanal = volumeDe(programaDias);
   // O porquê específico (R5b; c-fluxo.md, pedido ao domínio 6): a vaga, o músculo dela, se é foco, quantas séries da semana
@@ -1032,6 +1074,17 @@ function montarPrograma(perfil: Perfil, inventarioOriginal: Inventario, triagem:
       regraId: r('tempo.sobra'),
       texto: `${regioesExcluidas.length && !lacunas.size && !semPuxar ? 'Com o que dá para fazer hoje' : 'Com o seu equipamento'}, o treino dura cerca de ${Math.max(5, Math.round(diaTipico / 5) * 5)} min. Mais tempo não acrescenta exercícios: dá para escolher uma duração menor sem perder nada.`,
     });
+  // Desde 13/11/2026 (tempo.sobra-series em todos os dias): sem faltar exercício, o tempo só sobra quando as séries já
+  // chegaram ao alvo do nível e aos limites por exercício e por sessão; o aviso diz isso, e que o foco usa mais tempo.
+  else if (diaTipico < TEMPO.sobraFracao * perfil.minutosSessao)
+    avisos.push({
+      regraId: r('tempo.sobra'),
+      texto: `O seu treino completo dura cerca de ${Math.max(5, Math.round(diaTipico / 5) * 5)} min: ${
+        perfil.prioridades.length
+          ? 'o foco já recebeu o tempo que rende, e os outros músculos ficam abaixo dele de propósito. Dá para escolher uma duração menor sem perder nada.'
+          : `as séries já chegaram ao que rende bem no nível ${NOME_NIVEL[nivel]}. Dá para escolher uma duração menor sem perder nada; para usar mais tempo, escolha um grupo de foco.`
+      }`,
+    });
 
   const porque: Porque[] = [
     ...textoDoObjetivo(perfil.objetivo, nivel),
@@ -1060,10 +1113,25 @@ function montarPrograma(perfil: Perfil, inventarioOriginal: Inventario, triagem:
     {
       regraId: r('volume.semanal.alvo'),
       texto: perfil.prioridades.length
-        ? `Foco em ${emLista(perfil.prioridades.map((g) => NOME_GRUPO[g]))}: ~${VOLUME.alvo[nivel]} séries por semana${nivel === 'iniciante' ? ', o topo da faixa de quem está começando,' : ''} para crescer mais rápido. Os outros músculos ficam com ~${VOLUME.minimoEficaz}: mais do que o necessário para manter (1 a 3) e o bastante para continuar crescendo, mais devagar.`
-        : `Sem grupo de foco: todos os músculos ficam com ~${VOLUME.minimoEficaz} séries por semana, o bastante para crescer, mais devagar que com foco. Para acelerar um grupo, escolha-o como prioridade.`,
+        ? `Foco em ${emLista(perfil.prioridades.map((g) => NOME_GRUPO[g]))}: ~${VOLUME.alvo[nivel]} séries por semana${nivel === 'iniciante' ? ', o topo da faixa de quem está começando,' : ''} para crescer mais rápido. Os outros músculos ficam com ~${VOLUME.minimoEficaz} ou mais: mais do que o necessário para manter (1 a 3) e o bastante para continuar crescendo, mais devagar.`
+        : nivel === 'iniciante'
+          ? `Sem grupo de foco: cada músculo fica com ~${VOLUME.minimoEficaz} séries por semana, o bastante para crescer, mais devagar que com foco; quando sobra tempo, os exercícios grandes ganham uma série a mais. Para acelerar um grupo, escolha-o como prioridade.`
+          : `Sem grupo de foco: o tempo do treino é dividido por igual entre os músculos, até ~${VOLUME.sobraAte[nivel]} séries por semana cada, o alvo do seu nível. Com pouco tempo, cada um fica com ~${VOLUME.minimoEficaz}, o bastante para crescer, mais devagar. Para acelerar um grupo, escolha-o como prioridade.`,
     },
-    ...(seriesNaSobra
+    ...(seriesEmTodos
+      ? [
+          {
+            regraId: r('tempo.sobra-series'),
+            texto: !focoPossivel
+              ? nivel === 'iniciante'
+                ? `O tempo que sobrava nos treinos virou uma série a mais nos exercícios grandes (até ${VOLUME.sobraDoIniciante} por exercício): para quem está começando, praticar o básico rende mais do que somar séries nos exercícios pequenos.`
+                : `O tempo que sobrava nos treinos virou série: cada músculo sobe até ~${VOLUME.sobraAte[nivel]} séries por semana, o alvo do seu nível, enquanto o treino couber nos ${perfil.minutosSessao} min.`
+              : perfil.prioridades.length > VOLUME.focosComSobra
+                ? `O tempo que sobrava nos treinos virou série, sem passar o foco da meta de ~${VOLUME.alvo[nivel]} séries por semana: com mais de ${VOLUME.focosComSobra} grupos de foco, o tempo se divide. Os outros músculos ficam pelo menos ${DISTANCIA_DO_FOCO} séries abaixo do foco.`
+                : `O tempo que sobrava nos treinos virou série primeiro para o foco (até ~${VOLUME.maximo[nivel]} séries por semana) e só depois para os outros músculos, que ficam pelo menos ${DISTANCIA_DO_FOCO} séries abaixo do foco.`,
+          },
+        ]
+      : seriesNaSobra
       ? [
           {
             regraId: r('tempo.sobra-series'),

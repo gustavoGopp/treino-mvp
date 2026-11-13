@@ -13,7 +13,9 @@ export function r(id: string): string {
 
 /**
  * As mudanças em teste, uma por nome. `PROT=usa-tempo,escolha` liga só essas; sem a variável, todas ligadas; `PROT=nada`
- * deixa o protótipo igual ao app (para conferir que a cópia não mudou nada).
+ * deixa o protótipo igual à `main` de antes da etapa 2 (o "antes" de todas as medidas); `PROT=app`, igual ao app de hoje.
  */
-const LIGADAS = new Set((process.env.PROT ?? 'todas').split(',').map((x) => x.trim()));
+/** As regras do protótipo que já entraram no app (etapa 2): `PROT=app` liga só essas, e o protótipo fica igual ao app. */
+export const ADOTADAS = ['usa-tempo'];
+const LIGADAS = new Set((process.env.PROT ?? 'todas').split(',').flatMap((x) => (x.trim() === 'app' ? ADOTADAS : [x.trim()])));
 export const prot = (nome: string) => LIGADAS.has('todas') || LIGADAS.has(nome);
