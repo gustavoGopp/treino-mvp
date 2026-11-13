@@ -1,0 +1,42 @@
+{
+ "id": "puxada-unilateral",
+ "nome": "Puxada unilateral ajoelhado na polia alta",
+ "fichaDaTecnica": "docs/pesquisa/animacoes/puxada-unilateral.md",
+ "fontes": {
+  "guia": "Guia original do projeto, como registrado em docs/pesquisa/animacoes/puxada-unilateral.md: consenso de treinadores",
+  "ludewig2009": "Ludewig PM et al. Motion of the shoulder complex during multiplanar humeral elevation. J Bone Joint Surg Am 2009 (a clavícula e a escápula acompanham o braço; docs/revisoes/animacao-nova/pesquisa/02-articulacoes.md, C2)",
+  "objetos": "src/engine/novo/dados/objetos.json",
+  "desenho": "Escolha de desenho desta animação, dentro do que a ficha pede; a conferência mede o resultado"
+ },
+ "param": {
+  "tronco": { "v": -4, "un": "graus", "selo": "consenso", "fonte": "guia", "o": "tronco reto ou levemente inclinado para trás" },
+  "cotovelo.alongado": { "v": 12, "un": "graus", "selo": "consenso", "fonte": "guia", "o": "início: braço estendido para cima e para a frente" },
+  "ombro.sobe": { "v": 10, "un": "graus", "selo": "consenso", "fonte": "guia", "o": "alongado: deixe o ombro subir (elevação da clavícula além do ritmo normal)" },
+  "ombro.desce": { "v": -6, "un": "graus", "selo": "consenso", "fonte": "guia", "o": "fim: ombro para baixo" },
+  "braco.fim.atras": { "v": 12, "un": "graus", "selo": "consenso", "fonte": "guia", "o": "fim: cotovelo ao lado das costelas, um pouco atrás do tronco" },
+  "braco.fim.fora": { "v": 12, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "fim: o braço um pouco afastado do tronco, para o cotovelo passar ao lado das costelas" },
+  "torre.distancia": { "v": 62, "un": "cm", "selo": "consenso", "fonte": "guia", "o": "ajoelhe de frente para a torre, a cerca de meio passo (dos joelhos à base)" },
+  "joelhos.meiaDistancia": { "v": 8.7, "un": "cm", "selo": "consenso", "fonte": "guia", "o": "joelhos na largura do quadril" },
+  "erro.tronco": { "v": -30, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "erro: jogar o tronco para trás" },
+  "erro.encolher": { "v": 14, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "erro: o ombro continua encolhido no fim" },
+  "erro.curta": { "v": 0.45, "un": "fração", "selo": "desenho", "fonte": "desenho", "o": "erro: volta só até a metade" }
+ },
+ "fases": [
+  { "nome": "Alongado", "tipo": "pausa", "dur": 0.5, "de": 0, "ate": 0, "respira": "INSPIRA", "tempo": "ombro sobe", "selo": "consenso", "fonte": "guia" },
+  { "nome": "Puxada · concêntrica", "tipo": "conc", "dur": 1.0, "de": 0, "ate": 1, "respira": "EXPIRA", "tempo": "~1 s", "selo": "consenso", "fonte": "guia" },
+  { "nome": "Fim", "tipo": "pausa", "dur": 0.5, "de": 1, "ate": 1, "respira": "FIRME", "tempo": "segura", "selo": "consenso", "fonte": "guia" },
+  { "nome": "Volta · excêntrica", "tipo": "exc", "dur": 2.0, "de": 1, "ate": 0, "respira": "INSPIRA", "tempo": "~2 s", "selo": "consenso", "fonte": "guia" }
+ ],
+ "contatos": ["joelho.R", "joelho.L", "pe.R", "pe.L"],
+ "regras": [
+  { "id": "antebraco-na-linha-do-cabo", "pede": "o antebraço segue a linha do cabo (o cabo fica reto, da polia à mão)", "selo": "desenho", "fonte": "desenho" },
+  { "id": "ombro-desce", "pede": "no fim, o ombro está mais baixo que no início", "selo": "consenso", "fonte": "guia" },
+  { "id": "tronco-quase-parado", "pede": "o tronco quase não se move", "selo": "consenso", "fonte": "guia" }
+ ],
+ "erros": [
+  { "id": "tronco", "titulo": "Jogar o tronco para trás", "vista": "lateral", "oQueMuda": "o tronco inclina 30° para trás no fim" },
+  { "id": "encolher", "titulo": "Ombro encolhido", "vista": "posterior", "oQueMuda": "a clavícula continua elevada no fim" },
+  { "id": "curta", "titulo": "Não alongar em cima", "vista": "lateral", "oQueMuda": "volta só até a metade" }
+ ],
+ "simetrico": false
+}

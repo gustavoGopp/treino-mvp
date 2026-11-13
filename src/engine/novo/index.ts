@@ -11,3 +11,8 @@ export * from './cena';
 export { flexao } from './exercicios/flexao';
 export * from './malha';
 export * from './gl';
+export { supinoReto } from './exercicios/supino-reto';
+export { puxadaUnilateral } from './exercicios/puxada-unilateral';
+export * from './conferir';
+export * from './manequim';
+export * from './figuras';

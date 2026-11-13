@@ -3,7 +3,7 @@
 // 2 = volume suave (luz contínua). A geometria é a mesma nos três; só o sombreamento muda.
 import type { Volume } from './corpo3d';
 import type { Camera, Prim } from './desenho';
-import { add, comb, cross, mul, norm, sub } from './vec';
+import { add, comb, cross, dot, mul, norm, sub } from './vec';
 import type { V3 } from './vec';
 
 /** Geometria pronta para a placa de vídeo: posição, normal (luz), direção de expansão (contorno), material e triângulos. */
@@ -15,9 +15,12 @@ export interface Geo {
   /** Músculo principal e secundário (0 a 1 por ponto); a borda fica em 0,5. Opcionais. */
   mp?: Float32Array;
   ms?: Float32Array;
+  /** Cobertura (roupa, calçado, cabelo): 0 a 1 por ponto, com a borda em 0,5, e o material que cobre. Opcionais. */
+  cob?: Float32Array;
+  alvo?: Float32Array;
   tri: Uint16Array | Uint32Array;
 }
-export const MATERIAIS = ['pele', 'musculoP', 'musculoS', 'obj', 'esc', 'ferro', 'aco', 'estofado', 'tapete', 'chao', 'cabo', 'musculoA', 'peleLonge'] as const;
+export const MATERIAIS = ['pele', 'musculoP', 'musculoS', 'obj', 'esc', 'ferro', 'aco', 'estofado', 'tapete', 'chao', 'cabo', 'musculoA', 'peleLonge', 'junta', 'roupa', 'cabelo', 'calcado', 'juntaLonge'] as const;
 export type Material = (typeof MATERIAIS)[number];
 const iMat = (m: string) => Math.max(0, MATERIAIS.indexOf(m as Material));
 
@@ -43,6 +46,8 @@ function tubo(g: Monta, vol: Volume, m: number, lados = 18) {
   const A = vol.aneis,
     n = A.length;
   const base = g.pos.length / 3;
+  // se x × z aponta contra o eixo, a ordem dos pontos em volta do anel se inverte (e a face de fora com ela)
+  const horario = dot(cross(A[0]!.x, A[0]!.z), sub(A[n - 1]!.c, A[0]!.c)) > 0;
   for (let i = 0; i < n; i++) {
     const an = A[i]!;
     const eixo = norm(sub(A[Math.min(n - 1, i + 1)]!.c, A[Math.max(0, i - 1)]!.c));
@@ -64,7 +69,8 @@ function tubo(g: Monta, vol: Volume, m: number, lados = 18) {
         b = base + i * lados + ((j + 1) % lados),
         c = a + lados,
         d = b + lados;
-      g.tri.push(a, c, b, b, c, d);
+      if (horario) g.tri.push(a, b, c, b, d, c);
+      else g.tri.push(a, c, b, b, c, d);
     }
   // tampas
   for (const [i, sent] of [[0, -1], [n - 1, 1]] as [number, number][]) {
@@ -83,7 +89,7 @@ function tubo(g: Monta, vol: Volume, m: number, lados = 18) {
     for (let j = 0; j < lados; j++) {
       const a = anel[j]!,
         b = anel[(j + 1) % lados]!;
-      if (sent > 0) g.tri.push(centro, a, b);
+      if (sent > 0 === !horario) g.tri.push(centro, a, b);
       else g.tri.push(centro, b, a);
     }
   }
@@ -140,34 +146,45 @@ export function geoDosPrims(prims: Prim[]): Geo {
 
 /* ============================== programa ============================== */
 const VERT = `
-attribute vec3 aPos; attribute vec3 aNor; attribute vec3 aExp; attribute float aMat; attribute float aMp; attribute float aMs;
-uniform vec3 uDir, uCima, uPara; uniform vec4 uCaixa; uniform float uExp;
-varying vec3 vNor; varying float vMat; varying float vMp; varying float vMs;
+precision mediump float;
+attribute vec3 aPos; attribute vec3 aNor; attribute vec3 aExp; attribute float aMat; attribute float aMp; attribute float aMs; attribute float aCob; attribute float aAlvo;
+uniform vec3 uDir, uCima, uPara; uniform vec4 uCaixa; uniform float uExp; uniform vec3 uCor[18];
+varying vec3 vNor; varying vec3 vBase; varying float vChao; varying float vMp; varying float vMs; varying vec3 vVista; varying float vCob; varying vec3 vCorCob;
 void main(){
-  vMp = aMp; vMs = aMs;
+  vMp = aMp; vMs = aMs; vCob = aCob;
+  int al = int(aAlvo + 0.5);
+  vCorCob = uCor[0];
+  for (int i = 0; i < 18; i++) if (i == al) vCorCob = uCor[i];
   vec3 p = aPos + aExp * uExp;
   vec3 q = vec3(dot(p,uDir), dot(p,uCima), dot(p,uPara));
+  vVista = q;
   vNor = vec3(dot(aNor,uDir), dot(aNor,uCima), dot(aNor,uPara));
-  vMat = aMat;
+  // a cor do material é escolhida no ponto (e não entre pontos), para a borda entre dois materiais não passar por outros
+  int m = int(aMat + 0.5);
+  vBase = uCor[0];
+  for (int i = 0; i < 18; i++) if (i == m) vBase = uCor[i];
+  vChao = m == 9 ? 1.0 : 0.0;
   gl_Position = vec4((q.x-uCaixa.x)/uCaixa.z*2.0-1.0, (q.y-uCaixa.y)/uCaixa.w*2.0-1.0, -q.z/600.0, 1.0);
 }`;
 const FRAG = `
+#extension GL_OES_standard_derivatives : enable
 precision mediump float;
-uniform vec3 uCor[13]; uniform vec3 uContorno; uniform vec3 uSombra; uniform vec3 uLuz; uniform int uModo; uniform float uTraco; uniform vec3 uFundo;
-varying vec3 vNor; varying float vMat; varying float vMp; varying float vMs;
+uniform vec3 uCor[18]; uniform vec3 uContorno; uniform vec3 uSombra; uniform vec3 uLuz; uniform int uModo; uniform float uTraco; uniform vec3 uFundo; uniform float uFacetado;
+varying vec3 vNor; varying vec3 vBase; varying float vChao; varying float vMp; varying float vMs; varying vec3 vVista; varying float vCob; varying vec3 vCorCob;
 void main(){
   if (uTraco > 0.5) { gl_FragColor = vec4(uContorno, 1.0); return; }
-  int m = int(vMat + 0.5);
-  vec3 base = uCor[0];
-  for (int i = 0; i < 13; i++) if (i == m) base = uCor[i];
+  vec3 base = vBase;
+  if (vChao > 0.5) { gl_FragColor = vec4(base, 1.0); return; }
+  if (vCob > 0.5) base = vCorCob;
+  if (abs(vCob - 0.5) < 0.04 && uModo < 2) base = mix(base, uContorno, 0.55);
   if (vMs > 0.5) base = uCor[2];
   if (vMp > 0.5) base = uCor[1];
   float bd = min(abs(vMp - 0.5), abs(vMs - 0.5));
-  if (bd < 0.03 && uModo != 2) base = mix(base, uContorno, 0.75);
+  if (bd < 0.03 && uModo == 1) base = mix(base, uContorno, 0.75);
   vec3 n = normalize(vNor);
+  if (uFacetado > 0.5) n = normalize(cross(dFdx(vVista), dFdy(vVista)));
   float d = dot(n, uLuz);
   vec3 cor = base;
-  if (m == 9) { gl_FragColor = vec4(base, 1.0); return; }
   if (uModo == 1) {
     float f = d > 0.28 ? 1.0 : (d > -0.22 ? 0.84 : 0.66);
     cor = mix(uSombra, base, f);
@@ -177,6 +194,10 @@ void main(){
     float borda = pow(1.0 - clamp(n.z, 0.0, 1.0), 2.5);
     cor = mix(uSombra, base, f);
     cor = mix(cor, uFundo, borda * 0.22);
+  } else if (uModo == 3) {
+    // facetas: cada face com um tom, em degraus suaves
+    float f = 0.5 + 0.5 * clamp(d * 0.6 + 0.5, 0.0, 1.0);
+    cor = mix(uSombra, base, f);
   }
   gl_FragColor = vec4(cor, 1.0);
 }`;
@@ -188,14 +209,23 @@ export interface Paleta {
   sombra: [number, number, number];
   fundo: [number, number, number];
 }
+export interface OpcoesDePintura {
+  /** false = desenha por cima do que já está na tela (segunda camada). */
+  limpar?: boolean;
+  /** false = ignora a profundidade (o que for desenhado fica por cima de tudo: o esqueleto visto através do corpo). */
+  profundidade?: boolean;
+  /** true = cada face com a própria luz (aspecto facetado). */
+  facetado?: boolean;
+}
 export interface Pintor {
-  /** Limpa e desenha as geometrias. caixa = [x0, y0 (embaixo), largura, altura] em cm, na tela. tracoCm = espessura do contorno em cm (0 = sem). */
-  pintar(geos: Geo[], cam: Camera, caixa: [number, number, number, number], modo: 0 | 1 | 2, paleta: Paleta, tracoCm: number): void;
+  /** Desenha as geometrias. caixa = [x0, y0 (embaixo), largura, altura] em cm, na tela. modo: 0 chapado, 1 três tons, 2 volume suave, 3 facetas. tracoCm = contorno em cm (0 = sem). */
+  pintar(geos: Geo[], cam: Camera, caixa: [number, number, number, number], modo: 0 | 1 | 2 | 3, paleta: Paleta, tracoCm: number, opcoes?: OpcoesDePintura): void;
 }
 export function criarPintor(canvas: HTMLCanvasElement | OffscreenCanvas): Pintor {
   const gl = canvas.getContext('webgl', { antialias: true, alpha: false, preserveDrawingBuffer: true }) as WebGLRenderingContext | null;
   if (!gl) throw new Error('WebGL indisponível');
   gl.getExtension('OES_element_index_uint');
+  gl.getExtension('OES_standard_derivatives');
   const sh = (tipo: number, src: string) => {
     const s = gl.createShader(tipo)!;
     gl.shaderSource(s, src);
@@ -210,21 +240,25 @@ export function criarPintor(canvas: HTMLCanvasElement | OffscreenCanvas): Pintor
   if (!gl.getProgramParameter(prog, gl.LINK_STATUS)) throw new Error(gl.getProgramInfoLog(prog) ?? 'erro ao ligar o programa');
   gl.useProgram(prog);
   const U = (n: string) => gl.getUniformLocation(prog, n);
-  const bufs = new WeakMap<Geo, { p: WebGLBuffer; n: WebGLBuffer; e: WebGLBuffer; m: WebGLBuffer; t: WebGLBuffer; mp: WebGLBuffer; ms: WebGLBuffer }>();
+  const bufs = new WeakMap<Geo, { p: WebGLBuffer; n: WebGLBuffer; e: WebGLBuffer; m: WebGLBuffer; t: WebGLBuffer; mp: WebGLBuffer; ms: WebGLBuffer; cb: WebGLBuffer; al: WebGLBuffer }>();
   let zeros = new Float32Array(0);
   const liga = (nome: string, buf: WebGLBuffer, dados: Float32Array, tam: number) => {
     const loc = gl.getAttribLocation(prog, nome);
+    if (loc < 0) return;
     gl.bindBuffer(gl.ARRAY_BUFFER, buf);
     gl.bufferData(gl.ARRAY_BUFFER, dados, gl.DYNAMIC_DRAW);
     gl.enableVertexAttribArray(loc);
     gl.vertexAttribPointer(loc, tam, gl.FLOAT, false, 0, 0);
   };
   return {
-    pintar(geos, cam, caixa, modo, pal, tracoCm) {
+    pintar(geos, cam, caixa, modo, pal, tracoCm, o = {}) {
       gl.viewport(0, 0, canvas.width, canvas.height);
-      gl.clearColor(pal.fundo[0], pal.fundo[1], pal.fundo[2], 1);
-      gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
-      gl.enable(gl.DEPTH_TEST);
+      if (o.limpar !== false) {
+        gl.clearColor(pal.fundo[0], pal.fundo[1], pal.fundo[2], 1);
+        gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
+      }
+      if (o.profundidade === false) gl.disable(gl.DEPTH_TEST);
+      else gl.enable(gl.DEPTH_TEST);
       gl.enable(gl.CULL_FACE);
       gl.uniform3fv(U('uDir'), cam.dir);
       gl.uniform3fv(U('uCima'), cam.cima);
@@ -232,14 +266,16 @@ export function criarPintor(canvas: HTMLCanvasElement | OffscreenCanvas): Pintor
       gl.uniform4fv(U('uCaixa'), caixa);
       gl.uniform3fv(U('uLuz'), norm([-0.42, 0.62, 0.66]));
       gl.uniform1i(U('uModo'), modo);
+      gl.uniform1f(U('uFacetado'), o.facetado ? 1 : 0);
       gl.uniform3fv(U('uContorno'), pal.contorno);
       gl.uniform3fv(U('uSombra'), pal.sombra);
       gl.uniform3fv(U('uFundo'), pal.fundo);
       gl.uniform3fv(U('uCor[0]'), new Float32Array(MATERIAIS.flatMap((m) => pal.cores[m])));
       for (const g of geos) {
+        if (!g.tri.length) continue;
         let b = bufs.get(g);
         if (!b) {
-          b = { p: gl.createBuffer()!, n: gl.createBuffer()!, e: gl.createBuffer()!, m: gl.createBuffer()!, t: gl.createBuffer()!, mp: gl.createBuffer()!, ms: gl.createBuffer()! };
+          b = { p: gl.createBuffer()!, n: gl.createBuffer()!, e: gl.createBuffer()!, m: gl.createBuffer()!, t: gl.createBuffer()!, mp: gl.createBuffer()!, ms: gl.createBuffer()!, cb: gl.createBuffer()!, al: gl.createBuffer()! };
           bufs.set(g, b);
         }
         liga('aPos', b.p, g.pos, 3);
@@ -249,6 +285,8 @@ export function criarPintor(canvas: HTMLCanvasElement | OffscreenCanvas): Pintor
         if (zeros.length < g.mat.length) zeros = new Float32Array(g.mat.length);
         liga('aMp', b.mp, g.mp ?? zeros.subarray(0, g.mat.length), 1);
         liga('aMs', b.ms, g.ms ?? zeros.subarray(0, g.mat.length), 1);
+        liga('aCob', b.cb, g.cob ?? zeros.subarray(0, g.mat.length), 1);
+        liga('aAlvo', b.al, g.alvo ?? zeros.subarray(0, g.mat.length), 1);
         gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER, b.t);
         gl.bufferData(gl.ELEMENT_ARRAY_BUFFER, g.tri, gl.DYNAMIC_DRAW);
         const tipo = g.tri instanceof Uint32Array ? gl.UNSIGNED_INT : gl.UNSIGNED_SHORT;

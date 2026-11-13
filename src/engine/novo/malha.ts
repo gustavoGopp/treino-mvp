@@ -5,6 +5,7 @@ import dados from './dados/malha.json';
 import { dobraDaPegada } from './corpo3d';
 import { LADOS, naColuna, resolverTronco, sinal } from './esqueleto';
 import type { Esq, Lado, Tronco } from './esqueleto';
+import type { Geo } from './gl';
 import type { Corpo } from './tabelas';
 import { REF0, add, angulo, cross, dirRef, dist, dot, girar, len, mul, noRef, norm, paraRef, perp, sub } from './vec';
 import type { Ref, V3 } from './vec';
@@ -50,6 +51,9 @@ interface Preparada {
   kMao: Record<Lado, number>;
 }
 const PREP = new WeakMap<Corpo, Preparada>();
+/** 'natural' = a malha como é; 'lisa' = rosto, orelhas e peito alisados (cabeça de manequim, sem feições). */
+export type VarianteMalha = 'natural' | 'lisa';
+const LISAS = new WeakMap<Corpo, Float32Array>();
 
 const J = (m: Malha, nome: string, ponta: 'de' | 'ate' = 'de'): V3 => {
   const j = m.juntas[nome];
@@ -221,7 +225,7 @@ function falange(pr: Preparada, e: Esq, k: Lado, i: number, j: number): Ref {
   // dobra de cada junta (graus): a pegada fecha em volta do cabo; a mão aberta estica; relaxada fica como a malha
   let dobras: number[];
   if (L.formaMao === 'pegada') dobras = i === 0 ? [34, 18, 22] : dobraDaPegada(comp, 0.9, L.diamMao).map((d, q) => d * (q === 0 ? 1.15 : 1.25));
-  else if (L.formaMao === 'aberta') dobras = i === 0 ? [-8, 0, 0] : [-14, -8, -6];
+  else if (L.formaMao === 'aberta') dobras = i === 0 ? [-38, 0, 0] : [-14, -8, -6];
   else dobras = [0, 0, 0];
   // eixo de dobra no referencial da mão: os dedos fecham para a palma (+z); o polegar fecha por cima da palma
   const eixo: V3 = i === 0 ? norm([0.25 * s, -s, 0.2]) : [-1, 0, 0];
@@ -328,6 +332,148 @@ function ajustarATabela(m: Malha, c: Corpo, ligas: Liga[]): Float32Array {
   return out;
 }
 
+/** Alisa a cabeça (rosto e orelhas) e a frente do peito: cada ponto vai para a média dos vizinhos, várias vezes. */
+function alisar(m: Malha, rep: Float32Array): Float32Array {
+  const out = new Float32Array(rep);
+  const viz: number[][] = Array.from({ length: m.pontos }, () => []);
+  for (let t = 0; t < m.tri.length; t += 3) {
+    const a = m.tri[t]!,
+      b = m.tri[t + 1]!,
+      c = m.tri[t + 2]!;
+    viz[a]!.push(b, c);
+    viz[b]!.push(a, c);
+    viz[c]!.push(a, b);
+  }
+  const iCab = m.segs.indexOf('cabeca'),
+    peitoSegs = new Set(['esp2', 'esp1'].map((n) => m.segs.indexOf(n)));
+  const yQ = J(m, 'upperleg01.L')[1],
+    H = J(m, 'neck01')[1] - yQ,
+    zE = J(m, 'spine03')[2];
+  // força do alisamento por ponto: 1 na cabeça, 0,6 na frente do peito, 0 no resto
+  const forca = new Float32Array(m.pontos);
+  for (let i = 0; i < m.pontos; i++) {
+    let cab = 0,
+      pei = 0;
+    for (let j = 0; j < m.inf; j++) {
+      const w = m.segPeso[i * m.inf + j]! / 255,
+        g = m.segIdx[i * m.inf + j]!;
+      if (g === iCab) cab += w;
+      else if (peitoSegs.has(g)) pei += w;
+    }
+    const h = (rep[i * 3 + 1]! - yQ) / H;
+    const frentePeito = pei > 0.5 && rep[i * 3 + 2]! - zE > 2 && h > 0.52 && h < 0.86 && Math.abs(rep[i * 3]!) < 16 ? 0.6 : 0;
+    forca[i] = Math.max(cab > 0.6 ? 1 : 0, frentePeito);
+  }
+  const caixa = (a: Float32Array) => {
+    const c = [1e9, -1e9, 1e9, -1e9, 1e9, -1e9];
+    for (let i = 0; i < m.pontos; i++)
+      if (forca[i] === 1)
+        for (let k = 0; k < 3; k++) {
+          c[k * 2] = Math.min(c[k * 2]!, a[i * 3 + k]!);
+          c[k * 2 + 1] = Math.max(c[k * 2 + 1]!, a[i * 3 + k]!);
+        }
+    return c;
+  };
+  const antes = caixa(out);
+  const tmp = new Float32Array(out.length);
+  for (let it = 0; it < 26; it++) {
+    tmp.set(out);
+    for (let i = 0; i < m.pontos; i++) {
+      const f = forca[i]! * (forca[i] === 1 ? 0.62 : it < 8 ? 0.5 : 0);
+      if (!f) continue;
+      const v = viz[i]!;
+      for (let k = 0; k < 3; k++) {
+        let s = 0;
+        for (const j of v) s += tmp[j * 3 + k]!;
+        out[i * 3 + k] = tmp[i * 3 + k]! * (1 - f) + (s / v.length) * f;
+      }
+    }
+  }
+  // o alisamento encolhe: devolve a cabeça ao tamanho de antes (mesma caixa em x, y e z)
+  const depois = caixa(out);
+  for (let i = 0; i < m.pontos; i++)
+    if (forca[i] === 1)
+      for (let k = 0; k < 3; k++) {
+        const c0 = (depois[k * 2]! + depois[k * 2 + 1]!) / 2,
+          c1 = (antes[k * 2]! + antes[k * 2 + 1]!) / 2;
+        const esc = (antes[k * 2 + 1]! - antes[k * 2]!) / (depois[k * 2 + 1]! - depois[k * 2]! || 1);
+        // perto do pescoço a cabeça não muda (para a emenda não abrir): só a parte de cima volta ao tamanho
+        const yRel = (out[i * 3 + 1]! - antes[2]!) / (antes[3]! - antes[2]!);
+        const w = Math.max(0, Math.min(1, (yRel - 0.12) / 0.2));
+        out[i * 3 + k] = out[i * 3 + k]! * (1 - w) + (c1 + (out[i * 3 + k]! - c0) * esc) * w;
+      }
+  return out;
+}
+
+/**
+ * Short, tênis e cabelo como regiões de borda lisa: para cada ponto, quanto ele está coberto (0 a 1; a borda fica em
+ * 0,5, desenhada pelo pintor) e por qual material. As regiões saem de medidas no corpo em repouso: o short vai da
+ * cintura até 17 cm abaixo do quadril; o tênis cobre o pé até o tornozelo; o cabelo fica acima de uma linha que
+ * sobe da nuca à testa.
+ */
+const COBERTURAS = new WeakMap<Corpo, { cob: Float32Array; alvo: Float32Array }>();
+export function coberturas(c: Corpo): { cob: Float32Array; alvo: Float32Array } {
+  const ja = COBERTURAS.get(c);
+  if (ja) return ja;
+  const { malha: m, ligas } = preparar(c);
+  const cob = new Float32Array(m.pontos),
+    alvo = new Float32Array(m.pontos);
+  const yQ = J(m, 'upperleg01.L')[1],
+    H = J(m, 'neck01')[1] - yQ,
+    cr = J(m, 'head');
+  const r01 = (x: number) => Math.max(0, Math.min(1, x));
+  for (let i = 0; i < m.pontos; i++) {
+    const p: V3 = [m.pos[i * 3]!, m.pos[i * 3 + 1]!, m.pos[i * 3 + 2]!];
+    let short = 0,
+      tenis = 0,
+      cabeca = 0,
+      perna = 0;
+    for (let j = 0; j < m.inf; j++) {
+      const w = m.segPeso[i * m.inf + j]! / 255,
+        g = m.segIdx[i * m.inf + j]!;
+      if (!w) continue;
+      const b = m.segs[g]!.replace(/[RL]$/, '');
+      if (b === 'pe' || b === 'dedos') tenis += w;
+      else if (b === 'perna') perna += w;
+      else if (b === 'cabeca' || b.startsWith('pesc')) cabeca += w;
+      else if (b === 'coxa') short += w * r01(0.5 + (17 - -paraRef(ligas[g]!.rep, p)[1]) / 1.6);
+      else if (b === 'pelve' || b.startsWith('esp')) short += w * r01(0.5 + (0.13 - (p[1] - yQ) / H) / 0.025);
+    }
+    if (tenis + perna > 0.5 && tenis > 0.02) {
+      cob[i] = r01(tenis * 1.15);
+      alvo[i] = MATERIAIS_MALHA.calcado;
+    } else if (cabeca > 0.5) {
+      cob[i] = r01(0.5 + (p[1] - cr[1] - (7 + 0.52 * (p[2] - cr[2]))) / 1.4);
+      alvo[i] = MATERIAIS_MALHA.cabelo;
+    } else {
+      cob[i] = short;
+      alvo[i] = MATERIAIS_MALHA.roupa;
+    }
+  }
+  const r = { cob, alvo };
+  COBERTURAS.set(c, r);
+  return r;
+}
+/** Material de cada ponto: pele, ou pele mais clara nos membros do lado de longe. */
+export function materiaisDaMalha(c: Corpo, o: { longe?: Lado | null } = {}): Float32Array {
+  const { malha: m } = preparar(c);
+  const out = new Float32Array(m.pontos);
+  if (o.longe)
+    for (let i = 0; i < m.pontos; i++) {
+      const nome = m.segs[m.segIdx[i * m.inf]!]!;
+      if (nome.endsWith(o.longe) && /^(braco|ante|mao|f\d\d|coxa|perna|pe|dedos)/.test(nome)) out[i] = MATERIAIS_MALHA.peleLonge;
+    }
+  return out;
+}
+/** Índices dos materiais usados pela malha (os mesmos de ./gl.ts). */
+const MATERIAIS_MALHA = { pele: 0, peleLonge: 12, roupa: 14, cabelo: 15, calcado: 16 };
+/** Qual lado do corpo está mais longe de quem olha (para clarear os membros de trás); null se os dois estão iguais. */
+export function ladoDeLonge(e: Esq, para: V3): Lado | null {
+  const d = (k: Lado) => dot(e.lado[k].ombro, para) + dot(e.lado[k].quadril, para);
+  const dif = d('R') - d('L');
+  return Math.abs(dif) < 6 ? null : dif < 0 ? 'R' : 'L';
+}
+
 /* ============================== músculos ============================== */
 export type IdMusculoMalha = 'quadriceps' | 'gluteos' | 'adutores' | 'posteriores' | 'panturrilha' | 'peitoral' | 'deltoideAnterior' | 'deltoidePosterior' | 'triceps' | 'biceps' | 'dorsal' | 'abdomen';
 const MASCARAS = new Map<string, Float32Array>();
@@ -403,17 +549,12 @@ export function mascaraDoMusculo(c: Corpo, id: IdMusculoMalha, lados: 'RL' | Lad
   return out;
 }
 
-/** As posições da malha para um esqueleto resolvido (cm). `out` pode ser reaproveitado entre quadros. */
-export function pele(e: Esq, out?: Float32Array): Float32Array {
-  const { malha: m, ligas, rep } = preparar(e.corpo);
-  const n = m.pontos,
-    P = out ?? new Float32Array(n * 3);
-  // matriz de cada segmento: ponto em repouso → local do osso (com a escala) → osso posado
-  const M = ligas.map((l) => {
+/** Matriz de cada segmento para um esqueleto resolvido: ponto em repouso → local do osso (com a escala) → osso posado. */
+function matrizes(ligas: Liga[], e: Esq): number[][] {
+  return ligas.map((l) => {
     const r = l.rep,
       q = l.posado(e);
     const col = (ex: number, ey: number, ez: number) => {
-      // componente do vetor do mundo em cada eixo de repouso, escalada, levada ao eixo posado
       const a = (r.x[0] * ex + r.x[1] * ey + r.x[2] * ez) * l.k[0],
         b = (r.y[0] * ex + r.y[1] * ey + r.y[2] * ez) * l.k[1],
         cc = (r.z[0] * ex + r.z[1] * ey + r.z[2] * ez) * l.k[2];
@@ -425,7 +566,8 @@ export function pele(e: Esq, out?: Float32Array): Float32Array {
     const t = [q.o[0] - (cx[0]! * r.o[0] + cy[0]! * r.o[1] + cz[0]! * r.o[2]), q.o[1] - (cx[1]! * r.o[0] + cy[1]! * r.o[1] + cz[1]! * r.o[2]), q.o[2] - (cx[2]! * r.o[0] + cy[2]! * r.o[1] + cz[2]! * r.o[2])];
     return [cx[0]!, cy[0]!, cz[0]!, t[0]!, cx[1]!, cy[1]!, cz[1]!, t[1]!, cx[2]!, cy[2]!, cz[2]!, t[2]!];
   });
-  const inf = m.inf;
+}
+function pesar(M: number[][], rep: Float32Array, idx: Uint8Array, peso: Uint8Array, n: number, inf: number, P: Float32Array) {
   for (let i = 0; i < n; i++) {
     const x = rep[i * 3]!,
       y = rep[i * 3 + 1]!,
@@ -434,9 +576,9 @@ export function pele(e: Esq, out?: Float32Array): Float32Array {
       Y = 0,
       Z = 0;
     for (let j = 0; j < inf; j++) {
-      const w = m.segPeso[i * inf + j]! / 255;
+      const w = peso[i * inf + j]! / 255;
       if (!w) continue;
-      const a = M[m.segIdx[i * inf + j]!]!;
+      const a = M[idx[i * inf + j]!]!;
       X += w * (a[0]! * x + a[1]! * y + a[2]! * z + a[3]!);
       Y += w * (a[4]! * x + a[5]! * y + a[6]! * z + a[7]!);
       Z += w * (a[8]! * x + a[9]! * y + a[10]! * z + a[11]!);
@@ -446,6 +588,102 @@ export function pele(e: Esq, out?: Float32Array): Float32Array {
     P[i * 3 + 2] = Z;
   }
   return P;
+}
+/** As posições da malha para um esqueleto resolvido (cm). `out` pode ser reaproveitado entre quadros. */
+export function pele(e: Esq, out?: Float32Array, variante: VarianteMalha = 'natural'): Float32Array {
+  const pr = preparar(e.corpo);
+  const m = pr.malha;
+  let rep = pr.rep;
+  if (variante === 'lisa') {
+    rep = LISAS.get(e.corpo) ?? alisar(m, pr.rep);
+    LISAS.set(e.corpo, rep);
+  }
+  return pesar(matrizes(pr.ligas, e), rep, m.segIdx, m.segPeso, m.pontos, m.inf, out ?? new Float32Array(m.pontos * 3));
+}
+
+/* ============================== malha facetada (poucos polígonos) ============================== */
+export interface MalhaLeve {
+  pontos: number;
+  rep: Float32Array;
+  tri: Uint16Array;
+  segIdx: Uint8Array;
+  segPeso: Uint8Array;
+  /** De qual ponto da malha inteira cada ponto leve herdou as regiões (para músculos e materiais). */
+  origem: Uint32Array;
+}
+const LEVES = new WeakMap<Corpo, Map<number, MalhaLeve>>();
+/**
+ * Versão com poucos polígonos da malha lisa: os pontos são agrupados em células de `celula` cm (em repouso) e cada
+ * grupo vira um ponto só. Serve ao modelo "facetado" e mostra quanto a malha pode emagrecer.
+ */
+export function malhaLeve(c: Corpo, celula = 4.5): MalhaLeve {
+  let mapa = LEVES.get(c);
+  if (!mapa) LEVES.set(c, (mapa = new Map()));
+  const ja = mapa.get(celula);
+  if (ja) return ja;
+  const pr = preparar(c),
+    m = pr.malha;
+  const rep = LISAS.get(c) ?? alisar(m, pr.rep);
+  LISAS.set(c, rep);
+  const grupo = new Map<string, number>();
+  const de = new Uint32Array(m.pontos);
+  const soma: number[][] = [],
+    conta: number[] = [],
+    pesos: Map<number, number>[] = [],
+    origem: number[] = [];
+  for (let i = 0; i < m.pontos; i++) {
+    // mãos, pés e cabeça com células menores, para não virarem um bloco só; o segmento principal entra na chave
+    const seg = m.segs[m.segIdx[i * m.inf]!]!;
+    const cel = /^(mao|f\d\d|dedos)/.test(seg) ? celula * 0.42 : /^(pe|cabeca|pesc)/.test(seg) ? celula * 0.7 : celula;
+    const lado = /^(mao|f\d\d|ante|braco|coxa|perna|pe|dedos)/.test(seg) ? seg.slice(-1) + seg.slice(0, 2) : '';
+    const k = `${lado}:${Math.round(rep[i * 3]! / cel)},${Math.round(rep[i * 3 + 1]! / cel)},${Math.round(rep[i * 3 + 2]! / cel)}`;
+    let g = grupo.get(k);
+    if (g === undefined) {
+      g = soma.length;
+      grupo.set(k, g);
+      soma.push([0, 0, 0]);
+      conta.push(0);
+      pesos.push(new Map());
+      origem.push(i);
+    }
+    de[i] = g;
+    for (let q = 0; q < 3; q++) soma[g]![q]! += rep[i * 3 + q]!;
+    conta[g]!++;
+    for (let j = 0; j < m.inf; j++) {
+      const w = m.segPeso[i * m.inf + j]!;
+      if (w) pesos[g]!.set(m.segIdx[i * m.inf + j]!, (pesos[g]!.get(m.segIdx[i * m.inf + j]!) ?? 0) + w);
+    }
+  }
+  const n = soma.length;
+  const r = new Float32Array(n * 3),
+    idx = new Uint8Array(n * m.inf),
+    peso = new Uint8Array(n * m.inf);
+  for (let g = 0; g < n; g++) {
+    for (let q = 0; q < 3; q++) r[g * 3 + q] = soma[g]![q]! / conta[g]!;
+    const ord = [...pesos[g]!.entries()].sort((a, b) => b[1] - a[1]).slice(0, m.inf);
+    const tot = ord.reduce((s, [, w]) => s + w, 0);
+    let resto = 255;
+    ord.forEach(([sg, w], q) => {
+      const v = q === ord.length - 1 ? resto : Math.min(resto, Math.round((w / tot) * 255));
+      idx[g * m.inf + q] = sg;
+      peso[g * m.inf + q] = v;
+      resto -= v;
+    });
+  }
+  const tri: number[] = [];
+  for (let t = 0; t < m.tri.length; t += 3) {
+    const a = de[m.tri[t]!]!,
+      b = de[m.tri[t + 1]!]!,
+      cc = de[m.tri[t + 2]!]!;
+    if (a !== b && b !== cc && a !== cc) tri.push(a, b, cc);
+  }
+  const leve: MalhaLeve = { pontos: n, rep: r, tri: new Uint16Array(tri), segIdx: idx, segPeso: peso, origem: new Uint32Array(origem) };
+  mapa.set(celula, leve);
+  return leve;
+}
+export function peleLeve(e: Esq, leve: MalhaLeve): Float32Array {
+  const pr = preparar(e.corpo);
+  return pesar(matrizes(pr.ligas, e), leve.rep, leve.segIdx, leve.segPeso, leve.pontos, pr.malha.inf, new Float32Array(leve.pontos * 3));
 }
 /** Normais suaves (uma por ponto), pela soma das normais dos triângulos vizinhos. */
 export function normais(pos: Float32Array, tri: Uint16Array, out?: Float32Array): Float32Array {
@@ -477,4 +715,30 @@ export function normais(pos: Float32Array, tri: Uint16Array, out?: Float32Array)
     N[i + 2] = N[i + 2]! / l;
   }
   return N;
+}
+
+/* ============================== geometria pronta para o pintor ============================== */
+export interface OpcoesDaGeo {
+  variante?: VarianteMalha;
+  /** Short, tênis e cabelo. */
+  roupa?: boolean;
+  /** Lado do corpo a clarear (o de longe). */
+  longe?: Lado | null;
+  /** Regiões de músculo principal e secundário (um valor por ponto da malha inteira). */
+  mp?: Float32Array;
+  ms?: Float32Array;
+  /** Malha de poucos polígonos, com células deste tamanho (cm). */
+  celula?: number;
+}
+/** O corpo (malha) pronto para o pintor, num quadro. */
+export function geoDaMalha(e: Esq, o: OpcoesDaGeo = {}): Geo {
+  const c = e.corpo,
+    m = malhaBase();
+  const leve = o.celula ? malhaLeve(c, o.celula) : null;
+  const pos = leve ? peleLeve(e, leve) : pele(e, undefined, o.variante);
+  const tri = leve ? leve.tri : m.tri;
+  const nor = normais(pos, tri);
+  const doCorpo = (a?: Float32Array) => (a && leve ? Float32Array.from(leve.origem, (i) => a[i]!) : a);
+  const cb = o.roupa ? coberturas(c) : null;
+  return { pos, nor, exp: nor, mat: doCorpo(materiaisDaMalha(c, { longe: o.longe }))!, mp: doCorpo(o.mp), ms: doCorpo(o.ms), cob: doCorpo(cb?.cob), alvo: doCorpo(cb?.alvo), tri };
 }

@@ -1,14 +1,14 @@
 // Flexão de braço, no motor novo. Mãos e pontas dos pés ficam presas no chão; o corpo gira inteiro em torno das
 // pontas dos pés. O ângulo da prancha em cima sai do cotovelo pedido pela ficha, e embaixo, da folga do peito ao chão.
 import ficha from '../dados/movimentos/flexao.json';
-import { corpo3d } from '../corpo3d';
 import { resolverMembros, resolverTronco, sinal } from '../esqueleto';
 import type { Esq, Lado, PoseBraco, PosePerna } from '../esqueleto';
+import { pele } from '../malha';
 import { daFicha, fichaSchema, resolver1 } from '../movimento';
 import type { Exercicio, Quadro } from '../movimento';
 import { chao } from '../pecas';
 import type { Corpo } from '../tabelas';
-import { mix } from '../vec';
+import { mix, paraRef } from '../vec';
 import type { V3 } from '../vec';
 
 const F = fichaSchema.parse(ficha);
@@ -42,17 +42,22 @@ function prancha(corpo: Corpo, beta: number, zMao: number, o: { cot?: number; qu
   };
   return resolverMembros(t, { R: braco('R'), L: braco('L') }, pernas);
 }
-/** Altura do ponto mais baixo da frente do tronco (o peito), em cm. */
+/** Altura do ponto mais baixo do peito (cm), medida na malha: entre os ombros e a cintura. */
 function peitoAoChao(e: Esq): number {
-  const tronco = corpo3d(e).partes.find((p) => p.id === 'tronco')!.volumes[0]!;
-  return Math.min(...tronco.aneis.slice(Math.floor(tronco.aneis.length / 2)).map((an) => an.c[1] + an.z[1] * an.f));
+  const P = pele(e);
+  let min = 1e9;
+  for (let i = 0; i < P.length; i += 3) {
+    const l = paraRef(e.torax, [P[i]!, P[i + 1]!, P[i + 2]!]);
+    if (l[1] < -4 && l[1] > -32 && Math.abs(l[0]) < 12) min = Math.min(min, P[i + 1]!);
+  }
+  return min;
 }
 function calibrar(corpo: Corpo) {
   let c = CACHE.get(corpo);
   if (c) return c;
   // 1) embaixo: a folga do peito ao chão define o ângulo; as mãos ficam na linha do meio do peito
   const zOmbro = (beta: number) => prancha(corpo, beta, 100).lado.L.ombro[2];
-  const baixo = resolver1((b) => peitoAoChao(prancha(corpo, b, 100)) - f('peito.aoChao'), 0, 30);
+  const baixo = resolver1((b) => peitoAoChao(prancha(corpo, b, 100)) - f('peito.aoChao'), 0, 30, 18);
   const zMao = zOmbro(baixo) - f('maos.abaixoDoOmbro');
   // 2) em cima: o cotovelo quase estendido define o ângulo
   const cima = resolver1((b) => f('cotovelo.cima') - prancha(corpo, b, zMao).lado.L.ang.cotovelo, baixo, 45);

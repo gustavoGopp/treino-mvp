@@ -1,0 +1,23 @@
+{
+ "fontes": {
+  "cdc": "Soucie JM et al. Range of motion measurements: reference values and a database for comparison studies. Haemophilia 2011; tabelas do CDC, Normal Joint Range of Motion Study (674 pessoas de 2 a 69 anos, movimento passivo). Lido em 12/11/2026: docs/revisoes/animacao-nova/pesquisa/02-articulacoes.md, A1",
+  "aaos": "American Academy of Orthopaedic Surgeons, Joint Motion (1965), lida em transcrição secundária: docs/revisoes/animacao-nova/pesquisa/02-articulacoes.md, A3. Só o valor de referência, sem máximo observado",
+  "a-conferir": "Sem fonte lida ainda: limite provisório"
+ },
+ "nota": "media = valor médio de referência (passar dele gera aviso); max = maior valor observado na amostra (passar dele é falha). Em graus.",
+ "limites": {
+  "joelho.flexao": { "media": 140, "max": 164, "fonte": "cdc" },
+  "cotovelo.flexao": { "media": 148, "max": 166, "fonte": "cdc" },
+  "quadril.flexao": { "media": 132, "max": 159, "fonte": "cdc" },
+  "quadril.extensao": { "media": 18.5, "max": 42, "fonte": "cdc" },
+  "quadril.abducao": { "media": 40, "max": 60, "fonte": "aaos" },
+  "ombro.elevacao": { "media": 170, "max": 192, "fonte": "cdc" },
+  "tornozelo.dorsiflexao": { "media": 14.8, "max": 48, "fonte": "cdc" },
+  "tornozelo.flexaoPlantar": { "media": 56.7, "max": 90, "fonte": "cdc" },
+  "antebraco.pronacao": { "media": 80, "max": 108, "fonte": "cdc" },
+  "antebraco.supinacao": { "media": 87.5, "max": 131, "fonte": "cdc" },
+  "punho.extensao": { "media": 70, "max": 95, "fonte": "aaos" },
+  "punho.flexao": { "media": 80, "max": 95, "fonte": "aaos" },
+  "dedosDoPe.extensao": { "media": 70, "max": 90, "fonte": "aaos" }
+ }
+}

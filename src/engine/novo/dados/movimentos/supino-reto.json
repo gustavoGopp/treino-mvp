@@ -1,0 +1,42 @@
+{
+ "id": "supino-reto",
+ "nome": "Supino reto com halteres",
+ "fichaDaTecnica": "docs/pesquisa/animacoes/supino-reto.md",
+ "fontes": {
+  "guia": "Guia original do projeto, como registrado em docs/pesquisa/animacoes/supino-reto.md: consenso de treinadores",
+  "tecnica08": "docs/pesquisa/08-tecnica-guia.md, conclusão 4 (tecnica.supino-halteres.cotovelos): consenso com apoio biomecânico",
+  "objetos": "src/engine/novo/dados/objetos.json",
+  "desenho": "Escolha de desenho desta animação, dentro do que a ficha pede; a conferência mede o resultado"
+ },
+ "param": {
+  "cotovelos.doTronco": { "v": 50, "un": "graus", "selo": "consenso", "fonte": "tecnica08", "o": "cotovelos a ~30–60° do tronco" },
+  "braco.cima": { "v": 80, "un": "graus", "selo": "consenso", "fonte": "guia", "o": "topo: halteres sobre os ombros, cotovelos quase estendidos (braço a 80° acima da horizontal: cotovelo a 10°)" },
+  "braco.baixo": { "v": -14, "un": "graus", "selo": "consenso", "fonte": "guia", "o": "embaixo: cotovelos um pouco abaixo da linha do tronco (braço abaixo da horizontal)" },
+  "pegada.giro": { "v": 25, "un": "graus", "selo": "consenso", "fonte": "guia", "o": "pegada levemente neutra: palmas giradas 20–30° uma para a outra" },
+  "escapula.retracao": { "v": 9, "un": "graus", "selo": "consenso", "fonte": "guia", "o": "escápulas levemente juntas; a ficha não dá número" },
+  "escapula.depressao": { "v": 4, "un": "graus", "selo": "consenso", "fonte": "guia", "o": "escápulas para baixo; a ficha não dá número" },
+  "pes.meiaDistancia": { "v": 22, "un": "cm", "selo": "consenso", "fonte": "guia", "o": "pés um pouco mais abertos que o quadril" },
+  "carga": { "v": 11.3, "un": "kg", "selo": "desenho", "fonte": "objetos", "o": "cada halter desenhado (25 lb)" },
+  "erro.cot.doTronco": { "v": 88, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "erro: cotovelos abertos a ~90°" },
+  "erro.escap.protracao": { "v": 16, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "erro: os ombros saem do banco no topo" },
+  "erro.curta.braco": { "v": 28, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "erro: para longe do peito" }
+ },
+ "fases": [
+  { "nome": "Topo", "tipo": "pausa", "dur": 0.6, "de": 0, "ate": 0, "respira": "INSPIRA", "tempo": "respire", "selo": "consenso", "fonte": "guia" },
+  { "nome": "Descida · excêntrica", "tipo": "exc", "dur": 2.5, "de": 0, "ate": 1, "respira": "INSPIRA", "tempo": "~2–3 s", "selo": "consenso", "fonte": "guia" },
+  { "nome": "Embaixo · sem quicar", "tipo": "pausa", "dur": 0.45, "de": 1, "ate": 1, "respira": "FIRME", "tempo": "pausa curta", "selo": "consenso", "fonte": "guia" },
+  { "nome": "Subida · concêntrica", "tipo": "conc", "dur": 1.3, "de": 1, "ate": 0, "respira": "EXPIRA", "tempo": "~1–1,5 s", "selo": "consenso", "fonte": "guia" }
+ ],
+ "contatos": ["pe.R", "pe.L", "pelve"],
+ "regras": [
+  { "id": "antebraco-na-vertical", "pede": "antebraço na vertical durante todo o movimento", "selo": "consenso", "fonte": "guia" },
+  { "id": "cotovelos-30-60", "pede": "cotovelos a 30–60° do tronco", "selo": "consenso", "fonte": "tecnica08" },
+  { "id": "halter-sobre-o-ombro-no-topo", "pede": "no topo, os halteres ficam sobre os ombros", "selo": "consenso", "fonte": "guia" }
+ ],
+ "erros": [
+  { "id": "cot", "titulo": "Cotovelos abertos a ~90°", "vista": "cima", "oQueMuda": "o braço fica perpendicular ao tronco" },
+  { "id": "escap", "titulo": "Ombros saem do banco no topo", "vista": "lateral", "oQueMuda": "a clavícula vai à frente e o ombro descola do banco" },
+  { "id": "curta", "titulo": "Descer pouco", "vista": "lateral", "oQueMuda": "para com o braço 28° acima da horizontal" }
+ ],
+ "simetrico": true
+}
