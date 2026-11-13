@@ -34,9 +34,9 @@
   { "id": "tronco-quase-parado", "pede": "o tronco quase não se move", "selo": "consenso", "fonte": "guia" }
  ],
  "erros": [
-  { "id": "tronco", "titulo": "Jogar o tronco para trás", "vista": "lateral", "oQueMuda": "o tronco inclina 30° para trás no fim" },
-  { "id": "encolher", "titulo": "Ombro encolhido", "vista": "posterior", "oQueMuda": "a clavícula continua elevada no fim" },
-  { "id": "curta", "titulo": "Não alongar em cima", "vista": "lateral", "oQueMuda": "volta só até a metade" }
+  { "id": "tronco", "titulo": "Jogar o tronco para trás", "vista": "lateral", "oQueMuda": "o tronco inclina 30° para trás no fim", "destaca": ["corpo"], "linha": ["pelve", "lombar", "c7", "cabeca"], "foco": "c7" },
+  { "id": "encolher", "titulo": "Ombro encolhido", "vista": "posterior", "oQueMuda": "a clavícula continua elevada no fim", "destaca": ["bracos"], "linha": ["c7", "ombro", "cotovelo"], "foco": "ombro" },
+  { "id": "curta", "titulo": "Não alongar em cima", "vista": "lateral", "oQueMuda": "volta só até a metade", "destaca": ["bracos"], "linha": ["ombro", "cotovelo", "punho"], "foco": "cotovelo" }
  ],
  "simetrico": false
 }

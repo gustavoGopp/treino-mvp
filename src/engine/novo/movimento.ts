@@ -24,7 +24,11 @@ export const fichaSchema = z.object({
   contatos: z.array(z.string()),
   /** O que a ficha da técnica pede e a conferência mede: [regra, valor medido esperado]. */
   regras: z.array(z.object({ id: z.string(), pede: z.string(), selo: SELO, fonte: z.string() })),
-  erros: z.array(z.object({ id: z.string(), titulo: z.string(), vista: z.string(), oQueMuda: z.string() })),
+  /**
+   * Erros desenhados. `destaca`: as partes do corpo que erram ('pernas', 'bracos', 'corpo'), pintadas na cor de erro;
+   * `linha`: os pontos ligados por uma linha (a errada, cheia, e a certa, tracejada); `foco`: o ponto que leva o nome do erro.
+   */
+  erros: z.array(z.object({ id: z.string(), titulo: z.string(), vista: z.string(), oQueMuda: z.string(), destaca: z.array(z.enum(['pernas', 'bracos', 'corpo'])), linha: z.array(z.string()).min(2), foco: z.string() })),
   simetrico: z.boolean(),
 });
 export type Ficha = z.infer<typeof fichaSchema>;

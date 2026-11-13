@@ -23,7 +23,10 @@ export function cilindro(a: V3, b: V3, r: number, r2 = r, dica?: V3): Volume {
 const caixa = (o: V3, x: V3, y: V3, z: V3, meias: V3, cls: string, vies?: number): Prim => ({ t: 'caixa', ref: { o, x, y, z }, meias, cls, vies });
 const caixaReta = (o: V3, meias: V3, cls: string, vies?: number): Prim => ({ t: 'caixa', ref: { ...REF0, o }, meias, cls, vies });
 
-/** Halter: centro do cabo e direção do cabo. As cabeças sextavadas entram como cilindros achatados (largura × altura da ficha). */
+/**
+ * Halter sextavado: centro do cabo e direção do cabo. Cada cabeça é um prisma de seis faces com a largura (entre
+ * cantos) e a altura (entre faces) da ficha; o cabo é um cilindro.
+ */
 export function halter(centro: V3, eixo: V3, vies = 0): Prim[] {
   const u = norm(eixo);
   const comp = obj('halter', 'comp'),
@@ -32,16 +35,9 @@ export function halter(centro: V3, eixo: V3, vies = 0): Prim[] {
     ra = obj('halter', 'cabecaLargura') / 2,
     rb = obj('halter', 'cabecaAltura') / 2;
   const P = (d: number) => add(centro, mul(u, d));
-  const cab = (s: number): Volume => {
-    const [x, z] = base(u);
-    const an = (d: number, k: number): Anel => ({ c: P(s * d), x, z, a: ra * k, f: rb * k, b: rb * k });
-    return { aneis: [an(cabo / 2, 0.86), an(cabo / 2 + 0.8, 1), an(comp / 2 - 0.8, 1), an(comp / 2, 0.86)] };
-  };
-  return [
-    { t: 'volume', vol: cilindro(P(-cabo / 2 - 0.5), P(cabo / 2 + 0.5), rc), cls: 'aco', vies },
-    { t: 'volume', vol: cab(-1), cls: 'ferro', vies },
-    { t: 'volume', vol: cab(1), cls: 'ferro', vies },
-  ];
+  const [x, z] = base(u);
+  const cab = (s: number): Prim => ({ t: 'prisma', a: P(s * (cabo / 2)), b: P(s * (comp / 2)), x, z, ra, rb, lados: 6, cls: 'ferro', vies });
+  return [{ t: 'volume', vol: cilindro(P(-cabo / 2 - 0.5), P(cabo / 2 + 0.5), rc), cls: 'aco', vies }, cab(-1), cab(1)];
 }
 
 /** Banco reto: o estofado ao longo de z, centrado em (x0, z0), com dois pés em T. */

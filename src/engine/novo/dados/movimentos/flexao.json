@@ -34,9 +34,9 @@
   { "id": "cotovelos-a-meio-caminho", "pede": "cotovelos a meio caminho entre o tronco e os lados", "selo": "consenso", "fonte": "guia" }
  ],
  "erros": [
-  { "id": "quadril", "titulo": "Quadril cai", "vista": "lateral", "oQueMuda": "a lombar arqueia e o quadril sai da linha" },
-  { "id": "cot", "titulo": "Cotovelos abertos a 90°", "vista": "cima", "oQueMuda": "os cotovelos vão para os lados" },
-  { "id": "curta", "titulo": "Descer pouco", "vista": "lateral", "oQueMuda": "desce só até a metade" }
+  { "id": "quadril", "titulo": "Quadril cai", "vista": "lateral", "oQueMuda": "a lombar arqueia e o quadril sai da linha", "destaca": ["corpo"], "linha": ["ombro", "quadril", "tornozelo"], "foco": "quadril" },
+  { "id": "cot", "titulo": "Cotovelos abertos a 90°", "vista": "cima", "oQueMuda": "os cotovelos vão para os lados", "destaca": ["bracos"], "linha": ["ombro", "cotovelo", "punho"], "foco": "cotovelo" },
+  { "id": "curta", "titulo": "Descer pouco", "vista": "lateral", "oQueMuda": "desce só até a metade", "destaca": ["bracos"], "linha": ["ombro", "cotovelo", "punho"], "foco": "cotovelo" }
  ],
  "simetrico": true
 }

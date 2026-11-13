@@ -2,6 +2,7 @@
 // Gera, em docs/revisoes/animacao-nova/prototipos/:
 //   index.html           página que roda sozinha (sem rede): exercício, vista, modo, erro, desenho e tema
 //   folha-<id>.png       folha de contato de cada âncora, ao lado da versão de hoje (motor do app, só leitura)
+//   erros.png            todos os erros das âncoras em tamanho grande, hoje e novo
 //   medidas.json         peso do pacote e tempo por quadro, hoje e novo (no Chromium com a CPU 4x mais lenta)
 // Uso: node scripts/animacao-nova/prototipos.mjs [so-pagina|so-folhas|so-medidas]
 /* global MOTOR, HOJE */
@@ -100,6 +101,23 @@ h2{font-size:15px;margin:14px 0 6px;border-top:2px solid #171b20;padding-top:6px
 </style><h1>${F.nome}: hoje × novo</h1><p class="s">Folha de contato da etapa 1 da animação nova. "Hoje" é o guia que está no app; "novo" é o motor novo com o desenho do Boneco aprovado em 13/11/2026. Os quadros são o começo, o meio e o fim da primeira fase com movimento. Nada disto está no app.</p>${h}`;
 }
 
+/** Todos os erros das âncoras, em tamanho grande, hoje e novo lado a lado (para conferir se o erro se lê de relance). */
+function folhaDosErros() {
+  let h = '';
+  for (const id of IDS) {
+    const F = m.EXERCICIOS[id].ficha, I = instantes(id);
+    h += `<h2>${F.nome}</h2><div class="l">${F.erros.flatMap((e) => {
+      const iH = exHoje(id).errors.findIndex((x) => x.id === e.id);
+      return [...(iH >= 0 ? [cel(`hoje · ${e.titulo} (${NOME_VISTA[e.vista]})`, svgHoje(id, e.vista, 'err', I.velho[2], iH), { classe: 'hoje', w: 400, h: 300 })] : []), cel(`novo · ${e.titulo} (${NOME_VISTA[e.vista]})`, svgNovo(id, e.vista, 'err', I.novo[2], { erro: e.id }), { w: 400, h: 300 })];
+    }).join('')}</div>`;
+  }
+  return `<!doctype html><meta charset="utf-8"><style>${cssHoje}${cssNovo}
+body{margin:0;padding:22px 24px;background:#fff;color:#171b20;font:14px/1.4 system-ui,-apple-system,"Segoe UI",sans-serif}h1{font-size:24px;margin:0 0 2px}p.s{margin:0 0 6px;color:#4d5661;max-width:1200px}
+h2{font-size:15px;margin:14px 0 6px;border-top:2px solid #171b20;padding-top:6px}.l{display:flex;gap:8px;flex-wrap:wrap;align-items:flex-end;margin-bottom:8px}figure{margin:0}figcaption{font-size:12px;color:#464b51;margin-top:2px}
+.q{border-radius:10px;overflow:hidden;background:#f7f9fa}.q svg{width:100%;height:100%;display:block}.q.hoje svg{background:var(--stage)}
+</style><h1>Modo Erros: hoje × novo</h1><p class="s">No novo: a parte do corpo que erra fica em vermelho, a linha vermelha mostra onde ela está, a linha tracejada verde mostra onde deveria estar, o contorno tracejado é o corpo no movimento certo, e o nome do erro fica fora do corpo. Quadro: o fim da primeira fase com movimento.</p>${h}`;
+}
+
 /* ============================== a página que roda sozinha ============================== */
 async function pagina() {
   const js = await motorNovoTexto(ENTRADA);
@@ -183,5 +201,12 @@ if (!so || so === 'so-folhas') {
     console.log(`folha ${id}`);
   }
   await b.close();
+}
+if (!so || so === 'so-folhas' || so === 'so-erros') {
+  const b = await nav(), pg = await b.newPage({ viewport: { width: 1280, height: 800 }, deviceScaleFactor: 2 });
+  await pg.setContent(folhaDosErros());
+  await pg.screenshot({ path: `${SAIDA}/erros.png`, fullPage: true });
+  await b.close();
+  console.log('folha dos erros');
 }
 if (!so || so === 'so-medidas') await medidas();

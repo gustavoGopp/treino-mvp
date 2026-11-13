@@ -36,9 +36,9 @@
   { "id": "lombar-neutra", "pede": "a lombar não arredonda", "selo": "consenso", "fonte": "guia" }
  ],
  "erros": [
-  { "id": "valgo", "titulo": "Joelhos para dentro", "vista": "frontal", "oQueMuda": "os joelhos saem da linha dos pés, para dentro" },
-  { "id": "lombar", "titulo": "Tronco cai e a lombar arredonda", "vista": "lateral", "oQueMuda": "o tronco inclina demais e a lombar flexiona" },
-  { "id": "raso", "titulo": "Descer pouco", "vista": "lateral", "oQueMuda": "para com o joelho a 72° em vez de 126°" }
+  { "id": "valgo", "titulo": "Joelhos para dentro", "vista": "frontal", "oQueMuda": "os joelhos saem da linha dos pés, para dentro", "destaca": ["pernas"], "linha": ["quadril", "joelho", "tornozelo"], "foco": "joelho" },
+  { "id": "lombar", "titulo": "Tronco cai e a lombar arredonda", "vista": "lateral", "oQueMuda": "o tronco inclina demais e a lombar flexiona", "destaca": ["corpo"], "linha": ["pelve", "lombar", "c7", "cabeca"], "foco": "lombar" },
+  { "id": "raso", "titulo": "Descer pouco", "vista": "lateral", "oQueMuda": "para com o joelho a 72° em vez de 126°", "destaca": ["pernas"], "linha": ["quadril", "joelho", "tornozelo"], "foco": "joelho" }
  ],
  "simetrico": true
 }

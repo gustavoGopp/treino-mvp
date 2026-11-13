@@ -23,7 +23,8 @@
 .novo .chao{fill:var(--n-chao)}
 /* objetos por material */
 .novo .o-p.aco,.novo .o-cx.aco{fill:var(--n-obj-esc)}
-.novo .o-p.ferro,.novo .o-cx.ferro,.novo .o-fc0.ferro,.novo .o-fc1.ferro,.novo .o-fc2.ferro{fill:var(--n-ferro)}
+.novo .o-p.ferro,.novo .o-cx.ferro,.novo .o-fc1.ferro{fill:var(--n-ferro)}
+.novo .o-fc0.ferro{fill:color-mix(in srgb,var(--n-ferro) 76%,var(--n-fundo))}.novo .o-fc2.ferro{fill:color-mix(in srgb,var(--n-ferro) 86%,var(--n-cont))}
 .novo .o-fc0.ferro2,.novo .o-fc1.ferro2,.novo .o-fc2.ferro2,.novo .o-cx.ferro2{fill:var(--n-obj-esc)}
 .novo .o-cx.esc{fill:var(--n-obj-esc)}
 .novo .o-fc0.esc{fill:color-mix(in srgb,var(--n-obj-esc) 78%,var(--n-fundo))}.novo .o-fc1.esc{fill:var(--n-obj-esc)}.novo .o-fc2.esc{fill:color-mix(in srgb,var(--n-obj-esc) 80%,var(--n-cont))}
@@ -47,3 +48,9 @@
 .novo .n-m,.novo .n-m-e{fill:var(--n-cont)}
 .novo .n-m-f{fill:none}
 .novo .n-chao-l{stroke:var(--n-chao-l,#d5dce1);stroke-width:1.5px;vector-effect:non-scaling-stroke}.novo.escuro .n-chao-l{stroke:#33414b}
+/* modo Erros: a linha do erro, a do movimento certo e o nome do erro */
+.novo .n-err-l{fill:none;stroke:var(--n-err);stroke-width:3px;vector-effect:non-scaling-stroke;stroke-linecap:round;stroke-linejoin:round}
+.novo .n-err-p{fill:var(--n-err);stroke:var(--n-fundo);stroke-width:1px;vector-effect:non-scaling-stroke}
+.novo .n-certo-l{fill:none;stroke:var(--n-guia);stroke-width:2px;vector-effect:non-scaling-stroke;stroke-dasharray:5 4;stroke-linecap:round;stroke-linejoin:round}
+.novo .n-err-fio{stroke:var(--n-err);stroke-width:1px;vector-effect:non-scaling-stroke}
+.novo .n-err-t{fill:var(--n-err);font:600 9px system-ui,-apple-system,"Segoe UI",sans-serif;paint-order:stroke;stroke:var(--n-fundo);stroke-width:2.5px;stroke-linejoin:round}

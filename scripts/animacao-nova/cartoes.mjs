@@ -14,11 +14,11 @@ const yHalter = o('halter', 'cabecaAltura') / 2;
 const CARTOES = [
   { id: 'banco_regulavel', nome: 'Banco regulável', hoje: ['banco_regulavel'], prims: m.bancoRegulavel(0, 0, 45), nota: 'encosto a 45°; estofado de 132 × 28,6 cm, a 44,5 cm do chão (Rogue Adjustable Bench 3.0)' },
   { id: 'coluna_de_polia', nome: 'Estação de polia (uma coluna regulável)', hoje: ['polia_simples', 'estacao_polia_dupla'], prims: [...m.torre({ base: [0, 0, 0], frente: [0, 0, 1], alturaDaPolia: o('torre', 'poliaMax') }, 0)], nota: 'coluna de 239 cm, polia de 17,8 a 193 cm, relação 2:1 (Life Fitness LCM-CC)' },
-  { id: 'halteres', nome: 'Halteres', hoje: ['halteres_fixos'], prims: [...m.halter([-9, yHalter, 8], [1, 0, 0.35]), ...m.halter([7, yHalter, -14], [1, 0, -0.2])], nota: 'sextavado de 25 lb: 33 cm de comprimento, cabeça de 13,7 × 12,2 cm (RitFit)' },
+  { id: 'halteres', nome: 'Halteres', hoje: ['halteres_fixos'], prims: [...m.halter([-6, yHalter, 10], [1, 0, 0.3]), ...m.halter([6, yHalter, -16], [1, 0, -0.15])], nota: 'sextavado de 25 lb: 33 cm de comprimento, cabeça de 13,7 × 12,2 cm (RitFit)' },
 ];
 const cam = m.camera('Três quartos', 40, 16);
 function svg(c, tema) {
-  const itens = c.prims.flatMap((p) => m.desenharPrim(cam, p, 'prancha'));
+  const itens = c.prims.flatMap((p) => m.desenharPrim(cam, p, 'volume'));
   const k = m.caixaDosItens(itens);
   // cartão 4:3, com o objeto centrado e uma margem de 8%
   let w = k[2] - k[0], h = k[3] - k[1];

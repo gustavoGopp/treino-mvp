@@ -4,6 +4,8 @@ import type { IdEstilo } from './boneco';
 import { VISTAS, caixaDosItens, desenharPrim, naTela, pintar } from './desenho';
 import type { Camera, IdVista, Item, P2 } from './desenho';
 import { duracao, instante } from './movimento';
+import { noRef } from './vec';
+import type { V3 } from './vec';
 import type { Exercicio, Quadro } from './movimento';
 import type { Corpo } from './tabelas';
 
@@ -23,7 +25,7 @@ const f1 = (n: number) => (Math.round(n * 10) / 10).toString();
 function itensDoQuadro(cam: Camera, q: Quadro, ex: Exercicio, o: OpcoesCena, suf = ''): Item[] {
   const itens: Item[] = [];
   // o chão não é desenhado como placa: de perfil ele é a linha do chão (ver svgDaCena) e, de cima, é o próprio fundo
-  if (suf !== '-f') for (const p of q.prims) if (p.t !== 'chao') itens.push(...desenharPrim(cam, p, 'prancha'));
+  if (suf !== '-f') for (const p of q.prims) if (p.t !== 'chao') itens.push(...desenharPrim(cam, p, 'volume'));
   itens.push(...desenharBoneco(q.esq, cam, { estilo: o.boneco, papeis: o.modo === 'mus' ? ex.papeis : undefined, mini: o.mini, suf, vies: q.vies }));
   return itens;
 }
@@ -55,9 +57,43 @@ export function itensDaCena(ex: Exercicio, t: number, o: OpcoesCena): Item[] {
   const { u } = instante(ex.ficha.fases, t);
   const certo = quadroDe(ex, o.corpo, u);
   if (o.modo === 'err' && o.erro) {
-    // o certo em fantasma (contorno tracejado, por trás) e o errado por cima, na cor de erro
     const errado = quadroDe(ex, o.corpo, u, o.erro);
-    return [...itensDoQuadro(cam, certo, ex, o, '-f').map((it) => ({ ...it, camada: 0.5 })), ...itensDoQuadro(cam, errado, ex, o, '-e')];
+    const def = ex.ficha.erros.find((e) => e.id === o.erro);
+    const GRUPOS: Record<string, string[]> = { pernas: ['pernaR', 'pernaL'], bracos: ex.ficha.simetrico ? ['bracoR', 'bracoL'] : ['bracoR'], corpo: ['corpo'] };
+    const erroEm = (def?.destaca ?? []).flatMap((g) => GRUPOS[g] ?? []);
+    // o corpo errado, com a parte que erra em vermelho; o certo fica tracejado por trás
+    const itens: Item[] = [...itensDoQuadro(cam, certo, ex, o, '-f').map((it) => ({ ...it, camada: 0.5 }))];
+    for (const p of errado.prims) if (p.t !== 'chao') itens.push(...desenharPrim(cam, p, 'volume'));
+    const corpoErrado = desenharBoneco(errado.esq, cam, { estilo: o.boneco, mini: o.mini, erroEm, vies: errado.vies });
+    itens.push(...corpoErrado);
+    if (def) {
+      // a linha do erro (cheia, vermelha) e a do movimento certo (tracejada), pelos mesmos pontos do corpo
+      const doMeio: Record<string, (e: Quadro['esq']) => V3> = { pelve: (e) => e.pelve.o, lombar: (e) => e.nos[e.iT12]!.ref.o, c7: (e) => e.torax.o, cabeca: (e) => noRef(e.cabeca, [0, 6, 6]) };
+      const lados: ('R' | 'L')[] = !ex.ficha.simetrico || Math.abs(cam.para[0]) > 0.7 ? ['R'] : ['R', 'L'];
+      const ponto = (e: Quadro['esq'], nome: string, k: 'R' | 'L'): V3 => (doMeio[nome] ? doMeio[nome](e) : (e.lado[k] as unknown as Record<string, V3>)[nome]!);
+      const linha = (e: Quadro['esq'], k: 'R' | 'L') => def.linha.map((nome) => naTela(cam, ponto(e, nome, k)));
+      const pts = (P: P2[]) => P.map((p) => `${f1(p[0])},${f1(p[1])}`).join(' ');
+      let s = '';
+      for (const k of lados) s += `<polyline class="n-certo-l" points="${pts(linha(certo.esq, k))}"/>`;
+      for (const k of lados) {
+        const P = linha(errado.esq, k),
+          f = naTela(cam, ponto(errado.esq, def.foco, k));
+        s += `<polyline class="n-err-l" points="${pts(P)}"/><circle class="n-err-p" cx="${f1(f[0])}" cy="${f1(f[1])}" r="2.4"/>`;
+      }
+      if (!o.mini) {
+        // o nome do erro fica fora do corpo, ao lado do ponto que erra, com um fio até ele
+        const cx = caixaDosItens(corpoErrado);
+        const focos = lados.map((k) => naTela(cam, ponto(errado.esq, def.foco, k)));
+        const f = focos.reduce((a, b) => (b[0] > a[0] ? b : a));
+        const tam = 9,
+          larg = def.titulo.length * tam * 0.56;
+        const x = cx[2] + 7,
+          y = Math.min(f[1], cx[3] - 4);
+        s += `<line class="n-err-fio" x1="${f1(f[0])}" y1="${f1(f[1])}" x2="${f1(x - 1.5)}" y2="${f1(y - tam * 0.3)}"/><text class="n-err-t" x="${f1(x)}" y="${f1(y)}" font-size="${tam}">${def.titulo}</text>`;
+        itens.push({ d: 0, camada: 3, s, cx: [Math.min(cx[0], f[0]), y - tam, x + larg, y + 2] });
+      } else itens.push({ d: 0, camada: 3, s });
+    }
+    return itens;
   }
   const itens = itensDoQuadro(cam, certo, ex, o);
   if (o.modo === 'traj') {

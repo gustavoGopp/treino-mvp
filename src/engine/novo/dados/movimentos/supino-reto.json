@@ -34,9 +34,9 @@
   { "id": "halter-sobre-o-ombro-no-topo", "pede": "no topo, os halteres ficam sobre os ombros", "selo": "consenso", "fonte": "guia" }
  ],
  "erros": [
-  { "id": "cot", "titulo": "Cotovelos abertos a ~90°", "vista": "cima", "oQueMuda": "o braço fica perpendicular ao tronco" },
-  { "id": "escap", "titulo": "Ombros saem do banco no topo", "vista": "lateral", "oQueMuda": "a clavícula vai à frente e o ombro descola do banco" },
-  { "id": "curta", "titulo": "Descer pouco", "vista": "lateral", "oQueMuda": "para com o braço 28° acima da horizontal" }
+  { "id": "cot", "titulo": "Cotovelos abertos a ~90°", "vista": "cima", "oQueMuda": "o braço fica perpendicular ao tronco", "destaca": ["bracos"], "linha": ["ombro", "cotovelo", "punho"], "foco": "cotovelo" },
+  { "id": "escap", "titulo": "Ombros saem do banco no topo", "vista": "lateral", "oQueMuda": "a clavícula vai à frente e o ombro descola do banco", "destaca": ["bracos"], "linha": ["c7", "ombro", "cotovelo"], "foco": "ombro" },
+  { "id": "curta", "titulo": "Descer pouco", "vista": "lateral", "oQueMuda": "para com o braço 28° acima da horizontal", "destaca": ["bracos"], "linha": ["ombro", "cotovelo", "punho"], "foco": "cotovelo" }
  ],
  "simetrico": true
 }

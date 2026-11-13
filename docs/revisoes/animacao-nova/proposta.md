@@ -4,6 +4,16 @@ De 13/11/2026. Ramo `claude/loving-hamilton-c4ji83`. Nada foi para a `main` e na
 
 Este documento fecha a etapa 1 e para aqui. As etapas 2 e 3 só começam com o seu sim.
 
+## 0. Depois do retorno do Gustavo (13/11/2026)
+
+Ele olhou as folhas e apontou três coisas. O que foi feito em cada uma:
+
+1. **O erro não ficava claro, principalmente de frente** (o joelho para dentro no agachamento). O modo Erros foi refeito: só a parte do corpo que erra fica em vermelho, uma linha vermelha mostra onde ela está, uma linha tracejada verde mostra onde deveria estar, o corpo do movimento certo continua tracejado por trás e o nome do erro fica fora do corpo, com um fio até o ponto. No agachamento, o joelho agora cai para dentro conforme a pessoa desce e continua assim embaixo (antes o erro sumia justamente no fundo), com 9 cm de desvio medidos na ficha. Os 12 erros das quatro âncoras estão em `prototipos/erros.png`, ao lado dos de hoje.
+2. **A mão no halter parecia solta.** No goblet, as mãos deixaram de ser punhos fechados ao lado do halter: agora ficam em concha, com a palma encostada nos dois lados da cabeça de cima, os dedos para cima e o polegar para o peito, como a ficha da técnica descreve.
+3. **Os equipamentos ficaram piores que os de hoje.** Concordo. Duas melhoras já entraram: as peças passaram a ter faces em três tons (antes eram só a silhueta) e o halter ganhou a cabeça sextavada. Não basta: a coluna da polia e os bancos continuam mais pobres que os desenhos de hoje. **Proposta:** os 49 cartões de hoje ficam como estão até um cartão novo ser claramente melhor, comparado lado a lado e aprovado por você; e o equipamento vira um trabalho próprio, com a sua aprovação por folha, como foi com o corpo.
+
+O que ainda não ficou bom depois dessas mudanças: o nome do erro sai pequeno nas cenas largas (a puxada, com a coluna inteira no quadro), e o rótulo é só o título do erro, sem os rótulos de técnica.
+
 ## 1. Em uma página
 
 - **O desenho** é o que você escolheu em 13/11/2026 na sessão do desenho do Boneco: o **cinza** como padrão e o **cor de pele** como opção na configuração (`docs/revisoes/boneco-desenho/decisao.md`).
@@ -108,7 +118,7 @@ Medidas em `prototipos/medidas.json`, geradas por `scripts/animacao-nova/prototi
 |---|---|
 | Motor de hoje, com os 90 exercícios | 48,0 kB |
 | Motor novo, sem nenhum exercício (motor, corpo, desenho, objetos) | 24,5 kB |
-| Motor novo com as 4 âncoras | 34,5 kB (mais o zod, que o app já carrega; com ele, 48,4 kB) |
+| Motor novo com as 4 âncoras | 35,6 kB (mais o zod, que o app já carrega) |
 | Cada exercício novo | cerca de 1,7 kB (medido: 5,1 kB para 3) |
 
 Projeção minha (não medida): com os 90 exercícios, o novo ficaria perto de 175 kB, mais de três vezes o de hoje. Quase metade de cada ficha é texto de fonte, que o app não precisa carregar para desenhar. Proponho duas medidas, a confirmar com medição na etapa 2: tirar os textos de fonte do que vai para o app (eles continuam nos arquivos e nos documentos) e carregar cada exercício só quando for aberto, guardando para uso sem rede.
@@ -117,12 +127,12 @@ Projeção minha (não medida): com os 90 exercícios, o novo ficaria perto de 1
 
 | Animação | Hoje (média) | Novo, cinza (média) | Novo, cinza (95% dos quadros abaixo de) | SVG de um quadro: hoje / novo |
 |---|---|---|---|---|
-| Goblet | 6,0 a 7,3 ms | 12,6 a 12,9 ms | 21,1 ms | 14 kB / 53 kB |
-| Supino reto | 5,4 a 6,6 ms | 11,8 a 11,9 ms | 16,0 ms | 14 kB / 58 kB |
-| Puxada unilateral | 7,0 a 7,3 ms | 18,1 a 20,3 ms | 29,4 ms | 15 kB / 93 kB |
-| Flexão | 4,7 a 5,9 ms | 8,4 a 9,5 ms | 12,2 ms | 14 kB / 44 kB |
+| Goblet | 7,4 a 7,5 ms | 11,0 a 13,7 ms | 21,5 ms | 14 kB / 52 kB |
+| Supino reto | 5,3 a 6,0 ms | 10,6 a 11,8 ms | 19,8 ms | 14 kB / 54 kB |
+| Puxada unilateral | 6,7 a 8,1 ms | 18,1 a 19,0 ms | 25,6 ms | 15 kB / 94 kB |
+| Flexão | 4,9 a 6,6 ms | 8,9 a 9,1 ms | 11,7 ms | 14 kB / 44 kB |
 
-Cada faixa junta os modos Técnica e Músculos. A medição oscila alguns milissegundos de uma rodada para outra (numa rodada anterior a puxada chegou a 24 ms de média e 35 ms no pior caso); o que se repete em todas é a proporção: o novo leva de 2 a 3 vezes o tempo do de hoje. No cor de pele os tempos são parecidos (11,6 a 18,1 ms de média).
+Cada faixa junta os modos Técnica e Músculos. A medição oscila alguns milissegundos de uma rodada para outra (numa rodada anterior a puxada chegou a 24 ms de média e 35 ms no pior caso); o que se repete em todas é a proporção: o novo leva de 2 a 3 vezes o tempo do de hoje.
 
 O limite para 60 quadros por segundo é 16,7 ms. O novo fica dentro dele em três das quatro âncoras na média, encosta ou passa no pior caso do goblet e do supino, e a puxada passa sempre. **Isto é um risco real e não está resolvido.** Mais da metade do tempo é só montar o texto do SVG (7 a 12 ms). O plano, em ordem de ganho esperado:
 
@@ -151,7 +161,7 @@ Ordem pela reutilização das cenas e das peças já feitas, e não por frequên
 
 Soma: 90. Cada lote segue o mesmo rito: ficha de movimento com fonte, animação, conferência sem falha, folha ao lado da de hoje, o seu ok por exercício, e só então a entrada no app. Os exercícios que hoje são cartão de texto continuam cartão de texto.
 
-Os 49 desenhos de cartão de equipamento entram junto com o lote que usa a peça. Os três cartões desta etapa estão em `prototipos/cartoes/` (banco regulável, coluna de polia e halteres). O banco está apresentável; a coluna ficou pequena no cartão e os halteres saíram sem o acabamento da cabeça sextavada. São prova de que o cartão sai das mesmas peças e medidas da cena, e não o acabamento final.
+Os 49 desenhos de cartão de equipamento entram junto com o lote que usa a peça. Os três cartões desta etapa estão em `prototipos/cartoes/` (banco regulável, coluna de polia e halteres). Os halteres e o banco melhoraram depois do retorno do Gustavo (seção 0); a coluna da polia continua pobre. Eles provam que o cartão sai das mesmas peças e medidas da cena, mas ainda perdem para os cartões de hoje: por isso os 49 de hoje ficam, e o equipamento vira um trabalho próprio.
 
 ## 7. Como o velho e o novo convivem
 
@@ -182,7 +192,7 @@ Desta etapa:
 
 7. **As cinco diferenças da seção 2** (pé de frente, mão, polegar, pé na flexão, perna do outro lado).
 8. **As vistas novas** (frente, cima e trás fora da pose em pé): estão boas o bastante para seguir?
-9. **O modo Erros.** No novo, o certo fica tracejado atrás e o corpo errado inteiro fica vermelho. Hoje só a parte que erra fica vermelha, com o nome do erro ao lado. Recomendo voltar a destacar só a parte que erra e pôr o rótulo fora do corpo; não fiz nesta etapa.
+9. **O modo Erros.** Refeito depois do seu retorno (seção 0): só a parte que erra em vermelho, as duas linhas e o nome fora do corpo. Falta você dizer se agora o erro se lê de relance, olhando `prototipos/erros.png`.
 10. **Rótulos de técnica** ("joelho na direção do pé" e outros): o novo ainda não tem. Entram na etapa 2, fora do corpo.
 11. **Músculos que o desenho não separa** (as três porções do deltoide, o peitoral de cima, as porções do trapézio, romboides, redondo maior, eretores). Hoje o guia desenha essas porções. Recomendo pedir essas formas à mesma linha de desenho antes do lote que precisa delas (lotes 3 e 4). Na puxada de um lado só, o trapézio aparece inteiro por falta da metade.
 12. **Corpo de referência:** homem, IMC normal, 175,8 cm (ANSUR II). Confirmar.
@@ -209,6 +219,7 @@ Nenhum texto técnico nem lista de músculos foi alterado. Não encontrei, nas q
 | Folhas ao lado das de hoje | `prototipos/folha-goblet.png`, `folha-supino-reto.png`, `folha-puxada-unilateral.png`, `folha-flexao.png` |
 | Aprovado × motor × diferença | `prototipos/conferencia-do-desenho-cinza.png` e `-pele.png` |
 | Conferência automática | `prototipos/conferencia.md` |
+| Os 12 erros das âncoras, hoje e novo | `prototipos/erros.png` |
 | Cartões de equipamento | `prototipos/cartoes/cartoes.png` |
 | Peso e tempo por quadro | `prototipos/medidas.json` |
 | Tabelas do bloco A | `tabelas.md` |

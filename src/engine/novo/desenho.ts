@@ -290,6 +290,8 @@ function desenharJunta(cam: Camera, j: Junta, partes: CorpoDesenhado['partes'], 
 export type Prim =
   | { t: 'volume'; vol: Volume; cls: string; vies?: number }
   | { t: 'caixa'; ref: Ref; meias: V3; cls: string; vies?: number }
+  /** Prisma de `lados` faces entre `a` e `b` (a cabeça sextavada do halter): `x` e `z` atravessam o eixo, com meias-medidas ra e rb. */
+  | { t: 'prisma'; a: V3; b: V3; x: V3; z: V3; ra: number; rb: number; lados: number; cls: string; vies?: number }
   | { t: 'esfera'; c: V3; r: number; cls: string; vies?: number }
   | { t: 'fio'; pts: V3[]; larg: number; cls: string; vies?: number }
   | { t: 'chao'; y: number; x0: number; x1: number; z0: number; z1: number; cls: string };
@@ -334,6 +336,41 @@ export function desenharPrim(cam: Camera, p: Prim, estilo: Estilo): Item[] {
   if (p.t === 'chao') {
     const P = ([[p.x0, p.y, p.z0], [p.x1, p.y, p.z0], [p.x1, p.y, p.z1], [p.x0, p.y, p.z1]] as V3[]).map((v) => pj(cam, v)).map((q): P2 => [q[0], q[1]]);
     return [{ d: -1e6, camada: 0, cx: caixaDe(P), s: `<polygon class="${p.cls}" points="${pontos(casco(P))}"/>` }];
+  }
+  if (p.t === 'prisma') {
+    // o casco de todos os cantos e, no estilo volume, as faces de lado e a tampa que estão viradas para quem olha
+    const n = p.lados;
+    const canto = (c: V3, i: number): V3 => {
+      const th = (2 * Math.PI * i) / n;
+      return comb([1, c], [p.ra * Math.cos(th), p.x], [(p.rb / Math.sin(Math.PI / 2 - Math.PI / n)) * Math.sin(th) * Math.cos(Math.PI / n), p.z]);
+    };
+    const A = Array.from({ length: n }, (_, i) => canto(p.a, i)),
+      B = Array.from({ length: n }, (_, i) => canto(p.b, i));
+    const Q = [...A, ...B].map((v) => pj(cam, v));
+    const d = Q.reduce((t, q) => t + q[2], 0) / Q.length + (p.vies ?? 0);
+    const t2 = (v: V3): P2 => {
+      const q = pj(cam, v);
+      return [q[0], q[1]];
+    };
+    const H = casco(Q.map((q): P2 => [q[0], q[1]]));
+    let s = `<polygon class="o-cx ${p.cls}" points="${pontos(H)}"/>`;
+    if (luz) {
+      const eixo = norm(sub(p.b, p.a));
+      const tom = (nrm: V3) => {
+        const l = dot(nrm, luz);
+        return l > 0.55 ? '0' : l > 0.05 ? '1' : '2';
+      };
+      for (let i = 0; i < n; i++) {
+        const j = (i + 1) % n;
+        const nrm = norm(cross(sub(A[j]!, A[i]!), eixo));
+        const fora = dot(nrm, sub(A[i]!, p.a)) >= 0 ? nrm : mul(nrm, -1);
+        if (dot(fora, cam.para) < 0.02) continue;
+        s += `<polygon class="o-fc${tom(fora)} ${p.cls}" points="${pontos([A[i]!, A[j]!, B[j]!, B[i]!].map(t2))}"/>`;
+      }
+      const va = dot(eixo, cam.para);
+      if (Math.abs(va) > 0.02) s += `<polygon class="o-fc${tom(mul(eixo, va > 0 ? 1 : -1))} ${p.cls}" points="${pontos((va > 0 ? B : A).map(t2))}"/>`;
+    }
+    return [{ d, camada: 1, cx: caixaDe(H), s }];
   }
   // caixa: no estilo prancha, o casco; no estilo volume, as faces visíveis com três tons (topo, lado claro, lado escuro)
   const { ref: r, meias: h } = p;

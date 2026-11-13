@@ -48,14 +48,14 @@
    {
     "grupo": "Amplitudes",
     "oQue": "flexão do cotovelo",
-    "medido": "151,8°",
+    "medido": "147,8°",
     "limite": "média 148°, máximo observado 166° (cdc)",
-    "nivel": "aviso"
+    "nivel": "ok"
    },
    {
     "grupo": "Amplitudes",
     "oQue": "flexão do quadril",
-    "medido": "124,5°",
+    "medido": "124,6°",
     "limite": "média 132°, máximo observado 159° (cdc)",
     "nivel": "ok"
    },
@@ -76,7 +76,7 @@
    {
     "grupo": "Amplitudes",
     "oQue": "elevação do braço",
-    "medido": "13,8°",
+    "medido": "12,5°",
     "limite": "média 170°, máximo observado 192° (cdc)",
     "nivel": "ok"
    },
@@ -97,7 +97,7 @@
    {
     "grupo": "Amplitudes",
     "oQue": "pronação do antebraço (a partir do polegar para cima)",
-    "medido": "32,4°",
+    "medido": "41,8°",
     "limite": "média 80°, máximo observado 108° (cdc)",
     "nivel": "ok"
    },
@@ -111,7 +111,7 @@
    {
     "grupo": "Amplitudes",
     "oQue": "extensão do punho",
-    "medido": "0°",
+    "medido": "31,3°",
     "limite": "média 70°, máximo observado 95° (aaos)",
     "nivel": "ok"
    },
@@ -146,7 +146,7 @@
    {
     "grupo": "Objetos",
     "oQue": "a carga fica na mão: halter",
-    "medido": "distância da mão ao centro do objeto de 12,5 a 12,5 cm",
+    "medido": "distância da mão ao centro do objeto de 13,7 a 13,7 cm",
     "limite": "não pode variar mais de 0,5 cm no ciclo",
     "nivel": "ok"
    },
@@ -188,7 +188,7 @@
    {
     "grupo": "Ficha",
     "oQue": "embaixo, o quadril fica na altura do joelho ou abaixo (consenso)",
-    "medido": "embaixo, o centro do quadril fica 5,2 cm abaixo do centro do joelho",
+    "medido": "embaixo, o centro do quadril fica 5,3 cm abaixo do centro do joelho",
     "limite": "como a ficha pede",
     "nivel": "ok"
    },
@@ -223,32 +223,32 @@
   ],
   "angulos": {
    "joelho": [
-    7.999999999999525,
+    7.999999999999569,
     126
    ],
    "cotovelo": [
-    151.81818480089416,
-    151.81818480089427
+    147.76087701562818,
+    147.76087701562835
    ],
    "quadril": [
-    9.66112613643295,
-    124.499858053479
+    9.690283374080293,
+    124.55188281239849
    ],
    "ombro": [
-    13.779541412651891,
-    13.779541412652051
+    12.533036860460307,
+    12.533036860460452
    ],
    "dorsiflexao": [
-    -7.404645140040202,
-    23.299500781878862
+    -7.432679852268521,
+    23.25692231169006
    ],
    "punho": [
-    -0.000002091309789151873,
-    0.0000017075472925031877
+    31.27620082471837,
+    31.276200824718842
    ],
    "pronacao": [
-    32.37741909541279,
-    32.37741909541289
+    41.780742036921566,
+    41.78074203692168
    ],
    "clavicula": [
     11,
@@ -256,7 +256,7 @@
    ]
   },
   "falhas": 0,
-  "avisos": 3
+  "avisos": 2
  },
  "supino-reto": {
   "id": "supino-reto",

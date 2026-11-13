@@ -559,6 +559,8 @@ export interface OpcoesDoBoneco {
   mini?: boolean;
   /** Sufixo das classes: '-e' (figura do erro) ou '-f' (fantasma do movimento certo). */
   suf?: string;
+  /** Grupos (corpo, pernaR, pernaL, bracoR, bracoL) pintados na cor de erro: a parte do corpo que erra. */
+  erroEm?: string[];
   /** Ajuste de profundidade por grupo (ex.: o braço por cima do halter). */
   vies?: Record<string, number>;
 }
@@ -597,8 +599,10 @@ export function desenharBoneco(e: Esq, cam: Camera, o: OpcoesDoBoneco): Item[] {
   const veu = o.estilo === 'pele' && !suf && Object.keys(o.papeis ?? {}).some((id) => DEBAIXO_DO_SHORT.includes(id.split(':')[0]!));
   const mat = (m: string) => (m === 'short' && veu ? 'veu' : m);
   const eRoupa = (m: string) => m === 'short';
-  const traco = (x: Gr) => x.cs.map((v) => `<path class="b-c${suf} m-${mat(v.mat)}${x.longe ? ' lg' : ''}" d="${v.c.fill}"/>`).join('');
-  const cheioDe = (x: Gr, quais: (m: string) => boolean) => x.cs.filter((v) => quais(v.mat)).map((v) => `<path class="b-p${suf} m-${mat(v.mat)}${x.longe ? ' lg' : ''}" d="${v.c.fill}"/>`).join('');
+  // a parte que erra usa as classes de erro (contorno vermelho e pele rosada); o resto do corpo fica como é
+  const sufDe = (x: Gr) => (o.erroEm?.includes(x.g.id) ? '-e' : suf);
+  const traco = (x: Gr) => x.cs.map((v) => `<path class="b-c${sufDe(x)} m-${mat(v.mat)}${x.longe ? ' lg' : ''}" d="${v.c.fill}"/>`).join('');
+  const cheioDe = (x: Gr, quais: (m: string) => boolean) => x.cs.filter((v) => quais(v.mat)).map((v) => `<path class="b-p${sufDe(x)} m-${mat(v.mat)}${x.longe ? ' lg' : ''}" d="${v.c.fill}"/>`).join('');
   const shorts = G.flatMap((x) => x.cs.filter((v) => eRoupa(v.mat)).map((v) => v.c.fill));
   const idShort = `bs${hash(shorts.join(''))}`;
   let recorteDoShort = veu && shorts.length ? `<clipPath id="${idShort}">${shorts.map((d) => `<path d="${d}"/>`).join('')}</clipPath>` : '';

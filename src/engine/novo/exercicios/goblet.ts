@@ -29,10 +29,18 @@ function quadro(corpo: Corpo, u: number, erro?: string): Quadro {
     fora = (f('pes.paraFora') * Math.PI) / 180;
   const dirPe = (s: number): V3 => [s * Math.sin(fora), 0, Math.cos(fora)];
   const bola = (s: number): V3 => add([s * w, 0, 0], mul(dirPe(s), dBola - m('pe.calcanharAoTornozelo')));
-  const valgo = erro === 'valgo' ? f('erro.valgo.joelho') * Math.sin(Math.PI * Math.min(1, u * 1.15)) : 0;
+  // o joelho cai para dentro conforme a pessoa desce e fica assim embaixo (é onde o erro mais aparece)
+  const valgo = erro === 'valgo' ? f('erro.valgo.joelho') * Math.sin((Math.PI / 2) * Math.min(1, u * 1.25)) : 0;
   const perna = (k: Lado): PosePerna => {
     const s = sinal(k);
-    return { pe: { bola: bola(s), dir: dirPe(s), calc }, polo: norm([s * Math.sin(fora) - (s * valgo) / 14, 0, Math.cos(fora)]) };
+    // o joelho fica a uma distância da linha quadril–tornozelo que depende de quanto ele dobra; girar o plano da
+    // perna para dentro pelo ângulo certo leva o joelho `valgo` cm para dentro da linha do pé
+    const th = m('coxa.comp'),
+      sk = m('perna.comp'),
+      a = (joelho * Math.PI) / 180;
+    const afastado = (th * sk * Math.sin(a)) / Math.sqrt(th * th + sk * sk + 2 * th * sk * Math.cos(a));
+    const gira = valgo ? Math.asin(Math.min(0.6, valgo / Math.max(afastado, 1))) : 0;
+    return { pe: { bola: bola(s), dir: dirPe(s), calc }, polo: [s * Math.sin(fora - gira), 0, Math.cos(fora - gira)] };
   };
   const pernas = { R: perna('R'), L: perna('L') };
   const rb = obj('halter', 'cabecaAltura') / 2,
@@ -49,9 +57,13 @@ function quadro(corpo: Corpo, u: number, erro?: string): Quadro {
       baixo = noRef(T, [0, -10 - (comp - cabeca), frenteBaixo + rb + 0.8]);
     const eixo = norm(sub(topo, baixo));
     const centro = mul(add(topo, baixo), 0.5);
+    // as mãos em concha: a palma encostada no lado da cabeça de cima do halter, os dedos para cima e um pouco para a
+    // frente, o polegar para o peito (a ficha da técnica: "mãos em concha embaixo da anilha de cima")
     const braco = (k: Lado): PoseBraco => {
       const s = sinal(k);
-      return { pegada: add(add(topo, mul(dirRef(T, [s, 0, 0]), ra + 1.4)), mul(eixo, -cabeca * 0.25)), polo: dirRef(T, [s * 0.45, -1, -0.15]), mao: { polegar: dirRef(T, [0, 0.3, -1]), forma: 'pegada', diam: ra * 1.7 } };
+      const dedos = norm(add(mul(eixo, 0.92), mul(dirRef(T, [0, 0, 1]), 0.3)));
+      const palma = add(add(topo, mul(dirRef(T, [s, 0, 0]), ra + 2.7)), mul(eixo, -cabeca * 0.2));
+      return { punho: add(palma, mul(dedos, -m('mao.punhoAoCentroDaPegada'))), polo: dirRef(T, [s * 0.45, -1, -0.15]), mao: { polegar: dirRef(T, [0, 0.3, -1]), dedos, forma: 'relaxada' } };
     };
     return { e: resolverMembros(t, { R: braco('R'), L: braco('L') }, pernas), centro, eixo };
   };
@@ -79,7 +91,7 @@ function quadro(corpo: Corpo, u: number, erro?: string): Quadro {
       d = dirPe(s);
     prims.push(...anilhaNoChao(b[0] - d[0] * (dBola - 3), b[2] - d[2] * (dBola - 3)));
   }
-  return { esq: r.e, prims, fios: [], cargas: [{ massa, pos: r.centro }], marcas: { halter: r.centro }, vies: { maoR: 1.2, maoL: 1.2 } };
+  return { esq: r.e, prims, fios: [], cargas: [{ massa, pos: r.centro }], marcas: { halter: r.centro }, };
 }
 
 export const goblet: Exercicio = {

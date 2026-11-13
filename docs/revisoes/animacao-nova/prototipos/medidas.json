@@ -2,12 +2,12 @@
  "comoFoiMedido": "Chromium com a CPU 4x mais lenta (Emulation.setCPUThrottlingRate), palco de 360 px; 90 quadros do ciclo; cada quadro = montar o SVG, trocar no palco e forçar o layout. No novo, \"primeiraVolta\" inclui a conta que posiciona o corpo; depois dela os quadros ficam guardados.",
  "pacote": {
   "novo": {
-   "minificado": 169623,
-   "gzip": 48373
+   "minificado": 172908,
+   "gzip": 49469
   },
   "novoSemZod": {
-   "minificado": 110167,
-   "gzip": 34482
+   "minificado": 113456,
+   "gzip": 35569
   },
   "nota": "o app já carrega o zod; \"novoSemZod\" é o que o motor novo acrescenta. O de hoje traz os 90 exercícios; o novo, 4.",
   "hoje": {
@@ -19,208 +19,208 @@
   "goblet": {
    "novo/cinza/tec": {
     "primeiraVolta": {
-     "mediaMs": 17.17,
-     "p95Ms": 31.8
+     "mediaMs": 16.24,
+     "p95Ms": 23.2
     },
-    "mediaMs": 12.86,
-    "p95Ms": 21.1,
-    "soMontarOTextoMs": 7.04,
-    "bytes": 52563
+    "mediaMs": 13.72,
+    "p95Ms": 21.5,
+    "soMontarOTextoMs": 6.56,
+    "bytes": 52251
    },
    "novo/cinza/mus": {
     "primeiraVolta": {
-     "mediaMs": 11.06,
-     "p95Ms": 14.6
+     "mediaMs": 12.21,
+     "p95Ms": 19.1
     },
-    "mediaMs": 12.63,
-    "p95Ms": 17.6,
-    "soMontarOTextoMs": 6.53,
-    "bytes": 52566
+    "mediaMs": 10.95,
+    "p95Ms": 15.1,
+    "soMontarOTextoMs": 8.1,
+    "bytes": 52254
    },
    "novo/pele/tec": {
     "primeiraVolta": {
-     "mediaMs": 14.49,
-     "p95Ms": 21.9
+     "mediaMs": 12.29,
+     "p95Ms": 15
     },
-    "mediaMs": 14.62,
-    "p95Ms": 22,
-    "soMontarOTextoMs": 9.69,
-    "bytes": 59729
+    "mediaMs": 13.18,
+    "p95Ms": 18,
+    "soMontarOTextoMs": 8.6,
+    "bytes": 59412
    },
    "novo/pele/mus": {
     "primeiraVolta": {
-     "mediaMs": 14.07,
-     "p95Ms": 20.3
+     "mediaMs": 13.04,
+     "p95Ms": 18.9
     },
-    "mediaMs": 11.59,
-    "p95Ms": 14,
-    "soMontarOTextoMs": 9.15,
-    "bytes": 61100
+    "mediaMs": 12.2,
+    "p95Ms": 17,
+    "soMontarOTextoMs": 7.34,
+    "bytes": 60779
    },
    "hoje/tec": {
-    "mediaMs": 7.31,
-    "p95Ms": 8.8,
+    "mediaMs": 7.44,
+    "p95Ms": 10.4,
     "bytes": 13703
    },
    "hoje/mus": {
-    "mediaMs": 6.01,
-    "p95Ms": 10.1,
+    "mediaMs": 7.47,
+    "p95Ms": 9.5,
     "bytes": 14402
    }
   },
   "supino-reto": {
    "novo/cinza/tec": {
     "primeiraVolta": {
-     "mediaMs": 12.98,
-     "p95Ms": 20.5
+     "mediaMs": 12,
+     "p95Ms": 14.7
     },
-    "mediaMs": 11.82,
-    "p95Ms": 15.7,
-    "soMontarOTextoMs": 9.1,
-    "bytes": 57772
+    "mediaMs": 10.6,
+    "p95Ms": 13.9,
+    "soMontarOTextoMs": 5.86,
+    "bytes": 54286
    },
    "novo/cinza/mus": {
     "primeiraVolta": {
-     "mediaMs": 11.86,
-     "p95Ms": 16.4
+     "mediaMs": 12.24,
+     "p95Ms": 15.2
     },
-    "mediaMs": 11.94,
-    "p95Ms": 16,
-    "soMontarOTextoMs": 7.87,
-    "bytes": 57775
+    "mediaMs": 11.81,
+    "p95Ms": 19.8,
+    "soMontarOTextoMs": 6.25,
+    "bytes": 54289
    },
    "novo/pele/tec": {
     "primeiraVolta": {
-     "mediaMs": 12.33,
-     "p95Ms": 16.7
+     "mediaMs": 13.04,
+     "p95Ms": 16.6
     },
-    "mediaMs": 12.65,
-    "p95Ms": 19.3,
-    "soMontarOTextoMs": 9.48,
-    "bytes": 64959
+    "mediaMs": 12.96,
+    "p95Ms": 19.4,
+    "soMontarOTextoMs": 8.47,
+    "bytes": 61471
    },
    "novo/pele/mus": {
     "primeiraVolta": {
-     "mediaMs": 12.45,
-     "p95Ms": 16.1
+     "mediaMs": 12.71,
+     "p95Ms": 19
     },
-    "mediaMs": 12.19,
-    "p95Ms": 16.6,
-    "soMontarOTextoMs": 8.27,
-    "bytes": 64962
+    "mediaMs": 11.73,
+    "p95Ms": 13.7,
+    "soMontarOTextoMs": 7.09,
+    "bytes": 61474
    },
    "hoje/tec": {
-    "mediaMs": 6.59,
-    "p95Ms": 7.2,
+    "mediaMs": 5.98,
+    "p95Ms": 6,
     "bytes": 14363
    },
    "hoje/mus": {
-    "mediaMs": 5.39,
-    "p95Ms": 7.5,
+    "mediaMs": 5.25,
+    "p95Ms": 7.2,
     "bytes": 16535
    }
   },
   "puxada-unilateral": {
    "novo/cinza/tec": {
     "primeiraVolta": {
-     "mediaMs": 18.78,
-     "p95Ms": 26
+     "mediaMs": 20.04,
+     "p95Ms": 28.1
     },
-    "mediaMs": 18.08,
-    "p95Ms": 25.9,
-    "soMontarOTextoMs": 12.92,
-    "bytes": 93382
+    "mediaMs": 18.99,
+    "p95Ms": 25.6,
+    "soMontarOTextoMs": 12.91,
+    "bytes": 94271
    },
    "novo/cinza/mus": {
     "primeiraVolta": {
-     "mediaMs": 19.56,
-     "p95Ms": 28.3
+     "mediaMs": 18.1,
+     "p95Ms": 24.9
     },
-    "mediaMs": 20.33,
-    "p95Ms": 29.4,
-    "soMontarOTextoMs": 11.16,
-    "bytes": 93385
+    "mediaMs": 18.05,
+    "p95Ms": 22.5,
+    "soMontarOTextoMs": 10.99,
+    "bytes": 94274
    },
    "novo/pele/tec": {
     "primeiraVolta": {
-     "mediaMs": 19.22,
-     "p95Ms": 30.2
+     "mediaMs": 18.96,
+     "p95Ms": 27.3
     },
-    "mediaMs": 18.1,
-    "p95Ms": 24.3,
-    "soMontarOTextoMs": 12.15,
-    "bytes": 100781
+    "mediaMs": 19.28,
+    "p95Ms": 25.8,
+    "soMontarOTextoMs": 12.2,
+    "bytes": 101670
    },
    "novo/pele/mus": {
     "primeiraVolta": {
-     "mediaMs": 17.32,
-     "p95Ms": 19.5
+     "mediaMs": 18.12,
+     "p95Ms": 21.1
     },
-    "mediaMs": 16.88,
-    "p95Ms": 19.2,
-    "soMontarOTextoMs": 11.19,
-    "bytes": 100784
+    "mediaMs": 20.08,
+    "p95Ms": 29.4,
+    "soMontarOTextoMs": 12.78,
+    "bytes": 101673
    },
    "hoje/tec": {
-    "mediaMs": 7.27,
-    "p95Ms": 10.1,
+    "mediaMs": 8.1,
+    "p95Ms": 10.9,
     "bytes": 15195
    },
    "hoje/mus": {
-    "mediaMs": 6.96,
-    "p95Ms": 9.6,
+    "mediaMs": 6.73,
+    "p95Ms": 10.2,
     "bytes": 16447
    }
   },
   "flexao": {
    "novo/cinza/tec": {
     "primeiraVolta": {
-     "mediaMs": 9.35,
-     "p95Ms": 11.8
+     "mediaMs": 9.92,
+     "p95Ms": 14.4
     },
-    "mediaMs": 9.45,
-    "p95Ms": 12.2,
-    "soMontarOTextoMs": 5.63,
-    "bytes": 44469
+    "mediaMs": 9.06,
+    "p95Ms": 11.7,
+    "soMontarOTextoMs": 6.73,
+    "bytes": 44467
    },
    "novo/cinza/mus": {
     "primeiraVolta": {
-     "mediaMs": 9.99,
-     "p95Ms": 16
+     "mediaMs": 11.32,
+     "p95Ms": 17.7
     },
-    "mediaMs": 8.4,
-    "p95Ms": 9.6,
-    "soMontarOTextoMs": 5.11,
-    "bytes": 44473
+    "mediaMs": 8.93,
+    "p95Ms": 10.2,
+    "soMontarOTextoMs": 5.29,
+    "bytes": 44471
    },
    "novo/pele/tec": {
     "primeiraVolta": {
-     "mediaMs": 11.07,
-     "p95Ms": 14.7
+     "mediaMs": 10.32,
+     "p95Ms": 12.8
     },
-    "mediaMs": 12.06,
-    "p95Ms": 16.8,
-    "soMontarOTextoMs": 6.22,
+    "mediaMs": 10.04,
+    "p95Ms": 11.9,
+    "soMontarOTextoMs": 6.37,
     "bytes": 50846
    },
    "novo/pele/mus": {
     "primeiraVolta": {
-     "mediaMs": 10.72,
-     "p95Ms": 17.5
+     "mediaMs": 11.1,
+     "p95Ms": 14.8
     },
-    "mediaMs": 10.06,
-    "p95Ms": 13,
-    "soMontarOTextoMs": 7.96,
+    "mediaMs": 10.39,
+    "p95Ms": 14.1,
+    "soMontarOTextoMs": 7.3,
     "bytes": 50850
    },
    "hoje/tec": {
-    "mediaMs": 4.73,
-    "p95Ms": 5.2,
+    "mediaMs": 4.9,
+    "p95Ms": 5.6,
     "bytes": 13983
    },
    "hoje/mus": {
-    "mediaMs": 5.93,
-    "p95Ms": 8.7,
+    "mediaMs": 6.56,
+    "p95Ms": 10,
     "bytes": 16534
    }
   }
