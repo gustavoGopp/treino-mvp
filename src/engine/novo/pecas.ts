@@ -63,6 +63,46 @@ export function bancoReto(x0: number, z0: number): Prim[] {
   return out;
 }
 
+/**
+ * Banco regulável: o assento na ponta de +z e o encosto para −z, erguido em `encosto` graus (0 = plano). A dobradiça
+ * fica no vão entre os dois, na altura da face de baixo do estofado.
+ */
+export function bancoRegulavel(x0: number, z0: number, encosto: number, assento = 0): Prim[] {
+  const g = (id: string) => obj('bancoRegulavel', id);
+  const larg = g('larg') / 2,
+    est = g('estofado'),
+    alt = g('altura'),
+    tubo = g('tubo') / 2,
+    compAssento = g('assentoComp'),
+    compEncosto = g('estofadoComp') - compAssento,
+    base = g('baseComp'),
+    baseL = g('baseLarg') / 2;
+  const zDobra = z0 + g('estofadoComp') / 2 - compAssento - g('vao') / 2,
+    yDobra = alt - est;
+  // uma almofada que sai da dobradiça na direção `sentido` (−1 = encosto, +1 = assento), erguida em `graus`
+  const almofada = (sentido: number, graus: number, comp: number): Prim => {
+    const a = (graus * Math.PI) / 180;
+    const d: V3 = [0, Math.sin(a), sentido * Math.cos(a)],
+      n: V3 = [0, Math.cos(a), -sentido * Math.sin(a)];
+    const o = add(add([x0, yDobra, zDobra + (sentido * g('vao')) / 2], mul(d, comp / 2)), mul(n, est / 2));
+    return { t: 'caixa', ref: { o, x: [1, 0, 0], y: n, z: mul(d, sentido) }, meias: [larg, est / 2, comp / 2], cls: 'estofado', vies: 0.5 };
+  };
+  const out: Prim[] = [almofada(-1, encosto, compEncosto), almofada(1, assento, compAssento)];
+  const zFrente = z0 + base / 2 - tubo,
+    zTras = z0 - base / 2 + tubo;
+  // estrutura: a viga do chão, o pé da frente, o pé de trás (largo) e a coluna que sustenta a dobradiça
+  out.push(caixaReta([x0, tubo, z0], [tubo, tubo, base / 2], 'esc', -0.7));
+  out.push(caixaReta([x0, tubo, zTras], [baseL, tubo, tubo], 'esc', -0.7));
+  out.push(caixaReta([x0, tubo, zFrente], [baseL * 0.55, tubo, tubo], 'esc', -0.7));
+  out.push(caixaReta([x0, yDobra / 2, zDobra + 6], [tubo, yDobra / 2, tubo], 'esc', -0.6));
+  // a haste de apoio do encosto: da viga do chão até o meio do encosto
+  const a = (encosto * Math.PI) / 180;
+  const apoio: V3 = [x0, yDobra + Math.sin(a) * compEncosto * 0.55, zDobra - Math.cos(a) * compEncosto * 0.55];
+  const pe: V3 = [x0, 2 * tubo, Math.max(zTras + 2 * tubo, apoio[2] - 4)];
+  out.push({ t: 'volume', vol: cilindro(pe, apoio, tubo * 0.8), cls: 'esc', vies: -0.6 });
+  return out;
+}
+
 /** Anilha deitada no chão, com o centro em (x, z): o calcanhar apoia nela. */
 export function anilhaNoChao(x: number, z: number): Prim[] {
   const r = obj('anilhaCalcanhar', 'diam') / 2,

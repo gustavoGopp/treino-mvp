@@ -7,68 +7,331 @@
   "rogue-steel": "Rogue Fitness. Steel Plates, tabela Plate Diameter (lido em 12/11/2026)",
   "lf-cc": "Life Fitness. Adjustable Cable Crossover LCM-CC, campo Dimensions e especificações (lido em 12/11/2026)",
   "rogue-sling": "Rogue Fitness. Monster Lite Slinger, Specs: cabo de aço de 1/4 pol (lido em 12/11/2026)",
-  "a-conferir": "Sem ficha lida ainda: valor provisório, listado pela conferência"
+  "a-conferir": "Sem ficha lida ainda: valor provisório, listado pela conferência",
+  "rogue-ab3": "Rogue Fitness. Adjustable Bench 3.0, Gear specs (lido em 12/11/2026; docs/revisoes/animacao-nova/pesquisa/04, seção 4)",
+  "gymgear-mab": "Gym Gear. Pro Series Multi Adjustable Bench, Technical specifications (lido em 12/11/2026; pesquisa/04, seção 4)"
  },
  "objetos": {
   "halter": {
    "nome": "Halter sextavado emborrachado de 25 lb (11,3 kg)",
    "medidas": {
-    "comp": { "v": 33.0, "un": "cm", "tipo": "medida", "fonte": "ritfit-hex", "onde": "comprimento total, 25 lb: 13 pol" },
-    "cabecaLargura": { "v": 13.7, "un": "cm", "tipo": "medida", "fonte": "ritfit-hex", "onde": "largura da cabeça, 25 lb: 5,4 pol" },
-    "cabecaAltura": { "v": 12.2, "un": "cm", "tipo": "medida", "fonte": "ritfit-hex", "onde": "altura da cabeça, 25 lb: 4,8 pol" },
-    "caboDiam": { "v": 3.3, "un": "cm", "tipo": "medida", "fonte": "ritfit-hex", "onde": "diâmetro do cabo, 15 a 60 lb: 1,3 pol" },
-    "caboComp": { "v": 13.0, "un": "cm", "tipo": "provisoria", "fonte": "a-conferir", "onde": "comprimento livre do cabo entre as cabeças: nenhuma ficha lida informa" },
-    "massa": { "v": 11.3, "un": "kg", "tipo": "medida", "fonte": "ritfit-hex", "onde": "25 lb" }
+    "comp": {
+     "v": 33.0,
+     "un": "cm",
+     "tipo": "medida",
+     "fonte": "ritfit-hex",
+     "onde": "comprimento total, 25 lb: 13 pol"
+    },
+    "cabecaLargura": {
+     "v": 13.7,
+     "un": "cm",
+     "tipo": "medida",
+     "fonte": "ritfit-hex",
+     "onde": "largura da cabeça, 25 lb: 5,4 pol"
+    },
+    "cabecaAltura": {
+     "v": 12.2,
+     "un": "cm",
+     "tipo": "medida",
+     "fonte": "ritfit-hex",
+     "onde": "altura da cabeça, 25 lb: 4,8 pol"
+    },
+    "caboDiam": {
+     "v": 3.3,
+     "un": "cm",
+     "tipo": "medida",
+     "fonte": "ritfit-hex",
+     "onde": "diâmetro do cabo, 15 a 60 lb: 1,3 pol"
+    },
+    "caboComp": {
+     "v": 13.0,
+     "un": "cm",
+     "tipo": "provisoria",
+     "fonte": "a-conferir",
+     "onde": "comprimento livre do cabo entre as cabeças: nenhuma ficha lida informa"
+    },
+    "massa": {
+     "v": 11.3,
+     "un": "kg",
+     "tipo": "medida",
+     "fonte": "ritfit-hex",
+     "onde": "25 lb"
+    }
    }
   },
   "bancoReto": {
    "nome": "Banco reto",
    "medidas": {
-    "comp": { "v": 122, "un": "cm", "tipo": "medida", "fonte": "ipf2026", "onde": "seção 2.6: comprimento não menor que 1,22 m" },
-    "larg": { "v": 30.5, "un": "cm", "tipo": "medida", "fonte": "rogue-fb", "onde": "Bench Pad Width: 12 pol (IPF: 29 a 32 cm)" },
-    "altura": { "v": 43.5, "un": "cm", "tipo": "derivada", "fonte": "ipf2026", "onde": "meio da faixa da seção 2.6: 42 a 45 cm do piso ao topo do estofado" },
-    "estofado": { "v": 6.35, "un": "cm", "tipo": "medida", "fonte": "rogue-fb", "onde": "Pad Thickness: 2,5 pol" },
-    "baseLarg": { "v": 56, "un": "cm", "tipo": "medida", "fonte": "hs2024", "onde": "largura total do Flat Bench FW-FB: 22 pol" },
-    "tubo": { "v": 5, "un": "cm", "tipo": "provisoria", "fonte": "a-conferir", "onde": "lado do tubo da estrutura: nenhuma ficha lida informa" }
+    "comp": {
+     "v": 122,
+     "un": "cm",
+     "tipo": "medida",
+     "fonte": "ipf2026",
+     "onde": "seção 2.6: comprimento não menor que 1,22 m"
+    },
+    "larg": {
+     "v": 30.5,
+     "un": "cm",
+     "tipo": "medida",
+     "fonte": "rogue-fb",
+     "onde": "Bench Pad Width: 12 pol (IPF: 29 a 32 cm)"
+    },
+    "altura": {
+     "v": 43.5,
+     "un": "cm",
+     "tipo": "derivada",
+     "fonte": "ipf2026",
+     "onde": "meio da faixa da seção 2.6: 42 a 45 cm do piso ao topo do estofado"
+    },
+    "estofado": {
+     "v": 6.35,
+     "un": "cm",
+     "tipo": "medida",
+     "fonte": "rogue-fb",
+     "onde": "Pad Thickness: 2,5 pol"
+    },
+    "baseLarg": {
+     "v": 56,
+     "un": "cm",
+     "tipo": "medida",
+     "fonte": "hs2024",
+     "onde": "largura total do Flat Bench FW-FB: 22 pol"
+    },
+    "tubo": {
+     "v": 5,
+     "un": "cm",
+     "tipo": "provisoria",
+     "fonte": "a-conferir",
+     "onde": "lado do tubo da estrutura: nenhuma ficha lida informa"
+    }
    }
   },
   "anilhaCalcanhar": {
    "nome": "Anilha de ferro de 10 lb sob o calcanhar",
    "medidas": {
-    "diam": { "v": 22.8, "un": "cm", "tipo": "medida", "fonte": "rogue-steel", "onde": "Plate Diameter, 10 lb: 228 mm" },
-    "esp": { "v": 2.4, "un": "cm", "tipo": "provisoria", "fonte": "a-conferir", "onde": "espessura da anilha de 10 lb: a Rogue não informa" }
+    "diam": {
+     "v": 22.8,
+     "un": "cm",
+     "tipo": "medida",
+     "fonte": "rogue-steel",
+     "onde": "Plate Diameter, 10 lb: 228 mm"
+    },
+    "esp": {
+     "v": 2.4,
+     "un": "cm",
+     "tipo": "provisoria",
+     "fonte": "a-conferir",
+     "onde": "espessura da anilha de 10 lb: a Rogue não informa"
+    }
    }
   },
   "torre": {
    "nome": "Coluna de polia regulável (crossover)",
    "medidas": {
-    "altura": { "v": 239, "un": "cm", "tipo": "medida", "fonte": "lf-cc", "onde": "Dimensions: 94 pol de altura" },
-    "poliaMax": { "v": 193, "un": "cm", "tipo": "medida", "fonte": "lf-cc", "onde": "altura do carrinho: até 76 pol" },
-    "poliaMin": { "v": 17.8, "un": "cm", "tipo": "medida", "fonte": "lf-cc", "onde": "altura do carrinho: a partir de 7 pol" },
-    "relacao": { "v": 2, "un": "razão", "tipo": "medida", "fonte": "lf-cc", "onde": "relação do cabo 2:1: a pilha sobe metade do que o cabo anda" },
-    "prof": { "v": 72, "un": "cm", "tipo": "medida", "fonte": "lf-cc", "onde": "Dimensions: 28,5 pol de profundidade da base" },
-    "colunaLarg": { "v": 30, "un": "cm", "tipo": "provisoria", "fonte": "a-conferir", "onde": "largura da coluna com a carenagem da pilha: nenhuma ficha lida informa" },
-    "roldanaDiam": { "v": 11.5, "un": "cm", "tipo": "provisoria", "fonte": "a-conferir", "onde": "diâmetro da roldana do carrinho: só há a de 6 pol de uma polia de rack (Rogue), que é outro aparelho" },
-    "caboDiam": { "v": 0.64, "un": "cm", "tipo": "medida", "fonte": "rogue-sling", "onde": "cabo de aço de 1/4 pol (sem a capa)" },
-    "pilhaLarg": { "v": 22, "un": "cm", "tipo": "provisoria", "fonte": "a-conferir", "onde": "largura das placas da pilha: nenhuma ficha lida informa" },
-    "placaEsp": { "v": 2.5, "un": "cm", "tipo": "provisoria", "fonte": "a-conferir", "onde": "espessura de cada placa da pilha: nenhuma ficha lida informa" },
-    "placas": { "v": 16, "un": "un", "tipo": "provisoria", "fonte": "a-conferir", "onde": "número de placas desenhadas" }
+    "altura": {
+     "v": 239,
+     "un": "cm",
+     "tipo": "medida",
+     "fonte": "lf-cc",
+     "onde": "Dimensions: 94 pol de altura"
+    },
+    "poliaMax": {
+     "v": 193,
+     "un": "cm",
+     "tipo": "medida",
+     "fonte": "lf-cc",
+     "onde": "altura do carrinho: até 76 pol"
+    },
+    "poliaMin": {
+     "v": 17.8,
+     "un": "cm",
+     "tipo": "medida",
+     "fonte": "lf-cc",
+     "onde": "altura do carrinho: a partir de 7 pol"
+    },
+    "relacao": {
+     "v": 2,
+     "un": "razão",
+     "tipo": "medida",
+     "fonte": "lf-cc",
+     "onde": "relação do cabo 2:1: a pilha sobe metade do que o cabo anda"
+    },
+    "prof": {
+     "v": 72,
+     "un": "cm",
+     "tipo": "medida",
+     "fonte": "lf-cc",
+     "onde": "Dimensions: 28,5 pol de profundidade da base"
+    },
+    "colunaLarg": {
+     "v": 30,
+     "un": "cm",
+     "tipo": "provisoria",
+     "fonte": "a-conferir",
+     "onde": "largura da coluna com a carenagem da pilha: nenhuma ficha lida informa"
+    },
+    "roldanaDiam": {
+     "v": 11.5,
+     "un": "cm",
+     "tipo": "provisoria",
+     "fonte": "a-conferir",
+     "onde": "diâmetro da roldana do carrinho: só há a de 6 pol de uma polia de rack (Rogue), que é outro aparelho"
+    },
+    "caboDiam": {
+     "v": 0.64,
+     "un": "cm",
+     "tipo": "medida",
+     "fonte": "rogue-sling",
+     "onde": "cabo de aço de 1/4 pol (sem a capa)"
+    },
+    "pilhaLarg": {
+     "v": 22,
+     "un": "cm",
+     "tipo": "provisoria",
+     "fonte": "a-conferir",
+     "onde": "largura das placas da pilha: nenhuma ficha lida informa"
+    },
+    "placaEsp": {
+     "v": 2.5,
+     "un": "cm",
+     "tipo": "provisoria",
+     "fonte": "a-conferir",
+     "onde": "espessura de cada placa da pilha: nenhuma ficha lida informa"
+    },
+    "placas": {
+     "v": 16,
+     "un": "un",
+     "tipo": "provisoria",
+     "fonte": "a-conferir",
+     "onde": "número de placas desenhadas"
+    }
    }
   },
   "estribo": {
    "nome": "Estribo (pegador de uma mão)",
    "medidas": {
-    "pegadaComp": { "v": 12.5, "un": "cm", "tipo": "provisoria", "fonte": "a-conferir", "onde": "comprimento da pegada: sem medida lida" },
-    "pegadaDiam": { "v": 3.2, "un": "cm", "tipo": "provisoria", "fonte": "a-conferir", "onde": "diâmetro da pegada: sem medida lida" },
-    "altura": { "v": 15, "un": "cm", "tipo": "provisoria", "fonte": "a-conferir", "onde": "da pegada ao elo do cabo: sem medida lida" }
+    "pegadaComp": {
+     "v": 12.5,
+     "un": "cm",
+     "tipo": "provisoria",
+     "fonte": "a-conferir",
+     "onde": "comprimento da pegada: sem medida lida"
+    },
+    "pegadaDiam": {
+     "v": 3.2,
+     "un": "cm",
+     "tipo": "provisoria",
+     "fonte": "a-conferir",
+     "onde": "diâmetro da pegada: sem medida lida"
+    },
+    "altura": {
+     "v": 15,
+     "un": "cm",
+     "tipo": "provisoria",
+     "fonte": "a-conferir",
+     "onde": "da pegada ao elo do cabo: sem medida lida"
+    }
    }
   },
   "colchonete": {
    "nome": "Colchonete",
    "medidas": {
-    "comp": { "v": 100, "un": "cm", "tipo": "provisoria", "fonte": "a-conferir", "onde": "sem medida lida" },
-    "larg": { "v": 50, "un": "cm", "tipo": "provisoria", "fonte": "a-conferir", "onde": "sem medida lida" },
-    "esp": { "v": 1.5, "un": "cm", "tipo": "provisoria", "fonte": "a-conferir", "onde": "sem medida lida" }
+    "comp": {
+     "v": 100,
+     "un": "cm",
+     "tipo": "provisoria",
+     "fonte": "a-conferir",
+     "onde": "sem medida lida"
+    },
+    "larg": {
+     "v": 50,
+     "un": "cm",
+     "tipo": "provisoria",
+     "fonte": "a-conferir",
+     "onde": "sem medida lida"
+    },
+    "esp": {
+     "v": 1.5,
+     "un": "cm",
+     "tipo": "provisoria",
+     "fonte": "a-conferir",
+     "onde": "sem medida lida"
+    }
+   }
+  },
+  "bancoRegulavel": {
+   "nome": "Banco regulável (encosto de 0 a 85 graus)",
+   "medidas": {
+    "estofadoComp": {
+     "v": 132,
+     "un": "cm",
+     "tipo": "medida",
+     "fonte": "rogue-ab3",
+     "onde": "comprimento do estofado inteiro (encosto + assento): 52 pol"
+    },
+    "larg": {
+     "v": 28.6,
+     "un": "cm",
+     "tipo": "medida",
+     "fonte": "rogue-ab3",
+     "onde": "largura do estofado de vinil: 11,25 pol"
+    },
+    "altura": {
+     "v": 44.5,
+     "un": "cm",
+     "tipo": "medida",
+     "fonte": "rogue-ab3",
+     "onde": "altura do estofado na posição plana: 17,5 pol"
+    },
+    "vao": {
+     "v": 2.5,
+     "un": "cm",
+     "tipo": "medida",
+     "fonte": "rogue-ab3",
+     "onde": "espaço entre o assento e o encosto: 1 pol"
+    },
+    "baseComp": {
+     "v": 143.5,
+     "un": "cm",
+     "tipo": "medida",
+     "fonte": "rogue-ab3",
+     "onde": "comprimento da base: 56,5 pol"
+    },
+    "baseLarg": {
+     "v": 62.9,
+     "un": "cm",
+     "tipo": "medida",
+     "fonte": "rogue-ab3",
+     "onde": "largura traseira da base: 24,75 pol"
+    },
+    "encostoMax": {
+     "v": 85,
+     "un": "graus",
+     "tipo": "medida",
+     "fonte": "rogue-ab3",
+     "onde": "maior ângulo do encosto (10 posições, de 0 a 85)"
+    },
+    "estofado": {
+     "v": 7,
+     "un": "cm",
+     "tipo": "medida",
+     "fonte": "gymgear-mab",
+     "onde": "espessura do estofado: 70 mm (outro modelo; a ficha da Rogue não informa)"
+    },
+    "assentoComp": {
+     "v": 34,
+     "un": "cm",
+     "tipo": "provisoria",
+     "fonte": "a-conferir",
+     "onde": "comprimento só do assento: nenhuma ficha lida separa assento e encosto"
+    },
+    "tubo": {
+     "v": 6,
+     "un": "cm",
+     "tipo": "provisoria",
+     "fonte": "a-conferir",
+     "onde": "lado do tubo da estrutura: nenhuma ficha lida informa"
+    }
    }
   }
  }
