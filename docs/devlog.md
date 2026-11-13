@@ -1683,7 +1683,7 @@ Nenhum dos 9 defeitos da régua sobe em nenhum grupo nem em nenhum recorte. O pi
 
 **A revisão cega** (três revisores simulados, três rodadas, 65 páginas; opinião, não evidência): com as 18 pessoas de sempre, as médias foram de 5,5 · 5,6 · 5,2 para 5,8 · 5,8 · 5,4 (eficiente · adequada · agradável). A Marina sobe 5,3 e 3,3 pontos na soma das três notas, nas duas rodadas; o avançado de 5 dias de 90 min, 7,0 e 9,3.
 
-**Pendente da revisão do Gustavo:** cinco registros de teste mudam (uma série a mais no Bruno e na Carla) e não foram regravados; `npm run check` acusa essas cinco diferenças, e só elas.
+**Registros de teste.** Cinco registros mudaram (uma série a mais no Bruno e na Carla). Foram mostrados ao Gustavo e regravados com o ok dele em 13/11; `npm run check` passa inteiro (937 testes) e os 157 testes de ponta a ponta também.
 
 **Rascunho de post.** "A primeira mudança do 'treino para todos' entrou no ramo: o app deixa de dar 2 séries de tudo a quem tem uma hora e academia completa. Parece simples (sobrou tempo, mais séries), mas a medida mudou a regra duas vezes. Primeiro, as séries a mais estavam tomando o lugar de exercícios em treinos curtos; passaram a entrar só no fim. Depois, três treinadores simulados, sem saber qual versão liam, baixaram a nota do iniciante que ganhou séries em tudo: 8 exercícios com 3 ou 4 séries, no limite da hora, é demais para quem está aprendendo. Para ele, a série a mais agora vai só para os exercícios grandes. Regra que não melhora a medida não entra, mesmo quando parece certa."
 

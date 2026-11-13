@@ -212,9 +212,9 @@ Na versão adotada, nenhuma soma fica abaixo da de antes. Em duas pessoas a nota
 
 **As críticas que continuam, nas duas versões** (não são deste pacote): dias quase vazios com dor forte; costas a zero sem nada para puxar; 8 exercícios por dia para o iniciante; puxada "ajoelhado" com dor no joelho e no lugar da puxada comum; elevação lateral em dia de pernas; quem tem 3 focos ou mais com dias de pernas curtos.
 
-## 6. Os registros de teste que mudam (preciso do seu ok para regravar)
+## 6. Os registros de teste que mudaram (regravados em 13/11/2026, com o ok do Gustavo)
 
-Os testes guardam "fotografias" de alguns programas. Cinco delas mudam com este pacote, todas pelo mesmo motivo (uma série a mais no Bruno e na Carla). **Não regravei nenhuma**; por isso `npm run check` acusa essas 5 diferenças, e só elas.
+Os testes guardam "fotografias" de alguns programas. Cinco delas mudam com este pacote, todas pelo mesmo motivo (uma série a mais no Bruno e na Carla). O Gustavo viu a lista abaixo e autorizou a regravação em 13/11/2026; a diferença gravada são exatamente estas linhas, e `npm run check` voltou a passar inteiro.
 
 | Registro | O que muda |
 |---|---|
@@ -235,7 +235,7 @@ Testes novos: `tests/unit/tempo-que-sobra.test.ts` (15 testes, em 156 combinaç�
 
 | Conferência | Resultado |
 |---|---|
-| `npm run check` (lint, tipos, testes) | lint e tipos limpos; 932 testes passam; **5 falham: são os 5 registros da seção 6**, que esperam o seu ok |
+| `npm run check` (lint, tipos, testes) | limpo: 59 arquivos, 937 testes (depois de regravar os 5 registros da seção 6, com o ok do Gustavo) |
 | `npm run test:e2e` (o app no navegador, de ponta a ponta) | 157 de 157 passam |
 | O gerador continua determinístico | a mesma entrada dá o mesmo programa (teste novo e as 2.106 combinações do teste antigo) |
 | O protótipo com a regra ligada dá o mesmo programa que o app | sim, nas 12 personas (`prototipo-treino-para-todos.test.ts`) |
@@ -252,6 +252,6 @@ Quem treina com 60 min ou mais, sem foco ou com 1 ou 2 focos, e tinha tempo sobr
 
 Uma por vez, com a minha recomendação; nada vem marcado.
 
-1. **Posso regravar os 5 registros de teste da seção 6?** *Recomendo sim:* as cinco mudanças são uma série a mais no Bruno e na Carla, dentro da regra.
+1. ~~Posso regravar os 5 registros de teste da seção 6?~~ **Decidido em 13/11/2026: sim.** Regravados.
 2. **O iniciante com série a mais só nos exercícios grandes, até 3 (seção 4)?** *Recomendo sim.* É a versão que não piorou ninguém. A outra (encher a hora) fica guardada para o pacote 4, quando o treino do iniciante tiver menos exercícios por dia.
 3. **O próximo pacote.** *Recomendo o pacote 0 (os exercícios feitos de joelhos saem com dor forte no joelho):* é de segurança, é pequeno, e os revisores voltaram a apontar o problema no Leandro nas três rodadas. É a decisão 3 da proposta, que ainda não foi tomada.

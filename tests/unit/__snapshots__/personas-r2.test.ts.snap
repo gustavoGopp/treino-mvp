@@ -92,7 +92,7 @@ exports[`snapshots do R2: o treino de cada persona na volta de 30 dias > Bruno, 
     "dia": "Superior B",
   },
   {
-    "antes": "semana 6: 18 séries, RIR 1–2 e 0–1, a mesma carga",
+    "antes": "semana 6: 19 séries, RIR 1–2 e 0–1, a mesma carga",
     "cargas": [
       "Afundo estático com halteres: 10 kg → 8 kg",
       "Ponte de glúteo com halter: 10 kg → 8 kg",
@@ -157,7 +157,7 @@ exports[`snapshots do R2: o treino de cada persona na volta de 30 dias > Carla 1
     "dia": "Empurrar",
   },
   {
-    "antes": "semana 6: 16 séries, RIR 1–2 e 0–1, a mesma carga",
+    "antes": "semana 6: 17 séries, RIR 1–2 e 0–1, a mesma carga",
     "cargas": [
       "Remada baixa com triângulo: placa 8 → placa 7",
       "Puxada ajoelhado na polia alta com barra reta: placa 8 → placa 7",

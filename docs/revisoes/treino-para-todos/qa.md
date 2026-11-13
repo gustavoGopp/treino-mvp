@@ -10,7 +10,7 @@
 | O pior grupo melhor do que era | **ainda não**: dor forte no cotovelo, 50,0% antes e depois (pacote 3) |
 | Revisão cega com nenhuma pessoa pior e as notas médias maiores | notas médias maiores (5,5 · 5,6 · 5,2 → 5,8 · 5,8 · 5,4); nenhuma soma abaixo da de antes na versão adotada, fora o Bruno em uma das duas rodadas (0 e −0,3); detalhes em [`pacote-1.md`](pacote-1.md), seção 5 |
 | Toda regra com selo, fonte e teste | `tempo.sobra-series`, `tempo.sobra` e `volume.semanal.alvo` reescritas em `regras.md` (consenso; fontes na linha); `tests/unit/tempo-que-sobra.test.ts` |
-| `npm run check`, `npm run test:e2e`, `npm run auditoria:verificar` | ver [`pacote-1.md`](pacote-1.md), seção 7 |
+| `npm run check`, `npm run test:e2e`, `npm run auditoria:verificar` | `check` limpo (937 testes) e `test:e2e` limpo (157); a auditoria está em [`pacote-1.md`](pacote-1.md), seção 7 |
 | `src/engine/` e as telas sem mudança | sem mudança: o pacote mexe em `src/domain/gerador`, `src/domain/regras` e nos dados gerados a partir de `docs/pesquisa/` |
 
 ## Pacote 1 (o tempo que sobra vira série em todos os dias)
