@@ -116,6 +116,22 @@ export const zerarIds = () => {
 };
 const novoId = (p) => `${p}${++conta}`;
 
+/** Mistura duas cores '#rrggbb': t = 0 dá a primeira, t = 1 dá a segunda. */
+export function misturar(a, b, t) {
+  const n = (h, i) => parseInt(h.slice(1 + i * 2, 3 + i * 2), 16);
+  return '#' + [0, 1, 2].map((i) => Math.round(n(a, i) + (n(b, i) - n(a, i)) * t).toString(16).padStart(2, '0')).join('');
+}
+/** Desenha `conteudo` só por fora das formas dadas. */
+export function foraDe(ds, conteudo) {
+  const id = novoId('for');
+  return `<clipPath id="${id}"><path clip-rule="evenodd" d="M-999 -999H999V999H-999Z ${ds.join(' ')}"/></clipPath><g clip-path="url(#${id})">${conteudo}</g>`;
+}
+/** Desenha `conteudo` só por dentro das formas dadas (lista de caminhos). */
+export function recorte(ds, conteudo) {
+  const id = novoId('rec');
+  return `<clipPath id="${id}">${ds.map((d) => `<path d="${d}"/>`).join('')}</clipPath><g clip-path="url(#${id})">${conteudo}</g>`;
+}
+
 /**
  * Um grupo de formas com um contorno só em volta: primeiro todas as formas com o traço (o dobro da espessura,
  * porque metade fica escondida), depois os preenchimentos por cima. O traço só sobra na borda de fora do conjunto.

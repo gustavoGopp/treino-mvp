@@ -3,7 +3,8 @@
 // NÃO é proposta de boneco: é o mesmo desenho com uma chave de cada vez, para o Gustavo comparar olhando.
 // Os perfis (largura de cada parte, de cada lado) foram escolhidos à mão a partir das larguras medidas no corpo de
 // referência; estão em cm.
-import { colocar, comSombra, entre, espelhar, faixa, grupo, membro, menos, normal, r1, soma, suave, uni, vezes } from './tinta.mjs';
+import { DE_COSTAS, DE_FRENTE, DE_LADO, afastamento, montar } from './musculos-prova.mjs';
+import { colocar, comSombra, entre, espelhar, faixa, foraDe, grupo, membro, menos, misturar, normal, r1, recorte, soma, suave, tam, uni, vezes } from './tinta.mjs';
 
 /* ============================== perfis de lado: [t, frente, trás] ============================== */
 const COXA_L = [[0, 10.4, 8.7], [0.25, 10.8, 8.2], [0.5, 9.5, 7.2], [0.75, 7.7, 6.3], [1, 6.2, 6.0]];
@@ -60,7 +61,14 @@ export function paleta({ cor = 'cinza', tema = 'claro', contorno = true, roupaCa
   }[cor];
   // roupa calma: a roupa vai para tons de cinza, e a cor viva fica só no músculo (e na pele)
   if (roupaCalma) Object.assign(base, claro ? { roupa: '#aab4bc', roupaSombra: '#929da6', short: '#6a7682', shortSombra: '#57626d', calcado: '#3d4954' } : { roupa: '#5d6975', roupaSombra: '#4a5560', short: '#9aa6b0', shortSombra: '#808c96', calcado: '#dfe6ea' });
-  return { ...base, musPb: claro ? '#a31d17' : '#b9342c', musSb: claro ? '#b76d0e' : '#c07f1e', fundo: FUNDO[tema], contorno: claro ? '#1d2a36' : '#e7eef2', ferro: claro ? '#27343f' : '#cfd8de', aco: '#8a98a3', chao: claro ? '#d5dce1' : '#33414b', musP: claro ? '#d62e26' : '#f45248', musS: claro ? '#ec961c' : '#f5aa3c', rosto: claro ? '#1d2a36' : '#10171b' };
+  // músculo: "parado" = os grupos que não trabalham, quase da cor do corpo; "suave" = o que trabalha, em tons menos
+  // gritantes (o secundário é um tom claro do principal); "tom" = um tom mais quente da própria pele, sem borda
+  const mus = cor === 'pele'
+    ? { musculoParado: claro ? '#dfad87' : '#cf9c75', linhaMus: claro ? '#c08b64' : '#a67750', suaveP: '#cb5747', suavePb: '#a43d2d', suaveS: '#eaa594', suaveSb: '#c77f6c', tomP: '#c25a43', tomS: '#d18766', linhaRoupa: claro ? '#b98660' : '#a07250' }
+    : { musculoParado: claro ? '#a1adb7' : '#99a6b0', linhaMus: claro ? '#7a8792' : '#6f7d88', suaveP: '#d8483e', suavePb: '#a52f28', suaveS: '#ecaa50', suaveSb: '#b77c26', tomP: '#d8483e', tomS: '#ecaa50', linhaRoupa: claro ? '#75828d' : '#6f7d88' };
+  // roupa em véu: no modo Músculos, a regata e o short ficam claros, meio caminho entre o tecido e a pele
+  const veu = { roupaVeu: misturar(base.pele, claro ? '#aeb7bf' : '#5d6975', 0.5), shortVeu: misturar(base.pele, claro ? '#6a7682' : '#9aa6b0', 0.5) };
+  return { ...base, ...mus, ...veu, musPb: claro ? '#a31d17' : '#b9342c', musSb: claro ? '#b76d0e' : '#c07f1e', fundo: FUNDO[tema], contorno: claro ? '#1d2a36' : '#e7eef2', ferro: claro ? '#27343f' : '#cfd8de', aco: '#8a98a3', chao: claro ? '#d5dce1' : '#33414b', musP: claro ? '#d62e26' : '#f45248', musS: claro ? '#ec961c' : '#f5aa3c', rosto: claro ? '#1d2a36' : '#10171b' };
 }
 
 /* ============================== ajudas ============================== */
@@ -73,6 +81,38 @@ const noPerfilDe = (perfil, t, i) => {
 };
 /** Um músculo: a forma em cor sólida, com a borda num tom mais escuro da mesma cor, e as divisões por dentro. */
 const musculo = (pts, cor, borda, divisoes = []) => `<path d="${suave(pts)}" fill="${cor}" stroke="${borda}" stroke-width="0.5" stroke-linejoin="round"/>${divisoes.map((l) => `<path d="${suave(l, false)}" fill="none" stroke="${borda}" stroke-width="0.45" stroke-linecap="round"/>`).join('')}`;
+/** No goblet: o quadríceps é o principal; o glúteo e os adutores trabalham junto. */
+const PAPEL = { quadriceps: 'p', gluteo: 's', adutores: 's' };
+const DO_BRACO = ['triceps', 'biceps', 'deltoide', 'antebraco'];
+/**
+ * Pinta os músculos de uma lista (de `montar`) numa das maneiras em estudo:
+ *  'solido'   = só os que trabalham, em vermelho e laranja sólidos com borda escura (como o boneco de hoje)
+ *  'atlas'    = todos os grupos desenhados de leve, e os que trabalham acesos em tons mais suaves
+ *  'tom'      = só os que trabalham, num tom mais quente da própria pele, sem borda nem divisões
+ *  'contorno' = só os que trabalham, marcados por uma linha colorida em volta, sem preenchimento
+ *  'suave'    = só os que trabalham, nos tons suaves do atlas, com borda e divisões
+ * `veus` = peças de roupa que viraram um véu claro ({ ds, cor }): o músculo aparece por baixo delas.
+ */
+function pintarMusculos(formas, o, C, veus = []) {
+  const est = o.estiloMusculo, papel = o.ativos ?? PAPEL;
+  const linha = (d, cor, esp) => `<path d="${d}" fill="none" stroke="${cor}" stroke-width="${esp}" stroke-linecap="round" stroke-linejoin="round"/>`;
+  const cheio = (f, cor, borda) => `<path d="${suave(f.pts)}" fill="${cor}" stroke="${borda}" stroke-width="0.4" stroke-linejoin="round"/>${f.div.map((l) => linha(suave(l, false), borda, 0.35)).join('')}`;
+  let parados = '', ativos = '';
+  for (const f of formas) {
+    const r = papel[f.id], d = suave(f.pts);
+    if (est === 'atlas' && !r) parados += cheio(f, C.musculoParado, C.linhaMus);
+    else if (!r) continue;
+    else if (est === 'atlas' || est === 'suave') {
+      const cor = r === 'p' ? C.suaveP : C.suaveS, borda = r === 'p' ? C.suavePb : C.suaveSb;
+      // por baixo da roupa: fora da roupa na cor cheia; dentro de cada peça, misturado com a cor do tecido
+      if (veus.length) ativos += foraDe(veus.flatMap((v) => v.ds), cheio(f, cor, borda)) + veus.map((v) => recorte(v.ds, cheio(f, misturar(cor, v.cor, 0.38), misturar(borda, v.cor, 0.38)))).join('');
+      else ativos += cheio(f, cor, borda);
+    } else if (est === 'tom') ativos += `<path d="${d}" fill="${r === 'p' ? C.tomP : C.tomS}"/>`;
+    else if (est === 'contorno') ativos += linha(d, r === 'p' ? C.musP : C.musS, 0.95);
+    else if (est === 'solido') ativos += musculo(f.pts, r === 'p' ? C.musP : C.musS, r === 'p' ? C.musPb : C.musSb, f.div);
+  }
+  return parados + ativos;
+}
 const emMembro = (a, b, t, o) => {
   const u = uni(menos(b, a)), n = normal(u);
   return soma(entre(a, b, t), vezes(n, o));
@@ -109,12 +149,26 @@ export function deLado(pose, o = {}) {
   const C = paleta(o), R = p.R, g = F.gordura * F.k;
   const J = (n) => p2(R[n]);
   const pelePar = { cor: C.pele, sombra: C.peleSombra };
-  const roupaPar = o.roupa ? { cor: C.roupa, sombra: C.roupaSombra } : pelePar;
-  const shortPar = o.roupa ? { cor: C.short, sombra: C.shortSombra } : pelePar;
+  // roupa: true = blocos de cor; 'linha' = só a linha da barra, com o corpo à mostra; false = sem roupa
+  //        'veu' = a roupa fica clara e o músculo aparece por baixo dela
+  const vestido = o.roupa === true || o.roupa === 'veu', veu = o.roupa === 'veu', calcado = !!o.roupa || !!o.tenis;
+  const roupaPar = veu ? { cor: C.roupaVeu, sombra: C.roupaVeu } : vestido ? { cor: C.roupa, sombra: C.roupaSombra } : pelePar;
+  const shortPar = veu ? { cor: C.shortVeu, sombra: C.shortVeu } : vestido ? { cor: C.short, sombra: C.shortSombra } : pelePar;
   const luz = [1.9, 2.4];
 
   const espinha = p.coluna.slice(0, p.iC7 + 1).map(p2).reverse();
   const tronco = D(faixa(espinha, TRONCO_L.map(([t, f, tr]) => [t, f * g, tr * g])));
+  // um ponto do tronco: t ao longo da coluna (da base do pescoço ao fim da lombar) e d para a frente
+  const noTronco = (pt) => {
+    const acum = [0];
+    for (let i = 1; i < espinha.length; i++) acum.push(acum[i - 1] + tam(menos(espinha[i], espinha[i - 1])));
+    const alvo = Math.max(0, Math.min(1, pt[0])) * acum[acum.length - 1];
+    let i = 1;
+    while (i < espinha.length - 1 && acum[i] < alvo) i++;
+    const u = (alvo - acum[i - 1]) / (acum[i] - acum[i - 1] || 1);
+    const n = normal(uni(menos(espinha[Math.min(i + 1, espinha.length - 1)], espinha[Math.max(i - 2, 0)])));
+    return soma(entre(espinha[i - 1], espinha[i], u), vezes(n, afastamento(TRONCO_L, g, pt)));
+  };
   const pescoco = D(faixa(p.coluna.slice(p.iC7, p.iCranio + 1).map(p2).reverse(), PESCOCO_L.map(([t, f, tr]) => [t, f * g, tr * g])));
   const rc = p.refs.cabeca, rp = p.refs.pelve;
   const cabeca = D(colocar(CABECA_L, p2(rc.o), rc.z, rc.y, F.cabeca * F.k));
@@ -124,7 +178,12 @@ export function deLado(pose, o = {}) {
   const canela = D(membro(J('joelho'), J('tornozelo'), CANELA_L, { gordura: g }));
   const short = D(membro(J('quadril'), J('joelho'), COXA_L, { gordura: g * 1.07, ate: 0.44, fim: 'reta' }));
   const uPe = uni(menos(J('ponta'), J('calcanhar')));
-  const pe = D(colocar(TENIS_L, J('calcanhar'), uPe, normal(uPe), F.extremo * F.k * (o.roupa ? 1 : 0.93)));
+  const pe = D(colocar(TENIS_L, J('calcanhar'), uPe, normal(uPe), F.extremo * F.k * (calcado ? 1 : 0.93)));
+  const novo = o.musculo && o.estiloMusculo;
+  const onde = { membros: { coxa: [J('quadril'), J('joelho'), COXA_L, g], canela: [J('joelho'), J('tornozelo'), CANELA_L, g], braco: [J('ombro'), J('cotovelo'), BRACO_L, g], ante: [J('cotovelo'), J('punho'), ANTE_L, g] }, tronco: noTronco, pelve: { o: p2(rp.o), ex: rp.z, ey: rp.y, k: g } };
+  const musculos = novo ? montar(DE_LADO, onde) : [];
+  const DO_TRONCO = ['peitoral', 'abdomen', 'dorsal'];
+  const veus = veu ? [{ ds: [tronco], cor: C.roupaVeu }, { ds: [pelve, short], cor: C.shortVeu }] : [];
   const braco = D(membro(J('ombro'), J('cotovelo'), BRACO_L, { gordura: g }));
   const ante = D(membro(J('cotovelo'), J('punho'), ANTE_L, { gordura: g }));
   const rm = p.refs.maoR, dedos = [-rm.y[0], -rm.y[1]];
@@ -135,6 +194,7 @@ export function deLado(pose, o = {}) {
   const corpo = [{ d: pescoco, ...pelePar }, { d: tronco, ...roupaPar }, { d: pelve, ...shortPar }, { d: cabeca, ...pelePar }];
   if (o.cabeca !== 'lisa' && o.cabeca) corpo.push({ d: cabelo, cor: C.cabelo, sombra: C.cabelo });
   let s = pintar(corpo, o, C, {}, luz);
+  if (novo) s += pintarMusculos(musculos.filter((m) => DO_TRONCO.includes(m.id)), o, C, veus);
   // rosto mínimo: olho, nariz e orelha
   if (o.cabeca === 'rosto') {
     const k = F.cabeca * F.k, em = (z, y) => colocar([[z, y]], p2(rc.o), rc.z, rc.y, k)[0];
@@ -145,12 +205,21 @@ export function deLado(pose, o = {}) {
     s += `<ellipse cx="${r1(or[0])}" cy="${r1(or[1])}" rx="${r1(1.3 * k)}" ry="${r1(2.3 * k)}" fill="${C.peleSombra}"/>`;
   }
   // a perna: sai do quadril sem emenda, mas ganha linha onde passa na frente do tronco (no agachamento)
-  const perna = [{ d: coxa, ...pelePar }, { d: canela, ...pelePar }, { d: pe, cor: o.roupa ? C.calcado : C.pele, sombra: o.roupa ? C.calcado : C.peleSombra }];
-  if (o.roupa) perna.push({ d: short, ...shortPar });
+  const perna = [{ d: coxa, ...pelePar }, { d: canela, ...pelePar }, { d: pe, cor: calcado ? C.calcado : C.pele, sombra: calcado ? C.calcado : C.peleSombra }];
+  if (vestido) perna.push({ d: short, ...shortPar });
   const sobreCorpo = { cor: C.fundo, esp: 0.75, sobre: [tronco, pescoco] };
   s += pintar(perna, o, C, { semLinhaSobre: [pelve], linhaSoSobre: sobreCorpo }, luz);
+  if (novo) s += pintarMusculos(musculos.filter((m) => !DO_TRONCO.includes(m.id) && !DO_BRACO.includes(m.id)), o, C, veus);
+  // roupa em linha: só a barra do short e a da regata, por cima do corpo
+  if (o.roupa === 'linha') {
+    const a = J('quadril'), b = J('joelho'), q1 = emMembro(a, b, 0.44, noPerfilDe(COXA_L, 0.44, 1) * g), q2 = emMembro(a, b, 0.44, -noPerfilDe(COXA_L, 0.44, 2) * g);
+    const c1 = noTronco([0.985, 'f-0.0']), c2 = noTronco([0.985, 't-0.0']);
+    s += recorte([tronco, pelve, coxa], `<path d="M${r1(q1[0])} ${r1(q1[1])}L${r1(q2[0])} ${r1(q2[1])}M${r1(c1[0])} ${r1(c1[1])}L${r1(c2[0])} ${r1(c2[1])}" fill="none" stroke="${C.linhaRoupa}" stroke-width="0.55" stroke-linecap="round"/>`);
+  }
   // músculo no corpo: frente da coxa em vermelho (principal) e glúteo em laranja (secundário), cor sólida
-  if (o.musculo && o.definido) {
+  if (novo) {
+    // já pintado acima
+  } else if (o.musculo && o.definido) {
     // forma de músculo: o quadríceps ocupa a frente e o lado da coxa, do quadril até acima do joelho, com a divisão
     // entre o reto femoral (em cima) e o vasto lateral; o glúteo cobre a parte de trás do quadril
     const a = J('quadril'), b = J('joelho'), M = (t, d) => emMembro(a, b, t, d), fr = (t) => noPerfilDe(COXA_L, t, 1) * g;
@@ -180,6 +249,7 @@ export function deLado(pose, o = {}) {
   // o braço de perto por cima de tudo, com a mão
   const bracoG = [{ d: braco, ...pelePar }, { d: ante, ...pelePar }, { d: mao, ...pelePar }];
   s += pintar(bracoG, o, C, { linhaSoSobre: { cor: C.fundo, esp: 0.75, sobre: [tronco, pescoco, pelve, coxa, canela, short] } }, luz);
+  if (novo) s += pintarMusculos(musculos.filter((m) => DO_BRACO.includes(m.id)), o, C);
   return s;
 }
 
@@ -189,18 +259,19 @@ export function deFrente(pose, o = {}) {
   const C = paleta(o), R = p.R, g = F.gordura * F.k, k = F.k;
   const J = (n) => p2(R[n]);
   const pelePar = { cor: C.pele, sombra: C.peleSombra };
-  const roupaPar = o.roupa ? { cor: C.roupa, sombra: C.roupaSombra } : pelePar;
-  const shortPar = o.roupa ? { cor: C.short, sombra: C.shortSombra } : pelePar;
+  const vestido = o.roupa === true || o.roupa === 'veu', veu = o.roupa === 'veu', calcado = !!o.roupa || !!o.tenis, deCostas = o.musculo === 'costas';
+  const roupaPar = veu ? { cor: C.roupaVeu, sombra: C.roupaVeu } : vestido ? { cor: C.roupa, sombra: C.roupaSombra } : pelePar;
+  const shortPar = veu ? { cor: C.shortVeu, sombra: C.shortVeu } : vestido ? { cor: C.short, sombra: C.shortSombra } : pelePar;
   const luz = [-2.0, 2.3];
   const E = (pts) => pts.map((q) => (q[2] ? [q[0] * k * (o.proporcao === 'estilizada' ? 1.06 : 1), q[1] * k, q[2]] : [q[0] * k * (o.proporcao === 'estilizada' ? 1.06 : 1), q[1] * k]));
   const inteiro = (metade) => D([...metade, ...espelhar(metade).slice(metade[metade.length - 1][0] === 0 ? 1 : 0, metade[0][0] === 0 ? -1 : undefined)]);
 
   const tronco = inteiro(E(TRONCO_F));
-  const pelve = inteiro(E(o.roupa ? SHORT_F : PELVE_F));
+  const pelve = inteiro(E(vestido ? SHORT_F : PELVE_F));
   const rc = p.refs.cabeca, kc = F.cabeca * k;
   const cab = (pts) => pts.map((q) => [rc.o[0] + q[0] * kc, rc.o[1] + q[1] * kc]);
   const cabeca = inteiro(cab(CABECA_F));
-  const cabelo = inteiro(cab(CABELO_F));
+  const cabelo = deCostas ? inteiro(cab(CABECA_F.map(([x, y]) => [x * 1.05, y > -4 ? y * 1.04 : y * 0.62]))) : inteiro(cab(CABELO_F));
   const pescoco = D([[-5.4 * g, 158 * k, 'c'], [-5.5 * g, 152.5 * k], [-6.6 * g, 148.6 * k, 'c'], [6.6 * g, 148.6 * k, 'c'], [5.5 * g, 152.5 * k], [5.4 * g, 158 * k, 'c']]);
   const decote = D(E([[-6, 153, 'c'], [-5.5, 150], [-3.4, 147.5], [0, 146.5], [3.4, 147.5], [5.5, 150], [6, 153, 'c']]));
   // os braços um pouco afastados do corpo (6°), para o vão entre o braço e a cintura aparecer
@@ -223,21 +294,32 @@ export function deFrente(pose, o = {}) {
   const d = lado(false), e = lado(true);
 
   const corpo = [];
-  for (const l of [d, e]) corpo.push({ d: l.coxa, ...pelePar }, { d: l.canela, ...pelePar }, { d: l.pe, cor: o.roupa ? C.calcado : C.pele, sombra: o.roupa ? C.calcado : C.peleSombra });
+  for (const l of [d, e]) corpo.push({ d: l.coxa, ...pelePar }, { d: l.canela, ...pelePar }, { d: l.pe, cor: calcado ? C.calcado : C.pele, sombra: calcado ? C.calcado : C.peleSombra });
   corpo.push({ d: pescoco, ...pelePar }, { d: tronco, ...roupaPar }, { d: pelve, ...shortPar });
-  if (o.roupa) corpo.push({ d: decote, ...pelePar });
+  if (vestido && !deCostas) corpo.push({ d: decote, ...pelePar });
   corpo.push({ d: cabeca, ...pelePar });
   if (o.cabeca && o.cabeca !== 'lisa') corpo.push({ d: cabelo, cor: C.cabelo, sombra: C.cabelo });
   let s = '';
   // orelhas atrás da cabeça
   if (o.cabeca === 'rosto') for (const sx of [-1, 1]) s += `<ellipse cx="${r1(rc.o[0] + sx * 8.1 * kc)}" cy="${r1(rc.o[1] + 0.6 * kc)}" rx="${r1(1.5 * kc)}" ry="${r1(2.5 * kc)}" fill="${C.pele}" ${o.contorno ? `stroke="${C.contorno}" stroke-width="${o.esp ?? 1.15}"` : ''}/>`;
   s += pintar(corpo, o, C, {}, luz);
-  if (o.cabeca === 'rosto') {
+  const novo = o.musculo && o.estiloMusculo;
+  const onde = { membros: { coxa: [J('quadril'), J('joelho'), COXA_F, g], canela: [J('joelho'), J('tornozelo'), CANELA_F, g], braco: [J('ombro'), cot, BRACO_F, g], ante: [cot, pun, ANTE_F, g] }, abs: E, espelhar: true };
+  const musculos = novo ? montar(deCostas ? DE_COSTAS : DE_FRENTE, onde) : [];
+  if (novo) s += pintarMusculos(musculos.filter((m) => !DO_BRACO.includes(m.id)), o, C, veu ? [{ ds: [tronco], cor: C.roupaVeu }, { ds: [pelve], cor: C.shortVeu }] : []);
+  if (o.roupa === 'linha') {
+    // só a barra do short, o cós e o decote, em linha fina por cima do corpo
+    const y1 = r1(71.5 * k), y2 = r1(105 * k), dec = deCostas ? '' : `<path d="${suave(E([[-6, 152], [-5.5, 150], [-3.4, 147.5], [0, 146.5], [3.4, 147.5], [5.5, 150], [6, 152]]), false)}"/>`;
+    s += recorte([tronco, pelve, d.coxa, e.coxa], `<g fill="none" stroke="${C.linhaRoupa}" stroke-width="0.55" stroke-linecap="round"><path d="M-30 ${y1}H30M-30 ${y2}H30"/>${dec}</g>`);
+  }
+  if (o.cabeca === 'rosto' && !deCostas) {
     const x0 = rc.o[0], y0 = rc.o[1];
     for (const sx of [-1, 1]) s += `<circle cx="${r1(x0 + sx * 3.1 * kc)}" cy="${r1(y0 + 1.0 * kc)}" r="${r1(0.85 * kc)}" fill="${C.rosto}"/>`;
     s += `<path d="M${r1(x0 - 1.9 * kc)} ${r1(y0 - 5.2 * kc)}Q${r1(x0)} ${r1(y0 - 6.3 * kc)} ${r1(x0 + 1.9 * kc)} ${r1(y0 - 5.2 * kc)}" fill="none" stroke="${C.rosto}" stroke-width="0.7" stroke-linecap="round"/>`;
   }
-  if (o.musculo && o.definido) {
+  if (novo) {
+    // já pintado acima
+  } else if (o.musculo && o.definido) {
     if (o.musculo === 'costas') {
       // glúteos vistos de trás
       const g1 = [[-0.5, 9.2], [-6.4, 7.6], [-8.2, 1.5], [-7.4, -5.6], [-2.6, -8.6], [4.6, -7.6], [6.6, -2], [6.4, 5], [3.6, 8.6]].map(([x, y]) => [-7.7 * k + x * g, 91.2 * k + y * g]);
@@ -263,5 +345,6 @@ export function deFrente(pose, o = {}) {
   }
   // os braços por cima, cada um com o seu contorno
   for (const l of [d, e]) s += pintar([{ d: l.braco, ...pelePar }, { d: l.ante, ...pelePar }, { d: l.mao, ...pelePar }], o, C, { linhaSoSobre: { cor: C.fundo, esp: 0.75, sobre: [tronco, pelve, d.coxa, e.coxa] } }, luz);
+  if (novo) s += pintarMusculos(musculos.filter((m) => DO_BRACO.includes(m.id)), o, C);
   return s;
 }

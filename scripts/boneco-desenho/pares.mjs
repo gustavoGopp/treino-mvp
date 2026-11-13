@@ -28,7 +28,7 @@ function cena(o, extra = '') {
 }
 /** O mapa de músculos ao lado: o corpo parado, de frente e de costas, com o músculo pintado. */
 function mapa(o) {
-  const liso = { ...o, roupa: false, cabeca: 'lisa', volume: false };
+  const liso = o.mapa === 'atlas' ? { ...o, roupa: false, volume: false, cor: 'cinza', estiloMusculo: 'atlas' } : { ...o, roupa: false, cabeca: 'lisa', volume: false };
   const frente = `<g transform="translate(-30 0)">${deFrente(empe, { ...liso, musculo: 'frente' })}</g>`;
   const costas = `<g transform="translate(30 0)">${deFrente(empe, { ...liso, musculo: 'costas' })}</g>`;
   return palco(frente + costas, [-62, -8, 124, 196], 150, { fundo: 'none', raio: 0 });
@@ -45,6 +45,13 @@ const PARES = [
   { n: 8, slug: 'musculo', titulo: 'O músculo pintado no corpo ou num mapa ao lado?', opcoes: [['A · no próprio corpo', 'O músculo que trabalha aparece na figura que se mexe, por cima da roupa, como num diagrama.', { musculo: 'corpo' }], ['B · num mapa ao lado', 'A figura fica limpa; um corpo parado, de frente e de costas, mostra o músculo.', { musculo: null, mapa: true }]] },
   // pergunta extra, depois de o Gustavo dizer que a marcação do músculo não agradou (pouco definida, ou cor demais)
   { n: '8b', slug: 'musculo-forma', de: '8b', titulo: 'A marcação do músculo: três jeitos de consertar', sub: 'Nos três, o músculo ganhou forma de músculo, com borda e divisões. O que muda de um para o outro é quanta cor há em volta.', opcoes: [['A · forma definida, mesmas cores', 'Só o desenho do músculo mudou: a pessoa continua com a pele e a roupa coloridas.', { musculo: 'corpo', definido: true }], ['B · forma definida e roupa em cinza', 'A roupa fica calma; a cor viva sobra para o músculo.', { musculo: 'corpo', definido: true, roupaCalma: true }], ['C · forma definida e corpo todo neutro', 'Quando o músculo aparece, a figura inteira fica cinza: só o músculo tem cor.', { musculo: 'corpo', definido: true, cor: 'cinza' }]] },
+  // segunda tentativa: maneiras diferentes de mostrar o músculo (e não variações da mesma)
+  { n: '8c', slug: 'musculo-maneiras', de: '8c', titulo: 'Quatro maneiras diferentes de mostrar o músculo', sub: 'No agachamento: a frente da coxa é o músculo principal; o glúteo e a parte de dentro da coxa trabalham junto. Em todas, o músculo ganhou tons mais suaves e nunca fica por cima da roupa.', opcoes: [
+    ['A · atlas leve', 'Quando o músculo aparece, a roupa some e o corpo mostra todos os grupos musculares de leve; os que trabalham ficam acesos.', { musculo: 'corpo', estiloMusculo: 'atlas', roupa: false, tenis: true }],
+    ['B · tom sobre tom', 'A roupa some, e só os músculos que trabalham aparecem, num tom mais quente da própria pele, sem borda e sem linhas.', { musculo: 'corpo', estiloMusculo: 'tom', roupa: false, tenis: true }],
+    ['C · por baixo da roupa', 'A pessoa continua vestida, mas a roupa fica clara e o músculo aparece por baixo dela.', { musculo: 'corpo', estiloMusculo: 'suave', roupa: 'veu' }],
+    ['D · mapa ao lado', 'A figura fica limpa e vestida; o músculo aparece num corpo parado, de frente e de costas.', { musculo: null, mapa: 'atlas' }],
+  ] },
 ];
 
 mkdirSync('docs/revisoes/boneco-desenho/gosto', { recursive: true });
