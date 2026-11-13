@@ -43,10 +43,18 @@ Cada pergunta mostra o mesmo "boneco de prova" (um desenho feito só para estas 
 | 6 | Cinza neutro, cor de pele ou a cor do app? | `gosto/par-6-cor.png` | **B, cor de pele** ("b", 13/11/2026). Foi a primeira resposta sem "pode ser" e a primeira contra a minha opinião (eu tinha dito A, cinza). |
 | 7 | E se fosse um desenho de linha: traço fino, traço grosso, ou formas preenchidas? (adaptada, porque ele escolheu "sem contorno" na 1) | `gosto/par-7-traco.png` | **C, formas preenchidas** ("pode ser C", 13/11/2026). O desenho só de linha não o atraiu. |
 | 8 | O músculo no corpo ou num mapa ao lado? | `gosto/par-8-musculo.png` | **Não escolheu.** "o grande problema que a gente chega aqui é que essa marcação nesse buraco específico tá ficando ruim do músculo. Não sei se é porque eu tá muito não definido ou se é porque tá ficando muita cor. Mas não me agradou tanto a forma como ficou." (13/11/2026; mensagem ditada, "buraco" deve ser "boneco"). Ele mesmo levantou duas hipóteses: o músculo está pouco definido, ou há cor demais. Ver a pergunta 8b. |
-| 8b | A marcação do músculo: forma definida com as mesmas cores, com a roupa em cinza, ou com o corpo todo neutro? (pergunta extra, para separar as duas hipóteses dele) | `gosto/par-8b-musculo-forma.png` | (aguardando) |
+| 8b | A marcação do músculo: forma definida com as mesmas cores, com a roupa em cinza, ou com o corpo todo neutro? (pergunta extra, para separar as duas hipóteses dele) | `gosto/par-8b-musculo-forma.png` | **Nenhum.** "nao gosto muito de nenhum dos 3" (13/11/2026). Perguntei o que incomoda, com opções: marcou **o músculo por cima da roupa, a cor forte demais e o formato do músculo**; NÃO marcou "o boneco em si". Sobre o caminho para a próxima tentativa (direto no corpo sem roupa, bem mais discreto, mais anatômico, como é hoje no app): "nao sei". |
 
 As pranchas 2 a 8 são regeradas com o que ele já tiver escolhido nas anteriores (a base passa como JSON para o script).
 
 ### 3. Referências de que ele gosta e de que não gosta
 
 Pedido feito em 13/11/2026, junto com o resumo de links (`referencias-resumo.md`). (aguardando)
+
+**Leitura minha (depois das perguntas 1 a 8b):**
+
+- O que ele escolheu, quase sempre com "pode ser": sem contorno, só o cabelo (sem rosto), com roupa, chapado, proporção real, formas preenchidas (e não desenho de linha). São preferências leves; servem de ponto de partida, não de regra.
+- A única escolha firme foi a **cor de pele**, contra a minha opinião: ele quer ver uma pessoa, não um manequim cinza.
+- O ponto que realmente o incomoda é **como o músculo aparece** numa pessoa vestida e com cor de pele: por cima da roupa, forte demais e sem forma de músculo. O corpo do desenho de prova não foi apontado como problema.
+- Há uma tensão a resolver nas propostas: "pessoa" (pele, roupa) contra "diagrama" (o músculo que trabalha). No boneco de hoje, cinza e sem roupa, a marcação em vermelho e laranja foi o que ele mais elogiou; a mesma marcação sobre uma pessoa vestida não funcionou.
+- Como ele não sabe dizer o caminho e decide olhando, a próxima prancha mostra maneiras bem diferentes de mostrar o músculo (e não variações da mesma).
