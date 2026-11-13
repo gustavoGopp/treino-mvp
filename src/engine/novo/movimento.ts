@@ -78,6 +78,11 @@ export interface Exercicio {
   vistas: string[];
   /** O quadro do movimento certo (erro ausente) ou de um erro, com o parâmetro u entre 0 e 1. */
   quadro(corpo: Corpo, u: number, erro?: string): Quadro;
+  /**
+   * Quem trabalha, nos grupos musculares do desenho: 'p' principal, 's' secundário, 'a' só ajuda. `dorsal:R` = só o
+   * lado direito. É a mesma lista que o guia de hoje desenha (src/engine/estilo/musculos.ts); este motor não decide músculo.
+   */
+  papeis: Record<string, 'p' | 's' | 'a'>;
   /** Trajetórias do modo Trajetória: nome do ponto → função que o lê no quadro. */
   trajetorias: Record<string, (q: Quadro) => V3>;
 }

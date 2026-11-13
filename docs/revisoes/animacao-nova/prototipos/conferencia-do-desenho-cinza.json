@@ -1,37 +1,37 @@
 {
  "frente": {
   "igual": 97.7,
-  "soNoAprovadoCm2": 107,
-  "soNoMotorCm2": 39
+  "soNoAprovadoCm2": 108,
+  "soNoMotorCm2": 37
  },
  "lado": {
-  "igual": 98.9,
-  "soNoAprovadoCm2": 22,
-  "soNoMotorCm2": 17
+  "igual": 99.2,
+  "soNoAprovadoCm2": 20,
+  "soNoMotorCm2": 8
  },
  "costas": {
   "igual": 97.7,
-  "soNoAprovadoCm2": 104,
-  "soNoMotorCm2": 43
+  "soNoAprovadoCm2": 108,
+  "soNoMotorCm2": 41
  },
  "agach": {
-  "igual": 97.6,
-  "soNoAprovadoCm2": 50,
-  "soNoMotorCm2": 26
+  "igual": 97.8,
+  "soNoAprovadoCm2": 46,
+  "soNoMotorCm2": 24
  },
  "flex": {
-  "igual": 94.6,
-  "soNoAprovadoCm2": 100,
-  "soNoMotorCm2": 94
+  "igual": 94.9,
+  "soNoAprovadoCm2": 98,
+  "soNoMotorCm2": 86
  },
  "supino": {
-  "igual": 97,
-  "soNoAprovadoCm2": 77,
-  "soNoMotorCm2": 28
+  "igual": 97.4,
+  "soNoAprovadoCm2": 75,
+  "soNoMotorCm2": 20
  },
  "puxada": {
-  "igual": 98.1,
-  "soNoAprovadoCm2": 55,
-  "soNoMotorCm2": 13
+  "igual": 98.4,
+  "soNoAprovadoCm2": 51,
+  "soNoMotorCm2": 8
  }
 }

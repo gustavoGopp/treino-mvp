@@ -49,5 +49,6 @@ export const supinoReto: Exercicio = {
   ficha: F,
   vistas: ['lateral', 'cima'],
   quadro,
+  papeis: { peitoral: 'p', deltoide: 's', triceps: 's' },
   trajetorias: { halter: (q) => q.marcas.halter!, cotovelo: (q) => q.esq.lado.R.cotovelo },
 };

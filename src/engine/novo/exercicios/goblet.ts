@@ -86,5 +86,6 @@ export const goblet: Exercicio = {
   ficha: F,
   vistas: ['lateral', 'frontal'],
   quadro,
+  papeis: { quadriceps: 'p', gluteo: 's', adutores: 's' },
   trajetorias: { quadril: (q) => q.esq.pelve.o, joelho: (q) => q.esq.lado.R.joelho, halter: (q) => q.marcas.halter! },
 };

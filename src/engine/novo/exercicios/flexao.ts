@@ -78,5 +78,6 @@ export const flexao: Exercicio = {
   ficha: F,
   vistas: ['lateral', 'cima'],
   quadro,
+  papeis: { peitoral: 'p', deltoide: 's', triceps: 's', abdomen: 'a' },
   trajetorias: { peito: (q) => q.esq.torax.o, cotovelo: (q) => q.esq.lado.R.cotovelo },
 };

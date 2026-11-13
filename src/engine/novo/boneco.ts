@@ -124,7 +124,8 @@ function volumeDe(sup: Superficie, ts: number[], _comp: number, redonda0 = true,
     const s = sup.em(t);
     const r = Math.min(s.a, (s.f + s.b) / 2);
     const eixo = mul(norm3(sub3(sup.em(t + 0.02 * sentido).o, s.o)), 1);
-    return [[0.88, 0.42], [0.55, 0.8]].map(([k, d]) => {
+    // a mesma calota das pranchas: 72% da largura a 68% do raio, e a ponta a 98% do raio
+    return [[0.92, 0.36], [0.72, 0.68], [0.42, 0.9], [0.14, 0.98]].map(([k, d]) => {
       const an = anelDe(s, k);
       return { ...an, c: add(an.c, mul(eixo, r * d!)) };
     });
@@ -211,9 +212,20 @@ export function formaDoBoneco(e: Esq, o: { roupa?: boolean; cabeloAtrasPrimeiro?
   // ---------- tronco: ao longo da coluna, de C7 (t = 0) ao fim da lombar (t = 1) ----------
   const sC7 = e.nos[e.iC7]!.s,
     sCr = e.nos[e.iCranio]!.s;
+  // A seção do tronco e a do pescoço ficam atravessadas à coluna, com a direção medida entre os pontos vizinhos (como
+  // a faixa das pranchas). Nas pontas a direção é a do próprio trecho: em C7, o tronco segue a torácica e o pescoço
+  // segue a cervical, e por isso sobra entre os dois a dobra do pescoço que o desenho aprovado mostra de lado.
+  const atravessada = (s0: number, s1: number, t: number, passo: number): { o: V3; x: V3; z: V3 } => {
+    const em = (u: number) => naColuna(e, s0 + (s1 - s0) * Math.max(0, Math.min(1, u)));
+    const r = em(t);
+    const desce = norm3(sub3(em(t + passo).o, em(t - passo).o));
+    // para a frente: perpendicular à coluna e ao eixo dos lados (z = desce × x)
+    const z = norm3([desce[1] * r.x[2] - desce[2] * r.x[1], desce[2] * r.x[0] - desce[0] * r.x[2], desce[0] * r.x[1] - desce[1] * r.x[0]]);
+    return { o: r.o, x: r.x, z };
+  };
   const tronco: Superficie = {
     em(t) {
-      const r = naColuna(e, sC7 * (1 - t));
+      const r = atravessada(sC7, 0, t, 0.09);
       return { o: r.o, fora: r.x, z: r.z, a: meiaLargura('TRONCO_F', P.yDoTronco(t)), des: 0, f: noPerfil(PERFIS.TRONCO_L!, t, 1), b: noPerfil(PERFIS.TRONCO_L!, t, 2) };
     },
   };
@@ -229,11 +241,11 @@ export function formaDoBoneco(e: Esq, o: { roupa?: boolean; cabeloAtrasPrimeiro?
   // ---------- pescoço: da base do crânio (t = 0) a C7 (t = 1) ----------
   const pescoco: Superficie = {
     em(t) {
-      const r = naColuna(e, sCr - t * (sCr - sC7));
-      // abaixo de C7 (t > 1) o pescoço continua por dentro do tronco, para não haver emenda entre os dois
-      const f = t > 1 ? 9.5 : noPerfil(PERFIS.PESCOCO_L!, t, 1),
-        b = t > 1 ? 1 : noPerfil(PERFIS.PESCOCO_L!, t, 2);
-      return { o: add(r.o, mul(r.z, (f - b) / 2)), fora: r.x, z: r.z, a: 5.4 + 1.2 * Math.max(0, Math.min(1, t)), des: 0, f: (f + b) / 2, b: (f + b) / 2 };
+      const r = atravessada(sCr, sC7, t, 0.25);
+      // a parte de trás pode ficar à frente da linha da coluna (valor negativo no perfil): o centro da seção desloca
+      const f = noPerfil(PERFIS.PESCOCO_L!, t, 1),
+        b = noPerfil(PERFIS.PESCOCO_L!, t, 2);
+      return { o: add(r.o, mul(r.z, (f - b) / 2)), fora: r.x, z: r.z, a: 5.4 + 0.25 * Math.max(0, Math.min(1, t)), des: 0, f: (f + b) / 2, b: (f + b) / 2 };
     },
   };
   // ---------- cabeça: ao longo da vertical da cabeça; t = altura em cm acima da base do crânio ----------
@@ -245,7 +257,7 @@ export function formaDoBoneco(e: Esq, o: { roupa?: boolean; cabeloAtrasPrimeiro?
   };
   sup.cabeca = cabeca;
   const corpoVols: FormaDoBoneco['grupos'][number]['volumes'] = [
-    { vol: volumeDe(pescoco, [-0.25, 0, 0.25, 0.5, 0.75, 1, 1.18], 0, false, false), mat: 'pele', nome: 'pescoco' },
+    { vol: volumeDe(pescoco, [0, 0.25, 0.5, 0.75, 1], 0, false, false), mat: 'pele', nome: 'pescoco' },
     { vol: volumeDe(tronco, passos(16), 0, false, false), mat: 'pele', nome: 'tronco' },
     { vol: { aneis: [12.7, 11.5, 9.5, 7, 4.5, 2, -0.5, -3, -5.2, -7, -8.4, -9.3, -9.7].map((y) => anelDe(pelve.em(y))) }, mat: o.roupa ? 'short' : 'pele', nome: 'pelve' },
     { vol: { aneis: [13.05, 12.8, 12.2, 11.2, 9.8, 8, 6, 4, 2, 0, -2, -4, -5.8, -7.4, -8.6, -9.5, -9.95].map((y) => anelDe(cabeca.em(y))) }, mat: 'pele', nome: 'cabeca' },
@@ -307,7 +319,9 @@ export function formaDoBoneco(e: Esq, o: { roupa?: boolean; cabeloAtrasPrimeiro?
         h = Math.max(0.3, k2[1] * kPe - y0);
       // perto da ponta e do calcanhar a seção afina também de lado, para o pé fechar redondo visto de cima e de frente
       const fecha = Math.min(1, h / 2.2);
-      peVol.push({ c: noRef(r, [0, y0 + h / 2, z]), x: r.x, z: r.y, a: Math.max(0.3, w * (0.45 + 0.55 * fecha)), f: h / 2, b: h / 2 });
+      // seção de base chata: o pé apoia a largura inteira no chão (meia oval para cima, quase reta embaixo)
+      const base = Math.min(0.7, h * 0.3);
+      peVol.push({ c: noRef(r, [0, y0 + base, z]), x: r.x, z: r.y, a: Math.max(0.3, w * (0.45 + 0.55 * fecha)), f: h - base, b: base });
     }
     grupos.push({
       id: `perna${k}`,
@@ -415,6 +429,8 @@ export interface DesenhoNaSuperficie {
   id: string;
   /** Em qual grupo de pintura fica (para a ordem). */
   grupo: string;
+  /** De que lado do corpo é (ausente nos músculos do meio, como o abdômen). */
+  lado?: Lado;
   pts: V3[];
   div: V3[][];
 }
@@ -441,7 +457,7 @@ export function musculosVisiveis(e: Esq, forma: FormaDoBoneco, cam: Camera): Des
       for (const mu of lista(face)) {
         if (nomeDaParte[mu.em] !== parte) continue;
         const f = (q: PontoMus) => naSuperficie(sup, (t) => t, face, q);
-        out.push({ id: mu.id, grupo: parte === 'coxa' || parte === 'canela' ? `perna${k}` : `braco${k}`, pts: mu.pts.map(f), div: (mu.div ?? []).map((l) => l.map(f)) });
+        out.push({ id: mu.id, lado: k, grupo: parte === 'coxa' || parte === 'canela' ? `perna${k}` : `braco${k}`, pts: mu.pts.map(f), div: (mu.div ?? []).map((l) => l.map(f)) });
       }
     }
   }
@@ -464,10 +480,11 @@ export function musculosVisiveis(e: Esq, forma: FormaDoBoneco, cam: Camera): Des
   if (Math.abs(lx) >= Math.abs(lz)) {
     // de lado: o desenho vale para o lado que está virado para quem olha
     const ladoVisivel = lx > 0 ? 1 : -1;
+    const lado: Lado = lx > 0 ? 'L' : 'R';
     for (const mu of MUSCULOS.lado) {
       if (mu.em === 'tronco') {
         const f = (q: PontoMus) => naSuperficie(forma.sup.tronco!, (t) => t, 'fora', q, ladoVisivel);
-        out.push({ id: mu.id, grupo: 'corpo', pts: mu.pts.map(f), div: (mu.div ?? []).map((l) => l.map(f)) });
+        out.push({ id: mu.id, lado, grupo: 'corpo', pts: mu.pts.map(f), div: (mu.div ?? []).map((l) => l.map(f)) });
       } else if (mu.em === 'pelve') {
         // pontos [para a frente, para cima] a partir do centro do quadril
         const f = (q: PontoMus): V3 => {
@@ -476,7 +493,7 @@ export function musculosVisiveis(e: Esq, forma: FormaDoBoneco, cam: Camera): Des
           const u = s.a * Math.sqrt(Math.max(0, 1 - Math.min(1, (w / (s.f || 1)) ** 2)));
           return comb([1, s.o], [u * ladoVisivel, s.fora], [w, s.z]);
         };
-        out.push({ id: mu.id, grupo: 'bacia', pts: mu.pts.map(f), div: [] });
+        out.push({ id: mu.id, lado, grupo: 'bacia', pts: mu.pts.map(f), div: [] });
       }
     }
   } else {
@@ -485,7 +502,8 @@ export function musculosVisiveis(e: Esq, forma: FormaDoBoneco, cam: Camera): Des
       if (mu.em !== 'abs') continue;
       for (const esp of mu.unico ? [1] : [1, -1]) {
         const f = (q: PontoMus) => forma.noCorpo((q[0] as number) * esp, q[1] as number, tras);
-        out.push({ id: mu.id, grupo: mu.id === 'gluteo' ? 'bacia' : 'corpo', pts: mu.pts.map(f), div: (mu.div ?? []).map((l) => l.map(f)) });
+        const meio = mu.pts.reduce((t, q) => t + (q[0] as number) * esp, 0);
+        out.push({ id: mu.id, lado: mu.unico ? undefined : meio < 0 ? 'R' : 'L', grupo: mu.id === 'gluteo' ? 'bacia' : 'corpo', pts: mu.pts.map(f), div: (mu.div ?? []).map((l) => l.map(f)) });
       }
     }
   }
@@ -513,7 +531,10 @@ const naTela = (cam: Camera, p: V3): P2 => [dot(p, cam.dir), -dot(p, cam.cima)];
 
 export interface OpcoesDoBoneco {
   estilo: IdEstilo;
-  /** Quem trabalha: id do grupo muscular → principal, secundário ou só ajuda. Sem isso, só as linhas do corpo. */
+  /**
+   * Quem trabalha: id do grupo muscular → principal, secundário ou só ajuda. `dorsal:R` vale só para o lado direito
+   * (exercício unilateral). Sem isso, só as linhas do corpo.
+   */
   papeis?: Record<string, Papel>;
   /** Miniatura: somem as linhas do corpo e as divisões do músculo. */
   mini?: boolean;
@@ -553,7 +574,8 @@ export function desenharBoneco(e: Esq, cam: Camera, o: OpcoesDoBoneco): Item[] {
   // a roupa (short): opaca, esconde as linhas do corpo; quando há músculo que trabalha debaixo dela, vira véu (fica
   // clara, as linhas aparecem e o músculo aparece misturado com o tecido), como na ficha aprovada
   const DEBAIXO_DO_SHORT = ['gluteo', 'quadriceps', 'adutores', 'posteriores'];
-  const veu = o.estilo === 'pele' && !suf && DEBAIXO_DO_SHORT.some((id) => o.papeis?.[id]);
+  const papelDe = (id: string, lado?: Lado): Papel | undefined => (lado ? o.papeis?.[`${id}:${lado}`] : undefined) ?? o.papeis?.[id];
+  const veu = o.estilo === 'pele' && !suf && Object.keys(o.papeis ?? {}).some((id) => DEBAIXO_DO_SHORT.includes(id.split(':')[0]!));
   const mat = (m: string) => (m === 'short' && veu ? 'veu' : m);
   const eRoupa = (m: string) => m === 'short';
   const traco = (x: Gr) => x.cs.map((v) => `<path class="b-c${suf} m-${mat(v.mat)}${x.longe ? ' lg' : ''}" d="${v.c.fill}"/>`).join('');
@@ -569,7 +591,7 @@ export function desenharBoneco(e: Esq, cam: Camera, o: OpcoesDoBoneco): Item[] {
       sobOVeu = '';
     for (const mu of todos) {
       if (mu.grupo !== id) continue;
-      const papel = o.papeis?.[mu.id];
+      const papel = papelDe(mu.id, mu.lado);
       if ((!papel && o.mini) || (suf && !papel)) continue;
       const d = mu.pts.length ? suave(mu.pts.map((p) => naTela(cam, p))) : '';
       if (papel) {

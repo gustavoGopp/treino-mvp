@@ -2,7 +2,7 @@
 // Para cada pose das pranchas, desenha lado a lado, no mesmo quadro e no mesmo tamanho (1,5 px por cm):
 //   o aprovado (scripts/boneco-desenho/figura.mjs) | o do motor (src/engine/novo/boneco.ts) | a diferença
 // e mede quanto as duas silhuetas coincidem. Na diferença: cinza = igual, vermelho = só no aprovado, azul = só no motor.
-// Uso: node scripts/animacao-nova/conferir-desenho.mjs [cinza|pele] [saida.png]
+// Uso: node scripts/animacao-nova/conferir-desenho.mjs [cinza|pele] [saida.png] [pasta para uma imagem por pose]
 import { existsSync, writeFileSync } from 'node:fs';
 import { chromium } from 'playwright';
 import { CINZA, PELE, naEscala } from '../boneco-desenho/estilos-finais.mjs';
@@ -62,7 +62,7 @@ const html = `<!doctype html><meta charset="utf-8"><style>body{margin:0;padding:
 
 const caminho = '/opt/pw-browsers/chromium';
 const nav = await chromium.launch({ ...(existsSync(caminho) ? { executablePath: caminho } : {}), args: ['--no-sandbox'] });
-const pag = await nav.newPage({ viewport: { width: 1500, height: 900 }, deviceScaleFactor: 2 });
+const pag = await nav.newPage({ viewport: { width: 1500, height: 900 }, deviceScaleFactor: Number(process.env.ESCALA ?? 2) });
 pag.on('pageerror', (e) => console.log('erro:', String(e).slice(0, 300)));
 await pag.setContent(html);
 const medidas = await pag.evaluate(async ({ celas, FUNDO }) => {
@@ -117,6 +117,11 @@ const medidas = await pag.evaluate(async ({ celas, FUNDO }) => {
   return out;
 }, { celas, FUNDO });
 await pag.screenshot({ path: saida, fullPage: true });
+// para olhar de perto: uma imagem por pose, numa pasta (4º argumento)
+if (process.argv[4]) {
+  const linhas = await pag.locator('.l').all();
+  for (let i = 0; i < linhas.length; i++) await linhas[i].screenshot({ path: `${process.argv[4]}/${celas[i].nome}.png` });
+}
 await nav.close();
 writeFileSync(saida.replace(/\.png$/, '.json'), JSON.stringify(medidas, null, 1) + '\n');
 console.log(JSON.stringify(medidas));

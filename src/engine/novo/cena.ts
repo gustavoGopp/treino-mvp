@@ -1,7 +1,8 @@
-// Motor novo: monta um quadro (corpo + objetos) numa vista e num modo, e calcula o enquadramento do ciclo.
-import { corpo3d } from './corpo3d';
-import { VISTAS, caixaDosItens, desenharCorpo, desenharPrim, naTela, pintar } from './desenho';
-import type { Camera, Estilo, IdVista, Item, P2 } from './desenho';
+// Motor novo: monta um quadro (Boneco + objetos) numa vista e num modo, e calcula o enquadramento do ciclo.
+import { DEFS_DO_BONECO, desenharBoneco } from './boneco';
+import type { IdEstilo } from './boneco';
+import { VISTAS, caixaDosItens, desenharPrim, naTela, pintar } from './desenho';
+import type { Camera, IdVista, Item, P2 } from './desenho';
 import { duracao, instante } from './movimento';
 import type { Exercicio, Quadro } from './movimento';
 import type { Corpo } from './tabelas';
@@ -10,16 +11,19 @@ export type Modo = 'tec' | 'mus' | 'traj' | 'err';
 export interface OpcoesCena {
   corpo: Corpo;
   vista: IdVista;
-  estilo: Estilo;
+  /** Qual dos dois desenhos aprovados: 'cinza' (padrão) ou 'pele'. */
+  boneco: IdEstilo;
   modo: Modo;
   erro?: string;
+  /** Miniatura: sem as linhas do corpo, sem as divisões do músculo e sem o polegar. */
+  mini?: boolean;
 }
 const f1 = (n: number) => (Math.round(n * 10) / 10).toString();
 
-function itensDoQuadro(cam: Camera, q: Quadro, estilo: Estilo, suf = ''): Item[] {
+function itensDoQuadro(cam: Camera, q: Quadro, ex: Exercicio, o: OpcoesCena, suf = ''): Item[] {
   const itens: Item[] = [];
-  if (!suf) for (const p of q.prims) itens.push(...desenharPrim(cam, p, estilo));
-  itens.push(...desenharCorpo(cam, corpo3d(q.esq), { estilo, suf, vies: q.vies }).itens);
+  if (suf !== '-f') for (const p of q.prims) itens.push(...desenharPrim(cam, p, 'prancha'));
+  itens.push(...desenharBoneco(q.esq, cam, { estilo: o.boneco, papeis: o.modo === 'mus' ? ex.papeis : undefined, mini: o.mini, suf, vies: q.vies }));
   return itens;
 }
 /** Linha da trajetória de um ponto ao longo da fase concêntrica (ou do ciclo), já na tela. */
@@ -34,11 +38,11 @@ export function itensDaCena(ex: Exercicio, t: number, o: OpcoesCena): Item[] {
   const { u } = instante(ex.ficha.fases, t);
   const certo = ex.quadro(o.corpo, u);
   if (o.modo === 'err' && o.erro) {
-    // o certo em fantasma (contorno), o errado por cima, em cor de erro
+    // o certo em fantasma (contorno tracejado, por trás) e o errado por cima, na cor de erro
     const errado = ex.quadro(o.corpo, u, o.erro);
-    return [...itensDoQuadro(cam, certo, o.estilo, '-f').map((it) => ({ ...it, camada: 0.5 })), ...itensDoQuadro(cam, errado, o.estilo).map((it) => ({ ...it, s: it.s.replace(/class="n-([cps]l?)"/g, 'class="n-$1-e"') }))];
+    return [...itensDoQuadro(cam, certo, ex, o, '-f').map((it) => ({ ...it, camada: 0.5 })), ...itensDoQuadro(cam, errado, ex, o, '-e')];
   }
-  const itens = itensDoQuadro(cam, certo, o.estilo);
+  const itens = itensDoQuadro(cam, certo, ex, o);
   if (o.modo === 'traj') {
     const nomes = Object.keys(ex.trajetorias);
     nomes.forEach((nome, i) => {
@@ -51,8 +55,11 @@ export function itensDaCena(ex: Exercicio, t: number, o: OpcoesCena): Item[] {
   }
   return itens;
 }
-/** Caixa de visualização do exercício numa vista: cabe o ciclo inteiro (e os erros dessa vista), na proporção 4:3. */
-export function enquadrar(ex: Exercicio, o: Omit<OpcoesCena, 'modo' | 'erro'>, margem = 0.06): [number, number, number, number] {
+/**
+ * Caixa de visualização do exercício numa vista: cabe o ciclo inteiro (e os erros dessa vista), na proporção pedida
+ * (4:3 no palco, 1:1 na miniatura).
+ */
+export function enquadrar(ex: Exercicio, o: Omit<OpcoesCena, 'modo' | 'erro'>, margem = 0.06, proporcao = 4 / 3): [number, number, number, number] {
   const T = duracao(ex.ficha.fases);
   const c: [number, number, number, number] = [1e9, 1e9, -1e9, -1e9];
   const junta = (itens: Item[]) => {
@@ -70,18 +77,19 @@ export function enquadrar(ex: Exercicio, o: Omit<OpcoesCena, 'modo' | 'erro'>, m
     y0 = c[1] - h * margem * 1.5;
   w *= 1 + 2 * margem;
   h *= 1 + 2.5 * margem;
-  if (w / h > 4 / 3) {
-    const nh = (w * 3) / 4;
+  if (w / h > proporcao) {
+    const nh = w / proporcao;
     y0 -= (nh - h) * 0.6;
     h = nh;
   } else {
-    const nw = (h * 4) / 3;
+    const nw = h * proporcao;
     x0 -= (nw - w) / 2;
     w = nw;
   }
   return [x0, y0, w, h];
 }
-export function svgDaCena(ex: Exercicio, t: number, o: OpcoesCena, vb: [number, number, number, number]): string {
-  return `<svg class="novo" viewBox="${vb.map(f1).join(' ')}">${pintar(itensDaCena(ex, t, o))}</svg>`;
+/** O <svg> de um quadro. `tema`: 'claro' ou 'escuro'. As classes levam as cores (ver cssDoBoneco e estilo.css). */
+export function svgDaCena(ex: Exercicio, t: number, o: OpcoesCena, vb: [number, number, number, number], tema: 'claro' | 'escuro' = 'claro'): string {
+  return `<svg class="novo boneco ${o.boneco}${tema === 'escuro' ? ' escuro' : ''}${o.mini ? ' mini' : ''}" viewBox="${vb.map(f1).join(' ')}">${DEFS_DO_BONECO}${pintar(itensDaCena(ex, t, o))}</svg>`;
 }
 export { pintar };
