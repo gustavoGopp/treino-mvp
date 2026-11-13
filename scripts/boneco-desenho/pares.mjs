@@ -23,7 +23,7 @@ function cena(o, extra = '') {
   const emPe = `<g transform="translate(-62 0)">${deFrente(empe, { ...o, musculo: null })}</g>`;
   const agacha = `<g transform="translate(52 0)">${anilha(C)}${deLado(agachado, { ...o, halter: HALTER })}</g>`;
   const grande = palco(emPe + agacha + extra, [-112, -10, 232, 200], 640, { fundo: C.fundo, chao: C.chao, raio: 14 });
-  const mini = palco(`<g transform="translate(0 0)">${anilha(C)}${deLado(agachado, { ...o, halter: HALTER })}</g>`, [-62, -8, 124, 124], 96, { fundo: C.fundo, chao: C.chao, raio: 10 });
+  const mini = palco(`<g transform="translate(0 0)">${anilha(C)}${deLado(agachado, { ...o, halter: HALTER })}</g>`, [-68, -8, 136, 136], 96, { fundo: C.fundo, chao: C.chao, raio: 10 });
   return { grande, mini };
 }
 /** O mapa de músculos ao lado: o corpo parado, de frente e de costas, com o músculo pintado. */

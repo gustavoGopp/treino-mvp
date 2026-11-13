@@ -35,7 +35,7 @@ Cada pergunta mostra o mesmo "boneco de prova" (um desenho feito só para estas 
 
 | # | Pergunta | Prancha | Resposta do Gustavo |
 |---|---|---|---|
-| 1 | Com contorno ou sem contorno? | `gosto/par-1-contorno.png` | (aguardando) |
+| 1 | Com contorno ou sem contorno? | `gosto/par-1-contorno.png` | **B, sem contorno** ("pode ser B", 13/11/2026). Aceitou sem entusiasmo: é preferência, não paixão. |
 | 2 | Cabeça lisa, só o cabelo, ou cabelo e rosto? | `gosto/par-2-cabeca.png` | |
 | 3 | Com roupa ou sem roupa? | `gosto/par-3-roupa.png` | |
 | 4 | Chapado ou com volume? | `gosto/par-4-volume.png` | |
