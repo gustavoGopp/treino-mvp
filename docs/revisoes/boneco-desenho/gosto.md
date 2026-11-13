@@ -85,3 +85,7 @@ Na régua de realismo (1 a 7), isso aponta para as notas 3 e 4: uma pessoa de pr
 ## Rodada 1 (13/11/2026)
 
 Dos onze conceitos, ficou com cinco: "pode ser 1, 2, 3, 6 e 10" (Hoje com corpo de gente, Gente simples, Traço e cor, Marionete de papel, Atlas). O que isso acrescenta ao retrato do gosto: forma curva e proporção real, sim; forma estilizada (recorte, barras, cabeça grande) e sombra (recortada ou em degradê), não; contorno continua em jogo (dois dos cinco têm traço); o cinza sem roupa do boneco de hoje continua em jogo ao lado da pessoa com cor de pele. Detalhes em `rodadas.md`.
+
+## Rodada 2 (13/11/2026)
+
+"pode ser 1 e 10, com D e C": finalistas **1 (Hoje, com corpo de gente)** e **10 (Atlas)**, com traço fino ou contorno suave (D) e a mão com polegar e dedos (C). Saíram o 2 (a pessoa vestida, que era a soma das respostas dele), o 3 e o 6. O que isso muda no retrato: o contorno fino agrada (a resposta "sem contorno" da pergunta 1 não se sustentou); a regata saiu de cena (os dois finalistas mostram o tronco); e a escolha final é entre o cinza do boneco de hoje com corpo de gente e uma pessoa com cor de pele e os músculos sempre desenhados.

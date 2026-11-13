@@ -51,4 +51,8 @@ O que ficou de fora desta rodada, de propósito: a segunda pessoa (mulher), a ca
 
 **Minha recomendação (opinião):** finalistas 2 e 10, os dois com a mão C (com polegar) e a cor E (tom de pele à escolha). O 2 é a pessoa simples e vestida; o 10 é o mesmo corpo com os músculos sempre à mostra, que é o pedido de "corpo e músculos mais fiéis". Os dois são diferentes o bastante para a rodada 3 valer a pena. O 3 é o 2 com traço: se ele preferir com traço, o 3 entra no lugar do 2. O 1 volta ao cinza, e o pino do 6 pesa no tamanho pequeno.
 
-**Decisão do Gustavo:** (aguardando)
+**Decisão do Gustavo (13/11/2026):** "pode ser 1 e 10, com D e C". Finalistas: **1 (Hoje, com corpo de gente)** e **10 (Atlas)**, com as variações **D** (no 1, traço fino; no 10, contorno suave na cor de cada parte) e **C** (mão com polegar e dedos).
+
+**Como li a frase:** os dois finalistas com as duas variações (D e C em ambos). A outra leitura possível é "1 com D e 10 com C"; por isso a rodada 3 mostra o 10 também sem o contorno suave, numa célula de comparação.
+
+**Leitura minha:** ele tirou o 2 (a soma das escolhas dele nas perguntas de gosto) e ficou com os dois em que o tronco está à mostra e o músculo é desenhado direto no corpo, um cinza e um com cor de pele. O que os dois têm em comum: corpo de medidas reais, forma curva, traço fino em volta, sem regata por cima do músculo. O que os separa: cinza sem roupa e músculo só quando trabalha (1) contra cor de pele, short e todos os grupos musculares sempre desenhados (10).
