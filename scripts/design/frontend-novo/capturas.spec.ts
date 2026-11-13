@@ -13,7 +13,21 @@ import { abrirExercicio, folhaPronta, maisOpcoes, marcarItem, minutosPorTreino, 
 
 const RAIZ = resolve(process.cwd(), process.env.CAPTURAS ?? 'docs/revisoes/frontend-novo/capturas/antes');
 
-type Medida = { tela: string; esperaDasMiniaturasMs: number | null; alturaDaPagina: number; alturaDaTela: number; palavrasAVista: number; acaoPrincipal: string | null; acaoAVista: boolean | null };
+type Medida = {
+  tela: string;
+  esperaDasMiniaturasMs: number | null;
+  alturaDaPagina: number;
+  alturaDaTela: number;
+  palavrasAVista: number;
+  /** estudo dos textos (13/11/2026): todas as palavras da tela (ou da folha aberta), não só as da 1ª dobra */
+  palavrasNaTela: number;
+  /** blocos de texto corrido (parágrafo, item de lista, definição) com 25 palavras ou mais, e o começo de cada um */
+  blocosLongos: { palavras: number; comeco: string }[];
+  selos: number;
+  porques: number;
+  acaoPrincipal: string | null;
+  acaoAVista: boolean | null;
+};
 
 test('o app de hoje, tela por tela, com a Ana', async ({ page }, info) => {
   const pasta = resolve(RAIZ, info.project.name);
@@ -47,7 +61,23 @@ test('o app de hoje, tela por tela, com a Ana', async ({ page }, info) => {
         if (r.width === 0 || r.height === 0 || r.bottom <= 0 || r.top >= h || s.visibility === 'hidden') continue;
         palavras += texto.split(/\s+/).length;
       }
-      return { alturaDaPagina: document.documentElement.scrollHeight, alturaDaTela: h, palavrasAVista: palavras };
+      // o texto da tela inteira: da folha aberta por cima, se houver; senão, da página
+      const folhas = Array.from(document.querySelectorAll<HTMLElement>('.folha')).filter((f) => !f.closest('[inert]'));
+      const raiz = folhas.at(-1) ?? document.body;
+      const visivel = (el: Element) => {
+        const r = el.getBoundingClientRect();
+        return r.width > 0 && r.height > 0 && getComputedStyle(el).visibility !== 'hidden' && !el.closest('svg, [inert], [hidden], script, style');
+      };
+      const conta = (t: string) => (t.trim() ? t.trim().split(/\s+/).length : 0);
+      let naTela = 0;
+      const anda2 = document.createTreeWalker(raiz, NodeFilter.SHOW_TEXT);
+      for (let no = anda2.nextNode(); no; no = anda2.nextNode()) if (no.parentElement && visivel(no.parentElement) && !no.parentElement.closest('.sr')) naTela += conta(no.textContent ?? '');
+      const blocos = Array.from(raiz.querySelectorAll<HTMLElement>('p, li, dd, .warnbox, .caixa-erro'))
+        .filter((el) => visivel(el) && !el.closest('.sr') && !el.querySelector('p, li, dd'))
+        .map((el) => ({ palavras: conta(el.innerText), comeco: el.innerText.trim().split(/\s+/).slice(0, 9).join(' ') }))
+        .filter((b) => b.palavras >= 25);
+      const quantos = (sel: string) => Array.from(raiz.querySelectorAll(sel)).filter(visivel).length;
+      return { alturaDaPagina: document.documentElement.scrollHeight, alturaDaTela: h, palavrasAVista: palavras, palavrasNaTela: naTela, blocosLongos: blocos, selos: quantos('.selo'), porques: quantos('.porque') };
     });
     let acaoAVista: boolean | null = null;
     if (acao) {

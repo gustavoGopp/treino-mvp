@@ -38,10 +38,13 @@ export function Selo({ id }: { id: string }) {
   const selo = SELOS[id];
   if (!selo) return null;
   const texto = TEXTO_SELO[selo];
+  // Frases sobre como o app funciona (privacidade, onde os dados ficam, locais, registro): não são regra de treino, e a
+  // palavra do nível ("consenso") solta ali não diz de quê. O selo mostra "fonte"; o nível continua na folha.
+  const doApp = /^(privacidade|dados|local|registro)\./.test(id);
   return (
     <>
-      <button type="button" className={`selo selo-${selo.replace(' ', '-')}`} aria-label={`${texto}: ver de onde vem`} aria-haspopup="dialog" onClick={() => setAberto(true)}>
-        {CURTO_SELO[selo]}
+      <button type="button" className={`selo selo-${selo.replace(' ', '-')}`} aria-label={doApp ? 'ver de onde vem' : `${texto}: ver de onde vem`} aria-haspopup="dialog" onClick={() => setAberto(true)}>
+        {doApp ? 'fonte' : CURTO_SELO[selo]}
       </button>
       {aberto && (
         <Folha titulo="De onde vem isto" aoFechar={() => setAberto(false)} livre={() => document.querySelector<HTMLElement>('.alerta-topo')}>

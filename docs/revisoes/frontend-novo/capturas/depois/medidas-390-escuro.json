@@ -6,6 +6,15 @@
       "alturaDaPagina": 872,
       "alturaDaTela": 844,
       "palavrasAVista": 88,
+      "palavrasNaTela": 88,
+      "blocosLongos": [
+        {
+          "palavras": 34,
+          "comeco": "O app não diagnostica e não substitui um médico"
+        }
+      ],
+      "selos": 1,
+      "porques": 0,
       "acaoPrincipal": "Começar",
       "acaoAVista": true
     },
@@ -15,6 +24,15 @@
       "alturaDaPagina": 1073,
       "alturaDaTela": 844,
       "palavrasAVista": 124,
+      "palavrasNaTela": 132,
+      "blocosLongos": [
+        {
+          "palavras": 27,
+          "comeco": "Hoje, ou algo que um médico já disse. Um"
+        }
+      ],
+      "selos": 2,
+      "porques": 0,
       "acaoPrincipal": "Não, nenhuma",
       "acaoAVista": false
     },
@@ -24,6 +42,10 @@
       "alturaDaPagina": 1421,
       "alturaDaTela": 844,
       "palavrasAVista": 141,
+      "palavrasNaTela": 195,
+      "blocosLongos": [],
+      "selos": 0,
+      "porques": 0,
       "acaoPrincipal": "Continuar",
       "acaoAVista": false
     },
@@ -33,6 +55,10 @@
       "alturaDaPagina": 844,
       "alturaDaTela": 844,
       "palavrasAVista": 40,
+      "palavrasNaTela": 40,
+      "blocosLongos": [],
+      "selos": 0,
+      "porques": 0,
       "acaoPrincipal": "Continuar",
       "acaoAVista": false
     },
@@ -42,6 +68,10 @@
       "alturaDaPagina": 1466,
       "alturaDaTela": 844,
       "palavrasAVista": 66,
+      "palavrasNaTela": 121,
+      "blocosLongos": [],
+      "selos": 1,
+      "porques": 0,
       "acaoPrincipal": "Continuar",
       "acaoAVista": true
     },
@@ -51,6 +81,10 @@
       "alturaDaPagina": 844,
       "alturaDaTela": 844,
       "palavrasAVista": 43,
+      "palavrasNaTela": 43,
+      "blocosLongos": [],
+      "selos": 1,
+      "porques": 0,
       "acaoPrincipal": "Continuar",
       "acaoAVista": false
     },
@@ -60,6 +94,19 @@
       "alturaDaPagina": 1382,
       "alturaDaTela": 844,
       "palavrasAVista": 115,
+      "palavrasNaTela": 158,
+      "blocosLongos": [
+        {
+          "palavras": 26,
+          "comeco": "Os grupos prioritários recebem mais séries; os outros ficam"
+        },
+        {
+          "palavras": 33,
+          "comeco": "\"Pernas\" conta como 3: frente da coxa, posterior e"
+        }
+      ],
+      "selos": 3,
+      "porques": 0,
       "acaoPrincipal": "Continuar",
       "acaoAVista": true
     },
@@ -69,6 +116,10 @@
       "alturaDaPagina": 902,
       "alturaDaTela": 844,
       "palavrasAVista": 73,
+      "palavrasNaTela": 73,
+      "blocosLongos": [],
+      "selos": 0,
+      "porques": 0,
       "acaoPrincipal": "Gerar meu programa",
       "acaoAVista": true
     },
@@ -78,6 +129,19 @@
       "alturaDaPagina": 902,
       "alturaDaTela": 844,
       "palavrasAVista": 170,
+      "palavrasNaTela": 194,
+      "blocosLongos": [
+        {
+          "palavras": 26,
+          "comeco": "Ela vai para a Anthropic, empresa dos EUA, que"
+        },
+        {
+          "palavras": 47,
+          "comeco": "A Anthropic diz que apaga o que recebe em"
+        }
+      ],
+      "selos": 1,
+      "porques": 0,
       "acaoPrincipal": null,
       "acaoAVista": null
     },
@@ -87,6 +151,10 @@
       "alturaDaPagina": 1771,
       "alturaDaTela": 844,
       "palavrasAVista": 62,
+      "palavrasNaTela": 62,
+      "blocosLongos": [],
+      "selos": 0,
+      "porques": 0,
       "acaoPrincipal": null,
       "acaoAVista": null
     },
@@ -96,24 +164,50 @@
       "alturaDaPagina": 1816,
       "alturaDaTela": 844,
       "palavrasAVista": 49,
+      "palavrasNaTela": 110,
+      "blocosLongos": [],
+      "selos": 0,
+      "porques": 0,
       "acaoPrincipal": "Gerar meu programa",
       "acaoAVista": true
     },
     {
       "tela": "06-inicio",
-      "esperaDasMiniaturasMs": 715,
+      "esperaDasMiniaturasMs": 795,
       "alturaDaPagina": 1957,
       "alturaDaTela": 844,
       "palavrasAVista": 105,
+      "palavrasNaTela": 256,
+      "blocosLongos": [
+        {
+          "palavras": 32,
+          "comeco": "O peso que você usa: o halter, as anilhas,"
+        },
+        {
+          "palavras": 34,
+          "comeco": "“Repetições na reserva”: quantas repetições ainda sobravam quando você"
+        }
+      ],
+      "selos": 5,
+      "porques": 0,
       "acaoPrincipal": "/^Começar o treino/",
       "acaoAVista": true
     },
     {
       "tela": "07-folha-do-exercicio",
-      "esperaDasMiniaturasMs": 5,
+      "esperaDasMiniaturasMs": 15,
       "alturaDaPagina": 1957,
       "alturaDaTela": 844,
       "palavrasAVista": 90,
+      "palavrasNaTela": 201,
+      "blocosLongos": [
+        {
+          "palavras": 57,
+          "comeco": "Vaga de agachar, para o quadríceps, o seu foco:"
+        }
+      ],
+      "selos": 6,
+      "porques": 0,
       "acaoPrincipal": null,
       "acaoAVista": null
     },
@@ -123,6 +217,67 @@
       "alturaDaPagina": 1957,
       "alturaDaTela": 844,
       "palavrasAVista": 121,
+      "palavrasNaTela": 829,
+      "blocosLongos": [
+        {
+          "palavras": 27,
+          "comeco": "Ajustar: Foco abaixo da meta: panturrilha 6 de 10"
+        },
+        {
+          "palavras": 42,
+          "comeco": "Limite: Abaixo do mínimo que faz crescer: ombro lateral"
+        },
+        {
+          "palavras": 50,
+          "comeco": "Limite: Foco abaixo da meta: quadríceps 6 de 10"
+        },
+        {
+          "palavras": 30,
+          "comeco": "Para saber: Acima do máximo do nível iniciante (10"
+        },
+        {
+          "palavras": 42,
+          "comeco": "Pouca carga para as pernas: o programa usa uma"
+        },
+        {
+          "palavras": 34,
+          "comeco": "Sem cadeira extensora: a parte da frente da coxa"
+        },
+        {
+          "palavras": 35,
+          "comeco": "Para caber no tempo: superséries entre músculos que não"
+        },
+        {
+          "palavras": 28,
+          "comeco": "Abaixo da meta: ombro (lateral) 0 de 6 séries"
+        },
+        {
+          "palavras": 52,
+          "comeco": "Abaixo da meta: quadríceps 6 de 10 séries por"
+        },
+        {
+          "palavras": 34,
+          "comeco": "Abaixo da meta: posteriores da coxa 7 de 10"
+        },
+        {
+          "palavras": 32,
+          "comeco": "Abaixo da meta: panturrilha 6 de 10 séries por"
+        },
+        {
+          "palavras": 68,
+          "comeco": "Seus focos disputam o mesmo tempo: quadríceps 6 de"
+        },
+        {
+          "palavras": 25,
+          "comeco": "Cada vaga pede uma função (por exemplo, \"tríceps com"
+        },
+        {
+          "palavras": 46,
+          "comeco": "Foco em pernas e glúteos: ~10 séries por semana,"
+        }
+      ],
+      "selos": 28,
+      "porques": 0,
       "acaoPrincipal": null,
       "acaoAVista": null
     },
@@ -132,6 +287,10 @@
       "alturaDaPagina": 844,
       "alturaDaTela": 844,
       "palavrasAVista": 87,
+      "palavrasNaTela": 69,
+      "blocosLongos": [],
+      "selos": 1,
+      "porques": 2,
       "acaoPrincipal": "/^Série feita/",
       "acaoAVista": true
     },
@@ -141,6 +300,19 @@
       "alturaDaPagina": 2879,
       "alturaDaTela": 844,
       "palavrasAVista": 59,
+      "palavrasNaTela": 547,
+      "blocosLongos": [
+        {
+          "palavras": 36,
+          "comeco": "Pare o exercício e procure avaliação (fisioterapeuta ou médico"
+        },
+        {
+          "palavras": 35,
+          "comeco": "As animações usam um modelo simplificado com medidas aproximadas"
+        }
+      ],
+      "selos": 0,
+      "porques": 1,
       "acaoPrincipal": null,
       "acaoAVista": null
     },
@@ -150,6 +322,19 @@
       "alturaDaPagina": 3135,
       "alturaDaTela": 844,
       "palavrasAVista": 52,
+      "palavrasNaTela": 575,
+      "blocosLongos": [
+        {
+          "palavras": 36,
+          "comeco": "Pare o exercício e procure avaliação (fisioterapeuta ou médico"
+        },
+        {
+          "palavras": 35,
+          "comeco": "As animações usam um modelo simplificado com medidas aproximadas"
+        }
+      ],
+      "selos": 0,
+      "porques": 1,
       "acaoPrincipal": null,
       "acaoAVista": null
     },
@@ -159,6 +344,19 @@
       "alturaDaPagina": 3080,
       "alturaDaTela": 844,
       "palavrasAVista": 73,
+      "palavrasNaTela": 592,
+      "blocosLongos": [
+        {
+          "palavras": 36,
+          "comeco": "Pare o exercício e procure avaliação (fisioterapeuta ou médico"
+        },
+        {
+          "palavras": 35,
+          "comeco": "As animações usam um modelo simplificado com medidas aproximadas"
+        }
+      ],
+      "selos": 0,
+      "porques": 1,
       "acaoPrincipal": null,
       "acaoAVista": null
     },
@@ -168,6 +366,19 @@
       "alturaDaPagina": 3049,
       "alturaDaTela": 844,
       "palavrasAVista": 59,
+      "palavrasNaTela": 578,
+      "blocosLongos": [
+        {
+          "palavras": 36,
+          "comeco": "Pare o exercício e procure avaliação (fisioterapeuta ou médico"
+        },
+        {
+          "palavras": 35,
+          "comeco": "As animações usam um modelo simplificado com medidas aproximadas"
+        }
+      ],
+      "selos": 0,
+      "porques": 1,
       "acaoPrincipal": null,
       "acaoAVista": null
     },
@@ -177,33 +388,49 @@
       "alturaDaPagina": 844,
       "alturaDaTela": 844,
       "palavrasAVista": 79,
+      "palavrasNaTela": 61,
+      "blocosLongos": [],
+      "selos": 1,
+      "porques": 2,
       "acaoPrincipal": "/^Série feita/",
       "acaoAVista": true
     },
     {
       "tela": "09-treino-descanso",
-      "esperaDasMiniaturasMs": 6,
+      "esperaDasMiniaturasMs": 5,
       "alturaDaPagina": 844,
       "alturaDaTela": 844,
       "palavrasAVista": 56,
+      "palavrasNaTela": 51,
+      "blocosLongos": [],
+      "selos": 0,
+      "porques": 0,
       "acaoPrincipal": "/^Série \\d feita/",
       "acaoAVista": true
     },
     {
       "tela": "10-treino-senti-algo",
-      "esperaDasMiniaturasMs": 6,
+      "esperaDasMiniaturasMs": 4,
       "alturaDaPagina": 844,
       "alturaDaTela": 844,
       "palavrasAVista": 65,
+      "palavrasNaTela": 73,
+      "blocosLongos": [],
+      "selos": 1,
+      "porques": 0,
       "acaoPrincipal": null,
       "acaoAVista": null
     },
     {
       "tela": "11-treino-mais-opcoes",
-      "esperaDasMiniaturasMs": 6,
+      "esperaDasMiniaturasMs": 4,
       "alturaDaPagina": 844,
       "alturaDaTela": 844,
       "palavrasAVista": 17,
+      "palavrasNaTela": 15,
+      "blocosLongos": [],
+      "selos": 0,
+      "porques": 0,
       "acaoPrincipal": null,
       "acaoAVista": null
     },
@@ -213,6 +440,10 @@
       "alturaDaPagina": 844,
       "alturaDaTela": 844,
       "palavrasAVista": 82,
+      "palavrasNaTela": 64,
+      "blocosLongos": [],
+      "selos": 1,
+      "porques": 1,
       "acaoPrincipal": "/^Série feita/",
       "acaoAVista": true
     },
@@ -222,6 +453,31 @@
       "alturaDaPagina": 844,
       "alturaDaTela": 844,
       "palavrasAVista": 128,
+      "palavrasNaTela": 202,
+      "blocosLongos": [
+        {
+          "palavras": 30,
+          "comeco": "Leitura do RIR relatado: as pessoas subestimam ~1 repetição;"
+        },
+        {
+          "palavras": 37,
+          "comeco": "Halperin I, et al. (2022). Accuracy in Predicting Repetitions"
+        },
+        {
+          "palavras": 34,
+          "comeco": "Zourdos MC, et al. (2021). Precisão do RIR relatado"
+        },
+        {
+          "palavras": 35,
+          "comeco": "Remmert JF, et al. (2023). Estudo da precisão do"
+        },
+        {
+          "palavras": 33,
+          "comeco": "Bermúdez Droguett, et al. (2025). Estudo sobre a precisão"
+        }
+      ],
+      "selos": 0,
+      "porques": 0,
       "acaoPrincipal": null,
       "acaoAVista": null
     },
@@ -231,6 +487,10 @@
       "alturaDaPagina": 844,
       "alturaDaTela": 844,
       "palavrasAVista": 75,
+      "palavrasNaTela": 59,
+      "blocosLongos": [],
+      "selos": 0,
+      "porques": 2,
       "acaoPrincipal": "/^Série feita/",
       "acaoAVista": true
     },
@@ -240,6 +500,10 @@
       "alturaDaPagina": 844,
       "alturaDaTela": 844,
       "palavrasAVista": 38,
+      "palavrasNaTela": 31,
+      "blocosLongos": [],
+      "selos": 0,
+      "porques": 0,
       "acaoPrincipal": null,
       "acaoAVista": null
     },
@@ -249,6 +513,10 @@
       "alturaDaPagina": 844,
       "alturaDaTela": 844,
       "palavrasAVista": 84,
+      "palavrasNaTela": 68,
+      "blocosLongos": [],
+      "selos": 1,
+      "porques": 2,
       "acaoPrincipal": "/^Série feita/",
       "acaoAVista": true
     },
@@ -258,6 +526,10 @@
       "alturaDaPagina": 844,
       "alturaDaTela": 844,
       "palavrasAVista": 82,
+      "palavrasNaTela": 64,
+      "blocosLongos": [],
+      "selos": 0,
+      "porques": 2,
       "acaoPrincipal": "/^Série feita/",
       "acaoAVista": true
     },
@@ -267,6 +539,10 @@
       "alturaDaPagina": 844,
       "alturaDaTela": 844,
       "palavrasAVista": 76,
+      "palavrasNaTela": 60,
+      "blocosLongos": [],
+      "selos": 0,
+      "porques": 2,
       "acaoPrincipal": "/^Série feita/",
       "acaoAVista": true
     },
@@ -276,6 +552,10 @@
       "alturaDaPagina": 844,
       "alturaDaTela": 844,
       "palavrasAVista": 76,
+      "palavrasNaTela": 60,
+      "blocosLongos": [],
+      "selos": 0,
+      "porques": 2,
       "acaoPrincipal": "/^Série feita/",
       "acaoAVista": true
     },
@@ -285,6 +565,10 @@
       "alturaDaPagina": 844,
       "alturaDaTela": 844,
       "palavrasAVista": 25,
+      "palavrasNaTela": 23,
+      "blocosLongos": [],
+      "selos": 0,
+      "porques": 0,
       "acaoPrincipal": null,
       "acaoAVista": null
     },
@@ -294,6 +578,15 @@
       "alturaDaPagina": 969,
       "alturaDaTela": 844,
       "palavrasAVista": 80,
+      "palavrasNaTela": 86,
+      "blocosLongos": [
+        {
+          "palavras": 25,
+          "comeco": "1 treino nesta semana. Já conta: um treino por"
+        }
+      ],
+      "selos": 1,
+      "porques": 2,
       "acaoPrincipal": null,
       "acaoAVista": null
     },
@@ -303,6 +596,19 @@
       "alturaDaPagina": 1293,
       "alturaDaTela": 844,
       "palavrasAVista": 87,
+      "palavrasNaTela": 167,
+      "blocosLongos": [
+        {
+          "palavras": 36,
+          "comeco": "Conta a série com até 4 repetições de reserva"
+        },
+        {
+          "palavras": 33,
+          "comeco": "A barra é o que foi feito; o traço"
+        }
+      ],
+      "selos": 2,
+      "porques": 0,
       "acaoPrincipal": null,
       "acaoAVista": null
     },
@@ -312,33 +618,58 @@
       "alturaDaPagina": 844,
       "alturaDaTela": 844,
       "palavrasAVista": 29,
+      "palavrasNaTela": 29,
+      "blocosLongos": [],
+      "selos": 1,
+      "porques": 0,
       "acaoPrincipal": null,
       "acaoAVista": null
     },
     {
       "tela": "06c-inicio-depois-do-1o-treino",
-      "esperaDasMiniaturasMs": 622,
+      "esperaDasMiniaturasMs": 686,
       "alturaDaPagina": 1288,
       "alturaDaTela": 844,
       "palavrasAVista": 106,
+      "palavrasNaTela": 260,
+      "blocosLongos": [],
+      "selos": 5,
+      "porques": 0,
       "acaoPrincipal": "/^Começar o treino/",
       "acaoAVista": true
     },
     {
       "tela": "16-meus-dados",
       "esperaDasMiniaturasMs": 0,
-      "alturaDaPagina": 1550,
+      "alturaDaPagina": 1528,
       "alturaDaTela": 844,
       "palavrasAVista": 139,
+      "palavrasNaTela": 216,
+      "blocosLongos": [
+        {
+          "palavras": 64,
+          "comeco": "Tudo fica guardado só neste aparelho. A única coisa"
+        },
+        {
+          "palavras": 28,
+          "comeco": "Este navegador não garantiu guardar seus dados de forma"
+        }
+      ],
+      "selos": 2,
+      "porques": 0,
       "acaoPrincipal": null,
       "acaoAVista": null
     },
     {
       "tela": "16b-meus-dados-estilo-do-boneco",
       "esperaDasMiniaturasMs": 0,
-      "alturaDaPagina": 1550,
+      "alturaDaPagina": 1528,
       "alturaDaTela": 844,
       "palavrasAVista": 46,
+      "palavrasNaTela": 46,
+      "blocosLongos": [],
+      "selos": 0,
+      "porques": 0,
       "acaoPrincipal": null,
       "acaoAVista": null
     },
@@ -348,6 +679,15 @@
       "alturaDaPagina": 844,
       "alturaDaTela": 844,
       "palavrasAVista": 59,
+      "palavrasNaTela": 59,
+      "blocosLongos": [
+        {
+          "palavras": 32,
+          "comeco": "Cadastre cada lugar onde você treina. O programa é"
+        }
+      ],
+      "selos": 1,
+      "porques": 0,
       "acaoPrincipal": null,
       "acaoAVista": null
     },
@@ -357,15 +697,76 @@
       "alturaDaPagina": 2094,
       "alturaDaTela": 844,
       "palavrasAVista": 67,
+      "palavrasNaTela": 125,
+      "blocosLongos": [],
+      "selos": 0,
+      "porques": 0,
       "acaoPrincipal": null,
       "acaoAVista": null
     },
     {
       "tela": "18-termos",
       "esperaDasMiniaturasMs": 0,
-      "alturaDaPagina": 3514,
+      "alturaDaPagina": 3489,
       "alturaDaTela": 844,
       "palavrasAVista": 156,
+      "palavrasNaTela": 793,
+      "blocosLongos": [
+        {
+          "palavras": 56,
+          "comeco": "O treino-mvp é um app gratuito, em fase de"
+        },
+        {
+          "palavras": 34,
+          "comeco": "O app não diagnostica e não substitui um médico"
+        },
+        {
+          "palavras": 51,
+          "comeco": "As respostas da triagem de saúde, o nível, a"
+        },
+        {
+          "palavras": 29,
+          "comeco": "Não há conta, login nem nuvem. O app não"
+        },
+        {
+          "palavras": 72,
+          "comeco": "O navegador pode apagar os dados de um site:"
+        },
+        {
+          "palavras": 40,
+          "comeco": "Usar a foto é opcional: a lista de equipamento"
+        },
+        {
+          "palavras": 26,
+          "comeco": "Ela vai para a Anthropic, empresa dos EUA, que"
+        },
+        {
+          "palavras": 47,
+          "comeco": "A Anthropic diz que apaga o que recebe em"
+        },
+        {
+          "palavras": 31,
+          "comeco": "Junto com a foto vão o código de convite"
+        },
+        {
+          "palavras": 39,
+          "comeco": "A data da autorização fica só neste aparelho. Você"
+        },
+        {
+          "palavras": 56,
+          "comeco": "Pela LGPD (art. 18), você pode pedir a confirmação"
+        },
+        {
+          "palavras": 39,
+          "comeco": "Para o resto, ou para qualquer dúvida, fale com"
+        },
+        {
+          "palavras": 33,
+          "comeco": "Fontes: LGPD (Lei nº 13.709/2018), arts. 5º, 8º, 9º,"
+        }
+      ],
+      "selos": 3,
+      "porques": 0,
       "acaoPrincipal": null,
       "acaoAVista": null
     }

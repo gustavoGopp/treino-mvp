@@ -9,3 +9,8 @@ Cada folha traz o app de hoje em cima e a proposta embaixo, em 390 px. As propos
 | 3 | O fundo cinza dos botões secundários, fraco sob luz forte (achado 13) | `3-botoes-cinza-claro.png`, `3-botoes-cinza-escuro.png` | `3-contorno-nos-botoes-cinza.patch` | Tudo que se toca e tem fundo cinza ganha um contorno de 1 px na cor da borda (4,2:1 contra o fundo). |
 
 Para aplicar uma delas: `git apply docs/revisoes/frontend-novo/capturas/decisoes/<arquivo>.patch`, e então `npm run conferir:tokens`, `npm run check` e `npm run test:e2e`.
+
+## Andamento
+
+- **Decisão 1 (selo "fonte"): aplicada em 13/11/2026**, a pedido do Gustavo (opção 1 de 3). O arquivo `1-selo-fonte.patch` fica só como registro: não aplicar de novo.
+- Decisões 2 e 3: abertas.
