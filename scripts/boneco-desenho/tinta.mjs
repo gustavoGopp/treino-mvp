@@ -122,10 +122,11 @@ const novoId = (p) => `${p}${++conta}`;
  *  formas: [{ d, cor }]
  *  contorno: { cor, esp } ou null (sem contorno)
  *  semLinhaSobre: caminhos em cima dos quais o contorno deste grupo não aparece (ex.: a coxa saindo do quadril)
+ *  preencher: função que devolve o preenchimento de cada forma (ver `comSombra`)
  *  linhaSoSobre: { cor, esp, sobre: [d...] }: no desenho sem contorno, uma linha de separação que só aparece onde o
  *    grupo passa por cima de outra parte do corpo (o braço na frente do tronco)
  */
-export function grupo(formas, { contorno = null, semLinhaSobre = null, linhaSoSobre = null } = {}) {
+export function grupo(formas, { contorno = null, semLinhaSobre = null, linhaSoSobre = null, preencher = null } = {}) {
   let s = '';
   const traco = (cor, esp) => formas.map((f) => `<path d="${f.d}" fill="${cor}" stroke="${cor}" stroke-width="${r1(esp * 2)}" stroke-linejoin="round"/>`).join('');
   if (contorno) {
@@ -137,17 +138,15 @@ export function grupo(formas, { contorno = null, semLinhaSobre = null, linhaSoSo
     const id = novoId('sobre');
     s += `<clipPath id="${id}">${linhaSoSobre.sobre.map((d) => `<path d="${d}"/>`).join('')}</clipPath><g clip-path="url(#${id})">${traco(linhaSoSobre.cor, linhaSoSobre.esp)}</g>`;
   }
-  s += formas.map((f) => `<path d="${f.d}" fill="${f.cor}"/>`).join('');
+  s += formas.map(preencher ?? ((f) => `<path d="${f.d}" fill="${f.cor}"/>`)).join('');
   return s;
 }
 
 /**
- * Sombra própria em dois tons ("volume"): dentro de cada forma, a parte que sobra quando a própria forma é
- * empurrada na direção da luz fica no tom escuro. `luz` é o deslocamento em cm (para onde está a luz).
+ * Sombra própria em dois tons ("volume"), para usar como `preencher` de um grupo: dentro da forma, a parte que sobra
+ * quando a própria forma é empurrada na direção da luz fica no tom escuro (`f.sombra`). `luz` é o deslocamento em cm.
  */
-export function sombra(formas, luz, corDe) {
-  return formas.map((f) => {
-    const id = novoId('vol');
-    return `<clipPath id="${id}"><path d="${f.d}"/></clipPath><g clip-path="url(#${id})"><path d="${f.d}" fill="${corDe(f)}"/><path d="${f.d}" fill="${f.cor}" transform="translate(${luz[0]} ${luz[1]})"/></g>`;
-  }).join('');
-}
+export const comSombra = (luz) => (f) => {
+  const id = novoId('vol');
+  return `<clipPath id="${id}"><path d="${f.d}"/></clipPath><g clip-path="url(#${id})"><path d="${f.d}" fill="${f.sombra ?? f.cor}"/><path d="${f.d}" fill="${f.cor}" transform="translate(${luz[0]} ${luz[1]})"/></g>`;
+};
