@@ -42,7 +42,8 @@ Cada pergunta mostra o mesmo "boneco de prova" (um desenho feito só para estas 
 | 5 | Proporção real ou levemente estilizada? | `gosto/par-5-proporcao.png` | **A, proporção real** ("pode ser A", 13/11/2026). |
 | 6 | Cinza neutro, cor de pele ou a cor do app? | `gosto/par-6-cor.png` | **B, cor de pele** ("b", 13/11/2026). Foi a primeira resposta sem "pode ser" e a primeira contra a minha opinião (eu tinha dito A, cinza). |
 | 7 | E se fosse um desenho de linha: traço fino, traço grosso, ou formas preenchidas? (adaptada, porque ele escolheu "sem contorno" na 1) | `gosto/par-7-traco.png` | **C, formas preenchidas** ("pode ser C", 13/11/2026). O desenho só de linha não o atraiu. |
-| 8 | O músculo no corpo ou num mapa ao lado? | `gosto/par-8-musculo.png` | |
+| 8 | O músculo no corpo ou num mapa ao lado? | `gosto/par-8-musculo.png` | **Não escolheu.** "o grande problema que a gente chega aqui é que essa marcação nesse buraco específico tá ficando ruim do músculo. Não sei se é porque eu tá muito não definido ou se é porque tá ficando muita cor. Mas não me agradou tanto a forma como ficou." (13/11/2026; mensagem ditada, "buraco" deve ser "boneco"). Ele mesmo levantou duas hipóteses: o músculo está pouco definido, ou há cor demais. Ver a pergunta 8b. |
+| 8b | A marcação do músculo: forma definida com as mesmas cores, com a roupa em cinza, ou com o corpo todo neutro? (pergunta extra, para separar as duas hipóteses dele) | `gosto/par-8b-musculo-forma.png` | (aguardando) |
 
 As pranchas 2 a 8 são regeradas com o que ele já tiver escolhido nas anteriores (a base passa como JSON para o script).
 

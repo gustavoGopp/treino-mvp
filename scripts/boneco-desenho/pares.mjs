@@ -10,7 +10,7 @@ import { POSES, pontos } from './poses.mjs';
 import { zerarIds } from './tinta.mjs';
 
 const BASE = { contorno: true, cabeca: 'cabelo', roupa: true, volume: false, proporcao: 'real', cor: 'cinza', tema: 'claro', ...JSON.parse(process.argv[2] ?? '{}') };
-const so = process.argv[3] ? process.argv[3].split(',').map(Number) : null;
+const so = process.argv[3] ? process.argv[3].split(',') : null;
 const empe = pontos(POSES.empe().esq, 'frontal');
 const agachado = pontos(POSES.agachamento().esq, 'lateral');
 // o halter do goblet e a anilha sob os calcanhares, lidos da cena da sessão da animação nova (cm, de lado)
@@ -43,11 +43,13 @@ const PARES = [
   { n: 6, slug: 'cor', titulo: 'Cinza neutro, cor de pele ou a cor do app?', opcoes: [['A · cinza neutro', 'Como hoje: não é a pele de ninguém.', { cor: 'cinza' }], ['B · cor de pele', 'Uma pessoa. Obriga a escolher um tom de pele (aqui, um tom médio).', { cor: 'pele' }], ['C · cor do app', 'O roxo-azulado dos botões: o boneco vira parte da marca.', { cor: 'marca' }]] },
   { n: 7, slug: 'traco', titulo: 'E se fosse um desenho de linha: traço fino ou traço grosso?', opcoes: [['A · traço fino', 'Só a linha, delicada, de desenho técnico; a roupa em blocos.', { cor: 'linha', contorno: true, esp: 0.6 }], ['B · traço grosso', 'Só a linha, firme, que aguenta o tamanho pequeno.', { cor: 'linha', contorno: true, esp: 1.5 }], ['C · fico com as formas preenchidas', 'O que você escolheu na pergunta 1, para comparar.', {}]] },
   { n: 8, slug: 'musculo', titulo: 'O músculo pintado no corpo ou num mapa ao lado?', opcoes: [['A · no próprio corpo', 'O músculo que trabalha aparece na figura que se mexe, por cima da roupa, como num diagrama.', { musculo: 'corpo' }], ['B · num mapa ao lado', 'A figura fica limpa; um corpo parado, de frente e de costas, mostra o músculo.', { musculo: null, mapa: true }]] },
+  // pergunta extra, depois de o Gustavo dizer que a marcação do músculo não agradou (pouco definida, ou cor demais)
+  { n: '8b', slug: 'musculo-forma', de: '8b', titulo: 'A marcação do músculo: três jeitos de consertar', sub: 'Nos três, o músculo ganhou forma de músculo, com borda e divisões. O que muda de um para o outro é quanta cor há em volta.', opcoes: [['A · forma definida, mesmas cores', 'Só o desenho do músculo mudou: a pessoa continua com a pele e a roupa coloridas.', { musculo: 'corpo', definido: true }], ['B · forma definida e roupa em cinza', 'A roupa fica calma; a cor viva sobra para o músculo.', { musculo: 'corpo', definido: true, roupaCalma: true }], ['C · forma definida e corpo todo neutro', 'Quando o músculo aparece, a figura inteira fica cinza: só o músculo tem cor.', { musculo: 'corpo', definido: true, cor: 'cinza' }]] },
 ];
 
 mkdirSync('docs/revisoes/boneco-desenho/gosto', { recursive: true });
 for (const par of PARES) {
-  if (so && !so.includes(par.n)) continue;
+  if (so && !so.includes(String(par.n))) continue;
   zerarIds();
   const cartoes = par.opcoes.map(([nome, frase, chave]) => {
     const o = { ...BASE, ...chave };
@@ -63,7 +65,7 @@ section{margin:0 0 20px}h2{font-size:21px;margin:0 0 2px}section p{margin:0 0 9p
 .mini span,.mapa span{display:block;font-size:13px;color:#5b6570;margin-top:5px}
 .mapa{background:#f7f9fa;border-radius:10px;padding:6px 6px 8px}.mapa span{text-align:center}
 .pe{font-size:13.5px;color:#5b6570;margin:0;border-top:1px solid #e3e6e9;padding-top:10px}
-</style><h1>${par.n} de 8 · ${par.titulo}</h1><p class="sub">Pergunta de gosto. O desenho é o mesmo nas opções; muda só uma coisa.</p>${cartoes}<p class="pe">Isto ainda não é proposta de boneco: é um desenho de prova, só para eu entender o seu gosto num ponto de cada vez.</p>`;
+</style><h1>${par.de ?? `${par.n} de 8`} · ${par.titulo}</h1><p class="sub">${par.sub ?? 'Pergunta de gosto. O desenho é o mesmo nas opções; muda só uma coisa.'}</p>${cartoes}<p class="pe">Isto ainda não é proposta de boneco: é um desenho de prova, só para eu entender o seu gosto num ponto de cada vez.</p>`;
   await fotografar(html, `docs/revisoes/boneco-desenho/gosto/par-${par.n}-${par.slug}.png`, { largura: 900, escala: 2 });
   console.log(`par ${par.n} (${par.slug})`);
 }

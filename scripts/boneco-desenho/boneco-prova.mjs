@@ -41,7 +41,7 @@ const CABELO_F = [[0, 13.8], [-4.9, 13], [-8.2, 9.7], [-9.2, 4.4], [-8.2, 3], [-
 /* ============================== cores ============================== */
 const FUNDO = { claro: '#f7f9fa', escuro: '#10171b' };
 /** As cores do boneco de prova conforme a cor pedida, o tema e se há contorno (sem contorno, o corpo precisa de mais peso). */
-export function paleta({ cor = 'cinza', tema = 'claro', contorno = true }) {
+export function paleta({ cor = 'cinza', tema = 'claro', contorno = true, roupaCalma = false }) {
   const claro = tema === 'claro';
   const base = {
     cinza: claro
@@ -58,12 +58,21 @@ export function paleta({ cor = 'cinza', tema = 'claro', contorno = true }) {
       ? { pele: FUNDO.claro, peleSombra: '#e3e8ec', roupa: '#e3e8ec', roupaSombra: '#cfd7dd', short: '#4b5a67', shortSombra: '#3a4853', calcado: '#2d3a45', cabelo: '#2d3a45' }
       : { pele: FUNDO.escuro, peleSombra: '#1c262d', roupa: '#27323b', roupaSombra: '#1c262d', short: '#c3ced6', shortSombra: '#a9b5be', calcado: '#e7eef2', cabelo: '#e7eef2' },
   }[cor];
-  return { ...base, fundo: FUNDO[tema], contorno: claro ? '#1d2a36' : '#e7eef2', ferro: claro ? '#27343f' : '#cfd8de', aco: '#8a98a3', chao: claro ? '#d5dce1' : '#33414b', musP: claro ? '#d62e26' : '#f45248', musS: claro ? '#ec961c' : '#f5aa3c', rosto: claro ? '#1d2a36' : '#10171b' };
+  // roupa calma: a roupa vai para tons de cinza, e a cor viva fica só no músculo (e na pele)
+  if (roupaCalma) Object.assign(base, claro ? { roupa: '#aab4bc', roupaSombra: '#929da6', short: '#6a7682', shortSombra: '#57626d', calcado: '#3d4954' } : { roupa: '#5d6975', roupaSombra: '#4a5560', short: '#9aa6b0', shortSombra: '#808c96', calcado: '#dfe6ea' });
+  return { ...base, musPb: claro ? '#a31d17' : '#b9342c', musSb: claro ? '#b76d0e' : '#c07f1e', fundo: FUNDO[tema], contorno: claro ? '#1d2a36' : '#e7eef2', ferro: claro ? '#27343f' : '#cfd8de', aco: '#8a98a3', chao: claro ? '#d5dce1' : '#33414b', musP: claro ? '#d62e26' : '#f45248', musS: claro ? '#ec961c' : '#f5aa3c', rosto: claro ? '#1d2a36' : '#10171b' };
 }
 
 /* ============================== ajudas ============================== */
 const p2 = (v) => [v[0], v[1]];
 const D = (pts, fechado = true) => suave(pts, fechado);
+/** Lê uma coluna do perfil ([t, frente, trás] ou [t, dentro, fora]) num t qualquer. */
+const noPerfilDe = (perfil, t, i) => {
+  for (let k = 1; k < perfil.length; k++) if (t <= perfil[k][0]) return perfil[k - 1][i] + ((perfil[k][i] - perfil[k - 1][i]) * (t - perfil[k - 1][0])) / (perfil[k][0] - perfil[k - 1][0]);
+  return perfil[perfil.length - 1][i];
+};
+/** Um músculo: a forma em cor sólida, com a borda num tom mais escuro da mesma cor, e as divisões por dentro. */
+const musculo = (pts, cor, borda, divisoes = []) => `<path d="${suave(pts)}" fill="${cor}" stroke="${borda}" stroke-width="0.5" stroke-linejoin="round"/>${divisoes.map((l) => `<path d="${suave(l, false)}" fill="none" stroke="${borda}" stroke-width="0.45" stroke-linecap="round"/>`).join('')}`;
 const emMembro = (a, b, t, o) => {
   const u = uni(menos(b, a)), n = normal(u);
   return soma(entre(a, b, t), vezes(n, o));
@@ -141,9 +150,17 @@ export function deLado(pose, o = {}) {
   const sobreCorpo = { cor: C.fundo, esp: 0.75, sobre: [tronco, pescoco] };
   s += pintar(perna, o, C, { semLinhaSobre: [pelve], linhaSoSobre: sobreCorpo }, luz);
   // músculo no corpo: frente da coxa em vermelho (principal) e glúteo em laranja (secundário), cor sólida
-  if (o.musculo) {
+  if (o.musculo && o.definido) {
+    // forma de músculo: o quadríceps ocupa a frente e o lado da coxa, do quadril até acima do joelho, com a divisão
+    // entre o reto femoral (em cima) e o vasto lateral; o glúteo cobre a parte de trás do quadril
+    const a = J('quadril'), b = J('joelho'), M = (t, d) => emMembro(a, b, t, d), fr = (t) => noPerfilDe(COXA_L, t, 1) * g;
+    const quad = [M(0.06, 2.6 * g), M(0.1, fr(0.1) - 3.6), M(0.18, fr(0.18) - 1.1), ...[0.3, 0.45, 0.6, 0.74, 0.86].map((t) => M(t, fr(t) - 0.9)), M(0.94, 3.4 * g), M(0.975, 1.2 * g), M(0.94, -1.0 * g), ...[[0.8, -2.0], [0.62, -2.8], [0.44, -2.9], [0.27, -2.2]].map(([t, d]) => M(t, d * g)), M(0.13, -0.4 * g)];
+    const div = [[0.13, 4.4], [0.3, 4.5], [0.5, 4.1], [0.7, 3.5], [0.87, 2.7]].map(([t, d]) => M(t, fr(t) - d * g));
+    const glu = colocar([[-6.6, 9.6], [-9.2, 6.2], [-9.9, 0.6], [-9.0, -4.6], [-5.2, -8.0], [0.2, -7.8], [2.6, -4.6], [2.2, 0.2], [-1.0, 4.6], [-4.2, 8.2]], p2(rp.o), rp.z, rp.y, g);
+    s += musculo(glu, C.musS, C.musSb) + musculo(quad, C.musP, C.musPb, [div]);
+  } else if (o.musculo) {
     const a = J('quadril'), b = J('joelho');
-    const fr = (t) => COXA_L.reduce((v, e, i, arr) => (i && t <= e[0] && t >= arr[i - 1][0] ? arr[i - 1][1] + ((e[1] - arr[i - 1][1]) * (t - arr[i - 1][0])) / (e[0] - arr[i - 1][0]) : v), COXA_L[0][1]) * g;
+    const fr = (t) => noPerfilDe(COXA_L, t, 1) * g;
     const quad = [emMembro(a, b, 0.13, 4.2 * g), ...[0.22, 0.36, 0.5, 0.64, 0.78, 0.88].map((t) => emMembro(a, b, t, fr(t) - 1.4)), emMembro(a, b, 0.95, 2.6), emMembro(a, b, 0.9, -0.6), ...[0.74, 0.56, 0.38].map((t) => emMembro(a, b, t, -2.2 * g)), emMembro(a, b, 0.2, -0.4)];
     const glu = colocar([[-9.6, 6.5], [-10.3, 0.5], [-9, -5.3], [-4.8, -8.6], [0.6, -7.4], [2, -1.5], [-0.6, 5], [-5.2, 8.4]], p2(rp.o), rp.z, rp.y, g);
     const borda = o.contorno ? `stroke="${C.contorno}" stroke-width="0.55" stroke-linejoin="round"` : '';
@@ -220,7 +237,22 @@ export function deFrente(pose, o = {}) {
     for (const sx of [-1, 1]) s += `<circle cx="${r1(x0 + sx * 3.1 * kc)}" cy="${r1(y0 + 1.0 * kc)}" r="${r1(0.85 * kc)}" fill="${C.rosto}"/>`;
     s += `<path d="M${r1(x0 - 1.9 * kc)} ${r1(y0 - 5.2 * kc)}Q${r1(x0)} ${r1(y0 - 6.3 * kc)} ${r1(x0 + 1.9 * kc)} ${r1(y0 - 5.2 * kc)}" fill="none" stroke="${C.rosto}" stroke-width="0.7" stroke-linecap="round"/>`;
   }
-  if (o.musculo) {
+  if (o.musculo && o.definido) {
+    if (o.musculo === 'costas') {
+      // glúteos vistos de trás
+      const g1 = [[-0.5, 9.2], [-6.4, 7.6], [-8.2, 1.5], [-7.4, -5.6], [-2.6, -8.6], [4.6, -7.6], [6.6, -2], [6.4, 5], [3.6, 8.6]].map(([x, y]) => [-7.7 * k + x * g, 91.2 * k + y * g]);
+      s += musculo(g1, C.musS, C.musSb) + musculo(espelhar(g1), C.musS, C.musSb);
+    } else {
+      // de frente: o quadríceps com as três partes que se veem (a faixa do meio, o lado de fora e a "gota" de dentro,
+      // perto do joelho), e os adutores na parte de dentro da coxa, em laranja
+      const a = J('quadril'), b = J('joelho'), M = (t, d) => emMembro(a, b, t, d);
+      const den = (t) => noPerfilDe(COXA_F, t, 1) * g, fora = (t) => noPerfilDe(COXA_F, t, 2) * g;
+      const quad = [M(0.12, -2.0 * g), ...[0.2, 0.35, 0.5].map((t) => M(t, -(fora(t) - 0.9))), M(0.68, -(fora(0.68) - 0.8)), M(0.82, -(fora(0.82) - 0.7)), M(0.9, -3.0 * g), M(0.945, -0.4 * g), M(0.92, 2.6 * g), M(0.84, den(0.84) - 0.7), M(0.72, den(0.72) - 1.0), M(0.58, 4.7 * g), M(0.42, 3.5 * g), M(0.26, 1.9 * g), M(0.15, 0.4 * g)];
+      const d1 = [M(0.17, -2.7 * g), M(0.5, -3.0 * g), M(0.86, -1.9 * g)], d2 = [M(0.2, 0.3 * g), M(0.55, 1.7 * g), M(0.86, 1.3 * g)];
+      const adut = [M(0.09, 2.0 * g), M(0.3, 3.6 * g), M(0.5, 5.2 * g), M(0.6, den(0.6) - 0.7), M(0.42, den(0.42) - 0.6), M(0.22, den(0.22) - 0.6), M(0.08, den(0.08) - 1.2)];
+      s += musculo(adut, C.musS, C.musSb) + musculo(espelhar(adut), C.musS, C.musSb) + musculo(quad, C.musP, C.musPb, [d1, d2]) + musculo(espelhar(quad), C.musP, C.musPb, [espelhar(d1), espelhar(d2)]);
+    }
+  } else if (o.musculo) {
     const borda = o.contorno ? `stroke="${C.contorno}" stroke-width="0.55" stroke-linejoin="round"` : '';
     if (o.musculo === 'costas') {
       for (const sx of [-1, 1]) s += `<ellipse cx="${r1(sx * 7.6 * k)}" cy="${r1(91.5 * k)}" rx="${r1(7.2 * g)}" ry="${r1(8.6 * g)}" fill="${C.musS}" ${borda}/>`;
