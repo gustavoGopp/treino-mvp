@@ -5,7 +5,7 @@ import { opcoesDeDivisao, type DivisaoId } from '../../domain/gerador/divisoes';
 import { exerciciosPorSessao } from '../../domain/regras';
 import { NOME_GRUPO, notaDoFoco } from '../../domain/gerador/opcoes';
 import { useApp } from '../app/estado';
-import { Erros, Escolha, Marcar, Numero, Passo, Revelar, Selo, numeroOu } from '../app/ui';
+import { Erros, Escolha, Marcar, Numero, Passo, PorQue, Revelar, numeroOu } from '../app/ui';
 
 // Passo 4: dias por semana, minutos por sessão e grupos prioritários, uma pergunta por vez. A divisão (opcional) saiu
 // do cadastro na reformulação visual (design v2, item E): sem escolha, o gerador usa a recomendada; ela é escolhida
@@ -92,7 +92,9 @@ export function Rotina() {
           legenda="Quantos dias por semana você pode treinar?"
           ajuda={
             <>
-              Com 2 a 6 dias dá para treinar cada músculo cerca de 2 vezes por semana. <Selo id="divisao.seis-dias" />
+              <PorQue regras={['divisao.seis-dias']} titulo="Quantos dias">
+                <p>Com 2 a 6 dias dá para treinar cada músculo cerca de 2 vezes por semana.</p>
+              </PorQue>
             </>
           }
           opcoes={DIAS.map((d) => ({ id: d, texto: `${d} dias` }))}
@@ -139,8 +141,10 @@ export function Rotina() {
             <fieldset className="campo">
               <legend>Quais grupos você quer priorizar? (opcional)</legend>
               <p className="ajuda">
-                Os grupos prioritários recebem mais séries; os outros ficam no mínimo que já gera resultado. Escolha até 2: com mais, o foco se divide.{' '}
-                <Selo id="volume.semanal.minimo-eficaz" /> <Selo id="volume.prioridade.ate-dois" />
+                Escolha até 2.{' '}
+                <PorQue regras={['volume.semanal.minimo-eficaz', 'volume.prioridade.ate-dois']} titulo="Grupos prioritários">
+                  <p>Os grupos prioritários recebem mais séries; os outros ficam no mínimo que já gera resultado. Escolha até 2: com mais, o foco se divide.</p>
+                </PorQue>
               </p>
               <div className="opcoes grade">
                 {GRUPOS_IDS.map((g) => (
@@ -157,7 +161,7 @@ export function Rotina() {
             </fieldset>
             {/* lote 3 do redesign: o objetivo saiu do cadastro ("ganhar músculo" é o padrão) e fica em Meus dados */}
             {!deDados && (
-              <p className="ajuda">Dá para mudar depois, em Meus dados. O objetivo (“ganhar músculo” é o padrão) e “algo a evitar” também ficam lá.</p>
+              <p className="ajuda">Dá para mudar depois, em Meus dados.</p>
             )}
             {deDados && (
             <div ref={noObjetivo} className="ancora-objetivo">
@@ -166,8 +170,13 @@ export function Rotina() {
               legenda="O que você quer agora? (opcional)"
               ajuda={
                 <>
-                  O treino é de força em todos. Só "ficar mais forte" muda números: menos repetições e mais descanso nos exercícios grandes. Sem escolha,
-                  o programa é para ganhar músculo. O app não cuida de alimentação nem de cardio. <Selo id="objetivo.pergunta" />
+                  Sem escolha, o programa é para ganhar músculo.{' '}
+                  <PorQue regras={['objetivo.pergunta']} titulo="O objetivo" rotulo="o que muda">
+                    <p>
+                      O treino é de força em todos. Só "ficar mais forte" muda números: menos repetições e mais descanso nos exercícios grandes. O
+                      app não cuida de alimentação nem de cardio.
+                    </p>
+                  </PorQue>
                 </>
               }
               opcoes={OBJETIVOS_TEXTO}
@@ -182,8 +191,10 @@ export function Rotina() {
           <fieldset className="campo">
             <legend>Como prefere dividir? (opcional)</legend>
             <p className="ajuda">
-              Com o mesmo volume, as divisões rendem o mesmo crescimento; escolha a que encaixa melhor na sua semana. Se não escolher, o app usa a
-              recomendada. <Selo id="divisao.equivalencia" /> <Selo id="divisao.recomendacao" />
+              Rendem o mesmo: escolha a que cabe na sua semana.{' '}
+              <PorQue regras={['divisao.equivalencia', 'divisao.recomendacao']} titulo="As divisões">
+                <p>Com o mesmo volume, as divisões rendem o mesmo crescimento. Se não escolher, o app usa a recomendada.</p>
+              </PorQue>
             </p>
             <div className="opcoes">
               {opcoesDivisao.map((o) => (

@@ -9,7 +9,7 @@ import { agoraIso, useApp } from '../app/estado';
 import { apagarLocal, apagarTodosLocais, dataCurta, lerLocal, LOCAL } from '../app/local';
 import { AvisarProblema, TextoFotoCurto } from '../app/privacidade';
 import { Icone } from '../app/icones';
-import { NavInferior, Selo, Titulo, Topo } from '../app/ui';
+import { NavInferior, PorQue, Selo, Titulo, Topo } from '../app/ui';
 import { Folha } from '../app/Folha';
 import { EscolhaEstiloBoneco } from './EstiloBoneco';
 import { apagarEstiloBoneco } from '../app/estiloBoneco';
@@ -126,13 +126,24 @@ export function Dados() {
         <AvisoSalvar />
         <Titulo>Meus dados</Titulo>
         <p className="ajuda">
-          Tudo fica guardado só neste aparelho. <TextoFotoCurto />
+          Tudo fica guardado só neste aparelho.{' '}
+          {/* o texto da foto, com o selo dele (a regra e a fonte), vem inteiro de privacidade.tsx */}
+          <PorQue regras={[]} titulo="O que sai deste aparelho" rotulo="o que sai daqui">
+            <p>
+              <TextoFotoCurto />
+            </p>
+          </PorQue>
         </p>
         {guardaPermanente === false && (
           <div className="warnbox" role="note">
             <p>
-              <b>Este navegador não garantiu guardar seus dados de forma permanente:</b> ele pode apagá-los se faltar espaço. Instalar o app
-              na tela inicial ajuda; exportar uma cópia protege. <Selo id="dados.persistente" />
+              <b>Este navegador pode apagar seus dados.</b> Guarde uma cópia.{' '}
+              <PorQue regras={['dados.persistente']} titulo="O navegador e os seus dados">
+                <p>
+                  Este navegador não garantiu guardar seus dados de forma permanente: ele pode apagá-los se faltar espaço. Instalar o app na
+                  tela inicial ajuda; exportar uma cópia protege.
+                </p>
+              </PorQue>
             </p>
           </div>
         )}

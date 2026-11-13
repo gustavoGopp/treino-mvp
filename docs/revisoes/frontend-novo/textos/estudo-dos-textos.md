@@ -1,6 +1,6 @@
 # Estudo dos textos do app: menos texto corrido, da abertura ao fim (13/11/2026)
 
-> Pedido do Gustavo em 13/11/2026: o app está com texto corrido demais e poluído; rever e redesenhar todas as partes de texto, da tela que abre até o fim, buscando referências de aplicativos. Este documento é o estudo: a medida de hoje, as referências, as regras propostas e uma versão enxuta de exemplo em 11 telas, lado a lado com as de hoje. **Nada do exemplo está aplicado no app.**
+> Pedido do Gustavo em 13/11/2026: o app está com texto corrido demais e poluído; rever e redesenhar todas as partes de texto, da tela que abre até o fim, buscando referências de aplicativos. Este documento é o estudo: a medida de hoje, as referências, as regras propostas e uma versão enxuta de exemplo em 11 telas, lado a lado com as de hoje. **Atualização de 13/11/2026: o Gustavo aprovou a direção e a etapa 1 (as 11 telas do exemplo) está aplicada no app; ver a seção 10.**
 
 ## 1. Resumo
 
@@ -144,3 +144,45 @@ CAPTURAS=docs/revisoes/frontend-novo/capturas/depois npx playwright test -c scri
 ```
 
 Cada `medidas-<formato>.json` traz, por tela: `palavrasNaTela`, `palavrasAVista`, `blocosLongos` (com o começo de cada um), `selos` e `porques`.
+
+## 10. Etapa 1 aplicada (13/11/2026)
+
+O Gustavo aprovou a direção e os três pontos que mudavam decisões anteriores (o aviso da abertura em uma frase, "Como ler o seu treino" fechado e os selos a um toque). A versão enxuta das 11 telas está no app.
+
+**Medida, com a mesma régua** (41 telas, 390 × 844, persona Ana):
+
+| | Antes | Depois |
+|---|---|---|
+| Palavras à vista, somadas | 6.311 | 5.019 |
+| Blocos de texto corrido com 25 palavras ou mais | 55 | 30 |
+| Selos à vista | 63 | 16 (os outros 47 a um toque) |
+| "Sobre o programa" | 829 | 104 |
+| Início, antes do 1º treino | 256 | 105 |
+| Folha do exercício | 196 | 93 |
+| Meus dados | 216 | 144 |
+| Semana | 167 | 101 |
+| Rotina (respondida) | 158 | 108 |
+| Saúde (pergunta geral) | 132 | 87 |
+| Boas-vindas | 88 | 68 |
+| Fim do treino | 86 | 62 |
+| Meus locais | 59 | 38 |
+
+**Diferenças em relação ao exemplo:**
+- Em Meus dados, a folha "o que sai daqui" mostra o texto da foto como ele é em `src/features/app/privacidade.tsx`, com o selo dele. Um teste do repositório (`tests/repo/textos.test.ts`) confere que Meus dados usa esse texto, e ele não foi mexido.
+- A peça do "por quê?" ganhou o rótulo livre (`rotulo`), para o toque dizer o que há dentro.
+
+**Testes que mudaram**, todos conferindo o mesmo conteúdo no lugar novo:
+
+| Teste | O que mudou |
+|---|---|
+| `inicio.spec.ts` | Na abertura, confere a frase curta com a ação e, a um toque ("o que o app não faz"), o aviso inteiro, palavra por palavra, com o nível de evidência |
+| `abertura.spec.ts` | O aviso do navegador é uma linha, e a frase inteira abre no "por quê?"; "Como ler o seu treino" começa fechado e abre com um toque, com as mesmas definições |
+| `onboarding.spec.ts` | A explicação da triagem é conferida na folha "por que perguntamos" |
+| `seu-treino.spec.ts`, `correcoes-auditoria.spec.ts` | O porquê do exercício é aberto pelo bloco "Por que este exercício (N motivos)" |
+| `jornada.ts` (apoio) | As folhas do exercício e de "Sobre o programa" abrem os blocos fechados antes de devolver a folha aos testes |
+
+O roteiro de capturas (`scripts/design/frontend-novo/capturas.spec.ts`) fotografa as duas folhas como elas abrem, sem o apoio dos testes.
+
+**Resultado:** `npm run check` com 896 testes, 157 e2e e `npm run conferir:tokens` limpos; motor e domínio sem mudança.
+
+**O que continua longo** (etapas 2 a 5 da seção 8): termos (793 palavras), folha da foto (194), perguntas completas da saúde (195), guia (cerca de 300) e, por dentro dos blocos que abrem, as frases do domínio (avisos e porquês).

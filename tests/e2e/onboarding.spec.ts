@@ -91,7 +91,12 @@ test('triagem com "sim" bloqueia, e confirmar a liberação desbloqueia', async 
 test('lote 3: a saúde em uma pergunta mostra as perguntas inteiras a um toque, e "sim" sem nada marcado pede para voltar', async ({ page }) => {
   await page.goto('/');
   await page.getByRole('button', { name: 'Começar', exact: true }).click();
-  await expect(page.getByText('Treinar é seguro para a maioria das pessoas. Esta pergunta vê se vale falar com um profissional antes.')).toBeVisible();
+  // estudo dos textos (13/11/2026): a explicação da pergunta fica a um toque ("por que perguntamos")
+  await page.getByRole('button', { name: 'por que perguntamos' }).click();
+  const porQue = page.getByRole('dialog', { name: 'Por que esta pergunta' });
+  await expect(porQue).toContainText('Treinar é seguro para a maioria das pessoas. Esta pergunta vê se vale falar com um profissional antes.');
+  await page.keyboard.press('Escape');
+  await expect(porQue).toBeHidden();
   await page.getByRole('button', { name: 'Ver as perguntas completas' }).click();
   const completas = page.getByRole('dialog', { name: 'As 9 perguntas completas' });
   await expect(completas.getByRole('listitem')).toHaveCount(9);

@@ -2,9 +2,10 @@ import { Selo } from '../app/ui';
 
 // "Como ler o seu treino" (R5c, B2; treino.leitura): o vocabulário do programa em 5 linhas, para quem nunca treinou.
 // Aberto até o 1º treino terminado; depois, recolhido. No iniciante, uma linha a mais com a fase de aprendizado.
-export function ComoLer({ aberto, iniciante }: { aberto: boolean; iniciante: boolean }) {
+// Estudo dos textos (13/11/2026, decisão do Gustavo): fica fechado, a um toque. Antes (R5c) abria sozinho até o 1º treino.
+export function ComoLer({ iniciante }: { iniciante: boolean }) {
   return (
-    <details className="box dobra como-ler" open={aberto}>
+    <details className="box dobra como-ler">
       <summary>Como ler o seu treino</summary>
       <dl>
         <div>

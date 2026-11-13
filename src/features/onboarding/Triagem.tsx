@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { ARTICULACOES, type Articulacao } from '../../domain/biblioteca';
 import { avaliarTriagem, PERGUNTAS, respostasNenhuma, type DorRegiao, type PerguntaId, type Respostas } from '../../domain/triagem';
 import { agoraIso, useApp } from '../app/estado';
-import { Erros, Escolha, Marcar, Passo, Selo } from '../app/ui';
+import { Erros, Escolha, Marcar, Passo, PorQue, Selo } from '../app/ui';
 import { Folha } from '../app/Folha';
 
 // Passo 2: triagem no estilo do PAR-Q+ (seguranca.triagem). Perguntas próprias do app (seguranca.triagem.texto).
@@ -129,12 +129,13 @@ export function Triagem() {
   if (geral)
     return (
       <Passo id="triagem" titulo="Alguma destas vale para você?">
-        <p className="lede">
-          Treinar é seguro para a maioria das pessoas. Esta pergunta vê se vale falar com um profissional antes. <Selo id="seguranca.triagem" />
-        </p>
         <p className="ajuda">
-          Hoje, ou algo que um médico já disse. Um “sim” não impede o treino; pede uma avaliação antes do programa automático. Suas respostas
-          ficam só neste celular.
+          Hoje, ou algo que um médico já disse.{' '}
+          <PorQue regras={['seguranca.triagem', 'seguranca.triagem.nenhuma']} titulo="Por que esta pergunta" rotulo="por que perguntamos">
+            <p>Treinar é seguro para a maioria das pessoas. Esta pergunta vê se vale falar com um profissional antes.</p>
+            <p>Um “sim” não impede o treino; pede uma avaliação antes do programa automático. Suas respostas ficam só neste celular.</p>
+            <p>Se nenhuma vale, um toque responde “não” a todas.</p>
+          </PorQue>
         </p>
         <ul className="condicoes" aria-label="As 9 condições">
           {PERGUNTAS.map((p) => (
@@ -142,7 +143,6 @@ export function Triagem() {
           ))}
         </ul>
         <p className="ajuda">
-          Se nenhuma vale, um toque responde “não” a todas. <Selo id="seguranca.triagem.nenhuma" />{' '}
           <button type="button" className="link-botao" aria-haspopup="dialog" onClick={() => setCompletas(true)}>
             Ver as perguntas completas
           </button>

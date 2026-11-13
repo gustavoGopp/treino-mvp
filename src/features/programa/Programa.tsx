@@ -392,8 +392,8 @@ export function Programa() {
         {/* o convite para instalar (iPhone) vem depois dos exercícios: na 1ª tela, o treino de hoje */}
         <AvisoInstalar />
 
-        {/* R5c (B2; treino.leitura): o vocabulário do treino, aberto até o 1º treino; e o lembrete de cópia (dados.copia) */}
-        <ComoLer aberto={!estado.historico.some((h) => h.fim)} iniciante={perfil!.nivel === 'iniciante'} />
+        {/* R5c (B2; treino.leitura): o vocabulário do treino, a um toque; e o lembrete de cópia (dados.copia) */}
+        <ComoLer iniciante={perfil!.nivel === 'iniciante'} />
         {!estado.sessaoAtual && <LembreteCopia estado={estado} />}
 
         <Sobre
@@ -626,14 +626,16 @@ function LinhaExercicio({
               Ver a evolução deste exercício
             </Link>
           )}
-          <h3 className="rotulo">Por que este exercício</h3>
-          <ul className="lista">
-            {x.porque.map((q) => (
-              <li key={q.regraId}>
-                {q.texto} <Selo id={q.regraId} />
-              </li>
-            ))}
-          </ul>
+          <details className="box dobra">
+            <summary>Por que este exercício ({x.porque.length === 1 ? '1 motivo' : `${x.porque.length} motivos`})</summary>
+            <ul className="lista">
+              {x.porque.map((q) => (
+                <li key={q.regraId}>
+                  {q.texto} <Selo id={q.regraId} />
+                </li>
+              ))}
+            </ul>
+          </details>
         </Folha>
       )}
     </li>
@@ -683,8 +685,8 @@ function Sobre({
           </p>
           {inventario && <ComoEsta programa={programa} perfil={perfil} inventario={inventario} />}
           {programa.avisos.length > 0 && (
-            <>
-              <h3>Avisos</h3>
+            <details className="box dobra">
+              <summary>Avisos ({programa.avisos.length})</summary>
               <div className="avisos-lista">
                 {programa.avisos.map((a, i) => (
                   <div key={i} className="warnbox">
@@ -692,11 +694,11 @@ function Sobre({
                   </div>
                 ))}
               </div>
-            </>
+            </details>
           )}
           {programa.fases.length > 0 && (
-            <>
-              <h3>Fases</h3>
+            <details className="box dobra">
+              <summary>Fases ({programa.fases.length})</summary>
               <ul className="lista">
                 {programa.fases.map((f) => (
                   <li key={f.semanas}>
@@ -704,17 +706,20 @@ function Sobre({
                   </li>
                 ))}
               </ul>
-            </>
+            </details>
           )}
-          <h3>Por que este programa</h3>
-          <ul className="lista">
-            {programa.porque.map((q) => (
-              <li key={q.regraId}>
-                {q.texto} <Selo id={q.regraId} />
-              </li>
-            ))}
-          </ul>
-          <h3>Séries por músculo na semana</h3>
+          <details className="box dobra">
+            <summary>Por que este programa ({programa.porque.length})</summary>
+            <ul className="lista">
+              {programa.porque.map((q) => (
+                <li key={q.regraId}>
+                  {q.texto} <Selo id={q.regraId} />
+                </li>
+              ))}
+            </ul>
+          </details>
+          <details className="box dobra">
+            <summary>Séries por músculo na semana</summary>
           <p className="ajuda">
             Séries indiretas contam como meia série. <Selo id="volume.serie-indireta.peso" />
           </p>
@@ -739,6 +744,7 @@ function Sobre({
               ))}
             </tbody>
           </table>
+          </details>
           {reabrirAjustes && (
             <button
               type="button"

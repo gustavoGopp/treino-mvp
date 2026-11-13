@@ -1687,3 +1687,48 @@ As outras 4 folhas (cadastro, guia, fim e semana, Meus dados e locais) estão em
 > 1. Quem fez a tela não é quem deve aprová-la.
 > 2. Regra de espaçamento só vale com conferência automática. Eram 528 valores fora da escala; hoje um comando falha se aparecer o primeiro.
 > 3. Tirar cor dá mais trabalho que pôr. A interface ficou preta e branca; a única cor é o vermelho do botão "Senti algo".
+
+## Menos texto corrido: uma linha na tela, o resto a um toque (13/11/2026)
+
+**Por quê.** Com o frontend novo no ar, o Gustavo olhou o app inteiro e achou texto corrido demais: muita explicação na tela, da abertura ao fim. Pediu um estudo com referências de aplicativos antes de mexer.
+
+**O estudo.** Medi o texto de 41 telas com a persona Ana. O treino já era enxuto (de 15 a 73 palavras por tela); o peso estava fora dele: "Sobre o programa" com 829 palavras, os termos com 793, o início com 256 antes do 1º treino, Meus dados com 216. Ao todo, 55 blocos de texto corrido com 25 palavras ou mais e 63 selos de evidência à vista. Duas pesquisas (86 fontes abertas; guias de redação e 20 aplicativos) apontaram na mesma direção: as pessoas leem uma parte pequena do texto de uma tela, o essencial vem primeiro, o detalhe fica a um toque com um rótulo que diz o que há dentro, e o que é de segurança não se esconde. O estudo está em `revisoes/frontend-novo/textos/estudo-dos-textos.md`, com os limites escritos (os estudos de leitura são de computador; nenhum app de treino pesquisado mostra nível de evidência).
+
+**O que mudou.** Em 11 telas, uma linha diz o essencial e um toque abre o resto, com o nível de evidência e a fonte dentro. Nenhuma frase de regra, selo ou fonte foi reescrita: o que saiu da tela foi inteiro para o que abre.
+- Boas-vindas: "O app orienta, não diagnostica. Sentiu dor, tontura ou mal-estar? Pare e procure avaliação.", com o aviso inteiro em "o que o app não faz".
+- Saúde: uma linha antes das 9 condições e "por que perguntamos".
+- Rotina: "Escolha até 2." e "por quê?" no lugar de 3 linhas com 2 selos.
+- Início: "Como ler o seu treino" fechado. Folha do exercício: "Por que este exercício (5 motivos)" abre no lugar.
+- "Sobre o programa": o resumo, a fase e o que pede ajuste à vista; limites, avisos, fases, porquês e a tabela, cada um a um toque.
+- Fim do treino, semana, Meus dados e Meus locais: a frase explicativa virou um toque ("o que conta", "Como ler este quadro", "o que sai daqui", "e nos outros?").
+
+![Início, folha do exercício, Sobre o programa, fim e semana: antes e depois](revisoes/frontend-novo/textos/exemplo-2-inicio-fim-semana.png)
+
+| Medida (41 telas) | Antes | Depois |
+|---|---|---|
+| Palavras à vista, somadas | 6.311 | 5.019 |
+| Blocos de texto corrido com 25 palavras ou mais | 55 | 30 |
+| Selos à vista | 63 | 16 |
+| "Sobre o programa" | 829 | 104 |
+| Início, antes do 1º treino | 256 | 105 |
+| Folha do exercício | 196 | 93 |
+
+**Três decisões anteriores mudaram, com o sim do Gustavo:** o aviso da abertura deixou de aparecer inteiro; "Como ler o seu treino" não abre mais sozinho até o 1º treino; e 47 selos saíram da linha e ficaram a um toque.
+
+**O que continua longo:** os termos, a folha da foto, o guia e as frases que vêm das regras (avisos e porquês), que só mudaram de lugar. Encurtá-las pede reescrevê-las, numa sessão própria.
+
+**Resultado:** `npm run check` com 896 testes e 157 e2e passando.
+
+**Rascunho de post para o LinkedIn**
+
+> Contei as palavras do meu app. Tinha tela com 829.
+>
+> Eu achava que explicar tudo era respeito por quem usa: cada regra de treino com o motivo, o nível de evidência e a fonte, ali na tela. O resultado era uma parede de texto que ninguém ia ler.
+>
+> A pesquisa confirmou o incômodo: as pessoas leem uma parte pequena do que está numa tela. Explicar tudo à vista é quase o mesmo que não explicar.
+>
+> A regra que adotei: uma linha diz o essencial, e um toque abre o resto. O toque tem nome ("o que sai daqui", "por que perguntamos"), não "saiba mais".
+>
+> A tela de 829 palavras ficou com 104. Nada foi apagado: cada motivo e cada fonte continuam a um toque.
+>
+> Duas coisas eu não escondi: o que a pessoa precisa para decidir, e o aviso de segurança. Esse ficou mais curto e com a ação dentro: "Sentiu dor ou tontura? Pare e procure avaliação."

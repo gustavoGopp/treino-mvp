@@ -2,7 +2,7 @@ import { execFileSync } from 'node:child_process';
 import { mkdirSync, readdirSync, writeFileSync } from 'node:fs';
 import { resolve } from 'node:path';
 import { expect, test } from '@playwright/test';
-import { abrirExercicio, folhaPronta, maisOpcoes, marcarItem, minutosPorTreino, pronto, sobreOPrograma, terminarTreino, triagemNenhuma } from '../../../tests/e2e/jornada';
+import { folhaPronta, maisOpcoes, marcarItem, minutosPorTreino, pronto, terminarTreino, triagemNenhuma } from '../../../tests/e2e/jornada';
 
 // Fotografa o app de hoje, tela por tela, com a persona fictícia Ana (tests/personas): iniciante, halteres fixos de 1 a
 // 12 kg e banco reto, 3 x 45 min, prioridade pernas e glúteos. Cada projeto do playwright.config.ts é um tamanho e um
@@ -157,13 +157,15 @@ test('o app de hoje, tela por tela, com a Ana', async ({ page }, info) => {
   await expect(page.getByRole('heading', { name: 'Seu treino', exact: true })).toBeVisible();
   await foto('06-inicio', { acao: /^Começar o treino/, inteira: true });
   await passo('início, folha do exercício', async () => {
-    const primeiro = page.getByRole('tabpanel').getByRole('button').first();
-    await abrirExercicio(page, (await primeiro.getAttribute('aria-label')) ?? (await primeiro.innerText()).split('\n')[0]!);
+    // sem o apoio dos testes (que abre os blocos para conferi-los): a foto é da folha como ela abre
+    await page.getByRole('tabpanel').getByRole('button').first().click();
+    await folhaPronta(page);
     await foto('07-folha-do-exercicio');
     await fecharFolha();
   });
   await passo('início, sobre o programa', async () => {
-    await sobreOPrograma(page);
+    await page.getByRole('button', { name: 'Sobre o programa' }).click();
+    await folhaPronta(page);
     await foto('06b-inicio-sobre-o-programa');
     await fecharFolha();
   });

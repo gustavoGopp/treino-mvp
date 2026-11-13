@@ -59,18 +59,20 @@ export function Selo({ id }: { id: string }) {
  * "por quê?" (retorno do Gustavo, 06/11: menos texto na tela). A explicação e as regras saem da tela e ficam a um toque:
  * a folha mostra o texto de apoio da tela (se houver) e, para cada regra, o texto da regra, o selo e as fontes, como a
  * folha do selo. O texto da regra não muda; só muda de lugar.
+ * `rotulo` (estudo dos textos, 13/11/2026): o toque diz o que há dentro ("o que sai daqui", "por que perguntamos");
+ * "por quê?" fica para quando é mesmo um porquê.
  */
-export function PorQue({ regras, titulo = 'Por quê', children }: { regras: string[]; titulo?: string; children?: ReactNode }) {
+export function PorQue({ regras, titulo = 'Por quê', rotulo = 'por quê?', children }: { regras: string[]; titulo?: string; rotulo?: string; children?: ReactNode }) {
   const [aberto, setAberto] = useState(false);
   return (
     <>
       <button type="button" className="porque" aria-haspopup="dialog" onClick={() => setAberto(true)}>
-        por quê?
+        {rotulo}
       </button>
       {aberto && (
         <Folha titulo={titulo} aoFechar={() => setAberto(false)} livre={() => document.querySelector<HTMLElement>('.alerta-topo')}>
           {children && <div className="porque-texto">{children}</div>}
-          <RegrasPorExtenso ids={regras.filter((id) => SELOS[id])} />
+          {regras.some((id) => SELOS[id]) && <RegrasPorExtenso ids={regras.filter((id) => SELOS[id])} />}
         </Folha>
       )}
     </>

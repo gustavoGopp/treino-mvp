@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Link, Navigate, useNavigate, useParams } from 'react-router-dom';
 import { comInventario, localPorId, localPrincipal, novoLocalId, primeiroPassoPendente } from '../../storage/esquema';
 import { useApp } from '../app/estado';
-import { NavInferior, Selo, Titulo, Topo } from '../app/ui';
+import { NavInferior, PorQue, Titulo, Topo } from '../app/ui';
 import { FormularioInventario } from '../onboarding/Inventario';
 
 // Vários locais de treino (R1b; local.treino-do-dia). Cada local tem um nome que a pessoa escolhe e o seu
@@ -24,8 +24,13 @@ export function Locais() {
       <main className="conteudo">
         <Titulo>Meus locais</Titulo>
         <p className="lede">
-          Cadastre cada lugar onde você treina. O programa é montado para o principal; nos outros, o treino do dia troca cada aparelho que não houver
-          pelo equivalente, e diz o motivo. <Selo id="local.treino-do-dia" />
+          O programa é montado para o local principal.{' '}
+          <PorQue regras={['local.treino-do-dia']} titulo="Vários locais" rotulo="e nos outros?">
+            <p>
+              Cadastre cada lugar onde você treina. O programa é montado para o principal; nos outros, o treino do dia troca cada aparelho que não
+              houver pelo equivalente, e diz o motivo.
+            </p>
+          </PorQue>
         </p>
         <p role="status" className="status">
           {aviso}

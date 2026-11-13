@@ -142,3 +142,13 @@ A pedido do Gustavo, dois revisores independentes, com o mesmo material e sem a 
 4. **O fundo cinza dos botões secundários** (13): fraco sob luz forte. Alternativa: um contorno fino na cor da borda.
 
 Os defeitos reais achados nesta rodada pelos testes, e corrigidos na tela: as barras da semana devem ter uma cor só (regra do lote 4; o estado vai pela intensidade), e o botão preso da boas-vindas cobria o que recebia o foco em tela estreita.
+
+## 7. Depois do fechamento: o estudo dos textos (13/11/2026)
+
+A pedido do Gustavo, o texto do app foi medido e 11 telas passaram a seguir a regra "uma linha na tela, o resto a um toque" (`textos/estudo-dos-textos.md`, seção 10). Isso muda três linhas da tabela dos 20 cuidados da seção 2:
+
+- **Cuidado 1 (selo só quando carrega informação):** os selos à vista caíram de 63 para 16 nas 41 telas medidas; os outros ficam dentro do que abre no toque.
+- **Cuidado 2 (sem rótulo redundante):** saíram "Nada vem marcado." e a frase da semana no fim do treino, que repetia o "1 de 3".
+- **Cuidado 6 (conteúdo real em primeiro plano):** no início, a lista de exercícios não é mais seguida por 150 palavras de definições abertas; em "Sobre o programa", o resumo e o que pede ajuste vêm antes de tudo.
+
+Verificação no estado final: `npm run check` (896 testes), `npm run test:e2e` (157) e `npm run conferir:tokens` limpos; `git diff origin/main -- src/engine src/domain` continua vazio.

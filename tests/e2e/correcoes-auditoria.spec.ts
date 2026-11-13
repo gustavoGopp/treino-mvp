@@ -200,6 +200,7 @@ test('a folha recebe as regras de .app, a de baixo fica inerte e o foco volta a 
   const deBaixo = page.getByRole('dialog').first();
   await expect(deBaixo).toBeVisible();
   // o selo de uma regra do "Por que este exercício" (frontend novo: as alternativas e o "Prefiro" vêm antes na folha)
+  await deBaixo.locator('summary', { hasText: /^Por que este exercício/ }).click();
   const selo = deBaixo.locator('ul.lista').getByRole('button', { name: /ver de onde vem$/ }).first();
   await selo.click();
   const deCima = page.getByRole('dialog', { name: 'De onde vem isto' });

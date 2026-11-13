@@ -103,10 +103,10 @@ export function Resumo() {
                   <b>A sua semana</b> <Pontos r={semana} />{' '}
                   <b className="num">
                     {semana.feitos} de {semana.planejados}
-                  </b>
-                </p>
-                <p>
-                  {semana.mensagem} <Selo id={semana.regraId} />
+                  </b>{' '}
+                  <PorQue regras={[semana.regraId]} titulo="A sua semana" rotulo="o que conta">
+                    <p>{semana.mensagem}</p>
+                  </PorQue>
                 </p>
               </>
             )}
@@ -140,8 +140,7 @@ export function Resumo() {
             ))}
           </div>
           <p className="ajuda">
-            Nada vem marcado.{' '}
-            <PorQue regras={['deload.semana-leve']} titulo="Hoje foi">
+            <PorQue regras={['deload.semana-leve']} titulo="Hoje foi" rotulo="para que serve">
               <p>Nada vem marcado. Com "pesado demais" em 2 dos últimos 3 treinos, o app sugere uma semana leve.</p>
             </PorQue>
           </p>

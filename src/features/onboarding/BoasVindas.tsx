@@ -6,7 +6,7 @@ import { Folha } from '../app/Folha';
 import { AvisoInstalar, AvisoSalvar } from '../app/avisos';
 import { TextoFotoCurto } from '../app/privacidade';
 import { Icone } from '../app/icones';
-import { Selo, Titulo, Topo } from '../app/ui';
+import { PorQue, Titulo, Topo } from '../app/ui';
 import { IconeLugar } from './lugares';
 
 // A apresentação (redesign, lote 3; a proposta B, "o seu lugar", escolhida pelo Gustavo em 06/11/2026;
@@ -46,10 +46,15 @@ export function BoasVindas() {
         <section className="nota-aviso" aria-labelledby="nao-faz">
           <Icone nome="info" />
           <div>
-            <h2 id="nao-faz">O que o app não faz</h2>
+            <h2 id="nao-faz">O app orienta, não diagnostica</h2>
             <p>
-              O app não diagnostica e não substitui um médico ou um profissional de Educação Física. É uma ferramenta de orientação, não uma
-              prescrição. Se sentir dor, tontura ou mal-estar, pare e procure avaliação. <Selo id="seguranca.sem-diagnostico" />
+              Sentiu dor, tontura ou mal-estar? Pare e procure avaliação.{' '}
+              <PorQue regras={['seguranca.sem-diagnostico']} titulo="O que o app não faz" rotulo="o que o app não faz">
+                <p>
+                  O app não diagnostica e não substitui um médico ou um profissional de Educação Física. É uma ferramenta de orientação, não
+                  uma prescrição. Se sentir dor, tontura ou mal-estar, pare e procure avaliação.
+                </p>
+              </PorQue>
             </p>
           </div>
         </section>

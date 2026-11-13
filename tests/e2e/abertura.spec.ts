@@ -51,7 +51,16 @@ test('Meus dados: a última cópia, o armazenamento negado, os termos e o canal 
   await expect(page.getByText('Última cópia: nenhuma cópia ainda')).toBeVisible();
   // No Chromium sem interação, o pedido de armazenamento persistente é negado: o app avisa (dados.persistente).
   const persistente = await page.evaluate(() => navigator.storage.persisted());
-  if (!persistente) await expect(page.getByText('Este navegador não garantiu guardar seus dados de forma permanente:')).toBeVisible();
+  // estudo dos textos (13/11/2026): o aviso é uma linha com a ação; a explicação inteira fica no "por quê?"
+  if (!persistente) {
+    const aviso = page.getByRole('note').filter({ hasText: 'Este navegador pode apagar seus dados.' });
+    await expect(aviso).toContainText('Guarde uma cópia.');
+    await aviso.getByRole('button', { name: 'por quê?' }).click();
+    const porque = page.getByRole('dialog', { name: 'O navegador e os seus dados' });
+    await expect(porque).toContainText('Este navegador não garantiu guardar seus dados de forma permanente:');
+    await page.keyboard.press('Escape');
+    await expect(porque).toBeHidden();
+  }
   // redesign, lote 5: a cópia abre numa folha a partir da linha "Guardar uma cópia"
   await page.getByRole('button', { name: /^Guardar uma cópia/ }).click();
   await folhaPronta(page);
@@ -85,9 +94,13 @@ test('boas-vindas: o texto da foto diz para onde ela vai e há link para os term
   await expect(page.getByRole('button', { name: 'Começar', exact: true })).toBeVisible();
 });
 
-test('"Como ler o seu treino" vem aberto antes do 1º treino', async ({ page }) => {
+// Estudo dos textos (13/11/2026, decisão do Gustavo): o vocabulário fica fechado, a um toque (antes abria sozinho até o
+// 1º treino). O que o teste confere continua: antes do 1º treino, as definições estão ali, com a linha da iniciante.
+test('"Como ler o seu treino" fica a um toque antes do 1º treino', async ({ page }) => {
   await ana(page);
   const comoLer = page.locator('details.como-ler');
+  await expect(comoLer).not.toHaveAttribute('open', '');
+  await comoLer.locator('summary').click();
   await expect(comoLer).toHaveAttribute('open', '');
   await expect(comoLer.getByText('Série', { exact: true })).toBeVisible();
   await expect(comoLer.getByText('RIR', { exact: true })).toBeVisible();

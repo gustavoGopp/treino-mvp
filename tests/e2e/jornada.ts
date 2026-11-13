@@ -155,13 +155,28 @@ export async function porQueDaSugestao(page: Page) {
 export async function abrirExercicio(page: Page, nome: string | RegExp) {
   await page.getByRole('tabpanel').getByRole('button', { name: nome }).first().click();
   await folhaPronta(page);
-  return page.getByRole('dialog').last();
+  const folha = page.getByRole('dialog').last();
+  // estudo dos textos (13/11/2026): os motivos ficam a um toque, num bloco que abre no lugar
+  const porque = folha.locator('summary', { hasText: /^Por que este exercício/ });
+  if (await porque.count()) await porque.click();
+  return folha;
 }
 /** Abre "Sobre o programa" (o resumo, a fase, os avisos do programa e o porquê) e devolve a folha. */
 export async function sobreOPrograma(page: Page) {
   await page.getByRole('button', { name: 'Sobre o programa' }).click();
   await folhaPronta(page);
-  return page.getByRole('dialog', { name: 'Sobre o programa' });
+  const folha = page.getByRole('dialog', { name: 'Sobre o programa' });
+  // estudo dos textos (13/11/2026): os avisos e os limites ficam a um toque, em blocos que abrem no lugar
+  for (const rotulo of [/^Avisos \(\d+\)$/, /^Limites e observações \(\d+\)$/]) {
+    const bloco = folha.locator('summary', { hasText: rotulo });
+    if (await bloco.count()) await bloco.click();
+  }
+  return folha;
+}
+
+/** Abre um bloco que abre no lugar (um `summary`), pelo começo do rótulo. */
+export async function abrirBloco(onde: Page | Locator, rotulo: RegExp | string) {
+  await onde.locator('summary', { hasText: rotulo }).click();
 }
 /** Abre a folha dos avisos pelo "Ver" (ou "Mais N avisos") da linha do aviso e devolve a folha. */
 export async function verAvisos(page: Page) {

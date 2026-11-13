@@ -55,13 +55,16 @@ export function ComoEsta({ programa, perfil, inventario }: { programa: Programa;
         <LinhaDoAchado key={`${a.gravidade}-${a.tipo}-${a.regraId}`} a={a} className="warnbox" />
       ))}
       {leves.length > 0 && (
-        <ul className="lista">
-          {leves.map((a) => (
-            <li key={`${a.gravidade}-${a.tipo}-${a.regraId}-${a.itens[0]}`}>
-              <LinhaDoAchado a={a} />
-            </li>
-          ))}
-        </ul>
+        <details className="box dobra">
+          <summary>Limites e observações ({leves.length})</summary>
+          <ul className="lista">
+            {leves.map((a) => (
+              <li key={`${a.gravidade}-${a.tipo}-${a.regraId}-${a.itens[0]}`}>
+                <LinhaDoAchado a={a} />
+              </li>
+            ))}
+          </ul>
+        </details>
       )}
     </section>
   );

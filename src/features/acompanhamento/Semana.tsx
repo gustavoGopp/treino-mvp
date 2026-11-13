@@ -142,11 +142,14 @@ export function Semana() {
               </li>
             ))}
           </ul>
+          <details className="box dobra">
+            <summary>Como ler este quadro</summary>
           <p className="ajuda">
             Conta a série com até {RIR.serieEfetivaMax} repetições de reserva e amplitude completa; a série que trabalha o músculo de forma indireta vale meia.{' '}
             {r.metaPrescrita ? 'Nesta semana, a meta é o que o programa prescreveu para ela.' : 'A meta é a do seu programa.'} <Selo id="rir.serie-efetiva" />
           </p>
           <p className="ajuda legenda-estados">A barra é o que foi feito; o traço tracejado é a meta. Cheio: na meta · médio: crescendo ({VOLUME.minimoEficazPiso} séries ou mais) · claro: mantendo · vazio: ainda sem treino na semana.</p>
+          </details>
         </section>
 
         {/* Com um treino aberto, o programa não é gerado de novo: a oferta volta quando ele terminar. */}
