@@ -90,6 +90,7 @@
 | 15 | `c15a` iniciante com bi-set ou drop set | nota | 9,5% | 16,6% | 11,2% | 9,3% | nivel:iniciante (28,4%) |
 | 15 | `c15b` bi-set entre dois multiarticulares | nota | 21,5% | 28,5% | 28,3% | 21,0% | min:30 (51,8%) |
 | 15 | `c15c` bi-set em que os dois carregam a lombar ou dependem da pegada | nota | 1,9% | 5,2% | 2,8% | 1,9% | dias:2 (8,5%) |
+| 15 | `c15d` bi-set com os dois exercícios separados na lista do dia | nota | 6,3% | 5,4% | 8,2% | 6,2% | foco:inferiores (29,1%) |
 | 16 | `c16a` iniciante com mais de 12 exercícios diferentes na semana | nota | 18,9% | 38,7% | 22,2% | 18,6% | nivel:iniciante (56,6%) |
 | 16 | `c16b` intermediário ou avançado com a média dos músculos abaixo da faixa do nível | nota | 47,9% | 51,6% | 51,5% | 47,7% | nivel:avancado (77,4%) |
 | 17 | `c17a` músculo com menos de 4 séries (ou a zero) sem aviso que o cite | defeito | 0,0% | 0,0% | 0,0% | 0,0% | dias:2 (0,0%) |
@@ -114,7 +115,7 @@
 | 12 | 5,0% | 2,5% | 5,0% | 2,5% |
 | 13 | 0,0% | 0,0% | 10,9% | 31,3% |
 | 14 | 10,6% | 2,0% | 10,6% | 2,0% |
-| 15 | 0,0% | 0,0% | 24,4% | 33,1% |
+| 15 | 0,0% | 0,0% | 25,2% | 33,6% |
 | 16 | 0,0% | 0,0% | 66,8% | 90,3% |
 | 17 | 0,0% | 0,0% | 0,0% | 0,0% |
 | 20 | 12,2% | 27,6% | 12,2% | 27,6% |
@@ -312,6 +313,7 @@ Os programas com mais cuidados em falta (10 pontos por cuidado com defeito, 1 po
    - c12a: mergulho: começa no último degrau
    - c14b: Corpo todo B sem multiarticular
    - c15b: Corpo todo A: agachamento-peso-corpo + mergulho
+   - c15d: Corpo todo A: agachamento-peso-corpo e mergulho
    - c16b: média de 8,7 séries por músculo (faixa do avancado: a partir de 12)
    - c20a: o texto diz 4 e há dia com 5
 2. **so:halteres_fixos · intermediario · 2 dias · 30 min · foco peito · sem dor** (66 pontos)
@@ -420,6 +422,7 @@ Os programas com mais cuidados em falta (10 pontos por cuidado com defeito, 1 po
    - c11a: mergulho 6 a 12
    - c12a: mergulho: começa no último degrau
    - c15b: Corpo todo A: agachamento-peso-corpo + flexao
+   - c15d: Corpo todo A: agachamento-peso-corpo e flexao
    - c16b: média de 9,5 séries por músculo (faixa do avancado: a partir de 12)
    - c20a: o texto diz 4 e há dia com 5
 8. **academia · intermediario · 4 dias · 30 min · foco inferiores · ombro 7** (57 pontos)
@@ -570,6 +573,7 @@ Os programas com mais cuidados em falta (10 pontos por cuidado com defeito, 1 po
    - c12a: mergulho: começa no último degrau
    - c14b: Corpo todo B sem multiarticular
    - c15b: Corpo todo A: agachamento-peso-corpo + mergulho
+   - c15d: Corpo todo A: agachamento-peso-corpo e mergulho
    - c16b: média de 10,7 séries por músculo (faixa do avancado: a partir de 12)
    - c20a: o texto diz 4 e há dia com 5
 17. **so:kettlebell · intermediario · 3 dias · 30 min · foco superiores · sem dor** (57 pontos)
@@ -1048,6 +1052,8 @@ O 1º programa da população com cada medida em falta (sem dor; quando só apar
   - Corpo todo A (36 min): goblet 3+bi, flexao 2+bi, remada-curvada-halteres 2+bi, stiff 2+bi, panturrilha-degrau 2, abdominal-chao 2 | Corpo todo B (31 min): afundo 3+bi, flexao 2+bi, remada-unilateral-sem-banco 2, flexao-joelho-elastico 2
 - `c15c` **bi-set em que os dois carregam a lombar ou dependem da pegada**: casa · iniciante · 2 dias · 30 min · foco nenhum · sem dor: Corpo todo A: remada-curvada-halteres + stiff
   - Corpo todo A (36 min): goblet 3+bi, flexao 2+bi, remada-curvada-halteres 2+bi, stiff 2+bi, panturrilha-degrau 2, abdominal-chao 2 | Corpo todo B (31 min): afundo 3+bi, flexao 2+bi, remada-unilateral-sem-banco 2, flexao-joelho-elastico 2
+- `c15d` **bi-set com os dois exercícios separados na lista do dia**: casa · iniciante · 2 dias · 30 min · foco pernas · sem dor: Corpo todo A: goblet e flexao
+  - Corpo todo A (32 min): goblet 2+bi, stiff 2+bi, flexao 2+bi, remada-curvada-halteres 2+bi, panturrilha-degrau 2, abdominal-chao 2 | Corpo todo B (40 min): afundo 4+bi, flexao 2+bi, remada-unilateral-sem-banco 2, flexao-joelho-elastico 4
 - `c16a` **iniciante com mais de 12 exercícios diferentes na semana**: casa · iniciante · 2 dias · 60 min · foco nenhum · sem dor: 15 exercícios diferentes na semana
   - Corpo todo A (59 min): goblet 2+bi, flexao 3+bi, remada-curvada-halteres 3+bi, stiff 3+bi, triceps-frances-halter 3+bi, elevacao-halteres 4+bi, panturrilha-degrau 4, abdominal-chao 2 | Corpo todo B (60 min): afundo 2, flexao 3, remada-unilateral-sem-banco 3, flexao-joelho-elastico 3+bi, extensao-joelho-elastico 2+bi, rosca-alternada 3+bi, crucifixo-invertido-sentado 3+bi, abdominal-invertido 2
 - `c16b` **intermediário ou avançado com a média dos músculos abaixo da faixa do nível**: casa · intermediario · 2 dias · 30 min · foco nenhum · sem dor: média de 3 séries por músculo (faixa do intermediario: a partir de 10)
