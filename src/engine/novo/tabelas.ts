@@ -3,6 +3,8 @@
 import { z } from 'zod';
 import homem from './dados/corpo-homem.json';
 import mulher from './dados/corpo-mulher.json';
+import objetosJson from './dados/objetos.json';
+import segmentosJson from './dados/segmentos.json';
 
 const TIPO = z.enum(['medida', 'derivada', 'provisoria', 'desenho']);
 const medida = z.object({
@@ -50,3 +52,22 @@ function carregar(dados: unknown): Corpo {
 
 export const CORPOS = { homem: carregar(homem), mulher: carregar(mulher) };
 export type IdCorpo = keyof typeof CORPOS;
+
+/* ---------- objetos ---------- */
+const objetosSchema = z
+  .object({ fontes: z.record(z.string()), objetos: z.record(z.object({ nome: z.string(), medidas: z.record(medida) })) })
+  .superRefine((o, ctx) => {
+    for (const [id, ob] of Object.entries(o.objetos)) for (const [k, m] of Object.entries(ob.medidas)) if (!(m.fonte in o.fontes)) ctx.addIssue({ code: 'custom', message: `objeto ${id}.${k}: fonte "${m.fonte}" não está na lista` });
+  });
+export const OBJETOS = objetosSchema.parse(objetosJson);
+/** Medida de um objeto da tabela, em cm (erro se não existir). A cena e o cartão de equipamento leem a mesma linha. */
+export function obj(id: string, medidaId: string): number {
+  const m = OBJETOS.objetos[id]?.medidas[medidaId];
+  if (!m) throw new Error(`medida "${medidaId}" do objeto "${id}" não está na tabela de objetos`);
+  return m.v;
+}
+
+/* ---------- massa de cada segmento (para o equilíbrio) ---------- */
+const seg = z.object({ extremos: z.string(), massa: z.number(), cm: z.number() });
+const segmentosSchema = z.object({ fonte: z.string().min(1), nota: z.string(), homem: z.record(seg), mulher: z.record(seg) });
+export const SEGMENTOS = segmentosSchema.parse(segmentosJson);

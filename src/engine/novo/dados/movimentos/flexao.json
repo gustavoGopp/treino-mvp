@@ -1,0 +1,42 @@
+{
+ "id": "flexao",
+ "nome": "Flexão de braço",
+ "fichaDaTecnica": "docs/pesquisa/animacoes/flexao.md",
+ "fontes": {
+  "guia": "Guia original do projeto, como registrado em docs/pesquisa/animacoes/flexao.md: consenso de treinadores",
+  "aaos": "Tabela de amplitudes da AAOS, lida em transcrição secundária (docs/revisoes/animacao-nova/pesquisa/02-articulacoes.md, A3)",
+  "desenho": "Escolha de desenho desta animação, dentro do que a ficha pede; a conferência mede o resultado"
+ },
+ "param": {
+  "cotovelo.cima": { "v": 10, "un": "graus", "selo": "consenso", "fonte": "guia", "o": "em cima: braços estendidos (sem travar)" },
+  "peito.aoChao": { "v": 5, "un": "cm", "selo": "consenso", "fonte": "guia", "o": "embaixo: peito a poucos centímetros do chão" },
+  "maos.alemDoOmbro": { "v": 6, "un": "cm", "selo": "consenso", "fonte": "guia", "o": "mãos um pouco mais abertas que os ombros (de cada lado)" },
+  "maos.abaixoDoOmbro": { "v": 13, "un": "cm", "selo": "consenso", "fonte": "guia", "o": "mãos na linha do meio do peito (distância do ombro em direção aos pés, com o corpo embaixo)" },
+  "cotovelos.doTronco": { "v": 45, "un": "graus", "selo": "consenso", "fonte": "guia", "o": "cotovelos indo para trás, a meio caminho do tronco" },
+  "pes.meiaDistancia": { "v": 8.7, "un": "cm", "selo": "consenso", "fonte": "guia", "o": "pés na largura do quadril" },
+  "tornozelo.dorsiflexao": { "v": 10, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "apoio na ponta dos pés: o tornozelo fica perto do neutro" },
+  "joelho": { "v": 4, "un": "graus", "selo": "consenso", "fonte": "guia", "o": "pernas estendidas (corpo em prancha)" },
+  "escapula.retracaoEmbaixo": { "v": 8, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "as escápulas se aproximam na descida; a ficha não dá número" },
+  "erro.quadril.queda": { "v": 16, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "erro: o quadril cai (extensão da lombar somada)" },
+  "erro.cot.doTronco": { "v": 88, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "erro: cotovelos abertos a ~90°" },
+  "erro.curta.fracao": { "v": 0.5, "un": "fração", "selo": "desenho", "fonte": "desenho", "o": "erro: desce só até a metade" }
+ },
+ "fases": [
+  { "nome": "Em cima", "tipo": "pausa", "dur": 0.4, "de": 0, "ate": 0, "respira": "INSPIRA", "tempo": "prancha", "selo": "consenso", "fonte": "guia" },
+  { "nome": "Descida · excêntrica", "tipo": "exc", "dur": 2.0, "de": 0, "ate": 1, "respira": "INSPIRA", "tempo": "~2 s", "selo": "consenso", "fonte": "guia" },
+  { "nome": "Embaixo", "tipo": "pausa", "dur": 0.35, "de": 1, "ate": 1, "respira": "FIRME", "tempo": "peito perto do chão", "selo": "consenso", "fonte": "guia" },
+  { "nome": "Subida · concêntrica", "tipo": "conc", "dur": 1.0, "de": 1, "ate": 0, "respira": "EXPIRA", "tempo": "~1 s", "selo": "consenso", "fonte": "guia" }
+ ],
+ "contatos": ["pe.R", "pe.L", "mao.R", "mao.L"],
+ "regras": [
+  { "id": "corpo-em-linha", "pede": "corpo em linha reta da cabeça aos calcanhares", "selo": "consenso", "fonte": "guia" },
+  { "id": "peito-perto-do-chao", "pede": "embaixo, o peito fica a poucos centímetros do chão", "selo": "consenso", "fonte": "guia" },
+  { "id": "cotovelos-a-meio-caminho", "pede": "cotovelos a meio caminho entre o tronco e os lados", "selo": "consenso", "fonte": "guia" }
+ ],
+ "erros": [
+  { "id": "quadril", "titulo": "Quadril cai", "vista": "lateral", "oQueMuda": "a lombar arqueia e o quadril sai da linha" },
+  { "id": "cot", "titulo": "Cotovelos abertos a 90°", "vista": "cima", "oQueMuda": "os cotovelos vão para os lados" },
+  { "id": "curta", "titulo": "Descer pouco", "vista": "lateral", "oQueMuda": "desce só até a metade" }
+ ],
+ "simetrico": true
+}

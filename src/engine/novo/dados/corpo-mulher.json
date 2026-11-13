@@ -669,17 +669,25 @@
   "braco": [
    {
     "t": 0,
-    "a": 5.34,
-    "f": 5.45,
-    "b": 5.45,
-    "tipo": "derivada",
-    "origem": "ombro: largura.bideltoide / 2 − ombro.meiaDistancia"
+    "a": 4.3,
+    "f": 4.6,
+    "b": 4.6,
+    "tipo": "desenho",
+    "origem": "topo do braço, sob o acrômio"
    },
    {
-    "t": 0.2,
-    "a": 4.9,
+    "t": 0.14,
+    "a": 5.45,
     "f": 5.34,
-    "b": 5.12,
+    "b": 5.23,
+    "tipo": "derivada",
+    "origem": "deltoide no ponto mais largo: largura.bideltoide / 2 − ombro.meiaDistancia"
+   },
+   {
+    "t": 0.27,
+    "a": 4.8,
+    "f": 5.18,
+    "b": 5.01,
     "tipo": "desenho",
     "origem": "deltoide, descendo para o braço"
    },
@@ -857,8 +865,8 @@
   {
    "alt": 78.3,
    "a": 8.5,
-   "prof": 14,
-   "tras": 0.52,
+   "prof": 20,
+   "tras": 0.47,
    "tipo": "desenho",
    "origem": "altura.virilha; largura e profundidade de desenho (entre as coxas)"
   },

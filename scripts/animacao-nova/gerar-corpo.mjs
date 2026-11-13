@@ -128,8 +128,9 @@ const rB = R('raio.bracoFletido') * R('raio.bracoRelaxadoSobreFletido');
 const rO = R('largura.bideltoide') / 2 - R('ombro.meiaDistancia');
 const secoes = {
   braco: [
-    sec(0, rO * 0.98, rO, rO, 'ombro: largura.bideltoide / 2 − ombro.meiaDistancia', 'derivada'),
-    sec(0.2, rO * 0.9, rO * 0.98, rO * 0.94, 'deltoide, descendo para o braço', 'desenho'),
+    sec(0, 4.3, 4.6, 4.6, 'topo do braço, sob o acrômio', 'desenho'),
+    sec(0.14, rO, rO * 0.98, rO * 0.96, 'deltoide no ponto mais largo: largura.bideltoide / 2 − ombro.meiaDistancia', 'derivada'),
+    sec(0.27, rO * 0.88, rO * 0.95, rO * 0.92, 'deltoide, descendo para o braço', 'desenho'),
     sec(0.42, rB * 0.9, rB * 1.08, rB * 1.02, 'raio.bracoFletido × razão relaxado/contraído; mais fundo que largo', 'derivada'),
     sec(0.8, 3.7, 3.9, 4.0, 'acima do cotovelo', 'desenho'),
     sec(1, 4.1, 3.3, 3.9, 'cotovelo (epicôndilos)', 'desenho'),
@@ -164,7 +165,7 @@ const secoes = {
 // O centro do anel é a linha da coluna; `tras` é a fração da profundidade que fica atrás dela (escolha de desenho).
 const tr = (alt, larg, prof, tras, origem, tipo = 'medida') => ({ alt: r1(alt), a: r2(larg / 2), prof: r2(prof), tras, tipo, origem });
 const tronco = [
-  tr(yVirilha, 17, 14, 0.52, 'altura.virilha; largura e profundidade de desenho (entre as coxas)', 'desenho'),
+  tr(yVirilha, 17, 20, 0.47, 'altura.virilha; largura e profundidade de desenho (entre as coxas)', 'desenho'),
   tr(yNadega, R('largura.quadril'), R('prof.nadega'), 0.5, 'largura.quadril e prof.nadega em altura.nadega'),
   tr((yCrista + yTroc) / 2 + 3, (R('largura.quadril') + R('largura.cintura')) / 2 - 1, (R('prof.nadega') + R('prof.cintura')) / 2 - 0.5, 0.4, 'entre o quadril e a cintura', 'desenho'),
   tr(yCintura, R('largura.cintura'), R('prof.cintura'), 0.36, 'largura.cintura e prof.cintura em altura.cintura'),

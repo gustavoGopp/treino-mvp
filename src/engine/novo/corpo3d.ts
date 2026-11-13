@@ -23,11 +23,13 @@ export interface Volume {
   junta0?: boolean;
   junta1?: boolean;
 }
-export type IdParte = 'tronco' | 'cabeca' | 'rosto' | `braco${Lado}` | `antebraco${Lado}` | `mao${Lado}` | `coxa${Lado}` | `perna${Lado}` | `pe${Lado}`;
+export type IdParte = 'tronco' | 'cabeca' | 'nariz' | 'orelhaR' | 'orelhaL' | 'olhoR' | 'olhoL' | `braco${Lado}` | `antebraco${Lado}` | `mao${Lado}` | `coxa${Lado}` | `perna${Lado}` | `pe${Lado}`;
 export interface Parte {
   id: IdParte;
   lado?: Lado;
   volumes: Volume[];
+  /** Marca chapada, sem contorno (os olhos). */
+  marca?: boolean;
 }
 /** Esfera que funde dois segmentos numa articulação. */
 export interface Junta {
@@ -126,7 +128,7 @@ function aneisDoTronco(e: Esq): Anel[] {
   });
 }
 
-function cabeca(e: Esq): { cranio: Volume[]; rosto: Volume[] } {
+function cabeca(e: Esq): { cranio: Volume[]; nariz: Volume; orelhaR: Volume; orelhaL: Volume; olhoR: Volume; olhoL: Volume } {
   const c = e.corpo,
     r = e.cabeca;
   const topo = c.m('cabeca.tragionAoTopo'),
@@ -143,8 +145,9 @@ function cabeca(e: Esq): { cranio: Volume[]; rosto: Volume[] } {
   const yN = queixo + c.m('cabeca.mentoAoNasio') * 0.62;
   const base = noRef(r, [0, yN, meioC * 0.86]),
     ponta = noRef(r, [0, yN - 1.2, meioC * 0.86 + 2.4]);
-  const rn: Ref = { o: base, x: r.x, y: norm(cross(r.x, norm([ponta[0] - base[0], ponta[1] - base[1], ponta[2] - base[2]]))), z: r.y };
-  const nariz: Volume = { aneis: [{ c: base, x: rn.x, z: rn.z, a: 1.5, f: 2.2, b: 1.6 }, { c: ponta, x: rn.x, z: rn.z, a: 1.0, f: 0.9, b: 0.9 }] };
+  const eixoN = norm([ponta[0] - base[0], ponta[1] - base[1], ponta[2] - base[2]]);
+  const zN = norm(cross(eixoN, r.x));
+  const nariz: Volume = { aneis: [{ c: base, x: r.x, z: zN, a: 1.5, f: 2.0, b: 1.3 }, { c: lerp(base, ponta, 0.7), x: r.x, z: zN, a: 1.3, f: 1.1, b: 0.9 }, { c: ponta, x: r.x, z: zN, a: 0.6, f: 0.5, b: 0.4 }], junta0: true };
   // orelhas: um disco achatado de cada lado, na altura do tragion (a base do crânio), com a altura medida
   const hO = c.m('cabeca.orelhaAltura') / 2;
   const orelhas = [-1, 1].map((s): Volume => {
@@ -152,7 +155,13 @@ function cabeca(e: Esq): { cranio: Volume[]; rosto: Volume[] } {
     const A = (dx: number, k: number): Anel => ({ c: add(o, mul(r.x, s * dx)), x: r.z, z: r.y, a: hO * 0.5 * k, f: hO * k, b: hO * k });
     return { aneis: [A(-0.4, 0.75), A(0.4, 1), A(1.1, 0.6)] };
   });
-  return { cranio: [{ aneis: aneis.reverse(), junta0: true }], rosto: [nariz, ...orelhas] };
+  // olhos: duas marcas na frente do rosto, na altura do tragion; dão a direção do olhar (o pescoço neutro se lê por eles)
+  const olhos = [-1, 1].map((s): Volume => {
+    const o = noRef(r, [s * meiaL * 0.42, hO * 0.25, 0.6 + meioC * 0.9]);
+    const A = (dz: number, k: number): Anel => ({ c: add(o, mul(r.z, dz)), x: r.x, z: r.y, a: 1.25 * k, f: 0.95 * k, b: 0.95 * k });
+    return { aneis: [A(-0.6, 1), A(0.5, 0.8)] };
+  });
+  return { cranio: [{ aneis: aneis.reverse(), junta0: true }], nariz, orelhaR: orelhas[0]!, orelhaL: orelhas[1]!, olhoR: olhos[0]!, olhoL: olhos[1]! };
 }
 
 function pescoco(e: Esq): Volume {
@@ -283,8 +292,13 @@ export function corpo3d(e: Esq): Corpo3d {
   partes.push({ id: 'tronco', volumes: [{ aneis: reamostrar(aneisDoTronco(e), 3) }, pescoco(e)] });
   const cab = cabeca(e);
   partes.push({ id: 'cabeca', volumes: cab.cranio });
-  partes.push({ id: 'rosto', volumes: cab.rosto });
-  const rOmbro = m('largura.bideltoide') / 2 - m('ombro.meiaDistancia');
+  partes.push({ id: 'nariz', volumes: [cab.nariz] });
+  partes.push({ id: 'orelhaR', volumes: [cab.orelhaR] });
+  partes.push({ id: 'orelhaL', volumes: [cab.orelhaL] });
+  partes.push({ id: 'olhoR', volumes: [cab.olhoR], marca: true });
+  partes.push({ id: 'olhoL', volumes: [cab.olhoL], marca: true });
+  // a esfera do ombro arredonda o topo do braço e chega só até a altura do acrômio (o deltoide alarga mais abaixo)
+  const rOmbro = m('ombro.centroAbaixoDoAcromio') + 0.6;
   for (const k of ['R', 'L'] as const) {
     const L = e.lado[k],
       s = sinal(k);

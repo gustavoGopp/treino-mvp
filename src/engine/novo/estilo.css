@@ -21,3 +21,28 @@
 .novo .ferro{fill:var(--n-ferro)}.novo .o-c.ferro{stroke:var(--n-cont)}
 .novo .esc{fill:var(--n-obj-esc)}
 .novo .chao{fill:var(--n-chao)}
+/* objetos por material */
+.novo .o-p.aco,.novo .o-cx.aco{fill:var(--n-obj-esc)}
+.novo .o-p.ferro,.novo .o-cx.ferro,.novo .o-fc0.ferro,.novo .o-fc1.ferro,.novo .o-fc2.ferro{fill:var(--n-ferro)}
+.novo .o-fc0.ferro2,.novo .o-fc1.ferro2,.novo .o-fc2.ferro2,.novo .o-cx.ferro2{fill:var(--n-obj-esc)}
+.novo .o-cx.esc{fill:var(--n-obj-esc)}
+.novo .o-fc0.esc{fill:color-mix(in srgb,var(--n-obj-esc) 78%,var(--n-fundo))}.novo .o-fc1.esc{fill:var(--n-obj-esc)}.novo .o-fc2.esc{fill:color-mix(in srgb,var(--n-obj-esc) 80%,var(--n-cont))}
+.novo .o-cx.estofado,.novo .o-fc1.estofado{fill:var(--n-obj-1)}
+.novo .o-cx.tapete,.novo .o-fc0.tapete,.novo .o-fc1.tapete,.novo .o-fc2.tapete{fill:var(--n-obj-2)}
+.novo .o-f.cabo{stroke:var(--n-cabo)}
+.novo .o-f.fita{stroke:var(--n-cont)}
+.novo .o-f.risco{stroke:var(--n-fundo);opacity:.45}
+/* fantasma do movimento certo (modo Erros) e figura do erro */
+.novo .n-c-f,.novo .n-cl-f{fill:none;stroke:var(--n-cont-l);stroke-width:calc(var(--n-traco)*.6);vector-effect:non-scaling-stroke;stroke-dasharray:3 3}
+.novo .n-p-f,.novo .n-pl-f{fill:var(--n-fundo);opacity:.7}
+.novo .n-s-f,.novo .n-sl-f{fill:none}
+.novo .n-c-e,.novo .n-cl-e{fill:none;stroke:var(--n-err);stroke-width:var(--n-traco);vector-effect:non-scaling-stroke;stroke-linejoin:round;stroke-linecap:round}
+.novo .n-p-e{fill:color-mix(in srgb,var(--n-err) 26%,var(--n-pele))}
+.novo .n-pl-e{fill:color-mix(in srgb,var(--n-err) 16%,var(--n-pele-l))}
+.novo .n-s-e,.novo .n-sl-e{fill:var(--n-sombra)}
+/* trajetória */
+.novo .n-traj{fill:none;stroke:var(--n-traj);stroke-width:2.2px;vector-effect:non-scaling-stroke;stroke-linecap:round;stroke-linejoin:round}
+.novo .n-traj2{stroke-dasharray:5 4;stroke-width:1.6px}
+.novo .n-traj-p{fill:var(--n-traj)}
+.novo .n-m,.novo .n-m-e{fill:var(--n-cont)}
+.novo .n-m-f{fill:none}

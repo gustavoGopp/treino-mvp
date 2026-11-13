@@ -1,0 +1,24 @@
+{
+ "fonte": "de Leva P. Adjustments to Zatsiorsky-Seluyanov's segment inertia parameters. J Biomech 1996;29(9):1223-1230. Tabelas lidas na cópia do repositório BMClab/BMC (CC BY 4.0), arquivos BSPmale_ZdeLeva.txt e BSPfemale_ZdeLeva.txt, em 12/11/2026; o artigo original não abriu.",
+ "nota": "massa = fração da massa do corpo; cm = posição do centro de massa a partir do primeiro extremo, como fração do comprimento do segmento",
+ "homem": {
+  "cabeca": { "extremos": "topo da cabeça → ponto médio dos ângulos da mandíbula", "massa": 0.0694, "cm": 0.5976 },
+  "tronco": { "extremos": "supraesternal → ponto médio dos quadris", "massa": 0.4346, "cm": 0.4486 },
+  "braco": { "extremos": "ombro → cotovelo", "massa": 0.0271, "cm": 0.5772 },
+  "antebraco": { "extremos": "cotovelo → punho", "massa": 0.0162, "cm": 0.4574 },
+  "mao": { "extremos": "punho → 3º metacarpo", "massa": 0.0061, "cm": 0.79 },
+  "coxa": { "extremos": "quadril → joelho", "massa": 0.1416, "cm": 0.4095 },
+  "perna": { "extremos": "joelho → tornozelo", "massa": 0.0433, "cm": 0.4395 },
+  "pe": { "extremos": "calcanhar → ponta do pé", "massa": 0.0137, "cm": 0.4415 }
+ },
+ "mulher": {
+  "cabeca": { "extremos": "topo da cabeça → ponto médio dos ângulos da mandíbula", "massa": 0.0668, "cm": 0.5894 },
+  "tronco": { "extremos": "supraesternal → ponto médio dos quadris", "massa": 0.4257, "cm": 0.4151 },
+  "braco": { "extremos": "ombro → cotovelo", "massa": 0.0255, "cm": 0.5754 },
+  "antebraco": { "extremos": "cotovelo → punho", "massa": 0.0138, "cm": 0.4559 },
+  "mao": { "extremos": "punho → 3º metacarpo", "massa": 0.0056, "cm": 0.7474 },
+  "coxa": { "extremos": "quadril → joelho", "massa": 0.1478, "cm": 0.3612 },
+  "perna": { "extremos": "joelho → tornozelo", "massa": 0.0481, "cm": 0.4352 },
+  "pe": { "extremos": "calcanhar → ponta do pé", "massa": 0.0129, "cm": 0.4014 }
+ }
+}

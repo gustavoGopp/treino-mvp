@@ -147,17 +147,21 @@ export function contorno(cam: Camera, vol: Volume, luz: V3 | null): Contorno {
   else traco += Ls(fim) + `L${f1(Dr[0]![0])} ${f1(Dr[0]![1])}` + suave(Dr);
   if (!vol.junta0) traco += Ls(ini) + (vol.junta1 ? `L${f1(E[0]![0])} ${f1(E[0]![1])}` : 'Z');
   // escorço: onde dois anéis vizinhos quase se sobrepõem na tela, a silhueta é o próprio anel
+  const raioMax = Math.max(...A.map((an) => Math.max(an.a, an.f, an.b)));
+  const todoEmEscorco = compTela < raioMax * 0.8;
+  const iMaior = A.findIndex((an) => Math.max(an.a, an.f, an.b) === raioMax);
   for (let i = 0; i < n; i++) {
     const viz = c2[i === n - 1 ? i - 1 : i + 1]!;
     const raio = Math.max(A[i]!.a, A[i]!.f, A[i]!.b);
     const passo = Math.hypot(viz[0] - c2[i]![0], viz[1] - c2[i]![1]);
     const esperado = Math.hypot(...(sub(A[i === n - 1 ? i - 1 : i + 1]!.c, A[i]!.c) as [number, number, number]));
-    if (passo < 0.55 * Math.min(raio, esperado) || compTela < raio * 0.8) {
+    if (passo < 0.55 * Math.min(raio, esperado) || todoEmEscorco) {
       const q = anelInteiro(i);
       const p = M(q[0]!) + Ls(q.slice(1)) + 'Z';
       fill += p;
       const ponta = i === 0 || i === n - 1;
-      if (!ponta || (i === 0 ? !vol.junta0 : !vol.junta1) || compTela < raio * 0.8) traco += p;
+      // de frente para o eixo, só o maior anel é silhueta; os outros ficam por dentro dele
+      if (todoEmEscorco ? i === iMaior : !ponta || (i === 0 ? !vol.junta0 : !vol.junta1)) traco += p;
     }
   }
   for (const p of [...E, ...D, ...fim, ...ini]) {
@@ -238,8 +242,8 @@ export function desenharCorpo(cam: Camera, c3: Corpo3d, o: OpcoesCorpo): CorpoDe
     const lg = longe(p) ? 'l' : '';
     const fill = cs.map((c) => c.fill).join('');
     const cx = cs.reduce<[number, number, number, number]>((a, c) => [Math.min(a[0], c.cx[0]), Math.min(a[1], c.cx[1]), Math.max(a[2], c.cx[2]), Math.max(a[3], c.cx[3])], [1e9, 1e9, -1e9, -1e9]);
-    let s = `<path class="n-c${lg}${suf}" d="${cs.map((c) => c.traco).join('')}"/><path class="n-p${lg}${suf}" d="${fill}"/>`;
-    if (luz) s += `<path class="n-s${lg}${suf}" d="${cs.map((c) => c.sombra).join('')}"/>`;
+    let s = p.marca ? `<path class="n-m${suf}" d="${fill}"/>` : `<path class="n-c${lg}${suf}" d="${cs.map((c) => c.traco).join('')}"/><path class="n-p${lg}${suf}" d="${fill}"/>`;
+    if (luz && !p.marca) s += `<path class="n-s${lg}${suf}" d="${cs.map((c) => c.sombra).join('')}"/>`;
     itens.push({ d, camada: 1, s, cx });
     partes[p.id] = { d, fill, longe: !!lg };
   }
