@@ -121,10 +121,14 @@ export function misturar(a, b, t) {
   const n = (h, i) => parseInt(h.slice(1 + i * 2, 3 + i * 2), 16);
   return '#' + [0, 1, 2].map((i) => Math.round(n(a, i) + (n(b, i) - n(a, i)) * t).toString(16).padStart(2, '0')).join('');
 }
-/** Desenha `conteudo` só por fora das formas dadas. */
+/** Desenha `conteudo` só por fora das formas dadas (um recorte por forma, para as formas poderem se sobrepor). */
 export function foraDe(ds, conteudo) {
-  const id = novoId('for');
-  return `<clipPath id="${id}"><path clip-rule="evenodd" d="M-999 -999H999V999H-999Z ${ds.join(' ')}"/></clipPath><g clip-path="url(#${id})">${conteudo}</g>`;
+  let out = conteudo;
+  for (const d of ds) {
+    const id = novoId('for');
+    out = `<clipPath id="${id}"><path clip-rule="evenodd" d="M-999 -999H999V999H-999Z ${d}"/></clipPath><g clip-path="url(#${id})">${out}</g>`;
+  }
+  return out;
 }
 /** Desenha `conteudo` só por dentro das formas dadas (lista de caminhos). */
 export function recorte(ds, conteudo) {
@@ -147,8 +151,7 @@ export function grupo(formas, { contorno = null, semLinhaSobre = null, linhaSoSo
   const traco = (cor, esp) => formas.map((f) => `<path d="${f.d}" fill="${cor}" stroke="${cor}" stroke-width="${r1(esp * 2)}" stroke-linejoin="round"/>`).join('');
   if (contorno) {
     if (semLinhaSobre?.length) {
-      const id = novoId('fora');
-      s += `<clipPath id="${id}"><path clip-rule="evenodd" d="M-999 -999H999V999H-999Z ${semLinhaSobre.join(' ')}"/></clipPath><g clip-path="url(#${id})">${traco(contorno.cor, contorno.esp)}</g>`;
+      s += foraDe(semLinhaSobre, traco(contorno.cor, contorno.esp));
     } else s += traco(contorno.cor, contorno.esp);
   } else if (linhaSoSobre) {
     const id = novoId('sobre');
