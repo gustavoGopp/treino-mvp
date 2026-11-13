@@ -1,0 +1,23 @@
+/* Motor novo (protótipos da animação nova): cores e traço do corpo e dos objetos. Entra no src/styles.css na etapa 2. */
+.novo{--n-pele:#c6d0d7;--n-pele-l:#e3e8ec;--n-cont:#1a2833;--n-cont-l:#9aa8b3;--n-sombra:rgba(26,40,51,.17);--n-fundo:#f7f9fa;
+  --n-obj:#dfe5e9;--n-obj-0:#eef2f4;--n-obj-1:#d5dde2;--n-obj-2:#b4c0c8;--n-obj-esc:#6f7f8b;--n-ferro:#27343f;--n-cabo:#4e5a64;--n-chao:#e9edf0;
+  --n-mp:#d62e26;--n-ms:#ec961c;--n-mb:#7a1712;--n-err:#d1342b;--n-guia:#0a7c72;--n-traj:#2457d6;--n-traco:2.4px;background:var(--n-fundo)}
+.novo.escuro{--n-pele:#5f6f7a;--n-pele-l:#2f3b44;--n-cont:#e7eef2;--n-cont-l:#56656f;--n-sombra:rgba(0,0,0,.3);--n-fundo:#10171b;
+  --n-obj:#2c3740;--n-obj-0:#3a4751;--n-obj-1:#2c3740;--n-obj-2:#1f2930;--n-obj-esc:#7d8c97;--n-ferro:#cfd8de;--n-cabo:#a3b3bf;--n-chao:#172026;
+  --n-mp:#f45248;--n-ms:#f5aa3c;--n-mb:#ffd9d4;--n-err:#f2564c;--n-guia:#2bb3a6;--n-traj:#6c96ff}
+.novo.mini{--n-traco:1.6px}
+.novo .n-c,.novo .n-cl,.novo .o-c{fill:none;stroke:var(--n-cont);stroke-width:var(--n-traco);vector-effect:non-scaling-stroke;stroke-linejoin:round;stroke-linecap:round}
+.novo .n-cl{stroke:var(--n-cont-l)}
+.novo .n-p{fill:var(--n-pele)}
+.novo .n-pl{fill:var(--n-pele-l)}
+.novo .n-s,.novo .n-sl,.novo .o-s{fill:var(--n-sombra)}
+.novo .n-sl{opacity:.5}
+.novo .o-p{fill:var(--n-obj)}
+.novo .o-cx{fill:var(--n-obj);stroke:var(--n-cont);stroke-width:calc(var(--n-traco)*.5);vector-effect:non-scaling-stroke;stroke-linejoin:round}
+.novo .o-fc0{fill:var(--n-obj-0)}.novo .o-fc1{fill:var(--n-obj-1)}.novo .o-fc2{fill:var(--n-obj-2)}
+.novo .o-fc0,.novo .o-fc1,.novo .o-fc2{stroke:var(--n-cont);stroke-width:calc(var(--n-traco)*.25);vector-effect:non-scaling-stroke;stroke-linejoin:round}
+.novo .o-e{fill:var(--n-obj);stroke:var(--n-cont);stroke-width:calc(var(--n-traco)*.5);vector-effect:non-scaling-stroke}
+.novo .o-f{fill:none;stroke:var(--n-cabo);stroke-linecap:round;stroke-linejoin:round}
+.novo .ferro{fill:var(--n-ferro)}.novo .o-c.ferro{stroke:var(--n-cont)}
+.novo .esc{fill:var(--n-obj-esc)}
+.novo .chao{fill:var(--n-chao)}

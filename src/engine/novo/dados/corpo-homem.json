@@ -1,0 +1,930 @@
+{
+ "id": "ansur2-homem-imc-normal",
+ "populacao": "ANSUR II (militares dos EUA, 2012), homens, IMC de 18,5 a 24,9; n = 1061; média de cada medida",
+ "fontes": {
+  "ansur2": "Gordon CC et al. 2012 Anthropometric Survey of U.S. Army Personnel (ANSUR II). CSV públicos: https://www.openlab.psu.edu/ansur2/ (médias calculadas em 12/11/2026; scripts/animacao-nova/dados/ansur2-medias.json)",
+  "nasa-rp1024": "NASA Reference Publication 1024, Anthropometric Source Book, vol. I (1978), cap. IV. https://ntrs.nasa.gov/citations/19790003563",
+  "drillis-contini-via-cnb2025": "Drillis & Contini 1966, lido na figura reproduzida por Almeida et al., 11º Congresso Nacional de Biomecânica, 2025 (fonte secundária)",
+  "ludewig2009": "Ludewig PM et al. Motion of the shoulder complex during multiplanar humeral elevation. J Bone Joint Surg Am 2009;91(2):378-389 (lido no PMC por resumo automático: conferir os números)",
+  "gray1918": "Gray H. Anatomy of the Human Body, 20ª ed., 1918 (domínio público)",
+  "a-conferir": "Sem fonte lida ainda: valor provisório, listado pela conferência"
+ },
+ "medidas": {
+  "estatura": {
+   "v": 175.8,
+   "un": "cm",
+   "tipo": "medida",
+   "fonte": "ansur2",
+   "onde": "coluna stature"
+  },
+  "altura.maleolo": {
+   "v": 7.2,
+   "un": "cm",
+   "tipo": "medida",
+   "fonte": "ansur2",
+   "onde": "coluna lateralmalleolusheight",
+   "nota": "altura do eixo do tornozelo (Dempster, via NASA RP-1024: nível da ponta do maléolo lateral)"
+  },
+  "altura.joelho": {
+   "v": 49.3,
+   "un": "cm",
+   "tipo": "medida",
+   "fonte": "ansur2",
+   "onde": "coluna lateralfemoralepicondyleheight",
+   "nota": "altura do eixo do joelho (passa pelos epicôndilos)"
+  },
+  "altura.trocanter": {
+   "v": 90.6,
+   "un": "cm",
+   "tipo": "medida",
+   "fonte": "ansur2",
+   "onde": "coluna trochanterionheight",
+   "nota": "altura do centro do quadril (Dempster, via NASA RP-1024: nível da ponta do trocânter maior)"
+  },
+  "altura.cristaIliaca": {
+   "v": 106.5,
+   "un": "cm",
+   "tipo": "medida",
+   "fonte": "ansur2",
+   "onde": "coluna iliocristaleheight"
+  },
+  "altura.cintura": {
+   "v": 106.5,
+   "un": "cm",
+   "tipo": "medida",
+   "fonte": "ansur2",
+   "onde": "coluna waistheightomphalion"
+  },
+  "altura.costela10": {
+   "v": 112,
+   "un": "cm",
+   "tipo": "medida",
+   "fonte": "ansur2",
+   "onde": "coluna tenthribheight"
+  },
+  "altura.peito": {
+   "v": 129.4,
+   "un": "cm",
+   "tipo": "medida",
+   "fonte": "ansur2",
+   "onde": "coluna chestheight"
+  },
+  "altura.axila": {
+   "v": 133.2,
+   "un": "cm",
+   "tipo": "medida",
+   "fonte": "ansur2",
+   "onde": "coluna axillaheight"
+  },
+  "altura.supraesternal": {
+   "v": 143.5,
+   "un": "cm",
+   "tipo": "medida",
+   "fonte": "ansur2",
+   "onde": "coluna suprasternaleheight"
+  },
+  "altura.acromio": {
+   "v": 143.6,
+   "un": "cm",
+   "tipo": "medida",
+   "fonte": "ansur2",
+   "onde": "coluna acromialheight"
+  },
+  "altura.cervical": {
+   "v": 151.5,
+   "un": "cm",
+   "tipo": "medida",
+   "fonte": "ansur2",
+   "onde": "coluna cervicaleheight",
+   "nota": "ponta do processo espinhoso de C7, na pele"
+  },
+  "altura.virilha": {
+   "v": 85.3,
+   "un": "cm",
+   "tipo": "medida",
+   "fonte": "ansur2",
+   "onde": "coluna crotchheight"
+  },
+  "altura.nadega": {
+   "v": 89.3,
+   "un": "cm",
+   "tipo": "medida",
+   "fonte": "ansur2",
+   "onde": "coluna buttockheight"
+  },
+  "altura.punho": {
+   "v": 84,
+   "un": "cm",
+   "tipo": "medida",
+   "fonte": "ansur2",
+   "onde": "coluna wristheight"
+  },
+  "cabeca.tragionAoTopo": {
+   "v": 13,
+   "un": "cm",
+   "tipo": "medida",
+   "fonte": "ansur2",
+   "onde": "coluna tragiontopofhead"
+  },
+  "perna.comp": {
+   "v": 42.1,
+   "un": "cm",
+   "tipo": "derivada",
+   "fonte": "ansur2",
+   "onde": "altura.joelho − altura.maleolo"
+  },
+  "coxa.comp": {
+   "v": 41.3,
+   "un": "cm",
+   "tipo": "derivada",
+   "fonte": "ansur2",
+   "onde": "altura.trocanter − altura.joelho"
+  },
+  "braco.acromioRadial": {
+   "v": 33.4,
+   "un": "cm",
+   "tipo": "medida",
+   "fonte": "ansur2",
+   "onde": "coluna acromionradialelength"
+  },
+  "braco.comp": {
+   "v": 30.5,
+   "un": "cm",
+   "tipo": "medida",
+   "fonte": "nasa-rp1024",
+   "onde": "cap. IV, tabela 4: elo do braço, percentil 50",
+   "nota": "do centro do ombro ao centro do cotovelo; população projetada, não o mesmo recorte do ANSUR"
+  },
+  "ombro.centroAbaixoDoAcromio": {
+   "v": 3.7,
+   "un": "cm",
+   "tipo": "derivada",
+   "fonte": "ansur2+nasa-rp1024",
+   "onde": "braco.acromioRadial + 0,8 (eixo do cotovelo 8 mm acima do radial: Dempster via NASA RP-1024) − braco.comp"
+  },
+  "antebraco.comp": {
+   "v": 26.8,
+   "un": "cm",
+   "tipo": "medida",
+   "fonte": "ansur2",
+   "onde": "coluna radialestylionlength",
+   "nota": "do radial ao estiloide: usado como distância do eixo do cotovelo ao centro do punho"
+  },
+  "mao.comp": {
+   "v": 19.2,
+   "un": "cm",
+   "tipo": "medida",
+   "fonte": "ansur2",
+   "onde": "coluna handlength"
+  },
+  "mao.palma": {
+   "v": 11.5,
+   "un": "cm",
+   "tipo": "medida",
+   "fonte": "ansur2",
+   "onde": "coluna palmlength"
+  },
+  "mao.largura": {
+   "v": 8.6,
+   "un": "cm",
+   "tipo": "medida",
+   "fonte": "ansur2",
+   "onde": "coluna handbreadth"
+  },
+  "mao.punhoAoCentroDaPegada": {
+   "v": 6.9,
+   "un": "cm",
+   "tipo": "derivada",
+   "fonte": "ansur2",
+   "onde": "forearmcenterofgriplength − radialestylionlength − 1,0 (recuo do olécrano atrás do eixo: provisório)"
+  },
+  "pe.comp": {
+   "v": 26.9,
+   "un": "cm",
+   "tipo": "medida",
+   "fonte": "ansur2",
+   "onde": "coluna footlength"
+  },
+  "pe.calcanharABola": {
+   "v": 19.9,
+   "un": "cm",
+   "tipo": "medida",
+   "fonte": "ansur2",
+   "onde": "coluna balloffootlength",
+   "nota": "do calcanhar às cabeças dos metatarsos: onde o pé dobra"
+  },
+  "pe.largura": {
+   "v": 9.9,
+   "un": "cm",
+   "tipo": "medida",
+   "fonte": "ansur2",
+   "onde": "coluna footbreadthhorizontal"
+  },
+  "pe.larguraCalcanhar": {
+   "v": 7,
+   "un": "cm",
+   "tipo": "medida",
+   "fonte": "ansur2",
+   "onde": "coluna heelbreadth"
+  },
+  "pe.calcanharAoTornozelo": {
+   "v": 6.7,
+   "un": "cm",
+   "tipo": "provisoria",
+   "fonte": "a-conferir",
+   "onde": "posição do tornozelo ao longo do pé (25% do comprimento): sem fonte lida"
+  },
+  "tornozelo.larguraMaleolos": {
+   "v": 7.3,
+   "un": "cm",
+   "tipo": "medida",
+   "fonte": "ansur2",
+   "onde": "coluna bimalleolarbreadth"
+  },
+  "largura.biacromial": {
+   "v": 40.8,
+   "un": "cm",
+   "tipo": "medida",
+   "fonte": "ansur2",
+   "onde": "coluna biacromialbreadth"
+  },
+  "largura.bideltoide": {
+   "v": 47.8,
+   "un": "cm",
+   "tipo": "medida",
+   "fonte": "ansur2",
+   "onde": "coluna bideltoidbreadth"
+  },
+  "largura.peito": {
+   "v": 27.6,
+   "un": "cm",
+   "tipo": "medida",
+   "fonte": "ansur2",
+   "onde": "coluna chestbreadth"
+  },
+  "prof.peito": {
+   "v": 22.6,
+   "un": "cm",
+   "tipo": "medida",
+   "fonte": "ansur2",
+   "onde": "coluna chestdepth"
+  },
+  "largura.cintura": {
+   "v": 29,
+   "un": "cm",
+   "tipo": "medida",
+   "fonte": "ansur2",
+   "onde": "coluna waistbreadth"
+  },
+  "prof.cintura": {
+   "v": 20.3,
+   "un": "cm",
+   "tipo": "medida",
+   "fonte": "ansur2",
+   "onde": "coluna waistdepth"
+  },
+  "largura.quadril": {
+   "v": 32.4,
+   "un": "cm",
+   "tipo": "medida",
+   "fonte": "ansur2",
+   "onde": "coluna hipbreadth"
+  },
+  "prof.nadega": {
+   "v": 21.7,
+   "un": "cm",
+   "tipo": "medida",
+   "fonte": "ansur2",
+   "onde": "coluna buttockdepth"
+  },
+  "largura.bicristal": {
+   "v": 26.6,
+   "un": "cm",
+   "tipo": "medida",
+   "fonte": "ansur2",
+   "onde": "coluna bicristalbreadth"
+  },
+  "ombro.compDoOmbro": {
+   "v": 15,
+   "un": "cm",
+   "tipo": "medida",
+   "fonte": "ansur2",
+   "onde": "coluna shoulderlength",
+   "nota": "do lado do pescoço ao acrômio, pela pele"
+  },
+  "circ.pescoco": {
+   "v": 37.3,
+   "un": "cm",
+   "tipo": "medida",
+   "fonte": "ansur2",
+   "onde": "coluna neckcircumference"
+  },
+  "raio.pescoco": {
+   "v": 5.94,
+   "un": "cm",
+   "tipo": "derivada",
+   "fonte": "ansur2",
+   "onde": "circ.pescoco / 2π"
+  },
+  "circ.pescocoBase": {
+   "v": 41.3,
+   "un": "cm",
+   "tipo": "medida",
+   "fonte": "ansur2",
+   "onde": "coluna neckcircumferencebase"
+  },
+  "raio.pescocoBase": {
+   "v": 6.57,
+   "un": "cm",
+   "tipo": "derivada",
+   "fonte": "ansur2",
+   "onde": "circ.pescocoBase / 2π"
+  },
+  "circ.bracoFletido": {
+   "v": 32.3,
+   "un": "cm",
+   "tipo": "medida",
+   "fonte": "ansur2",
+   "onde": "coluna bicepscircumferenceflexed",
+   "nota": "bíceps contraído, cotovelo a 90°: é o braço no fim da rosca"
+  },
+  "raio.bracoFletido": {
+   "v": 5.14,
+   "un": "cm",
+   "tipo": "derivada",
+   "fonte": "ansur2",
+   "onde": "circ.bracoFletido / 2π"
+  },
+  "circ.antebraco": {
+   "v": 29,
+   "un": "cm",
+   "tipo": "medida",
+   "fonte": "ansur2",
+   "onde": "coluna forearmcircumferenceflexed"
+  },
+  "raio.antebraco": {
+   "v": 4.62,
+   "un": "cm",
+   "tipo": "derivada",
+   "fonte": "ansur2",
+   "onde": "circ.antebraco / 2π"
+  },
+  "circ.punho": {
+   "v": 17,
+   "un": "cm",
+   "tipo": "medida",
+   "fonte": "ansur2",
+   "onde": "coluna wristcircumference"
+  },
+  "raio.punho": {
+   "v": 2.71,
+   "un": "cm",
+   "tipo": "derivada",
+   "fonte": "ansur2",
+   "onde": "circ.punho / 2π"
+  },
+  "circ.coxa": {
+   "v": 56.1,
+   "un": "cm",
+   "tipo": "medida",
+   "fonte": "ansur2",
+   "onde": "coluna thighcircumference",
+   "nota": "na dobra do glúteo"
+  },
+  "raio.coxa": {
+   "v": 8.93,
+   "un": "cm",
+   "tipo": "derivada",
+   "fonte": "ansur2",
+   "onde": "circ.coxa / 2π"
+  },
+  "circ.coxaBaixa": {
+   "v": 37.7,
+   "un": "cm",
+   "tipo": "medida",
+   "fonte": "ansur2",
+   "onde": "coluna lowerthighcircumference",
+   "nota": "logo acima do joelho"
+  },
+  "raio.coxaBaixa": {
+   "v": 6,
+   "un": "cm",
+   "tipo": "derivada",
+   "fonte": "ansur2",
+   "onde": "circ.coxaBaixa / 2π"
+  },
+  "circ.panturrilha": {
+   "v": 36.4,
+   "un": "cm",
+   "tipo": "medida",
+   "fonte": "ansur2",
+   "onde": "coluna calfcircumference",
+   "nota": "no ponto mais largo"
+  },
+  "raio.panturrilha": {
+   "v": 5.79,
+   "un": "cm",
+   "tipo": "derivada",
+   "fonte": "ansur2",
+   "onde": "circ.panturrilha / 2π"
+  },
+  "circ.tornozelo": {
+   "v": 21.9,
+   "un": "cm",
+   "tipo": "medida",
+   "fonte": "ansur2",
+   "onde": "coluna anklecircumference",
+   "nota": "no ponto mais fino"
+  },
+  "raio.tornozelo": {
+   "v": 3.49,
+   "un": "cm",
+   "tipo": "derivada",
+   "fonte": "ansur2",
+   "onde": "circ.tornozelo / 2π"
+  },
+  "raio.bracoRelaxadoSobreFletido": {
+   "v": 0.93,
+   "un": "razão",
+   "tipo": "provisoria",
+   "fonte": "a-conferir",
+   "onde": "o ANSUR II só mede o braço contraído; a razão relaxado/contraído ainda não tem fonte lida"
+  },
+  "cabeca.comp": {
+   "v": 19.7,
+   "un": "cm",
+   "tipo": "medida",
+   "fonte": "ansur2",
+   "onde": "coluna headlength",
+   "nota": "da testa à nuca"
+  },
+  "cabeca.largura": {
+   "v": 15.2,
+   "un": "cm",
+   "tipo": "medida",
+   "fonte": "ansur2",
+   "onde": "coluna headbreadth"
+  },
+  "cabeca.mentoAoNasio": {
+   "v": 12.1,
+   "un": "cm",
+   "tipo": "medida",
+   "fonte": "ansur2",
+   "onde": "coluna mentonsellionlength",
+   "nota": "do queixo à raiz do nariz"
+  },
+  "cabeca.larguraDoRosto": {
+   "v": 13.9,
+   "un": "cm",
+   "tipo": "medida",
+   "fonte": "ansur2",
+   "onde": "coluna bizygomaticbreadth"
+  },
+  "cabeca.orelhaAltura": {
+   "v": 6.2,
+   "un": "cm",
+   "tipo": "medida",
+   "fonte": "ansur2",
+   "onde": "coluna earlength"
+  },
+  "cabeca.alturaSobreEstatura": {
+   "v": 0.13,
+   "un": "fração da estatura",
+   "tipo": "medida",
+   "fonte": "drillis-contini-via-cnb2025",
+   "onde": "figura 1 (cota vertical da cabeça; fonte secundária)",
+   "nota": "do queixo ao topo"
+  },
+  "cabeca.altura": {
+   "v": 22.85,
+   "un": "cm",
+   "tipo": "derivada",
+   "fonte": "drillis-contini-via-cnb2025",
+   "onde": "cabeca.alturaSobreEstatura × estatura"
+  },
+  "altura.baseDoCranio": {
+   "v": 162.8,
+   "un": "cm",
+   "tipo": "derivada",
+   "fonte": "ansur2",
+   "onde": "estatura − cabeca.tragionAoTopo (a articulação da cabeça com o pescoço fica perto da altura do tragion)"
+  },
+  "quadril.meiaDistancia": {
+   "v": 8.7,
+   "un": "cm",
+   "tipo": "provisoria",
+   "fonte": "a-conferir",
+   "onde": "metade da distância entre os dois centros do quadril: a conferir (Bell 1990, Harrington 2007 ou modelo OpenSim)"
+  },
+  "ombro.meiaDistancia": {
+   "v": 18.4,
+   "un": "cm",
+   "tipo": "derivada",
+   "fonte": "ansur2",
+   "onde": "largura.biacromial / 2 − 2,0 (centro do ombro para dentro da borda do acrômio: provisório)"
+  },
+  "ombro.centroAFrente": {
+   "v": 0,
+   "un": "cm",
+   "tipo": "provisoria",
+   "fonte": "a-conferir",
+   "onde": "centro do ombro sobre a linha do quadril, de lado (linha de prumo da postura: a conferir)"
+  },
+  "l5s1.acima": {
+   "v": 12,
+   "un": "cm",
+   "tipo": "provisoria",
+   "fonte": "a-conferir",
+   "onde": "altura de L5–S1 acima do centro do quadril: a conferir (crista ilíaca − 1 vértebra lombar)"
+  },
+  "l5s1.atras": {
+   "v": 4.5,
+   "un": "cm",
+   "tipo": "provisoria",
+   "fonte": "a-conferir",
+   "onde": "recuo de L5–S1 atrás do centro do quadril: a conferir"
+  },
+  "coluna.lombarGray": {
+   "v": 18,
+   "un": "cm",
+   "tipo": "medida",
+   "fonte": "gray1918",
+   "onde": "coluna vertebral, comprimentos por região",
+   "nota": "a conferir no texto (pesquisa 03)"
+  },
+  "coluna.toracicaGray": {
+   "v": 28,
+   "un": "cm",
+   "tipo": "medida",
+   "fonte": "gray1918",
+   "onde": "idem"
+  },
+  "coluna.cervicalGray": {
+   "v": 12.5,
+   "un": "cm",
+   "tipo": "medida",
+   "fonte": "gray1918",
+   "onde": "idem"
+  },
+  "coluna.lordoseLombar": {
+   "v": 50,
+   "un": "graus",
+   "tipo": "provisoria",
+   "fonte": "a-conferir",
+   "onde": "curva lombar em pé de L1 a L5 (Vialle 2005 dá 60 de lordose máxima incluindo o sacro): a conferir"
+  },
+  "coluna.cifoseToracica": {
+   "v": 40,
+   "un": "graus",
+   "tipo": "provisoria",
+   "fonte": "a-conferir",
+   "onde": "curva torácica em pé: sem fonte lida"
+  },
+  "coluna.lordoseCervical": {
+   "v": 30,
+   "un": "graus",
+   "tipo": "provisoria",
+   "fonte": "a-conferir",
+   "onde": "curva cervical em pé: sem fonte lida"
+  },
+  "clavicula.retracaoRepouso": {
+   "v": 23,
+   "un": "graus",
+   "tipo": "medida",
+   "fonte": "ludewig2009",
+   "onde": "fig. 5-A (repouso)"
+  },
+  "clavicula.elevacaoRepouso": {
+   "v": 11,
+   "un": "graus",
+   "tipo": "medida",
+   "fonte": "ludewig2009",
+   "onde": "fig. 5-A (repouso)"
+  },
+  "clavicula.retracaoNaElevacao": {
+   "v": 16,
+   "un": "graus",
+   "tipo": "medida",
+   "fonte": "ludewig2009",
+   "onde": "fig. 5-A: aumento do repouso à elevação máxima do braço"
+  },
+  "clavicula.elevacaoNaElevacao": {
+   "v": 6,
+   "un": "graus",
+   "tipo": "medida",
+   "fonte": "ludewig2009",
+   "onde": "fig. 5-A: aumento do repouso à elevação máxima do braço"
+  },
+  "escapula.rotacaoParaCimaRepouso": {
+   "v": 11,
+   "un": "graus",
+   "tipo": "medida",
+   "fonte": "ludewig2009",
+   "onde": "fig. 5-C (repouso)"
+  },
+  "escapula.rotacaoParaCimaNaElevacao": {
+   "v": 39,
+   "un": "graus",
+   "tipo": "medida",
+   "fonte": "ludewig2009",
+   "onde": "fig. 5-C: aumento do repouso à elevação máxima do braço"
+  },
+  "escapula.rotacaoInternaRepouso": {
+   "v": 37,
+   "un": "graus",
+   "tipo": "medida",
+   "fonte": "ludewig2009",
+   "onde": "fig. 5-C (repouso): o plano da escápula"
+  },
+  "clavicula.comp": {
+   "v": 15,
+   "un": "cm",
+   "tipo": "provisoria",
+   "fonte": "a-conferir",
+   "onde": "comprimento da clavícula: a conferir (pesquisa 03)"
+  },
+  "esterno.meiaDistanciaDasClaviculas": {
+   "v": 2.5,
+   "un": "cm",
+   "tipo": "provisoria",
+   "fonte": "a-conferir",
+   "onde": "da linha do meio até a articulação da clavícula com o esterno: sem fonte lida"
+  },
+  "escapula.altura": {
+   "v": 15.5,
+   "un": "cm",
+   "tipo": "provisoria",
+   "fonte": "a-conferir",
+   "onde": "do ângulo superior ao inferior: a conferir (pesquisa 03)"
+  },
+  "escapula.largura": {
+   "v": 10.5,
+   "un": "cm",
+   "tipo": "provisoria",
+   "fonte": "a-conferir",
+   "onde": "da borda medial à cavidade do ombro: a conferir (pesquisa 03)"
+  }
+ },
+ "secoes": {
+  "braco": [
+   {
+    "t": 0,
+    "a": 5.39,
+    "f": 5.5,
+    "b": 5.5,
+    "tipo": "derivada",
+    "origem": "ombro: largura.bideltoide / 2 − ombro.meiaDistancia"
+   },
+   {
+    "t": 0.2,
+    "a": 4.95,
+    "f": 5.39,
+    "b": 5.17,
+    "tipo": "desenho",
+    "origem": "deltoide, descendo para o braço"
+   },
+   {
+    "t": 0.42,
+    "a": 4.3,
+    "f": 5.16,
+    "b": 4.88,
+    "tipo": "derivada",
+    "origem": "raio.bracoFletido × razão relaxado/contraído; mais fundo que largo"
+   },
+   {
+    "t": 0.8,
+    "a": 3.7,
+    "f": 3.9,
+    "b": 4,
+    "tipo": "desenho",
+    "origem": "acima do cotovelo"
+   },
+   {
+    "t": 1,
+    "a": 4.1,
+    "f": 3.3,
+    "b": 3.9,
+    "tipo": "desenho",
+    "origem": "cotovelo (epicôndilos)"
+   }
+  ],
+  "antebraco": [
+   {
+    "t": 0,
+    "a": 4.1,
+    "f": 3.6,
+    "b": 3.9,
+    "tipo": "desenho",
+    "origem": "cotovelo"
+   },
+   {
+    "t": 0.2,
+    "a": 4.9,
+    "f": 4.34,
+    "b": 4.34,
+    "tipo": "medida",
+    "origem": "circ.antebraco (ponto mais largo)"
+   },
+   {
+    "t": 0.6,
+    "a": 3.5,
+    "f": 3,
+    "b": 3,
+    "tipo": "desenho",
+    "origem": "meio do antebraço"
+   },
+   {
+    "t": 1,
+    "a": 3.12,
+    "f": 2.25,
+    "b": 2.25,
+    "tipo": "medida",
+    "origem": "circ.punho, seção oval"
+   }
+  ],
+  "coxa": [
+   {
+    "t": 0,
+    "a": 8.57,
+    "f": 8.93,
+    "b": 8.75,
+    "tipo": "desenho",
+    "origem": "na altura do quadril"
+   },
+   {
+    "t": 0.14,
+    "a": 8.48,
+    "f": 9.38,
+    "b": 8.93,
+    "tipo": "medida",
+    "origem": "circ.coxa (dobra do glúteo)"
+   },
+   {
+    "t": 0.5,
+    "a": 7.32,
+    "f": 8.22,
+    "b": 7.14,
+    "tipo": "desenho",
+    "origem": "meio da coxa"
+   },
+   {
+    "t": 0.86,
+    "a": 5.88,
+    "f": 6.24,
+    "b": 5.88,
+    "tipo": "medida",
+    "origem": "circ.coxaBaixa"
+   },
+   {
+    "t": 1,
+    "a": 5.3,
+    "f": 5.5,
+    "b": 5,
+    "tipo": "desenho",
+    "origem": "joelho (côndilos e patela)"
+   }
+  ],
+  "perna": [
+   {
+    "t": 0,
+    "a": 5.3,
+    "f": 5.2,
+    "b": 5,
+    "tipo": "desenho",
+    "origem": "joelho"
+   },
+   {
+    "t": 0.3,
+    "a": 5.5,
+    "f": 4.63,
+    "b": 7.06,
+    "tipo": "medida",
+    "origem": "circ.panturrilha: a barriga da perna fica atrás"
+   },
+   {
+    "t": 0.7,
+    "a": 4,
+    "f": 3.5,
+    "b": 4.2,
+    "tipo": "desenho",
+    "origem": "abaixo da panturrilha"
+   },
+   {
+    "t": 0.93,
+    "a": 3.42,
+    "f": 3.49,
+    "b": 3.63,
+    "tipo": "medida",
+    "origem": "circ.tornozelo (ponto mais fino)"
+   },
+   {
+    "t": 1,
+    "a": 3.65,
+    "f": 3.3,
+    "b": 3.7,
+    "tipo": "medida",
+    "origem": "tornozelo.larguraMaleolos"
+   }
+  ],
+  "pescoco": [
+   {
+    "t": 0,
+    "a": 6.9,
+    "f": 6.24,
+    "b": 6.24,
+    "tipo": "medida",
+    "origem": "circ.pescocoBase"
+   },
+   {
+    "t": 0.5,
+    "a": 5.94,
+    "f": 5.94,
+    "b": 5.94,
+    "tipo": "medida",
+    "origem": "circ.pescoco"
+   },
+   {
+    "t": 1,
+    "a": 5.82,
+    "f": 5.94,
+    "b": 5.94,
+    "tipo": "desenho",
+    "origem": "sob o queixo"
+   }
+  ]
+ },
+ "tronco": [
+  {
+   "alt": 85.3,
+   "a": 8.5,
+   "prof": 14,
+   "tras": 0.52,
+   "tipo": "desenho",
+   "origem": "altura.virilha; largura e profundidade de desenho (entre as coxas)"
+  },
+  {
+   "alt": 89.3,
+   "a": 16.2,
+   "prof": 21.7,
+   "tras": 0.5,
+   "tipo": "medida",
+   "origem": "largura.quadril e prof.nadega em altura.nadega"
+  },
+  {
+   "alt": 101.6,
+   "a": 14.85,
+   "prof": 20.5,
+   "tras": 0.4,
+   "tipo": "desenho",
+   "origem": "entre o quadril e a cintura"
+  },
+  {
+   "alt": 106.5,
+   "a": 14.5,
+   "prof": 20.3,
+   "tras": 0.36,
+   "tipo": "medida",
+   "origem": "largura.cintura e prof.cintura em altura.cintura"
+  },
+  {
+   "alt": 112,
+   "a": 14.15,
+   "prof": 21.45,
+   "tras": 0.33,
+   "tipo": "derivada",
+   "origem": "altura.costela10; média de cintura e peito"
+  },
+  {
+   "alt": 129.4,
+   "a": 13.8,
+   "prof": 22.6,
+   "tras": 0.3,
+   "tipo": "medida",
+   "origem": "largura.peito e prof.peito em altura.peito"
+  },
+  {
+   "alt": 133.2,
+   "a": 15.3,
+   "prof": 21.1,
+   "tras": 0.31,
+   "tipo": "desenho",
+   "origem": "altura.axila; largura de desenho (dobras do peitoral e do dorsal)"
+  },
+  {
+   "alt": 141.1,
+   "a": 17.4,
+   "prof": 15.5,
+   "tras": 0.36,
+   "tipo": "desenho",
+   "origem": "abaixo do acrômio; largura.biacromial − 6"
+  },
+  {
+   "alt": 150,
+   "a": 8.21,
+   "prof": 13.2,
+   "tras": 0.42,
+   "tipo": "desenho",
+   "origem": "base do pescoço (trapézio)"
+  }
+ ]
+}
