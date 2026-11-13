@@ -70,4 +70,10 @@ Limites que continuam: um corpo só (homem, tom de pele médio no 10); a vista d
 
 **Minha recomendação (opinião):** o 1. Nas poses difíceis e na miniatura ele se lê mais rápido, e o músculo é a única cor da figura, então salta sem esforço. O 10 é mais fiel e mais "gente", mas fica carregado no supino e no cabo, e o músculo que trabalha se destaca menos sobre a cor de pele. Do 10 eu aproveitaria uma coisa: o desenho de todos os grupos musculares, como uma opção do modo Músculos, e não o tempo todo.
 
-**Decisão do Gustavo:** (aguardando)
+**Resposta do Gustavo (13/11/2026): não escolheu; pediu versões mais evoluídas dos dois.** "Eu quero que você ainda siga com os dois eu quero que seja os dois meio como referência e dê ainda outras versões um pouco mais evoluídas, por exemplo, o boneco da direita. Eu gostei um pouco dele, só que pô, a parte de trás parece que essa bunda tá muito marcada, fica esquisito. Sem o short. O 1, por exemplo, ele tá bom, mas acho que ainda tá muito simples. Tipo, acho que talvez na hora de ver um treino com ele, ele não vai ser tão preciso. Então acho que cada um tem um ponto bom e um ponto ruim que ainda tem que ser mais desenvolvido pra gente chegar na conclusão de qual é o melhor."
+
+**O que isso pede:**
+
+- **10 (o da direita):** gostou um pouco. O problema é a vista de costas: os glúteos muito marcados, e a figura parece estar sem o short. Causa no desenho: nessa célula o short virou véu (regra do modo Músculos) mesmo sem nenhum músculo ativo debaixo dele, e os glúteos parados apareceram por baixo. Conserto: o short só vira véu quando há músculo que trabalha debaixo dele; fora disso é um short de verdade, opaco, e nada aparece por baixo.
+- **1 (o da esquerda):** está bom, mas simples demais: ele teme que, na hora de ver um treino, não seja preciso o bastante. Falta referência no corpo (onde fica o peito, o abdômen, o joelho, a escápula) para se ler a inclinação do tronco e a posição das articulações.
+- Os dois seguem como referência; a próxima prancha traz versões mais desenvolvidas de cada um, e a escolha fica para depois.

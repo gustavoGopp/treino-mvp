@@ -89,3 +89,9 @@ Dos onze conceitos, ficou com cinco: "pode ser 1, 2, 3, 6 e 10" (Hoje com corpo 
 ## Rodada 2 (13/11/2026)
 
 "pode ser 1 e 10, com D e C": finalistas **1 (Hoje, com corpo de gente)** e **10 (Atlas)**, com traço fino ou contorno suave (D) e a mão com polegar e dedos (C). Saíram o 2 (a pessoa vestida, que era a soma das respostas dele), o 3 e o 6. O que isso muda no retrato: o contorno fino agrada (a resposta "sem contorno" da pergunta 1 não se sustentou); a regata saiu de cena (os dois finalistas mostram o tronco); e a escolha final é entre o cinza do boneco de hoje com corpo de gente e uma pessoa com cor de pele e os músculos sempre desenhados.
+
+## Rodada 3 (13/11/2026)
+
+Não escolheu entre os dois finalistas: quer os dois como referência e versões mais evoluídas. Do 10 (Atlas): "gostei um pouco dele", mas de costas "essa bunda tá muito marcada, fica esquisito", e parece sem o short. Do 1 (cinza): "tá bom, mas acho que ainda tá muito simples [...] na hora de ver um treino com ele, ele não vai ser tão preciso". Frase-resumo dele: "cada um tem um ponto bom e um ponto ruim que ainda tem que ser mais desenvolvido".
+
+**Leitura minha:** o que ele chama de precisão é o corpo dar referências (os grupos musculares, o joelho, a linha do tronco), que é o que o 10 tem e o 1 não tem; e o que incomoda no 10 é excesso de marcação em lugar errado. Os dois caminham para o meio: o 1 ganha as linhas do corpo, e o 10 fica mais calmo e com o short de verdade.
