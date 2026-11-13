@@ -140,7 +140,6 @@ export function EditarLocal() {
         <h2 className="secao">Que equipamento tem {nome.trim() ? `em "${nome.trim()}"` : 'neste local'}?</h2>
         <FormularioInventario inicial={local?.inventario} aoSalvar={salvar} textoBotao="Salvar local" />
       </main>
-      <NavInferior atual="dados" />
     </div>
   );
 }

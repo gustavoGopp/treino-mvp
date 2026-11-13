@@ -8,6 +8,7 @@ import { baixarCopia } from '../app/copia';
 import { agoraIso, useApp } from '../app/estado';
 import { apagarLocal, apagarTodosLocais, dataCurta, lerLocal, LOCAL } from '../app/local';
 import { AvisarProblema, TextoFotoCurto } from '../app/privacidade';
+import { Icone } from '../app/icones';
 import { NavInferior, Selo, Titulo, Topo } from '../app/ui';
 import { Folha } from '../app/Folha';
 import { EscolhaEstiloBoneco } from './EstiloBoneco';
@@ -50,6 +51,12 @@ export function Dados() {
       vivo = false;
     };
   }, [cargaFalhou]);
+  // a resposta de uma ação (exportado, importado, autorização retirada) aparece presa acima da navegação e some sozinha
+  useEffect(() => {
+    if (!msg) return;
+    const t = setTimeout(() => setMsg(''), 8000);
+    return () => clearTimeout(t);
+  }, [msg]);
   if (!carregado) return null;
   const guardaPermanente = persistente ?? consultada;
 
@@ -142,7 +149,7 @@ export function Dados() {
             </button>
           </div>
         )}
-        <p role="status" className="status">
+        <p role="status" className="status aviso-preso">
           {msg}
         </p>
         {erroNaPagina && (
@@ -158,7 +165,7 @@ export function Dados() {
               </LinhaDados>
             )}
             {r && (
-              <LinhaDados para="/comecar/rotina?de=dados" titulo="Objetivo">
+              <LinhaDados para="/comecar/rotina?de=dados&foco=objetivo" titulo="Objetivo">
                 {r.objetivo && r.objetivo !== 'hipertrofia' ? OBJETIVO[r.objetivo] : 'Ganhar músculo (o padrão)'}
               </LinhaDados>
             )}
@@ -202,7 +209,7 @@ export function Dados() {
 
         <AvisarProblema />
 
-        <button type="button" className="btn perigo" onClick={() => setFolha('apagar')} disabled={!temDados}>
+        <button type="button" className="btn sec perigo-sec" aria-haspopup="dialog" onClick={() => setFolha('apagar')} disabled={!temDados}>
           Apagar todos os dados
         </button>
 
@@ -265,12 +272,19 @@ export function Dados() {
             <button
               type="button"
               className="btn"
+              disabled={!nomeArquivo}
+              aria-describedby={nomeArquivo ? undefined : 'falta-arquivo'}
               onClick={async () => {
                 if (await importar()) setFolha(null);
               }}
             >
               Importar dados
             </button>
+            {!nomeArquivo && (
+              <p className="falta" id="falta-arquivo">
+                Falta escolher o arquivo.
+              </p>
+            )}
           </Folha>
         )}
         {folha === 'foto' && fotoEm && (
@@ -298,10 +312,10 @@ export function Dados() {
           <Folha titulo="Apagar todos os dados?" aoFechar={() => setFolha(null)} rotuloFechar="Voltar">
             <p>O perfil, o programa e os treinos saem deste aparelho e não voltam. Se quiser, guarde uma cópia antes.</p>
             <div className="pilha">
-              <button type="button" className="btn" onClick={() => setFolha(null)}>
+              <button type="button" className="btn sec" onClick={() => setFolha(null)}>
                 Cancelar
               </button>
-              <button type="button" className="btn sec perigo-sec" onClick={apagar}>
+              <button type="button" className="btn perigo" onClick={apagar}>
                 Apagar tudo
               </button>
             </div>
@@ -334,7 +348,7 @@ function LinhaDados({ titulo, children, para, aoTocar }: { titulo: string; child
         <small>{children}</small>
       </span>
       <span className="seta" aria-hidden="true">
-        ›
+        <Icone nome="chevron-right" />
       </span>
     </>
   );

@@ -207,11 +207,14 @@ export function NavInferior({ atual }: { atual: 'treino' | 'semana' | 'dados' })
  * Uma pergunta por vez (design v2, item B; GOV.UK "one thing per page"): a próxima pergunta só aparece depois da
  * resposta à anterior, e a tela rola até ela. Envolve a pergunta que acabou de aparecer.
  */
-export function Revelar({ children }: { children: ReactNode }) {
+export function Revelar({ children, semRolar }: { children: ReactNode; semRolar?: boolean }) {
   const ref = useRef<HTMLDivElement>(null);
   useEffect(() => {
+    // `semRolar`: a tela já abre com todas as perguntas (edição a partir de Meus dados) e começa do topo
+    if (semRolar) return;
     const reduz = window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
     ref.current?.scrollIntoView?.({ behavior: reduz ? 'auto' : 'smooth', block: 'nearest' });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   return (
     <div ref={ref} className="revelar">
@@ -226,6 +229,11 @@ export function Titulo({ children, soLeitor }: { children: ReactNode; soLeitor?:
   useEffect(() => {
     ref.current?.focus();
   }, []);
+  // o nome da tela vai para o título do documento (leitor de tela, histórico, multitarefa)
+  useEffect(() => {
+    const nome = ref.current?.textContent?.trim();
+    if (nome) document.title = `${nome} · treino-mvp`;
+  });
   // `soLeitor`: o nome da tela fica para o leitor de tela, e o título à vista é o conteúdo dela (o treino de hoje, o
   // número da semana), que vem logo em seguida, num h2. Frontend novo: título específico, não o nome do tipo da tela.
   return (
@@ -239,7 +247,20 @@ export function Titulo({ children, soLeitor }: { children: ReactNode; soLeitor?:
  * Moldura de um passo do onboarding: barra de progresso "Passo X de N" (padrão do GOV.UK) e guarda de rota.
  * Se um passo anterior está pendente, manda a pessoa para ele.
  */
-export function Passo({ id, titulo, children }: { id: PassoId; titulo: string; children: ReactNode }) {
+export function Passo({
+  id,
+  titulo,
+  children,
+  deDados,
+  aoVoltar,
+}: {
+  id: PassoId;
+  titulo: string;
+  children: ReactNode;
+  deDados?: boolean;
+  /** uma subtela do passo (as perguntas completas da triagem): o "Voltar" volta à tela anterior do próprio passo */
+  aoVoltar?: () => void;
+}) {
   const { estado, carregado } = useApp();
   if (!carregado) return null;
   const indice = PASSOS.findIndex((p) => p.id === id);
@@ -248,16 +269,35 @@ export function Passo({ id, titulo, children }: { id: PassoId; titulo: string; c
   const anterior = PASSOS[indice - 1];
   // lote 3 do redesign: "‹ Voltar" no alto e "Passo N de 4", sem contar a boas-vindas (que não é uma pergunta)
   const total = PASSOS.length - 1;
+  // Aberto por "Meus dados" (com o programa já feito), o passo é uma tela de edição: sem "Passo N de 4" e com a volta
+  // para Meus dados, não para o passo anterior do cadastro.
+  if (deDados && estado.programa && !pendente)
+    return (
+      <div className="wrap app">
+        <Topo voltar={{ para: '/dados', rotulo: 'Meus dados' }} />
+        <main className="conteudo">
+          <Titulo>{titulo}</Titulo>
+          {children}
+        </main>
+      </div>
+    );
   return (
     <div className="wrap app">
       <Topo direita={estado.programa && !pendente ? <Link to="/programa">Meu programa</Link> : undefined} />
       <div className="progresso">
         <div className="progresso-linha">
-          {anterior && (
-            <Link className="volta-passo" to={anterior.rota} aria-label={`Voltar para ${anterior.titulo.toLowerCase()}`}>
+          {aoVoltar ? (
+            <button type="button" className="volta-passo" onClick={aoVoltar}>
               <Icone nome="chevron-left" />
               Voltar
-            </Link>
+            </button>
+          ) : (
+            anterior && (
+              <Link className="volta-passo" to={anterior.rota} aria-label={`Voltar para ${anterior.titulo.toLowerCase()}`}>
+                <Icone nome="chevron-left" />
+                Voltar
+              </Link>
+            )
           )}
           <span>
             Passo {indice} de {total}

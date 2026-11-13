@@ -1,4 +1,4 @@
-import { Navigate, useParams } from 'react-router-dom';
+import { Navigate, useParams, useSearchParams } from 'react-router-dom';
 import { diaEMes as dataCurta, textoDoRir } from '../../domain/numero';
 import { RIR } from '../../domain/regras';
 import { POR_ID } from '../../domain/biblioteca';
@@ -15,21 +15,24 @@ const TEXTO_MARCA: Record<Marca, string> = { 'subiu-a-carga': 'subiu a carga', r
 
 export function Evolucao() {
   const { exId = '' } = useParams();
+  const [busca] = useSearchParams();
   const { estado } = useApp();
   const ex = POR_ID[exId];
   if (!ex) return <Navigate to="/semana" replace />;
   const linhas = evolucaoDoExercicio(estado.historico, exId, (s) => localDaSessao(estado, s));
   const variosLocais = (estado.locais?.length ?? 0) > 1;
+  // quem veio da folha do exercício, no início, volta para lá (e a barra acende "Treino")
+  const dePrograma = busca.get('de') === 'programa';
 
   return (
     <div className="wrap app com-nav">
-      <Topo voltar={{ para: '/semana', rotulo: 'Semana' }} />
+      <Topo voltar={dePrograma ? { para: '/programa', rotulo: 'Treino' } : { para: '/semana', rotulo: 'Semana' }} />
       <main className="conteudo evolucao">
         <Titulo>{ex.nome}</Titulo>
         <p className="ajuda">
           Sua evolução: a melhor série de cada treino. <Selo id="acompanhamento.evolucao" />
         </p>
-        {!linhas.length && <p>Ainda não há treino registrado deste exercício.</p>}
+        {!linhas.length && <p>Ainda não há treino registrado deste exercício. A evolução aparece depois do 1º treino com ele.</p>}
         {linhas.map((l) => (
           <section key={l.localId ?? 'todos'} className="pilha" aria-label={l.localId ? `Em ${localPorId(estado, l.localId)?.nome ?? 'outro local'}` : ex.nome}>
             {cargaDaMaquina(exId) && variosLocais && <h2 className="secao">Em {localPorId(estado, l.localId)?.nome ?? 'outro local'}</h2>}
@@ -40,7 +43,9 @@ export function Evolucao() {
                   <span className="pe-data">{dataCurta(p.data)}</span>
                   <span className="pe-serie">
                     {textoCarga(p.carga, exId)} × {p.reps}
-                    <small> · RIR {textoDoRir(p.rir, RIR.registroMax)}</small>
+                    <small>
+                      <span className="pe-ponto"> · </span>RIR {textoDoRir(p.rir, RIR.registroMax)}
+                    </small>
                   </span>
                   <span className="pe-marcas">
                     {p.acerto ? <span className="marca neutra">acerto da carga</span> : p.marcas.map((m) => <span key={m} className="marca">{TEXTO_MARCA[m]}</span>)}
@@ -52,7 +57,7 @@ export function Evolucao() {
         ))}
         {cargaDaMaquina(exId) && variosLocais && <p className="ajuda">Nas máquinas, cada local tem a sua lista: a placa de uma torre não pesa o mesmo que a de outra.</p>}
       </main>
-      <NavInferior atual="semana" />
+      <NavInferior atual={dePrograma ? 'treino' : 'semana'} />
     </div>
   );
 }

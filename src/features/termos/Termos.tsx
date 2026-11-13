@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import { CONTATO_EMAIL, FOTO_LIGADA, RESPONSAVEL } from '../app/contato';
 import { useApp } from '../app/estado';
 import { ParaOndeVaiAFoto } from '../app/privacidade';
@@ -23,7 +23,7 @@ export function Termos() {
   const responsavel = RESPONSAVEL || 'quem te mandou o link do app';
   return (
     <div className="wrap app">
-      <Topo direita={<Link to={voltar}>{estado.programa ? 'Meus dados' : 'Início'}</Link>} />
+      <Topo voltar={{ para: voltar, rotulo: estado.programa ? 'Meus dados' : 'Início' }} />
       <main className="conteudo termos">
         <Titulo>Termos de uso e privacidade</Titulo>
         <p className="muted">

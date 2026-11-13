@@ -210,7 +210,9 @@ export function FotoEquipamento({ aoUsar }: { aoUsar: (sugestoes: Sugestao[], co
           {estado === 'enviando' ? 'Analisando as fotos…' : 'Escolher fotos'}
         </label>
       </div>
-      <p role="status" className="status">
+      {!podeEnviar && <p className="falta">Falta marcar a autorização acima.</p>}
+      {/* o botão já diz "Analisando as fotos…": aqui fica só para o leitor de tela */}
+      <p role="status" className="sr">
         {estado === 'enviando' ? 'Analisando as fotos…' : ''}
       </p>
       {erro && (

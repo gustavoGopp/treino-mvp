@@ -67,12 +67,18 @@ export function Resumo() {
         <Titulo>{s.encerradaPorAlerta ? 'Treino encerrado por segurança' : 'Treino concluído'}</Titulo>
         {s.encerradaPorAlerta && (
           <div className="caixa-erro" role="alert">
-            Pare o treino agora e descanse. Se o sintoma não passar em poucos minutos ou for forte, ligue para o SAMU: <b>192</b>. Antes de
-            voltar a treinar, procure avaliação. <Selo id="seguranca.alerta.cardiovascular" />
+            <p>
+              Pare o treino agora e descanse. Se o sintoma não passar em poucos minutos ou for forte, ligue para o SAMU: <b>192</b>. Antes de
+              voltar a treinar, procure avaliação. <Selo id="seguranca.alerta.cardiovascular" />
+            </p>
+            {/* o número a um toque (o texto da orientação não muda) */}
+            <a className="btn ligar" href="tel:192">
+              Ligar para o SAMU: 192
+            </a>
           </div>
         )}
         {/* o placar do treino: os números de hoje são o maior elemento da tela */}
-        <div className="numeros placar num">
+        <div className={`numeros num${s.encerradaPorAlerta ? '' : ' placar'}`}>
           <div>
             <b>{r.series}</b>
             <span className="rotulo">{r.series === 1 ? 'série' : 'séries'}</span>
@@ -141,7 +147,7 @@ export function Resumo() {
           </p>
         </fieldset>
         <section aria-labelledby="proxima" className="pilha">
-          <h2 id="proxima" className="secao">
+          <h2 id="proxima" className="rotulo">
             Para a próxima vez
           </h2>
           <ul className="lista-proxima">
@@ -169,12 +175,12 @@ export function Resumo() {
           Voltar ao início
         </Link>
         {apagar ? (
-          <div className="warnbox" role="alert">
+          <div className="warnbox" role="group" aria-label="Apagar este treino?">
             <p>
               Apagar este treino? As séries dele saem do histórico, e o próximo treino volta a ser {dia.nome}. <Selo id="registro.treino-feito" />
             </p>
             <div className="dois">
-              <button type="button" className="btn sec" onClick={() => setApagar(false)}>
+              <button type="button" className="btn sec" autoFocus onClick={() => setApagar(false)}>
                 Manter
               </button>
               <button

@@ -17,16 +17,31 @@ const ROTULO: Record<Gravidade, string> = {
 };
 
 export function ComoEsta({ programa, perfil, inventario }: { programa: Programa; perfil: Perfil; inventario: Inventario }) {
-  const [avaliacao, setAvaliacao] = useState<Avaliacao | null>(null);
+  const [avaliacao, setAvaliacao] = useState<Avaliacao | null | 'erro'>(null);
+  const [tentativa, setTentativa] = useState(0);
   useEffect(() => {
     let vivo = true;
-    void import('../../domain/avaliador').then(({ avaliar }) => {
-      if (vivo) setAvaliacao(avaliar(programa, perfil, inventario));
-    });
+    setAvaliacao(null);
+    import('../../domain/avaliador').then(
+      ({ avaliar }) => vivo && setAvaliacao(avaliar(programa, perfil, inventario)),
+      // sem rede e sem o arquivo guardado, ou versão nova publicada: a folha diz e deixa tentar de novo
+      () => vivo && setAvaliacao('erro'),
+    );
     return () => {
       vivo = false;
     };
-  }, [programa, perfil, inventario]);
+  }, [programa, perfil, inventario, tentativa]);
+  if (avaliacao === 'erro')
+    return (
+      <div className="pilha">
+        <p role="status" className="ajuda">
+          Não deu para conferir o programa agora. O seu treino continua valendo.
+        </p>
+        <button type="button" className="btn sec pequeno" onClick={() => setTentativa((n) => n + 1)}>
+          Tentar de novo
+        </button>
+      </div>
+    );
   if (!avaliacao) return <p className="ajuda">Conferindo o programa…</p>;
   const fortes = avaliacao.achados.filter((a) => a.gravidade === 'seguranca' || a.gravidade === 'alerta' || a.gravidade === 'ajustar');
   const leves = avaliacao.achados.filter((a) => a.gravidade === 'limite' || a.gravidade === 'info');
@@ -55,7 +70,10 @@ export function ComoEsta({ programa, perfil, inventario }: { programa: Programa;
 function LinhaDoAchado({ a, className }: { a: Achado; className?: string }) {
   return (
     <div className={className}>
-      <b>{ROTULO[a.gravidade]}:</b> {a.texto} {a.passo} <Selo id={a.regraId} />
+      {/* num parágrafo: dentro da caixa de aviso, o rótulo, o texto e o selo seguem na mesma linha */}
+      <p>
+        <b>{ROTULO[a.gravidade]}:</b> {a.texto} {a.passo} <Selo id={a.regraId} />
+      </p>
     </div>
   );
 }

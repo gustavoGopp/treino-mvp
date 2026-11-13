@@ -1,5 +1,5 @@
 import { useMemo, useState } from 'react';
-import { Link, Navigate, useNavigate } from 'react-router-dom';
+import { Navigate, useNavigate } from 'react-router-dom';
 import { BIBLIOTECA } from '../../domain/biblioteca';
 import { capacidades, ITENS, ITEM_IDS, type ItemId } from '../../domain/taxonomia/equipamentos';
 import { inventarioDeTodos, primeiroPassoPendente } from '../../storage/esquema';
@@ -40,7 +40,7 @@ export function Restricoes() {
 
   return (
     <div className="wrap app">
-      <Topo direita={<Link to="/dados">Meus dados</Link>} />
+      <Topo voltar={{ para: '/dados', rotulo: 'Meus dados' }} />
       <main className="conteudo">
         <Titulo>Algo a evitar</Titulo>
         <p className="lede">Opcional. O programa é gerado de novo sem o que você marcar.</p>

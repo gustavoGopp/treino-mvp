@@ -102,7 +102,7 @@ p{text-wrap:pretty}
 .nw{white-space:nowrap}
 .num{font-variant-numeric:tabular-nums}
 .muted{color:var(--texto-2);font-size:var(--t-apoio)}
-.revelar{display:block}
+.revelar{display:flex;flex-direction:column;gap:var(--s32)}
 
 /* ---------- topo: só o "voltar" e o atalho da direita; o nome do app saiu das telas ---------- */
 header.top{position:sticky;top:0;z-index:4;background:var(--fundo);padding:var(--s8) 0;display:flex;flex-direction:column;gap:var(--s8)}
@@ -134,6 +134,7 @@ header.top{position:sticky;top:0;z-index:4;background:var(--fundo);padding:var(-
 .voltar{align-self:flex-start;min-height:var(--h48);display:inline-flex;align-items:center;font-size:var(--t-apoio);font-weight:600}
 .status:empty{display:none}
 .status{margin:0;font-weight:600;color:var(--feito)}
+.status.aviso-preso:not(:empty){position:fixed;left:var(--s16);right:var(--s16);bottom:calc(var(--h64) + var(--s16) + env(safe-area-inset-bottom,0px));z-index:5;max-width:calc(var(--s64) * 8);margin:0 auto;padding:var(--s16);border-radius:var(--r8);background:var(--acao);color:var(--sobre-acao);text-align:center}
 .status-ok{margin:0;font-weight:600;color:var(--feito)}
 .seta{display:inline-grid;place-items:center;color:var(--texto-2)}
 
@@ -157,6 +158,8 @@ header.top{position:sticky;top:0;z-index:4;background:var(--fundo);padding:var(-
 .folha h3{font-size:var(--t-rotulo);font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--texto-2);padding-top:var(--s8)}
 .caixa-erro{background:var(--alerta-suave);border-radius:var(--r8);padding:var(--s16);font-size:var(--t-corpo)}
 .caixa-erro ul{margin:var(--s4) 0 0;padding-left:var(--s24)}
+.caixa-erro p{margin:0}
+.caixa-erro .btn.ligar{margin-top:var(--s16);min-height:var(--h56);background:var(--alerta);color:var(--fundo) !important}
 .resultado{background:var(--superficie-2);border-radius:var(--r8);padding:var(--s16);display:flex;flex-direction:column;gap:var(--s8)}
 .resultado h2{margin:0;font-size:var(--t-pergunta);font-weight:700;letter-spacing:-.01em}
 .resultado p{margin:0}
@@ -167,7 +170,7 @@ header.top{position:sticky;top:0;z-index:4;background:var(--fundo);padding:var(-
 .texto-problema{margin:0;white-space:pre-wrap;word-break:break-word;font:inherit;font-size:var(--t-apoio);background:var(--superficie-2);border-radius:var(--r8);padding:var(--s16)}
 
 /* ---------- botões: uma ação principal por tela (o bloco invertido, de 64); o resto é discreto ---------- */
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:var(--s8);text-align:center;min-height:var(--h64);padding:var(--s8) var(--s24);border-radius:var(--r8);border:0;background:var(--acao);color:var(--sobre-acao) !important;font-weight:600;font-size:1.1875rem;cursor:pointer;text-decoration:none;width:100%;transition:transform .1s ease-out}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:var(--s8);text-align:center;min-height:var(--h64);padding:var(--s8) var(--s24);border-radius:var(--r8);border:0;background:var(--acao);color:var(--sobre-acao) !important;font-weight:600;font-size:var(--t-corpo);cursor:pointer;text-decoration:none;width:100%;transition:transform .1s ease-out}
 .btn:active:not(:disabled){transform:scale(.97)}
 .btn:disabled{background:var(--superficie-2);color:var(--texto-2) !important;cursor:not-allowed}
 .btn.sec{min-height:var(--h56);background:var(--superficie-2);color:var(--texto) !important;font-size:var(--t-corpo)}
@@ -179,14 +182,15 @@ header.top{position:sticky;top:0;z-index:4;background:var(--fundo);padding:var(-
 .btn.ter:active:not(:disabled),.link-sec:active,.link-botao:active{transform:none;opacity:.6}
 .btn.auto{width:auto;flex:none}
 .btn.alerta{background:var(--alerta-suave);color:var(--alerta) !important}
-.perigo-sec{color:var(--alerta) !important}
+.btn.sec.perigo-sec{color:var(--alerta) !important}
+.btn.sec.perigo-sec:disabled{color:var(--texto-2) !important}
 .link-sec{align-self:center;min-height:var(--h48);display:inline-flex;align-items:center;background:none;border:0;color:var(--texto);text-decoration:underline;text-underline-offset:var(--s4);font-size:var(--t-apoio);font-weight:600;cursor:pointer;padding:0 var(--s8)}
 .link-botao{display:inline-flex;align-items:center;min-height:var(--h48);padding:0;border:0;background:none;font:inherit;font-weight:600;color:var(--texto);text-decoration:underline;text-underline-offset:var(--s4);cursor:pointer}
 .link-texto{background:none;border:0;padding:0 var(--s4);min-height:var(--h48);font:inherit;font-weight:600;color:var(--texto);text-decoration:underline;text-underline-offset:var(--s4);cursor:pointer}
 .iconbtn,.mais-op{width:var(--h48);height:var(--h48);border-radius:var(--r8);border:0;background:var(--superficie-2);cursor:pointer;display:grid;place-items:center;color:var(--texto);flex:none}
 .iconbtn:active,.mais-op:active{transform:scale(.94)}
 /* a ação principal da tela fica embaixo, ao alcance do polegar */
-.acao-fixa{position:sticky;bottom:0;z-index:3;margin:0 calc(-1 * var(--s16));padding:var(--s16) var(--s16) calc(var(--s16) + env(safe-area-inset-bottom,0px));background:var(--fundo)}
+.acao-fixa{position:sticky;bottom:0;z-index:3;margin:0 calc(-1 * var(--s16));padding:var(--s16) var(--s16) calc(var(--s16) + env(safe-area-inset-bottom,0px));background:var(--fundo);border-top:1px solid var(--linha)}
 .dois{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:var(--s8)}
 .dois .btn{min-width:0;padding-left:var(--s8);padding-right:var(--s8)}
 
@@ -258,7 +262,7 @@ details.campo .opcoes{margin-top:var(--s8)}
 /* ---------- evidência a um toque: o selo e o "por quê?" ---------- */
 /* O selo é uma palavra pequena e apagada ao lado da regra; um toque abre a regra, o que o selo quer dizer e as fontes.
    A área de toque cresce por fora da palavra (::after) até 48 px, sem empurrar a linha. */
-.selo{position:relative;display:inline-block;font:inherit;font-size:var(--t-rotulo);font-weight:600;line-height:1.35;padding:0 var(--s4);border:0;border-radius:var(--r8);background:none;color:var(--texto-2);white-space:nowrap;vertical-align:baseline;cursor:pointer;text-decoration:underline dotted;text-decoration-thickness:1px;text-underline-offset:var(--s4)}
+.selo{position:relative;display:inline-block;font:inherit;font-size:var(--t-rotulo);font-weight:600;line-height:1.35;padding:0;border:0;border-radius:var(--r8);background:none;color:var(--texto-2);white-space:nowrap;vertical-align:baseline;cursor:pointer;text-decoration:underline dotted;text-decoration-thickness:1px;text-underline-offset:var(--s4)}
 .selo::after,.porque::after{content:"";position:absolute;left:min(0%,calc(50% - var(--s24)));right:min(0%,calc(50% - var(--s24)));top:calc(50% - var(--s24));bottom:calc(50% - var(--s24))}
 @media (max-width:359px){.selo{white-space:normal;max-width:100%;text-align:left}}
 .porque{position:relative;display:inline-block;font:inherit;font-size:var(--t-apoio);font-weight:600;padding:0 var(--s4);border:0;background:none;color:var(--texto);cursor:pointer;text-decoration:underline;text-underline-offset:var(--s4);white-space:nowrap}
@@ -277,9 +281,10 @@ details.campo .opcoes{margin-top:var(--s8)}
 /* ---------- folha que sobe de baixo e o véu por trás (Folha.tsx) ---------- */
 .veu{position:fixed;inset:0;z-index:30;background:var(--veu);display:flex;align-items:flex-end;justify-content:center}
 .veu.abaixo-cab{top:calc(env(safe-area-inset-top,0px) + var(--h64));z-index:19}
-.folha{width:100%;max-width:560px;max-height:88%;overflow:auto;overscroll-behavior:contain;background:var(--fundo);color:var(--texto);border-radius:var(--r16) var(--r16) 0 0;padding:var(--s24) max(var(--s24),env(safe-area-inset-right,0px)) calc(var(--s24) + env(safe-area-inset-bottom,0px)) max(var(--s24),env(safe-area-inset-left,0px));display:flex;flex-direction:column;gap:var(--s24);animation:sobe 200ms ease-out}
+.folha{width:100%;max-width:560px;max-height:88%;overflow:auto;overscroll-behavior:contain;background:var(--fundo);color:var(--texto);border-radius:var(--r16) var(--r16) 0 0;padding:var(--s24) max(var(--s24),env(safe-area-inset-right,0px)) calc(var(--s24) + env(safe-area-inset-bottom,0px)) max(var(--s24),env(safe-area-inset-left,0px));display:flex;flex-direction:column;gap:var(--s24);animation:sobe 200ms ease-out;border-top:1px solid var(--linha)}
 .folha .alca{display:none}
-.folha-cab{display:flex;align-items:flex-start;justify-content:space-between;gap:var(--s16)}
+.folha-cab{display:flex;align-items:flex-start;justify-content:space-between;gap:var(--s16);position:sticky;top:0;z-index:2;margin:calc(-1 * var(--s24)) calc(-1 * var(--s24)) 0;padding:var(--s24) var(--s24) var(--s8);background:var(--fundo)}
+.folha{scroll-padding-top:calc(var(--h64) + var(--s16))}
 .folha-cab h2{margin:0;font-size:var(--t-pergunta);font-weight:700;letter-spacing:-.01em;line-height:1.2;padding-top:var(--s8)}
 .folha-cab h2:focus{outline:none}
 .folha-cab .btn{margin:calc(-1 * var(--s4)) calc(-1 * var(--s8)) 0 0}
@@ -293,7 +298,8 @@ details.campo .opcoes{margin-top:var(--s8)}
 .linhas-dados a > span:first-child,.linhas-dados button > span:first-child,.lista-subiu a > span:first-child{display:flex;flex-direction:column;gap:var(--s4);min-width:0;overflow-wrap:break-word;font-weight:500}
 .linhas-dados small,.lista-subiu a .num{font-size:var(--t-apoio);color:var(--texto-2);font-weight:400}
 .linhas-dados a:focus-visible,.linhas-dados button:focus-visible,.lista-subiu a:focus-visible,.linha-sobre:focus-visible{outline:3px solid var(--foco);outline-offset:-3px}
-.linha-sobre{font-weight:500;border-top:1px solid var(--linha);border-bottom:1px solid var(--linha)}
+.linha-sobre{font-weight:500;border-bottom:1px solid var(--linha)}
+.painel-dia .cartoes-ex{border-top:0}
 .grupo-dados{display:flex;flex-direction:column;gap:var(--s8)}
 
 /* ---------- navegação fixa embaixo: Treino, Semana, Meus dados ---------- */
@@ -436,8 +442,9 @@ details.campo .opcoes{margin-top:var(--s8)}
 details.box{padding:0;background:none;border-radius:0;border-bottom:1px solid var(--linha)}
 details.box summary{list-style:none;cursor:pointer;min-height:var(--h56);padding:0;font-size:var(--t-corpo);font-weight:600;display:flex;justify-content:space-between;align-items:center}
 details.box summary::-webkit-details-marker{display:none}
-details.box summary::after{content:"+";font-size:var(--t-pergunta);color:var(--texto-2)}
-details.box[open] summary::after{content:"–"}
+details.box summary::after{content:"+";display:inline-block;text-decoration:none;font-size:var(--t-pergunta);color:var(--texto-2)}
+details.box[open] summary::after{content:"\2212"}
+details.box.dobra > summary{text-decoration:none}
 .dbody{padding:0 0 var(--s16);display:flex;flex-direction:column;gap:var(--s8);font-size:var(--t-corpo)}
 .dbody h3{font-size:var(--t-rotulo);font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:var(--texto-2);margin:var(--s8) 0 0}
 .dbody ul{margin:0;padding-left:var(--s24);display:flex;flex-direction:column;gap:var(--s8)}
@@ -459,7 +466,7 @@ footer ul{margin:0;padding-left:var(--s24);font-size:var(--t-apoio);display:flex
 .exdev summary{cursor:pointer;font-size:var(--t-apoio);min-height:var(--h48)}
 .vol{width:100%;border-collapse:collapse;font-size:var(--t-apoio);margin-top:var(--s8)}
 .vol th,.vol td{text-align:left;padding:var(--s8) var(--s4);border-bottom:1px solid var(--linha)}
-.vol td{text-align:right}
+.vol td,.vol th:not(:first-child){text-align:right}
 .vol tr.abaixo td:last-child{color:var(--atencao);font-weight:600}
 
 /* ---------- o cadastro ---------- */
@@ -468,7 +475,7 @@ footer ul{margin:0;padding-left:var(--s24);font-size:var(--t-apoio);display:flex
 .progresso .barra i{display:block;height:100%;background:var(--texto)}
 .progresso-linha{display:flex;align-items:center;justify-content:space-between;gap:var(--s8);min-height:var(--h48)}
 .progresso-linha > span{margin-left:auto;font-size:var(--t-rotulo);font-weight:600;letter-spacing:.08em;text-transform:uppercase}
-.volta-passo{display:inline-flex;align-items:center;gap:var(--s4);min-height:var(--h48);padding-right:var(--s16);font-weight:600;font-size:var(--t-apoio);text-decoration:none}
+.volta-passo{display:inline-flex;align-items:center;gap:var(--s4);min-height:var(--h48);padding:0 var(--s16) 0 0;border:0;background:none;color:inherit;font:inherit;font-weight:600;font-size:var(--t-apoio);text-decoration:none;cursor:pointer}
 /* a boas-vindas */
 .boas{gap:var(--s24)}
 .lugares{display:grid;grid-template-columns:repeat(4,1fr);gap:var(--s8);padding:var(--s24) var(--s16);border-radius:var(--r8);background:var(--superficie-2);color:var(--texto)}
@@ -481,11 +488,15 @@ footer ul{margin:0;padding-left:var(--s24);font-size:var(--t-apoio);display:flex
 .nota-aviso p{margin:0;font-size:var(--t-apoio);line-height:1.45;color:var(--texto-2)}
 .privacidade-linha{margin:0}
 .privacidade-linha button{display:flex;gap:var(--s16);align-items:center;width:100%;min-height:var(--h48);padding:0;border:0;background:none;font:inherit;font-weight:600;font-size:var(--t-apoio);color:var(--texto);text-align:left;text-decoration:underline;text-underline-offset:var(--s4);cursor:pointer}
-.acao-boas{margin-top:auto}
-.sob-botao{margin:var(--s8) 0 0;text-align:center;font-size:var(--t-apoio);color:var(--texto-2)}
+.acao-fixa.acao-boas{display:flex;flex-direction:column;gap:var(--s8);margin-top:auto}
+.termos-linha{margin:0;text-align:center;text-wrap:balance}
+html:has(.acao-boas){scroll-padding-bottom:calc(var(--h64) * 3 + var(--s16))}
+@media (max-width:279px),(max-height:479px){.acao-fixa.acao-boas{position:static;border-top:0}}
+.termos-linha a{display:inline-block;padding:var(--s16) 0;margin:calc(-1 * var(--s16)) 0}
 @media (max-height:800px){.boas{gap:var(--s16)}.lugares{padding:var(--s16)}.boas .titulo{font-size:var(--t-titulo)}}
 /* a saúde em uma pergunta */
-.condicoes li{padding:var(--s8) 0;font-size:var(--t-corpo);font-weight:500}
+.condicoes{list-style:disc;padding-left:var(--s24);border-top:0}
+.condicoes > li{border-bottom:0;padding:var(--s4) 0;font-size:var(--t-corpo);font-weight:400}
 .nao-marcadas{max-height:40vh;overflow:auto}
 /* o equipamento: o lugar primeiro, o que o app supôs e a lista item por item */
 .lugares-lista{display:flex;flex-direction:column;gap:var(--s8)}
@@ -505,7 +516,7 @@ footer ul{margin:0;padding-left:var(--s24);font-size:var(--t-apoio);display:flex
 .marcados{margin-top:var(--s8)}
 .marcados li{display:flex;align-items:center;gap:var(--s8);padding:var(--s8) 0;min-height:var(--h64)}
 .marcado-nome{flex:1;min-width:0;display:flex;flex-direction:column;overflow-wrap:break-word;font-weight:500}
-.marcado-nome small{font-size:var(--t-apoio);color:var(--atencao);font-weight:600}
+.marcado-nome small{font-size:var(--t-apoio);color:var(--alerta);font-weight:600}
 .marcados .btn{flex:0 0 auto;width:auto;align-self:center}
 /* na folha, o título da folha já diz "Reconhecer pela foto" */
 .folha .foto-eq > h2{display:none}
@@ -559,13 +570,14 @@ img.icone-eq{display:block;flex:none;object-fit:contain;background:#F6F6F4;borde
 .numeros div{display:flex;flex-direction:column;gap:var(--s4)}
 .numeros b{font-size:var(--t-titulo);font-weight:700;line-height:1;letter-spacing:-.02em}
 .numeros.placar b{font-size:var(--t-numero);letter-spacing:-.04em}
-.fim-do-treino{padding-top:var(--s32)}
+.wrap > main:first-child{padding-top:max(var(--s16),env(safe-area-inset-top,0px))}
+.wrap > main.fim-do-treino{padding-top:max(var(--s32),env(safe-area-inset-top,0px))}
 .fim-do-treino > .subtitulo{margin-bottom:calc(-1 * var(--s8))}
-.faixa-semana{display:flex;flex-direction:row;flex-wrap:wrap;align-items:center;gap:var(--s16);min-height:var(--h56);padding:var(--s8) 0;border-top:1px solid var(--linha);border-bottom:1px solid var(--linha);color:var(--texto) !important;text-decoration:none}
+.faixa-semana{display:flex;flex-direction:row;flex-wrap:wrap;align-items:center;gap:var(--s16);min-height:var(--h56);padding:var(--s8) 0;border-bottom:1px solid var(--linha);color:var(--texto) !important;text-decoration:none}
 .faixa-semana > b{flex:1 1 auto;font-size:var(--t-corpo);font-weight:500}
 .faixa-semana .fs-num{font-size:var(--t-corpo);font-weight:600}
-.aviso-linha{display:flex;flex-wrap:wrap;align-items:center;gap:var(--s8) var(--s16);padding:var(--s8) 0;border-top:1px solid var(--linha);border-bottom:1px solid var(--linha)}
-.aviso-linha p{flex:1 1 9rem;margin:0;font-size:var(--t-apoio);color:var(--texto-2)}
+.aviso-linha{display:flex;flex-wrap:wrap;align-items:center;gap:var(--s8) var(--s16);padding:0 0 var(--s16);border-bottom:1px solid var(--linha)}
+.aviso-linha p{flex:1 1 9rem;margin:0;font-size:var(--t-apoio);color:var(--texto-2);text-wrap:balance}
 .aviso-linha .btn{flex:0 0 auto;width:auto}
 /* os dias do programa: blocos lado a lado; o que está aberto inverte */
 .abas{display:grid;grid-auto-flow:column;grid-auto-columns:1fr;gap:var(--s8)}
@@ -595,10 +607,20 @@ a.cartao-ex-corpo:focus-visible,button.cartao-ex-corpo:focus-visible{outline:3px
 .ex-texto h3{margin:0;font-size:var(--t-corpo);line-height:1.25;font-weight:500}
 .ex-texto .ex-nome{font-size:var(--t-corpo);line-height:1.25;font-weight:500}
 .ex-texto .n{color:var(--texto-2);margin-right:var(--s4)}
-.series{margin:0;font-weight:400;font-size:var(--t-apoio);line-height:1.3;color:var(--texto-2)}
+.series{margin:0;font-weight:600;font-size:var(--t-apoio);line-height:1.3;color:var(--texto)}
+.ex-folha-topo .series{font-size:var(--t-pergunta);letter-spacing:-.01em}
 .ex-texto .series{font-size:var(--t-apoio)}
 .series small{font-weight:400;font-size:var(--t-apoio);color:var(--texto-2)}
 .sub-rx{margin:0;font-size:var(--t-apoio);color:var(--texto-2)}
+.alternativas{display:flex;flex-direction:column;gap:var(--s8)}
+.lista-alternativas{list-style:none;margin:0;padding:0;border-top:1px solid var(--linha)}
+.lista-alternativas li{border-bottom:1px solid var(--linha)}
+.lista-alternativas a,.lista-alternativas span{display:flex;align-items:center;justify-content:space-between;gap:var(--s16);min-height:var(--h48);padding:var(--s4) 0;color:var(--texto);font-weight:500;text-decoration:none}
+.lista-alternativas .icone{color:var(--texto-2)}
+.folha .lista-alternativas{font-size:var(--t-corpo)}
+.opcao-ajuste.com-seta{display:grid;grid-template-columns:1fr auto;column-gap:var(--s16);row-gap:var(--s4);align-items:center}
+.opcao-ajuste.com-seta > .icone{grid-column:2;grid-row:1 / span 2;color:var(--texto-2)}
+.opcao-ajuste.com-seta > b,.opcao-ajuste.com-seta > span{grid-column:1}
 .mais{border-top:1px solid var(--linha)}
 .mais summary{cursor:pointer;min-height:var(--h48);display:flex;align-items:center;font-size:var(--t-apoio);font-weight:600;text-decoration:underline;text-underline-offset:var(--s4)}
 .mais-corpo{padding:0 0 var(--s16);display:flex;flex-direction:column;gap:var(--s8);font-size:var(--t-apoio)}
@@ -794,6 +816,7 @@ a.faixa-descanso{text-decoration:none}
   .descanso-topo{min-height:calc(var(--h48) * 3)}
   .aseguir{padding:var(--s8) 0}
 }
+@media (max-height:700px){.cartao-hoje .numeros{display:none}.acao-fixa{padding-top:var(--s8);padding-bottom:calc(var(--s8) + env(safe-area-inset-bottom,0px))}}
 /* celular muito baixo: o descanso larga o piso do relógio e a miniatura, para a ação principal caber na 1ª tela */
 @media (max-height:700px){.descanso-topo{min-height:0;gap:var(--s8)}.aseguir .miniatura{display:none}.descanso{gap:var(--s8)}}
 
@@ -822,30 +845,33 @@ a.faixa-descanso{text-decoration:none}
 .barra-volta i{display:block;height:100%;background:var(--texto)}
 /* os treinos da semana: blocos; o feito é cheio */
 .pontos{display:flex;gap:var(--s4)}
-.pontos i{width:var(--s16);height:var(--s8);background:var(--superficie-2)}
-.pontos i.on{background:var(--texto)}
+.pontos i{width:var(--s16);height:var(--s8);box-shadow:inset 0 0 0 1px var(--borda)}
+.pontos i.on{background:var(--texto);box-shadow:none}
 .numero-grande{display:flex;align-items:baseline;gap:var(--s16);font-size:var(--t-numero);font-weight:700;line-height:1;letter-spacing:-.04em;margin:0}
 .numero-grande small{font-size:var(--t-pergunta);color:var(--texto-2);font-weight:500;letter-spacing:0}
 .musculos{list-style:none;margin:0;padding:0;border-top:1px solid var(--linha)}
 .musculos li{display:grid;grid-template-columns:minmax(6rem,34%) 1fr auto;grid-template-areas:"nome barra num" "estado estado estado";align-items:center;gap:0 var(--s16);min-height:var(--h48);padding:var(--s8) 0;border-bottom:1px solid var(--linha);font-size:var(--t-corpo)}
 .m-nome{grid-area:nome;font-weight:500;line-height:1.25}
-.m-barra{grid-area:barra;position:relative;height:var(--s8);background:var(--superficie-2)}
+.m-barra{grid-area:barra;position:relative;height:var(--s8);box-shadow:inset 0 0 0 1px var(--borda)}
 .m-barra i{display:block;height:100%;background:var(--texto)}
 .m-crescendo .m-barra i{opacity:.7}
-.m-mantendo .m-barra i{opacity:.4}
-.m-barra u{position:absolute;top:calc(-1 * var(--s4));bottom:calc(-1 * var(--s4));width:2px;background:var(--texto-2);text-decoration:none}
+.m-mantendo .m-barra i{opacity:.45}
+/* a meta é um traço tracejado, como a legenda diz */
+.m-barra u{position:absolute;top:calc(-1 * var(--s4));bottom:calc(-1 * var(--s4));width:0;border-left:2px dashed var(--texto);text-decoration:none}
 .m-num{grid-area:num;font-size:var(--t-apoio);color:var(--texto-2);white-space:nowrap;min-width:4.5rem;text-align:right}
 .m-estado{grid-area:estado;font-size:var(--t-apoio);color:var(--texto-2)}
 .semanas{display:flex;gap:var(--s4);max-width:22.5rem}
-.semanas i{flex:0 1 var(--s48);height:var(--s8);background:var(--superficie-2)}
-.semanas i.on{background:var(--texto)}
+.semanas i{flex:0 1 var(--s48);height:var(--s8);box-shadow:inset 0 0 0 1px var(--borda)}
+.semanas i.on{background:var(--texto);box-shadow:none}
 .lista-evolucao{list-style:none;margin:0;padding:0;border-top:1px solid var(--linha)}
 .lista-evolucao li{border-bottom:1px solid var(--linha)}
-.lista-evolucao a{display:flex;align-items:center;min-height:var(--h48);color:var(--texto);font-weight:500;text-decoration:none}
+.lista-evolucao a{display:flex;align-items:center;justify-content:space-between;gap:var(--s16);min-height:var(--h48);color:var(--texto);font-weight:500;text-decoration:none}
+.lista-evolucao .icone{color:var(--texto-2)}
 .pontos-evolucao li{display:grid;grid-template-columns:3.5rem 1fr auto;gap:var(--s8);align-items:center;padding:var(--s16) 0;font-size:var(--t-corpo)}
 .pe-data{color:var(--texto-2);font-size:var(--t-apoio)}
 .pe-serie{font-weight:600}
 .pe-serie small{font-weight:400;color:var(--texto-2)}
+@media (max-width:359px){.pe-serie small{display:block}.pe-ponto{display:none}}
 .pe-marcas{display:flex;flex-wrap:wrap;gap:var(--s4) var(--s8);justify-content:flex-end}
 .resumo-evolucao{margin:0;font-size:var(--t-apoio);color:var(--texto-2)}
 
@@ -858,8 +884,7 @@ a.faixa-descanso{text-decoration:none}
 .estilo-boneco svg{width:6rem;aspect-ratio:4/3;background:var(--stage);border-radius:var(--r8);display:block}
 .estilo-boneco span{display:flex;flex-direction:column;gap:var(--s4);min-width:0}
 .estilo-boneco small{color:var(--texto-2);font-size:var(--t-apoio);line-height:1.3}
-@media (max-width:279px){.estilo-boneco{grid-template-columns:auto 1fr}.estilo-boneco svg{grid-column:1 / -1;grid-row:1}}
-.folha .box:has(.estilos-boneco){padding:0;background:none}
+.folha .box:has(.estilos-boneco){padding:0;background:none;display:flex;flex-direction:column;gap:var(--s16)}
 .folha .box:has(.estilos-boneco) > h2{display:none}
 .termos h2{margin:0;font-size:var(--t-pergunta);font-weight:600;letter-spacing:-.01em}
 .termos section{display:flex;flex-direction:column;gap:var(--s8)}
@@ -870,6 +895,8 @@ a.faixa-descanso{text-decoration:none}
 .como-ler dl{margin:0;display:flex;flex-direction:column;gap:var(--s8)}
 .como-ler dt{font-weight:600}
 .como-ler dd{margin:0}
+.como-ler[open]{padding-bottom:var(--s16)}
+.como-ler > .ajuda{margin:var(--s16) 0 0}
 .resumo-ex{padding:var(--s16) 0}
 
 /* quando o cabeçalho não tem largura para o "1 de 6" ao lado do "Senti algo" (celular estreito, letra do sistema maior),
@@ -886,8 +913,12 @@ header.top:has(.cab-treino){container-type:inline-size;container-name:cab}
   .modes,.modos-treino{display:grid;grid-template-columns:1fr 1fr}
   /* o nome do treino já é o título da tela: no botão ele fica só para o leitor de tela */
   .so-largo{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
-  /* só na tela estreita a palavra comprida pode ser partida com hífen */
-  .opcao > span,.item-eq > span:not(.estado){hyphens:auto}
+  .opcoes.linha{display:grid;grid-template-columns:repeat(3,minmax(0,1fr))}
+  .opcoes.linha .opcao{position:relative;justify-content:center;min-width:0;text-align:center}
+  .opcoes.linha .opcao input{position:absolute;inset:0;width:100%;height:100%;margin:0;opacity:0;cursor:pointer}
+  .grade-2 .opcao{gap:var(--s8);padding:var(--s8)}
+  .estilo-boneco{grid-template-columns:auto 1fr}
+  .estilo-boneco svg{grid-column:1 / -1;grid-row:1}
   .cab-treino .topo-volta{font-size:var(--t-apoio);white-space:nowrap}
   .cab-treino .alerta-topo{padding:0 var(--s8);white-space:nowrap}
 }

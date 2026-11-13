@@ -5,6 +5,7 @@ import { agoraIso, useApp } from '../app/estado';
 import { Folha } from '../app/Folha';
 import { AvisoInstalar, AvisoSalvar } from '../app/avisos';
 import { TextoFotoCurto } from '../app/privacidade';
+import { Icone } from '../app/icones';
 import { Selo, Titulo, Topo } from '../app/ui';
 import { IconeLugar } from './lugares';
 
@@ -41,12 +42,9 @@ export function BoasVindas() {
           </div>
         )}
         <AvisoSalvar />
-        <AvisoInstalar />
         <p className="lede">Monta o programa, mostra cada exercício e diz o porquê.</p>
         <section className="nota-aviso" aria-labelledby="nao-faz">
-          <svg viewBox="0 0 24 24" aria-hidden="true">
-            <path d="M12 3a9 9 0 1 0 0 18 9 9 0 0 0 0-18zM12 11v5M12 8h.01" />
-          </svg>
+          <Icone nome="info" />
           <div>
             <h2 id="nao-faz">O que o app não faz</h2>
             <p>
@@ -57,9 +55,7 @@ export function BoasVindas() {
         </section>
         <p className="privacidade-linha">
           <button type="button" aria-haspopup="dialog" onClick={() => setPrivacidade(true)}>
-            <svg viewBox="0 0 24 24" aria-hidden="true">
-              <path d="M7 11V8a5 5 0 0 1 10 0v3M5 11h14v10H5z" />
-            </svg>
+            <Icone nome="lock" />
             Seus dados ficam só neste celular. Sem login.
           </button>
         </p>
@@ -71,14 +67,16 @@ export function BoasVindas() {
             </p>
           </Folha>
         )}
-        <div className="acao-boas">
-          <p className="ajuda termos-linha">
-            Ao começar, você concorda com os <Link to="/termos">termos de uso e o aviso de privacidade</Link>.
-          </p>
+        {/* o convite para instalar (iPhone) vem depois do que a tela tem a dizer, não antes */}
+        <AvisoInstalar />
+        {/* a única ação da tela fica presa embaixo, à vista em qualquer altura de celular; o aceite vem logo abaixo dela */}
+        <div className="acao-fixa acao-boas">
           <button type="button" className="btn" onClick={comecar}>
             Começar
           </button>
-          <p className="sob-botao">4 passos, uns 3 minutos</p>
+          <p className="ajuda termos-linha">
+            4 passos, uns 3 minutos. Ao começar, você concorda com os <Link to="/termos">termos de uso e o aviso de privacidade</Link>.
+          </p>
         </div>
       </main>
     </div>

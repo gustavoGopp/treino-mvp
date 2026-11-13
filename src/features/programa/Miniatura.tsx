@@ -1,5 +1,6 @@
 import { useId } from 'react';
 import { useEstiloBoneco } from '../app/estiloBoneco';
+import { Icone } from '../app/icones';
 import { comIdsUnicos, estiloDasListras } from './idsDoDesenho';
 import { useDesenho } from './desenhoFora';
 
@@ -15,12 +16,7 @@ export function Miniatura({ animacaoId, temTexto = false }: { animacaoId: string
   if (!q)
     return (
       <div className={`miniatura vazia${temTexto ? '' : ' sem-guia'}`} aria-hidden="true">
-        {temTexto && (
-          <svg viewBox="0 0 24 24">
-            <rect x="5" y="3" width="14" height="18" rx="2" />
-            <path d="M8 8h8M8 12h8M8 16h5" />
-          </svg>
-        )}
+        {temTexto && <Icone nome="file-text" />}
         <span>{temTexto ? 'guia em texto' : 'sem guia ainda'}</span>
       </div>
     );

@@ -576,7 +576,7 @@ export function FormularioInventario({
               </h2>
               <ul className="marcados">
                 {marcados.map((id) => (
-                  <li key={id} className={comErro.has(id) ? 'falta' : undefined}>
+                  <li key={id} className={comErro.has(id) ? 'com-falta' : undefined}>
                     <IconeEquipamento id={id} />
                     <span className="marcado-nome">
                       <b>{NOME_CURTO[id]}</b>

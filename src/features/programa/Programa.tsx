@@ -69,13 +69,13 @@ export function Programa() {
           <Titulo>Programa pausado</Titulo>
           <div className="warnbox seguranca">
             {semExercicio && !triagem.bloqueado ? (
-              <>
+              <p>
                 {semExercicio.texto} <Selo id={semExercicio.regraId} />
-              </>
+              </p>
             ) : (
-              <>
+              <p>
                 {triagem.mensagem} <Selo id={triagem.regraId} />
-              </>
+              </p>
             )}
           </div>
           <Link className="btn" to="/comecar/triagem">
@@ -250,7 +250,7 @@ export function Programa() {
               role="tab"
               id={`aba-${d.id}`}
               aria-selected={d === diaDoPrograma}
-              aria-controls={`painel-${d.id}`}
+              aria-controls={d === diaDoPrograma ? `painel-${d.id}` : undefined}
               tabIndex={d === diaDoPrograma ? 0 : -1}
               onClick={() => setDiaSel(i)}
               onKeyDown={(e) => {
@@ -340,13 +340,13 @@ export function Programa() {
 
         {primeiro && (
           <div className="aviso-linha">
-            <p>{primeiro.linha}</p>
+            <p id="aviso-linha-t">{primeiro.linha}</p>
             {primeiro.acao ? (
               <button type="button" className="btn sec pequeno" onClick={primeiro.acao.fazer}>
                 {primeiro.acao.rotulo}
               </button>
             ) : (
-              <button type="button" className="btn sec pequeno" aria-haspopup="dialog" onClick={() => setVerAvisos(true)}>
+              <button type="button" className="btn sec pequeno" aria-haspopup="dialog" aria-describedby="aviso-linha-t" onClick={() => setVerAvisos(true)}>
                 Ver
               </button>
             )}
@@ -372,7 +372,6 @@ export function Programa() {
           {aviso}
         </p>
         {versaoNova && estado.sessaoAtual && <p className="ajuda">O programa será atualizado depois do treino em andamento.</p>}
-        <AvisoInstalar />
 
         <section className="painel-dia" role="tabpanel" id={`painel-${dia.id}`} aria-labelledby={`aba-${dia.id}`}>
           <ol className="cartoes-ex">
@@ -389,6 +388,9 @@ export function Programa() {
             ))}
           </ol>
         </section>
+
+        {/* o convite para instalar (iPhone) vem depois dos exercícios: na 1ª tela, o treino de hoje */}
+        <AvisoInstalar />
 
         {/* R5c (B2; treino.leitura): o vocabulário do treino, aberto até o 1º treino; e o lembrete de cópia (dados.copia) */}
         <ComoLer aberto={!estado.historico.some((h) => h.fim)} iniciante={perfil!.nivel === 'iniciante'} />
@@ -418,8 +420,11 @@ export function Programa() {
             </Link>
           ) : (
             <button type="button" className="btn" onClick={iniciar}>
-              Começar o treino <span className="so-largo">{dia.nome}</span>
-              {locais.length > 1 && nomeLocal ? ` em ${nomeLocal}` : ''}
+              {/* um bloco só de texto: o botão é uma linha flexível, e pedaços soltos virariam colunas */}
+              <span>
+                Começar o treino <span className="so-largo">{dia.nome}</span>
+                {locais.length > 1 && nomeLocal ? ` em ${nomeLocal}` : ''}
+              </span>
             </button>
           )}
         </div>
@@ -519,9 +524,10 @@ function Ajustes({ opcoes, escolher }: { opcoes: Opcao[]; escolher: (o: Opcao) =
       <ul className="opcoes-ajuste">
         {opcoes.map((o) => (
           <li key={o.id + o.titulo}>
-            <button type="button" className="opcao-ajuste" onClick={() => escolher(o)}>
+            <button type="button" className="opcao-ajuste com-seta" onClick={() => escolher(o)}>
               <b>{o.titulo}</b>
               <span>{o.texto}</span>
+              <Icone nome="chevron-right" />
             </button>
           </li>
         ))}
@@ -551,6 +557,8 @@ function LinhaExercicio({
   aoPreferir: (funcao: string, id: string) => void;
 }) {
   const [aberta, setAberta] = useState(false);
+  // a resposta do "Prefiro" aparece dentro da folha (a mensagem da página fica atrás do véu)
+  const [preferiu, setPreferiu] = useState(false);
   const ex = POR_ID[x.exId];
   const par = x.supersetCom ? dia.find((y) => y.exId === x.supersetCom) : undefined;
   const prescricao = (
@@ -578,9 +586,9 @@ function LinhaExercicio({
             <div>
               <p className="series">{prescricao}</p>
               <p className="sub-rx">
-                RIR {faixa(x.rir)} · descanso {tempo(x.descansoSeg)}
-                {par && ' · bi-set'}
-                {x.dropSet && ' · última série em drop set'}
+                <span className="nw">RIR {faixa(x.rir)}</span> <span className="nw">· descanso {tempo(x.descansoSeg)}</span>
+                {par && <span className="nw"> · bi-set</span>}
+                {x.dropSet && <span className="nw"> · última série em drop set</span>}
               </p>
             </div>
           </div>
@@ -598,6 +606,26 @@ function LinhaExercicio({
             </p>
           )}
           {!x.animacaoId && <CartaoTexto exId={x.exId} />}
+          {/* o que se faz na folha (trocar, preferir, ver a evolução) vem antes do que se lê (o porquê) */}
+          {x.alternativas.length > 0 && <Alternativas ids={x.alternativas} diaId={diaId} vaga={x.noLugarDe ?? x.exId} />}
+          <Preferencias
+            funcao={x.funcao}
+            atual={x.exId}
+            alternativas={x.alternativas}
+            preferidos={preferidos}
+            aoPreferir={(f, id) => {
+              aoPreferir(f, id);
+              setPreferiu(true);
+            }}
+          />
+          <p role="status" className="status">
+            {preferiu ? 'Preferência salva. Ela entra quando você atualizar o programa e nas trocas de local.' : ''}
+          </p>
+          {comHistorico && (
+            <Link className="btn ter" to={`/evolucao/${x.exId}?de=programa`}>
+              Ver a evolução deste exercício
+            </Link>
+          )}
           <h3 className="rotulo">Por que este exercício</h3>
           <ul className="lista">
             {x.porque.map((q) => (
@@ -606,13 +634,6 @@ function LinhaExercicio({
               </li>
             ))}
           </ul>
-          {x.alternativas.length > 0 && <Alternativas ids={x.alternativas} diaId={diaId} vaga={x.noLugarDe ?? x.exId} />}
-          <Preferencias funcao={x.funcao} atual={x.exId} alternativas={x.alternativas} preferidos={preferidos} aoPreferir={aoPreferir} />
-          {comHistorico && (
-            <Link className="btn ter" to={`/evolucao/${x.exId}`}>
-              Ver a evolução deste exercício
-            </Link>
-          )}
         </Folha>
       )}
     </li>
@@ -738,30 +759,36 @@ function Sobre({
 
 /** Alternativas da mesma função: as 3 melhores à mostra e o resto em "ver mais" (decisão de 01/11/2026). */
 function Alternativas({ ids, diaId, vaga }: { ids: string[]; diaId: string; vaga: string }) {
-  const nome = (id: string) => {
-    const alt = POR_ID[id];
-    if (!alt) return null;
-    return alt.animacaoId ? (
-      <Link to={linkDoGuia(alt.animacaoId, { de: 'programa', diaId, exId: alt.id, vaga })}>{alt.nome.toLowerCase()}</Link>
-    ) : (
-      alt.nome.toLowerCase()
-    );
-  };
-  const lista = (xs: string[]) =>
-    xs.map((id, i) => (
-      <span key={id}>
-        {i > 0 && (i === xs.length - 1 ? ' ou ' : ', ')}
-        {nome(id)}
-      </span>
-    ));
+  // cada alternativa numa linha de toque inteira (48 px), com a seta quando leva ao guia dela
+  const lista = (xs: string[]) => (
+    <ul className="lista-alternativas">
+      {xs.map((id) => {
+        const alt = POR_ID[id];
+        if (!alt) return null;
+        return (
+          <li key={id}>
+            {alt.animacaoId ? (
+              <Link to={linkDoGuia(alt.animacaoId, { de: 'programa', diaId, exId: alt.id, vaga })}>
+                {alt.nome}
+                <Icone nome="chevron-right" />
+              </Link>
+            ) : (
+              <span>{alt.nome}</span>
+            )}
+          </li>
+        );
+      })}
+    </ul>
+  );
   const [mostra, resto] = [ids.slice(0, ALTERNATIVAS_A_MOSTRA), ids.slice(ALTERNATIVAS_A_MOSTRA)];
   return (
     <div className="alternativas">
-      <p>Se o equipamento estiver ocupado: {lista(mostra)}.</p>
+      <p className="rotulo">Se o equipamento estiver ocupado</p>
+      {lista(mostra)}
       {resto.length > 0 && (
         <details className="ver-mais">
           <summary>Ver mais {resto.length === 1 ? '1 opção' : `${resto.length} opções`}</summary>
-          <p>{lista(resto)}.</p>
+          {lista(resto)}
         </details>
       )}
     </div>

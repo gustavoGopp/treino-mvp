@@ -170,7 +170,7 @@ export function Triagem() {
     );
 
   return (
-    <Passo id="triagem" titulo="Quais valem para você?">
+    <Passo id="triagem" titulo="Quais valem para você?" aoVoltar={() => setGeral(true)}>
       <p className="lede">Marque as que valem. No fim, você confirma que as outras não valem.</p>
       <form onSubmit={continuar} noValidate className="form">
         <Erros erros={erros} />
@@ -226,9 +226,6 @@ export function Triagem() {
         </div>
         <button type="submit" className="btn">
           Continuar
-        </button>
-        <button type="button" className="btn ter" onClick={() => setGeral(true)}>
-          ‹ Voltar à pergunta geral
         </button>
       </form>
       {confirmar && (

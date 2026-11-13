@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import { GRUPOS, metaMaxima, type Grupo, type Objetivo } from '../../domain/gerador';
 import { opcoesDeDivisao, type DivisaoId } from '../../domain/gerador/divisoes';
@@ -27,7 +27,14 @@ export function Rotina() {
   const { estado, atualizar } = useApp();
   const navigate = useNavigate();
   const salva = estado.rotina;
-  const deDados = useSearchParams()[0].get('de') === 'dados';
+  const [busca] = useSearchParams();
+  const deDados = busca.get('de') === 'dados';
+  // "Objetivo", em Meus dados, abre esta tela já na pergunta do objetivo
+  const noObjetivo = useRef<HTMLDivElement>(null);
+  const focoNoObjetivo = deDados && busca.get('foco') === 'objetivo';
+  useEffect(() => {
+    if (focoNoObjetivo) noObjetivo.current?.scrollIntoView?.({ block: 'start' });
+  }, [focoNoObjetivo]);
   const [dias, setDias] = useState<(typeof DIAS)[number] | undefined>(salva?.diasSemana);
   const [min, setMin] = useState(salva ? String(salva.minutosSessao) : '');
   // Um valor salvo fora dos botões abre em "Outro", com o número dele.
@@ -77,7 +84,7 @@ export function Rotina() {
   };
 
   return (
-    <Passo id="rotina" titulo="Sua rotina de treino">
+    <Passo id="rotina" titulo="Sua rotina de treino" deDados={deDados}>
       <form onSubmit={enviar} noValidate className="form">
         {tentou && <Erros erros={erros} />}
         <Escolha
@@ -95,7 +102,7 @@ export function Rotina() {
           linha
         />
         {(dias || deDados) && (
-          <Revelar>
+          <Revelar semRolar={deDados}>
             <Escolha
               nome="minutos"
               legenda="Quantos minutos por treino?"
@@ -128,7 +135,7 @@ export function Rotina() {
           </Revelar>
         )}
         {((dias && opMin) || deDados) && (
-          <Revelar>
+          <Revelar semRolar={deDados}>
             <fieldset className="campo">
               <legend>Quais grupos você quer priorizar? (opcional)</legend>
               <p className="ajuda">
@@ -153,6 +160,7 @@ export function Rotina() {
               <p className="ajuda">Dá para mudar depois, em Meus dados. O objetivo (“ganhar músculo” é o padrão) e “algo a evitar” também ficam lá.</p>
             )}
             {deDados && (
+            <div ref={noObjetivo} className="ancora-objetivo">
             <Escolha
               nome="objetivo"
               legenda="O que você quer agora? (opcional)"
@@ -166,6 +174,7 @@ export function Rotina() {
               valor={objetivo}
               aoMudar={setObjetivo}
             />
+            </div>
             )}
           </Revelar>
         )}
