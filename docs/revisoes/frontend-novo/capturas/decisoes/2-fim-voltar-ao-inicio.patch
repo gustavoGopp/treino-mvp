@@ -1,8 +1,8 @@
 diff --git a/src/features/treino/Resumo.tsx b/src/features/treino/Resumo.tsx
-index c7aa323..64219be 100644
+index c75c61a..4e3733e 100644
 --- a/src/features/treino/Resumo.tsx
 +++ b/src/features/treino/Resumo.tsx
-@@ -168,12 +168,9 @@ export function Resumo() {
+@@ -167,12 +167,9 @@ export function Resumo() {
            </ul>
          </section>
          <SemanaLeve />
@@ -16,7 +16,7 @@ index c7aa323..64219be 100644
          {apagar ? (
            <div className="warnbox" role="group" aria-label="Apagar este treino?">
              <p>
-@@ -200,6 +197,12 @@ export function Resumo() {
+@@ -199,6 +196,12 @@ export function Resumo() {
              Registrei algo errado: apagar este treino
            </button>
          )}
