@@ -13,8 +13,6 @@ const corpo = m.CORPOS.homem;
 const css = readFileSync('src/engine/novo/estilo.css', 'utf8') + m.cssDoBoneco();
 const o = (id, k) => m.obj(id, k);
 const X = [1, 0, 0], Y = [0, 1, 0], Z = [0, 0, 1];
-const soma = (a, b) => [a[0] + b[0], a[1] + b[1], a[2] + b[2]];
-const vezes = (a, k) => [a[0] * k, a[1] * k, a[2] * k];
 
 /** A câmera do motor novo no formato que o gerador realista espera (x na tela, y para baixo, z = longe de quem olha). */
 const cameraRealista = (cam) => ({
