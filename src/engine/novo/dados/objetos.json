@@ -9,7 +9,13 @@
   "rogue-sling": "Rogue Fitness. Monster Lite Slinger, Specs: cabo de aço de 1/4 pol (lido em 12/11/2026)",
   "a-conferir": "Sem ficha lida ainda: valor provisório, listado pela conferência",
   "rogue-ab3": "Rogue Fitness. Adjustable Bench 3.0, Gear specs (lido em 12/11/2026; docs/revisoes/animacao-nova/pesquisa/04, seção 4)",
-  "gymgear-mab": "Gym Gear. Pro Series Multi Adjustable Bench, Technical specifications (lido em 12/11/2026; pesquisa/04, seção 4)"
+  "gymgear-mab": "Gym Gear. Pro Series Multi Adjustable Bench, Technical specifications (lido em 12/11/2026; pesquisa/04, seção 4)",
+  "titan-hex": "Titan Fitness, 25 lb Rubber Hex Dumbbells; https://titan.fitness/products/25-lb-rubber-hex-dumbbells; lido em docs/revisoes/animacao-nova/pesquisa/10-fontes-das-medidas-provisorias-dos-objetos.md (página lida por resumo automático; é outro fabricante que o do resto do halter)",
+  "rogue-fb2": "Rogue, Flat Utility Bench 2.0 (tubo de 2x3 pol); https://www.roguefitness.com/rogue-flat-utility-bench-2-0; docs/revisoes/animacao-nova/pesquisa/10-fontes-das-medidas-provisorias-dos-objetos.md",
+  "bodysolid-pcco90x": "Body-Solid, manual do Powerline PCCO90X Cable Crossover (PDF); https://cdn.shopify.com/s/files/1/0941/2604/files/PCCO90X-180716.pdf; docs/revisoes/animacao-nova/pesquisa/10-fontes-das-medidas-provisorias-dos-objetos.md (outro fabricante que o da coluna)",
+  "rogue-estribo": "Rogue, Single Handle Cable Attachment; https://www.roguefitness.com/single-handle-cable-attachment; docs/revisoes/animacao-nova/pesquisa/10-fontes-das-medidas-provisorias-dos-objetos.md",
+  "rogue-ab3-tubo": "Rogue, Adjustable Bench 3.0 (tubo de 3x3 pol); https://www.roguefitness.com/rogue-adjustable-bench-3-0; docs/revisoes/animacao-nova/pesquisa/10-fontes-das-medidas-provisorias-dos-objetos.md",
+  "desenho": "Escolha de desenho, sem medida de fabricante: quantidade ou detalhe que não muda a medida do objeto"
  },
  "objetos": {
   "halter": {
@@ -46,9 +52,9 @@
     "caboComp": {
      "v": 13.0,
      "un": "cm",
-     "tipo": "provisoria",
-     "fonte": "a-conferir",
-     "onde": "comprimento livre do cabo entre as cabeças: nenhuma ficha lida informa"
+     "tipo": "medida",
+     "fonte": "titan-hex",
+     "onde": "comprimento livre do cabo de um halter sextavado de 25 lb: 5,125 pol = 13,0 cm"
     },
     "massa": {
      "v": 11.3,
@@ -98,11 +104,11 @@
      "onde": "largura total do Flat Bench FW-FB: 22 pol"
     },
     "tubo": {
-     "v": 5,
+     "v": 5.1,
      "un": "cm",
-     "tipo": "provisoria",
-     "fonte": "a-conferir",
-     "onde": "lado do tubo da estrutura: nenhuma ficha lida informa"
+     "tipo": "medida",
+     "fonte": "rogue-fb2",
+     "onde": "lado menor do tubo de 2x3 pol: 2 pol = 5,08 cm; antes: 5 cm (sem fonte)"
     }
    }
   },
@@ -171,11 +177,11 @@
      "onde": "largura da coluna com a carenagem da pilha: nenhuma ficha lida informa"
     },
     "roldanaDiam": {
-     "v": 11.5,
+     "v": 11.0,
      "un": "cm",
-     "tipo": "provisoria",
-     "fonte": "a-conferir",
-     "onde": "diâmetro da roldana do carrinho: só há a de 6 pol de uma polia de rack (Rogue), que é outro aparelho"
+     "tipo": "medida",
+     "fonte": "bodysolid-pcco90x",
+     "onde": "diâmetro da roldana: 110 mm; antes: 11,5 cm (sem fonte)"
     },
     "caboDiam": {
      "v": 0.64,
@@ -201,9 +207,9 @@
     "placas": {
      "v": 16,
      "un": "un",
-     "tipo": "provisoria",
-     "fonte": "a-conferir",
-     "onde": "número de placas desenhadas"
+     "tipo": "desenho",
+     "fonte": "desenho",
+     "onde": "número de placas desenhadas na pilha (uma pilha de 200 lb da Body-Solid tem 20 placas de 10 lb)"
     }
    }
   },
@@ -211,18 +217,18 @@
    "nome": "Estribo (pegador de uma mão)",
    "medidas": {
     "pegadaComp": {
-     "v": 12.5,
+     "v": 12.7,
      "un": "cm",
-     "tipo": "provisoria",
-     "fonte": "a-conferir",
-     "onde": "comprimento da pegada: sem medida lida"
+     "tipo": "medida",
+     "fonte": "rogue-estribo",
+     "onde": "comprimento da pegada: 5 pol = 12,7 cm; antes: 12,5 cm (sem fonte)"
     },
     "pegadaDiam": {
      "v": 3.2,
      "un": "cm",
-     "tipo": "provisoria",
-     "fonte": "a-conferir",
-     "onde": "diâmetro da pegada: sem medida lida"
+     "tipo": "medida",
+     "fonte": "rogue-estribo",
+     "onde": "diâmetro da pegada: opção de 32 mm"
     },
     "altura": {
      "v": 15,
@@ -326,11 +332,11 @@
      "onde": "comprimento só do assento: nenhuma ficha lida separa assento e encosto"
     },
     "tubo": {
-     "v": 6,
+     "v": 7.6,
      "un": "cm",
-     "tipo": "provisoria",
-     "fonte": "a-conferir",
-     "onde": "lado do tubo da estrutura: nenhuma ficha lida informa"
+     "tipo": "medida",
+     "fonte": "rogue-ab3-tubo",
+     "onde": "lado do tubo de 3x3 pol: 7,62 cm; antes: 6 cm (sem fonte)"
     }
    }
   }

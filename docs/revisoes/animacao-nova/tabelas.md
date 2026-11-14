@@ -6,7 +6,7 @@ Tipos de linha: **medida** (lida na fonte), **derivada** (calculada de medidas, 
 
 ## Corpo: homem
 
-População: ANSUR II (militares dos EUA, 2012), homens, IMC de 18,5 a 24,9; n = 1061; média de cada medida. 91 linhas: 62 medidas, 16 derivadas, 13 provisórias.
+População: ANSUR II (militares dos EUA, 2012), homens, IMC de 18,5 a 24,9; n = 1061; média de cada medida. 91 linhas: 67 medidas, 17 derivadas, 7 provisórias.
 
 | medida | valor | tipo | fonte | onde na fonte |
 |---|---|---|---|---|
@@ -40,7 +40,7 @@ População: ANSUR II (militares dos EUA, 2012), homens, IMC de 18,5 a 24,9; n =
 | `pe.calcanharABola` | 19,9 cm | medida | ansur2 | coluna balloffootlength (do calcanhar às cabeças dos metatarsos: onde o pé dobra) |
 | `pe.largura` | 9,9 cm | medida | ansur2 | coluna footbreadthhorizontal |
 | `pe.larguraCalcanhar` | 7 cm | medida | ansur2 | coluna heelbreadth |
-| `pe.calcanharAoTornozelo` | 6,7 cm | **provisória** | a-conferir | posição do tornozelo ao longo do pé (25% do comprimento): sem fonte lida |
+| `pe.calcanharAoTornozelo` | 7 cm | derivada | fathi2018 | 0,26 × comprimento do pé (calcanhar ao maléolo lateral 70,19 mm para um pé de 270,03 mm); antes: 6,7 cm (25% do pé, sem fonte) |
 | `tornozelo.larguraMaleolos` | 7,3 cm | medida | ansur2 | coluna bimalleolarbreadth |
 | `largura.biacromial` | 40,8 cm | medida | ansur2 | coluna biacromialbreadth |
 | `largura.bideltoide` | 47,8 cm | medida | ansur2 | coluna bideltoidbreadth |
@@ -70,7 +70,7 @@ População: ANSUR II (militares dos EUA, 2012), homens, IMC de 18,5 a 24,9; n =
 | `raio.panturrilha` | 5,79 cm | derivada | ansur2 | circ.panturrilha / 2π |
 | `circ.tornozelo` | 21,9 cm | medida | ansur2 | coluna anklecircumference (no ponto mais fino) |
 | `raio.tornozelo` | 3,49 cm | derivada | ansur2 | circ.tornozelo / 2π |
-| `raio.bracoRelaxadoSobreFletido` | 0,93 razão | **provisória** | a-conferir | o ANSUR II só mede o braço contraído; a razão relaxado/contraído ainda não tem fonte lida |
+| `raio.bracoRelaxadoSobreFletido` | 0,93 razão | medida | isak-atletas | razão entre o braço relaxado e o contraído, de 0,90 a 0,93 nos cinco grupos (média 0,92); o ANSUR II só mede o braço contraído |
 | `cabeca.comp` | 19,7 cm | medida | ansur2 | coluna headlength (da testa à nuca) |
 | `cabeca.largura` | 15,2 cm | medida | ansur2 | coluna headbreadth |
 | `cabeca.mentoAoNasio` | 12,1 cm | medida | ansur2 | coluna mentonsellionlength (do queixo à raiz do nariz) |
@@ -88,7 +88,7 @@ População: ANSUR II (militares dos EUA, 2012), homens, IMC de 18,5 a 24,9; n =
 | `coluna.toracicaGray` | 28 cm | medida | gray1918 | idem |
 | `coluna.cervicalGray` | 12,5 cm | medida | gray1918 | idem |
 | `coluna.lordoseLombar` | 50 graus | **provisória** | a-conferir | curva lombar em pé de L1 a L5 (Vialle 2005 dá 60 de lordose máxima incluindo o sacro): a conferir |
-| `coluna.cifoseToracica` | 40 graus | **provisória** | a-conferir | curva torácica em pé: sem fonte lida |
+| `coluna.cifoseToracica` | 40 graus | medida | zappala2021 | curva torácica em pé, T1–T12: de 39 a 44 graus nos adultos saudáveis |
 | `coluna.lordoseCervical` | 30 graus | **provisória** | a-conferir | curva cervical em pé: sem fonte lida |
 | `clavicula.retracaoRepouso` | 23 graus | medida | ludewig2009 | fig. 5-A (repouso) |
 | `clavicula.elevacaoRepouso` | 11 graus | medida | ludewig2009 | fig. 5-A (repouso) |
@@ -97,10 +97,10 @@ População: ANSUR II (militares dos EUA, 2012), homens, IMC de 18,5 a 24,9; n =
 | `escapula.rotacaoParaCimaRepouso` | 11 graus | medida | ludewig2009 | fig. 5-C (repouso) |
 | `escapula.rotacaoParaCimaNaElevacao` | 39 graus | medida | ludewig2009 | fig. 5-C: aumento do repouso à elevação máxima do braço |
 | `escapula.rotacaoInternaRepouso` | 37 graus | medida | ludewig2009 | fig. 5-C (repouso): o plano da escápula |
-| `clavicula.comp` | 15 cm | **provisória** | a-conferir | comprimento da clavícula: a conferir (pesquisa 03) |
+| `clavicula.comp` | 15 cm | medida | patted2020 | comprimento da clavícula em homens: 149,67 mm (uma segunda fonte, TC de 26 homens, dá 15,3 cm) |
 | `esterno.meiaDistanciaDasClaviculas` | 2,5 cm | **provisória** | a-conferir | da linha do meio até a articulação da clavícula com o esterno: sem fonte lida |
-| `escapula.altura` | 15,5 cm | **provisória** | a-conferir | do ângulo superior ao inferior: a conferir (pesquisa 03) |
-| `escapula.largura` | 10,5 cm | **provisória** | a-conferir | da borda medial à cavidade do ombro: a conferir (pesquisa 03) |
+| `escapula.altura` | 16 cm | medida | yoo2012 | do ângulo superior ao inferior, escápulas masculinas: 159,8 mm; antes: 15,5 cm (sem fonte) |
+| `escapula.largura` | 10,5 cm | medida | yoo2012 | da base da espinha à borda posterior da cavidade glenoide, escápulas masculinas: 105,0 mm |
 
 Fontes do corpo:
 
@@ -110,6 +110,11 @@ Fontes do corpo:
 - `ludewig2009`: Ludewig PM et al. Motion of the shoulder complex during multiplanar humeral elevation. J Bone Joint Surg Am 2009;91(2):378-389 (lido no PMC por resumo automático: conferir os números)
 - `gray1918`: Gray H. Anatomy of the Human Body, 20ª ed., 1918 (domínio público)
 - `a-conferir`: Sem fonte lida ainda: valor provisório, listado pela conferência
+- `fathi2018`: Estudo antropométrico do pé, 290 homens de 18 a 30 anos (Urmia, Irã), paquímetro; https://brieflands.com/articles/healthscope-14063; lido em docs/revisoes/animacao-nova/pesquisa/09-fontes-das-medidas-provisorias-do-corpo.md, item 1
+- `isak-atletas`: Circunferência do braço relaxado e contraído (ISAK) em cinco grupos de atletas homens: razão de 0,90 a 0,93; https://pmc.ncbi.nlm.nih.gov/articles/PMC5969204/ e https://pmc.ncbi.nlm.nih.gov/articles/PMC13692339/; docs/revisoes/animacao-nova/pesquisa/09, item 2. São atletas, não a população geral
+- `zappala2021`: Zappalà M, Lightbourne S, Heneghan NR. J Orthop Surg Res 2021;16:447 (revisão sistemática, adultos saudáveis; CC BY 4.0); https://pmc.ncbi.nlm.nih.gov/articles/PMC8268398; docs/revisoes/animacao-nova/pesquisa/03 e 09, item 8
+- `patted2020`: Patted SM, Kumar A, Halawar RS. Indian J Orthop 2020;54(Suppl 2):283-291 (TC, sul da Índia; homens 149,67 ± 9,6 mm); https://pmc.ncbi.nlm.nih.gov/articles/PMC7609512/; docs/revisoes/animacao-nova/pesquisa/03 e 09, item 10
+- `yoo2012`: Yoo, Chung, Park, Chang, Paik. Clinics in Shoulder and Elbow 2012;15(2):73 (TC de 102 escápulas de 51 cadáveres coreanos, 62 masculinas); https://koreascience.kr/article/JAKO201212049742666; docs/revisoes/animacao-nova/pesquisa/09, itens 12 e 13
 
 ## Corpo: mulher
 
@@ -198,14 +203,14 @@ Fontes: `GRAY1918`: Gray H. Anatomy of the Human Body, 20ª ed. (1918), domínio
 | Halter sextavado emborrachado de 25 lb (11,3 kg) (`halter`) | `cabecaLargura` | 13,7 cm | medida | ritfit-hex | largura da cabeça, 25 lb: 5,4 pol |
 | Halter sextavado emborrachado de 25 lb (11,3 kg) (`halter`) | `cabecaAltura` | 12,2 cm | medida | ritfit-hex | altura da cabeça, 25 lb: 4,8 pol |
 | Halter sextavado emborrachado de 25 lb (11,3 kg) (`halter`) | `caboDiam` | 3,3 cm | medida | ritfit-hex | diâmetro do cabo, 15 a 60 lb: 1,3 pol |
-| Halter sextavado emborrachado de 25 lb (11,3 kg) (`halter`) | `caboComp` | 13 cm | **provisória** | a-conferir | comprimento livre do cabo entre as cabeças: nenhuma ficha lida informa |
+| Halter sextavado emborrachado de 25 lb (11,3 kg) (`halter`) | `caboComp` | 13 cm | medida | titan-hex | comprimento livre do cabo de um halter sextavado de 25 lb: 5,125 pol = 13,0 cm |
 | Halter sextavado emborrachado de 25 lb (11,3 kg) (`halter`) | `massa` | 11,3 kg | medida | ritfit-hex | 25 lb |
 | Banco reto (`bancoReto`) | `comp` | 122 cm | medida | ipf2026 | seção 2.6: comprimento não menor que 1,22 m |
 | Banco reto (`bancoReto`) | `larg` | 30,5 cm | medida | rogue-fb | Bench Pad Width: 12 pol (IPF: 29 a 32 cm) |
 | Banco reto (`bancoReto`) | `altura` | 43,5 cm | derivada | ipf2026 | meio da faixa da seção 2.6: 42 a 45 cm do piso ao topo do estofado |
 | Banco reto (`bancoReto`) | `estofado` | 6,35 cm | medida | rogue-fb | Pad Thickness: 2,5 pol |
 | Banco reto (`bancoReto`) | `baseLarg` | 56 cm | medida | hs2024 | largura total do Flat Bench FW-FB: 22 pol |
-| Banco reto (`bancoReto`) | `tubo` | 5 cm | **provisória** | a-conferir | lado do tubo da estrutura: nenhuma ficha lida informa |
+| Banco reto (`bancoReto`) | `tubo` | 5,1 cm | medida | rogue-fb2 | lado menor do tubo de 2x3 pol: 2 pol = 5,08 cm; antes: 5 cm (sem fonte) |
 | Anilha de ferro de 10 lb sob o calcanhar (`anilhaCalcanhar`) | `diam` | 22,8 cm | medida | rogue-steel | Plate Diameter, 10 lb: 228 mm |
 | Anilha de ferro de 10 lb sob o calcanhar (`anilhaCalcanhar`) | `esp` | 2,4 cm | **provisória** | a-conferir | espessura da anilha de 10 lb: a Rogue não informa |
 | Coluna de polia regulável (crossover) (`torre`) | `altura` | 239 cm | medida | lf-cc | Dimensions: 94 pol de altura |
@@ -214,13 +219,13 @@ Fontes: `GRAY1918`: Gray H. Anatomy of the Human Body, 20ª ed. (1918), domínio
 | Coluna de polia regulável (crossover) (`torre`) | `relacao` | 2 razão | medida | lf-cc | relação do cabo 2:1: a pilha sobe metade do que o cabo anda |
 | Coluna de polia regulável (crossover) (`torre`) | `prof` | 72 cm | medida | lf-cc | Dimensions: 28,5 pol de profundidade da base |
 | Coluna de polia regulável (crossover) (`torre`) | `colunaLarg` | 30 cm | **provisória** | a-conferir | largura da coluna com a carenagem da pilha: nenhuma ficha lida informa |
-| Coluna de polia regulável (crossover) (`torre`) | `roldanaDiam` | 11,5 cm | **provisória** | a-conferir | diâmetro da roldana do carrinho: só há a de 6 pol de uma polia de rack (Rogue), que é outro aparelho |
+| Coluna de polia regulável (crossover) (`torre`) | `roldanaDiam` | 11 cm | medida | bodysolid-pcco90x | diâmetro da roldana: 110 mm; antes: 11,5 cm (sem fonte) |
 | Coluna de polia regulável (crossover) (`torre`) | `caboDiam` | 0,64 cm | medida | rogue-sling | cabo de aço de 1/4 pol (sem a capa) |
 | Coluna de polia regulável (crossover) (`torre`) | `pilhaLarg` | 22 cm | **provisória** | a-conferir | largura das placas da pilha: nenhuma ficha lida informa |
 | Coluna de polia regulável (crossover) (`torre`) | `placaEsp` | 2,5 cm | **provisória** | a-conferir | espessura de cada placa da pilha: nenhuma ficha lida informa |
-| Coluna de polia regulável (crossover) (`torre`) | `placas` | 16 un | **provisória** | a-conferir | número de placas desenhadas |
-| Estribo (pegador de uma mão) (`estribo`) | `pegadaComp` | 12,5 cm | **provisória** | a-conferir | comprimento da pegada: sem medida lida |
-| Estribo (pegador de uma mão) (`estribo`) | `pegadaDiam` | 3,2 cm | **provisória** | a-conferir | diâmetro da pegada: sem medida lida |
+| Coluna de polia regulável (crossover) (`torre`) | `placas` | 16 un | desenho | desenho | número de placas desenhadas na pilha (uma pilha de 200 lb da Body-Solid tem 20 placas de 10 lb) |
+| Estribo (pegador de uma mão) (`estribo`) | `pegadaComp` | 12,7 cm | medida | rogue-estribo | comprimento da pegada: 5 pol = 12,7 cm; antes: 12,5 cm (sem fonte) |
+| Estribo (pegador de uma mão) (`estribo`) | `pegadaDiam` | 3,2 cm | medida | rogue-estribo | diâmetro da pegada: opção de 32 mm |
 | Estribo (pegador de uma mão) (`estribo`) | `altura` | 15 cm | **provisória** | a-conferir | da pegada ao elo do cabo: sem medida lida |
 | Colchonete (`colchonete`) | `comp` | 100 cm | **provisória** | a-conferir | sem medida lida |
 | Colchonete (`colchonete`) | `larg` | 50 cm | **provisória** | a-conferir | sem medida lida |
@@ -234,7 +239,7 @@ Fontes: `GRAY1918`: Gray H. Anatomy of the Human Body, 20ª ed. (1918), domínio
 | Banco regulável (encosto de 0 a 85 graus) (`bancoRegulavel`) | `encostoMax` | 85 graus | medida | rogue-ab3 | maior ângulo do encosto (10 posições, de 0 a 85) |
 | Banco regulável (encosto de 0 a 85 graus) (`bancoRegulavel`) | `estofado` | 7 cm | medida | gymgear-mab | espessura do estofado: 70 mm (outro modelo; a ficha da Rogue não informa) |
 | Banco regulável (encosto de 0 a 85 graus) (`bancoRegulavel`) | `assentoComp` | 34 cm | **provisória** | a-conferir | comprimento só do assento: nenhuma ficha lida separa assento e encosto |
-| Banco regulável (encosto de 0 a 85 graus) (`bancoRegulavel`) | `tubo` | 6 cm | **provisória** | a-conferir | lado do tubo da estrutura: nenhuma ficha lida informa |
+| Banco regulável (encosto de 0 a 85 graus) (`bancoRegulavel`) | `tubo` | 7,6 cm | medida | rogue-ab3-tubo | lado do tubo de 3x3 pol: 7,62 cm; antes: 6 cm (sem fonte) |
 
 Fontes dos objetos:
 
@@ -248,6 +253,12 @@ Fontes dos objetos:
 - `a-conferir`: Sem ficha lida ainda: valor provisório, listado pela conferência
 - `rogue-ab3`: Rogue Fitness. Adjustable Bench 3.0, Gear specs (lido em 12/11/2026; docs/revisoes/animacao-nova/pesquisa/04, seção 4)
 - `gymgear-mab`: Gym Gear. Pro Series Multi Adjustable Bench, Technical specifications (lido em 12/11/2026; pesquisa/04, seção 4)
+- `titan-hex`: Titan Fitness, 25 lb Rubber Hex Dumbbells; https://titan.fitness/products/25-lb-rubber-hex-dumbbells; lido em docs/revisoes/animacao-nova/pesquisa/10-fontes-das-medidas-provisorias-dos-objetos.md (página lida por resumo automático; é outro fabricante que o do resto do halter)
+- `rogue-fb2`: Rogue, Flat Utility Bench 2.0 (tubo de 2x3 pol); https://www.roguefitness.com/rogue-flat-utility-bench-2-0; docs/revisoes/animacao-nova/pesquisa/10-fontes-das-medidas-provisorias-dos-objetos.md
+- `bodysolid-pcco90x`: Body-Solid, manual do Powerline PCCO90X Cable Crossover (PDF); https://cdn.shopify.com/s/files/1/0941/2604/files/PCCO90X-180716.pdf; docs/revisoes/animacao-nova/pesquisa/10-fontes-das-medidas-provisorias-dos-objetos.md (outro fabricante que o da coluna)
+- `rogue-estribo`: Rogue, Single Handle Cable Attachment; https://www.roguefitness.com/single-handle-cable-attachment; docs/revisoes/animacao-nova/pesquisa/10-fontes-das-medidas-provisorias-dos-objetos.md
+- `rogue-ab3-tubo`: Rogue, Adjustable Bench 3.0 (tubo de 3x3 pol); https://www.roguefitness.com/rogue-adjustable-bench-3-0; docs/revisoes/animacao-nova/pesquisa/10-fontes-das-medidas-provisorias-dos-objetos.md
+- `desenho`: Escolha de desenho, sem medida de fabricante: quantidade ou detalhe que não muda a medida do objeto
 
 ## Fichas de movimento
 

@@ -7,7 +7,12 @@
   "drillis-contini-via-cnb2025": "Drillis & Contini 1966, lido na figura reproduzida por Almeida et al., 11º Congresso Nacional de Biomecânica, 2025 (fonte secundária)",
   "ludewig2009": "Ludewig PM et al. Motion of the shoulder complex during multiplanar humeral elevation. J Bone Joint Surg Am 2009;91(2):378-389 (lido no PMC por resumo automático: conferir os números)",
   "gray1918": "Gray H. Anatomy of the Human Body, 20ª ed., 1918 (domínio público)",
-  "a-conferir": "Sem fonte lida ainda: valor provisório, listado pela conferência"
+  "a-conferir": "Sem fonte lida ainda: valor provisório, listado pela conferência",
+  "fathi2018": "Estudo antropométrico do pé, 290 homens de 18 a 30 anos (Urmia, Irã), paquímetro; https://brieflands.com/articles/healthscope-14063; lido em docs/revisoes/animacao-nova/pesquisa/09-fontes-das-medidas-provisorias-do-corpo.md, item 1",
+  "isak-atletas": "Circunferência do braço relaxado e contraído (ISAK) em cinco grupos de atletas homens: razão de 0,90 a 0,93; https://pmc.ncbi.nlm.nih.gov/articles/PMC5969204/ e https://pmc.ncbi.nlm.nih.gov/articles/PMC13692339/; docs/revisoes/animacao-nova/pesquisa/09, item 2. São atletas, não a população geral",
+  "zappala2021": "Zappalà M, Lightbourne S, Heneghan NR. J Orthop Surg Res 2021;16:447 (revisão sistemática, adultos saudáveis; CC BY 4.0); https://pmc.ncbi.nlm.nih.gov/articles/PMC8268398; docs/revisoes/animacao-nova/pesquisa/03 e 09, item 8",
+  "patted2020": "Patted SM, Kumar A, Halawar RS. Indian J Orthop 2020;54(Suppl 2):283-291 (TC, sul da Índia; homens 149,67 ± 9,6 mm); https://pmc.ncbi.nlm.nih.gov/articles/PMC7609512/; docs/revisoes/animacao-nova/pesquisa/03 e 09, item 10",
+  "yoo2012": "Yoo, Chung, Park, Chang, Paik. Clinics in Shoulder and Elbow 2012;15(2):73 (TC de 102 escápulas de 51 cadáveres coreanos, 62 masculinas); https://koreascience.kr/article/JAKO201212049742666; docs/revisoes/animacao-nova/pesquisa/09, itens 12 e 13"
  },
  "medidas": {
   "estatura": {
@@ -228,11 +233,11 @@
    "onde": "coluna heelbreadth"
   },
   "pe.calcanharAoTornozelo": {
-   "v": 6.7,
+   "v": 7.0,
    "un": "cm",
-   "tipo": "provisoria",
-   "fonte": "a-conferir",
-   "onde": "posição do tornozelo ao longo do pé (25% do comprimento): sem fonte lida"
+   "tipo": "derivada",
+   "fonte": "fathi2018",
+   "onde": "0,26 × comprimento do pé (calcanhar ao maléolo lateral 70,19 mm para um pé de 270,03 mm); antes: 6,7 cm (25% do pé, sem fonte)"
   },
   "tornozelo.larguraMaleolos": {
    "v": 7.3,
@@ -446,9 +451,9 @@
   "raio.bracoRelaxadoSobreFletido": {
    "v": 0.93,
    "un": "razão",
-   "tipo": "provisoria",
-   "fonte": "a-conferir",
-   "onde": "o ANSUR II só mede o braço contraído; a razão relaxado/contraído ainda não tem fonte lida"
+   "tipo": "medida",
+   "fonte": "isak-atletas",
+   "onde": "razão entre o braço relaxado e o contraído, de 0,90 a 0,93 nos cinco grupos (média 0,92); o ANSUR II só mede o braço contraído"
   },
   "cabeca.comp": {
    "v": 19.7,
@@ -576,9 +581,9 @@
   "coluna.cifoseToracica": {
    "v": 40,
    "un": "graus",
-   "tipo": "provisoria",
-   "fonte": "a-conferir",
-   "onde": "curva torácica em pé: sem fonte lida"
+   "tipo": "medida",
+   "fonte": "zappala2021",
+   "onde": "curva torácica em pé, T1–T12: de 39 a 44 graus nos adultos saudáveis"
   },
   "coluna.lordoseCervical": {
    "v": 30,
@@ -639,9 +644,9 @@
   "clavicula.comp": {
    "v": 15,
    "un": "cm",
-   "tipo": "provisoria",
-   "fonte": "a-conferir",
-   "onde": "comprimento da clavícula: a conferir (pesquisa 03)"
+   "tipo": "medida",
+   "fonte": "patted2020",
+   "onde": "comprimento da clavícula em homens: 149,67 mm (uma segunda fonte, TC de 26 homens, dá 15,3 cm)"
   },
   "esterno.meiaDistanciaDasClaviculas": {
    "v": 2.5,
@@ -651,18 +656,18 @@
    "onde": "da linha do meio até a articulação da clavícula com o esterno: sem fonte lida"
   },
   "escapula.altura": {
-   "v": 15.5,
+   "v": 16.0,
    "un": "cm",
-   "tipo": "provisoria",
-   "fonte": "a-conferir",
-   "onde": "do ângulo superior ao inferior: a conferir (pesquisa 03)"
+   "tipo": "medida",
+   "fonte": "yoo2012",
+   "onde": "do ângulo superior ao inferior, escápulas masculinas: 159,8 mm; antes: 15,5 cm (sem fonte)"
   },
   "escapula.largura": {
    "v": 10.5,
    "un": "cm",
-   "tipo": "provisoria",
-   "fonte": "a-conferir",
-   "onde": "da borda medial à cavidade do ombro: a conferir (pesquisa 03)"
+   "tipo": "medida",
+   "fonte": "yoo2012",
+   "onde": "da base da espinha à borda posterior da cavidade glenoide, escápulas masculinas: 105,0 mm"
   }
  },
  "secoes": {
