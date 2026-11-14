@@ -31,6 +31,14 @@ export const fichaSchema = z.object({
    */
   erros: z.array(z.object({ id: z.string(), titulo: z.string(), vista: z.string(), oQueMuda: z.string(), destaca: z.array(z.enum(['pernas', 'bracos', 'corpo'])), linha: z.array(z.string()).min(2), foco: z.string() })),
   simetrico: z.boolean(),
+  /**
+   * Rótulos de técnica (modo Técnica), por vista: o texto, o ponto do corpo de que ele fala e, se houver, a linha-guia.
+   * `prumo`: uma linha vertical tracejada que sobe `alt` cm a partir de um ponto; `guia`: uma linha tracejada pelos
+   * pontos dados. O texto vem do guia de hoje (já conferido) ou da ficha da técnica, com o selo.
+   */
+  rotulos: z
+    .array(z.object({ vista: z.string(), texto: z.string().min(3), ponto: z.string(), selo: SELO, fonte: z.string().min(1), prumo: z.object({ de: z.string(), alt: z.number().positive() }).optional(), guia: z.array(z.string()).min(2).optional() }))
+    .default([]),
 });
 export type Ficha = z.infer<typeof fichaSchema>;
 export type Fase = Ficha['fases'][number];

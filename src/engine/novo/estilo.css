@@ -53,4 +53,10 @@
 .novo .n-err-p{fill:var(--n-err);stroke:var(--n-fundo);stroke-width:1px;vector-effect:non-scaling-stroke}
 .novo .n-certo-l{fill:none;stroke:var(--n-guia);stroke-width:2px;vector-effect:non-scaling-stroke;stroke-dasharray:5 4;stroke-linecap:round;stroke-linejoin:round}
 .novo .n-err-fio{stroke:var(--n-err);stroke-width:1px;vector-effect:non-scaling-stroke}
-.novo .n-err-t{fill:var(--n-err);font:600 9px system-ui,-apple-system,"Segoe UI",sans-serif;paint-order:stroke;stroke:var(--n-fundo);stroke-width:2.5px;stroke-linejoin:round}
+.novo .n-err-t,.novo .n-rot-t{font-family:system-ui,-apple-system,"Segoe UI",sans-serif;font-weight:600;paint-order:stroke;stroke:var(--n-fundo);stroke-width:3px;vector-effect:non-scaling-stroke;stroke-linejoin:round}
+.novo .n-err-t{fill:var(--n-err);font-weight:700}
+/* modo Técnica: o rótulo fora do corpo, o fio até o ponto e a linha-guia tracejada */
+.novo .n-rot-t{fill:var(--n-guia)}
+.novo .n-rot-fio{stroke:var(--n-guia);stroke-width:1px;vector-effect:non-scaling-stroke;opacity:.75}
+.novo .n-rot-p{fill:var(--n-fundo);stroke:var(--n-guia);stroke-width:1.5px;vector-effect:non-scaling-stroke}
+.novo .n-guia-l{fill:none;stroke:var(--n-guia);stroke-width:1.5px;vector-effect:non-scaling-stroke;stroke-dasharray:4 3.5;stroke-linecap:round}

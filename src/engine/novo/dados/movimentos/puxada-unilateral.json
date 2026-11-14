@@ -38,5 +38,9 @@
   { "id": "encolher", "titulo": "Ombro encolhido", "vista": "posterior", "oQueMuda": "a clavícula continua elevada no fim", "destaca": ["bracos"], "linha": ["c7", "ombro", "cotovelo"], "foco": "ombro" },
   { "id": "curta", "titulo": "Não alongar em cima", "vista": "lateral", "oQueMuda": "volta só até a metade", "destaca": ["bracos"], "linha": ["ombro", "cotovelo", "punho"], "foco": "cotovelo" }
  ],
- "simetrico": false
+ "simetrico": false,
+ "rotulos": [
+  {"vista": "posterior", "texto": "ombro desce, cotovelo ao quadril", "ponto": "ombro", "selo": "consenso", "fonte": "guia"},
+  {"vista": "lateral", "texto": "tronco quase parado", "ponto": "c7", "selo": "consenso", "fonte": "guia"}
+ ]
 }

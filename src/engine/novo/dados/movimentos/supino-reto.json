@@ -38,5 +38,10 @@
   { "id": "escap", "titulo": "Ombros saem do banco no topo", "vista": "lateral", "oQueMuda": "a clavícula vai à frente e o ombro descola do banco", "destaca": ["bracos"], "linha": ["c7", "ombro", "cotovelo"], "foco": "ombro" },
   { "id": "curta", "titulo": "Descer pouco", "vista": "lateral", "oQueMuda": "para com o braço 28° acima da horizontal", "destaca": ["bracos"], "linha": ["ombro", "cotovelo", "punho"], "foco": "cotovelo" }
  ],
- "simetrico": true
+ "simetrico": true,
+ "rotulos": [
+  {"vista": "lateral", "texto": "antebraço na vertical", "ponto": "punho", "selo": "consenso", "fonte": "guia", "prumo": {"de": "cotovelo", "alt": 44}},
+  {"vista": "cima", "texto": "cotovelos ~30–60° do tronco", "ponto": "cotovelo", "selo": "consenso", "fonte": "tecnica08"},
+  {"vista": "cima", "texto": "halter sobre o cotovelo", "ponto": "pegada", "selo": "consenso", "fonte": "guia"}
+ ]
 }

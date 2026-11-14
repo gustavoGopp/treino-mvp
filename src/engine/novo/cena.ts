@@ -6,7 +6,9 @@ import type { Camera, IdVista, Item, P2 } from './desenho';
 import { equipamentoRealista } from './equipamento';
 import type { Tema } from './equipamento';
 import { duracao, instante } from './movimento';
-import { noRef } from './vec';
+import { disporRotulos, saidaDoFio, textoDoRotulo } from './rotulos';
+import type { Caixa, RotuloPosto } from './rotulos';
+import { add, noRef } from './vec';
 import type { V3 } from './vec';
 import type { Exercicio, Quadro } from './movimento';
 import type { Corpo } from './tabelas';
@@ -69,6 +71,20 @@ function trajetoria(cam: Camera, ex: Exercicio, corpo: Corpo, ponto: string, n =
   for (let i = 0; i <= n; i++) out.push(naTela(cam, le(quadroDe(ex, corpo, i / n))));
   return out;
 }
+/* ============================== pontos do corpo pelo nome ============================== */
+type EsqQ = Quadro['esq'];
+const DO_MEIO: Record<string, (e: EsqQ) => V3> = { pelve: (e) => e.pelve.o, lombar: (e) => e.nos[e.iT12]!.ref.o, c7: (e) => e.torax.o, cabeca: (e) => noRef(e.cabeca, [0, 6, 6]) };
+/** Um ponto do corpo pelo nome: do meio (pelve, lombar, c7, cabeca) ou de um lado (ombro, cotovelo, punho, pegada, quadril, joelho, tornozelo, calcanhar, ponta). */
+function ponto(e: EsqQ, nome: string, k: 'R' | 'L'): V3 {
+  const doMeio = DO_MEIO[nome];
+  if (doMeio) return doMeio(e);
+  const p = (e.lado[k] as unknown as Record<string, V3>)[nome];
+  if (!p) throw new Error(`ponto do corpo desconhecido: "${nome}"`);
+  return p;
+}
+/** Os lados que aparecem separados na vista: de lado, num exercício simétrico, só o de perto. */
+const ladosNaVista = (ex: Exercicio, cam: Camera): ('R' | 'L')[] => (!ex.ficha.simetrico || Math.abs(cam.para[0]) > 0.7 ? ['R'] : ['R', 'L']);
+
 export function itensDaCena(ex: Exercicio, t: number, o: OpcoesCena): Item[] {
   return itensEmU(ex, instante(ex.ficha.fases, t).u, o);
 }
@@ -87,11 +103,10 @@ function itensEmU(ex: Exercicio, u: number, o: OpcoesCena): Item[] {
     const corpoErrado = desenharBoneco(errado.esq, cam, { estilo: o.boneco, mini: o.mini, erroEm, vies: errado.vies });
     itens.push(...corpoErrado);
     if (def) {
-      // a linha do erro (cheia, vermelha) e a do movimento certo (tracejada), pelos mesmos pontos do corpo
-      const doMeio: Record<string, (e: Quadro['esq']) => V3> = { pelve: (e) => e.pelve.o, lombar: (e) => e.nos[e.iT12]!.ref.o, c7: (e) => e.torax.o, cabeca: (e) => noRef(e.cabeca, [0, 6, 6]) };
-      const lados: ('R' | 'L')[] = !ex.ficha.simetrico || Math.abs(cam.para[0]) > 0.7 ? ['R'] : ['R', 'L'];
-      const ponto = (e: Quadro['esq'], nome: string, k: 'R' | 'L'): V3 => (doMeio[nome] ? doMeio[nome](e) : (e.lado[k] as unknown as Record<string, V3>)[nome]!);
-      const linha = (e: Quadro['esq'], k: 'R' | 'L') => def.linha.map((nome) => naTela(cam, ponto(e, nome, k)));
+      // a linha do erro (cheia, vermelha) e a do movimento certo (tracejada), pelos mesmos pontos do corpo; o nome do
+      // erro entra depois, com os rótulos (camadaDeRotulos), porque a posição dele depende do enquadramento
+      const lados = ladosNaVista(ex, cam);
+      const linha = (e: EsqQ, k: 'R' | 'L') => def.linha.map((nome) => naTela(cam, ponto(e, nome, k)));
       const pts = (P: P2[]) => P.map((p) => `${f1(p[0])},${f1(p[1])}`).join(' ');
       let s = '';
       for (const k of lados) s += `<polyline class="n-certo-l" points="${pts(linha(certo.esq, k))}"/>`;
@@ -100,18 +115,7 @@ function itensEmU(ex: Exercicio, u: number, o: OpcoesCena): Item[] {
           f = naTela(cam, ponto(errado.esq, def.foco, k));
         s += `<polyline class="n-err-l" points="${pts(P)}"/><circle class="n-err-p" cx="${f1(f[0])}" cy="${f1(f[1])}" r="2.4"/>`;
       }
-      if (!o.mini) {
-        // o nome do erro fica fora do corpo, ao lado do ponto que erra, com um fio até ele
-        const cx = caixaDosItens(corpoErrado);
-        const focos = lados.map((k) => naTela(cam, ponto(errado.esq, def.foco, k)));
-        const f = focos.reduce((a, b) => (b[0] > a[0] ? b : a));
-        const tam = 9,
-          larg = def.titulo.length * tam * 0.56;
-        const x = cx[2] + 7,
-          y = Math.min(f[1], cx[3] - 4);
-        s += `<line class="n-err-fio" x1="${f1(f[0])}" y1="${f1(f[1])}" x2="${f1(x - 1.5)}" y2="${f1(y - tam * 0.3)}"/><text class="n-err-t" x="${f1(x)}" y="${f1(y)}" font-size="${tam}">${def.titulo}</text>`;
-        itens.push({ d: 0, camada: 3, s, cx: [Math.min(cx[0], f[0]), y - tam, x + larg, y + 2] });
-      } else itens.push({ d: 0, camada: 3, s });
+      itens.push({ d: 0, camada: 3, s });
     }
     return itens;
   }
@@ -128,22 +132,77 @@ function itensEmU(ex: Exercicio, u: number, o: OpcoesCena): Item[] {
   }
   return itens;
 }
-/**
- * Caixa de visualização do exercício numa vista: cabe o ciclo inteiro (e os erros dessa vista), na proporção pedida
- * (4:3 no palco, 1:1 na miniatura).
- */
-export function enquadrar(ex: Exercicio, o: Omit<OpcoesCena, 'modo' | 'erro'>, margem = 0.06, proporcao = 4 / 3): [number, number, number, number] {
+/* ============================== enquadramento e rótulos ============================== */
+type VB = [number, number, number, number];
+/** A caixa do corpo e do equipamento no ciclo inteiro (e nos erros dessa vista): o que o quadro precisa conter. */
+const CAIXAS = new WeakMap<Exercicio, Map<string, Caixa>>();
+function caixaDoCiclo(ex: Exercicio, o: Omit<OpcoesCena, 'modo' | 'erro'>): Caixa {
+  let m = CAIXAS.get(ex);
+  if (!m) CAIXAS.set(ex, (m = new Map()));
+  const chave = [o.corpo.id, o.vista, o.boneco, o.mini ? 1 : 0, o.equipamento ?? ''].join('|');
+  let c = m.get(chave);
+  if (c) return c;
   const T = duracao(ex.ficha.fases);
-  const c: [number, number, number, number] = [1e9, 1e9, -1e9, -1e9];
+  c = [1e9, 1e9, -1e9, -1e9];
   const junta = (itens: Item[]) => {
     const k = caixaDosItens(itens.filter((it) => it.camada >= 1));
-    c[0] = Math.min(c[0], k[0]);
-    c[1] = Math.min(c[1], k[1]);
-    c[2] = Math.max(c[2], k[2]);
-    c[3] = Math.max(c[3], k[3]);
+    c![0] = Math.min(c![0], k[0]);
+    c![1] = Math.min(c![1], k[1]);
+    c![2] = Math.max(c![2], k[2]);
+    c![3] = Math.max(c![3], k[3]);
   };
   for (let i = 0; i < 12; i++) junta(itensDaCena(ex, (i / 12) * T, { ...o, modo: 'tec' }));
   for (const e of ex.ficha.erros) if (e.vista === o.vista) for (let i = 0; i < 6; i++) junta(itensDaCena(ex, (i / 6) * T, { ...o, modo: 'err', erro: e.id }));
+  m.set(chave, c);
+  return c;
+}
+/** Tamanho da letra dos rótulos, no sistema do desenho: 11 px num palco de 360 px de largura, qualquer que seja a cena. */
+const tamDaLetra = (vb: VB) => (vb[2] * 11) / 360;
+const TAM_DO_ERRO = 1.1;
+/** Posição média de um ponto do corpo no ciclo (para o texto ficar parado ao lado de onde o ponto passa). */
+function alvoMedio(ex: Exercicio, o: Omit<OpcoesCena, 'modo'>, nome: string): P2 {
+  const cam = VISTAS[o.vista];
+  let x = 0,
+    y = 0,
+    n = 0;
+  for (let i = 0; i <= 8; i++) {
+    const e = quadroDe(ex, o.corpo, i / 8, o.erro).esq;
+    for (const k of ladosNaVista(ex, cam)) {
+      const p = naTela(cam, ponto(e, nome, k));
+      x += p[0];
+      y += p[1];
+      n++;
+    }
+  }
+  return [x / n, y / n];
+}
+/** Onde ficam os textos de um modo, num quadro: os rótulos de técnica da vista, ou o nome do erro. Guardado. */
+const POSTOS = new WeakMap<Exercicio, Map<string, (RotuloPosto | null)[]>>();
+function rotulosPostos(ex: Exercicio, o: OpcoesCena, vb: VB): (RotuloPosto | null)[] {
+  let m = POSTOS.get(ex);
+  if (!m) POSTOS.set(ex, (m = new Map()));
+  const chave = [o.corpo.id, o.vista, o.boneco, o.modo, o.erro ?? '', o.equipamento ?? '', vb.map(f1).join(',')].join('|');
+  let r = m.get(chave);
+  if (r) return r;
+  const corpo = caixaDoCiclo(ex, o);
+  const tam = tamDaLetra(vb);
+  if (o.modo === 'err') {
+    const def = ex.ficha.erros.find((e) => e.id === o.erro);
+    r = def ? disporRotulos([{ texto: def.titulo, alvo: alvoMedio(ex, o, def.foco) }], corpo, vb, tam * TAM_DO_ERRO, 20) : [];
+  } else {
+    const lista = o.modo === 'tec' ? ex.ficha.rotulos.filter((x) => x.vista === o.vista) : [];
+    r = disporRotulos(lista.map((x) => ({ texto: x.texto, alvo: alvoMedio(ex, { ...o, erro: undefined }, x.ponto) })), corpo, vb, tam);
+  }
+  m.set(chave, r);
+  return r;
+}
+/**
+ * Caixa de visualização do exercício numa vista: cabe o ciclo inteiro (e os erros dessa vista), na proporção pedida
+ * (4:3 no palco, 1:1 na miniatura), com o corpo no meio. No palco, o quadro abre o que for preciso para os rótulos
+ * de técnica e o nome de cada erro caberem fora do corpo.
+ */
+export function enquadrar(ex: Exercicio, o: Omit<OpcoesCena, 'modo' | 'erro'>, margem = 0.06, proporcao = 4 / 3): VB {
+  const c = caixaDoCiclo(ex, o);
   let w = c[2] - c[0],
     h = c[3] - c[1];
   let x0 = c[0] - w * margem,
@@ -159,7 +218,56 @@ export function enquadrar(ex: Exercicio, o: Omit<OpcoesCena, 'modo' | 'erro'>, m
     x0 -= (nw - w) / 2;
     w = nw;
   }
+  if (o.mini) return [x0, y0, w, h];
+  // abre o quadro (em volta do meio, mantendo a base) até todos os textos caberem
+  for (let i = 0; i < 10; i++) {
+    const vb: VB = [x0, y0, w, h];
+    const cabe = (modo: Modo, erro?: string) => rotulosPostos(ex, { ...o, modo, erro }, vb).every((r) => r !== null);
+    if (cabe('tec') && ex.ficha.erros.filter((e) => e.vista === o.vista).every((e) => cabe('err', e.id))) break;
+    const k = 1.06;
+    x0 -= (w * (k - 1)) / 2;
+    y0 -= h * (k - 1);
+    w *= k;
+    h *= k;
+  }
   return [x0, y0, w, h];
+}
+/** A camada dos textos de um quadro: rótulos de técnica com as linhas-guia, ou o nome do erro, com o fio até o corpo. */
+function camadaDeRotulos(ex: Exercicio, u: number, o: OpcoesCena, vb: VB): string {
+  if (o.mini || (o.modo !== 'tec' && o.modo !== 'err')) return '';
+  const cam = VISTAS[o.vista];
+  const postos = rotulosPostos(ex, o, vb);
+  const tam = tamDaLetra(vb);
+  const lados = ladosNaVista(ex, cam);
+  const xy = (p: P2) => `${f1(p[0])}" y1="${f1(p[1])}`;
+  /** O ponto do corpo (do lado mais perto do texto) e o fio do texto até ele. */
+  const fio = (r: RotuloPosto, e: EsqQ, nome: string, t: number, classe: string) => {
+    const de = saidaDoFio(r, t);
+    const alvos = lados.map((k) => naTela(cam, ponto(e, nome, k)));
+    const a = alvos.reduce((m, p) => (Math.hypot(p[0] - de[0], p[1] - de[1]) < Math.hypot(m[0] - de[0], m[1] - de[1]) ? p : m));
+    return { a, s: `<line class="${classe}" x1="${xy(de)}" x2="${f1(a[0])}" y2="${f1(a[1])}"/>` };
+  };
+  let s = '';
+  if (o.modo === 'err') {
+    const def = ex.ficha.erros.find((x) => x.id === o.erro),
+      r = postos[0];
+    if (!def || !r) return '';
+    const t = tam * TAM_DO_ERRO;
+    return fio(r, quadroDe(ex, o.corpo, u, o.erro).esq, def.foco, t, 'n-err-fio').s + textoDoRotulo(r, t, 'n-err-t');
+  }
+  const e = quadroDe(ex, o.corpo, u).esq;
+  ex.ficha.rotulos
+    .filter((x) => x.vista === o.vista)
+    .forEach((x, i) => {
+      const pts = (P: P2[]) => P.map((p) => `${f1(p[0])},${f1(p[1])}`).join(' ');
+      if (x.prumo) for (const k of lados) s += `<polyline class="n-guia-l" points="${pts([naTela(cam, ponto(e, x.prumo.de, k)), naTela(cam, add(ponto(e, x.prumo.de, k), [0, x.prumo.alt, 0]))])}"/>`;
+      if (x.guia) for (const k of lados) s += `<polyline class="n-guia-l" points="${pts(x.guia.map((nome) => naTela(cam, ponto(e, nome, k))))}"/>`;
+      const r = postos[i];
+      if (!r) return;
+      const f = fio(r, e, x.ponto, tam, 'n-rot-fio');
+      s += `${f.s}<circle class="n-rot-p" cx="${f1(f.a[0])}" cy="${f1(f.a[1])}" r="${f1(tam * 0.22)}"/>${textoDoRotulo(r, tam, 'n-rot-t')}`;
+    });
+  return s;
 }
 /** O <svg> de um quadro. `tema`: 'claro' ou 'escuro'. As classes levam as cores (ver cssDoBoneco e estilo.css). */
 export function svgDaCena(ex: Exercicio, t: number, o: OpcoesCena, vb: [number, number, number, number], tema: Tema = 'claro'): string {
@@ -170,7 +278,7 @@ function svgEmU(ex: Exercicio, u: number, o: OpcoesCena, vb: [number, number, nu
   const chao = VISTAS[o.vista].para[1] === 0 ? `<line class="n-chao-l" x1="${f1(vb[0])}" y1="0" x2="${f1(vb[0] + vb[2])}" y2="0"/>` : '';
   DEFS = '';
   const corpo = pintar(itensEmU(ex, u, { ...o, tema }));
-  return `<svg class="novo boneco ${o.boneco}${tema === 'escuro' ? ' escuro' : ''}${o.mini ? ' mini' : ''}" viewBox="${vb.map(f1).join(' ')}">${DEFS_DO_BONECO}${DEFS ? `<defs>${DEFS}</defs>` : ''}${chao}${corpo}</svg>`;
+  return `<svg class="novo boneco ${o.boneco}${tema === 'escuro' ? ' escuro' : ''}${o.mini ? ' mini' : ''}" viewBox="${vb.map(f1).join(' ')}">${DEFS_DO_BONECO}${DEFS ? `<defs>${DEFS}</defs>` : ''}${chao}${corpo}${camadaDeRotulos(ex, u, o, vb)}</svg>`;
 }
 /**
  * Para a animação: o mesmo desenho de svgDaCena, guardando o SVG pronto de cada instante do movimento. O movimento

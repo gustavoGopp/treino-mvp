@@ -38,5 +38,10 @@
   { "id": "cot", "titulo": "Cotovelos abertos a 90°", "vista": "cima", "oQueMuda": "os cotovelos vão para os lados", "destaca": ["bracos"], "linha": ["ombro", "cotovelo", "punho"], "foco": "cotovelo" },
   { "id": "curta", "titulo": "Descer pouco", "vista": "lateral", "oQueMuda": "desce só até a metade", "destaca": ["bracos"], "linha": ["ombro", "cotovelo", "punho"], "foco": "cotovelo" }
  ],
- "simetrico": true
+ "simetrico": true,
+ "rotulos": [
+  {"vista": "lateral", "texto": "corpo em linha reta", "ponto": "pelve", "selo": "consenso", "fonte": "guia", "guia": ["tornozelo", "cabeca"]},
+  {"vista": "cima", "texto": "cotovelos ~45° do tronco", "ponto": "cotovelo", "selo": "consenso", "fonte": "guia"},
+  {"vista": "cima", "texto": "mãos na linha do peito", "ponto": "punho", "selo": "consenso", "fonte": "guia"}
+ ]
 }
