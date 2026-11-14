@@ -157,8 +157,9 @@ function desenhar(chave: string | null, cam: Camera, id: string, monta: (C: Cena
 /** O equipamento de um quadro, no desenho dos cartões do app. `id` distingue os filtros de sombra de cada <svg>. */
 export function equipamentoRealista(pecas: Peca[], cam: Camera, tema: Tema, id: string): { itens: Item[]; defs: string } {
   const M = MATERIAIS[tema];
-  // a sombra no chão só aparece quando o chão não está de perfil
-  const comSombra = Math.abs(cam.para[1]) > 0.1;
+  // a sombra no chão só aparece nas vistas inclinadas: de perfil o chão é uma linha, e de cima, a pino, a sombra
+  // ficava inteira debaixo da peça e sobrava em volta dela como uma mancha atrás do corpo
+  const comSombra = Math.abs(cam.para[1]) > 0.1 && Math.abs(cam.para[1]) < 0.9;
   const itens: Item[] = [];
   let defs = '';
   const junta = (r: { itens: Item[]; defs: string }) => {
