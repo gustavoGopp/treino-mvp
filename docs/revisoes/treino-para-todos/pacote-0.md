@@ -170,5 +170,5 @@ Só quem marcou dor no joelho vê "Há uma versão nova do seu programa": com do
 Uma por vez, com a minha recomendação; nada vem marcado.
 
 1. **A lista de 8 exercícios, em vez dos 3 da proposta (seção 2)?** *Recomendo sim.* É a mesma regra aplicada a todos os exercícios em que o texto do próprio app manda apoiar o joelho.
-2. **As duas pessoas que ficam só com remadas (seção 5): manter a regra mesmo com a nota um pouco menor?** *Recomendo manter*, e pedir à animação a versão sentada das puxadas. A alternativa é deixar a puxada com elástico e a da polia dupla para quem tem dor forte no joelho, com um aviso para sentar; mas hoje o texto e o desenho do app mandam ajoelhar.
+2. ~~As duas pessoas que ficam só com remadas (seção 5): manter a regra mesmo com a nota um pouco menor?~~ **Decidido em 14/11/2026: manter.** A versão sentada das puxadas fica pedida à animação. A alternativa é deixar a puxada com elástico e a da polia dupla para quem tem dor forte no joelho, com um aviso para sentar; mas hoje o texto e o desenho do app mandam ajoelhar.
 3. **O próximo pacote.** *Recomendo o pacote 3 (dor que não desmonta o dia)*, porque é o que mexe no pior grupo e porque a segunda regra deste pacote já abriu o caminho. A alternativa é o pacote 2 (a escolha dos exercícios), que é o que mais muda o dia a dia de quem já usa.
