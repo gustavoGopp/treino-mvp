@@ -35,7 +35,8 @@
     "auditoria:avaliador": "vite-node scripts/auditoria/avaliador.ts --",
     "auditoria:verificar": "node scripts/auditoria/verificar.mjs",
     "ler-export": "vite-node scripts/export/ler-export.ts --",
-    "conferir:tokens": "node scripts/design/conferir-tokens.mjs"
+    "conferir:tokens": "node scripts/design/conferir-tokens.mjs",
+    "conferir:animacao": "node scripts/animacao-nova/conferir.mjs"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^1.3.0",
