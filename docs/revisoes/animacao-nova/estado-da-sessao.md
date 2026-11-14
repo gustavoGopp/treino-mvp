@@ -1,8 +1,10 @@
 # Estado da sessão da animação nova (14/11/2026, fim da etapa 1)
 
-A etapa 1 está entregue e a sessão está **parada, esperando a decisão do Gustavo**. Ramo: `claude/loving-hamilton-c4ji83`. Nada foi para a `main` e nada mudou no app.
+A etapa 1 está entregue e aprovada para seguir; **esta sessão terminou** e a continuação é numa sessão nova. Ramo: `claude/loving-hamilton-c4ji83`. Nada foi para a `main` e nada mudou no app.
 
 Comece por **`proposta.md`**: ela resume tudo, lista as decisões pedidas e diz onde está cada arquivo.
+
+Em 14/11/2026 o Gustavo deu o ok para seguir e pediu para continuar numa sessão nova. O prompt dela está em **`prompt-continuacao.md`**: o que está decidido, o que está em aberto, as regras e por onde começar.
 
 ## O que aconteceu, em ordem
 
