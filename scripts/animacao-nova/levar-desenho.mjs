@@ -15,14 +15,23 @@ for (const k of ['PELVE_L', 'CABECA_L', 'CABELO_L', 'TENIS_L', 'MAO_PEGADA', 'MA
 formas.MAO_CHAO = [[-1.6, 1.9], [3, 2.1], [9, 0.7], [16, -0.9], [18.6, -1.7], [18.4, -2.3, 1], [-1.6, -2.3, 1]];
 formas.POLEGAR_L = [[1.2, 3.0], [4.6, 6.0], [8.2, 6.6], [9.6, 5.2], [7, 4.0], [3.6, 2.0]];
 formas.POLEGAR_F = [[1.6, 1.4], [5, 3.5], [8.4, 4.1], [9.3, 2.9], [6.4, 1.9], [3, 0.5]];
-const linhas = { DEDOS_L: [[[7.2, 2.4], [9.8, 1.8]], [[7.5, 0], [10.3, -0.5]], [[7.1, -2.4], [9.5, -3.1]]] };
+// A mão espalmada vista pelo dorso (de cima, na flexão): desenho novo de 14/11/2026, que as pranchas aprovadas não
+// tinham (lá a mão só aparece de lado e de frente). Mesma luva com polegar, com o mesmo comprimento da mão solta
+// (18,4 cm), a largura da mão do ANSUR II (8,6 cm nos nós dos dedos) e as pontas dos dedos em arco (o dedo médio é o
+// mais comprido e o mínimo o mais curto). Ainda não aprovado pelo Gustavo: vai na folha da flexão.
+formas.MAO_ESPALMADA = [[0, 2.7], [3, 3.5], [7, 4.2], [10, 4.3], [14, 4.1], [16.6, 3.4], [17.9, 1.8], [18.4, 0.3], [18, -1.4], [17, -2.9], [15.6, -4.2], [13.5, -4.7], [10, -4.5], [6, -4.2], [3, -3.6], [0, -2.7]];
+const linhas = {
+  DEDOS_L: [[[7.2, 2.4], [9.8, 1.8]], [[7.5, 0], [10.3, -0.5]], [[7.1, -2.4], [9.5, -3.1]]],
+  // as três linhas entre os dedos da mão espalmada, dos nós até perto das pontas
+  DEDOS_ESPALMADA: [[[10.6, 2.2], [17.3, 1.9]], [[10.9, 0], [17.7, -0.8]], [[10.4, -2.3], [15.9, -3.2]]],
+};
 const estilo = (e) => ({ id: e.id, nome: e.nome, papel: e.papel, cabelo: !!e.cabelo, roupa: e.roupa ?? null, descalco: !!e.descalco, contornoNaCor: !!e.contornoNaCor, cores: { claro: e.cores('claro'), escuro: e.cores('escuro') } });
 const saida = {
   origem: 'Desenho do Boneco aprovado pelo Gustavo em 13/11/2026 (docs/revisoes/boneco-desenho/decisao.md). Tabelas de scripts/boneco-desenho/boneco-prova.mjs, musculos-prova.mjs, figura.mjs e estilos-finais.mjs, levadas por scripts/animacao-nova/levar-desenho.mjs. Em cm.',
   comoLer: {
     perfisDeLado: '[t, frente, trás]: t = posição ao longo da parte (0 = começo, 1 = fim); distância da superfície ao eixo do osso, para a frente e para trás',
     perfisDeFrente: '[t, dentro, fora]: o mesmo, para o lado de dentro e o de fora do corpo',
-    formas: 'polígonos fechados por curva suave (um terceiro valor 1 marca canto vivo), em coordenadas próprias (ver boneco-prova.mjs): PELVE_L e CABECA_L em [para a frente, para cima] a partir do centro do quadril e da base do crânio; *_F são a metade direita do corpo em pé [x, y]; TENIS_L em [do calcanhar para a ponta, para cima]; MAO_* em [do punho para a ponta dos dedos, para o lado do polegar ou para cima]',
+    formas: 'polígonos fechados por curva suave (um terceiro valor 1 marca canto vivo), em coordenadas próprias (ver boneco-prova.mjs): PELVE_L e CABECA_L em [para a frente, para cima] a partir do centro do quadril e da base do crânio; *_F são a metade direita do corpo em pé [x, y]; TENIS_L em [do calcanhar para a ponta, para cima]; MAO_* em [do punho para a ponta dos dedos, para o lado do polegar ou para cima]; MAO_ESPALMADA é a mão vista pelo dorso (desenho de 14/11/2026, fora das pranchas)',
     musculos: "[t, d]: t ao longo da parte e d = afastamento do eixo em cm (de lado: positivo = frente; de frente: positivo = dentro). 'f-0.9' = na superfície da frente, 0,9 cm para dentro; 't' = trás; 'd' = dentro; 'o' = fora. 'abs' = [x, y] em pé",
   },
   perfis,

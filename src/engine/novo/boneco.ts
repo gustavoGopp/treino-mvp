@@ -367,15 +367,17 @@ export function formaDoBoneco(e: Esq, o: { roupa?: boolean; cabeloAtrasPrimeiro?
     // (MAO_PEGADA, MAO_SOLTA); a espessura, vista de frente, vem de MAO_F (palma para o lado de +z da mão).
     const nomeMao = L.formaMao === 'pegada' ? 'MAO_PEGADA' : 'MAO_SOLTA';
     const chao = L.formaMao === 'aberta';
+    // espalmada no chão: a largura em cada ponto vem do desenho da mão vista pelo dorso (os dedos em arco)
+    const nomeLargura = chao ? 'MAO_ESPALMADA' : nomeMao;
     const dedos = mul(L.mao.y, -1),
       polegar = mul(L.mao.x, s);
     const maoAneis: Anel[] = [];
     const fim = nomeMao === 'MAO_PEGADA' ? 10.3 : 18.4;
     for (const q of [0, 0.015, 0.06, 0.14, 0.24, 0.34, 0.44, 0.54, 0.64, 0.74, 0.83, 0.9, 0.95, 0.985, 1]) {
       const u = q * fim;
-      const lg = corte(forma(nomeMao), 0, Math.max(0.02, Math.min(fim - 0.02, u))) ?? [-2, 2];
+      const lg = corte(forma(nomeLargura), 0, Math.max(0.02, Math.min(fim - 0.02, u))) ?? [-2, 2];
       // a luva sem o polegar (ele é um volume à parte): na mão solta, o lado do polegar segue a linha dos dedos
-      if (nomeMao === 'MAO_SOLTA' && u > 1 && u < 10.7) lg[1] = Math.min(lg[1], u < 3.5 ? 2.5 + 0.4 * u : 3.9 - ((u - 3.5) * 0.7) / 7.2);
+      if (nomeLargura === 'MAO_SOLTA' && u > 1 && u < 10.7) lg[1] = Math.min(lg[1], u < 3.5 ? 2.5 + 0.4 * u : 3.9 - ((u - 3.5) * 0.7) / 7.2);
       let f: number, b: number;
       if (chao) {
         const esp = corte(forma('MAO_CHAO'), 0, Math.max(-1.5, Math.min(18.5, u))) ?? [-2.3, 0];
@@ -401,7 +403,8 @@ export function formaDoBoneco(e: Esq, o: { roupa?: boolean; cabeloAtrasPrimeiro?
       nomeMao === 'MAO_PEGADA'
         ? [[2.4, 2.6, 1.0, 1.25], [5.8, 5.0, 1.7, 1.2], [8.8, 5.8, 2.3, 0.95]]
         : chao
-          ? [[3.2, 3.9, 0, 1.2], [6.6, 6.0, 0, 1.1], [9.4, 7.2, 0, 0.9]]
+          ? // espalmada no chão: o polegar abre a uns 45° da mão (com 30° ele quase encostava nos dedos e a fresta virava um borrão escuro)
+            [[2.4, 3.0, 0, 1.3], [5.6, 6.2, 0, 1.15], [8.0, 8.6, 0, 0.95]]
           : [[2.6, 3.0, 1.1, 1.15], [5.6, 4.0, 2.4, 1.1], [8.8, 4.6, 3.3, 0.9]];
     const polAneis: Anel[] = [-0.12, 0, 0.25, 0.5, 0.75, 1, 1.1].map((q) => {
       const t = Math.max(0, Math.min(1, q)) * 2,
@@ -513,14 +516,16 @@ export function musculosVisiveis(e: Esq, forma: FormaDoBoneco, cam: Camera): Des
     }
   }
   // linhas dos dedos na mão que segura, na face da mão virada para quem olha
-  const DEDOS = (dados.linhas as Record<string, number[][][]>).DEDOS_L!;
+  const LINHAS = dados.linhas as Record<string, number[][][]>;
   for (const k of LADOS) {
     const L = e.lado[k];
-    if (L.formaMao !== 'pegada') continue;
+    if (L.formaMao !== 'pegada' && L.formaMao !== 'aberta') continue;
     const face = dot(cam.para, L.mao.z);
-    if (Math.abs(face) < 0.3) continue;
+    // a mão espalmada só mostra as linhas dos dedos pelo dorso (a palma está no chão)
+    if (L.formaMao === 'aberta' ? face > -0.3 : Math.abs(face) < 0.3) continue;
     const dedos = mul(L.mao.y, -1),
       polegar = mul(L.mao.x, sinal(k));
+    const DEDOS = L.formaMao === 'aberta' ? LINHAS.DEDOS_ESPALMADA! : LINHAS.DEDOS_L!;
     const linha = DEDOS.map((l) => l.map(([u, ac]) => comb([1, L.punho], [u!, dedos], [ac!, polegar], [face > 0 ? 3.4 : -2.3, L.mao.z])));
     out.push({ id: 'dedos', grupo: `braco${k}`, pts: [], div: linha });
   }
@@ -718,7 +723,20 @@ export function desenharBoneco(e: Esq, cam: Camera, o: OpcoesDoBoneco): Item[] {
   for (const x of G) {
     if (!x.g.id.startsWith('braco') || x.longe) continue;
     const m = musculos(x.g.id);
-    itens.push({ d: (x.d >= corpo.d - 4 ? Math.max(x.d, corpo.d + 1) : x.d) + vies(x.g.id), camada: 1, s: traco(x) + cheioDe(x, () => true) + polegarPorCima(x) + m.linhas + m.ativos, cx: x.cx });
+    // Quando o antebraço fica em pé sobre a mão apoiada (a flexão vista de cima), a mão é pintada antes, com o seu
+    // contorno, e o braço por cima: sem isso, os dois se fundiam numa mancha só e a mão não se lia.
+    const mao = x.cs.find((v) => v.nome === 'mao'),
+      ante = x.cs.find((v) => v.nome === 'ante');
+    // (só quando o antebraço aponta para quem olha: de lado, a mão e o antebraço seguem com um contorno só)
+    const emPe = x.g.lado ? Math.abs(dot(e.lado[x.g.lado].antebraco.y, cam.para)) > 0.6 : false;
+    const maoDebaixo = !!mao && !!ante && emPe && e.lado[x.g.lado!].formaMao === 'aberta' && mao.c.d < ante.c.d - 6;
+    const eDaMao = (v: Gr['cs'][number]) => v.nome === 'mao' || v.nome === 'polegar';
+    const parte = (quais: (v: Gr['cs'][number]) => boolean) => {
+      const vs = x.cs.filter(quais);
+      return vs.map((v) => `<path class="b-c${sufDe(x)} m-${mat(v.mat)}" d="${v.c.fill}"/>`).join('') + vs.map((v) => `<path class="b-p${sufDe(x)} m-${mat(v.mat)}" d="${v.c.fill}"/>`).join('');
+    };
+    const pele = maoDebaixo ? parte(eDaMao) + parte((v) => !eDaMao(v)) : traco(x) + cheioDe(x, () => true) + polegarPorCima(x);
+    itens.push({ d: (x.d >= corpo.d - 4 ? Math.max(x.d, corpo.d + 1) : x.d) + vies(x.g.id), camada: 1, s: pele + m.linhas + m.ativos, cx: x.cx });
   }
   return itens;
 }

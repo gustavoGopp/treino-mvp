@@ -3,7 +3,7 @@
  "comoLer": {
   "perfisDeLado": "[t, frente, trás]: t = posição ao longo da parte (0 = começo, 1 = fim); distância da superfície ao eixo do osso, para a frente e para trás",
   "perfisDeFrente": "[t, dentro, fora]: o mesmo, para o lado de dentro e o de fora do corpo",
-  "formas": "polígonos fechados por curva suave (um terceiro valor 1 marca canto vivo), em coordenadas próprias (ver boneco-prova.mjs): PELVE_L e CABECA_L em [para a frente, para cima] a partir do centro do quadril e da base do crânio; *_F são a metade direita do corpo em pé [x, y]; TENIS_L em [do calcanhar para a ponta, para cima]; MAO_* em [do punho para a ponta dos dedos, para o lado do polegar ou para cima]",
+  "formas": "polígonos fechados por curva suave (um terceiro valor 1 marca canto vivo), em coordenadas próprias (ver boneco-prova.mjs): PELVE_L e CABECA_L em [para a frente, para cima] a partir do centro do quadril e da base do crânio; *_F são a metade direita do corpo em pé [x, y]; TENIS_L em [do calcanhar para a ponta, para cima]; MAO_* em [do punho para a ponta dos dedos, para o lado do polegar ou para cima]; MAO_ESPALMADA é a mão vista pelo dorso (desenho de 14/11/2026, fora das pranchas)",
   "musculos": "[t, d]: t ao longo da parte e d = afastamento do eixo em cm (de lado: positivo = frente; de frente: positivo = dentro). 'f-0.9' = na superfície da frente, 0,9 cm para dentro; 't' = trás; 'd' = dentro; 'o' = fora. 'abs' = [x, y] em pé"
  },
  "perfis": {
@@ -971,6 +971,72 @@
     3,
     0.5
    ]
+  ],
+  "MAO_ESPALMADA": [
+   [
+    0,
+    2.7
+   ],
+   [
+    3,
+    3.5
+   ],
+   [
+    7,
+    4.2
+   ],
+   [
+    10,
+    4.3
+   ],
+   [
+    14,
+    4.1
+   ],
+   [
+    16.6,
+    3.4
+   ],
+   [
+    17.9,
+    1.8
+   ],
+   [
+    18.4,
+    0.3
+   ],
+   [
+    18,
+    -1.4
+   ],
+   [
+    17,
+    -2.9
+   ],
+   [
+    15.6,
+    -4.2
+   ],
+   [
+    13.5,
+    -4.7
+   ],
+   [
+    10,
+    -4.5
+   ],
+   [
+    6,
+    -4.2
+   ],
+   [
+    3,
+    -3.6
+   ],
+   [
+    0,
+    -2.7
+   ]
   ]
  },
  "linhas": {
@@ -1003,6 +1069,38 @@
     [
      9.5,
      -3.1
+    ]
+   ]
+  ],
+  "DEDOS_ESPALMADA": [
+   [
+    [
+     10.6,
+     2.2
+    ],
+    [
+     17.3,
+     1.9
+    ]
+   ],
+   [
+    [
+     10.9,
+     0
+    ],
+    [
+     17.7,
+     -0.8
+    ]
+   ],
+   [
+    [
+     10.4,
+     -2.3
+    ],
+    [
+     15.9,
+     -3.2
     ]
    ]
   ]
