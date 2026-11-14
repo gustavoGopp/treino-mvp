@@ -459,7 +459,7 @@
   "articulacoes": [
    "ombro",
    "cotovelo"
-  ],
+  , "joelho"],
   "tags": [
    "polia",
    "unilateral",
@@ -498,7 +498,7 @@
   "articulacoes": [
    "ombro",
    "cotovelo"
-  ],
+  , "joelho"],
   "tags": [
    "polia",
    "estavel"
@@ -569,7 +569,7 @@
   "articulacoes": [
    "ombro",
    "cotovelo"
-  ],
+  , "joelho"],
   "tags": [
    "elastico"
   ],
@@ -2402,7 +2402,7 @@
   "unilateral": false,
   "articulacoes": [
    "lombar"
-  ],
+  , "joelho"],
   "tags": [
    "polia"
   ],
@@ -3278,7 +3278,7 @@
   "unilateral": true,
   "articulacoes": [
    "quadril"
-  ],
+  , "joelho"],
   "tags": [
    "maquina",
    "estavel",
@@ -4380,7 +4380,7 @@
   "articulacoes": [
    "ombro",
    "lombar"
-  ],
+  , "joelho"],
   "tags": [
    "peso-corpo"
   ],
@@ -5429,7 +5429,7 @@
   "unilateral": true,
   "articulacoes": [
    "quadril"
-  ],
+  , "joelho"],
   "tags": [
    "elastico",
    "unilateral"
@@ -5685,7 +5685,7 @@
   "unilateral": true,
   "articulacoes": [
    "quadril"
-  ],
+  , "joelho"],
   "tags": [
    "unilateral"
   ],

@@ -401,7 +401,7 @@ function montarPrograma(perfil: Perfil, inventarioOriginal: Inventario, triagem:
   const lacunas = new Set<string>();
   const nivelAbaixo = new Set<string>();
   const foraPorMinutos = new Set<Musculo>();
-  type Item = { ex: Exercicio; vaga: Vaga; funcao: Funcao; nivelFuncao: number; series: number; ordemVaga: number; preenchido?: boolean; noLugarDe?: string; protegido?: Musculo; segundo?: Musculo; pelaFalta?: boolean };
+  type Item = { ex: Exercicio; vaga: Vaga; funcao: Funcao; nivelFuncao: number; series: number; ordemVaga: number; preenchido?: boolean; noLugarDe?: string; protegido?: Musculo; segundo?: Musculo; pelaFalta?: boolean; pelaDor?: string };
   // Volume da semana só com o mínimo de séries, dia a dia: um complemento (ou uma vaga só de prioridade) não entra
   // se, já no mínimo, passar do teto semanal de algum músculo (volume.semanal.teto-padrao, "nunca acima"). Antes,
   // só a distribuição das séries conferia o teto, e no modelo de 6 dias com três vagas de glúteo o mínimo sozinho
@@ -425,9 +425,32 @@ function montarPrograma(perfil: Perfil, inventarioOriginal: Inventario, triagem:
     // Num dia que perdeu vaga de pernas para a dor, a extensão de quadril não entra pela falta: o dia é refeito com o músculo mais
     // abaixo da meta (selecao.dia-sem-principal), e ela tirava o lugar do 2º exercício do foco (R5a sobre o R5d).
     const perdeuPelaDor = dia.vagas.some((w) => ativaPeloFoco(w) && MUSCULOS_INFERIORES.includes(FUNCAO[w.funcao]!.musculo) && !resolver(w) && perdidaPorDor(w));
+    // selecao.dia-sem-principal (14/11/2026): antes de contar como perdida, a vaga que a dor esvaziou recebe, no próprio
+    // lugar, outra função do mesmo músculo e do mesmo tipo que tenha exercício possível (a puxada ajoelhado sai com dor no
+    // joelho: a vaga fica com uma remada), primeiro uma função que o dia ainda não tem. Só do mesmo tipo: a vaga de um
+    // multiarticular não vira isolador (o dia ficaria sem exercício grande: régua, A2).
+    const outraDoMusculo = (vaga: Vaga) => {
+      if (!perdidaPorDor(vaga)) return null;
+      const daVaga = FUNCAO[vaga.funcao]!;
+      const tipoDa = (f: Funcao) => POR_ID[f.niveis[0]![0]!]!.tipo;
+      // Só a vaga de um multiarticular: trocar a vaga de um isolador (o tríceps acima da cabeça, com dor no ombro) trazia
+      // um exercício de 4 séries que estourava os treinos de 30 min (medido em 14/11/2026: régua, A3).
+      if (tipoDa(daVaga) !== 'composto') return null;
+      const noDia = (f: Funcao) => dia.vagas.some((w) => ativa(w) && w.funcao === f.id);
+      for (const f of FUNCOES.filter((x) => x.musculo === daVaga.musculo && x.id !== daVaga.id && tipoDa(x) === tipoDa(daVaga)).sort((a, b) => Number(noDia(a)) - Number(noDia(b)))) {
+        const res = resolver({ funcao: f.id });
+        // O nível que sobrou também tem de ser do mesmo tipo (a vaga do supino inclinado desce até o crucifixo).
+        if (res && res.funcao.niveis[res.nivel]!.filter((id) => naFuncao(res.funcao, id)).every((id) => POR_ID[id]!.tipo === tipoDa(FUNCAO[vaga.funcao]!))) return res;
+      }
+      return null;
+    };
     const resolvidas = dia.vagas
       .filter((w) => ativa(w) && !(perdeuPelaDor && !ativaPeloFoco(w)))
-      .map((vaga, ordem) => ({ vaga, ordem, res: resolver(vaga) }));
+      .map((vaga, ordem) => {
+        const res = resolver(vaga);
+        const troca = res ? null : outraDoMusculo(vaga);
+        return { vaga, ordem, res: res ?? troca, pelaDor: troca ? FUNCAO[vaga.funcao]!.nome : undefined };
+      });
     let perdidas = 0;
     for (const x of resolvidas)
       if (!x.res) {
@@ -479,7 +502,7 @@ function montarPrograma(perfil: Perfil, inventarioOriginal: Inventario, triagem:
       if (nivelFuncao > 0 && funcao.semNivel1) nivelAbaixo.add(funcao.semNivel1);
       usos.set(escolhido.id, (usos.get(escolhido.id) ?? 0) + 1);
       for (const [m, n] of Object.entries(volumePorMusculo([{ ex: escolhido, series: VOLUME.seriesPorExercicio.min }])) as [Musculo, number][]) vMinimo[m] = (vMinimo[m] ?? 0) + n;
-      itens.push({ ex: escolhido, vaga: x.vaga, funcao, nivelFuncao, series: VOLUME.seriesPorExercicio.min, ordemVaga: x.ordem, ...(ativaPeloFoco(x.vaga) ? {} : { pelaFalta: true }) });
+      itens.push({ ex: escolhido, vaga: x.vaga, funcao, nivelFuncao, series: VOLUME.seriesPorExercicio.min, ordemVaga: x.ordem, ...(ativaPeloFoco(x.vaga) ? {} : { pelaFalta: true }), ...(x.pelaDor ? { pelaDor: x.pelaDor } : {}) });
     }
     for (const id of new Set(itens.map((i) => i.ex.id))) diasCom.set(id, (diasCom.get(id) ?? 0) + 1);
     // Vagas sem exercício possível com o equipamento (não pela dor): selecao.vaga-sem-equipamento e tempo.sobra-series.
@@ -792,8 +815,10 @@ function montarPrograma(perfil: Perfil, inventarioOriginal: Inventario, triagem:
 
   // 7. Prescrição
   // Lembrete nos exercícios que carregam uma região marcada com dor de 0 a 5 (seguranca.dor.programa).
-  const porqueDaDor = (e: Exercicio, preenchido?: boolean, noLugarDe?: string, protegido?: Musculo, segundo?: Musculo): Porque[] => {
+  const porqueDaDor = (e: Exercicio, preenchido?: boolean, noLugarDe?: string, protegido?: Musculo, segundo?: Musculo, pelaDor?: string): Porque[] => {
     const p: Porque[] = [];
+    if (pelaDor)
+      p.push({ regraId: r('selecao.dia-sem-principal'), texto: `Entrou no lugar da vaga "${pelaDor.toLowerCase()}", que a dor ${regioesExcluidas.map(dorDe).join(' e ')} deixou sem exercício: trabalha o mesmo músculo sem carregar a região.` });
     if (segundo)
       p.push({
         regraId: r('volume.prioridade.segundo-exercicio'),
@@ -809,7 +834,7 @@ function montarPrograma(perfil: Perfil, inventarioOriginal: Inventario, triagem:
     return p;
   };
   const prescreverItem = (it: Item): ExercicioPrescrito =>
-    prescrever(it.ex, it.funcao, it.nivelFuncao, it.series, ctx, porqueDaDor(it.ex, it.preenchido, it.noLugarDe, it.protegido, it.segundo));
+    prescrever(it.ex, it.funcao, it.nivelFuncao, it.series, ctx, porqueDaDor(it.ex, it.preenchido, it.noLugarDe, it.protegido, it.segundo, it.pelaDor));
   // Objetivo "ficar mais forte" (objetivo.forca.*): os 2 primeiros multiarticulares com carga de cada treino ficam com a
   // faixa mais baixa e o descanso maior; o peso livre fica com 2 a 3 de reserva. O iniciante segue como na hipertrofia.
   const forca = perfil.objetivo === 'forca' && nivel !== 'iniciante';

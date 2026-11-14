@@ -2,7 +2,7 @@
 // aparece no "depois" sem existir no "antes", e em quais some. Serve para achar o mecanismo de cada piora antes de uma
 // regra entrar ("nenhum defeito pior em nenhum grupo"). Uso:
 //   npx vite-node scripts/auditoria/novos-defeitos.ts -- --antes <gerador.ts> --depois <gerador.ts> [--passo 23] [--desde 0]
-//     [--exemplos 3] [--so A2,C1] [--cuidados] [--notas] [--indice 11658]
+//     [--exemplos 3] [--so A2,C1] [--cuidados] [--notas] [--indice 11658] [--dor joelho]
 // `--passo N` mede um caso a cada N (amostra fixa: sem sorteio). Sem `--cuidados`, só os 9 defeitos da régua oficial;
 // com `--notas`, também as notas da régua e dos cuidados.
 import { resolve } from 'node:path';
@@ -22,6 +22,9 @@ const SO = arg('--so')?.split(',');
 const COM_CUIDADOS = args.includes('--cuidados');
 const COM_NOTAS = args.includes('--notas');
 const INDICE = arg('--indice') !== undefined ? Number(arg('--indice')) : undefined;
+/** Só as situações de dor cujo nome contém este texto (ex.: `--dor joelho`); o passo conta dentro do recorte. */
+const DOR = arg('--dor');
+let noRecorte = 0;
 
 const resumo = (p: Programa) =>
   p.dias.map((d) => `${d.nome} (${d.minutosEstimados} min): ${d.exercicios.map((x) => `${x.exId} ${x.series}${x.dropSet ? '+drop' : ''}${x.supersetCom ? '+bi' : ''}`).join(', ')}`).join('\n      ');
@@ -32,7 +35,8 @@ const linha = (k: string) => (T[k] ??= { novos: 0, somem: 0, pesoNovos: 0, pesoS
 let medidos = 0;
 let diferentes = 0;
 for (const caso of populacao()) {
-  if (INDICE !== undefined ? caso.indice !== INDICE : caso.indice % PASSO !== DESDE % PASSO) continue;
+  if (DOR && !caso.dor.includes(DOR)) continue;
+  if (INDICE !== undefined ? caso.indice !== INDICE : (DOR ? noRecorte++ : caso.indice) % PASSO !== DESDE % PASSO) continue;
   const [ra, rb] = [antes.gerarPrograma(caso.pf, caso.cen.inventario), depois.gerarPrograma(caso.pf, caso.cen.inventario)];
   medidos++;
   if (ra.status !== 'ok' || rb.status !== 'ok') {

@@ -5,6 +5,8 @@
 //   npx vite-node scripts/auditoria/retrato.ts -- --saida <pasta>        (onde gravar retrato.json e retrato.md)
 //   npx vite-node scripts/auditoria/retrato.ts -- --motor <módulo>       (outro gerador: um protótipo com a mesma interface)
 //   npx vite-node scripts/auditoria/retrato.ts -- --objetivo forca       (a população com outro objetivo, sem dor)
+//   npx vite-node --root / $PWD/scripts/auditoria/retrato.ts -- --raiz / --motor <worktree da main>/src/domain/gerador/index.ts
+//                                                    (o gerador da `main`, medido com a régua e a biblioteca de agora)
 // Determinístico: sem relógio nem sorteio; os processos somam contagens e os exemplos são os de menor índice.
 import { spawn } from 'node:child_process';
 import { mkdirSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
@@ -23,6 +25,8 @@ const processos = Math.max(1, Number(arg('--processos')) || Math.min(4, availabl
 const SAIDA = arg('--saida') ?? 'docs/revisoes/treino-para-todos/medidas/hoje';
 const MOTOR = arg('--motor') ?? 'src/domain/gerador/index.ts';
 const OBJETIVO = arg('--objetivo') as Perfil['objetivo'] | undefined;
+/** Para um gerador fora do repositório (um worktree da `main`): a raiz que o vite-node dos filhos usa (`--raiz /`). */
+const RAIZ = arg('--raiz');
 /** Recorte para medidas rápidas de protótipo: só um nível (os índices dos casos não mudam). */
 const SO_NIVEL = arg('--nivel');
 const PIORES = 400;
@@ -147,7 +151,7 @@ async function rodar(): Promise<Acc> {
     const arquivo = join(pasta, `parte-${i}.json`);
     return new Promise<string>((ok, erro) => {
       const extra = [...(OBJETIVO ? ['--objetivo', OBJETIVO] : []), ...(SO_NIVEL ? ['--nivel', SO_NIVEL] : []), '--motor', MOTOR];
-      const ch = spawn(process.execPath, [join('node_modules', '.bin', 'vite-node'), 'scripts/auditoria/retrato.ts', '--', '--parte', `${i}/${processos}`, '--saida-parcial', arquivo, ...extra], { stdio: ['ignore', 'inherit', 'inherit'] });
+      const ch = spawn(process.execPath, [join('node_modules', '.bin', 'vite-node'), ...(RAIZ ? ['--root', RAIZ, resolve('scripts/auditoria/retrato.ts')] : ['scripts/auditoria/retrato.ts']), '--', '--parte', `${i}/${processos}`, '--saida-parcial', arquivo, ...extra], { stdio: ['ignore', 'inherit', 'inherit'] });
       ch.on('exit', (code) => (code === 0 ? ok(arquivo) : erro(new Error(`processo ${i} saiu com ${code}`))));
     });
   });
