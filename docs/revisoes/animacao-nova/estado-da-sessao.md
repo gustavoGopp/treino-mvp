@@ -1,4 +1,4 @@
-# Estado da sessão da animação nova (13/11/2026, fim da etapa 1)
+# Estado da sessão da animação nova (14/11/2026, fim da etapa 1)
 
 A etapa 1 está entregue e a sessão está **parada, esperando a decisão do Gustavo**. Ramo: `claude/loving-hamilton-c4ji83`. Nada foi para a `main` e nada mudou no app.
 
@@ -10,7 +10,8 @@ Comece por **`proposta.md`**: ela resume tudo, lista as decisões pedidas e diz 
 2. Três tentativas de corpo recusadas pelo Gustavo (manequim de fórmula, malha realista, quadro de oito estilos). Lição: primeiro o desenho, depois a técnica.
 3. Uma sessão própria decidiu o desenho do Boneco (`docs/revisoes/boneco-desenho/`): cinza como padrão e cor de pele como opção.
 4. Esta sessão trouxe aquele trabalho (merge do ramo `claude/vigilant-lovelace-rkqoz1`), levou o desenho aprovado para o motor e o conferiu contra as pranchas. O Gustavo avisou que o desenho do motor não estava igual ao aprovado; a comparação medida mostrou 81% de frente e 93% de lado, e o desenho foi corrigido até 97 a 99%.
-5. As quatro âncoras foram refeitas no desenho aprovado, com página animada, folhas ao lado das de hoje, conferência sem falhas, três cartões de equipamento e medidas de peso e de fluidez.
+5. As quatro âncoras foram refeitas no desenho aprovado, com página animada, folhas ao lado das de hoje, conferência sem falhas e medidas de peso e de fluidez.
+6. Depois do retorno do Gustavo: o modo Erros foi refeito, a mão do goblet virou uma concha, o equipamento das cenas passou a sair do gerador dos 49 cartões (com a coluna da polia refeita, aprovada em 14/11) e a fluidez foi resolvida.
 
 ## O que está no ramo
 
@@ -36,7 +37,7 @@ Comece por **`proposta.md`**: ela resume tudo, lista as decisões pedidas e diz 
 
 ## O que ficou por fazer (está na proposta)
 
-- Baixar o tempo por quadro (o novo é 2 a 3 vezes mais lento que o de hoje num celular lento simulado).
+- Fluidez: resolvida em 14/11/2026 (proposta, seção 5). Falta medir num celular de verdade e decidir se o custo de memória (de 6 a 13 MB) é aceitável.
 - Rótulos de técnica e destaque da parte que erra no modo Erros.
 - Formas de músculo que o desenho não separa (porções do deltoide, do peitoral e do trapézio, eretores e outras).
 - Fonte para as 13 medidas provisórias do corpo e as 16 dos objetos.

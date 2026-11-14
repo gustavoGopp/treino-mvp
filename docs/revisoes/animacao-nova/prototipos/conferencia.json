@@ -811,7 +811,7 @@
    {
     "grupo": "Amplitudes",
     "oQue": "flexão do cotovelo",
-    "medido": "118,5°",
+    "medido": "119,2°",
     "limite": "média 148°, máximo observado 166° (cdc)",
     "nivel": "ok"
    },
@@ -839,7 +839,7 @@
    {
     "grupo": "Amplitudes",
     "oQue": "elevação do braço",
-    "medido": "61,7°",
+    "medido": "61,8°",
     "limite": "média 170°, máximo observado 192° (cdc)",
     "nivel": "ok"
    },
@@ -874,14 +874,14 @@
    {
     "grupo": "Amplitudes",
     "oQue": "extensão do punho",
-    "medido": "94,1°",
+    "medido": "94°",
     "limite": "média 70°, máximo observado 95° (aaos)",
     "nivel": "aviso"
    },
    {
     "grupo": "Amplitudes",
     "oQue": "extensão dos dedos do pé",
-    "medido": "76,8°",
+    "medido": "77°",
     "limite": "média 70°, máximo observado 90° (aaos)",
     "nivel": "aviso"
    },
@@ -930,7 +930,7 @@
    {
     "grupo": "Ritmo",
     "oQue": "maior salto de velocidade entre dois quadros (a 60 quadros por segundo)",
-    "medido": "16,4% da velocidade de pico (cotovelo direito, Subida · concêntrica); pico de 80,7 cm/s",
+    "medido": "16,5% da velocidade de pico (cotovelo direito, Subida · concêntrica); pico de 81,7 cm/s",
     "limite": "movimento suave: até 15%; acima de 25% é tranco",
     "nivel": "aviso"
    },
@@ -965,7 +965,7 @@
    {
     "grupo": "Ficha",
     "oQue": "cotovelos a meio caminho entre o tronco e os lados (consenso)",
-    "medido": "embaixo, o braço faz 41,2° com o tronco, visto de cima",
+    "medido": "embaixo, o braço faz 41,3° com o tronco, visto de cima",
     "limite": "como a ficha pede",
     "nivel": "ok"
    },
@@ -979,36 +979,36 @@
   ],
   "angulos": {
    "joelho": [
-    3.999999999998491,
-    4.00000000000077
+    3.9999999999987645,
+    4.000000000000588
    ],
    "cotovelo": [
-    9.999999999226194,
-    118.4672041904341
+    9.999999998962151,
+    119.17680251784043
    ],
    "quadril": [
-    2.0191924473316,
-    2.019192447332686
+    2.0191924473317675,
+    2.0191924473325153
    ],
    "ombro": [
-    39.454555246512705,
-    61.70835179175804
+    39.48252886997191,
+    61.780597542822576
    ],
    "dorsiflexao": [
-    11.98080755266703,
-    11.980807552668097
+    11.980807552667187,
+    11.980807552667912
    ],
    "punho": [
-    77.617277213924,
-    94.09803157791073
+    77.49989187907336,
+    94.02275063274458
    ],
    "pronacao": [
-    40.802466402503,
-    51.25962519267375
+    40.79060823872044,
+    51.342587962428865
    ],
    "clavicula": [
-    11.897762948908326,
-    12.888091023116736
+    11.899056542518261,
+    12.891427381441925
    ]
   },
   "falhas": 0,

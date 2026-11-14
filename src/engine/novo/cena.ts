@@ -70,8 +70,11 @@ function trajetoria(cam: Camera, ex: Exercicio, corpo: Corpo, ponto: string, n =
   return out;
 }
 export function itensDaCena(ex: Exercicio, t: number, o: OpcoesCena): Item[] {
+  return itensEmU(ex, instante(ex.ficha.fases, t).u, o);
+}
+/** Os itens do quadro no ponto u do movimento (0 = posição inicial, 1 = final). */
+function itensEmU(ex: Exercicio, u: number, o: OpcoesCena): Item[] {
   const cam = VISTAS[o.vista];
-  const { u } = instante(ex.ficha.fases, t);
   const certo = quadroDe(ex, o.corpo, u);
   if (o.modo === 'err' && o.erro) {
     const errado = quadroDe(ex, o.corpo, u, o.erro);
@@ -159,11 +162,33 @@ export function enquadrar(ex: Exercicio, o: Omit<OpcoesCena, 'modo' | 'erro'>, m
   return [x0, y0, w, h];
 }
 /** O <svg> de um quadro. `tema`: 'claro' ou 'escuro'. As classes levam as cores (ver cssDoBoneco e estilo.css). */
-export function svgDaCena(ex: Exercicio, t: number, o: OpcoesCena, vb: [number, number, number, number], tema: 'claro' | 'escuro' = 'claro'): string {
+export function svgDaCena(ex: Exercicio, t: number, o: OpcoesCena, vb: [number, number, number, number], tema: Tema = 'claro'): string {
+  return svgEmU(ex, instante(ex.ficha.fases, t).u, o, vb, tema);
+}
+function svgEmU(ex: Exercicio, u: number, o: OpcoesCena, vb: [number, number, number, number], tema: Tema): string {
   // a linha do chão (y = 0), nas vistas em que o chão fica de perfil
   const chao = VISTAS[o.vista].para[1] === 0 ? `<line class="n-chao-l" x1="${f1(vb[0])}" y1="0" x2="${f1(vb[0] + vb[2])}" y2="0"/>` : '';
   DEFS = '';
-  const corpo = pintar(itensDaCena(ex, t, { ...o, tema }));
+  const corpo = pintar(itensEmU(ex, u, { ...o, tema }));
   return `<svg class="novo boneco ${o.boneco}${tema === 'escuro' ? ' escuro' : ''}${o.mini ? ' mini' : ''}" viewBox="${vb.map(f1).join(' ')}">${DEFS_DO_BONECO}${DEFS ? `<defs>${DEFS}</defs>` : ''}${chao}${corpo}</svg>`;
+}
+/**
+ * Para a animação: o mesmo desenho de svgDaCena, guardando o SVG pronto de cada instante do movimento. O movimento
+ * se repete igual a cada volta do ciclo, então da segunda volta em diante o quadro já está montado. O ponto do
+ * movimento é arredondado a 1/240 do percurso (menos de 0,5 cm no movimento mais longo). Só a animação que está na
+ * tela fica guardada: ao trocar de exercício, vista, modo, desenho ou tema, o que estava guardado é descartado.
+ */
+const PASSOS_GUARDADOS = 240;
+const PRONTOS = { chave: '', quadros: new Map<number, string>() };
+export function svgAnimado(ex: Exercicio, t: number, o: OpcoesCena, vb: [number, number, number, number], tema: Tema = 'claro'): string {
+  const chave = [ex.ficha.id, o.corpo.id, o.vista, o.boneco, o.modo, o.erro ?? '', o.mini ? 1 : 0, o.equipamento ?? '', tema, vb.join(',')].join('|');
+  if (chave !== PRONTOS.chave) {
+    PRONTOS.chave = chave;
+    PRONTOS.quadros.clear();
+  }
+  const k = Math.round(instante(ex.ficha.fases, t).u * PASSOS_GUARDADOS);
+  let svg = PRONTOS.quadros.get(k);
+  if (svg === undefined) PRONTOS.quadros.set(k, (svg = svgEmU(ex, k / PASSOS_GUARDADOS, o, vb, tema)));
+  return svg;
 }
 export { pintar };

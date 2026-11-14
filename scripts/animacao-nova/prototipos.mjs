@@ -140,8 +140,7 @@ const corpo=MOTOR.CORPOS.homem,E={ex:'goblet',vista:'lateral',modo:'tec',erro:nu
 let t=0,antes=null,caixas={};
 const cx=(mini)=>{const k=[E.ex,E.vista,E.boneco,mini].join('|');return caixas[k]??=MOTOR.enquadrar(MOTOR.EXERCICIOS[E.ex],{corpo,vista:E.vista,boneco:E.boneco,mini},mini?0.04:0.06,mini?1:4/3)};
 function desenha(){const ex=MOTOR.EXERCICIOS[E.ex],o={corpo,vista:E.vista,boneco:E.boneco,modo:E.modo,erro:E.modo==='err'?E.erro:undefined};
- document.getElementById('palco').innerHTML=MOTOR.svgDaCena(ex,t,o,cx(false),E.tema);
- const f=MOTOR.instante(ex.ficha.fases,t).fase;document.getElementById('fase').textContent=f.nome+' · '+f.respira.toLowerCase();}
+ // da segunda volta do ciclo em diante, o desenho de cada instante já está pronto (svgAnimado guarda)\n document.getElementById('palco').innerHTML=MOTOR.svgAnimado(ex,t,o,cx(false),E.tema);\n const f=MOTOR.instante(ex.ficha.fases,t).fase;document.getElementById('fase').textContent=f.nome+' · '+f.respira.toLowerCase();}
 function mini(){const ex=MOTOR.EXERCICIOS[E.ex];document.getElementById('mini').innerHTML=MOTOR.svgDaCena(ex,MOTOR.duracao(ex.ficha.fases)*0.45,{corpo,vista:E.vista,boneco:E.boneco,modo:'mus',mini:true},cx(true),E.tema)}
 function grupo(id,itens,chave,depois){const g=document.getElementById(id);g.querySelectorAll('button').forEach(b=>b.remove());
  for(const [v,rot] of itens){const b=document.createElement('button');b.textContent=rot;b.setAttribute('aria-pressed',String(E[chave]===v));b.onclick=()=>{E[chave]=v;depois&&depois();montar()};g.appendChild(b)}}
@@ -166,7 +165,7 @@ async function medidas() {
   const novo = await pacote({}), semZod = await pacote({ external: ['zod'] });
   const h = await build({ stdin: { contents: `export { EX } from './src/engine/index.ts'; export { montarSvgEstilo } from './src/engine/estilo/index.ts';`, resolveDir: process.cwd(), loader: 'ts' }, bundle: true, minify: true, format: 'iife', globalName: 'HOJE', write: false });
   const hojeTxt = h.outputFiles[0].text;
-  const out = { comoFoiMedido: 'Chromium com a CPU 4x mais lenta (Emulation.setCPUThrottlingRate), palco de 360 px; 90 quadros do ciclo; cada quadro = montar o SVG, trocar no palco e forçar o layout. No novo, "primeiraVolta" inclui a conta que posiciona o corpo; depois dela os quadros ficam guardados.', pacote: { novo, novoSemZod: semZod, nota: 'o app já carrega o zod; "novoSemZod" é o que o motor novo acrescenta. O de hoje traz os 90 exercícios; o novo, 4.', hoje: { minificado: hojeTxt.length, gzip: gzipSync(hojeTxt).length } }, quadro: {} };
+  const out = { comoFoiMedido: 'Chromium com a CPU 4x mais lenta (Emulation.setCPUThrottlingRate), palco de 360 px; 90 quadros do ciclo; cada quadro = montar o SVG, trocar no palco e forçar o layout. No novo, "primeiraVolta" inclui a conta que posiciona o corpo; "animando" é como a página roda da segunda volta em diante, com o desenho de cada instante já guardado (svgAnimado).', pacote: { novo, novoSemZod: semZod, nota: 'o app já carrega o zod; "novoSemZod" é o que o motor novo acrescenta. O de hoje traz os 90 exercícios; o novo, 4.', hoje: { minificado: hojeTxt.length, gzip: gzipSync(hojeTxt).length } }, quadro: {} };
   const b = await nav(), pg = await b.newPage({ viewport: { width: 400, height: 700 } });
   const cdp = await pg.context().newCDPSession(pg);
   await pg.setContent(`<!doctype html><style>${cssHoje}${cssNovo}#p{width:360px;height:270px}#p svg{width:100%;height:100%}</style><div id="p"></div><script>${await motorNovoTexto(ENTRADA)}</script><script>${hojeTxt}</script>`);
@@ -177,7 +176,10 @@ async function medidas() {
       const mede = (f) => { const ts = []; for (let i = 0; i < N; i++) { const a = performance.now(); p.innerHTML = f(i / N); p.getBoundingClientRect(); ts.push(performance.now() - a); } ts.sort((x, y) => x - y); return { mediaMs: Math.round((ts.reduce((s, x) => s + x, 0) / N) * 100) / 100, p95Ms: Math.round(ts[Math.floor(N * 0.95)] * 100) / 100 }; };
       const ex = MOTOR.EXERCICIOS[id], corpo = MOTOR.CORPOS.homem, T = MOTOR.duracao(ex.ficha.fases), v = ex.vistas[0];
       const r = {};
-      for (const boneco of ['cinza', 'pele']) for (const modo of ['tec', 'mus']) { const o = { corpo, vista: v, boneco, modo }, cx = MOTOR.enquadrar(ex, o); const f = (u) => MOTOR.svgDaCena(ex, u * T, o, cx); const primeira = mede(f), depois = mede(f); let so = 0; { const a = performance.now(); for (let i = 0; i < N; i++) f(i / N); so = Math.round(((performance.now() - a) / N) * 100) / 100; } r[`novo/${boneco}/${modo}`] = { primeiraVolta: primeira, ...depois, soMontarOTextoMs: so, bytes: f(0.4).length }; }
+      for (const boneco of ['cinza', 'pele']) for (const modo of ['tec', 'mus']) { const o = { corpo, vista: v, boneco, modo }, cx = MOTOR.enquadrar(ex, o); const f = (u) => MOTOR.svgDaCena(ex, u * T, o, cx); const primeira = mede(f), depois = mede(f); let so = 0; { const a = performance.now(); for (let i = 0; i < N; i++) f(i / N); so = Math.round(((performance.now() - a) / N) * 100) / 100; } r[`novo/${boneco}/${modo}`] = { primeiraVolta: primeira, ...depois, soMontarOTextoMs: so, bytes: f(0.4).length };
+        // como a página anima: da segunda volta em diante o desenho de cada instante já está pronto
+        const g = (u) => MOTOR.svgAnimado(ex, u * T, o, cx); mede(g);
+        r[`novo/${boneco}/${modo}`].animando = mede(g); }
       const eh = HOJE.EX.find((e) => e.id === id);
       for (const modo of ['tec', 'mus']) { const f = (u) => { const q = HOJE.montarSvgEstilo(eh, vh[v], modo, u * eh.T, 0, 360, 'a2', false, {}); return `<svg class="${q.classe}" viewBox="${q.viewBox}">${q.html}</svg>`; }; r[`hoje/${modo}`] = { ...mede(f), bytes: f(0.4).length }; }
       return r;

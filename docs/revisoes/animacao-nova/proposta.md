@@ -32,6 +32,8 @@ Ele olhou as folhas e apontou três coisas. O que foi feito em cada uma:
 
    A pegada do goblet também foi refinada depois: a mão agora é uma concha, com os dedos dobrando sobre a cabeça de cima do halter.
 
+4. **O equipamento realista e a polia refeita foram aprovados** ("ficou como eu quero", 14/11/2026). Com isso, o passo seguinte foi a fluidez, que era o que impedia qualquer animação nova de entrar no app. Está resolvida nas quatro âncoras (seção 5): da segunda volta do ciclo em diante, cada quadro leva de 2 a 5 ms no celular lento simulado, menos que o guia de hoje.
+
 O que ainda não ficou bom depois dessas mudanças: o nome do erro sai pequeno nas cenas largas (a puxada, com a coluna inteira no quadro), e o rótulo é só o título do erro, sem os rótulos de técnica.
 
 ## 1. Em uma página
@@ -40,7 +42,7 @@ O que ainda não ficou bom depois dessas mudanças: o nome do erro sai pequeno n
 - **A técnica** é a que aquela sessão recomendou: o corpo em seções ovais calculadas pelo motor, com as seções tiradas dos perfis desenhados à mão, e saída em SVG. Sem vídeo, sem imagem gerada por modelo, sem biblioteca nova.
 - **O motor reproduz o desenho aprovado em 97 a 99%** nas poses das pranchas (medido, seção 2). O que sobra são cinco pontos em que o desenho aprovado contradiz a medida real ou ele mesmo; estão listados, com a minha recomendação, para você decidir olhando.
 - **As quatro âncoras** (goblet, supino reto, puxada unilateral e flexão) estão refeitas, com a página animada, as folhas ao lado das de hoje e a conferência automática sem nenhuma falha.
-- **O custo que apareceu:** o novo é mais pesado para desenhar. Num celular lento (simulado com a CPU 4 vezes mais lenta), cada quadro leva de 8 a 20 ms na média, contra 5 a 7 ms hoje. A puxada passa do limite de 60 quadros por segundo. Há um plano para baixar isso (seção 5), e ele precisa ser cumprido antes de qualquer animação entrar no app.
+- **O custo que apareceu, e foi resolvido:** o novo era de 2 a 3 vezes mais lento para desenhar que o de hoje. Depois de três cortes (seção 5), num celular lento simulado (CPU 4 vezes mais lenta) cada quadro leva de 5 a 14 ms na primeira volta do ciclo e de 2 a 5 ms dali em diante, contra 5 a 7,5 ms hoje. O preço é memória: o desenho pronto da animação que está na tela fica guardado (de 6 a 13 MB).
 - **O que eu recomendo:** aprovar a direção, decidir os pontos da seção 9 e seguir para a etapa 2 em lotes, começando pelas famílias que reaproveitam as cenas das âncoras.
 
 ## 2. O desenho no motor: quanto ficou igual ao aprovado
@@ -49,15 +51,15 @@ O comando `node scripts/animacao-nova/conferir-desenho.mjs` desenha, na mesma po
 
 | Pose da prancha | Cinza | Cor de pele |
 |---|---|---|
-| Em pé, de frente | 97,7% | 97,7% |
-| Em pé, de lado | 99,2% | 99,0% |
-| Em pé, de costas | 97,7% | 97,8% |
-| Agachamento | 97,8% | 97,5% |
+| Em pé, de frente | 97,8% | 97,7% |
+| Em pé, de lado | 99,3% | 99,0% |
+| Em pé, de costas | 97,8% | 97,9% |
+| Agachamento | 96,6% | 96,4% |
 | Supino | 97,4% | 97,2% |
 | Puxada, ajoelhado | 98,4% | 98,2% |
 | Flexão | 94,9% | 94,5% |
 
-No começo desta retomada a coincidência era de 81% de frente e 93% de lado. O que foi acertado: os braços afastados do corpo em pé, a dobra do pescoço de lado, as pontas arredondadas dos membros, o pé de base chata, a mão e o polegar com contorno, a posição dos músculos de frente, o glúteo por cima da coxa, o short opaco que vira véu só quando há músculo trabalhando debaixo dele, o cabelo e o contorno na cor de cada parte.
+O agachamento caiu de 97,8% para 96,6% depois que a mão do goblet virou uma concha a pedido do Gustavo: na prancha aprovada ela era um punho fechado. No começo desta retomada a coincidência era de 81% de frente e 93% de lado. O que foi acertado: os braços afastados do corpo em pé, a dobra do pescoço de lado, as pontas arredondadas dos membros, o pé de base chata, a mão e o polegar com contorno, a posição dos músculos de frente, o glúteo por cima da coxa, o short opaco que vira véu só quando há músculo trabalhando debaixo dele, o cabelo e o contorno na cor de cada parte.
 
 ### As cinco diferenças que sobraram (decisão sua)
 
@@ -137,32 +139,40 @@ Medidas em `prototipos/medidas.json`, geradas por `scripts/animacao-nova/prototi
 | Pacote | Compactado |
 |---|---|
 | Motor de hoje, com os 90 exercícios | 48,0 kB |
-| Motor novo, sem nenhum exercício (motor, corpo, desenho, objetos e o gerador do equipamento) | 31,0 kB |
-| Motor novo com as 4 âncoras | 41,4 kB (mais o zod, que o app já carrega) |
+| Motor novo, sem nenhum exercício (motor, corpo, desenho, objetos e o gerador do equipamento) | 31,7 kB |
+| Motor novo com as 4 âncoras | 42,2 kB (mais o zod, que o app já carrega) |
 | Cada exercício novo | cerca de 1,7 kB (medido: 5,1 kB para 3) |
 
 Projeção minha (não medida): com os 90 exercícios, o novo ficaria perto de 180 kB, mais de três vezes o de hoje. Quase metade de cada ficha é texto de fonte, que o app não precisa carregar para desenhar. Proponho duas medidas, a confirmar com medição na etapa 2: tirar os textos de fonte do que vai para o app (eles continuam nos arquivos e nos documentos) e carregar cada exercício só quando for aberto, guardando para uso sem rede.
 
-**Tempo por quadro**, no Chromium com a CPU 4 vezes mais lenta, palco de 360 px (montar o SVG, trocar no palco e forçar o layout):
+**Tempo por quadro**, no Chromium com a CPU 4 vezes mais lenta, palco de 360 px (montar o SVG, trocar no palco e forçar o layout), desenho cinza, com o equipamento realista:
 
-| Animação | Hoje (média) | Novo, cinza (média) | Novo, cinza (95% dos quadros abaixo de) | SVG de um quadro: hoje / novo |
-|---|---|---|---|---|
-| Goblet | 4,9 a 6,8 ms | 12,6 a 12,9 ms | 18,9 ms | 14 kB / 51 kB |
-| Supino reto | 6,0 a 6,7 ms | 11,8 a 13,2 ms | 19,5 ms | 14 kB / 58 kB |
-| Puxada unilateral | 5,6 a 7,1 ms | 19,1 a 20,4 ms | 33,6 ms | 15 kB / 104 kB |
-| Flexão | 5,0 a 6,3 ms | 9,9 a 10,4 ms | 14,3 ms | 14 kB / 44 kB |
+| Animação | Hoje (média) | Novo, antes dos cortes (média) | Novo, primeira volta do ciclo (média) | Novo, da segunda volta em diante (média / 95% dos quadros abaixo de) | SVG de um quadro: hoje / novo antes / novo agora |
+|---|---|---|---|---|---|
+| Goblet | 5,9 a 7,6 ms | 12,6 a 12,9 ms | 7,6 a 14,4 ms | 2,7 a 2,8 ms / 3,9 ms | 14 kB / 51 kB / 29 kB |
+| Supino reto | 5,2 a 6,0 ms | 11,8 a 13,2 ms | 9,2 a 12,4 ms | 3,4 a 3,6 ms / 5,3 ms | 14 kB / 58 kB / 31 kB |
+| Puxada unilateral | 5,5 a 7,0 ms | 19,1 a 20,4 ms | 14,3 a 14,8 ms | 4,9 a 5,1 ms / 7,4 ms | 15 kB / 104 kB / 52 kB |
+| Flexão | 5,8 a 6,7 ms | 9,9 a 10,4 ms | 7,5 a 9,1 ms | 1,9 a 4,7 ms / 5,6 ms | 14 kB / 44 kB / 24 kB |
 
-Esta é a medição com o equipamento realista. Cada faixa junta os modos Técnica e Músculos. A medição oscila alguns milissegundos de uma rodada para outra (numa rodada anterior a puxada chegou a 24 ms de média e 35 ms no pior caso); o que se repete em todas é a proporção: o novo leva de 2 a 3 vezes o tempo do de hoje.
+Cada faixa junta os modos Técnica e Músculos. A medição oscila alguns milissegundos de uma rodada para outra. O limite para 60 quadros por segundo é 16,7 ms.
 
-O limite para 60 quadros por segundo é 16,7 ms. O novo fica dentro dele em três das quatro âncoras na média, encosta ou passa no pior caso do goblet e do supino, e a puxada passa sempre. **Isto é um risco real e não está resolvido.** Mais da metade do tempo é só montar o texto do SVG (7 a 12 ms). O plano, em ordem de ganho esperado:
+O que foi feito (14/11/2026), sem mudar o desenho:
 
-1. Separar o que não se mexe (a coluna da polia, o banco, o colchonete) numa camada desenhada uma vez, e redesenhar só o corpo e o que se move.
-2. Guardar o desenho pronto de cada quadro depois da primeira volta do ciclo (o movimento se repete igual).
-3. Reduzir o número de pontos de cada contorno onde a forma não muda.
+1. **Contas que não mudam deixaram de ser refeitas a cada quadro.** A posição de cada músculo de frente e de costas sobre o tronco era procurada de novo em todo quadro; agora é procurada uma vez. Só isso cortou até um terço do tempo nas vistas de frente, de cima e de trás.
+2. **O texto do SVG ficou mais curto.** As coordenadas passaram a ser escritas como diferença do ponto anterior, com os mesmos valores arredondados (sem acumular erro). As seções de cada membro passaram a ficar nas estações em que os perfis aprovados foram desenhados, em vez de passos iguais: menos pontos e a mesma curva das pranchas. O recorte que dá contorno à coxa quando ela passa na frente do tronco deixou de ser repetido para as duas pernas e só entra quando a coxa cruza mesmo o tronco.
+3. **O desenho pronto de cada instante fica guardado.** O movimento se repete igual a cada volta do ciclo; da segunda volta em diante, o quadro já está montado e só é posto na tela.
 
-Meta que proponho para a etapa 2: média de até 12 ms e pior caso de até 16 ms nas quatro âncoras, medidos do mesmo jeito. Sem atingir a meta, nenhuma animação nova entra no app.
+Conferido: antes e depois dos cortes 1 e 2 (texto curto e contas guardadas), o desenho ficou igual pixel a pixel, salvo 21 pixels em 13 milhões, todos na borda do traço. Com as seções nas estações aprovadas, a coincidência com as pranchas subiu um pouco (de lado, de 99,2% para 99,3%). A conferência automática continua sem falha nas quatro.
 
-O que não foi medido: um celular de verdade (só a CPU simulada) e o consumo de memória.
+Testado e descartado: separar o equipamento parado (a coluna da polia, o banco) numa camada desenhada uma vez só. Funcionou e dava o mesmo desenho, mas a parte parada pesa pouco (7,7 kB na coluna da polia); quase todo o texto de cada quadro é o corpo. Sem ganho medido, o código saiu.
+
+**O que isto custa, e o que falta:**
+
+- **Memória.** O desenho pronto da animação que está na tela fica guardado: até 241 quadros de 24 a 52 kB, isto é, de 6 a 13 MB (conta feita, não medida no aparelho). Ao trocar de exercício, vista, modo, desenho ou tema, o que estava guardado é descartado. Se for demais para celulares fracos, dá para guardar menos instantes (120 em vez de 240), ao custo de passos de até 0,5 cm.
+- **A primeira volta** do ciclo ainda é montada quadro a quadro. Na puxada, de trás, fica em 14 a 15 ms de média e passa de 16,7 ms em alguns quadros (pior caso de 18 a 25 ms): nos primeiros 4 segundos, num celular lento, ela pode perder alguns quadros. Nas outras três, a primeira volta fica dentro do limite na média.
+- **Não foi medido** um celular de verdade (só a CPU simulada).
+
+Meta que eu tinha proposto (média de até 12 ms e pior caso de até 16 ms): atingida nas quatro da segunda volta em diante; na primeira volta, atingida em três e não na puxada.
 
 ## 6. Plano em lotes
 
@@ -216,7 +226,7 @@ Desta etapa:
 10. **Rótulos de técnica** ("joelho na direção do pé" e outros): o novo ainda não tem. Entram na etapa 2, fora do corpo.
 11. **Músculos que o desenho não separa** (as três porções do deltoide, o peitoral de cima, as porções do trapézio, romboides, redondo maior, eretores). Hoje o guia desenha essas porções. Recomendo pedir essas formas à mesma linha de desenho antes do lote que precisa delas (lotes 3 e 4). Na puxada de um lado só, o trapézio aparece inteiro por falta da metade.
 12. **Corpo de referência:** homem, IMC normal, 175,8 cm (ANSUR II). Confirmar.
-13. **Meta de fluidez** da seção 5 e as duas medidas de peso (tirar os textos de fonte do app; carregar cada exercício ao abrir).
+13. **Fluidez e peso.** A fluidez está resolvida (seção 5); falta você dizer se aceita o custo de memória (de 6 a 13 MB enquanto uma animação está na tela) e a primeira volta da puxada um pouco mais pesada. As duas medidas de peso continuam propostas (tirar os textos de fonte do app; carregar cada exercício ao abrir).
 14. **As medidas provisórias** (13 do corpo e 16 dos objetos): sigo procurando fonte na etapa 2; as que não tiverem fonte ficam marcadas, e você decide caso a caso.
 
 ## 10. Pedidos ao conteúdo

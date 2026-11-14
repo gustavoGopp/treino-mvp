@@ -66,6 +66,69 @@ function suporte(c2: P2, X2: P2, Z2: P2, an: Anel, dx: number, dy: number): P2 {
     w = (b * b * ez) / den;
   return [c2[0] + u * X2[0] + w * Z2[0], c2[1] + u * X2[1] + w * Z2[1]];
 }
+/**
+ * Monta o atributo `d` de um caminho com texto curto: comandos relativos, em décimos, sem zero à esquerda e sem espaço
+ * antes do sinal de menos. Cada ponto é o mesmo de antes, arredondado a 1 casa: a diferença é sempre tirada entre
+ * pontos já arredondados, então o arredondamento não se acumula e o desenho sai idêntico.
+ */
+export class Caminho {
+  d = '';
+  private x = 0;
+  private y = 0;
+  private x0 = 0;
+  private y0 = 0;
+  private num(t: number, primeiro: boolean): string {
+    const a = Math.abs(t),
+      i = Math.floor(a / 10),
+      r = a % 10;
+    const txt = (t < 0 ? '-' : '') + (i || !r ? String(i) : '') + (r ? '.' + r : '');
+    return (primeiro || t < 0 ? '' : ' ') + txt;
+  }
+  /** Começa um trecho novo em p (coordenada absoluta). */
+  M(p: P2): this {
+    this.x = this.x0 = Math.round(p[0] * 10);
+    this.y = this.y0 = Math.round(p[1] * 10);
+    this.d += `M${this.num(this.x, true)}${this.num(this.y, false)}`;
+    return this;
+  }
+  L(p: P2): this {
+    const X = Math.round(p[0] * 10),
+      Y = Math.round(p[1] * 10);
+    this.d += `l${this.num(X - this.x, true)}${this.num(Y - this.y, false)}`;
+    this.x = X;
+    this.y = Y;
+    return this;
+  }
+  C(c1: P2, c2: P2, p: P2): this {
+    const X = Math.round(p[0] * 10),
+      Y = Math.round(p[1] * 10);
+    this.d += `c${this.num(Math.round(c1[0] * 10) - this.x, true)}${this.num(Math.round(c1[1] * 10) - this.y, false)}${this.num(Math.round(c2[0] * 10) - this.x, false)}${this.num(Math.round(c2[1] * 10) - this.y, false)}${this.num(X - this.x, false)}${this.num(Y - this.y, false)}`;
+    this.x = X;
+    this.y = Y;
+    return this;
+  }
+  Z(): this {
+    this.d += 'z';
+    this.x = this.x0;
+    this.y = this.y0;
+    return this;
+  }
+  /** Curva suave (Catmull-Rom → Bézier) que continua do ponto atual pelos pontos dados (o primeiro é o ponto atual). */
+  suave(P: P2[]): this {
+    for (let i = 0; i < P.length - 1; i++) {
+      const p0 = P[Math.max(0, i - 1)]!,
+        p1 = P[i]!,
+        p2 = P[i + 1]!,
+        p3 = P[Math.min(P.length - 1, i + 2)]!;
+      this.C([p1[0] + (p2[0] - p0[0]) / 6, p1[1] + (p2[1] - p0[1]) / 6], [p2[0] - (p3[0] - p1[0]) / 6, p2[1] - (p3[1] - p1[1]) / 6], p2);
+    }
+    return this;
+  }
+  Ls(P: P2[]): this {
+    for (const p of P) this.L(p);
+    return this;
+  }
+}
 /** Curva suave (Catmull-Rom → Bézier) que continua do ponto atual pelos pontos dados. */
 function suave(P: P2[]): string {
   let s = '';
@@ -81,7 +144,8 @@ function suave(P: P2[]): string {
 const M = (p: P2) => `M${f1(p[0])} ${f1(p[1])}`;
 const Ls = (P: P2[]) => P.map((p) => `L${f1(p[0])} ${f1(p[1])}`).join('');
 
-export function contorno(cam: Camera, vol: Volume, luz: V3 | null): Contorno {
+/** `soFill`: monta só o preenchimento (o Boneco não usa o traço aberto nem a sombra), em texto curto. */
+export function contorno(cam: Camera, vol: Volume, luz: V3 | null, soFill = false): Contorno {
   const A = vol.aneis,
     n = A.length;
   const c2: P2[] = [],
@@ -141,11 +205,15 @@ export function contorno(cam: Camera, vol: Volume, luz: V3 | null): Contorno {
   const Dr = [...D].reverse();
   const fim = tampa(n - 1, 1),
     ini = tampa(0, -1);
-  let fill = M(E[0]!) + suave(E) + Ls(fim) + `L${f1(Dr[0]![0])} ${f1(Dr[0]![1])}` + suave(Dr) + Ls(ini) + 'Z';
-  let traco = M(E[0]!) + suave(E);
-  if (vol.junta1) traco += M(Dr[0]!) + suave(Dr);
-  else traco += Ls(fim) + `L${f1(Dr[0]![0])} ${f1(Dr[0]![1])}` + suave(Dr);
-  if (!vol.junta0) traco += Ls(ini) + (vol.junta1 ? `L${f1(E[0]![0])} ${f1(E[0]![1])}` : 'Z');
+  const curto = soFill ? new Caminho().M(E[0]!).suave(E).Ls(fim).L(Dr[0]!).suave(Dr).Ls(ini).Z() : null;
+  let fill = curto ? '' : M(E[0]!) + suave(E) + Ls(fim) + `L${f1(Dr[0]![0])} ${f1(Dr[0]![1])}` + suave(Dr) + Ls(ini) + 'Z';
+  let traco = '';
+  if (!soFill) {
+    traco = M(E[0]!) + suave(E);
+    if (vol.junta1) traco += M(Dr[0]!) + suave(Dr);
+    else traco += Ls(fim) + `L${f1(Dr[0]![0])} ${f1(Dr[0]![1])}` + suave(Dr);
+    if (!vol.junta0) traco += Ls(ini) + (vol.junta1 ? `L${f1(E[0]![0])} ${f1(E[0]![1])}` : 'Z');
+  }
   // escorço: onde dois anéis vizinhos quase se sobrepõem na tela, a silhueta é o próprio anel
   const raioMax = Math.max(...A.map((an) => Math.max(an.a, an.f, an.b)));
   const todoEmEscorco = compTela < raioMax * 0.8;
@@ -157,6 +225,10 @@ export function contorno(cam: Camera, vol: Volume, luz: V3 | null): Contorno {
     const esperado = Math.hypot(...(sub(A[i === n - 1 ? i - 1 : i + 1]!.c, A[i]!.c) as [number, number, number]));
     if (passo < 0.55 * Math.min(raio, esperado) || todoEmEscorco) {
       const q = anelInteiro(i);
+      if (curto) {
+        curto.M(q[0]!).Ls(q.slice(1)).Z();
+        continue;
+      }
       const p = M(q[0]!) + Ls(q.slice(1)) + 'Z';
       fill += p;
       const ponta = i === 0 || i === n - 1;
@@ -202,6 +274,7 @@ export function contorno(cam: Camera, vol: Volume, luz: V3 | null): Contorno {
     const tr = [...term].reverse();
     sombra = M(esc[0]!) + suave(esc) + `L${f1(tr[0]![0])} ${f1(tr[0]![1])}` + suave(tr) + 'Z';
   }
+  if (curto) fill = curto.d;
   return { fill, traco, sombra, d, cx };
 }
 

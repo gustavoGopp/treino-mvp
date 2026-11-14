@@ -5,7 +5,7 @@
 // Os grupos musculares, o cabelo e as linhas dos dedos são desenhos presos à superfície de cada parte.
 import dados from './dados/boneco.json';
 import type { Anel, Volume } from './corpo3d';
-import { contorno } from './desenho';
+import { Caminho, contorno } from './desenho';
 import type { Camera, Item, P2 } from './desenho';
 import { LADOS, naColuna, resolverTronco, sinal } from './esqueleto';
 import type { Esq, Lado } from './esqueleto';
@@ -91,8 +91,15 @@ function forma(nome: string): Tabela {
   }
   return c;
 }
-/** Meia-largura de uma forma desenhada de frente ([x, y] em pé), numa altura y. */
+/** Meia-largura de uma forma desenhada de frente ([x, y] em pé), numa altura y. Guardada: as alturas se repetem a cada quadro. */
+const LARGURAS = new Map<string, number>();
 function meiaLargura(nome: string, y: number): number {
+  const chave = `${nome}|${y}`;
+  let v = LARGURAS.get(chave);
+  if (v === undefined) LARGURAS.set(chave, (v = meiaLarguraCalculada(nome, y)));
+  return v;
+}
+function meiaLarguraCalculada(nome: string, y: number): number {
   const f = forma(nome);
   const k = corte(f, 1, y);
   if (k) return Math.max(Math.abs(k[0]), Math.abs(k[1]));
@@ -125,7 +132,7 @@ function volumeDe(sup: Superficie, ts: number[], _comp: number, redonda0 = true,
     const r = Math.min(s.a, (s.f + s.b) / 2);
     const eixo = mul(norm3(sub3(sup.em(t + 0.02 * sentido).o, s.o)), 1);
     // a mesma calota das pranchas: 72% da largura a 68% do raio, e a ponta a 98% do raio
-    return [[0.92, 0.36], [0.72, 0.68], [0.42, 0.9], [0.14, 0.98]].map(([k, d]) => {
+    return [[0.88, 0.42], [0.6, 0.78], [0.22, 0.97]].map(([k, d]) => {
       const an = anelDe(s, k);
       return { ...an, c: add(an.c, mul(eixo, r * d!)) };
     });
@@ -140,6 +147,15 @@ const norm3 = (a: V3): V3 => {
   const l = Math.hypot(a[0], a[1], a[2]) || 1;
   return [a[0] / l, a[1] / l, a[2] / l];
 };
+/**
+ * As seções de um membro ficam nas estações em que os perfis foram desenhados (as das pranchas aprovadas), e não em
+ * passos iguais: a curva entre duas estações é a mesma das pranchas, com menos pontos.
+ */
+function estacoes(L: Tabela, F: Tabela): number[] {
+  const ts = L.map((r) => r[0]!);
+  for (const r of F) if (ts.every((t) => Math.abs(t - r[0]!) > 0.06)) ts.push(r[0]!);
+  return ts.sort((a, b) => a - b);
+}
 const passos = (n: number, de = 0, ate = 1) => Array.from({ length: n + 1 }, (_, i) => de + ((ate - de) * i) / n);
 
 /** Membro reto: do referencial `r` (origem na junta de cima, y para cima, z para a frente) por `comp` cm. */
@@ -161,7 +177,13 @@ function emPe(c: Corpo) {
   if (r) return r;
   const t0 = resolverTronco(c, { pelve: [0, c.m('altura.trocanter'), 0] });
   const sC7 = t0.nos[t0.iC7]!.s;
-  const yDoTronco = (t: number) => naColuna(t0, sC7 * (1 - t)).o[1];
+  // as alturas em pé não mudam com a pose: cada t é calculado uma vez
+  const alturas = new Map<number, number>();
+  const yDoTronco = (t: number) => {
+    let y = alturas.get(t);
+    if (y === undefined) alturas.set(t, (y = naColuna(t0, sC7 * (1 - t)).o[1]));
+    return y;
+  };
   const tDoTronco = (y: number) => {
     let a = 0,
       b = 1;
@@ -173,7 +195,15 @@ function emPe(c: Corpo) {
     return (a + b) / 2;
   };
   /** Em que ponto do tronco (t) a superfície da frente (ou de trás), a `x` cm do meio, fica na altura y em pé. */
+  // cada ponto dos desenhos de frente e de costas cai sempre no mesmo lugar do tronco: a busca é feita uma vez
+  const lugares = new Map<string, number>();
   const tDaSuperficie = (y: number, x: number, tras: boolean) => {
+    const chave = `${y}|${x}|${tras ? 1 : 0}`;
+    let t = lugares.get(chave);
+    if (t === undefined) lugares.set(chave, (t = buscaNaSuperficie(y, x, tras)));
+    return t;
+  };
+  const buscaNaSuperficie = (y: number, x: number, tras: boolean) => {
     const alt = (t: number) => {
       const s = naColuna(t0, sC7 * (1 - t));
       const a = meiaLargura('TRONCO_F', s.o[1]) || 1;
@@ -258,7 +288,7 @@ export function formaDoBoneco(e: Esq, o: { roupa?: boolean; cabeloAtrasPrimeiro?
   sup.cabeca = cabeca;
   const corpoVols: FormaDoBoneco['grupos'][number]['volumes'] = [
     { vol: volumeDe(pescoco, [0, 0.25, 0.5, 0.75, 1], 0, false, false), mat: 'pele', nome: 'pescoco' },
-    { vol: volumeDe(tronco, passos(16), 0, false, false), mat: 'pele', nome: 'tronco' },
+    { vol: volumeDe(tronco, passos(12), 0, false, false), mat: 'pele', nome: 'tronco' },
     { vol: { aneis: [12.7, 11.5, 9.5, 7, 4.5, 2, -0.5, -3, -5.2, -7, -8.4, -9.3, -9.7].map((y) => anelDe(pelve.em(y))) }, mat: o.roupa ? 'short' : 'pele', nome: 'pelve' },
     { vol: { aneis: [13.05, 12.8, 12.2, 11.2, 9.8, 8, 6, 4, 2, 0, -2, -4, -5.8, -7.4, -8.6, -9.5, -9.95].map((y) => anelDe(cabeca.em(y))) }, mat: 'pele', nome: 'cabeca' },
   ];
@@ -327,8 +357,8 @@ export function formaDoBoneco(e: Esq, o: { roupa?: boolean; cabeloAtrasPrimeiro?
       id: `perna${k}`,
       lado: k,
       volumes: [
-        { vol: volumeDe(coxa, passos(10), 0), mat: 'pele', nome: 'coxa' },
-        { vol: volumeDe(canela, passos(10), 0), mat: 'pele', nome: 'canela' },
+        { vol: volumeDe(coxa, estacoes(PERFIS.COXA_L!, PERFIS.COXA_F!), 0), mat: 'pele', nome: 'coxa' },
+        { vol: volumeDe(canela, estacoes(PERFIS.CANELA_L!, PERFIS.CANELA_F!), 0), mat: 'pele', nome: 'canela' },
         { vol: { aneis: peVol }, mat: o.roupa ? 'calcado' : 'pele', nome: 'pe' },
         ...(o.roupa ? [{ vol: volumeDe(supMembro(L.coxa, m('coxa.comp'), s, PERFIS.COXA_L!, PERFIS.COXA_F!, dados.short.folga), passos(5, 0, dados.short.ate), 0, true, false), mat: 'short' }] : []),
       ],
@@ -389,7 +419,7 @@ export function formaDoBoneco(e: Esq, o: { roupa?: boolean; cabeloAtrasPrimeiro?
       return { c: comb([1, L.punho], [v[0]! + (du * eixo[0]!) / le, dedos], [v[1]! + (du * eixo[1]!) / le, polegar], [v[2]! + (du * eixo[2]!) / le, L.mao.z]), x: L.mao.z, z: polegar, a: r, f: r, b: r };
     });
     sup[`mao${k}`] = { em: (t) => ({ o: add(L.punho, mul(dedos, t)), fora: polegar, z: L.mao.z, a: 4, des: 0, f: 3.4, b: 2.3 }) };
-    grupos.push({ id: `braco${k}`, lado: k, volumes: [{ vol: volumeDe(braco, passos(8), 0), mat: 'pele', nome: 'braco' }, { vol: volumeDe(ante, passos(8), 0), mat: 'pele', nome: 'ante' }, { vol: { aneis: maoAneis }, mat: 'pele', nome: 'mao' }, { vol: { aneis: polAneis }, mat: 'pele', nome: 'polegar' }] });
+    grupos.push({ id: `braco${k}`, lado: k, volumes: [{ vol: volumeDe(braco, estacoes(PERFIS.BRACO_L!, PERFIS.BRACO_F!), 0), mat: 'pele', nome: 'braco' }, { vol: volumeDe(ante, estacoes(PERFIS.ANTE_L!, PERFIS.ANTE_F!), 0), mat: 'pele', nome: 'ante' }, { vol: { aneis: maoAneis }, mat: 'pele', nome: 'mao' }, { vol: { aneis: polAneis }, mat: 'pele', nome: 'polegar' }] });
   }
   const noCorpo = (x: number, y: number, tras: boolean): V3 => {
     const yBase = P.yDoTronco(1);
@@ -532,21 +562,21 @@ export function musculosVisiveis(e: Esq, forma: FormaDoBoneco, cam: Camera): Des
 }
 
 /* ============================== pintura ============================== */
-const f1 = (n: number) => (Math.round(n * 10) / 10).toString();
-/** Curva fechada (ou aberta) suave pelos pontos, como a `suave` das pranchas. */
+/** Curva fechada (ou aberta) suave pelos pontos, como a `suave` das pranchas, em texto curto. */
 function suave(P: P2[], fechado = true): string {
   const n = P.length;
   if (n < 2) return '';
   const p = (i: number) => (fechado ? P[((i % n) + n) % n]! : P[Math.max(0, Math.min(n - 1, i))]!);
-  let d = `M${f1(P[0]![0])} ${f1(P[0]![1])}`;
+  const c = new Caminho().M(P[0]!);
   for (let i = 0; i < (fechado ? n : n - 1); i++) {
     const p0 = p(i - 1),
       p1 = p(i),
       p2 = p(i + 1),
       p3 = p(i + 2);
-    d += `C${f1(p1[0] + (p2[0] - p0[0]) / 6)} ${f1(p1[1] + (p2[1] - p0[1]) / 6)} ${f1(p2[0] - (p3[0] - p1[0]) / 6)} ${f1(p2[1] - (p3[1] - p1[1]) / 6)} ${f1(p2[0])} ${f1(p2[1])}`;
+    c.C([p1[0] + (p2[0] - p0[0]) / 6, p1[1] + (p2[1] - p0[1]) / 6], [p2[0] - (p3[0] - p1[0]) / 6, p2[1] - (p3[1] - p1[1]) / 6], p2);
   }
-  return d + (fechado ? 'Z' : '');
+  if (fechado) c.Z();
+  return c.d;
 }
 const naTela = (cam: Camera, p: V3): P2 => [dot(p, cam.dir), -dot(p, cam.cima)];
 
@@ -588,7 +618,7 @@ export function desenharBoneco(e: Esq, cam: Camera, o: OpcoesDoBoneco): Item[] {
   const prof = (k: Lado) => dot(e.lado[k].ombro, cam.para) + dot(e.lado[k].quadril, cam.para);
   const longe: Lado | null = Math.abs(prof('R') - prof('L')) < 6 ? null : prof('R') < prof('L') ? 'R' : 'L';
   const G = forma.grupos.map((g) => {
-    const cs = g.volumes.map((v) => ({ c: contorno(cam, v.vol, null), mat: v.mat, nome: v.nome }));
+    const cs = g.volumes.map((v) => ({ c: contorno(cam, v.vol, null, true), mat: v.mat, nome: v.nome }));
     const d = cs.reduce((s, x) => s + x.c.d, 0) / cs.length;
     const cx = cs.reduce<[number, number, number, number]>((a, x) => [Math.min(a[0], x.c.cx[0]), Math.min(a[1], x.c.cx[1]), Math.max(a[2], x.c.cx[2]), Math.max(a[3], x.c.cx[3])], [1e9, 1e9, -1e9, -1e9]);
     return { g, cs, d, cx, longe: !!g.lado && g.lado === longe };
@@ -661,12 +691,19 @@ export function desenharBoneco(e: Esq, cam: Camera, o: OpcoesDoBoneco): Item[] {
   const doCorpo = (nome: string) => corpo.cs.find((v) => v.nome === nome)!.c;
   const troncoD = doCorpo('pescoco').fill + doCorpo('tronco').fill;
   const tc = doCorpo('tronco').cx;
+  // onde a coxa passa na frente do tronco, ela ganha a linha de contorno (só ali). O recorte do tronco é um só para as
+  // duas pernas, e só entra quando a coxa cruza mesmo o tronco na tela (em pé, o alto da coxa só encosta nele).
+  let idRecorte = '';
   for (const x of frente) {
-    // onde a perna passa na frente do tronco, ela ganha a linha de contorno (só ali)
-    const sobrepoe = suf !== '-f' && x.cx[0] < tc[2] && x.cx[2] > tc[0] && x.cx[1] < tc[3] && x.cx[3] > tc[1];
-    if (sobrepoe) {
-      const id = `bt${hash(troncoD + x.g.id)}`;
-      s += `<clipPath id="${id}"><path d="${troncoD}"/></clipPath><g clip-path="url(#${id})">${traco(x)}</g>`;
+    const cc = (x.cs.find((v) => v.nome === 'coxa') ?? x.cs[0]!).c.cx;
+    const largura = Math.min(cc[2], tc[2]) - Math.max(cc[0], tc[0]),
+      altura = Math.min(cc[3], tc[3]) - Math.max(cc[1], tc[1]);
+    if (suf !== '-f' && largura > 2 && altura > 5) {
+      if (!idRecorte) {
+        idRecorte = `bt${hash(troncoD)}`;
+        s += `<clipPath id="${idRecorte}"><path d="${troncoD}"/></clipPath>`;
+      }
+      s += `<g clip-path="url(#${idRecorte})">${traco(x)}</g>`;
     }
     s += pintado(x, [x.g.id], false);
   }

@@ -5,7 +5,7 @@ export { VISTAS } from './desenho';
 export type { IdVista } from './desenho';
 export { duracao, instante } from './movimento';
 export type { Exercicio } from './movimento';
-export { enquadrar, itensDaCena, svgDaCena } from './cena';
+export { enquadrar, itensDaCena, svgAnimado, svgDaCena } from './cena';
 export type { Modo, OpcoesCena } from './cena';
 export { DEFS_DO_BONECO, cssDoBoneco } from './boneco';
 export type { IdEstilo } from './boneco';

@@ -133,7 +133,7 @@ Gerado por `npm run conferir:animacao` (60 quadros por segundo, ciclo inteiro). 
 
 225 quadros conferidos. 0 falha(s), 4 aviso(s).
 
-Ângulos no ciclo (lado direito, graus): joelho 4 a 4; cotovelo 10 a 118; quadril 2 a 2; ombro 39 a 62; dorsiflexao 12 a 12; punho 78 a 94; pronacao 41 a 51; clavicula 12 a 13.
+Ângulos no ciclo (lado direito, graus): joelho 4 a 4; cotovelo 10 a 119; quadril 2 a 2; ombro 39 a 62; dorsiflexao 12 a 12; punho 77 a 94; pronacao 41 a 51; clavicula 12 a 13.
 
 | grupo | o que foi medido | resultado | limite | |
 |---|---|---|---|---|
@@ -143,29 +143,29 @@ Gerado por `npm run conferir:animacao` (60 quadros por segundo, ciclo inteiro). 
 | Proporções | comprimento do osso: perna | desvio máximo 0 cm | tabela: 42,1 cm; tolerância 0,1 cm | ok |
 | Proporções | membro que não alcança o alvo | falta máxima 0 cm | tolerância 0,1 cm | ok |
 | Amplitudes | flexão do joelho (máxima no ciclo) | 4° | média 140°, máximo observado 164° (cdc) | ok |
-| Amplitudes | flexão do cotovelo | 118,5° | média 148°, máximo observado 166° (cdc) | ok |
+| Amplitudes | flexão do cotovelo | 119,2° | média 148°, máximo observado 166° (cdc) | ok |
 | Amplitudes | flexão do quadril | 2° | média 132°, máximo observado 159° (cdc) | ok |
 | Amplitudes | extensão do quadril | 0° | média 18,5°, máximo observado 42° (cdc) | ok |
 | Amplitudes | abertura do quadril para o lado | 0° | média 40°, máximo observado 60° (aaos) | ok |
-| Amplitudes | elevação do braço | 61,7° | média 170°, máximo observado 192° (cdc) | ok |
+| Amplitudes | elevação do braço | 61,8° | média 170°, máximo observado 192° (cdc) | ok |
 | Amplitudes | dorsiflexão do tornozelo | 12° | média 14,8°, máximo observado 48° (cdc) | ok |
 | Amplitudes | flexão plantar do tornozelo | 0° | média 56,7°, máximo observado 90° (cdc) | ok |
 | Amplitudes | pronação do antebraço (a partir do polegar para cima) | 51,3° | média 80°, máximo observado 108° (cdc) | ok |
 | Amplitudes | supinação do antebraço | 0° | média 87,5°, máximo observado 131° (cdc) | ok |
-| Amplitudes | extensão do punho | 94,1° | média 70°, máximo observado 95° (aaos) | AVISO |
-| Amplitudes | extensão dos dedos do pé | 76,8° | média 70°, máximo observado 90° (aaos) | AVISO |
+| Amplitudes | extensão do punho | 94° | média 70°, máximo observado 95° (aaos) | AVISO |
+| Amplitudes | extensão dos dedos do pé | 77° | média 70°, máximo observado 90° (aaos) | AVISO |
 | Contatos | preso no lugar: pe.R | desloca no máximo 0 cm no ciclo | tolerância 0,1 cm | ok |
 | Contatos | preso no lugar: pe.L | desloca no máximo 0 cm no ciclo | tolerância 0,1 cm | ok |
 | Contatos | preso no lugar: mao.R | desloca no máximo 0 cm no ciclo | tolerância 0,1 cm | ok |
 | Contatos | preso no lugar: mao.L | desloca no máximo 0 cm no ciclo | tolerância 0,1 cm | ok |
 | Chão | ponto mais baixo do corpo | 0 cm | não pode passar de −1,5 cm (a sola e o joelho amassam um pouco) | ok |
 | Objetos | o corpo atravessa uma peça (banco, coluna) | não atravessa | tolerância 2,5 cm (o corpo amassa o estofado) | ok |
-| Ritmo | maior salto de velocidade entre dois quadros (a 60 quadros por segundo) | 16,4% da velocidade de pico (cotovelo direito, Subida · concêntrica); pico de 80,7 cm/s | movimento suave: até 15%; acima de 25% é tranco | AVISO |
+| Ritmo | maior salto de velocidade entre dois quadros (a 60 quadros por segundo) | 16,5% da velocidade de pico (cotovelo direito, Subida · concêntrica); pico de 81,7 cm/s | movimento suave: até 15%; acima de 25% é tranco | AVISO |
 | Simetria | esquerda contra o espelho da direita (mão, cotovelo, joelho, tornozelo) | diferença máxima 0 cm | tolerância 0,1 cm | ok |
 | Ciclo | o último quadro emenda no primeiro | distância máxima 0 cm | até 0,5 cm | ok |
 | Ficha | corpo em linha reta da cabeça aos calcanhares (consenso) | de lado, ombro, quadril e tornozelo fazem no mínimo 177,3° (180° = linha reta) | como a ficha pede | ok |
 | Ficha | embaixo, o peito fica a poucos centímetros do chão (consenso) | embaixo, o peito fica a 5 cm do chão | como a ficha pede | ok |
-| Ficha | cotovelos a meio caminho entre o tronco e os lados (consenso) | embaixo, o braço faz 41,2° com o tronco, visto de cima | como a ficha pede | ok |
+| Ficha | cotovelos a meio caminho entre o tronco e os lados (consenso) | embaixo, o braço faz 41,3° com o tronco, visto de cima | como a ficha pede | ok |
 | Provisórios | linhas da ficha do movimento sem número na ficha da técnica (escolha de desenho) | tornozelo.dorsiflexao, escapula.retracaoEmbaixo | cada uma precisa de fonte ou do ok do Gustavo | AVISO |
 
 ## Medidas ainda provisórias nas tabelas
