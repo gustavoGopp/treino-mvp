@@ -58,13 +58,24 @@ function quadro(corpo: Corpo, u: number, erro?: string): Quadro {
       baixo = noRef(T, [0, -10 - (comp - cabeca), frenteBaixo + rb + 0.8]);
     const eixo = norm(sub(topo, baixo));
     const centro = mul(add(topo, baixo), 0.5);
-    // as mãos em concha: a palma encostada no lado da cabeça de cima do halter, os dedos para cima e um pouco para a
-    // frente, o polegar para o peito (a ficha da técnica: "mãos em concha embaixo da anilha de cima")
+    // As mãos em concha por baixo da cabeça de cima do halter (a ficha da técnica: "mãos em concha embaixo da anilha
+    // de cima"): a base da mão fica debaixo da cabeça, perto do cabo, e a mão abre para fora num V, com a quina de
+    // baixo da cabeça apoiada na palma; dos nós em diante, os dedos sobem pelo lado da cabeça. A mão fica um pouco
+    // girada para a frente, com o polegar do lado do peito.
+    const abre = (f('maos.aberturaDaConcha') * Math.PI) / 180,
+      gira = (f('maos.giroParaFrente') * Math.PI) / 180;
+    const frenteT = dirRef(T, [0, 0, 1]);
     const braco = (k: Lado): PoseBraco => {
       const s = sinal(k);
-      const dedos = norm(add(mul(eixo, 0.9), mul(dirRef(T, [0, 0, 1]), 0.35)));
-      const palma = add(add(topo, mul(dirRef(T, [s, 0, 0]), ra + 2.6)), mul(eixo, -cabeca * 0.35));
-      return { punho: add(palma, mul(dedos, -m('mao.punhoAoCentroDaPegada'))), polo: dirRef(T, [s * 0.45, -1, -0.15]), mao: { polegar: dirRef(T, [0, 0.3, -1]), dedos, forma: 'concha' } };
+      const lat = dirRef(T, [s, 0, 0]);
+      // "para fora" da mão: o lado do corpo, girado um pouco para a frente
+      const fora = norm(add(mul(lat, Math.cos(gira)), mul(frenteT, Math.sin(gira))));
+      const dedos = norm(add(mul(eixo, Math.cos(abre)), mul(fora, Math.sin(abre))));
+      // a normal da palma aponta para dentro e para cima; a quina de baixo da cabeça encosta no meio da palma
+      const normal = norm(add(mul(fora, -Math.cos(abre)), mul(eixo, Math.sin(abre))));
+      const quina = add(add(topo, mul(fora, ra)), mul(eixo, -cabeca / 2));
+      const palma = add(quina, mul(normal, -f('maos.meiaEspessuraDaPalma')));
+      return { punho: add(palma, mul(dedos, -m('mao.punhoAoCentroDaPegada'))), polo: dirRef(T, [s * 0.45, -1, -0.15]), mao: { polegar: norm(add(mul(frenteT, -Math.cos(gira)), mul(lat, Math.sin(gira)))), dedos, forma: 'concha' } };
     };
     return { e: resolverMembros(t, { R: braco('R'), L: braco('L') }, pernas), centro, eixo };
   };

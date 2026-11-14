@@ -16,6 +16,9 @@
   "tronco.baixo": { "v": 27, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "inclinação do tronco embaixo, com o peito alto e a lombar neutra; a ficha não dá número" },
   "pes.meiaDistancia": { "v": 19, "un": "cm", "selo": "consenso", "fonte": "guia", "o": "pés um pouco mais abertos que o quadril (meia largura do quadril: 16,2)" },
   "pes.paraFora": { "v": 15, "un": "graus", "selo": "consenso", "fonte": "guia", "o": "pontas levemente para fora" },
+  "maos.aberturaDaConcha": { "v": 22, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "quanto cada mão abre para fora, a partir da vertical do halter, para a cabeça de cima apoiar na palma; a ficha pede as mãos em concha embaixo da anilha de cima e não dá número" },
+  "maos.giroParaFrente": { "v": 20, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "quanto a mão fica girada para a frente em volta do halter (o polegar do lado do peito)" },
+  "maos.meiaEspessuraDaPalma": { "v": 1.6, "un": "cm", "selo": "desenho", "fonte": "desenho", "o": "do meio da mão até a pele da palma, onde a cabeça do halter apoia" },
   "carga": { "v": 11.3, "un": "kg", "selo": "desenho", "fonte": "objetos", "o": "o halter desenhado (25 lb); entra no equilíbrio" },
   "erro.raso.joelho": { "v": 72, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "erro: parar alto" },
   "erro.lombar.tronco": { "v": 52, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "erro: o peito cai" },
@@ -40,5 +43,10 @@
   { "id": "lombar", "titulo": "Tronco cai e a lombar arredonda", "vista": "lateral", "oQueMuda": "o tronco inclina demais e a lombar flexiona", "destaca": ["corpo"], "linha": ["pelve", "lombar", "c7", "cabeca"], "foco": "lombar" },
   { "id": "raso", "titulo": "Descer pouco", "vista": "lateral", "oQueMuda": "para com o joelho a 72° em vez de 126°", "destaca": ["pernas"], "linha": ["quadril", "joelho", "tornozelo"], "foco": "joelho" }
  ],
- "simetrico": true
+ "simetrico": true,
+ "rotulos": [
+  {"vista": "lateral", "texto": "joelho pode passar do pé", "ponto": "joelho", "selo": "consenso", "fonte": "guia"},
+  {"vista": "lateral", "texto": "anilha sob o calcanhar", "ponto": "calcanhar", "selo": "consenso", "fonte": "guia"},
+  {"vista": "frontal", "texto": "joelho na direção do pé", "ponto": "joelho", "selo": "consenso", "fonte": "guia", "prumo": {"de": "ponta", "alt": 60}}
+ ]
 }
