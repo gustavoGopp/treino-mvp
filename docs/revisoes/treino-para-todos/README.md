@@ -1,6 +1,6 @@
 # Treino para todos (12 e 13/11/2026)
 
-> **Etapa 2 em andamento, no ramo da sessão.** O Gustavo disse sim à decisão 1 (o tempo que sobra vira série para todos). O pacote 1 está feito e parado para a revisão dele: [`pacote-1.md`](pacote-1.md) (o antes e o depois, a revisão cega, os registros de teste que mudam e as decisões) e [`qa.md`](qa.md) (a régua por grupo). O resto desta página descreve a etapa 1.
+> **Etapa 2 em andamento, no ramo da sessão.** O Gustavo disse sim à decisão 1 (o tempo que sobra vira série para todos). O pacote 1 (o tempo que sobra vira série) foi feito e revisto por ele em 13/11: [`pacote-1.md`](pacote-1.md). O pacote 0 (com dor forte no joelho, ninguém ajoelha) está feito e parado para a revisão dele: [`pacote-0.md`](pacote-0.md). A régua por grupo dos dois está em [`qa.md`](qa.md). O resto desta página descreve a etapa 1.
 
 ## Etapa 1
 

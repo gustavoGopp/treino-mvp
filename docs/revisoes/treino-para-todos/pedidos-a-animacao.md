@@ -66,3 +66,11 @@ Com a proposta, estes exercícios animados aparecem em menos programas, porque d
 ## O que não está pedido
 
 Nenhuma mudança no motor nem nos desenhos existentes. A decisão pendente de 12/11 (refazer a animação da `panturrilha-chao` ou mostrá-la como cartão) continua com o Gustavo.
+
+## Pedido do pacote 0 (14/11/2026): uma versão sentada das puxadas que hoje são ajoelhadas
+
+- **O que acontece:** desde o pacote 0, com dor acima de 5 no joelho saem os exercícios cuja posição de base apoia o joelho. Para quem só tem elásticos, ou só uma estação de polia dupla, o único puxar vertical possível era ajoelhado (a puxada com elástico ancorado no alto; a puxada unilateral e a com barra reta na polia alta): essas pessoas ficam só com remadas.
+- **O pedido:** três exercícios novos, ou três variações com texto e desenho próprios, feitos **sentado** (no chão ou num banco baixo), sem apoiar o joelho: a puxada com elástico sentado, a puxada unilateral sentado na polia alta e a puxada com barra reta sentado na polia alta. Com eles na biblioteca (sem a marca do joelho), o gerador devolve o puxar vertical a quem tem dor no joelho, sem mudar regra nenhuma.
+- **Motivo medido:** na revisão cega do pacote 0, as duas pessoas nessa situação foram as únicas com a nota abaixo da de antes (−1,0 e −0,7 na soma de três notas de 1 a 10); os três revisores escreveram "só remadas, sem puxada vertical".
+- **Enquanto isso:** exercício sem animação aprovada aparece como cartão de texto; a versão sentada pode entrar primeiro assim.
+

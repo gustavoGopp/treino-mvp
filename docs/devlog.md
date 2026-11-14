@@ -1687,3 +1687,30 @@ Nenhum dos 9 defeitos da régua sobe em nenhum grupo nem em nenhum recorte. O pi
 
 **Rascunho de post.** "A primeira mudança do 'treino para todos' entrou no ramo: o app deixa de dar 2 séries de tudo a quem tem uma hora e academia completa. Parece simples (sobrou tempo, mais séries), mas a medida mudou a regra duas vezes. Primeiro, as séries a mais estavam tomando o lugar de exercícios em treinos curtos; passaram a entrar só no fim. Depois, três treinadores simulados, sem saber qual versão liam, baixaram a nota do iniciante que ganhou séries em tudo: 8 exercícios com 3 ou 4 séries, no limite da hora, é demais para quem está aprendendo. Para ele, a série a mais agora vai só para os exercícios grandes. Regra que não melhora a medida não entra, mesmo quando parece certa."
 
+## Treino para todos, etapa 2, pacote 0: com dor forte no joelho, ninguém ajoelha (14/11/2026)
+
+O Gustavo aprovou o pacote 1 (regravou-se com o ok dele o que mudava nos registros de teste) e escolheu o pacote 0 como o seguinte. Este pacote está **no ramo da sessão, não na `main`**, parado para a revisão dele. Relatório: `docs/revisoes/treino-para-todos/pacote-0.md`; régua por grupo: `qa.md`.
+
+**O que mudou.** Com dor acima de 5 no joelho, o app tirava o agachamento e o leg press e ainda mandava ajoelhar na puxada e no abdominal da polia. Duas regras: (1) o exercício cuja posição de base apoia o peso do corpo no joelho passa a carregar o joelho na biblioteca (8 exercícios, achados lendo os textos de execução do próprio app; a proposta falava de 3); (2) a vaga de um exercício grande que a dor esvazia recebe, no próprio lugar, outro exercício grande do mesmo músculo (a puxada ajoelhado vira uma remada), em vez de sumir. Nenhuma tela mudou.
+
+**Em pessoas.** O Leandro (iniciante, academia completa, 3 dias de 60 min, dor 7 no joelho) recebia a puxada unilateral ajoelhado, a puxada ajoelhado com barra reta, o coice na máquina e o abdominal ajoelhado na polia; passa a receber a puxada sentado no puxador, o hip thrust e o abdominal no banco declinado, com as mesmas séries por músculo. As outras onze pessoas dos exemplos não mudam.
+
+**Medido em 680.625 programas fictícios** (o "antes" é o gerador da `main`, medido com a régua de agora):
+
+| | Antes (main) | Agora (ramo) |
+|---|---:|---:|
+| Com dor 7 no joelho: programas com um exercício de joelho apoiado (grade) | 7.773 de 45.375 | 0 |
+| Idem, na conta ponderada | 47 em cada 100 | 0 |
+| Com dor 7 no joelho: programas sem nenhum defeito (ponderada) | 49,8% | 95,8% |
+| Todos os programas sem nenhum defeito (ponderada) | 78,1% | 94,4% |
+
+Nos totais nenhum defeito sobe, e em nenhum grupo sobe mais de 0,05 ponto; na contagem bruta, 28 pares de grupo e defeito sobem de 1 a 8 programas (a lista de exercícios encolheu e alguns programas cruzam um limite). Com a segunda regra, entre os programas com dor marcada, os que têm um dia fraco caem 139 e os que empurram muito mais do que puxam, 15.
+
+**O que a medida mudou na regra.** A primeira versão da troca valia para qualquer vaga: com dor no ombro, o tríceps entrava com 4 séries e estourava os treinos de 30 min (de 626 para 793 programas). Ficou só para a vaga de exercício grande, e só por outro exercício grande.
+
+**A revisão cega** (12 pessoas com dor, a `main` e a versão de agora, 24 páginas, três revisores simulados): médias de 5,2 · 5,9 · 5,2 para 6,0 · 6,2 · 5,5; nove sobem, uma fica igual e **duas caem** (−1,0 e −0,7): as duas em que a puxada ajoelhada era o único puxar vertical possível (só elásticos; só a estação de polia dupla), que ficam só com remadas. É a troca entre segurança e variedade; o remédio é uma versão sentada dessas puxadas, pedida à animação.
+
+**Conferências.** `npm run check` limpo (945 testes); nenhum registro de teste mudou.
+
+**Rascunho de post.** "Dois revisores apontaram: com dor forte no joelho, o app tirava o agachamento e mandava a pessoa ajoelhar para fazer a puxada. O dado estava errado na biblioteca, e não era só nos três exercícios que eles viram: lendo o texto de execução dos 171, achei oito em que a posição de base apoia o joelho. A correção custou alguma coisa, e está escrito quanto: quem só tem elásticos e marca dor forte no joelho fica sem a puxada, só com remadas, até existir a versão sentada. Segurança não se troca por variedade."
+

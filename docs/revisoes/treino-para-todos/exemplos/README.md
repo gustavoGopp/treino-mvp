@@ -31,3 +31,7 @@ As páginas acima comparam a `main` com a proposta inteira da etapa 1. Com o pac
 
 As outras mudanças das páginas (exercícios mais conhecidos, os "ajoelhados" fora com dor no joelho, a semana remontada com dor forte) são dos pacotes 0, 2 e 3, que ainda não foram decididos.
 
+## Etapa 2, pacote 0 (14/11/2026): com dor forte no joelho, ninguém ajoelha
+
+Das doze pessoas, só o **Leandro** muda (é o único com dor no joelho): as duas puxadas ajoelhado viram a puxada sentado no puxador, o coice na máquina vira o hip thrust e o abdominal ajoelhado na polia vira o abdominal no banco declinado; as séries por músculo ficam iguais. O antes e o depois dele, exercício por exercício, está em [`../pacote-0.md`](../pacote-0.md), seção 3. As outras onze ficam como estavam depois do pacote 1.
+

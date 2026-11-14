@@ -285,3 +285,18 @@ Detalhes em `revisoes/treino-para-todos/pacote-1.md` e `qa.md`. O pacote está n
 - **O iniciante:** quase todo o ganho na régua vem do aviso, e não do tempo usado; as séries sobem de 56,5 para 57,1 por semana, em média.
 - **O dia de 5 exercícios ou mais com 2 séries em todos** cai de 21,8% para 15,1% (ponderada); a 1ª versão chegava a 11,4%, à custa dos defeitos acima.
 
+## Da sessão "treino para todos", etapa 2, pacote 0 (14/11/2026)
+
+Detalhes em `revisoes/treino-para-todos/pacote-0.md` e `qa.md`. O pacote está no ramo da sessão, esperando a revisão do Gustavo.
+
+**Medido e recusado (não tentar de novo sem motivo novo)**
+- **Trocar também a vaga de um isolador que a dor esvazia** (o tríceps acima da cabeça, com dor no ombro): o substituto entrava com 4 séries e estourava os treinos de 30 min; com dor 7 no ombro, "dia acima do tempo" ia de 626 para 793 programas de 45.375. A troca ficou só para a vaga de exercício grande.
+- **Trocar a vaga por qualquer função do mesmo músculo, sem olhar o tipo:** a vaga do agachamento virava a cadeira extensora e o dia ficava sem exercício grande (em uma amostra de 28.875 programas com dor forte, 96 ganhavam esse defeito).
+
+**Ficou de fora, com o número**
+- **Quem só tem puxada ajoelhada** (só elásticos; só a estação de polia dupla) e marca dor forte no joelho fica só com remadas; foram as duas pessoas com nota menor na revisão cega (−1,0 e −0,7). O remédio é de conteúdo: a versão sentada das puxadas (`pedidos-a-animacao.md`).
+- **Resíduo na contagem bruta:** 28 pares de grupo e defeito sobem de 1 a 8 programas em relação à `main` (nenhum mais de 0,05 ponto; nos totais nenhum sobe): programas que cruzam um limite da régua porque a lista de exercícios encolheu.
+- **A extensão de tríceps com o peso do corpo** tem o último degrau de dificuldade "no chão, de joelhos": o app pode sugerir esse degrau a quem tem dor no joelho. Não mexi (é a progressão, e o exercício em si não ajoelha); fica para a pauta do profissional.
+- **A panturrilha no leg press e o agachamento com a barra nas costas** com dor no joelho e no ombro: os revisores voltaram a apontar; continua na pauta do profissional (`proposta.md`, seção 9).
+- **A remada de um lado só com elástico "sob o pé da frente"** pede base em passo; um revisor apontou que isso carrega o joelho com dor. Conferir o texto de execução.
+
