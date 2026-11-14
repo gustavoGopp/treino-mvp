@@ -215,6 +215,15 @@ export function contorno(cam: Camera, vol: Volume, luz: V3 | null, soFill = fals
     if (!vol.junta0) traco += Ls(ini) + (vol.junta1 ? `L${f1(E[0]![0])} ${f1(E[0]![1])}` : 'Z');
   }
   // escorço: onde dois anéis vizinhos quase se sobrepõem na tela, a silhueta é o próprio anel
+  // Os anéis inteiros entram no mesmo sentido de giro do contorno principal: com sentidos opostos, a regra de
+  // preenchimento abria um buraco onde os dois se sobrepõem (a faixa escura que aparecia na cabeça vista de cima).
+  const volta = [...E, ...fim, ...Dr, ...ini];
+  let area = 0;
+  for (let i = 0; i < volta.length; i++) {
+    const a = volta[i]!,
+      b = volta[(i + 1) % volta.length]!;
+    area += a[0] * b[1] - b[0] * a[1];
+  }
   const raioMax = Math.max(...A.map((an) => Math.max(an.a, an.f, an.b)));
   const todoEmEscorco = compTela < raioMax * 0.8;
   const iMaior = A.findIndex((an) => Math.max(an.a, an.f, an.b) === raioMax);
@@ -225,6 +234,8 @@ export function contorno(cam: Camera, vol: Volume, luz: V3 | null, soFill = fals
     const esperado = Math.hypot(...(sub(A[i === n - 1 ? i - 1 : i + 1]!.c, A[i]!.c) as [number, number, number]));
     if (passo < 0.55 * Math.min(raio, esperado) || todoEmEscorco) {
       const q = anelInteiro(i);
+      // anelInteiro gira no sentido de área positiva (na tela, com o y para baixo)
+      if (area < 0) q.reverse();
       if (curto) {
         curto.M(q[0]!).Ls(q.slice(1)).Z();
         continue;
