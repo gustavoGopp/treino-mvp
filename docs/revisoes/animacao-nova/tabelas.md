@@ -285,6 +285,9 @@ Ficha da técnica: `docs/pesquisa/animacoes/goblet.md`. Movimento simétrico (os
 | `tronco.baixo` | 27 graus | desenho | desenho | inclinação do tronco embaixo, com o peito alto e a lombar neutra; a ficha não dá número |
 | `pes.meiaDistancia` | 19 cm | consenso | guia | pés um pouco mais abertos que o quadril (meia largura do quadril: 16,2) |
 | `pes.paraFora` | 15 graus | consenso | guia | pontas levemente para fora |
+| `maos.aberturaDaConcha` | 22 graus | desenho | desenho | quanto cada mão abre para fora, a partir da vertical do halter, para a cabeça de cima apoiar na palma; a ficha pede as mãos em concha embaixo da anilha de cima e não dá número |
+| `maos.giroParaFrente` | 20 graus | desenho | desenho | quanto a mão fica girada para a frente em volta do halter (o polegar do lado do peito) |
+| `maos.meiaEspessuraDaPalma` | 1,6 cm | desenho | desenho | do meio da mão até a pele da palma, onde a cabeça do halter apoia |
 | `carga` | 11,3 kg | desenho | objetos | o halter desenhado (25 lb); entra no equilíbrio |
 | `erro.raso.joelho` | 72 graus | desenho | desenho | erro: parar alto |
 | `erro.lombar.tronco` | 52 graus | desenho | desenho | erro: o peito cai |
