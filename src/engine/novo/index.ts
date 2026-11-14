@@ -13,5 +13,6 @@ export { supinoReto } from './exercicios/supino-reto';
 export { puxadaUnilateral } from './exercicios/puxada-unilateral';
 export * from './conferir';
 export * from './conferir-musculos';
+export * from './tabela-musculos';
 export * from './boneco';
 export * from './equipamento';

@@ -6,7 +6,7 @@ import dados from './dados/boneco.json';
 import type { ItemConferido } from './conferir';
 import { resolverTronco } from './esqueleto';
 import type { Exercicio } from './movimento';
-import { MUSCULOS } from './tabelas';
+import { MUSCULOS } from './tabela-musculos';
 import type { Corpo } from './tabelas';
 
 interface Desenhado {
