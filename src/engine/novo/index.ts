@@ -12,5 +12,6 @@ export { flexao } from './exercicios/flexao';
 export { supinoReto } from './exercicios/supino-reto';
 export { puxadaUnilateral } from './exercicios/puxada-unilateral';
 export * from './conferir';
+export * from './conferir-musculos';
 export * from './boneco';
 export * from './equipamento';

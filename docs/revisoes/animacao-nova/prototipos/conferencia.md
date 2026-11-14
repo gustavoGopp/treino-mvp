@@ -4,10 +4,10 @@ Gerado por `npm run conferir:animacao` (60 quadros por segundo, ciclo inteiro). 
 
 | animação | quadros | itens | falhas | avisos |
 |---|---|---|---|---|
-| goblet | 279 | 31 | 0 | 2 |
-| supino-reto | 291 | 30 | 0 | 1 |
-| puxada-unilateral | 240 | 30 | 0 | 3 |
-| flexao | 225 | 30 | 0 | 4 |
+| goblet | 279 | 32 | 0 | 2 |
+| supino-reto | 291 | 32 | 0 | 2 |
+| puxada-unilateral | 240 | 32 | 0 | 4 |
+| flexao | 225 | 32 | 0 | 5 |
 
 "ok" = dentro do limite; "AVISO" = possível, mas fora da média ou ainda provisório (precisa do ok do Gustavo); "FALHA" = não pode ir para o app.
 
@@ -50,10 +50,11 @@ Gerado por `npm run conferir:animacao` (60 quadros por segundo, ciclo inteiro). 
 | Ficha | o peso fica no meio do pé, com o calcanhar apoiado (consenso) | o centro de massa (corpo + carga) fica a no máximo 0,4 cm do meio do pé (pé de 19,9 cm do calcanhar à bola) | como a ficha pede | ok |
 | Ficha | a lombar não arredonda (consenso) | flexão da lombar além da curva de repouso: 0° | como a ficha pede | ok |
 | Provisórios | linhas da ficha do movimento sem número na ficha da técnica (escolha de desenho) | tronco.baixo, maos.aberturaDaConcha, maos.giroParaFrente, maos.meiaEspessuraDaPalma, carga | cada uma precisa de fonte ou do ok do Gustavo | AVISO |
+| Músculos | o realçado é o do conteúdo (principal: quadriceps; secundário: gluteos, adutores) | principal e secundário batem com o conteúdo | nenhuma diferença | ok |
 
 ## Supino reto com halteres (`supino-reto`)
 
-291 quadros conferidos. 0 falha(s), 1 aviso(s).
+291 quadros conferidos. 0 falha(s), 2 aviso(s).
 
 Ângulos no ciclo (lado direito, graus): joelho 87 a 87; cotovelo 10 a 104; quadril -5 a -5; ombro 50 a 83; dorsiflexao 2 a 2; punho 0 a 0; pronacao 15 a 15; clavicula 8 a 10.
 
@@ -89,10 +90,12 @@ Gerado por `npm run conferir:animacao` (60 quadros por segundo, ciclo inteiro). 
 | Ficha | cotovelos a 30–60° do tronco (consenso) | embaixo, o braço faz 50° com o tronco, visto de cima | como a ficha pede | ok |
 | Ficha | no topo, os halteres ficam sobre os ombros (consenso) | no topo, o halter fica a 5,3 cm da vertical do ombro | como a ficha pede | ok |
 | Provisórios | linhas da ficha do movimento sem número na ficha da técnica (escolha de desenho) | carga | cada uma precisa de fonte ou do ok do Gustavo | AVISO |
+| Músculos | o realçado é o do conteúdo (principal: peito; secundário: ombro_anterior, triceps) | principal e secundário batem com o conteúdo | nenhuma diferença | ok |
+| Músculos | diferenças aceitas, a confirmar com o Gustavo | Deltoide: o conteúdo pede ombro_anterior, e o desenho só tem o músculo inteiro | cada uma precisa do ok dele | AVISO |
 
 ## Puxada unilateral ajoelhado na polia alta (`puxada-unilateral`)
 
-240 quadros conferidos. 0 falha(s), 3 aviso(s).
+240 quadros conferidos. 0 falha(s), 4 aviso(s).
 
 Ângulos no ciclo (lado direito, graus): joelho 90 a 90; cotovelo 12 a 162; quadril -2 a -2; ombro 16 a 139; dorsiflexao -81 a -81; punho -0 a 0; pronacao -20 a 50; clavicula 5 a 26.
 
@@ -128,10 +131,12 @@ Gerado por `npm run conferir:animacao` (60 quadros por segundo, ciclo inteiro). 
 | Ficha | no fim, o ombro está mais baixo que no início (consenso) | do início ao fim, a ponta do ombro desce 5,3 cm | como a ficha pede | ok |
 | Ficha | o tronco quase não se move (consenso) | a base do pescoço se move no máximo 0 cm | como a ficha pede | ok |
 | Provisórios | linhas da ficha do movimento sem número na ficha da técnica (escolha de desenho) | braco.fim.fora | cada uma precisa de fonte ou do ok do Gustavo | AVISO |
+| Músculos | o realçado é o do conteúdo (principal: costas; secundário: biceps, ombro_posterior) | principal e secundário batem com o conteúdo | nenhuma diferença | ok |
+| Músculos | diferenças aceitas, a confirmar com o Gustavo | Deltoide: o conteúdo pede ombro_posterior, e o desenho só tem o músculo inteiro; Trapézio aparece como secundário dentro de um grupo que o conteúdo conta como principal (costas) | cada uma precisa do ok dele | AVISO |
 
 ## Flexão de braço (`flexao`)
 
-225 quadros conferidos. 0 falha(s), 4 aviso(s).
+225 quadros conferidos. 0 falha(s), 5 aviso(s).
 
 Ângulos no ciclo (lado direito, graus): joelho 4 a 4; cotovelo 10 a 119; quadril 2 a 2; ombro 39 a 62; dorsiflexao 12 a 12; punho 77 a 94; pronacao 41 a 51; clavicula 12 a 13.
 
@@ -167,6 +172,24 @@ Gerado por `npm run conferir:animacao` (60 quadros por segundo, ciclo inteiro). 
 | Ficha | embaixo, o peito fica a poucos centímetros do chão (consenso) | embaixo, o peito fica a 5 cm do chão | como a ficha pede | ok |
 | Ficha | cotovelos a meio caminho entre o tronco e os lados (consenso) | embaixo, o braço faz 41,3° com o tronco, visto de cima | como a ficha pede | ok |
 | Provisórios | linhas da ficha do movimento sem número na ficha da técnica (escolha de desenho) | tornozelo.dorsiflexao, escapula.retracaoEmbaixo | cada uma precisa de fonte ou do ok do Gustavo | AVISO |
+| Músculos | o realçado é o do conteúdo (principal: peito; secundário: triceps, ombro_anterior) | principal e secundário batem com o conteúdo | nenhuma diferença | ok |
+| Músculos | diferenças aceitas, a confirmar com o Gustavo | Deltoide: o conteúdo pede ombro_anterior, e o desenho só tem o músculo inteiro; Reto abdominal aparece como "só ajuda a firmar", fora da lista do conteúdo | cada uma precisa do ok dele | AVISO |
+
+## O desenho dos músculos contra a tabela
+
+A tabela (origem, inserção, camada e fonte de cada grupo) está em `src/engine/novo/dados/musculos.json` e em `tabelas.md`.
+
+| grupo | o que foi medido | resultado | limite | |
+|---|---|---|---|---|
+| Músculos | cada forma do desenho tem a sua linha na tabela (origem, inserção, camada, fonte) | 15 formas, todas com linha | nenhuma forma sem linha | ok |
+| Músculos | a forma está na parte do corpo em que a massa do músculo fica | todas no lugar | a parte do desenho = a parte da tabela | ok |
+| Músculos | a massa do músculo fica entre o osso da origem e o da inserção | todas entre a origem e a inserção | na ordem dos ossos (tronco, braço, antebraço, mão; tronco, bacia, coxa, perna, pé) | ok |
+| Músculos | quem cobre quem na pintura segue a camada da tabela | a ordem de pintura segue a tabela | o músculo que cobre é pintado depois | ok |
+| Músculos | deltoide: onde a ponta de baixo chega no braço (0 = ombro, 1 = cotovelo) | 0,5 do braço | 0,5 do braço, com folga de 0,1 (Gray: a tuberosidade deltóidea fica no meio do úmero) | ok |
+| Músculos | trapézio: altura da ponta de baixo, em pé | 126,5 cm (4,9 cm em relação a T12) | 121,6 cm, com folga de 3 (Gray: a ponta de baixo corresponde à 12ª vértebra torácica) | AVISO |
+| Músculos | grande dorsal: altura da borda de baixo, em pé | 108 cm | 106,5 cm, com folga de 3 (Gray: origem na crista ilíaca; altura da crista no ANSUR II) | ok |
+| Músculos | quadríceps: até onde desce na coxa (1 = joelho) | 1 da coxa | 1 da coxa, com folga de 0,1 (Gray: insere-se na patela) | ok |
+| Músculos | reto abdominal: altura da borda de baixo, em pé | 102,8 cm (a cintura fica a 106,5 cm e a virilha a 85,3 cm) | Gray: a origem é na crista do púbis, abaixo da cintura; a tabela do corpo não tem a altura do púbis | AVISO |
 
 ## Medidas ainda provisórias nas tabelas
 

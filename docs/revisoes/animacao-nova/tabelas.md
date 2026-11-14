@@ -141,12 +141,12 @@ Fontes: `cdc`: Soucie JM et al. Range of motion measurements: reference values a
 
 ## Músculos do desenho
 
-O desenho aprovado tem 16 formas (Desenho do Boneco aprovado pelo Gustavo em 13/11/2026 (docs/revisoes/boneco-desenho/decisao). As formas foram desenhadas à mão sobre o corpo de medidas reais, em três vistas; a posição de cada uma sobre o osso ainda **não foi conferida contra o atlas** (pesquisa/03): isso entra na etapa 2, antes de cada lote.
+O desenho aprovado tem 16 formas (Desenho do Boneco aprovado pelo Gustavo em 13/11/2026 (docs/revisoes/boneco-desenho/decisao). As formas foram desenhadas à mão sobre o corpo de medidas reais, em três vistas. Desde 14/11/2026 cada grupo tem a sua linha na tabela abaixo (origem, inserção, camada e fonte), e `npm run conferir:animacao` confere o desenho contra ela: a parte do corpo em que a forma está, a ordem de pintura, as pontas das formas contra os pontos de referência da fonte e se o músculo realçado é o do conteúdo. O resultado está em `prototipos/conferencia.md`.
 
 | forma | desenhada de | o que o guia de hoje desenha no lugar (src/engine/estilo/musculos.ts) |
 |---|---|---|
-| peitoral | lado, frente | peitoralEst, peitoralClav (duas formas) |
 | abdomen | lado, frente | retoAbdominal |
+| peitoral | lado, frente | peitoralEst, peitoralClav (duas formas) |
 | dorsal | lado, costas | dorsal, redondoMaior |
 | gluteo | lado, costas | gluteos |
 | posteriores | lado, costas | posteriores |
@@ -163,6 +163,32 @@ O desenho aprovado tem 16 formas (Desenho do Boneco aprovado pelo Gustavo em 13/
 | antebraco | frente, costas | antebraco |
 
 O que o guia de hoje desenha e o desenho novo ainda não tem como forma própria: as três porções do deltoide, o peitoral clavicular, as três porções do trapézio e os romboides, o redondo maior e os eretores da espinha. Enquanto não houver, a porção vira a forma inteira (está listado nas decisões de proposta.md).
+
+### De onde sai, onde prende e por cima de quem passa
+
+| grupo do desenho | músculos reais | origem (osso do boneco: onde) | inserção | a massa fica em | atravessa | camada; cobre | forma | fonte | grupo do conteúdo | o que o desenho não separa |
+|---|---|---|---|---|---|---|---|---|---|---|
+| Peitoral maior (`peitoral`) | peitoral maior, parte clavicular; peitoral maior, parte esternocostal | tronco: metade esternal da clavícula; face anterior do esterno até a cartilagem da 6ª ou 7ª costela; cartilagens das costelas verdadeiras | braco: crista do tubérculo maior do úmero | tronco | ombro | superficial; cobre abdomen | leque | GRAY1918, p. 436–437 | peito | parte clavicular (o peitoral de cima); parte esternocostal |
+| Deltoide (`deltoide`) | deltoide anterior; deltoide lateral; deltoide posterior | tronco: terço lateral da clavícula, acrômio e espinha da escápula | braco: tuberosidade deltóidea, no meio da face lateral do úmero | braco | ombro | superficial; cobre peitoral, biceps, triceps | triangular | GRAY1918, p. 439–440 | ombro_anterior, ombro_lateral, ombro_posterior | parte anterior; parte lateral; parte posterior |
+| Trapézio (`trapezio`) | trapézio superior; trapézio médio; trapézio inferior | tronco: protuberância occipital, ligamento nucal, processos espinhosos de C7 e de todas as torácicas (a ponta de baixo corresponde à 12ª torácica) | tronco: terço lateral da clavícula, acrômio e espinha da escápula | tronco | escapula | superficial; cobre dorsal | triangular plano | GRAY1918, p. 432 e 434 | costas | parte superior; parte média; parte inferior; romboides (ficam por baixo dele) |
+| Grande dorsal (`dorsal`) | grande dorsal; redondo maior | tronco: processos espinhosos das 6 torácicas inferiores, fáscia toracolombar, crista ilíaca e 3 ou 4 costelas inferiores | braco: fundo do sulco intertubercular do úmero | tronco | ombro | superficial | triangular plano | GRAY1918, p. 432–434 | costas | redondo maior |
+| Bíceps braquial (`biceps`) | bíceps braquial; braquial | tronco: processo coracoide e tubérculo supraglenoidal da escápula | ante: tuberosidade do rádio | braco | ombro, cotovelo | superficial | fuso | GRAY1918, p. 443–444 | biceps |  |
+| Tríceps braquial (`triceps`) | tríceps, cabeça longa; tríceps, cabeça lateral; tríceps, cabeça medial | tronco: tubérculo infraglenoidal da escápula (cabeça longa) e face posterior do úmero (cabeças lateral e medial) | ante: olécrano da ulna | braco | ombro, cotovelo | superficial | três cabeças num tendão comum | GRAY1918, p. 444–445 | triceps |  |
+| Músculos do antebraço (`antebraco`) | flexores do antebraço (grupo superficial); extensores do antebraço; braquiorradial | braco: epicôndilos medial e lateral do úmero e crista supracondilar lateral | mao: ossos do carpo, do metacarpo e dedos (inserções distais só parcialmente lidas) | ante | cotovelo, punho | superficial | fusos com tendões longos | GRAY1918, p. 445–453 | (nenhum) |  |
+| Reto abdominal (`abdomen`) | reto abdominal | pelve: crista do púbis e sínfise púbica | tronco: cartilagens das costelas 5, 6 e 7 e processo xifoide | tronco | lombar | superficial | faixa longa e plana, com 3 intersecções | GRAY1918, p. 415–418 | abdomen |  |
+| Oblíquo externo (`obliquos`) | oblíquo externo do abdome | tronco: superfícies externas das 8 costelas inferiores | pelve: crista ilíaca, linha alba e ligamento inguinal | tronco | lombar | superficial | plano, quadrilátero | GRAY1918, p. 409–410 | abdomen |  |
+| Glúteo máximo (`gluteo`) | glúteo máximo; glúteo médio | pelve: linha glútea posterior do ílio, sacro e cóccix | coxa: trato iliotibial e tuberosidade glútea do fêmur | pelve | quadril | superficial; cobre posteriores | massa quadrilátera larga | GRAY1918, p. 474–475 | gluteos | glúteo médio |
+| Quadríceps (`quadriceps`) | reto femoral; vasto lateral; vasto medial; vasto intermédio | pelve: espinha ilíaca ântero-inferior (reto femoral) e corpo do fêmur (vastos) | canela: patela e, pelo ligamento patelar, tuberosidade da tíbia | coxa | quadril, joelho | superficial | quatro porções num tendão comum | GRAY1918, p. 470–471 | quadriceps |  |
+| Posteriores da coxa (`posteriores`) | bíceps femoral; semitendíneo; semimembranáceo | pelve: tuberosidade isquiática (e linha áspera, na cabeça curta do bíceps) | canela: cabeça da fíbula e face medial da tíbia | coxa | quadril, joelho | superficial | fusos | GRAY1918, p. 478–479 | posteriores |  |
+| Adutores (`adutores`) | adutor longo; adutor magno | pelve: púbis e ísquio | coxa: linha áspera e tubérculo adutor do fêmur | coxa | quadril | superficial | triangular | GRAY1918, p. 472–473 | adutores |  |
+| Panturrilha (`panturrilha`) | gastrocnêmio; sóleo | coxa: côndilos do fêmur (gastrocnêmio); fíbula e tíbia (sóleo) | pe: calcâneo, pelo tendão calcâneo | canela | joelho, tornozelo | superficial | duas cabeças | GRAY1918, p. 482–483 | panturrilha |  |
+| Tibial anterior (`tibial`) | tibial anterior | canela: côndilo lateral e face lateral da tíbia | pe: primeiro cuneiforme e base do primeiro metatarso | canela | tornozelo | superficial | grosso em cima, tendão embaixo | GRAY1918, p. 480 | (nenhum) |  |
+
+Osso de cada parte do boneco: tronco = coluna, costelas, esterno, clavícula e escápula; pelve = bacia e sacro; braco = úmero; ante = rádio e ulna; mao = carpo, metacarpo e dedos; coxa = fêmur; canela = tíbia e fíbula; pe = ossos do pé.
+
+**Regra de forma.** O músculo mantém o volume: ao encurtar, engrossa. No desenho, a forma fica presa à superfície da parte do corpo e encurta com ela; o engrossamento ainda não é desenhado. Estado: a forma não engrossa ao encurtar: pendente.
+
+Fontes: `GRAY1918`: Gray H. Anatomy of the Human Body, 20ª ed. (1918), domínio público; lido em docs/revisoes/animacao-nova/pesquisa/03-musculos-e-ossos.md, Parte 1; `RAITERI2016`: Raiteri BJ, Cresswell AG, Lichtwark GA. PeerJ 2016;4:e2260 (CC BY 4.0): tibial anterior, 12 voluntários; a espessura aumenta 2,5 mm e a largura quase não muda, com o volume constante
 
 ## Objetos
 

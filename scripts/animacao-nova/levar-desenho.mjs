@@ -2,7 +2,7 @@
 // grupos musculares e as fichas dos dois estilos em scripts/boneco-desenho/ e grava src/engine/novo/dados/boneco.json.
 // As tabelas continuam tendo uma fonte só (a sessão do desenho); este arquivo é a ponte, para o motor não importar scripts.
 // Uso: node scripts/animacao-nova/levar-desenho.mjs
-import { writeFileSync } from 'node:fs';
+import { readFileSync, writeFileSync } from 'node:fs';
 import * as P from '../boneco-desenho/boneco-prova.mjs';
 import { CINZA, PELE, TRACO } from '../boneco-desenho/estilos-finais.mjs';
 import { DE_COSTAS, DE_FRENTE, DE_LADO } from '../boneco-desenho/musculos-prova.mjs';
@@ -25,6 +25,28 @@ const linhas = {
   // as três linhas entre os dedos da mão espalmada, dos nós até perto das pontas
   DEDOS_ESPALMADA: [[[10.6, 2.2], [17.3, 1.9]], [[10.9, 0], [17.7, -0.8]], [[10.4, -2.3], [15.9, -3.2]]],
 };
+// A ordem de pintura segue a camada da tabela dos músculos (src/engine/novo/dados/musculos.json): quem cobre é
+// pintado depois. Nas pranchas, o peitoral vinha antes do abdômen e o trapézio antes do grande dorsal; pela
+// anatomia (Gray 1918), o peitoral cobre o alto do reto abdominal e o trapézio cobre a borda de cima do dorsal.
+const COBRE = JSON.parse(readFileSync(new URL('../../src/engine/novo/dados/musculos.json', import.meta.url), 'utf8')).grupos;
+function naOrdemDasCamadas(lista) {
+  const l = [...lista];
+  for (let passo = 0; passo < l.length * l.length; passo++) {
+    let trocou = false;
+    for (let i = 0; i < l.length && !trocou; i++)
+      for (const coberto of COBRE[l[i].id]?.cobre ?? []) {
+        const j = l.findIndex((x) => x.id === coberto);
+        if (j > i && l[j].em === l[i].em) {
+          const [m] = l.splice(i, 1);
+          l.splice(j, 0, m);
+          trocou = true;
+          break;
+        }
+      }
+    if (!trocou) break;
+  }
+  return l;
+}
 const estilo = (e) => ({ id: e.id, nome: e.nome, papel: e.papel, cabelo: !!e.cabelo, roupa: e.roupa ?? null, descalco: !!e.descalco, contornoNaCor: !!e.contornoNaCor, cores: { claro: e.cores('claro'), escuro: e.cores('escuro') } });
 const saida = {
   origem: 'Desenho do Boneco aprovado pelo Gustavo em 13/11/2026 (docs/revisoes/boneco-desenho/decisao.md). Tabelas de scripts/boneco-desenho/boneco-prova.mjs, musculos-prova.mjs, figura.mjs e estilos-finais.mjs, levadas por scripts/animacao-nova/levar-desenho.mjs. Em cm.',
@@ -37,7 +59,7 @@ const saida = {
   perfis,
   formas,
   linhas,
-  musculos: { lado: DE_LADO, frente: DE_FRENTE, costas: DE_COSTAS },
+  musculos: { lado: naOrdemDasCamadas(DE_LADO), frente: naOrdemDasCamadas(DE_FRENTE), costas: naOrdemDasCamadas(DE_COSTAS) },
   estilos: { cinza: estilo(CINZA), pele: estilo(PELE) },
   traco: TRACO,
   // o pé descalço usa a forma do tênis reduzida (figura.mjs)

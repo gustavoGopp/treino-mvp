@@ -219,6 +219,13 @@
     "medido": "tronco.baixo, maos.aberturaDaConcha, maos.giroParaFrente, maos.meiaEspessuraDaPalma, carga",
     "limite": "cada uma precisa de fonte ou do ok do Gustavo",
     "nivel": "aviso"
+   },
+   {
+    "grupo": "Músculos",
+    "oQue": "o realçado é o do conteúdo (principal: quadriceps; secundário: gluteos, adutores)",
+    "medido": "principal e secundário batem com o conteúdo",
+    "limite": "nenhuma diferença",
+    "nivel": "ok"
    }
   ],
   "angulos": {
@@ -471,6 +478,20 @@
     "medido": "carga",
     "limite": "cada uma precisa de fonte ou do ok do Gustavo",
     "nivel": "aviso"
+   },
+   {
+    "grupo": "Músculos",
+    "oQue": "o realçado é o do conteúdo (principal: peito; secundário: ombro_anterior, triceps)",
+    "medido": "principal e secundário batem com o conteúdo",
+    "limite": "nenhuma diferença",
+    "nivel": "ok"
+   },
+   {
+    "grupo": "Músculos",
+    "oQue": "diferenças aceitas, a confirmar com o Gustavo",
+    "medido": "Deltoide: o conteúdo pede ombro_anterior, e o desenho só tem o músculo inteiro",
+    "limite": "cada uma precisa do ok dele",
+    "nivel": "aviso"
    }
   ],
   "angulos": {
@@ -508,7 +529,7 @@
    ]
   },
   "falhas": 0,
-  "avisos": 1
+  "avisos": 2
  },
  "puxada-unilateral": {
   "id": "puxada-unilateral",
@@ -723,6 +744,20 @@
     "medido": "braco.fim.fora",
     "limite": "cada uma precisa de fonte ou do ok do Gustavo",
     "nivel": "aviso"
+   },
+   {
+    "grupo": "Músculos",
+    "oQue": "o realçado é o do conteúdo (principal: costas; secundário: biceps, ombro_posterior)",
+    "medido": "principal e secundário batem com o conteúdo",
+    "limite": "nenhuma diferença",
+    "nivel": "ok"
+   },
+   {
+    "grupo": "Músculos",
+    "oQue": "diferenças aceitas, a confirmar com o Gustavo",
+    "medido": "Deltoide: o conteúdo pede ombro_posterior, e o desenho só tem o músculo inteiro; Trapézio aparece como secundário dentro de um grupo que o conteúdo conta como principal (costas)",
+    "limite": "cada uma precisa do ok dele",
+    "nivel": "aviso"
    }
   ],
   "angulos": {
@@ -760,7 +795,7 @@
    ]
   },
   "falhas": 0,
-  "avisos": 3
+  "avisos": 4
  },
  "flexao": {
   "id": "flexao",
@@ -975,6 +1010,20 @@
     "medido": "tornozelo.dorsiflexao, escapula.retracaoEmbaixo",
     "limite": "cada uma precisa de fonte ou do ok do Gustavo",
     "nivel": "aviso"
+   },
+   {
+    "grupo": "Músculos",
+    "oQue": "o realçado é o do conteúdo (principal: peito; secundário: triceps, ombro_anterior)",
+    "medido": "principal e secundário batem com o conteúdo",
+    "limite": "nenhuma diferença",
+    "nivel": "ok"
+   },
+   {
+    "grupo": "Músculos",
+    "oQue": "diferenças aceitas, a confirmar com o Gustavo",
+    "medido": "Deltoide: o conteúdo pede ombro_anterior, e o desenho só tem o músculo inteiro; Reto abdominal aparece como \"só ajuda a firmar\", fora da lista do conteúdo",
+    "limite": "cada uma precisa do ok dele",
+    "nivel": "aviso"
    }
   ],
   "angulos": {
@@ -1012,6 +1061,71 @@
    ]
   },
   "falhas": 0,
-  "avisos": 4
- }
+  "avisos": 5
+ },
+ "musculos": [
+  {
+   "grupo": "Músculos",
+   "oQue": "cada forma do desenho tem a sua linha na tabela (origem, inserção, camada, fonte)",
+   "medido": "15 formas, todas com linha",
+   "limite": "nenhuma forma sem linha",
+   "nivel": "ok"
+  },
+  {
+   "grupo": "Músculos",
+   "oQue": "a forma está na parte do corpo em que a massa do músculo fica",
+   "medido": "todas no lugar",
+   "limite": "a parte do desenho = a parte da tabela",
+   "nivel": "ok"
+  },
+  {
+   "grupo": "Músculos",
+   "oQue": "a massa do músculo fica entre o osso da origem e o da inserção",
+   "medido": "todas entre a origem e a inserção",
+   "limite": "na ordem dos ossos (tronco, braço, antebraço, mão; tronco, bacia, coxa, perna, pé)",
+   "nivel": "ok"
+  },
+  {
+   "grupo": "Músculos",
+   "oQue": "quem cobre quem na pintura segue a camada da tabela",
+   "medido": "a ordem de pintura segue a tabela",
+   "limite": "o músculo que cobre é pintado depois",
+   "nivel": "ok"
+  },
+  {
+   "grupo": "Músculos",
+   "oQue": "deltoide: onde a ponta de baixo chega no braço (0 = ombro, 1 = cotovelo)",
+   "medido": "0,5 do braço",
+   "limite": "0,5 do braço, com folga de 0,1 (Gray: a tuberosidade deltóidea fica no meio do úmero)",
+   "nivel": "ok"
+  },
+  {
+   "grupo": "Músculos",
+   "oQue": "trapézio: altura da ponta de baixo, em pé",
+   "medido": "126,5 cm (4,9 cm em relação a T12)",
+   "limite": "121,6 cm, com folga de 3 (Gray: a ponta de baixo corresponde à 12ª vértebra torácica)",
+   "nivel": "aviso"
+  },
+  {
+   "grupo": "Músculos",
+   "oQue": "grande dorsal: altura da borda de baixo, em pé",
+   "medido": "108 cm",
+   "limite": "106,5 cm, com folga de 3 (Gray: origem na crista ilíaca; altura da crista no ANSUR II)",
+   "nivel": "ok"
+  },
+  {
+   "grupo": "Músculos",
+   "oQue": "quadríceps: até onde desce na coxa (1 = joelho)",
+   "medido": "1 da coxa",
+   "limite": "1 da coxa, com folga de 0,1 (Gray: insere-se na patela)",
+   "nivel": "ok"
+  },
+  {
+   "grupo": "Músculos",
+   "oQue": "reto abdominal: altura da borda de baixo, em pé",
+   "medido": "102,8 cm (a cintura fica a 106,5 cm e a virilha a 85,3 cm)",
+   "limite": "Gray: a origem é na crista do púbis, abaixo da cintura; a tabela do corpo não tem a altura do púbis",
+   "nivel": "aviso"
+  }
+ ]
 }

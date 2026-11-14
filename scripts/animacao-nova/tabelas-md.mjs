@@ -40,7 +40,7 @@ const onde = {};
 for (const [vista, lista] of Object.entries(b.musculos)) for (const m of lista) (onde[m.id] ??= new Set()).add(vista);
 md += `## Músculos do desenho
 
-O desenho aprovado tem ${Object.keys(onde).length} formas (${b.origem.split('.')[0]}). As formas foram desenhadas à mão sobre o corpo de medidas reais, em três vistas; a posição de cada uma sobre o osso ainda **não foi conferida contra o atlas** (pesquisa/03): isso entra na etapa 2, antes de cada lote.
+O desenho aprovado tem ${Object.keys(onde).length} formas (${b.origem.split('.')[0]}). As formas foram desenhadas à mão sobre o corpo de medidas reais, em três vistas. Desde 14/11/2026 cada grupo tem a sua linha na tabela abaixo (origem, inserção, camada e fonte), e \`npm run conferir:animacao\` confere o desenho contra ela: a parte do corpo em que a forma está, a ordem de pintura, as pontas das formas contra os pontos de referência da fonte e se o músculo realçado é o do conteúdo. O resultado está em \`prototipos/conferencia.md\`.
 
 | forma | desenhada de | o que o guia de hoje desenha no lugar (src/engine/estilo/musculos.ts) |
 |---|---|---|
@@ -48,6 +48,15 @@ O desenho aprovado tem ${Object.keys(onde).length} formas (${b.origem.split('.')
 const HOJE = { peitoral: 'peitoralEst, peitoralClav (duas formas)', abdomen: 'retoAbdominal', dorsal: 'dorsal, redondoMaior', gluteo: 'gluteos', posteriores: 'posteriores', quadriceps: 'quadriceps', panturrilha: 'panturrilha', patela: '(não é músculo: a rótula, sempre em linha)', triceps: 'triceps', biceps: 'biceps', deltoide: 'deltAnt, deltLat, deltPost (três formas)', trapezio: 'trapSuperior, trapMedio, trapInferior, romboides (quatro formas)', obliquos: 'obliquos', adutores: 'adutores', tibial: '(não há no guia de hoje)', antebraco: 'antebraco' };
 for (const [id, vs] of Object.entries(onde)) md += `| ${id} | ${[...vs].join(', ')} | ${HOJE[id] ?? ''} |\n`;
 md += `\nO que o guia de hoje desenha e o desenho novo ainda não tem como forma própria: as três porções do deltoide, o peitoral clavicular, as três porções do trapézio e os romboides, o redondo maior e os eretores da espinha. Enquanto não houver, a porção vira a forma inteira (está listado nas decisões de proposta.md).\n\n`;
+/* ----- a tabela dos músculos (origem, inserção, camada) ----- */
+const mu = le('musculos.json');
+md += `### De onde sai, onde prende e por cima de quem passa
+
+| grupo do desenho | músculos reais | origem (osso do boneco: onde) | inserção | a massa fica em | atravessa | camada; cobre | forma | fonte | grupo do conteúdo | o que o desenho não separa |
+|---|---|---|---|---|---|---|---|---|---|---|
+`;
+for (const [id, g] of Object.entries(mu.grupos)) md += `| ${cel(g.nome)} (\`${id}\`) | ${cel(g.musculos.join('; '))} | ${g.origem.osso}: ${cel(g.origem.onde)} | ${g.insercao.osso}: ${cel(g.insercao.onde)} | ${g.ventre} | ${g.cruza.join(', ')} | ${g.camada}${g.cobre.length ? '; cobre ' + g.cobre.join(', ') : ''} | ${cel(g.forma)} | ${g.fonte}, ${g.pagina} | ${g.conteudo.join(', ') || '(nenhum)'} | ${cel((g.naoSepara ?? []).join('; '))} |\n`;
+md += `\nOsso de cada parte do boneco: ${Object.entries(mu.ossoDeCadaParte).map(([k, v]) => `${k} = ${v}`).join('; ')}.\n\n**Regra de forma.** ${mu.regraDeForma.texto} Estado: ${mu.regraDeForma.estado}.\n\nFontes: ${Object.entries(mu.fontes).map(([k, v]) => `\`${k}\`: ${v}`).join('; ')}\n\n`;
 /* ----- objetos ----- */
 const o = le('objetos.json');
 md += `## Objetos\n\n| objeto | medida | valor | tipo | fonte | onde na fonte |\n|---|---|---|---|---|---|\n`;
