@@ -73,3 +73,4 @@ export { crucifixoInvertidoPolia } from './crucifixo-invertido-polia';
 export { facePull } from './face-pull';
 export { roscaPolia } from './rosca-polia';
 export { elevacaoLateralElastico } from './elevacao-lateral-elastico';
+export { desenvolvimentoElastico } from './desenvolvimento-elastico';

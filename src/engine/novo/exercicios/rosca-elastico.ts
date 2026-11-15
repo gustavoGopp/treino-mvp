@@ -47,7 +47,7 @@ function corpoParado(corpo: Corpo): CorpoEmPe {
 }
 
 /** As duas bordas da sola de um pé, no meio do pé (a de fora e a de dentro), onde o tubo passa por baixo. */
-function bordasDaSola(corpo: Corpo, e: Esq, k: Lado): { fora: V3; dentro: V3 } {
+export function bordasDaSola(corpo: Corpo, e: Esq, k: Lado): { fora: V3; dentro: V3 } {
   const L = e.lado[k];
   const meio = mul(add(L.bola, L.calcanhar), 0.5);
   const dirPe = norm(sub(L.bola, L.calcanhar));

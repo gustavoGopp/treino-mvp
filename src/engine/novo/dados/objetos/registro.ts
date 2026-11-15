@@ -16,3 +16,4 @@ export { default as halterLeve } from './halter-leve.json';
 export { default as elasticoLongo } from './elastico-longo.json';
 export { default as trianguloRemada } from './triangulo-remada.json';
 export { default as barraRetaPolia } from './polia-braco-barra-reta.json';
+export { default as elasticoTuboLongo } from './elastico-tubo-longo.json';

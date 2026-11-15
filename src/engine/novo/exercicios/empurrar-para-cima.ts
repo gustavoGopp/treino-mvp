@@ -29,7 +29,11 @@ import { dobrarOQuadril } from './dobrar-o-quadril';
 import type { Carga } from './dobrar-o-quadril';
 
 const rad = Math.PI / 180;
-export type CargaDoDesenvolvimento = 'halteres-sentado' | 'kettlebell';
+/**
+ * 'elastico': em pé, um pegador do elástico em cada mão (palmas para a frente), os dois braços sobem, sem carga no
+ * equilíbrio; o quadro sai só com o corpo e o chão (o elástico, que vai das mãos aos pés, é a variação que desenha).
+ */
+export type CargaDoDesenvolvimento = 'halteres-sentado' | 'kettlebell' | 'elastico';
 
 /** A direção do úmero (s = −1 direita, +1 esquerda): `el` graus acima da horizontal, o cotovelo `frente` graus à frente do plano do corpo. */
 export function umeroNa(el: number, frente: number, s: number): V3 {
@@ -42,6 +46,7 @@ export function criarDesenvolvimento(fichaJson: unknown, carga: CargaDoDesenvolv
   const F = fichaSchema.parse(fichaJson);
   const f = daFicha(F);
   const sentado = carga === 'halteres-sentado';
+  const elastico = carga === 'elastico';
 
   /* ------------------------------ o braço ------------------------------ */
   interface Braco {
@@ -65,6 +70,8 @@ export function criarDesenvolvimento(fichaJson: unknown, carga: CargaDoDesenvolv
       // halteres: palmas para a frente, o cabo atravessado (o polegar para dentro)
       return { umero, antebraco: [0, 1, 0], polo, mao: { polegar: [-s, 0, 0], forma: 'pegada', diam: obj('halter', 'caboDiam') } };
     }
+    // elástico: palmas para a frente, o pegador atravessado (o polegar para dentro)
+    if (elastico) return { umero, antebraco: [0, 1, 0], polo, mao: { polegar: [-s, 0, 0], forma: 'pegada', diam: obj('elastico', 'pegadorDiam') } };
     // kettlebell: a mão gira de palma para dentro (embaixo) a palma para a frente (no topo); o punho reto, ou dobrado
     // para trás (para o dorso da mão) no erro
     const g = b.giro * rad;
@@ -158,7 +165,7 @@ export function criarDesenvolvimento(fichaJson: unknown, carga: CargaDoDesenvolv
   function pedido(u: number, erro?: string): Pedido {
     const de = erro === 'curta' ? f('erro.curta.elevacao') : f('braco.baixo.elevacao');
     const p: Pedido = {
-      braco: { el: mix(de, f('braco.topo.elevacao'), u), frente: mix(f('braco.baixo.frente'), f('braco.topo.frente'), u), punho: 0, giro: sentado ? 0 : mix(f('mao.giro.baixo'), f('mao.giro.topo'), u) },
+      braco: { el: mix(de, f('braco.topo.elevacao'), u), frente: mix(f('braco.baixo.frente'), f('braco.topo.frente'), u), punho: 0, giro: sentado || elastico ? 0 : mix(f('mao.giro.baixo'), f('mao.giro.topo'), u) },
       lombar: 0,
       toracica: 0,
       frente: f('bacia'),
@@ -194,6 +201,7 @@ export function criarDesenvolvimento(fichaJson: unknown, carga: CargaDoDesenvolv
       alfa: o.alfa,
       bracos(e) {
         const R = braco(corpo, e, 'R', o.braco);
+        if (elastico) return { R, L: braco(corpo, e, 'L', o.braco), cargas: [] };
         // a carga no equilíbrio: a bola do kettlebell, com o braço da passada anterior (na calibração, antes de se saber
         // o ângulo da bola, a carga fica na mão)
         const beta = BETA.get(corpo);
@@ -211,9 +219,11 @@ export function criarDesenvolvimento(fichaJson: unknown, carga: CargaDoDesenvolv
   function calibrarEmPe(corpo: Corpo): number {
     const ja = ALFA.get(corpo);
     if (ja !== undefined) return ja;
-    const alfa0 = emPe(corpo, pedido(0.5)).alfa;
-    const e0 = emPe(corpo, { ...pedido(0), alfa: alfa0 }).e;
-    BETA.set(corpo, resolver1((b) => folgaNoAntebraco(e0, b) - f('kettlebell.folga'), 20, 89, 24));
+    if (!elastico) {
+      const alfa0 = emPe(corpo, pedido(0.5)).alfa;
+      const e0 = emPe(corpo, { ...pedido(0), alfa: alfa0 }).e;
+      BETA.set(corpo, resolver1((b) => folgaNoAntebraco(e0, b) - f('kettlebell.folga'), 20, 89, 24));
+    }
     // de novo o equilíbrio, agora com a carga na bola: a média dos ângulos de equilíbrio em cinco pontos da subida, para
     // o centro de massa andar o mesmo para a frente e para trás do meio do pé
     const us = [0, 0.25, 0.5, 0.75, 1];
@@ -253,6 +263,10 @@ export function criarDesenvolvimento(fichaJson: unknown, carga: CargaDoDesenvolv
       q.pecas = pecas;
       const E = faceDoEncosto(banco());
       q.marcas = { halter: e.lado.R.pegada, encosto: E.ponto, encostoNormal: E.normal };
+      return q;
+    }
+    if (elastico) {
+      q.marcas = { mao: e.lado.R.pegada };
       return q;
     }
     // o kettlebell: a bola encosta no antebraço (o ângulo sai do encosto, uma vez por corpo, na posição de baixo)

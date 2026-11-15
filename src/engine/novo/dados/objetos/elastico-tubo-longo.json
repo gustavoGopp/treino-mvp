@@ -1,0 +1,49 @@
+{
+ "fontes": {
+  "spartan-60": "Spartan by Power Systems, Covered Resistance Tube; https://shop.spartan.com/products/spartan-by-power-systems-covered-resistance-tube (lida em 15/11/2026 por resumo automático da página: Tech Specs \"Tube is 60\" (5')\"; \"Plastic handle with foam\"; \"Tubing is covered by a thick, nylon sleeve to protect it from nicks, cuts and over-stretching\"; Features \"can stretch to 199\", or 16.5 feet\")",
+  "lifefitness-60": "Life Fitness, Resistance Tubes; https://lifefitness.com/en-hk/catalog/accessories/medicine-balls-stability-balls/resistance-tubes (lida em 15/11/2026 por resumo automático da página: \"Interior tube is 60\" long, but will stretch\"; \"Tubing is covered by a thick, nylon sleeve to protect it from nicks, cuts and overstretching\"; o máximo não é dado)",
+  "rogue-tubo": "Rogue, Tube Bands; https://www.roguefitness.com/rogue-tube-bands; lido em docs/revisoes/animacao-nova/pesquisa/11-medidas-do-elastico.md (página lida por resumo automático)"
+ },
+ "objetos": {
+  "elasticoTuboLongo": {
+   "nome": "Elástico em tubo de 60 pol, com capa de náilon e pegadores",
+   "medidas": {
+    "comp": {
+     "v": 152.4,
+     "un": "cm",
+     "tipo": "medida",
+     "fonte": "spartan-60",
+     "onde": "comprimento do tubo em repouso, sem os pegadores: 60 pol (a Life Fitness vende um tubo com a mesma medida e a mesma capa)"
+    },
+    "esticaAte": {
+     "v": 3.3,
+     "un": "vezes",
+     "tipo": "derivada",
+     "fonte": "spartan-60",
+     "onde": "a página diz que o tubo estica até 199 pol: 199 / 60 = 3,3 vezes (a página não diz se os 199 pol contam os pegadores; contando, o tubo estica menos, e a conta fica do lado de cima)"
+    },
+    "tuboDiam": {
+     "v": 1.2,
+     "un": "cm",
+     "tipo": "provisoria",
+     "fonte": "a-conferir",
+     "onde": "a página não dá o diâmetro: o desenho usa o do tubo da tabela (a capa de náilon deixa o tubo real um pouco mais grosso)"
+    },
+    "pegadorComp": {
+     "v": 12.7,
+     "un": "cm",
+     "tipo": "provisoria",
+     "fonte": "rogue-tubo",
+     "onde": "a página não dá a medida do pegador: o desenho usa o pegador do tubo da tabela (5 pol)"
+    },
+    "fita": {
+     "v": 8.9,
+     "un": "cm",
+     "tipo": "provisoria",
+     "fonte": "rogue-tubo",
+     "onde": "da pegada até a ponta do tubo: a do tubo da tabela (a página não dá)"
+    }
+   }
+  }
+ }
+}
