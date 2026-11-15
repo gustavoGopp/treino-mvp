@@ -2,7 +2,7 @@
 
 Atualizado por quem integra, a cada família juntada. "Aprovada na folha" = o Gustavo olhou e aprovou. "Aprovada por delegação" = conferida por quem integra, risco baixo, registrada com a frase dele de 15/11/2026. "Para o Gustavo ver" = risco médio ou alto: só entra na lista do app depois do ok dele. "Correção de qualidade" = desde o aviso dele de 15/11 ("o fato de eu ter delegado [...] não quer dizer que a gente pode diminuir a qualidade"), nenhuma animação delegada conta como pronta enquanto tiver defeito visível nos quadros (seção 8 de `como-fazer-uma-animacao.md`). As folhas ficam em `prototipos/folha-<id>.png` e os quadros grandes em `quadros/<id>.png`.
 
-Resumo: 7 aprovadas na folha; 10 por delegação; 3 prontas para o Gustavo ver; 5 em correção de qualidade; 4 das quatro primeiras sem aprovação na folha; 4 em andamento; 57 por fazer.
+Resumo: 7 aprovadas na folha; 13 por delegação; 7 prontas para o Gustavo ver; 2 em correção de qualidade; 4 das quatro primeiras sem aprovação na folha; 0 em andamento; 57 por fazer.
 
 | Lote | Exercício | Estado |
 |---|---|---|
@@ -18,13 +18,13 @@ Resumo: 7 aprovadas na folha; 10 por delegação; 3 prontas para o Gustavo ver; 
 | 1 | `agachamento-peso-corpo` | aprovada na folha |
 | 1 | `bulgaro` | aprovada na folha |
 | 1 | `bulgaro-peso-corpo` | aprovada por delegação (risco baixo) |
-| 1 | `bulgaro-suspensao` | feita; em correção de qualidade (subagente) |
-| 2 | `extensao-triceps-peso-corpo` | feita; em correção de qualidade (subagente); depois **para o Gustavo ver** |
+| 1 | `bulgaro-suspensao` | feita e conferida quadro a quadro por quem integra; aprovada por delegação (depois da correção: o berço com uma tira de cada lado do pé, o pé girando no berço) |
+| 2 | `extensao-triceps-peso-corpo` | feita e corrigida (a bancada com volume); **para o Gustavo ver** (pose diferente da de hoje: braços acima da cabeça, como a ficha pede) |
 | 2 | `flexao-bola` | feita e corrigida (costas e cabeça no chão, bola com volume); **para o Gustavo ver** (é a flexão de joelho na bola; o pescoço dobra 53° no fim) |
 | 2 | `flexao-elastico` | feita e conferida quadro a quadro por quem integra; aprovada por delegação (vistas: de lado e de cima) |
 | 2 | `flexao-fechada` | feita e conferida quadro a quadro por quem integra; aprovada por delegação |
 | 2 | `flexao-pes-elevados` | feita e corrigida (o rosto fica a 5 cm do chão); **para o Gustavo ver** (o peito para a 8,5 cm do chão) |
-| 2 | `pike` | feita; em correção de qualidade (subagente) |
+| 2 | `pike` | feita e conferida quadro a quadro por quem integra; aprovada por delegação (depois da correção: segunda vista de três quartos; a descida é mais curta que a de hoje porque a cabeça chega ao chão) |
 | 3 | `crucifixo-elastico` | por fazer |
 | 3 | `crucifixo-invertido-polia` | por fazer |
 | 3 | `crucifixo-polia` | por fazer |
@@ -66,16 +66,16 @@ Resumo: 7 aprovadas na folha; 10 por delegação; 3 prontas para o Gustavo ver; 
 | 5 | `triceps-suspensao` | feita; **para o Gustavo ver** (apoio na ponta dos pés e mãos acima da testa, diferentes da de hoje) |
 | 6 | `flexao-joelho-deslizante` | feita; em correção de qualidade (subagente) |
 | 6 | `flexao-joelho-elastico` | feita; em correção de qualidade (subagente) |
-| 6 | `flexao-joelho-suspensao` | em andamento (subagente) |
+| 6 | `flexao-joelho-suspensao` | feita; **para o Gustavo ver** (joelho a 110° no fim, e não o calcanhar no glúteo; de lado a fita é uma linha fina) |
 | 6 | `nordico` | por fazer |
 | 6 | `panturrilha` | por fazer |
 | 6 | `panturrilha-b` | por fazer |
 | 6 | `panturrilha-chao` | por fazer |
 | 6 | `panturrilha-degrau` | por fazer |
 | 6 | `panturrilha-sentada-halter` | por fazer |
-| 6 | `ponte-gluteo` | em andamento (subagente) |
-| 6 | `ponte-gluteo-halter` | em andamento (subagente) |
-| 6 | `ponte-kettlebell` | em andamento (subagente) |
+| 6 | `ponte-gluteo` | feita e conferida quadro a quadro por quem integra; aprovada por delegação |
+| 6 | `ponte-gluteo-halter` | feita; **para o Gustavo ver** (a vista de cima se lê mal; no topo o cotovelo sobe a 24 cm do chão) |
+| 6 | `ponte-kettlebell` | feita; **para o Gustavo ver** (de lado o kettlebell deitado é uma forma preta grande; no topo os cotovelos ficam a 31 cm do chão) |
 | 6 | `ponte-pes-bola` | por fazer |
 | 6 | `stiff` | feita e conferida quadro a quadro por quem integra; aprovada por delegação (desce até o meio da canela, como a ficha pede; hoje para no joelho) |
 | 6 | `stiff-elastico` | feita e conferida quadro a quadro por quem integra; aprovada por delegação (uma volta do elástico em cada mão, para ele não ficar frouxo embaixo) |
