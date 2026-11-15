@@ -2,7 +2,7 @@
 
 Atualizado por quem integra, a cada família juntada. "Aprovada na folha" = o Gustavo olhou e aprovou. "Aprovada por delegação" = conferida por quem integra, risco baixo, registrada com a frase dele de 15/11/2026. "Para o Gustavo ver" = risco médio ou alto: só entra na lista do app depois do ok dele. "Correção de qualidade" = desde o aviso dele de 15/11 ("o fato de eu ter delegado [...] não quer dizer que a gente pode diminuir a qualidade"), nenhuma animação delegada conta como pronta enquanto tiver defeito visível nos quadros (seção 8 de `como-fazer-uma-animacao.md`). As folhas ficam em `prototipos/folha-<id>.png` e os quadros grandes em `quadros/<id>.png`.
 
-Resumo: 15 aprovadas pelo Gustavo (7 na folha e 8 vendo os quadros); 49 por delegação; 2 prontas para o Gustavo ver; 4 das quatro primeiras sem aprovação na folha; 12 em andamento; 8 por fazer.
+Resumo: 15 aprovadas pelo Gustavo (7 na folha e 8 vendo os quadros); 49 por delegação; 2 prontas para o Gustavo ver; 4 das quatro primeiras sem aprovação na folha; 18 em andamento; 2 por fazer.
 
 | Lote | Exercício | Estado |
 |---|---|---|
@@ -38,7 +38,7 @@ Resumo: 15 aprovadas pelo Gustavo (7 na folha e 8 vendo os quadros); 49 por dele
 | 4 | `barra-fixa` | em andamento (subagente) |
 | 4 | `barra-fixa-supinada` | em andamento (subagente) |
 | 4 | `face-pull` | feita e conferida quadro a quadro por quem integra; aprovada por delegação (a vista padrão passou a ser a de lado; o ombro de trás aparece o bastante com o cotovelo 5,6 cm atrás da linha do ombro) |
-| 4 | `face-pull-elastico` | não entregue: com os braços à frente, o desenho do ombro de trás quase não aparece em nenhuma vista (9 cm², e o mínimo é 30); depende de um acerto no desenho desse músculo |
+| 4 | `face-pull-elastico` | por fazer (o face pull na polia fechou com o cotovelo 5,6 cm atrás da linha do ombro; o do elástico pode usar a mesma pose) |
 | 4 | `puxada-elastico` | feita e conferida quadro a quadro por quem integra; aprovada por delegação (o tubo preso no alto de uma porta) |
 | 4 | `remada-apoiada` | em andamento (subagente) |
 | 4 | `remada-baixa` | feita e conferida quadro a quadro por quem integra; aprovada por delegação (sentado no banco, com o triângulo; vistas de três quartos e de trás; no corpo da mulher duas regras ainda falham) |
@@ -85,14 +85,14 @@ Resumo: 15 aprovadas pelo Gustavo (7 na folha e 8 vendo os quadros); 49 por dele
 | 7 | `abdominal-chao` | feita e conferida quadro a quadro por quem integra; aprovada por delegação |
 | 7 | `abdominal-invertido` | feita e conferida quadro a quadro por quem integra; aprovada por delegação |
 | 7 | `abdominal-polia` | feita e conferida quadro a quadro por quem integra; aprovada por delegação |
-| 7 | `abducao-caneleira` | por fazer |
-| 7 | `abducao-deitado` | por fazer |
-| 7 | `abducao-mini-band` | por fazer |
+| 7 | `abducao-caneleira` | em andamento (subagente) |
+| 7 | `abducao-deitado` | em andamento (subagente) |
+| 7 | `abducao-mini-band` | em andamento (subagente) |
 | 7 | `abertura-t-deitado` | feita e conferida quadro a quadro por quem integra; aprovada por delegação |
-| 7 | `aducao-caneleira` | por fazer |
-| 7 | `aducao-deitado` | por fazer |
+| 7 | `aducao-caneleira` | em andamento (subagente) |
+| 7 | `aducao-deitado` | em andamento (subagente) |
 | 7 | `elevacao-joelhos` | em andamento (subagente) |
 | 7 | `elevacao-joelhos-paralelas` | em andamento (subagente) |
-| 7 | `extensao-joelho-caneleira` | por fazer |
+| 7 | `extensao-joelho-caneleira` | em andamento (subagente) |
 | 7 | `extensao-joelho-elastico` | em andamento (subagente) |
 | 7 | `roda-abdominal` | por fazer |
