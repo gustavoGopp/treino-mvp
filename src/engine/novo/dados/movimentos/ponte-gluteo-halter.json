@@ -38,13 +38,13 @@
  "contatos": ["pe.R", "pe.L", "costas"],
  "regras": [
   {"id": "ombros-e-cabeca-no-chao", "pede": "ombros e cabeça ficam no chão o tempo todo, sem os ombros saírem do lugar", "selo": "consenso", "fonte": "app"},
-  {"id": "quadril-quase-no-chao-embaixo", "pede": "embaixo, o quadril quase encosta no chão", "selo": "consenso", "fonte": "ficha"},
+  {"id": "ponte-quadril-quase-no-chao", "pede": "embaixo, o quadril quase encosta no chão", "selo": "consenso", "fonte": "ficha"},
   {"id": "em-linha-no-fim", "pede": "em cima, ombros, quadril e joelhos em linha", "selo": "consenso", "fonte": "ficha"},
   {"id": "lombar-neutra", "pede": "sem arquear a lombar no topo", "selo": "consenso", "fonte": "ficha"},
-  {"id": "calcanhares-no-chao", "pede": "empurra pelos calcanhares: o pé inteiro fica no chão", "selo": "consenso", "fonte": "ficha"},
-  {"id": "pes-a-um-palmo", "pede": "pés no chão na largura do quadril, calcanhares a cerca de um palmo dos glúteos; no topo, a canela em pé", "selo": "consenso", "fonte": "ficha"},
-  {"id": "carga-nas-duas-maos", "pede": "as duas mãos seguram o halter o tempo todo, pelas pontas", "selo": "consenso", "fonte": "ficha"},
-  {"id": "carga-apoiada-no-quadril", "pede": "o halter deitado de través na dobra do quadril, apoiado (sem atravessar a barriga nem as coxas), sobe e desce com o quadril", "selo": "consenso", "fonte": "ficha"}
+  {"id": "ponte-calcanhares-no-chao", "pede": "empurra pelos calcanhares: o pé inteiro fica no chão", "selo": "consenso", "fonte": "ficha"},
+  {"id": "ponte-pes-a-um-palmo", "pede": "pés no chão na largura do quadril, calcanhares a cerca de um palmo dos glúteos; no topo, a canela em pé", "selo": "consenso", "fonte": "ficha"},
+  {"id": "ponte-carga-nas-duas-maos", "pede": "as duas mãos seguram o halter o tempo todo, pelas pontas", "selo": "consenso", "fonte": "ficha"},
+  {"id": "ponte-carga-no-quadril", "pede": "o halter deitado de través na dobra do quadril, apoiado (sem atravessar a barriga nem as coxas), sobe e desce com o quadril", "selo": "consenso", "fonte": "ficha"}
  ],
  "erros": [
   {"id": "e1", "instante": 1, "titulo": "Arquear a lombar no topo", "vista": "lateral", "oQueMuda": "no topo, a lombar arqueia e a barriga sobe, com o quadril menos estendido", "destaca": ["corpo"], "linha": ["c7", "lombar", "pelve", "joelho"], "foco": "lombar"},

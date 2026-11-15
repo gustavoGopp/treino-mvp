@@ -5,7 +5,7 @@ De 15/11/2026. **Ainda não foi revista pelo Gustavo.**
 - Ficha da técnica: `docs/pesquisa/animacoes/ponte-kettlebell.md`. Texto do app: `src/conteudo/exercicios/ponte-kettlebell.json` (só leitura). Animação de hoje: `src/engine/exercicios/ponte-kettlebell.ts`; conferência dela: `docs/revisoes/catalogo/conferencia/kettlebell.md`.
 - Ficha de movimento: `src/engine/novo/dados/movimentos/ponte-kettlebell.json`.
 - Animação: `src/engine/novo/exercicios/ponte-kettlebell.ts`, sobre o núcleo das pontes (`exercicios/ponte.ts`, com `carga: 'kettlebell'`). O kettlebell é a peça `kettlebell` do gerador realista (`equipamento.ts`, `formaDoKettlebell`), com as medidas de `dados/objetos.json`.
-- Regras: as da ponte e as duas da carga (`regras/pontes.ts`: `carga-nas-duas-maos`, `carga-apoiada-no-quadril`).
+- Regras: as da ponte e as duas da carga (`regras/pontes.ts`: `ponte-carga-nas-duas-maos`, `ponte-carga-no-quadril`).
 - Folha: `../prototipos/folha-ponte-kettlebell.png`. Quadros grandes: `../quadros/ponte-kettlebell.png`.
 
 ## Como a pose é montada

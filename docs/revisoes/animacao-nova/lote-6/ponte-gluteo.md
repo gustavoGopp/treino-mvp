@@ -5,7 +5,7 @@ De 15/11/2026. Primeira das pontes no motor novo. **Ainda não foi revista pelo 
 - Ficha da técnica: `docs/pesquisa/animacoes/ponte-gluteo.md`. Texto do app: `src/conteudo/exercicios/ponte-gluteo.json` (só leitura). Animação de hoje: `src/engine/exercicios/ponte-gluteo.ts` (só leitura).
 - Ficha de movimento: `src/engine/novo/dados/movimentos/ponte-gluteo.json`.
 - Animação: `src/engine/novo/exercicios/ponte-gluteo.ts`, sobre o núcleo novo das pontes (`exercicios/ponte.ts`: `ponteDePesNoChao` e `criarPonte`), que usa o tronco de costas do núcleo das flexões de joelho deitado (`exercicios/flexao-joelho.ts`: `troncoDeCostas` e `bracosNoChao`, separados de `ponteDeCostas` sem mudar o resultado dela).
-- Regras medidas novas: `src/engine/novo/regras/pontes.ts` (`quadril-quase-no-chao-embaixo`, `calcanhares-no-chao`, `pes-a-um-palmo`); reaproveitadas: `ombros-e-cabeca-no-chao` e `em-linha-no-fim` (`regras/flexao-joelho.ts`), `lombar-neutra` (`conferir.ts`).
+- Regras medidas novas: `src/engine/novo/regras/pontes.ts` (`ponte-quadril-quase-no-chao`, `ponte-calcanhares-no-chao`, `ponte-pes-a-um-palmo`); reaproveitadas: `ombros-e-cabeca-no-chao` e `em-linha-no-fim` (`regras/flexao-joelho.ts`), `lombar-neutra` (`conferir.ts`).
 - Folha ao lado da de hoje: `../prototipos/folha-ponte-gluteo.png`. Quadros grandes: `../quadros/ponte-gluteo.png`.
 
 ## Como a pose é montada

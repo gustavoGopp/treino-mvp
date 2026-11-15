@@ -5,7 +5,7 @@ De 15/11/2026. **Ainda não foi revista pelo Gustavo.**
 - Ficha da técnica: `docs/pesquisa/animacoes/ponte-gluteo-halter.md`. Texto do app: `src/conteudo/exercicios/ponte-gluteo-halter.json` (só leitura). Animação de hoje: `src/engine/exercicios/ponte-gluteo-halter.ts`; conferência dela: `docs/revisoes/r5-anim/conferencia/ponte-gluteo-halter.md`.
 - Ficha de movimento: `src/engine/novo/dados/movimentos/ponte-gluteo-halter.json`.
 - Animação: `src/engine/novo/exercicios/ponte-gluteo-halter.ts`, sobre o núcleo das pontes (`exercicios/ponte.ts`, com `carga: 'halter'`). O halter é o `halter` de `pecas.ts` (sextavado, medidas de `dados/objetos.json`), desenhado pelo gerador realista.
-- Regras novas desta carga (`regras/pontes.ts`): `carga-nas-duas-maos`, `carga-apoiada-no-quadril`; as outras são as da ponte (`ponte-gluteo.md`).
+- Regras novas desta carga (`regras/pontes.ts`): `ponte-carga-nas-duas-maos`, `ponte-carga-no-quadril`; as outras são as da ponte (`ponte-gluteo.md`).
 - Folha: `../prototipos/folha-ponte-gluteo-halter.png`. Quadros grandes: `../quadros/ponte-gluteo-halter.png`.
 
 ## Como a pose é montada

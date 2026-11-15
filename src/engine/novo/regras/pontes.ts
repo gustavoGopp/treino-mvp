@@ -26,18 +26,18 @@ function calcanharAoGluteo(e: Esq): number {
 }
 
 export const REGRAS_PONTES: Record<string, Regra> = {
-  'quadril-quase-no-chao-embaixo': (q) => {
+  'ponte-quadril-quase-no-chao': (q) => {
     const folga = maisBaixo(q[0]!.esq, 'pelve');
     return { medido: `embaixo, a pele do glúteo fica a ${f1(folga)} cm do chão`, ok: folga >= 0.5 && folga <= 3 };
   },
-  'calcanhares-no-chao': (q) => {
+  'ponte-calcanhares-no-chao': (q) => {
     const pe = q.map((x) => maisBaixo(x.esq, 'pe', true));
     const calc = q.map((x) => x.esq.lado.R.calcanhar[1]);
     const [a, b] = faixa(pe),
       [c, d] = faixa(calc);
     return { medido: `o ponto mais baixo do pé fica de ${f1(a)} a ${f1(b)} cm do chão e o calcanhar (o ponto do osso) de ${f1(c)} a ${f1(d)} cm`, ok: a >= -1.5 && b <= 0.5 && d - c <= 0.3 };
   },
-  'pes-a-um-palmo': (q, corpo) => {
+  'ponte-pes-a-um-palmo': (q, corpo) => {
     const ini = q[0]!.esq,
       fim = q[q.length - 1]!.esq;
     const palmo = calcanharAoGluteo(ini);
@@ -48,13 +48,13 @@ export const REGRAS_PONTES: Record<string, Regra> = {
       ok: palmo >= 12 && palmo <= 30 && canela <= 5,
     };
   },
-  'carga-nas-duas-maos': (q) => {
+  'ponte-carga-nas-duas-maos': (q) => {
     const d = q.map((x) => Math.max(dist(x.esq.lado.R.pegada, x.marcas.pegaR!), dist(x.esq.lado.L.pegada, x.marcas.pegaL!)));
     const [, b] = faixa(d);
     const entre = dist(q[0]!.marcas.pegaR!, q[0]!.marcas.pegaL!);
     return { medido: `o centro de cada mão fica a no máximo ${f1(b)} cm do ponto da carga que ela segura; as duas pegadas a ${f1(entre)} cm uma da outra`, ok: b <= 0.5 };
   },
-  'carga-apoiada-no-quadril': (q) => {
+  'ponte-carga-no-quadril': (q) => {
     // quanto a carga fica acima (positivo) ou dentro (negativo) do corpo, medida na superfície do Boneco
     const folgas = q.map((x) => {
       const pts = pontosOndeACargaApoia(x.esq);
