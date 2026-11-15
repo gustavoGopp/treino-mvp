@@ -14,13 +14,18 @@
   "joelho.inicio": {"v": 12, "un": "graus", "selo": "consenso", "fonte": "app", "o": "início: joelhos quase estendidos, elástico um pouco esticado"},
   "joelho.fim": {"v": 115, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "fim: joelhos bem dobrados, calcanhares perto do glúteo; a ficha não dá o ângulo (com o quadril estendido, o reto femoral limita a flexão do joelho)"},
   "tornozelo.flexaoPlantar": {"v": 55, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "o pé solto, um pouco esticado (a ponta do pé não toca o chão com as pernas quase estendidas); a ficha não fala do pé"},
+  "lombar.deitado": {"v": 10, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "deitado de bruços, a lombar dobra 10 graus além da curva de repouso (a curva se achata no colchonete): o peito e a frente da bacia encostam juntos e o tórax fica deitado reto"},
+  "escapulas.protracao": {"v": 20, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "com os braços à frente da cabeça, os ombros descem para o colchonete (protração da clavícula)"},
   "testa.altura": {"v": 4.7, "un": "cm", "selo": "desenho", "fonte": "desenho", "o": "a testa apoia no dorso das mãos espalmadas no chão (\"testa apoiada nos braços dobrados\"): altura do dorso da mão espalmada, medida no Boneco: 4,7 cm do chão"},
   "maos.meiaDistancia": {"v": 7, "un": "cm", "selo": "desenho", "fonte": "desenho", "o": "as mãos lado a lado sob a testa: distância de cada punho ao meio do corpo"},
   "colchonete.z": {"v": -8, "un": "cm", "selo": "desenho", "fonte": "desenho", "o": "onde fica o meio do colchonete (de 100 cm) em relação ao quadril: do peito aos joelhos; a cabeça e as mãos ficam no chão à frente dele"},
   "elastico.esticaNoInicio": {"v": 1.2, "un": "vezes", "selo": "consenso", "fonte": "app", "o": "\"afaste-se do ponto até o elástico ficar um pouco esticado com as pernas estendidas\": 1,2 vez o comprimento em repouso (o número é escolha de desenho)"},
-  "elastico.acimaDoTornozelo": {"v": 4, "un": "cm", "selo": "consenso", "fonte": "ficha", "o": "os pegadores em volta dos tornozelos, por trás, logo acima do calcanhar: o centro do pegador fica 4 cm acima do centro do tornozelo, ao longo da canela"},
+  "elastico.acimaDoTornozelo": {"v": 4, "un": "cm", "selo": "consenso", "fonte": "ficha", "o": "os pegadores em volta dos tornozelos, por trás, logo acima do calcanhar: com o pé enfiado no pegador, a pegada fica na frente do tornozelo, 4 cm acima do centro dele, ao longo da canela, e a fita dá a volta e se junta atrás, onde sai o tubo"},
+  "elastico.noQuadro": {"v": 30, "un": "cm", "selo": "desenho", "fonte": "desenho", "o": "quanto do tubo, a partir do tornozelo, entra no enquadramento; dali até a porta ele é cenário e sai pela borda do quadro"},
   "ancora.altura": {"v": 1.5, "un": "cm", "selo": "desenho", "fonte": "objetos", "o": "a alça da âncora sai pelo vão de baixo da porta: onde o tubo dá a volta, a 1,5 cm do chão"},
   "erro.quadril.sobe": {"v": 12, "un": "cm", "selo": "desenho", "fonte": "desenho", "o": "erro: a bacia sobe 12 cm do colchonete, com o peito e os joelhos parados"},
+  "erro.tranco.alem": {"v": 20, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "erro: no embalo, o joelho passa 20 graus do fim"},
+  "erro.tranco.quadril": {"v": 4, "un": "cm", "selo": "desenho", "fonte": "desenho", "o": "erro: no embalo, a bacia descola 4 cm do colchonete"},
   "erro.curta.ida": {"v": 0.55, "un": "fração", "selo": "desenho", "fonte": "desenho", "o": "erro: dobra só 55% do caminho"},
   "erro.curta.volta": {"v": 0.25, "un": "fração", "selo": "desenho", "fonte": "desenho", "o": "erro: na volta, para a 25% do caminho, sem estender"}
  },
@@ -39,13 +44,12 @@
  ],
  "erros": [
   {"id": "quadril", "instante": 1, "titulo": "Quadril sobe do chão", "vista": "lateral", "oQueMuda": "a bacia sobe 12 cm do colchonete e o quadril dobra", "destaca": ["corpo"], "linha": ["c7", "pelve", "joelho"], "foco": "pelve"},
-  {"id": "tranco", "instante": 0.5, "titulo": "Dar tranco", "vista": "lateral", "oQueMuda": "no meio da subida, os calcanhares já estão quase no fim (embalo)", "destaca": ["pernas"], "linha": ["quadril", "joelho", "tornozelo"], "foco": "tornozelo"},
+  {"id": "tranco", "instante": 1, "titulo": "Dar tranco", "vista": "lateral", "oQueMuda": "no embalo, os calcanhares passam do fim (o joelho dobra 20° a mais) e o quadril descola do colchonete", "destaca": ["pernas", "corpo"], "linha": ["quadril", "joelho", "tornozelo"], "foco": "tornozelo"},
   {"id": "curta", "instante": 1, "titulo": "Puxar pouco ou não estender na volta", "vista": "lateral", "oQueMuda": "dobra só até a metade e não estende na volta", "destaca": ["pernas"], "linha": ["quadril", "joelho", "tornozelo"], "foco": "joelho"}
  ],
  "simetrico": true,
  "rotulos": [
   {"vista": "lateral", "texto": "quadril no chão", "ponto": "pelve", "selo": "consenso", "fonte": "app"},
-  {"vista": "lateral", "texto": "calcanhar no glúteo", "ponto": "calcanhar", "selo": "consenso", "fonte": "app"},
-  {"vista": "lateral", "texto": "volta devagar", "ponto": "joelho", "selo": "consenso", "fonte": "app"}
+  {"vista": "lateral", "texto": "calcanhar no glúteo", "ponto": "calcanhar", "selo": "consenso", "fonte": "app"}
  ]
 }

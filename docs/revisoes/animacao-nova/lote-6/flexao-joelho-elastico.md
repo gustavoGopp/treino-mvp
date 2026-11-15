@@ -11,7 +11,7 @@ De 15/11/2026. Segunda animação da família das flexões de joelho deitado. **
 
 ## Como a pose é montada
 
-Deitado de bruços, a cabeça para +z, os pés para −z, a porta atrás dos pés. Uma vez por corpo: a bacia inclina até a frente da bacia e a barriga ficarem na mesma altura e o corpo desce até encostar no colchonete (a barriga do Boneco é mais alta que o peito e a bacia: ela amassa 1,5 cm, o mesmo que a conferência aceita no chão); o pescoço dobra até a testa chegar ao dorso das mãos, espalmadas no chão sob a testa, com os cotovelos para fora; a coxa, reta, encosta no colchonete. No ciclo, só a canela gira em torno do joelho. A porta é posta onde o tubo estica 1,2 vez com as pernas quase estendidas. Contatos presos: `pelve`, `joelho.R`, `joelho.L`, `mao.R`, `mao.L`.
+Deitado de bruços, a cabeça para +z, os pés para −z, a porta atrás dos pés. Uma vez por corpo: com a lombar 10° mais achatada que em pé, a bacia inclina até a frente da bacia e o peito ficarem na mesma altura e o corpo desce até encostar no colchonete (a barriga do Boneco é mais alta que o peito e a bacia: ela amassa até 1,5 cm, o mesmo que a conferência aceita no chão); o tórax fica deitado reto; as escápulas vão 20° à frente, e os ombros descem para o colchonete (o centro do ombro fica a 18 cm do chão); o pescoço dobra até a testa chegar ao dorso das mãos, espalmadas no chão sob a testa, com os cotovelos para fora; a coxa, reta, encosta no colchonete. No ciclo, só a canela gira em torno do joelho. A porta é posta onde o tubo estica 1,2 vez com as pernas quase estendidas. Contatos presos: `pelve`, `joelho.R`, `joelho.L`, `mao.R`, `mao.L`.
 
 ## O que a fonte pede × o que o boneco faz (medido) × confere?
 
@@ -19,18 +19,18 @@ Deitado de bruços, a cabeça para +z, os pés para −z, a porta atrás dos pé
 |---|---|---|---|
 | Deitado de bruços num colchonete, quadril encostado | consenso | a frente da bacia fica a 0 cm do tampo do colchonete; a barriga, 1,5 cm para dentro dele (amassa); a bacia e os joelhos não saem do lugar (0 cm) | sim |
 | Testa apoiada nos braços dobrados | consenso | a testa encosta no dorso das mãos (0 cm); cotovelos dobrados 114°, para fora; as mãos não saem do lugar | sim, com as mãos espalmadas no lugar dos antebraços cruzados (ver "O que não ficou bom") |
-| O meio do elástico preso num ponto firme e baixo, perto do chão | consenso | o tubo dá a volta na alça da âncora, a 1,5 cm do chão, 159 cm atrás do quadril; a espuma da âncora fica do lado de lá da porta | sim |
-| As pontas (pegadores) em volta dos dois tornozelos, por trás, logo acima do calcanhar | consenso | o centro do pegador fica 5,1 cm atrás do centro do tornozelo e 4 cm acima dele, ao longo da canela, no ciclo inteiro | sim |
+| O meio do elástico preso num ponto firme e baixo, perto do chão | consenso | o tubo dá a volta na alça da âncora, a 1,5 cm do chão, 149 cm atrás do quadril; a espuma da âncora fica do lado de lá da porta | sim |
+| As pontas (pegadores) em volta dos dois tornozelos, por trás, logo acima do calcanhar | consenso | o pé fica enfiado no pegador: a pegada atravessa a frente do tornozelo, 4 cm acima do centro dele, e a fita dá a volta pelos lados e se junta atrás, onde sai o tubo (6,6 cm atrás do centro do tornozelo), no ciclo inteiro | sim |
 | Afastado até o elástico ficar um pouco esticado com as pernas estendidas | consenso | 1,2 vez o comprimento em repouso (146 cm de 122) com o joelho a 12° | sim (o 1,2 é escolha de desenho) |
 | Flexão em ~1 s, trazendo os calcanhares ao glúteo, quadril no chão | consenso | 1,1 s; o joelho vai de 12° a 115°; o tornozelo sobe de 9 a 48 cm e vem de 83 a 29 cm atrás do quadril | sim |
 | Fim: joelhos bem dobrados, pausa curta | consenso | 115° de joelho; 0,5 s parado | sim (o 115° é escolha de desenho) |
 | Volta de ~2–3 s, até quase estender | consenso | 2,4 s, até 12° | sim |
-| O elástico estica mais com os joelhos dobrados | consenso (física) | de 1,2 vez (146 cm) com as pernas estendidas a 2,2 vezes (262 cm) no fim; o tubo afina ao esticar; não passa das 3 vezes do fabricante | sim |
+| O elástico estica mais com os joelhos dobrados | consenso (física) | de 1,2 vez (146 cm) com as pernas estendidas a 2,2 vezes (265 cm) no fim; o tubo afina ao esticar; não passa das 3 vezes do fabricante | sim |
 
-Conferência automática: **0 falha, 3 avisos**. Amplitudes: joelho 115°; cotovelo 114°; elevação do braço 129°; flexão plantar do tornozelo 55° (o pé solto, esticado, para a ponta não bater no chão: fica a 3,5 cm dele); ponto mais baixo do corpo −0,1 cm. Os avisos:
+Conferência automática: **0 falha, 3 avisos**. Amplitudes: joelho 115°; cotovelo 121°; elevação do braço 161° (os braços à frente da cabeça); extensão do punho 34°; flexão plantar do tornozelo 55° (o pé solto, esticado, para a ponta não bater no chão: fica a 3,5 cm dele); ponto mais baixo do corpo −0,1 cm. Os avisos:
 
 1. **Cabos**: a conferência comum espera o elástico mais esticado "em cima" (u = 0), como no agachamento com elástico. Aqui a ficha diz o contrário (mais esticado com os joelhos dobrados, no fim): o aviso é esperado, e a regra `elastico-estica-mais-no-fim` mede o que esta ficha pede (ok).
-2. Provisórios: `joelho.fim` (115°), `tornozelo.flexaoPlantar` (55°), `testa.altura`, `maos.meiaDistancia`, `colchonete.z`, `ancora.altura`.
+2. Provisórios: `joelho.fim` (115°), `tornozelo.flexaoPlantar` (55°), `lombar.deitado` (10°), `escapulas.protracao` (20°), `testa.altura`, `maos.meiaDistancia`, `colchonete.z`, `elastico.noQuadro`, `ancora.altura`.
 3. Músculos: de lado, o principal (posteriores) aparece pouco (67 cm²); a vista padrão do modo Músculos é **de cima** (645 cm²), onde a parte de trás das coxas fica virada para quem olha.
 
 O item "Ritmo" sai "ok, sem movimento": a conferência acompanha quadril, cabeça, mãos, cotovelo e joelho, e todos ficam parados neste exercício (só a canela e o pé se mexem). O ritmo da canela não foi medido pela conferência comum; o perfil de velocidade é o mesmo `suave` das fases.
@@ -40,7 +40,7 @@ O item "Ritmo" sai "ok, sem movimento": a conferência acompanha quadril, cabeç
 | Erro (texto do app) | O que o boneco faz (medido) |
 |---|---|
 | Quadril sobe do chão | o centro da bacia sobe 12 cm (de 14,2 a 26,2 cm; a frente da bacia sai do colchonete e fica a 8,6 cm do chão) e o quadril dobra 49°; a lombar dobra 35° ao contrário para o peito ficar no colchonete; os joelhos não saem do lugar |
-| Dar tranco | o quadro parado é o meio da subida: o calcanhar já está em 7/8 do caminho (no certo, na metade) |
+| Dar tranco | no embalo, os calcanhares passam do fim: o joelho dobra 135° (115° no certo) e a bacia descola 4 cm do colchonete. O quadro parado é o fim da subida |
 | Puxar pouco ou não estender na volta | o joelho vai só de 38° a 69° (12° a 115° no certo) |
 
 ## Correções já feitas que esta animação respeita (`correcoes-ja-feitas.md`)
@@ -53,10 +53,15 @@ O realçado bate com o conteúdo (principal: posteriores da coxa; sem secundári
 
 ## O que não ficou bom
 
-- **De lado, o corpo fica pequeno no quadro**: a porta fica 159 cm atrás do quadril, porque o tubo da tabela tem 122 cm em repouso e precisa ficar só um pouco esticado com as pernas estendidas. A porta é cenário (fora do enquadramento), mas a âncora e o tubo entram. Na animação de hoje o poste ficava a 130 cm, com uma faixa de 50 cm sem medida.
-- O tronco não fica reto: o peito fica um pouco acima do colchonete e os ombros a 27 cm do chão, porque os braços estão à frente da cabeça e a barriga do Boneco é mais alta que o peito. A barriga entra 1,5 cm no colchonete.
-- A ficha diz "testa apoiada nos braços dobrados"; aqui a testa apoia no dorso das mãos espalmadas, lado a lado. Cruzar os antebraços deixaria o corpo assimétrico (a conferência de simetria falharia).
+- A ficha diz "testa apoiada nos braços dobrados"; aqui a testa apoia no dorso das mãos espalmadas, lado a lado, com os cotovelos dobrados para fora. Cruzar os antebraços deixaria o corpo assimétrico (a conferência de simetria falharia).
 - A canela não é acompanhada pela conferência de ritmo (ver acima).
-- O pegador é desenhado como a pegada rígida do cartão, atravessada atrás do tornozelo: na vida real o pé passa pela alça do pegador.
-- O vão sob a porta (1 cm) e a alça da âncora (6 cm) são provisórios; a porta é desenhada lisa, sem batente nem maçaneta.
 - O colchonete da tabela tem 100 cm (provisório): cobre do peito aos joelhos; as mãos e a cabeça ficam no chão à frente dele.
+
+## Correção de 15/11/2026 (pedido de quem integra)
+
+- **Enquadramento:** a porta, a âncora e o tubo além de 30 cm do tornozelo viraram cenário (atrás do corpo e fora do enquadramento); o tubo sai pela borda do quadro em direção à porta. O corpo passa a ocupar a largura do quadro.
+- **Pose de bruços:** a lombar achata 10° e as escápulas vão 20° à frente (dois acréscimos opcionais no núcleo, `lombar` e `prot` em `OpcoesDeBrucos`): o tórax fica deitado reto e o centro do ombro desce de 27 para 18 cm do chão.
+- **Pegador:** peça nova `pecas-de-cena/pegador-no-tornozelo.ts`: o pé fica enfiado no pegador, com a pegada na frente do tornozelo e a fita dando a volta até o tubo, atrás.
+- **Porta:** ganhou batente (dois montantes e a travessa, em madeira) e maçaneta (roseta e alavanca), no gerador realista; medidas do batente e da maçaneta provisórias.
+- **Rótulos:** três → dois ("quadril no chão", "calcanhar no glúteo").
+- **Erro "dar tranco":** o quadro parado (o fim da subida, que a folha mostra) era igual ao certo; agora os calcanhares passam do fim no embalo e a bacia descola.

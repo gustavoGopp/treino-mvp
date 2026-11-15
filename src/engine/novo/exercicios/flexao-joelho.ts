@@ -205,6 +205,10 @@ export interface OpcoesDeBrucos {
   flexaoPlantar: number;
   /** Quanto a bacia sobe do colchonete (erro do quadril), em cm; o peito e os joelhos ficam onde estão. */
   quadrilSobe?: number;
+  /** Flexão da lombar além da curva de repouso (graus), deitado (acréscimo de 15/11: o tórax fica deitado reto). */
+  lombar?: number;
+  /** Protração das escápulas (graus da clavícula): os ombros descem para o colchonete com os braços à frente. */
+  prot?: number;
 }
 interface BaseDeBrucos {
   frente: number;
@@ -223,21 +227,22 @@ const AMASSA = 1.5;
 const frenteAoChao = (corpo: Corpo, t: Tronco) => Math.min(peitoAoChao(corpo, t), barrigaAoChao(corpo, t) + AMASSA);
 /** A parte que não muda no ciclo: a inclinação da bacia, a altura dela, a cabeça nas mãos e a coxa no colchonete. */
 function baseDeBrucos(corpo: Corpo, o: OpcoesDeBrucos): BaseDeBrucos {
-  const chave = `${o.apoio}|${o.testa}`;
+  const chave = `${o.apoio}|${o.testa}|${o.lombar ?? 0}`;
   let mapa = BASE_DE_BRUCOS.get(corpo);
   if (!mapa) BASE_DE_BRUCOS.set(corpo, (mapa = new Map()));
   const ja = mapa.get(chave);
   if (ja) return ja;
   // 1) a frente da bacia e a barriga (que amassa AMASSA cm) ficam na mesma altura; o corpo desce até encostar no
   //    colchonete. O peito encosta junto ou fica um pouco acima (os braços estão à frente da cabeça).
-  const t0 = (frente: number) => resolverTronco(corpo, { pelve: [0, 0, 0], frente });
+  const L0 = o.lombar ?? 0;
+  const t0 = (frente: number) => resolverTronco(corpo, { pelve: [0, 0, 0], frente, lombar: L0 });
   const frente = resolver1((fr) => pelveAoChao(corpo, t0(fr)) - Math.min(peitoAoChao(corpo, t0(fr)), barrigaAoChao(corpo, t0(fr)) + AMASSA), 70, 110, 30);
   const tf = t0(frente);
   const yP = o.apoio - Math.min(peitoAoChao(corpo, tf), pelveAoChao(corpo, tf), barrigaAoChao(corpo, tf) + AMASSA);
   // 2) a testa apoia no dorso das mãos
-  const cervical = resolver1((c) => cabecaAoChao(corpo, resolverTronco(corpo, { pelve: [0, yP, 0], frente, cervical: c })) - o.testa, -40, 60, 30);
+  const cervical = resolver1((c) => cabecaAoChao(corpo, resolverTronco(corpo, { pelve: [0, yP, 0], frente, lombar: L0, cervical: c })) - o.testa, -40, 60, 30);
   // 3) a coxa, reta, encosta no colchonete
-  const t = resolverTronco(corpo, { pelve: [0, yP, 0], frente, cervical });
+  const t = resolverTronco(corpo, { pelve: [0, yP, 0], frente, lombar: L0, cervical });
   const solto: PoseBraco = { umero: [0, -1, 0], antebraco: [0, -1, 0], polo: [0, 0, -1], mao: { polegar: [0, 0, 1] } };
   const coxa = (a: number) => {
     const p: PosePerna = { coxa: noPlano(a), canela: noPlano(a), polo: noPlano(a - 90) };
@@ -253,8 +258,9 @@ function baseDeBrucos(corpo: Corpo, o: OpcoesDeBrucos): BaseDeBrucos {
 export function deitadoDeBrucos(corpo: Corpo, o: OpcoesDeBrucos): Esq {
   const m = (id: string) => corpo.m(id);
   const b = baseDeBrucos(corpo, o);
+  const L0 = o.lombar ?? 0;
   let frente = b.frente,
-    lombar = 0,
+    lombar = L0,
     yP = b.yP,
     cervical = b.cervical;
   const sobe = o.quadrilSobe ?? 0;
@@ -262,10 +268,11 @@ export function deitadoDeBrucos(corpo: Corpo, o: OpcoesDeBrucos): Esq {
     // a bacia sobe e gira (o quadril dobra), a lombar dobra o mesmo tanto ao contrário: o peito fica no colchonete,
     // na mesma inclinação, e a testa continua nas mãos
     yP = b.yP + sobe;
-    const tr = (L: number, c = b.cervical) => resolverTronco(corpo, { pelve: [0, yP, 0], frente: b.frente + L, lombar: -L, cervical: c });
-    lombar = -resolver1((L) => frenteAoChao(corpo, tr(L)) - o.apoio, 0, 70, 30);
-    frente = b.frente - lombar;
-    cervical = resolver1((c) => cabecaAoChao(corpo, tr(-lombar, c)) - o.testa, -40, 60, 30);
+    const tr = (L: number, c = b.cervical) => resolverTronco(corpo, { pelve: [0, yP, 0], frente: b.frente + L, lombar: L0 - L, cervical: c });
+    const giro = resolver1((L) => frenteAoChao(corpo, tr(L)) - o.apoio, 0, 70, 30);
+    lombar = L0 - giro;
+    frente = b.frente + giro;
+    cervical = resolver1((c) => cabecaAoChao(corpo, tr(giro, c)) - o.testa, -40, 60, 30);
   }
   const t = resolverTronco(corpo, { pelve: [0, yP, 0], frente, lombar, cervical });
   // as mãos lado a lado, espalmadas no chão sob a testa, com os dedos para o meio e os cotovelos para fora
@@ -273,7 +280,7 @@ export function deitadoDeBrucos(corpo: Corpo, o: OpcoesDeBrucos): Esq {
   const fronte = cab.reduce((a, p) => (p[1] < a[1] ? p : a));
   const braco = (k: Lado): PoseBraco => {
     const s = sinal(k);
-    return { punho: [s * o.punhosMeiaDistancia, m('raio.punho') * 0.85, fronte[2]], polo: [s, 0.7, -0.1], mao: { polegar: [0, 0, -1], dedos: [-s, 0, 0], forma: 'aberta' } };
+    return { punho: [s * o.punhosMeiaDistancia, m('raio.punho') * 0.85, fronte[2]], polo: [s, 0.7, -0.1], mao: { polegar: [0, 0, -1], dedos: [-s, 0, 0], forma: 'aberta' }, prot: o.prot ?? 0 };
   };
   // a coxa vai do quadril ao joelho, que fica no colchonete; a canela gira em torno do joelho
   const perna = (k: Lado): PosePerna => {

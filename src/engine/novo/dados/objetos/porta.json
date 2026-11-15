@@ -14,7 +14,11 @@
     "ancoraComp": { "v": 12.7, "un": "cm", "tipo": "medida", "fonte": "stroops-ancora", "onde": "comprimento da espuma da âncora: 5 pol" },
     "ancoraLarg": { "v": 10.2, "un": "cm", "tipo": "medida", "fonte": "stroops-ancora", "onde": "largura da espuma da âncora: 4 pol" },
     "ancoraAlt": { "v": 2.5, "un": "cm", "tipo": "medida", "fonte": "stroops-ancora", "onde": "altura da espuma da âncora: 1 pol" },
-    "alcaComp": { "v": 6, "un": "cm", "tipo": "provisoria", "fonte": "a-conferir", "onde": "quanto a alça de fita sai do vão da porta, do lado de quem treina (a ficha não dá o comprimento da fita)" }
+    "alcaComp": { "v": 6, "un": "cm", "tipo": "provisoria", "fonte": "a-conferir", "onde": "quanto a alça de fita sai do vão da porta, do lado de quem treina (a ficha não dá o comprimento da fita)" },
+    "batenteLarg": { "v": 7, "un": "cm", "tipo": "provisoria", "fonte": "a-conferir", "onde": "largura do batente (e da guarnição) em volta da folha, vista de frente" },
+    "batenteProf": { "v": 10, "un": "cm", "tipo": "provisoria", "fonte": "a-conferir", "onde": "profundidade do batente na parede" },
+    "macanetaAltura": { "v": 105, "un": "cm", "tipo": "provisoria", "fonte": "a-conferir", "onde": "altura da maçaneta do chão" },
+    "macanetaDaBorda": { "v": 6, "un": "cm", "tipo": "provisoria", "fonte": "a-conferir", "onde": "distância do centro da maçaneta à borda da folha" }
    }
   }
  }

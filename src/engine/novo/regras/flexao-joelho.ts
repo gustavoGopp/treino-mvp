@@ -138,7 +138,7 @@ export const REGRAS_FLEXAO_JOELHO: Record<string, Regra> = {
     return { medido: `o elástico estica ${f1(ini)} vez com as pernas estendidas e ${f1(fim)} vezes no fim (de ${f1(a)} a ${f1(b)} no caminho)`, ok: ini >= 1.05 && fim > ini && Math.abs(b - fim) < 0.01 };
   },
   'elastico-atras-dos-tornozelos': (q) => {
-    // o pegador fica do lado de trás da canela, perto do calcanhar, e não sai dali
+    // o pé fica dentro do pegador e o tubo sai de trás da canela, perto do calcanhar, e não sai dali
     const d = q.map((x) => {
       const L = x.esq.lado.R,
         g = x.marcas.pegadaR!;
@@ -147,6 +147,6 @@ export const REGRAS_FLEXAO_JOELHO: Record<string, Regra> = {
     });
     const [a, b] = faixa(d.map((x) => x.atras)),
       [c, e] = faixa(d.map((x) => x.acima));
-    return { medido: `o centro do pegador fica de ${f1(a)} a ${f1(b)} cm atrás do centro do tornozelo e de ${f1(c)} a ${f1(e)} cm acima dele, ao longo da canela`, ok: a > 0 && e <= 8 };
+    return { medido: `o tubo sai da fita do pegador de ${f1(a)} a ${f1(b)} cm atrás do centro do tornozelo e de ${f1(c)} a ${f1(e)} cm acima dele, ao longo da canela`, ok: a > 0 && e <= 8 };
   },
 };
