@@ -1,0 +1,132 @@
+// Peça de cena: a fita de suspensão (tipo TRX), para todos os exercícios que a usam (búlgaro, remada, rosca, tríceps,
+// flexão de joelho...). Partes, como no cartão de hoje (scripts/desenhos-equipamento/realista/itens.mjs, `suspensao`):
+// a ponta da fita de ancoragem, o mosquetão, a fita (uma só até o ponto onde se divide, e uma até cada pegador), a
+// fivela de ajuste em cada fita, o pegador de mão e, logo abaixo dele, o berço do pé. Medidas em
+// ../dados/objetos/suspensao.json.
+//
+// A fita não estica: quem usa a peça põe o pegador num ponto que respeita o comprimento (o pé ou a mão pendem da
+// âncora num arco) e declara o comprimento em `fios`, com `estica: false`; a conferência mede que ele não muda.
+import type { Prim } from '../desenho';
+import type { Materiais } from '../equipamento';
+import type { PecaPropria } from '../pecas';
+import type { CenaRealista } from '../realista/base.mjs';
+import { obj } from '../tabelas';
+import { add, cross, dist, len, lerp, mul, norm, perp, sub } from '../vec';
+import type { V3 } from '../vec';
+
+const g = (id: string) => obj('suspensao', id);
+
+/**
+ * Um pegador da fita. `ponto`: para a mão, o centro da pegada; para o pé, o fundo do berço, onde o peito do pé apoia.
+ * `lado`: a direção em que o pegador (e o berço) atravessa a fita (para a mão, o eixo da pegada; para o pé, de um lado
+ * ao outro do pé).
+ */
+export interface PegadorDaFita {
+  tipo: 'mao' | 'pe';
+  ponto: V3;
+  lado: V3;
+}
+export interface FitaDeSuspensao {
+  /** Onde a fita se prende: a ponta de baixo da fita de ancoragem (o mosquetão fica pendurado aí). */
+  ancora: V3;
+  pegadores: PegadorDaFita[];
+  /** Com dois pegadores, quanto a fita desce inteira antes de se dividir (cm, ao longo do caminho). */
+  tronco?: number;
+}
+
+/** O caminho da fita até cada pegador: âncora → (ponto onde se divide) → onde a fita chega ao pegador. */
+function caminhos(f: FitaDeSuspensao): { divide: V3; pontas: { chega: V3; p: PegadorDaFita }[] } {
+  const ps = f.pegadores;
+  const meio = ps.length > 1 ? mul(ps.reduce<V3>((s, p) => add(s, p.ponto), [0, 0, 0]), 1 / ps.length) : ps[0]!.ponto;
+  const u = norm(sub(meio, f.ancora));
+  const tronco = ps.length > 1 ? Math.min(f.tronco ?? 30, dist(meio, f.ancora) * 0.6) : 0;
+  const divide = add(f.ancora, mul(u, tronco));
+  // a fita chega ao pegador por cima: na mão, no centro da pegada; no pé, no alto do berço (o berço desce abaixo dele)
+  const pontas = ps.map((p) => {
+    if (p.tipo === 'mao') return { chega: p.ponto, p };
+    const d = norm(sub(p.ponto, divide));
+    return { chega: add(p.ponto, mul(d, -g('bercoAlt'))), p };
+  });
+  return { divide, pontas };
+}
+
+/**
+ * O comprimento da fita da âncora até cada pegador (cm), ao longo do caminho: é o número que vai em `fios`. Para o
+ * pé, conta até o fundo do berço, onde o pé apoia.
+ */
+export function comprimentoDaFita(f: FitaDeSuspensao): number[] {
+  const c = caminhos(f);
+  return c.pontas.map(({ chega, p }) => dist(f.ancora, c.divide) + dist(c.divide, chega) + (p.tipo === 'pe' ? g('bercoAlt') : 0));
+}
+
+/**
+ * Onde fica o ponto de um pegador pendurado: a âncora, o comprimento da fita até ele e onde ele está no chão (x, z).
+ * Devolve a altura que respeita o comprimento (a fita esticada pelo peso; não estica além disso).
+ */
+export function alturaNaFita(ancora: V3, comp: number, x: number, z: number): number {
+  const h = Math.hypot(x - ancora[0], z - ancora[2]);
+  return ancora[1] - Math.sqrt(Math.max(0, comp * comp - h * h));
+}
+
+export function fitaDeSuspensao(f: FitaDeSuspensao): { prims: Prim[]; peca: PecaPropria; comp: number[] } {
+  const c = caminhos(f);
+  const prims: Prim[] = [];
+  if (c.divide !== f.ancora) prims.push({ t: 'fio', pts: [f.ancora, c.divide], larg: g('fitaLarg') * 0.6, cls: 'fita', vies: -1 });
+  for (const { chega, p } of c.pontas) prims.push({ t: 'fio', pts: [c.divide, chega, ...(p.tipo === 'pe' ? [p.ponto] : [])], larg: g('fitaLarg') * 0.5, cls: 'fita', vies: -1 });
+
+  const peca: PecaPropria = {
+    t: 'propria',
+    nome: 'fita de suspensão',
+    desenhar(C: CenaRealista, M: Materiais) {
+      const fita = M.borracha,
+        acao = M.estofado;
+      /** Um trecho de fita chata, de `a` a `b`, com a largura atravessada na direção `lado`. */
+      const trecho = (a: V3, b: V3, larg: number, lado: V3, esp = 0.35) => {
+        const d = norm(sub(b, a));
+        let up = cross(lado, d);
+        if (len(up) < 1e-4) up = cross([0, 0, 1], d);
+        C.tubo(a, b, larg, esp, fita, { up: norm(up) });
+      };
+      const ladoDe = (d: V3): V3 => {
+        const l = perp([1, 0, 0], d);
+        return len(l) < 1e-4 ? [0, 0, 1] : norm(l);
+      };
+      // a ponta da fita de ancoragem, que sobe até o ponto firme (só um trecho aparece), e o mosquetão
+      const topo = add(f.ancora, [0, 22, 0]);
+      trecho(topo, add(f.ancora, [0, 2, 0]), g('ancoraLarg'), [1, 0, 0]);
+      const mosq = g('mosquetaoComp');
+      const dA = norm(sub(c.divide === f.ancora ? c.pontas[0]!.chega : c.divide, f.ancora));
+      const fimMosq = add(f.ancora, mul(dA, mosq));
+      const lA = ladoDe(dA);
+      const voltas = 12;
+      const anel: V3[] = [];
+      for (let i = 0; i <= voltas; i++) {
+        const t = (2 * Math.PI * i) / voltas;
+        anel.push(add(lerp(f.ancora, fimMosq, 0.5), add(mul(dA, (mosq / 2) * Math.cos(t)), mul(lA, mosq * 0.28 * Math.sin(t)))));
+      }
+      for (let i = 0; i < voltas; i++) C.cilindro(anel[i]!, anel[i + 1]!, 0.45, M.cromo, { lados: 8, contorno: false });
+      // a fita inteira até onde se divide (com dois pegadores) e uma fita até cada pegador, com a fivela de ajuste
+      if (c.divide !== f.ancora) trecho(fimMosq, c.divide, g('fitaLarg'), ladoDe(norm(sub(c.divide, f.ancora))));
+      for (const { chega, p } of c.pontas) {
+        const de = c.divide === f.ancora ? fimMosq : c.divide;
+        const d = norm(sub(chega, de));
+        const l = norm(perp(p.lado, d));
+        trecho(de, chega, g('fitaLarg'), l);
+        const fivela = lerp(de, chega, 0.42);
+        C.tubo(add(fivela, mul(d, -3)), add(fivela, mul(d, 3)), g('fitaLarg') + 1.2, 1.4, acao, { up: norm(cross(l, d)) });
+        // o pegador de mão: atravessado à fita; para o pé, ele fica logo acima do berço
+        const pega = p.tipo === 'mao' ? p.ponto : chega;
+        const meia = g('pegadorComp') / 2;
+        C.cilindro(add(pega, mul(l, -meia)), add(pega, mul(l, meia)), g('pegadorDiam') / 2, fita, { lados: 12, dz: p.tipo === 'mao' ? 6 : 0 });
+        // o berço do pé: uma alça que desce do pegador e passa por baixo do peito do pé
+        const fundo = p.tipo === 'pe' ? p.ponto : add(pega, mul(d, g('bercoAlt')));
+        const mb = g('bercoLarg') / 2;
+        const lados = [-1, 1].map((s) => add(pega, mul(l, s * mb)));
+        const baixo = [-1, 1].map((s) => add(fundo, mul(l, s * mb)));
+        for (const s of [0, 1]) trecho(lados[s]!, baixo[s]!, 2.2, d, 0.5);
+        trecho(baixo[0]!, baixo[1]!, 4, d, 0.8);
+      }
+    },
+  };
+  return { prims, peca, comp: comprimentoDaFita(f) };
+}

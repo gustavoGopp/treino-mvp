@@ -4,3 +4,5 @@
 // Ex.: export { default as cadeira } from './cadeira.json';
 export {};
 export { default as bancada } from './bancada.json';
+export { default as cadeira } from './cadeira.json';
+export { default as suspensao } from './suspensao.json';
