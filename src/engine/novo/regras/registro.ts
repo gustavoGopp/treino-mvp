@@ -13,3 +13,4 @@ export { REGRAS_TRICEPS_FRANCES } from './triceps-frances';
 export { regrasDosOmbros } from './ombros';
 export { regrasDasRoscas } from './roscas';
 export { regrasDasPanturrilhas } from './panturrilhas';
+export { REGRAS_TRICEPS_CORDA } from './triceps-corda';

@@ -50,3 +50,4 @@ export { panturrilhaDegrau } from './panturrilha-degrau';
 export { panturrilha } from './panturrilha';
 export { panturrilhaB } from './panturrilha-b';
 export { panturrilhaSentadaHalter } from './panturrilha-sentada-halter';
+export { tricepsCorda } from './triceps-corda';
