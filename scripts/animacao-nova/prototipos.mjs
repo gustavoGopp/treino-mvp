@@ -45,6 +45,8 @@ function instantes(id) {
   return { novo, velho, nomes: ['começo', 'meio', fases[i].tipo === 'exc' ? 'embaixo' : 'fim'] };
 }
 
+/** O quadro parado de um erro: o começo (0) ou o fim (2) da primeira fase com movimento, conforme o `instante` da ficha. */
+const quando = (F, e) => (e.instante === F.fases.find((f) => f.tipo !== 'pausa').ate ? 2 : 0);
 const CAIXAS = new Map();
 const caixa = (id, vista, boneco, mini) => {
   const k = `${id}|${vista}|${boneco}|${mini ? 1 : 0}`;
@@ -74,7 +76,7 @@ function folha(id) {
   h += lin('Trajetória: hoje e novo', [cel(`hoje · ${NOME_VISTA[ex.vistas[0]]}`, svgHoje(id, ex.vistas[0], 'traj', fimV), { classe: 'hoje' }), cel(`novo · ${NOME_VISTA[ex.vistas[0]]}`, svgNovo(id, ex.vistas[0], 'traj', fim))]);
   h += lin('Erros: hoje e novo (no novo, o certo fica tracejado atrás e o errado em vermelho)', F.erros.flatMap((e) => {
     const iH = exHoje(id).errors.findIndex((x) => x.id === e.id);
-    return [...(iH >= 0 ? [cel(`hoje · ${e.titulo}`, svgHoje(id, e.vista, 'err', fimV, iH), { classe: 'hoje' })] : []), cel(`novo · ${e.titulo}`, svgNovo(id, e.vista, 'err', fim, { erro: e.id }))];
+    return [...(iH >= 0 ? [cel(`hoje · ${e.titulo}`, svgHoje(id, e.vista, 'err', I.velho[quando(F, e)], iH), { classe: 'hoje' })] : []), cel(`novo · ${e.titulo}`, svgNovo(id, e.vista, 'err', I.novo[quando(F, e)], { erro: e.id }))];
   }));
   const v0 = ex.vistas[0];
   h += lin('Tema escuro e a opção cor de pele', [
@@ -108,14 +110,14 @@ function folhaDosErros() {
     const F = m.EXERCICIOS[id].ficha, I = instantes(id);
     h += `<h2>${F.nome}</h2><div class="l">${F.erros.flatMap((e) => {
       const iH = exHoje(id).errors.findIndex((x) => x.id === e.id);
-      return [...(iH >= 0 ? [cel(`hoje · ${e.titulo} (${NOME_VISTA[e.vista]})`, svgHoje(id, e.vista, 'err', I.velho[2], iH), { classe: 'hoje', w: 400, h: 300 })] : []), cel(`novo · ${e.titulo} (${NOME_VISTA[e.vista]})`, svgNovo(id, e.vista, 'err', I.novo[2], { erro: e.id }), { w: 400, h: 300 })];
+      return [...(iH >= 0 ? [cel(`hoje · ${e.titulo} (${NOME_VISTA[e.vista]})`, svgHoje(id, e.vista, 'err', I.velho[quando(m.EXERCICIOS[id].ficha, e)], iH), { classe: 'hoje', w: 400, h: 300 })] : []), cel(`novo · ${e.titulo} (${NOME_VISTA[e.vista]})`, svgNovo(id, e.vista, 'err', I.novo[quando(m.EXERCICIOS[id].ficha, e)], { erro: e.id }), { w: 400, h: 300 })];
     }).join('')}</div>`;
   }
   return `<!doctype html><meta charset="utf-8"><style>${cssHoje}${cssNovo}
 body{margin:0;padding:22px 24px;background:#fff;color:#171b20;font:14px/1.4 system-ui,-apple-system,"Segoe UI",sans-serif}h1{font-size:24px;margin:0 0 2px}p.s{margin:0 0 6px;color:#4d5661;max-width:1200px}
 h2{font-size:15px;margin:14px 0 6px;border-top:2px solid #171b20;padding-top:6px}.l{display:flex;gap:8px;flex-wrap:wrap;align-items:flex-end;margin-bottom:8px}figure{margin:0}figcaption{font-size:12px;color:#464b51;margin-top:2px}
 .q{border-radius:10px;overflow:hidden;background:#f7f9fa}.q svg{width:100%;height:100%;display:block}.q.hoje svg{background:var(--stage)}
-</style><h1>Modo Erros: hoje × novo</h1><p class="s">No novo: a parte do corpo que erra fica em vermelho, a linha vermelha mostra onde ela está, a linha tracejada verde mostra onde deveria estar, o contorno tracejado é o corpo no movimento certo, e o nome do erro fica fora do corpo. Quadro: o fim da primeira fase com movimento.</p>${h}`;
+</style><h1>Modo Erros: hoje × novo</h1><p class="s">No novo: a parte do corpo que erra fica em vermelho, a linha vermelha mostra onde ela está, a linha tracejada verde mostra onde deveria estar, o contorno tracejado é o corpo no movimento certo, e o nome do erro fica fora do corpo. Quadro: o instante em que cada erro mais se afasta do certo (declarado na ficha).</p>${h}`;
 }
 
 /* ============================== a página que roda sozinha ============================== */

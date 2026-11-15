@@ -57,16 +57,49 @@ Tempo por quadro (CPU 4 vezes mais lenta, com outras tarefas rodando na mesma m�
 ### O que não ficou bom, ou não foi feito
 
 - **A mão na flexão vista de cima continua meio escondida.** É a geometria: na flexão, a mão fica debaixo do ombro e do braço. O desenho melhorou; a leitura dessa vista ainda é fraca.
-- **O antebraço na flexão fica uns 30° fora da vertical embaixo** (o cotovelo sai 13 cm para fora da mão), com as mãos 6 cm além dos ombros e os cotovelos a ~45°. De lado, o braço de perto aparece como uma forma meio quadrada. Não mexi: é pergunta para o treinador.
+- **O antebraço na flexão ficava uns 30° fora da vertical embaixo.** Corrigido depois da revisão (as mãos mais abertas): ficou em 18°; o revisor pede até 15°.
 - **Dois riscos pequenos na cintura** aparecem na flexão vista de cima, no começo (onde o tronco encontra a bacia).
 - **Lighthouse e bloqueio da tela do guia não foram medidos:** o motor novo ainda não está ligado ao app (a lista de exercícios aprovados está vazia). Só dá para medir quando a primeira âncora aprovada entrar.
 - **Celular de verdade:** não medido.
 - **`npm run test:e2e` não foi rodado:** o app não mudou. `npm run check` (896 testes) e `npm run auditoria:anatomia` passam.
 - **A revisão independente** foi disparada duas vezes. Na primeira, no modelo mais capaz, os dois revisores pararam por limite de uso antes de gravar o parecer. Refeita no modelo seguinte (Opus): ver abaixo.
+- **Decidido pelo Gustavo em 15/11/2026:** a pegada do goblet em concha fica ("pode ficar assim"); o corpo sobe no banco do supino ("a cabeça no banco está muito embaixo; de resto está tudo ótimo").
 
 ### A revisão independente
 
-REVISAO_PENDENTE
+Dois revisores automáticos (modelo Opus), um no papel de anatomista e outro no de treinador, olharam só as imagens, as tabelas e as regras, sem a minha conclusão. Os pareceres inteiros estão em `revisao-independente/anatomista.md` e `treinador.md`. Não são pessoas da área: ajudam a achar erro, e não substituem a rodada com um especialista (`docs/revisoes/r4-roteiro-especialista.md`).
+
+**Notas.** Anatomista: 3 de 5 em correção anatômica ("o esqueleto está bem medido; o desenho dos músculos e dos erros ainda ensina coisas erradas em pontos visíveis"). Treinador: 4 de 5 em técnica correta e 3 de 5 em "entende-se em 2 segundos".
+
+**A conclusão que eu tiro: o corpo ainda não está pronto para ser fechado.** O esqueleto e as medidas passaram; o desenho dos músculos, a escápula e parte dos erros precisam de uma rodada de correção antes dos lotes.
+
+Corrigido já, por ser objetivo e medido:
+
+| Achado | Quem achou | O que foi feito |
+|---|---|---|
+| Na flexão, o erro "quadril cai" atravessava o chão (9,5 cm abaixo dele) | anatomista | A descida do erro para onde a barriga encosta; a conferência passou a medir o chão também nos erros |
+| Na flexão, as mãos estavam estreitas: o cotovelo saía 13 cm para fora da mão e o antebraço ficava 30° fora da vertical | treinador | As mãos passaram de 6 para 12 cm além do centro do ombro (2 cm para fora da linha de fora do ombro, pela largura bideltoide do ANSUR II). O antebraço fica agora a 18° da vertical; o treinador pede até 15° |
+| "Ombros saem do banco no topo" e "Não alongar em cima" apareciam no quadro de baixo, onde o erro quase não existe | os dois | Cada erro ganhou na ficha o instante em que mais se afasta do certo, e as folhas usam esse quadro |
+| No supino, o quadril ficava na ponta do banco e sobrava banco acima da cabeça | treinador, e o Gustavo em 15/11 ("a cabeça no banco está muito embaixo") | O banco passou a ser posto pela cabeça: o topo dela fica a 3 cm da ponta |
+
+Para a rodada de correção (nada disto foi mexido):
+
+| # | Achado | Gravidade dada | O que proponho |
+|---|---|---|---|
+| 1 | O deltoide acende inteiro onde o conteúdo pede só a frente ou a parte de trás; na puxada de um braço, o trapézio acende inteiro, dos dois lados, inclusive a parte de cima (a que encolhe o ombro, o contrário da dica "ombro desce") | erro (os dois) | Desenhar as três porções do deltoide e separar o trapézio de cima do médio e inferior, por lado, antes de qualquer lote. É a decisão 11 da seção 9, e deixa de ser opcional |
+| 2 | Vistas do modo Músculos sem o principal: no goblet de frente nada acende embaixo e os adutores nunca aparecem; o peitoral some na flexão de cima; o dorsal some na puxada de lado | erro | A conferência passa a falhar quando o principal não aparece na vista; a vista padrão do modo Músculos é escolhida por medida (cuidado 10 do bloco B) |
+| 3 | Formas presas no lugar errado: o reto abdominal para 11 cm acima do púbis; o trapézio não sobe pelo pescoço nem chega ao acrômio, e a ponta de baixo fica 4,9 cm acima de T12; o peitoral termina no mamilo e não afina até o braço; o grande dorsal sobe até a espinha da escápula | erro e impreciso | Redesenhar essas quatro formas sobre os pontos da tabela. Muda o desenho aprovado: mostrar lado a lado antes |
+| 4 | A escápula não aparece no contorno com o braço para cima; "ombro encolhido" e "ombros saem do banco" ficam quase invisíveis | erro | O contorno do ombro e do trapézio acompanhar a escápula |
+| 5 | No fim da puxada o cotovelo dobra 162° (a mão chega ao queixo); com carga, o limite prático é perto de 145° | erro (anatomista), impreciso (treinador) | Rever a posição final. Afastar a pessoa da coluna não resolve sozinho (medido: 156° a 80 cm, 148° a 110 cm) |
+| 6 | No goblet, o erro "lombar arredonda" põe o tronco quase na horizontal e dobra no lugar errado; 34° de flexão sobre 50° de lordose nem chega a arredondar | erro | Refazer o erro: menos queda do tronco, a bacia girando para trás |
+| 7 | Na puxada vista de trás, o braço some contra a coluna escura; a seta "ombro desce" do guia de hoje sumiu | erro de leitura | Testar a vista de três quartos de trás como padrão; voltar com a seta |
+| 8 | A Trajetória perdeu os nomes das linhas e a linha de prumo do meio do pé | impreciso | Repor |
+| 9 | Pescoço quase ausente de lado; perfil sem as curvas da coluna nem nádega; a mão da flexão sem dedos de lado | impreciso | Parte é o desenho aprovado: levar ao Gustavo com imagem |
+| 10 | Faltam erros comuns: "quadril sobe antes do peito" (goblet), "girar o tronco" (puxada), "cabeça cai" (flexão), "punho dobrado" (supino) | impreciso | É conteúdo: vai para `pedidos-ao-conteudo.md` |
+| 11 | Anilha de 10 lb na cena e de 5 kg no texto do app; halter em libras | impreciso e gosto | Trocar as medidas dos objetos para as peças em kg |
+| 12 | Medidas provisórias: quadril 8,7 → cerca de 8,3; recuo de L5–S1 4,5 → cerca de 3; lordose cervical 30° → 16 a 20°; manter a altura de L5–S1 em 12 (e não 14,5, como a pesquisa sugeria) | impreciso | Aplicar junto com a rodada, medindo o efeito no desenho de lado |
+
+O que os dois disseram que melhorou e deve ficar: as proporções e o esqueleto medidos, o equipamento realista, o modo Técnica de lado, e o ritmo das quatro fichas (descida de 2 a 3 s, subida de 1 a 1,5 s), coerente com as fichas da técnica.
 
 ## 0. Depois do retorno do Gustavo (13/11/2026)
 

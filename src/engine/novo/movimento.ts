@@ -28,8 +28,10 @@ export const fichaSchema = z.object({
   /**
    * Erros desenhados. `destaca`: as partes do corpo que erram ('pernas', 'bracos', 'corpo'), pintadas na cor de erro;
    * `linha`: os pontos ligados por uma linha (a errada, cheia, e a certa, tracejada); `foco`: o ponto que leva o nome do erro.
+   * `instante`: o ponto do movimento (0 = posição inicial, 1 = final) em que o erro mais se afasta do certo; é o
+   * quadro parado do erro (folhas, miniatura e `prefers-reduced-motion`).
    */
-  erros: z.array(z.object({ id: z.string(), titulo: z.string(), vista: z.string(), oQueMuda: z.string(), destaca: z.array(z.enum(['pernas', 'bracos', 'corpo'])), linha: z.array(z.string()).min(2), foco: z.string() })),
+  erros: z.array(z.object({ id: z.string(), instante: z.number().min(0).max(1).default(1), titulo: z.string(), vista: z.string(), oQueMuda: z.string(), destaca: z.array(z.enum(['pernas', 'bracos', 'corpo'])), linha: z.array(z.string()).min(2), foco: z.string() })),
   simetrico: z.boolean(),
   /**
    * Rótulos de técnica (modo Técnica), por vista: o texto, o ponto do corpo de que ele fala e, se houver, a linha-guia.

@@ -200,6 +200,17 @@ export function conferir(ex: Exercicio, corpo: Corpo, qps = 60): Relatorio {
   let maisBaixo = 1e9;
   for (let i = 0; i < 8; i++) for (const { p } of pontosDoBoneco(quadros[Math.floor((i / 8) * n)]!.esq)) maisBaixo = Math.min(maisBaixo, p[1]);
   add('Chão', 'ponto mais baixo do corpo', `${f1(maisBaixo)} cm`, 'não pode passar de −1,5 cm (a sola e o joelho amassam um pouco)', maisBaixo >= -1.5 ? 'ok' : 'falha');
+  // o corpo do erro também não atravessa o chão (a revisão de 15/11/2026 achou o "quadril cai" da flexão 9,5 cm abaixo dele)
+  let maisBaixoNoErro = 1e9,
+    qualErro = '';
+  for (const er of F.erros)
+    for (let i = 0; i <= 6; i++)
+      for (const { p } of pontosDoBoneco(ex.quadro(corpo, i / 6, er.id).esq))
+        if (p[1] < maisBaixoNoErro) {
+          maisBaixoNoErro = p[1];
+          qualErro = er.titulo;
+        }
+  if (F.erros.length) add('Chão', 'ponto mais baixo do corpo nos erros desenhados', `${f1(maisBaixoNoErro)} cm (${qualErro})`, 'não pode passar de −1,5 cm', maisBaixoNoErro >= -1.5 ? 'ok' : 'falha');
 
   // 5) objetos: a carga não voa (fica na mão) e o corpo não atravessa caixas (banco, colchonete)
   for (const [nome] of Object.entries(quadros[0]!.marcas).filter(([k]) => k === 'halter')) {

@@ -144,6 +144,13 @@
     "nivel": "ok"
    },
    {
+    "grupo": "Chão",
+    "oQue": "ponto mais baixo do corpo nos erros desenhados",
+    "medido": "0 cm (Joelhos para dentro)",
+    "limite": "não pode passar de −1,5 cm",
+    "nivel": "ok"
+   },
+   {
     "grupo": "Objetos",
     "oQue": "a carga fica na mão: halter",
     "medido": "distância da mão ao centro do objeto de 10 a 10 cm",
@@ -417,6 +424,13 @@
     "nivel": "ok"
    },
    {
+    "grupo": "Chão",
+    "oQue": "ponto mais baixo do corpo nos erros desenhados",
+    "medido": "0 cm (Cotovelos abertos a ~90°)",
+    "limite": "não pode passar de −1,5 cm",
+    "nivel": "ok"
+   },
+   {
     "grupo": "Objetos",
     "oQue": "a carga fica na mão: halter",
     "medido": "distância da mão ao centro do objeto de 0 a 0 cm",
@@ -475,7 +489,7 @@
    {
     "grupo": "Provisórios",
     "oQue": "linhas da ficha do movimento sem número na ficha da técnica (escolha de desenho)",
-    "medido": "carga",
+    "medido": "cabeca.folgaNoBanco, carga",
     "limite": "cada uma precisa de fonte ou do ok do Gustavo",
     "nivel": "aviso"
    },
@@ -690,6 +704,13 @@
     "nivel": "ok"
    },
    {
+    "grupo": "Chão",
+    "oQue": "ponto mais baixo do corpo nos erros desenhados",
+    "medido": "1,1 cm (Jogar o tronco para trás)",
+    "limite": "não pode passar de −1,5 cm",
+    "nivel": "ok"
+   },
+   {
     "grupo": "Objetos",
     "oQue": "o corpo atravessa uma peça (banco, coluna)",
     "medido": "não atravessa",
@@ -846,7 +867,7 @@
    {
     "grupo": "Amplitudes",
     "oQue": "flexão do cotovelo",
-    "medido": "119,1°",
+    "medido": "114,3°",
     "limite": "média 148°, máximo observado 166° (cdc)",
     "nivel": "ok"
    },
@@ -874,7 +895,7 @@
    {
     "grupo": "Amplitudes",
     "oQue": "elevação do braço",
-    "medido": "61,7°",
+    "medido": "62,2°",
     "limite": "média 170°, máximo observado 192° (cdc)",
     "nivel": "ok"
    },
@@ -895,7 +916,7 @@
    {
     "grupo": "Amplitudes",
     "oQue": "pronação do antebraço (a partir do polegar para cima)",
-    "medido": "51,3°",
+    "medido": "44,7°",
     "limite": "média 80°, máximo observado 108° (cdc)",
     "nivel": "ok"
    },
@@ -956,6 +977,13 @@
     "nivel": "ok"
    },
    {
+    "grupo": "Chão",
+    "oQue": "ponto mais baixo do corpo nos erros desenhados",
+    "medido": "0 cm (Quadril cai)",
+    "limite": "não pode passar de −1,5 cm",
+    "nivel": "ok"
+   },
+   {
     "grupo": "Objetos",
     "oQue": "o corpo atravessa uma peça (banco, coluna)",
     "medido": "não atravessa",
@@ -965,7 +993,7 @@
    {
     "grupo": "Ritmo",
     "oQue": "maior salto de velocidade entre dois quadros (a 60 quadros por segundo)",
-    "medido": "16,5% da velocidade de pico (cotovelo direito, Subida · concêntrica); pico de 81,6 cm/s",
+    "medido": "16,5% da velocidade de pico (cotovelo direito, Subida · concêntrica); pico de 79,2 cm/s",
     "limite": "movimento suave: até 15%; acima de 25% é tranco",
     "nivel": "aviso"
    },
@@ -986,7 +1014,7 @@
    {
     "grupo": "Ficha",
     "oQue": "corpo em linha reta da cabeça aos calcanhares (consenso)",
-    "medido": "de lado, ombro, quadril e tornozelo fazem no mínimo 177,3° (180° = linha reta)",
+    "medido": "de lado, ombro, quadril e tornozelo fazem no mínimo 177,2° (180° = linha reta)",
     "limite": "como a ficha pede",
     "nivel": "ok"
    },
@@ -1000,7 +1028,7 @@
    {
     "grupo": "Ficha",
     "oQue": "cotovelos a meio caminho entre o tronco e os lados (consenso)",
-    "medido": "embaixo, o braço faz 41,3° com o tronco, visto de cima",
+    "medido": "embaixo, o braço faz 44° com o tronco, visto de cima",
     "limite": "como a ficha pede",
     "nivel": "ok"
    },
@@ -1028,36 +1056,36 @@
   ],
   "angulos": {
    "joelho": [
-    3.999999999998673,
-    4.0000000000006795
+    3.9999999999987645,
+    4.000000000000588
    ],
    "cotovelo": [
-    9.999999999216964,
-    119.12346330440263
+    9.999999999933195,
+    114.33958685231788
    ],
    "quadril": [
-    2.019192447331765,
-    2.019192447332514
+    2.019192447331771,
+    2.0191924473325193
    ],
    "ombro": [
-    39.45326541800303,
-    61.659070304767724
+    42.89793054072738,
+    62.20749864633706
    ],
    "dorsiflexao": [
     11.980807552667187,
     11.980807552667912
    ],
    "punho": [
-    77.50381551709971,
-    94.0252327762873
+    78.86372382109451,
+    94.00541836234875
    ],
    "pronacao": [
-    40.79097748927052,
-    51.3370195571118
+    39.8904684180946,
+    44.72432991439507
    ],
    "clavicula": [
-    11.897704511984987,
-    12.885845505615716
+    12.056662583522598,
+    12.916731350202259
    ]
   },
   "falhas": 0,

@@ -9,7 +9,7 @@ import { bancoReto, chao, halter } from '../pecas';
 import type { Peca } from '../pecas';
 import type { Corpo } from '../tabelas';
 import { obj } from '../tabelas';
-import { mix, norm } from '../vec';
+import { mix, norm, noRef } from '../vec';
 import type { V3 } from '../vec';
 
 const F = fichaSchema.parse(ficha);
@@ -36,8 +36,13 @@ function quadro(corpo: Corpo, u: number, erro?: string): Quadro {
   const w = f('pes.meiaDistancia');
   const perna = (k: Lado): PosePerna => ({ pe: { bola: [sinal(k) * w, 0, zPelve + m('coxa.comp') + 9], dir: [sinal(k) * 0.2, 0, 1] }, polo: [sinal(k) * 0.35, 1, 0.4] });
   const e = resolverMembros(t, { R: braco('R'), L: braco('L') }, { R: perna('R'), L: perna('L') });
-  const prims = [chao(-90, 90, -90, 130), ...bancoReto(0, zPelve - obj('bancoReto', 'comp') / 2 + 22)];
-  const pecas: Peca[] = [{ t: 'bancoReto', x0: 0, z0: zPelve - obj('bancoReto', 'comp') / 2 + 22 }];
+  // O banco é posto pela cabeça: ela fica apoiada, com o topo a `cabeca.folgaNoBanco` cm da ponta do banco, e o
+  // resto do banco segue para os pés (glúteo apoiado; as coxas saem pela outra ponta). Antes o banco era posto pelo
+  // quadril, que ficava a 22 cm da ponta, e sobravam 15 cm de banco acima da cabeça.
+  const zTopoDaCabeca = noRef(t.cabeca, [0, m('cabeca.tragionAoTopo'), 0])[2];
+  const zBanco = zTopoDaCabeca - f('cabeca.folgaNoBanco') + obj('bancoReto', 'comp') / 2;
+  const prims = [chao(-90, 90, -90, 130), ...bancoReto(0, zBanco)];
+  const pecas: Peca[] = [{ t: 'bancoReto', x0: 0, z0: zBanco }];
   const cargas = [];
   for (const k of ['R', 'L'] as Lado[]) {
     const L = e.lado[k];

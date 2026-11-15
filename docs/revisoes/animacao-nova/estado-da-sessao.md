@@ -6,7 +6,11 @@ Comece por **`proposta.md`, seção 0-B**: o que esta sessão fez, o que a confe
 
 ## Onde a sessão parou
 
-**Parada obrigatória da seção 5 do prompt: o corpo só é dado como fechado com o ok do Gustavo.** Nenhum lote começou. O que falta para ele decidir está na lista "Decisões abertas", abaixo, e deve ser levado uma por vez, com imagem.
+**Parada obrigatória da seção 5 do prompt: o corpo só é dado como fechado com o ok do Gustavo.** Nenhum lote começou.
+
+**A revisão independente mudou a recomendação: o corpo ainda não está pronto para fechar.** O esqueleto e as medidas passaram; o desenho dos músculos (porções do deltoide e do trapézio, quatro formas presas no lugar errado), a escápula, o fim da puxada e dois erros precisam de uma rodada de correção. A lista, com o que proponho em cada item, está na `proposta.md`, seção 0-B, "A revisão independente".
+
+**Já decidido pelo Gustavo em 15/11:** a pegada do goblet em concha fica; o corpo subiu no banco do supino (a cabeça estava baixa demais). As outras decisões estão na lista abaixo e devem ser levadas uma por vez, com imagem.
 
 ## O que esta sessão fez (14 e 15/11)
 
@@ -22,7 +26,8 @@ Comece por **`proposta.md`, seção 0-B**: o que esta sessão fez, o que a confe
 
 Da etapa 1 (proposta, seção 9), continuam todas. As desta sessão:
 
-1. **A mão espalmada nova e a pegada do goblet em concha:** ficaram como ele quer? (`parada-do-corpo/1-flexao-de-cima.png` e `2-goblet-pegada.png`)
+0. **Fazer a rodada de correção antes de fechar o corpo?** (recomendação: sim; ver a proposta, seção 0-B)
+1. **A mão espalmada nova:** ficou como ele quer? (`parada-do-corpo/1-flexao-de-cima.png`). A pegada do goblet já foi aprovada em 15/11.
 2. **Os rótulos de técnica** fora do corpo, com fio: é assim? (`parada-do-corpo/3-rotulos.png`)
 3. **A ponta do trapézio** 4,9 cm acima de onde a fonte diz, e **o abdômen** que termina na cintura: esticar as duas formas muda o desenho aprovado.
 4. **As porções que o desenho não separa** (deltoide, peitoral de cima, trapézio, romboides, redondo maior, eretores): quais desenhar antes dos lotes 3 e 4.

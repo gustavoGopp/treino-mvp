@@ -9,6 +9,7 @@
   "desenho": "Escolha de desenho desta animação, dentro do que a ficha pede; a conferência mede o resultado"
  },
  "param": {
+  "cabeca.folgaNoBanco": { "v": 3, "un": "cm", "selo": "desenho", "fonte": "desenho", "o": "do topo da cabeça à ponta do banco: a ficha pede glúteo, costas e cabeça apoiados no banco e não dá número (pedido do Gustavo em 15/11/2026: a cabeça estava baixa demais no banco)" },
   "cotovelos.doTronco": { "v": 50, "un": "graus", "selo": "consenso", "fonte": "tecnica08", "o": "cotovelos a ~30–60° do tronco" },
   "braco.cima": { "v": 80, "un": "graus", "selo": "consenso", "fonte": "guia", "o": "topo: halteres sobre os ombros, cotovelos quase estendidos (braço a 80° acima da horizontal: cotovelo a 10°)" },
   "braco.baixo": { "v": -14, "un": "graus", "selo": "consenso", "fonte": "guia", "o": "embaixo: cotovelos um pouco abaixo da linha do tronco (braço abaixo da horizontal)" },
@@ -34,9 +35,9 @@
   { "id": "halter-sobre-o-ombro-no-topo", "pede": "no topo, os halteres ficam sobre os ombros", "selo": "consenso", "fonte": "guia" }
  ],
  "erros": [
-  { "id": "cot", "titulo": "Cotovelos abertos a ~90°", "vista": "cima", "oQueMuda": "o braço fica perpendicular ao tronco", "destaca": ["bracos"], "linha": ["ombro", "cotovelo", "punho"], "foco": "cotovelo" },
-  { "id": "escap", "titulo": "Ombros saem do banco no topo", "vista": "lateral", "oQueMuda": "a clavícula vai à frente e o ombro descola do banco", "destaca": ["bracos"], "linha": ["c7", "ombro", "cotovelo"], "foco": "ombro" },
-  { "id": "curta", "titulo": "Descer pouco", "vista": "lateral", "oQueMuda": "para com o braço 28° acima da horizontal", "destaca": ["bracos"], "linha": ["ombro", "cotovelo", "punho"], "foco": "cotovelo" }
+  { "id": "cot", "instante": 1, "titulo": "Cotovelos abertos a ~90°", "vista": "cima", "oQueMuda": "o braço fica perpendicular ao tronco", "destaca": ["bracos"], "linha": ["ombro", "cotovelo", "punho"], "foco": "cotovelo" },
+  { "id": "escap", "instante": 0, "titulo": "Ombros saem do banco no topo", "vista": "lateral", "oQueMuda": "a clavícula vai à frente e o ombro descola do banco", "destaca": ["bracos"], "linha": ["c7", "ombro", "cotovelo"], "foco": "ombro" },
+  { "id": "curta", "instante": 1, "titulo": "Descer pouco", "vista": "lateral", "oQueMuda": "para com o braço 28° acima da horizontal", "destaca": ["bracos"], "linha": ["ombro", "cotovelo", "punho"], "foco": "cotovelo" }
  ],
  "simetrico": true,
  "rotulos": [

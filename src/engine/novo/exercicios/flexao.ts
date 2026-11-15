@@ -52,6 +52,12 @@ function peitoAoChao(e: Esq): number {
   }
   return min;
 }
+/** Altura do ponto mais baixo do tronco e da bacia (cm), na superfície do Boneco. */
+function maisBaixoDoTronco(e: Esq): number {
+  let min = 1e9;
+  for (const { p, parte } of pontosDoBoneco(e)) if (parte === 'tronco' || parte === 'pelve') min = Math.min(min, p[1]);
+  return min;
+}
 function calibrar(corpo: Corpo) {
   let c = CACHE.get(corpo);
   if (c) return c;
@@ -70,7 +76,10 @@ function quadro(corpo: Corpo, u: number, erro?: string): Quadro {
   const c = calibrar(corpo);
   const fundo = erro === 'curta' ? f('erro.curta.fracao') : 1;
   const beta = mix(c.cima, c.baixo, u * fundo);
-  const e = prancha(corpo, beta, c.zMao, { cot: erro === 'cot' ? mix(f('cotovelos.doTronco'), f('erro.cot.doTronco'), Math.min(1, u * 1.6)) : undefined, quadril: erro === 'quadril' ? f('erro.quadril.queda') * (0.55 + 0.45 * u) : 0, retr: f('escapula.retracaoEmbaixo') * u });
+  const o = { cot: erro === 'cot' ? mix(f('cotovelos.doTronco'), f('erro.cot.doTronco'), Math.min(1, u * 1.6)) : undefined, quadril: erro === 'quadril' ? f('erro.quadril.queda') * (0.55 + 0.45 * u) : 0, retr: f('escapula.retracaoEmbaixo') * u };
+  let e = prancha(corpo, beta, c.zMao, o);
+  // com o quadril caído, a barriga chega ao chão antes do peito: a descida para onde o corpo encosta (1 cm de folga)
+  if (erro === 'quadril' && maisBaixoDoTronco(e) < 1) e = prancha(corpo, resolver1((b) => maisBaixoDoTronco(prancha(corpo, b, c.zMao, o)) - 1, beta, 45, 20), c.zMao, o);
   return { esq: e, prims: [chao(-80, 80, -60, 200)], fios: [], cargas: [], marcas: {} };
 }
 

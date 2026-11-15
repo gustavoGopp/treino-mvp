@@ -272,7 +272,7 @@ Ficha da técnica: `docs/pesquisa/animacoes/flexao.md`. Movimento simétrico (os
 |---|---|---|---|---|
 | `cotovelo.cima` | 10 graus | consenso | guia | em cima: braços estendidos (sem travar) |
 | `peito.aoChao` | 5 cm | consenso | guia | embaixo: peito a poucos centímetros do chão |
-| `maos.alemDoOmbro` | 6 cm | consenso | guia | mãos um pouco mais abertas que os ombros (de cada lado) |
+| `maos.alemDoOmbro` | 12 cm | consenso | guia | mãos um pouco mais abertas que os ombros: a borda de dentro da mão fica 2 cm para fora da linha de fora do ombro (meia largura bideltoide 23,9 + meia largura da mão 4,3 + 2 = 30,2 cm do meio do corpo; o centro do ombro fica a 18,4). Antes eram 6 cm, que punham a mão debaixo do ombro, e não para fora dele |
 | `maos.abaixoDoOmbro` | 13 cm | consenso | guia | mãos na linha do meio do peito (distância do ombro em direção aos pés, com o corpo embaixo) |
 | `cotovelos.doTronco` | 45 graus | consenso | guia | cotovelos indo para trás, a meio caminho do tronco |
 | `pes.meiaDistancia` | 8,7 cm | consenso | guia | pés na largura do quadril |
@@ -413,6 +413,7 @@ Ficha da técnica: `docs/pesquisa/animacoes/supino-reto.md`. Movimento simétric
 
 | parâmetro | valor | selo | fonte | o que é |
 |---|---|---|---|---|
+| `cabeca.folgaNoBanco` | 3 cm | desenho | desenho | do topo da cabeça à ponta do banco: a ficha pede glúteo, costas e cabeça apoiados no banco e não dá número (pedido do Gustavo em 15/11/2026: a cabeça estava baixa demais no banco) |
 | `cotovelos.doTronco` | 50 graus | consenso | tecnica08 | cotovelos a ~30–60° do tronco |
 | `braco.cima` | 80 graus | consenso | guia | topo: halteres sobre os ombros, cotovelos quase estendidos (braço a 80° acima da horizontal: cotovelo a 10°) |
 | `braco.baixo` | -14 graus | consenso | guia | embaixo: cotovelos um pouco abaixo da linha do tronco (braço abaixo da horizontal) |

@@ -4,10 +4,10 @@ Gerado por `npm run conferir:animacao` (60 quadros por segundo, ciclo inteiro). 
 
 | animação | quadros | itens | falhas | avisos |
 |---|---|---|---|---|
-| goblet | 279 | 32 | 0 | 2 |
-| supino-reto | 291 | 32 | 0 | 2 |
-| puxada-unilateral | 240 | 32 | 0 | 4 |
-| flexao | 225 | 32 | 0 | 5 |
+| goblet | 279 | 33 | 0 | 2 |
+| supino-reto | 291 | 33 | 0 | 2 |
+| puxada-unilateral | 240 | 33 | 0 | 4 |
+| flexao | 225 | 33 | 0 | 5 |
 
 "ok" = dentro do limite; "AVISO" = possível, mas fora da média ou ainda provisório (precisa do ok do Gustavo); "FALHA" = não pode ir para o app.
 
@@ -39,6 +39,7 @@ Gerado por `npm run conferir:animacao` (60 quadros por segundo, ciclo inteiro). 
 | Contatos | preso no lugar: pe.R | desloca no máximo 0 cm no ciclo | tolerância 0,1 cm | ok |
 | Contatos | preso no lugar: pe.L | desloca no máximo 0 cm no ciclo | tolerância 0,1 cm | ok |
 | Chão | ponto mais baixo do corpo | 0 cm | não pode passar de −1,5 cm (a sola e o joelho amassam um pouco) | ok |
+| Chão | ponto mais baixo do corpo nos erros desenhados | 0 cm (Joelhos para dentro) | não pode passar de −1,5 cm | ok |
 | Objetos | a carga fica na mão: halter | distância da mão ao centro do objeto de 10 a 10 cm | não pode variar mais de 0,5 cm no ciclo | ok |
 | Objetos | o corpo atravessa uma peça (banco, coluna) | não atravessa | tolerância 2,5 cm (o corpo amassa o estofado) | ok |
 | Ritmo | maior salto de velocidade entre dois quadros (a 60 quadros por segundo) | 6,1% da velocidade de pico (joelho direito, Subida · concêntrica); pico de 105,8 cm/s | movimento suave: até 15%; acima de 25% é tranco | ok |
@@ -81,6 +82,7 @@ Gerado por `npm run conferir:animacao` (60 quadros por segundo, ciclo inteiro). 
 | Contatos | preso no lugar: pe.L | desloca no máximo 0 cm no ciclo | tolerância 0,1 cm | ok |
 | Contatos | preso no lugar: pelve | desloca no máximo 0 cm no ciclo | tolerância 0,1 cm | ok |
 | Chão | ponto mais baixo do corpo | 0 cm | não pode passar de −1,5 cm (a sola e o joelho amassam um pouco) | ok |
+| Chão | ponto mais baixo do corpo nos erros desenhados | 0 cm (Cotovelos abertos a ~90°) | não pode passar de −1,5 cm | ok |
 | Objetos | a carga fica na mão: halter | distância da mão ao centro do objeto de 0 a 0 cm | não pode variar mais de 0,5 cm no ciclo | ok |
 | Objetos | o corpo atravessa uma peça (banco, coluna) | não atravessa | tolerância 2,5 cm (o corpo amassa o estofado) | ok |
 | Ritmo | maior salto de velocidade entre dois quadros (a 60 quadros por segundo) | 4,1% da velocidade de pico (mão direita, Subida · concêntrica); pico de 71,6 cm/s | movimento suave: até 15%; acima de 25% é tranco | ok |
@@ -89,7 +91,7 @@ Gerado por `npm run conferir:animacao` (60 quadros por segundo, ciclo inteiro). 
 | Ficha | antebraço na vertical durante todo o movimento (consenso) | o antebraço desvia no máximo 0° da vertical | como a ficha pede | ok |
 | Ficha | cotovelos a 30–60° do tronco (consenso) | embaixo, o braço faz 50° com o tronco, visto de cima | como a ficha pede | ok |
 | Ficha | no topo, os halteres ficam sobre os ombros (consenso) | no topo, o halter fica a 5,3 cm da vertical do ombro | como a ficha pede | ok |
-| Provisórios | linhas da ficha do movimento sem número na ficha da técnica (escolha de desenho) | carga | cada uma precisa de fonte ou do ok do Gustavo | AVISO |
+| Provisórios | linhas da ficha do movimento sem número na ficha da técnica (escolha de desenho) | cabeca.folgaNoBanco, carga | cada uma precisa de fonte ou do ok do Gustavo | AVISO |
 | Músculos | o realçado é o do conteúdo (principal: peito; secundário: ombro_anterior, triceps) | principal e secundário batem com o conteúdo | nenhuma diferença | ok |
 | Músculos | diferenças aceitas, a confirmar com o Gustavo | Deltoide: o conteúdo pede ombro_anterior, e o desenho só tem o músculo inteiro | cada uma precisa do ok dele | AVISO |
 
@@ -123,6 +125,7 @@ Gerado por `npm run conferir:animacao` (60 quadros por segundo, ciclo inteiro). 
 | Contatos | preso no lugar: pe.R | desloca no máximo 0 cm no ciclo | tolerância 0,1 cm | ok |
 | Contatos | preso no lugar: pe.L | desloca no máximo 0 cm no ciclo | tolerância 0,1 cm | ok |
 | Chão | ponto mais baixo do corpo | 1,1 cm | não pode passar de −1,5 cm (a sola e o joelho amassam um pouco) | ok |
+| Chão | ponto mais baixo do corpo nos erros desenhados | 1,1 cm (Jogar o tronco para trás) | não pode passar de −1,5 cm | ok |
 | Objetos | o corpo atravessa uma peça (banco, coluna) | não atravessa | tolerância 2,5 cm (o corpo amassa o estofado) | ok |
 | Cabos | cabo: a pilha sobe o curso do cabo dividido pela relação da máquina (2:1) | o cabo anda 63,4 cm e a pilha sobe 31,7 cm | esperado 31,7 cm; tolerância 0,3 cm | ok |
 | Ritmo | maior salto de velocidade entre dois quadros (a 60 quadros por segundo) | 7,4% da velocidade de pico (cotovelo direito, Puxada · concêntrica); pico de 157,5 cm/s | movimento suave: até 15%; acima de 25% é tranco | ok |
@@ -138,7 +141,7 @@ Gerado por `npm run conferir:animacao` (60 quadros por segundo, ciclo inteiro). 
 
 225 quadros conferidos. 0 falha(s), 5 aviso(s).
 
-Ângulos no ciclo (lado direito, graus): joelho 4 a 4; cotovelo 10 a 119; quadril 2 a 2; ombro 39 a 62; dorsiflexao 12 a 12; punho 78 a 94; pronacao 41 a 51; clavicula 12 a 13.
+Ângulos no ciclo (lado direito, graus): joelho 4 a 4; cotovelo 10 a 114; quadril 2 a 2; ombro 43 a 62; dorsiflexao 12 a 12; punho 79 a 94; pronacao 40 a 45; clavicula 12 a 13.
 
 | grupo | o que foi medido | resultado | limite | |
 |---|---|---|---|---|
@@ -148,14 +151,14 @@ Gerado por `npm run conferir:animacao` (60 quadros por segundo, ciclo inteiro). 
 | Proporções | comprimento do osso: perna | desvio máximo 0 cm | tabela: 42,1 cm; tolerância 0,1 cm | ok |
 | Proporções | membro que não alcança o alvo | falta máxima 0 cm | tolerância 0,1 cm | ok |
 | Amplitudes | flexão do joelho (máxima no ciclo) | 4° | média 140°, máximo observado 164° (cdc) | ok |
-| Amplitudes | flexão do cotovelo | 119,1° | média 148°, máximo observado 166° (cdc) | ok |
+| Amplitudes | flexão do cotovelo | 114,3° | média 148°, máximo observado 166° (cdc) | ok |
 | Amplitudes | flexão do quadril | 2° | média 132°, máximo observado 159° (cdc) | ok |
 | Amplitudes | extensão do quadril | 0° | média 18,5°, máximo observado 42° (cdc) | ok |
 | Amplitudes | abertura do quadril para o lado | 0° | média 40°, máximo observado 60° (aaos) | ok |
-| Amplitudes | elevação do braço | 61,7° | média 170°, máximo observado 192° (cdc) | ok |
+| Amplitudes | elevação do braço | 62,2° | média 170°, máximo observado 192° (cdc) | ok |
 | Amplitudes | dorsiflexão do tornozelo | 12° | média 14,8°, máximo observado 48° (cdc) | ok |
 | Amplitudes | flexão plantar do tornozelo | 0° | média 56,7°, máximo observado 90° (cdc) | ok |
-| Amplitudes | pronação do antebraço (a partir do polegar para cima) | 51,3° | média 80°, máximo observado 108° (cdc) | ok |
+| Amplitudes | pronação do antebraço (a partir do polegar para cima) | 44,7° | média 80°, máximo observado 108° (cdc) | ok |
 | Amplitudes | supinação do antebraço | 0° | média 87,5°, máximo observado 131° (cdc) | ok |
 | Amplitudes | extensão do punho | 94° | média 70°, máximo observado 95° (aaos) | AVISO |
 | Amplitudes | extensão dos dedos do pé | 76,8° | média 70°, máximo observado 90° (aaos) | AVISO |
@@ -164,13 +167,14 @@ Gerado por `npm run conferir:animacao` (60 quadros por segundo, ciclo inteiro). 
 | Contatos | preso no lugar: mao.R | desloca no máximo 0 cm no ciclo | tolerância 0,1 cm | ok |
 | Contatos | preso no lugar: mao.L | desloca no máximo 0 cm no ciclo | tolerância 0,1 cm | ok |
 | Chão | ponto mais baixo do corpo | 0 cm | não pode passar de −1,5 cm (a sola e o joelho amassam um pouco) | ok |
+| Chão | ponto mais baixo do corpo nos erros desenhados | 0 cm (Quadril cai) | não pode passar de −1,5 cm | ok |
 | Objetos | o corpo atravessa uma peça (banco, coluna) | não atravessa | tolerância 2,5 cm (o corpo amassa o estofado) | ok |
-| Ritmo | maior salto de velocidade entre dois quadros (a 60 quadros por segundo) | 16,5% da velocidade de pico (cotovelo direito, Subida · concêntrica); pico de 81,6 cm/s | movimento suave: até 15%; acima de 25% é tranco | AVISO |
+| Ritmo | maior salto de velocidade entre dois quadros (a 60 quadros por segundo) | 16,5% da velocidade de pico (cotovelo direito, Subida · concêntrica); pico de 79,2 cm/s | movimento suave: até 15%; acima de 25% é tranco | AVISO |
 | Simetria | esquerda contra o espelho da direita (mão, cotovelo, joelho, tornozelo) | diferença máxima 0 cm | tolerância 0,1 cm | ok |
 | Ciclo | o último quadro emenda no primeiro | distância máxima 0 cm | até 0,5 cm | ok |
-| Ficha | corpo em linha reta da cabeça aos calcanhares (consenso) | de lado, ombro, quadril e tornozelo fazem no mínimo 177,3° (180° = linha reta) | como a ficha pede | ok |
+| Ficha | corpo em linha reta da cabeça aos calcanhares (consenso) | de lado, ombro, quadril e tornozelo fazem no mínimo 177,2° (180° = linha reta) | como a ficha pede | ok |
 | Ficha | embaixo, o peito fica a poucos centímetros do chão (consenso) | embaixo, o peito fica a 5 cm do chão | como a ficha pede | ok |
-| Ficha | cotovelos a meio caminho entre o tronco e os lados (consenso) | embaixo, o braço faz 41,3° com o tronco, visto de cima | como a ficha pede | ok |
+| Ficha | cotovelos a meio caminho entre o tronco e os lados (consenso) | embaixo, o braço faz 44° com o tronco, visto de cima | como a ficha pede | ok |
 | Provisórios | linhas da ficha do movimento sem número na ficha da técnica (escolha de desenho) | tornozelo.dorsiflexao, escapula.retracaoEmbaixo | cada uma precisa de fonte ou do ok do Gustavo | AVISO |
 | Músculos | o realçado é o do conteúdo (principal: peito; secundário: triceps, ombro_anterior) | principal e secundário batem com o conteúdo | nenhuma diferença | ok |
 | Músculos | diferenças aceitas, a confirmar com o Gustavo | Deltoide: o conteúdo pede ombro_anterior, e o desenho só tem o músculo inteiro; Reto abdominal aparece como "só ajuda a firmar", fora da lista do conteúdo | cada uma precisa do ok dele | AVISO |
