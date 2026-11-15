@@ -6,6 +6,7 @@ import { LADOS } from '../esqueleto';
 import { angulosDoLado, f1, faixa } from '../conferir-util';
 import type { Regra } from '../conferir-util';
 import type { Quadro } from '../movimento';
+import { obj } from '../tabelas';
 import { dist, dot, norm, paraRef, sub } from '../vec';
 import type { V3 } from '../vec';
 
@@ -217,5 +218,26 @@ export const regrasDosElasticos: Record<string, Regra> = {
     const [a, b] = faixa(naMao),
       [c, d] = faixa(entre);
     return { medido: `o centro de cada mão fica a ${f1(a)}–${f1(b)} cm do elástico; as mãos ficam a ${f1(c)}–${f1(d)} cm uma da outra`, ok: b <= 0.5 };
+  },
+  // ----- face pull com elástico -----
+  'elastico-face-pull-ancora-na-altura-da-testa': (q, corpo) => {
+    // a âncora (a marca `ancora`) à frente do corpo e na altura da testa: entre o trágio e o alto da cabeça, ou um
+    // pouco acima (até 10 cm acima do alto da cabeça), como a polia do face pull
+    const x = q[0]!;
+    const a = x.marcas.ancora!;
+    const r = a[1] - x.esq.cabeca.o[1];
+    const frente = a[2] - Math.max(...pontosDoBoneco(x.esq).map((p) => p.p[2]));
+    return { medido: `a alça da âncora fica ${f1(r)} cm acima do trágio (o alto da cabeça fica ${f1(corpo.m('cabeca.tragionAoTopo'))} cm acima) e ${f1(frente)} cm à frente das mãos estendidas`, ok: r >= 4 && r <= corpo.m('cabeca.tragionAoTopo') + 10 && frente > 20 };
+  },
+  'elastico-face-pull-esticado-no-comeco': (q) => {
+    // com os braços estendidos o tubo já está esticado (de 1,05 a 1,4 vez o comprimento em repouso), e ele estica mais
+    // com as mãos perto do rosto: o comprimento cresce do começo ao fim da puxada
+    const repouso = obj(q[0]!.fios.find((x) => x.id === 'elastico')?.objeto ?? 'elastico', 'comp');
+    const c = q.map((x) => x.fios.find((y) => y.id === 'elastico')!.comp / repouso);
+    const a = c[0]!,
+      b = c[c.length - 1]!;
+    let cresce = true;
+    for (let i = 1; i < c.length; i++) if (c[i]! < c[i - 1]! - 0.002) cresce = false;
+    return { medido: `com os braços estendidos o tubo estica ${f1(a)} vezes; no fim, ${f1(b)} vezes; ${cresce ? 'cresce' : 'não cresce'} o caminho todo`, ok: a >= 1.05 && a <= 1.4 && b > a + 0.2 && cresce };
   },
 };
