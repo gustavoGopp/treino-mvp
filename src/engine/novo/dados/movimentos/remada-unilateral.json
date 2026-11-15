@@ -1,0 +1,72 @@
+{
+ "id": "remada-unilateral",
+ "nome": "Remada unilateral com halter apoiada no banco",
+ "fichaDaTecnica": "docs/pesquisa/animacoes/remada-unilateral.md",
+ "fontes": {
+  "ficha": "Ficha da técnica (docs/pesquisa/animacoes/remada-unilateral.md): joelho e mão do mesmo lado no banco plano, mão embaixo do ombro, o outro pé no chão; costas retas, quase paralelas ao chão (~15° acima da horizontal), sem girar; cotovelo para trás e em direção ao quadril, halter termina ao lado do quadril; pegada neutra; consenso de treinadores (nsca2021, não verificado)",
+  "app": "Cartão do app (src/conteudo/exercicios/remada-unilateral.json): o outro pé um pouco para o lado com o joelho levemente dobrado, ombro solto para baixo no começo, cotovelo passando a linha do tronco no fim, ~1 s puxando, 1 s parado, ~2 s voltando, as dicas e os erros",
+  "hoje": "Animação aprovada no guia de hoje (src/engine/exercicios/remada-unilateral.ts): as escápulas (proR +6 no começo, −6 no fim), o giro do erro (−18) e as curvas do erro de arredondar, que a ficha não dá em número",
+  "objetos": "src/engine/novo/dados/objetos.json: o banco reto e o halter",
+  "desenho": "Escolha de desenho desta animação, dentro do que a ficha pede; a conferência mede o resultado"
+ },
+ "param": {
+  "tronco.inclinacao": {"v": 75, "un": "graus", "selo": "consenso", "fonte": "ficha", "o": "costas quase paralelas ao chão: o peito inclina 75° da vertical (15° acima da horizontal), parado a série toda"},
+  "cervical": {"v": -8, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "pescoço na linha das costas, um pouco estendido: o olhar vai ao chão um pouco à frente"},
+  "cabeca": {"v": 0, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "cabeça na linha do pescoço"},
+  "apoio.cotovelo": {"v": 6, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "o braço de apoio quase estendido, sem travar; daí sai o ângulo da coxa de apoio"},
+  "apoio.maoAFrente": {"v": 0, "un": "cm", "selo": "consenso", "fonte": "ficha", "o": "a mão de apoio embaixo do ombro (o meio da palma na vertical do ombro)"},
+  "apoio.maoParaDentro": {"v": 2, "un": "cm", "selo": "desenho", "fonte": "desenho", "o": "a mão de apoio um pouco para dentro da linha do ombro, sobre o estofado"},
+  "joelho.afunda": {"v": 0.5, "un": "cm", "selo": "desenho", "fonte": "desenho", "o": "o joelho de apoio amassa o estofado meio centímetro"},
+  "canela.desce": {"v": 3, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "a canela de apoio deitada no estofado, um pouco inclinada para trás (o joelho é mais grosso que o tornozelo)"},
+  "pe.R.paraFora": {"v": 10, "un": "cm", "selo": "consenso", "fonte": "app", "o": "o outro pé no chão, 'um pouco para o lado': 10 cm para fora da linha do quadril"},
+  "joelho.R": {"v": 10, "un": "graus", "selo": "consenso", "fonte": "app", "o": "o joelho do pé no chão 'levemente dobrado'"},
+  "banco.alemDaMao": {"v": 6, "un": "cm", "selo": "desenho", "fonte": "desenho", "o": "a ponta da frente do banco fica 6 cm além dos dedos da mão de apoio"},
+  "braco.inicio.atras": {"v": 3, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "começo: braço estendido, pendurado embaixo do ombro (o cotovelo dobra só 3°, sem travar)"},
+  "braco.inicio.fora": {"v": 8, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "começo: o braço pende quase na vertical do ombro, um pouco para fora (o halter passa ao lado do joelho)"},
+  "braco.fim.alemDasCostas": {"v": 20, "un": "graus", "selo": "consenso", "fonte": "app", "o": "fim: 'cotovelo passando a linha do tronco': o braço fica 20° além da linha das costas"},
+  "braco.fim.fora": {"v": 16, "un": "graus", "selo": "consenso", "fonte": "app", "o": "fim: cotovelo 'perto do corpo': o braço se afasta só 16° do lado do tronco, o bastante para o halter passar ao lado do quadril"},
+  "escapula.prot.inicio": {"v": 6, "un": "graus", "selo": "desenho", "fonte": "hoje", "o": "começo: 'ombro solto um pouco para baixo': a escápula vai à frente (hoje: +6)"},
+  "escapula.retr.fim": {"v": 10, "un": "graus", "selo": "desenho", "fonte": "hoje", "o": "fim: a escápula se junta à coluna (hoje: −6; aqui −10, como na remada na suspensão, porque o ritmo do ombro devolve parte do recuo)"},
+  "escapula.elev.inicio": {"v": 1, "un": "graus", "selo": "desenho", "fonte": "hoje", "o": "começo: a escápula como hoje (+1)"},
+  "escapula.elev.fim": {"v": -1, "un": "graus", "selo": "desenho", "fonte": "hoje", "o": "fim: ombro baixo, longe da orelha (hoje: −1)"},
+  "carga": {"v": 11.3, "un": "kg", "selo": "desenho", "fonte": "objetos", "o": "o halter desenhado (25 lb), na mão direita"},
+  "erro.girar.giro": {"v": 18, "un": "graus", "selo": "desenho", "fonte": "hoje", "o": "erro: o peito abre para o lado do braço que puxa, a coluna gira 18° no fim (hoje: 18°)"},
+  "erro.girar.lombar": {"v": 0.35, "un": "fração", "selo": "desenho", "fonte": "desenho", "o": "erro: quanto do giro fica na lombar (o resto na torácica)"},
+  "erro.arredondar.lombar": {"v": 22, "un": "graus", "selo": "desenho", "fonte": "hoje", "o": "erro: a lombar curva 22° além da curva de repouso (hoje: lombar de 74 para 60)"},
+  "erro.arredondar.toracica": {"v": 22, "un": "graus", "selo": "desenho", "fonte": "hoje", "o": "erro: a parte de cima das costas curva 22° (hoje: torácica de 76 para 100)"},
+  "erro.arredondar.cervical": {"v": 10, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "erro: o pescoço estende para o olhar não ir ao peito"},
+  "erro.curta.fracao": {"v": 0.45, "un": "fração", "selo": "desenho", "fonte": "hoje", "o": "erro: a volta para perto da metade do caminho (hoje: na pose do meio)"}
+ },
+ "fases": [
+  {"nome": "Alongado", "tipo": "pausa", "dur": 0.45, "de": 0, "ate": 0, "respira": "INSPIRA", "tempo": "pausa curta", "selo": "consenso", "fonte": "app"},
+  {"nome": "Puxada · concêntrica", "tipo": "conc", "dur": 1.1, "de": 0, "ate": 1, "respira": "EXPIRA", "tempo": "~1 s", "selo": "consenso", "fonte": "app"},
+  {"nome": "Segura contraído", "tipo": "pausa", "dur": 1, "de": 1, "ate": 1, "respira": "FIRME", "tempo": "1 s", "selo": "consenso", "fonte": "app"},
+  {"nome": "Volta · excêntrica", "tipo": "exc", "dur": 2.1, "de": 1, "ate": 0, "respira": "INSPIRA", "tempo": "~2 s", "selo": "consenso", "fonte": "app"}
+ ],
+ "contatos": ["pe.R", "joelho.L", "mao.L", "pelve"],
+ "regras": [
+  {"id": "lombar-neutra", "pede": "costas retas (a lombar não arredonda)", "selo": "consenso", "fonte": "ficha"},
+  {"id": "tronco-parado-na-remada", "pede": "tronco parado, sem girar durante a série", "selo": "consenso", "fonte": "ficha"},
+  {"id": "costas-quase-paralelas-ao-chao", "pede": "costas quase paralelas ao chão (~15° acima da horizontal)", "selo": "consenso", "fonte": "ficha"},
+  {"id": "mao-e-joelho-no-banco", "pede": "joelho e mão do mesmo lado no banco, a mão embaixo do ombro", "selo": "consenso", "fonte": "ficha"},
+  {"id": "mao-de-apoio-parada", "pede": "a mão de apoio fica parada no banco", "selo": "consenso", "fonte": "ficha"},
+  {"id": "cotovelo-passa-as-costas", "pede": "fim: cotovelo passando a linha do tronco", "selo": "consenso", "fonte": "app"},
+  {"id": "cotovelo-rente-na-remada", "pede": "cotovelo perto do corpo", "selo": "consenso", "fonte": "app"},
+  {"id": "carga-perto-do-quadril-no-fim", "pede": "fim: halter ao lado do quadril", "selo": "consenso", "fonte": "ficha"},
+  {"id": "braco-estendido-no-comeco", "pede": "começo: braço estendido", "selo": "consenso", "fonte": "app"},
+  {"id": "carga-livre-do-corpo-e-do-banco", "pede": "o halter pende embaixo da mão sem atravessar o corpo nem o banco", "selo": "consenso", "fonte": "desenho"},
+  {"id": "escapulas-se-juntam", "pede": "no fim a escápula se junta à coluna", "selo": "consenso", "fonte": "hoje"},
+  {"id": "palmas-uma-para-a-outra", "pede": "pegada neutra (palma virada para o banco)", "selo": "consenso", "fonte": "ficha"}
+ ],
+ "erros": [
+  {"id": "girar", "instante": 1, "titulo": "Girar o tronco", "vista": "quinaTras", "oQueMuda": "o peito abre para o lado do braço que puxa: o ombro direito sobe", "destaca": ["corpo"], "linha": ["acromioclavicular:R", "acromioclavicular:L"], "foco": "acromioclavicular:R"},
+  {"id": "arredondar", "instante": 1, "titulo": "Arredondar as costas", "vista": "lateral", "oQueMuda": "a lombar e a parte de cima das costas curvam para cima", "destaca": ["corpo"], "linha": ["pelve", "lombar", "c7", "cabeca"], "foco": "lombar"},
+  {"id": "curta", "instante": 0, "titulo": "Não estender o braço", "vista": "lateral", "oQueMuda": "a volta para no meio: o braço não estende embaixo", "destaca": ["bracos"], "linha": ["ombro", "cotovelo", "punho"], "foco": "cotovelo"}
+ ],
+ "simetrico": false,
+ "rotulos": [
+  {"vista": "lateral", "texto": "costas retas", "ponto": "c7", "selo": "consenso", "fonte": "app", "guia": ["pelve", "c7"]},
+  {"vista": "quinaTras", "texto": "cotovelo para o quadril", "ponto": "cotovelo:R", "selo": "consenso", "fonte": "app"},
+  {"vista": "quinaTras", "texto": "tronco parado", "ponto": "c7", "selo": "consenso", "fonte": "app"}
+ ]
+}

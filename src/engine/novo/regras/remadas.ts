@@ -1,0 +1,121 @@
+// Regras medidas das remadas com peso livre (núcleo ../exercicios/remada.ts): a unilateral no banco, a sem banco, a
+// com kettlebell, a curvada com dois halteres e a apoiada no banco inclinado. Cada uma recebe os quadros do começo até o
+// fim da primeira fase com movimento. O limite vem do que a ficha da técnica pede, não do que a pose deu.
+// A lombar neutra, a mão de apoio parada, as escápulas que se juntam e a pegada neutra já existem (../conferir.ts e
+// ./suspensao.ts) e são usadas como estão.
+import { pontosDoBoneco } from '../boneco';
+import { f1 } from '../conferir-util';
+import type { Regra } from '../conferir-util';
+import type { Prim } from '../desenho';
+import type { Esq } from '../esqueleto';
+import type { Quadro } from '../movimento';
+import { angulo, dist, dot, norm, paraRef, sub } from '../vec';
+import type { V3 } from '../vec';
+
+const primeiro = <T>(q: T[]) => q[0]!;
+const ultimo = <T>(q: T[]) => q[q.length - 1]!;
+const rad = Math.PI / 180;
+/** Inclinação do peito à frente da vertical (graus). */
+const peito = (e: Esq) => Math.atan2(e.torax.y[2], e.torax.y[1]) / rad;
+/** Distância de um ponto a um segmento. */
+function aoSegmento(p: V3, a: V3, b: V3): number {
+  const ab = sub(b, a);
+  const t = Math.max(0, Math.min(1, dot(sub(p, a), ab) / (dot(ab, ab) || 1)));
+  return dist(p, [a[0] + ab[0] * t, a[1] + ab[1] * t, a[2] + ab[2] * t]);
+}
+/** As cargas do quadro: as cabeças do halter (prismas) e a bola do kettlebell (esfera). */
+const cargasDo = (q: Quadro) => q.prims.filter((p): p is Extract<Prim, { t: 'prisma' }> | Extract<Prim, { t: 'esfera' }> => p.t === 'prisma' || p.t === 'esfera');
+/** Distância de um ponto à superfície de uma carga (negativa = dentro). */
+function aCarga(p: V3, c: ReturnType<typeof cargasDo>[number]): number {
+  if (c.t === 'prisma') return aoSegmento(p, c.a, c.b) - c.ra;
+  return dist(p, c.c) - c.r;
+}
+/** Quanto um ponto entra numa caixa (cm; negativo = fora). */
+function dentroDaCaixa(p: V3, c: Extract<Prim, { t: 'caixa' }>): number {
+  const l = paraRef(c.ref, p);
+  return Math.min(c.meias[0] - Math.abs(l[0]), c.meias[1] - Math.abs(l[1]), c.meias[2] - Math.abs(l[2]));
+}
+/** A projeção de um ponto na linha do ombro (0) ao quadril (1) do lado direito. */
+function naLinhaDoTronco(e: Esq, p: V3): number {
+  const o = e.lado.R.ombro,
+    h = e.lado.R.quadril;
+  const d = sub(h, o);
+  return dot(sub(p, o), d) / dot(d, d);
+}
+
+export const regrasDasRemadas: Record<string, Regra> = {
+  'tronco-parado-na-remada': (q) => {
+    const a = primeiro(q).esq;
+    const anda = Math.max(...q.map((x) => Math.max(dist(x.esq.torax.o, a.torax.o), dist(x.esq.pelve.o, a.pelve.o))));
+    const gira = Math.max(...q.map((x) => Math.max(angulo(x.esq.torax.x, a.torax.x), angulo(x.esq.torax.y, a.torax.y))));
+    return { medido: `a base do pescoço e a bacia andam no máximo ${f1(anda)} cm e o tórax gira no máximo ${f1(gira)}°`, ok: anda <= 0.5 && gira <= 1 };
+  },
+  'costas-quase-paralelas-ao-chao': (q) => {
+    const p = peito(primeiro(q).esq);
+    return { medido: `o peito fica a ${f1(90 - p)}° da horizontal`, ok: p >= 65 && p <= 85 };
+  },
+  'tronco-bem-inclinado': (q) => {
+    const p = peito(primeiro(q).esq);
+    return { medido: `o peito fica a ${f1(p)}° da vertical (${f1(90 - p)}° da horizontal)`, ok: p >= 45 && p <= 85 };
+  },
+  'cotovelo-passa-as-costas': (q) => {
+    // no tronco: o cotovelo fica atrás do plano das costas (a pele das costas, na altura do cotovelo)
+    const e = ultimo(q).esq;
+    const l = paraRef(e.torax, e.lado.R.cotovelo);
+    const costas = -e.corpo.m('prof.peito') * 0.3;
+    return { medido: `no fim, o centro do cotovelo fica ${f1(Math.abs(costas - l[2]))} cm ${l[2] <= costas ? 'além' : 'antes'} da linha das costas`, ok: l[2] <= costas };
+  },
+  'cotovelo-rente-na-remada': (q) => {
+    const pior = Math.max(...q.map((x) => {
+      const L = x.esq.lado.R;
+      const b = norm(sub(L.cotovelo, L.ombro));
+      return Math.asin(Math.min(1, Math.abs(dot(b, x.esq.torax.x)))) / rad;
+    }));
+    return { medido: `o braço se afasta no máximo ${f1(pior)}° do lado do tronco`, ok: pior <= 30 };
+  },
+  'carga-perto-do-quadril-no-fim': (q) => {
+    const e = ultimo(q).esq;
+    const t = naLinhaDoTronco(e, e.lado.R.pegada);
+    return { medido: `no fim, a mão fica a ${f1(t * 100)}% do caminho do ombro ao quadril, ao longo do tronco`, ok: t >= 0.5 && t <= 1.2 };
+  },
+  'braco-estendido-no-comeco': (q) => {
+    const c = primeiro(q).esq.lado.R.ang.cotovelo;
+    return { medido: `no começo, o cotovelo dobra ${f1(c)}°`, ok: c <= 15 };
+  },
+  'carga-livre-do-corpo-e-do-banco': (q) => {
+    // a carga contra a pele (fora as mãos, que seguram) e contra as caixas da cena (o banco); a cada 2 quadros
+    let corpo = 1e9,
+      banco = 1e9;
+    for (const x of q.filter((_, i) => i % 2 === 0 || i === q.length - 1)) {
+      const cargas = cargasDo(x);
+      const P = pontosDoBoneco(x.esq).filter((p) => p.parte !== 'mao' && p.parte !== 'polegar');
+      for (const c of cargas) {
+        for (const { p } of P) corpo = Math.min(corpo, aCarga(p, c));
+        for (const cx of x.prims) {
+          if (cx.t !== 'caixa') continue;
+          // os pontos da carga: o centro e as pontas (prisma) ou o centro (esfera), medidos com o raio
+          const pts = c.t === 'prisma' ? [c.a, c.b] : [c.c];
+          const r = c.t === 'prisma' ? c.ra : c.r;
+          for (const p of pts) banco = Math.min(banco, -dentroDaCaixa(p, cx) - r);
+        }
+      }
+    }
+    const temBanco = banco < 1e8;
+    return { medido: `a carga fica a no mínimo ${f1(corpo)} cm da pele${temBanco ? ` e ${f1(banco)} cm das peças da cena` : ''}`, ok: corpo >= 0 && (!temBanco || banco >= 0.3) };
+  },
+  'mao-e-joelho-no-banco': (q) => {
+    // a superfície da mão e a do joelho de apoio contra o tampo do banco; a mão na vertical do ombro
+    const x = primeiro(q);
+    const topo = x.marcas.topoDoBanco![1];
+    let mao = 1e9,
+      joelho = 1e9;
+    for (const { p, parte } of pontosDoBoneco(x.esq)) {
+      if (parte === 'mao' && dist(p, x.esq.lado.L.punho) < 25) mao = Math.min(mao, p[1]);
+      if ((parte === 'coxa' || parte === 'canela') && dist(p, x.esq.lado.L.joelho) < 30 && p[0] > 0) joelho = Math.min(joelho, p[1]);
+    }
+    const L = x.esq.lado.L;
+    const meioDaMao = L.pegada;
+    const soOmbro = Math.hypot(meioDaMao[2] - L.ombro[2], meioDaMao[0] - L.ombro[0]);
+    return { medido: `a mão fica de ${f1(mao - topo)} cm e o joelho ${f1(joelho - topo)} cm do tampo do banco; o meio da mão fica a ${f1(soOmbro)} cm da vertical do ombro`, ok: Math.abs(mao - topo) <= 1.5 && Math.abs(joelho - topo) <= 1.5 && soOmbro <= 8 };
+  },
+};

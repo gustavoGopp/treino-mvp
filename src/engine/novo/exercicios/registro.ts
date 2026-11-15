@@ -57,3 +57,4 @@ export { abdominalInvertido } from './abdominal-invertido';
 export { aberturaTDeitado } from './abertura-t-deitado';
 export { abdominalBola } from './abdominal-bola';
 export { roscaInclinada } from './rosca-inclinada';
+export { remadaUnilateral } from './remada-unilateral';
