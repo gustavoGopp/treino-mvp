@@ -227,11 +227,11 @@ export function contextoDeSelecao(perfil: Perfil, inventarioOriginal: Inventario
   const preferido = (f: Funcao | undefined, e: Exercicio) => !!f && perfil.preferidos?.[f.id] === e.id;
   // PROTÓTIPO (escolha): com carga à vontade, o exercício de dois lados vem antes do de um lado só (unilateral rende o
   // mesmo e leva o dobro do tempo; com pouca carga, o de um lado continua valendo como degrau).
-  const umLadoSemPrecisar = (e: Exercicio) => (prot('escolha') && e.unilateral && cargaPossivel(e) === 2 ? 1 : 0);
+  const umLadoSemPrecisar = (e: Exercicio) => ((prot('escolha') || prot('esc-dois-lados')) && e.unilateral && cargaPossivel(e) === 2 ? 1 : 0);
   /** PROTÓTIPO: os critérios de treino do desempate (para a régua medir o que decidiu a escolha). */
   const criteriosDeTreino = (e: Exercicio): number[] => [
     articulacoesDe(e).some((a) => dorLeve.has(a)) ? 1 : 0,
-    prot('escolha') && nivel === 'iniciante' ? e.complexidade : 0,
+    (prot('escolha') || prot('esc-simples')) && nivel === 'iniciante' ? e.complexidade : 0,
     nivel === 'iniciante' && !estavel(e) ? 1 : 0,
     -cargaPossivel(e),
     umLadoSemPrecisar(e),
@@ -248,7 +248,7 @@ export function contextoDeSelecao(perfil: Perfil, inventarioOriginal: Inventario
     prot('sem-repetir') && (usos.get(e.id) ?? 0) >= limiteDeRepeticao ? 1 : 0,
     depois?.(e) ? 1 : 0, // selecao.funcao-da-vaga (R5a): um afundo por dia, havendo outra opção no mesmo nível
     articulacoesDe(e).some((a) => dorLeve.has(a)) ? 1 : 0,
-    prot('escolha') && nivel === 'iniciante' ? e.complexidade : 0, // PROTÓTIPO (escolha): para o iniciante, o mais simples primeiro
+    (prot('escolha') || prot('esc-simples')) && nivel === 'iniciante' ? e.complexidade : 0, // PROTÓTIPO (escolha): para o iniciante, o mais simples primeiro
     nivel === 'iniciante' && !estavel(e) ? 1 : 0,
     cansa?.(e) ? 1 : 0, // PROTÓTIPO (fadiga): o que carrega a lombar sem apoio fica depois, se o dia já tem outro que carrega
     -cargaPossivel(e),
@@ -267,7 +267,7 @@ export function contextoDeSelecao(perfil: Perfil, inventarioOriginal: Inventario
       for (let i = 0; i < ka.length; i++) if (ka[i] !== kb[i]) return ka[i]! - kb[i]!;
       // PROTÓTIPO (escolha): no empate total, vale a ordem da lista da função (o exercício de referência primeiro), e não
       // a ordem alfabética.
-      if (prot('escolha')) {
+      if (prot('escolha') || prot('esc-referencia')) {
         const [fa, fb] = [funcaoDe(a), funcaoDe(b)];
         const [pa, pb] = [fa ? posicaoDeReferencia(fa, a.id) : -1, fb ? posicaoDeReferencia(fb, b.id) : -1];
         if (fa && fa === fb && pa !== pb) return pa - pb;
@@ -395,7 +395,7 @@ export function contextoDeSelecao(perfil: Perfil, inventarioOriginal: Inventario
     preferido,
     criteriosDeTreino,
     /** PROTÓTIPO (escolha): no empate total decide a ordem de referência da lista da função, e não a alfabética. */
-    temOrdemDeReferencia: prot('escolha'),
+    temOrdemDeReferencia: prot('escolha') || prot('esc-referencia'),
     comparar,
     resolver,
     escolher,

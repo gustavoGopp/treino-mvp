@@ -127,8 +127,8 @@ Testes novos: `tests/unit/semana-com-dor.test.ts` (10 testes): o perfil com dor 
 | Conferência | Resultado |
 |---|---|
 | `npm run check` (lint, tipos, testes) | limpo: 61 arquivos, 955 testes (depois de regravar os 2 registros da seção 7, com o ok do Gustavo) |
-| `npm run test:e2e` (o app no navegador) | E2E |
-| `npm run auditoria:verificar` (duas rodadas idênticas e a linha de base da régua) | em andamento quando este relatório foi escrito (leva mais de uma hora e meia); o resultado entra aqui |
+| `npm run test:e2e` (o app no navegador) | 157 de 157 passam (com a versão final, depois da regra do Corpo todo 6x) |
+| `npm run auditoria:verificar` (duas rodadas idênticas e a linha de base da régua) | limpo, com a versão final: **39 arquivos idênticos nas duas rodadas**; a régua oficial não acusa nenhum defeito acima da linha de base (que não foi regravada) |
 | O protótipo com as regras adotadas dá o mesmo programa que o app | sim, nas 12 personas |
 | A simulação de meses | refeita: idêntica (o pacote não mexe na progressão) |
 | `src/engine/`, telas, `api/`, `src/storage/` | sem mudança. Mudaram `src/domain/gerador` e `src/domain/regras/regras.json` |

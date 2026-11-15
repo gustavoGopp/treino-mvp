@@ -300,7 +300,7 @@ Arquivos: [`medidas/main-com-a-regua-de-14-11/retrato.md`](medidas/main-com-a-re
 | O pior grupo melhor do que era | **cumprido pela primeira vez**: dor forte no cotovelo, de 50,0% para 75,0% na grade e de 42,7% para 85,1% na ponderada. O pior grupo passa a ser o dos treinos de 30 min (72,9%; era 66,9%) |
 | Revisão cega com nenhuma pessoa pior e as notas médias maiores | notas médias maiores (5,1 · 5,3 · 4,9 → 5,9 · 5,7 · 5,4, em 14 pessoas); nove sobem, quatro iguais, **uma cai (−3,3)**: é uma pessoa que o pacote 3 não muda (as mesmas duas páginas tiveram +0,3 na revisão do pacote 0); o que mudou nela foi o pacote 1. A revisão foi feita antes da regra do Corpo todo 6x. Detalhes em [`pacote-3.md`](pacote-3.md), seção 6 |
 | Toda regra com selo, fonte e teste | `selecao.dia-sem-principal`, `selecao.variacoes-equivalentes`, `tempo.musculo-protegido` e `tempo.superserie` em `regras.md`; `tests/unit/semana-com-dor.test.ts` |
-| `npm run check`, `npm run test:e2e`, `npm run auditoria:verificar` | ver [`pacote-3.md`](pacote-3.md), seção 8 |
+| `npm run check`, `npm run test:e2e`, `npm run auditoria:verificar` | `check` limpo (955 testes), `test:e2e` limpo (157) e `auditoria:verificar` limpo (39 arquivos idênticos nas duas rodadas; nenhum defeito acima da linha de base da régua) |
 
 ### A régua oficial e os 20 cuidados, na população inteira (main, com a régua de agora → ramo, com os pacotes 1, 0 e 3)
 
