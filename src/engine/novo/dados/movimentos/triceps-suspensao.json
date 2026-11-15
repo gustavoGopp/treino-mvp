@@ -1,0 +1,56 @@
+{
+ "id": "triceps-suspensao",
+ "nome": "Tríceps na suspensão (mãos à testa)",
+ "fichaDaTecnica": "docs/pesquisa/animacoes/triceps-suspensao.md",
+ "fontes": {
+  "ficha": "Ficha da técnica (docs/pesquisa/animacoes/triceps-suspensao.md): de costas para a âncora, palmas para baixo, braços estendidos à frente na altura dos ombros; corpo reto como numa prancha, inclinado à frente, começando quase em pé; dobra os cotovelos e leva as mãos à testa com o corpo indo à frente; cotovelos apontando para a frente e parados; ombro flexionado a ~90–120° (B.2.4, opinião); consenso de treinadores (nsca2021, não verificado)",
+  "app": "Cartão do app (src/conteudo/exercicios/triceps-suspensao.json): a fita passa por cima da cabeça, não no pescoço; ~2 s descendo, ~1 s estendendo; as dicas e os erros",
+  "hoje": "Animação aprovada no guia de hoje (src/engine/exercicios/triceps-suspensao.ts) e a conferência dela (docs/revisoes/catalogo/conferencia/suspensao.md): o ângulo do corpo no começo, onde ficam os pés e os erros",
+  "apoio": "Extensão de tríceps com o peso do corpo do motor novo (src/engine/novo/dados/movimentos/extensao-triceps-peso-corpo.json): os pés na ponta com o calcanhar levantado e parado",
+  "desenho": "Escolha de desenho desta animação, dentro do que a ficha pede; a conferência mede o resultado"
+ },
+ "param": {
+  "pes.meiaDistancia": {"v": 9, "un": "cm", "selo": "desenho", "fonte": "desenho", "o": "pés na largura do quadril"},
+  "pes.atrasDaAncora": {"v": 50, "un": "cm", "selo": "desenho", "fonte": "desenho", "o": "a bola do pé fica 50 cm atrás da vertical da âncora. Hoje fica 30 cm atrás, com a âncora a 205 cm; com a âncora na altura do fabricante (183 cm) e 30 cm, a fita passava a 0,2 cm da cabeça: os pés recuam até a fita passar por cima dela"},
+  "calcanhar.sobe": {"v": 35, "un": "graus", "selo": "desenho", "fonte": "apoio", "o": "na ponta dos pés, o calcanhar levantado 35° e parado (como na extensão de tríceps com o peso do corpo); o corpo gira no tornozelo"},
+  "joelho": {"v": 4, "un": "graus", "selo": "consenso", "fonte": "ficha", "o": "corpo reto como numa prancha: pernas estendidas"},
+  "corpo.inicio": {"v": 25, "un": "graus", "selo": "desenho", "fonte": "hoje", "o": "no começo, o corpo fica 25° à frente da vertical, quase em pé (hoje: 25°); daí sai o comprimento da fita"},
+  "pescoco.flexao": {"v": 0, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "pescoço e cabeça na linha do corpo"},
+  "ombro.flexao": {"v": 115, "un": "graus", "selo": "consenso", "fonte": "ficha", "o": "o braço fica 115° à frente do braço pendurado, no tronco (dentro dos ~90–120° da ficha): com o corpo a 25°, os braços estendidos ficam na altura dos ombros"},
+  "maos.polegarGira": {"v": 20, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "palmas para baixo: o polegar aponta para dentro, girado 20° para cima em volta do antebraço, para o antebraço não passar da pronação comum"},
+  "cotovelo.fim": {"v": 100, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "no fim, o cotovelo dobra 100°: as mãos chegam perto da testa (a ficha não dá número; a regra mede a distância da mão à cabeça)"},
+  "erro.quadril.dobra": {"v": 16, "un": "graus", "selo": "desenho", "fonte": "hoje", "o": "erro: a barriga desce e o quadril estende 16° (hoje: lombar 16–18° à frente do tórax)"},
+  "erro.quadril.lombar": {"v": 10, "un": "graus", "selo": "desenho", "fonte": "hoje", "o": "erro: a lombar arqueia 10° além da curva de repouso"},
+  "erro.cotovelo.abre": {"v": 50, "un": "graus", "selo": "desenho", "fonte": "hoje", "o": "erro: o cotovelo abre 50° para o lado"},
+  "erro.cotovelo.flexao": {"v": 70, "un": "graus", "selo": "desenho", "fonte": "hoje", "o": "erro: o cotovelo desce, o braço fica a 70° do braço pendurado (como numa flexão de braço)"},
+  "erro.curta.fracao": {"v": 0.45, "un": "fração", "selo": "desenho", "fonte": "hoje", "o": "erro: desce só 45% do caminho (hoje: para na pose do meio)"}
+ },
+ "fases": [
+  {"nome": "Braços estendidos", "tipo": "pausa", "dur": 0.45, "de": 0, "ate": 0, "respira": "INSPIRA", "tempo": "corpo reto, inclinado à frente", "selo": "consenso", "fonte": "app"},
+  {"nome": "Descida · excêntrica", "tipo": "exc", "dur": 2, "de": 0, "ate": 1, "respira": "INSPIRA", "tempo": "~2 s", "selo": "consenso", "fonte": "app"},
+  {"nome": "Mãos perto da testa", "tipo": "pausa", "dur": 0.5, "de": 1, "ate": 1, "respira": "FIRME", "tempo": "cotovelos parados", "selo": "consenso", "fonte": "app"},
+  {"nome": "Extensão · concêntrica", "tipo": "conc", "dur": 1.1, "de": 1, "ate": 0, "respira": "EXPIRA", "tempo": "~1 s", "selo": "consenso", "fonte": "app"}
+ ],
+ "contatos": ["pe.R", "pe.L", "pegador.R", "pegador.L"],
+ "regras": [
+  {"id": "corpo-em-linha", "pede": "corpo reto como numa prancha", "selo": "consenso", "fonte": "ficha"},
+  {"id": "na-ponta-dos-pes", "pede": "os pés apoiam na ponta, parados", "selo": "desenho", "fonte": "apoio"},
+  {"id": "maos-nos-pegadores", "pede": "as mãos seguram os pegadores o ciclo inteiro", "selo": "consenso", "fonte": "ficha"},
+  {"id": "palmas-para-baixo", "pede": "palmas para baixo", "selo": "consenso", "fonte": "ficha"},
+  {"id": "corpo-vai-a-frente", "pede": "a fita não estica: o corpo vai à frente enquanto as mãos vêm à testa", "selo": "consenso", "fonte": "ficha"},
+  {"id": "cotovelos-parados-para-a-frente", "pede": "os cotovelos apontam para a frente e ficam parados", "selo": "consenso", "fonte": "ficha"},
+  {"id": "maos-perto-da-testa", "pede": "no fim, as mãos chegam perto da testa", "selo": "consenso", "fonte": "ficha"},
+  {"id": "fita-por-cima-da-cabeca", "pede": "a fita passa por cima da cabeça, não no pescoço", "selo": "consenso", "fonte": "app"}
+ ],
+ "erros": [
+  {"id": "quadril", "instante": 1, "titulo": "Quadril cai", "vista": "lateral", "oQueMuda": "a barriga desce e a lombar arqueia", "destaca": ["corpo"], "linha": ["ombro", "quadril", "tornozelo"], "foco": "quadril"},
+  {"id": "cotovelo", "instante": 1, "titulo": "Cotovelos abrem ou descem", "vista": "quinaTras", "oQueMuda": "os cotovelos abrem para os lados e descem: vira uma flexão de braço", "destaca": ["bracos"], "linha": ["ombro", "cotovelo", "punho"], "foco": "cotovelo"},
+  {"id": "curta", "instante": 1, "titulo": "Descer pouco", "vista": "lateral", "oQueMuda": "desce só 45% do caminho: as mãos param longe da testa", "destaca": ["bracos"], "linha": ["ombro", "cotovelo", "punho"], "foco": "cotovelo"}
+ ],
+ "simetrico": true,
+ "rotulos": [
+  {"vista": "lateral", "texto": "corpo reto", "ponto": "pelve", "selo": "consenso", "fonte": "app", "guia": ["calcanhar", "cabeca"]},
+  {"vista": "lateral", "texto": "cotovelos parados", "ponto": "cotovelo", "selo": "consenso", "fonte": "app"},
+  {"vista": "quinaTras", "texto": "mãos à testa", "ponto": "pegada", "selo": "consenso", "fonte": "app"}
+ ]
+}

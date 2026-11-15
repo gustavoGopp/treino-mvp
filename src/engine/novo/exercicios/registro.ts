@@ -29,3 +29,4 @@ export { stiffElastico } from './stiff-elastico';
 export { stiffUnilateral } from './stiff-unilateral';
 export { remadaSuspensao } from './remada-suspensao';
 export { roscaSuspensao } from './rosca-suspensao';
+export { tricepsSuspensao } from './triceps-suspensao';
