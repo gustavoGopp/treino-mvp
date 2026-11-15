@@ -121,6 +121,9 @@ export function escada(E: Escada): { prims: Prim[]; peca: PecaPropria } {
   const peca: PecaPropria = {
     t: 'propria',
     nome: 'escada',
+    // a escada fica atrás do corpo na pintura: os pés pisam no degrau e o corrimão fica do lado de lá (por profundidade,
+    // o montante perto da quina passava por cima da canela)
+    cenario: true,
     fixa: E,
     desenhar(C, M, o) {
       const P = doTema(PEDRA, o.tema);

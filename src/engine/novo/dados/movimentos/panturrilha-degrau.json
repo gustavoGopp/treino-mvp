@@ -1,0 +1,51 @@
+{
+ "id": "panturrilha-degrau",
+ "nome": "Panturrilha no degrau da escada",
+ "fichaDaTecnica": "docs/pesquisa/animacoes/panturrilha-degrau.md",
+ "fontes": {
+  "ficha": "Ficha da técnica (docs/pesquisa/animacoes/panturrilha-degrau.md) e texto do app (src/conteudo/exercicios/panturrilha-degrau.json): a ponta dos pés na beirada do degrau, os calcanhares no ar, pés na largura do quadril, uma mão no corrimão só para equilibrar, subida na ponta dos pés; consenso (Renaissance Periodization, vídeo não conferido por dentro; kinoshita2023)",
+  "kassiano2023b": "Kassiano W et al. J Strength Cond Res 2023;37(9):1746–1753, PMID 37015016 (resumo lido no PubMed): a metade de baixo do movimento, com o músculo alongado, cresceu mais (um estudo): o calcanhar desce bem abaixo do degrau, com pausa",
+  "hoje": "Animação aprovada no guia de hoje (src/engine/exercicios/panturrilha-degrau.ts): o calcanhar de 6,4 cm abaixo a 13,9 cm acima do degrau (do tornozelo ao degrau de 15 cm), o ritmo e os erros",
+  "cdc": "Soucie JM et al. Range of motion measurements: reference values and a database for comparison studies. Haemophilia 2011 (tabelas do CDC; docs/revisoes/animacao-nova/pesquisa/02-articulacoes.md, A1): dorsiflexão média 14,8°, máximo observado 48°",
+  "objetos": "src/engine/novo/dados/objetos/escada.json (ABNT NBR 9077:2001: degrau, piso e corrimão)",
+  "equilibrio": "Na ponta dos pés, o apoio é só a bola do pé: o centro de massa (corpo + carga) tem de ficar sobre ela para o corpo subir reto, sem balançar para a frente (mecânica); a mão só equilibra",
+  "desenho": "Escolha de desenho desta animação, dentro do que a ficha pede; a conferência mede o resultado"
+ },
+ "param": {
+  "pes.meiaDistancia": {"v": 9, "un": "cm", "selo": "consenso", "fonte": "ficha", "o": "pés na largura do quadril, apontando para a frente (os centros do quadril ficam a 8,35 cm do meio)"},
+  "joelho": {"v": 4, "un": "graus", "selo": "consenso", "fonte": "ficha", "o": "joelhos estendidos, sem travar (a ficha não dá número: 4 graus de folga)"},
+  "bola.daBeirada": {"v": 2, "un": "cm", "selo": "desenho", "fonte": "desenho", "o": "a bola do pé apoia 2 cm para dentro da beirada do degrau ('a ponta dos pés na beirada'); o calcanhar fica no ar"},
+  "calcanhar.embaixo": {"v": 6, "un": "cm", "selo": "um estudo", "fonte": "kassiano2023b", "o": "embaixo, o calcanhar fica bem abaixo do degrau: 6 cm abaixo da beirada (6,4 cm na animação de hoje); limitado pela dorsiflexão (ver a conferência escrita)"},
+  "calcanhar.topo": {"v": 13.9, "un": "cm", "selo": "desenho", "fonte": "hoje", "o": "em cima, na ponta dos pés: o calcanhar 13,9 cm acima do degrau (como na animação de hoje); a ficha não dá número"},
+  "corrimao.aFrenteDaBola": {"v": 22, "un": "cm", "selo": "desenho", "fonte": "desenho", "o": "a mão esquerda segura o corrimão 22 cm à frente da bola do pé"},
+  "corrimao.aoLado": {"v": 40, "un": "cm", "selo": "desenho", "fonte": "desenho", "o": "o corrimão fica 40 cm à esquerda do meio do corpo (a pessoa no meio de uma escada de 90 cm, o corrimão 5 cm para dentro da borda)"},
+  "bracoLivre.paraFora": {"v": 6, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "o braço direito, solto, pende ao lado do corpo, 6 graus afastado"},
+  "erro.curta.calcanhar": {"v": 0, "un": "cm", "selo": "desenho", "fonte": "hoje", "o": "erro: o calcanhar só desce até a altura do degrau (na animação de hoje, 1,5 cm acima dela)"},
+  "erro.puxar.troncoEmbaixo": {"v": -3, "un": "graus", "selo": "desenho", "fonte": "hoje", "o": "erro: embaixo, o corpo pende para trás, pendurado no braço (hoje: 6 graus na lombar e no tórax; aqui o corpo inteiro inclina em linha e o tronco só 3 graus)"},
+  "erro.puxar.troncoEmCima": {"v": 4, "un": "graus", "selo": "desenho", "fonte": "hoje", "o": "erro: na subida, o braço puxa o corpo para a frente; o corpo inclina em linha e o tronco mais 4 graus (hoje, 16 graus só no tronco, que dobrava o corpo)"},
+  "erro.puxar.cm": {"v": 8, "un": "cm", "selo": "desenho", "fonte": "desenho", "o": "erro: com o braço puxando, o centro de massa sai da vertical da bola do pé (até 8 cm à frente em cima e 4,8 cm atrás embaixo)"}
+ },
+ "fases": [
+  {"nome": "Embaixo · pausa", "tipo": "pausa", "dur": 1.5, "de": 0, "ate": 0, "respira": "INSPIRA", "tempo": "1 a 2 s, sem quicar", "selo": "um estudo", "fonte": "kassiano2023b"},
+  {"nome": "Subida · concêntrica", "tipo": "conc", "dur": 1, "de": 0, "ate": 1, "respira": "EXPIRA", "tempo": "~1 s", "selo": "consenso", "fonte": "ficha"},
+  {"nome": "Descida · excêntrica", "tipo": "exc", "dur": 2.5, "de": 1, "ate": 0, "respira": "INSPIRA", "tempo": "2 a 3 s", "selo": "consenso", "fonte": "ficha"}
+ ],
+ "contatos": ["pe.R", "pe.L"],
+ "regras": [
+  {"id": "joelhos-estendidos-na-panturrilha", "pede": "os joelhos ficam estendidos, sem travar, e parados", "selo": "consenso", "fonte": "ficha"},
+  {"id": "calcanhar-abaixo-da-beirada", "pede": "embaixo, o calcanhar fica bem abaixo do degrau", "selo": "um estudo", "fonte": "kassiano2023b"},
+  {"id": "calcanhar-sobe-o-maximo", "pede": "em cima, na ponta dos pés (13,9 cm acima do degrau)", "selo": "consenso", "fonte": "ficha"},
+  {"id": "peso-sobre-a-bola-do-pe", "pede": "o centro de massa fica sobre a bola do pé: o corpo sobe reto, sem balançar para a frente", "selo": "consenso", "fonte": "equilibrio"},
+  {"id": "maos-paradas-no-apoio", "pede": "a mão no corrimão só equilibra: fica parada", "selo": "consenso", "fonte": "ficha"}
+ ],
+ "erros": [
+  {"id": "curta", "instante": 0, "titulo": "Descer pouco", "vista": "lateral", "oQueMuda": "o calcanhar para na altura do degrau, sem passar a beirada", "destaca": ["pernas"], "linha": ["joelho:R", "tornozelo:R", "calcanhar:R"], "foco": "calcanhar:R"},
+  {"id": "puxar", "instante": 1, "titulo": "Puxar com a mão", "vista": "lateral", "oQueMuda": "o braço dobra e puxa o corpo para a frente na subida; embaixo, o corpo pende para trás, pendurado no braço", "destaca": ["corpo"], "linha": ["ombro:L", "cotovelo:L", "pegada:L"], "foco": "cotovelo:L"}
+ ],
+ "simetrico": false,
+ "rotulos": [
+  {"vista": "lateral", "texto": "calcanhar bem embaixo", "ponto": "calcanhar:R", "selo": "um estudo", "fonte": "kassiano2023b"},
+  {"vista": "lateral", "texto": "pausa no alongamento", "ponto": "joelho:R", "selo": "um estudo", "fonte": "kassiano2023b"},
+  {"vista": "quinaTras", "texto": "a mão só equilibra", "ponto": "pegada:L", "selo": "consenso", "fonte": "ficha"}
+ ]
+}
