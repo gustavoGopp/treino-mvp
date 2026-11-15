@@ -143,5 +143,5 @@ Uma por vez, com a minha recomendação; nada vem marcado.
 
 1. ~~Posso regravar os 2 registros de teste da Ana (seção 7)?~~ **Decidido em 15/11/2026: sim.** Regravados.
 2. ~~O Corpo todo 6x também entra quando a dor esvazia um dia (seção 5)?~~ **Decidido em 15/11/2026: sim.** Entrou como a regra 5, medida.
-3. **As três regras de dupla que não entraram (seção 4) ficam para depois?** *Recomendo sim*, junto com uma revisão do corte de tempo.
+3. ~~As três regras de dupla que não entraram (seção 4) ficam para depois?~~ **Decidido em 15/11/2026: sim, ficam para depois**, junto com uma revisão do corte de tempo, no pacote do iniciante.
 4. **O próximo pacote.** *Recomendo o pacote 2 (a escolha dos exercícios).* Depende de você aceitar exercícios sem animação aparecendo como cartão de texto (decisão 2 da proposta).
