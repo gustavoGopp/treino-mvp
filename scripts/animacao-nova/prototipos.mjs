@@ -4,7 +4,8 @@
 //   folha-<id>.png       folha de contato de cada âncora, ao lado da versão de hoje (motor do app, só leitura)
 //   erros.png            todos os erros das âncoras em tamanho grande, hoje e novo
 //   medidas.json         peso do pacote e tempo por quadro, hoje e novo (no Chromium com a CPU 4x mais lenta)
-// Uso: node scripts/animacao-nova/prototipos.mjs [so-pagina|so-folhas|so-medidas]
+// Uso: node scripts/animacao-nova/prototipos.mjs [so-pagina|so-folhas|so-erros|so-medidas] [id ...]
+//   com ids (ex.: so-folhas bulgaro), só as folhas desses exercícios são refeitas
 /* global MOTOR, HOJE */
 import { build } from 'esbuild';
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs';
@@ -18,7 +19,10 @@ const so = process.argv[2] ?? '';
 const { modulo: m } = await motorNovo(ENTRADA);
 const corpo = m.CORPOS.homem;
 const cssNovo = readFileSync('src/engine/novo/estilo.css', 'utf8') + m.cssDoBoneco();
-const IDS = ['goblet', 'supino-reto', 'puxada-unilateral', 'flexao', 'agachamento-peso-corpo', 'agachamento-elastico', 'afundo-peso-corpo', 'afundo', 'afundo-kettlebell', 'afundo-tras-peso-corpo', 'bulgaro'];
+// todos os exercícios do registro; com ids depois do modo (so-folhas bulgaro afundo), só as folhas desses
+const PEDIDOS = process.argv.slice(3);
+const IDS = Object.keys(m.EXERCICIOS);
+const IDS_DAS_FOLHAS = PEDIDOS.length ? IDS.filter((id) => PEDIDOS.includes(id)) : IDS;
 const NOME_VISTA = { lateral: 'de lado', frontal: 'de frente', posterior: 'de trás', cima: 'de cima', quinaTras: 'de três quartos, de trás' };
 const NOME_MODO = { tec: 'Técnica', mus: 'Músculos', traj: 'Trajetória', err: 'Erros' };
 
@@ -198,7 +202,7 @@ mkdirSync(SAIDA, { recursive: true });
 if (!so || so === 'so-pagina') await pagina();
 if (!so || so === 'so-folhas') {
   const b = await nav();
-  for (const id of IDS) {
+  for (const id of IDS_DAS_FOLHAS) {
     const pg = await b.newPage({ viewport: { width: 1280, height: 800 }, deviceScaleFactor: 2 });
     pg.on('pageerror', (e) => console.log('erro:', String(e).slice(0, 300)));
     await pg.setContent(folha(id));
@@ -208,7 +212,7 @@ if (!so || so === 'so-folhas') {
   }
   await b.close();
 }
-if (!so || so === 'so-folhas' || so === 'so-erros') {
+if ((!so || so === 'so-folhas' || so === 'so-erros') && !PEDIDOS.length) {
   const b = await nav(), pg = await b.newPage({ viewport: { width: 1280, height: 800 }, deviceScaleFactor: 2 });
   await pg.setContent(folhaDosErros());
   await pg.screenshot({ path: `${SAIDA}/erros.png`, fullPage: true });

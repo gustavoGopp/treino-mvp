@@ -4,6 +4,7 @@ import { z } from 'zod';
 import homem from './dados/corpo-homem.json';
 import mulher from './dados/corpo-mulher.json';
 import objetosJson from './dados/objetos.json';
+import * as OBJETOS_A_MAIS from './dados/objetos/registro';
 import segmentosJson from './dados/segmentos.json';
 
 const TIPO = z.enum(['medida', 'derivada', 'provisoria', 'desenho']);
@@ -59,7 +60,24 @@ const objetosSchema = z
   .superRefine((o, ctx) => {
     for (const [id, ob] of Object.entries(o.objetos)) for (const [k, m] of Object.entries(ob.medidas)) if (!(m.fonte in o.fontes)) ctx.addIssue({ code: 'custom', message: `objeto ${id}.${k}: fonte "${m.fonte}" não está na lista` });
   });
-export const OBJETOS = objetosSchema.parse(objetosJson);
+/** A tabela de objetos: ./dados/objetos.json mais um arquivo por objeto novo (./dados/objetos/registro.ts). */
+function juntarObjetos(): unknown {
+  const partes = [objetosJson, ...Object.values(OBJETOS_A_MAIS)] as { fontes: Record<string, string>; objetos: Record<string, unknown> }[];
+  const fontes: Record<string, string> = {},
+    objetos: Record<string, unknown> = {};
+  for (const p of partes) {
+    for (const [k, v] of Object.entries(p.fontes)) {
+      if (k in fontes && fontes[k] !== v) throw new Error(`tabela de objetos: a fonte "${k}" aparece duas vezes com textos diferentes`);
+      fontes[k] = v;
+    }
+    for (const [k, v] of Object.entries(p.objetos)) {
+      if (k in objetos) throw new Error(`tabela de objetos: o objeto "${k}" aparece em dois arquivos`);
+      objetos[k] = v;
+    }
+  }
+  return { fontes, objetos };
+}
+export const OBJETOS = objetosSchema.parse(juntarObjetos());
 /** Medida de um objeto da tabela, em cm (erro se não existir). A cena e o cartão de equipamento leem a mesma linha. */
 export function obj(id: string, medidaId: string): number {
   const m = OBJETOS.objetos[id]?.medidas[medidaId];

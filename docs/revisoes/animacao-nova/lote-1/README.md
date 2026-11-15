@@ -11,7 +11,7 @@ Começado em 15/11/2026, depois de o Gustavo fechar o corpo. São as 10 animaç�
 | `afundo-peso-corpo` | **aprovada pelo Gustavo em 15/11/2026** ("aprovada"); conferência escrita em [afundo-peso-corpo.md](afundo-peso-corpo.md). Registrada em `src/engine/novo/aprovados.ts`; falta ligar às telas | feito: o núcleo dos afundos (`afundar.ts`) |
 | `afundo-tras-peso-corpo` | **aprovada pelo Gustavo em 15/11/2026** ("aprovada, segue para o búlgaro"); conferência em [afundo-tras-peso-corpo.md](afundo-tras-peso-corpo.md) | feito: o passo, com o pé de trás passando pelo ar |
 | `afundo-kettlebell` | **aprovada pelo Gustavo em 15/11/2026** ("aprovada"); conferência escrita em [afundo-kettlebell.md](afundo-kettlebell.md). Registrada em `src/engine/novo/aprovados.ts`; falta ligar às telas | feito: o kettlebell com as medidas do fabricante |
-| `bulgaro` | pronta, com a conferência escrita ([bulgaro.md](bulgaro.md)); falta a aprovação na folha | feito: o pé de trás no banco (núcleo dos búlgaros), a coluna como cenário |
+| `bulgaro` | **aprovada pelo Gustavo em 15/11/2026** ("Eu estou aprovando e gostando de tudo que você está fazendo"); conferência em [bulgaro.md](bulgaro.md) | feito: o pé de trás no banco (núcleo dos búlgaros), a coluna como cenário |
 | `bulgaro-peso-corpo` | por fazer | banco como apoio do pé de trás |
 | `bulgaro-suspensao` | por fazer | fita de suspensão |
 

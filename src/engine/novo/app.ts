@@ -9,17 +9,12 @@ export { enquadrar, itensDaCena, svgAnimado, svgDaCena, vistasDoModoMusculos } f
 export type { Modo, OpcoesCena } from './cena';
 export { DEFS_DO_BONECO, cssDoBoneco } from './boneco';
 export type { IdEstilo } from './boneco';
-import { afundo } from './exercicios/afundo';
-import { afundoKettlebell } from './exercicios/afundo-kettlebell';
-import { afundoPesoCorpo } from './exercicios/afundo-peso-corpo';
-import { afundoTrasPesoCorpo } from './exercicios/afundo-tras-peso-corpo';
-import { agachamentoElastico } from './exercicios/agachamento-elastico';
-import { agachamentoPesoCorpo } from './exercicios/agachamento-peso-corpo';
-import { bulgaro } from './exercicios/bulgaro';
-import { flexao } from './exercicios/flexao';
-import { goblet } from './exercicios/goblet';
-import { puxadaUnilateral } from './exercicios/puxada-unilateral';
-import { supinoReto } from './exercicios/supino-reto';
+import * as REGISTRO from './exercicios/registro';
+import type { Exercicio } from './movimento';
 
-/** Os exercícios já refeitos no motor novo, pelo id da biblioteca. */
-export const EXERCICIOS = { goblet, flexao, 'supino-reto': supinoReto, 'puxada-unilateral': puxadaUnilateral, 'agachamento-peso-corpo': agachamentoPesoCorpo, 'agachamento-elastico': agachamentoElastico, 'afundo-peso-corpo': afundoPesoCorpo, afundo, 'afundo-kettlebell': afundoKettlebell, 'afundo-tras-peso-corpo': afundoTrasPesoCorpo, bulgaro };
+/** Os exercícios já refeitos no motor novo, pelo id da biblioteca, em ordem alfabética do id (sempre a mesma ordem). */
+export const EXERCICIOS: Record<string, Exercicio> = Object.fromEntries(
+  Object.values(REGISTRO)
+    .map((ex): [string, Exercicio] => [ex.ficha.id, ex])
+    .sort((a, b) => (a[0] < b[0] ? -1 : a[0] > b[0] ? 1 : 0)),
+);

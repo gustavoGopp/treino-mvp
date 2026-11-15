@@ -7,4 +7,5 @@ export const APROVADOS: Record<string, { em: string; oQueEleDisse: string }> = {
   afundo: { em: '2026-11-15', oQueEleDisse: 'aprovada, segue para o afundo com kettlebell' },
   'afundo-kettlebell': { em: '2026-11-15', oQueEleDisse: 'aprovada, segue para o afundo para trás' },
   'afundo-tras-peso-corpo': { em: '2026-11-15', oQueEleDisse: 'aprovada, segue para o búlgaro' },
+  bulgaro: { em: '2026-11-15', oQueEleDisse: 'Eu estou aprovando e gostando de tudo que você está fazendo' },
 };

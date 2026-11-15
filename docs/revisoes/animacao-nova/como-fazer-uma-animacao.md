@@ -1,0 +1,99 @@
+# Como fazer uma animação no motor novo (guia de quem executa)
+
+Este guia é para quem recebe uma família de exercícios para refazer no motor novo (`src/engine/novo/`), trabalhando em paralelo com outros. Desde 15/11/2026 o Gustavo pediu que as animações sejam feitas em paralelo; quem integra confere cada folha e leva a ele só as de maior risco. O corpo do Boneco está fechado: **não mude o desenho do corpo.**
+
+Leia este arquivo inteiro antes de começar. As regras completas da frente estão em `prompt-continuacao.md` (seções 1, 2 e 8); o que está aqui é o que você precisa no dia a dia.
+
+## 1. O que você entrega, por exercício
+
+1. `src/engine/novo/dados/movimentos/<id>.json`: a ficha de movimento (os números, cada um com selo e fonte).
+2. `src/engine/novo/exercicios/<id>.ts`: a animação (e, se a família pedir, um núcleo comum `exercicios/<familia>.ts`).
+3. Uma linha em `src/engine/novo/exercicios/registro.ts`.
+4. `docs/revisoes/animacao-nova/lote-N/<id>.md`: a conferência escrita (modelo: `lote-1/bulgaro.md`).
+5. `docs/revisoes/animacao-nova/prototipos/folha-<id>.png`: a folha ao lado do guia de hoje.
+6. `docs/revisoes/animacao-nova/quadros/<id>.png`: os quadros grandes (comando na seção 6).
+7. Um commit por exercício, no seu ramo de trabalho, em pt-BR, no imperativo (ex.: "Lote 2: flexão com os pés elevados"). **Não faça push, merge nem pull request.**
+
+No fim, a sua resposta traz, para cada exercício: o resultado da conferência automática (falhas e avisos), o que não ficou bom, e uma nota de **risco de o Gustavo não gostar** (baixo, médio ou alto) com o motivo. Seja franco: é essa nota que decide o que ele vai olhar.
+
+## 2. O ritual (não pule passos)
+
+1. **Releia o que já foi corrigido** nesse exercício: procure o id em `correcoes-ja-feitas.md`. A animação nova respeita cada correção.
+2. **Leia as fontes:** a ficha da técnica (`docs/pesquisa/animacoes/<id>.md`), o texto do app (`src/conteudo/exercicios/<id>.json`, só leitura) e a animação de hoje (`src/engine/exercicios/<id>.ts`, só leitura). A ficha da técnica manda; da animação de hoje saem as distâncias que a ficha não dá em número (selo `desenho`, fonte `hoje`).
+3. **Escreva a ficha de movimento.** Cada linha de `param` tem `v`, `un`, `selo` (`robusta`, `moderada`, `um estudo`, `consenso` ou `desenho`), `fonte` (uma chave de `fontes`) e `o` (o que é, em português simples). Nada de número solto no código. Nada de estudo inventado.
+4. **Monte as poses** no arquivo do exercício, reaproveitando os núcleos (seção 4).
+5. **Conferência automática sem falha:** `node scripts/animacao-nova/conferir.mjs <id>`. Falha não se contorna afrouxando a regra: corrige-se a pose. Aviso se explica na conferência escrita.
+6. **Olhe os quadros** (seção 6) em tamanho grande: técnica nas duas vistas (começo, meio, fim), músculos, cada erro, trajetória. Olhe de verdade: mão que não fecha na peça, pé que atravessa o chão, membro torcido, rótulo em cima do corpo ou do aparelho, corpo pequeno demais no quadro.
+7. **Conferência escrita** "o que a fonte pede × o que o boneco faz (medido) × confere?", com os números medidos (não os pedidos), os erros, o equipamento, as correções respeitadas e a seção "O que não ficou bom".
+8. **Folha** ao lado da de hoje e commit.
+
+Não ajuste pose "a olho" contra a medida. Se a ficha pede uma coisa e o corpo não consegue (amplitude, alcance), a conferência escrita diz isso com o número; não esconda.
+
+## 3. Onde você pode mexer
+
+- **Crie à vontade:** os arquivos novos do seu exercício e da sua família; peças de cena novas em `src/engine/novo/pecas-de-cena/<peca>.ts`; objetos novos em `src/engine/novo/dados/objetos/<objeto>.json`; regras novas em `src/engine/novo/regras/<familia>.ts`.
+- **Só acrescente uma linha:** nos três registros (`exercicios/registro.ts`, `regras/registro.ts`, `dados/objetos/registro.ts`). Eles se juntam sozinhos entre quem trabalha em paralelo.
+- **Evite mexer** nos arquivos comuns: `boneco.ts`, `esqueleto.ts`, `desenho.ts`, `cena.ts`, `movimento.ts`, `conferir.ts`, `equipamento.ts`, `pecas.ts`, `rotulos.ts`, `tabelas.ts`, `dados/objetos.json`, `dados/corpo-*.json`, os núcleos dos outros (`agachar.ts`, `afundar.ts`, `afundo-estatico.ts`, `bulgaro-base.ts`, `flexao.ts`) e os scripts. Se o seu exercício precisa de algo que o motor não tem (um tipo de apoio, uma opção de pose), faça a **menor mudança aditiva possível** (um campo opcional novo, sem mudar o que já existe), confira que `npm run conferir:animacao` continua sem falha em todas as animações e **liste a mudança na sua resposta**, com o motivo.
+- **Não regenere nem inclua no commit** os arquivos gerais: `prototipos/index.html`, `prototipos/conferencia.*`, `prototipos/medidas.json`, `prototipos/peso.json`, `prototipos/erros.png`, `tabelas.md`. Quem integra regenera. Antes do commit, desfaça mudanças neles (`git checkout -- <arquivo>`).
+- **Nunca altere:** `src/domain/`, `src/storage/`, `api/`, `src/features/`, `src/conteudo/`, `tests/unit/`, `tests/personas/`, `CLAUDE.md`, `docs/devlog.md`, `docs/backlog.md`, o motor de hoje (`src/engine/*.ts` fora de `novo/`, `src/engine/exercicios/`). `privado/` não existe para você.
+- **Texto do app ou lista de músculos que parece errado:** não corrija. Anote num arquivo seu, `docs/revisoes/animacao-nova/lote-N/pedidos-<familia>.md`, com a fonte.
+- **Sem dependência nova.** Sem `Math.random` nem `Date.now`: a mesma entrada dá a mesma saída.
+
+## 4. O motor, em uma página
+
+- **Eixos (cm):** `y` para cima; o chão é `y = 0`; `z` para a frente do corpo em pé; o lado direito do corpo (`'R'`) fica em `x` negativo (`sinal('R') = -1`). A vista `lateral` olha do lado direito: o lado `R` fica perto de quem olha. Por isso, em exercício de um lado só, quem trabalha é o `R`.
+- **Esqueleto (`esqueleto.ts`):** `resolverTronco(corpo, { pelve, frente, lombar?, cervical?, cabeca? })` e `resolverMembros(tronco, { R: PoseBraco, L: PoseBraco }, { R: PosePerna, L: PosePerna })`.
+  - Braço: por alvo (`pegada`: onde fica o centro da mão, com `polo` dizendo para onde o cotovelo aponta) ou por direções (`umero`, `antebraco`). `mao: { polegar, forma: 'pegada' | 'relaxada' | 'aberta', diam }`. Escápula: `elev`, `prot`.
+  - Perna: pé apoiado (`pe: { bola, dir, calc }`: a bola do pé no chão, a direção dos dedos, quanto o calcanhar sobe) ou pé livre (`tornozelo` ou `coxa` + `canela`, com `peDir`). `polo` diz para onde o joelho aponta.
+  - `falta.braco` e `falta.perna` dizem quando o membro não alcança o alvo (a conferência falha).
+- **Corpo:** `corpo.m('coxa.comp')` lê uma medida da tabela (`dados/corpo-homem.json`). Objetos: `obj('halter', 'caboDiam')`.
+- **Ficha:** `fichaSchema.parse(json)`, `daFicha(F)` devolve `f('nome.do.param')`. `mix(a, b, u)`, `suave(x)` (0 a 1 sem tranco), `resolver1(fn, a, b)` (acha onde `fn` cruza zero, para calibrar uma altura por uma medida).
+- **Exercício (`Exercicio` em `movimento.ts`):** `ficha`, `vistas` (duas: `lateral`, `frontal`, `posterior`, `cima`, `quina`, `quinaTras`; a primeira é a padrão), `quadro(corpo, u, erro?)` com `u` de 0 (posição inicial) a 1 (final), `papeis` (músculos: `'p'` principal, `'s'` secundário, `'a'` só ajuda; `'quadriceps:R'` = só o lado direito; a lista vem da ficha da técnica, que segue a biblioteca) e `trajetorias`.
+- **Quadro:** `{ esq, prims, pecas, fios, cargas, marcas, vies? }`. `prims` são os volumes simples que a conferência usa (chão, caixas onde o corpo encosta); `pecas` é o que é desenhado (o gerador realista); `cargas` entram no equilíbrio; `marcas` são pontos que regras e trajetórias leem.
+- **Ficha de movimento:** `fases` (pausa, exc, conc, com duração, `de` e `ate`), `contatos` (`pe.R`, `pe.L`, `mao.R`, `joelho.L`, `pelve`: o que não pode sair do lugar), `regras` (ids medidos pela conferência), `erros` (`id`, `titulo` igual ao do app, `vista`, `destaca`, `linha`, `foco`, `instante`), `rotulos` (as dicas do app; `ponto` aceita `joelho:R`, `pelve`, `c7`, `pegada:L` etc.; `prumo`, `guia` e `seta` opcionais).
+- **Músculos que o desenho tem:** veja `dados/musculos.json` (inclui porções: `deltAnt`, `deltLat`, `deltPost`, `trapSup`, `trapMedInf`). Não invente grupo; se a ficha pede um músculo que o desenho não tem, diga na conferência escrita.
+
+**Exemplos para ler antes de escrever (do mais simples ao mais completo):**
+
+| Para | Leia |
+|---|---|
+| exercício em pé, simétrico, com núcleo comum | `exercicios/agachar.ts`, `agachamento-peso-corpo.ts` |
+| um núcleo que serve a várias variações | `exercicios/afundo-estatico.ts`, `afundo.ts`, `afundo-kettlebell.ts` |
+| pé num apoio, mão num aparelho, peça como cenário | `exercicios/bulgaro-base.ts`, `bulgaro.ts`, `dados/movimentos/bulgaro.json`, `lote-1/bulgaro.md` |
+| movimento com fase no ar | `exercicios/afundo-tras-peso-corpo.ts` |
+| mãos no chão, corpo em prancha | `exercicios/flexao.ts` |
+| deitado no banco, halteres | `exercicios/supino-reto.ts` |
+| polia, cabo, pilha que sobe | `exercicios/puxada-unilateral.ts` |
+| elástico que estica | `exercicios/agachamento-elastico.ts` |
+
+## 5. Peças de cena, objetos e regras novas
+
+- **Medida real, com fonte.** Cada objeto novo tem as medidas num arquivo `dados/objetos/<objeto>.json`, no formato de `dados/objetos.json` (`fontes` e `objetos`; cada medida com `v`, `un`, `tipo`: `medida`, `derivada`, `provisoria` ou `desenho`, `fonte` e `onde`). Fonte = ficha pública de fabricante ou norma, com o endereço e o trecho lido. Só páginas públicas: nada de login, área paga, CAPTCHA ou contorno de bloqueio. Não achou? `tipo: "provisoria"`, `fonte: "a-conferir"`, e diga na resposta. Antes de criar, veja se o objeto já existe em `dados/objetos.json` (halter, anilha, banco reto, banco regulável, coluna de polia, estribo, colchonete, elástico em tubo, kettlebell).
+- **Peça desenhada:** um arquivo `pecas-de-cena/<peca>.ts` que exporta uma função devolvendo `{ prims, peca }`: os volumes simples para a conferência e uma `PecaPropria` (`pecas.ts`) cujo `desenhar(C, M, o)` usa o gerador realista (`realista/base.mjs`: `C.tubo`, `C.cilindro`, `C.prisma`, `C.estofado`, `C.linha`, `C.sombra`...; veja como `equipamento.ts` desenha o banco e a coluna). Parta do cartão de hoje dessa peça, se existir (`scripts/desenhos-equipamento/`). Não copie desenho de terceiros.
+- **Regra medida:** um arquivo `regras/<familia>.ts` que exporta um objeto `{ 'id-da-regra': (q, corpo) => ({ medido, ok }) }` (tipo `Regra` e utilidades em `conferir-util.ts`), com uma linha no `regras/registro.ts`. Antes, veja se a regra já existe em `conferir.ts` (`REGRAS`). O limite da regra vem do que a ficha pede, não do que a sua pose deu.
+
+## 6. Comandos
+
+Rode tudo da raiz do seu diretório de trabalho. Se ele for uma cópia de trabalho do git (worktree) sem `node_modules`, ligue o da raiz do projeto antes de qualquer coisa: `ln -s /home/user/treino-mvp/node_modules node_modules`. Não rode `npm install`.
+
+- `npm run typecheck`: os tipos (é o que vale; `npx tsc --noEmit -p .` não confere nada).
+- `node scripts/animacao-nova/conferir.mjs <id>`: a conferência de um exercício (mostra falhas e avisos). `npm run conferir:animacao`: de todos (regrava `prototipos/conferencia.*`: desfaça antes do commit).
+- Quadros para você olhar e para a entrega:
+  `LARG=520 JANELA=1640 ESCALA=2 TITULO="<nome> (motor novo)" node scripts/animacao-nova/olhar.mjs docs/revisoes/animacao-nova/quadros/<id>.png <id>:lateral:tec:f0 <id>:lateral:tec:f0.5 <id>:lateral:tec:f1 <id>:frontal:tec:f0 <id>:frontal:tec:f1 <id>:lateral:mus:f1 <id>:<vista>:err:f1:<erro> ... <id>:lateral:tec:f1::pele <id>:lateral:traj:f1`
+  (cada pedido é `id:vista:modo:instante[:erro][:estilo][:tema]`; `f0`, `f0.5`, `f1` = começo, meio e fim da primeira fase com movimento). Para rascunho, grave fora do repositório e use `ESCALA=1`. Abra o PNG e olhe.
+- `node scripts/animacao-nova/prototipos.mjs so-folhas <id>`: a folha ao lado do guia de hoje (só a desse id).
+- `npm run check`: lint, tipos e testes. Tem que passar antes de cada commit.
+- Para medir uma pose (os números da conferência escrita), escreva um script descartável em `node_modules/.tmp/` (fora do git) no molde:
+  `import { motorNovo } from '<raiz>/scripts/animacao-nova/empacotar.mjs'; const { modulo: m } = await motorNovo(); const ex = m.EXERCICIOS['<id>'], c = m.CORPOS.homem; const r = m.conferir(ex, c); for (const i of r.itens) console.log(i.nivel, i.grupo, i.oQue, '→', i.medido); const q = ex.quadro(c, 1); ...`
+  (`m.angulosDoLado(q.esq, 'R')`, `m.centroDeMassa(q.esq, 'homem', q.cargas)`).
+
+## 7. O que costuma dar errado (aprendido nos onze primeiros)
+
+- **Membro que não alcança** (`falta`): a distância pedida é maior que o membro. Calibre a altura ou a distância com `resolver1` por uma medida da ficha, em vez de fixar as duas.
+- **Tranco no ritmo** (acima de 25% é falha): use `suave` nas transições; nada de degrau nem `max()` em posição.
+- **Erro que cruza o meio do corpo** (joelho para dentro): meça e reduza.
+- **Corpo pequeno no quadro:** uma peça grande entra no enquadramento. Peça que é só cenário leva `cenario: true`; do banco, só a ponta que importa (`pontaNoQuadro`).
+- **Rótulo em cima do aparelho ou do corpo:** troque o ponto do rótulo ou a dica (use as dicas do app, `cues`).
+- **Contato da mão:** `mao.X` nos `contatos` mede o punho, que gira em volta da pegada; para mão que segura uma peça parada, meça a pegada numa regra.
+- **O halter pende na vertical; o cabo é reto da polia à mão; o elástico afina ao esticar.** O peso aparece.
+- **De frente, nos afundos, o músculo principal some atrás do joelho:** é aviso conhecido; diga na conferência escrita qual é a vista padrão do modo Músculos.

@@ -3,6 +3,9 @@
 // ciclo, equilíbrio e as regras da ficha. Cada item sai como "ok", "aviso" (dentro do possível, fora da média ou
 // provisório) ou "falha".
 import amplitudesJson from './dados/amplitudes.json';
+import { angulosDoLado, f1, faixa } from './conferir-util';
+import type { Regra } from './conferir-util';
+import * as REGRAS_DAS_FAMILIAS from './regras/registro';
 import { LADOS, sinal } from './esqueleto';
 import type { Esq, Lado } from './esqueleto';
 import { pontosDoBoneco } from './boneco';
@@ -10,7 +13,7 @@ import { centroDeMassa, duracao, instante } from './movimento';
 import type { Exercicio, Quadro } from './movimento';
 import type { Corpo } from './tabelas';
 import { OBJETOS } from './tabelas';
-import { angulo, dist, dot, mul, norm, paraRef, sub } from './vec';
+import { angulo, dist, mul, norm, paraRef, sub } from './vec';
 import type { V3 } from './vec';
 
 export type Nivel = 'ok' | 'aviso' | 'falha';
@@ -22,28 +25,8 @@ export interface ItemConferido {
   nivel: Nivel;
 }
 const LIM = amplitudesJson.limites as Record<string, { media: number; max: number; fonte: string }>;
-const f1 = (x: number) => (Math.round(x * 10) / 10).toString().replace('.', ',');
 
-/** Ângulos anatômicos de um lado, medidos no esqueleto resolvido (graus). */
-export function angulosDoLado(e: Esq, k: Lado) {
-  const L = e.lado[k];
-  const coxa = norm(sub(L.joelho, L.quadril));
-  // flexão do quadril no plano de lado da pelve; a abertura para o lado é medida à parte
-  const flexQuadril = Math.atan2(dot(coxa, e.pelve.z), -dot(coxa, e.pelve.y)) / (Math.PI / 180);
-  const abducao = Math.asin(Math.max(-1, Math.min(1, dot(coxa, e.pelve.x) * sinal(k)))) / (Math.PI / 180);
-  const canelaAcima = norm(sub(L.joelho, L.tornozelo));
-  const dorsi = 90 - angulo(canelaAcima, L.pe.z);
-  const dedos = mul(L.mao.y, -1),
-    ante = mul(L.antebraco.y, -1);
-  // extensão do punho: positiva quando o dorso da mão vai para o lado de trás do antebraço
-  const punho = angulo(ante, dedos) * (dot(dedos, L.mao.z) <= 0 && dot(ante, L.mao.z) > 0 ? 1 : dot(ante, L.mao.z) > 0 ? 1 : -1);
-  const dedosDoPe = angulo(L.pe.z, L.dedos.z);
-  return { joelho: L.ang.joelho, cotovelo: L.ang.cotovelo, quadril: flexQuadril, abducaoDoQuadril: abducao, ombro: L.ang.elevacaoDoBraco, dorsiflexao: dorsi, pronacao: L.ang.pronacao - 90, punho, dedosDoPe, clavicula: L.ang.claviculaElev };
-}
 
-function faixa(v: number[]) {
-  return [Math.min(...v), Math.max(...v)] as [number, number];
-}
 function contraLimite(grupo: string, oQue: string, valor: number, id: string): ItemConferido {
   const l = LIM[id]!;
   const nivel: Nivel = valor > l.max + 0.5 ? 'falha' : valor > l.media + 0.5 ? 'aviso' : 'ok';
@@ -61,7 +44,6 @@ export interface Relatorio {
 }
 
 /** Regras da ficha da técnica: cada uma devolve o que mediu e se confere. */
-type Regra = (q: Quadro[], corpo: Corpo) => { medido: string; ok: boolean };
 const REGRAS: Record<string, Regra> = {
   'quadril-na-altura-do-joelho': (q) => {
     const f = q[q.length - 1]!.esq;
@@ -221,6 +203,9 @@ const REGRAS: Record<string, Regra> = {
     return { medido: `a base do pescoço se move no máximo ${f1(m)} cm`, ok: m <= 2 };
   },
 };
+
+/** As regras daqui e as dos arquivos de cada família (./regras/registro.ts). */
+const TODAS_AS_REGRAS: Record<string, Regra> = Object.assign({}, REGRAS, ...(Object.values(REGRAS_DAS_FAMILIAS) as Record<string, Regra>[]));
 
 export function conferir(ex: Exercicio, corpo: Corpo, qps = 60): Relatorio {
   const F = ex.ficha;
@@ -387,7 +372,7 @@ export function conferir(ex: Exercicio, corpo: Corpo, qps = 60): Relatorio {
   // 11) regras da ficha da técnica
   const meio = quadros.slice(0, Math.floor(n * (F.fases[0]!.dur + F.fases[1]!.dur) / T) + 1);
   for (const r of F.regras) {
-    const regra = REGRAS[r.id];
+    const regra = TODAS_AS_REGRAS[r.id];
     if (!regra) {
       add('Ficha', r.pede, 'sem medição automática', r.selo, 'aviso');
       continue;
@@ -418,3 +403,5 @@ export function provisorios(corpo: Corpo): { corpo: string[]; objetos: string[] 
   };
 }
 export { sinal };
+export { angulosDoLado, f1, faixa } from './conferir-util';
+export type { Regra } from './conferir-util';

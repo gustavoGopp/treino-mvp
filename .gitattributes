@@ -1,0 +1,4 @@
+# registros do motor novo: uma linha por item; quem trabalha em paralelo só acrescenta linhas, e a junção fica com todas
+src/engine/novo/exercicios/registro.ts merge=union
+src/engine/novo/regras/registro.ts merge=union
+src/engine/novo/dados/objetos/registro.ts merge=union

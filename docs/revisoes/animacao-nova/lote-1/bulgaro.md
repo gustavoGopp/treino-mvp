@@ -1,11 +1,11 @@
 # Lote 1 · Agachamento búlgaro com apoio (`bulgaro`)
 
-De 15/11/2026. Sétima animação do lote 1, e a primeira com o pé de trás fora do chão o tempo todo: o peito do pé apoia no banco, com o cadarço para baixo. Um halter na mão do lado da perna da frente; a mão livre segura a coluna da estação, só para equilibrar. **Ainda sem a aprovação do Gustavo na folha: não está no app.**
+De 15/11/2026. Sétima animação do lote 1, e a primeira com o pé de trás fora do chão o tempo todo: o peito do pé apoia no banco, com o cadarço para baixo. Um halter na mão do lado da perna da frente; a mão livre segura a coluna da estação, só para equilibrar. **Aprovada pelo Gustavo em 15/11/2026 ("Eu estou aprovando e gostando de tudo que você está fazendo").** Ainda não está ligada às telas do app.
 
 - Ficha da técnica: `docs/pesquisa/animacoes/bulgaro.md`.
 - Ficha de movimento: `src/engine/novo/dados/movimentos/bulgaro.json`.
 - Animação: `src/engine/novo/exercicios/bulgaro.ts`, sobre o núcleo dos búlgaros (`bulgaro-base.ts`), que os outros dois búlgaros vão usar.
-- Folha ao lado da de hoje: `../prototipos/folha-bulgaro.png`. Quadros grandes: `../parada-do-corpo/17-bulgaro.png`.
+- Folha ao lado da de hoje: `../prototipos/folha-bulgaro.png`. Quadros grandes: `../quadros/bulgaro.png`.
 
 ## O que a fonte pede × o que o boneco faz (medido) × confere?
 

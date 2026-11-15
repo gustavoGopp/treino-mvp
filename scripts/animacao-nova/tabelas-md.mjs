@@ -59,6 +59,12 @@ for (const [id, g] of Object.entries(mu.grupos)) md += `| ${cel(g.nome)} (\`${id
 md += `\nOsso de cada parte do boneco: ${Object.entries(mu.ossoDeCadaParte).map(([k, v]) => `${k} = ${v}`).join('; ')}.\n\n**Regra de forma.** ${mu.regraDeForma.texto} Estado: ${mu.regraDeForma.estado}.\n\nFontes: ${Object.entries(mu.fontes).map(([k, v]) => `\`${k}\`: ${v}`).join('; ')}\n\n`;
 /* ----- objetos ----- */
 const o = le('objetos.json');
+// os objetos que ficam um por arquivo (dados/objetos/<objeto>.json)
+for (const arq of readdirSync(`${D}/objetos`).filter((a) => a.endsWith('.json')).sort()) {
+  const x = le(`objetos/${arq}`);
+  Object.assign(o.fontes, x.fontes);
+  Object.assign(o.objetos, x.objetos);
+}
 md += `## Objetos\n\n| objeto | medida | valor | tipo | fonte | onde na fonte |\n|---|---|---|---|---|---|\n`;
 for (const [id, ob] of Object.entries(o.objetos)) for (const [k, m] of Object.entries(ob.medidas)) md += `| ${cel(ob.nome)} (\`${id}\`) | \`${k}\` | ${n(m.v)} ${m.un} | ${NOME_TIPO[m.tipo] ?? m.tipo} | ${cel(m.fonte)} | ${cel(m.onde)} |\n`;
 md += `\nFontes dos objetos:\n\n${Object.entries(o.fontes).map(([k, v]) => `- \`${k}\`: ${v}`).join('\n')}\n\n`;

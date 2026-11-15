@@ -2,6 +2,8 @@
 // volumes, caixas e fios em centímetros; o mesmo desenho serve à cena e ao cartão de equipamento.
 import type { Anel, Volume } from './corpo3d';
 import type { Prim } from './desenho';
+import type { Materiais } from './equipamento';
+import type { CenaRealista } from './realista/base.mjs';
 import { obj } from './tabelas';
 import { REF0, add, comb, cross, len, mul, norm, perp, sub } from './vec';
 import type { Ref, V3 } from './vec';
@@ -131,7 +133,22 @@ export type Peca =
   /** Elástico em tubo: o caminho do tubo (do pegador de uma mão, por baixo dos pés, ao da outra) e quanto está esticado (1 = em repouso). */
   | { t: 'elastico'; pts: V3[]; estica: number }
   /** O pegador do elástico: o centro da pegada, o eixo dela e a ponta do tubo. */
-  | { t: 'pegador'; pegada: V3; eixo: V3; ponta: V3 };
+  | { t: 'pegador'; pegada: V3; eixo: V3; ponta: V3 }
+  | PecaPropria;
+
+/**
+ * Uma peça desenhada fora deste arquivo (em ./pecas-de-cena/<peça>.ts), com o mesmo gerador realista dos cartões.
+ * `desenhar` monta a peça na cena realista, com as medidas da tabela de objetos; `nome` identifica a peça; `fixa`
+ * (os dados de que o desenho depende) deixa o desenho ser guardado entre quadros quando a peça não se mexe.
+ * `cenario`: a peça é só cenário (pintada atrás do corpo e fora do enquadramento), como a coluna do búlgaro.
+ */
+export interface PecaPropria {
+  t: 'propria';
+  nome: string;
+  desenhar(C: CenaRealista, M: Materiais, o: { comSombra: boolean; tema: 'claro' | 'escuro' }): void;
+  fixa?: unknown;
+  cenario?: boolean;
+}
 
 export interface Torre {
   /** Centro da base no chão e a direção para onde a polia aponta (para a pessoa). */

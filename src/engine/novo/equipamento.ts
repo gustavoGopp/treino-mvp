@@ -14,6 +14,8 @@ import type { V3 } from './vec';
 const Y: V3 = [0, 1, 0];
 const f1 = (n: number) => (Math.round(n * 10) / 10).toString();
 export type Tema = 'claro' | 'escuro';
+/** Os materiais do gerador realista (quatro tons cada), no tema da cena. */
+export type Materiais = typeof MAT;
 /** No tema escuro, o grafite e a borracha sumiriam no fundo: os materiais escuros sobem de tom. */
 const MATERIAIS: Record<Tema, typeof MAT> = {
   claro: MAT,
@@ -266,6 +268,10 @@ export function equipamentoRealista(pecas: Peca[], cam: Camera, tema: Tema, id: 
     else if (p.t === 'kettlebell') junta(desenhar(null, cam, pid, (C) => kettlebell(C, M, p)));
     else if (p.t === 'elastico') junta(desenhar(null, cam, pid, (C) => elastico(C, M, p)));
     else if (p.t === 'pegador') junta(desenhar(null, cam, pid, (C) => pegador(C, M, p)));
+    else if (p.t === 'propria') {
+      const r = desenhar(p.fixa === undefined ? null : fixa(p.nome, p.fixa), cam, pid, (C) => p.desenhar(C, M, { comSombra, tema }));
+      junta(p.cenario ? { itens: r.itens.map((it) => (it.camada >= 1 ? { ...it, camada: 0.4 } : it)), defs: r.defs } : r);
+    }
     else junta(desenhar(null, cam, pid, (C) => C.linha(p.a, p.b, tema === 'claro' ? '#1d2024' : '#aeb8c2', 0.8)));
   });
   return { itens, defs };
