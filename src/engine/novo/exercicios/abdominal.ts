@@ -152,3 +152,42 @@ export function inclinacaoDoTorax(t: Tronco): number {
     b = t.torax.o;
   return (Math.atan2(b[1] - a[1], Math.abs(b[2] - a[2])) * 180) / Math.PI;
 }
+
+/* ============================== as costas sobre uma bola ============================== */
+/**
+ * Os pontos da pele do tronco, em três regiões: a lombar (o tronco entre L5–S1 e T12–L1, pelo nó da coluna mais
+ * perto), as escápulas (o tronco acima do ângulo inferior da escápula) e o resto do corpo.
+ */
+export function regioesDasCostas(e: Esq): { lombar: V3[]; escapulas: V3[]; resto: V3[] } {
+  const yInf = Math.max(paraRef(e.torax, e.lado.R.escapula.anguloInferior)[1], paraRef(e.torax, e.lado.L.escapula.anguloInferior)[1]);
+  const out = { lombar: [] as V3[], escapulas: [] as V3[], resto: [] as V3[] };
+  for (const { p, parte } of pontosDoBoneco(e)) {
+    if (parte === 'tronco' && paraRef(e.torax, p)[1] > yInf) {
+      out.escapulas.push(p);
+      continue;
+    }
+    if (parte === 'tronco' || parte === 'cintura' || parte === 'emendaDaCintura') {
+      let melhor = 0,
+        d = 1e9;
+      e.nos.forEach((n, i) => {
+        const di = Math.hypot(p[0] - n.ref.o[0], p[1] - n.ref.o[1], p[2] - n.ref.o[2]);
+        if (di < d) {
+          d = di;
+          melhor = i;
+        }
+      });
+      if (melhor <= e.iT12) {
+        out.lombar.push(p);
+        continue;
+      }
+    }
+    out.resto.push(p);
+  }
+  return out;
+}
+/** Quanto os pontos entram numa esfera (cm; positivo = dentro, negativo = a folga do mais perto). */
+export function entraNaBola(pts: V3[], centro: V3, R: number): number {
+  let m = -1e9;
+  for (const p of pts) m = Math.max(m, R - Math.hypot(p[0] - centro[0], p[1] - centro[1], p[2] - centro[2]));
+  return m;
+}

@@ -55,3 +55,4 @@ export { tricepsFrancesPoliaUnilateral } from './triceps-frances-polia-unilatera
 export { abdominalChao } from './abdominal-chao';
 export { abdominalInvertido } from './abdominal-invertido';
 export { aberturaTDeitado } from './abertura-t-deitado';
+export { abdominalBola } from './abdominal-bola';

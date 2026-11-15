@@ -5,6 +5,8 @@ import { f1, faixa } from '../conferir-util';
 import type { Regra } from '../conferir-util';
 import { poseEmPe, resolver } from '../esqueleto';
 import type { Esq } from '../esqueleto';
+import { entraNaBola, regioesDasCostas } from '../exercicios/abdominal';
+import { formaDaBola } from '../pecas-de-cena/bola-suica';
 import type { Corpo } from '../tabelas';
 import { angulo, anguloEm, dist, paraRef, sub } from '../vec';
 
@@ -118,6 +120,27 @@ export const REGRAS_ABDOMINAIS: Record<string, Regra> = {
     const [a, b] = faixa(q.map((x) => x.esq.lado.R.ang.claviculaElev));
     const sobe = q.map((x) => x.esq.lado.R.acromioclavicular[2] - q[0]!.esq.lado.R.acromioclavicular[2]);
     return { medido: `a clavícula fica de ${f1(a)}° a ${f1(b)}° de elevação; a ponta do ombro anda ${f1(Math.max(...sobe.map(Math.abs)))} cm na direção da cabeça`, ok: b - a <= 3 };
+  },
+  // ----- abdominal na bola suíça -----
+  'abdominal-bola-lombar-na-bola': (q) => {
+    const R = formaDaBola().R;
+    const lomb = q.map((x) => entraNaBola(regioesDasCostas(x.esq).lombar, x.marcas.bola!, R));
+    const todo = q.map((x) => entraNaBola(pontosDoBoneco(x.esq).filter((y) => y.parte !== 'pe').map((y) => y.p), x.marcas.bola!, R));
+    const [a, b] = faixa(lomb);
+    const anda = Math.max(...q.map((x) => dist(x.marcas.bola!, q[0]!.marcas.bola!)));
+    return { medido: `a pele da lombar entra na bola de ${f1(a)} a ${f1(b)} cm (negativo = a folga); nenhum ponto do corpo entra mais de ${f1(Math.max(...todo))} cm; a bola anda ${f1(anda)} cm`, ok: a >= -1.5 && b <= 1.5 && Math.max(...todo) <= 1.5 && anda <= 0.1 };
+  },
+  'abdominal-bola-escapulas-saem-da-bola': (q) => {
+    const R = formaDaBola().R;
+    const esc = (x: (typeof q)[number]) => entraNaBola(regioesDasCostas(x.esq).escapulas, x.marcas.bola!, R);
+    const ini = esc(q[0]!),
+      fim = esc(q[q.length - 1]!);
+    const incl = inclinacao(q[q.length - 1]!.esq);
+    return { medido: `embaixo, a pele das costas na altura das escápulas entra ${f1(ini)} cm na bola (encosta); no topo, fica a ${f1(-fim)} cm dela, com o tórax a ${f1(incl)}° da horizontal`, ok: ini >= -1 && ini <= 1.5 && fim <= -2 && incl <= 60 };
+  },
+  'abdominal-bola-cabeca-nao-cai': (q) => {
+    const [min, max] = faixa(q.map((x) => cabecaSobreOTorax(x.esq)));
+    return { medido: `a cabeça dobra sobre o alto do tórax de ${f1(min)}° a ${f1(max)}° além do que dobra em pé (negativo = cai para trás)`, ok: min >= -10 && max <= 20 };
   },
 };
 function inclinacao(e: Esq): number {
