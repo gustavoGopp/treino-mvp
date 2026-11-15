@@ -148,7 +148,11 @@ Os que mais entram (ponderada): puxada pela frente (37,1% dos programas), hip th
 
 Sete registros de programa (snapshots) acusavam a mudança e **foram regravados depois do "sim, pode regravar" do Gustavo** (só esses sete; conferido): os programas do Bruno, da Ana e da Carla; os três do retorno de 30 dias (Ana, Carla, Bruno na academia do bairro); e os 4 dias do Bruno no 2º local. O conteúdo da mudança é o da seção 2.
 
-Dezoito testes antigos usavam um exercício trocado como exemplo (o búlgaro na vaga de agachar, a puxada unilateral do Bruno, o hack "pela ordem alfabética"). Foram ajustados para provar a mesma coisa com o exercício de agora, sem apagar nenhuma verificação; um por um em [`testes-ajustados-pacote-2.md`](testes-ajustados-pacote-2.md). Um efeito real que apareceu nesse ajuste: **para o Bruno, a sugestão de semana leve chega uma semana mais cedo** (os dois dias de Superior passam a repetir quatro exercícios, e quem não progride chega aos "3 treinos sem progresso" na 2ª semana, e não na 3ª).
+Dezoito testes antigos usavam um exercício trocado como exemplo (o búlgaro na vaga de agachar, a puxada unilateral do Bruno, o hack "pela ordem alfabética"). Foram ajustados para provar a mesma coisa com o exercício de agora, sem apagar nenhuma verificação; um por um em [`testes-ajustados-pacote-2.md`](testes-ajustados-pacote-2.md). Dez testes de ponta a ponta (os que abrem o app no navegador) procuravam na tela o búlgaro da Ana; com a autorização do Gustavo (15/11), foram ajustados para o goblet, sem tirar nenhuma verificação e com três verificações a mais (o "cada lado" passou a ser conferido no afundo e na remada de um lado só; o teste de "algo a evitar" passava sem provar nada e voltou a provar). Um por um em [`testes-e2e-ajustados-pacote-2.md`](testes-e2e-ajustados-pacote-2.md). Dois efeitos reais anotados ali: a calibração do 1º exercício da Ana desce um halter a mais (6 kg em vez de 7 kg, porque a faixa do goblet é 8 a 15), e preferir o 2º equivalente do goblet põe um cartão de texto no dia A.
+
+**Um defeito de tela que já existia apareceu num desses testes:** em "A sua semana", com zoom de 200%, a linha de um músculo com número quebrado dos dois lados ("0,5 de 9,5") ficava 7 px mais larga que a tela. Com o búlgaro, os números da Ana eram inteiros. **O Gustavo autorizou corrigir aqui** (uma regra de `src/styles.css`; é a única mudança desta sessão em estilo ou tela): o número quebra em duas linhas só quando não cabe. Está em `pedidos-ao-design.md`, item 7, para o design rever.
+
+Outro efeito real, do ajuste dos testes unitários: **para o Bruno, a sugestão de semana leve chega uma semana mais cedo** (os dois dias de Superior passam a repetir quatro exercícios, e quem não progride chega aos "3 treinos sem progresso" na 2ª semana, e não na 3ª).
 
 ## 8. Conferências
 
@@ -158,7 +162,8 @@ Dezoito testes antigos usavam um exercício trocado como exemplo (o búlgaro na 
 | Protótipo de conferência = app | 0 programas diferentes em 23.470 |
 | A simulação de meses | refeita: idêntica (o pacote não mexe na progressão) |
 | `npm run test:e2e` e `npm run auditoria:verificar` | ver o fim deste arquivo |
-| `src/engine/`, telas, `src/styles.css`, `api/`, `CLAUDE.md` | sem mudança |
+| `src/engine/`, telas, `api/`, `CLAUDE.md` | sem mudança |
+| `src/styles.css` | uma regra (`.m-num`), com autorização do Gustavo (seção 7) |
 
 ## 9. Para quem já usa
 

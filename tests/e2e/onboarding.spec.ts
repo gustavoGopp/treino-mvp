@@ -10,7 +10,10 @@ test('do zero ao programa em menos de 5 minutos (persona Ana)', async ({ page })
   for (const dia of ['Corpo todo A', 'Corpo todo B', 'Corpo todo C']) await expect(page.getByRole('tab', { name: dia, exact: true })).toBeVisible();
   await expect(page.getByRole('tab', { name: 'Corpo todo A', exact: true })).toHaveAttribute('aria-selected', 'true');
   const painel = page.getByRole('tabpanel');
-  await expect(painel.locator('.series').first()).toHaveText(/^\d × 8–12 cada lado$/);
+  // Pacote 2 (15/11/2026): o 1º do Corpo todo A é o goblet (dois lados, 8–15); antes era o búlgaro ("8–12 cada lado").
+  // O "cada lado" segue conferido no exercício de um lado só do dia, a remada unilateral.
+  await expect(painel.locator('.series').first()).toHaveText(/^\d × 8–15$/);
+  await expect(painel.getByRole('button', { name: /Remada unilateral com halter apoiada no banco/ }).locator('.series')).toHaveText(/^\d × 8–12 cada lado$/);
   // Exercício com animação mostra a imagem.
   await expect(painel.locator('.miniatura svg').first()).toBeVisible();
   // Sem animação aprovada: "guia em texto", nunca uma animação improvisada. A flexão de joelho deslizante ganhou a
@@ -18,7 +21,7 @@ test('do zero ao programa em menos de 5 minutos (persona Ana)', async ({ page })
   // um (o crucifixo invertido sentado), conferido abaixo.
   await expect(painel.locator('.miniatura.vazia')).toHaveCount(0);
   // Semana 1 (fase de aprendizado da iniciante): RIR 3–4; o porquê, com o selo de evidência, fica na folha do exercício.
-  let folha = await abrirExercicio(page, /Agachamento búlgaro/);
+  let folha = await abrirExercicio(page, /Agachamento goblet/);
   await expect(folha.locator('.sub-rx')).toContainText('RIR 3–4');
   await expect(folha.locator('.selo').first()).toBeVisible();
   // R5b: o porquê começa pelo específico (a vaga, o músculo, o foco, as séries da semana e por que ganhou).
@@ -39,9 +42,9 @@ test('do zero ao programa em menos de 5 minutos (persona Ana)', async ({ page })
   await folha.getByRole('button', { name: 'Fechar' }).click();
 
   await page.getByRole('tab', { name: 'Corpo todo A', exact: true }).click();
-  folha = await abrirExercicio(page, /Agachamento búlgaro/);
+  folha = await abrirExercicio(page, /Agachamento goblet/);
   await folha.getByRole('link', { name: 'Ver como fazer' }).click();
-  await expect(page).toHaveURL(/\/guia\/bulgaro\?de=programa&dia=corpo-a&ex=bulgaro$/);
+  await expect(page).toHaveURL(/\/guia\/goblet\?de=programa&dia=corpo-a&ex=goblet$/);
   await expect(page.getByTestId('prescricao')).toContainText('RIR 3–4');
 });
 
@@ -367,12 +370,15 @@ test('catálogo do R0c: equipamento novo sem desenho, estações do multifuncion
 
 test('lote 3: "algo a evitar" fica em Meus dados e gera o programa de novo sem o exercício escolhido', async ({ page }) => {
   await ana(page);
+  // Pacote 2 (15/11/2026): o exercício a evitar é o goblet, que está no programa da Ana (antes, o búlgaro, que saiu dele:
+  // com o búlgaro, a última verificação passaria sem provar nada).
+  await expect(page.getByRole('tabpanel').getByRole('button', { name: /Agachamento goblet com calcanhar elevado/ })).toHaveCount(1);
   await page.getByRole('navigation', { name: 'Seções' }).getByRole('link', { name: 'Meus dados' }).click();
   await page.getByRole('link', { name: 'Algo a evitar' }).click();
   await expect(page.getByRole('heading', { name: 'Algo a evitar' })).toBeVisible();
   await page.getByText('Algum exercício que você quer evitar? (opcional)').click();
-  await page.getByLabel('Agachamento búlgaro com apoio', { exact: true }).check();
+  await page.getByLabel('Agachamento goblet com calcanhar elevado', { exact: true }).check();
   await page.getByRole('button', { name: 'Salvar e gerar o programa' }).click();
   await expect(page.getByRole('heading', { name: 'Seu treino', exact: true })).toBeVisible();
-  await expect(page.getByRole('tabpanel').getByRole('button', { name: /Agachamento búlgaro com apoio/ })).toHaveCount(0);
+  await expect(page.getByRole('tabpanel').getByRole('button', { name: /Agachamento goblet com calcanhar elevado/ })).toHaveCount(0);
 });

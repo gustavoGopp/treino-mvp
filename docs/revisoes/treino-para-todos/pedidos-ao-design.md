@@ -51,3 +51,12 @@ O pacote 1 da etapa 2 (`pacote-1.md`) já escreve estes textos; substituem as du
 
 - Nenhuma pergunta nova no cadastro nesta etapa.
 - Nenhuma sugestão de compra de equipamento (decisão de 03/11).
+
+## 7. Do pacote 2 (15/11/2026): a linha de "Séries por músculo" saía da tela com zoom de 200% (corrigido aqui, com autorização; fica para o design rever)
+
+- **O que acontece:** na tela "A sua semana", com a tela a 206 px de largura (zoom de 200% num celular de 412 px), a linha de um músculo cujo número tem vírgula dos dois lados (por exemplo "0,5 de 9,5") fica 7 px mais larga que a tela, e a página passa a rolar de lado. Medido: o número (`.m-num`) ocupa 85 px e termina em 213 px numa tela de 206 px.
+- **Por que apareceu agora:** o teste de ponta a ponta `cenarios.spec.ts › zoom200 · fim-e-semana` usa a Ana depois de um treino. Com o agachamento búlgaro, os números dela eram inteiros ("1 de 5"); com o agachamento goblet (pacote 2), o glúteo passa a ter meia série feita ("0,5 de 9,5"). O defeito da tela já existia para qualquer pessoa com meia série dos dois lados; só não havia um exemplo no teste.
+- **Onde está:** `src/styles.css`, `.musculos li` (`grid-template-columns:minmax(88px,30%) 1fr auto`) com `.m-num{white-space:nowrap}`: 88 px do nome, 24 px de espaços e 85 px do número não cabem em 206 px menos as margens.
+- **O que foi feito (exceção autorizada pelo Gustavo em 15/11/2026, a única mudança desta sessão em `src/styles.css`):** a regra `.m-num` perdeu o `white-space:nowrap` e ganhou `text-align:right`. O número continua numa linha só enquanto couber (a coluna dele é `auto`); só quebra ("0,5 de" / "9,5") quando a linha não cabe. O teste `fim-e-semana` passa nas sete larguras (claro, escuro, pequeno, baixo, estreito, zoom de 200% e letra de 125%).
+- **O pedido ao design:** rever se esse é o melhor jeito (a alternativa é o nome encolher abaixo de 88 px ou a barra ir para a linha de baixo nessa largura) e olhar a tela com um número quebrado dos dois lados.
+

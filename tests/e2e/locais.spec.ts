@@ -41,15 +41,17 @@ test('cadastra o 2º local, escolhe onde treinar hoje, vê a troca explicada e c
   await expect(onde.getByRole('button', { name: 'Meu local' })).toHaveAttribute('aria-pressed', 'true');
   await onde.getByRole('button', { name: 'Academia' }).click();
   await expect(onde.getByRole('button', { name: 'Academia' })).toHaveAttribute('aria-pressed', 'true');
+  // Pacote 2 (15/11/2026): o exercício de agachar da Ana é o goblet (antes, o búlgaro); na Academia, sem halteres, ele
+  // vira o leg press, com o mesmo motivo.
   const trocas = page.getByRole('list', { name: 'Trocas em Academia' });
-  await expect(trocas).toContainText('Aqui não tem halteres: agachamento búlgaro com apoio → leg press.');
+  await expect(trocas).toContainText('Aqui não tem halteres: agachamento goblet com calcanhar elevado → leg press.');
   await onde.scrollIntoViewIfNeeded();
   await print(page, 'escolha-do-local');
 
   // 4. No treino: a troca com o motivo e a calibração na 1ª série.
   await page.getByRole('button', { name: 'Começar o treino Corpo todo A em Academia' }).click();
   await expect(page.getByRole('heading', { name: 'Leg press' })).toBeVisible();
-  await expect(page.getByText('Aqui não tem halteres: agachamento búlgaro com apoio → leg press.')).toBeVisible();
+  await expect(page.getByText('Aqui não tem halteres: agachamento goblet com calcanhar elevado → leg press.')).toBeVisible();
   await expect(page.getByText('1ª vez: comece leve.')).toBeVisible();
   await expect(await porQueDaSugestao(page)).toContainText(/Calibração da carga/);
   await page.keyboard.press('Escape');
@@ -78,7 +80,9 @@ test('cadastra o 2º local, escolhe onde treinar hoje, vê a troca explicada e c
 
 test('"prefiro este" nas alternativas: um toque marca, outro desfaz, e o programa oferece a versão nova', async ({ page }) => {
   await ana(page);
-  const cartao = await abrirExercicio(page, /Agachamento búlgaro com apoio/);
+  // O 1º exercício do Corpo todo A: o goblet desde o pacote 2 (15/11/2026); antes, o búlgaro. O 1º botão é o do próprio
+  // exercício; o 2º é o de um equivalente (hoje, o agachamento com 2 halteres ao lado do corpo).
+  const cartao = await abrirExercicio(page, /Agachamento goblet com calcanhar elevado/);
   const prefiro = cartao.getByRole('button', { name: /^Prefiro / }).nth(1);
   const nome = (await prefiro.innerText()).replace(/^Prefiro /, '');
   await prefiro.click();

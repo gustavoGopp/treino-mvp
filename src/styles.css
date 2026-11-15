@@ -580,7 +580,8 @@ a.cartao-ex-corpo:focus-visible{outline:3px solid var(--foco);outline-offset:-3p
 .m-barra i{display:block;height:100%;background:var(--accent);border-radius:var(--r1)}
 .m-crescendo .m-barra i{opacity:.65}
 .m-mantendo .m-barra i{opacity:.35}
-.m-num{grid-area:num;font-variant-numeric:tabular-nums;font-weight:800;white-space:nowrap}
+/* O número fica numa linha só enquanto couber; em tela muito estreita (zoom de 200%), quebra em vez de empurrar a página para o lado. */
+.m-num{grid-area:num;font-variant-numeric:tabular-nums;font-weight:800;text-align:right}
 .m-estado{grid-area:estado;font-size:var(--t-apoio);color:var(--muted)}
 .semanas{display:flex;gap:4px;max-width:360px}
 .semanas i{flex:1;height:18px;border-radius:var(--r1);background:var(--surface-2)}
