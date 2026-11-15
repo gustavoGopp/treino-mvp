@@ -6,7 +6,7 @@ import { LADOS } from '../esqueleto';
 import { angulosDoLado, f1, faixa } from '../conferir-util';
 import type { Regra } from '../conferir-util';
 import type { Quadro } from '../movimento';
-import { dist, dot, sub } from '../vec';
+import { dist, dot, norm, paraRef, sub } from '../vec';
 import type { V3 } from '../vec';
 
 /** Distância de um ponto a um segmento. */
@@ -70,6 +70,40 @@ export const regrasDosElasticos: Record<string, Regra> = {
       }
     }
     return { medido: `o elástico passa a no mínimo ${f1(min)} cm da pele (${qual})`, ok: min >= -0.3 };
+  },
+  'elastico-na-sola-dos-pes': (q) => {
+    // com o pé fora do chão (sentado), as marcas `sola*` ficam na sola, no meio dela: a fração do calcanhar à bola e a
+    // distância ao plano da sola (negativa = do lado de fora da sola)
+    const ts: number[] = [],
+      ds: number[] = [];
+    for (const x of q)
+      for (const [k, m] of Object.entries(x.marcas)) {
+        if (!k.startsWith('sola')) continue;
+        const L = x.esq.lado[k.startsWith('solaR') ? 'R' : 'L'];
+        const eixo = sub(L.bola, L.calcanhar);
+        ts.push(dot(sub(m, L.calcanhar), eixo) / dot(eixo, eixo));
+        ds.push(dot(sub(m, L.bola), norm(L.pe.y)));
+      }
+    const [a, b] = faixa(ts),
+      [c, d] = faixa(ds);
+    return { medido: `o elástico passa pela sola de ${f1(a * 100)}% a ${f1(b * 100)}% do caminho do calcanhar à bola do pé, a ${f1(-d)}–${f1(-c)} cm da sola, do lado de fora`, ok: a >= 0.3 && b <= 0.75 && d <= 0 && c >= -1.5 };
+  },
+  'elastico-remada-tronco-volta-a-vertical': (q) => {
+    const peito = (x: Quadro) => Math.atan2(x.esq.torax.y[2], x.esq.torax.y[1]) / (Math.PI / 180);
+    const a = peito(q[0]!),
+      b = peito(q[q.length - 1]!);
+    const curva = Math.max(...q.map((x) => Math.abs(x.esq.pose.lombar ?? 0) + Math.abs(x.esq.pose.toracica ?? 0)));
+    return { medido: `o peito vai de ${f1(a)}° à frente da vertical, no alongado, a ${f1(b)}° no fim; a lombar e a torácica mudam ${f1(curva)}° da curva de repouso`, ok: a >= 9.5 && a <= 15.5 && Math.abs(b) <= 3 && curva <= 1 };
+  },
+  'elastico-remada-maos-ao-lado-do-abdomen': (q) => {
+    // no fim: a pegada entre a crista do osso do quadril e a costela de baixo (ao lado do abdômen, no tronco) e o
+    // cotovelo atrás da linha do tronco (atrás do eixo do tórax, visto de lado)
+    const e = q[q.length - 1]!.esq,
+      m = (id: string) => e.corpo.m(id);
+    const P = e.pelve;
+    const y = paraRef(P, e.lado.R.pegada)[1] + m('altura.trocanter');
+    const cot = paraRef(e.torax, e.lado.R.cotovelo)[2];
+    return { medido: `no fim, o centro da mão fica na altura de ${f1(y)} cm do corpo em pé (crista do quadril: ${f1(m('altura.cristaIliaca'))} cm; costela de baixo: ${f1(m('altura.costela10'))} cm) e o cotovelo, ${f1(-cot)} cm atrás da linha do tronco`, ok: y >= m('altura.cristaIliaca') - 2 && y <= m('altura.costela10') + 4 && cot < 0 };
   },
   'elastico-bracos-juntos': (q) => {
     // os dois cotovelos dobram juntos: a maior diferença entre o ângulo do direito e o do esquerdo no ciclo

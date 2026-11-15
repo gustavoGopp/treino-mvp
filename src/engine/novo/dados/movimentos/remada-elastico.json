@@ -1,0 +1,356 @@
+{
+ "id": "remada-elastico",
+ "nome": "Remada sentada com elástico",
+ "fichaDaTecnica": "docs/pesquisa/animacoes/remada-elastico.md",
+ "fontes": {
+  "ficha": "Ficha da técnica (docs/pesquisa/animacoes/remada-elastico.md): consenso de treinadores; o tronco e o caminho dos braços são os da remada-baixa aprovada",
+  "app": "Texto do app (src/conteudo/exercicios/remada-elastico.json)",
+  "suspensao": "Ficha de movimento da remada na suspensão (src/engine/novo/dados/movimentos/remada-suspensao.json): a escápula e o braço no fim",
+  "hoje": "A animação de hoje (src/engine/exercicios/remada-elastico.ts): as distâncias que a ficha não dá em número",
+  "objetos": "src/engine/novo/dados/objetos.json (objeto elastico: o tubo com pegadores de 48 pol; colchonete)",
+  "desenho": "Escolha de desenho desta animação, dentro do que a ficha pede; a conferência mede o resultado"
+ },
+ "param": {
+  "pes.meiaDistancia": {
+   "v": 9,
+   "un": "cm",
+   "selo": "desenho",
+   "fonte": "desenho",
+   "o": "os pés na largura do quadril (a ficha não dá)"
+  },
+  "joelho": {
+   "v": 20,
+   "un": "graus",
+   "selo": "consenso",
+   "fonte": "app",
+   "o": "pernas estendidas, joelhos um pouco dobrados (a ficha não dá número)"
+  },
+  "pe.paraFrente": {
+   "v": 15,
+   "un": "graus",
+   "selo": "desenho",
+   "fonte": "hoje",
+   "o": "o pé fica quase em pé, com os dedos para cima e 15° para a frente: a sola fica de frente para as mãos e o elástico não escapa"
+  },
+  "nadega.afunda": {
+   "v": 1,
+   "un": "cm",
+   "selo": "desenho",
+   "fonte": "desenho",
+   "o": "a nádega afunda 1 cm no colchonete"
+  },
+  "tronco.inicio": {
+   "v": 12,
+   "un": "graus",
+   "selo": "consenso",
+   "fonte": "ficha",
+   "o": "alongado: tronco até ~10–15° inclinado à frente"
+  },
+  "tronco.fim": {
+   "v": 0,
+   "un": "graus",
+   "selo": "consenso",
+   "fonte": "ficha",
+   "o": "fim: o tronco volta à vertical"
+  },
+  "cervical": {
+   "v": 4,
+   "un": "graus",
+   "selo": "desenho",
+   "fonte": "desenho",
+   "o": "pescoço na linha do tronco, o queixo um pouco recolhido"
+  },
+  "braco.inicio.abaixo": {
+   "v": 23,
+   "un": "graus",
+   "selo": "desenho",
+   "fonte": "hoje",
+   "o": "alongado: os braços estendidos para os pés, 23° abaixo da horizontal (hoje: mãos 29 cm acima e 64 cm à frente da pelve)"
+  },
+  "cotovelo.inicio": {
+   "v": 14,
+   "un": "graus",
+   "selo": "consenso",
+   "fonte": "ficha",
+   "o": "alongado: braços estendidos, sem travar o cotovelo (o alvo da mão; medido, o cotovelo fica um pouco mais estendido, porque o ombro vai à frente com a escápula)"
+  },
+  "maos.fim.fora": {
+   "v": 5,
+   "un": "cm",
+   "selo": "desenho",
+   "fonte": "desenho",
+   "o": "fim: o centro da mão fica 5 cm para fora do lado da cintura (mãos ao lado do abdômen)"
+  },
+  "maos.fim.acima": {
+   "v": 2,
+   "un": "cm",
+   "selo": "desenho",
+   "fonte": "desenho",
+   "o": "fim: a mão fica 2 cm acima da linha da cintura (ao lado do abdômen)"
+  },
+  "maos.fim.frente": {
+   "v": 2,
+   "un": "cm",
+   "selo": "desenho",
+   "fonte": "desenho",
+   "o": "fim: a mão fica 2 cm à frente do meio da cintura, de lado; o cotovelo passa para trás do tronco"
+  },
+  "maos.polegarParaDentro": {
+   "v": 0.35,
+   "un": "fração",
+   "selo": "desenho",
+   "fonte": "suspensao",
+   "o": "palmas uma para a outra: o polegar para cima e um pouco para dentro (o da remada na suspensão)"
+  },
+  "escapula.prot.inicio": {
+   "v": 6,
+   "un": "graus",
+   "selo": "consenso",
+   "fonte": "suspensao",
+   "o": "alongado: as escápulas abertas, à frente com o braço"
+  },
+  "escapula.retr.fim": {
+   "v": 10,
+   "un": "graus",
+   "selo": "consenso",
+   "fonte": "suspensao",
+   "o": "fim: as escápulas se juntam"
+  },
+  "escapula.elev.fim": {
+   "v": -1,
+   "un": "graus",
+   "selo": "consenso",
+   "fonte": "suspensao",
+   "o": "ombros baixos no fim"
+  },
+  "elastico.voltaNaMao": {
+   "v": 2.4,
+   "un": "cm",
+   "selo": "desenho",
+   "fonte": "objetos",
+   "o": "raio da volta que o tubo dá em cada mão, por cima do pegador (\"segure curto\"): sem ela, o tubo de 48 pol fica frouxo com os braços estendidos"
+  },
+  "elastico.voltas": {
+   "v": 2,
+   "un": "voltas",
+   "selo": "desenho",
+   "fonte": "objetos",
+   "o": "quantas voltas o tubo dá em cada mão (com uma, ele começa frouxo)"
+  },
+  "colchonete.z": {
+   "v": 30,
+   "un": "cm",
+   "selo": "desenho",
+   "fonte": "desenho",
+   "o": "o meio do colchonete, à frente da pelve"
+  },
+  "erro.balanco.tronco": {
+   "v": -14,
+   "un": "graus",
+   "selo": "desenho",
+   "fonte": "hoje",
+   "o": "erro: no fim, o tronco vai 14° para trás da vertical (a lombar puxa)"
+  },
+  "erro.balanco.inicio": {
+   "v": 24,
+   "un": "graus",
+   "selo": "desenho",
+   "fonte": "hoje",
+   "o": "erro: no alongado, o tronco vai 24° à frente"
+  },
+  "erro.arred.lombar": {
+   "v": 16,
+   "un": "graus",
+   "selo": "desenho",
+   "fonte": "hoje",
+   "o": "erro: no alongado, a lombar dobra 16° além da neutra (hoje: 16)"
+  },
+  "erro.arred.toracica": {
+   "v": 22,
+   "un": "graus",
+   "selo": "desenho",
+   "fonte": "hoje",
+   "o": "erro: e a torácica 22° (hoje: 14 a 44)"
+  },
+  "erro.encolher.elev": {
+   "v": 8,
+   "un": "graus",
+   "selo": "desenho",
+   "fonte": "suspensao",
+   "o": "erro: os ombros sobem no fim (hoje: +7 na escápula)"
+  }
+ },
+ "fases": [
+  {
+   "nome": "Alongado",
+   "tipo": "pausa",
+   "dur": 0.45,
+   "de": 0,
+   "ate": 0,
+   "respira": "INSPIRA",
+   "tempo": "pausa curta",
+   "selo": "consenso",
+   "fonte": "app"
+  },
+  {
+   "nome": "Puxada · concêntrica",
+   "tipo": "conc",
+   "dur": 1.1,
+   "de": 0,
+   "ate": 1,
+   "respira": "EXPIRA",
+   "tempo": "~1 s",
+   "selo": "consenso",
+   "fonte": "app"
+  },
+  {
+   "nome": "Segura contraído",
+   "tipo": "pausa",
+   "dur": 1,
+   "de": 1,
+   "ate": 1,
+   "respira": "FIRME",
+   "tempo": "1 s",
+   "selo": "consenso",
+   "fonte": "app"
+  },
+  {
+   "nome": "Volta · excêntrica",
+   "tipo": "exc",
+   "dur": 2.1,
+   "de": 1,
+   "ate": 0,
+   "respira": "INSPIRA",
+   "tempo": "~2 s",
+   "selo": "consenso",
+   "fonte": "app"
+  }
+ ],
+ "contatos": [
+  "pelve"
+ ],
+ "regras": [
+  {
+   "id": "elastico-remada-tronco-volta-a-vertical",
+   "pede": "o tronco vai de ~10–15° à frente, no alongado, à vertical no fim, com a lombar neutra",
+   "selo": "consenso",
+   "fonte": "ficha"
+  },
+  {
+   "id": "elastico-remada-maos-ao-lado-do-abdomen",
+   "pede": "no fim, mãos ao lado do abdômen e cotovelos atrás da linha do tronco",
+   "selo": "consenso",
+   "fonte": "app"
+  },
+  {
+   "id": "cotovelos-rentes-na-fita",
+   "pede": "cotovelos rentes ao corpo",
+   "selo": "consenso",
+   "fonte": "app"
+  },
+  {
+   "id": "escapulas-se-juntam",
+   "pede": "as escápulas se juntam no fim",
+   "selo": "consenso",
+   "fonte": "app"
+  },
+  {
+   "id": "palmas-uma-para-a-outra",
+   "pede": "palmas uma para a outra",
+   "selo": "consenso",
+   "fonte": "app"
+  },
+  {
+   "id": "elastico-na-sola-dos-pes",
+   "pede": "o meio do elástico passa pela sola dos dois pés",
+   "selo": "consenso",
+   "fonte": "app"
+  },
+  {
+   "id": "elastico-livre-do-corpo",
+   "pede": "o tubo vai das mãos aos pés sem entrar no corpo",
+   "selo": "desenho",
+   "fonte": "objetos"
+  },
+  {
+   "id": "elastico-nas-maos",
+   "pede": "cada mão segura uma ponta",
+   "selo": "consenso",
+   "fonte": "app"
+  }
+ ],
+ "erros": [
+  {
+   "id": "balanco",
+   "instante": 1,
+   "titulo": "Balançar o tronco",
+   "vista": "lateral",
+   "oQueMuda": "o tronco vai para trás no fim e a lombar puxa",
+   "destaca": [
+    "corpo"
+   ],
+   "linha": [
+    "pelve",
+    "c7",
+    "cabeca"
+   ],
+   "foco": "c7"
+  },
+  {
+   "id": "arred",
+   "instante": 0,
+   "titulo": "Arredondar a coluna no alongamento",
+   "vista": "lateral",
+   "oQueMuda": "no alongado, a lombar e as costas de cima arredondam",
+   "destaca": [
+    "corpo"
+   ],
+   "linha": [
+    "pelve",
+    "lombar",
+    "c7",
+    "cabeca"
+   ],
+   "foco": "lombar"
+  },
+  {
+   "id": "encolher",
+   "instante": 1,
+   "titulo": "Encolher os ombros no fim",
+   "vista": "posterior",
+   "oQueMuda": "os ombros sobem em direção às orelhas",
+   "destaca": [
+    "bracos"
+   ],
+   "linha": [
+    "acromioclavicular:R",
+    "acromioclavicular:L"
+   ],
+   "foco": "acromioclavicular:R"
+  }
+ ],
+ "simetrico": true,
+ "rotulos": [
+  {
+   "vista": "lateral",
+   "texto": "elástico na sola dos pés",
+   "ponto": "ponta:R",
+   "selo": "consenso",
+   "fonte": "app"
+  },
+  {
+   "vista": "posterior",
+   "texto": "junta as escápulas no fim",
+   "ponto": "c7",
+   "selo": "consenso",
+   "fonte": "app"
+  },
+  {
+   "vista": "posterior",
+   "texto": "cotovelos rentes, para trás",
+   "ponto": "cotovelo",
+   "selo": "consenso",
+   "fonte": "app"
+  }
+ ]
+}
