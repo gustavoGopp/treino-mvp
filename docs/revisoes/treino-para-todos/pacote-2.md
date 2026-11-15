@@ -144,9 +144,9 @@ O que os três revisores continuam apontando, e que não é deste pacote: tempo 
 
 Os que mais entram (ponderada): puxada pela frente (37,1% dos programas), hip thrust (29,8%), voador (22,3%), agachamento goblet (19,9%, animado), leg press (18,4%), rosca Scott (16,5%). O pedido à animação foi atualizado com essa ordem (`pedidos-a-animacao.md`).
 
-## 7. Os registros de teste que mudam (aguardando o ok do Gustavo)
+## 7. Os registros de teste que mudaram (regravados em 15/11/2026, com o ok do Gustavo)
 
-Sete registros de programa (snapshots) acusam a mudança e **não foram regravados**: os programas do Bruno, da Ana e da Carla; os três do retorno de 30 dias (Ana, Carla, Bruno na academia do bairro); e os 4 dias do Bruno no 2º local. O conteúdo da mudança é o da seção 2.
+Sete registros de programa (snapshots) acusavam a mudança e **foram regravados depois do "sim, pode regravar" do Gustavo** (só esses sete; conferido): os programas do Bruno, da Ana e da Carla; os três do retorno de 30 dias (Ana, Carla, Bruno na academia do bairro); e os 4 dias do Bruno no 2º local. O conteúdo da mudança é o da seção 2.
 
 Dezoito testes antigos usavam um exercício trocado como exemplo (o búlgaro na vaga de agachar, a puxada unilateral do Bruno, o hack "pela ordem alfabética"). Foram ajustados para provar a mesma coisa com o exercício de agora, sem apagar nenhuma verificação; um por um em [`testes-ajustados-pacote-2.md`](testes-ajustados-pacote-2.md). Um efeito real que apareceu nesse ajuste: **para o Bruno, a sugestão de semana leve chega uma semana mais cedo** (os dois dias de Superior passam a repetir quatro exercícios, e quem não progride chega aos "3 treinos sem progresso" na 2ª semana, e não na 3ª).
 
@@ -154,7 +154,7 @@ Dezoito testes antigos usavam um exercício trocado como exemplo (o búlgaro na 
 
 | | |
 | --- | --- |
-| `npm run check` | limpo, fora os 7 registros que aguardam o ok (979 testes; 23 novos em `tests/unit/escolha-do-exercicio.test.ts`) |
+| `npm run check` | limpo (979 testes; 23 novos em `tests/unit/escolha-do-exercicio.test.ts`) |
 | Protótipo de conferência = app | 0 programas diferentes em 23.470 |
 | A simulação de meses | refeita: idêntica (o pacote não mexe na progressão) |
 | `npm run test:e2e` e `npm run auditoria:verificar` | ver o fim deste arquivo |
@@ -166,7 +166,7 @@ Quem treina em academia ou condomínio vê "Há uma versão nova do seu programa
 
 ## 10. Decisões (uma por vez)
 
-1. **Regravar os 7 registros de teste** (seção 7)? *Recomendo sim.*
+1. ~~Regravar os 7 registros de teste (seção 7)?~~ **Decidido em 15/11/2026: sim.** Regravados.
 2. **A regra 4 (a trava do empurrar do foco) fica?** Ela não estava na proposta. Tira 179 programas com empurrar ÷ puxar acima de 1,5 e 34 com dia fraco, sem piorar nenhum defeito em nenhum grupo; a nota "o foco fica a menos de 1,3 vez a mediana dos outros" vai de 16,3% para 16,4%. *Recomendo sim.*
 3. **O hip thrust conta como carga na lombar para quem marcou dor leve na lombar?** Hoje não conta. Os revisores acham que sim. É dado da biblioteca (uma linha) e precisa de fonte; *recomendo levar para o tema de dor da pesquisa, e não mudar agora.*
 4. **Os resíduos da seção 3** (C1 em +44 programas e D1 em +65 para quem treina 2 dias, de 680.625) **são aceitáveis para este pacote**, com as duas correções no backlog? *Recomendo sim: o total de todos os defeitos cai, e os casos são de programas que já tinham o problema ou ficaram mais curtos.*
