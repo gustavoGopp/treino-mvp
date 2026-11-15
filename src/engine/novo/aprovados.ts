@@ -35,4 +35,8 @@ export const APROVADOS: Record<string, { em: string; oQueEleDisse: string; como?
   'desenvolvimento-unilateral-kettlebell': { em: '2026-11-15', oQueEleDisse: DELEGOU, como: 'por delegação' },
   'rosca-martelo': { em: '2026-11-15', oQueEleDisse: DELEGOU, como: 'por delegação' },
   'rosca-kettlebell': { em: '2026-11-15', oQueEleDisse: DELEGOU, como: 'por delegação' },
+  panturrilha: { em: '2026-11-15', oQueEleDisse: DELEGOU, como: 'por delegação' },
+  'panturrilha-b': { em: '2026-11-15', oQueEleDisse: DELEGOU, como: 'por delegação' },
+  'panturrilha-degrau': { em: '2026-11-15', oQueEleDisse: DELEGOU, como: 'por delegação' },
+  'panturrilha-sentada-halter': { em: '2026-11-15', oQueEleDisse: DELEGOU, como: 'por delegação' },
 };
