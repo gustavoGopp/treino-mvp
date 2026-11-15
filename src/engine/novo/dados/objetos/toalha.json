@@ -1,0 +1,33 @@
+{
+ "fontes": {
+  "zogics-toalha": "Zogics, 16x30 Hand Towel, 450A Series, 4.5lb (12 Towels); https://www.zogics.com/wholesale-towels/16x30-hand-towel-450a-series-4-5lb (lido em 15/11/2026 por resumo automático da página: \"16\" x 30\"\", \"4.5 lbs/dozen\"). A mesma medida de 16 x 30 pol aparece em várias marcas de toalha de mão (Oxford, Hospeco, Standard Textile)"
+ },
+ "objetos": {
+  "toalha": {
+   "nome": "Toalha de mão, dobrada ao meio, sob os calcanhares",
+   "medidas": {
+    "larg": {
+     "v": 40.6,
+     "un": "cm",
+     "tipo": "medida",
+     "fonte": "zogics-toalha",
+     "onde": "o lado menor da toalha de mão: 16 pol; dobrada ao meio, fica atravessada sob os dois calcanhares"
+    },
+    "comp": {
+     "v": 76.2,
+     "un": "cm",
+     "tipo": "medida",
+     "fonte": "zogics-toalha",
+     "onde": "o lado maior da toalha de mão: 30 pol; dobrada ao meio, fica com 38,1 cm na direção em que os calcanhares deslizam"
+    },
+    "esp": {
+     "v": 0.4,
+     "un": "cm",
+     "tipo": "provisoria",
+     "fonte": "a-conferir",
+     "onde": "espessura de uma camada de felpa: a ficha do fabricante dá o peso (4,5 lb por dúzia), não a espessura; dobrada, são duas camadas"
+    }
+   }
+  }
+ }
+}

@@ -4,3 +4,4 @@
 export {};
 export { apoioNoChao } from './apoio-no-chao';
 export { regrasDosBulgaros } from './bulgaros';
+export { REGRAS_FLEXAO_JOELHO } from './flexao-joelho';
