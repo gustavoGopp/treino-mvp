@@ -78,3 +78,4 @@ export { crucifixoElastico } from './crucifixo-elastico';
 export { extensaoJoelhoElastico } from './extensao-joelho-elastico';
 export { supinoInclinado } from './supino-inclinado';
 export { pontePesBola } from './ponte-pes-bola';
+export { nordico } from './nordico';
