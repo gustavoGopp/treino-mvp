@@ -2,7 +2,7 @@
 
 Atualizado por quem integra, a cada família juntada. "Aprovada na folha" = o Gustavo olhou e aprovou. "Aprovada por delegação" = conferida por quem integra, risco baixo, registrada com a frase dele de 15/11/2026. "Para o Gustavo ver" = risco médio ou alto: só entra na lista do app depois do ok dele. "Correção de qualidade" = desde o aviso dele de 15/11 ("o fato de eu ter delegado [...] não quer dizer que a gente pode diminuir a qualidade"), nenhuma animação delegada conta como pronta enquanto tiver defeito visível nos quadros (seção 8 de `como-fazer-uma-animacao.md`). As folhas ficam em `prototipos/folha-<id>.png` e os quadros grandes em `quadros/<id>.png`.
 
-Resumo: 15 aprovadas pelo Gustavo (7 na folha e 8 vendo os quadros); 62 por delegação; 3 prontas para o Gustavo ver; 4 das quatro primeiras sem aprovação na folha; 6 em andamento; 0 por fazer.
+Resumo: 18 aprovadas pelo Gustavo (7 na folha e 11 vendo os quadros); 62 por delegação; 0 prontas para o Gustavo ver; 4 das quatro primeiras sem aprovação na folha; 6 em andamento; 0 por fazer.
 
 | Lote | Exercício | Estado |
 |---|---|---|
@@ -34,7 +34,7 @@ Resumo: 15 aprovadas pelo Gustavo (7 na folha e 8 vendo os quadros); 62 por dele
 | 3 | `elevacao-halteres` | feita e conferida quadro a quadro por quem integra; aprovada por delegação (com o halter de 10 lb: os halteres ficam na frente das coxas embaixo) |
 | 3 | `elevacao-lateral` | feita e conferida quadro a quadro por quem integra; aprovada por delegação (é a elevação lateral de um braço na polia, como a ficha e o app dizem) |
 | 3 | `elevacao-lateral-elastico` | feita e conferida quadro a quadro por quem integra; aprovada por delegação |
-| 3 | `supino-inclinado` | feita; **para o Gustavo ver** (ele pediu este em especial: encosto a 30°, com o ângulo marcado no banco e no rótulo) |
+| 3 | `supino-inclinado` | aprovada pelo Gustavo em 15/11/2026, vendo os quadros ("podem ficar assim, segue com as próximas", pela segunda vez): encosto a 30°, com o ângulo marcado no banco e no rótulo |
 | 4 | `barra-fixa` | feita e conferida quadro a quadro por quem integra; aprovada por delegação (a pegada ficou em 1,5 vez a largura dos ombros, como a pesquisa diz; a de hoje usa 1,8. A estação de barra é peça nova, a 229 cm) |
 | 4 | `barra-fixa-supinada` | feita e conferida quadro a quadro por quem integra; aprovada por delegação |
 | 4 | `face-pull` | feita e conferida quadro a quadro por quem integra; aprovada por delegação (a vista padrão passou a ser a de lado; o ombro de trás aparece o bastante com o cotovelo 5,6 cm atrás da linha do ombro) |
@@ -50,9 +50,9 @@ Resumo: 15 aprovadas pelo Gustavo (7 na folha e 8 vendo os quadros); 62 por dele
 | 4 | `remada-unilateral-polia` | feita e conferida quadro a quadro por quem integra; aprovada por delegação (a coluna passou a ser cortada em cima pelo quadro, para o corpo ocupar o quadro) |
 | 4 | `remada-unilateral-sem-banco` | feita e conferida quadro a quadro por quem integra; aprovada por delegação |
 | 4 | `yt-suspensao` | feita e conferida quadro a quadro por quem integra; aprovada por delegação |
-| 5 | `rosca-alternada` | aprovada pelo Gustavo em 15/11/2026, vendo os quadros ("podem ficar assim, segue com as próximas"); depois refeita com o halter de 10 lb: os braços voltaram para junto do corpo (6°) e a palma para a frente. **Para o Gustavo ver** de novo, porque mudou |
+| 5 | `rosca-alternada` | aprovada pelo Gustavo em 15/11/2026, vendo os quadros ("podem ficar assim, segue com as próximas", pela segunda vez): refeita com o halter de 10 lb, com os braços junto do corpo (6°) e a palma para a frente |
 | 5 | `rosca-elastico` | feita e conferida quadro a quadro por quem integra; aprovada por delegação |
-| 5 | `rosca-inclinada` | feita com o halter de 10 lb; **para o Gustavo ver** (de frente os braços abrem 25°, para o halter não entrar no quadril) |
+| 5 | `rosca-inclinada` | aprovada pelo Gustavo em 15/11/2026, vendo os quadros ("podem ficar assim, segue com as próximas", pela segunda vez): com o halter de 10 lb; de frente os braços abrem 25°, para o halter não entrar no quadril |
 | 5 | `rosca-kettlebell` | feita e conferida quadro a quadro por quem integra; aprovada por delegação |
 | 5 | `rosca-martelo` | feita e conferida quadro a quadro por quem integra; aprovada por delegação (com o halter de 10 lb) |
 | 5 | `rosca-polia` | feita e conferida quadro a quadro por quem integra; aprovada por delegação (com a barra reta, que é peça nova; a coluna é cortada em cima pelo quadro) |
