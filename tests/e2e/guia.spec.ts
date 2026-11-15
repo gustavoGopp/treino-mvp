@@ -30,10 +30,11 @@ test('rota direta funciona e id desconhecido volta para o primeiro exercício', 
 
 test('o boneco novo é o padrão, a silhueta fica em Meus dados e o clássico saiu do app', async ({ page }) => {
   await page.goto('/guia/goblet');
-  await expect(page.locator('.stage svg')).toHaveClass(/estilo-a/);
-  await expect(page.locator('.stage svg path.ea-mp, .stage svg path.ea-ms')).toHaveCount(0); // músculo só no modo Músculos
+  // o goblet já é desenhado pelo motor novo (aprovado em 15/11/2026): o Boneco padrão é o desenho `novo`
+  await expect(page.locator('.stage svg')).toHaveClass(/\bnovo\b/);
+  await expect(page.locator('.stage svg path.b-mp, .stage svg path.b-ms')).toHaveCount(0); // músculo só no modo Músculos
   await page.getByRole('button', { name: 'Músculos' }).click();
-  await expect(page.locator('.stage svg path.ea-mp').first()).toBeAttached();
+  await expect(page.locator('.stage svg path.b-mp').first()).toBeAttached();
 
   // lote 5 do redesign: o estilo fica numa folha de Meus dados
   await page.goto('/dados');
@@ -46,13 +47,16 @@ test('o boneco novo é o padrão, a silhueta fica em Meus dados e o clássico sa
   await page.getByRole('button', { name: 'Estilo do Boneco' }).click();
   await page.getByRole('radiogroup', { name: 'Estilo do boneco' }).getByRole('radio', { name: /Silhueta/ }).check();
   await page.goto('/guia/goblet');
+  // a Silhueta continua no motor de hoje
   await expect(page.locator('.stage svg')).toHaveClass(/estilo-b/);
 });
 
 test('quem tinha escolhido o clássico passa ao Boneco', async ({ page }) => {
   await page.addInitScript(() => localStorage.setItem('treino-mvp:estilo-boneco', 'atual'));
   await page.goto('/guia/goblet');
-  await expect(page.locator('.stage svg')).toHaveClass(/estilo-a/);
+  // o Boneco padrão do goblet é o do motor novo; a Silhueta é que não pode aparecer (o clássico saiu do app)
+  await expect(page.locator('.stage svg')).toHaveClass(/\bnovo\b/);
+  await expect(page.locator('.stage svg')).not.toHaveClass(/estilo-b/);
 });
 
 test('o modo Músculos abre na vista em que o músculo principal aparece mais (afundo: de lado)', async ({ page }) => {

@@ -9,19 +9,19 @@
 // Cada pedaço só é pintado se quem olha o vê: o que assenta numa coxa aparece do lado dela virado para quem olha, e o
 // que passa por trás de um joelho, de uma canela ou da outra coxa fica escondido (o corpo é pintado parte por parte,
 // cada parte numa profundidade só, e não daria conta de uma faixa que abraça as duas pernas).
-import { pontosDoBoneco } from "../boneco";
-import type { Prim } from "../desenho";
-import type { Esq, Lado } from "../esqueleto";
-import type { PecaPropria } from "../pecas";
-import type { Material } from "../realista/base.mjs";
-import { mix } from "../realista/base.mjs";
-import { obj } from "../tabelas";
-import { add, cross, dist, dot, mul, norm, sub } from "../vec";
-import type { V3 } from "../vec";
+import { pontosDoBoneco } from '../boneco';
+import type { Prim } from '../desenho';
+import type { Esq, Lado } from '../esqueleto';
+import type { PecaPropria } from '../pecas';
+import type { Material } from '../realista/base.mjs';
+import { mix } from '../realista/base.mjs';
+import { obj } from '../tabelas';
+import { add, cross, dist, dot, mul, norm, sub } from '../vec';
+import type { V3 } from '../vec';
 
-const g = (id: string) => obj("miniBand", id);
+const g = (id: string) => obj('miniBand', id);
 /** A cor de ação do cartão (traço, sombra, meio, luz). */
-const ACAO: Material = ["#16124A", "#211D66", "#3F3AA8", "#7E7ADB"];
+const ACAO: Material = ['#16124A', '#211D66', '#3F3AA8', '#7E7ADB'];
 /** Quanto a faixa vem para a frente na ordem da pintura (cm): mais que o comprimento de uma coxa, para ficar por cima da pele em que assenta seja qual for a profundidade em que a perna é pintada. */
 const POR_CIMA = 60;
 /** Quantos pontos tem cada volta da faixa. */
@@ -44,17 +44,14 @@ export interface Laco {
   /** Em que coxa cada ponto da volta assenta (nenhuma: o trecho reto entre as duas). */
   assenta: (Lado | undefined)[];
   /** As pernas, como bolas por dentro da pele: o que esconde a faixa de quem olha. */
-  pernas: { c: V3; r: number; parte: "coxa" | "canela"; lado: Lado }[];
+  pernas: { c: V3; r: number; parte: 'coxa' | 'canela'; lado: Lado }[];
 }
 
 /** As pontas do eixo de uma parte da perna: a coxa do joelho ao quadril, a canela do joelho ao tornozelo. */
-const eixoDaParte = (e: Esq, parte: "coxa" | "canela", k: Lado): [V3, V3] => [
-  e.lado[k].joelho,
-  parte === "coxa" ? e.lado[k].quadril : e.lado[k].tornozelo,
-];
+const eixoDaParte = (e: Esq, parte: 'coxa' | 'canela', k: Lado): [V3, V3] => [e.lado[k].joelho, parte === 'coxa' ? e.lado[k].quadril : e.lado[k].tornozelo];
 
 /** Os anéis da pele da coxa ou da canela de cada perna (12 pontos por anel, na mesma ordem em todos), a partir do joelho. */
-function aneisDaPerna(e: Esq, parte: "coxa" | "canela"): Record<Lado, V3[][]> {
+function aneisDaPerna(e: Esq, parte: 'coxa' | 'canela'): Record<Lado, V3[][]> {
   const out: Record<Lado, V3[][]> = { R: [], L: [] };
   const pts = pontosDoBoneco(e).filter((x) => x.parte === parte);
   for (let i = 0; i + 12 <= pts.length; i += 12) {
@@ -70,9 +67,9 @@ function aneisDaPerna(e: Esq, parte: "coxa" | "canela"): Record<Lado, V3[][]> {
       const v = sub(c, de);
       return dist(v, mul(ax, dot(v, ax)));
     };
-    out[longe("R") <= longe("L") ? "R" : "L"].push(anel);
+    out[longe('R') <= longe('L') ? 'R' : 'L'].push(anel);
   }
-  for (const k of ["R", "L"] as const) {
+  for (const k of ['R', 'L'] as const) {
     const [de, ate] = eixoDaParte(e, parte, k);
     const ax = norm(sub(ate, de));
     out[k].sort((a, b) => dot(sub(a[0]!, de), ax) - dot(sub(b[0]!, de), ax));
@@ -81,10 +78,10 @@ function aneisDaPerna(e: Esq, parte: "coxa" | "canela"): Record<Lado, V3[][]> {
 }
 
 /** Bolas por dentro da pele de uma parte da perna, uma a cada ~2 cm: o centro de cada anel e a menor distância dele à pele. */
-function bolasDaPerna(e: Esq, parte: "coxa" | "canela"): Laco["pernas"] {
-  const out: Laco["pernas"] = [];
+function bolasDaPerna(e: Esq, parte: 'coxa' | 'canela'): Laco['pernas'] {
+  const out: Laco['pernas'] = [];
   const A = aneisDaPerna(e, parte);
-  for (const lado of ["R", "L"] as const) {
+  for (const lado of ['R', 'L'] as const) {
     const aneis = A[lado].map((anel) => {
       const c = mul(
         anel.reduce((a, p) => add(a, p), [0, 0, 0] as V3),
@@ -111,13 +108,11 @@ function bolasDaPerna(e: Esq, parte: "coxa" | "canela"): Laco["pernas"] {
 /** O fecho convexo de pontos do plano, no sentido anti-horário (cadeia monótona). */
 function fecho(pts: P2[]): P2[] {
   const P = [...pts].sort((a, b) => a[0] - b[0] || a[1] - b[1]);
-  const vira = (o: P2, a: P2, b: P2) =>
-    (a[0] - o[0]) * (b[1] - o[1]) - (a[1] - o[1]) * (b[0] - o[0]);
+  const vira = (o: P2, a: P2, b: P2) => (a[0] - o[0]) * (b[1] - o[1]) - (a[1] - o[1]) * (b[0] - o[0]);
   const meia = (lista: P2[]) => {
     const h: P2[] = [];
     for (const p of lista) {
-      while (h.length >= 2 && vira(h[h.length - 2]!, h[h.length - 1]!, p) <= 0)
-        h.pop();
+      while (h.length >= 2 && vira(h[h.length - 2]!, h[h.length - 1]!, p) <= 0) h.pop();
       h.push(p);
     }
     h.pop();
@@ -131,20 +126,10 @@ function lisa(pts: P2[], n: number): P2[] {
   const out: P2[] = [];
   const m = pts.length;
   for (let i = 0; i < m; i++) {
-    const [p0, p1, p2, p3] = [
-      pts[(i + m - 1) % m]!,
-      pts[i]!,
-      pts[(i + 1) % m]!,
-      pts[(i + 2) % m]!,
-    ];
+    const [p0, p1, p2, p3] = [pts[(i + m - 1) % m]!, pts[i]!, pts[(i + 1) % m]!, pts[(i + 2) % m]!];
     for (let j = 0; j < n; j++) {
       const t = j / n;
-      const c = (k: 0 | 1) =>
-        0.5 *
-        (2 * p1[k] +
-          (p2[k] - p0[k]) * t +
-          (2 * p0[k] - 5 * p1[k] + 4 * p2[k] - p3[k]) * t * t +
-          (3 * p1[k] - p0[k] - 3 * p2[k] + p3[k]) * t * t * t);
+      const c = (k: 0 | 1) => 0.5 * (2 * p1[k] + (p2[k] - p0[k]) * t + (2 * p0[k] - 5 * p1[k] + 4 * p2[k] - p3[k]) * t * t + (3 * p1[k] - p0[k] - 3 * p2[k] + p3[k]) * t * t * t);
       out.push([c(0), c(1)]);
     }
   }
@@ -152,11 +137,7 @@ function lisa(pts: P2[], n: number): P2[] {
 }
 
 /** O centro da seção da coxa `k` a `acima` cm do joelho, e a direção dela (do joelho para o quadril). */
-export function secaoDaCoxa(
-  e: Esq,
-  k: Lado,
-  acima: number,
-): { c: V3; eixo: V3 } {
+export function secaoDaCoxa(e: Esq, k: Lado, acima: number): { c: V3; eixo: V3 } {
   const X = e.lado[k];
   const eixo = norm(sub(X.quadril, X.joelho));
   return { c: add(X.joelho, mul(eixo, acima)), eixo };
@@ -164,22 +145,22 @@ export function secaoDaCoxa(
 
 /** A faixa em volta das duas coxas, com o meio dela a `acima` cm dos joelhos. */
 export function lacoNasCoxas(e: Esq, acima: number): Laco {
-  const R = secaoDaCoxa(e, "R", acima),
-    L = secaoDaCoxa(e, "L", acima);
+  const R = secaoDaCoxa(e, 'R', acima),
+    L = secaoDaCoxa(e, 'L', acima);
   const eixo = norm(add(R.eixo, L.eixo));
   const meio = mul(add(R.c, L.c), 0.5);
   // no plano perpendicular às coxas: e1 do centro da direita para o da esquerda, e2 para cima
   const e1 = norm(sub(sub(L.c, R.c), mul(eixo, dot(sub(L.c, R.c), eixo))));
   let e2 = cross(eixo, e1);
   if (e2[1] < 0) e2 = mul(e2, -1);
-  const aneis = aneisDaPerna(e, "coxa");
-  const folga = g("esp") / 2;
+  const aneis = aneisDaPerna(e, 'coxa');
+  const folga = g('esp') / 2;
   /** A volta da faixa no corte a `s` cm do meio dela (para o lado do quadril): o fecho das duas seções da pele. */
   const volta = (s: number, assenta?: (Lado | undefined)[]): V3[] => {
     const o = add(meio, mul(eixo, s));
     const secoes: P2[] = [];
     const dono = new Map<P2, Lado>();
-    for (const k of ["R", "L"] as const) {
+    for (const k of ['R', 'L'] as const) {
       const A = aneis[k];
       const d = (p: V3) => dot(sub(p, o), eixo);
       const corte: P2[] = [];
@@ -231,8 +212,8 @@ export function lacoNasCoxas(e: Esq, acima: number): Laco {
   const pts = volta(0, assenta);
   let comp = 0;
   for (let i = 0; i < N; i++) comp += dist(pts[i]!, pts[(i + 1) % N]!);
-  const estica = comp / g("comp");
-  const larg = g("larg") / Math.sqrt(Math.max(1, estica));
+  const estica = comp / g('comp');
+  const larg = g('larg') / Math.sqrt(Math.max(1, estica));
   return {
     pts,
     bordas: [volta(-larg / 2), volta(larg / 2)],
@@ -242,7 +223,7 @@ export function lacoNasCoxas(e: Esq, acima: number): Laco {
     larg,
     centros: { R: R.c, L: L.c },
     assenta,
-    pernas: [...bolasDaPerna(e, "coxa"), ...bolasDaPerna(e, "canela")],
+    pernas: [...bolasDaPerna(e, 'coxa'), ...bolasDaPerna(e, 'canela')],
   };
 }
 
@@ -250,15 +231,12 @@ export function lacoNasCoxas(e: Esq, acima: number): Laco {
 export function miniBand(l: Laco): { prims: Prim[]; peca: PecaPropria } {
   const [frente, tras] = l.bordas;
   return {
-    prims: [
-      { t: "fio", pts: [...l.pts, l.pts[0]!], larg: g("esp"), cls: "fita" },
-    ],
+    prims: [{ t: 'fio', pts: [...l.pts, l.pts[0]!], larg: g('esp'), cls: 'fita' }],
     peca: {
-      t: "propria",
-      nome: "mini-band",
+      t: 'propria',
+      nome: 'mini-band',
       desenhar(C, _M, o) {
-        const M =
-          o.tema === "claro" ? ACAO : ACAO.map((t) => mix(t, "#aeb8c2", 0.25));
+        const M = o.tema === 'claro' ? ACAO : ACAO.map((t) => mix(t, '#aeb8c2', 0.25));
         const f1 = (n: number) => (Math.round(n * 100) / 100).toString();
         const meio = mul(
           l.pts.reduce((acc, p) => add(acc, p), [0, 0, 0] as V3),
@@ -266,15 +244,11 @@ export function miniBand(l: Laco): { prims: Prim[]; peca: PecaPropria } {
         );
         // a direção de quem olha, no mundo (a profundidade da peça cresce para longe de quem olha)
         const z0 = C.P([0, 0, 0])[2];
-        const olho = norm([
-          z0 - C.P([1, 0, 0])[2],
-          z0 - C.P([0, 1, 0])[2],
-          z0 - C.P([0, 0, 1])[2],
-        ]);
+        const olho = norm([z0 - C.P([1, 0, 0])[2], z0 - C.P([0, 1, 0])[2], z0 - C.P([0, 0, 1])[2]]);
         /** Há uma perna entre o ponto e quem olha? (`menos`: a coxa em que o pedaço assenta não conta) */
         const escondido = (p: V3, menos?: Lado) =>
           l.pernas.some((b) => {
-            if (b.parte === "coxa" && b.lado === menos) return false;
+            if (b.parte === 'coxa' && b.lado === menos) return false;
             const v = sub(b.c, p);
             const t = dot(v, olho);
             return t > 0 && dist(v, mul(olho, t)) < b.r * 0.94;
@@ -290,41 +264,25 @@ export function miniBand(l: Laco): { prims: Prim[]; peca: PecaPropria } {
             cantos.reduce((acc, p) => add(acc, p), [0, 0, 0] as V3),
             0.25,
           );
-          const normal = norm(
-            cross(sub(frente[j]!, frente[i]!), sub(tras[i]!, frente[i]!)),
-          );
-          const paraFora =
-            dot(normal, sub(centro, meio)) >= 0 ? normal : mul(normal, -1);
+          const normal = norm(cross(sub(frente[j]!, frente[i]!), sub(tras[i]!, frente[i]!)));
+          const paraFora = dot(normal, sub(centro, meio)) >= 0 ? normal : mul(normal, -1);
           const luz = dot(paraFora, olho) > 0;
           // assentado numa coxa, o pedaço só aparece do lado dela virado para quem olha
-          const naCoxa =
-            l.assenta[i] !== undefined && l.assenta[i] === l.assenta[j]
-              ? l.assenta[i]
-              : undefined;
+          const naCoxa = l.assenta[i] !== undefined && l.assenta[i] === l.assenta[j] ? l.assenta[i] : undefined;
           if ((naCoxa && !luz) || escondido(centro, naCoxa)) continue;
           // por cima das pernas (o que elas escondem já saiu acima); entre os pedaços, o de trás primeiro
           const z = Q.reduce((s, q) => s + q[2], 0) / 4 - POR_CIMA;
-          const d = `M${Q.map((q) => f1(q[0]) + " " + f1(q[1])).join("L")}Z`;
-          C.bruto(
-            z,
-            `<path d="${d}" fill="${luz ? M[2] : M[1]}" stroke="${luz ? M[2] : M[1]}" stroke-width="0.6" stroke-linejoin="round"/>`,
-          );
+          const d = `M${Q.map((q) => f1(q[0]) + ' ' + f1(q[1])).join('L')}Z`;
+          C.bruto(z, `<path d="${d}" fill="${luz ? M[2] : M[1]}" stroke="${luz ? M[2] : M[1]}" stroke-width="0.6" stroke-linejoin="round"/>`);
           // as bordas da faixa (o traço escuro) e um brilho no meio
           const linha = (p: V3, q: V3) => {
             const P = C.P(p),
               R = C.P(q);
             return `M${f1(P[0])} ${f1(P[1])}L${f1(R[0])} ${f1(R[1])}`;
           };
-          C.bruto(
-            z - 0.01,
-            `<path d="${linha(frente[i]!, frente[j]!)}${linha(tras[i]!, tras[j]!)}" stroke="${M[0]}" stroke-width="0.45" fill="none" stroke-linecap="round"/>`,
-          );
+          C.bruto(z - 0.01, `<path d="${linha(frente[i]!, frente[j]!)}${linha(tras[i]!, tras[j]!)}" stroke="${M[0]}" stroke-width="0.45" fill="none" stroke-linecap="round"/>`);
           const perto = (a: V3, b: V3) => add(mul(a, 0.6), mul(b, 0.4));
-          if (luz)
-            C.bruto(
-              z - 0.02,
-              `<path d="${linha(perto(frente[i]!, tras[i]!), perto(frente[j]!, tras[j]!))}" stroke="${M[3]}" stroke-width="0.35" fill="none" opacity="0.7"/>`,
-            );
+          if (luz) C.bruto(z - 0.02, `<path d="${linha(perto(frente[i]!, tras[i]!), perto(frente[j]!, tras[j]!))}" stroke="${M[3]}" stroke-width="0.35" fill="none" opacity="0.7"/>`);
         }
       },
     },

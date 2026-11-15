@@ -157,6 +157,9 @@ test('nenhum id se repete na tela do programa, com as miniaturas desenhadas, nem
   // cada desenho pinta as listras com o padrão dele
   const listrado = page.locator('.miniatura svg .ea-mh, .miniatura svg .eb-mh').first();
   if (await listrado.count()) expect(await listrado.evaluate((el) => getComputedStyle(el).fill)).toMatch(/url\(.*#mh-listras-/);
+  // o mesmo no desenho do motor novo (o músculo que ajuda é `b-ma`, com o padrão `b-listras`)
+  const listradoNovo = page.locator('.miniatura svg .b-ma').first();
+  if (await listradoNovo.count()) expect(await listradoNovo.evaluate((el) => getComputedStyle(el).fill)).toMatch(/url\(.*#b-listras-/);
 
   // o 1º exercício com 1 série em drop set: a série e as duas quedas têm um controle de carga cada
   await page.evaluate(async () => {
