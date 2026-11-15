@@ -2,7 +2,7 @@
 
 Atualizado por quem integra, a cada família juntada. "Aprovada na folha" = o Gustavo olhou e aprovou. "Aprovada por delegação" = conferida por quem integra, risco baixo, registrada com a frase dele de 15/11/2026. "Para o Gustavo ver" = risco médio ou alto: só entra na lista do app depois do ok dele. "Correção de qualidade" = desde o aviso dele de 15/11 ("o fato de eu ter delegado [...] não quer dizer que a gente pode diminuir a qualidade"), nenhuma animação delegada conta como pronta enquanto tiver defeito visível nos quadros (seção 8 de `como-fazer-uma-animacao.md`). As folhas ficam em `prototipos/folha-<id>.png` e os quadros grandes em `quadros/<id>.png`.
 
-Resumo: 16 aprovadas pelo Gustavo (7 na folha e 9 vendo os quadros); 28 por delegação; 0 prontas para o Gustavo ver; 4 das quatro primeiras sem aprovação na folha; 13 em andamento; 29 por fazer.
+Resumo: 16 aprovadas pelo Gustavo (7 na folha e 9 vendo os quadros); 30 por delegação; 0 prontas para o Gustavo ver; 4 das quatro primeiras sem aprovação na folha; 15 em andamento; 25 por fazer.
 
 | Lote | Exercício | Estado |
 |---|---|---|
@@ -38,12 +38,12 @@ Resumo: 16 aprovadas pelo Gustavo (7 na folha e 9 vendo os quadros); 28 por dele
 | 4 | `barra-fixa` | por fazer |
 | 4 | `barra-fixa-supinada` | por fazer |
 | 4 | `face-pull` | por fazer |
-| 4 | `face-pull-elastico` | por fazer |
-| 4 | `puxada-elastico` | por fazer |
+| 4 | `face-pull-elastico` | em andamento (subagente; família dos elásticos) |
+| 4 | `puxada-elastico` | em andamento (subagente; família dos elásticos) |
 | 4 | `remada-apoiada` | em andamento (subagente) |
 | 4 | `remada-baixa` | por fazer |
 | 4 | `remada-curvada-halteres` | em andamento (subagente) |
-| 4 | `remada-elastico` | por fazer |
+| 4 | `remada-elastico` | em andamento (subagente; família dos elásticos) |
 | 4 | `remada-suspensao` | feita e conferida quadro a quadro por quem integra; aprovada por delegação (o ponto de prender a fita fica a 183 cm, a altura do fabricante; hoje 205) |
 | 4 | `remada-unilateral` | em andamento (subagente) |
 | 4 | `remada-unilateral-kettlebell` | em andamento (subagente) |
@@ -51,18 +51,18 @@ Resumo: 16 aprovadas pelo Gustavo (7 na folha e 9 vendo os quadros); 28 por dele
 | 4 | `remada-unilateral-sem-banco` | em andamento (subagente) |
 | 4 | `yt-suspensao` | feita e conferida quadro a quadro por quem integra; aprovada por delegação |
 | 5 | `rosca-alternada` | aprovada pelo Gustavo em 15/11/2026, vendo os quadros ("podem ficar assim, segue com as próximas"): de frente os braços ficam abertos 17°, para o halter de 33 cm não entrar na coxa; o halter menor, em andamento, deve trazer os braços para junto do corpo: se mudar, volta para ele ver |
-| 5 | `rosca-elastico` | por fazer |
+| 5 | `rosca-elastico` | em andamento (subagente; família dos elásticos) |
 | 5 | `rosca-inclinada` | em andamento (subagente; com o halter menor) |
 | 5 | `rosca-kettlebell` | feita e conferida quadro a quadro por quem integra; aprovada por delegação |
 | 5 | `rosca-martelo` | feita e conferida quadro a quadro por quem integra; aprovada por delegação |
 | 5 | `rosca-polia` | por fazer |
 | 5 | `rosca-suspensao` | feita e conferida quadro a quadro por quem integra; aprovada por delegação |
-| 5 | `triceps-corda` | em andamento (subagente) |
-| 5 | `triceps-elastico-acima` | em andamento (subagente) |
+| 5 | `triceps-corda` | feita e conferida quadro a quadro por quem integra; aprovada por delegação |
+| 5 | `triceps-elastico-acima` | em andamento (subagente; família dos elásticos) |
 | 5 | `triceps-frances` | feita e conferida quadro a quadro por quem integra; aprovada por delegação (na polia, com a corda, que é peça nova) |
 | 5 | `triceps-frances-halter` | feita e conferida quadro a quadro por quem integra; aprovada por delegação |
 | 5 | `triceps-frances-kettlebell` | feita e conferida quadro a quadro por quem integra; aprovada por delegação |
-| 5 | `triceps-frances-polia-unilateral` | em andamento (subagente) |
+| 5 | `triceps-frances-polia-unilateral` | feita e conferida quadro a quadro por quem integra; aprovada por delegação |
 | 5 | `triceps-suspensao` | aprovada pelo Gustavo em 15/11/2026, vendo os quadros ("podem ficar assim, segue com as próximas"): apoio na ponta dos pés e mãos acima da testa, diferentes da de hoje |
 | 6 | `flexao-joelho-deslizante` | feita e conferida quadro a quadro por quem integra; aprovada por delegação (depois da correção: segunda vista de três quartos, toalha visível, erro da lombar refeito) |
 | 6 | `flexao-joelho-elastico` | feita e conferida quadro a quadro por quem integra; aprovada por delegação (depois da correção: o corpo ocupa o quadro, pose de bruços refeita, o pé dentro do pegador) |

@@ -82,7 +82,11 @@ export interface Quadro {
   /** As mesmas peças pelo nome (halter, banco, coluna de polia), para o desenho realista. */
   pecas?: Peca[];
   /** Cabos, elásticos e fitas: comprimento neste instante (cm) e se podem mudar. */
-  fios: { id: string; comp: number; estica: boolean }[];
+  /**
+   * Cabos, fitas e elásticos, com o comprimento neste quadro. `objeto`: de que linha da tabela de objetos o elástico
+   * tira o comprimento em repouso (`comp`) e o máximo do fabricante (`esticaAte`); por omissão, `elastico` (o tubo).
+   */
+  fios: { id: string; comp: number; estica: boolean; objeto?: string }[];
   /** Cargas presas ao corpo (kg e posição), para o equilíbrio. */
   cargas: { massa: number; pos: V3 }[];
   /** Pontos do objeto que a conferência acompanha (ex.: centro do halter), para a trajetória. */

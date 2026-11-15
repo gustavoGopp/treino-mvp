@@ -96,6 +96,7 @@ Rode tudo da raiz do seu diretório de trabalho. Se ele for uma cópia de trabal
 - **Rótulo em cima do aparelho ou do corpo:** troque o ponto do rótulo ou a dica (use as dicas do app, `cues`).
 - **Contato da mão:** `mao.X` nos `contatos` mede o punho, que gira em volta da pegada; para mão que segura uma peça parada, meça a pegada numa regra.
 - **O halter pende na vertical; o cabo é reto da polia à mão; o elástico afina ao esticar.** O peso aparece.
+- **Elástico que não fecha a conta:** o tubo da tabela tem 122 cm e estica no máximo 3 vezes. Se o caminho do exercício pede mais (ou deixa o tubo frouxo), a saída não é forçar a pose: é outro elástico, com medidas de fabricante num arquivo `dados/objetos/<elastico>.json` (com `comp` e `esticaAte`), declarado no quadro em `fios: [{ id: 'elastico', comp, estica: true, objeto: '<id>' }]`. A conferência mede contra esse objeto.
 - **Rótulos em minúsculas e sem ponto final** ("desce reto", "joelho sobre o pé"), mesmo que a dica do app venha com maiúscula e ponto. No máximo dois por vista.
 - **Nos pedidos do `olhar.mjs`, o tema é o sétimo campo:** `id:vista:modo:f1::cinza:escuro` (com `::escuro` o desenho sai todo preto, porque "escuro" vira o estilo).
 - **Nomes que aparecem na tela têm acento:** as chaves de `trajetorias` viram rótulo (`cabeça`, e não `cabeca`; `mão`, `pé`).

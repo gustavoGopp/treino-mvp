@@ -40,6 +40,8 @@ export const APROVADOS: Record<string, { em: string; oQueEleDisse: string; como?
   'panturrilha-b': { em: '2026-11-15', oQueEleDisse: DELEGOU, como: 'por delegação' },
   'panturrilha-degrau': { em: '2026-11-15', oQueEleDisse: DELEGOU, como: 'por delegação' },
   'panturrilha-sentada-halter': { em: '2026-11-15', oQueEleDisse: DELEGOU, como: 'por delegação' },
+  'triceps-corda': { em: '2026-11-15', oQueEleDisse: DELEGOU, como: 'por delegação' },
+  'triceps-frances-polia-unilateral': { em: '2026-11-15', oQueEleDisse: DELEGOU, como: 'por delegação' },
   'extensao-triceps-peso-corpo': { em: '2026-11-15', oQueEleDisse: 'podem ficar assim, segue com as próximas', como: 'nos quadros' },
   'flexao-bola': { em: '2026-11-15', oQueEleDisse: 'podem ficar assim, segue com as próximas', como: 'nos quadros' },
   'flexao-pes-elevados': { em: '2026-11-15', oQueEleDisse: 'podem ficar assim, segue com as próximas', como: 'nos quadros' },
