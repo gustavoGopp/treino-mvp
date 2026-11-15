@@ -1,0 +1,50 @@
+{
+ "id": "extensao-joelho-caneleira",
+ "nome": "Extensão de joelho sentado, com caneleira",
+ "fichaDaTecnica": "docs/pesquisa/animacoes/extensao-joelho-caneleira.md",
+ "fontes": {
+  "ficha": "Ficha da técnica (docs/pesquisa/animacoes/extensao-joelho-caneleira.md): caneleira bem presa no tornozelo; cadeira firme, sem rodinhas, encostada na parede; sentado, costas retas, mãos na lateral do assento, coxas apoiadas, uma perna de cada vez; estende o joelho até quase esticar, sem tranco, a coxa não sai do assento; ~1 s em cima; desce em ~2 s até o joelho dobrar bem; consenso (nsca2021, não verificado)",
+  "app": "Texto do app (src/conteudo/exercicios/extensao-joelho-caneleira.json): embaixo, o joelho bem dobrado e o pé fora do chão; em cima, o joelho quase esticado; dicas 'Coxa parada.', 'Segura em cima.', 'Desce devagar.'",
+  "hoje": "Animação aprovada no guia de hoje (src/engine/exercicios/extensao-joelho-caneleira.ts) e a correção de 04/11 (correcoes-ja-feitas.md): a caneleira acompanha a canela; os erros tranco, quadril e cai",
+  "objetos": "src/engine/novo/dados/objetos/caneleira.json (a caneleira de 2 lb) e dados/objetos/cadeira.json (a cadeira firme: assento a 45,1 cm, 37,1 cm de profundidade)",
+  "desenho": "Escolha de desenho desta animação, dentro do que a ficha pede; a conferência mede o resultado"
+ },
+ "param": {
+  "quadrilABorda": {"v": 24, "un": "cm", "selo": "consenso", "fonte": "ficha", "o": "sentado com as coxas apoiadas: o centro do quadril a 24 cm da borda da frente do assento (o glúteo não encosta no encosto; o joelho fica 17 cm além da borda, para a canela pender livre)"},
+  "pes.meiaDistancia": {"v": 10, "un": "cm", "selo": "desenho", "fonte": "desenho", "o": "o pé esquerdo no chão, 10 cm para o lado do meio (os pés na largura do quadril)"},
+  "joelho": {"v": 90, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "o joelho esquerdo a 90° com o pé chapado no chão; a coxa direita fica na mesma direção da esquerda"},
+  "assento.amassa": {"v": 1, "un": "cm", "selo": "desenho", "fonte": "desenho", "o": "o glúteo e a coxa afundam 1 cm no assento"},
+  "maos.aFrente": {"v": 4, "un": "cm", "selo": "consenso", "fonte": "ficha", "o": "as mãos na lateral do assento, segurando as bordas, 4 cm à frente do centro do quadril"},
+  "joelho.embaixo": {"v": 88, "un": "graus", "selo": "consenso", "fonte": "app", "o": "embaixo, o joelho bem dobrado, com o pé fora do chão: 90° (mais que isso, a canela entra embaixo do assento; com a cadeira de 45 cm, o pé fica ~4 cm acima do chão)"},
+  "joelho.emCima": {"v": 10, "un": "graus", "selo": "consenso", "fonte": "ficha", "o": "em cima, o joelho quase esticado: 10° de flexão"},
+  "pe.flexaoPlantar": {"v": 0, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "o pé que sobe relaxado, 10° de flexão plantar"},
+  "caneleira.massa": {"v": 0.91, "un": "kg", "selo": "desenho", "fonte": "objetos", "o": "uma caneleira de 2 lb no tornozelo direito (a ficha não dá a carga; é a da tabela)"},
+  "erro.quadril.coxa": {"v": 12, "un": "graus", "selo": "desenho", "fonte": "hoje", "o": "erro: a coxa sobe 12° do assento"},
+  "erro.quadril.lombar": {"v": -6, "un": "graus", "selo": "desenho", "fonte": "hoje", "o": "erro: o tronco vai para trás (a lombar estende 6°), até perto do encosto"},
+  "erro.quadril.toracica": {"v": -6, "un": "graus", "selo": "desenho", "fonte": "hoje", "o": "erro: as costas de cima vão 6° para trás (com mais, as costas atravessavam o encosto da cadeira)"},
+  "erro.ritmo.expoente": {"v": 4, "un": "expoente", "selo": "desenho", "fonte": "desenho", "o": "erros de ritmo: no chute, a perna já está quase em cima no meio da subida (1 − (1 − u)⁴); na queda, já está quase embaixo no meio da descida (u⁴)"}
+ },
+ "fases": [
+  {"nome": "Joelho dobrado", "tipo": "pausa", "dur": 0.5, "de": 0, "ate": 0, "respira": "INSPIRA", "tempo": "pé fora do chão", "selo": "consenso", "fonte": "app"},
+  {"nome": "Subida · concêntrica", "tipo": "conc", "dur": 1, "de": 0, "ate": 1, "respira": "EXPIRA", "tempo": "~1 s", "selo": "consenso", "fonte": "ficha"},
+  {"nome": "Em cima · segura", "tipo": "pausa", "dur": 1, "de": 1, "ate": 1, "respira": "FIRME", "tempo": "1 s", "selo": "consenso", "fonte": "ficha"},
+  {"nome": "Descida · excêntrica", "tipo": "exc", "dur": 2, "de": 1, "ate": 0, "respira": "INSPIRA", "tempo": "~2 s", "selo": "consenso", "fonte": "ficha"}
+ ],
+ "contatos": ["pelve", "pe.L", "joelho.R"],
+ "regras": [
+  {"id": "quadril-sentado-reto-na-cadeira", "pede": "sentado, costas retas e paradas, mãos na lateral do assento", "selo": "consenso", "fonte": "ficha"},
+  {"id": "extensao-joelho-caneleira-coxa-parada", "pede": "a coxa não sai do assento: só a canela sobe", "selo": "consenso", "fonte": "ficha"},
+  {"id": "extensao-joelho-caneleira-quase-esticado", "pede": "em cima, o joelho quase esticado; embaixo, bem dobrado com o pé fora do chão", "selo": "consenso", "fonte": "app"},
+  {"id": "quadril-caneleira-presa-no-tornozelo", "pede": "a caneleira bem presa no tornozelo: não escorrega", "selo": "consenso", "fonte": "ficha"}
+ ],
+ "erros": [
+  {"id": "tranco", "instante": 0.5, "titulo": "Chutar a perna", "vista": "lateral", "oQueMuda": "no meio da subida, a perna já está quase em cima, jogada por impulso", "destaca": ["pernas"], "linha": ["joelho:R", "tornozelo:R"], "foco": "tornozelo:R"},
+  {"id": "quadril", "instante": 1, "titulo": "Tirar a coxa do assento", "vista": "lateral", "oQueMuda": "a coxa sobe do assento e o tronco vai para trás", "destaca": ["corpo", "pernas"], "linha": ["c7", "pelve", "joelho:R"], "foco": "c7"},
+  {"id": "cai", "instante": 0.5, "titulo": "Deixar a perna cair", "vista": "lateral", "oQueMuda": "no meio da descida, a perna já caiu quase até embaixo", "destaca": ["pernas"], "linha": ["joelho:R", "tornozelo:R"], "foco": "tornozelo:R"}
+ ],
+ "simetrico": false,
+ "rotulos": [
+  {"vista": "lateral", "texto": "coxa parada", "ponto": "quadril:R", "selo": "consenso", "fonte": "app"},
+  {"vista": "lateral", "texto": "segura em cima", "ponto": "ponta:R", "selo": "consenso", "fonte": "app"}
+ ]
+}

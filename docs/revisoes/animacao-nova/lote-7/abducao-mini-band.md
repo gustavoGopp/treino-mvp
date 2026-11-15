@@ -25,7 +25,7 @@ De 15/11/2026. Sentado na beira de uma cadeira firme, costas retas, as mãos seg
 | A faixa pesa mais com os joelhos abertos | consenso | estica de 1,4 a 2,3 vezes (máximo do fabricante: 2,5) | sim |
 | Volta em ~2 s, sem os joelhos baterem | consenso | 2 s; maior salto de velocidade 5,3% do pico | sim |
 
-Conferência automática: **0 falha, 2 avisos**: (1) as linhas de desenho da ficha de movimento (o joelho a 90° e o quanto o assento amassa); (2) a regra do elástico, que espera o elástico mais esticado no começo do ciclo (como no agachamento, que começa em cima): aqui o ciclo começa com os joelhos fechados, na ordem do cartão, e a faixa estica mais no fim da abertura, que é o que a ficha pede.
+Conferência automática: **0 falha, 3 avisos**: (1) as linhas de desenho da ficha de movimento (o joelho a 90° e o quanto o assento amassa); (2) o modo Músculos: de lado, 155 cm² do glúteo (padrão do modo); de frente, 0 cm² (não serve a esse modo); (3) a regra do elástico, que espera o elástico mais esticado no começo do ciclo (como no agachamento, que começa em cima): aqui o ciclo começa com os joelhos fechados, na ordem do cartão, e a faixa estica mais no fim da abertura, que é o que a ficha pede.
 
 ## Erros
 

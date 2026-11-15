@@ -79,9 +79,11 @@ export function caneleira(c: Caneleira): { prims: Prim[]; peca: PecaPropria } {
         C.cilindro(a, b, c.raio, cinza, { lados: 20 });
         // a tira de velcro que fecha a faixa, na cor de ação, dando a volta por cima dela no meio
         const v = g('velcroLarg') / 2;
+        const n1 = C.itens.length;
         C.cilindro(add(c.centro, mul(c.eixo, -v)), add(c.centro, mul(c.eixo, v)), c.raio + 0.25, acao, { lados: 20 });
         // a faixa envolve a perna: por cima dela na pintura
-        for (let i = n0; i < C.itens.length; i++) C.itens[i]!.z -= 40;
+        // (a tira de velcro, por cima da faixa)
+        for (let i = n0; i < C.itens.length; i++) C.itens[i]!.z -= i >= n1 ? 41 : 40;
       },
     },
   };
