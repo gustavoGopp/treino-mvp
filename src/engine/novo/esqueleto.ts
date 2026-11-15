@@ -34,6 +34,8 @@ export interface PoseTronco {
   cabeca?: number;
   lombarLado?: number;
   toracicaLado?: number;
+  /** Inclinação do pescoço para a esquerda (acréscimo de 15/11, deitado de lado: a cabeça apoia no braço de baixo). */
+  cervicalLado?: number;
   lombarGiro?: number;
   toracicaGiro?: number;
   cervicalGiro?: number;
@@ -191,7 +193,7 @@ function cadeia(c: Corpo, cal: Pick<Calib, 'dL' | 'dT' | 'dC' | 'phi0' | 'cabeca
   };
   regiao(N_LOMBAR, cal.dL, -m('coluna.lordoseLombar') + (p.lombar ?? 0), p.lombarLado ?? 0, p.lombarGiro ?? 0);
   regiao(N_TORACICA, cal.dT, m('coluna.cifoseToracica') + (p.toracica ?? 0), p.toracicaLado ?? 0, p.toracicaGiro ?? 0);
-  regiao(N_CERVICAL, cal.dC, -m('coluna.lordoseCervical') + (p.cervical ?? 0), 0, p.cervicalGiro ?? 0);
+  regiao(N_CERVICAL, cal.dC, -m('coluna.lordoseCervical') + (p.cervical ?? 0), p.cervicalLado ?? 0, p.cervicalGiro ?? 0);
   const iT12 = N_LOMBAR,
     iC7 = N_LOMBAR + N_TORACICA,
     iCranio = iC7 + N_CERVICAL;

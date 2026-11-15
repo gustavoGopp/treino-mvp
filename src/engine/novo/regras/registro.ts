@@ -26,3 +26,4 @@ export { REGRAS_NORDICO } from './nordico';
 export { REGRAS_REMADA_APOIADA } from './remada-apoiada';
 export { regrasDoPendurado } from './pendurado';
 export { REGRAS_RODA_ABDOMINAL } from './roda-abdominal';
+export { regrasDoQuadril } from './quadril-abrir-e-fechar';
