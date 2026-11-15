@@ -1,0 +1,54 @@
+{
+ "id": "roda-abdominal",
+ "nome": "Rolamento com a roda abdominal, de joelhos",
+ "fichaDaTecnica": "docs/pesquisa/animacoes/roda-abdominal.md",
+ "fontes": {
+  "ficha": "Ficha da técnica (docs/pesquisa/animacoes/roda-abdominal.md): consenso de treinadores ('Ajoelhado no colchonete, mãos nos pegadores, roda embaixo dos ombros, braços estendidos; abdômen firme, costelas para baixo, pelve um pouco enrolada'; 'Rola à frente devagar (~2–3 s), com o quadril acompanhando, só até onde a lombar não arqueia'; 'Puxa a roda de volta com o abdômen até os ombros voltarem em cima das mãos')",
+  "app": "Texto do app (src/conteudo/exercicios/roda-abdominal.json): 'Ida (excêntrica) ~2–3 s'; 'Ponto mais longe: corpo reto dos joelhos aos ombros; a lombar não afunda'; 'Volta (concêntrica) ~1–2 s'; erros 'Arquear a lombar', 'Deixar o quadril para trás', 'Ir rápido demais'",
+  "correcao": "Correção de 04/11/2026 (docs/revisoes/animacao-nova/correcoes-ja-feitas.md; docs/revisoes/catalogo/conferencia/mini-band-roda.md): a amplitude da roda é a do corpo a 37° do chão, e a ficha manda parar antes de a lombar arquear",
+  "hoje": "A animação de hoje (src/engine/exercicios/roda-abdominal.ts): os tempos, a posição dos joelhos e os erros",
+  "objetos": "src/engine/novo/dados/objetos/roda-abdominal.json (a roda, Rogue Ab Wheel) e src/engine/novo/dados/objetos.json (o colchonete)",
+  "desenho": "Escolha de desenho desta animação, dentro do que a ficha pede; a conferência mede o resultado"
+ },
+ "param": {
+  "joelhos.meiaDistancia": {"v": 9, "un": "cm", "selo": "desenho", "fonte": "hoje", "o": "os joelhos um pouco afastados, na largura do quadril: cada joelho a 9 cm do meio"},
+  "colchonete.z": {"v": -15, "un": "cm", "selo": "desenho", "fonte": "desenho", "o": "o meio do colchonete 15 cm atrás dos joelhos: os joelhos e as canelas ficam nele, e a roda rola no chão, à frente dele"},
+  "inicio.coxa": {"v": 4, "un": "graus", "selo": "desenho", "fonte": "hoje", "o": "no começo, a coxa quase na vertical: o quadril 4° à frente da vertical do joelho (a ficha não dá número)"},
+  "cotovelo": {"v": 8, "un": "graus", "selo": "consenso", "fonte": "ficha", "o": "braços estendidos o tempo todo: o cotovelo destravado a 8°"},
+  "lombar": {"v": 4, "un": "graus", "selo": "consenso", "fonte": "ficha", "o": "costelas para baixo, pelve um pouco enrolada: a lombar 4° menos curvada que em pé"},
+  "cervical": {"v": 12, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "a cabeça na linha das costas, o olhar no chão à frente das mãos"},
+  "fim.corpo": {"v": 37, "un": "graus", "selo": "consenso", "fonte": "correcao", "o": "o ponto mais longe: a linha dos joelhos aos ombros a 37° do chão (a ficha manda parar antes de a lombar arquear e não dá número; o número é o da correção de 04/11)"},
+  "fim.quadril": {"v": 0, "un": "graus", "selo": "consenso", "fonte": "app", "o": "no ponto mais longe, o corpo reto dos joelhos aos ombros: o quadril estendido como em pé"},
+  "erro.lombar.lombar": {"v": -16, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "erro: a lombar afunda 16° além da curva de quem está em pé (o suficiente para se ler, sem exagero)"},
+  "erro.lombar.quadril": {"v": -6, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "erro: o quadril passa da linha e cai junto com a barriga"},
+  "erro.quadril.dobra": {"v": 22, "un": "graus", "selo": "desenho", "fonte": "hoje", "o": "erro: o quadril fica parado sobre os joelhos e o tronco deita, dobrando o quadril mais 22°: só os braços vão à frente"},
+  "erro.rapido.fracao": {"v": 0.35, "un": "fração", "selo": "desenho", "fonte": "hoje", "o": "erro: o corpo chega ao ponto mais longe com 35% do tempo da ida (a roda foge)"}
+ },
+ "fases": [
+  {"nome": "Ajoelhado", "tipo": "pausa", "dur": 0.5, "de": 0, "ate": 0, "respira": "INSPIRA", "tempo": "roda embaixo dos ombros", "selo": "consenso", "fonte": "hoje"},
+  {"nome": "Ida · excêntrica", "tipo": "exc", "dur": 2.5, "de": 0, "ate": 1, "respira": "INSPIRA", "tempo": "~2–3 s", "selo": "consenso", "fonte": "app"},
+  {"nome": "Ponto mais longe", "tipo": "pausa", "dur": 0.5, "de": 1, "ate": 1, "respira": "FIRME", "tempo": "lombar não afunda", "selo": "consenso", "fonte": "app"},
+  {"nome": "Volta · concêntrica", "tipo": "conc", "dur": 1.5, "de": 1, "ate": 0, "respira": "EXPIRA", "tempo": "~1–2 s", "selo": "consenso", "fonte": "app"}
+ ],
+ "contatos": ["joelho.R", "joelho.L", "pe.R", "pe.L"],
+ "regras": [
+  {"id": "roda-abdominal-roda-embaixo-dos-ombros", "pede": "no começo, a roda embaixo dos ombros, braços estendidos", "selo": "consenso", "fonte": "ficha"},
+  {"id": "roda-abdominal-bracos-quase-retos", "pede": "braços estendidos o caminho todo", "selo": "consenso", "fonte": "ficha"},
+  {"id": "roda-abdominal-maos-nos-pegadores", "pede": "cada mão fecha num pegador", "selo": "consenso", "fonte": "objetos"},
+  {"id": "roda-abdominal-rola-sem-escorregar", "pede": "a roda rola no chão: o giro acompanha o quanto ela anda", "selo": "consenso", "fonte": "objetos"},
+  {"id": "roda-abdominal-quadril-acompanha", "pede": "o quadril acompanha a roda, numa linha só com o tronco", "selo": "consenso", "fonte": "ficha"},
+  {"id": "roda-abdominal-lombar-nao-afunda", "pede": "só até onde a lombar não arqueia: a lombar não afunda em nenhum instante da ida", "selo": "consenso", "fonte": "ficha"},
+  {"id": "roda-abdominal-corpo-reto-no-fim", "pede": "no ponto mais longe, o corpo reto dos joelhos aos ombros, a 37° do chão", "selo": "consenso", "fonte": "app"},
+  {"id": "roda-abdominal-rosto-e-peito-longe-do-chao", "pede": "o rosto e o peito não encostam no chão", "selo": "consenso", "fonte": "ficha"}
+ ],
+ "erros": [
+  {"id": "lombar", "instante": 1, "titulo": "Arquear a lombar", "vista": "lateral", "oQueMuda": "no ponto mais longe, a barriga cai e a lombar afunda: o quadril passa para baixo da linha dos joelhos aos ombros", "destaca": ["corpo"], "linha": ["joelho", "pelve", "lombar", "c7"], "foco": "lombar"},
+  {"id": "quadril", "instante": 1, "titulo": "Deixar o quadril para trás", "vista": "lateral", "oQueMuda": "o quadril fica parado sobre os joelhos; só os braços vão à frente e o tronco deita", "destaca": ["corpo"], "linha": ["joelho", "pelve", "c7"], "foco": "pelve"},
+  {"id": "rapido", "instante": 0.3, "titulo": "Ir rápido demais", "vista": "lateral", "oQueMuda": "o corpo chega ao ponto mais longe logo no começo da ida: a roda foge", "destaca": ["corpo"], "linha": ["joelho", "pelve", "c7"], "foco": "pelve"}
+ ],
+ "simetrico": true,
+ "rotulos": [
+  {"vista": "lateral", "texto": "só até a lombar não arquear", "ponto": "lombar", "selo": "consenso", "fonte": "app"},
+  {"vista": "lateral", "texto": "volta com o abdômen", "ponto": "pelve", "selo": "consenso", "fonte": "app"}
+ ]
+}

@@ -1,0 +1,21 @@
+{
+ "fontes": {
+  "rogue-roda": "Rogue Fitness, Rogue Ab Wheel: página pública do produto (https://www.roguefitness.com/ab-wheel), especificações lidas em 15/11/2026 por resumo automático da página: \"8\\\" / 203.2MM (Wheel)\", \"3\\\" (Wheel)\", \"5.25\\\" (Handle)\", \"1.25\\\" / 31.75MM (Handle)\", \"Length 16\\\"\". O guia do produto da Rogue (support.roguefitness.com) dá outra roda, de 7,25 pol; outros fabricantes dão de 7 a 8 pol (Power Systems Core Roller: 7 pol de diâmetro, 2 1/8 pol de largura, pegadores de 4 1/4 pol)",
+  "desenho-roda": "Escolha de desenho da roda abdominal no motor novo, a partir do cartão de hoje (scripts/desenhos-equipamento/realista/itens.mjs, roda_abdominal), sem medida de fabricante"
+ },
+ "objetos": {
+  "rodaAbdominal": {
+   "nome": "Roda abdominal com dois pegadores",
+   "medidas": {
+    "diam": { "v": 20.3, "un": "cm", "tipo": "medida", "fonte": "rogue-roda", "onde": "diâmetro da roda: 8 pol = 203,2 mm" },
+    "larg": { "v": 7.6, "un": "cm", "tipo": "medida", "fonte": "rogue-roda", "onde": "largura da roda (a banda de rodagem): 3 pol" },
+    "comp": { "v": 40.6, "un": "cm", "tipo": "medida", "fonte": "rogue-roda", "onde": "comprimento de ponta a ponta dos pegadores: 16 pol" },
+    "pegadorComp": { "v": 13.3, "un": "cm", "tipo": "medida", "fonte": "rogue-roda", "onde": "comprimento de cada pegador: 5,25 pol" },
+    "pegadorDiam": { "v": 3.2, "un": "cm", "tipo": "medida", "fonte": "rogue-roda", "onde": "diâmetro do pegador: 1,25 pol = 31,75 mm" },
+    "eixoLivre": { "v": 3.2, "un": "cm", "tipo": "derivada", "fonte": "rogue-roda", "onde": "o trecho do eixo entre a roda e cada pegador: (16 pol de ponta a ponta − 3 da roda − 2 × 5,25 dos pegadores) / 2 = 1,25 pol; a página não dá este número direto" },
+    "cuboDiam": { "v": 12.8, "un": "cm", "tipo": "desenho", "fonte": "desenho-roda", "onde": "diâmetro do cubo (a parte colorida no meio da roda, dos dois lados), como no cartão de hoje" },
+    "eixoDiam": { "v": 2.2, "un": "cm", "tipo": "desenho", "fonte": "desenho-roda", "onde": "diâmetro do eixo de metal à mostra entre a roda e os pegadores, como no cartão de hoje" }
+   }
+  }
+ }
+}

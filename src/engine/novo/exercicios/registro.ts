@@ -85,3 +85,4 @@ export { barraFixaSupinada } from './barra-fixa-supinada';
 export { elevacaoJoelhos } from './elevacao-joelhos';
 export { elevacaoJoelhosParalelas } from './elevacao-joelhos-paralelas';
 export { facePullElastico } from './face-pull-elastico';
+export { rodaAbdominal } from './roda-abdominal';
