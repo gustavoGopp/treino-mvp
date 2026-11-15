@@ -47,12 +47,12 @@ Peso (`scripts/animacao-nova/peso.mjs`, compactado, sem o zod):
 | Motor novo com as 4 âncoras, como está | 45,6 kB (era 42,2: entraram os rótulos e a mão nova) |
 | O mesmo, sem os textos de fonte | 38,8 kB |
 | Só o motor novo, sem exercício | 35,0 kB (30,2 sem os textos) |
-| Cada exercício, junto com os outros | cerca de 2,7 kB (2,2 sem os textos) |
+| Cada exercício, junto com os outros | cerca de 2,7 kB (2,1 sem os textos) |
 | Cada exercício, carregado sozinho | de 4,1 a 5,3 kB (inclui as peças que ele divide com os outros) |
 
-Conta minha, não medida: com os 90 exercícios num pacote só, o novo ficaria perto de 230 kB sem os textos, quase cinco vezes o de hoje. As duas medidas propostas se confirmam: tirar os textos de fonte (corta de 15% a 20%) e carregar cada exercício ao abrir (o motor fica em 30 a 35 kB e cada exercício soma de 4 a 5 kB). Para o app funcionar sem rede, os 90 pedaços ainda seriam baixados e guardados, aos poucos.
+Conta minha, não medida: com os 90 exercícios num pacote só, o novo ficaria perto de 220 kB sem os textos, mais de quatro vezes o de hoje. As duas medidas propostas se confirmam: tirar os textos de fonte (corta de 15% a 20%) e carregar cada exercício ao abrir (o motor fica em 30 a 35 kB e cada exercício soma de 4 a 5 kB). Para o app funcionar sem rede, os 90 pedaços ainda seriam baixados e guardados, aos poucos.
 
-Tempo por quadro (CPU 4 vezes mais lenta, com outras tarefas rodando na mesma máquina durante a medida): da segunda volta em diante, de 2,5 a 6,5 ms de média; na primeira volta, de 6 a 17 ms, com picos acima de 16,7 ms no goblet e na puxada. A faixa é parecida com a da etapa 1, um pouco pior; como a máquina estava ocupada, não dá para dizer que os rótulos pesaram. Vale medir de novo com a máquina parada.
+Tempo por quadro (CPU 4 vezes mais lenta, com outras tarefas rodando na mesma máquina durante a medida): da segunda volta em diante, de 2,5 a 6,5 ms de média; na primeira volta, de 6 a 17 ms, com picos acima de 16,7 ms no goblet, na puxada e, por pouco, no supino. A faixa é parecida com a da etapa 1, um pouco pior; como a máquina estava ocupada, não dá para dizer que os rótulos pesaram. Vale medir de novo com a máquina parada.
 
 ### O que não ficou bom, ou não foi feito
 
