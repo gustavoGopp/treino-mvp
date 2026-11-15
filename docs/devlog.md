@@ -1726,19 +1726,19 @@ O Gustavo aprovou o pacote 0 (manter a regra do joelho mesmo para quem só tem p
 
 | | Antes (main) | Depois do pacote 0 | Agora |
 |---|---:|---:|---:|
-| Programas sem nenhum defeito (grade) | 79,4% | 83,6% | 88,8% |
-| Idem (ponderada) | 78,1% | 94,4% | 96,2% |
-| O pior grupo, dor 7 no cotovelo (grade) | 50,0% | 50,0% | 67,3% |
-| Programas com um dia de menos de 3 exercícios ou sem exercício grande | 71.999 | 71.860 | 41.471 |
+| Programas sem nenhum defeito (grade) | 79,4% | 83,6% | 90,6% |
+| Idem (ponderada) | 78,1% | 94,4% | 96,4% |
+| O pior grupo até aqui, dor 7 no cotovelo (grade) | 50,0% | 50,0% | 75,0% |
+| Programas com um dia de menos de 3 exercícios ou sem exercício grande | 71.999 | 71.860 | 29.159 |
 | Programas com o mesmo exercício em todos os dias, havendo outro | 2.646 | 2.646 | 0 |
 
-Nenhum defeito sobe em nenhum grupo em relação ao pacote 0. É a primeira vez que o pior grupo melhora.
+Em relação ao pacote 0, um único par de grupo e defeito sobe, em 1 programa. É a primeira vez que o pior grupo melhora, e ele deixa de ser o pior (agora são os treinos de 30 min, com 72,9%). Os números já incluem a 5ª regra do pacote: com 6 dias, a semana remontada pode usar o Corpo todo 6x (decisão do Gustavo em 15/11, depois de ver a medida: mais 12 mil programas sem dia fraco).
 
 **O que a medida mudou.** A 1ª versão da regra da dor trocava a divisão sempre que diminuía os dias fracos: 301 de 35 mil programas ganhavam um músculo sem nenhuma série. A que entrou só troca quando a divisão nova não custa outra coisa. Três regras de dupla pedidas pelos revisores foram medidas e ficaram de fora, porque põem treinos curtos acima do tempo.
 
 **A revisão cega** (14 pessoas, 28 páginas, três revisores simulados): médias de 5,1 · 5,3 · 4,9 para 5,9 · 5,7 · 5,4; nove sobem, quatro iguais, uma cai (−3,3). A que cai não é mexida por este pacote: as mesmas duas páginas tinham tido +0,3 na revisão do pacote 0. É um aviso sobre o pacote 1 (dia cheio até o limite), anotado no backlog para medir uma folga.
 
-**Registros de teste.** Dois registros da Ana mudaram (só a ordem dos exercícios); foram mostrados ao Gustavo e regravados com o ok dele em 15/11. `npm run check` passa inteiro (953 testes) e os 157 testes de ponta a ponta também. **Pendente:** a decisão sobre o Corpo todo 6x para quem tem dor forte.
+**Registros de teste.** Dois registros da Ana mudaram (só a ordem dos exercícios); foram mostrados ao Gustavo e regravados com o ok dele em 15/11. `npm run check` passa inteiro (953 testes) e os 157 testes de ponta a ponta também.
 
 **Rascunho de post.** "O pior caso do meu app de treino era quem marcava dor forte no cotovelo: metade dos programas saía com defeito, com dias de 20 minutos e três exercícios pequenos. A correção parecia óbvia (juntar tudo em treinos de corpo todo), e a primeira versão melhorou esse número e piorou outro: 301 pessoas fictícias ficaram com um músculo sem nenhuma série. A regra que entrou só troca a divisão quando a troca não custa nada. E os dois painéis de treinadores simulados deram +0,3 e −3,3 às mesmas duas páginas: nota de revisor é opinião, e a medida é que decide."
 

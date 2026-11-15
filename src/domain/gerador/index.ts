@@ -4,7 +4,7 @@ import { faixaTexto, porCento, tempoPorExtenso } from '../numero';
 import { DESCANSO, LIMITE_DO_DIA, OBJETIVO_FORCA, READAPTACAO, RIR, TEMPO, VOLUME, NIVEL_COMPLEXIDADE_MAX, OBRIGATORIO_CURTO, exerciciosPorSessao, r, type Nivel } from '../regras';
 import { capacidades, cargaMaxHalter, cargasCaneleiras, cargasHalter, cargasKettlebell, ITENS, type Capacidade, type Inventario, type ItemId } from '../taxonomia/equipamentos';
 import { avaliarTriagem, efeitoDaDor, type ResultadoTriagem, type Triagem } from '../triagem';
-import { divisaoEscolhida, OPCOES_POR_DIAS, temDiaDeTronco, type DiasSemana, type Divisao, type DivisaoId, type Vaga } from './divisoes';
+import { CORPO_TODO_SEM_PUXAR, divisaoEscolhida, OPCOES_POR_DIAS, temDiaDeTronco, type DiasSemana, type Divisao, type DivisaoId, type Vaga } from './divisoes';
 import { contaPara, EMPURRAR_PUXAR_MAX, FAMILIAS, familiasCobertas } from './familias';
 import { FUNCAO, FUNCOES, funcoesDoExercicio, type Funcao } from './funcoes';
 
@@ -358,12 +358,14 @@ export function gerarPrograma(perfil: Perfil, inventarioOriginal: Inventario): R
     (!empurraDemais(p) || empurraDemais(p0)) &&
     (!passaDoTempo(p) || passaDoTempo(p0)) &&
     focoDoPerfil.every((m) => (p.volumeSemanal[m] ?? 0) >= Math.min(p0.volumeSemanal[m] ?? 0, metasDoFoco[m] ?? 0));
-  // Só as divisões oferecidas para o número de dias: o Corpo todo 6x continua sendo só o recuo de divisao.sem-puxar.
-  const opcoes = OPCOES_POR_DIAS[perfil.diasSemana].filter((id) => id !== p0.divisaoId);
+  // As divisões oferecidas para o número de dias e, com 6 dias, também o Corpo todo 6x (decisão do Gustavo em 15/11/2026):
+  // as duas oferecidas têm dias só de tronco. Ele continua fora do que a pessoa escolhe.
+  const recuo = CORPO_TODO_SEM_PUXAR[perfil.diasSemana];
+  const opcoes = [...OPCOES_POR_DIAS[perfil.diasSemana], ...(recuo ? [recuo] : [])].filter((id) => id !== p0.divisaoId);
   let melhor = p0;
   let resultado: Resultado = base;
   for (const id of opcoes) {
-    const r = gerarNaDivisao({ ...perfil, divisao: id }, inventarioOriginal);
+    const r = gerarNaDivisao({ ...perfil, divisao: id }, inventarioOriginal, id === recuo);
     if (r.status === 'ok' && r.programa.divisaoId === id && diasFracos(r.programa, perfil.diasSemana) < diasFracos(melhor, perfil.diasSemana) && naoCusta(r.programa)) {
       melhor = r.programa;
       resultado = r;
@@ -392,7 +394,7 @@ export function gerarPrograma(perfil: Perfil, inventarioOriginal: Inventario): R
   };
 }
 
-function gerarNaDivisao(perfil: Perfil, inventarioOriginal: Inventario): Resultado {
+function gerarNaDivisao(perfil: Perfil, inventarioOriginal: Inventario, aceitaRecuo = false): Resultado {
   const triagem = avaliarTriagem(perfil.triagem);
   if (triagem.bloqueado) return { status: 'bloqueado', triagem };
   // tempo.musculo-protegido (15/11/2026): entre o abdômen e a panturrilha, escolhe primeiro o que tem menos dias onde
@@ -401,10 +403,10 @@ function gerarNaDivisao(perfil: Perfil, inventarioOriginal: Inventario): Resulta
   const acima = (p: Programa) => p.dias.filter((d) => d.minutosEstimados > LIMITE_DO_DIA * perfil.minutosSessao).length;
   const montar = (focoPrimeiro: boolean) => {
     const info = { protegidosSemVaga: 0 };
-    const a = montarPrograma(perfil, inventarioOriginal, triagem, focoPrimeiro, false, info);
+    const a = montarPrograma(perfil, inventarioOriginal, triagem, focoPrimeiro, false, info, aceitaRecuo);
     // A ordem só importa quando os dois ficaram sem vaga: senão, uma montagem basta.
     if (info.protegidosSemVaga < 2) return a;
-    const b = montarPrograma(perfil, inventarioOriginal, triagem, focoPrimeiro, true);
+    const b = montarPrograma(perfil, inventarioOriginal, triagem, focoPrimeiro, true, undefined, aceitaRecuo);
     return acima(b) > acima(a) ? a : b;
   };
   // volume.prioridade.foco-primeiro: com foco, os isoladores de quem não é foco entram depois das vagas do foco, e o
@@ -442,7 +444,7 @@ function fechar(programa: Programa, triagem: ResultadoTriagem): Resultado {
   };
 }
 
-function montarPrograma(perfil: Perfil, inventarioOriginal: Inventario, triagem: ResultadoTriagem, focoPrimeiro: boolean, protegidoRaroPrimeiro = false, info?: { protegidosSemVaga: number }): Programa {
+function montarPrograma(perfil: Perfil, inventarioOriginal: Inventario, triagem: ResultadoTriagem, focoPrimeiro: boolean, protegidoRaroPrimeiro = false, info?: { protegidosSemVaga: number }, aceitaRecuo = false): Programa {
   const ctx = contextoDeSelecao(perfil, inventarioOriginal, triagem);
   const { nivel, inventario, caps, regioesExcluidas, possiveisSemRegiao, possiveis, carregaExcluida, naFuncao, perdidaPorDor, halterMax, resolver } = ctx;
   const dorDe = (a: Articulacao) => textoDor(a, triagem.dores.find((d) => d.articulacao === a)?.nota);
@@ -458,7 +460,7 @@ function montarPrograma(perfil: Perfil, inventarioOriginal: Inventario, triagem:
   const semPuxar = (['puxar-vertical', 'puxar-horizontal'] as const).every((f) => !resolver({ funcao: f }) && !perdidaPorDor({ funcao: f }));
 
   // 2. Divisão escolhida entre opções equivalentes (divisao.*; divisao.sem-puxar)
-  const { divisao, escolhida, corpoTodoPorFaltaDePuxar } = divisaoEscolhida(perfil.diasSemana, metaMaxima(nivel, perfil.prioridades), perfil.divisao, semPuxar);
+  const { divisao, escolhida, corpoTodoPorFaltaDePuxar } = divisaoEscolhida(perfil.diasSemana, metaMaxima(nivel, perfil.prioridades), perfil.divisao, semPuxar, aceitaRecuo);
 
   const usos = new Map<string, number>();
   const funcaoPossivel = (e: Exercicio) => funcoesDoExercicio(e.id).find((x) => naFuncao(x, e.id));

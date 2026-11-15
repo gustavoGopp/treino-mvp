@@ -60,12 +60,12 @@ Os itens que, sozinhos, não abrem nenhum exercício a mais que o inventário va
 
 | problema | ocorrências |
 | --- | ---: |
-| `volume.abaixo-sem-aviso` | 721.224 |
+| `volume.abaixo-sem-aviso` | 721.228 |
 | `vaga.so-aviso-do-musculo.elevacao-lateral` | 400.814 |
-| `vaga.so-aviso-do-musculo.biceps` | 336.093 |
+| `vaga.so-aviso-do-musculo.biceps` | 336.097 |
 | `vaga.so-aviso-do-musculo.puxar-vertical` | 310.395 |
 | `vaga.so-aviso-do-musculo.puxar-horizontal` | 307.888 |
-| `vaga.so-aviso-do-musculo.crucifixo` | 195.745 |
+| `vaga.so-aviso-do-musculo.crucifixo` | 195.747 |
 | `dia.superior-sem-superior` | 59.139 |
 | `equilibrio.sem-puxar` | 36.480 |
 | `volume.zero.costas` | 36.480 |
@@ -100,7 +100,7 @@ Os itens que, sozinhos, não abrem nenhum exercício a mais que o inventário va
 | barra_hexagonal | 7,3 | 0 | 0,7 | 5,4 | 0 | 7,4 | 7,3 | 8,4 | 13,3 | 9,1 | 4,8 |
 | kettlebell | 7 | 4,6 | 0,8 | 6,2 | 7,7 | 7,9 | 6,9 | 8,5 | 12 | 8 | 4,3 |
 | banco_romano | 7,3 | 0 | 0,7 | 5,3 | 0 | 7,4 | 7,1 | 8,7 | 13,8 | 9 | 4,7 |
-| estacao_puxada | 7 | 6,7 | 0,6 | 7 | 3,4 | 7,1 | 7,4 | 7,4 | 11,8 | 8,6 | 4,5 |
+| estacao_puxada | 7 | 6,7 | 0,6 | 7 | 3,4 | 7,1 | 7,4 | 7,4 | 11,9 | 8,6 | 4,5 |
 | estacao_remada | 7,1 | 4,4 | 0,7 | 6,4 | 2,2 | 7,4 | 7,4 | 7,5 | 12 | 8,7 | 4,5 |
 | multifuncional | 7 | 7,9 | 0,6 | 7,3 | 4 | 7 | 7,5 | 7,4 | 11,9 | 8,7 | 4,5 |
 | supino_maquina | 8,6 | 0 | 0,7 | 5,3 | 0 | 8 | 7,6 | 7,5 | 12,2 | 8,8 | 4,7 |
@@ -291,7 +291,7 @@ Por programa e por função da divisão que ficou sem exercício possível por f
 | banco_romano | panturrilha-sentada | 6912 | 0 | 0 | 0 | 0 |
 | banco_romano | puxar-horizontal | 0 | 11520 | 0 | 0 | 0 |
 | banco_romano | puxar-vertical | 0 | 11520 | 0 | 0 | 0 |
-| estacao_puxada | biceps | 0 | 7691 | 3829 | 0 | 0 |
+| estacao_puxada | biceps | 0 | 7694 | 3826 | 0 | 0 |
 | estacao_puxada | crucifixo | 0 | 5366 | 6154 | 0 | 0 |
 | estacao_puxada | elevacao-lateral | 0 | 11502 | 18 | 0 | 0 |
 | estacao_puxada | extensora | 11520 | 0 | 0 | 0 | 0 |
@@ -334,7 +334,7 @@ Por programa e por função da divisão que ficou sem exercício possível por f
 | remada_articulada | extensora | 11520 | 0 | 0 | 0 | 0 |
 | remada_articulada | panturrilha-sentada | 6912 | 0 | 0 | 0 | 0 |
 | remada_articulada | puxar-vertical | 0 | 5659 | 5861 | 0 | 0 |
-| graviton | biceps | 0 | 7759 | 3761 | 0 | 0 |
+| graviton | biceps | 0 | 7760 | 3760 | 0 | 0 |
 | graviton | crucifixo | 0 | 4362 | 7158 | 0 | 0 |
 | graviton | elevacao-lateral | 0 | 11502 | 18 | 0 | 0 |
 | graviton | extensora | 11520 | 0 | 0 | 0 | 0 |
@@ -399,7 +399,7 @@ Por programa e por função da divisão que ficou sem exercício possível por f
 | suspensao | extensora | 11520 | 0 | 0 | 0 | 0 |
 | suspensao | panturrilha-sentada | 6912 | 0 | 0 | 0 | 0 |
 | caneleiras | biceps | 0 | 11520 | 0 | 0 | 0 |
-| caneleiras | crucifixo | 0 | 5288 | 6232 | 0 | 0 |
+| caneleiras | crucifixo | 0 | 5290 | 6230 | 0 | 0 |
 | caneleiras | panturrilha-sentada | 6912 | 0 | 0 | 0 | 0 |
 | caneleiras | puxar-horizontal | 0 | 11520 | 0 | 0 | 0 |
 | caneleiras | puxar-vertical | 0 | 11520 | 0 | 0 | 0 |
@@ -425,7 +425,7 @@ Por programa e por função da divisão que ficou sem exercício possível por f
 
 - Avisos que sugerem comprar algo, em todos os cenários: **0**.
 - "Nenhum exercício possível" dito para um músculo que tinha exercício possível: **0**.
-- Músculo com meta abaixo do limiar (a meta, se prioridade; senão, 4 séries) sem aviso: **721224**.
+- Músculo com meta abaixo do limiar (a meta, se prioridade; senão, 4 séries) sem aviso: **721228**.
 - Programas sem nenhuma série de puxar com o aviso `equipamento.sem-puxada-vertical`: **0** (ele só dispara quando a puxada cai para uma remada).
 
 ## Equilíbrio (sem dor)
@@ -485,11 +485,11 @@ Exercícios por dia no programa × os que cabem nos minutos (`tempo.exercicios-p
 | cenário | minutos | cabem | exercícios por dia | séries por exercício | no teto de 4 séries | dia mais longo (mediana, min) | sobra > 30% |
 | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
 | vazio (= 10 outros) | 20 | 3 | 3 | 2,6 | 22,5% | 28 | 0% |
-| vazio (= 10 outros) | 30 | 4 | 3,7 | 2,7 | 26,7% | 30 | 0% |
+| vazio (= 10 outros) | 30 | 4 | 3,7 | 2,7 | 26,5% | 31 | 0% |
 | vazio (= 10 outros) | 45 | 6 | 4,9 | 2,8 | 28,5% | 45 | 0,6% |
 | vazio (= 10 outros) | 60 | 8 | 5,5 | 2,9 | 35,2% | 59 | 3,9% |
 | vazio (= 10 outros) | 90 | 12 | 5,9 | 2,9 | 41,2% | 80 | 35% |
-| estacao_polia_dupla | 20 | 3 | 3,3 | 2,5 | 16,4% | 31 | 0% |
+| estacao_polia_dupla | 20 | 3 | 3,3 | 2,5 | 16,4% | 32 | 0% |
 | estacao_polia_dupla | 30 | 4 | 4 | 2,6 | 19,3% | 35 | 0% |
 | estacao_polia_dupla | 45 | 6 | 5,6 | 2,6 | 18,8% | 45 | 0% |
 | estacao_polia_dupla | 60 | 8 | 6,9 | 2,6 | 18,5% | 60 | 0% |
@@ -500,7 +500,7 @@ Exercícios por dia no programa × os que cabem nos minutos (`tempo.exercicios-p
 | barra_fixa | 60 | 8 | 6 | 2,8 | 32,6% | 59 | 1,7% |
 | barra_fixa | 90 | 12 | 6,5 | 2,9 | 41,1% | 81 | 25,6% |
 | halteres_fixos | 20 | 3 | 3,3 | 2,5 | 16,4% | 32 | 0% |
-| halteres_fixos | 30 | 4 | 4 | 2,7 | 21,3% | 35 | 0% |
+| halteres_fixos | 30 | 4 | 4 | 2,7 | 21,4% | 35 | 0% |
 | halteres_fixos | 45 | 6 | 5,5 | 2,8 | 25,3% | 45 | 0% |
 | halteres_fixos | 60 | 8 | 6,8 | 2,8 | 27,6% | 60 | 0% |
 | halteres_fixos | 90 | 12 | 8 | 2,8 | 33,6% | 85 | 13,3% |
@@ -510,47 +510,47 @@ Exercícios por dia no programa × os que cabem nos minutos (`tempo.exercicios-p
 | anilhas_e_manoplas | 60 | 8 | 6,8 | 2,8 | 25,5% | 60 | 0% |
 | anilhas_e_manoplas | 90 | 12 | 8 | 2,8 | 32,8% | 85 | 13,3% |
 | barra_longa | 20 | 3 | 3,1 | 2,6 | 23,6% | 31 | 0% |
-| barra_longa | 30 | 4 | 3,8 | 2,7 | 27,9% | 34 | 0% |
+| barra_longa | 30 | 4 | 3,8 | 2,7 | 27,7% | 34 | 0% |
 | barra_longa | 45 | 6 | 4,9 | 2,8 | 28,5% | 45 | 0,6% |
 | barra_longa | 60 | 8 | 5,7 | 2,8 | 32,6% | 59 | 3,9% |
 | barra_longa | 90 | 12 | 6,2 | 2,9 | 39,6% | 76 | 29,4% |
 | barra_w | 20 | 3 | 3,2 | 2,7 | 24,1% | 28 | 0% |
-| barra_w | 30 | 4 | 3,8 | 2,8 | 28,3% | 31 | 0% |
+| barra_w | 30 | 4 | 3,8 | 2,8 | 28,2% | 31 | 0% |
 | barra_w | 45 | 6 | 5,1 | 2,8 | 29,6% | 45 | 0,6% |
 | barra_w | 60 | 8 | 6 | 2,9 | 35,4% | 59 | 1,1% |
 | barra_w | 90 | 12 | 6,5 | 2,9 | 42% | 82 | 31,1% |
 | rack_de_agachamento | 20 | 3 | 3,1 | 2,7 | 23,7% | 30 | 0% |
-| rack_de_agachamento | 30 | 4 | 3,8 | 2,8 | 27,3% | 31 | 0% |
+| rack_de_agachamento | 30 | 4 | 3,8 | 2,8 | 27,3% | 32 | 0% |
 | rack_de_agachamento | 45 | 6 | 5,1 | 2,8 | 27,6% | 45 | 0,6% |
 | rack_de_agachamento | 60 | 8 | 5,9 | 2,8 | 31,8% | 59 | 1,1% |
 | rack_de_agachamento | 90 | 12 | 6,4 | 2,9 | 39,6% | 82 | 31,1% |
 | smith | 20 | 3 | 3,1 | 2,7 | 23,6% | 30 | 0% |
-| smith | 30 | 4 | 3,8 | 2,8 | 27,4% | 30 | 0% |
+| smith | 30 | 4 | 3,8 | 2,8 | 27,4% | 32 | 0% |
 | smith | 45 | 6 | 5,1 | 2,8 | 28% | 45 | 0,6% |
 | smith | 60 | 8 | 5,9 | 2,8 | 32,3% | 58 | 1,1% |
 | smith | 90 | 12 | 6,4 | 2,9 | 39,8% | 79 | 31,1% |
 | leg_press | 20 | 3 | 3 | 2,6 | 22,1% | 27 | 0% |
-| leg_press | 30 | 4 | 3,7 | 2,7 | 26,4% | 30 | 0% |
+| leg_press | 30 | 4 | 3,7 | 2,8 | 26,4% | 31 | 0% |
 | leg_press | 45 | 6 | 4,9 | 2,8 | 27,3% | 45 | 0,6% |
 | leg_press | 60 | 8 | 5,5 | 2,8 | 33,7% | 59 | 3,9% |
 | leg_press | 90 | 12 | 5,9 | 2,9 | 41,7% | 77 | 36,1% |
 | cadeira_extensora | 20 | 3 | 3,1 | 2,6 | 20% | 28 | 0% |
-| cadeira_extensora | 30 | 4 | 3,8 | 2,7 | 23% | 30 | 0% |
+| cadeira_extensora | 30 | 4 | 3,8 | 2,7 | 22,9% | 30 | 0% |
 | cadeira_extensora | 45 | 6 | 5 | 2,8 | 25,5% | 45 | 0% |
 | cadeira_extensora | 60 | 8 | 5,7 | 2,8 | 31,6% | 59 | 5% |
 | cadeira_extensora | 90 | 12 | 6 | 2,9 | 41% | 78 | 35,6% |
 | mesa_flexora | 20 | 3 | 3 | 2,5 | 17% | 28 | 0% |
-| mesa_flexora | 30 | 4 | 3,7 | 2,7 | 23,2% | 31 | 0% |
-| mesa_flexora | 45 | 6 | 4,9 | 2,8 | 26,8% | 45 | 0% |
+| mesa_flexora | 30 | 4 | 3,7 | 2,7 | 23,1% | 31 | 0% |
+| mesa_flexora | 45 | 6 | 4,9 | 2,8 | 26,7% | 45 | 0% |
 | mesa_flexora | 60 | 8 | 5,5 | 2,8 | 34,9% | 60 | 2,8% |
 | mesa_flexora | 90 | 12 | 6 | 2,9 | 41,5% | 80 | 32,8% |
 | cadeira_flexora | 20 | 3 | 3 | 2,5 | 17% | 28 | 0% |
-| cadeira_flexora | 30 | 4 | 3,7 | 2,7 | 23,2% | 31 | 0% |
-| cadeira_flexora | 45 | 6 | 4,9 | 2,8 | 26,8% | 45 | 0% |
+| cadeira_flexora | 30 | 4 | 3,7 | 2,7 | 23,1% | 31 | 0% |
+| cadeira_flexora | 45 | 6 | 4,9 | 2,8 | 26,7% | 45 | 0% |
 | cadeira_flexora | 60 | 8 | 5,5 | 2,8 | 34,9% | 60 | 2,8% |
 | cadeira_flexora | 90 | 12 | 6 | 2,9 | 41,5% | 80 | 32,8% |
 | paralelas | 20 | 3 | 3 | 2,6 | 22,7% | 28 | 0% |
-| paralelas | 30 | 4 | 3,7 | 2,7 | 26,4% | 30 | 0% |
+| paralelas | 30 | 4 | 3,7 | 2,7 | 26,2% | 31 | 0% |
 | paralelas | 45 | 6 | 4,9 | 2,8 | 28,2% | 45 | 0,6% |
 | paralelas | 60 | 8 | 5,5 | 2,9 | 35,2% | 59 | 3,9% |
 | paralelas | 90 | 12 | 5,9 | 2,9 | 41,2% | 77 | 32,2% |
@@ -560,13 +560,13 @@ Exercícios por dia no programa × os que cabem nos minutos (`tempo.exercicios-p
 | elasticos | 60 | 8 | 6,9 | 2,6 | 19,4% | 60 | 0% |
 | elasticos | 90 | 12 | 8,1 | 2,7 | 24,2% | 87 | 10,6% |
 | step | 20 | 3 | 3 | 2,6 | 22% | 31 | 0% |
-| step | 30 | 4 | 3,7 | 2,7 | 25,8% | 32 | 0% |
+| step | 30 | 4 | 3,7 | 2,7 | 25,7% | 32 | 0% |
 | step | 45 | 6 | 4,9 | 2,8 | 27,3% | 45 | 0% |
 | step | 60 | 8 | 5,5 | 2,8 | 34,7% | 59 | 3,9% |
 | step | 90 | 12 | 5,9 | 2,9 | 40,9% | 79 | 35% |
 | bola_suica | 20 | 3 | 3 | 2,6 | 22,2% | 30 | 0% |
-| bola_suica | 30 | 4 | 3,7 | 2,7 | 26,2% | 31 | 0% |
-| bola_suica | 45 | 6 | 4,9 | 2,8 | 28,2% | 45 | 0% |
+| bola_suica | 30 | 4 | 3,7 | 2,8 | 26,1% | 31 | 0% |
+| bola_suica | 45 | 6 | 4,9 | 2,8 | 28,3% | 45 | 0% |
 | bola_suica | 60 | 8 | 5,6 | 2,8 | 33,7% | 59 | 3,9% |
 | bola_suica | 90 | 12 | 6 | 2,9 | 38,1% | 77 | 38,9% |
 | barra_hexagonal | 20 | 3 | 3 | 2,6 | 20,1% | 26 | 0% |
@@ -575,7 +575,7 @@ Exercícios por dia no programa × os que cabem nos minutos (`tempo.exercicios-p
 | barra_hexagonal | 60 | 8 | 5,6 | 2,8 | 32,4% | 58 | 6,1% |
 | barra_hexagonal | 90 | 12 | 5,9 | 2,8 | 37,8% | 73 | 41,7% |
 | kettlebell | 20 | 3 | 3,1 | 2,6 | 23,9% | 32 | 0% |
-| kettlebell | 30 | 4 | 3,8 | 2,8 | 26,7% | 37 | 0% |
+| kettlebell | 30 | 4 | 3,8 | 2,8 | 26,8% | 37 | 0% |
 | kettlebell | 45 | 6 | 5,2 | 2,7 | 24,9% | 45 | 0% |
 | kettlebell | 60 | 8 | 6,2 | 2,7 | 27,3% | 60 | 1,1% |
 | kettlebell | 90 | 12 | 6,9 | 2,8 | 36,6% | 86 | 22,2% |
@@ -585,107 +585,107 @@ Exercícios por dia no programa × os que cabem nos minutos (`tempo.exercicios-p
 | banco_romano | 60 | 8 | 5,5 | 2,8 | 32% | 59 | 5% |
 | banco_romano | 90 | 12 | 5,9 | 2,8 | 36,4% | 74 | 33,3% |
 | estacao_puxada | 20 | 3 | 3,1 | 2,7 | 23,8% | 30 | 0% |
-| estacao_puxada | 30 | 4 | 3,8 | 2,8 | 28,4% | 32 | 0% |
+| estacao_puxada | 30 | 4 | 3,8 | 2,8 | 28,2% | 32 | 0% |
 | estacao_puxada | 45 | 6 | 5,1 | 2,8 | 28,2% | 45 | 0,6% |
 | estacao_puxada | 60 | 8 | 5,9 | 2,8 | 32,1% | 59 | 1,1% |
 | estacao_puxada | 90 | 12 | 6,4 | 2,9 | 40,1% | 80 | 31,1% |
 | estacao_remada | 20 | 3 | 3,2 | 2,6 | 23,3% | 31 | 0% |
-| estacao_remada | 30 | 4 | 3,8 | 2,8 | 28,7% | 31 | 0% |
+| estacao_remada | 30 | 4 | 3,8 | 2,8 | 28,5% | 31 | 0% |
 | estacao_remada | 45 | 6 | 5,1 | 2,8 | 27,8% | 45 | 0,6% |
 | estacao_remada | 60 | 8 | 5,9 | 2,8 | 32,5% | 59 | 1,1% |
 | estacao_remada | 90 | 12 | 6,4 | 2,9 | 40,1% | 82 | 31,7% |
 | multifuncional | 20 | 3 | 3,3 | 2,6 | 19,9% | 30 | 0% |
-| multifuncional | 30 | 4 | 3,9 | 2,7 | 23,4% | 30 | 0% |
+| multifuncional | 30 | 4 | 3,9 | 2,7 | 23,3% | 32 | 0% |
 | multifuncional | 45 | 6 | 5,3 | 2,7 | 26,2% | 45 | 0,6% |
 | multifuncional | 60 | 8 | 6,1 | 2,8 | 29,4% | 59 | 1,1% |
 | multifuncional | 90 | 12 | 6,6 | 2,9 | 38,6% | 82 | 26,1% |
 | supino_maquina | 20 | 3 | 3,1 | 2,6 | 22,2% | 28 | 0% |
-| supino_maquina | 30 | 4 | 3,7 | 2,7 | 26,8% | 30 | 0% |
+| supino_maquina | 30 | 4 | 3,7 | 2,8 | 26,6% | 31 | 0% |
 | supino_maquina | 45 | 6 | 4,9 | 2,8 | 28,5% | 45 | 0,6% |
 | supino_maquina | 60 | 8 | 5,5 | 2,8 | 34,5% | 59 | 3,3% |
 | supino_maquina | 90 | 12 | 5,9 | 2,9 | 40,8% | 77 | 35,6% |
 | voador | 20 | 3 | 3 | 2,6 | 23,4% | 28 | 0% |
-| voador | 30 | 4 | 3,8 | 2,8 | 27,3% | 30 | 0% |
+| voador | 30 | 4 | 3,8 | 2,8 | 27,2% | 31 | 0% |
 | voador | 45 | 6 | 5 | 2,8 | 27,2% | 45 | 0,6% |
 | voador | 60 | 8 | 5,7 | 2,8 | 32,8% | 59 | 2,8% |
 | voador | 90 | 12 | 6,2 | 2,9 | 39,1% | 77 | 35,6% |
 | desenvolvimento_maquina | 20 | 3 | 3 | 2,6 | 22,4% | 28 | 0% |
-| desenvolvimento_maquina | 30 | 4 | 3,7 | 2,7 | 26,5% | 30 | 0% |
+| desenvolvimento_maquina | 30 | 4 | 3,7 | 2,7 | 26,4% | 31 | 0% |
 | desenvolvimento_maquina | 45 | 6 | 4,9 | 2,8 | 28,5% | 45 | 0,6% |
 | desenvolvimento_maquina | 60 | 8 | 5,5 | 2,9 | 35,2% | 59 | 3,9% |
 | desenvolvimento_maquina | 90 | 12 | 5,9 | 2,9 | 41,1% | 80 | 35% |
 | remada_articulada | 20 | 3 | 3,2 | 2,6 | 23,3% | 31 | 0% |
-| remada_articulada | 30 | 4 | 3,8 | 2,8 | 28,7% | 31 | 0% |
+| remada_articulada | 30 | 4 | 3,8 | 2,8 | 28,5% | 31 | 0% |
 | remada_articulada | 45 | 6 | 5,1 | 2,8 | 27,8% | 45 | 0,6% |
 | remada_articulada | 60 | 8 | 5,9 | 2,8 | 32,5% | 59 | 1,1% |
 | remada_articulada | 90 | 12 | 6,4 | 2,9 | 40,1% | 82 | 31,7% |
 | graviton | 20 | 3 | 3,2 | 2,7 | 22,9% | 30 | 0% |
-| graviton | 30 | 4 | 3,8 | 2,7 | 28,2% | 31 | 0% |
+| graviton | 30 | 4 | 3,8 | 2,7 | 28,1% | 31 | 0% |
 | graviton | 45 | 6 | 5,1 | 2,7 | 27,2% | 45 | 0,6% |
 | graviton | 60 | 8 | 5,9 | 2,8 | 30,9% | 59 | 1,7% |
 | graviton | 90 | 12 | 6,4 | 2,9 | 38,1% | 80 | 31,1% |
 | rosca_maquina | 20 | 3 | 3,2 | 2,6 | 21,7% | 28 | 0% |
-| rosca_maquina | 30 | 4 | 3,8 | 2,8 | 26,8% | 31 | 0% |
+| rosca_maquina | 30 | 4 | 3,8 | 2,8 | 26,7% | 31 | 0% |
 | rosca_maquina | 45 | 6 | 5,1 | 2,8 | 28,6% | 45 | 0,6% |
 | rosca_maquina | 60 | 8 | 6 | 2,9 | 34,8% | 59 | 1,1% |
 | rosca_maquina | 90 | 12 | 6,5 | 2,9 | 41,8% | 82 | 31,1% |
 | triceps_maquina | 20 | 3 | 3 | 2,6 | 22,8% | 28 | 0% |
-| triceps_maquina | 30 | 4 | 3,8 | 2,7 | 26,6% | 30 | 0% |
+| triceps_maquina | 30 | 4 | 3,8 | 2,7 | 26,4% | 31 | 0% |
 | triceps_maquina | 45 | 6 | 4,9 | 2,8 | 29,4% | 45 | 0,6% |
 | triceps_maquina | 60 | 8 | 5,6 | 2,9 | 35,8% | 59 | 3,9% |
 | triceps_maquina | 90 | 12 | 6 | 2,9 | 41,7% | 77 | 31,1% |
 | abdominal_maquina | 20 | 3 | 3 | 2,6 | 22,2% | 28 | 0% |
-| abdominal_maquina | 30 | 4 | 3,7 | 2,7 | 25,7% | 30 | 0% |
+| abdominal_maquina | 30 | 4 | 3,7 | 2,7 | 25,6% | 31 | 0% |
 | abdominal_maquina | 45 | 6 | 4,9 | 2,8 | 28,5% | 45 | 0,6% |
 | abdominal_maquina | 60 | 8 | 5,5 | 2,9 | 35,1% | 59 | 3,9% |
 | abdominal_maquina | 90 | 12 | 5,9 | 2,9 | 41,3% | 80 | 35,6% |
 | hack | 20 | 3 | 3 | 2,6 | 22,5% | 28 | 0% |
-| hack | 30 | 4 | 3,7 | 2,8 | 26,9% | 30 | 0% |
+| hack | 30 | 4 | 3,7 | 2,8 | 26,9% | 31 | 0% |
 | hack | 45 | 6 | 4,9 | 2,8 | 28,9% | 45 | 0,6% |
 | hack | 60 | 8 | 5,5 | 2,9 | 35,6% | 59 | 3,9% |
 | hack | 90 | 12 | 5,9 | 2,9 | 41,6% | 78 | 36,1% |
 | cadeira_abdutora_adutora | 20 | 3 | 3 | 2,6 | 22,5% | 28 | 0% |
-| cadeira_abdutora_adutora | 30 | 4 | 3,7 | 2,7 | 26,7% | 30 | 0% |
+| cadeira_abdutora_adutora | 30 | 4 | 3,7 | 2,7 | 26,5% | 31 | 0% |
 | cadeira_abdutora_adutora | 45 | 6 | 4,9 | 2,8 | 28,8% | 45 | 0,6% |
 | cadeira_abdutora_adutora | 60 | 8 | 5,6 | 2,8 | 35,5% | 59 | 3,9% |
 | cadeira_abdutora_adutora | 90 | 12 | 5,9 | 2,9 | 41,9% | 73 | 36,1% |
 | gluteo_maquina | 20 | 3 | 2,9 | 2,6 | 22,6% | 26 | 0% |
-| gluteo_maquina | 30 | 4 | 3,5 | 2,9 | 30,9% | 30 | 0% |
+| gluteo_maquina | 30 | 4 | 3,5 | 2,9 | 30,7% | 30 | 0% |
 | gluteo_maquina | 45 | 6 | 4,8 | 2,8 | 32,1% | 45 | 0,6% |
 | gluteo_maquina | 60 | 8 | 5,5 | 2,9 | 36,3% | 59 | 3,9% |
 | gluteo_maquina | 90 | 12 | 5,9 | 2,9 | 41,3% | 79 | 35,6% |
 | panturrilha_em_pe_maquina | 20 | 3 | 3 | 2,6 | 22,1% | 28 | 0% |
-| panturrilha_em_pe_maquina | 30 | 4 | 3,7 | 2,7 | 26,3% | 30 | 0% |
+| panturrilha_em_pe_maquina | 30 | 4 | 3,7 | 2,7 | 26,2% | 31 | 0% |
 | panturrilha_em_pe_maquina | 45 | 6 | 4,9 | 2,8 | 26,6% | 45 | 0,6% |
 | panturrilha_em_pe_maquina | 60 | 8 | 5,5 | 2,8 | 33,3% | 59 | 3,9% |
 | panturrilha_em_pe_maquina | 90 | 12 | 5,9 | 2,9 | 41,4% | 79 | 35,6% |
 | panturrilha_sentada_maquina | 20 | 3 | 3 | 2,6 | 22,5% | 28 | 0% |
-| panturrilha_sentada_maquina | 30 | 4 | 3,7 | 2,7 | 26,7% | 30 | 0% |
+| panturrilha_sentada_maquina | 30 | 4 | 3,7 | 2,7 | 26,5% | 31 | 0% |
 | panturrilha_sentada_maquina | 45 | 6 | 4,9 | 2,8 | 28,2% | 45 | 0,6% |
 | panturrilha_sentada_maquina | 60 | 8 | 5,5 | 2,9 | 35,6% | 59 | 3,9% |
 | panturrilha_sentada_maquina | 90 | 12 | 5,9 | 2,9 | 41,9% | 76 | 35,6% |
 | suspensao | 20 | 3 | 3,1 | 2,7 | 24,8% | 30 | 0% |
 | suspensao | 30 | 4 | 3,8 | 2,8 | 29,6% | 34 | 0% |
-| suspensao | 45 | 6 | 5,3 | 2,8 | 28,7% | 45 | 0% |
+| suspensao | 45 | 6 | 5,3 | 2,8 | 28,8% | 45 | 0% |
 | suspensao | 60 | 8 | 6,3 | 2,8 | 30,9% | 60 | 1,1% |
 | suspensao | 90 | 12 | 7 | 2,9 | 37% | 84 | 23,9% |
-| caneleiras | 20 | 3 | 3,1 | 2,6 | 22,8% | 28 | 0% |
-| caneleiras | 30 | 4 | 3,8 | 2,8 | 25,5% | 30 | 0% |
+| caneleiras | 20 | 3 | 3,1 | 2,6 | 22,7% | 28 | 0% |
+| caneleiras | 30 | 4 | 3,8 | 2,8 | 25,6% | 30 | 0% |
 | caneleiras | 45 | 6 | 5,2 | 2,8 | 28% | 45 | 0% |
 | caneleiras | 60 | 8 | 6,1 | 2,8 | 31,4% | 59 | 2,2% |
 | caneleiras | 90 | 12 | 6,7 | 2,9 | 41,4% | 81 | 27,8% |
 | mini_band | 20 | 3 | 3,1 | 2,6 | 20,6% | 28 | 0% |
-| mini_band | 30 | 4 | 3,8 | 2,7 | 22,8% | 30 | 0% |
+| mini_band | 30 | 4 | 3,8 | 2,7 | 22,7% | 31 | 0% |
 | mini_band | 45 | 6 | 5 | 2,7 | 24,3% | 45 | 0% |
 | mini_band | 60 | 8 | 5,7 | 2,8 | 31,5% | 60 | 3,3% |
 | mini_band | 90 | 12 | 6 | 2,9 | 40,7% | 80 | 30,6% |
 | roda_abdominal | 20 | 3 | 3 | 2,6 | 22,5% | 28 | 0% |
-| roda_abdominal | 30 | 4 | 3,7 | 2,7 | 26,7% | 30 | 0% |
+| roda_abdominal | 30 | 4 | 3,7 | 2,7 | 26,5% | 31 | 0% |
 | roda_abdominal | 45 | 6 | 4,9 | 2,8 | 28,7% | 45 | 0,6% |
 | roda_abdominal | 60 | 8 | 5,5 | 2,9 | 35,3% | 59 | 3,9% |
 | roda_abdominal | 90 | 12 | 5,9 | 2,9 | 41,2% | 80 | 35% |
 | barra-porta+elasticos | 20 | 3 | 3,3 | 2,6 | 19,5% | 32 | 0% |
-| barra-porta+elasticos | 30 | 4 | 4,1 | 2,7 | 22,4% | 36 | 0% |
+| barra-porta+elasticos | 30 | 4 | 4 | 2,7 | 22,5% | 36 | 0% |
 | barra-porta+elasticos | 45 | 6 | 5,7 | 2,7 | 19,7% | 45 | 0% |
 | barra-porta+elasticos | 60 | 8 | 6,9 | 2,7 | 19,8% | 60 | 0% |
 | barra-porta+elasticos | 90 | 12 | 8,1 | 2,7 | 24,3% | 87 | 11,1% |
@@ -695,7 +695,7 @@ Exercícios por dia no programa × os que cabem nos minutos (`tempo.exercicios-p
 | halteres+bola | 60 | 8 | 6,8 | 2,7 | 25,3% | 60 | 0% |
 | halteres+bola | 90 | 12 | 8 | 2,8 | 31,4% | 84 | 13,3% |
 | suspensao+elasticos | 20 | 3 | 3,2 | 2,6 | 19,7% | 32 | 0% |
-| suspensao+elasticos | 30 | 4 | 4 | 2,7 | 23,3% | 37 | 0% |
+| suspensao+elasticos | 30 | 4 | 4 | 2,7 | 23,3% | 36 | 0% |
 | suspensao+elasticos | 45 | 6 | 5,7 | 2,7 | 20,5% | 45 | 0% |
 | suspensao+elasticos | 60 | 8 | 6,9 | 2,7 | 20,9% | 60 | 0% |
 | suspensao+elasticos | 90 | 12 | 8,1 | 2,7 | 25,3% | 87 | 10% |
@@ -705,7 +705,7 @@ Exercícios por dia no programa × os que cabem nos minutos (`tempo.exercicios-p
 | banco+halteres-leves | 60 | 8 | 6,9 | 2,7 | 22,9% | 60 | 0% |
 | banco+halteres-leves | 90 | 12 | 8,1 | 2,7 | 27,1% | 84 | 17,2% |
 | step+elasticos | 20 | 3 | 3,3 | 2,6 | 19,3% | 33 | 0% |
-| step+elasticos | 30 | 4 | 4 | 2,7 | 22,5% | 38 | 0% |
+| step+elasticos | 30 | 4 | 4 | 2,7 | 22,5% | 37 | 0% |
 | step+elasticos | 45 | 6 | 5,7 | 2,6 | 19,2% | 45 | 0% |
 | step+elasticos | 60 | 8 | 6,9 | 2,6 | 18,8% | 60 | 0% |
 | step+elasticos | 90 | 12 | 8,1 | 2,7 | 24,1% | 87 | 9,4% |
@@ -717,16 +717,16 @@ Exercícios por dia no programa × os que cabem nos minutos (`tempo.exercicios-p
 | vazio (= 10 outros) | 100% | 0% | 0% |
 | estacao_polia_dupla | 91,9% | 8,1% | 0% |
 | barra_fixa | 95,2% | 4,8% | 0% |
-| halteres_fixos | 81,2% | 18,8% | 0% |
+| halteres_fixos | 81,1% | 18,9% | 0% |
 | anilhas_e_manoplas | 81,1% | 18,9% | 0% |
 | barra_longa | 90,4% | 9,6% | 0% |
 | barra_w | 91,1% | 8,9% | 0% |
 | rack_de_agachamento | 89,5% | 10,5% | 0% |
 | smith | 83,5% | 16,5% | 0% |
-| leg_press | 81,1% | 18,9% | 0% |
+| leg_press | 81,3% | 18,7% | 0% |
 | cadeira_extensora | 93,4% | 6,6% | 0% |
-| mesa_flexora | 90% | 10% | 0% |
-| cadeira_flexora | 90% | 10% | 0% |
+| mesa_flexora | 90,1% | 9,9% | 0% |
+| cadeira_flexora | 90,1% | 9,9% | 0% |
 | paralelas | 96,2% | 3,8% | 0% |
 | elasticos | 85,1% | 14,9% | 0% |
 | step | 100% | 0% | 0% |
@@ -734,7 +734,7 @@ Exercícios por dia no programa × os que cabem nos minutos (`tempo.exercicios-p
 | barra_hexagonal | 93,8% | 6,2% | 0% |
 | kettlebell | 92,6% | 7,4% | 0% |
 | banco_romano | 92,4% | 7,6% | 0% |
-| estacao_puxada | 90,3% | 9,7% | 0% |
+| estacao_puxada | 90,4% | 9,6% | 0% |
 | estacao_remada | 93,6% | 6,4% | 0% |
 | multifuncional | 87,4% | 12,6% | 0% |
 | supino_maquina | 90% | 10% | 0% |
@@ -747,8 +747,8 @@ Exercícios por dia no programa × os que cabem nos minutos (`tempo.exercicios-p
 | abdominal_maquina | 90,9% | 9,1% | 0% |
 | hack | 92,4% | 7,6% | 0% |
 | cadeira_abdutora_adutora | 89,5% | 10,5% | 0% |
-| gluteo_maquina | 93,1% | 6,9% | 0% |
-| panturrilha_em_pe_maquina | 88,6% | 11,4% | 0% |
+| gluteo_maquina | 93,3% | 6,7% | 0% |
+| panturrilha_em_pe_maquina | 88,9% | 11,1% | 0% |
 | panturrilha_sentada_maquina | 94,8% | 5,2% | 0% |
 | suspensao | 98,2% | 1,8% | 0% |
 | caneleiras | 77,8% | 22,2% | 0% |
@@ -826,7 +826,7 @@ Exercícios por dia no programa × os que cabem nos minutos (`tempo.exercicios-p
 | leg_press | joelho 7 + lombar 7 | 0 | 0 | 0 | 0 | 0 | abducao-deitado, abertura-t-deitado, aducao-deitado, extensao-triceps-peso-corpo, flexao, flexao-fechada, flexao-pes-elevados, panturrilha-chao, panturrilha-degrau, panturrilha-leg-press, pike, ponte-gluteo |
 | cadeira_extensora | joelho 7 | 0 | 0 | 0 | 0 | 0 | abdominal-chao, abdominal-invertido, abducao-deitado, abertura-t-deitado, aducao-deitado, extensao-triceps-peso-corpo, flexao, flexao-fechada, flexao-pes-elevados, panturrilha-chao, panturrilha-degrau, pike, ponte-gluteo |
 | cadeira_extensora | punho 7 | 0 | 59 | 0 | 0 | 0 | abdominal-chao, abdominal-invertido, abducao-deitado, abertura-t-deitado, aducao-deitado, afundo-peso-corpo, afundo-tras-peso-corpo, agachamento-peso-corpo, cadeira-extensora, flexao-joelho-deslizante, nordico, panturrilha-chao, panturrilha-degrau, ponte-gluteo |
-| cadeira_extensora | ombro 7 | 0 | 1560 | 0 | 0 | 0 | abdominal-chao, abdominal-invertido, abducao-deitado, aducao-deitado, afundo-peso-corpo, afundo-tras-peso-corpo, agachamento-peso-corpo, cadeira-extensora, flexao-joelho-deslizante, nordico, panturrilha-chao, panturrilha-degrau, ponte-gluteo |
+| cadeira_extensora | ombro 7 | 0 | 1560 | 0 | 0 | 0 | abdominal-chao, abdominal-invertido, abducao-deitado, aducao-deitado, afundo-peso-corpo, afundo-tras-peso-corpo, agachamento-peso-corpo, bulgaro-peso-corpo, cadeira-extensora, flexao-joelho-deslizante, nordico, panturrilha-chao, panturrilha-degrau, ponte-gluteo |
 | cadeira_extensora | lombar 7 | 0 | 0 | 0 | 0 | 0 | abducao-deitado, abertura-t-deitado, aducao-deitado, afundo-peso-corpo, afundo-tras-peso-corpo, agachamento-peso-corpo, cadeira-extensora, extensao-triceps-peso-corpo, flexao, flexao-fechada, flexao-joelho-deslizante, flexao-pes-elevados, nordico, panturrilha-chao, panturrilha-degrau, pike, ponte-gluteo |
 | cadeira_extensora | cotovelo 7 | 0 | 59 | 0 | 0 | 0 | abdominal-chao, abdominal-invertido, abducao-deitado, abertura-t-deitado, aducao-deitado, afundo-peso-corpo, afundo-tras-peso-corpo, agachamento-peso-corpo, cadeira-extensora, flexao-joelho-deslizante, nordico, panturrilha-chao, panturrilha-degrau, ponte-gluteo |
 | cadeira_extensora | joelho 7 + lombar 7 | 0 | 0 | 0 | 0 | 0 | abducao-deitado, abertura-t-deitado, aducao-deitado, extensao-triceps-peso-corpo, flexao, flexao-fechada, flexao-pes-elevados, panturrilha-chao, panturrilha-degrau, pike, ponte-gluteo |
@@ -958,13 +958,13 @@ Exercícios por dia no programa × os que cabem nos minutos (`tempo.exercicios-p
 | hack | joelho 7 + lombar 7 | 0 | 0 | 0 | 0 | 0 | abducao-deitado, abertura-t-deitado, aducao-deitado, extensao-triceps-peso-corpo, flexao, flexao-fechada, flexao-pes-elevados, panturrilha-chao, panturrilha-degrau, pike, ponte-gluteo |
 | cadeira_abdutora_adutora | joelho 7 | 0 | 0 | 0 | 0 | 0 | abdominal-chao, abdominal-invertido, abducao-maquina, abertura-t-deitado, aducao-maquina, extensao-triceps-peso-corpo, flexao, flexao-fechada, flexao-pes-elevados, panturrilha-chao, panturrilha-degrau, pike, ponte-gluteo |
 | cadeira_abdutora_adutora | punho 7 | 0 | 58 | 0 | 0 | 0 | abdominal-chao, abdominal-invertido, abducao-maquina, abertura-t-deitado, aducao-maquina, afundo-peso-corpo, afundo-tras-peso-corpo, agachamento-peso-corpo, bulgaro-peso-corpo, flexao-joelho-deslizante, nordico, panturrilha-chao, panturrilha-degrau, ponte-gluteo |
-| cadeira_abdutora_adutora | ombro 7 | 0 | 1560 | 0 | 0 | 0 | abdominal-chao, abdominal-invertido, abducao-maquina, aducao-maquina, afundo-peso-corpo, afundo-tras-peso-corpo, agachamento-peso-corpo, bulgaro-peso-corpo, flexao-joelho-deslizante, nordico, panturrilha-chao, panturrilha-degrau, ponte-gluteo |
+| cadeira_abdutora_adutora | ombro 7 | 0 | 1560 | 0 | 0 | 0 | abdominal-chao, abdominal-invertido, abducao-deitado, abducao-maquina, aducao-deitado, aducao-maquina, afundo-peso-corpo, afundo-tras-peso-corpo, agachamento-peso-corpo, bulgaro-peso-corpo, flexao-joelho-deslizante, nordico, panturrilha-chao, panturrilha-degrau, ponte-gluteo |
 | cadeira_abdutora_adutora | lombar 7 | 0 | 0 | 0 | 0 | 0 | abducao-maquina, abertura-t-deitado, aducao-maquina, afundo-peso-corpo, afundo-tras-peso-corpo, agachamento-peso-corpo, bulgaro-peso-corpo, extensao-triceps-peso-corpo, flexao, flexao-fechada, flexao-joelho-deslizante, flexao-pes-elevados, nordico, panturrilha-chao, panturrilha-degrau, pike, ponte-gluteo |
 | cadeira_abdutora_adutora | cotovelo 7 | 0 | 58 | 0 | 0 | 0 | abdominal-chao, abdominal-invertido, abducao-maquina, abertura-t-deitado, aducao-maquina, afundo-peso-corpo, afundo-tras-peso-corpo, agachamento-peso-corpo, bulgaro-peso-corpo, flexao-joelho-deslizante, nordico, panturrilha-chao, panturrilha-degrau, ponte-gluteo |
 | cadeira_abdutora_adutora | joelho 7 + lombar 7 | 0 | 0 | 0 | 0 | 0 | abducao-maquina, abertura-t-deitado, aducao-maquina, extensao-triceps-peso-corpo, flexao, flexao-fechada, flexao-pes-elevados, panturrilha-chao, panturrilha-degrau, pike, ponte-gluteo |
 | gluteo_maquina | joelho 7 | 0 | 0 | 0 | 0 | 0 | abdominal-chao, abdominal-invertido, abducao-deitado, abertura-t-deitado, aducao-deitado, extensao-triceps-peso-corpo, flexao, flexao-fechada, flexao-pes-elevados, panturrilha-chao, panturrilha-degrau, pike, ponte-gluteo |
 | gluteo_maquina | punho 7 | 0 | 58 | 0 | 0 | 0 | abdominal-chao, abdominal-invertido, abducao-deitado, abertura-t-deitado, aducao-deitado, afundo-peso-corpo, afundo-tras-peso-corpo, agachamento-peso-corpo, bulgaro-peso-corpo, coice-maquina, flexao-joelho-deslizante, nordico, panturrilha-chao, panturrilha-degrau |
-| gluteo_maquina | ombro 7 | 0 | 1560 | 0 | 0 | 0 | abdominal-chao, abdominal-invertido, abducao-deitado, aducao-deitado, afundo-peso-corpo, afundo-tras-peso-corpo, agachamento-peso-corpo, bulgaro-peso-corpo, coice-maquina, flexao-joelho-deslizante, nordico, panturrilha-chao, panturrilha-degrau |
+| gluteo_maquina | ombro 7 | 0 | 1560 | 0 | 0 | 0 | abdominal-chao, abdominal-invertido, abducao-deitado, aducao-deitado, afundo-peso-corpo, afundo-tras-peso-corpo, agachamento-peso-corpo, bulgaro-peso-corpo, coice-maquina, flexao-joelho-deslizante, nordico, panturrilha-chao, panturrilha-degrau, ponte-gluteo |
 | gluteo_maquina | lombar 7 | 0 | 0 | 0 | 0 | 0 | abducao-deitado, abertura-t-deitado, aducao-deitado, afundo-peso-corpo, afundo-tras-peso-corpo, agachamento-peso-corpo, bulgaro-peso-corpo, coice-maquina, extensao-triceps-peso-corpo, flexao, flexao-fechada, flexao-joelho-deslizante, flexao-pes-elevados, nordico, panturrilha-chao, panturrilha-degrau, pike |
 | gluteo_maquina | cotovelo 7 | 0 | 58 | 0 | 0 | 0 | abdominal-chao, abdominal-invertido, abducao-deitado, abertura-t-deitado, aducao-deitado, afundo-peso-corpo, afundo-tras-peso-corpo, agachamento-peso-corpo, bulgaro-peso-corpo, coice-maquina, flexao-joelho-deslizante, nordico, panturrilha-chao, panturrilha-degrau |
 | gluteo_maquina | joelho 7 + lombar 7 | 0 | 0 | 0 | 0 | 0 | abducao-deitado, abertura-t-deitado, aducao-deitado, extensao-triceps-peso-corpo, flexao, flexao-fechada, flexao-pes-elevados, panturrilha-chao, panturrilha-degrau, pike, ponte-gluteo |
@@ -988,7 +988,7 @@ Exercícios por dia no programa × os que cabem nos minutos (`tempo.exercicios-p
 | suspensao | joelho 7 + lombar 7 | 0 | 0 | 0 | 0 | 0 | abducao-deitado, abertura-t-deitado, aducao-deitado, extensao-triceps-peso-corpo, face-pull-suspensao, flexao, flexao-fechada, flexao-pes-elevados, panturrilha-chao, panturrilha-degrau, pike, ponte-gluteo, remada-suspensao, rosca-suspensao, triceps-suspensao, yt-suspensao |
 | caneleiras | joelho 7 | 0 | 0 | 0 | 0 | 0 | abdominal-chao, abdominal-invertido, abducao-caneleira, aducao-caneleira, crucifixo-invertido-caneleira, elevacao-lateral-caneleira, extensao-triceps-peso-corpo, flexao, flexao-fechada, flexao-pes-elevados, panturrilha-chao, panturrilha-degrau, pike, ponte-gluteo |
 | caneleiras | punho 7 | 0 | 0 | 0 | 0 | 0 | abdominal-chao, abdominal-invertido, abducao-caneleira, aducao-caneleira, afundo-peso-corpo, afundo-tras-peso-corpo, agachamento-peso-corpo, coice-caneleira, crucifixo-invertido-caneleira, elevacao-lateral-caneleira, extensao-joelho-caneleira, flexao-joelho-deslizante, nordico, panturrilha-chao, panturrilha-degrau |
-| caneleiras | ombro 7 | 0 | 1560 | 0 | 0 | 0 | abdominal-chao, abdominal-invertido, abducao-caneleira, aducao-caneleira, afundo-peso-corpo, afundo-tras-peso-corpo, agachamento-peso-corpo, coice-caneleira, extensao-joelho-caneleira, flexao-joelho-deslizante, nordico, panturrilha-chao, panturrilha-degrau |
+| caneleiras | ombro 7 | 0 | 1560 | 0 | 0 | 0 | abdominal-chao, abdominal-invertido, abducao-caneleira, aducao-caneleira, aducao-deitado, afundo-peso-corpo, afundo-tras-peso-corpo, agachamento-peso-corpo, bulgaro-peso-corpo, coice-caneleira, extensao-joelho-caneleira, flexao-joelho-deslizante, nordico, panturrilha-chao, panturrilha-degrau |
 | caneleiras | lombar 7 | 0 | 0 | 0 | 0 | 0 | abducao-caneleira, aducao-caneleira, afundo-peso-corpo, afundo-tras-peso-corpo, agachamento-peso-corpo, coice-caneleira, crucifixo-invertido-caneleira, elevacao-lateral-caneleira, extensao-joelho-caneleira, extensao-triceps-peso-corpo, flexao, flexao-fechada, flexao-joelho-deslizante, flexao-pes-elevados, nordico, panturrilha-chao, panturrilha-degrau, pike |
 | caneleiras | cotovelo 7 | 0 | 0 | 0 | 0 | 0 | abdominal-chao, abdominal-invertido, abducao-caneleira, aducao-caneleira, afundo-peso-corpo, afundo-tras-peso-corpo, agachamento-peso-corpo, coice-caneleira, crucifixo-invertido-caneleira, elevacao-lateral-caneleira, extensao-joelho-caneleira, flexao-joelho-deslizante, nordico, panturrilha-chao, panturrilha-degrau |
 | caneleiras | joelho 7 + lombar 7 | 0 | 0 | 0 | 0 | 0 | abducao-caneleira, aducao-caneleira, crucifixo-invertido-caneleira, elevacao-lateral-caneleira, extensao-triceps-peso-corpo, flexao, flexao-fechada, flexao-pes-elevados, panturrilha-chao, panturrilha-degrau, pike, ponte-gluteo |
@@ -1049,11 +1049,11 @@ Exercícios por dia no programa × os que cabem nos minutos (`tempo.exercicios-p
 ### `dia.superior-sem-superior`
 
 - **vazio · iniciante · Superior/Inferior + Corpo todo (3 dias) · 20 min · prioridade nenhuma · ombro 7**: Superior A sem nenhum exercício de tronco ou braço (bulgaro-peso-corpo, panturrilha-chao, flexao-joelho-deslizante).
-  - Programa: Superior A (17 min): bulgaro-peso-corpo 2, panturrilha-chao 2, flexao-joelho-deslizante 2 | Inferior A (24 min): agachamento-peso-corpo 2, afundo-tras-peso-corpo 2, panturrilha-degrau 2, abdominal-chao 2 | Corpo todo (20 min): afundo-peso-corpo 2, ponte-gluteo 2, flexao-joelho-deslizante 2
+  - Programa: Superior A (17 min): bulgaro-peso-corpo 2, panturrilha-chao 2, flexao-joelho-deslizante 2 | Inferior A (19 min): agachamento-peso-corpo 2, afundo-tras-peso-corpo 2, panturrilha-degrau 2 | Corpo todo (26 min): afundo-peso-corpo 2, ponte-gluteo 2, flexao-joelho-deslizante 2, abdominal-chao 2
 - **estacao_polia_dupla · iniciante · Superior/Inferior + Corpo todo (3 dias) · 20 min · prioridade nenhuma · ombro 7**: Superior A sem nenhum exercício de tronco ou braço (bulgaro-peso-corpo, panturrilha-chao, flexao-joelho-deslizante).
-  - Programa: Superior A (17 min): bulgaro-peso-corpo 2, panturrilha-chao 2, flexao-joelho-deslizante 2 | Inferior A (24 min): agachamento-peso-corpo 2, afundo-tras-peso-corpo 2, panturrilha-degrau 2, abdominal-chao 2 | Corpo todo (20 min): afundo-peso-corpo 2, ponte-gluteo 2, flexao-joelho-deslizante 2
+  - Programa: Superior A (17 min): bulgaro-peso-corpo 2, panturrilha-chao 2, flexao-joelho-deslizante 2 | Inferior A (19 min): agachamento-peso-corpo 2, afundo-tras-peso-corpo 2, panturrilha-degrau 2 | Corpo todo (26 min): afundo-peso-corpo 2, ponte-gluteo 2, flexao-joelho-deslizante 2, abdominal-chao 2
 - **barra_fixa · iniciante · Superior/Inferior + Corpo todo (3 dias) · 20 min · prioridade nenhuma · ombro 7**: Superior A sem nenhum exercício de tronco ou braço (bulgaro-peso-corpo, panturrilha-chao, flexao-joelho-deslizante).
-  - Programa: Superior A (17 min): bulgaro-peso-corpo 2, panturrilha-chao 2, flexao-joelho-deslizante 2 | Inferior A (24 min): agachamento-peso-corpo 2, afundo-tras-peso-corpo 2, panturrilha-degrau 2, abdominal-chao 2 | Corpo todo (20 min): afundo-peso-corpo 2, ponte-gluteo 2, flexao-joelho-deslizante 2
+  - Programa: Superior A (17 min): bulgaro-peso-corpo 2, panturrilha-chao 2, flexao-joelho-deslizante 2 | Inferior A (19 min): agachamento-peso-corpo 2, afundo-tras-peso-corpo 2, panturrilha-degrau 2 | Corpo todo (26 min): afundo-peso-corpo 2, ponte-gluteo 2, flexao-joelho-deslizante 2, abdominal-chao 2
 
 ### `equilibrio.sem-posteriores`
 
@@ -1067,20 +1067,20 @@ Exercícios por dia no programa × os que cabem nos minutos (`tempo.exercicios-p
 ### `equilibrio.sem-puxar`
 
 - **vazio · iniciante · Corpo todo A/B (2 dias) · 20 min · prioridade nenhuma · sem dor**: 4 séries de empurrar e nenhuma de puxar.
-  - Programa: Corpo todo A (23 min): agachamento-peso-corpo 2, flexao 2, panturrilha-degrau 2, abdominal-chao 2 | Corpo todo B (25 min): afundo-peso-corpo 3, flexao 2, flexao-joelho-deslizante 3
+  - Programa: Corpo todo A (18 min): agachamento-peso-corpo 2, flexao 2, panturrilha-degrau 2 | Corpo todo B (30 min): afundo-peso-corpo 3, flexao 2, flexao-joelho-deslizante 3, abdominal-chao 2
 - **barra_longa · iniciante · Corpo todo A/B (2 dias) · 20 min · prioridade nenhuma · sem dor**: 4 séries de empurrar e nenhuma de puxar.
-  - Programa: Corpo todo A (23 min): agachamento-peso-corpo 2, flexao 2, panturrilha-degrau 2, abdominal-chao 2 | Corpo todo B (25 min): afundo-peso-corpo 3, flexao 2, flexao-joelho-deslizante 3
+  - Programa: Corpo todo A (18 min): agachamento-peso-corpo 2, flexao 2, panturrilha-degrau 2 | Corpo todo B (30 min): afundo-peso-corpo 3, flexao 2, flexao-joelho-deslizante 3, abdominal-chao 2
 - **barra_w · iniciante · Corpo todo A/B (2 dias) · 20 min · prioridade nenhuma · sem dor**: 4 séries de empurrar e nenhuma de puxar.
-  - Programa: Corpo todo A (23 min): agachamento-peso-corpo 2, flexao 2, panturrilha-degrau 2, abdominal-chao 2 | Corpo todo B (25 min): afundo-peso-corpo 3, flexao 2, flexao-joelho-deslizante 3
+  - Programa: Corpo todo A (18 min): agachamento-peso-corpo 2, flexao 2, panturrilha-degrau 2 | Corpo todo B (30 min): afundo-peso-corpo 3, flexao 2, flexao-joelho-deslizante 3, abdominal-chao 2
 
 ### `vaga.so-aviso-do-musculo.biceps`
 
 - **vazio · iniciante · Corpo todo A/B (2 dias) · 20 min · prioridade nenhuma · sem dor**: a vaga "Bíceps" não tem exercício possível e some do dia; só o aviso de bíceps aparece.
-  - Programa: Corpo todo A (23 min): agachamento-peso-corpo 2, flexao 2, panturrilha-degrau 2, abdominal-chao 2 | Corpo todo B (25 min): afundo-peso-corpo 3, flexao 2, flexao-joelho-deslizante 3
+  - Programa: Corpo todo A (18 min): agachamento-peso-corpo 2, flexao 2, panturrilha-degrau 2 | Corpo todo B (30 min): afundo-peso-corpo 3, flexao 2, flexao-joelho-deslizante 3, abdominal-chao 2
 - **barra_fixa · iniciante · Corpo todo A/B (2 dias) · 20 min · prioridade nenhuma · sem dor**: a vaga "Bíceps" não tem exercício possível e some do dia; só o aviso de bíceps aparece.
-  - Programa: Corpo todo A (33 min): agachamento-peso-corpo 2, flexao 2, barra-fixa-negativa 4, panturrilha-degrau 2, abdominal-chao 2 | Corpo todo B (23 min): afundo-peso-corpo 2, flexao 2, flexao-joelho-deslizante 4
+  - Programa: Corpo todo A (28 min): agachamento-peso-corpo 2, flexao 2, barra-fixa-negativa 4, panturrilha-degrau 2 | Corpo todo B (28 min): afundo-peso-corpo 2, flexao 2, flexao-joelho-deslizante 4, abdominal-chao 2
 - **barra_longa · iniciante · Corpo todo A/B (2 dias) · 20 min · prioridade nenhuma · sem dor**: a vaga "Bíceps" não tem exercício possível e some do dia; só o aviso de bíceps aparece.
-  - Programa: Corpo todo A (23 min): agachamento-peso-corpo 2, flexao 2, panturrilha-degrau 2, abdominal-chao 2 | Corpo todo B (25 min): afundo-peso-corpo 3, flexao 2, flexao-joelho-deslizante 3
+  - Programa: Corpo todo A (18 min): agachamento-peso-corpo 2, flexao 2, panturrilha-degrau 2 | Corpo todo B (30 min): afundo-peso-corpo 3, flexao 2, flexao-joelho-deslizante 3, abdominal-chao 2
 
 ### `vaga.so-aviso-do-musculo.crucifixo`
 
@@ -1094,74 +1094,74 @@ Exercícios por dia no programa × os que cabem nos minutos (`tempo.exercicios-p
 ### `vaga.so-aviso-do-musculo.elevacao-lateral`
 
 - **vazio · iniciante · Corpo todo A/B (2 dias) · 20 min · prioridade nenhuma · sem dor**: a vaga "Elevação lateral" não tem exercício possível e some do dia; só o aviso de ombro (lateral) aparece.
-  - Programa: Corpo todo A (23 min): agachamento-peso-corpo 2, flexao 2, panturrilha-degrau 2, abdominal-chao 2 | Corpo todo B (25 min): afundo-peso-corpo 3, flexao 2, flexao-joelho-deslizante 3
+  - Programa: Corpo todo A (18 min): agachamento-peso-corpo 2, flexao 2, panturrilha-degrau 2 | Corpo todo B (30 min): afundo-peso-corpo 3, flexao 2, flexao-joelho-deslizante 3, abdominal-chao 2
 - **barra_fixa · iniciante · Corpo todo A/B (2 dias) · 20 min · prioridade nenhuma · sem dor**: a vaga "Elevação lateral" não tem exercício possível e some do dia; só o aviso de ombro (lateral) aparece.
-  - Programa: Corpo todo A (33 min): agachamento-peso-corpo 2, flexao 2, barra-fixa-negativa 4, panturrilha-degrau 2, abdominal-chao 2 | Corpo todo B (23 min): afundo-peso-corpo 2, flexao 2, flexao-joelho-deslizante 4
+  - Programa: Corpo todo A (28 min): agachamento-peso-corpo 2, flexao 2, barra-fixa-negativa 4, panturrilha-degrau 2 | Corpo todo B (28 min): afundo-peso-corpo 2, flexao 2, flexao-joelho-deslizante 4, abdominal-chao 2
 - **barra_longa · iniciante · Corpo todo A/B (2 dias) · 20 min · prioridade nenhuma · sem dor**: a vaga "Elevação lateral" não tem exercício possível e some do dia; só o aviso de ombro (lateral) aparece.
-  - Programa: Corpo todo A (23 min): agachamento-peso-corpo 2, flexao 2, panturrilha-degrau 2, abdominal-chao 2 | Corpo todo B (25 min): afundo-peso-corpo 3, flexao 2, flexao-joelho-deslizante 3
+  - Programa: Corpo todo A (18 min): agachamento-peso-corpo 2, flexao 2, panturrilha-degrau 2 | Corpo todo B (30 min): afundo-peso-corpo 3, flexao 2, flexao-joelho-deslizante 3, abdominal-chao 2
 
 ### `vaga.so-aviso-do-musculo.puxar-horizontal`
 
 - **vazio · iniciante · Corpo todo A/B (2 dias) · 20 min · prioridade nenhuma · sem dor**: a vaga "Puxar horizontal" não tem exercício possível e some do dia; só o aviso de costas aparece.
-  - Programa: Corpo todo A (23 min): agachamento-peso-corpo 2, flexao 2, panturrilha-degrau 2, abdominal-chao 2 | Corpo todo B (25 min): afundo-peso-corpo 3, flexao 2, flexao-joelho-deslizante 3
+  - Programa: Corpo todo A (18 min): agachamento-peso-corpo 2, flexao 2, panturrilha-degrau 2 | Corpo todo B (30 min): afundo-peso-corpo 3, flexao 2, flexao-joelho-deslizante 3, abdominal-chao 2
 - **barra_fixa · iniciante · Corpo todo A/B (2 dias) · 20 min · prioridade nenhuma · ombro 7**: a vaga "Puxar horizontal" não tem exercício possível e some do dia; só o aviso de costas aparece.
   - Programa: Corpo todo A (22 min): agachamento-peso-corpo 2, panturrilha-degrau 4, abdominal-chao 2 | Corpo todo B (20 min): afundo-peso-corpo 2, ponte-gluteo 2, flexao-joelho-deslizante 2
 - **barra_longa · iniciante · Corpo todo A/B (2 dias) · 20 min · prioridade nenhuma · sem dor**: a vaga "Puxar horizontal" não tem exercício possível e some do dia; só o aviso de costas aparece.
-  - Programa: Corpo todo A (23 min): agachamento-peso-corpo 2, flexao 2, panturrilha-degrau 2, abdominal-chao 2 | Corpo todo B (25 min): afundo-peso-corpo 3, flexao 2, flexao-joelho-deslizante 3
+  - Programa: Corpo todo A (18 min): agachamento-peso-corpo 2, flexao 2, panturrilha-degrau 2 | Corpo todo B (30 min): afundo-peso-corpo 3, flexao 2, flexao-joelho-deslizante 3, abdominal-chao 2
 
 ### `vaga.so-aviso-do-musculo.puxar-vertical`
 
 - **vazio · iniciante · Corpo todo A/B (2 dias) · 20 min · prioridade nenhuma · sem dor**: a vaga "Puxar vertical" não tem exercício possível e some do dia; só o aviso de costas aparece.
-  - Programa: Corpo todo A (23 min): agachamento-peso-corpo 2, flexao 2, panturrilha-degrau 2, abdominal-chao 2 | Corpo todo B (25 min): afundo-peso-corpo 3, flexao 2, flexao-joelho-deslizante 3
+  - Programa: Corpo todo A (18 min): agachamento-peso-corpo 2, flexao 2, panturrilha-degrau 2 | Corpo todo B (30 min): afundo-peso-corpo 3, flexao 2, flexao-joelho-deslizante 3, abdominal-chao 2
 - **barra_longa · iniciante · Corpo todo A/B (2 dias) · 20 min · prioridade nenhuma · sem dor**: a vaga "Puxar vertical" não tem exercício possível e some do dia; só o aviso de costas aparece.
-  - Programa: Corpo todo A (23 min): agachamento-peso-corpo 2, flexao 2, panturrilha-degrau 2, abdominal-chao 2 | Corpo todo B (25 min): afundo-peso-corpo 3, flexao 2, flexao-joelho-deslizante 3
+  - Programa: Corpo todo A (18 min): agachamento-peso-corpo 2, flexao 2, panturrilha-degrau 2 | Corpo todo B (30 min): afundo-peso-corpo 3, flexao 2, flexao-joelho-deslizante 3, abdominal-chao 2
 - **barra_w · iniciante · Corpo todo A/B (2 dias) · 20 min · prioridade nenhuma · sem dor**: a vaga "Puxar vertical" não tem exercício possível e some do dia; só o aviso de costas aparece.
-  - Programa: Corpo todo A (23 min): agachamento-peso-corpo 2, flexao 2, panturrilha-degrau 2, abdominal-chao 2 | Corpo todo B (25 min): afundo-peso-corpo 3, flexao 2, flexao-joelho-deslizante 3
+  - Programa: Corpo todo A (18 min): agachamento-peso-corpo 2, flexao 2, panturrilha-degrau 2 | Corpo todo B (30 min): afundo-peso-corpo 3, flexao 2, flexao-joelho-deslizante 3, abdominal-chao 2
 
 ### `volume.abaixo-sem-aviso`
 
 - **vazio · iniciante · Corpo todo A/B (2 dias) · 20 min · prioridade nenhuma · sem dor**: costas com 0 de 6 séries, sem aviso.
-  - Programa: Corpo todo A (23 min): agachamento-peso-corpo 2, flexao 2, panturrilha-degrau 2, abdominal-chao 2 | Corpo todo B (25 min): afundo-peso-corpo 3, flexao 2, flexao-joelho-deslizante 3
+  - Programa: Corpo todo A (18 min): agachamento-peso-corpo 2, flexao 2, panturrilha-degrau 2 | Corpo todo B (30 min): afundo-peso-corpo 3, flexao 2, flexao-joelho-deslizante 3, abdominal-chao 2
 - **barra_fixa · iniciante · Corpo todo A/B (2 dias) · 20 min · prioridade nenhuma · sem dor**: ombro (lateral) com 0 de 6 séries, sem aviso.
-  - Programa: Corpo todo A (33 min): agachamento-peso-corpo 2, flexao 2, barra-fixa-negativa 4, panturrilha-degrau 2, abdominal-chao 2 | Corpo todo B (23 min): afundo-peso-corpo 2, flexao 2, flexao-joelho-deslizante 4
+  - Programa: Corpo todo A (28 min): agachamento-peso-corpo 2, flexao 2, barra-fixa-negativa 4, panturrilha-degrau 2 | Corpo todo B (28 min): afundo-peso-corpo 2, flexao 2, flexao-joelho-deslizante 4, abdominal-chao 2
 - **barra_longa · iniciante · Corpo todo A/B (2 dias) · 20 min · prioridade nenhuma · sem dor**: costas com 0 de 6 séries, sem aviso.
-  - Programa: Corpo todo A (23 min): agachamento-peso-corpo 2, flexao 2, panturrilha-degrau 2, abdominal-chao 2 | Corpo todo B (25 min): afundo-peso-corpo 3, flexao 2, flexao-joelho-deslizante 3
+  - Programa: Corpo todo A (18 min): agachamento-peso-corpo 2, flexao 2, panturrilha-degrau 2 | Corpo todo B (30 min): afundo-peso-corpo 3, flexao 2, flexao-joelho-deslizante 3, abdominal-chao 2
 
 ### `volume.zero.biceps`
 
 - **vazio · iniciante · Corpo todo A/B (2 dias) · 20 min · prioridade nenhuma · sem dor**: bíceps com 0 série na semana, sem dor nenhuma.
-  - Programa: Corpo todo A (23 min): agachamento-peso-corpo 2, flexao 2, panturrilha-degrau 2, abdominal-chao 2 | Corpo todo B (25 min): afundo-peso-corpo 3, flexao 2, flexao-joelho-deslizante 3
+  - Programa: Corpo todo A (18 min): agachamento-peso-corpo 2, flexao 2, panturrilha-degrau 2 | Corpo todo B (30 min): afundo-peso-corpo 3, flexao 2, flexao-joelho-deslizante 3, abdominal-chao 2
 - **barra_longa · iniciante · Corpo todo A/B (2 dias) · 20 min · prioridade nenhuma · sem dor**: bíceps com 0 série na semana, sem dor nenhuma.
-  - Programa: Corpo todo A (23 min): agachamento-peso-corpo 2, flexao 2, panturrilha-degrau 2, abdominal-chao 2 | Corpo todo B (25 min): afundo-peso-corpo 3, flexao 2, flexao-joelho-deslizante 3
+  - Programa: Corpo todo A (18 min): agachamento-peso-corpo 2, flexao 2, panturrilha-degrau 2 | Corpo todo B (30 min): afundo-peso-corpo 3, flexao 2, flexao-joelho-deslizante 3, abdominal-chao 2
 - **barra_w · iniciante · Corpo todo A/B (2 dias) · 20 min · prioridade nenhuma · sem dor**: bíceps com 0 série na semana, sem dor nenhuma.
-  - Programa: Corpo todo A (23 min): agachamento-peso-corpo 2, flexao 2, panturrilha-degrau 2, abdominal-chao 2 | Corpo todo B (25 min): afundo-peso-corpo 3, flexao 2, flexao-joelho-deslizante 3
+  - Programa: Corpo todo A (18 min): agachamento-peso-corpo 2, flexao 2, panturrilha-degrau 2 | Corpo todo B (30 min): afundo-peso-corpo 3, flexao 2, flexao-joelho-deslizante 3, abdominal-chao 2
 
 ### `volume.zero.costas`
 
 - **vazio · iniciante · Corpo todo A/B (2 dias) · 20 min · prioridade nenhuma · sem dor**: costas com 0 série na semana, sem dor nenhuma.
-  - Programa: Corpo todo A (23 min): agachamento-peso-corpo 2, flexao 2, panturrilha-degrau 2, abdominal-chao 2 | Corpo todo B (25 min): afundo-peso-corpo 3, flexao 2, flexao-joelho-deslizante 3
+  - Programa: Corpo todo A (18 min): agachamento-peso-corpo 2, flexao 2, panturrilha-degrau 2 | Corpo todo B (30 min): afundo-peso-corpo 3, flexao 2, flexao-joelho-deslizante 3, abdominal-chao 2
 - **barra_longa · iniciante · Corpo todo A/B (2 dias) · 20 min · prioridade nenhuma · sem dor**: costas com 0 série na semana, sem dor nenhuma.
-  - Programa: Corpo todo A (23 min): agachamento-peso-corpo 2, flexao 2, panturrilha-degrau 2, abdominal-chao 2 | Corpo todo B (25 min): afundo-peso-corpo 3, flexao 2, flexao-joelho-deslizante 3
+  - Programa: Corpo todo A (18 min): agachamento-peso-corpo 2, flexao 2, panturrilha-degrau 2 | Corpo todo B (30 min): afundo-peso-corpo 3, flexao 2, flexao-joelho-deslizante 3, abdominal-chao 2
 - **barra_w · iniciante · Corpo todo A/B (2 dias) · 20 min · prioridade nenhuma · sem dor**: costas com 0 série na semana, sem dor nenhuma.
-  - Programa: Corpo todo A (23 min): agachamento-peso-corpo 2, flexao 2, panturrilha-degrau 2, abdominal-chao 2 | Corpo todo B (25 min): afundo-peso-corpo 3, flexao 2, flexao-joelho-deslizante 3
+  - Programa: Corpo todo A (18 min): agachamento-peso-corpo 2, flexao 2, panturrilha-degrau 2 | Corpo todo B (30 min): afundo-peso-corpo 3, flexao 2, flexao-joelho-deslizante 3, abdominal-chao 2
 
 ### `volume.zero.ombro_lateral`
 
 - **vazio · iniciante · Corpo todo A/B (2 dias) · 20 min · prioridade nenhuma · sem dor**: ombro (lateral) com 0 série na semana, sem dor nenhuma.
-  - Programa: Corpo todo A (23 min): agachamento-peso-corpo 2, flexao 2, panturrilha-degrau 2, abdominal-chao 2 | Corpo todo B (25 min): afundo-peso-corpo 3, flexao 2, flexao-joelho-deslizante 3
+  - Programa: Corpo todo A (18 min): agachamento-peso-corpo 2, flexao 2, panturrilha-degrau 2 | Corpo todo B (30 min): afundo-peso-corpo 3, flexao 2, flexao-joelho-deslizante 3, abdominal-chao 2
 - **estacao_polia_dupla · iniciante · Corpo todo A/B (2 dias) · 20 min · prioridade nenhuma · sem dor**: ombro (lateral) com 0 série na semana, sem dor nenhuma.
   - Programa: Corpo todo A (31 min): agachamento-peso-corpo 2, flexao 2, puxada-unilateral 2, panturrilha-degrau 2, abdominal-chao 2 | Corpo todo B (22 min): afundo-peso-corpo 2, flexao 2, remada-unilateral-polia 2
 - **barra_fixa · iniciante · Corpo todo A/B (2 dias) · 20 min · prioridade nenhuma · sem dor**: ombro (lateral) com 0 série na semana, sem dor nenhuma.
-  - Programa: Corpo todo A (33 min): agachamento-peso-corpo 2, flexao 2, barra-fixa-negativa 4, panturrilha-degrau 2, abdominal-chao 2 | Corpo todo B (23 min): afundo-peso-corpo 2, flexao 2, flexao-joelho-deslizante 4
+  - Programa: Corpo todo A (28 min): agachamento-peso-corpo 2, flexao 2, barra-fixa-negativa 4, panturrilha-degrau 2 | Corpo todo B (28 min): afundo-peso-corpo 2, flexao 2, flexao-joelho-deslizante 4, abdominal-chao 2
 
 ### `volume.zero.ombro_posterior`
 
 - **vazio · iniciante · Corpo todo A/B (2 dias) · 20 min · prioridade nenhuma · sem dor**: ombro (posterior) com 0 série na semana, sem dor nenhuma.
-  - Programa: Corpo todo A (23 min): agachamento-peso-corpo 2, flexao 2, panturrilha-degrau 2, abdominal-chao 2 | Corpo todo B (25 min): afundo-peso-corpo 3, flexao 2, flexao-joelho-deslizante 3
+  - Programa: Corpo todo A (18 min): agachamento-peso-corpo 2, flexao 2, panturrilha-degrau 2 | Corpo todo B (30 min): afundo-peso-corpo 3, flexao 2, flexao-joelho-deslizante 3, abdominal-chao 2
 - **barra_longa · iniciante · Corpo todo A/B (2 dias) · 20 min · prioridade nenhuma · sem dor**: ombro (posterior) com 0 série na semana, sem dor nenhuma.
-  - Programa: Corpo todo A (23 min): agachamento-peso-corpo 2, flexao 2, panturrilha-degrau 2, abdominal-chao 2 | Corpo todo B (25 min): afundo-peso-corpo 3, flexao 2, flexao-joelho-deslizante 3
+  - Programa: Corpo todo A (18 min): agachamento-peso-corpo 2, flexao 2, panturrilha-degrau 2 | Corpo todo B (30 min): afundo-peso-corpo 3, flexao 2, flexao-joelho-deslizante 3, abdominal-chao 2
 - **barra_w · iniciante · Corpo todo A/B (2 dias) · 20 min · prioridade nenhuma · sem dor**: ombro (posterior) com 0 série na semana, sem dor nenhuma.
-  - Programa: Corpo todo A (23 min): agachamento-peso-corpo 2, flexao 2, panturrilha-degrau 2, abdominal-chao 2 | Corpo todo B (25 min): afundo-peso-corpo 3, flexao 2, flexao-joelho-deslizante 3
+  - Programa: Corpo todo A (18 min): agachamento-peso-corpo 2, flexao 2, panturrilha-degrau 2 | Corpo todo B (30 min): afundo-peso-corpo 3, flexao 2, flexao-joelho-deslizante 3, abdominal-chao 2
 
 ### `volume.zero.posteriores`
 

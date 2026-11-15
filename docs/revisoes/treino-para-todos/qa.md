@@ -290,24 +290,24 @@ Arquivos: [`medidas/main-com-a-regua-de-14-11/retrato.md`](medidas/main-com-a-re
 
 Pior grupo antes: dor:cotovelo 7 (50,0%). Pior grupo depois: dor:cotovelo 7 (50,0%).
 
-## Pacote 3 (a semana remontada quando a dor esvazia um dia; o mesmo exercício nunca em todos os dias; 30 minutos; duplas juntas)
+## Pacote 3 (a semana remontada quando a dor esvazia um dia, com o Corpo todo 6x; o mesmo exercício nunca em todos os dias; 30 minutos; duplas juntas)
 
 Arquivos: [`medidas/main-com-a-regua-de-14-11/retrato.md`](medidas/main-com-a-regua-de-14-11/retrato.md) (antes) e [`medidas/pacote-3/retrato.md`](medidas/pacote-3/retrato.md) (depois, com os pacotes 1, 0 e 3).
 
 | Critério | Depois do pacote 3 |
 |---|---|
-| Nenhum defeito da régua pior que na `main`, em nenhum grupo | **cumprido, com a mesma ressalva do pacote 0**: em relação ao pacote 0, nenhum defeito sobe em nenhum grupo nem em nenhum recorte; em relação à `main`, ficam 4 pares grupo × defeito com 1 a 5 programas a mais (nenhum acima de 0,05 ponto), herdados do pacote 0 |
-| O pior grupo melhor do que era | **cumprido pela primeira vez**: dor forte no cotovelo, de 50,0% para 67,3% na grade e de 42,7% para 79,9% na ponderada |
-| Revisão cega com nenhuma pessoa pior e as notas médias maiores | notas médias maiores (5,1 · 5,3 · 4,9 → 5,9 · 5,7 · 5,4, em 14 pessoas); nove sobem, quatro iguais, **uma cai (−3,3)**: é uma pessoa que o pacote 3 não muda (as mesmas duas páginas tiveram +0,3 na revisão do pacote 0); o que mudou nela foi o pacote 1. Detalhes em [`pacote-3.md`](pacote-3.md), seção 6 |
+| Nenhum defeito da régua pior que na `main`, em nenhum grupo | **cumprido, com a mesma ressalva do pacote 0**: nenhum defeito sobe mais de 0,05 ponto em nenhum grupo. Na contagem bruta, em relação ao pacote 0 sobe 1 par grupo × defeito, em 1 programa (dor 7 no ombro, C1: 487 → 488); em relação à `main`, ficam 4 pares com 1 a 5 programas a mais, herdados do pacote 0 |
+| O pior grupo melhor do que era | **cumprido pela primeira vez**: dor forte no cotovelo, de 50,0% para 75,0% na grade e de 42,7% para 85,1% na ponderada. O pior grupo passa a ser o dos treinos de 30 min (72,9%; era 66,9%) |
+| Revisão cega com nenhuma pessoa pior e as notas médias maiores | notas médias maiores (5,1 · 5,3 · 4,9 → 5,9 · 5,7 · 5,4, em 14 pessoas); nove sobem, quatro iguais, **uma cai (−3,3)**: é uma pessoa que o pacote 3 não muda (as mesmas duas páginas tiveram +0,3 na revisão do pacote 0); o que mudou nela foi o pacote 1. A revisão foi feita antes da regra do Corpo todo 6x. Detalhes em [`pacote-3.md`](pacote-3.md), seção 6 |
 | Toda regra com selo, fonte e teste | `selecao.dia-sem-principal`, `selecao.variacoes-equivalentes`, `tempo.musculo-protegido` e `tempo.superserie` em `regras.md`; `tests/unit/semana-com-dor.test.ts` |
-| `npm run check`, `npm run test:e2e`, `npm run auditoria:verificar` | `check` limpo (953 testes) e `test:e2e` limpo (157); a auditoria está em [`pacote-3.md`](pacote-3.md), seção 8 |
+| `npm run check`, `npm run test:e2e`, `npm run auditoria:verificar` | ver [`pacote-3.md`](pacote-3.md), seção 8 |
 
 ### A régua oficial e os 20 cuidados, na população inteira (main, com a régua de agora → ramo, com os pacotes 1, 0 e 3)
 
 | medida | grade: antes | depois | ponderada: antes | depois |
 | --- | ---: | ---: | ---: | ---: |
-| **régua oficial: programas sem nenhum defeito** | 79,4% | 88,8% | 78,1% | 96,2% |
-| régua, defeito A2 | 10,6% | 6,1% | 2,0% | 0,7% |
+| **régua oficial: programas sem nenhum defeito** | 79,4% | 90,6% | 78,1% | 96,4% |
+| régua, defeito A2 | 10,6% | 4,3% | 2,0% | 0,6% |
 | régua, defeito A3 | 4,0% | 3,6% | 3,0% | 2,6% |
 | régua, defeito A4 | 3,2% | 0,0% | 15,2% | 0,0% |
 | régua, defeito B1 | 0,4% | 0,0% | 0,2% | 0,0% |
@@ -316,67 +316,67 @@ Arquivos: [`medidas/main-com-a-regua-de-14-11/retrato.md`](medidas/main-com-a-re
 | régua, defeito D3 | 0,1% | 0,1% | 0,0% | 0,0% |
 | régua, defeito E1 | 0,1% | 0,0% | 0,2% | 0,0% |
 | régua, defeito seguranca | 1,1% | 0,0% | 1,0% | 0,0% |
-| régua, nota A1 | 20,2% | 15,7% | 4,6% | 2,5% |
-| régua, nota A5 | 22,5% | 18,3% | 13,5% | 9,9% |
-| régua, nota B2 | 16,6% | 18,1% | 5,5% | 5,5% |
-| régua, nota B3 | 7,0% | 7,3% | 3,9% | 3,8% |
-| régua, nota C2 | 9,7% | 9,8% | 7,2% | 7,2% |
+| régua, nota A1 | 20,2% | 14,2% | 4,6% | 2,3% |
+| régua, nota A5 | 22,5% | 17,3% | 13,5% | 9,7% |
+| régua, nota B2 | 16,6% | 18,7% | 5,5% | 5,5% |
+| régua, nota B3 | 7,0% | 7,5% | 3,9% | 3,8% |
+| régua, nota C2 | 9,7% | 10,0% | 7,2% | 7,2% |
 | régua, nota G1 | 14,4% | 14,5% | 59,8% | 59,7% |
-| **os 20 cuidados: programas sem nenhum defeito** | 35,8% | 45,6% | 35,4% | 57,7% |
+| **os 20 cuidados: programas sem nenhum defeito** | 35,8% | 47,0% | 35,4% | 57,9% |
 | `c01a` dia que começa por um isolador havendo multiarticular (defeito) | 0,0% | 0,0% | 0,0% | 0,0% |
 | `c01b` multiarticular depois de isolador (defeito) | 0,0% | 0,0% | 0,0% | 0,0% |
 | `c01c` o multiarticular mais técnico (complexidade 3) não é o 1º da sua região (nota) | 12,5% | 12,4% | 9,9% | 9,9% |
 | `c01d` abdominal antes de outro exercício (defeito) | 0,0% | 0,0% | 0,0% | 0,0% |
-| `c02a` exercícios por dia fora da faixa dos minutos (A1) (nota) | 20,2% | 15,7% | 4,6% | 2,5% |
+| `c02a` exercícios por dia fora da faixa dos minutos (A1) (nota) | 20,2% | 14,2% | 4,6% | 2,3% |
 | `c02b` séries demais para os minutos (acima de 0,45 por minuto) (nota) | 1,7% | 1,5% | 1,2% | 1,0% |
-| `c02c` dia de 5 exercícios ou mais com 2 séries em todos (nota) | 24,0% | 21,7% | 21,8% | 15,4% |
+| `c02c` dia de 5 exercícios ou mais com 2 séries em todos (nota) | 24,0% | 22,3% | 21,8% | 15,4% |
 | `c03a` dia mais longo acima de 110% dos minutos (A3) (defeito) | 4,0% | 3,6% | 3,0% | 2,6% |
 | `c03b` dia típico abaixo de 70% dos minutos, sem o aviso (A4) (defeito) | 3,2% | 0,0% | 15,2% | 0,0% |
-| `c03c` dia típico abaixo de 70% dos minutos (com ou sem aviso) (nota) | 38,3% | 34,6% | 24,7% | 17,3% |
-| `c03d` dia típico abaixo de 85% dos minutos (nota) | 53,9% | 50,2% | 45,8% | 36,0% |
+| `c03c` dia típico abaixo de 70% dos minutos (com ou sem aviso) (nota) | 38,3% | 34,1% | 24,7% | 17,2% |
+| `c03d` dia típico abaixo de 85% dos minutos (nota) | 53,9% | 49,9% | 45,8% | 35,9% |
 | `c04a` músculo esquecido: nenhuma série na semana, nem indireta, havendo exercício possível (defeito) | 7,4% | 7,4% | 10,4% | 10,4% |
 | `c04b` músculo com séries soltas: mais de 0 e menos de 4 na semana, havendo exercício possível (defeito) | 12,5% | 12,0% | 21,3% | 20,5% |
-| `c04f` músculo sem exercício direto (só séries indiretas) havendo exercício possível (nota) | 14,7% | 14,7% | 24,5% | 24,5% |
-| `c04c` músculo abaixo da faixa do nível com tempo sobrando (dia típico abaixo de 85%) (defeito) | 37,9% | 33,6% | 28,1% | 18,2% |
-| `c04d` algum músculo abaixo da faixa do nível (havendo exercício) (nota) | 81,2% | 80,3% | 78,1% | 77,8% |
-| `c04e` algum músculo acima da faixa do nível (nota) | 21,4% | 22,6% | 12,4% | 12,9% |
+| `c04f` músculo sem exercício direto (só séries indiretas) havendo exercício possível (nota) | 14,7% | 14,8% | 24,5% | 24,5% |
+| `c04c` músculo abaixo da faixa do nível com tempo sobrando (dia típico abaixo de 85%) (defeito) | 37,9% | 33,2% | 28,1% | 18,2% |
+| `c04d` algum músculo abaixo da faixa do nível (havendo exercício) (nota) | 81,2% | 80,1% | 78,1% | 77,8% |
+| `c04e` algum músculo acima da faixa do nível (nota) | 21,4% | 23,0% | 12,4% | 12,9% |
 | `c05a` empurrar ÷ puxar acima de 1,5 havendo como puxar (D1) (defeito) | 0,5% | 0,5% | 0,4% | 0,4% |
 | `c05b` quadríceps ÷ posteriores fora de 0,5 a 2 (D3) (defeito) | 0,1% | 0,1% | 0,0% | 0,0% |
 | `c05c` ombro da frente ÷ ombro de trás acima de 2 havendo exercício de ombro de trás (nota) | 4,2% | 4,2% | 0,5% | 0,5% |
 | `c06a` foco abaixo da meta com tempo e exercício (C1) (defeito) | 1,7% | 1,5% | 0,1% | 0,1% |
-| `c06b` o foco não passa da mediana dos outros (C2) (nota) | 9,7% | 9,8% | 7,2% | 7,2% |
-| `c06c` o foco fica a menos de 1,3 vez a mediana dos outros (nota) | 15,8% | 16,1% | 13,3% | 13,2% |
-| `c06d` com foco, outro músculo com menos de 4 séries havendo exercício (defeito) | 12,3% | 12,0% | 13,8% | 13,4% |
+| `c06b` o foco não passa da mediana dos outros (C2) (nota) | 9,7% | 10,0% | 7,2% | 7,2% |
+| `c06c` o foco fica a menos de 1,3 vez a mediana dos outros (nota) | 15,8% | 16,3% | 13,3% | 13,2% |
+| `c06d` com foco, outro músculo com menos de 4 séries havendo exercício (defeito) | 12,3% | 11,9% | 13,8% | 13,4% |
 | `c07a` músculo com 8 séries diretas ou mais treinado num dia só (nota) | 2,0% | 2,0% | 0,7% | 0,7% |
 | `c07b` mais de 10 séries de um músculo num dia (defeito) | 0,0% | 0,0% | 0,0% | 0,0% |
-| `c07c` o mesmo músculo com 3 séries diretas ou mais em dias seguidos (nota) | 13,8% | 16,1% | 4,8% | 5,8% |
-| `c08a` exercício escolhido por ter animação, com um equivalente sem uso no programa (nota) | 32,9% | 31,9% | 82,1% | 82,0% |
-| `c08b` exercício escolhido pela ordem alfabética, com um equivalente sem uso no programa (nota) | 73,9% | 73,7% | 93,3% | 93,2% |
+| `c07c` o mesmo músculo com 3 séries diretas ou mais em dias seguidos (nota) | 13,8% | 16,4% | 4,8% | 5,9% |
+| `c08a` exercício escolhido por ter animação, com um equivalente sem uso no programa (nota) | 32,9% | 31,6% | 82,1% | 82,0% |
+| `c08b` exercício escolhido pela ordem alfabética, com um equivalente sem uso no programa (nota) | 73,9% | 73,4% | 93,3% | 93,2% |
 | `c09a` o mesmo exercício em todos os dias havendo outro do mesmo nível (B1) (defeito) | 0,4% | 0,0% | 0,2% | 0,0% |
-| `c09b` o mesmo exercício em todos os dias sem opção do mesmo nível (B2) (nota) | 16,6% | 18,1% | 5,5% | 5,5% |
-| `c10a` dois exercícios da mesma função no mesmo dia (nota) | 31,9% | 30,2% | 14,2% | 13,8% |
-| `c10b` três exercícios ou mais do mesmo músculo no mesmo dia (nota) | 6,3% | 6,0% | 17,3% | 17,2% |
+| `c09b` o mesmo exercício em todos os dias sem opção do mesmo nível (B2) (nota) | 16,6% | 18,7% | 5,5% | 5,5% |
+| `c10a` dois exercícios da mesma função no mesmo dia (nota) | 31,9% | 29,4% | 14,2% | 13,8% |
+| `c10b` três exercícios ou mais do mesmo músculo no mesmo dia (nota) | 6,3% | 5,8% | 17,3% | 17,2% |
 | `c11a` peso do corpo com faixa que termina em 15 ou menos, para intermediário ou avançado (nota) | 0,8% | 0,8% | 1,0% | 1,0% |
 | `c12a` exercício sem próximo passo de carga (uma carga só, ou já no último degrau) (defeito) | 5,0% | 5,0% | 2,5% | 2,5% |
 | `c13a` dois exercícios seguidos que carregam a lombar sem apoio (nota) | 10,5% | 10,6% | 30,2% | 29,5% |
-| `c13b` três exercícios ou mais no dia que carregam a lombar sem apoio (nota) | 4,1% | 4,0% | 4,7% | 4,7% |
+| `c13b` três exercícios ou mais no dia que carregam a lombar sem apoio (nota) | 4,1% | 4,0% | 4,7% | 4,6% |
 | `c13c` três exercícios seguidos que dependem da pegada (nota) | 0,0% | 0,0% | 0,0% | 0,0% |
 | `c14a` exercício impossível, acima da complexidade ou numa região com dor acima de 5 (defeito) | 1,1% | 0,0% | 1,0% | 0,0% |
-| `c14b` dia com menos de 3 exercícios ou sem multiarticular (A2) (defeito) | 10,6% | 6,1% | 2,0% | 0,7% |
+| `c14b` dia com menos de 3 exercícios ou sem multiarticular (A2) (defeito) | 10,6% | 4,3% | 2,0% | 0,6% |
 | `c14c` o programa perdeu um dia inteiro (nota) | 0,0% | 0,0% | 0,0% | 0,0% |
 | `c15a` iniciante com bi-set ou drop set (nota) | 9,5% | 9,4% | 16,6% | 16,5% |
 | `c15b` bi-set entre dois multiarticulares (nota) | 21,5% | 21,6% | 28,5% | 28,4% |
 | `c15c` bi-set em que os dois carregam a lombar ou dependem da pegada (nota) | 1,9% | 1,9% | 5,2% | 5,2% |
 | `c15d` bi-set com os dois exercícios separados na lista do dia (nota) | 6,3% | 0,0% | 5,4% | 0,0% |
-| `c16a` iniciante com mais de 12 exercícios diferentes na semana (nota) | 18,9% | 19,2% | 38,7% | 38,8% |
-| `c16b` intermediário ou avançado com a média dos músculos abaixo da faixa do nível (nota) | 47,9% | 42,9% | 51,6% | 42,5% |
+| `c16a` iniciante com mais de 12 exercícios diferentes na semana (nota) | 18,9% | 19,3% | 38,7% | 38,8% |
+| `c16b` intermediário ou avançado com a média dos músculos abaixo da faixa do nível (nota) | 47,9% | 42,6% | 51,6% | 42,5% |
 | `c17a` músculo com menos de 4 séries (ou a zero) sem aviso que o cite (defeito) | 0,0% | 0,0% | 0,0% | 0,0% |
 | `c20a` o texto "cabem cerca de N exercícios" com um dia acima de N (defeito) | 5,0% | 4,8% | 5,7% | 5,7% |
 | `c20b` o texto "todos ficam com ~6 séries" com um músculo a 9 ou mais, ou abaixo de 4 (defeito) | 7,6% | 0,0% | 23,2% | 0,0% |
-| uso do tempo (dia típico ÷ minutos pedidos) | 76,5% | 78,7% | 81,9% | 86,2% |
-| séries por semana (média) | 56,39 | 58,56 | 58,37 | 62,71 |
-| séries por músculo por semana (média, fora o abdômen) | 8,67 | 8,96 | 7,28 | 7,84 |
-| exercícios diferentes por semana (média) | 15,07 | 15,15 | 20,07 | 20,09 |
+| uso do tempo (dia típico ÷ minutos pedidos) | 76,5% | 79,0% | 81,9% | 86,2% |
+| séries por semana (média) | 56,39 | 58,89 | 58,37 | 62,74 |
+| séries por músculo por semana (média, fora o abdômen) | 8,67 | 9,00 | 7,28 | 7,84 |
+| exercícios diferentes por semana (média) | 15,07 | 15,18 | 20,07 | 20,10 |
 
 ### A régua oficial por grupo
 
@@ -386,46 +386,45 @@ Arquivos: [`medidas/main-com-a-regua-de-14-11/retrato.md`](medidas/main-com-a-re
 | dias:3 | 86,2% | 90,7% | — |
 | dias:4 | 78,8% | 92,4% | — |
 | dias:5 | 73,8% | 91,1% | — |
-| dias:6 | 73,3% | 82,3% | — |
+| dias:6 | 73,3% | 91,3% | — |
 | dor:cotovelo 4 | 86,4% | 93,0% | — |
-| dor:cotovelo 7 | 50,0% | 67,3% | — |
+| dor:cotovelo 7 | 50,0% | 75,0% | — |
 | dor:joelho 4 | 86,4% | 93,1% | — |
-| dor:joelho 7 | 69,8% | 90,8% | — |
+| dor:joelho 7 | 69,8% | 93,4% | — |
 | dor:lombar 4 | 86,4% | 93,0% | — |
-| dor:lombar 7 | 83,1% | 90,6% | — |
+| dor:lombar 7 | 83,1% | 91,9% | — |
 | dor:ombro 4 | 86,4% | 93,0% | — |
-| dor:ombro 7 | 65,4% | 83,1% | — |
+| dor:ombro 7 | 65,4% | 89,8% | — |
 | dor:punho 4 | 86,4% | 93,0% | — |
-| dor:punho 7 | 74,5% | 81,2% | — |
+| dor:punho 7 | 74,5% | 81,3% | — |
 | dor:quadril 4 | 86,4% | 93,0% | — |
-| dor:quadril 7 | 62,6% | 80,9% | — |
+| dor:quadril 7 | 62,6% | 89,5% | — |
 | dor:sem dor | 86,4% | 93,0% | — |
 | dor:tornozelo 4 | 86,4% | 93,0% | — |
 | dor:tornozelo 7 | 93,7% | 93,9% | — |
-| foco:abdomen | 83,0% | 93,3% | — |
-| foco:bracos | 83,1% | 93,2% | — |
-| foco:costas | 78,3% | 88,7% | — |
-| foco:gluteos | 79,5% | 88,4% | — |
-| foco:inferiores | 71,8% | 78,0% | — |
-| foco:nenhum | 82,2% | 93,9% | — |
-| foco:ombros | 84,4% | 94,8% | — |
-| foco:peito | 77,3% | 87,4% | — |
-| foco:peito+costas | 76,7% | 86,4% | — |
-| foco:pernas | 78,3% | 86,0% | — |
-| foco:superiores | 78,4% | 86,8% | — |
-| grupo:atalho | 63,4% | 87,7% | — |
-| grupo:item | 85,3% | 89,8% | — |
-| grupo:par | 65,6% | 84,4% | — |
-| grupo:persona | 64,6% | 85,8% | — |
+| foco:abdomen | 83,0% | 95,2% | — |
+| foco:bracos | 83,1% | 95,0% | — |
+| foco:costas | 78,3% | 90,7% | — |
+| foco:gluteos | 79,5% | 89,8% | — |
+| foco:inferiores | 71,8% | 79,3% | — |
+| foco:nenhum | 82,2% | 95,9% | — |
+| foco:ombros | 84,4% | 96,6% | — |
+| foco:peito | 77,3% | 89,4% | — |
+| foco:peito+costas | 76,7% | 88,4% | — |
+| foco:pernas | 78,3% | 87,9% | — |
+| foco:superiores | 78,4% | 88,5% | — |
+| grupo:atalho | 63,4% | 91,0% | — |
+| grupo:item | 85,3% | 91,0% | — |
+| grupo:par | 65,6% | 87,6% | — |
+| grupo:persona | 64,6% | 89,1% | — |
 | grupo:vazio | 93,3% | 93,4% | — |
-| min:30 | 66,9% | 72,1% | — |
-| min:45 | 84,7% | 91,0% | — |
-| min:60 | 85,3% | 95,1% | — |
-| min:75 | 81,9% | 93,8% | — |
-| min:90 | 78,0% | 91,9% | — |
-| nivel:avancado | 77,6% | 86,4% | — |
-| nivel:iniciante | 80,4% | 90,3% | — |
-| nivel:intermediario | 80,1% | 89,7% | — |
+| min:30 | 66,9% | 72,9% | — |
+| min:45 | 84,7% | 93,1% | — |
+| min:60 | 85,3% | 97,2% | — |
+| min:75 | 81,9% | 95,8% | — |
+| min:90 | 78,0% | 94,0% | — |
+| nivel:avancado | 77,6% | 88,1% | — |
+| nivel:iniciante | 80,4% | 92,1% | — |
+| nivel:intermediario | 80,1% | 91,6% | — |
 
-Pior grupo antes: dor:cotovelo 7 (50,0%). Pior grupo depois: dor:cotovelo 7 (67,3%).
-
+Pior grupo antes: dor:cotovelo 7 (50,0%). Pior grupo depois: min:30 (72,9%).

@@ -77,6 +77,28 @@ describe('a dor que não desmonta o dia (selecao.dia-sem-principal)', { timeout:
     }
   });
 
+  it('com 6 dias e dor 7 no ombro, a semana sai no Corpo todo 6x (decisão do Gustavo em 15/11/2026): nenhum dia de menos de 10 min', () => {
+    const c = { perfil: perfilDe({ cenario: 'academia', nivel: 'iniciante', dias: '6', min: 45, focos: [], dores: [{ articulacao: 'ombro', nota: 7 }], semanasParado: 0 }), inventario: inventarioDe('academia') };
+    // Nas duas divisões oferecidas para 6 dias, três ou quatro dias ficavam com 1 ou 2 exercícios.
+    for (const id of OPCOES_POR_DIAS[6]) expect(fracos(programa({ ...c.perfil, divisao: id }, c.inventario)!, 6), id).toBeGreaterThanOrEqual(3);
+    const p = programa(c.perfil, c.inventario)!;
+    expect(p.divisaoId).toBe('ct-6x');
+    expect(fracos(p, 6)).toBe(0);
+    for (const d of p.dias) expect(d.minutosEstimados, d.nome).toBeGreaterThanOrEqual(20);
+    expect(p.avisos[0]!.texto).toMatch(/^Por causa da dor no ombro \(7 hoje\), a semana foi montada em Corpo todo 6x: na divisão recomendada \(Empurrar\/Puxar\/Pernas/);
+    expect(p.regioesExcluidas).toEqual(['ombro']);
+  });
+
+  it('o Corpo todo 6x continua fora do que a pessoa escolhe, e fora de quem não tem dor forte', () => {
+    expect(OPCOES_POR_DIAS[6]).not.toContain('ct-6x');
+    for (const pessoa of TODAS) {
+      const p = programa({ ...pessoa.perfil, diasSemana: 6, divisao: undefined }, pessoa.inventario);
+      if (!p || p.regioesExcluidas.length) continue;
+      // Sem dor forte, o Corpo todo 6x só aparece para quem não tem nada para puxar (divisao.sem-puxar).
+      if (p.divisaoId === 'ct-6x') expect(p.porque.some((q) => q.regraId === 'divisao.sem-puxar'), pessoa.nome).toBe(true);
+    }
+  });
+
   it('a troca só acontece quando melhora e não custa outra coisa (12 personas × 7 regiões)', () => {
     let trocas = 0;
     for (const c of COM_DOR) {
