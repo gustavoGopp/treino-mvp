@@ -9,8 +9,10 @@
 /** Formas que substituem a aprovada, por vista. */
 export const SUBSTITUI = {
   costas: {
-    // a ponta de baixo desce até T12 (era 126,5: 4,9 cm acima) e a borda de fora vai até o acrômio
-    trapezio: { id: 'trapezio', em: 'abs', unico: true, pts: [[0, 153.4], [-5.6, 151.6], [-12, 149.4], [-18, 145.6], [-13.5, 142.6], [-8, 139], [-3.6, 131], [0, 121.6], [3.6, 131], [8, 139], [13.5, 142.6], [18, 145.6], [12, 149.4], [5.6, 151.6]] },
+    // a ponta de baixo desce até T12 (era 126,5: 4,9 cm acima) e a borda de fora vai até o acrômio; em cima, sobe
+    // pelo pescoço até a base do crânio (162,8 cm): a origem vai até o occipital e o ligamento nucal (Gray 1918). A
+    // largura no pescoço acompanha a nuca do Boneco; no crânio fica no terço de dentro (a largura em cm é de desenho)
+    trapezio: { id: 'trapezio', em: 'abs', unico: true, pts: [[0, 162.5], [-2.6, 162], [-4.3, 158.5], [-5.3, 154.4], [-5.6, 151.6], [-12, 149.4], [-18, 145.6], [-13.5, 142.6], [-8, 139], [-3.6, 131], [0, 121.6], [3.6, 131], [8, 139], [13.5, 142.6], [18, 145.6], [12, 149.4], [5.6, 151.6], [5.3, 154.4], [4.3, 158.5], [2.6, 162]] },
     // a borda de cima passa pelo ângulo inferior da escápula (T7) e sobe até a axila; antes subia até 140 cm, a altura da espinha da escápula
     dorsal: { id: 'dorsal', em: 'abs', pts: [[-2, 133.6], [-9.5, 134.6], [-15.4, 136.4], [-14.6, 128], [-13, 119], [-9, 111.5], [-2.2, 108], [-1.2, 118], [-1.6, 126.4]] },
   },
@@ -51,7 +53,7 @@ export const ACRESCENTA = {
     { id: 'deltPost', em: 'braco', soAtivo: true, pts: DELT_FRENTE_DE_DENTRO },
     { id: 'deltLat', em: 'braco', soAtivo: true, pts: DELT_FRENTE_DE_FORA },
     // o trapézio de cima (encolhe o ombro) e o do meio e de baixo (junta e desce a escápula), um de cada lado
-    { id: 'trapSup', em: 'abs', soAtivo: true, pts: [[-0.3, 153.4], [-5.6, 151.6], [-12, 149.4], [-18, 145.6], [-13.5, 143.4], [-7, 146], [-0.3, 148]] },
+    { id: 'trapSup', em: 'abs', soAtivo: true, pts: [[-0.3, 162.5], [-2.6, 162], [-4.3, 158.5], [-5.3, 154.4], [-5.6, 151.6], [-12, 149.4], [-18, 145.6], [-13.5, 143.4], [-7, 146], [-0.3, 148]] },
     { id: 'trapMedInf', em: 'abs', soAtivo: true, pts: [[-0.3, 147.4], [-7, 145.4], [-13.5, 142.8], [-8, 139], [-3.6, 131], [-0.3, 121.8]] },
   ],
 };

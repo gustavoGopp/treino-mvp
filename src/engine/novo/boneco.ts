@@ -230,7 +230,7 @@ export interface FormaDoBoneco {
   /** Grupos pintados com um contorno só, na ordem de dentro para fora de cada um. */
   grupos: { id: string; lado?: Lado; volumes: { vol: Volume; mat: string; nome?: string }[] }[];
   sup: Record<string, Superficie>;
-  /** Para os desenhos em coordenadas "em pé" (de frente e de costas): o ponto da superfície do tronco ou da bacia. */
+  /** Para os desenhos em coordenadas "em pé" (de frente e de costas): o ponto da superfície do pescoço, do tronco ou da bacia. */
   noCorpo(x: number, y: number, tras: boolean): V3;
 }
 
@@ -448,8 +448,11 @@ export function formaDoBoneco(e: Esq, o: { roupa?: boolean; cabeloAtrasPrimeiro?
     grupos.push({ id: `braco${k}`, lado: k, volumes: [{ vol: volumeDe(braco, estacoes(PERFIS.BRACO_L!, PERFIS.BRACO_F!), 0), mat: 'pele', nome: 'braco' }, { vol: volumeDe(ante, estacoes(PERFIS.ANTE_L!, PERFIS.ANTE_F!), 0), mat: 'pele', nome: 'ante' }, { vol: { aneis: maoAneis }, mat: 'pele', nome: 'mao' }, { vol: { aneis: polAneis }, mat: 'pele', nome: 'polegar' }] });
   }
   const noCorpo = (x: number, y: number, tras: boolean): V3 => {
-    const yBase = P.yDoTronco(1);
-    const s = y >= yBase ? tronco.em(P.tDaSuperficie(y, x, tras)) : pelve.em(y - P.yQuadril);
+    const yBase = P.yDoTronco(1),
+      yTopo = P.yDoTronco(0),
+      yCranio = m('altura.baseDoCranio');
+    // acima do tronco, o desenho continua na superfície do pescoço, de C7 até a base do crânio (o trapézio sobe por ali)
+    const s = y > yTopo ? pescoco.em(1 - Math.min(1, (y - m('altura.cervical')) / (yCranio - m('altura.cervical')))) : y >= yBase ? tronco.em(P.tDaSuperficie(y, x, tras)) : pelve.em(y - P.yQuadril);
     const rel = Math.max(-1, Math.min(1, x / (s.a || 1)));
     const w = (tras ? -s.b : s.f) * Math.sqrt(Math.max(0, 1 - rel * rel));
     return comb([1, s.o], [x, s.fora], [w, s.z]);

@@ -3131,6 +3131,13 @@
   },
   {
    "grupo": "Músculos",
+   "oQue": "trapézio: altura da ponta de cima, em pé",
+   "medido": "162,5 cm",
+   "limite": "162,8 cm, com folga de 1 (Gray: a origem sobe até a protuberância occipital; altura da base do crânio na tabela do corpo)",
+   "nivel": "ok"
+  },
+  {
+   "grupo": "Músculos",
    "oQue": "grande dorsal: altura da borda de baixo, em pé",
    "medido": "108 cm",
    "limite": "106,5 cm, com folga de 3 (Gray: origem na crista ilíaca; altura da crista no ANSUR II)",

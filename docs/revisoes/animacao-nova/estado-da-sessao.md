@@ -6,7 +6,7 @@ Comece por **`proposta.md`, seção 0-B**: o que esta sessão fez, o que a confe
 
 ## Onde a sessão parou
 
-**O corpo foi fechado pelo Gustavo em 15/11/2026 ("pode fechar o corpo e começar o lote 1").** O lote 1 (agachamentos, afundos e búlgaros) começou. Ficam para antes dos lotes 3 e 4: o trapézio no pescoço, a linha do pescoço ao ombro conforme a pose e o cotovelo da puxada (152°). As quatro âncoras ainda não foram aprovadas folha a folha para entrar no app: a lista de exercícios do motor novo no app continua vazia.
+**O corpo foi fechado pelo Gustavo em 15/11/2026 ("pode fechar o corpo e começar o lote 1").** O lote 1 (agachamentos, afundos e búlgaros) começou. Ficam para antes dos lotes 3 e 4: a linha do pescoço ao ombro conforme a pose e o cotovelo da puxada (152°). O trapézio no pescoço foi feito em 15/11: o desenho em pé passou a alcançar o pescoço e as formas do trapézio (o inteiro e a parte de cima) sobem até a base do crânio (`parada-do-corpo/18-trapezio-no-pescoco.png`, antes e depois; mostrado ao Gustavo, falta o ok dele). As quatro âncoras ainda não foram aprovadas folha a folha para entrar no app: a lista de exercícios do motor novo no app continua vazia.
 
 **Desde 15/11/2026, as animações são feitas em paralelo.** O Gustavo aprovou sete animações do lote 1 uma a uma (até o búlgaro com apoio) e pediu: "a gente pode delegar vários subagentes para fazer todos de uma vez e depois você só me manda [as que] você achar que tem mais chance de eu não gostar". Como fica:
 

@@ -504,6 +504,7 @@ A tabela (origem, inserção, camada e fonte de cada grupo) está em `src/engine
 | Músculos | quem cobre quem na pintura segue a camada da tabela | a ordem de pintura segue a tabela | o músculo que cobre é pintado depois | ok |
 | Músculos | deltoide: onde a ponta de baixo chega no braço (0 = ombro, 1 = cotovelo) | 0,5 do braço | 0,5 do braço, com folga de 0,1 (Gray: a tuberosidade deltóidea fica no meio do úmero) | ok |
 | Músculos | trapézio: altura da ponta de baixo, em pé | 121,6 cm (0 cm em relação a T12) | 121,6 cm, com folga de 3 (Gray: a ponta de baixo corresponde à 12ª vértebra torácica) | ok |
+| Músculos | trapézio: altura da ponta de cima, em pé | 162,5 cm | 162,8 cm, com folga de 1 (Gray: a origem sobe até a protuberância occipital; altura da base do crânio na tabela do corpo) | ok |
 | Músculos | grande dorsal: altura da borda de baixo, em pé | 108 cm | 106,5 cm, com folga de 3 (Gray: origem na crista ilíaca; altura da crista no ANSUR II) | ok |
 | Músculos | quadríceps: até onde desce na coxa (1 = joelho) | 1 da coxa | 1 da coxa, com folga de 0,1 (Gray: insere-se na patela) | ok |
 | Músculos | reto abdominal: altura da borda de baixo, em pé | 91,4 cm | 90,6 cm, com folga de 3 (Gray: a origem é na crista do púbis; a altura do púbis na tabela é provisória (tomada igual à do trocânter)) | ok |

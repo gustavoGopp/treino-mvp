@@ -76,6 +76,8 @@ export function conferirDesenhoDosMusculos(corpo: Corpo): ItemConferido[] {
   itens.push(marco('deltoide: onde a ponta de baixo chega no braço (0 = ombro, 1 = cotovelo)', delt, 0.5, 0.1, 'do braço', 'Gray: a tuberosidade deltóidea fica no meio do úmero'));
   const trap = extremos('costas', 'trapezio', 1).min;
   itens.push(marco('trapézio: altura da ponta de baixo, em pé', trap, yT12, 3, 'cm', 'Gray: a ponta de baixo corresponde à 12ª vértebra torácica', ` (${f1(trap - yT12)} cm em relação a T12)`));
+  const trapAlto = extremos('costas', 'trapezio', 1).max;
+  itens.push(marco('trapézio: altura da ponta de cima, em pé', trapAlto, corpo.m('altura.baseDoCranio'), 1, 'cm', 'Gray: a origem sobe até a protuberância occipital; altura da base do crânio na tabela do corpo'));
   const dors = extremos('costas', 'dorsal', 1).min;
   itens.push(marco('grande dorsal: altura da borda de baixo, em pé', dors, corpo.m('altura.cristaIliaca'), 3, 'cm', 'Gray: origem na crista ilíaca; altura da crista no ANSUR II'));
   const quad = extremos('lado', 'quadriceps', 0).max;
