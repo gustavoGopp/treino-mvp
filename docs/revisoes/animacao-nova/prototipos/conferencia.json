@@ -3177,21 +3177,21 @@
    {
     "grupo": "Amplitudes",
     "oQue": "flexão do cotovelo",
-    "medido": "28,1°",
+    "medido": "24,7°",
     "limite": "média 148°, máximo observado 166° (cdc)",
     "nivel": "ok"
    },
    {
     "grupo": "Amplitudes",
     "oQue": "flexão do quadril",
-    "medido": "-4,9°",
+    "medido": "11,1°",
     "limite": "média 132°, máximo observado 159° (cdc)",
     "nivel": "ok"
    },
    {
     "grupo": "Amplitudes",
     "oQue": "extensão do quadril",
-    "medido": "4,9°",
+    "medido": "0°",
     "limite": "média 18,5°, máximo observado 42° (cdc)",
     "nivel": "ok"
    },
@@ -3205,7 +3205,7 @@
    {
     "grupo": "Amplitudes",
     "oQue": "elevação do braço",
-    "medido": "70°",
+    "medido": "66°",
     "limite": "média 170°, máximo observado 192° (cdc)",
     "nivel": "ok"
    },
@@ -3219,7 +3219,7 @@
    {
     "grupo": "Amplitudes",
     "oQue": "flexão plantar do tornozelo",
-    "medido": "61,4°",
+    "medido": "61,8°",
     "limite": "média 56,7°, máximo observado 90° (cdc)",
     "nivel": "aviso"
    },
@@ -3233,14 +3233,14 @@
    {
     "grupo": "Amplitudes",
     "oQue": "supinação do antebraço",
-    "medido": "0°",
+    "medido": "12,9°",
     "limite": "média 87,5°, máximo observado 131° (cdc)",
     "nivel": "ok"
    },
    {
     "grupo": "Amplitudes",
     "oQue": "extensão do punho",
-    "medido": "17,4°",
+    "medido": "22,8°",
     "limite": "média 70°, máximo observado 95° (aaos)",
     "nivel": "ok"
    },
@@ -3268,14 +3268,14 @@
    {
     "grupo": "Chão",
     "oQue": "ponto mais baixo do corpo",
-    "medido": "-0,5 cm",
+    "medido": "-0,3 cm",
     "limite": "não pode passar de −1,5 cm (a sola e o joelho amassam um pouco)",
     "nivel": "ok"
    },
    {
     "grupo": "Chão",
     "oQue": "ponto mais baixo do corpo nos erros desenhados",
-    "medido": "-0,5 cm (Quadril encosta no chão na volta)",
+    "medido": "-0,3 cm (Quadril encosta no chão na volta)",
     "limite": "não pode passar de −1,5 cm",
     "nivel": "ok"
    },
@@ -3289,7 +3289,7 @@
    {
     "grupo": "Ritmo",
     "oQue": "maior salto de velocidade entre dois quadros (a 60 quadros por segundo)",
-    "medido": "7% da velocidade de pico (cabeça, Puxada · concêntrica); pico de 95,8 cm/s",
+    "medido": "8,1% da velocidade de pico (joelho direito, Puxada · concêntrica); pico de 98 cm/s",
     "limite": "movimento suave: até 15%; acima de 25% é tranco",
     "nivel": "ok"
    },
@@ -3310,14 +3310,14 @@
    {
     "grupo": "Ficha",
     "oQue": "começo: ombros, quadril e calcanhares em linha (consenso)",
-    "medido": "no começo, ombro, quadril e calcanhar fazem 171,8° de lado (180° = linha reta)",
+    "medido": "no começo, ombro, quadril e calcanhar fazem 180° de lado (180° = linha reta)",
     "limite": "como a ficha pede",
     "nivel": "ok"
    },
    {
     "grupo": "Ficha",
     "oQue": "fim: ombros, quadril e joelhos em linha (consenso)",
-    "medido": "no fim, ombro, quadril e joelho fazem 179° de lado (180° = linha reta)",
+    "medido": "no fim, de lado, ombro, quadril e joelho fazem 170,8° (180° = em linha); o joelho dobra 90°",
     "limite": "como a ficha pede",
     "nivel": "ok"
    },
@@ -3331,21 +3331,28 @@
    {
     "grupo": "Ficha",
     "oQue": "a puxada sobe ainda mais o quadril (consenso)",
-    "medido": "o centro da pelve sobe de 32,4 para 54 cm do chão",
+    "medido": "o centro da pelve sobe de 28,2 para 52,2 cm do chão",
     "limite": "como a ficha pede",
     "nivel": "ok"
    },
    {
     "grupo": "Ficha",
     "oQue": "o quadril não encosta no chão (consenso)",
-    "medido": "o ponto mais baixo da bacia fica a no mínimo 19,8 cm do chão",
+    "medido": "o ponto mais baixo da bacia fica a no mínimo 16,8 cm do chão",
+    "limite": "como a ficha pede",
+    "nivel": "ok"
+   },
+   {
+    "grupo": "Ficha",
+    "oQue": "deitado de costas: as costas e a cabeça ficam apoiadas no chão, e os ombros não escorregam (consenso)",
+    "medido": "o ponto mais baixo das costas e da nuca fica de -0,3 a 0,2 cm do chão e o da cabeça de 0 a 0 cm; o ombro anda 0,2 cm na direção do corpo",
     "limite": "como a ficha pede",
     "nivel": "ok"
    },
    {
     "grupo": "Ficha",
     "oQue": "calcanhares em cima da bola no começo; pés apoiados em cima dela no fim (consenso)",
-    "medido": "o pé fica de -0,1 a 0,1 cm para dentro da superfície da bola (a bola cede um pouco)",
+    "medido": "o pé fica de 0,9 a 1,4 cm para dentro da superfície da bola (a bola cede um pouco)",
     "limite": "como a ficha pede",
     "nivel": "ok"
    },
@@ -3357,16 +3364,9 @@
     "nivel": "ok"
    },
    {
-    "grupo": "Ficha",
-    "oQue": "deitado de costas: a parte de cima das costas fica no chão (consenso)",
-    "medido": "o ponto mais baixo das costas fica de 0,4 a 0,6 cm do chão",
-    "limite": "como a ficha pede",
-    "nivel": "ok"
-   },
-   {
     "grupo": "Provisórios",
     "oQue": "linhas da ficha do movimento sem número na ficha da técnica (escolha de desenho)",
-    "medido": "bracos.alcance, cabeca.aoChao, cabeca.fracaoDoPescoco, toracica.flexao, pe.afundaNaBola",
+    "medido": "bracos.alcance, pe.afundaNaBola, ombro.z, bola.alemDoCalcanhar",
     "limite": "cada uma precisa de fonte ou do ok do Gustavo",
     "nivel": "aviso"
    },
@@ -3380,47 +3380,47 @@
    {
     "grupo": "Músculos",
     "oQue": "quanto do músculo principal aparece em cada vista (área das formas viradas para quem olha)",
-    "medido": "de lado: 67 cm² (padrão); de cima: 0 cm² (não serve: o principal quase não aparece)",
+    "medido": "quina: 85 cm² (padrão); de lado: 67 cm²",
     "limite": "pelo menos uma vista com 30 cm² ou mais; a que tem menos de um terço da melhor sai do modo Músculos",
-    "nivel": "aviso"
+    "nivel": "ok"
    }
   ],
   "angulos": {
    "joelho": [
-    5.999999999999843,
+    6.000000000000026,
     90
    ],
    "cotovelo": [
-    27.078259619915556,
-    28.149149334511144
+    21.32339154463382,
+    24.673011939557057
    ],
    "quadril": [
-    -4.861623194041606,
-    -4.861623194041572
+    8.437015642630678,
+    11.126871170703934
    ],
    "ombro": [
-    48.74131371202656,
-    69.95000790883954
+    46.50113054398344,
+    66.04035594330436
    ],
    "dorsiflexao": [
-    -61.359973739859726,
-    0
+    -61.82198641189922,
+    -1.4210854715202004e-14
    ],
    "punho": [
-    16.142304003242234,
-    17.393952785710905
+    19.603941313381384,
+    22.834661322951774
    ],
    "pronacao": [
-    -1.4210854715202004e-14,
-    2.842170943040401e-14
+    -12.873874782631674,
+    -11.613625579862173
    ],
    "clavicula": [
-    12.32206864536474,
-    13.304706256106549
+    12.220503545252988,
+    13.12334708181999
    ]
   },
   "falhas": 0,
-  "avisos": 3
+  "avisos": 2
  },
  "flexao-elastico": {
   "id": "flexao-elastico",
@@ -3681,7 +3681,7 @@
    {
     "grupo": "Músculos",
     "oQue": "quanto do músculo principal aparece em cada vista (área das formas viradas para quem olha)",
-    "medido": "de lado: 84 cm² (padrão); de cima: 0 cm² (não serve: o principal quase não aparece)",
+    "medido": "de lado: 84 cm² (padrão); de três quartos, de trás: 0 cm² (não serve: o principal quase não aparece)",
     "limite": "pelo menos uma vista com 30 cm² ou mais; a que tem menos de um terço da melhor sai do modo Músculos",
     "nivel": "aviso"
    }
@@ -3884,7 +3884,7 @@
    {
     "grupo": "Chão",
     "oQue": "ponto mais baixo do corpo nos erros desenhados",
-    "medido": "0 cm (Quadril cai)",
+    "medido": "-0,4 cm (Cotovelos abertos para os lados)",
     "limite": "não pode passar de −1,5 cm",
     "nivel": "ok"
    },
@@ -4430,14 +4430,14 @@
    {
     "grupo": "Chão",
     "oQue": "ponto mais baixo do corpo",
-    "medido": "-0,1 cm",
+    "medido": "-0,2 cm",
     "limite": "não pode passar de −1,5 cm (a sola e o joelho amassam um pouco)",
     "nivel": "ok"
    },
    {
     "grupo": "Chão",
     "oQue": "ponto mais baixo do corpo nos erros desenhados",
-    "medido": "-0,1 cm (Quadril sobe do chão)",
+    "medido": "-0,2 cm (Quadril sobe do chão)",
     "limite": "não pode passar de −1,5 cm",
     "nivel": "ok"
    },
@@ -4612,7 +4612,7 @@
    {
     "grupo": "Amplitudes",
     "oQue": "flexão do cotovelo",
-    "medido": "124,1°",
+    "medido": "125,1°",
     "limite": "média 148°, máximo observado 166° (cdc)",
     "nivel": "ok"
    },
@@ -4640,7 +4640,7 @@
    {
     "grupo": "Amplitudes",
     "oQue": "elevação do braço",
-    "medido": "81,6°",
+    "medido": "81,5°",
     "limite": "média 170°, máximo observado 192° (cdc)",
     "nivel": "ok"
    },
@@ -4661,7 +4661,7 @@
    {
     "grupo": "Amplitudes",
     "oQue": "pronação do antebraço (a partir do polegar para cima)",
-    "medido": "42,3°",
+    "medido": "42,4°",
     "limite": "média 80°, máximo observado 108° (cdc)",
     "nivel": "ok"
    },
@@ -4682,7 +4682,7 @@
    {
     "grupo": "Amplitudes",
     "oQue": "extensão dos dedos do pé",
-    "medido": "80,1°",
+    "medido": "80,3°",
     "limite": "média 70°, máximo observado 90° (aaos)",
     "nivel": "aviso"
    },
@@ -4738,7 +4738,7 @@
    {
     "grupo": "Ritmo",
     "oQue": "maior salto de velocidade entre dois quadros (a 60 quadros por segundo)",
-    "medido": "15,3% da velocidade de pico (cotovelo direito, Subida · concêntrica); pico de 72,9 cm/s",
+    "medido": "15,4% da velocidade de pico (cotovelo direito, Subida · concêntrica); pico de 66,4 cm/s",
     "limite": "movimento suave: até 15%; acima de 25% é tranco",
     "nivel": "aviso"
    },
@@ -4766,14 +4766,14 @@
    {
     "grupo": "Ficha",
     "oQue": "embaixo, o peito quase toca o chão (consenso)",
-    "medido": "embaixo, o peito fica a 8,9 cm do chão",
+    "medido": "embaixo, o peito fica a 8,5 cm do chão",
     "limite": "como a ficha pede",
     "nivel": "ok"
    },
    {
     "grupo": "Ficha",
     "oQue": "cotovelos a ~45° do corpo (consenso)",
-    "medido": "embaixo, o braço faz 50,5° com o tronco, visto de cima",
+    "medido": "embaixo, o braço faz 50,4° com o tronco, visto de cima",
     "limite": "como a ficha pede",
     "nivel": "ok"
    },
@@ -4787,14 +4787,14 @@
    {
     "grupo": "Ficha",
     "oQue": "a cabeça fica abaixo do quadril, sem bater no chão (consenso)",
-    "medido": "embaixo, o ponto mais baixo da cabeça fica a 1,5 cm do chão",
+    "medido": "embaixo, o ponto mais baixo da cabeça fica a 5 cm do chão",
     "limite": "como a ficha pede",
     "nivel": "ok"
    },
    {
     "grupo": "Provisórios",
     "oQue": "linhas da ficha do movimento sem número na ficha da técnica (escolha de desenho)",
-    "medido": "maos.abaixoDoOmbro, tornozelo.dorsiflexao, escapula.retracaoEmbaixo, pes.daBordaDoBanco, banco.pontaNoQuadro, pescoco.extensao, cabeca.extensao, cabeca.aoChao",
+    "medido": "maos.abaixoDoOmbro, tornozelo.dorsiflexao, escapula.retracaoEmbaixo, pes.daBordaDoBanco, banco.pontaNoQuadro, pescoco.extensao, cabeca.extensao, cabeca.aoChao, pescoco.extensaoEmbaixo",
     "limite": "cada uma precisa de fonte ou do ok do Gustavo",
     "nivel": "aviso"
    },
@@ -4823,35 +4823,35 @@
   "angulos": {
    "joelho": [
     3.9709605199754243,
-    3.970960519977537
+    3.9709605199774445
    ],
    "cotovelo": [
-    10.000000000362599,
-    124.13575010775413
+    9.999999998584363,
+    125.126479325055
    ],
    "quadril": [
-    2.0045471923015103,
-    2.0045503585733657
+    2.004547115855964,
+    2.0045503581891952
    ],
    "ombro": [
-    52.23777425270907,
-    81.58878447162797
+    51.85812639880643,
+    81.51915365397474
    ],
    "dorsiflexao": [
-    26.966190605473955,
-    26.966191704362643
+    26.96619060600102,
+    26.966191704361307
    ],
    "punho": [
-    60.39636507581431,
-    92.95473970577189
+    60.23023648189582,
+    93.02711424757558
    ],
    "pronacao": [
-    39.53122229628113,
-    42.33213166628636
+    39.546487665510284,
+    42.36709031745687
    ],
    "clavicula": [
-    12.487142204552502,
-    13.812780448092383
+    12.46963117292343,
+    13.809508948046993
    ]
   },
   "falhas": 0,

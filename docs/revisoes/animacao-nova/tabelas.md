@@ -265,6 +265,44 @@ Fontes: `GRAY1918`: Gray H. Anatomy of the Human Body, 20ª ed. (1918), domínio
 | Kettlebell (modelo de competição) (`kettlebell`) | `alcaLarg` | 12,3 cm | medida | rogue-ckb | distância entre as duas hastes da alça: 123 mm |
 | Kettlebell (modelo de competição) (`kettlebell`) | `baseDiam` | 14 cm | medida | rogue-ckb | diâmetro da base: 5,5 pol |
 | Kettlebell (modelo de competição) (`kettlebell`) | `massa` | 12 kg | desenho | desenho | o peso desenhado: um dos pesos do modelo (8 a 48 kg, todos do mesmo tamanho) |
+| Bancada de cozinha (gabinete de base com tampo), o apoio fixo na altura da cintura (`bancada`) | `altura` | 90 cm | medida | cubro-metod | altura total com o tampo: 80 + 8 (pés) + 2 (tampo) |
+| Bancada de cozinha (gabinete de base com tampo), o apoio fixo na altura da cintura (`bancada`) | `tampoEsp` | 2 cm | medida | cubro-metod | espessura padrão do tampo |
+| Bancada de cozinha (gabinete de base com tampo), o apoio fixo na altura da cintura (`bancada`) | `rodape` | 8 cm | medida | cubro-metod | altura dos pés do gabinete (atrás do rodapé) |
+| Bancada de cozinha (gabinete de base com tampo), o apoio fixo na altura da cintura (`bancada`) | `prof` | 60 cm | medida | cubro-metod | profundidade padrão do gabinete |
+| Bancada de cozinha (gabinete de base com tampo), o apoio fixo na altura da cintura (`bancada`) | `balanco` | 2 cm | **provisória** | a-conferir | quanto o tampo passa da frente do gabinete (sem medida lida) |
+| Bancada de cozinha (gabinete de base com tampo), o apoio fixo na altura da cintura (`bancada`) | `rodapeRecuo` | 5 cm | **provisória** | a-conferir | quanto o rodapé fica para dentro da frente do gabinete (sem medida lida) |
+| Bancada de cozinha (gabinete de base com tampo), o apoio fixo na altura da cintura (`bancada`) | `larg` | 120 cm | desenho | desenho | o trecho de bancada desenhado (só precisa caber as duas mãos) |
+| Bola suíça (bola de exercício) de 65 cm (`bolaSuica`) | `diam` | 65 cm | medida | gymnic-grayline | diâmetro nominal da bola de 65 cm, a indicada para quem tem de 1,60 a 1,83 m (o Boneco tem 1,76 m) |
+| Bola suíça (bola de exercício) de 65 cm (`bolaSuica`) | `amassa` | 1,5 cm | **provisória** | desenho-bola | quanto a bola cheia e firme achata em cima do chão com o peso das pernas: o centro desce isso, e a parte de baixo fica reta. A ficha não dá número; a medida real depende da pressão |
+| Cadeira firme de quatro pés, com encosto (`cadeira`) | `assentoAltura` | 45,1 cm | medida | ikea-stefan | Seat height: 17 3/4 pol (do chão ao tampo do assento) |
+| Cadeira firme de quatro pés, com encosto (`cadeira`) | `assentoLarg` | 41,9 cm | medida | ikea-stefan | Seat width: 16 1/2 pol |
+| Cadeira firme de quatro pés, com encosto (`cadeira`) | `assentoProf` | 37,1 cm | medida | ikea-stefan | Seat depth: 14 5/8 pol (da borda da frente do assento ao encosto) |
+| Cadeira firme de quatro pés, com encosto (`cadeira`) | `altura` | 89,9 cm | medida | ikea-stefan | Height: 35 3/8 pol (do chão ao alto do encosto) |
+| Cadeira firme de quatro pés, com encosto (`cadeira`) | `prof` | 48,9 cm | medida | ikea-stefan | Depth: 19 1/4 pol (da borda da frente ao fundo do encosto, por fora) |
+| Cadeira firme de quatro pés, com encosto (`cadeira`) | `assentoEsp` | 3 cm | **provisória** | a-conferir | espessura do tampo do assento: a ficha não traz |
+| Cadeira firme de quatro pés, com encosto (`cadeira`) | `peLado` | 3,5 cm | **provisória** | a-conferir | lado da seção quadrada de cada pé da cadeira: a ficha não traz |
+| Porta fechada, com a âncora de porta embaixo (`porta`) | `altura` | 210 cm | medida | vert-porta | altura da folha de porta |
+| Porta fechada, com a âncora de porta embaixo (`porta`) | `larg` | 80 cm | medida | vert-porta | largura da folha de porta |
+| Porta fechada, com a âncora de porta embaixo (`porta`) | `esp` | 3,5 cm | medida | vert-porta | espessura da folha de porta |
+| Porta fechada, com a âncora de porta embaixo (`porta`) | `vao` | 1 cm | **provisória** | a-conferir | vão entre a folha e o chão, por onde passa a fita da âncora |
+| Porta fechada, com a âncora de porta embaixo (`porta`) | `ancoraComp` | 12,7 cm | medida | stroops-ancora | comprimento da espuma da âncora: 5 pol |
+| Porta fechada, com a âncora de porta embaixo (`porta`) | `ancoraLarg` | 10,2 cm | medida | stroops-ancora | largura da espuma da âncora: 4 pol |
+| Porta fechada, com a âncora de porta embaixo (`porta`) | `ancoraAlt` | 2,5 cm | medida | stroops-ancora | altura da espuma da âncora: 1 pol |
+| Porta fechada, com a âncora de porta embaixo (`porta`) | `alcaComp` | 6 cm | **provisória** | a-conferir | quanto a alça de fita sai do vão da porta, do lado de quem treina (a ficha não dá o comprimento da fita) |
+| Fita de suspensão (tipo TRX): âncora, mosquetão, fitas, pegadores e berços do pé (`suspensao`) | `ancoraAltura` | 182,9 cm | medida | trx-comeco | onde a fita se prende (a ponta de baixo da fita de ancoragem, com o mosquetão): cerca de 6 pés do chão, a altura que o fabricante chama de ideal para todos os exercícios |
+| Fita de suspensão (tipo TRX): âncora, mosquetão, fitas, pegadores e berços do pé (`suspensao`) | `alcaAlturaMin` | 20,3 cm | medida | trx-seis | o fundo do berço do pé, com a fita pendurada, no meio da canela: cerca de 8 pol do chão (o menor da faixa) |
+| Fita de suspensão (tipo TRX): âncora, mosquetão, fitas, pegadores e berços do pé (`suspensao`) | `alcaAlturaMax` | 30,5 cm | medida | trx-seis | o fundo do berço do pé, com a fita pendurada, no meio da canela: cerca de 12 pol do chão (o maior da faixa) |
+| Fita de suspensão (tipo TRX): âncora, mosquetão, fitas, pegadores e berços do pé (`suspensao`) | `ancoraLarg` | 5,1 cm | medida | trx-pro4 | largura da fita de ancoragem (Suspension Anchor): 2 pol |
+| Fita de suspensão (tipo TRX): âncora, mosquetão, fitas, pegadores e berços do pé (`suspensao`) | `ancoraComp` | 96,5 cm | medida | trx-pro4 | comprimento da fita de ancoragem (Suspension Anchor): 38 pol; enrolada no ponto firme, só a ponta de baixo aparece |
+| Fita de suspensão (tipo TRX): âncora, mosquetão, fitas, pegadores e berços do pé (`suspensao`) | `fitaLarg` | 3,8 cm | **provisória** | a-conferir | largura de cada fita: a página do fabricante não traz (1,5 pol, a largura comum de fita de náilon) |
+| Fita de suspensão (tipo TRX): âncora, mosquetão, fitas, pegadores e berços do pé (`suspensao`) | `mosquetaoComp` | 10 cm | **provisória** | a-conferir | comprimento do mosquetão que liga a fita à âncora: a página do fabricante não traz |
+| Fita de suspensão (tipo TRX): âncora, mosquetão, fitas, pegadores e berços do pé (`suspensao`) | `pegadorComp` | 14 cm | **provisória** | a-conferir | comprimento do pegador de mão (espuma): a página do fabricante só diz "padded handles" |
+| Fita de suspensão (tipo TRX): âncora, mosquetão, fitas, pegadores e berços do pé (`suspensao`) | `pegadorDiam` | 3,5 cm | **provisória** | a-conferir | diâmetro do pegador de mão: a página do fabricante não traz |
+| Fita de suspensão (tipo TRX): âncora, mosquetão, fitas, pegadores e berços do pé (`suspensao`) | `bercoLarg` | 9 cm | **provisória** | a-conferir | largura do berço do pé (a alça onde entra o peito do pé): a página do fabricante não traz |
+| Fita de suspensão (tipo TRX): âncora, mosquetão, fitas, pegadores e berços do pé (`suspensao`) | `bercoAlt` | 6 cm | **provisória** | a-conferir | quanto o berço do pé desce abaixo do pegador, onde o peito do pé apoia: a página do fabricante não traz |
+| Toalha de mão, dobrada ao meio, sob os calcanhares (`toalha`) | `larg` | 40,6 cm | medida | zogics-toalha | o lado menor da toalha de mão: 16 pol; dobrada ao meio, fica atravessada sob os dois calcanhares |
+| Toalha de mão, dobrada ao meio, sob os calcanhares (`toalha`) | `comp` | 76,2 cm | medida | zogics-toalha | o lado maior da toalha de mão: 30 pol; dobrada ao meio, fica com 38,1 cm na direção em que os calcanhares deslizam |
+| Toalha de mão, dobrada ao meio, sob os calcanhares (`toalha`) | `esp` | 0,4 cm | **provisória** | a-conferir | espessura de uma camada de felpa: a ficha do fabricante dá o peso (4,5 lb por dúzia), não a espessura; dobrada, são duas camadas |
 
 Fontes dos objetos:
 
@@ -288,6 +326,16 @@ Fontes dos objetos:
 - `workoutz-tubo`: Workoutz, Resistance Exercise Tubes; diâmetro interno e parede por nível; docs/revisoes/animacao-nova/pesquisa/11-medidas-do-elastico.md (página lida por resumo automático; o diâmetro de fora é conta: interno + 2 × parede)
 - `theraband-manual`: TheraBand (Hygenic), manual de uso (PDF, cópia de terceiro); docs/revisoes/animacao-nova/pesquisa/11-medidas-do-elastico.md
 - `rogue-ckb`: Rogue, Competition Kettlebells (o mesmo tamanho para todos os pesos, de 8 a 48 kg); https://www.roguefitness.com/rogue-competition-kettlebells; lido em docs/revisoes/animacao-nova/pesquisa/04-objetos.md, seção 6 (página lida por resumo automático)
+- `cubro-metod`: Cubro, IKEA METOD structures catalogue (central de ajuda); https://helpcenter.cubrodesign.com/en/ikea-metod-structures-catalogue; lido em 15/11/2026: "the base units measure 80 cm", "with IKEA's standard 8 cm legs, they reach 88 cm", "the countertop, whose standard measurement is 2 cm", "resulting in a total height of 90 cm, which is the standard in most kitchens", "have a standard depth of 60 cm"
+- `gymnic-grayline`: Gymnic (Ledragomma), bolas de exercício: página pública do revendedor Gray Line Medical (https://www.graylinemedical.com/products/gymnic-balls), guia de tamanhos lido em 15/11/2026: "55cm (21"): users 4'8" - 5'3"", "65cm (25"): users 5'3" - 6'0"", "75cm (29"): users 6'0" - 6'7""
+- `desenho-bola`: Escolha de desenho da animação da flexão de joelho na bola (lote 2 do motor novo), sem medida de fabricante
+- `ikea-stefan`: IKEA, cadeira STEFAN (madeira maciça, quatro pés, sem rodinhas, não dobrável), campo Product size; https://www.ikea.com/us/en/p/stefan-chair-brown-black-00211088/ (lido em 15/11/2026; medidas em polegadas, convertidas a 2,54 cm)
+- `vert-porta`: Vert, folha de porta lisa de madeira 210 x 80 x 3,5 cm (Telhanorte); https://www.telhanorte.com.br/folha-de-porta-lisa-de-madeira-210x80x3-5cm-primer-vert-1223704/p (lida em 15/11/2026 por resumo automático de busca: "210cm x 80cm x 3,5cm"). A mesma medida aparece nas folhas de porta MGM e Casablanca (MadeiraMadeira) e na Eucatex (35 mm)
+- `stroops-ancora`: Stroops, Door Anchor (ANCRFOAM); https://www.vitalitymedical.com/stroops-door-anchor.html (lido em 15/11/2026 por resumo automático da página: "Length: 5 Inches", "Width: 4 Inches", "Height: 1 Inch")
+- `trx-comeco`: TRX, How to Get Started With Your TRX Suspension Trainer; https://www.trxtraining.com/train/how-to-get-started-with-your-trx-suspension-trainer (lido em 15/11/2026): "the bottom of the Suspension Anchor hangs at about six feet from the ground [...] This is the ideal height to perform all TRX exercises"
+- `trx-seis`: TRX, Six Procedures (material de treinamento do fabricante, PDF público hospedado pela Truman State University); https://recreation.truman.edu/files/2020/02/TRX-Six-Procedures-PDF.pdf (lido em 15/11/2026), procedimento 3, Heels in: "Adjust the Suspension Trainer so the bottom of each foot cradle is at mid calf length or about eight to 12 inches off the ground"
+- `trx-pro4`: TRX, TRX PRO4 System; https://www.trxtraining.com/pages/trx-pro4-system (lido em 15/11/2026): "TRX Suspension Anchor [...] Measuring at 38\" x 2\" x 0.5\"" e "Accommodating anchor heights of 7-9ft"
+- `zogics-toalha`: Zogics, 16x30 Hand Towel, 450A Series, 4.5lb (12 Towels); https://www.zogics.com/wholesale-towels/16x30-hand-towel-450a-series-4-5lb (lido em 15/11/2026 por resumo automático da página: "16" x 30"", "4.5 lbs/dozen"). A mesma medida de 16 x 30 pol aparece em várias marcas de toalha de mão (Oxford, Hospeco, Standard Textile)
 
 ## Fichas de movimento
 
@@ -592,6 +640,118 @@ Fontes desta ficha:
 - `equilibrio`: Em pé, parado, a projeção do centro de massa cai dentro do apoio dos pés (mecânica); a ficha pede o calcanhar apoiado
 - `desenho`: Escolha de desenho desta animação, dentro do que a ficha pede; a conferência mede o resultado
 
+### Búlgaro com o peso do corpo (`bulgaro-peso-corpo`)
+
+Ficha da técnica: `docs/pesquisa/animacoes/bulgaro-peso-corpo.md`. Movimento de um lado só.
+
+| parâmetro | valor | selo | fonte | o que é |
+|---|---|---|---|---|
+| `pes.meiaDistancia` | 9 cm | consenso | guia | pés na largura do quadril, como trilhos (os centros do quadril ficam a 8,35 cm do meio) |
+| `peDaFrente.aFrenteDoQuadril` | 42,5 cm | desenho | aprovado | pé da frente longe da cadeira: quanto o tornozelo da frente fica à frente do quadril (o mesmo do búlgaro aprovado: 42,5 cm) |
+| `peDeTras.tornozeloAtrasDoQuadril` | 43,5 cm | desenho | aprovado | quanto o tornozelo do pé de trás, apoiado no assento, fica atrás do quadril (o mesmo do búlgaro aprovado: 43,5 cm) |
+| `peDeTras.tornozeloDaBorda` | 3 cm | desenho | aprovado | quanto o tornozelo de trás fica para dentro da borda do assento: o peito do pé inteiro apoia (3 cm, como no banco do búlgaro aprovado) |
+| `joelho.cima` | 14 graus | consenso | ficha | em cima: joelho da frente quase estendido; a ficha manda parar antes de travar |
+| `joelhoDeTras.aoChao` | 5 cm | consenso | ficha | embaixo: o joelho de trás fica a poucos centímetros do chão (da pele do joelho ao chão); 5 cm e não os 4 do búlgaro aprovado porque o assento da cadeira fica 1,6 cm mais alto que o banco: assim o quadril para na mesma altura do aprovado e a coxa da frente não passa de 15 graus abaixo da horizontal |
+| `tronco` | 15 graus | consenso | ficha | tronco levemente inclinado à frente (a ficha não dá número; o mesmo do búlgaro aprovado) |
+| `maos.naCintura.acima` | 11 cm | desenho | desenho | mãos na cintura: altura da mão acima do centro do quadril (a mesma do afundo com o peso do corpo) |
+| `erro.valgo.joelho` | 5 cm | desenho | desenho | erro: quanto o joelho da frente cai para dentro (o mesmo do búlgaro aprovado) |
+| `erro.perto.maisPerto` | 18 cm | desenho | hoje | erro: quanto o pé da frente fica mais perto da cadeira (18 cm na animação de hoje) |
+| `erro.perto.calcanhar` | 34 graus | desenho | hoje | erro: quanto o calcanhar da frente sobe embaixo (34 graus a mais na animação de hoje) |
+| `erro.raso.fracao` | 0,47 fração | desenho | hoje | erro: desce só 47% do caminho (como na animação de hoje) |
+
+| fase | tipo | duração | respiração | ritmo | selo |
+|---|---|---|---|---|---|
+| Em cima | pausa | 0,5 s | inspira | firme o abdômen | consenso |
+| Descida · excêntrica | exc | 2,3 s | firme | ~2–3 s | consenso |
+| Embaixo | pausa | 0,4 s | firme | pausa curta | consenso |
+| Subida · concêntrica | conc | 1,3 s | expira | ~1–1,5 s | consenso |
+
+Contatos que não podem sair do lugar: `pe.R`.
+
+Regras que a conferência mede:
+
+- em cima, o joelho da frente fica quase estendido (consenso)
+- a descida é reta: o quadril desce sem ir para a frente nem para trás (consenso)
+- embaixo, o joelho de trás fica a poucos centímetros do chão (consenso)
+- embaixo, a coxa da frente fica perto da horizontal ou um pouco abaixo (consenso)
+- o tronco fica levemente inclinado à frente (consenso)
+- o pé da frente fica inteiro no chão, com o calcanhar apoiado (consenso)
+- o peito do pé de trás fica apoiado no assento da cadeira, com o cadarço para baixo (consenso)
+- o peso fica na perna da frente (consenso)
+
+Erros desenhados:
+
+- Joelho da frente para dentro (vista: frontal): o joelho da frente sai da linha do pé, para dentro
+- Pé da frente perto da cadeira (vista: lateral): o pé da frente fica 18 cm mais perto da cadeira e o calcanhar sobe na descida
+- Descer pouco (vista: lateral): desce só 47% do caminho
+
+Fontes desta ficha:
+
+- `ficha`: Ficha da técnica (docs/pesquisa/animacoes/bulgaro-peso-corpo.md): a mesma pose do búlgaro aprovado, sem o halter e sem a coluna, com o pé de trás no assento de uma cadeira firme; consenso de treinadores
+- `guia`: Guia original do projeto (referencia/guia-execucao-fase1.html), como registrado em docs/pesquisa/animacoes/bulgaro.md, de onde a ficha do búlgaro com o peso do corpo tira a pose: consenso de treinadores
+- `aprovado`: Búlgaro com apoio do motor novo, aprovado pelo Gustavo em 15/11/2026 (src/engine/novo/dados/movimentos/bulgaro.json): as distâncias dos pés ao quadril, tiradas da animação aprovada de hoje
+- `hoje`: Animação aprovada no guia de hoje (src/engine/exercicios/bulgaro-peso-corpo.ts): os erros, que a ficha não dá em número
+- `desenho`: Escolha de desenho desta animação, dentro do que a ficha pede; a conferência mede o resultado
+
+### Búlgaro com o pé de trás na suspensão (`bulgaro-suspensao`)
+
+Ficha da técnica: `docs/pesquisa/animacoes/bulgaro-suspensao.md`. Movimento de um lado só.
+
+| parâmetro | valor | selo | fonte | o que é |
+|---|---|---|---|---|
+| `pes.meiaDistancia` | 9 cm | consenso | guia | pés na largura do quadril, como trilhos (os centros do quadril ficam a 8,35 cm do meio) |
+| `peDaFrente.aFrenteDoQuadril` | 42,5 cm | desenho | aprovado | pé da frente longe da alça: quanto o tornozelo da frente fica à frente do quadril (o mesmo do búlgaro aprovado: 42,5 cm) |
+| `peDeTras.tornozeloAtrasDoQuadril` | 43,5 cm | desenho | aprovado | em cima, quanto o tornozelo do pé de trás, na alça, fica atrás do quadril (o mesmo do búlgaro aprovado: 43,5 cm) |
+| `fita.alcaAFrenteDaAncora` | 4 cm | desenho | desenho | em cima, quanto o fundo do berço fica à frente da vertical da âncora: a fita quase a prumo, o pé pendurado; como ele anda 8 cm para trás, embaixo fica 4 cm atrás dela |
+| `fita.peVaiParaTras` | 8 cm | desenho | hoje | quanto o fundo do berço (e o pé de trás) anda para trás no arco da fita, de cima até embaixo (8 cm na animação de hoje) |
+| `fita.contatoAteOTornozelo` | 10 cm | desenho | desenho | o peito do pé apoia no berço perto do tornozelo, não nos dedos: o ponto de apoio é o mais baixo do pé a até 10 cm do tornozelo (visto de lado) |
+| `joelho.cima` | 14 graus | consenso | guia | em cima: joelho da frente quase estendido; a ficha manda parar antes de travar |
+| `joelhoDeTras.aoChao` | 4 cm | consenso | guia | embaixo: o joelho de trás vai em direção ao chão e fica a poucos centímetros dele (da pele do joelho ao chão), como no búlgaro aprovado |
+| `tronco` | 15 graus | consenso | ficha | tronco levemente inclinado à frente (a ficha não dá número; o mesmo do búlgaro aprovado) |
+| `maos.naCintura.acima` | 11 cm | desenho | desenho | mãos na cintura: altura da mão acima do centro do quadril (a mesma do afundo com o peso do corpo) |
+| `erro.valgo.joelho` | 5 cm | desenho | desenho | erro: quanto o joelho da frente cai para dentro (o mesmo do búlgaro aprovado) |
+| `erro.empurra.peMaisAtras` | 14 cm | desenho | hoje | erro: a perna de trás estica e empurra a alça 14 cm mais para trás (como na animação de hoje) |
+| `erro.empurra.quadrilAtras` | 9 cm | desenho | hoje | erro: o quadril vai 9 cm para trás (como na animação de hoje) |
+| `erro.empurra.fracao` | 0,8 fração | desenho | hoje | erro: o quadril desce só 80% do caminho (na animação de hoje, para 6 cm acima do certo) |
+| `erro.raso.fracao` | 0,47 fração | desenho | hoje | erro: desce só 47% do caminho (como na animação de hoje) |
+
+| fase | tipo | duração | respiração | ritmo | selo |
+|---|---|---|---|---|---|
+| Em cima | pausa | 0,5 s | inspira | firme o abdômen | consenso |
+| Descida · excêntrica | exc | 2,3 s | firme | ~2–3 s | consenso |
+| Embaixo | pausa | 0,4 s | firme | pausa curta | consenso |
+| Subida · concêntrica | conc | 1,3 s | expira | ~1–1,5 s | consenso |
+
+Contatos que não podem sair do lugar: `pe.R`.
+
+Regras que a conferência mede:
+
+- em cima, o joelho da frente fica quase estendido (consenso)
+- a descida é reta: o quadril desce sem ir para a frente nem para trás (consenso)
+- embaixo, o joelho de trás fica a poucos centímetros do chão (consenso)
+- embaixo, a coxa da frente fica perto da horizontal (consenso)
+- o tronco fica levemente inclinado à frente (consenso)
+- o pé da frente fica inteiro no chão, com o calcanhar apoiado (consenso)
+- o peso fica na perna da frente (consenso)
+- o peito do pé de trás fica no berço da alça, com o cadarço para baixo (consenso)
+- a alça fica na altura do meio da canela (consenso)
+- na descida, o pé de trás vai para trás com a fita, que não estica (consenso)
+
+Erros desenhados:
+
+- Joelho da frente para dentro (vista: frontal): o joelho da frente sai da linha do pé, para dentro
+- Empurrar com o pé de trás (vista: lateral): a perna de trás estica e empurra a alça para trás; o quadril recua e desce menos
+- Descer pouco (vista: lateral): desce só 47% do caminho
+
+Fontes desta ficha:
+
+- `ficha`: Ficha da técnica (docs/pesquisa/animacoes/bulgaro-suspensao.md): de costas para a âncora, peito do pé de trás na alça à altura do meio da canela; a mesma lógica do búlgaro com o peso do corpo; consenso de treinadores (nsca2021, não verificado)
+- `guia`: Guia original do projeto (referencia/guia-execucao-fase1.html), como registrado em docs/pesquisa/animacoes/bulgaro.md, de onde vem a pose dos búlgaros: consenso de treinadores
+- `aprovado`: Búlgaro com apoio do motor novo, aprovado pelo Gustavo em 15/11/2026 (src/engine/novo/dados/movimentos/bulgaro.json): as distâncias dos pés ao quadril
+- `hoje`: Animação aprovada no guia de hoje (src/engine/exercicios/bulgaro-suspensao.ts) e a conferência dela (docs/revisoes/catalogo/conferencia/suspensao.md): quanto o pé de trás anda com a fita e os erros, que a ficha não dá em número
+- `objetos`: src/engine/novo/dados/objetos/suspensao.json: a altura da âncora e a do berço no meio da canela, das páginas do fabricante
+- `desenho`: Escolha de desenho desta animação, dentro do que a ficha pede; a conferência mede o resultado
+
 ### Agachamento búlgaro com apoio (`bulgaro`)
 
 Ficha da técnica: `docs/pesquisa/animacoes/bulgaro.md`. Movimento de um lado só.
@@ -648,6 +808,360 @@ Fontes desta ficha:
 - `hoje`: Animação aprovada no guia de hoje (src/engine/exercicios/bulgaro.ts): as distâncias dos pés ao quadril, a posição da mão de apoio e os erros, que a ficha não dá em número
 - `cdc`: Soucie JM et al. Range of motion measurements: reference values and a database for comparison studies. Haemophilia 2011 (tabelas do CDC; docs/revisoes/animacao-nova/pesquisa/02-articulacoes.md, A1)
 - `objetos`: src/engine/novo/dados/objetos.json
+- `desenho`: Escolha de desenho desta animação, dentro do que a ficha pede; a conferência mede o resultado
+
+### Extensão de tríceps com o peso do corpo (`extensao-triceps-peso-corpo`)
+
+Ficha da técnica: `docs/pesquisa/animacoes/extensao-triceps-peso-corpo.md`. Movimento simétrico (os dois lados fazem o mesmo).
+
+| parâmetro | valor | selo | fonte | o que é |
+|---|---|---|---|---|
+| `maos.alemDoOmbro` | 0 cm | consenso | guia | mãos na largura dos ombros: o centro da pegada na linha do centro do ombro (18,4 cm do meio do corpo) |
+| `maos.dentroDaBeirada` | 1 cm | desenho | desenho | mãos espalmadas no tampo, junto da beirada: o centro do punho fica 1 cm para dentro dela |
+| `pes.atrasDaBeirada` | 132 cm | desenho | desenho | distância no chão da bola do pé à beirada da bancada. Hoje as mãos ficam a ~125 cm do tornozelo (~112 da bola do pé); com 112, embaixo o cotovelo passa à frente da mão e o punho dobra 109° (o máximo observado é 95°): os pés recuam até o cotovelo ficar atrás da beirada |
+| `pes.meiaDistancia` | 8,7 cm | desenho | pike | pés na largura do quadril |
+| `calcanhar.sobe` | 30 graus | desenho | pike | apoio na ponta dos pés, com o calcanhar levantado e parado |
+| `joelho` | 5 graus | consenso | guia | corpo reto: pernas estendidas |
+| `cotovelo.cima` | 25 graus | desenho | hoje | em cima: braços estendidos (hoje: 28° de dobra) |
+| `testa.aoApoio` | 6 cm | desenho | desenho | embaixo: a testa chega perto do apoio (a menor distância da cabeça à bancada; a ficha não dá número) |
+| `pescoco.flexao` | 0 graus | desenho | desenho | pescoço e cabeça na linha do corpo |
+| `erro.quadril.dobra` | 26 graus | desenho | hoje | erro: o quadril dobra (hoje: 24°), o tronco fica mais em pé sobre as mãos |
+| `erro.cotovelos.abre` | 1 fração | desenho | desenho | erro: os cotovelos apontam para os lados em vez de para a frente |
+| `erro.falha.testa` | 0,5 cm | desenho | desenho | erro: o cotovelo cede e a testa chega ao tampo |
+
+| fase | tipo | duração | respiração | ritmo | selo |
+|---|---|---|---|---|---|
+| Braços estendidos | pausa | 0,45 s | inspira | corpo reto, inclinado | consenso |
+| Descida · excêntrica | exc | 2,5 s | inspira | 2 a 3 s | consenso |
+| Embaixo | pausa | 0,5 s | firme | testa perto da bancada | consenso |
+| Volta · concêntrica | conc | 1,1 s | expira | ~1 s | consenso |
+
+Contatos que não podem sair do lugar: `pe.R`, `pe.L`, `mao.R`, `mao.L`.
+
+Regras que a conferência mede:
+
+- corpo reto; só os cotovelos dobram (consenso)
+- cotovelos apontando para a frente (consenso)
+- embaixo, a testa chega perto do apoio, sem bater (consenso)
+- embaixo, braços acima da cabeça (um estudo)
+
+Erros desenhados:
+
+- Dobrar o quadril (vista: lateral): o quadril dobra e fica para trás e para cima
+- Abrir os cotovelos (vista: cima): os cotovelos vão para os lados
+- Ir até a falha (vista: lateral): o cotovelo cede e a testa chega ao apoio
+
+Fontes desta ficha:
+
+- `guia`: Ficha da técnica (docs/pesquisa/animacoes/extensao-triceps-peso-corpo.md) e cartão do app (src/conteudo/exercicios/extensao-triceps-peso-corpo.json): consenso (Jacob Zemer, vídeo, em 17, G2); a posição do braço acima da cabeça tem um estudo (maeo2023)
+- `hoje`: Animação de hoje (src/engine/exercicios/extensao-triceps-peso-corpo.ts, aprovada em 10/11/2026) e a conferência dela (docs/revisoes/r5-anim/conferencia/extensao-triceps-peso-corpo.md)
+- `pike`: O núcleo da família (exercicios/apoio-no-chao.ts): pés na ponta com o calcanhar parado, como no pike
+- `desenho`: Escolha de desenho desta animação, dentro do que a ficha pede; a conferência mede o resultado
+
+### Flexão de joelho na bola suíça (`flexao-bola`)
+
+Ficha da técnica: `docs/pesquisa/animacoes/flexao-bola.md`. Movimento simétrico (os dois lados fazem o mesmo).
+
+| parâmetro | valor | selo | fonte | o que é |
+|---|---|---|---|---|
+| `joelho.inicio` | 6 graus | consenso | guia | começo: pernas estendidas (sem travar o joelho; o número é de desenho) |
+| `joelho.fim` | 90 graus | consenso | guia | fim: joelhos a ~90°, pés apoiados em cima da bola |
+| `bracos.abertura` | 30 graus | consenso | guia | braços no chão, abertos ~30° do corpo, palmas para baixo |
+| `bracos.alcance` | 0,97 fração | desenho | desenho | a mão fica a 97% do comprimento do braço mais o antebraço, a partir do ombro: o cotovelo quase estendido, sem travar |
+| `erro.volta.folga` | 1 cm | desenho | desenho | erro: na volta, o quadril desce até ficar a 1 cm do chão (encosta) |
+| `erro.curta.fracao` | 0,45 fração | desenho | desenho | erro: puxa só até 45% do caminho (o joelho para longe de 90°) |
+| `pe.afundaNaBola` | 1 cm | desenho | desenho | o pé afunda 1 cm na bola onde apoia (a bola cheia cede um pouco sob o calcanhar e a sola) |
+| `ombro.z` | -40 cm | desenho | desenho | onde ficam os ombros na cena (só posiciona a cena; os ombros não saem do lugar) |
+| `erro.quadril.sobe` | 0,15 fração | desenho | desenho | erro: a bacia sobe só 15% do que sobe no certo; o quadril dobra para o pé chegar à bola |
+| `bola.alemDoCalcanhar` | 7 cm | desenho | desenho | com as pernas estendidas, o calcanhar apoia 7 cm atrás do alto da bola (do lado do corpo), e a panturrilha passa por cima dela; no fim, o pé deita no alto da bola |
+
+| fase | tipo | duração | respiração | ritmo | selo |
+|---|---|---|---|---|---|
+| Pernas estendidas | pausa | 0,5 s | inspira | quadril alto | consenso |
+| Puxada · concêntrica | conc | 1 s | expira | ~1 s | consenso |
+| Joelhos a ~90° | pausa | 0,6 s | firme | segura | consenso |
+| Volta · excêntrica | exc | 2 s | inspira | ~2 s | consenso |
+
+Contatos que não podem sair do lugar: `mao.R`, `mao.L`.
+
+Regras que a conferência mede:
+
+- começo: ombros, quadril e calcanhares em linha (consenso)
+- fim: ombros, quadril e joelhos em linha (consenso)
+- fim: joelhos a ~90° (consenso)
+- a puxada sobe ainda mais o quadril (consenso)
+- o quadril não encosta no chão (consenso)
+- deitado de costas: as costas e a cabeça ficam apoiadas no chão, e os ombros não escorregam (consenso)
+- calcanhares em cima da bola no começo; pés apoiados em cima dela no fim (consenso)
+- coxas e canelas não atravessam a bola (consenso)
+
+Erros desenhados:
+
+- Quadril cai ao puxar (vista: lateral): o quadril dobra e desce quando os joelhos dobram
+- Quadril encosta no chão na volta (vista: lateral): o quadril desce até o chão entre as repetições
+- Puxar pouco (vista: lateral): para com os joelhos longe de 90°
+
+Fontes desta ficha:
+
+- `guia`: Guia original do projeto (referencia/guia-execucao-fase1.html), como registrado em docs/pesquisa/animacoes/flexao-bola.md e no texto do app: consenso de treinadores
+- `hoje`: Animação de hoje (src/engine/exercicios/flexao-bola.ts, port do guia original, aprovada): distâncias que a ficha não dá em número
+- `desenho`: Escolha de desenho desta animação, dentro do que a ficha pede; a conferência mede o resultado
+
+### Flexão de braço com elástico (`flexao-elastico`)
+
+Ficha da técnica: `docs/pesquisa/animacoes/flexao-elastico.md`. Movimento simétrico (os dois lados fazem o mesmo).
+
+| parâmetro | valor | selo | fonte | o que é |
+|---|---|---|---|---|
+| `cotovelo.cima` | 10 graus | consenso | flexao | em cima: braços estendidos (sem travar) |
+| `peito.aoChao` | 5 cm | consenso | flexao | embaixo: peito a poucos centímetros do chão |
+| `maos.alemDoOmbro` | 12 cm | consenso | flexao | mãos um pouco mais abertas que os ombros: a borda de dentro da mão fica 2 cm para fora da linha de fora do ombro (meia largura bideltoide 23,9 + meia largura da mão 4,3 + 2 = 30,2 cm do meio do corpo; o centro do ombro fica a 18,4). Antes eram 6 cm, que punham a mão debaixo do ombro, e não para fora dele |
+| `maos.abaixoDoOmbro` | 13 cm | consenso | flexao | mãos na linha do meio do peito (distância do ombro em direção aos pés, com o corpo embaixo) |
+| `cotovelos.doTronco` | 45 graus | consenso | flexao | cotovelos indo para trás, a meio caminho do tronco |
+| `pes.meiaDistancia` | 8,7 cm | consenso | flexao | pés na largura do quadril |
+| `tornozelo.dorsiflexao` | 10 graus | desenho | desenho | apoio na ponta dos pés: o tornozelo fica perto do neutro |
+| `joelho` | 4 graus | consenso | flexao | pernas estendidas (corpo em prancha) |
+| `escapula.retracaoEmbaixo` | 8 graus | desenho | desenho | as escápulas se aproximam na descida; a ficha não dá número |
+| `erro.quadril.queda` | 16 graus | desenho | desenho | erro: o quadril cai (extensão da lombar somada) |
+| `erro.cot.doTronco` | 88 graus | desenho | desenho | erro: cotovelos abertos a ~90° |
+| `erro.curta.fracao` | 0,5 fração | desenho | desenho | erro: desce só até a metade |
+| `elastico.abaixoDeC7` | 12 cm | consenso | ficha | o meio do elástico passa pelas costas na altura das escápulas, abaixo do pescoço: 12 cm abaixo da base do pescoço (C7), ao longo da coluna. O número é escolha de desenho (a ficha não dá) |
+| `elastico.voltaNaMao` | 22 cm | desenho | desenho | o tubo que uma volta em cada mão gasta: o contorno da mão, 2 × (largura da mão 8,6 + espessura ~2,5 cm). Entra na conta do quanto o tubo estica |
+| `elastico.folgaNasCostas` | 0,6 cm | desenho | desenho | o tubo fica por cima da pele das costas (metade do diâmetro do tubo) |
+| `elastico.atrasDoOmbro` | 3 cm | desenho | desenho | o tubo passa por fora da parte de trás do ombro, 3 cm para o lado das costas a partir do centro do ombro, a caminho da mão |
+| `erro.pescoco.abaixoDeC7` | -3 cm | desenho | desenho | erro: o elástico sobe para o pescoço, 3 cm acima da base dele (C7) |
+
+| fase | tipo | duração | respiração | ritmo | selo |
+|---|---|---|---|---|---|
+| Em cima | pausa | 0,4 s | inspira | elástico mais esticado | consenso |
+| Descida · excêntrica | exc | 2 s | inspira | ~2 s | consenso |
+| Embaixo | pausa | 0,35 s | firme | peito perto do chão | consenso |
+| Subida · concêntrica | conc | 1 s | expira | ~1 s | consenso |
+
+Contatos que não podem sair do lugar: `pe.R`, `pe.L`, `mao.R`, `mao.L`.
+
+Regras que a conferência mede:
+
+- corpo em linha reta da cabeça aos calcanhares (consenso)
+- embaixo, o peito chega perto do chão (consenso)
+- cotovelos para trás, a meio caminho do tronco (consenso)
+- o meio do elástico passa pelas costas, na altura das escápulas (abaixo do pescoço) (consenso)
+- cada ponta do elástico fica presa entre a palma e o chão (consenso)
+
+Erros desenhados:
+
+- Quadril cai (vista: lateral): a lombar arqueia e o quadril sai da linha
+- Cotovelos abertos a 90° (vista: quinaTras): os cotovelos vão para os lados
+- Descer pouco (vista: lateral): desce só até a metade
+- Elástico sobe para o pescoço (vista: quinaTras): o meio do elástico passa no pescoço, e não nas escápulas
+
+Fontes desta ficha:
+
+- `ficha`: Ficha da técnica (docs/pesquisa/animacoes/flexao-elastico.md): consenso de treinadores (nsca2021, não verificado; seguranca.montagem); a posição, a descida e a subida são as da flexao aprovada
+- `flexao`: A ficha de movimento da flexão aprovada (src/engine/novo/dados/movimentos/flexao.json), que veio do guia original (consenso de treinadores): a ficha da técnica pede a mesma prancha e o mesmo caminho dos braços
+- `corpo`: Tabela do corpo do Boneco (src/engine/novo/dados/corpo-homem.json)
+- `desenho`: Escolha de desenho desta animação, dentro do que a ficha pede; a conferência mede o resultado
+
+### Flexão de braço com as mãos juntas (`flexao-fechada`)
+
+Ficha da técnica: `docs/pesquisa/animacoes/flexao-fechada.md`. Movimento simétrico (os dois lados fazem o mesmo).
+
+| parâmetro | valor | selo | fonte | o que é |
+|---|---|---|---|---|
+| `cotovelo.cima` | 10 graus | consenso | flexao | em cima: braços estendidos (sem travar) |
+| `peito.aoChao` | 5 cm | consenso | flexao | embaixo: peito a poucos centímetros do chão |
+| `maos.alemDoOmbro` | -4 cm | consenso | hoje | mãos na largura dos ombros, um pouco menos: o centro da mão fica 4 cm para dentro do centro do ombro (14,4 cm do meio do corpo, como na animação de hoje, a 14 cm); a borda de fora da mão fica por dentro da linha de fora dos ombros. A ficha não dá a distância |
+| `maos.abaixoDoOmbro` | 14 cm | desenho | desenho | mãos abaixo da parte de baixo do peito: 14 cm do ombro em direção aos pés, com o corpo embaixo, 3,5 cm além da linha dos mamilos (o centro do ombro fica 10,5 cm acima dela: altura.peito da tabela do corpo). Com 16 cm a mão ficaria mais embaixo do peito, mas em cima o punho passaria do máximo de extensão (96,8°, máximo 95°). Na flexão são 13 cm (a linha do meio do peito) |
+| `cotovelos.doTronco` | 12 graus | consenso | hoje | cotovelos para trás, rentes ao corpo (o número é a direção para onde o cotovelo aponta; a conferência mede o ângulo do braço com o tronco, visto de cima) |
+| `pes.meiaDistancia` | 8,7 cm | consenso | flexao | pés na largura do quadril |
+| `tornozelo.dorsiflexao` | 10 graus | desenho | desenho | apoio na ponta dos pés: o tornozelo fica perto do neutro |
+| `joelho` | 4 graus | consenso | flexao | pernas estendidas (corpo em prancha) |
+| `escapula.retracaoEmbaixo` | 8 graus | desenho | desenho | as escápulas se aproximam na descida; a ficha não dá número |
+| `erro.quadril.queda` | 16 graus | desenho | desenho | erro: o quadril cai (extensão da lombar somada) |
+| `erro.cot.doTronco` | 130 graus | desenho | desenho | erro: cotovelos abertos para os lados (a direção para onde o cotovelo aponta; medido de cima, o braço faz 72,5° com o tronco, como no erro da flexão) |
+| `erro.curta.fracao` | 0,5 fração | desenho | desenho | erro: desce só até a metade |
+
+| fase | tipo | duração | respiração | ritmo | selo |
+|---|---|---|---|---|---|
+| Em cima | pausa | 0,4 s | inspira | prancha | consenso |
+| Descida · excêntrica | exc | 2 s | inspira | ~2 s | consenso |
+| Embaixo | pausa | 0,35 s | firme | peito perto das mãos | consenso |
+| Subida · concêntrica | conc | 1 s | expira | ~1 s | consenso |
+
+Contatos que não podem sair do lugar: `pe.R`, `pe.L`, `mao.R`, `mao.L`.
+
+Regras que a conferência mede:
+
+- corpo em linha reta da cabeça aos calcanhares (consenso)
+- embaixo, o peito chega perto das mãos (a poucos centímetros do chão) (consenso)
+- de cima, as mãos ficam por dentro da linha dos ombros (consenso)
+- cotovelos para trás, rentes ao corpo (consenso)
+
+Erros desenhados:
+
+- Cotovelos abertos para os lados (vista: cima): os cotovelos vão para os lados
+- Quadril cai (vista: lateral): a lombar arqueia e o quadril sai da linha
+- Descer pouco (vista: lateral): desce só até a metade
+
+Fontes desta ficha:
+
+- `ficha`: Ficha da técnica (docs/pesquisa/animacoes/flexao-fechada.md): consenso de treinadores (nsca2021, não verificado); a base do desenho é a flexao aprovada
+- `flexao`: A ficha de movimento da flexão aprovada (src/engine/novo/dados/movimentos/flexao.json), que veio do guia original (consenso de treinadores): a ficha da técnica manda usar as mesmas poses do tronco e das pernas
+- `hoje`: Animação de hoje (src/engine/exercicios/flexao-fechada.ts, aprovada): distâncias que a ficha não dá em número
+- `desenho`: Escolha de desenho desta animação, dentro do que a ficha pede; a conferência mede o resultado
+
+### Flexão de joelho deslizando os pés no chão (`flexao-joelho-deslizante`)
+
+Ficha da técnica: `docs/pesquisa/animacoes/flexao-joelho-deslizante.md`. Movimento simétrico (os dois lados fazem o mesmo).
+
+| parâmetro | valor | selo | fonte | o que é |
+|---|---|---|---|---|
+| `joelho.inicio` | 10 graus | consenso | app | início: pernas quase estendidas, com o quadril ainda fora do chão |
+| `joelho.fim` | 120 graus | desenho | desenho | fim: calcanhares perto do glúteo; a ficha não dá o ângulo (é o que põe o calcanhar a poucos centímetros do glúteo com ombros, quadril e joelhos em linha) |
+| `quadril.folgaNoInicio` | 5 cm | desenho | desenho | início: quadril um pouco elevado (da pele do glúteo ao chão); a ficha diz "um pouco" e não dá número |
+| `quadril.fim` | 0 graus | consenso | ficha | fim: ombros, quadril e joelhos em linha (a coxa continua a linha do ombro ao quadril) |
+| `pe.angulo` | 0 graus | consenso | correcao | o pé em ângulo reto com a canela, apoiado no calcanhar (a correção de 04/11: antes o pé apontava para cima, como na ponta do pé) |
+| `ombro.z` | -50 cm | desenho | desenho | onde ficam os ombros na cena (só posiciona a cena; os ombros não saem do lugar) |
+| `maos.abaixoDoOmbro` | 56 cm | desenho | desenho | braços no chão ao lado do corpo, palmas para baixo: a mão fica a 56 cm do ombro em direção aos pés, com o cotovelo quase estendido e o braço deitado no chão |
+| `maos.paraFora` | 6 cm | desenho | desenho | as mãos um pouco para fora da linha dos ombros, para o braço não encostar no tronco |
+| `erro.quadril.folga` | 0,3 cm | desenho | desenho | erro: o quadril cai até encostar no chão durante a puxada |
+| `erro.lombar.lombar` | -25 graus | desenho | desenho | erro: a lombar arqueia 25 graus para subir o quadril (barriga para cima) |
+| `erro.curta.fracao` | 0,4 fração | desenho | desenho | erro: para com os joelhos ainda pouco dobrados (40% do caminho) |
+
+| fase | tipo | duração | respiração | ritmo | selo |
+|---|---|---|---|---|---|
+| Pernas estendidas | pausa | 0,5 s | inspira | quadril fora do chão | consenso |
+| Puxada · concêntrica | conc | 1,2 s | expira | ~1 s | consenso |
+| Joelhos dobrados | pausa | 0,6 s | firme | quadril alto | consenso |
+| Volta · excêntrica | exc | 2,5 s | inspira | ~2–3 s | consenso |
+
+Contatos que não podem sair do lugar: `mao.R`, `mao.L`.
+
+Regras que a conferência mede:
+
+- o quadril fica fora do chão o tempo todo (consenso)
+- os ombros ficam no chão, sem sair do lugar, e a cabeça apoiada (consenso)
+- com os joelhos dobrados, ombros, quadril e joelhos em linha (consenso)
+- os calcanhares deslizam na toalha: ficam apoiados nela e andam para perto do glúteo (consenso)
+
+Erros desenhados:
+
+- Quadril encosta no chão (vista: lateral): o quadril cai até o chão enquanto os calcanhares vêm
+- Arquear a lombar (vista: lateral): a lombar arqueia 25° e a barriga sobe, fora da linha ombro–joelho
+- Puxar pouco (vista: lateral): para com os joelhos pouco dobrados, os calcanhares longe do glúteo
+
+Fontes desta ficha:
+
+- `ficha`: Ficha da técnica (docs/pesquisa/animacoes/flexao-joelho-deslizante.md): a mesma técnica da flexão na bola do guia original, consenso de treinadores
+- `app`: Texto do app (src/conteudo/exercicios/flexao-joelho-deslizante.json), que sai da ficha
+- `correcao`: Correção já feita em 04/11/2026 (docs/revisoes/animacao-nova/correcoes-ja-feitas.md, linha da flexao-joelho-deslizante): toalha centrada sob o calcanhar e pé em ângulo reto com a canela
+- `hoje`: Animação aprovada no guia de hoje (src/engine/exercicios/flexao-joelho-deslizante.ts): as distâncias que a ficha não dá em número
+- `objetos`: src/engine/novo/dados/objetos/toalha.json
+- `desenho`: Escolha de desenho desta animação, dentro do que a ficha pede; a conferência mede o resultado
+
+### Flexão de joelho com elástico (`flexao-joelho-elastico`)
+
+Ficha da técnica: `docs/pesquisa/animacoes/flexao-joelho-elastico.md`. Movimento simétrico (os dois lados fazem o mesmo).
+
+| parâmetro | valor | selo | fonte | o que é |
+|---|---|---|---|---|
+| `joelho.inicio` | 12 graus | consenso | app | início: joelhos quase estendidos, elástico um pouco esticado |
+| `joelho.fim` | 115 graus | desenho | desenho | fim: joelhos bem dobrados, calcanhares perto do glúteo; a ficha não dá o ângulo (com o quadril estendido, o reto femoral limita a flexão do joelho) |
+| `tornozelo.flexaoPlantar` | 55 graus | desenho | desenho | o pé solto, um pouco esticado (a ponta do pé não toca o chão com as pernas quase estendidas); a ficha não fala do pé |
+| `testa.altura` | 4,7 cm | desenho | desenho | a testa apoia no dorso das mãos espalmadas no chão ("testa apoiada nos braços dobrados"): altura do dorso da mão espalmada, medida no Boneco: 4,7 cm do chão |
+| `maos.meiaDistancia` | 7 cm | desenho | desenho | as mãos lado a lado sob a testa: distância de cada punho ao meio do corpo |
+| `colchonete.z` | -8 cm | desenho | desenho | onde fica o meio do colchonete (de 100 cm) em relação ao quadril: do peito aos joelhos; a cabeça e as mãos ficam no chão à frente dele |
+| `elastico.esticaNoInicio` | 1,2 vezes | consenso | app | "afaste-se do ponto até o elástico ficar um pouco esticado com as pernas estendidas": 1,2 vez o comprimento em repouso (o número é escolha de desenho) |
+| `elastico.acimaDoTornozelo` | 4 cm | consenso | ficha | os pegadores em volta dos tornozelos, por trás, logo acima do calcanhar: o centro do pegador fica 4 cm acima do centro do tornozelo, ao longo da canela |
+| `ancora.altura` | 1,5 cm | desenho | objetos | a alça da âncora sai pelo vão de baixo da porta: onde o tubo dá a volta, a 1,5 cm do chão |
+| `erro.quadril.sobe` | 12 cm | desenho | desenho | erro: a bacia sobe 12 cm do colchonete, com o peito e os joelhos parados |
+| `erro.curta.ida` | 0,55 fração | desenho | desenho | erro: dobra só 55% do caminho |
+| `erro.curta.volta` | 0,25 fração | desenho | desenho | erro: na volta, para a 25% do caminho, sem estender |
+
+| fase | tipo | duração | respiração | ritmo | selo |
+|---|---|---|---|---|---|
+| Pernas estendidas | pausa | 0,5 s | inspira | elástico já esticado | consenso |
+| Flexão · concêntrica | conc | 1,1 s | expira | ~1 s | consenso |
+| Joelhos dobrados | pausa | 0,5 s | firme | pausa curta | consenso |
+| Volta · excêntrica | exc | 2,4 s | inspira | ~2–3 s | consenso |
+
+Contatos que não podem sair do lugar: `pelve`, `joelho.R`, `joelho.L`, `mao.R`, `mao.L`.
+
+Regras que a conferência mede:
+
+- deitado de bruços, o quadril encostado no colchonete e a testa apoiada nos braços (consenso)
+- no fim, joelhos bem dobrados, calcanhares em direção ao glúteo (consenso)
+- o elástico estica mais com os joelhos dobrados e já está um pouco esticado com as pernas estendidas (consenso)
+- as pontas do elástico ficam em volta dos dois tornozelos, por trás, logo acima do calcanhar (consenso)
+
+Erros desenhados:
+
+- Quadril sobe do chão (vista: lateral): a bacia sobe 12 cm do colchonete e o quadril dobra
+- Dar tranco (vista: lateral): no meio da subida, os calcanhares já estão quase no fim (embalo)
+- Puxar pouco ou não estender na volta (vista: lateral): dobra só até a metade e não estende na volta
+
+Fontes desta ficha:
+
+- `ficha`: Ficha da técnica (docs/pesquisa/animacoes/flexao-joelho-elastico.md): a técnica da mesa flexora, consenso de treinadores (nsca2021, não verificado)
+- `app`: Texto do app (src/conteudo/exercicios/flexao-joelho-elastico.json), que sai da ficha
+- `fisica`: Física do elástico: a força cresce com o quanto ele estica (a ficha da técnica registra); a borracha não muda de volume, então o tubo afina ao esticar
+- `hoje`: Animação aprovada no guia de hoje (src/engine/exercicios/flexao-joelho-elastico.ts; conferência em docs/revisoes/elastico/conferencia/flexao-joelho-elastico.md): as distâncias que a ficha não dá em número
+- `objetos`: src/engine/novo/dados/objetos.json (colchonete, elástico em tubo) e src/engine/novo/dados/objetos/porta.json (porta e âncora de porta)
+- `desenho`: Escolha de desenho desta animação, dentro do que a ficha pede; a conferência mede o resultado
+
+### Flexão com os pés elevados (`flexao-pes-elevados`)
+
+Ficha da técnica: `docs/pesquisa/animacoes/flexao-pes-elevados.md`. Movimento simétrico (os dois lados fazem o mesmo).
+
+| parâmetro | valor | selo | fonte | o que é |
+|---|---|---|---|---|
+| `cotovelo.cima` | 10 graus | consenso | ficha | em cima: empurra até os braços estenderem, sem travar |
+| `peito.aoChao` | 5 cm | consenso | ficha | embaixo: o peito quase toca o chão |
+| `maos.alemDoOmbro` | 12 cm | consenso | ficha | mãos um pouco mais abertas que os ombros: a borda de dentro da mão fica 2 cm para fora da linha de fora do ombro (meia largura bideltoide 23,9 + meia largura da mão 4,3 + 2 = 30,2 cm do meio do corpo; o centro do ombro fica a 18,4). Antes eram 6 cm, que punham a mão debaixo do ombro, e não para fora dele |
+| `maos.abaixoDoOmbro` | 0 cm | desenho | desenho | a linha das mãos (distância do ombro em direção aos pés, com o corpo embaixo). A ficha não dá a linha; com os pés elevados o ombro quase não anda para trás na subida, e as mãos na linha do meio do peito (13 cm, a flexão) dobrariam o punho além do máximo em cima |
+| `cotovelos.doTronco` | 45 graus | consenso | ficha | cotovelos a ~45° do corpo |
+| `pes.meiaDistancia` | 8,7 cm | consenso | flexao | pés na largura do quadril |
+| `tornozelo.dorsiflexao` | 25 graus | desenho | desenho | pontas dos pés no apoio, com o corpo inclinado para baixo: o tornozelo estende (valor negativo = ponta do pé), para os dedos não dobrarem além do máximo |
+| `joelho` | 4 graus | consenso | ficha | pernas estendidas (corpo reto da cabeça aos calcanhares) |
+| `escapula.retracaoEmbaixo` | 8 graus | desenho | desenho | as escápulas se aproximam na descida; a ficha não dá número |
+| `erro.quadril.queda` | 16 graus | desenho | desenho | erro: o quadril cai (extensão da lombar somada) |
+| `erro.cot.doTronco` | 88 graus | desenho | desenho | erro: cotovelos abertos em T, a ~90° do corpo |
+| `erro.curta.fracao` | 0,5 fração | desenho | desenho | erro: desce só até a metade |
+| `pes.daBordaDoBanco` | 3 cm | desenho | desenho | a ponta do banco fica 3 cm além das pontas dos dedos: os pés apoiam inteiros no tampo, perto da borda |
+| `banco.pontaNoQuadro` | 45 cm | desenho | desenho | do banco, o quadro precisa mostrar os 45 cm da ponta onde os pés apoiam; o resto pode ser cortado pela borda |
+| `pescoco.extensao` | 16 graus | desenho | desenho | em cima, o pescoço um pouco estendido (o olhar vai para o chão um pouco à frente das mãos) |
+| `cabeca.extensao` | -10 graus | desenho | desenho | o queixo um pouco recolhido sobre o pescoço (a cabeça dobra 10°), para o rosto não se jogar para trás |
+| `cabeca.aoChao` | 5 cm | desenho | desenho | embaixo, o rosto fica no mínimo a 5 cm do chão: com a cabeça abaixo dos pés, ela chega ao chão antes do peito, e a descida para aí |
+| `pescoco.extensaoEmbaixo` | 50 graus | desenho | desenho | embaixo, o pescoço estende mais, contra o tronco inclinado para baixo, e o olhar vai para o chão à frente das mãos: com a cabeça em linha com o corpo, o rosto bateria no chão antes do peito. Contra o chão, o rosto fica virado só uns 30° para a frente |
+
+| fase | tipo | duração | respiração | ritmo | selo |
+|---|---|---|---|---|---|
+| Em cima | pausa | 0,4 s | inspira | prancha | consenso |
+| Descida · excêntrica | exc | 2,5 s | inspira | 2 a 3 s | consenso |
+| Embaixo | pausa | 0,35 s | firme | peito perto do chão | consenso |
+| Subida · concêntrica | conc | 1 s | expira | ~1 s | consenso |
+
+Contatos que não podem sair do lugar: `pe.R`, `pe.L`, `mao.R`, `mao.L`.
+
+Regras que a conferência mede:
+
+- corpo reto da cabeça aos calcanhares (consenso)
+- embaixo, o peito quase toca o chão (consenso)
+- cotovelos a ~45° do corpo (consenso)
+- pés no apoio firme, sem sair do lugar (consenso)
+- a cabeça fica abaixo do quadril, sem bater no chão (consenso)
+
+Erros desenhados:
+
+- Quadril caído ou alto demais (vista: lateral): a lombar arqueia e o quadril cai abaixo da linha
+- Descer pouco (vista: lateral): desce só até a metade
+- Cotovelos abertos em T (vista: cima): os cotovelos vão para os lados, a ~90° do corpo
+
+Fontes desta ficha:
+
+- `ficha`: Ficha da técnica (docs/pesquisa/animacoes/flexao-pes-elevados.md): consenso de treinadores, com ebben2011 (docs/pesquisa/fontes.md) para a posição e a subida
+- `tempo`: tempo.serie, citado na ficha da técnica para a descida de ~2 a 3 s (consenso)
+- `flexao`: A ficha de movimento da flexão aprovada (src/engine/novo/dados/movimentos/flexao.json), que veio do guia original (consenso de treinadores): a ficha da técnica pede a mesma posição das mãos, dos cotovelos e do corpo
 - `desenho`: Escolha de desenho desta animação, dentro do que a ficha pede; a conferência mede o resultado
 
 ### Flexão de braço (`flexao`)
@@ -745,6 +1259,56 @@ Fontes desta ficha:
 - `cdc`: Soucie JM et al. Range of motion measurements: reference values and a database for comparison studies. Haemophilia 2011 (tabelas do CDC; docs/revisoes/animacao-nova/pesquisa/02-articulacoes.md, A1)
 - `equilibrio`: Em pé, parado, a projeção do centro de massa cai dentro do apoio dos pés (mecânica); a ficha pede o peso no meio do pé
 - `objetos`: src/engine/novo/dados/objetos.json
+- `desenho`: Escolha de desenho desta animação, dentro do que a ficha pede; a conferência mede o resultado
+
+### Flexão com o quadril alto (pike) (`pike`)
+
+Ficha da técnica: `docs/pesquisa/animacoes/pike.md`. Movimento simétrico (os dois lados fazem o mesmo).
+
+| parâmetro | valor | selo | fonte | o que é |
+|---|---|---|---|---|
+| `maos.alemDoOmbro` | 12 cm | consenso | flexao | mãos um pouco mais abertas que os ombros: o mesmo afastamento da flexão aprovada (centro da mão a 30,2 cm do meio do corpo) |
+| `maos.aFrenteDosPes` | 94 cm | desenho | hoje | distância no chão da bola do pé ao centro da palma (hoje: o punho a ~107 cm do tornozelo). Quanto mais perto, mais em pé fica o tronco (cartão, 'vary') |
+| `pes.meiaDistancia` | 8,7 cm | consenso | flexao | pés na largura do quadril, como na flexão |
+| `calcanhar.sobe` | 30 graus | desenho | hoje | apoio na ponta dos pés: o calcanhar fica levantado e parado (hoje: o calcanhar a ~9 cm do chão) |
+| `joelho` | 5 graus | consenso | guia | pernas estendidas (o cartão aceita os joelhos um pouco dobrados) |
+| `quadril.cima` | 105 graus | desenho | hoje | em cima: a flexão do quadril que faz o V de cabeça para baixo (hoje: 100 a 109°) |
+| `cotovelo.cima` | 10 graus | consenso | guia | em cima: braços estendidos (sem travar), como na flexão |
+| `cabeca.aoChao` | 5 cm | desenho | desenho | embaixo: o ponto mais baixo da cabeça a poucos centímetros do chão ('perto do chão, sem encostar'; a ficha não dá número) |
+| `cabeca.naLinhaDasMaos` | 0 cm | consenso | guia | embaixo: o ponto mais baixo da cabeça na linha das mãos (o centro das palmas), entre elas |
+| `cotovelos.doTronco` | 45 graus | consenso | guia | cotovelos para trás, a meio caminho entre o tronco e os lados (cartão, erro 'cot') |
+| `pescoco.flexao` | 0 graus | desenho | desenho | pescoço e cabeça na linha do tronco (a ficha não diz para onde olhar) |
+| `erro.quadril.ombrosAFrente` | 8 cm | desenho | desenho | erro: embaixo, os ombros passam 8 cm à frente das mãos (vira flexão) |
+| `erro.cot.doTronco` | 88 graus | desenho | desenho | erro: cotovelos abertos a ~90° |
+| `erro.curta.fracao` | 0,45 fração | desenho | desenho | erro: desce só até menos da metade |
+
+| fase | tipo | duração | respiração | ritmo | selo |
+|---|---|---|---|---|---|
+| Em cima | pausa | 0,4 s | inspira | quadril alto | consenso |
+| Descida · excêntrica | exc | 2 s | inspira | ~2 s | consenso |
+| Embaixo | pausa | 0,35 s | firme | cabeça perto do chão | consenso |
+| Subida · concêntrica | conc | 1 s | expira | ~1 s | consenso |
+
+Contatos que não podem sair do lugar: `pe.R`, `pe.L`, `mao.R`, `mao.L`.
+
+Regras que a conferência mede:
+
+- o quadril continua alto: fica acima dos ombros e os ombros não passam à frente das mãos (consenso)
+- embaixo, a cabeça fica perto do chão, sem encostar, na linha das mãos e entre elas (consenso)
+- pernas estendidas o ciclo inteiro (consenso)
+- cotovelos para trás, a meio caminho entre o tronco e os lados (consenso)
+
+Erros desenhados:
+
+- Quadril desce e vira flexão (vista: lateral): o quadril baixa e os ombros passam à frente das mãos
+- Cotovelos abertos para os lados (vista: frontal): os cotovelos vão para os lados
+- Descer pouco (vista: lateral): a cabeça para longe do chão
+
+Fontes desta ficha:
+
+- `guia`: Ficha da técnica (docs/pesquisa/animacoes/pike.md) e cartão do app (src/conteudo/exercicios/pike.json): consenso de treinadores, sem estudo (P4 de docs/pesquisa-v2/10-equipamento-minimo.md)
+- `flexao`: A flexão aprovada no motor novo (dados/movimentos/flexao.json), de onde a ficha da técnica manda partir: mãos, punho e dedos iguais
+- `hoje`: Animação de hoje (src/engine/exercicios/pike.ts, aprovada em 04/11/2026), medida em docs/revisoes/animacao-nova/diagnostico/medidas-de-hoje.json
 - `desenho`: Escolha de desenho desta animação, dentro do que a ficha pede; a conferência mede o resultado
 
 ### Puxada unilateral ajoelhado na polia alta (`puxada-unilateral`)
