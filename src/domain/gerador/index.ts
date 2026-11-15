@@ -174,7 +174,7 @@ export function contextoDeSelecao(perfil: Perfil, inventarioOriginal: Inventario
 
   // Desempate dentro do mesmo nível da função (selecao.funcao-da-vaga): dor leve desfavorece; estabilidade
   // só para iniciante; carga possível; variedade entre os dias; a preferência da pessoa (selecao.preferencia);
-  // com animação aprovada; por fim o id, só para o resultado ser estável.
+  // com animação aprovada; por fim a ordem de referência da lista da função.
   const halterMax = cargaMaxHalter(inventario);
   const kettlebellMax = cargasKettlebell(inventario).at(-1) ?? 0;
   // O graviton (assistida) não passa do peso do corpo: conta como o peso do corpo. A caneleira é carga baixa
@@ -191,6 +191,17 @@ export function contextoDeSelecao(perfil: Perfil, inventarioOriginal: Inventario
   // menos um fica por último entre os do mesmo nível, em todo caminho da escolha (vaga vazia, dia refeito pela dor, 2º
   // exercício do foco), e não só na vaga do último dia (régua, B1).
   const limiteDeRepeticao = perfil.diasSemana >= 3 ? perfil.diasSemana - 1 : Infinity;
+  // selecao.funcao-da-vaga (15/11/2026): no empate total, a ordem de referência da lista da função (o exercício mais
+  // comum e mais simples de montar primeiro; dado curado em funcoes.json), e não a alfabética. O id fica só para
+  // exercícios de funções diferentes, para o resultado ser estável.
+  const ordemDeReferencia = (fa: Funcao | undefined, a: Exercicio, fb: Funcao | undefined, b: Exercicio) => {
+    if (fa && fa === fb) {
+      const ids = fa.niveis.flat();
+      const d = ids.indexOf(a.id) - ids.indexOf(b.id);
+      if (d) return d;
+    }
+    return ordemFixa(a.id, b.id);
+  };
   const chave = (e: Exercicio, f: Funcao | undefined, usos: Map<string, number>, evitar?: (e: Exercicio) => boolean, depois?: (e: Exercicio) => boolean) => [
     evitar?.(e) ? 1 : 0, // selecao.variacoes-equivalentes: no último dia, o que já está em todos os outros fica por último
     (usos.get(e.id) ?? 0) >= limiteDeRepeticao ? 1 : 0,
@@ -208,7 +219,7 @@ export function contextoDeSelecao(perfil: Perfil, inventarioOriginal: Inventario
     (a: Exercicio, b: Exercicio) => {
       const [ka, kb] = [chave(a, funcaoDe(a), usos, evitar, depois), chave(b, funcaoDe(b), usos, evitar, depois)];
       for (let i = 0; i < ka.length; i++) if (ka[i] !== kb[i]) return ka[i]! - kb[i]!;
-      return ordemFixa(a.id, b.id);
+      return ordemDeReferencia(funcaoDe(a), a, funcaoDe(b), b);
     };
 
   /** 1º nível com exercício possível; se nada, a função substituta (seNada). */
@@ -285,10 +296,10 @@ export function contextoDeSelecao(perfil: Perfil, inventarioOriginal: Inventario
     ];
     const vetor = (x: Exercicio) => criterios.map(([k]) => k(x));
     const menor = (a: number[], b: number[]) => a.findIndex((v, i) => v !== b[i]);
-    // O 2º colocado: o melhor dos outros pelos mesmos critérios (no empate, o id, como no desempate).
+    // O 2º colocado: o melhor dos outros pelos mesmos critérios (no empate, a ordem de referência, como no desempate).
     const segundo = [...outros].sort((a, b) => {
       const i = menor(vetor(a), vetor(b));
-      return i < 0 ? ordemFixa(a.id, b.id) : vetor(a)[i]! - vetor(b)[i]!;
+      return i < 0 ? ordemDeReferencia(funcao, a, funcao, b) : vetor(a)[i]! - vetor(b)[i]!;
     })[0]!;
     const i = menor(vetor(e), vetor(segundo));
     const nome = segundo.nome.toLowerCase();
@@ -319,6 +330,8 @@ export function contextoDeSelecao(perfil: Perfil, inventarioOriginal: Inventario
     carregaExcluida,
     naFuncao,
     perdidaPorDor,
+    /** O empate total é decidido pela ordem de referência da lista da função (para a auditoria medir o que decidiu). */
+    temOrdemDeReferencia: true,
     halterMax,
     barraDoIniciante,
     noLugarDe,

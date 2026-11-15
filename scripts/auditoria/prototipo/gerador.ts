@@ -147,21 +147,8 @@ const LIGAR_SEM_CARGA = false;
 const AJOELHADOS_3 = ['puxada-unilateral', 'puxada-barra-reta', 'abdominal-polia'];
 const AJOELHADOS = new Set(prot('joelho3') && !prot('todas') ? AJOELHADOS_3 : [...AJOELHADOS_3, 'roda-abdominal', 'puxada-elastico', 'coice-caneleira', 'coice-elastico', 'coice-maquina']);
 const articulacoesDe = (e: Exercicio): Articulacao[] => ((prot('joelho') || (prot('joelho3') && !prot('todas'))) && AJOELHADOS.has(e.id) && !e.articulacoes.includes('joelho') ? [...e.articulacoes, 'joelho'] : e.articulacoes);
-/**
- * PROTÓTIPO (escolha): a ordem de referência dentro de um nível da função (o exercício mais comum e mais simples
- * primeiro), para os níveis em que a ordem de `funcoes.json` não serve. Na etapa 2, isto vira a própria ordem das listas
- * de `funcoes.json` (dado curado); aqui fica à parte para o protótipo desligado continuar idêntico ao app.
- */
-const ORDEM_DE_REFERENCIA: Record<string, string[]> = {
-  'puxar-vertical': ['puxada-frente', 'puxada-barra-reta', 'barra-fixa', 'barra-fixa-supinada', 'barra-fixa-graviton', 'puxada-unilateral'],
-  'empurrar-horizontal': ['flexao', 'supino-polia', 'mergulho-graviton', 'mergulho', 'flexao-pes-elevados'],
-  afundo: ['afundo', 'afundo-tras', 'bulgaro', 'afundo-kettlebell'],
-  abdomen: ['abdominal-chao', 'abdominal-bola', 'abdominal-invertido', 'elevacao-joelhos', 'elevacao-joelhos-paralelas', 'roda-abdominal'],
-};
-const posicaoDeReferencia = (f: Funcao, id: string) => {
-  const i = ORDEM_DE_REFERENCIA[f.id]?.indexOf(id) ?? -1;
-  return i >= 0 ? i : 100 + f.niveis.flat().indexOf(id);
-};
+/** selecao.funcao-da-vaga (15/11/2026, adotada): a posição do exercício na lista da função (a ordem de referência, dado curado). */
+const posicaoDeReferencia = (f: Funcao, id: string) => f.niveis.flat().indexOf(id);
 /** PROTÓTIPO (iniciante-simples): exercícios por treino do iniciante. */
 const INICIANTE_MAX_EXERCICIOS = 99;
 const INICIANTE_LIMITE_DESDE_DIAS = 3;
@@ -229,11 +216,14 @@ export function contextoDeSelecao(perfil: Perfil, inventarioOriginal: Inventario
   // mesmo e leva o dobro do tempo; com pouca carga, o de um lado continua valendo como degrau).
   const umLadoSemPrecisar = (e: Exercicio) => ((prot('escolha') || prot('esc-dois-lados')) && e.unilateral && cargaPossivel(e) === 2 ? 1 : 0);
   /** PROTÓTIPO: os critérios de treino do desempate (para a régua medir o que decidiu a escolha). */
+  // PROTÓTIPO (esc-simples): para o iniciante, entre os que deixam pôr a mesma carga, o de menor complexidade primeiro
+  // (antes da carga, a flexão fechada passava na frente do tríceps com halter e o dia ficava com três exercícios de peito).
+  const simples = (prot('escolha') || prot('esc-simples')) && nivel === 'iniciante';
   const criteriosDeTreino = (e: Exercicio): number[] => [
     articulacoesDe(e).some((a) => dorLeve.has(a)) ? 1 : 0,
-    (prot('escolha') || prot('esc-simples')) && nivel === 'iniciante' ? e.complexidade : 0,
     nivel === 'iniciante' && !estavel(e) ? 1 : 0,
     -cargaPossivel(e),
+    simples ? e.complexidade : 0,
     umLadoSemPrecisar(e),
     pernaSemCarga(e),
   ];
@@ -248,10 +238,10 @@ export function contextoDeSelecao(perfil: Perfil, inventarioOriginal: Inventario
     prot('sem-repetir') && (usos.get(e.id) ?? 0) >= limiteDeRepeticao ? 1 : 0,
     depois?.(e) ? 1 : 0, // selecao.funcao-da-vaga (R5a): um afundo por dia, havendo outra opção no mesmo nível
     articulacoesDe(e).some((a) => dorLeve.has(a)) ? 1 : 0,
-    (prot('escolha') || prot('esc-simples')) && nivel === 'iniciante' ? e.complexidade : 0, // PROTÓTIPO (escolha): para o iniciante, o mais simples primeiro
     nivel === 'iniciante' && !estavel(e) ? 1 : 0,
     cansa?.(e) ? 1 : 0, // PROTÓTIPO (fadiga): o que carrega a lombar sem apoio fica depois, se o dia já tem outro que carrega
     -cargaPossivel(e),
+    simples ? e.complexidade : 0, // PROTÓTIPO (esc-simples): para o iniciante, o mais simples entre os de mesma carga
     umLadoSemPrecisar(e),
     pernaSemCarga(e),
     // PROTÓTIPO (iniciante-simples): para o iniciante, o exercício que já está na semana vem antes (prática antes de variedade).
@@ -358,7 +348,9 @@ export function contextoDeSelecao(perfil: Perfil, inventarioOriginal: Inventario
     // O 2º colocado: o melhor dos outros pelos mesmos critérios (no empate, o id, como no desempate).
     const segundo = [...outros].sort((a, b) => {
       const i = menor(vetor(a), vetor(b));
-      return i < 0 ? ordemFixa(a.id, b.id) : vetor(a)[i]! - vetor(b)[i]!;
+      if (i >= 0) return vetor(a)[i]! - vetor(b)[i]!;
+      const d = prot('escolha') || prot('esc-referencia') ? posicaoDeReferencia(funcao, a.id) - posicaoDeReferencia(funcao, b.id) : 0;
+      return d || ordemFixa(a.id, b.id);
     })[0]!;
     const i = menor(vetor(e), vetor(segundo));
     const nome = segundo.nome.toLowerCase();
@@ -570,9 +562,35 @@ function montarPrograma(perfil: Perfil, inventarioOriginal: Inventario, triagem:
   // equivalentes do mesmo nível, o exercício que já está em todos os outros dias fica por último (antes até da
   // estabilidade do iniciante): repetir o mesmo exercício em todos os dias havendo outro equivalente é defeito.
   const diasCom = new Map<string, number>();
+  const forcados = new Map<number, Set<string>>();
+  /** O exercício é a única opção de alguma vaga do dia (no nível que o equipamento e a dor deixam). */
+  const forcadoEm = (id: string, di: number) => {
+    let s = forcados.get(di);
+    if (!s) {
+      s = new Set();
+      for (const v of divisao.dias[di]!.vagas) {
+        if (!ativa(v) || v.complemento) continue;
+        const res = resolver(v);
+        const ids = res ? res.funcao.niveis[res.nivel]!.filter((x) => naFuncao(res.funcao, x)) : [];
+        if (ids.length === 1) s.add(ids[0]!);
+      }
+      forcados.set(di, s);
+    }
+    return s.has(id);
+  };
   const dias = divisao.dias.map((dia, di) => {
     const ultimoDia = divisao.dias.length >= 3 && di === divisao.dias.length - 1;
     const repeteEmTodos = (e: Exercicio) => ultimoDia && (diasCom.get(e.id) ?? 0) === di;
+    // PROTÓTIPO (esc-simples): antes do último dia, o exercício que já está em todos os dias anteriores e é a única opção de
+    // alguma vaga em todos os dias seguintes fica por último entre os do mesmo nível (a flexão no graviton: forçada nos
+    // dias B e D). Só ordena dentro do nível: não desce de nível, como a regra do último dia.
+    const vaiRepetirEmTodos = (e: Exercicio) =>
+      (prot('escolha') || prot('esc-simples')) &&
+      nivel === 'iniciante' &&
+      divisao.dias.length >= 3 &&
+      !ultimoDia &&
+      (diasCom.get(e.id) ?? 0) === di &&
+      divisao.dias.slice(di + 1).every((_, k) => forcadoEm(e.id, di + 1 + k));
     // Num dia que perdeu vaga de pernas para a dor, a extensão de quadril não entra pela falta: o dia é refeito com o músculo mais
     // abaixo da meta (selecao.dia-sem-principal), e ela tirava o lugar do 2º exercício do foco (R5a sobre o R5d).
     const perdeuPelaDor = dia.vagas.some((w) => ativaPeloFoco(w) && MUSCULOS_INFERIORES.includes(FUNCAO[w.funcao]!.musculo) && !resolver(w) && perdidaPorDor(w));
@@ -647,7 +665,7 @@ function montarPrograma(perfil: Perfil, inventarioOriginal: Inventario, triagem:
       // que já carrega (os de perna, no máximo dois), havendo opção do mesmo nível.
       const lombarNoDia = itens.filter((i) => carregaLombar(i.ex)).length;
       const cansa = prot('fadiga') ? (e: Exercicio) => carregaLombar(e) && lombarNoDia >= (e.musculos.primarios.some((m) => MUSCULOS_INFERIORES.includes(m)) ? 2 : 1) : undefined;
-      const achado = ctx.escolher(funcao, x.res.nivel, fora, usos, repeteEmTodos, comAfundo ? ehAfundo : undefined, cansa);
+      const achado = ctx.escolher(funcao, x.res.nivel, fora, usos, repeteEmTodos, (e) => (comAfundo && ehAfundo(e)) || vaiRepetirEmTodos(e), cansa);
       if (!achado) continue;
       const { ex: escolhido, nivelFuncao } = achado;
       // Toda vaga confere o teto semanal já no mínimo de séries (antes, só os complementos e as vagas de prioridade:
@@ -1089,7 +1107,7 @@ function montarPrograma(perfil: Perfil, inventarioOriginal: Inventario, triagem:
       ? (metas[m] ?? 0)
       : prioritarios.has(m)
         ? Math.max(metas[m] ?? 0, VOLUME.maximo[nivel])
-        : !focoPossivel || (PUXAM.includes(m) && (empurraDemais(ds) || (emTodos && empurrarNoLimite(ds))))
+        : !focoPossivel || (PUXAM.includes(m) && (empurraDemais(ds) || ((emTodos || prot('d1-foco')) && empurrarNoLimite(ds))))
           ? Math.max(metas[m] ?? 0, VOLUME.sobraAte[nivel])
           : Math.max(metas[m] ?? 0, Math.min(VOLUME.sobraAte[nivel], menorFoco(ds) - DISTANCIA_DO_FOCO));
   let seriesNaSobra = false;
@@ -1142,7 +1160,7 @@ function montarPrograma(perfil: Perfil, inventarioOriginal: Inventario, triagem:
           // volume.equilibrio-coxa: a série a mais não tira quadríceps ÷ posteriores da faixa de 0,5 a 2.
           if (!mantemCoxa(e, -1, v)) return;
           // Quem não é foco não sobe um empurrar que passe empurrar ÷ puxar de 1,5 (régua da G5, D1).
-          if ((emTodos || !prioritarios.has(m)) && podePuxar && PADROES_EMPURRAR.includes(x.padrao) && empurraDemais(programaDias.map((z, k) => (k === di ? { ...z, exercicios: z.exercicios.map((y, j) => (j === xi ? { ...y, series: y.series + 1 } : y)) } : z)))) return;
+          if ((emTodos || !prioritarios.has(m) || prot('d1-foco')) && podePuxar && PADROES_EMPURRAR.includes(x.padrao) && empurraDemais(programaDias.map((z, k) => (k === di ? { ...z, exercicios: z.exercicios.map((y, j) => (j === xi ? { ...y, series: y.series + 1 } : y)) } : z)))) return;
           // O foco vem antes dos outros (volume.prioridade.foco-primeiro); entre iguais, o mais longe da meta.
           const foco = prioritarios.has(m) ? 0 : 1;
           // PROTÓTIPO (usa-tempo): entre as séries possíveis do músculo mais longe do alvo, primeiro o exercício com menos
