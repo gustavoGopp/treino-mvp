@@ -6,6 +6,10 @@ Comece por **`proposta.md`, seção 0-B**: o que esta sessão fez, o que a confe
 
 ## Onde a sessão parou
 
+**O corpo foi fechado pelo Gustavo em 15/11/2026 ("pode fechar o corpo e começar o lote 1").** O lote 1 (agachamentos, afundos e búlgaros) começou. Ficam para antes dos lotes 3 e 4: o trapézio no pescoço, a linha do pescoço ao ombro conforme a pose e o cotovelo da puxada (152°). As quatro âncoras ainda não foram aprovadas folha a folha para entrar no app: a lista de exercícios do motor novo no app continua vazia.
+
+O que vem abaixo é o registro de como se chegou ao fechamento.
+
 **Parada obrigatória da seção 5 do prompt: o corpo só é dado como fechado com o ok do Gustavo.** Nenhum lote começou.
 
 **A revisão independente mudou a recomendação: o corpo ainda não está pronto para fechar.** O esqueleto e as medidas passaram; o desenho dos músculos (porções do deltoide e do trapézio, quatro formas presas no lugar errado), a escápula, o fim da puxada e dois erros precisam de uma rodada de correção. A lista, com o que proponho em cada item, está na `proposta.md`, seção 0-B, "A revisão independente".

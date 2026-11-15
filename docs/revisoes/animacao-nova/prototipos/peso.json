@@ -1,11 +1,11 @@
 {
  "comoEsta": {
-  "min": 145643,
-  "gz": 47895
+  "min": 151496,
+  "gz": 48856
  },
  "semTextosDeFonte": {
-  "min": 119894,
-  "gz": 40327
+  "min": 123718,
+  "gz": 40899
  },
  "soOMotor": {
   "min": 111356,
@@ -16,8 +16,8 @@
   "gz": 31329
  },
  "mais:goblet": {
-  "gz": 5301,
-  "gzSemTextos": 4362
+  "gz": 5390,
+  "gzSemTextos": 4444
  },
  "mais:supino-reto": {
   "gz": 4264,

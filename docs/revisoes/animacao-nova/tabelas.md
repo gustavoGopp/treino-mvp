@@ -277,6 +277,54 @@ Fontes dos objetos:
 
 Uma por exercício refeito, em `src/engine/novo/dados/movimentos/`. Selos: robusta, moderada, um estudo, consenso (de treinadores) e desenho (escolha de desenho dentro do que a ficha da técnica pede).
 
+### Agachamento com o peso do corpo (`agachamento-peso-corpo`)
+
+Ficha da técnica: `docs/pesquisa/animacoes/agachamento-peso-corpo.md`. Movimento simétrico (os dois lados fazem o mesmo).
+
+| parâmetro | valor | selo | fonte | o que é |
+|---|---|---|---|---|
+| `joelho.cima` | 8 graus | consenso | ficha | em cima: joelhos quase estendidos, sem travar |
+| `joelho.baixo` | 126 graus | moderada | amplitude | embaixo: agachamento completo, com o quadril abaixo da altura do joelho (decisão do Gustavo em 04/11/2026); a média de flexão do joelho é 140 (cdc) |
+| `tronco.cima` | 3 graus | consenso | ficha | em pé |
+| `tronco.baixo` | 33 graus | desenho | desenho | inclinação do peito embaixo: a ficha pede um pouco mais que no goblet (27), com a lombar neutra, e não dá número |
+| `pes.meiaDistancia` | 19 cm | consenso | ficha | pés um pouco mais abertos que o quadril (meia largura do quadril: 16,2) |
+| `pes.paraFora` | 15 graus | consenso | ficha | pontas levemente para fora |
+| `bracos.paraDentro` | 7 graus | desenho | desenho | braços estendidos à frente, na altura dos ombros, com as mãos se aproximando: quanto cada braço fecha para o meio; a ficha não dá número |
+| `cotovelo` | 6 graus | desenho | desenho | braços estendidos, sem travar o cotovelo |
+| `erro.raso.joelho` | 72 graus | desenho | desenho | erro: parar alto |
+| `erro.valgo.joelho` | 9 cm | desenho | desenho | erro: quanto cada joelho cai para dentro da linha do pé |
+| `erro.calcanhar.sobe` | 14 graus | desenho | desenho | erro: quanto o pé gira na bola, tirando o calcanhar do chão (cerca de 5 cm, como na folha aprovada em 04/11/2026) |
+
+| fase | tipo | duração | respiração | ritmo | selo |
+|---|---|---|---|---|---|
+| Em pé | pausa | 0,5 s | inspira | respire e firme o abdômen | consenso |
+| Descida · excêntrica | exc | 2,4 s | firme | ~2–3 s | consenso |
+| Embaixo · sem quicar | pausa | 0,45 s | firme | pausa curta | consenso |
+| Subida · concêntrica | conc | 1,3 s | expira | ~1–1,5 s | consenso |
+
+Contatos que não podem sair do lugar: `pe.R`, `pe.L`.
+
+Regras que a conferência mede:
+
+- embaixo, o quadril fica abaixo da altura do joelho (moderada)
+- o joelho segue a direção da ponta do pé (consenso)
+- o calcanhar fica apoiado: o peso no meio do pé (consenso)
+- a lombar não arredonda (consenso)
+
+Erros desenhados:
+
+- Joelhos para dentro (vista: frontal): os joelhos saem da linha dos pés, para dentro
+- Calcanhar sai do chão (vista: lateral): o pé gira na bola e o peso vai para a ponta do pé
+- Descer pouco (vista: lateral): para com o joelho a 72° em vez de 126°
+
+Fontes desta ficha:
+
+- `ficha`: Ficha da técnica (docs/pesquisa/animacoes/agachamento-peso-corpo.md): mesma base do goblet aprovado; consenso de treinadores (nsca2021, não verificado)
+- `amplitude`: Amplitude completa: pallares2021 e kassiano2023a (moderada: amplitude completa igual ou melhor que a parcial na hipertrofia); kubo2019 (um estudo: agachar fundo cresceu mais glúteo e adutores), como registrado na ficha da técnica
+- `cdc`: Soucie JM et al. Range of motion measurements: reference values and a database for comparison studies. Haemophilia 2011 (tabelas do CDC; docs/revisoes/animacao-nova/pesquisa/02-articulacoes.md, A1)
+- `equilibrio`: Em pé, parado, a projeção do centro de massa cai dentro do apoio dos pés (mecânica); a ficha pede o calcanhar apoiado
+- `desenho`: Escolha de desenho desta animação, dentro do que a ficha pede; a conferência mede o resultado
+
 ### Flexão de braço (`flexao`)
 
 Ficha da técnica: `docs/pesquisa/animacoes/flexao.md`. Movimento simétrico (os dois lados fazem o mesmo).
