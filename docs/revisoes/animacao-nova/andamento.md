@@ -1,8 +1,8 @@
 # Andamento das 90 animações no motor novo
 
-Atualizado por quem integra, a cada família juntada. "Aprovada na folha" = o Gustavo olhou e aprovou. "Aprovada por delegação" = conferida por quem integra, risco baixo, registrada com a frase dele de 15/11/2026. "Para o Gustavo ver" = risco médio ou alto: só entra na lista do app depois do ok dele. As folhas ficam em `prototipos/folha-<id>.png` e os quadros grandes em `quadros/<id>.png`.
+Atualizado por quem integra, a cada família juntada. "Aprovada na folha" = o Gustavo olhou e aprovou. "Aprovada por delegação" = conferida por quem integra, risco baixo, registrada com a frase dele de 15/11/2026. "Para o Gustavo ver" = risco médio ou alto: só entra na lista do app depois do ok dele. "Correção de qualidade" = desde o aviso dele de 15/11 ("o fato de eu ter delegado [...] não quer dizer que a gente pode diminuir a qualidade"), nenhuma animação delegada conta como pronta enquanto tiver defeito visível nos quadros (seção 8 de `como-fazer-uma-animacao.md`). As folhas ficam em `prototipos/folha-<id>.png` e os quadros grandes em `quadros/<id>.png`.
 
-Resumo: 7 aprovadas na folha; 2 por delegação; 4 para o Gustavo ver; 4 âncoras sem aprovação na folha; 16 em andamento; 57 por fazer.
+Resumo: 7 aprovadas na folha; 1 por delegação; 9 feitas, em correção de qualidade; 4 âncoras sem aprovação na folha; 12 em andamento; 57 por fazer.
 
 | Lote | Exercício | Estado |
 |---|---|---|
@@ -18,13 +18,13 @@ Resumo: 7 aprovadas na folha; 2 por delegação; 4 para o Gustavo ver; 4 âncora
 | 1 | `agachamento-peso-corpo` | aprovada na folha |
 | 1 | `bulgaro` | aprovada na folha |
 | 1 | `bulgaro-peso-corpo` | aprovada por delegação (risco baixo) |
-| 1 | `bulgaro-suspensao` | feita; **para o Gustavo ver** (risco médio: o pé na fita) |
-| 2 | `extensao-triceps-peso-corpo` | feita; **para o Gustavo ver** (risco alto: pose diferente da de hoje; na bancada) |
-| 2 | `flexao-bola` | em andamento (subagente) |
-| 2 | `flexao-elastico` | em andamento (subagente) |
-| 2 | `flexao-fechada` | em andamento (subagente) |
-| 2 | `flexao-pes-elevados` | em andamento (subagente) |
-| 2 | `pike` | feita; **para o Gustavo ver** (risco médio: a vista de frente) |
+| 1 | `bulgaro-suspensao` | feita; falta a correção de qualidade (a fita atravessa o tornozelo; o pé de trás muito esticado) |
+| 2 | `extensao-triceps-peso-corpo` | feita; falta a correção de qualidade; depois **para o Gustavo ver** (pose diferente da de hoje; na bancada) |
+| 2 | `flexao-bola` | feita; em correção de qualidade (é a flexão de joelho na bola: costas arredondadas no fim, bola chapada, vista de cima ilegível) |
+| 2 | `flexao-elastico` | feita; em correção de qualidade (o elástico some de lado) |
+| 2 | `flexao-fechada` | feita; em correção de qualidade (subagente) |
+| 2 | `flexao-pes-elevados` | feita; em correção de qualidade (o rosto encosta no chão embaixo) |
+| 2 | `pike` | feita; falta a correção de qualidade (a vista de frente é um borrão) |
 | 3 | `crucifixo-elastico` | por fazer |
 | 3 | `crucifixo-invertido-polia` | por fazer |
 | 3 | `crucifixo-polia` | por fazer |
@@ -64,8 +64,8 @@ Resumo: 7 aprovadas na folha; 2 por delegação; 4 para o Gustavo ver; 4 âncora
 | 5 | `triceps-frances-kettlebell` | por fazer |
 | 5 | `triceps-frances-polia-unilateral` | por fazer |
 | 5 | `triceps-suspensao` | em andamento (subagente) |
-| 6 | `flexao-joelho-deslizante` | feita; aprovada por delegação (risco baixo a médio: o erro da lombar se lê pouco) |
-| 6 | `flexao-joelho-elastico` | feita; **para o Gustavo ver** (risco médio a alto: de bruços, com a porta longe e o corpo pequeno no quadro) |
+| 6 | `flexao-joelho-deslizante` | feita; falta a correção de qualidade (a segunda vista é difícil de ler) |
+| 6 | `flexao-joelho-elastico` | feita; falta a correção de qualidade (o corpo fica pequeno no quadro) |
 | 6 | `flexao-joelho-suspensao` | em andamento (subagente) |
 | 6 | `nordico` | por fazer |
 | 6 | `panturrilha` | por fazer |
