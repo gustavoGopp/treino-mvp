@@ -2,7 +2,7 @@
 
 Atualizado por quem integra, a cada família juntada. "Aprovada na folha" = o Gustavo olhou e aprovou. "Aprovada por delegação" = conferida por quem integra, risco baixo, registrada com a frase dele de 15/11/2026. "Para o Gustavo ver" = risco médio ou alto: só entra na lista do app depois do ok dele. "Correção de qualidade" = desde o aviso dele de 15/11 ("o fato de eu ter delegado [...] não quer dizer que a gente pode diminuir a qualidade"), nenhuma animação delegada conta como pronta enquanto tiver defeito visível nos quadros (seção 8 de `como-fazer-uma-animacao.md`). As folhas ficam em `prototipos/folha-<id>.png` e os quadros grandes em `quadros/<id>.png`.
 
-Resumo: 7 aprovadas na folha; 1 por delegação; 9 feitas, em correção de qualidade; 4 âncoras sem aprovação na folha; 12 em andamento; 57 por fazer.
+Resumo: 7 aprovadas na folha; 8 por delegação; 3 prontas para o Gustavo ver; 7 em correção ou por conferir; 5 âncoras sem aprovação na folha; 4 em andamento; 57 por fazer.
 
 | Lote | Exercício | Estado |
 |---|---|---|
@@ -18,13 +18,13 @@ Resumo: 7 aprovadas na folha; 1 por delegação; 9 feitas, em correção de qual
 | 1 | `agachamento-peso-corpo` | aprovada na folha |
 | 1 | `bulgaro` | aprovada na folha |
 | 1 | `bulgaro-peso-corpo` | aprovada por delegação (risco baixo) |
-| 1 | `bulgaro-suspensao` | feita; falta a correção de qualidade (a fita atravessa o tornozelo; o pé de trás muito esticado) |
-| 2 | `extensao-triceps-peso-corpo` | feita; falta a correção de qualidade; depois **para o Gustavo ver** (pose diferente da de hoje; na bancada) |
-| 2 | `flexao-bola` | feita; em correção de qualidade (é a flexão de joelho na bola: costas arredondadas no fim, bola chapada, vista de cima ilegível) |
-| 2 | `flexao-elastico` | feita; em correção de qualidade (o elástico some de lado) |
-| 2 | `flexao-fechada` | feita; em correção de qualidade (subagente) |
-| 2 | `flexao-pes-elevados` | feita; em correção de qualidade (o rosto encosta no chão embaixo) |
-| 2 | `pike` | feita; falta a correção de qualidade (a vista de frente é um borrão) |
+| 1 | `bulgaro-suspensao` | feita; em correção de qualidade (subagente) |
+| 2 | `extensao-triceps-peso-corpo` | feita; em correção de qualidade (subagente); depois **para o Gustavo ver** |
+| 2 | `flexao-bola` | feita e corrigida (costas e cabeça no chão, bola com volume); **para o Gustavo ver** (é a flexão de joelho na bola; o pescoço dobra 53° no fim) |
+| 2 | `flexao-elastico` | feita e corrigida; falta nova correção (a vista de três quartos do corpo deitado ficou tosca) |
+| 2 | `flexao-fechada` | feita e corrigida; falta eu conferir os quadros |
+| 2 | `flexao-pes-elevados` | feita e corrigida (o rosto fica a 5 cm do chão); **para o Gustavo ver** (o peito para a 8,5 cm do chão) |
+| 2 | `pike` | feita; em correção de qualidade (subagente) |
 | 3 | `crucifixo-elastico` | por fazer |
 | 3 | `crucifixo-invertido-polia` | por fazer |
 | 3 | `crucifixo-polia` | por fazer |
@@ -44,28 +44,28 @@ Resumo: 7 aprovadas na folha; 1 por delegação; 9 feitas, em correção de qual
 | 4 | `remada-baixa` | por fazer |
 | 4 | `remada-curvada-halteres` | por fazer |
 | 4 | `remada-elastico` | por fazer |
-| 4 | `remada-suspensao` | em andamento (subagente) |
+| 4 | `remada-suspensao` | feita e conferida quadro a quadro por quem integra; aprovada por delegação (âncora a 183 cm, a altura do fabricante; hoje 205) |
 | 4 | `remada-unilateral` | por fazer |
 | 4 | `remada-unilateral-kettlebell` | por fazer |
 | 4 | `remada-unilateral-polia` | por fazer |
 | 4 | `remada-unilateral-sem-banco` | por fazer |
-| 4 | `yt-suspensao` | em andamento (subagente) |
+| 4 | `yt-suspensao` | feita e conferida quadro a quadro por quem integra; aprovada por delegação |
 | 5 | `rosca-alternada` | por fazer |
 | 5 | `rosca-elastico` | por fazer |
 | 5 | `rosca-inclinada` | por fazer |
 | 5 | `rosca-kettlebell` | por fazer |
 | 5 | `rosca-martelo` | por fazer |
 | 5 | `rosca-polia` | por fazer |
-| 5 | `rosca-suspensao` | em andamento (subagente) |
+| 5 | `rosca-suspensao` | feita e conferida quadro a quadro por quem integra; aprovada por delegação |
 | 5 | `triceps-corda` | por fazer |
 | 5 | `triceps-elastico-acima` | por fazer |
 | 5 | `triceps-frances` | por fazer |
 | 5 | `triceps-frances-halter` | por fazer |
 | 5 | `triceps-frances-kettlebell` | por fazer |
 | 5 | `triceps-frances-polia-unilateral` | por fazer |
-| 5 | `triceps-suspensao` | em andamento (subagente) |
-| 6 | `flexao-joelho-deslizante` | feita; falta a correção de qualidade (a segunda vista é difícil de ler) |
-| 6 | `flexao-joelho-elastico` | feita; falta a correção de qualidade (o corpo fica pequeno no quadro) |
+| 5 | `triceps-suspensao` | feita; **para o Gustavo ver** (apoio na ponta dos pés e mãos acima da testa, diferentes da de hoje) |
+| 6 | `flexao-joelho-deslizante` | feita; em correção de qualidade (subagente) |
+| 6 | `flexao-joelho-elastico` | feita; em correção de qualidade (subagente) |
 | 6 | `flexao-joelho-suspensao` | em andamento (subagente) |
 | 6 | `nordico` | por fazer |
 | 6 | `panturrilha` | por fazer |
@@ -77,10 +77,10 @@ Resumo: 7 aprovadas na folha; 1 por delegação; 9 feitas, em correção de qual
 | 6 | `ponte-gluteo-halter` | em andamento (subagente) |
 | 6 | `ponte-kettlebell` | em andamento (subagente) |
 | 6 | `ponte-pes-bola` | por fazer |
-| 6 | `stiff` | em andamento (subagente) |
-| 6 | `stiff-elastico` | em andamento (subagente) |
-| 6 | `stiff-kettlebell` | em andamento (subagente) |
-| 6 | `stiff-unilateral` | em andamento (subagente) |
+| 6 | `stiff` | feita e conferida quadro a quadro por quem integra; aprovada por delegação (desce até o meio da canela, como a ficha pede; hoje para no joelho) |
+| 6 | `stiff-elastico` | feita e conferida quadro a quadro por quem integra; aprovada por delegação (uma volta do elástico em cada mão, para ele não ficar frouxo embaixo) |
+| 6 | `stiff-kettlebell` | feita e conferida quadro a quadro por quem integra; aprovada por delegação |
+| 6 | `stiff-unilateral` | feita e conferida quadro a quadro por quem integra; aprovada por delegação |
 | 7 | `abdominal-bola` | por fazer |
 | 7 | `abdominal-chao` | por fazer |
 | 7 | `abdominal-invertido` | por fazer |

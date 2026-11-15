@@ -12,4 +12,11 @@ export const APROVADOS: Record<string, { em: string; oQueEleDisse: string; como?
   'afundo-tras-peso-corpo': { em: '2026-11-15', oQueEleDisse: 'aprovada, segue para o búlgaro' },
   bulgaro: { em: '2026-11-15', oQueEleDisse: 'Eu estou aprovando e gostando de tudo que você está fazendo' },
   'bulgaro-peso-corpo': { em: '2026-11-15', oQueEleDisse: DELEGOU, como: 'por delegação' },
+  stiff: { em: '2026-11-15', oQueEleDisse: DELEGOU, como: 'por delegação' },
+  'stiff-kettlebell': { em: '2026-11-15', oQueEleDisse: DELEGOU, como: 'por delegação' },
+  'stiff-elastico': { em: '2026-11-15', oQueEleDisse: DELEGOU, como: 'por delegação' },
+  'stiff-unilateral': { em: '2026-11-15', oQueEleDisse: DELEGOU, como: 'por delegação' },
+  'yt-suspensao': { em: '2026-11-15', oQueEleDisse: DELEGOU, como: 'por delegação' },
+  'remada-suspensao': { em: '2026-11-15', oQueEleDisse: DELEGOU, como: 'por delegação' },
+  'rosca-suspensao': { em: '2026-11-15', oQueEleDisse: DELEGOU, como: 'por delegação' },
 };
