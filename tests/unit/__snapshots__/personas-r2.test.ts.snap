@@ -6,8 +6,8 @@ exports[`snapshots do R2: o treino de cada persona na volta de 30 dias > Ana 1`]
     "antes": "semana 6: 15 séries, RIR 2–3 e 1–2, a mesma carga",
     "cargas": [
       "Agachamento búlgaro com apoio: 10 kg → 9 kg",
-      "Ponte de glúteo com halter: 10 kg → 9 kg",
       "Supino reto com halteres: 10 kg → 9 kg",
+      "Ponte de glúteo com halter: 10 kg → 9 kg",
       "Remada unilateral com halter apoiada no banco: 10 kg → 9 kg",
       "Flexão de joelho deslizando os pés no chão: peso do corpo · pausa de 2 s com os joelhos dobrados → peso do corpo · só a volta lenta (3 s), voltando com as duas pernas",
       "Tríceps francês sentado com halter: 10 kg → 9 kg",
@@ -32,8 +32,8 @@ exports[`snapshots do R2: o treino de cada persona na volta de 30 dias > Ana 1`]
     "antes": "semana 6: 15 séries, RIR 2–3 e 1–2, a mesma carga",
     "cargas": [
       "Afundo estático com halteres: 10 kg → 9 kg",
-      "Ponte de glúteo com halter: 10 kg → 9 kg",
       "Flexão de braço: peso do corpo · pés elevados (declinada; sem degrau, cama ou sofá: descida de 4 s) → peso do corpo · descida de 3 s",
+      "Ponte de glúteo com halter: 10 kg → 9 kg",
       "Remada curvada com halteres: 10 kg → 9 kg",
       "Panturrilha no degrau da escada: peso do corpo · uma perna só, com pausa de 2 s embaixo → peso do corpo · uma perna só",
       "Abdominal no chão (crunch): peso do corpo · braços acima da cabeça → peso do corpo · descida de 3 s",

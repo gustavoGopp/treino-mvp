@@ -107,9 +107,9 @@ Médias: eficiente 5,1 → 5,9 · adequada 5,3 → 5,7 · agradável 4,9 → 5,4
 
 O que os revisores continuam apontando e não é deste pacote: a dor que zera costas, peito ou ombro em vez de trocar por um movimento tolerado (pauta do profissional); dupla e drop set no iniciante e búlgaro como 1º exercício (pacotes 2 e 4); o foco em pernas com as mesmas séries do resto em 30 min.
 
-## 7. Os registros de teste que mudam (preciso do seu ok para regravar)
+## 7. Os registros de teste que mudaram (regravados em 15/11/2026, com o ok do Gustavo)
 
-Dois registros mudam, os dois da **Ana**, e só na ordem dos exercícios (as duplas ficaram juntas). **Não regravei nenhum**; por isso `npm run check` acusa essas 2 diferenças, e só elas.
+Dois registros mudam, os dois da **Ana**, e só na ordem dos exercícios (as duplas ficaram juntas). O Gustavo viu a lista abaixo e autorizou a regravação em 15/11/2026; a diferença gravada são exatamente estas linhas, e `npm run check` voltou a passar inteiro.
 
 | Registro | O que muda |
 |---|---|
@@ -124,7 +124,7 @@ Testes novos: `tests/unit/semana-com-dor.test.ts` (8 testes): o perfil com dor n
 
 | Conferência | Resultado |
 |---|---|
-| `npm run check` (lint, tipos, testes) | lint e tipos limpos; 951 testes passam; **2 falham: são os 2 registros da seção 7**, que esperam o seu ok |
+| `npm run check` (lint, tipos, testes) | limpo: 61 arquivos, 953 testes (depois de regravar os 2 registros da seção 7, com o ok do Gustavo) |
 | `npm run test:e2e` (o app no navegador) | 157 de 157 passam |
 | `npm run auditoria:verificar` (duas rodadas idênticas e a linha de base da régua) | em andamento quando este relatório foi escrito (leva mais de uma hora e meia); o resultado entra aqui |
 | O protótipo com as regras adotadas dá o mesmo programa que o app | sim, nas 12 personas |
@@ -139,7 +139,7 @@ Quem marcou dor forte e tinha um dia quase vazio vê "Há uma versão nova do se
 
 Uma por vez, com a minha recomendação; nada vem marcado.
 
-1. **Posso regravar os 2 registros de teste da Ana (seção 7)?** *Recomendo sim:* é só a ordem dos exercícios.
+1. ~~Posso regravar os 2 registros de teste da Ana (seção 7)?~~ **Decidido em 15/11/2026: sim.** Regravados.
 2. **O Corpo todo 6x também entra quando a dor esvazia um dia (seção 5)?** *Recomendo sim.* É o mesmo motivo pelo qual ele já entra para quem não tem como puxar: nas outras divisões, os dias ficam vazios. Reabre a sua decisão de 06/11.
 3. **As três regras de dupla que não entraram (seção 4) ficam para depois?** *Recomendo sim*, junto com uma revisão do corte de tempo.
 4. **O próximo pacote.** *Recomendo o pacote 2 (a escolha dos exercícios).* Depende de você aceitar exercícios sem animação aparecendo como cartão de texto (decisão 2 da proposta).
