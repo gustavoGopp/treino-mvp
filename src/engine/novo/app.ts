@@ -9,6 +9,7 @@ export { enquadrar, itensDaCena, svgAnimado, svgDaCena, vistasDoModoMusculos } f
 export type { Modo, OpcoesCena } from './cena';
 export { DEFS_DO_BONECO, cssDoBoneco } from './boneco';
 export type { IdEstilo } from './boneco';
+import { afundoPesoCorpo } from './exercicios/afundo-peso-corpo';
 import { agachamentoElastico } from './exercicios/agachamento-elastico';
 import { agachamentoPesoCorpo } from './exercicios/agachamento-peso-corpo';
 import { flexao } from './exercicios/flexao';
@@ -17,4 +18,4 @@ import { puxadaUnilateral } from './exercicios/puxada-unilateral';
 import { supinoReto } from './exercicios/supino-reto';
 
 /** Os exercícios já refeitos no motor novo, pelo id da biblioteca. */
-export const EXERCICIOS = { goblet, flexao, 'supino-reto': supinoReto, 'puxada-unilateral': puxadaUnilateral, 'agachamento-peso-corpo': agachamentoPesoCorpo, 'agachamento-elastico': agachamentoElastico };
+export const EXERCICIOS = { goblet, flexao, 'supino-reto': supinoReto, 'puxada-unilateral': puxadaUnilateral, 'agachamento-peso-corpo': agachamentoPesoCorpo, 'agachamento-elastico': agachamentoElastico, 'afundo-peso-corpo': afundoPesoCorpo };

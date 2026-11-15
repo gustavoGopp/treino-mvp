@@ -75,6 +75,25 @@ const REGRAS: Record<string, Regra> = {
     const pior = Math.max(...LADOS.map((k) => angulo([fim.lado[k].joelho[0] - ini.lado[k].joelho[0], 0, fim.lado[k].joelho[2] - ini.lado[k].joelho[2]], fim.lado[k].dedos.z)));
     return { medido: `o joelho anda numa direção a ${f1(pior)}° da direção do pé (visto de cima)`, ok: pior <= 10 };
   },
+  // ----- afundos e búlgaros (a perna da frente é a direita) -----
+  'desce-reto': (q) => {
+    const z = q.map((x) => x.esq.pelve.o[2]);
+    const d = Math.max(...z) - Math.min(...z);
+    return { medido: `o quadril anda no máximo ${f1(d)} cm para a frente ou para trás na descida`, ok: d <= 1 };
+  },
+  'joelho-de-tras-perto-do-chao': (q, corpo) => {
+    const f = q[q.length - 1]!.esq;
+    const folga = f.lado.L.joelho[1] - corpo.secoes.coxa![corpo.secoes.coxa!.length - 1]!.b;
+    return { medido: `embaixo, a pele do joelho de trás fica a ${f1(folga)} cm do chão (o centro do joelho a ${f1(f.lado.L.joelho[1])} cm)`, ok: folga >= 1 && folga <= 10 };
+  },
+  'tronco-quase-vertical': (q) => {
+    const pior = Math.max(...q.map((x) => angulo(x.esq.torax.y, [0, 1, 0])));
+    return { medido: `o peito inclina no máximo ${f1(pior)}° da vertical`, ok: pior <= 12 };
+  },
+  'pe-da-frente-inteiro-no-chao': (q) => {
+    const pior = Math.max(...q.map((x) => Math.max(x.esq.lado.R.calcanhar[1], x.esq.lado.R.bola[1])));
+    return { medido: `o calcanhar e a bola do pé da frente ficam a no máximo ${f1(pior)} cm do chão`, ok: pior <= 0.3 };
+  },
   'peso-no-meio-do-pe': (q, corpo) => {
     const dB = corpo.m('pe.calcanharABola');
     const pior = Math.max(...q.map((x) => Math.abs(centroDeMassa(x.esq, 'homem', x.cargas)[2] - (x.esq.lado.L.bola[2] + x.esq.lado.L.calcanhar[2]) / 2)));

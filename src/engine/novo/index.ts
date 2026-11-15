@@ -9,6 +9,7 @@ export * from './movimento';
 export { goblet } from './exercicios/goblet';
 export { agachamentoPesoCorpo } from './exercicios/agachamento-peso-corpo';
 export { agachamentoElastico } from './exercicios/agachamento-elastico';
+export { afundoPesoCorpo } from './exercicios/afundo-peso-corpo';
 export * from './cena';
 export { flexao } from './exercicios/flexao';
 export { supinoReto } from './exercicios/supino-reto';

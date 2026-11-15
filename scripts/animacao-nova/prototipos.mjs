@@ -18,7 +18,7 @@ const so = process.argv[2] ?? '';
 const { modulo: m } = await motorNovo(ENTRADA);
 const corpo = m.CORPOS.homem;
 const cssNovo = readFileSync('src/engine/novo/estilo.css', 'utf8') + m.cssDoBoneco();
-const IDS = ['goblet', 'supino-reto', 'puxada-unilateral', 'flexao', 'agachamento-peso-corpo', 'agachamento-elastico'];
+const IDS = ['goblet', 'supino-reto', 'puxada-unilateral', 'flexao', 'agachamento-peso-corpo', 'agachamento-elastico', 'afundo-peso-corpo'];
 const NOME_VISTA = { lateral: 'de lado', frontal: 'de frente', posterior: 'de trás', cima: 'de cima', quinaTras: 'de três quartos, de trás' };
 const NOME_MODO = { tec: 'Técnica', mus: 'Músculos', traj: 'Trajetória', err: 'Erros' };
 

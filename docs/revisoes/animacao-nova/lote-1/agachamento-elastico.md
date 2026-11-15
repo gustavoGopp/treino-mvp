@@ -1,6 +1,6 @@
 # Lote 1 · Agachamento com elástico (`agachamento-elastico`)
 
-De 15/11/2026. Segunda animação do lote 1. **Ainda sem a aprovação do Gustavo na folha: não está no app.**
+De 15/11/2026. Segunda animação do lote 1. **Aprovada pelo Gustavo na folha em 15/11/2026 ("aprovada").** Ainda não está no app: falta ligar o motor novo às telas.
 
 - Ficha da técnica: `docs/pesquisa/animacoes/agachamento-elastico.md`.
 - Ficha de movimento: `src/engine/novo/dados/movimentos/agachamento-elastico.json`.
