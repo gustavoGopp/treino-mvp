@@ -24,13 +24,14 @@ const MATERIAIS: Record<Tema, typeof MAT> = {
 
 /* ============================== cada peça ============================== */
 function halter(C: CenaRealista, M: typeof MAT, p: Extract<Peca, { t: 'halter' }>): void {
-  const u = norm(p.eixo),
-    comp = obj('halter', 'comp'),
-    cabo = obj('halter', 'caboComp');
+  const o = p.objeto ?? 'halter',
+    u = norm(p.eixo),
+    comp = obj(o, 'comp'),
+    cabo = obj(o, 'caboComp');
   const P = (d: number) => add(p.centro, mul(u, d));
   // o cabo um pouco para trás na pintura, para a mão ficar por cima dele
-  C.cilindro(P(-cabo / 2), P(cabo / 2), obj('halter', 'caboDiam') / 2, M.cromo, { lados: 10, dz: 6 });
-  for (const s of [-1, 1]) C.cilindro(P((s * cabo) / 2), P((s * comp) / 2), obj('halter', 'cabecaLargura') / 2, M.ferro, { lados: 6 });
+  C.cilindro(P(-cabo / 2), P(cabo / 2), obj(o, 'caboDiam') / 2, M.cromo, { lados: 10, dz: 6 });
+  for (const s of [-1, 1]) C.cilindro(P((s * cabo) / 2), P((s * comp) / 2), obj(o, 'cabecaLargura') / 2, M.ferro, { lados: 6 });
 }
 function anilha(C: CenaRealista, M: typeof MAT, p: Extract<Peca, { t: 'anilha' }>): void {
   C.anilha([p.x, 0, p.z], [p.x, obj('anilhaCalcanhar', 'esp'), p.z], obj('anilhaCalcanhar', 'diam') / 2, M.anilha);

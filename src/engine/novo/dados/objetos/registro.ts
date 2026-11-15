@@ -12,3 +12,4 @@ export { default as bolaSuica } from './bola-suica.json';
 export { default as cordaTriceps } from './corda-triceps.json';
 export { default as step } from './step.json';
 export { default as escada } from './escada.json';
+export { default as halterLeve } from './halter-leve.json';

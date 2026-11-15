@@ -27,15 +27,16 @@ const caixaReta = (o: V3, meias: V3, cls: string, vies?: number): Prim => ({ t: 
 
 /**
  * Halter sextavado: centro do cabo e direção do cabo. Cada cabeça é um prisma de seis faces com a largura (entre
- * cantos) e a altura (entre faces) da ficha; o cabo é um cilindro.
+ * cantos) e a altura (entre faces) da ficha; o cabo é um cilindro. `objeto`: o id do halter na tabela de objetos
+ * (por omissão, o de 25 lb, `'halter'`; `'halterLeve'` é o de 10 lb).
  */
-export function halter(centro: V3, eixo: V3, vies = 0): Prim[] {
+export function halter(centro: V3, eixo: V3, vies = 0, objeto = 'halter'): Prim[] {
   const u = norm(eixo);
-  const comp = obj('halter', 'comp'),
-    cabo = obj('halter', 'caboComp'),
-    rc = obj('halter', 'caboDiam') / 2,
-    ra = obj('halter', 'cabecaLargura') / 2,
-    rb = obj('halter', 'cabecaAltura') / 2;
+  const comp = obj(objeto, 'comp'),
+    cabo = obj(objeto, 'caboComp'),
+    rc = obj(objeto, 'caboDiam') / 2,
+    ra = obj(objeto, 'cabecaLargura') / 2,
+    rb = obj(objeto, 'cabecaAltura') / 2;
   const P = (d: number) => add(centro, mul(u, d));
   const [x, z] = base(u);
   const cab = (s: number): Prim => ({ t: 'prisma', a: P(s * (cabo / 2)), b: P(s * (comp / 2)), x, z, ra, rb, lados: 6, cls: 'ferro', vies });
@@ -113,7 +114,8 @@ export function anilhaNoChao(x: number, z: number): Prim[] {
  * (Prim) continuam servindo à conferência: onde o corpo encosta, onde o cabo passa.
  */
 export type Peca =
-  | { t: 'halter'; centro: V3; eixo: V3 }
+  /** `objeto`: o id do halter na tabela de objetos (por omissão, `'halter'`, o de 25 lb). */
+  | { t: 'halter'; centro: V3; eixo: V3; objeto?: string }
   | { t: 'anilha'; x: number; z: number }
   /**
    * `pontaNoQuadro`: quando só a ponta do banco importa (o pé de trás do búlgaro apoia nela), quantos centímetros
