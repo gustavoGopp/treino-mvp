@@ -5,4 +5,5 @@ export const APROVADOS: Record<string, { em: string; oQueEleDisse: string }> = {
   'agachamento-elastico': { em: '2026-11-15', oQueEleDisse: 'aprovada, segue para o afundo com o peso do corpo' },
   'afundo-peso-corpo': { em: '2026-11-15', oQueEleDisse: 'aprovada, segue para o afundo com halteres' },
   afundo: { em: '2026-11-15', oQueEleDisse: 'aprovada, segue para o afundo com kettlebell' },
+  'afundo-kettlebell': { em: '2026-11-15', oQueEleDisse: 'aprovada, segue para o afundo para trás' },
 };

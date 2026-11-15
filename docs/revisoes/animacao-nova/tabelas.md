@@ -390,6 +390,57 @@ Fontes desta ficha:
 - `cdc`: Soucie JM et al. Range of motion measurements: reference values and a database for comparison studies. Haemophilia 2011 (tabelas do CDC; docs/revisoes/animacao-nova/pesquisa/02-articulacoes.md, A1)
 - `desenho`: Escolha de desenho desta animação, dentro do que a ficha pede; a conferência mede o resultado
 
+### Afundo para trás com o peso do corpo (`afundo-tras-peso-corpo`)
+
+Ficha da técnica: `docs/pesquisa/animacoes/afundo-tras-peso-corpo.md`. Movimento de um lado só.
+
+| parâmetro | valor | selo | fonte | o que é |
+|---|---|---|---|---|
+| `pes.meiaDistancia` | 9 cm | consenso | ficha | pés na largura do quadril, como trilhos (os centros do quadril ficam a 8,35 cm do meio) |
+| `peDaFrente.aFrenteDoQuadril` | 39,5 cm | desenho | hoje | passo largo: quanto o tornozelo do pé da frente fica à frente do quadril (na animação aprovada de hoje: 39,5 cm) |
+| `peDeTras.atrasDoQuadril` | 47 cm | desenho | hoje | passo largo: quanto a ponta do pé de trás (a bola do pé) fica atrás do quadril (na animação aprovada de hoje, o tornozelo de trás fica 40,5 cm atrás, com o calcanhar levantado) |
+| `peDeTras.calcanhar` | 66 graus | desenho | desenho | pé de trás na ponta: quanto o calcanhar sobe; a ficha não dá número |
+| `joelho.cima` | 8 graus | consenso | ficha | em pé: joelhos quase estendidos, sem travar |
+| `joelhoDeTras.aoChao` | 4 cm | consenso | ficha | embaixo: o joelho de trás fica a poucos centímetros do chão (da pele do joelho ao chão) |
+| `tronco` | 4 graus | consenso | ficha | tronco quase vertical |
+| `maos.naCintura.acima` | 11 cm | desenho | desenho | mãos na cintura: altura da mão acima do centro do quadril |
+| `erro.valgo.joelho` | 6 cm | desenho | desenho | erro: quanto o joelho da frente cai para dentro |
+| `erro.raso.fracao` | 0,4 fração | desenho | hoje | erro: desce só 40% do caminho (como na animação de hoje) |
+| `passo.quandoApoia` | 0,6 fração | desenho | desenho | em que ponto do caminho (0 = em pé, 1 = embaixo) a ponta do pé de trás apoia no chão |
+| `passo.altura` | 10 cm | desenho | desenho | altura máxima da ponta do pé de trás no ar durante o passo (na animação de hoje o tornozelo passa a 22 cm; a ficha não dá número) |
+| `erro.tras.quadril` | 13 cm | desenho | hoje | erro: quanto o quadril fica mais para trás, perto do pé de trás (13 cm na animação de hoje) |
+| `erro.tras.tronco` | -4 graus | desenho | hoje | erro: o tronco recua (4 graus para trás na animação de hoje) |
+
+| fase | tipo | duração | respiração | ritmo | selo |
+|---|---|---|---|---|---|
+| Em pé | pausa | 0,5 s | inspira | pés juntos, firme o abdômen | consenso |
+| Passo e descida · excêntrica | exc | 2,6 s | firme | ~2–3 s | consenso |
+| Embaixo | pausa | 0,4 s | firme | peso no pé da frente | consenso |
+| Volta · concêntrica | conc | 1,5 s | expira | ~1–1,5 s | consenso |
+
+Contatos que não podem sair do lugar: `pe.R`.
+
+Regras que a conferência mede:
+
+- o passo para trás é largo (consenso)
+- embaixo, o joelho de trás quase toca o chão (consenso)
+- o tronco fica quase vertical (consenso)
+- embaixo, o peso fica no pé da frente (consenso)
+- o pé da frente não sai do lugar (consenso)
+
+Erros desenhados:
+
+- Joelho da frente para dentro (vista: frontal): o joelho da frente cai para dentro na descida
+- Descer pouco (vista: lateral): desce só 40% do caminho do afundo
+- Empurrar com o pé de trás (vista: lateral): o quadril fica para trás, perto do pé de trás, e o tronco recua: a perna de trás faz a força
+
+Fontes desta ficha:
+
+- `ficha`: Ficha da técnica (docs/pesquisa/animacoes/afundo-tras-peso-corpo.md): consenso (Kyle Sela e Hinge Health, vídeos não conferidos por dentro); a posição do afundo é a do afundo com o peso do corpo aprovado
+- `hoje`: Animação aprovada no guia de hoje (src/engine/exercicios/afundo-tras-peso-corpo.ts) e a conferência dela (docs/revisoes/r5-anim/conferencia/afundo-tras-peso-corpo.md): o tamanho do passo, a altura do pé no ar e os erros
+- `cdc`: Soucie JM et al. Range of motion measurements: reference values and a database for comparison studies. Haemophilia 2011 (tabelas do CDC; docs/revisoes/animacao-nova/pesquisa/02-articulacoes.md, A1)
+- `desenho`: Escolha de desenho desta animação, dentro do que a ficha pede; a conferência mede o resultado
+
 ### Afundo estático com halteres (`afundo`)
 
 Ficha da técnica: `docs/pesquisa/animacoes/afundo.md`. Movimento de um lado só.

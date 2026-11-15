@@ -96,6 +96,19 @@ const REGRAS: Record<string, Regra> = {
       b = angulosDoLado(q[0]!.esq, 'L').joelho;
     return { medido: `em cima, o joelho da frente dobra ${f1(a)}° e o de trás ${f1(b)}°`, ok: a <= 25 && b <= 25 };
   },
+  'passo-largo-para-tras': (q) => {
+    const f = q[q.length - 1]!.esq;
+    const d = f.lado.R.tornozelo[2] - f.lado.L.tornozelo[2];
+    return { medido: `do tornozelo da frente ao de trás: ${f1(d)} cm`, ok: d >= 60 };
+  },
+  'peso-no-pe-da-frente': (q) => {
+    const f = q[q.length - 1]!;
+    const cm = centroDeMassa(f.esq, 'homem', f.cargas)[2];
+    const frente = f.esq.lado.R.tornozelo[2],
+      tras = f.esq.lado.L.bola[2];
+    const parte = (cm - tras) / (frente - tras);
+    return { medido: `embaixo, o centro de massa fica a ${f1(parte * 100)}% do caminho entre a ponta do pé de trás e o tornozelo da frente`, ok: parte >= 0.5 };
+  },
   'tronco-quase-vertical': (q) => {
     const pior = Math.max(...q.map((x) => angulo(x.esq.torax.y, [0, 1, 0])));
     return { medido: `o peito inclina no máximo ${f1(pior)}° da vertical`, ok: pior <= 12 };

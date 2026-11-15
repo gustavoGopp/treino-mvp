@@ -1,6 +1,6 @@
 # Lote 1 · Afundo com kettlebell no peito (`afundo-kettlebell`)
 
-De 15/11/2026. Quinta animação do lote 1. É o afundo estático (a mesma peça dos dois já aprovados, `afundo-estatico.ts`) com o kettlebell junto ao peito. **Ainda sem a aprovação do Gustavo na folha: não está no app.**
+De 15/11/2026. Quinta animação do lote 1. É o afundo estático (a mesma peça dos dois já aprovados, `afundo-estatico.ts`) com o kettlebell junto ao peito. **Aprovada pelo Gustavo na folha em 15/11/2026 ("aprovada").** Ainda não está no app: falta ligar o motor novo às telas.
 
 - Ficha da técnica: `docs/pesquisa/animacoes/afundo-kettlebell.md`.
 - Ficha de movimento: `src/engine/novo/dados/movimentos/afundo-kettlebell.json`.

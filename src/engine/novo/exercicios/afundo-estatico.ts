@@ -22,6 +22,12 @@ export const FRENTE: Lado = 'R',
 /** O que as mãos fazem: na cintura (peso do corpo) ou segurando um halter de cada lado, com os braços pendendo. */
 export type MaosDoAfundo = 'cintura' | 'halteres' | 'kettlebell';
 
+/** Mãos na cintura, cotovelos para fora: a pose dos braços dos afundos com o peso do corpo. */
+export function maosNaCintura(t: Tronco, k: Lado, acima: number): PoseBraco {
+  const s = sinal(k);
+  return { pegada: noRef(t.pelve, [s * (t.corpo.m('largura.quadril') / 2 + 1.5), acima, 1]), polo: dirRef(t.pelve, [s, -0.2, -0.5]), mao: { polegar: dirRef(t.pelve, [0, 0.6, -0.8]), forma: 'relaxada' } };
+}
+
 export function criarAfundoEstatico(fichaJson: unknown, maos: MaosDoAfundo): { ficha: Ficha; quadro(corpo: Corpo, u: number, erro?: string): Quadro } {
   const F = fichaSchema.parse(fichaJson);
   const f = daFicha(F);
@@ -41,7 +47,6 @@ export function criarAfundoEstatico(fichaJson: unknown, maos: MaosDoAfundo): { f
     return [maoNoPeito[0], maoNoPeito[1] - alturaDaPegada(), maoNoPeito[2]];
   };
   function pose(corpo: Corpo, quadrilY: number, u: number, o: { tronco?: number; valgo?: number } = {}): Esq {
-    const m = (id: string) => corpo.m(id);
     return afundar(corpo, {
       frente: FRENTE,
       quadrilY,
@@ -57,9 +62,8 @@ export function criarAfundoEstatico(fichaJson: unknown, maos: MaosDoAfundo): { f
       bracos(t) {
         const braco = (k: Lado): PoseBraco => {
           const s = sinal(k);
-          if (maos === 'cintura')
-            // mãos na cintura, cotovelos para fora (ficam livres para apoiar numa parede, diz a ficha)
-            return { pegada: noRef(t.pelve, [s * (m('largura.quadril') / 2 + 1.5), f('maos.naCintura.acima'), 1]), polo: dirRef(t.pelve, [s, -0.2, -0.5]), mao: { polegar: dirRef(t.pelve, [0, 0.6, -0.8]), forma: 'relaxada' } };
+          // mãos na cintura, cotovelos para fora (ficam livres para apoiar numa parede, diz a ficha)
+          if (maos === 'cintura') return maosNaCintura(t, k, f('maos.naCintura.acima'));
           if (maos === 'kettlebell') {
             // Kettlebell junto ao peito, com a base para baixo: cada mão segura uma haste da alça ("mãos nos lados
             // da alça"), os cotovelos perto do corpo. O kettlebell pende na vertical e a bola encosta no peito.
