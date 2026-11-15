@@ -1714,3 +1714,31 @@ Nos totais nenhum defeito sobe, e em nenhum grupo sobe mais de 0,05 ponto; na co
 
 **Rascunho de post.** "Dois revisores apontaram: com dor forte no joelho, o app tirava o agachamento e mandava a pessoa ajoelhar para fazer a puxada. O dado estava errado na biblioteca, e não era só nos três exercícios que eles viram: lendo o texto de execução dos 171, achei oito em que a posição de base apoia o joelho. A correção custou alguma coisa, e está escrito quanto: quem só tem elásticos e marca dor forte no joelho fica sem a puxada, só com remadas, até existir a versão sentada. Segurança não se troca por variedade."
 
+## Treino para todos, etapa 2, pacote 3: a dor que não desmonta a semana (15/11/2026)
+
+O Gustavo aprovou o pacote 0 (manter a regra do joelho mesmo para quem só tem puxada ajoelhada; a lista de 8 exercícios) e escolheu o pacote 3. Este pacote está **no ramo da sessão, não na `main`**, parado para a revisão dele. Relatório: `docs/revisoes/treino-para-todos/pacote-3.md`; régua por grupo: `qa.md`.
+
+**O que mudou.** Quatro regras, uma por vez: (1) com dor acima de 5, se um dia da divisão recomendada fica com menos de 3 exercícios ou sem exercício grande, a semana sai na outra divisão oferecida (quase sempre corpo todo), e o app diz por quê; (2) o mesmo exercício nunca em todos os dias, em todo caminho da escolha; (3) com 30 min, abdômen e panturrilha vão para dias diferentes; (4) os dois exercícios de uma dupla ficam juntos na lista. Nenhuma tela mudou.
+
+**Em pessoas.** O intermediário de academia com dor 7 no cotovelo, 4 dias de 60 min, recebia dias de 20, 36, 22 e 44 min (dois deles com três exercícios pequenos); recebe dias de 44, 58, 55 e 59 min, em corpo todo, com 81 séries em vez de 46. A avançada com halteres e dor no ombro tinha um dia de 3 minutos e outro de 8; passam a 31 e 34. O Jonas (2 dias de 30 min) tem o 1º dia de 38 min reduzido a 34.
+
+**Medido em 680.625 programas fictícios:**
+
+| | Antes (main) | Depois do pacote 0 | Agora |
+|---|---:|---:|---:|
+| Programas sem nenhum defeito (grade) | 79,4% | 83,6% | 88,8% |
+| Idem (ponderada) | 78,1% | 94,4% | 96,2% |
+| O pior grupo, dor 7 no cotovelo (grade) | 50,0% | 50,0% | 67,3% |
+| Programas com um dia de menos de 3 exercícios ou sem exercício grande | 71.999 | 71.860 | 41.471 |
+| Programas com o mesmo exercício em todos os dias, havendo outro | 2.646 | 2.646 | 0 |
+
+Nenhum defeito sobe em nenhum grupo em relação ao pacote 0. É a primeira vez que o pior grupo melhora.
+
+**O que a medida mudou.** A 1ª versão da regra da dor trocava a divisão sempre que diminuía os dias fracos: 301 de 35 mil programas ganhavam um músculo sem nenhuma série. A que entrou só troca quando a divisão nova não custa outra coisa. Três regras de dupla pedidas pelos revisores foram medidas e ficaram de fora, porque põem treinos curtos acima do tempo.
+
+**A revisão cega** (14 pessoas, 28 páginas, três revisores simulados): médias de 5,1 · 5,3 · 4,9 para 5,9 · 5,7 · 5,4; nove sobem, quatro iguais, uma cai (−3,3). A que cai não é mexida por este pacote: as mesmas duas páginas tinham tido +0,3 na revisão do pacote 0. É um aviso sobre o pacote 1 (dia cheio até o limite), anotado no backlog para medir uma folga.
+
+**Pendente da revisão do Gustavo:** dois registros de teste da Ana mudam (só a ordem dos exercícios) e não foram regravados; e a decisão sobre o Corpo todo 6x para quem tem dor forte.
+
+**Rascunho de post.** "O pior caso do meu app de treino era quem marcava dor forte no cotovelo: metade dos programas saía com defeito, com dias de 20 minutos e três exercícios pequenos. A correção parecia óbvia (juntar tudo em treinos de corpo todo), e a primeira versão melhorou esse número e piorou outro: 301 pessoas fictícias ficaram com um músculo sem nenhuma série. A regra que entrou só troca a divisão quando a troca não custa nada. E os dois painéis de treinadores simulados deram +0,3 e −3,3 às mesmas duas páginas: nota de revisor é opinião, e a medida é que decide."
+

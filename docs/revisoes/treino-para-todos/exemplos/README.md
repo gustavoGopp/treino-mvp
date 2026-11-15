@@ -35,3 +35,7 @@ As outras mudanças das páginas (exercícios mais conhecidos, os "ajoelhados" f
 
 Das doze pessoas, só o **Leandro** muda (é o único com dor no joelho): as duas puxadas ajoelhado viram a puxada sentado no puxador, o coice na máquina vira o hip thrust e o abdominal ajoelhado na polia vira o abdominal no banco declinado; as séries por músculo ficam iguais. O antes e o depois dele, exercício por exercício, está em [`../pacote-0.md`](../pacote-0.md), seção 3. As outras onze ficam como estavam depois do pacote 1.
 
+## Etapa 2, pacote 3 (15/11/2026): a dor que não desmonta a semana, os 30 minutos e as duplas
+
+Das doze pessoas, três mudam, e pouco: o **Jonas** (2 dias de 30 min) fica com o abdominal e a panturrilha em dias diferentes, e o 1º dia vai de 38 para 34 min; na **Ana** e na **Íris**, o par de cada exercício em dupla passa a vir logo depois dele na lista. Nenhuma das doze tem dor forte com um dia quase vazio, que é o caso principal do pacote; os exemplos dele (dor no cotovelo e no ombro) estão em [`../pacote-3.md`](../pacote-3.md), seção 2.
+

@@ -300,3 +300,19 @@ Detalhes em `revisoes/treino-para-todos/pacote-0.md` e `qa.md`. O pacote está n
 - **A panturrilha no leg press e o agachamento com a barra nas costas** com dor no joelho e no ombro: os revisores voltaram a apontar; continua na pauta do profissional (`proposta.md`, seção 9).
 - **A remada de um lado só com elástico "sob o pé da frente"** pede base em passo; um revisor apontou que isso carrega o joelho com dor. Conferir o texto de execução.
 
+## Da sessão "treino para todos", etapa 2, pacote 3 (15/11/2026)
+
+Detalhes em `revisoes/treino-para-todos/pacote-3.md` e `qa.md`. O pacote está no ramo da sessão, esperando a revisão do Gustavo.
+
+**Medido e recusado (não tentar de novo sem motivo novo)**
+- **Proibir a dupla com exercício livre com barra, proibir a dupla de dois exercícios que carregam a lombar e tirar o drop set do iniciante:** as três põem treinos curtos acima do tempo (em 23.470 programas da amostra: 11, 35 e 9 ganham um dia acima de 110%). Para entrarem, o corte de tempo (`tempo.corte`) precisa de outra saída antes das duplas e do drop set (menos séries, ou menos exercícios para o iniciante). Fazer junto com o pacote 4.
+- **Trocar a divisão por causa da dor sem olhar o custo:** 301 de 35.292 programas com dor forte ganhavam um músculo sem nenhuma série, e 32 tiravam a coxa do equilíbrio. A regra que entrou tem as travas.
+
+**Esperando a decisão do Gustavo**
+- **O Corpo todo 6x para quem tem dor forte** (hoje só o recuo de `divisao.sem-puxar`, decisão de 06/11): no protótipo (`PROT=app,dor-ct6`), mais 1.372 de 35.292 programas com dor forte deixam de ter um dia fraco, sem defeito novo.
+
+**Para medir depois**
+- **Uma folga de 5 a 10% do tempo no 2º passo de `tempo.sobra-series` (pacote 1):** é a terceira vez que os revisores baixam a nota de um dia cheio até o limite (o Leandro e o iniciante do condomínio, no pacote 1; o avançado de 5 × 75 min com dor na lombar e foco em pernas, agora: as mesmas duas páginas tiveram +0,3 num painel e −3,3 no outro). A Marina e o avançado de 90 min, que também enchem o tempo, foram os que mais subiram; por isso é para medir, e não para mudar já.
+- **O foco em "pernas" leva a panturrilha junto até o máximo do nível** (16 séries no avançado): três revisores chamaram de volume demais. A regra é a do foco primeiro (R5d); rever com o pacote 2 ou 4.
+- **As notas que sobem com o corpo todo:** o mesmo músculo em dias seguidos (5,3% → 5,8% dos programas, ponderada) e o mesmo exercício em todos os dias sem opção (16,6% → 18,1%, grade). Pede a mesma pesquisa sobre dias seguidos anotada no pacote 1.
+
