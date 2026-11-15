@@ -70,3 +70,7 @@ Testei de lado, de cima, de três quartos (`quina`), de três quartos de trás (
 ## Risco de o Gustavo não gostar
 
 **Médio.** O corpo é o da `flexao` aprovada, e o elástico agora aparece inteiro na vista padrão. A vista de três quartos de trás é nova nas flexões, e a volta na mão não aparece.
+
+## Depois da conferência de quem integra (15/11/2026)
+
+A vista de três quartos, de trás, saiu: com o corpo deitado ela ficava tosca (o quadril e as pernas viravam um volume só). Ficaram a vista de lado (a padrão) e a de cima, onde o elástico aparece atravessando as escápulas e descendo até as mãos. Os rótulos e os erros que estavam na vista de três quartos passaram para a de cima. A conferência automática segue sem falha.

@@ -2,14 +2,14 @@
 
 Atualizado por quem integra, a cada família juntada. "Aprovada na folha" = o Gustavo olhou e aprovou. "Aprovada por delegação" = conferida por quem integra, risco baixo, registrada com a frase dele de 15/11/2026. "Para o Gustavo ver" = risco médio ou alto: só entra na lista do app depois do ok dele. "Correção de qualidade" = desde o aviso dele de 15/11 ("o fato de eu ter delegado [...] não quer dizer que a gente pode diminuir a qualidade"), nenhuma animação delegada conta como pronta enquanto tiver defeito visível nos quadros (seção 8 de `como-fazer-uma-animacao.md`). As folhas ficam em `prototipos/folha-<id>.png` e os quadros grandes em `quadros/<id>.png`.
 
-Resumo: 7 aprovadas na folha; 8 por delegação; 3 prontas para o Gustavo ver; 7 em correção ou por conferir; 5 âncoras sem aprovação na folha; 4 em andamento; 57 por fazer.
+Resumo: 7 aprovadas na folha; 10 por delegação; 3 prontas para o Gustavo ver; 5 em correção de qualidade; 4 das quatro primeiras sem aprovação na folha; 4 em andamento; 57 por fazer.
 
 | Lote | Exercício | Estado |
 |---|---|---|
-| 0 | `flexao` | feita (âncora); falta a aprovação na folha |
-| 0 | `goblet` | feita (âncora); falta a aprovação na folha |
-| 0 | `puxada-unilateral` | feita (âncora); falta a aprovação na folha |
-| 0 | `supino-reto` | feita (âncora); falta a aprovação na folha |
+| 0 | `flexao` | feita (das quatro primeiras); falta a aprovação na folha |
+| 0 | `goblet` | feita (das quatro primeiras); falta a aprovação na folha |
+| 0 | `puxada-unilateral` | feita (das quatro primeiras); falta a aprovação na folha |
+| 0 | `supino-reto` | feita (das quatro primeiras); falta a aprovação na folha |
 | 1 | `afundo` | aprovada na folha |
 | 1 | `afundo-kettlebell` | aprovada na folha |
 | 1 | `afundo-peso-corpo` | aprovada na folha |
@@ -21,8 +21,8 @@ Resumo: 7 aprovadas na folha; 8 por delegação; 3 prontas para o Gustavo ver; 7
 | 1 | `bulgaro-suspensao` | feita; em correção de qualidade (subagente) |
 | 2 | `extensao-triceps-peso-corpo` | feita; em correção de qualidade (subagente); depois **para o Gustavo ver** |
 | 2 | `flexao-bola` | feita e corrigida (costas e cabeça no chão, bola com volume); **para o Gustavo ver** (é a flexão de joelho na bola; o pescoço dobra 53° no fim) |
-| 2 | `flexao-elastico` | feita e corrigida; falta nova correção (a vista de três quartos do corpo deitado ficou tosca) |
-| 2 | `flexao-fechada` | feita e corrigida; falta eu conferir os quadros |
+| 2 | `flexao-elastico` | feita e conferida quadro a quadro por quem integra; aprovada por delegação (vistas: de lado e de cima) |
+| 2 | `flexao-fechada` | feita e conferida quadro a quadro por quem integra; aprovada por delegação |
 | 2 | `flexao-pes-elevados` | feita e corrigida (o rosto fica a 5 cm do chão); **para o Gustavo ver** (o peito para a 8,5 cm do chão) |
 | 2 | `pike` | feita; em correção de qualidade (subagente) |
 | 3 | `crucifixo-elastico` | por fazer |
@@ -44,7 +44,7 @@ Resumo: 7 aprovadas na folha; 8 por delegação; 3 prontas para o Gustavo ver; 7
 | 4 | `remada-baixa` | por fazer |
 | 4 | `remada-curvada-halteres` | por fazer |
 | 4 | `remada-elastico` | por fazer |
-| 4 | `remada-suspensao` | feita e conferida quadro a quadro por quem integra; aprovada por delegação (âncora a 183 cm, a altura do fabricante; hoje 205) |
+| 4 | `remada-suspensao` | feita e conferida quadro a quadro por quem integra; aprovada por delegação (o ponto de prender a fita fica a 183 cm, a altura do fabricante; hoje 205) |
 | 4 | `remada-unilateral` | por fazer |
 | 4 | `remada-unilateral-kettlebell` | por fazer |
 | 4 | `remada-unilateral-polia` | por fazer |

@@ -70,7 +70,7 @@ const A = criarFlexao(ficha, { cena });
 
 export const flexaoElastico: Exercicio = {
   ficha: A.ficha,
-  vistas: ['quinaTras', 'lateral'],
+  vistas: ['lateral', 'cima'],
   quadro: A.quadro,
   // peito principal; tríceps e frente do ombro secundários; o abdômen "só ajuda" (como na flexão e na animação de hoje)
   papeis: { peitoral: 'p', deltAnt: 's', triceps: 's', abdomen: 'a' },

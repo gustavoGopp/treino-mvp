@@ -19,4 +19,6 @@ export const APROVADOS: Record<string, { em: string; oQueEleDisse: string; como?
   'yt-suspensao': { em: '2026-11-15', oQueEleDisse: DELEGOU, como: 'por delegação' },
   'remada-suspensao': { em: '2026-11-15', oQueEleDisse: DELEGOU, como: 'por delegação' },
   'rosca-suspensao': { em: '2026-11-15', oQueEleDisse: DELEGOU, como: 'por delegação' },
+  'flexao-fechada': { em: '2026-11-15', oQueEleDisse: DELEGOU, como: 'por delegação' },
+  'flexao-elastico': { em: '2026-11-15', oQueEleDisse: DELEGOU, como: 'por delegação' },
 };
