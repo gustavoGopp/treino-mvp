@@ -157,6 +157,18 @@ export function fitaDeSuspensao(f: FitaDeSuspensao): { prims: Prim[]; peca: Peca
     },
   };
   if (!f.vigaComoCenario) return { prims, peca, comp: comprimentoDaFita(f) };
-  const cenario: PecaPropria = { t: 'propria', nome: 'viga da fita de suspensão', cenario: true, desenhar: (C, M) => vigaEAncoragem(C, M, f.ancora, trechoDeFita(C, M)) };
+  const cenario: PecaPropria = {
+    t: 'propria',
+    nome: 'viga da fita de suspensão',
+    cenario: true,
+    desenhar(C, M) {
+      // vista de cima: a viga ficaria por cima da pessoa (e, como cenário, pintada atrás dela, pareceria um degrau sob os
+      // pés); nessa vista ela não aparece
+      const a = C.P([0, 0, 0]),
+        b = C.P([0, 1, 0]);
+      if (Math.hypot(b[0] - a[0], b[1] - a[1]) < 0.3) return;
+      vigaEAncoragem(C, M, f.ancora, trechoDeFita(C, M));
+    },
+  };
   return { prims, peca, comp: comprimentoDaFita(f), cenario };
 }
