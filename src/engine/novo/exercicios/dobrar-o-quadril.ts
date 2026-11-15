@@ -39,6 +39,11 @@ export interface PedidoDoStiff {
   apoio: 'dois' | 'R';
   /** Giro da bacia em torno do próprio eixo do tronco, com o lado esquerdo subindo (graus): o erro "abrir o quadril". */
   abre?: number;
+  /**
+   * O ângulo do quadril para trás (graus, visto de lado, do tornozelo ao quadril), quando ele é dado em vez de sair do
+   * equilíbrio: o quadril fica parado enquanto só os braços se mexem (as elevações laterais). Só com os dois pés no chão.
+   */
+  alfa?: number;
   /** A perna livre (só com apoio 'R'), dado o tronco. */
   pernaLivre?(t: Tronco): PosePerna;
   /** Os braços e a carga, dado o esqueleto com o tronco e as pernas já no lugar (os braços ainda pendurados). */
@@ -50,6 +55,8 @@ export interface Dobrado {
   /** O ponto do chão sob a bola de cada pé (s = −1 direita, +1 esquerda) e o meio do pé de apoio. */
   bola(s: number): V3;
   meioDoPe: V3;
+  /** O ângulo do quadril para trás usado (graus): o do equilíbrio ou o dado no pedido. */
+  alfa: number;
 }
 
 /**
@@ -211,7 +218,7 @@ export function dobrarOQuadril(corpo: Corpo, p: PedidoDoStiff): Dobrado {
       return centroDeMassa(r.e, 'homem', r.cargas)[2] - meioDoPe[2];
     }, -25, 70, 30);
   let hx = -hq,
-    alfa = alfaPara(hx);
+    alfa = p.alfa ?? alfaPara(hx);
   if (p.apoio === 'R') {
     // numa perna só, o centro de massa também tem de cair sobre o pé de lado: a bacia vai para cima do pé de apoio
     for (let i = 0; i < 4; i++) {
@@ -221,7 +228,7 @@ export function dobrarOQuadril(corpo: Corpo, p: PedidoDoStiff): Dobrado {
     }
   }
   const r = montar(hx, alfa, true);
-  return { ...r, bola, meioDoPe };
+  return { ...r, bola, meioDoPe, alfa };
 }
 
 /* ============================== as variações ============================== */

@@ -38,3 +38,4 @@ export { flexaoJoelhoSuspensao } from './flexao-joelho-suspensao';
 export { tricepsFrances } from './triceps-frances';
 export { tricepsFrancesHalter } from './triceps-frances-halter';
 export { tricepsFrancesKettlebell } from './triceps-frances-kettlebell';
+export { elevacaoLateral } from './elevacao-lateral';
