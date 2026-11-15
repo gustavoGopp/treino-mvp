@@ -18,7 +18,7 @@ export function r(id: string): string {
  * apoiado já carregam o joelho; para os perfis com dor no joelho, o "antes" de verdade é um worktree da `main`.
  */
 /** As regras do protótipo que já entraram no app (etapa 2): `PROT=app` liga só essas, e o protótipo fica igual ao app. */
-export const ADOTADAS = ['usa-tempo', 'joelho', 'dor-musculo', 'sem-repetir', 'dor', 'dor-sem-custo', 'dor-ct6', 'curto', 'tec-juntos', 'esc-referencia', 'esc-dois-lados'];
+export const ADOTADAS = ['usa-tempo', 'joelho', 'dor-musculo', 'sem-repetir', 'dor', 'dor-sem-custo', 'dor-ct6', 'curto', 'tec-juntos', 'esc-referencia', 'esc-dois-lados', 'fadiga'];
 const PEDIDAS = (process.env.PROT ?? 'todas').split(',').map((x) => x.trim());
 /** `PROT=app,-usa-tempo`: as adotadas menos uma (o "antes" do teste de cada regra, com as outras já no lugar). */
 const TIRADAS = new Set(PEDIDAS.filter((x) => x.startsWith('-')).map((x) => x.slice(1)));

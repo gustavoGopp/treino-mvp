@@ -206,12 +206,13 @@ export function contextoDeSelecao(perfil: Perfil, inventarioOriginal: Inventario
     }
     return ordemFixa(a.id, b.id);
   };
-  const chave = (e: Exercicio, f: Funcao | undefined, usos: Map<string, number>, evitar?: (e: Exercicio) => boolean, depois?: (e: Exercicio) => boolean) => [
+  const chave = (e: Exercicio, f: Funcao | undefined, usos: Map<string, number>, evitar?: (e: Exercicio) => boolean, depois?: (e: Exercicio) => boolean, cansa?: (e: Exercicio) => boolean) => [
     evitar?.(e) ? 1 : 0, // selecao.variacoes-equivalentes: no último dia, o que já está em todos os outros fica por último
     (usos.get(e.id) ?? 0) >= limiteDeRepeticao ? 1 : 0,
     depois?.(e) ? 1 : 0, // selecao.funcao-da-vaga (R5a): um afundo por dia, havendo outra opção no mesmo nível
     e.articulacoes.some((a) => dorLeve.has(a)) ? 1 : 0,
     nivel === 'iniciante' && !estavel(e) ? 1 : 0,
+    cansa?.(e) ? 1 : 0, // selecao.lombar-no-dia: o que carrega a lombar sem apoio fica depois, se o dia já tem outro que carrega
     -cargaPossivel(e),
     umLadoSemPrecisar(f, e),
     usos.get(e.id) ?? 0,
@@ -220,9 +221,9 @@ export function contextoDeSelecao(perfil: Perfil, inventarioOriginal: Inventario
   ];
   /** Comparador do desempate, com a contagem de usos (variedade entre os dias) de quem chama. */
   const comparar =
-    (usos: Map<string, number>, funcaoDe: (e: Exercicio) => Funcao | undefined, evitar?: (e: Exercicio) => boolean, depois?: (e: Exercicio) => boolean) =>
+    (usos: Map<string, number>, funcaoDe: (e: Exercicio) => Funcao | undefined, evitar?: (e: Exercicio) => boolean, depois?: (e: Exercicio) => boolean, cansa?: (e: Exercicio) => boolean) =>
     (a: Exercicio, b: Exercicio) => {
-      const [ka, kb] = [chave(a, funcaoDe(a), usos, evitar, depois), chave(b, funcaoDe(b), usos, evitar, depois)];
+      const [ka, kb] = [chave(a, funcaoDe(a), usos, evitar, depois, cansa), chave(b, funcaoDe(b), usos, evitar, depois, cansa)];
       for (let i = 0; i < ka.length; i++) if (ka[i] !== kb[i]) return ka[i]! - kb[i]!;
       return ordemDeReferencia(funcaoDe(a), a, funcaoDe(b), b);
     };
@@ -244,13 +245,13 @@ export function contextoDeSelecao(perfil: Perfil, inventarioOriginal: Inventario
   const noLugarDe = (id: string) => (id === BARRA_NEGATIVA && BARRA_LIVRE.some((b) => barraDoIniciante(b) && naFuncao(FUNCAO['puxar-vertical']!, b)) ? BARRA_LIVRE.find((b) => possivel.has(b))! : id);
 
   /** Melhor exercício da função, do nível n em diante, fora os já usados no dia. */
-  const escolher = (funcao: Funcao, desde: number, usados: (id: string) => boolean, usos: Map<string, number>, evitar?: (e: Exercicio) => boolean, depois?: (e: Exercicio) => boolean) => {
+  const escolher = (funcao: Funcao, desde: number, usados: (id: string) => boolean, usos: Map<string, number>, evitar?: (e: Exercicio) => boolean, depois?: (e: Exercicio) => boolean, cansa?: (e: Exercicio) => boolean) => {
     let primeiro: { ex: Exercicio; nivelFuncao: number } | null = null;
     for (let n = desde; n < funcao.niveis.length; n++) {
       const cands = [...new Set(funcao.niveis[n]!.filter((id) => naFuncao(funcao, id)).map(regressaoDoIniciante))]
         .map((id) => possivel.get(id))
         .filter((e): e is Exercicio => !!e && !usados(e.id));
-      const e = cands.sort(comparar(usos, () => funcao, evitar, depois))[0];
+      const e = cands.sort(comparar(usos, () => funcao, evitar, depois, cansa))[0];
       if (!e) continue;
       // selecao.variacoes-equivalentes (frente A, m1): se o melhor do nível já está em todos os outros dias e não há
       // equivalente no mesmo nível, desce um nível da mesma função antes de repetir; sem nada abaixo, repete.
@@ -499,7 +500,7 @@ function montarPrograma(perfil: Perfil, inventarioOriginal: Inventario, triagem:
   const lacunas = new Set<string>();
   const nivelAbaixo = new Set<string>();
   const foraPorMinutos = new Set<Musculo>();
-  type Item = { ex: Exercicio; vaga: Vaga; funcao: Funcao; nivelFuncao: number; series: number; ordemVaga: number; preenchido?: boolean; noLugarDe?: string; protegido?: Musculo; segundo?: Musculo; pelaFalta?: boolean; pelaDor?: string };
+  type Item = { ex: Exercicio; vaga: Vaga; funcao: Funcao; nivelFuncao: number; series: number; ordemVaga: number; preenchido?: boolean; noLugarDe?: string; protegido?: Musculo; segundo?: Musculo; pelaFalta?: boolean; pelaDor?: string; poupaLombar?: { saiu: string; jaTem: string } };
   // Volume da semana só com o mínimo de séries, dia a dia: um complemento (ou uma vaga só de prioridade) não entra
   // se, já no mínimo, passar do teto semanal de algum músculo (volume.semanal.teto-padrao, "nunca acima"). Antes,
   // só a distribuição das séries conferia o teto, e no modelo de 6 dias com três vagas de glúteo o mínimo sozinho
@@ -591,16 +592,23 @@ function montarPrograma(perfil: Perfil, inventarioOriginal: Inventario, triagem:
       // Um afundo por dia (selecao.funcao-da-vaga; R5a): fora da vaga de afundo, o afundo fica por último no nível
       // quando o dia já tem um ou ainda vai ter (a vaga de afundo com exercício).
       const comAfundo = funcao.id !== 'afundo' && (vagaDeAfundo || itens.some((i) => AFUNDOS.has(i.ex.id)));
-      const achado = ctx.escolher(funcao, x.res.nivel, fora, usos, repeteEmTodos, comAfundo ? ehAfundo : undefined);
+      // selecao.lombar-no-dia: depois de um exercício que carrega a lombar sem apoio, o de tronco que também carrega fica
+      // por último entre os do mesmo nível (os de perna, depois de dois).
+      const lombarNoDia = itens.filter((i) => carregaLombar(i.ex));
+      const cansa = (e: Exercicio) => carregaLombar(e) && lombarNoDia.length >= (e.musculos.primarios.some((m) => MUSCULOS_INFERIORES.includes(m)) ? 2 : 1);
+      const achado = ctx.escolher(funcao, x.res.nivel, fora, usos, repeteEmTodos, comAfundo ? ehAfundo : undefined, cansa);
       if (!achado) continue;
       const { ex: escolhido, nivelFuncao } = achado;
+      // O porquê: quem ficaria com a vaga sem esta regra, se for outro e carregar a lombar.
+      const semARegra = lombarNoDia.length ? ctx.escolher(funcao, x.res.nivel, fora, usos, repeteEmTodos, comAfundo ? ehAfundo : undefined) : null;
+      const poupaLombar = semARegra && semARegra.ex.id !== escolhido.id && cansa(semARegra.ex) && !cansa(escolhido) ? { saiu: semARegra.ex.nome, jaTem: lombarNoDia[0]!.ex.nome } : undefined;
       // Toda vaga confere o teto semanal já no mínimo de séries (antes, só os complementos e as vagas de prioridade:
       // com os seis dias do Corpo todo 6x, as vagas-base sozinhas levavam o glúteo a 23; sessão de qualidade, 06/11/2026).
       if (!cabeNoTeto(escolhido)) continue;
       if (nivelFuncao > 0 && funcao.semNivel1) nivelAbaixo.add(funcao.semNivel1);
       usos.set(escolhido.id, (usos.get(escolhido.id) ?? 0) + 1);
       for (const [m, n] of Object.entries(volumePorMusculo([{ ex: escolhido, series: VOLUME.seriesPorExercicio.min }])) as [Musculo, number][]) vMinimo[m] = (vMinimo[m] ?? 0) + n;
-      itens.push({ ex: escolhido, vaga: x.vaga, funcao, nivelFuncao, series: VOLUME.seriesPorExercicio.min, ordemVaga: x.ordem, ...(ativaPeloFoco(x.vaga) ? {} : { pelaFalta: true }), ...(x.pelaDor ? { pelaDor: x.pelaDor } : {}) });
+      itens.push({ ex: escolhido, vaga: x.vaga, funcao, nivelFuncao, series: VOLUME.seriesPorExercicio.min, ordemVaga: x.ordem, ...(ativaPeloFoco(x.vaga) ? {} : { pelaFalta: true }), ...(x.pelaDor ? { pelaDor: x.pelaDor } : {}), ...(poupaLombar ? { poupaLombar } : {}) });
     }
     for (const id of new Set(itens.map((i) => i.ex.id))) diasCom.set(id, (diasCom.get(id) ?? 0) + 1);
     // Vagas sem exercício possível com o equipamento (não pela dor): selecao.vaga-sem-equipamento e tempo.sobra-series.
@@ -917,8 +925,10 @@ function montarPrograma(perfil: Perfil, inventarioOriginal: Inventario, triagem:
 
   // 7. Prescrição
   // Lembrete nos exercícios que carregam uma região marcada com dor de 0 a 5 (seguranca.dor.programa).
-  const porqueDaDor = (e: Exercicio, preenchido?: boolean, noLugarDe?: string, protegido?: Musculo, segundo?: Musculo, pelaDor?: string): Porque[] => {
+  const porqueDaDor = (e: Exercicio, preenchido?: boolean, noLugarDe?: string, protegido?: Musculo, segundo?: Musculo, pelaDor?: string, poupaLombar?: { saiu: string; jaTem: string }): Porque[] => {
     const p: Porque[] = [];
+    if (poupaLombar)
+      p.push({ regraId: r('selecao.lombar-no-dia'), texto: `Ficou este, e não ${poupaLombar.saiu.toLowerCase()}: o treino de hoje já tem ${poupaLombar.jaTem.toLowerCase()}, que carrega a lombar sem apoio.` });
     if (pelaDor)
       p.push({ regraId: r('selecao.dia-sem-principal'), texto: `Entrou no lugar da vaga "${pelaDor.toLowerCase()}", que a dor ${regioesExcluidas.map(dorDe).join(' e ')} deixou sem exercício: trabalha o mesmo músculo sem carregar a região.` });
     if (segundo)
@@ -936,7 +946,7 @@ function montarPrograma(perfil: Perfil, inventarioOriginal: Inventario, triagem:
     return p;
   };
   const prescreverItem = (it: Item): ExercicioPrescrito =>
-    prescrever(it.ex, it.funcao, it.nivelFuncao, it.series, ctx, porqueDaDor(it.ex, it.preenchido, it.noLugarDe, it.protegido, it.segundo, it.pelaDor));
+    prescrever(it.ex, it.funcao, it.nivelFuncao, it.series, ctx, porqueDaDor(it.ex, it.preenchido, it.noLugarDe, it.protegido, it.segundo, it.pelaDor, it.poupaLombar));
   // Objetivo "ficar mais forte" (objetivo.forca.*): os 2 primeiros multiarticulares com carga de cada treino ficam com a
   // faixa mais baixa e o descanso maior; o peso livre fica com 2 a 3 de reserva. O iniciante segue como na hipertrofia.
   const forca = perfil.objetivo === 'forca' && nivel !== 'iniciante';
@@ -1575,6 +1585,8 @@ function frequenciaTexto(d: Divisao): string {
 /** Os exercícios do padrão afundo (búlgaro e afundos): um por dia, havendo outra opção (selecao.funcao-da-vaga; R5a). */
 const AFUNDOS = new Set(FUNCAO['afundo']!.niveis.flat());
 const ehAfundo = (e: Exercicio) => AFUNDOS.has(e.id);
+/** O exercício carrega a lombar sem apoio (selecao.lombar-no-dia): tem a lombar entre as articulações, não é de abdômen e não é apoiado. */
+export const carregaLombar = (e: Exercicio) => e.padrao !== 'core' && e.articulacoes.includes('lombar') && !e.tags.includes('apoiado');
 
 export function volumePorMusculo(lista: { ex: Exercicio; series: number }[]): Partial<Record<Musculo, number>> {
   const v: Partial<Record<Musculo, number>> = {};

@@ -545,7 +545,7 @@ function montarPrograma(perfil: Perfil, inventarioOriginal: Inventario, triagem:
   const lacunas = new Set<string>();
   const nivelAbaixo = new Set<string>();
   const foraPorMinutos = new Set<Musculo>();
-  type Item = { ex: Exercicio; vaga: Vaga; funcao: Funcao; nivelFuncao: number; series: number; ordemVaga: number; preenchido?: boolean; noLugarDe?: string; protegido?: Musculo; segundo?: Musculo; pelaFalta?: boolean; pelaDor?: string };
+  type Item = { ex: Exercicio; vaga: Vaga; funcao: Funcao; nivelFuncao: number; series: number; ordemVaga: number; preenchido?: boolean; noLugarDe?: string; protegido?: Musculo; segundo?: Musculo; pelaFalta?: boolean; pelaDor?: string; poupaLombar?: { saiu: string; jaTem: string } };
   // Volume da semana só com o mínimo de séries, dia a dia: um complemento (ou uma vaga só de prioridade) não entra
   // se, já no mínimo, passar do teto semanal de algum músculo (volume.semanal.teto-padrao, "nunca acima"). Antes,
   // só a distribuição das séries conferia o teto, e no modelo de 6 dias com três vagas de glúteo o mínimo sozinho
@@ -664,18 +664,21 @@ function montarPrograma(perfil: Perfil, inventarioOriginal: Inventario, triagem:
       const comAfundo = funcao.id !== 'afundo' && (vagaDeAfundo || itens.some((i) => AFUNDOS.has(i.ex.id)));
       // PROTÓTIPO (fadiga): o dia fica com no máximo um exercício de tronco que carrega a lombar sem apoio depois de outro
       // que já carrega (os de perna, no máximo dois), havendo opção do mesmo nível.
-      const lombarNoDia = itens.filter((i) => carregaLombar(i.ex)).length;
-      const cansa = prot('fadiga') ? (e: Exercicio) => carregaLombar(e) && lombarNoDia >= (e.musculos.primarios.some((m) => MUSCULOS_INFERIORES.includes(m)) ? 2 : 1) : undefined;
-      const achado = ctx.escolher(funcao, x.res.nivel, fora, usos, repeteEmTodos, (e) => (comAfundo && ehAfundo(e)) || vaiRepetirEmTodos(e), cansa);
+      const lombarNoDia = itens.filter((i) => carregaLombar(i.ex));
+      const cansa = prot('fadiga') ? (e: Exercicio) => carregaLombar(e) && lombarNoDia.length >= (e.musculos.primarios.some((m) => MUSCULOS_INFERIORES.includes(m)) ? 2 : 1) : undefined;
+      const depoisDoDia = (e: Exercicio) => (comAfundo && ehAfundo(e)) || vaiRepetirEmTodos(e);
+      const achado = ctx.escolher(funcao, x.res.nivel, fora, usos, repeteEmTodos, depoisDoDia, cansa);
       if (!achado) continue;
       const { ex: escolhido, nivelFuncao } = achado;
+      const semARegra = cansa && lombarNoDia.length ? ctx.escolher(funcao, x.res.nivel, fora, usos, repeteEmTodos, depoisDoDia) : null;
+      const poupaLombar = cansa && semARegra && semARegra.ex.id !== escolhido.id && cansa(semARegra.ex) && !cansa(escolhido) ? { saiu: semARegra.ex.nome, jaTem: lombarNoDia[0]!.ex.nome } : undefined;
       // Toda vaga confere o teto semanal já no mínimo de séries (antes, só os complementos e as vagas de prioridade:
       // com os seis dias do Corpo todo 6x, as vagas-base sozinhas levavam o glúteo a 23; sessão de qualidade, 06/11/2026).
       if (!cabeNoTeto(escolhido)) continue;
       if (nivelFuncao > 0 && funcao.semNivel1) nivelAbaixo.add(funcao.semNivel1);
       usos.set(escolhido.id, (usos.get(escolhido.id) ?? 0) + 1);
       for (const [m, n] of Object.entries(volumePorMusculo([{ ex: escolhido, series: VOLUME.seriesPorExercicio.min }])) as [Musculo, number][]) vMinimo[m] = (vMinimo[m] ?? 0) + n;
-      itens.push({ ex: escolhido, vaga: x.vaga, funcao, nivelFuncao, series: VOLUME.seriesPorExercicio.min, ordemVaga: x.ordem, ...(ativaPeloFoco(x.vaga) ? {} : { pelaFalta: true }), ...(x.pelaDor ? { pelaDor: x.pelaDor } : {}) });
+      itens.push({ ex: escolhido, vaga: x.vaga, funcao, nivelFuncao, series: VOLUME.seriesPorExercicio.min, ordemVaga: x.ordem, ...(ativaPeloFoco(x.vaga) ? {} : { pelaFalta: true }), ...(x.pelaDor ? { pelaDor: x.pelaDor } : {}), ...(poupaLombar ? { poupaLombar } : {}) });
     }
     for (const id of new Set(itens.map((i) => i.ex.id))) diasCom.set(id, (diasCom.get(id) ?? 0) + 1);
     // Vagas sem exercício possível com o equipamento (não pela dor): selecao.vaga-sem-equipamento e tempo.sobra-series.
@@ -993,8 +996,10 @@ function montarPrograma(perfil: Perfil, inventarioOriginal: Inventario, triagem:
 
   // 7. Prescrição
   // Lembrete nos exercícios que carregam uma região marcada com dor de 0 a 5 (seguranca.dor.programa).
-  const porqueDaDor = (e: Exercicio, preenchido?: boolean, noLugarDe?: string, protegido?: Musculo, segundo?: Musculo, pelaDor?: string): Porque[] => {
+  const porqueDaDor = (e: Exercicio, preenchido?: boolean, noLugarDe?: string, protegido?: Musculo, segundo?: Musculo, pelaDor?: string, poupaLombar?: { saiu: string; jaTem: string }): Porque[] => {
     const p: Porque[] = [];
+    if (poupaLombar)
+      p.push({ regraId: r('selecao.lombar-no-dia'), texto: `Ficou este, e não ${poupaLombar.saiu.toLowerCase()}: o treino de hoje já tem ${poupaLombar.jaTem.toLowerCase()}, que carrega a lombar sem apoio.` });
     if (pelaDor)
       p.push({ regraId: r('selecao.dia-sem-principal'), texto: `Entrou no lugar da vaga "${pelaDor.toLowerCase()}", que a dor ${regioesExcluidas.map(dorDe).join(' e ')} deixou sem exercício: trabalha o mesmo músculo sem carregar a região.` });
     if (segundo)
@@ -1012,7 +1017,7 @@ function montarPrograma(perfil: Perfil, inventarioOriginal: Inventario, triagem:
     return p;
   };
   const prescreverItem = (it: Item): ExercicioPrescrito =>
-    prescrever(it.ex, it.funcao, it.nivelFuncao, it.series, ctx, porqueDaDor(it.ex, it.preenchido, it.noLugarDe, it.protegido, it.segundo, it.pelaDor));
+    prescrever(it.ex, it.funcao, it.nivelFuncao, it.series, ctx, porqueDaDor(it.ex, it.preenchido, it.noLugarDe, it.protegido, it.segundo, it.pelaDor, it.poupaLombar));
   // Objetivo "ficar mais forte" (objetivo.forca.*): os 2 primeiros multiarticulares com carga de cada treino ficam com a
   // faixa mais baixa e o descanso maior; o peso livre fica com 2 a 3 de reserva. O iniciante segue como na hipertrofia.
   const forca = perfil.objetivo === 'forca' && nivel !== 'iniciante';

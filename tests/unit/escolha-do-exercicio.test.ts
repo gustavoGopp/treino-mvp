@@ -1,6 +1,6 @@
 import { beforeAll, describe, expect, it, vi } from 'vitest';
 import { POR_ID } from '../../src/domain/biblioteca';
-import { contextoDeSelecao, gerarPrograma, type Perfil, type Programa } from '../../src/domain/gerador';
+import { carregaLombar, contextoDeSelecao, gerarPrograma, type Perfil, type Programa } from '../../src/domain/gerador';
 import { FUNCAO, FUNCOES } from '../../src/domain/gerador/funcoes';
 import type { Inventario } from '../../src/domain/taxonomia/equipamentos';
 import { medirRegua } from '../../scripts/auditoria/regua';
@@ -12,6 +12,8 @@ import { PERSONAS_NOVAS } from '../personas/todos';
 //  - selecao.funcao-da-vaga: no empate total, vale a ordem de referência da lista da função (dado curado em
 //    funcoes.json), e não a ordem alfabética.
 //  - selecao.funcao-da-vaga: com carga à vontade, o exercício de dois lados vem antes do de um lado só.
+//  - selecao.lombar-no-dia: depois de um exercício que carrega a lombar sem apoio, o de tronco que também carrega fica
+//    por último entre os do mesmo nível (os de perna, depois de dois).
 // O "antes" de cada regra é o protótipo (scripts/auditoria/prototipo) com todas as adotadas menos ela. Só personas e
 // perfis fictícios.
 
@@ -149,5 +151,64 @@ describe('selecao.funcao-da-vaga: com carga à vontade, dois lados antes de um l
       expect(umLado(d), p.nome).toBeLessThanOrEqual(umLado(a));
     }
     expect(mudam).toBeGreaterThan(0);
+  });
+});
+
+describe('selecao.lombar-no-dia: poupar a lombar dentro do dia (pacote 2)', () => {
+  let antes: typeof gerarPrograma;
+  beforeAll(async () => {
+    antes = await carregarAntes('app,-fadiga');
+  });
+  const lombarPorDia = (p: Programa) => p.dias.map((d) => d.exercicios.filter((x) => carregaLombar(POR_ID[x.exId]!)).length);
+  /** A grade de teste: quatro lugares de treino, três níveis, 3 a 5 dias, 60 min, sem foco e sem dor. */
+  const GRADE = ['academia', 'condominio+', 'halteres-banco', 'casa+'].flatMap((cenario) =>
+    (['iniciante', 'intermediario', 'avancado'] as const).flatMap((nivel) => ['3', '4', '5'].map((dias) => pedido({ cenario, nivel, dias }))),
+  );
+
+  it('o que conta como "carrega a lombar sem apoio": a remada curvada e o stiff contam; a remada apoiada e o abdominal, não', () => {
+    expect(carregaLombar(POR_ID['remada-curvada-halteres']!)).toBe(true);
+    expect(carregaLombar(POR_ID.stiff!)).toBe(true);
+    expect(carregaLombar(POR_ID['remada-apoiada']!)).toBe(false);
+    expect(carregaLombar(POR_ID['abdominal-chao']!)).toBe(false);
+  });
+
+  it('na grade de teste, nenhum dia fica com mais exercícios que carregam a lombar do que antes, e algum fica com menos', () => {
+    let menos = 0;
+    for (const pd of GRADE) {
+      const [perfil, inventario] = [perfilDe(pd), inventarioDe(pd.cenario)];
+      const [a, d] = [programa(antes, perfil, inventario), programa(gerarPrograma, perfil, inventario)];
+      const [la, ld] = [lombarPorDia(a), lombarPorDia(d)];
+      const nome = `${pd.cenario}, ${pd.nivel}, ${pd.dias} dias`;
+      expect(Math.max(...ld), nome).toBeLessThanOrEqual(Math.max(...la));
+      expect(ld.reduce((t, n) => t + n, 0), nome).toBeLessThanOrEqual(la.reduce((t, n) => t + n, 0));
+      if (ld.reduce((t, n) => t + n, 0) < la.reduce((t, n) => t + n, 0)) menos++;
+    }
+    expect(menos).toBeGreaterThan(0);
+  });
+
+  it('a regra só ordena: nenhum exercício sai sem outro do mesmo nível no lugar (o nº de exercícios e de séries por dia não cai)', () => {
+    for (const pd of GRADE) {
+      const [perfil, inventario] = [perfilDe(pd), inventarioDe(pd.cenario)];
+      const [a, d] = [programa(antes, perfil, inventario), programa(gerarPrograma, perfil, inventario)];
+      expect(d.dias.length).toBe(a.dias.length);
+      expect(ids(d).length, `${pd.cenario}, ${pd.nivel}, ${pd.dias} dias`).toBeGreaterThanOrEqual(ids(a).length);
+    }
+  });
+
+  it('o exercício que entrou no lugar traz o porquê, com a regra e o nome de quem ficou de fora', () => {
+    const comPorque = GRADE.flatMap((pd) => programa(gerarPrograma, perfilDe(pd), inventarioDe(pd.cenario)).dias.flatMap((d) => d.exercicios)).filter((x) => x.porque.some((q) => q.regraId === 'selecao.lombar-no-dia'));
+    expect(comPorque.length).toBeGreaterThan(0);
+    for (const x of comPorque) {
+      expect(carregaLombar(POR_ID[x.exId]!)).toBe(false);
+      expect(x.porque.find((q) => q.regraId === 'selecao.lombar-no-dia')!.texto).toMatch(/^Ficou este, e não .+: o treino de hoje já tem .+, que carrega a lombar sem apoio\.$/);
+    }
+  });
+
+  it('nas personas, não aparece defeito da régua que não havia', () => {
+    for (const p of TODAS) {
+      const [a, d] = [programa(antes, p.perfil, p.inventario), programa(gerarPrograma, p.perfil, p.inventario)];
+      const [da, dd] = [defeitos(a, p.perfil, p.inventario), defeitos(d, p.perfil, p.inventario)];
+      expect(dd.filter((x) => !da.includes(x)), p.nome).toEqual([]);
+    }
   });
 });
