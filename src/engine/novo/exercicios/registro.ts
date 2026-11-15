@@ -34,3 +34,4 @@ export { ytSuspensao } from './yt-suspensao';
 export { ponteGluteo } from './ponte-gluteo';
 export { ponteGluteoHalter } from './ponte-gluteo-halter';
 export { ponteKettlebell } from './ponte-kettlebell';
+export { flexaoJoelhoSuspensao } from './flexao-joelho-suspensao';

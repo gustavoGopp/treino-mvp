@@ -76,6 +76,23 @@ export const pelveAoChao = (corpo: Corpo, t: Tronco) => maisBaixo(t.pelve, forma
 export const cabecaAoChao = (corpo: Corpo, t: Tronco) => maisBaixo(t.cabeca, formas(corpo).cabeca);
 export const peAoChao = (corpo: Corpo, e: Esq) => maisBaixo(e.lado.R.pe, formas(corpo).pe);
 export const coxaAoChao = (corpo: Corpo, e: Esq) => maisBaixo(e.lado.R.coxa, formas(corpo).coxa);
+/**
+ * O ponto da superfície do pé direito mais longe de `alvo` (na suspensão: o fundo do berço, onde a fita, puxada para a
+ * âncora pelo peso da perna, aperta o calcanhar).
+ */
+export function peMaisLongeDe(corpo: Corpo, e: Esq, alvo: V3): V3 {
+  let melhor: V3 = e.lado.R.calcanhar,
+    d = -1;
+  for (const p of formas(corpo).pe) {
+    const q = noRef(e.lado.R.pe, p);
+    const dq = Math.hypot(q[0] - alvo[0], q[1] - alvo[1], q[2] - alvo[2]);
+    if (dq > d) {
+      d = dq;
+      melhor = q;
+    }
+  }
+  return melhor;
+}
 
 /** Direção no plano de lado (y, z), pelo ângulo em graus a partir de +z, girando para +y. */
 const noPlano = (a: number): V3 => [0, Math.sin(a * rad), Math.cos(a * rad)];

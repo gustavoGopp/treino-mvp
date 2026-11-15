@@ -1,0 +1,55 @@
+{
+ "id": "flexao-joelho-suspensao",
+ "nome": "Flexão de joelho na suspensão",
+ "fichaDaTecnica": "docs/pesquisa/animacoes/flexao-joelho-suspensao.md",
+ "fontes": {
+  "ficha": "Ficha da técnica (docs/pesquisa/animacoes/flexao-joelho-suspensao.md): a mesma técnica da flexão na bola e da deslizante, consenso de treinadores (B.2.6)",
+  "app": "Texto do app (src/conteudo/exercicios/flexao-joelho-suspensao.json), que sai da ficha",
+  "deslizante": "Ficha de movimento da flexão de joelho deslizante (dados/movimentos/flexao-joelho-deslizante.json): o mesmo movimento, os mesmos números de desenho",
+  "correcao": "Correção já feita em 04/11/2026 (docs/revisoes/animacao-nova/correcoes-ja-feitas.md, linha das suspensões): a fita não estica; fita do pé com cerca de 180 cm, escolha de desenho (docs/revisoes/catalogo/conferencia/suspensao.md)",
+  "hoje": "Animação aprovada no guia de hoje (src/engine/exercicios/flexao-joelho-suspensao.ts): as distâncias que a ficha não dá em número",
+  "objetos": "src/engine/novo/dados/objetos/suspensao.json (fita, âncora, berço do pé) e src/engine/novo/dados/objetos.json (colchonete)",
+  "desenho": "Escolha de desenho desta animação, dentro do que a ficha pede; a conferência mede o resultado"
+ },
+ "param": {
+  "joelho.inicio": {"v": 10, "un": "graus", "selo": "consenso", "fonte": "app", "o": "início: pernas quase estendidas, com o quadril ainda fora do chão"},
+  "joelho.fim": {"v": 110, "un": "graus", "selo": "desenho", "fonte": "deslizante", "o": "fim: calcanhares em direção ao glúteo; a ficha não dá o ângulo. Com os pés no alto (o calcanhar não desce da altura da alça), dobrar mais o joelho com o corpo em linha faz o quadril subir até o tronco ficar quase em pé sobre a nuca; 110 graus é o meio-termo escolhido olhando os quadros"},
+  "quadril.folgaNoInicio": {"v": 5, "un": "cm", "selo": "desenho", "fonte": "deslizante", "o": "início: quadril um pouco fora do chão (da pele do glúteo ao chão); a ficha diz \"um pouco\" e não dá número"},
+  "quadril.fim": {"v": 9, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "fim: ombros, quadril e joelhos em linha (a ficha), com 9 graus de folga (171°, dentro dos 170° da regra da família): em linha exata o quadril sobe mais e o pescoço dobra mais"},
+  "pe.angulo": {"v": 0, "un": "graus", "selo": "desenho", "fonte": "deslizante", "o": "o pé em ângulo reto com a canela, o calcanhar no berço (como a correção da deslizante)"},
+  "fita.alcaDoChao": {"v": 30.5, "un": "cm", "selo": "consenso", "fonte": "app", "o": "a fita ajustada com o fundo do berço, pendurado, a um palmo e meio do chão (o app); é o maior da faixa do fabricante, 8 a 12 pol (objetos/suspensao.json, alcaAlturaMax). No início, com os pés embaixo da âncora, o calcanhar fica nessa altura"},
+  "fita.ancoraParaACabeca": {"v": 25, "un": "cm", "selo": "desenho", "fonte": "desenho", "o": "a âncora sobre os pés (o app: \"os pés embaixo da âncora\"): quanto ela fica para o lado da cabeça do calcanhar no início"},
+  "fita.tronco": {"v": 30, "un": "cm", "selo": "desenho", "fonte": "desenho", "o": "quanto a fita desce inteira, da âncora, antes de se dividir em duas, uma para cada pé"},
+  "ombro.z": {"v": -50, "un": "cm", "selo": "desenho", "fonte": "desenho", "o": "onde ficam os ombros na cena (só posiciona a cena; os ombros não saem do lugar)"},
+  "colchonete.z": {"v": -80, "un": "cm", "selo": "desenho", "fonte": "app", "o": "o colchonete sob os ombros e a cabeça (o app: \"um colchonete sob os ombros\"): o centro dele em z, para ele acabar antes do quadril"},
+  "maos.alcance": {"v": 0.95, "un": "fração", "selo": "desenho", "fonte": "deslizante", "o": "braços no chão ao lado do corpo, palmas para baixo: o punho fica, na direção dos pés, a 95% do braço mais o antebraço a partir do ombro"},
+  "maos.paraFora": {"v": 6, "un": "cm", "selo": "desenho", "fonte": "deslizante", "o": "as mãos um pouco para fora da linha dos ombros, para o braço não encostar no tronco"},
+  "erro.quadril.folga": {"v": 0.3, "un": "cm", "selo": "desenho", "fonte": "desenho", "o": "erro: o quadril cai até encostar no chão durante a puxada"},
+  "erro.quadril.joelho": {"v": 70, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "erro: com o quadril caído e os calcanhares presos no alto, os joelhos só dobram até 70 graus (a fita não estica)"},
+  "erro.lombar.lombar": {"v": -25, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "erro: a lombar arqueia 25 graus para subir o quadril (barriga para cima)"},
+  "erro.curta.fracao": {"v": 0.4, "un": "fração", "selo": "desenho", "fonte": "desenho", "o": "erro: para com os joelhos ainda pouco dobrados (40% do caminho)"}
+ },
+ "fases": [
+  {"nome": "Pernas estendidas", "tipo": "pausa", "dur": 0.5, "de": 0, "ate": 0, "respira": "INSPIRA", "tempo": "quadril fora do chão", "selo": "consenso", "fonte": "app"},
+  {"nome": "Puxada · concêntrica", "tipo": "conc", "dur": 1.2, "de": 0, "ate": 1, "respira": "EXPIRA", "tempo": "~1 s", "selo": "consenso", "fonte": "ficha"},
+  {"nome": "Joelhos dobrados", "tipo": "pausa", "dur": 0.6, "de": 1, "ate": 1, "respira": "FIRME", "tempo": "quadril alto", "selo": "consenso", "fonte": "app"},
+  {"nome": "Volta · excêntrica", "tipo": "exc", "dur": 2.5, "de": 1, "ate": 0, "respira": "INSPIRA", "tempo": "~2 s", "selo": "consenso", "fonte": "ficha"}
+ ],
+ "contatos": ["mao.R", "mao.L"],
+ "regras": [
+  {"id": "quadril-fora-do-chao", "pede": "o quadril fica fora do chão o tempo todo", "selo": "consenso", "fonte": "ficha"},
+  {"id": "flexao-joelho-ombros-no-colchonete", "pede": "os ombros ficam no colchonete, sem sair do lugar, e a cabeça apoiada", "selo": "consenso", "fonte": "ficha"},
+  {"id": "em-linha-no-fim", "pede": "com os joelhos dobrados, ombros, quadril e joelhos em linha", "selo": "consenso", "fonte": "ficha"},
+  {"id": "flexao-joelho-calcanhar-no-berco", "pede": "os calcanhares nos berços da fita, que pende da âncora sobre os pés: no início os pés ficam embaixo da âncora, e os calcanhares andam num arco em volta da âncora até perto do glúteo", "selo": "consenso", "fonte": "ficha"}
+ ],
+ "erros": [
+  {"id": "quadril", "instante": 1, "titulo": "Quadril encosta no chão", "vista": "lateral", "oQueMuda": "o quadril cai até o chão enquanto os calcanhares vêm", "destaca": ["corpo"], "linha": ["c7", "pelve", "joelho"], "foco": "pelve"},
+  {"id": "lombar", "instante": 1, "titulo": "Arquear a lombar", "vista": "lateral", "oQueMuda": "a lombar arqueia 25° e a barriga sobe, fora da linha ombro–joelho", "destaca": ["corpo"], "linha": ["c7", "lombar", "pelve", "joelho"], "foco": "lombar"},
+  {"id": "curta", "instante": 1, "titulo": "Puxar pouco", "vista": "lateral", "oQueMuda": "para com os joelhos pouco dobrados, os calcanhares longe do glúteo", "destaca": ["pernas"], "linha": ["quadril", "joelho", "tornozelo"], "foco": "joelho"}
+ ],
+ "simetrico": true,
+ "rotulos": [
+  {"vista": "lateral", "texto": "quadril fora do chão", "ponto": "pelve", "selo": "consenso", "fonte": "app"},
+  {"vista": "lateral", "texto": "calcanhar no glúteo", "ponto": "calcanhar", "selo": "consenso", "fonte": "app"}
+ ]
+}
