@@ -5,7 +5,7 @@ De 15/11/2026. Terceira animação da família dos ombros no motor novo. A ficha
 - Ficha da técnica: `docs/pesquisa/animacoes/desenvolvimento.md`.
 - Ficha de movimento: `src/engine/novo/dados/movimentos/desenvolvimento.json`.
 - Animação: `src/engine/novo/exercicios/desenvolvimento.ts`, sobre o núcleo comum dos desenvolvimentos (`exercicios/empurrar-para-cima.ts`), que o desenvolvimento com kettlebell também usa.
-- **Peça provisória:** `src/engine/novo/pecas-de-cena/banco-regulavel-provisorio.ts` (ver "O equipamento").
+- **Banco regulável:** `src/engine/novo/pecas-de-cena/banco-regulavel.ts` (ver "O equipamento"; até 15/11/2026 era a peça provisória `banco-regulavel-provisorio.ts`).
 - Regras novas medidas: `src/engine/novo/regras/ombros.ts`; `lombar-neutra` e `antebraco-na-vertical` são as de `conferir.ts`.
 - Folha ao lado da de hoje: `../prototipos/folha-desenvolvimento.png`. Quadros grandes: `../quadros/desenvolvimento.png`.
 
@@ -46,6 +46,7 @@ A primeira é a **de lado**: mostra o encosto, as costas e a cabeça apoiadas, o
 ## O equipamento
 
 - **Banco regulável: peça provisória.** A tabela de objetos tem as medidas do banco regulável (`bancoRegulavel`, e os volumes da conferência em `pecas.ts`), mas não havia peça desenhada, e outro colega a desenha nesta rodada num ramo que este lote não vê. Como a ficha pede encosto (o banco reto não serve), desenhei uma peça mínima no mesmo gerador realista do banco reto (`pecas-de-cena/banco-regulavel-provisorio.ts`: dois estofados com costura, a viga e os pés de tubo, a coluna da dobradiça e a haste do encosto), com as mesmas medidas. **Quem integra deve trocá-la pela peça do colega** (a animação só usa `bancoRegulavelProvisorio` e `faceDoEncosto`). O assento e o que fica debaixo dele vão 30 cm para trás na pintura, para as coxas ficarem por cima (sem isso, de frente, o assento aparecia por cima do quadril).
+- **Atualização (15/11/2026, lote 5):** a peça provisória e o banco inclinado da rosca inclinada viraram uma peça só, `pecas-de-cena/banco-regulavel.ts` (função `bancoRegulavelNaCena`), com o mesmo desenho e os mesmos volumes daqui, mais o trilho debaixo do encosto; o assento vai 50 cm para trás na pintura (eram 30). A conferência continua sem falha; os quadros e a folha foram refeitos (ver `lote-5/rosca-inclinada.md`).
 - **Halteres:** o sextavado de 25 lb da tabela.
 
 ## Correções já feitas que esta animação respeita
@@ -58,6 +59,6 @@ Frente do ombro (principal), lateral do ombro e tríceps (secundários) e trapé
 
 ## O que não ficou bom
 
-- **O banco é provisório** (ver acima): a peça definitiva é do colega.
+- **O banco era provisório** (ver acima): desde 15/11 é a peça única do banco regulável, `pecas-de-cena/banco-regulavel.ts`.
 - **A base do banco é comprida:** de lado, a viga de 143,5 cm da tabela alarga a cena e o corpo fica um pouco menor que no búlgaro (quadro `lateral:tec:f0`). É a medida do banco.
 - **De lado, o fio do rótulo "cotovelos um pouco à frente" passa sobre o braço** (é o ponto do cotovelo, que fica na frente do corpo).

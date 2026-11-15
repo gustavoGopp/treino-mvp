@@ -1,8 +1,9 @@
-// Peça de cena PROVISÓRIA: o banco regulável com o encosto erguido, para o desenvolvimento sentado. Nesta rodada outro
-// colega desenha a peça definitiva do banco regulável num ramo que este lote não vê; quem integra troca esta pela dele
-// (as medidas são as mesmas: a tabela de objetos, `bancoRegulavel`, e os volumes da conferência são os de
-// ../pecas.ts, `bancoRegulavel`). O desenho segue o do banco reto (./equipamento.ts): estofado com costura no gerador
-// realista, estrutura em tubo de aço, pés de borracha.
+// Peça de cena: o banco regulável com o encosto erguido (desenvolvimento sentado, rosca inclinada). As medidas são as
+// da tabela de objetos (`bancoRegulavel` em ../dados/objetos.json) e os volumes simples da conferência são os de
+// ../pecas.ts (`bancoRegulavel`). O desenho segue o do banco reto (../equipamento.ts): estofado com costura no gerador
+// realista, estrutura em tubo de aço, pés de borracha. Junta os dois desenhos provisórios do lote 5 (o do
+// desenvolvimento e o da rosca inclinada): fica o do desenvolvimento, em que o assento é pintado atrás das coxas (de
+// frente, as coxas ficam por cima dele), com o trilho debaixo do encosto do outro.
 import type { Prim } from '../desenho';
 import type { Materiais } from '../equipamento';
 import { bancoRegulavel } from '../pecas';
@@ -15,7 +16,7 @@ import type { V3 } from '../vec';
 const g = (id: string) => obj('bancoRegulavel', id);
 const rad = Math.PI / 180;
 /** Quanto o assento e o que fica debaixo dele vão para trás na pintura (cm): a pessoa senta por cima. */
-const ATRAS = 30;
+const ATRAS = 50;
 
 /** Onde fica o banco: o meio (x0, z0) e o ângulo do encosto (graus da horizontal). O assento fica na ponta de +z. */
 export interface BancoRegulavel {
@@ -38,7 +39,25 @@ export function faceDoEncosto(b: BancoRegulavel): { ponto: V3; normal: V3; dir: 
   return { ponto: add(base, mul(normal, g('estofado'))), normal, dir: [0, Math.sin(a), -Math.cos(a)], comp: g('estofadoComp') - g('assentoComp') };
 }
 
-export function bancoRegulavelProvisorio(b: BancoRegulavel): { prims: Prim[]; peca: PecaPropria } {
+/**
+ * A geometria do banco: a dobradiça, a direção do encosto (subindo, para −z), a normal da face de cima dele e o pé de
+ * cada almofada (o centro da face de baixo, junto ao vão).
+ */
+export function geometriaDoBanco(b: BancoRegulavel) {
+  const est = g('estofado'),
+    alt = g('altura'),
+    compAssento = g('assentoComp'),
+    compEncosto = g('estofadoComp') - compAssento;
+  const D = dobradica(b);
+  const a = b.encosto * rad;
+  const d: V3 = [0, Math.sin(a), -Math.cos(a)],
+    n: V3 = [0, Math.cos(a), Math.sin(a)];
+  const baseEncosto: V3 = [b.x0, D[1], D[2] - g('vao') / 2];
+  const baseAssento: V3 = [b.x0, D[1], D[2] + g('vao') / 2];
+  return { est, alt, compAssento, compEncosto, zDobra: D[2], yDobra: D[1], d, n, baseEncosto, baseAssento, topoDoAssento: alt };
+}
+
+export function bancoRegulavelNaCena(b: BancoRegulavel): { prims: Prim[]; peca: PecaPropria } {
   const prims = bancoRegulavel(b.x0, b.z0, b.encosto);
   const peca: PecaPropria = {
     t: 'propria',
@@ -73,6 +92,9 @@ export function bancoRegulavelProvisorio(b: BancoRegulavel): { prims: Prim[]; pe
       C.tubo([b.x0, D[1] - tubo / 2, D[2] - 8], [b.x0, D[1] - tubo / 2, D[2] + g('assentoComp') - 4], tubo, tubo * 0.8, M.metal, { dz: ATRAS });
       const apoio: V3 = [b.x0, D[1] + Math.sin(a) * F.comp * 0.55 - 2, D[2] - Math.cos(a) * F.comp * 0.55 - 2];
       const pe: V3 = [b.x0, tubo, Math.max(zT + tubo, apoio[2] - 4)];
+      // o trilho debaixo do encosto, onde a haste apoia
+      const debaixo = (t: number): V3 => add(add(add(D, [0, 0, -vao / 2]), mul(dE, t)), mul(F.normal, -tubo / 2));
+      C.tubo(debaixo(4), debaixo(F.comp * 0.8), tubo * 0.8, tubo * 0.8, M.metal, { up: X });
       C.tubo(pe, apoio, tubo * 0.8, tubo * 0.8, M.metal);
       if (o.comSombra) C.sombra(b.x0, b.z0, baseL, base / 2 + 6, 0.18);
     },

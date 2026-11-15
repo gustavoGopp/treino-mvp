@@ -62,11 +62,17 @@ export function bracoDaRosca(T: Ref, k: Lado, p: PedidoDoBraco): PoseBraco {
 }
 
 /* ============================== as cargas ============================== */
-/** O halter na mão: o centro do cabo na pegada, o cabo atravessando a palma (na direção do polegar). */
-export function halterNaMao(e: Esq, k: Lado): { prims: Quadro['prims']; peca: Peca; centro: V3 } {
-  const centro = e.lado[k].pegada,
-    eixo = e.lado[k].mao.x;
-  return { prims: halter(centro, eixo, 0.4), peca: { t: 'halter', centro, eixo }, centro };
+/**
+ * O halter na mão: o centro do cabo na pegada, o cabo atravessando a palma (na direção do polegar). `objeto`: o id do
+ * halter na tabela de objetos (por omissão, o de 25 lb; `'halterLeve'` é o de 10 lb). `paraOPolegar`: quantos cm o
+ * halter corre ao longo do cabo para o lado do polegar (a mão encostada na cabeça do lado do dedo mínimo; 0 = a mão no
+ * meio do cabo).
+ */
+export function halterNaMao(e: Esq, k: Lado, objeto = 'halter', paraOPolegar = 0): { prims: Quadro['prims']; peca: Peca; centro: V3 } {
+  const eixo = e.lado[k].mao.x;
+  // o eixo x da mão aponta para o polegar no lado esquerdo e para o dedo mínimo no direito (sinal do lado)
+  const centro = paraOPolegar ? add(e.lado[k].pegada, mul(eixo, sinal(k) * paraOPolegar)) : e.lado[k].pegada;
+  return { prims: halter(centro, eixo, 0.4, objeto), peca: objeto === 'halter' ? { t: 'halter', centro, eixo } : { t: 'halter', centro, eixo, objeto }, centro };
 }
 
 /**
@@ -145,10 +151,12 @@ export type RoscaEmPe = 'alternada' | 'martelo' | 'kettlebell';
  * As roscas em pé. O parâmetro do movimento u vai de 0 (embaixo) a 1 (em cima) no braço direito; nas alternadas, de
  * 2 a 3 é o braço esquerdo que sobe (o direito fica embaixo). u = 0 e u = 2 são a mesma pose.
  */
-export function criarRoscaEmPe(fichaJson: unknown, v: RoscaEmPe): { ficha: Ficha; quadro(corpo: Corpo, u: number, erro?: string): Quadro } {
+export function criarRoscaEmPe(fichaJson: unknown, v: RoscaEmPe, o: { halter?: string } = {}): { ficha: Ficha; quadro(corpo: Corpo, u: number, erro?: string): Quadro } {
   const F = fichaSchema.parse(fichaJson);
   const f = daFicha(F);
   const kb = v === 'kettlebell';
+  /** O halter da tabela de objetos (o de 25 lb, se a variação não pedir outro). */
+  const H = o.halter ?? 'halter';
   const supinacao = f('maos.supinacao');
   const CACHE = new WeakMap<Corpo, CorpoEmPe>();
 
@@ -166,7 +174,7 @@ export function criarRoscaEmPe(fichaJson: unknown, v: RoscaEmPe): { ficha: Ficha
       aFrente: f('braco.aFrente') + (erro === 'cotovelo' ? f('erro.cotovelo.braco') * suave(x) : 0),
       cotovelo: cotovelo(x, erro),
       supinacao,
-      diam: kb ? obj('kettlebell', 'alcaDiam') : obj('halter', 'caboDiam'),
+      diam: kb ? obj('kettlebell', 'alcaDiam') : obj(H, 'caboDiam'),
     });
   }
   /** Quanto cada braço sobe no ponto u (direito, esquerdo). */
@@ -203,10 +211,10 @@ export function criarRoscaEmPe(fichaJson: unknown, v: RoscaEmPe): { ficha: Ficha
       q.marcas = { kettlebell: e.lado.R.pegada, bola: K.centro };
     } else {
       for (const k of ['R', 'L'] as Lado[]) {
-        const H = halterNaMao(e, k);
-        q.prims.push(...H.prims);
-        q.pecas!.push(H.peca);
-        q.cargas.push({ massa, pos: H.centro });
+        const M = halterNaMao(e, k, H);
+        q.prims.push(...M.prims);
+        q.pecas!.push(M.peca);
+        q.cargas.push({ massa, pos: M.centro });
       }
       q.marcas = { halter: e.lado.R.pegada };
     }

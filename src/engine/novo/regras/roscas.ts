@@ -4,7 +4,7 @@ import { pontosDoBoneco } from '../boneco';
 import { angulosDoLado, f1, faixa } from '../conferir-util';
 import type { Regra } from '../conferir-util';
 import type { Quadro } from '../movimento';
-import { dist, dot, sub } from '../vec';
+import { dist, dot, paraRef, sub } from '../vec';
 import type { V3 } from '../vec';
 
 /** Distância de um ponto a um segmento. */
@@ -108,6 +108,83 @@ export const regrasDasRoscas: Record<string, Regra> = {
       } else encostada = Math.max(encostada, desvio);
     }
     return { medido: `com o antebraço abaixo de 60° de flexão, a bola fica no máximo ${f1(pendendo)}° fora do ponto mais baixo (a alça inclina até ${f1(alca)}°); acima, ela encosta no antebraço e gira até ${f1(encostada)}°`, ok: pendendo <= 3 && alca <= 15 };
+  },
+  // ----- rosca inclinada (sentado no banco regulável) -----
+  'braco-na-vertical-na-inclinada': (q) => {
+    const anda = Math.max(...q.map((x) => dist(x.esq.lado.R.cotovelo, q[0]!.esq.lado.R.cotovelo)));
+    // o braço visto de lado (para a frente ou para trás da vertical) e visto de frente (aberto)
+    const lados = q.map((x) => {
+      const b = sub(x.esq.lado.R.cotovelo, x.esq.lado.R.ombro);
+      return { frente: Math.atan2(b[2], -b[1]) / (Math.PI / 180), fora: Math.atan2(-b[0], -b[1]) / (Math.PI / 180) };
+    });
+    const [a, b] = faixa(lados.map((x) => x.frente));
+    const [c0, c1] = faixa(q.map((x) => angulosDoLado(x.esq, 'R').cotovelo));
+    // atrás da linha do tronco: o cotovelo fica atrás da linha que vai do quadril ao ombro
+    const L = q[0]!.esq.lado.R,
+      T = q[0]!.esq.torax;
+    const atras = dot(sub(L.cotovelo, L.ombro), T.z);
+    return { medido: `o cotovelo anda ${f1(anda)} cm enquanto dobra de ${f1(c0)}° a ${f1(c1)}°; visto de lado, o braço fica de ${f1(a)}° a ${f1(b)}° da vertical (aberto ${f1(lados[0]!.fora)}°); o cotovelo fica ${f1(-atras)} cm atrás da linha do tronco`, ok: anda <= 1 && Math.max(Math.abs(a), Math.abs(b)) <= 5 && atras < 0 && c1 - c0 >= 90 };
+  },
+  // o mesmo "perto do ombro" das roscas em pé (a pegada a até 30 cm do centro do ombro), mas com o braço na vertical do
+  // mundo (no banco inclinado ele fica atrás da linha do tronco, e não ao lado dela)
+  'halter-perto-do-ombro-na-inclinada': (q) => {
+    const x = q[q.length - 1]!,
+      L = x.esq.lado.R;
+    const d = dist(L.pegada, L.ombro);
+    const b = sub(L.cotovelo, L.ombro);
+    const frente = Math.atan2(b[2], -b[1]) / (Math.PI / 180);
+    return { medido: `em cima, o centro da pegada fica a ${f1(d)} cm do centro do ombro (${f1(L.ombro[1] - L.pegada[1])} cm abaixo dele), com o braço ${f1(frente)}° à frente da vertical`, ok: d <= 30 && Math.abs(frente) <= 5 };
+  },
+  'costas-e-cabeca-no-encosto-na-inclinada': (q) => {
+    const x = q[0]!;
+    const P = pontosDoBoneco(x.esq);
+    const estofados = x.prims.filter((p) => p.t === 'caixa' && p.cls === 'estofado');
+    // quanto as partes entram em cada estofado (cm; 0 = encostado, negativo = longe), só nos pontos sobre ele
+    const entra = (partes: string[], inclinado: boolean) => {
+      let m = -Infinity;
+      for (const p of estofados) {
+        if (p.t !== 'caixa' || (Math.abs(p.ref.y[1]) < 0.99) !== inclinado) continue;
+        for (const { p: pt, parte } of P) {
+          if (!partes.includes(parte)) continue;
+          const l = paraRef(p.ref, pt);
+          if (Math.abs(l[0]) > p.meias[0] || Math.abs(l[2]) > p.meias[2] || l[1] < -p.meias[1]) continue;
+          m = Math.max(m, p.meias[1] - l[1]);
+        }
+      }
+      return m;
+    };
+    const costas = entra(['tronco', 'cintura'], true),
+      cabeca = entra(['cabeca'], true),
+      assento = entra(['pelve', 'coxa'], false);
+    const apoia = (v: number) => v >= -0.5 && v <= 2.5;
+    return { medido: `o estofado amassa ${f1(costas)} cm sob as costas, ${f1(cabeca)} cm sob a nuca e ${f1(assento)} cm sob a nádega e a coxa (0 = só encosta)`, ok: apoia(costas) && apoia(cabeca) && apoia(assento) };
+  },
+  'halter-fora-do-banco': (q) => {
+    let pior = 1e9,
+      qual = '';
+    for (const x of q) {
+      for (const h of x.prims) {
+        if (h.t !== 'prisma') continue;
+        for (let i = 0; i <= 6; i++) {
+          const c: V3 = [h.a[0] + ((h.b[0] - h.a[0]) * i) / 6, h.a[1] + ((h.b[1] - h.a[1]) * i) / 6, h.a[2] + ((h.b[2] - h.a[2]) * i) / 6];
+          if (c[1] - h.ra < pior) {
+            pior = c[1] - h.ra;
+            qual = 'chão';
+          }
+          for (const p of x.prims) {
+            if (p.t !== 'caixa') continue;
+            const l = paraRef(p.ref, c);
+            const d = l.map((v, j) => Math.abs(v) - p.meias[j]!);
+            const fora = Math.hypot(...d.map((v) => Math.max(v, 0))) + Math.min(Math.max(...d), 0);
+            if (fora - h.ra < pior) {
+              pior = fora - h.ra;
+              qual = p.cls;
+            }
+          }
+        }
+      }
+    }
+    return { medido: `a menor folga entre as cabeças do halter e o banco ou o chão é ${f1(pior)} cm (${qual})`, ok: pior >= -0.5 };
   },
   'um-braco-de-cada-vez': (q) => {
     const anda = Math.max(...q.map((x) => dist(x.esq.lado.L.pegada, q[0]!.esq.lado.L.pegada)));

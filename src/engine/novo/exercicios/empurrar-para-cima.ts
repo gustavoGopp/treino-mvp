@@ -18,8 +18,8 @@ import { daFicha, fichaSchema, resolver1 } from '../movimento';
 import type { Ficha, Quadro } from '../movimento';
 import { chao, halter } from '../pecas';
 import type { Peca } from '../pecas';
-import { bancoRegulavelProvisorio, faceDoEncosto } from '../pecas-de-cena/banco-regulavel-provisorio';
-import type { BancoRegulavel } from '../pecas-de-cena/banco-regulavel-provisorio';
+import { bancoRegulavelNaCena, faceDoEncosto } from '../pecas-de-cena/banco-regulavel';
+import type { BancoRegulavel } from '../pecas-de-cena/banco-regulavel';
 import type { Corpo } from '../tabelas';
 import { obj } from '../tabelas';
 import { add, cross, dirRef, dist, dot, mix, mul, norm, sub } from '../vec';
@@ -241,7 +241,7 @@ export function criarDesenvolvimento(fichaJson: unknown, carga: CargaDoDesenvolv
     const { e, cargas } = montar(corpo, u, erro);
     const q: Quadro = { esq: e, prims: [chao(-80, 80, -90, 90)], pecas: [], fios: [], cargas, marcas: {} };
     if (sentado) {
-      const B = bancoRegulavelProvisorio(banco());
+      const B = bancoRegulavelNaCena(banco());
       q.prims.push(...B.prims);
       const pecas: Peca[] = [B.peca];
       for (const k of LADOS) {
