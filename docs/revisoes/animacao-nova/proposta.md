@@ -101,6 +101,29 @@ Para a rodada de correção (nada disto foi mexido):
 
 O que os dois disseram que melhorou e deve ficar: as proporções e o esqueleto medidos, o equipamento realista, o modo Técnica de lado, e o ritmo das quatro fichas (descida de 2 a 3 s, subida de 1 a 1,5 s), coerente com as fichas da técnica.
 
+### A rodada de correção (15/11/2026, com o ok do Gustavo: "pode fazer a rodada de correção antes de fechar")
+
+O que foi feito, item a item da tabela acima:
+
+| # | Item | Feito? | Como ficou |
+|---|---|---|---|
+| 1 | Porções do deltoide e do trapézio | sim, **falta o seu ok** | Três porções do deltoide e duas do trapézio (de cima; do meio e de baixo), por lado. Só aparecem quando trabalham: o contorno do músculo inteiro nas linhas do corpo não muda. Supino e flexão acendem só a frente do deltoide; a puxada, o trapézio do meio e de baixo e a parte de trás do deltoide, do lado que puxa |
+| 2 | Vistas do modo Músculos sem o principal | sim | A conferência mede a área do principal em cada vista, no pior instante. Goblet de frente (0 cm²), flexão de cima (0 cm²) e supino de lado (69 contra 392 cm²) saem do modo Músculos; a vista padrão é a que mais mostra (`vistasDoModoMusculos`) |
+| 3 | Quatro formas presas no lugar errado | sim, **falta o seu ok** | Trapézio até T12 e até o acrômio; dorsal por baixo da escápula; peitoral abaixo do mamilo e afinando para a axila; reto abdominal até o púbis (na opção cor de pele a cor é cortada na cintura do short). Lado a lado em `parada-do-corpo/6-musculos-antes-e-depois.png` |
+| 4 | A escápula no contorno | **não** | Não coube nesta rodada: exige mudar o contorno do ombro e do tronco com a posição da escápula. Fica como o ponto mais importante em aberto do corpo |
+| 5 | Cotovelo a 162° no fim da puxada | em parte | 152°: tronco 8° para trás, cotovelo 6° atrás do tronco, 70 cm da torre. Chegar a 145° pede ajoelhar a cerca de 90 cm, o que contradiz o "meio passo" do texto do app (`pedidos-ao-conteudo.md`, item 4) |
+| 6 | Erro da lombar no goblet | sim | O peito cai a 45° (era perto de 70°) e a bacia gira 17° para trás |
+| 7 | Puxada de trás: o braço some contra a coluna; a seta | em parte | A seta "ombro desce" voltou. A vista de três quartos de trás resolve a leitura (`parada-do-corpo/7-puxada-de-tras-e-tres-quartos.png`), mas trocar a vista padrão mexe na moldura, que é da outra frente: é decisão sua |
+| 8 | Trajetória sem nomes | em parte | Cada linha ganhou o nome, fora do corpo. A linha de prumo do meio do pé no goblet não voltou |
+| 9 | Pescoço, perfil, mão sem dedos de lado | não | É o desenho aprovado: fica para decidir olhando |
+| 10 | Erros que faltam | não | É conteúdo: fica nos pedidos |
+| 11 | Peças em quilos (anilha de 5 kg, halter de 10 a 12 kg) | não | Precisa de ficha de fabricante lida para as peças em kg |
+| 12 | Medidas internas | em parte | Meia distância do quadril 8,7 → 8,35 cm e lordose cervical 30 → 16,4°, com fonte; recuo de L5–S1 4,5 → 3,0 cm, ainda provisório. Ficam provisórias 6 do corpo e 9 dos objetos |
+
+Medidas depois da rodada: conferência sem falha nas quatro; 896 testes passando; coincidência das silhuetas com as pranchas sem mudança (de frente 97,7%, de lado 99,3%, de costas 97,6%, agachamento 96,4%, flexão 95,0%, supino 97,4%, puxada 98,4%). O pacote com as 4 âncoras foi a 47,5 kB compactados (40,0 sem os textos de fonte); o de hoje tem 48,0 com 90 exercícios.
+
+O que ainda não ficou bom: a escápula (item 4); o cotovelo da puxada ainda acima da média (152° contra 148°); o abdômen novo termina em ponta e pode parecer comprido demais para quem não espera vê-lo abaixo da cintura; a seta do ombro saiu pequena; o trapézio continua sem a parte do pescoço (as formas só são desenhadas sobre o tronco).
+
 ## 0. Depois do retorno do Gustavo (13/11/2026)
 
 Ele olhou as folhas e apontou três coisas. O que foi feito em cada uma:

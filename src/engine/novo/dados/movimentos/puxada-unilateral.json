@@ -40,7 +40,7 @@
  ],
  "simetrico": false,
  "rotulos": [
-  {"vista": "posterior", "texto": "ombro desce, cotovelo ao quadril", "ponto": "ombro", "selo": "consenso", "fonte": "guia"},
+  {"vista": "posterior", "texto": "ombro desce, cotovelo ao quadril", "ponto": "ombro", "selo": "consenso", "fonte": "guia", "seta": {"de": "ombro", "desce": 12}},
   {"vista": "lateral", "texto": "tronco quase parado", "ponto": "c7", "selo": "consenso", "fonte": "guia"}
  ]
 }

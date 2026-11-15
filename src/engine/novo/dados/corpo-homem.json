@@ -12,7 +12,9 @@
   "isak-atletas": "Circunferência do braço relaxado e contraído (ISAK) em cinco grupos de atletas homens: razão de 0,90 a 0,93; https://pmc.ncbi.nlm.nih.gov/articles/PMC5969204/ e https://pmc.ncbi.nlm.nih.gov/articles/PMC13692339/; docs/revisoes/animacao-nova/pesquisa/09, item 2. São atletas, não a população geral",
   "zappala2021": "Zappalà M, Lightbourne S, Heneghan NR. J Orthop Surg Res 2021;16:447 (revisão sistemática, adultos saudáveis; CC BY 4.0); https://pmc.ncbi.nlm.nih.gov/articles/PMC8268398; docs/revisoes/animacao-nova/pesquisa/03 e 09, item 8",
   "patted2020": "Patted SM, Kumar A, Halawar RS. Indian J Orthop 2020;54(Suppl 2):283-291 (TC, sul da Índia; homens 149,67 ± 9,6 mm); https://pmc.ncbi.nlm.nih.gov/articles/PMC7609512/; docs/revisoes/animacao-nova/pesquisa/03 e 09, item 10",
-  "yoo2012": "Yoo, Chung, Park, Chang, Paik. Clinics in Shoulder and Elbow 2012;15(2):73 (TC de 102 escápulas de 51 cadáveres coreanos, 62 masculinas); https://koreascience.kr/article/JAKO201212049742666; docs/revisoes/animacao-nova/pesquisa/09, itens 12 e 13"
+  "yoo2012": "Yoo, Chung, Park, Chang, Paik. Clinics in Shoulder and Elbow 2012;15(2):73 (TC de 102 escápulas de 51 cadáveres coreanos, 62 masculinas); https://koreascience.kr/article/JAKO201212049742666; docs/revisoes/animacao-nova/pesquisa/09, itens 12 e 13",
+  "gait2392": "Delp SL e cols. Modelo Gait2392 do OpenSim (gait2392_thelen2003muscle.osim, CC BY 3.0), lido em docs/revisoes/animacao-nova/pesquisa/03-musculos-e-ossos.md, seção 2.1, e em docs/revisoes/animacao-nova/pesquisa/09, item 3. É um modelo de um homem de cerca de 1,80 m, não uma medida de população",
+  "guo2018": "Guo G-M e cols. Cervical lordosis in asymptomatic individuals: a meta-analysis. J Orthop Surg Res 2018;13:147 (CC BY 4.0); https://pmc.ncbi.nlm.nih.gov/articles/PMC6003173; docs/revisoes/animacao-nova/pesquisa/09, item 9"
  },
  "medidas": {
   "estatura": {
@@ -515,11 +517,11 @@
    "onde": "estatura − cabeca.tragionAoTopo (a articulação da cabeça com o pescoço fica perto da altura do tragion)"
   },
   "quadril.meiaDistancia": {
-   "v": 8.7,
+   "v": 8.35,
    "un": "cm",
-   "tipo": "provisoria",
-   "fonte": "a-conferir",
-   "onde": "metade da distância entre os dois centros do quadril: a conferir (Bell 1990, Harrington 2007 ou modelo OpenSim)"
+   "tipo": "medida",
+   "fonte": "gait2392",
+   "onde": "metade da distância entre os dois centros do quadril no modelo: 8,35 cm (o Rajagopal 2016 dá 7,7); antes: 8,7 cm (sem fonte)"
   },
   "ombro.meiaDistancia": {
    "v": 18.4,
@@ -540,14 +542,14 @@
    "un": "cm",
    "tipo": "provisoria",
    "fonte": "a-conferir",
-   "onde": "altura de L5–S1 acima do centro do quadril: a conferir (crista ilíaca − 1 vértebra lombar)"
+   "onde": "altura de L5–S1 acima do centro do quadril: a conferir. A conta sobre o Gait2392 daria 14,8 cm, e o canto de S1 medido em radiografia (Chanplakorn 2011) fica a 11,6 cm; o revisor no papel de anatomista recomendou manter 12"
   },
   "l5s1.atras": {
-   "v": 4.5,
+   "v": 3.0,
    "un": "cm",
    "tipo": "provisoria",
    "fonte": "a-conferir",
-   "onde": "recuo de L5–S1 atrás do centro do quadril: a conferir"
+   "onde": "recuo de L5–S1 atrás do centro do quadril: cerca de 3 cm por conta feita sobre o modelo Gait2392 (a origem do tronco do modelo, lida como L5–S1, é inferência); antes: 4,5 cm. Continua sem medida direta"
   },
   "coluna.lombarGray": {
    "v": 18,
@@ -586,11 +588,11 @@
    "onde": "curva torácica em pé, T1–T12: de 39 a 44 graus nos adultos saudáveis"
   },
   "coluna.lordoseCervical": {
-   "v": 30,
+   "v": 16.4,
    "un": "graus",
-   "tipo": "provisoria",
-   "fonte": "a-conferir",
-   "onde": "curva cervical em pé: sem fonte lida"
+   "tipo": "medida",
+   "fonte": "guo2018",
+   "onde": "curva cervical em pé, de C2 a C7, em adultos sem sintoma (3.597 pessoas): 16,4 graus; antes: 30 graus (sem fonte)"
   },
   "clavicula.retracaoRepouso": {
    "v": 23,

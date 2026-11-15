@@ -6,7 +6,7 @@ Tipos de linha: **medida** (lida na fonte), **derivada** (calculada de medidas, 
 
 ## Corpo: homem
 
-População: ANSUR II (militares dos EUA, 2012), homens, IMC de 18,5 a 24,9; n = 1061; média de cada medida. 92 linhas: 67 medidas, 17 derivadas, 8 provisórias.
+População: ANSUR II (militares dos EUA, 2012), homens, IMC de 18,5 a 24,9; n = 1061; média de cada medida. 92 linhas: 69 medidas, 17 derivadas, 6 provisórias.
 
 | medida | valor | tipo | fonte | onde na fonte |
 |---|---|---|---|---|
@@ -79,17 +79,17 @@ População: ANSUR II (militares dos EUA, 2012), homens, IMC de 18,5 a 24,9; n =
 | `cabeca.alturaSobreEstatura` | 0,13 fração da estatura | medida | drillis-contini-via-cnb2025 | figura 1 (cota vertical da cabeça; fonte secundária) (do queixo ao topo) |
 | `cabeca.altura` | 22,85 cm | derivada | drillis-contini-via-cnb2025 | cabeca.alturaSobreEstatura × estatura |
 | `altura.baseDoCranio` | 162,8 cm | derivada | ansur2 | estatura − cabeca.tragionAoTopo (a articulação da cabeça com o pescoço fica perto da altura do tragion) |
-| `quadril.meiaDistancia` | 8,7 cm | **provisória** | a-conferir | metade da distância entre os dois centros do quadril: a conferir (Bell 1990, Harrington 2007 ou modelo OpenSim) |
+| `quadril.meiaDistancia` | 8,35 cm | medida | gait2392 | metade da distância entre os dois centros do quadril no modelo: 8,35 cm (o Rajagopal 2016 dá 7,7); antes: 8,7 cm (sem fonte) |
 | `ombro.meiaDistancia` | 18,4 cm | derivada | ansur2 | largura.biacromial / 2 − 2,0 (centro do ombro para dentro da borda do acrômio: provisório) |
 | `ombro.centroAFrente` | 0 cm | **provisória** | a-conferir | centro do ombro sobre a linha do quadril, de lado (linha de prumo da postura: a conferir) |
-| `l5s1.acima` | 12 cm | **provisória** | a-conferir | altura de L5–S1 acima do centro do quadril: a conferir (crista ilíaca − 1 vértebra lombar) |
-| `l5s1.atras` | 4,5 cm | **provisória** | a-conferir | recuo de L5–S1 atrás do centro do quadril: a conferir |
+| `l5s1.acima` | 12 cm | **provisória** | a-conferir | altura de L5–S1 acima do centro do quadril: a conferir. A conta sobre o Gait2392 daria 14,8 cm, e o canto de S1 medido em radiografia (Chanplakorn 2011) fica a 11,6 cm; o revisor no papel de anatomista recomendou manter 12 |
+| `l5s1.atras` | 3 cm | **provisória** | a-conferir | recuo de L5–S1 atrás do centro do quadril: cerca de 3 cm por conta feita sobre o modelo Gait2392 (a origem do tronco do modelo, lida como L5–S1, é inferência); antes: 4,5 cm. Continua sem medida direta |
 | `coluna.lombarGray` | 18 cm | medida | gray1918 | coluna vertebral, comprimentos por região (a conferir no texto (pesquisa 03)) |
 | `coluna.toracicaGray` | 28 cm | medida | gray1918 | idem |
 | `coluna.cervicalGray` | 12,5 cm | medida | gray1918 | idem |
 | `coluna.lordoseLombar` | 50 graus | **provisória** | a-conferir | curva lombar em pé de L1 a L5 (Vialle 2005 dá 60 de lordose máxima incluindo o sacro): a conferir |
 | `coluna.cifoseToracica` | 40 graus | medida | zappala2021 | curva torácica em pé, T1–T12: de 39 a 44 graus nos adultos saudáveis |
-| `coluna.lordoseCervical` | 30 graus | **provisória** | a-conferir | curva cervical em pé: sem fonte lida |
+| `coluna.lordoseCervical` | 16,4 graus | medida | guo2018 | curva cervical em pé, de C2 a C7, em adultos sem sintoma (3.597 pessoas): 16,4 graus; antes: 30 graus (sem fonte) |
 | `clavicula.retracaoRepouso` | 23 graus | medida | ludewig2009 | fig. 5-A (repouso) |
 | `clavicula.elevacaoRepouso` | 11 graus | medida | ludewig2009 | fig. 5-A (repouso) |
 | `clavicula.retracaoNaElevacao` | 16 graus | medida | ludewig2009 | fig. 5-A: aumento do repouso à elevação máxima do braço |
@@ -116,6 +116,8 @@ Fontes do corpo:
 - `zappala2021`: Zappalà M, Lightbourne S, Heneghan NR. J Orthop Surg Res 2021;16:447 (revisão sistemática, adultos saudáveis; CC BY 4.0); https://pmc.ncbi.nlm.nih.gov/articles/PMC8268398; docs/revisoes/animacao-nova/pesquisa/03 e 09, item 8
 - `patted2020`: Patted SM, Kumar A, Halawar RS. Indian J Orthop 2020;54(Suppl 2):283-291 (TC, sul da Índia; homens 149,67 ± 9,6 mm); https://pmc.ncbi.nlm.nih.gov/articles/PMC7609512/; docs/revisoes/animacao-nova/pesquisa/03 e 09, item 10
 - `yoo2012`: Yoo, Chung, Park, Chang, Paik. Clinics in Shoulder and Elbow 2012;15(2):73 (TC de 102 escápulas de 51 cadáveres coreanos, 62 masculinas); https://koreascience.kr/article/JAKO201212049742666; docs/revisoes/animacao-nova/pesquisa/09, itens 12 e 13
+- `gait2392`: Delp SL e cols. Modelo Gait2392 do OpenSim (gait2392_thelen2003muscle.osim, CC BY 3.0), lido em docs/revisoes/animacao-nova/pesquisa/03-musculos-e-ossos.md, seção 2.1, e em docs/revisoes/animacao-nova/pesquisa/09, item 3. É um modelo de um homem de cerca de 1,80 m, não uma medida de população
+- `guo2018`: Guo G-M e cols. Cervical lordosis in asymptomatic individuals: a meta-analysis. J Orthop Surg Res 2018;13:147 (CC BY 4.0); https://pmc.ncbi.nlm.nih.gov/articles/PMC6003173; docs/revisoes/animacao-nova/pesquisa/09, item 9
 
 ## Corpo: mulher
 

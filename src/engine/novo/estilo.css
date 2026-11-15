@@ -60,3 +60,7 @@
 .novo .n-rot-fio{stroke:var(--n-guia);stroke-width:1px;vector-effect:non-scaling-stroke;opacity:.75}
 .novo .n-rot-p{fill:var(--n-fundo);stroke:var(--n-guia);stroke-width:1.5px;vector-effect:non-scaling-stroke}
 .novo .n-guia-l{fill:none;stroke:var(--n-guia);stroke-width:1.5px;vector-effect:non-scaling-stroke;stroke-dasharray:4 3.5;stroke-linecap:round}
+.novo .n-seta-l{fill:none;stroke:var(--n-guia);stroke-width:2px;vector-effect:non-scaling-stroke;stroke-linecap:round}
+.novo .n-seta-p{fill:var(--n-guia)}
+.novo .n-traj-t{font-family:system-ui,-apple-system,"Segoe UI",sans-serif;font-weight:600;fill:var(--n-traj);paint-order:stroke;stroke:var(--n-fundo);stroke-width:3px;vector-effect:non-scaling-stroke;stroke-linejoin:round}
+.novo .n-traj-fio{stroke:var(--n-traj);stroke-width:1px;vector-effect:non-scaling-stroke;opacity:.7}

@@ -85,6 +85,16 @@ function ponto(e: EsqQ, nome: string, k: 'R' | 'L'): V3 {
 /** Os lados que aparecem separados na vista: de lado, num exercício simétrico, só o de perto. */
 const ladosNaVista = (ex: Exercicio, cam: Camera): ('R' | 'L')[] => (!ex.ficha.simetrico || Math.abs(cam.para[0]) > 0.7 ? ['R'] : ['R', 'L']);
 
+/** As linhas do modo Trajetória que aparecem na vista (as que andam pelo menos 2 cm na tela), com o ponto final. */
+function trajetoriasDesenhadas(ex: Exercicio, corpo: Corpo, cam: Camera): { nome: string; P: P2[]; fim: P2 }[] {
+  const out: { nome: string; P: P2[]; fim: P2 }[] = [];
+  for (const nome of Object.keys(ex.trajetorias)) {
+    const P = trajetoria(cam, ex, corpo, nome);
+    const comp = P.reduce((s, p, j) => (j ? s + Math.hypot(p[0] - P[j - 1]![0], p[1] - P[j - 1]![1]) : 0), 0);
+    if (comp >= 2) out.push({ nome, P, fim: P[P.length - 1]! });
+  }
+  return out;
+}
 export function itensDaCena(ex: Exercicio, t: number, o: OpcoesCena): Item[] {
   return itensEmU(ex, instante(ex.ficha.fases, t).u, o);
 }
@@ -269,8 +279,22 @@ export function enquadrar(ex: Exercicio, o: Omit<OpcoesCena, 'modo' | 'erro'>, m
 }
 /** A camada dos textos de um quadro: rótulos de técnica com as linhas-guia, ou o nome do erro, com o fio até o corpo. */
 function camadaDeRotulos(ex: Exercicio, u: number, o: OpcoesCena, vb: VB): string {
-  if (o.mini || (o.modo !== 'tec' && o.modo !== 'err')) return '';
+  if (o.mini || o.modo === 'mus') return '';
   const cam = VISTAS[o.vista];
+  if (o.modo === 'traj') {
+    // o nome de cada linha da trajetória, fora do corpo, com um fio até o fim da linha
+    const nomes = trajetoriasDesenhadas(ex, o.corpo, cam);
+    const tamT = tamDaLetra(vb);
+    const lugares = disporRotulos(nomes.map((n) => ({ texto: n.nome, alvo: n.fim })), caixaDoCiclo(ex, o), vb, tamT);
+    return nomes
+      .map((n, i) => {
+        const r = lugares[i];
+        if (!r) return '';
+        const de = saidaDoFio(r, tamT);
+        return `<line class="n-traj-fio" x1="${f1(de[0])}" y1="${f1(de[1])}" x2="${f1(n.fim[0])}" y2="${f1(n.fim[1])}"/>${textoDoRotulo(r, tamT, 'n-traj-t')}`;
+      })
+      .join('');
+  }
   const postos = rotulosPostos(ex, o, vb);
   const tam = tamDaLetra(vb);
   const lados = ladosNaVista(ex, cam);
@@ -296,6 +320,16 @@ function camadaDeRotulos(ex: Exercicio, u: number, o: OpcoesCena, vb: VB): strin
     .forEach((x, i) => {
       const pts = (P: P2[]) => P.map((p) => `${f1(p[0])},${f1(p[1])}`).join(' ');
       if (x.prumo) for (const k of lados) s += `<polyline class="n-guia-l" points="${pts([naTela(cam, ponto(e, x.prumo.de, k)), naTela(cam, add(ponto(e, x.prumo.de, k), [0, x.prumo.alt, 0]))])}"/>`;
+      if (x.seta)
+        for (const k of lados) {
+          // a seta fica um pouco para fora do ponto, do lado de fora do corpo, e aponta para baixo
+          const c = ponto(e, x.seta.de, k),
+            fora = (k === 'R' ? -1 : 1) * 7;
+          const a = naTela(cam, add(c, [fora, x.seta.desce * 0.45, 0])),
+            b = naTela(cam, add(c, [fora, -x.seta.desce * 0.55, 0]));
+          const u = tam * 0.34;
+          s += `<polyline class="n-seta-l" points="${pts([a, b])}"/><polygon class="n-seta-p" points="${pts([[b[0] - u, b[1] - u * 1.5], [b[0] + u, b[1] - u * 1.5], [b[0], b[1] + u * 0.4]])}"/>`;
+        }
       if (x.guia) for (const k of lados) s += `<polyline class="n-guia-l" points="${pts(x.guia.map((nome) => naTela(cam, ponto(e, nome, k))))}"/>`;
       const r = postos[i];
       if (!r) return;
