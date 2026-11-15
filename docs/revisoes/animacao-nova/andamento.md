@@ -2,7 +2,7 @@
 
 Atualizado por quem integra, a cada família juntada. "Aprovada na folha" = o Gustavo olhou e aprovou. "Aprovada por delegação" = conferida por quem integra, risco baixo, registrada com a frase dele de 15/11/2026. "Para o Gustavo ver" = risco médio ou alto: só entra na lista do app depois do ok dele. "Correção de qualidade" = desde o aviso dele de 15/11 ("o fato de eu ter delegado [...] não quer dizer que a gente pode diminuir a qualidade"), nenhuma animação delegada conta como pronta enquanto tiver defeito visível nos quadros (seção 8 de `como-fazer-uma-animacao.md`). As folhas ficam em `prototipos/folha-<id>.png` e os quadros grandes em `quadros/<id>.png`.
 
-Resumo: 16 aprovadas pelo Gustavo (7 na folha e 9 vendo os quadros); 30 por delegação; 0 prontas para o Gustavo ver; 4 das quatro primeiras sem aprovação na folha; 15 em andamento; 25 por fazer.
+Resumo: 15 aprovadas pelo Gustavo (7 na folha e 8 vendo os quadros); 34 por delegação; 2 prontas para o Gustavo ver; 4 das quatro primeiras sem aprovação na folha; 17 em andamento; 18 por fazer.
 
 | Lote | Exercício | Estado |
 |---|---|---|
@@ -26,18 +26,18 @@ Resumo: 16 aprovadas pelo Gustavo (7 na folha e 9 vendo os quadros); 30 por dele
 | 2 | `flexao-pes-elevados` | aprovada pelo Gustavo em 15/11/2026, vendo os quadros ("podem ficar assim, segue com as próximas"): o peito para a 8,5 cm do chão |
 | 2 | `pike` | feita e conferida quadro a quadro por quem integra; aprovada por delegação (depois da correção: segunda vista de três quartos; a descida é mais curta que a de hoje porque a cabeça chega ao chão) |
 | 3 | `crucifixo-elastico` | por fazer |
-| 3 | `crucifixo-invertido-polia` | por fazer |
-| 3 | `crucifixo-polia` | por fazer |
-| 3 | `desenvolvimento` | feita e conferida quadro a quadro por quem integra; aprovada por delegação (sentado, com encosto; o banco regulável é uma peça provisória) |
+| 3 | `crucifixo-invertido-polia` | em andamento (subagente) |
+| 3 | `crucifixo-polia` | em andamento (subagente) |
+| 3 | `desenvolvimento` | feita e conferida quadro a quadro por quem integra; aprovada por delegação (sentado, com encosto; o banco regulável agora é um desenho só, o mesmo da rosca inclinada) |
 | 3 | `desenvolvimento-elastico` | por fazer |
 | 3 | `desenvolvimento-unilateral-kettlebell` | feita e conferida quadro a quadro por quem integra; aprovada por delegação |
-| 3 | `elevacao-halteres` | feita e conferida quadro a quadro por quem integra; aprovada por delegação (o halter de 25 lb da tabela é grande para este exercício) |
+| 3 | `elevacao-halteres` | feita e conferida quadro a quadro por quem integra; aprovada por delegação (com o halter de 10 lb: os halteres ficam na frente das coxas embaixo) |
 | 3 | `elevacao-lateral` | feita e conferida quadro a quadro por quem integra; aprovada por delegação (é a elevação lateral de um braço na polia, como a ficha e o app dizem) |
 | 3 | `elevacao-lateral-elastico` | por fazer |
-| 3 | `supino-inclinado` | por fazer |
+| 3 | `supino-inclinado` | em andamento (subagente) |
 | 4 | `barra-fixa` | por fazer |
 | 4 | `barra-fixa-supinada` | por fazer |
-| 4 | `face-pull` | por fazer |
+| 4 | `face-pull` | em andamento (subagente) |
 | 4 | `face-pull-elastico` | em andamento (subagente; família dos elásticos) |
 | 4 | `puxada-elastico` | em andamento (subagente; família dos elásticos) |
 | 4 | `remada-apoiada` | em andamento (subagente) |
@@ -50,12 +50,12 @@ Resumo: 16 aprovadas pelo Gustavo (7 na folha e 9 vendo os quadros); 30 por dele
 | 4 | `remada-unilateral-polia` | por fazer |
 | 4 | `remada-unilateral-sem-banco` | em andamento (subagente) |
 | 4 | `yt-suspensao` | feita e conferida quadro a quadro por quem integra; aprovada por delegação |
-| 5 | `rosca-alternada` | aprovada pelo Gustavo em 15/11/2026, vendo os quadros ("podem ficar assim, segue com as próximas"): de frente os braços ficam abertos 17°, para o halter de 33 cm não entrar na coxa; o halter menor, em andamento, deve trazer os braços para junto do corpo: se mudar, volta para ele ver |
+| 5 | `rosca-alternada` | aprovada pelo Gustavo em 15/11/2026, vendo os quadros ("podem ficar assim, segue com as próximas"); depois refeita com o halter de 10 lb: os braços voltaram para junto do corpo (6°) e a palma para a frente. **Para o Gustavo ver** de novo, porque mudou |
 | 5 | `rosca-elastico` | em andamento (subagente; família dos elásticos) |
-| 5 | `rosca-inclinada` | em andamento (subagente; com o halter menor) |
+| 5 | `rosca-inclinada` | feita com o halter de 10 lb; **para o Gustavo ver** (de frente os braços abrem 25°, para o halter não entrar no quadril) |
 | 5 | `rosca-kettlebell` | feita e conferida quadro a quadro por quem integra; aprovada por delegação |
-| 5 | `rosca-martelo` | feita e conferida quadro a quadro por quem integra; aprovada por delegação |
-| 5 | `rosca-polia` | por fazer |
+| 5 | `rosca-martelo` | feita e conferida quadro a quadro por quem integra; aprovada por delegação (com o halter de 10 lb) |
+| 5 | `rosca-polia` | em andamento (subagente) |
 | 5 | `rosca-suspensao` | feita e conferida quadro a quadro por quem integra; aprovada por delegação |
 | 5 | `triceps-corda` | feita e conferida quadro a quadro por quem integra; aprovada por delegação |
 | 5 | `triceps-elastico-acima` | em andamento (subagente; família dos elásticos) |
@@ -67,7 +67,7 @@ Resumo: 16 aprovadas pelo Gustavo (7 na folha e 9 vendo os quadros); 30 por dele
 | 6 | `flexao-joelho-deslizante` | feita e conferida quadro a quadro por quem integra; aprovada por delegação (depois da correção: segunda vista de três quartos, toalha visível, erro da lombar refeito) |
 | 6 | `flexao-joelho-elastico` | feita e conferida quadro a quadro por quem integra; aprovada por delegação (depois da correção: o corpo ocupa o quadro, pose de bruços refeita, o pé dentro do pegador) |
 | 6 | `flexao-joelho-suspensao` | aprovada pelo Gustavo em 15/11/2026, vendo os quadros ("podem ficar assim, segue com as próximas"): joelho a 110° no fim, e não o calcanhar no glúteo; de lado a fita é uma linha fina |
-| 6 | `nordico` | por fazer |
+| 6 | `nordico` | em andamento (subagente) |
 | 6 | `panturrilha` | feita e conferida quadro a quadro por quem integra; aprovada por delegação |
 | 6 | `panturrilha-b` | feita e conferida quadro a quadro por quem integra; aprovada por delegação |
 | 6 | `panturrilha-chao` | aprovada pelo Gustavo em 15/11/2026, vendo os quadros ("podem ficar assim, segue com as próximas"): sobe com as duas pernas e desce com uma, como a ficha de 12/11 pede; a de hoje desce com as duas |
@@ -76,19 +76,19 @@ Resumo: 16 aprovadas pelo Gustavo (7 na folha e 9 vendo os quadros); 30 por dele
 | 6 | `ponte-gluteo` | feita e conferida quadro a quadro por quem integra; aprovada por delegação |
 | 6 | `ponte-gluteo-halter` | aprovada pelo Gustavo em 15/11/2026, vendo os quadros ("podem ficar assim, segue com as próximas"): a vista de cima se lê mal; no topo o cotovelo sobe a 24 cm do chão |
 | 6 | `ponte-kettlebell` | aprovada pelo Gustavo em 15/11/2026, vendo os quadros ("podem ficar assim, segue com as próximas"): de lado o kettlebell deitado é uma forma preta grande; no topo os cotovelos ficam a 31 cm do chão |
-| 6 | `ponte-pes-bola` | por fazer |
+| 6 | `ponte-pes-bola` | em andamento (subagente) |
 | 6 | `stiff` | feita e conferida quadro a quadro por quem integra; aprovada por delegação (desce até o meio da canela, como a ficha pede; hoje para no joelho) |
 | 6 | `stiff-elastico` | feita e conferida quadro a quadro por quem integra; aprovada por delegação (uma volta do elástico em cada mão, para ele não ficar frouxo embaixo) |
 | 6 | `stiff-kettlebell` | feita e conferida quadro a quadro por quem integra; aprovada por delegação |
 | 6 | `stiff-unilateral` | feita e conferida quadro a quadro por quem integra; aprovada por delegação |
-| 7 | `abdominal-bola` | em andamento (subagente) |
-| 7 | `abdominal-chao` | em andamento (subagente) |
-| 7 | `abdominal-invertido` | em andamento (subagente) |
+| 7 | `abdominal-bola` | feita e conferida quadro a quadro por quem integra; aprovada por delegação |
+| 7 | `abdominal-chao` | feita e conferida quadro a quadro por quem integra; aprovada por delegação |
+| 7 | `abdominal-invertido` | feita e conferida quadro a quadro por quem integra; aprovada por delegação |
 | 7 | `abdominal-polia` | por fazer |
 | 7 | `abducao-caneleira` | por fazer |
 | 7 | `abducao-deitado` | por fazer |
 | 7 | `abducao-mini-band` | por fazer |
-| 7 | `abertura-t-deitado` | em andamento (subagente) |
+| 7 | `abertura-t-deitado` | feita e conferida quadro a quadro por quem integra; aprovada por delegação |
 | 7 | `aducao-caneleira` | por fazer |
 | 7 | `aducao-deitado` | por fazer |
 | 7 | `elevacao-joelhos` | por fazer |
