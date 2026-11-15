@@ -105,6 +105,25 @@ export const regrasDosElasticos: Record<string, Regra> = {
     const cot = paraRef(e.torax, e.lado.R.cotovelo)[2];
     return { medido: `no fim, o centro da mão fica na altura de ${f1(y)} cm do corpo em pé (crista do quadril: ${f1(m('altura.cristaIliaca'))} cm; costela de baixo: ${f1(m('altura.costela10'))} cm) e o cotovelo, ${f1(-cot)} cm atrás da linha do tronco`, ok: y >= m('altura.cristaIliaca') - 2 && y <= m('altura.costela10') + 4 && cot < 0 };
   },
+  'elastico-puxada-cotovelos-nas-costelas': (q) => {
+    // no fim: o cotovelo entre a crista do osso do quadril e a axila (ao lado das costelas, na altura do corpo em pé,
+    // medida no referencial da pelve) e a pegada perto do ombro (até 30 cm do centro dele, como nas roscas)
+    const e = q[q.length - 1]!.esq,
+      m = (id: string) => e.corpo.m(id);
+    const y = paraRef(e.pelve, e.lado.R.cotovelo)[1] + m('altura.trocanter');
+    const d = dist(e.lado.R.pegada, e.lado.R.ombro);
+    return { medido: `no fim, o cotovelo fica na altura de ${f1(y)} cm do corpo em pé (crista do quadril: ${f1(m('altura.cristaIliaca'))} cm; axila: ${f1(m('altura.axila'))} cm) e o centro da mão, a ${f1(d)} cm do centro do ombro`, ok: y >= m('altura.cristaIliaca') && y <= m('altura.axila') && d <= 30 };
+  },
+  'elastico-antebraco-na-linha-do-elastico': (q) => {
+    // da metade da puxada em diante, o antebraço aponta para a âncora (a marca `ancora`): o elástico puxa a mão em linha reta
+    const pior = Math.max(...q.filter((_, i) => i > q.length * 0.5).map((x) => {
+      const L = x.esq.lado.R;
+      const a = norm(sub(L.punho, L.cotovelo)),
+        b = norm(sub(x.marcas.ancora!, L.pegada));
+      return Math.acos(Math.max(-1, Math.min(1, dot(a, b)))) / (Math.PI / 180);
+    }));
+    return { medido: `da metade da puxada em diante, o antebraço desvia no máximo ${f1(pior)}° da linha do elástico`, ok: pior <= 12 };
+  },
   'elastico-bracos-juntos': (q) => {
     // os dois cotovelos dobram juntos: a maior diferença entre o ângulo do direito e o do esquerdo no ciclo
     const d = Math.max(...q.map((x) => Math.abs(angulosDoLado(x.esq, 'R').cotovelo - angulosDoLado(x.esq, 'L').cotovelo)));

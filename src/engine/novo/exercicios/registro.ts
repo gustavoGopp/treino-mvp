@@ -64,3 +64,4 @@ export { remadaUnilateralKettlebell } from './remada-unilateral-kettlebell';
 export { tricepsElasticoAcima } from './triceps-elastico-acima';
 export { roscaElastico } from './rosca-elastico';
 export { remadaElastico } from './remada-elastico';
+export { puxadaElastico } from './puxada-elastico';
