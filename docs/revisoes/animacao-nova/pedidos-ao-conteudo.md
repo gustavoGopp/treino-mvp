@@ -22,3 +22,20 @@ A conferência passou a comparar o músculo realçado em cada animação com a b
 - **Flexão de braço:** o desenho realça o reto abdominal como "só ajuda a firmar", e a biblioteca não lista o abdômen na flexão. O guia de hoje já desenha assim. Confirmar se fica.
 - **Puxada unilateral:** o trapézio aparece como secundário, e a biblioteca conta "costas" como um grupo só (principal). O guia de hoje desenha trapézio médio e inferior e romboides como secundários (decisão de 02/11/2026). Confirmar se fica.
 - **Supino, flexão e puxada:** a biblioteca separa o ombro em anterior, lateral e posterior; o desenho novo só tem o deltoide inteiro. É a decisão aberta sobre as porções que o desenho não separa (proposta, seção 9, item 11).
+
+## 3. Supino inclinado: dizer em que nível pôr o banco (pedido do Gustavo, 15/11/2026)
+
+O que ele pediu: ter o supino inclinado na animação nova e, se der, uma recomendação de mais ou menos em que nível pôr o banco ("2, 3, 4"), conforme o tamanho da pessoa. Se não der, fica para um segundo momento.
+
+O que já existe:
+
+- O supino inclinado com halteres já tem animação no guia de hoje e texto no app (`src/conteudo/exercicios/supino-inclinado.json`: "Encosto a cerca de 30° (um terço do caminho entre deitado e sentado)"). Na animação nova ele está no lote 3; o banco regulável já tem as medidas na tabela de objetos (Rogue Adjustable Bench 3.0: 10 posições, de 0 a 85°).
+- A pesquisa (`docs/pesquisa/08-tecnica-guia.md`, conclusão 3): banco a **~30°**, aceitável de 15° a 45°; acima de 45° o ombro assume. Selo: um estudo, de ativação muscular (30 pessoas treinadas), e não de crescimento.
+
+O que dá para fazer e o que não dá:
+
+- **Dá:** a animação mostrar o encosto no ângulo certo, com o ângulo escrito, e o texto dizer "o encaixe mais perto de 30°".
+- **Não dá para dizer "nível 3" valendo para todo banco:** o número do furo não é padronizado; cada fabricante tem um número de posições e ângulos diferentes. Só daria com a ficha do modelo do banco da pessoa.
+- **Pelo tamanho da pessoa:** a pesquisa lida não tem nada que faça o ângulo mudar com a altura. Sem fonte, não entra como regra.
+
+Proposta: no lote do supino inclinado, desenhar o encosto a 30° com o ângulo marcado e uma dica de como achar o encaixe sem transferidor ("um terço do caminho entre deitado e sentado", que o texto do app já usa). A ideia de dizer o número do furo pelo modelo do banco reconhecido nas fotos vai para o `docs/backlog.md` no fechamento desta frente.
