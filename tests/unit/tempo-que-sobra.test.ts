@@ -7,8 +7,8 @@ import { PERSONAS } from '../personas';
 import { PERSONAS_NOVAS, marina } from '../personas/todos';
 
 // Sessão "treino para todos", etapa 2, pacote 1 (13/11/2026): o 2º passo de tempo.sobra-series. O tempo que sobra vira
-// série em todos os dias, com o programa já montado, cortado e completado. O "antes" é o protótipo com tudo desligado
-// (scripts/auditoria/prototipo, PROT=nada), que é o gerador da `main` de antes da etapa 2. Só personas fictícias.
+// série em todos os dias, com o programa já montado, cortado e completado. O "antes" é o protótipo
+// (scripts/auditoria/prototipo) com todas as regras já adotadas menos esta (PROT=app,-usa-tempo). Só personas fictícias.
 
 const TODAS = { ...PERSONAS, ...PERSONAS_NOVAS };
 const FOCOS: Grupo[][] = [[], ['peito'], ['gluteos', 'costas'], ['peito', 'costas', 'ombros', 'bracos']];
@@ -41,7 +41,8 @@ describe('tempo.sobra-series, 2º passo: o tempo que sobra vira série em todos 
   let antes: typeof gerarPrograma;
   let pares: { c: Caso; a: Programa; d: Programa }[];
   beforeAll(async () => {
-    vi.stubEnv('PROT', 'nada');
+    // O "antes" é o protótipo com todas as regras já adotadas menos esta (os outros pacotes da etapa 2 ficam no lugar).
+    vi.stubEnv('PROT', 'app,-usa-tempo');
     vi.resetModules();
     antes = ((await import('../../scripts/auditoria/prototipo/gerador')) as unknown as { gerarPrograma: typeof gerarPrograma }).gerarPrograma;
     pares = CASOS.flatMap((c) => {

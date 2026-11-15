@@ -1,4 +1,5 @@
 import type { Grupo } from './gerador';
+import { prot } from './regras';
 
 // Divisões do treino (docs/pesquisa-v2/01-divisao-e-frequencia.md; regras divisao.*).
 // Com o mesmo volume, a divisão não muda a hipertrofia (divisao.equivalencia): a pessoa escolhe entre as
@@ -512,7 +513,8 @@ export function divisaoEscolhida(
   semPuxar = false,
 ): { divisao: Divisao; escolhida: boolean; corpoTodoPorFaltaDePuxar: boolean } {
   const opcoes = opcoesDeDivisao(dias, metaMax);
-  const ok = escolhida && opcoes.some((o) => o.id === escolhida);
+  // EXPERIMENTO (dor-ct6): o Corpo todo 6x pode ser pedido pela regra da dor (no app, só o recuo de divisao.sem-puxar).
+  const ok = escolhida && (opcoes.some((o) => o.id === escolhida) || (prot('dor-ct6') && escolhida === CORPO_TODO_SEM_PUXAR[dias]));
   if (ok) return { divisao: DIVISOES[escolhida], escolhida: true, corpoTodoPorFaltaDePuxar: false };
   const corpoTodo = semPuxar ? (opcoes.find((o) => !temDiaDeTronco(DIVISOES[o.id]))?.id ?? CORPO_TODO_SEM_PUXAR[dias]) : undefined;
   const id = corpoTodo ?? opcoes[0]!.id;

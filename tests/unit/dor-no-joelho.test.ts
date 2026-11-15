@@ -73,12 +73,13 @@ describe('dor forte no joelho: os exercícios com o joelho apoiado saem (seguran
     expect(ids(p)).toContain('puxada-frente');
   });
 
-  it('sem dor, ou com dor forte em que nenhuma vaga tem substituto, a regra da vaga não muda nada (as 12 personas sem dor ficam como no pacote 1)', async () => {
-    vi.stubEnv('PROT', 'usa-tempo');
+  it('sem dor, ou com dor forte em que nenhuma vaga tem substituto, a regra da vaga não muda nada (as 12 personas sem dor ficam iguais com ela e sem ela)', async () => {
+    // O protótipo com as regras adotadas, menos a da vaga que a dor esvazia.
+    vi.stubEnv('PROT', 'app,-dor-musculo');
     vi.resetModules();
-    const pacote1 = ((await import('../../scripts/auditoria/prototipo/gerador')) as unknown as { gerarPrograma: typeof gerarPrograma }).gerarPrograma;
+    const semARegra = ((await import('../../scripts/auditoria/prototipo/gerador')) as unknown as { gerarPrograma: typeof gerarPrograma }).gerarPrograma;
     for (const p of TODAS.filter((x) => !(x.perfil.triagem.dores ?? []).length)) {
-      const [a, d] = [pacote1(p.perfil, p.inventario), gerarPrograma(p.perfil, p.inventario)];
+      const [a, d] = [semARegra(p.perfil, p.inventario), gerarPrograma(p.perfil, p.inventario)];
       expect(d, p.nome).toEqual(a);
     }
   });

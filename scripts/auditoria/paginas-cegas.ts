@@ -1,7 +1,7 @@
 // Páginas para a revisão cega de um pacote da etapa 2 (sessão "treino para todos"): para cada perfil fictício de uma
 // lista, a semana de dois geradores, embaralhadas por um hash fixo (sem sorteio) e sem dizer qual é qual. Uso:
 //   npx vite-node --root / $PWD/scripts/auditoria/paginas-cegas.ts -- --perfis <perfis.json> --antes <gerador.ts>
-//     --depois <gerador.ts> --saida <pasta> [--rodada p0] [--prefixo P]
+//     --depois <gerador.ts> --pasta <pasta> [--rodada p0] [--prefixo P]
 // `perfis.json`: [{ "id": "k1", "descricao": "…", "pedido": { cenario, nivel, dias, min, focos, dores, semanasParado } }]
 // (o `pedido` é o de scripts/auditoria/ver-lib.ts). Grava <pasta>/<P>NN.md e <pasta>/chave.json.
 import { mkdirSync, readFileSync, writeFileSync } from 'node:fs';
@@ -16,7 +16,8 @@ type Gerar = typeof gerarPrograma;
 const carregar = async (caminho: string) => ((await import(/* @vite-ignore */ resolve(caminho))) as { gerarPrograma: Gerar }).gerarPrograma;
 const [antes, depois] = [await carregar(arg('--antes')!), await carregar(arg('--depois')!)];
 const perfis = JSON.parse(readFileSync(arg('--perfis')!, 'utf8')) as { id: string; descricao: string; pedido: Pedido }[];
-const saida = arg('--saida')!;
+// (`--pasta`, e não `--saida`: este script importa exemplos.ts, que grava os doze exemplos quando recebe `--saida`.)
+const saida = arg('--pasta')!;
 const RODADA = arg('--rodada') ?? '';
 const PREFIXO = arg('--prefixo') ?? 'P';
 

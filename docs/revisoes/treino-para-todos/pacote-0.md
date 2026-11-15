@@ -120,6 +120,8 @@ Doze pessoas com dor (sete com dor no joelho, cinco com dor em outra região), a
 
 Médias: eficiente 5,2 → 6,0 · adequada 5,9 → 6,2 · agradável 5,2 → 5,5. Nove sobem, uma fica igual, **duas caem**.
 
+*Ressalva de método (achada em 15/11):* por um descuido do script que gera as páginas, a pasta lida pelos revisores tinha também 13 arquivos com as semanas das doze pessoas dos exemplos, com as versões identificadas. Os revisores foram instruídos a abrir só as 24 páginas, e esses arquivos são de outras pessoas, fora o Leandro, que é igual ao 1º perfil da tabela. O script foi corrigido antes da revisão do pacote 3.
+
 | Pessoa | Antes (main) | Agora | Diferença na soma |
 | --- | --- | --- | ---: |
 | Iniciante; academia completa; 3 dias de 60 min; marcou dor no joelho, nota 7 hoje; sem grupo de foco | 5,7 · 5,7 · 5,7 | 6,3 · 6,7 · 6,0 | +2,0 |
