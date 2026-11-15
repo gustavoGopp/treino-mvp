@@ -18,7 +18,8 @@
   "desenho": "Escolha de desenho, sem medida de fabricante: quantidade ou detalhe que não muda a medida do objeto",
   "rogue-tubo": "Rogue, Tube Bands; https://www.roguefitness.com/rogue-tube-bands; lido em docs/revisoes/animacao-nova/pesquisa/11-medidas-do-elastico.md (página lida por resumo automático)",
   "workoutz-tubo": "Workoutz, Resistance Exercise Tubes; diâmetro interno e parede por nível; docs/revisoes/animacao-nova/pesquisa/11-medidas-do-elastico.md (página lida por resumo automático; o diâmetro de fora é conta: interno + 2 × parede)",
-  "theraband-manual": "TheraBand (Hygenic), manual de uso (PDF, cópia de terceiro); docs/revisoes/animacao-nova/pesquisa/11-medidas-do-elastico.md"
+  "theraband-manual": "TheraBand (Hygenic), manual de uso (PDF, cópia de terceiro); docs/revisoes/animacao-nova/pesquisa/11-medidas-do-elastico.md",
+  "rogue-ckb": "Rogue, Competition Kettlebells (o mesmo tamanho para todos os pesos, de 8 a 48 kg); https://www.roguefitness.com/rogue-competition-kettlebells; lido em docs/revisoes/animacao-nova/pesquisa/04-objetos.md, seção 6 (página lida por resumo automático)"
  },
  "objetos": {
   "halter": {
@@ -387,6 +388,53 @@
      "tipo": "medida",
      "fonte": "theraband-manual",
      "onde": "alongamento máximo: 3 vezes o comprimento em repouso (outro fabricante; a Rogue calcula a resistência a 2,5 vezes e não dá o máximo)"
+    }
+   }
+  },
+  "kettlebell": {
+   "nome": "Kettlebell (modelo de competição)",
+   "medidas": {
+    "altura": {
+     "v": 28.2,
+     "un": "cm",
+     "tipo": "medida",
+     "fonte": "rogue-ckb",
+     "onde": "altura total, da base ao alto da alça: 11,1 pol"
+    },
+    "corpoLarg": {
+     "v": 20.8,
+     "un": "cm",
+     "tipo": "medida",
+     "fonte": "rogue-ckb",
+     "onde": "largura do corpo (a bola): 8,19 pol"
+    },
+    "alcaDiam": {
+     "v": 3.3,
+     "un": "cm",
+     "tipo": "medida",
+     "fonte": "rogue-ckb",
+     "onde": "diâmetro da alça: 33 mm"
+    },
+    "alcaLarg": {
+     "v": 12.3,
+     "un": "cm",
+     "tipo": "medida",
+     "fonte": "rogue-ckb",
+     "onde": "distância entre as duas hastes da alça: 123 mm"
+    },
+    "baseDiam": {
+     "v": 14.0,
+     "un": "cm",
+     "tipo": "medida",
+     "fonte": "rogue-ckb",
+     "onde": "diâmetro da base: 5,5 pol"
+    },
+    "massa": {
+     "v": 12,
+     "un": "kg",
+     "tipo": "desenho",
+     "fonte": "desenho",
+     "onde": "o peso desenhado: um dos pesos do modelo (8 a 48 kg, todos do mesmo tamanho)"
     }
    }
   }

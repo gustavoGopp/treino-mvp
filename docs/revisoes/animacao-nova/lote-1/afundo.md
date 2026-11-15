@@ -1,6 +1,6 @@
 # Lote 1 · Afundo estático com halteres (`afundo`)
 
-De 15/11/2026. Quarta animação do lote 1. É o afundo com o peso do corpo (aprovado no mesmo dia) com um halter em cada mão; os dois saem da mesma peça (`afundo-estatico.ts`), e o aprovado saiu idêntico depois da mudança. **Ainda sem a aprovação do Gustavo na folha: não está no app.**
+De 15/11/2026. Quarta animação do lote 1. É o afundo com o peso do corpo (aprovado no mesmo dia) com um halter em cada mão; os dois saem da mesma peça (`afundo-estatico.ts`), e o aprovado saiu idêntico depois da mudança. **Aprovada pelo Gustavo na folha em 15/11/2026 ("aprovada").** Ainda não está no app: falta ligar o motor novo às telas.
 
 - Ficha da técnica: `docs/pesquisa/animacoes/afundo.md`.
 - Ficha de movimento: `src/engine/novo/dados/movimentos/afundo.json`.

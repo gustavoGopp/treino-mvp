@@ -1,35 +1,35 @@
 {
  "comoEsta": {
-  "min": 173157,
-  "gz": 52199
+  "min": 181714,
+  "gz": 53672
  },
  "semTextosDeFonte": {
-  "min": 137892,
-  "gz": 43206
+  "min": 143696,
+  "gz": 44292
  },
  "soOMotor": {
-  "min": 113573,
-  "gz": 37172
+  "min": 116274,
+  "gz": 38016
  },
  "soOMotorSemTextos": {
-  "min": 93286,
-  "gz": 31608
+  "min": 95465,
+  "gz": 32316
  },
  "mais:goblet": {
-  "gz": 5392,
-  "gzSemTextos": 4424
+  "gz": 5420,
+  "gzSemTextos": 4400
  },
  "mais:supino-reto": {
-  "gz": 4270,
-  "gzSemTextos": 3611
+  "gz": 4256,
+  "gzSemTextos": 3586
  },
  "mais:puxada-unilateral": {
-  "gz": 5074,
-  "gzSemTextos": 4304
+  "gz": 5058,
+  "gzSemTextos": 4273
  },
  "mais:flexao": {
-  "gz": 4298,
-  "gzSemTextos": 3587
+  "gz": 4306,
+  "gzSemTextos": 3567
  },
  "comoFoiMedido": "esbuild, minificado, sem o zod (o app já o carrega); gz = compactado com gzip. \"mais:<id>\" = o que o exercício acrescenta ao motor quando é o único carregado (inclui as peças que ele divide com os outros)."
 }

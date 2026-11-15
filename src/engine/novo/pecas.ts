@@ -118,6 +118,8 @@ export type Peca =
   | { t: 'estribo'; pegada: V3; eixo: V3; elo: V3 }
   | { t: 'cabo'; a: V3; b: V3 }
   | { t: 'colchonete'; x0: number; z0: number }
+  /** Kettlebell: o centro da base, o eixo que vai da base à alça e o eixo que atravessa a alça (de uma haste à outra). */
+  | { t: 'kettlebell'; base: V3; cima: V3; lado: V3 }
   /** Elástico em tubo: o caminho do tubo (do pegador de uma mão, por baixo dos pés, ao da outra) e quanto está esticado (1 = em repouso). */
   | { t: 'elastico'; pts: V3[]; estica: number }
   /** O pegador do elástico: o centro da pegada, o eixo dela e a ponta do tubo. */

@@ -259,6 +259,12 @@ Fontes: `GRAY1918`: Gray H. Anatomy of the Human Body, 20ª ed. (1918), domínio
 | Elástico em tubo, com pegadores (`elastico`) | `pegadorDiam` | 3,3 cm | medida | rogue-tubo | diâmetro da pegada: 1 5/16 pol = 33,3 mm |
 | Elástico em tubo, com pegadores (`elastico`) | `fita` | 8,9 cm | derivada | rogue-tubo | da pegada até a ponta do tubo: (65 pol de ponta a ponta − 48 do tubo − 2 × 5 dos pegadores) / 2 = 3,5 pol; a ficha não dá este número direto |
 | Elástico em tubo, com pegadores (`elastico`) | `esticaAte` | 3 vezes | medida | theraband-manual | alongamento máximo: 3 vezes o comprimento em repouso (outro fabricante; a Rogue calcula a resistência a 2,5 vezes e não dá o máximo) |
+| Kettlebell (modelo de competição) (`kettlebell`) | `altura` | 28,2 cm | medida | rogue-ckb | altura total, da base ao alto da alça: 11,1 pol |
+| Kettlebell (modelo de competição) (`kettlebell`) | `corpoLarg` | 20,8 cm | medida | rogue-ckb | largura do corpo (a bola): 8,19 pol |
+| Kettlebell (modelo de competição) (`kettlebell`) | `alcaDiam` | 3,3 cm | medida | rogue-ckb | diâmetro da alça: 33 mm |
+| Kettlebell (modelo de competição) (`kettlebell`) | `alcaLarg` | 12,3 cm | medida | rogue-ckb | distância entre as duas hastes da alça: 123 mm |
+| Kettlebell (modelo de competição) (`kettlebell`) | `baseDiam` | 14 cm | medida | rogue-ckb | diâmetro da base: 5,5 pol |
+| Kettlebell (modelo de competição) (`kettlebell`) | `massa` | 12 kg | desenho | desenho | o peso desenhado: um dos pesos do modelo (8 a 48 kg, todos do mesmo tamanho) |
 
 Fontes dos objetos:
 
@@ -281,10 +287,61 @@ Fontes dos objetos:
 - `rogue-tubo`: Rogue, Tube Bands; https://www.roguefitness.com/rogue-tube-bands; lido em docs/revisoes/animacao-nova/pesquisa/11-medidas-do-elastico.md (página lida por resumo automático)
 - `workoutz-tubo`: Workoutz, Resistance Exercise Tubes; diâmetro interno e parede por nível; docs/revisoes/animacao-nova/pesquisa/11-medidas-do-elastico.md (página lida por resumo automático; o diâmetro de fora é conta: interno + 2 × parede)
 - `theraband-manual`: TheraBand (Hygenic), manual de uso (PDF, cópia de terceiro); docs/revisoes/animacao-nova/pesquisa/11-medidas-do-elastico.md
+- `rogue-ckb`: Rogue, Competition Kettlebells (o mesmo tamanho para todos os pesos, de 8 a 48 kg); https://www.roguefitness.com/rogue-competition-kettlebells; lido em docs/revisoes/animacao-nova/pesquisa/04-objetos.md, seção 6 (página lida por resumo automático)
 
 ## Fichas de movimento
 
 Uma por exercício refeito, em `src/engine/novo/dados/movimentos/`. Selos: robusta, moderada, um estudo, consenso (de treinadores) e desenho (escolha de desenho dentro do que a ficha da técnica pede).
+
+### Afundo com kettlebell no peito (`afundo-kettlebell`)
+
+Ficha da técnica: `docs/pesquisa/animacoes/afundo-kettlebell.md`. Movimento de um lado só.
+
+| parâmetro | valor | selo | fonte | o que é |
+|---|---|---|---|---|
+| `pes.meiaDistancia` | 9 cm | consenso | ficha | pés na largura do quadril, como trilhos (os centros do quadril ficam a 8,35 cm do meio) |
+| `peDaFrente.aFrenteDoQuadril` | 39,5 cm | desenho | hoje | passo largo: quanto o tornozelo do pé da frente fica à frente do quadril (na animação aprovada de hoje: 39,5 cm) |
+| `peDeTras.atrasDoQuadril` | 47 cm | desenho | hoje | passo largo: quanto a ponta do pé de trás (a bola do pé) fica atrás do quadril (na animação aprovada de hoje, o tornozelo de trás fica 40,5 cm atrás, com o calcanhar levantado) |
+| `peDeTras.calcanhar` | 66 graus | desenho | desenho | pé de trás na ponta: quanto o calcanhar sobe; a ficha não dá número |
+| `joelho.cima` | 14 graus | consenso | ficha | em cima: a perna da frente quase estendida, sem travar o joelho (como no afundo com o peso do corpo) |
+| `joelhoDeTras.aoChao` | 4 cm | consenso | ficha | embaixo: o joelho de trás fica a poucos centímetros do chão (da pele do joelho ao chão) |
+| `tronco` | 4 graus | consenso | ficha | tronco quase vertical |
+| `erro.valgo.joelho` | 6 cm | desenho | desenho | erro: quanto o joelho da frente cai para dentro |
+| `erro.tronco` | 36 graus | desenho | desenho | erro: o tronco cai para a frente |
+| `erro.raso.fracao` | 0,4 fração | desenho | hoje | erro: desce só 40% do caminho (como na animação de hoje) |
+| `maos.abaixoDeC7` | 14 cm | desenho | desenho | kettlebell junto ao peito: altura das mãos, na alça, abaixo da base do pescoço (no alto do peito); a ficha não dá número |
+| `kettlebell.folgaNoPeito` | 0,8 cm | desenho | desenho | a bola encosta no peito: folga entre a bola e a pele |
+| `carga` | 12 kg | desenho | objetos | o kettlebell desenhado (12 kg); entra no equilíbrio |
+
+| fase | tipo | duração | respiração | ritmo | selo |
+|---|---|---|---|---|---|
+| Em cima | pausa | 0,5 s | inspira | respire e firme o abdômen | consenso |
+| Descida · excêntrica | exc | 2,3 s | firme | ~2–3 s | consenso |
+| Embaixo | pausa | 0,4 s | firme | pausa curta | consenso |
+| Subida · concêntrica | conc | 1,3 s | expira | ~1–1,5 s | consenso |
+
+Contatos que não podem sair do lugar: `pe.R`, `pe.L`.
+
+Regras que a conferência mede:
+
+- a descida é reta: o quadril desce sem ir para a frente nem para trás (consenso)
+- embaixo, o joelho de trás fica a poucos centímetros do chão (consenso)
+- o tronco fica quase vertical (consenso)
+- o pé da frente fica inteiro no chão (consenso)
+
+Erros desenhados:
+
+- Joelho da frente para dentro (vista: frontal): o joelho da frente sai da linha do pé, para dentro
+- Tronco cai para a frente (vista: lateral): o kettlebell puxa o peito: o tronco inclina para a frente em vez de ficar quase vertical
+- Descer pouco (vista: lateral): desce só 40% do caminho
+
+Fontes desta ficha:
+
+- `ficha`: Ficha da técnica (docs/pesquisa/animacoes/afundo-kettlebell.md): mesma pose do afundo com o peso do corpo e mesma pegada do goblet com kettlebell; consenso de treinadores
+- `hoje`: Animação aprovada no guia de hoje (src/engine/exercicios/afundo-kettlebell.ts): o tamanho do passo e a posição do quadril entre os pés, que a ficha não dá em número
+- `cdc`: Soucie JM et al. Range of motion measurements: reference values and a database for comparison studies. Haemophilia 2011 (tabelas do CDC; docs/revisoes/animacao-nova/pesquisa/02-articulacoes.md, A1)
+- `objetos`: src/engine/novo/dados/objetos.json
+- `desenho`: Escolha de desenho desta animação, dentro do que a ficha pede; a conferência mede o resultado
 
 ### Afundo estático com o peso do corpo (`afundo-peso-corpo`)
 

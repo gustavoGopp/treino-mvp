@@ -242,7 +242,7 @@ export function conferir(ex: Exercicio, corpo: Corpo, qps = 60): Relatorio {
   if (F.erros.length) add('Chão', 'ponto mais baixo do corpo nos erros desenhados', `${f1(maisBaixoNoErro)} cm (${qualErro})`, 'não pode passar de −1,5 cm', maisBaixoNoErro >= -1.5 ? 'ok' : 'falha');
 
   // 5) objetos: a carga não voa (fica na mão) e o corpo não atravessa caixas (banco, colchonete)
-  for (const [nome] of Object.entries(quadros[0]!.marcas).filter(([k]) => k === 'halter')) {
+  for (const [nome] of Object.entries(quadros[0]!.marcas).filter(([k]) => k === 'halter' || k === 'kettlebell')) {
     const d = quadros.map((q) => Math.min(...LADOS.map((k) => dist(q.esq.lado[k].pegada, q.marcas[nome]!))));
     const [a, b] = faixa(d);
     add('Objetos', `a carga fica na mão: ${nome}`, `distância da mão ao centro do objeto de ${f1(a)} a ${f1(b)} cm`, 'não pode variar mais de 0,5 cm no ciclo', b - a <= 0.5 ? 'ok' : 'falha');

@@ -12,6 +12,7 @@ import { add, comb, cross, dot, mul, norm, perp, sub } from './vec';
 import type { V3 } from './vec';
 
 const Y: V3 = [0, 1, 0];
+const f1 = (n: number) => (Math.round(n * 10) / 10).toString();
 export type Tema = 'claro' | 'escuro';
 /** No tema escuro, o grafite e a borracha sumiriam no fundo: os materiais escuros sobem de tom. */
 const MATERIAIS: Record<Tema, typeof MAT> = {
@@ -124,6 +125,43 @@ function estribo(C: CenaRealista, M: typeof MAT, p: Extract<Peca, { t: 'estribo'
   C.cilindro(add(p.elo, mul(d, -1.2)), add(p.elo, mul(d, 2.4)), 1.3, M.cromo, { lados: 10 });
 }
 
+/** As medidas do kettlebell que o desenho e as animações usam: a bola é uma esfera achatada na base. */
+export function formaDoKettlebell() {
+  const R = obj('kettlebell', 'corpoLarg') / 2,
+    rBase = obj('kettlebell', 'baseDiam') / 2,
+    rAlca = obj('kettlebell', 'alcaDiam') / 2;
+  // a esfera encontra a base no raio da base: o centro dela fica a essa altura
+  const centro = Math.sqrt(R * R - rBase * rBase);
+  const topoDaBola = centro + R;
+  return { R, rBase, rAlca, centro, topoDaBola, altura: obj('kettlebell', 'altura'), meiaAlca: obj('kettlebell', 'alcaLarg') / 2 };
+}
+function kettlebell(C: CenaRealista, M: typeof MAT, p: Extract<Peca, { t: 'kettlebell' }>): void {
+  const K = formaDoKettlebell();
+  const u = norm(p.cima),
+    l = norm(p.lado);
+  const P = (h: number, x = 0): V3 => comb([1, p.base], [h, u], [x, l]);
+  // A bola, como no cartão do app: uma esfera vista de qualquer lado é um círculo. Ela é desenhada lisa, com a luz
+  // de cima e da esquerda, e cortada reta na base (a corda do círculo na altura da base).
+  const c = C.P(P(K.centro)),
+    base = C.P(P(0));
+  for (const [h, x] of [[K.centro + K.R, 0], [K.centro, K.R], [K.centro, -K.R]] as [number, number][]) C.P(P(h, x));
+  const dx = base[0] - c[0],
+    dy = base[1] - c[1],
+    ate = Math.hypot(dx, dy);
+  const meiaCorda = Math.sqrt(Math.max(0, K.R * K.R - ate * ate));
+  const gira = (Math.atan2(dy, dx) * 180) / Math.PI - 90;
+  const g = C.uid('kb');
+  C.defs.push(`<radialGradient id="${g}" cx="${f1(c[0] - K.R * 0.38)}" cy="${f1(c[1] - K.R * 0.42)}" r="${f1(K.R * 1.45)}" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="${mix(M.ferro[2]!, '#ffffff', 0.18)}"/><stop offset="0.4" stop-color="${M.ferro[1]}"/><stop offset="1" stop-color="${M.ferro[0]}"/></radialGradient>`);
+  C.bruto(
+    c[2],
+    `<g transform="translate(${f1(c[0])} ${f1(c[1])}) rotate(${f1(gira)})"><path d="M${f1(-meiaCorda)} ${f1(ate)}A${f1(K.R)} ${f1(K.R)} 0 1 1 ${f1(meiaCorda)} ${f1(ate)}Z" fill="url(#${g})" stroke="${M.ferro[3]}" stroke-width="0.5"/></g><ellipse cx="${f1(c[0] - K.R * 0.42)}" cy="${f1(c[1] - K.R * 0.44)}" rx="${f1(K.R * 0.22)}" ry="${f1(K.R * 0.13)}" transform="rotate(-35 ${f1(c[0] - K.R * 0.42)} ${f1(c[1] - K.R * 0.44)})" fill="#fff" opacity="0.26"/>`,
+  );
+  // a alça: duas hastes que saem da bola e a barra de cima (um pouco para trás na pintura: as mãos ficam por cima)
+  const alto = K.altura - K.rAlca;
+  const pe = K.centro + Math.sqrt(Math.max(0, K.R * K.R - K.meiaAlca * K.meiaAlca)) - 1;
+  for (const s of [-1, 1]) C.cilindro(P(pe, s * K.meiaAlca), P(alto, s * K.meiaAlca), K.rAlca, M.ferro, { lados: 10, dz: 6 });
+  C.cilindro(P(alto, -K.meiaAlca - K.rAlca * 0.6), P(alto, K.meiaAlca + K.rAlca * 0.6), K.rAlca, M.ferro, { lados: 10, dz: 6 });
+}
 /** A cor do elástico (a cor de ação do app, a mesma do estofado e da mini band dos cartões). */
 const corDoElastico = (M: typeof MAT) => M.estofado[1]!;
 function elastico(C: CenaRealista, M: typeof MAT, p: Extract<Peca, { t: 'elastico' }>): void {
@@ -200,6 +238,7 @@ export function equipamentoRealista(pecas: Peca[], cam: Camera, tema: Tema, id: 
       junta(desenhar(fixa('torre', p.torre), cam, pid, (C) => torreFixa(C, M, p.torre, comSombra)));
       junta(desenhar(null, cam, `${pid}m`, (C) => torreMovel(C, M, p.torre, p.subida)));
     } else if (p.t === 'estribo') junta(desenhar(null, cam, pid, (C) => estribo(C, M, p)));
+    else if (p.t === 'kettlebell') junta(desenhar(null, cam, pid, (C) => kettlebell(C, M, p)));
     else if (p.t === 'elastico') junta(desenhar(null, cam, pid, (C) => elastico(C, M, p)));
     else if (p.t === 'pegador') junta(desenhar(null, cam, pid, (C) => pegador(C, M, p)));
     else junta(desenhar(null, cam, pid, (C) => C.linha(p.a, p.b, tema === 'claro' ? '#1d2024' : '#aeb8c2', 0.8)));

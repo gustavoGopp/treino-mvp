@@ -7,10 +7,10 @@ Começado em 15/11/2026, depois de o Gustavo fechar o corpo. São as 10 animaç�
 | `goblet` | âncora, pronta; falta a aprovação na folha | nada |
 | `agachamento-peso-corpo` | **aprovada pelo Gustavo em 15/11/2026** ("aprovada"); conferência escrita em [agachamento-peso-corpo.md](agachamento-peso-corpo.md). Registrada em `src/engine/novo/aprovados.ts`; falta ligar o motor novo às telas e gravar a linha de base visual | nada |
 | `agachamento-elastico` | **aprovada pelo Gustavo em 15/11/2026** ("aprovada"); conferência escrita em [agachamento-elastico.md](agachamento-elastico.md). Registrada em `src/engine/novo/aprovados.ts`; falta ligar às telas | feito: o elástico em tubo com pegadores, com as medidas do fabricante |
-| `afundo` | pronta, com a conferência escrita ([afundo.md](afundo.md)); falta a aprovação na folha | feito: os halteres pendendo ao lado do corpo, sobre a peça comum dos afundos estáticos (`afundo-estatico.ts`) |
+| `afundo` | **aprovada pelo Gustavo em 15/11/2026** ("aprovada"); conferência escrita em [afundo.md](afundo.md). Registrada em `src/engine/novo/aprovados.ts`; falta ligar às telas | feito: os halteres pendendo ao lado do corpo, sobre a peça comum dos afundos estáticos (`afundo-estatico.ts`) |
 | `afundo-peso-corpo` | **aprovada pelo Gustavo em 15/11/2026** ("aprovada"); conferência escrita em [afundo-peso-corpo.md](afundo-peso-corpo.md). Registrada em `src/engine/novo/aprovados.ts`; falta ligar às telas | feito: o núcleo dos afundos (`afundar.ts`) |
 | `afundo-tras-peso-corpo` | por fazer | o passo para trás |
-| `afundo-kettlebell` | por fazer | kettlebell |
+| `afundo-kettlebell` | pronta, com a conferência escrita ([afundo-kettlebell.md](afundo-kettlebell.md)); falta a aprovação na folha | feito: o kettlebell com as medidas do fabricante |
 | `bulgaro` | por fazer | banco como apoio do pé de trás; halteres |
 | `bulgaro-peso-corpo` | por fazer | banco como apoio do pé de trás |
 | `bulgaro-suspensao` | por fazer | fita de suspensão |

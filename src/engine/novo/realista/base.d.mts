@@ -24,6 +24,12 @@ export interface CenaRealista {
   /** Peças desenhadas até agora: profundidade (maior = mais longe) e o SVG de cada uma. */
   itens: { z: number; svg: string }[];
   defs: string[];
+  /** Um ponto do mundo na tela: [x, y, profundidade]. */
+  P(p: V3): V3;
+  /** Um nome único para um gradiente ou filtro desta cena. */
+  uid(prefixo: string): string;
+  /** Uma peça desenhada à mão (SVG pronto), na profundidade dada. */
+  bruto(z: number, svg: string): void;
   tubo(a: V3, b: V3, w: number, h: number, mat: Material, o?: Opcoes): void;
   cilindro(a: V3, b: V3, r: number, mat: Material, o?: Opcoes): void;
   prisma(perfil: P2[], origem: V3, e1: V3, e2: V3, extrusao: V3, mat: Material, o?: Opcoes): void;
