@@ -11,7 +11,8 @@ import { PERSONAS_NOVAS } from '../personas/todos';
 // Sessão "treino para todos", etapa 2, pacote 2 (15/11/2026): a escolha entre exercícios equivalentes.
 //  - selecao.funcao-da-vaga: no empate total, vale a ordem de referência da lista da função (dado curado em
 //    funcoes.json), e não a ordem alfabética.
-//  - selecao.funcao-da-vaga: com carga à vontade, o exercício de dois lados vem antes do de um lado só.
+//  - selecao.funcao-da-vaga: com carga à vontade (máquina, polia ou barra), o exercício de dois lados vem antes do de
+//    um lado só; com halter ou kettlebell, com dor leve na região ou com "prefiro este", nada muda.
 //  - selecao.lombar-no-dia: depois de um exercício que carrega a lombar sem apoio, o de tronco que também carrega fica
 //    por último entre os do mesmo nível (os de perna, depois de dois).
 // O "antes" de cada regra é o protótipo (scripts/auditoria/prototipo) com todas as adotadas menos ela. Só personas e
@@ -108,31 +109,47 @@ describe('selecao.funcao-da-vaga: com carga à vontade, dois lados antes de um l
     expect(ctxDe('academia').escolher(FUNCAO['puxar-vertical']!, 0, () => false, new Map())?.ex.id).toBe('puxada-frente');
   });
 
-  it('na vaga de agachar com halteres pesados, o goblet vem antes do búlgaro', () => {
-    const ctx = ctxDe('halteres-banco');
-    const n = FUNCAO.agachar!.niveis.findIndex((l) => l.includes('goblet'));
-    expect(ctx.escolher(FUNCAO.agachar!, n, () => false, new Map())?.ex.id).toBe('goblet');
+  it('na academia, a elevação lateral com halteres vem antes da de um lado só na polia, e o hip thrust antes do coice na máquina', () => {
+    const ctx = ctxDe('academia');
+    expect(ctx.escolher(FUNCAO['elevacao-lateral']!, 0, () => false, new Map())?.ex.id).toBe('elevacao-halteres');
+    expect(ctx.escolher(FUNCAO['extensao-quadril']!, 0, () => false, new Map())?.ex.id).toBe('hip-thrust');
   });
 
   it('quem marcou "prefiro este" num exercício de um lado só continua com ele', () => {
-    const semPreferencia = ctxDe('academia').escolher(FUNCAO['panturrilha-em-pe']!, 0, (id) => id !== 'panturrilha' && id !== 'panturrilha-bilateral-step', new Map());
-    expect(semPreferencia?.ex.id).toBe('panturrilha-bilateral-step');
-    const comPreferencia = ctxDe('academia', { preferidos: { 'panturrilha-em-pe': 'panturrilha' } }).escolher(
-      FUNCAO['panturrilha-em-pe']!,
-      0,
-      (id) => id !== 'panturrilha' && id !== 'panturrilha-bilateral-step',
-      new Map(),
-    );
-    expect(comPreferencia?.ex.id).toBe('panturrilha');
+    const comPreferencia = ctxDe('academia', { preferidos: { 'elevacao-lateral': 'elevacao-lateral' } });
+    expect(comPreferencia.escolher(FUNCAO['elevacao-lateral']!, 0, () => false, new Map())?.ex.id).toBe('elevacao-lateral');
   });
 
-  it('com pouca carga (halteres leves), nada muda: o exercício de um lado só continua valendo como degrau', () => {
-    for (const nivel of ['iniciante', 'intermediario', 'avancado'] as const)
-      for (const dias of ['2', '3', '4', '5']) {
-        const pd = pedido({ cenario: 'banco+halteres-leves', nivel, dias });
-        const [perfil, inventario] = [perfilDe(pd), inventarioDe(pd.cenario)];
-        expect(ids(programa(gerarPrograma, perfil, inventario)), `${nivel}, ${dias} dias`).toEqual(ids(programa(antes, perfil, inventario)));
-      }
+  it('com halter, kettlebell, caneleira, elástico ou peso do corpo, nada muda: o de um lado só continua valendo como degrau', () => {
+    for (const cenario of ['halteres', 'halteres-banco', 'banco+halteres-leves', 'casa', 'elasticos', 'vazio'])
+      for (const nivel of ['iniciante', 'intermediario', 'avancado'] as const)
+        for (const dias of ['2', '3', '4', '5']) {
+          const pd = pedido({ cenario, nivel, dias });
+          const [perfil, inventario] = [perfilDe(pd), inventarioDe(pd.cenario)];
+          expect(ids(programa(gerarPrograma, perfil, inventario)), `${cenario}, ${nivel}, ${dias} dias`).toEqual(ids(programa(antes, perfil, inventario)));
+        }
+  });
+
+  it('na academia, o stiff de um lado só com halter não dá lugar ao terra romeno com barra só por ser de um lado', () => {
+    // (revisão cega de 15/11: o avançado com halteres e a pessoa com dor leve na lombar pioravam)
+    for (const dores of [[], [{ articulacao: 'lombar' as const, nota: 4 }]]) {
+      const pd = pedido({ cenario: 'academia', dias: '4', dores });
+      const [perfil, inventario] = [perfilDe(pd), inventarioDe(pd.cenario)];
+      const [a, d] = [ids(programa(antes, perfil, inventario)), ids(programa(gerarPrograma, perfil, inventario))];
+      expect(d.includes('terra-romeno-barra')).toBe(a.includes('terra-romeno-barra'));
+      expect(d.includes('stiff-unilateral')).toBe(a.includes('stiff-unilateral'));
+    }
+  });
+
+  it('o exercício de um lado só que carrega uma região com dor de 3 a 5 não perde lugar', () => {
+    // Dor 4 no ombro: a elevação lateral de um lado só na polia e a de halteres carregam o ombro; fica como era antes da regra.
+    const pd = pedido({ cenario: 'academia', dores: [{ articulacao: 'ombro', nota: 4 }] });
+    const [perfil, inventario] = [perfilDe(pd), inventarioDe(pd.cenario)];
+    const ctx = contextoDeSelecao(perfil, inventario);
+    const usos = new Map([['elevacao-halteres', 1]]);
+    expect(ctx.escolher(FUNCAO['elevacao-lateral']!, 0, () => false, usos)?.ex.id).toBe('elevacao-lateral');
+    // Sem dor, com a mesma contagem de usos, os dois lados vêm antes.
+    expect(ctxDe('academia').escolher(FUNCAO['elevacao-lateral']!, 0, () => false, usos)?.ex.id).toBe('elevacao-halteres');
   });
 
   it('a vaga de afundo não muda: todos os exercícios dela são de um lado só', () => {
@@ -146,7 +163,7 @@ describe('selecao.funcao-da-vaga: com carga à vontade, dois lados antes de um l
       if (ids(a).join() !== ids(d).join()) mudam++;
       const [da, dd] = [defeitos(a, p.perfil, p.inventario), defeitos(d, p.perfil, p.inventario)];
       expect(dd.filter((x) => !da.includes(x)), p.nome).toEqual([]);
-      // O programa novo não tem mais exercícios de um lado só com carga à vontade do que o antigo.
+      // O programa novo não tem mais exercícios de um lado só do que o antigo.
       const umLado = (q: Programa) => ids(q).filter((id) => POR_ID[id]!.unilateral).length;
       expect(umLado(d), p.nome).toBeLessThanOrEqual(umLado(a));
     }

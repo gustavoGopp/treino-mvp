@@ -214,7 +214,18 @@ export function contextoDeSelecao(perfil: Perfil, inventarioOriginal: Inventario
   const preferido = (f: Funcao | undefined, e: Exercicio) => !!f && perfil.preferidos?.[f.id] === e.id;
   // PROTÓTIPO (escolha): com carga à vontade, o exercício de dois lados vem antes do de um lado só (unilateral rende o
   // mesmo e leva o dobro do tempo; com pouca carga, o de um lado continua valendo como degrau).
-  const umLadoSemPrecisar = (e: Exercicio, f?: Funcao) => ((prot('escolha') || prot('esc-dois-lados')) && e.unilateral && cargaPossivel(e) === 2 && !preferido(f, e) ? 1 : 0);
+  const umLadoSemPrecisar = (e: Exercicio, f?: Funcao) =>
+    (prot('escolha') || prot('esc-dois-lados')) &&
+    e.unilateral &&
+    cargaPossivel(e) === 2 &&
+    // Com halter ou kettlebell, o de um lado só continua valendo como degrau de carga; e não perde lugar quando carrega
+    // uma região com dor leve, nem quando a pessoa o preferiu (como no app).
+    e.carga !== 'halter' &&
+    e.carga !== 'kettlebell' &&
+    !articulacoesDe(e).some((a) => dorLeve.has(a)) &&
+    !preferido(f, e)
+      ? 1
+      : 0;
   /** PROTÓTIPO: os critérios de treino do desempate (para a régua medir o que decidiu a escolha). */
   // PROTÓTIPO (esc-simples): para o iniciante, entre os que deixam pôr a mesma carga, o de menor complexidade primeiro
   // (antes da carga, a flexão fechada passava na frente do tríceps com halter e o dia ficava com três exercícios de peito).

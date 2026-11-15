@@ -192,9 +192,12 @@ export function contextoDeSelecao(perfil: Perfil, inventarioOriginal: Inventario
   // exercício do foco), e não só na vaga do último dia (régua, B1).
   const limiteDeRepeticao = perfil.diasSemana >= 3 ? perfil.diasSemana - 1 : Infinity;
   // selecao.funcao-da-vaga (15/11/2026): com carga à vontade, o exercício de dois lados vem antes do de um lado só (o
-  // resultado é o mesmo e a série leva metade do tempo; com pouca carga, o de um lado continua valendo como degrau).
-  // O exercício que a pessoa marcou com "prefiro este" não perde lugar por ser de um lado só.
-  const umLadoSemPrecisar = (f: Funcao | undefined, e: Exercicio) => (e.unilateral && cargaPossivel(e) === 2 && !preferido(f, e) ? 1 : 0);
+  // resultado é o mesmo e a série leva metade do tempo). "Carga à vontade" é máquina, polia ou barra: com halter ou
+  // kettlebell, o de um lado só continua valendo como degrau de carga (os 20 kg rendem mais numa perna só). O de um lado
+  // só também não perde lugar quando carrega uma região com dor de 3 a 5 (metade da carga na região), nem quando a
+  // pessoa marcou "prefiro este".
+  const umLadoSemPrecisar = (f: Funcao | undefined, e: Exercicio) =>
+    e.unilateral && cargaPossivel(e) === 2 && e.carga !== 'halter' && e.carga !== 'kettlebell' && !e.articulacoes.some((a) => dorLeve.has(a)) && !preferido(f, e) ? 1 : 0;
   // selecao.funcao-da-vaga (15/11/2026): no empate total, a ordem de referência da lista da função (o exercício mais
   // comum e mais simples de montar primeiro; dado curado em funcoes.json), e não a alfabética. O id fica só para
   // exercícios de funções diferentes, para o resultado ser estável.
