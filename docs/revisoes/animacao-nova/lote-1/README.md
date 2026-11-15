@@ -5,8 +5,8 @@ Começado em 15/11/2026, depois de o Gustavo fechar o corpo. São as 10 animaç�
 | Animação | Estado | O que exige de novo |
 |---|---|---|
 | `goblet` | âncora, pronta; falta a aprovação na folha | nada |
-| `agachamento-peso-corpo` | pronta, com a conferência escrita ([agachamento-peso-corpo.md](agachamento-peso-corpo.md)); falta a aprovação na folha | nada |
-| `agachamento-elastico` | por fazer | elástico (faixa) |
+| `agachamento-peso-corpo` | **aprovada pelo Gustavo em 15/11/2026** ("aprovada"); conferência escrita em [agachamento-peso-corpo.md](agachamento-peso-corpo.md). Registrada em `src/engine/novo/aprovados.ts`; falta ligar o motor novo às telas e gravar a linha de base visual | nada |
+| `agachamento-elastico` | pronta, com a conferência escrita ([agachamento-elastico.md](agachamento-elastico.md)); falta a aprovação na folha | feito: o elástico em tubo com pegadores, com as medidas do fabricante |
 | `afundo` | por fazer | halteres ao lado do corpo; o passo |
 | `afundo-peso-corpo` | por fazer | o passo |
 | `afundo-tras-peso-corpo` | por fazer | o passo para trás |

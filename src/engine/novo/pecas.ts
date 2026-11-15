@@ -117,7 +117,11 @@ export type Peca =
   | { t: 'torre'; torre: Torre; subida: number }
   | { t: 'estribo'; pegada: V3; eixo: V3; elo: V3 }
   | { t: 'cabo'; a: V3; b: V3 }
-  | { t: 'colchonete'; x0: number; z0: number };
+  | { t: 'colchonete'; x0: number; z0: number }
+  /** Elástico em tubo: o caminho do tubo (do pegador de uma mão, por baixo dos pés, ao da outra) e quanto está esticado (1 = em repouso). */
+  | { t: 'elastico'; pts: V3[]; estica: number }
+  /** O pegador do elástico: o centro da pegada, o eixo dela e a ponta do tubo. */
+  | { t: 'pegador'; pegada: V3; eixo: V3; ponta: V3 };
 
 export interface Torre {
   /** Centro da base no chão e a direção para onde a polia aponta (para a pessoa). */

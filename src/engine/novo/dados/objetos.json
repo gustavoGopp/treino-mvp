@@ -15,7 +15,10 @@
   "bodysolid-pcco90x": "Body-Solid, manual do Powerline PCCO90X Cable Crossover (PDF); https://cdn.shopify.com/s/files/1/0941/2604/files/PCCO90X-180716.pdf; docs/revisoes/animacao-nova/pesquisa/10-fontes-das-medidas-provisorias-dos-objetos.md (outro fabricante que o da coluna)",
   "rogue-estribo": "Rogue, Single Handle Cable Attachment; https://www.roguefitness.com/single-handle-cable-attachment; docs/revisoes/animacao-nova/pesquisa/10-fontes-das-medidas-provisorias-dos-objetos.md",
   "rogue-ab3-tubo": "Rogue, Adjustable Bench 3.0 (tubo de 3x3 pol); https://www.roguefitness.com/rogue-adjustable-bench-3-0; docs/revisoes/animacao-nova/pesquisa/10-fontes-das-medidas-provisorias-dos-objetos.md",
-  "desenho": "Escolha de desenho, sem medida de fabricante: quantidade ou detalhe que não muda a medida do objeto"
+  "desenho": "Escolha de desenho, sem medida de fabricante: quantidade ou detalhe que não muda a medida do objeto",
+  "rogue-tubo": "Rogue, Tube Bands; https://www.roguefitness.com/rogue-tube-bands; lido em docs/revisoes/animacao-nova/pesquisa/11-medidas-do-elastico.md (página lida por resumo automático)",
+  "workoutz-tubo": "Workoutz, Resistance Exercise Tubes; diâmetro interno e parede por nível; docs/revisoes/animacao-nova/pesquisa/11-medidas-do-elastico.md (página lida por resumo automático; o diâmetro de fora é conta: interno + 2 × parede)",
+  "theraband-manual": "TheraBand (Hygenic), manual de uso (PDF, cópia de terceiro); docs/revisoes/animacao-nova/pesquisa/11-medidas-do-elastico.md"
  },
  "objetos": {
   "halter": {
@@ -337,6 +340,53 @@
      "tipo": "medida",
      "fonte": "rogue-ab3-tubo",
      "onde": "lado do tubo de 3x3 pol: 7,62 cm; antes: 6 cm (sem fonte)"
+    }
+   }
+  },
+  "elastico": {
+   "nome": "Elástico em tubo, com pegadores",
+   "medidas": {
+    "comp": {
+     "v": 121.9,
+     "un": "cm",
+     "tipo": "medida",
+     "fonte": "rogue-tubo",
+     "onde": "comprimento do tubo em repouso, sem os pegadores: 48 pol"
+    },
+    "tuboDiam": {
+     "v": 1.2,
+     "un": "cm",
+     "tipo": "derivada",
+     "fonte": "workoutz-tubo",
+     "onde": "diâmetro de fora do tubo em repouso: de 0,95 cm (o mais fraco) a 1,49 cm (o mais forte); usado o meio da faixa"
+    },
+    "pegadorComp": {
+     "v": 12.7,
+     "un": "cm",
+     "tipo": "medida",
+     "fonte": "rogue-tubo",
+     "onde": "comprimento da pegada: 5 pol"
+    },
+    "pegadorDiam": {
+     "v": 3.3,
+     "un": "cm",
+     "tipo": "medida",
+     "fonte": "rogue-tubo",
+     "onde": "diâmetro da pegada: 1 5/16 pol = 33,3 mm"
+    },
+    "fita": {
+     "v": 8.9,
+     "un": "cm",
+     "tipo": "derivada",
+     "fonte": "rogue-tubo",
+     "onde": "da pegada até a ponta do tubo: (65 pol de ponta a ponta − 48 do tubo − 2 × 5 dos pegadores) / 2 = 3,5 pol; a ficha não dá este número direto"
+    },
+    "esticaAte": {
+     "v": 3,
+     "un": "vezes",
+     "tipo": "medida",
+     "fonte": "theraband-manual",
+     "onde": "alongamento máximo: 3 vezes o comprimento em repouso (outro fabricante; a Rogue calcula a resistência a 2,5 vezes e não dá o máximo)"
     }
    }
   }

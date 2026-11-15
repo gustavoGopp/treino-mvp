@@ -247,7 +247,13 @@ export function conferir(ex: Exercicio, corpo: Corpo, qps = 60): Relatorio {
     const comp = quadros.map((q) => q.fios.find((x) => x.id === id)!);
     const [a, b] = faixa(comp.map((x) => x.comp));
     if (!comp[0]!.estica) add('Cabos', `${id}: não estica`, `comprimento de ${f1(a)} a ${f1(b)} cm`, 'não pode variar mais de 0,3 cm', b - a <= 0.3 ? 'ok' : 'falha');
-    else {
+    else if (id === 'elastico') {
+      // o elástico estica de verdade: o que se confere é quanto (contra o comprimento em repouso da tabela) e que ele
+      // está mais esticado onde a ficha diz (em cima, com as pernas quase estendidas)
+      const repouso = OBJETOS.objetos.elastico!.medidas.comp!.v;
+      const noComeco = comp[0]!.comp / repouso;
+      add('Cabos', 'elástico: quanto estica no ciclo (1 = comprimento em repouso)', `de ${f1(a / repouso)} a ${f1(b / repouso)} vezes (${f1(a)} a ${f1(b)} cm); em cima, ${f1(noComeco)} vezes`, `nunca frouxo (1 ou mais), mais esticado em cima e nunca além de ${f1(OBJETOS.objetos.elastico!.medidas.esticaAte!.v)} vezes (o máximo do fabricante)`, b / repouso > OBJETOS.objetos.elastico!.medidas.esticaAte!.v ? 'falha' : a / repouso >= 0.98 && Math.abs(noComeco - b / repouso) < 0.02 ? 'ok' : 'aviso');
+    } else {
       const rel = OBJETOS.objetos.torre!.medidas.relacao!.v;
       const pilha = quadros.map((q) => q.marcas.pilha?.[1] ?? 0);
       const esperado = (b - a) / rel,

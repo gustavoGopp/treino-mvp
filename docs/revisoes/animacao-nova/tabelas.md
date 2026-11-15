@@ -253,6 +253,12 @@ Fontes: `GRAY1918`: Gray H. Anatomy of the Human Body, 20ª ed. (1918), domínio
 | Banco regulável (encosto de 0 a 85 graus) (`bancoRegulavel`) | `estofado` | 7 cm | medida | gymgear-mab | espessura do estofado: 70 mm (outro modelo; a ficha da Rogue não informa) |
 | Banco regulável (encosto de 0 a 85 graus) (`bancoRegulavel`) | `assentoComp` | 34 cm | **provisória** | a-conferir | comprimento só do assento: nenhuma ficha lida separa assento e encosto |
 | Banco regulável (encosto de 0 a 85 graus) (`bancoRegulavel`) | `tubo` | 7,6 cm | medida | rogue-ab3-tubo | lado do tubo de 3x3 pol: 7,62 cm; antes: 6 cm (sem fonte) |
+| Elástico em tubo, com pegadores (`elastico`) | `comp` | 121,9 cm | medida | rogue-tubo | comprimento do tubo em repouso, sem os pegadores: 48 pol |
+| Elástico em tubo, com pegadores (`elastico`) | `tuboDiam` | 1,2 cm | derivada | workoutz-tubo | diâmetro de fora do tubo em repouso: de 0,95 cm (o mais fraco) a 1,49 cm (o mais forte); usado o meio da faixa |
+| Elástico em tubo, com pegadores (`elastico`) | `pegadorComp` | 12,7 cm | medida | rogue-tubo | comprimento da pegada: 5 pol |
+| Elástico em tubo, com pegadores (`elastico`) | `pegadorDiam` | 3,3 cm | medida | rogue-tubo | diâmetro da pegada: 1 5/16 pol = 33,3 mm |
+| Elástico em tubo, com pegadores (`elastico`) | `fita` | 8,9 cm | derivada | rogue-tubo | da pegada até a ponta do tubo: (65 pol de ponta a ponta − 48 do tubo − 2 × 5 dos pegadores) / 2 = 3,5 pol; a ficha não dá este número direto |
+| Elástico em tubo, com pegadores (`elastico`) | `esticaAte` | 3 vezes | medida | theraband-manual | alongamento máximo: 3 vezes o comprimento em repouso (outro fabricante; a Rogue calcula a resistência a 2,5 vezes e não dá o máximo) |
 
 Fontes dos objetos:
 
@@ -272,10 +278,64 @@ Fontes dos objetos:
 - `rogue-estribo`: Rogue, Single Handle Cable Attachment; https://www.roguefitness.com/single-handle-cable-attachment; docs/revisoes/animacao-nova/pesquisa/10-fontes-das-medidas-provisorias-dos-objetos.md
 - `rogue-ab3-tubo`: Rogue, Adjustable Bench 3.0 (tubo de 3x3 pol); https://www.roguefitness.com/rogue-adjustable-bench-3-0; docs/revisoes/animacao-nova/pesquisa/10-fontes-das-medidas-provisorias-dos-objetos.md
 - `desenho`: Escolha de desenho, sem medida de fabricante: quantidade ou detalhe que não muda a medida do objeto
+- `rogue-tubo`: Rogue, Tube Bands; https://www.roguefitness.com/rogue-tube-bands; lido em docs/revisoes/animacao-nova/pesquisa/11-medidas-do-elastico.md (página lida por resumo automático)
+- `workoutz-tubo`: Workoutz, Resistance Exercise Tubes; diâmetro interno e parede por nível; docs/revisoes/animacao-nova/pesquisa/11-medidas-do-elastico.md (página lida por resumo automático; o diâmetro de fora é conta: interno + 2 × parede)
+- `theraband-manual`: TheraBand (Hygenic), manual de uso (PDF, cópia de terceiro); docs/revisoes/animacao-nova/pesquisa/11-medidas-do-elastico.md
 
 ## Fichas de movimento
 
 Uma por exercício refeito, em `src/engine/novo/dados/movimentos/`. Selos: robusta, moderada, um estudo, consenso (de treinadores) e desenho (escolha de desenho dentro do que a ficha da técnica pede).
+
+### Agachamento com elástico (`agachamento-elastico`)
+
+Ficha da técnica: `docs/pesquisa/animacoes/agachamento-elastico.md`. Movimento simétrico (os dois lados fazem o mesmo).
+
+| parâmetro | valor | selo | fonte | o que é |
+|---|---|---|---|---|
+| `joelho.cima` | 8 graus | consenso | ficha | em cima: joelhos quase estendidos, sem travar |
+| `joelho.baixo` | 126 graus | consenso | ficha | embaixo: quadril na altura do joelho ou abaixo, com o calcanhar apoiado; a média de flexão do joelho é 140 (cdc) |
+| `tronco.cima` | 3 graus | consenso | ficha | em pé |
+| `tronco.baixo` | 33 graus | desenho | desenho | inclinação do peito embaixo, com a lombar neutra: como no agachamento com o peso do corpo (33), porque sem a anilha sob o calcanhar o tornozelo limita mais a descida; a ficha não dá número |
+| `pes.meiaDistancia` | 19 cm | consenso | ficha | pés um pouco mais abertos que o quadril (meia largura do quadril: 16,2) |
+| `pes.paraFora` | 15 graus | consenso | ficha | pontas levemente para fora |
+| `erro.raso.joelho` | 72 graus | desenho | desenho | erro: parar alto |
+| `erro.valgo.joelho` | 9 cm | desenho | desenho | erro: quanto cada joelho cai para dentro da linha do pé |
+| `elastico.folgaNoJoelho` | 1,5 cm | desenho | desenho | com o joelho dobrado, o tubo passa por fora do joelho: folga entre o tubo e a pele |
+| `maos.aFrenteDoOmbro` | 13 cm | desenho | desenho | cada mão segura o pegador na frente do ombro: quanto a pegada fica à frente do centro do ombro; a ficha não dá número |
+| `maos.acimaDoOmbro` | 2 cm | desenho | desenho | altura da pegada em relação ao centro do ombro |
+| `erro.lombar.tronco` | 45 graus | desenho | desenho | erro: o peito cai (inclinação do peito embaixo; no certo são 27) |
+| `erro.lombar.lombar` | 35 graus | desenho | desenho | erro: a lombar arredonda: a bacia gira 17 graus para trás em relação ao certo e a lombar dobra o que falta até o peito |
+
+| fase | tipo | duração | respiração | ritmo | selo |
+|---|---|---|---|---|---|
+| Em pé | pausa | 0,5 s | inspira | elástico mais esticado | consenso |
+| Descida · excêntrica | exc | 2,4 s | firme | ~2–3 s | consenso |
+| Embaixo · sem quicar | pausa | 0,45 s | firme | pausa curta | consenso |
+| Subida · concêntrica | conc | 1,3 s | expira | ~1–1,5 s | consenso |
+
+Contatos que não podem sair do lugar: `pe.R`, `pe.L`.
+
+Regras que a conferência mede:
+
+- embaixo, o quadril fica na altura do joelho ou abaixo (consenso)
+- o joelho segue a direção da ponta do pé (consenso)
+- o calcanhar fica apoiado: o peso no meio do pé (consenso)
+- a lombar não arredonda (consenso)
+
+Erros desenhados:
+
+- Joelhos para dentro (vista: frontal): os joelhos saem da linha dos pés, para dentro
+- Tronco cai e a lombar arredonda (vista: lateral): o tronco inclina demais e a lombar flexiona
+- Descer pouco (vista: lateral): para com o joelho a 72° em vez de 126°
+
+Fontes desta ficha:
+
+- `ficha`: Ficha da técnica (docs/pesquisa/animacoes/agachamento-elastico.md): mesma posição do goblet aprovado; consenso de treinadores (nsca2021, não verificado)
+- `cdc`: Soucie JM et al. Range of motion measurements: reference values and a database for comparison studies. Haemophilia 2011 (tabelas do CDC; docs/revisoes/animacao-nova/pesquisa/02-articulacoes.md, A1)
+- `equilibrio`: Em pé, parado, a projeção do centro de massa cai dentro do apoio dos pés (mecânica); a ficha pede o calcanhar apoiado
+- `objetos`: src/engine/novo/dados/objetos.json
+- `fisica`: Física do elástico: a força cresce com o quanto ele estica (como a ficha da técnica registra); a borracha não muda de volume, então o tubo afina ao esticar
+- `desenho`: Escolha de desenho desta animação, dentro do que a ficha pede; a conferência mede o resultado
 
 ### Agachamento com o peso do corpo (`agachamento-peso-corpo`)
 

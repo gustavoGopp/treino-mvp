@@ -124,6 +124,29 @@ function estribo(C: CenaRealista, M: typeof MAT, p: Extract<Peca, { t: 'estribo'
   C.cilindro(add(p.elo, mul(d, -1.2)), add(p.elo, mul(d, 2.4)), 1.3, M.cromo, { lados: 10 });
 }
 
+/** A cor do elástico (a cor de ação do app, a mesma do estofado e da mini band dos cartões). */
+const corDoElastico = (M: typeof MAT) => M.estofado[1]!;
+function elastico(C: CenaRealista, M: typeof MAT, p: Extract<Peca, { t: 'elastico' }>): void {
+  // a borracha não muda de volume: esticada, o tubo afina na raiz quadrada do quanto esticou
+  const d = obj('elastico', 'tuboDiam') / Math.sqrt(Math.max(1, p.estica));
+  // cada trecho é pintado na sua profundidade: o que sobe pelo lado de perto fica na frente da perna, o do outro
+  // lado fica atrás, e o que passa debaixo dos pés fica no chão
+  const meio = Math.floor(p.pts.length / 2);
+  for (const trecho of [p.pts.slice(0, meio), p.pts.slice(meio - 1, meio + 1), p.pts.slice(meio)]) {
+    C.polilinha(trecho, M.estofado[3]!, d + 0.5);
+    C.polilinha(trecho, corDoElastico(M), d);
+  }
+}
+function pegador(C: CenaRealista, M: typeof MAT, p: Extract<Peca, { t: 'pegador' }>): void {
+  const u = norm(p.eixo),
+    L = obj('elastico', 'pegadorComp') / 2;
+  const a = add(p.pegada, mul(u, -L)),
+    b = add(p.pegada, mul(u, L));
+  // a pegada (um pouco para trás na pintura: a mão fica por cima) e a fita em triângulo até a ponta do tubo
+  C.cilindro(a, b, obj('elastico', 'pegadorDiam') / 2, M.borracha, { lados: 12, dz: 6 });
+  C.polilinha([a, p.ponta, b], M.borracha[1]!, 1.1);
+}
+
 /* ============================== a cena ============================== */
 /**
  * O desenho de uma peça só muda com a câmera, o tema e a própria peça. As peças paradas (banco, coluna, colchonete,
@@ -177,6 +200,8 @@ export function equipamentoRealista(pecas: Peca[], cam: Camera, tema: Tema, id: 
       junta(desenhar(fixa('torre', p.torre), cam, pid, (C) => torreFixa(C, M, p.torre, comSombra)));
       junta(desenhar(null, cam, `${pid}m`, (C) => torreMovel(C, M, p.torre, p.subida)));
     } else if (p.t === 'estribo') junta(desenhar(null, cam, pid, (C) => estribo(C, M, p)));
+    else if (p.t === 'elastico') junta(desenhar(null, cam, pid, (C) => elastico(C, M, p)));
+    else if (p.t === 'pegador') junta(desenhar(null, cam, pid, (C) => pegador(C, M, p)));
     else junta(desenhar(null, cam, pid, (C) => C.linha(p.a, p.b, tema === 'claro' ? '#1d2024' : '#aeb8c2', 0.8)));
   });
   return { itens, defs };

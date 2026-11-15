@@ -1,6 +1,6 @@
 # Lote 1 · Agachamento com o peso do corpo (`agachamento-peso-corpo`)
 
-De 15/11/2026. Primeira animação do lote 1, feita depois de o Gustavo fechar o corpo ("pode fechar o corpo e começar o lote 1"). **Ainda sem a aprovação dele na folha: não está no app.**
+De 15/11/2026. Primeira animação do lote 1, feita depois de o Gustavo fechar o corpo ("pode fechar o corpo e começar o lote 1"). **Aprovada por ele na folha em 15/11/2026 ("aprovada").** Ainda não está no app: falta ligar o motor novo às telas.
 
 - Ficha da técnica: `docs/pesquisa/animacoes/agachamento-peso-corpo.md`.
 - Ficha de movimento: `src/engine/novo/dados/movimentos/agachamento-peso-corpo.json`.

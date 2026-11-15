@@ -56,3 +56,9 @@ A amplitude média de flexão do cotovelo é 148° e a máxima observada, 166° 
 O que a animação fez, dentro do que o texto permite: 70 cm, tronco 8° para trás, cotovelo 6° atrás do tronco: 152°.
 
 Pedido: avaliar trocar "a cerca de meio passo" por "a cerca de um passo" no texto do app. Sem fonte além do consenso do guia original e da conta acima; por isso é pedido, e não mudança.
+
+## 5. Agachamento com elástico: "quase nenhuma tensão embaixo" (15/11/2026)
+
+A ficha da técnica (`docs/pesquisa/animacoes/agachamento-elastico.md`, linha "A faixa") diz que a tensão é "maior com as pernas quase estendidas e quase nenhuma embaixo". Medido no boneco, com o tubo de 122 cm (Rogue Tube Bands, 48 pol) pisado com os pés a 38 cm um do outro e as mãos nos ombros: o elástico estica 2,5 vezes em cima e ainda 1,4 vez embaixo. Para ficar quase frouxo embaixo, teria de ter perto de 175 cm.
+
+Pedido: avaliar trocar "quase nenhuma embaixo" por "menor embaixo" no texto do app, se o texto usar essa frase. A direção está certa (estica mais em cima); o "quase nenhuma" depende do comprimento do elástico da pessoa.
