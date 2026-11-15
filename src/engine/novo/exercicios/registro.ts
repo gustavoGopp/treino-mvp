@@ -36,3 +36,4 @@ export { ponteGluteoHalter } from './ponte-gluteo-halter';
 export { ponteKettlebell } from './ponte-kettlebell';
 export { flexaoJoelhoSuspensao } from './flexao-joelho-suspensao';
 export { tricepsFrances } from './triceps-frances';
+export { tricepsFrancesHalter } from './triceps-frances-halter';

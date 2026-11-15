@@ -1,0 +1,346 @@
+{
+ "id": "triceps-frances-halter",
+ "nome": "Tríceps francês sentado com halter",
+ "fichaDaTecnica": "docs/pesquisa/animacoes/triceps-frances-halter.md",
+ "fontes": {
+  "ficha": "Ficha da técnica (docs/pesquisa/animacoes/triceps-frances-halter.md) e texto do app (src/conteudo/exercicios/triceps-frances-halter.json): consenso de treinadores (nsca2021, não verificado)",
+  "correcao": "Correção de 04/11/2026 registrada em docs/revisoes/animacao-nova/correcoes-ja-feitas.md: mãos juntas na anilha, 12 cm",
+  "familia": "O tríceps francês na polia com corda (src/engine/novo/dados/movimentos/triceps-frances.json): o mesmo braço acima da cabeça",
+  "hoje": "A animação de hoje (src/engine/exercicios/triceps-frances-halter.ts): as distâncias que a ficha não dá em número",
+  "objetos": "src/engine/novo/dados/objetos.json",
+  "desenho": "Escolha de desenho desta animação, dentro do que a ficha pede; a conferência mede o resultado"
+ },
+ "param": {
+  "tronco.inclinacao": {
+   "v": 0,
+   "un": "graus",
+   "selo": "consenso",
+   "fonte": "ficha",
+   "o": "sentado com as costas retas: o eixo do tórax na vertical"
+  },
+  "nadega.afunda": {
+   "v": 1.5,
+   "un": "cm",
+   "selo": "desenho",
+   "fonte": "desenho",
+   "o": "quanto a nádega afunda no estofado do banco"
+  },
+  "pes.meiaDistancia": {
+   "v": 16,
+   "un": "cm",
+   "selo": "desenho",
+   "fonte": "hoje",
+   "o": "pés firmes no chão, um pouco mais abertos que o quadril"
+  },
+  "coxa.inclinacao": {
+   "v": 0,
+   "un": "graus",
+   "selo": "desenho",
+   "fonte": "desenho",
+   "o": "a coxa quase na horizontal (o banco tem a altura do joelho)"
+  },
+  "pes.aFrenteDoJoelho": {
+   "v": 4,
+   "un": "cm",
+   "selo": "desenho",
+   "fonte": "desenho",
+   "o": "o tornozelo um pouco à frente do joelho"
+  },
+  "banco.daPonta": {
+   "v": 14,
+   "un": "cm",
+   "selo": "desenho",
+   "fonte": "desenho",
+   "o": "a ponta da frente do banco fica 14 cm à frente do meio da pelve: sentado na ponta, o banco segue para trás"
+  },
+  "banco.noQuadro": {
+   "v": 40,
+   "un": "cm",
+   "selo": "desenho",
+   "fonte": "desenho",
+   "o": "só a ponta do banco entra no enquadramento"
+  },
+  "cervical": {
+   "v": 0,
+   "un": "graus",
+   "selo": "desenho",
+   "fonte": "desenho",
+   "o": "pescoço na linha do tronco"
+  },
+  "cabeca": {
+   "v": 0,
+   "un": "graus",
+   "selo": "desenho",
+   "fonte": "desenho",
+   "o": "cabeça na linha do pescoço, olhando à frente"
+  },
+  "braco.elevacao": {
+   "v": 165,
+   "un": "graus",
+   "selo": "consenso",
+   "fonte": "ficha",
+   "o": "cotovelos apontando para cima, perto da cabeça: o braço a 165° do braço pendurado, no referencial do tronco (abaixo da elevação média de 170°)"
+  },
+  "braco.paraDentro": {
+   "v": 8,
+   "un": "graus",
+   "selo": "desenho",
+   "fonte": "desenho",
+   "o": "o braço vai para o meio o bastante para as duas mãos ficarem juntas no halter, com os cotovelos perto da cabeça"
+  },
+  "cotovelo.alongado": {
+   "v": 130,
+   "un": "graus",
+   "selo": "consenso",
+   "fonte": "ficha",
+   "o": "alongado: halter atrás da cabeça, cotovelos bem dobrados (a ficha não dá número; abaixo da flexão máxima média de 148°)"
+  },
+  "cotovelo.estendido": {
+   "v": 8,
+   "un": "graus",
+   "selo": "consenso",
+   "fonte": "ficha",
+   "o": "braços estendidos acima da cabeça, sem travar"
+  },
+  "maos.meiaDistancia": {
+   "v": 6,
+   "un": "cm",
+   "selo": "consenso",
+   "fonte": "correcao",
+   "o": "as duas mãos juntas sob a cabeça de cima do halter, 12 cm entre os centros"
+  },
+  "palma.espessura": {
+   "v": 1.8,
+   "un": "cm",
+   "selo": "desenho",
+   "fonte": "desenho",
+   "o": "do centro da mão à palma, onde a cabeça de cima do halter apoia"
+  },
+  "carga.giro.alongado": {
+   "v": 112,
+   "un": "graus",
+   "selo": "desenho",
+   "fonte": "desenho",
+   "o": "no alongado, o halter pende quase na vertical atrás da cabeça: o eixo do halter, girado a partir do antebraço"
+  },
+  "carga.giro.estendido": {
+   "v": 26,
+   "un": "graus",
+   "selo": "desenho",
+   "fonte": "desenho",
+   "o": "estendido, o halter fica acima da cabeça, um pouco inclinado (a cabeça de baixo passa atrás dos antebraços); o punho estende 62°"
+  },
+  "erro.abre.fora": {
+   "v": 20,
+   "un": "graus",
+   "selo": "desenho",
+   "fonte": "desenho",
+   "o": "erro: os cotovelos abrem para os lados (no alongado)"
+  },
+  "erro.abre.volta": {
+   "v": 1,
+   "un": "fração",
+   "selo": "desenho",
+   "fonte": "desenho",
+   "o": "erro: os cotovelos abrem na volta e fecham estendendo (em cima as duas mãos continuam juntas no halter)"
+  },
+  "erro.arco.lombar": {
+   "v": 14,
+   "un": "graus",
+   "selo": "desenho",
+   "fonte": "desenho",
+   "o": "erro: a lombar arqueia (estende além da curva de repouso) enquanto o halter sobe"
+  },
+  "erro.arco.toracica": {
+   "v": 4,
+   "un": "graus",
+   "selo": "desenho",
+   "fonte": "desenho",
+   "o": "erro: as costas de cima também estendem"
+  },
+  "erro.curta.cotovelo": {
+   "v": 75,
+   "un": "graus",
+   "selo": "desenho",
+   "fonte": "desenho",
+   "o": "erro: o halter não desce atrás da cabeça (para com o cotovelo a 75°)"
+  },
+  "maos.dedosGiro": {
+   "v": -5,
+   "un": "graus",
+   "selo": "desenho",
+   "fonte": "desenho",
+   "o": "os dedos seguem o antebraço, girados 5° na palma para dentro (positivo = para fora): assim a pronação do antebraço fica abaixo do máximo observado (108°) no alongado e no estendido"
+  }
+ },
+ "fases": [
+  {
+   "nome": "Alongado",
+   "tipo": "pausa",
+   "dur": 0.5,
+   "de": 0,
+   "ate": 0,
+   "respira": "INSPIRA",
+   "tempo": "halter atrás da cabeça",
+   "selo": "consenso",
+   "fonte": "ficha"
+  },
+  {
+   "nome": "Extensão · concêntrica",
+   "tipo": "conc",
+   "dur": 1.1,
+   "de": 0,
+   "ate": 1,
+   "respira": "EXPIRA",
+   "tempo": "~1 s",
+   "selo": "consenso",
+   "fonte": "ficha"
+  },
+  {
+   "nome": "Braços estendidos",
+   "tipo": "pausa",
+   "dur": 0.4,
+   "de": 1,
+   "ate": 1,
+   "respira": "FIRME",
+   "tempo": "halter acima da cabeça",
+   "selo": "consenso",
+   "fonte": "ficha"
+  },
+  {
+   "nome": "Volta · excêntrica",
+   "tipo": "exc",
+   "dur": 2.4,
+   "de": 1,
+   "ate": 0,
+   "respira": "INSPIRA",
+   "tempo": "~2–3 s",
+   "selo": "consenso",
+   "fonte": "ficha"
+  }
+ ],
+ "contatos": [
+  "pe.R",
+  "pe.L",
+  "pelve"
+ ],
+ "regras": [
+  {
+   "id": "triceps-frances-braco-parado",
+   "pede": "os cotovelos ficam parados: só os antebraços descem atrás da cabeça e voltam",
+   "selo": "consenso",
+   "fonte": "ficha"
+  },
+  {
+   "id": "triceps-frances-cotovelos-perto-da-cabeca",
+   "pede": "cotovelos apontando para cima, perto da cabeça, sem abrir para os lados",
+   "selo": "consenso",
+   "fonte": "ficha"
+  },
+  {
+   "id": "triceps-frances-alonga-atras-da-cabeca",
+   "pede": "início: halter atrás da cabeça, cotovelos bem dobrados",
+   "selo": "consenso",
+   "fonte": "ficha"
+  },
+  {
+   "id": "triceps-frances-estende-em-cima",
+   "pede": "fim: braços estendidos acima da cabeça",
+   "selo": "consenso",
+   "fonte": "ficha"
+  },
+  {
+   "id": "triceps-frances-costas-retas",
+   "pede": "sentado com as costas retas",
+   "selo": "consenso",
+   "fonte": "ficha"
+  },
+  {
+   "id": "triceps-frances-carga-livre-do-corpo",
+   "pede": "o halter passa atrás da cabeça sem encostar na cabeça, na nuca, nas costas nem no banco",
+   "selo": "desenho",
+   "fonte": "desenho"
+  },
+  {
+   "id": "triceps-frances-halter-nas-palmas",
+   "pede": "as duas mãos juntas sob a cabeça de cima do halter, 12 cm entre elas",
+   "selo": "consenso",
+   "fonte": "correcao"
+  }
+ ],
+ "erros": [
+  {
+   "id": "abre",
+   "instante": 0,
+   "titulo": "Abrir os cotovelos",
+   "vista": "frontal",
+   "oQueMuda": "os cotovelos se afastam da cabeça, para os lados",
+   "destaca": [
+    "bracos"
+   ],
+   "linha": [
+    "ombro",
+    "cotovelo",
+    "pegada"
+   ],
+   "foco": "cotovelo"
+  },
+  {
+   "id": "arco",
+   "instante": 1,
+   "titulo": "Arquear as costas",
+   "vista": "lateral",
+   "oQueMuda": "a lombar e as costas de cima arqueiam enquanto o halter sobe",
+   "destaca": [
+    "corpo"
+   ],
+   "linha": [
+    "pelve",
+    "lombar",
+    "c7",
+    "cabeca"
+   ],
+   "foco": "lombar"
+  },
+  {
+   "id": "curta",
+   "instante": 0,
+   "titulo": "Amplitude curta",
+   "vista": "lateral",
+   "oQueMuda": "o halter para acima da cabeça, sem descer atrás dela",
+   "destaca": [
+    "bracos"
+   ],
+   "linha": [
+    "ombro",
+    "cotovelo",
+    "pegada"
+   ],
+   "foco": "pegada"
+  }
+ ],
+ "simetrico": true,
+ "rotulos": [
+  {
+   "vista": "lateral",
+   "texto": "cotovelos parados",
+   "ponto": "cotovelo",
+   "selo": "consenso",
+   "fonte": "ficha"
+  },
+  {
+   "vista": "lateral",
+   "texto": "desce atrás da cabeça",
+   "ponto": "pegada",
+   "selo": "consenso",
+   "fonte": "ficha"
+  },
+  {
+   "vista": "frontal",
+   "texto": "cotovelos perto da cabeça",
+   "ponto": "cotovelo",
+   "selo": "consenso",
+   "fonte": "ficha"
+  }
+ ]
+}

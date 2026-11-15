@@ -146,6 +146,17 @@ export const REGRAS_TRICEPS_FRANCES: Record<string, Regra> = {
     const mao = q[0]!.esq.corpo.m('mao.largura');
     return { medido: `cada ramo vai esticado da mão à bucha, de ${f1(a + mao)} a ${f1(b + mao)} cm (o ramo tem ${f1(livre)} cm fora da ponta de borracha)`, ok: b - a <= 0.1 && Math.abs(a + mao - livre) <= 0.1 };
   },
+  'triceps-frances-halter-nas-palmas': (q) => {
+    // a distância entre os centros das mãos e, ao longo do halter, de cada mão à face de baixo da cabeça de cima
+    const entre = q.map((x) => dist(x.esq.lado.R.pegada, x.esq.lado.L.pegada));
+    const ate = q.flatMap((x) => {
+      const n = norm(sub(x.marcas.halterTopo!, x.marcas.halter!));
+      return [x.esq.lado.R.pegada, x.esq.lado.L.pegada].map((p) => dot(sub(x.marcas.halterTopo!, p), n));
+    });
+    const [a, b] = faixa(entre),
+      [c, d] = faixa(ate);
+    return { medido: `os centros das mãos ficam de ${f1(a)} a ${f1(b)} cm um do outro; a face de baixo da cabeça de cima fica de ${f1(c)} a ${f1(d)} cm do centro de cada mão, ao longo do halter (a palma)`, ok: a >= 11.5 && b <= 12.5 && d - c <= 0.2 && c >= 1 && d <= 3 };
+  },
   'triceps-frances-carga-livre-do-corpo': (q) => {
     const f = q.filter((_, i) => i % 3 === 0 || i === q.length - 1).map(folgaDaCargaAoCorpo);
     const pior = f.reduce((a, b) => (b.folga < a.folga ? b : a));

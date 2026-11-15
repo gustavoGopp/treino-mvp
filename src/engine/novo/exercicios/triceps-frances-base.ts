@@ -126,13 +126,16 @@ export function criarTricepsFrances(fichaJson: unknown, carga: CargaDoFrances): 
     }
     const punho = add(cot, mul(a, fa(corpo)));
     if (carga === 'halter') {
-      const d = norm(perp(a, eixo));
+      // os dedos seguem o antebraço, girados na palma `maos.dedosGiro` graus (positivo = para fora)
+      const d = norm(girar(perp(a, eixo), eixo, -s * (tem('maos.dedosGiro') ? f('maos.dedosGiro') : 0)));
       const polegar = mul(cross(d, eixo), -s);
       return { pose: { punho, polo: umero, mao: { dedos: d, polegar, forma: 'concha', diam: obj('halter', 'caboDiam') } }, pegada: add(punho, mul(d, gp(corpo))), polegar };
     }
-    // kettlebell: o polegar aponta para a barra de cima da alça; os dedos fecham em volta da haste, do lado de dentro
+    // kettlebell: a mão fecha na haste com a palma para dentro; o polegar aponta para o lado da bola, os dedos seguem o
+    // antebraço o mais possível
     const d = norm(perp(a, eixo));
-    return { pose: { punho, polo: umero, mao: { dedos: d, polegar: eixo, forma: 'pegada', diam: obj('kettlebell', 'alcaDiam') } }, pegada: add(punho, mul(d, gp(corpo))), polegar: eixo };
+    const polegar = mul(eixo, -1);
+    return { pose: { punho, polo: umero, mao: { dedos: d, polegar, forma: 'pegada', diam: obj('kettlebell', 'alcaDiam') } }, pegada: add(punho, mul(d, gp(corpo))), polegar };
   }
 
   /**
@@ -181,19 +184,19 @@ export function criarTricepsFrances(fichaJson: unknown, carga: CargaDoFrances): 
     let c = CAL.get(corpo);
     if (c) return c;
     const p0 = PEDIDO0();
-    let pelveY: number, frente: number;
+    let pelveY: number;
+    // a inclinação do peito (eixo do tórax) que a ficha pede sai da inclinação da pelve
+    const frente = resolver1((x) => {
+      const { t } = troncoEPernas(corpo, 95, x, p0);
+      return Math.atan2(t.torax.y[2], t.torax.y[1]) / rad - f('tronco.inclinacao');
+    }, -30, 60, 30);
     if (emPe) {
-      // a inclinação do peito (eixo do tórax) que a ficha pede, e a altura da pelve que dá o joelho da frente pedido
-      frente = resolver1((x) => {
-        const { t } = troncoEPernas(corpo, 95, x, p0);
-        return Math.atan2(t.torax.y[2], t.torax.y[1]) / rad - f('tronco.inclinacao');
-      }, -20, 60, 30);
+      // a altura da pelve que dá o joelho da frente pedido
       pelveY = resolver1((y) => {
         const { t, pernas } = troncoEPernas(corpo, y, frente, p0);
         return resolverMembros(t, { R: { polo: [0, 0, -1], mao: { polegar: [0, 0, 1] } }, L: { polo: [0, 0, -1], mao: { polegar: [0, 0, 1] } } }, pernas).lado.R.ang.joelho - f('joelho.frente');
       }, 70, 100, 30);
     } else {
-      frente = f('pelve.frente');
       // a pelve desce até a nádega (o ponto mais baixo da pelve e das coxas, perto da pelve) afundar no estofado
       const topo = obj('bancoReto', 'altura');
       pelveY = resolver1((y) => {
@@ -234,7 +237,7 @@ export function criarTricepsFrances(fichaJson: unknown, carga: CargaDoFrances): 
     const elevacao = erro === 'cotovelo' ? mix(f('erro.cotovelo.elevacao'), f('braco.elevacao'), u) : f('braco.elevacao');
     // o erro "abrir os cotovelos": abertos no alongado (onde o ombro gira) e um pouco menos estendendo, para as duas
     // mãos ainda alcançarem a carga
-    const paraDentro = erro === 'abre' ? -f('erro.abre.fora') * (1 - f('erro.abre.volta') * u) : f('braco.paraDentro');
+    const paraDentro = erro === 'abre' ? mix(-f('erro.abre.fora'), f('braco.paraDentro'), f('erro.abre.volta') * u) : f('braco.paraDentro');
     const giro = carga === 'corda' ? 0 : mix(f('carga.giro.alongado'), f('carga.giro.estendido'), u);
     // o erro "arquear as costas": a lombar e a torácica estendem enquanto a carga sobe
     const arco = erro === 'arco' ? u : 0;
@@ -279,6 +282,8 @@ export function criarTricepsFrances(fichaJson: unknown, carga: CargaDoFrances): 
       const centro = add(meio, mul(b.eixo, f('palma.espessura') - obj('halter', 'caboComp') / 2));
       prims.push(...halter(centro, b.eixo, 0.2));
       marcas.halter = centro;
+      // o meio da face de baixo da cabeça de cima (onde as palmas apoiam)
+      marcas.halterTopo = add(centro, mul(b.eixo, obj('halter', 'caboComp') / 2));
       return { esq: e, prims, pecas: [banco, { t: 'halter', centro, eixo: b.eixo }], fios: [], cargas: [{ massa: obj('halter', 'massa'), pos: centro }], marcas, vies: { maoR: 1, maoL: 1 } };
     }
     // kettlebell: as mãos nas hastes da alça; a base fica abaixo do meio delas, ao longo do eixo
