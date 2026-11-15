@@ -100,3 +100,21 @@ Rode tudo da raiz do seu diretório de trabalho. Se ele for uma cópia de trabal
 - **Nos pedidos do `olhar.mjs`, o tema é o sétimo campo:** `id:vista:modo:f1::cinza:escuro` (com `::escuro` o desenho sai todo preto, porque "escuro" vira o estilo).
 - **Nomes que aparecem na tela têm acento:** as chaves de `trajetorias` viram rótulo (`cabeça`, e não `cabeca`; `mão`, `pé`).
 - **De frente, nos afundos, o músculo principal some atrás do joelho:** é aviso conhecido; diga na conferência escrita qual é a vista padrão do modo Músculos.
+
+## 8. O padrão de qualidade (aviso do dono em 15/11/2026)
+
+O Gustavo avisou que a qualidade caiu nas animações feitas em paralelo: "o fato de eu ter delegado fazer todos juntos não quer dizer que a gente pode diminuir a qualidade". O padrão é o das animações que ele aprovou na folha: abra `quadros/bulgaro.png` e `prototipos/folha-afundo.png` e compare a sua, quadro a quadro, antes de entregar.
+
+**Defeito visível não vai para a lista "o que não ficou bom": é consertado antes da entrega.** Essa lista é só para o que você tentou de verdade e não conseguiu, com o que tentou. Antes de entregar, confira nos quadros grandes, um por um:
+
+1. **O corpo parece uma pessoa fazendo o exercício,** em todos os quadros: coluna sem dobra estranha (nada de costas arredondadas ou pescoço quebrado para a pose "fechar"), cabeça no lugar, membros sem torção, nada atravessando o chão, o aparelho ou o próprio corpo. Se a pose só fecha com uma dobra feia, a geometria está errada (distância, altura ou apoio): corrija a geometria.
+2. **O rosto e a cabeça não encostam nem entram no chão ou no aparelho** se a ficha não pede.
+3. **O corpo ocupa o quadro.** Compare o tamanho do corpo com o do búlgaro aprovado. Peça grande ou distante que encolhe o corpo vira cenário ou é cortada pelo quadro.
+4. **As duas vistas se leem de relance.** Se uma vista vira um borrão (o corpo visto pela cabeça ou pelos pés, uma perna tapando a outra, o músculo principal escondido), troque de vista: `lateral`, `frontal`, `posterior`, `cima`, `quina`, `quinaTras`. Teste as candidatas e fique com a que mostra melhor.
+5. **O equipamento tem o mesmo desenho dos outros:** sai do gerador realista (volumes com luz, como o banco, o halter e o kettlebell), nunca um círculo ou um retângulo chapado. Olhe a sua peça ao lado do banco e do kettlebell.
+6. **As mãos seguram de verdade** (fecham em volta do pegador, espalmam no chão) e os pés apoiam de verdade.
+7. **Os erros se leem** sem exagero e sem pose impossível.
+8. **Rótulos:** minúsculas, sem ponto, no máximo dois por vista, fora do corpo e do aparelho.
+9. **Tema escuro e cor de pele:** olhe os dois (`id:vista:modo:f1::pele` e `id:vista:modo:f1::cinza:escuro`).
+
+Se depois disso algum item ainda falhar, diga qual, com o quadro, e marque o risco como alto. Uma animação a menos, bem feita, vale mais que uma a mais com defeito.
