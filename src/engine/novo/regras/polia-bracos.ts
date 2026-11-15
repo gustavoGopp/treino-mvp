@@ -140,6 +140,42 @@ export const REGRAS_POLIA_BRACOS: Record<string, Regra> = {
     }
     return { medido: `entre os dois antebraços (e as mãos), a menor folga é de ${f1(min)} cm (raio do antebraço ${f1(raio)} cm)`, ok: min >= 0 };
   },
+  // ----- face pull -----
+  'polia-braco-polia-na-altura-da-testa': (q, corpo) => {
+    // a testa: entre o trágio e o alto da cabeça; "um pouco acima" vai até 10 cm acima do alto da cabeça
+    const x = q[0]!;
+    const r = x.marcas['cabo.roldana']![1] - x.esq.cabeca.o[1];
+    return { medido: `o centro da roldana fica ${f1(r)} cm acima do trágio (o alto da cabeça fica ${f1(corpo.m('cabeca.tragionAoTopo'))} cm acima)`, ok: r >= 4 && r <= corpo.m('cabeca.tragionAoTopo') + 10 };
+  },
+  'polia-braco-bracos-estendidos-no-rosto': (q) => {
+    const e = q[0]!.esq;
+    const cot = Math.max(angulosDoLado(e, 'R').cotovelo, angulosDoLado(e, 'L').cotovelo);
+    const alt = e.lado.R.pegada[1] - e.cabeca.o[1];
+    return { medido: `no começo, o cotovelo dobra ${f1(cot)}° e o centro da mão fica ${f1(alt)} cm do trágio na altura (negativo = abaixo)`, ok: cot <= 20 && alt >= -12 && alt <= 6 };
+  },
+  'polia-braco-maos-ao-lado-das-orelhas': (q) => {
+    const e = q[q.length - 1]!.esq,
+      e0 = q[0]!.esq;
+    const tr = e.cabeca.o;
+    const d = (['R', 'L'] as const).map((k) => e.lado[k].pegada);
+    const larg = Math.abs(d[0]![0] - d[1]![0]),
+      larg0 = Math.abs(e0.lado.R.pegada[0] - e0.lado.L.pegada[0]);
+    const alt = d[0]![1] - tr[1],
+      frente = d[0]![2] - tr[2];
+    // ao lado: fora da largura da cabeça; das orelhas: na altura do trágio e, para a frente, até 12 cm (ainda ao lado
+    // da cabeça, antes do rosto)
+    const meiaCabeca = e.corpo.m('cabeca.largura') / 2;
+    return { medido: `no fim, os centros das mãos ficam a ${f1(larg)} cm um do outro (no começo, ${f1(larg0)}), ${f1(alt)} cm do trágio na altura e ${f1(frente)} cm à frente dele; a cabeça tem ${f1(2 * meiaCabeca)} cm de largura`, ok: larg / 2 >= meiaCabeca + 3 && larg > larg0 + 8 && Math.abs(alt) <= 8 && frente >= -6 && frente <= 12 };
+  },
+  'polia-braco-cotovelos-altos': (q) => {
+    // no fim, o cotovelo fica na altura do ombro ou acima e na linha do corpo (nem à frente, nem atrás)
+    const e = q[q.length - 1]!.esq,
+      L = e.lado.R;
+    const alt = L.cotovelo[1] - L.ombro[1],
+      frente = dot(sub(L.cotovelo, L.ombro), e.torax.z);
+    const minimo = Math.min(...q.filter((_, i) => i > q.length / 2).map((x) => x.esq.lado.R.cotovelo[1] - x.esq.lado.R.ombro[1]));
+    return { medido: `no fim, o cotovelo fica ${f1(alt)} cm ${alt >= 0 ? 'acima' : 'abaixo'} do centro do ombro e ${f1(frente)} cm à frente da linha do ombro (no tórax); da metade em diante, no mínimo ${f1(minimo)} cm`, ok: alt >= -3 && minimo >= -8 && Math.abs(frente) <= 10 };
+  },
   'polia-braco-ombros-para-tras': (q, corpo) => {
     // a clavícula fica mais para trás que o ritmo normal do ombro (o esqueleto soma o que a ficha pede ao ritmo)
     const alem = q.flatMap((x) => (['R', 'L'] as const).map((k) => {
