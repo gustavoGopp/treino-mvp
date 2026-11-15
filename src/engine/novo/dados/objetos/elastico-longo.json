@@ -1,0 +1,19 @@
+{
+ "fontes": {
+  "rubberbanditz-41": "RubberBanditz, 41\" Resistance Band; https://www.rubberbanditz.com/41-in-resistance-band/ (lida em 15/11/2026 por resumo automático da página: tabela de tamanhos \"Lay Flat Length\" 41\" em todas as faixas; \"Each band is 41\" [104 cm] in length\"; \"Medium [...] 1/2\" wide band\"; \"Each band is can stretch 2.5 times its resting length\")",
+  "seriousSteel-41": "Serious Steel Fitness, 41\" Mini Resistance Band #1 (5-35 lbs); https://www.living.fit/products/41-mini-resistance-band-5-35-lbs (lida em 15/11/2026 por resumo automático da página: \"4.5mm thick, 5-35 lb, 1/2\" wide, 41\" long\"; \"first reading at 6\" and last at 2.5x length\")"
+ },
+ "objetos": {
+  "elasticoLongo": {
+   "nome": "Elástico longo em laço (faixa de 41 pol, tipo \"super band\")",
+   "medidas": {
+    "compDeitado": { "v": 104.1, "un": "cm", "tipo": "medida", "fonte": "rubberbanditz-41", "onde": "comprimento do laço deitado (achatado), em repouso: 41 pol" },
+    "comp": { "v": 208.3, "un": "cm", "tipo": "derivada", "fonte": "rubberbanditz-41", "onde": "a volta inteira do laço em repouso: 2 × 41 pol (o laço deitado tem duas camadas); é contra ela que a conferência mede quanto a faixa estica" },
+    "larg": { "v": 1.27, "un": "cm", "tipo": "medida", "fonte": "rubberbanditz-41", "onde": "largura da faixa média (Medium, 1/2 pol); a Serious Steel #1 tem a mesma largura" },
+    "esp": { "v": 0.45, "un": "cm", "tipo": "medida", "fonte": "seriousSteel-41", "onde": "espessura da faixa: 4,5 mm (outro fabricante, a mesma faixa de 41 pol e 1/2 pol)" },
+    "esticaAte": { "v": 2.5, "un": "vezes", "tipo": "medida", "fonte": "rubberbanditz-41", "onde": "a faixa estica até 2,5 vezes o comprimento em repouso (a Serious Steel mede a tensão até 2,5 vezes)" },
+    "pegadaDiam": { "v": 2.2, "un": "cm", "tipo": "provisoria", "fonte": "a-conferir", "onde": "a faixa franzida dentro da mão fechada (a ficha não dá; escolha de desenho a partir da largura e da espessura)" }
+   }
+  }
+ }
+}

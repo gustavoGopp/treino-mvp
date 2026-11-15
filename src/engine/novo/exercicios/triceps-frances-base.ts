@@ -13,6 +13,8 @@
 // Cada variação traz a sua ficha de movimento; a postura sai da carga: em pé e inclinado à frente, de costas para a
 // polia (corda, e o estribo de uma mão, com a polia embaixo), ou sentado na ponta de um banco reto (halter e
 // kettlebell). Com o estribo, só o braço direito trabalha e a outra mão fica na cintura.
+// Com o elástico (`carga: 'elastico'`), em pé como na corda, o núcleo devolve só o corpo e o chão: a faixa, pisada pelo
+// pé de trás, é montada por quem usa o núcleo.
 import { formaDoKettlebell } from '../equipamento';
 import { resolverMembros, resolverTronco, sinal } from '../esqueleto';
 import type { Lado, PoseBraco, PosePerna, Tronco } from '../esqueleto';
@@ -28,7 +30,7 @@ import { add, cross, dirRef, dist, girar, mix, mul, noRef, norm, paraRef, perp, 
 import type { V3 } from '../vec';
 import { alturaDaPegadaDoKettlebell } from './dobrar-o-quadril';
 
-export type CargaDoFrances = 'corda' | 'halter' | 'kettlebell' | 'estribo';
+export type CargaDoFrances = 'corda' | 'halter' | 'kettlebell' | 'estribo' | 'elastico';
 const rad = Math.PI / 180;
 
 /** O que muda de um quadro para o outro (e nos erros). */
@@ -67,7 +69,7 @@ export function criarTricepsFrances(fichaJson: unknown, carga: CargaDoFrances): 
   const F = fichaSchema.parse(fichaJson);
   const f = daFicha(F);
   const tem = (id: string) => id in F.param;
-  const emPe = carga === 'corda' || carga === 'estribo';
+  const emPe = carga === 'corda' || carga === 'estribo' || carga === 'elastico';
   /** A carga sai das mãos por um cabo (corda ou estribo): sem giro da carga nas mãos. */
   const noCabo = emPe;
   const K = formaDoKettlebell();
@@ -127,12 +129,12 @@ export function criarTricepsFrances(fichaJson: unknown, carga: CargaDoFrances): 
       const pegada = add(cot, mul(a, fa(corpo) + gp(corpo)));
       return { pose: { umero, antebraco: a, polo: norm(sub(cot, ombro)), mao: { polegar, forma: 'pegada', diam: obj('cordaTriceps', 'diam') } }, pegada, polegar };
     }
-    if (carga === 'estribo') {
+    if (carga === 'estribo' || carga === 'elastico') {
       // a pegada neutra, como na corda: o polegar para o lado de trás do tronco (a palma para o meio); a pegada do
       // estribo atravessa a mão nessa direção, e o cabo puxa ao longo do antebraço, de través à pegada
       const polegar = norm(perp(dirRef(T, [0, -1, -0.4]), a));
       const pegada = add(cot, mul(a, fa(corpo) + gp(corpo)));
-      return { pose: { umero, antebraco: a, polo: norm(sub(cot, ombro)), mao: { polegar, forma: 'pegada', diam: obj('estribo', 'pegadaDiam') } }, pegada, polegar };
+      return { pose: { umero, antebraco: a, polo: norm(sub(cot, ombro)), mao: { polegar, forma: 'pegada', diam: carga === 'elastico' ? obj('elasticoLongo', 'pegadaDiam') : obj('estribo', 'pegadaDiam') } }, pegada, polegar };
     }
     const punho = add(cot, mul(a, fa(corpo)));
     if (carga === 'halter') {
@@ -254,7 +256,7 @@ export function criarTricepsFrances(fichaJson: unknown, carga: CargaDoFrances): 
       polia = { ...polia, base: [0, 0, z] };
       const elo = eloPara(centroDaRoldana(polia));
       compMin = dist(elo, saidaDoCabo(polia, elo));
-    } else if (emPe) {
+    } else if (carga === 'corda') {
       const { t, pernas } = troncoEPernas(corpo, pelveY, frente, p0);
       const b = bracos(corpo, t, pernas, p0);
       const ombro = b.e.lado.R.ombro[1];
@@ -317,6 +319,10 @@ export function criarTricepsFrances(fichaJson: unknown, carga: CargaDoFrances): 
       marcas.saiL = corda.ramos[1]!.sai;
       marcas.saida = saida;
       return { esq: e, prims, pecas, fios: [{ id: 'cabo', comp, estica: true }], cargas: [], marcas, vies: { maoR: 1, maoL: 1 } };
+    }
+    if (carga === 'elastico') {
+      // o elástico: só o corpo e o chão; quem usa o núcleo desenha a faixa (ver ./triceps-elastico-acima.ts)
+      return { esq: e, prims: [chao(-70, 70, -90, 80)], pecas: [], fios: [], cargas: [], marcas, vies: { maoR: 1, maoL: 1 } };
     }
     if (carga === 'estribo') {
       // o estribo na mão direita; o cabo vai reto do elo até a roldana, embaixo, atrás

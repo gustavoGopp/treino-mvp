@@ -13,3 +13,4 @@ export { default as cordaTriceps } from './corda-triceps.json';
 export { default as step } from './step.json';
 export { default as escada } from './escada.json';
 export { default as halterLeve } from './halter-leve.json';
+export { default as elasticoLongo } from './elastico-longo.json';
