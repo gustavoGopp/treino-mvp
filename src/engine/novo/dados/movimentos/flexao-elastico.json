@@ -234,7 +234,7 @@
    "id": "cot",
    "instante": 1,
    "titulo": "Cotovelos abertos a 90°",
-   "vista": "cima",
+   "vista": "quinaTras",
    "oQueMuda": "os cotovelos vão para os lados",
    "destaca": [
     "bracos"
@@ -266,11 +266,9 @@
    "id": "pescoco",
    "instante": 0,
    "titulo": "Elástico sobe para o pescoço",
-   "vista": "lateral",
+   "vista": "quinaTras",
    "oQueMuda": "o meio do elástico passa no pescoço, e não nas escápulas",
-   "destaca": [
-    "corpo"
-   ],
+   "destaca": [],
    "linha": [
     "c7",
     "cabeca"
@@ -281,6 +279,13 @@
  "simetrico": true,
  "rotulos": [
   {
+   "vista": "quinaTras",
+   "texto": "elástico nas escápulas",
+   "ponto": "c7",
+   "selo": "consenso",
+   "fonte": "ficha"
+  },
+  {
    "vista": "lateral",
    "texto": "corpo em linha",
    "ponto": "pelve",
@@ -290,20 +295,6 @@
     "tornozelo",
     "cabeca"
    ]
-  },
-  {
-   "vista": "lateral",
-   "texto": "elástico nas escápulas",
-   "ponto": "c7",
-   "selo": "consenso",
-   "fonte": "ficha"
-  },
-  {
-   "vista": "cima",
-   "texto": "cotovelos para trás",
-   "ponto": "cotovelo",
-   "selo": "consenso",
-   "fonte": "ficha"
   }
  ]
 }

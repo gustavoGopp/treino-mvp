@@ -2,7 +2,7 @@
 // movimento é o da flexão (núcleo ./flexionar.ts). O elástico é o tubo da tabela de objetos: o meio dele passa pelas
 // costas, na altura das escápulas, e cada ponta dá uma volta na mão e fica presa entre a palma e o chão. O tubo
 // segue a pele das costas (medida na superfície do Boneco), desce pelo lado de fora do braço até o dorso da mão, e
-// estica mais em cima, onde as costas ficam mais longe do chão. O pegador fica no chão, ao lado da mão.
+// estica mais em cima, onde as costas ficam mais longe do chão.
 import ficha from '../dados/movimentos/flexao-elastico.json';
 import { pontosDoBoneco } from '../boneco';
 import { sinal } from '../esqueleto';
@@ -57,13 +57,8 @@ function cena(q: Quadro, corpo: Corpo, _u: number, erro?: string): void {
   // o tubo inteiro: o caminho entre as mãos e uma volta em cada mão
   const comp = caminho + 2 * f('elastico.voltaNaMao');
   const pecas: Peca[] = [{ t: 'elastico', pts, estica: comp / obj('elastico', 'comp') }];
-  for (const k of ['R', 'L'] as Lado[]) {
-    // o pegador no chão, logo atrás da mão (para o lado dos pés), preso à ponta do tubo que sai debaixo da palma
-    const P = palma(k),
-      saida: V3 = [P[0], P[1], e.lado[k].punho[2] - corpo.m('raio.punho')];
-    const pegada: V3 = [P[0], obj('elastico', 'pegadorDiam') / 2, saida[2] - obj('elastico', 'fita')];
-    pecas.push({ t: 'pegador', pegada, eixo: [1, 0, 0], ponta: saida });
-  }
+  // Sem pegador à vista: a ponta dá a volta na mão e fica presa sob a palma (o "elástico longo" do texto do app). O
+  // pegador no chão, ao lado da mão, se lia como um halter e cruzava o corpo na vista de três quartos.
   q.pecas = [...(q.pecas ?? []), ...pecas];
   q.prims.push({ t: 'fio', pts, larg: obj('elastico', 'tuboDiam'), cls: 'fita' });
   q.fios.push({ id: 'elastico', comp, estica: true });
@@ -75,7 +70,7 @@ const A = criarFlexao(ficha, { cena });
 
 export const flexaoElastico: Exercicio = {
   ficha: A.ficha,
-  vistas: ['lateral', 'cima'],
+  vistas: ['quinaTras', 'lateral'],
   quadro: A.quadro,
   // peito principal; tríceps e frente do ombro secundários; o abdômen "só ajuda" (como na flexão e na animação de hoje)
   papeis: { peitoral: 'p', deltAnt: 's', triceps: 's', abdomen: 'a' },
