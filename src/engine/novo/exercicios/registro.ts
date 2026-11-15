@@ -87,3 +87,4 @@ export { elevacaoJoelhosParalelas } from './elevacao-joelhos-paralelas';
 export { facePullElastico } from './face-pull-elastico';
 export { rodaAbdominal } from './roda-abdominal';
 export { abducaoDeitado } from './abducao-deitado';
+export { aducaoDeitado } from './aducao-deitado';

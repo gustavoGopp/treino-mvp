@@ -40,6 +40,8 @@ export interface OpcoesDeLado {
   maoDeCima: { frente: number; abaixo: number };
   /** Folga entre a cabeça e o braço em que ela apoia (cm; 0 = encostada). */
   cabecaNoBraco: number;
+  /** De frente para quem olha na vista de frente (a frente do corpo para +z); por omissão, de costas (para −z). */
+  deFrente?: boolean;
 }
 
 /** Os eixos da bacia deitada: a frente do corpo, o lado de cima e a direção dos pés. */
@@ -77,7 +79,7 @@ const paraOPiso = (baixo: Lado) => (baixo === 'L' ? 1 : -1);
 function poseDoTronco(o: OpcoesDeLado, y: number, b: Pick<BaseDeLado, 'lombarLado' | 'cervicalLado'>): PoseTronco {
   const s = paraOPiso(o.baixo);
   const rola = o.rola ?? 0;
-  return { pelve: [0, y, 0], giro: 180, frente: -rola, lado: s * (90 - (o.cintura ?? 0)), lombarLado: s * (b.lombarLado + (o.cintura ?? 0)), cervicalLado: s * b.cervicalLado };
+  return { pelve: [0, y, 0], giro: o.deFrente ? 0 : 180, frente: -rola, lado: s * (90 - (o.cintura ?? 0)), lombarLado: s * (b.lombarLado + (o.cintura ?? 0)), cervicalLado: s * b.cervicalLado };
 }
 
 /** Os braços: o de baixo estendido acima da cabeça, deitado no piso; a mão de cima espalmada no piso, à frente do peito. */

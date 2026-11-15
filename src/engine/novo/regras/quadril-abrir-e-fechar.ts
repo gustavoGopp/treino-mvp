@@ -111,8 +111,13 @@ export const regrasDoQuadril: Record<string, Regra> = {
     // embaixo, a perna de baixo fica a um dedo do piso, sem encostar
     const x = q[0]!;
     let min = 1e9;
-    for (const { p, parte } of pontosDoBoneco(x.esq))
-      if ((parte === 'canela' || parte === 'pe' || parte === 'coxa') && dist(p, x.esq.lado.R.tornozelo) < dist(p, x.esq.lado.L.tornozelo) && dist(p, x.esq.lado.R.quadril) > 20) min = Math.min(min, p[1]);
+    const R = x.esq.lado.R,
+      L = x.esq.lado.L;
+    for (const { p, parte } of pontosDoBoneco(x.esq)) {
+      if ((parte !== 'canela' && parte !== 'pe' && parte !== 'coxa') || dist(p, R.quadril) < 20) continue;
+      // da perna de baixo: mais perto do joelho ou do tornozelo dela que dos da outra perna
+      if (Math.min(dist(p, R.joelho), dist(p, R.tornozelo)) < Math.min(dist(p, L.joelho), dist(p, L.tornozelo), dist(p, L.bola))) min = Math.min(min, p[1]);
+    }
     const folga = min - piso(x);
     return { medido: `embaixo, a perna de baixo fica a ${f1(folga)} cm do piso`, ok: folga >= 0.5 && folga <= 3 };
   },
