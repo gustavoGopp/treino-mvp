@@ -1,0 +1,287 @@
+{
+ "id": "rosca-elastico",
+ "nome": "Rosca com elástico",
+ "fichaDaTecnica": "docs/pesquisa/animacoes/rosca-elastico.md",
+ "fontes": {
+  "ficha": "Ficha da técnica (docs/pesquisa/animacoes/rosca-elastico.md): consenso de treinadores; a postura e o caminho do antebraço são os da rosca-alternada aprovada",
+  "app": "Texto do app (src/conteudo/exercicios/rosca-elastico.json)",
+  "alternada": "Ficha de movimento da rosca alternada aprovada (src/engine/novo/dados/movimentos/rosca-alternada.json): os mesmos ângulos do braço e do cotovelo e os mesmos erros",
+  "hoje": "A animação de hoje (src/engine/exercicios/rosca-elastico.ts): as distâncias que a ficha não dá em número",
+  "cdc": "Soucie JM et al. Range of motion measurements: reference values and a database for comparison studies. Haemophilia 2011 (tabelas do CDC; docs/revisoes/animacao-nova/pesquisa/02-articulacoes.md, A1)",
+  "objetos": "src/engine/novo/dados/objetos.json (objeto elastico: o tubo com pegadores de 48 pol)",
+  "desenho": "Escolha de desenho desta animação, dentro do que a ficha pede; a conferência mede o resultado"
+ },
+ "param": {
+  "pes.meiaDistancia": {
+   "v": 9,
+   "un": "cm",
+   "selo": "consenso",
+   "fonte": "ficha",
+   "o": "os dois pés no meio do elástico, na largura do quadril, apontando para a frente"
+  },
+  "joelho": {
+   "v": 5,
+   "un": "graus",
+   "selo": "consenso",
+   "fonte": "app",
+   "o": "joelhos destravados (a ficha não dá número; o da rosca alternada aprovada)"
+  },
+  "braco.paraFora": {
+   "v": 12,
+   "un": "graus",
+   "selo": "desenho",
+   "fonte": "desenho",
+   "o": "o braço ao lado do tronco, aberto 12° para o pegador (12,7 cm, atravessado na palma) não bater na coxa; a ficha diz \"cotovelos encostados ao lado do tronco\""
+  },
+  "braco.aFrente": {
+   "v": 0,
+   "un": "graus",
+   "selo": "consenso",
+   "fonte": "ficha",
+   "o": "o braço na vertical, parado ao lado do tronco"
+  },
+  "cotovelo.baixo": {
+   "v": 8,
+   "un": "graus",
+   "selo": "consenso",
+   "fonte": "alternada",
+   "o": "embaixo, o braço estendido, sem travar o cotovelo"
+  },
+  "cotovelo.cima": {
+   "v": 132,
+   "un": "graus",
+   "selo": "consenso",
+   "fonte": "alternada",
+   "o": "em cima, as mãos perto dos ombros (o da rosca alternada aprovada)"
+  },
+  "maos.supinacao": {
+   "v": 80,
+   "un": "graus",
+   "selo": "consenso",
+   "fonte": "ficha",
+   "o": "palmas para a frente: o polegar gira 80° da posição neutra para fora (a supinação média é 87,5°, cdc); sem halter, a palma vira quase toda para a frente"
+  },
+  "elastico.folgaNaPerna": {
+   "v": 0.8,
+   "un": "cm",
+   "selo": "desenho",
+   "fonte": "objetos",
+   "o": "o tubo passa rente ao lado de fora da perna: o raio do tubo e a roupa"
+  },
+  "erro.balanco.tronco": {
+   "v": 12,
+   "un": "graus",
+   "selo": "desenho",
+   "fonte": "alternada",
+   "o": "erro: o peito vai para trás enquanto as mãos sobem (o impulso); o quadril vai à frente pelo equilíbrio"
+  },
+  "erro.balanco.lombar": {
+   "v": 6,
+   "un": "graus",
+   "selo": "desenho",
+   "fonte": "alternada",
+   "o": "erro: parte do balanço é a lombar arqueando"
+  },
+  "erro.cotovelo.braco": {
+   "v": 35,
+   "un": "graus",
+   "selo": "desenho",
+   "fonte": "alternada",
+   "o": "erro: os cotovelos vão à frente (o braço sobe 35° à frente do tronco)"
+  },
+  "erro.cotovelo.cotovelo": {
+   "v": 115,
+   "un": "graus",
+   "selo": "desenho",
+   "fonte": "alternada",
+   "o": "erro: com o cotovelo à frente, o antebraço dobra menos"
+  },
+  "erro.curta.cotovelo": {
+   "v": 55,
+   "un": "graus",
+   "selo": "desenho",
+   "fonte": "alternada",
+   "o": "erro: embaixo, o cotovelo para dobrado 55°"
+  }
+ },
+ "fases": [
+  {
+   "nome": "Embaixo",
+   "tipo": "pausa",
+   "dur": 0.5,
+   "de": 0,
+   "ate": 0,
+   "respira": "INSPIRA",
+   "tempo": "braços estendidos",
+   "selo": "consenso",
+   "fonte": "app"
+  },
+  {
+   "nome": "Subida · concêntrica",
+   "tipo": "conc",
+   "dur": 1.1,
+   "de": 0,
+   "ate": 1,
+   "respira": "EXPIRA",
+   "tempo": "~1 s",
+   "selo": "consenso",
+   "fonte": "app"
+  },
+  {
+   "nome": "Topo",
+   "tipo": "pausa",
+   "dur": 0.4,
+   "de": 1,
+   "ate": 1,
+   "respira": "FIRME",
+   "tempo": "o elástico mais esticado",
+   "selo": "consenso",
+   "fonte": "app"
+  },
+  {
+   "nome": "Descida · excêntrica",
+   "tipo": "exc",
+   "dur": 2.2,
+   "de": 1,
+   "ate": 0,
+   "respira": "INSPIRA",
+   "tempo": "~2 s",
+   "selo": "consenso",
+   "fonte": "app"
+  }
+ ],
+ "contatos": [
+  "pe.R",
+  "pe.L"
+ ],
+ "regras": [
+  {
+   "id": "cotovelo-parado-na-rosca",
+   "pede": "os cotovelos ficam parados ao lado do tronco e só os antebraços sobem",
+   "selo": "consenso",
+   "fonte": "ficha"
+  },
+  {
+   "id": "tronco-quase-parado",
+   "pede": "tronco parado, sem jogar o corpo para trás",
+   "selo": "consenso",
+   "fonte": "ficha"
+  },
+  {
+   "id": "braco-estendido-embaixo-na-rosca",
+   "pede": "embaixo, os braços estendidos",
+   "selo": "consenso",
+   "fonte": "app"
+  },
+  {
+   "id": "carga-perto-do-ombro-no-topo",
+   "pede": "em cima, as mãos perto dos ombros, com os cotovelos ainda ao lado do tronco",
+   "selo": "consenso",
+   "fonte": "app"
+  },
+  {
+   "id": "palma-para-a-frente-na-rosca",
+   "pede": "palmas para a frente",
+   "selo": "consenso",
+   "fonte": "ficha"
+  },
+  {
+   "id": "elastico-pisado-no-meio-da-sola",
+   "pede": "os dois pés pisam no meio do elástico, no meio da sola, inteiros no chão",
+   "selo": "consenso",
+   "fonte": "ficha"
+  },
+  {
+   "id": "elastico-livre-do-corpo",
+   "pede": "o tubo sobe pelo lado de fora das pernas, sem entrar nelas",
+   "selo": "desenho",
+   "fonte": "objetos"
+  },
+  {
+   "id": "elastico-nas-maos",
+   "pede": "cada mão segura um pegador",
+   "selo": "consenso",
+   "fonte": "ficha"
+  },
+  {
+   "id": "elastico-bracos-juntos",
+   "pede": "os dois antebraços sobem juntos",
+   "selo": "consenso",
+   "fonte": "app"
+  }
+ ],
+ "erros": [
+  {
+   "id": "balanco",
+   "instante": 1,
+   "titulo": "Balançar o tronco",
+   "vista": "lateral",
+   "oQueMuda": "o peito vai para trás e o quadril à frente para dar impulso",
+   "destaca": [
+    "corpo"
+   ],
+   "linha": [
+    "pelve",
+    "c7",
+    "cabeca"
+   ],
+   "foco": "c7"
+  },
+  {
+   "id": "cotovelo",
+   "instante": 1,
+   "titulo": "Cotovelos vão para a frente",
+   "vista": "lateral",
+   "oQueMuda": "os braços sobem à frente do tronco e o ombro assume o movimento",
+   "destaca": [
+    "bracos"
+   ],
+   "linha": [
+    "ombro",
+    "cotovelo",
+    "punho"
+   ],
+   "foco": "cotovelo"
+  },
+  {
+   "id": "curta",
+   "instante": 0,
+   "titulo": "Não estender os braços",
+   "vista": "lateral",
+   "oQueMuda": "embaixo, os cotovelos ficam dobrados: os braços não estendem",
+   "destaca": [
+    "bracos"
+   ],
+   "linha": [
+    "ombro",
+    "cotovelo",
+    "punho"
+   ],
+   "foco": "cotovelo"
+  }
+ ],
+ "simetrico": true,
+ "rotulos": [
+  {
+   "vista": "lateral",
+   "texto": "cotovelo parado",
+   "ponto": "cotovelo",
+   "selo": "consenso",
+   "fonte": "app"
+  },
+  {
+   "vista": "lateral",
+   "texto": "tronco parado",
+   "ponto": "c7",
+   "selo": "consenso",
+   "fonte": "app"
+  },
+  {
+   "vista": "frontal",
+   "texto": "os dois pés no meio do elástico",
+   "ponto": "tornozelo:L",
+   "selo": "consenso",
+   "fonte": "app"
+  }
+ ]
+}

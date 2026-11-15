@@ -3,7 +3,7 @@
 // `fita` do quadro (a largura dele é a espessura da faixa ou o diâmetro do tubo); onde ele prende, as marcas do quadro.
 import { pontosDoBoneco } from '../boneco';
 import { LADOS } from '../esqueleto';
-import { f1, faixa } from '../conferir-util';
+import { angulosDoLado, f1, faixa } from '../conferir-util';
 import type { Regra } from '../conferir-util';
 import type { Quadro } from '../movimento';
 import { dist, dot, sub } from '../vec';
@@ -70,6 +70,11 @@ export const regrasDosElasticos: Record<string, Regra> = {
       }
     }
     return { medido: `o elástico passa a no mínimo ${f1(min)} cm da pele (${qual})`, ok: min >= -0.3 };
+  },
+  'elastico-bracos-juntos': (q) => {
+    // os dois cotovelos dobram juntos: a maior diferença entre o ângulo do direito e o do esquerdo no ciclo
+    const d = Math.max(...q.map((x) => Math.abs(angulosDoLado(x.esq, 'R').cotovelo - angulosDoLado(x.esq, 'L').cotovelo)));
+    return { medido: `a maior diferença entre os dois cotovelos é ${f1(d)}°`, ok: d <= 2 };
   },
   'elastico-nas-maos': (q) => {
     // o centro de cada mão fica sobre o elástico (a faixa ou o pegador passa por dentro da mão fechada) e, no laço
