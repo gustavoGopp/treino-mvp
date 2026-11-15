@@ -161,6 +161,54 @@ export const regrasDosElasticos: Record<string, Regra> = {
     const tras = Math.min(...pontosDoBoneco(x.esq).map((p) => p.p[2])) - a[2];
     return { medido: `a âncora fica ${f1(Math.abs(a[1] - alvo))} cm ${a[1] >= alvo ? 'acima' : 'abaixo'} do peito (${f1(a[1])} cm do chão) e ${f1(tras)} cm atrás das costas`, ok: Math.abs(a[1] - alvo) <= 8 && tras > 20 };
   },
+  // ----- extensão de joelho com elástico -----
+  'elastico-extensao-coxa-parada': (q) => {
+    // o joelho direito (a ponta da coxa) e o quadril parados no ciclo: só a canela se move
+    const j0 = q[0]!.esq.lado.R.joelho,
+      h0 = q[0]!.esq.lado.R.quadril;
+    const dj = Math.max(...q.map((x) => dist(x.esq.lado.R.joelho, j0))),
+      dh = Math.max(...q.map((x) => dist(x.esq.lado.R.quadril, h0)));
+    return { medido: `o joelho anda no máximo ${f1(dj)} cm e o quadril ${f1(dh)} cm no ciclo`, ok: dj <= 0.5 && dh <= 0.5 };
+  },
+  'elastico-extensao-amplitude': (q) => {
+    // embaixo, o joelho bem dobrado (60° ou mais) com o pé fora do chão (o ponto mais baixo do pé direito); em cima,
+    // quase esticado
+    const k0 = angulosDoLado(q[0]!.esq, 'R').joelho,
+      k1 = angulosDoLado(q[q.length - 1]!.esq, 'R').joelho;
+    const pe = Math.min(...q.flatMap((x) => pontosDoBoneco(x.esq).filter((p) => p.parte === 'pe' && p.p[0] < 0).map((p) => p.p[1])));
+    return { medido: `o joelho dobra ${f1(k0)}° embaixo e ${f1(k1)}° em cima; o pé direito fica no mínimo ${f1(pe)} cm acima do chão`, ok: k0 >= 60 && k1 >= 3 && k1 <= 20 && pe >= 1 };
+  },
+  'elastico-ancora-baixa-atras': (q) => {
+    // a âncora (a marca `ancora`) perto do chão e atrás do assento (a marca `assento`: a ponta da frente do banco)
+    const a = q[0]!.marcas.ancora!,
+      s = q[0]!.marcas.assento!;
+    const tras = Math.min(...q.map((x) => Math.min(...pontosDoBoneco(x.esq).map((p) => p.p[2])))) - a[2];
+    return { medido: `a âncora fica a ${f1(a[1])} cm do chão, ${f1(s[2] - a[2])} cm atrás da ponta do assento e ${f1(tras)} cm atrás do corpo`, ok: a[1] <= 25 && tras > 0 };
+  },
+  'elastico-livre-do-banco': (q) => {
+    // os trechos de elástico contra as caixas do banco (o estofado e os tubos): a menor folga, de 2 em 2 cm
+    let min = 1e9;
+    for (const x of amostra(q)) {
+      const caixas = x.prims.filter((p) => p.t === 'caixa' && (p.cls === 'estofado' || p.cls === 'esc'));
+      for (const t of trechos(x))
+        for (let i = 1; i < t.pts.length; i++) {
+          const a = t.pts[i - 1]!,
+            b = t.pts[i]!;
+          const n = Math.max(1, Math.ceil(dist(a, b) / 2));
+          for (let j = 0; j <= n; j++) {
+            const p: V3 = [a[0] + ((b[0] - a[0]) * j) / n, a[1] + ((b[1] - a[1]) * j) / n, a[2] + ((b[2] - a[2]) * j) / n];
+            for (const c of caixas) {
+              if (c.t !== 'caixa') continue;
+              const l = paraRef(c.ref, p);
+              const fora = [0, 1, 2].map((k) => Math.abs(l[k]!) - c.meias[k]!);
+              const d = Math.max(...fora) <= 0 ? Math.max(...fora) : Math.hypot(...fora.map((v) => Math.max(0, v)));
+              min = Math.min(min, d - t.r);
+            }
+          }
+        }
+    }
+    return { medido: `o elástico passa a no mínimo ${f1(min)} cm do banco`, ok: min >= 0.5 };
+  },
   'elastico-nas-maos': (q) => {
     // o centro de cada mão fica sobre o elástico (a faixa ou o pegador passa por dentro da mão fechada) e, no laço
     // seguro com as duas mãos juntas, a distância entre elas

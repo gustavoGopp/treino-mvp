@@ -1,0 +1,368 @@
+{
+ "id": "extensao-joelho-elastico",
+ "nome": "Extensão de joelho sentado com elástico",
+ "fichaDaTecnica": "docs/pesquisa/animacoes/extensao-joelho-elastico.md",
+ "fontes": {
+  "ficha": "Ficha da técnica (docs/pesquisa/animacoes/extensao-joelho-elastico.md): sentado na beira do assento (cadeira firme ou banco), costas retas, mãos na lateral; elástico preso num ponto baixo atrás (pé da cadeira, trava de porta), a outra ponta no tornozelo; estende o joelho até quase esticar com a coxa parada; consenso de treinadores",
+  "app": "Texto do app (src/conteudo/exercicios/extensao-joelho-elastico.json): tempos, dicas e erros",
+  "hoje": "A animação de hoje (src/engine/exercicios/extensao-joelho-elastico.ts): as distâncias e os ângulos que a ficha não dá em número",
+  "fisica": "Física do elástico: a força cresce com o quanto ele estica (mais com o joelho esticado)",
+  "objetos": "src/engine/novo/dados/objetos.json (o banco reto e o tubo com pegadores de 48 pol) e dados/objetos/porta.json (a porta e a âncora de porta)",
+  "desenho": "Escolha de desenho desta animação, dentro do que a ficha pede; a conferência mede o resultado"
+ },
+ "param": {
+  "pes.meiaDistancia": {
+   "v": 9,
+   "un": "cm",
+   "selo": "desenho",
+   "fonte": "desenho",
+   "o": "as pernas na largura do quadril"
+  },
+  "banco.frenteDoQuadril": {
+   "v": 14,
+   "un": "cm",
+   "selo": "consenso",
+   "fonte": "ficha",
+   "o": "sentado na beira do assento: a ponta do banco fica 14 cm à frente do quadril, a coxa apoiada quase até o joelho"
+  },
+  "banco.noQuadro": {
+   "v": 30,
+   "un": "cm",
+   "selo": "desenho",
+   "fonte": "desenho",
+   "o": "do banco, só os 30 cm da ponta entram no enquadramento"
+  },
+  "assento.amassa": {
+   "v": 1,
+   "un": "cm",
+   "selo": "desenho",
+   "fonte": "desenho",
+   "o": "quanto o glúteo e a coxa afundam no estofado"
+  },
+  "coxa.desce": {
+   "v": 3,
+   "un": "graus",
+   "selo": "desenho",
+   "fonte": "desenho",
+   "o": "a coxa apoiada no assento, quase horizontal (3° para baixo, do quadril ao joelho)"
+  },
+  "joelho.esquerdo": {
+   "v": 80,
+   "un": "graus",
+   "selo": "desenho",
+   "fonte": "desenho",
+   "o": "a perna que não trabalha: o pé no chão, o joelho dobrado 80°"
+  },
+  "pe.folgaDoChao": {
+   "v": 2,
+   "un": "cm",
+   "selo": "consenso",
+   "fonte": "app",
+   "o": "embaixo, o joelho bem dobrado com o pé fora do chão: o joelho embaixo é o mais dobrado em que o pé fica 2 cm acima do chão (no banco de 43,5 cm, o homem chega a 69°; a mulher, a 83°)"
+  },
+  "joelho.cima": {
+   "v": 8,
+   "un": "graus",
+   "selo": "consenso",
+   "fonte": "ficha",
+   "o": "em cima, o joelho quase esticado (8° de dobra), sem travar"
+  },
+  "tornozelo.flexaoPlantar": {
+   "v": 10,
+   "un": "graus",
+   "selo": "desenho",
+   "fonte": "desenho",
+   "o": "o pé relaxado, a ponta 10° para baixo do ângulo reto com a canela"
+  },
+  "cervical": {
+   "v": 0,
+   "un": "graus",
+   "selo": "desenho",
+   "fonte": "desenho",
+   "o": "pescoço na linha do tronco"
+  },
+  "cabeca": {
+   "v": 0,
+   "un": "graus",
+   "selo": "desenho",
+   "fonte": "desenho",
+   "o": "cabeça na linha do pescoço"
+  },
+  "maos.foraDaBorda": {
+   "v": 1.5,
+   "un": "cm",
+   "selo": "consenso",
+   "fonte": "app",
+   "o": "as mãos seguram as laterais do assento: o centro da pegada 1,5 cm para fora da borda do banco"
+  },
+  "maos.abaixoDoTampo": {
+   "v": 4,
+   "un": "cm",
+   "selo": "consenso",
+   "fonte": "app",
+   "o": "o centro da pegada 4 cm abaixo do tampo (os dedos em volta da borda do estofado)"
+  },
+  "maos.aFrente": {
+   "v": 2,
+   "un": "cm",
+   "selo": "desenho",
+   "fonte": "desenho",
+   "o": "as mãos ao lado do quadril, 2 cm à frente dele"
+  },
+  "maos.diam": {
+   "v": 6,
+   "un": "cm",
+   "selo": "desenho",
+   "fonte": "desenho",
+   "o": "a mão fechada na borda do estofado (a espessura dele)"
+  },
+  "elastico.acimaDoTornozelo": {
+   "v": 2,
+   "un": "cm",
+   "selo": "consenso",
+   "fonte": "ficha",
+   "o": "o pegador na frente do tornozelo, logo acima dele (a \"alça no tornozelo\" do cartão)"
+  },
+  "ancora.altura": {
+   "v": 10,
+   "un": "cm",
+   "selo": "consenso",
+   "fonte": "ficha",
+   "o": "a âncora num ponto baixo atrás: a alça a 10 cm do chão, no vão da porta do lado da dobradiça"
+  },
+  "elastico.esticaEmbaixo": {
+   "v": 1.15,
+   "un": "vezes",
+   "selo": "consenso",
+   "fonte": "app",
+   "o": "com o joelho dobrado, o elástico já um pouco esticado (o cartão): 1,15 vezes o comprimento em repouso; a distância até a porta sai daqui"
+  },
+  "elastico.noQuadro": {
+   "v": 60,
+   "un": "cm",
+   "selo": "desenho",
+   "fonte": "desenho",
+   "o": "os primeiros 60 cm do tubo a partir do tornozelo entram no enquadramento; o resto, até a âncora, é cenário"
+  },
+  "erro.tranco.joelho": {
+   "v": 0,
+   "un": "graus",
+   "selo": "desenho",
+   "fonte": "hoje",
+   "o": "erro: no chute, o joelho trava estendido"
+  },
+  "erro.tranco.tronco": {
+   "v": 10,
+   "un": "graus",
+   "selo": "desenho",
+   "fonte": "hoje",
+   "o": "erro: no chute, o tronco vai 10° para trás"
+  },
+  "erro.tranco.lombar": {
+   "v": -6,
+   "un": "graus",
+   "selo": "desenho",
+   "fonte": "hoje",
+   "o": "erro: a lombar estende 6° no chute"
+  },
+  "erro.quadril.coxa": {
+   "v": 16,
+   "un": "graus",
+   "selo": "desenho",
+   "fonte": "hoje",
+   "o": "erro: a coxa sobe 16° do assento"
+  },
+  "erro.quadril.tronco": {
+   "v": 14,
+   "un": "graus",
+   "selo": "desenho",
+   "fonte": "hoje",
+   "o": "erro: o tronco vai 14° para trás"
+  },
+  "erro.quadril.lombar": {
+   "v": -8,
+   "un": "graus",
+   "selo": "desenho",
+   "fonte": "hoje",
+   "o": "erro: a lombar estende 8°"
+  },
+  "erro.cai.expoente": {
+   "v": 3,
+   "un": "expoente",
+   "selo": "desenho",
+   "fonte": "desenho",
+   "o": "erro: a perna cai solta: o joelho segue o cubo do caminho, e no meio da descida a perna já está quase embaixo (o tracejado mostra onde ela devia estar)"
+  }
+ },
+ "fases": [
+  {
+   "nome": "Joelho dobrado",
+   "tipo": "pausa",
+   "dur": 0.5,
+   "de": 0,
+   "ate": 0,
+   "respira": "INSPIRA",
+   "tempo": "pé fora do chão",
+   "selo": "consenso",
+   "fonte": "app"
+  },
+  {
+   "nome": "Subida · concêntrica",
+   "tipo": "conc",
+   "dur": 1.1,
+   "de": 0,
+   "ate": 1,
+   "respira": "EXPIRA",
+   "tempo": "~1 s",
+   "selo": "consenso",
+   "fonte": "app"
+  },
+  {
+   "nome": "Em cima · segura",
+   "tipo": "pausa",
+   "dur": 1.0,
+   "de": 1,
+   "ate": 1,
+   "respira": "FIRME",
+   "tempo": "o elástico mais esticado",
+   "selo": "consenso",
+   "fonte": "app"
+  },
+  {
+   "nome": "Descida · excêntrica",
+   "tipo": "exc",
+   "dur": 2.0,
+   "de": 1,
+   "ate": 0,
+   "respira": "INSPIRA",
+   "tempo": "~2 s",
+   "selo": "consenso",
+   "fonte": "app"
+  }
+ ],
+ "contatos": [
+  "pe.L",
+  "pelve"
+ ],
+ "regras": [
+  {
+   "id": "elastico-extensao-coxa-parada",
+   "pede": "a coxa fica parada no assento: só a canela se move",
+   "selo": "consenso",
+   "fonte": "ficha"
+  },
+  {
+   "id": "elastico-extensao-amplitude",
+   "pede": "embaixo, o joelho bem dobrado com o pé fora do chão; em cima, quase esticado",
+   "selo": "consenso",
+   "fonte": "app"
+  },
+  {
+   "id": "elastico-ancora-baixa-atras",
+   "pede": "o elástico preso num ponto baixo e firme atrás do assento",
+   "selo": "consenso",
+   "fonte": "ficha"
+  },
+  {
+   "id": "elastico-livre-do-banco",
+   "pede": "o tubo passa debaixo do banco sem encostar nele",
+   "selo": "desenho",
+   "fonte": "objetos"
+  },
+  {
+   "id": "elastico-livre-do-corpo",
+   "pede": "o tubo sai de trás do tornozelo sem entrar no corpo",
+   "selo": "desenho",
+   "fonte": "objetos"
+  },
+  {
+   "id": "tronco-quase-parado",
+   "pede": "costas retas, o tronco parado",
+   "selo": "consenso",
+   "fonte": "ficha"
+  },
+  {
+   "id": "lombar-neutra",
+   "pede": "a lombar não curva",
+   "selo": "consenso",
+   "fonte": "ficha"
+  }
+ ],
+ "erros": [
+  {
+   "id": "tranco",
+   "instante": 1,
+   "titulo": "Chutar a perna",
+   "vista": "lateral",
+   "oQueMuda": "o joelho trava estendido no embalo e o tronco vai para trás",
+   "destaca": [
+    "pernas",
+    "corpo"
+   ],
+   "linha": [
+    "quadril",
+    "joelho",
+    "tornozelo"
+   ],
+   "foco": "joelho"
+  },
+  {
+   "id": "quadril",
+   "instante": 1,
+   "titulo": "Tirar a coxa do assento",
+   "vista": "lateral",
+   "oQueMuda": "a coxa sobe do assento e o tronco vai para trás",
+   "destaca": [
+    "pernas",
+    "corpo"
+   ],
+   "linha": [
+    "c7",
+    "pelve",
+    "joelho"
+   ],
+   "foco": "joelho"
+  },
+  {
+   "id": "cai",
+   "instante": 0.5,
+   "titulo": "Deixar o elástico puxar a perna de volta",
+   "vista": "lateral",
+   "oQueMuda": "a perna desce solta: no meio da descida ela já está quase embaixo",
+   "destaca": [
+    "pernas"
+   ],
+   "linha": [
+    "quadril",
+    "joelho",
+    "tornozelo"
+   ],
+   "foco": "tornozelo"
+  }
+ ],
+ "simetrico": false,
+ "rotulos": [
+  {
+   "vista": "lateral",
+   "texto": "coxa parada",
+   "ponto": "joelho:R",
+   "selo": "consenso",
+   "fonte": "app",
+   "acima": true
+  },
+  {
+   "vista": "lateral",
+   "texto": "desce devagar",
+   "ponto": "tornozelo:R",
+   "selo": "consenso",
+   "fonte": "app"
+  },
+  {
+   "vista": "quina",
+   "texto": "segura em cima",
+   "ponto": "tornozelo:R",
+   "selo": "consenso",
+   "fonte": "app"
+  }
+ ]
+}

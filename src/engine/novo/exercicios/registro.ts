@@ -75,3 +75,4 @@ export { roscaPolia } from './rosca-polia';
 export { elevacaoLateralElastico } from './elevacao-lateral-elastico';
 export { desenvolvimentoElastico } from './desenvolvimento-elastico';
 export { crucifixoElastico } from './crucifixo-elastico';
+export { extensaoJoelhoElastico } from './extensao-joelho-elastico';
