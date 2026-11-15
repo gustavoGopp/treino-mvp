@@ -1,0 +1,352 @@
+{
+ "id": "crucifixo-elastico",
+ "nome": "Crucifixo com elástico",
+ "fichaDaTecnica": "docs/pesquisa/animacoes/crucifixo-elastico.md",
+ "fontes": {
+  "ficha": "Ficha da técnica (docs/pesquisa/animacoes/crucifixo-elastico.md): a postura e o arco do crucifixo na polia aprovado, com o elástico preso atrás na altura do peito (porta fechada com a âncora de porta); consenso de treinadores (nsca2021, não verificado)",
+  "app": "Texto do app (src/conteudo/exercicios/crucifixo-elastico.json): montagem, tempos, dicas e erros",
+  "hoje": "A animação de hoje (src/engine/exercicios/crucifixo-elastico.ts): as distâncias que a ficha não dá em número (o braço a 62 cm, um pouco abaixo da linha do ombro; a âncora 62 cm atrás)",
+  "fisica": "Física do elástico (a força cresce com o quanto ele estica): ele estica menos com os braços abertos (docs/pesquisa-v2/10-equipamento-minimo.md, seção 5.2)",
+  "objetos": "src/engine/novo/dados/objetos/elastico-tubo-longo.json (o tubo de 60 pol com pegadores; com o de 48 pol da tabela, de braços abertos as mãos ficam a 140 cm uma da outra e o tubo nunca fica frouxo) e dados/objetos/porta.json (a porta e a âncora de porta)",
+  "desenho": "Escolha de desenho desta animação, dentro do que a ficha pede; a conferência mede o resultado"
+ },
+ "param": {
+  "pes.meiaDistancia": {
+   "v": 9,
+   "un": "cm",
+   "selo": "desenho",
+   "fonte": "desenho",
+   "o": "cada pé a 9 cm do meio, um à frente do outro (a ficha só pede um pé à frente do outro)"
+  },
+  "pe.frente.z": {
+   "v": 12,
+   "un": "cm",
+   "selo": "desenho",
+   "fonte": "desenho",
+   "o": "a bola do pé da frente (o direito), à frente do meio do corpo: um passo curto"
+  },
+  "pe.tras.z": {
+   "v": -10,
+   "un": "cm",
+   "selo": "desenho",
+   "fonte": "desenho",
+   "o": "a bola do pé de trás (o esquerdo), atrás do meio do corpo; o pé fica inteiro no chão"
+  },
+  "pe.tras.calcanhar": {
+   "v": 0,
+   "un": "graus",
+   "selo": "desenho",
+   "fonte": "desenho",
+   "o": "o pé de trás fica inteiro no chão"
+  },
+  "joelho.frente": {
+   "v": 12,
+   "un": "graus",
+   "selo": "consenso",
+   "fonte": "app",
+   "o": "joelhos levemente dobrados: os dois dobram 12° (a ficha não dá número; a altura da pelve sai daqui)"
+  },
+  "tronco": {
+   "v": 12,
+   "un": "graus",
+   "selo": "consenso",
+   "fonte": "ficha",
+   "o": "tronco um pouco inclinado à frente, peito alto (a coluna nas curvas de repouso)"
+  },
+  "cervical": {
+   "v": 0,
+   "un": "graus",
+   "selo": "desenho",
+   "fonte": "desenho",
+   "o": "pescoço na linha do tronco"
+  },
+  "cabeca": {
+   "v": 0,
+   "un": "graus",
+   "selo": "desenho",
+   "fonte": "desenho",
+   "o": "cabeça na linha do pescoço"
+  },
+  "braco.abaixo": {
+   "v": 14,
+   "un": "graus",
+   "selo": "desenho",
+   "fonte": "hoje",
+   "o": "o braço gira num arco um pouco abaixo da linha do ombro (14° abaixo da horizontal, no tórax), para as mãos se encontrarem na frente da parte de baixo do peito"
+  },
+  "cotovelo": {
+   "v": 20,
+   "un": "graus",
+   "selo": "consenso",
+   "fonte": "ficha",
+   "o": "cotovelos levemente dobrados, no mesmo ângulo a série toda (a ficha não dá número)"
+  },
+  "maos.aberto.aFrente": {
+   "v": 0,
+   "un": "cm",
+   "selo": "consenso",
+   "fonte": "app",
+   "o": "alongado: as mãos mais ou menos na linha do corpo (o centro da pegada no plano dos ombros, visto de lado, no tórax); o arco aberto sai daqui"
+  },
+  "maos.fechado.meiaDistancia": {
+   "v": 5,
+   "un": "cm",
+   "selo": "consenso",
+   "fonte": "app",
+   "o": "fim: as mãos se encontram na frente do peito (os centros das pegadas a 10 cm um do outro, os punhos fechados quase se tocando); o arco fechado sai daqui"
+  },
+  "ancora.acimaDoPeito": {
+   "v": 0,
+   "un": "cm",
+   "selo": "consenso",
+   "fonte": "ficha",
+   "o": "a âncora atrás, na altura do peito (a altura do mamilo do corpo em pé, da tabela do corpo)"
+  },
+  "elastico.esticaAberto": {
+   "v": 1.3,
+   "un": "vezes",
+   "selo": "consenso",
+   "fonte": "fisica",
+   "o": "com os braços abertos o elástico já está esticado (1–2 passos à frente, diz o cartão): 1,3 vezes o comprimento em repouso; a distância até a porta sai daqui"
+  },
+  "elastico.folga": {
+   "v": 0.8,
+   "un": "cm",
+   "selo": "desenho",
+   "fonte": "objetos",
+   "o": "o tubo passa rente ao braço e ao lado das costas onde encosta: o raio do tubo e a roupa"
+  },
+  "elastico.noQuadro": {
+   "v": 45,
+   "un": "cm",
+   "selo": "desenho",
+   "fonte": "desenho",
+   "o": "os primeiros 45 cm do tubo a partir da mão entram no enquadramento; o resto, até a âncora, é cenário (atrás do corpo; a porta fica fora do quadro de cima)"
+  },
+  "erro.supino.cotovelo": {
+   "v": 85,
+   "un": "graus",
+   "selo": "desenho",
+   "fonte": "hoje",
+   "o": "erro: no alongado o cotovelo dobra 85° e estica ao fechar (o crucifixo vira um supino)"
+  },
+  "erro.abrir.alem": {
+   "v": 25,
+   "un": "graus",
+   "selo": "desenho",
+   "fonte": "hoje",
+   "o": "erro: no alongado o braço abre 25° além da linha do corpo (as mãos atrás do corpo)"
+  },
+  "erro.tronco.lombar": {
+   "v": 14,
+   "un": "graus",
+   "selo": "desenho",
+   "fonte": "hoje",
+   "o": "erro: a lombar curva 14° para fechar"
+  },
+  "erro.tronco.toracica": {
+   "v": 18,
+   "un": "graus",
+   "selo": "desenho",
+   "fonte": "hoje",
+   "o": "erro: as costas de cima curvam 18° para fechar"
+  },
+  "erro.frouxo.estica": {
+   "v": 1.0,
+   "un": "vezes",
+   "selo": "desenho",
+   "fonte": "desenho",
+   "o": "erro: a pessoa fica perto demais da porta: com os braços abertos o tubo fica no comprimento de repouso, sem tensão (com as mãos a 140 cm uma da outra, o tubo de 60 pol não fica mais curto que isso com a porta atrás das costas); a distância até a porta sai daqui"
+  },
+  "erro.frouxo.cai": {
+   "v": 1.04,
+   "un": "vezes",
+   "selo": "desenho",
+   "fonte": "desenho",
+   "o": "erro: sem tensão, o tubo cai um pouco: o desenho mostra cada trecho como uma curva 4% mais longa que a reta entre as pontas"
+  }
+ },
+ "fases": [
+  {
+   "nome": "Alongado",
+   "tipo": "pausa",
+   "dur": 0.5,
+   "de": 0,
+   "ate": 0,
+   "respira": "INSPIRA",
+   "tempo": "elástico já esticado",
+   "selo": "consenso",
+   "fonte": "app"
+  },
+  {
+   "nome": "Fechamento · concêntrica",
+   "tipo": "conc",
+   "dur": 1.3,
+   "de": 0,
+   "ate": 1,
+   "respira": "EXPIRA",
+   "tempo": "~1–1,5 s",
+   "selo": "consenso",
+   "fonte": "app"
+  },
+  {
+   "nome": "Mãos juntas",
+   "tipo": "pausa",
+   "dur": 0.5,
+   "de": 1,
+   "ate": 1,
+   "respira": "FIRME",
+   "tempo": "o elástico mais esticado",
+   "selo": "consenso",
+   "fonte": "app"
+  },
+  {
+   "nome": "Abertura · excêntrica",
+   "tipo": "exc",
+   "dur": 2.5,
+   "de": 1,
+   "ate": 0,
+   "respira": "INSPIRA",
+   "tempo": "~2–3 s",
+   "selo": "consenso",
+   "fonte": "app"
+  }
+ ],
+ "contatos": [
+  "pe.R",
+  "pe.L"
+ ],
+ "regras": [
+  {
+   "id": "elastico-crucifixo-cotovelo-fixo",
+   "pede": "cotovelos levemente dobrados, no mesmo ângulo a série toda",
+   "selo": "consenso",
+   "fonte": "app"
+  },
+  {
+   "id": "elastico-crucifixo-maos-na-linha-do-corpo",
+   "pede": "alongado: braços abertos, mãos mais ou menos na linha do corpo",
+   "selo": "consenso",
+   "fonte": "app"
+  },
+  {
+   "id": "elastico-crucifixo-maos-juntas-no-peito",
+   "pede": "fim: as mãos se encontram na frente da parte de baixo do peito",
+   "selo": "consenso",
+   "fonte": "app"
+  },
+  {
+   "id": "elastico-ancora-atras-na-altura-do-peito",
+   "pede": "o elástico preso atrás, na altura do peito, num ponto firme (porta fechada com a âncora)",
+   "selo": "consenso",
+   "fonte": "ficha"
+  },
+  {
+   "id": "tronco-quase-parado",
+   "pede": "tronco parado, peito alto (sem curvar para fechar)",
+   "selo": "consenso",
+   "fonte": "ficha"
+  },
+  {
+   "id": "lombar-neutra",
+   "pede": "a lombar não curva",
+   "selo": "consenso",
+   "fonte": "ficha"
+  },
+  {
+   "id": "elastico-livre-do-corpo",
+   "pede": "o tubo vai das mãos à âncora por fora dos braços e das costas, sem entrar no corpo",
+   "selo": "desenho",
+   "fonte": "objetos"
+  },
+  {
+   "id": "elastico-nas-maos",
+   "pede": "cada mão segura um pegador",
+   "selo": "consenso",
+   "fonte": "ficha"
+  },
+  {
+   "id": "elastico-bracos-juntos",
+   "pede": "os dois braços fecham juntos",
+   "selo": "consenso",
+   "fonte": "app"
+  }
+ ],
+ "erros": [
+  {
+   "id": "supino",
+   "instante": 0,
+   "titulo": "Transformar em supino",
+   "vista": "cima",
+   "oQueMuda": "o cotovelo dobra no alongado e estica ao fechar",
+   "destaca": [
+    "bracos"
+   ],
+   "linha": [
+    "ombro",
+    "cotovelo",
+    "pegada"
+   ],
+   "foco": "cotovelo"
+  },
+  {
+   "id": "abrir",
+   "instante": 0,
+   "titulo": "Abrir demais",
+   "vista": "cima",
+   "oQueMuda": "no alongado, as mãos passam da linha do corpo",
+   "destaca": [
+    "bracos"
+   ],
+   "linha": [
+    "ombro",
+    "cotovelo",
+    "pegada"
+   ],
+   "foco": "pegada"
+  },
+  {
+   "id": "tronco",
+   "instante": 1,
+   "titulo": "Usar o tronco",
+   "vista": "lateral",
+   "oQueMuda": "o tronco curva para fechar",
+   "destaca": [
+    "corpo"
+   ],
+   "linha": [
+    "pelve",
+    "lombar",
+    "c7",
+    "cabeca"
+   ],
+   "foco": "cabeca"
+  },
+  {
+   "id": "frouxo",
+   "instante": 0,
+   "titulo": "Elástico frouxo com os braços abertos",
+   "vista": "lateral",
+   "oQueMuda": "perto demais da porta: com os braços abertos o elástico fica frouxo",
+   "destaca": [
+    "bracos"
+   ],
+   "linha": [
+    "ombro",
+    "cotovelo",
+    "pegada"
+   ],
+   "foco": "pegada"
+  }
+ ],
+ "simetrico": false,
+ "rotulos": [
+  {
+   "vista": "cima",
+   "texto": "abraça a árvore",
+   "ponto": "pegada",
+   "selo": "consenso",
+   "fonte": "app"
+  }
+ ]
+}

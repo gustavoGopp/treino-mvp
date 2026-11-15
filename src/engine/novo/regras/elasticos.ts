@@ -129,6 +129,38 @@ export const regrasDosElasticos: Record<string, Regra> = {
     const d = Math.max(...q.map((x) => Math.abs(angulosDoLado(x.esq, 'R').cotovelo - angulosDoLado(x.esq, 'L').cotovelo)));
     return { medido: `a maior diferença entre os dois cotovelos é ${f1(d)}°`, ok: d <= 2 };
   },
+  // ----- crucifixo com elástico -----
+  'elastico-crucifixo-cotovelo-fixo': (q) => {
+    // o ângulo do cotovelo no ciclo (dos dois lados): levemente dobrado e parado
+    const [a, b] = faixa(q.flatMap((x) => LADOS.map((k) => angulosDoLado(x.esq, k).cotovelo)));
+    return { medido: `o cotovelo dobra de ${f1(a)}° a ${f1(b)}° no ciclo`, ok: a >= 10 && b <= 35 && b - a <= 3 };
+  },
+  'elastico-crucifixo-maos-na-linha-do-corpo': (q) => {
+    // alongado (o primeiro quadro): o centro da pegada à frente (+) ou atrás (−) do plano dos ombros, no tórax
+    const e = q[0]!.esq;
+    const d = paraRef(e.torax, e.lado.R.pegada)[2] - paraRef(e.torax, e.lado.R.ombro)[2];
+    return { medido: `alongado, o centro da mão fica ${f1(Math.abs(d))} cm ${d >= 0 ? 'à frente' : 'atrás'} do plano dos ombros`, ok: Math.abs(d) <= 8 };
+  },
+  'elastico-crucifixo-maos-juntas-no-peito': (q) => {
+    // no fim: as duas pegadas perto uma da outra, na frente do peito, na altura entre a costela de baixo e a axila do
+    // corpo em pé (medida no referencial do tórax, a partir do C7)
+    const e = q[q.length - 1]!.esq,
+      m = (id: string) => e.corpo.m(id);
+    const entre = dist(e.lado.R.pegada, e.lado.L.pegada);
+    const y = paraRef(e.torax, e.lado.R.pegada)[1] + m('altura.cervical');
+    const z = paraRef(e.torax, e.lado.R.pegada)[2];
+    return { medido: `no fim, as mãos ficam a ${f1(entre)} cm uma da outra, ${f1(z)} cm à frente do C7, na altura de ${f1(y)} cm do corpo em pé (costela de baixo: ${f1(m('altura.costela10'))} cm; peito: ${f1(m('altura.peito'))} cm; axila: ${f1(m('altura.axila'))} cm)`, ok: entre <= 14 && y >= m('altura.costela10') - 4 && y <= m('altura.axila') && z >= m('prof.peito') };
+  },
+  'elastico-ancora-atras-na-altura-do-peito': (q) => {
+    // a âncora (a marca `ancora`) atrás das costas e na altura do peito do corpo como ele está (a altura do peito em
+    // pé menos o quanto a pelve desceu)
+    const x = q[0]!;
+    const a = x.marcas.ancora!;
+    const desceu = x.esq.corpo.m('altura.trocanter') - x.esq.pelve.o[1];
+    const alvo = x.esq.corpo.m('altura.peito') - desceu;
+    const tras = Math.min(...pontosDoBoneco(x.esq).map((p) => p.p[2])) - a[2];
+    return { medido: `a âncora fica ${f1(Math.abs(a[1] - alvo))} cm ${a[1] >= alvo ? 'acima' : 'abaixo'} do peito (${f1(a[1])} cm do chão) e ${f1(tras)} cm atrás das costas`, ok: Math.abs(a[1] - alvo) <= 8 && tras > 20 };
+  },
   'elastico-nas-maos': (q) => {
     // o centro de cada mão fica sobre o elástico (a faixa ou o pegador passa por dentro da mão fechada) e, no laço
     // seguro com as duas mãos juntas, a distância entre elas
