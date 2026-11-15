@@ -103,6 +103,24 @@ export const regrasDasRemadas: Record<string, Regra> = {
     const temBanco = banco < 1e8;
     return { medido: `a carga fica a no mínimo ${f1(corpo)} cm da pele${temBanco ? ` e ${f1(banco)} cm das peças da cena` : ''}`, ok: corpo >= 0 && (!temBanco || banco >= 0.3) };
   },
+  'pe-da-carga-atras': (q) => {
+    const e = primeiro(q).esq;
+    const d = e.lado.L.tornozelo[2] - e.lado.R.tornozelo[2];
+    return { medido: `o tornozelo do lado da carga (direito) fica ${f1(Math.abs(d))} cm ${d >= 0 ? 'atrás' : 'à frente'} do outro`, ok: d >= 25 };
+  },
+  'mao-de-apoio-na-coxa': (q) => {
+    // a palma da mão esquerda contra a pele da coxa esquerda, e onde ela fica ao longo da coxa
+    const e = primeiro(q).esq;
+    const P = pontosDoBoneco(e);
+    const mao = P.filter((x) => x.parte === 'mao' && dist(x.p, e.lado.L.pegada) < 12).map((x) => x.p);
+    const coxa = P.filter((x) => x.parte === 'coxa' && x.p[0] > 0).map((x) => x.p);
+    let min = 1e9;
+    for (const a of mao) for (const b of coxa) min = Math.min(min, dist(a, b));
+    const L = e.lado.L;
+    const d = sub(L.joelho, L.quadril);
+    const t = dot(sub(L.pegada, L.quadril), d) / dot(d, d);
+    return { medido: `a mão fica a ${f1(min)} cm da pele da coxa da frente, a ${f1(t * 100)}% do caminho do quadril ao joelho`, ok: min <= 1.5 && t >= 0.4 && t <= 1 };
+  },
   'mao-e-joelho-no-banco': (q) => {
     // a superfície da mão e a do joelho de apoio contra o tampo do banco; a mão na vertical do ombro
     const x = primeiro(q);
