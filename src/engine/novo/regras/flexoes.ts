@@ -3,7 +3,9 @@
 import { pontosDoBoneco } from '../boneco';
 import { f1, faixa } from '../conferir-util';
 import type { Regra } from '../conferir-util';
+import { obj } from '../tabelas';
 import { angulo, dist, mul, norm, paraRef, sub } from '../vec';
+import type { V3 } from '../vec';
 
 /** Ângulo do braço com o tronco, visto de cima, no último quadro (embaixo). */
 function bracoDeCima(q: Parameters<Regra>[0]): number {
@@ -12,6 +14,9 @@ function bracoDeCima(q: Parameters<Regra>[0]): number {
   const b = norm(sub(L.cotovelo, L.ombro));
   return angulo([b[0], 0, b[2]], mul(esq.torax.y, -1));
 }
+
+/** Só o que se vê de lado (sem a distância para o lado). */
+const deLado = (v: V3): V3 => [0, v[1], v[2]];
 
 export const regrasDasFlexoes: Record<string, Regra> = {
   // flexão com as mãos juntas: "de cima, as mãos ficam por dentro da linha dos ombros"
@@ -49,6 +54,57 @@ export const regrasDasFlexoes: Record<string, Regra> = {
     const d = q.map((x) => -paraRef(x.esq.torax, x.marcas.elasticoNasCostas!)[1]);
     const [a, b] = faixa(d);
     return { medido: `o meio do elástico fica de ${f1(a)} a ${f1(b)} cm abaixo da base do pescoço (C7), nas costas`, ok: a >= 6 && b <= 22 };
+  },
+  // ----- flexão de joelho na bola (deitado de costas; q[0] = pernas estendidas, último = joelhos dobrados) -----
+  'bola-linha-no-inicio': (q) => {
+    const L = q[0]!.esq.lado.R;
+    const a = angulo(deLado(sub(L.ombro, L.quadril)), deLado(sub(L.calcanhar, L.quadril)));
+    return { medido: `no começo, ombro, quadril e calcanhar fazem ${f1(a)}° de lado (180° = linha reta)`, ok: a >= 170 };
+  },
+  'bola-linha-no-fim': (q) => {
+    const L = q[q.length - 1]!.esq.lado.R;
+    const a = angulo(deLado(sub(L.ombro, L.quadril)), deLado(sub(L.joelho, L.quadril)));
+    return { medido: `no fim, ombro, quadril e joelho fazem ${f1(a)}° de lado (180° = linha reta)`, ok: a >= 170 };
+  },
+  'bola-joelhos-a-90': (q) => {
+    const a = q[q.length - 1]!.esq.lado.R.ang.joelho;
+    return { medido: `no fim, o joelho dobra ${f1(a)}°`, ok: a >= 80 && a <= 100 };
+  },
+  'bola-quadril-sobe': (q) => {
+    const a = q[0]!.esq.pelve.o[1],
+      b = q[q.length - 1]!.esq.pelve.o[1];
+    return { medido: `o centro da pelve sobe de ${f1(a)} para ${f1(b)} cm do chão`, ok: b > a + 5 };
+  },
+  'bola-quadril-alto': (q) => {
+    const min = Math.min(...q.map((x) => Math.min(...pontosDoBoneco(x.esq).filter((p) => p.parte === 'pelve').map((p) => p.p[1]))));
+    return { medido: `o ponto mais baixo da bacia fica a no mínimo ${f1(min)} cm do chão`, ok: min >= 5 };
+  },
+  'bola-pes-na-bola': (q) => {
+    // o ponto do pé direito mais perto da bola (na superfície do Boneco): negativo = o pé afunda na bola
+    const R = obj('bolaSuica', 'diam') / 2;
+    const d = q.map((x) => Math.min(...pontosDoBoneco(x.esq).filter((p) => p.parte === 'pe' && p.p[0] < 0).map((p) => dist(p.p, x.marcas.bola!) - R)));
+    const [a, b] = faixa(d);
+    return { medido: `o pé fica de ${f1(-b)} a ${f1(-a)} cm para dentro da superfície da bola (a bola cede um pouco)`, ok: a >= -2 && b <= 0.5 };
+  },
+  'bola-pernas-fora-da-bola': (q) => {
+    const R = obj('bolaSuica', 'diam') / 2;
+    let pior = 0,
+      qual = '';
+    for (const x of q.filter((_, i) => i % 6 === 0 || i === q.length - 1))
+      for (const { p, parte } of pontosDoBoneco(x.esq))
+        if (parte === 'coxa' || parte === 'canela') {
+          const dentro = R - dist(p, x.marcas.bola!);
+          if (dentro > pior) {
+            pior = dentro;
+            qual = parte;
+          }
+        }
+    return { medido: pior > 0 ? `até ${f1(pior)} cm para dentro da bola (${qual})` : 'nenhum ponto das pernas entra na bola', ok: pior <= 2 };
+  },
+  'bola-costas-no-chao': (q) => {
+    const min = q.map((x) => Math.min(...pontosDoBoneco(x.esq).filter((p) => p.parte === 'tronco').map((p) => p.p[1])));
+    const [a, b] = faixa(min);
+    return { medido: `o ponto mais baixo das costas fica de ${f1(a)} a ${f1(b)} cm do chão`, ok: a >= -1.5 && b <= 1 };
   },
   // elástico: as pontas ficam presas sob as palmas (não saem do lugar)
   'pontas-sob-as-palmas': (q) => {

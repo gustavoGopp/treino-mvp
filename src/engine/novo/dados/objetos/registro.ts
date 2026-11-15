@@ -8,3 +8,4 @@ export { default as cadeira } from './cadeira.json';
 export { default as suspensao } from './suspensao.json';
 export { default as toalha } from './toalha.json';
 export { default as porta } from './porta.json';
+export { default as bolaSuica } from './bola-suica.json';
