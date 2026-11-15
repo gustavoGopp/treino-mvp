@@ -1,0 +1,368 @@
+{
+ "id": "remada-curvada-halteres",
+ "nome": "Remada curvada com halteres",
+ "fichaDaTecnica": "docs/pesquisa/animacoes/remada-curvada-halteres.md",
+ "fontes": {
+  "ficha": "Ficha da técnica (docs/pesquisa/animacoes/remada-curvada-halteres.md): em pé, pés na largura do quadril, joelhos levemente dobrados; dobra o quadril até o tronco ficar bem inclinado, costas retas; halteres pendurados, pegada neutra; leva os cotovelos para trás, perto do corpo, até os halteres chegarem perto do quadril; tronco parado; consenso de treinadores (nsca2021, não verificado)",
+  "app": "Cartão do app (src/conteudo/exercicios/remada-curvada-halteres.json): palmas uma para a outra, ~1 s puxando, pausa curta, ~2 s voltando, as dicas e os erros",
+  "hoje": "Animação aprovada no guia de hoje (src/engine/exercicios/remada-curvada-halteres.ts): tronco ~60°, as escápulas (+6 no começo, −6 no fim) e os erros (subir o tronco de ~60° para ~35°, encolher +8, puxar só com os braços), que a ficha não dá em número",
+  "stiff": "O núcleo do stiff (src/engine/novo/exercicios/dobrar-o-quadril.ts): o quadril para trás com o centro de massa sobre o meio do pé",
+  "unilateral": "A ficha de movimento da remada unilateral no banco (src/engine/novo/dados/movimentos/remada-unilateral.json): o mesmo braço que puxa",
+  "objetos": "src/engine/novo/dados/objetos.json: o halter",
+  "desenho": "Escolha de desenho desta animação, dentro do que a ficha pede; a conferência mede o resultado"
+ },
+ "param": {
+  "tronco.inclinacao": {
+   "v": 62,
+   "un": "graus",
+   "selo": "desenho",
+   "fonte": "hoje",
+   "o": "tronco 'bem inclinado': o peito a 62° da vertical, parado a série toda (hoje: ~60°; a ficha não dá número)"
+  },
+  "joelho": {
+   "v": 20,
+   "un": "graus",
+   "selo": "consenso",
+   "fonte": "ficha",
+   "o": "joelhos 'levemente dobrados': 20°, parados"
+  },
+  "pes.meiaDistancia": {
+   "v": 9,
+   "un": "cm",
+   "selo": "consenso",
+   "fonte": "ficha",
+   "o": "pés na largura do quadril (os centros do quadril ficam a 8,35 cm do meio)"
+  },
+  "cervical": {
+   "v": -10,
+   "un": "graus",
+   "selo": "desenho",
+   "fonte": "desenho",
+   "o": "pescoço na linha das costas, um pouco estendido: o olhar vai ao chão à frente"
+  },
+  "cabeca": {
+   "v": 0,
+   "un": "graus",
+   "selo": "desenho",
+   "fonte": "desenho",
+   "o": "cabeça na linha do pescoço"
+  },
+  "braco.inicio.atras": {
+   "v": 3,
+   "un": "graus",
+   "selo": "desenho",
+   "fonte": "desenho",
+   "o": "começo: braço estendido, pendurado embaixo do ombro (o cotovelo dobra só 3°, sem travar)"
+  },
+  "braco.inicio.fora": {
+   "v": 8,
+   "un": "graus",
+   "selo": "desenho",
+   "fonte": "desenho",
+   "o": "começo: o braço pende quase na vertical do ombro, um pouco para fora (o halter passa ao lado do joelho)"
+  },
+  "braco.fim.alemDasCostas": {
+   "v": 26,
+   "un": "graus",
+   "selo": "consenso",
+   "fonte": "unilateral",
+   "o": "fim: 'cotovelo passando a linha do tronco': o braço fica 26° além da linha das costas"
+  },
+  "braco.fim.fora": {
+   "v": 16,
+   "un": "graus",
+   "selo": "consenso",
+   "fonte": "unilateral",
+   "o": "fim: cotovelo 'perto do corpo': o braço se afasta só 16° do lado do tronco, o bastante para o halter passar ao lado do quadril"
+  },
+  "escapula.prot.inicio": {
+   "v": 6,
+   "un": "graus",
+   "selo": "desenho",
+   "fonte": "hoje",
+   "o": "começo: 'ombro solto um pouco para baixo': a escápula vai à frente (hoje: +6)"
+  },
+  "escapula.retr.fim": {
+   "v": 10,
+   "un": "graus",
+   "selo": "desenho",
+   "fonte": "hoje",
+   "o": "fim: a escápula se junta à coluna (hoje: −6; aqui −10, como na remada na suspensão, porque o ritmo do ombro devolve parte do recuo)"
+  },
+  "escapula.elev.inicio": {
+   "v": 1,
+   "un": "graus",
+   "selo": "desenho",
+   "fonte": "hoje",
+   "o": "começo: a escápula como hoje (+1)"
+  },
+  "escapula.elev.fim": {
+   "v": -1,
+   "un": "graus",
+   "selo": "desenho",
+   "fonte": "hoje",
+   "o": "fim: ombro baixo, longe da orelha (hoje: −1)"
+  },
+  "carga": {
+   "v": 11.3,
+   "un": "kg",
+   "selo": "desenho",
+   "fonte": "objetos",
+   "o": "o halter desenhado (25 lb), um em cada mão; entra no equilíbrio"
+  },
+  "erro.arredondar.lombar": {
+   "v": 22,
+   "un": "graus",
+   "selo": "desenho",
+   "fonte": "hoje",
+   "o": "erro: a lombar curva 22° além da curva de repouso (hoje: lombar de 74 para 60)"
+  },
+  "erro.arredondar.toracica": {
+   "v": 22,
+   "un": "graus",
+   "selo": "desenho",
+   "fonte": "hoje",
+   "o": "erro: a parte de cima das costas curva 22° (hoje: torácica de 76 para 100)"
+  },
+  "erro.arredondar.cervical": {
+   "v": 10,
+   "un": "graus",
+   "selo": "desenho",
+   "fonte": "desenho",
+   "o": "erro: o pescoço estende para o olhar não ir ao peito"
+  },
+  "erro.subir.tronco": {
+   "v": 25,
+   "un": "graus",
+   "selo": "desenho",
+   "fonte": "hoje",
+   "o": "erro: o tronco sobe 25° na puxada para dar embalo (hoje: de ~60° para ~35°)"
+  },
+  "erro.encolher.elev": {
+   "v": 8,
+   "un": "graus",
+   "selo": "desenho",
+   "fonte": "hoje",
+   "o": "erro: os ombros sobem para as orelhas no fim (hoje: +8 na escápula)"
+  },
+  "erro.soBracos.atras": {
+   "v": 12,
+   "un": "graus",
+   "selo": "desenho",
+   "fonte": "hoje",
+   "o": "erro: o cotovelo quase não vai para trás (fica embaixo do ombro, 12° atrás da vertical)"
+  },
+  "erro.soBracos.cotovelo": {
+   "v": 75,
+   "un": "graus",
+   "selo": "desenho",
+   "fonte": "hoje",
+   "o": "erro: o antebraço dobra 75° para a frente, como numa rosca; o halter não chega ao quadril"
+  }
+ },
+ "fases": [
+  {
+   "nome": "Braços estendidos",
+   "tipo": "pausa",
+   "dur": 0.45,
+   "de": 0,
+   "ate": 0,
+   "respira": "INSPIRA",
+   "tempo": "pausa curta",
+   "selo": "consenso",
+   "fonte": "app"
+  },
+  {
+   "nome": "Puxada · concêntrica",
+   "tipo": "conc",
+   "dur": 1.1,
+   "de": 0,
+   "ate": 1,
+   "respira": "EXPIRA",
+   "tempo": "~1 s",
+   "selo": "consenso",
+   "fonte": "app"
+  },
+  {
+   "nome": "Fim · segura",
+   "tipo": "pausa",
+   "dur": 0.6,
+   "de": 1,
+   "ate": 1,
+   "respira": "FIRME",
+   "tempo": "pausa curta",
+   "selo": "consenso",
+   "fonte": "app"
+  },
+  {
+   "nome": "Volta · excêntrica",
+   "tipo": "exc",
+   "dur": 2.1,
+   "de": 1,
+   "ate": 0,
+   "respira": "INSPIRA",
+   "tempo": "~2 s",
+   "selo": "consenso",
+   "fonte": "app"
+  }
+ ],
+ "contatos": [
+  "pe.R",
+  "pe.L"
+ ],
+ "regras": [
+  {
+   "id": "lombar-neutra",
+   "pede": "costas retas (a lombar não arredonda)",
+   "selo": "consenso",
+   "fonte": "ficha"
+  },
+  {
+   "id": "tronco-parado-na-remada",
+   "pede": "tronco parado: sem subir o tronco para ajudar",
+   "selo": "consenso",
+   "fonte": "ficha"
+  },
+  {
+   "id": "tronco-bem-inclinado",
+   "pede": "tronco bem inclinado",
+   "selo": "consenso",
+   "fonte": "ficha"
+  },
+  {
+   "id": "cotovelo-passa-as-costas",
+   "pede": "fim: cotovelos atrás do tronco",
+   "selo": "consenso",
+   "fonte": "app"
+  },
+  {
+   "id": "cotovelo-rente-na-remada",
+   "pede": "cotovelos para trás, perto do corpo",
+   "selo": "consenso",
+   "fonte": "ficha"
+  },
+  {
+   "id": "carga-perto-do-quadril-no-fim",
+   "pede": "fim: halteres perto do quadril",
+   "selo": "consenso",
+   "fonte": "ficha"
+  },
+  {
+   "id": "braco-estendido-no-comeco",
+   "pede": "começo: braços estendidos",
+   "selo": "consenso",
+   "fonte": "app"
+  },
+  {
+   "id": "carga-livre-do-corpo-e-do-banco",
+   "pede": "os halteres pendem sem atravessar as pernas nem o tronco",
+   "selo": "consenso",
+   "fonte": "desenho"
+  },
+  {
+   "id": "escapulas-se-juntam",
+   "pede": "no fim as escápulas se juntam",
+   "selo": "consenso",
+   "fonte": "hoje"
+  },
+  {
+   "id": "palmas-uma-para-a-outra",
+   "pede": "pegada neutra (palmas uma para a outra)",
+   "selo": "consenso",
+   "fonte": "ficha"
+  }
+ ],
+ "erros": [
+  {
+   "id": "e1",
+   "instante": 1,
+   "titulo": "Arredondar as costas",
+   "vista": "lateral",
+   "oQueMuda": "a lombar e a parte de cima das costas curvam",
+   "destaca": [
+    "corpo"
+   ],
+   "linha": [
+    "pelve",
+    "lombar",
+    "c7",
+    "cabeca"
+   ],
+   "foco": "lombar"
+  },
+  {
+   "id": "e2",
+   "instante": 1,
+   "titulo": "Subir o tronco",
+   "vista": "lateral",
+   "oQueMuda": "o tronco levanta na puxada para dar embalo",
+   "destaca": [
+    "corpo"
+   ],
+   "linha": [
+    "pelve",
+    "c7"
+   ],
+   "foco": "c7"
+  },
+  {
+   "id": "e3",
+   "instante": 1,
+   "titulo": "Encolher os ombros",
+   "vista": "posterior",
+   "oQueMuda": "os ombros sobem para as orelhas",
+   "destaca": [
+    "bracos"
+   ],
+   "linha": [
+    "acromioclavicular:R",
+    "acromioclavicular:L"
+   ],
+   "foco": "acromioclavicular:R"
+  },
+  {
+   "id": "e4",
+   "instante": 1,
+   "titulo": "Puxar só com os braços",
+   "vista": "lateral",
+   "oQueMuda": "o cotovelo fica embaixo do ombro e só dobra, como numa rosca",
+   "destaca": [
+    "bracos"
+   ],
+   "linha": [
+    "ombro",
+    "cotovelo",
+    "punho"
+   ],
+   "foco": "cotovelo"
+  }
+ ],
+ "simetrico": true,
+ "rotulos": [
+  {
+   "vista": "lateral",
+   "texto": "costas retas",
+   "ponto": "pelve",
+   "selo": "consenso",
+   "fonte": "app",
+   "guia": [
+    "pelve",
+    "c7"
+   ]
+  },
+  {
+   "vista": "quinaTras",
+   "texto": "cotovelos para trás",
+   "ponto": "cotovelo:R",
+   "selo": "consenso",
+   "fonte": "app"
+  },
+  {
+   "vista": "quinaTras",
+   "texto": "tronco parado",
+   "ponto": "c7",
+   "selo": "consenso",
+   "fonte": "app"
+  }
+ ]
+}

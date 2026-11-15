@@ -15,8 +15,8 @@ De 15/11/2026. Primeira da família das remadas com peso livre, sobre o núcleo 
 2. **O joelho esquerdo** apoia no estofado (a pele amassa 0,5 cm) com a canela deitada; a altura do quadril sai daí.
 3. **A mão esquerda** fica espalmada no banco, na vertical do ombro. O ângulo da coxa de apoio é o único em que a mão chega ao banco com o cotovelo de apoio a 6° (`resolver1`): deu a coxa quase na vertical, com o joelho logo à frente do quadril (9,9 cm).
 4. **O pé esquerdo** gira no tornozelo até o peito do pé encostar no estofado (`resolver1` na superfície do pé).
-5. **O pé direito** fica 10 cm para fora da linha do quadril e anda para a frente ou para trás até o joelho direito ficar a 10°.
-6. **O braço que puxa** (núcleo): o braço gira no ombro, de pendurado (3° atrás da vertical, 8° para fora) até 20° além da linha das costas e 16° para fora; o antebraço pende embaixo do cotovelo (na vertical no fim), então o halter pende na vertical embaixo da mão. A pegada é neutra de verdade: o polegar aponta para a frente do antebraço (pronação medida de 90° em todo o ciclo). A escápula vai de +6 (à frente) a −10 (junta à coluna).
+5. **O pé direito** fica 10 cm para fora da linha do quadril e anda para a frente ou para trás até o joelho direito ficar a 10°. Num corpo de pernas curtas (o da mulher), o pé não chegaria ao chão com esse joelho: a coxa de apoio inclina até o quadril baixar o bastante, e o cotovelo de apoio dobra mais (medido: 26,5° na mulher; 6° no homem).
+6. **O braço que puxa** (núcleo): o braço gira no ombro, de pendurado (3° atrás da vertical, 8° para fora) até 26° além da linha das costas e 16° para fora; o antebraço pende embaixo do cotovelo (na vertical no fim), então o halter pende na vertical embaixo da mão. A pegada é neutra de verdade: o polegar aponta para a frente do antebraço (pronação medida de 90° em todo o ciclo). A escápula vai de +6 (à frente) a −10 (junta à coluna).
 
 ## O que a fonte pede × o que o boneco faz (medido) × confere?
 
@@ -28,14 +28,14 @@ De 15/11/2026. Primeira da família das remadas com peso livre, sobre o núcleo 
 | Tronco parado, sem girar | consenso | base do pescoço e bacia andam 0 cm; o tórax gira 0° | sim |
 | Começo: braço estendido, ombro solto para baixo | consenso (cartão) | cotovelo a 3°; clavícula 6° à frente | sim |
 | Cotovelo para trás, perto do corpo | consenso | o braço se afasta no máximo 16° do lado do tronco | sim |
-| Fim: cotovelo passando a linha do tronco | consenso (cartão) | o centro do cotovelo fica 2,4 cm além da linha das costas; o cotovelo dobra 96° | sim |
-| Fim: halter ao lado do quadril | consenso | a mão fica a 70% do caminho do ombro ao quadril, ao longo do tronco | sim |
+| Fim: cotovelo passando a linha do tronco | consenso (cartão) | o centro do cotovelo fica 5,4 cm além da linha das costas; o cotovelo dobra 102° | sim |
+| Fim: halter ao lado do quadril | consenso | a mão fica a 67% do caminho do ombro ao quadril, ao longo do tronco | sim |
 | Pegada neutra (palma para o banco) | consenso | pronação de 90° o ciclo todo | sim |
 | O halter pende sem atravessar a perna nem o banco | (desenho) | a no mínimo 0,3 cm da pele (o antebraço, junto à mão que segura; a coxa fica a 2,6 cm ou mais) e 13,2 cm do banco | sim |
-| A escápula se junta no fim | consenso (guia de hoje) | a clavícula vai 10,1° para trás do começo ao fim | sim |
+| A escápula se junta no fim | consenso (guia de hoje) | a clavícula vai 10,7° para trás do começo ao fim | sim |
 | ~1 s puxando, 1 s parado, ~2 s voltando | consenso | 1,1 s / 1 s / 2,1 s (a pausa inicial de 0,45 s é a de hoje) | sim |
 
-Conferência automática: **0 falha, 2 avisos.** (1) Extensão do punho de 92° na mão espalmada no banco, acima da média do quadro de amplitudes: é a mão de apoio, a mesma situação da flexão (que dá 94°). (2) As linhas de desenho da ficha de movimento (pescoço, apoio, escápulas, ângulos do braço, carga).
+Conferência automática (homem e mulher): **0 falha, 2 avisos.** (1) Extensão do punho de 92° na mão espalmada no banco, acima da média do quadro de amplitudes: é a mão de apoio, a mesma situação da flexão (que dá 94°). (2) As linhas de desenho da ficha de movimento (pescoço, apoio, escápulas, ângulos do braço, carga).
 
 Músculos: dorsal e meio das costas (`trapMedInf`) do lado direito em vermelho; ombro de trás e bíceps em laranja. A vista padrão do modo Músculos é a de três quartos, de trás (220 cm² do principal; de lado, 176 cm²). Testei as seis vistas: de cima mostra mais músculo (388 cm²), mas de cima a puxada vai na direção de quem olha e a técnica não se lê; de trás mostra quase só o quadril (159 cm²); de frente, 0.
 

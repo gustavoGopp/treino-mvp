@@ -63,7 +63,17 @@ function base(corpo: Corpo): BaseDaRemada {
     }
     return { pelve, t, punho, e };
   }
-  const th = resolver1((x) => apoiado(x).e.lado.L.ang.cotovelo - f('apoio.cotovelo'), -25, 35, 30);
+  let th = resolver1((x) => apoiado(x).e.lado.L.ang.cotovelo - f('apoio.cotovelo'), -25, 35, 30);
+  // num corpo de pernas curtas, o pé direito não chegaria ao chão com o joelho no ângulo da ficha: a coxa de apoio
+  // inclina até o quadril baixar o bastante (o cotovelo de apoio dobra um pouco mais)
+  {
+    const a = (f('joelho.R') * Math.PI) / 180,
+      th1 = m('coxa.comp'),
+      sk = m('perna.comp');
+    const d = Math.sqrt(th1 * th1 + sk * sk + 2 * th1 * sk * Math.cos(a));
+    const alto = m('altura.maleolo') + Math.sqrt(d * d - f('pe.R.paraFora') ** 2) - f('joelho.R.folga');
+    if (apoiado(th).pelve[1] > alto) th = resolver1((x) => apoiado(x).pelve[1] - alto, th, th + 50, 30);
+  }
   // o pé de apoio solto, com o peito do pé deitado no estofado: ele gira no tornozelo até encostar
   const ladoDoPe = (e: Esq) => {
     let min = 1e9;

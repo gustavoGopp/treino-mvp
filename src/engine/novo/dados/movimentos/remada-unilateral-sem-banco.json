@@ -89,11 +89,11 @@
    "o": "começo: o braço pende quase na vertical do ombro, um pouco para fora (o halter passa ao lado do joelho)"
   },
   "braco.fim.alemDasCostas": {
-   "v": 20,
+   "v": 26,
    "un": "graus",
    "selo": "consenso",
    "fonte": "unilateral",
-   "o": "fim: 'cotovelo passando a linha do tronco': o braço fica 20° além da linha das costas"
+   "o": "fim: 'cotovelo passando a linha do tronco': o braço fica 26° além da linha das costas"
   },
   "braco.fim.fora": {
    "v": 16,
