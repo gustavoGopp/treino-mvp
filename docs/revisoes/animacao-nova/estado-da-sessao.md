@@ -8,6 +8,15 @@ Comece por **`proposta.md`, seção 0-B**: o que esta sessão fez, o que a confe
 
 **O corpo foi fechado pelo Gustavo em 15/11/2026 ("pode fechar o corpo e começar o lote 1").** O lote 1 (agachamentos, afundos e búlgaros) começou. Ficam para antes dos lotes 3 e 4: o trapézio no pescoço, a linha do pescoço ao ombro conforme a pose e o cotovelo da puxada (152°). As quatro âncoras ainda não foram aprovadas folha a folha para entrar no app: a lista de exercícios do motor novo no app continua vazia.
 
+**Desde 15/11/2026, as animações são feitas em paralelo.** O Gustavo aprovou sete animações do lote 1 uma a uma (até o búlgaro com apoio) e pediu: "a gente pode delegar vários subagentes para fazer todos de uma vez e depois você só me manda [as que] você achar que tem mais chance de eu não gostar". Como fica:
+
+- Cada família de exercícios vai para um subagente, em cópia de trabalho própria do git, no máximo quatro por vez, seguindo `como-fazer-uma-animacao.md`. Os subagentes rodam no modelo Opus (o limite do modelo principal para subagentes estourou em 14/11 e só volta em 19/11).
+- Quem integra (a sessão principal) junta os ramos, regenera os arquivos gerais, roda `npm run check` e `npm run conferir:animacao`, olha cada folha e separa as de maior risco para o Gustavo ver.
+- As que ele não vê ficam registradas em `src/engine/novo/aprovados.ts` como aprovadas **por delegação** (com a frase dele), separadas das aprovadas na folha. Todas as folhas ficam em `prototipos/` e os quadros grandes em `quadros/`, para ele olhar quando quiser.
+- Atenção: a cópia de trabalho de cada subagente nasce num commit antigo (06d4066); o pedido tem de mandar avançar para o commit certo antes de começar.
+
+Primeira leva (15/11): búlgaro com o peso do corpo e na suspensão; quatro flexões (mãos juntas, pés elevados, elástico, bola); pike e extensão de tríceps no chão; duas flexões de joelho deitado.
+
 O que vem abaixo é o registro de como se chegou ao fechamento.
 
 **Parada obrigatória da seção 5 do prompt: o corpo só é dado como fechado com o ok do Gustavo.** Nenhum lote começou.
