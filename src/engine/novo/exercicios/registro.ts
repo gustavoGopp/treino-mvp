@@ -90,3 +90,4 @@ export { abducaoDeitado } from './abducao-deitado';
 export { aducaoDeitado } from './aducao-deitado';
 export { abducaoCaneleira } from './abducao-caneleira';
 export { aducaoCaneleira } from './aducao-caneleira';
+export { abducaoMiniBand } from './abducao-mini-band';

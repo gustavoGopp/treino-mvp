@@ -7,8 +7,10 @@ import type { Regra } from '../conferir-util';
 import type { Esq, Lado } from '../esqueleto';
 import type { Quadro } from '../movimento';
 import type { Corpo } from '../tabelas';
+import { obj } from '../tabelas';
 import { angulo, dist, dot, sub } from '../vec';
 import type { V3 } from '../vec';
+import { apoioNoAssento, assento } from '../exercicios/quadril-sentado-na-cadeira';
 
 const piso = (q: Quadro) => q.marcas.piso?.[1] ?? 0;
 
@@ -143,5 +145,33 @@ export const regrasDoQuadril: Record<string, Regra> = {
     const pts = q.map((x) => x.esq.torax.o);
     const anda = Math.max(...pts.map((p) => dist(p, pts[0]!)));
     return { medido: `a base do pescoço anda no máximo ${f1(anda)} cm no ciclo`, ok: anda <= 1 };
+  },
+  // ----- sentado na cadeira (mini band e extensão de joelho) -----
+  'quadril-sentado-reto-na-cadeira': (q) => {
+    const A = assento();
+    const [a0, a1] = faixa([q[0]!, q[q.length - 1]!].map((x) => apoioNoAssento(x.esq)));
+    const borda = A.zBorda - q[0]!.esq.pelve.o[2];
+    const inclina = Math.max(...q.map((x) => angulo(x.esq.torax.y, [0, 1, 0])));
+    const anda = Math.max(...q.map((x) => dist(x.esq.torax.o, q[0]!.esq.torax.o)));
+    const maos = Math.max(...q.flatMap((x) => (['R', 'L'] as const).map((k) => Math.abs(x.esq.lado[k].pegada[1] - (A.altura - A.esp / 2)) + Math.abs(Math.abs(x.esq.lado[k].pegada[0]) - A.larg / 2))));
+    return {
+      medido: `o glúteo e a coxa ficam de ${f1(a0)} a ${f1(a1)} cm do tampo do assento; o centro do quadril a ${f1(borda)} cm da borda da frente; o peito inclina no máximo ${f1(inclina)}° da vertical e a base do pescoço anda ${f1(anda)} cm; as mãos ficam a no máximo ${f1(maos)} cm da borda do lado do assento`,
+      ok: a0 >= -1.5 && a1 <= 0.5 && inclina <= 12 && anda <= 1 && maos <= 1,
+    };
+  },
+  'quadril-faixa-acima-dos-joelhos': (q) => {
+    const x = q[0]!;
+    const acima = Math.min(...(['R', 'L'] as const).map((k) => dist(x.marcas[`faixa${k}`]!, x.esq.lado[k].joelho)));
+    const fio = x.fios.find((y) => y.id === 'elastico')!;
+    const estica = fio.comp / obj('miniBand', 'comp');
+    return { medido: `o meio da faixa fica ${f1(acima)} cm acima do centro do joelho (a borda de baixo a ${f1(acima - obj('miniBand', 'larg') / 2)} cm); no início, ela já está esticada ${f1(estica)} vezes`, ok: acima >= 5 && acima <= 12 && estica >= 1.05 };
+  },
+  'quadril-joelhos-abrem': (q) => {
+    const ini = q[0]!.esq,
+      fim = q[q.length - 1]!.esq;
+    const largura = (e: Esq) => dist(e.lado.R.joelho, e.lado.L.joelho);
+    const quadris = dist(ini.lado.R.quadril, ini.lado.L.quadril);
+    const [a, b] = faixa(q.map((x) => angulosDoLado(x.esq, 'R').abducaoDoQuadril));
+    return { medido: `os joelhos vão de ${f1(largura(ini))} cm a ${f1(largura(fim))} cm um do outro (os quadris a ${f1(quadris)} cm); a coxa abre de ${f1(a)}° a ${f1(b)}°`, ok: b - a >= 20 && Math.abs(largura(ini) - quadris) <= 6 };
   },
 };
