@@ -65,3 +65,4 @@ export { tricepsElasticoAcima } from './triceps-elastico-acima';
 export { roscaElastico } from './rosca-elastico';
 export { remadaElastico } from './remada-elastico';
 export { puxadaElastico } from './puxada-elastico';
+export { remadaBaixa } from './remada-baixa';

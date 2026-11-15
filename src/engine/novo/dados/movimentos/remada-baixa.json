@@ -1,0 +1,70 @@
+{
+ "id": "remada-baixa",
+ "nome": "Remada baixa com triângulo",
+ "fichaDaTecnica": "docs/pesquisa/animacoes/remada-baixa.md",
+ "fontes": {
+  "ficha": "Ficha da técnica (docs/pesquisa/animacoes/remada-baixa.md): sentado na ponta do banco, pés firmes no chão, joelhos dobrados; pegada neutra no triângulo; coluna neutra, peito alto; alongado com os braços estendidos e o tronco até ~10–15° à frente, escápulas abertas; na puxada o tronco volta à vertical, as escápulas se juntam e os cotovelos vão para trás, rentes ao corpo; no fim o triângulo no abdômen e os cotovelos atrás do tronco; consenso de treinadores (guia original; nsca2021, não verificado)",
+  "app": "Cartão do app (src/conteudo/exercicios/remada-baixa.json): polia na altura do umbigo com a pessoa sentada (o cabo quase horizontal), banco plano de frente para a torre, a pilha levantada com os braços estendidos, ~1 s puxando, 1 s parado, ~2 s voltando, as dicas e os erros; 'inclinar o tronco entre 0° e ~15° no alongamento é questão de preferência; o essencial é o tronco não virar o motor do movimento'",
+  "hoje": "Animação de hoje (src/engine/exercicios/remada-baixa.ts): a coluna a 66 cm do chão e a 118 cm do quadril, as mãos a ~14 cm acima do quadril no fim, os pés à frente, as escápulas (pro +6 no alongado, −6 no fim) e os erros (tronco de 34° à frente a 18° para trás; torácica e pescoço curvados; ombro que sobe 7)",
+  "objetos": "src/engine/novo/dados/objetos.json (coluna de polia, banco reto) e src/engine/novo/dados/objetos/triangulo-remada.json (o triângulo)",
+  "desenho": "Escolha de desenho desta animação, dentro do que a ficha pede; a conferência mede o resultado"
+ },
+ "param": {
+  "tronco.inicio": { "v": 12, "un": "graus", "selo": "consenso", "fonte": "ficha", "o": "alongado: o peito ~12° à frente da vertical (a ficha: até ~10–15°), com a coluna neutra" },
+  "tronco.fim": { "v": 0, "un": "graus", "selo": "consenso", "fonte": "ficha", "o": "fim: o tronco volta à vertical (e não passa dela)" },
+  "cervical": { "v": -2, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "pescoço na linha do tronco, o olhar à frente (peito alto)" },
+  "cabeca": { "v": -2, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "cabeça na linha do pescoço" },
+  "banco.amassa": { "v": 1, "un": "cm", "selo": "desenho", "fonte": "desenho", "o": "o glúteo amassa o estofado 1 cm" },
+  "banco.atrasDaPonta": { "v": 12, "un": "cm", "selo": "desenho", "fonte": "desenho", "o": "sentado na ponta do banco: o centro do quadril 12 cm atrás da ponta do estofado" },
+  "pes.meiaDistancia": { "v": 22, "un": "cm", "selo": "desenho", "fonte": "desenho", "o": "um pé de cada lado do banco: a bola do pé a 22 cm do meio" },
+  "joelho": { "v": 80, "un": "graus", "selo": "desenho", "fonte": "hoje", "o": "joelhos dobrados, os pés à frente dos joelhos (hoje: os pés à frente); o pé vai para a frente até o joelho dobrar esse tanto" },
+  "maos.acimaDoQuadril": { "v": 19, "un": "cm", "selo": "desenho", "fonte": "hoje", "o": "o centro das mãos (e o cabo) a 19 cm acima do centro do quadril: o triângulo na parte de cima do abdômen, com a pegada de baixo livre das coxas (hoje: ~14 cm)" },
+  "maos.folgaNoFim": { "v": 1, "un": "cm", "selo": "consenso", "fonte": "ficha", "o": "fim: 'triângulo no abdômen': as mãos a 1 cm da pele da barriga" },
+  "cotovelo.inicio": { "v": 8, "un": "graus", "selo": "consenso", "fonte": "ficha", "o": "alongado: braços estendidos (o cotovelo dobra só 8°, sem travar)" },
+  "cabo.livreNoComeco": { "v": 45, "un": "cm", "selo": "desenho", "fonte": "hoje", "o": "no alongado, da ponta do triângulo à roldana (hoje: ~45 cm); daí sai a distância da coluna" },
+  "cotovelo.paraFora": { "v": 0.6, "un": "fração", "selo": "desenho", "fonte": "desenho", "o": "para onde o cotovelo aponta, no tronco: tanto para fora quanto 0,75 para trás (o antebraço passa ao lado da cintura)" },
+  "cotovelo.paraFora.inicio": { "v": 0.2, "un": "fração", "selo": "desenho", "fonte": "desenho", "o": "alongado: o cotovelo aponta para baixo e um pouco para fora (0,2 para fora para 1 para baixo), com o polegar para cima" },
+  "escapula.prot.inicio": { "v": 8, "un": "graus", "selo": "consenso", "fonte": "ficha", "o": "alongado: escápulas abertas (a clavícula 8° à frente; hoje: +6)" },
+  "escapula.retr.fim": { "v": 15, "un": "graus", "selo": "consenso", "fonte": "ficha", "o": "fim: as escápulas se juntam (a clavícula 10° para trás; hoje: −6, aqui −10 porque o ritmo do ombro devolve parte do recuo)" },
+  "escapula.elev.inicio": { "v": 0, "un": "graus", "selo": "desenho", "fonte": "hoje", "o": "alongado: o ombro no lugar (hoje: 0)" },
+  "escapula.elev.fim": { "v": -2, "un": "graus", "selo": "desenho", "fonte": "hoje", "o": "fim: ombro baixo, longe da orelha (hoje: −1)" },
+  "erro.balanco.inicio": { "v": 30, "un": "graus", "selo": "desenho", "fonte": "hoje", "o": "erro: no alongado o tronco vai 30° à frente (hoje: 34°)" },
+  "erro.balanco.fim": { "v": -16, "un": "graus", "selo": "desenho", "fonte": "hoje", "o": "erro: no fim o tronco vai 16° para trás da vertical (hoje: 18°)" },
+  "erro.arred.lombar": { "v": 14, "un": "graus", "selo": "desenho", "fonte": "hoje", "o": "erro: no alongado a lombar curva 14° além da curva de repouso" },
+  "erro.arred.toracica": { "v": 24, "un": "graus", "selo": "desenho", "fonte": "hoje", "o": "erro: no alongado a parte de cima das costas curva 24° (hoje: torácica de 14 para 44)" },
+  "erro.arred.cervical": { "v": 10, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "erro: o pescoço estende para o olhar não ir ao chão" },
+  "erro.encolher.elev": { "v": 14, "un": "graus", "selo": "desenho", "fonte": "hoje", "o": "erro: no fim os ombros sobem 14° (a clavícula), em direção às orelhas" }
+ },
+ "fases": [
+  { "nome": "Alongado", "tipo": "pausa", "dur": 0.45, "de": 0, "ate": 0, "respira": "INSPIRA", "tempo": "pausa curta", "selo": "consenso", "fonte": "app" },
+  { "nome": "Puxada · concêntrica", "tipo": "conc", "dur": 1.1, "de": 0, "ate": 1, "respira": "EXPIRA", "tempo": "~1 s", "selo": "consenso", "fonte": "app" },
+  { "nome": "Segura contraído", "tipo": "pausa", "dur": 1, "de": 1, "ate": 1, "respira": "FIRME", "tempo": "1 s", "selo": "consenso", "fonte": "app" },
+  { "nome": "Volta · excêntrica", "tipo": "exc", "dur": 2.1, "de": 1, "ate": 0, "respira": "INSPIRA", "tempo": "~2 s", "selo": "consenso", "fonte": "app" }
+ ],
+ "contatos": ["pelve", "pe.R", "pe.L"],
+ "regras": [
+  { "id": "polia-puxar-sentado-na-ponta-do-banco", "pede": "sentado na ponta do banco, pés firmes no chão, joelhos dobrados", "selo": "consenso", "fonte": "ficha" },
+  { "id": "polia-puxar-tronco-volta-a-vertical", "pede": "o tronco sai de ~10–15° à frente e volta à vertical, sem passar dela", "selo": "consenso", "fonte": "ficha" },
+  { "id": "lombar-neutra", "pede": "coluna neutra, sem arredondar a lombar", "selo": "consenso", "fonte": "ficha" },
+  { "id": "braco-estendido-no-comeco", "pede": "alongado: braços estendidos", "selo": "consenso", "fonte": "ficha" },
+  { "id": "polia-puxar-triangulo-no-abdomen", "pede": "fim: triângulo encostando no abdômen", "selo": "consenso", "fonte": "ficha" },
+  { "id": "polia-puxar-cotovelos-atras-do-tronco", "pede": "fim: cotovelos atrás do tronco", "selo": "consenso", "fonte": "ficha" },
+  { "id": "cotovelo-rente-na-remada", "pede": "cotovelos para trás, rentes ao corpo", "selo": "consenso", "fonte": "ficha" },
+  { "id": "escapulas-se-juntam", "pede": "no fim as escápulas se juntam", "selo": "consenso", "fonte": "ficha" },
+  { "id": "palmas-uma-para-a-outra", "pede": "pegada neutra no triângulo (palmas uma para a outra)", "selo": "consenso", "fonte": "ficha" },
+  { "id": "polia-puxar-cabo-quase-horizontal", "pede": "polia na altura do umbigo: o cabo quase horizontal", "selo": "consenso", "fonte": "app" },
+  { "id": "polia-puxar-puxador-e-cabo-livres", "pede": "o cabo e o triângulo não atravessam o corpo, as pernas nem o banco", "selo": "desenho", "fonte": "desenho" },
+  { "id": "polia-puxar-antebraco-fora-do-tronco", "pede": "o antebraço passa ao lado da cintura sem entrar nela", "selo": "desenho", "fonte": "desenho" }
+ ],
+ "erros": [
+  { "id": "balanco", "instante": 1, "titulo": "Balançar o tronco", "vista": "quina", "oQueMuda": "o tronco vai 30° à frente no alongado e 16° para trás no fim: a lombar vira o motor", "destaca": ["corpo"], "linha": ["pelve", "c7"], "foco": "c7" },
+  { "id": "arred", "instante": 0, "titulo": "Arredondar a coluna no alongamento", "vista": "quina", "oQueMuda": "no alongado a lombar e a parte de cima das costas curvam para ir mais longe", "destaca": ["corpo"], "linha": ["pelve", "lombar", "c7", "cabeca"], "foco": "c7" },
+  { "id": "encolher", "instante": 1, "titulo": "Encolher os ombros no fim", "vista": "posterior", "oQueMuda": "no fim os ombros sobem em direção às orelhas", "destaca": ["bracos"], "linha": ["acromioclavicular:R", "c7", "acromioclavicular:L"], "foco": "acromioclavicular:R" }
+ ],
+ "simetrico": true,
+ "rotulos": [
+  { "vista": "quina", "texto": "peito alto", "ponto": "c7", "selo": "consenso", "fonte": "app", "prumo": { "de": "pelve", "alt": 66 } },
+  { "vista": "posterior", "texto": "cotovelos rentes, para trás", "ponto": "cotovelo", "selo": "consenso", "fonte": "app" },
+  { "vista": "posterior", "texto": "junta as escápulas no fim", "ponto": "c7", "selo": "consenso", "fonte": "app" }
+ ]
+}

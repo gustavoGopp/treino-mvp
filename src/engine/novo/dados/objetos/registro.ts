@@ -14,3 +14,4 @@ export { default as step } from './step.json';
 export { default as escada } from './escada.json';
 export { default as halterLeve } from './halter-leve.json';
 export { default as elasticoLongo } from './elastico-longo.json';
+export { default as trianguloRemada } from './triangulo-remada.json';
