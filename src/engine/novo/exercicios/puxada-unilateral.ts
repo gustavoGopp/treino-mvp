@@ -38,7 +38,7 @@ function montar(corpo: Corpo, u: number, erro?: string): { e: Esq; elo: V3; said
   const T = tr.torax;
   const pernas = { R: perna('R'), L: perna('L') };
   // o outro braço: a mão apoiada na coxa
-  const apoio: PoseBraco = { pegada: add(pelve, [hq + 3, -m('coxa.comp') * 0.3, corpo.secoes.coxa![2]!.f + 2]), polo: [0.6, 0, -1], mao: { polegar: [-1, 0, 0.3], forma: 'relaxada' } };
+  const apoio: PoseBraco = { pegada: add(pelve, [hq + 3, -m('coxa.comp') * 0.3, corpo.secoes.coxa![2]!.f + 2]), polo: [0.15, 0, -1], mao: { polegar: [-1, 0, 0.3], forma: 'relaxada' } };
   const elevErro = erro === 'encolher' ? f('erro.encolher') : f('ombro.desce');
   const elev = mix(f('ombro.sobe'), elevErro, u);
   const fim = dirRef(T, norm([-Math.sin(f('braco.fim.fora') * rad), -1, -Math.sin(f('braco.fim.atras') * rad)]));

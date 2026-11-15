@@ -380,7 +380,7 @@ export type Prim =
   | { t: 'fio'; pts: V3[]; larg: number; cls: string; vies?: number }
   | { t: 'chao'; y: number; x0: number; x1: number; z0: number; z1: number; cls: string };
 
-function casco(P: P2[]): P2[] {
+export function casco(P: P2[]): P2[] {
   const p = [...P].sort((a, b) => a[0] - b[0] || a[1] - b[1]);
   if (p.length < 3) return p;
   const cr = (o: P2, a: P2, b: P2) => (a[0] - o[0]) * (b[1] - o[1]) - (a[1] - o[1]) * (b[0] - o[0]);

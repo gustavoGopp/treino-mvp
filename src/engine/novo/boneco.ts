@@ -5,7 +5,7 @@
 // Os grupos musculares, o cabelo e as linhas dos dedos são desenhos presos à superfície de cada parte.
 import dados from './dados/boneco.json';
 import type { Anel, Volume } from './corpo3d';
-import { Caminho, contorno } from './desenho';
+import { Caminho, casco, contorno } from './desenho';
 import type { Camera, Item, P2 } from './desenho';
 import { LADOS, naColuna, resolverTronco, sinal } from './esqueleto';
 import type { Esq, Lado } from './esqueleto';
@@ -120,6 +120,21 @@ interface Secao {
   des: number;
   f: number;
   b: number;
+  /** Quanto o centro da seção fica à frente do eixo da parte (só o tronco, perto da cintura; ver `secaoPertoDaCintura`). */
+  dz?: number;
+}
+/**
+ * A seção do tronco perto da cintura. No alto, a seção tem o ponto mais largo na linha da coluna (costas chatas, como
+ * nas pranchas de frente e de lado). A da bacia é uma elipse, com o ponto mais largo no meio. De três quartos, a troca
+ * de uma para a outra fazia um degrau na lateral da cintura. Do meio da lombar para baixo (t de 0,7 a 1), a seção do
+ * tronco passa aos poucos de uma forma à outra. A frente, as costas e a largura não mudam: de frente e de lado, o
+ * contorno é o mesmo.
+ */
+function secaoPertoDaCintura(t: number, f: number, b: number): { dz: number; f: number; b: number } {
+  const x = Math.max(0, Math.min(1, (t - 0.7) / 0.3)),
+    k = x * x * (3 - 2 * x);
+  const dz = (k * (f - b)) / 2;
+  return { dz, f: f - dz, b: b + dz };
 }
 interface Superficie {
   em(t: number): Secao;
@@ -145,6 +160,7 @@ function volumeDe(sup: Superficie, ts: number[], _comp: number, redonda0 = true,
   return { aneis };
 }
 const sub3 = (a: V3, b: V3): V3 => [a[0] - b[0], a[1] - b[1], a[2] - b[2]];
+const mix3 = (a: V3, b: V3, t: number): V3 => [a[0] + (b[0] - a[0]) * t, a[1] + (b[1] - a[1]) * t, a[2] + (b[2] - a[2]) * t];
 const norm3 = (a: V3): V3 => {
   const l = Math.hypot(a[0], a[1], a[2]) || 1;
   return [a[0] / l, a[1] / l, a[2] / l];
@@ -209,7 +225,8 @@ function emPe(c: Corpo) {
     const alt = (t: number) => {
       const s = naColuna(t0, sC7 * (1 - t));
       const a = meiaLargura('TRONCO_F', s.o[1]) || 1;
-      const w = (tras ? -noPerfil(PERFIS.TRONCO_L!, t, 2) : noPerfil(PERFIS.TRONCO_L!, t, 1)) * Math.sqrt(Math.max(0, 1 - Math.min(1, (x / a) ** 2)));
+      const S = secaoPertoDaCintura(t, noPerfil(PERFIS.TRONCO_L!, t, 1), noPerfil(PERFIS.TRONCO_L!, t, 2));
+      const w = S.dz + (tras ? -S.b : S.f) * Math.sqrt(Math.max(0, 1 - Math.min(1, (x / a) ** 2)));
       return s.o[1] + w * s.z[1];
     };
     let a = 0,
@@ -258,15 +275,20 @@ export function formaDoBoneco(e: Esq, o: { roupa?: boolean; cabeloAtrasPrimeiro?
   const tronco: Superficie = {
     em(t) {
       const r = atravessada(sC7, 0, t, 0.09);
-      return { o: r.o, fora: r.x, z: r.z, a: meiaLargura('TRONCO_F', P.yDoTronco(t)), des: 0, f: noPerfil(PERFIS.TRONCO_L!, t, 1), b: noPerfil(PERFIS.TRONCO_L!, t, 2) };
+      const S = secaoPertoDaCintura(t, noPerfil(PERFIS.TRONCO_L!, t, 1), noPerfil(PERFIS.TRONCO_L!, t, 2));
+      return { o: add(r.o, mul(r.z, S.dz)), fora: r.x, z: r.z, a: meiaLargura('TRONCO_F', P.yDoTronco(t)), des: 0, f: S.f, b: S.b, dz: S.dz };
     },
   };
   sup.tronco = tronco;
   // ---------- bacia: ao longo da vertical da pelve; t = altura em cm acima do centro do quadril ----------
+  // No alto, a bacia das pranchas é mais estreita que o tronco na mesma altura (de frente, o tronco é desenhado por
+  // cima dela até 96 cm). Como aqui o tronco acaba na cintura, o alto da bacia assume a largura do tronco: sem isso
+  // sobrava um degrau de 1 cm de cada lado da cintura.
+  const larguraDaBacia = (y: number) => Math.max(meiaLargura('PELVE_F', P.yQuadril + y), P.yQuadril + y >= 96.5 ? meiaLargura('TRONCO_F', P.yQuadril + y) : 0);
   const pelve: Superficie = {
     em(y) {
       const k = corte(forma('PELVE_L'), 1, Math.max(-9.7, Math.min(12.8, y))) ?? [-6, 12];
-      return { o: noRef(e.pelve, [0, y, (k[0] + k[1]) / 2]), fora: e.pelve.x, z: e.pelve.z, a: meiaLargura('PELVE_F', P.yQuadril + y), des: 0, f: (k[1] - k[0]) / 2, b: (k[1] - k[0]) / 2 };
+      return { o: noRef(e.pelve, [0, y, (k[0] + k[1]) / 2]), fora: e.pelve.x, z: e.pelve.z, a: larguraDaBacia(y), des: 0, f: (k[1] - k[0]) / 2, b: (k[1] - k[0]) / 2 };
     },
   };
   sup.pelve = pelve;
@@ -291,6 +313,11 @@ export function formaDoBoneco(e: Esq, o: { roupa?: boolean; cabeloAtrasPrimeiro?
   const corpoVols: FormaDoBoneco['grupos'][number]['volumes'] = [
     { vol: volumeDe(pescoco, [0, 0.25, 0.5, 0.75, 1], 0, false, false), mat: 'pele', nome: 'pescoco' },
     { vol: volumeDe(tronco, passos(12), 0, false, false), mat: 'pele', nome: 'tronco' },
+    // A emenda da cintura: liga o fim do tronco ao alto da bacia. As duas peças só se encostavam (em pé, a ponta de
+    // trás do tronco e o alto da bacia ficam na mesma altura, sem sobra); com o tronco inclinado para trás abria uma
+    // fresta, e de três quartos ela aparecia como uma linha escura atravessando a cintura, com um degrau de cada lado.
+    // Os dois anéis do meio são 3,5% maiores (meio centímetro): cobrem os dentinhos que as pontas das duas peças faziam.
+    { vol: { aneis: [anelDe(tronco.em(0.88)), anelDe(tronco.em(0.96), 1.035), anelDe(pelve.em(10.5), 1.035), anelDe(pelve.em(7.5))] }, mat: 'pele', nome: 'emendaDaCintura' },
     { vol: { aneis: [12.7, 11.5, 9.5, 7, 4.5, 2, -0.5, -3, -5.2, -7, -8.4, -9.3, -9.7].map((y) => anelDe(pelve.em(y))) }, mat: o.roupa ? 'short' : 'pele', nome: 'pelve' },
     { vol: { aneis: [13.05, 12.8, 12.2, 11.2, 9.8, 8, 6, 4, 2, 0, -2, -4, -5.8, -7.4, -8.6, -9.5, -9.95].map((y) => anelDe(cabeca.em(y))) }, mat: 'pele', nome: 'cabeca' },
   ];
@@ -483,7 +510,8 @@ type Face = 'fora' | 'frente' | 'tras';
 function naSuperficie(sup: Superficie, comp: (t: number) => number, face: Face, pt: PontoMus, ladoVisivel = 1): V3 {
   const s = sup.em(comp(pt[0]));
   let d: number;
-  if (typeof pt[1] === 'number') d = pt[1];
+  // o número do desenho é contado a partir do eixo da parte; a seção pode ter o centro à frente dele
+  if (typeof pt[1] === 'number') d = face === 'fora' ? pt[1] - (s.dz ?? 0) : pt[1];
   else {
     const lado = pt[1][0]!,
       folga = parseFloat(pt[1].slice(1));
@@ -720,8 +748,44 @@ export function desenharBoneco(e: Esq, cam: Camera, o: OpcoesDoBoneco): Item[] {
   };
   const corpo = G.find((x) => x.g.id === 'corpo')!;
   const vies = (id: string) => o.vies?.[id] ?? 0;
+  // O braço de longe some quando o eixo inteiro dele (do meio do braço à mão) fica atrás do corpo e das pernas: o que
+  // sobraria dele é uma tira fina ao longo do tronco, que de três quartos parecia um segundo contorno do corpo.
+  const escondido = (x: Gr): boolean => {
+    if (!x.g.id.startsWith('braco') || !x.g.lado) return false;
+    const L = e.lado[x.g.lado];
+    const eixo: V3[] = [mix3(L.ombro, L.cotovelo, 0.5), L.cotovelo, mix3(L.cotovelo, L.punho, 0.5), L.punho, L.pegada];
+    const pts = eixo.map((q) => naTela(cam, q));
+    // a silhueta de cada peça do corpo e das pernas: a união dos cascos de cada par de anéis vizinhos, com 2,5 cm de
+    // folga (o eixo a menos disso da borda ainda deixa de fora só uma tira)
+    const FOLGA = 2.5;
+    const cascos: P2[][] = [];
+    for (const y of G) {
+      if (y !== corpo && !y.g.id.startsWith('perna')) continue;
+      for (const v of y.g.volumes) {
+        const an = v.vol.aneis.map((a) => Array.from({ length: 12 }, (_, i): P2 => {
+          const th = (i * Math.PI) / 6,
+            sn = Math.sin(th);
+          return naTela(cam, comb([1, a.c], [(a.a + FOLGA) * Math.cos(th), a.x], [((sn >= 0 ? a.f : a.b) + FOLGA) * sn, a.z]));
+        }));
+        for (let i = 0; i + 1 < an.length; i++) cascos.push(casco([...an[i]!, ...an[i + 1]!]));
+      }
+    }
+    const dentro = (q: P2, H: P2[]) => {
+      let sinalDoGiro = 0;
+      for (let i = 0; i < H.length; i++) {
+        const a = H[i]!,
+          b = H[(i + 1) % H.length]!;
+        const c = (b[0] - a[0]) * (q[1] - a[1]) - (b[1] - a[1]) * (q[0] - a[0]);
+        if (Math.abs(c) < 1e-9) continue;
+        if (sinalDoGiro && Math.sign(c) !== sinalDoGiro) return false;
+        sinalDoGiro = Math.sign(c);
+      }
+      return H.length >= 3;
+    };
+    return pts.every((q) => cascos.some((H) => dentro(q, H)));
+  };
   // 1) membros do lado de longe: cada um com o seu contorno, antes de tudo
-  for (const x of G) if (x.longe) itens.push({ d: Math.min(x.d, corpo.d - 5) + vies(x.g.id), camada: 1, s: traco(x) + pintado(x, []) + polegarPorCima(x), cx: x.cx });
+  for (const x of G) if (x.longe && !escondido(x)) itens.push({ d: Math.min(x.d, corpo.d - 5) + vies(x.g.id), camada: 1, s: traco(x) + pintado(x, []) + polegarPorCima(x), cx: x.cx });
   // 2) o corpo e as pernas de perto, num contorno só
   const pernas = G.filter((x) => x.g.id.startsWith('perna') && !x.longe);
   const atras = pernas.filter((x) => x.d < corpo.d - 1.5),
@@ -739,7 +803,12 @@ export function desenharBoneco(e: Esq, cam: Camera, o: OpcoesDoBoneco): Item[] {
     const cc = (x.cs.find((v) => v.nome === 'coxa') ?? x.cs[0]!).c.cx;
     const largura = Math.min(cc[2], tc[2]) - Math.max(cc[0], tc[0]),
       altura = Math.min(cc[3], tc[3]) - Math.max(cc[1], tc[1]);
-    if (suf !== '-f' && largura > 2 && altura > 5) {
+    // ...e só quando a coxa está mesmo levantada para a frente (quadril dobrado). Em pé ou ajoelhado, visto de três
+    // quartos, a caixa da coxa também cobre a do tronco, e o alto da coxa virava uma linha escura atravessando a cintura.
+    const Lx = e.lado[x.g.lado!],
+      dirCoxa = norm3(sub3(Lx.joelho, Lx.quadril));
+    const quadrilDobrado = Math.atan2(dot(dirCoxa, e.pelve.z), -dot(dirCoxa, e.pelve.y)) > (20 * Math.PI) / 180;
+    if (suf !== '-f' && largura > 2 && altura > 5 && quadrilDobrado) {
       if (!idRecorte) {
         idRecorte = `bt${hash(troncoD)}`;
         s += `<clipPath id="${idRecorte}"><path d="${troncoD}"/></clipPath>`;
