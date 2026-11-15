@@ -63,8 +63,13 @@ export function criarFlexao(fichaJson: unknown, op: OpcoesDaFlexao = {}): Flexao
   /** O erro dos cotovelos abertos: `cot` na maioria das fichas, `cotovelos` na dos pés elevados. */
   const ehCot = (erro?: string) => erro === 'cot' || erro === 'cotovelos';
 
+  /**
+   * A extensão do pescoço (graus): a da flexão (4°), ou a da ficha; com `pescoco.extensaoEmbaixo`, ela cresce do começo
+   * (u = 0) até embaixo (u = 1): o olhar vai para o chão à frente das mãos só quando o corpo desce.
+   */
+  const pescoco = (u: number) => (!tem('pescoco.extensao') ? 4 : tem('pescoco.extensaoEmbaixo') ? mix(f('pescoco.extensao'), f('pescoco.extensaoEmbaixo'), u) : f('pescoco.extensao'));
   /** O corpo em prancha, inclinado `beta` graus acima da horizontal, com as mãos em (±xMao, zMao). */
-  function prancha(corpo: Corpo, beta: number, zMao: number, o: { cot?: number; quadril?: number; retr?: number } = {}): Esq {
+  function prancha(corpo: Corpo, beta: number, zMao: number, o: { cot?: number; quadril?: number; retr?: number; u?: number } = {}): Esq {
     const m = (id: string) => corpo.m(id);
     const w = f('pes.meiaDistancia');
     // pé: os dedos no apoio, o resto do pé levantado; o tornozelo fica perto do neutro
@@ -79,7 +84,7 @@ export function criarFlexao(fichaJson: unknown, op: OpcoesDaFlexao = {}): Flexao
     const queda = o.quadril ?? 0;
     const pelve: V3 = [0, torn[1] + d * Math.sin((beta - queda * 0.5) * rad), torn[2] + d * Math.cos((beta - queda * 0.5) * rad)];
     // o pescoço e a cabeça: um pouco estendidos (a flexão); a ficha pode estender mais (pés elevados: a cabeça livre do chão)
-    const t = resolverTronco(corpo, { pelve, frente: 90 - beta + queda * 0.4, lombar: -queda, cervical: tem('pescoco.extensao') ? -f('pescoco.extensao') : -4, cabeca: tem('cabeca.extensao') ? -f('cabeca.extensao') : -6 });
+    const t = resolverTronco(corpo, { pelve, frente: 90 - beta + queda * 0.4, lombar: -queda, cervical: -pescoco(o.u ?? 0), cabeca: tem('cabeca.extensao') ? -f('cabeca.extensao') : -6 });
     const xMao = m('ombro.meiaDistancia') + f('maos.alemDoOmbro');
     const a = (o.cot ?? f('cotovelos.doTronco')) * rad;
     const braco = (k: Lado): PoseBraco => {
@@ -98,7 +103,7 @@ export function criarFlexao(fichaJson: unknown, op: OpcoesDaFlexao = {}): Flexao
     const zOmbro = (beta: number) => prancha(corpo, beta, 100).lado.L.ombro[2];
     // com a cabeça abaixo dos pés, ela pode chegar ao chão antes do peito: a descida para no que vier primeiro
     const folga = (e: Esq) => (tem('cabeca.aoChao') ? Math.min(peitoAoChao(e) - f('peito.aoChao'), cabecaAoChao(e) - f('cabeca.aoChao')) : peitoAoChao(e) - f('peito.aoChao'));
-    const baixo = resolver1((b) => folga(prancha(corpo, b, 100)), b0, b1, 18);
+    const baixo = resolver1((b) => folga(prancha(corpo, b, 100, { u: 1 })), b0, b1, 18);
     const zMao = zOmbro(baixo) - f('maos.abaixoDoOmbro');
     // 2) em cima: o cotovelo quase estendido define o ângulo
     const cima = resolver1((b) => f('cotovelo.cima') - prancha(corpo, b, zMao).lado.L.ang.cotovelo, baixo, 45);
@@ -113,7 +118,7 @@ export function criarFlexao(fichaJson: unknown, op: OpcoesDaFlexao = {}): Flexao
     const c = calibrar(corpo);
     const fundo = erro === 'curta' ? f('erro.curta.fracao') : 1;
     const beta = mix(c.cima, c.baixo, u * fundo);
-    const o = { cot: ehCot(erro) ? mix(f('cotovelos.doTronco'), f('erro.cot.doTronco'), Math.min(1, u * 1.6)) : undefined, quadril: erro === 'quadril' ? f('erro.quadril.queda') * (0.55 + 0.45 * u) : 0, retr: f('escapula.retracaoEmbaixo') * u };
+    const o = { cot: ehCot(erro) ? mix(f('cotovelos.doTronco'), f('erro.cot.doTronco'), Math.min(1, u * 1.6)) : undefined, quadril: erro === 'quadril' ? f('erro.quadril.queda') * (0.55 + 0.45 * u) : 0, retr: f('escapula.retracaoEmbaixo') * u, u };
     let e = prancha(corpo, beta, c.zMao, o);
     // com o quadril caído, a barriga chega ao chão antes do peito: a descida para onde o corpo encosta (1 cm de folga)
     if (erro === 'quadril' && maisBaixoDoTronco(e) < 1) e = prancha(corpo, resolver1((b) => maisBaixoDoTronco(prancha(corpo, b, c.zMao, o)) - 1, beta, 45, 20), c.zMao, o);

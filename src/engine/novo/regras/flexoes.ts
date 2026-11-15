@@ -47,7 +47,7 @@ export const regrasDasFlexoes: Record<string, Regra> = {
     const esq = q[q.length - 1]!.esq;
     let min = 1e9;
     for (const { p, parte } of pontosDoBoneco(esq)) if (parte === 'cabeca') min = Math.min(min, p[1]);
-    return { medido: `embaixo, o ponto mais baixo da cabeça fica a ${f1(min)} cm do chão`, ok: min >= 1 };
+    return { medido: `embaixo, o ponto mais baixo da cabeça fica a ${f1(min)} cm do chão`, ok: min >= 5 };
   },
   // elástico nas costas: o meio dele passa na altura das escápulas, abaixo do pescoço
   'elastico-nas-escapulas': (q) => {

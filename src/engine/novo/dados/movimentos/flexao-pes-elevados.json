@@ -112,21 +112,28 @@
    "un": "graus",
    "selo": "desenho",
    "fonte": "desenho",
-   "o": "o pescoço um pouco estendido (o olhar vai para o chão um pouco à frente das mãos): com a cabeça abaixo dos pés, a cabeça em linha bateria no chão antes do peito"
+   "o": "em cima, o pescoço um pouco estendido (o olhar vai para o chão um pouco à frente das mãos)"
   },
   "cabeca.extensao": {
-   "v": 12,
+   "v": -10,
    "un": "graus",
    "selo": "desenho",
    "fonte": "desenho",
-   "o": "a cabeça um pouco estendida sobre o pescoço, pelo mesmo motivo"
+   "o": "o queixo um pouco recolhido sobre o pescoço (a cabeça dobra 10°), para o rosto não se jogar para trás"
   },
   "cabeca.aoChao": {
-   "v": 1.5,
+   "v": 5,
    "un": "cm",
    "selo": "desenho",
    "fonte": "desenho",
-   "o": "embaixo, a cabeça fica no mínimo a 1,5 cm do chão: com a cabeça abaixo dos pés, ela chega ao chão antes do peito, e a descida para aí (a animação de hoje para com os ombros a 20 cm, para o queixo não bater no chão)"
+   "o": "embaixo, o rosto fica no mínimo a 5 cm do chão: com a cabeça abaixo dos pés, ela chega ao chão antes do peito, e a descida para aí"
+  },
+  "pescoco.extensaoEmbaixo": {
+   "v": 50,
+   "un": "graus",
+   "selo": "desenho",
+   "fonte": "desenho",
+   "o": "embaixo, o pescoço estende mais, contra o tronco inclinado para baixo, e o olhar vai para o chão à frente das mãos: com a cabeça em linha com o corpo, o rosto bateria no chão antes do peito. Contra o chão, o rosto fica virado só uns 30° para a frente"
   }
  },
  "fases": [
