@@ -38,10 +38,14 @@ export function noPlano(a: number, p: number) {
   return { umero, sobe, frente };
 }
 
-export function criarElevacao(fichaJson: unknown, maos: MaosDaElevacao): { ficha: Ficha; quadro(corpo: Corpo, u: number, erro?: string): Quadro } {
+/**
+ * `opcoes.halter`: o id do halter na tabela de objetos (por omissão, o de 25 lb, `'halter'`; `'halterLeve'` é o de 10 lb).
+ */
+export function criarElevacao(fichaJson: unknown, maos: MaosDaElevacao, opcoes: { halter?: string } = {}): { ficha: Ficha; quadro(corpo: Corpo, u: number, erro?: string): Quadro } {
   const F = fichaSchema.parse(fichaJson);
   const f = daFicha(F);
   const polia = maos === 'polia';
+  const H = opcoes.halter ?? 'halter';
   const LADOS_QUE_SOBEM: Lado[] = polia ? ['R'] : [...LADOS];
   const CACHE = new WeakMap<Corpo, { a0: number; rep: number; alfa: number }>();
 
@@ -53,9 +57,9 @@ export function criarElevacao(fichaJson: unknown, maos: MaosDaElevacao): { ficha
     const L = e.lado[k];
     if (polia) return [{ c: L.pegada, r: f('mao.raio') }];
     const eixo = mul(L.mao.x, sinal(k));
-    const ra = obj('halter', 'cabecaLargura') / 2,
-      c0 = obj('halter', 'caboComp') / 2,
-      c1 = obj('halter', 'comp') / 2;
+    const ra = obj(H, 'cabecaLargura') / 2,
+      c0 = obj(H, 'caboComp') / 2,
+      c1 = obj(H, 'comp') / 2;
     const out: Esfera[] = [];
     for (const s of [-1, 1]) for (const fr of [0.2, 0.5, 0.8]) out.push({ c: add(L.pegada, mul(eixo, s * (c0 + (c1 - c0) * fr))), r: ra });
     return out;
@@ -101,7 +105,7 @@ export function criarElevacao(fichaJson: unknown, maos: MaosDaElevacao): { ficha
           const pg = giro - f('polegar.paraCima') * Math.sin(Math.max(0, o.a) * rad) * rad;
           const polegar = norm(add(mul(esp(n.frente), Math.cos(pg)), mul(esp(n.sobe), -Math.sin(pg))));
           pegadas[k] = add(e.lado[k].ombro, add(mul(umero, corpo.m('braco.comp')), mul(antebraco, corpo.m('antebraco.comp') + corpo.m('mao.punhoAoCentroDaPegada'))));
-          return { umero, antebraco, polo: mul(dobra, -1), mao: { polegar, forma: 'pegada', diam: polia ? obj('estribo', 'pegadaDiam') : obj('halter', 'caboDiam') }, elev: o.elev };
+          return { umero, antebraco, polo: mul(dobra, -1), mao: { polegar, forma: 'pegada', diam: polia ? obj('estribo', 'pegadaDiam') : obj(H, 'caboDiam') }, elev: o.elev };
         };
         if (polia) {
           // a mão de fora segura o estribo; a outra segura o trilho da coluna, parada
@@ -169,8 +173,8 @@ export function criarElevacao(fichaJson: unknown, maos: MaosDaElevacao): { ficha
       for (const k of LADOS) {
         const centro = e.lado[k].pegada,
           eixo = mul(e.lado[k].mao.x, sinal(k));
-        q.prims.push(...halter(centro, eixo, 0.4));
-        pecas.push({ t: 'halter', centro, eixo });
+        q.prims.push(...halter(centro, eixo, 0.4, H));
+        pecas.push(H === 'halter' ? { t: 'halter', centro, eixo } : { t: 'halter', centro, eixo, objeto: H });
       }
       q.pecas = pecas;
       q.marcas = { halter: e.lado.R.pegada };

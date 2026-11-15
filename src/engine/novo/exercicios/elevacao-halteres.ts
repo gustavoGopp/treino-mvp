@@ -5,7 +5,8 @@ import ficha from '../dados/movimentos/elevacao-halteres.json';
 import type { Exercicio } from '../movimento';
 import { criarElevacao } from './elevar-o-braco';
 
-const E = criarElevacao(ficha, 'halteres');
+// o halter sextavado de 10 lb (halteres leves, como a ficha pede): embaixo, ele cabe na frente das coxas
+const E = criarElevacao(ficha, 'halteres', { halter: 'halterLeve' });
 
 export const elevacaoHalteres: Exercicio = {
   ficha: E.ficha,
