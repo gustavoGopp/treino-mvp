@@ -2,7 +2,7 @@
 
 Atualizado por quem integra, a cada família juntada. "Aprovada na folha" = o Gustavo olhou e aprovou. "Aprovada por delegação" = conferida por quem integra, risco baixo, registrada com a frase dele de 15/11/2026. "Para o Gustavo ver" = risco médio ou alto: só entra na lista do app depois do ok dele. As folhas ficam em `prototipos/folha-<id>.png` e os quadros grandes em `quadros/<id>.png`.
 
-Resumo: 7 aprovadas na folha; 1 por delegação; 3 para o Gustavo ver; 4 âncoras sem aprovação na folha; 14 em andamento; 61 por fazer.
+Resumo: 7 aprovadas na folha; 2 por delegação; 4 para o Gustavo ver; 4 âncoras sem aprovação na folha; 16 em andamento; 57 por fazer.
 
 | Lote | Exercício | Estado |
 |---|---|---|
@@ -64,18 +64,18 @@ Resumo: 7 aprovadas na folha; 1 por delegação; 3 para o Gustavo ver; 4 âncora
 | 5 | `triceps-frances-kettlebell` | por fazer |
 | 5 | `triceps-frances-polia-unilateral` | por fazer |
 | 5 | `triceps-suspensao` | em andamento (subagente) |
-| 6 | `flexao-joelho-deslizante` | em andamento (subagente) |
-| 6 | `flexao-joelho-elastico` | em andamento (subagente) |
-| 6 | `flexao-joelho-suspensao` | por fazer |
+| 6 | `flexao-joelho-deslizante` | feita; aprovada por delegação (risco baixo a médio: o erro da lombar se lê pouco) |
+| 6 | `flexao-joelho-elastico` | feita; **para o Gustavo ver** (risco médio a alto: de bruços, com a porta longe e o corpo pequeno no quadro) |
+| 6 | `flexao-joelho-suspensao` | em andamento (subagente) |
 | 6 | `nordico` | por fazer |
 | 6 | `panturrilha` | por fazer |
 | 6 | `panturrilha-b` | por fazer |
 | 6 | `panturrilha-chao` | por fazer |
 | 6 | `panturrilha-degrau` | por fazer |
 | 6 | `panturrilha-sentada-halter` | por fazer |
-| 6 | `ponte-gluteo` | por fazer |
-| 6 | `ponte-gluteo-halter` | por fazer |
-| 6 | `ponte-kettlebell` | por fazer |
+| 6 | `ponte-gluteo` | em andamento (subagente) |
+| 6 | `ponte-gluteo-halter` | em andamento (subagente) |
+| 6 | `ponte-kettlebell` | em andamento (subagente) |
 | 6 | `ponte-pes-bola` | por fazer |
 | 6 | `stiff` | em andamento (subagente) |
 | 6 | `stiff-elastico` | em andamento (subagente) |

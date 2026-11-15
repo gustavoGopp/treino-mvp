@@ -23,7 +23,7 @@ const cssNovo = readFileSync('src/engine/novo/estilo.css', 'utf8') + m.cssDoBone
 const PEDIDOS = process.argv.slice(3);
 const IDS = Object.keys(m.EXERCICIOS);
 const IDS_DAS_FOLHAS = PEDIDOS.length ? IDS.filter((id) => PEDIDOS.includes(id)) : IDS;
-const NOME_VISTA = { lateral: 'de lado', frontal: 'de frente', posterior: 'de trás', cima: 'de cima', quinaTras: 'de três quartos, de trás' };
+const NOME_VISTA = { lateral: 'de lado', frontal: 'de frente', posterior: 'de trás', cima: 'de cima', quina: 'de três quartos', quinaTras: 'de três quartos, de trás' };
 const NOME_MODO = { tec: 'Técnica', mus: 'Músculos', traj: 'Trajetória', err: 'Erros' };
 
 /* ----- o guia de hoje, do motor do app (só leitura) ----- */
@@ -32,8 +32,8 @@ const { outputFiles } = await build({ stdin: { contents: `export * from './src/e
 mkdirSync('node_modules/.tmp', { recursive: true });
 writeFileSync('node_modules/.tmp/motor-de-hoje.mjs', outputFiles[0].text);
 const hoje = await import(new URL('../../node_modules/.tmp/motor-de-hoje.mjs', import.meta.url).href);
-// o guia de hoje não tem a vista de três quartos: a comparação usa a de trás
-const VISTA_HOJE = { lateral: 'lateral', frontal: 'frontal', posterior: 'posterior', cima: 'top', quinaTras: 'posterior' };
+// o guia de hoje não tem as vistas de três quartos: a comparação usa a de frente ou a de trás
+const VISTA_HOJE = { lateral: 'lateral', frontal: 'frontal', posterior: 'posterior', cima: 'top', quina: 'frontal', quinaTras: 'posterior' };
 const exHoje = (id) => hoje.EX.find((e) => e.id === id);
 function svgHoje(id, vista, modo, t, erro) {
   const q = hoje.montarSvgEstilo(exHoje(id), VISTA_HOJE[vista], modo, t, erro, 300, 'a2', false, {});
