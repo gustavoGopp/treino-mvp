@@ -12,8 +12,8 @@ Começado em 15/11/2026, depois de o Gustavo fechar o corpo. São as 10 animaç�
 | `afundo-tras-peso-corpo` | **aprovada pelo Gustavo em 15/11/2026** ("aprovada, segue para o búlgaro"); conferência em [afundo-tras-peso-corpo.md](afundo-tras-peso-corpo.md) | feito: o passo, com o pé de trás passando pelo ar |
 | `afundo-kettlebell` | **aprovada pelo Gustavo em 15/11/2026** ("aprovada"); conferência escrita em [afundo-kettlebell.md](afundo-kettlebell.md). Registrada em `src/engine/novo/aprovados.ts`; falta ligar às telas | feito: o kettlebell com as medidas do fabricante |
 | `bulgaro` | **aprovada pelo Gustavo em 15/11/2026** ("Eu estou aprovando e gostando de tudo que você está fazendo"); conferência em [bulgaro.md](bulgaro.md) | feito: o pé de trás no banco (núcleo dos búlgaros), a coluna como cenário |
-| `bulgaro-peso-corpo` | por fazer | banco como apoio do pé de trás |
-| `bulgaro-suspensao` | por fazer | fita de suspensão |
+| `bulgaro-peso-corpo` | feita por subagente e conferida por quem integra em 15/11/2026; **aprovada por delegação** (risco baixo); conferência em [bulgaro-peso-corpo.md](bulgaro-peso-corpo.md) | feito: a cadeira encostada na parede |
+| `bulgaro-suspensao` | feita por subagente e conferida por quem integra em 15/11/2026; **para o Gustavo ver** (risco médio); conferência em [bulgaro-suspensao.md](bulgaro-suspensao.md) | feito: a fita de suspensão (peça reutilizável) |
 
 Ritual de cada animação (seção 6 do `prompt-continuacao.md`): reler as correções já feitas dela; a ficha de movimento a partir da ficha da técnica; as poses; a conferência automática sem falha; a conferência escrita "o que a fonte pede × o que o boneco faz (medido) × confere?"; a folha ao lado da de hoje. Nada entra no app sem a aprovação do Gustavo na folha.
 
