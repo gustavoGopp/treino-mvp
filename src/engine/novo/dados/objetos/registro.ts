@@ -21,3 +21,5 @@ export { default as sofa } from './sofa.json';
 export { default as barraFixa } from './barra-fixa.json';
 export { default as paralelas } from './paralelas.json';
 export { default as rodaAbdominal } from './roda-abdominal.json';
+export { default as caneleira } from './caneleira.json';
+export { default as miniBand } from './mini-band.json';

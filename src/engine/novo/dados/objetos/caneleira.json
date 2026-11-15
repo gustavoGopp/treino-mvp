@@ -1,0 +1,19 @@
+{
+ "fontes": {
+  "cuff-original-2lb": "Cuff Original Wrist and Ankle Weight, 2 lb; https://www.globalindustrial.com/p/original-wrist-and-ankle-weight-2-lb-white (lida em 15/11/2026 por resumo automático da página: \"Cuff® Original Wrist and Ankle Weight, 2 lb., White\"; \"Length 12 in\"; \"Width 4-1/4 in\"; \"Height 1/2 in\"; \"Weight 2 lbs\")",
+  "desenho-lote7-quadril": "Escolha de desenho do lote 7, quadril e joelho (sem medida de fabricante)"
+ },
+ "objetos": {
+  "caneleira": {
+   "nome": "Caneleira de peso (2 lb, faixa acolchoada com velcro)",
+   "medidas": {
+    "massa": { "v": 0.91, "un": "kg", "tipo": "medida", "fonte": "cuff-original-2lb", "onde": "a caneleira de 2 lb (0,91 kg), uma só" },
+    "comp": { "v": 30.5, "un": "cm", "tipo": "medida", "fonte": "cuff-original-2lb", "onde": "comprimento da faixa aberta (12 pol); fechada, dá a volta no tornozelo e sobra a ponta de velcro" },
+    "larg": { "v": 10.8, "un": "cm", "tipo": "medida", "fonte": "cuff-original-2lb", "onde": "largura da faixa (4 1/4 pol): o quanto ela cobre da canela" },
+    "esp": { "v": 1.27, "un": "cm", "tipo": "medida", "fonte": "cuff-original-2lb", "onde": "espessura da faixa cheia (1/2 pol)" },
+    "acimaDoTornozelo": { "v": 2, "un": "cm", "tipo": "desenho", "fonte": "desenho-lote7-quadril", "onde": "a borda de baixo da faixa fica 2 cm acima do centro do tornozelo (logo acima dos maléolos, onde a ficha manda prender)" },
+    "velcroLarg": { "v": 4, "un": "cm", "tipo": "provisoria", "fonte": "a-conferir", "onde": "largura da tira de velcro que fecha a faixa, na cor de ação (como no cartão de hoje); sem medida lida" }
+   }
+  }
+ }
+}

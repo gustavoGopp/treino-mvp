@@ -1,0 +1,18 @@
+{
+ "fontes": {
+  "synergee-mini": "Synergee Mini Bands; https://www.living.fit/products/synergee-mini-bands (lida em 15/11/2026 por resumo automático da página: \"Synergee Mini Bands: 12\\\"x2\\\", high-grade latex\"; \"Medium 20-35 lb, 0.9 mm\")",
+  "rubberbanditz-12": "RubberBanditz, 12\" Resistance Bands; https://www.rubberbanditz.com/12-in-resistance-bands/ (lida em 15/11/2026 por resumo automático da página: \"Each band is 12\\\" (30 cm) in length\"; \"Each band is can stretch 2.5 times its resting length\"); outro fabricante, a mesma faixa de 12 pol em laço"
+ },
+ "objetos": {
+  "miniBand": {
+   "nome": "Mini band (elástico curto em laço, 12 pol)",
+   "medidas": {
+    "compDeitado": { "v": 30.5, "un": "cm", "tipo": "medida", "fonte": "synergee-mini", "onde": "comprimento do laço deitado (achatado), em repouso: 12 pol" },
+    "comp": { "v": 61, "un": "cm", "tipo": "derivada", "fonte": "synergee-mini", "onde": "a volta inteira do laço em repouso: 2 × 12 pol (o laço deitado tem duas camadas); é contra ela que a conferência mede quanto a faixa estica" },
+    "larg": { "v": 5.08, "un": "cm", "tipo": "medida", "fonte": "synergee-mini", "onde": "largura da faixa (2 pol)" },
+    "esp": { "v": 0.09, "un": "cm", "tipo": "medida", "fonte": "synergee-mini", "onde": "espessura da faixa média (Medium, 0,9 mm)" },
+    "esticaAte": { "v": 2.5, "un": "vezes", "tipo": "medida", "fonte": "rubberbanditz-12", "onde": "a faixa estica até 2,5 vezes o comprimento em repouso (outro fabricante, a mesma faixa de 12 pol; a Synergee não diz)" }
+   }
+  }
+ }
+}

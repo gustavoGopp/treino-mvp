@@ -62,7 +62,15 @@ function apoioDeLado(e: Esq, baixo: Lado) {
   return { bacia, peito, todo, cabeca };
 }
 
+/** A caneleira (marca `caneleira`, o centro da faixa) não sai do lugar na canela direita. */
+export const caneleiraPresa: Regra = (q) => {
+  const d = q.map((x) => dist(x.marcas.caneleira!, x.esq.lado.R.tornozelo));
+  const [a, b] = faixa(d);
+  return { medido: `o centro da caneleira fica de ${f1(a)} a ${f1(b)} cm do centro do tornozelo, ao longo da canela`, ok: b - a <= 0.1 && b <= 10 };
+};
+
 export const regrasDoQuadril: Record<string, Regra> = {
+  'quadril-caneleira-presa-no-tornozelo': caneleiraPresa,
   'quadril-deitado-de-lado-no-chao': (q) => {
     const baixo: Lado = q[0]!.esq.pelve.x[1] < 0 ? 'L' : 'R';
     const ms = [q[0]!, q[q.length - 1]!].map((x) => ({ ...apoioDeLado(x.esq, baixo), y: piso(x) }));

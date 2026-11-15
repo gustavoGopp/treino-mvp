@@ -88,3 +88,4 @@ export { facePullElastico } from './face-pull-elastico';
 export { rodaAbdominal } from './roda-abdominal';
 export { abducaoDeitado } from './abducao-deitado';
 export { aducaoDeitado } from './aducao-deitado';
+export { abducaoCaneleira } from './abducao-caneleira';
