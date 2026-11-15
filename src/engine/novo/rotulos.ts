@@ -10,6 +10,8 @@ export interface PedidoDeRotulo {
   texto: string;
   /** Posição média, no ciclo, do ponto do corpo de que o texto fala. */
   alvo: P2;
+  /** Só acima do corpo (o fio de um texto ao lado cruzaria um braço levantado); o quadro abre até ele caber. */
+  acima?: boolean;
 }
 export interface RotuloPosto {
   linhas: string[];
@@ -66,9 +68,10 @@ export function disporRotulos(pedidos: PedidoDeRotulo[], corpo: Caixa, vb: [numb
     // muito curtas (10 letras) é o último recurso, depois de tentar acima do corpo
     const quebra = (m: number) => quebrar(p.texto, Math.min(m, max));
     const tentativas: [RotuloPosto['lado'], string[]][] = [];
-    for (const l of lados) tentativas.push([l, quebra(max)], [l, quebra(13)]);
-    if (larga || noAlto) tentativas.push(['cima', quebra(max)]);
-    for (const l of lados) tentativas.push([l, quebra(10)]);
+    if (p.acima) tentativas.push(['cima', quebra(max)]);
+    else for (const l of lados) tentativas.push([l, quebra(max)], [l, quebra(13)]);
+    if (!p.acima && (larga || noAlto)) tentativas.push(['cima', quebra(max)]);
+    if (!p.acima) for (const l of lados) tentativas.push([l, quebra(10)]);
     for (const [lado, linhas] of tentativas) {
       {
         const larg = Math.max(...linhas.map((l) => l.length)) * tam * LETRA,

@@ -239,7 +239,7 @@ function rotulosPostos(ex: Exercicio, o: OpcoesCena, vb: VB): (RotuloPosto | nul
     r = def ? disporRotulos([{ texto: def.titulo, alvo: alvoMedio(ex, o, def.foco) }], corpo, vb, tam * TAM_DO_ERRO, 20) : [];
   } else {
     const lista = o.modo === 'tec' ? ex.ficha.rotulos.filter((x) => x.vista === o.vista) : [];
-    r = disporRotulos(lista.map((x) => ({ texto: x.texto, alvo: alvoMedio(ex, { ...o, erro: undefined }, x.ponto) })), corpo, vb, tam);
+    r = disporRotulos(lista.map((x) => ({ texto: x.texto, alvo: alvoMedio(ex, { ...o, erro: undefined }, x.ponto), acima: x.acima })), corpo, vb, tam);
   }
   m.set(chave, r);
   return r;

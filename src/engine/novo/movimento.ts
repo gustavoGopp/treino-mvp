@@ -39,7 +39,7 @@ export const fichaSchema = z.object({
    * pontos dados; `seta`: uma seta para baixo, de `desce` cm, ao lado de um ponto ("ombro desce"). O texto vem do guia de hoje (já conferido) ou da ficha da técnica, com o selo.
    */
   rotulos: z
-    .array(z.object({ vista: z.string(), texto: z.string().min(3), ponto: z.string(), selo: SELO, fonte: z.string().min(1), prumo: z.object({ de: z.string(), alt: z.number().positive() }).optional(), guia: z.array(z.string()).min(2).optional(), seta: z.object({ de: z.string(), desce: z.number().positive() }).optional() }))
+    .array(z.object({ vista: z.string(), texto: z.string().min(3), ponto: z.string(), selo: SELO, fonte: z.string().min(1), prumo: z.object({ de: z.string(), alt: z.number().positive() }).optional(), guia: z.array(z.string()).min(2).optional(), seta: z.object({ de: z.string(), desce: z.number().positive() }).optional(), acima: z.literal(true).optional() }))
     .default([]),
 });
 export type Ficha = z.infer<typeof fichaSchema>;

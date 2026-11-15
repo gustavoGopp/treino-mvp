@@ -22,8 +22,12 @@ import { dobrarOQuadril, folgaDasPernas } from './dobrar-o-quadril';
 import type { Carga, Esfera } from './dobrar-o-quadril';
 
 const rad = Math.PI / 180;
-/** 'halteres': um halter em cada mão, os dois braços sobem. 'polia': o braço direito com o estribo da polia baixa, a mão esquerda na coluna. */
-export type MaosDaElevacao = 'halteres' | 'polia';
+/**
+ * 'halteres': um halter em cada mão, os dois braços sobem. 'polia': o braço direito com o estribo da polia baixa, a mão
+ * esquerda na coluna. 'elastico': um pegador do elástico em cada mão, os dois braços sobem, sem carga no equilíbrio; o
+ * quadro sai só com o corpo e o chão (o elástico, que vai das mãos aos pés, é a variação que desenha).
+ */
+export type MaosDaElevacao = 'halteres' | 'polia' | 'elastico';
 
 /** O braço no referencial do tórax (lado esquerdo; o direito espelha x): elevação `a` a partir do braço pendurado, no plano `p` graus à frente do lado. */
 export function noPlano(a: number, p: number) {
@@ -45,6 +49,7 @@ export function criarElevacao(fichaJson: unknown, maos: MaosDaElevacao, opcoes: 
   const F = fichaSchema.parse(fichaJson);
   const f = daFicha(F);
   const polia = maos === 'polia';
+  const elastico = maos === 'elastico';
   const H = opcoes.halter ?? 'halter';
   const LADOS_QUE_SOBEM: Lado[] = polia ? ['R'] : [...LADOS];
   const CACHE = new WeakMap<Corpo, { a0: number; rep: number; alfa: number }>();
@@ -56,6 +61,12 @@ export function criarElevacao(fichaJson: unknown, maos: MaosDaElevacao, opcoes: 
   const esferas = (e: Esq, k: Lado): Esfera[] => {
     const L = e.lado[k];
     if (polia) return [{ c: L.pegada, r: f('mao.raio') }];
+    if (elastico) {
+      // o pegador atravessado na mão (da frente para trás, com a palma para dentro)
+      const ra = obj('elastico', 'pegadorDiam') / 2,
+        m = obj('elastico', 'pegadorComp') / 2;
+      return [-1, -0.5, 0, 0.5, 1].map((s) => ({ c: add(L.pegada, mul(L.mao.x, s * m)), r: ra }));
+    }
     const eixo = mul(L.mao.x, sinal(k));
     const ra = obj(H, 'cabecaLargura') / 2,
       c0 = obj(H, 'caboComp') / 2,
@@ -105,7 +116,7 @@ export function criarElevacao(fichaJson: unknown, maos: MaosDaElevacao, opcoes: 
           const pg = giro - f('polegar.paraCima') * Math.sin(Math.max(0, o.a) * rad) * rad;
           const polegar = norm(add(mul(esp(n.frente), Math.cos(pg)), mul(esp(n.sobe), -Math.sin(pg))));
           pegadas[k] = add(e.lado[k].ombro, add(mul(umero, corpo.m('braco.comp')), mul(antebraco, corpo.m('antebraco.comp') + corpo.m('mao.punhoAoCentroDaPegada'))));
-          return { umero, antebraco, polo: mul(dobra, -1), mao: { polegar, forma: 'pegada', diam: polia ? obj('estribo', 'pegadaDiam') : obj(H, 'caboDiam') }, elev: o.elev };
+          return { umero, antebraco, polo: mul(dobra, -1), mao: { polegar, forma: 'pegada', diam: polia ? obj('estribo', 'pegadaDiam') : elastico ? obj('elastico', 'pegadorDiam') : obj(H, 'caboDiam') }, elev: o.elev };
         };
         if (polia) {
           // a mão de fora segura o estribo; a outra segura o trilho da coluna, parada
@@ -114,10 +125,10 @@ export function criarElevacao(fichaJson: unknown, maos: MaosDaElevacao, opcoes: 
         }
         const bR = braco('R'),
           bL = braco('L');
-        return { R: bR, L: bL, cargas: LADOS.map((k) => ({ massa: f('carga'), pos: pegadas[k] })) };
+        return { R: bR, L: bL, cargas: elastico ? [] : LADOS.map((k) => ({ massa: f('carga'), pos: pegadas[k] })) };
       },
     });
-    const cargas: Carga[] = polia ? [] : LADOS.map((k) => ({ massa: f('carga'), pos: r.e.lado[k].pegada }));
+    const cargas: Carga[] = polia || elastico ? [] : LADOS.map((k) => ({ massa: f('carga'), pos: r.e.lado[k].pegada }));
     return { e: r.e, cargas, alfa: r.alfa };
   }
 
@@ -168,6 +179,8 @@ export function criarElevacao(fichaJson: unknown, maos: MaosDaElevacao, opcoes: 
       q.prims.push(...es.prims, cabo(es.elo, saida));
       q.marcas = { mao: L.pegada, maoDeApoio: e.lado.L.pegada, cabo0: saida, cabo1: es.elo };
       q.pecas = [{ t: 'estribo', pegada: L.pegada, eixo: L.mao.x, elo: es.elo }, { t: 'cabo', a: es.elo, b: saida }];
+    } else if (elastico) {
+      q.marcas = { mao: e.lado.R.pegada };
     } else {
       const pecas: Peca[] = [];
       for (const k of LADOS) {
