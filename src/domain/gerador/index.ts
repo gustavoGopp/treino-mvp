@@ -1039,7 +1039,7 @@ function montarPrograma(perfil: Perfil, inventarioOriginal: Inventario, triagem:
     const series = (ps: Padrao[]) => ds.flatMap((d) => d.exercicios).filter((x) => ps.includes(x.padrao)).reduce((t, x) => t + seriesDeVolume(x), 0);
     return series(PADROES_EMPURRAR) + 1 > EMPURRAR_PUXAR_MAX * series(PADROES_PUXAR);
   };
-  const alvoDaSobra = (m: Musculo, ds: DiaPrograma[], emTodos: boolean) =>
+  const alvoDaSobra = (m: Musculo, ds: DiaPrograma[]) =>
     m === 'abdomen' && !prioritarios.has(m)
       ? (metas[m] ?? 0)
       : prioritarios.has(m)
@@ -1064,7 +1064,7 @@ function montarPrograma(perfil: Perfil, inventarioOriginal: Inventario, triagem:
         // Com foco, quem não é foco e está abaixo do piso de 4 (volume.semanal.minimo-eficaz) sobe até o piso também pelas
         // séries indiretas (o glúteo sem exercício próprio sobe com o agachamento): os outros não ficam abaixo do piso.
         const viaIndireta = focoPossivel && !prioritarios.has(m) && (v[m] ?? 0) < VOLUME.minimoEficazPiso;
-        const alvo = viaIndireta ? VOLUME.minimoEficazPiso : alvoDaSobra(m, programaDias, emTodos);
+        const alvo = viaIndireta ? VOLUME.minimoEficazPiso : alvoDaSobra(m, programaDias);
         // O foco também sobe enquanto as séries diretas dele (os exercícios em que ele é o músculo principal) estiverem abaixo
         // da meta: um glúteo do foco que chega à meta só com séries indiretas do agachamento ainda pede mais ponte (R5d).
         const direto = prioritarios.has(m)
