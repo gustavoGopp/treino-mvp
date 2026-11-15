@@ -15,6 +15,9 @@ Comece por **`proposta.md`, seção 0-B**: o que esta sessão fez, o que a confe
 - As que ele não vê ficam registradas em `src/engine/novo/aprovados.ts` como aprovadas **por delegação** (com a frase dele), separadas das aprovadas na folha. Todas as folhas ficam em `prototipos/` e os quadros grandes em `quadros/`, para ele olhar quando quiser.
 - Atenção: a cópia de trabalho de cada subagente nasce num commit antigo (06d4066); o pedido tem de mandar avançar para o commit certo antes de começar.
 
+- **Padrão de qualidade (aviso do Gustavo em 15/11):** "o fato de eu ter delegado fazer todos juntos não quer dizer que a gente pode diminuir a qualidade". Desde então, defeito visível é consertado antes de a animação contar como pronta (seção 8 de `como-fazer-uma-animacao.md`); quem integra olha cada quadro e devolve o que não está no nível. O estado de cada uma das 90 fica em `andamento.md`.
+- **Peso, para quando ligar o motor novo às telas:** com cerca de 35 animações, o pacote do motor novo já tem 104 kB compactado (o de hoje, com as 90, tem 48 kB). Cada exercício acrescenta perto de 5 kB. Ao ligar, cada exercício precisa ser carregado só quando é aberto, e os textos de fonte das fichas podem sair do pacote (76 kB sem eles).
+
 Primeira leva (15/11): búlgaro com o peso do corpo e na suspensão; quatro flexões (mãos juntas, pés elevados, elástico, bola); pike e extensão de tríceps no chão; duas flexões de joelho deitado.
 
 O que vem abaixo é o registro de como se chegou ao fechamento.
