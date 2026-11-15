@@ -1,6 +1,6 @@
 import { beforeAll, describe, expect, it, vi } from 'vitest';
-import { POR_ID } from '../../src/domain/biblioteca';
-import { carregaLombar, contextoDeSelecao, gerarPrograma, type Perfil, type Programa } from '../../src/domain/gerador';
+import { PADROES_EMPURRAR, PADROES_PUXAR, POR_ID } from '../../src/domain/biblioteca';
+import { carregaLombar, contextoDeSelecao, gerarPrograma, seriesDeVolume, type Perfil, type Programa } from '../../src/domain/gerador';
 import { FUNCAO, FUNCOES } from '../../src/domain/gerador/funcoes';
 import type { Inventario } from '../../src/domain/taxonomia/equipamentos';
 import { medirRegua } from '../../scripts/auditoria/regua';
@@ -13,6 +13,8 @@ import { PERSONAS_NOVAS } from '../personas/todos';
 //    funcoes.json), e não a ordem alfabética.
 //  - selecao.funcao-da-vaga: com carga à vontade (máquina, polia ou barra), o exercício de dois lados vem antes do de
 //    um lado só; com halter ou kettlebell, com dor leve na região ou com "prefiro este", nada muda.
+//  - volume.prioridade.foco-primeiro: nem o empurrar do foco sobe se passar empurrar ÷ puxar de 1,5 (a troca de exercício
+//    abria tempo e o supino do foco subia sozinho).
 //  - selecao.lombar-no-dia: depois de um exercício que carrega a lombar sem apoio, o de tronco que também carrega fica
 //    por último entre os do mesmo nível (os de perna, depois de dois).
 // O "antes" de cada regra é o protótipo (scripts/auditoria/prototipo) com todas as adotadas menos ela. Só personas e
@@ -218,6 +220,57 @@ describe('selecao.lombar-no-dia: poupar a lombar dentro do dia (pacote 2)', () =
     for (const x of comPorque) {
       expect(carregaLombar(POR_ID[x.exId]!)).toBe(false);
       expect(x.porque.find((q) => q.regraId === 'selecao.lombar-no-dia')!.texto).toMatch(/^Ficou este, e não .+: o treino de hoje já tem .+, que carrega a lombar sem apoio\.$/);
+    }
+  });
+
+  it('nas personas, não aparece defeito da régua que não havia', () => {
+    for (const p of TODAS) {
+      const [a, d] = [programa(antes, p.perfil, p.inventario), programa(gerarPrograma, p.perfil, p.inventario)];
+      const [da, dd] = [defeitos(a, p.perfil, p.inventario), defeitos(d, p.perfil, p.inventario)];
+      expect(dd.filter((x) => !da.includes(x)), p.nome).toEqual([]);
+    }
+  });
+});
+
+describe('volume.prioridade.foco-primeiro: nem o empurrar do foco passa empurrar ÷ puxar de 1,5 (pacote 2)', () => {
+  let antes: typeof gerarPrograma;
+  beforeAll(async () => {
+    antes = await carregarAntes('app,-d1-foco');
+  });
+  const doPadrao = (p: Programa, padroes: readonly string[]) =>
+    p.dias.flatMap((d) => d.exercicios).filter((x) => padroes.includes(x.padrao)).reduce((t, x) => t + seriesDeVolume(x), 0);
+  const empurraDemais = (p: Programa) => doPadrao(p, PADROES_PUXAR) > 0 && doPadrao(p, PADROES_EMPURRAR) > 1.5 * doPadrao(p, PADROES_PUXAR);
+  /** Quem quer peito e tem pouco com que puxar (um aparelho só em casa): onde o empurrar do foco subia sozinho. */
+  const GRADE = ['so:estacao_remada', 'so:barra_fixa', 'so:kettlebell', 'so:remada_articulada', 'academia', 'condominio'].flatMap((cenario) =>
+    (['iniciante', 'intermediario', 'avancado'] as const).flatMap((nivel) => ['2', '3', '4'].flatMap((dias) => [45, 60].map((min) => pedido({ cenario, nivel, dias, min, focos: ['peito'] })))),
+  );
+
+  it('na grade de quem quer peito, nenhum programa passa a ter empurrar ÷ puxar acima de 1,5, e algum deixa de ter', () => {
+    let deixam = 0;
+    for (const pd of GRADE) {
+      const [perfil, inventario] = [perfilDe(pd), inventarioDe(pd.cenario)];
+      const [a, d] = [programa(antes, perfil, inventario), programa(gerarPrograma, perfil, inventario)];
+      const nome = `${pd.cenario}, ${pd.nivel}, ${pd.dias} dias de ${pd.min} min, foco ${pd.focos.join('+')}`;
+      if (!empurraDemais(a)) expect(empurraDemais(d), nome).toBe(false);
+      else if (!empurraDemais(d)) deixam++;
+    }
+    expect(deixam).toBeGreaterThan(0);
+    // O exemplo medido: avançado, só com uma estação de remada em casa, 3 dias de 60 min, quer peito.
+    const pd = pedido({ cenario: 'so:estacao_remada', nivel: 'avancado', dias: '3', min: 60, focos: ['peito'] });
+    const [perfil, inventario] = [perfilDe(pd), inventarioDe(pd.cenario)];
+    expect(empurraDemais(programa(antes, perfil, inventario))).toBe(true);
+    expect(empurraDemais(programa(gerarPrograma, perfil, inventario))).toBe(false);
+  });
+
+  it('a troca não cria outro defeito da régua, e as séries da semana não caem', () => {
+    for (const pd of GRADE) {
+      const [perfil, inventario] = [perfilDe(pd), inventarioDe(pd.cenario)];
+      const [a, d] = [programa(antes, perfil, inventario), programa(gerarPrograma, perfil, inventario)];
+      const nome = `${pd.cenario}, ${pd.nivel}, ${pd.dias} dias de ${pd.min} min, foco ${pd.focos.join('+')}`;
+      const [da, dd] = [defeitos(a, perfil, inventario), defeitos(d, perfil, inventario)];
+      expect(dd.filter((x) => !da.includes(x)), nome).toEqual([]);
+      const series = (q: Programa) => q.dias.flatMap((x) => x.exercicios).reduce((t, x) => t + seriesDeVolume(x), 0);
+      expect(series(d), nome).toBeGreaterThanOrEqual(series(a) - 1);
     }
   });
 

@@ -1034,7 +1034,7 @@ function montarPrograma(perfil: Perfil, inventarioOriginal: Inventario, triagem:
     return Math.min(...[...prioritarios].filter((m) => possiveis.some((e) => e.musculos.primarios.includes(m))).map((m) => v[m] ?? 0));
   };
   const podePuxar = !!resolver({ funcao: 'puxar-vertical' }) || !!resolver({ funcao: 'puxar-horizontal' });
-  /** Mais uma série de empurrar já passaria empurrar ÷ puxar de 1,5 (2º passo: aí as costas e o ombro de trás sobem antes). */
+  /** Mais uma série de empurrar já passaria empurrar ÷ puxar de 1,5: aí as costas e o ombro de trás sobem antes (nos dois passos, desde 15/11/2026). */
   const empurrarNoLimite = (ds: DiaPrograma[]) => {
     const series = (ps: Padrao[]) => ds.flatMap((d) => d.exercicios).filter((x) => ps.includes(x.padrao)).reduce((t, x) => t + seriesDeVolume(x), 0);
     return series(PADROES_EMPURRAR) + 1 > EMPURRAR_PUXAR_MAX * series(PADROES_PUXAR);
@@ -1044,7 +1044,7 @@ function montarPrograma(perfil: Perfil, inventarioOriginal: Inventario, triagem:
       ? (metas[m] ?? 0)
       : prioritarios.has(m)
         ? Math.max(metas[m] ?? 0, VOLUME.maximo[nivel])
-        : !focoPossivel || (PUXAM.includes(m) && (empurraDemais(ds) || (emTodos && empurrarNoLimite(ds))))
+        : !focoPossivel || (PUXAM.includes(m) && (empurraDemais(ds) || empurrarNoLimite(ds)))
           ? Math.max(metas[m] ?? 0, VOLUME.sobraAte[nivel])
           : Math.max(metas[m] ?? 0, Math.min(VOLUME.sobraAte[nivel], menorFoco(ds) - DISTANCIA_DO_FOCO));
   let seriesNaSobra = false;
@@ -1097,8 +1097,8 @@ function montarPrograma(perfil: Perfil, inventarioOriginal: Inventario, triagem:
             if (minutos(d.exercicios.map((y, j) => (j === xi ? { ...y, series: y.series + 1 } : y)), colchaoDe(perfil)) > perfil.minutosSessao) return;
             // volume.equilibrio-coxa: a série a mais não tira quadríceps ÷ posteriores da faixa de 0,5 a 2.
             if (!mantemCoxa(e, -1, v)) return;
-            // Quem não é foco não sobe um empurrar que passe empurrar ÷ puxar de 1,5 (régua da G5, D1); no 2º passo, nem o foco.
-            if ((emTodos || !prioritarios.has(m)) && podePuxar && PADROES_EMPURRAR.includes(x.padrao) && empurraDemais(programaDias.map((z, k) => (k === di ? { ...z, exercicios: z.exercicios.map((y, j) => (j === xi ? { ...y, series: y.series + 1 } : y)) } : z)))) return;
+            // Nenhum empurrar sobe se passar empurrar ÷ puxar de 1,5 (régua da G5, D1): nem o do foco, desde 15/11/2026.
+            if (podePuxar && PADROES_EMPURRAR.includes(x.padrao) && empurraDemais(programaDias.map((z, k) => (k === di ? { ...z, exercicios: z.exercicios.map((y, j) => (j === xi ? { ...y, series: y.series + 1 } : y)) } : z)))) return;
             // O foco vem antes dos outros (volume.prioridade.foco-primeiro); entre iguais, o mais longe da meta.
             const foco = prioritarios.has(m) ? 0 : 1;
             // No 2º passo, entre as séries possíveis do músculo mais longe do alvo, primeiro o exercício com menos séries e,
