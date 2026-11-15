@@ -44,6 +44,11 @@ export interface OpcoesDaRemada {
   carga: 'halter' | 'kettlebell';
   base(corpo: Corpo): BaseDaRemada;
   erros: Record<string, ErroDaRemada>;
+  /**
+   * Opcional (remada apoiada): mais uma folga da carga (cm) que os braços que puxam respeitam, além da das pernas e do
+   * tronco (`folgaDaCarga`): por exemplo, a da carga até o encosto do banco. Sem o campo, nada muda.
+   */
+  folgaExtra?: (q: Quadro) => number;
 }
 export interface Remada {
   ficha: Ficha;
@@ -212,9 +217,10 @@ export function criarRemada(fichaJson: unknown, op: OpcoesDaRemada): Remada {
     // menor, ou num erro que move o tronco), os braços se afastam do corpo só o necessário (`resolver1`; contínuo, sem
     // tranco: o afastamento é zero enquanto a folga basta)
     const minima = 0.5;
+    const folga = (q: Quadro) => (op.folgaExtra ? Math.min(folgaDaCarga(q), op.folgaExtra(q)) : folgaDaCarga(q));
     const q0 = montar(0);
-    if (folgaDaCarga(q0) >= minima) return q0;
-    return montar(resolver1((x) => folgaDaCarga(montar(x)) - minima, 0, 30, 16));
+    if (folga(q0) >= minima) return q0;
+    return montar(resolver1((x) => folga(montar(x)) - minima, 0, 30, 16));
   }
   return { ficha: F, quadro };
 }

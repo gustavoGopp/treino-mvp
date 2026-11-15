@@ -79,3 +79,4 @@ export { extensaoJoelhoElastico } from './extensao-joelho-elastico';
 export { supinoInclinado } from './supino-inclinado';
 export { pontePesBola } from './ponte-pes-bola';
 export { nordico } from './nordico';
+export { remadaApoiada } from './remada-apoiada';

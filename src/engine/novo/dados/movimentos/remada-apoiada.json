@@ -1,0 +1,67 @@
+{
+ "id": "remada-apoiada",
+ "nome": "Remada com halteres, peito apoiado no banco inclinado",
+ "fichaDaTecnica": "docs/pesquisa/animacoes/remada-apoiada.md",
+ "fontes": {
+  "ficha": "Ficha da técnica (docs/pesquisa/animacoes/remada-apoiada.md): de bruços com o peito no encosto e o queixo um pouco além da ponta; pés firmes no chão atrás, joelhos levemente dobrados; pegada neutra, braços estendidos para baixo; ~1 s puxando os cotovelos para trás, em direção ao quadril, juntando as escápulas; fim com os cotovelos atrás do tronco, segura 1 s; ~2 s voltando; o peito não sai do banco; consenso de treinadores (guia original; nsca2021, não verificado)",
+  "app": "Texto do app (src/conteudo/exercicios/remada-apoiada.json): 'encosto do banco a 30–45°', 'se o halter encostar no chão antes de o braço estender, suba o encosto para 45°', as dicas e os erros",
+  "hoje": "Animação aprovada no guia de hoje (src/engine/exercicios/remada-apoiada.ts): o tronco a ~50° da vertical, os pés atrás, as escápulas (+5 no começo, −6 no fim) e os erros",
+  "unilateral": "A ficha de movimento da remada unilateral no banco (src/engine/novo/dados/movimentos/remada-unilateral.json) e a da curvada com halteres: o mesmo braço que puxa",
+  "objetos": "src/engine/novo/dados/objetos.json: o banco regulável e o halter",
+  "desenho": "Escolha de desenho desta animação, dentro do que a ficha pede; a conferência mede o resultado"
+ },
+ "param": {
+  "encosto": { "v": 45, "un": "graus", "selo": "consenso", "fonte": "app", "o": "o encosto a 45°, a ponta de cima da faixa do app (30–45°): é a que o app manda usar se o halter encostar no chão" },
+  "tronco.maisDeitado": { "v": 8, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "o tronco fica 8° mais deitado que o encosto: o peito apoia no alto dele e a bacia fica um pouco acima do estofado, com as coxas passando dos lados (o encosto do banco tem 28,6 cm de largura)" },
+  "apoio.amassa": { "v": 1, "un": "cm", "selo": "desenho", "fonte": "desenho", "o": "o peito e a barriga apoiados: quanto o estofado amassa" },
+  "peito.abaixoDaPonta": { "v": 4, "un": "cm", "selo": "consenso", "fonte": "ficha", "o": "o alto do esterno fica 4 cm abaixo da ponta do encosto, ao longo dele: o peito no encosto e o queixo além da ponta (a ficha não dá número)" },
+  "joelho": { "v": 15, "un": "graus", "selo": "consenso", "fonte": "ficha", "o": "joelhos levemente dobrados (a ficha não dá número)" },
+  "pes.meiaDistancia": { "v": 34, "un": "cm", "selo": "desenho", "fonte": "desenho", "o": "pés afastados, dos dois lados do banco (o banco passa entre as pernas, como no guia de hoje, que põe os pés a 24 cm do meio); a ficha não dá número" },
+  "pes.calcanhar": { "v": 40, "un": "graus", "selo": "desenho", "fonte": "hoje", "o": "na ponta dos pés: com o corpo deitado no encosto, o calcanhar sobe 40° (hoje, os pés também apoiam na ponta)" },
+  "cervical": { "v": -12, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "pescoço na linha das costas, um pouco estendido: o olhar vai ao chão à frente do banco" },
+  "cabeca": { "v": 0, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "cabeça na linha do pescoço" },
+  "braco.inicio.atras": { "v": 3, "un": "graus", "selo": "desenho", "fonte": "unilateral", "o": "começo: braço estendido, pendurado embaixo do ombro (o cotovelo dobra só 3°)" },
+  "braco.inicio.fora": { "v": 8, "un": "graus", "selo": "desenho", "fonte": "unilateral", "o": "começo: o braço pende quase na vertical do ombro, um pouco para fora (o halter passa ao lado do encosto)" },
+  "braco.fim.alemDasCostas": { "v": 26, "un": "graus", "selo": "consenso", "fonte": "unilateral", "o": "fim: 'cotovelos atrás do tronco': o braço fica 26° além da linha das costas" },
+  "braco.fim.fora": { "v": 28, "un": "graus", "selo": "consenso", "fonte": "unilateral", "o": "fim: cotovelo perto do corpo, 28° para fora do lado do tronco (com 16°, como nas outras remadas, o halter entrava na lateral do encosto no fim; o app aceita cotovelos mais abertos, até ~45°)" },
+  "escapula.prot.inicio": { "v": 5, "un": "graus", "selo": "desenho", "fonte": "hoje", "o": "começo: 'ombros soltos para baixo e para a frente' (hoje: +5)" },
+  "escapula.retr.fim": { "v": 10, "un": "graus", "selo": "desenho", "fonte": "unilateral", "o": "fim: as escápulas se juntam (−10, como nas outras remadas do motor novo; hoje: −6)" },
+  "escapula.elev.inicio": { "v": 1, "un": "graus", "selo": "desenho", "fonte": "hoje", "o": "começo: como hoje (+1)" },
+  "escapula.elev.fim": { "v": -1, "un": "graus", "selo": "desenho", "fonte": "hoje", "o": "fim: ombro baixo (hoje: −1)" },
+  "carga": { "v": 11.3, "un": "kg", "selo": "desenho", "fonte": "objetos", "o": "o halter desenhado (25 lb), um em cada mão" },
+  "erro.subir.tronco": { "v": 18, "un": "graus", "selo": "desenho", "fonte": "hoje", "o": "erro 'peito sai do banco': o tronco levanta 18° na puxada (hoje: de 50° para ~25°, com a lombar)" },
+  "erro.encolher.elev": { "v": 8, "un": "graus", "selo": "desenho", "fonte": "hoje", "o": "erro: os ombros sobem no fim (hoje: +7 na escápula)" },
+  "erro.curta.fracao": { "v": 0.45, "un": "fração", "selo": "desenho", "fonte": "hoje", "o": "erro: a volta para em 45% do caminho, sem estender os braços" }
+ },
+ "fases": [
+  { "nome": "Alongado", "tipo": "pausa", "dur": 0.45, "de": 0, "ate": 0, "respira": "INSPIRA", "tempo": "pausa curta", "selo": "consenso", "fonte": "ficha" },
+  { "nome": "Puxada · concêntrica", "tipo": "conc", "dur": 1.1, "de": 0, "ate": 1, "respira": "EXPIRA", "tempo": "~1 s", "selo": "consenso", "fonte": "ficha" },
+  { "nome": "Segura contraído", "tipo": "pausa", "dur": 1, "de": 1, "ate": 1, "respira": "FIRME", "tempo": "1 s", "selo": "consenso", "fonte": "ficha" },
+  { "nome": "Volta · excêntrica", "tipo": "exc", "dur": 2.1, "de": 1, "ate": 0, "respira": "INSPIRA", "tempo": "~2 s", "selo": "consenso", "fonte": "ficha" }
+ ],
+ "contatos": ["pe.R", "pe.L", "pelve"],
+ "regras": [
+  { "id": "remada-apoiada-peito-no-encosto", "pede": "de bruços com o peito no encosto, que não sai do banco", "selo": "consenso", "fonte": "ficha" },
+  { "id": "remada-apoiada-queixo-alem-da-ponta", "pede": "o queixo um pouco além da ponta do encosto", "selo": "consenso", "fonte": "ficha" },
+  { "id": "remada-apoiada-pernas-fora-do-banco", "pede": "pés firmes no chão, sem as pernas atravessarem o banco", "selo": "consenso", "fonte": "ficha" },
+  { "id": "lombar-neutra", "pede": "costas retas", "selo": "consenso", "fonte": "ficha" },
+  { "id": "tronco-parado-na-remada", "pede": "o tronco não se mexe", "selo": "consenso", "fonte": "ficha" },
+  { "id": "cotovelo-passa-as-costas", "pede": "fim: cotovelos atrás do tronco", "selo": "consenso", "fonte": "ficha" },
+  { "id": "cotovelo-rente-na-remada", "pede": "cotovelos para trás, em direção ao quadril", "selo": "consenso", "fonte": "ficha" },
+  { "id": "braco-estendido-no-comeco", "pede": "começo: braços estendidos para baixo", "selo": "consenso", "fonte": "ficha" },
+  { "id": "carga-livre-do-corpo-e-do-banco", "pede": "os halteres não batem no corpo nem no banco", "selo": "consenso", "fonte": "desenho" },
+  { "id": "remada-apoiada-halter-longe-do-chao", "pede": "o halter não encosta no chão com o braço estendido", "selo": "consenso", "fonte": "app" },
+  { "id": "escapulas-se-juntam", "pede": "no fim as escápulas se juntam", "selo": "consenso", "fonte": "ficha" },
+  { "id": "palmas-uma-para-a-outra", "pede": "pegada neutra (palmas uma para a outra)", "selo": "consenso", "fonte": "ficha" }
+ ],
+ "erros": [
+  { "id": "peito", "instante": 1, "titulo": "Peito sai do banco", "vista": "lateral", "oQueMuda": "o tronco levanta do encosto na puxada", "destaca": ["corpo"], "linha": ["pelve", "c7"], "foco": "c7" },
+  { "id": "encolher", "instante": 1, "titulo": "Encolher os ombros", "vista": "posterior", "oQueMuda": "os ombros sobem no fim", "destaca": ["bracos"], "linha": ["acromioclavicular:R", "acromioclavicular:L"], "foco": "acromioclavicular:R" },
+  { "id": "curta", "instante": 0, "titulo": "Não estender os braços", "vista": "lateral", "oQueMuda": "a volta para no meio, sem os braços estenderem", "destaca": ["bracos"], "linha": ["ombro", "cotovelo", "punho"], "foco": "cotovelo" }
+ ],
+ "simetrico": true,
+ "rotulos": [
+  { "vista": "lateral", "texto": "peito colado no banco", "ponto": "c7", "selo": "consenso", "fonte": "app" },
+  { "vista": "quinaTras", "texto": "cotovelos para o quadril", "ponto": "cotovelo:R", "selo": "consenso", "fonte": "app" }
+ ]
+}

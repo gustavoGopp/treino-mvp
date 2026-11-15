@@ -23,3 +23,4 @@ export { REGRAS_POLIA_BRACOS } from './polia-bracos';
 export { regrasDoSupinoInclinado } from './supino-inclinado';
 export { REGRAS_PONTE_BOLA } from './ponte-bola';
 export { REGRAS_NORDICO } from './nordico';
+export { REGRAS_REMADA_APOIADA } from './remada-apoiada';
