@@ -861,7 +861,7 @@ export function cssDoBoneco(): string {
 .boneco .b-l{fill:none;stroke:var(--b-linha);stroke-width:${T.dentroPx}px;vector-effect:non-scaling-stroke;stroke-linejoin:round;stroke-linecap:round}
 .boneco .b-mp,.boneco .b-ms,.boneco .b-ma{stroke-width:1px;vector-effect:non-scaling-stroke;stroke-linejoin:round}
 .boneco .b-mp{fill:var(--b-musP);stroke:var(--b-musPb)}.boneco .b-ms{fill:var(--b-musS);stroke:var(--b-musSb)}
-.boneco .b-ma{fill:url(#b-listras);stroke:var(--b-musSb);stroke-dasharray:3 2}.boneco .b-lis{fill:var(--b-musA)}
+.boneco .b-ma{fill:var(--b-listras,url(#b-listras));stroke:var(--b-musSb);stroke-dasharray:3 2}.boneco .b-lis{fill:var(--b-musA)}
 .boneco .b-md{fill:none;stroke:var(--b-musPb);stroke-width:${T.dentroPx}px;vector-effect:non-scaling-stroke;stroke-linecap:round}
 .boneco .b-c-e{fill:var(--b-erro);stroke:var(--b-erro)}.boneco .b-p-e{fill:var(--b-peleErro)}
 .boneco .b-c-f{fill:none;stroke:var(--b-fantasma);stroke-width:1px;vector-effect:non-scaling-stroke;stroke-dasharray:3 3}.boneco .b-p-f{fill:var(--b-fundo);fill-opacity:.82}

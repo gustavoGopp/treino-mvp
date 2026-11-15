@@ -3,12 +3,14 @@ import type { Estilo } from '../../engine/estilo';
 
 // Pede ao Worker do Boneco (boneco.worker.ts) um desenho parado, sem travar a tela. Sem Worker no navegador, o
 // cálculo é feito aqui mesmo, com o motor carregado sob demanda. Cada resposta fica guardada pelo pedido.
+/** O tema da tela (claro ou escuro): o motor novo pinta o equipamento conforme o tema. Quem preenche é este arquivo. */
+export type TemaDaTela = 'claro' | 'escuro';
 export type Pedido =
-  | { tipo: 'miniatura'; animacaoId: string; estilo: Estilo }
+  | { tipo: 'miniatura'; animacaoId: string; estilo: Estilo; tema?: TemaDaTela }
   | { tipo: 'previa'; estilo: Estilo }
   | { tipo: 'catalogo' }
   | { tipo: 'ficha'; animacaoId: string; estilo: Estilo }
-  | { tipo: 'quadroGuia'; animacaoId: string; vista: string; modo: string; t: number; erro: number; largura: number; estilo: Estilo; tituloErro: string };
+  | { tipo: 'quadroGuia'; animacaoId: string; vista: string; modo: string; t: number; erro: number; largura: number; estilo: Estilo; tituloErro: string; tema?: TemaDaTela };
 /** O que o guia precisa saber de uma animação, sem carregar o motor na tela (lote 2). */
 export type Ficha = {
   id: string;
@@ -23,7 +25,7 @@ export type Ficha = {
 export type Catalogo = { dias: { id: string; nome: string; ids: string[] }[]; todos: string[] };
 export type Desenho = { viewBox: string; html: string; classe: string } | null;
 /** Uma volta da animação do guia, calculada no Worker (lote 2). */
-export type Ciclo = { id: number; animacaoId: string; vista: string; modo: string; erro: number; largura: number; estilo: Estilo; tituloErro: string };
+export type Ciclo = { id: number; animacaoId: string; vista: string; modo: string; erro: number; largura: number; estilo: Estilo; tituloErro: string; tema?: TemaDaTela };
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export type QuadroGuia = any;
 
@@ -53,8 +55,19 @@ function oWorker(): Worker | null {
   return worker;
 }
 
+/** O tema em que a tela está agora: a escolha do app (data-theme na raiz) ou, sem escolha, a do aparelho. */
+function temaDaTela(): TemaDaTela {
+  if (typeof document === 'undefined') return 'claro';
+  const escolhido = document.documentElement.dataset.theme;
+  if (escolhido === 'dark') return 'escuro';
+  if (escolhido === 'light') return 'claro';
+  return typeof matchMedia !== 'undefined' && matchMedia('(prefers-color-scheme: dark)').matches ? 'escuro' : 'claro';
+}
+
 /** Pede ao Worker (ou, sem Worker, calcula aqui) a resposta de um pedido; respostas iguais ficam guardadas. */
 export function pedirAoBoneco<T = unknown>(pedido: Pedido, guardar = true): Promise<T> {
+  // os desenhos levam o tema da tela (o motor novo pinta o equipamento conforme o tema)
+  if (pedido.tipo === 'miniatura' || pedido.tipo === 'quadroGuia') pedido = { ...pedido, tema: temaDaTela() };
   const chave = JSON.stringify(pedido);
   if (!guardar || !prontos.has(chave)) {
     const w = typeof Worker !== 'undefined' ? oWorker() : null;
@@ -104,7 +117,7 @@ export function pedirCiclo(c: Omit<Ciclo, 'id'>, aoQuadro: (i: number, q: Quadro
   if (!w) return false;
   cicloPedido++;
   aoQuadroDoCiclo = aoQuadro;
-  w.postMessage({ ciclo: { ...c, id: cicloPedido } });
+  w.postMessage({ ciclo: { ...c, id: cicloPedido, tema: temaDaTela() } });
   return true;
 }
 

@@ -29,6 +29,9 @@ const cabecalhosDaVercel = (): Record<string, string> => {
 
 export default defineConfig(({ mode }) => ({
   preview: { headers: cabecalhosDaVercel() },
+  // O Worker do Boneco carrega cada exercício do motor novo só quando ele é pedido (um arquivo por exercício): para
+  // isso o pacote do Worker precisa ser um módulo, que aceita ser dividido em partes.
+  worker: { format: 'es' },
   define: {
     __LAB__: JSON.stringify(lab(mode)),
     __VERSAO__: JSON.stringify(commit().slice(0, 7) || 'local'),

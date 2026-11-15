@@ -5,6 +5,7 @@ import { CONTEUDO } from '../../conteudo';
 import { prescricaoNoGuia } from '../../domain/sessao';
 import { hojeDoEstado, hojeDoTreino } from '../treino/acoes';
 import { VIEWS } from '../../engine/desenho';
+import { NOME_DA_VISTA_NOVA } from '../../engine/novo/vistas';
 import type { Estilo } from '../../engine/estilo';
 import { SO_AJUDA } from '../../engine/estilo/musculos';
 import { largarCiclo, pedirAoBoneco, pedirCiclo, type Catalogo, type Ficha, type QuadroGuia } from '../programa/desenhoFora';
@@ -377,7 +378,7 @@ function GuiaExercicio({ ex, grupos }: { ex: Ficha; grupos: Grupo[] }) {
             <div className="seg" role="group" aria-label="Visão">
               {vistas.map((v) => (
                 <button key={v} aria-pressed={v === vista} onClick={() => escolherVista(v)}>
-                  {VIEWS[v as keyof typeof VIEWS].name}
+                  {VIEWS[v as keyof typeof VIEWS]?.name ?? NOME_DA_VISTA_NOVA[v] ?? v}
                 </button>
               ))}
             </div>

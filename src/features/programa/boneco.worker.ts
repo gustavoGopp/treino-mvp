@@ -1,6 +1,6 @@
 import { EX } from '../../engine';
 import { montarSvgEstilo } from '../../engine/estilo';
-import { responder } from './trabalhoBoneco';
+import { doMotorNovo, responder } from './trabalhoBoneco';
 import type { Ciclo, Pedido } from './desenhoFora';
 
 // Worker do Boneco (lote técnico do redesign, 06/11/2026): o motor (sem mudança) roda aqui, fora da linha principal,
@@ -10,11 +10,29 @@ let cicloAtual = 0;
 
 self.onmessage = (e: MessageEvent<{ n: number; pedido: Pedido } | { ciclo: Ciclo }>) => {
   if ('ciclo' in e.data) return void calcularCiclo(e.data.ciclo);
-  self.postMessage({ n: e.data.n, q: responder(e.data.pedido) });
+  // a resposta pode demorar (o motor novo carrega o exercício só quando é pedido)
+  const n = e.data.n;
+  void Promise.resolve(responder(e.data.pedido)).then(
+    (q) => self.postMessage({ n, q }),
+    () => self.postMessage({ n, q: null }),
+  );
 };
 
 async function calcularCiclo(c: Ciclo) {
   cicloAtual = c.id;
+  // exercício refeito e aprovado: a volta inteira sai do motor novo
+  const novo = await doMotorNovo(c.animacaoId, c.estilo);
+  if (cicloAtual !== c.id) return;
+  if (novo) {
+    const ponte = await import('../../engine/novo/ponte');
+    const T = ponte.fichaDoMotorNovo(novo).T;
+    for (let i = 0; i < Math.ceil(T * 30); i++) {
+      if (cicloAtual !== c.id) return;
+      self.postMessage({ ciclo: c.id, i, q: ponte.quadroDoMotorNovo(novo, c.vista, c.modo, i / 30, c.erro, c.tituloErro, c.tema) });
+      await new Promise((ok) => setTimeout(ok, 0));
+    }
+    return;
+  }
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const ex: any = EX.find((x: { id: string }) => x.id === c.animacaoId);
   if (!ex) return;
