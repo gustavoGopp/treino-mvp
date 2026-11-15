@@ -333,6 +333,58 @@ Fontes desta ficha:
 - `cdc`: Soucie JM et al. Range of motion measurements: reference values and a database for comparison studies. Haemophilia 2011 (tabelas do CDC; docs/revisoes/animacao-nova/pesquisa/02-articulacoes.md, A1)
 - `desenho`: Escolha de desenho desta animação, dentro do que a ficha pede; a conferência mede o resultado
 
+### Afundo estático com halteres (`afundo`)
+
+Ficha da técnica: `docs/pesquisa/animacoes/afundo.md`. Movimento de um lado só.
+
+| parâmetro | valor | selo | fonte | o que é |
+|---|---|---|---|---|
+| `pes.meiaDistancia` | 9 cm | consenso | guia | pés na largura do quadril, como trilhos (os centros do quadril ficam a 8,35 cm do meio) |
+| `peDaFrente.aFrenteDoQuadril` | 39,5 cm | desenho | hoje | passo largo: quanto o tornozelo do pé da frente fica à frente do quadril (na animação aprovada de hoje: 39,5 cm) |
+| `peDeTras.atrasDoQuadril` | 47 cm | desenho | hoje | passo largo: quanto a ponta do pé de trás (a bola do pé) fica atrás do quadril (na animação aprovada de hoje, o tornozelo de trás fica 40,5 cm atrás, com o calcanhar levantado) |
+| `peDeTras.calcanhar` | 66 graus | desenho | desenho | pé de trás na ponta: quanto o calcanhar sobe; a ficha não dá número |
+| `joelho.cima` | 14 graus | consenso | guia | em cima: os joelhos quase estendidos; a ficha manda parar um pouco antes de estender totalmente |
+| `joelhoDeTras.aoChao` | 4 cm | consenso | guia | embaixo: o joelho de trás fica a poucos centímetros do chão (da pele do joelho ao chão) |
+| `tronco` | 4 graus | consenso | guia | tronco quase vertical |
+| `erro.valgo.joelho` | 6 cm | desenho | desenho | erro: quanto o joelho da frente cai para dentro |
+| `erro.tronco` | 36 graus | desenho | desenho | erro: o tronco cai para a frente |
+| `erro.raso.fracao` | 0,4 fração | desenho | hoje | erro: desce só 40% do caminho (como na animação de hoje) |
+| `peDeTras.calcanhar.cima` | 50 graus | desenho | desenho | em cima, o calcanhar de trás fica mais baixo (o pé menos na ponta), para os dois joelhos ficarem quase estendidos como a ficha pede |
+| `bracos.paraFora` | 7 graus | desenho | desenho | braços pendendo ao lado do corpo: quanto abrem para o halter não bater na coxa |
+| `carga` | 11,3 kg | desenho | objetos | cada halter desenhado (25 lb); entram no equilíbrio |
+
+| fase | tipo | duração | respiração | ritmo | selo |
+|---|---|---|---|---|---|
+| Em cima | pausa | 0,5 s | inspira | respire e firme o abdômen | consenso |
+| Descida · excêntrica | exc | 2,3 s | firme | ~2–3 s | consenso |
+| Embaixo | pausa | 0,4 s | firme | pausa curta | consenso |
+| Subida · concêntrica | conc | 1,3 s | expira | ~1–1,5 s | consenso |
+
+Contatos que não podem sair do lugar: `pe.R`, `pe.L`.
+
+Regras que a conferência mede:
+
+- em cima, os dois joelhos ficam quase estendidos (consenso)
+- a descida é reta: o quadril desce sem ir para a frente nem para trás (consenso)
+- embaixo, o joelho de trás fica a poucos centímetros do chão (consenso)
+- embaixo, a coxa da frente fica perto da horizontal (consenso)
+- o tronco fica quase vertical (consenso)
+- o pé da frente fica inteiro no chão (consenso)
+
+Erros desenhados:
+
+- Joelho da frente para dentro (vista: frontal): o joelho da frente sai da linha do pé, para dentro
+- Tronco cai para a frente (vista: lateral): o tronco inclina para a frente em vez de ficar quase vertical
+- Descer pouco (vista: lateral): desce só 40% do caminho
+
+Fontes desta ficha:
+
+- `guia`: Guia original do projeto (referencia/guia-execucao-fase1.html), como registrado em docs/pesquisa/animacoes/afundo.md: consenso de treinadores
+- `hoje`: Animação aprovada no guia de hoje (src/engine/exercicios/afundo.ts): o tamanho do passo e a posição do quadril entre os pés, que a ficha não dá em número
+- `cdc`: Soucie JM et al. Range of motion measurements: reference values and a database for comparison studies. Haemophilia 2011 (tabelas do CDC; docs/revisoes/animacao-nova/pesquisa/02-articulacoes.md, A1)
+- `objetos`: src/engine/novo/dados/objetos.json
+- `desenho`: Escolha de desenho desta animação, dentro do que a ficha pede; a conferência mede o resultado
+
 ### Agachamento com elástico (`agachamento-elastico`)
 
 Ficha da técnica: `docs/pesquisa/animacoes/agachamento-elastico.md`. Movimento simétrico (os dois lados fazem o mesmo).

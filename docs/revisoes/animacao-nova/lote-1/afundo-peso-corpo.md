@@ -1,6 +1,6 @@
 # Lote 1 · Afundo estático com o peso do corpo (`afundo-peso-corpo`)
 
-De 15/11/2026. Terceira animação do lote 1 e a primeira sobre o núcleo dos afundos (`afundar.ts`): um pé à frente, inteiro no chão, e outro atrás, na ponta; os pés não saem do lugar e o quadril sobe e desce entre eles. **Ainda sem a aprovação do Gustavo na folha: não está no app.**
+De 15/11/2026. Terceira animação do lote 1 e a primeira sobre o núcleo dos afundos (`afundar.ts`): um pé à frente, inteiro no chão, e outro atrás, na ponta; os pés não saem do lugar e o quadril sobe e desce entre eles. **Aprovada pelo Gustavo na folha em 15/11/2026 ("aprovada").** Ainda não está no app: falta ligar o motor novo às telas.
 
 - Ficha da técnica: `docs/pesquisa/animacoes/afundo-peso-corpo.md`.
 - Ficha de movimento: `src/engine/novo/dados/movimentos/afundo-peso-corpo.json`.

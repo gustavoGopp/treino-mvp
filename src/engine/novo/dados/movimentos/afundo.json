@@ -1,0 +1,52 @@
+{
+ "id": "afundo",
+ "nome": "Afundo estático com halteres",
+ "fichaDaTecnica": "docs/pesquisa/animacoes/afundo.md",
+ "fontes": {
+  "guia": "Guia original do projeto (referencia/guia-execucao-fase1.html), como registrado em docs/pesquisa/animacoes/afundo.md: consenso de treinadores",
+  "hoje": "Animação aprovada no guia de hoje (src/engine/exercicios/afundo.ts): o tamanho do passo e a posição do quadril entre os pés, que a ficha não dá em número",
+  "cdc": "Soucie JM et al. Range of motion measurements: reference values and a database for comparison studies. Haemophilia 2011 (tabelas do CDC; docs/revisoes/animacao-nova/pesquisa/02-articulacoes.md, A1)",
+  "objetos": "src/engine/novo/dados/objetos.json",
+  "desenho": "Escolha de desenho desta animação, dentro do que a ficha pede; a conferência mede o resultado"
+ },
+ "param": {
+  "pes.meiaDistancia": {"v": 9, "un": "cm", "selo": "consenso", "fonte": "guia", "o": "pés na largura do quadril, como trilhos (os centros do quadril ficam a 8,35 cm do meio)"},
+  "peDaFrente.aFrenteDoQuadril": {"v": 39.5, "un": "cm", "selo": "desenho", "fonte": "hoje", "o": "passo largo: quanto o tornozelo do pé da frente fica à frente do quadril (na animação aprovada de hoje: 39,5 cm)"},
+  "peDeTras.atrasDoQuadril": {"v": 47, "un": "cm", "selo": "desenho", "fonte": "hoje", "o": "passo largo: quanto a ponta do pé de trás (a bola do pé) fica atrás do quadril (na animação aprovada de hoje, o tornozelo de trás fica 40,5 cm atrás, com o calcanhar levantado)"},
+  "peDeTras.calcanhar": {"v": 66, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "pé de trás na ponta: quanto o calcanhar sobe; a ficha não dá número"},
+  "joelho.cima": {"v": 14, "un": "graus", "selo": "consenso", "fonte": "guia", "o": "em cima: os joelhos quase estendidos; a ficha manda parar um pouco antes de estender totalmente"},
+  "joelhoDeTras.aoChao": {"v": 4, "un": "cm", "selo": "consenso", "fonte": "guia", "o": "embaixo: o joelho de trás fica a poucos centímetros do chão (da pele do joelho ao chão)"},
+  "tronco": {"v": 4, "un": "graus", "selo": "consenso", "fonte": "guia", "o": "tronco quase vertical"},
+  "erro.valgo.joelho": {"v": 6, "un": "cm", "selo": "desenho", "fonte": "desenho", "o": "erro: quanto o joelho da frente cai para dentro"},
+  "erro.tronco": {"v": 36, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "erro: o tronco cai para a frente"},
+  "erro.raso.fracao": {"v": 0.4, "un": "fração", "selo": "desenho", "fonte": "hoje", "o": "erro: desce só 40% do caminho (como na animação de hoje)"},
+  "peDeTras.calcanhar.cima": {"v": 50, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "em cima, o calcanhar de trás fica mais baixo (o pé menos na ponta), para os dois joelhos ficarem quase estendidos como a ficha pede"},
+  "bracos.paraFora": {"v": 7, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "braços pendendo ao lado do corpo: quanto abrem para o halter não bater na coxa"},
+  "carga": {"v": 11.3, "un": "kg", "selo": "desenho", "fonte": "objetos", "o": "cada halter desenhado (25 lb); entram no equilíbrio"}
+ },
+ "fases": [
+  {"nome": "Em cima", "tipo": "pausa", "dur": 0.5, "de": 0, "ate": 0, "respira": "INSPIRA", "tempo": "respire e firme o abdômen", "selo": "consenso", "fonte": "guia"},
+  {"nome": "Descida · excêntrica", "tipo": "exc", "dur": 2.3, "de": 0, "ate": 1, "respira": "FIRME", "tempo": "~2–3 s", "selo": "consenso", "fonte": "guia"},
+  {"nome": "Embaixo", "tipo": "pausa", "dur": 0.4, "de": 1, "ate": 1, "respira": "FIRME", "tempo": "pausa curta", "selo": "consenso", "fonte": "guia"},
+  {"nome": "Subida · concêntrica", "tipo": "conc", "dur": 1.3, "de": 1, "ate": 0, "respira": "EXPIRA", "tempo": "~1–1,5 s", "selo": "consenso", "fonte": "guia"}
+ ],
+ "contatos": ["pe.R", "pe.L"],
+ "regras": [
+  {"id": "joelhos-quase-estendidos-em-cima", "pede": "em cima, os dois joelhos ficam quase estendidos", "selo": "consenso", "fonte": "guia"},
+  {"id": "desce-reto", "pede": "a descida é reta: o quadril desce sem ir para a frente nem para trás", "selo": "consenso", "fonte": "guia"},
+  {"id": "joelho-de-tras-perto-do-chao", "pede": "embaixo, o joelho de trás fica a poucos centímetros do chão", "selo": "consenso", "fonte": "guia"},
+  {"id": "coxa-da-frente-perto-da-horizontal", "pede": "embaixo, a coxa da frente fica perto da horizontal", "selo": "consenso", "fonte": "guia"},
+  {"id": "tronco-quase-vertical", "pede": "o tronco fica quase vertical", "selo": "consenso", "fonte": "guia"},
+  {"id": "pe-da-frente-inteiro-no-chao", "pede": "o pé da frente fica inteiro no chão", "selo": "consenso", "fonte": "guia"}
+ ],
+ "erros": [
+  {"id": "valgo", "instante": 1, "titulo": "Joelho da frente para dentro", "vista": "frontal", "oQueMuda": "o joelho da frente sai da linha do pé, para dentro", "destaca": ["pernas"], "linha": ["quadril:R", "joelho:R", "tornozelo:R"], "foco": "joelho:R"},
+  {"id": "tronco", "instante": 1, "titulo": "Tronco cai para a frente", "vista": "lateral", "oQueMuda": "o tronco inclina para a frente em vez de ficar quase vertical", "destaca": ["corpo"], "linha": ["pelve", "lombar", "c7", "cabeca"], "foco": "c7"},
+  {"id": "raso", "instante": 1, "titulo": "Descer pouco", "vista": "lateral", "oQueMuda": "desce só 40% do caminho", "destaca": ["pernas"], "linha": ["quadril:R", "joelho:R", "tornozelo:R"], "foco": "joelho:R"}
+ ],
+ "simetrico": false,
+ "rotulos": [
+  {"vista": "lateral", "texto": "desce reto", "ponto": "pelve", "selo": "consenso", "fonte": "guia"},
+  {"vista": "frontal", "texto": "joelho sobre o pé", "ponto": "joelho", "selo": "consenso", "fonte": "guia", "prumo": {"de": "ponta", "alt": 62}}
+ ]
+}

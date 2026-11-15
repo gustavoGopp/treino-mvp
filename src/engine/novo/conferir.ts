@@ -86,6 +86,16 @@ const REGRAS: Record<string, Regra> = {
     const folga = f.lado.L.joelho[1] - corpo.secoes.coxa![corpo.secoes.coxa!.length - 1]!.b;
     return { medido: `embaixo, a pele do joelho de trás fica a ${f1(folga)} cm do chão (o centro do joelho a ${f1(f.lado.L.joelho[1])} cm)`, ok: folga >= 1 && folga <= 10 };
   },
+  'coxa-da-frente-perto-da-horizontal': (q) => {
+    const f = q[q.length - 1]!.esq.lado.R;
+    const a = Math.abs(Math.asin((f.quadril[1] - f.joelho[1]) / dist(f.quadril, f.joelho)) / (Math.PI / 180));
+    return { medido: `embaixo, a coxa da frente fica a ${f1(a)}° da horizontal`, ok: a <= 15 };
+  },
+  'joelhos-quase-estendidos-em-cima': (q) => {
+    const a = angulosDoLado(q[0]!.esq, 'R').joelho,
+      b = angulosDoLado(q[0]!.esq, 'L').joelho;
+    return { medido: `em cima, o joelho da frente dobra ${f1(a)}° e o de trás ${f1(b)}°`, ok: a <= 25 && b <= 25 };
+  },
   'tronco-quase-vertical': (q) => {
     const pior = Math.max(...q.map((x) => angulo(x.esq.torax.y, [0, 1, 0])));
     return { medido: `o peito inclina no máximo ${f1(pior)}° da vertical`, ok: pior <= 12 };
