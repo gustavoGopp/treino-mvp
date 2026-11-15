@@ -28,7 +28,7 @@ De 15/11/2026. O tríceps com a corda empurrando para baixo, no motor novo. Em p
 | Embaixo: cotovelo totalmente estendido; segure um instante | consenso | cotovelo a 4°; pausa de 0,5 s | sim |
 | Volta em ~2 s, sem os cotovelos saírem do lugar | consenso | 2 s, pelo mesmo caminho; o cotovelo anda 0 cm | sim |
 
-Conferência automática (`node scripts/animacao-nova/conferir.mjs triceps-corda`): **0 falha, 1 aviso** (as linhas da ficha de movimento que são escolha de desenho: a posição dos pés e da pelve, o pescoço, quanto o braço vai para o meio, a distância das mãos em cima e a inclinação do cabo). Medidas: ritmo com salto de 7% (limite 15%); a pilha sobe 29,9 cm para 59,8 cm de cabo (2:1); a corda e o cabo passam a no mínimo 3,7 cm da pele (a coxa, embaixo); cada ramo fica esticado com 25,2 cm em todos os quadros; supinação do antebraço até 62° (a pegada neutra), pronação 1,6°, punho reto; centro de massa sempre dentro do apoio dos pés.
+Conferência automática (`node scripts/animacao-nova/conferir.mjs triceps-corda`): **0 falha, 1 aviso** (as linhas da ficha de movimento que são escolha de desenho: a posição dos pés e da pelve, o pescoço, quanto o braço vai para o meio, a distância das mãos em cima e a inclinação do cabo). A conferência completa (`npm run conferir:animacao`) acrescenta o aviso das vistas do modo Músculos (de lado aparecem só 56 cm² do tríceps; a padrão é a de trás). Medidas: ritmo com salto de 7% (limite 15%); a pilha sobe 29,9 cm para 59,8 cm de cabo (2:1); a corda e o cabo passam a no mínimo 3,7 cm da pele (a coxa, embaixo); cada ramo fica esticado com 25,2 cm em todos os quadros; supinação do antebraço até 62° (a pegada neutra), pronação 1,6°, punho reto; centro de massa sempre dentro do apoio dos pés.
 
 ## As vistas
 
