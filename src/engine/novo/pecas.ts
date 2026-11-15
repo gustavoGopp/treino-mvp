@@ -161,6 +161,11 @@ export interface PecaPropria {
   desenhar(C: CenaRealista, M: Materiais, o: { comSombra: boolean; tema: 'claro' | 'escuro' }): void;
   fixa?: unknown;
   cenario?: boolean;
+  /**
+   * Quando só uma parte da peça importa para o enquadramento (um sofá de 2 m do qual só interessa o trecho onde os
+   * pés prendem): os pontos, em cm, que o quadro precisa mostrar. O resto da peça é cortado pela borda do quadro.
+   */
+  noQuadro?: V3[];
 }
 
 export interface Torre {

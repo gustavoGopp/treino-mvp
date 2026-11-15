@@ -202,8 +202,12 @@ function quadro(corpo: Corpo, u: number, erro?: string): Quadro {
   const S = sofa(B.sofa);
   const A = colchoneteDobrado(Z_COLCHONETE);
   const prims = [chao(-150, 120, -160, 150), ...A.prims, ...S.prims];
-  const pecas: Peca[] = [A.peca, S.peca];
   const d = debaixoDoSofa(B.sofa);
+  // Do sofá, o quadro só precisa mostrar o trecho onde os calcanhares prendem (45 cm para cada lado e 45 cm de fundo,
+  // até a altura do assento); o resto é cortado pela borda. Com o sofá inteiro (mais de 2 m), o corpo ficava pequeno.
+  const trecho: V3[] = [];
+  for (const x of [-45, 45]) for (const y of [0, obj('sofa', 'assentoAltura')]) for (const z of [B.sofa.zFrente - 45, B.sofa.zFrente]) trecho.push([B.sofa.x0 + x, y, z]);
+  const pecas: Peca[] = [A.peca, { ...S.peca, noQuadro: trecho }];
   return { esq: e, prims, pecas, fios: [], cargas: [], marcas: { debaixoDoSofa: [0, d.y, d.zFrente], maoR: B.maoNoChao.R, maoL: B.maoNoChao.L }, vies: { maoR: 1, maoL: 1 } };
 }
 

@@ -57,7 +57,7 @@
  ],
  "simetrico": true,
  "rotulos": [
-  { "vista": "lateral", "texto": "encosto ~30°: um terço entre deitado e sentado", "ponto": "lombar", "selo": "um estudo", "fonte": "tecnica08c3" },
+  { "vista": "lateral", "texto": "encosto a ~30°", "ponto": "lombar", "selo": "um estudo", "fonte": "tecnica08c3" },
   { "vista": "lateral", "texto": "antebraço na vertical", "ponto": "punho", "selo": "consenso", "fonte": "ficha", "prumo": { "de": "cotovelo", "alt": 40 } },
   { "vista": "cima", "texto": "cotovelos ~30–60° do tronco", "ponto": "cotovelo", "selo": "consenso", "fonte": "tecnica08c4" },
   { "vista": "cima", "texto": "desce controlando, sobe para os ombros", "ponto": "pegada", "selo": "consenso", "fonte": "app" }

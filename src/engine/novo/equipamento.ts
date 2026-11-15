@@ -298,7 +298,20 @@ export function equipamentoRealista(pecas: Peca[], cam: Camera, tema: Tema, id: 
     else if (p.t === 'pegador') junta(desenhar(null, cam, pid, (C) => pegador(C, M, p)));
     else if (p.t === 'propria') {
       const r = desenhar(p.fixa === undefined ? null : fixa(p.nome, p.fixa), cam, pid, (C) => p.desenhar(C, M, { comSombra, tema }));
-      junta(p.cenario ? { itens: r.itens.map((it) => (it.camada >= 1 ? { ...it, camada: 0.4 } : it)), defs: r.defs } : r);
+      if (p.noQuadro && !p.cenario) {
+        // só os pontos pedidos contam para o enquadramento
+        const cx: [number, number, number, number] = [1e9, 1e9, -1e9, -1e9];
+        for (const q of p.noQuadro) {
+          const tx = dot(q, cam.dir),
+            ty = -dot(q, cam.cima);
+          cx[0] = Math.min(cx[0], tx);
+          cx[1] = Math.min(cx[1], ty);
+          cx[2] = Math.max(cx[2], tx);
+          cx[3] = Math.max(cx[3], ty);
+        }
+        const primeiro = r.itens.findIndex((it) => it.camada >= 1);
+        junta({ itens: r.itens.map((it, i) => ({ ...it, cx: i === primeiro ? cx : undefined })), defs: r.defs });
+      } else junta(p.cenario ? { itens: r.itens.map((it) => (it.camada >= 1 ? { ...it, camada: 0.4 } : it)), defs: r.defs } : r);
     }
     else junta(desenhar(null, cam, pid, (C) => C.linha(p.a, p.b, tema === 'claro' ? '#1d2024' : '#aeb8c2', 0.8)));
   });
