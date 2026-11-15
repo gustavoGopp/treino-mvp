@@ -43,6 +43,8 @@ Músculos: dorsal e meio das costas do lado direito em vermelho; ombro de trás 
 | Arredondar as costas | lado | lombar +22° e torácica +22°; a bacia vira para trás até o ombro de apoio ficar à mesma distância da mão (a mão não sai da coxa) |
 | Não estender o braço (quadro parado no começo) | lado | a volta para a 45% do caminho |
 
+**Folga da carga (núcleo):** se num quadro a carga chegaria a menos de 0,5 cm da pele das pernas ou do tronco (num corpo menor, ou num erro que move o tronco), o núcleo afasta os braços que puxam do corpo só o necessário (`resolver1`, contínuo: zero enquanto a folga basta). No homem, no movimento certo, isso não acontece.
+
 ## Correções já feitas que esta animação respeita
 
 - `remada-unilateral-sem-banco` motivou o acabamento A2 (04/11): mão em luva por cima do cabo e braço destacado do tronco, ok no desenho novo.

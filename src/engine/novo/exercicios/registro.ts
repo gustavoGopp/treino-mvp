@@ -60,3 +60,4 @@ export { roscaInclinada } from './rosca-inclinada';
 export { remadaUnilateral } from './remada-unilateral';
 export { remadaUnilateralSemBanco } from './remada-unilateral-sem-banco';
 export { remadaCurvadaHalteres } from './remada-curvada-halteres';
+export { remadaUnilateralKettlebell } from './remada-unilateral-kettlebell';

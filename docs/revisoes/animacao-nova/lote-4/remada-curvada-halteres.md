@@ -39,7 +39,9 @@ Conferência automática (homem e mulher): **0 falha, 2 avisos.** (1) As linhas 
 | Encolher os ombros (`e3`) | de trás | as escápulas sobem +8 no fim (hoje: +8) |
 | Puxar só com os braços (`e4`) | lado | o braço fica a 12° da vertical (embaixo do ombro) e o antebraço dobra 75° para a frente, como numa rosca; o halter não chega ao quadril |
 
-Os halteres não atravessam as pernas nos erros (no `e2`, o mais perto: 0,5 cm da coxa).
+Os halteres não atravessam as pernas nos erros (no `e2`, o mais perto: 0,5 cm da coxa, com o núcleo afastando os braços o necessário).
+
+**Folga da carga (núcleo):** se num quadro a carga chegaria a menos de 0,5 cm da pele das pernas ou do tronco (num corpo menor, ou num erro que move o tronco), o núcleo afasta os braços que puxam do corpo só o necessário (`resolver1`, contínuo: zero enquanto a folga basta). No homem, no movimento certo, isso não acontece.
 
 ## Correções já feitas que esta animação respeita
 

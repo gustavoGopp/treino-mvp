@@ -43,9 +43,11 @@ Músculos: dorsal e meio das costas (`trapMedInf`) do lado direito em vermelho; 
 
 | Erro (texto do app) | Vista | O que o boneco faz (medido) |
 |---|---|---|
-| Girar o tronco | três quartos, de trás | a coluna gira 18° no fim (35% na lombar, o resto na torácica), como hoje; o peito abre para o lado do braço que puxa; o halter continua fora da coxa (0,4 cm) |
+| Girar o tronco | três quartos, de trás | a coluna gira 18° no fim (35% na lombar, o resto na torácica), como hoje; o peito abre para o lado do braço que puxa; o halter continua fora da coxa (0,5 cm: aqui o núcleo afasta o braço o necessário) |
 | Arredondar as costas | lado | lombar +22° e torácica +22°; a bacia vira para trás o bastante para o ombro de apoio ficar à mesma distância da mão (a mão não sai do banco): as costas fazem uma corcunda, sem os ombros caírem |
 | Não estender o braço (quadro parado no começo) | lado | a volta para a 45% do caminho: o cotovelo fica dobrado ~45° |
+
+**Folga da carga (núcleo):** se num quadro a carga chegaria a menos de 0,5 cm da pele das pernas ou do tronco (num corpo menor, ou num erro que move o tronco), o núcleo afasta os braços que puxam do corpo só o necessário (`resolver1`, contínuo: zero enquanto a folga basta). No homem, no movimento certo, isso não acontece.
 
 ## Correções já feitas que esta animação respeita (`correcoes-ja-feitas.md`)
 
