@@ -1,6 +1,6 @@
 # Lote 2 · Extensão de tríceps com o peso do corpo (`extensao-triceps-peso-corpo`)
 
-De 15/11/2026. Mãos espalmadas no tampo de uma bancada de cozinha (90 cm), junto da beirada; pés para trás, na ponta; corpo reto e inclinado. Só os cotovelos dobram, apontando para a frente, até a testa chegar perto da bancada. **Ainda não foi vista pelo Gustavo.** Não está ligada às telas do app.
+De 15/11/2026; corrigida na rodada do mesmo dia (seção "Rodada de correção" no fim). Mãos espalmadas no tampo de uma bancada de cozinha (90 cm), junto da beirada; pés para trás, na ponta; corpo reto e inclinado. Só os cotovelos dobram, apontando para a frente, até a testa chegar perto da bancada. **Ainda não foi vista pelo Gustavo.** Não está ligada às telas do app.
 
 - Ficha da técnica: `docs/pesquisa/animacoes/extensao-triceps-peso-corpo.md`. Cartão: `src/conteudo/exercicios/extensao-triceps-peso-corpo.json` (só leitura).
 - Ficha de movimento: `src/engine/novo/dados/movimentos/extensao-triceps-peso-corpo.json`.
@@ -61,7 +61,7 @@ O ritmo fica suave (salto de 9,3%), e o corpo não entra na bancada (0 cm).
 
 Ficaram **provisórias** (`a-conferir`): quanto o tampo passa da frente do gabinete (2 cm) e o recuo do rodapé (5 cm). A largura desenhada (120 cm) é escolha de desenho.
 
-Hoje a bancada é uma caixa `BOX` lisa a 90 cm. A peça nova é desenhada com o gerador realista, e a peça de hoje não tinha cartão.
+Hoje a bancada é uma caixa `BOX` lisa a 90 cm. A peça nova sai do gerador realista, como o banco e a cadeira. O gabinete e o rodapé são prismas de pé, com as faces sombreadas pela luz. O tampo é de pedra escura e passa um pouco da frente. A frente tem uma gaveta e duas portas, marcadas por juntas e puxadores cromados, e só aparece quando está virada para quem olha. Desenhadas como peças à parte, as portas vazavam pelo lado da bancada na vista de três quartos.
 
 ## Correções já feitas que esta animação respeita (`correcoes-ja-feitas.md`)
 
@@ -71,8 +71,23 @@ Hoje a bancada é uma caixa `BOX` lisa a 90 cm. A peça nova é desenhada com o 
 
 ## O que não ficou bom
 
-- **A pose é bem diferente da de hoje, que foi aprovada.** Hoje o corpo fica mais em pé (32° a 47°), o cotovelo desce abaixo da beirada e o braço não chega acima da cabeça (cerca de 81° em relação ao tronco). Aqui o corpo fica mais deitado (42° a 52°), os pés mais longe (132 contra ~112 cm) e o braço vai à linha do tronco (178°), que é o que a ficha pede ("braços acima da cabeça"). Este é o maior risco desta folha.
-- **As mãos estão espalmadas, e não segurando a beirada.** Espalmada, a mão fica parada e a conferência mede o contato. Segurando a quina, o punho giraria em volta dela.
-- **A elevação do braço (178°) e a supinação do antebraço (94°)** passam da média. São avisos, e vale um olhar de quem conhece o exercício.
-- **De lado, embaixo, a cabeça some entre os braços,** perto da quina, e o rótulo "só o cotovelo dobra" fica em cima do cotovelo, junto da cabeça.
-- **O tríceps não aparece de lado:** o modo Músculos abre de cima.
+- **A pose é diferente da de hoje, que foi aprovada.** Hoje o corpo fica mais em pé (32° a 47°), o cotovelo desce abaixo da beirada e o braço fica a cerca de 81° do tronco. Aqui o corpo fica mais deitado (42° a 52°), os pés mais longe (132 contra ~112 cm) e o braço vai à linha do tronco (178°).
+  - A ficha exige a diferença: "embaixo, braços acima da cabeça", e a vantagem do exercício (um estudo, `maeo2023`) depende dessa posição do ombro.
+  - As amplitudes também exigem: com os pés a 112 cm e o braço acima da cabeça, o cotovelo passa à frente da mão, e o punho espalmado dobra 109° (o máximo observado é 95°: falha). Com os pés a 125 cm, o punho chega a 80° (aviso).
+  - Voltar para a pose de hoje deixaria o braço a cerca de 81° do tronco, contra o que a ficha pede. Por isso não voltei.
+- **Avisos que ficam:** elevação do braço de 178°, acima da média de 170° (é o "braço na linha do tronco" que a ficha pede); supinação do antebraço de 94°, a medida do motor para a mão espalmada com o cotovelo para a frente.
+- **De lado, embaixo, a cabeça fica atrás do braço de perto.** É inevitável de perfil, com os braços dos dois lados da cabeça. Ela aparece na vista de cima, entre os antebraços (na cor de pele, o cabelo).
+
+## Rodada de correção (15/11/2026)
+
+O que mudou:
+
+- **A bancada.** Era uma caixa cinza chapada; agora tem volume e luz, tampo de pedra, gaveta, duas portas com puxadores e rodapé recuado (ver "O equipamento").
+- **As mãos.** Reli a ficha e o cartão: "Mãos num apoio fixo" e "Mãos no apoio na largura dos ombros". Nenhum dos dois fala em segurar a beirada (só a animação de hoje punha as mãos "na beirada"). As mãos continuam espalmadas no tampo, junto da beirada.
+- **As vistas.** Testei `lateral`, `quina`, `quinaTras` e `cima`.
+  - A `quina` mostra a cabeça, mas a bancada fica na frente do corpo e o tríceps não aparece.
+  - A `quinaTras` mostra bem a bancada e os cotovelos, mas o tríceps quase some, e o modo Músculos voltaria para a vista de lado, onde ele não aparece.
+  - Fiquei com `lateral` (o corpo reto e o cotovelo dobrando) e `cima`. De cima se vê a cabeça descendo entre os antebraços, os cotovelos para a frente e o tríceps, 182 cm² dele visíveis contra 56 de lado. Os quadros grandes trazem também uma `quinaTras` em cor de pele, só para mostrar a bancada.
+- **A pose contra a de hoje.** Mantida, pelos motivos de "O que não ficou bom".
+- **Rótulos.** Dois de lado ("corpo reto", "só o cotovelo dobra") e um de cima ("cotovelos para a frente"), em minúsculas, sem ponto.
+- **Nove itens da seção 8.** Olhei quadro a quadro, com a cor de pele e o tema escuro (`../quadros/extensao-triceps-peso-corpo.png`).
