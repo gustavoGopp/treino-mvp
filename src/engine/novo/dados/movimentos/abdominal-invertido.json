@@ -1,0 +1,48 @@
+{
+ "id": "abdominal-invertido",
+ "nome": "Abdominal invertido no chão",
+ "fichaDaTecnica": "docs/pesquisa/animacoes/abdominal-invertido.md",
+ "fontes": {
+  "ficha": "Ficha da técnica (docs/pesquisa/animacoes/abdominal-invertido.md): consenso (Pursuit Physical Therapy, vídeo; escamilla2006b)",
+  "app": "Texto do app (src/conteudo/exercicios/abdominal-invertido.json), que sai da ficha",
+  "hoje": "Animação aprovada no guia de hoje (src/engine/exercicios/abdominal-invertido.ts): as distâncias que a ficha não dá em número",
+  "desenho": "Escolha de desenho desta animação, dentro do que a ficha pede; a conferência mede o resultado"
+ },
+ "param": {
+  "lombar.base": {"v": 15, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "deitado, a lombar firme: a curva da lombar achata 15° além da de repouso (a mesma base do abdominal no chão), e a bacia inclina até o glúteo e as costas encostarem juntos no chão"},
+  "pelve.enrola": {"v": 40, "un": "graus", "selo": "desenho", "fonte": "hoje", "o": "no alto, a pelve enrola 40° em direção ao peito (a lombar dobra o mesmo tanto e o tórax fica deitado): o quadril sai do chão (37° na animação de hoje, com o quadril 13 cm acima do chão)"},
+  "joelho": {"v": 90, "un": "graus", "selo": "consenso", "fonte": "ficha", "o": "joelhos dobrados a ~90°, mantidos no ciclo"},
+  "coxa.vertical": {"v": 0, "un": "graus", "selo": "consenso", "fonte": "ficha", "o": "embaixo, as coxas na vertical (0° da vertical); daí em diante elas andam presas à bacia"},
+  "pe.plantar": {"v": 55, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "os pés soltos, com a ponta 55° esticada além do ângulo reto com a canela"},
+  "ombro.z": {"v": -50, "un": "cm", "selo": "desenho", "fonte": "desenho", "o": "onde ficam os ombros na cena (só posiciona a cena; os ombros não saem do lugar)"},
+  "maos.alcance": {"v": 0.95, "un": "fração", "selo": "desenho", "fonte": "hoje", "o": "braços no chão ao lado do corpo, palmas para baixo: o punho fica, na direção dos pés, a 95% do braço mais o antebraço a partir do ombro (como na ponte de glúteo)"},
+  "maos.paraFora": {"v": 10, "un": "cm", "selo": "desenho", "fonte": "hoje", "o": "os braços um pouco abertos (o braço não cobre o tronco de lado)"},
+  "erro.embalo.pelve": {"v": 1.3, "un": "fração", "selo": "desenho", "fonte": "app", "o": "erro: o embalo leva a pelve além do certo (30% a mais de giro)"},
+  "erro.embalo.quadril": {"v": 15, "un": "graus", "selo": "desenho", "fonte": "app", "o": "erro: as pernas são jogadas para a cabeça: o quadril dobra mais 15°"},
+  "erro.maos.alcance": {"v": 0.6, "un": "fração", "selo": "desenho", "fonte": "app", "o": "erro: as mãos empurram o chão perto do quadril, com os cotovelos dobrados (o punho a 60% do braço mais o antebraço a partir do ombro)"},
+  "erro.lombar.quadril": {"v": 25, "un": "graus", "selo": "desenho", "fonte": "app", "o": "erro: na descida, as pernas vão longe demais: as coxas passam 25° da vertical, para longe da cabeça"},
+  "erro.lombar.lombar": {"v": -25, "un": "graus", "selo": "desenho", "fonte": "app", "o": "erro: a lombar arqueia 25° e sai do chão"}
+ },
+ "fases": [
+  {"nome": "Embaixo", "tipo": "pausa", "dur": 0.5, "de": 0, "ate": 0, "respira": "INSPIRA", "tempo": "coxas na vertical", "selo": "consenso", "fonte": "app"},
+  {"nome": "Subida · concêntrica", "tipo": "conc", "dur": 1, "de": 0, "ate": 1, "respira": "EXPIRA", "tempo": "~1 s", "selo": "consenso", "fonte": "app"},
+  {"nome": "No alto · contrai", "tipo": "pausa", "dur": 1, "de": 1, "ate": 1, "respira": "EXPIRA", "tempo": "1 s", "selo": "consenso", "fonte": "app"},
+  {"nome": "Descida · excêntrica", "tipo": "exc", "dur": 2, "de": 1, "ate": 0, "respira": "INSPIRA", "tempo": "~2 s", "selo": "consenso", "fonte": "ficha"}
+ ],
+ "contatos": ["mao.R", "mao.L"],
+ "regras": [
+  {"id": "ombros-e-cabeca-no-chao", "pede": "as costas de cima, os ombros e a cabeça ficam no chão", "selo": "consenso", "fonte": "app"},
+  {"id": "abdominal-invertido-quadril-sai-do-chao", "pede": "enrola a pelve em direção ao peito, tirando o quadril do chão; embaixo, o quadril no chão", "selo": "consenso", "fonte": "ficha"},
+  {"id": "abdominal-invertido-coxas-na-vertical", "pede": "embaixo, coxas na vertical; joelhos a ~90° o ciclo inteiro", "selo": "consenso", "fonte": "ficha"}
+ ],
+ "erros": [
+  {"id": "embalo", "instante": 1, "titulo": "Jogar as pernas", "vista": "lateral", "oQueMuda": "o embalo leva as pernas para a cabeça e o quadril sobe além do certo", "destaca": ["pernas", "corpo"], "linha": ["c7", "pelve", "joelho"], "foco": "joelho"},
+  {"id": "maos", "instante": 1, "titulo": "Empurrar com as mãos", "vista": "lateral", "oQueMuda": "as mãos apertam o chão perto do quadril, com os cotovelos dobrados: os braços fazem a força", "destaca": ["bracos"], "linha": ["ombro", "cotovelo", "punho"], "foco": "cotovelo"},
+  {"id": "lombar", "instante": 0, "titulo": "Arquear a lombar na descida", "vista": "lateral", "oQueMuda": "as pernas descem além da vertical e a lombar arqueia, fora do chão", "destaca": ["corpo", "pernas"], "linha": ["c7", "lombar", "pelve", "joelho"], "foco": "lombar"}
+ ],
+ "simetrico": true,
+ "rotulos": [
+  {"vista": "lateral", "texto": "enrola a pelve", "ponto": "pelve", "selo": "consenso", "fonte": "app"},
+  {"vista": "quina", "texto": "sem embalo das pernas", "ponto": "tornozelo", "selo": "consenso", "fonte": "app"}
+ ]
+}

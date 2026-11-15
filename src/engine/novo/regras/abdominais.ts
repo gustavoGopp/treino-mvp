@@ -6,7 +6,7 @@ import type { Regra } from '../conferir-util';
 import { poseEmPe, resolver } from '../esqueleto';
 import type { Esq } from '../esqueleto';
 import type { Corpo } from '../tabelas';
-import { anguloEm, dist, paraRef } from '../vec';
+import { angulo, anguloEm, dist, paraRef, sub } from '../vec';
 
 /** O ponto mais baixo (y) de cada parte do Boneco. */
 function maisBaixos(e: Esq): Record<string, number> {
@@ -70,6 +70,22 @@ export const REGRAS_ABDOMINAIS: Record<string, Regra> = {
     const anda = Math.max(...q.flatMap((x) => (['R', 'L'] as const).map((k) => dist(paraRef(x.esq.torax, x.esq.lado[k].punho), paraRef(q[0]!.esq.torax, q[0]!.esq.lado[k].punho)))));
     const longe = Math.min(...[q[0]!, q[q.length - 1]!].map((x) => maosACabeca(x.esq)));
     return { medido: `os punhos andam ${f1(anda)} cm em relação ao tórax; a mão mais perto da cabeça fica a ${f1(longe)} cm dela`, ok: anda <= 0.3 && longe >= 5 };
+  },
+  // ----- abdominal invertido -----
+  'abdominal-invertido-quadril-sai-do-chao': (q) => {
+    const ini = q[0]!.esq,
+      fim = q[q.length - 1]!.esq;
+    const g0 = maisBaixos(ini).pelve!,
+      g1 = maisBaixos(fim).pelve!;
+    // os joelhos vêm para o peito: quanto o joelho anda na direção da cabeça
+    const vem = ini.lado.R.joelho[2] - fim.lado.R.joelho[2];
+    return { medido: `embaixo, a pele do glúteo fica a ${f1(g0)} cm do chão; no alto, a ${f1(g1)} cm (o centro da bacia sobe ${f1(fim.pelve.o[1] - ini.pelve.o[1])} cm); o joelho anda ${f1(vem)} cm na direção da cabeça`, ok: g0 >= -1.5 && g0 <= 0.5 && g1 >= 5 && vem > 0 };
+  },
+  'abdominal-invertido-coxas-na-vertical': (q) => {
+    const L = q[0]!.esq.lado.R;
+    const coxa = angulo(sub(L.joelho, L.quadril), [0, 1, 0]);
+    const [a, b] = faixa(q.map((x) => x.esq.lado.R.ang.joelho));
+    return { medido: `embaixo, a coxa fica a ${f1(coxa)}° da vertical; o joelho dobra de ${f1(a)}° a ${f1(b)}°`, ok: coxa <= 5 && a >= 80 && b <= 100 };
   },
 };
 function inclinacao(e: Esq): number {

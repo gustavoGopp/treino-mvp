@@ -53,3 +53,4 @@ export { panturrilhaSentadaHalter } from './panturrilha-sentada-halter';
 export { tricepsCorda } from './triceps-corda';
 export { tricepsFrancesPoliaUnilateral } from './triceps-frances-polia-unilateral';
 export { abdominalChao } from './abdominal-chao';
+export { abdominalInvertido } from './abdominal-invertido';
