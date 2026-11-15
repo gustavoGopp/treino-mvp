@@ -5,7 +5,8 @@ import ficha from '../dados/movimentos/rosca-martelo.json';
 import type { Exercicio } from '../movimento';
 import { criarRoscaEmPe } from './dobrar-o-cotovelo';
 
-const R = criarRoscaEmPe(ficha, 'martelo');
+// o halter sextavado de 10 lb, o mesmo da rosca alternada: de frente, a cabeça cobre menos a mão
+const R = criarRoscaEmPe(ficha, 'martelo', { halter: 'halterLeve' });
 
 export const roscaMartelo: Exercicio = {
   ficha: R.ficha,

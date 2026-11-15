@@ -10,7 +10,7 @@ De 15/11/2026. Segunda animação da família das roscas no motor novo: a rosca 
 
 ## Como fica
 
-O corpo, o ritmo, a alternância e os erros são os da alternada (ver `rosca-alternada.md`). A mão fica com o polegar para a frente do antebraço o tempo todo (pegada neutra): o cabo do halter fica de pé em relação ao antebraço, apontando para a frente embaixo e para cima no topo. Com o cabo para a frente, as cabeças do halter ficam na frente e atrás da mão, e não do lado da coxa: o braço só precisa abrir 6° (a abertura dos braços pendurados do desenho aprovado), e não 17° como na alternada.
+O corpo, o ritmo, a alternância e os erros são os da alternada (ver `rosca-alternada.md`). A mão fica com o polegar para a frente do antebraço o tempo todo (pegada neutra): o cabo do halter fica de pé em relação ao antebraço, apontando para a frente embaixo e para cima no topo. Com o cabo para a frente, as cabeças do halter ficam na frente e atrás da mão, e não do lado da coxa: o braço abre 6° (a abertura dos braços pendurados do desenho aprovado). **Desde 15/11/2026 usa o halter sextavado de 10 lb** (`dados/objetos/halter-leve.json`), o mesmo da alternada: de frente a cabeça cobre menos a mão e o bíceps, e as duas roscas com halter ficam com o mesmo halter.
 
 ## O que a fonte pede × o que o boneco faz (medido) × confere?
 
@@ -23,10 +23,10 @@ O corpo, o ritmo, a alternância e os erros são os da alternada (ver `rosca-alt
 | Estende os braços embaixo | consenso | o cotovelo dobra 8° (sem travar) | sim |
 | Um braço de cada vez (texto do app) | consenso | enquanto o direito sobe, a mão esquerda não anda (0 cm) | sim |
 | ~1 s subindo, ~2 s descendo | consenso | 1,1 s e 2,2 s; salto de velocidade de 6% (limite 15%) | sim |
-| O halter não atravessa o corpo (desenho) | — | menor folga de 0,4 cm (do antebraço, junto ao punho da mão que segura), no ciclo inteiro e nos três erros | sim |
-| Equilíbrio | — | o centro de massa (corpo + 2 × 11,3 kg) fica sempre dentro do apoio dos pés | sim |
+| O halter não atravessa o corpo (desenho) | — | menor folga de 2,1 cm (do antebraço, junto ao punho da mão que segura) | sim |
+| Equilíbrio | — | o centro de massa (corpo + 2 × 4,5 kg) fica sempre dentro do apoio dos pés | sim |
 
-**O topo a 130°, e não a 132° como na alternada:** com o cabo de pé, a cabeça de trás do halter chega ao braço quando o cotovelo passa de ~135° (medido: a folga cai para 0,2 cm a 135°). 130° deixa o halter perto do ombro sem encostar.
+**O topo a 130°, e não a 132° como na alternada:** com o halter de 25 lb e o cabo de pé, a cabeça de trás chegava ao braço quando o cotovelo passava de ~135°. Com o de 10 lb sobra folga, mas mantive 130° (o topo já fica perto do ombro).
 
 Conferência automática: **0 falha, 3 avisos**: as linhas de desenho (abertura do braço e peso do halter); o antebraço em "só ajuda" (correção de 04/11); e a vista de lado, que não serve ao modo Músculos.
 
@@ -55,4 +55,4 @@ Bíceps (principal) e antebraço (só ajuda, listrado: é ali que fica o braquio
 
 ## O que não ficou bom
 
-- **De frente, a cabeça do halter cobre a mão** (embaixo, e em parte no topo): é a geometria (a cabeça da frente fica entre a mão e quem olha), a mesma limitação registrada em 04/11 ("disco do halter cobre a mão de frente"). Não pintei a mão por cima da cabeça porque ficaria na profundidade errada. De lado a mão aparece fechada no cabo.
+- **De frente, a cabeça do halter cobre a mão** (embaixo, e em parte no topo; com o halter de 10 lb, cobre menos: `quadros/rosca-martelo.png`, "frontal:tec:f0"): é a geometria (a cabeça da frente fica entre a mão e quem olha), a mesma limitação registrada em 04/11 ("disco do halter cobre a mão de frente"). Não pintei a mão por cima da cabeça porque ficaria na profundidade errada. De lado a mão aparece fechada no cabo.

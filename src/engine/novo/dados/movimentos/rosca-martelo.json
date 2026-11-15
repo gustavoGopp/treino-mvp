@@ -8,7 +8,7 @@
   "hoje": "Animação aprovada no guia de hoje (src/engine/exercicios/rosca-martelo.ts): parte da rosca alternada aprovada (mesmo corpo, mesmo caminho do braço, mesmas fases e erros), com o halter de pé em relação ao antebraço",
   "alternada": "Rosca alternada do motor novo (lote 5, src/engine/novo/dados/movimentos/rosca-alternada.json): o mesmo corpo, as mesmas fases e os mesmos erros",
   "cdc": "Soucie JM et al. Range of motion measurements: reference values and a database for comparison studies. Haemophilia 2011 (tabelas do CDC; docs/revisoes/animacao-nova/pesquisa/02-articulacoes.md, A1)",
-  "objetos": "src/engine/novo/dados/objetos.json",
+  "objetos": "Tabela de objetos: src/engine/novo/dados/objetos/halter-leve.json (halter sextavado de 10 lb, RitFit e Titan)",
   "desenho": "Escolha de desenho desta animação, dentro do que a ficha pede; a conferência mede o resultado"
  },
  "param": {
@@ -19,7 +19,7 @@
   "cotovelo.baixo": {"v": 8, "un": "graus", "selo": "consenso", "fonte": "ficha", "o": "embaixo, o braço estendido, sem travar o cotovelo"},
   "cotovelo.cima": {"v": 130, "un": "graus", "selo": "consenso", "fonte": "ficha", "o": "em cima, os halteres perto dos ombros (a ficha não dá número; a regra mede a distância da mão ao ombro); com o cabo de pé, a cabeça de trás do halter encosta no braço a partir de ~135°"},
   "maos.supinacao": {"v": 0, "un": "graus", "selo": "consenso", "fonte": "ficha", "o": "pegada neutra: o polegar aponta para a frente do antebraço (para cima no topo), palmas uma para a outra, sem girar"},
-  "carga": {"v": 11.3, "un": "kg", "selo": "desenho", "fonte": "objetos", "o": "cada halter desenhado (25 lb); entram no equilíbrio"},
+  "carga": {"v": 4.5, "un": "kg", "selo": "desenho", "fonte": "objetos", "o": "cada halter desenhado: o sextavado de 10 lb (dados/objetos/halter-leve.json); entram no equilíbrio"},
   "erro.balanco.tronco": {"v": 12, "un": "graus", "selo": "desenho", "fonte": "alternada", "o": "erro: o peito vai para trás enquanto o halter sobe (o impulso), como na alternada"},
   "erro.balanco.lombar": {"v": 6, "un": "graus", "selo": "desenho", "fonte": "alternada", "o": "erro: parte do balanço é a lombar arqueando"},
   "erro.cotovelo.braco": {"v": 35, "un": "graus", "selo": "desenho", "fonte": "alternada", "o": "erro: o cotovelo vai à frente (o braço sobe 35° à frente do tronco) e o ombro assume o movimento"},
