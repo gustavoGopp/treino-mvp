@@ -13,6 +13,7 @@ export { afundoPesoCorpo } from './exercicios/afundo-peso-corpo';
 export { afundo } from './exercicios/afundo';
 export { afundoKettlebell } from './exercicios/afundo-kettlebell';
 export { afundoTrasPesoCorpo } from './exercicios/afundo-tras-peso-corpo';
+export { bulgaro } from './exercicios/bulgaro';
 export * from './cena';
 export { flexao } from './exercicios/flexao';
 export { supinoReto } from './exercicios/supino-reto';

@@ -1,6 +1,6 @@
 # Lote 1 · Afundo para trás com o peso do corpo (`afundo-tras-peso-corpo`)
 
-De 15/11/2026. Sexta animação do lote 1, e a primeira em que um pé sai do chão: o boneco começa em pé, com os pés juntos, o pé de trás passa pelo ar e apoia na ponta, e o quadril desce. Embaixo, é a posição do afundo com o peso do corpo aprovado. **Ainda sem a aprovação do Gustavo na folha: não está no app.**
+De 15/11/2026. Sexta animação do lote 1, e a primeira em que um pé sai do chão: o boneco começa em pé, com os pés juntos, o pé de trás passa pelo ar e apoia na ponta, e o quadril desce. Embaixo, é a posição do afundo com o peso do corpo aprovado. **Aprovada pelo Gustavo em 15/11/2026 ("aprovada, segue para o búlgaro").** Ainda não está ligada às telas do app.
 
 - Ficha da técnica: `docs/pesquisa/animacoes/afundo-tras-peso-corpo.md`.
 - Ficha de movimento: `src/engine/novo/dados/movimentos/afundo-tras-peso-corpo.json`.

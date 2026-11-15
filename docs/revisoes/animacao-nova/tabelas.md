@@ -592,6 +592,64 @@ Fontes desta ficha:
 - `equilibrio`: Em pé, parado, a projeção do centro de massa cai dentro do apoio dos pés (mecânica); a ficha pede o calcanhar apoiado
 - `desenho`: Escolha de desenho desta animação, dentro do que a ficha pede; a conferência mede o resultado
 
+### Agachamento búlgaro com apoio (`bulgaro`)
+
+Ficha da técnica: `docs/pesquisa/animacoes/bulgaro.md`. Movimento de um lado só.
+
+| parâmetro | valor | selo | fonte | o que é |
+|---|---|---|---|---|
+| `pes.meiaDistancia` | 9 cm | consenso | guia | pés na largura do quadril, como trilhos (os centros do quadril ficam a 8,35 cm do meio) |
+| `peDaFrente.aFrenteDoQuadril` | 42,5 cm | desenho | hoje | pé da frente longe do banco: quanto o tornozelo da frente fica à frente do quadril (na animação aprovada de hoje: 42,5 cm) |
+| `peDeTras.tornozeloAtrasDoQuadril` | 43,5 cm | desenho | hoje | quanto o tornozelo do pé de trás, apoiado no banco, fica atrás do quadril (na animação aprovada de hoje: 43,5 cm) |
+| `peDeTras.tornozeloDaBorda` | 3 cm | desenho | hoje | quanto o tornozelo de trás fica para dentro da borda do banco: o peito do pé inteiro apoia no estofado (3 cm na animação de hoje) |
+| `joelho.cima` | 14 graus | consenso | guia | em cima: joelho da frente quase estendido; a ficha manda parar antes de travar |
+| `joelhoDeTras.aoChao` | 4 cm | consenso | guia | embaixo: o joelho de trás fica a poucos centímetros do chão (da pele do joelho ao chão) |
+| `tronco` | 15 graus | consenso | guia | tronco levemente inclinado à frente (a ficha não dá número; na animação de hoje, 14 a 16 graus) |
+| `apoio.maoAoLado` | 47 cm | desenho | hoje | mão de apoio na coluna da estação: distância da mão ao meio do corpo (47 cm na animação de hoje) |
+| `apoio.maoAltura` | 100 cm | desenho | hoje | mão de apoio: altura da mão na coluna (100 cm na animação de hoje) |
+| `apoio.maoAFrenteDoQuadril` | 12,5 cm | desenho | hoje | mão de apoio: quanto fica à frente do quadril (12,5 cm na animação de hoje) |
+| `bracos.paraFora` | 7 graus | desenho | desenho | braço do halter pendendo ao lado do corpo: quanto abre para o halter não bater na coxa |
+| `carga` | 11,3 kg | desenho | objetos | o halter desenhado (25 lb); entra no equilíbrio |
+| `erro.valgo.joelho` | 5 cm | desenho | desenho | erro: quanto o joelho da frente cai para dentro |
+| `erro.perto.maisPerto` | 19 cm | desenho | hoje | erro: quanto o pé da frente fica mais perto do banco (19 cm na animação de hoje) |
+| `erro.perto.calcanhar` | 34 graus | desenho | hoje | erro: quanto o calcanhar da frente sobe embaixo (34 graus a mais na animação de hoje) |
+| `erro.raso.fracao` | 0,47 fração | desenho | hoje | erro: desce só 47% do caminho (como na animação de hoje) |
+
+| fase | tipo | duração | respiração | ritmo | selo |
+|---|---|---|---|---|---|
+| Em cima | pausa | 0,5 s | inspira | firme o abdômen | consenso |
+| Descida · excêntrica | exc | 2,3 s | firme | ~2–3 s | consenso |
+| Embaixo | pausa | 0,4 s | firme | pausa curta | consenso |
+| Subida · concêntrica | conc | 1,3 s | expira | ~1–1,5 s | consenso |
+
+Contatos que não podem sair do lugar: `pe.R`.
+
+Regras que a conferência mede:
+
+- em cima, o joelho da frente fica quase estendido (consenso)
+- a descida é reta: o quadril desce sem ir para a frente nem para trás (consenso)
+- embaixo, o joelho de trás fica a poucos centímetros do chão (consenso)
+- embaixo, a coxa da frente fica perto da horizontal ou um pouco abaixo (consenso)
+- o tronco fica levemente inclinado à frente (consenso)
+- o pé da frente fica inteiro no chão, com o calcanhar apoiado (consenso)
+- o peito do pé de trás fica apoiado no banco, com o cadarço para baixo (consenso)
+- o peso fica na perna da frente (consenso)
+- a mão livre segura a coluna da estação só para equilibrar: fica parada (consenso)
+
+Erros desenhados:
+
+- Joelho da frente para dentro (vista: frontal): o joelho da frente sai da linha do pé, para dentro
+- Pé da frente perto do banco (vista: lateral): o pé da frente fica 19 cm mais perto do banco e o calcanhar sobe na descida
+- Descer pouco (vista: lateral): desce só 47% do caminho
+
+Fontes desta ficha:
+
+- `guia`: Guia original do projeto (referencia/guia-execucao-fase1.html), como registrado em docs/pesquisa/animacoes/bulgaro.md: consenso de treinadores
+- `hoje`: Animação aprovada no guia de hoje (src/engine/exercicios/bulgaro.ts): as distâncias dos pés ao quadril, a posição da mão de apoio e os erros, que a ficha não dá em número
+- `cdc`: Soucie JM et al. Range of motion measurements: reference values and a database for comparison studies. Haemophilia 2011 (tabelas do CDC; docs/revisoes/animacao-nova/pesquisa/02-articulacoes.md, A1)
+- `objetos`: src/engine/novo/dados/objetos.json
+- `desenho`: Escolha de desenho desta animação, dentro do que a ficha pede; a conferência mede o resultado
+
 ### Flexão de braço (`flexao`)
 
 Ficha da técnica: `docs/pesquisa/animacoes/flexao.md`. Movimento simétrico (os dois lados fazem o mesmo).

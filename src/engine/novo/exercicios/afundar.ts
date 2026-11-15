@@ -26,6 +26,10 @@ export interface PedidoDeAfundo {
   calcanharDeTras: number;
   /** Quanto o joelho da frente cai para dentro (cm): o erro do valgo. */
   valgo: number;
+  /** Quanto o calcanhar do pé da frente sobe (graus); só nos erros. */
+  calcanharDaFrente?: number;
+  /** A perna de trás com o pé fora do chão (no búlgaro, o peito do pé no banco): troca o pé de trás apoiado na ponta. */
+  pernaDeTras?: PosePerna;
   bracos(t: Tronco): { R: PoseBraco; L: PoseBraco };
 }
 
@@ -47,9 +51,9 @@ function montar(corpo: Corpo, p: PedidoDeAfundo, gira: number): Esq {
   const dBola = m('pe.calcanharABola') - m('pe.calcanharAoTornozelo');
   const pernas: Record<Lado, PosePerna> = {
     // o joelho da frente aponta para a frente (no erro, girado para dentro)
-    [p.frente]: { pe: { bola: [sf * p.pesMeiaDistancia, 0, p.tornozeloDaFrente + dBola], dir: [0, 0, 1], calc: 0 }, polo: [-sf * Math.sin(gira), 0, Math.cos(gira)] },
+    [p.frente]: { pe: { bola: [sf * p.pesMeiaDistancia, 0, p.tornozeloDaFrente + dBola], dir: [0, 0, 1], calc: p.calcanharDaFrente ?? 0 }, polo: [-sf * Math.sin(gira), 0, Math.cos(gira)] },
     // o joelho de trás aponta para o chão e um pouco para a frente
-    [tras]: { pe: { bola: [st * p.pesMeiaDistancia, p.apoioDeTras, p.bolaDeTras], dir: [0, 0, 1], calc: p.calcanharDeTras }, polo: [0, -1, 0.4] },
+    [tras]: p.pernaDeTras ?? { pe: { bola: [st * p.pesMeiaDistancia, p.apoioDeTras, p.bolaDeTras], dir: [0, 0, 1], calc: p.calcanharDeTras }, polo: [0, -1, 0.4] },
   } as Record<Lado, PosePerna>;
   const pelve: V3 = [0, p.quadrilY, p.quadrilZ];
   const t = resolverTronco(corpo, { pelve, frente: p.tronco, cervical: -p.tronco * 0.25, cabeca: -p.tronco * 0.2 });

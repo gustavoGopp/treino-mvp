@@ -96,6 +96,42 @@ const REGRAS: Record<string, Regra> = {
       b = angulosDoLado(q[0]!.esq, 'L').joelho;
     return { medido: `em cima, o joelho da frente dobra ${f1(a)}° e o de trás ${f1(b)}°`, ok: a <= 25 && b <= 25 };
   },
+  'joelho-da-frente-quase-estendido-em-cima': (q) => {
+    const a = angulosDoLado(q[0]!.esq, 'R').joelho;
+    return { medido: `em cima, o joelho da frente dobra ${f1(a)}°`, ok: a <= 25 };
+  },
+  'tronco-levemente-a-frente': (q) => {
+    const a = q.map((x) => Math.atan2(x.esq.torax.y[2], x.esq.torax.y[1]) / (Math.PI / 180));
+    const [min, max] = faixa(a);
+    return { medido: `o peito inclina de ${f1(min)}° a ${f1(max)}° para a frente`, ok: min >= 5 && max <= 25 };
+  },
+  'peito-do-pe-no-banco': (q) => {
+    // o ponto mais baixo do pé de trás (a superfície do Boneco), contra o tampo do apoio, e a sola virada para cima
+    const topo = q[0]!.marcas.apoioDoPe![1];
+    const folgas = q.map((x) => {
+      const L = x.esq.lado.L;
+      let min = 1e9;
+      for (const { p, parte } of pontosDoBoneco(x.esq)) if (parte === 'pe' && dist(p, L.tornozelo) < 24) min = Math.min(min, p[1]);
+      return min - topo;
+    });
+    const [a, b] = faixa(folgas);
+    const solaParaCima = q.every((x) => x.esq.lado.L.pe.y[1] < -0.7);
+    const anda = Math.max(...q.map((x) => dist(x.esq.lado.L.tornozelo, q[0]!.esq.lado.L.tornozelo)));
+    return { medido: `o pé de trás fica de ${f1(a)} a ${f1(b)} cm do tampo do apoio, ${solaParaCima ? 'com a sola para cima' : 'SEM a sola para cima'}, e o tornozelo anda ${f1(anda)} cm`, ok: a >= -1 && b <= 1 && solaParaCima && anda <= 0.1 };
+  },
+  'peso-na-perna-da-frente': (q) => {
+    const partes = q.map((x) => {
+      const cm = centroDeMassa(x.esq, 'homem', x.cargas)[2];
+      return (cm - x.esq.lado.L.tornozelo[2]) / (x.esq.lado.R.tornozelo[2] - x.esq.lado.L.tornozelo[2]);
+    });
+    const [a, b] = faixa(partes);
+    return { medido: `o centro de massa (corpo + carga) fica de ${f1(a * 100)}% a ${f1(b * 100)}% do caminho entre o tornozelo de trás e o da frente`, ok: a >= 0.5 };
+  },
+  'mao-de-apoio-parada': (q) => {
+    const anda = Math.max(...q.map((x) => dist(x.marcas.maoDeApoio!, q[0]!.marcas.maoDeApoio!)));
+    const cot = faixa(q.map((x) => angulosDoLado(x.esq, 'L').cotovelo));
+    return { medido: `a mão de apoio anda ${f1(anda)} cm no ciclo; o cotovelo desse braço dobra de ${f1(cot[0])}° a ${f1(cot[1])}°`, ok: anda <= 0.1 };
+  },
   'passo-largo-para-tras': (q) => {
     const f = q[q.length - 1]!.esq;
     const d = f.lado.R.tornozelo[2] - f.lado.L.tornozelo[2];

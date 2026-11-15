@@ -232,11 +232,36 @@ export function equipamentoRealista(pecas: Peca[], cam: Camera, tema: Tema, id: 
     const fixa = (nome: string, dados: unknown) => `${nome}|${cam.nome}|${tema}|${pid}|${JSON.stringify(dados)}`;
     if (p.t === 'halter') junta(desenhar(null, cam, pid, (C) => halter(C, M, p)));
     else if (p.t === 'anilha') junta(desenhar(fixa('anilha', p), cam, pid, (C) => anilha(C, M, p)));
-    else if (p.t === 'bancoReto') junta(desenhar(fixa('banco', p), cam, pid, (C) => bancoReto(C, M, p, comSombra)));
+    else if (p.t === 'bancoReto') {
+      const r = desenhar(fixa('banco', p), cam, pid, (C) => bancoReto(C, M, p, comSombra));
+      if (!p.pontaNoQuadro) return junta(r);
+      // só a ponta do banco conta para o enquadramento: a caixa na tela dos últimos `pontaNoQuadro` cm
+      const cx: [number, number, number, number] = [1e9, 1e9, -1e9, -1e9];
+      const zFim = p.z0 + obj('bancoReto', 'comp') / 2;
+      for (const x of [-1, 1])
+        for (const y of [0, obj('bancoReto', 'altura')])
+          for (const z of [zFim - p.pontaNoQuadro, zFim]) {
+            const q: V3 = [p.x0 + (x * obj('bancoReto', 'larg')) / 2, y, z];
+            const tx = dot(q, cam.dir),
+              ty = -dot(q, cam.cima);
+            cx[0] = Math.min(cx[0], tx);
+            cx[1] = Math.min(cx[1], ty);
+            cx[2] = Math.max(cx[2], tx);
+            cx[3] = Math.max(cx[3], ty);
+          }
+      const primeiro = r.itens.findIndex((it) => it.camada >= 1);
+      junta({ itens: r.itens.map((it, i) => ({ ...it, cx: i === primeiro ? cx : undefined })), defs: r.defs });
+    }
     else if (p.t === 'colchonete') junta(desenhar(fixa('colchonete', p), cam, pid, (C) => colchonete(C, M, p)));
     else if (p.t === 'torre') {
-      junta(desenhar(fixa('torre', p.torre), cam, pid, (C) => torreFixa(C, M, p.torre, comSombra)));
-      junta(desenhar(null, cam, `${pid}m`, (C) => torreMovel(C, M, p.torre, p.subida)));
+      const dePerfil = Math.abs(cam.para[0]) > 0.95;
+      if (p.cenario && dePerfil) return;
+      const a = desenhar(fixa('torre', p.torre), cam, pid, (C) => torreFixa(C, M, p.torre, comSombra)),
+        b = desenhar(null, cam, `${pid}m`, (C) => torreMovel(C, M, p.torre, p.subida));
+      // como cenário, a coluna vai para uma camada atrás do corpo (e do corpo tracejado dos erros) e fora do enquadramento
+      const fundo = (r: { itens: Item[]; defs: string }) => (p.cenario ? { itens: r.itens.map((it) => (it.camada >= 1 ? { ...it, camada: 0.4 } : it)), defs: r.defs } : r);
+      junta(fundo(a));
+      junta(fundo(b));
     } else if (p.t === 'estribo') junta(desenhar(null, cam, pid, (C) => estribo(C, M, p)));
     else if (p.t === 'kettlebell') junta(desenhar(null, cam, pid, (C) => kettlebell(C, M, p)));
     else if (p.t === 'elastico') junta(desenhar(null, cam, pid, (C) => elastico(C, M, p)));

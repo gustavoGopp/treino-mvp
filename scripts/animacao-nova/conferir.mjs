@@ -6,7 +6,7 @@ import { motorNovo } from './empacotar.mjs';
 
 const { modulo: m } = await motorNovo();
 const corpo = m.CORPOS.homem;
-const todos = [m.goblet, m.supinoReto, m.puxadaUnilateral, m.flexao, m.agachamentoPesoCorpo, m.agachamentoElastico, m.afundoPesoCorpo, m.afundo, m.afundoKettlebell, m.afundoTrasPesoCorpo];
+const todos = [m.goblet, m.supinoReto, m.puxadaUnilateral, m.flexao, m.agachamentoPesoCorpo, m.agachamentoElastico, m.afundoPesoCorpo, m.afundo, m.afundoKettlebell, m.afundoTrasPesoCorpo, m.bulgaro];
 const alvo = process.argv[2];
 const lista = alvo ? todos.filter((e) => e.ficha.id === alvo) : todos;
 const SINAL = { ok: 'ok', aviso: 'AVISO', falha: 'FALHA' };

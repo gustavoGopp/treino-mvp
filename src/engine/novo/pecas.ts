@@ -113,8 +113,16 @@ export function anilhaNoChao(x: number, z: number): Prim[] {
 export type Peca =
   | { t: 'halter'; centro: V3; eixo: V3 }
   | { t: 'anilha'; x: number; z: number }
-  | { t: 'bancoReto'; x0: number; z0: number }
-  | { t: 'torre'; torre: Torre; subida: number }
+  /**
+   * `pontaNoQuadro`: quando só a ponta do banco importa (o pé de trás do búlgaro apoia nela), quantos centímetros
+   * dessa ponta (a de +z) o enquadramento precisa mostrar; o resto do banco pode ser cortado pela borda do quadro.
+   */
+  | { t: 'bancoReto'; x0: number; z0: number; pontaNoQuadro?: number }
+  /**
+   * `cenario`: a coluna só serve de apoio para a mão (não é o equipamento do exercício). Ela é pintada atrás do corpo,
+   * não entra no enquadramento (o quadro a corta em cima) e não aparece de perfil, onde ficaria atrás do tronco.
+   */
+  | { t: 'torre'; torre: Torre; subida: number; cenario?: boolean }
   | { t: 'estribo'; pegada: V3; eixo: V3; elo: V3 }
   | { t: 'cabo'; a: V3; b: V3 }
   | { t: 'colchonete'; x0: number; z0: number }
