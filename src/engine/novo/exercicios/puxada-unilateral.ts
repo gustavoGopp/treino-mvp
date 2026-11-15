@@ -88,7 +88,7 @@ function quadro(corpo: Corpo, u: number, erro?: string): Quadro {
 
 export const puxadaUnilateral: Exercicio = {
   ficha: F,
-  vistas: ['posterior', 'lateral'],
+  vistas: ['quinaTras', 'lateral'],
   quadro,
   papeis: { 'dorsal:R': 'p', 'biceps:R': 's', 'deltPost:R': 's', 'trapMedInf:R': 's' },
   trajetorias: { mão: (q) => q.marcas.mao!, cotovelo: (q) => q.esq.lado.R.cotovelo },

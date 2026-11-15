@@ -121,7 +121,7 @@ export function conferirPapeis(ex: Exercicio, conteudo: { primarios: string[]; s
 
 /** Em que vistas o músculo principal aparece (medido): a vista padrão do modo Músculos e as que não servem a ele. */
 export function conferirVistasDosMusculos(ex: Exercicio, corpo: Corpo): ItemConferido[] {
-  const NOME: Record<string, string> = { lateral: 'de lado', frontal: 'de frente', posterior: 'de trás', cima: 'de cima' };
+  const NOME: Record<string, string> = { lateral: 'de lado', frontal: 'de frente', posterior: 'de trás', cima: 'de cima', quinaTras: 'de três quartos, de trás' };
   const v = vistasDoModoMusculos(ex, corpo);
   const texto = v.map((x, i) => `${NOME[x.vista] ?? x.vista}: ${Math.round(x.area)} cm²${i === 0 ? ' (padrão)' : x.mostra ? '' : ' (não serve: o principal quase não aparece)'}`).join('; ');
   const nenhuma = !v.some((x) => x.mostra && x.area >= 30);

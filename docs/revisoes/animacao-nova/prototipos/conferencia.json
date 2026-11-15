@@ -790,7 +790,7 @@
    {
     "grupo": "Músculos",
     "oQue": "quanto do músculo principal aparece em cada vista (área das formas viradas para quem olha)",
-    "medido": "de trás: 275 cm² (padrão); de lado: 176 cm²",
+    "medido": "de três quartos, de trás: 208 cm² (padrão); de lado: 176 cm²",
     "limite": "pelo menos uma vista com 30 cm² ou mais; a que tem menos de um terço da melhor sai do modo Músculos",
     "nivel": "ok"
    }

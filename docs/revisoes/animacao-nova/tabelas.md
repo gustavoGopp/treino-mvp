@@ -410,7 +410,7 @@ Regras que a conferência mede:
 Erros desenhados:
 
 - Jogar o tronco para trás (vista: lateral): o tronco inclina 30° para trás no fim
-- Ombro encolhido (vista: posterior): a clavícula continua elevada no fim
+- Ombro encolhido (vista: quinaTras): a clavícula continua elevada no fim
 - Não alongar em cima (vista: lateral): volta só até a metade
 
 Fontes desta ficha:

@@ -113,7 +113,7 @@ O que foi feito, item a item da tabela acima:
 | 4 | A escápula no contorno | **não** | Não coube nesta rodada: exige mudar o contorno do ombro e do tronco com a posição da escápula. Fica como o ponto mais importante em aberto do corpo |
 | 5 | Cotovelo a 162° no fim da puxada | em parte | 152°: tronco 8° para trás, cotovelo 6° atrás do tronco, 70 cm da torre. Chegar a 145° pede ajoelhar a cerca de 90 cm, o que contradiz o "meio passo" do texto do app (`pedidos-ao-conteudo.md`, item 4) |
 | 6 | Erro da lombar no goblet | sim | O peito cai a 45° (era perto de 70°) e a bacia gira 17° para trás |
-| 7 | Puxada de trás: o braço some contra a coluna; a seta | em parte | A seta "ombro desce" voltou. A vista de três quartos de trás resolve a leitura (`parada-do-corpo/7-puxada-de-tras-e-tres-quartos.png`), mas trocar a vista padrão mexe na moldura, que é da outra frente: é decisão sua |
+| 7 | Puxada de trás: o braço some contra a coluna; a seta | em parte | A seta "ombro desce" voltou. A vista de três quartos de trás resolve a leitura (`parada-do-corpo/7-puxada-de-tras-e-tres-quartos.png`). **Decidido pelo Gustavo em 15/11 ("pode trocar"):** a puxada passa a ter as vistas de três quartos de trás (padrão) e de lado; o rótulo e o erro do ombro foram para a vista nova (`9-puxada-tres-quartos.png`). Ao ligar no app, a moldura precisa do nome da vista nova |
 | 8 | Trajetória sem nomes | em parte | Cada linha ganhou o nome, fora do corpo. A linha de prumo do meio do pé no goblet não voltou |
 | 9 | Pescoço, perfil, mão sem dedos de lado | não | É o desenho aprovado: fica para decidir olhando |
 | 10 | Erros que faltam | não | É conteúdo: fica nos pedidos |
