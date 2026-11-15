@@ -69,3 +69,4 @@ export { remadaBaixa } from './remada-baixa';
 export { remadaUnilateralPolia } from './remada-unilateral-polia';
 export { abdominalPolia } from './abdominal-polia';
 export { crucifixoPolia } from './crucifixo-polia';
+export { crucifixoInvertidoPolia } from './crucifixo-invertido-polia';

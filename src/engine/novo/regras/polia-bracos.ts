@@ -85,6 +85,61 @@ export const REGRAS_POLIA_BRACOS: Record<string, Regra> = {
     const frente = dot(sub(e.lado.R.pegada, e.torax.o), e.torax.z);
     return { medido: `no fim, os centros das mãos ficam a ${f1(gap)} cm um do outro, ${f1(abaixoDeC7)} cm abaixo de C7 no tórax (parte de baixo do peito: de ${f1(de)} a ${f1(ate)} cm) e ${f1(frente)} cm à frente`, ok: gap <= 12 && abaixoDeC7 >= de && abaixoDeC7 <= ate + 3 && frente >= 20 };
   },
+  // ----- crucifixo invertido -----
+  'polia-braco-cabos-cruzados': (q) => {
+    // cada cabo: a mão que o segura (a mais perto da ponta) e o lado da roldana
+    const x = q[0]!;
+    const pares = idsDosCabos(x).map((id) => {
+      const a = x.marcas[`${id}.ponta`]!;
+      const k = dist(x.esq.lado.R.pegada, a) < dist(x.esq.lado.L.pegada, a) ? 'R' : 'L';
+      const r = x.marcas[`${id}.roldana`]![0];
+      return { id, k, r, cruzado: (k === 'R' && r > 0) || (k === 'L' && r < 0) };
+    });
+    return { medido: pares.map((p) => `${p.id}: a mão ${p.k === 'R' ? 'direita' : 'esquerda'} puxa a coluna da ${p.r > 0 ? 'esquerda' : 'direita'}`).join('; '), ok: pares.length === 2 && pares.every((p) => p.cruzado) };
+  },
+  'polia-braco-bracos-quase-retos': (q) => {
+    const [a, b] = faixa(q.flatMap((x) => [angulosDoLado(x.esq, 'R').cotovelo, angulosDoLado(x.esq, 'L').cotovelo]));
+    return { medido: `o cotovelo fica de ${f1(a)}° a ${f1(b)}° no ciclo`, ok: b - a <= 3 && a >= 3 && b <= 20 };
+  },
+  'polia-braco-cruzados-a-frente': (q) => {
+    const e = q[0]!.esq,
+      R = e.lado.R,
+      L = e.lado.L;
+    const frente = dot(sub(R.pegada, R.ombro), e.torax.z);
+    const alt = (k: 'R' | 'L') => e.lado[k].pegada[1] - e.lado[k].ombro[1];
+    return { medido: `no começo, a mão direita fica ${f1(R.pegada[0])} cm e a esquerda ${f1(L.pegada[0])} cm do meio do corpo (positivo = lado esquerdo), ${f1(frente)} cm à frente do ombro; a mão direita ${f1(alt('R'))} cm e a esquerda ${f1(alt('L'))} cm da altura do ombro`, ok: R.pegada[0] > 0 && L.pegada[0] < 0 && frente >= 45 && Math.abs(alt('R')) <= 10 && Math.abs(alt('L')) <= 10 };
+  },
+  'polia-braco-maos-perto-da-linha-do-corpo': (q) => {
+    const e = q[q.length - 1]!.esq;
+    const d = (['R', 'L'] as const).map((k) => dot(sub(e.lado[k].pegada, e.lado[k].ombro), e.torax.z));
+    const alt = (['R', 'L'] as const).map((k) => e.lado[k].pegada[1] - e.lado[k].ombro[1]);
+    return { medido: `no fim, o centro da mão fica ${d.map((x) => f1(x)).join(' e ')} cm à frente da linha do ombro (no tórax) e ${alt.map((x) => f1(x)).join(' e ')} cm da altura do ombro`, ok: d.every((x) => x >= -5 && x <= 12) && alt.every((x) => Math.abs(x) <= 10) };
+  },
+  'polia-braco-escapulas-juntam-sem-encolher': (q, corpo) => {
+    // juntar as escápulas: a clavícula vai para trás do ritmo normal no fim; sem encolher: ela não sobe além do ritmo
+    const ritmo = (x: Quadro, k: 'R' | 'L') => Math.max(0, Math.min(1, (x.esq.lado[k].ang.elevacaoDoBraco - 20) / 130));
+    const retr = (x: Quadro) => retracao(x, 'R') - (corpo.m('clavicula.retracaoRepouso') + corpo.m('clavicula.retracaoNaElevacao') * ritmo(x, 'R'));
+    const elev = Math.max(...q.flatMap((x) => (['R', 'L'] as const).map((k) => x.esq.lado[k].ang.claviculaElev - (corpo.m('clavicula.elevacaoRepouso') + corpo.m('clavicula.elevacaoNaElevacao') * ritmo(x, k)))));
+    const r0 = retr(q[0]!),
+      r1 = retr(q[q.length - 1]!);
+    const junta = dist(q[q.length - 1]!.esq.lado.R.escapula.raiz, q[q.length - 1]!.esq.lado.L.escapula.raiz) - dist(q[0]!.esq.lado.R.escapula.raiz, q[0]!.esq.lado.L.escapula.raiz);
+    return { medido: `a clavícula vai de ${f1(r0)}° a ${f1(r1)}° em relação ao ritmo (positivo = para trás); as raízes das escápulas se aproximam ${f1(-junta)} cm; a clavícula sobe no máximo ${f1(elev)}° além do ritmo`, ok: r1 - r0 >= 5 && r1 <= 15 && elev <= 0.5 && junta < 0 };
+  },
+  'polia-braco-antebracos-nao-se-atravessam': (q) => {
+    // a menor distância entre os eixos dos dois antebraços (do cotovelo ao centro da pegada), menos os dois raios
+    let min = 1e9;
+    const raio = q[0]!.esq.corpo.m('raio.antebraco');
+    for (const x of q) {
+      const R = x.esq.lado.R,
+        L = x.esq.lado.L;
+      for (let i = 0; i <= 10; i++) {
+        const t = i / 10;
+        const p: V3 = [R.cotovelo[0] + (R.pegada[0] - R.cotovelo[0]) * t, R.cotovelo[1] + (R.pegada[1] - R.cotovelo[1]) * t, R.cotovelo[2] + (R.pegada[2] - R.cotovelo[2]) * t];
+        min = Math.min(min, aoSegmento(p, L.cotovelo, L.pegada) - 2 * raio);
+      }
+    }
+    return { medido: `entre os dois antebraços (e as mãos), a menor folga é de ${f1(min)} cm (raio do antebraço ${f1(raio)} cm)`, ok: min >= 0 };
+  },
   'polia-braco-ombros-para-tras': (q, corpo) => {
     // a clavícula fica mais para trás que o ritmo normal do ombro (o esqueleto soma o que a ficha pede ao ritmo)
     const alem = q.flatMap((x) => (['R', 'L'] as const).map((k) => {

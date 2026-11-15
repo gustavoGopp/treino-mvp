@@ -1,0 +1,70 @@
+{
+ "id": "crucifixo-invertido-polia",
+ "nome": "Crucifixo invertido na polia, cabos cruzados",
+ "fichaDaTecnica": "docs/pesquisa/animacoes/crucifixo-invertido-polia.md",
+ "fontes": {
+  "ficha": "Ficha da técnica (docs/pesquisa/animacoes/crucifixo-invertido-polia.md: B.2.6, B.2.4 do catálogo; consenso de treinadores) e texto do app (src/conteudo/exercicios/crucifixo-invertido-polia.json): 'As duas polias na altura dos ombros'; 'cruze os cabos: a mão direita segura o cabo da esquerda'; 'Dê um passo para trás. Braços estendidos à frente, na altura dos ombros, cruzados'; 'Cotovelos levemente dobrados e fixos; pés na largura do quadril'; 'Abra os braços para os lados, quase retos, até as mãos chegarem perto da linha do corpo'; 'sem encolher os ombros'",
+  "anatomia": "Ficha da técnica, 'Escápulas': sem juntar as escápulas com força nem encolher os ombros (achado 5 da revisão de anatomia); o pedido desta rodada: as escápulas se juntam no fim e os ombros ficam longe das orelhas",
+  "hoje": "A animação de hoje (src/engine/exercicios/crucifixo-invertido-polia.ts): as colunas a 84 cm do meio, à frente, os tempos e os erros; a correção de 04/11 (montagem conferida em cm, cabos cruzados; docs/revisoes/animacao-nova/correcoes-ja-feitas.md)",
+  "equilibrio": "Em pé, parado, a projeção do centro de massa (corpo) cai dentro do apoio dos pés (mecânica)",
+  "objetos": "src/engine/novo/dados/objetos.json (coluna de polia, estribo)",
+  "desenho": "Escolha de desenho desta animação, dentro do que a ficha pede; a conferência mede o resultado"
+ },
+ "param": {
+  "pes.meiaDistancia": {"v": 11, "un": "cm", "selo": "consenso", "fonte": "ficha", "o": "pés na largura do quadril: cada bola do pé a 11 cm do meio"},
+  "joelho": {"v": 10, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "joelhos destravados (a ficha não dá número; a altura da pelve sai daqui)"},
+  "tronco": {"v": 3, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "tronco reto: o peito a 3° da vertical (a ficha não dá número)"},
+  "cervical": {"v": 0, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "pescoço na linha do tronco"},
+  "cabeca": {"v": 0, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "cabeça na linha do pescoço"},
+  "polia.meiaDistancia": {"v": 110, "un": "cm", "selo": "desenho", "fonte": "desenho", "o": "cada roldana a 110 cm do meio do corpo, para o lado (hoje: 84 cm; mais aberto para a mão, no fim, não ficar sobre a coluna, vista de trás)"},
+  "polia.aFrente": {"v": 125, "un": "cm", "selo": "consenso", "fonte": "ficha", "o": "um passo para trás da linha das polias, com os braços estendidos à frente: as roldanas ficam 125 cm à frente do meio da pelve, cerca de 65 cm à frente das mãos no começo (a ficha não dá número; hoje: 55 cm, mas aí os cabos cruzados passavam pelas mãos no meio da abertura)"},
+  "polia.acimaDoOmbro": {"v": 0, "un": "cm", "selo": "consenso", "fonte": "ficha", "o": "as duas polias na altura dos ombros: o centro da roldana na altura do centro do ombro"},
+  "cotovelo": {"v": 10, "un": "graus", "selo": "consenso", "fonte": "ficha", "o": "braços quase retos, cotovelos levemente dobrados e fixos (a ficha não dá número)"},
+  "inicio.cruza": {"v": 5, "un": "cm", "selo": "consenso", "fonte": "ficha", "o": "início: os braços cruzados à frente: o centro de cada mão passa 5 cm do meio do corpo para o outro lado"},
+  "inicio.desnivel": {"v": 6, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "no início, o braço direito passa por cima do esquerdo: a linha do ombro à mão 6° acima (o direito) e 6° abaixo (o esquerdo) do plano do ombro, para os antebraços não se atravessarem; o desnível some até 40% do caminho"},
+  "desnivel.some": {"v": 0.4, "un": "fração", "selo": "desenho", "fonte": "desenho", "o": "o desnível entre os braços some nos primeiros 40% da abertura"},
+  "fim.psi": {"v": 88, "un": "graus", "selo": "consenso", "fonte": "ficha", "o": "fim: as mãos perto da linha do corpo (a linha do ombro à mão a 88° da frente, no tórax)"},
+  "braco.el": {"v": 3, "un": "graus", "selo": "consenso", "fonte": "ficha", "o": "os braços na altura dos ombros: a linha do ombro à mão 3° acima do plano do tórax, que está 3° inclinado à frente (na horizontal)"},
+  "mao.supinacao.inicio": {"v": 20, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "início: palmas quase uma para a outra (20° de supinação a partir da neutra)"},
+  "mao.supinacao.fim": {"v": 50, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "fim: com os braços abertos, as palmas viradas para a frente e para baixo (50° de supinação a partir da neutra)"},
+  "escapula.prot.inicio": {"v": 4, "un": "graus", "selo": "consenso", "fonte": "anatomia", "o": "início: com os braços à frente, a escápula vai um pouco à frente (a clavícula 4° além do ritmo)"},
+  "escapula.retr.fim": {"v": 8, "un": "graus", "selo": "consenso", "fonte": "anatomia", "o": "fim: as escápulas se juntam, sem força (a clavícula 8° para trás do ritmo normal)"},
+  "escapula.elev": {"v": -2, "un": "graus", "selo": "consenso", "fonte": "anatomia", "o": "ombros longe das orelhas: a clavícula 2° abaixo do ritmo normal, a série toda"},
+  "pilha.folga": {"v": 2, "un": "cm", "selo": "desenho", "fonte": "desenho", "o": "cabo tenso no início: a pilha já sai 2 cm do repouso"},
+  "erro.encolher.elev": {"v": 16, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "erro: no fim, a clavícula sobe 16° além do ritmo (os ombros vão em direção às orelhas)"},
+  "erro.cotovelo.dobra": {"v": 85, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "erro: os cotovelos dobram até 85° enquanto abrem, e as mãos vêm para perto dos ombros (vira remada)"},
+  "erro.cotovelo.psi": {"v": 62, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "erro: no fim, a linha do ombro à mão fica a 62° da frente (as mãos não chegam à linha do corpo; o cotovelo vai para trás)"},
+  "erro.balanco.tronco": {"v": -14, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "erro: no fim, o tronco foi jogado para trás: o peito 14° atrás da vertical"},
+  "erro.balanco.lombar": {"v": -10, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "erro: a lombar arqueia 10° no fim"}
+ },
+ "fases": [
+  {"nome": "Braços cruzados", "tipo": "pausa", "dur": 0.5, "de": 0, "ate": 0, "respira": "INSPIRA", "tempo": "cabos cruzados", "selo": "consenso", "fonte": "ficha"},
+  {"nome": "Abertura · concêntrica", "tipo": "conc", "dur": 1.1, "de": 0, "ate": 1, "respira": "EXPIRA", "tempo": "~1 s", "selo": "consenso", "fonte": "ficha"},
+  {"nome": "Aberto", "tipo": "pausa", "dur": 0.5, "de": 1, "ate": 1, "respira": "FIRME", "tempo": "pausa curta", "selo": "consenso", "fonte": "ficha"},
+  {"nome": "Volta · excêntrica", "tipo": "exc", "dur": 2.2, "de": 1, "ate": 0, "respira": "INSPIRA", "tempo": "~2 s", "selo": "consenso", "fonte": "ficha"}
+ ],
+ "contatos": ["pe.R", "pe.L"],
+ "regras": [
+  {"id": "polia-braco-polias-na-altura-do-ombro", "pede": "as duas polias na altura dos ombros", "selo": "consenso", "fonte": "ficha"},
+  {"id": "polia-braco-cabos-cruzados", "pede": "cabos cruzados: a mão direita segura o cabo da coluna da esquerda, e a esquerda, o da direita", "selo": "consenso", "fonte": "ficha"},
+  {"id": "polia-braco-bracos-quase-retos", "pede": "braços quase retos, cotovelos levemente dobrados e fixos", "selo": "consenso", "fonte": "ficha"},
+  {"id": "polia-braco-cruzados-a-frente", "pede": "início: braços estendidos à frente, na altura dos ombros, cruzados", "selo": "consenso", "fonte": "ficha"},
+  {"id": "polia-braco-maos-perto-da-linha-do-corpo", "pede": "fim: as mãos perto da linha do corpo, na altura dos ombros", "selo": "consenso", "fonte": "ficha"},
+  {"id": "polia-braco-escapulas-juntam-sem-encolher", "pede": "as escápulas se juntam no fim, sem força, e os ombros ficam longe das orelhas", "selo": "consenso", "fonte": "anatomia"},
+  {"id": "polia-braco-antebracos-nao-se-atravessam", "pede": "com os braços cruzados, um antebraço passa por cima do outro, sem se atravessarem", "selo": "desenho", "fonte": "desenho"},
+  {"id": "polia-braco-cabos-livres-do-corpo", "pede": "cada cabo vai reto da roldana à mão, sem encostar no corpo", "selo": "consenso", "fonte": "ficha"},
+  {"id": "polia-braco-pilha-de-cada-coluna", "pede": "cada coluna tem a sua pilha, que sobe o curso do seu cabo dividido pela relação da máquina", "selo": "consenso", "fonte": "objetos"},
+  {"id": "tronco-quase-parado", "pede": "o tronco fica parado: sem embalo", "selo": "consenso", "fonte": "ficha"}
+ ],
+ "erros": [
+  {"id": "encolher", "instante": 1, "titulo": "Encolher os ombros", "vista": "posterior", "oQueMuda": "no fim, os ombros sobem em direção às orelhas (o trapézio de cima assume)", "destaca": ["bracos"], "linha": ["acromioclavicular:R", "acromioclavicular:L"], "foco": "acromioclavicular:R"},
+  {"id": "cotovelo", "instante": 1, "titulo": "Dobrar os cotovelos", "vista": "cima", "oQueMuda": "os cotovelos dobram e vão para trás; as mãos vêm para perto dos ombros: vira uma remada", "destaca": ["bracos"], "linha": ["ombro", "cotovelo", "pegada"], "foco": "cotovelo"},
+  {"id": "balanco", "instante": 1, "titulo": "Jogar o tronco para trás", "vista": "lateral", "oQueMuda": "o tronco é jogado para trás para abrir os braços, com a lombar arqueada", "destaca": ["corpo"], "linha": ["pelve", "lombar", "c7", "cabeca"], "foco": "c7"}
+ ],
+ "simetrico": false,
+ "rotulos": [
+  {"vista": "cima", "texto": "braços quase retos", "ponto": "cotovelo:L", "selo": "consenso", "fonte": "ficha"},
+  {"vista": "cima", "texto": "abre para os lados", "ponto": "pegada:R", "selo": "consenso", "fonte": "ficha"},
+  {"vista": "posterior", "texto": "ombros longe das orelhas", "ponto": "acromioclavicular:R", "selo": "consenso", "fonte": "ficha"}
+ ]
+}
