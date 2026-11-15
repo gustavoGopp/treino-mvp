@@ -1,0 +1,48 @@
+{
+ "id": "abertura-t-deitado",
+ "nome": "Abertura em T deitado de bruços, sem carga",
+ "fichaDaTecnica": "docs/pesquisa/animacoes/abertura-t-deitado.md",
+ "fontes": {
+  "ficha": "Ficha da técnica (docs/pesquisa/animacoes/abertura-t-deitado.md): posição (um estudo: lim2015, yu2024); movimento (consenso: TSAOG, vídeo)",
+  "app": "Texto do app (src/conteudo/exercicios/abertura-t-deitado.json), que sai da ficha",
+  "hoje": "Animação aprovada no guia de hoje (src/engine/exercicios/abertura-t-deitado.ts): as distâncias que a ficha não dá em número",
+  "correcao": "Correções já feitas em 10/11/2026 (docs/revisoes/animacao-nova/correcoes-ja-feitas.md, linhas da abertura-t-deitado): abre de frente, a vista de cima mostra o corpo deitado",
+  "desenho": "Escolha de desenho desta animação, dentro do que a ficha pede; a conferência mede o resultado"
+ },
+ "param": {
+  "lombar": {"v": 10, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "de bruços, a lombar dobra 10° além da curva de repouso (o peito e a frente da bacia encostam juntos), como na flexão de joelho com elástico"},
+  "pe.plantar": {"v": 60, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "os pés soltos, quase em linha com a canela (o peito do pé virado para o chão); a ficha não fala do pé"},
+  "pe.folga": {"v": 0.3, "un": "cm", "selo": "desenho", "fonte": "desenho", "o": "o peito do pé encosta no chão (0,3 cm): o joelho dobra o pouco que isso pede"},
+  "maos.folgaEmbaixo": {"v": 3, "un": "cm", "selo": "desenho", "fonte": "hoje", "o": "embaixo, as mãos quase tocam o chão: o ponto mais baixo da mão fica 3 cm acima dele (a mão sai a 4 cm do chão na animação de hoje)"},
+  "bracos.topo": {"v": 10, "un": "graus", "selo": "desenho", "fonte": "app", "o": "no alto, os braços sobem até 10° acima da linha dos ombros (\"na altura do corpo ou um pouco acima\")"},
+  "bracos.abertura": {"v": 90, "un": "graus", "selo": "um estudo", "fonte": "ficha", "o": "braços em T: a 90° do corpo, vistos de cima"},
+  "cotovelo": {"v": 5, "un": "graus", "selo": "consenso", "fonte": "app", "o": "cotovelos estendidos (5° de folga, sem travar)"},
+  "erro.cabeca.graus": {"v": 35, "un": "graus", "selo": "desenho", "fonte": "app", "o": "erro: a cabeça dobra 35° para trás sobre o pescoço e a testa sai da toalha"},
+  "erro.encolher.elev": {"v": 20, "un": "graus", "selo": "desenho", "fonte": "app", "o": "erro: os ombros sobem para as orelhas (a clavícula sobe 20° além do certo)"},
+  "erro.embalo.topo": {"v": 30, "un": "graus", "selo": "desenho", "fonte": "app", "o": "erro: os braços são jogados até 30° acima da linha dos ombros"}
+ },
+ "fases": [
+  {"nome": "Embaixo", "tipo": "pausa", "dur": 0.5, "de": 0, "ate": 0, "respira": "INSPIRA", "tempo": "mãos quase no chão", "selo": "consenso", "fonte": "app"},
+  {"nome": "Subida · concêntrica", "tipo": "conc", "dur": 1, "de": 0, "ate": 1, "respira": "EXPIRA", "tempo": "~1 s", "selo": "consenso", "fonte": "ficha"},
+  {"nome": "No alto · segura", "tipo": "pausa", "dur": 1, "de": 1, "ate": 1, "respira": "FIRME", "tempo": "1 s", "selo": "consenso", "fonte": "ficha"},
+  {"nome": "Descida · excêntrica", "tipo": "exc", "dur": 2, "de": 1, "ate": 0, "respira": "INSPIRA", "tempo": "~2 s", "selo": "consenso", "fonte": "ficha"}
+ ],
+ "contatos": ["pelve"],
+ "regras": [
+  {"id": "abertura-t-testa-na-toalha", "pede": "de bruços, testa na toalha, sem levantar a cabeça", "selo": "um estudo", "fonte": "ficha"},
+  {"id": "abertura-t-bracos-em-t", "pede": "braços em T, cotovelos estendidos", "selo": "um estudo", "fonte": "ficha"},
+  {"id": "abertura-t-amplitude", "pede": "embaixo, as mãos quase tocam o chão; em cima, os braços na altura do corpo ou um pouco acima", "selo": "consenso", "fonte": "app"},
+  {"id": "abertura-t-ombros-baixos", "pede": "sem encolher os ombros", "selo": "consenso", "fonte": "ficha"}
+ ],
+ "erros": [
+  {"id": "cabeca", "instante": 1, "titulo": "Levantar a cabeça", "vista": "quinaTras", "oQueMuda": "o pescoço dobra para trás e a testa sai da toalha", "destaca": ["corpo"], "linha": ["c7", "cabeca"], "foco": "cabeca"},
+  {"id": "encolher", "instante": 1, "titulo": "Encolher os ombros", "vista": "quinaTras", "oQueMuda": "os ombros sobem para as orelhas", "destaca": ["bracos"], "linha": ["ombro:R", "ombro:L"], "foco": "ombro"},
+  {"id": "embalo", "instante": 1, "titulo": "Jogar os braços", "vista": "frontal", "oQueMuda": "os braços são lançados alto demais", "destaca": ["bracos"], "linha": ["ombro", "pegada"], "foco": "pegada"}
+ ],
+ "simetrico": true,
+ "rotulos": [
+  {"vista": "quinaTras", "texto": "polegares para cima", "ponto": "pegada:L", "selo": "um estudo", "fonte": "app"},
+  {"vista": "frontal", "texto": "testa na toalha", "ponto": "cabeca", "selo": "um estudo", "fonte": "app"},
+  {"vista": "quinaTras", "texto": "ombros longe das orelhas", "ponto": "ombro", "selo": "consenso", "fonte": "app"}
+ ]
+}

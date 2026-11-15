@@ -87,6 +87,38 @@ export const REGRAS_ABDOMINAIS: Record<string, Regra> = {
     const [a, b] = faixa(q.map((x) => x.esq.lado.R.ang.joelho));
     return { medido: `embaixo, a coxa fica a ${f1(coxa)}° da vertical; o joelho dobra de ${f1(a)}° a ${f1(b)}°`, ok: coxa <= 5 && a >= 80 && b <= 100 };
   },
+  // ----- abertura em T deitado de bruços -----
+  'abertura-t-testa-na-toalha': (q) => {
+    const topo = q[0]!.marcas.toalha![1];
+    const testa = q.map((x) => maisBaixos(x.esq).cabeca! - topo);
+    const [a, b] = faixa(testa);
+    const debrucos = q.every((x) => x.esq.torax.z[1] < -0.8);
+    return { medido: `${debrucos ? 'de bruços' : 'NÃO está de bruços'}; o ponto mais baixo da cabeça fica de ${f1(a)} a ${f1(b)} cm do tampo da toalha`, ok: debrucos && a >= -1.5 && b <= 0.5 };
+  },
+  'abertura-t-bracos-em-t': (q) => {
+    // visto de cima, o braço contra a linha do corpo; e o cotovelo
+    const ang = q.map((x) => {
+      const L = x.esq.lado.R;
+      const b = sub(L.cotovelo, L.ombro);
+      return angulo([b[0], 0, b[2]], [x.esq.torax.y[0], 0, x.esq.torax.y[2]]);
+    });
+    const [a, b] = faixa(ang);
+    const cot = Math.max(...q.map((x) => x.esq.lado.R.ang.cotovelo));
+    return { medido: `visto de cima, o braço fica de ${f1(a)}° a ${f1(b)}° da linha do corpo; o cotovelo dobra no máximo ${f1(cot)}°`, ok: a >= 80 && b <= 100 && cot <= 10 };
+  },
+  'abertura-t-amplitude': (q) => {
+    const mao = (e: Esq) => Math.min(...pontosDoBoneco(e).filter((x) => x.parte === 'mao' || x.parte === 'polegar').map((x) => x.p[1]));
+    const ini = q[0]!.esq,
+      fim = q[q.length - 1]!.esq;
+    const chao = mao(ini);
+    const acima = fim.lado.R.pegada[1] - fim.lado.R.ombro[1];
+    return { medido: `embaixo, a mão fica a ${f1(chao)} cm do chão; no alto, o centro da mão fica ${f1(acima)} cm acima do centro do ombro`, ok: chao >= 1 && chao <= 6 && acima >= 0 && acima <= 15 };
+  },
+  'abertura-t-ombros-baixos': (q) => {
+    const [a, b] = faixa(q.map((x) => x.esq.lado.R.ang.claviculaElev));
+    const sobe = q.map((x) => x.esq.lado.R.acromioclavicular[2] - q[0]!.esq.lado.R.acromioclavicular[2]);
+    return { medido: `a clavícula fica de ${f1(a)}° a ${f1(b)}° de elevação; a ponta do ombro anda ${f1(Math.max(...sobe.map(Math.abs)))} cm na direção da cabeça`, ok: b - a <= 3 };
+  },
 };
 function inclinacao(e: Esq): number {
   const a = e.nos[e.iT12]!.ref.o,

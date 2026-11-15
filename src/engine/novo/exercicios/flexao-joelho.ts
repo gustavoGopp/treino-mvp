@@ -209,6 +209,13 @@ export interface OpcoesDeBrucos {
   lombar?: number;
   /** Protração das escápulas (graus da clavícula): os ombros descem para o colchonete com os braços à frente. */
   prot?: number;
+  /**
+   * Os braços em outra pose, no lugar das mãos sob a testa (acréscimo de 15/11, abertura em T): recebem o tronco já
+   * posto. A testa continua na altura `testa` (numa toalha, por exemplo).
+   */
+  bracos?: (t: Tronco) => Record<Lado, PoseBraco>;
+  /** Flexão da cabeça sobre o pescoço já posto (graus; negativo = a testa sobe, o queixo fica): erro de levantar a cabeça. */
+  cabeca?: number;
 }
 interface BaseDeBrucos {
   frente: number;
@@ -274,7 +281,7 @@ export function deitadoDeBrucos(corpo: Corpo, o: OpcoesDeBrucos): Esq {
     frente = b.frente + giro;
     cervical = resolver1((c) => cabecaAoChao(corpo, tr(giro, c)) - o.testa, -40, 60, 30);
   }
-  const t = resolverTronco(corpo, { pelve: [0, yP, 0], frente, lombar, cervical });
+  const t = resolverTronco(corpo, { pelve: [0, yP, 0], frente, lombar, cervical, ...(o.cabeca ? { cabeca: o.cabeca } : {}) });
   // as mãos lado a lado, espalmadas no chão sob a testa, com os dedos para o meio e os cotovelos para fora
   const cab = formas(corpo).cabeca.map((p) => noRef(t.cabeca, p));
   const fronte = cab.reduce((a, p) => (p[1] < a[1] ? p : a));
@@ -291,5 +298,5 @@ export function deitadoDeBrucos(corpo: Corpo, o: OpcoesDeBrucos): Esq {
     const aCanela = aCoxa - o.joelho;
     return { coxa: dCoxa, canela: noPlano(aCanela), peDir: noPlano(aCanela + 90 - o.flexaoPlantar), polo: noPlano(aCoxa - 90) };
   };
-  return resolverMembros(t, { R: braco('R'), L: braco('L') }, { R: perna('R'), L: perna('L') });
+  return resolverMembros(t, o.bracos ? o.bracos(t) : { R: braco('R'), L: braco('L') }, { R: perna('R'), L: perna('L') });
 }
