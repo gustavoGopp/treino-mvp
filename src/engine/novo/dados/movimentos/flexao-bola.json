@@ -34,28 +34,7 @@
    "un": "fração",
    "selo": "desenho",
    "fonte": "desenho",
-   "o": "a mão fica a 97% do comprimento do braço mais o antebraço, a partir do ombro, no começo: o cotovelo quase estendido, sem travar"
-  },
-  "cabeca.aoChao": {
-   "v": 0.3,
-   "un": "cm",
-   "selo": "desenho",
-   "fonte": "desenho",
-   "o": "a cabeça fica apoiada no chão (a nuca a 0,3 cm): o pescoço dobra o que for preciso, conforme o tronco inclina"
-  },
-  "cabeca.fracaoDoPescoco": {
-   "v": 0.5,
-   "un": "fração",
-   "selo": "desenho",
-   "fonte": "desenho",
-   "o": "a cabeça dobra sobre o pescoço metade do que o pescoço dobra (queixo um pouco para o peito)"
-  },
-  "erro.quadril.flexao": {
-   "v": 45,
-   "un": "graus",
-   "selo": "desenho",
-   "fonte": "desenho",
-   "o": "erro: o quadril dobra 45° ao puxar (o quadril desce e sai da linha)"
+   "o": "a mão fica a 97% do comprimento do braço mais o antebraço, a partir do ombro: o cotovelo quase estendido, sem travar"
   },
   "erro.volta.folga": {
    "v": 1,
@@ -71,19 +50,33 @@
    "fonte": "desenho",
    "o": "erro: puxa só até 45% do caminho (o joelho para longe de 90°)"
   },
-  "toracica.flexao": {
-   "v": 25,
-   "un": "graus",
-   "selo": "desenho",
-   "fonte": "desenho",
-   "o": "a parte de cima das costas se arredonda um pouco: o apoio fica nas escápulas, e não na base do pescoço, e a cabeça consegue apoiar no chão com o quadril alto"
-  },
   "pe.afundaNaBola": {
    "v": 1,
    "un": "cm",
    "selo": "desenho",
    "fonte": "desenho",
-   "o": "o pé afunda 1 cm na bola onde apoia (a bola cheia cede um pouco sob o calcanhar e a sola); é o que põe o pé em cima da bola em cada quadro"
+   "o": "o pé afunda 1 cm na bola onde apoia (a bola cheia cede um pouco sob o calcanhar e a sola)"
+  },
+  "ombro.z": {
+   "v": -40,
+   "un": "cm",
+   "selo": "desenho",
+   "fonte": "desenho",
+   "o": "onde ficam os ombros na cena (só posiciona a cena; os ombros não saem do lugar)"
+  },
+  "erro.quadril.sobe": {
+   "v": 0.15,
+   "un": "fração",
+   "selo": "desenho",
+   "fonte": "desenho",
+   "o": "erro: a bacia sobe só 15% do que sobe no certo; o quadril dobra para o pé chegar à bola"
+  },
+  "bola.alemDoCalcanhar": {
+   "v": 7,
+   "un": "cm",
+   "selo": "desenho",
+   "fonte": "desenho",
+   "o": "com as pernas estendidas, o calcanhar apoia 7 cm atrás do alto da bola (do lado do corpo), e a panturrilha passa por cima dela; no fim, o pé deita no alto da bola"
   }
  },
  "fases": [
@@ -144,7 +137,7 @@
    "fonte": "guia"
   },
   {
-   "id": "bola-linha-no-fim",
+   "id": "em-linha-no-fim",
    "pede": "fim: ombros, quadril e joelhos em linha",
    "selo": "consenso",
    "fonte": "guia"
@@ -168,6 +161,12 @@
    "fonte": "guia"
   },
   {
+   "id": "bola-costas-e-cabeca-no-chao",
+   "pede": "deitado de costas: as costas e a cabeça ficam apoiadas no chão, e os ombros não escorregam",
+   "selo": "consenso",
+   "fonte": "guia"
+  },
+  {
    "id": "bola-pes-na-bola",
    "pede": "calcanhares em cima da bola no começo; pés apoiados em cima dela no fim",
    "selo": "consenso",
@@ -176,12 +175,6 @@
   {
    "id": "bola-pernas-fora-da-bola",
    "pede": "coxas e canelas não atravessam a bola",
-   "selo": "consenso",
-   "fonte": "guia"
-  },
-  {
-   "id": "bola-costas-no-chao",
-   "pede": "deitado de costas: a parte de cima das costas fica no chão",
    "selo": "consenso",
    "fonte": "guia"
   }

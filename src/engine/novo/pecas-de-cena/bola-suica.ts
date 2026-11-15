@@ -8,6 +8,8 @@ import { obj } from '../tabelas';
 import { add, mul } from '../vec';
 import type { V3 } from '../vec';
 
+/** Um cinza azulado que tira a força da cor de ação: a bola é grande no quadro e não pode roubar a atenção do corpo. */
+const CINZA = '#aab0c4';
 const f1 = (n: number) => (Math.round(n * 10) / 10).toString();
 
 /** As medidas da bola: o raio, quanto ela amassa e a altura do centro (cm). */
@@ -32,21 +34,27 @@ export function bolaSuica(x: number, z: number, giro: number): { prims: Prim[]; 
         chao = C.P([x, 0, z]);
       // as pontas da bola nos três eixos: é por elas que o quadro sabe o tamanho da peça (o enquadramento)
       for (const d of [[1, 0, 0], [-1, 0, 0], [0, 1, 0], [0, 0, 1], [0, 0, -1]] as V3[]) C.P(add(centro, mul(d, B.R)));
-      // a bola: um círculo com a luz de cima e da esquerda, cortado reto onde encosta no chão (a corda na altura do chão)
+      // A bola, como o kettlebell dos cartões (equipamento.ts): uma esfera vista de qualquer lado é um círculo, liso,
+      // com a luz de cima e da esquerda (gradiente radial na tela, igual em todas as vistas) e um brilho. De lado, o chão
+      // corta a parte de baixo numa corda reta (onde ela amassa); de cima, o chão fica atrás dela e o círculo é inteiro.
       const dx = chao[0] - c[0],
         dy = chao[1] - c[1],
         ate = Math.hypot(dx, dy);
-      // de lado, o chão corta a bola numa corda reta; de cima (o chão bem debaixo do centro), a bola é um círculo inteiro
       const corta = ate < B.R - 0.05 && ate > B.R * 0.5;
-      const meiaCorda = Math.sqrt(Math.max(0, B.R * B.R - ate * ate));
-      const gira = (Math.atan2(dy, dx) * 180) / Math.PI - 90;
       const g = C.uid('bola');
-      // a cor de ação do app (a do estofado e do elástico): [3] é o traço, [2] o tom mais claro
+      // a cor de ação do app, a do estofado do banco ([3] é o traço, [2] o tom mais claro), clareada para não dominar
       const tons = M.estofado;
-      C.defs.push(`<radialGradient id="${g}" cx="${f1(c[0] - B.R * 0.35)}" cy="${f1(c[1] - B.R * 0.4)}" r="${f1(B.R * 1.5)}" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="${mix(tons[2]!, '#ffffff', 0.35)}"/><stop offset="0.5" stop-color="${tons[2]}"/><stop offset="1" stop-color="${tons[1]}"/></radialGradient>`);
-      const forma = corta
-        ? `<g transform="translate(${f1(c[0])} ${f1(c[1])}) rotate(${f1(gira)})"><path d="M${f1(-meiaCorda)} ${f1(ate)}A${f1(B.R)} ${f1(B.R)} 0 1 1 ${f1(meiaCorda)} ${f1(ate)}Z" fill="url(#${g})" stroke="${tons[3]}" stroke-width="0.6"/></g>`
-        : `<circle cx="${f1(c[0])}" cy="${f1(c[1])}" r="${f1(B.R)}" fill="url(#${g})" stroke="${tons[3]}" stroke-width="0.6"/>`;
+      C.defs.push(`<radialGradient id="${g}" cx="${f1(c[0] - B.R * 0.38)}" cy="${f1(c[1] - B.R * 0.42)}" r="${f1(B.R * 1.45)}" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="${mix(mix(tons[2]!, '#ffffff', 0.45), CINZA, 0.3)}"/><stop offset="0.45" stop-color="${mix(mix(tons[2]!, '#ffffff', 0.08), CINZA, 0.3)}"/><stop offset="1" stop-color="${mix(tons[1]!, CINZA, 0.3)}"/></radialGradient>`);
+      let forma: string;
+      if (corta) {
+        // a corda do chão, nos pontos da tela (sem grupo girado: o gradiente fica nas coordenadas da tela)
+        const ux = dx / ate,
+          uy = dy / ate,
+          meiaCorda = Math.sqrt(B.R * B.R - ate * ate);
+        const p1 = [c[0] + ux * ate - uy * meiaCorda, c[1] + uy * ate + ux * meiaCorda],
+          p2 = [c[0] + ux * ate + uy * meiaCorda, c[1] + uy * ate - ux * meiaCorda];
+        forma = `<path d="M${f1(p1[0]!)} ${f1(p1[1]!)}A${f1(B.R)} ${f1(B.R)} 0 1 1 ${f1(p2[0]!)} ${f1(p2[1]!)}Z" fill="url(#${g})" stroke="${tons[3]}" stroke-width="0.5"/>`;
+      } else forma = `<circle cx="${f1(c[0])}" cy="${f1(c[1])}" r="${f1(B.R)}" fill="url(#${g})" stroke="${tons[3]}" stroke-width="0.5"/>`;
       // a costura: o meridiano que passa pelo eixo x, girado com a bola; só a metade virada para quem olha
       const pts: string[] = [];
       for (let i = 0; i <= 48; i++) {
@@ -59,9 +67,9 @@ export function bolaSuica(x: number, z: number, giro: number): { prims: Prim[]; 
         else if (pts.length && pts[pts.length - 1] !== '|') pts.push('|');
       }
       const trechos = pts.join(' ').split('|').map((s) => s.trim()).filter((s) => s.split(' ').length > 1);
-      const costura = trechos.map((s) => `<polyline points="${s}" fill="none" stroke="${tons[3]}" stroke-width="0.7" opacity="0.45"/>`).join('');
+      const costura = trechos.map((s) => `<polyline points="${s}" fill="none" stroke="${tons[0]}" stroke-width="0.5" opacity="0.28"/>`).join('');
       // o brilho, parado (a luz não gira com a bola)
-      const brilho = `<ellipse cx="${f1(c[0] - B.R * 0.4)}" cy="${f1(c[1] - B.R * 0.42)}" rx="${f1(B.R * 0.2)}" ry="${f1(B.R * 0.12)}" transform="rotate(-35 ${f1(c[0] - B.R * 0.4)} ${f1(c[1] - B.R * 0.42)})" fill="#fff" opacity="0.3"/>`;
+      const brilho = `<ellipse cx="${f1(c[0] - B.R * 0.4)}" cy="${f1(c[1] - B.R * 0.42)}" rx="${f1(B.R * 0.2)}" ry="${f1(B.R * 0.12)}" transform="rotate(-35 ${f1(c[0] - B.R * 0.4)} ${f1(c[1] - B.R * 0.42)})" fill="#fff" opacity="0.35"/>`;
       // pintada na profundidade da parte de trás da bola: o que apoia nela (os pés, as pernas) fica por cima
       C.bruto(c[2] + B.R * 0.9, forma + costura + brilho);
       if (o.comSombra) C.sombra(x, z, B.R * 0.8, B.R * 0.8, 0.18);

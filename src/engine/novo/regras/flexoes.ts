@@ -61,11 +61,6 @@ export const regrasDasFlexoes: Record<string, Regra> = {
     const a = angulo(deLado(sub(L.ombro, L.quadril)), deLado(sub(L.calcanhar, L.quadril)));
     return { medido: `no começo, ombro, quadril e calcanhar fazem ${f1(a)}° de lado (180° = linha reta)`, ok: a >= 170 };
   },
-  'bola-linha-no-fim': (q) => {
-    const L = q[q.length - 1]!.esq.lado.R;
-    const a = angulo(deLado(sub(L.ombro, L.quadril)), deLado(sub(L.joelho, L.quadril)));
-    return { medido: `no fim, ombro, quadril e joelho fazem ${f1(a)}° de lado (180° = linha reta)`, ok: a >= 170 };
-  },
   'bola-joelhos-a-90': (q) => {
     const a = q[q.length - 1]!.esq.lado.R.ang.joelho;
     return { medido: `no fim, o joelho dobra ${f1(a)}°`, ok: a >= 80 && a <= 100 };
@@ -101,10 +96,14 @@ export const regrasDasFlexoes: Record<string, Regra> = {
         }
     return { medido: pior > 0 ? `até ${f1(pior)} cm para dentro da bola (${qual})` : 'nenhum ponto das pernas entra na bola', ok: pior <= 2 };
   },
-  'bola-costas-no-chao': (q) => {
-    const min = q.map((x) => Math.min(...pontosDoBoneco(x.esq).filter((p) => p.parte === 'tronco').map((p) => p.p[1])));
-    const [a, b] = faixa(min);
-    return { medido: `o ponto mais baixo das costas fica de ${f1(a)} a ${f1(b)} cm do chão`, ok: a >= -1.5 && b <= 1 };
+  // deitado de costas na ponte alta: as costas e a cabeça ficam no chão e os ombros não escorregam. O centro do ombro
+  // sobe um pouco quando o tronco gira sobre a parte de cima das costas (a ponte sobe); o que não pode é ele andar.
+  'bola-costas-e-cabeca-no-chao': (q) => {
+    const baixo = (x: (typeof q)[number], parte: string) => Math.min(...pontosDoBoneco(x.esq).filter((p) => p.parte === parte).map((p) => p.p[1]));
+    const [ta, tb] = faixa(q.map((x) => Math.min(baixo(x, 'tronco'), baixo(x, 'pescoco'))));
+    const [ca, cb] = faixa(q.map((x) => baixo(x, 'cabeca')));
+    const anda = Math.max(...q.map((x) => Math.abs(x.esq.lado.R.ombro[2] - q[0]!.esq.lado.R.ombro[2])));
+    return { medido: `o ponto mais baixo das costas e da nuca fica de ${f1(ta)} a ${f1(tb)} cm do chão e o da cabeça de ${f1(ca)} a ${f1(cb)} cm; o ombro anda ${f1(anda)} cm na direção do corpo`, ok: ta >= -1.5 && tb <= 1 && ca >= -1.5 && cb <= 1 && anda <= 1 };
   },
   // elástico: as pontas ficam presas sob as palmas (não saem do lugar)
   'pontas-sob-as-palmas': (q) => {
