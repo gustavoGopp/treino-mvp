@@ -2,7 +2,7 @@
 
 Atualizado por quem integra, a cada família juntada. "Aprovada na folha" = o Gustavo olhou e aprovou. "Aprovada por delegação" = conferida por quem integra, risco baixo, registrada com a frase dele de 15/11/2026. "Para o Gustavo ver" = risco médio ou alto: só entra na lista do app depois do ok dele. "Correção de qualidade" = desde o aviso dele de 15/11 ("o fato de eu ter delegado [...] não quer dizer que a gente pode diminuir a qualidade"), nenhuma animação delegada conta como pronta enquanto tiver defeito visível nos quadros (seção 8 de `como-fazer-uma-animacao.md`). As folhas ficam em `prototipos/folha-<id>.png` e os quadros grandes em `quadros/<id>.png`.
 
-Resumo: 15 aprovadas pelo Gustavo (7 na folha e 8 vendo os quadros); 45 por delegação; 2 prontas para o Gustavo ver; 4 das quatro primeiras sem aprovação na folha; 12 em andamento; 12 por fazer.
+Resumo: 15 aprovadas pelo Gustavo (7 na folha e 8 vendo os quadros); 45 por delegação; 2 prontas para o Gustavo ver; 4 das quatro primeiras sem aprovação na folha; 16 em andamento; 8 por fazer.
 
 | Lote | Exercício | Estado |
 |---|---|---|
@@ -35,8 +35,8 @@ Resumo: 15 aprovadas pelo Gustavo (7 na folha e 8 vendo os quadros); 45 por dele
 | 3 | `elevacao-lateral` | feita e conferida quadro a quadro por quem integra; aprovada por delegação (é a elevação lateral de um braço na polia, como a ficha e o app dizem) |
 | 3 | `elevacao-lateral-elastico` | em andamento (subagente) |
 | 3 | `supino-inclinado` | em andamento (subagente) |
-| 4 | `barra-fixa` | por fazer |
-| 4 | `barra-fixa-supinada` | por fazer |
+| 4 | `barra-fixa` | em andamento (subagente) |
+| 4 | `barra-fixa-supinada` | em andamento (subagente) |
 | 4 | `face-pull` | em andamento (subagente) |
 | 4 | `face-pull-elastico` | não entregue: com os braços à frente, o desenho do ombro de trás quase não aparece em nenhuma vista (9 cm², e o mínimo é 30); depende de um acerto no desenho desse músculo |
 | 4 | `puxada-elastico` | feita e conferida quadro a quadro por quem integra; aprovada por delegação (o tubo preso no alto de uma porta) |
@@ -91,8 +91,8 @@ Resumo: 15 aprovadas pelo Gustavo (7 na folha e 8 vendo os quadros); 45 por dele
 | 7 | `abertura-t-deitado` | feita e conferida quadro a quadro por quem integra; aprovada por delegação |
 | 7 | `aducao-caneleira` | por fazer |
 | 7 | `aducao-deitado` | por fazer |
-| 7 | `elevacao-joelhos` | por fazer |
-| 7 | `elevacao-joelhos-paralelas` | por fazer |
+| 7 | `elevacao-joelhos` | em andamento (subagente) |
+| 7 | `elevacao-joelhos-paralelas` | em andamento (subagente) |
 | 7 | `extensao-joelho-caneleira` | por fazer |
 | 7 | `extensao-joelho-elastico` | em andamento (subagente) |
 | 7 | `roda-abdominal` | por fazer |
