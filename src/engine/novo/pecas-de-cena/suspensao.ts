@@ -91,20 +91,23 @@ export function fitaDeSuspensao(f: FitaDeSuspensao): { prims: Prim[]; peca: Peca
         const l = perp([1, 0, 0], d);
         return len(l) < 1e-4 ? [0, 0, 1] : norm(l);
       };
-      // a ponta da fita de ancoragem, que sobe até o ponto firme (só um trecho aparece), e o mosquetão
+      // o ponto firme (uma viga ou barra, como pede a montagem segura; o tamanho é só de desenho), a ponta da fita de
+      // ancoragem que desce dele e o mosquetão
       const topo = add(f.ancora, [0, 22, 0]);
-      trecho(topo, add(f.ancora, [0, 2, 0]), g('ancoraLarg'), [1, 0, 0]);
+      C.tubo(add(topo, [-25, 3, 0]), add(topo, [25, 3, 0]), 6, 6, M.metal, { up: [0, 1, 0] });
+      trecho(add(topo, [0, 3, 0]), add(f.ancora, [0, 2, 0]), g('ancoraLarg'), [1, 0, 0]);
       const mosq = g('mosquetaoComp');
       const dA = norm(sub(c.divide === f.ancora ? c.pontas[0]!.chega : c.divide, f.ancora));
       const fimMosq = add(f.ancora, mul(dA, mosq));
-      const lA = ladoDe(dA);
+      // o anel do mosquetão fica a 45° entre os eixos, para aparecer tanto de lado quanto de frente
+      const lA = norm(perp([1, 0, 1], dA));
       const voltas = 12;
       const anel: V3[] = [];
       for (let i = 0; i <= voltas; i++) {
         const t = (2 * Math.PI * i) / voltas;
         anel.push(add(lerp(f.ancora, fimMosq, 0.5), add(mul(dA, (mosq / 2) * Math.cos(t)), mul(lA, mosq * 0.28 * Math.sin(t)))));
       }
-      for (let i = 0; i < voltas; i++) C.cilindro(anel[i]!, anel[i + 1]!, 0.45, M.cromo, { lados: 8, contorno: false });
+      for (let i = 0; i < voltas; i++) C.cilindro(anel[i]!, anel[i + 1]!, 0.7, M.cromo, { lados: 8 });
       // a fita inteira até onde se divide (com dois pegadores) e uma fita até cada pegador, com a fivela de ajuste
       if (c.divide !== f.ancora) trecho(fimMosq, c.divide, g('fitaLarg'), ladoDe(norm(sub(c.divide, f.ancora))));
       for (const { chega, p } of c.pontas) {

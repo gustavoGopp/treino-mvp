@@ -16,3 +16,4 @@ export { bulgaro } from './bulgaro';
 export { pike } from './pike';
 export { extensaoTricepsPesoCorpo } from './extensao-triceps-peso-corpo';
 export { bulgaroPesoCorpo } from './bulgaro-peso-corpo';
+export { bulgaroSuspensao } from './bulgaro-suspensao';

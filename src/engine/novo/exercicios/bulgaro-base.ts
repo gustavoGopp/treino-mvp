@@ -42,7 +42,8 @@ export function criarBulgaro(fichaJson: unknown, maos: MaosDoBulgaro, apoioDeTra
   // na fita, a altura do berço depende do corpo (o meio da canela) e do arco: fica em `naFita`, e esta é a do pendurado
   const alturaDoApoio = apoioDeTras === 'cadeira' ? obj('cadeira', 'assentoAltura') : apoioDeTras === 'fita' ? obj('suspensao', 'alcaAlturaMin') : obj('bancoReto', 'altura');
   const zTornozelo = -f('peDeTras.tornozeloAtrasDoQuadril');
-  const zBorda = zTornozelo + f('peDeTras.tornozeloDaBorda');
+  // na fita não há borda: o pé pende do berço
+  const zBorda = apoioDeTras === 'fita' ? 0 : zTornozelo + f('peDeTras.tornozeloDaBorda');
   const sT = sinal(TRAS);
 
   /** A coluna da estação, ao lado da mão de apoio, virada para a pessoa. */

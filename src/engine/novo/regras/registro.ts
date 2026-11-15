@@ -3,3 +3,4 @@
 // mede`. O arquivo junta sozinho as linhas de quem trabalha em paralelo (ver .gitattributes).
 export {};
 export { apoioNoChao } from './apoio-no-chao';
+export { regrasDosBulgaros } from './bulgaros';
