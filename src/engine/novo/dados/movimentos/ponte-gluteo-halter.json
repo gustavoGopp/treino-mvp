@@ -1,0 +1,60 @@
+{
+ "id": "ponte-gluteo-halter",
+ "nome": "Ponte de glúteo com halter",
+ "fichaDaTecnica": "docs/pesquisa/animacoes/ponte-gluteo-halter.md",
+ "fontes": {
+  "ficha": "Ficha da técnica (docs/pesquisa/animacoes/ponte-gluteo-halter.md): consenso de treinadores (nsca2021, não verificado; seguranca-t5)",
+  "ponte": "Ficha da ponte sem carga (docs/pesquisa/animacoes/ponte-gluteo.md): a mesma ponte, consenso",
+  "app": "Texto do app (src/conteudo/exercicios/ponte-gluteo-halter.json), que sai da ficha",
+  "correcao": "Correções já feitas (docs/revisoes/animacao-nova/correcoes-ja-feitas.md): 04/11, na ponte, ombro, quadril e joelho em linha e canela em pé; 10/11, na ponte com halter, cotovelos apoiados no chão ao lado da cintura (\"o braço está estranho\")",
+  "hoje": "Animação aprovada no guia de hoje (src/engine/exercicios/ponte-gluteo-halter.ts) e a conferência dela (docs/revisoes/r5-anim/conferencia/ponte-gluteo-halter.md): as distâncias que a ficha não dá em número",
+  "objetos": "src/engine/novo/dados/objetos.json (halter)",
+  "desenho": "Escolha de desenho desta animação, dentro do que a ficha pede; a conferência mede o resultado"
+ },
+ "param": {
+  "quadril.folgaEmbaixo": {"v": 1.5, "un": "cm", "selo": "desenho", "fonte": "desenho", "o": "embaixo: o quadril quase encosta no chão (da pele do glúteo ao chão); a ficha diz \"quase\" e não dá número"},
+  "quadril.topo": {"v": 0, "un": "graus", "selo": "consenso", "fonte": "ponte", "o": "em cima: ombros, quadril e joelhos em linha (o ângulo no quadril, de lado, é 180°)"},
+  "canela.topo": {"v": 0, "un": "graus", "selo": "consenso", "fonte": "correcao", "o": "em cima, a canela fica em pé (na vertical): é o que põe o pé no chão; embaixo, a conferência mede a distância do calcanhar ao glúteo (cerca de um palmo, na ficha)"},
+  "ombro.z": {"v": -50, "un": "cm", "selo": "desenho", "fonte": "desenho", "o": "onde ficam os ombros na cena (só posiciona a cena; os ombros não saem do lugar)"},
+  "carga.aFrenteDoQuadril": {"v": 0, "un": "cm", "selo": "consenso", "fonte": "ficha", "o": "o halter deitado de través na dobra do quadril: embaixo, ele assenta onde fica mais baixo, entre a barriga e as coxas (a dobra); daí anda preso à bacia e desce na vertical até encostar no corpo. Este número o empurra além da dobra (0 = na dobra)"},
+  "maos.naCabeca.acima": {"v": 2, "un": "cm", "selo": "desenho", "fonte": "hoje", "o": "cada mão segura uma cabeça pela ponta de fora (\"as mãos seguram as anilhas pelos lados\", conferência de hoje): o centro da pegada fica na face de fora, 2 cm acima do eixo do cabo"},
+  "maos.naCabeca.diam": {"v": 6, "un": "cm", "selo": "desenho", "fonte": "desenho", "o": "o quanto a mão fecha em volta da ponta da cabeça (o diâmetro da pegada)"},
+  "maos.poloFora": {"v": 0.6, "un": "proporção", "selo": "desenho", "fonte": "correcao", "o": "para onde o cotovelo aponta: para fora (0,6) e para baixo (−1 na vertical), até o chão ao lado da cintura (correção de 10/11)"},
+  "maos.poloCabeca": {"v": 0.6, "un": "proporção", "selo": "desenho", "fonte": "correcao", "o": "o cotovelo aponta também um pouco para o lado da cabeça (o antebraço sobe do chão ao halter)"},
+  "maos.alcance": {"v": 0.95, "un": "fração", "selo": "desenho", "fonte": "hoje", "o": "só no erro do halter rolando: a mão que solta vai ao chão ao lado do corpo, como na ponte sem carga (o punho a 95% do braço mais o antebraço a partir do ombro)"},
+  "maos.paraFora": {"v": 10, "un": "cm", "selo": "desenho", "fonte": "hoje", "o": "só no erro do halter rolando: a mão que solta fica 10 cm para fora da linha do ombro"},
+  "erro.lombar.lombar": {"v": -22, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "erro: no topo, a lombar arqueia 22 graus"},
+  "erro.lombar.bacia": {"v": 0.7, "un": "fração", "selo": "desenho", "fonte": "desenho", "o": "erro: a bacia inclina menos o equivalente a 70% do que a lombar arqueia (o quadril não estende tudo)"},
+  "erro.rola.lado": {"v": 14, "un": "cm", "selo": "desenho", "fonte": "hoje", "o": "erro: o halter escorrega 14 cm para o lado direito (como na animação de hoje) e assenta de novo no corpo, com a cabeça da direita para fora do quadril"},
+  "erro.calcanhar.calc": {"v": 40, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "erro: o calcanhar sobe até o pé ficar 40 graus da horizontal, na ponta do pé"},
+  "erro.raso.fracao": {"v": 0.4, "un": "fração", "selo": "desenho", "fonte": "desenho", "o": "erro: o quadril para em 40% do caminho"}
+ },
+ "fases": [
+  {"nome": "Deitado", "tipo": "pausa", "dur": 0.5, "de": 0, "ate": 0, "respira": "INSPIRA", "tempo": "firme o abdômen", "selo": "consenso", "fonte": "app"},
+  {"nome": "Subida · concêntrica", "tipo": "conc", "dur": 1.2, "de": 0, "ate": 1, "respira": "EXPIRA", "tempo": "~1 s", "selo": "consenso", "fonte": "ficha"},
+  {"nome": "Topo · segura", "tipo": "pausa", "dur": 1, "de": 1, "ate": 1, "respira": "FIRME", "tempo": "~1 s", "selo": "consenso", "fonte": "ficha"},
+  {"nome": "Descida · excêntrica", "tipo": "exc", "dur": 2, "de": 1, "ate": 0, "respira": "INSPIRA", "tempo": "~2 s", "selo": "consenso", "fonte": "ficha"}
+ ],
+ "contatos": ["pe.R", "pe.L", "costas"],
+ "regras": [
+  {"id": "ombros-e-cabeca-no-chao", "pede": "ombros e cabeça ficam no chão o tempo todo, sem os ombros saírem do lugar", "selo": "consenso", "fonte": "app"},
+  {"id": "quadril-quase-no-chao-embaixo", "pede": "embaixo, o quadril quase encosta no chão", "selo": "consenso", "fonte": "ficha"},
+  {"id": "em-linha-no-fim", "pede": "em cima, ombros, quadril e joelhos em linha", "selo": "consenso", "fonte": "ficha"},
+  {"id": "lombar-neutra", "pede": "sem arquear a lombar no topo", "selo": "consenso", "fonte": "ficha"},
+  {"id": "calcanhares-no-chao", "pede": "empurra pelos calcanhares: o pé inteiro fica no chão", "selo": "consenso", "fonte": "ficha"},
+  {"id": "pes-a-um-palmo", "pede": "pés no chão na largura do quadril, calcanhares a cerca de um palmo dos glúteos; no topo, a canela em pé", "selo": "consenso", "fonte": "ficha"},
+  {"id": "carga-nas-duas-maos", "pede": "as duas mãos seguram o halter o tempo todo, pelas pontas", "selo": "consenso", "fonte": "ficha"},
+  {"id": "carga-apoiada-no-quadril", "pede": "o halter deitado de través na dobra do quadril, apoiado (sem atravessar a barriga nem as coxas), sobe e desce com o quadril", "selo": "consenso", "fonte": "ficha"}
+ ],
+ "erros": [
+  {"id": "e1", "instante": 1, "titulo": "Arquear a lombar no topo", "vista": "lateral", "oQueMuda": "no topo, a lombar arqueia e a barriga sobe, com o quadril menos estendido", "destaca": ["corpo"], "linha": ["c7", "lombar", "pelve", "joelho"], "foco": "lombar"},
+  {"id": "e2", "instante": 1, "titulo": "Halter rolando", "vista": "cima", "oQueMuda": "a mão esquerda solta e o halter escorrega para o lado direito, na lateral do quadril", "destaca": ["bracos"], "linha": ["cotovelo:L", "pegada:L"], "foco": "pegada:L"},
+  {"id": "e3", "instante": 1, "titulo": "Empurrar pela ponta dos pés", "vista": "lateral", "oQueMuda": "o calcanhar sai do chão e o pé fica na ponta", "destaca": ["pernas"], "linha": ["joelho", "tornozelo", "calcanhar"], "foco": "calcanhar"},
+  {"id": "e4", "instante": 1, "titulo": "Subir pouco", "vista": "lateral", "oQueMuda": "o quadril para em 40% do caminho, abaixo da linha ombro–joelho", "destaca": ["corpo"], "linha": ["c7", "pelve", "joelho"], "foco": "pelve"}
+ ],
+ "simetrico": true,
+ "rotulos": [
+  {"vista": "lateral", "texto": "duas mãos no halter", "ponto": "pegada:R", "selo": "consenso", "fonte": "app"},
+  {"vista": "lateral", "texto": "ombros, quadril e joelhos em linha", "ponto": "joelho", "selo": "consenso", "fonte": "ficha", "guia": ["ombro", "quadril", "joelho"]}
+ ]
+}

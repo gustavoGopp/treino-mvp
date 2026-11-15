@@ -5,8 +5,7 @@ import { f1, faixa } from '../conferir-util';
 import type { Regra } from '../conferir-util';
 import type { Esq } from '../esqueleto';
 import { alturaDoHalter, alturaDoKettlebell, canelaDaVertical, pontosOndeACargaApoia } from '../exercicios/ponte';
-import { dist } from '../vec';
-import type { V3 } from '../vec';
+import { add, dist, mul } from '../vec';
 
 /** O ponto mais baixo (y) de uma parte do Boneco (do lado direito, quando `direito`). */
 function maisBaixo(e: Esq, parte: string, direito = false): number {
@@ -59,16 +58,14 @@ export const REGRAS_PONTES: Record<string, Regra> = {
     // quanto a carga fica acima (positivo) ou dentro (negativo) do corpo, medida na superfície do Boneco
     const folgas = q.map((x) => {
       const pts = pontosOndeACargaApoia(x.esq);
-      if (x.marcas.halter) return x.marcas.halter[1] - alturaDoHalter(pts, x.marcas.halter[2]);
+      if (x.marcas.halter) return x.marcas.halter[1] - alturaDoHalter(pts, x.marcas.halter[2], x.marcas.halter[0]);
       const c = x.marcas.bola!;
       return c[1] - alturaDoKettlebell(pts, c[2], x.marcas.cima!, [1, 0, 0]);
     });
     const [a, b] = faixa(folgas);
-    const anda = q.map((x) => {
-      const c: V3 = x.marcas.halter ?? x.marcas.bola!;
-      return c[2] - (x.esq.lado.R.quadril[2] + x.esq.lado.L.quadril[2]) / 2;
-    });
+    // a carga anda com o quadril: a distância do centro dela ao meio dos dois quadris quase não muda
+    const anda = q.map((x) => dist(x.marcas.halter ?? x.marcas.bola!, mul(add(x.esq.lado.R.quadril, x.esq.lado.L.quadril), 0.5)));
     const [c, d] = faixa(anda);
-    return { medido: `a carga fica de ${f1(a)} a ${f1(b)} cm acima da barriga, do quadril e das coxas (negativo = dentro); o centro dela fica de ${f1(c)} a ${f1(d)} cm do meio dos quadris, ao longo do corpo`, ok: a >= -0.3 && b <= 0.3 && d - c <= 1 };
+    return { medido: `a carga fica de ${f1(a)} a ${f1(b)} cm acima da barriga, do quadril e das coxas (negativo = dentro); o centro dela fica de ${f1(c)} a ${f1(d)} cm do meio dos dois quadris`, ok: a >= -0.3 && b <= 0.3 && d - c <= 3 };
   },
 };

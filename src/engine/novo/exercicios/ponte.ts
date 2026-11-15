@@ -22,7 +22,7 @@ import { chao, halter } from '../pecas';
 import type { Peca } from '../pecas';
 import type { Corpo } from '../tabelas';
 import { obj } from '../tabelas';
-import { add, angulo, mix, mul, norm, sub } from '../vec';
+import { add, angulo, mix, mul, noRef, norm, paraRef, sub } from '../vec';
 import type { V3 } from '../vec';
 import { bracosNoChao, folgaDaPelve, troncoDeCostas } from './flexao-joelho';
 
@@ -56,7 +56,7 @@ export const pontosOndeACargaApoia = (e: Esq): V3[] => pontosDoBoneco(e).filter(
  * ../pecas.ts): de lado, uma elipse com a meia largura entre quinas na vertical e a meia altura entre faces ao longo
  * do corpo.
  */
-export function alturaDoHalter(pts: V3[], z: number): number {
+export function alturaDoHalter(pts: V3[], z: number, x = 0): number {
   const meia = obj('halter', 'comp') / 2,
     meioCabo = obj('halter', 'caboComp') / 2,
     rc = obj('halter', 'caboDiam') / 2,
@@ -64,7 +64,7 @@ export function alturaDoHalter(pts: V3[], z: number): number {
     rb = obj('halter', 'cabecaAltura') / 2;
   let y = -1e9;
   for (const p of pts) {
-    const dx = Math.abs(p[0]);
+    const dx = Math.abs(p[0] - x);
     if (dx > meia) continue;
     const dz = Math.abs(p[2] - z);
     const [a, b] = dx <= meioCabo ? [rc, rc] : [ra, rb];
@@ -75,7 +75,7 @@ export function alturaDoHalter(pts: V3[], z: number): number {
 }
 /** Quanto o corpo entra no halter (positivo) ou quanto falta para encostar (negativo), em cm, com o centro em c. */
 export function folgaDoHalter(pts: V3[], c: V3): number {
-  return c[1] - alturaDoHalter(pts, c[2]);
+  return c[1] - alturaDoHalter(pts, c[2], c[0]);
 }
 
 /** Pontos da alça (o eixo do ferro), em relação ao centro da bola. */
@@ -140,7 +140,7 @@ export function criarPonte(fichaJson: unknown, carga: CargaDaPonte): { ficha: Fi
   /** Os ids dos erros na ficha (o halter usa os do app: e1, e2...): o erro de cada tipo, pelo título. */
   const erroDo = (titulo: RegExp) => F.erros.find((x) => titulo.test(x.titulo))?.id;
   const ERRO = { lombar: erroDo(/lombar/i), calcanhar: erroDo(/ponta dos pés/i), raso: erroDo(/subir pouco/i), rola: erroDo(/rolando/i) };
-  const CACHE = new WeakMap<Corpo, { ini: number; fim: number; zBola: number }>();
+  const CACHE = new WeakMap<Corpo, { ini: number; fim: number; zBola: number; dobra: V3 }>();
 
   const pose = (corpo: Corpo, zBola: number, frente: number, o: { lombar?: number; calcanhar?: number; bracos?: OpcoesDaPonteNoChao['bracos'] } = {}) =>
     ponteDePesNoChao(corpo, {
@@ -169,29 +169,44 @@ export function criarPonte(fichaJson: unknown, carga: CargaDaPonte): { ficha: Fi
       return Math.sign(e.lado.R.tornozelo[2] - e.lado.R.joelho[2]) * canelaDaVertical(e) - f('canela.topo');
     };
     const zBola = resolver1(canela, 30, 60, 24);
-    c = { ini, fim: fimPara(zBola), zBola };
+    // a dobra do quadril: embaixo, a carga assenta onde fica mais baixa, entre a barriga e as coxas (procurada de 20 cm
+    // para o lado da cabeça a 6 cm para o lado dos pés do meio dos quadris); daí em diante ela anda presa à bacia
+    const e0 = pose(corpo, zBola, ini);
+    const zQ = (e0.lado.R.quadril[2] + e0.lado.L.quadril[2]) / 2;
+    const pts = pontosOndeACargaApoia(e0);
+    let melhor: V3 = [0, 1e9, zQ];
+    if (carga !== 'nenhuma')
+      for (let z = zQ - 20; z <= zQ + 6; z += 0.5) {
+        const y = carga === 'halter' ? alturaDoHalter(pts, z) : alturaDoKettlebell(pts, z, cimaDoKettlebell(e0, z), [1, 0, 0]);
+        if (y < melhor[1]) melhor = [0, y, z];
+      }
+    c = { ini, fim: fimPara(zBola), zBola, dobra: paraRef(e0.pelve, add(melhor, [0, 0, carga === 'nenhuma' ? 0 : f('carga.aFrenteDoQuadril')])) };
     CACHE.set(corpo, c);
     return c;
   }
 
-  /** Onde a carga fica (a dobra do quadril: o meio dos dois quadris, em z) e as mãos nela. */
-  function comCarga(e0: Esq, rola: number) {
-    const zDobra = (e0.lado.R.quadril[2] + e0.lado.L.quadril[2]) / 2 + f('carga.aFrenteDoQuadril');
+  /** O kettlebell deitado de lado: a base para os pés, a alça para a cabeça, ao longo da linha do quadril ao ombro (de lado). */
+  function cimaDoKettlebell(e0: Esq, z: number): V3 {
+    const meioOmbro: V3 = [0, (e0.lado.R.ombro[1] + e0.lado.L.ombro[1]) / 2, (e0.lado.R.ombro[2] + e0.lado.L.ombro[2]) / 2];
+    const meioQuadril: V3 = [0, (e0.lado.R.quadril[1] + e0.lado.L.quadril[1]) / 2, z];
+    return norm(sub(meioOmbro, meioQuadril));
+  }
+  /** Onde a carga fica (na dobra do quadril, presa à bacia em z, e descida na vertical até encostar) e as mãos nela. */
+  function comCarga(e0: Esq, dobra: V3, rola: number) {
+    const zDobra = noRef(e0.pelve, dobra)[2];
     const pts = pontosOndeACargaApoia(e0);
     if (carga === 'halter') {
-      const comp = obj('halter', 'comp'),
-        cabo = obj('halter', 'caboComp');
-      const centro0: V3 = [0, alturaDoHalter(pts, zDobra), zDobra];
-      // no erro do halter rolando, ele escorrega para o lado direito e desce pela lateral do quadril
-      const centro = add(centro0, [-f('erro.rola.lado') * rola, -f('erro.rola.desce') * rola, 0]);
-      const naCabeca = (k: Lado): V3 => add(centro, [sinal(k) * (cabo / 2 + (comp - cabo) / 4), 0, 0]);
+      const comp = obj('halter', 'comp');
+      // no erro do halter rolando, ele escorrega para o lado direito e assenta de novo no corpo, fora do meio
+      const x = -f('erro.rola.lado') * rola;
+      const centro: V3 = [x, alturaDoHalter(pts, zDobra, x), zDobra];
+      // cada mão segura a ponta de fora de uma cabeça ("as mãos seguram as anilhas pelos lados", como hoje): a pegada fica na
+      // aresta de cima da face de fora, com os dedos por cima da cabeça e a palma na face de fora
+      const naCabeca = (k: Lado): V3 => add(centro, [sinal(k) * (comp / 2), f('maos.naCabeca.acima'), 0]);
       return { centro, naCabeca, base: centro, cima: [0, 1, 0] as V3 };
     }
     const K = formaDoKettlebell();
-    // deitado de lado: a base para os pés, a alça para a cabeça, ao longo da linha do quadril ao ombro (de lado)
-    const meioOmbro: V3 = [0, (e0.lado.R.ombro[1] + e0.lado.L.ombro[1]) / 2, (e0.lado.R.ombro[2] + e0.lado.L.ombro[2]) / 2];
-    const meioQuadril: V3 = [0, (e0.lado.R.quadril[1] + e0.lado.L.quadril[1]) / 2, zDobra];
-    const cima = norm(sub(meioOmbro, meioQuadril));
+    const cima = cimaDoKettlebell(e0, zDobra);
     const l: V3 = [1, 0, 0];
     const centro: V3 = [0, alturaDoKettlebell(pts, zDobra, cima, l), zDobra];
     const base = add(centro, mul(cima, -K.centro));
@@ -210,14 +225,13 @@ export function criarPonte(fichaJson: unknown, carga: CargaDaPonte): { ficha: Fi
     const e0 = pose(corpo, c.zBola, frente, { lombar, calcanhar });
     const q: Quadro = { esq: e0, prims: [chao(-70, 70, -100, 90)], pecas: [], fios: [], cargas: [], marcas: {} };
     if (carga === 'nenhuma') return q;
-    const C = comCarga(e0, rola);
+    const C = comCarga(e0, c.dobra, rola);
     const polo = (k: Lado): V3 => [sinal(k) * f('maos.poloFora'), -1, -f('maos.poloCabeca')];
     const bracos = (): Record<Lado, PoseBraco> => {
       const braco = (k: Lado): PoseBraco => {
-        const s = sinal(k);
         // no erro do halter rolando, a mão esquerda solta e cai no chão ao lado do corpo
         if (k === 'L' && rola > 0) return bracosNoChao(corpo, f('ombro.z'), f('maos.alcance') * (corpo.m('braco.comp') + corpo.m('antebraco.comp')), f('maos.paraFora')).L;
-        if (carga === 'halter') return { pegada: C.naCabeca(k), polo: polo(k), mao: { polegar: [-s, 0, 0], forma: 'pegada', diam: obj('halter', 'cabecaAltura') } };
+        if (carga === 'halter') return { pegada: C.naCabeca(k), polo: polo(k), mao: { polegar: [0, 0, -1], forma: 'pegada', diam: f('maos.naCabeca.diam') } };
         return { pegada: C.naCabeca(k), polo: polo(k), mao: { polegar: C.cima, forma: 'pegada', diam: obj('kettlebell', 'alcaDiam') } };
       };
       return { R: braco('R'), L: braco('L') };
@@ -225,11 +239,12 @@ export function criarPonte(fichaJson: unknown, carga: CargaDaPonte): { ficha: Fi
     const e = pose(corpo, c.zBola, frente, { lombar, calcanhar, bracos });
     q.esq = e;
     if (carga === 'halter') {
-      const eixo: V3 = rola > 0 ? norm([1, -f('erro.rola.inclina') * rola, 0]) : [1, 0, 0];
+      const eixo: V3 = [1, 0, 0];
       q.prims.push(...halter(C.centro, eixo, 0.4));
       q.pecas = [{ t: 'halter', centro: C.centro, eixo } as Peca];
       q.cargas.push({ massa: obj('halter', 'massa'), pos: C.centro });
       q.marcas = { halter: C.centro, pegaR: C.naCabeca('R'), pegaL: C.naCabeca('L') };
+      q.vies = { maoR: 1, maoL: 1 };
     } else {
       const K = formaDoKettlebell();
       q.prims.push({ t: 'esfera', c: C.centro, r: K.R, cls: 'ferro' });
