@@ -2,14 +2,14 @@
 
 Atualizado por quem integra, a cada família juntada. "Aprovada na folha" = o Gustavo olhou e aprovou. "Aprovada por delegação" = conferida por quem integra, risco baixo, registrada com a frase dele de 15/11/2026. "Para o Gustavo ver" = risco médio ou alto: só entra na lista do app depois do ok dele. "Correção de qualidade" = desde o aviso dele de 15/11 ("o fato de eu ter delegado [...] não quer dizer que a gente pode diminuir a qualidade"), nenhuma animação delegada conta como pronta enquanto tiver defeito visível nos quadros (seção 8 de `como-fazer-uma-animacao.md`). As folhas ficam em `prototipos/folha-<id>.png` e os quadros grandes em `quadros/<id>.png`.
 
-Resumo: as 90 animações estão feitas no motor novo. 18 aprovadas pelo Gustavo (7 na folha e 11 vendo os quadros); 66 por delegação; 2 prontas para o Gustavo ver; 4 das quatro primeiras sem aprovação na folha.
+Resumo: as 90 animações estão feitas no motor novo. 23 aprovadas pelo Gustavo (7 na folha e 16 vendo os quadros); 66 por delegação; 1 ajustada a pedido dele, esperando ele ver.
 
 | Lote | Exercício | Estado |
 |---|---|---|
-| 0 | `flexao` | feita (das quatro primeiras); falta a aprovação na folha |
-| 0 | `goblet` | feita (das quatro primeiras); falta a aprovação na folha |
-| 0 | `puxada-unilateral` | feita (das quatro primeiras); falta a aprovação na folha |
-| 0 | `supino-reto` | feita (das quatro primeiras); falta a aprovação na folha |
+| 0 | `flexao` | aprovada pelo Gustavo em 15/11/2026, vendo os quadros ("podem ficar assim, segue com as próximas, só ajuste as animações com o elástico desse bloco"): uma das quatro primeiras, de antes dos lotes |
+| 0 | `goblet` | aprovada pelo Gustavo em 15/11/2026, vendo os quadros ("podem ficar assim, segue com as próximas, só ajuste as animações com o elástico desse bloco"): uma das quatro primeiras, de antes dos lotes |
+| 0 | `puxada-unilateral` | aprovada pelo Gustavo em 15/11/2026, vendo os quadros ("podem ficar assim, segue com as próximas, só ajuste as animações com o elástico desse bloco"): uma das quatro primeiras, de antes dos lotes |
+| 0 | `supino-reto` | aprovada pelo Gustavo em 15/11/2026, vendo os quadros ("podem ficar assim, segue com as próximas, só ajuste as animações com o elástico desse bloco"): uma das quatro primeiras, de antes dos lotes |
 | 1 | `afundo` | aprovada na folha |
 | 1 | `afundo-kettlebell` | aprovada na folha |
 | 1 | `afundo-peso-corpo` | aprovada na folha |
@@ -86,8 +86,8 @@ Resumo: as 90 animações estão feitas no motor novo. 18 aprovadas pelo Gustavo
 | 7 | `abdominal-invertido` | feita e conferida quadro a quadro por quem integra; aprovada por delegação |
 | 7 | `abdominal-polia` | feita e conferida quadro a quadro por quem integra; aprovada por delegação |
 | 7 | `abducao-caneleira` | feita e conferida quadro a quadro por quem integra; aprovada por delegação (a pose da abdução deitado, com a caneleira, que é peça nova; sem colchonete) |
-| 7 | `abducao-deitado` | feita; **para o Gustavo ver** (o primeiro corpo deitado de lado do motor novo; visto de costas) |
-| 7 | `abducao-mini-band` | feita; **para o Gustavo ver** (sentado na cadeira; de frente, a faixa aparece como um anel em volta do colo) |
+| 7 | `abducao-deitado` | aprovada pelo Gustavo em 15/11/2026, vendo os quadros ("podem ficar assim, segue com as próximas, só ajuste as animações com o elástico desse bloco"): o primeiro corpo deitado de lado do motor novo, visto de costas |
+| 7 | `abducao-mini-band` | feita; faixa refeita em 15/11/2026 a pedido do Gustavo ("só ajuste as animações com o elástico desse bloco"): assenta na pele das coxas, fica escondida atrás dos joelhos e ganhou a vista de três quartos; esperando ele ver |
 | 7 | `abertura-t-deitado` | feita e conferida quadro a quadro por quem integra; aprovada por delegação |
 | 7 | `aducao-caneleira` | feita e conferida quadro a quadro por quem integra; aprovada por delegação |
 | 7 | `aducao-deitado` | feita e conferida quadro a quadro por quem integra; aprovada por delegação (deitado de lado, visto de frente) |

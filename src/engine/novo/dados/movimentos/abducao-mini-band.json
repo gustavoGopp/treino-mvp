@@ -44,6 +44,7 @@
  "rotulos": [
   {"vista": "frontal", "texto": "abre os joelhos", "ponto": "joelho:R", "selo": "consenso", "fonte": "app"},
   {"vista": "frontal", "texto": "pés no chão", "ponto": "ponta:L", "selo": "consenso", "fonte": "app"},
-  {"vista": "lateral", "texto": "costas retas", "ponto": "c7", "selo": "consenso", "fonte": "app"}
+  {"vista": "lateral", "texto": "costas retas", "ponto": "c7", "selo": "consenso", "fonte": "app"},
+  {"vista": "quina", "texto": "abre os joelhos", "ponto": "joelho:R", "selo": "consenso", "fonte": "app"}
  ]
 }

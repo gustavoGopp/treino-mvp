@@ -22,7 +22,7 @@ De 15/11/2026. Sentado na beira de uma cadeira firme, costas retas, as mãos seg
 | A faixa nas coxas, logo acima dos joelhos (não sobre o joelho), sem enrolar | consenso | o meio da faixa a 8 cm do centro do joelho (a borda de baixo a 5,5 cm) | sim |
 | Já um pouco esticada no início | consenso | 1,4 vezes o comprimento em repouso (88,4 cm de volta) | sim |
 | Abre os joelhos até o fim confortável; pausa de ~1 s | consenso | os joelhos vão de 20,7 cm a 51,6 cm um do outro; a coxa abre de 2,8° a 25°; 1 s parado | sim |
-| A faixa pesa mais com os joelhos abertos | consenso | estica de 1,4 a 2,3 vezes (máximo do fabricante: 2,5) | sim |
+| A faixa pesa mais com os joelhos abertos | consenso | estica de 1,3 a 2,1 vezes (máximo do fabricante: 2,5); medida refeita em 15/11 com a faixa assentada na pele das coxas | sim |
 | Volta em ~2 s, sem os joelhos baterem | consenso | 2 s; maior salto de velocidade 5,3% do pico | sim |
 
 Conferência automática: **0 falha, 3 avisos**: (1) as linhas de desenho da ficha de movimento (o joelho a 90° e o quanto o assento amassa); (2) o modo Músculos: de lado, 155 cm² do glúteo (padrão do modo); de frente, 0 cm² (não serve a esse modo); (3) a regra do elástico, que espera o elástico mais esticado no começo do ciclo (como no agachamento, que começa em cima): aqui o ciclo começa com os joelhos fechados, na ordem do cartão, e a faixa estica mais no fim da abertura, que é o que a ficha pede.
@@ -43,6 +43,22 @@ Principal: `gluteo` (os dois lados). O desenho tem um glúteo só, que não sepa
 
 ## O que não ficou bom
 
-- **De frente, a faixa aparece como um anel em volta do colo** (o trecho de cima passa por cima das duas coxas, que vêm na direção de quem olha). É a geometria certa, mas pode ler como um anel solto, e não como uma faixa nas coxas. De três quartos (`quina`) ela se lê melhor; deixei a de frente como padrão porque é a única que mostra os joelhos abrindo.
+- ~~De frente, a faixa aparece como um anel em volta do colo~~: corrigido em 15/11, a pedido do Gustavo (ver "Ajuste da faixa", abaixo).
 - **O glúteo médio não existe no desenho**: o modo Músculos mostra o glúteo de lado, sentado.
 - **A cadeira é pintada atrás do corpo em todas as vistas** (`cenario`). Nos quadros do lote isso está certo (ela fica debaixo e atrás do corpo), mas não é uma pintura por profundidade de verdade.
+
+## Ajuste da faixa (15/11/2026, a pedido do Gustavo: "só ajuste as animações com o elástico desse bloco")
+
+O que estava ruim: de frente, a faixa era um contorno fino em volta do colo, pintado por cima dos joelhos; não se lia como faixa presa nas pernas.
+
+O que mudou em `pecas-de-cena/mini-band.ts`:
+
+- **A faixa assenta na pele.** Antes era um anel de raio fixo (o maior raio da coxa naquele trecho). Agora, em cada corte perpendicular às coxas, o contorno dela é o fecho das duas seções da pele do Boneco (assenta por fora de cada coxa e vai reta de uma à outra, por cima e por baixo). Como a coxa engrossa do joelho para o quadril, a borda de trás fica mais larga e mais alta que a da frente, e a faixa aparece como faixa também de frente.
+- **As pernas escondem a faixa.** Cada pedaço só é pintado se quem olha o vê: o que assenta numa coxa aparece do lado dela virado para quem olha, e o que passa por trás de um joelho, de uma canela ou da outra coxa fica escondido. O que sobra é pintado por cima das pernas.
+- **A medida do quanto estica mudou** porque a volta ficou justa na pele: de 1,3 a 2,1 vezes (79,8 a 130,9 cm), contra 1,4 a 2,3 do anel de raio fixo. Continua já esticada no começo e abaixo do máximo de 2,5 do fabricante.
+
+Vistas: entrou a de três quartos (`quina`) como terceira vista, onde a faixa aparece na largura dela (5 cm) abraçando a coxa; a de frente continua a que abre (os joelhos abrindo) e a de lado a do modo Músculos. De cima (fora das vistas do exercício) a faixa aparece inteira por cima das duas coxas, o que confere a geometria.
+
+Conferência automática depois do ajuste: 0 falha, 3 avisos (os mesmos). Quadros: `quadros/abducao-mini-band.png`.
+
+O que ainda não é perfeito: de três quartos, com os joelhos abertos, aparece entre as duas pernas um pedaço do trecho de baixo da faixa (a face de dentro, escura). É o que se veria, mas é um pedaço pequeno solto no meio do quadro.

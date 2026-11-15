@@ -89,4 +89,9 @@ export const APROVADOS: Record<string, { em: string; oQueEleDisse: string; como?
   'supino-inclinado': { em: '2026-11-15', oQueEleDisse: 'podem ficar assim, segue com as próximas', como: 'nos quadros' },
   'rosca-alternada': { em: '2026-11-15', oQueEleDisse: 'podem ficar assim, segue com as próximas', como: 'nos quadros' },
   'rosca-inclinada': { em: '2026-11-15', oQueEleDisse: 'podem ficar assim, segue com as próximas', como: 'nos quadros' },
+  'abducao-deitado': { em: '2026-11-15', oQueEleDisse: 'podem ficar assim, segue com as próximas, só ajuste as animações com o elástico desse bloco', como: 'nos quadros' },
+  goblet: { em: '2026-11-15', oQueEleDisse: 'podem ficar assim, segue com as próximas, só ajuste as animações com o elástico desse bloco', como: 'nos quadros' },
+  'supino-reto': { em: '2026-11-15', oQueEleDisse: 'podem ficar assim, segue com as próximas, só ajuste as animações com o elástico desse bloco', como: 'nos quadros' },
+  'puxada-unilateral': { em: '2026-11-15', oQueEleDisse: 'podem ficar assim, segue com as próximas, só ajuste as animações com o elástico desse bloco', como: 'nos quadros' },
+  flexao: { em: '2026-11-15', oQueEleDisse: 'podem ficar assim, segue com as próximas, só ajuste as animações com o elástico desse bloco', como: 'nos quadros' },
 };

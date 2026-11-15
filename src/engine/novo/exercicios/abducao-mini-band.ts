@@ -65,7 +65,8 @@ function quadro(corpo: Corpo, u: number, erro?: string): Quadro {
 
 export const abducaoMiniBand: Exercicio = {
   ficha: F,
-  vistas: ['frontal', 'lateral'],
+  // de frente é onde os joelhos abrindo aparecem melhor; em três quartos, a faixa aparece na largura dela
+  vistas: ['frontal', 'lateral', 'quina'],
   quadro,
   // glúteos (médio, mínimo e a parte de cima do máximo), dos dois lados: o desenho tem um glúteo só, que não separa o médio
   papeis: { gluteo: 'p' },
