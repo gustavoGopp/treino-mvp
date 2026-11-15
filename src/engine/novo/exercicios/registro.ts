@@ -14,3 +14,4 @@ export { afundoKettlebell } from './afundo-kettlebell';
 export { afundoTrasPesoCorpo } from './afundo-tras-peso-corpo';
 export { bulgaro } from './bulgaro';
 export { pike } from './pike';
+export { extensaoTricepsPesoCorpo } from './extensao-triceps-peso-corpo';

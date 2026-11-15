@@ -72,9 +72,22 @@ export const apoioNoChao: Record<string, Regra> = {
     const a = aberturaDoCotovelo(e);
     return { medido: `embaixo, o plano do braço abre ${f1(a)}° do plano do meio do corpo (0° = cotovelo reto para a frente)`, ok: a <= 20 };
   },
+  'testa-perto-do-apoio': (q) => {
+    // a menor distância (de lado) da cabeça à bancada embaixo: acima do tampo, a altura sobre ele; antes da beirada, a
+    // distância à quina; abaixo do tampo, a distância à frente. `quina` = (0, altura do tampo, beirada)
+    const [, yT, zB] = q[0]!.marcas.quina!;
+    const d = (e: Esq) => {
+      let min = 1e9;
+      for (const { p, parte } of pontosDoBoneco(e)) if (parte === 'cabeca') min = Math.min(min, p[2] >= zB ? p[1] - yT : p[1] >= yT ? Math.hypot(p[1] - yT, zB - p[2]) : zB - p[2]);
+      return min;
+    };
+    const fim = d(q[q.length - 1]!.esq);
+    const pior = Math.min(...q.map((x) => d(x.esq)));
+    return { medido: `embaixo, a cabeça fica a ${f1(fim)} cm da bancada; no caminho, nunca a menos de ${f1(pior)} cm`, ok: fim >= 1 && fim <= 10 && pior >= 1 };
+  },
   'braco-acima-da-cabeca': (q) => {
     const e = q[q.length - 1]!.esq;
     const el = angulosDoLado(e, 'R').ombro;
-    return { medido: `embaixo, o braço fica elevado ${f1(el)}° em relação ao tronco`, ok: el >= 120 };
+    return { medido: `embaixo, o braço fica elevado ${f1(el)}° em relação ao tronco (180° = na linha do tronco, acima da cabeça)`, ok: el >= 150 };
   },
 };

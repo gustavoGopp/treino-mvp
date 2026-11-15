@@ -3,3 +3,4 @@
 // uma família de objetos. O arquivo junta sozinho as linhas de quem trabalha em paralelo (ver .gitattributes).
 // Ex.: export { default as cadeira } from './cadeira.json';
 export {};
+export { default as bancada } from './bancada.json';

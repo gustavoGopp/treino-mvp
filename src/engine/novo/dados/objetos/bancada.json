@@ -1,0 +1,19 @@
+{
+ "fontes": {
+  "cubro-metod": "Cubro, IKEA METOD structures catalogue (central de ajuda); https://helpcenter.cubrodesign.com/en/ikea-metod-structures-catalogue; lido em 15/11/2026: \"the base units measure 80 cm\", \"with IKEA's standard 8 cm legs, they reach 88 cm\", \"the countertop, whose standard measurement is 2 cm\", \"resulting in a total height of 90 cm, which is the standard in most kitchens\", \"have a standard depth of 60 cm\""
+ },
+ "objetos": {
+  "bancada": {
+   "nome": "Bancada de cozinha (gabinete de base com tampo), o apoio fixo na altura da cintura",
+   "medidas": {
+    "altura": { "v": 90, "un": "cm", "tipo": "medida", "fonte": "cubro-metod", "onde": "altura total com o tampo: 80 + 8 (pés) + 2 (tampo)" },
+    "tampoEsp": { "v": 2, "un": "cm", "tipo": "medida", "fonte": "cubro-metod", "onde": "espessura padrão do tampo" },
+    "rodape": { "v": 8, "un": "cm", "tipo": "medida", "fonte": "cubro-metod", "onde": "altura dos pés do gabinete (atrás do rodapé)" },
+    "prof": { "v": 60, "un": "cm", "tipo": "medida", "fonte": "cubro-metod", "onde": "profundidade padrão do gabinete" },
+    "balanco": { "v": 2, "un": "cm", "tipo": "provisoria", "fonte": "a-conferir", "onde": "quanto o tampo passa da frente do gabinete (sem medida lida)" },
+    "rodapeRecuo": { "v": 5, "un": "cm", "tipo": "provisoria", "fonte": "a-conferir", "onde": "quanto o rodapé fica para dentro da frente do gabinete (sem medida lida)" },
+    "larg": { "v": 120, "un": "cm", "tipo": "desenho", "fonte": "desenho", "onde": "o trecho de bancada desenhado (só precisa caber as duas mãos)" }
+   }
+  }
+ }
+}
