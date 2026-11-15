@@ -316,3 +316,19 @@ Detalhes em `revisoes/treino-para-todos/pacote-3.md` e `qa.md`. O pacote está n
 - **O foco em "pernas" leva a panturrilha junto até o máximo do nível** (16 séries no avançado): três revisores chamaram de volume demais. A regra é a do foco primeiro (R5d); rever com o pacote 2 ou 4.
 - **As notas que sobem com o corpo todo:** o mesmo músculo em dias seguidos (5,3% → 5,9% dos programas, ponderada) e o mesmo exercício em todos os dias sem opção (16,6% → 18,7%, grade). Pede a mesma pesquisa sobre dias seguidos anotada no pacote 1.
 
+## Da sessão "treino para todos", etapa 2, pacote 2 (15/11/2026)
+
+Detalhes em `revisoes/treino-para-todos/pacote-2.md` e `qa.md`. O pacote está no ramo da sessão, esperando a revisão do Gustavo.
+
+**Medido e recusado (não tentar de novo sem motivo novo)**
+- **"Para o iniciante, o exercício mais simples primeiro":** em 23.470 programas da amostra, 300 iniciantes deixam de ter mais de 12 exercícios diferentes na semana, mas 4 programas ganham um dia fraco (iniciante com dor forte no quadril) e o supino com halteres, animado, dá lugar a máquinas em cartão de texto. Volta no pacote do iniciante, com decisão do Gustavo.
+- **Dois lados antes de um lado só também com halter e kettlebell (a versão larga):** a revisão cega achou duas pessoas piores (dor leve na lombar: terra romeno com barra no lugar do stiff de um lado só; avançado com halteres de até 20 kg). Entrou a versão estreita (máquina, polia e barra).
+- **Poupar a série de puxar no corte de tempo:** só 20 de 23.470 programas mudam; não é o caminho do defeito.
+
+**Para medir depois**
+- **A razão empurrar ÷ puxar na distribuição inicial das séries:** quem treina 2 dias e quer peito ficou com 65 programas a mais acima de 1,5 (1.955 → 2.020 de 136.125), porque a 4ª série do supino do foco sai da distribuição inicial, e a trava nova só vale no laço das séries.
+- **O 4º exercício do foco quando o dia tem tempo e já está no número máximo de exercícios:** é o que deixa o avançado de 2 dias de 75 ou 90 min com o foco abaixo da meta (10.212 programas; +44 neste pacote, porque os dias ficaram mais curtos).
+- **O hip thrust para quem marcou dor leve na lombar:** três revisores contaram como carga na lombar; a biblioteca não marca. Pede fonte (tema de dor).
+- **A puxada ajoelhado com barra reta como 2ª puxada da semana** (34,7% dos programas, ponderada): os revisores a chamam de exótica. Rever a ordem da lista (a barra fixa ou a remada antes dela) quando houver a versão sentada.
+- **A semana leve chega uma semana mais cedo para quem repete exercícios nos dois dias de Superior** (o Bruno): efeito da escolha nova sobre a contagem de "3 treinos sem progresso". Conferir no pacote 5.
+

@@ -1742,3 +1742,17 @@ Em relação ao pacote 0, um único par de grupo e defeito sobe, em 1 programa. 
 
 **Rascunho de post.** "O pior caso do meu app de treino era quem marcava dor forte no cotovelo: metade dos programas saía com defeito, com dias de 20 minutos e três exercícios pequenos. A correção parecia óbvia (juntar tudo em treinos de corpo todo), e a primeira versão melhorou esse número e piorou outro: 301 pessoas fictícias ficaram com um músculo sem nenhuma série. A regra que entrou só troca a divisão quando a troca não custa nada. E os dois painéis de treinadores simulados deram +0,3 e −3,3 às mesmas duas páginas: nota de revisor é opinião, e a medida é que decide."
 
+## Sessão "treino para todos", etapa 2, pacote 2 (15/11/2026): a escolha entre exercícios equivalentes
+
+**O que mudou (no ramo `claude/nifty-albattani-mltt95`, não na `main`).** Entre exercícios que servem para a mesma vaga, o app deixou de decidir pela ordem alfabética. Quatro regras, uma por vez: (1) no empate total, vale a ordem de referência da lista da função, que virou dado curado (a puxada pela frente antes da puxada com barra reta; o afundo antes do búlgaro; o abdominal no chão antes do da bola); (2) em máquina, polia e barra, o exercício de dois lados vem antes do de um lado só (a puxada pela frente no lugar da puxada unilateral ajoelhado; o hip thrust no lugar do coice na máquina); com halter e kettlebell nada muda, e a regra nunca age contra uma região com dor leve nem contra o "prefiro este"; (3) regra nova, `selecao.lombar-no-dia`: depois de um exercício que carrega a lombar sem apoio, entra o apoiado, havendo opção do mesmo nível; (4) nem o empurrar do foco sobe uma série se levar empurrar ÷ puxar acima de 1,5.
+
+**Medido em 680.625 programas (pacote 3 → pacote 2).** Régua sem defeito: 90,6% → 90,7% na grade e 96,4% → 96,8% na ponderada. Dias acima de 110% do tempo: 24.312 → 23.465. Empurrar ÷ puxar acima de 1,5: 3.491 → 3.340. Exercício escolhido pela ordem alfabética: 73,4% → 0% dos programas. Três exercícios ou mais no dia que carregam a lombar sem apoio: 4,0% → 0,7%. O que piora: o foco abaixo da meta "com tempo" sobe 44 programas (os dias ficaram mais curtos e a régua passou a contar o tempo), e quem treina 2 dias tem 65 programas a mais com empurrar ÷ puxar acima de 1,5.
+
+**O que a revisão cega mudou.** Na 1ª rodada, duas das doze pessoas pioraram com a regra dos dois lados: a pessoa com dor leve na lombar e o avançado com halteres de até 20 kg. A regra foi estreitada e a revisão refeita: as três notas médias sobem, seis pessoas sobem, quatro ficam iguais e duas caem 0,3.
+
+**O custo no guia.** Os exercícios de referência que entram são cartão de texto: os cartões por dia vão de 1,92 para 2,04 (ponderada). O pedido à animação foi atualizado: puxada pela frente (51% dos programas) e hip thrust (45%) em 1º e 2º.
+
+**Imagem.** Sem imagem: nada mudou nas telas nem no motor de animação.
+
+**Rascunho de post.** "Quando dois exercícios servem para a mesma coisa, qual o app escolhe? Até ontem, o que tinha animação e, no empate, o primeiro do alfabeto. Resultado: na academia completa, a primeira puxada do programa era uma puxada de um braço só, ajoelhado na polia. Agora a ordem é a que um treinador usaria: o exercício mais comum primeiro, os dois lados antes de um lado só quando a carga é à vontade. Medi em 680 mil programas e passei por três revisores às cegas; a primeira versão piorava a vida de quem tem dor leve na lombar, e foi corrigida antes de entrar."
+

@@ -74,3 +74,47 @@ Nenhuma mudança no motor nem nos desenhos existentes. A decisão pendente de 12
 - **Motivo medido:** na revisão cega do pacote 0, as duas pessoas nessa situação foram as únicas com a nota abaixo da de antes (−1,0 e −0,7 na soma de três notas de 1 a 10); os três revisores escreveram "só remadas, sem puxada vertical".
 - **Enquanto isso:** exercício sem animação aprovada aparece como cartão de texto; a versão sentada pode entrar primeiro assim.
 
+## Atualização do pacote 2 (15/11/2026): a escolha dos exercícios entrou no ramo
+
+A regra de escolha da proposta entrou no ramo da sessão (`pacote-2.md`), numa versão mais estreita que a medida na etapa 1: o exercício de dois lados vem antes do de um lado só **em máquina, polia e barra**; com halter e kettlebell nada muda. Os números abaixo são os medidos no app (680.625 programas; "antes" é o ramo depois do pacote 3).
+
+| | antes | depois |
+|---|---:|---:|
+| Cartões de texto por dia (média ponderada; amostra de 23.470 programas) | 1,92 | 2,04 |
+| Programas com um dia de 3 cartões de texto ou mais (ponderada) | 62,8% | 63,4% |
+| Idem, na grade | 14,6% | 14,8% |
+
+### Os exercícios sem animação mais usados, agora
+
+Em % dos programas em que o exercício aparece.
+
+| # | exercício | id | antes (ponderada) | depois (ponderada) | antes (grade) | depois (grade) |
+| ---: | --- | --- | ---: | ---: | ---: | ---: |
+| 1 | Puxada pela frente no puxador | `puxada-frente` | 14,0% | 50,7% | 6,9% | 9,4% |
+| 2 | Flexão de joelho na cadeira flexora (sentado) | `cadeira-flexora` | 50,4% | 50,4% | 8,1% | 8,1% |
+| 3 | Cadeira extensora | `cadeira-extensora` | 50,2% | 50,2% | 7,9% | 7,9% |
+| 4 | Hip thrust | `hip-thrust` | 12,2% | 44,6% | 3,3% | 5,7% |
+| 5 | Puxada ajoelhado na polia alta com barra reta | `puxada-barra-reta` | 35,8% | 34,7% | 3,2% | 3,1% |
+| 6 | Abdominal na máquina | `abdominal-maquina` | 32,7% | 32,7% | 4,5% | 4,5% |
+| 7 | Crucifixo inverso com halteres, peito apoiado no banco inclinado | `crucifixo-inverso` | 35,2% | 31,5% | 7,1% | 6,8% |
+| 8 | Leg press | `leg-press` | 7,9% | 26,9% | 3,2% | 4,6% |
+| 9 | Crucifixo com halteres no banco plano | `crucifixo-halteres` | 35,9% | 21,1% | 9,9% | 8,2% |
+| 10 | Voador (peck deck) | `voador` | 0,2% | 20,6% | 1,6% | 4,2% |
+| 11 | Rosca Scott | `rosca-scott` | 2,5% | 20,3% | 0,4% | 2,0% |
+| 12 | Agachamento livre com barra (profundo) | `agachamento-barra` | 20,1% | 20,1% | 1,8% | 1,8% |
+| 13 | Crucifixo invertido sentado, com o peito nas coxas, com halteres | `crucifixo-invertido-sentado` | 19,6% | 19,2% | 9,5% | 11,8% |
+| 14 | Panturrilha em pé na máquina | `panturrilha-em-pe-maquina` | 18,0% | 18,0% | 2,9% | 2,9% |
+
+### A ordem do pedido, revista
+
+1. **Puxada pela frente no puxador** (`puxada-frente`): de 14% para 51% dos programas. Continua em 1º.
+2. **Hip thrust** (`hip-thrust`): de 12% para 45%. Subiu para 2º (entra no lugar do coice na máquina).
+3. **Cadeira flexora** e **cadeira extensora**: 50%, como antes.
+4. **Puxada ajoelhado na polia alta com barra reta** (`puxada-barra-reta`): 35%. É a 2ª puxada de quem tem puxador e a puxada de quem só tem polia alta; vale junto com o pedido da versão sentada (pacote 0).
+5. **Abdominal na máquina**, **leg press**, **voador**, **rosca Scott**: de 20% a 33%. O voador e a rosca Scott são novos na lista (quase não apareciam).
+6. **Agachamento livre com barra** e **panturrilha em pé na máquina**: 20% e 18%, iguais.
+
+### Animações que perdem uso
+
+Puxada unilateral ajoelhado na polia alta: de 39,8% para 1,8% dos programas (ponderada). Agachamento búlgaro com apoio: de 22,9% para 2,5% (continua na vaga de afundo de quem escolhe e como alternativa). Elevação lateral unilateral na polia: de 34,9% para 17,5%. Stiff com kettlebell: de 10,9% para 0,8%. Crucifixo invertido na polia com os cabos cruzados: de 18,6% para 9,0%. Nenhuma sai da biblioteca: todas continuam como alternativa na troca e para quem marcar "prefiro este".
+

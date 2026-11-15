@@ -1,0 +1,173 @@
+[
+ {
+  "id": "g1",
+  "descricao": "Iniciante; academia completa; 3 dias de 60 min; sem dor; sem grupo de foco.",
+  "pedido": {
+   "cenario": "academia",
+   "nivel": "iniciante",
+   "dias": "3",
+   "min": 60,
+   "focos": [],
+   "dores": [],
+   "semanasParado": 0
+  }
+ },
+ {
+  "id": "g2",
+  "descricao": "Iniciante; academia completa; 4 dias de 45 min; sem dor; quer glúteos.",
+  "pedido": {
+   "cenario": "academia",
+   "nivel": "iniciante",
+   "dias": "4",
+   "min": 45,
+   "focos": [
+    "gluteos"
+   ],
+   "dores": [],
+   "semanasParado": 0
+  }
+ },
+ {
+  "id": "g3",
+  "descricao": "Intermediária; academia completa; 4 dias de 60 min; sem dor; quer glúteos e pernas.",
+  "pedido": {
+   "cenario": "academia",
+   "nivel": "intermediario",
+   "dias": "4",
+   "min": 60,
+   "focos": [
+    "pernas",
+    "gluteos"
+   ],
+   "dores": [],
+   "semanasParado": 0
+  }
+ },
+ {
+  "id": "g4",
+  "descricao": "Intermediário; academia completa; 5 dias de 60 min; sem dor; sem grupo de foco.",
+  "pedido": {
+   "cenario": "academia",
+   "nivel": "intermediario",
+   "dias": "5",
+   "min": 60,
+   "focos": [],
+   "dores": [],
+   "semanasParado": 0
+  }
+ },
+ {
+  "id": "g5",
+  "descricao": "Avançado; academia completa; 6 dias de 75 min; sem dor; quer peito e costas.",
+  "pedido": {
+   "cenario": "academia",
+   "nivel": "avancado",
+   "dias": "6",
+   "min": 75,
+   "focos": [
+    "peito",
+    "costas"
+   ],
+   "dores": [],
+   "semanasParado": 0
+  }
+ },
+ {
+  "id": "g6",
+  "descricao": "Avançado; academia completa; 2 dias de 90 min; sem dor; quer peito.",
+  "pedido": {
+   "cenario": "academia",
+   "nivel": "avancado",
+   "dias": "2",
+   "min": 90,
+   "focos": [
+    "peito"
+   ],
+   "dores": [],
+   "semanasParado": 0
+  }
+ },
+ {
+  "id": "g7",
+  "descricao": "Intermediária; academia do condomínio (multifuncional com puxador e remada, halteres de 2 a 20 kg, banco regulável, bola); 3 dias de 45 min; sem dor; sem grupo de foco.",
+  "pedido": {
+   "cenario": "condominio",
+   "nivel": "intermediario",
+   "dias": "3",
+   "min": 45,
+   "focos": [],
+   "dores": [],
+   "semanasParado": 0
+  }
+ },
+ {
+  "id": "g8",
+  "descricao": "Iniciante; academia do condomínio (multifuncional com puxador e remada, halteres de 2 a 20 kg, banco regulável, bola); 3 dias de 45 min; sem dor; sem grupo de foco.",
+  "pedido": {
+   "cenario": "condominio",
+   "nivel": "iniciante",
+   "dias": "3",
+   "min": 45,
+   "focos": [],
+   "dores": [],
+   "semanasParado": 0
+  }
+ },
+ {
+  "id": "g9",
+  "descricao": "Intermediário; em casa, com halteres montáveis (2 a 18 kg) e elásticos; 4 dias de 45 min; sem dor; sem grupo de foco.",
+  "pedido": {
+   "cenario": "casa",
+   "nivel": "intermediario",
+   "dias": "4",
+   "min": 45,
+   "focos": [],
+   "dores": [],
+   "semanasParado": 0
+  }
+ },
+ {
+  "id": "g10",
+  "descricao": "Intermediária; academia completa; 4 dias de 60 min; marcou dor na lombar, nota 4 hoje; sem grupo de foco.",
+  "pedido": {
+   "cenario": "academia",
+   "nivel": "intermediario",
+   "dias": "4",
+   "min": 60,
+   "focos": [],
+   "dores": [
+    {
+     "articulacao": "lombar",
+     "nota": 4
+    }
+   ],
+   "semanasParado": 0
+  }
+ },
+ {
+  "id": "g11",
+  "descricao": "Avançado; em casa, só com halteres de 2 a 20 kg, sem banco; 4 dias de 60 min; sem dor; sem grupo de foco.",
+  "pedido": {
+   "cenario": "halteres",
+   "nivel": "avancado",
+   "dias": "4",
+   "min": 60,
+   "focos": [],
+   "dores": [],
+   "semanasParado": 0
+  }
+ },
+ {
+  "id": "g12",
+  "descricao": "Intermediário; em casa, só com o peso do corpo (nenhum equipamento); 3 dias de 45 min; sem dor; sem grupo de foco.",
+  "pedido": {
+   "cenario": "vazio",
+   "nivel": "intermediario",
+   "dias": "3",
+   "min": 45,
+   "focos": [],
+   "dores": [],
+   "semanasParado": 0
+  }
+ }
+]

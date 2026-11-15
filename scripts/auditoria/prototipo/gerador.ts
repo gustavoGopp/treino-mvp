@@ -1940,6 +1940,13 @@ export function cortarTempo(
   const piso = (m: Musculo) => Math.min(metas[m] ?? 0, prioritarios.has(m) ? VOLUME.minimo[nivel] : VOLUME.minimoEficazPiso);
   const prioritario = (x: ExercicioPrescrito) => POR_ID[x.exId]!.musculos.primarios.some((m) => prioritarios.has(m));
   const obrigatorio = (x: ExercicioPrescrito) => !!(x.funcao && FUNCAO[x.funcao]?.obrigatoria);
+  /** EXPERIMENTO (corte-puxar): tirar uma série deste exercício de puxar levaria empurrar ÷ puxar acima de 1,5 (e hoje não está). */
+  const quebraRazao = (x: ExercicioPrescrito) => {
+    if (!PADROES_PUXAR.includes(x.padrao)) return false;
+    const soma = (ps: Padrao[]) => dias.flatMap((d) => d.exercicios).filter((y) => ps.includes(y.padrao)).reduce((t, y) => t + seriesDeVolume(y), 0);
+    const [e, p] = [soma(PADROES_EMPURRAR), soma(PADROES_PUXAR)];
+    return e <= EMPURRAR_PUXAR_MAX * p && e > EMPURRAR_PUXAR_MAX * (p - 1);
+  };
   // Um corte só vale se nenhum músculo atingido (principal: série inteira; secundário: meia série)
   // cruzar o piso. Músculo que já estava abaixo do piso antes (limite estrutural) não trava o corte.
   const cabe = (x: ExercicioPrescrito, menos: number, v: Partial<Record<Musculo, number>>) => {
@@ -2050,7 +2057,8 @@ export function cortarTempo(
         const alvo = d.exercicios
           .map((x, i) => ({ x, i }))
           .filter(({ x }) => prioritario(x) === daPrioridade && x.series > VOLUME.seriesPorExercicio.min && cabe(x, 1, v))
-          .sort((a, b) => b.x.series - a.x.series || b.i - a.i)[0]?.x;
+          // EXPERIMENTO (corte-puxar): a série de puxar cujo corte levaria empurrar ÷ puxar acima de 1,5 fica por último.
+          .sort((a, b) => (prot('corte-puxar') ? Number(quebraRazao(a.x)) - Number(quebraRazao(b.x)) : 0) || b.x.series - a.x.series || b.i - a.i)[0]?.x;
         if (!alvo) break;
         salvar(d.exercicios.map((x) => (x === alvo ? { ...x, series: x.series - 1 } : x)));
         usados.add('series');

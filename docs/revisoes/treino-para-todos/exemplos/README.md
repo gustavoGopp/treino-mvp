@@ -39,3 +39,83 @@ Das doze pessoas, só o **Leandro** muda (é o único com dor no joelho): as dua
 
 Das doze pessoas, três mudam, e pouco: o **Jonas** (2 dias de 30 min) fica com o abdominal e a panturrilha em dias diferentes, e o 1º dia vai de 38 para 34 min; na **Ana** e na **Íris**, o par de cada exercício em dupla passa a vir logo depois dele na lista. Nenhuma das doze tem dor forte com um dia quase vazio, que é o caso principal do pacote; os exemplos dele (dor no cotovelo e no ombro) estão em [`../pacote-3.md`](../pacote-3.md), seção 2.
 
+## Etapa 2, pacote 2 (15/11/2026): a escolha entre exercícios equivalentes
+
+Das doze pessoas, sete mudam: quem treina em academia, condomínio ou com halteres. Diego, Elisa, Fábio, Íris e Kátia ficam iguais. O "antes" é o ramo depois do pacote 3. Em cada dia que muda: o que sai, o que entra (com as séries) e os minutos do dia. Quando um exercício aparece nas duas linhas com séries diferentes, ele ficou e só as séries mudaram; quando dois exercícios trocam de lugar entre dois dias, a semana tem os mesmos dois.
+
+```
+== Bruno (bruno): 
+  Superior A (70 → 67 min)
+    sai:   Puxada unilateral ajoelhado na polia alta 3×; Remada com halteres, peito apoiado no banco inclinado 3×; Crucifixo invertido na polia, com os cabos cruzados 2×
+    entra: Puxada ajoelhado na polia alta com barra reta 3×; Remada baixa com triângulo 3×; Face pull com corda 2×
+  Inferior A (40 → 39 min)
+    sai:   Agachamento búlgaro com apoio 2×
+    entra: Agachamento goblet com calcanhar elevado 2×
+  Superior B (69 → 69 min)
+    sai:   Remada baixa com triângulo 3×; Elevação lateral unilateral na polia 3×; Rosca na polia baixa, de costas para a torre 3×; Face pull com corda 2×
+    entra: Remada com halteres, peito apoiado no banco inclinado 3×; Elevação lateral com halteres 3×; Rosca Scott com halter, braço apoiado no encosto do banco inclinado 4×; Crucifixo invertido na polia, com os cabos cruzados 2×
+== Ana (ana): 
+  Corpo todo A (44 → 44 min)
+    sai:   Agachamento búlgaro com apoio 4×; Flexão de joelho deslizando os pés no chão 3×; Tríceps francês sentado com halter 2×
+    entra: Agachamento goblet com calcanhar elevado 4×; Flexão de joelho deslizando os pés no chão 4×; Tríceps francês sentado com halter 3×
+== Diego (diego): igual
+
+== Carla (carla): 
+  Superior (70 → 66 min)
+    sai:   Puxada unilateral ajoelhado na polia alta 4×; Remada com halteres, peito apoiado no banco inclinado 3×; Crucifixo invertido na polia, com os cabos cruzados 2×
+    entra: Puxada pela frente no puxador 4×; Remada baixa com triângulo 3×; Face pull com corda 2×
+  Empurrar (50 → 48 min)
+    sai:   Elevação lateral unilateral na polia 4×; Crucifixo com halteres no banco plano 3×
+    entra: Elevação lateral com halteres 4×; Voador (peck deck) 3×
+  Puxar (43 → 43 min)
+    sai:   Remada baixa com triângulo 4×; Face pull com corda 2×; Rosca na máquina 2×
+    entra: Remada com halteres, peito apoiado no banco inclinado 4×; Crucifixo invertido na polia, com os cabos cruzados 2×; Rosca Scott 2×
+  Pernas (65 → 67 min)
+    sai:   Stiff com kettlebell 3×; Coice na máquina de glúteo 2×
+    entra: Stiff unilateral com halter 3×; Hip thrust 2×
+== Elisa (elisa): igual
+
+== Fábio (fabio): igual
+
+== Gilberto (gilberto): 
+  Corpo todo A (45 → 43 min)
+    sai:   Agachamento búlgaro com apoio 3×
+    entra: Agachamento goblet com calcanhar elevado 3×
+  Corpo todo B (43 → 43 min)
+    sai:   Abdominal na bola suíça 4×
+    entra: Abdominal no chão (crunch) 4×
+== Íris (iris): igual
+
+== Jonas (jonas): 
+  Corpo todo A (34 → 31 min)
+    sai:   Puxada unilateral ajoelhado na polia alta 2×
+    entra: Puxada pela frente no puxador 2×
+  Corpo todo B (28 → 28 min)
+    sai:   Remada com halteres, peito apoiado no banco inclinado 2×
+    entra: Remada baixa com triângulo 2×
+== Kátia (katia): igual
+
+== Leandro (leandro): 
+  Corpo todo A (54 → 54 min)
+    sai:   Crucifixo com halteres no banco plano 2×
+    entra: Voador (peck deck) 2×
+  Corpo todo B (57 → 57 min)
+    sai:   Crucifixo inverso com halteres, peito apoiado no banco inclinado 3×
+    entra: Voador invertido 3×
+== Marina (marina): 
+  Superior A (59 → 59 min)
+    sai:   Supino reto com halteres 3×; Puxada unilateral ajoelhado na polia alta 2×; Remada com halteres, peito apoiado no banco inclinado 2×; Crucifixo invertido na polia, com os cabos cruzados 3×
+    entra: Supino reto com halteres 4×; Puxada pela frente no puxador 2×; Remada baixa com triângulo 2×; Face pull com corda 2×
+  Superior B (59 → 59 min)
+    sai:   Supino inclinado com halteres 4×; Remada baixa com triângulo 2×; Elevação lateral unilateral na polia 4×; Rosca na máquina 3×; Face pull com corda 3×
+    entra: Supino inclinado com halteres 3×; Remada com halteres, peito apoiado no banco inclinado 3×; Elevação lateral com halteres 4×; Rosca Scott 3×; Crucifixo invertido na polia, com os cabos cruzados 4×
+  Inferior B (60 → 60 min)
+    sai:   Coice na máquina de glúteo 4×
+    entra: Hip thrust 4×
+```
+
+O que explica cada troca:
+- **a ordem de referência** (no empate, o exercício mais comum primeiro): goblet no lugar do búlgaro na vaga de agachar; voador no lugar do crucifixo com halteres; rosca Scott no lugar da rosca na máquina; abdominal no chão no lugar do abdominal na bola; a remada baixa e a remada com o peito apoiado trocam de dia;
+- **dois lados antes de um lado só, em máquina, polia e barra:** puxada pela frente (ou a ajoelhado com barra reta, para quem não tem puxador) no lugar da puxada unilateral ajoelhado; elevação lateral com halteres no lugar da de um lado só na polia; hip thrust no lugar do coice na máquina;
+- **a trava do empurrar do foco e a regra da lombar** não mudam nenhuma das doze.
+
