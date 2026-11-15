@@ -27,3 +27,4 @@ export { stiff } from './stiff';
 export { stiffKettlebell } from './stiff-kettlebell';
 export { stiffElastico } from './stiff-elastico';
 export { stiffUnilateral } from './stiff-unilateral';
+export { remadaSuspensao } from './remada-suspensao';

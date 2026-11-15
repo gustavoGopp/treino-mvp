@@ -32,6 +32,11 @@ export interface FitaDeSuspensao {
   pegadores: PegadorDaFita[];
   /** Com dois pegadores, quanto a fita desce inteira antes de se dividir (cm, ao longo do caminho). */
   tronco?: number;
+  /**
+   * A viga do alto e a ponta da fita de ancoragem como cenário (`cenario`, numa peça à parte): pintadas atrás do corpo e
+   * fora do enquadramento, para o corpo não encolher no quadro (acrescentado no lote 4; sem ele, nada muda).
+   */
+  vigaComoCenario?: boolean;
 }
 
 /** O caminho da fita até cada pegador: âncora → (ponto onde se divide) → onde a fita chega ao pegador. */
@@ -48,6 +53,14 @@ function caminhos(f: FitaDeSuspensao): { divide: V3; pontas: { chega: V3; p: Peg
     return { chega: add(p.ponto, mul(d, -g('bercoAlt'))), p };
   });
   return { divide, pontas };
+}
+
+/**
+ * Onde a fita se divide (com dois pegadores; com um, é o próprio pegador): para quem precisa saber para onde cada fita
+ * puxa a mão (a fita sai do pegador em direção a este ponto). Acrescentado no lote 4 (remada, rosca, tríceps, T).
+ */
+export function pontoDeDivisao(f: FitaDeSuspensao): V3 {
+  return caminhos(f).divide;
 }
 
 /**
@@ -68,7 +81,21 @@ export function alturaNaFita(ancora: V3, comp: number, x: number, z: number): nu
   return ancora[1] - Math.sqrt(Math.max(0, comp * comp - h * h));
 }
 
-export function fitaDeSuspensao(f: FitaDeSuspensao): { prims: Prim[]; peca: PecaPropria; comp: number[] } {
+/** A viga (o ponto firme da montagem segura; o tamanho é só de desenho) e a ponta da fita de ancoragem que desce dela. */
+function vigaEAncoragem(C: CenaRealista, M: Materiais, ancora: V3, trecho: (a: V3, b: V3, larg: number, lado: V3) => void) {
+  const topo = add(ancora, [0, 22, 0]);
+  C.tubo(add(topo, [-25, 3, 0]), add(topo, [25, 3, 0]), 6, 6, M.metal, { up: [0, 1, 0] });
+  trecho(add(topo, [0, 3, 0]), add(ancora, [0, 2, 0]), g('ancoraLarg'), [1, 0, 0]);
+}
+/** Um trecho de fita chata, de `a` a `b`, com a largura atravessada na direção `lado`. */
+const trechoDeFita = (C: CenaRealista, M: Materiais) => (a: V3, b: V3, larg: number, lado: V3, esp = 0.35) => {
+  const d = norm(sub(b, a));
+  let up = cross(lado, d);
+  if (len(up) < 1e-4) up = cross([0, 0, 1], d);
+  C.tubo(a, b, larg, esp, M.borracha, { up: norm(up) });
+};
+
+export function fitaDeSuspensao(f: FitaDeSuspensao): { prims: Prim[]; peca: PecaPropria; comp: number[]; cenario?: PecaPropria } {
   const c = caminhos(f);
   const prims: Prim[] = [];
   if (c.divide !== f.ancora) prims.push({ t: 'fio', pts: [f.ancora, c.divide], larg: g('fitaLarg') * 0.6, cls: 'fita', vies: -1 });
@@ -93,9 +120,7 @@ export function fitaDeSuspensao(f: FitaDeSuspensao): { prims: Prim[]; peca: Peca
       };
       // o ponto firme (uma viga ou barra, como pede a montagem segura; o tamanho é só de desenho), a ponta da fita de
       // ancoragem que desce dele e o mosquetão
-      const topo = add(f.ancora, [0, 22, 0]);
-      C.tubo(add(topo, [-25, 3, 0]), add(topo, [25, 3, 0]), 6, 6, M.metal, { up: [0, 1, 0] });
-      trecho(add(topo, [0, 3, 0]), add(f.ancora, [0, 2, 0]), g('ancoraLarg'), [1, 0, 0]);
+      if (!f.vigaComoCenario) vigaEAncoragem(C, M, f.ancora, trecho);
       const mosq = g('mosquetaoComp');
       const dA = norm(sub(c.divide === f.ancora ? c.pontas[0]!.chega : c.divide, f.ancora));
       const fimMosq = add(f.ancora, mul(dA, mosq));
@@ -131,5 +156,7 @@ export function fitaDeSuspensao(f: FitaDeSuspensao): { prims: Prim[]; peca: Peca
       }
     },
   };
-  return { prims, peca, comp: comprimentoDaFita(f) };
+  if (!f.vigaComoCenario) return { prims, peca, comp: comprimentoDaFita(f) };
+  const cenario: PecaPropria = { t: 'propria', nome: 'viga da fita de suspensão', cenario: true, desenhar: (C, M) => vigaEAncoragem(C, M, f.ancora, trechoDeFita(C, M)) };
+  return { prims, peca, comp: comprimentoDaFita(f), cenario };
 }
