@@ -1,0 +1,59 @@
+{
+ "id": "rosca-martelo",
+ "nome": "Rosca martelo com halteres",
+ "fichaDaTecnica": "docs/pesquisa/animacoes/rosca-martelo.md",
+ "fontes": {
+  "ficha": "Ficha da técnica (docs/pesquisa/animacoes/rosca-martelo.md): pegada neutra, palmas viradas uma para a outra o tempo todo, sem girar; cotovelos encostados ao lado do tronco, parados; sobe até os halteres chegarem perto dos ombros; ~1 s subindo, ~2 s descendo; estende os braços embaixo; consenso de treinadores (B.2.6; nsca2021, não verificado)",
+  "app": "Texto do app (src/conteudo/exercicios/rosca-martelo.json): em pé, joelhos destravados, um braço de cada vez, 'sem girar a mão', 'palma ainda virada para dentro' no topo, as dicas e os erros",
+  "hoje": "Animação aprovada no guia de hoje (src/engine/exercicios/rosca-martelo.ts): parte da rosca alternada aprovada (mesmo corpo, mesmo caminho do braço, mesmas fases e erros), com o halter de pé em relação ao antebraço",
+  "alternada": "Rosca alternada do motor novo (lote 5, src/engine/novo/dados/movimentos/rosca-alternada.json): o mesmo corpo, as mesmas fases e os mesmos erros",
+  "cdc": "Soucie JM et al. Range of motion measurements: reference values and a database for comparison studies. Haemophilia 2011 (tabelas do CDC; docs/revisoes/animacao-nova/pesquisa/02-articulacoes.md, A1)",
+  "objetos": "src/engine/novo/dados/objetos.json",
+  "desenho": "Escolha de desenho desta animação, dentro do que a ficha pede; a conferência mede o resultado"
+ },
+ "param": {
+  "pes.meiaDistancia": {"v": 9, "un": "cm", "selo": "consenso", "fonte": "app", "o": "pés na largura do quadril, apontando para a frente (os centros do quadril ficam a 8,35 cm do meio)"},
+  "joelho": {"v": 5, "un": "graus", "selo": "consenso", "fonte": "app", "o": "em pé, joelhos destravados (o texto do app não dá número)"},
+  "braco.paraFora": {"v": 6, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "o braço ao lado do tronco, aberto 6° (como os braços pendurados do desenho aprovado do Boneco); com o cabo para a frente, as cabeças do halter não batem na coxa; a ficha diz 'cotovelos encostados ao lado do tronco' e não dá número"},
+  "braco.aFrente": {"v": 0, "un": "graus", "selo": "consenso", "fonte": "ficha", "o": "o braço na vertical, parado ao lado do tronco (o cotovelo não vai à frente)"},
+  "cotovelo.baixo": {"v": 8, "un": "graus", "selo": "consenso", "fonte": "ficha", "o": "embaixo, o braço estendido, sem travar o cotovelo"},
+  "cotovelo.cima": {"v": 130, "un": "graus", "selo": "consenso", "fonte": "ficha", "o": "em cima, os halteres perto dos ombros (a ficha não dá número; a regra mede a distância da mão ao ombro); com o cabo de pé, a cabeça de trás do halter encosta no braço a partir de ~135°"},
+  "maos.supinacao": {"v": 0, "un": "graus", "selo": "consenso", "fonte": "ficha", "o": "pegada neutra: o polegar aponta para a frente do antebraço (para cima no topo), palmas uma para a outra, sem girar"},
+  "carga": {"v": 11.3, "un": "kg", "selo": "desenho", "fonte": "objetos", "o": "cada halter desenhado (25 lb); entram no equilíbrio"},
+  "erro.balanco.tronco": {"v": 12, "un": "graus", "selo": "desenho", "fonte": "alternada", "o": "erro: o peito vai para trás enquanto o halter sobe (o impulso), como na alternada"},
+  "erro.balanco.lombar": {"v": 6, "un": "graus", "selo": "desenho", "fonte": "alternada", "o": "erro: parte do balanço é a lombar arqueando"},
+  "erro.cotovelo.braco": {"v": 35, "un": "graus", "selo": "desenho", "fonte": "alternada", "o": "erro: o cotovelo vai à frente (o braço sobe 35° à frente do tronco) e o ombro assume o movimento"},
+  "erro.cotovelo.cotovelo": {"v": 110, "un": "graus", "selo": "desenho", "fonte": "alternada", "o": "erro: com o cotovelo à frente, o antebraço dobra menos (o halter fica à frente do queixo)"},
+  "erro.curta.cotovelo": {"v": 55, "un": "graus", "selo": "desenho", "fonte": "hoje", "o": "erro: embaixo, o cotovelo para dobrado 55° (hoje: 55°)"}
+ },
+ "fases": [
+  {"nome": "Embaixo", "tipo": "pausa", "dur": 0.5, "de": 0, "ate": 0, "respira": "INSPIRA", "tempo": "palmas uma para a outra", "selo": "consenso", "fonte": "app"},
+  {"nome": "Direito sobe · concêntrica", "tipo": "conc", "dur": 1.1, "de": 0, "ate": 1, "respira": "EXPIRA", "tempo": "~1 s", "selo": "consenso", "fonte": "ficha"},
+  {"nome": "Topo", "tipo": "pausa", "dur": 0.4, "de": 1, "ate": 1, "respira": "FIRME", "tempo": "palma ainda para dentro", "selo": "consenso", "fonte": "app"},
+  {"nome": "Direito desce · excêntrica", "tipo": "exc", "dur": 2.2, "de": 1, "ate": 0, "respira": "INSPIRA", "tempo": "~2 s", "selo": "consenso", "fonte": "ficha"},
+  {"nome": "Esquerdo sobe · concêntrica", "tipo": "conc", "dur": 1.1, "de": 2, "ate": 3, "respira": "EXPIRA", "tempo": "~1 s", "selo": "consenso", "fonte": "ficha"},
+  {"nome": "Topo", "tipo": "pausa", "dur": 0.4, "de": 3, "ate": 3, "respira": "FIRME", "tempo": "palma ainda para dentro", "selo": "consenso", "fonte": "app"},
+  {"nome": "Esquerdo desce · excêntrica", "tipo": "exc", "dur": 2.2, "de": 3, "ate": 2, "respira": "INSPIRA", "tempo": "~2 s", "selo": "consenso", "fonte": "ficha"}
+ ],
+ "contatos": ["pe.R", "pe.L"],
+ "regras": [
+  {"id": "cotovelo-parado-na-rosca", "pede": "os cotovelos ficam encostados ao lado do tronco, parados", "selo": "consenso", "fonte": "ficha"},
+  {"id": "tronco-quase-parado", "pede": "tronco parado, sem balançar", "selo": "consenso", "fonte": "ficha"},
+  {"id": "braco-estendido-embaixo-na-rosca", "pede": "estende os braços embaixo", "selo": "consenso", "fonte": "ficha"},
+  {"id": "carga-perto-do-ombro-no-topo", "pede": "sobe até os halteres chegarem perto dos ombros", "selo": "consenso", "fonte": "ficha"},
+  {"id": "palmas-uma-para-a-outra-na-rosca", "pede": "pegada neutra: palmas uma para a outra o tempo todo, sem girar", "selo": "consenso", "fonte": "ficha"},
+  {"id": "carga-fora-do-corpo-na-rosca", "pede": "o halter fica na mão e não atravessa a coxa, o tronco nem o braço", "selo": "consenso", "fonte": "desenho"},
+  {"id": "um-braco-de-cada-vez", "pede": "um braço de cada vez: o outro espera embaixo", "selo": "consenso", "fonte": "app"}
+ ],
+ "erros": [
+  {"id": "balanco", "instante": 1, "titulo": "Balançar o tronco", "vista": "lateral", "oQueMuda": "o peito vai para trás e o quadril à frente para dar impulso ao halter", "destaca": ["corpo"], "linha": ["pelve", "c7", "cabeca"], "foco": "c7"},
+  {"id": "cotovelo", "instante": 1, "titulo": "Cotovelos vão para a frente", "vista": "lateral", "oQueMuda": "o braço sobe à frente do tronco e o ombro assume o movimento", "destaca": ["bracos"], "linha": ["ombro", "cotovelo", "punho"], "foco": "cotovelo"},
+  {"id": "curta", "instante": 0, "titulo": "Não estender os braços", "vista": "lateral", "oQueMuda": "embaixo, os cotovelos ficam dobrados: os braços não estendem", "destaca": ["bracos"], "linha": ["ombro", "cotovelo", "punho"], "foco": "cotovelo"}
+ ],
+ "simetrico": false,
+ "rotulos": [
+  {"vista": "lateral", "texto": "cotovelo parado", "ponto": "cotovelo", "selo": "consenso", "fonte": "app"},
+  {"vista": "lateral", "texto": "sobe sem girar a mão", "ponto": "pegada", "selo": "consenso", "fonte": "app"},
+  {"vista": "frontal", "texto": "palmas uma para a outra", "ponto": "pegada:L", "selo": "consenso", "fonte": "app"}
+ ]
+}
