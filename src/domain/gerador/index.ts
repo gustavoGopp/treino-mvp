@@ -173,7 +173,7 @@ export function contextoDeSelecao(perfil: Perfil, inventarioOriginal: Inventario
     );
 
   // Desempate dentro do mesmo nível da função (selecao.funcao-da-vaga): dor leve desfavorece; estabilidade
-  // só para iniciante; carga possível; variedade entre os dias; a preferência da pessoa (selecao.preferencia);
+  // só para iniciante; carga possível; com carga à vontade, dois lados antes de um lado só; variedade entre os dias; a preferência da pessoa (selecao.preferencia);
   // com animação aprovada; por fim a ordem de referência da lista da função.
   const halterMax = cargaMaxHalter(inventario);
   const kettlebellMax = cargasKettlebell(inventario).at(-1) ?? 0;
@@ -191,6 +191,10 @@ export function contextoDeSelecao(perfil: Perfil, inventarioOriginal: Inventario
   // menos um fica por último entre os do mesmo nível, em todo caminho da escolha (vaga vazia, dia refeito pela dor, 2º
   // exercício do foco), e não só na vaga do último dia (régua, B1).
   const limiteDeRepeticao = perfil.diasSemana >= 3 ? perfil.diasSemana - 1 : Infinity;
+  // selecao.funcao-da-vaga (15/11/2026): com carga à vontade, o exercício de dois lados vem antes do de um lado só (o
+  // resultado é o mesmo e a série leva metade do tempo; com pouca carga, o de um lado continua valendo como degrau).
+  // O exercício que a pessoa marcou com "prefiro este" não perde lugar por ser de um lado só.
+  const umLadoSemPrecisar = (f: Funcao | undefined, e: Exercicio) => (e.unilateral && cargaPossivel(e) === 2 && !preferido(f, e) ? 1 : 0);
   // selecao.funcao-da-vaga (15/11/2026): no empate total, a ordem de referência da lista da função (o exercício mais
   // comum e mais simples de montar primeiro; dado curado em funcoes.json), e não a alfabética. O id fica só para
   // exercícios de funções diferentes, para o resultado ser estável.
@@ -209,6 +213,7 @@ export function contextoDeSelecao(perfil: Perfil, inventarioOriginal: Inventario
     e.articulacoes.some((a) => dorLeve.has(a)) ? 1 : 0,
     nivel === 'iniciante' && !estavel(e) ? 1 : 0,
     -cargaPossivel(e),
+    umLadoSemPrecisar(f, e),
     usos.get(e.id) ?? 0,
     preferido(f, e) ? 0 : 1,
     e.animacaoId ? 0 : 1, // entre equivalentes, o que o guia já mostra animado (CLAUDE.md, qualidade do guia)
@@ -291,6 +296,7 @@ export function contextoDeSelecao(perfil: Perfil, inventarioOriginal: Inventario
       [(x) => (x.articulacoes.some((a) => dorLeve.has(a)) ? 1 : 0), 'poupa a região que você marcou com dor'],
       [(x) => (nivel === 'iniciante' && !estavel(x) ? 1 : 0), 'é mais estável e apoiado, mais fácil de aprender'],
       [(x) => -cargaPossivel(x), 'deixa pôr mais carga com o seu equipamento'],
+      [(x) => umLadoSemPrecisar(funcao, x), 'trabalha os dois lados de uma vez, e cada série leva metade do tempo'],
       [(x) => (preferido(funcao, x) ? 0 : 1), 'você prefere este'],
       [(x) => (x.animacaoId ? 0 : 1), 'tem o guia animado'],
     ];

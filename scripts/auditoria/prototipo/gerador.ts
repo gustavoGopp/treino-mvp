@@ -214,7 +214,7 @@ export function contextoDeSelecao(perfil: Perfil, inventarioOriginal: Inventario
   const preferido = (f: Funcao | undefined, e: Exercicio) => !!f && perfil.preferidos?.[f.id] === e.id;
   // PROTÓTIPO (escolha): com carga à vontade, o exercício de dois lados vem antes do de um lado só (unilateral rende o
   // mesmo e leva o dobro do tempo; com pouca carga, o de um lado continua valendo como degrau).
-  const umLadoSemPrecisar = (e: Exercicio) => ((prot('escolha') || prot('esc-dois-lados')) && e.unilateral && cargaPossivel(e) === 2 ? 1 : 0);
+  const umLadoSemPrecisar = (e: Exercicio, f?: Funcao) => ((prot('escolha') || prot('esc-dois-lados')) && e.unilateral && cargaPossivel(e) === 2 && !preferido(f, e) ? 1 : 0);
   /** PROTÓTIPO: os critérios de treino do desempate (para a régua medir o que decidiu a escolha). */
   // PROTÓTIPO (esc-simples): para o iniciante, entre os que deixam pôr a mesma carga, o de menor complexidade primeiro
   // (antes da carga, a flexão fechada passava na frente do tríceps com halter e o dia ficava com três exercícios de peito).
@@ -242,7 +242,7 @@ export function contextoDeSelecao(perfil: Perfil, inventarioOriginal: Inventario
     cansa?.(e) ? 1 : 0, // PROTÓTIPO (fadiga): o que carrega a lombar sem apoio fica depois, se o dia já tem outro que carrega
     -cargaPossivel(e),
     simples ? e.complexidade : 0, // PROTÓTIPO (esc-simples): para o iniciante, o mais simples entre os de mesma carga
-    umLadoSemPrecisar(e),
+    umLadoSemPrecisar(e, f),
     pernaSemCarga(e),
     // PROTÓTIPO (iniciante-simples): para o iniciante, o exercício que já está na semana vem antes (prática antes de variedade).
     prot('iniciante-simples') && nivel === 'iniciante' ? praticaDoIniciante(usos.get(e.id) ?? 0) : (usos.get(e.id) ?? 0),
@@ -340,6 +340,7 @@ export function contextoDeSelecao(perfil: Perfil, inventarioOriginal: Inventario
       [(x) => (x.articulacoes.some((a) => dorLeve.has(a)) ? 1 : 0), 'poupa a região que você marcou com dor'],
       [(x) => (nivel === 'iniciante' && !estavel(x) ? 1 : 0), 'é mais estável e apoiado, mais fácil de aprender'],
       [(x) => -cargaPossivel(x), 'deixa pôr mais carga com o seu equipamento'],
+      ...(prot('escolha') || prot('esc-dois-lados') ? [[(x: Exercicio) => umLadoSemPrecisar(x, funcao), 'trabalha os dois lados de uma vez, e cada série leva metade do tempo'] as [(x: Exercicio) => number, string]] : []),
       [(x) => (preferido(funcao, x) ? 0 : 1), 'você prefere este'],
       [(x) => (x.animacaoId ? 0 : 1), 'tem o guia animado'],
     ];
