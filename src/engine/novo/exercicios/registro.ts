@@ -23,3 +23,4 @@ export { flexaoFechada } from './flexao-fechada';
 export { flexaoPesElevados } from './flexao-pes-elevados';
 export { flexaoElastico } from './flexao-elastico';
 export { flexaoBola } from './flexao-bola';
+export { stiff } from './stiff';
