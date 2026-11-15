@@ -281,6 +281,31 @@ Fontes: `GRAY1918`: Gray H. Anatomy of the Human Body, 20ª ed. (1918), domínio
 | Cadeira firme de quatro pés, com encosto (`cadeira`) | `prof` | 48,9 cm | medida | ikea-stefan | Depth: 19 1/4 pol (da borda da frente ao fundo do encosto, por fora) |
 | Cadeira firme de quatro pés, com encosto (`cadeira`) | `assentoEsp` | 3 cm | **provisória** | a-conferir | espessura do tampo do assento: a ficha não traz |
 | Cadeira firme de quatro pés, com encosto (`cadeira`) | `peLado` | 3,5 cm | **provisória** | a-conferir | lado da seção quadrada de cada pé da cadeira: a ficha não traz |
+| Corda de tríceps (puxador de corda para a polia) (`cordaTriceps`) | `comp` | 71,1 cm | medida | rogue-corda | comprimento total, com as pontas de borracha: 28 pol |
+| Corda de tríceps (puxador de corda para a polia) (`cordaTriceps`) | `ramo` | 29,2 cm | medida | rogue-corda | cada ramo da corda dobrada, do anel à ponta: cerca de 11,5 pol |
+| Corda de tríceps (puxador de corda para a polia) (`cordaTriceps`) | `diam` | 2,5 cm | medida | livingfit-corda | diâmetro da corda: 1 pol = 25 mm (outro fabricante) |
+| Corda de tríceps (puxador de corda para a polia) (`cordaTriceps`) | `pontaDiam` | 4,5 cm | **provisória** | a-conferir | diâmetro da ponta de borracha: nenhuma ficha lida informa |
+| Corda de tríceps (puxador de corda para a polia) (`cordaTriceps`) | `pontaComp` | 4 cm | **provisória** | a-conferir | comprimento da ponta de borracha: nenhuma ficha lida informa |
+| Corda de tríceps (puxador de corda para a polia) (`cordaTriceps`) | `anelDiam` | 4 cm | **provisória** | a-conferir | diâmetro da bucha do meio, por onde o mosquetão prende: nenhuma ficha lida informa |
+| Elástico longo em laço (faixa de 41 pol, tipo "super band") (`elasticoLongo`) | `compDeitado` | 104,1 cm | medida | rubberbanditz-41 | comprimento do laço deitado (achatado), em repouso: 41 pol |
+| Elástico longo em laço (faixa de 41 pol, tipo "super band") (`elasticoLongo`) | `comp` | 208,3 cm | derivada | rubberbanditz-41 | a volta inteira do laço em repouso: 2 × 41 pol (o laço deitado tem duas camadas); é contra ela que a conferência mede quanto a faixa estica |
+| Elástico longo em laço (faixa de 41 pol, tipo "super band") (`elasticoLongo`) | `larg` | 1,27 cm | medida | rubberbanditz-41 | largura da faixa média (Medium, 1/2 pol); a Serious Steel #1 tem a mesma largura |
+| Elástico longo em laço (faixa de 41 pol, tipo "super band") (`elasticoLongo`) | `esp` | 0,45 cm | medida | seriousSteel-41 | espessura da faixa: 4,5 mm (outro fabricante, a mesma faixa de 41 pol e 1/2 pol) |
+| Elástico longo em laço (faixa de 41 pol, tipo "super band") (`elasticoLongo`) | `esticaAte` | 2,5 vezes | medida | rubberbanditz-41 | a faixa estica até 2,5 vezes o comprimento em repouso (a Serious Steel mede a tensão até 2,5 vezes) |
+| Elástico longo em laço (faixa de 41 pol, tipo "super band") (`elasticoLongo`) | `pegadaDiam` | 2,2 cm | **provisória** | a-conferir | a faixa franzida dentro da mão fechada (a ficha não dá; escolha de desenho a partir da largura e da espessura) |
+| Escada reta com corrimão (os primeiros degraus) (`escada`) | `degrauAltura` | 17 cm | medida | nbr9077 | altura h do degrau: o meio da faixa de 16 a 18 cm |
+| Escada reta com corrimão (os primeiros degraus) (`escada`) | `degrauPiso` | 29,5 cm | derivada | nbr9077 | largura b do degrau pela fórmula de Blondel, no meio da faixa: 2 × 17 + b = 63,5 cm |
+| Escada reta com corrimão (os primeiros degraus) (`escada`) | `larg` | 90 cm | desenho | nbr9077 | largura da escada: a norma pede no mínimo 80 cm (uma unidade de passagem); o valor exato é escolha de desenho |
+| Escada reta com corrimão (os primeiros degraus) (`escada`) | `corrimaoAltura` | 86 cm | medida | nbr9077 | o corrimão acima da linha das quinas dos degraus: o meio da faixa de 80 a 92 cm |
+| Escada reta com corrimão (os primeiros degraus) (`escada`) | `corrimaoDiam` | 4,5 cm | medida | nbr9077 | diâmetro do corrimão: dentro da faixa de 38 a 65 mm |
+| Escada reta com corrimão (os primeiros degraus) (`escada`) | `degraus` | 3 un | desenho | nbr9077 | quantos degraus o quadro mostra (só os primeiros: o resto da escada sai do quadro) |
+| Escada reta com corrimão (os primeiros degraus) (`escada`) | `montanteLado` | 3 cm | **provisória** | a-conferir | seção dos montantes que sustentam o corrimão: a norma não dá |
+| Halter sextavado emborrachado de 10 lb (4,5 kg) (`halterLeve`) | `comp` | 26,7 cm | medida | ritfit-hex | comprimento total (Total Length), 10 lb: 10,5 pol = 26,67 cm |
+| Halter sextavado emborrachado de 10 lb (4,5 kg) (`halterLeve`) | `cabecaLargura` | 10,2 cm | medida | ritfit-hex | largura da cabeça (Head Width), 10 lb: 4 pol = 10,16 cm |
+| Halter sextavado emborrachado de 10 lb (4,5 kg) (`halterLeve`) | `cabecaAltura` | 9,1 cm | medida | ritfit-hex | altura da cabeça (Head Height), 10 lb: 3,6 pol = 9,14 cm |
+| Halter sextavado emborrachado de 10 lb (4,5 kg) (`halterLeve`) | `caboDiam` | 2,8 cm | medida | ritfit-hex | diâmetro do cabo (Handle Diameter), 5 e 10 lb: 1,1 pol = 2,79 cm; o Titan de 10 lb dá 28 mm |
+| Halter sextavado emborrachado de 10 lb (4,5 kg) (`halterLeve`) | `caboComp` | 13 cm | medida | titan-hex-10 | comprimento livre do cabo do halter sextavado de 10 lb: 5,125 pol = 13,0 cm (a RitFit não publica essa coluna) |
+| Halter sextavado emborrachado de 10 lb (4,5 kg) (`halterLeve`) | `massa` | 4,5 kg | medida | ritfit-hex | 10 lb = 4,54 kg |
 | Porta fechada, com a âncora de porta embaixo (`porta`) | `altura` | 210 cm | medida | vert-porta | altura da folha de porta |
 | Porta fechada, com a âncora de porta embaixo (`porta`) | `larg` | 80 cm | medida | vert-porta | largura da folha de porta |
 | Porta fechada, com a âncora de porta embaixo (`porta`) | `esp` | 3,5 cm | medida | vert-porta | espessura da folha de porta |
@@ -293,6 +318,12 @@ Fontes: `GRAY1918`: Gray H. Anatomy of the Human Body, 20ª ed. (1918), domínio
 | Porta fechada, com a âncora de porta embaixo (`porta`) | `batenteProf` | 10 cm | **provisória** | a-conferir | profundidade do batente na parede |
 | Porta fechada, com a âncora de porta embaixo (`porta`) | `macanetaAltura` | 105 cm | **provisória** | a-conferir | altura da maçaneta do chão |
 | Porta fechada, com a âncora de porta embaixo (`porta`) | `macanetaDaBorda` | 6 cm | **provisória** | a-conferir | distância do centro da maçaneta à borda da folha |
+| Step de academia (plataforma com dois apoios), na altura mais baixa (`step`) | `comp` | 102 cm | medida | lifespan-reebok-step | comprimento (L): 102 cm; fica atravessado, de um lado ao outro da pessoa |
+| Step de academia (plataforma com dois apoios), na altura mais baixa (`step`) | `prof` | 38,5 cm | medida | lifespan-reebok-step | largura (W): 38,5 cm; é a profundidade de quem sobe nele |
+| Step de academia (plataforma com dois apoios), na altura mais baixa (`step`) | `altura` | 15 cm | medida | lifespan-reebok-step | a mais baixa das três alturas (15, 20 e 25 cm) |
+| Step de academia (plataforma com dois apoios), na altura mais baixa (`step`) | `tapeteEsp` | 1,5 cm | desenho | cartao-step | o tapete de borracha por cima da plataforma |
+| Step de academia (plataforma com dois apoios), na altura mais baixa (`step`) | `plataformaEsp` | 5,5 cm | desenho | cartao-step | a plataforma escura, sob o tapete |
+| Step de academia (plataforma com dois apoios), na altura mais baixa (`step`) | `apoioLarg` | 18 cm | desenho | cartao-step | cada um dos dois apoios claros embaixo da plataforma, perto das pontas |
 | Fita de suspensão (tipo TRX): âncora, mosquetão, fitas, pegadores e berços do pé (`suspensao`) | `ancoraAltura` | 182,9 cm | medida | trx-comeco | onde a fita se prende (a ponta de baixo da fita de ancoragem, com o mosquetão): cerca de 6 pés do chão, a altura que o fabricante chama de ideal para todos os exercícios |
 | Fita de suspensão (tipo TRX): âncora, mosquetão, fitas, pegadores e berços do pé (`suspensao`) | `alcaAlturaMin` | 20,3 cm | medida | trx-seis | o fundo do berço do pé, com a fita pendurada, no meio da canela: cerca de 8 pol do chão (o menor da faixa) |
 | Fita de suspensão (tipo TRX): âncora, mosquetão, fitas, pegadores e berços do pé (`suspensao`) | `alcaAlturaMax` | 30,5 cm | medida | trx-seis | o fundo do berço do pé, com a fita pendurada, no meio da canela: cerca de 12 pol do chão (o maior da faixa) |
@@ -334,8 +365,16 @@ Fontes dos objetos:
 - `gymnic-grayline`: Gymnic (Ledragomma), bolas de exercício: página pública do revendedor Gray Line Medical (https://www.graylinemedical.com/products/gymnic-balls), guia de tamanhos lido em 15/11/2026: "55cm (21"): users 4'8" - 5'3"", "65cm (25"): users 5'3" - 6'0"", "75cm (29"): users 6'0" - 6'7""
 - `desenho-bola`: Escolha de desenho da animação da flexão de joelho na bola (lote 2 do motor novo), sem medida de fabricante
 - `ikea-stefan`: IKEA, cadeira STEFAN (madeira maciça, quatro pés, sem rodinhas, não dobrável), campo Product size; https://www.ikea.com/us/en/p/stefan-chair-brown-black-00211088/ (lido em 15/11/2026; medidas em polegadas, convertidas a 2,54 cm)
+- `rogue-corda`: Rogue Fitness, Tricep Rope Attachment, página do produto; https://www.roguefitness.com/tricep-rope-attachment (lido em 15/11/2026): "28” (including rubber ends)", "Approximately 11.5” once doubled", "Durable Nylon Rope construction"
+- `livingfit-corda`: living.fit, Tricep rope for cable machine, página do produto; https://www.living.fit/collections/cable-pull-tricep-grips/products/tricep-rope-for-cable-machine (lido em 15/11/2026): "total length with end caps 26 inches / 660 millimeters", "1 inch / 25 millimeters" (outro fabricante; a Rogue não dá o diâmetro)
+- `rubberbanditz-41`: RubberBanditz, 41" Resistance Band; https://www.rubberbanditz.com/41-in-resistance-band/ (lida em 15/11/2026 por resumo automático da página: tabela de tamanhos "Lay Flat Length" 41" em todas as faixas; "Each band is 41" [104 cm] in length"; "Medium [...] 1/2" wide band"; "Each band is can stretch 2.5 times its resting length")
+- `seriousSteel-41`: Serious Steel Fitness, 41" Mini Resistance Band #1 (5-35 lbs); https://www.living.fit/products/41-mini-resistance-band-5-35-lbs (lida em 15/11/2026 por resumo automático da página: "4.5mm thick, 5-35 lb, 1/2" wide, 41" long"; "first reading at 6" and last at 2.5x length")
+- `nbr9077`: ABNT NBR 9077:2001, Saídas de emergência em edifícios, na cópia pública do Ministério Público do RJ; https://www.mprj.mp.br/documents/20184/74453/nbr_9077_saidas_de_emergencia_em_edificios_2001.pdf (lido em 15/11/2026). 4.7.3.1: "a) ter altura h [...] compreendida entre 16,0 cm e 18,0 cm [...]; b) ter largura b [...] dimensionada pela fórmula de Blondel: 63 cm ≤ (2h + b) ≤ 64 cm". 4.8.2.1: "Os corrimãos devem estar situados entre 80 cm e 92 cm acima do nível do piso, sendo, em escadas, esta medida tomada verticalmente" (da linha que une as quinas dos degraus, 4.8.1.2). 4.8.2.3: "No caso de secção circular, seu diâmetro varia entre 38 mm e 65 mm"
+- `titan-hex-10`: Titan Fitness, 10 lb Rubber Hex Dumbbells (par); https://titan.fitness/products/10-lb-rubber-hex-dumbbells (lido em 15/11/2026, página lida por resumo automático): "Handle Length: 5.125-in.", "Overall Length: 11-in.", "Overall Width: 4.5-in.", "Handle Diameter: 28 mm" (outro fabricante que o do resto do halter leve)
 - `vert-porta`: Vert, folha de porta lisa de madeira 210 x 80 x 3,5 cm (Telhanorte); https://www.telhanorte.com.br/folha-de-porta-lisa-de-madeira-210x80x3-5cm-primer-vert-1223704/p (lida em 15/11/2026 por resumo automático de busca: "210cm x 80cm x 3,5cm"). A mesma medida aparece nas folhas de porta MGM e Casablanca (MadeiraMadeira) e na Eucatex (35 mm)
 - `stroops-ancora`: Stroops, Door Anchor (ANCRFOAM); https://www.vitalitymedical.com/stroops-door-anchor.html (lido em 15/11/2026 por resumo automático da página: "Length: 5 Inches", "Width: 4 Inches", "Height: 1 Inch")
+- `lifespan-reebok-step`: Lifespan Fitness, Reebok Step (White & Black), seção de especificações; https://www.lifespanfitness.com.au/products/reebok-step-white-black (lido em 15/11/2026): "Occupancy Size: 102 (L) x 38.5 (W) x 25 (H) (cm)" e as três alturas reguláveis, 15, 20 e 25 cm
+- `cartao-step`: Cartão de equipamento do step no app (scripts/desenhos-equipamento/realista/itens.mjs, `step`): dois apoios claros embaixo, a plataforma escura e o tapete de borracha na cor de ação por cima. As proporções das partes vêm daí; o total segue a ficha do fabricante
 - `trx-comeco`: TRX, How to Get Started With Your TRX Suspension Trainer; https://www.trxtraining.com/train/how-to-get-started-with-your-trx-suspension-trainer (lido em 15/11/2026): "the bottom of the Suspension Anchor hangs at about six feet from the ground [...] This is the ideal height to perform all TRX exercises"
 - `trx-seis`: TRX, Six Procedures (material de treinamento do fabricante, PDF público hospedado pela Truman State University); https://recreation.truman.edu/files/2020/02/TRX-Six-Procedures-PDF.pdf (lido em 15/11/2026), procedimento 3, Heels in: "Adjust the Suspension Trainer so the bottom of each foot cradle is at mid calf length or about eight to 12 inches off the ground"
 - `trx-pro4`: TRX, TRX PRO4 System; https://www.trxtraining.com/pages/trx-pro4-system (lido em 15/11/2026): "TRX Suspension Anchor [...] Measuring at 38\" x 2\" x 0.5\"" e "Accommodating anchor heights of 7-9ft"
@@ -344,6 +383,215 @@ Fontes dos objetos:
 ## Fichas de movimento
 
 Uma por exercício refeito, em `src/engine/novo/dados/movimentos/`. Selos: robusta, moderada, um estudo, consenso (de treinadores) e desenho (escolha de desenho dentro do que a ficha da técnica pede).
+
+### Abdominal na bola suíça (crunch) (`abdominal-bola`)
+
+Ficha da técnica: `docs/pesquisa/animacoes/abdominal-bola.md`. Movimento de um lado só.
+
+| parâmetro | valor | selo | fonte | o que é |
+|---|---|---|---|---|
+| `pelve.frente` | -80 graus | desenho | hoje | a bacia inclina 80° para trás: o glúteo fica na frente da bola, as coxas descem um pouco até os joelhos e o tronco fica quase deitado sobre a bola ("bola sob a parte de baixo das costas") |
+| `lombar.base` | 0 graus | desenho | desenho | a lombar na curva de repouso, apoiada no alto da bola |
+| `bola.lombar` | 15 cm | desenho | ficha | o meio da lombar (L3) fica 15 cm à frente do centro da bola (para o lado dos pés): a bola sob a parte de baixo das costas, e as costas encostam nela da lombar às escápulas |
+| `bola.amassa` | 1 cm | desenho | app | a bola cheia amassa 1 cm sob as costas (a pele entra 1 cm na esfera desenhada); a ficha não dá número |
+| `toracica.base` | -10 graus | desenho | ficha | embaixo, a parte de cima das costas estende 10° além da curva de repouso, acompanhando a curva da bola ("o tronco começa um pouco estendido sobre ela") |
+| `toracica.topo` | 45 graus | desenho | chao | no topo, a parte de cima das costas enrola 45° a partir da posição de baixo |
+| `lombar.topo` | 5 graus | desenho | ficha | no topo, a lombar dobra mais 5° ("aproximando as costelas do quadril"); ela continua na bola |
+| `cervical.base` | 5 graus | consenso | ficha | embaixo, o pescoço 5° dobrado a partir do pescoço reto de quem está em pé: a cabeça não cai para trás |
+| `cervical.topo` | 8 graus | consenso | chao | no topo, o pescoço acompanha o tronco: 8° a partir do pescoço reto, como no abdominal no chão |
+| `cabeca.topo` | 5 graus | consenso | chao | no topo, a cabeça dobra 5° sobre o pescoço (o queixo levemente recolhido) |
+| `canela.aFrente` | 0 cm | desenho | desenho | pés no chão, joelhos dobrados (a ficha não dá o ângulo): o pé fica com o tornozelo sob o joelho (a canela em pé), o que serve aos dois corpos |
+| `maos.x` | -1 cm | desenho | chao | mãos cruzadas no peito: as mesmas medidas do abdominal no chão |
+| `maos.y` | -25 cm | desenho | chao | mãos cruzadas no peito: o punho 25 cm abaixo da base do pescoço |
+| `maos.abaixo` | 3 cm | desenho | chao | o punho esquerdo 3 cm abaixo do direito |
+| `maos.acima` | 3 cm | desenho | chao | o antebraço esquerdo por cima do direito |
+| `maos.poloFora` | 1,5 fração | desenho | chao | para onde o cotovelo aponta: para fora |
+| `maos.poloPes` | 1 fração | desenho | chao | para onde o cotovelo aponta: para os pés |
+| `maos.poloTras` | 0,3 fração | desenho | chao | para onde o cotovelo aponta: para as costas |
+| `erro.pescoco.toracica` | 0,3 fração | desenho | app | erro: as escápulas mal saem da bola (a torácica enrola 30% do certo) |
+| `erro.pescoco.cervical` | 30 graus | desenho | app | erro: o pescoço dobra 30° a partir do pescoço reto (junto com erro.pescoco.cabeca) |
+| `erro.pescoco.cabeca` | 20 graus | desenho | app | erro: a cabeça dobra mais 20° sobre o pescoço: o queixo vai ao peito |
+| `erro.rola.anda` | 14 cm | desenho | app | erro: as pernas empurram e a bola rola 14 cm para o lado da cabeça |
+| `erro.rola.tronco` | 20 graus | desenho | app | erro: o tronco sobe 20° em bloco, sem enrolar (a bacia gira com ele) |
+| `erro.senta.quadril` | 20 graus | desenho | app | erro: o quadril dobra 15° e o tronco sobe até quase sentar |
+
+| fase | tipo | duração | respiração | ritmo | selo |
+|---|---|---|---|---|---|
+| Em cima da bola | pausa | 0,5 s | inspira | costas na curva | consenso |
+| Subida · concêntrica | conc | 1 s | expira | ~1 s | consenso |
+| Topo · contrai | pausa | 1 s | expira | 1 s | consenso |
+| Descida · excêntrica | exc | 2 s | inspira | ~2 s | consenso |
+
+Contatos que não podem sair do lugar: `pe.R`, `pe.L`, `pelve`.
+
+Regras que a conferência mede:
+
+- a bola sob a parte de baixo das costas, parada; o corpo apoia sem atravessá-la (consenso)
+- embaixo, as costas acompanham a curva da bola; no topo, as escápulas fora da bola, sem sentar (consenso)
+- o pescoço acompanha o tronco: a cabeça não cai para trás embaixo nem o queixo vai ao peito em cima (consenso)
+- mãos cruzadas no peito, sem puxar a cabeça (consenso)
+
+Erros desenhados:
+
+- Puxar o pescoço (vista: lateral): o queixo vai ao peito e as escápulas mal saem da bola
+- Rolar a bola (vista: lateral): as pernas empurram, a bola rola para o lado da cabeça e o tronco sobe em bloco, sem enrolar
+- Subir até sentar (vista: lateral): o quadril dobra e o tronco sobe até quase sentar; a lombar sai da bola
+
+Fontes desta ficha:
+
+- `ficha`: Ficha da técnica (docs/pesquisa/animacoes/abdominal-bola.md): consenso de treinadores (B.2.6; nsca2021, não verificado); a técnica do abdômen é a do abdominal no chão aprovado
+- `app`: Texto do app (src/conteudo/exercicios/abdominal-bola.json), que sai da ficha
+- `hoje`: Animação aprovada no guia de hoje (src/engine/exercicios/abdominal-bola.ts): as distâncias que a ficha não dá em número
+- `chao`: Ficha de movimento do abdominal no chão do motor novo (dados/movimentos/abdominal-chao.json): a mesma técnica do tronco, do pescoço e das mãos
+- `desenho`: Escolha de desenho desta animação, dentro do que a ficha pede; a conferência mede o resultado
+
+### Abdominal no chão (crunch) (`abdominal-chao`)
+
+Ficha da técnica: `docs/pesquisa/animacoes/abdominal-chao.md`. Movimento de um lado só.
+
+| parâmetro | valor | selo | fonte | o que é |
+|---|---|---|---|---|
+| `lombar.base` | 15 graus | desenho | app | deitado, a lombar firme ("lombar apoiada no chão", "abdômen firme" no app): a curva da lombar achata 15° além da de repouso, e a bacia inclina até o glúteo e as costas encostarem juntos no chão |
+| `toracica.topo` | 45 graus | desenho | ficha | no topo, a parte de cima da coluna enrola 55° (a torácica) até as escápulas saírem do chão; a ficha pede a escápula fora do chão e não dá ângulo |
+| `lombar.topo` | 5 graus | desenho | ficha | no topo, a lombar enrola só mais 5°: a parte de baixo dela e a bacia continuam apoiadas |
+| `cervical.topo` | 8 graus | consenso | ficha | no topo, o pescoço acompanha o tronco: 8° de flexão a partir do pescoço reto de quem está em pé (o olhar vai para os joelhos, sem o queixo ir ao peito) |
+| `cabeca.topo` | 5 graus | consenso | ficha | no topo, a cabeça dobra 5° sobre o pescoço (o queixo levemente recolhido, sem encostar no peito) |
+| `joelho` | 90 graus | desenho | hoje | joelhos dobrados, pés no chão (a ficha e o app não dão o ângulo): o pé fica onde o joelho dobra 90° (o pé a 48 cm da bacia na animação de hoje) |
+| `ombro.z` | -50 cm | desenho | desenho | onde ficam os ombros na cena, deitado (só posiciona a cena) |
+| `maos.x` | -1 cm | desenho | app | mãos cruzadas no peito: o punho direito fica 8 cm para o lado esquerdo do meio do peito (a mão espalmada no peito do outro lado) |
+| `maos.y` | -25 cm | desenho | app | o punho direito fica 12 cm abaixo da base do pescoço, ao longo do tórax |
+| `maos.abaixo` | 3 cm | desenho | desenho | o punho esquerdo fica 3 cm abaixo do direito |
+| `maos.acima` | 3 cm | desenho | desenho | o antebraço esquerdo passa por cima do direito: o punho esquerdo fica 6 cm mais à frente do peito (a espessura do antebraço) |
+| `maos.poloFora` | 1,5 fração | desenho | desenho | para onde o cotovelo aponta, no referencial do tórax: o peso da direção para fora (junto com maos.poloPes) |
+| `maos.poloPes` | 1 fração | desenho | desenho | para onde o cotovelo aponta: o peso da direção para os pés (os cotovelos junto do corpo) |
+| `maos.poloTras` | 0,3 fração | desenho | desenho | para onde o cotovelo aponta: o peso da direção para as costas (deitado, os cotovelos descem ao lado do corpo) |
+| `erro.pescoco.toracica` | 0,3 fração | desenho | app | erro: as escápulas mal saem do chão (a torácica enrola 30% do certo) |
+| `erro.pescoco.cervical` | 30 graus | desenho | app | erro: o pescoço dobra 30° a partir do pescoço reto (junto com erro.pescoco.cabeca) |
+| `erro.pescoco.cabeca` | 20 graus | desenho | app | erro: a cabeça dobra mais 20° sobre o pescoço: o queixo vai ao peito |
+| `erro.lombar.quadril` | 30 graus | desenho | app | erro: o quadril dobra 30° (a bacia gira em volta do quadril e a lombar sai do chão: vira um abdominal completo) |
+
+| fase | tipo | duração | respiração | ritmo | selo |
+|---|---|---|---|---|---|
+| Deitado | pausa | 0,5 s | inspira | lombar no chão | consenso |
+| Subida · concêntrica | conc | 1 s | expira | ~1 s | consenso |
+| Topo · contrai | pausa | 1 s | expira | 1 s | consenso |
+| Descida · excêntrica | exc | 2 s | inspira | ~2 s | consenso |
+
+Contatos que não podem sair do lugar: `pe.R`, `pe.L`, `pelve`.
+
+Regras que a conferência mede:
+
+- enrola a parte de cima da coluna até tirar as escápulas do chão (consenso)
+- a lombar e a bacia continuam apoiadas no chão (consenso)
+- o pescoço acompanha o tronco, sem o queixo ir ao peito (consenso)
+- mãos cruzadas no peito, sem puxar a cabeça (consenso)
+
+Erros desenhados:
+
+- Puxar o pescoço (vista: lateral): o queixo vai ao peito e as escápulas mal saem do chão
+- Subir a lombar (vista: lateral): o quadril dobra e a lombar sai do chão: vira um abdominal completo
+
+Fontes desta ficha:
+
+- `ficha`: Ficha da técnica (docs/pesquisa/animacoes/abdominal-chao.md): consenso de treinadores (nsca2021, não verificado)
+- `app`: Texto do app (src/conteudo/exercicios/abdominal-chao.json), que sai da ficha
+- `hoje`: Animação aprovada no guia de hoje (src/engine/exercicios/abdominal-chao.ts): as distâncias que a ficha não dá em número
+- `desenho`: Escolha de desenho desta animação, dentro do que a ficha pede; a conferência mede o resultado
+
+### Abdominal invertido no chão (`abdominal-invertido`)
+
+Ficha da técnica: `docs/pesquisa/animacoes/abdominal-invertido.md`. Movimento simétrico (os dois lados fazem o mesmo).
+
+| parâmetro | valor | selo | fonte | o que é |
+|---|---|---|---|---|
+| `lombar.base` | 15 graus | desenho | desenho | deitado, a lombar firme: a curva da lombar achata 15° além da de repouso (a mesma base do abdominal no chão), e a bacia inclina até o glúteo e as costas encostarem juntos no chão |
+| `pelve.enrola` | 40 graus | desenho | hoje | no alto, a pelve enrola 40° em direção ao peito (a lombar dobra o mesmo tanto e o tórax fica deitado): o quadril sai do chão (37° na animação de hoje, com o quadril 13 cm acima do chão) |
+| `joelho` | 90 graus | consenso | ficha | joelhos dobrados a ~90°, mantidos no ciclo |
+| `coxa.vertical` | 0 graus | consenso | ficha | embaixo, as coxas na vertical (0° da vertical); daí em diante elas andam presas à bacia |
+| `pe.plantar` | 55 graus | desenho | desenho | os pés soltos, com a ponta 55° esticada além do ângulo reto com a canela |
+| `ombro.z` | -50 cm | desenho | desenho | onde ficam os ombros na cena (só posiciona a cena; os ombros não saem do lugar) |
+| `maos.alcance` | 0,95 fração | desenho | hoje | braços no chão ao lado do corpo, palmas para baixo: o punho fica, na direção dos pés, a 95% do braço mais o antebraço a partir do ombro (como na ponte de glúteo) |
+| `maos.paraFora` | 10 cm | desenho | hoje | os braços um pouco abertos (o braço não cobre o tronco de lado) |
+| `erro.embalo.pelve` | 1,3 fração | desenho | app | erro: o embalo leva a pelve além do certo (30% a mais de giro) |
+| `erro.embalo.quadril` | 15 graus | desenho | app | erro: as pernas são jogadas para a cabeça: o quadril dobra mais 15° |
+| `erro.maos.alcance` | 0,6 fração | desenho | app | erro: as mãos empurram o chão perto do quadril, com os cotovelos dobrados (o punho a 60% do braço mais o antebraço a partir do ombro) |
+| `erro.lombar.quadril` | 25 graus | desenho | app | erro: na descida, as pernas vão longe demais: as coxas passam 25° da vertical, para longe da cabeça |
+| `erro.lombar.lombar` | -25 graus | desenho | app | erro: a lombar arqueia 25° e sai do chão |
+
+| fase | tipo | duração | respiração | ritmo | selo |
+|---|---|---|---|---|---|
+| Embaixo | pausa | 0,5 s | inspira | coxas na vertical | consenso |
+| Subida · concêntrica | conc | 1 s | expira | ~1 s | consenso |
+| No alto · contrai | pausa | 1 s | expira | 1 s | consenso |
+| Descida · excêntrica | exc | 2 s | inspira | ~2 s | consenso |
+
+Contatos que não podem sair do lugar: `mao.R`, `mao.L`.
+
+Regras que a conferência mede:
+
+- as costas de cima, os ombros e a cabeça ficam no chão (consenso)
+- enrola a pelve em direção ao peito, tirando o quadril do chão; embaixo, o quadril no chão (consenso)
+- embaixo, coxas na vertical; joelhos a ~90° o ciclo inteiro (consenso)
+
+Erros desenhados:
+
+- Jogar as pernas (vista: lateral): o embalo leva as pernas para a cabeça e o quadril sobe além do certo
+- Empurrar com as mãos (vista: lateral): as mãos apertam o chão perto do quadril, com os cotovelos dobrados: os braços fazem a força
+- Arquear a lombar na descida (vista: lateral): as pernas descem além da vertical e a lombar arqueia, fora do chão
+
+Fontes desta ficha:
+
+- `ficha`: Ficha da técnica (docs/pesquisa/animacoes/abdominal-invertido.md): consenso (Pursuit Physical Therapy, vídeo; escamilla2006b)
+- `app`: Texto do app (src/conteudo/exercicios/abdominal-invertido.json), que sai da ficha
+- `hoje`: Animação aprovada no guia de hoje (src/engine/exercicios/abdominal-invertido.ts): as distâncias que a ficha não dá em número
+- `desenho`: Escolha de desenho desta animação, dentro do que a ficha pede; a conferência mede o resultado
+
+### Abertura em T deitado de bruços, sem carga (`abertura-t-deitado`)
+
+Ficha da técnica: `docs/pesquisa/animacoes/abertura-t-deitado.md`. Movimento simétrico (os dois lados fazem o mesmo).
+
+| parâmetro | valor | selo | fonte | o que é |
+|---|---|---|---|---|
+| `lombar` | 10 graus | desenho | desenho | de bruços, a lombar dobra 10° além da curva de repouso (o peito e a frente da bacia encostam juntos), como na flexão de joelho com elástico |
+| `pe.plantar` | 60 graus | desenho | desenho | os pés soltos, quase em linha com a canela (o peito do pé virado para o chão); a ficha não fala do pé |
+| `pe.folga` | 0,3 cm | desenho | desenho | o peito do pé encosta no chão (0,3 cm): o joelho dobra o pouco que isso pede |
+| `maos.folgaEmbaixo` | 3 cm | desenho | hoje | embaixo, as mãos quase tocam o chão: o ponto mais baixo da mão fica 3 cm acima dele (a mão sai a 4 cm do chão na animação de hoje) |
+| `bracos.topo` | 10 graus | desenho | app | no alto, os braços sobem até 10° acima da linha dos ombros ("na altura do corpo ou um pouco acima") |
+| `bracos.abertura` | 90 graus | um estudo | ficha | braços em T: a 90° do corpo, vistos de cima |
+| `cotovelo` | 5 graus | consenso | app | cotovelos estendidos (5° de folga, sem travar) |
+| `erro.cabeca.graus` | 35 graus | desenho | app | erro: a cabeça dobra 35° para trás sobre o pescoço e a testa sai da toalha |
+| `erro.encolher.elev` | 20 graus | desenho | app | erro: os ombros sobem para as orelhas (a clavícula sobe 20° além do certo) |
+| `erro.embalo.topo` | 30 graus | desenho | app | erro: os braços são jogados até 30° acima da linha dos ombros |
+
+| fase | tipo | duração | respiração | ritmo | selo |
+|---|---|---|---|---|---|
+| Embaixo | pausa | 0,5 s | inspira | mãos quase no chão | consenso |
+| Subida · concêntrica | conc | 1 s | expira | ~1 s | consenso |
+| No alto · segura | pausa | 1 s | firme | 1 s | consenso |
+| Descida · excêntrica | exc | 2 s | inspira | ~2 s | consenso |
+
+Contatos que não podem sair do lugar: `pelve`.
+
+Regras que a conferência mede:
+
+- de bruços, testa na toalha, sem levantar a cabeça (um estudo)
+- braços em T, cotovelos estendidos (um estudo)
+- embaixo, as mãos quase tocam o chão; em cima, os braços na altura do corpo ou um pouco acima (consenso)
+- sem encolher os ombros (consenso)
+
+Erros desenhados:
+
+- Levantar a cabeça (vista: quinaTras): o pescoço dobra para trás e a testa sai da toalha
+- Encolher os ombros (vista: quinaTras): os ombros sobem para as orelhas
+- Jogar os braços (vista: frontal): os braços são lançados alto demais
+
+Fontes desta ficha:
+
+- `ficha`: Ficha da técnica (docs/pesquisa/animacoes/abertura-t-deitado.md): posição (um estudo: lim2015, yu2024); movimento (consenso: TSAOG, vídeo)
+- `app`: Texto do app (src/conteudo/exercicios/abertura-t-deitado.json), que sai da ficha
+- `hoje`: Animação aprovada no guia de hoje (src/engine/exercicios/abertura-t-deitado.ts): as distâncias que a ficha não dá em número
+- `correcao`: Correções já feitas em 10/11/2026 (docs/revisoes/animacao-nova/correcoes-ja-feitas.md, linhas da abertura-t-deitado): abre de frente, a vista de cima mostra o corpo deitado
+- `desenho`: Escolha de desenho desta animação, dentro do que a ficha pede; a conferência mede o resultado
 
 ### Afundo com kettlebell no peito (`afundo-kettlebell`)
 
@@ -814,6 +1062,256 @@ Fontes desta ficha:
 - `guia`: Guia original do projeto (referencia/guia-execucao-fase1.html), como registrado em docs/pesquisa/animacoes/bulgaro.md: consenso de treinadores
 - `hoje`: Animação aprovada no guia de hoje (src/engine/exercicios/bulgaro.ts): as distâncias dos pés ao quadril, a posição da mão de apoio e os erros, que a ficha não dá em número
 - `cdc`: Soucie JM et al. Range of motion measurements: reference values and a database for comparison studies. Haemophilia 2011 (tabelas do CDC; docs/revisoes/animacao-nova/pesquisa/02-articulacoes.md, A1)
+- `objetos`: src/engine/novo/dados/objetos.json
+- `desenho`: Escolha de desenho desta animação, dentro do que a ficha pede; a conferência mede o resultado
+
+### Desenvolvimento unilateral em pé com kettlebell (`desenvolvimento-unilateral-kettlebell`)
+
+Ficha da técnica: `docs/pesquisa/animacoes/desenvolvimento-unilateral-kettlebell.md`. Movimento de um lado só.
+
+| parâmetro | valor | selo | fonte | o que é |
+|---|---|---|---|---|
+| `pes.meiaDistancia` | 9 cm | consenso | ficha | pés na largura do quadril (os centros do quadril ficam a 8,35 cm do meio) |
+| `joelho` | 8 graus | desenho | desenho | joelhos destravados (a ficha não dá número) |
+| `bacia` | 0 graus | consenso | ficha | tronco parado, em pé |
+| `cervical` | 0 graus | desenho | desenho | pescoço na linha do tronco |
+| `cabeca` | 0 graus | desenho | desenho | cabeça na linha do pescoço |
+| `maoLivre.acima` | 8 cm | consenso | ficha | a outra mão na cintura (acima do centro da bacia, como nos afundos) |
+| `braco.baixo.elevacao` | -60 graus | consenso | ficha | embaixo, kettlebell na altura do ombro com o cotovelo junto ao corpo: o úmero fica 60° abaixo da horizontal (com o antebraço na vertical, a mão chega à altura do ombro) |
+| `braco.baixo.frente` | 92 graus | desenho | desenho | embaixo, o cotovelo à frente das costelas, junto ao corpo (92° à frente do plano do corpo, visto de cima) |
+| `braco.topo.elevacao` | 82 graus | consenso | ficha | no topo, o braço estendido acima da cabeça: o úmero a 8° da vertical (com o antebraço na vertical, o cotovelo dobra 8°, sem travar) |
+| `braco.topo.frente` | 80 graus | desenho | desenho | o braço sobe quase no plano da frente do corpo, com o cotovelo à frente (pegada neutra: palma para dentro), e termina sobre o ombro, um pouco à frente. Num plano mais para o lado, a frente do ombro some atrás do braço no topo |
+| `mao.giro.baixo` | 0 graus | desenho | desenho | embaixo, a palma para dentro (pegada neutra na alça): o dorso da mão e do antebraço fica para fora, onde a bola apoia |
+| `mao.giro.topo` | 30 graus | desenho | desenho | no topo, a mão girou 30° (a palma vai um pouco para a frente) |
+| `kettlebell.bolaParaFora` | 0,3 fração | consenso | ficha | a bola do lado de fora do antebraço: ela fica do lado do dorso da mão, puxada um pouco para fora |
+| `kettlebell.folga` | 0,3 cm | desenho | desenho | a bola apoiada no antebraço: a folga entre a bola e a pele (o ângulo da bola sai dela) |
+| `erro.arco.lombar` | -20 graus | desenho | hoje | erro: a lombar arqueia 20° no topo (hoje: −28 com o pescoço) |
+| `erro.arco.toracica` | -8 graus | desenho | hoje | erro: as costas de cima estendem 8° |
+| `erro.arco.bacia` | 6 graus | desenho | desenho | erro: a bacia inclina 6° à frente (a lombar arqueia sobre ela) |
+| `erro.jogar.joelho` | 30 graus | desenho | hoje | erro: embaixo os joelhos dobram 30° para dar o impulso e estendem na subida |
+| `erro.jogar.bacia` | 6 graus | desenho | hoje | erro: embaixo o tronco inclina 6° à frente |
+| `erro.punho` | 35 graus | desenho | hoje | erro: embaixo o kettlebell puxa a mão para trás e o punho dobra 35° |
+
+| fase | tipo | duração | respiração | ritmo | selo |
+|---|---|---|---|---|---|
+| Embaixo | pausa | 0,45 s | inspira | na altura do ombro | consenso |
+| Subida · concêntrica | conc | 1,3 s | expira | ~1–1,5 s | consenso |
+| Topo | pausa | 0,4 s | firme | tronco parado | consenso |
+| Descida · excêntrica | exc | 2,4 s | inspira | ~2–3 s | consenso |
+
+Contatos que não podem sair do lugar: `pe.R`, `pe.L`.
+
+Regras que a conferência mede:
+
+- embaixo, kettlebell na altura do ombro (consenso)
+- o kettlebell apoiado no antebraço (consenso)
+- embaixo, cotovelo junto ao corpo (consenso)
+- punho reto, alinhado com o antebraço (consenso)
+- empurra para cima (o antebraço na vertical) (consenso)
+- em cima, o braço estendido acima da cabeça (consenso)
+- o kettlebell passa sem bater na cabeça (consenso)
+- sem arquear a lombar (consenso)
+- tronco parado, sem jogar o peso (consenso)
+- a outra mão na cintura (consenso)
+- o centro de massa (corpo + kettlebell) fica perto do meio do pé, com o quadril parado (consenso)
+
+Erros desenhados:
+
+- Arquear a lombar (vista: lateral): a lombar arqueia e o peito vai para trás para subir o peso
+- Jogar o peso com as pernas (vista: lateral): os joelhos dobram embaixo e estendem para dar o impulso
+- Punho dobrado para trás (vista: lateral): embaixo, o kettlebell puxa a mão para trás e o punho dobra
+
+Fontes desta ficha:
+
+- `ficha`: Ficha da técnica (docs/pesquisa/animacoes/desenvolvimento-unilateral-kettlebell.md): em pé, pés na largura do quadril; kettlebell apoiado no antebraço, na altura do ombro, cotovelo junto ao corpo, punho reto, a bola do lado de fora do antebraço; empurra até o braço estender acima da cabeça, sem jogar o peso e sem arquear a lombar; tronco parado, a outra mão na cintura; ~1 s subindo, ~2 s descendo: consenso de treinadores (B.2.6; nsca2021, não verificado)
+- `app`: Texto do app (src/conteudo/exercicios/desenvolvimento-unilateral-kettlebell.json): tempos das fases ('~1–1,5 s' subindo, '~2–3 s' descendo), as dicas e os erros
+- `hoje`: Animação aprovada no guia de hoje (src/engine/exercicios/desenvolvimento-unilateral-kettlebell.ts): os erros
+- `equilibrio`: Em pé, parado, a projeção do centro de massa (corpo + carga) cai dentro do apoio dos pés (mecânica)
+- `objetos`: src/engine/novo/dados/objetos.json
+- `desenho`: Escolha de desenho desta animação, dentro do que a ficha pede; a conferência mede o resultado
+
+### Desenvolvimento sentado com halteres (`desenvolvimento`)
+
+Ficha da técnica: `docs/pesquisa/animacoes/desenvolvimento.md`. Movimento simétrico (os dois lados fazem o mesmo).
+
+| parâmetro | valor | selo | fonte | o que é |
+|---|---|---|---|---|
+| `encosto` | 78 graus | consenso | app | encosto a 75–80° da horizontal, não a 90°: o desenho usa 78° |
+| `bacia` | -16 graus | desenho | desenho | a bacia inclina para trás o bastante para a coluna, com as curvas de repouso, ficar paralela ao encosto (a ficha só diz 'costas apoiadas') |
+| `cabeca` | 4 graus | desenho | desenho | a cabeça apoiada, com o queixo um pouco recolhido para o olhar ir à frente (a extensão do pescoço sai do contato da nuca com o encosto) |
+| `estofado.afunda` | 1 cm | desenho | desenho | quanto as nádegas, as costas e a nuca afundam no estofado |
+| `pes.meiaDistancia` | 16 cm | desenho | desenho | pés firmes no chão, um pouco mais afastados que o quadril, para a base ficar firme (a ficha não dá número) |
+| `pes.aFrente` | 56 cm | desenho | desenho | onde a bola do pé apoia, à frente da dobradiça do banco: a canela fica quase em pé (a ficha não dá número) |
+| `braco.baixo.elevacao` | -24 graus | consenso | guia | embaixo, os halteres na altura das orelhas: o úmero fica 24° abaixo da horizontal (com o antebraço na vertical, é o que leva a mão à altura da orelha) |
+| `braco.baixo.frente` | 30 graus | consenso | app | cotovelos um pouco à frente do corpo: 30° à frente do plano do corpo, no meio da faixa de ~20° a ~45° do texto do app |
+| `braco.topo.elevacao` | 80 graus | consenso | guia | no topo, cotovelos quase estendidos: o úmero fica 10° fora da vertical (com o antebraço na vertical, o cotovelo dobra 10°) |
+| `braco.topo.frente` | 30 graus | consenso | guia | no topo, o braço sobre o ombro: o cotovelo continua à frente |
+| `carga` | 11,3 kg | desenho | objetos | cada halter desenhado (25 lb, o da tabela de objetos) |
+| `erro.arco.lombar` | -22 graus | desenho | hoje | erro: a lombar arqueia 22° no topo (hoje: −28) |
+| `erro.arco.toracica` | -8 graus | desenho | hoje | erro: as costas de cima também estendem 8° |
+| `erro.arco.bacia` | 14 graus | desenho | desenho | erro: a bacia inclina 14° à frente no assento e as costas de baixo saem do encosto; o peito vai para trás |
+| `erro.cotovelo.frente` | -15 graus | desenho | hoje | erro: embaixo, os cotovelos ficam 15° atrás da linha do corpo |
+| `erro.curta.elevacao` | 35 graus | desenho | hoje | erro: a descida para com o úmero 35° acima da horizontal, os halteres acima da cabeça |
+
+| fase | tipo | duração | respiração | ritmo | selo |
+|---|---|---|---|---|---|
+| Embaixo | pausa | 0,45 s | inspira | altura das orelhas | consenso |
+| Subida · concêntrica | conc | 1,3 s | expira | ~1–1,5 s | consenso |
+| Topo | pausa | 0,4 s | firme | cotovelos quase estendidos | consenso |
+| Descida · excêntrica | exc | 2,4 s | inspira | ~2–3 s | consenso |
+
+Contatos que não podem sair do lugar: `pe.R`, `pe.L`, `pelve`.
+
+Regras que a conferência mede:
+
+- sentado com as costas e a cabeça apoiadas (consenso)
+- a lombar não arqueia (costas no encosto) (consenso)
+- embaixo, halteres na altura das orelhas (ou um pouco abaixo) (consenso)
+- cotovelos um pouco à frente do corpo (de ~20° a ~45°) (consenso)
+- antebraços na vertical (consenso)
+- em cima, braços quase estendidos sobre os ombros (consenso)
+- os halteres sobem sem bater na cabeça e sem bater um no outro (consenso)
+
+Erros desenhados:
+
+- Arquear a lombar (vista: lateral): a lombar arqueia, as costas de baixo saem do encosto e o peito vai para trás
+- Cotovelos para trás (vista: cima): embaixo, os cotovelos abrem atrás da linha do corpo
+- Descer pouco (vista: frontal): a descida para com os halteres acima da cabeça
+
+Fontes desta ficha:
+
+- `guia`: Guia original do projeto (referencia/guia-execucao-fase1.html), como registrado em docs/pesquisa/animacoes/desenvolvimento.md e no texto do app (src/conteudo/exercicios/desenvolvimento.json): consenso de treinadores
+- `app`: Texto do app (src/conteudo/exercicios/desenvolvimento.json): 'Encosto a 75–80°, não a 90°'; campo 'vary': 'O quanto os cotovelos ficam à frente (de ~20° a ~45°) depende de como o seu ombro se sente'
+- `hoje`: Animação aprovada no guia de hoje (src/engine/exercicios/desenvolvimento.ts): tempos das fases e erros
+- `objetos`: src/engine/novo/dados/objetos.json
+- `desenho`: Escolha de desenho desta animação, dentro do que a ficha pede; a conferência mede o resultado
+
+### Elevação lateral com halteres (`elevacao-halteres`)
+
+Ficha da técnica: `docs/pesquisa/animacoes/elevacao-halteres.md`. Movimento simétrico (os dois lados fazem o mesmo).
+
+| parâmetro | valor | selo | fonte | o que é |
+|---|---|---|---|---|
+| `pes.meiaDistancia` | 9 cm | consenso | guia | pés na largura do quadril (os centros do quadril ficam a 8,35 cm do meio) |
+| `joelho` | 10 graus | desenho | desenho | joelhos destravados (a ficha não dá número) |
+| `tronco` | 12 graus | desenho | desenho | tronco levemente inclinado à frente: a bacia inclina 12° com a coluna neutra (a ficha não dá número) |
+| `cervical` | 0 graus | desenho | desenho | pescoço na linha do tronco |
+| `cabeca` | 0 graus | desenho | desenho | cabeça na linha do pescoço |
+| `plano.baixo` | 75 graus | consenso | guia | embaixo, os halteres na frente das coxas: o braço pende no plano 75° à frente do plano do corpo e passa para o de 30° ao subir. Com o halter de 10 lb (26,7 cm), a mão fica 16 cm para fora do meio do corpo, na frente da coxa; a elevação embaixo sai da folga (com o de 25 lb, o plano era 55° e a mão ficava a 23 cm, ao lado da coxa) |
+| `plano.transicao` | 0,5 fração | desenho | desenho | o braço passa do plano de baixo para o da subida na primeira metade do caminho (depois sobe só no plano da subida); com 40%, a volta de 75° para 30° dava um salto de velocidade de 17% no cotovelo |
+| `plano` | 30 graus | consenso | app | o braço sobe para fora e um pouco à frente do corpo: 30° à frente do plano do corpo, no meio da faixa de ~20° a ~40° do texto do app |
+| `braco.topo` | 96 graus | consenso | guia | em cima, o braço na linha do ombro: elevação do úmero no tronco que deixa o cotovelo na altura do centro do ombro (com o tronco inclinado 12°, o braço fica quase horizontal) |
+| `cotovelo` | 15 graus | desenho | desenho | cotovelos levemente dobrados, o mesmo ângulo o movimento todo (a ficha não dá número) |
+| `cotovelo.giro` | 50 graus | desenho | desenho | 'cotovelo conduz': no alto, o úmero gira 50° para dentro e o plano em que o cotovelo dobra inclina para baixo, com o cotovelo um pouco acima da mão (a ficha não dá número) |
+| `polegar.paraCima` | 15 graus | consenso | app | no alto, o polegar fica 15° acima da pegada neutra (o texto do app aceita mão neutra ou polegar levemente para cima) |
+| `carga.folga` | 1,5 cm | desenho | desenho | embaixo, os halteres ficam perto das coxas: a folga entre a cabeça do halter e a pele da coxa. A elevação do braço embaixo sai desta folga |
+| `carga` | 4,5 kg | desenho | objetos | halteres leves (a ficha: 'halteres leves'): o sextavado de 10 lb da tabela de objetos (dados/objetos/halter-leve.json); entram no equilíbrio |
+| `erro.encolher.elev` | 18 graus | desenho | desenho | erro: a clavícula sobe 18° além do ritmo normal do ombro no alto (o trapézio de cima sobe o ombro) |
+| `erro.frontal.plano` | 80 graus | desenho | desenho | erro: no alto, o braço fica 80° à frente do plano do corpo (quase uma elevação frontal) |
+| `erro.balanco.frente` | 30 graus | desenho | hoje | erro: o tronco começa mais inclinado à frente (30°) para pegar impulso |
+| `erro.balanco.tras` | -10 graus | desenho | hoje | erro: no alto, o tronco foi jogado para trás (com a lombar arqueada, o peito fica cerca de 9° atrás da vertical) |
+| `erro.balanco.lombar` | -12 graus | desenho | hoje | erro: a lombar arqueia 12° no alto |
+| `erro.balanco.joelho` | 24 graus | desenho | hoje | erro: os joelhos dobram 24° embaixo e estendem para dar o impulso |
+
+| fase | tipo | duração | respiração | ritmo | selo |
+|---|---|---|---|---|---|
+| Embaixo | pausa | 0,4 s | inspira | ombros baixos | consenso |
+| Subida · concêntrica | conc | 1,3 s | expira | ~1–1,5 s | consenso |
+| Linha do ombro | pausa | 0,3 s | firme | pausa curta | consenso |
+| Descida · excêntrica | exc | 2,1 s | inspira | ~2 s | consenso |
+
+Contatos que não podem sair do lugar: `pe.R`, `pe.L`.
+
+Regras que a conferência mede:
+
+- tronco levemente inclinado à frente (consenso)
+- o braço sobe para fora e um pouco à frente do corpo (de ~20° a ~40°) (consenso)
+- em cima, o braço na linha do ombro (consenso)
+- cotovelos levemente dobrados, o cotovelo um pouco acima da mão (consenso)
+- o ombro não sobe junto com o braço (ombro longe da orelha) (consenso)
+- embaixo, os halteres perto das coxas, sem atravessá-las (consenso)
+- sem embalo: o tronco fica parado (consenso)
+- o centro de massa (corpo + halteres) fica perto do meio do pé (na metade do meio, do calcanhar à bola), com o quadril parado (consenso)
+
+Erros desenhados:
+
+- Balançar o tronco (vista: lateral): o tronco começa mais inclinado e é jogado para trás para dar o impulso, com a lombar arqueada
+- Encolher os ombros (vista: frontal): a clavícula sobe além do ritmo normal: os ombros vão em direção às orelhas
+- Virar elevação frontal (vista: cima): os braços sobem à frente do corpo, e não para o lado
+
+Fontes desta ficha:
+
+- `guia`: Guia original do projeto (referencia/guia-execucao-fase1.html), como registrado em docs/pesquisa/animacoes/elevacao-halteres.md e no texto do app (src/conteudo/exercicios/elevacao-halteres.json): consenso de treinadores
+- `app`: Texto do app (src/conteudo/exercicios/elevacao-halteres.json), campo 'vary': 'O plano exato do braço (de ~20° a ~40° à frente do corpo) depende da postura da sua escápula. A mão pode ficar neutra ou com o polegar levemente para cima'
+- `hoje`: Animação aprovada no guia de hoje (src/engine/exercicios/elevacao-halteres.ts): tempos das fases e erros
+- `equilibrio`: Em pé, parado, a projeção do centro de massa (corpo + carga) cai dentro do apoio dos pés (mecânica); a ficha não diz onde no pé, e o desenho usa o meio do pé
+- `objetos`: Tabela de objetos: src/engine/novo/dados/objetos/halter-leve.json (halter sextavado de 10 lb, RitFit e Titan)
+- `desenho`: Escolha de desenho desta animação, dentro do que a ficha pede; a conferência mede o resultado
+
+### Elevação lateral unilateral na polia (`elevacao-lateral`)
+
+Ficha da técnica: `docs/pesquisa/animacoes/elevacao-lateral.md`. Movimento de um lado só.
+
+| parâmetro | valor | selo | fonte | o que é |
+|---|---|---|---|---|
+| `pes.meiaDistancia` | 9 cm | desenho | desenho | pés na largura do quadril (a ficha não diz; é a postura em pé dos outros exercícios) |
+| `joelho` | 8 graus | desenho | desenho | joelhos destravados (a ficha não dá número) |
+| `tronco` | 0 graus | consenso | guia | tronco reto (a ficha permite inclinar um pouco para longe da torre; o desenho fica no reto) |
+| `cervical` | 0 graus | desenho | desenho | pescoço na linha do tronco |
+| `cabeca` | 0 graus | desenho | desenho | cabeça na linha do pescoço |
+| `plano.baixo` | 105 graus | consenso | guia | embaixo, a mão na frente do quadril, com o cabo tenso: o braço pende um pouco à frente e para dentro (no plano 105° à frente do lado). A elevação embaixo sai da folga até a coxa |
+| `plano.transicao` | 0,6 fração | desenho | desenho | o braço passa do plano de baixo (na frente do quadril) para o da subida nos primeiros 60% do caminho (depois sobe só no plano da subida) |
+| `plano` | 30 graus | consenso | app | o braço sobe para fora e um pouco à frente do corpo: 30° à frente do plano do corpo, no meio da faixa de ~20° a ~40° do texto do app |
+| `braco.topo` | 95 graus | consenso | guia | em cima, o braço na linha do ombro: elevação do úmero no tronco que deixa o cotovelo na altura do centro do ombro |
+| `cotovelo` | 15 graus | desenho | desenho | cotovelo levemente dobrado, o mesmo ângulo o movimento todo (a ficha não dá número) |
+| `cotovelo.giro` | 50 graus | desenho | desenho | 'cotovelo conduz': no alto, o úmero gira 50° para dentro e o cotovelo fica um pouco acima da mão (a ficha não dá número) |
+| `polegar.paraCima` | 15 graus | consenso | app | no alto, o polegar fica 15° acima da pegada neutra (o texto do app aceita mão neutra ou polegar levemente para cima) |
+| `carga.folga` | 3 cm | desenho | desenho | embaixo, a mão (como uma esfera de 4 cm) fica a 3 cm da pele da coxa |
+| `mao.raio` | 4 cm | desenho | desenho | a mão fechada no estribo, como uma esfera, na conta da folga até a coxa |
+| `torre.maoAoLado` | 58 cm | consenso | app | de lado para a torre, a cerca de um passo dela: a mão livre segura o trilho da coluna a 58 cm do meio do corpo (hoje: torre a 52 cm) |
+| `torre.maoAltura` | 112 cm | desenho | desenho | a mão livre segura o trilho na altura da cintura |
+| `torre.aFrente` | 6 cm | desenho | desenho | a coluna fica 6 cm à frente do meio do corpo, para o cabo passar na frente das pernas |
+| `pilha.folga` | 2 cm | consenso | guia | cabo tenso embaixo: a pilha já sai 2 cm do repouso (como na puxada) |
+| `erro.encolher.elev` | 18 graus | desenho | desenho | erro: a clavícula sobe 18° além do ritmo normal do ombro no alto (o trapézio de cima sobe o ombro) |
+| `erro.frontal.plano` | 80 graus | desenho | desenho | erro: no alto, o braço fica 80° à frente do plano do corpo (quase uma elevação frontal) |
+| `erro.balanco.frente` | 18 graus | desenho | hoje | erro: o tronco começa inclinado à frente para pegar impulso |
+| `erro.balanco.tras` | -10 graus | desenho | hoje | erro: no alto, o tronco foi jogado para trás (com a lombar arqueada, o peito fica cerca de 9° atrás da vertical) |
+| `erro.balanco.lombar` | -12 graus | desenho | hoje | erro: a lombar arqueia 12° no alto |
+| `erro.balanco.joelho` | 22 graus | desenho | hoje | erro: os joelhos dobram 22° embaixo e estendem para dar o impulso |
+
+| fase | tipo | duração | respiração | ritmo | selo |
+|---|---|---|---|---|---|
+| Embaixo | pausa | 0,4 s | inspira | cabo tenso | consenso |
+| Subida · concêntrica | conc | 1,3 s | expira | ~1–1,5 s | consenso |
+| Linha do ombro | pausa | 0,3 s | firme | pausa curta | consenso |
+| Descida · excêntrica | exc | 2,1 s | inspira | ~2 s | consenso |
+
+Contatos que não podem sair do lugar: `pe.R`, `pe.L`.
+
+Regras que a conferência mede:
+
+- o braço sobe para fora e um pouco à frente do corpo (de ~20° a ~40°) (consenso)
+- em cima, o braço na linha do ombro (consenso)
+- cotovelo levemente dobrado e um pouco acima da mão (consenso)
+- o ombro não sobe junto com o braço (ombro longe da orelha) (consenso)
+- embaixo, a mão na frente do quadril, sem atravessar a coxa (consenso)
+- o cabo passa na frente do corpo, reto da polia ao estribo (consenso)
+- a outra mão segura a coluna da torre, parada (consenso)
+- tronco reto e parado (consenso)
+- o centro de massa fica perto do meio do pé (na metade do meio, do calcanhar à bola), com o quadril parado (consenso)
+
+Erros desenhados:
+
+- Balançar o tronco (vista: lateral): o tronco começa inclinado e é jogado para trás para dar o impulso, com a lombar arqueada
+- Encolher o ombro (vista: frontal): a clavícula sobe além do ritmo normal: o ombro vai em direção à orelha
+- Virar elevação frontal (vista: cima): o braço sobe à frente do corpo, e não para o lado
+
+Fontes desta ficha:
+
+- `guia`: Guia original do projeto (referencia/guia-execucao-fase1.html), como registrado em docs/pesquisa/animacoes/elevacao-lateral.md e no texto do app (src/conteudo/exercicios/elevacao-lateral.json): consenso de treinadores
+- `app`: Texto do app (src/conteudo/exercicios/elevacao-lateral.json), campo 'vary': 'O plano exato do braço (de ~20° a ~40° à frente do corpo) depende da postura da sua escápula. A mão pode ficar neutra ou com o polegar levemente para cima'; 'Fique de lado para a torre, a cerca de um passo dela'
+- `hoje`: Animação aprovada no guia de hoje (src/engine/exercicios/elevacao-lateral.ts): a torre à esquerda, a 52 cm do meio do corpo, os tempos das fases e os erros
+- `equilibrio`: Em pé, parado, a projeção do centro de massa (corpo) cai dentro do apoio dos pés (mecânica)
 - `objetos`: src/engine/novo/dados/objetos.json
 - `desenho`: Escolha de desenho desta animação, dentro do que a ficha pede; a conferência mede o resultado
 
@@ -1328,6 +1826,261 @@ Fontes desta ficha:
 - `objetos`: src/engine/novo/dados/objetos.json
 - `desenho`: Escolha de desenho desta animação, dentro do que a ficha pede; a conferência mede o resultado
 
+### Panturrilha em pé no step (`panturrilha-b`)
+
+Ficha da técnica: `docs/pesquisa/animacoes/panturrilha-bilateral-step.md`. Movimento de um lado só.
+
+| parâmetro | valor | selo | fonte | o que é |
+|---|---|---|---|---|
+| `pes.meiaDistancia` | 9 cm | consenso | guia | pés na largura do quadril, apontando para a frente (os centros do quadril ficam a 8,35 cm do meio) |
+| `joelho` | 4 graus | consenso | guia | joelhos quase estendidos e parados (a ficha não dá número: 4 graus) |
+| `bola.daBeirada` | 2 cm | desenho | desenho | a bola dos pés apoia 2 cm para dentro da borda do step; os calcanhares ficam no ar |
+| `calcanhar.embaixo` | 6,4 cm | desenho | hoje | alongado: o calcanhar 6,4 cm abaixo da borda do step (como na animação de hoje); a ficha pede 'o mais baixo que der' |
+| `calcanhar.topo` | 13,9 cm | desenho | hoje | topo: o calcanhar 13,9 cm acima do step (como na animação de hoje); a ficha pede 'o mais alto possível' |
+| `apoio.maoAoLado` | 47 cm | desenho | bulgaro | a mão esquerda na coluna da estação, 47 cm à esquerda do meio do corpo (como no búlgaro) |
+| `apoio.maoAltura` | 105 cm | desenho | desenho | a mão na coluna a 118 cm do chão (no búlgaro, 100 cm com os pés no chão; aqui o corpo está 15 cm mais alto, no step) |
+| `apoio.maoAFrenteDaBola` | 5 cm | desenho | desenho | a mão na coluna 5 cm à frente da bola do pé (mais à frente, de lado ela aparecia na frente do tronco, segurando o nada: a coluna é cenário e não é desenhada de perfil) |
+| `bracos.paraFora` | 7 graus | desenho | bulgaro | o braço do halter pende ao lado do corpo, 7 graus afastado para o halter não bater na coxa |
+| `carga` | 11,3 kg | desenho | objetos | o halter desenhado (25 lb); entra no equilíbrio |
+| `step.x` | -22 cm | desenho | desenho | o meio do step fica 22 cm à direita do meio do corpo, para a base da coluna caber à esquerda |
+| `erro.curta.calcanhar` | 1,5 cm | desenho | hoje | erro: embaixo o calcanhar para 1,5 cm acima da borda do step, sem passar dela (como na animação de hoje) |
+| `erro.joelho.flexao` | 25 graus | desenho | hoje | erro: embaixo os joelhos dobram 25 graus e esticam na subida, dando impulso (na animação de hoje o quadril cai 7 cm) |
+
+| fase | tipo | duração | respiração | ritmo | selo |
+|---|---|---|---|---|---|
+| Alongado · pausa | pausa | 2 s | inspira | 2 s | consenso |
+| Subida · concêntrica | conc | 1 s | expira | ~1 s | consenso |
+| Topo | pausa | 0,8 s | firme | ~1 s | consenso |
+| Descida · excêntrica | exc | 2 s | inspira | ~2 s | consenso |
+
+Contatos que não podem sair do lugar: `pe.R`, `pe.L`.
+
+Regras que a conferência mede:
+
+- os joelhos ficam quase estendidos e parados (consenso)
+- alongado: os calcanhares abaixo da borda do step (consenso)
+- topo: o mais alto possível na ponta dos pés (13,9 cm acima do step) (consenso)
+- o centro de massa fica sobre a bola dos pés: o corpo sobe reto, sem balançar para a frente (consenso)
+- a mão na estação só equilibra: fica parada (consenso)
+
+Erros desenhados:
+
+- Não descer os calcanhares (vista: lateral): embaixo os calcanhares param acima da borda do step
+- Dobrar e esticar os joelhos (vista: lateral): embaixo os joelhos dobram 25 graus e esticam na subida
+
+Fontes desta ficha:
+
+- `guia`: Guia original do projeto (referencia/guia-execucao-fase1.html), como registrado em docs/pesquisa/animacoes/panturrilha-bilateral-step.md e no texto do app (src/conteudo/exercicios/panturrilha-b.json): consenso de treinadores. As pontas dos dois pés (a bola do pé) na borda do step, calcanhares para fora; pés na largura do quadril, apontando para a frente; joelhos quase estendidos e parados; um halter numa mão e a outra mão na estação
+- `hoje`: Animação aprovada no guia de hoje (src/engine/exercicios/panturrilha-b.ts): o calcanhar de 6,4 cm abaixo a 13,9 cm acima do step de 15 cm e os erros
+- `bulgaro`: Ficha de movimento do búlgaro aprovado (src/engine/novo/dados/movimentos/bulgaro.json): a mão livre na coluna da estação ao lado do corpo (47 cm do meio) e o braço do halter afastado 7 graus
+- `objetos`: src/engine/novo/dados/objetos.json (halter de 25 lb) e dados/objetos/step.json (Reebok Step, 15 cm)
+- `equilibrio`: Na ponta dos pés, o apoio é só a bola dos pés: o centro de massa (corpo + halter) tem de ficar sobre ela, para a frente, e entre os dois pés, de lado (mecânica); a mão só equilibra
+- `desenho`: Escolha de desenho desta animação, dentro do que a ficha pede; a conferência mede o resultado
+
+### Panturrilha em pé no chão (`panturrilha-chao`)
+
+Ficha da técnica: `docs/pesquisa/animacoes/panturrilha-chao.md`. Movimento de um lado só.
+
+| parâmetro | valor | selo | fonte | o que é |
+|---|---|---|---|---|
+| `pes.meiaDistancia` | 9 cm | consenso | ficha | pés na largura do quadril, apontando para a frente (os centros do quadril ficam a 8,35 cm do meio) |
+| `joelho` | 4 graus | consenso | ficha | joelhos estendidos, sem travar (a ficha não dá número: 4 graus de folga) |
+| `calcanhar.topo` | 12 cm | desenho | hoje | em cima, o calcanhar sobe o máximo: 12 cm acima do chão (o que a animação aprovada de hoje sobe); a ficha não dá número |
+| `parede.aFrenteDaBola` | 40 cm | desenho | hoje | a face da parede fica 31 cm à frente da bola do pé (44 cm à frente do tornozelo, como hoje) |
+| `maos.altura` | 145 cm | desenho | hoje | o centro das palmas na parede, a 128 cm do chão (como hoje) |
+| `maos.meiaDistancia` | 20 cm | desenho | hoje | cada palma a 20 cm do meio do corpo (como hoje) |
+| `livre.sobe` | 6 cm | desenho | desenho | no topo, a bola do pé que sai do chão sobe 6 cm acima do pé de apoio ('tire um pé do chão'; a ficha não dá número) |
+| `livre.atras` | 12 cm | desenho | desenho | o pé que sai do chão vai 12 cm para trás, com o joelho dobrado, para não encostar no outro |
+| `erro.curta.fracao` | 0,5 fração | desenho | hoje | erro: o calcanhar sobe só a metade (como hoje) |
+| `erro.joelho.flexao` | 30 graus | desenho | hoje | erro: embaixo os joelhos dobram 30 graus e esticam na subida, dando impulso (na animação de hoje o quadril cai 8,6 cm) |
+
+| fase | tipo | duração | respiração | ritmo | selo |
+|---|---|---|---|---|---|
+| Embaixo | pausa | 0,6 s | inspira | os dois calcanhares no chão | consenso |
+| Subida · concêntrica | conc | 1 s | expira | ~1 s, com as duas pernas | consenso |
+| Topo · segura | pausa | 0,5 s | firme | segure 1 s | consenso |
+| Topo · tira um pé | conc | 0,6 s | firme | tire um pé do chão | um estudo |
+| Descida · excêntrica | exc | 3 s | inspira | ~3 s, numa perna só | um estudo |
+| Embaixo · volta o pé | conc | 0,6 s | inspira | volte o outro pé | um estudo |
+
+Contatos que não podem sair do lugar: `pe.R`.
+
+Regras que a conferência mede:
+
+- os joelhos ficam estendidos, sem travar, e parados (consenso)
+- em cima, o calcanhar sobe o máximo (12 cm acima do apoio) (consenso)
+- o centro de massa fica sobre a bola do pé: o corpo sobe reto, sem balançar para a frente (consenso)
+- as mãos na parede só equilibram: ficam paradas (consenso)
+
+Erros desenhados:
+
+- Subida curta (vista: lateral): o calcanhar sobe só a metade
+- Dobrar os joelhos (vista: lateral): embaixo os joelhos dobram e esticam na subida, dando impulso
+
+Fontes desta ficha:
+
+- `ficha`: Ficha da técnica (docs/pesquisa/animacoes/panturrilha-chao.md) e texto do app (src/conteudo/exercicios/panturrilha-chao.json): em pé, pés na largura do quadril, mãos na parede só para equilibrar, joelhos estendidos sem travar; consenso (nsca2021, não verificado)
+- `nakamura2025`: Nakamura M et al. Eur J Appl Physiol 2025;125(9):2625–2635, PMID 40229595 (resumo lido no PubMed): subir com as duas pernas e descer em 3 s com uma só, com o peso do corpo, aumentou a espessura do músculo (um estudo; regra selecao.panturrilha-alongada e seção 'Uma perna de cada vez' da ficha da técnica)
+- `hoje`: Animação aprovada no guia de hoje (src/engine/exercicios/panturrilha-chao.ts): o quanto o calcanhar sobe (de 7 a 19 cm do tornozelo ao chão, 12 cm), a parede a 44 cm à frente do tornozelo, as mãos a 128 cm do chão e 20 cm do meio do corpo, e os erros
+- `equilibrio`: Na ponta dos pés, o apoio é só a bola do pé: o centro de massa (corpo + carga) tem de ficar sobre ela para o corpo subir reto, sem balançar para a frente (mecânica)
+- `desenho`: Escolha de desenho desta animação, dentro do que a ficha pede; a conferência mede o resultado
+
+### Panturrilha no degrau da escada (`panturrilha-degrau`)
+
+Ficha da técnica: `docs/pesquisa/animacoes/panturrilha-degrau.md`. Movimento de um lado só.
+
+| parâmetro | valor | selo | fonte | o que é |
+|---|---|---|---|---|
+| `pes.meiaDistancia` | 9 cm | consenso | ficha | pés na largura do quadril, apontando para a frente (os centros do quadril ficam a 8,35 cm do meio) |
+| `joelho` | 4 graus | consenso | ficha | joelhos estendidos, sem travar (a ficha não dá número: 4 graus de folga) |
+| `bola.daBeirada` | 2 cm | desenho | desenho | a bola do pé apoia 2 cm para dentro da beirada do degrau ('a ponta dos pés na beirada'); o calcanhar fica no ar |
+| `calcanhar.embaixo` | 6 cm | um estudo | kassiano2023b | embaixo, o calcanhar fica bem abaixo do degrau: 6 cm abaixo da beirada (6,4 cm na animação de hoje); limitado pela dorsiflexão (ver a conferência escrita) |
+| `calcanhar.topo` | 13,9 cm | desenho | hoje | em cima, na ponta dos pés: o calcanhar 13,9 cm acima do degrau (como na animação de hoje); a ficha não dá número |
+| `corrimao.aFrenteDaBola` | 22 cm | desenho | desenho | a mão esquerda segura o corrimão 22 cm à frente da bola do pé |
+| `corrimao.aoLado` | 40 cm | desenho | desenho | o corrimão fica 40 cm à esquerda do meio do corpo (a pessoa no meio de uma escada de 90 cm, o corrimão 5 cm para dentro da borda) |
+| `bracoLivre.paraFora` | 6 graus | desenho | desenho | o braço direito, solto, pende ao lado do corpo, 6 graus afastado |
+| `erro.curta.calcanhar` | 0 cm | desenho | hoje | erro: o calcanhar só desce até a altura do degrau (na animação de hoje, 1,5 cm acima dela) |
+| `erro.puxar.troncoEmbaixo` | -3 graus | desenho | hoje | erro: embaixo, o corpo pende para trás, pendurado no braço (hoje: 6 graus na lombar e no tórax; aqui o corpo inteiro inclina em linha e o tronco só 3 graus) |
+| `erro.puxar.troncoEmCima` | 4 graus | desenho | hoje | erro: na subida, o braço puxa o corpo para a frente; o corpo inclina em linha e o tronco mais 4 graus (hoje, 16 graus só no tronco, que dobrava o corpo) |
+| `erro.puxar.cm` | 8 cm | desenho | desenho | erro: com o braço puxando, o centro de massa sai da vertical da bola do pé (até 8 cm à frente em cima e 4,8 cm atrás embaixo) |
+
+| fase | tipo | duração | respiração | ritmo | selo |
+|---|---|---|---|---|---|
+| Embaixo · pausa | pausa | 1,5 s | inspira | 1 a 2 s, sem quicar | um estudo |
+| Subida · concêntrica | conc | 1 s | expira | ~1 s | consenso |
+| Descida · excêntrica | exc | 2,5 s | inspira | 2 a 3 s | consenso |
+
+Contatos que não podem sair do lugar: `pe.R`, `pe.L`.
+
+Regras que a conferência mede:
+
+- os joelhos ficam estendidos, sem travar, e parados (consenso)
+- embaixo, o calcanhar fica bem abaixo do degrau (um estudo)
+- em cima, na ponta dos pés (13,9 cm acima do degrau) (consenso)
+- o centro de massa fica sobre a bola do pé: o corpo sobe reto, sem balançar para a frente (consenso)
+- a mão no corrimão só equilibra: fica parada (consenso)
+
+Erros desenhados:
+
+- Descer pouco (vista: lateral): o calcanhar para na altura do degrau, sem passar a beirada
+- Puxar com a mão (vista: lateral): o braço dobra e puxa o corpo para a frente na subida; embaixo, o corpo pende para trás, pendurado no braço
+
+Fontes desta ficha:
+
+- `ficha`: Ficha da técnica (docs/pesquisa/animacoes/panturrilha-degrau.md) e texto do app (src/conteudo/exercicios/panturrilha-degrau.json): a ponta dos pés na beirada do degrau, os calcanhares no ar, pés na largura do quadril, uma mão no corrimão só para equilibrar, subida na ponta dos pés; consenso (Renaissance Periodization, vídeo não conferido por dentro; kinoshita2023)
+- `kassiano2023b`: Kassiano W et al. J Strength Cond Res 2023;37(9):1746–1753, PMID 37015016 (resumo lido no PubMed): a metade de baixo do movimento, com o músculo alongado, cresceu mais (um estudo): o calcanhar desce bem abaixo do degrau, com pausa
+- `hoje`: Animação aprovada no guia de hoje (src/engine/exercicios/panturrilha-degrau.ts): o calcanhar de 6,4 cm abaixo a 13,9 cm acima do degrau (do tornozelo ao degrau de 15 cm), o ritmo e os erros
+- `cdc`: Soucie JM et al. Range of motion measurements: reference values and a database for comparison studies. Haemophilia 2011 (tabelas do CDC; docs/revisoes/animacao-nova/pesquisa/02-articulacoes.md, A1): dorsiflexão média 14,8°, máximo observado 48°
+- `objetos`: src/engine/novo/dados/objetos/escada.json (ABNT NBR 9077:2001: degrau, piso e corrimão)
+- `equilibrio`: Na ponta dos pés, o apoio é só a bola do pé: o centro de massa (corpo + carga) tem de ficar sobre ela para o corpo subir reto, sem balançar para a frente (mecânica); a mão só equilibra
+- `desenho`: Escolha de desenho desta animação, dentro do que a ficha pede; a conferência mede o resultado
+
+### Panturrilha sentada com halter no joelho (`panturrilha-sentada-halter`)
+
+Ficha da técnica: `docs/pesquisa/animacoes/panturrilha-sentada-halter.md`. Movimento de um lado só.
+
+| parâmetro | valor | selo | fonte | o que é |
+|---|---|---|---|---|
+| `pes.meiaDistancia` | 9 cm | consenso | ficha | pés na largura do quadril, apontando para a frente |
+| `joelho` | 90 graus | consenso | ficha | joelhos a ~90° com o calcanhar na altura do apoio; a distância do apoio ao banco sai deste ângulo |
+| `assento.amassa` | 1 cm | desenho | desenho | o glúteo e a coxa afundam 1 cm no estofado do banco |
+| `banco.frenteDoQuadril` | 10 cm | desenho | desenho | a ponta do banco fica 10 cm à frente do centro do quadril: sentado na ponta, a coxa sai do banco |
+| `bola.daBeirada` | 2 cm | desenho | desenho | a bola do pé apoia 2 cm para dentro da beirada do degrau baixo (o step, na altura de 15 cm); o calcanhar fica no ar |
+| `calcanhar.embaixo` | 8,5 cm | um estudo | kassiano2023b | embaixo, o calcanhar desce 8,5 cm abaixo da beirada do apoio ('até o alongamento máximo'; a ficha não dá número): com o joelho dobrado e a canela inclinada para trás, é o que leva a dorsiflexão perto da média do CDC (14,8°); com 5 cm ela ficava em 2° |
+| `calcanhar.topo` | 10 cm | desenho | hoje | em cima, o calcanhar 10 cm acima do apoio (com 11 cm a flexão plantar passava da média do CDC, 56,7°) (na animação de hoje, o tornozelo sobe 12 cm do alongado ao topo) |
+| `halter.doJoelho` | 8 cm | desenho | hoje | o halter deitado atravessado sobre a coxa direita, perto do joelho: o cabo a 8 cm do centro do joelho, ao longo da coxa (na animação de hoje, 6 cm) |
+| `maoL.paraDentro` | 0,6 proporção | desenho | desenho | a mão esquerda vem do outro lado do corpo: os dedos apontam para o joelho e um pouco para dentro (para o lado direito), quanto para o lado em relação a para a frente |
+| `toalha.esp` | 2 cm | desenho | objetos | a toalha de mão dobrada em quatro entre o halter e a coxa (4 camadas de 0,5 cm) |
+| `erro.curta.fracao` | 0,4 fração | desenho | hoje | erro: o calcanhar só faz 40% do caminho, embaixo e em cima (como hoje) |
+| `erro.tronco.lombar` | -10 graus | desenho | hoje | erro: na subida a lombar estende 10 graus e o tronco vai para trás (hoje, 14 graus) |
+| `erro.tronco.toracica` | -12 graus | desenho | hoje | erro: as costas de cima vão 12 graus para trás (hoje, 16 graus) |
+| `erro.halter.doJoelho` | 22 cm | desenho | hoje | erro: o halter escorrega para o meio da coxa, 22 cm do joelho (na animação de hoje, 14 cm mais para trás) |
+
+| fase | tipo | duração | respiração | ritmo | selo |
+|---|---|---|---|---|---|
+| Descida · excêntrica | exc | 2 s | inspira | ~2 s | consenso |
+| Embaixo · alongado | pausa | 1 s | firme | ~1 s | um estudo |
+| Subida · concêntrica | conc | 1 s | expira | ~1 s | consenso |
+| Topo | pausa | 0,4 s | firme |  | consenso |
+
+Contatos que não podem sair do lugar: `pelve`, `pe.R`, `pe.L`.
+
+Regras que a conferência mede:
+
+- sentado, os joelhos a ~90° (consenso)
+- embaixo, o calcanhar desce até o alongamento máximo, abaixo do apoio (um estudo)
+- em cima, o calcanhar o mais alto possível (10 cm acima do apoio) (consenso)
+- o tronco fica reto e parado (consenso)
+- o halter deitado sobre a coxa, perto do joelho (consenso)
+
+Erros desenhados:
+
+- Amplitude curta (vista: lateral): o calcanhar sobe pouco e desce pouco
+- Levantar o tronco (vista: lateral): na subida o tronco vai para trás e sobe com o halter
+- Halter escorregando (vista: lateral): o halter escorrega para o meio da coxa, e as mãos vão com ele
+
+Fontes desta ficha:
+
+- `ficha`: Ficha da técnica (docs/pesquisa/animacoes/panturrilha-sentada-halter.md) e texto do app (src/conteudo/exercicios/panturrilha-sentada-halter.json): sentado, joelhos a ~90°, pés na largura do quadril, ponta dos pés num apoio baixo (uma anilha, um livro grosso, um degrau); o halter deitado sobre a coxa, perto do joelho, sobre uma toalha dobrada, segurado com as duas mãos; tronco reto e parado; consenso (nsca2021, não verificado)
+- `kassiano2023b`: Kassiano W et al. J Strength Cond Res 2023;37(9):1746–1753, PMID 37015016 (resumo lido no PubMed): a parte alongada rendeu mais (um estudo): a ponta dos pés num apoio para o calcanhar descer, pausa de ~1 s embaixo
+- `hoje`: Animação aprovada no guia de hoje (src/engine/exercicios/panturrilha-sentada-halter.ts): o tornozelo sobe 12 cm do alongado ao topo, o halter perto do joelho, a ordem das fases (começa pela descida) e os erros
+- `objetos`: src/engine/novo/dados/objetos.json (banco reto, halter de 25 lb), dados/objetos/step.json (o step como degrau baixo) e dados/objetos/toalha.json (a toalha de mão dobrada em quatro: 2 cm)
+- `desenho`: Escolha de desenho desta animação, dentro do que a ficha pede; a conferência mede o resultado
+
+### Panturrilha unilateral no step (`panturrilha`)
+
+Ficha da técnica: `docs/pesquisa/animacoes/panturrilha.md`. Movimento de um lado só.
+
+| parâmetro | valor | selo | fonte | o que é |
+|---|---|---|---|---|
+| `pes.meiaDistancia` | 9 cm | desenho | desenho | o pé de apoio (direito) a 9 cm do meio do corpo, na linha do quadril |
+| `joelho` | 4 graus | consenso | guia | joelho da perna de apoio quase estendido e parado (a ficha não dá número: 4 graus) |
+| `bola.daBeirada` | 2 cm | desenho | desenho | a bola do pé apoia 2 cm para dentro da borda do step; o calcanhar fica no ar |
+| `calcanhar.embaixo` | 6,4 cm | desenho | hoje | alongado: o calcanhar 6,4 cm abaixo da borda do step (como na animação de hoje); a ficha pede 'o mais baixo que der' |
+| `calcanhar.topo` | 13,9 cm | desenho | hoje | topo: o calcanhar 13,9 cm acima do step (como na animação de hoje); a ficha pede 'o mais alto possível' |
+| `livre.coxa` | 5 graus | desenho | hoje | a perna livre dobrada atrás: a coxa 5 graus à frente da vertical (na animação de hoje, quase na vertical) |
+| `livre.joelho` | 50 graus | desenho | hoje | a perna livre: o joelho dobrado 50 graus (na animação de hoje, a canela 38 graus abaixo da horizontal), o pé atrás, longe do step |
+| `livre.tornozelo` | 25 graus | desenho | desenho | o pé solto aponta 25 graus para baixo (relaxado) |
+| `apoio.maoAoLado` | 40 cm | desenho | bulgaro | a mão esquerda na coluna da estação, 47 cm à esquerda do meio do corpo (como no búlgaro) |
+| `apoio.maoAltura` | 110 cm | desenho | desenho | a mão na coluna a 118 cm do chão (no búlgaro, 100 cm com os pés no chão; aqui o corpo está 15 cm mais alto, no step) |
+| `apoio.maoAFrenteDaBola` | 5 cm | desenho | desenho | a mão na coluna 5 cm à frente da bola do pé (mais à frente, de lado ela aparecia na frente do tronco, segurando o nada: a coluna é cenário e não é desenhada de perfil) |
+| `bracos.paraFora` | 7 graus | desenho | bulgaro | o braço do halter pende ao lado do corpo, 7 graus afastado para o halter não bater na coxa |
+| `carga` | 11,3 kg | desenho | objetos | o halter desenhado (25 lb); entra no equilíbrio |
+| `step.x` | -32 cm | desenho | desenho | o meio do step fica 22 cm à direita do meio do corpo, para a base da coluna caber à esquerda |
+| `erro.curta.calcanhar` | 1,5 cm | desenho | hoje | erro: embaixo o calcanhar para 1,5 cm acima da borda do step, sem passar dela (como na animação de hoje) |
+| `erro.joelho.flexao` | 25 graus | desenho | hoje | erro: embaixo o joelho dobra 25 graus e estica na subida, dando impulso (na animação de hoje o quadril cai 7 cm) |
+
+| fase | tipo | duração | respiração | ritmo | selo |
+|---|---|---|---|---|---|
+| Alongado · pausa | pausa | 2 s | inspira | 2 s | consenso |
+| Subida · concêntrica | conc | 1 s | expira | ~1 s | consenso |
+| Topo | pausa | 0,8 s | firme | ~1 s | consenso |
+| Descida · excêntrica | exc | 2 s | inspira | ~2 s | consenso |
+
+Contatos que não podem sair do lugar: `pe.R`.
+
+Regras que a conferência mede:
+
+- o joelho da perna de apoio fica quase estendido e parado (consenso)
+- alongado: o calcanhar abaixo da borda do step (consenso)
+- topo: o mais alto possível na ponta do pé (13,9 cm acima do step) (consenso)
+- o centro de massa fica sobre a bola do pé: o corpo sobe reto, sem balançar para a frente (consenso)
+- a mão na torre só equilibra: fica parada (consenso)
+
+Erros desenhados:
+
+- Não descer o calcanhar (vista: lateral): embaixo o calcanhar para acima da borda do step
+- Dobrar e esticar o joelho (vista: lateral): embaixo o joelho dobra 25 graus e estica na subida
+
+Fontes desta ficha:
+
+- `guia`: Guia original do projeto (referencia/guia-execucao-fase1.html), como registrado em docs/pesquisa/animacoes/panturrilha.md e no texto do app (src/conteudo/exercicios/panturrilha.json): consenso de treinadores. A bola do pé na borda do step, calcanhar para fora; a outra perna dobrada atrás, sem apoiar; joelho de apoio quase estendido e parado; halter na mão do mesmo lado; a outra mão na torre
+- `hoje`: Animação aprovada no guia de hoje (src/engine/exercicios/panturrilha.ts): o calcanhar de 6,4 cm abaixo a 13,9 cm acima do step de 15 cm, a perna livre dobrada atrás e os erros
+- `bulgaro`: Ficha de movimento do búlgaro aprovado (src/engine/novo/dados/movimentos/bulgaro.json): a mão livre na coluna da estação ao lado do corpo (47 cm do meio) e o braço do halter afastado 7 graus
+- `objetos`: src/engine/novo/dados/objetos.json (halter de 25 lb) e dados/objetos/step.json (Reebok Step, 15 cm)
+- `equilibrio`: Na ponta do pé, o apoio é só a bola do pé: o centro de massa (corpo + halter) tem de ficar sobre ela, para a frente e de lado (mecânica); a mão só equilibra
+- `desenho`: Escolha de desenho desta animação, dentro do que a ficha pede; a conferência mede o resultado
+
 ### Flexão com o quadril alto (pike) (`pike`)
 
 Ficha da técnica: `docs/pesquisa/animacoes/pike.md`. Movimento simétrico (os dois lados fazem o mesmo).
@@ -1544,6 +2297,60 @@ Fontes desta ficha:
 - `objetos`: src/engine/novo/dados/objetos.json (kettlebell)
 - `desenho`: Escolha de desenho desta animação, dentro do que a ficha pede; a conferência mede o resultado
 
+### Puxada com elástico ancorado no alto (`puxada-elastico`)
+
+Ficha da técnica: `docs/pesquisa/animacoes/puxada-elastico.md`. Movimento simétrico (os dois lados fazem o mesmo).
+
+| parâmetro | valor | selo | fonte | o que é |
+|---|---|---|---|---|
+| `tronco` | -6 graus | consenso | app | tronco reto ou levemente inclinado para trás |
+| `joelhos.meiaDistancia` | 8,7 cm | consenso | app | joelhos na largura do quadril |
+| `cotovelo.alongado` | 12 graus | consenso | unilateral | início: braços estendidos para cima e um pouco à frente (o da puxada unilateral) |
+| `ombro.sobe` | 10 graus | consenso | unilateral | alongado: deixe os ombros subirem (elevação da clavícula além do ritmo normal) |
+| `ombro.desce` | -6 graus | consenso | unilateral | fim: ombros para baixo |
+| `braco.fim.atras` | 6 graus | consenso | unilateral | fim: cotovelos ao lado das costelas, um pouco atrás do tronco |
+| `braco.fim.fora` | 14 graus | desenho | unilateral | fim: o braço um pouco afastado do tronco, para o cotovelo passar ao lado das costelas |
+| `ancora.noTopo` | 1 sim | consenso | app | o meio do elástico preso no topo de uma porta fechada, com a âncora de porta do lado de lá |
+| `elastico.esticaNoInicio` | 1,12 vezes | consenso | app | com os braços estendidos, o elástico já um pouco esticado: a distância até a porta sai daqui ("a cerca de um passo") |
+| `elastico.noQuadro` | 38 cm | desenho | desenho | quanto do tubo, a partir de cada mão, fica no enquadramento; dali até a porta, ele é cenário (sai pela borda do quadro) |
+| `colchonete.z` | -20 cm | desenho | desenho | o meio do colchonete, sob os joelhos e as canelas |
+| `erro.tronco` | -30 graus | desenho | unilateral | erro: jogar o tronco para trás |
+| `erro.encolher` | 14 graus | desenho | unilateral | erro: os ombros continuam encolhidos no fim |
+| `erro.curta` | 0,45 fração | desenho | unilateral | erro: volta só até a metade |
+
+| fase | tipo | duração | respiração | ritmo | selo |
+|---|---|---|---|---|---|
+| Alongado | pausa | 0,5 s | inspira | ombros sobem | consenso |
+| Puxada · concêntrica | conc | 1 s | expira | ~1 s | consenso |
+| Fim | pausa | 0,5 s | firme | o elástico mais esticado | consenso |
+| Volta · excêntrica | exc | 2 s | inspira | ~2 s | consenso |
+
+Contatos que não podem sair do lugar: `joelho.R`, `joelho.L`, `pe.R`, `pe.L`.
+
+Regras que a conferência mede:
+
+- primeiro os ombros descem: no fim, mais baixos que no alongado (consenso)
+- tronco parado, sem jogar para trás (consenso)
+- fim: cotovelos ao lado das costelas, mãos perto dos ombros (consenso)
+- o antebraço segue a linha do elástico, que puxa a mão para a âncora (desenho)
+- o tubo vai das mãos à âncora sem entrar no corpo (desenho)
+- uma ponta em cada mão (consenso)
+
+Erros desenhados:
+
+- Jogar o tronco para trás (vista: lateral): o tronco inclina 30° para trás no fim
+- Ombros encolhidos (vista: posterior): os ombros continuam encolhidos no fim
+- Não alongar em cima (vista: lateral): volta só até a metade
+
+Fontes desta ficha:
+
+- `ficha`: Ficha da técnica (docs/pesquisa/animacoes/puxada-elastico.md): consenso de treinadores; o corpo ajoelhado e o caminho do braço são os da puxada-unilateral aprovada
+- `app`: Texto do app (src/conteudo/exercicios/puxada-elastico.json)
+- `unilateral`: Ficha de movimento da puxada unilateral ajoelhado (src/engine/novo/dados/movimentos/puxada-unilateral.json): o corpo ajoelhado, o braço e os erros
+- `hoje`: A animação de hoje (src/engine/exercicios/puxada-elastico.ts): as distâncias que a ficha não dá em número
+- `objetos`: src/engine/novo/dados/objetos.json (objeto elastico: o tubo com pegadores de 48 pol) e src/engine/novo/dados/objetos/porta.json (porta e âncora de porta)
+- `desenho`: Escolha de desenho desta animação, dentro do que a ficha pede; a conferência mede o resultado
+
 ### Puxada unilateral ajoelhado na polia alta (`puxada-unilateral`)
 
 Ficha da técnica: `docs/pesquisa/animacoes/puxada-unilateral.md`. Movimento de um lado só.
@@ -1588,6 +2395,139 @@ Fontes desta ficha:
 - `guia`: Guia original do projeto, como registrado em docs/pesquisa/animacoes/puxada-unilateral.md: consenso de treinadores
 - `ludewig2009`: Ludewig PM et al. Motion of the shoulder complex during multiplanar humeral elevation. J Bone Joint Surg Am 2009 (a clavícula e a escápula acompanham o braço; docs/revisoes/animacao-nova/pesquisa/02-articulacoes.md, C2)
 - `objetos`: src/engine/novo/dados/objetos.json
+- `desenho`: Escolha de desenho desta animação, dentro do que a ficha pede; a conferência mede o resultado
+
+### Remada curvada com halteres (`remada-curvada-halteres`)
+
+Ficha da técnica: `docs/pesquisa/animacoes/remada-curvada-halteres.md`. Movimento simétrico (os dois lados fazem o mesmo).
+
+| parâmetro | valor | selo | fonte | o que é |
+|---|---|---|---|---|
+| `tronco.inclinacao` | 62 graus | desenho | hoje | tronco 'bem inclinado': o peito a 62° da vertical, parado a série toda (hoje: ~60°; a ficha não dá número) |
+| `joelho` | 20 graus | consenso | ficha | joelhos 'levemente dobrados': 20°, parados |
+| `pes.meiaDistancia` | 9 cm | consenso | ficha | pés na largura do quadril (os centros do quadril ficam a 8,35 cm do meio) |
+| `cervical` | -10 graus | desenho | desenho | pescoço na linha das costas, um pouco estendido: o olhar vai ao chão à frente |
+| `cabeca` | 0 graus | desenho | desenho | cabeça na linha do pescoço |
+| `braco.inicio.atras` | 3 graus | desenho | desenho | começo: braço estendido, pendurado embaixo do ombro (o cotovelo dobra só 3°, sem travar) |
+| `braco.inicio.fora` | 8 graus | desenho | desenho | começo: o braço pende quase na vertical do ombro, um pouco para fora (o halter passa ao lado do joelho) |
+| `braco.fim.alemDasCostas` | 26 graus | consenso | unilateral | fim: 'cotovelo passando a linha do tronco': o braço fica 26° além da linha das costas |
+| `braco.fim.fora` | 16 graus | consenso | unilateral | fim: cotovelo 'perto do corpo': o braço se afasta só 16° do lado do tronco, o bastante para o halter passar ao lado do quadril |
+| `escapula.prot.inicio` | 6 graus | desenho | hoje | começo: 'ombro solto um pouco para baixo': a escápula vai à frente (hoje: +6) |
+| `escapula.retr.fim` | 10 graus | desenho | hoje | fim: a escápula se junta à coluna (hoje: −6; aqui −10, como na remada na suspensão, porque o ritmo do ombro devolve parte do recuo) |
+| `escapula.elev.inicio` | 1 graus | desenho | hoje | começo: a escápula como hoje (+1) |
+| `escapula.elev.fim` | -1 graus | desenho | hoje | fim: ombro baixo, longe da orelha (hoje: −1) |
+| `carga` | 11,3 kg | desenho | objetos | o halter desenhado (25 lb), um em cada mão; entra no equilíbrio |
+| `erro.arredondar.lombar` | 22 graus | desenho | hoje | erro: a lombar curva 22° além da curva de repouso (hoje: lombar de 74 para 60) |
+| `erro.arredondar.toracica` | 22 graus | desenho | hoje | erro: a parte de cima das costas curva 22° (hoje: torácica de 76 para 100) |
+| `erro.arredondar.cervical` | 10 graus | desenho | desenho | erro: o pescoço estende para o olhar não ir ao peito |
+| `erro.subir.tronco` | 25 graus | desenho | hoje | erro: o tronco sobe 25° na puxada para dar embalo (hoje: de ~60° para ~35°) |
+| `erro.encolher.elev` | 8 graus | desenho | hoje | erro: os ombros sobem para as orelhas no fim (hoje: +8 na escápula) |
+| `erro.soBracos.atras` | 12 graus | desenho | hoje | erro: o cotovelo quase não vai para trás (fica embaixo do ombro, 12° atrás da vertical) |
+| `erro.soBracos.cotovelo` | 75 graus | desenho | hoje | erro: o antebraço dobra 75° para a frente, como numa rosca; o halter não chega ao quadril |
+
+| fase | tipo | duração | respiração | ritmo | selo |
+|---|---|---|---|---|---|
+| Braços estendidos | pausa | 0,45 s | inspira | pausa curta | consenso |
+| Puxada · concêntrica | conc | 1,1 s | expira | ~1 s | consenso |
+| Fim · segura | pausa | 0,6 s | firme | pausa curta | consenso |
+| Volta · excêntrica | exc | 2,1 s | inspira | ~2 s | consenso |
+
+Contatos que não podem sair do lugar: `pe.R`, `pe.L`.
+
+Regras que a conferência mede:
+
+- costas retas (a lombar não arredonda) (consenso)
+- tronco parado: sem subir o tronco para ajudar (consenso)
+- tronco bem inclinado (consenso)
+- fim: cotovelos atrás do tronco (consenso)
+- cotovelos para trás, perto do corpo (consenso)
+- fim: halteres perto do quadril (consenso)
+- começo: braços estendidos (consenso)
+- os halteres pendem sem atravessar as pernas nem o tronco (consenso)
+- no fim as escápulas se juntam (consenso)
+- pegada neutra (palmas uma para a outra) (consenso)
+
+Erros desenhados:
+
+- Arredondar as costas (vista: lateral): a lombar e a parte de cima das costas curvam
+- Subir o tronco (vista: lateral): o tronco levanta na puxada para dar embalo
+- Encolher os ombros (vista: posterior): os ombros sobem para as orelhas
+- Puxar só com os braços (vista: lateral): o cotovelo fica embaixo do ombro e só dobra, como numa rosca
+
+Fontes desta ficha:
+
+- `ficha`: Ficha da técnica (docs/pesquisa/animacoes/remada-curvada-halteres.md): em pé, pés na largura do quadril, joelhos levemente dobrados; dobra o quadril até o tronco ficar bem inclinado, costas retas; halteres pendurados, pegada neutra; leva os cotovelos para trás, perto do corpo, até os halteres chegarem perto do quadril; tronco parado; consenso de treinadores (nsca2021, não verificado)
+- `app`: Cartão do app (src/conteudo/exercicios/remada-curvada-halteres.json): palmas uma para a outra, ~1 s puxando, pausa curta, ~2 s voltando, as dicas e os erros
+- `hoje`: Animação aprovada no guia de hoje (src/engine/exercicios/remada-curvada-halteres.ts): tronco ~60°, as escápulas (+6 no começo, −6 no fim) e os erros (subir o tronco de ~60° para ~35°, encolher +8, puxar só com os braços), que a ficha não dá em número
+- `stiff`: O núcleo do stiff (src/engine/novo/exercicios/dobrar-o-quadril.ts): o quadril para trás com o centro de massa sobre o meio do pé
+- `unilateral`: A ficha de movimento da remada unilateral no banco (src/engine/novo/dados/movimentos/remada-unilateral.json): o mesmo braço que puxa
+- `objetos`: src/engine/novo/dados/objetos.json: o halter
+- `desenho`: Escolha de desenho desta animação, dentro do que a ficha pede; a conferência mede o resultado
+
+### Remada sentada com elástico (`remada-elastico`)
+
+Ficha da técnica: `docs/pesquisa/animacoes/remada-elastico.md`. Movimento simétrico (os dois lados fazem o mesmo).
+
+| parâmetro | valor | selo | fonte | o que é |
+|---|---|---|---|---|
+| `pes.meiaDistancia` | 9 cm | desenho | desenho | os pés na largura do quadril (a ficha não dá) |
+| `joelho` | 20 graus | consenso | app | pernas estendidas, joelhos um pouco dobrados (a ficha não dá número) |
+| `pe.paraFrente` | 15 graus | desenho | hoje | o pé fica quase em pé, com os dedos para cima e 15° para a frente: a sola fica de frente para as mãos e o elástico não escapa |
+| `nadega.afunda` | 1 cm | desenho | desenho | a nádega afunda 1 cm no colchonete |
+| `tronco.inicio` | 12 graus | consenso | ficha | alongado: tronco até ~10–15° inclinado à frente |
+| `tronco.fim` | 0 graus | consenso | ficha | fim: o tronco volta à vertical |
+| `cervical` | 4 graus | desenho | desenho | pescoço na linha do tronco, o queixo um pouco recolhido |
+| `braco.inicio.abaixo` | 23 graus | desenho | hoje | alongado: os braços estendidos para os pés, 23° abaixo da horizontal (hoje: mãos 29 cm acima e 64 cm à frente da pelve) |
+| `cotovelo.inicio` | 14 graus | consenso | ficha | alongado: braços estendidos, sem travar o cotovelo (o alvo da mão; medido, o cotovelo fica um pouco mais estendido, porque o ombro vai à frente com a escápula) |
+| `maos.fim.fora` | 5 cm | desenho | desenho | fim: o centro da mão fica 5 cm para fora do lado da cintura (mãos ao lado do abdômen) |
+| `maos.fim.acima` | 2 cm | desenho | desenho | fim: a mão fica 2 cm acima da linha da cintura (ao lado do abdômen) |
+| `maos.fim.frente` | 2 cm | desenho | desenho | fim: a mão fica 2 cm à frente do meio da cintura, de lado; o cotovelo passa para trás do tronco |
+| `maos.polegarParaDentro` | 0,35 fração | desenho | suspensao | palmas uma para a outra: o polegar para cima e um pouco para dentro (o da remada na suspensão) |
+| `escapula.prot.inicio` | 6 graus | consenso | suspensao | alongado: as escápulas abertas, à frente com o braço |
+| `escapula.retr.fim` | 10 graus | consenso | suspensao | fim: as escápulas se juntam |
+| `escapula.elev.fim` | -1 graus | consenso | suspensao | ombros baixos no fim |
+| `elastico.voltaNaMao` | 2,4 cm | desenho | objetos | raio da volta que o tubo dá em cada mão, por cima do pegador ("segure curto"): sem ela, o tubo de 48 pol fica frouxo com os braços estendidos |
+| `elastico.voltas` | 2 voltas | desenho | objetos | quantas voltas o tubo dá em cada mão (com uma, ele começa frouxo) |
+| `colchonete.z` | 30 cm | desenho | desenho | o meio do colchonete, à frente da pelve |
+| `erro.balanco.tronco` | -14 graus | desenho | hoje | erro: no fim, o tronco vai 14° para trás da vertical (a lombar puxa) |
+| `erro.balanco.inicio` | 24 graus | desenho | hoje | erro: no alongado, o tronco vai 24° à frente |
+| `erro.arred.lombar` | 16 graus | desenho | hoje | erro: no alongado, a lombar dobra 16° além da neutra (hoje: 16) |
+| `erro.arred.toracica` | 22 graus | desenho | hoje | erro: e a torácica 22° (hoje: 14 a 44) |
+| `erro.encolher.elev` | 8 graus | desenho | suspensao | erro: os ombros sobem no fim (hoje: +7 na escápula) |
+
+| fase | tipo | duração | respiração | ritmo | selo |
+|---|---|---|---|---|---|
+| Alongado | pausa | 0,45 s | inspira | pausa curta | consenso |
+| Puxada · concêntrica | conc | 1,1 s | expira | ~1 s | consenso |
+| Segura contraído | pausa | 1 s | firme | 1 s | consenso |
+| Volta · excêntrica | exc | 2,1 s | inspira | ~2 s | consenso |
+
+Contatos que não podem sair do lugar: `pelve`.
+
+Regras que a conferência mede:
+
+- o tronco vai de ~10–15° à frente, no alongado, à vertical no fim, com a lombar neutra (consenso)
+- no fim, mãos ao lado do abdômen e cotovelos atrás da linha do tronco (consenso)
+- cotovelos rentes ao corpo (consenso)
+- as escápulas se juntam no fim (consenso)
+- palmas uma para a outra (consenso)
+- o meio do elástico passa pela sola dos dois pés (consenso)
+- o tubo vai das mãos aos pés sem entrar no corpo (desenho)
+- cada mão segura uma ponta (consenso)
+
+Erros desenhados:
+
+- Balançar o tronco (vista: lateral): o tronco vai para trás no fim e a lombar puxa
+- Arredondar a coluna no alongamento (vista: lateral): no alongado, a lombar e as costas de cima arredondam
+- Encolher os ombros no fim (vista: posterior): os ombros sobem em direção às orelhas
+
+Fontes desta ficha:
+
+- `ficha`: Ficha da técnica (docs/pesquisa/animacoes/remada-elastico.md): consenso de treinadores; o tronco e o caminho dos braços são os da remada-baixa aprovada
+- `app`: Texto do app (src/conteudo/exercicios/remada-elastico.json)
+- `suspensao`: Ficha de movimento da remada na suspensão (src/engine/novo/dados/movimentos/remada-suspensao.json): a escápula e o braço no fim
+- `hoje`: A animação de hoje (src/engine/exercicios/remada-elastico.ts): as distâncias que a ficha não dá em número
+- `objetos`: src/engine/novo/dados/objetos.json (objeto elastico: o tubo com pegadores de 48 pol; colchonete)
 - `desenho`: Escolha de desenho desta animação, dentro do que a ficha pede; a conferência mede o resultado
 
 ### Remada na suspensão (`remada-suspensao`)
@@ -1645,6 +2585,509 @@ Fontes desta ficha:
 - `app`: Cartão do app (src/conteudo/exercicios/remada-suspensao.json): palmas viradas uma para a outra, escápulas se juntam no fim, ~1 s puxando, 1 s parado, ~2 s voltando, as dicas e os erros
 - `hoje`: Animação aprovada no guia de hoje (src/engine/exercicios/remada-suspensao.ts) e a conferência dela (docs/revisoes/catalogo/conferencia/suspensao.md): o ângulo do corpo no início, onde ficam os pés, as escápulas e os erros, que a ficha não dá em número
 - `objetos`: src/engine/novo/dados/objetos/suspensao.json: a altura da âncora (página do fabricante)
+- `desenho`: Escolha de desenho desta animação, dentro do que a ficha pede; a conferência mede o resultado
+
+### Remada unilateral com kettlebell (mão livre na coxa) (`remada-unilateral-kettlebell`)
+
+Ficha da técnica: `docs/pesquisa/animacoes/remada-unilateral-kettlebell.md`. Movimento de um lado só.
+
+| parâmetro | valor | selo | fonte | o que é |
+|---|---|---|---|---|
+| `tronco.inclinacao` | 55 graus | desenho | hoje | tronco inclinado à frente: o peito a 55° da vertical, parado a série toda (hoje: ~45–60°; a ficha não dá número) |
+| `cervical` | -10 graus | desenho | desenho | pescoço na linha das costas, um pouco estendido: o olhar vai ao chão à frente |
+| `cabeca` | 0 graus | desenho | desenho | cabeça na linha do pescoço |
+| `pes.paraFora` | 2 cm | desenho | desenho | de frente, cada pé 2 cm para fora da linha do quadril |
+| `joelho.frente` | 30 graus | desenho | hoje | o joelho da frente dobrado (hoje: dobrado; a ficha não dá número); o pé vai para a frente até o joelho ficar nesse ângulo |
+| `joelho.tras` | 8 graus | desenho | desenho | a perna de trás quase estendida, sem travar; o pé vai para trás até o joelho ficar nesse ângulo |
+| `pe.tras.calcanhar` | 15 graus | desenho | desenho | o pé de trás com o calcanhar um pouco levantado (15°), a bola do pé no chão |
+| `pes.passo` | 66 cm | desenho | desenho | pés afastados, um à frente do outro: 66 cm de um tornozelo ao outro, de frente para trás (a ficha não dá número); daí sai a altura do quadril |
+| `apoio.cotovelo` | 12 graus | desenho | desenho | o braço de apoio quase estendido, firme na coxa; daí sai o ponto da coxa em que a mão apoia |
+| `braco.inicio.atras` | 3 graus | desenho | desenho | começo: braço estendido, pendurado embaixo do ombro (o cotovelo dobra só 3°, sem travar) |
+| `braco.inicio.fora` | 8 graus | desenho | desenho | começo: o braço pende quase na vertical do ombro, um pouco para fora (o halter passa ao lado do joelho) |
+| `braco.fim.alemDasCostas` | 26 graus | consenso | unilateral | fim: 'cotovelo passando a linha do tronco': o braço fica 26° além da linha das costas |
+| `braco.fim.fora` | 16 graus | consenso | unilateral | fim: cotovelo 'perto do corpo': o braço se afasta só 16° do lado do tronco, o bastante para o halter passar ao lado do quadril |
+| `escapula.prot.inicio` | 6 graus | desenho | hoje | começo: 'ombro solto um pouco para baixo': a escápula vai à frente (hoje: +6) |
+| `escapula.retr.fim` | 10 graus | desenho | hoje | fim: a escápula se junta à coluna (hoje: −6; aqui −10, como na remada na suspensão, porque o ritmo do ombro devolve parte do recuo) |
+| `escapula.elev.inicio` | 1 graus | desenho | hoje | começo: a escápula como hoje (+1) |
+| `escapula.elev.fim` | -1 graus | desenho | hoje | fim: ombro baixo, longe da orelha (hoje: −1) |
+| `erro.girar.giro` | 18 graus | desenho | hoje | erro: o peito abre para o lado do braço que puxa, a coluna gira 18° no fim (hoje: 18°) |
+| `erro.girar.lombar` | 0,35 fração | desenho | desenho | erro: quanto do giro fica na lombar (o resto na torácica) |
+| `erro.arredondar.lombar` | 22 graus | desenho | hoje | erro: a lombar curva 22° além da curva de repouso (hoje: lombar de 74 para 60) |
+| `erro.arredondar.toracica` | 22 graus | desenho | hoje | erro: a parte de cima das costas curva 22° (hoje: torácica de 76 para 100) |
+| `erro.arredondar.cervical` | 10 graus | desenho | desenho | erro: o pescoço estende para o olhar não ir ao peito |
+| `erro.curta.fracao` | 0,45 fração | desenho | hoje | erro: a volta para perto da metade do caminho (hoje: na pose do meio) |
+| `kettlebell.folga` | 1 cm | desenho | desenho | o kettlebell pende da alça; se o antebraço chegar perto, a bola fica a 1 cm dele |
+
+| fase | tipo | duração | respiração | ritmo | selo |
+|---|---|---|---|---|---|
+| Alongado | pausa | 0,45 s | inspira | pausa curta | consenso |
+| Puxada · concêntrica | conc | 1,1 s | expira | ~1 s | consenso |
+| Segura contraído | pausa | 1 s | firme | 1 s | consenso |
+| Volta · excêntrica | exc | 2,1 s | inspira | ~2 s | consenso |
+
+Contatos que não podem sair do lugar: `pe.R`, `pe.L`.
+
+Regras que a conferência mede:
+
+- costas retas (a lombar não arredonda) (consenso)
+- tronco parado, sem girar durante a série (consenso)
+- tronco inclinado à frente (consenso)
+- um pé à frente do outro, o do lado do kettlebell atrás (consenso)
+- mão livre firme na coxa da frente (consenso)
+- a mão livre fica parada na coxa (consenso)
+- fim: cotovelo passando a linha das costas (consenso)
+- cotovelo para trás, perto do corpo (consenso)
+- fim: kettlebell ao lado do quadril (consenso)
+- começo: braço estendido, kettlebell embaixo do ombro (consenso)
+- o kettlebell pende embaixo da mão sem atravessar o corpo (consenso)
+- no fim a escápula se junta à coluna (consenso)
+- pegada neutra (palma virada para o corpo) (consenso)
+
+Erros desenhados:
+
+- Girar o tronco (vista: quinaTras): o peito abre para o lado do braço que puxa: o ombro direito sobe
+- Arredondar as costas (vista: lateral): a lombar e a parte de cima das costas curvam
+- Não estender o braço (vista: lateral): a volta para no meio: o braço não estende embaixo
+
+Fontes desta ficha:
+
+- `ficha`: Ficha da técnica (docs/pesquisa/animacoes/remada-unilateral-kettlebell.md): pés afastados, um à frente do outro, o pé do lado do kettlebell atrás; mão livre firme na coxa da frente; tronco inclinado à frente, costas retas, sem girar; cotovelo para trás e em direção ao quadril, o kettlebell termina ao lado do quadril; palma virada para o corpo; consenso de treinadores (nsca2021, não verificado; B.2.6)
+- `app`: Cartão do app (src/conteudo/exercicios/remada-unilateral-kettlebell.json): kettlebell embaixo do ombro no começo, cotovelo passando a linha das costas no fim, ~1 s puxando, 1 s parado, ~2 s voltando, as dicas e os erros
+- `hoje`: Animação aprovada no guia de hoje (src/engine/exercicios/remada-unilateral-kettlebell.ts): o tronco inclinado ~45–60°, o joelho da frente dobrado, as escápulas (proR +6 no começo, −6 no fim) e o giro do erro (−18), que a ficha não dá em número
+- `unilateral`: A ficha de movimento da remada unilateral no banco (src/engine/novo/dados/movimentos/remada-unilateral.json): o mesmo braço que puxa
+- `objetos`: src/engine/novo/dados/objetos.json: o kettlebell
+- `desenho`: Escolha de desenho desta animação, dentro do que a ficha pede; a conferência mede o resultado
+
+### Remada unilateral com halter, sem banco (mão livre na coxa) (`remada-unilateral-sem-banco`)
+
+Ficha da técnica: `docs/pesquisa/animacoes/remada-unilateral-sem-banco.md`. Movimento de um lado só.
+
+| parâmetro | valor | selo | fonte | o que é |
+|---|---|---|---|---|
+| `tronco.inclinacao` | 55 graus | desenho | hoje | tronco inclinado à frente: o peito a 55° da vertical, parado a série toda (hoje: ~45–60°; a ficha não dá número) |
+| `cervical` | -10 graus | desenho | desenho | pescoço na linha das costas, um pouco estendido: o olhar vai ao chão à frente |
+| `cabeca` | 0 graus | desenho | desenho | cabeça na linha do pescoço |
+| `pes.paraFora` | 2 cm | desenho | desenho | de frente, cada pé 2 cm para fora da linha do quadril |
+| `joelho.frente` | 30 graus | desenho | hoje | o joelho da frente dobrado (hoje: dobrado; a ficha não dá número); o pé vai para a frente até o joelho ficar nesse ângulo |
+| `joelho.tras` | 8 graus | desenho | desenho | a perna de trás quase estendida, sem travar; o pé vai para trás até o joelho ficar nesse ângulo |
+| `pe.tras.calcanhar` | 15 graus | desenho | desenho | o pé de trás com o calcanhar um pouco levantado (15°), a bola do pé no chão |
+| `pes.passo` | 66 cm | desenho | desenho | pés afastados, um à frente do outro: 66 cm de um tornozelo ao outro, de frente para trás (a ficha não dá número); daí sai a altura do quadril |
+| `apoio.cotovelo` | 12 graus | desenho | desenho | o braço de apoio quase estendido, firme na coxa; daí sai o ponto da coxa em que a mão apoia |
+| `braco.inicio.atras` | 3 graus | desenho | desenho | começo: braço estendido, pendurado embaixo do ombro (o cotovelo dobra só 3°, sem travar) |
+| `braco.inicio.fora` | 8 graus | desenho | desenho | começo: o braço pende quase na vertical do ombro, um pouco para fora (o halter passa ao lado do joelho) |
+| `braco.fim.alemDasCostas` | 26 graus | consenso | unilateral | fim: 'cotovelo passando a linha do tronco': o braço fica 26° além da linha das costas |
+| `braco.fim.fora` | 16 graus | consenso | unilateral | fim: cotovelo 'perto do corpo': o braço se afasta só 16° do lado do tronco, o bastante para o halter passar ao lado do quadril |
+| `escapula.prot.inicio` | 6 graus | desenho | hoje | começo: 'ombro solto um pouco para baixo': a escápula vai à frente (hoje: +6) |
+| `escapula.retr.fim` | 10 graus | desenho | hoje | fim: a escápula se junta à coluna (hoje: −6; aqui −10, como na remada na suspensão, porque o ritmo do ombro devolve parte do recuo) |
+| `escapula.elev.inicio` | 1 graus | desenho | hoje | começo: a escápula como hoje (+1) |
+| `escapula.elev.fim` | -1 graus | desenho | hoje | fim: ombro baixo, longe da orelha (hoje: −1) |
+| `carga` | 11,3 kg | desenho | objetos | o halter desenhado (25 lb), na mão direita |
+| `erro.girar.giro` | 18 graus | desenho | hoje | erro: o peito abre para o lado do braço que puxa, a coluna gira 18° no fim (hoje: 18°) |
+| `erro.girar.lombar` | 0,35 fração | desenho | desenho | erro: quanto do giro fica na lombar (o resto na torácica) |
+| `erro.arredondar.lombar` | 22 graus | desenho | hoje | erro: a lombar curva 22° além da curva de repouso (hoje: lombar de 74 para 60) |
+| `erro.arredondar.toracica` | 22 graus | desenho | hoje | erro: a parte de cima das costas curva 22° (hoje: torácica de 76 para 100) |
+| `erro.arredondar.cervical` | 10 graus | desenho | desenho | erro: o pescoço estende para o olhar não ir ao peito |
+| `erro.curta.fracao` | 0,45 fração | desenho | hoje | erro: a volta para perto da metade do caminho (hoje: na pose do meio) |
+
+| fase | tipo | duração | respiração | ritmo | selo |
+|---|---|---|---|---|---|
+| Alongado | pausa | 0,45 s | inspira | pausa curta | consenso |
+| Puxada · concêntrica | conc | 1,1 s | expira | ~1 s | consenso |
+| Segura contraído | pausa | 1 s | firme | 1 s | consenso |
+| Volta · excêntrica | exc | 2,1 s | inspira | ~2 s | consenso |
+
+Contatos que não podem sair do lugar: `pe.R`, `pe.L`.
+
+Regras que a conferência mede:
+
+- costas retas (a lombar não arredonda) (consenso)
+- tronco parado, sem girar durante a série (consenso)
+- tronco inclinado à frente (consenso)
+- um pé à frente do outro, o do lado do halter atrás (consenso)
+- mão livre firme na coxa da frente (consenso)
+- a mão livre fica parada na coxa (consenso)
+- fim: cotovelo passando a linha das costas (consenso)
+- cotovelo para trás, perto do corpo (consenso)
+- fim: halter ao lado do quadril (consenso)
+- começo: braço estendido, halter embaixo do ombro (consenso)
+- o halter pende embaixo da mão sem atravessar o corpo (consenso)
+- no fim a escápula se junta à coluna (consenso)
+- pegada neutra (palma virada para o corpo) (consenso)
+
+Erros desenhados:
+
+- Girar o tronco (vista: quinaTras): o peito abre para o lado do braço que puxa: o ombro direito sobe
+- Arredondar as costas (vista: lateral): a lombar e a parte de cima das costas curvam
+- Não estender o braço (vista: lateral): a volta para no meio: o braço não estende embaixo
+
+Fontes desta ficha:
+
+- `ficha`: Ficha da técnica (docs/pesquisa/animacoes/remada-unilateral-sem-banco.md): pés afastados, um à frente do outro, o pé do lado do halter atrás; mão livre firme na coxa da frente; tronco inclinado à frente, costas retas, sem girar; cotovelo para trás e em direção ao quadril, o halter termina ao lado do quadril; palma virada para o corpo; consenso de treinadores (nsca2021, não verificado; B.2.6)
+- `app`: Cartão do app (src/conteudo/exercicios/remada-unilateral-sem-banco.json): halter embaixo do ombro no começo, cotovelo passando a linha das costas no fim, ~1 s puxando, 1 s parado, ~2 s voltando, as dicas e os erros
+- `hoje`: Animação aprovada no guia de hoje (src/engine/exercicios/remada-unilateral-sem-banco.ts): o tronco inclinado ~45–60°, o joelho da frente dobrado, as escápulas (proR +6 no começo, −6 no fim) e o giro do erro (−18), que a ficha não dá em número
+- `unilateral`: A ficha de movimento da remada unilateral no banco (src/engine/novo/dados/movimentos/remada-unilateral.json): o mesmo braço que puxa
+- `objetos`: src/engine/novo/dados/objetos.json: o halter
+- `desenho`: Escolha de desenho desta animação, dentro do que a ficha pede; a conferência mede o resultado
+
+### Remada unilateral com halter apoiada no banco (`remada-unilateral`)
+
+Ficha da técnica: `docs/pesquisa/animacoes/remada-unilateral.md`. Movimento de um lado só.
+
+| parâmetro | valor | selo | fonte | o que é |
+|---|---|---|---|---|
+| `tronco.inclinacao` | 75 graus | consenso | ficha | costas quase paralelas ao chão: o peito inclina 75° da vertical (15° acima da horizontal), parado a série toda |
+| `cervical` | -8 graus | desenho | desenho | pescoço na linha das costas, um pouco estendido: o olhar vai ao chão um pouco à frente |
+| `cabeca` | 0 graus | desenho | desenho | cabeça na linha do pescoço |
+| `apoio.cotovelo` | 6 graus | desenho | desenho | o braço de apoio quase estendido, sem travar; daí sai o ângulo da coxa de apoio |
+| `apoio.maoAFrente` | 0 cm | consenso | ficha | a mão de apoio embaixo do ombro (o meio da palma na vertical do ombro) |
+| `apoio.maoParaDentro` | 2 cm | desenho | desenho | a mão de apoio um pouco para dentro da linha do ombro, sobre o estofado |
+| `joelho.afunda` | 0,5 cm | desenho | desenho | o joelho de apoio amassa o estofado meio centímetro |
+| `canela.desce` | 3 graus | desenho | desenho | a canela de apoio deitada no estofado, um pouco inclinada para trás (o joelho é mais grosso que o tornozelo) |
+| `pe.R.paraFora` | 10 cm | consenso | app | o outro pé no chão, 'um pouco para o lado': 10 cm para fora da linha do quadril |
+| `joelho.R` | 10 graus | consenso | app | o joelho do pé no chão 'levemente dobrado' |
+| `joelho.R.folga` | 0,5 cm | desenho | desenho | num corpo de pernas curtas, o quadril fica 0,5 cm abaixo do mais alto em que o pé direito ainda chega ao chão com o joelho no ângulo da ficha |
+| `banco.alemDaMao` | 6 cm | desenho | desenho | a ponta da frente do banco fica 6 cm além dos dedos da mão de apoio |
+| `braco.inicio.atras` | 3 graus | desenho | desenho | começo: braço estendido, pendurado embaixo do ombro (o cotovelo dobra só 3°, sem travar) |
+| `braco.inicio.fora` | 8 graus | desenho | desenho | começo: o braço pende quase na vertical do ombro, um pouco para fora (o halter passa ao lado do joelho) |
+| `braco.fim.alemDasCostas` | 26 graus | consenso | app | fim: 'cotovelo passando a linha do tronco': o braço fica 26° além da linha das costas |
+| `braco.fim.fora` | 16 graus | consenso | app | fim: cotovelo 'perto do corpo': o braço se afasta só 16° do lado do tronco, o bastante para o halter passar ao lado do quadril |
+| `escapula.prot.inicio` | 6 graus | desenho | hoje | começo: 'ombro solto um pouco para baixo': a escápula vai à frente (hoje: +6) |
+| `escapula.retr.fim` | 10 graus | desenho | hoje | fim: a escápula se junta à coluna (hoje: −6; aqui −10, como na remada na suspensão, porque o ritmo do ombro devolve parte do recuo) |
+| `escapula.elev.inicio` | 1 graus | desenho | hoje | começo: a escápula como hoje (+1) |
+| `escapula.elev.fim` | -1 graus | desenho | hoje | fim: ombro baixo, longe da orelha (hoje: −1) |
+| `carga` | 11,3 kg | desenho | objetos | o halter desenhado (25 lb), na mão direita |
+| `erro.girar.giro` | 18 graus | desenho | hoje | erro: o peito abre para o lado do braço que puxa, a coluna gira 18° no fim (hoje: 18°) |
+| `erro.girar.lombar` | 0,35 fração | desenho | desenho | erro: quanto do giro fica na lombar (o resto na torácica) |
+| `erro.arredondar.lombar` | 22 graus | desenho | hoje | erro: a lombar curva 22° além da curva de repouso (hoje: lombar de 74 para 60) |
+| `erro.arredondar.toracica` | 22 graus | desenho | hoje | erro: a parte de cima das costas curva 22° (hoje: torácica de 76 para 100) |
+| `erro.arredondar.cervical` | 10 graus | desenho | desenho | erro: o pescoço estende para o olhar não ir ao peito |
+| `erro.curta.fracao` | 0,45 fração | desenho | hoje | erro: a volta para perto da metade do caminho (hoje: na pose do meio) |
+
+| fase | tipo | duração | respiração | ritmo | selo |
+|---|---|---|---|---|---|
+| Alongado | pausa | 0,45 s | inspira | pausa curta | consenso |
+| Puxada · concêntrica | conc | 1,1 s | expira | ~1 s | consenso |
+| Segura contraído | pausa | 1 s | firme | 1 s | consenso |
+| Volta · excêntrica | exc | 2,1 s | inspira | ~2 s | consenso |
+
+Contatos que não podem sair do lugar: `pe.R`, `joelho.L`, `mao.L`, `pelve`.
+
+Regras que a conferência mede:
+
+- costas retas (a lombar não arredonda) (consenso)
+- tronco parado, sem girar durante a série (consenso)
+- costas quase paralelas ao chão (~15° acima da horizontal) (consenso)
+- joelho e mão do mesmo lado no banco, a mão embaixo do ombro (consenso)
+- a mão de apoio fica parada no banco (consenso)
+- fim: cotovelo passando a linha do tronco (consenso)
+- cotovelo perto do corpo (consenso)
+- fim: halter ao lado do quadril (consenso)
+- começo: braço estendido (consenso)
+- o halter pende embaixo da mão sem atravessar o corpo nem o banco (consenso)
+- no fim a escápula se junta à coluna (consenso)
+- pegada neutra (palma virada para o banco) (consenso)
+
+Erros desenhados:
+
+- Girar o tronco (vista: quinaTras): o peito abre para o lado do braço que puxa: o ombro direito sobe
+- Arredondar as costas (vista: lateral): a lombar e a parte de cima das costas curvam para cima
+- Não estender o braço (vista: lateral): a volta para no meio: o braço não estende embaixo
+
+Fontes desta ficha:
+
+- `ficha`: Ficha da técnica (docs/pesquisa/animacoes/remada-unilateral.md): joelho e mão do mesmo lado no banco plano, mão embaixo do ombro, o outro pé no chão; costas retas, quase paralelas ao chão (~15° acima da horizontal), sem girar; cotovelo para trás e em direção ao quadril, halter termina ao lado do quadril; pegada neutra; consenso de treinadores (nsca2021, não verificado)
+- `app`: Cartão do app (src/conteudo/exercicios/remada-unilateral.json): o outro pé um pouco para o lado com o joelho levemente dobrado, ombro solto para baixo no começo, cotovelo passando a linha do tronco no fim, ~1 s puxando, 1 s parado, ~2 s voltando, as dicas e os erros
+- `hoje`: Animação aprovada no guia de hoje (src/engine/exercicios/remada-unilateral.ts): as escápulas (proR +6 no começo, −6 no fim), o giro do erro (−18) e as curvas do erro de arredondar, que a ficha não dá em número
+- `objetos`: src/engine/novo/dados/objetos.json: o banco reto e o halter
+- `desenho`: Escolha de desenho desta animação, dentro do que a ficha pede; a conferência mede o resultado
+
+### Rosca alternada com halteres (`rosca-alternada`)
+
+Ficha da técnica: `docs/pesquisa/animacoes/rosca-alternada.md`. Movimento de um lado só.
+
+| parâmetro | valor | selo | fonte | o que é |
+|---|---|---|---|---|
+| `pes.meiaDistancia` | 9 cm | consenso | ficha | pés na largura do quadril, apontando para a frente (os centros do quadril ficam a 8,35 cm do meio) |
+| `joelho` | 5 graus | desenho | desenho | em pé, joelhos estendidos sem travar (a ficha não dá número) |
+| `braco.paraFora` | 6 graus | desenho | desenho | o braço ao lado do tronco, aberto 6° (como na rosca martelo e nos braços pendurados do desenho aprovado do Boneco); com o halter de 10 lb a cabeça de dentro não entra na coxa; a ficha diz 'cotovelo ao lado do tronco' e não dá número |
+| `braco.aFrente` | 5 graus | desenho | desenho | o braço 5° à frente da linha do tronco, ainda ao lado dele (a regra aceita até 10°): na vertical, com a palma para a frente, a cabeça de dentro do halter raspa a frente da coxa no começo da subida (−0,3 cm medido) |
+| `cotovelo.baixo` | 12 graus | consenso | ficha | embaixo, o braço estendido, sem travar o cotovelo (12°: com 8°, a cabeça de dentro do halter fica 0,1 cm dentro da coxa no começo da subida) |
+| `cotovelo.cima` | 132 graus | consenso | app | em cima, o halter perto do ombro (a ficha não dá número; a regra mede a distância da mão ao ombro); a flexão média do cotovelo é 148° (cdc) |
+| `maos.supinacao` | 85 graus | desenho | desenho | palmas para a frente: o polegar gira 85° da posição neutra para fora (a supinação média é 87,5°, cdc) |
+| `carga` | 4,5 kg | desenho | objetos | cada halter desenhado: o sextavado de 10 lb (dados/objetos/halter-leve.json); entram no equilíbrio |
+| `erro.balanco.tronco` | 12 graus | desenho | hoje | erro: o peito vai para trás enquanto o halter sobe (o impulso); o quadril vai à frente pelo equilíbrio |
+| `erro.balanco.lombar` | 6 graus | desenho | hoje | erro: parte do balanço é a lombar arqueando |
+| `erro.cotovelo.braco` | 35 graus | desenho | hoje | erro: o cotovelo vai à frente (o braço sobe 35° à frente do tronco) e o ombro assume o movimento |
+| `erro.cotovelo.cotovelo` | 115 graus | desenho | hoje | erro: com o cotovelo à frente, o antebraço dobra menos (o halter chega à altura do queixo, e não do rosto) |
+| `erro.curta.cotovelo` | 55 graus | desenho | hoje | erro: embaixo, o cotovelo para dobrado 55° (hoje: 55°) |
+
+| fase | tipo | duração | respiração | ritmo | selo |
+|---|---|---|---|---|---|
+| Embaixo | pausa | 0,5 s | inspira | braços estendidos | consenso |
+| Direito sobe · concêntrica | conc | 1,1 s | expira | ~1 s | consenso |
+| Topo | pausa | 0,4 s | firme | halter perto do ombro | consenso |
+| Direito desce · excêntrica | exc | 2,2 s | inspira | ~2 s | consenso |
+| Esquerdo sobe · concêntrica | conc | 1,1 s | expira | ~1 s | consenso |
+| Topo | pausa | 0,4 s | firme | halter perto do ombro | consenso |
+| Esquerdo desce · excêntrica | exc | 2,2 s | inspira | ~2 s | consenso |
+
+Contatos que não podem sair do lugar: `pe.R`, `pe.L`.
+
+Regras que a conferência mede:
+
+- o cotovelo fica parado ao lado do tronco e só o antebraço sobe (consenso)
+- tronco parado, sem jogar o corpo para trás (consenso)
+- embaixo, o braço estendido (consenso)
+- em cima, o halter perto do ombro, com o cotovelo ainda ao lado do tronco (consenso)
+- palmas para a frente (consenso)
+- o halter fica na mão e não atravessa a coxa, o tronco nem o braço (consenso)
+- um braço de cada vez: o outro espera embaixo (consenso)
+
+Erros desenhados:
+
+- Balançar o tronco (vista: lateral): o peito vai para trás e o quadril à frente para dar impulso ao halter
+- Cotovelo vai para a frente (vista: lateral): o braço sobe à frente do tronco e o ombro assume o movimento
+- Não estender o braço (vista: lateral): embaixo, o cotovelo fica dobrado: o braço não estende
+
+Fontes desta ficha:
+
+- `ficha`: Ficha da técnica (docs/pesquisa/animacoes/rosca-alternada.md): em pé, pés na largura do quadril, halteres ao lado do corpo, palmas para a frente; um braço de cada vez, o cotovelo parado ao lado do tronco e só o antebraço sobe; tronco parado; ~1 s subindo, ~2 s descendo; consenso de treinadores (nsca2021, não verificado)
+- `app`: Texto do app (src/conteudo/exercicios/rosca-alternada.json): as fases (embaixo, subida, topo, descida, outro braço), 'halter perto do ombro', 'cotovelo ainda ao lado do tronco', as dicas e os erros
+- `hoje`: Animação aprovada no guia de hoje (src/engine/exercicios/rosca-alternada.ts): as durações das fases, a amplitude do cotovelo e os erros
+- `cdc`: Soucie JM et al. Range of motion measurements: reference values and a database for comparison studies. Haemophilia 2011 (tabelas do CDC; docs/revisoes/animacao-nova/pesquisa/02-articulacoes.md, A1)
+- `objetos`: Tabela de objetos: src/engine/novo/dados/objetos/halter-leve.json (halter sextavado de 10 lb, RitFit e Titan)
+- `desenho`: Escolha de desenho desta animação, dentro do que a ficha pede; a conferência mede o resultado
+
+### Rosca com elástico (`rosca-elastico`)
+
+Ficha da técnica: `docs/pesquisa/animacoes/rosca-elastico.md`. Movimento simétrico (os dois lados fazem o mesmo).
+
+| parâmetro | valor | selo | fonte | o que é |
+|---|---|---|---|---|
+| `pes.meiaDistancia` | 9 cm | consenso | ficha | os dois pés no meio do elástico, na largura do quadril, apontando para a frente |
+| `joelho` | 5 graus | consenso | app | joelhos destravados (a ficha não dá número; o da rosca alternada aprovada) |
+| `braco.paraFora` | 12 graus | desenho | desenho | o braço ao lado do tronco, aberto 12° para o pegador (12,7 cm, atravessado na palma) não bater na coxa; a ficha diz "cotovelos encostados ao lado do tronco" |
+| `braco.aFrente` | 0 graus | consenso | ficha | o braço na vertical, parado ao lado do tronco |
+| `cotovelo.baixo` | 8 graus | consenso | alternada | embaixo, o braço estendido, sem travar o cotovelo |
+| `cotovelo.cima` | 132 graus | consenso | alternada | em cima, as mãos perto dos ombros (o da rosca alternada aprovada) |
+| `maos.supinacao` | 80 graus | consenso | ficha | palmas para a frente: o polegar gira 80° da posição neutra para fora (a supinação média é 87,5°, cdc); sem halter, a palma vira quase toda para a frente |
+| `elastico.folgaNaPerna` | 0,8 cm | desenho | objetos | o tubo passa rente ao lado de fora da perna: o raio do tubo e a roupa |
+| `erro.balanco.tronco` | 12 graus | desenho | alternada | erro: o peito vai para trás enquanto as mãos sobem (o impulso); o quadril vai à frente pelo equilíbrio |
+| `erro.balanco.lombar` | 6 graus | desenho | alternada | erro: parte do balanço é a lombar arqueando |
+| `erro.cotovelo.braco` | 35 graus | desenho | alternada | erro: os cotovelos vão à frente (o braço sobe 35° à frente do tronco) |
+| `erro.cotovelo.cotovelo` | 115 graus | desenho | alternada | erro: com o cotovelo à frente, o antebraço dobra menos |
+| `erro.curta.cotovelo` | 55 graus | desenho | alternada | erro: embaixo, o cotovelo para dobrado 55° |
+
+| fase | tipo | duração | respiração | ritmo | selo |
+|---|---|---|---|---|---|
+| Embaixo | pausa | 0,5 s | inspira | braços estendidos | consenso |
+| Subida · concêntrica | conc | 1,1 s | expira | ~1 s | consenso |
+| Topo | pausa | 0,4 s | firme | o elástico mais esticado | consenso |
+| Descida · excêntrica | exc | 2,2 s | inspira | ~2 s | consenso |
+
+Contatos que não podem sair do lugar: `pe.R`, `pe.L`.
+
+Regras que a conferência mede:
+
+- os cotovelos ficam parados ao lado do tronco e só os antebraços sobem (consenso)
+- tronco parado, sem jogar o corpo para trás (consenso)
+- embaixo, os braços estendidos (consenso)
+- em cima, as mãos perto dos ombros, com os cotovelos ainda ao lado do tronco (consenso)
+- palmas para a frente (consenso)
+- os dois pés pisam no meio do elástico, no meio da sola, inteiros no chão (consenso)
+- o tubo sobe pelo lado de fora das pernas, sem entrar nelas (desenho)
+- cada mão segura um pegador (consenso)
+- os dois antebraços sobem juntos (consenso)
+
+Erros desenhados:
+
+- Balançar o tronco (vista: lateral): o peito vai para trás e o quadril à frente para dar impulso
+- Cotovelos vão para a frente (vista: lateral): os braços sobem à frente do tronco e o ombro assume o movimento
+- Não estender os braços (vista: lateral): embaixo, os cotovelos ficam dobrados: os braços não estendem
+
+Fontes desta ficha:
+
+- `ficha`: Ficha da técnica (docs/pesquisa/animacoes/rosca-elastico.md): consenso de treinadores; a postura e o caminho do antebraço são os da rosca-alternada aprovada
+- `app`: Texto do app (src/conteudo/exercicios/rosca-elastico.json)
+- `alternada`: Ficha de movimento da rosca alternada aprovada (src/engine/novo/dados/movimentos/rosca-alternada.json): os mesmos ângulos do braço e do cotovelo e os mesmos erros
+- `hoje`: A animação de hoje (src/engine/exercicios/rosca-elastico.ts): as distâncias que a ficha não dá em número
+- `cdc`: Soucie JM et al. Range of motion measurements: reference values and a database for comparison studies. Haemophilia 2011 (tabelas do CDC; docs/revisoes/animacao-nova/pesquisa/02-articulacoes.md, A1)
+- `objetos`: src/engine/novo/dados/objetos.json (objeto elastico: o tubo com pegadores de 48 pol)
+- `desenho`: Escolha de desenho desta animação, dentro do que a ficha pede; a conferência mede o resultado
+
+### Rosca inclinada com halteres (`rosca-inclinada`)
+
+Ficha da técnica: `docs/pesquisa/animacoes/rosca-inclinada.md`. Movimento simétrico (os dois lados fazem o mesmo).
+
+| parâmetro | valor | selo | fonte | o que é |
+|---|---|---|---|---|
+| `encosto` | 60 graus | consenso | app | o encosto a 60° do chão, a ponta mais em pé da faixa do app (45–60°): a 45° o tronco fica mais deitado e o halter atravessa o quadril e a coxa no meio da subida (medido) |
+| `apoio.amassa` | 1 cm | desenho | desenho | costas, nádega e nuca apoiadas: quanto o estofado amassa sob o corpo |
+| `toracica` | 0 graus | consenso | ficha | costas apoiadas no encosto: a torácica na curva de repouso |
+| `cervical.min` | -15 graus | desenho | desenho | a nuca apoia no encosto com o pescoço dobrado para trás no máximo 15° além da curva de repouso (para o pescoço não 'quebrar' para a cabeça encostar) |
+| `cabeca` | 0 graus | consenso | ficha | a cabeça na linha do pescoço, apoiada |
+| `pes.meiaDistancia` | 16 cm | desenho | desenho | pés firmes no chão, um pouco mais afastados que o quadril, dos dois lados do banco (a ficha não dá número) |
+| `pes.aFrente` | 57 cm | desenho | desenho | a bola do pé 57 cm à frente do quadril, com a canela um pouco inclinada para a frente (a ficha não dá número; com o pé mais perto, o rótulo do cotovelo ia para o lado de dentro e o fio cruzava o corpo) |
+| `braco.paraFora` | 25 graus | desenho | desenho | os braços pendem na vertical (vistos de lado), abertos 25° para o lado: com a palma para a frente e o braço menos aberto, a cabeça de dentro do halter de 10 lb entra no quadril, na cintura ou no peito no meio e no topo da subida (medido: 20° dá −1,4 cm; 25° dá −0,2 cm); a ficha não dá número |
+| `cotovelo.baixo` | 8 graus | consenso | ficha | embaixo, o braço quase estendido, sem relaxar o ombro para a frente |
+| `cotovelo.cima` | 132 graus | consenso | ficha | em cima, até onde o cotovelo vai sem sair da vertical: o halter perto do ombro (a ficha não dá número; hoje: 135°; a regra mede a distância da pegada ao ombro) |
+| `maos.supinacao` | 85 graus | desenho | desenho | palmas para a frente: o polegar gira 85° da posição neutra para fora (a supinação média é 87,5°, cdc) |
+| `maos.encostaNaCabeca` | 2,2 cm | desenho | desenho | a mão segura o cabo encostada na cabeça de dentro (do lado do dedo mínimo): o halter corre esse tanto para o lado do polegar (o cabo de 13 cm tem 4,4 cm a mais que a largura da mão, 8,6 cm) |
+| `carga` | 4,5 kg | desenho | objetos | cada halter desenhado: o sextavado de 10 lb (dados/objetos/halter-leve.json); entram no equilíbrio |
+| `erro.cotovelo.braco` | 45 graus | desenho | hoje | erro: o braço sai da vertical e vai 45° à frente (hoje: 52°) |
+| `erro.cotovelo.cotovelo` | 115 graus | desenho | hoje | erro: com o braço à frente, o cotovelo dobra menos |
+| `erro.ombro.tronco` | 18 graus | desenho | hoje | erro: o tronco sai do encosto e vai 18° para a frente, girando em volta do quadril |
+| `erro.ombro.braco` | 20 graus | desenho | hoje | erro: o braço também vai à frente (hoje: 28°) |
+| `erro.ombro.protracao` | 10 graus | desenho | hoje | erro: o ombro vai para a frente (a escápula sai do encosto) |
+| `erro.curta.cotovelo` | 55 graus | desenho | hoje | erro: embaixo, o cotovelo para dobrado 55° (hoje: 55°) |
+
+| fase | tipo | duração | respiração | ritmo | selo |
+|---|---|---|---|---|---|
+| Embaixo · alongado | pausa | 0,6 s | inspira | braço estendido | consenso |
+| Subida · concêntrica | conc | 1,1 s | expira | ~1 s | consenso |
+| Topo | pausa | 0,4 s | firme | braço na vertical | consenso |
+| Descida · excêntrica | exc | 2,4 s | inspira | ~2–3 s | consenso |
+
+Contatos que não podem sair do lugar: `pe.R`, `pe.L`, `pelve`.
+
+Regras que a conferência mede:
+
+- dobre só o cotovelo; o braço continua na vertical, atrás da linha do tronco (consenso)
+- costas, ombros e cabeça apoiados no encosto, e a nádega no assento (consenso)
+- os ombros não saem do encosto (consenso)
+- embaixo, o braço quase estendido (consenso)
+- em cima, o halter perto do ombro, sem levar o cotovelo à frente (o braço continua na vertical) (consenso)
+- palmas para a frente (consenso)
+- o halter fica na mão e não atravessa o corpo (consenso)
+- o halter não atravessa o banco nem o chão (consenso)
+
+Erros desenhados:
+
+- Cotovelos vão para a frente (vista: lateral): o braço sai da vertical e vai à frente; a frente do ombro passa a ajudar
+- Ombros saem do encosto (vista: lateral): o tronco e os ombros vão para a frente para ajudar a subir
+- Não estender embaixo (vista: lateral): a volta para na metade: o braço não estende embaixo
+
+Fontes desta ficha:
+
+- `ficha`: Ficha da técnica (docs/pesquisa/animacoes/rosca-inclinada.md): sente com as costas e a cabeça apoiadas, pés firmes no chão; braços pendurados na vertical, atrás da linha do tronco; palmas para a frente, ombros encostados no banco; dobre só o cotovelo, o braço continua na vertical; ~1 s subindo, ~2–3 s descendo; consenso de treinadores (guia original; nsca2021, não verificado)
+- `app`: Texto do app (src/conteudo/exercicios/rosca-inclinada.json): 'encosto a 45–60°; quanto mais deitado, mais o bíceps alonga', as dicas e os erros
+- `hoje`: Animação aprovada no guia de hoje (src/engine/exercicios/rosca-inclinada.ts): as fases, a amplitude do cotovelo e os erros
+- `cdc`: Soucie JM et al. Range of motion measurements: reference values and a database for comparison studies. Haemophilia 2011 (tabelas do CDC; docs/revisoes/animacao-nova/pesquisa/02-articulacoes.md, A1)
+- `objetos`: Tabela de objetos: src/engine/novo/dados/objetos/halter-leve.json (halter sextavado de 10 lb, RitFit e Titan) e src/engine/novo/dados/objetos.json (banco regulável)
+- `desenho`: Escolha de desenho desta animação, dentro do que a ficha pede; a conferência mede o resultado
+
+### Rosca com kettlebell (`rosca-kettlebell`)
+
+Ficha da técnica: `docs/pesquisa/animacoes/rosca-kettlebell.md`. Movimento de um lado só.
+
+| parâmetro | valor | selo | fonte | o que é |
+|---|---|---|---|---|
+| `pes.meiaDistancia` | 9 cm | consenso | app | pés na largura do quadril, apontando para a frente |
+| `joelho` | 5 graus | consenso | app | em pé, joelhos destravados (o texto do app não dá número) |
+| `braco.paraFora` | 6 graus | desenho | desenho | o braço junto ao corpo, aberto 6° (como os braços pendurados do desenho aprovado do Boneco); a bola (20,8 cm), pendurada embaixo da mão, fica 3 cm fora da coxa; a ficha diz 'cotovelo junto ao corpo' e não dá número |
+| `braco.aFrente` | 0 graus | consenso | ficha | o braço na vertical, parado junto ao corpo (o cotovelo não vai à frente) |
+| `cotovelo.baixo` | 8 graus | consenso | ficha | embaixo, o braço estendido, sem travar o cotovelo |
+| `cotovelo.cima` | 130 graus | consenso | ficha | em cima, a mão perto do ombro (a ficha não dá número; a regra mede a distância da mão ao ombro) |
+| `maos.supinacao` | 85 graus | consenso | ficha | palma para a frente: o polegar gira 85° da posição neutra para fora (a supinação média é 87,5°, cdc); com a alça quase na horizontal, a bola pende embaixo da mão |
+| `kettlebell.folga` | 1 cm | desenho | desenho | quando o antebraço sobe, a bola encosta nele: a folga entre a bola e a pele do antebraço |
+| `livre.cotovelo` | 8 graus | desenho | app | a outra mão solta ao lado do corpo, o cotovelo quase estendido |
+| `erro.balanco.tronco` | 12 graus | desenho | alternada | erro: o peito vai para trás enquanto o kettlebell sobe (o impulso), como na alternada |
+| `erro.balanco.lombar` | 6 graus | desenho | alternada | erro: parte do balanço é a lombar arqueando |
+| `erro.cotovelo.braco` | 35 graus | desenho | alternada | erro: o cotovelo vai à frente (o braço sobe 35° à frente do tronco) |
+| `erro.cotovelo.cotovelo` | 110 graus | desenho | alternada | erro: com o cotovelo à frente, o antebraço dobra menos |
+| `erro.curta.cotovelo` | 55 graus | desenho | hoje | erro: embaixo, o cotovelo para dobrado 55° (hoje: 55°) |
+
+| fase | tipo | duração | respiração | ritmo | selo |
+|---|---|---|---|---|---|
+| Embaixo | pausa | 0,5 s | inspira | braço estendido | consenso |
+| Subida · concêntrica | conc | 1,1 s | expira | ~1 s | consenso |
+| Topo | pausa | 0,4 s | firme | mão perto do ombro | consenso |
+| Descida · excêntrica | exc | 2,2 s | inspira | ~2 s | consenso |
+
+Contatos que não podem sair do lugar: `pe.R`, `pe.L`.
+
+Regras que a conferência mede:
+
+- o cotovelo fica junto ao corpo, parado (consenso)
+- sobe sem balançar o tronco (consenso)
+- desce até estender o braço (consenso)
+- sobe até a mão chegar perto do ombro (consenso)
+- uma mão na alça, palma para a frente (consenso)
+- a bola fica pendurada embaixo da mão e não atravessa a coxa nem o antebraço (consenso)
+- a bola fica pendurada embaixo da mão (na vertical) até encostar no antebraço (consenso)
+
+Erros desenhados:
+
+- Balançar o tronco (vista: lateral): o peito vai para trás e o quadril à frente para dar impulso ao kettlebell
+- Cotovelo vai para a frente (vista: lateral): o braço sobe à frente do tronco e o ombro assume o movimento
+- Não estender o braço (vista: lateral): embaixo, o cotovelo fica dobrado: o braço não estende
+
+Fontes desta ficha:
+
+- `ficha`: Ficha da técnica (docs/pesquisa/animacoes/rosca-kettlebell.md): uma mão na alça, palma para a frente, a bola pendurada embaixo da mão; cotovelo junto ao corpo, parado; sobe até a mão chegar perto do ombro, sem balançar o tronco; desce até estender o braço; ~1 s subindo, ~2 s descendo; consenso de treinadores (B.2.6, B.3.2; nsca2021, não verificado)
+- `app`: Texto do app (src/conteudo/exercicios/rosca-kettlebell.json): em pé, joelhos destravados, a outra mão solta ao lado do corpo, um braço por série, as dicas e os erros
+- `hoje`: Animação aprovada no guia de hoje (src/engine/exercicios/rosca-kettlebell.ts): parte da rosca alternada aprovada (mesmo corpo e mesmo braço), as fases e os erros
+- `alternada`: Rosca alternada do motor novo (lote 5, src/engine/novo/dados/movimentos/rosca-alternada.json): o mesmo corpo e os mesmos erros
+- `cdc`: Soucie JM et al. Range of motion measurements: reference values and a database for comparison studies. Haemophilia 2011 (tabelas do CDC; docs/revisoes/animacao-nova/pesquisa/02-articulacoes.md, A1)
+- `objetos`: src/engine/novo/dados/objetos.json
+- `desenho`: Escolha de desenho desta animação, dentro do que a ficha pede; a conferência mede o resultado
+
+### Rosca martelo com halteres (`rosca-martelo`)
+
+Ficha da técnica: `docs/pesquisa/animacoes/rosca-martelo.md`. Movimento de um lado só.
+
+| parâmetro | valor | selo | fonte | o que é |
+|---|---|---|---|---|
+| `pes.meiaDistancia` | 9 cm | consenso | app | pés na largura do quadril, apontando para a frente (os centros do quadril ficam a 8,35 cm do meio) |
+| `joelho` | 5 graus | consenso | app | em pé, joelhos destravados (o texto do app não dá número) |
+| `braco.paraFora` | 6 graus | desenho | desenho | o braço ao lado do tronco, aberto 6° (como os braços pendurados do desenho aprovado do Boneco); com o cabo para a frente, as cabeças do halter não batem na coxa; a ficha diz 'cotovelos encostados ao lado do tronco' e não dá número |
+| `braco.aFrente` | 0 graus | consenso | ficha | o braço na vertical, parado ao lado do tronco (o cotovelo não vai à frente) |
+| `cotovelo.baixo` | 8 graus | consenso | ficha | embaixo, o braço estendido, sem travar o cotovelo |
+| `cotovelo.cima` | 130 graus | consenso | ficha | em cima, os halteres perto dos ombros (a ficha não dá número; a regra mede a distância da mão ao ombro); com o cabo de pé, a cabeça de trás do halter encosta no braço a partir de ~135° |
+| `maos.supinacao` | 0 graus | consenso | ficha | pegada neutra: o polegar aponta para a frente do antebraço (para cima no topo), palmas uma para a outra, sem girar |
+| `carga` | 4,5 kg | desenho | objetos | cada halter desenhado: o sextavado de 10 lb (dados/objetos/halter-leve.json); entram no equilíbrio |
+| `erro.balanco.tronco` | 12 graus | desenho | alternada | erro: o peito vai para trás enquanto o halter sobe (o impulso), como na alternada |
+| `erro.balanco.lombar` | 6 graus | desenho | alternada | erro: parte do balanço é a lombar arqueando |
+| `erro.cotovelo.braco` | 35 graus | desenho | alternada | erro: o cotovelo vai à frente (o braço sobe 35° à frente do tronco) e o ombro assume o movimento |
+| `erro.cotovelo.cotovelo` | 110 graus | desenho | alternada | erro: com o cotovelo à frente, o antebraço dobra menos (o halter fica à frente do queixo) |
+| `erro.curta.cotovelo` | 55 graus | desenho | hoje | erro: embaixo, o cotovelo para dobrado 55° (hoje: 55°) |
+
+| fase | tipo | duração | respiração | ritmo | selo |
+|---|---|---|---|---|---|
+| Embaixo | pausa | 0,5 s | inspira | palmas uma para a outra | consenso |
+| Direito sobe · concêntrica | conc | 1,1 s | expira | ~1 s | consenso |
+| Topo | pausa | 0,4 s | firme | palma ainda para dentro | consenso |
+| Direito desce · excêntrica | exc | 2,2 s | inspira | ~2 s | consenso |
+| Esquerdo sobe · concêntrica | conc | 1,1 s | expira | ~1 s | consenso |
+| Topo | pausa | 0,4 s | firme | palma ainda para dentro | consenso |
+| Esquerdo desce · excêntrica | exc | 2,2 s | inspira | ~2 s | consenso |
+
+Contatos que não podem sair do lugar: `pe.R`, `pe.L`.
+
+Regras que a conferência mede:
+
+- os cotovelos ficam encostados ao lado do tronco, parados (consenso)
+- tronco parado, sem balançar (consenso)
+- estende os braços embaixo (consenso)
+- sobe até os halteres chegarem perto dos ombros (consenso)
+- pegada neutra: palmas uma para a outra o tempo todo, sem girar (consenso)
+- o halter fica na mão e não atravessa a coxa, o tronco nem o braço (consenso)
+- um braço de cada vez: o outro espera embaixo (consenso)
+
+Erros desenhados:
+
+- Balançar o tronco (vista: lateral): o peito vai para trás e o quadril à frente para dar impulso ao halter
+- Cotovelos vão para a frente (vista: lateral): o braço sobe à frente do tronco e o ombro assume o movimento
+- Não estender os braços (vista: lateral): embaixo, os cotovelos ficam dobrados: os braços não estendem
+
+Fontes desta ficha:
+
+- `ficha`: Ficha da técnica (docs/pesquisa/animacoes/rosca-martelo.md): pegada neutra, palmas viradas uma para a outra o tempo todo, sem girar; cotovelos encostados ao lado do tronco, parados; sobe até os halteres chegarem perto dos ombros; ~1 s subindo, ~2 s descendo; estende os braços embaixo; consenso de treinadores (B.2.6; nsca2021, não verificado)
+- `app`: Texto do app (src/conteudo/exercicios/rosca-martelo.json): em pé, joelhos destravados, um braço de cada vez, 'sem girar a mão', 'palma ainda virada para dentro' no topo, as dicas e os erros
+- `hoje`: Animação aprovada no guia de hoje (src/engine/exercicios/rosca-martelo.ts): parte da rosca alternada aprovada (mesmo corpo, mesmo caminho do braço, mesmas fases e erros), com o halter de pé em relação ao antebraço
+- `alternada`: Rosca alternada do motor novo (lote 5, src/engine/novo/dados/movimentos/rosca-alternada.json): o mesmo corpo, as mesmas fases e os mesmos erros
+- `cdc`: Soucie JM et al. Range of motion measurements: reference values and a database for comparison studies. Haemophilia 2011 (tabelas do CDC; docs/revisoes/animacao-nova/pesquisa/02-articulacoes.md, A1)
+- `objetos`: Tabela de objetos: src/engine/novo/dados/objetos/halter-leve.json (halter sextavado de 10 lb, RitFit e Titan)
 - `desenho`: Escolha de desenho desta animação, dentro do que a ficha pede; a conferência mede o resultado
 
 ### Rosca na suspensão (`rosca-suspensao`)
@@ -1977,6 +3420,377 @@ Fontes desta ficha:
 - `guia`: Guia original do projeto, como registrado em docs/pesquisa/animacoes/supino-reto.md: consenso de treinadores
 - `tecnica08`: docs/pesquisa/08-tecnica-guia.md, conclusão 4 (tecnica.supino-halteres.cotovelos): consenso com apoio biomecânico
 - `objetos`: src/engine/novo/dados/objetos.json
+- `desenho`: Escolha de desenho desta animação, dentro do que a ficha pede; a conferência mede o resultado
+
+### Tríceps na polia com corda (`triceps-corda`)
+
+Ficha da técnica: `docs/pesquisa/animacoes/triceps-corda.md`. Movimento simétrico (os dois lados fazem o mesmo).
+
+| parâmetro | valor | selo | fonte | o que é |
+|---|---|---|---|---|
+| `pes.meiaDistancia` | 11 cm | consenso | guia | pés na largura do quadril: cada bola do pé a 11 cm do meio |
+| `pe.z` | 12 cm | desenho | desenho | a bola dos pés, à frente do meio da pelve |
+| `pelve.z` | -3 cm | desenho | desenho | a pelve um pouco atrás, para o peso ficar sobre o meio dos pés com o tronco inclinado |
+| `joelho` | 10 graus | consenso | guia | joelhos destravados (a ficha não dá número; a altura da pelve sai daqui) |
+| `tronco.inclinacao` | 15 graus | consenso | guia | tronco levemente inclinado à frente (o texto do app: de reto até ~20°, preferência): o eixo do tórax, da vertical |
+| `cervical` | -6 graus | desenho | desenho | o pescoço estende um pouco a partir da linha do tronco inclinado: o olhar à frente |
+| `cabeca` | -4 graus | desenho | desenho | a cabeça acompanha o pescoço: o olhar à frente, não para o chão |
+| `braco.frente` | 15 graus | consenso | guia | cotovelos colados nas laterais do tronco: o braço na linha do tronco, sem ir à frente |
+| `braco.paraDentro` | 2 graus | desenho | desenho | o braço vai um pouco para o meio, até o cotovelo encostar ao lado das costelas |
+| `cotovelo.alto` | 112 graus | consenso | guia | em cima: cotovelos dobrados, mãos na altura do peito (a ficha não dá número; a conferência mede a altura das mãos) |
+| `cotovelo.baixo` | 4 graus | consenso | guia | embaixo: cotovelo totalmente estendido |
+| `maos.meiaDistancia.alto` | 6,5 cm | desenho | desenho | em cima, as mãos perto uma da outra, cada uma num ramo, junto da ponta de borracha |
+| `antebraco.giroParaFora.baixo` | 0 graus | consenso | guia | embaixo, a corda abre: o antebraço gira para fora em volta do braço e leva as mãos para os lados das coxas (a conferência mede a abertura) |
+| `cabo.inclinacao` | 20 graus | desenho | hoje | em cima, o cabo sai da roldana um pouco à frente da bucha: de frente para a coluna, a cerca de meio passo |
+| `erro.cotovelo.frente` | 45 graus | desenho | desenho | erro: em cima, o braço sobe à frente e sai do tronco |
+| `erro.cotovelo.cotovelo` | 115 graus | desenho | desenho | erro: em cima, com o braço à frente, o cotovelo dobra mais e as mãos sobem acima do peito |
+| `erro.tronco.inclinacao` | 34 graus | desenho | desenho | erro: o tronco debruça sobre a corda enquanto as mãos descem |
+| `erro.tronco.toracica` | 8 graus | desenho | hoje | erro: as costas arredondam um pouco ao debruçar |
+
+| fase | tipo | duração | respiração | ritmo | selo |
+|---|---|---|---|---|---|
+| Em cima | pausa | 0,4 s | inspira | cotovelos colados | consenso |
+| Extensão · concêntrica | conc | 1 s | expira | ~1 s | consenso |
+| Embaixo · corda aberta | pausa | 0,5 s | firme | contrai | consenso |
+| Volta · excêntrica | exc | 2 s | inspira | ~2 s | consenso |
+
+Contatos que não podem sair do lugar: `pe.R`, `pe.L`.
+
+Regras que a conferência mede:
+
+- os cotovelos ficam no mesmo lugar do início ao fim: só o antebraço se mexe (consenso)
+- cotovelos colados nas laterais do tronco (consenso)
+- em cima, mãos na altura do peito, cotovelos dobrados (consenso)
+- embaixo, cotovelo totalmente estendido (consenso)
+- no fim, abra a corda levando as mãos para os lados das coxas (consenso)
+- tronco levemente inclinado à frente (até ~20°) e parado (consenso)
+- a corda e o cabo passam sem encostar no corpo (desenho)
+- cada mão fecha num ramo da corda, perto da ponta de borracha, e o ramo fica esticado até a bucha (desenho)
+
+Erros desenhados:
+
+- Cotovelos sobem e saem do tronco (vista: lateral): em cima, o braço sobe à frente e o cotovelo sai do lado do tronco
+- Debruçar o tronco (vista: lateral): o tronco debruça sobre a corda enquanto as mãos descem
+
+Fontes desta ficha:
+
+- `guia`: Guia original do projeto (referencia/guia-execucao-fase1.html), como registrado em docs/pesquisa/animacoes/triceps-corda.md e no texto do app (src/conteudo/exercicios/triceps-corda.json): consenso de treinadores
+- `hoje`: A animação de hoje (src/engine/exercicios/triceps-corda.ts): as distâncias que a ficha não dá em número
+- `objetos`: src/engine/novo/dados/objetos.json e src/engine/novo/dados/objetos/corda-triceps.json
+- `desenho`: Escolha de desenho desta animação, dentro do que a ficha pede; a conferência mede o resultado
+
+### Tríceps acima da cabeça com elástico (`triceps-elastico-acima`)
+
+Ficha da técnica: `docs/pesquisa/animacoes/triceps-elastico-acima.md`. Movimento de um lado só.
+
+| parâmetro | valor | selo | fonte | o que é |
+|---|---|---|---|---|
+| `pes.meiaDistancia` | 9 cm | desenho | desenho | cada pé a 9 cm do meio, de frente (a ficha só pede um pé à frente do outro) |
+| `pe.frente.z` | 22 cm | desenho | hoje | a bola do pé da frente (o direito), à frente do meio do corpo: o passo de hoje |
+| `pe.tras.z` | -12 cm | desenho | hoje | a bola do pé de trás (o esquerdo), atrás do meio do corpo (hoje: 26 cm; mais curto para o pé de trás ficar inteiro no chão, pisando no elástico, com o joelho de trás destravado) |
+| `pe.tras.calcanhar` | 0 graus | consenso | ficha | o pé de trás fica inteiro no chão: ele pisa no meio do elástico, no meio da sola |
+| `pelve.z` | -5 cm | desenho | desenho | o meio da pelve fica um pouco atrás do meio dos dois pés (o peso um pouco mais na perna de trás, que pisa no elástico) |
+| `joelho.frente` | 20 graus | consenso | ficha | joelhos destravados: o da frente dobra um pouco (a ficha não dá número; a altura da pelve sai daqui) |
+| `tronco.inclinacao` | 3 graus | consenso | ficha | tronco quase vertical, abdômen firme (a ficha não pede inclinação; hoje o tronco fica quase em pé) |
+| `cervical` | 0 graus | desenho | desenho | pescoço na linha do tronco |
+| `cabeca` | 0 graus | desenho | desenho | cabeça na linha do pescoço |
+| `braco.elevacao` | 172,5 graus | consenso | frances | braços acima da cabeça, ao lado das orelhas (o francês aprovado usa 168° com o tronco inclinado 27°; aqui, com o tronco em pé, 172,5° (a elevação média do ombro é 170°): o braço fica quase vertical e as mãos ficam sobre a cabeça em cima) |
+| `braco.paraDentro` | 6 graus | desenho | frances | o braço vai um pouco para o meio: cotovelos perto da cabeça, sem abrir (o do francês aprovado) |
+| `cotovelo.alongado` | 135 graus | consenso | frances | alongado: mãos atrás da cabeça, cotovelos bem dobrados (o do francês aprovado) |
+| `cotovelo.estendido` | 8 graus | consenso | frances | fim: cotovelos estendidos, sem travar |
+| `maos.meiaDistancia` | 7 cm | desenho | ficha | as duas mãos juntas atrás da cabeça, segurando a ponta de cima do laço |
+| `elastico.folga` | 0,6 cm | desenho | objetos | a faixa passa rente ao corpo: metade da espessura (0,45 cm) e a camiseta |
+| `erro.abre.fora` | 22 graus | desenho | desenho | erro: os cotovelos abrem para os lados (no alongado) |
+| `erro.abre.volta` | 1 fração | desenho | desenho | erro: os cotovelos abrem na volta e fecham estendendo (as mãos continuam juntas na faixa) |
+| `erro.cotovelo.elevacao` | 135 graus | desenho | desenho | erro: no alongado o braço desce à frente (vira um pullover) |
+| `erro.cotovelo.cotovelo` | 100 graus | desenho | desenho | erro: com o braço mais baixo, o cotovelo dobra menos no alongado (as mãos passam acima da cabeça) |
+| `erro.curta.cotovelo` | 90 graus | consenso | ficha | erro: para com o cotovelo a 90° |
+| `erro.arco.lombar` | 12 graus | desenho | desenho | erro: a lombar arqueia enquanto as mãos sobem |
+| `erro.arco.toracica` | 4 graus | desenho | desenho | erro: as costas de cima também estendem |
+
+| fase | tipo | duração | respiração | ritmo | selo |
+|---|---|---|---|---|---|
+| Alongado | pausa | 0,5 s | inspira | mãos atrás da cabeça | consenso |
+| Extensão · concêntrica | conc | 1,1 s | expira | ~1 s | consenso |
+| Braços estendidos | pausa | 0,4 s | firme | o elástico mais esticado | consenso |
+| Volta · excêntrica | exc | 2,4 s | inspira | ~2–3 s | consenso |
+
+Contatos que não podem sair do lugar: `pe.R`, `pe.L`.
+
+Regras que a conferência mede:
+
+- os cotovelos ficam no mesmo lugar do início ao fim: só o antebraço se mexe (consenso)
+- braços ao lado das orelhas, cotovelos perto da cabeça, sem abrir para os lados (consenso)
+- embaixo, mãos atrás da cabeça, cotovelos bem dobrados (consenso)
+- em cima, cotovelos estendidos (consenso)
+- tronco quase vertical e parado, abdômen firme, sem arquear (consenso)
+- o pé de trás pisa no meio do elástico, no meio da sola, e fica inteiro no chão (consenso)
+- a faixa sobe pelas costas rente ao corpo, sem entrar nele (desenho)
+- as duas mãos seguram juntas a ponta de cima do laço, atrás da cabeça (consenso)
+
+Erros desenhados:
+
+- Abrir os cotovelos (vista: frontal): os cotovelos se afastam da cabeça, para os lados
+- Cotovelos sobem e descem (vista: lateral): no alongado o braço desce à frente e o ombro entra no movimento
+- Arquear as costas (vista: lateral): a lombar e as costas de cima arqueiam enquanto as mãos sobem
+- Não alongar atrás da cabeça (vista: lateral): a volta para com o cotovelo a 90°, sem levar as mãos para trás da cabeça
+
+Fontes desta ficha:
+
+- `ficha`: Ficha da técnica (docs/pesquisa/animacoes/triceps-elastico-acima.md) e texto do app (src/conteudo/exercicios/triceps-elastico-acima.json): consenso de treinadores; a posição dos braços é a do triceps-frances e do triceps-frances-halter aprovados
+- `frances`: Ficha de movimento do tríceps francês aprovado (src/engine/novo/dados/movimentos/triceps-frances.json): os mesmos ângulos do braço e do cotovelo
+- `hoje`: A animação de hoje (src/engine/exercicios/triceps-elastico-acima.ts): as distâncias que a ficha não dá em número
+- `objetos`: src/engine/novo/dados/objetos/elastico-longo.json (elástico longo em laço, 41 pol)
+- `desenho`: Escolha de desenho desta animação, dentro do que a ficha pede; a conferência mede o resultado
+
+### Tríceps francês sentado com halter (`triceps-frances-halter`)
+
+Ficha da técnica: `docs/pesquisa/animacoes/triceps-frances-halter.md`. Movimento simétrico (os dois lados fazem o mesmo).
+
+| parâmetro | valor | selo | fonte | o que é |
+|---|---|---|---|---|
+| `tronco.inclinacao` | 0 graus | consenso | ficha | sentado com as costas retas: o eixo do tórax na vertical |
+| `nadega.afunda` | 1,5 cm | desenho | desenho | quanto a nádega afunda no estofado do banco |
+| `pes.meiaDistancia` | 16 cm | desenho | hoje | pés firmes no chão, um pouco mais abertos que o quadril |
+| `coxa.inclinacao` | 0 graus | desenho | desenho | a coxa quase na horizontal (o banco tem a altura do joelho) |
+| `pes.aFrenteDoJoelho` | 4 cm | desenho | desenho | o tornozelo um pouco à frente do joelho |
+| `banco.daPonta` | 14 cm | desenho | desenho | a ponta da frente do banco fica 14 cm à frente do meio da pelve: sentado na ponta, o banco segue para trás |
+| `banco.noQuadro` | 40 cm | desenho | desenho | só a ponta do banco entra no enquadramento |
+| `cervical` | 0 graus | desenho | desenho | pescoço na linha do tronco |
+| `cabeca` | 0 graus | desenho | desenho | cabeça na linha do pescoço, olhando à frente |
+| `braco.elevacao` | 165 graus | consenso | ficha | cotovelos apontando para cima, perto da cabeça: o braço a 165° do braço pendurado, no referencial do tronco (abaixo da elevação média de 170°) |
+| `braco.paraDentro` | 8 graus | desenho | desenho | o braço vai para o meio o bastante para as duas mãos ficarem juntas no halter, com os cotovelos perto da cabeça |
+| `cotovelo.alongado` | 130 graus | consenso | ficha | alongado: halter atrás da cabeça, cotovelos bem dobrados (a ficha não dá número; abaixo da flexão máxima média de 148°) |
+| `cotovelo.estendido` | 8 graus | consenso | ficha | braços estendidos acima da cabeça, sem travar |
+| `maos.meiaDistancia` | 6 cm | consenso | correcao | as duas mãos juntas sob a cabeça de cima do halter, 12 cm entre os centros |
+| `palma.espessura` | 1,8 cm | desenho | desenho | do centro da mão à palma, onde a cabeça de cima do halter apoia |
+| `carga.giro.alongado` | 112 graus | desenho | desenho | no alongado, o halter pende quase na vertical atrás da cabeça: o eixo do halter, girado a partir do antebraço |
+| `carga.giro.estendido` | 26 graus | desenho | desenho | estendido, o halter fica acima da cabeça, um pouco inclinado (a cabeça de baixo passa atrás dos antebraços); o punho estende 62° |
+| `erro.abre.fora` | 20 graus | desenho | desenho | erro: os cotovelos abrem para os lados (no alongado) |
+| `erro.abre.volta` | 1 fração | desenho | desenho | erro: os cotovelos abrem na volta e fecham estendendo (em cima as duas mãos continuam juntas no halter) |
+| `erro.arco.lombar` | 14 graus | desenho | desenho | erro: a lombar arqueia (estende além da curva de repouso) enquanto o halter sobe |
+| `erro.arco.toracica` | 4 graus | desenho | desenho | erro: as costas de cima também estendem |
+| `erro.curta.cotovelo` | 75 graus | desenho | desenho | erro: o halter não desce atrás da cabeça (para com o cotovelo a 75°) |
+| `maos.dedosGiro` | -5 graus | desenho | desenho | os dedos seguem o antebraço, girados 5° na palma para dentro (positivo = para fora): assim a pronação do antebraço fica abaixo do máximo observado (108°) no alongado e no estendido |
+
+| fase | tipo | duração | respiração | ritmo | selo |
+|---|---|---|---|---|---|
+| Alongado | pausa | 0,5 s | inspira | halter atrás da cabeça | consenso |
+| Extensão · concêntrica | conc | 1,1 s | expira | ~1 s | consenso |
+| Braços estendidos | pausa | 0,4 s | firme | halter acima da cabeça | consenso |
+| Volta · excêntrica | exc | 2,4 s | inspira | ~2–3 s | consenso |
+
+Contatos que não podem sair do lugar: `pe.R`, `pe.L`, `pelve`.
+
+Regras que a conferência mede:
+
+- os cotovelos ficam parados: só os antebraços descem atrás da cabeça e voltam (consenso)
+- cotovelos apontando para cima, perto da cabeça, sem abrir para os lados (consenso)
+- início: halter atrás da cabeça, cotovelos bem dobrados (consenso)
+- fim: braços estendidos acima da cabeça (consenso)
+- sentado com as costas retas (consenso)
+- o halter passa atrás da cabeça sem encostar na cabeça, na nuca, nas costas nem no banco (desenho)
+- as duas mãos juntas sob a cabeça de cima do halter, 12 cm entre elas (consenso)
+
+Erros desenhados:
+
+- Abrir os cotovelos (vista: frontal): os cotovelos se afastam da cabeça, para os lados
+- Arquear as costas (vista: lateral): a lombar e as costas de cima arqueiam enquanto o halter sobe
+- Amplitude curta (vista: lateral): o halter para acima da cabeça, sem descer atrás dela
+
+Fontes desta ficha:
+
+- `ficha`: Ficha da técnica (docs/pesquisa/animacoes/triceps-frances-halter.md) e texto do app (src/conteudo/exercicios/triceps-frances-halter.json): consenso de treinadores (nsca2021, não verificado)
+- `correcao`: Correção de 04/11/2026 registrada em docs/revisoes/animacao-nova/correcoes-ja-feitas.md: mãos juntas na anilha, 12 cm
+- `familia`: O tríceps francês na polia com corda (src/engine/novo/dados/movimentos/triceps-frances.json): o mesmo braço acima da cabeça
+- `hoje`: A animação de hoje (src/engine/exercicios/triceps-frances-halter.ts): as distâncias que a ficha não dá em número
+- `objetos`: src/engine/novo/dados/objetos.json
+- `desenho`: Escolha de desenho desta animação, dentro do que a ficha pede; a conferência mede o resultado
+
+### Tríceps francês sentado com kettlebell (`triceps-frances-kettlebell`)
+
+Ficha da técnica: `docs/pesquisa/animacoes/triceps-frances-kettlebell.md`. Movimento simétrico (os dois lados fazem o mesmo).
+
+| parâmetro | valor | selo | fonte | o que é |
+|---|---|---|---|---|
+| `tronco.inclinacao` | 0 graus | consenso | ficha | sentado com as costas retas: o eixo do tórax na vertical |
+| `nadega.afunda` | 1,5 cm | desenho | halter | quanto a nádega afunda no estofado do banco |
+| `pes.meiaDistancia` | 16 cm | desenho | halter | pés firmes no chão, um pouco mais abertos que o quadril |
+| `coxa.inclinacao` | 0 graus | desenho | halter | a coxa quase na horizontal (o banco tem a altura do joelho) |
+| `pes.aFrenteDoJoelho` | 4 cm | desenho | halter | o tornozelo um pouco à frente do joelho |
+| `banco.daPonta` | 14 cm | desenho | halter | a ponta da frente do banco fica 14 cm à frente do meio da pelve: sentado na ponta, o banco segue para trás |
+| `banco.noQuadro` | 40 cm | desenho | halter | só a ponta do banco entra no enquadramento |
+| `cervical` | 0 graus | desenho | halter | pescoço na linha do tronco |
+| `cabeca` | 0 graus | desenho | halter | cabeça na linha do pescoço, olhando à frente |
+| `braco.elevacao` | 165 graus | consenso | ficha | cotovelos apontando para cima, perto da cabeça: o braço a 165° do braço pendurado, no referencial do tronco (como no halter) |
+| `braco.paraDentro` | 8 graus | desenho | halter | o braço vai para o meio o bastante para as duas mãos ficarem nas hastes da alça, com os cotovelos perto da cabeça |
+| `cotovelo.alongado` | 130 graus | consenso | ficha | alongado: kettlebell atrás da cabeça, cotovelos para cima (a ficha não dá número; como no halter) |
+| `cotovelo.estendido` | 8 graus | consenso | ficha | braços estendidos acima da cabeça, sem travar |
+| `maos.meiaDistancia` | 6,15 cm | consenso | objetos | as duas mãos nas hastes da alça ("chifres"): a meia distância entre as hastes do kettlebell da tabela (123 mm) |
+| `carga.giro.alongado` | 115 graus | consenso | ficha | no alongado, a bola para baixo, atrás da cabeça: o eixo do kettlebell (da base à alça) quase na vertical, girado a partir do antebraço |
+| `carga.giro.estendido` | 72 graus | desenho | desenho | estendido, o kettlebell fica deitado atrás das mãos, acima da cabeça, com o eixo quase perpendicular ao antebraço (o punho reto) |
+| `erro.abre.fora` | 20 graus | desenho | halter | erro: os cotovelos abrem para os lados (no alongado) |
+| `erro.abre.volta` | 1 fração | desenho | halter | erro: os cotovelos abrem na volta e fecham estendendo (em cima as duas mãos continuam na alça) |
+| `erro.arco.lombar` | 14 graus | desenho | halter | erro: a lombar arqueia (estende além da curva de repouso) enquanto o kettlebell sobe |
+| `erro.arco.toracica` | 4 graus | desenho | halter | erro: as costas de cima também estendem |
+| `erro.curta.cotovelo` | 75 graus | desenho | halter | erro: o kettlebell não desce atrás da cabeça (para com o cotovelo a 75°) |
+
+| fase | tipo | duração | respiração | ritmo | selo |
+|---|---|---|---|---|---|
+| Alongado | pausa | 0,5 s | inspira | kettlebell atrás da cabeça | consenso |
+| Extensão · concêntrica | conc | 1,1 s | expira | ~1 s | consenso |
+| Braços estendidos | pausa | 0,4 s | firme | kettlebell acima da cabeça | consenso |
+| Volta · excêntrica | exc | 2,4 s | inspira | ~2–3 s, devagar | consenso |
+
+Contatos que não podem sair do lugar: `pe.R`, `pe.L`, `pelve`.
+
+Regras que a conferência mede:
+
+- os cotovelos ficam parados: só os antebraços descem o kettlebell atrás da cabeça e voltam (consenso)
+- cotovelos apontando para cima, perto da cabeça, sem abrir para os lados (consenso)
+- início: kettlebell atrás da cabeça, cotovelos bem dobrados (consenso)
+- fim: braços estendidos acima da cabeça (consenso)
+- sentado com as costas retas (consenso)
+- o kettlebell passa atrás da cabeça sem encostar na cabeça, na nuca, nas costas nem no banco (consenso)
+- as duas mãos pelos lados da alça (a alça passa pelas duas mãos), a bola para baixo (consenso)
+
+Erros desenhados:
+
+- Abrir os cotovelos (vista: frontal): os cotovelos se afastam da cabeça, para os lados
+- Arquear as costas (vista: lateral): a lombar e as costas de cima arqueiam enquanto o kettlebell sobe
+- Amplitude curta (vista: lateral): o kettlebell para acima da cabeça, sem descer atrás dela
+
+Fontes desta ficha:
+
+- `ficha`: Ficha da técnica (docs/pesquisa/animacoes/triceps-frances-kettlebell.md, B.2.6) e texto do app (src/conteudo/exercicios/triceps-frances-kettlebell.json): consenso de treinadores
+- `correcao`: Correção de 04/11/2026 registrada em docs/revisoes/animacao-nova/correcoes-ja-feitas.md: o kettlebell nunca fica solto entre as mãos; a alça passa pelas duas mãos e a bola fica embaixo do meio
+- `halter`: O tríceps francês sentado com halter (src/engine/novo/dados/movimentos/triceps-frances-halter.json), a base do desenho pela ficha da técnica
+- `objetos`: src/engine/novo/dados/objetos.json
+- `desenho`: Escolha de desenho desta animação, dentro do que a ficha pede; a conferência mede o resultado
+
+### Tríceps francês unilateral na polia, com estribo (`triceps-frances-polia-unilateral`)
+
+Ficha da técnica: `docs/pesquisa/animacoes/triceps-frances-polia-unilateral.md`. Movimento de um lado só.
+
+| parâmetro | valor | selo | fonte | o que é |
+|---|---|---|---|---|
+| `pes.meiaDistancia` | 9 cm | desenho | desenho | cada pé a 9 cm do meio, de frente (a ficha só pede um pé à frente do outro) |
+| `pe.frente.z` | 30 cm | desenho | frances | a bola do pé da frente (o direito), à frente do meio do corpo: passo como o de hoje |
+| `pe.tras.z` | -30 cm | desenho | frances | a bola do pé de trás (o esquerdo), atrás do meio do corpo |
+| `pe.tras.calcanhar` | 30 graus | desenho | frances | o calcanhar de trás sobe (o pé de trás apoia na ponta, como no passo de hoje) |
+| `pelve.z` | -2 cm | desenho | desenho | o meio da pelve fica quase no meio dos dois pés |
+| `joelho.frente` | 16 graus | consenso | frances | joelhos destravados: o da frente dobra um pouco (a ficha não dá número; a altura da pelve sai daqui) |
+| `tronco.inclinacao` | 18 graus | desenho | hoje | tronco um pouco inclinado à frente (a ficha não dá número; a animação de hoje inclina o tronco um pouco): o eixo do tórax, da vertical |
+| `cervical` | 0 graus | desenho | desenho | pescoço na linha do tronco |
+| `cabeca` | 0 graus | desenho | desenho | cabeça na linha do pescoço |
+| `braco.elevacao` | 168 graus | consenso | ficha | braços acima da cabeça, ao lado das orelhas: o braço a 168° do braço pendurado, no referencial do tronco (estendido, o braço fica perto da linha do tronco) |
+| `braco.paraDentro` | 6 graus | desenho | desenho | o braço vai um pouco para o meio: cotovelos à frente, perto da cabeça, sem abrir |
+| `cotovelo.alongado` | 135 graus | consenso | ficha | alongado: mãos atrás da cabeça, cotovelos bem dobrados (a ficha não dá número; abaixo da flexão máxima média de 148°) |
+| `cotovelo.estendido` | 8 graus | consenso | ficha | fim: cotovelos estendidos, sem travar |
+| `maos.meiaDistancia` | 5 cm | consenso | ficha | no alongado, a mão atrás da cabeça, um pouco para o lado do braço que trabalha (o centro da mão a 5 cm do meio do tronco) |
+| `erro.abre.fora` | 22 graus | desenho | desenho | erro: os cotovelos abrem para os lados (no alongado) |
+| `erro.curta.cotovelo` | 90 graus | consenso | ficha | erro: para com o cotovelo a 90° |
+| `erro.abre.volta` | 1 fração | desenho | desenho | erro: os cotovelos abrem na volta e fecham estendendo (em cima ficam perto da cabeça; as mãos continuam na corda) |
+| `polia.altura` | 22 cm | consenso | hoje | polia embaixo: o carro a 22 cm do chão (montagem conferida em 04/11) |
+| `cabo.inclinacao` | 64 graus | desenho | desenho | no alongado, o cabo desce do estribo até a roldana a 64° da horizontal, por trás das costas: a distância da coluna sai daqui |
+| `maoNaCintura.x` | 15,5 cm | desenho | desenho | a outra mão na cintura (texto do app): o punho ao lado da crista do quadril, a esta distância do meio da pelve |
+| `maoNaCintura.acima` | 3 cm | desenho | desenho | o punho um pouco acima da crista do quadril |
+| `maoNaCintura.z` | -3 cm | desenho | desenho | o punho um pouco atrás do meio da pelve (os dedos vão para a frente) |
+| `erro.arco.lombar` | 14 graus | desenho | desenho | erro: a lombar arqueia (estende além da curva de repouso) enquanto o halter sobe |
+| `erro.arco.toracica` | 4 graus | desenho | desenho | erro: as costas de cima também estendem |
+
+| fase | tipo | duração | respiração | ritmo | selo |
+|---|---|---|---|---|---|
+| Alongado | pausa | 0,5 s | inspira | mão atrás da cabeça | consenso |
+| Extensão · concêntrica | conc | 1,1 s | expira | ~1 s | consenso |
+| Braço estendido | pausa | 0,4 s | firme | mão acima da cabeça | consenso |
+| Volta · excêntrica | exc | 2,4 s | inspira | ~2–3 s | consenso |
+
+Contatos que não podem sair do lugar: `pe.R`, `pe.L`.
+
+Regras que a conferência mede:
+
+- cotovelo apontando para cima; só o antebraço se mexe (consenso)
+- cotovelo apontando para cima, perto da cabeça, sem abrir para o lado (consenso)
+- início: mão atrás da cabeça, tríceps alongado (consenso)
+- fim: braço estendido acima da cabeça (consenso)
+- base escalonada, abdômen firme: o tronco não arqueia nem se mexe (consenso)
+- o cabo passa por trás do corpo, sem encostar nele (consenso)
+- a outra mão na cintura (consenso)
+
+Erros desenhados:
+
+- Abrir o cotovelo (vista: frontal): o cotovelo abre para o lado
+- Arquear as costas (vista: lateral): a lombar e as costas de cima arqueiam para subir o estribo
+- Amplitude curta (vista: lateral): a volta para com o cotovelo a 90°, sem levar a mão atrás da cabeça
+
+Fontes desta ficha:
+
+- `ficha`: Ficha da técnica (docs/pesquisa/animacoes/triceps-frances-polia-unilateral.md) e texto do app (src/conteudo/exercicios/triceps-frances-polia-unilateral.json): consenso de treinadores; a posição do braço segue o triceps-frances e o triceps-frances-halter aprovados
+- `frances`: A ficha de movimento do tríceps francês na polia (src/engine/novo/dados/movimentos/triceps-frances.json): o mesmo braço e o mesmo passo
+- `hoje`: A animação de hoje (src/engine/exercicios/triceps-frances-polia-unilateral.ts) e a correção de 04/11 (polia a 20/22 cm do chão nos tríceps unilaterais; docs/revisoes/animacao-nova/correcoes-ja-feitas.md)
+- `objetos`: src/engine/novo/dados/objetos.json (coluna de polia, estribo)
+- `desenho`: Escolha de desenho desta animação, dentro do que a ficha pede; a conferência mede o resultado
+
+### Tríceps francês na polia com corda (`triceps-frances`)
+
+Ficha da técnica: `docs/pesquisa/animacoes/triceps-frances.md`. Movimento de um lado só.
+
+| parâmetro | valor | selo | fonte | o que é |
+|---|---|---|---|---|
+| `pes.meiaDistancia` | 9 cm | desenho | desenho | cada pé a 9 cm do meio, de frente (a ficha só pede um pé à frente do outro) |
+| `pe.frente.z` | 30 cm | desenho | hoje | a bola do pé da frente (o direito), à frente do meio do corpo: passo como o de hoje |
+| `pe.tras.z` | -30 cm | desenho | hoje | a bola do pé de trás (o esquerdo), atrás do meio do corpo |
+| `pe.tras.calcanhar` | 30 graus | desenho | hoje | o calcanhar de trás sobe (o pé de trás apoia na ponta, como no passo de hoje) |
+| `pelve.z` | -2 cm | desenho | desenho | o meio da pelve fica quase no meio dos dois pés |
+| `joelho.frente` | 16 graus | consenso | guia | joelhos destravados: o da frente dobra um pouco (a ficha não dá número; a altura da pelve sai daqui) |
+| `tronco.inclinacao` | 27 graus | consenso | guia | tronco inclinado à frente ~25–30°: o eixo do tórax, da vertical |
+| `cervical` | 0 graus | desenho | desenho | pescoço na linha do tronco |
+| `cabeca` | 0 graus | desenho | desenho | cabeça na linha do pescoço |
+| `braco.elevacao` | 168 graus | consenso | guia | braços acima da cabeça, ao lado das orelhas: o braço a 168° do braço pendurado, no referencial do tronco (estendido, o braço fica perto da linha do tronco) |
+| `braco.paraDentro` | 6 graus | desenho | desenho | o braço vai um pouco para o meio: cotovelos à frente, perto da cabeça, sem abrir |
+| `cotovelo.alongado` | 135 graus | consenso | guia | alongado: mãos atrás da cabeça, cotovelos bem dobrados (a ficha não dá número; abaixo da flexão máxima média de 148°) |
+| `cotovelo.estendido` | 8 graus | consenso | guia | fim: cotovelos estendidos, sem travar |
+| `maos.meiaDistancia` | 7 cm | desenho | desenho | no alongado, as duas mãos perto uma da outra atrás da cabeça, cada uma num ramo da corda |
+| `maos.meiaDistancia.estendido` | 10 cm | desenho | desenho | estendido, as mãos se afastam um pouco (a corda abre em V da bucha às mãos) |
+| `polia.acimaDoOmbro` | 0 cm | consenso | guia | carro mais ou menos na altura do ombro: a roldana na altura do centro do ombro, no alongado |
+| `cabo.alongado` | 42 cm | desenho | desenho | da bucha da corda à roldana, no alongado: o passo à frente que deixa o cabo tenso |
+| `erro.abre.fora` | 22 graus | desenho | desenho | erro: os cotovelos abrem para os lados (no alongado) |
+| `erro.cotovelo.elevacao` | 135 graus | desenho | desenho | erro: no alongado o braço desce à frente (vira um pullover) |
+| `erro.curta.cotovelo` | 90 graus | consenso | guia | erro: para com o cotovelo a 90° |
+| `erro.abre.volta` | 1 fração | desenho | desenho | erro: os cotovelos abrem na volta e fecham estendendo (em cima ficam perto da cabeça; as mãos continuam na corda) |
+| `erro.cotovelo.cotovelo` | 100 graus | desenho | desenho | erro: com o braço mais baixo, o cotovelo dobra menos no alongado (as mãos passam acima da cabeça, sem entrar nela) |
+
+| fase | tipo | duração | respiração | ritmo | selo |
+|---|---|---|---|---|---|
+| Alongado | pausa | 0,5 s | inspira | mãos atrás da cabeça | consenso |
+| Extensão · concêntrica | conc | 1,1 s | expira | ~1 s | consenso |
+| Braços estendidos | pausa | 0,4 s | firme | na linha do tronco | consenso |
+| Volta · excêntrica | exc | 2,4 s | inspira | ~2–3 s | consenso |
+
+Contatos que não podem sair do lugar: `pe.R`, `pe.L`.
+
+Regras que a conferência mede:
+
+- os cotovelos ficam no mesmo lugar do início ao fim: só o antebraço se mexe (consenso)
+- cotovelos apontando para a frente, perto da cabeça, sem abrir para os lados (consenso)
+- embaixo, mãos atrás da cabeça, cotovelos bem dobrados (consenso)
+- em cima, cotovelos estendidos (consenso)
+- tronco inclinado à frente ~25–30° (consenso)
+- a corda e o cabo passam sem encostar na cabeça nem no corpo (desenho)
+- cada mão fecha num ramo da corda, perto da ponta de borracha, e o ramo fica esticado até a bucha (desenho)
+
+Erros desenhados:
+
+- Cotovelos abrem para os lados (vista: frontal): os cotovelos se afastam da cabeça, para os lados
+- Cotovelos sobem e descem (vista: lateral): no alongado o braço desce à frente e o ombro entra no movimento
+- Não alongar atrás da cabeça (vista: lateral): a volta para com o cotovelo a 90°, sem levar as mãos para trás da cabeça
+
+Fontes desta ficha:
+
+- `guia`: Guia original do projeto (referencia/guia-execucao-fase1.html), como registrado em docs/pesquisa/animacoes/triceps-frances.md e no texto do app (src/conteudo/exercicios/triceps-frances.json): consenso de treinadores
+- `hoje`: A animação de hoje (src/engine/exercicios/triceps-frances.ts): as distâncias que a ficha não dá em número
+- `objetos`: src/engine/novo/dados/objetos.json e src/engine/novo/dados/objetos/corda-triceps.json
 - `desenho`: Escolha de desenho desta animação, dentro do que a ficha pede; a conferência mede o resultado
 
 ### Tríceps na suspensão (mãos à testa) (`triceps-suspensao`)
