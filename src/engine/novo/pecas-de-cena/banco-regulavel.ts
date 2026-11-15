@@ -23,6 +23,11 @@ export interface BancoRegulavel {
   x0: number;
   z0: number;
   encosto: number;
+  /**
+   * Opcional (supino inclinado): desenha, de lado, o ângulo do encosto (a linha do chão tracejada a partir da dobradiça,
+   * o arco até o encosto e o número em graus). Sem o campo, o desenho é o de antes.
+   */
+  marcaDoAngulo?: boolean;
 }
 /** A dobradiça (o meio do vão entre assento e encosto, na face de baixo do estofado), como em ../pecas.ts. */
 export function dobradica(b: BancoRegulavel): V3 {
@@ -97,7 +102,34 @@ export function bancoRegulavelNaCena(b: BancoRegulavel): { prims: Prim[]; peca: 
       C.tubo(debaixo(4), debaixo(F.comp * 0.8), tubo * 0.8, tubo * 0.8, M.metal, { up: X });
       C.tubo(pe, apoio, tubo * 0.8, tubo * 0.8, M.metal);
       if (o.comSombra) C.sombra(b.x0, b.z0, baseL, base / 2 + 6, 0.18);
+      if (b.marcaDoAngulo) marcarOAngulo(C, b);
     },
   };
   return { prims, peca };
+}
+
+/**
+ * O ângulo do encosto, de lado: da dobradiça, uma linha tracejada na horizontal (para o lado do encosto), o arco até a
+ * face de baixo do encosto e o número em graus. Só nas vistas em que o banco aparece de perfil (nas outras o arco vira
+ * um traço). O texto usa a classe dos rótulos de técnica (cor e contorno do tema).
+ */
+function marcarOAngulo(C: CenaRealista, b: BancoRegulavel): void {
+  const D = dobradica(b);
+  const a = b.encosto * rad;
+  const tela = (p: V3) => C.P(p);
+  const z0 = tela(D),
+    z1 = tela(add(D, [0, 0, -1]));
+  if (Math.hypot(z1[0] - z0[0], z1[1] - z0[1]) < 0.7) return;
+  const r = Math.min(24, (g('estofadoComp') - g('assentoComp')) * 0.25);
+  const pts = (P: V3[]) => P.map((p) => { const q = tela(p); return `${Math.round(q[0] * 10) / 10},${Math.round(q[1] * 10) / 10}`; }).join(' ');
+  const arco: V3[] = [];
+  for (let i = 0; i <= 12; i++) {
+    const t = (a * i) / 12;
+    arco.push(add(D, [0, Math.sin(t) * r, -Math.cos(t) * r]));
+  }
+  // o número fica logo acima da ponta da linha tracejada, do lado de fora do arco
+  const txt = tela(add(D, [0, 1.5, -(r + 4)]));
+  const svg = `<polyline class="n-guia-l" points="${pts([D, add(D, [0, 0, -(r + 8)])])}"/><polyline class="n-guia-l" points="${pts(arco)}" style="stroke-dasharray:none"/>` +
+    `<text class="n-rot-t" font-size="7" text-anchor="middle" x="${Math.round(txt[0] * 10) / 10}" y="${Math.round(txt[1] * 10) / 10}">${b.encosto}°</text>`;
+  C.bruto(z0[2] - 20, svg);
 }
