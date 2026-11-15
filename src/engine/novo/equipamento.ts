@@ -152,11 +152,14 @@ function kettlebell(C: CenaRealista, M: typeof MAT, p: Extract<Peca, { t: 'kettl
     ate = Math.hypot(dx, dy);
   const meiaCorda = Math.sqrt(Math.max(0, K.R * K.R - ate * ate));
   const gira = (Math.atan2(dy, dx) * 180) / Math.PI - 90;
+  // no tema escuro, a bola de ferro sumia no fundo: ela ganha um contorno claro, como o do corpo
+  const escuro = M !== MAT,
+    borda = escuro ? '#cfd8df' : M.ferro[3]!;
   const g = C.uid('kb');
   C.defs.push(`<radialGradient id="${g}" cx="${f1(c[0] - K.R * 0.38)}" cy="${f1(c[1] - K.R * 0.42)}" r="${f1(K.R * 1.45)}" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="${mix(M.ferro[2]!, '#ffffff', 0.18)}"/><stop offset="0.4" stop-color="${M.ferro[1]}"/><stop offset="1" stop-color="${M.ferro[0]}"/></radialGradient>`);
   C.bruto(
     c[2],
-    `<g transform="translate(${f1(c[0])} ${f1(c[1])}) rotate(${f1(gira)})"><path d="M${f1(-meiaCorda)} ${f1(ate)}A${f1(K.R)} ${f1(K.R)} 0 1 1 ${f1(meiaCorda)} ${f1(ate)}Z" fill="url(#${g})" stroke="${M.ferro[3]}" stroke-width="0.5"/></g><ellipse cx="${f1(c[0] - K.R * 0.42)}" cy="${f1(c[1] - K.R * 0.44)}" rx="${f1(K.R * 0.22)}" ry="${f1(K.R * 0.13)}" transform="rotate(-35 ${f1(c[0] - K.R * 0.42)} ${f1(c[1] - K.R * 0.44)})" fill="#fff" opacity="0.26"/>`,
+    `<g transform="translate(${f1(c[0])} ${f1(c[1])}) rotate(${f1(gira)})"><path d="M${f1(-meiaCorda)} ${f1(ate)}A${f1(K.R)} ${f1(K.R)} 0 1 1 ${f1(meiaCorda)} ${f1(ate)}Z" fill="url(#${g})" stroke="${borda}" stroke-width="${escuro ? 0.8 : 0.5}"/></g><ellipse cx="${f1(c[0] - K.R * 0.42)}" cy="${f1(c[1] - K.R * 0.44)}" rx="${f1(K.R * 0.22)}" ry="${f1(K.R * 0.13)}" transform="rotate(-35 ${f1(c[0] - K.R * 0.42)} ${f1(c[1] - K.R * 0.44)})" fill="#fff" opacity="0.26"/>`,
   );
   // a alça: duas hastes que saem da bola e a barra de cima (um pouco para trás na pintura: as mãos ficam por cima)
   const alto = K.altura - K.rAlca;

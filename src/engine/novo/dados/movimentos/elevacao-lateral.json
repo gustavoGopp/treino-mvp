@@ -61,7 +61,7 @@
  ],
  "simetrico": false,
  "rotulos": [
-  {"vista": "frontal", "texto": "leva a mão para longe, não para cima", "ponto": "pegada:R", "selo": "consenso", "fonte": "guia"},
+  {"vista": "frontal", "texto": "leva a mão para longe", "ponto": "pegada:R", "selo": "consenso", "fonte": "guia"},
   {"vista": "frontal", "texto": "ombro longe da orelha", "ponto": "acromioclavicular:R", "selo": "consenso", "fonte": "guia"},
   {"vista": "cima", "texto": "braço um pouco à frente do corpo", "ponto": "cotovelo:R", "selo": "consenso", "fonte": "app"}
  ]

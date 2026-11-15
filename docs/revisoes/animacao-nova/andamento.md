@@ -2,7 +2,7 @@
 
 Atualizado por quem integra, a cada família juntada. "Aprovada na folha" = o Gustavo olhou e aprovou. "Aprovada por delegação" = conferida por quem integra, risco baixo, registrada com a frase dele de 15/11/2026. "Para o Gustavo ver" = risco médio ou alto: só entra na lista do app depois do ok dele. "Correção de qualidade" = desde o aviso dele de 15/11 ("o fato de eu ter delegado [...] não quer dizer que a gente pode diminuir a qualidade"), nenhuma animação delegada conta como pronta enquanto tiver defeito visível nos quadros (seção 8 de `como-fazer-uma-animacao.md`). As folhas ficam em `prototipos/folha-<id>.png` e os quadros grandes em `quadros/<id>.png`.
 
-Resumo: 7 aprovadas na folha; 18 por delegação; 7 prontas para o Gustavo ver; 0 em correção de qualidade; 4 das quatro primeiras sem aprovação na folha; 16 em andamento; 38 por fazer.
+Resumo: 7 aprovadas na folha; 24 por delegação; 8 prontas para o Gustavo ver; 0 em correção de qualidade; 4 das quatro primeiras sem aprovação na folha; 8 em andamento; 39 por fazer.
 
 | Lote | Exercício | Estado |
 |---|---|---|
@@ -28,11 +28,11 @@ Resumo: 7 aprovadas na folha; 18 por delegação; 7 prontas para o Gustavo ver; 
 | 3 | `crucifixo-elastico` | por fazer |
 | 3 | `crucifixo-invertido-polia` | por fazer |
 | 3 | `crucifixo-polia` | por fazer |
-| 3 | `desenvolvimento` | em andamento (subagente) |
+| 3 | `desenvolvimento` | feita e conferida quadro a quadro por quem integra; aprovada por delegação (sentado, com encosto; o banco regulável é uma peça provisória) |
 | 3 | `desenvolvimento-elastico` | por fazer |
-| 3 | `desenvolvimento-unilateral-kettlebell` | em andamento (subagente) |
-| 3 | `elevacao-halteres` | em andamento (subagente) |
-| 3 | `elevacao-lateral` | em andamento (subagente) |
+| 3 | `desenvolvimento-unilateral-kettlebell` | feita e conferida quadro a quadro por quem integra; aprovada por delegação |
+| 3 | `elevacao-halteres` | feita e conferida quadro a quadro por quem integra; aprovada por delegação (o halter de 25 lb da tabela é grande para este exercício) |
+| 3 | `elevacao-lateral` | feita e conferida quadro a quadro por quem integra; aprovada por delegação (é a elevação lateral de um braço na polia, como a ficha e o app dizem) |
 | 3 | `elevacao-lateral-elastico` | por fazer |
 | 3 | `supino-inclinado` | por fazer |
 | 4 | `barra-fixa` | por fazer |
@@ -50,11 +50,11 @@ Resumo: 7 aprovadas na folha; 18 por delegação; 7 prontas para o Gustavo ver; 
 | 4 | `remada-unilateral-polia` | por fazer |
 | 4 | `remada-unilateral-sem-banco` | por fazer |
 | 4 | `yt-suspensao` | feita e conferida quadro a quadro por quem integra; aprovada por delegação |
-| 5 | `rosca-alternada` | em andamento (subagente) |
+| 5 | `rosca-alternada` | feita; **para o Gustavo ver** (de frente os braços ficam abertos 17°, para o halter de 33 cm não entrar na coxa) |
 | 5 | `rosca-elastico` | por fazer |
-| 5 | `rosca-inclinada` | em andamento (subagente) |
-| 5 | `rosca-kettlebell` | em andamento (subagente) |
-| 5 | `rosca-martelo` | em andamento (subagente) |
+| 5 | `rosca-inclinada` | não entregue: com o halter de 33 cm da tabela, a cabeça do halter atravessa a coxa; espera um halter menor na tabela de objetos |
+| 5 | `rosca-kettlebell` | feita e conferida quadro a quadro por quem integra; aprovada por delegação |
+| 5 | `rosca-martelo` | feita e conferida quadro a quadro por quem integra; aprovada por delegação |
 | 5 | `rosca-polia` | por fazer |
 | 5 | `rosca-suspensao` | feita e conferida quadro a quadro por quem integra; aprovada por delegação |
 | 5 | `triceps-corda` | em andamento (subagente) |
