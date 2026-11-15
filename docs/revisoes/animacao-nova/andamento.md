@@ -2,7 +2,7 @@
 
 Atualizado por quem integra, a cada família juntada. "Aprovada na folha" = o Gustavo olhou e aprovou. "Aprovada por delegação" = conferida por quem integra, risco baixo, registrada com a frase dele de 15/11/2026. "Para o Gustavo ver" = risco médio ou alto: só entra na lista do app depois do ok dele. "Correção de qualidade" = desde o aviso dele de 15/11 ("o fato de eu ter delegado [...] não quer dizer que a gente pode diminuir a qualidade"), nenhuma animação delegada conta como pronta enquanto tiver defeito visível nos quadros (seção 8 de `como-fazer-uma-animacao.md`). As folhas ficam em `prototipos/folha-<id>.png` e os quadros grandes em `quadros/<id>.png`.
 
-Resumo: 7 aprovadas na folha; 18 por delegação; 7 prontas para o Gustavo ver; 0 em correção de qualidade; 4 das quatro primeiras sem aprovação na folha; 13 em andamento; 41 por fazer.
+Resumo: 7 aprovadas na folha; 18 por delegação; 7 prontas para o Gustavo ver; 0 em correção de qualidade; 4 das quatro primeiras sem aprovação na folha; 16 em andamento; 38 por fazer.
 
 | Lote | Exercício | Estado |
 |---|---|---|
@@ -57,12 +57,12 @@ Resumo: 7 aprovadas na folha; 18 por delegação; 7 prontas para o Gustavo ver; 
 | 5 | `rosca-martelo` | em andamento (subagente) |
 | 5 | `rosca-polia` | por fazer |
 | 5 | `rosca-suspensao` | feita e conferida quadro a quadro por quem integra; aprovada por delegação |
-| 5 | `triceps-corda` | por fazer |
-| 5 | `triceps-elastico-acima` | por fazer |
+| 5 | `triceps-corda` | em andamento (subagente) |
+| 5 | `triceps-elastico-acima` | em andamento (subagente) |
 | 5 | `triceps-frances` | feita e conferida quadro a quadro por quem integra; aprovada por delegação (na polia, com a corda, que é peça nova) |
 | 5 | `triceps-frances-halter` | feita e conferida quadro a quadro por quem integra; aprovada por delegação |
 | 5 | `triceps-frances-kettlebell` | feita e conferida quadro a quadro por quem integra; aprovada por delegação |
-| 5 | `triceps-frances-polia-unilateral` | por fazer |
+| 5 | `triceps-frances-polia-unilateral` | em andamento (subagente) |
 | 5 | `triceps-suspensao` | feita; **para o Gustavo ver** (apoio na ponta dos pés e mãos acima da testa, diferentes da de hoje) |
 | 6 | `flexao-joelho-deslizante` | feita e conferida quadro a quadro por quem integra; aprovada por delegação (depois da correção: segunda vista de três quartos, toalha visível, erro da lombar refeito) |
 | 6 | `flexao-joelho-elastico` | feita e conferida quadro a quadro por quem integra; aprovada por delegação (depois da correção: o corpo ocupa o quadro, pose de bruços refeita, o pé dentro do pegador) |
