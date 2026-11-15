@@ -205,7 +205,16 @@ const REGRAS: Record<string, Regra> = {
 };
 
 /** As regras daqui e as dos arquivos de cada família (./regras/registro.ts). */
-const TODAS_AS_REGRAS: Record<string, Regra> = Object.assign({}, REGRAS, ...(Object.values(REGRAS_DAS_FAMILIAS) as Record<string, Regra>[]));
+const TODAS_AS_REGRAS: Record<string, Regra> = (() => {
+  const todas: Record<string, Regra> = { ...REGRAS };
+  // duas famílias não podem dar o mesmo nome a regras diferentes: a segunda trocaria a primeira sem ninguém ver
+  for (const [familia, regras] of Object.entries(REGRAS_DAS_FAMILIAS) as [string, Record<string, Regra>][])
+    for (const [id, regra] of Object.entries(regras)) {
+      if (id in todas) throw new Error(`regra "${id}" definida duas vezes (a segunda em ${familia}): dê um nome próprio à da família`);
+      todas[id] = regra;
+    }
+  return todas;
+})();
 
 export function conferir(ex: Exercicio, corpo: Corpo, qps = 60): Relatorio {
   const F = ex.ficha;

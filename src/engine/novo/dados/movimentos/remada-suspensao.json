@@ -39,7 +39,7 @@
   {"id": "maos-nos-pegadores", "pede": "as mãos seguram os pegadores o ciclo inteiro", "selo": "consenso", "fonte": "ficha"},
   {"id": "corpo-sobe-com-a-fita", "pede": "a fita não estica: o corpo sobe enquanto as mãos vêm ao corpo", "selo": "consenso", "fonte": "hoje"},
   {"id": "maos-ao-lado-do-peito", "pede": "no fim, as mãos chegam ao lado do peito", "selo": "consenso", "fonte": "ficha"},
-  {"id": "cotovelos-rentes", "pede": "cotovelos rentes ao corpo", "selo": "consenso", "fonte": "ficha"},
+  {"id": "cotovelos-rentes-na-fita", "pede": "cotovelos rentes ao corpo", "selo": "consenso", "fonte": "ficha"},
   {"id": "antebraco-na-linha-da-fita", "pede": "o antebraço fica na linha da fita, que puxa a mão", "selo": "consenso", "fonte": "desenho"},
   {"id": "escapulas-se-juntam", "pede": "as escápulas se juntam no fim", "selo": "consenso", "fonte": "app"},
   {"id": "palmas-uma-para-a-outra", "pede": "palmas viradas uma para a outra", "selo": "consenso", "fonte": "app"}

@@ -69,7 +69,7 @@ export const regrasDaSuspensao: Record<string, Regra> = {
       mamilo = e.corpo.m('altura.cervical') - e.corpo.m('altura.peito');
     return { medido: `no fim, a pegada fica ${f1(-l[1])} cm abaixo da base do pescoço (o mamilo fica a ${f1(mamilo)} cm), ${f1(l[2])} cm à frente da linha da coluna (o peito tem ${f1(peito)} cm de fundo) e ${f1(Math.abs(l[0]))} cm do meio do corpo`, ok: -l[1] >= 4 && -l[1] <= mamilo + 8 && l[2] >= 0 && l[2] <= peito + 8 };
   },
-  'cotovelos-rentes': (q) => {
+  'cotovelos-rentes-na-fita': (q) => {
     const e = ultimo(q).esq;
     const b = bracoNoTronco(e, 'R');
     const a = Math.asin(Math.abs(b[0])) / (Math.PI / 180);
