@@ -38,14 +38,16 @@ export const apoioNoChao: Record<string, Regra> = {
     const quad = faixa(q.map((x) => angulosDoLado(x.esq, 'R').quadril));
     return { medido: `o quadril fica no mínimo ${f1(acima)} cm acima dos ombros; os ombros ficam no mínimo ${f1(Math.abs(frente))} cm ${frente <= 0 ? 'atrás' : 'à frente'} do centro das palmas; a flexão do quadril vai de ${f1(quad[1])}° a ${f1(quad[0])}°`, ok: acima > 0 && frente <= 0 };
   },
-  'cabeca-desce-entre-as-maos': (q) => {
+  'cabeca-desce-entre-as-maos': (q, corpo) => {
+    // embaixo: a cabeça perto do chão, entre as mãos e na linha delas (entre o punho e a ponta dos dedos)
     const e = q[q.length - 1]!.esq;
     const h = baixoDaCabeca(e);
-    const zMaos = (palma(e, 'R')[2] + palma(e, 'L')[2]) / 2;
+    const zPunho = (e.lado.R.punho[2] + e.lado.L.punho[2]) / 2,
+      zDedos = zPunho + corpo.m('mao.comp');
     const entre = Math.abs(h[0]) < Math.abs(e.lado.R.punho[0]);
     // nenhum quadro antes: a cabeça não passa para baixo do chão no caminho
     const min = Math.min(...q.map((x) => baixoDaCabeca(x.esq)[1]));
-    return { medido: `embaixo, o ponto mais baixo da cabeça fica a ${f1(h[1])} cm do chão e ${f1(Math.abs(h[2] - zMaos))} cm ${h[2] >= zMaos ? 'à frente' : 'atrás'} da linha do centro das palmas, ${entre ? 'entre as mãos' : 'FORA do espaço entre as mãos'}; no caminho, nunca abaixo de ${f1(min)} cm`, ok: h[1] >= 1 && h[1] <= 9 && Math.abs(h[2] - zMaos) <= 3 && entre && min >= 1 };
+    return { medido: `embaixo, o ponto mais baixo da cabeça fica a ${f1(h[1])} cm do chão, ${f1(h[2] - zPunho)} cm à frente da linha dos punhos (a ponta dos dedos fica a ${f1(zDedos - zPunho)}), ${entre ? 'entre as mãos' : 'FORA do espaço entre as mãos'}; no caminho, nunca abaixo de ${f1(min)} cm`, ok: h[1] >= 3 && h[1] <= 9 && h[2] >= zPunho && h[2] <= zDedos && entre && min >= 3 };
   },
   'pernas-estendidas': (q) => {
     const j = faixa(q.map((x) => Math.max(angulosDoLado(x.esq, 'R').joelho, angulosDoLado(x.esq, 'L').joelho)));

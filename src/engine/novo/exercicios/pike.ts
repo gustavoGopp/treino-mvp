@@ -22,7 +22,7 @@ type Angs = [number, number];
 const CACHE = new WeakMap<Corpo, { cima: Angs; baixo: Angs; quadril: Angs }>();
 
 /** O corpo com as pernas `beta` graus acima do chão e o tronco `phi` graus abaixo da horizontal. */
-function pose(corpo: Corpo, beta: number, phi: number, cot = f('cotovelos.doTronco')): Esq {
+function pose(corpo: Corpo, beta: number, phi: number, cot = f('cotovelos.doTronco'), zMao = f('maos.aFrenteDosPes')): Esq {
   const { pernas, tornozelo } = pesNaPonta(corpo, f('pes.meiaDistancia'), f('calcanhar.sobe'), [0, -0.6, 1]);
   const d = quadrilAoTornozelo(corpo, f('joelho'));
   const pelve: V3 = [0, tornozelo[1] + d * Math.sin(beta * rad), tornozelo[2] + d * Math.cos(beta * rad)];
@@ -30,7 +30,7 @@ function pose(corpo: Corpo, beta: number, phi: number, cot = f('cotovelos.doTron
   const x = corpo.m('ombro.meiaDistancia') + f('maos.alemDoOmbro'),
     a = cot * rad;
   // os cotovelos vão para trás (na direção dos pés) e um pouco para fora: `cot` graus do tronco
-  const braco = (k: Lado) => maoEspalmada(corpo, k, x, 0, f('maos.aFrenteDosPes'), [sinal(k) * Math.sin(a), 0.25, -Math.cos(a)]);
+  const braco = (k: Lado) => maoEspalmada(corpo, k, x, 0, zMao, [sinal(k) * Math.sin(a), 0.25, -Math.cos(a)]);
   return resolverMembros(t, { R: braco('R'), L: braco('L') }, pernas);
 }
 
@@ -71,7 +71,7 @@ function quadro(corpo: Corpo, u: number, erro?: string): Quadro {
 
 export const pike: Exercicio = {
   ficha: F,
-  vistas: ['lateral', 'frontal'],
+  vistas: ['lateral', 'quina'],
   quadro,
   // a biblioteca: frente do ombro principal; lateral do ombro e tríceps secundários (revisão de anatomia, achado 4)
   papeis: { deltAnt: 'p', deltLat: 's', triceps: 's' },
