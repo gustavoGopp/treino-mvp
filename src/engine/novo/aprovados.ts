@@ -24,4 +24,6 @@ export const APROVADOS: Record<string, { em: string; oQueEleDisse: string; como?
   'bulgaro-suspensao': { em: '2026-11-15', oQueEleDisse: DELEGOU, como: 'por delegação' },
   pike: { em: '2026-11-15', oQueEleDisse: DELEGOU, como: 'por delegação' },
   'ponte-gluteo': { em: '2026-11-15', oQueEleDisse: DELEGOU, como: 'por delegação' },
+  'flexao-joelho-deslizante': { em: '2026-11-15', oQueEleDisse: DELEGOU, como: 'por delegação' },
+  'flexao-joelho-elastico': { em: '2026-11-15', oQueEleDisse: DELEGOU, como: 'por delegação' },
 };

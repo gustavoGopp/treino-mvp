@@ -2,7 +2,7 @@
 
 Atualizado por quem integra, a cada família juntada. "Aprovada na folha" = o Gustavo olhou e aprovou. "Aprovada por delegação" = conferida por quem integra, risco baixo, registrada com a frase dele de 15/11/2026. "Para o Gustavo ver" = risco médio ou alto: só entra na lista do app depois do ok dele. "Correção de qualidade" = desde o aviso dele de 15/11 ("o fato de eu ter delegado [...] não quer dizer que a gente pode diminuir a qualidade"), nenhuma animação delegada conta como pronta enquanto tiver defeito visível nos quadros (seção 8 de `como-fazer-uma-animacao.md`). As folhas ficam em `prototipos/folha-<id>.png` e os quadros grandes em `quadros/<id>.png`.
 
-Resumo: 7 aprovadas na folha; 13 por delegação; 7 prontas para o Gustavo ver; 2 em correção de qualidade; 4 das quatro primeiras sem aprovação na folha; 0 em andamento; 57 por fazer.
+Resumo: 7 aprovadas na folha; 15 por delegação; 7 prontas para o Gustavo ver; 0 em correção de qualidade; 4 das quatro primeiras sem aprovação na folha; 16 em andamento; 41 por fazer.
 
 | Lote | Exercício | Estado |
 |---|---|---|
@@ -28,11 +28,11 @@ Resumo: 7 aprovadas na folha; 13 por delegação; 7 prontas para o Gustavo ver; 
 | 3 | `crucifixo-elastico` | por fazer |
 | 3 | `crucifixo-invertido-polia` | por fazer |
 | 3 | `crucifixo-polia` | por fazer |
-| 3 | `desenvolvimento` | por fazer |
+| 3 | `desenvolvimento` | em andamento (subagente) |
 | 3 | `desenvolvimento-elastico` | por fazer |
-| 3 | `desenvolvimento-unilateral-kettlebell` | por fazer |
-| 3 | `elevacao-halteres` | por fazer |
-| 3 | `elevacao-lateral` | por fazer |
+| 3 | `desenvolvimento-unilateral-kettlebell` | em andamento (subagente) |
+| 3 | `elevacao-halteres` | em andamento (subagente) |
+| 3 | `elevacao-lateral` | em andamento (subagente) |
 | 3 | `elevacao-lateral-elastico` | por fazer |
 | 3 | `supino-inclinado` | por fazer |
 | 4 | `barra-fixa` | por fazer |
@@ -50,29 +50,29 @@ Resumo: 7 aprovadas na folha; 13 por delegação; 7 prontas para o Gustavo ver; 
 | 4 | `remada-unilateral-polia` | por fazer |
 | 4 | `remada-unilateral-sem-banco` | por fazer |
 | 4 | `yt-suspensao` | feita e conferida quadro a quadro por quem integra; aprovada por delegação |
-| 5 | `rosca-alternada` | por fazer |
+| 5 | `rosca-alternada` | em andamento (subagente) |
 | 5 | `rosca-elastico` | por fazer |
-| 5 | `rosca-inclinada` | por fazer |
-| 5 | `rosca-kettlebell` | por fazer |
-| 5 | `rosca-martelo` | por fazer |
+| 5 | `rosca-inclinada` | em andamento (subagente) |
+| 5 | `rosca-kettlebell` | em andamento (subagente) |
+| 5 | `rosca-martelo` | em andamento (subagente) |
 | 5 | `rosca-polia` | por fazer |
 | 5 | `rosca-suspensao` | feita e conferida quadro a quadro por quem integra; aprovada por delegação |
 | 5 | `triceps-corda` | por fazer |
 | 5 | `triceps-elastico-acima` | por fazer |
-| 5 | `triceps-frances` | por fazer |
-| 5 | `triceps-frances-halter` | por fazer |
-| 5 | `triceps-frances-kettlebell` | por fazer |
+| 5 | `triceps-frances` | em andamento (subagente) |
+| 5 | `triceps-frances-halter` | em andamento (subagente) |
+| 5 | `triceps-frances-kettlebell` | em andamento (subagente) |
 | 5 | `triceps-frances-polia-unilateral` | por fazer |
 | 5 | `triceps-suspensao` | feita; **para o Gustavo ver** (apoio na ponta dos pés e mãos acima da testa, diferentes da de hoje) |
-| 6 | `flexao-joelho-deslizante` | feita; em correção de qualidade (subagente) |
-| 6 | `flexao-joelho-elastico` | feita; em correção de qualidade (subagente) |
+| 6 | `flexao-joelho-deslizante` | feita e conferida quadro a quadro por quem integra; aprovada por delegação (depois da correção: segunda vista de três quartos, toalha visível, erro da lombar refeito) |
+| 6 | `flexao-joelho-elastico` | feita e conferida quadro a quadro por quem integra; aprovada por delegação (depois da correção: o corpo ocupa o quadro, pose de bruços refeita, o pé dentro do pegador) |
 | 6 | `flexao-joelho-suspensao` | feita; **para o Gustavo ver** (joelho a 110° no fim, e não o calcanhar no glúteo; de lado a fita é uma linha fina) |
 | 6 | `nordico` | por fazer |
-| 6 | `panturrilha` | por fazer |
-| 6 | `panturrilha-b` | por fazer |
-| 6 | `panturrilha-chao` | por fazer |
-| 6 | `panturrilha-degrau` | por fazer |
-| 6 | `panturrilha-sentada-halter` | por fazer |
+| 6 | `panturrilha` | em andamento (subagente) |
+| 6 | `panturrilha-b` | em andamento (subagente) |
+| 6 | `panturrilha-chao` | em andamento (subagente) |
+| 6 | `panturrilha-degrau` | em andamento (subagente) |
+| 6 | `panturrilha-sentada-halter` | em andamento (subagente) |
 | 6 | `ponte-gluteo` | feita e conferida quadro a quadro por quem integra; aprovada por delegação |
 | 6 | `ponte-gluteo-halter` | feita; **para o Gustavo ver** (a vista de cima se lê mal; no topo o cotovelo sobe a 24 cm do chão) |
 | 6 | `ponte-kettlebell` | feita; **para o Gustavo ver** (de lado o kettlebell deitado é uma forma preta grande; no topo os cotovelos ficam a 31 cm do chão) |
