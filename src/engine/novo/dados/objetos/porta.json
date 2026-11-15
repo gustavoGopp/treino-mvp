@@ -1,0 +1,21 @@
+{
+ "fontes": {
+  "vert-porta": "Vert, folha de porta lisa de madeira 210 x 80 x 3,5 cm (Telhanorte); https://www.telhanorte.com.br/folha-de-porta-lisa-de-madeira-210x80x3-5cm-primer-vert-1223704/p (lida em 15/11/2026 por resumo automático de busca: \"210cm x 80cm x 3,5cm\"). A mesma medida aparece nas folhas de porta MGM e Casablanca (MadeiraMadeira) e na Eucatex (35 mm)",
+  "stroops-ancora": "Stroops, Door Anchor (ANCRFOAM); https://www.vitalitymedical.com/stroops-door-anchor.html (lido em 15/11/2026 por resumo automático da página: \"Length: 5 Inches\", \"Width: 4 Inches\", \"Height: 1 Inch\")"
+ },
+ "objetos": {
+  "porta": {
+   "nome": "Porta fechada, com a âncora de porta embaixo",
+   "medidas": {
+    "altura": { "v": 210, "un": "cm", "tipo": "medida", "fonte": "vert-porta", "onde": "altura da folha de porta" },
+    "larg": { "v": 80, "un": "cm", "tipo": "medida", "fonte": "vert-porta", "onde": "largura da folha de porta" },
+    "esp": { "v": 3.5, "un": "cm", "tipo": "medida", "fonte": "vert-porta", "onde": "espessura da folha de porta" },
+    "vao": { "v": 1, "un": "cm", "tipo": "provisoria", "fonte": "a-conferir", "onde": "vão entre a folha e o chão, por onde passa a fita da âncora" },
+    "ancoraComp": { "v": 12.7, "un": "cm", "tipo": "medida", "fonte": "stroops-ancora", "onde": "comprimento da espuma da âncora: 5 pol" },
+    "ancoraLarg": { "v": 10.2, "un": "cm", "tipo": "medida", "fonte": "stroops-ancora", "onde": "largura da espuma da âncora: 4 pol" },
+    "ancoraAlt": { "v": 2.5, "un": "cm", "tipo": "medida", "fonte": "stroops-ancora", "onde": "altura da espuma da âncora: 1 pol" },
+    "alcaComp": { "v": 6, "un": "cm", "tipo": "provisoria", "fonte": "a-conferir", "onde": "quanto a alça de fita sai do vão da porta, do lado de quem treina (a ficha não dá o comprimento da fita)" }
+   }
+  }
+ }
+}

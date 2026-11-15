@@ -4,7 +4,8 @@ import { pontosDoBoneco } from '../boneco';
 import { angulosDoLado, f1, faixa } from '../conferir-util';
 import type { Regra } from '../conferir-util';
 import type { Esq } from '../esqueleto';
-import { angulo, dist, sub } from '../vec';
+import { obj } from '../tabelas';
+import { angulo, dist, dot, sub } from '../vec';
 import type { V3 } from '../vec';
 
 /** O ponto mais baixo (y) de cada parte do Boneco. */
@@ -55,5 +56,49 @@ export const REGRAS_FLEXAO_JOELHO: Record<string, Regra> = {
       medido: `o pé fica de ${f1(a)} a ${f1(b)} cm do tampo da toalha; o calcanhar desliza ${f1(z1 - z0)} cm na direção do corpo (${f1(x1 - x0)} cm para o lado) e termina ${f1(aoQuadril)} cm à frente do centro do quadril`,
       ok: a >= -1 && b <= 1 && x1 - x0 <= 0.5 && z1 - z0 >= 20,
     };
+  },
+  // ----- de bruços, com elástico -----
+  'de-brucos-no-colchonete': (q) => {
+    // o colchonete é o tampo de 1,5 cm; a testa apoia no dorso das mãos
+    const tampo = obj('colchonete', 'esp');
+    const m = q.map((x) => maisBaixos(x.esq));
+    const [pa, pb] = faixa(m.map((x) => x.pelve! - tampo)),
+      [ta, tb] = faixa(m.map((x) => x.tronco! - tampo));
+    const testa = q.map((x) => {
+      let maoTopo = -1e9;
+      for (const { p, parte } of pontosDoBoneco(x.esq)) if (parte === 'mao') maoTopo = Math.max(maoTopo, p[1]);
+      return maisBaixos(x.esq).cabeca! - maoTopo;
+    });
+    const [ca, cb] = faixa(testa);
+    const debrucos = q.every((x) => x.esq.torax.z[1] < -0.8);
+    return {
+      medido: `${debrucos ? 'de bruços' : 'NÃO está de bruços'}; a bacia fica de ${f1(pa)} a ${f1(pb)} cm do tampo do colchonete e o peito de ${f1(ta)} a ${f1(tb)} cm; a testa fica de ${f1(ca)} a ${f1(cb)} cm do alto das mãos`,
+      ok: debrucos && pa >= -1.5 && pb <= 1 && ta >= -1.5 && tb <= 1 && ca >= -1.5 && cb <= 1,
+    };
+  },
+  'joelhos-bem-dobrados-no-fim': (q) => {
+    const fim = q[q.length - 1]!.esq;
+    const j = angulosDoLado(fim, 'R').joelho;
+    return { medido: `no fim, o joelho dobra ${f1(j)}° e o calcanhar fica ${f1(fim.lado.R.calcanhar[1])} cm acima do chão`, ok: j >= 90 };
+  },
+  'elastico-estica-mais-no-fim': (q) => {
+    const repouso = obj('elastico', 'comp');
+    const c = q.map((x) => x.fios.find((y) => y.id === 'elastico')!.comp / repouso);
+    const [a, b] = faixa(c);
+    const ini = c[0]!,
+      fim = c[c.length - 1]!;
+    return { medido: `o elástico estica ${f1(ini)} vez com as pernas estendidas e ${f1(fim)} vezes no fim (de ${f1(a)} a ${f1(b)} no caminho)`, ok: ini >= 1.05 && fim > ini && Math.abs(b - fim) < 0.01 };
+  },
+  'elastico-atras-dos-tornozelos': (q) => {
+    // o pegador fica do lado de trás da canela, perto do calcanhar, e não sai dali
+    const d = q.map((x) => {
+      const L = x.esq.lado.R,
+        g = x.marcas.pegadaR!;
+      const atras = -dot(sub(g, L.tornozelo), L.canela.z);
+      return { atras, acima: dot(sub(g, L.tornozelo), L.canela.y) };
+    });
+    const [a, b] = faixa(d.map((x) => x.atras)),
+      [c, e] = faixa(d.map((x) => x.acima));
+    return { medido: `o centro do pegador fica de ${f1(a)} a ${f1(b)} cm atrás do centro do tornozelo e de ${f1(c)} a ${f1(e)} cm acima dele, ao longo da canela`, ok: a > 0 && e <= 8 };
   },
 };

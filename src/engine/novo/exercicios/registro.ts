@@ -18,3 +18,4 @@ export { extensaoTricepsPesoCorpo } from './extensao-triceps-peso-corpo';
 export { bulgaroPesoCorpo } from './bulgaro-peso-corpo';
 export { bulgaroSuspensao } from './bulgaro-suspensao';
 export { flexaoJoelhoDeslizante } from './flexao-joelho-deslizante';
+export { flexaoJoelhoElastico } from './flexao-joelho-elastico';

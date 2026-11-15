@@ -1,0 +1,51 @@
+{
+ "id": "flexao-joelho-elastico",
+ "nome": "Flexão de joelho com elástico",
+ "fichaDaTecnica": "docs/pesquisa/animacoes/flexao-joelho-elastico.md",
+ "fontes": {
+  "ficha": "Ficha da técnica (docs/pesquisa/animacoes/flexao-joelho-elastico.md): a técnica da mesa flexora, consenso de treinadores (nsca2021, não verificado)",
+  "app": "Texto do app (src/conteudo/exercicios/flexao-joelho-elastico.json), que sai da ficha",
+  "fisica": "Física do elástico: a força cresce com o quanto ele estica (a ficha da técnica registra); a borracha não muda de volume, então o tubo afina ao esticar",
+  "hoje": "Animação aprovada no guia de hoje (src/engine/exercicios/flexao-joelho-elastico.ts; conferência em docs/revisoes/elastico/conferencia/flexao-joelho-elastico.md): as distâncias que a ficha não dá em número",
+  "objetos": "src/engine/novo/dados/objetos.json (colchonete, elástico em tubo) e src/engine/novo/dados/objetos/porta.json (porta e âncora de porta)",
+  "desenho": "Escolha de desenho desta animação, dentro do que a ficha pede; a conferência mede o resultado"
+ },
+ "param": {
+  "joelho.inicio": {"v": 12, "un": "graus", "selo": "consenso", "fonte": "app", "o": "início: joelhos quase estendidos, elástico um pouco esticado"},
+  "joelho.fim": {"v": 115, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "fim: joelhos bem dobrados, calcanhares perto do glúteo; a ficha não dá o ângulo (com o quadril estendido, o reto femoral limita a flexão do joelho)"},
+  "tornozelo.flexaoPlantar": {"v": 55, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "o pé solto, um pouco esticado (a ponta do pé não toca o chão com as pernas quase estendidas); a ficha não fala do pé"},
+  "testa.altura": {"v": 4.7, "un": "cm", "selo": "desenho", "fonte": "desenho", "o": "a testa apoia no dorso das mãos espalmadas no chão (\"testa apoiada nos braços dobrados\"): altura do dorso da mão espalmada, medida no Boneco: 4,7 cm do chão"},
+  "maos.meiaDistancia": {"v": 7, "un": "cm", "selo": "desenho", "fonte": "desenho", "o": "as mãos lado a lado sob a testa: distância de cada punho ao meio do corpo"},
+  "colchonete.z": {"v": -8, "un": "cm", "selo": "desenho", "fonte": "desenho", "o": "onde fica o meio do colchonete (de 100 cm) em relação ao quadril: do peito aos joelhos; a cabeça e as mãos ficam no chão à frente dele"},
+  "elastico.esticaNoInicio": {"v": 1.2, "un": "vezes", "selo": "consenso", "fonte": "app", "o": "\"afaste-se do ponto até o elástico ficar um pouco esticado com as pernas estendidas\": 1,2 vez o comprimento em repouso (o número é escolha de desenho)"},
+  "elastico.acimaDoTornozelo": {"v": 4, "un": "cm", "selo": "consenso", "fonte": "ficha", "o": "os pegadores em volta dos tornozelos, por trás, logo acima do calcanhar: o centro do pegador fica 4 cm acima do centro do tornozelo, ao longo da canela"},
+  "ancora.altura": {"v": 1.5, "un": "cm", "selo": "desenho", "fonte": "objetos", "o": "a alça da âncora sai pelo vão de baixo da porta: onde o tubo dá a volta, a 1,5 cm do chão"},
+  "erro.quadril.sobe": {"v": 12, "un": "cm", "selo": "desenho", "fonte": "desenho", "o": "erro: a bacia sobe 12 cm do colchonete, com o peito e os joelhos parados"},
+  "erro.curta.ida": {"v": 0.55, "un": "fração", "selo": "desenho", "fonte": "desenho", "o": "erro: dobra só 55% do caminho"},
+  "erro.curta.volta": {"v": 0.25, "un": "fração", "selo": "desenho", "fonte": "desenho", "o": "erro: na volta, para a 25% do caminho, sem estender"}
+ },
+ "fases": [
+  {"nome": "Pernas estendidas", "tipo": "pausa", "dur": 0.5, "de": 0, "ate": 0, "respira": "INSPIRA", "tempo": "elástico já esticado", "selo": "consenso", "fonte": "app"},
+  {"nome": "Flexão · concêntrica", "tipo": "conc", "dur": 1.1, "de": 0, "ate": 1, "respira": "EXPIRA", "tempo": "~1 s", "selo": "consenso", "fonte": "ficha"},
+  {"nome": "Joelhos dobrados", "tipo": "pausa", "dur": 0.5, "de": 1, "ate": 1, "respira": "FIRME", "tempo": "pausa curta", "selo": "consenso", "fonte": "ficha"},
+  {"nome": "Volta · excêntrica", "tipo": "exc", "dur": 2.4, "de": 1, "ate": 0, "respira": "INSPIRA", "tempo": "~2–3 s", "selo": "consenso", "fonte": "ficha"}
+ ],
+ "contatos": ["pelve", "joelho.R", "joelho.L", "mao.R", "mao.L"],
+ "regras": [
+  {"id": "de-brucos-no-colchonete", "pede": "deitado de bruços, o quadril encostado no colchonete e a testa apoiada nos braços", "selo": "consenso", "fonte": "ficha"},
+  {"id": "joelhos-bem-dobrados-no-fim", "pede": "no fim, joelhos bem dobrados, calcanhares em direção ao glúteo", "selo": "consenso", "fonte": "ficha"},
+  {"id": "elastico-estica-mais-no-fim", "pede": "o elástico estica mais com os joelhos dobrados e já está um pouco esticado com as pernas estendidas", "selo": "consenso", "fonte": "fisica"},
+  {"id": "elastico-atras-dos-tornozelos", "pede": "as pontas do elástico ficam em volta dos dois tornozelos, por trás, logo acima do calcanhar", "selo": "consenso", "fonte": "ficha"}
+ ],
+ "erros": [
+  {"id": "quadril", "instante": 1, "titulo": "Quadril sobe do chão", "vista": "lateral", "oQueMuda": "a bacia sobe 12 cm do colchonete e o quadril dobra", "destaca": ["corpo"], "linha": ["c7", "pelve", "joelho"], "foco": "pelve"},
+  {"id": "tranco", "instante": 0.5, "titulo": "Dar tranco", "vista": "lateral", "oQueMuda": "no meio da subida, os calcanhares já estão quase no fim (embalo)", "destaca": ["pernas"], "linha": ["quadril", "joelho", "tornozelo"], "foco": "tornozelo"},
+  {"id": "curta", "instante": 1, "titulo": "Puxar pouco ou não estender na volta", "vista": "lateral", "oQueMuda": "dobra só até a metade e não estende na volta", "destaca": ["pernas"], "linha": ["quadril", "joelho", "tornozelo"], "foco": "joelho"}
+ ],
+ "simetrico": true,
+ "rotulos": [
+  {"vista": "lateral", "texto": "Quadril no chão.", "ponto": "pelve", "selo": "consenso", "fonte": "app"},
+  {"vista": "lateral", "texto": "Calcanhar no glúteo.", "ponto": "calcanhar", "selo": "consenso", "fonte": "app"},
+  {"vista": "lateral", "texto": "Volta devagar.", "ponto": "joelho", "selo": "consenso", "fonte": "app"}
+ ]
+}

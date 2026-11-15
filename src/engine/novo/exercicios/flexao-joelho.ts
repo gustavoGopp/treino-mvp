@@ -26,8 +26,9 @@ const rad = Math.PI / 180;
 interface Formas {
   /** Costas na altura das escápulas, no referencial do tórax. */
   costas: V3[];
-  /** Peito e barriga, no referencial do tórax (para o deitado de bruços). */
+  /** Peito (até 30 cm abaixo da base do pescoço) e barriga (dali até 56 cm), no referencial do tórax (de bruços). */
   peito: V3[];
+  barriga: V3[];
   /** Bacia (glúteo), no referencial da bacia. */
   pelve: V3[];
   cabeca: V3[];
@@ -45,12 +46,15 @@ function formas(corpo: Corpo): Formas {
   const perna: PosePerna = { coxa: [0, 0, 1], canela: [0, 0, 1], polo: [0, 1, 0], peDir: [0, 1, 0] };
   const braco = (k: Lado): PoseBraco => ({ umero: [0, 0, 1], antebraco: [0, 0, 1], polo: [sinal(k), 0, 0], mao: { polegar: [-sinal(k), 0, 0] } });
   const e = resolverMembros(t, { R: braco('R'), L: braco('L') }, { R: perna, L: perna });
-  const out: Formas = { costas: [], peito: [], pelve: [], cabeca: [], pe: [], coxa: [] };
+  const out: Formas = { costas: [], peito: [], barriga: [], pelve: [], cabeca: [], pe: [], coxa: [] };
   for (const { p, parte } of pontosDoBoneco(e)) {
     if (parte === 'tronco') {
       const l = paraRef(e.torax, p);
       // da base do pescoço até 30 cm abaixo dela: a região que fica presa ao tórax
-      if (l[1] < 0 && l[1] > -30) (l[2] < 0 ? out.costas : out.peito).push(l);
+      if (l[1] < 0 && l[1] > -30 && l[2] < 0) out.costas.push(l);
+      if (l[1] < 0 && l[1] > -30 && l[2] > 0) out.peito.push(l);
+      // a barriga, abaixo do peito: deitado de bruços, a lombar não dobra no movimento certo
+      if (l[1] <= -30 && l[1] > -56 && l[2] > 0) out.barriga.push(l);
     } else if (parte === 'pescoco') {
       // a base da nuca encosta no chão junto com as costas quando a bacia sobe
       const l = paraRef(e.torax, p);
@@ -67,6 +71,7 @@ function formas(corpo: Corpo): Formas {
 const maisBaixo = (r: Ref, pts: V3[]) => pts.reduce((m, p) => Math.min(m, noRef(r, p)[1]), 1e9);
 export const costasAoChao = (corpo: Corpo, t: Tronco) => maisBaixo(t.torax, formas(corpo).costas);
 export const peitoAoChao = (corpo: Corpo, t: Tronco) => maisBaixo(t.torax, formas(corpo).peito);
+export const barrigaAoChao = (corpo: Corpo, t: Tronco) => maisBaixo(t.torax, formas(corpo).barriga);
 export const pelveAoChao = (corpo: Corpo, t: Tronco) => maisBaixo(t.pelve, formas(corpo).pelve);
 export const cabecaAoChao = (corpo: Corpo, t: Tronco) => maisBaixo(t.cabeca, formas(corpo).cabeca);
 export const peAoChao = (corpo: Corpo, e: Esq) => maisBaixo(e.lado.R.pe, formas(corpo).pe);
@@ -140,4 +145,100 @@ export function ponteDeCostas(corpo: Corpo, o: OpcoesDaPonte): Ponte {
   const R = e.lado.R,
     L = e.lado.L;
   return { e, quadril: psi, calcanhares: [(R.calcanhar[0] + L.calcanhar[0]) / 2, o.apoio, (R.calcanhar[2] + L.calcanhar[2]) / 2] };
+}
+
+/* ============================== deitado de bruços ============================== */
+export interface OpcoesDeBrucos {
+  /** Altura do tampo onde o corpo deita (o colchonete), em cm. */
+  apoio: number;
+  /** Altura em que a testa apoia: o dorso das mãos, espalmadas no chão à frente do colchonete. */
+  testa: number;
+  /** Meia distância entre os punhos (as mãos lado a lado sob a testa). */
+  punhosMeiaDistancia: number;
+  /** Flexão do joelho (graus). */
+  joelho: number;
+  /** Flexão plantar do tornozelo (graus; 0 = pé em ângulo reto com a canela). */
+  flexaoPlantar: number;
+  /** Quanto a bacia sobe do colchonete (erro do quadril), em cm; o peito e os joelhos ficam onde estão. */
+  quadrilSobe?: number;
+}
+interface BaseDeBrucos {
+  frente: number;
+  yP: number;
+  cervical: number;
+  /** O centro do joelho direito, com a coxa reta no colchonete. */
+  joelho: V3;
+}
+const BASE_DE_BRUCOS = new WeakMap<Corpo, Map<string, BaseDeBrucos>>();
+/**
+ * Quanto a barriga amassa no colchonete (cm), de bruços: o Boneco tem a barriga mais alta que o peito e a bacia, e
+ * sem isso o peito ficaria no ar. É o mesmo 1,5 cm que a conferência aceita para o corpo amassar no chão.
+ */
+const AMASSA = 1.5;
+/** O ponto mais baixo da frente do tronco, com a barriga amassando. */
+const frenteAoChao = (corpo: Corpo, t: Tronco) => Math.min(peitoAoChao(corpo, t), barrigaAoChao(corpo, t) + AMASSA);
+/** A parte que não muda no ciclo: a inclinação da bacia, a altura dela, a cabeça nas mãos e a coxa no colchonete. */
+function baseDeBrucos(corpo: Corpo, o: OpcoesDeBrucos): BaseDeBrucos {
+  const chave = `${o.apoio}|${o.testa}`;
+  let mapa = BASE_DE_BRUCOS.get(corpo);
+  if (!mapa) BASE_DE_BRUCOS.set(corpo, (mapa = new Map()));
+  const ja = mapa.get(chave);
+  if (ja) return ja;
+  // 1) a frente da bacia e a barriga (que amassa AMASSA cm) ficam na mesma altura; o corpo desce até encostar no
+  //    colchonete. O peito encosta junto ou fica um pouco acima (os braços estão à frente da cabeça).
+  const t0 = (frente: number) => resolverTronco(corpo, { pelve: [0, 0, 0], frente });
+  const frente = resolver1((fr) => pelveAoChao(corpo, t0(fr)) - Math.min(peitoAoChao(corpo, t0(fr)), barrigaAoChao(corpo, t0(fr)) + AMASSA), 70, 110, 30);
+  const tf = t0(frente);
+  const yP = o.apoio - Math.min(peitoAoChao(corpo, tf), pelveAoChao(corpo, tf), barrigaAoChao(corpo, tf) + AMASSA);
+  // 2) a testa apoia no dorso das mãos
+  const cervical = resolver1((c) => cabecaAoChao(corpo, resolverTronco(corpo, { pelve: [0, yP, 0], frente, cervical: c })) - o.testa, -40, 60, 30);
+  // 3) a coxa, reta, encosta no colchonete
+  const t = resolverTronco(corpo, { pelve: [0, yP, 0], frente, cervical });
+  const solto: PoseBraco = { umero: [0, -1, 0], antebraco: [0, -1, 0], polo: [0, 0, -1], mao: { polegar: [0, 0, 1] } };
+  const coxa = (a: number) => {
+    const p: PosePerna = { coxa: noPlano(a), canela: noPlano(a), polo: noPlano(a - 90) };
+    return resolverMembros(t, { R: solto, L: solto }, { R: p, L: p });
+  };
+  const aCoxa = resolver1((a) => coxaAoChao(corpo, coxa(a)) - o.apoio, 160, 200, 30);
+  const b = { frente, yP, cervical, joelho: coxa(aCoxa).lado.R.joelho };
+  mapa.set(chave, b);
+  return b;
+}
+
+/** Deitado de bruços: o peito, a bacia e as coxas no colchonete, a testa no dorso das mãos; a canela gira no joelho. */
+export function deitadoDeBrucos(corpo: Corpo, o: OpcoesDeBrucos): Esq {
+  const m = (id: string) => corpo.m(id);
+  const b = baseDeBrucos(corpo, o);
+  let frente = b.frente,
+    lombar = 0,
+    yP = b.yP,
+    cervical = b.cervical;
+  const sobe = o.quadrilSobe ?? 0;
+  if (sobe > 0) {
+    // a bacia sobe e gira (o quadril dobra), a lombar dobra o mesmo tanto ao contrário: o peito fica no colchonete,
+    // na mesma inclinação, e a testa continua nas mãos
+    yP = b.yP + sobe;
+    const tr = (L: number, c = b.cervical) => resolverTronco(corpo, { pelve: [0, yP, 0], frente: b.frente + L, lombar: -L, cervical: c });
+    lombar = -resolver1((L) => frenteAoChao(corpo, tr(L)) - o.apoio, 0, 70, 30);
+    frente = b.frente - lombar;
+    cervical = resolver1((c) => cabecaAoChao(corpo, tr(-lombar, c)) - o.testa, -40, 60, 30);
+  }
+  const t = resolverTronco(corpo, { pelve: [0, yP, 0], frente, lombar, cervical });
+  // as mãos lado a lado, espalmadas no chão sob a testa, com os dedos para o meio e os cotovelos para fora
+  const cab = formas(corpo).cabeca.map((p) => noRef(t.cabeca, p));
+  const fronte = cab.reduce((a, p) => (p[1] < a[1] ? p : a));
+  const braco = (k: Lado): PoseBraco => {
+    const s = sinal(k);
+    return { punho: [s * o.punhosMeiaDistancia, m('raio.punho') * 0.85, fronte[2]], polo: [s, 0.7, -0.1], mao: { polegar: [0, 0, -1], dedos: [-s, 0, 0], forma: 'aberta' } };
+  };
+  // a coxa vai do quadril ao joelho, que fica no colchonete; a canela gira em torno do joelho
+  const perna = (k: Lado): PosePerna => {
+    const q = noRef(t.pelve, [sinal(k) * m('quadril.meiaDistancia'), 0, 0]);
+    const j: V3 = [sinal(k) * Math.abs(b.joelho[0]), b.joelho[1], b.joelho[2]];
+    const dCoxa = norm(sub(j, q));
+    const aCoxa = anguloNoPlano(dCoxa);
+    const aCanela = aCoxa - o.joelho;
+    return { coxa: dCoxa, canela: noPlano(aCanela), peDir: noPlano(aCanela + 90 - o.flexaoPlantar), polo: noPlano(aCoxa - 90) };
+  };
+  return resolverMembros(t, { R: braco('R'), L: braco('L') }, { R: perna('R'), L: perna('L') });
 }
