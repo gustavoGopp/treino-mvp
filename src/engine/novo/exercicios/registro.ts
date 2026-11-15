@@ -31,3 +31,4 @@ export { remadaSuspensao } from './remada-suspensao';
 export { roscaSuspensao } from './rosca-suspensao';
 export { tricepsSuspensao } from './triceps-suspensao';
 export { ytSuspensao } from './yt-suspensao';
+export { ponteGluteo } from './ponte-gluteo';

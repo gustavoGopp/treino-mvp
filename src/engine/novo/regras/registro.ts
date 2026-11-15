@@ -8,3 +8,4 @@ export { REGRAS_FLEXAO_JOELHO } from './flexao-joelho';
 export { regrasDasFlexoes } from './flexoes';
 export { regrasDosStiffs } from './stiffs';
 export { regrasDaSuspensao } from './suspensao';
+export { REGRAS_PONTES } from './pontes';

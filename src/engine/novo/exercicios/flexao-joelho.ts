@@ -98,6 +98,17 @@ export interface OpcoesDaPonte {
   /** Os braços no chão: a mão a tantos cm do ombro na direção dos pés e tantos cm para fora dele. */
   maoAbaixoDoOmbro: number;
   maoParaFora: number;
+  /**
+   * Altura do tampo onde as costas e a cabeça apoiam (o colchonete sob os ombros, na suspensão); sem ele, o chão.
+   * As mãos continuam no chão.
+   */
+  piso?: number;
+  /**
+   * O que zera quando o pé está no lugar, no lugar de "o ponto mais baixo do pé na altura do apoio" (na suspensão:
+   * o pé no fundo do berço, à distância da fita da âncora). Recebe o esqueleto e devolve um número que cresce com a
+   * coxa subindo.
+   */
+  alvoDoPe?: (e: Esq) => number;
 }
 export interface Ponte {
   e: Esq;
@@ -113,34 +124,50 @@ export function folgaDaPelve(corpo: Corpo, frente: number, lombar: number): numb
   return pelveAoChao(corpo, t) - costasAoChao(corpo, t);
 }
 
-export function ponteDeCostas(corpo: Corpo, o: OpcoesDaPonte): Ponte {
-  const m = (id: string) => corpo.m(id);
-  const tronco = (pelve: V3, cervical: number) => resolverTronco(corpo, { pelve, frente: o.frente, lombar: o.lombar ?? 0, cervical, cabeca: 0 });
+/**
+ * Deitado de costas: a parte de cima das costas e a cabeça no tampo (`piso`, 0 = o chão), com a bacia inclinada em
+ * `frente`, e o corpo posto em z para o centro do ombro direito ficar em `zOmbro`. `ombro0` é o centro do ombro antes
+ * de o corpo andar em z (o núcleo da ponte mede a linha do ombro ao quadril com ele).
+ */
+export function troncoDeCostas(corpo: Corpo, frente: number, lombar: number, zOmbro: number, piso = 0): { t: Tronco; ombro0: V3 } {
+  const tronco = (pelve: V3, cervical: number) => resolverTronco(corpo, { pelve, frente, lombar, cervical, cabeca: 0 });
   // 1) as costas encostam no chão
   const t0 = tronco([0, 0, 0], 0);
-  const yP = -costasAoChao(corpo, t0);
+  const yP = piso - costasAoChao(corpo, t0);
   // 2) a cabeça encosta no chão (o pescoço dobra o que for preciso)
-  const cervical = resolver1((c) => cabecaAoChao(corpo, tronco([0, yP, 0], c)), -40, 70, 30);
+  const cervical = resolver1((c) => cabecaAoChao(corpo, tronco([0, yP, 0], c)) - piso, -40, 70, 30);
   // 3) o ombro direito fica em zOmbro: o corpo inteiro anda em z (os braços ao lado do corpo não mexem na escápula)
   const solto = (k: Lado): PoseBraco => ({ umero: [0, -0.2, 1], antebraco: [0, -0.2, 1], polo: [sinal(k), 0, 0], mao: { polegar: [-sinal(k), 0, 0] } });
   const pernaSolta: PosePerna = { coxa: [0, 0, 1], canela: [0, 0, 1], polo: [0, 1, 0] };
   const ombro0 = resolverMembros(tronco([0, yP, 0], cervical), { R: solto('R'), L: solto('L') }, { R: pernaSolta, L: pernaSolta }).lado.R.ombro;
-  const t = tronco([0, yP, o.zOmbro - ombro0[2]], cervical);
-  // 4) as pernas: a coxa gira no plano de lado até o calcanhar chegar ao apoio
-  const aLinha = anguloNoPlano(norm(sub(noRef(t.pelve, [sinal('R') * m('quadril.meiaDistancia'), 0, 0]), ombro0)));
+  return { t: tronco([0, yP, zOmbro - ombro0[2]], cervical), ombro0 };
+}
+
+/** Os braços no chão ao lado do corpo, palmas para baixo: a mão a `abaixo` cm do ombro na direção dos pés e `fora` cm para fora dele. */
+export function bracosNoChao(corpo: Corpo, zOmbro: number, abaixo: number, fora: number): Record<Lado, PoseBraco> {
   const braco = (k: Lado): PoseBraco => {
     const s = sinal(k);
-    const xMao = s * (m('ombro.meiaDistancia') + o.maoParaFora);
-    return { punho: [xMao, m('raio.punho') * 0.85, o.zOmbro + o.maoAbaixoDoOmbro], polo: [s, 0.3, -0.3], mao: { polegar: [-s, 0, 0], dedos: [0, 0, 1], forma: 'aberta' } };
+    const xMao = s * (corpo.m('ombro.meiaDistancia') + fora);
+    return { punho: [xMao, corpo.m('raio.punho') * 0.85, zOmbro + abaixo], polo: [s, 0.3, -0.3], mao: { polegar: [-s, 0, 0], dedos: [0, 0, 1], forma: 'aberta' } };
   };
+  return { R: braco('R'), L: braco('L') };
+}
+
+export function ponteDeCostas(corpo: Corpo, o: OpcoesDaPonte): Ponte {
+  const m = (id: string) => corpo.m(id);
+  const { t, ombro0 } = troncoDeCostas(corpo, o.frente, o.lombar ?? 0, o.zOmbro, o.piso ?? 0);
+  // 4) as pernas: a coxa gira no plano de lado até o calcanhar chegar ao apoio
+  const aLinha = anguloNoPlano(norm(sub(noRef(t.pelve, [sinal('R') * m('quadril.meiaDistancia'), 0, 0]), ombro0)));
+  const bracos = bracosNoChao(corpo, o.zOmbro, o.maoAbaixoDoOmbro, o.maoParaFora);
   const pose = (psi: number) => {
     const aCoxa = aLinha + psi,
       aCanela = aCoxa - o.joelho;
     // as pernas paralelas, na largura do quadril; o pé em ângulo reto com a canela (mais `o.pe`)
     const perna: PosePerna = { coxa: noPlano(aCoxa), canela: noPlano(aCanela), peDir: noPlano(aCanela + 90 + o.pe), polo: noPlano(aCoxa + 90) };
-    return resolverMembros(t, { R: braco('R'), L: braco('L') }, { R: perna, L: perna });
+    return resolverMembros(t, bracos, { R: perna, L: perna });
   };
-  const psi = resolver1((x) => peAoChao(corpo, pose(x)) - o.apoio, -45, 80, 30);
+  const alvo = o.alvoDoPe ?? ((e: Esq) => peAoChao(corpo, e) - o.apoio);
+  const psi = resolver1((x) => alvo(pose(x)), -45, 80, 30);
   const e = pose(psi);
   const R = e.lado.R,
     L = e.lado.L;
