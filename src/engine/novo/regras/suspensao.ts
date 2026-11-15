@@ -4,10 +4,10 @@
 import { pontosDoBoneco } from '../boneco';
 import { f1, faixa } from '../conferir-util';
 import type { Regra } from '../conferir-util';
-import { LADOS } from '../esqueleto';
+import { LADOS, sinal } from '../esqueleto';
 import type { Esq } from '../esqueleto';
 import { anguloDoCorpo, naRef } from '../exercicios/na-fita';
-import { angulo, dist, norm, paraRef, sub } from '../vec';
+import { angulo, dist, dot, mul, norm, paraRef, sub } from '../vec';
 import type { V3 } from '../vec';
 
 const primeiro = <T>(q: T[]) => q[0]!;
@@ -93,8 +93,12 @@ export const regrasDaSuspensao: Record<string, Regra> = {
     return { medido: `o antebraço fica de ${f1(a)}° a ${f1(b)}° (0° = palma para cima, supinado)`, ok: a >= -25 && b <= 25 };
   },
   'palmas-para-baixo': (q) => {
+    // pegada pronada: o polegar aponta para dentro (para o meio do corpo), medido no tronco. A pronação do antebraço vem
+    // junto, mas ela depende de quanto o braço gira no ombro (com o cotovelo para fora, como no T, ela fica perto de 90°)
+    const e0 = primeiro(q).esq;
+    const dentro = Math.min(...LADOS.map((k) => -dot(mul(e0.lado[k].mao.x, sinal(k)), mul(e0.torax.x, sinal(k)))));
     const [a, b] = faixa(q.map((x) => x.esq.lado.R.ang.pronacao));
-    return { medido: `o antebraço fica de ${f1(a)}° a ${f1(b)}° (180° = palma para baixo, pronado)`, ok: a >= 140 };
+    return { medido: `o polegar aponta para dentro, no tronco, com no mínimo ${f1(dentro * 100)}% do comprimento (100% = todo para dentro) no começo; a pronação do antebraço fica de ${f1(a)}° a ${f1(b)}°`, ok: dentro >= 0.5 };
   },
   'cotovelos-altos-e-parados': (q) => {
     // o braço não se move no tronco; no fim, o cotovelo fica na altura do ombro ou acima

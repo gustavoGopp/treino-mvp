@@ -1,0 +1,59 @@
+{
+ "id": "yt-suspensao",
+ "nome": "T e Y na suspensão",
+ "fichaDaTecnica": "docs/pesquisa/animacoes/yt-suspensao.md",
+ "fontes": {
+  "ficha": "Ficha da técnica (docs/pesquisa/animacoes/yt-suspensao.md): de frente para a âncora, palmas para baixo, braços estendidos à frente; corpo reto e inclinado para trás (a mesma posição da remada); T: abre os braços quase retos até as mãos na linha dos ombros, juntando as escápulas; o exercício base é o T, o Y fica no texto; consenso de treinadores (nsca2021, não verificado)",
+  "app": "Cartão do app (src/conteudo/exercicios/yt-suspensao.json): ~1 s abrindo, 1 s parado, ~2 s voltando; o corpo sobe junto; as dicas e os erros",
+  "remada": "Remada na suspensão do motor novo (lote 4): os pés, a ponta do pé e o erro do quadril",
+  "hoje": "Animação aprovada no guia de hoje (src/engine/exercicios/yt-suspensao.ts) e a conferência dela (docs/revisoes/catalogo/conferencia/suspensao.md): o ângulo de partida, as escápulas e os erros",
+  "desenho": "Escolha de desenho desta animação, dentro do que a ficha pede; a conferência mede o resultado"
+ },
+ "param": {
+  "pes.meiaDistancia": {"v": 9, "un": "cm", "selo": "desenho", "fonte": "remada", "o": "pés na largura do quadril"},
+  "pes.alemDaAncora": {"v": -35, "un": "cm", "selo": "desenho", "fonte": "desenho", "o": "o fundo do calcanhar fica 35 cm antes da vertical da âncora (hoje: 12 cm além, com a âncora a 205 cm). Com os braços retos, no T as mãos ficam longe da âncora: com os pés mais perto (como na remada) a fita fica curta e o corpo teria de passar da vertical"},
+  "pe.pontaSobe": {"v": 25, "un": "graus", "selo": "desenho", "fonte": "remada", "o": "calcanhares no chão: a ponta do pé sobe 25° e fica parada"},
+  "joelho": {"v": 4, "un": "graus", "selo": "consenso", "fonte": "ficha", "o": "corpo reto: pernas estendidas, sem travar"},
+  "corpo.inicio": {"v": 65, "un": "graus", "selo": "desenho", "fonte": "hoje", "o": "no início, o corpo fica 65° da vertical (hoje: 60°); daí sai o comprimento da fita. Com 60° e a âncora do fabricante, o corpo terminava quase a prumo (9,6°)"},
+  "pescoco.flexao": {"v": 4, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "pescoço na linha do corpo, o queixo um pouco recolhido"},
+  "braco.dobra": {"v": 10, "un": "graus", "selo": "consenso", "fonte": "ficha", "o": "braços quase retos: o cotovelo dobra 10° o movimento inteiro"},
+  "T.abertura": {"v": 90, "un": "graus", "selo": "consenso", "fonte": "ficha", "o": "no T, o braço abre até 90° da frente, no tronco: as mãos na linha dos ombros"},
+  "T.altura": {"v": 0, "un": "graus", "selo": "consenso", "fonte": "ficha", "o": "no T, o braço fica na altura do ombro, no tronco (0° = perpendicular ao tronco): as mãos na linha dos ombros"},
+  "maos.polegarParaCima": {"v": 0.3, "un": "fração", "selo": "desenho", "fonte": "desenho", "o": "palmas para baixo: o polegar aponta para dentro e um pouco para cima, para o antebraço não passar da pronação comum"},
+  "escapula.prot.inicio": {"v": 5, "un": "graus", "selo": "desenho", "fonte": "hoje", "o": "braços à frente: as escápulas vão à frente com o braço (hoje: +5)"},
+  "escapula.retr.fim": {"v": 10, "un": "graus", "selo": "desenho", "fonte": "hoje", "o": "no T, as escápulas se juntam (hoje: −6; aqui −10, porque o ritmo do ombro devolve parte do recuo)"},
+  "escapula.elev.fim": {"v": -1, "un": "graus", "selo": "desenho", "fonte": "hoje", "o": "ombros baixos no T (hoje: −1)"},
+  "erro.cotovelo.atras": {"v": 20, "un": "graus", "selo": "desenho", "fonte": "hoje", "o": "erro: os cotovelos dobram e as mãos vêm ao peito, como numa remada (braço 20° atrás do tronco)"},
+  "erro.cotovelo.fora": {"v": 35, "un": "graus", "selo": "desenho", "fonte": "hoje", "o": "erro: na remada errada, o braço se afasta 35° do lado do tronco"},
+  "erro.encolher.elev": {"v": 7, "un": "graus", "selo": "desenho", "fonte": "hoje", "o": "erro: os ombros sobem (hoje: +7 na escápula)"},
+  "erro.quadril.dobra": {"v": 34, "un": "graus", "selo": "desenho", "fonte": "remada", "o": "erro: o quadril cai e dobra 34° no fim (como na remada)"}
+ },
+ "fases": [
+  {"nome": "Braços à frente", "tipo": "pausa", "dur": 0.45, "de": 0, "ate": 0, "respira": "INSPIRA", "tempo": "corpo reto", "selo": "consenso", "fonte": "app"},
+  {"nome": "Abertura em T · concêntrica", "tipo": "conc", "dur": 1.1, "de": 0, "ate": 1, "respira": "EXPIRA", "tempo": "~1 s", "selo": "consenso", "fonte": "app"},
+  {"nome": "T · segura", "tipo": "pausa", "dur": 1, "de": 1, "ate": 1, "respira": "FIRME", "tempo": "1 s", "selo": "consenso", "fonte": "app"},
+  {"nome": "Volta · excêntrica", "tipo": "exc", "dur": 2.1, "de": 1, "ate": 0, "respira": "INSPIRA", "tempo": "~2 s", "selo": "consenso", "fonte": "app"}
+ ],
+ "contatos": ["pe.R", "pe.L", "pegador.R", "pegador.L"],
+ "regras": [
+  {"id": "corpo-em-linha", "pede": "corpo reto, do calcanhar à cabeça", "selo": "consenso", "fonte": "ficha"},
+  {"id": "calcanhares-no-chao", "pede": "calcanhares no chão, parados", "selo": "consenso", "fonte": "ficha"},
+  {"id": "maos-nos-pegadores", "pede": "as mãos seguram os pegadores o ciclo inteiro", "selo": "consenso", "fonte": "ficha"},
+  {"id": "palmas-para-baixo", "pede": "palmas para baixo", "selo": "consenso", "fonte": "ficha"},
+  {"id": "bracos-quase-retos", "pede": "braços quase retos", "selo": "consenso", "fonte": "ficha"},
+  {"id": "maos-na-linha-dos-ombros", "pede": "no T, as mãos chegam na linha dos ombros", "selo": "consenso", "fonte": "ficha"},
+  {"id": "escapulas-se-juntam", "pede": "as escápulas se juntam no T", "selo": "consenso", "fonte": "ficha"},
+  {"id": "corpo-sobe-com-a-fita", "pede": "a fita não estica: o corpo sobe junto", "selo": "consenso", "fonte": "app"}
+ ],
+ "erros": [
+  {"id": "cotovelo", "instante": 1, "titulo": "Dobrar os cotovelos", "vista": "posterior", "oQueMuda": "os cotovelos dobram e as mãos vêm ao peito: vira uma remada", "destaca": ["bracos"], "linha": ["ombro", "cotovelo", "punho"], "foco": "cotovelo"},
+  {"id": "encolher", "instante": 1, "titulo": "Encolher os ombros", "vista": "posterior", "oQueMuda": "os ombros sobem em direção às orelhas", "destaca": ["bracos"], "linha": ["acromioclavicular:R", "acromioclavicular:L"], "foco": "acromioclavicular:R"},
+  {"id": "quadril", "instante": 1, "titulo": "Quadril cai", "vista": "lateral", "oQueMuda": "o corpo dobra no quadril: o quadril desce e o tronco fica mais em pé", "destaca": ["corpo"], "linha": ["ombro", "quadril", "tornozelo"], "foco": "quadril"}
+ ],
+ "simetrico": true,
+ "rotulos": [
+  {"vista": "posterior", "texto": "braços quase retos", "ponto": "cotovelo", "selo": "consenso", "fonte": "app"},
+  {"vista": "posterior", "texto": "ombros longe das orelhas", "ponto": "acromioclavicular", "selo": "consenso", "fonte": "app"},
+  {"vista": "lateral", "texto": "corpo reto", "ponto": "pelve", "selo": "consenso", "fonte": "app", "guia": ["calcanhar", "cabeca"]}
+ ]
+}
