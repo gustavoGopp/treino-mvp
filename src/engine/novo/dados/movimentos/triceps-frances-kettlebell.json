@@ -1,0 +1,331 @@
+{
+ "id": "triceps-frances-kettlebell",
+ "nome": "Tríceps francês sentado com kettlebell",
+ "fichaDaTecnica": "docs/pesquisa/animacoes/triceps-frances-kettlebell.md",
+ "fontes": {
+  "ficha": "Ficha da técnica (docs/pesquisa/animacoes/triceps-frances-kettlebell.md, B.2.6) e texto do app (src/conteudo/exercicios/triceps-frances-kettlebell.json): consenso de treinadores",
+  "correcao": "Correção de 04/11/2026 registrada em docs/revisoes/animacao-nova/correcoes-ja-feitas.md: o kettlebell nunca fica solto entre as mãos; a alça passa pelas duas mãos e a bola fica embaixo do meio",
+  "halter": "O tríceps francês sentado com halter (src/engine/novo/dados/movimentos/triceps-frances-halter.json), a base do desenho pela ficha da técnica",
+  "objetos": "src/engine/novo/dados/objetos.json",
+  "desenho": "Escolha de desenho desta animação, dentro do que a ficha pede; a conferência mede o resultado"
+ },
+ "param": {
+  "tronco.inclinacao": {
+   "v": 0,
+   "un": "graus",
+   "selo": "consenso",
+   "fonte": "ficha",
+   "o": "sentado com as costas retas: o eixo do tórax na vertical"
+  },
+  "nadega.afunda": {
+   "v": 1.5,
+   "un": "cm",
+   "selo": "desenho",
+   "fonte": "halter",
+   "o": "quanto a nádega afunda no estofado do banco"
+  },
+  "pes.meiaDistancia": {
+   "v": 16,
+   "un": "cm",
+   "selo": "desenho",
+   "fonte": "halter",
+   "o": "pés firmes no chão, um pouco mais abertos que o quadril"
+  },
+  "coxa.inclinacao": {
+   "v": 0,
+   "un": "graus",
+   "selo": "desenho",
+   "fonte": "halter",
+   "o": "a coxa quase na horizontal (o banco tem a altura do joelho)"
+  },
+  "pes.aFrenteDoJoelho": {
+   "v": 4,
+   "un": "cm",
+   "selo": "desenho",
+   "fonte": "halter",
+   "o": "o tornozelo um pouco à frente do joelho"
+  },
+  "banco.daPonta": {
+   "v": 14,
+   "un": "cm",
+   "selo": "desenho",
+   "fonte": "halter",
+   "o": "a ponta da frente do banco fica 14 cm à frente do meio da pelve: sentado na ponta, o banco segue para trás"
+  },
+  "banco.noQuadro": {
+   "v": 40,
+   "un": "cm",
+   "selo": "desenho",
+   "fonte": "halter",
+   "o": "só a ponta do banco entra no enquadramento"
+  },
+  "cervical": {
+   "v": 0,
+   "un": "graus",
+   "selo": "desenho",
+   "fonte": "halter",
+   "o": "pescoço na linha do tronco"
+  },
+  "cabeca": {
+   "v": 0,
+   "un": "graus",
+   "selo": "desenho",
+   "fonte": "halter",
+   "o": "cabeça na linha do pescoço, olhando à frente"
+  },
+  "braco.elevacao": {
+   "v": 165,
+   "un": "graus",
+   "selo": "consenso",
+   "fonte": "ficha",
+   "o": "cotovelos apontando para cima, perto da cabeça: o braço a 165° do braço pendurado, no referencial do tronco (como no halter)"
+  },
+  "braco.paraDentro": {
+   "v": 8,
+   "un": "graus",
+   "selo": "desenho",
+   "fonte": "halter",
+   "o": "o braço vai para o meio o bastante para as duas mãos ficarem nas hastes da alça, com os cotovelos perto da cabeça"
+  },
+  "cotovelo.alongado": {
+   "v": 130,
+   "un": "graus",
+   "selo": "consenso",
+   "fonte": "ficha",
+   "o": "alongado: kettlebell atrás da cabeça, cotovelos para cima (a ficha não dá número; como no halter)"
+  },
+  "cotovelo.estendido": {
+   "v": 8,
+   "un": "graus",
+   "selo": "consenso",
+   "fonte": "ficha",
+   "o": "braços estendidos acima da cabeça, sem travar"
+  },
+  "maos.meiaDistancia": {
+   "v": 6.15,
+   "un": "cm",
+   "selo": "consenso",
+   "fonte": "objetos",
+   "o": "as duas mãos nas hastes da alça (\"chifres\"): a meia distância entre as hastes do kettlebell da tabela (123 mm)"
+  },
+  "carga.giro.alongado": {
+   "v": 115,
+   "un": "graus",
+   "selo": "consenso",
+   "fonte": "ficha",
+   "o": "no alongado, a bola para baixo, atrás da cabeça: o eixo do kettlebell (da base à alça) quase na vertical, girado a partir do antebraço"
+  },
+  "carga.giro.estendido": {
+   "v": 72,
+   "un": "graus",
+   "selo": "desenho",
+   "fonte": "desenho",
+   "o": "estendido, o kettlebell fica deitado atrás das mãos, acima da cabeça, com o eixo quase perpendicular ao antebraço (o punho reto)"
+  },
+  "erro.abre.fora": {
+   "v": 20,
+   "un": "graus",
+   "selo": "desenho",
+   "fonte": "halter",
+   "o": "erro: os cotovelos abrem para os lados (no alongado)"
+  },
+  "erro.abre.volta": {
+   "v": 1,
+   "un": "fração",
+   "selo": "desenho",
+   "fonte": "halter",
+   "o": "erro: os cotovelos abrem na volta e fecham estendendo (em cima as duas mãos continuam na alça)"
+  },
+  "erro.arco.lombar": {
+   "v": 14,
+   "un": "graus",
+   "selo": "desenho",
+   "fonte": "halter",
+   "o": "erro: a lombar arqueia (estende além da curva de repouso) enquanto o kettlebell sobe"
+  },
+  "erro.arco.toracica": {
+   "v": 4,
+   "un": "graus",
+   "selo": "desenho",
+   "fonte": "halter",
+   "o": "erro: as costas de cima também estendem"
+  },
+  "erro.curta.cotovelo": {
+   "v": 75,
+   "un": "graus",
+   "selo": "desenho",
+   "fonte": "halter",
+   "o": "erro: o kettlebell não desce atrás da cabeça (para com o cotovelo a 75°)"
+  }
+ },
+ "fases": [
+  {
+   "nome": "Alongado",
+   "tipo": "pausa",
+   "dur": 0.5,
+   "de": 0,
+   "ate": 0,
+   "respira": "INSPIRA",
+   "tempo": "kettlebell atrás da cabeça",
+   "selo": "consenso",
+   "fonte": "ficha"
+  },
+  {
+   "nome": "Extensão · concêntrica",
+   "tipo": "conc",
+   "dur": 1.1,
+   "de": 0,
+   "ate": 1,
+   "respira": "EXPIRA",
+   "tempo": "~1 s",
+   "selo": "consenso",
+   "fonte": "ficha"
+  },
+  {
+   "nome": "Braços estendidos",
+   "tipo": "pausa",
+   "dur": 0.4,
+   "de": 1,
+   "ate": 1,
+   "respira": "FIRME",
+   "tempo": "kettlebell acima da cabeça",
+   "selo": "consenso",
+   "fonte": "ficha"
+  },
+  {
+   "nome": "Volta · excêntrica",
+   "tipo": "exc",
+   "dur": 2.4,
+   "de": 1,
+   "ate": 0,
+   "respira": "INSPIRA",
+   "tempo": "~2–3 s, devagar",
+   "selo": "consenso",
+   "fonte": "ficha"
+  }
+ ],
+ "contatos": [
+  "pe.R",
+  "pe.L",
+  "pelve"
+ ],
+ "regras": [
+  {
+   "id": "triceps-frances-braco-parado",
+   "pede": "os cotovelos ficam parados: só os antebraços descem o kettlebell atrás da cabeça e voltam",
+   "selo": "consenso",
+   "fonte": "ficha"
+  },
+  {
+   "id": "triceps-frances-cotovelos-perto-da-cabeca",
+   "pede": "cotovelos apontando para cima, perto da cabeça, sem abrir para os lados",
+   "selo": "consenso",
+   "fonte": "ficha"
+  },
+  {
+   "id": "triceps-frances-alonga-atras-da-cabeca",
+   "pede": "início: kettlebell atrás da cabeça, cotovelos bem dobrados",
+   "selo": "consenso",
+   "fonte": "ficha"
+  },
+  {
+   "id": "triceps-frances-estende-em-cima",
+   "pede": "fim: braços estendidos acima da cabeça",
+   "selo": "consenso",
+   "fonte": "ficha"
+  },
+  {
+   "id": "triceps-frances-costas-retas",
+   "pede": "sentado com as costas retas",
+   "selo": "consenso",
+   "fonte": "ficha"
+  },
+  {
+   "id": "triceps-frances-carga-livre-do-corpo",
+   "pede": "o kettlebell passa atrás da cabeça sem encostar na cabeça, na nuca, nas costas nem no banco",
+   "selo": "consenso",
+   "fonte": "ficha"
+  },
+  {
+   "id": "triceps-frances-kettlebell-nas-hastes",
+   "pede": "as duas mãos pelos lados da alça (a alça passa pelas duas mãos), a bola para baixo",
+   "selo": "consenso",
+   "fonte": "correcao"
+  }
+ ],
+ "erros": [
+  {
+   "id": "abre",
+   "instante": 0,
+   "titulo": "Abrir os cotovelos",
+   "vista": "frontal",
+   "oQueMuda": "os cotovelos se afastam da cabeça, para os lados",
+   "destaca": [
+    "bracos"
+   ],
+   "linha": [
+    "ombro",
+    "cotovelo",
+    "pegada"
+   ],
+   "foco": "cotovelo"
+  },
+  {
+   "id": "arco",
+   "instante": 1,
+   "titulo": "Arquear as costas",
+   "vista": "lateral",
+   "oQueMuda": "a lombar e as costas de cima arqueiam enquanto o kettlebell sobe",
+   "destaca": [
+    "corpo"
+   ],
+   "linha": [
+    "pelve",
+    "lombar",
+    "c7",
+    "cabeca"
+   ],
+   "foco": "lombar"
+  },
+  {
+   "id": "curta",
+   "instante": 0,
+   "titulo": "Amplitude curta",
+   "vista": "lateral",
+   "oQueMuda": "o kettlebell para acima da cabeça, sem descer atrás dela",
+   "destaca": [
+    "bracos"
+   ],
+   "linha": [
+    "ombro",
+    "cotovelo",
+    "pegada"
+   ],
+   "foco": "pegada"
+  }
+ ],
+ "simetrico": true,
+ "rotulos": [
+  {
+   "vista": "lateral",
+   "texto": "cotovelos parados",
+   "ponto": "cotovelo",
+   "selo": "consenso",
+   "fonte": "ficha"
+  },
+  {
+   "vista": "lateral",
+   "texto": "desce devagar atrás da cabeça",
+   "ponto": "pegada",
+   "selo": "consenso",
+   "fonte": "ficha"
+  },
+  {
+   "vista": "frontal",
+   "texto": "cotovelos perto da cabeça",
+   "ponto": "cotovelo",
+   "selo": "consenso",
+   "fonte": "ficha"
+  }
+ ]
+}

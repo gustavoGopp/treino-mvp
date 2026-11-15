@@ -157,6 +157,16 @@ export const REGRAS_TRICEPS_FRANCES: Record<string, Regra> = {
       [c, d] = faixa(ate);
     return { medido: `os centros das mãos ficam de ${f1(a)} a ${f1(b)} cm um do outro; a face de baixo da cabeça de cima fica de ${f1(c)} a ${f1(d)} cm do centro de cada mão, ao longo do halter (a palma)`, ok: a >= 11.5 && b <= 12.5 && d - c <= 0.2 && c >= 1 && d <= 3 };
   },
+  'triceps-frances-kettlebell-nas-hastes': (q) => {
+    // as duas mãos a uma haste da outra (a alça passa pelas duas) e a bola abaixo da alça, ao longo do eixo do kettlebell
+    const entre = q.map((x) => dist(x.esq.lado.R.pegada, x.esq.lado.L.pegada));
+    const [a, b] = faixa(entre);
+    const alca = obj('kettlebell', 'alcaLarg');
+    // a bola fica para baixo: o centro dela abaixo do meio das mãos
+    const abaixo = q.map((x) => x.marcas.kettlebell![1] - x.marcas.bola![1]);
+    const [c, d] = faixa(abaixo);
+    return { medido: `os centros das mãos ficam de ${f1(a)} a ${f1(b)} cm um do outro (hastes a ${f1(alca)} cm); o centro da bola fica de ${f1(c)} a ${f1(d)} cm abaixo do meio das mãos`, ok: Math.abs(a - alca) <= 0.3 && Math.abs(b - alca) <= 0.3 && c > 0 };
+  },
   'triceps-frances-carga-livre-do-corpo': (q) => {
     const f = q.filter((_, i) => i % 3 === 0 || i === q.length - 1).map(folgaDaCargaAoCorpo);
     const pior = f.reduce((a, b) => (b.folga < a.folga ? b : a));

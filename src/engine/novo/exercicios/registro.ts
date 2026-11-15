@@ -37,3 +37,4 @@ export { ponteKettlebell } from './ponte-kettlebell';
 export { flexaoJoelhoSuspensao } from './flexao-joelho-suspensao';
 export { tricepsFrances } from './triceps-frances';
 export { tricepsFrancesHalter } from './triceps-frances-halter';
+export { tricepsFrancesKettlebell } from './triceps-frances-kettlebell';
