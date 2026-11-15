@@ -1,0 +1,71 @@
+{
+ "id": "crucifixo-polia",
+ "nome": "Crucifixo na polia (crossover)",
+ "fichaDaTecnica": "docs/pesquisa/animacoes/crucifixo-polia.md",
+ "fontes": {
+  "guia": "Guia original do projeto (referencia/guia-execucao-fase1.html), como registrado em docs/pesquisa/animacoes/crucifixo-polia.md e no texto do app (src/conteudo/exercicios/crucifixo-polia.json): consenso de treinadores",
+  "app": "Texto do app (src/conteudo/exercicios/crucifixo-polia.json): 'Os dois carros na altura do ombro, com estribos'; 'dê 1–2 passos à frente da linha das torres, até o cabo ficar tenso com os braços abertos'; 'Um pé à frente do outro, joelhos levemente dobrados'; 'Tronco levemente inclinado à frente, peito alto, ombros para trás'; 'Cotovelos levemente dobrados. Esse ângulo fica igual a série toda'",
+  "hoje": "A animação de hoje (src/engine/exercicios/crucifixo-polia.ts): as colunas a 84 cm do meio e 45 cm atrás, a altura das mãos no começo e no fim, os tempos e os erros",
+  "equilibrio": "Em pé, parado, a projeção do centro de massa (corpo) cai dentro do apoio dos pés (mecânica)",
+  "objetos": "src/engine/novo/dados/objetos.json (coluna de polia, estribo)",
+  "desenho": "Escolha de desenho desta animação, dentro do que a ficha pede; a conferência mede o resultado"
+ },
+ "param": {
+  "pes.meiaDistancia": {"v": 9, "un": "cm", "selo": "desenho", "fonte": "desenho", "o": "cada pé a 9 cm do meio, de frente (a ficha só pede um pé à frente do outro)"},
+  "pe.frente.z": {"v": 22, "un": "cm", "selo": "consenso", "fonte": "app", "o": "um pé à frente do outro: a bola do pé da frente (o direito) 22 cm à frente do meio do corpo (a ficha não dá número)"},
+  "pe.tras.z": {"v": -26, "un": "cm", "selo": "consenso", "fonte": "app", "o": "a bola do pé de trás (o esquerdo) 26 cm atrás do meio do corpo (a ficha não dá número)"},
+  "pe.tras.calcanhar": {"v": 25, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "o calcanhar de trás sobe um pouco: o pé de trás apoia mais na ponta"},
+  "peso.partilha": {"v": 0.5, "un": "fração", "selo": "desenho", "fonte": "equilibrio", "o": "o centro de massa fica no meio do caminho entre a bola do pé de trás e o meio do pé da frente (o peso dividido entre os dois pés)"},
+  "joelho": {"v": 12, "un": "graus", "selo": "consenso", "fonte": "app", "o": "joelhos levemente dobrados: o da frente dobra 12° (a ficha não dá número; a altura da pelve sai daqui)"},
+  "tronco": {"v": 12, "un": "graus", "selo": "consenso", "fonte": "app", "o": "tronco levemente inclinado à frente: o eixo do tórax a 12° da vertical (a ficha não dá número)"},
+  "toracica": {"v": -4, "un": "graus", "selo": "consenso", "fonte": "app", "o": "peito alto: as costas de cima estendem 4° além da curva de repouso"},
+  "cervical": {"v": -8, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "o pescoço estende um pouco a partir do tronco inclinado: o olhar à frente"},
+  "cabeca": {"v": -4, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "a cabeça acompanha o pescoço: o olhar à frente"},
+  "polia.meiaDistancia": {"v": 96, "un": "cm", "selo": "desenho", "fonte": "desenho", "o": "cada roldana a 96 cm do meio do corpo, para o lado (hoje: 84 cm; um pouco mais aberto para a mão, aberta, não ficar na frente da coluna, vista de frente)"},
+  "polia.atras": {"v": 45, "un": "cm", "selo": "consenso", "fonte": "app", "o": "1 a 2 passos à frente da linha das torres: as roldanas ficam 45 cm atrás do meio da pelve (a distância de hoje; o pé da frente fica a cerca de 85 cm da linha das torres)"},
+  "polia.acimaDoOmbro": {"v": 0, "un": "cm", "selo": "consenso", "fonte": "app", "o": "os dois carros na altura do ombro: o centro da roldana na altura do centro do ombro (no alongado)"},
+  "cotovelo": {"v": 20, "un": "graus", "selo": "consenso", "fonte": "app", "o": "cotovelos levemente dobrados, o mesmo ângulo a série toda (a ficha não dá número)"},
+  "arco.inicio.psi": {"v": 95, "un": "graus", "selo": "consenso", "fonte": "guia", "o": "alongado: as mãos na linha do corpo ou um pouco atrás (a linha do ombro à mão a 95° da frente, no tórax)"},
+  "arco.inicio.el": {"v": -6, "un": "graus", "selo": "desenho", "fonte": "hoje", "o": "alongado: a mão um pouco abaixo do ombro (a linha do ombro à mão 6° abaixo do plano do tórax)"},
+  "arco.fim.maos": {"v": 9, "un": "cm", "selo": "consenso", "fonte": "guia", "o": "fim: as mãos se encontram (os centros das pegadas a 9 cm, uma largura de mão)"},
+  "arco.fim.el": {"v": -10, "un": "graus", "selo": "consenso", "fonte": "guia", "o": "fim: as mãos na frente da parte de baixo do peito (a linha do ombro à mão 10° abaixo do plano do tórax; a conferência mede a altura)"},
+  "escapula.prot": {"v": -6, "un": "graus", "selo": "consenso", "fonte": "app", "o": "ombros para trás: a clavícula 6° mais para trás que o ritmo normal (o peito aberto), a série toda"},
+  "mao.supinacao.inicio": {"v": 60, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "alongado: a palma do estribo virada para a frente (60° de supinação a partir da pegada neutra)"},
+  "mao.supinacao.fim": {"v": 30, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "fim: as palmas viradas uma para a outra (30° de supinação a partir da neutra)"},
+  "pilha.folga": {"v": 2, "un": "cm", "selo": "consenso", "fonte": "app", "o": "cabo tenso com os braços abertos: a pilha já sai 2 cm do repouso"},
+  "erro.supino.psi": {"v": 45, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "erro: no alongado, a mão fica à frente do ombro (a linha do ombro à mão a 45° da frente), com o cotovelo dobrado"},
+  "erro.supino.dobra": {"v": 95, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "erro: no alongado, o cotovelo dobra 95° (as mãos vêm para o lado do peito, como num supino) e estica ao fechar"},
+  "erro.abrir.psi": {"v": 122, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "erro: no alongado, a mão vai bem atrás da linha do corpo"},
+  "erro.abrir.prot": {"v": 12, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "erro: no alongado, o ombro rola para a frente (a clavícula vai 12° à frente)"},
+  "erro.tronco.inclinacao": {"v": 32, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "erro: o tronco curva à frente para fechar (o peito a 32° da vertical no fim)"},
+  "erro.tronco.toracica": {"v": 18, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "erro: as costas de cima arredondam ao fechar"}
+ },
+ "fases": [
+  {"nome": "Alongado", "tipo": "pausa", "dur": 0.5, "de": 0, "ate": 0, "respira": "INSPIRA", "tempo": "pausa curta", "selo": "consenso", "fonte": "guia"},
+  {"nome": "Fechamento · concêntrica", "tipo": "conc", "dur": 1.3, "de": 0, "ate": 1, "respira": "EXPIRA", "tempo": "~1–1,5 s", "selo": "consenso", "fonte": "guia"},
+  {"nome": "Mãos juntas", "tipo": "pausa", "dur": 0.5, "de": 1, "ate": 1, "respira": "FIRME", "tempo": "pausa curta", "selo": "consenso", "fonte": "guia"},
+  {"nome": "Abertura · excêntrica", "tipo": "exc", "dur": 2.5, "de": 1, "ate": 0, "respira": "INSPIRA", "tempo": "~2–3 s", "selo": "consenso", "fonte": "guia"}
+ ],
+ "contatos": ["pe.R", "pe.L"],
+ "regras": [
+  {"id": "polia-braco-cotovelo-fixo", "pede": "cotovelos levemente dobrados, no mesmo ângulo a série toda", "selo": "consenso", "fonte": "app"},
+  {"id": "polia-braco-maos-na-linha-do-corpo", "pede": "alongado: mãos mais ou menos na linha do corpo ou um pouco atrás", "selo": "consenso", "fonte": "guia"},
+  {"id": "polia-braco-maos-se-encontram", "pede": "fim: as mãos se encontram na frente da parte de baixo do peito", "selo": "consenso", "fonte": "guia"},
+  {"id": "polia-braco-ombros-para-tras", "pede": "peito alto, ombros para trás (a clavícula atrás do ritmo normal)", "selo": "consenso", "fonte": "app"},
+  {"id": "polia-braco-polias-na-altura-do-ombro", "pede": "os dois carros na altura do ombro", "selo": "consenso", "fonte": "app"},
+  {"id": "polia-braco-cabos-livres-do-corpo", "pede": "cada cabo vai reto da roldana à mão, sem encostar no corpo", "selo": "consenso", "fonte": "guia"},
+  {"id": "polia-braco-pilha-de-cada-coluna", "pede": "cada coluna tem a sua pilha, que sobe o curso do seu cabo dividido pela relação da máquina", "selo": "consenso", "fonte": "objetos"},
+  {"id": "tronco-quase-parado", "pede": "o tronco fica parado: quem fecha são os braços", "selo": "consenso", "fonte": "guia"}
+ ],
+ "erros": [
+  {"id": "supino", "instante": 0, "titulo": "Transformar em supino", "vista": "cima", "oQueMuda": "no alongado, os cotovelos dobram e as mãos vêm para o lado do peito; ao fechar, os cotovelos esticam, como num supino", "destaca": ["bracos"], "linha": ["ombro", "cotovelo", "pegada"], "foco": "cotovelo"},
+  {"id": "abrir", "instante": 0, "titulo": "Abrir demais", "vista": "cima", "oQueMuda": "no alongado, as mãos vão bem atrás da linha do corpo e o ombro rola para a frente", "destaca": ["bracos"], "linha": ["acromioclavicular", "cotovelo", "pegada"], "foco": "pegada"},
+  {"id": "tronco", "instante": 1, "titulo": "Usar o tronco", "vista": "lateral", "oQueMuda": "o tronco curva à frente para fechar, com as costas de cima arredondando", "destaca": ["corpo"], "linha": ["pelve", "lombar", "c7", "cabeca"], "foco": "c7"}
+ ],
+ "simetrico": false,
+ "rotulos": [
+  {"vista": "cima", "texto": "abraça a árvore", "ponto": "pegada:R", "selo": "consenso", "fonte": "guia"},
+  {"vista": "frontal", "texto": "peito alto, ombro para trás", "ponto": "acromioclavicular:R", "selo": "consenso", "fonte": "app"},
+  {"vista": "cima", "texto": "cotovelo no mesmo ângulo", "ponto": "cotovelo:L", "selo": "consenso", "fonte": "app"}
+ ]
+}

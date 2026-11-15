@@ -19,3 +19,4 @@ export { REGRAS_ABDOMINAIS } from './abdominais';
 export { regrasDasRemadas } from './remadas';
 export { regrasDosElasticos } from './elasticos';
 export { REGRAS_POLIA_PUXAR } from './polia-puxar';
+export { REGRAS_POLIA_BRACOS } from './polia-bracos';
