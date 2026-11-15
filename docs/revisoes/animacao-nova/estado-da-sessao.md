@@ -10,7 +10,7 @@ Comece por **`proposta.md`, seção 0-B**: o que esta sessão fez, o que a confe
 
 **A revisão independente mudou a recomendação: o corpo ainda não está pronto para fechar.** O esqueleto e as medidas passaram; o desenho dos músculos (porções do deltoide e do trapézio, quatro formas presas no lugar errado), a escápula, o fim da puxada e dois erros precisam de uma rodada de correção. A lista, com o que proponho em cada item, está na `proposta.md`, seção 0-B, "A revisão independente".
 
-**A rodada de correção foi feita em 15/11, com o ok do Gustavo** (proposta, seção 0-B, "A rodada de correção"). Feito: as porções do deltoide e do trapézio, quatro formas de músculo redesenhadas, a vista do modo Músculos por medida, o fim da puxada (152°), o erro da lombar, a seta do ombro, os nomes da Trajetória e três medidas internas. **Não feito: a escápula no contorno.** Falta o ok dele no lado a lado dos músculos (`parada-do-corpo/6-musculos-antes-e-depois.png`) e na vista de três quartos da puxada (`7-puxada-de-tras-e-tres-quartos.png`).
+**A rodada de correção foi feita em 15/11, com o ok do Gustavo** (proposta, seção 0-B, "A rodada de correção"). Feito: as porções do deltoide e do trapézio, quatro formas de músculo redesenhadas, a vista do modo Músculos por medida, o fim da puxada (152°), o erro da lombar, a seta do ombro, os nomes da Trajetória e três medidas internas. **Não feito: a escápula no contorno.** As formas corrigidas e as porções foram aprovadas por ele em 15/11 ("pode ficar com todas"). Falta a decisão sobre a vista de três quartos da puxada (`parada-do-corpo/7-puxada-de-tras-e-tres-quartos.png`).
 
 **Já decidido pelo Gustavo em 15/11:** a pegada do goblet em concha fica; o corpo subiu no banco do supino (a cabeça estava baixa demais). As outras decisões estão na lista abaixo e devem ser levadas uma por vez, com imagem.
 
@@ -28,7 +28,7 @@ Comece por **`proposta.md`, seção 0-B**: o que esta sessão fez, o que a confe
 
 Da etapa 1 (proposta, seção 9), continuam todas. As desta sessão:
 
-0. **As formas corrigidas dos músculos e as porções:** ficam? (`parada-do-corpo/6-musculos-antes-e-depois.png`). Depois: a vista de três quartos na puxada; a escápula no contorno (não feita).
+0. **A vista de três quartos de trás na puxada** como padrão, no lugar da vista de trás (`parada-do-corpo/7-puxada-de-tras-e-tres-quartos.png`). Depois: a escápula no contorno (não feita). As formas corrigidas dos músculos e as porções já foram aprovadas em 15/11.
 1. **A mão espalmada nova:** ficou como ele quer? (`parada-do-corpo/1-flexao-de-cima.png`). A pegada do goblet já foi aprovada em 15/11.
 2. **Os rótulos de técnica** fora do corpo, com fio: é assim? (`parada-do-corpo/3-rotulos.png`)
 3. **A ponta do trapézio** 4,9 cm acima de onde a fonte diz, e **o abdômen** que termina na cintura: esticar as duas formas muda o desenho aprovado.
