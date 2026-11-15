@@ -114,7 +114,7 @@ function quadro(corpo: Corpo, u: number, erro?: string): Quadro {
   const e = montar(corpo, c, u, erro);
   const barra = barraDe(e, c.cabos);
   const pb = barraReta(barra);
-  const col = colunasECabos(c.cabos, [barra.ponta], c.repouso, f('pilha.folga'), false);
+  const col = colunasECabos(c.cabos, [barra.ponta], c.repouso, f('pilha.folga'), false, 150);
   const pecas: Peca[] = [...col.pecas!.filter((p) => p.t === 'torre'), pb.peca, ...col.pecas!.filter((p) => p.t !== 'torre')];
   const marcas: Record<string, V3> = { ...col.marcas, barra: barra.meio, 'barra.a': barra.a, 'barra.b': barra.b };
   return { esq: e, prims: [chao(-60, 60, -60, c.cabos[0]!.torre.base[2] + 50), ...pb.prims, ...col.prims], pecas, fios: col.fios, cargas: [], marcas, vies: { maoR: 1, maoL: 1 } };

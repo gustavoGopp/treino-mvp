@@ -119,7 +119,7 @@ function quadro(corpo: Corpo, u: number, erro?: string): Quadro {
 
 export const crucifixoPolia: Exercicio = {
   ficha: F,
-  vistas: ['cima', 'frontal'],
+  vistas: ['frontal', 'cima'],
   quadro,
   // peitoral (principal) e a frente do ombro (secundário): a biblioteca (revisão de anatomia de 02/11/2026)
   papeis: { peitoral: 'p', deltAnt: 's' },

@@ -2,7 +2,7 @@
 
 Atualizado por quem integra, a cada família juntada. "Aprovada na folha" = o Gustavo olhou e aprovou. "Aprovada por delegação" = conferida por quem integra, risco baixo, registrada com a frase dele de 15/11/2026. "Para o Gustavo ver" = risco médio ou alto: só entra na lista do app depois do ok dele. "Correção de qualidade" = desde o aviso dele de 15/11 ("o fato de eu ter delegado [...] não quer dizer que a gente pode diminuir a qualidade"), nenhuma animação delegada conta como pronta enquanto tiver defeito visível nos quadros (seção 8 de `como-fazer-uma-animacao.md`). As folhas ficam em `prototipos/folha-<id>.png` e os quadros grandes em `quadros/<id>.png`.
 
-Resumo: 15 aprovadas pelo Gustavo (7 na folha e 8 vendo os quadros); 45 por delegação; 2 prontas para o Gustavo ver; 4 das quatro primeiras sem aprovação na folha; 16 em andamento; 8 por fazer.
+Resumo: 15 aprovadas pelo Gustavo (7 na folha e 8 vendo os quadros); 49 por delegação; 2 prontas para o Gustavo ver; 4 das quatro primeiras sem aprovação na folha; 12 em andamento; 8 por fazer.
 
 | Lote | Exercício | Estado |
 |---|---|---|
@@ -26,8 +26,8 @@ Resumo: 15 aprovadas pelo Gustavo (7 na folha e 8 vendo os quadros); 45 por dele
 | 2 | `flexao-pes-elevados` | aprovada pelo Gustavo em 15/11/2026, vendo os quadros ("podem ficar assim, segue com as próximas"): o peito para a 8,5 cm do chão |
 | 2 | `pike` | feita e conferida quadro a quadro por quem integra; aprovada por delegação (depois da correção: segunda vista de três quartos; a descida é mais curta que a de hoje porque a cabeça chega ao chão) |
 | 3 | `crucifixo-elastico` | em andamento (subagente) |
-| 3 | `crucifixo-invertido-polia` | em andamento (subagente) |
-| 3 | `crucifixo-polia` | em andamento (subagente) |
+| 3 | `crucifixo-invertido-polia` | feita e conferida quadro a quadro por quem integra; aprovada por delegação (a vista padrão passou a ser a de trás) |
+| 3 | `crucifixo-polia` | feita e conferida quadro a quadro por quem integra; aprovada por delegação (duas colunas; a vista padrão passou a ser a de frente) |
 | 3 | `desenvolvimento` | feita e conferida quadro a quadro por quem integra; aprovada por delegação (sentado, com encosto; o banco regulável agora é um desenho só, o mesmo da rosca inclinada) |
 | 3 | `desenvolvimento-elastico` | em andamento (subagente) |
 | 3 | `desenvolvimento-unilateral-kettlebell` | feita e conferida quadro a quadro por quem integra; aprovada por delegação |
@@ -37,7 +37,7 @@ Resumo: 15 aprovadas pelo Gustavo (7 na folha e 8 vendo os quadros); 45 por dele
 | 3 | `supino-inclinado` | em andamento (subagente) |
 | 4 | `barra-fixa` | em andamento (subagente) |
 | 4 | `barra-fixa-supinada` | em andamento (subagente) |
-| 4 | `face-pull` | em andamento (subagente) |
+| 4 | `face-pull` | feita e conferida quadro a quadro por quem integra; aprovada por delegação (a vista padrão passou a ser a de lado; o ombro de trás aparece o bastante com o cotovelo 5,6 cm atrás da linha do ombro) |
 | 4 | `face-pull-elastico` | não entregue: com os braços à frente, o desenho do ombro de trás quase não aparece em nenhuma vista (9 cm², e o mínimo é 30); depende de um acerto no desenho desse músculo |
 | 4 | `puxada-elastico` | feita e conferida quadro a quadro por quem integra; aprovada por delegação (o tubo preso no alto de uma porta) |
 | 4 | `remada-apoiada` | em andamento (subagente) |
@@ -55,7 +55,7 @@ Resumo: 15 aprovadas pelo Gustavo (7 na folha e 8 vendo os quadros); 45 por dele
 | 5 | `rosca-inclinada` | feita com o halter de 10 lb; **para o Gustavo ver** (de frente os braços abrem 25°, para o halter não entrar no quadril) |
 | 5 | `rosca-kettlebell` | feita e conferida quadro a quadro por quem integra; aprovada por delegação |
 | 5 | `rosca-martelo` | feita e conferida quadro a quadro por quem integra; aprovada por delegação (com o halter de 10 lb) |
-| 5 | `rosca-polia` | em andamento (subagente) |
+| 5 | `rosca-polia` | feita e conferida quadro a quadro por quem integra; aprovada por delegação (com a barra reta, que é peça nova; a coluna é cortada em cima pelo quadro) |
 | 5 | `rosca-suspensao` | feita e conferida quadro a quadro por quem integra; aprovada por delegação |
 | 5 | `triceps-corda` | feita e conferida quadro a quadro por quem integra; aprovada por delegação |
 | 5 | `triceps-elastico-acima` | feita e conferida quadro a quadro por quem integra; aprovada por delegação (com a faixa em laço de 41 pol, que é objeto novo) |

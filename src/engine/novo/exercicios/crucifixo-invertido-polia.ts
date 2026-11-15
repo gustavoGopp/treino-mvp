@@ -135,7 +135,7 @@ function quadro(corpo: Corpo, u: number, erro?: string): Quadro {
 
 export const crucifixoInvertidoPolia: Exercicio = {
   ficha: F,
-  vistas: ['cima', 'posterior'],
+  vistas: ['posterior', 'cima'],
   quadro,
   // só o ombro de trás, sem secundário (achado 5 da revisão de anatomia; a biblioteca)
   papeis: { deltPost: 'p' },

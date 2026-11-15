@@ -135,7 +135,7 @@ function quadro(corpo: Corpo, u: number, erro?: string): Quadro {
 
 export const facePull: Exercicio = {
   ficha: F,
-  vistas: ['cima', 'lateral'],
+  vistas: ['lateral', 'cima'],
   quadro,
   // o ombro de trás (principal) e as costas, a parte do meio do trapézio (secundário): a biblioteca
   papeis: { deltPost: 'p', trapMedInf: 's' },

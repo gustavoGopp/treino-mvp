@@ -145,8 +145,9 @@ export const compDoCabo = (t: Torre, ponta: V3) => dist(ponta, saidaDoCabo(t, po
  * Os cabos e as colunas de um quadro. `pontas`: onde cada cabo prende, na ordem de `cabos`; `repouso`: o comprimento de
  * cada cabo com a pilha em repouso (o mais curto do ciclo). Cada pilha sobe o curso do seu cabo dividido pela relação da
  * máquina, mais a folga (o cabo já tenso no começo). As marcas `pilha`, `pilha2`... guardam a subida de cada uma.
+ * `cortadaEmCima`: até que altura o quadro precisa mostrar a coluna (polia baixa: o resto é cortado pela borda).
  */
-export function colunasECabos(cabos: CaboDaColuna[], pontas: V3[], repouso: number[], folga: number, cenario: boolean): Pick<Quadro, 'prims' | 'pecas' | 'fios' | 'marcas'> {
+export function colunasECabos(cabos: CaboDaColuna[], pontas: V3[], repouso: number[], folga: number, cenario: boolean, cortadaEmCima?: number): Pick<Quadro, 'prims' | 'pecas' | 'fios' | 'marcas'> {
   const prims: Prim[] = [],
     pecas: Peca[] = [],
     fios: Quadro['fios'] = [],
@@ -157,7 +158,7 @@ export function colunasECabos(cabos: CaboDaColuna[], pontas: V3[], repouso: numb
     const comp = dist(ponta, saida);
     const subida = Math.max(0, (comp - repouso[i]!) / obj('torre', 'relacao') + folga);
     prims.push(...torre(c.torre, subida), cabo(ponta, saida));
-    pecas.unshift({ t: 'torre', torre: c.torre, subida, ...(cenario ? { cenario: true } : {}) });
+    pecas.unshift({ t: 'torre', torre: c.torre, subida, ...(cenario ? { cenario: true } : {}), ...(cortadaEmCima !== undefined ? { cortadaEmCima } : {}) });
     pecas.push({ t: 'cabo', a: ponta, b: saida });
     fios.push({ id: c.id, comp, estica: true });
     marcas[i === 0 ? 'pilha' : `pilha${i + 1}`] = [0, subida, 0];

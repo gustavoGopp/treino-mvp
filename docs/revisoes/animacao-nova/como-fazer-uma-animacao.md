@@ -99,6 +99,8 @@ Rode tudo da raiz do seu diretório de trabalho. Se ele for uma cópia de trabal
 - **Elástico que não fecha a conta:** o tubo da tabela tem 122 cm e estica no máximo 3 vezes. Se o caminho do exercício pede mais (ou deixa o tubo frouxo), a saída não é forçar a pose: é outro elástico, com medidas de fabricante num arquivo `dados/objetos/<elastico>.json` (com `comp` e `esticaAte`), declarado no quadro em `fios: [{ id: 'elastico', comp, estica: true, objeto: '<id>' }]`. A conferência mede contra esse objeto.
 - **Rótulos em minúsculas e sem ponto final** ("desce reto", "joelho sobre o pé"), mesmo que a dica do app venha com maiúscula e ponto. No máximo dois por vista.
 - **Nos pedidos do `olhar.mjs`, o tema é o sétimo campo:** `id:vista:modo:f1::cinza:escuro` (com `::escuro` o desenho sai todo preto, porque "escuro" vira o estilo).
+- **A primeira vista de `vistas` é a que o app abre:** tem de ser a que mostra o corpo grande e o movimento (quase nunca a de cima). A de cima serve de segunda vista.
+- **Polia baixa:** a coluna de 2,39 m encolhe o corpo no quadro. A peça `torre` aceita `cortadaEmCima: <cm>` (até que altura o quadro precisa mostrá-la); o resto é cortado pela borda.
 - **Nomes que aparecem na tela têm acento:** as chaves de `trajetorias` viram rótulo (`cabeça`, e não `cabeca`; `mão`, `pé`).
 - **De frente, nos afundos, o músculo principal some atrás do joelho:** é aviso conhecido; diga na conferência escrita qual é a vista padrão do modo Músculos.
 
