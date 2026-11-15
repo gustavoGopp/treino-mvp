@@ -263,7 +263,7 @@ export function criarStiff(fichaJson: unknown, maos: MaosDoStiff): { ficha: Fich
     return out;
   };
 
-  function pose(corpo: Corpo, o: { joelho: number; tronco: number; lombar: number; toracica: number; folga: number; abre: number; u: number; braco?: number }): Dobrado {
+  function pose(corpo: Corpo, o: { joelho: number; tronco: number; lombar: number; toracica: number; folga: number; abre: number; u: number; livre: number; braco?: number }): Dobrado {
     const alcance = alcanceDoBraco(corpo, f('cotovelo'));
     return dobrarOQuadril(corpo, {
       joelho: o.joelho,
@@ -275,7 +275,7 @@ export function criarStiff(fichaJson: unknown, maos: MaosDoStiff): { ficha: Fich
       pesMeiaDistancia: f('pes.meiaDistancia'),
       apoio: umaPerna ? 'R' : 'dois',
       abre: o.abre,
-      pernaLivre: umaPerna ? (t) => pernaLivre(t, o.u) : undefined,
+      pernaLivre: umaPerna ? (t) => pernaLivre(t, o.u, o.livre) : undefined,
       bracos(e) {
         const T = e.torax;
         const braco = (k: Lado, pegada: V3, polegar: V3, diam: number, forma: 'pegada' | 'relaxada' = 'pegada'): PoseBraco => {
@@ -312,13 +312,13 @@ export function criarStiff(fichaJson: unknown, maos: MaosDoStiff): { ficha: Fich
    * A perna livre (numa perna só): sobe para trás em linha com o tronco. Em cima ela pende com o joelho dobrado o
    * bastante para o pé sair do chão; embaixo, a coxa segue a linha que vai da base do pescoço ao quadril.
    */
-  function pernaLivre(t: Tronco, u: number): PosePerna {
+  function pernaLivre(t: Tronco, u: number, joelho: number): PosePerna {
     const rad = Math.PI / 180;
     const P = t.pelve;
     const linha = paraRef({ ...P, o: [0, 0, 0] }, sub(P.o, t.torax.o));
     const naLinha = Math.atan2(-linha[2], -linha[1]) / rad;
     const th = mix(f('livre.coxa.cima'), naLinha, u) * rad,
-      kn = mix(f('livre.joelho.cima'), f('livre.joelho.baixo'), u) * rad,
+      kn = joelho * rad,
       pf = f('livre.tornozelo') * rad;
     const coxa: V3 = [0, -Math.cos(th), -Math.sin(th)],
       canela: V3 = [0, -Math.cos(th + kn), -Math.sin(th + kn)];
@@ -332,7 +332,7 @@ export function criarStiff(fichaJson: unknown, maos: MaosDoStiff): { ficha: Fich
     let c = CACHE.get(corpo);
     if (c !== undefined) return c;
     const alvo = corpo.m('altura.maleolo') + f('maos.embaixo') * (corpo.m('altura.joelho') - corpo.m('altura.maleolo'));
-    c = resolver1((x) => pose(corpo, { joelho: f('joelho.baixo'), tronco: x, lombar: 0, toracica: 0, folga: f('carga.folga'), abre: 0, u: 1 }).e.lado.R.pegada[1] - alvo, 40, 100, 24);
+    c = resolver1((x) => pose(corpo, { joelho: f('joelho.baixo'), tronco: x, lombar: 0, toracica: 0, folga: f('carga.folga'), abre: 0, u: 1, livre: 0 }).e.lado.R.pegada[1] - alvo, 40, 100, 24);
     CACHE.set(corpo, c);
     return c;
   }
@@ -351,6 +351,8 @@ export function criarStiff(fichaJson: unknown, maos: MaosDoStiff): { ficha: Fich
       folga: erro === 'longe' ? mix(f('carga.folga'), f('erro.longe.folga'), u) : f('carga.folga'),
       abre: erro === 'abre' ? f('erro.abre.giro') * u : 0,
       u,
+      // o joelho da perna livre (numa perna só); no erro "agachar" ele continua dobrado, com o pé longe do chão
+      livre: umaPerna ? mix(f('livre.joelho.cima'), f(agach ? 'erro.agachar.livre.joelho' : 'livre.joelho.baixo'), u) : 0,
     };
   }
   /**
