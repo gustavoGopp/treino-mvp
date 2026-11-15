@@ -1,0 +1,67 @@
+{
+ "id": "elevacao-joelhos-paralelas",
+ "nome": "Elevação de joelhos nas paralelas",
+ "fichaDaTecnica": "docs/pesquisa/animacoes/elevacao-joelhos-paralelas.md",
+ "fontes": {
+  "ficha": "Ficha da técnica (docs/pesquisa/animacoes/elevacao-joelhos-paralelas.md): consenso (B.2.6; nsca2021, não verificado): corpo sustentado nas paralelas com os braços retos (ou nos antebraços, se houver almofadas), ombros longe das orelhas; sobe os joelhos e, no fim, enrola a pelve, como na elevação de joelhos na barra; corpo parado, sem balanço; ~1 s subindo, ~2 s descendo",
+  "app": "Texto do app (src/conteudo/exercicios/elevacao-joelhos-paralelas.json): \"Sustente o corpo nas paralelas com os braços retos\", \"Ombros longe das orelhas\", \"Corpo parado, pernas juntas e penduradas\", os tempos, as dicas e os erros",
+  "escamilla": "escamilla2006 (resumo no PubMed, em docs/pesquisa/fontes.md): em exercícios de abdômen, alguns ativam mais o flexor do quadril que o abdômen; daí a ficha pedir para enrolar a pelve, e não só levantar as pernas (consenso para a escolha)",
+  "hoje": "Animação aprovada no guia de hoje (src/engine/exercicios/elevacao-joelhos-paralelas.ts): as distâncias e os ângulos que a ficha não dá em número",
+  "barra": "Elevação de joelhos na barra fixa do motor novo (lote 7, ./elevacao-joelhos.json): o mesmo movimento das pernas e da pelve",
+  "desenho": "Escolha de desenho desta animação, dentro do que a ficha pede; a conferência mede o resultado"
+ },
+ "param": {
+  "cotovelo": {"v": 6, "un": "graus", "selo": "consenso", "fonte": "ficha", "o": "braços retos o ciclo inteiro, sem travar: o cotovelo dobra 6°"},
+  "escapula.ativa": {"v": -10, "un": "graus", "selo": "consenso", "fonte": "ficha", "o": "ombros longe das orelhas, empurrando as barras para baixo: a clavícula fica 10° abaixo do ritmo do ombro, o ciclo inteiro (hoje: −3)"},
+  "polo.fora": {"v": 0.15, "un": "fração", "selo": "desenho", "fonte": "desenho", "o": "o cotovelo aponta para trás e um pouco para fora (os braços retos, ao lado do corpo)"},
+  "polo.cima": {"v": 0, "un": "fração", "selo": "desenho", "fonte": "desenho", "o": "o cotovelo aponta para trás, na horizontal"},
+  "polo.frente": {"v": -1, "un": "fração", "selo": "desenho", "fonte": "desenho", "o": "o cotovelo aponta para trás"},
+  "pescoco": {"v": 0, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "pescoço na linha do tronco, olhando em frente"},
+  "quadril": {"v": 0, "un": "graus", "selo": "consenso", "fonte": "ficha", "o": "embaixo, pernas estendidas, na linha do corpo: o quadril não dobra"},
+  "joelho": {"v": 5, "un": "graus", "selo": "consenso", "fonte": "ficha", "o": "embaixo, pernas estendidas, sem travar o joelho: 5°"},
+  "quadril.topo": {"v": 82, "un": "graus", "selo": "desenho", "fonte": "barra", "o": "em cima, o quadril dobra 82° na bacia; somado aos 25° da pelve enrolada, a coxa passa da horizontal (o mesmo da barra fixa)"},
+  "joelho.topo": {"v": 95, "un": "graus", "selo": "desenho", "fonte": "barra", "o": "em cima, os joelhos dobrados a 95° (o mesmo da barra fixa)"},
+  "quadril.fim": {"v": 0.85, "un": "fração da subida", "selo": "consenso", "fonte": "barra", "o": "os joelhos sobem primeiro: o quadril chega ao topo a 80% da subida (o mesmo da barra fixa)"},
+  "joelho.fim": {"v": 0.65, "un": "fração da subida", "selo": "desenho", "fonte": "barra", "o": "o joelho dobra junto com o começo da subida e chega a 95° a 60% dela (o mesmo da barra fixa)"},
+  "pelve.inicio": {"v": 0.35, "un": "fração da subida", "selo": "consenso", "fonte": "barra", "o": "no fim, enrole a pelve: ela começa a enrolar a 45% da subida e termina com o topo (o mesmo da barra fixa)"},
+  "pelve.enrola": {"v": 25, "un": "graus", "selo": "desenho", "fonte": "barra", "o": "em cima, a pelve enrola 25°: a bacia gira 25° para trás e a lombar dobra o mesmo tanto (o mesmo da barra fixa)"},
+  "tronco": {"v": -4, "un": "graus", "selo": "desenho", "fonte": "barra", "o": "em cima, o corpo inteiro inclina 4° para trás (o mesmo da barra fixa)"},
+  "pe.plantar": {"v": 30, "un": "graus", "selo": "desenho", "fonte": "barra", "o": "os pés soltos, a ponta um pouco esticada (como na barra fixa) (o mesmo da barra fixa)"},
+  "pernas.juntas": {"v": 3, "un": "graus", "selo": "consenso", "fonte": "ficha", "o": "pernas juntas: cada coxa vem 3° para o meio"},
+  "erro.balanco.quadril": {"v": -25, "un": "graus", "selo": "desenho", "fonte": "barra", "o": "erro: no começo, as pernas vão 25° para trás para tomar embalo (hoje: −10)"},
+  "erro.balanco.lombar": {"v": -12, "un": "graus", "selo": "desenho", "fonte": "barra", "o": "erro: no começo, a lombar arqueia 12° (hoje: −10)"},
+  "erro.balanco.pelve": {"v": 0.3, "un": "fração", "selo": "desenho", "fonte": "barra", "o": "erro: o embalo sobe as pernas e a pelve quase não enrola (30% do certo)"},
+  "erro.balanco.z": {"v": 10, "un": "cm", "selo": "desenho", "fonte": "barra", "o": "erro: o balanço tira o corpo do prumo: o centro de massa vai 10 cm à frente das mãos no meio da subida"},
+  "erro.ombros.elev": {"v": 14, "un": "graus", "selo": "desenho", "fonte": "hoje", "o": "erro: os ombros sobem até as orelhas e o corpo afunda entre as barras (a clavícula sobe 14° além do ritmo do ombro; hoje: +8)"},
+  "erro.ombros.pescoco": {"v": 8, "un": "graus", "selo": "desenho", "fonte": "hoje", "o": "erro: a cabeça afunda entre os ombros (hoje: +10)"}
+ },
+ "fases": [
+  {"nome": "Pendurado", "tipo": "pausa", "dur": 0.4, "de": 0, "ate": 0, "respira": "INSPIRA", "tempo": "corpo parado", "selo": "consenso", "fonte": "app"},
+  {"nome": "Subida · concêntrica", "tipo": "conc", "dur": 1.1, "de": 0, "ate": 1, "respira": "EXPIRA", "tempo": "~1 s", "selo": "consenso", "fonte": "app"},
+  {"nome": "Topo · pelve enrolada", "tipo": "pausa", "dur": 0.5, "de": 1, "ate": 1, "respira": "EXPIRA", "tempo": "pausa curta", "selo": "consenso", "fonte": "app"},
+  {"nome": "Descida · excêntrica", "tipo": "exc", "dur": 2, "de": 1, "ate": 0, "respira": "INSPIRA", "tempo": "~2 s", "selo": "consenso", "fonte": "app"}
+ ],
+ "contatos": ["pegada.R", "pegada.L"],
+ "regras": [
+  {"id": "pendurado-maos-na-barra", "pede": "as mãos fecham em volta das barras e não saem do lugar", "selo": "consenso", "fonte": "ficha"},
+  {"id": "pendurado-nao-atravessa-a-barra", "pede": "o corpo fica entre as barras, sem atravessá-las", "selo": "consenso", "fonte": "ficha"},
+  {"id": "pendurado-sem-balanco", "pede": "corpo parado, sem balanço: o centro de massa fica na vertical das mãos", "selo": "consenso", "fonte": "ficha"},
+  {"id": "pendurado-bracos-estendidos", "pede": "corpo sustentado com os braços retos", "selo": "consenso", "fonte": "ficha"},
+  {"id": "pendurado-ombros-firmes", "pede": "ombros longe das orelhas, firmes o ciclo inteiro", "selo": "consenso", "fonte": "ficha"},
+  {"id": "pendurado-pernas-estendidas-embaixo", "pede": "embaixo, pernas estendidas, penduradas", "selo": "consenso", "fonte": "ficha"},
+  {"id": "pendurado-joelhos-acima-do-quadril", "pede": "em cima, joelhos pelo menos na altura do quadril", "selo": "consenso", "fonte": "ficha"},
+  {"id": "pendurado-pelve-enrola", "pede": "no fim, a pelve enrola (o abdômen trabalha, não só o quadril)", "selo": "consenso", "fonte": "escamilla"}
+ ],
+ "erros": [
+  {"id": "balanco", "instante": 0, "titulo": "Balançar o corpo", "vista": "lateral", "oQueMuda": "as pernas tomam embalo para trás e a lombar arqueia; na subida, o corpo sai do prumo das mãos e a pelve quase não enrola", "destaca": ["pernas", "corpo"], "linha": ["ombro", "quadril", "joelho", "tornozelo"], "foco": "joelho"},
+  {"id": "pelve", "instante": 1, "titulo": "Só levantar as pernas", "vista": "lateral", "oQueMuda": "os joelhos sobem só pelo quadril: a pelve não enrola e os joelhos ficam abaixo do quadril", "destaca": ["corpo", "pernas"], "linha": ["lombar", "pelve", "joelho"], "foco": "pelve"},
+  {"id": "ombros", "instante": 0.5, "titulo": "Afundar nos ombros", "vista": "frontal", "oQueMuda": "os ombros sobem até as orelhas e o corpo afunda entre as barras", "destaca": ["bracos", "corpo"], "linha": ["acromioclavicular:R", "acromioclavicular:L"], "foco": "acromioclavicular:L"}
+ ],
+ "simetrico": true,
+ "rotulos": [
+  {"vista": "lateral", "texto": "enrola a pelve", "ponto": "pelve", "selo": "consenso", "fonte": "app"},
+  {"vista": "lateral", "texto": "corpo parado", "ponto": "tornozelo", "selo": "consenso", "fonte": "app"},
+  {"vista": "frontal", "texto": "ombros longe das orelhas", "ponto": "acromioclavicular", "selo": "consenso", "fonte": "app", "seta": {"de": "acromioclavicular", "desce": 6}},
+  {"vista": "frontal", "texto": "braços retos", "ponto": "cotovelo", "selo": "consenso", "fonte": "app"}
+ ]
+}

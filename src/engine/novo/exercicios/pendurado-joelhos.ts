@@ -86,7 +86,7 @@ export function criarElevacaoDeJoelhos(F: Ficha, onde: ApoioDasMaos) {
     return {
       esq: e,
       prims: par.prims,
-      pecas: [par.peca],
+      pecas: [par.estrutura, par.peca],
       fios: [],
       cargas: [],
       marcas: { 'barra.R': a.maos.R, 'barra.L': a.maos.L, 'eixo.R.a': eixo.R[0], 'eixo.R.b': eixo.R[1], 'eixo.L.a': eixo.L[0], 'eixo.L.b': eixo.L[1], raio: [raioDasParalelas(), 0, 0] },

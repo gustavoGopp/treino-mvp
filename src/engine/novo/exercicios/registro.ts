@@ -83,3 +83,4 @@ export { remadaApoiada } from './remada-apoiada';
 export { barraFixa } from './barra-fixa';
 export { barraFixaSupinada } from './barra-fixa-supinada';
 export { elevacaoJoelhos } from './elevacao-joelhos';
+export { elevacaoJoelhosParalelas } from './elevacao-joelhos-paralelas';
