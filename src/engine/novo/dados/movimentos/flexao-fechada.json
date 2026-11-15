@@ -80,11 +80,11 @@
    "o": "erro: o quadril cai (extensão da lombar somada)"
   },
   "erro.cot.doTronco": {
-   "v": 88,
+   "v": 130,
    "un": "graus",
    "selo": "desenho",
    "fonte": "desenho",
-   "o": "erro: cotovelos abertos para os lados, a ~90° do tronco"
+   "o": "erro: cotovelos abertos para os lados (a direção para onde o cotovelo aponta; medido de cima, o braço faz 72,5° com o tronco, como no erro da flexão)"
   },
   "erro.curta.fracao": {
    "v": 0.5,

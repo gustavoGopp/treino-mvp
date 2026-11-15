@@ -1,6 +1,6 @@
 # Lote 2 · Flexão de braço com as mãos juntas (`flexao-fechada`)
 
-De 15/11/2026. Primeira animação do lote 2 (as flexões). Ainda não aprovada nem ligada às telas do app.
+De 15/11/2026, revista na rodada de correção do mesmo dia (o erro dos cotovelos abre mais; os nove itens do padrão conferidos). Primeira animação do lote 2 (as flexões). Ainda não aprovada nem ligada às telas do app.
 
 - Ficha da técnica: `docs/pesquisa/animacoes/flexao-fechada.md`.
 - Ficha de movimento: `src/engine/novo/dados/movimentos/flexao-fechada.json`.
@@ -27,7 +27,7 @@ Conferência automática: **0 falha**. Avisos: extensão do punho 94,6° em cima
 
 | Erro (texto do app) | O que o boneco faz (medido) |
 |---|---|
-| Cotovelos abertos para os lados (de cima) | embaixo, o braço faz 51° com o tronco, visto de cima (o certo: 9°) |
+| Cotovelos abertos para os lados (de cima) | embaixo, o braço faz 72,5° com o tronco, visto de cima, como no erro da `flexao` (72°); o certo: 9° |
 | Quadril cai (de lado) | a lombar arqueia 16°; ombro, quadril e tornozelo fazem 167° (o certo: 178°); a barriga para a 1 cm do chão |
 | Descer pouco (de lado) | para na metade: o peito fica a 17 cm do chão e o cotovelo dobra 83° |
 
@@ -40,14 +40,23 @@ Principais: tríceps e peitoral; secundário: a frente do ombro (`deltAnt`), com
 - 12/11/2026: o abdômen firma a prancha, mas fica fora do desenho até a decisão do Gustavo. Respeitada.
 - As correções da `flexao` (mãos para fora dos ombros, o quadril que não atravessa o chão no erro) valem pelo núcleo comum; aqui as mãos ficam de propósito por dentro.
 
-## O que não ficou bom
+## Os nove itens do padrão (seção 8 do guia), nos quadros grandes
 
-- **As mãos não ficam tão embaixo do peito quanto a ficha diz.** Com 16 cm (a parte de baixo do peito), em cima o punho dobra 96,8°, acima do máximo observado (95°), e a conferência falha. Ficou em 14 cm, a 3,5 cm da linha dos mamilos: é mais "embaixo do peito" que "embaixo da parte de baixo do peito". Mesmo assim o punho fica a 0,4° do máximo, em aviso.
-- **O erro "cotovelos abertos" abre só até 51°** (na `flexao`, 72°): com as mãos juntas, o cotovelo não tem para onde ir sem a mão sair do lugar. De cima ele se lê, mas é menos gritante que o da `flexao`.
-- **De cima, embaixo, os cotovelos quase somem** sob o tronco: o rótulo "cotovelos rentes" aponta para uma ponta de cotovelo pequena.
-- **De cima, o modo Músculos não serve** (o tríceps e o peito ficam por baixo do corpo).
-- O ângulo do cotovelo (12° de direção) é o do desenho de hoje: a ficha não dá número; a regra medida é "abaixo dos 30° da faixa a meio caminho".
+1. **Corpo:** a prancha da `flexao` aprovada; nada atravessa o chão.
+2. **Rosto:** embaixo, a cabeça fica a 7,9 cm do chão.
+3. **Quadro:** o corpo ocupa o quadro como na `flexao`.
+4. **Vistas:** de lado e de cima (as mãos na largura dos ombros e os cotovelos rentes, como a ficha pede, "vista de cima"). Testei de três quartos (`quina`, `quinaTras`) e de frente: na de três quartos, os fios dos rótulos cruzam o braço, e o erro dos cotovelos aponta para quem olha; de frente, o corpo vira um borrão. Fica a de cima.
+5. **Equipamento:** não tem.
+6. **Mãos:** espalmadas no chão.
+7. **Erros:** os três se leem. Na correção, o dos cotovelos passou de 51° para 72,5°, como o da `flexao`.
+8. **Rótulos:** um de lado e dois de cima, fora do corpo.
+9. **Tema escuro e cor de pele:** olhados.
+
+## O que não ficou bom (com o que tentei)
+
+- **As mãos ficam um pouco mais perto do ombro do que a ficha diz** (14 cm, e não 16): com 16 cm, em cima o punho dobra 96,8°, acima do máximo observado (95°). Não se vê no quadro.
+- **De cima, o modo Músculos não serve** (o tríceps e o peito ficam por baixo do corpo); a vista de lado é a do modo Músculos (145 cm²).
 
 ## Risco de o Gustavo não gostar
 
-**Baixo.** É a `flexao` aprovada com as mãos e os cotovelos trocados, como a ficha manda; as diferenças com a de hoje são pequenas e todas medidas. O ponto que ele pode estranhar é o erro dos cotovelos, mais discreto que o da `flexao`.
+**Baixo.** É a `flexao` aprovada com as mãos e os cotovelos trocados, como a ficha manda; as diferenças com a de hoje são pequenas e todas medidas. O erro dos cotovelos agora abre como o da `flexao`.
