@@ -20,3 +20,4 @@ export { bulgaroSuspensao } from './bulgaro-suspensao';
 export { flexaoJoelhoDeslizante } from './flexao-joelho-deslizante';
 export { flexaoJoelhoElastico } from './flexao-joelho-elastico';
 export { flexaoFechada } from './flexao-fechada';
+export { flexaoPesElevados } from './flexao-pes-elevados';

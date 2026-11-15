@@ -40,6 +40,12 @@ export function peitoAoChao(e: Esq): number {
   }
   return min;
 }
+/** Altura do ponto mais baixo da cabeça (cm), na superfície do Boneco. */
+export function cabecaAoChao(e: Esq): number {
+  let min = 1e9;
+  for (const { p, parte } of pontosDoBoneco(e)) if (parte === 'cabeca') min = Math.min(min, p[1]);
+  return min;
+}
 /** Altura do ponto mais baixo do tronco e da bacia (cm), na superfície do Boneco. */
 function maisBaixoDoTronco(e: Esq): number {
   let min = 1e9;
@@ -50,6 +56,7 @@ function maisBaixoDoTronco(e: Esq): number {
 export function criarFlexao(fichaJson: unknown, op: OpcoesDaFlexao = {}): Flexao {
   const F = fichaSchema.parse(fichaJson);
   const f = daFicha(F);
+  const tem = (id: string) => id in F.param;
   const apoio = op.apoioDosPes ?? 'chao';
   const h = apoio === 'bancoReto' ? obj('bancoReto', 'altura') : 0;
   const CACHE = new WeakMap<Corpo, { cima: number; baixo: number; zMao: number; zBanco: number }>();
@@ -71,7 +78,8 @@ export function criarFlexao(fichaJson: unknown, op: OpcoesDaFlexao = {}): Flexao
     const torn: V3 = [0, h + hM * Math.cos(calc * rad) + r * Math.sin(calc * rad), -(r * Math.cos(calc * rad)) + hM * Math.sin(calc * rad)];
     const queda = o.quadril ?? 0;
     const pelve: V3 = [0, torn[1] + d * Math.sin((beta - queda * 0.5) * rad), torn[2] + d * Math.cos((beta - queda * 0.5) * rad)];
-    const t = resolverTronco(corpo, { pelve, frente: 90 - beta + queda * 0.4, lombar: -queda, cervical: -4, cabeca: -6 });
+    // o pescoço e a cabeça: um pouco estendidos (a flexão); a ficha pode estender mais (pés elevados: a cabeça livre do chão)
+    const t = resolverTronco(corpo, { pelve, frente: 90 - beta + queda * 0.4, lombar: -queda, cervical: tem('pescoco.extensao') ? -f('pescoco.extensao') : -4, cabeca: tem('cabeca.extensao') ? -f('cabeca.extensao') : -6 });
     const xMao = m('ombro.meiaDistancia') + f('maos.alemDoOmbro');
     const a = (o.cot ?? f('cotovelos.doTronco')) * rad;
     const braco = (k: Lado): PoseBraco => {
@@ -88,7 +96,9 @@ export function criarFlexao(fichaJson: unknown, op: OpcoesDaFlexao = {}): Flexao
     const [b0, b1] = h > 0 ? [-60, 30] : [0, 30];
     // 1) embaixo: a folga do peito ao chão define o ângulo; as mãos ficam na linha que a ficha dá
     const zOmbro = (beta: number) => prancha(corpo, beta, 100).lado.L.ombro[2];
-    const baixo = resolver1((b) => peitoAoChao(prancha(corpo, b, 100)) - f('peito.aoChao'), b0, b1, 18);
+    // com a cabeça abaixo dos pés, ela pode chegar ao chão antes do peito: a descida para no que vier primeiro
+    const folga = (e: Esq) => (tem('cabeca.aoChao') ? Math.min(peitoAoChao(e) - f('peito.aoChao'), cabecaAoChao(e) - f('cabeca.aoChao')) : peitoAoChao(e) - f('peito.aoChao'));
+    const baixo = resolver1((b) => folga(prancha(corpo, b, 100)), b0, b1, 18);
     const zMao = zOmbro(baixo) - f('maos.abaixoDoOmbro');
     // 2) em cima: o cotovelo quase estendido define o ângulo
     const cima = resolver1((b) => f('cotovelo.cima') - prancha(corpo, b, zMao).lado.L.ang.cotovelo, baixo, 45);

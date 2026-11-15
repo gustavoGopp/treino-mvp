@@ -1,0 +1,294 @@
+{
+ "id": "flexao-pes-elevados",
+ "nome": "Flexão com os pés elevados",
+ "fichaDaTecnica": "docs/pesquisa/animacoes/flexao-pes-elevados.md",
+ "fontes": {
+  "ficha": "Ficha da técnica (docs/pesquisa/animacoes/flexao-pes-elevados.md): consenso de treinadores, com ebben2011 (docs/pesquisa/fontes.md) para a posição e a subida",
+  "tempo": "tempo.serie, citado na ficha da técnica para a descida de ~2 a 3 s (consenso)",
+  "flexao": "A ficha de movimento da flexão aprovada (src/engine/novo/dados/movimentos/flexao.json), que veio do guia original (consenso de treinadores): a ficha da técnica pede a mesma posição das mãos, dos cotovelos e do corpo",
+  "desenho": "Escolha de desenho desta animação, dentro do que a ficha pede; a conferência mede o resultado"
+ },
+ "param": {
+  "cotovelo.cima": {
+   "v": 10,
+   "un": "graus",
+   "selo": "consenso",
+   "fonte": "ficha",
+   "o": "em cima: empurra até os braços estenderem, sem travar"
+  },
+  "peito.aoChao": {
+   "v": 5,
+   "un": "cm",
+   "selo": "consenso",
+   "fonte": "ficha",
+   "o": "embaixo: o peito quase toca o chão"
+  },
+  "maos.alemDoOmbro": {
+   "v": 12,
+   "un": "cm",
+   "selo": "consenso",
+   "fonte": "ficha",
+   "o": "mãos um pouco mais abertas que os ombros: a borda de dentro da mão fica 2 cm para fora da linha de fora do ombro (meia largura bideltoide 23,9 + meia largura da mão 4,3 + 2 = 30,2 cm do meio do corpo; o centro do ombro fica a 18,4). Antes eram 6 cm, que punham a mão debaixo do ombro, e não para fora dele"
+  },
+  "maos.abaixoDoOmbro": {
+   "v": 0,
+   "un": "cm",
+   "selo": "desenho",
+   "fonte": "desenho",
+   "o": "a linha das mãos (distância do ombro em direção aos pés, com o corpo embaixo). A ficha não dá a linha; com os pés elevados o ombro quase não anda para trás na subida, e as mãos na linha do meio do peito (13 cm, a flexão) dobrariam o punho além do máximo em cima"
+  },
+  "cotovelos.doTronco": {
+   "v": 45,
+   "un": "graus",
+   "selo": "consenso",
+   "fonte": "ficha",
+   "o": "cotovelos a ~45° do corpo"
+  },
+  "pes.meiaDistancia": {
+   "v": 8.7,
+   "un": "cm",
+   "selo": "consenso",
+   "fonte": "flexao",
+   "o": "pés na largura do quadril"
+  },
+  "tornozelo.dorsiflexao": {
+   "v": 25,
+   "un": "graus",
+   "selo": "desenho",
+   "fonte": "desenho",
+   "o": "pontas dos pés no apoio, com o corpo inclinado para baixo: o tornozelo estende (valor negativo = ponta do pé), para os dedos não dobrarem além do máximo"
+  },
+  "joelho": {
+   "v": 4,
+   "un": "graus",
+   "selo": "consenso",
+   "fonte": "ficha",
+   "o": "pernas estendidas (corpo reto da cabeça aos calcanhares)"
+  },
+  "escapula.retracaoEmbaixo": {
+   "v": 8,
+   "un": "graus",
+   "selo": "desenho",
+   "fonte": "desenho",
+   "o": "as escápulas se aproximam na descida; a ficha não dá número"
+  },
+  "erro.quadril.queda": {
+   "v": 16,
+   "un": "graus",
+   "selo": "desenho",
+   "fonte": "desenho",
+   "o": "erro: o quadril cai (extensão da lombar somada)"
+  },
+  "erro.cot.doTronco": {
+   "v": 88,
+   "un": "graus",
+   "selo": "desenho",
+   "fonte": "desenho",
+   "o": "erro: cotovelos abertos em T, a ~90° do corpo"
+  },
+  "erro.curta.fracao": {
+   "v": 0.5,
+   "un": "fração",
+   "selo": "desenho",
+   "fonte": "desenho",
+   "o": "erro: desce só até a metade"
+  },
+  "pes.daBordaDoBanco": {
+   "v": 3,
+   "un": "cm",
+   "selo": "desenho",
+   "fonte": "desenho",
+   "o": "a ponta do banco fica 3 cm além das pontas dos dedos: os pés apoiam inteiros no tampo, perto da borda"
+  },
+  "banco.pontaNoQuadro": {
+   "v": 45,
+   "un": "cm",
+   "selo": "desenho",
+   "fonte": "desenho",
+   "o": "do banco, o quadro precisa mostrar os 45 cm da ponta onde os pés apoiam; o resto pode ser cortado pela borda"
+  },
+  "pescoco.extensao": {
+   "v": 16,
+   "un": "graus",
+   "selo": "desenho",
+   "fonte": "desenho",
+   "o": "o pescoço um pouco estendido (o olhar vai para o chão um pouco à frente das mãos): com a cabeça abaixo dos pés, a cabeça em linha bateria no chão antes do peito"
+  },
+  "cabeca.extensao": {
+   "v": 12,
+   "un": "graus",
+   "selo": "desenho",
+   "fonte": "desenho",
+   "o": "a cabeça um pouco estendida sobre o pescoço, pelo mesmo motivo"
+  },
+  "cabeca.aoChao": {
+   "v": 1.5,
+   "un": "cm",
+   "selo": "desenho",
+   "fonte": "desenho",
+   "o": "embaixo, a cabeça fica no mínimo a 1,5 cm do chão: com a cabeça abaixo dos pés, ela chega ao chão antes do peito, e a descida para aí (a animação de hoje para com os ombros a 20 cm, para o queixo não bater no chão)"
+  }
+ },
+ "fases": [
+  {
+   "nome": "Em cima",
+   "tipo": "pausa",
+   "dur": 0.4,
+   "de": 0,
+   "ate": 0,
+   "respira": "INSPIRA",
+   "tempo": "prancha",
+   "selo": "consenso",
+   "fonte": "flexao"
+  },
+  {
+   "nome": "Descida · excêntrica",
+   "tipo": "exc",
+   "dur": 2.5,
+   "de": 0,
+   "ate": 1,
+   "respira": "INSPIRA",
+   "tempo": "2 a 3 s",
+   "selo": "consenso",
+   "fonte": "tempo"
+  },
+  {
+   "nome": "Embaixo",
+   "tipo": "pausa",
+   "dur": 0.35,
+   "de": 1,
+   "ate": 1,
+   "respira": "FIRME",
+   "tempo": "peito perto do chão",
+   "selo": "consenso",
+   "fonte": "flexao"
+  },
+  {
+   "nome": "Subida · concêntrica",
+   "tipo": "conc",
+   "dur": 1.0,
+   "de": 1,
+   "ate": 0,
+   "respira": "EXPIRA",
+   "tempo": "~1 s",
+   "selo": "consenso",
+   "fonte": "flexao"
+  }
+ ],
+ "contatos": [
+  "pe.R",
+  "pe.L",
+  "mao.R",
+  "mao.L"
+ ],
+ "regras": [
+  {
+   "id": "corpo-em-linha",
+   "pede": "corpo reto da cabeça aos calcanhares",
+   "selo": "consenso",
+   "fonte": "ficha"
+  },
+  {
+   "id": "peito-perto-do-chao",
+   "pede": "embaixo, o peito quase toca o chão",
+   "selo": "consenso",
+   "fonte": "ficha"
+  },
+  {
+   "id": "cotovelos-a-meio-caminho",
+   "pede": "cotovelos a ~45° do corpo",
+   "selo": "consenso",
+   "fonte": "ficha"
+  },
+  {
+   "id": "pes-no-apoio",
+   "pede": "pés no apoio firme, sem sair do lugar",
+   "selo": "consenso",
+   "fonte": "ficha"
+  },
+  {
+   "id": "cabeca-livre-do-chao",
+   "pede": "a cabeça fica abaixo do quadril, sem bater no chão",
+   "selo": "consenso",
+   "fonte": "ficha"
+  }
+ ],
+ "erros": [
+  {
+   "id": "quadril",
+   "instante": 1,
+   "titulo": "Quadril caído ou alto demais",
+   "vista": "lateral",
+   "oQueMuda": "a lombar arqueia e o quadril cai abaixo da linha",
+   "destaca": [
+    "corpo"
+   ],
+   "linha": [
+    "ombro",
+    "quadril",
+    "tornozelo"
+   ],
+   "foco": "quadril"
+  },
+  {
+   "id": "curta",
+   "instante": 1,
+   "titulo": "Descer pouco",
+   "vista": "lateral",
+   "oQueMuda": "desce só até a metade",
+   "destaca": [
+    "bracos"
+   ],
+   "linha": [
+    "ombro",
+    "cotovelo",
+    "punho"
+   ],
+   "foco": "cotovelo"
+  },
+  {
+   "id": "cotovelos",
+   "instante": 1,
+   "titulo": "Cotovelos abertos em T",
+   "vista": "cima",
+   "oQueMuda": "os cotovelos vão para os lados, a ~90° do corpo",
+   "destaca": [
+    "bracos"
+   ],
+   "linha": [
+    "ombro",
+    "cotovelo",
+    "punho"
+   ],
+   "foco": "cotovelo"
+  }
+ ],
+ "simetrico": true,
+ "rotulos": [
+  {
+   "vista": "lateral",
+   "texto": "corpo em prancha",
+   "ponto": "pelve",
+   "selo": "consenso",
+   "fonte": "ficha",
+   "guia": [
+    "tornozelo",
+    "cabeca"
+   ]
+  },
+  {
+   "vista": "lateral",
+   "texto": "pés num apoio firme",
+   "ponto": "ponta",
+   "selo": "consenso",
+   "fonte": "ficha"
+  },
+  {
+   "vista": "cima",
+   "texto": "cotovelos a ~45°",
+   "ponto": "cotovelo",
+   "selo": "consenso",
+   "fonte": "ficha"
+  }
+ ]
+}
