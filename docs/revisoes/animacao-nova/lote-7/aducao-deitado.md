@@ -26,7 +26,7 @@ De 15/11/2026. Deitado sobre o lado direito, **de frente para quem vê**, a cabe
 | ~1 s subindo, 1 s parado, ~2 s descendo | consenso | 1 s, 1 s, 2 s; maior salto de velocidade 5,1% do pico | sim |
 | As pernas não se atravessam | desenho | a menor folga entre as pernas é 13,9 cm | sim |
 
-Conferência automática: **0 falha, 1 aviso** (as linhas de desenho da ficha de movimento).
+Conferência automática: **0 falha, 2 avisos**: as linhas de desenho da ficha de movimento e o modo Músculos (de frente, 69 cm² dos adutores; de cima, 0 cm²: a vista de cima não serve ao modo Músculos).
 
 ## Erros
 

@@ -24,7 +24,7 @@ function quadro(corpo: Corpo, u: number, erro?: string): Quadro {
     pecas: [peca.peca],
     fios: [],
     cargas: [{ massa: f('caneleira.massa'), pos: c.centro }],
-    marcas: { piso: [0, f('piso'), 0], caneleira: c.centro },
+    marcas: { piso: [0, f('piso'), 0], caneleira: c.centro, caneleiraRaio: [c.raio, 0, 0] },
     vies: { bracoR: -30 },
   };
 }

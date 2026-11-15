@@ -1,0 +1,62 @@
+{
+ "id": "aducao-caneleira",
+ "nome": "Adução de quadril deitado de lado, com caneleira",
+ "fichaDaTecnica": "docs/pesquisa/animacoes/aducao-caneleira.md",
+ "fontes": {
+  "ficha": "Ficha da técnica (docs/pesquisa/animacoes/aducao-caneleira.md): deitado de lado, cabeça no braço de baixo; perna de cima dobrada, com o pé no chão à frente da perna de baixo; perna de baixo estendida em linha com o corpo; sobe num curso curto, só até onde o quadril fica parado; desce em ~2 s sem descansar a perna no chão; consenso (nsca2021, não verificado)",
+  "app": "Texto do app (src/conteudo/exercicios/aducao-caneleira.json): a caneleira bem presa no tornozelo da perna de baixo; embaixo, a perna de baixo estendida, quase encostando no chão; sobe em ~1 s, segura 1 s, desce em ~2 s; o movimento é curto por natureza",
+  "nucleo": "As linhas do corpo deitado (braço de baixo, ombro, mão de cima, cabeça) são as mesmas da abducao-deitado (src/engine/novo/dados/movimentos/abducao-deitado.json), espelhadas: aqui o corpo deita sobre o lado direito, para a perna que trabalha ser a direita",
+  "hoje": "Animação aprovada no guia de hoje (src/engine/exercicios/aducao-caneleira.ts): o pé de cima no chão à frente da perna de baixo e os três erros",
+  "objetos": "src/engine/novo/dados/objetos/caneleira.json (a caneleira de 2 lb: 30,5 × 10,8 × 1,27 cm, 0,91 kg)",
+  "desenho": "Escolha de desenho desta animação, dentro do que a ficha pede; a conferência mede o resultado"
+ },
+ "param": {
+  "piso": {"v": 0, "un": "cm", "selo": "desenho", "fonte": "desenho", "o": "deitado no chão, sem colchonete: a ficha pede um, mas o da tabela (100 × 50 cm, provisório) é curto para o corpo deitado de lado"},
+  "bracoDeBaixo.abre": {"v": 28, "un": "graus", "selo": "desenho", "fonte": "nucleo", "o": "o braço de baixo estendido acima da cabeça, deitado no chão, um pouco à frente da linha do corpo (passa debaixo da cabeça)"},
+  "bracoDeBaixo.prot": {"v": 0, "un": "graus", "selo": "desenho", "fonte": "nucleo", "o": "o ombro de baixo não vai para a frente"},
+  "bracoDeBaixo.elev": {"v": 30, "un": "graus", "selo": "desenho", "fonte": "nucleo", "o": "com o braço acima da cabeça e o peso do corpo em cima, o ombro de baixo sobe 30° de clavícula além do ritmo do braço: o lado do peito apoia no chão e a cabeça desce até o braço com o pescoço pouco inclinado"},
+  "bracoDeBaixo.cotovelo": {"v": 15, "un": "graus", "selo": "desenho", "fonte": "nucleo", "o": "o cotovelo de baixo quase estendido"},
+  "maoDeCima.frente": {"v": 20, "un": "cm", "selo": "desenho", "fonte": "nucleo", "o": "a mão de cima espalmada no chão, 20 cm à frente do ombro"},
+  "maoDeCima.abaixo": {"v": 2, "un": "cm", "selo": "desenho", "fonte": "nucleo", "o": "a mão de cima na altura do ombro"},
+  "cabecaNoBraco": {"v": 0.5, "un": "cm", "selo": "consenso", "fonte": "ficha", "o": "a cabeça apoiada no braço de baixo (a pele da cabeça a 0,5 cm da do braço)"},
+  "peDeCima.abaixo": {"v": 40, "un": "cm", "selo": "desenho", "fonte": "hoje", "o": "o pé de cima no chão, 40 cm abaixo do quadril na direção dos pés (perto da altura do joelho de baixo)"},
+  "peDeCima.frente": {"v": 30, "un": "cm", "selo": "consenso", "fonte": "ficha", "o": "o pé de cima no chão à frente da perna de baixo: 30 cm à frente da linha do corpo (a ficha não dá número)"},
+  "peDeCima.giro": {"v": 20, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "os dedos do pé de cima apontam para os pés, 20° virados para a frente"},
+  "pernaDeBaixo.flexao": {"v": 0, "un": "graus", "selo": "consenso", "fonte": "ficha", "o": "a perna de baixo estendida, em linha com o corpo"},
+  "embaixo.folga": {"v": 1.5, "un": "cm", "selo": "consenso", "fonte": "app", "o": "embaixo, a perna de baixo a um dedo do chão: 1,5 cm entre a pele e o chão"},
+  "aducao.curso": {"v": 18, "un": "graus", "selo": "consenso", "fonte": "ficha", "o": "o curso curto: a perna de baixo fecha 18° (a ficha não dá número; a adução do quadril vai a ~30°, e a perna de cima está na frente)"},
+  "caneleira.massa": {"v": 0.91, "un": "kg", "selo": "desenho", "fonte": "objetos", "o": "uma caneleira de 2 lb no tornozelo da perna de baixo (a ficha não dá a carga; é a da tabela)"},
+  "pe.flexaoPlantar": {"v": 10, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "o pé de baixo relaxado, 10° de flexão plantar, com os dedos para a frente"},
+  "erro.gira.graus": {"v": 30, "un": "graus", "selo": "desenho", "fonte": "hoje", "o": "erro: o tronco e a bacia rolam 30° para trás"},
+  "erro.gira.curso": {"v": 28, "un": "graus", "selo": "desenho", "fonte": "hoje", "o": "erro: com o tronco rolado, a perna sobe mais (28°)"},
+  "erro.gira.giroDaPerna": {"v": 30, "un": "graus", "selo": "desenho", "fonte": "hoje", "o": "erro: a perna gira para fora, o joelho vira para o teto"},
+  "erro.tranco.curso": {"v": 30, "un": "graus", "selo": "desenho", "fonte": "app", "o": "erro: o impulso joga a perna além do topo (30° no lugar de 18°)"},
+  "erro.descansa.folga": {"v": -0.5, "un": "cm", "selo": "desenho", "fonte": "app", "o": "erro: embaixo, a perna deita no chão (a pele amassa 0,5 cm)"}
+ },
+ "fases": [
+  {"nome": "Embaixo", "tipo": "pausa", "dur": 0.5, "de": 0, "ate": 0, "respira": "INSPIRA", "tempo": "a um dedo do chão", "selo": "consenso", "fonte": "app"},
+  {"nome": "Subida · concêntrica", "tipo": "conc", "dur": 1, "de": 0, "ate": 1, "respira": "EXPIRA", "tempo": "~1 s", "selo": "consenso", "fonte": "app"},
+  {"nome": "Topo · segura", "tipo": "pausa", "dur": 1, "de": 1, "ate": 1, "respira": "FIRME", "tempo": "1 s", "selo": "consenso", "fonte": "app"},
+  {"nome": "Descida · excêntrica", "tipo": "exc", "dur": 2, "de": 1, "ate": 0, "respira": "INSPIRA", "tempo": "~2 s", "selo": "consenso", "fonte": "ficha"}
+ ],
+ "contatos": ["pelve", "pe.L", "mao.L"],
+ "regras": [
+  {"id": "quadril-deitado-de-lado-no-chao", "pede": "deitado de lado: a bacia e o peito no chão, a cabeça apoiada no braço de baixo", "selo": "consenso", "fonte": "ficha"},
+  {"id": "quadril-empilhado", "pede": "o quadril parado, sem girar o tronco", "selo": "consenso", "fonte": "ficha"},
+  {"id": "quadril-pe-de-cima-no-chao-a-frente", "pede": "a perna de cima dobrada, com o pé no chão à frente da perna de baixo", "selo": "consenso", "fonte": "ficha"},
+  {"id": "quadril-aducao-curso-curto", "pede": "a perna de baixo sobe estendida, num curso curto", "selo": "consenso", "fonte": "ficha"},
+  {"id": "quadril-perna-de-baixo-nao-descansa", "pede": "embaixo, a perna a um dedo do chão, sem descansar", "selo": "consenso", "fonte": "app"},
+  {"id": "quadril-caneleira-presa-no-tornozelo", "pede": "a caneleira bem presa no tornozelo da perna de baixo: não escorrega", "selo": "consenso", "fonte": "app"},
+  {"id": "quadril-pernas-sem-se-atravessar", "pede": "as duas pernas não se atravessam", "selo": "desenho", "fonte": "desenho"}
+ ],
+ "erros": [
+  {"id": "gira", "instante": 1, "titulo": "Girar o quadril", "vista": "frontal", "oQueMuda": "o tronco rola para trás para a perna subir mais", "destaca": ["corpo", "pernas"], "linha": ["ombro:L", "ombro:R"], "foco": "pelve"},
+  {"id": "tranco", "instante": 1, "titulo": "Subir com tranco", "vista": "frontal", "oQueMuda": "o impulso joga a perna além do topo", "destaca": ["pernas"], "linha": ["quadril:R", "tornozelo:R"], "foco": "tornozelo:R"},
+  {"id": "descansa", "instante": 0, "titulo": "Descansar no chão", "vista": "frontal", "oQueMuda": "embaixo, a perna deita no chão entre as repetições", "destaca": ["pernas"], "linha": ["quadril:R", "tornozelo:R"], "foco": "tornozelo:R"}
+ ],
+ "simetrico": false,
+ "rotulos": [
+  {"vista": "frontal", "texto": "quadril parado", "ponto": "pelve", "selo": "consenso", "fonte": "app"},
+  {"vista": "frontal", "texto": "desce devagar", "ponto": "ponta:R", "selo": "consenso", "fonte": "app"}
+ ]
+}

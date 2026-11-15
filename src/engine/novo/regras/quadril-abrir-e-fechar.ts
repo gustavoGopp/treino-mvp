@@ -66,7 +66,10 @@ function apoioDeLado(e: Esq, baixo: Lado) {
 export const caneleiraPresa: Regra = (q) => {
   const d = q.map((x) => dist(x.marcas.caneleira!, x.esq.lado.R.tornozelo));
   const [a, b] = faixa(d);
-  return { medido: `o centro da caneleira fica de ${f1(a)} a ${f1(b)} cm do centro do tornozelo, ao longo da canela`, ok: b - a <= 0.1 && b <= 10 };
+  // a faixa não entra no chão: o ponto mais baixo dela (o centro menos o raio por fora, no pior caso) contra o piso
+  const raio = (x: Quadro) => x.marcas.caneleiraRaio?.[0] ?? 0;
+  const chao = Math.min(...q.map((x) => x.marcas.caneleira![1] - raio(x) - piso(x)));
+  return { medido: `o centro da caneleira fica de ${f1(a)} a ${f1(b)} cm do centro do tornozelo, ao longo da canela; o ponto mais baixo dela fica a ${f1(chao)} cm do piso`, ok: b - a <= 0.1 && b <= 10 && chao >= -0.5 };
 };
 
 export const regrasDoQuadril: Record<string, Regra> = {
