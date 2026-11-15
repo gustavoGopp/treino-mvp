@@ -161,7 +161,7 @@ Arquivos: [`medidas/main-com-a-regua-de-14-11/retrato.md`](medidas/main-com-a-re
 | O pior grupo melhor do que era | **ainda não**: dor forte no cotovelo, 50,0% antes e depois (pacote 3) |
 | Revisão cega com nenhuma pessoa pior e as notas médias maiores | notas médias maiores (5,2 · 5,9 · 5,2 → 6,0 · 6,2 · 5,5, em 12 pessoas com dor); **2 pessoas abaixo**: as duas em que a puxada ajoelhada era o único puxar vertical possível (−1,0 e −0,7 na soma); detalhes em [`pacote-0.md`](pacote-0.md), seção 5 |
 | Toda regra com selo, fonte e teste | `seguranca.dor.programa` e `selecao.dia-sem-principal` em `regras.md` (consenso); `tests/unit/dor-no-joelho.test.ts` e `tests/unit/articulacoes.test.ts` |
-| `npm run check`, `npm run test:e2e`, `npm run auditoria:verificar` | ver [`pacote-0.md`](pacote-0.md), seção 7 |
+| `npm run check`, `npm run test:e2e`, `npm run auditoria:verificar` | `check` limpo (945 testes), `test:e2e` limpo (157) e `auditoria:verificar` limpo (39 arquivos idênticos nas duas rodadas; nenhum defeito acima da linha de base da régua) |
 
 ### A régua oficial e os 20 cuidados, na população inteira (main, com a régua de agora → ramo, com os pacotes 1 e 0)
 

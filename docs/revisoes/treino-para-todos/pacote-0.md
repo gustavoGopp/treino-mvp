@@ -156,7 +156,7 @@ Testes novos: `tests/unit/dor-no-joelho.test.ts` (7 testes) e um teste a mais em
 |---|---|
 | `npm run check` (lint, tipos, testes) | limpo: 60 arquivos, 945 testes |
 | `npm run test:e2e` (o app no navegador) | 157 de 157 passam |
-| `npm run auditoria:verificar` (duas rodadas idênticas e a linha de base da régua) | em andamento quando este relatório foi escrito (leva mais de uma hora e meia); o resultado entra aqui |
+| `npm run auditoria:verificar` (duas rodadas idênticas e a linha de base da régua) | limpo: **39 arquivos idênticos nas duas rodadas**; a régua oficial não acusa nenhum defeito acima da linha de base (que não foi regravada) |
 | O protótipo com as regras adotadas dá o mesmo programa que o app | sim, nas 12 personas |
 | A simulação de meses | refeita: idêntica (o pacote não mexe na progressão) |
 | `src/engine/`, telas, `api/`, `src/storage/` | sem mudança. Mudaram `src/domain/biblioteca/exercicios.json` (a marca do joelho em 8 exercícios), `src/domain/gerador` e `src/domain/regras/regras.json` |

@@ -289,16 +289,16 @@
  ],
  "contagem": {
   "volume.zero.costas": 36480,
-  "volume.abaixo-sem-aviso": 721234,
+  "volume.abaixo-sem-aviso": 721224,
   "volume.zero.ombro_lateral": 23175,
   "volume.zero.ombro_posterior": 2928,
   "volume.zero.biceps": 33792,
   "vaga.so-aviso-do-musculo.puxar-vertical": 310395,
-  "vaga.so-aviso-do-musculo.elevacao-lateral": 400742,
-  "vaga.so-aviso-do-musculo.puxar-horizontal": 307881,
-  "vaga.so-aviso-do-musculo.biceps": 336175,
+  "vaga.so-aviso-do-musculo.elevacao-lateral": 400814,
+  "vaga.so-aviso-do-musculo.puxar-horizontal": 307888,
+  "vaga.so-aviso-do-musculo.biceps": 336093,
   "equilibrio.sem-puxar": 36480,
-  "vaga.so-aviso-do-musculo.crucifixo": 195829,
+  "vaga.so-aviso-do-musculo.crucifixo": 195745,
   "dia.superior-sem-superior": 59139,
   "volume.zero.posteriores": 210,
   "equilibrio.sem-posteriores": 210,
@@ -664,12 +664,12 @@
   "estacao_polia_dupla": {
    "programas": 11520,
    "mediaSeries": {
-    "peito": 9.1,
-    "costas": 7.1,
-    "ombro_lateral": 6.9,
-    "ombro_posterior": 6.5,
-    "biceps": 6.9,
-    "triceps": 6.3,
+    "peito": 9.2,
+    "costas": 6,
+    "ombro_lateral": 7,
+    "ombro_posterior": 6.3,
+    "biceps": 6.6,
+    "triceps": 6.4,
     "quadriceps": 7.1,
     "posteriores": 7,
     "gluteos": 11.2,
@@ -717,11 +717,11 @@
    "motivoFalso": 0,
    "abaixoDoLimiarSemAviso": 0,
    "guia": {
-    "animacao": 256465,
-    "cartao": 21820,
+    "animacao": 252324,
+    "cartao": 22168,
     "nada": 0,
     "semNadaPct": 0,
-    "animacaoPct": 92.2
+    "animacaoPct": 91.9
    },
    "dor": {
     "sem dor": {
@@ -782,7 +782,6 @@
       "panturrilha-degrau",
       "pike",
       "ponte-gluteo",
-      "puxada-unilateral",
       "remada-unilateral-polia",
       "rosca-polia-costas",
       "triceps-frances-polia-unilateral"
@@ -957,7 +956,6 @@
       "panturrilha-degrau",
       "pike",
       "ponte-gluteo",
-      "puxada-unilateral",
       "rosca-polia-costas",
       "triceps-frances-polia-unilateral"
      ]
@@ -5166,14 +5164,14 @@
     "peito": 8.1,
     "costas": 0,
     "ombro_lateral": 0.7,
-    "ombro_posterior": 5.4,
+    "ombro_posterior": 5.3,
     "biceps": 0,
     "triceps": 8.5,
     "quadriceps": 7.6,
     "posteriores": 7.6,
     "gluteos": 12.3,
     "panturrilha": 8.9,
-    "abdomen": 4.8
+    "abdomen": 4.7
    },
    "zeroSemDorPct": {
     "peito": 0,
@@ -5210,8 +5208,8 @@
      "músculo coberto por outra vaga": 68
     },
     "crucifixo": {
-     "músculo coberto por outra vaga": 7026,
-     "só aviso do músculo": 4494
+     "músculo coberto por outra vaga": 7054,
+     "só aviso do músculo": 4466
     },
     "puxar-horizontal": {
      "só aviso do músculo": 11520
@@ -5233,11 +5231,11 @@
    "motivoFalso": 0,
    "abaixoDoLimiarSemAviso": 22792,
    "guia": {
-    "animacao": 209603,
-    "cartao": 7865,
+    "animacao": 209309,
+    "cartao": 8195,
     "nada": 0,
     "semNadaPct": 0,
-    "animacaoPct": 96.4
+    "animacaoPct": 96.2
    },
    "dor": {
     "sem dor": {
@@ -5531,7 +5529,7 @@
    "programas": 11520,
    "mediaSeries": {
     "peito": 8.2,
-    "costas": 8.3,
+    "costas": 8.2,
     "ombro_lateral": 7,
     "ombro_posterior": 6.5,
     "biceps": 8.1,
@@ -5580,11 +5578,11 @@
    "motivoFalso": 0,
    "abaixoDoLimiarSemAviso": 0,
    "guia": {
-    "animacao": 241955,
-    "cartao": 41031,
+    "animacao": 239769,
+    "cartao": 42011,
     "nada": 0,
     "semNadaPct": 0,
-    "animacaoPct": 85.5
+    "animacaoPct": 85.1
    },
    "dor": {
     "sem dor": {
@@ -5644,7 +5642,6 @@
       "abducao-elastico",
       "abertura-elastico",
       "aducao-deitado",
-      "coice-elastico",
       "crucifixo-elastico",
       "desenvolvimento-elastico",
       "elevacao-lateral-elastico",
@@ -5658,7 +5655,6 @@
       "panturrilha-degrau",
       "pike",
       "ponte-gluteo",
-      "puxada-elastico",
       "remada-curvada-elastico",
       "remada-elastico",
       "remada-unilateral-elastico",
@@ -5868,8 +5864,8 @@
       "abducao-deitado",
       "abducao-elastico",
       "abertura-elastico",
+      "abertura-t-deitado",
       "aducao-deitado",
-      "coice-elastico",
       "crucifixo-elastico",
       "desenvolvimento-elastico",
       "elevacao-lateral-elastico",
@@ -5884,7 +5880,6 @@
       "panturrilha-degrau",
       "pike",
       "ponte-gluteo",
-      "puxada-elastico",
       "remada-elastico",
       "rosca-elastico",
       "rosca-martelo-elastico",
@@ -8533,14 +8528,14 @@
    "programas": 11520,
    "mediaSeries": {
     "peito": 7,
-    "costas": 7.8,
-    "ombro_lateral": 0.7,
+    "costas": 7.9,
+    "ombro_lateral": 0.6,
     "ombro_posterior": 7.3,
-    "biceps": 3.9,
-    "triceps": 7.1,
+    "biceps": 4,
+    "triceps": 7,
     "quadriceps": 7.5,
-    "posteriores": 7.5,
-    "gluteos": 12,
+    "posteriores": 7.4,
+    "gluteos": 11.9,
     "panturrilha": 8.7,
     "abdomen": 4.5
    },
@@ -8572,19 +8567,19 @@
    },
    "vagasSemOpcao": {
     "elevacao-lateral": {
-     "só aviso do músculo": 11414,
-     "músculo coberto por outra vaga": 106
+     "só aviso do músculo": 11486,
+     "músculo coberto por outra vaga": 34
     },
     "crucifixo": {
-     "músculo coberto por outra vaga": 6133,
-     "só aviso do músculo": 5387
+     "músculo coberto por outra vaga": 6169,
+     "só aviso do músculo": 5351
     },
     "extensora": {
      "aviso da vaga": 11520
     },
     "biceps": {
-     "só aviso do músculo": 7205,
-     "músculo coberto por outra vaga": 4315
+     "só aviso do músculo": 7128,
+     "músculo coberto por outra vaga": 4392
     },
     "panturrilha-sentada": {
      "aviso da vaga": 6912
@@ -8595,13 +8590,13 @@
    "avisoSemPuxadaComPuxarZerado": 0,
    "avisosQueSugeremCompra": 0,
    "motivoFalso": 0,
-   "abaixoDoLimiarSemAviso": 18619,
+   "abaixoDoLimiarSemAviso": 18614,
    "guia": {
-    "animacao": 208324,
-    "cartao": 29265,
+    "animacao": 207178,
+    "cartao": 29803,
     "nada": 0,
     "semNadaPct": 0,
-    "animacaoPct": 87.7
+    "animacaoPct": 87.4
    },
    "dor": {
     "sem dor": {
@@ -10332,15 +10327,15 @@
   "graviton": {
    "programas": 11520,
    "mediaSeries": {
-    "peito": 8,
+    "peito": 8.1,
     "costas": 6.7,
     "ombro_lateral": 0.6,
     "ombro_posterior": 6.9,
     "biceps": 3.3,
-    "triceps": 8.7,
+    "triceps": 8.8,
     "quadriceps": 7.3,
     "posteriores": 7.3,
-    "gluteos": 11.8,
+    "gluteos": 11.7,
     "panturrilha": 8.5,
     "abdomen": 4.5
    },
@@ -10376,19 +10371,19 @@
      "músculo coberto por outra vaga": 18
     },
     "crucifixo": {
-     "músculo coberto por outra vaga": 7131,
-     "só aviso do músculo": 4389
+     "músculo coberto por outra vaga": 7158,
+     "só aviso do músculo": 4362
     },
     "puxar-horizontal": {
-     "músculo coberto por outra vaga": 5799,
-     "só aviso do músculo": 5721
+     "músculo coberto por outra vaga": 5792,
+     "só aviso do músculo": 5728
     },
     "extensora": {
      "aviso da vaga": 11520
     },
     "biceps": {
-     "só aviso do músculo": 7764,
-     "músculo coberto por outra vaga": 3756
+     "só aviso do músculo": 7759,
+     "músculo coberto por outra vaga": 3761
     },
     "panturrilha-sentada": {
      "aviso da vaga": 6912
@@ -10399,13 +10394,13 @@
    "avisoSemPuxadaComPuxarZerado": 0,
    "avisosQueSugeremCompra": 0,
    "motivoFalso": 0,
-   "abaixoDoLimiarSemAviso": 19266,
+   "abaixoDoLimiarSemAviso": 19261,
    "guia": {
-    "animacao": 199852,
-    "cartao": 32361,
+    "animacao": 199600,
+    "cartao": 32698,
     "nada": 0,
     "semNadaPct": 0,
-    "animacaoPct": 86.1
+    "animacaoPct": 85.9
    },
    "dor": {
     "sem dor": {
@@ -12502,10 +12497,10 @@
     "ombro_lateral": 0.7,
     "ombro_posterior": 5.4,
     "biceps": 0,
-    "triceps": 7.5,
+    "triceps": 7.4,
     "quadriceps": 7.7,
     "posteriores": 7.7,
-    "gluteos": 12.3,
+    "gluteos": 12.2,
     "panturrilha": 9.1,
     "abdomen": 4.8
    },
@@ -12544,8 +12539,8 @@
      "músculo coberto por outra vaga": 68
     },
     "crucifixo": {
-     "músculo coberto por outra vaga": 6440,
-     "só aviso do músculo": 5080
+     "músculo coberto por outra vaga": 6429,
+     "só aviso do músculo": 5091
     },
     "puxar-horizontal": {
      "só aviso do músculo": 11520
@@ -12567,11 +12562,11 @@
    "motivoFalso": 0,
    "abaixoDoLimiarSemAviso": 22792,
    "guia": {
-    "animacao": 195275,
-    "cartao": 20224,
+    "animacao": 200533,
+    "cartao": 14885,
     "nada": 0,
     "semNadaPct": 0,
-    "animacaoPct": 90.6
+    "animacaoPct": 93.1
    },
    "dor": {
     "sem dor": {
@@ -12616,14 +12611,14 @@
       "abducao-deitado",
       "abertura-t-deitado",
       "aducao-deitado",
-      "coice-maquina",
       "extensao-triceps-peso-corpo",
       "flexao",
       "flexao-fechada",
       "flexao-pes-elevados",
       "panturrilha-chao",
       "panturrilha-degrau",
-      "pike"
+      "pike",
+      "ponte-gluteo"
      ]
     },
     "punho 7": {
@@ -12764,14 +12759,14 @@
       "abducao-deitado",
       "abertura-t-deitado",
       "aducao-deitado",
-      "coice-maquina",
       "extensao-triceps-peso-corpo",
       "flexao",
       "flexao-fechada",
       "flexao-pes-elevados",
       "panturrilha-chao",
       "panturrilha-degrau",
-      "pike"
+      "pike",
+      "ponte-gluteo"
      ]
     }
    },
@@ -13995,8 +13990,8 @@
      "só aviso do músculo": 11520
     },
     "crucifixo": {
-     "músculo coberto por outra vaga": 6228,
-     "só aviso do músculo": 5292
+     "músculo coberto por outra vaga": 6232,
+     "só aviso do músculo": 5288
     },
     "puxar-horizontal": {
      "só aviso do músculo": 11520
@@ -14015,11 +14010,11 @@
    "motivoFalso": 0,
    "abaixoDoLimiarSemAviso": 0,
    "guia": {
-    "animacao": 180130,
-    "cartao": 57337,
+    "animacao": 184745,
+    "cartao": 52760,
     "nada": 0,
     "semNadaPct": 0,
-    "animacaoPct": 75.9
+    "animacaoPct": 77.8
    },
    "dor": {
     "sem dor": {
@@ -14064,7 +14059,6 @@
       "abdominal-invertido",
       "abducao-caneleira",
       "aducao-caneleira",
-      "coice-caneleira",
       "crucifixo-invertido-caneleira",
       "elevacao-lateral-caneleira",
       "extensao-triceps-peso-corpo",
@@ -14073,7 +14067,8 @@
       "flexao-pes-elevados",
       "panturrilha-chao",
       "panturrilha-degrau",
-      "pike"
+      "pike",
+      "ponte-gluteo"
      ]
     },
     "punho 7": {
@@ -14217,7 +14212,6 @@
      "exercicios": [
       "abducao-caneleira",
       "aducao-caneleira",
-      "coice-caneleira",
       "crucifixo-invertido-caneleira",
       "elevacao-lateral-caneleira",
       "extensao-triceps-peso-corpo",
@@ -14226,7 +14220,8 @@
       "flexao-pes-elevados",
       "panturrilha-chao",
       "panturrilha-degrau",
-      "pike"
+      "pike",
+      "ponte-gluteo"
      ]
     }
    },
@@ -14754,7 +14749,7 @@
    "motivoFalso": 0,
    "abaixoDoLimiarSemAviso": 22792,
    "guia": {
-    "animacao": 216884,
+    "animacao": 216883,
     "cartao": 0,
     "nada": 0,
     "semNadaPct": 0,
@@ -14811,8 +14806,7 @@
       "panturrilha-chao",
       "panturrilha-degrau",
       "pike",
-      "ponte-gluteo",
-      "roda-abdominal"
+      "ponte-gluteo"
      ]
     },
     "punho 7": {
@@ -15052,7 +15046,7 @@
     "biceps": 8.1,
     "triceps": 7.4,
     "quadriceps": 7.6,
-    "posteriores": 8,
+    "posteriores": 7.9,
     "gluteos": 9.5,
     "panturrilha": 7.2,
     "abdomen": 4
@@ -15095,11 +15089,11 @@
    "motivoFalso": 0,
    "abaixoDoLimiarSemAviso": 0,
    "guia": {
-    "animacao": 236533,
-    "cartao": 46699,
+    "animacao": 237683,
+    "cartao": 45609,
     "nada": 0,
     "semNadaPct": 0,
-    "animacaoPct": 83.5
+    "animacaoPct": 83.9
    },
    "dor": {
     "sem dor": {
@@ -15165,7 +15159,6 @@
       "barra-fixa",
       "barra-fixa-negativa",
       "barra-fixa-supinada",
-      "coice-elastico",
       "crucifixo-elastico",
       "desenvolvimento-elastico",
       "elevacao-joelhos",
@@ -15402,7 +15395,6 @@
       "barra-fixa",
       "barra-fixa-negativa",
       "barra-fixa-supinada",
-      "coice-elastico",
       "crucifixo-elastico",
       "desenvolvimento-elastico",
       "elevacao-lateral-elastico",
@@ -15937,10 +15929,10 @@
    "programas": 11520,
    "mediaSeries": {
     "peito": 7.8,
-    "costas": 8.3,
+    "costas": 8.2,
     "ombro_lateral": 7,
-    "ombro_posterior": 6.6,
-    "biceps": 8.2,
+    "ombro_posterior": 6.5,
+    "biceps": 8.1,
     "triceps": 7.5,
     "quadriceps": 7.6,
     "posteriores": 7.9,
@@ -15986,11 +15978,11 @@
    "motivoFalso": 0,
    "abaixoDoLimiarSemAviso": 0,
    "guia": {
-    "animacao": 257477,
-    "cartao": 25721,
+    "animacao": 257681,
+    "cartao": 24633,
     "nada": 0,
     "semNadaPct": 0,
-    "animacaoPct": 90.9
+    "animacaoPct": 91.3
    },
    "dor": {
     "sem dor": {
@@ -16051,7 +16043,6 @@
       "abducao-elastico",
       "abertura-elastico",
       "aducao-deitado",
-      "coice-elastico",
       "crucifixo-elastico",
       "desenvolvimento-elastico",
       "elevacao-lateral-elastico",
@@ -16064,7 +16055,6 @@
       "panturrilha-degrau",
       "pike",
       "ponte-gluteo",
-      "puxada-elastico",
       "remada-curvada-elastico",
       "remada-elastico",
       "remada-suspensao",
@@ -16284,8 +16274,8 @@
       "abducao-deitado",
       "abducao-elastico",
       "abertura-elastico",
+      "abertura-t-deitado",
       "aducao-deitado",
-      "coice-elastico",
       "crucifixo-elastico",
       "desenvolvimento-elastico",
       "elevacao-lateral-elastico",
@@ -16299,7 +16289,6 @@
       "panturrilha-degrau",
       "pike",
       "ponte-gluteo",
-      "puxada-elastico",
       "remada-elastico",
       "remada-suspensao",
       "rosca-elastico",
@@ -16827,7 +16816,7 @@
    "programas": 11520,
    "mediaSeries": {
     "peito": 8.2,
-    "costas": 8.3,
+    "costas": 8.2,
     "ombro_lateral": 7,
     "ombro_posterior": 6.5,
     "biceps": 8.1,
@@ -16876,11 +16865,11 @@
    "motivoFalso": 0,
    "abaixoDoLimiarSemAviso": 0,
    "guia": {
-    "animacao": 241870,
-    "cartao": 40961,
+    "animacao": 239689,
+    "cartao": 41935,
     "nada": 0,
     "semNadaPct": 0,
-    "animacaoPct": 85.5
+    "animacaoPct": 85.1
    },
    "dor": {
     "sem dor": {
@@ -16942,7 +16931,6 @@
       "abducao-elastico",
       "abertura-elastico",
       "aducao-deitado",
-      "coice-elastico",
       "crucifixo-elastico",
       "desenvolvimento-elastico",
       "elevacao-lateral-elastico",
@@ -16958,7 +16946,6 @@
       "panturrilha-degrau",
       "pike",
       "ponte-gluteo",
-      "puxada-elastico",
       "remada-curvada-elastico",
       "remada-elastico",
       "remada-unilateral-elastico",
@@ -17178,8 +17165,8 @@
       "abducao-deitado",
       "abducao-elastico",
       "abertura-elastico",
+      "abertura-t-deitado",
       "aducao-deitado",
-      "coice-elastico",
       "crucifixo-elastico",
       "desenvolvimento-elastico",
       "elevacao-lateral-elastico",
@@ -17196,7 +17183,6 @@
       "panturrilha-degrau",
       "pike",
       "ponte-gluteo",
-      "puxada-elastico",
       "remada-elastico",
       "rosca-elastico",
       "rosca-martelo-elastico",

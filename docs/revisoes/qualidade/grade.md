@@ -10,18 +10,18 @@
 
 | suspeito | ocorrências | % (dos dias ou dos programas) |
 | --- | ---: | ---: |
-| `dia.poucos-exercicios` | 380.070 | 10,4% dos dias |
-| `monotonia.todos-os-dias` | 161.667 | 17,7% dos programas |
-| `tempo.uso-baixo` | 160.670 | 17,6% dos programas |
-| `regua.A2` | 90.709 | 10% dos programas |
-| `regua.A3` | 41.928 | 4,6% dos programas |
+| `dia.poucos-exercicios` | 380.898 | 10,4% dos dias |
+| `monotonia.todos-os-dias` | 162.083 | 17,8% dos programas |
+| `tempo.uso-baixo` | 160.730 | 17,6% dos programas |
+| `regua.A2` | 90.544 | 9,9% dos programas |
+| `regua.A3` | 41.914 | 4,6% dos programas |
 | `prioridade.abaixo-com-tempo` | 23.841 | 2,6% dos programas |
-| `regua.C1` | 17.533 | 1,9% dos programas |
-| `regua.D1` | 5.519 | 0,6% dos programas |
+| `regua.C1` | 17.560 | 1,9% dos programas |
+| `regua.D1` | 5.512 | 0,6% dos programas |
 | `monotonia.todos-os-dias-com-opcao` | 2.946 | 0,3% dos programas |
 | `regua.B1` | 2.946 | 0,3% dos programas |
 | `regua.D3` | 1.359 | 0,1% dos programas |
-| `avaliador.ajustar-sem-aviso` | 220 | 0% dos programas |
+| `avaliador.ajustar-sem-aviso` | 219 | 0% dos programas |
 | `regua.E1` | 6 | 0% dos programas |
 
 ## Exercícios por dia
@@ -30,11 +30,11 @@ Faixas de exercícios por dia de treino (% dos dias), por duração escolhida. "
 
 | minutos | cabem | ≤ 3 | 4 | 5 a 7 | ≥ 8 | mediana |
 | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
-| 30 | 4 | 13,7% | 80,8% | 5,4% | 0% | 4 |
-| 45 | 6 | 5,4% | 7,8% | 86,9% | 0% | 6 |
+| 30 | 4 | 13,7% | 80,8% | 5,5% | 0% | 4 |
+| 45 | 6 | 5,4% | 7,8% | 86,8% | 0% | 6 |
 | 60 | 8 | 5,4% | 7,6% | 68,9% | 18,1% | 6 |
-| 75 | 10 | 5,4% | 7,6% | 64,3% | 22,7% | 6 |
-| 90 | 12 | 5,4% | 7,6% | 63,6% | 23,4% | 6 |
+| 75 | 10 | 5,4% | 7,7% | 64,3% | 22,6% | 6 |
+| 90 | 12 | 5,4% | 7,7% | 63,6% | 23,4% | 6 |
 
 O mesmo, só nos programas sem dor e sem exercício evitado:
 
@@ -62,11 +62,11 @@ Por dias por semana (sem dor e sem exercício evitado; % dos dias com ≤ 3 exer
 
 | cenário | grupo | ≤ 3 | 4 | 5 a 7 | ≥ 8 | mediana | ≤ 3 (todos) | uso < 70% |
 | --- | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
-| academia | atalho | 0% | 0% | 64,5% | 35,5% | 6 | 4,8% | 13,2% |
-| academia+ | atalho | 0% | 0% | 64,5% | 35,5% | 6 | 4,8% | 13,1% |
+| academia | atalho | 0% | 0% | 64,5% | 35,5% | 6 | 4,8% | 13,3% |
+| academia+ | atalho | 0% | 0% | 64,5% | 35,5% | 6 | 4,8% | 13,2% |
 | bairro | persona | 0% | 0% | 64,3% | 35,7% | 6 | 4% | 15,2% |
 | banco+halteres-leves | par | 0% | 0,1% | 67,5% | 32,3% | 6 | 5,8% | 13,1% |
-| bruno | persona | 0% | 0% | 65,6% | 34,4% | 6 | 4,8% | 9,2% |
+| bruno | persona | 0% | 0% | 65,6% | 34,4% | 6 | 4,8% | 9,4% |
 | casa | atalho | 0% | 0% | 66,2% | 33,8% | 6 | 5% | 10% |
 | casa+ | atalho | 0% | 0% | 65,2% | 34,8% | 6 | 4,8% | 13,5% |
 | condominio | atalho | 0% | 0,1% | 66,8% | 33% | 6 | 4,5% | 13,5% |
@@ -89,10 +89,10 @@ Por dias por semana (sem dor e sem exercício evitado; % dos dias com ≤ 3 exer
 | so:cadeira_flexora | item | 0% | 0% | 90,5% | 9,5% | 6 | 0% | 22,9% |
 | so:caneleiras | item | 0% | 0,1% | 71,8% | 28,1% | 7 | 0% | 14,4% |
 | so:desenvolvimento_maquina | item | 0% | 0,1% | 90,6% | 9,3% | 6 | 0,1% | 25,2% |
-| so:estacao_polia_dupla | item | 0% | 2,2% | 65,4% | 32,4% | 6 | 3,5% | 10,1% |
+| so:estacao_polia_dupla | item | 0% | 2,2% | 65,4% | 32,4% | 6 | 3,5% | 10,2% |
 | so:estacao_puxada | item | 20,4% | 17,7% | 48,7% | 13,2% | 5 | 22,7% | 24,2% |
 | so:estacao_remada | item | 20,4% | 17,7% | 48,6% | 13,4% | 5 | 22,8% | 23,7% |
-| so:gluteo_maquina | item | 0% | 0,2% | 90,5% | 9,3% | 6 | 0,1% | 26,6% |
+| so:gluteo_maquina | item | 0% | 0,2% | 90,5% | 9,3% | 6 | 0,1% | 26,2% |
 | so:graviton | item | 20,3% | 16,6% | 49,2% | 13,9% | 5 | 22,9% | 24,6% |
 | so:hack | item | 0% | 0,1% | 90,4% | 9,4% | 6 | 0,1% | 26,2% |
 | so:halteres_fixos | item | 0% | 1,8% | 67,1% | 31,1% | 6 | 5,9% | 11,4% |
@@ -100,13 +100,13 @@ Por dias por semana (sem dor e sem exercício evitado; % dos dias com ≤ 3 exer
 | so:leg_press | item | 0% | 0,1% | 90,3% | 9,6% | 6 | 0,1% | 27,3% |
 | so:mesa_flexora | item | 0% | 0% | 90,5% | 9,5% | 6 | 0% | 22,9% |
 | so:mini_band | item | 0% | 0,1% | 88,6% | 11,3% | 6 | 0,1% | 22,9% |
-| so:multifuncional | item | 6,9% | 24,5% | 54,9% | 13,7% | 5 | 10,4% | 21,9% |
+| so:multifuncional | item | 6,9% | 24,5% | 54,9% | 13,7% | 5 | 10,4% | 22,1% |
 | so:panturrilha_em_pe_maquina | item | 0% | 0,1% | 90,4% | 9,5% | 6 | 0,1% | 26,2% |
 | so:panturrilha_sentada_maquina | item | 0% | 0,2% | 89,5% | 10,4% | 6 | 0% | 26,1% |
 | so:paralelas | item | 0% | 0,1% | 90,7% | 9,2% | 6 | 0,1% | 25,5% |
 | so:rack_de_agachamento | item | 20,4% | 17,7% | 48,6% | 13,4% | 5 | 21,9% | 23,7% |
 | so:remada_articulada | item | 20,4% | 17,7% | 48,6% | 13,4% | 5 | 22,7% | 24% |
-| so:roda_abdominal | item | 0% | 0,1% | 90,6% | 9,3% | 6 | 0,1% | 25,7% |
+| so:roda_abdominal | item | 0% | 0,1% | 90,6% | 9,3% | 6 | 0,1% | 25,6% |
 | so:rosca_maquina | item | 0% | 0% | 84,9% | 15,1% | 6 | 0% | 17,3% |
 | so:smith | item | 20,4% | 17,7% | 48,4% | 13,5% | 5 | 21,9% | 24,3% |
 | so:step | item | 0% | 0,2% | 90,7% | 9,2% | 6 | 0,1% | 24% |
@@ -115,7 +115,7 @@ Por dias por semana (sem dor e sem exercício evitado; % dos dias com ≤ 3 exer
 | so:triceps_maquina | item | 0% | 0,1% | 90,4% | 9,5% | 6 | 0% | 24,3% |
 | so:voador | item | 0% | 0,1% | 87,6% | 12,3% | 6 | 0% | 23,4% |
 | step+elasticos | par | 0% | 0% | 67% | 33% | 6 | 5% | 9,5% |
-| suspensao+elasticos | par | 0% | 0% | 67% | 33% | 6 | 5% | 9,5% |
+| suspensao+elasticos | par | 0% | 0% | 67% | 33% | 6 | 5% | 9,4% |
 | vazio | vazio | 0% | 0,1% | 90,6% | 9,3% | 6 | 0,1% | 25,5% |
 
 ## Uso dos minutos
@@ -124,7 +124,7 @@ Minutos estimados do dia mais longo ÷ minutos escolhidos (% dos programas).
 
 | minutos | mediana do uso | < 50% | < 70% | ≥ 100% |
 | ---: | ---: | ---: | ---: | ---: |
-| 30 | 100% | 0% | 0% | 80,6% |
+| 30 | 100% | 0% | 0% | 80,7% |
 | 45 | 100% | 0% | 0,1% | 77,4% |
 | 60 | 95% | 0,1% | 6,7% | 48,5% |
 | 75 | 85% | 1,5% | 25,1% | 25% |
@@ -140,13 +140,13 @@ Por nível, somando os cenários: média de séries semanais; prioritário abaix
 | --- | ---: | ---: | ---: | ---: | ---: |
 | peito | 7,4 | 34,1% | 14,7% | 14,6% | 0 |
 | costas | 3,5 | 64,7% | 54,3% | 53,9% | 0 |
-| ombro (lateral) | 2,3 | 76,3% | 70,8% | 53,6% | 0 |
+| ombro (lateral) | 2,3 | 76,3% | 70,8% | 53,7% | 0 |
 | ombro (posterior) | 5,8 | 0% | 13% | 8,6% | 0 |
 | bíceps | 3,2 | 68% | 53,1% | 48,6% | 0 |
 | tríceps | 7,6 | 28,8% | 17,1% | 13,9% | 0 |
 | quadríceps | 6,9 | 37,8% | 10,4% | 10,4% | 0 |
-| posteriores da coxa | 7,4 | 46,2% | 7,1% | 3,7% | 0 |
-| glúteos | 10 | 21,7% | 3,3% | 0,5% | 0 |
+| posteriores da coxa | 7,4 | 46,3% | 7,1% | 3,7% | 0 |
+| glúteos | 10 | 21,6% | 3,3% | 0,5% | 0 |
 | panturrilha | 5,7 | 45,7% | 11,7% | 5,9% | 0 |
 | abdômen | 5,8 | 31,6% | 11,8% | 5,9% | 0 |
 
@@ -155,7 +155,7 @@ Por nível, somando os cenários: média de séries semanais; prioritário abaix
 | músculo | média | prioritário abaixo da meta | demais abaixo de 4 | zero | zero sem aviso |
 | --- | ---: | ---: | ---: | ---: | ---: |
 | peito | 8,8 | 28,4% | 13,6% | 13,6% | 0 |
-| costas | 4,1 | 65,8% | 52,8% | 52,2% | 0 |
+| costas | 4,1 | 65,9% | 52,8% | 52,2% | 0 |
 | ombro (lateral) | 2,6 | 77% | 70,5% | 53,9% | 0 |
 | ombro (posterior) | 6,3 | 0% | 13,2% | 8,7% | 0 |
 | bíceps | 3,8 | 70,9% | 52,2% | 47,1% | 0 |
@@ -178,7 +178,7 @@ Por nível, somando os cenários: média de séries semanais; prioritário abaix
 | tríceps | 9,2 | 41,2% | 17,1% | 13,8% | 0 |
 | quadríceps | 8,8 | 65,4% | 10,4% | 10,4% | 0 |
 | posteriores da coxa | 9,7 | 49,1% | 6,9% | 3,6% | 0 |
-| glúteos | 11 | 39,3% | 4,3% | 0,6% | 0 |
+| glúteos | 11 | 39,2% | 4,3% | 0,6% | 0 |
 | panturrilha | 6,7 | 65,2% | 11,8% | 5,9% | 0 |
 | abdômen | 6,3 | 42,6% | 12% | 5,9% | 0 |
 
@@ -224,7 +224,7 @@ Por nível, somando os cenários: média de séries semanais; prioritário abaix
 | so:leg_press | 18,1% | 100% | 74,6% | 9,2% | 100% | 17,6% | 11,8% | 5,9% | 0,1% | 5,9% | 5,9% |
 | so:mesa_flexora | 18,1% | 100% | 74,6% | 9,2% | 100% | 17,6% | 11,8% | 5,9% | 1,1% | 5,9% | 5,9% |
 | so:mini_band | 18,1% | 100% | 73,3% | 22,6% | 100% | 17,6% | 5,9% | 5,9% | 0,1% | 5,9% | 5,9% |
-| so:multifuncional | 18,1% | 11,8% | 71,8% | 6,1% | 11,8% | 17,7% | 11,8% | 5,9% | 0,3% | 5,9% | 5,9% |
+| so:multifuncional | 18,1% | 11,8% | 73,2% | 6,1% | 11,8% | 17,7% | 11,8% | 5,9% | 0,3% | 5,9% | 5,9% |
 | so:panturrilha_em_pe_maquina | 18,1% | 100% | 74,6% | 9,2% | 100% | 17,6% | 11,8% | 5,9% | 0,1% | 5,9% | 5,9% |
 | so:panturrilha_sentada_maquina | 18,1% | 100% | 74,4% | 9,2% | 100% | 17,6% | 11,8% | 5,9% | 0,1% | 5,9% | 5,9% |
 | so:paralelas | 14,2% | 100% | 74,6% | 9,2% | 100% | 13,7% | 11,8% | 5,9% | 0,1% | 5,9% | 5,9% |
@@ -275,17 +275,17 @@ Séries diretas mais meia série indireta, como o app conta o volume. Média (%)
 | prioridade | iniciante: fatia | abaixo | competem | intermediario: fatia | abaixo | competem | avancado: fatia | abaixo | competem |
 | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
 | peito | 12% | 35,4% | — | 14,2% | 28,3% | — | 14,7% | 42% | — |
-| costas | 6% | 63,9% | — | 7% | 64,6% | — | 7,1% | 75,6% | — |
+| costas | 6% | 63,9% | — | 7% | 64,7% | — | 7,1% | 75,6% | — |
 | ombros | 4,9% | 75,7% | — | 5,2% | 76,3% | — | 5,3% | 79,6% | — |
-| bracos | 18,4% | 71,4% | — | 19,8% | 77,2% | — | 20,1% | 79,4% | — |
+| bracos | 18,4% | 71,4% | — | 19,9% | 77,2% | — | 20,1% | 79,4% | — |
 | pernas | 33,1% | 57,6% | — | 36,6% | 56,7% | — | 37,7% | 66,3% | — |
-| gluteos | 18,1% | 21,8% | — | 17,9% | 27,2% | — | 18,6% | 32,6% | — |
+| gluteos | 18,1% | 21,8% | — | 17,9% | 27,3% | — | 18,6% | 32,6% | — |
 | abdomen | 13,2% | 24,7% | — | 15,2% | 27,5% | — | 15,6% | 32,2% | — |
-| peito+costas | 17,3% | 68,2% | 35,8% | 20,1% | 69,4% | 43,4% | 20,6% | 79% | 40,4% |
+| peito+costas | 17,3% | 68,2% | 35,9% | 20,1% | 69,4% | 43,4% | 20,6% | 79% | 40,5% |
 | pernas+gluteos | 49,3% | 63,8% | 49% | 51,4% | 69,1% | 44,4% | 52,5% | 88,2% | 55,5% |
-| peito+bracos | 30,4% | 75,3% | 51,6% | 32,8% | 77,4% | 54,1% | 33,4% | 82,5% | 49,3% |
-| costas+ombros | 10,3% | 80,3% | 18,4% | 11,4% | 81,6% | 18,9% | 11,6% | 85,5% | 12,1% |
-| pernas+gluteos+abdomen | 57,6% | 68,7% | 55% | 59,4% | 73,3% | 51,9% | 60,5% | 91,1% | 61,7% |
+| peito+bracos | 30,4% | 75,3% | 51,7% | 32,8% | 77,4% | 54,1% | 33,4% | 82,5% | 49,3% |
+| costas+ombros | 10,3% | 80,3% | 18,4% | 11,4% | 81,6% | 18,9% | 11,6% | 85,5% | 12,2% |
+| pernas+gluteos+abdomen | 57,6% | 68,7% | 54,9% | 59,4% | 73,2% | 51,8% | 60,5% | 91,1% | 61,7% |
 
 ### Por cenário, com 1 prioridade (média %)
 
@@ -322,7 +322,7 @@ Séries diretas mais meia série indireta, como o app conta o volume. Média (%)
 | so:estacao_puxada | 15,9% |
 | so:estacao_remada | 15,8% |
 | so:gluteo_maquina | 15,3% |
-| so:graviton | 15,8% |
+| so:graviton | 15,9% |
 | so:hack | 15,1% |
 | so:halteres_fixos | 17,5% |
 | so:kettlebell | 16,6% |
@@ -344,7 +344,7 @@ Séries diretas mais meia série indireta, como o app conta o volume. Média (%)
 | so:triceps_maquina | 15,5% |
 | so:voador | 15% |
 | step+elasticos | 17,5% |
-| suspensao+elasticos | 17,7% |
+| suspensao+elasticos | 17,8% |
 | vazio | 15,1% |
 
 ## Exercícios distintos na semana e repetição
@@ -380,21 +380,21 @@ Mediana de exercícios distintos por programa; com 3 dias ou mais, % dos program
 | so:cadeira_flexora | 13 | 29,4% | 0% |
 | so:caneleiras | 14 | 39,4% | 0% |
 | so:desenvolvimento_maquina | 13 | 36,3% | 0% |
-| so:estacao_polia_dupla | 16 | 13,7% | 0% |
+| so:estacao_polia_dupla | 16 | 14,5% | 0% |
 | so:estacao_puxada | 13 | 19,9% | 0% |
 | so:estacao_remada | 13 | 18,2% | 0% |
 | so:gluteo_maquina | 12 | 39,5% | 0% |
-| so:graviton | 14 | 18% | 0% |
+| so:graviton | 14 | 18,3% | 0% |
 | so:hack | 12 | 36,3% | 0% |
 | so:halteres_fixos | 18 | 4,9% | 2,4% |
 | so:kettlebell | 14 | 23,6% | 2,4% |
 | so:leg_press | 12 | 36,3% | 0% |
 | so:mesa_flexora | 13 | 29,4% | 0% |
 | so:mini_band | 14 | 39,3% | 0% |
-| so:multifuncional | 14 | 11,2% | 0% |
+| so:multifuncional | 14 | 11,5% | 0% |
 | so:panturrilha_em_pe_maquina | 12 | 36,3% | 0% |
 | so:panturrilha_sentada_maquina | 13 | 36,3% | 0% |
-| so:paralelas | 13 | 35,2% | 0% |
+| so:paralelas | 13 | 36,3% | 0% |
 | so:rack_de_agachamento | 13 | 24,5% | 0% |
 | so:remada_articulada | 13 | 19% | 0% |
 | so:roda_abdominal | 13 | 36,3% | 0% |
@@ -406,7 +406,7 @@ Mediana de exercícios distintos por programa; com 3 dias ou mais, % dos program
 | so:triceps_maquina | 13 | 36% | 0% |
 | so:voador | 13 | 34,1% | 0% |
 | step+elasticos | 20 | 3,5% | 0% |
-| suspensao+elasticos | 19 | 3,5% | 0% |
+| suspensao+elasticos | 19 | 4% | 0% |
 | vazio | 13 | 36,3% | 0% |
 
 ## Vagas vazias
@@ -415,7 +415,7 @@ Por cenário e nível: vagas ativas por programa (média), quantas têm exercíc
 
 | cenário | nível | vagas | com exercício | vazias: equipamento | vazias: dor | fora por minutos | vazias por equipamento (funções) |
 | --- | --- | ---: | ---: | ---: | ---: | ---: | --- |
-| academia | iniciante | 29,4 | 27,3 | 0 | 2 | 3,5 | — |
+| academia | iniciante | 29,4 | 27,3 | 0 | 2 | 3,4 | — |
 | academia | intermediario | 29,4 | 27,3 | 0 | 2 | 3,5 | — |
 | academia | avancado | 29,4 | 27,3 | 0 | 2 | 3,5 | — |
 | academia+ | iniciante | 29,4 | 27,3 | 0 | 2 | 3,4 | — |
@@ -445,9 +445,9 @@ Por cenário e nível: vagas ativas por programa (média), quantas têm exercíc
 | diego | iniciante | 29,4 | 26,9 | 0,2 | 2,3 | 3,9 | panturrilha-sentada (0,2) |
 | diego | intermediario | 29,4 | 26,9 | 0,2 | 2,3 | 3,9 | panturrilha-sentada (0,2) |
 | diego | avancado | 29,4 | 26,9 | 0,2 | 2,3 | 3,9 | panturrilha-sentada (0,2) |
-| elasticos | iniciante | 29,4 | 26,9 | 0,2 | 2,3 | 3,9 | panturrilha-sentada (0,2) |
-| elasticos | intermediario | 29,4 | 26,9 | 0,2 | 2,3 | 3,9 | panturrilha-sentada (0,2) |
-| elasticos | avancado | 29,4 | 26,9 | 0,2 | 2,3 | 4 | panturrilha-sentada (0,2) |
+| elasticos | iniciante | 29,4 | 26,8 | 0,2 | 2,4 | 3,9 | panturrilha-sentada (0,2) |
+| elasticos | intermediario | 29,4 | 26,8 | 0,2 | 2,4 | 3,9 | panturrilha-sentada (0,2) |
+| elasticos | avancado | 29,4 | 26,8 | 0,2 | 2,4 | 4 | panturrilha-sentada (0,2) |
 | halteres | iniciante | 29,4 | 24,1 | 3 | 2,2 | 2,9 | extensora (1,6), crucifixo (1,4) |
 | halteres | intermediario | 29,4 | 24,1 | 3 | 2,2 | 2,8 | extensora (1,6), crucifixo (1,4) |
 | halteres | avancado | 29,4 | 24,1 | 3 | 2,2 | 2,8 | extensora (1,6), crucifixo (1,4) |
@@ -492,13 +492,13 @@ Por cenário e nível: vagas ativas por programa (média), quantas têm exercíc
 | so:cadeira_flexora | avancado | 36,6 | 21,4 | 12,8 | 2,4 | 1,4 | elevacao-lateral (3,2), puxar-vertical (2,4), biceps (2,1), extensora (1,6), puxar-horizontal (1,6), crucifixo (1,4), panturrilha-sentada (0,4), agachar (0,1) |
 | so:caneleiras | iniciante | 36,6 | 25,6 | 8,2 | 2,7 | 2,8 | puxar-vertical (2,4), biceps (2,1), puxar-horizontal (1,6), crucifixo (1,4), panturrilha-sentada (0,4), empurrar-horizontal (0,1), empurrar-inclinado (0,1), agachar (0,1) |
 | so:caneleiras | intermediario | 36,6 | 25,9 | 8 | 2,7 | 2,8 | puxar-vertical (2,4), biceps (2,1), puxar-horizontal (1,6), crucifixo (1,4), panturrilha-sentada (0,4), agachar (0,1) |
-| so:caneleiras | avancado | 36,6 | 25,9 | 8 | 2,7 | 2,9 | puxar-vertical (2,4), biceps (2,1), puxar-horizontal (1,6), crucifixo (1,4), panturrilha-sentada (0,4), agachar (0,1) |
+| so:caneleiras | avancado | 36,6 | 25,9 | 8 | 2,7 | 2,8 | puxar-vertical (2,4), biceps (2,1), puxar-horizontal (1,6), crucifixo (1,4), panturrilha-sentada (0,4), agachar (0,1) |
 | so:desenvolvimento_maquina | iniciante | 36,6 | 21,2 | 13 | 2,4 | 1,3 | elevacao-lateral (3,2), puxar-vertical (2,4), biceps (2,1), extensora (1,6), puxar-horizontal (1,6), crucifixo (1,4), panturrilha-sentada (0,4), empurrar-horizontal (0,1), empurrar-inclinado (0,1), agachar (0,1) |
 | so:desenvolvimento_maquina | intermediario | 36,6 | 21,4 | 12,8 | 2,4 | 1,3 | elevacao-lateral (3,2), puxar-vertical (2,4), biceps (2,1), extensora (1,6), puxar-horizontal (1,6), crucifixo (1,4), panturrilha-sentada (0,4), agachar (0,1) |
 | so:desenvolvimento_maquina | avancado | 36,6 | 21,4 | 12,8 | 2,4 | 1,3 | elevacao-lateral (3,2), puxar-vertical (2,4), biceps (2,1), extensora (1,6), puxar-horizontal (1,6), crucifixo (1,4), panturrilha-sentada (0,4), agachar (0,1) |
-| so:estacao_polia_dupla | iniciante | 29,4 | 24,8 | 2 | 2,6 | 3,2 | extensora (1,6), panturrilha-sentada (0,2), empurrar-horizontal (0,1), agachar (0,1) |
-| so:estacao_polia_dupla | intermediario | 29,4 | 24,9 | 1,9 | 2,6 | 3 | extensora (1,6), panturrilha-sentada (0,2), agachar (0,1) |
-| so:estacao_polia_dupla | avancado | 29,4 | 24,9 | 1,9 | 2,6 | 3,1 | extensora (1,6), panturrilha-sentada (0,2), agachar (0,1) |
+| so:estacao_polia_dupla | iniciante | 29,4 | 24,7 | 2 | 2,7 | 3,3 | extensora (1,6), panturrilha-sentada (0,2), empurrar-horizontal (0,1), agachar (0,1) |
+| so:estacao_polia_dupla | intermediario | 29,4 | 24,8 | 1,9 | 2,7 | 3,1 | extensora (1,6), panturrilha-sentada (0,2), agachar (0,1) |
+| so:estacao_polia_dupla | avancado | 29,4 | 24,8 | 1,9 | 2,7 | 3,1 | extensora (1,6), panturrilha-sentada (0,2), agachar (0,1) |
 | so:estacao_puxada | iniciante | 29,4 | 18,3 | 9 | 2,1 | 1,7 | elevacao-lateral (2,1), biceps (1,8), extensora (1,6), puxar-horizontal (1,6), crucifixo (1,4), panturrilha-sentada (0,2), empurrar-horizontal (0,1), empurrar-inclinado (0,1), agachar (0,1) |
 | so:estacao_puxada | intermediario | 29,4 | 18,4 | 8,8 | 2,1 | 1,5 | elevacao-lateral (2,1), biceps (1,8), extensora (1,6), puxar-horizontal (1,6), crucifixo (1,4), panturrilha-sentada (0,2), agachar (0,1) |
 | so:estacao_puxada | avancado | 29,4 | 18,4 | 8,8 | 2,1 | 1,5 | elevacao-lateral (2,1), biceps (1,8), extensora (1,6), puxar-horizontal (1,6), crucifixo (1,4), panturrilha-sentada (0,2), agachar (0,1) |
@@ -571,9 +571,9 @@ Por cenário e nível: vagas ativas por programa (média), quantas têm exercíc
 | so:voador | iniciante | 36,6 | 22,8 | 11,5 | 2,3 | 1,7 | elevacao-lateral (3,2), puxar-vertical (2,4), biceps (2,1), extensora (1,6), puxar-horizontal (1,6), panturrilha-sentada (0,4), empurrar-horizontal (0,1), agachar (0,1) |
 | so:voador | intermediario | 36,6 | 22,9 | 11,4 | 2,3 | 1,7 | elevacao-lateral (3,2), puxar-vertical (2,4), biceps (2,1), extensora (1,6), puxar-horizontal (1,6), panturrilha-sentada (0,4), agachar (0,1) |
 | so:voador | avancado | 36,6 | 22,9 | 11,4 | 2,3 | 1,7 | elevacao-lateral (3,2), puxar-vertical (2,4), biceps (2,1), extensora (1,6), puxar-horizontal (1,6), panturrilha-sentada (0,4), agachar (0,1) |
-| step+elasticos | iniciante | 29,4 | 26,9 | 0,2 | 2,3 | 3,9 | panturrilha-sentada (0,2) |
-| step+elasticos | intermediario | 29,4 | 26,9 | 0,2 | 2,3 | 3,9 | panturrilha-sentada (0,2) |
-| step+elasticos | avancado | 29,4 | 26,9 | 0,2 | 2,3 | 4 | panturrilha-sentada (0,2) |
+| step+elasticos | iniciante | 29,4 | 26,8 | 0,2 | 2,4 | 3,9 | panturrilha-sentada (0,2) |
+| step+elasticos | intermediario | 29,4 | 26,8 | 0,2 | 2,4 | 3,9 | panturrilha-sentada (0,2) |
+| step+elasticos | avancado | 29,4 | 26,8 | 0,2 | 2,4 | 4 | panturrilha-sentada (0,2) |
 | suspensao+elasticos | iniciante | 29,4 | 26,9 | 0,2 | 2,3 | 3,9 | panturrilha-sentada (0,2) |
 | suspensao+elasticos | intermediario | 29,4 | 26,9 | 0,2 | 2,3 | 3,9 | panturrilha-sentada (0,2) |
 | suspensao+elasticos | avancado | 29,4 | 26,9 | 0,2 | 2,3 | 4 | panturrilha-sentada (0,2) |
@@ -589,16 +589,16 @@ O veredito do avaliador de programas (R5b, `src/domain/avaliador`; regra `avalia
 | --- | ---: | ---: | ---: | ---: | ---: |
 | **todos** | 11,4% | 80,6% | 8% | 0% | 92% |
 | academia | 36% | 59% | 5% | 0% | 95% |
-| academia+ | 36% | 58,9% | 5,1% | 0% | 94,9% |
+| academia+ | 36% | 58,9% | 5% | 0% | 95% |
 | bairro | 36,1% | 57,8% | 6,1% | 0% | 93,9% |
 | banco+halteres-leves | 37,4% | 52,9% | 9,7% | 0% | 90,3% |
-| bruno | 35,3% | 59% | 5,8% | 0% | 94,2% |
+| bruno | 35,3% | 59,1% | 5,7% | 0% | 94,3% |
 | casa | 34,4% | 57,7% | 7,9% | 0% | 92,1% |
 | casa+ | 36% | 58,1% | 5,9% | 0% | 94,1% |
 | condominio | 37,6% | 54,1% | 8,3% | 0% | 91,7% |
 | condominio+ | 35,7% | 59% | 5,3% | 0% | 94,7% |
-| diego | 29,9% | 61,1% | 9% | 0% | 91% |
-| elasticos | 29,6% | 60,7% | 9,8% | 0% | 90,2% |
+| diego | 29,9% | 61,2% | 9% | 0% | 91% |
+| elasticos | 29,6% | 60,6% | 9,8% | 0% | 90,2% |
 | halteres | 36,5% | 54,6% | 8,9% | 0% | 91,1% |
 | halteres-banco | 37,4% | 52,9% | 9,7% | 0% | 90,3% |
 | halteres+bola | 36% | 54,7% | 9,3% | 0% | 90,7% |
@@ -613,23 +613,23 @@ O veredito do avaliador de programas (R5b, `src/domain/avaliador`; regra `avalia
 | so:cadeira_abdutora_adutora | 0% | 93% | 7% | 0% | 93% |
 | so:cadeira_extensora | 0% | 92,9% | 7,1% | 0% | 92,9% |
 | so:cadeira_flexora | 0% | 92% | 8% | 0% | 92% |
-| so:caneleiras | 0% | 90,2% | 9,8% | 0% | 90,2% |
+| so:caneleiras | 0% | 90,3% | 9,7% | 0% | 90,3% |
 | so:desenvolvimento_maquina | 0% | 92,1% | 7,9% | 0% | 92,1% |
-| so:estacao_polia_dupla | 0% | 88,3% | 11,7% | 0% | 88,3% |
+| so:estacao_polia_dupla | 0% | 88,4% | 11,6% | 0% | 88,4% |
 | so:estacao_puxada | 0% | 91,4% | 8,6% | 0% | 91,4% |
 | so:estacao_remada | 0% | 91,5% | 8,5% | 0% | 91,5% |
-| so:gluteo_maquina | 0% | 92,9% | 7,1% | 0% | 92,9% |
-| so:graviton | 0% | 91,2% | 8,8% | 0% | 91,2% |
+| so:gluteo_maquina | 0% | 92,8% | 7,2% | 0% | 92,8% |
+| so:graviton | 0% | 91,1% | 8,9% | 0% | 91,1% |
 | so:hack | 0% | 92,2% | 7,8% | 0% | 92,2% |
 | so:halteres_fixos | 36,3% | 55,1% | 8,6% | 0% | 91,4% |
 | so:kettlebell | 0% | 91% | 9% | 0% | 91% |
 | so:leg_press | 0% | 92,8% | 7,2% | 0% | 92,8% |
 | so:mesa_flexora | 0% | 92% | 8% | 0% | 92% |
 | so:mini_band | 0% | 92,6% | 7,4% | 0% | 92,6% |
-| so:multifuncional | 0% | 92% | 8% | 0% | 92% |
+| so:multifuncional | 0% | 92,1% | 7,9% | 0% | 92,1% |
 | so:panturrilha_em_pe_maquina | 0% | 92,8% | 7,2% | 0% | 92,8% |
 | so:panturrilha_sentada_maquina | 0% | 92,1% | 7,9% | 0% | 92,1% |
-| so:paralelas | 0% | 92,1% | 7,9% | 0% | 92,1% |
+| so:paralelas | 0% | 92% | 8% | 0% | 92% |
 | so:rack_de_agachamento | 0% | 91,5% | 8,5% | 0% | 91,5% |
 | so:remada_articulada | 0% | 91,7% | 8,3% | 0% | 91,7% |
 | so:roda_abdominal | 0% | 92,2% | 7,8% | 0% | 92,2% |
@@ -640,8 +640,8 @@ O veredito do avaliador de programas (R5b, `src/domain/avaliador`; regra `avalia
 | so:suspensao | 0% | 91,3% | 8,7% | 0% | 91,3% |
 | so:triceps_maquina | 0% | 92,1% | 7,9% | 0% | 92,1% |
 | so:voador | 0% | 93% | 7% | 0% | 93% |
-| step+elasticos | 29,5% | 60,3% | 10,2% | 0% | 89,8% |
-| suspensao+elasticos | 29,6% | 60,5% | 9,9% | 0% | 90,1% |
+| step+elasticos | 29,5% | 60,2% | 10,3% | 0% | 89,7% |
+| suspensao+elasticos | 29,6% | 60,4% | 10% | 0% | 90% |
 | vazio | 0% | 92,1% | 7,9% | 0% | 92,1% |
 
 ## Avisos
@@ -652,15 +652,15 @@ O veredito do avaliador de programas (R5b, `src/domain/avaliador`; regra `avalia
 | --- | ---: | ---: |
 | `equipamento.escada-carga-leve` | 762.450 | 83,6% |
 | `selecao.isolador-obrigatorio` | 679.575 | 74,5% |
-| `volume.semanal.alvo` | 613.694 | 67,3% |
+| `volume.semanal.alvo` | 613.682 | 67,3% |
 | `equipamento.sem-ancoragem` | 419.900 | 46,1% |
 | `seguranca.dor.programa` | 375.375 | 41,2% |
-| `tempo.sobra` | 351.218 | 38,5% |
-| `tempo.corte` | 335.804 | 36,8% |
-| `selecao.dia-sem-principal` | 243.638 | 26,7% |
-| `equipamento.sem-puxada-vertical` | 242.125 | 26,6% |
+| `tempo.sobra` | 351.255 | 38,5% |
+| `tempo.corte` | 335.574 | 36,8% |
+| `selecao.dia-sem-principal` | 243.226 | 26,7% |
+| `equipamento.sem-puxada-vertical` | 240.175 | 26,3% |
 | `selecao.alongado` | 153.000 | 16,8% |
-| `volume.prioridade.competicao` | 146.456 | 16,1% |
+| `volume.prioridade.competicao` | 146.462 | 16,1% |
 
 ## Piores casos
 
