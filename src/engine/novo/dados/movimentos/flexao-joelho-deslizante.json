@@ -43,8 +43,8 @@
  ],
  "simetrico": true,
  "rotulos": [
-  {"vista": "lateral", "texto": "Quadril fora do chão.", "ponto": "pelve", "selo": "consenso", "fonte": "app"},
-  {"vista": "lateral", "texto": "Calcanhar no glúteo.", "ponto": "calcanhar", "selo": "consenso", "fonte": "app"},
+  {"vista": "lateral", "texto": "quadril fora do chão", "ponto": "pelve", "selo": "consenso", "fonte": "app"},
+  {"vista": "lateral", "texto": "calcanhar no glúteo", "ponto": "calcanhar", "selo": "consenso", "fonte": "app"},
   {"vista": "lateral", "texto": "ombros, quadril e joelhos em linha", "ponto": "joelho", "selo": "consenso", "fonte": "ficha", "guia": ["ombro", "quadril", "joelho"]}
  ]
 }

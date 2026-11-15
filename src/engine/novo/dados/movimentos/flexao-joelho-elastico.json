@@ -44,8 +44,8 @@
  ],
  "simetrico": true,
  "rotulos": [
-  {"vista": "lateral", "texto": "Quadril no chão.", "ponto": "pelve", "selo": "consenso", "fonte": "app"},
-  {"vista": "lateral", "texto": "Calcanhar no glúteo.", "ponto": "calcanhar", "selo": "consenso", "fonte": "app"},
-  {"vista": "lateral", "texto": "Volta devagar.", "ponto": "joelho", "selo": "consenso", "fonte": "app"}
+  {"vista": "lateral", "texto": "quadril no chão", "ponto": "pelve", "selo": "consenso", "fonte": "app"},
+  {"vista": "lateral", "texto": "calcanhar no glúteo", "ponto": "calcanhar", "selo": "consenso", "fonte": "app"},
+  {"vista": "lateral", "texto": "volta devagar", "ponto": "joelho", "selo": "consenso", "fonte": "app"}
  ]
 }
