@@ -2,7 +2,7 @@
 
 Atualizado por quem integra, a cada família juntada. "Aprovada na folha" = o Gustavo olhou e aprovou. "Aprovada por delegação" = conferida por quem integra, risco baixo, registrada com a frase dele de 15/11/2026. "Para o Gustavo ver" = risco médio ou alto: só entra na lista do app depois do ok dele. "Correção de qualidade" = desde o aviso dele de 15/11 ("o fato de eu ter delegado [...] não quer dizer que a gente pode diminuir a qualidade"), nenhuma animação delegada conta como pronta enquanto tiver defeito visível nos quadros (seção 8 de `como-fazer-uma-animacao.md`). As folhas ficam em `prototipos/folha-<id>.png` e os quadros grandes em `quadros/<id>.png`.
 
-Resumo: 18 aprovadas pelo Gustavo (7 na folha e 11 vendo os quadros); 62 por delegação; 0 prontas para o Gustavo ver; 4 das quatro primeiras sem aprovação na folha; 6 em andamento; 0 por fazer.
+Resumo: as 90 animações estão feitas no motor novo. 18 aprovadas pelo Gustavo (7 na folha e 11 vendo os quadros); 66 por delegação; 2 prontas para o Gustavo ver; 4 das quatro primeiras sem aprovação na folha.
 
 | Lote | Exercício | Estado |
 |---|---|---|
@@ -85,14 +85,14 @@ Resumo: 18 aprovadas pelo Gustavo (7 na folha e 11 vendo os quadros); 62 por del
 | 7 | `abdominal-chao` | feita e conferida quadro a quadro por quem integra; aprovada por delegação |
 | 7 | `abdominal-invertido` | feita e conferida quadro a quadro por quem integra; aprovada por delegação |
 | 7 | `abdominal-polia` | feita e conferida quadro a quadro por quem integra; aprovada por delegação |
-| 7 | `abducao-caneleira` | em andamento (subagente) |
-| 7 | `abducao-deitado` | em andamento (subagente) |
-| 7 | `abducao-mini-band` | em andamento (subagente) |
+| 7 | `abducao-caneleira` | feita e conferida quadro a quadro por quem integra; aprovada por delegação (a pose da abdução deitado, com a caneleira, que é peça nova; sem colchonete) |
+| 7 | `abducao-deitado` | feita; **para o Gustavo ver** (o primeiro corpo deitado de lado do motor novo; visto de costas) |
+| 7 | `abducao-mini-band` | feita; **para o Gustavo ver** (sentado na cadeira; de frente, a faixa aparece como um anel em volta do colo) |
 | 7 | `abertura-t-deitado` | feita e conferida quadro a quadro por quem integra; aprovada por delegação |
-| 7 | `aducao-caneleira` | em andamento (subagente) |
-| 7 | `aducao-deitado` | em andamento (subagente) |
+| 7 | `aducao-caneleira` | feita e conferida quadro a quadro por quem integra; aprovada por delegação |
+| 7 | `aducao-deitado` | feita e conferida quadro a quadro por quem integra; aprovada por delegação (deitado de lado, visto de frente) |
 | 7 | `elevacao-joelhos` | feita e conferida quadro a quadro por quem integra; aprovada por delegação (o corpo recua um pouco quando as pernas sobem, para ficar parado) |
 | 7 | `elevacao-joelhos-paralelas` | feita e conferida quadro a quadro por quem integra; aprovada por delegação (braços retos; as paralelas ficaram a 132 cm, pela medida do fabricante; as de hoje têm 105) |
-| 7 | `extensao-joelho-caneleira` | em andamento (subagente) |
+| 7 | `extensao-joelho-caneleira` | feita e conferida quadro a quadro por quem integra; aprovada por delegação |
 | 7 | `extensao-joelho-elastico` | feita e conferida quadro a quadro por quem integra; aprovada por delegação (sentado na ponta do banco; o joelho dobra 69° embaixo, porque mais que isso o pé encosta no chão) |
 | 7 | `roda-abdominal` | feita e conferida quadro a quadro por quem integra; aprovada por delegação (a roda é peça nova e gira conforme anda) |
