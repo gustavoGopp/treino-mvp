@@ -77,3 +77,4 @@ export { desenvolvimentoElastico } from './desenvolvimento-elastico';
 export { crucifixoElastico } from './crucifixo-elastico';
 export { extensaoJoelhoElastico } from './extensao-joelho-elastico';
 export { supinoInclinado } from './supino-inclinado';
+export { pontePesBola } from './ponte-pes-bola';

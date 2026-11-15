@@ -21,3 +21,4 @@ export { regrasDosElasticos } from './elasticos';
 export { REGRAS_POLIA_PUXAR } from './polia-puxar';
 export { REGRAS_POLIA_BRACOS } from './polia-bracos';
 export { regrasDoSupinoInclinado } from './supino-inclinado';
+export { REGRAS_PONTE_BOLA } from './ponte-bola';
