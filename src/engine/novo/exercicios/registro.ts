@@ -81,3 +81,4 @@ export { pontePesBola } from './ponte-pes-bola';
 export { nordico } from './nordico';
 export { remadaApoiada } from './remada-apoiada';
 export { barraFixa } from './barra-fixa';
+export { barraFixaSupinada } from './barra-fixa-supinada';
