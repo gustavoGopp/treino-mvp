@@ -72,7 +72,8 @@ function folha(id) {
       ...I.velho.map((t, i) => cel(`hoje · ${I.nomes[i]}`, svgHoje(id, v, 'tec', t), { classe: 'hoje' })),
     ]) + `<div class="l">${I.novo.map((t, i) => cel(`novo · ${I.nomes[i]}`, svgNovo(id, v, 'tec', t))).join('')}</div>`;
   }
-  h += lin('Músculos: hoje e novo, em cada vista', ex.vistas.flatMap((v) => [cel(`hoje · ${NOME_VISTA[v]}`, svgHoje(id, v, 'mus', fimV), { classe: 'hoje' }), cel(`novo · ${NOME_VISTA[v]}`, svgNovo(id, v, 'mus', fim))]));
+  const vistasMus = m.vistasDoModoMusculos(ex, corpo);
+  h += lin(`Músculos: hoje e novo (a vista padrão do novo é ${NOME_VISTA[vistasMus[0].vista]}, a que mais mostra o principal: ${vistasMus.map((x) => `${NOME_VISTA[x.vista]} ${Math.round(x.area)} cm²${x.mostra ? '' : ', não serve'}`).join('; ')})`, ex.vistas.flatMap((v) => [cel(`hoje · ${NOME_VISTA[v]}`, svgHoje(id, v, 'mus', fimV), { classe: 'hoje' }), cel(`novo · ${NOME_VISTA[v]}`, svgNovo(id, v, 'mus', fim))]));
   h += lin('Trajetória: hoje e novo', [cel(`hoje · ${NOME_VISTA[ex.vistas[0]]}`, svgHoje(id, ex.vistas[0], 'traj', fimV), { classe: 'hoje' }), cel(`novo · ${NOME_VISTA[ex.vistas[0]]}`, svgNovo(id, ex.vistas[0], 'traj', fim))]);
   h += lin('Erros: hoje e novo (no novo, o certo fica tracejado atrás e o errado em vermelho)', F.erros.flatMap((e) => {
     const iH = exHoje(id).errors.findIndex((x) => x.id === e.id);

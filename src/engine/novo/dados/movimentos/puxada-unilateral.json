@@ -9,13 +9,13 @@
   "desenho": "Escolha de desenho desta animação, dentro do que a ficha pede; a conferência mede o resultado"
  },
  "param": {
-  "tronco": { "v": -4, "un": "graus", "selo": "consenso", "fonte": "guia", "o": "tronco reto ou levemente inclinado para trás" },
+  "tronco": { "v": -8, "un": "graus", "selo": "consenso", "fonte": "guia", "o": "tronco levemente inclinado para trás (a ficha aceita reto ou levemente inclinado; inclinado, o cotovelo dobra menos no fim)" },
   "cotovelo.alongado": { "v": 12, "un": "graus", "selo": "consenso", "fonte": "guia", "o": "início: braço estendido para cima e para a frente" },
   "ombro.sobe": { "v": 10, "un": "graus", "selo": "consenso", "fonte": "guia", "o": "alongado: deixe o ombro subir (elevação da clavícula além do ritmo normal)" },
   "ombro.desce": { "v": -6, "un": "graus", "selo": "consenso", "fonte": "guia", "o": "fim: ombro para baixo" },
-  "braco.fim.atras": { "v": 12, "un": "graus", "selo": "consenso", "fonte": "guia", "o": "fim: cotovelo ao lado das costelas, um pouco atrás do tronco" },
+  "braco.fim.atras": { "v": 6, "un": "graus", "selo": "consenso", "fonte": "guia", "o": "fim: cotovelo ao lado das costelas, um pouco atrás do tronco" },
   "braco.fim.fora": { "v": 12, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "fim: o braço um pouco afastado do tronco, para o cotovelo passar ao lado das costelas" },
-  "torre.distancia": { "v": 62, "un": "cm", "selo": "consenso", "fonte": "guia", "o": "ajoelhe de frente para a torre, a cerca de meio passo (dos joelhos à base)" },
+  "torre.distancia": { "v": 70, "un": "cm", "selo": "consenso", "fonte": "guia", "o": "ajoelhe de frente para a torre, a cerca de meio passo (dos joelhos à base; o passo de um homem de 1,76 m tem perto de 70 a 75 cm). Mais perto que isto o cabo fica tão em pé que o cotovelo dobra além de 155 graus no fim" },
   "joelhos.meiaDistancia": { "v": 8.7, "un": "cm", "selo": "consenso", "fonte": "guia", "o": "joelhos na largura do quadril" },
   "erro.tronco": { "v": -30, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "erro: jogar o tronco para trás" },
   "erro.encolher": { "v": 14, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "erro: o ombro continua encolhido no fim" },

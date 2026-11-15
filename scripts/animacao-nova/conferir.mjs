@@ -22,6 +22,7 @@ for (const ex of lista) {
   const r = m.conferir(ex, corpo);
   const mus = doConteudo(ex.ficha.id);
   const papeis = mus ? m.conferirPapeis(ex, mus) : [{ grupo: 'Músculos', oQue: 'o realçado é o do conteúdo', medido: 'o exercício não está na biblioteca do app', limite: 'estar na biblioteca', nivel: 'falha' }];
+  papeis.push(...m.conferirVistasDosMusculos(ex, corpo));
   r.itens.push(...papeis);
   r.falhas += papeis.filter((i) => i.nivel === 'falha').length;
   r.avisos += papeis.filter((i) => i.nivel === 'aviso').length;

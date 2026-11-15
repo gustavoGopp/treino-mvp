@@ -2,6 +2,7 @@
 // 1) cada forma do desenho está na parte do corpo em que o músculo fica, entre a origem e a inserção da tabela?
 // 2) quem cobre quem na pintura segue a camada declarada? e as pontas das formas ficam onde a fonte diz?
 // 3) o músculo realçado em cada animação é o do conteúdo do app (principal e secundário)?
+import { vistasDoModoMusculos } from './cena';
 import dados from './dados/boneco.json';
 import type { ItemConferido } from './conferir';
 import { resolverTronco } from './esqueleto';
@@ -114,4 +115,13 @@ export function conferirPapeis(ex: Exercicio, conteudo: { primarios: string[]; s
     { grupo: 'Músculos', oQue: `o realçado é o do conteúdo (principal: ${conteudo.primarios.join(', ')}; secundário: ${conteudo.secundarios.join(', ') || 'nenhum'})`, medido: problemas.length ? problemas.join('; ') : 'principal e secundário batem com o conteúdo', limite: 'nenhuma diferença', nivel: problemas.length ? 'falha' : 'ok' },
     ...(notas.length ? [{ grupo: 'Músculos', oQue: 'diferenças aceitas, a confirmar com o Gustavo', medido: notas.join('; '), limite: 'cada uma precisa do ok dele', nivel: 'aviso' as const }] : []),
   ];
+}
+
+/** Em que vistas o músculo principal aparece (medido): a vista padrão do modo Músculos e as que não servem a ele. */
+export function conferirVistasDosMusculos(ex: Exercicio, corpo: Corpo): ItemConferido[] {
+  const NOME: Record<string, string> = { lateral: 'de lado', frontal: 'de frente', posterior: 'de trás', cima: 'de cima' };
+  const v = vistasDoModoMusculos(ex, corpo);
+  const texto = v.map((x, i) => `${NOME[x.vista] ?? x.vista}: ${Math.round(x.area)} cm²${i === 0 ? ' (padrão)' : x.mostra ? '' : ' (não serve: o principal quase não aparece)'}`).join('; ');
+  const nenhuma = !v.some((x) => x.mostra && x.area >= 30);
+  return [{ grupo: 'Músculos', oQue: 'quanto do músculo principal aparece em cada vista (área das formas viradas para quem olha)', medido: texto, limite: 'pelo menos uma vista com 30 cm² ou mais; a que tem menos de um terço da melhor sai do modo Músculos', nivel: nenhuma ? 'falha' : v.some((x) => !x.mostra) ? 'aviso' : 'ok' }];
 }

@@ -1,5 +1,5 @@
 // Motor novo: monta um quadro (Boneco + objetos) numa vista e num modo, e calcula o enquadramento do ciclo.
-import { DEFS_DO_BONECO, desenharBoneco } from './boneco';
+import { DEFS_DO_BONECO, desenharBoneco, formaDoBoneco, musculosVisiveis } from './boneco';
 import type { IdEstilo } from './boneco';
 import { VISTAS, caixaDosItens, desenharPrim, naTela, pintar } from './desenho';
 import type { Camera, IdVista, Item, P2 } from './desenho';
@@ -132,6 +132,41 @@ function itensEmU(ex: Exercicio, u: number, o: OpcoesCena): Item[] {
   }
   return itens;
 }
+/* ============================== a vista do modo Músculos, por medida ============================== */
+/**
+ * Quanto do músculo principal aparece numa vista: a área, na tela, das formas com papel 'p' (cm²), no pior dos três
+ * instantes (começo, meio e fim do movimento): a vista tem que mostrar o músculo o tempo todo. Não desconta o que
+ * outra parte do corpo esconde; mede se a forma está virada para quem olha.
+ */
+export function areaDoPrincipal(ex: Exercicio, corpo: Corpo, vista: IdVista): number {
+  const cam = VISTAS[vista];
+  let pior = 1e9;
+  for (const u of [0, 0.5, 1]) {
+    let total = 0;
+    const e = quadroDe(ex, corpo, u).esq;
+    for (const mu of musculosVisiveis(e, formaDoBoneco(e), cam)) {
+      const papel = (mu.lado ? ex.papeis[`${mu.id}:${mu.lado}`] : undefined) ?? ex.papeis[mu.id];
+      if (papel !== 'p' || mu.pts.length < 3) continue;
+      const P = mu.pts.map((p) => naTela(cam, p));
+      let a = 0;
+      for (let i = 0; i < P.length; i++) a += P[i]![0] * P[(i + 1) % P.length]![1] - P[(i + 1) % P.length]![0] * P[i]![1];
+      total += Math.abs(a) / 2;
+    }
+    pior = Math.min(pior, total);
+  }
+  return pior;
+}
+/**
+ * As vistas do exercício na ordem em que mostram o músculo principal (cuidado 10 do bloco B: a vista padrão de cada
+ * modo é escolhida por medida). `mostra` = a vista serve ao modo Músculos: o principal aparece com pelo menos um terço
+ * da área da melhor vista. As que não servem não devem ser oferecidas nesse modo.
+ */
+export function vistasDoModoMusculos(ex: Exercicio, corpo: Corpo): { vista: IdVista; area: number; mostra: boolean }[] {
+  const medidas = (ex.vistas as IdVista[]).map((vista) => ({ vista, area: areaDoPrincipal(ex, corpo, vista) })).sort((a, b) => b.area - a.area);
+  const melhor = medidas[0]?.area ?? 0;
+  return medidas.map((x) => ({ ...x, mostra: x.area > 0 && x.area >= melhor / 3 }));
+}
+
 /* ============================== enquadramento e rótulos ============================== */
 type VB = [number, number, number, number];
 /** A caixa do corpo e do equipamento no ciclo inteiro (e nos erros dessa vista): o que o quadro precisa conter. */

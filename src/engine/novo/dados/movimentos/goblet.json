@@ -21,8 +21,8 @@
   "maos.meiaEspessuraDaPalma": { "v": 1.6, "un": "cm", "selo": "desenho", "fonte": "desenho", "o": "do meio da mão até a pele da palma, onde a cabeça do halter apoia" },
   "carga": { "v": 11.3, "un": "kg", "selo": "desenho", "fonte": "objetos", "o": "o halter desenhado (25 lb); entra no equilíbrio" },
   "erro.raso.joelho": { "v": 72, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "erro: parar alto" },
-  "erro.lombar.tronco": { "v": 52, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "erro: o peito cai" },
-  "erro.lombar.lombar": { "v": 34, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "erro: a lombar arredonda (flexão somada à curva de repouso)" },
+  "erro.lombar.tronco": { "v": 45, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "erro: o peito cai (inclinação do peito embaixo; no certo são 27)" },
+  "erro.lombar.lombar": { "v": 35, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "erro: a lombar arredonda: a bacia gira 17 graus para trás em relação ao certo e a lombar dobra o que falta até o peito" },
   "erro.valgo.joelho": { "v": 9, "un": "cm", "selo": "desenho", "fonte": "desenho", "o": "erro: quanto cada joelho cai para dentro da linha do pé" }
  },
  "fases": [

@@ -21,6 +21,8 @@ function quadro(corpo: Corpo, u: number, erro?: string): Quadro {
   const m = (id: string) => corpo.m(id);
   const joelho = mix(f('joelho.cima'), f(erro === 'raso' ? 'erro.raso.joelho' : 'joelho.baixo'), u);
   const tronco = mix(f('tronco.cima'), f(erro === 'lombar' ? 'erro.lombar.tronco' : 'tronco.baixo'), u);
+  // no erro, a bacia gira para trás (o cóccix vai para baixo) e a lombar dobra: `tronco` é a inclinação do peito, e a
+  // inclinação da bacia é o que sobra (tronco − lombar)
   const lombar = erro === 'lombar' ? f('erro.lombar.lombar') * u : 0;
   // pés: a bola do pé no chão e o calcanhar sobre a anilha (o pé gira na bola até o calcanhar chegar à altura dela)
   const esp = obj('anilhaCalcanhar', 'esp'),
@@ -50,7 +52,7 @@ function quadro(corpo: Corpo, u: number, erro?: string): Quadro {
     cabeca = (comp - obj('halter', 'caboComp')) / 2;
   // o halter fica na vertical do tronco, com a cabeça de cima encostada no alto do peito
   const montar = (y: number, z: number): { e: Esq; centro: V3; eixo: V3 } => {
-    const t = resolverTronco(corpo, { pelve: [0, y, z], frente: tronco - lombar * 0.45, lombar, cervical: -tronco * 0.25, cabeca: -tronco * 0.2 });
+    const t = resolverTronco(corpo, { pelve: [0, y, z], frente: tronco - lombar, lombar, cervical: -tronco * 0.25, cabeca: -tronco * 0.2 });
     const T = t.torax;
     const frenteAlto = m('prof.peito') * 0.42,
       frenteBaixo = m('prof.peito') * 0.68;

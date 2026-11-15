@@ -39,3 +39,20 @@ O que dá para fazer e o que não dá:
 - **Pelo tamanho da pessoa:** a pesquisa lida não tem nada que faça o ângulo mudar com a altura. Sem fonte, não entra como regra.
 
 Proposta: no lote do supino inclinado, desenhar o encosto a 30° com o ângulo marcado e uma dica de como achar o encaixe sem transferidor ("um terço do caminho entre deitado e sentado", que o texto do app já usa). A ideia de dizer o número do furo pelo modelo do banco reconhecido nas fotos vai para o `docs/backlog.md` no fechamento desta frente.
+
+## 4. Puxada unilateral: "a cerca de meio passo" da torre deixa o cabo em pé demais (15/11/2026)
+
+O texto do app e a ficha da técnica pedem ajoelhar "a cerca de meio passo" da torre e terminar com o "cotovelo ao lado das costelas, um pouco atrás do tronco". Com a polia no alto (193 cm) e a pessoa tão perto, o cabo fica quase na vertical, e para o cotovelo chegar às costelas ele precisa dobrar muito. Medido no boneco:
+
+| Distância dos joelhos à base da torre | Tronco | Dobra do cotovelo no fim |
+|---|---|---|
+| 62 cm (como estava) | 4° para trás | 162° (a mão chega ao queixo) |
+| 70 cm (como ficou) | 8° para trás | 152° |
+| 90 cm | 8° para trás | 145° |
+| 110 cm | 4° para trás | 148° |
+
+A amplitude média de flexão do cotovelo é 148° e a máxima observada, 166° (CDC). Os dois revisores automáticos apontaram os 162° (um como erro, outro como impreciso) e sugeriram terminar perto de 145°.
+
+O que a animação fez, dentro do que o texto permite: 70 cm, tronco 8° para trás, cotovelo 6° atrás do tronco: 152°.
+
+Pedido: avaliar trocar "a cerca de meio passo" por "a cerca de um passo" no texto do app. Sem fonte além do consenso do guia original e da conta acima; por isso é pedido, e não mudança.

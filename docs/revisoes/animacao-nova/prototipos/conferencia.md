@@ -4,16 +4,16 @@ Gerado por `npm run conferir:animacao` (60 quadros por segundo, ciclo inteiro). 
 
 | animação | quadros | itens | falhas | avisos |
 |---|---|---|---|---|
-| goblet | 279 | 33 | 0 | 2 |
-| supino-reto | 291 | 33 | 0 | 2 |
-| puxada-unilateral | 240 | 33 | 0 | 4 |
-| flexao | 225 | 33 | 0 | 5 |
+| goblet | 279 | 34 | 0 | 3 |
+| supino-reto | 291 | 34 | 0 | 3 |
+| puxada-unilateral | 240 | 34 | 0 | 4 |
+| flexao | 225 | 34 | 0 | 6 |
 
 "ok" = dentro do limite; "AVISO" = possível, mas fora da média ou ainda provisório (precisa do ok do Gustavo); "FALHA" = não pode ir para o app.
 
 ## Agachamento goblet com calcanhar elevado (`goblet`)
 
-279 quadros conferidos. 0 falha(s), 2 aviso(s).
+279 quadros conferidos. 0 falha(s), 3 aviso(s).
 
 Ângulos no ciclo (lado direito, graus): joelho 8 a 126; cotovelo 132 a 132; quadril 10 a 125; ombro 13 a 13; dorsiflexao -8 a 23; punho 65 a 65; pronacao 42 a 42; clavicula 11 a 11.
 
@@ -52,10 +52,11 @@ Gerado por `npm run conferir:animacao` (60 quadros por segundo, ciclo inteiro). 
 | Ficha | a lombar não arredonda (consenso) | flexão da lombar além da curva de repouso: 0° | como a ficha pede | ok |
 | Provisórios | linhas da ficha do movimento sem número na ficha da técnica (escolha de desenho) | tronco.baixo, maos.aberturaDaConcha, maos.giroParaFrente, maos.meiaEspessuraDaPalma, carga | cada uma precisa de fonte ou do ok do Gustavo | AVISO |
 | Músculos | o realçado é o do conteúdo (principal: quadriceps; secundário: gluteos, adutores) | principal e secundário batem com o conteúdo | nenhuma diferença | ok |
+| Músculos | quanto do músculo principal aparece em cada vista (área das formas viradas para quem olha) | de lado: 354 cm² (padrão); de frente: 0 cm² (não serve: o principal quase não aparece) | pelo menos uma vista com 30 cm² ou mais; a que tem menos de um terço da melhor sai do modo Músculos | AVISO |
 
 ## Supino reto com halteres (`supino-reto`)
 
-291 quadros conferidos. 0 falha(s), 2 aviso(s).
+291 quadros conferidos. 0 falha(s), 3 aviso(s).
 
 Ângulos no ciclo (lado direito, graus): joelho 86 a 86; cotovelo 10 a 104; quadril -5 a -5; ombro 50 a 83; dorsiflexao 1 a 1; punho 0 a 0; pronacao 15 a 15; clavicula 8 a 10.
 
@@ -94,12 +95,13 @@ Gerado por `npm run conferir:animacao` (60 quadros por segundo, ciclo inteiro). 
 | Provisórios | linhas da ficha do movimento sem número na ficha da técnica (escolha de desenho) | cabeca.folgaNoBanco, carga | cada uma precisa de fonte ou do ok do Gustavo | AVISO |
 | Músculos | o realçado é o do conteúdo (principal: peito; secundário: ombro_anterior, triceps) | principal e secundário batem com o conteúdo | nenhuma diferença | ok |
 | Músculos | diferenças aceitas, a confirmar com o Gustavo | Deltoide: o conteúdo pede ombro_anterior, e o desenho só tem o músculo inteiro | cada uma precisa do ok dele | AVISO |
+| Músculos | quanto do músculo principal aparece em cada vista (área das formas viradas para quem olha) | de cima: 392 cm² (padrão); de lado: 69 cm² (não serve: o principal quase não aparece) | pelo menos uma vista com 30 cm² ou mais; a que tem menos de um terço da melhor sai do modo Músculos | AVISO |
 
 ## Puxada unilateral ajoelhado na polia alta (`puxada-unilateral`)
 
 240 quadros conferidos. 0 falha(s), 4 aviso(s).
 
-Ângulos no ciclo (lado direito, graus): joelho 90 a 90; cotovelo 12 a 162; quadril -2 a -2; ombro 16 a 139; dorsiflexao -81 a -81; punho -0 a 0; pronacao -20 a 50; clavicula 5 a 26.
+Ângulos no ciclo (lado direito, graus): joelho 90 a 90; cotovelo 12 a 152; quadril -6 a -6; ombro 13 a 129; dorsiflexao -81 a -81; punho -0 a 0; pronacao -9 a 61; clavicula 5 a 26.
 
 | grupo | o que foi medido | resultado | limite | |
 |---|---|---|---|---|
@@ -109,15 +111,15 @@ Gerado por `npm run conferir:animacao` (60 quadros por segundo, ciclo inteiro). 
 | Proporções | comprimento do osso: perna | desvio máximo 0 cm | tabela: 42,1 cm; tolerância 0,1 cm | ok |
 | Proporções | membro que não alcança o alvo | falta máxima 0 cm | tolerância 0,1 cm | ok |
 | Amplitudes | flexão do joelho (máxima no ciclo) | 90° | média 140°, máximo observado 164° (cdc) | ok |
-| Amplitudes | flexão do cotovelo | 162,2° | média 148°, máximo observado 166° (cdc) | AVISO |
-| Amplitudes | flexão do quadril | -2° | média 132°, máximo observado 159° (cdc) | ok |
-| Amplitudes | extensão do quadril | 2° | média 18,5°, máximo observado 42° (cdc) | ok |
+| Amplitudes | flexão do cotovelo | 151,6° | média 148°, máximo observado 166° (cdc) | AVISO |
+| Amplitudes | flexão do quadril | -6° | média 132°, máximo observado 159° (cdc) | ok |
+| Amplitudes | extensão do quadril | 6° | média 18,5°, máximo observado 42° (cdc) | ok |
 | Amplitudes | abertura do quadril para o lado | 0° | média 40°, máximo observado 60° (aaos) | ok |
-| Amplitudes | elevação do braço | 138,7° | média 170°, máximo observado 192° (cdc) | ok |
+| Amplitudes | elevação do braço | 129,1° | média 170°, máximo observado 192° (cdc) | ok |
 | Amplitudes | dorsiflexão do tornozelo | -80,7° | média 14,8°, máximo observado 48° (cdc) | ok |
 | Amplitudes | flexão plantar do tornozelo | 80,7° | média 56,7°, máximo observado 90° (cdc) | AVISO |
-| Amplitudes | pronação do antebraço (a partir do polegar para cima) | 50,4° | média 80°, máximo observado 108° (cdc) | ok |
-| Amplitudes | supinação do antebraço | 19,9° | média 87,5°, máximo observado 131° (cdc) | ok |
+| Amplitudes | pronação do antebraço (a partir do polegar para cima) | 61,3° | média 80°, máximo observado 108° (cdc) | ok |
+| Amplitudes | supinação do antebraço | 9,1° | média 87,5°, máximo observado 131° (cdc) | ok |
 | Amplitudes | extensão do punho | 0° | média 70°, máximo observado 95° (aaos) | ok |
 | Amplitudes | extensão dos dedos do pé | 0° | média 70°, máximo observado 90° (aaos) | ok |
 | Contatos | preso no lugar: joelho.R | desloca no máximo 0 cm no ciclo | tolerância 0,1 cm | ok |
@@ -127,19 +129,20 @@ Gerado por `npm run conferir:animacao` (60 quadros por segundo, ciclo inteiro). 
 | Chão | ponto mais baixo do corpo | 1,1 cm | não pode passar de −1,5 cm (a sola e o joelho amassam um pouco) | ok |
 | Chão | ponto mais baixo do corpo nos erros desenhados | 1,1 cm (Jogar o tronco para trás) | não pode passar de −1,5 cm | ok |
 | Objetos | o corpo atravessa uma peça (banco, coluna) | não atravessa | tolerância 2,5 cm (o corpo amassa o estofado) | ok |
-| Cabos | cabo: a pilha sobe o curso do cabo dividido pela relação da máquina (2:1) | o cabo anda 63,4 cm e a pilha sobe 31,7 cm | esperado 31,7 cm; tolerância 0,3 cm | ok |
-| Ritmo | maior salto de velocidade entre dois quadros (a 60 quadros por segundo) | 7,4% da velocidade de pico (cotovelo direito, Puxada · concêntrica); pico de 157,5 cm/s | movimento suave: até 15%; acima de 25% é tranco | ok |
+| Cabos | cabo: a pilha sobe o curso do cabo dividido pela relação da máquina (2:1) | o cabo anda 59,6 cm e a pilha sobe 29,8 cm | esperado 29,8 cm; tolerância 0,3 cm | ok |
+| Ritmo | maior salto de velocidade entre dois quadros (a 60 quadros por segundo) | 6,7% da velocidade de pico (cotovelo direito, Puxada · concêntrica); pico de 143,4 cm/s | movimento suave: até 15%; acima de 25% é tranco | ok |
 | Ciclo | o último quadro emenda no primeiro | distância máxima 0 cm | até 0,5 cm | ok |
-| Ficha | o antebraço segue a linha do cabo (o cabo fica reto, da polia à mão) (desenho) | da metade da puxada em diante, o antebraço desvia no máximo 10° da linha do cabo | como a ficha pede | ok |
-| Ficha | no fim, o ombro está mais baixo que no início (consenso) | do início ao fim, a ponta do ombro desce 5,3 cm | como a ficha pede | ok |
+| Ficha | o antebraço segue a linha do cabo (o cabo fica reto, da polia à mão) (desenho) | da metade da puxada em diante, o antebraço desvia no máximo 8,3° da linha do cabo | como a ficha pede | ok |
+| Ficha | no fim, o ombro está mais baixo que no início (consenso) | do início ao fim, a ponta do ombro desce 5 cm | como a ficha pede | ok |
 | Ficha | o tronco quase não se move (consenso) | a base do pescoço se move no máximo 0 cm | como a ficha pede | ok |
 | Provisórios | linhas da ficha do movimento sem número na ficha da técnica (escolha de desenho) | braco.fim.fora | cada uma precisa de fonte ou do ok do Gustavo | AVISO |
 | Músculos | o realçado é o do conteúdo (principal: costas; secundário: biceps, ombro_posterior) | principal e secundário batem com o conteúdo | nenhuma diferença | ok |
 | Músculos | diferenças aceitas, a confirmar com o Gustavo | Deltoide: o conteúdo pede ombro_posterior, e o desenho só tem o músculo inteiro; Trapézio aparece como secundário dentro de um grupo que o conteúdo conta como principal (costas) | cada uma precisa do ok dele | AVISO |
+| Músculos | quanto do músculo principal aparece em cada vista (área das formas viradas para quem olha) | de trás: 279 cm² (padrão); de lado: 176 cm² | pelo menos uma vista com 30 cm² ou mais; a que tem menos de um terço da melhor sai do modo Músculos | ok |
 
 ## Flexão de braço (`flexao`)
 
-225 quadros conferidos. 0 falha(s), 5 aviso(s).
+225 quadros conferidos. 0 falha(s), 6 aviso(s).
 
 Ângulos no ciclo (lado direito, graus): joelho 4 a 4; cotovelo 10 a 114; quadril 2 a 2; ombro 43 a 62; dorsiflexao 12 a 12; punho 79 a 94; pronacao 40 a 45; clavicula 12 a 13.
 
@@ -178,6 +181,7 @@ Gerado por `npm run conferir:animacao` (60 quadros por segundo, ciclo inteiro). 
 | Provisórios | linhas da ficha do movimento sem número na ficha da técnica (escolha de desenho) | tornozelo.dorsiflexao, escapula.retracaoEmbaixo | cada uma precisa de fonte ou do ok do Gustavo | AVISO |
 | Músculos | o realçado é o do conteúdo (principal: peito; secundário: triceps, ombro_anterior) | principal e secundário batem com o conteúdo | nenhuma diferença | ok |
 | Músculos | diferenças aceitas, a confirmar com o Gustavo | Deltoide: o conteúdo pede ombro_anterior, e o desenho só tem o músculo inteiro; Reto abdominal aparece como "só ajuda a firmar", fora da lista do conteúdo | cada uma precisa do ok dele | AVISO |
+| Músculos | quanto do músculo principal aparece em cada vista (área das formas viradas para quem olha) | de lado: 69 cm² (padrão); de cima: 0 cm² (não serve: o principal quase não aparece) | pelo menos uma vista com 30 cm² ou mais; a que tem menos de um terço da melhor sai do modo Músculos | AVISO |
 
 ## O desenho dos músculos contra a tabela
 

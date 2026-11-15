@@ -233,6 +233,13 @@
     "medido": "principal e secundário batem com o conteúdo",
     "limite": "nenhuma diferença",
     "nivel": "ok"
+   },
+   {
+    "grupo": "Músculos",
+    "oQue": "quanto do músculo principal aparece em cada vista (área das formas viradas para quem olha)",
+    "medido": "de lado: 354 cm² (padrão); de frente: 0 cm² (não serve: o principal quase não aparece)",
+    "limite": "pelo menos uma vista com 30 cm² ou mais; a que tem menos de um terço da melhor sai do modo Músculos",
+    "nivel": "aviso"
    }
   ],
   "angulos": {
@@ -270,7 +277,7 @@
    ]
   },
   "falhas": 0,
-  "avisos": 2
+  "avisos": 3
  },
  "supino-reto": {
   "id": "supino-reto",
@@ -506,6 +513,13 @@
     "medido": "Deltoide: o conteúdo pede ombro_anterior, e o desenho só tem o músculo inteiro",
     "limite": "cada uma precisa do ok dele",
     "nivel": "aviso"
+   },
+   {
+    "grupo": "Músculos",
+    "oQue": "quanto do músculo principal aparece em cada vista (área das formas viradas para quem olha)",
+    "medido": "de cima: 392 cm² (padrão); de lado: 69 cm² (não serve: o principal quase não aparece)",
+    "limite": "pelo menos uma vista com 30 cm² ou mais; a que tem menos de um terço da melhor sai do modo Músculos",
+    "nivel": "aviso"
    }
   ],
   "angulos": {
@@ -543,7 +557,7 @@
    ]
   },
   "falhas": 0,
-  "avisos": 2
+  "avisos": 3
  },
  "puxada-unilateral": {
   "id": "puxada-unilateral",
@@ -594,21 +608,21 @@
    {
     "grupo": "Amplitudes",
     "oQue": "flexão do cotovelo",
-    "medido": "162,2°",
+    "medido": "151,6°",
     "limite": "média 148°, máximo observado 166° (cdc)",
     "nivel": "aviso"
    },
    {
     "grupo": "Amplitudes",
     "oQue": "flexão do quadril",
-    "medido": "-2°",
+    "medido": "-6°",
     "limite": "média 132°, máximo observado 159° (cdc)",
     "nivel": "ok"
    },
    {
     "grupo": "Amplitudes",
     "oQue": "extensão do quadril",
-    "medido": "2°",
+    "medido": "6°",
     "limite": "média 18,5°, máximo observado 42° (cdc)",
     "nivel": "ok"
    },
@@ -622,7 +636,7 @@
    {
     "grupo": "Amplitudes",
     "oQue": "elevação do braço",
-    "medido": "138,7°",
+    "medido": "129,1°",
     "limite": "média 170°, máximo observado 192° (cdc)",
     "nivel": "ok"
    },
@@ -643,14 +657,14 @@
    {
     "grupo": "Amplitudes",
     "oQue": "pronação do antebraço (a partir do polegar para cima)",
-    "medido": "50,4°",
+    "medido": "61,3°",
     "limite": "média 80°, máximo observado 108° (cdc)",
     "nivel": "ok"
    },
    {
     "grupo": "Amplitudes",
     "oQue": "supinação do antebraço",
-    "medido": "19,9°",
+    "medido": "9,1°",
     "limite": "média 87,5°, máximo observado 131° (cdc)",
     "nivel": "ok"
    },
@@ -720,14 +734,14 @@
    {
     "grupo": "Cabos",
     "oQue": "cabo: a pilha sobe o curso do cabo dividido pela relação da máquina (2:1)",
-    "medido": "o cabo anda 63,4 cm e a pilha sobe 31,7 cm",
-    "limite": "esperado 31,7 cm; tolerância 0,3 cm",
+    "medido": "o cabo anda 59,6 cm e a pilha sobe 29,8 cm",
+    "limite": "esperado 29,8 cm; tolerância 0,3 cm",
     "nivel": "ok"
    },
    {
     "grupo": "Ritmo",
     "oQue": "maior salto de velocidade entre dois quadros (a 60 quadros por segundo)",
-    "medido": "7,4% da velocidade de pico (cotovelo direito, Puxada · concêntrica); pico de 157,5 cm/s",
+    "medido": "6,7% da velocidade de pico (cotovelo direito, Puxada · concêntrica); pico de 143,4 cm/s",
     "limite": "movimento suave: até 15%; acima de 25% é tranco",
     "nivel": "ok"
    },
@@ -741,14 +755,14 @@
    {
     "grupo": "Ficha",
     "oQue": "o antebraço segue a linha do cabo (o cabo fica reto, da polia à mão) (desenho)",
-    "medido": "da metade da puxada em diante, o antebraço desvia no máximo 10° da linha do cabo",
+    "medido": "da metade da puxada em diante, o antebraço desvia no máximo 8,3° da linha do cabo",
     "limite": "como a ficha pede",
     "nivel": "ok"
    },
    {
     "grupo": "Ficha",
     "oQue": "no fim, o ombro está mais baixo que no início (consenso)",
-    "medido": "do início ao fim, a ponta do ombro desce 5,3 cm",
+    "medido": "do início ao fim, a ponta do ombro desce 5 cm",
     "limite": "como a ficha pede",
     "nivel": "ok"
    },
@@ -779,6 +793,13 @@
     "medido": "Deltoide: o conteúdo pede ombro_posterior, e o desenho só tem o músculo inteiro; Trapézio aparece como secundário dentro de um grupo que o conteúdo conta como principal (costas)",
     "limite": "cada uma precisa do ok dele",
     "nivel": "aviso"
+   },
+   {
+    "grupo": "Músculos",
+    "oQue": "quanto do músculo principal aparece em cada vista (área das formas viradas para quem olha)",
+    "medido": "de trás: 279 cm² (padrão); de lado: 176 cm²",
+    "limite": "pelo menos uma vista com 30 cm² ou mais; a que tem menos de um terço da melhor sai do modo Músculos",
+    "nivel": "ok"
    }
   ],
   "angulos": {
@@ -787,32 +808,32 @@
     89.9954659678941
    ],
    "cotovelo": [
-    12.000024896197212,
-    162.19768699556963
+    12.000020014840423,
+    151.57324975149007
    ],
    "quadril": [
-    -2.0000000000000004,
-    -2.0000000000000004
+    -6,
+    -6
    ],
    "ombro": [
-    15.98816471382992,
-    138.68230745371815
+    12.971298550207798,
+    129.14430041851605
    ],
    "dorsiflexao": [
     -80.69460155808568,
     -80.69460155808568
    ],
    "punho": [
-    -0.0000019090959104164224,
-    0.0000017075472925031877
+    -0.0000017075472925031877,
+    0.0000014787793334710982
    ],
    "pronacao": [
-    -19.85578836445795,
-    50.380013311697496
+    -9.122032736629677,
+    61.26688991729557
    ],
    "clavicula": [
     5,
-    26.477644959402376
+    26.037429250085356
    ]
   },
   "falhas": 0,
@@ -1052,6 +1073,13 @@
     "medido": "Deltoide: o conteúdo pede ombro_anterior, e o desenho só tem o músculo inteiro; Reto abdominal aparece como \"só ajuda a firmar\", fora da lista do conteúdo",
     "limite": "cada uma precisa do ok dele",
     "nivel": "aviso"
+   },
+   {
+    "grupo": "Músculos",
+    "oQue": "quanto do músculo principal aparece em cada vista (área das formas viradas para quem olha)",
+    "medido": "de lado: 69 cm² (padrão); de cima: 0 cm² (não serve: o principal quase não aparece)",
+    "limite": "pelo menos uma vista com 30 cm² ou mais; a que tem menos de um terço da melhor sai do modo Músculos",
+    "nivel": "aviso"
    }
   ],
   "angulos": {
@@ -1089,7 +1117,7 @@
    ]
   },
   "falhas": 0,
-  "avisos": 5
+  "avisos": 6
  },
  "musculos": [
   {
