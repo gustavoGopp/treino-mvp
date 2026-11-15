@@ -4,6 +4,70 @@ De 13/11/2026. Ramo `claude/loving-hamilton-c4ji83`. Nada foi para a `main` e na
 
 Este documento fecha a etapa 1 e para aqui. As etapas 2 e 3 só começam com o seu sim.
 
+## 0-B. Fechamento do corpo (sessão nova, 14 e 15/11/2026)
+
+Ramo `claude/friendly-goldberg-hwf6dl`, com o ramo anterior e a `main` já juntados (o único conflito foi a linha do comando no `package.json`). Nada foi para a `main` e nada mudou no app. Esta seção é a mais recente; as seções de 0 a 12 abaixo são o registro da etapa 1.
+
+### O que foi feito
+
+| O que | Como ficou | Onde olhar |
+|---|---|---|
+| A faixa escura no pescoço visto de cima | Não era a dobra do pescoço: era um defeito de pintura (um trecho do contorno da cabeça entrava no sentido contrário e abria um buraco). Corrigido; some em todas as vistas | `parada-do-corpo/1-flexao-de-cima.png` |
+| A mão espalmada vista de cima | Desenho novo da mão vista pelo dorso: mesma luva com polegar, 18,4 cm de comprimento (o da mão aprovada), 8,6 cm de largura (ANSUR II), pontas dos dedos em arco e três linhas finas entre os dedos. A mão apoiada passa a ser pintada antes do braço, com o seu contorno | a mesma imagem |
+| A sombra do banco vista de cima | Tirada: a sombra do chão só aparece nas vistas inclinadas | `prototipos/folha-supino-reto.png` |
+| Os rótulos de técnica | O motor novo passou a ter os rótulos do guia de hoje. O texto fica parado, fora do corpo, e um fio o liga ao ponto que se mexe; linhas-guia tracejadas onde o guia de hoje tinha | `parada-do-corpo/3-rotulos.png` |
+| O nome do erro pequeno nas cenas largas | A letra passou a ser uma fração da largura do quadro: 11 px (rótulos) e 12 px (erro) num palco de 360 px, na cena estreita e na larga. O corpo voltou a ficar no meio do quadro | a mesma imagem e `prototipos/erros.png` |
+| A pegada do goblet | As mãos em concha por baixo da cabeça de cima do halter, abertas num V de 22 graus, com a quina da cabeça apoiada na palma | `parada-do-corpo/2-goblet-pegada.png` |
+| A tabela dos músculos (bloco A) | Os 15 grupos do desenho ganharam origem, inserção, camada, forma e fonte (Gray 1918), em `src/engine/novo/dados/musculos.json`, validado na carga | `tabelas.md`, seção dos músculos |
+| A conferência dos músculos | `npm run conferir:animacao` passou a medir: se cada forma está na parte do corpo certa, se quem cobre é pintado depois, se as pontas ficam onde a fonte diz e se o músculo realçado é o do conteúdo do app | `prototipos/conferencia.md` |
+| As medidas provisórias | Das 13 do corpo, 6 ganharam fonte; das 16 dos objetos, 7. Ficam 7 e 9 | `pesquisa/09` e `pesquisa/10`; `tabelas.md` |
+| O roteiro do especialista | Reescrito para o corpo novo | `docs/revisoes/r4-roteiro-especialista.md` |
+| Pedidos ao conteúdo | Um achado: o ângulo dos cotovelos no supino aparece como 30–60° na pesquisa e 30–70° no texto do app | `pedidos-ao-conteudo.md` |
+
+### O que a conferência dos músculos achou
+
+- **Corrigido:** o trapézio era pintado antes do grande dorsal e o peitoral antes do abdômen; pela anatomia é o contrário (o trapézio cobre a borda de cima do dorsal). A ordem agora sai da tabela.
+- **Aviso, para decidir:** a ponta de baixo do trapézio fica a 126,5 cm do chão, 4,9 cm acima da 12ª vértebra torácica (121,6 cm no esqueleto), que é onde a fonte diz que ela chega.
+- **Aviso, para decidir:** o reto abdominal termina a 102,8 cm, na linha da cintura; a origem dele é no púbis, mais abaixo. No desenho aprovado a bacia fica lisa.
+- **Medido, sem aviso:** o deltoide desce até 46% do braço (a fonte: o meio do úmero); o grande dorsal desce até 108 cm (a crista ilíaca fica a 106,5); o quadríceps vai até o joelho.
+- **Nas quatro âncoras, o músculo realçado bate com o conteúdo do app.** Três diferenças aceitas, a confirmar: o abdômen como "só ajuda" na flexão, o trapézio como secundário na puxada e o deltoide inteiro onde o conteúdo pede só a parte da frente ou a de trás.
+- **Ainda não feito:** a forma do músculo não engrossa ao encurtar (a regra está na tabela, com a fonte; o desenho ainda não a segue).
+
+### Medidas, depois das mudanças
+
+Coincidência com as pranchas aprovadas (`conferir-desenho.mjs`, cinza): de frente 97,8%, de lado 99,3%, de costas 97,7%, agachamento 96,2% (era 96,6%: a mão virou concha), flexão 95,0%, supino 97,5%, puxada 98,4%.
+
+Conferência automática: 0 falha nas quatro. O punho no goblet passou de 35° para cerca de 65° de extensão (a média normal é 70°): é próprio da pegada por baixo do halter.
+
+Peso (`scripts/animacao-nova/peso.mjs`, compactado, sem o zod):
+
+| Pacote | Compactado |
+|---|---|
+| Motor de hoje, com os 90 exercícios | 48,0 kB |
+| Motor novo com as 4 âncoras, como está | 45,6 kB (era 42,2: entraram os rótulos e a mão nova) |
+| O mesmo, sem os textos de fonte | 38,8 kB |
+| Só o motor novo, sem exercício | 35,0 kB (30,2 sem os textos) |
+| Cada exercício, junto com os outros | cerca de 2,7 kB (2,2 sem os textos) |
+| Cada exercício, carregado sozinho | de 4,1 a 5,3 kB (inclui as peças que ele divide com os outros) |
+
+Conta minha, não medida: com os 90 exercícios num pacote só, o novo ficaria perto de 230 kB sem os textos, quase cinco vezes o de hoje. As duas medidas propostas se confirmam: tirar os textos de fonte (corta de 15% a 20%) e carregar cada exercício ao abrir (o motor fica em 30 a 35 kB e cada exercício soma de 4 a 5 kB). Para o app funcionar sem rede, os 90 pedaços ainda seriam baixados e guardados, aos poucos.
+
+Tempo por quadro (CPU 4 vezes mais lenta, com outras tarefas rodando na mesma máquina durante a medida): da segunda volta em diante, de 2,5 a 6,5 ms de média; na primeira volta, de 6 a 17 ms, com picos acima de 16,7 ms no goblet e na puxada. A faixa é parecida com a da etapa 1, um pouco pior; como a máquina estava ocupada, não dá para dizer que os rótulos pesaram. Vale medir de novo com a máquina parada.
+
+### O que não ficou bom, ou não foi feito
+
+- **A mão na flexão vista de cima continua meio escondida.** É a geometria: na flexão, a mão fica debaixo do ombro e do braço. O desenho melhorou; a leitura dessa vista ainda é fraca.
+- **O antebraço na flexão fica uns 30° fora da vertical embaixo** (o cotovelo sai 13 cm para fora da mão), com as mãos 6 cm além dos ombros e os cotovelos a ~45°. De lado, o braço de perto aparece como uma forma meio quadrada. Não mexi: é pergunta para o treinador.
+- **Dois riscos pequenos na cintura** aparecem na flexão vista de cima, no começo (onde o tronco encontra a bacia).
+- **Lighthouse e bloqueio da tela do guia não foram medidos:** o motor novo ainda não está ligado ao app (a lista de exercícios aprovados está vazia). Só dá para medir quando a primeira âncora aprovada entrar.
+- **Celular de verdade:** não medido.
+- **`npm run test:e2e` não foi rodado:** o app não mudou. `npm run check` (896 testes) e `npm run auditoria:anatomia` passam.
+- **A revisão independente** foi disparada duas vezes. Na primeira, no modelo mais capaz, os dois revisores pararam por limite de uso antes de gravar o parecer. Refeita no modelo seguinte (Opus): ver abaixo.
+
+### A revisão independente
+
+REVISAO_PENDENTE
+
 ## 0. Depois do retorno do Gustavo (13/11/2026)
 
 Ele olhou as folhas e apontou três coisas. O que foi feito em cada uma:
