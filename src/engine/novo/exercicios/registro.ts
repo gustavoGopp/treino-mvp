@@ -25,3 +25,4 @@ export { flexaoElastico } from './flexao-elastico';
 export { flexaoBola } from './flexao-bola';
 export { stiff } from './stiff';
 export { stiffKettlebell } from './stiff-kettlebell';
+export { stiffElastico } from './stiff-elastico';
