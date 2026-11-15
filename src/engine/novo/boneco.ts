@@ -329,6 +329,27 @@ export function formaDoBoneco(e: Esq, o: { roupa?: boolean; cabeloAtrasPrimeiro?
       const gira = (v: V3): V3 => comb([Math.cos(g), v], [Math.sin(g), [uFa[1] * v[2] - uFa[2] * v[1], uFa[2] * v[0] - uFa[0] * v[2], uFa[0] * v[1] - uFa[1] * v[0]]]);
       return { x: gira(L.antebraco.x), z: gira(L.antebraco.z) };
     });
+    // ---------- a cintura do ombro: da base do pescoço ao ombro, acompanhando a clavícula e a escápula ----------
+    // Em repouso ela fica inteira dentro do contorno aprovado do tronco (não muda o boneco parado). Quando o ombro
+    // sobe (braço acima da cabeça, ombro encolhido) ou vai para a frente, ela sai do contorno e leva junto a linha
+    // do ombro: é o que faz a escápula aparecer no desenho. Medidas em dados.cinturaDoOmbro (escolha de desenho).
+    {
+      const C = dados.cinturaDoOmbro;
+      const T = e.torax;
+      const dentro = noRef(T, [s * C.dentro[0]!, C.dentro[1]!, C.dentro[2]!]),
+        fora = add(L.ombro, mul(T.y, C.acimaDoCentroDoOmbro));
+      const eixo = norm3(sub3(fora, dentro));
+      // a seção fica atravessada ao eixo: uma direção é a frente do tórax, a outra aponta para cima
+      let cima: V3 = norm3([T.z[1] * eixo[2] - T.z[2] * eixo[1], T.z[2] * eixo[0] - T.z[0] * eixo[2], T.z[0] * eixo[1] - T.z[1] * eixo[0]]);
+      if (dot(cima, T.y) < 0) cima = mul(cima, -1);
+      const anel = (t: number, k2 = 1, alem = 0): Anel => {
+        const r = (C.raioDentro + (C.raioFora - C.raioDentro) * Math.max(0, Math.min(1, t))) * k2;
+        return { c: add(add(dentro, mul(sub3(fora, dentro), Math.max(0, Math.min(1, t)))), mul(eixo, alem)), x: T.z, z: cima, a: r, f: r, b: r };
+      };
+      const pontas: [number, number][] = [[0.88, 0.42], [0.6, 0.78], [0.22, 0.97]];
+      const aneis: Anel[] = [...pontas.map(([k2, d]) => anel(0, k2, -C.raioDentro * d!)).reverse(), anel(0), anel(0.33), anel(0.67), anel(1), ...pontas.map(([k2, d]) => anel(1, k2, C.raioFora * d!))];
+      corpoVols.splice(corpoVols.findIndex((v) => v.nome === 'tronco') + 1, 0, { vol: { aneis }, mat: 'pele', nome: 'cintura' });
+    }
     sup[`coxa${k}`] = coxa;
     sup[`canela${k}`] = canela;
     sup[`braco${k}`] = braco;

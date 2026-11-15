@@ -35,7 +35,7 @@
  ],
  "erros": [
   { "id": "tronco", "instante": 1, "titulo": "Jogar o tronco para trás", "vista": "lateral", "oQueMuda": "o tronco inclina 30° para trás no fim", "destaca": ["corpo"], "linha": ["pelve", "lombar", "c7", "cabeca"], "foco": "c7" },
-  { "id": "encolher", "instante": 1, "titulo": "Ombro encolhido", "vista": "quinaTras", "oQueMuda": "a clavícula continua elevada no fim", "destaca": ["bracos"], "linha": ["c7", "ombro", "cotovelo"], "foco": "ombro" },
+  { "id": "encolher", "instante": 1, "titulo": "Ombro encolhido", "vista": "quinaTras", "oQueMuda": "a clavícula continua elevada no fim", "destaca": ["bracos"], "linha": ["ombro:L", "c7", "ombro:R"], "foco": "ombro" },
   { "id": "curta", "instante": 0, "titulo": "Não alongar em cima", "vista": "lateral", "oQueMuda": "volta só até a metade", "destaca": ["bracos"], "linha": ["ombro", "cotovelo", "punho"], "foco": "cotovelo" }
  ],
  "simetrico": false,

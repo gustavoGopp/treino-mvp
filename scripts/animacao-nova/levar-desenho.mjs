@@ -70,6 +70,11 @@ const montar = () => ({
   peDescalco: 0.93,
   // a barra do short na coxa e a folga do tecido (boneco-prova.mjs)
   short: { ate: 0.44, folga: 1.07 },
+  // A cintura do ombro (rodada de correção de 15/11/2026): um volume da base do pescoço ao ombro, que acompanha a
+  // clavícula e a escápula. `dentro` = a ponta de dentro, em cm a partir de C7 (para o lado, para cima, para a
+  // frente); a ponta de fora fica `acimaDoCentroDoOmbro` cm acima do centro do ombro. Os raios foram escolhidos
+  // para o volume caber dentro do contorno aprovado em repouso (o acrômio fica 3,7 cm acima do centro do ombro).
+  cinturaDoOmbro: SEM_CORRECOES ? { dentro: [5.5, -4.3, 3], acimaDoCentroDoOmbro: 1, raioDentro: 0.01, raioFora: 0.01 } : { dentro: [5.5, -4.3, 3], acimaDoCentroDoOmbro: 1, raioDentro: 3.6, raioFora: 3 },
 });
 const saida = montar();
 // o desenho como foi aprovado, sem as correções: só para a comparação lado a lado (não vai para o app)

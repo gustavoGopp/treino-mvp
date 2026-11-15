@@ -76,6 +76,9 @@ type EsqQ = Quadro['esq'];
 const DO_MEIO: Record<string, (e: EsqQ) => V3> = { pelve: (e) => e.pelve.o, lombar: (e) => e.nos[e.iT12]!.ref.o, c7: (e) => e.torax.o, cabeca: (e) => noRef(e.cabeca, [0, 6, 6]) };
 /** Um ponto do corpo pelo nome: do meio (pelve, lombar, c7, cabeca) ou de um lado (ombro, cotovelo, punho, pegada, quadril, joelho, tornozelo, calcanhar, ponta). */
 function ponto(e: EsqQ, nome: string, k: 'R' | 'L'): V3 {
+  // 'ombro:L' = o ponto de um lado certo, qualquer que seja o lado pedido (a linha que liga os dois ombros)
+  const [base, lado] = nome.split(':') as [string, 'R' | 'L' | undefined];
+  if (lado) return ponto(e, base, lado);
   const doMeio = DO_MEIO[nome];
   if (doMeio) return doMeio(e);
   const p = (e.lado[k] as unknown as Record<string, V3>)[nome];

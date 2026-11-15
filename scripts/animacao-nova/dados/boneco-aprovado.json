@@ -2590,5 +2590,15 @@
  "short": {
   "ate": 0.44,
   "folga": 1.07
+ },
+ "cinturaDoOmbro": {
+  "dentro": [
+   5.5,
+   -4.3,
+   3
+  ],
+  "acimaDoCentroDoOmbro": 1,
+  "raioDentro": 0.01,
+  "raioFora": 0.01
  }
 }

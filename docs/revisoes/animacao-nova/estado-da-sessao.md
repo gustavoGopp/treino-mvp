@@ -10,7 +10,7 @@ Comece por **`proposta.md`, seção 0-B**: o que esta sessão fez, o que a confe
 
 **A revisão independente mudou a recomendação: o corpo ainda não está pronto para fechar.** O esqueleto e as medidas passaram; o desenho dos músculos (porções do deltoide e do trapézio, quatro formas presas no lugar errado), a escápula, o fim da puxada e dois erros precisam de uma rodada de correção. A lista, com o que proponho em cada item, está na `proposta.md`, seção 0-B, "A revisão independente".
 
-**A rodada de correção foi feita em 15/11, com o ok do Gustavo** (proposta, seção 0-B, "A rodada de correção"). Feito: as porções do deltoide e do trapézio, quatro formas de músculo redesenhadas, a vista do modo Músculos por medida, o fim da puxada (152°), o erro da lombar, a seta do ombro, os nomes da Trajetória e três medidas internas. **Não feito: a escápula no contorno.** As formas corrigidas e as porções foram aprovadas por ele em 15/11 ("pode ficar com todas"). A vista de três quartos de trás virou a vista padrão da puxada, no lugar da de trás ("pode trocar", 15/11; `parada-do-corpo/9-puxada-tres-quartos.png`). A mão espalmada e os rótulos fora do corpo também ficaram ("de resto está tudo ótimo", 15/11).
+**A rodada de correção foi feita em 15/11, com o ok do Gustavo** (proposta, seção 0-B, "A rodada de correção"). Feito: as porções do deltoide e do trapézio, quatro formas de músculo redesenhadas, a vista do modo Músculos por medida, o fim da puxada (152°), o erro da lombar, a seta do ombro, os nomes da Trajetória e três medidas internas. A escápula no contorno foi feita depois, com efeito pequeno. As formas corrigidas e as porções foram aprovadas por ele em 15/11 ("pode ficar com todas"). A vista de três quartos de trás virou a vista padrão da puxada, no lugar da de trás ("pode trocar", 15/11; `parada-do-corpo/9-puxada-tres-quartos.png`). A mão espalmada e os rótulos fora do corpo também ficaram ("de resto está tudo ótimo", 15/11).
 
 **Já decidido pelo Gustavo em 15/11:** a pegada do goblet em concha fica; o corpo subiu no banco do supino (a cabeça estava baixa demais). As outras decisões estão na lista abaixo e devem ser levadas uma por vez, com imagem.
 
@@ -28,7 +28,7 @@ Comece por **`proposta.md`, seção 0-B**: o que esta sessão fez, o que a confe
 
 Da etapa 1 (proposta, seção 9), continuam todas. As desta sessão:
 
-0. **A escápula no contorno** (não feita): fazer antes de fechar o corpo, ou fechar e deixar para antes dos lotes 3 e 4? As formas corrigidas dos músculos, as porções e a vista de três quartos da puxada já foram aprovadas em 15/11.
+0. **Fechar o corpo e começar o lote 1?** A escápula foi feita em 15/11 ("pode fazer agora"), com efeito pequeno (proposta, seção 0-B, item 4); as formas corrigidas dos músculos, as porções e a vista de três quartos da puxada já foram aprovadas. Em aberto no corpo: o trapézio no pescoço, a linha do pescoço ao ombro conforme a pose, o cotovelo da puxada a 152°.
 3. **A ponta do trapézio** 4,9 cm acima de onde a fonte diz, e **o abdômen** que termina na cintura: esticar as duas formas muda o desenho aprovado.
 4. **As porções que o desenho não separa** (deltoide, peitoral de cima, trapézio, romboides, redondo maior, eretores): quais desenhar antes dos lotes 3 e 4.
 5. **As medidas que continuam provisórias** e as que a fonte daria diferente (meia distância do quadril, L5–S1, lordose lombar e cervical): mudam a posição das juntas por dentro; a cervical pode mexer no pescoço de lado.
