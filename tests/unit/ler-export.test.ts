@@ -25,10 +25,13 @@ describe('a leitura do export (scripts/export/ler-export.ts)', () => {
     // Cada exercício feito recebe uma sugestão: a soma é o total de exercícios feitos.
     const feitos = e.historico.flatMap((s) => s.exercicios.filter((x) => x.series.length)).length;
     expect(Object.values(r.sugestoes).reduce((a, b) => a + b, 0)).toBe(feitos);
-    // Com 3 sessões paradas, os exercícios ficam "estagnados" (na 4ª semana), e a semana leve é sugerida (da 3ª em diante).
+    // Com 3 sessões paradas, os exercícios ficam "estagnados", e com 2 estagnados a semana leve é sugerida. Desde o
+    // pacote 2 (15/11/2026), a puxada com barra reta, o desenvolvimento e a rosca inclinada estão nos dois dias de Superior
+    // do Bruno: chegam ao 3º treino parado na 2ª semana, e a semana leve é sugerida da 2ª em diante (3 semanas das 4).
+    // Antes, cada exercício do Superior aparecia 1 vez por semana, e a sugestão vinha da 3ª em diante (2 semanas).
     expect(r.sugestoes.estagnado).toBeGreaterThan(0);
     expect(r.exerciciosEstagnados).toBeGreaterThanOrEqual(2);
-    expect(r.semanasComSemanaLeveSugerida).toBe(2);
+    expect(r.semanasComSemanaLeveSugerida).toBe(3);
     expect(textoDoResumo(r)).toMatch(/^Treinos feitos: 16 em 4 semanas/);
   });
 

@@ -233,8 +233,10 @@ describe('avaliador: equilíbrios, tempo e ordem', () => {
     expect(um(d, 'tempo', 'limite').passo).toMatch(/fica dentro de 10% a mais/);
     // Até 15/11/2026 o exemplo era o iniciante de 2 dias de 30 min; desde o pacote 3 da sessão "treino para todos"
     // (tempo.musculo-protegido), o abdômen e a panturrilha dele vão para dias diferentes e o dia deixou de passar do
-    // tempo. O intermediário do mesmo cenário continua com um dia de 34 min, sem corte possível.
-    const pf = daGrade('intermediario', 2, 30);
+    // tempo. O intermediário do mesmo cenário ficou como exemplo (um dia de 34 min, sem corte possível) até o pacote 2
+    // (15/11/2026): com os exercícios de dois lados no lugar dos de um lado só, esse dia cabe nos 30 min. O exemplo de
+    // agora é o mesmo intermediário com 20 min: o Corpo todo A fica com ~28 min, sem corte possível.
+    const pf = daGrade('intermediario', 2, 20);
     expect(doTipo(avaliar(ok(pf, academia), pf, academia), 'tempo', 'limite').some((x) => /segura o mínimo de cada músculo/.test(x.texto))).toBe(true);
   });
   it('ordem.sessao: isolador antes de um exercício grande é só informação', () => {

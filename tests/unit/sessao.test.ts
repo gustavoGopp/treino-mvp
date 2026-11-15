@@ -215,25 +215,28 @@ describe('aquecimento e resumo', () => {
 describe('guia com a prescrição da pessoa (R1)', () => {
   const programa = programaDe(PERSONAS.ana);
   const diaA = programa.dias[0]!;
-  const bulgaro = diaA.exercicios.find((x) => x.exId === 'bulgaro')!;
+  // O exemplo é o exercício da vaga de agachar do dia A: o goblet desde o pacote 2 (15/11/2026; antes, o búlgaro).
+  const goblet = diaA.exercicios.find((x) => x.exId === 'goblet')!;
 
-  it('na fase de aprendizado da Ana (semanas 1–2), o búlgaro vem com RIR 3–4 e menos séries; depois, o programa completo', () => {
-    const s1 = prescricaoNoGuia(programa, { diaId: diaA.id, exId: 'bulgaro' }, 1)!;
+  it('na fase de aprendizado da Ana (semanas 1–2), o goblet vem com RIR 3–4 e menos séries; depois, o programa completo', () => {
+    const s1 = prescricaoNoGuia(programa, { diaId: diaA.id, exId: 'goblet' }, 1)!;
     expect(s1.x.rir).toEqual([3, 4]);
-    expect(s1.x.series).toBeLessThanOrEqual(bulgaro.series);
-    // Menos séries: o exercício com mais séries do dia (desde 06/11/2026 o búlgaro tem 2, que a fase não reduz).
+    expect(s1.x.series).toBeLessThanOrEqual(goblet.series);
+    // Menos séries: o exercício com mais séries do dia (um exercício com 2 séries a fase não reduz).
     const maior = [...diaA.exercicios].sort((a, b) => b.series - a.series)[0]!;
     expect(prescricaoNoGuia(programa, { diaId: diaA.id, exId: maior.exId }, 1)!.x.series).toBeLessThan(maior.series);
-    expect(s1.x.descansoSeg).toBe(bulgaro.descansoSeg);
+    expect(s1.x.descansoSeg).toBe(goblet.descansoSeg);
     expect(s1.fase?.regraId).toBe('iniciante.fase-aprendizado');
-    const s3 = prescricaoNoGuia(programa, { diaId: diaA.id, exId: 'bulgaro' }, 3)!;
-    expect(s3.x).toEqual(bulgaro);
+    const s3 = prescricaoNoGuia(programa, { diaId: diaA.id, exId: 'goblet' }, 3)!;
+    expect(s3.x).toEqual(goblet);
     expect(s3.x.rir).not.toEqual([3, 4]);
   });
   it('na troca pela alternativa, vale a vaga (séries, RIR, descanso) com as repetições da alternativa', () => {
-    const alt = bulgaro.alternativas[0]!;
-    const r = prescricaoNoGuia(programa, { diaId: diaA.id, exId: alt, vaga: 'bulgaro' }, 1)!;
-    const daVaga = prescricaoNoGuia(programa, { diaId: diaA.id, exId: 'bulgaro' }, 1)!.x;
+    // A 1ª alternativa do outro lado (de um lado só; o goblet é de dois): assim o lado da alternativa também é conferido,
+    // como era com o búlgaro (de um lado) e a 1ª alternativa dele (de dois).
+    const alt = goblet.alternativas.find((a) => POR_ID[a]!.unilateral !== goblet.unilateral)!;
+    const r = prescricaoNoGuia(programa, { diaId: diaA.id, exId: alt, vaga: 'goblet' }, 1)!;
+    const daVaga = prescricaoNoGuia(programa, { diaId: diaA.id, exId: 'goblet' }, 1)!.x;
     expect(r.x.exId).toBe(alt);
     // da vaga, na semana 1: as séries, a reserva e o descanso
     expect(r.x.rir).toEqual([3, 4]);
@@ -242,12 +245,12 @@ describe('guia com a prescrição da pessoa (R1)', () => {
     // da alternativa: o nome, as repetições, o lado e a animação dela
     const naBiblioteca = POR_ID[alt]!;
     expect(r.x).toMatchObject({ nome: naBiblioteca.nome, reps: naBiblioteca.faixaReps, unilateral: naBiblioteca.unilateral, animacaoId: naBiblioteca.animacaoId });
-    expect(prescricaoDaVaga(bulgaro, alt)).toEqual({ ...bulgaro, exId: alt, nome: naBiblioteca.nome, reps: naBiblioteca.faixaReps, unilateral: naBiblioteca.unilateral, animacaoId: naBiblioteca.animacaoId, alternativas: [] });
-    expect(prescricaoDaVaga(bulgaro)).toBe(bulgaro);
-    expect(prescricaoDaVaga(bulgaro, 'bulgaro')).toBe(bulgaro);
+    expect(prescricaoDaVaga(goblet, alt)).toEqual({ ...goblet, exId: alt, nome: naBiblioteca.nome, reps: naBiblioteca.faixaReps, unilateral: naBiblioteca.unilateral, animacaoId: naBiblioteca.animacaoId, alternativas: [] });
+    expect(prescricaoDaVaga(goblet)).toBe(goblet);
+    expect(prescricaoDaVaga(goblet, 'goblet')).toBe(goblet);
   });
   it('dia ou exercício fora do programa: sem prescrição (o guia mostra o catálogo)', () => {
-    expect(prescricaoNoGuia(programa, { diaId: 'nao-existe', exId: 'bulgaro' }, 1)).toBeNull();
+    expect(prescricaoNoGuia(programa, { diaId: 'nao-existe', exId: 'goblet' }, 1)).toBeNull();
     expect(prescricaoNoGuia(programa, { diaId: diaA.id, exId: 'supino-inclinado' }, 1)).toBeNull();
   });
   it('fase da semana: aprendizado nas semanas 1–2, completo da 3 em diante; readaptação do Bruno por semana', () => {

@@ -489,7 +489,7 @@ describe('regras do R0b no gerador', () => {
     expect(achar(prog.dias, 'ponte-gluteo-halter').porque.map((q) => q.regraId)).toContain('rir.carga-baixa');
     expect(achar(prescricaoDaSemana(prog, 1), 'ponte-gluteo-halter').rir).toEqual([3, 4]); // fase de aprendizado
     expect(achar(prescricaoDaSemana(prog, 3), 'ponte-gluteo-halter').rir).toEqual([1, 2]);
-    expect(achar(prog.dias, 'bulgaro').rir).toEqual([2, 3]); // 8–12 repetições: não muda
+    expect(achar(prog.dias, 'afundo').rir).toEqual([2, 3]); // 8–12 repetições: não muda (até o pacote 2, o exemplo era o búlgaro, que saiu do programa da Ana)
   });
   it('só halteres, sem banco: costas, ombro posterior e glúteo com carga (auditoria, achado 6; antes, 0 série de costas e de ombro posterior)', () => {
     const soHalteres: Inventario = { halteres_fixos: { minKg: 2, maxKg: 20, passoKg: 2 } };

@@ -156,9 +156,9 @@ describe('os casos P1 a P9 do T6', () => {
     expect(h.semana).toBe(2);
     expect(h.fase?.regraId).toBe('iniciante.fase-aprendizado');
     expect(h.dias[0]!.exercicios[0]!.rir).toEqual([3, 4]);
-    expect(totalSeries(a, n, dias[0]!)).toBe(13); // 15 até o R5d (o abdominal saiu do A: o foco primeiro); 13 até a sessão de qualidade dos treinos (o abdominal protegido no A); 12 até a de equipamento mínimo
+    expect(totalSeries(a, n, dias[0]!)).toBe(14); // 15 até o R5d (o abdominal saiu do A: o foco primeiro); 13 até a sessão de qualidade dos treinos (o abdominal protegido no A); 12 até a de equipamento mínimo; 13 até o pacote 2 (o goblet, de dois lados, no lugar do búlgaro: sobra tempo para mais séries)
     // Antes do R2, a semana era a do calendário: a 3ª, com o programa completo.
-    expect(seriesNormais(a, dias[0]!)).toBe(15); // 16 até o R5d; 15 até a sessão de qualidade dos treinos (o abdominal protegido no A); 13 até a auditoria do treino; 14 até a de equipamento mínimo
+    expect(seriesNormais(a, dias[0]!)).toBe(17); // 16 até o R5d; 15 até a sessão de qualidade dos treinos (o abdominal protegido no A); 13 até a auditoria do treino; 14 até a de equipamento mínimo; 15 até o pacote 2 (o goblet no lugar do búlgaro)
   });
 
   it('P7: Bruno, na semana 2 de uma volta, fica mais 15 dias sem treinar → só o RIR +1; a volta gradual não recomeça', () => {
@@ -187,7 +187,7 @@ describe('os casos P1 a P9 do T6', () => {
 
   it('P9: polia na placa 8, 30 dias → 8 × 0,9 = 7,2 → placa 7', () => {
     const n = ULTIMO + 30;
-    expect(cargaDeHoje(e, n, SUP, 'puxada-unilateral').carga).toEqual({ tipo: 'placa', placa: 7 });
+    expect(cargaDeHoje(e, n, SUP, 'puxada-barra-reta').carga).toEqual({ tipo: 'placa', placa: 7 });
   });
 });
 
@@ -225,8 +225,8 @@ describe('pausas com vários locais', () => {
     expect(flexora.carga).toEqual({ tipo: 'placa', placa: 7 });
     expect(flexora.sug.regraId).toBe('readaptacao.semana1');
     // 10 kg × 0,9 = 9 kg; os halteres da academia do bairro vão de 2 em 2 kg, então vale o de baixo: 8 kg.
-    const bulgaro = cargaDeHoje(e, n, 'inferior-a', 'bulgaro', 'local-2');
-    expect(bulgaro.carga).toEqual({ tipo: 'kg', kg: 8 });
+    const goblet = cargaDeHoje(e, n, 'inferior-a', 'goblet', 'local-2');
+    expect(goblet.carga).toEqual({ tipo: 'kg', kg: 8 });
   });
 
   it('uma máquina sem registro naquele local recomeça pela calibração da 1ª série, que só desce na semana 1 da volta', () => {
@@ -234,7 +234,7 @@ describe('pausas com vários locais', () => {
     // A puxada na polia só foi feita no prédio: numa 3ª academia (a da Carla), a polia é outra, e a carga recomeça
     // pela calibração, sem a carga do prédio.
     const e3 = { ...e, locais: [...e.locais!, { id: 'local-3', nome: 'Academia', inventario: carla.inventario }] };
-    const { sug } = cargaDeHoje(e3, n, 'superior-a', 'puxada-unilateral', 'local-3');
+    const { sug } = cargaDeHoje(e3, n, 'superior-a', 'puxada-barra-reta', 'local-3');
     expect(sug.acao).toBe('calibrar');
     expect(sug.proxima).toBeUndefined();
     expect(sug.motivo).toMatch(/1ª vez nesta máquina neste local/);
