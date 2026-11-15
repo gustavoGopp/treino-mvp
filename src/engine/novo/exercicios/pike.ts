@@ -75,5 +75,5 @@ export const pike: Exercicio = {
   quadro,
   // a biblioteca: frente do ombro principal; lateral do ombro e tríceps secundários (revisão de anatomia, achado 4)
   papeis: { deltAnt: 'p', deltLat: 's', triceps: 's' },
-  trajetorias: { cabeca: (q) => q.esq.cabeca.o, cotovelo: (q) => q.esq.lado.R.cotovelo },
+  trajetorias: { cabeça: (q) => q.esq.cabeca.o, cotovelo: (q) => q.esq.lado.R.cotovelo },
 };

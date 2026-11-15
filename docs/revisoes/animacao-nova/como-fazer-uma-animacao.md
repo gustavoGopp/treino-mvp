@@ -96,4 +96,5 @@ Rode tudo da raiz do seu diretório de trabalho. Se ele for uma cópia de trabal
 - **Rótulo em cima do aparelho ou do corpo:** troque o ponto do rótulo ou a dica (use as dicas do app, `cues`).
 - **Contato da mão:** `mao.X` nos `contatos` mede o punho, que gira em volta da pegada; para mão que segura uma peça parada, meça a pegada numa regra.
 - **O halter pende na vertical; o cabo é reto da polia à mão; o elástico afina ao esticar.** O peso aparece.
+- **Nomes que aparecem na tela têm acento:** as chaves de `trajetorias` viram rótulo (`cabeça`, e não `cabeca`; `mão`, `pé`).
 - **De frente, nos afundos, o músculo principal some atrás do joelho:** é aviso conhecido; diga na conferência escrita qual é a vista padrão do modo Músculos.

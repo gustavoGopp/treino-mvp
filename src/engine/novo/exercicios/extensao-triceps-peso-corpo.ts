@@ -82,5 +82,5 @@ export const extensaoTricepsPesoCorpo: Exercicio = {
   quadro,
   // a biblioteca: tríceps principal, sem secundário
   papeis: { triceps: 'p' },
-  trajetorias: { cabeca: (q) => q.esq.cabeca.o, cotovelo: (q) => q.esq.lado.R.cotovelo },
+  trajetorias: { cabeça: (q) => q.esq.cabeca.o, cotovelo: (q) => q.esq.lado.R.cotovelo },
 };
