@@ -24,3 +24,4 @@ export { regrasDoSupinoInclinado } from './supino-inclinado';
 export { REGRAS_PONTE_BOLA } from './ponte-bola';
 export { REGRAS_NORDICO } from './nordico';
 export { REGRAS_REMADA_APOIADA } from './remada-apoiada';
+export { regrasDoPendurado } from './pendurado';

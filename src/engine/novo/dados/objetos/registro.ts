@@ -18,3 +18,4 @@ export { default as trianguloRemada } from './triangulo-remada.json';
 export { default as barraRetaPolia } from './polia-braco-barra-reta.json';
 export { default as elasticoTuboLongo } from './elastico-tubo-longo.json';
 export { default as sofa } from './sofa.json';
+export { default as barraFixa } from './barra-fixa.json';
