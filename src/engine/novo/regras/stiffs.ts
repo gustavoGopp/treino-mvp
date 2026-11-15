@@ -57,6 +57,17 @@ export const regrasDosStiffs: Record<string, Regra> = {
     const [a, b] = faixa(fol);
     return { medido: `da carga (ou da mão) à pele da coxa ou da canela, de ${f1(a)} a ${f1(b)} cm na descida`, ok: a >= -0.5 && b <= 4 };
   },
+  'carga-nao-encosta-nos-pes': (q) => {
+    // embaixo é onde a carga fica mais perto dos pés: a bola do kettlebell contra a pele do pé
+    const fim = q[q.length - 1]!;
+    const pes = pontosDoBoneco(fim.esq).filter((x) => x.parte === 'pe').map((x) => x.p);
+    let min = 1e9;
+    for (const c of fim.prims) {
+      if (c.t === 'esfera') for (const p of pes) min = Math.min(min, dist(p, c.c) - c.r);
+      if (c.t === 'prisma') for (const p of pes) min = Math.min(min, aoSegmento(p, c.a, c.b) - c.ra);
+    }
+    return { medido: `embaixo, a carga fica a ${f1(min)} cm da pele do pé`, ok: min >= 0.5 };
+  },
   'carga-ate-o-meio-da-canela': (q) => {
     const L = q[q.length - 1]!.esq.lado.R;
     const t = (L.pegada[1] - L.tornozelo[1]) / (L.joelho[1] - L.tornozelo[1]);
