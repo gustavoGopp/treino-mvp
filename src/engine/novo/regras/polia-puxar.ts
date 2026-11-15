@@ -126,4 +126,55 @@ export const REGRAS_POLIA_PUXAR: Record<string, Regra> = {
     const pior = Math.max(...q.filter((_, i) => i > q.length * 0.4).map((x) => angulo(sub(x.esq.lado.R.punho, x.esq.lado.R.cotovelo), sub(x.marcas.saida!, x.marcas.ponta!))));
     return { medido: `da metade da puxada em diante, o antebraço desvia no máximo ${f1(pior)}° da linha do cabo`, ok: pior <= 12 };
   },
+  // ----- abdominal na polia, ajoelhado -----
+  'polia-puxar-quadril-parado': (q) => {
+    // a bacia não anda nem gira (o quadril não dobra mais nem menos), e fica atrás dos joelhos
+    const a = primeiro(q).esq;
+    const anda = Math.max(...q.map((x) => dist(x.esq.pelve.o, a.pelve.o)));
+    const gira = Math.max(...q.map((x) => Math.max(angulo(x.esq.pelve.y, a.pelve.y), angulo(x.esq.pelve.z, a.pelve.z))));
+    const atras = (a.lado.R.joelho[2] + a.lado.L.joelho[2]) / 2 - a.pelve.o[2];
+    return { medido: `a bacia anda no máximo ${f1(anda)} cm e gira no máximo ${f1(gira)}°; o centro do quadril fica ${f1(atras)} cm atrás dos joelhos`, ok: anda <= 0.1 && gira <= 0.5 && atras > 0 && atras <= 20 };
+  },
+  'polia-puxar-coluna-enrola': (q) => {
+    // no começo a coluna neutra (sem flexão além da curva de repouso); no fim, a lombar e a torácica dobram, e o tórax
+    // gira para a frente em relação à bacia (as costelas vão ao quadril)
+    const a = primeiro(q).esq,
+      b = ultimo(q).esq;
+    const ini = Math.abs(a.pose.lombar ?? 0) + Math.abs(a.pose.toracica ?? 0);
+    const lo = (b.pose.lombar ?? 0) - (a.pose.lombar ?? 0),
+      to = (b.pose.toracica ?? 0) - (a.pose.toracica ?? 0);
+    const giro = angulo(b.torax.y, a.torax.y);
+    const cost = dist(a.torax.o, a.pelve.o) - dist(b.torax.o, b.pelve.o);
+    return { medido: `no começo a coluna dobra ${f1(ini)}° além da curva de repouso; no fim a lombar dobra ${f1(lo)}° e a torácica ${f1(to)}°, o tórax gira ${f1(giro)}° à frente e a base do pescoço chega ${f1(cost)} cm mais perto do quadril`, ok: ini <= 0.5 && lo >= 15 && to >= 25 && giro >= 45 && cost >= 5 };
+  },
+  'polia-puxar-maos-paradas-na-cabeca': (q) => {
+    // o centro de cada mão no referencial da cabeça não anda, e a pele da mão fica junto da pele da cabeça
+    const a = primeiro(q).esq;
+    const p0 = LADOS.map((k) => paraRef(a.cabeca, a.lado[k].pegada));
+    const anda = Math.max(...q.map((x) => Math.max(...LADOS.map((k, i) => dist(paraRef(x.esq.cabeca, x.esq.lado[k].pegada), p0[i]!)))));
+    const P = pontosDoBoneco(a);
+    const cab = P.filter((x) => x.parte === 'cabeca').map((x) => x.p),
+      maos = P.filter((x) => x.parte === 'mao' || x.parte === 'polegar').map((x) => x.p);
+    let d = 1e9;
+    for (const m of maos) for (const c of cab) d = Math.min(d, dist(m, c));
+    return { medido: `as mãos andam no máximo ${f1(anda)} cm em relação à cabeça; a pele delas fica a ${f1(d)} cm da pele da cabeça`, ok: anda <= 0.1 && d <= 1.5 };
+  },
+  'polia-puxar-cotovelos-vao-as-coxas': (q) => {
+    // a distância do cotovelo direito à pele da coxa direita, do começo ao fim
+    const d = (e: Esq) => Math.min(...pontosDoBoneco(e).filter((x) => x.parte === 'coxa' && x.p[0] < 0).map((x) => dist(x.p, e.lado.R.cotovelo)));
+    const a = d(primeiro(q).esq),
+      b = d(ultimo(q).esq);
+    return { medido: `o cotovelo fica a ${f1(a)} cm da coxa no começo e a ${f1(b)} cm no fim`, ok: b <= a * 0.6 && b >= 0 };
+  },
+  'polia-puxar-ajoelhado-no-colchonete': (q) => {
+    // a pele dos joelhos no tampo do colchonete (o ponto mais baixo da coxa e da canela perto do joelho) e a largura
+    const x = primeiro(q);
+    const topo = x.prims.find((p) => p.t === 'caixa' && p.cls === 'tapete');
+    const yTopo = topo && topo.t === 'caixa' ? topo.ref.o[1] + topo.meias[1] : 0;
+    let min = 1e9;
+    for (const { p, parte } of pontosDoBoneco(x.esq)) if ((parte === 'coxa' || parte === 'canela') && LADOS.some((k) => dist(p, x.esq.lado[k].joelho) < 12)) min = Math.min(min, p[1]);
+    const larg = dist(x.esq.lado.R.joelho, x.esq.lado.L.joelho),
+      quadril = dist(x.esq.lado.R.quadril, x.esq.lado.L.quadril);
+    return { medido: `a pele dos joelhos fica a ${f1(min - yTopo)} cm do colchonete; os joelhos a ${f1(larg)} cm um do outro (os quadris a ${f1(quadril)} cm)`, ok: Math.abs(min - yTopo) <= 1 && Math.abs(larg - quadril) <= 3 };
+  },
 };

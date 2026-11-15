@@ -1,0 +1,56 @@
+{
+ "id": "abdominal-polia",
+ "nome": "Abdominal na polia com corda",
+ "fichaDaTecnica": "docs/pesquisa/animacoes/abdominal-polia.md",
+ "fontes": {
+  "ficha": "Ficha da técnica (docs/pesquisa/animacoes/abdominal-polia.md): ajoelhado de frente para a torre, a cerca de meio passo, joelhos na largura do quadril; as pontas da corda ao lado da cabeça, perto das têmporas; quadril um pouco atrás dos joelhos, tronco inclinado à frente com a coluna neutra; enrolar levando as costelas ao quadril e os cotovelos às coxas, com o quadril parado; no fim a coluna toda enrolada; consenso de treinadores (guia original; nsca2021, não verificado)",
+  "app": "Cartão do app (src/conteudo/exercicios/abdominal-polia.json): carro no ponto mais alto, com a corda; colchonete embaixo dos joelhos; ~1,5 s enrolando, 1 s parado, ~2 s desenrolando; as dicas ('costelas no quadril', 'quadril parado', 'mãos grudadas na cabeça') e os erros",
+  "hoje": "Animação de hoje (src/engine/exercicios/abdominal-polia.ts): a polia no alto, a coluna a ~84 cm do quadril, o quadril ~8 cm atrás dos joelhos, a coluna que enrola (a torácica e o pescoço mais que a lombar) e os erros (o quadril que senta para trás; os braços que puxam a corda para baixo)",
+  "puxada": "A ficha de movimento da puxada unilateral ajoelhada (src/engine/novo/dados/movimentos/puxada-unilateral.json): 'meio passo' de um homem de 1,76 m é perto de 70 a 75 cm, dos joelhos à base da coluna; joelhos na largura do quadril",
+  "objetos": "src/engine/novo/dados/objetos.json (coluna de polia, colchonete) e src/engine/novo/dados/objetos/corda-triceps.json (a corda)",
+  "desenho": "Escolha de desenho desta animação, dentro do que a ficha pede; a conferência mede o resultado"
+ },
+ "param": {
+  "torre.folga": { "v": 18, "un": "cm", "selo": "desenho", "fonte": "desenho", "o": "ajoelhado 'a cerca de meio passo' da torre: tão perto quanto dá com a cabeça, no fim, a 18 cm da face da coluna (com 70 cm dos joelhos à base, o de 'meio passo' da puxada ajoelhada, a cabeça enrolada entrava na coluna)" },
+  "joelhos.meiaDistancia": { "v": 8.7, "un": "cm", "selo": "consenso", "fonte": "puxada", "o": "joelhos na largura do quadril" },
+  "coxa.inclinacao": { "v": 14, "un": "graus", "selo": "consenso", "fonte": "ficha", "o": "quadril um pouco atrás dos joelhos: a coxa 14° atrás da vertical (hoje: ~8 cm atrás)" },
+  "tronco.inicio": { "v": 32, "un": "graus", "selo": "consenso", "fonte": "ficha", "o": "início: tronco inclinado à frente, o peito a 32° da vertical, com a coluna neutra" },
+  "lombar.fim": { "v": 26, "un": "graus", "selo": "consenso", "fonte": "ficha", "o": "fim: 'coluna toda enrolada': a lombar dobra 26° além da curva de repouso" },
+  "toracica.fim": { "v": 40, "un": "graus", "selo": "consenso", "fonte": "ficha", "o": "fim: a parte de cima das costas dobra 40° (hoje: a torácica enrola mais que a lombar)" },
+  "cervical.inicio": { "v": -8, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "início: o pescoço na linha do tronco, um pouco estendido (o olhar à frente e para baixo)" },
+  "cervical.fim": { "v": 14, "un": "graus", "selo": "desenho", "fonte": "hoje", "o": "fim: o pescoço acompanha a coluna (dobra 14°), sem o queixo no peito" },
+  "maos.abaixoDoTopo": { "v": 9, "un": "cm", "selo": "consenso", "fonte": "ficha", "o": "as mãos ao lado da cabeça, perto das têmporas: o centro da mão 9 cm abaixo do alto da cabeça, ao longo dela" },
+  "maos.aFrente": { "v": 3, "un": "cm", "selo": "consenso", "fonte": "ficha", "o": "o centro da mão 3 cm à frente do meio da cabeça (as têmporas), ao longo dela" },
+  "maos.folga": { "v": 0.5, "un": "cm", "selo": "consenso", "fonte": "app", "o": "'mãos grudadas na cabeça': a pele da mão a 0,5 cm da pele da cabeça" },
+  "erro.quadril.coxa": { "v": 24, "un": "graus", "selo": "desenho", "fonte": "hoje", "o": "erro: o quadril senta para trás, a coxa vai mais 24° para trás em direção aos calcanhares (hoje: o quadril desce e vai ~9 cm para trás)" },
+  "erro.quadril.bacia": { "v": 18, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "erro: a bacia gira 18° à frente: o quadril dobra 42° a mais e o peito desce sem a coluna enrolar" },
+  "erro.quadril.coluna": { "v": 0.35, "un": "fração", "selo": "desenho", "fonte": "desenho", "o": "erro: a coluna enrola só 35% do certo (vira flexão de quadril: o abdômen quase não encurta)" },
+  "erro.bracos.coluna": { "v": 0.4, "un": "fração", "selo": "desenho", "fonte": "desenho", "o": "erro: a coluna enrola só 40% do certo; quem desce a corda são os braços" },
+  "erro.bracos.maos": { "v": 30, "un": "cm", "selo": "desenho", "fonte": "hoje", "o": "erro: as mãos descem 30 cm, da cabeça até a frente do peito (hoje: até a altura do peito)" }
+ },
+ "fases": [
+  { "nome": "Coluna neutra", "tipo": "pausa", "dur": 0.4, "de": 0, "ate": 0, "respira": "INSPIRA", "tempo": "pausa curta", "selo": "consenso", "fonte": "app" },
+  { "nome": "Enrolar · concêntrica", "tipo": "conc", "dur": 1.5, "de": 0, "ate": 1, "respira": "EXPIRA", "tempo": "~1,5 s", "selo": "consenso", "fonte": "app" },
+  { "nome": "Segura contraído", "tipo": "pausa", "dur": 1, "de": 1, "ate": 1, "respira": "EXPIRA", "tempo": "1 s", "selo": "consenso", "fonte": "app" },
+  { "nome": "Desenrolar · excêntrica", "tipo": "exc", "dur": 2, "de": 1, "ate": 0, "respira": "INSPIRA", "tempo": "~2 s", "selo": "consenso", "fonte": "app" }
+ ],
+ "contatos": ["pelve", "joelho.R", "joelho.L", "pe.R", "pe.L"],
+ "regras": [
+  { "id": "polia-puxar-quadril-parado", "pede": "o quadril fica parado (um pouco atrás dos joelhos): quem enrola é a coluna", "selo": "consenso", "fonte": "ficha" },
+  { "id": "polia-puxar-coluna-enrola", "pede": "da coluna neutra à coluna toda enrolada: as costelas vão em direção ao quadril", "selo": "consenso", "fonte": "ficha" },
+  { "id": "polia-puxar-maos-paradas-na-cabeca", "pede": "as mãos ficam paradas ao lado da cabeça, perto das têmporas", "selo": "consenso", "fonte": "ficha" },
+  { "id": "polia-puxar-cotovelos-vao-as-coxas", "pede": "os cotovelos vão em direção às coxas", "selo": "consenso", "fonte": "ficha" },
+  { "id": "polia-puxar-ajoelhado-no-colchonete", "pede": "ajoelhado no colchonete, joelhos na largura do quadril", "selo": "consenso", "fonte": "ficha" },
+  { "id": "triceps-frances-corda-na-mao", "pede": "a corda esticada da mão à bucha", "selo": "desenho", "fonte": "desenho" },
+  { "id": "triceps-frances-corda-livre-da-cabeca", "pede": "a corda e o cabo não atravessam a cabeça nem o corpo", "selo": "desenho", "fonte": "desenho" }
+ ],
+ "erros": [
+  { "id": "quadril", "instante": 1, "titulo": "Mexer o quadril", "vista": "lateral", "oQueMuda": "o quadril senta para trás em direção aos calcanhares e a coluna quase não enrola", "destaca": ["corpo", "pernas"], "linha": ["joelho", "pelve", "c7"], "foco": "pelve" },
+  { "id": "bracos", "instante": 1, "titulo": "Puxar com os braços", "vista": "lateral", "oQueMuda": "as mãos saem da cabeça e os braços puxam a corda para baixo; a coluna quase não enrola", "destaca": ["bracos"], "linha": ["ombro", "cotovelo", "punho"], "foco": "ombro" }
+ ],
+ "simetrico": true,
+ "rotulos": [
+  { "vista": "lateral", "texto": "quadril parado", "ponto": "pelve", "selo": "consenso", "fonte": "app", "prumo": { "de": "joelho", "alt": 70 } },
+  { "vista": "lateral", "texto": "costelas no quadril", "ponto": "lombar", "selo": "consenso", "fonte": "app" }
+ ]
+}

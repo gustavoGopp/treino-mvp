@@ -67,3 +67,4 @@ export { remadaElastico } from './remada-elastico';
 export { puxadaElastico } from './puxada-elastico';
 export { remadaBaixa } from './remada-baixa';
 export { remadaUnilateralPolia } from './remada-unilateral-polia';
+export { abdominalPolia } from './abdominal-polia';
