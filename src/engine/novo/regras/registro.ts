@@ -11,3 +11,4 @@ export { regrasDaSuspensao } from './suspensao';
 export { REGRAS_PONTES } from './pontes';
 export { REGRAS_TRICEPS_FRANCES } from './triceps-frances';
 export { regrasDosOmbros } from './ombros';
+export { regrasDasRoscas } from './roscas';
