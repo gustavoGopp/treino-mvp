@@ -5,6 +5,7 @@
 // O pé de trás apoia num banco reto, no assento de uma cadeira firme, ou no berço de uma fita de suspensão: na fita ele
 // não fica parado, pende da âncora e anda num arco (a fita não estica) enquanto o quadril desce.
 import { pontosDoBoneco } from '../boneco';
+import { angulosDoLado } from '../conferir-util';
 import { sinal } from '../esqueleto';
 import type { Esq, Lado, PoseBraco } from '../esqueleto';
 import { daFicha, fichaSchema, resolver1, suave } from '../movimento';
@@ -15,7 +16,7 @@ import { cadeira, parede } from '../pecas-de-cena/cadeira';
 import { alturaNaFita, fitaDeSuspensao } from '../pecas-de-cena/suspensao';
 import type { Corpo } from '../tabelas';
 import { obj } from '../tabelas';
-import { add, mix, norm, paraRef, sub } from '../vec';
+import { add, dist, mix, norm, paraRef, sub } from '../vec';
 import type { V3 } from '../vec';
 import { afundar } from './afundar';
 import { FRENTE, TRAS, maosNaCintura } from './afundo-estatico';
@@ -159,7 +160,39 @@ export function criarBulgaro(fichaJson: unknown, maos: MaosDoBulgaro, apoioDeTra
       z = Fi.zAlca - atras;
     return [x, alturaNaFita(Fi.ancora, Fi.comp, x, z), z];
   }
-  const tornozeloNaFita = (Fi: Fita, atras: number): V3 => sub(alcaNaFita(Fi, atras), Fi.contato);
+  /**
+   * O pé gira no berço em volta do ponto de apoio (o peito do pé), de lado: `giro` graus com a ponta mais para baixo.
+   * Gira o vetor do tornozelo ao apoio junto com o pé (no plano de lado, em volta de x).
+   */
+  const girarNoBerco = (v: V3, giro: number): V3 => {
+    const g = -giro * rad;
+    return [v[0], v[1] * Math.cos(g) - v[2] * Math.sin(g), v[1] * Math.sin(g) + v[2] * Math.cos(g)];
+  };
+  const tornozeloNaFita = (Fi: Fita, atras: number, giro = 0): V3 => sub(alcaNaFita(Fi, atras), girarNoBerco(Fi.contato, giro));
+  const comGiro = (A: Apoio, giro: number): Apoio => ({ ...A, inclina: A.inclina + giro });
+  /**
+   * Na fita, o pé não fica preso como no banco: ele gira no berço. Em cima, a canela de trás fica quase deitada (o berço
+   * é baixo) e, com o pé na inclinação do banco, o tornozelo esticaria além da média; o pé gira até a flexão plantar
+   * ficar em `fita.flexaoPlantarEmCima` e volta, na descida, à inclinação do banco (`giro` vai a zero embaixo).
+   */
+  const GIROS = new WeakMap<Corpo, { cima: number; giro: number }>();
+  function giroEmCima(corpo: Corpo): { cima: number; giro: number } {
+    let G = GIROS.get(corpo);
+    if (G) return G;
+    const A = apoio(corpo),
+      Fi = fita(corpo);
+    const cimaCom = (giro: number) => resolver1((y) => f('joelho.cima') - pose(corpo, y, comGiro(A, giro), { tornozelo: tornozeloNaFita(Fi, 0, giro) }).lado[FRENTE].ang.joelho, 95, 30);
+    let giro = 0,
+      cima = cimaCom(0);
+    for (let i = 0; i < 3; i++) {
+      const y = cima;
+      giro = resolver1((g) => -angulosDoLado(pose(corpo, y, comGiro(A, g), { tornozelo: tornozeloNaFita(Fi, 0, g) }), TRAS).dorsiflexao - f('fita.flexaoPlantarEmCima'), 0, 45);
+      cima = cimaCom(giro);
+    }
+    G = { cima, giro };
+    GIROS.set(corpo, G);
+    return G;
+  }
 
   /** As alturas do quadril em cima (o joelho da frente quase estendido) e embaixo (o joelho de trás perto do chão). */
   function calibrar(corpo: Corpo) {
@@ -172,7 +205,7 @@ export function criarBulgaro(fichaJson: unknown, maos: MaosDoBulgaro, apoioDeTra
     const tCima = Fi ? tornozeloNaFita(Fi, 0) : undefined,
       tBaixo = Fi ? tornozeloNaFita(Fi, f('fita.peVaiParaTras')) : undefined;
     const baixo = resolver1((y) => pose(corpo, y, A, { tornozelo: tBaixo }).lado[TRAS].joelho[1] - raioDoJoelho - f('joelhoDeTras.aoChao'), 25, 70);
-    const cima = resolver1((y) => f('joelho.cima') - pose(corpo, y, A, { tornozelo: tCima }).lado[FRENTE].ang.joelho, 95, baixo);
+    const cima = Fi ? giroEmCima(corpo).cima : resolver1((y) => f('joelho.cima') - pose(corpo, y, A, { tornozelo: tCima }).lado[FRENTE].ang.joelho, 95, baixo);
     // no erro do pé perto do banco, a pessoa também começa com o joelho da frente quase estendido
     const cimaPerto = 'erro.perto.maisPerto' in F.param ? resolver1((y) => f('joelho.cima') - pose(corpo, y, A, { perto: f('erro.perto.maisPerto') }).lado[FRENTE].ang.joelho, 95, baixo) : cima;
     c = { cima, cimaPerto, baixo };
@@ -215,11 +248,34 @@ export function criarBulgaro(fichaJson: unknown, maos: MaosDoBulgaro, apoioDeTra
   }
 
   /**
+   * O berço em volta do pé: as duas tiras laterais passam uma de cada lado do pé (a largura do pé mais uma folga) e se
+   * juntam no pegador acima dele, mais alto que o calcanhar e o tornozelo (medido no Boneco, no ciclo, com uma folga):
+   * a fita que sobe para a âncora não atravessa o pé.
+   */
+  const BERCOS = new WeakMap<Corpo, { largura: number; juntaAcima: number }>();
+  function bercoDoPe(corpo: Corpo): { largura: number; juntaAcima: number } {
+    let B = BERCOS.get(corpo);
+    if (B) return B;
+    const largura = corpo.m('pe.largura') + 2 * f('fita.bercoFolga');
+    let acima = 0;
+    for (const u of [0, 0.25, 0.5, 0.75, 1]) {
+      const q = quadroNaFita(corpo, u, undefined, true);
+      const T = q.esq.lado[TRAS].tornozelo,
+        a = q.marcas.alca!;
+      // o que do pé e da canela de trás fica na coluna da fita, acima do berço
+      for (const { p } of pontosDoBoneco(q.esq)) if (dist(p, T) < 20 && Math.abs(p[2] - a[2]) < f('fita.bercoFolga') + 2 && Math.abs(p[0] - a[0]) < largura / 2) acima = Math.max(acima, p[1] - a[1]);
+    }
+    B = { largura, juntaAcima: acima + f('fita.bercoFolga') };
+    BERCOS.set(corpo, B);
+    return B;
+  }
+
+  /**
    * O búlgaro com o pé de trás na fita. O quadril desce reto como no banco; o fundo do berço anda para trás no arco
    * da fita (`fita.peVaiParaTras` até embaixo) e o tornozelo vai junto. No erro de empurrar a alça, a perna de trás
    * estica: o pé vai mais para trás, o quadril recua e desce menos.
    */
-  function quadroNaFita(corpo: Corpo, u: number, erro?: string): Quadro {
+  function quadroNaFita(corpo: Corpo, u: number, erro?: string, semBerco = false): Quadro {
     const A = apoio(corpo);
     const c = calibrar(corpo);
     const Fi = fita(corpo);
@@ -227,19 +283,22 @@ export function criarBulgaro(fichaJson: unknown, maos: MaosDoBulgaro, apoioDeTra
     const fundo = erro === 'raso' ? f('erro.raso.fracao') : empurra ? f('erro.empurra.fracao') : 1;
     const atras = empurra ? (f('fita.peVaiParaTras') + f('erro.empurra.peMaisAtras')) * u : f('fita.peVaiParaTras') * u * fundo;
     const alca = alcaNaFita(Fi, atras);
-    const e = pose(corpo, mix(c.cima, c.baixo, u * fundo), A, {
+    // o pé gira no berço de volta à inclinação do banco à medida que a canela se levanta
+    const giro = giroEmCima(corpo).giro * (1 - u);
+    const e = pose(corpo, mix(c.cima, c.baixo, u * fundo), comGiro(A, giro), {
       valgo: erro === 'valgo' ? f('erro.valgo.joelho') * Math.sin((Math.PI / 2) * Math.min(1, u * 1.25)) : 0,
-      tornozelo: sub(alca, Fi.contato),
+      tornozelo: sub(alca, girarNoBerco(Fi.contato, giro)),
       quadrilZ: empurra ? -f('erro.empurra.quadrilAtras') * u : 0,
     });
-    const S = fitaDeSuspensao({ ancora: Fi.ancora, pegadores: [{ tipo: 'pe', ponto: alca, lado: [1, 0, 0] }] });
+    const S = fitaDeSuspensao({ ancora: Fi.ancora, pegadores: [{ tipo: 'pe', ponto: alca, lado: [1, 0, 0], ...(semBerco ? {} : bercoDoPe(corpo)) }], fitaGirada: f('fita.giroDaFita'), vigaComoCenario: true });
     return {
       esq: e,
       prims: [chao(-90, 90, -190, 90), ...S.prims],
-      pecas: [S.peca],
+      // a viga e a fita de ancoragem são cenário: o quadro não sobe até elas e o corpo fica maior
+      pecas: [S.peca, ...(S.cenario ? [S.cenario] : [])],
       fios: [{ id: 'fita', comp: S.comp[0]!, estica: false }],
       cargas: [],
-      marcas: { alca, ancora: Fi.ancora, contatoDoPe: add(e.lado[TRAS].tornozelo, Fi.contato) },
+      marcas: { alca, ancora: Fi.ancora, contatoDoPe: add(e.lado[TRAS].tornozelo, girarNoBerco(Fi.contato, giro)) },
     };
   }
   return { ficha: F, quadro, alturaDoApoio };
