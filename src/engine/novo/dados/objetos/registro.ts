@@ -10,3 +10,5 @@ export { default as toalha } from './toalha.json';
 export { default as porta } from './porta.json';
 export { default as bolaSuica } from './bola-suica.json';
 export { default as cordaTriceps } from './corda-triceps.json';
+export { default as step } from './step.json';
+export { default as escada } from './escada.json';
