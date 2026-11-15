@@ -11,23 +11,24 @@
 //    palmas; o kettlebell fica seguro pelas hastes da alça. A inclinação da carga nas mãos sai da ficha (`carga.giro.*`),
 //    e a mão fecha nela com o punho no ângulo que essa inclinação dá (a conferência mede a extensão do punho).
 // Cada variação traz a sua ficha de movimento; a postura sai da carga: em pé e inclinado à frente, de costas para a
-// polia (corda), ou sentado na ponta de um banco reto (halter e kettlebell).
+// polia (corda, e o estribo de uma mão, com a polia embaixo), ou sentado na ponta de um banco reto (halter e
+// kettlebell). Com o estribo, só o braço direito trabalha e a outra mão fica na cintura.
 import { formaDoKettlebell } from '../equipamento';
 import { resolverMembros, resolverTronco, sinal } from '../esqueleto';
 import type { Lado, PoseBraco, PosePerna, Tronco } from '../esqueleto';
 import { daFicha, fichaSchema, resolver1 } from '../movimento';
 import type { Ficha, Quadro } from '../movimento';
 import { pontosDoBoneco } from '../boneco';
-import { bancoReto, cabo, centroDaRoldana, chao, halter, saidaDoCabo, torre } from '../pecas';
+import { bancoReto, cabo, centroDaRoldana, chao, estribo, halter, saidaDoCabo, torre } from '../pecas';
 import type { Peca, Torre } from '../pecas';
 import { cordaTriceps, montarCorda } from '../pecas-de-cena/corda-triceps';
 import type { Corpo } from '../tabelas';
 import { obj } from '../tabelas';
-import { add, cross, dirRef, dist, girar, mix, mul, norm, paraRef, perp, sub } from '../vec';
+import { add, cross, dirRef, dist, girar, mix, mul, noRef, norm, paraRef, perp, sub } from '../vec';
 import type { V3 } from '../vec';
 import { alturaDaPegadaDoKettlebell } from './dobrar-o-quadril';
 
-export type CargaDoFrances = 'corda' | 'halter' | 'kettlebell';
+export type CargaDoFrances = 'corda' | 'halter' | 'kettlebell' | 'estribo';
 const rad = Math.PI / 180;
 
 /** O que muda de um quadro para o outro (e nos erros). */
@@ -66,9 +67,11 @@ export function criarTricepsFrances(fichaJson: unknown, carga: CargaDoFrances): 
   const F = fichaSchema.parse(fichaJson);
   const f = daFicha(F);
   const tem = (id: string) => id in F.param;
-  const emPe = carga === 'corda';
+  const emPe = carga === 'corda' || carga === 'estribo';
+  /** A carga sai das mãos por um cabo (corda ou estribo): sem giro da carga nas mãos. */
+  const noCabo = emPe;
   const K = formaDoKettlebell();
-  const CAL = new WeakMap<Corpo, { pelveY: number; frente: number; polia: Torre; zBanco: number; compMin: number }>();
+  const CAL = new WeakMap<Corpo, { pelveY: number; frente: number; polia: Torre; zBanco: number; compMin: number; phi0?: number }>();
 
   /* ---------------- o tronco e as pernas ---------------- */
   function troncoEPernas(corpo: Corpo, pelveY: number, frente: number, p: Pedido): { t: Tronco; pernas: Record<Lado, PosePerna> } {
@@ -124,6 +127,13 @@ export function criarTricepsFrances(fichaJson: unknown, carga: CargaDoFrances): 
       const pegada = add(cot, mul(a, fa(corpo) + gp(corpo)));
       return { pose: { umero, antebraco: a, polo: norm(sub(cot, ombro)), mao: { polegar, forma: 'pegada', diam: obj('cordaTriceps', 'diam') } }, pegada, polegar };
     }
+    if (carga === 'estribo') {
+      // a pegada neutra, como na corda: o polegar para o lado de trás do tronco (a palma para o meio); a pegada do
+      // estribo atravessa a mão nessa direção, e o cabo puxa ao longo do antebraço, de través à pegada
+      const polegar = norm(perp(dirRef(T, [0, -1, -0.4]), a));
+      const pegada = add(cot, mul(a, fa(corpo) + gp(corpo)));
+      return { pose: { umero, antebraco: a, polo: norm(sub(cot, ombro)), mao: { polegar, forma: 'pegada', diam: obj('estribo', 'pegadaDiam') } }, pegada, polegar };
+    }
     const punho = add(cot, mul(a, fa(corpo)));
     if (carga === 'halter') {
       // os dedos seguem o antebraço, girados na palma `maos.dedosGiro` graus (positivo = para fora)
@@ -142,7 +152,7 @@ export function criarTricepsFrances(fichaJson: unknown, carga: CargaDoFrances): 
    * Os dois braços para um pedido: o braço na direção fixa; o antebraço dobra `cotovelo` graus para trás e gira em
    * volta do braço (ângulo φ) até a pegada ficar a `maos.meiaDistancia` do meio do tronco.
    */
-  function bracos(corpo: Corpo, t: Tronco, pernas: Record<Lado, PosePerna>, p: Pedido) {
+  function bracos(corpo: Corpo, t: Tronco, pernas: Record<Lado, PosePerna>, p: Pedido, phiFixo?: number) {
     const T = t.torax;
     const meia = p.meia;
     const dir = (k: Lado) => dirRef(T, direcaoDoBraco(k, p.elevacao, p.paraDentro));
@@ -170,16 +180,30 @@ export function criarTricepsFrances(fichaJson: unknown, carga: CargaDoFrances): 
       return eixoDaCarga(T, norm(add(r.a, l.a)), p.giro);
     };
     const xNoTronco = (phi: number) => paraRef(T, montaLado('R', phi, eixoDe(phi)).m.pegada)[0] + meia;
-    const phi = resolver1(xNoTronco, -1.2, 1.5, 40);
+    const phi = phiFixo ?? resolver1(xNoTronco, -1.2, 1.5, 40);
     const eixo = eixoDe(phi);
     const R = montaLado('R', phi, eixo),
       L = montaLado('L', phi, eixo);
-    const e = resolverMembros(t, { R: R.m.pose, L: L.m.pose }, pernas);
-    return { e, eixo, maos: { R: R.m, L: L.m } };
+    // com o estribo, a outra mão fica na cintura
+    const poseL = carga === 'estribo' ? maoNaCintura(corpo, t) : L.m.pose;
+    const e = resolverMembros(t, { R: R.m.pose, L: poseL }, pernas);
+    return { e, eixo, maos: { R: R.m, L: L.m }, phi };
+  }
+
+  /**
+   * A mão esquerda na cintura (só com o estribo): a palma aberta sobre a crista do osso do quadril, os dedos para a
+   * frente e para baixo, o polegar para cima, o cotovelo para fora e para trás.
+   */
+  function maoNaCintura(corpo: Corpo, t: Tronco): PoseBraco {
+    const P = t.pelve;
+    const s = sinal('L');
+    const punho = noRef(P, [s * f('maoNaCintura.x'), corpo.m('altura.cristaIliaca') - corpo.m('altura.trocanter') + f('maoNaCintura.acima'), f('maoNaCintura.z')]);
+    const dedos = norm(dirRef(P, [0, -0.45, 1]));
+    return { punho, polo: dirRef(P, [s * 0.6, 0, -1]), mao: { dedos, polegar: dirRef(P, [0, 1, 0]), forma: 'aberta' } };
   }
 
   /* ---------------- calibração (uma vez por corpo) ---------------- */
-  const PEDIDO0 = (): Pedido => ({ meia: f('maos.meiaDistancia'), cotovelo: f('cotovelo.alongado'), elevacao: f('braco.elevacao'), paraDentro: f('braco.paraDentro'), giro: carga === 'corda' ? 0 : f('carga.giro.alongado'), lombar: 0, toracica: 0 });
+  const PEDIDO0 = (): Pedido => ({ meia: f('maos.meiaDistancia'), cotovelo: f('cotovelo.alongado'), elevacao: f('braco.elevacao'), paraDentro: f('braco.paraDentro'), giro: noCabo ? 0 : f('carga.giro.alongado'), lombar: 0, toracica: 0 });
   function calibrar(corpo: Corpo) {
     let c = CAL.get(corpo);
     if (c) return c;
@@ -210,7 +234,27 @@ export function criarTricepsFrances(fichaJson: unknown, carga: CargaDoFrances): 
     // a polia (só na corda): de costas para ela, na altura do ombro; a roldana fica a `cabo.alongado` cm da bucha
     let polia: Torre = { base: [0, 0, -200], frente: [0, 0, 1], alturaDaPolia: 140 };
     let compMin = 0;
-    if (emPe) {
+    let phi0: number | undefined;
+    if (carga === 'estribo') {
+      // a polia embaixo, atrás: no alongado, o cabo desce do elo do estribo até a roldana `cabo.inclinacao` graus abaixo
+      // da horizontal
+      const { t, pernas } = troncoEPernas(corpo, pelveY, frente, p0);
+      const b = bracos(corpo, t, pernas, p0);
+      // com uma mão só, o giro do antebraço em volta do braço fica o do alongado (a mão atrás da cabeça, perto do meio)
+      phi0 = b.phi;
+      const L = b.e.lado.R;
+      const alt = f('polia.altura');
+      const eloPara = (rold: V3) => estribo(L.pegada, L.mao.x, sub(rold, L.pegada)).elo;
+      polia = { base: [0, 0, 0], frente: [0, 0, 1], alturaDaPolia: alt };
+      const z = resolver1((zz) => {
+        const r = centroDaRoldana({ ...polia, base: [0, 0, zz] });
+        const elo = eloPara(r);
+        return Math.atan2(elo[1] - r[1], elo[2] - r[2]) / rad - f('cabo.inclinacao');
+      }, -300, L.pegada[2] - 20, 40);
+      polia = { ...polia, base: [0, 0, z] };
+      const elo = eloPara(centroDaRoldana(polia));
+      compMin = dist(elo, saidaDoCabo(polia, elo));
+    } else if (emPe) {
       const { t, pernas } = troncoEPernas(corpo, pelveY, frente, p0);
       const b = bracos(corpo, t, pernas, p0);
       const ombro = b.e.lado.R.ombro[1];
@@ -224,7 +268,7 @@ export function criarTricepsFrances(fichaJson: unknown, carga: CargaDoFrances): 
     }
     // o banco (sentado): a nádega fica a `banco.daPonta` cm da ponta da frente, e o banco segue para trás
     const zBanco = f('banco.daPonta' in F.param ? 'banco.daPonta' : 'pelve.z') - obj('bancoReto', 'comp') / 2;
-    c = { pelveY, frente, polia, zBanco: emPe ? 0 : zBanco, compMin };
+    c = { pelveY, frente, polia, zBanco: emPe ? 0 : zBanco, compMin, ...(phi0 === undefined ? {} : { phi0 }) };
     CAL.set(corpo, c);
     return c;
   }
@@ -238,7 +282,7 @@ export function criarTricepsFrances(fichaJson: unknown, carga: CargaDoFrances): 
     // o erro "abrir os cotovelos": abertos no alongado (onde o ombro gira) e um pouco menos estendendo, para as duas
     // mãos ainda alcançarem a carga
     const paraDentro = erro === 'abre' ? mix(-f('erro.abre.fora'), f('braco.paraDentro'), f('erro.abre.volta') * u) : f('braco.paraDentro');
-    const giro = carga === 'corda' ? 0 : mix(f('carga.giro.alongado'), f('carga.giro.estendido'), u);
+    const giro = noCabo ? 0 : mix(f('carga.giro.alongado'), f('carga.giro.estendido'), u);
     // o erro "arquear as costas": a lombar e a torácica estendem enquanto a carga sobe
     const arco = erro === 'arco' ? u : 0;
     const meia = tem('maos.meiaDistancia.estendido') ? mix(f('maos.meiaDistancia'), f('maos.meiaDistancia.estendido'), u) : f('maos.meiaDistancia');
@@ -249,7 +293,7 @@ export function criarTricepsFrances(fichaJson: unknown, carga: CargaDoFrances): 
     const c = calibrar(corpo);
     const p = pedido(u, erro);
     const { t, pernas } = troncoEPernas(corpo, c.pelveY, c.frente, p);
-    const b = bracos(corpo, t, pernas, p);
+    const b = bracos(corpo, t, pernas, p, c.phi0);
     let e = b.e;
     const R = e.lado.R,
       L = e.lado.L;
@@ -273,6 +317,20 @@ export function criarTricepsFrances(fichaJson: unknown, carga: CargaDoFrances): 
       marcas.saiL = corda.ramos[1]!.sai;
       marcas.saida = saida;
       return { esq: e, prims, pecas, fios: [{ id: 'cabo', comp, estica: true }], cargas: [], marcas, vies: { maoR: 1, maoL: 1 } };
+    }
+    if (carga === 'estribo') {
+      // o estribo na mão direita; o cabo vai reto do elo até a roldana, embaixo, atrás
+      const rold = centroDaRoldana(c.polia);
+      const est = estribo(R.pegada, R.mao.x, sub(rold, R.pegada));
+      const saida = saidaDoCabo(c.polia, est.elo);
+      const comp = dist(est.elo, saida);
+      const subida = Math.max(0, comp - c.compMin) / obj('torre', 'relacao') + 2;
+      const prims = [chao(-60, 60, c.polia.base[2] - 50, 80), ...torre(c.polia, subida), ...est.prims, cabo(est.elo, saida)];
+      const pecas: Peca[] = [{ t: 'torre', torre: c.polia, subida }, { t: 'estribo', pegada: R.pegada, eixo: R.mao.x, elo: est.elo }, { t: 'cabo', a: est.elo, b: saida }];
+      marcas.elo = est.elo;
+      marcas.pilha = [0, subida, 0];
+      marcas.saida = saida;
+      return { esq: e, prims, pecas, fios: [{ id: 'cabo', comp, estica: true }], cargas: [], marcas, vies: { maoR: 1 } };
     }
     const meio = mul(add(R.pegada, L.pegada), 0.5);
     const banco: Peca = { t: 'bancoReto', x0: 0, z0: c.zBanco, pontaNoQuadro: f('banco.noQuadro') };
