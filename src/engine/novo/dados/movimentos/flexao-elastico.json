@@ -1,0 +1,309 @@
+{
+ "id": "flexao-elastico",
+ "nome": "Flexão de braço com elástico",
+ "fichaDaTecnica": "docs/pesquisa/animacoes/flexao-elastico.md",
+ "fontes": {
+  "ficha": "Ficha da técnica (docs/pesquisa/animacoes/flexao-elastico.md): consenso de treinadores (nsca2021, não verificado; seguranca.montagem); a posição, a descida e a subida são as da flexao aprovada",
+  "flexao": "A ficha de movimento da flexão aprovada (src/engine/novo/dados/movimentos/flexao.json), que veio do guia original (consenso de treinadores): a ficha da técnica pede a mesma prancha e o mesmo caminho dos braços",
+  "corpo": "Tabela do corpo do Boneco (src/engine/novo/dados/corpo-homem.json)",
+  "desenho": "Escolha de desenho desta animação, dentro do que a ficha pede; a conferência mede o resultado"
+ },
+ "param": {
+  "cotovelo.cima": {
+   "v": 10,
+   "un": "graus",
+   "selo": "consenso",
+   "fonte": "flexao",
+   "o": "em cima: braços estendidos (sem travar)"
+  },
+  "peito.aoChao": {
+   "v": 5,
+   "un": "cm",
+   "selo": "consenso",
+   "fonte": "flexao",
+   "o": "embaixo: peito a poucos centímetros do chão"
+  },
+  "maos.alemDoOmbro": {
+   "v": 12,
+   "un": "cm",
+   "selo": "consenso",
+   "fonte": "flexao",
+   "o": "mãos um pouco mais abertas que os ombros: a borda de dentro da mão fica 2 cm para fora da linha de fora do ombro (meia largura bideltoide 23,9 + meia largura da mão 4,3 + 2 = 30,2 cm do meio do corpo; o centro do ombro fica a 18,4). Antes eram 6 cm, que punham a mão debaixo do ombro, e não para fora dele"
+  },
+  "maos.abaixoDoOmbro": {
+   "v": 13,
+   "un": "cm",
+   "selo": "consenso",
+   "fonte": "flexao",
+   "o": "mãos na linha do meio do peito (distância do ombro em direção aos pés, com o corpo embaixo)"
+  },
+  "cotovelos.doTronco": {
+   "v": 45,
+   "un": "graus",
+   "selo": "consenso",
+   "fonte": "flexao",
+   "o": "cotovelos indo para trás, a meio caminho do tronco"
+  },
+  "pes.meiaDistancia": {
+   "v": 8.7,
+   "un": "cm",
+   "selo": "consenso",
+   "fonte": "flexao",
+   "o": "pés na largura do quadril"
+  },
+  "tornozelo.dorsiflexao": {
+   "v": 10,
+   "un": "graus",
+   "selo": "desenho",
+   "fonte": "desenho",
+   "o": "apoio na ponta dos pés: o tornozelo fica perto do neutro"
+  },
+  "joelho": {
+   "v": 4,
+   "un": "graus",
+   "selo": "consenso",
+   "fonte": "flexao",
+   "o": "pernas estendidas (corpo em prancha)"
+  },
+  "escapula.retracaoEmbaixo": {
+   "v": 8,
+   "un": "graus",
+   "selo": "desenho",
+   "fonte": "desenho",
+   "o": "as escápulas se aproximam na descida; a ficha não dá número"
+  },
+  "erro.quadril.queda": {
+   "v": 16,
+   "un": "graus",
+   "selo": "desenho",
+   "fonte": "desenho",
+   "o": "erro: o quadril cai (extensão da lombar somada)"
+  },
+  "erro.cot.doTronco": {
+   "v": 88,
+   "un": "graus",
+   "selo": "desenho",
+   "fonte": "desenho",
+   "o": "erro: cotovelos abertos a ~90°"
+  },
+  "erro.curta.fracao": {
+   "v": 0.5,
+   "un": "fração",
+   "selo": "desenho",
+   "fonte": "desenho",
+   "o": "erro: desce só até a metade"
+  },
+  "elastico.abaixoDeC7": {
+   "v": 12,
+   "un": "cm",
+   "selo": "consenso",
+   "fonte": "ficha",
+   "o": "o meio do elástico passa pelas costas na altura das escápulas, abaixo do pescoço: 12 cm abaixo da base do pescoço (C7), ao longo da coluna. O número é escolha de desenho (a ficha não dá)"
+  },
+  "elastico.voltaNaMao": {
+   "v": 22,
+   "un": "cm",
+   "selo": "desenho",
+   "fonte": "desenho",
+   "o": "o tubo que uma volta em cada mão gasta: o contorno da mão, 2 × (largura da mão 8,6 + espessura ~2,5 cm). Entra na conta do quanto o tubo estica"
+  },
+  "elastico.folgaNasCostas": {
+   "v": 0.6,
+   "un": "cm",
+   "selo": "desenho",
+   "fonte": "desenho",
+   "o": "o tubo fica por cima da pele das costas (metade do diâmetro do tubo)"
+  },
+  "elastico.atrasDoOmbro": {
+   "v": 3,
+   "un": "cm",
+   "selo": "desenho",
+   "fonte": "desenho",
+   "o": "o tubo passa por fora da parte de trás do ombro, 3 cm para o lado das costas a partir do centro do ombro, a caminho da mão"
+  },
+  "erro.pescoco.abaixoDeC7": {
+   "v": -3,
+   "un": "cm",
+   "selo": "desenho",
+   "fonte": "desenho",
+   "o": "erro: o elástico sobe para o pescoço, 3 cm acima da base dele (C7)"
+  }
+ },
+ "fases": [
+  {
+   "nome": "Em cima",
+   "tipo": "pausa",
+   "dur": 0.4,
+   "de": 0,
+   "ate": 0,
+   "respira": "INSPIRA",
+   "tempo": "elástico mais esticado",
+   "selo": "consenso",
+   "fonte": "flexao"
+  },
+  {
+   "nome": "Descida · excêntrica",
+   "tipo": "exc",
+   "dur": 2.0,
+   "de": 0,
+   "ate": 1,
+   "respira": "INSPIRA",
+   "tempo": "~2 s",
+   "selo": "consenso",
+   "fonte": "flexao"
+  },
+  {
+   "nome": "Embaixo",
+   "tipo": "pausa",
+   "dur": 0.35,
+   "de": 1,
+   "ate": 1,
+   "respira": "FIRME",
+   "tempo": "peito perto do chão",
+   "selo": "consenso",
+   "fonte": "flexao"
+  },
+  {
+   "nome": "Subida · concêntrica",
+   "tipo": "conc",
+   "dur": 1.0,
+   "de": 1,
+   "ate": 0,
+   "respira": "EXPIRA",
+   "tempo": "~1 s",
+   "selo": "consenso",
+   "fonte": "flexao"
+  }
+ ],
+ "contatos": [
+  "pe.R",
+  "pe.L",
+  "mao.R",
+  "mao.L"
+ ],
+ "regras": [
+  {
+   "id": "corpo-em-linha",
+   "pede": "corpo em linha reta da cabeça aos calcanhares",
+   "selo": "consenso",
+   "fonte": "flexao"
+  },
+  {
+   "id": "peito-perto-do-chao",
+   "pede": "embaixo, o peito chega perto do chão",
+   "selo": "consenso",
+   "fonte": "flexao"
+  },
+  {
+   "id": "cotovelos-a-meio-caminho",
+   "pede": "cotovelos para trás, a meio caminho do tronco",
+   "selo": "consenso",
+   "fonte": "flexao"
+  },
+  {
+   "id": "elastico-nas-escapulas",
+   "pede": "o meio do elástico passa pelas costas, na altura das escápulas (abaixo do pescoço)",
+   "selo": "consenso",
+   "fonte": "ficha"
+  },
+  {
+   "id": "pontas-sob-as-palmas",
+   "pede": "cada ponta do elástico fica presa entre a palma e o chão",
+   "selo": "consenso",
+   "fonte": "ficha"
+  }
+ ],
+ "erros": [
+  {
+   "id": "quadril",
+   "instante": 1,
+   "titulo": "Quadril cai",
+   "vista": "lateral",
+   "oQueMuda": "a lombar arqueia e o quadril sai da linha",
+   "destaca": [
+    "corpo"
+   ],
+   "linha": [
+    "ombro",
+    "quadril",
+    "tornozelo"
+   ],
+   "foco": "quadril"
+  },
+  {
+   "id": "cot",
+   "instante": 1,
+   "titulo": "Cotovelos abertos a 90°",
+   "vista": "cima",
+   "oQueMuda": "os cotovelos vão para os lados",
+   "destaca": [
+    "bracos"
+   ],
+   "linha": [
+    "ombro",
+    "cotovelo",
+    "punho"
+   ],
+   "foco": "cotovelo"
+  },
+  {
+   "id": "curta",
+   "instante": 1,
+   "titulo": "Descer pouco",
+   "vista": "lateral",
+   "oQueMuda": "desce só até a metade",
+   "destaca": [
+    "bracos"
+   ],
+   "linha": [
+    "ombro",
+    "cotovelo",
+    "punho"
+   ],
+   "foco": "cotovelo"
+  },
+  {
+   "id": "pescoco",
+   "instante": 0,
+   "titulo": "Elástico sobe para o pescoço",
+   "vista": "lateral",
+   "oQueMuda": "o meio do elástico passa no pescoço, e não nas escápulas",
+   "destaca": [
+    "corpo"
+   ],
+   "linha": [
+    "c7",
+    "cabeca"
+   ],
+   "foco": "c7"
+  }
+ ],
+ "simetrico": true,
+ "rotulos": [
+  {
+   "vista": "lateral",
+   "texto": "corpo em linha",
+   "ponto": "pelve",
+   "selo": "consenso",
+   "fonte": "flexao",
+   "guia": [
+    "tornozelo",
+    "cabeca"
+   ]
+  },
+  {
+   "vista": "lateral",
+   "texto": "elástico nas escápulas",
+   "ponto": "c7",
+   "selo": "consenso",
+   "fonte": "ficha"
+  },
+  {
+   "vista": "cima",
+   "texto": "cotovelos para trás",
+   "ponto": "cotovelo",
+   "selo": "consenso",
+   "fonte": "ficha"
+  }
+ ]
+}
