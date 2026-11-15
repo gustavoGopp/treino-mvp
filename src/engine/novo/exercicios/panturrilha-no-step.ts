@@ -50,7 +50,7 @@ export function criarPanturrilhaNoStep(fichaJson: unknown, pernas: 'uma' | 'duas
     const joelho = erro === 'joelho' ? mix(f('erro.joelho.flexao'), f('joelho'), u) : f('joelho');
     const braco = (k: Lado): PoseBraco => {
       const s = sinal(k);
-      if (k === 'L') return { pegada: [s * f('apoio.maoAoLado'), f('apoio.maoAltura'), bolaZ + f('apoio.maoAFrenteDaBola')], polo: [s * 0.8, 0, -0.5], mao: { polegar: [0, 1, 0], forma: 'pegada', diam: 5.5 } };
+      if (k === 'L') return { pegada: [s * f('apoio.maoAoLado'), f('apoio.maoAltura'), bolaZ + f('apoio.maoAFrenteDaBola')], polo: [s * 0.8, 0, -0.5], mao: { polegar: [0, 1, 0.5], forma: 'pegada', diam: 5.5 } };
       // o braço do halter pende ao lado do corpo, um pouco afastado para o halter não bater na coxa
       const fora = f('bracos.paraFora') * rad;
       return { umero: norm([s * Math.sin(fora), -Math.cos(fora), 0]), antebraco: norm([s * Math.sin(fora), -Math.cos(fora), 0.03]), polo: [0, 0, -1], mao: { polegar: [0, 0, 1], forma: 'pegada', diam: obj('halter', 'caboDiam') } };

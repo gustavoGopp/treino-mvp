@@ -17,7 +17,12 @@ const resumo = [];
 const json = {};
 // os músculos de cada exercício, como o conteúdo do app conta (só leitura)
 const biblioteca = JSON.parse(readFileSync('src/domain/biblioteca/exercicios.json', 'utf8'));
-const doConteudo = (id) => (Array.isArray(biblioteca) ? biblioteca : biblioteca.exercicios).find((e) => e.id === id)?.musculos;
+// pelo id do exercício ou, quando o exercício da biblioteca tem outro id, pela animação que ele usa (`animacaoId`: a
+// panturrilha-b é a animação do exercício panturrilha-bilateral-step)
+const doConteudo = (id) => {
+  const lista = Array.isArray(biblioteca) ? biblioteca : biblioteca.exercicios;
+  return (lista.find((e) => e.id === id) ?? lista.find((e) => e.animacaoId === id))?.musculos;
+};
 for (const ex of lista) {
   const r = m.conferir(ex, corpo);
   const mus = doConteudo(ex.ficha.id);

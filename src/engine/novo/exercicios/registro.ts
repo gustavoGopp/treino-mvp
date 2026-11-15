@@ -48,3 +48,4 @@ export { roscaKettlebell } from './rosca-kettlebell';
 export { panturrilhaChao } from './panturrilha-chao';
 export { panturrilhaDegrau } from './panturrilha-degrau';
 export { panturrilha } from './panturrilha';
+export { panturrilhaB } from './panturrilha-b';

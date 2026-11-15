@@ -51,4 +51,5 @@ Todas as distâncias da ficha de movimento (a ficha da técnica não dá número
 
 - **O cotovelo da mão na coluna:** como a mão fica parada e o corpo sobe 14 cm, o cotovelo vai de 80° (embaixo) a 44° (em cima), apontando para fora e para trás. De três quartos, embaixo, o braço parece um pouco "de asa". Testei a mão mais alta (fica fora do alcance em cima) e o cotovelo para trás (aparecia atrás das costas na vista de lado); esta foi a melhor das três.
 - **A mão de apoio fica 5 cm à frente da bola do pé** (e não 12, como no búlgaro): mais à frente, na vista de lado ela aparecia na frente do tronco segurando o nada, porque a coluna não é desenhada de perfil.
+- **A pegada na coluna fica inclinada** (o polegar para cima e um pouco para a frente), a mesma da `panturrilha-b`: com o polegar na vertical, lá o antebraço passava da supinação média.
 - A dorsiflexão embaixo (ver acima).
