@@ -1,0 +1,63 @@
+{
+ "id": "elevacao-halteres",
+ "nome": "Elevação lateral com halteres",
+ "fichaDaTecnica": "docs/pesquisa/animacoes/elevacao-halteres.md",
+ "fontes": {
+  "guia": "Guia original do projeto (referencia/guia-execucao-fase1.html), como registrado em docs/pesquisa/animacoes/elevacao-halteres.md e no texto do app (src/conteudo/exercicios/elevacao-halteres.json): consenso de treinadores",
+  "app": "Texto do app (src/conteudo/exercicios/elevacao-halteres.json), campo 'vary': 'O plano exato do braço (de ~20° a ~40° à frente do corpo) depende da postura da sua escápula. A mão pode ficar neutra ou com o polegar levemente para cima'",
+  "hoje": "Animação aprovada no guia de hoje (src/engine/exercicios/elevacao-halteres.ts): tempos das fases e erros",
+  "equilibrio": "Em pé, parado, a projeção do centro de massa (corpo + carga) cai dentro do apoio dos pés (mecânica); a ficha não diz onde no pé, e o desenho usa o meio do pé",
+  "objetos": "src/engine/novo/dados/objetos.json",
+  "desenho": "Escolha de desenho desta animação, dentro do que a ficha pede; a conferência mede o resultado"
+ },
+ "param": {
+  "pes.meiaDistancia": {"v": 9, "un": "cm", "selo": "consenso", "fonte": "guia", "o": "pés na largura do quadril (os centros do quadril ficam a 8,35 cm do meio)"},
+  "joelho": {"v": 10, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "joelhos destravados (a ficha não dá número)"},
+  "tronco": {"v": 12, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "tronco levemente inclinado à frente: a bacia inclina 12° com a coluna neutra (a ficha não dá número)"},
+  "cervical": {"v": 0, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "pescoço na linha do tronco"},
+  "cabeca": {"v": 0, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "cabeça na linha do pescoço"},
+  "plano.baixo": {"v": 55, "un": "graus", "selo": "consenso", "fonte": "guia", "o": "embaixo, os halteres na frente das coxas: o braço pende no plano 55° à frente do plano do corpo e passa para o de 30° ao subir. Com a palma para dentro, o halter (33 cm) fica ao longo da coxa, e a elevação embaixo sai da folga"},
+  "plano.transicao": {"v": 0.4, "un": "fração", "selo": "desenho", "fonte": "desenho", "o": "o braço passa do plano de baixo para o da subida nos primeiros 40% do caminho (depois sobe só no plano da subida)"},
+  "plano": {"v": 30, "un": "graus", "selo": "consenso", "fonte": "app", "o": "o braço sobe para fora e um pouco à frente do corpo: 30° à frente do plano do corpo, no meio da faixa de ~20° a ~40° do texto do app"},
+  "braco.topo": {"v": 96, "un": "graus", "selo": "consenso", "fonte": "guia", "o": "em cima, o braço na linha do ombro: elevação do úmero no tronco que deixa o cotovelo na altura do centro do ombro (com o tronco inclinado 12°, o braço fica quase horizontal)"},
+  "cotovelo": {"v": 15, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "cotovelos levemente dobrados, o mesmo ângulo o movimento todo (a ficha não dá número)"},
+  "cotovelo.giro": {"v": 50, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "'cotovelo conduz': no alto, o úmero gira 50° para dentro e o plano em que o cotovelo dobra inclina para baixo, com o cotovelo um pouco acima da mão (a ficha não dá número)"},
+  "polegar.paraCima": {"v": 15, "un": "graus", "selo": "consenso", "fonte": "app", "o": "no alto, o polegar fica 15° acima da pegada neutra (o texto do app aceita mão neutra ou polegar levemente para cima)"},
+  "carga.folga": {"v": 1.5, "un": "cm", "selo": "desenho", "fonte": "desenho", "o": "embaixo, os halteres ficam perto das coxas: a folga entre a cabeça do halter e a pele da coxa. A elevação do braço embaixo sai desta folga"},
+  "carga": {"v": 5, "un": "kg", "selo": "desenho", "fonte": "desenho", "o": "halteres leves (a ficha: 'halteres leves'); o desenho é o halter sextavado da tabela de objetos"},
+  "erro.encolher.elev": {"v": 18, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "erro: a clavícula sobe 18° além do ritmo normal do ombro no alto (o trapézio de cima sobe o ombro)"},
+  "erro.frontal.plano": {"v": 80, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "erro: no alto, o braço fica 80° à frente do plano do corpo (quase uma elevação frontal)"},
+  "erro.balanco.frente": {"v": 30, "un": "graus", "selo": "desenho", "fonte": "hoje", "o": "erro: o tronco começa mais inclinado à frente (30°) para pegar impulso"},
+  "erro.balanco.tras": {"v": -10, "un": "graus", "selo": "desenho", "fonte": "hoje", "o": "erro: no alto, o tronco foi jogado para trás (com a lombar arqueada, o peito fica cerca de 9° atrás da vertical)"},
+  "erro.balanco.lombar": {"v": -12, "un": "graus", "selo": "desenho", "fonte": "hoje", "o": "erro: a lombar arqueia 12° no alto"},
+  "erro.balanco.joelho": {"v": 24, "un": "graus", "selo": "desenho", "fonte": "hoje", "o": "erro: os joelhos dobram 24° embaixo e estendem para dar o impulso"}
+ },
+ "fases": [
+  {"nome": "Embaixo", "tipo": "pausa", "dur": 0.4, "de": 0, "ate": 0, "respira": "INSPIRA", "tempo": "ombros baixos", "selo": "consenso", "fonte": "guia"},
+  {"nome": "Subida · concêntrica", "tipo": "conc", "dur": 1.3, "de": 0, "ate": 1, "respira": "EXPIRA", "tempo": "~1–1,5 s", "selo": "consenso", "fonte": "guia"},
+  {"nome": "Linha do ombro", "tipo": "pausa", "dur": 0.3, "de": 1, "ate": 1, "respira": "FIRME", "tempo": "pausa curta", "selo": "consenso", "fonte": "guia"},
+  {"nome": "Descida · excêntrica", "tipo": "exc", "dur": 2.1, "de": 1, "ate": 0, "respira": "INSPIRA", "tempo": "~2 s", "selo": "consenso", "fonte": "guia"}
+ ],
+ "contatos": ["pe.R", "pe.L"],
+ "regras": [
+  {"id": "tronco-levemente-a-frente", "pede": "tronco levemente inclinado à frente", "selo": "consenso", "fonte": "guia"},
+  {"id": "braco-no-plano-da-escapula", "pede": "o braço sobe para fora e um pouco à frente do corpo (de ~20° a ~40°)", "selo": "consenso", "fonte": "app"},
+  {"id": "braco-na-linha-do-ombro", "pede": "em cima, o braço na linha do ombro", "selo": "consenso", "fonte": "guia"},
+  {"id": "cotovelo-acima-da-mao", "pede": "cotovelos levemente dobrados, o cotovelo um pouco acima da mão", "selo": "consenso", "fonte": "guia"},
+  {"id": "ombro-sem-encolher", "pede": "o ombro não sobe junto com o braço (ombro longe da orelha)", "selo": "consenso", "fonte": "guia"},
+  {"id": "carga-sem-encostar-nas-pernas", "pede": "embaixo, os halteres perto das coxas, sem atravessá-las", "selo": "consenso", "fonte": "guia"},
+  {"id": "tronco-quase-parado", "pede": "sem embalo: o tronco fica parado", "selo": "consenso", "fonte": "guia"},
+  {"id": "peso-perto-do-meio-do-pe", "pede": "o centro de massa (corpo + halteres) fica perto do meio do pé (na metade do meio, do calcanhar à bola), com o quadril parado", "selo": "consenso", "fonte": "equilibrio"}
+ ],
+ "erros": [
+  {"id": "balanco", "instante": 1, "titulo": "Balançar o tronco", "vista": "lateral", "oQueMuda": "o tronco começa mais inclinado e é jogado para trás para dar o impulso, com a lombar arqueada", "destaca": ["corpo"], "linha": ["pelve", "lombar", "c7", "cabeca"], "foco": "c7"},
+  {"id": "encolher", "instante": 1, "titulo": "Encolher os ombros", "vista": "frontal", "oQueMuda": "a clavícula sobe além do ritmo normal: os ombros vão em direção às orelhas", "destaca": ["bracos"], "linha": ["acromioclavicular:R", "acromioclavicular:L"], "foco": "acromioclavicular:R"},
+  {"id": "frontal", "instante": 1, "titulo": "Virar elevação frontal", "vista": "cima", "oQueMuda": "os braços sobem à frente do corpo, e não para o lado", "destaca": ["bracos"], "linha": ["ombro", "cotovelo", "pegada"], "foco": "cotovelo"}
+ ],
+ "simetrico": true,
+ "rotulos": [
+  {"vista": "frontal", "texto": "leva a mão para longe, não para cima", "ponto": "pegada", "selo": "consenso", "fonte": "guia"},
+  {"vista": "frontal", "texto": "ombro longe da orelha", "ponto": "acromioclavicular:R", "selo": "consenso", "fonte": "guia"},
+  {"vista": "cima", "texto": "braço um pouco à frente do corpo", "ponto": "cotovelo", "selo": "consenso", "fonte": "app"}
+ ]
+}
