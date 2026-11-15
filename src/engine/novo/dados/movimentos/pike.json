@@ -1,0 +1,51 @@
+{
+ "id": "pike",
+ "nome": "Flexão com o quadril alto (pike)",
+ "fichaDaTecnica": "docs/pesquisa/animacoes/pike.md",
+ "fontes": {
+  "guia": "Ficha da técnica (docs/pesquisa/animacoes/pike.md) e cartão do app (src/conteudo/exercicios/pike.json): consenso de treinadores, sem estudo (P4 de docs/pesquisa-v2/10-equipamento-minimo.md)",
+  "flexao": "A flexão aprovada no motor novo (dados/movimentos/flexao.json), de onde a ficha da técnica manda partir: mãos, punho e dedos iguais",
+  "hoje": "Animação de hoje (src/engine/exercicios/pike.ts, aprovada em 04/11/2026), medida em docs/revisoes/animacao-nova/diagnostico/medidas-de-hoje.json",
+  "desenho": "Escolha de desenho desta animação, dentro do que a ficha pede; a conferência mede o resultado"
+ },
+ "param": {
+  "maos.alemDoOmbro": { "v": 12, "un": "cm", "selo": "consenso", "fonte": "flexao", "o": "mãos um pouco mais abertas que os ombros: o mesmo afastamento da flexão aprovada (centro da mão a 30,2 cm do meio do corpo)" },
+  "maos.aFrenteDosPes": { "v": 94, "un": "cm", "selo": "desenho", "fonte": "hoje", "o": "distância no chão da bola do pé ao centro da palma (hoje: o punho a ~107 cm do tornozelo). Quanto mais perto, mais em pé fica o tronco (cartão, 'vary')" },
+  "pes.meiaDistancia": { "v": 8.7, "un": "cm", "selo": "consenso", "fonte": "flexao", "o": "pés na largura do quadril, como na flexão" },
+  "calcanhar.sobe": { "v": 30, "un": "graus", "selo": "desenho", "fonte": "hoje", "o": "apoio na ponta dos pés: o calcanhar fica levantado e parado (hoje: o calcanhar a ~9 cm do chão)" },
+  "joelho": { "v": 5, "un": "graus", "selo": "consenso", "fonte": "guia", "o": "pernas estendidas (o cartão aceita os joelhos um pouco dobrados)" },
+  "quadril.cima": { "v": 105, "un": "graus", "selo": "desenho", "fonte": "hoje", "o": "em cima: a flexão do quadril que faz o V de cabeça para baixo (hoje: 100 a 109°)" },
+  "cotovelo.cima": { "v": 10, "un": "graus", "selo": "consenso", "fonte": "guia", "o": "em cima: braços estendidos (sem travar), como na flexão" },
+  "cabeca.aoChao": { "v": 5, "un": "cm", "selo": "desenho", "fonte": "desenho", "o": "embaixo: o ponto mais baixo da cabeça a poucos centímetros do chão ('perto do chão, sem encostar'; a ficha não dá número)" },
+  "cabeca.naLinhaDasMaos": { "v": 0, "un": "cm", "selo": "consenso", "fonte": "guia", "o": "embaixo: o ponto mais baixo da cabeça na linha das mãos (o centro das palmas), entre elas" },
+  "cotovelos.doTronco": { "v": 45, "un": "graus", "selo": "consenso", "fonte": "guia", "o": "cotovelos para trás, a meio caminho entre o tronco e os lados (cartão, erro 'cot')" },
+  "pescoco.flexao": { "v": 0, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "pescoço e cabeça na linha do tronco (a ficha não diz para onde olhar)" },
+  "erro.quadril.ombrosAFrente": { "v": 8, "un": "cm", "selo": "desenho", "fonte": "desenho", "o": "erro: embaixo, os ombros passam 8 cm à frente das mãos (vira flexão)" },
+  "erro.cot.doTronco": { "v": 88, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "erro: cotovelos abertos a ~90°" },
+  "erro.curta.fracao": { "v": 0.45, "un": "fração", "selo": "desenho", "fonte": "desenho", "o": "erro: desce só até menos da metade" }
+ },
+ "fases": [
+  { "nome": "Em cima", "tipo": "pausa", "dur": 0.4, "de": 0, "ate": 0, "respira": "INSPIRA", "tempo": "quadril alto", "selo": "consenso", "fonte": "guia" },
+  { "nome": "Descida · excêntrica", "tipo": "exc", "dur": 2.0, "de": 0, "ate": 1, "respira": "INSPIRA", "tempo": "~2 s", "selo": "consenso", "fonte": "guia" },
+  { "nome": "Embaixo", "tipo": "pausa", "dur": 0.35, "de": 1, "ate": 1, "respira": "FIRME", "tempo": "cabeça perto do chão", "selo": "consenso", "fonte": "guia" },
+  { "nome": "Subida · concêntrica", "tipo": "conc", "dur": 1.0, "de": 1, "ate": 0, "respira": "EXPIRA", "tempo": "~1 s", "selo": "consenso", "fonte": "guia" }
+ ],
+ "contatos": ["pe.R", "pe.L", "mao.R", "mao.L"],
+ "regras": [
+  { "id": "quadril-continua-alto", "pede": "o quadril continua alto: fica acima dos ombros e os ombros não passam à frente das mãos", "selo": "consenso", "fonte": "guia" },
+  { "id": "cabeca-desce-entre-as-maos", "pede": "embaixo, a cabeça fica perto do chão, sem encostar, na linha das mãos e entre elas", "selo": "consenso", "fonte": "guia" },
+  { "id": "pernas-estendidas", "pede": "pernas estendidas o ciclo inteiro", "selo": "consenso", "fonte": "guia" },
+  { "id": "cotovelos-para-tras-a-meio-caminho", "pede": "cotovelos para trás, a meio caminho entre o tronco e os lados", "selo": "consenso", "fonte": "guia" }
+ ],
+ "erros": [
+  { "id": "quadril", "instante": 1, "titulo": "Quadril desce e vira flexão", "vista": "lateral", "oQueMuda": "o quadril baixa e os ombros passam à frente das mãos", "destaca": ["corpo"], "linha": ["ombro", "quadril", "tornozelo"], "foco": "quadril" },
+  { "id": "cot", "instante": 1, "titulo": "Cotovelos abertos para os lados", "vista": "frontal", "oQueMuda": "os cotovelos vão para os lados", "destaca": ["bracos"], "linha": ["ombro", "cotovelo", "punho"], "foco": "cotovelo" },
+  { "id": "curta", "instante": 1, "titulo": "Descer pouco", "vista": "lateral", "oQueMuda": "a cabeça para longe do chão", "destaca": ["bracos"], "linha": ["ombro", "cotovelo", "punho"], "foco": "cotovelo" }
+ ],
+ "simetrico": true,
+ "rotulos": [
+  { "vista": "lateral", "texto": "quadril alto", "ponto": "pelve", "selo": "consenso", "fonte": "guia" },
+  { "vista": "lateral", "texto": "cabeça entre as mãos", "ponto": "cabeca", "selo": "consenso", "fonte": "guia" },
+  { "vista": "frontal", "texto": "cabeça desce entre as mãos", "ponto": "cabeca", "selo": "consenso", "fonte": "guia" }
+ ]
+}
