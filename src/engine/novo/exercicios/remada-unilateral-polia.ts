@@ -123,7 +123,7 @@ function quadro(corpo: Corpo, u: number, erro?: string): Quadro {
   // na volta curta, o braço não volta além da metade do caminho
   const uu = erro === 'curta' ? mix(f('erro.curta.fracao'), 1, u) : u;
   const r = montar(corpo, c, t, uu);
-  const polia = cenaDaPolia(c.torre, r.est.elo, c.repouso);
+  const polia = cenaDaPolia(c.torre, r.est.elo, c.repouso, false, 150);
   return {
     esq: r.e,
     prims: [...c.b.prims, ...polia.prims, ...r.est.prims],

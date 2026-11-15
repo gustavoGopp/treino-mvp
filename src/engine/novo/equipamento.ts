@@ -266,8 +266,32 @@ export function equipamentoRealista(pecas: Peca[], cam: Camera, tema: Tema, id: 
         b = desenhar(null, cam, `${pid}m`, (C) => torreMovel(C, M, p.torre, p.subida));
       // como cenário, a coluna vai para uma camada atrás do corpo (e do corpo tracejado dos erros) e fora do enquadramento
       const fundo = (r: { itens: Item[]; defs: string }) => (p.cenario ? { itens: r.itens.map((it) => (it.camada >= 1 ? { ...it, camada: 0.4 } : it)), defs: r.defs } : r);
-      junta(fundo(a));
-      junta(fundo(b));
+      if (p.cortadaEmCima === undefined || p.cenario) {
+        junta(fundo(a));
+        junta(fundo(b));
+      } else {
+        // o enquadramento só conta a coluna até a altura pedida: a caixa na tela dessa parte de baixo
+        const cx: [number, number, number, number] = [1e9, 1e9, -1e9, -1e9];
+        const f = norm(p.torre.frente),
+          lado = norm(cross(f, Y));
+        for (const dl of [-1, 1])
+          for (const df of [-0.55, 0.3])
+            for (const y of [0, p.cortadaEmCima]) {
+              const q = comb([1, p.torre.base], [(dl * obj('torre', 'colunaLarg')) / 2, lado], [y, Y], [df * obj('torre', 'prof'), f]);
+              const tx = dot(q, cam.dir),
+                ty = -dot(q, cam.cima);
+              cx[0] = Math.min(cx[0], tx);
+              cx[1] = Math.min(cx[1], ty);
+              cx[2] = Math.max(cx[2], tx);
+              cx[3] = Math.max(cx[3], ty);
+            }
+        const semCaixa = (r: { itens: Item[]; defs: string }, comCx: boolean) => {
+          const primeiro = r.itens.findIndex((it) => it.camada >= 1);
+          return { itens: r.itens.map((it, i) => ({ ...it, cx: comCx && i === primeiro ? cx : undefined })), defs: r.defs };
+        };
+        junta(semCaixa(a, true));
+        junta(semCaixa(b, false));
+      }
     } else if (p.t === 'estribo') junta(desenhar(null, cam, pid, (C) => estribo(C, M, p)));
     else if (p.t === 'kettlebell') junta(desenhar(null, cam, pid, (C) => kettlebell(C, M, p)));
     else if (p.t === 'elastico') junta(desenhar(null, cam, pid, (C) => elastico(C, M, p)));

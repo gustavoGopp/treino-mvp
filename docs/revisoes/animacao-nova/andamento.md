@@ -2,7 +2,7 @@
 
 Atualizado por quem integra, a cada família juntada. "Aprovada na folha" = o Gustavo olhou e aprovou. "Aprovada por delegação" = conferida por quem integra, risco baixo, registrada com a frase dele de 15/11/2026. "Para o Gustavo ver" = risco médio ou alto: só entra na lista do app depois do ok dele. "Correção de qualidade" = desde o aviso dele de 15/11 ("o fato de eu ter delegado [...] não quer dizer que a gente pode diminuir a qualidade"), nenhuma animação delegada conta como pronta enquanto tiver defeito visível nos quadros (seção 8 de `como-fazer-uma-animacao.md`). As folhas ficam em `prototipos/folha-<id>.png` e os quadros grandes em `quadros/<id>.png`.
 
-Resumo: 15 aprovadas pelo Gustavo (7 na folha e 8 vendo os quadros); 42 por delegação; 2 prontas para o Gustavo ver; 4 das quatro primeiras sem aprovação na folha; 15 em andamento; 12 por fazer.
+Resumo: 15 aprovadas pelo Gustavo (7 na folha e 8 vendo os quadros); 45 por delegação; 2 prontas para o Gustavo ver; 4 das quatro primeiras sem aprovação na folha; 12 em andamento; 12 por fazer.
 
 | Lote | Exercício | Estado |
 |---|---|---|
@@ -41,13 +41,13 @@ Resumo: 15 aprovadas pelo Gustavo (7 na folha e 8 vendo os quadros); 42 por dele
 | 4 | `face-pull-elastico` | não entregue: com os braços à frente, o desenho do ombro de trás quase não aparece em nenhuma vista (9 cm², e o mínimo é 30); depende de um acerto no desenho desse músculo |
 | 4 | `puxada-elastico` | feita e conferida quadro a quadro por quem integra; aprovada por delegação (o tubo preso no alto de uma porta) |
 | 4 | `remada-apoiada` | em andamento (subagente) |
-| 4 | `remada-baixa` | em andamento (subagente) |
+| 4 | `remada-baixa` | feita e conferida quadro a quadro por quem integra; aprovada por delegação (sentado no banco, com o triângulo; vistas de três quartos e de trás; no corpo da mulher duas regras ainda falham) |
 | 4 | `remada-curvada-halteres` | feita e conferida quadro a quadro por quem integra; aprovada por delegação |
 | 4 | `remada-elastico` | feita e conferida quadro a quadro por quem integra; aprovada por delegação (sentado no chão; duas voltas do tubo em cada mão, para ele não ficar frouxo) |
 | 4 | `remada-suspensao` | feita e conferida quadro a quadro por quem integra; aprovada por delegação (o ponto de prender a fita fica a 183 cm, a altura do fabricante; hoje 205) |
 | 4 | `remada-unilateral` | feita e conferida quadro a quadro por quem integra; aprovada por delegação |
 | 4 | `remada-unilateral-kettlebell` | feita e conferida quadro a quadro por quem integra; aprovada por delegação |
-| 4 | `remada-unilateral-polia` | em andamento (subagente) |
+| 4 | `remada-unilateral-polia` | feita e conferida quadro a quadro por quem integra; aprovada por delegação (a coluna passou a ser cortada em cima pelo quadro, para o corpo ocupar o quadro) |
 | 4 | `remada-unilateral-sem-banco` | feita e conferida quadro a quadro por quem integra; aprovada por delegação |
 | 4 | `yt-suspensao` | feita e conferida quadro a quadro por quem integra; aprovada por delegação |
 | 5 | `rosca-alternada` | aprovada pelo Gustavo em 15/11/2026, vendo os quadros ("podem ficar assim, segue com as próximas"); depois refeita com o halter de 10 lb: os braços voltaram para junto do corpo (6°) e a palma para a frente. **Para o Gustavo ver** de novo, porque mudou |
@@ -84,7 +84,7 @@ Resumo: 15 aprovadas pelo Gustavo (7 na folha e 8 vendo os quadros); 42 por dele
 | 7 | `abdominal-bola` | feita e conferida quadro a quadro por quem integra; aprovada por delegação |
 | 7 | `abdominal-chao` | feita e conferida quadro a quadro por quem integra; aprovada por delegação |
 | 7 | `abdominal-invertido` | feita e conferida quadro a quadro por quem integra; aprovada por delegação |
-| 7 | `abdominal-polia` | em andamento (subagente) |
+| 7 | `abdominal-polia` | feita e conferida quadro a quadro por quem integra; aprovada por delegação |
 | 7 | `abducao-caneleira` | por fazer |
 | 7 | `abducao-deitado` | por fazer |
 | 7 | `abducao-mini-band` | por fazer |

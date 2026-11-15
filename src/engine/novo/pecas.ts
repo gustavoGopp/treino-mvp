@@ -126,7 +126,18 @@ export type Peca =
    * `cenario`: a coluna só serve de apoio para a mão (não é o equipamento do exercício). Ela é pintada atrás do corpo,
    * não entra no enquadramento (o quadro a corta em cima) e não aparece de perfil, onde ficaria atrás do tronco.
    */
-  | { t: 'torre'; torre: Torre; subida: number; cenario?: boolean }
+  | {
+      t: 'torre';
+      torre: Torre;
+      subida: number;
+      cenario?: boolean;
+      /**
+       * `cortadaEmCima`: a coluna continua sendo o equipamento do exercício (pintada na ordem certa, também de perfil),
+       * mas o enquadramento só precisa mostrá-la até essa altura (cm); o resto é cortado pela borda do quadro. Para os
+       * exercícios na polia baixa: sem isso, a coluna de 2,39 m deixava o corpo pequeno no quadro.
+       */
+      cortadaEmCima?: number;
+    }
   | { t: 'estribo'; pegada: V3; eixo: V3; elo: V3 }
   | { t: 'cabo'; a: V3; b: V3 }
   | { t: 'colchonete'; x0: number; z0: number }

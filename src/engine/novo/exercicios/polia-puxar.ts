@@ -43,12 +43,13 @@ export function folgaEntre(e: Esq, a: (parte: string, p: V3) => boolean, b: (par
  * A coluna de polia e o cabo, reto da roldana até o ponto em que ele prende (`prende`: o elo do estribo, a ponta do
  * triângulo ou a bucha da corda). `repouso` é o comprimento do cabo com a pilha no lugar (a pilha fica 2 cm acima do
  * apoio, para se ver que está levantada); cada centímetro a mais de cabo sobe a pilha meio centímetro (a relação 2:1).
+ * `cortadaEmCima`: até que altura o quadro precisa mostrar a coluna (polia baixa: o resto é cortado pela borda).
  */
-export function cenaDaPolia(t: Torre, prende: V3, repouso: number, cenario = false): { prims: Quadro['prims']; pecas: Peca[]; comp: number; subida: number; saida: V3 } {
+export function cenaDaPolia(t: Torre, prende: V3, repouso: number, cenario = false, cortadaEmCima?: number): { prims: Quadro['prims']; pecas: Peca[]; comp: number; subida: number; saida: V3 } {
   const saida = saidaDoCabo(t, prende);
   const comp = dist(prende, saida);
   const subida = Math.max(0, comp - repouso) / obj('torre', 'relacao') + 2;
-  return { prims: [...torre(t, subida), cabo(prende, saida)], pecas: [{ t: 'torre', torre: t, subida, ...(cenario ? { cenario } : {}) }, { t: 'cabo', a: prende, b: saida }], comp, subida, saida };
+  return { prims: [...torre(t, subida), cabo(prende, saida)], pecas: [{ t: 'torre', torre: t, subida, ...(cenario ? { cenario } : {}), ...(cortadaEmCima !== undefined ? { cortadaEmCima } : {}) }, { t: 'cabo', a: prende, b: saida }], comp, subida, saida };
 }
 
 export interface BracoPeloCabo {

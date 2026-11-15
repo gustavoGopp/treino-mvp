@@ -332,7 +332,7 @@ export function criarTricepsFrances(fichaJson: unknown, carga: CargaDoFrances): 
       const comp = dist(est.elo, saida);
       const subida = Math.max(0, comp - c.compMin) / obj('torre', 'relacao') + 2;
       const prims = [chao(-60, 60, c.polia.base[2] - 50, 80), ...torre(c.polia, subida), ...est.prims, cabo(est.elo, saida)];
-      const pecas: Peca[] = [{ t: 'torre', torre: c.polia, subida }, { t: 'estribo', pegada: R.pegada, eixo: R.mao.x, elo: est.elo }, { t: 'cabo', a: est.elo, b: saida }];
+      const pecas: Peca[] = [{ t: 'torre', torre: c.polia, subida, cortadaEmCima: 150 }, { t: 'estribo', pegada: R.pegada, eixo: R.mao.x, elo: est.elo }, { t: 'cabo', a: est.elo, b: saida }];
       marcas.elo = est.elo;
       marcas.pilha = [0, subida, 0];
       marcas.saida = saida;
