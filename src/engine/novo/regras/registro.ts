@@ -15,3 +15,4 @@ export { regrasDasRoscas } from './roscas';
 export { regrasDasPanturrilhas } from './panturrilhas';
 export { REGRAS_TRICEPS_CORDA } from './triceps-corda';
 export { REGRAS_TRICEPS_FRANCES_UNILATERAL } from './triceps-frances-unilateral';
+export { REGRAS_ABDOMINAIS } from './abdominais';

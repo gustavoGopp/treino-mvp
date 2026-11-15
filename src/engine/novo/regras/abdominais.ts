@@ -1,0 +1,79 @@
+// As regras medidas dos abdominais deitados (no chão, invertido e na bola). Medem a superfície do Boneco (e não a
+// aproximação que o núcleo usa para pôr o corpo no chão).
+import { pontosDoBoneco } from '../boneco';
+import { f1, faixa } from '../conferir-util';
+import type { Regra } from '../conferir-util';
+import { poseEmPe, resolver } from '../esqueleto';
+import type { Esq } from '../esqueleto';
+import type { Corpo } from '../tabelas';
+import { anguloEm, dist, paraRef } from '../vec';
+
+/** O ponto mais baixo (y) de cada parte do Boneco. */
+function maisBaixos(e: Esq): Record<string, number> {
+  const out: Record<string, number> = {};
+  for (const { p, parte } of pontosDoBoneco(e)) out[parte] = Math.min(out[parte] ?? 1e9, p[1]);
+  return out;
+}
+/**
+ * O ponto mais baixo das costas da altura das escápulas para cima: a pele do tronco acima do ângulo inferior da
+ * escápula (no referencial do tórax), medida a partir de `chao`.
+ */
+export function escapulasAoChao(e: Esq, chao = 0): number {
+  const yInf = Math.max(paraRef(e.torax, e.lado.R.escapula.anguloInferior)[1], paraRef(e.torax, e.lado.L.escapula.anguloInferior)[1]);
+  let m = 1e9;
+  for (const { p, parte } of pontosDoBoneco(e)) if (parte === 'tronco' && paraRef(e.torax, p)[1] > yInf) m = Math.min(m, p[1] - chao);
+  return m;
+}
+/**
+ * De quanto a cabeça dobra sobre o alto do tórax (a direção da coluna em C7–T1) além do que dobra em pé (graus): o
+ * pescoço "acompanha" o tronco quando é pouco.
+ */
+const EM_PE = new WeakMap<Corpo, number>();
+export function cabecaSobreOTorax(e: Esq): number {
+  let a0 = EM_PE.get(e.corpo);
+  if (a0 === undefined) {
+    const p = resolver(e.corpo, poseEmPe(e.corpo));
+    a0 = anguloEm(p.nos[p.iC7]!.ref.y, p.cabeca.y, p.cabeca.x);
+    EM_PE.set(e.corpo, a0);
+  }
+  return anguloEm(e.nos[e.iC7]!.ref.y, e.cabeca.y, e.cabeca.x) - a0;
+}
+/** A menor distância da pele da cabeça à pele das mãos (cm). */
+function maosACabeca(e: Esq): number {
+  const pts = pontosDoBoneco(e);
+  const cab = pts.filter((x) => x.parte === 'cabeca').map((x) => x.p),
+    maos = pts.filter((x) => x.parte === 'mao' || x.parte === 'polegar').map((x) => x.p);
+  let d = 1e9;
+  for (const a of cab) for (const b of maos) d = Math.min(d, dist(a, b));
+  return d;
+}
+
+export const REGRAS_ABDOMINAIS: Record<string, Regra> = {
+  'abdominal-escapulas-saem-do-chao': (q) => {
+    const ini = escapulasAoChao(q[0]!.esq),
+      fim = escapulasAoChao(q[q.length - 1]!.esq);
+    return { medido: `embaixo, as costas na altura das escápulas ficam a ${f1(ini)} cm do chão; no topo, a ${f1(fim)} cm (o tórax a ${f1(inclinacao(q[q.length - 1]!.esq))}° do chão)`, ok: ini >= -1.5 && ini <= 1 && fim >= 2 };
+  },
+  'abdominal-lombar-apoiada': (q) => {
+    const pel = faixa(q.map((x) => maisBaixos(x.esq).pelve!));
+    const t12 = q.map((x) => x.esq.nos[x.esq.iT12]!.ref.o[1]);
+    const sobe = Math.max(...t12) - t12[0]!;
+    return { medido: `a pele do glúteo fica de ${f1(pel[0])} a ${f1(pel[1])} cm do chão; a coluna em T12–L1 (o alto da lombar) sobe ${f1(sobe)} cm`, ok: pel[0] >= -1.5 && pel[1] <= 0.5 && sobe <= 2 };
+  },
+  'abdominal-pescoco-acompanha': (q) => {
+    const a = q.map((x) => cabecaSobreOTorax(x.esq));
+    const [min, max] = faixa(a);
+    return { medido: `a cabeça dobra sobre o alto do tórax de ${f1(min)}° a ${f1(max)}° além do que dobra em pé (positivo = o queixo para o peito)`, ok: max <= 20 };
+  },
+  'abdominal-maos-no-peito': (q) => {
+    // as mãos andam presas ao tórax e longe da cabeça (não a puxam)
+    const anda = Math.max(...q.flatMap((x) => (['R', 'L'] as const).map((k) => dist(paraRef(x.esq.torax, x.esq.lado[k].punho), paraRef(q[0]!.esq.torax, q[0]!.esq.lado[k].punho)))));
+    const longe = Math.min(...[q[0]!, q[q.length - 1]!].map((x) => maosACabeca(x.esq)));
+    return { medido: `os punhos andam ${f1(anda)} cm em relação ao tórax; a mão mais perto da cabeça fica a ${f1(longe)} cm dela`, ok: anda <= 0.3 && longe >= 5 };
+  },
+};
+function inclinacao(e: Esq): number {
+  const a = e.nos[e.iT12]!.ref.o,
+    b = e.torax.o;
+  return (Math.atan2(b[1] - a[1], Math.abs(b[2] - a[2])) * 180) / Math.PI;
+}
