@@ -22,7 +22,7 @@ import { bancoRegulavelProvisorio, faceDoEncosto } from '../pecas-de-cena/banco-
 import type { BancoRegulavel } from '../pecas-de-cena/banco-regulavel-provisorio';
 import type { Corpo } from '../tabelas';
 import { obj } from '../tabelas';
-import { add, dirRef, dist, dot, mix, mul, norm, sub } from '../vec';
+import { add, cross, dirRef, dist, dot, mix, mul, norm, sub } from '../vec';
 import type { V3 } from '../vec';
 import { maosNaCintura } from './afundo-estatico';
 import { dobrarOQuadril } from './dobrar-o-quadril';
@@ -48,6 +48,8 @@ export function criarDesenvolvimento(fichaJson: unknown, carga: CargaDoDesenvolv
     el: number;
     frente: number;
     punho: number;
+    /** Kettlebell: o giro da mão, de 0 (palma para dentro, polegar para trás) a 90 (palma para a frente, polegar para dentro). */
+    giro: number;
   }
   /** O braço que empurra: úmero na direção pedida, antebraço na vertical, mão alinhada (ou dobrada para trás `punho` graus). */
   function braco(corpo: Corpo, e: Esq, k: Lado, b: Braco): PoseBraco {
@@ -56,16 +58,20 @@ export function criarDesenvolvimento(fichaJson: unknown, carga: CargaDoDesenvolv
     const ombro = e.lado[k].ombro;
     const cot = add(ombro, mul(umero, corpo.m('braco.comp')));
     const punho = add(cot, [0, corpo.m('antebraco.comp'), 0]);
-    // para onde o cotovelo aponta: para fora da linha que sobe do ombro
-    const polo = norm(sub(cot, add(ombro, [0, cot[1] - ombro[1], 0])));
+    // para onde o cotovelo aponta: para fora da linha do ombro ao punho (do lado em que o cotovelo está)
+    const op = norm(sub(punho, ombro));
+    const polo = norm(sub(sub(cot, ombro), mul(op, dot(sub(cot, ombro), op))));
     if (sentado) {
       // halteres: palmas para a frente, o cabo atravessado (o polegar para dentro)
       return { umero, antebraco: [0, 1, 0], polo, mao: { polegar: [-s, 0, 0], forma: 'pegada', diam: obj('halter', 'caboDiam') } };
     }
-    // kettlebell: a alça atravessa a palma; o punho reto (ou dobrado para trás, no erro)
+    // kettlebell: a mão gira de palma para dentro (embaixo) a palma para a frente (no topo); o punho reto, ou dobrado
+    // para trás (para o dorso da mão) no erro
+    const g = b.giro * rad;
+    const polegar = norm(dirRef(e.torax, [-s * Math.sin(g), 0, -Math.cos(g)]));
+    const dorso = norm(cross([0, 1, 0], polegar));
     const p = b.punho * rad;
-    const dedos = norm(add(mul([0, 1, 0], Math.cos(p)), mul(dirRef(e.torax, [0, 0, -1]), Math.sin(p))));
-    const polegar = norm(dirRef(e.torax, [-s, 0, f('kettlebell.alcaParaTras')]));
+    const dedos = norm(add(mul([0, 1, 0], Math.cos(p)), mul(dorso, Math.sin(p))));
     return { punho, polo, mao: { polegar, dedos, forma: 'pegada', diam: obj('kettlebell', 'alcaDiam') } };
   }
 
@@ -73,11 +79,12 @@ export function criarDesenvolvimento(fichaJson: unknown, carga: CargaDoDesenvolv
   const K = formaDoKettlebell();
   /** Da alça (onde a mão segura) ao centro da bola. */
   const alcaABola = () => K.altura - K.rAlca - K.centro;
-  /** A bola, dada a mão: ela fica do lado de fora e atrás do antebraço, `beta` graus fora da linha do antebraço. */
+  /** A bola, dada a mão: ela fica do lado do dorso da mão (e um pouco para fora), `beta` graus fora da linha do antebraço. */
   function bolaDoKettlebell(e: Esq, beta: number): { centro: V3; cima: V3 } {
     const L = e.lado.R;
     const desce = norm(sub(L.cotovelo, L.punho));
-    const lado = norm(dirRef(e.torax, [-1, 0, -f('kettlebell.bolaParaTras')]));
+    const dorso = norm(cross(mul(L.mao.y, -1), mul(L.mao.x, sinal('R'))));
+    const lado = norm(add(dorso, dirRef(e.torax, [-f('kettlebell.bolaParaFora'), 0, 0])));
     const fora = norm(sub(lado, mul(desce, dot(lado, desce))));
     const dir = norm(add(mul(desce, Math.cos(beta * rad)), mul(fora, Math.sin(beta * rad))));
     return { centro: add(L.pegada, mul(dir, alcaABola())), cima: mul(dir, -1) };
@@ -151,7 +158,7 @@ export function criarDesenvolvimento(fichaJson: unknown, carga: CargaDoDesenvolv
   function pedido(u: number, erro?: string): Pedido {
     const de = erro === 'curta' ? f('erro.curta.elevacao') : f('braco.baixo.elevacao');
     const p: Pedido = {
-      braco: { el: mix(de, f('braco.topo.elevacao'), u), frente: mix(f('braco.baixo.frente'), f('braco.topo.frente'), u), punho: 0 },
+      braco: { el: mix(de, f('braco.topo.elevacao'), u), frente: mix(f('braco.baixo.frente'), f('braco.topo.frente'), u), punho: 0, giro: sentado ? 0 : mix(f('mao.giro.baixo'), f('mao.giro.topo'), u) },
       lombar: 0,
       toracica: 0,
       frente: f('bacia'),
@@ -177,7 +184,7 @@ export function criarDesenvolvimento(fichaJson: unknown, carga: CargaDoDesenvolv
   function emPe(corpo: Corpo, o: Pedido): { e: Esq; cargas: Carga[]; alfa: number } {
     const r = dobrarOQuadril(corpo, {
       joelho: o.joelho,
-      tronco: o.frente + o.lombar + o.toracica,
+      tronco: o.frente + o.lombar,
       lombar: o.lombar,
       toracica: o.toracica,
       cervical: f('cervical'),
@@ -197,15 +204,20 @@ export function criarDesenvolvimento(fichaJson: unknown, carga: CargaDoDesenvolv
     return { e: r.e, cargas: r.cargas, alfa: r.alfa };
   }
   /**
-   * Em pé, uma vez por corpo e sempre na mesma ordem: o ângulo do quadril (o equilíbrio do meio da subida, com a carga
-   * na mão) e o ângulo da bola no antebraço (embaixo, com esse quadril).
+   * Em pé, uma vez por corpo e sempre na mesma ordem: um primeiro ângulo do quadril (o equilíbrio do meio da subida,
+   * com a carga na mão), o ângulo da bola no antebraço (embaixo, com esse quadril) e o ângulo do quadril de novo, com a
+   * carga na bola (a média do equilíbrio ao longo da subida).
    */
   function calibrarEmPe(corpo: Corpo): number {
     const ja = ALFA.get(corpo);
     if (ja !== undefined) return ja;
-    const alfa = emPe(corpo, pedido(0.5)).alfa;
-    const e0 = emPe(corpo, { ...pedido(0), alfa }).e;
+    const alfa0 = emPe(corpo, pedido(0.5)).alfa;
+    const e0 = emPe(corpo, { ...pedido(0), alfa: alfa0 }).e;
     BETA.set(corpo, resolver1((b) => folgaNoAntebraco(e0, b) - f('kettlebell.folga'), 20, 89, 24));
+    // de novo o equilíbrio, agora com a carga na bola: a média dos ângulos de equilíbrio em cinco pontos da subida, para
+    // o centro de massa andar o mesmo para a frente e para trás do meio do pé
+    const us = [0, 0.25, 0.5, 0.75, 1];
+    const alfa = us.reduce((a, u) => a + emPe(corpo, pedido(u)).alfa, 0) / us.length;
     ALFA.set(corpo, alfa);
     return alfa;
   }

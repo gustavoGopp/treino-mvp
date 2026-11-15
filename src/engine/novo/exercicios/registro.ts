@@ -41,3 +41,4 @@ export { tricepsFrancesKettlebell } from './triceps-frances-kettlebell';
 export { elevacaoLateral } from './elevacao-lateral';
 export { elevacaoHalteres } from './elevacao-halteres';
 export { desenvolvimento } from './desenvolvimento';
+export { desenvolvimentoUnilateralKettlebell } from './desenvolvimento-unilateral-kettlebell';

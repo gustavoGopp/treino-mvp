@@ -141,4 +141,19 @@ export const regrasDosOmbros: Record<string, Regra> = {
     const d = Math.hypot(L.pegada[0] - L.ombro[0], L.pegada[2] - L.ombro[2]);
     return { medido: `no topo, o cotovelo dobra ${f1(L.ang.cotovelo)}°, a mão fica ${f1(L.pegada[1] - topo)} cm acima do alto da cabeça e a ${f1(d)} cm da vertical do ombro`, ok: L.ang.cotovelo <= 12 && L.pegada[1] > topo && d <= 8 };
   },
+  'kettlebell-na-altura-do-ombro': (q) => {
+    const L = q[0]!.esq.lado.R;
+    const d = L.pegada[1] - L.acromioclavicular[1];
+    return { medido: `embaixo, o centro da mão fica ${f1(Math.abs(d))} cm ${d >= 0 ? 'acima' : 'abaixo'} da ponta do ombro`, ok: Math.abs(d) <= 6 };
+  },
+  'cotovelo-junto-ao-corpo': (q) => {
+    // embaixo, a menor distância da pele do braço (perto do cotovelo) à pele do tronco
+    const e = q[0]!.esq;
+    const P = pontosDoBoneco(e);
+    const braco = P.filter((p) => p.parte === 'braco' && dist(p.p, e.lado.R.cotovelo) < 10).map((p) => p.p);
+    const tronco = P.filter((p) => p.parte === 'tronco' || p.parte === 'cintura').map((p) => p.p);
+    let min = 1e9;
+    for (const a of braco) for (const b of tronco) min = Math.min(min, dist(a, b));
+    return { medido: `embaixo, o braço perto do cotovelo fica a ${f1(min)} cm da pele do tronco`, ok: min <= 4 };
+  },
 };
