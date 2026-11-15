@@ -2,7 +2,7 @@
 // (com halteres, sentado, e com kettlebell, em pé). A lombar neutra, o antebraço na vertical, o tronco levemente à frente
 // e o peso no meio do pé estão em ../conferir.ts.
 import { pontosDoBoneco } from '../boneco';
-import { f1, faixa } from '../conferir-util';
+import { angulosDoLado, f1, faixa } from '../conferir-util';
 import type { Regra } from '../conferir-util';
 import { centroDeMassa } from '../movimento';
 import type { Quadro } from '../movimento';
@@ -78,5 +78,67 @@ export const regrasDosOmbros: Record<string, Regra> = {
       for (const { p, parte } of pontosDoBoneco(x.esq)) if (parte !== 'mao' && parte !== 'polegar' && !(parte === 'ante' && dist(p, x.esq.lado.R.punho) < 8)) min = Math.min(min, aoSegmento(p, a, b));
     }
     return { medido: `o cabo passa a no mínimo ${f1(min)} cm da pele`, ok: min >= 0.5 };
+  },
+  // ----- desenvolvimentos -----
+  'carga-na-altura-das-orelhas': (q) => {
+    // a orelha: a origem do referencial da cabeça fica na altura do trágio
+    const x = q[0]!.esq;
+    const d = x.lado.R.pegada[1] - x.cabeca.o[1];
+    return { medido: `embaixo, o centro da mão fica ${f1(Math.abs(d))} cm ${d >= 0 ? 'acima' : 'abaixo'} da orelha`, ok: d >= -6 && d <= 3 };
+  },
+  'cotovelos-um-pouco-a-frente': (q) => {
+    const L = q[0]!.esq.lado.R;
+    const b = sub(L.cotovelo, L.ombro);
+    const a = Math.atan2(b[2], Math.abs(b[0])) / grau;
+    return { medido: `embaixo, o cotovelo fica ${f1(a)}° à frente do plano do corpo (visto de cima)`, ok: a >= 20 && a <= 45 };
+  },
+  'bracos-quase-estendidos-sobre-os-ombros': (q) => {
+    const L = q[q.length - 1]!.esq.lado.R;
+    const d = Math.hypot(L.pegada[0] - L.ombro[0], L.pegada[2] - L.ombro[2]);
+    return { medido: `no topo, o cotovelo dobra ${f1(L.ang.cotovelo)}° e o centro da mão fica a ${f1(d)} cm da vertical do ombro`, ok: L.ang.cotovelo >= 3 && L.ang.cotovelo <= 20 && d <= 8 };
+  },
+  'carga-longe-da-cabeca': (q) => {
+    // as cargas (prismas do halter, a bola do kettlebell) não encostam na cabeça nem uma na outra
+    let min = 1e9,
+      entre = 1e9;
+    for (const x of q.filter((_, i) => i % 3 === 0 || i === q.length - 1)) {
+      const cab = pontosDoBoneco(x.esq).filter((p) => p.parte === 'cabeca' || p.parte === 'pescoco').map((p) => p.p);
+      const cargas = x.prims.filter((p) => p.t === 'prisma' || p.t === 'esfera');
+      for (const c of cargas)
+        for (const p of cab) min = Math.min(min, c.t === 'prisma' ? aoSegmento(p, c.a, c.b) - c.ra : c.t === 'esfera' ? dist(p, c.c) - c.r : 1e9);
+      const prs = cargas.filter((c) => c.t === 'prisma');
+      for (const a of prs) for (const b of prs) if (a !== b && a.t === 'prisma' && b.t === 'prisma' && Math.sign(a.a[0]) !== Math.sign(b.a[0])) entre = Math.min(entre, dist(a.a, b.a), dist(a.a, b.b), dist(a.b, b.a), dist(a.b, b.b));
+    }
+    return { medido: `a carga passa a no mínimo ${f1(min)} cm da cabeça${entre < 1e8 ? `; as pontas de dentro dos halteres ficam a no mínimo ${f1(entre)} cm uma da outra` : ''}`, ok: min >= 1 && (entre > 1e8 || entre >= 0.5) };
+  },
+  'costas-e-cabeca-no-encosto': (q) => {
+    // a folga entre a pele e a face do encosto: o tronco de cima e a nuca encostam (o estofado afunda até 2,5 cm)
+    const enc = q[0]!.marcas.encosto!,
+      n = q[0]!.marcas.encostoNormal!;
+    const fundo = (x: Quadro, partes: string[]) => Math.min(...pontosDoBoneco(x.esq).filter((p) => partes.includes(p.parte)).map((p) => dot(sub(p.p, enc), n)));
+    const [c0, c1] = faixa(q.map((x) => fundo(x, ['tronco'])));
+    const [h0, h1] = faixa(q.map((x) => fundo(x, ['cabeca'])));
+    return { medido: `as costas ficam de ${f1(c0)} a ${f1(c1)} cm da face do encosto e a nuca de ${f1(h0)} a ${f1(h1)} cm (negativo = afunda no estofado)`, ok: c0 >= -2.5 && c1 <= 1 && h0 >= -2.5 && h1 <= 1 };
+  },
+  'kettlebell-no-antebraco': (q) => {
+    const d = q.filter((_, i) => i % 3 === 0 || i === q.length - 1).map((x) => {
+      const c = x.marcas.bola!;
+      const r = x.prims.find((p) => p.t === 'esfera')!;
+      const raio = r.t === 'esfera' ? r.r : 0;
+      return Math.min(...pontosDoBoneco(x.esq).filter((p) => p.parte === 'ante' || p.parte === 'mao').map((p) => dist(p.p, c) - raio));
+    });
+    const [a, b] = faixa(d);
+    return { medido: `a bola fica de ${f1(a)} a ${f1(b)} cm da pele do antebraço (negativo = entra)`, ok: a >= -1 && b <= 1.5 };
+  },
+  'punho-reto': (q) => {
+    const m = Math.max(...q.map((x) => Math.abs(angulosDoLado(x.esq, 'R').punho)));
+    return { medido: `o punho dobra no máximo ${f1(m)}° (0 = alinhado com o antebraço)`, ok: m <= 5 };
+  },
+  'braco-estendido-acima-da-cabeca': (q, corpo) => {
+    const x = q[q.length - 1]!.esq,
+      L = x.lado.R;
+    const topo = x.cabeca.o[1] + corpo.m('cabeca.tragionAoTopo');
+    const d = Math.hypot(L.pegada[0] - L.ombro[0], L.pegada[2] - L.ombro[2]);
+    return { medido: `no topo, o cotovelo dobra ${f1(L.ang.cotovelo)}°, a mão fica ${f1(L.pegada[1] - topo)} cm acima do alto da cabeça e a ${f1(d)} cm da vertical do ombro`, ok: L.ang.cotovelo <= 12 && L.pegada[1] > topo && d <= 8 };
   },
 };

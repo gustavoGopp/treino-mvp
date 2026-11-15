@@ -1,0 +1,57 @@
+{
+ "id": "desenvolvimento",
+ "nome": "Desenvolvimento sentado com halteres",
+ "fichaDaTecnica": "docs/pesquisa/animacoes/desenvolvimento.md",
+ "fontes": {
+  "guia": "Guia original do projeto (referencia/guia-execucao-fase1.html), como registrado em docs/pesquisa/animacoes/desenvolvimento.md e no texto do app (src/conteudo/exercicios/desenvolvimento.json): consenso de treinadores",
+  "app": "Texto do app (src/conteudo/exercicios/desenvolvimento.json): 'Encosto a 75–80°, não a 90°'; campo 'vary': 'O quanto os cotovelos ficam à frente (de ~20° a ~45°) depende de como o seu ombro se sente'",
+  "hoje": "Animação aprovada no guia de hoje (src/engine/exercicios/desenvolvimento.ts): tempos das fases e erros",
+  "objetos": "src/engine/novo/dados/objetos.json",
+  "desenho": "Escolha de desenho desta animação, dentro do que a ficha pede; a conferência mede o resultado"
+ },
+ "param": {
+  "encosto": {"v": 78, "un": "graus", "selo": "consenso", "fonte": "app", "o": "encosto a 75–80° da horizontal, não a 90°: o desenho usa 78°"},
+  "bacia": {"v": -16, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "a bacia inclina para trás o bastante para a coluna, com as curvas de repouso, ficar paralela ao encosto (a ficha só diz 'costas apoiadas')"},
+  "cabeca": {"v": 4, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "a cabeça apoiada, com o queixo um pouco recolhido para o olhar ir à frente (a extensão do pescoço sai do contato da nuca com o encosto)"},
+  "estofado.afunda": {"v": 1, "un": "cm", "selo": "desenho", "fonte": "desenho", "o": "quanto as nádegas, as costas e a nuca afundam no estofado"},
+  "pes.meiaDistancia": {"v": 16, "un": "cm", "selo": "desenho", "fonte": "desenho", "o": "pés firmes no chão, um pouco mais afastados que o quadril, para a base ficar firme (a ficha não dá número)"},
+  "pes.aFrente": {"v": 56, "un": "cm", "selo": "desenho", "fonte": "desenho", "o": "onde a bola do pé apoia, à frente da dobradiça do banco: a canela fica quase em pé (a ficha não dá número)"},
+  "braco.baixo.elevacao": {"v": -24, "un": "graus", "selo": "consenso", "fonte": "guia", "o": "embaixo, os halteres na altura das orelhas: o úmero fica 24° abaixo da horizontal (com o antebraço na vertical, é o que leva a mão à altura da orelha)"},
+  "braco.baixo.frente": {"v": 30, "un": "graus", "selo": "consenso", "fonte": "app", "o": "cotovelos um pouco à frente do corpo: 30° à frente do plano do corpo, no meio da faixa de ~20° a ~45° do texto do app"},
+  "braco.topo.elevacao": {"v": 80, "un": "graus", "selo": "consenso", "fonte": "guia", "o": "no topo, cotovelos quase estendidos: o úmero fica 10° fora da vertical (com o antebraço na vertical, o cotovelo dobra 10°)"},
+  "braco.topo.frente": {"v": 30, "un": "graus", "selo": "consenso", "fonte": "guia", "o": "no topo, o braço sobre o ombro: o cotovelo continua à frente"},
+  "carga": {"v": 11.3, "un": "kg", "selo": "desenho", "fonte": "objetos", "o": "cada halter desenhado (25 lb, o da tabela de objetos)"},
+  "erro.arco.lombar": {"v": -22, "un": "graus", "selo": "desenho", "fonte": "hoje", "o": "erro: a lombar arqueia 22° no topo (hoje: −28)"},
+  "erro.arco.toracica": {"v": -8, "un": "graus", "selo": "desenho", "fonte": "hoje", "o": "erro: as costas de cima também estendem 8°"},
+  "erro.arco.bacia": {"v": 14, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "erro: a bacia inclina 14° à frente no assento e as costas de baixo saem do encosto; o peito vai para trás"},
+  "erro.cotovelo.frente": {"v": -15, "un": "graus", "selo": "desenho", "fonte": "hoje", "o": "erro: embaixo, os cotovelos ficam 15° atrás da linha do corpo"},
+  "erro.curta.elevacao": {"v": 35, "un": "graus", "selo": "desenho", "fonte": "hoje", "o": "erro: a descida para com o úmero 35° acima da horizontal, os halteres acima da cabeça"}
+ },
+ "fases": [
+  {"nome": "Embaixo", "tipo": "pausa", "dur": 0.45, "de": 0, "ate": 0, "respira": "INSPIRA", "tempo": "altura das orelhas", "selo": "consenso", "fonte": "guia"},
+  {"nome": "Subida · concêntrica", "tipo": "conc", "dur": 1.3, "de": 0, "ate": 1, "respira": "EXPIRA", "tempo": "~1–1,5 s", "selo": "consenso", "fonte": "guia"},
+  {"nome": "Topo", "tipo": "pausa", "dur": 0.4, "de": 1, "ate": 1, "respira": "FIRME", "tempo": "cotovelos quase estendidos", "selo": "consenso", "fonte": "guia"},
+  {"nome": "Descida · excêntrica", "tipo": "exc", "dur": 2.4, "de": 1, "ate": 0, "respira": "INSPIRA", "tempo": "~2–3 s", "selo": "consenso", "fonte": "guia"}
+ ],
+ "contatos": ["pe.R", "pe.L", "pelve"],
+ "regras": [
+  {"id": "costas-e-cabeca-no-encosto", "pede": "sentado com as costas e a cabeça apoiadas", "selo": "consenso", "fonte": "guia"},
+  {"id": "lombar-neutra", "pede": "a lombar não arqueia (costas no encosto)", "selo": "consenso", "fonte": "guia"},
+  {"id": "carga-na-altura-das-orelhas", "pede": "embaixo, halteres na altura das orelhas (ou um pouco abaixo)", "selo": "consenso", "fonte": "guia"},
+  {"id": "cotovelos-um-pouco-a-frente", "pede": "cotovelos um pouco à frente do corpo (de ~20° a ~45°)", "selo": "consenso", "fonte": "app"},
+  {"id": "antebraco-na-vertical", "pede": "antebraços na vertical", "selo": "consenso", "fonte": "guia"},
+  {"id": "bracos-quase-estendidos-sobre-os-ombros", "pede": "em cima, braços quase estendidos sobre os ombros", "selo": "consenso", "fonte": "guia"},
+  {"id": "carga-longe-da-cabeca", "pede": "os halteres sobem sem bater na cabeça e sem bater um no outro", "selo": "consenso", "fonte": "guia"}
+ ],
+ "erros": [
+  {"id": "arco", "instante": 1, "titulo": "Arquear a lombar", "vista": "lateral", "oQueMuda": "a lombar arqueia, as costas de baixo saem do encosto e o peito vai para trás", "destaca": ["corpo"], "linha": ["pelve", "lombar", "c7", "cabeca"], "foco": "lombar"},
+  {"id": "cotovelo", "instante": 0, "titulo": "Cotovelos para trás", "vista": "cima", "oQueMuda": "embaixo, os cotovelos abrem atrás da linha do corpo", "destaca": ["bracos"], "linha": ["ombro", "cotovelo"], "foco": "cotovelo"},
+  {"id": "curta", "instante": 0, "titulo": "Descer pouco", "vista": "frontal", "oQueMuda": "a descida para com os halteres acima da cabeça", "destaca": ["bracos"], "linha": ["ombro", "cotovelo", "pegada"], "foco": "pegada"}
+ ],
+ "simetrico": true,
+ "rotulos": [
+  {"vista": "lateral", "texto": "costas no encosto", "ponto": "c7", "selo": "consenso", "fonte": "guia"},
+  {"vista": "lateral", "texto": "cotovelos um pouco à frente", "ponto": "cotovelo", "selo": "consenso", "fonte": "guia"},
+  {"vista": "frontal", "texto": "sobe e fecha um pouco", "ponto": "pegada", "selo": "consenso", "fonte": "guia"}
+ ]
+}
