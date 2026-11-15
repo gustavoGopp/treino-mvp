@@ -87,6 +87,28 @@ export const regrasDasRoscas: Record<string, Regra> = {
     }
     return { medido: `a menor folga entre a carga e a pele (fora a mão que segura) é ${f1(pior)} cm (${onde})`, ok: pior >= -0.5 };
   },
+  'bola-pendurada-na-rosca': (q) => {
+    // a bola só gira em volta da barra da alça (que atravessa a palma): pendurada, ela fica no ponto mais baixo que
+    // esse giro deixa; quando o antebraço sobe, encosta nele e gira com ele. Mede o quanto ela sai do ponto mais baixo
+    // enquanto o antebraço está abaixo de 60° de flexão, e a inclinação da alça
+    let pendendo = 0,
+      alca = 0,
+      encostada = 0;
+    for (const x of q) {
+      const L = x.esq.lado.R,
+        d = sub(x.marcas.bola!, L.pegada);
+      const eixo = L.mao.x;
+      const e = Math.hypot(...eixo);
+      const k = dot([0, -1, 0], eixo) / (e * e);
+      const baixo: V3 = [eixo[0] * -k, -1 - eixo[1] * k, eixo[2] * -k];
+      const desvio = Math.acos(Math.max(-1, Math.min(1, dot(d, baixo) / (Math.hypot(...d) * Math.hypot(...baixo))))) / (Math.PI / 180);
+      if (L.ang.cotovelo < 60) {
+        pendendo = Math.max(pendendo, desvio);
+        alca = Math.max(alca, Math.abs(Math.asin(eixo[1] / e)) / (Math.PI / 180));
+      } else encostada = Math.max(encostada, desvio);
+    }
+    return { medido: `com o antebraço abaixo de 60° de flexão, a bola fica no máximo ${f1(pendendo)}° fora do ponto mais baixo (a alça inclina até ${f1(alca)}°); acima, ela encosta no antebraço e gira até ${f1(encostada)}°`, ok: pendendo <= 3 && alca <= 15 };
+  },
   'um-braco-de-cada-vez': (q) => {
     const anda = Math.max(...q.map((x) => dist(x.esq.lado.L.pegada, q[0]!.esq.lado.L.pegada)));
     return { medido: `enquanto o braço direito sobe, a mão esquerda anda ${f1(anda)} cm`, ok: anda <= 0.1 };

@@ -96,7 +96,7 @@ export function kettlebellNaMao(e: Esq, k: Lado, folga: number): { prims: Quadro
   const lado = thAnte >= 0 ? -1 : 1;
   const longe = thAnte + lado * minimo; // o ângulo da bola encostada no antebraço
   // pendendo: th = 0. Encostada: `longe`. Fica com o que está mais longe do antebraço, suavemente.
-  const suaveMax = (x: number, y: number, r = 0.18) => (x + y + Math.sqrt((x - y) * (x - y) + r * r)) / 2 - r / 2;
+  const suaveMax = (x: number, y: number, r = 0.06) => (x + y + Math.sqrt((x - y) * (x - y) + r * r)) / 2 - r / 2;
   const th = lado < 0 ? -suaveMax(0, -longe) : suaveMax(0, longe);
   const d = dir(th);
   const centro = add(pega, mul(d, daAlca));
@@ -199,7 +199,8 @@ export function criarRoscaEmPe(fichaJson: unknown, v: RoscaEmPe): { ficha: Ficha
       q.prims.push(...K.prims);
       q.pecas = [K.peca];
       q.cargas.push({ massa, pos: K.centro });
-      q.marcas = { kettlebell: e.lado.R.pegada };
+      // a carga fica na mão (a alça passa pela pegada); a bola é acompanhada à parte
+      q.marcas = { kettlebell: e.lado.R.pegada, bola: K.centro };
     } else {
       for (const k of ['R', 'L'] as Lado[]) {
         const H = halterNaMao(e, k);

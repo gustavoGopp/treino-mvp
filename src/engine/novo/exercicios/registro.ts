@@ -44,3 +44,4 @@ export { desenvolvimento } from './desenvolvimento';
 export { desenvolvimentoUnilateralKettlebell } from './desenvolvimento-unilateral-kettlebell';
 export { roscaAlternada } from './rosca-alternada';
 export { roscaMartelo } from './rosca-martelo';
+export { roscaKettlebell } from './rosca-kettlebell';
