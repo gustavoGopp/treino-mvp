@@ -9,3 +9,4 @@ export { default as suspensao } from './suspensao.json';
 export { default as toalha } from './toalha.json';
 export { default as porta } from './porta.json';
 export { default as bolaSuica } from './bola-suica.json';
+export { default as cordaTriceps } from './corda-triceps.json';

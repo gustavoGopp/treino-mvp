@@ -1,0 +1,19 @@
+{
+ "fontes": {
+  "rogue-corda": "Rogue Fitness, Tricep Rope Attachment, página do produto; https://www.roguefitness.com/tricep-rope-attachment (lido em 15/11/2026): \"28” (including rubber ends)\", \"Approximately 11.5” once doubled\", \"Durable Nylon Rope construction\"",
+  "livingfit-corda": "living.fit, Tricep rope for cable machine, página do produto; https://www.living.fit/collections/cable-pull-tricep-grips/products/tricep-rope-for-cable-machine (lido em 15/11/2026): \"total length with end caps 26 inches / 660 millimeters\", \"1 inch / 25 millimeters\" (outro fabricante; a Rogue não dá o diâmetro)"
+ },
+ "objetos": {
+  "cordaTriceps": {
+   "nome": "Corda de tríceps (puxador de corda para a polia)",
+   "medidas": {
+    "comp": {"v": 71.1, "un": "cm", "tipo": "medida", "fonte": "rogue-corda", "onde": "comprimento total, com as pontas de borracha: 28 pol"},
+    "ramo": {"v": 29.2, "un": "cm", "tipo": "medida", "fonte": "rogue-corda", "onde": "cada ramo da corda dobrada, do anel à ponta: cerca de 11,5 pol"},
+    "diam": {"v": 2.5, "un": "cm", "tipo": "medida", "fonte": "livingfit-corda", "onde": "diâmetro da corda: 1 pol = 25 mm (outro fabricante)"},
+    "pontaDiam": {"v": 4.5, "un": "cm", "tipo": "provisoria", "fonte": "a-conferir", "onde": "diâmetro da ponta de borracha: nenhuma ficha lida informa"},
+    "pontaComp": {"v": 4, "un": "cm", "tipo": "provisoria", "fonte": "a-conferir", "onde": "comprimento da ponta de borracha: nenhuma ficha lida informa"},
+    "anelDiam": {"v": 4, "un": "cm", "tipo": "provisoria", "fonte": "a-conferir", "onde": "diâmetro da bucha do meio, por onde o mosquetão prende: nenhuma ficha lida informa"}
+   }
+  }
+ }
+}

@@ -9,3 +9,4 @@ export { regrasDasFlexoes } from './flexoes';
 export { regrasDosStiffs } from './stiffs';
 export { regrasDaSuspensao } from './suspensao';
 export { REGRAS_PONTES } from './pontes';
+export { REGRAS_TRICEPS_FRANCES } from './triceps-frances';
