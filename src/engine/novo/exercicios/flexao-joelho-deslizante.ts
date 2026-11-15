@@ -42,9 +42,10 @@ function calibrar(corpo: Corpo) {
 function quadro(corpo: Corpo, u: number, erro?: string): Quadro {
   const c = calibrar(corpo);
   const v = erro === 'curta' ? u * f('erro.curta.fracao') : u;
-  // no erro da lombar, as costas ficam como no certo e a bacia gira o que a lombar arqueia: a barriga sobe
+  // no erro da lombar, a bacia fica na inclinação do certo e a lombar arqueia: as costas inclinam mais, a bacia sobe
+  // acima da linha ombro–joelho e a barriga vai para cima (o quadril estende para o calcanhar ficar na toalha)
   const lombar = erro === 'lombar' ? f('erro.lombar.lombar') * u : 0;
-  const frente = (erro === 'quadril' ? mix(c.ini, c.caido, u) : mix(c.ini, c.fim, v)) - lombar * 0.5;
+  const frente = erro === 'quadril' ? mix(c.ini, c.caido, u) : mix(c.ini, c.fim, v);
   const p = ponteDeCostas(corpo, opcoes(frente, mix(f('joelho.inicio'), f('joelho.fim'), v), lombar));
   const t = toalha(0, p.calcanhares[2]);
   return {
@@ -59,7 +60,7 @@ function quadro(corpo: Corpo, u: number, erro?: string): Quadro {
 
 export const flexaoJoelhoDeslizante: Exercicio = {
   ficha: F,
-  vistas: ['lateral', 'quinaTras'],
+  vistas: ['lateral', 'quina'],
   quadro,
   // posteriores da coxa (principal) e glúteo (secundário), como a biblioteca; a panturrilha fica fora (ficha da técnica)
   papeis: { posteriores: 'p', gluteo: 's' },

@@ -1,21 +1,26 @@
-// A toalha de mão dobrada ao meio, sob os dois calcanhares, que desliza com eles no chão liso (flexão de joelho
-// deslizante). As medidas vêm de ../dados/objetos/toalha.json. Ela anda com os calcanhares: fica centrada debaixo deles.
+// A toalha de mão dobrada em quatro no comprimento, sob os dois calcanhares, que desliza com eles no chão liso
+// (flexão de joelho deslizante). As medidas vêm de ../dados/objetos/toalha.json. Ela anda com os calcanhares: fica
+// centrada debaixo deles. Dobrada em quatro, fica com a largura inteira (40,6 cm, os dois calcanhares cabem) e um
+// quarto do comprimento na direção em que desliza, com quatro camadas de felpa: de lado, ela tem espessura visível.
 import type { Prim } from '../desenho';
 import type { PecaPropria } from '../pecas';
 import { retArred } from '../realista/base.mjs';
 import { obj } from '../tabelas';
 import type { V3 } from '../vec';
 
-/** A cor da toalha (felpa clara, em quatro tons, do traço ao mais claro). */
-const FELPA = ['#55636B', '#8E9DA6', '#C9D3D9', '#36414A'];
+/** A cor da toalha: felpa azul-petróleo, em quatro tons (do traço ao mais claro), que se separa do chão cinza. */
+const FELPA = ['#1F5B6B', '#3C8BA0', '#7CC0D2', '#123C47'];
+/** Quantas camadas a toalha dobrada tem. */
+const CAMADAS = 4;
 
-/** Altura do tampo da toalha dobrada (duas camadas), em cm. */
-export const alturaDaToalha = () => 2 * obj('toalha', 'esp');
+/** Altura do tampo da toalha dobrada, em cm. */
+export const alturaDaToalha = () => CAMADAS * obj('toalha', 'esp');
 
 /** A toalha com o centro em (x, z) no chão: os volumes da conferência e a peça desenhada. */
 export function toalha(x: number, z: number): { prims: Prim[]; peca: PecaPropria } {
   const larg = obj('toalha', 'larg'),
-    comp = obj('toalha', 'comp') / 2,
+    comp = obj('toalha', 'comp') / CAMADAS,
+    e = obj('toalha', 'esp'),
     h = alturaDaToalha();
   const o: V3 = [x, h / 2, z];
   return {
@@ -26,9 +31,11 @@ export function toalha(x: number, z: number): { prims: Prim[]; peca: PecaPropria
       nome: 'toalha',
       fixa: [x, z],
       desenhar(C) {
-        // a dobra fica do lado da cabeça; um friso marca a barra da toalha do lado dos pés
-        C.prisma(retArred(larg, comp, 2.5, 3), [x, 0, z], [1, 0, 0], [0, 0, 1], [0, h, 0], FELPA);
-        C.linha([x - larg / 2 + 1.5, h + 0.05, z + comp / 2 - 3], [x + larg / 2 - 1.5, h + 0.05, z + comp / 2 - 3], FELPA[0], 0.5);
+        // as dobras: a metade de baixo (duas camadas) um pouco mais longa que a de cima, com a borda arredondada do
+        // tecido; um friso marca a barra na camada de cima
+        C.prisma(retArred(larg, comp, 2.5, 4), [x, 0, z], [1, 0, 0], [0, 0, 1], [0, 2 * e, 0], FELPA);
+        C.prisma(retArred(larg - 1, comp - 1.2, 2.5, 4), [x, 2 * e, z + 0.3], [1, 0, 0], [0, 0, 1], [0, 2 * e, 0], FELPA);
+        C.linha([x - larg / 2 + 2, h + 0.05, z + comp / 2 - 3], [x + larg / 2 - 2, h + 0.05, z + comp / 2 - 3], FELPA[0], 0.6);
       },
     },
   };

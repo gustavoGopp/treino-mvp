@@ -4,28 +4,28 @@
  },
  "objetos": {
   "toalha": {
-   "nome": "Toalha de mão, dobrada ao meio, sob os calcanhares",
+   "nome": "Toalha de mão, dobrada em quatro no comprimento, sob os calcanhares",
    "medidas": {
     "larg": {
      "v": 40.6,
      "un": "cm",
      "tipo": "medida",
      "fonte": "zogics-toalha",
-     "onde": "o lado menor da toalha de mão: 16 pol; dobrada ao meio, fica atravessada sob os dois calcanhares"
+     "onde": "o lado menor da toalha de mão: 16 pol; fica atravessada sob os dois calcanhares, com a largura inteira"
     },
     "comp": {
      "v": 76.2,
      "un": "cm",
      "tipo": "medida",
      "fonte": "zogics-toalha",
-     "onde": "o lado maior da toalha de mão: 30 pol; dobrada ao meio, fica com 38,1 cm na direção em que os calcanhares deslizam"
+     "onde": "o lado maior da toalha de mão: 30 pol; dobrada em quatro, fica com 19 cm na direção em que os calcanhares deslizam"
     },
     "esp": {
-     "v": 0.4,
+     "v": 0.5,
      "un": "cm",
      "tipo": "provisoria",
      "fonte": "a-conferir",
-     "onde": "espessura de uma camada de felpa: a ficha do fabricante dá o peso (4,5 lb por dúzia), não a espessura; dobrada, são duas camadas"
+     "onde": "espessura de uma camada de felpa: a ficha do fabricante dá o peso (4,5 lb por dúzia), não a espessura; dobrada em quatro, são quatro camadas (2 cm)"
     }
    }
   }

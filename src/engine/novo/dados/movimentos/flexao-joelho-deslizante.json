@@ -20,7 +20,7 @@
   "maos.abaixoDoOmbro": {"v": 56, "un": "cm", "selo": "desenho", "fonte": "desenho", "o": "braços no chão ao lado do corpo, palmas para baixo: a mão fica a 56 cm do ombro em direção aos pés, com o cotovelo quase estendido e o braço deitado no chão"},
   "maos.paraFora": {"v": 6, "un": "cm", "selo": "desenho", "fonte": "desenho", "o": "as mãos um pouco para fora da linha dos ombros, para o braço não encostar no tronco"},
   "erro.quadril.folga": {"v": 0.3, "un": "cm", "selo": "desenho", "fonte": "desenho", "o": "erro: o quadril cai até encostar no chão durante a puxada"},
-  "erro.lombar.lombar": {"v": -25, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "erro: a lombar arqueia 25 graus para subir o quadril (barriga para cima)"},
+  "erro.lombar.lombar": {"v": -15, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "erro: a lombar arqueia 15 graus para subir o quadril (barriga para cima): a bacia sobe uns 6 cm acima da linha ombro–joelho"},
   "erro.curta.fracao": {"v": 0.4, "un": "fração", "selo": "desenho", "fonte": "desenho", "o": "erro: para com os joelhos ainda pouco dobrados (40% do caminho)"}
  },
  "fases": [
@@ -38,13 +38,12 @@
  ],
  "erros": [
   {"id": "quadril", "instante": 1, "titulo": "Quadril encosta no chão", "vista": "lateral", "oQueMuda": "o quadril cai até o chão enquanto os calcanhares vêm", "destaca": ["corpo"], "linha": ["c7", "pelve", "joelho"], "foco": "pelve"},
-  {"id": "lombar", "instante": 1, "titulo": "Arquear a lombar", "vista": "lateral", "oQueMuda": "a lombar arqueia 25° e a barriga sobe, fora da linha ombro–joelho", "destaca": ["corpo"], "linha": ["c7", "lombar", "pelve", "joelho"], "foco": "lombar"},
+  {"id": "lombar", "instante": 1, "titulo": "Arquear a lombar", "vista": "lateral", "oQueMuda": "a lombar arqueia 15° e a bacia sobe acima da linha ombro–joelho", "destaca": ["corpo"], "linha": ["ombro", "pelve", "joelho"], "foco": "pelve"},
   {"id": "curta", "instante": 1, "titulo": "Puxar pouco", "vista": "lateral", "oQueMuda": "para com os joelhos pouco dobrados, os calcanhares longe do glúteo", "destaca": ["pernas"], "linha": ["quadril", "joelho", "tornozelo"], "foco": "joelho"}
  ],
  "simetrico": true,
  "rotulos": [
   {"vista": "lateral", "texto": "quadril fora do chão", "ponto": "pelve", "selo": "consenso", "fonte": "app"},
-  {"vista": "lateral", "texto": "calcanhar no glúteo", "ponto": "calcanhar", "selo": "consenso", "fonte": "app"},
-  {"vista": "lateral", "texto": "ombros, quadril e joelhos em linha", "ponto": "joelho", "selo": "consenso", "fonte": "ficha", "guia": ["ombro", "quadril", "joelho"]}
+  {"vista": "lateral", "texto": "calcanhar no glúteo", "ponto": "calcanhar", "selo": "consenso", "fonte": "app"}
  ]
 }
