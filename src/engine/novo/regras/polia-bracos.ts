@@ -176,6 +176,38 @@ export const REGRAS_POLIA_BRACOS: Record<string, Regra> = {
     const minimo = Math.min(...q.filter((_, i) => i > q.length / 2).map((x) => x.esq.lado.R.cotovelo[1] - x.esq.lado.R.ombro[1]));
     return { medido: `no fim, o cotovelo fica ${f1(alt)} cm ${alt >= 0 ? 'acima' : 'abaixo'} do centro do ombro e ${f1(frente)} cm à frente da linha do ombro (no tórax); da metade em diante, no mínimo ${f1(minimo)} cm`, ok: alt >= -3 && minimo >= -8 && Math.abs(frente) <= 10 };
   },
+  // ----- rosca na polia baixa -----
+  'polia-braco-polia-embaixo': (q) => {
+    const x = q[0]!;
+    const r = x.marcas['cabo.roldana']!;
+    const frente = r[2] - x.esq.pelve.o[2];
+    return { medido: `a roldana a ${f1(r[1])} cm do chão (o ponto mais baixo da coluna: ${f1(obj('torre', 'poliaMin'))} cm) e ${f1(frente)} cm à frente do meio da pelve`, ok: Math.abs(r[1] - obj('torre', 'poliaMin')) <= 0.5 && frente >= 30 && frente <= 80 };
+  },
+  'polia-braco-barra-na-largura-dos-ombros': (q) => {
+    // a correção de 04/11: as mãos a 36–38 cm (a largura dos ombros) o ciclo todo, numa barra de largura fixa
+    const [a, b] = faixa(q.map((x) => dist(x.esq.lado.R.pegada, x.esq.lado.L.pegada)));
+    const naBarra = Math.max(...q.map((x) => Math.max(aoSegmento(x.esq.lado.R.pegada, x.marcas['barra.a']!, x.marcas['barra.b']!), aoSegmento(x.esq.lado.L.pegada, x.marcas['barra.a']!, x.marcas['barra.b']!))));
+    return { medido: `os centros das mãos ficam de ${f1(a)} a ${f1(b)} cm um do outro; o centro de cada mão fica a no máximo ${f1(naBarra)} cm do eixo da barra`, ok: a >= 36 && b <= 38 && b - a <= 0.3 && naBarra <= 0.1 };
+  },
+  'polia-braco-barra-fora-do-corpo': (q) => {
+    // a barra (o eixo, menos o raio) contra a pele, fora as mãos que a seguram e o pedaço do antebraço junto do punho
+    const r = obj('barraRetaPolia', 'diam') / 2;
+    let min = 1e9,
+      onde = '';
+    for (const x of q.filter((_, i) => i % 3 === 0 || i === q.length - 1)) {
+      const a = x.marcas['barra.a']!,
+        b = x.marcas['barra.b']!;
+      for (const { p, parte } of pontosDoBoneco(x.esq)) {
+        if (parte === 'mao' || parte === 'polegar' || (parte === 'ante' && Math.min(dist(p, x.esq.lado.R.punho), dist(p, x.esq.lado.L.punho)) < 8)) continue;
+        const d = aoSegmento(p, a, b) - r;
+        if (d < min) {
+          min = d;
+          onde = parte;
+        }
+      }
+    }
+    return { medido: `a barra passa a no mínimo ${f1(min)} cm da pele (${onde})`, ok: min >= 0.5 };
+  },
   'polia-braco-ombros-para-tras': (q, corpo) => {
     // a clavícula fica mais para trás que o ritmo normal do ombro (o esqueleto soma o que a ficha pede ao ritmo)
     const alem = q.flatMap((x) => (['R', 'L'] as const).map((k) => {

@@ -1,0 +1,19 @@
+{
+ "fontes": {
+  "rogue-barra-reta": "Rogue Fitness, Rogue Stainless Straight Lat Bar, página do produto; https://www.roguefitness.com/de/en/rogue-stainless-straight-lat-bar (lida em 15/11/2026, por resumo automático): \"Width 20\"\", \"28.5MM Diameter\", \"20” (6.6 LB)\", \"The included swivel tab is laser-cut from 3/8” stainless steel\", \"Fully Knurled\"; vem com um mosquetão preto",
+  "a-conferir": "Sem ficha lida ainda: valor provisório, listado pela conferência"
+ },
+ "objetos": {
+  "barraRetaPolia": {
+   "nome": "Barra reta curta para polia (20 pol), com aba giratória e mosquetão",
+   "medidas": {
+    "comp": {"v": 50.8, "un": "cm", "tipo": "medida", "fonte": "rogue-barra-reta", "onde": "largura da barra: 20 pol"},
+    "diam": {"v": 2.85, "un": "cm", "tipo": "medida", "fonte": "rogue-barra-reta", "onde": "diâmetro da barra: 28,5 mm"},
+    "massa": {"v": 3.0, "un": "kg", "tipo": "derivada", "fonte": "rogue-barra-reta", "onde": "peso: 6,6 lb = 3,0 kg"},
+    "abaEsp": {"v": 0.95, "un": "cm", "tipo": "medida", "fonte": "rogue-barra-reta", "onde": "espessura da aba giratória: 3/8 pol"},
+    "abaAltura": {"v": 5, "un": "cm", "tipo": "provisoria", "fonte": "a-conferir", "onde": "da barra ao furo da aba giratória, no meio da barra: a página não informa"},
+    "mosquetao": {"v": 8, "un": "cm", "tipo": "provisoria", "fonte": "a-conferir", "onde": "comprimento do mosquetão, da aba ao ponto em que o cabo prende: a página não informa"}
+   }
+  }
+ }
+}

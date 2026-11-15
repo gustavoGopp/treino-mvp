@@ -1,0 +1,64 @@
+{
+ "id": "rosca-polia",
+ "nome": "Rosca direta na polia com barra reta",
+ "fichaDaTecnica": "docs/pesquisa/animacoes/rosca-polia.md",
+ "fontes": {
+  "guia": "Guia original do projeto (referencia/guia-execucao-fase1.html), como registrado em docs/pesquisa/animacoes/rosca-polia.md e no texto do app (src/conteudo/exercicios/rosca-polia.json): consenso de treinadores",
+  "app": "Texto do app (src/conteudo/exercicios/rosca-polia.json): 'Carro no ponto mais baixo, com a barra reta'; 'Fique de frente para a torre, a cerca de meio passo, com o cabo esticado e a barra na altura das coxas'; 'Pés na largura do quadril, joelhos destravados'; 'Pegada por baixo (palmas para cima), na largura dos ombros'; 'Cotovelos encostados nas laterais do tronco, ombros para trás'; 'Dobre só o cotovelo, levando a barra até perto dos ombros'",
+  "correcao": "Correção de 04/11/2026 (docs/revisoes/animacao-nova/correcoes-ja-feitas.md): a barra reta tem largura fixa; as mãos ficam a 36–38 cm (a largura dos ombros) o ciclo todo",
+  "hoje": "A animação de hoje (src/engine/exercicios/rosca-polia.ts): a coluna a 52 cm, os tempos e os erros",
+  "equilibrio": "Em pé, parado, a projeção do centro de massa (corpo) cai dentro do apoio dos pés (mecânica)",
+  "objetos": "src/engine/novo/dados/objetos.json (coluna de polia) e src/engine/novo/dados/objetos/polia-braco-barra-reta.json (a barra)",
+  "desenho": "Escolha de desenho desta animação, dentro do que a ficha pede; a conferência mede o resultado"
+ },
+ "param": {
+  "pes.meiaDistancia": {"v": 11, "un": "cm", "selo": "consenso", "fonte": "app", "o": "pés na largura do quadril: cada bola do pé a 11 cm do meio"},
+  "joelho": {"v": 10, "un": "graus", "selo": "consenso", "fonte": "app", "o": "joelhos destravados (a ficha não dá número; a altura da pelve sai daqui)"},
+  "tronco": {"v": 0, "un": "graus", "selo": "consenso", "fonte": "guia", "o": "tronco reto e parado"},
+  "cervical": {"v": 0, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "pescoço na linha do tronco"},
+  "cabeca": {"v": 0, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "cabeça na linha do pescoço"},
+  "braco.paraFora": {"v": 0, "un": "graus", "selo": "consenso", "fonte": "app", "o": "cotovelos encostados nas laterais do tronco: o braço não abre para o lado"},
+  "braco.aFrente": {"v": 8, "un": "graus", "selo": "consenso", "fonte": "app", "o": "o braço 8° à frente da linha do tronco, ao lado dele (a regra das roscas aceita até 10°): assim, embaixo, a barra passa à frente das coxas com o braço quase estendido"},
+  "escapula.prot": {"v": -6, "un": "graus", "selo": "consenso", "fonte": "app", "o": "ombros para trás: a clavícula 6° mais para trás que o ritmo normal, a série toda"},
+  "antebraco.paraFora": {"v": 2, "un": "graus", "selo": "desenho", "fonte": "correcao", "o": "o antebraço abre 2° para fora do plano do braço (o ângulo de carregamento do cotovelo) o ciclo todo: as mãos ficam a 36–38 cm, a largura dos ombros, sem mudar"},
+  "maos.supinacao": {"v": 90, "un": "graus", "selo": "consenso", "fonte": "app", "o": "pegada por baixo: palmas para cima (o polegar para fora, 90° a partir da pegada neutra)"},
+  "cotovelo.baixo.minimo": {"v": 10, "un": "graus", "selo": "consenso", "fonte": "guia", "o": "embaixo, braços quase estendidos: o cotovelo dobra no mínimo 10° (ou o que a barra pede para passar à frente das coxas, à folga abaixo)"},
+  "barra.folga": {"v": 1.5, "un": "cm", "selo": "desenho", "fonte": "desenho", "o": "embaixo, a barra passa 1,5 cm à frente da pele das coxas (cabo tenso, barra na altura das coxas)"},
+  "cotovelo.cima": {"v": 132, "un": "graus", "selo": "consenso", "fonte": "guia", "o": "em cima, a barra perto dos ombros, com os cotovelos ainda no lugar (o mesmo ângulo da rosca alternada; a regra mede a distância da mão ao ombro)"},
+  "polia.aFrente": {"v": 52, "un": "cm", "selo": "consenso", "fonte": "hoje", "o": "de frente para a torre, a cerca de meio passo: a roldana 52 cm à frente do meio da pelve (a de hoje)"},
+  "pilha.folga": {"v": 2, "un": "cm", "selo": "consenso", "fonte": "app", "o": "cabo esticado embaixo: a pilha já sai 2 cm do repouso"},
+  "erro.cotovelo.braco": {"v": 40, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "erro: no fim, o braço vai 40° à frente (o cotovelo sai do lado do tronco e o ombro assume)"},
+  "erro.balanco.inicio": {"v": 10, "un": "graus", "selo": "desenho", "fonte": "hoje", "o": "erro: embaixo, o tronco começa 10° inclinado à frente para pegar impulso"},
+  "erro.balanco.fim": {"v": -14, "un": "graus", "selo": "desenho", "fonte": "hoje", "o": "erro: em cima, o tronco foi jogado 14° para trás"},
+  "erro.balanco.lombar": {"v": -12, "un": "graus", "selo": "desenho", "fonte": "hoje", "o": "erro: a lombar arqueia 12° em cima"}
+ },
+ "fases": [
+  {"nome": "Embaixo", "tipo": "pausa", "dur": 0.4, "de": 0, "ate": 0, "respira": "INSPIRA", "tempo": "cabo tenso", "selo": "consenso", "fonte": "guia"},
+  {"nome": "Subida · concêntrica", "tipo": "conc", "dur": 1.1, "de": 0, "ate": 1, "respira": "EXPIRA", "tempo": "~1 s", "selo": "consenso", "fonte": "guia"},
+  {"nome": "Topo", "tipo": "pausa", "dur": 0.4, "de": 1, "ate": 1, "respira": "FIRME", "tempo": "contrai", "selo": "consenso", "fonte": "guia"},
+  {"nome": "Descida · excêntrica", "tipo": "exc", "dur": 2.4, "de": 1, "ate": 0, "respira": "INSPIRA", "tempo": "~2–3 s", "selo": "consenso", "fonte": "guia"}
+ ],
+ "contatos": ["pe.R", "pe.L"],
+ "regras": [
+  {"id": "polia-braco-polia-embaixo", "pede": "carro no ponto mais baixo, de frente para a torre, a cerca de meio passo", "selo": "consenso", "fonte": "app"},
+  {"id": "polia-braco-barra-na-largura-dos-ombros", "pede": "pegada na largura dos ombros, numa barra de largura fixa (as mãos a 36–38 cm o ciclo todo)", "selo": "consenso", "fonte": "correcao"},
+  {"id": "palma-para-a-frente-na-rosca", "pede": "pegada por baixo, palmas para cima", "selo": "consenso", "fonte": "app"},
+  {"id": "cotovelo-parado-na-rosca", "pede": "cotovelos encostados nas laterais, parados: dobre só o cotovelo", "selo": "consenso", "fonte": "guia"},
+  {"id": "braco-estendido-embaixo-na-rosca", "pede": "embaixo, braços quase estendidos", "selo": "consenso", "fonte": "guia"},
+  {"id": "carga-perto-do-ombro-no-topo", "pede": "em cima, a barra perto dos ombros, com os cotovelos ainda no lugar", "selo": "consenso", "fonte": "guia"},
+  {"id": "polia-braco-barra-fora-do-corpo", "pede": "a barra passa à frente das coxas e do tronco, sem atravessar", "selo": "consenso", "fonte": "app"},
+  {"id": "polia-braco-cabos-livres-do-corpo", "pede": "o cabo vai reto da roldana à barra, sem encostar no corpo", "selo": "consenso", "fonte": "guia"},
+  {"id": "polia-braco-ombros-para-tras", "pede": "ombros para trás", "selo": "consenso", "fonte": "app"},
+  {"id": "tronco-quase-parado", "pede": "tronco parado, sem balançar", "selo": "consenso", "fonte": "guia"}
+ ],
+ "erros": [
+  {"id": "cotovelo", "instante": 1, "titulo": "Cotovelos vão para a frente", "vista": "lateral", "oQueMuda": "no fim, o braço sobe à frente do tronco: o cotovelo sai do lado e o ombro assume", "destaca": ["bracos"], "linha": ["ombro", "cotovelo", "punho"], "foco": "cotovelo"},
+  {"id": "balanco", "instante": 1, "titulo": "Balançar o tronco", "vista": "lateral", "oQueMuda": "o tronco começa inclinado à frente e é jogado para trás para dar impulso, com a lombar arqueada", "destaca": ["corpo"], "linha": ["pelve", "lombar", "c7", "cabeca"], "foco": "c7"}
+ ],
+ "simetrico": true,
+ "rotulos": [
+  {"vista": "lateral", "texto": "cotovelo parado", "ponto": "cotovelo", "selo": "consenso", "fonte": "guia"},
+  {"vista": "lateral", "texto": "só o antebraço se mexe", "ponto": "punho", "selo": "consenso", "fonte": "app"},
+  {"vista": "quina", "texto": "pegada na largura dos ombros", "ponto": "pegada:R", "selo": "consenso", "fonte": "app"}
+ ]
+}

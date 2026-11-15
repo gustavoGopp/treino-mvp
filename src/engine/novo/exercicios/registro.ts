@@ -71,3 +71,4 @@ export { abdominalPolia } from './abdominal-polia';
 export { crucifixoPolia } from './crucifixo-polia';
 export { crucifixoInvertidoPolia } from './crucifixo-invertido-polia';
 export { facePull } from './face-pull';
+export { roscaPolia } from './rosca-polia';
