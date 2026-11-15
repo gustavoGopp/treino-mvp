@@ -23,6 +23,8 @@ interface MusculoDesenhado {
   pts: PontoMus[];
   div?: PontoMus[][];
   unico?: boolean;
+  /** Porção de um músculo (deltoide da frente, trapézio de cima): só aparece quando trabalha; as linhas do corpo mostram o músculo inteiro. */
+  soAtivo?: boolean;
 }
 const MUSCULOS = dados.musculos as unknown as Record<'lado' | 'frente' | 'costas', MusculoDesenhado[]>;
 export type IdEstilo = 'cinza' | 'pele';
@@ -485,6 +487,8 @@ export interface DesenhoNaSuperficie {
   lado?: Lado;
   pts: V3[];
   div: V3[][];
+  /** Porção que só aparece quando trabalha. */
+  soAtivo?: boolean;
 }
 /** Os grupos musculares e a rótula que se veem numa câmera: cada parte usa o desenho da face que está virada para quem olha. */
 export function musculosVisiveis(e: Esq, forma: FormaDoBoneco, cam: Camera): DesenhoNaSuperficie[] {
@@ -511,7 +515,7 @@ export function musculosVisiveis(e: Esq, forma: FormaDoBoneco, cam: Camera): Des
       for (const mu of lista(face)) {
         if (nomeDaParte[mu.em] !== parte) continue;
         const f = (q: PontoMus) => naSuperficie(sup, (t) => t, face, q);
-        out.push({ id: mu.id, lado: k, grupo: parte === 'coxa' || parte === 'canela' ? `perna${k}` : `braco${k}`, pts: mu.pts.map(f), div: (mu.div ?? []).map((l) => l.map(f)) });
+        out.push({ id: mu.id, soAtivo: mu.soAtivo, lado: k, grupo: parte === 'coxa' || parte === 'canela' ? `perna${k}` : `braco${k}`, pts: mu.pts.map(f), div: (mu.div ?? []).map((l) => l.map(f)) });
       }
     }
   }
@@ -540,7 +544,7 @@ export function musculosVisiveis(e: Esq, forma: FormaDoBoneco, cam: Camera): Des
     for (const mu of MUSCULOS.lado) {
       if (mu.em === 'tronco') {
         const f = (q: PontoMus) => naSuperficie(forma.sup.tronco!, (t) => t, 'fora', q, ladoVisivel);
-        out.push({ id: mu.id, lado, grupo: 'corpo', pts: mu.pts.map(f), div: (mu.div ?? []).map((l) => l.map(f)) });
+        out.push({ id: mu.id, soAtivo: mu.soAtivo, lado, grupo: 'corpo', pts: mu.pts.map(f), div: (mu.div ?? []).map((l) => l.map(f)) });
       } else if (mu.em === 'pelve') {
         // pontos [para a frente, para cima] a partir do centro do quadril
         const f = (q: PontoMus): V3 => {
@@ -549,7 +553,7 @@ export function musculosVisiveis(e: Esq, forma: FormaDoBoneco, cam: Camera): Des
           const u = s.a * Math.sqrt(Math.max(0, 1 - Math.min(1, (w / (s.f || 1)) ** 2)));
           return comb([1, s.o], [u * ladoVisivel, s.fora], [w, s.z]);
         };
-        out.push({ id: mu.id, lado, grupo: 'bacia', pts: mu.pts.map(f), div: [] });
+        out.push({ id: mu.id, soAtivo: mu.soAtivo, lado, grupo: 'bacia', pts: mu.pts.map(f), div: [] });
       }
     }
   } else {
@@ -559,7 +563,7 @@ export function musculosVisiveis(e: Esq, forma: FormaDoBoneco, cam: Camera): Des
       for (const esp of mu.unico ? [1] : [1, -1]) {
         const f = (q: PontoMus) => forma.noCorpo((q[0] as number) * esp, q[1] as number, tras);
         const meio = mu.pts.reduce((t, q) => t + (q[0] as number) * esp, 0);
-        out.push({ id: mu.id, lado: mu.unico ? undefined : meio < 0 ? 'R' : 'L', grupo: mu.id === 'gluteo' ? 'bacia' : 'corpo', pts: mu.pts.map(f), div: (mu.div ?? []).map((l) => l.map(f)) });
+        out.push({ id: mu.id, soAtivo: mu.soAtivo, lado: mu.unico ? undefined : meio < 0 ? 'R' : 'L', grupo: mu.id === 'gluteo' ? 'bacia' : 'corpo', pts: mu.pts.map(f), div: (mu.div ?? []).map((l) => l.map(f)) });
       }
     }
   }
@@ -632,6 +636,7 @@ export function desenharBoneco(e: Esq, cam: Camera, o: OpcoesDoBoneco): Item[] {
   // a roupa (short): opaca, esconde as linhas do corpo; quando há músculo que trabalha debaixo dela, vira véu (fica
   // clara, as linhas aparecem e o músculo aparece misturado com o tecido), como na ficha aprovada
   const DEBAIXO_DO_SHORT = ['gluteo', 'quadriceps', 'adutores', 'posteriores'];
+  const ATE_DEBAIXO_DA_CINTURA = ['abdomen', 'obliquos'];
   const papelDe = (id: string, lado?: Lado): Papel | undefined => (lado ? o.papeis?.[`${id}:${lado}`] : undefined) ?? o.papeis?.[id];
   const veu = o.estilo === 'pele' && !suf && Object.keys(o.papeis ?? {}).some((id) => DEBAIXO_DO_SHORT.includes(id.split(':')[0]!));
   const mat = (m: string) => (m === 'short' && veu ? 'veu' : m);
@@ -652,12 +657,19 @@ export function desenharBoneco(e: Esq, cam: Camera, o: OpcoesDoBoneco): Item[] {
     for (const mu of todos) {
       if (mu.grupo !== id) continue;
       const papel = papelDe(mu.id, mu.lado);
-      if ((!papel && o.mini) || (suf && !papel)) continue;
+      if ((!papel && o.mini) || (suf && !papel) || (!papel && mu.soAtivo)) continue;
       const d = mu.pts.length ? suave(mu.pts.map((p) => naTela(cam, p))) : '';
       if (papel) {
         ativos += `<path class="b-m${papel}${suf}" d="${d}"/>`;
         if (papel === 'p' && !o.mini) ativos += mu.div.map((l) => `<path class="b-md${suf}" d="${suave(l.map((p) => naTela(cam, p)), false)}"/>`).join('');
         if (veu && DEBAIXO_DO_SHORT.includes(mu.id)) sobOVeu += `<path class="b-mv" d="${d}"/>`;
+        // o músculo nunca fica por cima da roupa: o que desce para baixo da cintura (o abdômen) é cortado no short
+        if (o.estilo === 'pele' && !veu && shorts.length && ATE_DEBAIXO_DA_CINTURA.includes(mu.id)) {
+          const feito = ativos.slice(ativos.lastIndexOf(`<path class="b-m${papel}${suf}"`));
+          ativos = ativos.slice(0, ativos.length - feito.length);
+          const idMascara = `bm${hash(shorts.join('') + mu.id + (mu.lado ?? ''))}`;
+          ativos += `<mask id="${idMascara}" maskUnits="userSpaceOnUse" x="-400" y="-400" width="800" height="800"><rect x="-400" y="-400" width="800" height="800" fill="#fff"/>${shorts.map((sd) => `<path d="${sd}" fill="#000"/>`).join('')}</mask><g mask="url(#${idMascara})">${feito}</g>`;
+        }
       } else linhas += (d ? `<path class="b-l${suf}" d="${d}"/>` : '') + mu.div.map((l) => `<path class="b-l${suf}" d="${suave(l.map((p) => naTela(cam, p)), false)}"/>`).join('');
     }
     // debaixo do véu, o músculo aparece misturado com o tecido

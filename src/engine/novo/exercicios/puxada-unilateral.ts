@@ -90,6 +90,6 @@ export const puxadaUnilateral: Exercicio = {
   ficha: F,
   vistas: ['posterior', 'lateral'],
   quadro,
-  papeis: { 'dorsal:R': 'p', 'biceps:R': 's', 'deltoide:R': 's', trapezio: 's' },
+  papeis: { 'dorsal:R': 'p', 'biceps:R': 's', 'deltPost:R': 's', 'trapMedInf:R': 's' },
   trajetorias: { mão: (q) => q.marcas.mao!, cotovelo: (q) => q.esq.lado.R.cotovelo },
 };

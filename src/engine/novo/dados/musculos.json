@@ -84,11 +84,6 @@
     "ombro_anterior",
     "ombro_lateral",
     "ombro_posterior"
-   ],
-   "naoSepara": [
-    "parte anterior",
-    "parte lateral",
-    "parte posterior"
    ]
   },
   "trapezio": {
@@ -121,9 +116,6 @@
     "costas"
    ],
    "naoSepara": [
-    "parte superior",
-    "parte média",
-    "parte inferior",
     "romboides (ficam por baixo dele)"
    ]
   },
@@ -462,6 +454,138 @@
    "fonte": "GRAY1918",
    "pagina": "p. 480",
    "conteudo": []
+  },
+  "deltAnt": {
+   "nome": "Deltoide, parte da frente",
+   "musculos": [
+    "deltoide anterior (clavicular)"
+   ],
+   "origem": {
+    "osso": "tronco",
+    "onde": "borda anterior e face superior do terço lateral da clavícula"
+   },
+   "insercao": {
+    "osso": "braco",
+    "onde": "tuberosidade deltóidea, no meio da face lateral do úmero"
+   },
+   "ventre": "braco",
+   "cruza": [
+    "ombro"
+   ],
+   "camada": "superficial",
+   "cobre": [],
+   "forma": "triangular",
+   "fonte": "GRAY1918",
+   "pagina": "p. 439–440",
+   "conteudo": [
+    "ombro_anterior"
+   ]
+  },
+  "deltLat": {
+   "nome": "Deltoide, parte do lado",
+   "musculos": [
+    "deltoide lateral (acromial)"
+   ],
+   "origem": {
+    "osso": "tronco",
+    "onde": "margem lateral e face superior do acrômio"
+   },
+   "insercao": {
+    "osso": "braco",
+    "onde": "tuberosidade deltóidea, no meio da face lateral do úmero"
+   },
+   "ventre": "braco",
+   "cruza": [
+    "ombro"
+   ],
+   "camada": "superficial",
+   "cobre": [],
+   "forma": "triangular",
+   "fonte": "GRAY1918",
+   "pagina": "p. 439–440",
+   "conteudo": [
+    "ombro_lateral"
+   ]
+  },
+  "deltPost": {
+   "nome": "Deltoide, parte de trás",
+   "musculos": [
+    "deltoide posterior (espinal)"
+   ],
+   "origem": {
+    "osso": "tronco",
+    "onde": "borda posterior da espinha da escápula"
+   },
+   "insercao": {
+    "osso": "braco",
+    "onde": "tuberosidade deltóidea, no meio da face lateral do úmero"
+   },
+   "ventre": "braco",
+   "cruza": [
+    "ombro"
+   ],
+   "camada": "superficial",
+   "cobre": [],
+   "forma": "triangular",
+   "fonte": "GRAY1918",
+   "pagina": "p. 439–440",
+   "conteudo": [
+    "ombro_posterior"
+   ]
+  },
+  "trapSup": {
+   "nome": "Trapézio, parte de cima",
+   "musculos": [
+    "trapézio superior"
+   ],
+   "origem": {
+    "osso": "tronco",
+    "onde": "protuberância occipital, linha nucal e ligamento nucal"
+   },
+   "insercao": {
+    "osso": "tronco",
+    "onde": "borda posterior do terço lateral da clavícula"
+   },
+   "ventre": "tronco",
+   "cruza": [
+    "escapula"
+   ],
+   "camada": "superficial",
+   "cobre": [],
+   "forma": "triangular plano",
+   "fonte": "GRAY1918",
+   "pagina": "p. 432 e 434",
+   "conteudo": [
+    "costas"
+   ]
+  },
+  "trapMedInf": {
+   "nome": "Trapézio, partes do meio e de baixo",
+   "musculos": [
+    "trapézio médio",
+    "trapézio inferior",
+    "romboides (ficam por baixo dele)"
+   ],
+   "origem": {
+    "osso": "tronco",
+    "onde": "processos espinhosos de C7 e das torácicas, até a 12ª"
+   },
+   "insercao": {
+    "osso": "tronco",
+    "onde": "acrômio e espinha da escápula"
+   },
+   "ventre": "tronco",
+   "cruza": [
+    "escapula"
+   ],
+   "camada": "superficial",
+   "cobre": [],
+   "forma": "triangular plano",
+   "fonte": "GRAY1918",
+   "pagina": "p. 432 e 434",
+   "conteudo": [
+    "costas"
+   ]
   }
  }
 }

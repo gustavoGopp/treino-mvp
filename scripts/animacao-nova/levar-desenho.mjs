@@ -2,10 +2,11 @@
 // grupos musculares e as fichas dos dois estilos em scripts/boneco-desenho/ e grava src/engine/novo/dados/boneco.json.
 // As tabelas continuam tendo uma fonte só (a sessão do desenho); este arquivo é a ponte, para o motor não importar scripts.
 // Uso: node scripts/animacao-nova/levar-desenho.mjs
-import { readFileSync, writeFileSync } from 'node:fs';
+import { mkdirSync, readFileSync, writeFileSync } from 'node:fs';
 import * as P from '../boneco-desenho/boneco-prova.mjs';
 import { CINZA, PELE, TRACO } from '../boneco-desenho/estilos-finais.mjs';
 import { DE_COSTAS, DE_FRENTE, DE_LADO } from '../boneco-desenho/musculos-prova.mjs';
+import { ACRESCENTA, SUBSTITUI } from './musculos-corrigidos.mjs';
 
 const perfis = {};
 for (const k of ['COXA_L', 'CANELA_L', 'BRACO_L', 'ANTE_L', 'TRONCO_L', 'PESCOCO_L', 'COXA_F', 'CANELA_F', 'BRACO_F', 'ANTE_F']) perfis[k] = P[k];
@@ -47,8 +48,11 @@ function naOrdemDasCamadas(lista) {
   }
   return l;
 }
+/** As formas aprovadas com as correções anatômicas de musculos-corrigidos.mjs (ou sem elas, com SEM_CORRECOES). */
+let SEM_CORRECOES = false;
+const corrigida = (vista, lista) => (SEM_CORRECOES ? lista : [...lista.map((m) => SUBSTITUI[vista]?.[m.id] ?? m), ...(ACRESCENTA[vista] ?? [])]);
 const estilo = (e) => ({ id: e.id, nome: e.nome, papel: e.papel, cabelo: !!e.cabelo, roupa: e.roupa ?? null, descalco: !!e.descalco, contornoNaCor: !!e.contornoNaCor, cores: { claro: e.cores('claro'), escuro: e.cores('escuro') } });
-const saida = {
+const montar = () => ({
   origem: 'Desenho do Boneco aprovado pelo Gustavo em 13/11/2026 (docs/revisoes/boneco-desenho/decisao.md). Tabelas de scripts/boneco-desenho/boneco-prova.mjs, musculos-prova.mjs, figura.mjs e estilos-finais.mjs, levadas por scripts/animacao-nova/levar-desenho.mjs. Em cm.',
   comoLer: {
     perfisDeLado: '[t, frente, trás]: t = posição ao longo da parte (0 = começo, 1 = fim); distância da superfície ao eixo do osso, para a frente e para trás',
@@ -59,14 +63,19 @@ const saida = {
   perfis,
   formas,
   linhas,
-  musculos: { lado: naOrdemDasCamadas(DE_LADO), frente: naOrdemDasCamadas(DE_FRENTE), costas: naOrdemDasCamadas(DE_COSTAS) },
+  musculos: { lado: naOrdemDasCamadas(corrigida('lado', DE_LADO)), frente: naOrdemDasCamadas(corrigida('frente', DE_FRENTE)), costas: naOrdemDasCamadas(corrigida('costas', DE_COSTAS)) },
   estilos: { cinza: estilo(CINZA), pele: estilo(PELE) },
   traco: TRACO,
   // o pé descalço usa a forma do tênis reduzida (figura.mjs)
   peDescalco: 0.93,
   // a barra do short na coxa e a folga do tecido (boneco-prova.mjs)
   short: { ate: 0.44, folga: 1.07 },
-};
+});
+const saida = montar();
+// o desenho como foi aprovado, sem as correções: só para a comparação lado a lado (não vai para o app)
+SEM_CORRECOES = true;
+mkdirSync(new URL('./dados/', import.meta.url), { recursive: true });
+writeFileSync(new URL('./dados/boneco-aprovado.json', import.meta.url), JSON.stringify(montar(), null, 1) + '\n');
 const arq = new URL('../../src/engine/novo/dados/boneco.json', import.meta.url);
 writeFileSync(arq, JSON.stringify(saida, null, 1) + '\n');
 console.log(`desenho do boneco → ${arq.pathname} (${(JSON.stringify(saida).length / 1024).toFixed(1)} kB)`);

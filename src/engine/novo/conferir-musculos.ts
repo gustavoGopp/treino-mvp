@@ -81,7 +81,9 @@ export function conferirDesenhoDosMusculos(corpo: Corpo): ItemConferido[] {
   const quad = extremos('lado', 'quadriceps', 0).max;
   itens.push(marco('quadríceps: até onde desce na coxa (1 = joelho)', quad, 1, 0.1, 'da coxa', 'Gray: insere-se na patela'));
   const abd = extremos('frente', 'abdomen', 1).min;
-  itens.push({ grupo: 'Músculos', oQue: 'reto abdominal: altura da borda de baixo, em pé', medido: `${f1(abd)} cm (a cintura fica a ${f1(corpo.m('altura.cintura'))} cm e a virilha a ${f1(corpo.m('altura.virilha'))} cm)`, limite: 'Gray: a origem é na crista do púbis, abaixo da cintura; a tabela do corpo não tem a altura do púbis', nivel: abd > corpo.m('altura.cintura') - 6 ? 'aviso' : 'ok' });
+  itens.push(marco('reto abdominal: altura da borda de baixo, em pé', abd, corpo.m('altura.pubis'), 3, 'cm', 'Gray: a origem é na crista do púbis; a altura do púbis na tabela é provisória (tomada igual à do trocânter)'));
+  const peit = extremos('frente', 'peitoral', 1).min;
+  itens.push({ grupo: 'Músculos', oQue: 'peitoral: altura da borda de baixo, em pé', medido: `${f1(peit)} cm (o mamilo fica a ${f1(corpo.m('altura.peito'))} cm)`, limite: 'abaixo do mamilo (Gray: até a cartilagem da 6ª ou 7ª costela)', nivel: peit < corpo.m('altura.peito') - 1.5 ? 'ok' : 'aviso' });
   return itens;
 }
 

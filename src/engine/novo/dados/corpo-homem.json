@@ -668,6 +668,13 @@
    "tipo": "medida",
    "fonte": "yoo2012",
    "onde": "da base da espinha à borda posterior da cavidade glenoide, escápulas masculinas: 105,0 mm"
+  },
+  "altura.pubis": {
+   "v": 90.6,
+   "un": "cm",
+   "tipo": "provisoria",
+   "fonte": "a-conferir",
+   "onde": "altura da crista do púbis, em pé: tomada igual à do trocânter (90,6 cm), por falta de medida; o ANSUR II não mede o púbis. É onde o reto abdominal termina no desenho"
   }
  },
  "secoes": {

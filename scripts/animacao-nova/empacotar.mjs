@@ -1,10 +1,17 @@
 // Empacota o motor novo (src/engine/novo) num módulo importável pelos scripts de folha, protótipo e conferência.
 import { build } from 'esbuild';
-import { mkdirSync, writeFileSync } from 'node:fs';
+import { mkdirSync, readFileSync, writeFileSync } from 'node:fs';
 import { pathToFileURL } from 'node:url';
 let n = 0;
-export async function motorNovo(entrada = `export * from './src/engine/novo/index.ts';`) {
-  const { outputFiles } = await build({ stdin: { contents: entrada, resolveDir: process.cwd(), loader: 'ts' }, bundle: true, format: 'esm', write: false, loader: { '.json': 'json' } });
+/** Troca o desenho do Boneco pelo aprovado, sem as correções anatômicas (só para comparar lado a lado). */
+const COMO_APROVADO = {
+  name: 'boneco-aprovado',
+  setup(b) {
+    b.onLoad({ filter: /src\/engine\/novo\/dados\/boneco\.json$/ }, () => ({ contents: readFileSync('scripts/animacao-nova/dados/boneco-aprovado.json', 'utf8'), loader: 'json' }));
+  },
+};
+export async function motorNovo(entrada = `export * from './src/engine/novo/index.ts';`, { aprovado = false } = {}) {
+  const { outputFiles } = await build({ stdin: { contents: entrada, resolveDir: process.cwd(), loader: 'ts' }, bundle: true, format: 'esm', write: false, loader: { '.json': 'json' }, plugins: aprovado ? [COMO_APROVADO] : [] });
   // grava num arquivo temporário (um erro do motor aparece com nome e linha, e não com o pacote inteiro)
   mkdirSync('node_modules/.tmp', { recursive: true });
   const arq = `node_modules/.tmp/motor-novo-${process.pid}-${n++}.mjs`;

@@ -5,7 +5,7 @@ Gerado por `npm run conferir:animacao` (60 quadros por segundo, ciclo inteiro). 
 | animação | quadros | itens | falhas | avisos |
 |---|---|---|---|---|
 | goblet | 279 | 34 | 0 | 3 |
-| supino-reto | 291 | 34 | 0 | 3 |
+| supino-reto | 291 | 33 | 0 | 2 |
 | puxada-unilateral | 240 | 34 | 0 | 4 |
 | flexao | 225 | 34 | 0 | 6 |
 
@@ -56,7 +56,7 @@ Gerado por `npm run conferir:animacao` (60 quadros por segundo, ciclo inteiro). 
 
 ## Supino reto com halteres (`supino-reto`)
 
-291 quadros conferidos. 0 falha(s), 3 aviso(s).
+291 quadros conferidos. 0 falha(s), 2 aviso(s).
 
 Ângulos no ciclo (lado direito, graus): joelho 86 a 86; cotovelo 10 a 104; quadril -5 a -5; ombro 50 a 83; dorsiflexao 1 a 1; punho 0 a 0; pronacao 15 a 15; clavicula 8 a 10.
 
@@ -94,8 +94,7 @@ Gerado por `npm run conferir:animacao` (60 quadros por segundo, ciclo inteiro). 
 | Ficha | no topo, os halteres ficam sobre os ombros (consenso) | no topo, o halter fica a 5,3 cm da vertical do ombro | como a ficha pede | ok |
 | Provisórios | linhas da ficha do movimento sem número na ficha da técnica (escolha de desenho) | cabeca.folgaNoBanco, carga | cada uma precisa de fonte ou do ok do Gustavo | AVISO |
 | Músculos | o realçado é o do conteúdo (principal: peito; secundário: ombro_anterior, triceps) | principal e secundário batem com o conteúdo | nenhuma diferença | ok |
-| Músculos | diferenças aceitas, a confirmar com o Gustavo | Deltoide: o conteúdo pede ombro_anterior, e o desenho só tem o músculo inteiro | cada uma precisa do ok dele | AVISO |
-| Músculos | quanto do músculo principal aparece em cada vista (área das formas viradas para quem olha) | de cima: 392 cm² (padrão); de lado: 69 cm² (não serve: o principal quase não aparece) | pelo menos uma vista com 30 cm² ou mais; a que tem menos de um terço da melhor sai do modo Músculos | AVISO |
+| Músculos | quanto do músculo principal aparece em cada vista (área das formas viradas para quem olha) | de cima: 465 cm² (padrão); de lado: 84 cm² (não serve: o principal quase não aparece) | pelo menos uma vista com 30 cm² ou mais; a que tem menos de um terço da melhor sai do modo Músculos | AVISO |
 
 ## Puxada unilateral ajoelhado na polia alta (`puxada-unilateral`)
 
@@ -137,8 +136,8 @@ Gerado por `npm run conferir:animacao` (60 quadros por segundo, ciclo inteiro). 
 | Ficha | o tronco quase não se move (consenso) | a base do pescoço se move no máximo 0 cm | como a ficha pede | ok |
 | Provisórios | linhas da ficha do movimento sem número na ficha da técnica (escolha de desenho) | braco.fim.fora | cada uma precisa de fonte ou do ok do Gustavo | AVISO |
 | Músculos | o realçado é o do conteúdo (principal: costas; secundário: biceps, ombro_posterior) | principal e secundário batem com o conteúdo | nenhuma diferença | ok |
-| Músculos | diferenças aceitas, a confirmar com o Gustavo | Deltoide: o conteúdo pede ombro_posterior, e o desenho só tem o músculo inteiro; Trapézio aparece como secundário dentro de um grupo que o conteúdo conta como principal (costas) | cada uma precisa do ok dele | AVISO |
-| Músculos | quanto do músculo principal aparece em cada vista (área das formas viradas para quem olha) | de trás: 279 cm² (padrão); de lado: 176 cm² | pelo menos uma vista com 30 cm² ou mais; a que tem menos de um terço da melhor sai do modo Músculos | ok |
+| Músculos | diferenças aceitas, a confirmar com o Gustavo | Trapézio, partes do meio e de baixo aparece como secundário dentro de um grupo que o conteúdo conta como principal (costas) | cada uma precisa do ok dele | AVISO |
+| Músculos | quanto do músculo principal aparece em cada vista (área das formas viradas para quem olha) | de trás: 275 cm² (padrão); de lado: 176 cm² | pelo menos uma vista com 30 cm² ou mais; a que tem menos de um terço da melhor sai do modo Músculos | ok |
 
 ## Flexão de braço (`flexao`)
 
@@ -180,8 +179,8 @@ Gerado por `npm run conferir:animacao` (60 quadros por segundo, ciclo inteiro). 
 | Ficha | cotovelos a meio caminho entre o tronco e os lados (consenso) | embaixo, o braço faz 44° com o tronco, visto de cima | como a ficha pede | ok |
 | Provisórios | linhas da ficha do movimento sem número na ficha da técnica (escolha de desenho) | tornozelo.dorsiflexao, escapula.retracaoEmbaixo | cada uma precisa de fonte ou do ok do Gustavo | AVISO |
 | Músculos | o realçado é o do conteúdo (principal: peito; secundário: triceps, ombro_anterior) | principal e secundário batem com o conteúdo | nenhuma diferença | ok |
-| Músculos | diferenças aceitas, a confirmar com o Gustavo | Deltoide: o conteúdo pede ombro_anterior, e o desenho só tem o músculo inteiro; Reto abdominal aparece como "só ajuda a firmar", fora da lista do conteúdo | cada uma precisa do ok dele | AVISO |
-| Músculos | quanto do músculo principal aparece em cada vista (área das formas viradas para quem olha) | de lado: 69 cm² (padrão); de cima: 0 cm² (não serve: o principal quase não aparece) | pelo menos uma vista com 30 cm² ou mais; a que tem menos de um terço da melhor sai do modo Músculos | AVISO |
+| Músculos | diferenças aceitas, a confirmar com o Gustavo | Reto abdominal aparece como "só ajuda a firmar", fora da lista do conteúdo | cada uma precisa do ok dele | AVISO |
+| Músculos | quanto do músculo principal aparece em cada vista (área das formas viradas para quem olha) | de lado: 84 cm² (padrão); de cima: 0 cm² (não serve: o principal quase não aparece) | pelo menos uma vista com 30 cm² ou mais; a que tem menos de um terço da melhor sai do modo Músculos | AVISO |
 
 ## O desenho dos músculos contra a tabela
 
@@ -189,21 +188,22 @@ A tabela (origem, inserção, camada e fonte de cada grupo) está em `src/engine
 
 | grupo | o que foi medido | resultado | limite | |
 |---|---|---|---|---|
-| Músculos | cada forma do desenho tem a sua linha na tabela (origem, inserção, camada, fonte) | 15 formas, todas com linha | nenhuma forma sem linha | ok |
+| Músculos | cada forma do desenho tem a sua linha na tabela (origem, inserção, camada, fonte) | 20 formas, todas com linha | nenhuma forma sem linha | ok |
 | Músculos | a forma está na parte do corpo em que a massa do músculo fica | todas no lugar | a parte do desenho = a parte da tabela | ok |
 | Músculos | a massa do músculo fica entre o osso da origem e o da inserção | todas entre a origem e a inserção | na ordem dos ossos (tronco, braço, antebraço, mão; tronco, bacia, coxa, perna, pé) | ok |
 | Músculos | quem cobre quem na pintura segue a camada da tabela | a ordem de pintura segue a tabela | o músculo que cobre é pintado depois | ok |
 | Músculos | deltoide: onde a ponta de baixo chega no braço (0 = ombro, 1 = cotovelo) | 0,5 do braço | 0,5 do braço, com folga de 0,1 (Gray: a tuberosidade deltóidea fica no meio do úmero) | ok |
-| Músculos | trapézio: altura da ponta de baixo, em pé | 126,5 cm (4,9 cm em relação a T12) | 121,6 cm, com folga de 3 (Gray: a ponta de baixo corresponde à 12ª vértebra torácica) | AVISO |
+| Músculos | trapézio: altura da ponta de baixo, em pé | 121,6 cm (0 cm em relação a T12) | 121,6 cm, com folga de 3 (Gray: a ponta de baixo corresponde à 12ª vértebra torácica) | ok |
 | Músculos | grande dorsal: altura da borda de baixo, em pé | 108 cm | 106,5 cm, com folga de 3 (Gray: origem na crista ilíaca; altura da crista no ANSUR II) | ok |
 | Músculos | quadríceps: até onde desce na coxa (1 = joelho) | 1 da coxa | 1 da coxa, com folga de 0,1 (Gray: insere-se na patela) | ok |
-| Músculos | reto abdominal: altura da borda de baixo, em pé | 102,8 cm (a cintura fica a 106,5 cm e a virilha a 85,3 cm) | Gray: a origem é na crista do púbis, abaixo da cintura; a tabela do corpo não tem a altura do púbis | AVISO |
+| Músculos | reto abdominal: altura da borda de baixo, em pé | 91,4 cm | 90,6 cm, com folga de 3 (Gray: a origem é na crista do púbis; a altura do púbis na tabela é provisória (tomada igual à do trocânter)) | ok |
+| Músculos | peitoral: altura da borda de baixo, em pé | 125,6 cm (o mamilo fica a 129,4 cm) | abaixo do mamilo (Gray: até a cartilagem da 6ª ou 7ª costela) | ok |
 
 ## Medidas ainda provisórias nas tabelas
 
 Estas linhas ainda não têm fonte lida. Não são falha de uma animação, e sim pendência das tabelas: cada uma precisa de fonte (ou do ok do Gustavo como escolha de desenho) antes do critério de pronto.
 
-### Corpo (7)
+### Corpo (8)
 - quadril.meiaDistancia = 8.7 cm (metade da distância entre os dois centros do quadril: a conferir (Bell 1990, Harrington 2007 ou modelo OpenSim))
 - ombro.centroAFrente = 0 cm (centro do ombro sobre a linha do quadril, de lado (linha de prumo da postura: a conferir))
 - l5s1.acima = 12 cm (altura de L5–S1 acima do centro do quadril: a conferir (crista ilíaca − 1 vértebra lombar))
@@ -211,6 +211,7 @@ Estas linhas ainda não têm fonte lida. Não são falha de uma animação, e si
 - coluna.lordoseLombar = 50 graus (curva lombar em pé de L1 a L5 (Vialle 2005 dá 60 de lordose máxima incluindo o sacro): a conferir)
 - coluna.lordoseCervical = 30 graus (curva cervical em pé: sem fonte lida)
 - esterno.meiaDistanciaDasClaviculas = 2.5 cm (da linha do meio até a articulação da clavícula com o esterno: sem fonte lida)
+- altura.pubis = 90.6 cm (altura da crista do púbis, em pé: tomada igual à do trocânter (90,6 cm), por falta de medida; o ANSUR II não mede o púbis. É onde o reto abdominal termina no desenho)
 
 ### Objetos (9)
 - anilhaCalcanhar.esp = 2.4 cm (espessura da anilha de 10 lb: a Rogue não informa)

@@ -6,7 +6,7 @@ Tipos de linha: **medida** (lida na fonte), **derivada** (calculada de medidas, 
 
 ## Corpo: homem
 
-População: ANSUR II (militares dos EUA, 2012), homens, IMC de 18,5 a 24,9; n = 1061; média de cada medida. 91 linhas: 67 medidas, 17 derivadas, 7 provisórias.
+População: ANSUR II (militares dos EUA, 2012), homens, IMC de 18,5 a 24,9; n = 1061; média de cada medida. 92 linhas: 67 medidas, 17 derivadas, 8 provisórias.
 
 | medida | valor | tipo | fonte | onde na fonte |
 |---|---|---|---|---|
@@ -101,6 +101,7 @@ População: ANSUR II (militares dos EUA, 2012), homens, IMC de 18,5 a 24,9; n =
 | `esterno.meiaDistanciaDasClaviculas` | 2,5 cm | **provisória** | a-conferir | da linha do meio até a articulação da clavícula com o esterno: sem fonte lida |
 | `escapula.altura` | 16 cm | medida | yoo2012 | do ângulo superior ao inferior, escápulas masculinas: 159,8 mm; antes: 15,5 cm (sem fonte) |
 | `escapula.largura` | 10,5 cm | medida | yoo2012 | da base da espinha à borda posterior da cavidade glenoide, escápulas masculinas: 105,0 mm |
+| `altura.pubis` | 90,6 cm | **provisória** | a-conferir | altura da crista do púbis, em pé: tomada igual à do trocânter (90,6 cm), por falta de medida; o ANSUR II não mede o púbis. É onde o reto abdominal termina no desenho |
 
 Fontes do corpo:
 
@@ -146,7 +147,7 @@ Fontes: `cdc`: Soucie JM et al. Range of motion measurements: reference values a
 
 ## Músculos do desenho
 
-O desenho aprovado tem 16 formas (Desenho do Boneco aprovado pelo Gustavo em 13/11/2026 (docs/revisoes/boneco-desenho/decisao). As formas foram desenhadas à mão sobre o corpo de medidas reais, em três vistas. Desde 14/11/2026 cada grupo tem a sua linha na tabela abaixo (origem, inserção, camada e fonte), e `npm run conferir:animacao` confere o desenho contra ela: a parte do corpo em que a forma está, a ordem de pintura, as pontas das formas contra os pontos de referência da fonte e se o músculo realçado é o do conteúdo. O resultado está em `prototipos/conferencia.md`.
+O desenho aprovado tem 21 formas (Desenho do Boneco aprovado pelo Gustavo em 13/11/2026 (docs/revisoes/boneco-desenho/decisao). As formas foram desenhadas à mão sobre o corpo de medidas reais, em três vistas. Desde 14/11/2026 cada grupo tem a sua linha na tabela abaixo (origem, inserção, camada e fonte), e `npm run conferir:animacao` confere o desenho contra ela: a parte do corpo em que a forma está, a ordem de pintura, as pontas das formas contra os pontos de referência da fonte e se o músculo realçado é o do conteúdo. O resultado está em `prototipos/conferencia.md`.
 
 | forma | desenhada de | o que o guia de hoje desenha no lugar (src/engine/estilo/musculos.ts) |
 |---|---|---|
@@ -161,11 +162,16 @@ O desenho aprovado tem 16 formas (Desenho do Boneco aprovado pelo Gustavo em 13/
 | triceps | lado, costas | triceps |
 | biceps | lado, frente | biceps |
 | deltoide | lado, frente, costas | deltAnt, deltLat, deltPost (três formas) |
+| deltAnt | lado, frente |  |
+| deltLat | lado, frente, costas |  |
+| deltPost | lado, costas |  |
 | trapezio | frente, costas | trapSuperior, trapMedio, trapInferior, romboides (quatro formas) |
 | obliquos | frente | obliquos |
 | adutores | frente | adutores |
 | tibial | frente | (não há no guia de hoje) |
 | antebraco | frente, costas | antebraco |
+| trapSup | costas |  |
+| trapMedInf | costas |  |
 
 O que o guia de hoje desenha e o desenho novo ainda não tem como forma própria: as três porções do deltoide, o peitoral clavicular, as três porções do trapézio e os romboides, o redondo maior e os eretores da espinha. Enquanto não houver, a porção vira a forma inteira (está listado nas decisões de proposta.md).
 
@@ -174,8 +180,8 @@ O que o guia de hoje desenha e o desenho novo ainda não tem como forma própria
 | grupo do desenho | músculos reais | origem (osso do boneco: onde) | inserção | a massa fica em | atravessa | camada; cobre | forma | fonte | grupo do conteúdo | o que o desenho não separa |
 |---|---|---|---|---|---|---|---|---|---|---|
 | Peitoral maior (`peitoral`) | peitoral maior, parte clavicular; peitoral maior, parte esternocostal | tronco: metade esternal da clavícula; face anterior do esterno até a cartilagem da 6ª ou 7ª costela; cartilagens das costelas verdadeiras | braco: crista do tubérculo maior do úmero | tronco | ombro | superficial; cobre abdomen | leque | GRAY1918, p. 436–437 | peito | parte clavicular (o peitoral de cima); parte esternocostal |
-| Deltoide (`deltoide`) | deltoide anterior; deltoide lateral; deltoide posterior | tronco: terço lateral da clavícula, acrômio e espinha da escápula | braco: tuberosidade deltóidea, no meio da face lateral do úmero | braco | ombro | superficial; cobre peitoral, biceps, triceps | triangular | GRAY1918, p. 439–440 | ombro_anterior, ombro_lateral, ombro_posterior | parte anterior; parte lateral; parte posterior |
-| Trapézio (`trapezio`) | trapézio superior; trapézio médio; trapézio inferior | tronco: protuberância occipital, ligamento nucal, processos espinhosos de C7 e de todas as torácicas (a ponta de baixo corresponde à 12ª torácica) | tronco: terço lateral da clavícula, acrômio e espinha da escápula | tronco | escapula | superficial; cobre dorsal | triangular plano | GRAY1918, p. 432 e 434 | costas | parte superior; parte média; parte inferior; romboides (ficam por baixo dele) |
+| Deltoide (`deltoide`) | deltoide anterior; deltoide lateral; deltoide posterior | tronco: terço lateral da clavícula, acrômio e espinha da escápula | braco: tuberosidade deltóidea, no meio da face lateral do úmero | braco | ombro | superficial; cobre peitoral, biceps, triceps | triangular | GRAY1918, p. 439–440 | ombro_anterior, ombro_lateral, ombro_posterior |  |
+| Trapézio (`trapezio`) | trapézio superior; trapézio médio; trapézio inferior | tronco: protuberância occipital, ligamento nucal, processos espinhosos de C7 e de todas as torácicas (a ponta de baixo corresponde à 12ª torácica) | tronco: terço lateral da clavícula, acrômio e espinha da escápula | tronco | escapula | superficial; cobre dorsal | triangular plano | GRAY1918, p. 432 e 434 | costas | romboides (ficam por baixo dele) |
 | Grande dorsal (`dorsal`) | grande dorsal; redondo maior | tronco: processos espinhosos das 6 torácicas inferiores, fáscia toracolombar, crista ilíaca e 3 ou 4 costelas inferiores | braco: fundo do sulco intertubercular do úmero | tronco | ombro | superficial | triangular plano | GRAY1918, p. 432–434 | costas | redondo maior |
 | Bíceps braquial (`biceps`) | bíceps braquial; braquial | tronco: processo coracoide e tubérculo supraglenoidal da escápula | ante: tuberosidade do rádio | braco | ombro, cotovelo | superficial | fuso | GRAY1918, p. 443–444 | biceps |  |
 | Tríceps braquial (`triceps`) | tríceps, cabeça longa; tríceps, cabeça lateral; tríceps, cabeça medial | tronco: tubérculo infraglenoidal da escápula (cabeça longa) e face posterior do úmero (cabeças lateral e medial) | ante: olécrano da ulna | braco | ombro, cotovelo | superficial | três cabeças num tendão comum | GRAY1918, p. 444–445 | triceps |  |
@@ -188,6 +194,11 @@ O que o guia de hoje desenha e o desenho novo ainda não tem como forma própria
 | Adutores (`adutores`) | adutor longo; adutor magno | pelve: púbis e ísquio | coxa: linha áspera e tubérculo adutor do fêmur | coxa | quadril | superficial | triangular | GRAY1918, p. 472–473 | adutores |  |
 | Panturrilha (`panturrilha`) | gastrocnêmio; sóleo | coxa: côndilos do fêmur (gastrocnêmio); fíbula e tíbia (sóleo) | pe: calcâneo, pelo tendão calcâneo | canela | joelho, tornozelo | superficial | duas cabeças | GRAY1918, p. 482–483 | panturrilha |  |
 | Tibial anterior (`tibial`) | tibial anterior | canela: côndilo lateral e face lateral da tíbia | pe: primeiro cuneiforme e base do primeiro metatarso | canela | tornozelo | superficial | grosso em cima, tendão embaixo | GRAY1918, p. 480 | (nenhum) |  |
+| Deltoide, parte da frente (`deltAnt`) | deltoide anterior (clavicular) | tronco: borda anterior e face superior do terço lateral da clavícula | braco: tuberosidade deltóidea, no meio da face lateral do úmero | braco | ombro | superficial | triangular | GRAY1918, p. 439–440 | ombro_anterior |  |
+| Deltoide, parte do lado (`deltLat`) | deltoide lateral (acromial) | tronco: margem lateral e face superior do acrômio | braco: tuberosidade deltóidea, no meio da face lateral do úmero | braco | ombro | superficial | triangular | GRAY1918, p. 439–440 | ombro_lateral |  |
+| Deltoide, parte de trás (`deltPost`) | deltoide posterior (espinal) | tronco: borda posterior da espinha da escápula | braco: tuberosidade deltóidea, no meio da face lateral do úmero | braco | ombro | superficial | triangular | GRAY1918, p. 439–440 | ombro_posterior |  |
+| Trapézio, parte de cima (`trapSup`) | trapézio superior | tronco: protuberância occipital, linha nucal e ligamento nucal | tronco: borda posterior do terço lateral da clavícula | tronco | escapula | superficial | triangular plano | GRAY1918, p. 432 e 434 | costas |  |
+| Trapézio, partes do meio e de baixo (`trapMedInf`) | trapézio médio; trapézio inferior; romboides (ficam por baixo dele) | tronco: processos espinhosos de C7 e das torácicas, até a 12ª | tronco: acrômio e espinha da escápula | tronco | escapula | superficial | triangular plano | GRAY1918, p. 432 e 434 | costas |  |
 
 Osso de cada parte do boneco: tronco = coluna, costelas, esterno, clavícula e escápula; pelve = bacia e sacro; braco = úmero; ante = rádio e ulna; mao = carpo, metacarpo e dedos; coxa = fêmur; canela = tíbia e fíbula; pe = ossos do pé.
 
@@ -327,8 +338,8 @@ Ficha da técnica: `docs/pesquisa/animacoes/goblet.md`. Movimento simétrico (os
 | `maos.meiaEspessuraDaPalma` | 1,6 cm | desenho | desenho | do meio da mão até a pele da palma, onde a cabeça do halter apoia |
 | `carga` | 11,3 kg | desenho | objetos | o halter desenhado (25 lb); entra no equilíbrio |
 | `erro.raso.joelho` | 72 graus | desenho | desenho | erro: parar alto |
-| `erro.lombar.tronco` | 52 graus | desenho | desenho | erro: o peito cai |
-| `erro.lombar.lombar` | 34 graus | desenho | desenho | erro: a lombar arredonda (flexão somada à curva de repouso) |
+| `erro.lombar.tronco` | 45 graus | desenho | desenho | erro: o peito cai (inclinação do peito embaixo; no certo são 27) |
+| `erro.lombar.lombar` | 35 graus | desenho | desenho | erro: a lombar arredonda: a bacia gira 17 graus para trás em relação ao certo e a lombar dobra o que falta até o peito |
 | `erro.valgo.joelho` | 9 cm | desenho | desenho | erro: quanto cada joelho cai para dentro da linha do pé |
 
 | fase | tipo | duração | respiração | ritmo | selo |
@@ -367,13 +378,13 @@ Ficha da técnica: `docs/pesquisa/animacoes/puxada-unilateral.md`. Movimento de 
 
 | parâmetro | valor | selo | fonte | o que é |
 |---|---|---|---|---|
-| `tronco` | -4 graus | consenso | guia | tronco reto ou levemente inclinado para trás |
+| `tronco` | -8 graus | consenso | guia | tronco levemente inclinado para trás (a ficha aceita reto ou levemente inclinado; inclinado, o cotovelo dobra menos no fim) |
 | `cotovelo.alongado` | 12 graus | consenso | guia | início: braço estendido para cima e para a frente |
 | `ombro.sobe` | 10 graus | consenso | guia | alongado: deixe o ombro subir (elevação da clavícula além do ritmo normal) |
 | `ombro.desce` | -6 graus | consenso | guia | fim: ombro para baixo |
-| `braco.fim.atras` | 12 graus | consenso | guia | fim: cotovelo ao lado das costelas, um pouco atrás do tronco |
+| `braco.fim.atras` | 6 graus | consenso | guia | fim: cotovelo ao lado das costelas, um pouco atrás do tronco |
 | `braco.fim.fora` | 12 graus | desenho | desenho | fim: o braço um pouco afastado do tronco, para o cotovelo passar ao lado das costelas |
-| `torre.distancia` | 62 cm | consenso | guia | ajoelhe de frente para a torre, a cerca de meio passo (dos joelhos à base) |
+| `torre.distancia` | 70 cm | consenso | guia | ajoelhe de frente para a torre, a cerca de meio passo (dos joelhos à base; o passo de um homem de 1,76 m tem perto de 70 a 75 cm). Mais perto que isto o cabo fica tão em pé que o cotovelo dobra além de 155 graus no fim |
 | `joelhos.meiaDistancia` | 8,7 cm | consenso | guia | joelhos na largura do quadril |
 | `erro.tronco` | -30 graus | desenho | desenho | erro: jogar o tronco para trás |
 | `erro.encolher` | 14 graus | desenho | desenho | erro: o ombro continua encolhido no fim |

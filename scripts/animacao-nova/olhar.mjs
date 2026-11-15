@@ -8,7 +8,8 @@ import { chromium } from 'playwright';
 import { motorNovo } from './empacotar.mjs';
 
 const [saida, ...pedidos] = process.argv.slice(2);
-const { modulo: m } = await motorNovo(`export * from './src/engine/novo/app.ts';`);
+// BONECO=aprovado desenha com as formas aprovadas, sem as correções anatômicas (para comparar)
+const { modulo: m } = await motorNovo(`export * from './src/engine/novo/app.ts';`, { aprovado: process.env.BONECO === 'aprovado' });
 const corpo = m.CORPOS.homem;
 const css = readFileSync('src/engine/novo/estilo.css', 'utf8') + m.cssDoBoneco();
 const LARG = Number(process.env.LARG ?? 560);
