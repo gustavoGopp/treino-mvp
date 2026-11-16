@@ -12,8 +12,12 @@ import { PERSONAS_NOVAS } from '../personas/todos';
 //  - tempo.corte (degrau 1b): no dia que não cabe no tempo, o exercício de um lado só dá lugar ao equivalente de dois
 //    lados do mesmo nível da função, antes de qualquer técnica ou corte.
 //  - tempo.superserie: a dupla de dois exercícios que carregam a lombar sem apoio é o último recurso do corte.
+//  - selecao.pratica-do-iniciante: o iniciante repete o exercício que já está na semana, se isso não custar outra coisa.
 // O "antes" de cada regra é o protótipo (scripts/auditoria/prototipo) com todas as adotadas menos ela. Só personas e
 // perfis fictícios.
+
+// As grades deste arquivo geram centenas de programas duas vezes (antes e depois): mais folga que os 5 s do padrão.
+vi.setConfig({ testTimeout: 30_000 });
 
 const TODAS = Object.values({ ...PERSONAS, ...PERSONAS_NOVAS });
 const pedido = (p: Partial<Pedido> & { cenario: string }): Pedido => ({ nivel: 'intermediario', dias: '3', min: 60, focos: [], dores: [], semanasParado: 0, ...p });
@@ -164,6 +168,71 @@ describe('tempo.superserie: a dupla de dois exercícios que carregam a lombar é
 
   it('onde a dupla de lombar continua, é porque já existia (o último recurso), e o programa é o mesmo de antes', () => {
     for (const { a, d, nome } of pares()) if (duplasDeLombar(d) > 0) expect(ids(d), nome).toEqual(ids(a));
+  });
+
+  it('nas personas, não aparece defeito da régua que não havia', () => {
+    for (const p of TODAS) {
+      const [a, d] = [programa(antes, p.perfil, p.inventario), programa(gerarPrograma, p.perfil, p.inventario)];
+      const [da, dd] = [defeitos(a, p.perfil, p.inventario), defeitos(d, p.perfil, p.inventario)];
+      expect(dd.filter((x) => !da.includes(x)), p.nome).toEqual([]);
+    }
+  });
+});
+
+describe('selecao.pratica-do-iniciante: prática antes de variedade, sem custo (pacote 4)', () => {
+  let antes: typeof gerarPrograma;
+  beforeAll(async () => {
+    antes = await carregarAntes('app,-iniciante-simples');
+  });
+  const diferentes = (p: Programa) => new Set(ids(p)).size;
+  const fracos = (p: Programa) => p.dias.filter((d) => d.exercicios.length < 3 || !d.exercicios.some((x) => x.tipo === 'composto')).length;
+  const grade = (niveis: Pedido['nivel'][]) =>
+    ['academia', 'condominio', 'halteres-banco', 'casa+', 'elasticos'].flatMap((cenario) =>
+      niveis.flatMap((nivel) => ['2', '3', '4', '5'].flatMap((dias) => [30, 45, 60].map((min) => pedido({ cenario, nivel, dias, min })))),
+    );
+  const pares = (niveis: Pedido['nivel'][]) =>
+    grade(niveis).map((pd) => {
+      const [perfil, inventario] = [perfilDe(pd), inventarioDe(pd.cenario)];
+      return { pd, perfil, inventario, a: programa(antes, perfil, inventario), d: programa(gerarPrograma, perfil, inventario), nome: `${pd.cenario}, ${pd.nivel}, ${pd.dias} dias de ${pd.min} min` };
+    });
+
+  it('o iniciante fica com menos exercícios diferentes na semana, e nenhum programa fica com mais', () => {
+    let [ta, td] = [0, 0];
+    for (const { a, d, nome } of pares(['iniciante'])) {
+      expect(diferentes(d), nome).toBeLessThanOrEqual(diferentes(a));
+      ta += diferentes(a);
+      td += diferentes(d);
+    }
+    expect(td).toBeLessThan(ta);
+  });
+
+  it('o exemplo: iniciante na academia, 3 dias de 60 min, faz a mesma puxada nos dias em que puxa de cima', () => {
+    const pd = pedido({ cenario: 'academia', nivel: 'iniciante', dias: '3', min: 60 });
+    const [perfil, inventario] = [perfilDe(pd), inventarioDe(pd.cenario)];
+    const puxadas = (p: Programa) => new Set(todos(p).filter((x) => x.funcao === 'puxar-vertical').map((x) => x.exId));
+    expect(puxadas(programa(antes, perfil, inventario)).size).toBeGreaterThan(1);
+    expect(puxadas(programa(gerarPrograma, perfil, inventario)).size).toBe(1);
+  });
+
+  it('nunca em todos os dias havendo outro do mesmo nível (o defeito B1 da régua não aparece)', () => {
+    for (const { d, perfil, inventario, nome } of pares(['iniciante'])) expect(defeitos(d, perfil, inventario), nome).not.toContain('B1');
+  });
+
+  it('só vale se não custar: nenhum dia a mais acima de 110% do tempo, nenhum dia fraco a mais e nenhum defeito novo', () => {
+    for (const { pd, a, d, perfil, inventario, nome } of pares(['iniciante'])) {
+      expect(acimaDoTempo(d, pd.min), nome).toBeLessThanOrEqual(acimaDoTempo(a, pd.min));
+      expect(fracos(d), nome).toBeLessThanOrEqual(fracos(a));
+      const [da, dd] = [defeitos(a, perfil, inventario), defeitos(d, perfil, inventario)];
+      expect(dd.filter((x) => !da.includes(x)), nome).toEqual([]);
+    }
+  });
+
+  it('as séries da semana não caem por causa da regra', () => {
+    for (const { a, d, nome } of pares(['iniciante'])) expect(series(d), nome).toBeGreaterThanOrEqual(series(a) - 2);
+  });
+
+  it('o intermediário e o avançado não mudam', () => {
+    for (const { a, d, nome } of pares(['intermediario', 'avancado'])) expect(ids(d), nome).toEqual(ids(a));
   });
 
   it('nas personas, não aparece defeito da régua que não havia', () => {

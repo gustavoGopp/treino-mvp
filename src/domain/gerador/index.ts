@@ -144,7 +144,13 @@ export const metaMaxima = (nivel: Nivel, prioridades: Grupo[]) => Math.max(...Ob
  * O que é possível e como se desempata, para um perfil num inventário (selecao.funcao-da-vaga; selecao.preferencia).
  * É a mesma escolha do gerador e do treino do dia num outro local (local.treino-do-dia), para os dois nunca divergirem.
  */
-export function contextoDeSelecao(perfil: Perfil, inventarioOriginal: Inventario, triagem: ResultadoTriagem = avaliarTriagem(perfil.triagem)) {
+export function contextoDeSelecao(
+  perfil: Perfil,
+  inventarioOriginal: Inventario,
+  triagem: ResultadoTriagem = avaliarTriagem(perfil.triagem),
+  /** A montagem de comparação do iniciante, sem a prática antes da variedade (selecao.pratica-do-iniciante). */
+  semPratica = false,
+) {
   const nivel = perfil.nivel;
   const inventario = semItens(inventarioOriginal, perfil.evitarEquipamentos);
   const caps = capacidades(inventario);
@@ -209,6 +215,9 @@ export function contextoDeSelecao(perfil: Perfil, inventarioOriginal: Inventario
     }
     return ordemFixa(a.id, b.id);
   };
+  // selecao.pratica-do-iniciante (16/11/2026): para o iniciante, o exercício que já está na semana vem antes (prática
+  // antes de variedade); o que já está em todos os dias menos um continua por último. Para os outros níveis, a variedade.
+  const variedadeOuPratica = (u: number) => (nivel === 'iniciante' && !semPratica ? (u >= limiteDeRepeticao ? 1000 + u : -u) : u);
   const chave = (e: Exercicio, f: Funcao | undefined, usos: Map<string, number>, evitar?: (e: Exercicio) => boolean, depois?: (e: Exercicio) => boolean, cansa?: (e: Exercicio) => boolean) => [
     evitar?.(e) ? 1 : 0, // selecao.variacoes-equivalentes: no último dia, o que já está em todos os outros fica por último
     (usos.get(e.id) ?? 0) >= limiteDeRepeticao ? 1 : 0,
@@ -218,7 +227,7 @@ export function contextoDeSelecao(perfil: Perfil, inventarioOriginal: Inventario
     cansa?.(e) ? 1 : 0, // selecao.lombar-no-dia: o que carrega a lombar sem apoio fica depois, se o dia já tem outro que carrega
     -cargaPossivel(e),
     umLadoSemPrecisar(f, e),
-    usos.get(e.id) ?? 0,
+    variedadeOuPratica(usos.get(e.id) ?? 0),
     preferido(f, e) ? 0 : 1,
     e.animacaoId ? 0 : 1, // entre equivalentes, o que o guia já mostra animado (CLAUDE.md, qualidade do guia)
   ];
@@ -447,22 +456,38 @@ function gerarNaDivisao(perfil: Perfil, inventarioOriginal: Inventario, aceitaRe
   // entrar (a panturrilha só tem vaga num dia do Corpo todo A/B; o abdômen vai para o outro), salvo se isso puser mais
   // dias acima de 110% do tempo que a ordem de antes.
   const acima = (p: Programa) => p.dias.filter((d) => d.minutosEstimados > LIMITE_DO_DIA * perfil.minutosSessao).length;
-  const montar = (focoPrimeiro: boolean) => {
+  const montar = (focoPrimeiro: boolean, semPratica: boolean) => {
     const info = { protegidosSemVaga: 0 };
-    const a = montarPrograma(perfil, inventarioOriginal, triagem, focoPrimeiro, false, info, aceitaRecuo);
+    const a = montarPrograma(perfil, inventarioOriginal, triagem, focoPrimeiro, false, info, aceitaRecuo, semPratica);
     // A ordem só importa quando os dois ficaram sem vaga: senão, uma montagem basta.
     if (info.protegidosSemVaga < 2) return a;
-    const b = montarPrograma(perfil, inventarioOriginal, triagem, focoPrimeiro, true, undefined, aceitaRecuo);
+    const b = montarPrograma(perfil, inventarioOriginal, triagem, focoPrimeiro, true, undefined, aceitaRecuo, semPratica);
     return acima(b) > acima(a) ? a : b;
   };
   // volume.prioridade.foco-primeiro: com foco, os isoladores de quem não é foco entram depois das vagas do foco, e o
   // músculo do foco protegido com 30 min não fica preso em 2 séries, salvo se isso deixar um dia acima de 110% dos
   // minutos (régua da G5, A3) que a montagem de antes não deixava.
-  const comFoco = montar(true);
   const passa = (p: Programa) => p.dias.some((d) => d.minutosEstimados > LIMITE_DO_DIA * perfil.minutosSessao);
-  if (!perfil.prioridades.length || !passa(comFoco)) return fechar(comFoco, triagem);
-  const antes = montar(false);
-  return fechar(passa(antes) ? comFoco : antes, triagem);
+  const escolher = (semPratica: boolean) => {
+    const comFoco = montar(true, semPratica);
+    if (!perfil.prioridades.length || !passa(comFoco)) return comFoco;
+    const antes = montar(false, semPratica);
+    return passa(antes) ? comFoco : antes;
+  };
+  const com = escolher(false);
+  // selecao.pratica-do-iniciante (16/11/2026): a prática antes da variedade só vale se não custar um dia acima de 110% do
+  // tempo, um dia fraco ou empurrar ÷ puxar acima de 1,5 que a montagem sem ela não teria.
+  if (perfil.nivel === 'iniciante') {
+    const fracosDe = (p: Programa) => p.dias.filter((d) => d.exercicios.length < 3 || !d.exercicios.some((x) => x.tipo === 'composto')).length;
+    const seriesDe = (p: Programa, ps: Padrao[]) => p.dias.flatMap((d) => d.exercicios).filter((x) => ps.includes(x.padrao)).reduce((t, x) => t + seriesDeVolume(x), 0);
+    const empurra = (p: Programa) => seriesDe(p, PADROES_PUXAR) > 0 && seriesDe(p, PADROES_EMPURRAR) > EMPURRAR_PUXAR_MAX * seriesDe(p, PADROES_PUXAR);
+    // Sem nenhum desses três no programa com a regra, não há o que comparar: a 2ª montagem só é feita quando há.
+    if (acima(com) || fracosDe(com) || empurra(com)) {
+      const sem = escolher(true);
+      if (acima(com) > acima(sem) || fracosDe(com) > fracosDe(sem) || (empurra(com) && !empurra(sem))) return fechar(sem, triagem);
+    }
+  }
+  return fechar(com, triagem);
 }
 
 /**
@@ -490,8 +515,8 @@ function fechar(programa: Programa, triagem: ResultadoTriagem): Resultado {
   };
 }
 
-function montarPrograma(perfil: Perfil, inventarioOriginal: Inventario, triagem: ResultadoTriagem, focoPrimeiro: boolean, protegidoRaroPrimeiro = false, info?: { protegidosSemVaga: number }, aceitaRecuo = false): Programa {
-  const ctx = contextoDeSelecao(perfil, inventarioOriginal, triagem);
+function montarPrograma(perfil: Perfil, inventarioOriginal: Inventario, triagem: ResultadoTriagem, focoPrimeiro: boolean, protegidoRaroPrimeiro = false, info?: { protegidosSemVaga: number }, aceitaRecuo = false, semPratica = false): Programa {
+  const ctx = contextoDeSelecao(perfil, inventarioOriginal, triagem, semPratica);
   const { nivel, inventario, caps, regioesExcluidas, possiveisSemRegiao, possiveis, carregaExcluida, naFuncao, perdidaPorDor, halterMax, resolver } = ctx;
   const dorDe = (a: Articulacao) => textoDor(a, triagem.dores.find((d) => d.articulacao === a)?.nota);
   const grupos = new Set<Grupo>(perfil.prioridades);

@@ -25,7 +25,7 @@ const SEM_ALTERNATIVA_DECIDIDO: string[] = [];
 describe(`metas do R0 com o inventário da Carla (${m.programas} programas)`, () => {
   it(`exercícios distintos usados: meta ${META_EXERCICIOS} ou mais`, () => {
     expect(m.usados.length).toBeGreaterThanOrEqual(META_EXERCICIOS);
-    // O leg press empata com o hack e o smith em tudo e perde no último desempate (o id): fica nas alternativas.
+    // (até o pacote 2, o leg press perdia do hack e do smith no último desempate, o id, e ficava nas alternativas)
     expect(m.usados).toEqual(expect.arrayContaining(['cadeira-extensora', 'cadeira-flexora', 'panturrilha-leg-press']));
   });
   it('os 49 equipamentos estão marcados, e nenhum fica sem exercício possível, salvo a esteira (decidido)', () => {
@@ -39,9 +39,13 @@ describe(`metas do R0 com o inventário da Carla (${m.programas} programas)`, ()
     expect(m.menosDe2Alternativas).toEqual(SEM_ALTERNATIVA_DECIDIDO);
   });
   it('as paralelas, a extensora, as máquinas novas e a adução aparecem nos programas', () => {
-    expect(m.usados).toEqual(expect.arrayContaining(['hack', 'supino-maquina', 'voador', 'puxada-frente', 'hip-thrust', 'abducao-maquina', 'aducao-maquina', 'panturrilha-sentada']));
+    expect(m.usados).toEqual(expect.arrayContaining(['supino-maquina', 'voador', 'puxada-frente', 'hip-thrust', 'abducao-maquina', 'aducao-maquina', 'panturrilha-sentada']));
     const alternativasOuVagas = new Set([...m.usados, ...m.progs.flatMap(({ programa }) => programa.dias.flatMap((d) => d.exercicios.flatMap((x) => x.alternativas)))]);
     expect(alternativasOuVagas).toContain('mergulho');
+    // O hack só entrava como vaga pela variedade do iniciante (o 3º agachamento em máquina da semana). Desde o pacote 4
+    // (16/11/2026, selecao.pratica-do-iniciante), o iniciante repete o leg press e o smith, e o hack fica nas alternativas.
+    expect(m.usados).not.toContain('hack');
+    expect(alternativasOuVagas).toContain('hack');
   });
   it('todo músculo abaixo da meta tem um aviso com o motivo (equipamento, minutos, divisão ou tempo)', () => {
     for (const { perfil, programa } of m.progs) {
