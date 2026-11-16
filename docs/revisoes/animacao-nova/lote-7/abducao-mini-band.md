@@ -62,3 +62,12 @@ Vistas: entrou a de três quartos (`quina`) como terceira vista, onde a faixa ap
 Conferência automática depois do ajuste: 0 falha, 3 avisos (os mesmos). Quadros: `quadros/abducao-mini-band.png`.
 
 O que ainda não é perfeito: de três quartos, com os joelhos abertos, aparece entre as duas pernas um pedaço do trecho de baixo da faixa (a face de dentro, escura). É o que se veria, mas é um pedaço pequeno solto no meio do quadro.
+
+## Ajuste da mão (16/11/2026, a pedido do Gustavo: "quando ele abre a band parece que a mão está pra dentro")
+
+O que estava ruim: de frente, com os joelhos abertos, a mão que segura a borda do assento aparecia por cima da coxa, dentro da faixa. Na verdade a coxa abre na frente da mão e a esconde.
+
+O que mudou: de frente, os braços passam a ser pintados antes do corpo e das pernas, e a coxa cobre a mão conforme abre (com os joelhos fechados a mão continua aparecendo ao lado da coxa). Para isso o quadro ganhou um ajuste de profundidade que vale só numa vista (`viesNaVista`, em `movimento.ts` e `cena.ts`); nas outras vistas nada muda. A pose não mudou: as mãos continuam na lateral do assento, como a ficha pede.
+
+Conferência automática depois do ajuste: 0 falha, 3 avisos (os mesmos). Aprovada por ele sem ver de novo ("ajuste isso e seguimos. Não quero olhar mais nenhuma").
+

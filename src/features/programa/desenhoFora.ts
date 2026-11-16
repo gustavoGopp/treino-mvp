@@ -1,13 +1,13 @@
 import { useEffect, useState } from 'react';
-import type { Estilo } from '../../engine/estilo';
+import type { Estilo } from '../app/estiloBoneco';
 
 // Pede ao Worker do Boneco (boneco.worker.ts) um desenho parado, sem travar a tela. Sem Worker no navegador, o
 // cálculo é feito aqui mesmo, com o motor carregado sob demanda. Cada resposta fica guardada pelo pedido.
-/** O tema da tela (claro ou escuro): o motor novo pinta o equipamento conforme o tema. Quem preenche é este arquivo. */
+/** O tema da tela (claro ou escuro): o motor pinta o equipamento conforme o tema. Quem preenche é este arquivo. */
 export type TemaDaTela = 'claro' | 'escuro';
 export type Pedido =
   | { tipo: 'miniatura'; animacaoId: string; estilo: Estilo; tema?: TemaDaTela }
-  | { tipo: 'previa'; estilo: Estilo }
+  | { tipo: 'previa'; estilo: Estilo; tema?: TemaDaTela }
   | { tipo: 'catalogo' }
   | { tipo: 'ficha'; animacaoId: string; estilo: Estilo }
   | { tipo: 'quadroGuia'; animacaoId: string; vista: string; modo: string; t: number; erro: number; largura: number; estilo: Estilo; tituloErro: string; tema?: TemaDaTela };
@@ -21,6 +21,8 @@ export type Ficha = {
   vistaMovimento: string;
   vistaMiniatura: string;
   instantesErro: number[];
+  /** Há músculo desenhado que só ajuda a firmar (listrado): a legenda do modo Músculos só fala dele se houver. */
+  soAjuda: boolean;
 };
 export type Catalogo = { dias: { id: string; nome: string; ids: string[] }[]; todos: string[] };
 export type Desenho = { viewBox: string; html: string; classe: string } | null;
@@ -66,8 +68,8 @@ function temaDaTela(): TemaDaTela {
 
 /** Pede ao Worker (ou, sem Worker, calcula aqui) a resposta de um pedido; respostas iguais ficam guardadas. */
 export function pedirAoBoneco<T = unknown>(pedido: Pedido, guardar = true): Promise<T> {
-  // os desenhos levam o tema da tela (o motor novo pinta o equipamento conforme o tema)
-  if (pedido.tipo === 'miniatura' || pedido.tipo === 'quadroGuia') pedido = { ...pedido, tema: temaDaTela() };
+  // os desenhos levam o tema da tela (o motor pinta o equipamento conforme o tema)
+  if (pedido.tipo === 'miniatura' || pedido.tipo === 'quadroGuia' || pedido.tipo === 'previa') pedido = { ...pedido, tema: temaDaTela() };
   const chave = JSON.stringify(pedido);
   if (!guardar || !prontos.has(chave)) {
     const w = typeof Worker !== 'undefined' ? oWorker() : null;
@@ -126,5 +128,5 @@ export function largarCiclo() {
   cicloPedido++;
   aoQuadroDoCiclo = null;
   // um ciclo sem exercício faz o Worker parar o que estava calculando
-  worker?.postMessage({ ciclo: { id: cicloPedido, animacaoId: '', vista: '', modo: '', erro: 0, largura: 0, estilo: 'a', tituloErro: '' } });
+  worker?.postMessage({ ciclo: { id: cicloPedido, animacaoId: '', vista: '', modo: '', erro: 0, largura: 0, estilo: 'cinza', tituloErro: '' } });
 }

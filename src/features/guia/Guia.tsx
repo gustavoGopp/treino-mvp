@@ -4,10 +4,8 @@ import { Link, Navigate, useNavigate, useParams, useSearchParams } from 'react-r
 import { CONTEUDO } from '../../conteudo';
 import { prescricaoNoGuia } from '../../domain/sessao';
 import { hojeDoEstado, hojeDoTreino } from '../treino/acoes';
-import { VIEWS } from '../../engine/desenho';
-import { NOME_DA_VISTA_NOVA } from '../../engine/novo/vistas';
-import type { Estilo } from '../../engine/estilo';
-import { SO_AJUDA } from '../../engine/estilo/musculos';
+import { NOME_DA_VISTA } from '../../engine/novo/vistas';
+import type { Estilo } from '../app/estiloBoneco';
 import { largarCiclo, pedirAoBoneco, pedirCiclo, type Catalogo, type Ficha, type QuadroGuia } from '../programa/desenhoFora';
 import { useEstiloBoneco } from '../app/estiloBoneco';
 import { agoraIso, fusoDoAparelho, useApp } from '../app/estado';
@@ -277,12 +275,12 @@ function GuiaExercicio({ ex, grupos }: { ex: Ficha; grupos: Grupo[] }) {
   };
   const trocarModo = (m: Modo) => {
     setModo(m);
-    if (m === 'mus' && !vistaManual.current && estilo !== 'atual') setVista(ex.vistaMiniatura);
+    if (m === 'mus' && !vistaManual.current) setVista(ex.vistaMiniatura);
     else if (m === 'err') {
       setErro(0);
       setVista(ex.errors[0]!.view);
       t.current = inicioDoErro(0);
-    } else if (m === 'tec' && !vistaManual.current && estilo !== 'atual') setVista(ex.vistaMovimento);
+    } else if (m === 'tec' && !vistaManual.current) setVista(ex.vistaMovimento);
     else if (!ex.views.includes(vista)) setVista(ex.views[0]!);
   };
 
@@ -378,7 +376,7 @@ function GuiaExercicio({ ex, grupos }: { ex: Ficha; grupos: Grupo[] }) {
             <div className="seg" role="group" aria-label="Visão">
               {vistas.map((v) => (
                 <button key={v} aria-pressed={v === vista} onClick={() => escolherVista(v)}>
-                  {VIEWS[v as keyof typeof VIEWS]?.name ?? NOME_DA_VISTA_NOVA[v] ?? v}
+                  {NOME_DA_VISTA[v] ?? v}
                 </button>
               ))}
             </div>
@@ -392,7 +390,7 @@ function GuiaExercicio({ ex, grupos }: { ex: Ficha; grupos: Grupo[] }) {
           </div>
           <div className="modeinfo">
             <InfoModo
-              soAjuda={!!SO_AJUDA[ex.id]?.length}
+              soAjuda={ex.soAjuda}
               estilo={estilo}
               modo={modo}
               erro={erro}
@@ -511,27 +509,20 @@ function InfoModo({
   txt: (typeof CONTEUDO)[string];
   onErro: (i: number) => void;
 }) {
-  const classico = estilo === 'atual';
+  // as amostras da legenda seguem as cores do desenho escolhido (cinza ou cor de pele): src/styles.css, `.legend.pele`
+  const legenda = estilo === 'pele' ? 'legend pele' : 'legend';
   if (modo === 'tec')
     return (
       <>
-        <div className="legend">
+        <div className={legenda}>
           <span>
             <i className="sw c-guide" />
             linhas de referência
           </span>
-          {classico && (
-            <span>
-              <i className="sw c-spine" />
-              coluna
-            </span>
-          )}
-          {estilo !== 'b' && (
-            <span>
-              <i className="sw c-joint" />
-              articulações
-            </span>
-          )}
+          <span>
+            <i className="sw c-joint" />
+            articulações
+          </span>
         </div>
       </>
     );
@@ -546,45 +537,32 @@ function InfoModo({
           ))}
         </div>
         <div>{txt.errors[erro]!.desc}</div>
-        {estilo === 'a' ? (
-          // R4 (05/11/2026): no Boneco, o certo é a figura cheia e só a parte que erra aparece em vermelho tracejado
-          <div className="legend">
-            <span>
-              <i className="sw c-pele contorno" />
-              execução correta
-            </span>
-            <span>
-              <i className="sw c-err" />
-              a parte que erra (tracejado)
-            </span>
-          </div>
-        ) : (
-          <div className="legend">
-            <span>
-              <i className="sw c-err" />
-              erro
-            </span>
-            <span>
-              <i className="sw c-ghost" />
-              execução correta
-            </span>
-          </div>
-        )}
+        {/* R4 (05/11/2026): o certo é a figura cheia e só a parte que erra aparece em vermelho tracejado */}
+        <div className={legenda}>
+          <span>
+            <i className="sw c-pele contorno" />
+            execução correta
+          </span>
+          <span>
+            <i className="sw c-err" />
+            a parte que erra (tracejado)
+          </span>
+        </div>
       </>
     );
   if (modo === 'mus')
     return (
       <>
-        <div className="legend">
+        <div className={legenda}>
           <span>
-            <i className={`sw ${classico ? 'c-mus-p' : 'c-m-p'}`} />
+            <i className="sw c-m-p" />
             alvo principal
           </span>
           <span>
-            <i className={`sw ${classico ? 'c-mus-s' : 'c-m-s'}`} />
-            {classico ? 'secundários' : 'também trabalha (conta meia série)'}
+            <i className="sw c-m-s" />
+            também trabalha (conta meia série)
           </span>
-          {soAjuda && !classico && (
+          {soAjuda && (
             <span>
               <i className="sw listras" />
               só ajuda a firmar

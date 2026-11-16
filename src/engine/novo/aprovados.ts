@@ -1,5 +1,5 @@
-// Os exercícios do motor novo aprovados pelo Gustavo na folha (um por um, com a data e o que ele disse).
-// É esta lista que o app vai consultar para escolher entre o motor novo e o de hoje. Ainda não está ligada às telas.
+// As animações aprovadas pelo Gustavo (uma por uma, com a data e o que ele disse). Só o que está nesta lista aparece
+// no app (src/features/programa/trabalhoBoneco.ts); desde 16/11/2026 são as 90, e o motor novo é o único do app.
 // `como`: 'na folha' (ele olhou a folha e aprovou; é o padrão), 'nos quadros' (ele olhou os quadros grandes das
 // que foram separadas para ele ver) ou 'por delegação' (desde 15/11/2026 ele pediu para
 // ver só as de maior risco; as outras entram aqui depois de conferidas por quem integra, com a frase dele).
@@ -94,4 +94,5 @@ export const APROVADOS: Record<string, { em: string; oQueEleDisse: string; como?
   'supino-reto': { em: '2026-11-15', oQueEleDisse: 'podem ficar assim, segue com as próximas, só ajuste as animações com o elástico desse bloco', como: 'nos quadros' },
   'puxada-unilateral': { em: '2026-11-15', oQueEleDisse: 'podem ficar assim, segue com as próximas, só ajuste as animações com o elástico desse bloco', como: 'nos quadros' },
   flexao: { em: '2026-11-15', oQueEleDisse: 'podem ficar assim, segue com as próximas, só ajuste as animações com o elástico desse bloco', como: 'nos quadros' },
+  'abducao-mini-band': { em: '2026-11-16', oQueEleDisse: 'O único problema é que quando ele abre a band parece que a mão está pra dentro, ajuste isso e seguimos. Não quero olhar mais nenhuma', como: 'por delegação' },
 };

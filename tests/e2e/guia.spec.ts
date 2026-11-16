@@ -6,7 +6,7 @@ test('do início ao guia: troca de exercício, modo e vista', async ({ page }) =
   await page.goto('/guia');
   await expect(page).toHaveURL(/\/guia\/supino-inclinado$/);
   await expect(page.getByRole('heading', { name: 'Supino inclinado com halteres' })).toBeVisible();
-  await expect(page.locator('.stage svg line').first()).toBeAttached();
+  await expect(page.locator('.stage svg path').first()).toBeAttached();
 
   await page.getByRole('button', { name: 'Erros' }).click();
   await expect(page.locator('.errchip').first()).toHaveAttribute('aria-pressed', 'true');
@@ -28,36 +28,39 @@ test('rota direta funciona e id desconhecido volta para o primeiro exercício', 
   await expect(page).toHaveURL(/\/guia\/supino-inclinado$/);
 });
 
-test('o boneco novo é o padrão, a silhueta fica em Meus dados e o clássico saiu do app', async ({ page }) => {
+test('o cinza é o padrão, o cor de pele fica em Meus dados e os desenhos de antes saíram do app', async ({ page }) => {
   await page.goto('/guia/goblet');
-  // o goblet já é desenhado pelo motor novo (aprovado em 15/11/2026): o Boneco padrão é o desenho `novo`
-  await expect(page.locator('.stage svg')).toHaveClass(/\bnovo\b/);
+  // o desenho é o do motor novo, no cinza
+  await expect(page.locator('.stage svg')).toHaveClass(/\bnovo\b.*\bcinza\b/);
   await expect(page.locator('.stage svg path.b-mp, .stage svg path.b-ms')).toHaveCount(0); // músculo só no modo Músculos
   await page.getByRole('button', { name: 'Músculos' }).click();
   await expect(page.locator('.stage svg path.b-mp').first()).toBeAttached();
 
-  // lote 5 do redesign: o estilo fica numa folha de Meus dados
+  // lote 5 do redesign: o estilo fica numa folha de Meus dados, com a prévia de cada desenho
   await page.goto('/dados');
   await page.getByRole('button', { name: 'Estilo do Boneco' }).click();
   const grupo = page.getByRole('radiogroup', { name: 'Estilo do boneco' });
-  await expect(grupo.getByRole('radio', { name: /Boneco \(padrão\)/ })).toBeChecked();
-  await expect(grupo.getByRole('radio', { name: /Clássico/ })).toHaveCount(0);
+  await expect(grupo.getByRole('radio', { name: /Cinza \(padrão\)/ })).toBeChecked();
+  await expect(grupo.getByRole('radio')).toHaveCount(2);
+  await expect(grupo.getByRole('radio', { name: /Clássico|Silhueta|Boneco \(padrão\)/ })).toHaveCount(0);
+  await expect(grupo.locator('svg.pele path.b-mp').first()).toBeAttached();
+  await expect(grupo.locator('svg.cinza path.b-mp').first()).toBeAttached();
 
-  await page.goto('/dados');
-  await page.getByRole('button', { name: 'Estilo do Boneco' }).click();
-  await page.getByRole('radiogroup', { name: 'Estilo do boneco' }).getByRole('radio', { name: /Silhueta/ }).check();
+  // escolhido o cor de pele, o guia, a legenda e a miniatura do programa passam a ele
+  await grupo.getByRole('radio', { name: /Cor de pele/ }).check();
   await page.goto('/guia/goblet');
-  // a Silhueta continua no motor de hoje
-  await expect(page.locator('.stage svg')).toHaveClass(/estilo-b/);
+  await expect(page.locator('.stage svg')).toHaveClass(/\bnovo\b.*\bpele\b/);
+  await page.getByRole('button', { name: 'Músculos' }).click();
+  await expect(page.locator('.legend.pele')).toBeVisible();
 });
 
-test('quem tinha escolhido o clássico passa ao Boneco', async ({ page }) => {
-  await page.addInitScript(() => localStorage.setItem('treino-mvp:estilo-boneco', 'atual'));
-  await page.goto('/guia/goblet');
-  // o Boneco padrão do goblet é o do motor novo; a Silhueta é que não pode aparecer (o clássico saiu do app)
-  await expect(page.locator('.stage svg')).toHaveClass(/\bnovo\b/);
-  await expect(page.locator('.stage svg')).not.toHaveClass(/estilo-b/);
-});
+// Quem tinha uma escolha de antes guardada (o clássico, o Boneco de antes ou a Silhueta) passa ao padrão.
+for (const antigo of ['atual', 'a', 'b'])
+  test(`quem tinha escolhido um desenho de antes ("${antigo}") passa ao cinza`, async ({ page }) => {
+    await page.addInitScript((v) => localStorage.setItem('treino-mvp:estilo-boneco', v), antigo);
+    await page.goto('/guia/goblet');
+    await expect(page.locator('.stage svg')).toHaveClass(/\bnovo\b.*\bcinza\b/);
+  });
 
 test('o modo Músculos abre na vista em que o músculo principal aparece mais (afundo: de lado)', async ({ page }) => {
   await page.goto('/guia/afundo?vista=frontal');

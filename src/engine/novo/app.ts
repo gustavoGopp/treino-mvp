@@ -1,4 +1,6 @@
 // Motor novo: o que o app carrega (palco, miniatura e folhas). Sem a conferência nem os experimentos de desenho.
+// o que vem calculado de antemão para cada exercício (o app carrega o de cada um junto com ele; aqui, todos)
+import './dados/preparo/registro';
 export { CORPOS } from './tabelas';
 export type { Corpo } from './tabelas';
 export { VISTAS } from './desenho';

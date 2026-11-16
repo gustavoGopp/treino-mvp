@@ -2,7 +2,7 @@
 
 Atualizado por quem integra, a cada família juntada. "Aprovada na folha" = o Gustavo olhou e aprovou. "Aprovada por delegação" = conferida por quem integra, risco baixo, registrada com a frase dele de 15/11/2026. "Para o Gustavo ver" = risco médio ou alto: só entra na lista do app depois do ok dele. "Correção de qualidade" = desde o aviso dele de 15/11 ("o fato de eu ter delegado [...] não quer dizer que a gente pode diminuir a qualidade"), nenhuma animação delegada conta como pronta enquanto tiver defeito visível nos quadros (seção 8 de `como-fazer-uma-animacao.md`). As folhas ficam em `prototipos/folha-<id>.png` e os quadros grandes em `quadros/<id>.png`.
 
-Resumo: as 90 animações estão feitas no motor novo. 23 aprovadas pelo Gustavo (7 na folha e 16 vendo os quadros); 66 por delegação; 1 ajustada a pedido dele, esperando ele ver.
+Resumo: as 90 animações estão feitas e aprovadas. 23 aprovadas pelo Gustavo (7 na folha e 16 vendo os quadros) e 67 por delegação. Em 16/11/2026 ele disse que não quer olhar mais nenhuma, mandou ligar o cor de pele e tirar o motor de hoje: desde então o motor novo é o único do app.
 
 | Lote | Exercício | Estado |
 |---|---|---|
@@ -87,7 +87,7 @@ Resumo: as 90 animações estão feitas no motor novo. 23 aprovadas pelo Gustavo
 | 7 | `abdominal-polia` | feita e conferida quadro a quadro por quem integra; aprovada por delegação |
 | 7 | `abducao-caneleira` | feita e conferida quadro a quadro por quem integra; aprovada por delegação (a pose da abdução deitado, com a caneleira, que é peça nova; sem colchonete) |
 | 7 | `abducao-deitado` | aprovada pelo Gustavo em 15/11/2026, vendo os quadros ("podem ficar assim, segue com as próximas, só ajuste as animações com o elástico desse bloco"): o primeiro corpo deitado de lado do motor novo, visto de costas |
-| 7 | `abducao-mini-band` | feita; faixa refeita em 15/11/2026 a pedido do Gustavo ("só ajuste as animações com o elástico desse bloco"): assenta na pele das coxas, fica escondida atrás dos joelhos e ganhou a vista de três quartos; esperando ele ver |
+| 7 | `abducao-mini-band` | aprovada por delegação em 16/11/2026 ("O único problema é que quando ele abre a band parece que a mão está pra dentro, ajuste isso e seguimos. Não quero olhar mais nenhuma"): a faixa refeita em 15/11 e, de frente, a mão escondida atrás da coxa que abre |
 | 7 | `abertura-t-deitado` | feita e conferida quadro a quadro por quem integra; aprovada por delegação |
 | 7 | `aducao-caneleira` | feita e conferida quadro a quadro por quem integra; aprovada por delegação |
 | 7 | `aducao-deitado` | feita e conferida quadro a quadro por quem integra; aprovada por delegação (deitado de lado, visto de frente) |

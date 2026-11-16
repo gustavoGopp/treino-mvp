@@ -121,7 +121,7 @@ const COMO = [
   'vem do corpo aprovado em 13/11/2026 (mão com dedos e polegar, pé com calcanhar); as pegadas de cada animação entram no cuidado 5',
   'a olho, nos quadros grandes',
   'o realçado é o do conteúdo do app (grupo "Músculos"); a forma e o lugar vêm do corpo aprovado e da auditoria de anatomia',
-  'vem do desenho aprovado: o secundário leva listras além da cor',
+  'vem do desenho aprovado: o principal leva as linhas de divisão do músculo, o secundário é liso e o que só ajuda é listrado, com o contorno tracejado',
   'área do músculo principal virada para quem olha, em cada vista (grupo "Músculos")',
   'a olho, nos quadros grandes; onde uma vista esconde, a segunda vista resolve',
   'a olho, na cena; "–" onde a cena não tem objeto',

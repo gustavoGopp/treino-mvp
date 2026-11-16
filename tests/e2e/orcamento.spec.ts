@@ -30,16 +30,22 @@ async function jsDaTela(page: Page, abrir: () => Promise<unknown>) {
 // Os limites passaram a 175 e 220 kB; voltar abaixo de 150 está no backlog (separar os textos das regras do pacote).
 test('a boas-vindas baixa menos de 175 kB de JavaScript comprimido', async ({ page }) => {
   const { kB, arquivos } = await jsDaTela(page, () => page.goto('/'));
-  expect(arquivos.some((f) => /quadroBoneco|boneco\.worker|estiloBoneco|Guia/.test(f)), 'o motor do Boneco fica fora da boas-vindas').toBe(false);
+  expect(arquivos.some((f) => /trabalhoBoneco|boneco\.worker|ponte|Guia/.test(f)), 'o motor do Boneco fica fora da boas-vindas').toBe(false);
   expect(kB, `JS da boas-vindas: ${arquivos.join(', ')}`).toBeLessThan(175);
 });
 
-test('quem volta: o programa baixa o pacote inicial e o motor das miniaturas, menos de 220 kB comprimidos', async ({ page, context }) => {
+// 16/11/2026, com o motor novo como único motor do app: o limite do programa passou de 220 para 285 kB. O motor novo
+// (um corpo em três dimensões, com as tabelas de medidas) pesa mais que o de antes, e cada miniatura traz o arquivo do
+// seu exercício: medido, 275 kB em 36 arquivos (o pacote inicial, 157; o motor, cerca de 70; os exercícios do dia e o
+// que vem calculado para eles, cerca de 48). O número de antes (209 kB, com o motor de antes) é o que vale de
+// comparação; enquanto os dois motores conviveram, este teste contava só 2 arquivos, porque o Worker demorava a começar
+// e o teste parava de contar antes de o motor novo baixar. Baixar de novo está no backlog ("Da animação nova", Peso).
+test('quem volta: o programa baixa o pacote inicial e o motor das miniaturas, menos de 285 kB comprimidos', async ({ page, context }) => {
   await ana(page);
   const outra = await context.newPage();
   const { kB, arquivos } = await jsDaTela(outra, () => outra.goto('/programa'));
   await expect(outra.getByRole('heading', { name: 'Seu treino', exact: true })).toBeVisible();
   // os textos do guia e as outras telas não vêm junto
   expect(arquivos.some((f) => /\/(Guia|Treino|Inventario|Dados)-/.test('/' + f)), arquivos.join(', ')).toBe(false);
-  expect(kB, `JS do programa: ${arquivos.join(', ')}`).toBeLessThan(220);
+  expect(kB, `JS do programa: ${arquivos.join(', ')}`).toBeLessThan(285);
 });

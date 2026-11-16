@@ -1744,7 +1744,8 @@ As outras 4 folhas (cadastro, guia, fim e semana, Meus dados e locais) estão em
 - **Cada movimento sai de uma ficha** com números, selo de evidência e fonte (`dados/movimentos/`), e não de poses desenhadas a olho. O ritual de cada animação: reler as correções já feitas, preencher a ficha, fazer as poses, passar na conferência automática, escrever "o que a fonte pede × o que o boneco faz (medido) × confere?" e pôr a folha ao lado da de hoje.
 - **Uma conferência automática** mede cada animação quadro a quadro: os ossos não esticam, nenhuma junta passa da amplitude das tabelas (CDC, AAOS), o pé não sai do chão, o corpo não atravessa o banco, o centro de massa fica sobre os pés, o cabo fica reto, o elástico não estica além do que o fabricante diz, o ciclo fecha sem tranco, e o músculo realçado é o do conteúdo. As 90 passam sem nenhuma falha (241 avisos, todos listados).
 - **O equipamento é desenhado com medidas de fabricante**: 29 objetos na tabela (banco, halter, kettlebell, polia, barra fixa, fita de suspensão, bola, elásticos, mini band e outros) e 21 peças de cena novas.
-- **No app**, cada exercício aprovado passa a ser desenhado pelo motor novo, nos dois palcos e na miniatura; os outros continuam no de hoje. As telas não mudaram: a troca é no Worker do Boneco.
+- **No app**, as 90 são desenhadas pelo motor novo, nos dois palcos e na miniatura, e o motor de antes saiu (16/11). A troca é no Worker do Boneco; das telas, só mudaram a folha "Estilo do Boneco" de Meus dados e a legenda do guia.
+- **Dois desenhos do mesmo corpo**: o cinza, que é o padrão, e o cor de pele, que a pessoa escolhe em Meus dados. O Boneco de antes e a Silhueta saíram; quem tinha um deles guardado passa ao cinza.
 
 ![O guia de hoje e o motor novo, no mesmo ponto do movimento](revisoes/animacao-nova/antes-e-depois.png)
 
@@ -1755,7 +1756,9 @@ As outras 4 folhas (cadastro, guia, fim e semana, Meus dados e locais) estão em
 | Aprovadas pelo Gustavo na folha | 7 |
 | Aprovadas pelo Gustavo vendo os quadros grandes | 16 |
 | Aprovadas por delegação (conferidas por mim, não vistas por ele) | 66 |
-| Ajustada a pedido dele, esperando ele ver (abdução com mini band) | 1 |
+| Ajustada duas vezes a pedido dele e aprovada sem ele ver de novo (abdução com mini band) | 1 |
+
+Em 16/11 ele fechou: "Não quero olhar mais nenhuma, pode ligar a opção, tirar o motor de hoje, e fazer o resto necessário".
 
 **As medidas.**
 
@@ -1764,23 +1767,26 @@ As outras 4 folhas (cadastro, guia, fim e semana, Meus dados e locais) estão em
 | Animações que passam na conferência automática sem falha | (não havia) | 90 de 90 |
 | Tempo para desenhar um quadro, celular lento simulado (mediana das 90, modo Técnica) | 5,1 ms | 14,9 ms na primeira volta; 3,9 ms depois |
 | Tempo até o primeiro desenho ao abrir um exercício, no computador (mediana; pior caso) | (imediato) | 63 ms; 445 ms |
-| Peso do motor, compactado | 48 kB, com as 90 | 49 kB, mais 24 kB das tabelas calculadas de antemão e de 2 a 5 kB do exercício aberto |
-| Testes | 896 e 157 e2e | 902 e 159 e2e |
+| Peso do motor, compactado | 48 kB, com as 90 | cerca de 70 kB, mais de 3 a 8 kB de cada exercício aberto (o exercício e o que vem calculado para ele) |
+| O que a tela do programa baixa na 1ª visita | 209 kB | 275 kB |
+| O que o app instalado guarda | (não medido antes) | 668 arquivos, 3,8 MB (4,1 MB enquanto os dois motores conviveram) |
+| Testes | 896 e 157 e2e | 904 e 161 e2e |
 
-O celular lento é o Chromium com a CPU 4 vezes mais lenta; nada foi medido num aparelho de verdade.
+O celular lento é o Chromium com a CPU 4 vezes mais lenta; nada foi medido num aparelho de verdade. O motor novo pesa mais que o de antes: a tela do programa, que desenha as miniaturas, passou a baixar 66 kB a mais na primeira visita, e o limite do teste de peso subiu de 220 para 285 kB.
 
 **Um defeito que só os testes do app mostraram.** Com as animações ligadas, dois testes do guia falharam: o título não aparecia em 5 segundos. O motor novo, ao abrir um exercício, calculava o ciclo inteiro para enquadrar e pôr os rótulos e, em 19 animações, refazia uma conta de tentativa e erro com centenas ou milhares de poses (onde a bacia assenta no banco inclinado, por exemplo). O primeiro desenho levava 0,3 s na mediana e até 7 s no pior caso, no computador. Como esses números são sempre os mesmos, passaram a vir calculados de antemão (`scripts/animacao-nova/preparo.mjs`), e um teste confere que o guardado é igual ao calculado. A linha de base nova (6.457 quadros das 89 animações aprovadas) não mudou em nada com isso. No caminho apareceu que o arco do ângulo do banco inclinado saía tracejado no app: usava um estilo embutido, que a política de segurança barra.
 
 **O que não ficou bom** (o resto está no backlog, "Da animação nova"):
 - O erro "Quicar embaixo", da panturrilha no degrau, não foi desenhado: é erro de ritmo, e o motor novo ainda não muda o tempo das fases por erro.
 - Seis animações têm a primeira volta pesada (de 12 a 27 ms por pose no computador).
-- 66 animações o Gustavo não viu. Não houve revisor independente animação por animação.
+- 67 animações o Gustavo não viu depois de prontas. Não houve revisor independente animação por animação.
 - 6 medidas do corpo e 42 dos objetos seguem provisórias, sem fonte lida.
-- O app só mostra o desenho cinza; a opção cor de pele existe no motor, mas não foi ligada.
+- O cor de pele entrou com as escolhas da proposta (um tom de pele só, o secundário num tom claro do vermelho), sem ele olhar uma a uma.
+- O código do motor de antes continua no repositório, fora do app, porque a auditoria de anatomia e os cartões de equipamento ainda o usam.
 
 **Decisões que mudaram no caminho, com o sim do Gustavo:** o trapézio passou a subir até a base do crânio; a puxada abre de três quartos, de trás; a extensão de tríceps no chão ficou com os braços acima da cabeça, como a ficha pede; a panturrilha no chão sobe com as duas pernas e desce com uma; a rosca alternada e a rosca inclinada usam um halter de 10 lb, para ele caber junto do corpo.
 
-**Resultado:** `npm run check` com 902 testes, `npm run test:e2e` com 159, `npm run conferir:animacao` sem falha nas 90. `src/domain/`, `src/storage/`, `api/`, as personas e as telas não mudaram. Nada foi para a `main`.
+**Resultado:** `npm run check` com 904 testes, `npm run test:e2e` com 161, `npm run conferir:animacao` sem falha nas 90. `src/domain/`, `src/storage/`, `api/` e as personas não mudaram. Nada foi para a `main`.
 
 **Rascunho de post para o LinkedIn**
 

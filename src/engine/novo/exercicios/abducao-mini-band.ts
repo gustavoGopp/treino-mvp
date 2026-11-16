@@ -60,6 +60,9 @@ function quadro(corpo: Corpo, u: number, erro?: string): Quadro {
     fios: [{ id: 'elastico', comp: laco.comp, estica: true, objeto: 'miniBand' }],
     cargas: [],
     marcas: { faixaR: laco.centros.R, faixaL: laco.centros.L, assento: [0, A.altura, A.zBorda] },
+    // de frente, as coxas abrem na frente das mãos que seguram o assento: os braços são pintados antes do corpo e das
+    // pernas, para a coxa esconder a mão (senão a mão aparecia por cima, dentro da faixa)
+    viesNaVista: { frontal: { bracoR: -40, bracoL: -40 } },
   };
 }
 

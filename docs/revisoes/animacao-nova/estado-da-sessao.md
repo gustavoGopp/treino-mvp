@@ -4,22 +4,18 @@ Ramo: `claude/friendly-goldberg-hwf6dl`. Nada foi para a `main`. A frente parou 
 
 ## Em uma página
 
-- **As 90 animações existem no motor novo** (`src/engine/novo/`) e passam na conferência automática sem falha. O estado de cada uma está em `andamento.md`; como cada um dos vinte cuidados foi conferido, em `qa.md`.
-- **Aprovação:** 23 pelo Gustavo (7 na folha, 16 vendo os quadros grandes), 66 por delegação dele (conferidas quadro a quadro por quem integrou) e 1 ajustada a pedido dele, esperando ele ver (`abducao-mini-band`, com a faixa refeita: `quadros/abducao-mini-band.png`).
-- **No app:** as 89 aprovadas são desenhadas pelo motor novo nos dois palcos e na miniatura (a troca é no Worker do Boneco: `src/features/programa/trabalhoBoneco.ts` e `src/engine/novo/ponte.ts`); a abdução com mini band e o estilo Silhueta continuam no motor de hoje.
-- **Para o guia abrir sem esperar,** o quadro de cada vista e as calibrações demoradas vêm calculados de antemão (`src/engine/novo/dados/enquadramentos.gerado.json` e `calibragens.gerado.json`). Depois de mudar um exercício: `node scripts/animacao-nova/preparo.mjs`.
-- **Testes:** `npm run check` (902), `npm run test:e2e` (159, com a linha de base nova em `tests/visual/linha-de-base/motor-novo.json`), `npm run conferir:animacao` (as 90 sem falha e as tabelas conferindo).
+- **As 90 animações existem no motor novo** (`src/engine/novo/`), estão aprovadas e passam na conferência automática sem falha. O estado de cada uma está em `andamento.md`; como cada um dos vinte cuidados foi conferido, em `qa.md`.
+- **Aprovação:** 23 pelo Gustavo (7 na folha, 16 vendo os quadros grandes) e 67 por delegação dele. Em 16/11 ele fechou: "Não quero olhar mais nenhuma, pode ligar a opção, tirar o motor de hoje, e fazer o resto necessário".
+- **No app, o motor novo é o único** (desde 16/11): o Worker do Boneco (`src/features/programa/trabalhoBoneco.ts`) responde tudo pela ponte (`src/engine/novo/ponte.ts`). Em "Meus dados" a pessoa escolhe entre o cinza (padrão) e o cor de pele.
+- **O código do motor de antes** (`src/engine/`, menos `novo/`) continua no repositório só para ferramentas (auditoria de anatomia, pessoa dos cartões de equipamento, folhas de comparação, laboratório de desenvolvimento). O que falta para apagá-lo está no `docs/backlog.md`.
+- **Para o guia abrir sem esperar,** o quadro de cada vista e as calibrações demoradas vêm calculados de antemão (`src/engine/novo/dados/preparo/`, um arquivo por exercício). Depois de mudar um exercício: `node scripts/animacao-nova/preparo.mjs`.
+- **Testes:** `npm run check`, `npm run test:e2e` (com a linha de base em `tests/visual/linha-de-base/motor-novo.json`: as 90, no cinza e no cor de pele) e `npm run conferir:animacao` (as 90 sem falha e as tabelas conferindo).
 - **Fechamento escrito:** `docs/devlog.md` ("Animação nova"), `docs/backlog.md` ("Da animação nova"), `pedidos-ao-conteudo.md`.
 
-## O que falta o Gustavo decidir (uma por vez, com imagem)
+## O que falta o Gustavo decidir
 
-1. A abdução sentada com mini band, com a faixa refeita.
-2. Se quer olhar alguma das 66 aprovadas por delegação.
-3. A cor de pele no app (mexe em "Meus dados").
-4. Tirar o motor de hoje e os estilos Clássico e Silhueta.
-5. O erro "Quicar embaixo" da panturrilha no degrau (erro de ritmo, sem desenho).
-6. O segundo corpo.
-7. A junção com a `main`.
+1. A junção com a `main`.
+2. O segundo corpo, e os pontos do cor de pele e do corpo listados no backlog.
 
 O que vem abaixo é o registro de como se chegou até aqui (sessões de 14 e 15/11).
 

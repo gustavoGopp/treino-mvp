@@ -1,12 +1,13 @@
-// A ponte entre o motor novo e as telas do app. As telas não conhecem o motor: pedem ao Worker do Boneco a ficha de
-// uma animação, um quadro, a volta inteira ou a miniatura (src/features/programa/desenhoFora.ts). Para um exercício
-// refeito e aprovado (./aprovados.ts), o Worker responde por aqui, no mesmo formato do motor de hoje; para os outros,
-// o motor de hoje continua respondendo. Quem decide qual motor responde e carrega o exercício (um arquivo por
-// exercício, só quando ele é aberto) é o Worker (src/features/programa/trabalhoBoneco.ts). Nada aqui decide treino
-// nem músculo: só traduz o pedido da tela.
+// A ponte entre o motor e as telas do app. As telas não conhecem o motor: pedem ao Worker do Boneco a ficha de uma
+// animação, um quadro, a volta inteira, a miniatura ou a prévia de um desenho (src/features/programa/desenhoFora.ts),
+// e o Worker responde por aqui. Só entra animação aprovada (./aprovados.ts); quem carrega o exercício (um arquivo por
+// exercício, só quando ele é aberto) é o Worker (src/features/programa/trabalhoBoneco.ts). Desde 16/11/2026 este é o
+// único motor do app. Nada aqui decide treino nem músculo: só traduz o pedido da tela.
+import type { IdEstilo } from './boneco';
 import { caixaDoCiclo, enquadrar, svgDaCena, vistasDoModoMusculos } from './cena';
 import type { Modo } from './cena';
-import ENQUADRAMENTOS from './dados/enquadramentos.gerado.json';
+import { enquadramentoGuardado } from './preparo';
+import type { Enquadramento } from './preparo';
 import { VISTAS } from './desenho';
 import type { IdVista } from './desenho';
 import { duracao, instante } from './movimento';
@@ -15,27 +16,22 @@ import { CORPOS } from './tabelas';
 
 export type TemaDaTela = 'claro' | 'escuro';
 const CORPO = CORPOS.homem;
-/** O desenho do corpo: o cinza, com as linhas dos grupos musculares (o padrão aprovado). */
+/**
+ * O desenho do corpo que enquadra a cena: o cinza, com as linhas dos grupos musculares (o padrão aprovado). O quadro é
+ * o mesmo no cinza e no cor de pele, para o corpo não mudar de lugar quando a pessoa troca de desenho.
+ */
 const BONECO = 'cinza' as const;
+/** O desenho pedido pela tela; qualquer outro valor (uma preferência antiga guardada) vale o padrão. */
+const desenhoDe = (estilo?: string): IdEstilo => (estilo === 'pele' ? 'pele' : 'cinza');
 
 const TIPO_DA_FASE = { pausa: 'hold', exc: 'ecc', conc: 'conc' } as const;
 
 /*
- * O que não muda de uma vez para a outra já vem calculado (./dados/enquadramentos.gerado.json, feito por
- * scripts/animacao-nova/preparo.mjs): o quadro de cada vista e a vista da miniatura de cada exercício. Calcular isso
- * ao abrir o guia pede o ciclo inteiro do movimento e atrasava o primeiro desenho em segundos. O script confere que
- * o guardado é igual ao calculado; o que faltar na tabela é calculado na hora, com o mesmo resultado.
+ * O que não muda de uma vez para a outra já vem calculado, no arquivo de cada exercício (./preparo.ts): o quadro de
+ * cada vista e a vista da miniatura. Calcular isso ao abrir o guia pede o ciclo inteiro do movimento e atrasava o
+ * primeiro desenho em segundos. O que faltar é calculado na hora, com o mesmo resultado.
  */
 type VB = [number, number, number, number];
-interface Enquadramento {
-  vistaMiniatura: string;
-  /** O quadro (viewBox) de cada vista no palco e o da miniatura. */
-  quadros: Record<string, number[]>;
-  mini: number[];
-  /** A caixa do corpo e do equipamento no ciclo, por vista (a chave é a de `caixaDoCiclo`, em ./cena.ts). */
-  caixas: Record<string, number[]>;
-}
-const GUARDADOS = ENQUADRAMENTOS as unknown as Record<string, Enquadramento | undefined>;
 
 /** A vista da miniatura, calculada: a que mais mostra o músculo principal. */
 export const vistaDaMiniaturaCalculada = (ex: Exercicio): string => vistasDoModoMusculos(ex, CORPO)[0]?.vista ?? ex.vistas[0]!;
@@ -79,10 +75,12 @@ export function fichaDoMotorNovo(ex: Exercicio) {
     seq: F.fases.map((f) => ({ kind: TIPO_DA_FASE[f.tipo], dur: f.dur, label: f.nome })),
     T: duracao(F.fases),
     vistaMovimento: ex.vistas[0]!,
-    vistaMiniatura: GUARDADOS[F.id]?.vistaMiniatura ?? vistaDaMiniaturaCalculada(ex),
+    vistaMiniatura: enquadramentoGuardado(F.id)?.vistaMiniatura ?? vistaDaMiniaturaCalculada(ex),
     instantesErro: F.erros.map((e) => quando(ex, e.instante)),
     // o instante do quadro parado da miniatura: o fim do movimento (a posição que mais mostra o músculo trabalhando)
     instanteDaMiniatura: quando(ex, fimDoMovimento),
+    // há músculo desenhado que só ajuda a firmar (listrado)? A legenda do modo Músculos só fala dele se houver
+    soAjuda: Object.values(ex.papeis).includes('a'),
   };
 }
 
@@ -102,7 +100,7 @@ function quadroDaVista(ex: Exercicio, vista: IdVista, mini: boolean): VB {
   const chave = `${ex.ficha.id}|${vista}|${mini ? 1 : 0}`;
   let vb = QUADROS.get(chave);
   if (!vb) {
-    const g = GUARDADOS[ex.ficha.id];
+    const g = enquadramentoGuardado(ex.ficha.id);
     const guardado = mini ? (g?.vistaMiniatura === vista ? g.mini : undefined) : g?.quadros[vista];
     QUADROS.set(chave, (vb = guardado?.length === 4 ? (guardado as VB) : quadroDaVistaCalculado(ex, vista, mini)));
   }
@@ -113,21 +111,28 @@ function quadroDaVista(ex: Exercicio, vista: IdVista, mini: boolean): VB {
  * Um quadro do guia, no formato do motor de hoje: viewBox, classe, html e a fase (para o texto do ritmo e da
  * respiração). O erro vem pelo índice da lista do app; o título confere qual é (as duas listas têm a mesma ordem).
  */
-export function quadroDoMotorNovo(ex: Exercicio, vista: string, modo: string, t: number, erro: number, tituloErro: string, tema: TemaDaTela = 'claro') {
+export function quadroDoMotorNovo(ex: Exercicio, vista: string, modo: string, t: number, erro: number, tituloErro: string, tema: TemaDaTela = 'claro', estilo?: string) {
   const F = ex.ficha;
   const v = (vista in VISTAS ? vista : ex.vistas[0]!) as IdVista;
   const m = (['tec', 'mus', 'traj', 'err'].includes(modo) ? modo : 'tec') as Modo;
   const doErro = m === 'err' ? (F.erros.find((e) => e.titulo === tituloErro) ?? F.erros[erro]) : undefined;
   // um erro do app que esta animação não desenha: mostra o movimento certo, sem inventar um desenho de erro
   const modoFinal: Modo = m === 'err' && !doErro ? 'tec' : m;
-  const svg = svgDaCena(ex, t, { corpo: CORPO, vista: v, boneco: BONECO, modo: modoFinal, erro: doErro?.id }, quadroDaVista(ex, v, false), tema);
+  const svg = svgDaCena(ex, t, { corpo: CORPO, vista: v, boneco: desenhoDe(estilo), modo: modoFinal, erro: doErro?.id }, quadroDaVista(ex, v, false), tema);
   const fase = instante(F.fases, t).fase;
   return { ...partes(svg), fase: { label: fase.nome, tempo: fase.tempo, breath: fase.respira } };
 }
 
 /** A miniatura do cartão do exercício: o quadro parado, no modo Músculos, na vista que mais mostra o músculo principal. */
-export function miniaturaDoMotorNovo(ex: Exercicio, tema: TemaDaTela = 'claro') {
+export function miniaturaDoMotorNovo(ex: Exercicio, tema: TemaDaTela = 'claro', estilo?: string) {
   const f = fichaDoMotorNovo(ex);
   const v = f.vistaMiniatura as IdVista;
-  return partes(svgDaCena(ex, f.instanteDaMiniatura, { corpo: CORPO, vista: v, boneco: BONECO, modo: 'mus', mini: true }, quadroDaVista(ex, v, true), tema));
+  return partes(svgDaCena(ex, f.instanteDaMiniatura, { corpo: CORPO, vista: v, boneco: desenhoDe(estilo), modo: 'mus', mini: true }, quadroDaVista(ex, v, true), tema));
+}
+
+/** A prévia de um desenho em "Meus dados": o exercício pedido (o agachamento goblet) de lado, no fundo do movimento, no modo Músculos. */
+export function previaDoMotorNovo(ex: Exercicio, estilo: string, tema: TemaDaTela = 'claro') {
+  const f = fichaDoMotorNovo(ex);
+  const v = ex.vistas[0]! as IdVista;
+  return partes(svgDaCena(ex, f.instanteDaMiniatura, { corpo: CORPO, vista: v, boneco: desenhoDe(estilo), modo: 'mus' }, quadroDaVista(ex, v, false), tema));
 }

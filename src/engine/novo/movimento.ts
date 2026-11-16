@@ -1,6 +1,6 @@
 // Motor novo: o tempo e o equilíbrio. Fases do ciclo, o perfil de velocidade de cada fase e o centro de massa.
 import { z } from 'zod';
-import type { Prim } from './desenho';
+import type { IdVista, Prim } from './desenho';
 import type { Peca } from './pecas';
 import type { Esq, Lado } from './esqueleto';
 import type { Corpo } from './tabelas';
@@ -93,6 +93,8 @@ export interface Quadro {
   marcas: Record<string, V3>;
   /** Partes que precisam ir para a frente ou para trás na pintura (ex.: a mão por cima do halter). */
   vies?: Record<string, number>;
+  /** O mesmo, só numa vista (ex.: de frente, os braços atrás das coxas que abrem na frente deles). Soma-se ao `vies`. */
+  viesNaVista?: Partial<Record<IdVista, Record<string, number>>>;
 }
 export interface Exercicio {
   ficha: Ficha;

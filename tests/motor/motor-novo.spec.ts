@@ -6,7 +6,7 @@ import { build } from 'esbuild';
 
 // Linha de base do motor novo (src/engine/novo): cada animação aprovada (src/engine/novo/aprovados.ts), como o app a
 // mostra (pela ponte: corpo padrão, desenho cinza, tema claro), em cada vista e modo, em cada erro e na miniatura, a
-// 8 tempos por ciclo. Ela só guarda animação aprovada; depois disso, qualquer mudança no desenho falha aqui.
+// 8 tempos por ciclo; e, no desenho cor de pele, a primeira vista (Técnica e Músculos) e a miniatura. Ela só guarda animação aprovada; depois disso, qualquer mudança no desenho falha aqui.
 // Gravar depois de uma aprovação: ATUALIZAR_MOTOR_NOVO=1 npx playwright test --project=motor motor-novo
 const CAMINHO = 'tests/visual/linha-de-base/motor-novo.json';
 const N = 8;
@@ -59,6 +59,9 @@ test('as animações aprovadas do motor novo continuam iguais às aprovadas', as
               return [chave, Array.from({ length: n }, (_, k) => junta(M.quadroDoMotorNovo(ex, vista, modo, (k / n) * F.T, i, idErro ? titulos[i] : '')))];
             }),
           );
+          // o desenho cor de pele (a opção de "Meus dados"): a primeira vista, na Técnica e nos Músculos, e a miniatura
+          for (const modo of ['tec', 'mus']) quadros[`pele:${F.views[0]}|${modo}`] = Array.from({ length: n }, (_, k) => junta(M.quadroDoMotorNovo(ex, F.views[0], modo, (k / n) * F.T, 0, '', 'claro', 'pele')));
+          quadros['pele:miniatura'] = [junta(M.miniaturaDoMotorNovo(ex, 'claro', 'pele'))];
           quadros.miniatura = [junta(M.miniaturaDoMotorNovo(ex))];
           return { id, quadros };
         },
@@ -88,11 +91,11 @@ test('as animações aprovadas do motor novo continuam iguais às aprovadas', as
   for (const [i, b] of base.exercicios.entries()) expect.soft(hashes.exercicios[i], b.id).toEqual(b);
 });
 
-// O quadro de cada vista e as calibrações demoradas vêm calculados de antemão (src/engine/novo/dados/*.gerado.json),
+// O quadro de cada vista e as calibrações demoradas vêm calculados de antemão (src/engine/novo/dados/preparo/),
 // para o guia abrir sem esperar. Se alguém muda um exercício e esquece de regravar as tabelas, o desenho passaria a
 // usar números velhos sem aviso: aqui o script calcula tudo de novo, no mesmo navegador, e compara.
 // Regravar: node scripts/animacao-nova/preparo.mjs
-test('as tabelas calculadas de antemão são as que o motor calcula', () => {
+test('o que vem calculado de antemão é o que o motor calcula', () => {
   test.setTimeout(600_000);
   let saida = '';
   try {

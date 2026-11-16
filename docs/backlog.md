@@ -289,18 +289,27 @@ O que sobrou da reconstrução na direção "Placar" (`devlog.md`, "Frontend nov
 
 O que sobrou de refazer as 90 animações no motor novo (`devlog.md`, "Animação nova"; a conferência, animação por animação, em `revisoes/animacao-nova/qa.md`; o estado de cada uma em `revisoes/animacao-nova/andamento.md`).
 
-**Decisões do Gustavo ainda abertas** (uma por vez, com imagem)
-- **A abdução sentada com mini band**: a faixa foi refeita a pedido dele em 15/11 (`revisoes/animacao-nova/quadros/abducao-mini-band.png`) e espera ele ver. Até lá, o app mostra essa com o desenho de hoje; ao aprovar, entra em `src/engine/novo/aprovados.ts` e na linha de base (`ATUALIZAR_MOTOR_NOVO=1 npx playwright test --project=motor motor-novo`).
-- **As 66 aprovadas por delegação**: ele pediu para ver só as de maior risco e viu 23. As outras estão no app; as imagens de todas ficam em `revisoes/animacao-nova/quadros/` e `prototipos/`, para olhar quando quiser.
-- **A cor de pele no app**: o motor novo desenha o cinza e o cor de pele; o app só mostra o cinza. Ligar a opção mexe em "Meus dados" (tela) e no estado guardado.
-- **Os estilos Clássico e Silhueta**: a Silhueta continua no motor de hoje. Com as 90 no motor novo, dá para tirar o motor de hoje do app (e os dois estilos), com o teste de equivalência. É decisão dele (`revisoes/animacao-nova/proposta.md`, seção 8).
+**Decididas pelo Gustavo em 16/11/2026** ("Não quero olhar mais nenhuma, pode ligar a opção, tirar o motor de hoje, e fazer o resto necessário")
+- **A abdução sentada com mini band** foi aprovada depois de um ajuste que ele pediu (de frente, a mão aparecia dentro da faixa; agora a coxa que abre a esconde). Com ela, as 90 estão no app.
+- **As 67 aprovadas por delegação** ficam como estão; as imagens de todas continuam em `revisoes/animacao-nova/quadros/` e `prototipos/`.
+- **O cor de pele** virou a opção de "Meus dados" → "Estilo do Boneco" (o cinza é o padrão). Quem tinha a Silhueta ou outro desenho de antes guardado passa ao cinza.
+- **O motor de hoje saiu do app**, com o Boneco de antes e a Silhueta: o Worker do Boneco só carrega o motor novo.
+
+**Decisões ainda abertas** (uma por vez, com imagem)
+- **A junção com a `main`**: tudo está no ramo `claude/friendly-goldberg-hwf6dl`; falta o ok dele.
 - **O segundo corpo**: a tabela da mulher existe e a conferência roda nela; duas regras falham na `remada-baixa` e duas na `remada-apoiada`. O app usa só o corpo do homem.
+- **Do cor de pele**, que entrou com as recomendações da proposta sem ele olhar uma a uma: o secundário num tom claro do vermelho (no cinza é laranja); um tom de pele só; e, no tema escuro, o short claro com pouco contraste contra a pele.
 - **Do corpo**: a ponta do trapézio 4,9 cm acima de onde a fonte diz; o abdômen que termina na cintura; o glúteo médio e as outras porções que o desenho não separa; a forma do músculo engrossar ao encurtar.
+
+**O código do motor de hoje continua no repositório, fora do app**
+- `src/engine/` (menos a pasta `novo/`) não é mais carregado por nenhuma tela de produção, mas ainda serve a ferramentas: a auditoria de anatomia (`npm run auditoria:anatomia`), a pessoa dos cartões de equipamento (`scripts/desenhos-equipamento/realista/pessoa.mjs`), as folhas de comparação "hoje × novo" (`scripts/animacao-nova/prototipos.mjs`, `antes-e-depois.mjs`) e o laboratório do Boneco (`/lab/boneco`, que só existe em desenvolvimento e nas prévias). Os testes dele continuam rodando (`tests/unit/` e `tests/motor/equivalencia.spec.ts` e `estilo-a.spec.ts`, com as linhas de base).
+- **Para apagar de vez**: levar a auditoria de anatomia para o motor novo (hoje ela confere um desenho que o app não mostra mais; a conferência nova já mede se o músculo realçado é o do conteúdo), trocar a pessoa dos cartões, aposentar o laboratório e as folhas de comparação, e então apagar o código, os testes, as três linhas de base antigas e as regras de CSS do desenho de antes em `src/styles.css` (`.estilo-a`, `.estilo-b`, `.ea-*`, `.eb-*`).
 
 **O que não ficou no nível**
 - **Erro de ritmo sem desenho**: "Quicar embaixo", da panturrilha no degrau, não foi desenhado (o motor novo ainda não muda o tempo das fases por erro; ideia: `fases` opcionais por erro na ficha e em `cena.ts`). Nesse erro o app mostra o movimento certo.
 - **Face pull com elástico**: os antebraços não chegam à vertical.
 - **De três quartos, na abdução com mini band**, aparece entre as pernas um pedaço solto do trecho de baixo da faixa.
+- **A legenda do modo Técnica fala de "articulações"**, que o desenho novo não marca com bolinha (só o ponto de cada rótulo).
 - **A primeira volta de seis animações é pesada** (abdução deitado e com caneleira, ponte com os pés na bola, panturrilha no chão e no degrau, stiff de uma perna): de 12 a 27 ms por pose no computador, o que num celular lento dá uma primeira volta aos trancos; da segunda em diante o desenho já está guardado. A conta por quadro é uma medida da pele contra o piso a cada pose (`pernaNoPiso`, em `quadril-deitado-de-lado.ts`, e parecidas).
 - **Pintura por profundidade**: o corpo é pintado parte por parte, cada parte numa profundidade só. A cadeira e as colunas de cenário ficam sempre atrás do corpo (`cenario`), e a mini band decide sozinha o que as pernas escondem. Uma pintura por profundidade de verdade dispensaria esses casos.
 - **Rótulo só aponta para ponto do corpo**: não dá para apontar para uma peça (a faixa, o banco).
@@ -309,7 +318,7 @@ O que sobrou de refazer as 90 animações no motor novo (`devlog.md`, "Animaçã
 **Medidas**
 - **Provisórias**: 6 do corpo e 42 dos objetos seguem sem fonte lida (`revisoes/animacao-nova/tabelas.md` marca cada uma).
 - **Não medido**: num celular de verdade (tudo foi medido no Chromium, com a CPU 4 vezes mais lenta); o Lighthouse do guia; a memória com a animação na tela.
-- **Peso**: os textos de fonte das fichas de movimento vão no pacote de cada exercício; tirá-los economiza cerca de um terço do motor (36 kB contra 49 kB compactado). As tabelas calculadas de antemão somam 24 kB compactados num arquivo só, carregado com o primeiro exercício; dá para dividir por exercício. O app instalado guarda 489 arquivos (4,1 MB).
+- **Peso**: os textos de fonte das fichas de movimento vão no pacote de cada exercício; tirá-los economiza cerca de um terço do motor (36 kB contra 49 kB compactado). A tela do programa baixa 275 kB de código na primeira visita (eram 209 kB com o motor de antes), e o limite do teste (`tests/e2e/orcamento.spec.ts`) subiu de 220 para 285 kB. Caminhos para baixar: tirar os textos de fonte; ou desenhar as miniaturas na hora de publicar, para a tela do programa não precisar do motor. O app instalado guarda 668 arquivos (3,8 MB; eram 4,1 MB com os dois motores).
 
 **Ideias**
 - **Dizer em que nível pôr o banco**, por modelo de banco (pedido do Gustavo em 15/11; `revisoes/animacao-nova/pedidos-ao-conteudo.md`, item 3).
@@ -319,6 +328,6 @@ O que sobrou de refazer as 90 animações no motor novo (`devlog.md`, "Animaçã
 
 **Para conciliar com a `main`**
 - Fora da lista do que a frente podia alterar, mudaram no mínimo necessário: `package.json` (o comando `conferir:animacao`), `vite.config.ts` (o Worker em módulos, para carregar cada exercício só ao abrir), `src/main.tsx` (as duas folhas de estilo do motor novo), `.gitattributes` (os registros de uma linha por item) e três testes que esperavam o desenho de hoje (`tests/e2e/guia.spec.ts`, `tests/e2e/correcoes-auditoria.spec.ts`, `tests/unit/ids-do-desenho.test.ts`).
-- Em `src/features/`, só a ligação: o Worker do Boneco, o pedido com o tema da tela e o nome das vistas novas no guia. `src/domain/`, `src/storage/`, `api/`, as personas e o `CLAUDE.md` não mudaram.
+- Em `src/features/`: o Worker do Boneco (só o motor novo), o pedido com o tema da tela, a preferência de desenho (`app/estiloBoneco.ts`, agora `cinza` ou `pele`), a folha "Estilo do Boneco" de Meus dados e, no guia, o nome das vistas e a legenda. `src/domain/`, `src/storage/`, `api/`, as personas e o `CLAUDE.md` não mudaram.
 - **Depois de mudar um exercício do motor novo**, regravar as tabelas calculadas de antemão: `node scripts/animacao-nova/preparo.mjs`.
 

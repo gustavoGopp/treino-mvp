@@ -25,7 +25,7 @@ Contagem das 1710 células dos cuidados 1 a 19: M 692, M! 82, O 643, C 270, – 
 | 6 | A mão e o pé são desenhados de verdade | vem do corpo aprovado em 13/11/2026 (mão com dedos e polegar, pé com calcanhar); as pegadas de cada animação entram no cuidado 5 |
 | 7 | A cabeça e o olhar seguem a técnica | a olho, nos quadros grandes |
 | 8 | O músculo está no lugar certo, com a forma certa | o realçado é o do conteúdo do app (grupo "Músculos"); a forma e o lugar vêm do corpo aprovado e da auditoria de anatomia |
-| 9 | Principal, secundário e "só ajuda" se distinguem sem depender só da cor | vem do desenho aprovado: o secundário leva listras além da cor |
+| 9 | Principal, secundário e "só ajuda" se distinguem sem depender só da cor | vem do desenho aprovado: o principal leva as linhas de divisão do músculo, o secundário é liso e o que só ajuda é listrado, com o contorno tracejado |
 | 10 | A vista padrão de cada modo é escolhida por medida | área do músculo principal virada para quem olha, em cada vista (grupo "Músculos") |
 | 11 | Nada importante fica escondido | a olho, nos quadros grandes; onde uma vista esconde, a segunda vista resolve |
 | 12 | O objeto é reconhecível | a olho, na cena; "–" onde a cena não tem objeto |
@@ -50,7 +50,7 @@ O que **não** foi feito: não houve um revisor independente animação por anim
 | `abdominal-polia` | 7 | M | M! | M | M | M | C | O | M | C | M | O | O | O | M | O | C | O | O | M | D | [quadros](quadros/abdominal-polia.png) |
 | `abducao-caneleira` | 7 | M | M | M | O | M | C | O | M | C | M | O | O | O | M | O | C | O | O | M | D | [quadros](quadros/abducao-caneleira.png) |
 | `abducao-deitado` | 7 | M | M | M | O | M | C | O | M | C | M | O | – | – | M | O | C | O | O | M | G (quadros) | [quadros](quadros/abducao-deitado.png) |
-| `abducao-mini-band` | 7 | M | M | M | M! | M | C | O | M | C | M | O | O | O | M | O | C | O | O | M | não aprovada | [quadros](quadros/abducao-mini-band.png) |
+| `abducao-mini-band` | 7 | M | M | M | M! | M | C | O | M | C | M | O | O | O | M | O | C | O | O | M | D | [quadros](quadros/abducao-mini-band.png) |
 | `abertura-t-deitado` | 7 | M | M! | M | O | M | C | O | M | C | M | O | O | O | M | O | C | O | O | M | D | [quadros](quadros/abertura-t-deitado.png) |
 | `aducao-caneleira` | 7 | M | M | M | O | M | C | O | M | C | M | O | O | O | M | O | C | O | O | M | D | [quadros](quadros/aducao-caneleira.png) |
 | `aducao-deitado` | 7 | M | M | M | O | M | C | O | M | C | M | O | – | – | M | O | C | O | O | M | D | [quadros](quadros/aducao-deitado.png) |
@@ -278,7 +278,7 @@ Os demais:
 - `abdominal-polia`: feita e conferida quadro a quadro por quem integra; aprovada por delegação
 - `abducao-caneleira`: feita e conferida quadro a quadro por quem integra; aprovada por delegação (a pose da abdução deitado, com a caneleira, que é peça nova; sem colchonete)
 - `abducao-deitado`: aprovada pelo Gustavo em 15/11/2026, vendo os quadros ("podem ficar assim, segue com as próximas, só ajuste as animações com o elástico desse bloco"): o primeiro corpo deitado de lado do motor novo, visto de costas
-- `abducao-mini-band`: feita; faixa refeita em 15/11/2026 a pedido do Gustavo ("só ajuste as animações com o elástico desse bloco"): assenta na pele das coxas, fica escondida atrás dos joelhos e ganhou a vista de três quartos; esperando ele ver
+- `abducao-mini-band`: aprovada por delegação em 16/11/2026 ("O único problema é que quando ele abre a band parece que a mão está pra dentro, ajuste isso e seguimos. Não quero olhar mais nenhuma"): a faixa refeita em 15/11 e, de frente, a mão escondida atrás da coxa que abre
 - `abertura-t-deitado`: feita e conferida quadro a quadro por quem integra; aprovada por delegação
 - `aducao-caneleira`: feita e conferida quadro a quadro por quem integra; aprovada por delegação
 - `aducao-deitado`: feita e conferida quadro a quadro por quem integra; aprovada por delegação (deitado de lado, visto de frente)

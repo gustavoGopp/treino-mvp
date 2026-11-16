@@ -3,10 +3,11 @@ import { describe, expect, it } from 'vitest';
 import { APROVADOS } from '../../src/engine/novo/aprovados';
 import { EXERCICIOS } from '../../src/engine/novo/app';
 import { cssDoBoneco } from '../../src/engine/novo/boneco';
-import { usarEnquadramentosGuardados } from '../../src/engine/novo/cena';
-import { enquadramentoCalculado, fichaDoMotorNovo, miniaturaDoMotorNovo, quadroDoMotorNovo, vistasDoGuia } from '../../src/engine/novo/ponte';
-import { NOME_DA_VISTA_NOVA } from '../../src/engine/novo/vistas';
-import { VIEWS } from '../../src/engine/desenho';
+import { enquadramentoCalculado, fichaDoMotorNovo, miniaturaDoMotorNovo, previaDoMotorNovo, quadroDoMotorNovo, vistasDoGuia } from '../../src/engine/novo/ponte';
+import CATALOGO from '../../src/engine/novo/dados/catalogo-do-guia.json';
+import { usarPreparoGuardado } from '../../src/engine/novo/preparo';
+import type { Preparo } from '../../src/engine/novo/preparo';
+import { NOME_DA_VISTA } from '../../src/engine/novo/vistas';
 
 // A ponte entre o motor novo e as telas (src/engine/novo/ponte.ts): o app só usa o motor novo para os exercícios
 // refeitos e aprovados pelo Gustavo, e a resposta tem de ter o mesmo formato da do motor de hoje.
@@ -70,33 +71,63 @@ describe('motor novo: a ponte com as telas', () => {
   });
 
   it('toda vista usada pelas animações novas tem nome para o botão do guia', () => {
-    for (const ex of Object.values(EXERCICIOS)) for (const v of ex.vistas) expect(v in VIEWS || v in NOME_DA_VISTA_NOVA, `${ex.ficha.id}: ${v}`).toBe(true);
+    for (const ex of Object.values(EXERCICIOS)) for (const v of ex.vistas) expect(v in NOME_DA_VISTA, `${ex.ficha.id}: ${v}`).toBe(true);
   });
 
-  // O quadro de cada vista e as calibrações demoradas vêm calculados de antemão, para o guia abrir sem esperar
-  // (node scripts/animacao-nova/preparo.mjs). A conferência completa, número por número, roda no navegador
-  // (tests/motor/motor-novo.spec.ts); aqui, o que dá para ver depressa: nenhuma animação aprovada ficou sem tabela e,
-  // em três delas, o guardado é o que o motor calcula (no Node a última casa decimal pode diferir da do navegador).
-  it('toda animação aprovada tem o enquadramento guardado, e o guardado é o que o motor calcula', () => {
-    const guardados = JSON.parse(readFileSync('src/engine/novo/dados/enquadramentos.gerado.json', 'utf8')) as Record<string, { vistaMiniatura: string; quadros: Record<string, number[]>; mini: number[]; caixas: Record<string, number[]> }>;
+  // Desde 16/11/2026 o motor novo é o único do app: toda animação tem de estar aprovada, e o catálogo do guia (os dias
+  // do programa de referência e a ordem da lista) tem de falar das mesmas animações.
+  it('todas as animações estão aprovadas e no catálogo do guia, sem sobra de um lado nem do outro', () => {
+    const ids = Object.keys(EXERCICIOS).sort();
+    expect(Object.keys(APROVADOS).sort()).toEqual(ids);
+    expect([...CATALOGO.todos].sort()).toEqual(ids);
+    expect(new Set(CATALOGO.todos).size).toBe(CATALOGO.todos.length);
+    for (const d of CATALOGO.dias) for (const id of d.ids) expect(ids, `${d.nome}: ${id}`).toContain(id);
+  });
+
+  it('o desenho cor de pele sai com a classe dele, e a legenda do guia usa as cores desse desenho', () => {
+    const ex = EXERCICIOS.goblet!;
+    const f = fichaDoMotorNovo(ex);
+    expect(quadroDoMotorNovo(ex, f.vistaMovimento, 'mus', 0, 0, '', 'claro', 'pele').classe).toContain('pele');
+    expect(quadroDoMotorNovo(ex, f.vistaMovimento, 'mus', 0, 0, '', 'claro', 'cinza').classe).toContain('cinza');
+    // uma preferência antiga guardada ('a', 'b', 'atual') vale o padrão
+    expect(quadroDoMotorNovo(ex, f.vistaMovimento, 'mus', 0, 0, '', 'claro', 'b').classe).toContain('cinza');
+    expect(miniaturaDoMotorNovo(ex, 'claro', 'pele').classe).toContain('pele');
+    expect(previaDoMotorNovo(ex, 'pele').classe).toContain('pele');
+    // o mesmo quadro nos dois desenhos: o corpo não muda de lugar quando a pessoa troca
+    expect(quadroDoMotorNovo(ex, f.vistaMovimento, 'tec', 0, 0, '', 'claro', 'pele').viewBox).toBe(quadroDoMotorNovo(ex, f.vistaMovimento, 'tec', 0, 0, '', 'claro', 'cinza').viewBox);
+    const cor = (nome: string) => new RegExp(`\\.boneco\\.pele\\{[^}]*--b-${nome}:(#[0-9a-f]{6})`).exec(cssDoBoneco())![1]!;
+    const css = readFileSync('src/styles.css', 'utf8');
+    expect(css).toContain(`.legend.pele{--m-p:${cor('musP')};--m-s:${cor('musS')};--m-borda:${cor('musPb')};--ea-pele:${cor('pele')}}`);
+    expect(css).toContain(`.legend.pele .sw.listras{background:repeating-linear-gradient(45deg,${cor('musA')} 0 2px`);
+  });
+
+  // O quadro de cada vista e as calibrações demoradas vêm calculados de antemão, num arquivo por exercício, para o guia
+  // abrir sem esperar (node scripts/animacao-nova/preparo.mjs). A conferência completa, número por número, roda no
+  // navegador (tests/motor/motor-novo.spec.ts); aqui, o que dá para ver depressa: nenhuma animação ficou sem arquivo
+  // e, em três delas, o guardado é o que o motor calcula (no Node a última casa decimal pode diferir da do navegador).
+  it('toda animação tem o seu arquivo do que vem calculado de antemão, e o guardado é o que o motor calcula', () => {
+    const guardado = (id: string) => JSON.parse(readFileSync(`src/engine/novo/dados/preparo/${id}.json`, 'utf8')) as Preparo;
+    const arquivos = readdirSync('src/engine/novo/dados/preparo')
+      .filter((a) => a.endsWith('.json'))
+      .map((a) => a.replace(/\.json$/, ''));
+    expect(arquivos.sort()).toEqual(Object.keys(EXERCICIOS).sort());
     for (const id of Object.keys(APROVADOS)) {
-      const g = guardados[id];
-      expect(g, id).toBeDefined();
-      for (const v of vistasDoGuia(EXERCICIOS[id]!)) expect(g!.quadros[v], `${id}: ${v}`).toHaveLength(4);
-      expect(g!.mini, id).toHaveLength(4);
-      expect(Object.keys(g!.caixas).length, id).toBe(Object.keys(g!.quadros).length + 1);
+      const g = guardado(id).enquadramento;
+      for (const v of vistasDoGuia(EXERCICIOS[id]!)) expect(g.quadros[v], `${id}: ${v}`).toHaveLength(4);
+      expect(g.mini, id).toHaveLength(4);
+      expect(Object.keys(g.caixas).length, id).toBe(Object.keys(g.quadros).length + 1);
     }
-    usarEnquadramentosGuardados(false);
+    usarPreparoGuardado(false);
     try {
       for (const id of ['goblet', 'flexao', 'rosca-martelo']) {
         const calculado = enquadramentoCalculado(EXERCICIOS[id]!);
-        const g = guardados[id]!;
+        const g = guardado(id).enquadramento;
         expect(calculado.vistaMiniatura, id).toBe(g.vistaMiniatura);
         for (const [v, vb] of Object.entries(calculado.quadros)) vb.forEach((n, i) => expect(n, `${id}: ${v}`).toBeCloseTo(g.quadros[v]![i]!, 6));
         for (const [k, c] of Object.entries(calculado.caixas)) c.forEach((n, i) => expect(n, `${id}: ${k}`).toBeCloseTo(g.caixas[k]![i]!, 6));
       }
     } finally {
-      usarEnquadramentosGuardados(true);
+      usarPreparoGuardado(true);
     }
   });
 

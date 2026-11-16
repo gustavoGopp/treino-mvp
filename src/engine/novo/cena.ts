@@ -12,7 +12,7 @@ import { add, noRef } from './vec';
 import type { V3 } from './vec';
 import type { Exercicio, Quadro } from './movimento';
 import type { Corpo } from './tabelas';
-import ENQUADRAMENTOS from './dados/enquadramentos.gerado.json';
+import { enquadramentoGuardado } from './preparo';
 
 export type Modo = 'tec' | 'mus' | 'traj' | 'err';
 export interface OpcoesCena {
@@ -46,7 +46,7 @@ function itensDoQuadro(cam: Camera, q: Quadro, ex: Exercicio, o: OpcoesCena, suf
   const itens: Item[] = [];
   // o chão não é desenhado como placa: de perfil ele é a linha do chão (ver svgDaCena) e, de cima, é o próprio fundo
   if (suf !== '-f') itens.push(...equipamento(cam, q, ex, o));
-  itens.push(...desenharBoneco(q.esq, cam, { estilo: o.boneco, papeis: o.modo === 'mus' ? ex.papeis : undefined, mini: o.mini, suf, vies: q.vies }));
+  itens.push(...desenharBoneco(q.esq, cam, { estilo: o.boneco, papeis: o.modo === 'mus' ? ex.papeis : undefined, mini: o.mini, suf, vies: viesDoQuadro(q, o.vista) }));
   return itens;
 }
 /**
@@ -72,6 +72,9 @@ function trajetoria(cam: Camera, ex: Exercicio, corpo: Corpo, ponto: string, n =
   for (let i = 0; i <= n; i++) out.push(naTela(cam, le(quadroDe(ex, corpo, i / n))));
   return out;
 }
+/** O ajuste de profundidade das partes num quadro, nesta vista. */
+const viesDoQuadro = (q: Quadro, vista: IdVista): Record<string, number> | undefined => (q.viesNaVista?.[vista] ? { ...q.vies, ...q.viesNaVista[vista] } : q.vies);
+
 /* ============================== pontos do corpo pelo nome ============================== */
 type EsqQ = Quadro['esq'];
 const DO_MEIO: Record<string, (e: EsqQ) => V3> = { pelve: (e) => e.pelve.o, lombar: (e) => e.nos[e.iT12]!.ref.o, c7: (e) => e.torax.o, cabeca: (e) => noRef(e.cabeca, [0, 6, 6]) };
@@ -114,7 +117,7 @@ function itensEmU(ex: Exercicio, u: number, o: OpcoesCena): Item[] {
     // o corpo errado, com a parte que erra em vermelho; o certo fica tracejado por trás
     const itens: Item[] = [...itensDoQuadro(cam, certo, ex, o, '-f').map((it) => ({ ...it, camada: 0.5 }))];
     itens.push(...equipamento(cam, errado, ex, o));
-    const corpoErrado = desenharBoneco(errado.esq, cam, { estilo: o.boneco, mini: o.mini, erroEm, vies: errado.vies });
+    const corpoErrado = desenharBoneco(errado.esq, cam, { estilo: o.boneco, mini: o.mini, erroEm, vies: viesDoQuadro(errado, o.vista) });
     itens.push(...corpoErrado);
     if (def) {
       // a linha do erro (cheia, vermelha) e a do movimento certo (tracejada), pelos mesmos pontos do corpo; o nome do
@@ -190,23 +193,19 @@ type VB = [number, number, number, number];
 /**
  * A caixa do corpo e do equipamento no ciclo inteiro (e nos erros dessa vista): o que o quadro precisa conter. Ela
  * pede 12 quadros do ciclo e 6 de cada erro, e sem ela não se põe nem o primeiro rótulo: as do corpo e do desenho que
- * o app usa já vêm calculadas (./dados/enquadramentos.gerado.json, feito e conferido por
- * scripts/animacao-nova/preparo.mjs); as outras são calculadas na hora, com o mesmo resultado.
+ * o app usa já vêm calculadas, no arquivo de cada exercício (./preparo.ts); as outras são calculadas na hora, com o
+ * mesmo resultado.
  */
 const CAIXAS = new WeakMap<Exercicio, Map<string, Caixa>>();
-const CAIXAS_GUARDADAS = ENQUADRAMENTOS as unknown as Record<string, { caixas?: Record<string, number[]> } | undefined>;
-let usarCaixasGuardadas = true;
-/** Só para o script que grava e confere a tabela: desliga o uso das caixas guardadas. */
-export function usarEnquadramentosGuardados(sim: boolean): void {
-  usarCaixasGuardadas = sim;
-}
 export function caixaDoCiclo(ex: Exercicio, o: Omit<OpcoesCena, 'modo' | 'erro'>): Caixa {
   let m = CAIXAS.get(ex);
   if (!m) CAIXAS.set(ex, (m = new Map()));
   const chave = [o.corpo.id, o.vista, o.boneco, o.mini ? 1 : 0, o.equipamento ?? ''].join('|');
   let c = m.get(chave);
   if (c) return c;
-  const guardada = usarCaixasGuardadas ? CAIXAS_GUARDADAS[ex.ficha.id]?.caixas?.[chave] : undefined;
+  // o cor de pele usa a caixa do cinza: o corpo é o mesmo (o cabelo acrescenta menos de 1 cm no alto da cabeça)
+  const chaveDoCinza = [o.corpo.id, o.vista, 'cinza', o.mini ? 1 : 0, o.equipamento ?? ''].join('|');
+  const guardada = enquadramentoGuardado(ex.ficha.id)?.caixas[chaveDoCinza];
   if (guardada?.length === 4) {
     m.set(chave, (c = guardada as Caixa));
     return c;
