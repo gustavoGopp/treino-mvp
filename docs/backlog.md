@@ -332,3 +332,8 @@ Detalhes em `revisoes/treino-para-todos/pacote-2.md` e `qa.md`. O pacote está n
 - **A puxada ajoelhado com barra reta como 2ª puxada da semana** (34,7% dos programas, ponderada): os revisores a chamam de exótica. Rever a ordem da lista (a barra fixa ou a remada antes dela) quando houver a versão sentada.
 - **A semana leve chega uma semana mais cedo para quem repete exercícios nos dois dias de Superior** (o Bruno): efeito da escolha nova sobre a contagem de "3 treinos sem progresso". Conferir no pacote 5.
 
+**Decidido em 16/11 (pacote 2)**
+- A trava do empurrar do foco fica. Os resíduos do pacote foram aceitos; as duas correções de cima ("a razão na distribuição inicial" e "o 4º exercício do foco") continuam para medir.
+- **O hip thrust e a dor leve na lombar:** não muda sem fonte. Pergunta para o tema de dor da pesquisa: o hip thrust com barra carrega a lombar a ponto de entrar na lista de articulações do exercício?
+- O próximo pacote é o 4 (o iniciante).
+
