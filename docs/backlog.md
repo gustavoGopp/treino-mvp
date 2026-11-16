@@ -284,3 +284,41 @@ O que sobrou da reconstrução na direção "Placar" (`devlog.md`, "Frontend nov
 - **Falta:** etapa 2 (o resto do texto das telas: experiência, equipamento, editar local, tela de erro, avisos de instalar e de cópia, rótulos longos); etapa 3 (o guia: o que fica aberto e o que fica a um toque); etapa 4 (frases do domínio e do conteúdo, em sessão própria: título curto dos avisos, porquês mais curtos, um nome só para a série de acerto); etapa 5 (termos e folha da foto em camadas, com revisão jurídica).
 - **Para conferir com gente de verdade:** os estudos de leitura usados são de computador, e esconder texto pode piorar para quem não toca. Vale observar 2 ou 3 pessoas usando a abertura e o início e ver se acham "o que o app não faz", "Como ler o seu treino" e os avisos de "Sobre o programa".
 - **Conferir a margem a 206 px antes de juntar com a main**: `MARGEM=1 node scripts/design/frontend-novo/olhar.mjs <pasta> 206x420 claro <telas>` lista o que passa da margem da página. Em 13/11/2026 uma tela passou nos testes locais por 2,6 px e falhou na verificação do GitHub, onde a letra renderiza um pouco mais larga. Vale virar um teste de verdade (uma folga mínima de alguns pixels no cenário de zoom de 200%).
+
+## Da animação nova (14 a 16/11/2026)
+
+O que sobrou de refazer as 90 animações no motor novo (`devlog.md`, "Animação nova"; a conferência, animação por animação, em `revisoes/animacao-nova/qa.md`; o estado de cada uma em `revisoes/animacao-nova/andamento.md`).
+
+**Decisões do Gustavo ainda abertas** (uma por vez, com imagem)
+- **A abdução sentada com mini band**: a faixa foi refeita a pedido dele em 15/11 (`revisoes/animacao-nova/quadros/abducao-mini-band.png`) e espera ele ver. Até lá, o app mostra essa com o desenho de hoje; ao aprovar, entra em `src/engine/novo/aprovados.ts` e na linha de base (`ATUALIZAR_MOTOR_NOVO=1 npx playwright test --project=motor motor-novo`).
+- **As 66 aprovadas por delegação**: ele pediu para ver só as de maior risco e viu 23. As outras estão no app; as imagens de todas ficam em `revisoes/animacao-nova/quadros/` e `prototipos/`, para olhar quando quiser.
+- **A cor de pele no app**: o motor novo desenha o cinza e o cor de pele; o app só mostra o cinza. Ligar a opção mexe em "Meus dados" (tela) e no estado guardado.
+- **Os estilos Clássico e Silhueta**: a Silhueta continua no motor de hoje. Com as 90 no motor novo, dá para tirar o motor de hoje do app (e os dois estilos), com o teste de equivalência. É decisão dele (`revisoes/animacao-nova/proposta.md`, seção 8).
+- **O segundo corpo**: a tabela da mulher existe e a conferência roda nela; duas regras falham na `remada-baixa` e duas na `remada-apoiada`. O app usa só o corpo do homem.
+- **Do corpo**: a ponta do trapézio 4,9 cm acima de onde a fonte diz; o abdômen que termina na cintura; o glúteo médio e as outras porções que o desenho não separa; a forma do músculo engrossar ao encurtar.
+
+**O que não ficou no nível**
+- **Erro de ritmo sem desenho**: "Quicar embaixo", da panturrilha no degrau, não foi desenhado (o motor novo ainda não muda o tempo das fases por erro; ideia: `fases` opcionais por erro na ficha e em `cena.ts`). Nesse erro o app mostra o movimento certo.
+- **Face pull com elástico**: os antebraços não chegam à vertical.
+- **De três quartos, na abdução com mini band**, aparece entre as pernas um pedaço solto do trecho de baixo da faixa.
+- **A primeira volta de seis animações é pesada** (abdução deitado e com caneleira, ponte com os pés na bola, panturrilha no chão e no degrau, stiff de uma perna): de 12 a 27 ms por pose no computador, o que num celular lento dá uma primeira volta aos trancos; da segunda em diante o desenho já está guardado. A conta por quadro é uma medida da pele contra o piso a cada pose (`pernaNoPiso`, em `quadril-deitado-de-lado.ts`, e parecidas).
+- **Pintura por profundidade**: o corpo é pintado parte por parte, cada parte numa profundidade só. A cadeira e as colunas de cenário ficam sempre atrás do corpo (`cenario`), e a mini band decide sozinha o que as pernas escondem. Uma pintura por profundidade de verdade dispensaria esses casos.
+- **Rótulo só aponta para ponto do corpo**: não dá para apontar para uma peça (a faixa, o banco).
+- **Sem revisor independente por animação**: a revisão independente foi do corpo e das regras do motor. Nas animações por delegação, quem fez foi um subagente e quem conferiu foi quem integrou.
+
+**Medidas**
+- **Provisórias**: 6 do corpo e 42 dos objetos seguem sem fonte lida (`revisoes/animacao-nova/tabelas.md` marca cada uma).
+- **Não medido**: num celular de verdade (tudo foi medido no Chromium, com a CPU 4 vezes mais lenta); o Lighthouse do guia; a memória com a animação na tela.
+- **Peso**: os textos de fonte das fichas de movimento vão no pacote de cada exercício; tirá-los economiza cerca de um terço do motor (36 kB contra 49 kB compactado). As tabelas calculadas de antemão somam 24 kB compactados num arquivo só, carregado com o primeiro exercício; dá para dividir por exercício. O app instalado guarda 489 arquivos (4,1 MB).
+
+**Ideias**
+- **Dizer em que nível pôr o banco**, por modelo de banco (pedido do Gustavo em 15/11; `revisoes/animacao-nova/pedidos-ao-conteudo.md`, item 3).
+- **Refazer os cartões de equipamento fora de medida** no gerador realista, com a folha de comparação (previsto na seção 6 do prompt da frente; não foi feito).
+
+**Pedidos ao conteúdo**: os 6 itens de `revisoes/animacao-nova/pedidos-ao-conteudo.md` (o ângulo dos cotovelos no supino; os músculos que a conferência mostra diferentes; o nível do banco; "meio passo" da torre na puxada; "quase nenhuma tensão embaixo" no agachamento com elástico; e os que vieram das famílias). Nada foi alterado em `src/conteudo/`.
+
+**Para conciliar com a `main`**
+- Fora da lista do que a frente podia alterar, mudaram no mínimo necessário: `package.json` (o comando `conferir:animacao`), `vite.config.ts` (o Worker em módulos, para carregar cada exercício só ao abrir), `src/main.tsx` (as duas folhas de estilo do motor novo), `.gitattributes` (os registros de uma linha por item) e três testes que esperavam o desenho de hoje (`tests/e2e/guia.spec.ts`, `tests/e2e/correcoes-auditoria.spec.ts`, `tests/unit/ids-do-desenho.test.ts`).
+- Em `src/features/`, só a ligação: o Worker do Boneco, o pedido com o tema da tela e o nome das vistas novas no guia. `src/domain/`, `src/storage/`, `api/`, as personas e o `CLAUDE.md` não mudaram.
+- **Depois de mudar um exercício do motor novo**, regravar as tabelas calculadas de antemão: `node scripts/animacao-nova/preparo.mjs`.
+

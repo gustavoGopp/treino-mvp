@@ -62,12 +62,12 @@ Tempo por quadro (CPU 4 vezes mais lenta, com outras tarefas rodando na mesma m�
 - **Lighthouse e bloqueio da tela do guia não foram medidos:** o motor novo ainda não está ligado ao app (a lista de exercícios aprovados está vazia). Só dá para medir quando a primeira âncora aprovada entrar.
 - **Celular de verdade:** não medido.
 - **`npm run test:e2e` não foi rodado:** o app não mudou. `npm run check` (896 testes) e `npm run auditoria:anatomia` passam.
-- **A revisão independente** foi disparada duas vezes. Na primeira, no modelo mais capaz, os dois revisores pararam por limite de uso antes de gravar o parecer. Refeita no modelo seguinte (Opus): ver abaixo.
+- **A revisão independente** foi disparada duas vezes. Na primeira, no modelo mais capaz, os dois revisores pararam por limite de uso antes de gravar o parecer. Refeita em outro modelo: ver abaixo.
 - **Decidido pelo Gustavo em 15/11/2026:** a pegada do goblet em concha fica ("pode ficar assim"); o corpo sobe no banco do supino ("a cabeça no banco está muito embaixo; de resto está tudo ótimo").
 
 ### A revisão independente
 
-Dois revisores automáticos (modelo Opus), um no papel de anatomista e outro no de treinador, olharam só as imagens, as tabelas e as regras, sem a minha conclusão. Os pareceres inteiros estão em `revisao-independente/anatomista.md` e `treinador.md`. Não são pessoas da área: ajudam a achar erro, e não substituem a rodada com um especialista (`docs/revisoes/r4-roteiro-especialista.md`).
+Dois revisores automáticos, um no papel de anatomista e outro no de treinador, olharam só as imagens, as tabelas e as regras, sem a minha conclusão. Os pareceres inteiros estão em `revisao-independente/anatomista.md` e `treinador.md`. Não são pessoas da área: ajudam a achar erro, e não substituem a rodada com um especialista (`docs/revisoes/r4-roteiro-especialista.md`).
 
 **Notas.** Anatomista: 3 de 5 em correção anatômica ("o esqueleto está bem medido; o desenho dos músculos e dos erros ainda ensina coisas erradas em pontos visíveis"). Treinador: 4 de 5 em técnica correta e 3 de 5 em "entende-se em 2 segundos".
 

@@ -83,6 +83,7 @@ Rode tudo da raiz do seu diretório de trabalho. Se ele for uma cópia de trabal
   (cada pedido é `id:vista:modo:instante[:erro][:estilo][:tema]`; `f0`, `f0.5`, `f1` = começo, meio e fim da primeira fase com movimento). Para rascunho, grave fora do repositório e use `ESCALA=1`. Abra o PNG e olhe.
 - `node scripts/animacao-nova/prototipos.mjs so-folhas <id>`: a folha ao lado do guia de hoje (só a desse id).
 - `npm run check`: lint, tipos e testes. Tem que passar antes de cada commit.
+- `node scripts/animacao-nova/preparo.mjs`: regrava as tabelas calculadas de antemão (`src/engine/novo/dados/enquadramentos.gerado.json` e `calibragens.gerado.json`). **Rode depois de mudar um exercício, uma ficha de movimento, uma peça ou o corpo**, e leve os dois arquivos no commit: o guia abre com o quadro e as calibrações que estão ali. `node scripts/animacao-nova/preparo.mjs conferir` (que o `npm run conferir:animacao` e o teste `tests/motor/motor-novo.spec.ts` também rodam) falha se as tabelas estiverem velhas.
 - Para medir uma pose (os números da conferência escrita), escreva um script descartável em `node_modules/.tmp/` (fora do git) no molde:
   `import { motorNovo } from '<raiz>/scripts/animacao-nova/empacotar.mjs'; const { modulo: m } = await motorNovo(); const ex = m.EXERCICIOS['<id>'], c = m.CORPOS.homem; const r = m.conferir(ex, c); for (const i of r.itens) console.log(i.nivel, i.grupo, i.oQue, '→', i.medido); const q = ex.quadro(c, 1); ...`
   (`m.angulosDoLado(q.esq, 'R')`, `m.centroDeMassa(q.esq, 'homem', q.cargas)`).
@@ -102,6 +103,8 @@ Rode tudo da raiz do seu diretório de trabalho. Se ele for uma cópia de trabal
 - **A primeira vista de `vistas` é a que o app abre:** tem de ser a que mostra o corpo grande e o movimento (quase nunca a de cima). A de cima serve de segunda vista.
 - **Polia baixa:** a coluna de 2,39 m encolhe o corpo no quadro. A peça `torre` aceita `cortadaEmCima: <cm>` (até que altura o quadro precisa mostrá-la); o resto é cortado pela borda.
 - **Nomes que aparecem na tela têm acento:** as chaves de `trajetorias` viram rótulo (`cabeça`, e não `cabeca`; `mão`, `pé`).
+- **Calibração demorada atrasa o primeiro desenho no app.** Uma conta de tentativa e erro com centenas de poses (`resolver1` dentro de `resolver1`, ou medindo a pele com `pontosDoBoneco` a cada passo) leva segundos no computador e muito mais no celular. Passe o resultado por `calibragem(corpo, '<id>:<o que é>', () => ...)` (`src/engine/novo/calibragens.ts`): ele fica gravado para o corpo do app e é conferido pelo `preparo.mjs`. O resultado tem de ser só números (objetos e listas simples). Cuidado com memória que guarda "a primeira pose que passou": com a calibração gravada, a primeira pose passa a ser outra; grave essa memória junto (como a superfície do pé em `ponte-pes-bola.ts`).
+- **Estilo embutido não funciona no app.** A política de segurança (`style-src 'self'`) barra `style="..."` dentro do desenho: use uma classe no `estilo.css`. O teste do motor falha se algum quadro tiver estilo embutido.
 - **De frente, nos afundos, o músculo principal some atrás do joelho:** é aviso conhecido; diga na conferência escrita qual é a vista padrão do modo Músculos.
 
 ## 8. O padrão de qualidade (aviso do dono em 15/11/2026)

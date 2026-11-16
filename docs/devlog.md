@@ -1734,3 +1734,65 @@ As outras 4 folhas (cadastro, guia, fim e semana, Meus dados e locais) estão em
 > Duas coisas eu não escondi: o que a pessoa precisa para decidir, e o aviso de segurança. Esse ficou mais curto e com a ação dentro: "Sentiu dor ou tontura? Pare e procure avaliação."
 
 **Mais uma decisão dos revisores, tomada em 13/11.** No fim do treino, a ação principal passou a ser "Voltar ao início", presa embaixo; "Ver a sua semana" virou o botão secundário. O revisor tinha notado que o botão principal levava a uma tela que repetia o "1 de 3" que a pessoa acabara de ler. O Gustavo escolheu entre três opções lado a lado (`revisoes/frontend-novo/capturas/decisoes/2-fim-do-treino.png`).
+
+## Animação nova: as 90 animações do guia refeitas num motor com corpo de verdade (13 a 16/11/2026)
+
+**Por quê.** O guia de hoje desenha o Boneco em duas dimensões, com as juntas postas à mão em cada vista. Funcionou para chegar a 90 animações, mas o desenho não tinha volume, a mão e o pé eram formas soltas, cada vista era um desenho à parte e o equipamento era um esquema. O Gustavo escolheu um desenho novo do Boneco em 13/11 (cinza, com os grupos musculares) e pediu as animações refeitas nele, sem perder nenhuma correção já feita.
+
+**O que mudou.** As 90 animações existem agora num motor novo (`src/engine/novo/`), ao lado do de hoje:
+- **Um corpo só, em três dimensões**, com as medidas de uma pessoa real (homem, 175,8 cm, tabela ANSUR II). A pose é calculada uma vez e desenhada de qualquer lado: de lado, de frente, de trás, de cima e de três quartos.
+- **Cada movimento sai de uma ficha** com números, selo de evidência e fonte (`dados/movimentos/`), e não de poses desenhadas a olho. O ritual de cada animação: reler as correções já feitas, preencher a ficha, fazer as poses, passar na conferência automática, escrever "o que a fonte pede × o que o boneco faz (medido) × confere?" e pôr a folha ao lado da de hoje.
+- **Uma conferência automática** mede cada animação quadro a quadro: os ossos não esticam, nenhuma junta passa da amplitude das tabelas (CDC, AAOS), o pé não sai do chão, o corpo não atravessa o banco, o centro de massa fica sobre os pés, o cabo fica reto, o elástico não estica além do que o fabricante diz, o ciclo fecha sem tranco, e o músculo realçado é o do conteúdo. As 90 passam sem nenhuma falha (241 avisos, todos listados).
+- **O equipamento é desenhado com medidas de fabricante**: 29 objetos na tabela (banco, halter, kettlebell, polia, barra fixa, fita de suspensão, bola, elásticos, mini band e outros) e 21 peças de cena novas.
+- **No app**, cada exercício aprovado passa a ser desenhado pelo motor novo, nos dois palcos e na miniatura; os outros continuam no de hoje. As telas não mudaram: a troca é no Worker do Boneco.
+
+![O guia de hoje e o motor novo, no mesmo ponto do movimento](revisoes/animacao-nova/antes-e-depois.png)
+
+**Como foi aprovado.** O Gustavo fechou o corpo em 15/11 e aprovou as sete primeiras animações uma a uma, na folha. Depois pediu para delegar: "a gente pode delegar vários subagentes para fazer todos de uma vez e depois você só me manda [as que] você achar que tem mais chance de eu não gostar". As famílias foram feitas em paralelo, até quatro por vez; eu conferi cada uma quadro a quadro e levei a ele as de maior risco. No meio, ele avisou que a qualidade tinha caído ("o fato de eu ter delegado fazer todos juntos não quer dizer que a gente pode diminuir a qualidade"), e dali em diante defeito visível passou a ser consertado antes de a animação contar como pronta; várias voltaram para correção.
+
+| Estado das 90 | Quantas |
+|---|---|
+| Aprovadas pelo Gustavo na folha | 7 |
+| Aprovadas pelo Gustavo vendo os quadros grandes | 16 |
+| Aprovadas por delegação (conferidas por mim, não vistas por ele) | 66 |
+| Ajustada a pedido dele, esperando ele ver (abdução com mini band) | 1 |
+
+**As medidas.**
+
+| Medida | Hoje | Motor novo |
+|---|---|---|
+| Animações que passam na conferência automática sem falha | (não havia) | 90 de 90 |
+| Tempo para desenhar um quadro, celular lento simulado (mediana das 90, modo Técnica) | 5,1 ms | 14,9 ms na primeira volta; 3,9 ms depois |
+| Tempo até o primeiro desenho ao abrir um exercício, no computador (mediana; pior caso) | (imediato) | 63 ms; 445 ms |
+| Peso do motor, compactado | 48 kB, com as 90 | 49 kB, mais 24 kB das tabelas calculadas de antemão e de 2 a 5 kB do exercício aberto |
+| Testes | 896 e 157 e2e | 902 e 159 e2e |
+
+O celular lento é o Chromium com a CPU 4 vezes mais lenta; nada foi medido num aparelho de verdade.
+
+**Um defeito que só os testes do app mostraram.** Com as animações ligadas, dois testes do guia falharam: o título não aparecia em 5 segundos. O motor novo, ao abrir um exercício, calculava o ciclo inteiro para enquadrar e pôr os rótulos e, em 19 animações, refazia uma conta de tentativa e erro com centenas ou milhares de poses (onde a bacia assenta no banco inclinado, por exemplo). O primeiro desenho levava 0,3 s na mediana e até 7 s no pior caso, no computador. Como esses números são sempre os mesmos, passaram a vir calculados de antemão (`scripts/animacao-nova/preparo.mjs`), e um teste confere que o guardado é igual ao calculado. A linha de base nova (6.457 quadros das 89 animações aprovadas) não mudou em nada com isso. No caminho apareceu que o arco do ângulo do banco inclinado saía tracejado no app: usava um estilo embutido, que a política de segurança barra.
+
+**O que não ficou bom** (o resto está no backlog, "Da animação nova"):
+- O erro "Quicar embaixo", da panturrilha no degrau, não foi desenhado: é erro de ritmo, e o motor novo ainda não muda o tempo das fases por erro.
+- Seis animações têm a primeira volta pesada (de 12 a 27 ms por pose no computador).
+- 66 animações o Gustavo não viu. Não houve revisor independente animação por animação.
+- 6 medidas do corpo e 42 dos objetos seguem provisórias, sem fonte lida.
+- O app só mostra o desenho cinza; a opção cor de pele existe no motor, mas não foi ligada.
+
+**Decisões que mudaram no caminho, com o sim do Gustavo:** o trapézio passou a subir até a base do crânio; a puxada abre de três quartos, de trás; a extensão de tríceps no chão ficou com os braços acima da cabeça, como a ficha pede; a panturrilha no chão sobe com as duas pernas e desce com uma; a rosca alternada e a rosca inclinada usam um halter de 10 lb, para ele caber junto do corpo.
+
+**Resultado:** `npm run check` com 902 testes, `npm run test:e2e` com 159, `npm run conferir:animacao` sem falha nas 90. `src/domain/`, `src/storage/`, `api/`, as personas e as telas não mudaram. Nada foi para a `main`.
+
+**Rascunho de post para o LinkedIn**
+
+> Refiz as 90 animações do meu app de treino. A parte difícil foi provar que estavam certas.
+>
+> O guia antigo era um boneco em duas dimensões, com cada pose desenhada à mão. Bonito o bastante, mas eu não tinha como saber se o joelho dobrava além do que um joelho dobra.
+>
+> O novo tem um corpo só, em três dimensões, com medidas de gente de verdade. E cada animação passa por uma conferência automática antes de entrar: osso não estica, junta não passa da amplitude das tabelas, pé não sai do chão, o elástico não estica mais do que o fabricante diz.
+>
+> Três coisas que aprendi:
+>
+> 1. Delegar em lote derruba a qualidade se ninguém olhar quadro a quadro. Quem usa o app percebeu antes de mim.
+> 2. "Passou em todos os testes do motor" não é "funciona no app". Com tudo ligado, um exercício levava 7 segundos para aparecer. Os números que causavam a espera nunca mudam; hoje vêm calculados de antemão.
+> 3. O que eu não consegui fazer está escrito: um erro de ritmo sem desenho, medidas ainda sem fonte, e 66 animações que o dono do produto não viu uma a uma.
+

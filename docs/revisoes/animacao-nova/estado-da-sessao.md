@@ -1,8 +1,27 @@
-# Estado da sessão da animação nova (15/11/2026, fechamento do corpo)
+# Estado da sessão da animação nova (16/11/2026, fechamento da frente)
 
-Ramo: `claude/friendly-goldberg-hwf6dl` (traz o ramo `claude/loving-hamilton-c4ji83` da etapa 1 e a `main`). Nada foi para a `main` e nada mudou no app: o motor novo vive em `src/engine/novo/`, que nenhuma tela importa.
+Ramo: `claude/friendly-goldberg-hwf6dl`. Nada foi para a `main`. A frente parou para a revisão do Gustavo.
 
-Comece por **`proposta.md`, seção 0-B**: o que esta sessão fez, o que a conferência achou, as medidas e o que não ficou bom. O prompt que abriu a sessão está em `prompt-continuacao.md`.
+## Em uma página
+
+- **As 90 animações existem no motor novo** (`src/engine/novo/`) e passam na conferência automática sem falha. O estado de cada uma está em `andamento.md`; como cada um dos vinte cuidados foi conferido, em `qa.md`.
+- **Aprovação:** 23 pelo Gustavo (7 na folha, 16 vendo os quadros grandes), 66 por delegação dele (conferidas quadro a quadro por quem integrou) e 1 ajustada a pedido dele, esperando ele ver (`abducao-mini-band`, com a faixa refeita: `quadros/abducao-mini-band.png`).
+- **No app:** as 89 aprovadas são desenhadas pelo motor novo nos dois palcos e na miniatura (a troca é no Worker do Boneco: `src/features/programa/trabalhoBoneco.ts` e `src/engine/novo/ponte.ts`); a abdução com mini band e o estilo Silhueta continuam no motor de hoje.
+- **Para o guia abrir sem esperar,** o quadro de cada vista e as calibrações demoradas vêm calculados de antemão (`src/engine/novo/dados/enquadramentos.gerado.json` e `calibragens.gerado.json`). Depois de mudar um exercício: `node scripts/animacao-nova/preparo.mjs`.
+- **Testes:** `npm run check` (902), `npm run test:e2e` (159, com a linha de base nova em `tests/visual/linha-de-base/motor-novo.json`), `npm run conferir:animacao` (as 90 sem falha e as tabelas conferindo).
+- **Fechamento escrito:** `docs/devlog.md` ("Animação nova"), `docs/backlog.md` ("Da animação nova"), `pedidos-ao-conteudo.md`.
+
+## O que falta o Gustavo decidir (uma por vez, com imagem)
+
+1. A abdução sentada com mini band, com a faixa refeita.
+2. Se quer olhar alguma das 66 aprovadas por delegação.
+3. A cor de pele no app (mexe em "Meus dados").
+4. Tirar o motor de hoje e os estilos Clássico e Silhueta.
+5. O erro "Quicar embaixo" da panturrilha no degrau (erro de ritmo, sem desenho).
+6. O segundo corpo.
+7. A junção com a `main`.
+
+O que vem abaixo é o registro de como se chegou até aqui (sessões de 14 e 15/11).
 
 ## Onde a sessão parou
 
@@ -10,7 +29,7 @@ Comece por **`proposta.md`, seção 0-B**: o que esta sessão fez, o que a confe
 
 **Desde 15/11/2026, as animações são feitas em paralelo.** O Gustavo aprovou sete animações do lote 1 uma a uma (até o búlgaro com apoio) e pediu: "a gente pode delegar vários subagentes para fazer todos de uma vez e depois você só me manda [as que] você achar que tem mais chance de eu não gostar". Como fica:
 
-- Cada família de exercícios vai para um subagente, em cópia de trabalho própria do git, no máximo quatro por vez, seguindo `como-fazer-uma-animacao.md`. Os subagentes rodam no modelo Opus (o limite do modelo principal para subagentes estourou em 14/11 e só volta em 19/11).
+- Cada família de exercícios vai para um subagente, em cópia de trabalho própria do git, no máximo quatro por vez, seguindo `como-fazer-uma-animacao.md`. Os subagentes rodam em outro modelo (o limite do modelo principal para subagentes estourou em 14/11 e só volta em 19/11).
 - Quem integra (a sessão principal) junta os ramos, regenera os arquivos gerais, roda `npm run check` e `npm run conferir:animacao`, olha cada folha e separa as de maior risco para o Gustavo ver.
 - As que ele não vê ficam registradas em `src/engine/novo/aprovados.ts` como aprovadas **por delegação** (com a frase dele), separadas das aprovadas na folha. Todas as folhas ficam em `prototipos/` e os quadros grandes em `quadros/`, para ele olhar quando quiser.
 - Atenção: a cópia de trabalho de cada subagente nasce num commit antigo (06d4066); o pedido tem de mandar avançar para o commit certo antes de começar.
@@ -87,4 +106,4 @@ Da etapa 1 (proposta, seção 9), continuam todas. As desta sessão:
 ## Observações
 
 - O `docs/devlog.md` e o `docs/backlog.md` não foram tocados: só no fechamento da frente.
-- A revisão independente foi disparada primeiro no modelo mais capaz; os dois revisores pararam por limite de uso (volta em 19/11) sem gravar parecer. Foi refeita no modelo Opus.
+- A revisão independente foi disparada primeiro no modelo mais capaz; os dois revisores pararam por limite de uso (volta em 19/11) sem gravar parecer. Foi refeita em outro modelo.
