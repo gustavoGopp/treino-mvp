@@ -1180,7 +1180,20 @@ function montarPrograma(perfil: Perfil, inventarioOriginal: Inventario, triagem:
       ...lembretesDeDor(c, triagem),
     ]);
   };
-  programaDias = cortarTempo(programaDias, perfil.minutosSessao, metas, nivel, prioritarios, avisos, podeDrop, colchaoDe(perfil), trocouProtegido, maisRapido);
+  // tempo.superserie (16/11/2026): a dupla de dois exercícios que carregam a lombar sem apoio é o último recurso. O corte é
+  // feito sem ela; se isso custar um dia acima de 110% do tempo, um dia fraco ou empurrar ÷ puxar acima de 1,5 que o corte
+  // com ela não teria, vale o corte com ela.
+  {
+    const copia = () => programaDias.map((d) => ({ ...d, exercicios: d.exercicios.map((x) => ({ ...x })) }));
+    const [avSem, avCom]: [Porque[], Porque[]] = [[], []];
+    const sem = cortarTempo(copia(), perfil.minutosSessao, metas, nivel, prioritarios, avSem, podeDrop, colchaoDe(perfil), trocouProtegido, maisRapido, true);
+    const com = cortarTempo(copia(), perfil.minutosSessao, metas, nivel, prioritarios, avCom, podeDrop, colchaoDe(perfil), trocouProtegido, maisRapido);
+    const acima = (ds: DiaPrograma[]) => ds.filter((d) => d.minutosEstimados > LIMITE_DO_DIA * perfil.minutosSessao).length;
+    const fracosDe = (ds: DiaPrograma[]) => ds.filter((d) => d.exercicios.length < 3 || !d.exercicios.some((x) => x.tipo === 'composto')).length;
+    const custa = acima(sem) > acima(com) || fracosDe(sem) > fracosDe(com) || (empurraDemais(sem) && !empurraDemais(com));
+    programaDias = custa ? com : sem;
+    avisos.push(...(custa ? avCom : avSem));
+  }
   programaDias = completarPelaRegua(programaDias, ctx, perfil, N, semPuxar, metas, prioritarios);
   // tempo.sobra-series, 2º passo (13/11/2026): com o programa montado, cortado e completado, o tempo que ainda sobra vira
   // série em todos os dias. Os exercícios não mudam: só as séries sobem.
@@ -1899,6 +1912,8 @@ export function cortarTempo(
   jaTirouExercicio = false,
   /** Degrau 1b: o equivalente de dois lados de um exercício de um lado só, já prescrito, se houver (tempo.corte). */
   maisRapido?: (x: ExercicioPrescrito, d: DiaPrograma, todos: DiaPrograma[]) => ExercicioPrescrito | null,
+  /** tempo.superserie (16/11/2026): sem a dupla de dois exercícios que carregam a lombar sem apoio (a 1ª tentativa do corte). */
+  semDuplaDeLombar = false,
 ): DiaPrograma[] {
   const recalcular = (d: DiaPrograma) => ({ ...d, minutosEstimados: minutos(d.exercicios, colchao) });
   const volume = () =>
@@ -1967,7 +1982,7 @@ export function cortarTempo(
       if (d.minutosEstimados > limite)
         parear(
           exs.filter((x) => x.tipo === 'composto'),
-          (a, b) => naoCompetem(a, b) && !(deInferior(a) && deInferior(b)),
+          (a, b) => naoCompetem(a, b) && !(deInferior(a) && deInferior(b)) && !(semDuplaDeLombar && carregaLombar(POR_ID[a.exId]!) && carregaLombar(POR_ID[b.exId]!)),
         );
       if (exs.some((x) => x.supersetCom)) usados.add('superserie');
       // tempo.superserie (15/11/2026): os dois exercícios de uma dupla ficam um depois do outro na lista do dia (antes, o

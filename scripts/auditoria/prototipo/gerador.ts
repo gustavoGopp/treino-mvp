@@ -151,6 +151,8 @@ const articulacoesDe = (e: Exercicio): Articulacao[] => ((prot('joelho') || (pro
 const posicaoDeReferencia = (f: Funcao, id: string) => f.niveis.flat().indexOf(id);
 /** PROTÓTIPO (iniciante-simples): exercícios por treino do iniciante. */
 const INICIANTE_MAX_EXERCICIOS = 99;
+/** EXPERIMENTO (ini-sem-custo): a 2ª montagem do iniciante, sem a prática antes da variedade, para comparar o custo. */
+let SEM_PRATICA = false;
 const INICIANTE_LIMITE_DESDE_DIAS = 3;
 /** PROTÓTIPO (fadiga): o exercício carrega a lombar sem apoio (fora os abdominais). */
 const carregaLombar = (e: Exercicio) => e.padrao !== 'core' && e.articulacoes.includes('lombar') && !e.tags.includes('apoiado');
@@ -229,7 +231,7 @@ export function contextoDeSelecao(perfil: Perfil, inventarioOriginal: Inventario
   /** PROTÓTIPO: os critérios de treino do desempate (para a régua medir o que decidiu a escolha). */
   // PROTÓTIPO (esc-simples): para o iniciante, entre os que deixam pôr a mesma carga, o de menor complexidade primeiro
   // (antes da carga, a flexão fechada passava na frente do tríceps com halter e o dia ficava com três exercícios de peito).
-  const simples = (prot('escolha') || prot('esc-simples')) && nivel === 'iniciante';
+  const simples = (prot('escolha') || prot('esc-simples')) && !SEM_PRATICA && nivel === 'iniciante';
   const criteriosDeTreino = (e: Exercicio): number[] => [
     articulacoesDe(e).some((a) => dorLeve.has(a)) ? 1 : 0,
     nivel === 'iniciante' && !estavel(e) ? 1 : 0,
@@ -256,7 +258,7 @@ export function contextoDeSelecao(perfil: Perfil, inventarioOriginal: Inventario
     umLadoSemPrecisar(e, f),
     pernaSemCarga(e),
     // PROTÓTIPO (iniciante-simples): para o iniciante, o exercício que já está na semana vem antes (prática antes de variedade).
-    prot('iniciante-simples') && nivel === 'iniciante' ? praticaDoIniciante(usos.get(e.id) ?? 0) : (usos.get(e.id) ?? 0),
+    prot('iniciante-simples') && !SEM_PRATICA && nivel === 'iniciante' ? praticaDoIniciante(usos.get(e.id) ?? 0) : (usos.get(e.id) ?? 0),
     preferido(f, e) ? 0 : 1,
     e.animacaoId ? 0 : 1, // entre equivalentes, o que o guia já mostra animado (CLAUDE.md, qualidade do guia)
   ];
@@ -485,11 +487,30 @@ function gerarNaDivisao(perfil: Perfil, inventarioOriginal: Inventario): Resulta
     const b = montarPrograma(perfil, inventarioOriginal, triagem, focoPrimeiro, true);
     return acima(b) > acima(a) ? a : b;
   };
-  const comFoco = montar(true);
   const passa = (p: Programa) => p.dias.some((d) => d.minutosEstimados > LIMITE_DO_DIA * perfil.minutosSessao);
-  if (!perfil.prioridades.length || !passa(comFoco)) return fechar(comFoco, triagem);
-  const antes = montar(false);
-  return fechar(passa(antes) ? comFoco : antes, triagem);
+  const escolher = () => {
+    const comFoco = montar(true);
+    if (!perfil.prioridades.length || !passa(comFoco)) return comFoco;
+    const antes = montar(false);
+    return passa(antes) ? comFoco : antes;
+  };
+  const com = escolher();
+  // EXPERIMENTO (ini-sem-custo): a prática do iniciante só vale se não custar um dia acima de 110% do tempo, um dia fraco
+  // ou empurrar ÷ puxar acima de 1,5 que a montagem sem ela não teria.
+  if (prot('ini-sem-custo') && (prot('iniciante-simples') || prot('esc-simples') || prot('ini-6')) && perfil.nivel === 'iniciante') {
+    SEM_PRATICA = true;
+    const sem = escolher();
+    SEM_PRATICA = false;
+    const fracosDe = (p: Programa) => p.dias.filter((d) => d.exercicios.length < 3 || !d.exercicios.some((x) => x.tipo === 'composto')).length;
+    const seriesDe = (p: Programa, ps: Padrao[]) => p.dias.flatMap((d) => d.exercicios).filter((x) => ps.includes(x.padrao)).reduce((t, x) => t + seriesDeVolume(x), 0);
+    const empurra = (p: Programa) => seriesDe(p, PADROES_PUXAR) > 0 && seriesDe(p, PADROES_EMPURRAR) > EMPURRAR_PUXAR_MAX * seriesDe(p, PADROES_PUXAR);
+    // (ini-6) nem esquecer um músculo, nem deixar mais músculos com menos de 4 séries
+    const zerados = (p: Programa) => MUSCULOS_COM_META.filter((m) => !(p.volumeSemanal[m] ?? 0)).length;
+    const soltos = (p: Programa) => MUSCULOS_COM_META.filter((m) => (p.volumeSemanal[m] ?? 0) < VOLUME.minimoEficazPiso).length;
+    const custaVolume = prot('ini-6') && (zerados(com) > zerados(sem) || soltos(com) > soltos(sem));
+    if (acima(com) > acima(sem) || fracosDe(com) > fracosDe(sem) || (empurra(com) && !empurra(sem)) || custaVolume) return fechar(sem, triagem);
+  }
+  return fechar(com, triagem);
 }
 
 /**
@@ -542,8 +563,10 @@ function montarPrograma(perfil: Perfil, inventarioOriginal: Inventario, triagem:
   // 4. Preenchimento das vagas por função
   // PROTÓTIPO (iniciante-simples): com 3 dias ou mais, o iniciante fica com até 6 exercícios por treino, mesmo com mais
   // minutos (com 2 dias, cada treino precisa cobrir o corpo todo); o 2º exercício do foco pode ser o 7º.
-  const limiteDoIniciante = prot('iniciante-simples') && nivel === 'iniciante' && perfil.diasSemana >= INICIANTE_LIMITE_DESDE_DIAS && exerciciosPorSessao(perfil.minutosSessao) > INICIANTE_MAX_EXERCICIOS;
-  const N = limiteDoIniciante ? INICIANTE_MAX_EXERCICIOS : exerciciosPorSessao(perfil.minutosSessao);
+  // EXPERIMENTO (ini-6): o limite de 6 exercícios por treino, com a trava de custo de `ini-sem-custo`.
+  const maxDoIniciante = prot('ini-6') && !SEM_PRATICA ? 6 : INICIANTE_MAX_EXERCICIOS;
+  const limiteDoIniciante = (prot('iniciante-simples') || prot('ini-6')) && nivel === 'iniciante' && perfil.diasSemana >= INICIANTE_LIMITE_DESDE_DIAS && exerciciosPorSessao(perfil.minutosSessao) > maxDoIniciante;
+  const N = limiteDoIniciante ? maxDoIniciante : exerciciosPorSessao(perfil.minutosSessao);
   const ativaPeloFoco = (v: Vaga) => !v.prioridade || v.prioridade.some((g) => grupos.has(g));
   // selecao.gluteo (R5a): numa semana sem vaga de extensão de quadril valendo (o Corpo todo A/B sem foco em glúteo), a
   // vaga do foco passa a valer quando dobrar o quadril não tem exercício (equipamento ou dor): o glúteo não fica só
@@ -1244,7 +1267,22 @@ function montarPrograma(perfil: Perfil, inventarioOriginal: Inventario, triagem:
         ]);
       }
     : undefined;
-  programaDias = cortarTempo(programaDias, perfil.minutosSessao, metas, nivel, prioritarios, avisos, podeDrop, colchaoDe(perfil), trocouProtegido, maisRapido);
+  // EXPERIMENTO (ultimo-recurso): as técnicas que os treinadores estranham (dupla de dois exercícios que carregam a lombar,
+  // dupla com exercício livre com barra, drop set do iniciante) deixam de ser proibidas e passam a ser o último recurso:
+  // o corte é feito sem elas; se isso custar um dia acima de 110% do tempo, um dia fraco ou empurrar ÷ puxar acima de 1,5
+  // que o corte com elas não teria, vale o corte com elas.
+  if (prot('ultimo-recurso')) {
+    const copia = () => programaDias.map((d) => ({ ...d, exercicios: d.exercicios.map((x) => ({ ...x })) }));
+    const [av1, av2]: [Porque[], Porque[]] = [[], []];
+    const com = cortarTempo(copia(), perfil.minutosSessao, metas, nivel, prioritarios, av1, podeDrop, colchaoDe(perfil), trocouProtegido, maisRapido);
+    const sem = cortarTempo(copia(), perfil.minutosSessao, metas, nivel, prioritarios, av2, podeDrop, colchaoDe(perfil), trocouProtegido, maisRapido, true);
+    const acima = (ds: DiaPrograma[]) => ds.filter((d) => d.minutosEstimados > LIMITE_DO_DIA * perfil.minutosSessao).length;
+    const fracosDe = (ds: DiaPrograma[]) => ds.filter((d) => d.exercicios.length < 3 || !d.exercicios.some((x) => x.tipo === 'composto')).length;
+    const custa = acima(com) > acima(sem) || fracosDe(com) > fracosDe(sem) || (empurraDemais(com) && !empurraDemais(sem));
+    programaDias = custa ? sem : com;
+    avisos.push(...(custa ? av2 : av1));
+  } else
+    programaDias = cortarTempo(programaDias, perfil.minutosSessao, metas, nivel, prioritarios, avisos, podeDrop, colchaoDe(perfil), trocouProtegido, maisRapido);
   programaDias = completarPelaRegua(programaDias, ctx, perfil, N, semPuxar, metas, prioritarios);
   // PROTÓTIPO (usa-tempo): o tempo que sobra vira série em TODOS os dias, com o programa já montado, cortado e completado:
   // os exercícios são os de hoje, e só as séries sobem. Sem foco, até o alvo do nível (8, 12, 14); com foco, o foco primeiro.
@@ -1962,7 +2000,10 @@ export function cortarTempo(
   jaTirouExercicio = false,
   /** EXPERIMENTO (corte-lado): o equivalente de dois lados de um exercício de um lado só, se houver. */
   maisRapido?: (x: ExercicioPrescrito, d: DiaPrograma, todos: DiaPrograma[]) => ExercicioPrescrito | null,
+  /** EXPERIMENTO (ultimo-recurso): sem as três restrições das técnicas (a 2ª tentativa, quando a 1ª custa outra coisa). */
+  semRestricoes = false,
 ): DiaPrograma[] {
+  const tec = (nome: string) => !semRestricoes && (prot('tecnicas') || prot(nome));
   const recalcular = (d: DiaPrograma) => ({ ...d, minutosEstimados: minutos(d.exercicios, colchao) });
   const volume = () =>
     volumePorMusculo(dias.flatMap((d) => d.exercicios.map((x) => ({ ex: POR_ID[x.exId]!, series: seriesDeVolume(x) }))));
@@ -2043,9 +2084,9 @@ export function cortarTempo(
           (a, b) =>
             naoCompetem(a, b) &&
             !(deInferior(a) && deInferior(b)) &&
-            !((prot('tecnicas') || prot('tec-lombar')) && carregaLombar(POR_ID[a.exId]!) && carregaLombar(POR_ID[b.exId]!)) &&
+            !(tec('tec-lombar') && carregaLombar(POR_ID[a.exId]!) && carregaLombar(POR_ID[b.exId]!)) &&
             // nem um multiarticular livre com barra (agachamento, supino, terra): iversen2021 não aconselha, por segurança
-            !((prot('tecnicas') || prot('tec-barra')) && (POR_ID[a.exId]!.carga === 'barra' || POR_ID[b.exId]!.carga === 'barra')),
+            !(tec('tec-barra') && (POR_ID[a.exId]!.carga === 'barra' || POR_ID[b.exId]!.carga === 'barra')),
         );
       if (exs.some((x) => x.supersetCom)) usados.add('superserie');
       // PROTÓTIPO (tecnicas): os dois exercícios de um bi-set ficam um depois do outro na lista do dia (antes, o par do 1º
@@ -2063,7 +2104,7 @@ export function cortarTempo(
     }
     // 3) drop set na última série de isoladores com 3 séries ou mais (a série com drop set vale 2 no volume).
     // PROTÓTIPO (tecnicas): o iniciante não faz drop set (a saída dele é menos exercícios ou menos séries).
-    while (d.minutosEstimados > limite && !((prot('tecnicas') || prot('tec-drop')) && nivel === 'iniciante')) {
+    while (d.minutosEstimados > limite && !(tec('tec-drop') && nivel === 'iniciante')) {
       const alvo = d.exercicios
         .map((x, i) => ({ x, i }))
         .filter(({ x }) => !x.dropSet && x.series >= 3 && podeDrop(x))

@@ -1,6 +1,6 @@
 import { beforeAll, describe, expect, it, vi } from 'vitest';
 import { POR_ID } from '../../src/domain/biblioteca';
-import { contextoDeSelecao, gerarPrograma, seriesDeVolume, type Perfil, type Programa } from '../../src/domain/gerador';
+import { carregaLombar, contextoDeSelecao, gerarPrograma, seriesDeVolume, type Perfil, type Programa } from '../../src/domain/gerador';
 import { FUNCAO } from '../../src/domain/gerador/funcoes';
 import type { Inventario } from '../../src/domain/taxonomia/equipamentos';
 import { medirRegua } from '../../scripts/auditoria/regua';
@@ -11,6 +11,7 @@ import { PERSONAS_NOVAS } from '../personas/todos';
 // Sessão "treino para todos", etapa 2, pacote 4 (16/11/2026): o corte de tempo revisto e o iniciante.
 //  - tempo.corte (degrau 1b): no dia que não cabe no tempo, o exercício de um lado só dá lugar ao equivalente de dois
 //    lados do mesmo nível da função, antes de qualquer técnica ou corte.
+//  - tempo.superserie: a dupla de dois exercícios que carregam a lombar sem apoio é o último recurso do corte.
 // O "antes" de cada regra é o protótipo (scripts/auditoria/prototipo) com todas as adotadas menos ela. Só personas e
 // perfis fictícios.
 
@@ -111,6 +112,58 @@ describe('tempo.corte, degrau 1b: dois lados no lugar de um lado só quando o di
         const [perfil, inventario] = [perfilDe(pd), inventarioDe(pd.cenario)];
         expect(ids(programa(gerarPrograma, perfil, inventario)), `${cenario}, ${dias} dias de 90 min`).toEqual(ids(programa(antes, perfil, inventario)));
       }
+  });
+
+  it('nas personas, não aparece defeito da régua que não havia', () => {
+    for (const p of TODAS) {
+      const [a, d] = [programa(antes, p.perfil, p.inventario), programa(gerarPrograma, p.perfil, p.inventario)];
+      const [da, dd] = [defeitos(a, p.perfil, p.inventario), defeitos(d, p.perfil, p.inventario)];
+      expect(dd.filter((x) => !da.includes(x)), p.nome).toEqual([]);
+    }
+  });
+});
+
+describe('tempo.superserie: a dupla de dois exercícios que carregam a lombar é o último recurso (pacote 4)', () => {
+  let antes: typeof gerarPrograma;
+  beforeAll(async () => {
+    antes = await carregarAntes('app,-tec-lombar');
+  });
+  /** Os pares em dupla de um programa em que os dois exercícios carregam a lombar sem apoio. */
+  const duplasDeLombar = (p: Programa) =>
+    p.dias.flatMap((d) => d.exercicios.filter((x) => x.supersetCom && carregaLombar(POR_ID[x.exId]!) && carregaLombar(POR_ID[x.supersetCom]!))).length / 2;
+  /** Treinos curtos com peso livre, onde essas duplas apareciam. */
+  const GRADE = ['academia', 'halteres', 'casa+', 'bairro'].flatMap((cenario) =>
+    (['intermediario', 'avancado'] as const).flatMap((nivel) =>
+      ['2', '3', '4'].flatMap((dias) => [30, 45].flatMap((min) => ([[], ['costas'], ['pernas']] as Pedido['focos'][]).map((focos) => pedido({ cenario, nivel, dias, min, focos })))),
+    ),
+  );
+  const pares = () =>
+    GRADE.map((pd) => {
+      const [perfil, inventario] = [perfilDe(pd), inventarioDe(pd.cenario)];
+      return { pd, perfil, inventario, a: programa(antes, perfil, inventario), d: programa(gerarPrograma, perfil, inventario), nome: `${pd.cenario}, ${pd.nivel}, ${pd.dias} dias de ${pd.min} min, foco ${pd.focos.join('+') || 'nenhum'}` };
+    });
+
+  it('nenhum programa ganha uma dupla de lombar, e na grade elas caem', () => {
+    let [ta, td] = [0, 0];
+    for (const { a, d, nome } of pares()) {
+      expect(duplasDeLombar(d), nome).toBeLessThanOrEqual(duplasDeLombar(a));
+      ta += duplasDeLombar(a);
+      td += duplasDeLombar(d);
+    }
+    expect(ta).toBeGreaterThan(0);
+    expect(td).toBeLessThan(ta);
+  });
+
+  it('tirar a dupla não custa: nenhum dia a mais acima de 110% do tempo, nenhuma série a menos por causa disso e nenhum defeito novo', () => {
+    for (const { pd, a, d, perfil, inventario, nome } of pares()) {
+      expect(acimaDoTempo(d, pd.min), nome).toBeLessThanOrEqual(acimaDoTempo(a, pd.min));
+      const [da, dd] = [defeitos(a, perfil, inventario), defeitos(d, perfil, inventario)];
+      expect(dd.filter((x) => !da.includes(x)), nome).toEqual([]);
+    }
+  });
+
+  it('onde a dupla de lombar continua, é porque já existia (o último recurso), e o programa é o mesmo de antes', () => {
+    for (const { a, d, nome } of pares()) if (duplasDeLombar(d) > 0) expect(ids(d), nome).toEqual(ids(a));
   });
 
   it('nas personas, não aparece defeito da régua que não havia', () => {
