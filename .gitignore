@@ -32,3 +32,6 @@ dev-dist/
 # Notas de pesquisa brutas (o resultado curado vai para docs/pesquisa/)
 research_notes/
 reports/
+
+# Capturas do inventário de textos: 69 MB, refeitas pelo roteiro (scripts/textos/inventario.spec.ts)
+docs/revisoes/textos/inventario/capturas/

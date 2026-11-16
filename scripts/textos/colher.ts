@@ -43,6 +43,8 @@ export type Medida = {
   textoDoCss: { texto: string; em: string; vezes: number }[];
   /** texto escrito dentro de um desenho (SVG): fora da conta de palavras, como na régua */
   textoEmDesenho: string[];
+  /** texto que sai da tela ou é cortado por quem o contém (na horizontal), pela mesma conta de tests/e2e/criterios.ts */
+  textoCortado: string[];
   tituloDoDocumento: string;
   temFolha: boolean;
 };
@@ -67,7 +69,8 @@ export type TelaDaParte = Omit<Tela, 'id' | 'captura' | 'capturaInteira'> & { no
 export type Parte = { chave: string; ordem: number; projeto: string; telas: TelaDaParte[]; fotos: { fluxo: Fluxo; nome: string }[]; falhas: string[] };
 
 export const RAIZ = resolve(process.cwd());
-export const PASTA_DAS_PARTES = resolve(RAIZ, 'test-results/textos');
+// fora do git e fora de test-results/, que o Playwright (deste roteiro ou dos testes do app) limpa a cada rodada
+export const PASTA_DAS_PARTES = resolve(RAIZ, 'node_modules/.cache/inventario-textos/partes');
 export const SAIDA = resolve(RAIZ, 'docs/revisoes/textos/inventario');
 
 /** Roda dentro da página (page.evaluate): não pode usar nada de fora dela. */
@@ -322,7 +325,39 @@ export function colherNaPagina(): Medida {
       else doCss.set(chave, { texto, em, vezes: 1 });
     }
   }
-  const textoEmDesenho = [...new Set(Array.from(raiz.querySelectorAll('svg text')).filter((t) => t.checkVisibility() && !t.closest('[inert], [hidden]')).map((t) => limpo(t.textContent)).filter(Boolean))];
+  // um rótulo de 2 linhas dentro do desenho são 2 pedaços (tspan) sem espaço entre eles: aqui, com espaço
+  const rotuloDoDesenho = (t: Element) => {
+    const linhas = Array.from(t.querySelectorAll('tspan'));
+    return limpo(linhas.length ? linhas.map((x) => x.textContent ?? '').join(' ') : t.textContent);
+  };
+  const textoEmDesenho = [...new Set(Array.from(raiz.querySelectorAll('svg text')).filter((t) => t.checkVisibility() && !t.closest('[inert], [hidden]')).map(rotuloDoDesenho).filter(Boolean))];
+
+  // ---- texto cortado: sai da tela, ou de um ancestral que esconde o que passa da borda (como tests/e2e/criterios.ts) ----
+  const textoCortado: string[] = [];
+  for (const e of Array.from(raiz.querySelectorAll<HTMLElement>('*'))) {
+    if (e.closest('svg, .stage, .miniatura, [inert], .sr') || !e.checkVisibility({ contentVisibilityAuto: true, visibilityProperty: true })) continue;
+    if (!Array.from(e.childNodes).some((n) => n.nodeType === 3 && n.textContent!.trim())) continue;
+    const r = e.getBoundingClientRect();
+    const s = getComputedStyle(e);
+    if (!r.width || !r.height || s.visibility === 'hidden') continue;
+    let limite = { left: 0, right: innerWidth };
+    let rolavel = false;
+    for (let x = e.parentElement; x; x = x.parentElement) {
+      const sx = getComputedStyle(x);
+      if (sx.overflowX === 'auto' || sx.overflowX === 'scroll') {
+        rolavel = true;
+        break;
+      }
+      if (sx.overflowX !== 'visible') {
+        const q = x.getBoundingClientRect();
+        limite = { left: Math.max(limite.left, q.left), right: Math.min(limite.right, q.right) };
+      }
+    }
+    if (rolavel) continue;
+    const proprio = s.overflowX !== 'visible' && e.scrollWidth > e.clientWidth + 1;
+    if (proprio || r.right > limite.right + 1 || r.left < limite.left - 1) textoCortado.push(`${tagDe(e)}${classesDe(e) ? `.${classesDe(e).trim().split(/\s+/)[0]}` : ''}: ${limpo(e.innerText).slice(0, 80)}`);
+  }
+
 
   return {
     palavrasAVista: palavras,
@@ -337,6 +372,7 @@ export function colherNaPagina(): Medida {
     listas,
     textoDoCss: [...doCss.values()],
     textoEmDesenho,
+    textoCortado: [...new Set(textoCortado)],
     tituloDoDocumento: document.title,
     temFolha: raiz !== document.body,
   };
@@ -352,7 +388,7 @@ export type OpcoesDaFoto = {
   alternam?: string;
 };
 
-/** O roteiro de um teste: fotografa, colhe e guarda a parte dele em test-results/textos/<projeto>/<chave>/. */
+/** O roteiro de um teste: fotografa, colhe e guarda a parte dele em PASTA_DAS_PARTES/<projeto>/<chave>/. */
 export class Roteiro {
   readonly telas: TelaDaParte[] = [];
   readonly fotos: { fluxo: Fluxo; nome: string }[] = [];

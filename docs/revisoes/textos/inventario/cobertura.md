@@ -1,284 +1,513 @@
 # Inventário dos textos: cobertura
 
-Gerado por `scripts/textos/montar.ts` a partir da colheita (`colheita.json`) e da tabela escrita à mão em `scripts/textos/cobertura.ts`. Não edite este arquivo: mude a tabela e monte de novo (`npx vite-node scripts/textos/montar.ts`).
+Gerado por `scripts/textos/montar.ts` a partir da colheita (`colheita.json`) e da tabela escrita à mão em `scripts/textos/cobertura.ts`. Não edite este arquivo: mude a tabela e monte de novo (`npx vite-node scripts/textos/montar-agora.ts`).
 
 ## Como ler
 
+- Cada linha da colheita (`colheita.json`) é uma tela, uma folha aberta por cima dela, um bloco aberto, um estado vazio, um aviso ou um erro. O `id` é `fluxo/NN-nome`; as capturas estão em `capturas/claro/<id>.png` e `capturas/escuro/<id>.png` (a 1ª dobra) e, nas telas mais altas que 844 px, em `capturas/claro/<id>-inteira.png`.
+- A conta de palavras (`palavrasAVista`, `palavrasNaTela`, `blocosLongos`, `selos`, `porques`) é a régua de 13/11/2026, copiada sem mudar de `scripts/design/frontend-novo/capturas.spec.ts`. Com uma folha aberta, `palavrasNaTela` conta só a folha; `palavrasAVista` conta também o que está atrás do véu (é assim na régua).
+- A soma de `palavras` dos `blocos` é sempre igual a `palavrasNaTela` (a colheita confere). O `texto` de um bloco junta os pedaços como aparecem na tela ("4+" e não "4 +"); por isso, contar as palavras do `texto` pode dar 1 ou 2 a menos que `palavras`.
+- `dentroDe` é "folha" em tudo o que está numa folha aberta; fora de folha, "bloco aberto" no conteúdo de um `<details open>` e "tela" no resto. O campo a mais `blocoAberto` traz o rótulo do bloco que abre (também dentro de uma folha).
+- `aVista` de um bloco: está na 1ª dobra e não está cortado por uma área que rola (a lista comprida dentro de uma folha).
+- Campos a mais em cada tela: `listas` (as opções de cada lista do aparelho, que só aparecem ao tocar no campo), `textoDoCss` (texto que o CSS escreve e não está no DOM: "+ marcar", "✓ tenho", o "!" do erro, o "+" e o "−" dos blocos que abrem), `textoEmDesenho` (texto dentro do SVG do Boneco), `textosQueAlternam` (a fase do movimento e a respiração do guia, que mudam sozinhas), `tituloDoDocumento`, `rota`, `captura` e `capturaInteira`. Nenhum deles entra na conta de palavras.
+- `nomesAcessiveis` lista o que o leitor de tela ouve e não está escrito: `aria-label`, `aria-labelledby` (em controles), `alt`, `title` e texto oculto (`.sr`), em controles, imagens, regiões, grupos e listas. `origem: "SEM NOME"` marca um controle ou imagem com função e sem nome.
+- A persona Ana faz o cadastro pela interface nos testes `cadastro-ana`, `inicio-ana`, `inicio-ana-saude` e `treino-ana` (o caminho do roteiro de 13/11); nos outros, o estado pronto dela (o mesmo de `tests/e2e/apoio/estados-personas.ts`) é gravado no aparelho. As outras personas entram sempre pelo estado gravado. O Bruno usa os 2 locais fictícios de `tests/personas` e as 12 semanas parado que a persona descreve.
+- Toda folha "De onde vem isto" (o selo) e toda folha de "por quê?" mostra o texto de uma regra de `src/domain/regras/regras.json` e as fontes dela (`src/conteudo/fontes.json`). A colheita abriu uma amostra (um selo por tela onde ele aparece); as 100+ regras não foram abertas uma a uma: o texto delas está no JSON das regras.
+- O guia de execução tem uma ficha de texto por exercício (`src/conteudo/exercicios/*.json`, 171 fichas). A colheita abriu 7 guias animados (búlgaro, 3º exercício da Ana, 2 de polia da Carla, 2 de corpo livre da Elisa e o supino do catálogo) e 1 cartão de texto; as outras fichas têm a mesma forma e estão nos JSON.
+- O que não existe no app, e por isso não está na colheita: aviso de "sem rede" e aviso de "versão nova do app" (o service worker guarda os arquivos e se atualiza sozinho: `vite.config.ts`, `registerType: 'autoUpdate'`); aviso de instalar no Android (o aviso é só do iPhone e do iPad: `src/domain/dados/index.ts`); tela de carregando com texto (enquanto o pedaço da tela chega, só o fundo); tela de rota desconhecida (leva à Boas-vindas ou ao Início); validação ao gerar o programa sem equipamento (sem nada marcado, o programa usa o peso do corpo, e a tela diz isso antes); guia animado de exercício sem animação (`/guia/<id>` só aceita animações: o exercício sem animação mostra o cartão de texto, colhido no início e no treino).
+- Na tela da série e no guia, o Boneco animado mostra a fase do movimento ("DESCIDA · EXCÊNTRICA", "TOPO · SEGURA"…), que muda sozinha: a conta de palavras dessas telas varia 1 a 3 palavras entre uma colheita e outra, conforme o instante da foto. É a única diferença de régua entre 13/11 e hoje nas telas que não mudaram (a tabela no fim compara as 41).
+- Estados forçados na colheita, que por toque não aparecem: as mensagens de "falta" da Experiência e da Rotina sem resposta (o botão "Continuar" só aparece com as respostas) foram vistas forçando o envio do formulário; a gravação recusada pelo aparelho, forçando o erro do IndexedDB; a demora da foto, baixando a espera de 70 s para 4 s; a tela de erro, pela chave de teste do próprio app (`ProvaDeErro`).
 
 ## O que há no código e onde está na colheita
 
+### `src/App.tsx`
+
+| Linha | O que é | Tipo | Na colheita |
+|---|---|---|---|
+| 28 | `Carregando`: o fundo do app enquanto o pedaço da tela chega *(sem texto: só o fundo, com aria-busy)* | carregando |  |
+| 44 | `/` Boas-vindas (com programa pronto, abre direto o Início) | rota | `cadastro/01-boas-vindas` |
+| 45 | `/comecar/triagem` Saúde | rota | `cadastro/05-saude`<br>`cadastro/08-saude-quais-valem`<br>`cadastro/15-saude-pausa`<br>`dados-e-locais/35-refazer-a-triagem`<br>`dados-e-locais/38-refazer-a-triagem-com-sim` |
+| 46 | `/comecar/nivel` Experiência | rota | `cadastro/18-experiencia-vazia`<br>`cadastro/26-experiencia-respondida`<br>`dados-e-locais/36-experiencia-com-o-programa-feito`<br>`dados-e-locais/50-refazer-o-nivel` |
+| 47 | `/comecar/rotina` Rotina (e `?de=dados`: Rotina e divisão, Objetivo) | rota | `cadastro/28-rotina-vazia`<br>`cadastro/38-rotina-respondida`<br>`dados-e-locais/22-rotina-e-divisao`<br>`dados-e-locais/31-objetivo` |
+| 48 | `/comecar/inventario` Equipamento | rota | `cadastro/39-equipamento-lugar`<br>`cadastro/88-equipamento-item-por-item`<br>`dados-e-locais/37-equipamento-com-o-programa-feito` |
+| 49 | `/comecar/restricoes` Algo a evitar | rota | `dados-e-locais/32-algo-a-evitar` |
+| 50 | `/programa` Início | rota | `inicio/03-inicio`<br>`inicio/49-inicio-diego`<br>`inicio/56-inicio-elisa`<br>`inicio/63-inicio-fabio`<br>`inicio/71-inicio-bruno`<br>`inicio/83-inicio-carla`<br>`inicio/01-inicio-depois-do-1o-treino` |
+| 51 | `/locais` Meus locais | rota | `dados-e-locais/40-locais`<br>`dados-e-locais/46-locais-2-locais`<br>`dados-e-locais/48-locais-bruno` |
+| 52 | `/locais/:id` Editar local e `/locais/novo` Novo local | rota | `dados-e-locais/42-locais-editar`<br>`dados-e-locais/43-locais-novo` |
+| 53 | `/treino` Treino em andamento | rota | `treino/01-serie-vazia`<br>`treino/12-descanso` |
+| 54 | `/treino/fim` Fim do treino | rota | `fim-e-semana/06-fim-do-treino`<br>`fim-e-semana/05-fim-sem-serie`<br>`fim-e-semana/15-fim-encerrado-por-seguranca` |
+| 55 | `/semana` A sua semana | rota | `fim-e-semana/01-semana-vazia`<br>`fim-e-semana/11-semana-1-treino`<br>`fim-e-semana/17-semana-completa` |
+| 56 | `/evolucao/:exId` Evolução | rota | `fim-e-semana/04-evolucao-vazia`<br>`fim-e-semana/12-evolucao-1-treino`<br>`fim-e-semana/18-evolucao-com-historico`<br>`fim-e-semana/23-evolucao-por-local` |
+| 57 | `/dados` Meus dados | rota | `dados-e-locais/01-meus-dados`<br>`dados-e-locais/19-meus-dados-sem-dados`<br>`dados-e-locais/49-meus-dados-bruno` |
+| 58 | `/guia` (leva ao 1º do catálogo) *(não há link para o catálogo dentro do app)* | rota | `guia/44-catalogo` |
+| 59 | `/guia/:id` Guia de execução | rota | `guia/01-tecnica`<br>`guia/19-pelo-programa-tecnica`<br>`guia/44-catalogo` |
+| 60 | `/termos` Termos de uso e privacidade | rota | `termos-e-foto/01-termos` |
+| 61 | `/dev/gerador` e `/lab/boneco` *(só em desenvolvimento e nas prévias: fora do app publicado, não colhidas)* | rota |  |
+| 81 | rota desconhecida (leva a `/`) *(não tem texto próprio: abre a Boas-vindas ou o Início)* | rota | `cadastro/01-boas-vindas` |
+
+### `src/features/app/Folha.tsx`
+
+| Linha | O que é | Tipo | Na colheita |
+|---|---|---|---|
+| 125 | o botão de fechar de toda folha ("Fechar"; "Voltar" em "Terminar o treino agora?" e em "Apagar todos os dados?") | folha | `treino/27-folha-terminar-com-serie`<br>`dados-e-locais/18-meus-dados-folha-apagar-todos-os-dados` |
+
+### `src/features/app/ui.tsx`
+
+| Linha | O que é | Tipo | Na colheita |
+|---|---|---|---|
+| 46 | selo de evidência (robusta, moderada, 1 estudo, consenso; "fonte" nas frases sobre o app) | folha | `inicio/08-folha-do-exercicio-por-que`<br>`cadastro/03-boas-vindas-folha-seus-dados` |
+| 50 | folha "De onde vem isto" (a regra, o que o nível quer dizer e as fontes) | folha | `cadastro/04-boas-vindas-folha-selo-da-foto`<br>`cadastro/16-saude-pausa-folha-selo`<br>`cadastro/27-experiencia-folha-selo-do-nivel`<br>`cadastro/83-equipamento-folha-selo-dos-atalhos`<br>`cadastro/85-equipamento-folha-selo-da-menor-anilha`<br>`inicio/09-folha-do-exercicio-folha-selo`<br>`inicio/17-folha-avisos-folha-selo`<br>`inicio/19-como-ler-folha-selo`<br>`inicio/44-programa-pausado-folha-selo`<br>`inicio/82-inicio-bruno-folha-selo-do-local`<br>`treino/07-folha-selo-do-aquecimento`<br>`treino/14-folha-senti-algo-folha-selo`<br>`treino/31-aviso-dor-folha-selo`<br>`treino/34-folha-selo-da-calibracao`<br>`treino/43-folha-trocar-depois-do-sinal-folha-selo`<br>`treino/50-serie-com-drop-set-folha-selo`<br>`guia/47-catalogo-nota-de-montagem-segura-folha-selo`<br>`fim-e-semana/03-semana-como-ler-folha-selo`<br>`fim-e-semana/13-evolucao-folha-selo`<br>`fim-e-semana/16-fim-encerrado-por-seguranca-folha-selo`<br>`termos-e-foto/02-termos-folha-selo-1`<br>`termos-e-foto/03-termos-folha-selo-2`<br>`termos-e-foto/04-termos-folha-selo-3`<br>`avisos-e-erros/02-instalar-no-iphone-folha-selo`<br>`avisos-e-erros/05-lembrete-de-copia-folha-selo` |
+| 73 | folha de "por quê?" (o texto de apoio e as regras por extenso) | folha | `treino/08-folha-por-que-da-reserva`<br>`cadastro/35-rotina-folha-por-que-grupos` |
+| 95 | "Carregando a regra…" | carregando | `avisos-e-erros/18-selo-carregando-a-regra` |
+| 99 | "Não deu para carregar a regra agora. Tente de novo com internet." + "Recarregar o app" | erro ou validação | `avisos-e-erros/21-selo-sem-a-regra` |
+| 135 | "Carregando as fontes…" | carregando | `avisos-e-erros/19-selo-carregando-as-fontes` |
+| 137 | "Não deu para carregar as fontes agora. As chaves são: …" | erro ou validação | `avisos-e-erros/20-selo-sem-as-fontes` |
+| 180 | topo com o voltar ("‹ Meus dados", "‹ Semana", "‹ Treino", "‹ Meus locais", "‹ Início") | rota | `dados-e-locais/40-locais`<br>`fim-e-semana/12-evolucao-1-treino`<br>`fim-e-semana/14-evolucao-pelo-programa`<br>`dados-e-locais/42-locais-editar`<br>`termos-e-foto/01-termos` |
+| 203 | barra de baixo: Treino, Semana, Meus dados | rota | `inicio/03-inicio` |
+| 291 | link "Meu programa" no alto das telas do cadastro de quem já tem programa | aviso condicional | `dados-e-locais/35-refazer-a-triagem`<br>`dados-e-locais/36-experiencia-com-o-programa-feito` |
+| 308 | "‹ Voltar" e "Passo N de 4" do cadastro | rota | `cadastro/05-saude`<br>`cadastro/18-experiencia-vazia`<br>`cadastro/28-rotina-vazia`<br>`cadastro/39-equipamento-lugar` |
+| 439 | caixa "Falta pouco:" com a lista do que falta | erro ou validação | `cadastro/09-saude-quais-valem-erro-nenhuma-marcada`<br>`cadastro/64-equipamento-erro-detalhes-por-completar` |
+
+### `src/features/app/avisos.tsx`
+
+| Linha | O que é | Tipo | Na colheita |
+|---|---|---|---|
+| 25 | "Não foi possível salvar neste aparelho." + "Exportar meus dados" (Boas-vindas, Início, Treino, Fim e Meus dados) | erro ou validação | `avisos-e-erros/14-nao-foi-possivel-salvar-treino`<br>`avisos-e-erros/16-nao-foi-possivel-salvar-inicio` |
+| 46 | aviso "Instale o app para não perder seus dados" (iPhone e iPad no navegador) *(não há texto para Android: o aviso só existe no iPhone e no iPad)* | aviso condicional | `avisos-e-erros/01-instalar-no-iphone-boas-vindas`<br>`avisos-e-erros/03-instalar-no-iphone-inicio` |
+| 89 | lembrete "Guarde uma cópia dos seus treinos" (as 2 frases: nenhuma cópia ainda; treinos novos desde a última) | aviso condicional | `avisos-e-erros/04-lembrete-de-copia`<br>`avisos-e-erros/07-lembrete-de-copia-com-treinos-novos` |
+| 104 | "Arquivo exportado. Guarde-o num lugar seguro…" (no lembrete de cópia) | resposta de uma ação | `avisos-e-erros/06-lembrete-de-copia-exportado` |
+
+### `src/features/app/TelaDeErro.tsx`
+
+| Linha | O que é | Tipo | Na colheita |
+|---|---|---|---|
+| 53 | tela de erro "Algo deu errado nesta tela" | erro ou validação | `avisos-e-erros/11-tela-de-erro` |
+| 40 | "Não há dados guardados neste aparelho." | erro ou validação | `avisos-e-erros/13-tela-de-erro-sem-dados` |
+| 44 | "Arquivo exportado. Guarde-o num lugar seguro…" (na tela de erro) | resposta de uma ação | `avisos-e-erros/12-tela-de-erro-exportado-e-aviso-aberto` |
+
+### `src/features/app/privacidade.tsx`
+
+| Linha | O que é | Tipo | Na colheita |
+|---|---|---|---|
+| 18 | texto curto da foto (com a foto ligada no build) | aviso condicional | `cadastro/03-boas-vindas-folha-seus-dados`<br>`dados-e-locais/02-meus-dados-folha-o-que-sai-daqui` |
+| 29 | "Para onde vai a foto" (os 5 itens) | aviso condicional | `termos-e-foto/05-foto-sem-autorizacao`<br>`termos-e-foto/01-termos` |
+| 86 | "Avisar um problema" aberto (sem e-mail no build: o texto para copiar) | bloco que abre | `dados-e-locais/12-meus-dados-avisar-um-problema`<br>`avisos-e-erros/12-tela-de-erro-exportado-e-aviso-aberto` |
+| 79 | "Copiado. Cole numa mensagem…" e "Não deu para copiar: selecione o texto acima e copie." | resposta de uma ação | `dados-e-locais/13-meus-dados-avisar-um-problema-copia-1`<br>`dados-e-locais/14-meus-dados-avisar-um-problema-copia-2` |
+
+### `src/features/onboarding/BoasVindas.tsx`
+
+| Linha | O que é | Tipo | Na colheita |
+|---|---|---|---|
+| 40 | erro de leitura dos dados guardados + "Em Meus dados você pode importar um backup." | erro ou validação | `avisos-e-erros/08-dado-ilegivel-boas-vindas` |
+| 52 | "o que o app não faz" | por quê | `cadastro/02-boas-vindas-folha-o-que-o-app-nao-faz` |
+| 68 | "Seus dados ficam no aparelho" | folha | `cadastro/03-boas-vindas-folha-seus-dados` |
+
+### `src/features/onboarding/Triagem.tsx`
+
+| Linha | O que é | Tipo | Na colheita |
+|---|---|---|---|
+| 103 | "Vamos pausar o programa automático" (algum "sim" que pede avaliação) | aviso condicional | `cadastro/15-saude-pausa`<br>`cadastro/17-saude-pausa-liberacao-marcada`<br>`dados-e-locais/39-refazer-a-triagem-pausa` |
+| 134 | "por que perguntamos" | por quê | `cadastro/06-saude-folha-por-que-perguntamos` |
+| 151 | "As 9 perguntas completas" | folha | `cadastro/07-saude-folha-perguntas-completas` |
+| 173 | "Quais valem para você?" (a subtela do "sim") | rota | `cadastro/08-saude-quais-valem` |
+| 58 | "Nenhuma marcada. Se nenhuma vale, volte e toque em “Não, nenhuma”." | erro ou validação | `cadastro/09-saude-quais-valem-erro-nenhuma-marcada` |
+| 59 | "Marque pelo menos uma região com problema." | erro ou validação | `cadastro/10-saude-quais-valem-regioes-erro-sem-regiao` |
+| 60 | "Dê a nota da dor de hoje na região marcada." / "…em cada região marcada." | erro ou validação | `cadastro/12-saude-quais-valem-regioes-erro-sem-uma-nota`<br>`cadastro/11-saude-quais-valem-regioes-erro-sem-notas` |
+| 185 | "Quais regiões?" e a nota de dor de hoje de cada região (só com "sim" em osso e articulação) | aviso condicional | `cadastro/10-saude-quais-valem-regioes-erro-sem-regiao`<br>`cadastro/11-saude-quais-valem-regioes-erro-sem-notas` |
+| 217 | "Escolha a nota de hoje." | erro ou validação | `cadastro/11-saude-quais-valem-regioes-erro-sem-notas` |
+| 232 | "Nenhuma destas vale para você?" (as 2 frases: "esta" e "estas N") | folha | `cadastro/13-saude-folha-confirmar-nao-marcadas`<br>`cadastro/14-saude-folha-confirmar-nao-marcada-uma` |
+
+### `src/features/onboarding/Nivel.tsx`
+
+| Linha | O que é | Tipo | Na colheita |
+|---|---|---|---|
+| 73 | "Diga há quanto tempo…", "Diga se está treinando…", "Diga se tem confiança…" e "Escolha uma opção." (linhas 47 a 49, 81, 93 e 105) *(por toque não aparecem: sem as 3 respostas não há botão "Continuar"; vistas forçando o envio)* | erro ou validação | `cadastro/19-experiencia-erro-sem-resposta` |
+| 112 | "Seu nível: …" com o motivo (5 motivos, em src/domain/nivel) e "Quer começar num nível mais leve?" | aviso condicional | `cadastro/26-experiencia-respondida`<br>`cadastro/22-experiencia-nivel-avancado`<br>`cadastro/23-experiencia-nivel-intermediario`<br>`cadastro/24-experiencia-nivel-iniciante-pela-pausa`<br>`cadastro/25-experiencia-nivel-iniciante-pela-tecnica` |
+| 85 | uma pergunta por vez: a 2ª e a 3ª aparecem depois da resposta anterior | aviso condicional | `cadastro/20-experiencia-2a-pergunta`<br>`cadastro/21-experiencia-3a-pergunta` |
+
+### `src/features/onboarding/Rotina.tsx`
+
+| Linha | O que é | Tipo | Na colheita |
+|---|---|---|---|
+| 89 | "Escolha quantos dias por semana.", "Escolha quantos minutos por treino." e "Escolha uma opção." (linhas 65, 66, 103 e 121) *(por toque, no cadastro, não aparecem: sem os dias e os minutos não há botão "Continuar"; vistas forçando o envio)* | erro ou validação | `cadastro/30-rotina-erro-sem-resposta` |
+| 66 | "Informe os minutos por sessão (de 20 a 150)." e "Use um número inteiro de 20 a 150." (linha 134) | erro ou validação | `cadastro/33-rotina-minutos-outro-erro` |
+| 106 | uma pergunta por vez: os minutos e os grupos aparecem depois da resposta anterior | aviso condicional | `cadastro/31-rotina-2a-pergunta`<br>`cadastro/34-rotina-3a-pergunta` |
+| 95 | "por quê?" de "Quantos dias" | por quê | `cadastro/29-rotina-folha-por-que-dias` |
+| 124 | campo "Outro: quantos minutos?" | aviso condicional | `cadastro/32-rotina-minutos-outro` |
+| 145 | "por quê?" de "Grupos prioritários" | por quê | `cadastro/35-rotina-folha-por-que-grupos` |
+| 157 | nota do foco (3 frases, em src/domain/gerador/opcoes.ts) | aviso condicional | `cadastro/38-rotina-respondida`<br>`cadastro/36-rotina-foco-3-grupos`<br>`cadastro/37-rotina-foco-bracos` |
+| 174 | "o que muda" (O objetivo), só pela edição em Meus dados | por quê | `dados-e-locais/23-rotina-e-divisao-folha-o-objetivo` |
+| 190 | "Como prefere dividir? (opcional)", com as divisões de cada número de dias, "Recomendada" e "Deixar o app escolher" | aviso condicional | `dados-e-locais/22-rotina-e-divisao`<br>`dados-e-locais/25-rotina-e-divisao-com-escolhas`<br>`dados-e-locais/26-rotina-e-divisao-2-dias`<br>`dados-e-locais/27-rotina-e-divisao-4-dias`<br>`dados-e-locais/28-rotina-e-divisao-5-dias`<br>`dados-e-locais/29-rotina-e-divisao-6-dias` |
+| 195 | "por quê?" de "As divisões" | por quê | `dados-e-locais/24-rotina-e-divisao-folha-as-divisoes` |
+
+### `src/features/onboarding/Restricoes.tsx`
+
+| Linha | O que é | Tipo | Na colheita |
+|---|---|---|---|
+| 60 | "Algum exercício que você quer evitar? (opcional)" | bloco que abre | `dados-e-locais/33-algo-a-evitar-exercicios` |
+
+### `src/features/onboarding/Inventario.tsx`
+
+| Linha | O que é | Tipo | Na colheita |
+|---|---|---|---|
+| 492 | "Há 1 detalhe para completar." / "Há N detalhes para completar." | erro ou validação | `cadastro/75-equipamento-erro-um-detalhe`<br>`cadastro/64-equipamento-erro-detalhes-por-completar` |
+| 520 | depois de um atalho de lugar: o que o toque marcou, "Às vezes tem" e "Conferir os N itens ›" | aviso condicional | `cadastro/79-equipamento-lugar-academia`<br>`cadastro/80-equipamento-lugar-condominio`<br>`cadastro/81-equipamento-lugar-casa`<br>`cadastro/82-equipamento-lugar-corpo` |
+| 554 | "Item por item": marcados, busca, categorias e grade | bloco que abre | `cadastro/41-equipamento-item-por-item-vazio`<br>`cadastro/88-equipamento-item-por-item`<br>`cadastro/84-equipamento-item-por-item-academia`<br>`cadastro/42-equipamento-categoria-bancos`<br>`cadastro/43-equipamento-categoria-polias-e-acessorios`<br>`cadastro/44-equipamento-categoria-barras`<br>`cadastro/45-equipamento-categoria-maquinas`<br>`cadastro/46-equipamento-categoria-outros-acessorios` |
+| 559 | "Reconhecer pela foto" | folha | `cadastro/40-equipamento-folha-da-foto`<br>`termos-e-foto/05-foto-sem-autorizacao` |
+| 583 | "falta completar" na linha do item marcado | erro ou validação | `cadastro/64-equipamento-erro-detalhes-por-completar` |
+| 602 | busca pelo nome ("Procurar pelo nome") | rota | `cadastro/48-equipamento-busca-com-resultado` |
+| 622 | "Nada com “…”. Confira a escrita ou procure pela categoria." | estado vazio | `cadastro/47-equipamento-busca-sem-resultado` |
+| 638 | folha de detalhes do item (12 itens têm detalhes) | folha | `cadastro/49-equipamento-folha-halteres-fixos`<br>`cadastro/51-equipamento-folha-anilhas-e-manoplas`<br>`cadastro/52-equipamento-folha-polia-simples`<br>`cadastro/53-equipamento-folha-banco-regulavel`<br>`cadastro/54-equipamento-folha-elasticos`<br>`cadastro/55-equipamento-folha-polia-dupla-crossover`<br>`cadastro/57-equipamento-folha-multifuncional`<br>`cadastro/58-equipamento-folha-kettlebell`<br>`cadastro/59-equipamento-folha-caneleiras-de-peso`<br>`cadastro/60-equipamento-folha-mini-band`<br>`cadastro/61-equipamento-folha-voador`<br>`cadastro/62-equipamento-folha-maquina-de-triceps`<br>`cadastro/86-equipamento-folha-do-item`<br>`cadastro/87-equipamento-folha-do-item-respondida` |
+| 166 | campo "<pergunta>: outro valor" (em "Outro") | aviso condicional | `cadastro/50-equipamento-folha-halteres-fixos-outro` |
+| 329 | "Placas da torre (opcional)" (polia dupla) | bloco que abre | `cadastro/56-equipamento-folha-polia-dupla-placas` |
+| 646 | "Anilhas das máquinas e barras" e "Qual a menor anilha?" (com leg press, hack, smith, panturrilha sentada ou barra marcados) | aviso condicional | `cadastro/84-equipamento-item-por-item-academia`<br>`cadastro/85-equipamento-folha-selo-da-menor-anilha` |
+
+### `src/features/onboarding/inventarioForm.ts`
+
+| Linha | O que é | Tipo | Na colheita |
+|---|---|---|---|
+| 224 | "Use um número maior que zero." / "Use um número inteiro maior que zero." | erro ou validação | `cadastro/63-equipamento-folha-halteres-fixos-erro`<br>`cadastro/65-equipamento-folha-anilhas-e-manoplas-erro`<br>`cadastro/68-equipamento-folha-elasticos-erro`<br>`cadastro/72-equipamento-folha-mini-band-erro` |
+| 237 | "O mais pesado precisa ser maior ou igual ao mais leve." | erro ou validação | `cadastro/77-equipamento-folha-halteres-fixos-erro-ordem` |
+| 239 | "O passo não pode ser maior que a diferença entre o mais leve e o mais pesado." | erro ou validação | `cadastro/78-equipamento-folha-halteres-fixos-erro-passo` |
+| 241 | "O passo precisa ser de pelo menos … kg." e "Confira o peso: o app aceita até … kg por halter." (linha 242) | erro ou validação | `cadastro/76-equipamento-folha-halteres-fixos-erro-limites` |
+| 251 | "Informe pelo menos um tipo de anilha (peso e quantidade)." | erro ou validação | `cadastro/65-equipamento-folha-anilhas-e-manoplas-erro` |
+| 263 | "Diga onde fica a polia (no alto, embaixo ou regulável)." | erro ou validação | `cadastro/66-equipamento-folha-polia-simples-erro` |
+| 269 | "Marque pelo menos uma estação do multifuncional." | erro ou validação | `cadastro/69-equipamento-folha-multifuncional-erro` |
+| 273 | "Marque pelo menos um peso de kettlebell." e "…de caneleira." (linha 277) | erro ou validação | `cadastro/70-equipamento-folha-kettlebell-erro`<br>`cadastro/71-equipamento-folha-caneleiras-de-peso-erro` |
+| 281 | "Diga se o voador também vira para trás.", "Diga se a máquina é com o braço acima da cabeça." (285) e "Diga se o banco também declina." (289) | erro ou validação | `cadastro/73-equipamento-folha-voador-erro`<br>`cadastro/74-equipamento-folha-maquina-de-triceps-erro`<br>`cadastro/67-equipamento-folha-banco-regulavel-erro` |
+
+### `src/features/onboarding/FotoEquipamento.tsx`
+
+| Linha | O que é | Tipo | Na colheita |
+|---|---|---|---|
+| 110 | "O que encontramos nas fotos" (com certeza, provável, talvez; a esteira; "Falta responder 1 item." / "Faltam responder N itens.") | folha | `termos-e-foto/10-foto-resultado`<br>`termos-e-foto/13-foto-resultado-2-por-responder` |
+| 116 | "Não reconhecemos nenhum equipamento. Use a lista abaixo." | estado vazio | `termos-e-foto/14-foto-resultado-vazio` |
+| 167 | quem já autorizou: "Você autorizou o envio… em <data>." + "Retirar a autorização" | aviso condicional | `termos-e-foto/11-foto-ja-autorizada` |
+| 183 | "Para onde vai a foto" (para quem já autorizou) | bloco que abre | `termos-e-foto/12-foto-ja-autorizada-para-onde-vai` |
+| 191 | caixa de consentimento "Antes de enviar: para onde vai a foto" | aviso condicional | `termos-e-foto/05-foto-sem-autorizacao`<br>`termos-e-foto/06-foto-autorizada`<br>`termos-e-foto/29-foto-autorizacao-retirada` |
+| 210 | "Analisando as fotos…" | carregando | `termos-e-foto/09-foto-analisando` |
+| 213 | "Falta marcar a autorização acima." | erro ou validação | `termos-e-foto/05-foto-sem-autorizacao` |
+| 54 | "Digite o código de convite para usar a foto. Sem código, use a lista abaixo." | erro ou validação | `termos-e-foto/07-foto-erro-sem-codigo` |
+| 58 | "Escolha até 5 fotos." | erro ou validação | `termos-e-foto/08-foto-erro-fotos-demais` |
+| 79 | erros da foto no aparelho (src/domain/visao/index.ts:22 a 27): não abre, grandes demais, sem conexão, servidor, demora, análise | erro ou validação | `termos-e-foto/15-foto-erro-nao-abre`<br>`termos-e-foto/18-foto-erro-grandes-demais`<br>`termos-e-foto/17-foto-erro-sem-conexao`<br>`termos-e-foto/16-foto-erro-servidor-nao-respondeu`<br>`termos-e-foto/20-foto-erro-demora`<br>`termos-e-foto/19-foto-erro-analise` |
+| 98 | mensagens que o servidor manda (api/_lib/pedido.ts:54 a 85), mostradas como vêm *(a função de visão é simulada por rota; as frases foram copiadas de api/_lib/pedido.ts)* | erro ou validação | `termos-e-foto/21-foto-erro-do-servidor-convite-invalido`<br>`termos-e-foto/22-foto-erro-do-servidor-muitas-tentativas`<br>`termos-e-foto/23-foto-erro-do-servidor-limite-de-fotos`<br>`termos-e-foto/24-foto-erro-do-servidor-nao-configurado`<br>`termos-e-foto/25-foto-erro-do-servidor-pedido-invalido`<br>`termos-e-foto/26-foto-erro-do-servidor-formato-nao-aceito`<br>`termos-e-foto/27-foto-erro-do-servidor-tamanho-no-servidor`<br>`termos-e-foto/28-foto-erro-do-servidor-modelo` |
+
+### `src/features/programa/Programa.tsx`
+
+| Linha | O que é | Tipo | Na colheita |
+|---|---|---|---|
+| 69 | "Programa pausado" (a triagem bloqueia, ou nenhum exercício é possível com a dor de hoje) | aviso condicional | `inicio/43-programa-pausado-pela-triagem`<br>`inicio/45-programa-pausado-sem-exercicio` |
+| 157 | linha de aviso "Pela triagem: …" e o bloco "Pela triagem" (até o 1º treino) | aviso condicional | `inicio/36-inicio-ana-saude`<br>`inicio/39-folha-avisos-ana-saude` |
+| 170 | "Para dar a nota de hoje, volte à triagem." (região sem nota, de um estado antigo) | aviso condicional | `inicio/46-folha-avisos-dor-sem-nota` |
+| 181 | "Há uma versão nova do seu programa." + "Atualizar" + "Mais N avisos" | aviso condicional | `inicio/26-inicio-versao-nova`<br>`inicio/27-inicio-versao-nova-folha-mais-avisos`<br>`inicio/24-inicio-depois-de-mudar-a-rotina` |
+| 192 | linha de aviso "Semana leve até …" e "Semana leve? (opcional)" | aviso condicional | `fim-e-semana/39-inicio-semana-leve-ativa`<br>`fim-e-semana/34-inicio-oferta-de-semana-leve` |
+| 197 | "O tempo dos seus treinos" (linha de aviso e bloco, com "Ajustar" e "Não") | aviso condicional | `fim-e-semana/47-inicio-aviso-do-tempo`<br>`fim-e-semana/48-inicio-aviso-do-tempo-folha-avisos` |
+| 226 | linha de aviso dos ajustes ("Alguns músculos ficaram abaixo da meta." / "Algum treino passa do tempo." + "Dá para ajustar.") | aviso condicional | `inicio/03-inicio`<br>`inicio/63-inicio-fabio` |
+| 99 | "Programa mantido." | resposta de uma ação | `inicio/29-inicio-programa-mantido` |
+| 118 | "Programa gerado de novo: …." | resposta de uma ação | `inicio/31-inicio-programa-gerado-de-novo` |
+| 135 | "Preferência salva. Ela entra quando você atualizar o programa e nas trocas de local." (também na linha 622, dentro da folha) | resposta de uma ação | `inicio/25-folha-do-exercicio-preferencia-salva` |
+| 186 | "Programa atualizado com as regras novas." | resposta de uma ação | `inicio/28-inicio-programa-atualizado` |
+| 211 | "Estimativa ajustada ao seu tempo real." | resposta de uma ação | `fim-e-semana/49-inicio-tempo-ajustado` |
+| 286 | "Tudo bem: o programa segue, com a mesma volta leve." | resposta de uma ação | `fim-e-semana/33-inicio-volta-200-dias-agora-nao` |
+| 245 | abas dos dias de treino | rota | `inicio/04-inicio-aba-corpo-todo-b`<br>`inicio/05-inicio-aba-corpo-todo-c`<br>`inicio/37-inicio-ana-saude-aba-corpo-todo-b`<br>`inicio/38-inicio-ana-saude-aba-corpo-todo-c`<br>`inicio/50-inicio-diego-aba-corpo-todo-b`<br>`inicio/51-inicio-diego-aba-corpo-todo-c`<br>`inicio/57-inicio-elisa-aba-corpo-todo-b`<br>`inicio/58-inicio-elisa-aba-corpo-todo-c`<br>`inicio/64-inicio-fabio-aba-inferior-a`<br>`inicio/65-inicio-fabio-aba-superior-b`<br>`inicio/66-inicio-fabio-aba-inferior-b`<br>`inicio/72-inicio-bruno-aba-inferior-a`<br>`inicio/73-inicio-bruno-aba-superior-b`<br>`inicio/74-inicio-bruno-aba-inferior-b`<br>`inicio/84-inicio-carla-aba-inferior`<br>`inicio/85-inicio-carla-aba-empurrar`<br>`inicio/86-inicio-carla-aba-puxar`<br>`inicio/87-inicio-carla-aba-pernas` |
+| 306 | "Onde vou treinar hoje?" (com 2 locais), "Em <local>: o que muda neste treino." / "tudo do programa é possível aqui." e as trocas | aviso condicional | `inicio/71-inicio-bruno`<br>`inicio/78-inicio-bruno-na-academia-do-bairro-superior-a`<br>`inicio/79-inicio-bruno-na-academia-do-bairro-inferior-a`<br>`inicio/80-inicio-bruno-na-academia-do-bairro-superior-b`<br>`inicio/81-inicio-bruno-na-academia-do-bairro-inferior-b`<br>`inicio/47-inicio-com-2-locais-e-versao-nova` |
+| 361 | "Avisos" | folha | `inicio/16-folha-avisos`<br>`inicio/52-folha-avisos-diego`<br>`inicio/59-folha-avisos-elisa`<br>`inicio/67-folha-avisos-fabio`<br>`inicio/39-folha-avisos-ana-saude` |
+| 374 | "O programa será atualizado depois do treino em andamento." | aviso condicional | `inicio/32-inicio-com-treino-em-andamento-e-versao-nova` |
+| 418 | "Continuar o treino em andamento" (no lugar de "Começar o treino …") | aviso condicional | `inicio/23-inicio-com-treino-em-andamento` |
+| 458 | cartão da volta de uma pausa "Bem-vindo de volta!" (4 textos, em src/domain/acompanhamento/volta.ts) + "Refazer o nível" e "Agora não" | aviso condicional | `fim-e-semana/27-inicio-volta-15-dias`<br>`fim-e-semana/24-inicio-volta-22-dias`<br>`fim-e-semana/29-inicio-volta-60-dias`<br>`fim-e-semana/31-inicio-volta-200-dias` |
+| 499 | "por quê?" da volta da pausa | por quê | `fim-e-semana/28-inicio-volta-15-dias-folha-por-que`<br>`fim-e-semana/25-inicio-volta-22-dias-folha-por-que`<br>`fim-e-semana/30-inicio-volta-60-dias-folha-por-que`<br>`fim-e-semana/32-inicio-volta-200-dias-folha-por-que` |
+| 517 | bloco "Ajustes possíveis" | aviso condicional | `inicio/16-folha-avisos`<br>`inicio/27-inicio-versao-nova-folha-mais-avisos` |
+| 583 | folha do exercício | folha | `inicio/06-folha-do-exercicio`<br>`inicio/55-folha-do-exercicio-diego`<br>`inicio/62-folha-do-exercicio-elisa`<br>`inicio/70-folha-do-exercicio-fabio`<br>`inicio/77-folha-do-exercicio-bruno`<br>`inicio/90-folha-do-exercicio-carla`<br>`inicio/42-folha-do-exercicio-ana-saude` |
+| 590 | "· bi-set", "· última série em drop set" e "Bi-set com …: alterne os dois e descanse depois da dupla." (linha 600) | aviso condicional | `inicio/06-folha-do-exercicio`<br>`inicio/35-folha-do-exercicio-com-drop-set` |
+| 624 | "Ver a evolução deste exercício" (com histórico) | aviso condicional | `inicio/02-folha-do-exercicio-com-historico` |
+| 629 | "Por que este exercício (N motivos)" | bloco que abre | `inicio/08-folha-do-exercicio-por-que` |
+| 672 | "Sobre o programa" | folha | `inicio/10-sobre-o-programa`<br>`inicio/53-sobre-o-programa-diego`<br>`inicio/60-sobre-o-programa-elisa`<br>`inicio/68-sobre-o-programa-fabio`<br>`inicio/75-sobre-o-programa-bruno`<br>`inicio/88-sobre-o-programa-carla`<br>`inicio/40-sobre-o-programa-ana-saude` |
+| 680 | "Você está na semana N." + o texto da fase (aprendizado, volta da pausa, semana leve) | aviso condicional | `inicio/10-sobre-o-programa`<br>`inicio/75-sobre-o-programa-bruno`<br>`fim-e-semana/26-sobre-o-programa-na-volta`<br>`fim-e-semana/41-sobre-o-programa-na-semana-leve` |
+| 688 | "Avisos (N)" | bloco que abre | `inicio/12-sobre-o-programa-avisos`<br>`inicio/54-sobre-o-programa-diego-tudo-aberto`<br>`inicio/61-sobre-o-programa-elisa-tudo-aberto`<br>`inicio/69-sobre-o-programa-fabio-tudo-aberto`<br>`inicio/76-sobre-o-programa-bruno-tudo-aberto`<br>`inicio/41-sobre-o-programa-ana-saude-tudo-aberto` |
+| 700 | "Fases (N)" | bloco que abre | `inicio/13-sobre-o-programa-fases`<br>`inicio/76-sobre-o-programa-bruno-tudo-aberto` |
+| 711 | "Por que este programa (N)" | bloco que abre | `inicio/14-sobre-o-programa-por-que-este-programa`<br>`inicio/89-sobre-o-programa-carla-tudo-aberto` |
+| 721 | "Séries por músculo na semana" | bloco que abre | `inicio/15-sobre-o-programa-series-por-musculo-na-semana` |
+| 757 | "Ver ajustes possíveis" (depois de "Manter") | aviso condicional | `inicio/30-sobre-o-programa-ver-ajustes` |
+| 792 | "Se o equipamento estiver ocupado" (as alternativas) | aviso condicional | `inicio/06-folha-do-exercicio` |
+| 795 | "Ver mais N opções" (alternativas) | bloco que abre | `inicio/07-folha-do-exercicio-ver-mais-opcoes` |
+
+### `src/features/programa/ComoEsta.tsx`
+
+| Linha | O que é | Tipo | Na colheita |
+|---|---|---|---|
+| 38 | "Não deu para conferir o programa agora. O seu treino continua valendo." + "Tentar de novo" | erro ou validação | `avisos-e-erros/17-sobre-o-programa-sem-conferir` |
+| 45 | "Conferindo o programa…" | carregando | `inicio/48-sobre-o-programa-conferindo` |
+| 50 | "Como está o seu programa": o resumo e os achados (Segurança, Alerta, Ajustar) | aviso condicional | `inicio/10-sobre-o-programa`<br>`inicio/40-sobre-o-programa-ana-saude` |
+| 58 | "Limites e observações (N)" | bloco que abre | `inicio/11-sobre-o-programa-limites-e-observacoes` |
+
+### `src/features/programa/ComoLer.tsx`
+
+| Linha | O que é | Tipo | Na colheita |
+|---|---|---|---|
+| 8 | "Como ler o seu treino" (com a linha "As primeiras semanas" no iniciante) | bloco que abre | `inicio/18-como-ler-aberto` |
+
+### `src/features/programa/CartaoTexto.tsx`
+
+| Linha | O que é | Tipo | Na colheita |
+|---|---|---|---|
+| 42 | "Não deu para carregar o guia em texto deste exercício agora." + "Tentar de novo" / "Recarregar o app" | erro ou validação | `avisos-e-erros/23-guia-em-texto-nao-baixou-na-folha`<br>`avisos-e-erros/24-guia-em-texto-nao-baixou-2a-vez`<br>`avisos-e-erros/25-guia-em-texto-nao-baixou-no-treino` |
+| 62 | cartão de texto do exercício sem animação: "Montagem segura" (quando a ficha tem) e "Como fazer: dicas e erros" | aviso condicional | `inicio/20-folha-do-exercicio-sem-animacao`<br>`treino/53-exercicio-sem-animacao`<br>`treino/58-carla-inferior-1` |
+| 79 | "Como fazer (em texto)" | folha | `inicio/21-folha-como-fazer-em-texto`<br>`treino/54-exercicio-sem-animacao-folha-como-fazer` |
+| 96 | "Posição, execução e carga, passo a passo" | bloco que abre | `inicio/22-folha-como-fazer-em-texto-passo-a-passo`<br>`treino/55-exercicio-sem-animacao-folha-como-fazer-passo-a-passo` |
+
+### `src/features/programa/Prefiro.tsx`
+
+| Linha | O que é | Tipo | Na colheita |
+|---|---|---|---|
+| 62 | "Prefere algum destes? …" e os botões "Prefiro …" / "Você prefere … · desfazer" | aviso condicional | `inicio/06-folha-do-exercicio`<br>`inicio/25-folha-do-exercicio-preferencia-salva`<br>`treino/39-folha-trocar-exercicio-com-preferencia` |
+
+### `src/features/programa/Miniatura.tsx`
+
+| Linha | O que é | Tipo | Na colheita |
+|---|---|---|---|
+| 20 | miniatura sem animação: "guia em texto" | estado vazio | `inicio/04-inicio-aba-corpo-todo-b` |
+
+### `src/features/treino/Treino.tsx`
+
+| Linha | O que é | Tipo | Na colheita |
+|---|---|---|---|
+| 191 | cabeçalho do treino: "×", "N de M", o livro (ver como fazer), "⋯" e "Senti algo" | rota | `treino/01-serie-vazia` |
+| 325 | a mesma tela da série nos outros exercícios e nas outras personas (o nome, a legenda do guia e o tipo de carga mudam) | rota | `treino/21-exercicio-2`<br>`treino/23-exercicio-3`<br>`treino/24-exercicio-4`<br>`treino/25-exercicio-5`<br>`treino/26-exercicio-6`<br>`treino/58-carla-inferior-1`<br>`treino/59-carla-inferior-2`<br>`treino/60-carla-inferior-3`<br>`treino/61-carla-inferior-4`<br>`treino/62-carla-inferior-5`<br>`treino/63-carla-inferior-6`<br>`treino/64-carla-inferior-7`<br>`treino/65-carla-inferior-8`<br>`treino/68-elisa-exercicio-1`<br>`treino/70-elisa-exercicio-2`<br>`treino/71-elisa-exercicio-3`<br>`treino/72-elisa-exercicio-4`<br>`treino/73-diego-exercicio-1`<br>`treino/74-diego-exercicio-2`<br>`treino/75-diego-exercicio-3`<br>`treino/76-fabio-exercicio-1`<br>`treino/77-fabio-exercicio-2`<br>`treino/78-fabio-exercicio-3`<br>`treino/79-bruno-volta-da-pausa-exercicio-1`<br>`treino/80-bruno-troca-do-local-2` |
+| 781 | botão "Série feita · descansar m:ss" (e "Série feita" com o descanso contando) | rota | `treino/11-serie-preenchida`<br>`treino/17-serie-com-descanso` |
+| 223 | orientação de segurança depois de "Senti algo" (as frases vêm de src/domain/triagem/index.ts:124 a 158) + "Nota N guardada…" (linhas 430 a 433) | aviso condicional | `treino/28-aviso-dor-0`<br>`treino/29-aviso-dor-2-antes-da-serie`<br>`treino/30-aviso-dor-4-antes-da-serie`<br>`treino/35-aviso-dor-4`<br>`treino/32-aviso-dor-4-sem-carga-menor`<br>`treino/41-exercicio-encerrado-pela-dor` |
+| 228 | tela do descanso (o que vem a seguir, as séries feitas, "−15 s", "+15 s", "Pular", "Série N feita") | aviso condicional | `treino/12-descanso`<br>`treino/16-descanso-sem-o-desfazer` |
+| 242 | descanso com a série seguinte por preencher: "Falta escolher a carga" + "Preencher a série N" (ao passar para outro exercício com o descanso contando) | aviso condicional | `treino/22-hora-da-proxima-serie` |
+| 254 | descanso depois da última série: "A seguir · exercício N de M" + "Próximo exercício" | aviso condicional | `treino/36-descanso-entre-exercicios` |
+| 282 | "Série N salva" + "Desfazer" (5 s) | resposta de uma ação | `treino/12-descanso` |
+| 282 | "Série N anotada, mas não salva" | erro ou validação | `avisos-e-erros/15-nao-foi-possivel-salvar-serie` |
+| 296 | faixa do descanso sobre a série ("Descanso" / "Hora da próxima série") | aviso condicional | `treino/17-serie-com-descanso` |
+| 315 | motivo da troca pelo local ("Aqui não tem …: … → ….") | aviso condicional | `treino/80-bruno-troca-do-local-2` |
+| 318 | "No lugar de …, só neste treino." | aviso condicional | `treino/38-exercicio-trocado`<br>`treino/67-carla-contrapeso` |
+| 342 | "Exercício encerrado. Se quiser, troque pela alternativa abaixo ou siga para o próximo." | aviso condicional | `treino/41-exercicio-encerrado-pela-dor` |
+| 351 | "Antes: 1–2 séries leves de aquecimento, sem contar." | aviso condicional | `treino/01-serie-vazia` |
+| 357 | mensagem da calibração ("Calibração: Ficou leve/pesada: na próxima série, …") | aviso condicional | `treino/17-serie-com-descanso`<br>`treino/33-serie-depois-da-calibracao` |
+| 376 | "Séries completas." + "Próximo exercício" / "Terminar treino" | aviso condicional | `treino/37-exercicio-completo`<br>`treino/44-ultimo-exercicio-completo` |
+| 395 | "Trocar só neste treino por:" | folha | `treino/19-folha-trocar-exercicio`<br>`treino/40-folha-trocar-depois-da-dor`<br>`treino/42-folha-trocar-depois-do-sinal`<br>`treino/66-carla-folha-trocar-exercicio` |
+| 417 | "O que você sentiu?" (Senti algo) | folha | `treino/13-folha-senti-algo` |
+| 458 | "Mais opções" (com e sem "Desfazer a última série") | folha | `treino/15-folha-mais-opcoes`<br>`treino/52-folha-mais-opcoes-sem-serie` |
+| 490 | "Terminar o treino agora?" (sem série: descartar ou guardar; com série: "Você terminou N de M exercícios.") | folha | `treino/51-folha-terminar-sem-serie`<br>`treino/27-folha-terminar-com-serie`<br>`treino/45-folha-terminar-com-exercicios-por-fazer` |
+| 544 | "1ª vez: comece leve." + "por quê?" (a calibração) | por quê | `treino/01-serie-vazia`<br>`treino/06-folha-por-que-da-1a-vez` |
+| 554 | "Hoje: <carga>" / "Hoje: mesma carga" + "por quê?" (o motivo vem de src/domain/progressao) | por quê | `treino/46-serie-com-sugestao-do-dia`<br>`treino/47-folha-por-que-da-sugestao-do-dia`<br>`treino/56-treino-na-volta`<br>`treino/57-treino-na-volta-folha-por-que` |
+| 715 | "por quê?" da reserva ("Quantas ainda conseguiria?") | por quê | `treino/08-folha-por-que-da-reserva`<br>`treino/18-folha-por-que-na-2a-serie` |
+| 738 | "Drop set (opcional)", com as 2 quedas (na última série do exercício com drop set) | aviso condicional | `treino/49-serie-com-drop-set`<br>`treino/48-exercicio-com-drop-set` |
+| 787 | "Falta escolher a carga e quantas ainda conseguiria." / "Falta escolher a carga." / "Falta dizer quantas ainda conseguiria." | erro ou validação | `treino/01-serie-vazia`<br>`treino/09-serie-falta-a-carga`<br>`treino/10-serie-falta-a-reserva` |
+| 829 | carga em anilhas: "Anilhas por lado" + "Sem contar o peso do trenó ou da barra da máquina." | aviso condicional | `treino/63-carla-inferior-6` |
+| 847 | carga em contrapeso: "Contrapeso (placa)" + "Aqui é ao contrário: mais placa = mais ajuda. Para progredir, tire uma placa." | aviso condicional | `treino/67-carla-contrapeso` |
+| 872 | carga em degraus: "Dificuldade" (peso do corpo e elástico; as opções da lista estão em `listas`) | aviso condicional | `treino/68-elisa-exercicio-1`<br>`treino/73-diego-exercicio-1` |
+| 891 | carga em placas: "Placa" | aviso condicional | `treino/60-carla-inferior-3` |
+| 925 | carga em kg: "Carga" (com a lista das cargas do aparelho, ou de 2,5 em 2,5 kg na barra) | aviso condicional | `treino/01-serie-vazia`<br>`treino/58-carla-inferior-1` |
+| 978 | "Este exercício não tem alternativa com o seu equipamento." | estado vazio | `treino/69-elisa-folha-trocar-sem-alternativa` |
+| 992 | "Ver mais N opções" (na troca) | bloco que abre | `treino/20-folha-trocar-exercicio-ver-mais`<br>`treino/66-carla-folha-trocar-exercicio` |
+
+### `src/features/treino/Temporizador.tsx`
+
+| Linha | O que é | Tipo | Na colheita |
+|---|---|---|---|
+| 195 | fim do descanso: "Hora da próxima série", "+m:ss" e "Ok" (a tela inverte); "Descanso terminado." para o leitor de tela | aviso condicional | `treino/22-hora-da-proxima-serie` |
+
+### `src/features/treino/PalcoTreino.tsx`
+
+| Linha | O que é | Tipo | Na colheita |
+|---|---|---|---|
+| 160 | "O guia animado não carregou agora. O registro da série continua funcionando." + "Tentar de novo" | erro ou validação | `avisos-e-erros/22-guia-animado-nao-carregou` |
+| 183 | os 4 modos do guia dentro do treino (Técnica, Erros, Músculos, Trajetória) e a legenda de cada um | rota | `treino/01-serie-vazia`<br>`treino/02-serie-vazia-guia-erros`<br>`treino/03-serie-vazia-guia-musculos`<br>`treino/04-serie-vazia-guia-trajetoria`<br>`treino/05-serie-vazia-guia-pausado` |
+
+### `src/features/treino/Resumo.tsx`
+
+| Linha | O que é | Tipo | Na colheita |
+|---|---|---|---|
+| 67 | "Treino encerrado por segurança" + a orientação e "Ligar para o SAMU: 192" | aviso condicional | `fim-e-semana/15-fim-encerrado-por-seguranca` |
+| 97 | "O que mudou hoje": a semana, os recordes e "N exercício(s) com carga para subir na próxima vez." | aviso condicional | `fim-e-semana/06-fim-do-treino`<br>`fim-e-semana/19-fim-com-recorde` |
+| 107 | "o que conta" (A sua semana) | por quê | `fim-e-semana/07-fim-folha-o-que-conta` |
+| 143 | "para que serve" (Hoje foi) | por quê | `fim-e-semana/08-fim-folha-para-que-serve` |
+| 158 | "Para a próxima vez": Subir, Manter, Reduzir, Voltar à anterior, Estagnado, Ajustar, Trocar, Calibrar *(colhidos: Calibrar, Manter, Subir, Reduzir, Estagnado e Ajustar; faltam "Voltar à anterior" e "Trocar" (Resumo.tsx:18 a 27))* | aviso condicional | `fim-e-semana/06-fim-do-treino`<br>`fim-e-semana/19-fim-com-recorde`<br>`fim-e-semana/45-fim-com-dor`<br>`fim-e-semana/37-fim-com-oferta-de-semana-leve` |
+| 160 | "por quê?" de cada exercício em "Para a próxima vez" | por quê | `fim-e-semana/09-fim-folha-por-que-da-proxima-vez`<br>`fim-e-semana/20-fim-com-recorde-folha-por-que-subir`<br>`fim-e-semana/46-fim-com-dor-folha-por-que` |
+| 174 | confirmação "Apagar este treino?" | aviso condicional | `fim-e-semana/10-fim-apagar-este-treino` |
+
+### `src/features/acompanhamento/Semana.tsx`
+
+| Linha | O que é | Tipo | Na colheita |
+|---|---|---|---|
+| 35 | faixa "A sua semana" no Início (depois do 1º treino), e o Início com histórico | aviso condicional | `inicio/01-inicio-depois-do-1o-treino`<br>`inicio/33-inicio-semana-completa`<br>`inicio/34-inicio-ana-na-3a-semana` |
+| 72 | frase da semana (5 formas, em src/domain/acompanhamento/semana.ts:144 a 151) | aviso condicional | `fim-e-semana/01-semana-vazia`<br>`fim-e-semana/11-semana-1-treino`<br>`fim-e-semana/21-semana-2-de-3`<br>`fim-e-semana/17-semana-completa` |
+| 76 | "Últimas N semanas" | aviso condicional | `fim-e-semana/17-semana-completa`<br>`fim-e-semana/21-semana-2-de-3` |
+| 94 | "O que subiu nesta semana" (subiu a carga, recorde) | aviso condicional | `fim-e-semana/17-semana-completa` |
+| 137 | estado de cada músculo (na meta, crescendo, mantendo, ainda não treinou) e "o seu programa planeja N de M: …" | aviso condicional | `fim-e-semana/11-semana-1-treino`<br>`fim-e-semana/17-semana-completa` |
+| 145 | "Como ler este quadro" | bloco que abre | `fim-e-semana/02-semana-como-ler-este-quadro` |
+| 149 | "Nesta semana, a meta é o que o programa prescreveu para ela." (semana leve ou volta de pausa) / "A meta é a do seu programa." | aviso condicional | `fim-e-semana/42-semana-na-semana-leve`<br>`fim-e-semana/02-semana-como-ler-este-quadro` |
+| 157 | "Um programa que cabe melhor?" (a revisão da meta) | aviso condicional | `fim-e-semana/22-semana-revisao-da-meta` |
+| 180 | "Sua evolução" (a lista dos exercícios com histórico) | aviso condicional | `fim-e-semana/11-semana-1-treino` |
+
+### `src/features/acompanhamento/SemanaLeve.tsx`
+
+| Linha | O que é | Tipo | Na colheita |
+|---|---|---|---|
+| 20 | aviso de dor que se repete (o texto vem de src/domain/acompanhamento/semana-leve.ts) | aviso condicional | `fim-e-semana/43-inicio-dor-que-se-repete` |
+| 28 | "Semana leve até …" + "Voltar ao normal" | aviso condicional | `fim-e-semana/38-fim-com-semana-leve-ativa`<br>`fim-e-semana/40-inicio-semana-leve-ativa-folha-avisos` |
+| 39 | "Semana leve? (opcional)", com o motivo, "Fazer a semana leve" e "Agora não" | aviso condicional | `fim-e-semana/37-fim-com-oferta-de-semana-leve`<br>`fim-e-semana/36-semana-com-oferta-de-semana-leve`<br>`fim-e-semana/35-inicio-oferta-de-semana-leve-folha-avisos`<br>`fim-e-semana/44-inicio-dor-que-se-repete-folha-avisos` |
+
+### `src/features/acompanhamento/Evolucao.tsx`
+
+| Linha | O que é | Tipo | Na colheita |
+|---|---|---|---|
+| 35 | "Ainda não há treino registrado deste exercício. A evolução aparece depois do 1º treino com ele." | estado vazio | `fim-e-semana/04-evolucao-vazia` |
+| 38 | "Em <local>" e "Nas máquinas, cada local tem a sua lista…" (máquina, com 2 locais) | aviso condicional | `fim-e-semana/23-evolucao-por-local` |
+| 73 | resumo da evolução ("<série> · 1 treino" / "Começou com … · agora … · N treinos") e as marcas | aviso condicional | `fim-e-semana/12-evolucao-1-treino`<br>`fim-e-semana/18-evolucao-com-historico`<br>`fim-e-semana/14-evolucao-pelo-programa` |
+
+### `src/features/guia/Guia.tsx`
+
+| Linha | O que é | Tipo | Na colheita |
+|---|---|---|---|
+| 293 | faixa do descanso no alto do guia aberto pelo treino | aviso condicional | `guia/18-tecnica-com-descanso` |
+| 300 | cabeçalho do guia: "Voltar ao treino" + "Senti algo", ou "Voltar ao programa" | aviso condicional | `guia/01-tecnica`<br>`guia/19-pelo-programa-tecnica` |
+| 313 | cabeçalho do catálogo: "Guia de execução", os grupos e os exercícios | aviso condicional | `guia/44-catalogo`<br>`guia/45-catalogo-novas` |
+| 341 | a fase do movimento e a respiração sobre o Boneco (mudam sozinhas: campo `textosQueAlternam`) | aviso condicional | `guia/01-tecnica` |
+| 376 | as vistas ("Visão"), "Pausar"/"Reproduzir", "Voltar à posição inicial" e "Lento" | rota | `guia/02-tecnica-vista-frontal`<br>`guia/03-tecnica-pausado-e-lento` |
+| 384 | os 4 modos ("Informação") e a legenda de cada um (linhas 514 a 600) | rota | `guia/01-tecnica`<br>`guia/04-erros`<br>`guia/07-musculos`<br>`guia/08-trajetoria` |
+| 532 | modo Erros: um botão por erro, com a descrição do escolhido | rota | `guia/04-erros`<br>`guia/05-erros-2`<br>`guia/06-erros-3` |
+| 407 | nota do exercício abaixo do palco ("Montagem segura…") | aviso condicional | `guia/46-catalogo-nota-de-montagem-segura` |
+| 426 | a prescrição da pessoa ("Semana N: … · RIR … · descanso … · fase de aprendizado") ou, no catálogo, "As séries, as repetições e o RIR vêm do seu programa." | aviso condicional | `guia/01-tecnica`<br>`guia/44-catalogo` |
+| 448 | "por quê?" da prescrição ("A prescrição de hoje") | por quê | `guia/16-folha-por-que-da-prescricao` |
+| 607 | "Confira em 5 segundos" (a lista de conferência e "Desmarcar tudo") | rota | `guia/17-lista-de-conferencia` |
+| 639 | "Montagem" (vem aberto) | bloco que abre | `guia/09-bloco-montagem` |
+| 648 | "Execução e tempo" | bloco que abre | `guia/10-bloco-execucao-e-tempo` |
+| 662 | "Amplitude" | bloco que abre | `guia/11-bloco-amplitude` |
+| 668 | "Respiração" | bloco que abre | `guia/12-bloco-respiracao` |
+| 674 | "Onde sentir" | bloco que abre | `guia/13-bloco-onde-sentir` |
+| 681 | "Erros comuns" | bloco que abre | `guia/14-bloco-erros-comuns` |
+| 694 | "O que varia de pessoa para pessoa" | bloco que abre | `guia/15-bloco-o-que-varia-de-pessoa-para-pessoa` |
+| 474 | rodapé "Segurança" e "Voltar para o treino" / "Voltar para o programa" | rota | `guia/01-tecnica`<br>`guia/19-pelo-programa-tecnica` |
+| 1 | o guia de outros exercícios (o tamanho do texto muda por ficha) | rota | `guia/19-pelo-programa-tecnica`<br>`guia/20-pelo-programa-erros`<br>`guia/21-pelo-programa-musculos`<br>`guia/22-pelo-programa-trajetoria`<br>`guia/23-pelo-programa-tudo-aberto`<br>`guia/24-carla-polia-tecnica`<br>`guia/25-carla-polia-erros`<br>`guia/26-carla-polia-musculos`<br>`guia/27-carla-polia-trajetoria`<br>`guia/28-carla-polia-tudo-aberto`<br>`guia/29-carla-polia-remada-tecnica`<br>`guia/30-carla-polia-remada-erros`<br>`guia/31-carla-polia-remada-musculos`<br>`guia/32-carla-polia-remada-trajetoria`<br>`guia/33-carla-polia-remada-tudo-aberto`<br>`guia/34-elisa-corpo-livre-1-tecnica`<br>`guia/35-elisa-corpo-livre-1-erros`<br>`guia/36-elisa-corpo-livre-1-musculos`<br>`guia/37-elisa-corpo-livre-1-trajetoria`<br>`guia/38-elisa-corpo-livre-1-tudo-aberto`<br>`guia/39-elisa-corpo-livre-2-tecnica`<br>`guia/40-elisa-corpo-livre-2-erros`<br>`guia/41-elisa-corpo-livre-2-musculos`<br>`guia/42-elisa-corpo-livre-2-trajetoria`<br>`guia/43-elisa-corpo-livre-2-tudo-aberto` |
+
+### `src/features/dados/Dados.tsx`
+
+| Linha | O que é | Tipo | Na colheita |
+|---|---|---|---|
+| 131 | "o que sai daqui" | por quê | `dados-e-locais/02-meus-dados-folha-o-que-sai-daqui` |
+| 138 | "Este navegador pode apagar seus dados. Guarde uma cópia." (o navegador não garantiu o armazenamento) | aviso condicional | `dados-e-locais/01-meus-dados` |
+| 141 | "por quê?" de "O navegador e os seus dados" | por quê | `dados-e-locais/03-meus-dados-folha-o-navegador-e-os-seus-dados` |
+| 151 | erro de leitura dos dados guardados (o texto vem de src/storage/idb.ts) | erro ou validação | `avisos-e-erros/09-dado-ilegivel-meus-dados` |
+| 156 | "Os dados que o app não conseguiu ler continuam guardados…" + "Exportar os dados que não foram lidos" | erro ou validação | `avisos-e-erros/09-dado-ilegivel-meus-dados` |
+| 69 | "Arquivo exportado. Guarde-o num lugar seguro: ele tem seus dados de saúde." | resposta de uma ação | `dados-e-locais/06-meus-dados-copia-exportada` |
+| 82 | "Arquivo exportado com os dados que o app não conseguiu ler. Guarde-o: ele tem seus dados de saúde." | resposta de uma ação | `avisos-e-erros/10-dado-ilegivel-exportado` |
+| 98 | "Não foi possível importar. <motivo> Seus dados atuais não foram alterados." (os motivos vêm de src/storage/arquivo.ts) | erro ou validação | `dados-e-locais/09-meus-dados-folha-trazer-uma-copia-erro`<br>`dados-e-locais/10-meus-dados-folha-trazer-uma-copia-erro-de-leitura` |
+| 103 | "Dados importados." | resposta de uma ação | `dados-e-locais/11-meus-dados-copia-importada` |
+| 172 | as linhas de Meus dados e a 2ª linha de cada uma (o objetivo, "N marcado(s)", "N locais: …", "Última cópia: …", "Autorizada em …") | aviso condicional | `dados-e-locais/01-meus-dados`<br>`dados-e-locais/30-meus-dados-com-objetivo`<br>`dados-e-locais/34-meus-dados-com-algo-a-evitar`<br>`dados-e-locais/49-meus-dados-bruno`<br>`dados-e-locais/21-meus-dados-com-copia-antiga`<br>`dados-e-locais/15-meus-dados-com-a-foto-autorizada` |
+| 232 | folha do estilo do Boneco | folha | `dados-e-locais/04-meus-dados-folha-estilo-do-boneco` |
+| 237 | "Guardar uma cópia" (sem cópia, com a cópia de hoje, sem dados) | folha | `dados-e-locais/05-meus-dados-folha-guardar-uma-copia`<br>`dados-e-locais/07-meus-dados-folha-guardar-uma-copia-com-copia`<br>`dados-e-locais/20-meus-dados-sem-dados-folha-guardar-uma-copia` |
+| 261 | "Trazer uma cópia" ("Nenhum arquivo escolhido.", "Falta escolher o arquivo.", "Escolhido: …") | folha | `dados-e-locais/08-meus-dados-folha-trazer-uma-copia` |
+| 302 | "Foto do equipamento" (retirar a autorização) | folha | `dados-e-locais/16-meus-dados-folha-foto-do-equipamento` |
+| 314 | "Autorização da foto retirada." | resposta de uma ação | `dados-e-locais/17-meus-dados-autorizacao-retirada` |
+| 323 | "Apagar todos os dados?" | folha | `dados-e-locais/18-meus-dados-folha-apagar-todos-os-dados` |
+
+### `src/features/locais/Locais.tsx`
+
+| Linha | O que é | Tipo | Na colheita |
+|---|---|---|---|
+| 28 | "e nos outros?" (Vários locais) | por quê | `dados-e-locais/41-locais-folha-varios-locais` |
+| 56 | "<local> é o local principal. O programa muda só quando você tocar em "Atualizar" no seu treino." | resposta de uma ação | `dados-e-locais/47-locais-local-principal-trocado` |
+| 91 | "Dê um nome ao local, por exemplo "Prédio" ou "Academia do bairro"." | erro ou validação | `dados-e-locais/44-locais-novo-erro-sem-nome` |
+| 145 | título do equipamento do local ("Que equipamento tem neste local?" / "…em "<nome>"?") | aviso condicional | `dados-e-locais/43-locais-novo`<br>`dados-e-locais/45-locais-novo-com-nome` |
+
+### `src/features/termos/Termos.tsx`
+
+| Linha | O que é | Tipo | Na colheita |
+|---|---|---|---|
+| 57 | "Contato: fale direto com essa pessoa." e "quem te mandou o link do app" (sem e-mail e sem responsável no build) | aviso condicional | `termos-e-foto/01-termos` |
+
 ## Não alcançados
 
-Nenhum.
+| Onde | O que é | Texto (copiado do código-fonte) | Por que não foi alcançado |
+|---|---|---|---|
+| `src/features/onboarding/FotoEquipamento.tsx:50` | erro da foto sem a autorização | Para usar a foto, marque a autorização acima. Sem ela, use a lista abaixo. | Sem a autorização marcada, o campo das fotos fica desligado (linha 208) e a função que mostra esta frase não chega a rodar. O que a pessoa vê é "Falta marcar a autorização acima." (linha 213). |
+| `src/features/programa/Programa.tsx:601` | folha do exercício sem animação e sem cartão de texto | Sem guia ainda. Trabalha <músculos>; também <músculos>. Se não conhece o exercício, prefira uma alternativa com guia. | Hoje todo exercício da biblioteca sem animação tem cartão de texto (81 sem animação, 0 sem cartão). O mesmo vale para "sem guia ainda" na miniatura (src/features/programa/Miniatura.tsx:20) e para "Sem guia ainda. Se não conhece este exercício, troque por um com guia em "Trocar exercício"." (src/features/treino/Treino.tsx:311). |
+| `src/features/dados/Dados.tsx:77` | erros ao exportar os dados que não foram lidos | Não há dados antigos guardados neste aparelho. / Não foi possível ler os dados deste aparelho. (linha 84) | O botão "Exportar os dados que não foram lidos" só aparece quando esses dados existem; as duas frases cobrem uma falha do armazenamento entre a tela abrir e o toque. A segunda frase também está na tela de erro (src/features/app/TelaDeErro.tsx:46), na mesma condição. |
+| `src/features/dados/Dados.tsx:92` | importar sem arquivo | Escolha um arquivo exportado pelo treino-mvp. | O botão "Importar dados" fica desligado sem arquivo escolhido (linha 286); o que a pessoa vê é "Falta escolher o arquivo." (linha 296). |
+| `src/features/dados/Dados.tsx:246` | armazenamento permanente aceito | Este navegador aceitou guardar seus dados de forma permanente. | O Chromium de teste nega o armazenamento persistente (por isso a colheita mostra o aviso contrário, "Este navegador pode apagar seus dados."). A frase aparece na folha "Guardar uma cópia" de quem tem o app instalado ou num navegador que aceita o pedido. |
+| `src/features/app/privacidade.tsx:15` | texto curto da foto com a foto desligada | Nada sai do aparelho: por enquanto, o reconhecimento pela foto está desligado. | A colheita roda com a foto ligada (VITE_FOTO=ligada), como os testes. Na produção de hoje a foto está desligada: valem esta frase (Boas-vindas e Meus dados), a de src/features/termos/Termos.tsx:90 ("Por enquanto, o reconhecimento pela foto está desligado: nada sai do aparelho. Quando for ligado, valerá o que está abaixo.") e some o botão "Pela foto". |
+| `src/features/app/privacidade.tsx:69` | "Avisar um problema" com e-mail de contato no build | Abre o seu e-mail com a mensagem pronta. Vão a versão do app, o modelo do aparelho e a tela. Não escreva nada sobre a sua saúde e não anexe o arquivo exportado. | Depende de VITE_CONTATO_EMAIL no build, que não está no repositório (nenhum dado pessoal vai para o código). Com ele, "Avisar um problema" vira um link de e-mail; e os Termos mostram "Contato: <e-mail>" e o nome do responsável (src/features/termos/Termos.tsx:56 a 60). |
+| `src/features/app/estado.tsx:57` | falha ao abrir o armazenamento do aparelho | Não foi possível ler os dados guardados neste aparelho. | Só quando o IndexedDB recusa a leitura (não quando o dado está num formato inválido, que foi colhido). Aparece nos mesmos lugares do erro colhido: a caixa de erro da Boas-vindas e de Meus dados. |
+| `src/features/treino/Resumo.tsx:18` | rótulos de "Para a próxima vez" não vistos | Voltar à anterior · Trocar | Cada um pede um histórico próprio (a carga que subiu e não rendeu; o exercício interrompido pela dor em sessões seguidas). Foram colhidos Calibrar, Manter, Subir, Reduzir, Estagnado e Ajustar; o motivo de cada um, no "por quê?", vem de src/domain/progressao. |
 
-## Telas colhidas que a tabela não cita
+## As 41 telas de 13/11, com a mesma régua
 
-- `cadastro/01-boas-vindas`: Boas-vindas
-- `cadastro/02-boas-vindas-folha-o-que-o-app-nao-faz`: Folha "O que o app não faz"
-- `cadastro/03-boas-vindas-folha-seus-dados`: Folha "Seus dados ficam no aparelho"
-- `cadastro/04-boas-vindas-folha-selo-da-foto`: Folha "De onde vem isto" (o selo "fonte" do texto da foto)
-- `cadastro/05-saude`: Saúde: a pergunta geral, com as 9 condições
-- `cadastro/06-saude-folha-por-que-perguntamos`: Folha "Por que esta pergunta"
-- `cadastro/07-saude-folha-perguntas-completas`: Folha "As 9 perguntas completas"
-- `cadastro/08-saude-quais-valem`: Saúde: quais valem (as 9 perguntas para marcar)
-- `cadastro/09-saude-quais-valem-erro-nenhuma-marcada`: Saúde: quais valem, sem nenhuma marcada
-- `cadastro/10-saude-quais-valem-regioes-erro-sem-regiao`: Saúde: quais valem, com "Quais regiões?" e nenhuma região marcada
-- `cadastro/11-saude-quais-valem-regioes-erro-sem-notas`: Saúde: 3 regiões marcadas, sem as notas de dor
-- `cadastro/12-saude-quais-valem-regioes-erro-sem-uma-nota`: Saúde: 3 regiões marcadas, faltando 1 nota de dor
-- `cadastro/13-saude-folha-confirmar-nao-marcadas`: Folha "Nenhuma destas vale para você?" (8 não marcadas)
-- `cadastro/14-saude-folha-confirmar-nao-marcada-uma`: Folha "Nenhuma destas vale para você?" (1 não marcada)
-- `cadastro/15-saude-pausa`: Saúde: "Vamos pausar o programa automático" (8 respostas "sim")
-- `cadastro/16-saude-pausa-folha-selo`: Folha "De onde vem isto" (o selo da pausa da triagem)
-- `cadastro/17-saude-pausa-liberacao-marcada`: Saúde: a pausa, com a liberação marcada
-- `cadastro/18-experiencia-vazia`: Experiência: a 1ª pergunta, sem resposta
-- `cadastro/19-experiencia-erro-sem-resposta`: Experiência: as mensagens de "falta" sem nenhuma resposta
-- `cadastro/20-experiencia-2a-pergunta`: Experiência: a 2ª pergunta aparece ("Você está treinando agora?")
-- `cadastro/21-experiencia-3a-pergunta`: Experiência: a 3ª pergunta aparece (confiança na técnica)
-- `cadastro/22-experiencia-nivel-avancado`: Experiência respondida: "Seu nível: Avançado", com "Quer começar num nível mais leve?"
-- `cadastro/23-experiencia-nivel-intermediario`: Experiência respondida: "Seu nível: Intermediário"
-- `cadastro/24-experiencia-nivel-iniciante-pela-pausa`: Experiência respondida: iniciante por mais de 6 meses parado
-- `cadastro/25-experiencia-nivel-iniciante-pela-tecnica`: Experiência respondida: iniciante por falta de confiança na técnica
-- `cadastro/26-experiencia-respondida`: Experiência respondida (a Ana: "Seu nível: Iniciante")
-- `cadastro/27-experiencia-folha-selo-do-nivel`: Folha "De onde vem isto" (o selo do nível)
-- `cadastro/28-rotina-vazia`: Rotina: a 1ª pergunta, sem resposta
-- `cadastro/29-rotina-folha-por-que-dias`: Folha "Quantos dias" (por quê?)
-- `cadastro/30-rotina-erro-sem-resposta`: Rotina: as mensagens de "falta" sem nenhuma resposta
-- `cadastro/31-rotina-2a-pergunta`: Rotina: a 2ª pergunta aparece ("Quantos minutos por treino?")
-- `cadastro/32-rotina-minutos-outro`: Rotina: minutos em "Outro", com o campo vazio
-- `cadastro/33-rotina-minutos-outro-erro`: Rotina: "Outro" sem número válido
-- `cadastro/34-rotina-3a-pergunta`: Rotina: a 3ª pergunta aparece (grupos a priorizar)
-- `cadastro/35-rotina-folha-por-que-grupos`: Folha "Grupos prioritários" (por quê?)
-- `cadastro/36-rotina-foco-3-grupos`: Rotina: 3 grupos marcados (a nota "Com mais de 2 grupos…")
-- `cadastro/37-rotina-foco-bracos`: Rotina: Peito e Braços marcados (a nota "Braços conta como 2")
-- `cadastro/38-rotina-respondida`: Rotina respondida (a Ana: 3 dias, 45 min, Pernas e Glúteos)
-- `cadastro/39-equipamento-lugar`: Equipamento: "Onde você treina?", sem nada marcado
-- `cadastro/40-equipamento-folha-da-foto`: Folha "Reconhecer pela foto" (como abre na 1ª vez)
-- `cadastro/41-equipamento-item-por-item-vazio`: Equipamento: item por item, sem nada marcado (categoria "Halteres e anilhas")
-- `cadastro/42-equipamento-categoria-bancos`: Equipamento: item por item, categoria "Bancos"
-- `cadastro/43-equipamento-categoria-polias-e-acessorios`: Equipamento: item por item, categoria "Polias e acessórios"
-- `cadastro/44-equipamento-categoria-barras`: Equipamento: item por item, categoria "Barras"
-- `cadastro/45-equipamento-categoria-maquinas`: Equipamento: item por item, categoria "Máquinas"
-- `cadastro/46-equipamento-categoria-outros-acessorios`: Equipamento: item por item, categoria "Outros acessórios"
-- `cadastro/47-equipamento-busca-sem-resultado`: Equipamento: busca sem resultado
-- `cadastro/48-equipamento-busca-com-resultado`: Equipamento: busca com resultado
-- `cadastro/49-equipamento-folha-halteres-fixos`: Folha de detalhes: Halteres fixos
-- `cadastro/50-equipamento-folha-halteres-fixos-outro`: Folha de detalhes: Halteres fixos, com "Outro" em "O mais leve"
-- `cadastro/51-equipamento-folha-anilhas-e-manoplas`: Folha de detalhes: Anilhas e manoplas
-- `cadastro/52-equipamento-folha-polia-simples`: Folha de detalhes: Polia simples
-- `cadastro/53-equipamento-folha-banco-regulavel`: Folha de detalhes: Banco regulável
-- `cadastro/54-equipamento-folha-elasticos`: Folha de detalhes: Elásticos
-- `cadastro/55-equipamento-folha-polia-dupla-crossover`: Folha de detalhes: Polia dupla (crossover)
-- `cadastro/56-equipamento-folha-polia-dupla-placas`: Folha de detalhes: Polia dupla, com "Placas da torre (opcional)" aberto
-- `cadastro/57-equipamento-folha-multifuncional`: Folha de detalhes: Multifuncional
-- `cadastro/58-equipamento-folha-kettlebell`: Folha de detalhes: Kettlebell
-- `cadastro/59-equipamento-folha-caneleiras-de-peso`: Folha de detalhes: Caneleiras de peso
-- `cadastro/60-equipamento-folha-mini-band`: Folha de detalhes: Mini-band
-- `cadastro/61-equipamento-folha-voador`: Folha de detalhes: Voador
-- `cadastro/62-equipamento-folha-maquina-de-triceps`: Folha de detalhes: Máquina de tríceps
-- `cadastro/63-equipamento-folha-halteres-fixos-erro`: Folha de detalhes: Halteres fixos, com o que falta
-- `cadastro/64-equipamento-erro-detalhes-por-completar`: Equipamento: "Falta pouco", com os itens marcados "falta completar"
-- `cadastro/65-equipamento-folha-anilhas-e-manoplas-erro`: Folha de detalhes: Anilhas e manoplas, com o que falta
-- `cadastro/66-equipamento-folha-polia-simples-erro`: Folha de detalhes: Polia simples, com o que falta
-- `cadastro/67-equipamento-folha-banco-regulavel-erro`: Folha de detalhes: Banco regulável, com o que falta
-- `cadastro/68-equipamento-folha-elasticos-erro`: Folha de detalhes: Elásticos, com o que falta
-- `cadastro/69-equipamento-folha-multifuncional-erro`: Folha de detalhes: Multifuncional, com o que falta
-- `cadastro/70-equipamento-folha-kettlebell-erro`: Folha de detalhes: Kettlebell, com o que falta
-- `cadastro/71-equipamento-folha-caneleiras-de-peso-erro`: Folha de detalhes: Caneleiras de peso, com o que falta
-- `cadastro/72-equipamento-folha-mini-band-erro`: Folha de detalhes: Mini-band, com o que falta
-- `cadastro/73-equipamento-folha-voador-erro`: Folha de detalhes: Voador, com o que falta
-- `cadastro/74-equipamento-folha-maquina-de-triceps-erro`: Folha de detalhes: Máquina de tríceps, com o que falta
-- `cadastro/75-equipamento-erro-um-detalhe`: Equipamento: "Há 1 detalhe para completar."
-- `cadastro/76-equipamento-folha-halteres-fixos-erro-limites`: Folha dos halteres: peso acima do limite e passo pequeno demais
-- `cadastro/77-equipamento-lugar-academia`: Equipamento: depois do atalho "Academia completa"
-- `cadastro/78-equipamento-lugar-condominio`: Equipamento: depois do atalho "Condomínio com multifuncional"
-- `cadastro/79-equipamento-lugar-casa`: Equipamento: depois do atalho "Casa com halteres e elásticos"
-- `cadastro/80-equipamento-lugar-corpo`: Equipamento: depois do atalho "Corpo livre"
-- `cadastro/81-equipamento-folha-selo-dos-atalhos`: Folha "De onde vem isto" (o selo dos atalhos de lugar)
-- `cadastro/82-equipamento-item-por-item-academia`: Equipamento: item por item, com os itens da "Academia completa" marcados
-- `cadastro/83-equipamento-folha-selo-da-menor-anilha`: Folha "De onde vem isto" (o selo da menor anilha)
-- `cadastro/84-equipamento-folha-do-item`: Folha de detalhes: Halteres fixos (a 1ª folha de item da Ana)
-- `cadastro/85-equipamento-folha-do-item-respondida`: Folha de detalhes: Halteres fixos, respondida (1 a 12 kg, de 1 em 1)
-- `cadastro/86-equipamento-item-por-item`: Equipamento: item por item, com os 2 itens da Ana marcados
-- `inicio/01-inicio`: Início, antes do 1º treino (a Ana)
-- `inicio/02-inicio-aba-corpo-todo-b`: Início, aba "Corpo todo B" (a Ana)
-- `inicio/03-inicio-aba-corpo-todo-c`: Início, aba "Corpo todo C" (a Ana)
-- `inicio/04-folha-do-exercicio`: Folha do exercício como abre (o 1º do dia A: agachamento búlgaro)
-- `inicio/05-folha-do-exercicio-ver-mais-opcoes`: Folha do exercício, com "Ver mais opções" aberto
-- `inicio/06-folha-do-exercicio-por-que`: Folha do exercício, com "Por que este exercício" aberto
-- `inicio/07-folha-do-exercicio-folha-selo`: Folha "De onde vem isto" (o selo do 1º motivo do exercício)
-- `inicio/08-sobre-o-programa`: Folha "Sobre o programa" como abre (a Ana)
-- `inicio/09-sobre-o-programa-limites-e-observacoes`: Folha "Sobre o programa", com "Limites e observações (3)" aberto (a Ana)
-- `inicio/10-sobre-o-programa-avisos`: Folha "Sobre o programa", com "Avisos (9)" aberto (a Ana)
-- `inicio/11-sobre-o-programa-fases`: Folha "Sobre o programa", com "Fases (2)" aberto (a Ana)
-- `inicio/12-sobre-o-programa-por-que-este-programa`: Folha "Sobre o programa", com "Por que este programa (10)" aberto (a Ana)
-- `inicio/13-sobre-o-programa-series-por-musculo-na-semana`: Folha "Sobre o programa", com "Séries por músculo na semana" aberto (a Ana)
-- `inicio/14-folha-avisos`: Folha "Avisos" (os ajustes possíveis da Ana)
-- `inicio/15-folha-avisos-folha-selo`: Folha "De onde vem isto" (o selo dos ajustes possíveis)
-- `inicio/16-como-ler-aberto`: Início, com "Como ler o seu treino" aberto
-- `inicio/17-como-ler-folha-selo`: Folha "De onde vem isto" (o selo de "Carga", em "Como ler o seu treino")
-- `inicio/18-folha-do-exercicio-sem-animacao`: Folha de um exercício sem animação (guia em texto): crucifixo invertido sentado
-- `inicio/19-folha-como-fazer-em-texto`: Folha "Como fazer (em texto)" como abre
-- `inicio/20-folha-como-fazer-em-texto-passo-a-passo`: Folha "Como fazer (em texto)", com "Posição, execução e carga, passo a passo" aberto
-- `inicio/21-inicio-com-treino-em-andamento`: Início com um treino em andamento ("Continuar o treino em andamento")
-- `inicio/22-folha-do-exercicio-preferencia-salva`: Folha do exercício, depois de "Prefiro…"
-- `inicio/23-inicio-versao-nova`: Início, com "Há uma versão nova do seu programa."
-- `inicio/24-inicio-versao-nova-folha-mais-avisos`: Folha "Avisos" aberta por "Mais 1 aviso"
-- `inicio/25-inicio-programa-atualizado`: Início, depois de "Atualizar"
-- `inicio/26-inicio-programa-mantido`: Início, depois de "Manter" nos ajustes possíveis
-- `inicio/27-sobre-o-programa-ver-ajustes`: Folha "Sobre o programa", com "Ver ajustes possíveis" no fim
-- `inicio/28-inicio-ana-saude`: Início da Ana com dor no ombro (7), no joelho (4) e no punho (1): o aviso "Pela triagem"
-- `inicio/29-inicio-ana-saude-aba-corpo-todo-b`: Início, aba "Corpo todo B" (a Ana com dor)
-- `inicio/30-inicio-ana-saude-aba-corpo-todo-c`: Início, aba "Corpo todo C" (a Ana com dor)
-- `inicio/31-folha-avisos-ana-saude`: Folha "Avisos": "Pela triagem" e os outros avisos
-- `inicio/32-sobre-o-programa-ana-saude`: Folha "Sobre o programa" como abre (a Ana com dor)
-- `inicio/33-sobre-o-programa-ana-saude-tudo-aberto`: Folha "Sobre o programa", com os 5 blocos abertos (a Ana com dor)
-- `inicio/34-folha-do-exercicio-ana-saude`: Folha do 1º exercício da Ana com dor, com os motivos abertos
-- `inicio/35-programa-pausado-pela-triagem`: "Programa pausado" (a triagem refeita tem um "sim" sem liberação)
-- `inicio/36-programa-pausado-folha-selo`: Folha "De onde vem isto" (o selo do programa pausado)
-- `inicio/37-programa-pausado-sem-exercicio`: "Programa pausado" (dor acima de 5 em todas as regiões: nenhum exercício possível)
-- `inicio/38-folha-avisos-dor-sem-nota`: Folha "Avisos": "Pela triagem" com uma região sem a nota de hoje
-- `inicio/39-inicio-diego`: Início, antes do 1º treino (o Diego: iniciante em casa, com elásticos e barra fixa)
-- `inicio/40-inicio-diego-aba-corpo-todo-b`: Início, aba "Corpo todo B" (o Diego)
-- `inicio/41-inicio-diego-aba-corpo-todo-c`: Início, aba "Corpo todo C" (o Diego)
-- `inicio/42-folha-avisos-diego`: Folha "Avisos" (o Diego)
-- `inicio/43-sobre-o-programa-diego`: Folha "Sobre o programa" como abre (o Diego)
-- `inicio/44-sobre-o-programa-diego-tudo-aberto`: Folha "Sobre o programa", com os 5 blocos abertos (o Diego)
-- `inicio/45-folha-do-exercicio-diego`: Folha do 1º exercício (o Diego), com os motivos abertos
-- `inicio/46-inicio-elisa`: Início, antes do 1º treino (a Elisa: iniciante, sem equipamento nenhum)
-- `inicio/47-inicio-elisa-aba-corpo-todo-b`: Início, aba "Corpo todo B" (a Elisa)
-- `inicio/48-inicio-elisa-aba-corpo-todo-c`: Início, aba "Corpo todo C" (a Elisa)
-- `inicio/49-folha-avisos-elisa`: Folha "Avisos" (a Elisa)
-- `inicio/50-sobre-o-programa-elisa`: Folha "Sobre o programa" como abre (a Elisa)
-- `inicio/51-sobre-o-programa-elisa-tudo-aberto`: Folha "Sobre o programa", com os 5 blocos abertos (a Elisa)
-- `inicio/52-folha-do-exercicio-elisa`: Folha do 1º exercício (a Elisa), com os motivos abertos
-- `inicio/53-inicio-fabio`: Início, antes do 1º treino (o Fábio: intermediário, só com uma barra fixa)
-- `inicio/54-inicio-fabio-aba-inferior-a`: Início, aba "Inferior A" (o Fábio)
-- `inicio/55-inicio-fabio-aba-superior-b`: Início, aba "Superior B" (o Fábio)
-- `inicio/56-inicio-fabio-aba-inferior-b`: Início, aba "Inferior B" (o Fábio)
-- `inicio/57-folha-avisos-fabio`: Folha "Avisos" (o Fábio)
-- `inicio/58-sobre-o-programa-fabio`: Folha "Sobre o programa" como abre (o Fábio)
-- `inicio/59-sobre-o-programa-fabio-tudo-aberto`: Folha "Sobre o programa", com os 4 blocos abertos (o Fábio)
-- `inicio/60-folha-do-exercicio-fabio`: Folha do 1º exercício (o Fábio), com os motivos abertos
-- `inicio/61-inicio-bruno`: Início, antes do 1º treino (o Bruno: intermediário voltando de 12 semanas parado, com 2 locais)
-- `inicio/62-inicio-bruno-aba-inferior-a`: Início, aba "Inferior A" (o Bruno)
-- `inicio/63-inicio-bruno-aba-superior-b`: Início, aba "Superior B" (o Bruno)
-- `inicio/64-inicio-bruno-aba-inferior-b`: Início, aba "Inferior B" (o Bruno)
-- `inicio/65-sobre-o-programa-bruno`: Folha "Sobre o programa" como abre (o Bruno)
-- `inicio/66-sobre-o-programa-bruno-tudo-aberto`: Folha "Sobre o programa", com os 4 blocos abertos (o Bruno)
-- `inicio/67-folha-do-exercicio-bruno`: Folha do 1º exercício (o Bruno), com os motivos abertos
-- `inicio/68-inicio-bruno-na-academia-do-bairro-superior-a`: Início do Bruno, "Superior A" no 2º local (Academia do bairro): o que muda no treino
-- `inicio/69-inicio-bruno-na-academia-do-bairro-inferior-a`: Início do Bruno, "Inferior A" no 2º local (Academia do bairro): o que muda no treino
-- `inicio/70-inicio-bruno-na-academia-do-bairro-superior-b`: Início do Bruno, "Superior B" no 2º local (Academia do bairro): o que muda no treino
-- `inicio/71-inicio-bruno-na-academia-do-bairro-inferior-b`: Início do Bruno, "Inferior B" no 2º local (Academia do bairro): o que muda no treino
-- `inicio/72-inicio-bruno-folha-selo-do-local`: Folha "De onde vem isto" (o selo da troca de local)
-- `inicio/73-inicio-carla`: Início, antes do 1º treino (a Carla: avançada, academia completa)
-- `inicio/74-inicio-carla-aba-inferior`: Início, aba "Inferior" (a Carla)
-- `inicio/75-inicio-carla-aba-empurrar`: Início, aba "Empurrar" (a Carla)
-- `inicio/76-inicio-carla-aba-puxar`: Início, aba "Puxar" (a Carla)
-- `inicio/77-inicio-carla-aba-pernas`: Início, aba "Pernas" (a Carla)
-- `inicio/78-sobre-o-programa-carla`: Folha "Sobre o programa" como abre (a Carla)
-- `inicio/79-sobre-o-programa-carla-tudo-aberto`: Folha "Sobre o programa", com os 2 blocos abertos (a Carla)
-- `inicio/80-folha-do-exercicio-carla`: Folha do 1º exercício (a Carla), com os motivos abertos
-- `treino/01-serie-vazia`: Treino: 1ª série do 1º exercício, vazia (1ª vez no exercício)
-- `treino/02-serie-vazia-guia-erros`: Treino: a série com o guia no modo "Erros"
-- `treino/03-serie-vazia-guia-musculos`: Treino: a série com o guia no modo "Músculos"
-- `treino/04-serie-vazia-guia-trajetoria`: Treino: a série com o guia no modo "Trajetória"
-- `treino/05-serie-vazia-guia-pausado`: Treino: a série com o guia pausado
-- `treino/06-folha-por-que-da-1a-vez`: Folha "Por quê" de "1ª vez: comece leve." (a calibração da carga)
-- `treino/07-folha-selo-do-aquecimento`: Folha "De onde vem isto" (o selo do aquecimento)
-- `treino/08-folha-por-que-da-reserva`: Folha "Por quê" de "Quantas ainda conseguiria?" (o RIR)
-- `treino/09-serie-falta-a-carga`: Treino: série com a reserva e sem a carga ("Falta escolher a carga.")
-- `treino/10-serie-falta-a-reserva`: Treino: série com a carga e sem a reserva ("Falta dizer quantas ainda conseguiria.")
-- `treino/11-serie-preenchida`: Treino: 1ª série preenchida
-- `treino/12-descanso`: Treino: descanso depois da 1ª série (com "Série 1 salva · Desfazer")
-- `treino/13-folha-senti-algo`: Folha "O que você sentiu?"
-- `treino/14-folha-senti-algo-folha-selo`: Folha "De onde vem isto" (o selo de "O app não diagnostica.")
-- `treino/15-folha-mais-opcoes`: Folha "Mais opções" (com uma série feita)
-- `treino/16-descanso-sem-o-desfazer`: Treino: descanso, passados os 5 s do "Desfazer"
-- `treino/17-serie-com-descanso`: Treino: 2ª série com o descanso numa faixa (e a mensagem da calibração)
-- `treino/18-folha-por-que-na-2a-serie`: Folha "Por quê" (o 1º "por quê?" da tela na 2ª série: a reserva)
-- `treino/19-folha-trocar-exercicio`: Folha "Trocar só neste treino por:"
-- `treino/20-folha-trocar-exercicio-ver-mais`: Folha "Trocar só neste treino por:", com "Ver mais opções" aberto
-- `treino/21-exercicio-2`: Treino: 2º exercício do dia A, 1ª série vazia (Ponte de glúteo com halter)
-- `treino/22-hora-da-proxima-serie`: Treino: fim do descanso, com a tela invertida ("Hora da próxima série")
-- `treino/23-exercicio-3`: Treino: 3º exercício do dia A, 1ª série vazia (Supino reto com halteres)
-- `treino/24-exercicio-4`: Treino: 4º exercício do dia A, 1ª série vazia (Remada unilateral com halter apoiada no banco)
-- `treino/25-exercicio-5`: Treino: 5º exercício do dia A, 1ª série vazia (Flexão de joelho deslizando os pés no chão)
-- `treino/26-exercicio-6`: Treino: 6º exercício do dia A, 1ª série vazia (Tríceps francês sentado com halter)
-- `treino/27-folha-terminar-com-serie`: Folha "Terminar o treino agora?" (com série registrada)
-- `treino/28-aviso-dor-0`: Treino: depois da nota de dor 0 ("Pode seguir.")
-- `treino/29-aviso-dor-2-antes-da-serie`: Treino: nota de dor 2 antes da 1ª série
-- `treino/30-aviso-dor-4-antes-da-serie`: Treino: nota de dor 4 antes da 1ª série
-- `treino/31-aviso-dor-folha-selo`: Folha "De onde vem isto" (o selo da escala de dor)
-- `treino/32-aviso-dor-4-sem-carga-menor`: Treino: nota de dor 4 com o halter mais leve (não há carga menor)
-- `treino/33-serie-depois-da-calibracao`: Treino: 2ª série, com a mensagem da calibração e as séries feitas (uma com dor)
-- `treino/34-folha-selo-da-calibracao`: Folha "De onde vem isto" (o selo da calibração)
-- `treino/35-aviso-dor-4`: Treino: nota de dor 4 depois de uma série ("Reduza a carga…")
-- `treino/36-descanso-entre-exercicios`: Treino: descanso depois da última série do exercício ("A seguir · exercício 2 de 6")
-- `treino/37-exercicio-completo`: Treino: exercício com as séries completas
-- `treino/38-exercicio-trocado`: Treino: exercício trocado pela alternativa ("No lugar de …, só neste treino.")
-- `treino/39-folha-trocar-exercicio-com-preferencia`: Folha "Trocar só neste treino por:", com um "Prefiro…" marcado
-- `treino/40-folha-trocar-depois-da-dor`: Folha de troca aberta pela nota de dor 7, com a orientação
-- `treino/41-exercicio-encerrado-pela-dor`: Treino: exercício encerrado pela dor (a orientação e "Exercício encerrado.")
-- `treino/42-folha-trocar-depois-do-sinal`: Folha de troca aberta por "Formigamento ou dormência", com a orientação
-- `treino/43-folha-trocar-depois-do-sinal-folha-selo`: Folha "De onde vem isto" (o selo do sinal de alerta do exercício)
-- `treino/44-ultimo-exercicio-completo`: Treino: último exercício com as séries completas ("Terminar treino")
-- `treino/45-folha-terminar-com-exercicios-por-fazer`: Folha "Terminar o treino agora?" (com exercícios feitos e por fazer)
-- `treino/46-folha-terminar-sem-serie`: Folha "Terminar o treino agora?" (sem nenhuma série)
-- `treino/47-folha-mais-opcoes-sem-serie`: Folha "Mais opções" (no 1º exercício, sem série feita)
-- `treino/48-exercicio-sem-animacao`: Treino: exercício sem animação, com o cartão de texto fechado (Crucifixo invertido sentado, com o peito nas coxas, com halteres)
-- `treino/49-exercicio-sem-animacao-folha-como-fazer`: Treino: folha "Como fazer (em texto)" como abre
-- `treino/50-exercicio-sem-animacao-folha-como-fazer-passo-a-passo`: Treino: folha "Como fazer (em texto)", com o passo a passo aberto
-- `treino/51-carla-inferior-1`: Treino da Carla: dia "Inferior", 1º exercício, 1ª série vazia (Agachamento livre com barra (profundo))
-- `treino/52-carla-inferior-2`: Treino da Carla: dia "Inferior", 2º exercício, 1ª série vazia (Stiff com halteres)
-- `treino/53-carla-inferior-3`: Treino da Carla: dia "Inferior", 3º exercício, 1ª série vazia (Flexão de joelho na cadeira flexora (sentado))
-- `treino/54-carla-inferior-4`: Treino da Carla: dia "Inferior", 4º exercício, 1ª série vazia (Cadeira extensora)
-- `treino/55-carla-inferior-5`: Treino da Carla: dia "Inferior", 5º exercício, 1ª série vazia (Panturrilha unilateral no step)
-- `treino/56-carla-inferior-6`: Treino da Carla: dia "Inferior", 6º exercício, 1ª série vazia (Panturrilha sentada na máquina)
-- `treino/57-carla-inferior-7`: Treino da Carla: dia "Inferior", 7º exercício, 1ª série vazia (Adução na cadeira adutora)
-- `treino/58-carla-inferior-8`: Treino da Carla: dia "Inferior", 8º exercício, 1ª série vazia (Abdominal na polia com corda, ajoelhado)
-- `treino/59-carla-folha-trocar-exercicio`: Folha de troca da Carla (Puxada unilateral ajoelhado na polia alta): 13 alternativas
-- `treino/60-carla-contrapeso`: Treino da Carla: barra fixa assistida no graviton (a carga é o contrapeso)
-- `treino/61-elisa-exercicio-1`: Treino de a Elisa (peso do corpo): 1º exercício, 1ª série vazia (Agachamento com o peso do corpo)
-- `treino/62-elisa-folha-trocar-sem-alternativa`: Folha de troca sem alternativa ("Este exercício não tem alternativa com o seu equipamento.")
-- `treino/63-elisa-exercicio-2`: Treino de a Elisa (peso do corpo): 2º exercício, 1ª série vazia (Flexão de braço)
-- `treino/64-elisa-exercicio-3`: Treino de a Elisa (peso do corpo): 3º exercício, 1ª série vazia (Flexão de joelho deslizando os pés no chão)
-- `treino/65-elisa-exercicio-4`: Treino de a Elisa (peso do corpo): 4º exercício, 1ª série vazia (Extensão de tríceps com o peso do corpo)
-- `treino/66-diego-exercicio-1`: Treino de o Diego (elásticos e barra fixa): 1º exercício, 1ª série vazia (Flexão de braço)
-- `treino/67-diego-exercicio-2`: Treino de o Diego (elásticos e barra fixa): 2º exercício, 1ª série vazia (Barra fixa só na descida (negativa))
-- `treino/68-diego-exercicio-3`: Treino de o Diego (elásticos e barra fixa): 3º exercício, 1ª série vazia (Agachamento com elástico)
-- `treino/69-fabio-exercicio-1`: Treino de o Fábio (barra fixa): 1º exercício, 1ª série vazia (Barra fixa)
-- `treino/70-fabio-exercicio-2`: Treino de o Fábio (barra fixa): 2º exercício, 1ª série vazia (Barra fixa só na descida (negativa))
-- `treino/71-fabio-exercicio-3`: Treino de o Fábio (barra fixa): 3º exercício, 1ª série vazia (Flexão de braço)
-- `treino/72-bruno-volta-da-pausa-exercicio-1`: Treino do Bruno (voltando de pausa): 1º exercício (Supino reto com halteres)
-- `treino/73-bruno-troca-do-local-2`: Treino do Bruno no 2º local: 2º exercício, trocado pelo local, com o motivo (Barra fixa)
-- `dados-e-locais/01-refazer-a-triagem-com-sim`: Refazer a triagem (quem tinha um "sim": abre em "Quais valem", com as marcas, as regiões e as notas)
-- `dados-e-locais/02-refazer-a-triagem-pausa`: Refazer a triagem: "Vamos pausar o programa automático" (com o programa já feito)
+`palavrasNaTela` de `docs/revisoes/frontend-novo/textos/medidas-de-texto.json` (a medida "enxuta", depois da etapa 1) e da tela de hoje que refaz o mesmo caminho.
+
+| Tela de 13/11 | Tela de hoje | 13/11 | Hoje | Diferença |
+|---|---|---|---|---|
+| 01-boas-vindas | `cadastro/01-boas-vindas` | 68 | 68 | = |
+| 02-saude | `cadastro/05-saude` | 87 | 87 | = |
+| 02b-saude-quais-valem | `cadastro/08-saude-quais-valem` | 195 | 195 | = |
+| 03-nivel-vazio | `cadastro/18-experiencia-vazia` | 40 | 40 | = |
+| 03b-nivel-respondido | `cadastro/26-experiencia-respondida` | 121 | 121 | = |
+| 04-rotina-vazia | `cadastro/28-rotina-vazia` | 28 | 28 | = |
+| 04b-rotina-respondida | `cadastro/38-rotina-respondida` | 108 | 108 | = |
+| 05-equipamento-lugar | `cadastro/39-equipamento-lugar` | 73 | 73 | = |
+| 05b-equipamento-foto | `cadastro/40-equipamento-folha-da-foto` | 194 | 194 | = |
+| 05c-equipamento-folha-do-item | `cadastro/86-equipamento-folha-do-item` | 62 | 62 | = |
+| 05d-equipamento-item-por-item | `cadastro/88-equipamento-item-por-item` | 110 | 110 | = |
+| 06-inicio | `inicio/03-inicio` | 105 | 105 | = |
+| 07-folha-do-exercicio | `inicio/06-folha-do-exercicio` | 93 | 93 | = |
+| 06b-inicio-sobre-o-programa | `inicio/10-sobre-o-programa` | 104 | 104 | = |
+| 08-treino-serie-vazia | `treino/01-serie-vazia` | 69 | 67 | -2 |
+| 12-guia-tecnica | `guia/01-tecnica` | 295 | 295 | = |
+| 12b-guia-erros | `guia/04-erros` | 323 | 323 | = |
+| 12c-guia-musculos | `guia/07-musculos` | 340 | 340 | = |
+| 12d-guia-trajetoria | `guia/08-trajetoria` | 326 | 326 | = |
+| 08b-treino-serie-preenchida | `treino/11-serie-preenchida` | 61 | 62 | +1 |
+| 09-treino-descanso | `treino/12-descanso` | 51 | 51 | = |
+| 10-treino-senti-algo | `treino/13-folha-senti-algo` | 73 | 73 | = |
+| 11-treino-mais-opcoes | `treino/15-folha-mais-opcoes` | 15 | 15 | = |
+| 09b-treino-serie-com-descanso | `treino/17-serie-com-descanso` | 64 | 64 | = |
+| 11b-treino-por-que | `treino/18-folha-por-que-na-2a-serie` | 202 | 202 | = |
+| 08c-treino-exercicio-2 | `treino/21-exercicio-2` | 59 | 59 | = |
+| 09c-treino-hora-da-proxima-serie | `treino/22-hora-da-proxima-serie` | 31 | 31 | = |
+| 08c-treino-exercicio-3 | `treino/23-exercicio-3` | 68 | 68 | = |
+| 08c-treino-exercicio-4 | `treino/24-exercicio-4` | 64 | 64 | = |
+| 08c-treino-exercicio-5 | `treino/25-exercicio-5` | 60 | 60 | = |
+| 08c-treino-exercicio-6 | `treino/26-exercicio-6` | 60 | 60 | = |
+| 11c-treino-terminar | `treino/27-folha-terminar-com-serie` | 23 | 23 | = |
+| 13-fim-do-treino | `fim-e-semana/06-fim-do-treino` | 62 | 62 | = |
+| 14-semana | `fim-e-semana/11-semana-1-treino` | 101 | 101 | = |
+| 15-evolucao | `fim-e-semana/12-evolucao-1-treino` | 29 | 29 | = |
+| 06c-inicio-depois-do-1o-treino | `inicio/01-inicio-depois-do-1o-treino` | 109 | 109 | = |
+| 16-meus-dados | `dados-e-locais/01-meus-dados` | 144 | 144 | = |
+| 16b-meus-dados-estilo-do-boneco | `dados-e-locais/04-meus-dados-folha-estilo-do-boneco` | 46 | 6 | -40 |
+| 17-locais | `dados-e-locais/40-locais` | 38 | 38 | = |
+| 17b-locais-editar | `dados-e-locais/42-locais-editar` | 125 | 125 | = |
+| 18-termos | `termos-e-foto/01-termos` | 793 | 792 | -1 |
+| **Soma** | | **5.019** | **4.977** | -42 |
 
 ## Totais
 
-- Telas colhidas: **241**.
-- Soma de `palavrasNaTela`: **28.610** (a mesma frase conta de novo em cada tela ou folha em que aparece).
-- Linhas da tabela de cobertura: 0 (por tipo: rota 0, folha 0, bloco que abre 0, por quê 0, aviso condicional 0, estado vazio 0, carregando 0, erro ou validação 0, resposta de uma ação 0); não alcançados: 0.
-- Falhas anotadas na colheita: 244 (em `colheita.json`, campo `falhas`).
+- Telas colhidas: **458**, do app na versão `0b80e68` (publicada em 16/11/2026; colheita de 2026-11-16).
+- Soma de `palavrasNaTela`: **66.352** (a mesma frase conta de novo em cada tela ou folha em que aparece).
+- Linhas da tabela de cobertura: 245 (por tipo: rota 35, folha 23, bloco que abre 23, por quê 17, aviso condicional 83, estado vazio 5, carregando 5, erro ou validação 39, resposta de uma ação 15); não alcançados: 9.
+- Falhas anotadas na colheita: 0 (em `colheita.json`, campo `falhas`).
 
 | Fluxo | Telas | palavrasNaTela (soma) | Folhas | Blocos abertos | Estados vazios, erros e avisos |
 |---|---|---|---|---|---|
-| cadastro | 86 | 9.130 | 29 | 1 | 30 |
-| inicio | 80 | 13.201 | 24 | 21 | 5 |
-| treino | 73 | 5.830 | 17 | 3 | 41 |
-| guia | 0 | 0 | 0 | 0 | 0 |
-| fim-e-semana | 0 | 0 | 0 | 0 | 0 |
-| dados-e-locais | 2 | 449 | 0 | 0 | 1 |
-| termos-e-foto | 0 | 0 | 0 | 0 | 0 |
-| avisos-e-erros | 0 | 0 | 0 | 0 | 0 |
+| cadastro | 88 | 9.301 | 29 | 1 | 32 |
+| inicio | 90 | 14.427 | 26 | 21 | 10 |
+| treino | 80 | 6.565 | 20 | 3 | 41 |
+| guia | 47 | 14.979 | 2 | 12 | 0 |
+| fim-e-semana | 49 | 7.965 | 18 | 1 | 21 |
+| dados-e-locais | 50 | 6.820 | 11 | 2 | 13 |
+| termos-e-foto | 29 | 3.627 | 9 | 1 | 18 |
+| avisos-e-erros | 25 | 2.668 | 2 | 0 | 23 |
 
 | Persona | Telas | palavrasNaTela (soma) | Folhas | Blocos abertos | Estados vazios, erros e avisos |
 |---|---|---|---|---|---|
-| ana | 163 | 17.760 | 57 | 12 | 52 |
+| ana | 341 | 44.957 | 99 | 24 | 126 |
 | ana + saúde | 13 | 2.615 | 4 | 2 | 3 |
-| bruno | 14 | 2.247 | 2 | 2 | 2 |
-| carla | 18 | 1.788 | 1 | 3 | 9 |
+| bruno | 17 | 2.518 | 2 | 2 | 2 |
+| carla | 28 | 5.027 | 1 | 5 | 9 |
 | diego | 10 | 1.394 | 2 | 2 | 3 |
-| elisa | 12 | 1.443 | 2 | 2 | 5 |
-| fabio | 11 | 1.363 | 2 | 2 | 3 |
+| elisa | 22 | 4.623 | 2 | 4 | 5 |
+| fabio | 11 | 1.364 | 2 | 2 | 3 |
+| ninguém | 16 | 3.854 | 5 | 0 | 7 |

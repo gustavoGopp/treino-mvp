@@ -1,5 +1,4 @@
-import { readdirSync, readFileSync } from 'node:fs';
-import { expect, test, type Locator, type Page } from '@playwright/test';
+import { expect, test, type Locator, type Page, type Route } from '@playwright/test';
 import { abrirExercicio, abrirLista, abrirTrocar, ana, detalhesDo, folhaPronta, maisOpcoes, marcarItem, minutosPorTreino, porQueDaSugestao, terminarTreino, triagem, triagemNenhuma, verAvisos } from '../../tests/e2e/jornada';
 import { comHistorico, estadoDaPersona, estadoGuardado, Roteiro, semear, type Fluxo, type SessaoSemeada } from './colher';
 
@@ -473,6 +472,17 @@ roteiro('inicio-ana-versoes', 20, 'inicio', 'ana', async (r, page) => {
     await expect(page.getByText(/^Programa gerado de novo:/)).toBeVisible();
     await r.foto('inicio-programa-gerado-de-novo', { titulo: 'Início, depois de escolher um ajuste', comoChegar: 'Início → folha "Avisos" → toque no 1º ajuste possível.', tipo: 'aviso' });
   });
+  await r.passo('versão nova com um treino em andamento', async () => {
+    await comecarTreino(page);
+    await page.getByRole('link', { name: /^Voltar ao início/ }).click();
+    await inicioPronto(page);
+    const folha = await abrirExercicio(page, /./);
+    await folha.getByRole('button', { name: /^Prefiro / }).last().click();
+    await r.fecharFolha();
+    await expect(page.getByText('O programa será atualizado depois do treino em andamento.')).toBeVisible();
+    await page.getByText('O programa será atualizado depois do treino em andamento.').scrollIntoViewIfNeeded();
+    await r.foto('inicio-com-treino-em-andamento-e-versao-nova', { titulo: 'Início com um treino em andamento e uma mudança à espera ("O programa será atualizado depois do treino em andamento.")', comoChegar: 'Treino em andamento → voltar ao início → folha do exercício → "Prefiro…" → fechar.', tipo: 'aviso' });
+  });
 });
 
 roteiro('inicio-ana-saude', 30, 'inicio', 'ana + saúde', async (r, page) => {
@@ -901,13 +911,13 @@ roteiro('treino-outras-personas', 40, 'treino', 'carla', async (r, page) => {
     await expect(page.getByText(/^No lugar de /)).toBeVisible();
     await r.foto('carla-contrapeso', { titulo: 'Treino da Carla: barra fixa assistida no graviton (a carga é o contrapeso)', comoChegar: 'Folha de troca → "Barra fixa assistida no graviton".', tipo: 'estado vazio' });
   });
-  for (const [nome, quem] of [['elisa', 'a Elisa (peso do corpo)'], ['diego', 'o Diego (elásticos e barra fixa)'], ['fabio', 'o Fábio (barra fixa)']] as const)
+  for (const [nome, quem] of [['elisa', 'da Elisa (peso do corpo)'], ['diego', 'do Diego (elásticos e barra fixa)'], ['fabio', 'do Fábio (barra fixa)']] as const)
     await r.passo(`treino de ${nome}`, async () => {
       await semear(page, estadoDaPersona(nome));
       await inicioPronto(page);
       await comecarTreino(page);
       for (let i = 1; i <= (nome === 'elisa' ? 4 : 3); i++) {
-        await r.foto(`${nome}-exercicio-${i}`, { titulo: `Treino de ${quem}: ${i}º exercício, 1ª série vazia (${await nomeDoExercicio(page)})`, comoChegar: `Estado de ${nome} → "Começar o treino"${i > 1 ? ` → "⋯" → "Próximo" (${i - 1}x)` : ''}.`, tipo: 'estado vazio', persona: nome });
+        await r.foto(`${nome}-exercicio-${i}`, { titulo: `Treino ${quem}: ${i}º exercício, 1ª série vazia (${await nomeDoExercicio(page)})`, comoChegar: `Estado de ${nome} → "Começar o treino"${i > 1 ? ` → "⋯" → "Próximo" (${i - 1}x)` : ''}.`, tipo: 'estado vazio', persona: nome });
         if (i === 1 && nome === 'elisa') {
           await abrirTrocar(page);
           await r.foto('elisa-folha-trocar-sem-alternativa', { titulo: 'Folha de troca sem alternativa ("Este exercício não tem alternativa com o seu equipamento.")', comoChegar: 'Estado da Elisa → treino → "⋯" → "Trocar exercício".', tipo: 'estado vazio', persona: nome });
@@ -1230,7 +1240,7 @@ roteiro('volta-e-semana-leve', 30, 'fim-e-semana', 'ana', async (r, page) => {
   await volta('60-dias', '60 dias', [{ dia: 0, quando: em('09-04') }, { dia: 1, quando: em('09-05') }, { dia: 2, quando: em('09-06') }]);
   await volta('200-dias', '200 dias', [{ dia: 0, quando: em('04-17') }, { dia: 1, quando: em('04-18') }, { dia: 2, quando: em('04-19') }]);
   await r.passo('volta de 200 dias, as respostas', async () => {
-    await page.getByRole('button', { name: 'Agora não' }).click();
+    await page.getByRole('region', { name: 'Bem-vindo de volta!' }).getByRole('button', { name: 'Agora não' }).click();
     await expect(page.getByText('Tudo bem: o programa segue, com a mesma volta leve.')).toBeVisible();
     await r.foto('inicio-volta-200-dias-agora-nao', { titulo: 'Início na volta de 200 dias, depois de "Agora não"', comoChegar: 'Início na volta de 200 dias → "Agora não".', tipo: 'aviso' });
     await comTreinos(page, [{ dia: 0, quando: em('04-17') }, { dia: 1, quando: em('04-18') }, { dia: 2, quando: em('04-19') }]);
@@ -1336,7 +1346,7 @@ roteiro('dados-ana', 10, 'dados-e-locais', 'ana', async (r, page) => {
   await r.passo('meus dados, estilo do Boneco', async () => {
     await page.getByRole('button', { name: 'Estilo do Boneco' }).click();
     await page.waitForTimeout(2500);
-    await r.foto('meus-dados-folha-estilo-do-boneco', { titulo: 'Folha "Estilo do Boneco"', comoChegar: 'Meus dados → "Estilo do Boneco".', tipo: 'folha' });
+    await r.foto('meus-dados-folha-estilo-do-boneco', { titulo: 'Folha do estilo do Boneco (os dois desenhos para escolher)', comoChegar: 'Meus dados → "Estilo do Boneco".', tipo: 'folha' });
     await r.fecharFolha();
   });
   let copia = '';
@@ -1573,7 +1583,7 @@ roteiro('foto', 20, 'termos-e-foto', 'ana', async (r, page) => {
   const arquivo = { name: 'academia.jpg', mimeType: 'image/jpeg', buffer: await jpeg(page) };
   const escolher = (arquivos: Parameters<Locator['setInputFiles']>[0] = arquivo) => page.getByLabel('Escolher fotos').setInputFiles(arquivos);
   const erro = page.locator('.foto-eq [role="alert"]');
-  const responder = async (resposta: Parameters<Parameters<Page['route']>[1]>[0] extends infer R ? (rota: R) => Promise<void> | void : never) => {
+  const responder = async (resposta: (rota: Route) => Promise<unknown> | unknown) => {
     await page.unroute('**/api/vision');
     await page.route('**/api/vision', resposta);
   };
@@ -1778,10 +1788,11 @@ roteiro('erros', 30, 'avisos-e-erros', 'ana', async (r, page) => {
 test.describe('sem o service worker', () => {
   test.use({ serviceWorkers: 'block' });
   roteiro('erros-de-carga', 40, 'avisos-e-erros', 'ana', async (r, page) => {
-    const pedaco = (contem: string) => {
-      const arquivo = readdirSync('dist/assets').find((f) => f.endsWith('.js') && readFileSync(`dist/assets/${f}`, 'utf8').includes(contem));
-      if (!arquivo) throw new Error(`nenhum pedaço do app contém "${contem}"`);
-      return `**/assets/${arquivo}`;
+    // o pedaço do app (um arquivo de /assets) que contém uma frase: a lista dos arquivos vem do service worker
+    const pedaco = async (contem: string) => {
+      const sw = await (await page.request.get('/sw.js')).text();
+      for (const arquivo of new Set(sw.match(/assets\/index-[\w-]+\.js/g) ?? [])) if ((await (await page.request.get(`/${arquivo}`)).text()).includes(contem)) return `**/${arquivo}`;
+      throw new Error(`nenhum pedaço do app contém "${contem}"`);
     };
     const segurar = async (url: string | RegExp) => {
       let soltar = () => {};
@@ -1799,7 +1810,7 @@ test.describe('sem o service worker', () => {
     await inicioPronto(page);
 
     await r.passo('sobre o programa, conferindo e sem conferir', async () => {
-      const avaliador = pedaco('Dá para melhorar');
+      const avaliador = await pedaco('Dá para melhorar');
       const soltar = await segurar(avaliador);
       await page.getByRole('button', { name: 'Sobre o programa' }).click();
       await folhaPronta(page);

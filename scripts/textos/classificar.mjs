@@ -3,7 +3,7 @@
 //
 //   node scripts/textos/classificar.mjs [pasta do inventário]      (padrão: docs/revisoes/textos/inventario)
 //
-// Saídas, na mesma pasta: inventario.json (tudo), inventario.csv (uma linha por texto por tela), textos-unicos.csv
+// Saídas, na mesma pasta: inventario.csv (uma linha por texto por tela), textos-unicos.csv
 // (cada texto uma vez, com as telas em que aparece) e inventario.md (o resumo por tela e por fluxo).
 //
 // DE QUEM É: procura o texto no código. `tela` = escrito em src/features; `domínio` = frases e nomes que vêm das regras
@@ -11,8 +11,9 @@
 // privacidade (Termos.tsx, privacidade.tsx); `motor` = rótulos do desenho (src/engine). Texto montado na hora
 // ("1 de 3") não existe inteiro no código: vale o pedaço de 3 palavras seguidas que mais aparece.
 //
-// PARA QUE SERVE: primeiro o que foi decidido à mão (funcoes-a-mao.json, texto → função); depois regras pela peça
-// (botão, opção, título) e por palavras (dor, médico → segurança; aparelho, cópia → privacidade). A coluna `como` diz
+// PARA QUE SERVE: primeiro o que foi decidido à mão, texto por texto (funcoes-a-mao.json, `exatos`); depois regras pela peça
+// (botão, opção, título) e por palavras (dor, médico → segurança; aparelho, cópia → privacidade); por fim, os padrões
+// escritos à mão para o que nenhuma regra pegou (`padroes`). A coluna `como` diz
 // se a função veio da mão ou de qual regra, para ninguém confundir palpite de script com decisão.
 
 import { existsSync, readdirSync, readFileSync, statSync, writeFileSync } from 'node:fs';
@@ -21,7 +22,9 @@ import { join, resolve } from 'node:path';
 const PASTA = resolve(process.argv[2] ?? 'docs/revisoes/textos/inventario');
 const colheita = JSON.parse(readFileSync(join(PASTA, 'colheita.json'), 'utf8'));
 const aMaoCaminho = resolve('scripts/textos/funcoes-a-mao.json');
-const aMao = existsSync(aMaoCaminho) ? JSON.parse(readFileSync(aMaoCaminho, 'utf8')) : {};
+const aMaoArquivo = existsSync(aMaoCaminho) ? JSON.parse(readFileSync(aMaoCaminho, 'utf8')) : {};
+const aMao = aMaoArquivo.exatos ?? {};
+const aMaoPadroes = (aMaoArquivo.padroes ?? []).map(([re, funcao]) => [new RegExp(re, 'i'), funcao]);
 
 // ---------- de quem é ----------
 const arquivos = (pasta, filtro) => {
@@ -81,11 +84,15 @@ for (const [dono, lista] of Object.entries(DONOS)) {
     const ps = palavrasDe(bruto.replace(/\{' '\}/g, ' '));
     for (const g of ngramas(ps, 3)) tri.add(g);
     corrido += ' | ' + ps.join(' ');
+    // as cadeias entre aspas e o texto solto do JSX, inteiros (um nome de equipamento, o rótulo de um botão)
+    for (const m of bruto.matchAll(/'((?:[^'\\\n]|\\.)+)'|"((?:[^"\\\n]|\\.)+)"|`((?:[^`\\]|\\.)+)`|>([^<>{}]+)</g)) {
+      const t = palavrasDe(m[1] ?? m[2] ?? m[3] ?? m[4] ?? '').join(' ');
+      if (t) inteiras.add(t);
+    }
   }
   corpos[dono] = { tri, inteiras, corrido };
 }
 const ORDEM_LONGO = ['jurídico', 'conteúdo', 'domínio', 'motor', 'tela'];
-const ORDEM_CURTO = ['tela', 'jurídico', 'domínio', 'conteúdo', 'motor'];
 const memoDono = new Map();
 function donoDe(texto) {
   if (memoDono.has(texto)) return memoDono.get(texto);
@@ -95,12 +102,12 @@ function donoDe(texto) {
   else if (ps.every((p) => /^\d+$/.test(p) || p.length <= 2)) r = { dono: 'tela', como: 'número montado na hora' };
   else {
     const frase = ps.join(' ');
-    // 1º: o texto é, inteiro, um dado (nome de exercício, de equipamento, uma dica da ficha)
-    const dado = ['conteúdo', 'domínio'].find((d) => corpos[d].inteiras.has(frase));
-    if (dado) r = { dono: dado, como: 'é um dado inteiro' };
+    // 1º: o texto existe inteiro no código de alguém. Dado (nome de exercício, de equipamento, dica da ficha) ganha da
+    // tela, que muitas vezes só repete o nome; o jurídico ganha de todos.
+    const inteiro = ['jurídico', 'domínio', 'conteúdo', 'tela', 'motor'].find((d) => corpos[d].inteiras.has(frase));
+    if (inteiro) r = { dono: inteiro, como: 'existe inteiro no código' };
     else if (ps.length < 3) {
-      const d = ORDEM_CURTO.find((x) => corpos[x].corrido.includes(` ${frase} `) || corpos[x].corrido.includes(`| ${frase} `) || corpos[x].corrido.endsWith(` ${frase}`));
-      if (d) r = { dono: d, como: 'achado no código' };
+      r = { dono: 'tela', como: 'curto, montado na tela' };
     } else {
       const gs = ngramas(ps, 3);
       let melhor = null;
@@ -116,7 +123,7 @@ function donoDe(texto) {
 }
 
 // ---------- para que serve ----------
-export const FUNCOES = ['ação', 'opção', 'título', 'estado', 'número', 'segurança', 'definição', 'justificativa', 'privacidade', 'instrução', 'descreve o que já se vê', 'a decidir'];
+export const FUNCOES = ['ação', 'opção', 'título ou rótulo', 'estado', 'número', 'segurança', 'definição', 'justificativa', 'privacidade', 'instrução', 'descreve o que já se vê', 'a decidir'];
 const RE_SEGURANCA = /\b(dor(es)?|tontura|formigamento|desmai\w*|mal-estar|falta de ar|les[ãa]o|les[õo]es|sinal de alerta|sinais de alerta|m[ée]dic\w*|avalia[çc][ãa]o|libera[çc][ãa]o|diagnostic\w*|profissional|emerg[êe]ncia|pare\b|interromp\w*|press[ãa]o alta|cora[çc][ãa]o|gravidez|gr[áa]vida|cirurgia|perda de for[çc]a)/i;
 const RE_PRIVACIDADE = /\b(aparelho|navegador|c[óo]pia|exporta\w*|importa\w*|apagar (todos|tudo)|seus dados|meus dados|os dados|servidor|lgpd|privacidade|metadados|gps|termos de uso|foto(s)? (é|são|fica|ficam|sai|vai)|c[óo]digo de convite)/i;
 const RE_NUMERO = /^[\s\d×x.,:;/%+\-−–·()]*(\d[\s\d×x.,:;/%+\-−–·()]*)(kg|min|s|seg|rep|reps|repeti[çc][õo]es|s[ée]ries?|de|rir|dias?|semanas?|treinos?|x|a|h)?[\s\d×x.,:;/%+\-−–·()a-zçõãé]{0,14}$/i;
@@ -134,12 +141,28 @@ function funcaoDe(b, tela) {
   if (['button', 'link', 'tab', 'menuitem'].includes(papel) || tag === 'summary') return { funcao: 'ação', como: 'regra: é botão, link, aba ou bloco que abre' };
   if (['radio', 'checkbox', 'option', 'switch'].includes(papel)) return { funcao: 'opção', como: 'regra: é uma opção de escolha' };
   if (RE_PRIVACIDADE.test(t) && n > 3) return { funcao: 'privacidade', como: 'regra: palavra de privacidade' };
-  if (papel === 'heading' || /^h[1-6]$/.test(tag) || tag === 'legend') return { funcao: 'título', como: 'regra: é título ou pergunta' };
+  if (papel === 'heading' || /^h[1-6]$/.test(tag) || tag === 'legend') return { funcao: 'título ou rótulo', como: 'regra: é título ou pergunta' };
   if (n <= 6 && RE_NUMERO.test(t)) return { funcao: 'número', como: 'regra: é número' };
   if (tag === 'dt' || tag === 'dd') return { funcao: 'definição', como: 'regra: lista de definições' };
   if (/\bporque\b/.test(classes) || /^por qu[eê]/i.test(b.contexto ?? '') || /^por qu[eê]/i.test(tela.titulo ?? '')) return { funcao: 'justificativa', como: 'regra: está num "por quê"' };
   if (['alert', 'status'].includes(papel) || /\b(caixa-erro|status|aviso)\b/.test(classes)) return { funcao: 'estado', como: 'regra: aviso de estado ou erro' };
-  if (tela.fluxo === 'guia' || /\b(cue|dica|erro-item|passo)\b/.test(classes)) return { funcao: 'instrução', como: 'regra: texto de execução' };
+  const aberto = b.blocoAberto ?? '';
+  const contexto = b.contexto ?? '';
+  const titulo = tela.titulo ?? '';
+  if (/\bregra\b/.test(classes) || /de onde vem isto/i.test(contexto) || /\((19|20)\d{2}[a-z]?\)|\(s\.d\.\)|pesquisa-v2|consenso-projeto/.test(t)) return { funcao: 'justificativa', como: 'regra: texto da regra ou fonte' };
+  if (/\b(falta|erro|com-falta)\b/.test(classes) || /^falta /i.test(t)) return { funcao: 'estado', como: 'regra: o que falta ou o que deu errado' };
+  if (/^por que/i.test(aberto) || /^(fontes|por qu[eê])/i.test(contexto)) return { funcao: 'justificativa', como: 'regra: está num bloco de porquês' };
+  if (/\bwarnbox\b/.test(classes) || /^(avisos|limites|fases)/i.test(aberto) || /\bfase\b/.test(classes)) return { funcao: 'estado', como: 'regra: aviso, limite ou fase do programa' };
+  if (/\bm-(sem-treino|crescendo|na-meta|mantendo|abaixo)\b|\bresumo-(ex|evolucao)\b|\bsub-rx\b|\bnum\b|\brir-meta\b/.test(classes)) return { funcao: 'número', como: 'regra: número do treino ou da semana' };
+  if (/\d/.test(t) && n <= 6 && palavrasDe(t).filter((p) => /^\d/.test(p)).length * 2 >= n) return { funcao: 'número', como: 'regra: é número' };
+  if (/\b(rotulo|rotulo-curto|busca|rir-pergunta)\b/.test(classes) || ['th', 'label', 'caption', 'columnheader', 'rowheader'].includes(tag) || ['columnheader', 'rowheader'].includes(papel)) return { funcao: 'título ou rótulo', como: 'regra: é rótulo de campo ou de coluna' };
+  if (/^(saúde|refazer a triagem)/i.test(titulo) && b.dono === 'domínio') return { funcao: 'segurança', como: 'regra: pergunta da triagem' };
+  if (tela.fluxo === 'guia' || /como fazer|posição, execução|montagem/i.test(aberto + ' ' + contexto + ' ' + titulo) || /\b(cue|dica|erro-item|passo|legenda-do-modo|cartao-texto)\b/.test(classes) || b.dono === 'motor') return { funcao: 'instrução', como: 'regra: texto de execução' };
+  if (b.dono === 'jurídico') return { funcao: 'privacidade', como: 'regra: texto dos termos ou da privacidade' };
+  const padrao = aMaoPadroes.find(([re]) => re.test(t));
+  if (padrao) return { funcao: padrao[1], como: 'à mão (padrão)' };
+  // nome de exercício ou de equipamento: é o próprio item da lista
+  if ((b.dono === 'domínio' || b.dono === 'conteúdo') && n <= 12 && !/[.?!]$/.test(t.trim())) return { funcao: 'título ou rótulo', como: 'regra: nome de exercício ou de equipamento' };
   return { funcao: 'a decidir', como: 'sem regra' };
 }
 
@@ -148,8 +171,9 @@ const linhas = [];
 for (const tela of colheita.telas) {
   for (const b of tela.blocos ?? []) {
     const d = donoDe(b.texto);
+    Object.assign(b, { dono: d.dono, comoDono: d.como });
     const f = funcaoDe(b, tela);
-    Object.assign(b, { dono: d.dono, comoDono: d.como, funcao: f.funcao, comoFuncao: f.como });
+    Object.assign(b, { funcao: f.funcao, comoFuncao: f.como });
     linhas.push({ tela: tela.id, fluxo: tela.fluxo, persona: tela.persona, tipo: tela.tipo, ...b });
   }
 }
@@ -161,7 +185,6 @@ const por = (xs, chave) => {
 };
 const csv = (v) => `"${String(v ?? '').replace(/"/g, '""').replace(/\s+/g, ' ')}"`;
 
-writeFileSync(join(PASTA, 'inventario.json'), JSON.stringify({ geradoEm: colheita.geradoEm, funcoes: FUNCOES, telas: colheita.telas }, null, 1) + '\n');
 writeFileSync(
   join(PASTA, 'inventario.csv'),
   ['tela,fluxo,persona,tipo,palavras,dono,funcao,como_funcao,peca,a_vista,dentro_de,contexto,texto', ...linhas.map((l) => [l.tela, l.fluxo, l.persona, l.tipo, l.palavras, l.dono, l.funcao, l.comoFuncao, l.papel || l.tag, l.aVista ? 'sim' : 'não', l.dentroDe, l.contexto, l.texto].map(csv).join(','))].join('\n') + '\n',
@@ -196,7 +219,7 @@ md.push('## Para que serve o texto (todas as telas somadas)');
 md.push('');
 md.push(tabela(['Função', 'Textos', 'Palavras', 'Parte', 'Decididos à mão'], FUNCOES.map((f) => {
   const ls = linhas.filter((l) => l.funcao === f);
-  return [f, ls.length, soma(ls, (l) => l.palavras), pct(soma(ls, (l) => l.palavras), total), ls.filter((l) => l.comoFuncao === 'à mão').length];
+  return [f, ls.length, soma(ls, (l) => l.palavras), pct(soma(ls, (l) => l.palavras), total), ls.filter((l) => l.comoFuncao.startsWith('à mão')).length];
 }).filter((l) => l[1] > 0)));
 md.push('');
 md.push('## De quem é o texto');

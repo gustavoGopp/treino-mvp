@@ -5,7 +5,8 @@ import { defineConfig } from '@playwright/test';
 // (scripts/design/frontend-novo/capturas.spec.ts). Não é teste: só colhe e fotografa. Roda com
 //   npx playwright test -c scripts/textos/playwright.config.ts --trace off
 // O projeto "claro" colhe o texto e fotografa; o "escuro" só fotografa. Cada teste grava a sua parte em
-// test-results/textos/ (fora do git); no fim, montar.ts junta tudo em colheita.json, capturas/ e cobertura.md.
+// node_modules/.cache/inventario-textos/ (fora do git); no fim, montar.ts junta tudo em colheita.json, capturas/ e
+// cobertura.md.
 // Para refazer só uma parte: acrescente -g "<nome do teste>"; a montagem usa as outras partes que já estão guardadas.
 // A porta é a 4174 (a 4173 é a dos testes e das capturas do frontend novo).
 
@@ -18,6 +19,10 @@ export default defineConfig({
   workers: 4,
   fullyParallel: true,
   timeout: 600_000,
+  // com 4 trechos ao mesmo tempo, a 1ª tela de cada um pode demorar mais que os 5 s de costume
+  expect: { timeout: 15_000 },
+  // fora de test-results/: o Playwright limpa a pasta de saída dele no começo de cada rodada
+  outputDir: '../../node_modules/.cache/inventario-textos/playwright',
   globalTeardown: './montar.ts',
   // um toque que não acha o alvo falha em 8 s (e o passo fica anotado), em vez de segurar a colheita inteira
   use: { baseURL: `http://localhost:${PORTA}`, trace: 'off', actionTimeout: 8000 },

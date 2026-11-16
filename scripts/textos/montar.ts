@@ -1,12 +1,12 @@
 import { copyFileSync, existsSync, mkdirSync, readdirSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
 import { resolve } from 'node:path';
-import { COBERTURA, NAO_ALCANCADOS, NOTAS } from './cobertura';
+import { COBERTURA, DE_13_11, NAO_ALCANCADOS, NOTAS } from './cobertura';
 import { FLUXOS, PASTA_DAS_PARTES, SAIDA, type Fluxo, type Parte, type Tela } from './colher';
 
-// A montagem do inventário: junta as partes que cada teste guardou em test-results/textos/, numera as telas dentro de
+// A montagem do inventário: junta as partes que cada teste guardou (colher.ts, PASTA_DAS_PARTES), numera as telas dentro de
 // cada fluxo ("fluxo/NN-nome"), copia as capturas com o nome final e escreve colheita.json e cobertura.md em
 // docs/revisoes/textos/inventario/. Roda sozinha no fim do Playwright (globalTeardown); para montar de novo sem
-// percorrer o app: npx vite-node scripts/textos/montar.ts
+// percorrer o app: npx vite-node scripts/textos/montar-agora.ts
 
 const lerPartes = (projeto: string): Parte[] => {
   const pasta = resolve(PASTA_DAS_PARTES, projeto);
@@ -58,10 +58,20 @@ export default function montar() {
   const colhidas = new Set(claro.flatMap((p) => p.telas.map((t) => `${p.chave}|${t.fluxo}/${t.nome}`)));
   for (const p of escuro) for (const f of p.fotos) if (!colhidas.has(`${p.chave}|${f.fluxo}/${f.nome}`)) falhas.push(`[montagem] ${f.fluxo}/${f.nome}: fotografada no escuro (${p.chave}) e não colhida no claro`);
 
+  // a versão do app colhido, como o próprio app a escreve em "Meus dados"
+  const versao = telas.flatMap((t) => t.blocos).map((b) => /^Versão do app: (\S+), publicada em ([\d/]+)\./.exec(b.texto)).find(Boolean);
+  const cabeca = { geradoEm: new Date().toISOString(), versaoDoApp: versao?.[1] ?? null, publicadaEm: versao?.[2] ?? null };
   // ---- cobertura.md ----
   const citadas = new Set<string>();
+  // um nome com "*" vale por todas as telas colhidas que casam com ele
+  const expandir = (n: string): string[] => {
+    if (!n.includes('*')) return [n];
+    const forma = new RegExp(`^${n.split('*').map((x) => x.replace(/[.+?^${}()|[\]\\]/g, '\\$&')).join('.*')}$`);
+    const achados = [...idDoNome.keys()].filter((k) => forma.test(k));
+    return achados.length ? achados : [n];
+  };
   const ids = (nomes: string[]) =>
-    nomes
+    [...new Set(nomes.flatMap(expandir))]
       .map((n) => {
         const id = idDoNome.get(n);
         if (id) citadas.add(id);
@@ -72,7 +82,7 @@ export default function montar() {
   const celula = (t: string) => t.replace(/\|/g, '\\|').replace(/\n/g, ' ');
   const linhas: string[] = [];
   linhas.push('# Inventário dos textos: cobertura', '');
-  linhas.push(`Gerado por \`scripts/textos/montar.ts\` a partir da colheita (\`colheita.json\`) e da tabela escrita à mão em \`scripts/textos/cobertura.ts\`. Não edite este arquivo: mude a tabela e monte de novo (\`npx vite-node scripts/textos/montar.ts\`).`, '');
+  linhas.push(`Gerado por \`scripts/textos/montar.ts\` a partir da colheita (\`colheita.json\`) e da tabela escrita à mão em \`scripts/textos/cobertura.ts\`. Não edite este arquivo: mude a tabela e monte de novo (\`npx vite-node scripts/textos/montar-agora.ts\`).`, '');
   linhas.push('## Como ler', '');
   for (const n of NOTAS) linhas.push(`- ${n}`);
   linhas.push('');
@@ -99,8 +109,31 @@ export default function montar() {
   }
   const soma = (ts: Tela[]) => ts.reduce((n, t) => n + t.palavrasNaTela, 0);
   const milhar = (n: number) => n.toLocaleString('pt-BR');
+  // ---- a mesma régua, as mesmas 41 telas: 13/11 (depois da etapa 1) e hoje ----
+  const arquivoDe1311 = resolve(SAIDA, '../../frontend-novo/textos/medidas-de-texto.json');
+  if (existsSync(arquivoDe1311)) {
+    const antes = (JSON.parse(readFileSync(arquivoDe1311, 'utf8')) as { enxuta: Record<string, { palavrasNaTela: number; palavrasAVista: number }> }).enxuta;
+    linhas.push('## As 41 telas de 13/11, com a mesma régua', '');
+    linhas.push('`palavrasNaTela` de `docs/revisoes/frontend-novo/textos/medidas-de-texto.json` (a medida "enxuta", depois da etapa 1) e da tela de hoje que refaz o mesmo caminho.', '');
+    linhas.push('| Tela de 13/11 | Tela de hoje | 13/11 | Hoje | Diferença |', '|---|---|---|---|---|');
+    let [somaAntes, somaHoje] = [0, 0];
+    for (const [velha, nova] of DE_13_11) {
+      const hoje = telas.find((t) => t.id === idDoNome.get(nova));
+      const a = antes[velha]?.palavrasNaTela;
+      if (!hoje || a === undefined) {
+        falhas.push(`[montagem] comparação com 13/11: falta ${!hoje ? nova : velha}`);
+        continue;
+      }
+      somaAntes += a;
+      somaHoje += hoje.palavrasNaTela;
+      const d = hoje.palavrasNaTela - a;
+      linhas.push(`| ${velha} | \`${hoje.id}\` | ${a} | ${hoje.palavrasNaTela} | ${d === 0 ? '=' : d > 0 ? `+${d}` : d} |`);
+    }
+    linhas.push(`| **Soma** | | **${milhar(somaAntes)}** | **${milhar(somaHoje)}** | ${somaHoje - somaAntes === 0 ? '=' : somaHoje - somaAntes > 0 ? `+${somaHoje - somaAntes}` : somaHoje - somaAntes} |`, '');
+  }
+
   linhas.push('## Totais', '');
-  linhas.push(`- Telas colhidas: **${telas.length}**.`);
+  linhas.push(`- Telas colhidas: **${telas.length}**, do app na versão \`${cabeca.versaoDoApp ?? 'desconhecida'}\` (publicada em ${cabeca.publicadaEm ?? '?'}; colheita de ${cabeca.geradoEm.slice(0, 10)}).`);
   linhas.push(`- Soma de \`palavrasNaTela\`: **${milhar(soma(telas))}** (a mesma frase conta de novo em cada tela ou folha em que aparece).`);
   linhas.push(`- Linhas da tabela de cobertura: ${COBERTURA.length} (por tipo: ${TIPOS.map((t) => `${t} ${COBERTURA.filter((c) => c.tipo === t).length}`).join(', ')}); não alcançados: ${NAO_ALCANCADOS.length}.`);
   linhas.push(`- Falhas anotadas na colheita: ${falhas.length} (em \`colheita.json\`, campo \`falhas\`).`, '');
@@ -115,11 +148,9 @@ export default function montar() {
   tabela('Persona', personas.map((p): [string, Tela[]] => [p, telas.filter((t) => t.persona === p)]));
 
   mkdirSync(SAIDA, { recursive: true });
-  writeFileSync(resolve(SAIDA, 'colheita.json'), JSON.stringify({ geradoEm: new Date().toISOString(), telas, falhas }, null, 1) + '\n');
+  writeFileSync(resolve(SAIDA, 'colheita.json'), JSON.stringify({ ...cabeca, telas, falhas }, null, 1) + '\n');
   writeFileSync(resolve(SAIDA, 'cobertura.md'), linhas.join('\n'));
   const porFluxo = FLUXOS.map((f: Fluxo) => `${f} ${telas.filter((t) => t.fluxo === f).length}`).join(', ');
   console.log(`[inventário] ${telas.length} telas (${porFluxo}); ${milhar(soma(telas))} palavras; ${falhas.length} falhas`);
   for (const f of falhas) console.log(`  falha: ${f}`);
 }
-
-if (process.argv[1]?.endsWith('montar.ts')) montar();
