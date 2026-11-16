@@ -35,7 +35,9 @@ for (const f of fluxos) {
 }
 const tot = (i) => soma(linhasFluxo, (l) => l[i]);
 linhasFluxo.push(['**Tudo**', tot(1), tot(2), tot(3), pct(tot(2), tot(3)), tot(5), tot(6), tot(7), tot(8)]);
-md.push('## Por fluxo', '', tabela(['Fluxo', 'Telas', 'Palavras antes', 'Palavras depois', 'Mudança', 'Blocos de 15 ou mais, antes', 'Depois', 'Selos à vista, antes', 'Depois'], linhasFluxo), '');
+const todas = (c) => `${c.telas.length} telas, ${soma(c.telas, (t) => t.palavrasNaTela).toLocaleString('pt-BR')} palavras`;
+md.push(`**Tudo o que cada medição colheu** (com as telas que só existem numa delas): antes, ${todas(antes)}; agora, ${todas(depois)}.`, '');
+md.push('## Por fluxo (só as telas que existem nas duas)', '', tabela(['Fluxo', 'Telas', 'Palavras antes', 'Palavras depois', 'Mudança', 'Blocos de 15 ou mais, antes', 'Depois', 'Selos à vista, antes', 'Depois'], linhasFluxo), '');
 for (const f of fluxos) {
   const mudou = porFluxo[f].filter(([x, y]) => x.palavrasNaTela !== y.palavrasNaTela).sort((p, q) => q[0].palavrasNaTela - q[1].palavrasNaTela - (p[0].palavrasNaTela - p[1].palavrasNaTela));
   if (!mudou.length) continue;
@@ -48,4 +50,5 @@ if (soDepois.length) md.push('## Telas que só existem na medição de agora', '
 if (depois.falhas?.length) md.push('## Passos da colheita de agora que falharam', '', ...depois.falhas.map((x) => `- ${x}`), '');
 writeFileSync('docs/revisoes/textos/depois/comparacao.md', md.join('\n'));
 console.log(tabela(['Fluxo', 'Telas', 'Antes', 'Depois', 'Mudança'], linhasFluxo.map((l) => l.slice(0, 5))));
+console.log(`tudo: antes ${todas(antes)}; agora ${todas(depois)}`);
 console.log(`só antes: ${soAntes.length} · só depois: ${soDepois.length} · falhas: ${depois.falhas?.length ?? 0}`);

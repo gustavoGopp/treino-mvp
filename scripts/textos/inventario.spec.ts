@@ -36,6 +36,8 @@ const forcarEnvio = (page: Page) => page.locator('main form').evaluate((f: HTMLF
 // "Entenda o treino" (Meus dados). Os passos que abriam uma folha de selo ou de "por quê?" numa tela só rodam se o alvo
 // ainda existir nela; as telas que mudaram de lugar guardam o nome de antes, para a comparação com a medida de 16/11.
 const haNaTela = async (alvo: Locator) => (await alvo.count()) > 0;
+/** O botão do cartão de texto do exercício sem animação: "Como fazer" (até 16/11/2026, "Como fazer: dicas e erros"). */
+const COMO_FAZER = /^Como fazer/;
 /** Abre a folha de um toque, se o toque ainda existir na tela. */
 async function folhaSeHouver(r: Roteiro, nome: string, alvo: Locator, o: Parameters<Roteiro['folha']>[2]) {
   if (!(await haNaTela(alvo))) return;
@@ -411,10 +413,8 @@ roteiro('inicio-ana', 10, 'inicio', 'ana', async (r, page) => {
       await r.foto('folha-do-exercicio-ver-mais-opcoes', { titulo: 'Folha do exercício, com "Alternativas" aberto', comoChegar: 'Folha do exercício → "Alternativas (N)".', tipo: 'bloco aberto' });
       await mais.click();
     }
-    await folha.locator('summary', { hasText: /^Por que este exercício/ }).click();
-    await folha.locator('summary', { hasText: /^Por que este exercício/ }).scrollIntoViewIfNeeded();
-    await r.foto('folha-do-exercicio-por-que', { titulo: 'Folha do exercício, com "Por que este exercício" aberto', comoChegar: 'Folha do exercício → "Por que este exercício (N motivos)".', tipo: 'bloco aberto' });
-    await folhaDoSelo(r, 'folha-do-exercicio-folha-selo', folha.locator('details[open] ul.lista button.selo').first(), { titulo: 'Folha "De onde vem isto" (o selo do 1º motivo do exercício)', comoChegar: 'Folha do exercício → "Por que este exercício" → toque no 1º selo.' });
+    // "Por que este exercício" saiu da folha (16/11/2026): os motivos de cada exercício estão em "Entenda o treino" →
+    // "Os exercícios: por que cada um e a próxima carga", colhido no roteiro `entenda-ana` (entenda-os-exercicios)
     await r.fecharFolha();
   });
   await sobreOPrograma(r, '', 'a Ana', true);
@@ -436,11 +436,11 @@ roteiro('inicio-ana', 10, 'inicio', 'ana', async (r, page) => {
     await page.locator('.cartao-ex', { has: page.locator('.miniatura.vazia') }).first().getByRole('button').first().click();
     await folhaPronta(page);
     const folha = page.getByRole('dialog').last();
-    await expect(folha.getByRole('button', { name: 'Como fazer: dicas e erros' })).toBeVisible();
+    await expect(folha.getByRole('button', { name: COMO_FAZER })).toBeVisible();
     await r.foto('folha-do-exercicio-sem-animacao', { titulo: 'Folha de um exercício sem animação (guia em texto): crucifixo invertido sentado', comoChegar: 'Início → aba B → toque no exercício com "guia em texto".', tipo: 'folha' });
-    await folha.getByRole('button', { name: 'Como fazer: dicas e erros' }).click();
+    await folha.getByRole('button', { name: COMO_FAZER }).click();
     await folhaPronta(page);
-    await r.foto('folha-como-fazer-em-texto', { titulo: 'Folha "Como fazer (em texto)" como abre', comoChegar: 'Folha do exercício sem animação → "Como fazer: dicas e erros".', tipo: 'folha' });
+    await r.foto('folha-como-fazer-em-texto', { titulo: 'Folha "Como fazer (em texto)" como abre', comoChegar: 'Folha do exercício sem animação → "Como fazer".', tipo: 'folha' });
     await page.getByRole('dialog', { name: 'Como fazer (em texto)' }).locator('summary').click();
     await r.foto('folha-como-fazer-em-texto-passo-a-passo', { titulo: 'Folha "Como fazer (em texto)", com "Posição, execução e carga, passo a passo" aberto', comoChegar: 'Folha "Como fazer (em texto)" → "Posição, execução e carga, passo a passo".', tipo: 'bloco aberto' });
     await r.fecharFolha();
@@ -478,7 +478,7 @@ roteiro('inicio-ana-versoes', 20, 'inicio', 'ana', async (r, page) => {
     await page.locator('main > details > summary', { hasText: 'O seu programa' }).click();
     const sobre = page.locator('main > details[open]');
     await sobre.getByRole('button', { name: 'Ver ajustes possíveis' }).scrollIntoViewIfNeeded();
-    await r.foto('sobre-o-programa-ver-ajustes', { titulo: 'Folha "Sobre o programa", com "Ver ajustes possíveis" no fim', comoChegar: 'Início → "Ver" → "Manter…" → "Sobre o programa".', tipo: 'folha' });
+    await r.foto('sobre-o-programa-ver-ajustes', { titulo: '"Entenda o treino" → "O seu programa", com "Ver ajustes possíveis" (até 16/11, no fim da folha "Sobre o programa")', comoChegar: 'Início → "Ver" → "Manter…" → Meus dados → "Entenda o treino" → "O seu programa".', tipo: 'bloco aberto' });
     await sobre.getByRole('button', { name: 'Ver ajustes possíveis' }).click();
     await inicioPronto(page);
     await verAvisos(page);
@@ -523,7 +523,7 @@ roteiro('inicio-ana-saude', 30, 'inicio', 'ana + saúde', async (r, page) => {
   await sobreOPrograma(r, '-ana-saude', 'a Ana com dor', false);
   await r.passo('início com dor, folha do exercício', async () => {
     await abrirExercicio(page, /./);
-    await r.foto('folha-do-exercicio-ana-saude', { titulo: 'Folha do 1º exercício da Ana com dor, com os motivos abertos', comoChegar: 'Início com dor → toque no 1º exercício → "Por que este exercício".', tipo: 'bloco aberto' });
+    await r.foto('folha-do-exercicio-ana-saude', { titulo: 'Folha do 1º exercício da Ana com dor, com "Alternativas" aberto (até 16/11, com os motivos abertos)', comoChegar: 'Início com dor → toque no 1º exercício → "Alternativas (N)".', tipo: 'bloco aberto' });
     await r.fecharFolha();
   });
   await r.passo('refazer a triagem com resposta que pausa', async () => {
@@ -580,7 +580,7 @@ for (const [i, nome, quem, descricao] of [
     await sobreOPrograma(r, `-${nome}`, quem, false);
     await r.passo('folha do exercício', async () => {
       await abrirExercicio(page, /./);
-      await r.foto(`folha-do-exercicio-${nome}`, { titulo: `Folha do 1º exercício (${quem}), com os motivos abertos`, comoChegar: 'Início → toque no 1º exercício → "Por que este exercício".', tipo: 'bloco aberto' });
+      await r.foto(`folha-do-exercicio-${nome}`, { titulo: `Folha do 1º exercício (${quem}), com "Alternativas" aberto, se houver (até 16/11, com os motivos abertos)`, comoChegar: 'Início → toque no 1º exercício → "Alternativas (N)".', tipo: 'bloco aberto' });
       await r.fecharFolha();
     });
     if (nome === 'bruno') {
@@ -878,12 +878,12 @@ roteiro('treino-ana-texto', 30, 'treino', 'ana', async (r, page) => {
     await r.fecharFolha();
   });
   await r.passo('exercício sem animação', async () => {
-    for (let n = 0; n < 8 && !(await page.getByRole('button', { name: 'Como fazer: dicas e erros' }).count()); n++) if (!(await proximo(r))) break;
-    await expect(page.getByRole('button', { name: 'Como fazer: dicas e erros' })).toBeVisible();
+    for (let n = 0; n < 8 && !(await page.getByRole('button', { name: COMO_FAZER }).count()); n++) if (!(await proximo(r))) break;
+    await expect(page.getByRole('button', { name: COMO_FAZER })).toBeVisible();
     await r.foto('exercicio-sem-animacao', { titulo: `Treino: exercício sem animação, com o cartão de texto fechado (${await nomeDoExercicio(page)})`, comoChegar: 'Início → aba B → "Começar o treino" → "⋯" → "Próximo" até o exercício com guia em texto.', tipo: 'estado vazio' });
-    await page.getByRole('button', { name: 'Como fazer: dicas e erros' }).click();
+    await page.getByRole('button', { name: COMO_FAZER }).click();
     await folhaPronta(page);
-    await r.foto('exercicio-sem-animacao-folha-como-fazer', { titulo: 'Treino: folha "Como fazer (em texto)" como abre', comoChegar: 'Exercício sem animação → "Como fazer: dicas e erros".', tipo: 'folha' });
+    await r.foto('exercicio-sem-animacao-folha-como-fazer', { titulo: 'Treino: folha "Como fazer (em texto)" como abre', comoChegar: 'Exercício sem animação → "Como fazer".', tipo: 'folha' });
     await page.getByRole('dialog', { name: 'Como fazer (em texto)' }).locator('summary').click();
     await r.foto('exercicio-sem-animacao-folha-como-fazer-passo-a-passo', { titulo: 'Treino: folha "Como fazer (em texto)", com o passo a passo aberto', comoChegar: 'Folha "Como fazer (em texto)" → "Posição, execução e carga, passo a passo".', tipo: 'bloco aberto' });
     await r.fecharFolha();
@@ -1103,7 +1103,9 @@ roteiro('fim-ana', 10, 'fim-e-semana', 'ana', async (r, page) => {
   await expect(page.getByRole('heading', { name: 'A sua semana' })).toBeVisible();
   await r.foto('semana-vazia', { titulo: 'Semana sem nenhum treino (programa novo)', comoChegar: 'Início → "Semana" na barra de baixo, antes do 1º treino.', tipo: 'estado vazio' });
   await r.passo('semana, como ler este quadro', async () => {
+    // o bloco pode sair da Semana (o texto dele vai para "Entenda o treino" → "A sua semana e as pausas"): só se existir
     const resumo = page.locator('summary', { hasText: 'Como ler este quadro' });
+    if (!(await haNaTela(resumo))) return;
     await resumo.click();
     await resumo.scrollIntoViewIfNeeded();
     await r.foto('semana-como-ler-este-quadro', { titulo: 'Semana, com "Como ler este quadro" aberto', comoChegar: 'Semana → "Como ler este quadro".', tipo: 'bloco aberto' });
@@ -1136,14 +1138,19 @@ roteiro('fim-ana', 10, 'fim-e-semana', 'ana', async (r, page) => {
   await folhaSeHouver(r, 'fim-folha-para-que-serve', page.getByRole('button', { name: 'para que serve' }), { titulo: 'Folha "Hoje foi" (para que serve)', comoChegar: 'Fim do treino → "para que serve".' });
   await folhaSeHouver(r, 'fim-folha-por-que-da-proxima-vez', page.locator('.resumo-ex').first().getByRole('button', { name: 'por quê?' }), { titulo: 'Folha do "por quê?" de "Para a próxima vez" (o 1º exercício)', comoChegar: 'Fim do treino → "por quê?" na linha do exercício.' });
   await r.passo('fim, apagar este treino', async () => {
-    await page.getByRole('button', { name: 'Registrei algo errado: apagar este treino' }).click();
+    // "Registrei algo errado: apagar este treino" (pode virar "Apagar este treino")
+    const apagar = page.getByRole('button', { name: /pagar este treino$/ });
+    const rotulo = (await apagar.innerText()).trim();
+    await apagar.click();
     await page.getByRole('group', { name: 'Apagar este treino?' }).scrollIntoViewIfNeeded();
-    await r.foto('fim-apagar-este-treino', { titulo: 'Fim do treino, com a confirmação "Apagar este treino?"', comoChegar: 'Fim do treino → "Registrei algo errado: apagar este treino".', tipo: 'aviso' });
+    await r.foto('fim-apagar-este-treino', { titulo: 'Fim do treino, com a confirmação "Apagar este treino?"', comoChegar: `Fim do treino → "${rotulo}".`, tipo: 'aviso' });
     await page.getByRole('button', { name: 'Manter', exact: true }).click();
   });
+  // o botão "Ver a sua semana" do fim do treino pode sair: a Semana abre pelo endereço, e o caminho é o que houver na tela
+  const verASemana = await haNaTela(page.getByRole('link', { name: 'Ver a sua semana' }));
   await page.goto('/semana');
   await expect(page.getByRole('heading', { level: 1 })).toBeVisible();
-  await r.foto('semana-1-treino', { titulo: 'Semana com 1 treino', comoChegar: 'Fim do treino → "Ver a sua semana".' });
+  await r.foto('semana-1-treino', { titulo: 'Semana com 1 treino', comoChegar: verASemana ? 'Fim do treino → "Ver a sua semana".' : 'Fim do treino → "Voltar ao início" → "Semana" na barra de baixo.' });
   await r.passo('evolução', async () => {
     await page.locator('a[href^="/evolucao/"]').first().click();
     await expect(page).toHaveURL(/\/evolucao\//);
@@ -1192,10 +1199,13 @@ roteiro('semana-com-historico', 20, 'fim-e-semana', 'ana', async (r, page) => {
   await r.passo('semana completa', async () => {
     await comTreinos(page, [...antes, { dia: 2, quando: em('11-02') }, { dia: 1, quando: em('11-03') }, { dia: 0, quando: em('11-04'), series: { 'supino-reto': [[8, 12], [8, 12]] } }], '/semana');
     await expect(page.getByRole('heading', { name: 'A sua semana' })).toBeVisible();
-    await r.foto('semana-completa', { titulo: 'Semana completa (3 de 3), com "O que subiu nesta semana", as últimas semanas e a evolução', comoChegar: 'Histórico fictício: 8 treinos em 3 semanas, os 3 desta semana feitos → "Semana".' });
-    await page.getByRole('region', { name: 'O que subiu nesta semana' }).getByRole('link').first().click();
+    // "O que subiu nesta semana" (pode virar "Subiu nesta semana")
+    const subiu = page.getByRole('region', { name: /ubiu nesta semana/ });
+    const tituloDoSubiu = (await subiu.getByRole('heading').first().innerText()).trim();
+    await r.foto('semana-completa', { titulo: `Semana completa (3 de 3), com "${tituloDoSubiu}", as últimas semanas e a evolução`, comoChegar: 'Histórico fictício: 8 treinos em 3 semanas, os 3 desta semana feitos → "Semana".' });
+    await subiu.getByRole('link').first().click();
     await expect(page).toHaveURL(/\/evolucao\//);
-    await r.foto('evolucao-com-historico', { titulo: 'Evolução de um exercício com vários treinos ("Começou com … · agora …", recorde)', comoChegar: 'Semana → "O que subiu nesta semana" → toque no exercício.' });
+    await r.foto('evolucao-com-historico', { titulo: 'Evolução de um exercício com vários treinos ("Começou com … · agora …", recorde)', comoChegar: `Semana → "${tituloDoSubiu}" → toque no exercício.` });
     await page.goto('/treino/fim');
     await expect(page.getByRole('heading', { name: 'Treino concluído' })).toBeVisible();
     await r.foto('fim-com-recorde', { titulo: 'Fim do treino com recorde e carga para subir ("O que mudou hoje")', comoChegar: 'Histórico fictício: o último treino tem um recorde no supino → fim do treino.' });
@@ -1211,9 +1221,11 @@ roteiro('semana-com-historico', 20, 'fim-e-semana', 'ana', async (r, page) => {
   });
   await r.passo('revisão da meta', async () => {
     await comTreinos(page, [{ dia: 0, quando: em('10-06') }, { dia: 1, quando: em('10-13') }, { dia: 2, quando: em('10-20') }, { dia: 0, quando: em('10-27') }, { dia: 1, quando: em('11-02') }], '/semana');
-    await expect(page.getByRole('heading', { name: 'Um programa que cabe melhor?' })).toBeVisible();
-    await page.getByRole('heading', { name: 'Um programa que cabe melhor?' }).scrollIntoViewIfNeeded();
-    await r.foto('semana-revisao-da-meta', { titulo: 'Semana com a oferta "Um programa que cabe melhor?"', comoChegar: 'Histórico fictício: 1 treino por semana nas últimas 4 semanas, com 3 planejados → "Semana".', tipo: 'aviso' });
+    // "Um programa que cabe melhor?" (pode virar "Um programa com menos dias?")
+    const revisao = page.getByRole('heading', { name: /Um programa (que cabe melhor|com menos dias)\?/ });
+    await expect(revisao).toBeVisible();
+    await revisao.scrollIntoViewIfNeeded();
+    await r.foto('semana-revisao-da-meta', { titulo: `Semana com a oferta "${(await revisao.innerText()).trim()}"`, comoChegar: 'Histórico fictício: 1 treino por semana nas últimas 4 semanas, com 3 planejados → "Semana".', tipo: 'aviso' });
   });
 });
 
@@ -1228,7 +1240,11 @@ roteiro('volta-e-semana-leve', 30, 'fim-e-semana', 'ana', async (r, page) => {
   await volta('22-dias', '22 dias', [{ dia: 0, quando: em('10-12') }, { dia: 1, quando: em('10-13') }, { dia: 2, quando: em('10-14') }]);
   await r.passo('volta de 22 dias, sobre o programa e o treino', async () => {
     await expect((await entenda(page, 'O seu programa')).getByText(/^(Está bom|Dá para melhorar)/)).toBeVisible();
-    await r.foto('sobre-o-programa-na-volta', { titulo: 'Folha "Sobre o programa" na volta da pausa (a fase da semana 1)', comoChegar: 'Início na volta da pausa → "Sobre o programa".', tipo: 'folha' });
+    await r.foto('sobre-o-programa-na-volta', { titulo: '"Entenda o treino" → "O seu programa" na volta da pausa (a fase da semana 1; até 16/11, a folha "Sobre o programa")', comoChegar: 'Na volta da pausa: Meus dados → "Entenda o treino" → "O seu programa".', tipo: 'bloco aberto' });
+    // o que explica a Semana e a volta da pausa (até 16/11, os "por quê?" do cartão da volta e "Como ler este quadro")
+    const pausas = await entenda(page, 'A sua semana e as pausas');
+    await expect(pausas.locator('li').first()).toBeVisible();
+    await r.foto('entenda-a-sua-semana-e-as-pausas', { titulo: '"Entenda o treino", com "A sua semana e as pausas" aberto, na volta de uma pausa de 22 dias (a semana e a mensagem da pausa)', comoChegar: 'Na volta da pausa: Meus dados → "Entenda o treino" → "A sua semana e as pausas".', tipo: 'bloco aberto' });
     await page.goto('/programa');
     await inicioPronto(page);
     await comecarTreino(page);
@@ -1251,21 +1267,25 @@ roteiro('volta-e-semana-leve', 30, 'fim-e-semana', 'ana', async (r, page) => {
     await comTreinos(page, pesados);
     await inicioPronto(page);
     await expect(page.locator('.aviso-linha')).toContainText('Semana leve?');
-    await r.foto('inicio-oferta-de-semana-leve', { titulo: 'Início com a oferta "Semana leve? (opcional)" na linha do aviso', comoChegar: 'Histórico fictício: "pesado demais" em 2 dos últimos 3 treinos, na 3ª semana → Início.', tipo: 'aviso' });
+    await r.foto('inicio-oferta-de-semana-leve', { titulo: 'Início com a oferta de semana leve ("Semana leve?") na linha do aviso', comoChegar: 'Histórico fictício: "pesado demais" em 2 dos últimos 3 treinos, na 3ª semana → Início.', tipo: 'aviso' });
     await verAvisos(page);
-    await r.foto('inicio-oferta-de-semana-leve-folha-avisos', { titulo: 'Folha "Avisos": "Semana leve? (opcional)" e os outros avisos', comoChegar: 'Início com a oferta → "Ver".', tipo: 'folha' });
+    await r.foto('inicio-oferta-de-semana-leve-folha-avisos', { titulo: 'Folha "Avisos": a oferta de semana leve e os outros avisos', comoChegar: 'Início com a oferta → "Ver".', tipo: 'folha' });
     await r.fecharFolha();
+    // a oferta: "Semana leve? (opcional)" (pode virar "Semana leve?"), com "Fazer a semana leve" (pode virar "Fazer")
+    const oferta = page.getByRole('region', { name: /^Semana leve\?/ });
     await page.goto('/semana');
-    await expect(page.getByRole('region', { name: 'Semana leve? (opcional)' })).toBeVisible();
-    await page.getByRole('region', { name: 'Semana leve? (opcional)' }).scrollIntoViewIfNeeded();
-    await r.foto('semana-com-oferta-de-semana-leve', { titulo: 'Semana com a oferta "Semana leve? (opcional)"', comoChegar: 'Histórico fictício com "pesado demais" → "Semana".', tipo: 'aviso' });
+    await expect(oferta).toBeVisible();
+    await oferta.scrollIntoViewIfNeeded();
+    await r.foto('semana-com-oferta-de-semana-leve', { titulo: 'Semana com a oferta de semana leve ("Semana leve?")', comoChegar: 'Histórico fictício com "pesado demais" → "Semana".', tipo: 'aviso' });
     await page.goto('/treino/fim');
-    await expect(page.getByRole('region', { name: 'Semana leve? (opcional)' })).toBeVisible();
-    await r.foto('fim-com-oferta-de-semana-leve', { titulo: 'Fim do treino com "pesado demais" marcado e a oferta "Semana leve? (opcional)"', comoChegar: 'Histórico fictício: o último treino marcado "pesado demais" → fim do treino.', tipo: 'aviso' });
-    await page.getByRole('button', { name: 'Fazer a semana leve' }).click();
+    await expect(oferta).toBeVisible();
+    await r.foto('fim-com-oferta-de-semana-leve', { titulo: 'Fim do treino com "pesado demais" marcado e a oferta de semana leve ("Semana leve?")', comoChegar: 'Histórico fictício: o último treino marcado "pesado demais" → fim do treino.', tipo: 'aviso' });
+    const fazer = oferta.getByRole('button', { name: /^Fazer/ });
+    const rotuloDeFazer = (await fazer.innerText()).trim();
+    await fazer.click();
     await expect(page.getByRole('region', { name: /^Semana leve até / })).toBeVisible();
     await page.getByRole('region', { name: /^Semana leve até / }).scrollIntoViewIfNeeded();
-    await r.foto('fim-com-semana-leve-ativa', { titulo: 'Fim do treino com a semana leve aceita ("Semana leve até …")', comoChegar: 'Fim do treino com a oferta → "Fazer a semana leve".', tipo: 'aviso' });
+    await r.foto('fim-com-semana-leve-ativa', { titulo: 'Fim do treino com a semana leve aceita ("Semana leve até …")', comoChegar: `Fim do treino com a oferta → "${rotuloDeFazer}".`, tipo: 'aviso' });
   });
   await r.passo('semana leve, ativa', async () => {
     await page.goto('/programa');
@@ -1275,11 +1295,12 @@ roteiro('volta-e-semana-leve', 30, 'fim-e-semana', 'ana', async (r, page) => {
     await verAvisos(page);
     await r.foto('inicio-semana-leve-ativa-folha-avisos', { titulo: 'Folha "Avisos": "Semana leve até …", com "Voltar ao normal"', comoChegar: 'Início com a semana leve ativa → "Ver".', tipo: 'folha' });
     await r.fecharFolha();
-    await page.goto('/entenda');
-    await page.locator('main > details > summary', { hasText: 'O seu programa' }).click();
-    await expect(page.getByRole('dialog').getByRole('heading', { name: 'Como está o seu programa' })).toBeVisible();
-    await r.foto('sobre-o-programa-na-semana-leve', { titulo: 'Folha "Sobre o programa" na semana leve (a fase diz "Semana leve: …")', comoChegar: 'Início com a semana leve ativa → "Sobre o programa".', tipo: 'folha' });
-    await r.fecharFolha();
+    // até 16/11 era a folha "Sobre o programa" do início; agora é o bloco "O seu programa" de "Entenda o treino"
+    const programa = await entenda(page, 'O seu programa');
+    await expect(programa.locator('p.fase')).toBeVisible();
+    // "Como está o seu programa" chega num pedaço à parte
+    await expect(programa.getByText(/^(Está bom|Dá para melhorar)/)).toBeVisible();
+    await r.foto('sobre-o-programa-na-semana-leve', { titulo: '"Entenda o treino" → "O seu programa" na semana leve (a fase fala da semana leve; até 16/11, a folha "Sobre o programa")', comoChegar: 'Com a semana leve ativa: Meus dados → "Entenda o treino" → "O seu programa".', tipo: 'bloco aberto' });
     await page.goto('/semana');
     await expect(page.getByRole('heading', { name: 'A sua semana' })).toBeVisible();
     await r.foto('semana-na-semana-leve', { titulo: 'Semana com a semana leve ativa (a meta é a prescrita para a semana)', comoChegar: 'Semana leve aceita → "Semana".', tipo: 'aviso' });
@@ -1840,7 +1861,7 @@ test.describe('sem o service worker', () => {
       await page.goto('/entenda');
       await page.locator('main > details > summary', { hasText: 'O seu programa' }).click();
       await expect(page.getByText('Conferindo o programa…')).toBeVisible();
-      await r.foto('sobre-o-programa-conferindo', { titulo: 'Folha "Sobre o programa" enquanto o avaliador chega ("Conferindo o programa…")', comoChegar: 'Início → "Sobre o programa", com a rede lenta e sem o arquivo guardado.', tipo: 'carregando', fluxo: 'inicio' });
+      await r.foto('sobre-o-programa-conferindo', { titulo: '"Entenda o treino" → "O seu programa" enquanto o avaliador chega ("Conferindo o programa…"; até 16/11, na folha "Sobre o programa")', comoChegar: 'Meus dados → "Entenda o treino" → "O seu programa", com a rede lenta e sem o arquivo guardado.', tipo: 'carregando', fluxo: 'inicio' });
       await soltar();
       await r.fecharFolha();
       await page.goto('/programa');
@@ -1849,48 +1870,70 @@ test.describe('sem o service worker', () => {
       await page.goto('/entenda');
       await page.locator('main > details > summary', { hasText: 'O seu programa' }).click();
       await expect(page.getByText('Não deu para conferir o programa agora.')).toBeVisible();
-      await r.foto('sobre-o-programa-sem-conferir', { titulo: 'Folha "Sobre o programa" quando o avaliador não baixa', comoChegar: 'Início → "Sobre o programa", sem rede e sem o arquivo guardado.', tipo: 'erro' });
+      await r.foto('sobre-o-programa-sem-conferir', { titulo: '"Entenda o treino" → "O seu programa" quando o avaliador não baixa (até 16/11, na folha "Sobre o programa")', comoChegar: 'Meus dados → "Entenda o treino" → "O seu programa", sem rede e sem o arquivo guardado.', tipo: 'erro' });
       await page.unroute(avaliador);
       await r.fecharFolha();
     });
+    // "Entenda o treino" pede as regras assim que abre (o bloco "Todas as regras e as fontes" já está montado, fechado) e,
+    // com as regras, as fontes. Por isso o arquivo é segurado (ou recusado) ANTES de abrir a página: tocar no selo com a
+    // página já aberta e a rede boa mostra a regra na hora, sem "Carregando…".
     await r.passo('a regra e as fontes, carregando e sem carregar', async () => {
-      await page.goto('/entenda');
-      await page.locator('main > details > summary', { hasText: 'Como ler o treino' }).click();
-      const selo = page.locator('.como-ler button.selo').first();
-      let soltar = await segurar(/\/assets\/regras-[\w-]+\.js$/);
-      await selo.click();
-      await folhaPronta(page);
-      await expect(page.getByText('Carregando a regra…')).toBeVisible();
-      await r.foto('selo-carregando-a-regra', { titulo: 'Folha "De onde vem isto" enquanto a regra chega ("Carregando a regra…")', comoChegar: 'Toque num selo, com a rede lenta e sem o arquivo guardado.', tipo: 'carregando' });
+      const REGRAS = /\/assets\/regras-[\w-]+\.js$/;
+      const FONTES = /\/assets\/fontes-[\w-]+\.js$/;
+      /** Abre "Entenda o treino" → "Como ler o treino" e toca no 1º selo (o de "Carga"); devolve a folha. */
+      const abrirOSelo = async () => {
+        const comoLer = await entenda(page, 'Como ler o treino');
+        await comoLer.locator('button.selo').first().click();
+        await folhaPronta(page);
+        return page.getByRole('dialog', { name: 'De onde vem isto' });
+      };
+      /** Abre "Entenda o treino" de novo (só com este bloco aberto) → "Todas as regras e as fontes"; devolve o bloco. */
+      const abrirTodasAsRegras = async () => {
+        const bloco = await entenda(page, 'Todas as regras e as fontes');
+        await bloco.locator(':scope > summary').scrollIntoViewIfNeeded();
+        return bloco;
+      };
+      const COMO = 'Meus dados → "Entenda o treino" → "Como ler o treino" → toque no selo de "Carga"';
+
+      // ---- as regras demoram ----
+      let soltar = await segurar(REGRAS);
+      let folha = await abrirOSelo();
+      await expect(folha.getByText('Carregando a regra…')).toBeVisible();
+      await r.foto('selo-carregando-a-regra', { titulo: 'Folha "De onde vem isto" enquanto a regra chega ("Carregando a regra…")', comoChegar: `${COMO}, com a rede lenta e sem o arquivo das regras guardado.`, tipo: 'carregando' });
+      await r.fecharFolha();
+      let todasAsRegras = await abrirTodasAsRegras();
+      await expect(todasAsRegras.getByText('Carregando as regras…')).toBeVisible();
+      await r.foto('entenda-todas-as-regras-carregando', { titulo: '"Entenda o treino", com "Todas as regras e as fontes" aberto enquanto as regras chegam ("Carregando as regras…")', comoChegar: 'Meus dados → "Entenda o treino" → "Todas as regras e as fontes", com a rede lenta e sem o arquivo das regras guardado.', tipo: 'carregando' });
       await soltar();
-      await r.fecharFolha();
-      await page.goto('/entenda');
-      await page.locator('main > details > summary', { hasText: 'Como ler o treino' }).click();
-      soltar = await segurar(/\/assets\/fontes-[\w-]+\.js$/);
-      await selo.click();
-      await folhaPronta(page);
-      await expect(page.getByText('Carregando as fontes…')).toBeVisible();
-      await r.foto('selo-carregando-as-fontes', { titulo: 'Folha "De onde vem isto" enquanto as fontes chegam ("Carregando as fontes…")', comoChegar: 'Toque num selo, com a rede lenta e sem o arquivo das fontes guardado.', tipo: 'carregando' });
+      await expect(todasAsRegras.locator('.regra-do-catalogo').first()).toBeVisible();
+
+      // ---- as fontes demoram ----
+      soltar = await segurar(FONTES);
+      folha = await abrirOSelo();
+      await expect(folha.getByText('Carregando as fontes…')).toBeVisible();
+      await r.foto('selo-carregando-as-fontes', { titulo: 'Folha "De onde vem isto" enquanto as fontes chegam ("Carregando as fontes…")', comoChegar: `${COMO}, com a rede lenta e sem o arquivo das fontes guardado.`, tipo: 'carregando' });
       await soltar();
+      await expect(folha.locator('.selo-folha ol li').first()).toBeVisible();
       await r.fecharFolha();
-      await page.goto('/entenda');
-      await page.locator('main > details > summary', { hasText: 'Como ler o treino' }).click();
-      await page.route(/\/assets\/fontes-[\w-]+\.js$/, (rota) => rota.abort());
-      await selo.click();
-      await folhaPronta(page);
-      await expect(page.getByText(/^Não deu para carregar as fontes agora/)).toBeVisible();
-      await r.foto('selo-sem-as-fontes', { titulo: 'Folha "De onde vem isto" quando as fontes não baixam', comoChegar: 'Toque num selo, sem rede e sem o arquivo das fontes guardado.', tipo: 'erro' });
+
+      // ---- as fontes não baixam ----
+      await page.route(FONTES, (rota) => rota.abort());
+      folha = await abrirOSelo();
+      await expect(folha.getByText(/^Não deu para carregar as fontes agora/)).toBeVisible();
+      await r.foto('selo-sem-as-fontes', { titulo: 'Folha "De onde vem isto" quando as fontes não baixam', comoChegar: `${COMO}, sem rede e sem o arquivo das fontes guardado.`, tipo: 'erro' });
       await r.fecharFolha();
-      await page.unroute(/\/assets\/fontes-[\w-]+\.js$/);
-      await page.goto('/entenda');
-      await page.locator('main > details > summary', { hasText: 'Como ler o treino' }).click();
-      await page.route(/\/assets\/regras-[\w-]+\.js$/, (rota) => rota.abort());
-      await selo.click();
-      await folhaPronta(page);
-      await expect(page.getByText(/^Não deu para carregar a regra agora/)).toBeVisible();
-      await r.foto('selo-sem-a-regra', { titulo: 'Folha "De onde vem isto" quando a regra não baixa', comoChegar: 'Toque num selo, sem rede e sem o arquivo das regras guardado.', tipo: 'erro' });
+      await page.unroute(FONTES);
+
+      // ---- as regras não baixam ----
+      await page.route(REGRAS, (rota) => rota.abort());
+      folha = await abrirOSelo();
+      await expect(folha.getByText(/^Não deu para carregar a regra agora/)).toBeVisible();
+      await r.foto('selo-sem-a-regra', { titulo: 'Folha "De onde vem isto" quando a regra não baixa', comoChegar: `${COMO}, sem rede e sem o arquivo das regras guardado.`, tipo: 'erro' });
       await r.fecharFolha();
-      await page.unroute(/\/assets\/regras-[\w-]+\.js$/);
+      todasAsRegras = await abrirTodasAsRegras();
+      await expect(todasAsRegras.getByText(/^Não deu para carregar as regras agora/)).toBeVisible();
+      await r.foto('entenda-todas-as-regras-sem-carregar', { titulo: '"Entenda o treino", com "Todas as regras e as fontes" aberto quando as regras não baixam', comoChegar: 'Meus dados → "Entenda o treino" → "Todas as regras e as fontes", sem rede e sem o arquivo das regras guardado.', tipo: 'erro' });
+      await page.unroute(REGRAS);
     });
     await r.passo('o guia animado que não carrega', async () => {
       await page.goto('/programa');

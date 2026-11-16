@@ -67,6 +67,26 @@
     [
       "^Termos comuns do treino",
       "definição"
+    ],
+    [
+      "^Vaga de |^Descanso de \\d.*(rende|crescimento)|perto da falha|^Multiarticular: |^Ordem da sessão: |^A semana leve é sugerida",
+      "justificativa"
+    ],
+    [
+      "^No quadro da semana, conta a série",
+      "definição"
+    ],
+    [
+      "^\\d+ de \\d+ treinos\\. |^Nenhuma série registrada|^\\d+ de \\d+ exercícios feitos\\.",
+      "estado"
+    ],
+    [
+      "traz a montagem segura",
+      "segurança"
+    ],
+    [
+      "^Sem descansar, tire ",
+      "instrução"
     ]
   ]
 }

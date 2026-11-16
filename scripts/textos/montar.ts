@@ -1,12 +1,12 @@
 import { copyFileSync, existsSync, mkdirSync, readdirSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
 import { resolve } from 'node:path';
-import { COBERTURA, DE_13_11, NAO_ALCANCADOS, NOTAS } from './cobertura';
+import { COBERTURA, DE_13_11, NAO_ALCANCADOS, NOTAS, SAIRAM_DO_APP } from './cobertura';
 import { FLUXOS, PASTA_DAS_PARTES, SAIDA, type Fluxo, type Parte, type Tela } from './colher';
 
 // A montagem do inventário: junta as partes que cada teste guardou (colher.ts, PASTA_DAS_PARTES), numera as telas dentro de
-// cada fluxo ("fluxo/NN-nome"), copia as capturas com o nome final e escreve colheita.json e cobertura.md em
-// docs/revisoes/textos/inventario/. Roda sozinha no fim do Playwright (globalTeardown); para montar de novo sem
-// percorrer o app: npx vite-node scripts/textos/montar-agora.ts
+// cada fluxo ("fluxo/NN-nome"), copia as capturas com o nome final e escreve colheita.json e cobertura.md na pasta de
+// saída (colher.ts, SAIDA: docs/revisoes/textos/depois, ou a de INVENTARIO=<pasta>). Roda sozinha no fim do Playwright
+// (globalTeardown); para montar de novo sem percorrer o app: npx vite-node scripts/textos/montar-agora.ts
 
 const lerPartes = (projeto: string): Parte[] => {
   const pasta = resolve(PASTA_DAS_PARTES, projeto);
@@ -22,6 +22,8 @@ export default function montar() {
   const claro = lerPartes('claro');
   const escuro = lerPartes('escuro');
   const falhas: string[] = [];
+  /** o que a saída diz e não é falha (as telas de 13/11 que saíram do app) */
+  const avisos: string[] = [];
   for (const p of [...claro, ...escuro]) for (const f of p.falhas) falhas.push(`[${p.projeto}/${p.chave}] ${f}`);
 
   rmSync(resolve(SAIDA, 'capturas'), { recursive: true, force: true });
@@ -70,13 +72,17 @@ export default function montar() {
     const achados = [...idDoNome.keys()].filter((k) => forma.test(k));
     return achados.length ? achados : [n];
   };
+  // um nome terminado em "?" é de uma tela que pode não existir nesta versão do app (um bloco de saída): sem ela, a
+  // célula diz isso e não há falha; qualquer outro nome que falte é falha
   const ids = (nomes: string[]) =>
     [...new Set(nomes.flatMap(expandir))]
-      .map((n) => {
+      .map((citado) => {
+        const opcional = citado.endsWith('?');
+        const n = opcional ? citado.slice(0, -1) : citado;
         const id = idDoNome.get(n);
         if (id) citadas.add(id);
-        else falhas.push(`[cobertura] a tabela cita "${n}", que não está na colheita`);
-        return id ? `\`${id}\`` : `**não colhido: ${n}**`;
+        else if (!opcional) falhas.push(`[cobertura] a tabela cita "${n}", que não está na colheita`);
+        return id ? `\`${id}\`` : opcional ? `*não existe nesta versão do app: ${n}*` : `**não colhido: ${n}**`;
       })
       .join('<br>');
   const celula = (t: string) => t.replace(/\|/g, '\\|').replace(/\n/g, ' ');
@@ -117,9 +123,19 @@ export default function montar() {
     linhas.push('`palavrasNaTela` de `docs/revisoes/frontend-novo/textos/medidas-de-texto.json` (a medida "enxuta", depois da etapa 1) e da tela de hoje que refaz o mesmo caminho.', '');
     linhas.push('| Tela de 13/11 | Tela de hoje | 13/11 | Hoje | Diferença |', '|---|---|---|---|---|');
     let [somaAntes, somaHoje] = [0, 0];
+    const sairam: string[] = [];
     for (const [velha, nova] of DE_13_11) {
       const hoje = telas.find((t) => t.id === idDoNome.get(nova));
       const a = antes[velha]?.palavrasNaTela;
+      // a tela que saiu do app de propósito (SAIRAM_DO_APP) não é cobrada: fica na tabela como "saiu do app", fora da soma
+      if (nova in SAIRAM_DO_APP) {
+        if (hoje) falhas.push(`[montagem] comparação com 13/11: ${nova} está em SAIRAM_DO_APP (cobertura.ts), mas foi colhida; tire a marca`);
+        else {
+          sairam.push(nova);
+          linhas.push(`| ${velha} | *saiu do app* (\`${nova}\`) | ${a ?? '?'} | — | saiu |`);
+          continue;
+        }
+      }
       if (!hoje || a === undefined) {
         falhas.push(`[montagem] comparação com 13/11: falta ${!hoje ? nova : velha}`);
         continue;
@@ -129,7 +145,13 @@ export default function montar() {
       const d = hoje.palavrasNaTela - a;
       linhas.push(`| ${velha} | \`${hoje.id}\` | ${a} | ${hoje.palavrasNaTela} | ${d === 0 ? '=' : d > 0 ? `+${d}` : d} |`);
     }
-    linhas.push(`| **Soma** | | **${milhar(somaAntes)}** | **${milhar(somaHoje)}** | ${somaHoje - somaAntes === 0 ? '=' : somaHoje - somaAntes > 0 ? `+${somaHoje - somaAntes}` : somaHoje - somaAntes} |`, '');
+    linhas.push(`| **Soma**${sairam.length ? ` (sem ${sairam.length === 1 ? 'a tela que saiu' : `as ${sairam.length} telas que saíram`} do app)` : ''} | | **${milhar(somaAntes)}** | **${milhar(somaHoje)}** | ${somaHoje - somaAntes === 0 ? '=' : somaHoje - somaAntes > 0 ? `+${somaHoje - somaAntes}` : somaHoje - somaAntes} |`, '');
+    if (sairam.length) {
+      linhas.push('Saíram do app (não entram na soma):', '');
+      for (const n of sairam) linhas.push(`- \`${n}\`: ${SAIRAM_DO_APP[n]}.`);
+      linhas.push('');
+      avisos.push(`comparação com 13/11: ${sairam.length === 1 ? '1 tela saiu' : `${sairam.length} telas saíram`} do app (não é falha): ${sairam.join(', ')}`);
+    }
   }
 
   linhas.push('## Totais', '');
@@ -152,5 +174,6 @@ export default function montar() {
   writeFileSync(resolve(SAIDA, 'cobertura.md'), linhas.join('\n'));
   const porFluxo = FLUXOS.map((f: Fluxo) => `${f} ${telas.filter((t) => t.fluxo === f).length}`).join(', ');
   console.log(`[inventário] ${telas.length} telas (${porFluxo}); ${milhar(soma(telas))} palavras; ${falhas.length} falhas`);
+  for (const a of avisos) console.log(`  [montagem] ${a}`);
   for (const f of falhas) console.log(`  falha: ${f}`);
 }

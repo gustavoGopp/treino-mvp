@@ -2,7 +2,11 @@
 // estado vazio e mensagem de erro ou validação achados em src/App.tsx e src/features (arquivo:linha), e a tela da
 // colheita que o cobre (pelo nome, sem o número: a montagem acha o id). O que não é alcançável num navegador simulado
 // fica em NAO_ALCANCADOS, com o motivo e o texto copiado do código-fonte. As linhas são as do commit 0b80e68
-// (16/11/2026); a montagem (montar.ts) avisa quando a tabela cita uma tela que não foi colhida.
+// (16/11/2026); as de `src/features/entenda/Entenda.tsx`, de `src/features/app/ui.tsx` (selo e "por quê?") e do cartão
+// de texto são as do commit f81e484, em que o selo e o "por quê?" saíram das telas e foram para "Entenda o treino". As
+// folhas de selo e de "por quê?" que existiam nas telas saíram da tabela junto com elas. A montagem (montar.ts) avisa
+// quando a tabela cita uma tela que não foi colhida; um nome terminado em "?" é de uma tela que pode não existir nesta
+// versão do app (um bloco prestes a sair): sem ela, a tabela diz isso e não conta como falha.
 
 export type TipoDeItem = 'rota' | 'folha' | 'bloco que abre' | 'por quê' | 'aviso condicional' | 'estado vazio' | 'carregando' | 'erro ou validação' | 'resposta de uma ação';
 export type Linha = { fonte: string; item: string; tipo: TipoDeItem; telas: string[]; nota?: string };
@@ -19,7 +23,7 @@ export const NOTAS: string[] = [
   'Campos a mais em cada tela: `listas` (as opções de cada lista do aparelho, que só aparecem ao tocar no campo), `textoDoCss` (texto que o CSS escreve e não está no DOM: "+ marcar", "✓ tenho", o "!" do erro, o "+" e o "−" dos blocos que abrem), `textoEmDesenho` (texto dentro do SVG do Boneco), `textosQueAlternam` (a fase do movimento e a respiração do guia, que mudam sozinhas), `tituloDoDocumento`, `rota`, `captura` e `capturaInteira`. Nenhum deles entra na conta de palavras.',
   '`nomesAcessiveis` lista o que o leitor de tela ouve e não está escrito: `aria-label`, `aria-labelledby` (em controles), `alt`, `title` e texto oculto (`.sr`), em controles, imagens, regiões, grupos e listas. `origem: "SEM NOME"` marca um controle ou imagem com função e sem nome.',
   'A persona Ana faz o cadastro pela interface nos testes `cadastro-ana`, `inicio-ana`, `inicio-ana-saude` e `treino-ana` (o caminho do roteiro de 13/11); nos outros, o estado pronto dela (o mesmo de `tests/e2e/apoio/estados-personas.ts`) é gravado no aparelho. As outras personas entram sempre pelo estado gravado. O Bruno usa os 2 locais fictícios de `tests/personas` e as 12 semanas parado que a persona descreve.',
-  'Toda folha "De onde vem isto" (o selo) e toda folha de "por quê?" mostra o texto de uma regra de `src/domain/regras/regras.json` e as fontes dela (`src/conteudo/fontes.json`). A colheita abriu uma amostra (um selo por tela onde ele aparece); as 100+ regras não foram abertas uma a uma: o texto delas está no JSON das regras.',
+  'Desde 16/11/2026 (commit f81e484), o selo de evidência e o "por quê?" só aparecem na página "Entenda o treino" (Meus dados) e nos Termos; fora delas, ficam só os "por quê?" de segurança e de privacidade (Boas-vindas e Meus dados). As folhas de selo e de "por quê?" que abriam nas outras telas não existem mais e saíram desta tabela. Toda folha "De onde vem isto" (o selo) mostra o texto de uma regra de `src/domain/regras/regras.json` e as fontes dela (`src/conteudo/fontes.json`). A colheita abriu uma amostra (o selo de "Carga" em "Como ler o treino" e os selos dos Termos) e fotografou "Todas as regras e as fontes" com as regras fechadas; as 100+ regras não foram abertas uma a uma: o texto delas está no JSON das regras.',
   'O guia de execução tem uma ficha de texto por exercício (`src/conteudo/exercicios/*.json`, 171 fichas). A colheita abriu 7 guias animados (búlgaro, 3º exercício da Ana, 2 de polia da Carla, 2 de corpo livre da Elisa e o supino do catálogo) e 1 cartão de texto; as outras fichas têm a mesma forma e estão nos JSON.',
   'O que não existe no app, e por isso não está na colheita: aviso de "sem rede" e aviso de "versão nova do app" (o service worker guarda os arquivos e se atualiza sozinho: `vite.config.ts`, `registerType: \'autoUpdate\'`); aviso de instalar no Android (o aviso é só do iPhone e do iPad: `src/domain/dados/index.ts`); tela de carregando com texto (enquanto o pedaço da tela chega, só o fundo); tela de rota desconhecida (leva à Boas-vindas ou ao Início); validação ao gerar o programa sem equipamento (sem nada marcado, o programa usa o peso do corpo, e a tela diz isso antes); guia animado de exercício sem animação (`/guia/<id>` só aceita animações: o exercício sem animação mostra o cartão de texto, colhido no início e no treino).',
   'Na tela da série e no guia, o Boneco animado mostra a fase do movimento ("DESCIDA · EXCÊNTRICA", "TOPO · SEGURA"…), que muda sozinha: a conta de palavras dessas telas varia 1 a 3 palavras entre uma colheita e outra, conforme o instante da foto. É a única diferença de régua entre 13/11 e hoje nas telas que não mudaram (a tabela no fim compara as 41).',
@@ -46,18 +50,19 @@ export const COBERTURA: Linha[] = [
   l('src/App.tsx:58', 'rota', '`/guia` (leva ao 1º do catálogo)', ['guia/catalogo'], 'não há link para o catálogo dentro do app'),
   l('src/App.tsx:59', 'rota', '`/guia/:id` Guia de execução', ['guia/tecnica', 'guia/pelo-programa-tecnica', 'guia/catalogo']),
   l('src/App.tsx:60', 'rota', '`/termos` Termos de uso e privacidade', ['termos-e-foto/termos']),
+  l('src/App.tsx:62', 'rota', '`/entenda` Entenda o treino (Meus dados → "Entenda o treino")', ['dados-e-locais/entenda']),
   l('src/App.tsx:61', 'rota', '`/dev/gerador` e `/lab/boneco`', [], 'só em desenvolvimento e nas prévias: fora do app publicado, não colhidas'),
   l('src/App.tsx:81', 'rota', 'rota desconhecida (leva a `/`)', ['cadastro/boas-vindas'], 'não tem texto próprio: abre a Boas-vindas ou o Início'),
 
   // ---- peças comuns ----
   l('src/features/app/Folha.tsx:125', 'folha', 'o botão de fechar de toda folha ("Fechar"; "Voltar" em "Terminar o treino agora?" e em "Apagar todos os dados?")', ['treino/folha-terminar-com-serie', 'dados-e-locais/meus-dados-folha-apagar-todos-os-dados']),
-  l('src/features/app/ui.tsx:46', 'folha', 'selo de evidência (robusta, moderada, 1 estudo, consenso; "fonte" nas frases sobre o app)', ['inicio/folha-do-exercicio-por-que', 'cadastro/boas-vindas-folha-seus-dados']),
-  l('src/features/app/ui.tsx:50', 'folha', 'folha "De onde vem isto" (a regra, o que o nível quer dizer e as fontes)', ['*/*folha-selo*']),
-  l('src/features/app/ui.tsx:73', 'folha', 'folha de "por quê?" (o texto de apoio e as regras por extenso)', ['treino/folha-por-que-da-reserva', 'cadastro/rotina-folha-por-que-grupos']),
-  l('src/features/app/ui.tsx:95', 'carregando', '"Carregando a regra…"', ['avisos-e-erros/selo-carregando-a-regra']),
-  l('src/features/app/ui.tsx:99', 'erro ou validação', '"Não deu para carregar a regra agora. Tente de novo com internet." + "Recarregar o app"', ['avisos-e-erros/selo-sem-a-regra']),
-  l('src/features/app/ui.tsx:135', 'carregando', '"Carregando as fontes…"', ['avisos-e-erros/selo-carregando-as-fontes']),
-  l('src/features/app/ui.tsx:137', 'erro ou validação', '"Não deu para carregar as fontes agora. As chaves são: …"', ['avisos-e-erros/selo-sem-as-fontes']),
+  l('src/features/app/ui.tsx:48', 'folha', 'selo de evidência (robusta, moderada, 1 estudo, consenso; "fonte" nas frases sobre o app): só desenha em "Entenda o treino", nos Termos e dentro da folha de um "por quê?" essencial', ['inicio/como-ler-aberto', 'dados-e-locais/entenda-os-exercicios', 'termos-e-foto/termos', 'dados-e-locais/meus-dados-folha-o-que-sai-daqui']),
+  l('src/features/app/ui.tsx:61', 'folha', 'folha "De onde vem isto" (a regra, o que o nível quer dizer e as fontes)', ['*/*folha-selo*']),
+  l('src/features/app/ui.tsx:78', 'folha', 'folha de "por quê?" (o texto de apoio e as regras por extenso): fora de "Entenda o treino", só os essenciais (segurança e privacidade)', ['cadastro/boas-vindas-folha-o-que-o-app-nao-faz', 'dados-e-locais/meus-dados-folha-o-que-sai-daqui', 'dados-e-locais/meus-dados-folha-o-navegador-e-os-seus-dados']),
+  l('src/features/app/ui.tsx:125', 'carregando', '"Carregando a regra…"', ['avisos-e-erros/selo-carregando-a-regra'], '"Entenda o treino" pede as regras ao abrir: só aparece com o arquivo das regras ainda a caminho quando a pessoa toca no selo'),
+  l('src/features/app/ui.tsx:129', 'erro ou validação', '"Não deu para carregar a regra agora. Tente de novo com internet." + "Recarregar o app"', ['avisos-e-erros/selo-sem-a-regra']),
+  l('src/features/app/ui.tsx:166', 'carregando', '"Carregando as fontes…"', ['avisos-e-erros/selo-carregando-as-fontes']),
+  l('src/features/app/ui.tsx:168', 'erro ou validação', '"Não deu para carregar as fontes agora. As chaves são: …"', ['avisos-e-erros/selo-sem-as-fontes']),
   l('src/features/app/ui.tsx:180', 'rota', 'topo com o voltar ("‹ Meus dados", "‹ Semana", "‹ Treino", "‹ Meus locais", "‹ Início")', ['dados-e-locais/locais', 'fim-e-semana/evolucao-1-treino', 'fim-e-semana/evolucao-pelo-programa', 'dados-e-locais/locais-editar', 'termos-e-foto/termos']),
   l('src/features/app/ui.tsx:203', 'rota', 'barra de baixo: Treino, Semana, Meus dados', ['inicio/inicio']),
   l('src/features/app/ui.tsx:291', 'aviso condicional', 'link "Meu programa" no alto das telas do cadastro de quem já tem programa', ['dados-e-locais/refazer-a-triagem', 'dados-e-locais/experiencia-com-o-programa-feito']),
@@ -80,7 +85,6 @@ export const COBERTURA: Linha[] = [
   l('src/features/onboarding/BoasVindas.tsx:52', 'por quê', '"o que o app não faz"', ['cadastro/boas-vindas-folha-o-que-o-app-nao-faz']),
   l('src/features/onboarding/BoasVindas.tsx:68', 'folha', '"Seus dados ficam no aparelho"', ['cadastro/boas-vindas-folha-seus-dados']),
   l('src/features/onboarding/Triagem.tsx:103', 'aviso condicional', '"Vamos pausar o programa automático" (algum "sim" que pede avaliação)', ['cadastro/saude-pausa', 'cadastro/saude-pausa-liberacao-marcada', 'dados-e-locais/refazer-a-triagem-pausa']),
-  l('src/features/onboarding/Triagem.tsx:134', 'por quê', '"por que perguntamos"', ['cadastro/saude-folha-por-que-perguntamos']),
   l('src/features/onboarding/Triagem.tsx:151', 'folha', '"As 9 perguntas completas"', ['cadastro/saude-folha-perguntas-completas']),
   l('src/features/onboarding/Triagem.tsx:173', 'rota', '"Quais valem para você?" (a subtela do "sim")', ['cadastro/saude-quais-valem']),
   l('src/features/onboarding/Triagem.tsx:58', 'erro ou validação', '"Nenhuma marcada. Se nenhuma vale, volte e toque em “Não, nenhuma”."', ['cadastro/saude-quais-valem-erro-nenhuma-marcada']),
@@ -95,13 +99,9 @@ export const COBERTURA: Linha[] = [
   l('src/features/onboarding/Rotina.tsx:89', 'erro ou validação', '"Escolha quantos dias por semana.", "Escolha quantos minutos por treino." e "Escolha uma opção." (linhas 65, 66, 103 e 121)', ['cadastro/rotina-erro-sem-resposta'], 'por toque, no cadastro, não aparecem: sem os dias e os minutos não há botão "Continuar"; vistas forçando o envio'),
   l('src/features/onboarding/Rotina.tsx:66', 'erro ou validação', '"Informe os minutos por sessão (de 20 a 150)." e "Use um número inteiro de 20 a 150." (linha 134)', ['cadastro/rotina-minutos-outro-erro']),
   l('src/features/onboarding/Rotina.tsx:106', 'aviso condicional', 'uma pergunta por vez: os minutos e os grupos aparecem depois da resposta anterior', ['cadastro/rotina-2a-pergunta', 'cadastro/rotina-3a-pergunta']),
-  l('src/features/onboarding/Rotina.tsx:95', 'por quê', '"por quê?" de "Quantos dias"', ['cadastro/rotina-folha-por-que-dias']),
   l('src/features/onboarding/Rotina.tsx:124', 'aviso condicional', 'campo "Outro: quantos minutos?"', ['cadastro/rotina-minutos-outro']),
-  l('src/features/onboarding/Rotina.tsx:145', 'por quê', '"por quê?" de "Grupos prioritários"', ['cadastro/rotina-folha-por-que-grupos']),
   l('src/features/onboarding/Rotina.tsx:157', 'aviso condicional', 'nota do foco (3 frases, em src/domain/gerador/opcoes.ts)', ['cadastro/rotina-respondida', 'cadastro/rotina-foco-3-grupos', 'cadastro/rotina-foco-bracos']),
-  l('src/features/onboarding/Rotina.tsx:174', 'por quê', '"o que muda" (O objetivo), só pela edição em Meus dados', ['dados-e-locais/rotina-e-divisao-folha-o-objetivo']),
   l('src/features/onboarding/Rotina.tsx:190', 'aviso condicional', '"Como prefere dividir? (opcional)", com as divisões de cada número de dias, "Recomendada" e "Deixar o app escolher"', ['dados-e-locais/rotina-e-divisao', 'dados-e-locais/rotina-e-divisao-com-escolhas', 'dados-e-locais/rotina-e-divisao-2-dias', 'dados-e-locais/rotina-e-divisao-4-dias', 'dados-e-locais/rotina-e-divisao-5-dias', 'dados-e-locais/rotina-e-divisao-6-dias']),
-  l('src/features/onboarding/Rotina.tsx:195', 'por quê', '"por quê?" de "As divisões"', ['dados-e-locais/rotina-e-divisao-folha-as-divisoes']),
   l('src/features/onboarding/Restricoes.tsx:60', 'bloco que abre', '"Algum exercício que você quer evitar? (opcional)"', ['dados-e-locais/algo-a-evitar-exercicios']),
   l('src/features/onboarding/Inventario.tsx:492', 'erro ou validação', '"Há 1 detalhe para completar." / "Há N detalhes para completar."', ['cadastro/equipamento-erro-um-detalhe', 'cadastro/equipamento-erro-detalhes-por-completar']),
   l('src/features/onboarding/Inventario.tsx:520', 'aviso condicional', 'depois de um atalho de lugar: o que o toque marcou, "Às vezes tem" e "Conferir os N itens ›"', ['cadastro/equipamento-lugar-academia', 'cadastro/equipamento-lugar-condominio', 'cadastro/equipamento-lugar-casa', 'cadastro/equipamento-lugar-corpo']),
@@ -113,7 +113,7 @@ export const COBERTURA: Linha[] = [
   l('src/features/onboarding/Inventario.tsx:638', 'folha', 'folha de detalhes do item (12 itens têm detalhes)', ['cadastro/equipamento-folha-halteres-fixos', 'cadastro/equipamento-folha-anilhas-e-manoplas', 'cadastro/equipamento-folha-polia-simples', 'cadastro/equipamento-folha-banco-regulavel', 'cadastro/equipamento-folha-elasticos', 'cadastro/equipamento-folha-polia-dupla-crossover', 'cadastro/equipamento-folha-multifuncional', 'cadastro/equipamento-folha-kettlebell', 'cadastro/equipamento-folha-caneleiras-de-peso', 'cadastro/equipamento-folha-mini-band', 'cadastro/equipamento-folha-voador', 'cadastro/equipamento-folha-maquina-de-triceps', 'cadastro/equipamento-folha-do-item', 'cadastro/equipamento-folha-do-item-respondida']),
   l('src/features/onboarding/Inventario.tsx:166', 'aviso condicional', 'campo "<pergunta>: outro valor" (em "Outro")', ['cadastro/equipamento-folha-halteres-fixos-outro']),
   l('src/features/onboarding/Inventario.tsx:329', 'bloco que abre', '"Placas da torre (opcional)" (polia dupla)', ['cadastro/equipamento-folha-polia-dupla-placas']),
-  l('src/features/onboarding/Inventario.tsx:646', 'aviso condicional', '"Anilhas das máquinas e barras" e "Qual a menor anilha?" (com leg press, hack, smith, panturrilha sentada ou barra marcados)', ['cadastro/equipamento-item-por-item-academia', 'cadastro/equipamento-folha-selo-da-menor-anilha']),
+  l('src/features/onboarding/Inventario.tsx:646', 'aviso condicional', '"Anilhas das máquinas e barras" e "Qual a menor anilha?" (com leg press, hack, smith, panturrilha sentada ou barra marcados)', ['cadastro/equipamento-item-por-item-academia']),
   l('src/features/onboarding/inventarioForm.ts:224', 'erro ou validação', '"Use um número maior que zero." / "Use um número inteiro maior que zero."', ['cadastro/equipamento-folha-halteres-fixos-erro', 'cadastro/equipamento-folha-anilhas-e-manoplas-erro', 'cadastro/equipamento-folha-elasticos-erro', 'cadastro/equipamento-folha-mini-band-erro']),
   l('src/features/onboarding/inventarioForm.ts:237', 'erro ou validação', '"O mais pesado precisa ser maior ou igual ao mais leve."', ['cadastro/equipamento-folha-halteres-fixos-erro-ordem']),
   l('src/features/onboarding/inventarioForm.ts:239', 'erro ou validação', '"O passo não pode ser maior que a diferença entre o mais leve e o mais pesado."', ['cadastro/equipamento-folha-halteres-fixos-erro-passo']),
@@ -157,29 +157,20 @@ export const COBERTURA: Linha[] = [
   l('src/features/programa/Programa.tsx:374', 'aviso condicional', '"O programa será atualizado depois do treino em andamento."', ['inicio/inicio-com-treino-em-andamento-e-versao-nova']),
   l('src/features/programa/Programa.tsx:418', 'aviso condicional', '"Continuar o treino em andamento" (no lugar de "Começar o treino …")', ['inicio/inicio-com-treino-em-andamento']),
   l('src/features/programa/Programa.tsx:458', 'aviso condicional', 'cartão da volta de uma pausa "Bem-vindo de volta!" (4 textos, em src/domain/acompanhamento/volta.ts) + "Refazer o nível" e "Agora não"', ['fim-e-semana/inicio-volta-15-dias', 'fim-e-semana/inicio-volta-22-dias', 'fim-e-semana/inicio-volta-60-dias', 'fim-e-semana/inicio-volta-200-dias']),
-  l('src/features/programa/Programa.tsx:499', 'por quê', '"por quê?" da volta da pausa', ['fim-e-semana/inicio-volta-15-dias-folha-por-que', 'fim-e-semana/inicio-volta-22-dias-folha-por-que', 'fim-e-semana/inicio-volta-60-dias-folha-por-que', 'fim-e-semana/inicio-volta-200-dias-folha-por-que']),
   l('src/features/programa/Programa.tsx:517', 'aviso condicional', 'bloco "Ajustes possíveis"', ['inicio/folha-avisos', 'inicio/inicio-versao-nova-folha-mais-avisos']),
   l('src/features/programa/Programa.tsx:583', 'folha', 'folha do exercício', ['inicio/folha-do-exercicio', 'inicio/folha-do-exercicio-diego', 'inicio/folha-do-exercicio-elisa', 'inicio/folha-do-exercicio-fabio', 'inicio/folha-do-exercicio-bruno', 'inicio/folha-do-exercicio-carla', 'inicio/folha-do-exercicio-ana-saude']),
   l('src/features/programa/Programa.tsx:590', 'aviso condicional', '"· bi-set", "· última série em drop set" e "Bi-set com …: alterne os dois e descanse depois da dupla." (linha 600)', ['inicio/folha-do-exercicio', 'inicio/folha-do-exercicio-com-drop-set']),
   l('src/features/programa/Programa.tsx:624', 'aviso condicional', '"Ver a evolução deste exercício" (com histórico)', ['inicio/folha-do-exercicio-com-historico']),
-  l('src/features/programa/Programa.tsx:629', 'bloco que abre', '"Por que este exercício (N motivos)"', ['inicio/folha-do-exercicio-por-que']),
-  l('src/features/programa/Programa.tsx:672', 'folha', '"Sobre o programa"', ['inicio/sobre-o-programa', 'inicio/sobre-o-programa-diego', 'inicio/sobre-o-programa-elisa', 'inicio/sobre-o-programa-fabio', 'inicio/sobre-o-programa-bruno', 'inicio/sobre-o-programa-carla', 'inicio/sobre-o-programa-ana-saude']),
-  l('src/features/programa/Programa.tsx:680', 'aviso condicional', '"Você está na semana N." + o texto da fase (aprendizado, volta da pausa, semana leve)', ['inicio/sobre-o-programa', 'inicio/sobre-o-programa-bruno', 'fim-e-semana/sobre-o-programa-na-volta', 'fim-e-semana/sobre-o-programa-na-semana-leve']),
-  l('src/features/programa/Programa.tsx:688', 'bloco que abre', '"Avisos (N)"', ['inicio/sobre-o-programa-avisos', 'inicio/sobre-o-programa-diego-tudo-aberto', 'inicio/sobre-o-programa-elisa-tudo-aberto', 'inicio/sobre-o-programa-fabio-tudo-aberto', 'inicio/sobre-o-programa-bruno-tudo-aberto', 'inicio/sobre-o-programa-ana-saude-tudo-aberto']),
-  l('src/features/programa/Programa.tsx:700', 'bloco que abre', '"Fases (N)"', ['inicio/sobre-o-programa-fases', 'inicio/sobre-o-programa-bruno-tudo-aberto']),
-  l('src/features/programa/Programa.tsx:711', 'bloco que abre', '"Por que este programa (N)"', ['inicio/sobre-o-programa-por-que-este-programa', 'inicio/sobre-o-programa-carla-tudo-aberto']),
-  l('src/features/programa/Programa.tsx:721', 'bloco que abre', '"Séries por músculo na semana"', ['inicio/sobre-o-programa-series-por-musculo-na-semana']),
-  l('src/features/programa/Programa.tsx:757', 'aviso condicional', '"Ver ajustes possíveis" (depois de "Manter")', ['inicio/sobre-o-programa-ver-ajustes']),
   l('src/features/programa/Programa.tsx:792', 'aviso condicional', '"Se o equipamento estiver ocupado" (as alternativas)', ['inicio/folha-do-exercicio']),
   l('src/features/programa/Programa.tsx:795', 'bloco que abre', '"Ver mais N opções" (alternativas)', ['inicio/folha-do-exercicio-ver-mais-opcoes']),
-  l('src/features/programa/ComoEsta.tsx:38', 'erro ou validação', '"Não deu para conferir o programa agora. O seu treino continua valendo." + "Tentar de novo"', ['avisos-e-erros/sobre-o-programa-sem-conferir']),
-  l('src/features/programa/ComoEsta.tsx:45', 'carregando', '"Conferindo o programa…"', ['inicio/sobre-o-programa-conferindo']),
-  l('src/features/programa/ComoEsta.tsx:50', 'aviso condicional', '"Como está o seu programa": o resumo e os achados (Segurança, Alerta, Ajustar)', ['inicio/sobre-o-programa', 'inicio/sobre-o-programa-ana-saude']),
-  l('src/features/programa/ComoEsta.tsx:58', 'bloco que abre', '"Limites e observações (N)"', ['inicio/sobre-o-programa-limites-e-observacoes']),
-  l('src/features/programa/ComoLer.tsx:8', 'bloco que abre', '"Como ler o seu treino" (com a linha "As primeiras semanas" no iniciante)', ['inicio/como-ler-aberto']),
+  l('src/features/programa/ComoEsta.tsx:38', 'erro ou validação', '"Não deu para conferir o programa agora. O seu treino continua valendo." + "Tentar de novo" (em "Entenda o treino" → "O seu programa")', ['avisos-e-erros/sobre-o-programa-sem-conferir']),
+  l('src/features/programa/ComoEsta.tsx:45', 'carregando', '"Conferindo o programa…" (em "Entenda o treino" → "O seu programa")', ['inicio/sobre-o-programa-conferindo']),
+  l('src/features/programa/ComoEsta.tsx:50', 'aviso condicional', '"Como está o seu programa" (o título é só para o leitor de tela): o resumo e os achados (Segurança, Alerta, Ajustar)', ['inicio/sobre-o-programa', 'inicio/sobre-o-programa-ana-saude']),
+  l('src/features/programa/ComoEsta.tsx:59', 'bloco que abre', '"Limites e observações (N)"', ['inicio/sobre-o-programa-limites-e-observacoes']),
+  l('src/features/programa/ComoLer.tsx:9', 'aviso condicional', 'as definições do treino (Série, Repetição, Carga, Descanso, RIR e, no iniciante, "As primeiras semanas"), dentro de "Entenda o treino" → "Como ler o treino"', ['inicio/como-ler-aberto']),
   l('src/features/programa/CartaoTexto.tsx:42', 'erro ou validação', '"Não deu para carregar o guia em texto deste exercício agora." + "Tentar de novo" / "Recarregar o app"', ['avisos-e-erros/guia-em-texto-nao-baixou-na-folha', 'avisos-e-erros/guia-em-texto-nao-baixou-2a-vez', 'avisos-e-erros/guia-em-texto-nao-baixou-no-treino']),
-  l('src/features/programa/CartaoTexto.tsx:62', 'aviso condicional', 'cartão de texto do exercício sem animação: "Montagem segura" (quando a ficha tem) e "Como fazer: dicas e erros"', ['inicio/folha-do-exercicio-sem-animacao', 'treino/exercicio-sem-animacao', 'treino/carla-inferior-1']),
-  l('src/features/programa/CartaoTexto.tsx:79', 'folha', '"Como fazer (em texto)"', ['inicio/folha-como-fazer-em-texto', 'treino/exercicio-sem-animacao-folha-como-fazer']),
+  l('src/features/programa/CartaoTexto.tsx:73', 'aviso condicional', 'cartão de texto do exercício sem animação: "Montagem segura" (quando a ficha tem) e "Como fazer" (até 16/11, "Como fazer: dicas e erros")', ['inicio/folha-do-exercicio-sem-animacao', 'treino/exercicio-sem-animacao', 'treino/carla-inferior-1']),
+  l('src/features/programa/CartaoTexto.tsx:78', 'folha', '"Como fazer (em texto)"', ['inicio/folha-como-fazer-em-texto', 'treino/exercicio-sem-animacao-folha-como-fazer']),
   l('src/features/programa/CartaoTexto.tsx:96', 'bloco que abre', '"Posição, execução e carga, passo a passo"', ['inicio/folha-como-fazer-em-texto-passo-a-passo', 'treino/exercicio-sem-animacao-folha-como-fazer-passo-a-passo']),
   l('src/features/programa/Prefiro.tsx:62', 'aviso condicional', '"Prefere algum destes? …" e os botões "Prefiro …" / "Você prefere … · desfazer"', ['inicio/folha-do-exercicio', 'inicio/folha-do-exercicio-preferencia-salva', 'treino/folha-trocar-exercicio-com-preferencia']),
   l('src/features/programa/Miniatura.tsx:20', 'estado vazio', 'miniatura sem animação: "guia em texto"', ['inicio/inicio-aba-corpo-todo-b']),
@@ -205,9 +196,8 @@ export const COBERTURA: Linha[] = [
   l('src/features/treino/Treino.tsx:417', 'folha', '"O que você sentiu?" (Senti algo)', ['treino/folha-senti-algo']),
   l('src/features/treino/Treino.tsx:458', 'folha', '"Mais opções" (com e sem "Desfazer a última série")', ['treino/folha-mais-opcoes', 'treino/folha-mais-opcoes-sem-serie']),
   l('src/features/treino/Treino.tsx:490', 'folha', '"Terminar o treino agora?" (sem série: descartar ou guardar; com série: "Você terminou N de M exercícios.")', ['treino/folha-terminar-sem-serie', 'treino/folha-terminar-com-serie', 'treino/folha-terminar-com-exercicios-por-fazer']),
-  l('src/features/treino/Treino.tsx:544', 'por quê', '"1ª vez: comece leve." + "por quê?" (a calibração)', ['treino/serie-vazia', 'treino/folha-por-que-da-1a-vez']),
-  l('src/features/treino/Treino.tsx:554', 'por quê', '"Hoje: <carga>" / "Hoje: mesma carga" + "por quê?" (o motivo vem de src/domain/progressao)', ['treino/serie-com-sugestao-do-dia', 'treino/folha-por-que-da-sugestao-do-dia', 'treino/treino-na-volta', 'treino/treino-na-volta-folha-por-que']),
-  l('src/features/treino/Treino.tsx:715', 'por quê', '"por quê?" da reserva ("Quantas ainda conseguiria?")', ['treino/folha-por-que-da-reserva', 'treino/folha-por-que-na-2a-serie']),
+  l('src/features/treino/Treino.tsx:539', 'aviso condicional', '"1ª vez: comece leve." (a calibração; o motivo está em "Entenda o treino" → "Os exercícios")', ['treino/serie-vazia']),
+  l('src/features/treino/Treino.tsx:544', 'aviso condicional', '"Hoje: <carga>" / "Hoje: mesma carga" (o motivo, que vem de src/domain/progressao, está em "Entenda o treino" → "Os exercícios")', ['treino/serie-com-sugestao-do-dia', 'treino/treino-na-volta']),
   l('src/features/treino/Treino.tsx:738', 'aviso condicional', '"Drop set (opcional)", com as 2 quedas (na última série do exercício com drop set)', ['treino/serie-com-drop-set', 'treino/exercicio-com-drop-set']),
   l('src/features/treino/Treino.tsx:787', 'erro ou validação', '"Falta escolher a carga e quantas ainda conseguiria." / "Falta escolher a carga." / "Falta dizer quantas ainda conseguiria."', ['treino/serie-vazia', 'treino/serie-falta-a-carga', 'treino/serie-falta-a-reserva']),
   l('src/features/treino/Treino.tsx:829', 'aviso condicional', 'carga em anilhas: "Anilhas por lado" + "Sem contar o peso do trenó ou da barra da máquina."', ['treino/carla-inferior-6']),
@@ -224,18 +214,15 @@ export const COBERTURA: Linha[] = [
   // ---- fim, semana e evolução ----
   l('src/features/treino/Resumo.tsx:67', 'aviso condicional', '"Treino encerrado por segurança" + a orientação e "Ligar para o SAMU: 192"', ['fim-e-semana/fim-encerrado-por-seguranca']),
   l('src/features/treino/Resumo.tsx:97', 'aviso condicional', '"O que mudou hoje": a semana, os recordes e "N exercício(s) com carga para subir na próxima vez."', ['fim-e-semana/fim-do-treino', 'fim-e-semana/fim-com-recorde']),
-  l('src/features/treino/Resumo.tsx:107', 'por quê', '"o que conta" (A sua semana)', ['fim-e-semana/fim-folha-o-que-conta']),
-  l('src/features/treino/Resumo.tsx:143', 'por quê', '"para que serve" (Hoje foi)', ['fim-e-semana/fim-folha-para-que-serve']),
-  l('src/features/treino/Resumo.tsx:158', 'aviso condicional', '"Para a próxima vez": Subir, Manter, Reduzir, Voltar à anterior, Estagnado, Ajustar, Trocar, Calibrar', ['fim-e-semana/fim-do-treino', 'fim-e-semana/fim-com-recorde', 'fim-e-semana/fim-com-dor', 'fim-e-semana/fim-com-oferta-de-semana-leve'], 'colhidos: Calibrar, Manter, Subir, Reduzir, Estagnado e Ajustar; faltam "Voltar à anterior" e "Trocar" (Resumo.tsx:18 a 27)'),
-  l('src/features/treino/Resumo.tsx:160', 'por quê', '"por quê?" de cada exercício em "Para a próxima vez"', ['fim-e-semana/fim-folha-por-que-da-proxima-vez', 'fim-e-semana/fim-com-recorde-folha-por-que-subir', 'fim-e-semana/fim-com-dor-folha-por-que']),
+  l('src/features/treino/Resumo.tsx:158', 'aviso condicional', '"Para a próxima vez": Subir, Manter, Reduzir, Voltar à anterior, Estagnado, Ajustar, Trocar, Calibrar', ['fim-e-semana/fim-do-treino', 'fim-e-semana/fim-com-recorde', 'fim-e-semana/fim-com-dor', 'fim-e-semana/fim-com-oferta-de-semana-leve'], 'colhidos: Calibrar, Manter, Subir, Reduzir, Estagnado e Ajustar; faltam "Voltar à anterior" e "Trocar" (Resumo.tsx:18 a 27). O motivo de cada um saiu do fim do treino e está em "Entenda o treino" → "Os exercícios"'),
   l('src/features/treino/Resumo.tsx:174', 'aviso condicional', 'confirmação "Apagar este treino?"', ['fim-e-semana/fim-apagar-este-treino']),
   l('src/features/acompanhamento/Semana.tsx:35', 'aviso condicional', 'faixa "A sua semana" no Início (depois do 1º treino), e o Início com histórico', ['inicio/inicio-depois-do-1o-treino', 'inicio/inicio-semana-completa', 'inicio/inicio-ana-na-3a-semana']),
   l('src/features/acompanhamento/Semana.tsx:72', 'aviso condicional', 'frase da semana (5 formas, em src/domain/acompanhamento/semana.ts:144 a 151)', ['fim-e-semana/semana-vazia', 'fim-e-semana/semana-1-treino', 'fim-e-semana/semana-2-de-3', 'fim-e-semana/semana-completa']),
   l('src/features/acompanhamento/Semana.tsx:76', 'aviso condicional', '"Últimas N semanas"', ['fim-e-semana/semana-completa', 'fim-e-semana/semana-2-de-3']),
   l('src/features/acompanhamento/Semana.tsx:94', 'aviso condicional', '"O que subiu nesta semana" (subiu a carga, recorde)', ['fim-e-semana/semana-completa']),
   l('src/features/acompanhamento/Semana.tsx:137', 'aviso condicional', 'estado de cada músculo (na meta, crescendo, mantendo, ainda não treinou) e "o seu programa planeja N de M: …"', ['fim-e-semana/semana-1-treino', 'fim-e-semana/semana-completa']),
-  l('src/features/acompanhamento/Semana.tsx:145', 'bloco que abre', '"Como ler este quadro"', ['fim-e-semana/semana-como-ler-este-quadro']),
-  l('src/features/acompanhamento/Semana.tsx:149', 'aviso condicional', '"Nesta semana, a meta é o que o programa prescreveu para ela." (semana leve ou volta de pausa) / "A meta é a do seu programa."', ['fim-e-semana/semana-na-semana-leve', 'fim-e-semana/semana-como-ler-este-quadro']),
+  l('src/features/acompanhamento/Semana.tsx:145', 'bloco que abre', '"Como ler este quadro"', ['fim-e-semana/semana-como-ler-este-quadro?'], 'o bloco está de saída da Semana: o que ele explica também está em "Entenda o treino" → "A sua semana e as pausas"'),
+  l('src/features/acompanhamento/Semana.tsx:149', 'aviso condicional', '"Nesta semana, a meta é o que o programa prescreveu para ela." (semana leve ou volta de pausa) / "A meta é a do seu programa." (dentro de "Como ler este quadro")', ['fim-e-semana/semana-na-semana-leve', 'fim-e-semana/semana-como-ler-este-quadro?']),
   l('src/features/acompanhamento/Semana.tsx:157', 'aviso condicional', '"Um programa que cabe melhor?" (a revisão da meta)', ['fim-e-semana/semana-revisao-da-meta']),
   l('src/features/acompanhamento/Semana.tsx:180', 'aviso condicional', '"Sua evolução" (a lista dos exercícios com histórico)', ['fim-e-semana/semana-1-treino']),
   l('src/features/acompanhamento/SemanaLeve.tsx:20', 'aviso condicional', 'aviso de dor que se repete (o texto vem de src/domain/acompanhamento/semana-leve.ts)', ['fim-e-semana/inicio-dor-que-se-repete']),
@@ -255,7 +242,6 @@ export const COBERTURA: Linha[] = [
   l('src/features/guia/Guia.tsx:532', 'rota', 'modo Erros: um botão por erro, com a descrição do escolhido', ['guia/erros', 'guia/erros-2', 'guia/erros-3']),
   l('src/features/guia/Guia.tsx:407', 'aviso condicional', 'nota do exercício abaixo do palco ("Montagem segura…")', ['guia/catalogo-nota-de-montagem-segura']),
   l('src/features/guia/Guia.tsx:426', 'aviso condicional', 'a prescrição da pessoa ("Semana N: … · RIR … · descanso … · fase de aprendizado") ou, no catálogo, "As séries, as repetições e o RIR vêm do seu programa."', ['guia/tecnica', 'guia/catalogo']),
-  l('src/features/guia/Guia.tsx:448', 'por quê', '"por quê?" da prescrição ("A prescrição de hoje")', ['guia/folha-por-que-da-prescricao']),
   l('src/features/guia/Guia.tsx:607', 'rota', '"Confira em 5 segundos" (a lista de conferência e "Desmarcar tudo")', ['guia/lista-de-conferencia']),
   l('src/features/guia/Guia.tsx:639', 'bloco que abre', '"Montagem" (vem aberto)', ['guia/bloco-montagem']),
   l('src/features/guia/Guia.tsx:648', 'bloco que abre', '"Execução e tempo"', ['guia/bloco-execucao-e-tempo']),
@@ -266,6 +252,24 @@ export const COBERTURA: Linha[] = [
   l('src/features/guia/Guia.tsx:694', 'bloco que abre', '"O que varia de pessoa para pessoa"', ['guia/bloco-o-que-varia-de-pessoa-para-pessoa']),
   l('src/features/guia/Guia.tsx:474', 'rota', 'rodapé "Segurança" e "Voltar para o treino" / "Voltar para o programa"', ['guia/tecnica', 'guia/pelo-programa-tecnica']),
   l('src/features/guia/Guia.tsx:1', 'rota', 'o guia de outros exercícios (o tamanho do texto muda por ficha)', ['guia/pelo-programa-*', 'guia/carla-polia-*', 'guia/elisa-corpo-livre-*']),
+
+  // ---- Entenda o treino (16/11/2026): a explicação que saiu das telas; as telas guardam o nome de quando eram do início ----
+  l('src/features/entenda/Entenda.tsx:128', 'rota', '"Entenda o treino": os 7 blocos fechados', ['dados-e-locais/entenda']),
+  l('src/features/entenda/Entenda.tsx:131', 'bloco que abre', '"Como ler o treino" (até 16/11, "Como ler o seu treino", no início)', ['inicio/como-ler-aberto', 'inicio/como-ler-folha-selo']),
+  l('src/features/entenda/Entenda.tsx:136', 'bloco que abre', '"O seu programa" (até 16/11, a folha "Sobre o programa" do início): o resumo, a fase, "Como está o seu programa" e os blocos de dentro', ['inicio/sobre-o-programa', 'inicio/sobre-o-programa-diego', 'inicio/sobre-o-programa-elisa', 'inicio/sobre-o-programa-fabio', 'inicio/sobre-o-programa-bruno', 'inicio/sobre-o-programa-carla', 'inicio/sobre-o-programa-ana-saude']),
+  l('src/features/entenda/Entenda.tsx:143', 'aviso condicional', '"Semana N." + o texto da fase (aprendizado, volta da pausa, semana leve)', ['inicio/sobre-o-programa', 'inicio/sobre-o-programa-bruno', 'fim-e-semana/sobre-o-programa-na-volta', 'fim-e-semana/sobre-o-programa-na-semana-leve']),
+  l('src/features/entenda/Entenda.tsx:149', 'aviso condicional', '"Ver ajustes possíveis" (depois de "Manter")', ['inicio/sobre-o-programa-ver-ajustes']),
+  l('src/features/entenda/Entenda.tsx:163', 'bloco que abre', '"Avisos (N)"', ['inicio/sobre-o-programa-avisos', 'inicio/sobre-o-programa-diego-tudo-aberto', 'inicio/sobre-o-programa-elisa-tudo-aberto', 'inicio/sobre-o-programa-fabio-tudo-aberto', 'inicio/sobre-o-programa-bruno-tudo-aberto', 'inicio/sobre-o-programa-ana-saude-tudo-aberto']),
+  l('src/features/entenda/Entenda.tsx:175', 'bloco que abre', '"Fases (N)"', ['inicio/sobre-o-programa-fases', 'inicio/sobre-o-programa-bruno-tudo-aberto']),
+  l('src/features/entenda/Entenda.tsx:186', 'bloco que abre', '"Por que este programa (N)"', ['inicio/sobre-o-programa-por-que-este-programa', 'inicio/sobre-o-programa-carla-tudo-aberto']),
+  l('src/features/entenda/Entenda.tsx:196', 'bloco que abre', '"Séries por músculo" (até 16/11, "Séries por músculo na semana")', ['inicio/sobre-o-programa-series-por-musculo-na-semana']),
+  l('src/features/entenda/Entenda.tsx:226', 'bloco que abre', '"Os exercícios: por que cada um e a próxima carga": um bloco por exercício, com a próxima carga, o motivo dela e os motivos do exercício (até 16/11, "Por que este exercício" na folha do exercício e os "por quê?" do treino e do fim do treino)', ['dados-e-locais/entenda-os-exercicios']),
+  l('src/features/entenda/Entenda.tsx:258', 'bloco que abre', '"A sua semana e as pausas": a mensagem da semana, a mensagem da volta de uma pausa (quando há) e o que conta no quadro da semana (até 16/11, os "por quê?" da volta e do fim do treino)', ['dados-e-locais/entenda-a-sua-semana', 'fim-e-semana/entenda-a-sua-semana-e-as-pausas']),
+  l('src/features/entenda/Entenda.tsx:279', 'bloco que abre', '"Por que o app pergunta e sugere" (até 16/11, os "por quê?" do cadastro e do treino)', ['dados-e-locais/entenda-por-que-o-app-pergunta']),
+  l('src/features/entenda/Entenda.tsx:317', 'bloco que abre', '"Segurança"', ['dados-e-locais/entenda-seguranca']),
+  l('src/features/entenda/Entenda.tsx:340', 'bloco que abre', '"Todas as regras e as fontes": as regras por grupo, cada uma num bloco fechado (a regra, o nível e as fontes ao abrir)', ['dados-e-locais/entenda-todas-as-regras'], 'as regras não foram abertas uma a uma: o texto delas está em src/domain/regras/regras.json'),
+  l('src/features/entenda/Entenda.tsx:85', 'carregando', '"Carregando as regras…"', ['avisos-e-erros/entenda-todas-as-regras-carregando']),
+  l('src/features/entenda/Entenda.tsx:86', 'erro ou validação', '"Não deu para carregar as regras agora. Tente de novo com internet."', ['avisos-e-erros/entenda-todas-as-regras-sem-carregar']),
 
   // ---- Meus dados e locais ----
   l('src/features/dados/Dados.tsx:131', 'por quê', '"o que sai daqui"', ['dados-e-locais/meus-dados-folha-o-que-sai-daqui']),
@@ -284,7 +288,6 @@ export const COBERTURA: Linha[] = [
   l('src/features/dados/Dados.tsx:302', 'folha', '"Foto do equipamento" (retirar a autorização)', ['dados-e-locais/meus-dados-folha-foto-do-equipamento']),
   l('src/features/dados/Dados.tsx:314', 'resposta de uma ação', '"Autorização da foto retirada."', ['dados-e-locais/meus-dados-autorizacao-retirada']),
   l('src/features/dados/Dados.tsx:323', 'folha', '"Apagar todos os dados?"', ['dados-e-locais/meus-dados-folha-apagar-todos-os-dados']),
-  l('src/features/locais/Locais.tsx:28', 'por quê', '"e nos outros?" (Vários locais)', ['dados-e-locais/locais-folha-varios-locais']),
   l('src/features/locais/Locais.tsx:56', 'resposta de uma ação', '"<local> é o local principal. O programa muda só quando você tocar em "Atualizar" no seu treino."', ['dados-e-locais/locais-local-principal-trocado']),
   l('src/features/locais/Locais.tsx:91', 'erro ou validação', '"Dê um nome ao local, por exemplo "Prédio" ou "Academia do bairro"."', ['dados-e-locais/locais-novo-erro-sem-nome']),
   l('src/features/locais/Locais.tsx:145', 'aviso condicional', 'título do equipamento do local ("Que equipamento tem neste local?" / "…em "<nome>"?")', ['dados-e-locais/locais-novo', 'dados-e-locais/locais-novo-com-nome']),
@@ -346,9 +349,19 @@ export const NAO_ALCANCADOS: NaoAlcancado[] = [
     fonte: 'src/features/treino/Resumo.tsx:18',
     item: 'rótulos de "Para a próxima vez" não vistos',
     texto: 'Voltar à anterior · Trocar',
-    motivo: 'Cada um pede um histórico próprio (a carga que subiu e não rendeu; o exercício interrompido pela dor em sessões seguidas). Foram colhidos Calibrar, Manter, Subir, Reduzir, Estagnado e Ajustar; o motivo de cada um, no "por quê?", vem de src/domain/progressao.',
+    motivo: 'Cada um pede um histórico próprio (a carga que subiu e não rendeu; o exercício interrompido pela dor em sessões seguidas). Foram colhidos Calibrar, Manter, Subir, Reduzir, Estagnado e Ajustar; o motivo de cada um vem de src/domain/progressao e, desde 16/11, aparece em "Entenda o treino" → "Os exercícios".',
   },
 ];
+
+/**
+ * As telas de 13/11 que saíram do app (o nome é o da tela de hoje em DE_13_11) e o porquê. A montagem não cobra estas
+ * telas: lista cada uma como "saiu do app" na tabela das 41 e na saída. Se uma delas voltar a ser colhida, a montagem
+ * avisa, para a marca sair daqui. Só entra aqui o que saiu do app de propósito; o que faltar por um passo que falhou
+ * continua sendo falha.
+ */
+export const SAIRAM_DO_APP: Record<string, string> = {
+  'treino/folha-por-que-na-2a-serie': 'o "por quê?" saiu da tela da série em 16/11/2026 (commit f81e484); a explicação da reserva está em "Entenda o treino" → "Por que o app pergunta e sugere"',
+};
 
 /** As 41 telas do roteiro de 13/11/2026 (scripts/design/frontend-novo/capturas.spec.ts) e a tela de hoje que refaz cada uma. */
 export const DE_13_11: [string, string][] = [
