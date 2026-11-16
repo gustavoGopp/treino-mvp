@@ -70,7 +70,7 @@ export async function ana(
   else await triagemNenhuma(page);
   await p();
 
-  await expect(page.getByRole('heading', { name: 'Sua experiência com musculação' })).toBeVisible();
+  await expect(page.getByRole('heading', { name: 'Experiência', exact: true })).toBeVisible();
   await grupo(page, /sem parar/).getByLabel('Menos de 6 meses').check();
   await grupo(page, /treinando agora/).getByLabel(/^Estou treinando/).check();
   await grupo(page, /confiança na técnica/).getByLabel(/^Sim/).check();
@@ -78,7 +78,7 @@ export async function ana(
   await p();
   await page.getByRole('button', { name: 'Continuar' }).click();
 
-  await expect(page.getByRole('heading', { name: 'Sua rotina de treino' })).toBeVisible();
+  await expect(page.getByRole('heading', { name: 'Rotina', exact: true })).toBeVisible();
   await grupo(page, /Quantos dias/).getByLabel('3 dias').check();
   await minutosPorTreino(page, minutos);
   await page.getByLabel('Pernas', { exact: true }).check();
@@ -87,7 +87,7 @@ export async function ana(
   await p();
   await page.getByRole('button', { name: 'Continuar' }).click();
 
-  await expect(page.getByRole('heading', { name: 'Que equipamento você tem?' })).toBeVisible();
+  await expect(page.getByRole('heading', { name: 'Onde você treina?' })).toBeVisible();
   // lote 3 do redesign: item por item; marcar um item com detalhes abre a folha dele
   const halteres = await marcarItem(page, 'Halteres fixos');
   await grupo(halteres, 'O mais leve').getByLabel('1 kg', { exact: true }).check();

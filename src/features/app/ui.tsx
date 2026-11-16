@@ -305,7 +305,8 @@ export function Passo({
             )
           )}
           <span>
-            Passo {indice} de {total}
+            <span className="sr">Passo </span>
+            {indice} de {total}
           </span>
         </div>
         <div className="barra" aria-hidden="true">

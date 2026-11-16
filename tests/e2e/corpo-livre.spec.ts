@@ -10,19 +10,19 @@ test('Corpo livre: sem nada marcado, o programa sai só com o peso do corpo, diz
   await page.getByRole('button', { name: 'Começar', exact: true }).click();
   await triagemNenhuma(page);
 
-  await expect(page.getByRole('heading', { name: 'Sua experiência com musculação' })).toBeVisible();
+  await expect(page.getByRole('heading', { name: 'Experiência', exact: true })).toBeVisible();
   await grupo(page, /sem parar/).getByLabel('Menos de 6 meses').check();
   await grupo(page, /treinando agora/).getByLabel(/^Estou treinando/).check();
   await grupo(page, /confiança na técnica/).getByLabel(/^Sim/).check();
   await page.getByRole('button', { name: 'Continuar' }).click();
 
-  await expect(page.getByRole('heading', { name: 'Sua rotina de treino' })).toBeVisible();
+  await expect(page.getByRole('heading', { name: 'Rotina', exact: true })).toBeVisible();
   await grupo(page, /Quantos dias/).getByLabel('3 dias').check();
   await minutosPorTreino(page, '30');
   await page.getByRole('button', { name: 'Continuar' }).click();
 
   // O 4º atalho: a escolha explícita de treinar sem equipamento (equipamento.atalhos). Nada vem pré-marcado.
-  await expect(page.getByRole('heading', { name: 'Que equipamento você tem?' })).toBeVisible();
+  await expect(page.getByRole('heading', { name: 'Onde você treina?' })).toBeVisible();
   const corpoLivre = page.getByRole('button', { name: /^(✓ )?Corpo livre$/ });
   await expect(corpoLivre).toHaveAttribute('aria-pressed', 'false');
   // Mesmo com algo marcado antes, o toque desmarca tudo.

@@ -85,7 +85,7 @@ test('triagem com "sim" bloqueia, e confirmar a liberação desbloqueia', async 
   await triagem(page, { simEm: ['coração'] });
   await page.getByLabel('Confirmo que fui avaliado e liberado').check();
   await continuar.click();
-  await expect(page.getByRole('heading', { name: 'Sua experiência com musculação' })).toBeVisible();
+  await expect(page.getByRole('heading', { name: 'Experiência', exact: true })).toBeVisible();
 });
 
 test('lote 3: a saúde em uma pergunta mostra as perguntas inteiras a um toque, e "sim" sem nada marcado pede para voltar', async ({ page }) => {
@@ -132,7 +132,7 @@ test('"sim" só no osteoarticular pede as regiões e a dor de hoje, e o aviso di
       await expect(dialogo).toContainText('Você não marcou estas 8:');
       await expect(dialogo).toContainText('Algum médico já disse que você tem problema no coração ou pressão alta?');
       await confirmarNaoMarcadas(p);
-      await expect(p.getByRole('heading', { name: 'Sua experiência com musculação' })).toBeVisible();
+      await expect(p.getByRole('heading', { name: 'Experiência', exact: true })).toBeVisible();
     },
   });
   // lote 3 do redesign: o resumo da dor da triagem é o 1º aviso do programa novo, com o selo, até o 1º treino
@@ -177,7 +177,7 @@ test('atalho "academia completa": nada vem marcado, o toque marca o conjunto e o
   await page.getByRole('button', { name: 'Academia completa' }).click();
   await expect(page.getByRole('button', { name: 'Academia completa' })).toHaveAttribute('aria-pressed', 'true');
   // lote 3 do redesign: o que o app supôs em 1 linha; conferir abre os marcados
-  await expect(page.locator('.supos')).toContainText(/Um toque marcou \d+ itens típicos/);
+  await expect(page.locator('.supos')).toContainText(/\d+ itens marcados/);
   // a Ana já tinha itens, então a lista já vem aberta (no cadastro novo, "Conferir os N itens ›" abre)
   await abrirLista(page);
   const marcados = page.getByRole('region', { name: /^Marcados/ });
@@ -207,10 +207,10 @@ test('atalho "academia completa": nada vem marcado, o toque marca o conjunto e o
 test('lote 3: a busca acha o item pelo nome em qualquer categoria, e o detalhe que falta abre sozinho ao gerar', async ({ page }) => {
   await ana(page);
   await page.goto('/comecar/inventario');
-  await page.getByLabel('Procurar pelo nome').fill('extensora');
+  await page.getByLabel('Procurar', { exact: true }).fill('extensora');
   await expect(page.locator('.grade-2 .item-eq')).toHaveCount(1);
   await page.locator('.grade-2').getByLabel('Cadeira extensora', { exact: true }).check();
-  await page.getByLabel('Procurar pelo nome').fill('xyz');
+  await page.getByLabel('Procurar', { exact: true }).fill('xyz');
   await expect(page.getByText('Nada com “xyz”. Confira a escrita ou procure pela categoria.')).toBeVisible();
   // marcar a polia simples abre os detalhes; fechar sem responder e gerar abre de novo, com o erro
   const polia = await marcarItem(page, 'Polia simples');

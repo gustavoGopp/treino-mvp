@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState, type ReactNode } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import { GRUPOS, metaMaxima, type Grupo, type Objetivo } from '../../domain/gerador';
 import { opcoesDeDivisao, type DivisaoId } from '../../domain/gerador/divisoes';
@@ -84,12 +84,12 @@ export function Rotina() {
   };
 
   return (
-    <Passo id="rotina" titulo="Sua rotina de treino" deDados={deDados}>
+    <Passo id="rotina" titulo="Rotina" deDados={deDados}>
       <form onSubmit={enviar} noValidate className="form">
         {tentou && <Erros erros={erros} />}
         <Escolha
           nome="dias"
-          legenda="Quantos dias por semana você pode treinar?"
+          legenda="Quantos dias por semana?"
           ajuda={
             <>
               <PorQue regras={['divisao.seis-dias']} titulo="Quantos dias">
@@ -97,7 +97,15 @@ export function Rotina() {
               </PorQue>
             </>
           }
-          opcoes={DIAS.map((d) => ({ id: d, texto: `${d} dias` }))}
+          opcoes={DIAS.map((d) => ({
+            id: d,
+            texto: (
+              <>
+                {d}
+                <span className="sr"> dias</span>
+              </>
+            ),
+          }))}
           valor={dias}
           aoMudar={mudarDias}
           erro={tentou && !dias ? 'Escolha uma opção.' : undefined}
@@ -108,13 +116,18 @@ export function Rotina() {
             <Escolha
               nome="minutos"
               legenda="Quantos minutos por treino?"
-              ajuda="Tempo total, com aquecimento e descansos."
+              ajuda="Com aquecimento e descansos."
               opcoes={[
                 ...MINUTOS.map((m) => ({
                   id: m as OpcaoMinutos,
-                  texto: `${m} min`,
+                  texto: (
+                    <>
+                      {m}
+                      <span className="sr"> min</span>
+                    </>
+                  ) as ReactNode,
                 })),
-                { id: 'outro' as OpcaoMinutos, texto: 'Outro' },
+                { id: 'outro' as OpcaoMinutos, texto: 'Outro' as ReactNode },
               ]}
               valor={opMin}
               aoMudar={escolherMin}
@@ -139,7 +152,7 @@ export function Rotina() {
         {((dias && opMin) || deDados) && (
           <Revelar semRolar={deDados}>
             <fieldset className="campo">
-              <legend>Quais grupos você quer priorizar? (opcional)</legend>
+              <legend>Priorizar algum grupo? (opcional)</legend>
               <p className="ajuda">
                 Escolha até 2.{' '}
                 <PorQue regras={['volume.semanal.minimo-eficaz', 'volume.prioridade.ate-dois']} titulo="Grupos prioritários">
@@ -160,9 +173,6 @@ export function Rotina() {
               )}
             </fieldset>
             {/* lote 3 do redesign: o objetivo saiu do cadastro ("ganhar músculo" é o padrão) e fica em Meus dados */}
-            {!deDados && (
-              <p className="ajuda">Dá para mudar depois, em Meus dados.</p>
-            )}
             {deDados && (
             <div ref={noObjetivo} className="ancora-objetivo">
             <Escolha

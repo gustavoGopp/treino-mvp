@@ -154,9 +154,9 @@ describe('escolha até 2 grupos de foco (volume.prioridade.ate-dois)', () => {
     expect(notaDoFoco(['peito'])).toBeNull();
     expect(notaDoFoco(['peito', 'costas'])).toBeNull();
     expect(notaDoFoco(['bracos'])).toBeNull();
-    expect(notaDoFoco(['peito', 'costas', 'ombros'])).toMatch(/^Com mais de 2 grupos, o foco se divide e cada um cresce menos\. Dá para seguir assim/);
+    expect(notaDoFoco(['peito', 'costas', 'ombros'])).toBe('Com mais de 2 grupos, cada um cresce menos.');
     expect(notaDoFoco(['peito', 'bracos'])).toMatch(/^"Braços" conta como 2: bíceps e tríceps\./);
-    expect(notaDoFoco(['pernas'])).toMatch(/^"Pernas" conta como 3: frente da coxa, posterior e panturrilha\. Com isso, o foco se divide/);
+    expect(notaDoFoco(['pernas'])).toBe('"Pernas" conta como 3: frente da coxa, posterior e panturrilha. O foco rende mais com até 2.');
     expect(notaDoFoco(['peito', 'costas', 'pernas'])).toMatch(/"Pernas" conta como 3/);
   });
 });

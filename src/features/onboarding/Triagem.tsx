@@ -112,7 +112,7 @@ export function Triagem() {
         <p>
           {r.mensagem} <Selo id={r.regraId} />
         </p>
-        <p className="ajuda">O app não pede o nome nem o registro do profissional: só guarda, neste aparelho, a data da sua confirmação.</p>
+        <p className="ajuda">O app guarda só a data da confirmação, neste aparelho.</p>
         <Marcar marcado={liberado} aoMudar={setLiberado}>
           Confirmo que fui avaliado e liberado por um médico ou profissional de Educação Física
         </Marcar>
@@ -171,7 +171,7 @@ export function Triagem() {
 
   return (
     <Passo id="triagem" titulo="Quais valem para você?" aoVoltar={() => setGeral(true)}>
-      <p className="lede">Marque as que valem. No fim, você confirma que as outras não valem.</p>
+      <p className="lede">Marque as que valem.</p>
       <form onSubmit={continuar} noValidate className="form">
         <Erros erros={erros} />
         <div className="pilha">

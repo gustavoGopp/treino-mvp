@@ -4,7 +4,8 @@ import { useNavigate } from 'react-router-dom';
 import { ITENS, type Inventario as InventarioDados, type ItemId } from '../../domain/taxonomia/equipamentos';
 import { comInventario, localPrincipal } from '../../storage/esquema';
 import { agoraIso, comProgramaNovo, useApp } from '../app/estado';
-import { Erros, Escolha, Marcar, Numero, Passo, Selo } from '../app/ui';
+import { Erros, Escolha, Marcar, Numero, Passo, PorQue, Selo } from '../app/ui';
+import { Icone } from '../app/icones';
 import { FOTO_LIGADA } from '../app/contato';
 import { FotoEquipamento } from './FotoEquipamento';
 import { IconeEquipamento } from './icones';
@@ -38,12 +39,6 @@ const kg = (n: number) => `${numeroBr(n)} kg`;
 const normalizar = (s: string) => s.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
 /** Os lugares na ordem do protótipo aprovado, com o subtítulo de cada um (lote 3 do redesign). */
 const ORDEM_LUGAR = ['academia', 'condominio', 'casa', 'corpo'] as const;
-const SUB_LUGAR: Record<(typeof ORDEM_LUGAR)[number], string> = {
-  academia: 'Halteres, polias, barras e máquinas',
-  condominio: 'Alguns halteres, banco e uma estação',
-  casa: 'Pergunta só o que muda o programa',
-  corpo: 'Sem equipamento: chão, parede e cadeira',
-};
 /** O item de cada grupo de campos do formulário (para os erros de detalhe apontarem o item). */
 const ITEM_DO_CAMPO: Record<string, ItemId> = {
   halteres: 'halteres_fixos',
@@ -212,10 +207,11 @@ export function Inventario() {
   const { estado, atualizar } = useApp();
   const navigate = useNavigate();
   return (
-    <Passo id="inventario" titulo="Que equipamento você tem?">
+    <Passo id="inventario" titulo="Onde você treina?">
       <FormularioInventario
         inicial={localPrincipal(estado)?.inventario}
         textoBotao="Gerar meu programa"
+        perguntaNoTitulo
         aoSalvar={(inv) => {
           // lote 3 do redesign: o "Tudo certo?" saiu; o equipamento é o último passo e gera o programa
           atualizar((s) => ({ ...comProgramaNovo(comInventario(s, localPrincipal(s)?.id, inv), agoraIso(), true), ajustes: undefined }));
@@ -231,10 +227,13 @@ export function FormularioInventario({
   inicial,
   aoSalvar,
   textoBotao = 'Continuar',
+  perguntaNoTitulo = false,
 }: {
   inicial?: InventarioDados;
   aoSalvar: (inv: InventarioDados) => void;
   textoBotao?: string;
+  /** No cadastro o título da tela já é "Onde você treina?": a legenda do grupo fica só para o leitor de tela. */
+  perguntaNoTitulo?: boolean;
 }) {
   const [f, setF] = useState<FormInventario>(() => paraForm(inicial));
   const [erros, setErros] = useState<Record<string, string>>({});
@@ -278,7 +277,6 @@ export function FormularioInventario({
       case 'halteres_fixos':
         return (
           <Detalhes titulo="Halteres fixos">
-            <p className="ajuda">Isso define as cargas que o app pode sugerir.</p>
             <ValorPorToque legenda="O mais leve" valores={VALORES.halterMin} valor={f.halteres.min} aoMudar={(v) => set('halteres', { min: v })} erro={e('halteres.min')} />
             <ValorPorToque legenda="O mais pesado" valores={VALORES.halterMax} valor={f.halteres.max} aoMudar={(v) => set('halteres', { max: v })} erro={e('halteres.max')} />
             <ValorPorToque legenda="De quanto em quanto" valores={VALORES.halterPasso} valor={f.halteres.passo} aoMudar={(v) => set('halteres', { passo: v })} erro={e('halteres.passo')} />
@@ -491,7 +489,7 @@ export function FormularioInventario({
     <form onSubmit={enviarComFolha} noValidate className="form equipamento">
       {tentou && nErros > 0 && <Erros erros={[nErros === 1 ? 'Há 1 detalhe para completar.' : `Há ${nErros} detalhes para completar.`]} />}
       <fieldset className="campo atalhos">
-        <legend>Onde você treina?</legend>
+        <legend className={perguntaNoTitulo ? 'sr' : undefined}>Onde você treina?</legend>
         <div className="lugares-lista">
           {ORDEM_LUGAR.map((id) => {
             const a = ATALHO[id];
@@ -501,18 +499,13 @@ export function FormularioInventario({
                 type="button"
                 className="lugar-linha"
                 aria-pressed={atalho === id}
-                aria-label={a.nome}
-                aria-describedby={`lugar-${id}`}
                 onClick={() => {
                   setF((x) => aplicarAtalho(x, id));
                   setAtalho(id);
                 }}
               >
                 <IconeLugar lugar={id} />
-                <span>
-                  <b>{a.nome}</b>
-                  <small id={`lugar-${id}`}>{SUB_LUGAR[id]}</small>
-                </span>
+                <b>{a.nome}</b>
               </button>
             );
           })}
@@ -520,12 +513,12 @@ export function FormularioInventario({
         {atalho && (
           <div className="supos">
             <p>
-              {ATALHO[atalho].ajuda ?? `Um toque marcou ${marcados.length} itens típicos. Confira e tire o que não tiver; a 1ª série de cada exercício acerta a carga.`}{' '}
+              {ATALHO[atalho].ajuda ?? `${marcados.length} itens marcados. Tire o que não tiver.`}{' '}
               <Selo id="equipamento.atalhos" />
             </p>
             {ATALHO[atalho].asVezes.length > 0 && (
               <fieldset className="campo sub">
-                <legend>Às vezes tem (toque no que você tiver)</legend>
+                <legend>Às vezes tem</legend>
                 <div className="opcoes grade">
                   {ATALHO[atalho].asVezes.map((id) => (
                     <Marcar key={id} marcado={f.marcados.includes(id)} aoMudar={(v) => marcar(id, v)}>
@@ -588,7 +581,7 @@ export function FormularioInventario({
                       </button>
                     )}
                     <button type="button" className="btn ter pequeno" aria-label={`Tirar ${NOME_CURTO[id]}`} onClick={() => marcar(id, false)}>
-                      Tirar
+                      <Icone nome="x" />
                     </button>
                   </li>
                 ))}
@@ -600,7 +593,7 @@ export function FormularioInventario({
               Marcar mais
             </h2>
             <label className="busca">
-              <span>Procurar pelo nome</span>
+              <span>Procurar</span>
               <input type="search" value={procura} onChange={(ev) => setProcura(ev.target.value)} />
             </label>
             <div className="chips" role="group" aria-label="Categorias">
@@ -646,8 +639,13 @@ export function FormularioInventario({
       {f.marcados.some((id) => ITENS_DE_ANILHA.includes(id)) && (
         <Detalhes titulo="Anilhas das máquinas e barras">
           <p className="ajuda">
-            Vale para {ITENS_DE_ANILHA.filter((id) => f.marcados.includes(id)).map((id) => NOME_CURTO[id].toLowerCase()).join(', ')}. É o passo para
-            subir a carga. Se não souber, o app usa 2 kg. <Selo id="equipamento.menor-anilha" />
+            Não sabe? O app usa 2 kg.{' '}
+            <PorQue regras={['equipamento.menor-anilha']} titulo="A menor anilha" rotulo="para que serve">
+              <p>
+                Vale para {ITENS_DE_ANILHA.filter((id) => f.marcados.includes(id)).map((id) => NOME_CURTO[id].toLowerCase()).join(', ')}. É o passo para
+                subir a carga.
+              </p>
+            </PorQue>
           </p>
           <ValorPorToque
             legenda="Qual a menor anilha?"
@@ -658,7 +656,7 @@ export function FormularioInventario({
           />
         </Detalhes>
       )}
-      <p className="ajuda">Dá para mudar depois, em Meus dados. Sem nada marcado, o programa usa o peso do corpo.</p>
+      <p className="ajuda">Sem nada marcado, o programa usa o peso do corpo.</p>
       <div className="acao-fixa">
         <button type="submit" className="btn">
           {textoBotao}

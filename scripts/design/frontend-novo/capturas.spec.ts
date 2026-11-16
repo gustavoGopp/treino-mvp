@@ -117,7 +117,7 @@ test('o app de hoje, tela por tela, com a Ana', async ({ page }, info) => {
   });
   await triagemNenhuma(page);
 
-  await expect(page.getByRole('heading', { name: 'Sua experiência com musculação' })).toBeVisible();
+  await expect(page.getByRole('heading', { name: 'Experiência', exact: true })).toBeVisible();
   await foto('03-nivel-vazio', { acao: 'Continuar', inteira: true });
   await grupo(/sem parar/).getByLabel('Menos de 6 meses').check();
   await grupo(/treinando agora/).getByLabel(/^Estou treinando/).check();
@@ -126,7 +126,7 @@ test('o app de hoje, tela por tela, com a Ana', async ({ page }, info) => {
   await foto('03b-nivel-respondido', { acao: 'Continuar', inteira: true });
   await page.getByRole('button', { name: 'Continuar' }).click();
 
-  await expect(page.getByRole('heading', { name: 'Sua rotina de treino' })).toBeVisible();
+  await expect(page.getByRole('heading', { name: 'Rotina', exact: true })).toBeVisible();
   await foto('04-rotina-vazia', { acao: 'Continuar', inteira: true });
   await grupo(/Quantos dias/).getByLabel('3 dias').check();
   await minutosPorTreino(page, '45');
@@ -135,7 +135,7 @@ test('o app de hoje, tela por tela, com a Ana', async ({ page }, info) => {
   await foto('04b-rotina-respondida', { acao: 'Continuar', inteira: true });
   await page.getByRole('button', { name: 'Continuar' }).click();
 
-  await expect(page.getByRole('heading', { name: 'Que equipamento você tem?' })).toBeVisible();
+  await expect(page.getByRole('heading', { name: 'Onde você treina?' })).toBeVisible();
   await foto('05-equipamento-lugar', { acao: 'Gerar meu programa', inteira: true });
   await passo('equipamento, pela foto', async () => {
     await page.getByRole('button', { name: 'Pela foto' }).click();

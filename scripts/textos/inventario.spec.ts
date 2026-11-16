@@ -126,7 +126,7 @@ roteiro('cadastro-ana', 10, 'cadastro', 'ana', async (r, page) => {
   await triagemNenhuma(page);
 
   // ---- experiência ----
-  await expect(page.getByRole('heading', { name: 'Sua experiência com musculação' })).toBeVisible();
+  await expect(page.getByRole('heading', { name: 'Experiência', exact: true })).toBeVisible();
   await r.foto('experiencia-vazia', { titulo: 'Experiência: a 1ª pergunta, sem resposta', comoChegar: 'Saúde → "Não, nenhuma".', tipo: 'estado vazio' });
   await r.passo('experiência, envio sem resposta', async () => {
     await forcarEnvio(page);
@@ -137,7 +137,7 @@ roteiro('cadastro-ana', 10, 'cadastro', 'ana', async (r, page) => {
       tipo: 'erro',
     });
     await page.reload();
-    await expect(page.getByRole('heading', { name: 'Sua experiência com musculação' })).toBeVisible();
+    await expect(page.getByRole('heading', { name: 'Experiência', exact: true })).toBeVisible();
   });
   const nivel = async (tempo: string, pausa: RegExp, tecnica: RegExp | string) => {
     await grupo(page, /sem parar/).getByLabel(tempo).check();
@@ -168,7 +168,7 @@ roteiro('cadastro-ana', 10, 'cadastro', 'ana', async (r, page) => {
   await page.getByRole('button', { name: 'Continuar' }).click();
 
   // ---- rotina ----
-  await expect(page.getByRole('heading', { name: 'Sua rotina de treino' })).toBeVisible();
+  await expect(page.getByRole('heading', { name: 'Rotina', exact: true })).toBeVisible();
   await r.foto('rotina-vazia', { titulo: 'Rotina: a 1ª pergunta, sem resposta', comoChegar: 'Experiência → "Continuar".', tipo: 'estado vazio' });
   await r.folha('rotina-folha-por-que-dias', () => grupo(page, /Quantos dias/).getByRole('button', { name: 'por quê?' }).click(), { titulo: 'Folha "Quantos dias" (por quê?)', comoChegar: 'Rotina → "por quê?" em "Quantos dias por semana você pode treinar?".' });
   await r.passo('rotina, envio sem resposta', async () => {
@@ -180,7 +180,7 @@ roteiro('cadastro-ana', 10, 'cadastro', 'ana', async (r, page) => {
       tipo: 'erro',
     });
     await page.reload();
-    await expect(page.getByRole('heading', { name: 'Sua rotina de treino' })).toBeVisible();
+    await expect(page.getByRole('heading', { name: 'Rotina', exact: true })).toBeVisible();
   });
   await grupo(page, /Quantos dias/).getByLabel('3 dias').check();
   await r.foto('rotina-2a-pergunta', { titulo: 'Rotina: a 2ª pergunta aparece ("Quantos minutos por treino?")', comoChegar: 'Rotina → "3 dias".' });
@@ -208,7 +208,7 @@ roteiro('cadastro-ana', 10, 'cadastro', 'ana', async (r, page) => {
   await page.getByRole('button', { name: 'Continuar' }).click();
 
   // ---- equipamento ----
-  await expect(page.getByRole('heading', { name: 'Que equipamento você tem?' })).toBeVisible();
+  await expect(page.getByRole('heading', { name: 'Onde você treina?' })).toBeVisible();
   await r.foto('equipamento-lugar', { titulo: 'Equipamento: "Onde você treina?", sem nada marcado', comoChegar: 'Rotina → "Continuar".', tipo: 'estado vazio' });
   await r.folha('equipamento-folha-da-foto', () => page.getByRole('button', { name: 'Pela foto' }).click(), { titulo: 'Folha "Reconhecer pela foto" (como abre na 1ª vez)', comoChegar: 'Equipamento → "Pela foto".' });
   await abrirLista(page);
@@ -219,12 +219,12 @@ roteiro('cadastro-ana', 10, 'cadastro', 'ana', async (r, page) => {
       await r.foto(`equipamento-categoria-${nomeDeArquivo(categoria)}`, { titulo: `Equipamento: item por item, categoria "${categoria}"`, comoChegar: `Equipamento → "Item por item" → "${categoria}".` });
     });
   await r.passo('equipamento, a busca', async () => {
-    await page.getByLabel('Procurar pelo nome').fill('xyz');
+    await page.getByLabel('Procurar', { exact: true }).fill('xyz');
     await expect(page.getByText(/^Nada com/)).toBeVisible();
     await r.foto('equipamento-busca-sem-resultado', { titulo: 'Equipamento: busca sem resultado', comoChegar: 'Equipamento → "Item por item" → procurar "xyz".', tipo: 'estado vazio' });
-    await page.getByLabel('Procurar pelo nome').fill('extensora');
+    await page.getByLabel('Procurar', { exact: true }).fill('extensora');
     await r.foto('equipamento-busca-com-resultado', { titulo: 'Equipamento: busca com resultado', comoChegar: 'Equipamento → "Item por item" → procurar "extensora".' });
-    await page.getByLabel('Procurar pelo nome').fill('');
+    await page.getByLabel('Procurar', { exact: true }).fill('');
   });
   // a folha de detalhes de cada item que tem detalhes, como abre ao marcar
   const COM_DETALHES = ['Halteres fixos', 'Anilhas e manoplas', 'Polia simples', 'Banco regulável', 'Elásticos', 'Polia dupla (crossover)', 'Multifuncional', 'Kettlebell', 'Caneleiras de peso', 'Mini-band', 'Voador', 'Máquina de tríceps'];
@@ -299,7 +299,7 @@ roteiro('cadastro-ana', 10, 'cadastro', 'ana', async (r, page) => {
   });
   // os atalhos de lugar, a partir do formulário vazio (nada foi salvo ainda)
   await page.reload();
-  await expect(page.getByRole('heading', { name: 'Que equipamento você tem?' })).toBeVisible();
+  await expect(page.getByRole('heading', { name: 'Onde você treina?' })).toBeVisible();
   for (const [id, lugar] of [['academia', 'Academia completa'], ['condominio', 'Condomínio com multifuncional'], ['casa', 'Casa com halteres e elásticos'], ['corpo', 'Corpo livre']] as const)
     await r.passo(`equipamento, o atalho ${lugar}`, async () => {
       // cada atalho soma ao anterior; "Corpo livre" desmarca tudo, e os outros são colhidos a partir do vazio
@@ -322,7 +322,7 @@ roteiro('cadastro-ana', 10, 'cadastro', 'ana', async (r, page) => {
   });
   // o equipamento da Ana: halteres fixos de 1 a 12 kg e banco reto
   await page.reload();
-  await expect(page.getByRole('heading', { name: 'Que equipamento você tem?' })).toBeVisible();
+  await expect(page.getByRole('heading', { name: 'Onde você treina?' })).toBeVisible();
   const halteres = await marcarItem(page, 'Halteres fixos');
   await r.foto('equipamento-folha-do-item', { titulo: 'Folha de detalhes: Halteres fixos (a 1ª folha de item da Ana)', comoChegar: 'Equipamento → "Item por item" → marcar "Halteres fixos".', tipo: 'folha' });
   await grupo(halteres, 'O mais leve').getByLabel('1 kg', { exact: true }).check();
@@ -1245,7 +1245,7 @@ roteiro('volta-e-semana-leve', 30, 'fim-e-semana', 'ana', async (r, page) => {
     await r.foto('inicio-volta-200-dias-agora-nao', { titulo: 'Início na volta de 200 dias, depois de "Agora não"', comoChegar: 'Início na volta de 200 dias → "Agora não".', tipo: 'aviso' });
     await comTreinos(page, [{ dia: 0, quando: em('04-17') }, { dia: 1, quando: em('04-18') }, { dia: 2, quando: em('04-19') }]);
     await page.getByRole('button', { name: 'Refazer o nível' }).click();
-    await expect(page.getByRole('heading', { name: 'Sua experiência com musculação' })).toBeVisible();
+    await expect(page.getByRole('heading', { name: 'Experiência', exact: true })).toBeVisible();
     await r.foto('refazer-o-nivel', { titulo: 'Experiência aberta por "Refazer o nível" (a pausa e o nível vêm sem resposta)', comoChegar: 'Início na volta de 200 dias → "Refazer o nível".', fluxo: 'dados-e-locais' });
   });
   const pesados: SessaoSemeada[] = [{ dia: 2, quando: em('10-20') }, { dia: 1, quando: em('10-27') }, { dia: 0, quando: em('11-02'), hojeFoi: 'pesado' }, { dia: 1, quando: em('11-03'), hojeFoi: 'pesado' }];
@@ -1424,7 +1424,7 @@ roteiro('dados-edicao', 20, 'dados-e-locais', 'ana', async (r, page) => {
   await inicioPronto(page);
   await meusDados(page);
   await page.getByRole('link', { name: /^Rotina e divisão/ }).click();
-  await expect(page.getByRole('heading', { name: 'Sua rotina de treino' })).toBeVisible();
+  await expect(page.getByRole('heading', { name: 'Rotina', exact: true })).toBeVisible();
   await r.foto('rotina-e-divisao', { titulo: 'Rotina e divisão (a rotina aberta por Meus dados, com o objetivo e a divisão)', comoChegar: 'Meus dados → "Rotina e divisão".' });
   await r.folha('rotina-e-divisao-folha-o-objetivo', () => page.getByRole('button', { name: 'o que muda' }).click(), { titulo: 'Folha "O objetivo" (o que muda)', comoChegar: 'Rotina e divisão → "o que muda" em "O que você quer agora?".' });
   await r.folha('rotina-e-divisao-folha-as-divisoes', () => page.locator('fieldset', { hasText: 'Como prefere dividir' }).getByRole('button', { name: 'por quê?' }).click(), { titulo: 'Folha "As divisões" (por quê?)', comoChegar: 'Rotina e divisão → "por quê?" em "Como prefere dividir?".' });
@@ -1448,7 +1448,7 @@ roteiro('dados-edicao', 20, 'dados-e-locais', 'ana', async (r, page) => {
   await r.passo('objetivo', async () => {
     await meusDados(page);
     await page.getByRole('link', { name: /^Objetivo/ }).click();
-    await expect(page.getByRole('heading', { name: 'Sua rotina de treino' })).toBeVisible();
+    await expect(page.getByRole('heading', { name: 'Rotina', exact: true })).toBeVisible();
     await page.waitForTimeout(300);
     await r.foto('objetivo', { titulo: 'Objetivo (a mesma tela da rotina, aberta na pergunta do objetivo)', comoChegar: 'Meus dados → "Objetivo".' });
   });
@@ -1472,10 +1472,10 @@ roteiro('dados-edicao', 20, 'dados-e-locais', 'ana', async (r, page) => {
   });
   await r.passo('as telas do cadastro com o programa feito', async () => {
     await page.goto('/comecar/nivel');
-    await expect(page.getByRole('heading', { name: 'Sua experiência com musculação' })).toBeVisible();
+    await expect(page.getByRole('heading', { name: 'Experiência', exact: true })).toBeVisible();
     await r.foto('experiencia-com-o-programa-feito', { titulo: 'Experiência de quem já tem programa (as respostas guardadas e "Meu programa" no alto)', comoChegar: 'Refazer a triagem → "Não, nenhuma".' });
     await page.goto('/comecar/inventario');
-    await expect(page.getByRole('heading', { name: 'Que equipamento você tem?' })).toBeVisible();
+    await expect(page.getByRole('heading', { name: 'Onde você treina?' })).toBeVisible();
     await r.foto('equipamento-com-o-programa-feito', { titulo: 'Equipamento de quem já tem programa (a lista já vem aberta, com os marcados)', comoChegar: 'Refazer a triagem → … → "Continuar" até o equipamento.' });
   });
 });
@@ -1576,7 +1576,7 @@ roteiro('foto', 20, 'termos-e-foto', 'ana', async (r, page) => {
     AbortSignal.timeout = (ms: number) => original(Math.min(ms, 4000));
   });
   await semear(page, estadoDaPersona('ana'), '/comecar/inventario');
-  await expect(page.getByRole('heading', { name: 'Que equipamento você tem?' })).toBeVisible();
+  await expect(page.getByRole('heading', { name: 'Onde você treina?' })).toBeVisible();
   await page.getByRole('button', { name: 'Pela foto' }).click();
   await folhaPronta(page);
   const foto = (nome: string, titulo: string, comoChegar: string, tipo: 'folha' | 'erro' | 'carregando' | 'estado vazio' | 'bloco aberto' = 'folha') => r.foto(nome, { titulo, comoChegar, tipo });

@@ -119,9 +119,9 @@ export const FOCO_RECOMENDADO = 2;
 export function notaDoFoco(prioridades: Grupo[]): string | null {
   const peso = prioridades.reduce((t, g) => t + PESO_DO_GRUPO(g), 0);
   if (peso <= FOCO_RECOMENDADO) return null;
-  const fim = 'Dá para seguir assim, mas o foco rende mais com até 2.';
+  const fim = 'O foco rende mais com até 2.';
   const pernas = '"Pernas" conta como 3: frente da coxa, posterior e panturrilha.';
-  if (prioridades.length > FOCO_RECOMENDADO) return `Com mais de 2 grupos, o foco se divide e cada um cresce menos. ${fim}${prioridades.includes('pernas') ? ` ${pernas}` : ''}`;
+  if (prioridades.length > FOCO_RECOMENDADO) return `Com mais de 2 grupos, cada um cresce menos.${prioridades.includes('pernas') ? ` ${pernas}` : ''}`;
   const qual = prioridades.includes('pernas') ? pernas : '"Braços" conta como 2: bíceps e tríceps.';
-  return `${qual} Com isso, o foco se divide e cada músculo cresce menos. ${fim}`;
+  return `${qual} ${fim}`;
 }

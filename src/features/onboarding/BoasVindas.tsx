@@ -42,7 +42,6 @@ export function BoasVindas() {
           </div>
         )}
         <AvisoSalvar />
-        <p className="lede">Monta o programa, mostra cada exercício e diz o porquê.</p>
         <section className="nota-aviso" aria-labelledby="nao-faz">
           <Icone nome="info" />
           <div>
@@ -80,7 +79,7 @@ export function BoasVindas() {
             Começar
           </button>
           <p className="ajuda termos-linha">
-            4 passos, uns 3 minutos. Ao começar, você concorda com os <Link to="/termos">termos de uso e o aviso de privacidade</Link>.
+            Ao começar, você concorda com os <Link to="/termos">termos de uso e o aviso de privacidade</Link>.
           </p>
         </div>
       </main>

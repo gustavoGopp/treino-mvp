@@ -27,7 +27,7 @@ async function fotoComExif(page: Page): Promise<Buffer> {
 async function irParaEquipamento(page: Page) {
   await ana(page);
   await page.goto('/comecar/inventario');
-  await expect(page.getByRole('heading', { name: 'Que equipamento você tem?' })).toBeVisible();
+  await expect(page.getByRole('heading', { name: 'Onde você treina?' })).toBeVisible();
   // lote 3 do redesign: a foto abre numa folha, pelo botão "Pela foto"
   await page.getByRole('button', { name: 'Pela foto' }).click();
   await folhaPronta(page);
