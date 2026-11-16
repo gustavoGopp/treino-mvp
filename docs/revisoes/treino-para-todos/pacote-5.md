@@ -75,8 +75,8 @@ A medida agora usa a regra do próprio app (antes, a janela era aplicada por for
 | Gerador: protótipo de conferência = app | 0 programas diferentes em 23.470 (o gerador não mudou; só o programa passou a dizer o nível) |
 | A régua e os 20 cuidados na população | não mudam: nenhuma regra do gerador mudou neste pacote |
 | Revisão cega | não se aplica: os programas são os mesmos; o que muda é o aviso depois do treino |
-| `npm run test:e2e` | ver o fim desta tabela |
-| A auditoria oficial em duas rodadas | ver o fim desta tabela |
+| `npm run test:e2e` | limpo (158 testes), já com a versão 9 dos dados |
+| A auditoria oficial em duas rodadas | limpa: 39 arquivos idênticos nas duas rodadas e nenhum defeito acima da linha de base da régua |
 | `src/engine/`, telas, `src/styles.css`, `api/`, `CLAUDE.md` | sem mudança |
 | `src/storage/` | mudou, com decisão do Gustavo, migração e teste (seção 2) |
 

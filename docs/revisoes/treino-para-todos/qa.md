@@ -718,5 +718,5 @@ O pacote não muda o gerador: a régua e os 20 cuidados na população ficam com
 | Revisão cega | não se aplica (os programas não mudam) |
 | Toda regra com selo, fonte e teste | `progressao.estagnacao` em `regras.md` (consenso; `steele2023`; os números são escolha do projeto); `tests/unit/sem-melhora.test.ts` (12 testes) |
 | `src/storage/` só com decisão do Gustavo, migração e teste | cumprido: decisão de 16/11/2026; versão 9; migração 8 → 9 que só grava o nível quando o programa foi gerado com o cadastro de agora; 4 testes em `armazenamento.test.ts` |
-| `npm run check`, `npm run test:e2e`, `npm run auditoria:verificar` | ver [`pacote-5.md`](pacote-5.md), seção 7 |
+| `npm run check`, `npm run test:e2e`, `npm run auditoria:verificar` | `check` limpo (1.013 testes), `test:e2e` limpo (158) e a auditoria em duas rodadas limpa (39 arquivos idênticos; nenhum defeito acima da linha de base da régua) |
 
