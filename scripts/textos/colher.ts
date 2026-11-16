@@ -71,7 +71,9 @@ export type Parte = { chave: string; ordem: number; projeto: string; telas: Tela
 export const RAIZ = resolve(process.cwd());
 // fora do git e fora de test-results/, que o Playwright (deste roteiro ou dos testes do app) limpa a cada rodada
 export const PASTA_DAS_PARTES = resolve(RAIZ, 'node_modules/.cache/inventario-textos/partes');
-export const SAIDA = resolve(RAIZ, 'docs/revisoes/textos/inventario');
+// A medida de antes dos cortes (16/11/2026) fica guardada em docs/revisoes/textos/inventario; cada medição nova vai para
+// docs/revisoes/textos/depois, para não passar por cima dela. INVENTARIO=<pasta> escolhe outra saída.
+export const SAIDA = resolve(RAIZ, process.env.INVENTARIO ?? 'docs/revisoes/textos/depois');
 
 /** Roda dentro da página (page.evaluate): não pode usar nada de fora dela. */
 export function colherNaPagina(): Medida {

@@ -110,7 +110,7 @@ export default function montar() {
   const soma = (ts: Tela[]) => ts.reduce((n, t) => n + t.palavrasNaTela, 0);
   const milhar = (n: number) => n.toLocaleString('pt-BR');
   // ---- a mesma régua, as mesmas 41 telas: 13/11 (depois da etapa 1) e hoje ----
-  const arquivoDe1311 = resolve(SAIDA, '../../frontend-novo/textos/medidas-de-texto.json');
+  const arquivoDe1311 = resolve(process.cwd(), 'docs/revisoes/frontend-novo/textos/medidas-de-texto.json');
   if (existsSync(arquivoDe1311)) {
     const antes = (JSON.parse(readFileSync(arquivoDe1311, 'utf8')) as { enxuta: Record<string, { palavrasNaTela: number; palavrasAVista: number }> }).enxuta;
     linhas.push('## As 41 telas de 13/11, com a mesma régua', '');
