@@ -1756,3 +1756,17 @@ Em relação ao pacote 0, um único par de grupo e defeito sobe, em 1 programa. 
 
 **Rascunho de post.** "Quando dois exercícios servem para a mesma coisa, qual o app escolhe? Até ontem, o que tinha animação e, no empate, o primeiro do alfabeto. Resultado: na academia completa, a primeira puxada do programa era uma puxada de um braço só, ajoelhado na polia. Agora a ordem é a que um treinador usaria: o exercício mais comum primeiro, os dois lados antes de um lado só quando a carga é à vontade. Medi em 680 mil programas e passei por três revisores às cegas; a primeira versão piorava a vida de quem tem dor leve na lombar, e foi corrigida antes de entrar."
 
+## Sessão "treino para todos", etapa 2, pacote 4 (16/11/2026): o corte de tempo revisto e o iniciante
+
+**O que mudou (no ramo `claude/nifty-albattani-mltt95`, não na `main`).** Três regras, uma por vez. (1) Quando o dia não cabe no tempo, antes de qualquer dupla ou corte, o exercício de um lado só dá lugar ao equivalente de dois lados (a panturrilha de um pé pela de dois; o stiff de um lado pelo de dois): nenhuma série sai da semana. (2) A dupla de dois exercícios que carregam a lombar (stiff com remada curvada) virou o último recurso do corte, em vez da primeira saída. (3) O iniciante repete o exercício que já está na semana quando a função se repete (a mesma puxada nos dois dias), nunca em todos os dias; e só se isso não custar tempo, dia fraco nem equilíbrio.
+
+**Medido em 680.625 programas (pacote 2 → pacote 4).** Régua sem defeito: 90,7% → 91,0% na grade e 96,8% → 97,1% na ponderada. Dias acima de 110% do tempo: 23.465 → 22.399. Dias fracos: 29.089 → 28.380. Empurrar ÷ puxar acima de 1,5: 3.340 → 3.090. Iniciantes com mais de 12 exercícios diferentes na semana: 19,3% → 12,7% dos programas (grade). Os cartões de texto por dia caem de 2,04 para 1,94 (ponderada). O que piora: 31 pares grupo × defeito sobem de 1 a 15 programas; 187 descem.
+
+**A revisão cega, com franqueza.** Em doze pessoas, uma sobe 5 pontos (o dia de pernas sem a pilha de drop sets), oito ficam iguais e três caem de 0,3 a 0,7: são as pessoas em que agiram a regra do iniciante e a da dupla de lombar. Os revisores veem a regra 1; as outras duas melhoram o que a régua conta, mas eles não as premiaram. Ficaram como decisão do Gustavo.
+
+**O que não entrou.** O limite de 6 exercícios por treino para o iniciante: testado com oito iniciantes, a nota de eficiência caiu (o tempo sobra para quem tem 75 ou 90 min ou treina 4 a 5 dias). Ajuda só o iniciante de 3 dias de 60 min; fica para um teste próprio.
+
+**Imagem.** Sem imagem: nada mudou nas telas nem no motor de animação.
+
+**Rascunho de post.** "Quando o treino não cabe no tempo, o app tinha duas saídas: juntar exercícios em dupla ou cortar séries. Agora tem uma antes dessas: trocar o exercício de um lado só pelo de dois lados, que leva metade do tempo e rende o mesmo. Em 680 mil programas, mil deixaram de passar do tempo sem perder uma série. Também testei limitar o iniciante a 6 exercícios por treino, que era o pedido nº 1 dos revisores: na revisão às cegas a nota caiu, porque o tempo sobrava. Não entrou."
+

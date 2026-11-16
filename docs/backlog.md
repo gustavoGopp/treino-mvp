@@ -337,3 +337,18 @@ Detalhes em `revisoes/treino-para-todos/pacote-2.md` e `qa.md`. O pacote está n
 - **O hip thrust e a dor leve na lombar:** não muda sem fonte. Pergunta para o tema de dor da pesquisa: o hip thrust com barra carrega a lombar a ponto de entrar na lista de articulações do exercício?
 - O próximo pacote é o 4 (o iniciante).
 
+## Da sessão "treino para todos", etapa 2, pacote 4 (16/11/2026)
+
+Detalhes em `revisoes/treino-para-todos/pacote-4.md` e `qa.md`. O pacote está no ramo da sessão, esperando a revisão do Gustavo.
+
+**Medido e recusado (não tentar de novo sem motivo novo)**
+- **Limite de 6 exercícios por treino para o iniciante de 3 dias ou mais** (com trava de custo): na população, o foco abaixo da meta sobe 179 programas e os programas sem defeito dos 20 cuidados caem de 57,5% para 50,0% (ponderada); na revisão cega de 8 iniciantes, a nota de eficiência cai de 6,21 para 5,96 (o tempo sobra). Os três que sobem são de 3 dias de 60 min: a forma estreita ("3 dias, até 60 min") fica para um teste próprio.
+- **"O mais simples primeiro" para o iniciante, com trava de custo:** continua criando dia fraco (4 de 23.470) e troca animação por cartão. Segunda recusa.
+- **Proibir a dupla com barra livre e tirar o drop set do iniciante, como último recurso:** continuam criando empurrar ÷ puxar acima de 1,5 e dia fraco em 2 a 4 programas de 23.470. Segunda recusa.
+
+**Para medir depois**
+- **As travas de custo ficam por dentro da montagem de uma divisão; a semana remontada pela dor é escolhida por fora:** com dor forte no quadril, 12 a 15 programas a mais ficam com dia fraco ou com empurrar ÷ puxar acima de 1,5 (de 45.375). Levar a comparação "com e sem a regra" para fora da troca de divisão.
+- **O iniciante de 5 dias de 60 min** recebe sessões de 26 a 46 min e os revisores acham demais para quem começa (nota 14 a 15 de 30, a mais baixa dos iniciantes). É assunto de divisão e de frequência, não deste pacote.
+- **A elevação lateral de um lado só na polia para o iniciante da academia:** ganha da com halteres por ser "estável" (o critério do iniciante vem antes do de dois lados). Rever a marca de estável dos exercícios de polia de um lado só.
+- **Quem quer glúteos em casa com halteres** fica sem ponte de glúteo com halter em 30 min (3,5 a 4 séries de glúteo): os três revisores apontaram.
+

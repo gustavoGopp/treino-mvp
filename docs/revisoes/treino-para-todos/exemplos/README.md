@@ -119,3 +119,43 @@ O que explica cada troca:
 - **dois lados antes de um lado só, em máquina, polia e barra:** puxada pela frente (ou a ajoelhado com barra reta, para quem não tem puxador) no lugar da puxada unilateral ajoelhado; elevação lateral com halteres no lugar da de um lado só na polia; hip thrust no lugar do coice na máquina;
 - **a trava do empurrar do foco e a regra da lombar** não mudam nenhuma das doze.
 
+## Etapa 2, pacote 4 (16/11/2026): o corte de tempo revisto e o iniciante
+
+Das doze pessoas, duas mudam: o **Leandro** (iniciante, academia) fica com 4 exercícios diferentes a menos na semana, e o **Jonas** (30 min) troca a panturrilha de um pé pela de dois. O "antes" é o ramo depois do pacote 2.
+
+```
+== Bruno (bruno): igual
+
+== Ana (ana): igual
+
+== Diego (diego): igual
+
+== Carla (carla): igual
+
+== Elisa (elisa): igual
+
+== Fábio (fabio): igual
+
+== Gilberto (gilberto): igual
+
+== Íris (iris): igual
+
+== Jonas (jonas): 
+  Corpo todo A (31 → 30 min)
+    sai:   Panturrilha unilateral no step 2×
+    entra: Panturrilha em pé no step 2×
+== Kátia (katia): igual
+
+== Leandro (leandro): 
+  Corpo todo A (54 → 54 min)
+    sai:   Rosca direta na polia com barra reta 2×
+    entra: Rosca inclinada com halteres 2×
+  Corpo todo B (57 → 54 min)
+    sai:   Stiff unilateral com halter 3×; Remada com halteres, peito apoiado no banco inclinado 3×; Abdução na cadeira abdutora 2×
+    entra: Stiff com halteres 3×; Remada com halteres, peito apoiado no banco inclinado 2×; Hip thrust 2×
+  Corpo todo C (54 → 55 min)
+    sai:   Supino sentado na máquina 2×; Puxada pela frente no puxador 2×; Stiff com halteres 2×; Panturrilha no leg press 3×
+    entra: Supino reto com halteres 2×; Puxada pela frente no puxador 3×; Panturrilha em pé na máquina 3×; Abdução na cadeira abdutora 2×
+== Marina (marina): igual
+```
+
