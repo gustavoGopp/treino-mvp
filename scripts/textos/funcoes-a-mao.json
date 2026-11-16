@@ -47,6 +47,14 @@
     [
       "^(Descanso|O tempo dos seus treinos|Polia dupla \\(crossover\\)|Banco romano ou GHD|Barra reta|Hack ou pendular|Abdutora e adutora)$",
       "título ou rótulo"
+    ],
+    [
+      "^Sem nada marcado|itens? marcados?\\. Tire",
+      "estado"
+    ],
+    [
+      "^Com aquecimento e descansos|^Não sabe\\? O app usa",
+      "definição"
     ]
   ]
 }

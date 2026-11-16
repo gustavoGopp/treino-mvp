@@ -36,3 +36,6 @@ reports/
 # Capturas do inventário de textos: 69 MB, refeitas pelo roteiro (scripts/textos/inventario.spec.ts)
 docs/revisoes/textos/inventario/capturas/
 docs/revisoes/textos/depois/capturas/
+# Da medição nova, só os resumos são versionados a cada fluxo; o resto é refeito pelo roteiro (e entra no fechamento)
+docs/revisoes/textos/depois/*.json
+docs/revisoes/textos/depois/*.csv

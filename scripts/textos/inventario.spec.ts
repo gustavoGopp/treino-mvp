@@ -164,7 +164,8 @@ roteiro('cadastro-ana', 10, 'cadastro', 'ana', async (r, page) => {
   await nivel('Menos de 6 meses', /^Estou treinando/, /^Sim/);
   await expect(page.getByRole('heading', { name: 'Seu nível: Iniciante' })).toBeVisible();
   await r.foto('experiencia-respondida', { titulo: 'Experiência respondida (a Ana: "Seu nível: Iniciante")', comoChegar: 'Experiência → "Menos de 6 meses", "Estou treinando", "Sim".' });
-  await folhaDoSelo(r, 'experiencia-folha-selo-do-nivel', page.locator('main .resultado button.selo'), { titulo: 'Folha "De onde vem isto" (o selo do nível)', comoChegar: 'Experiência respondida → toque no selo ao lado do motivo do nível.' });
+  // sessão de textos (16/11/2026): o motivo do nível e a regra dele ficam atrás do "por quê?" (antes: o selo ao lado do motivo)
+  await r.folha('experiencia-folha-selo-do-nivel', () => page.locator('main .resultado').getByRole('button', { name: 'por quê?' }).click(), { titulo: 'Folha "Como o nível é definido" (por quê?)', comoChegar: 'Experiência respondida → "por quê?" ao lado de "Seu nível".' });
   await page.getByRole('button', { name: 'Continuar' }).click();
 
   // ---- rotina ----
@@ -193,7 +194,7 @@ roteiro('cadastro-ana', 10, 'cadastro', 'ana', async (r, page) => {
   });
   await minutosPorTreino(page, '45');
   await r.foto('rotina-3a-pergunta', { titulo: 'Rotina: a 3ª pergunta aparece (grupos a priorizar)', comoChegar: 'Rotina → "3 dias" → "45 min".' });
-  await r.folha('rotina-folha-por-que-grupos', () => page.locator('fieldset', { hasText: 'Quais grupos' }).getByRole('button', { name: 'por quê?' }).click(), { titulo: 'Folha "Grupos prioritários" (por quê?)', comoChegar: 'Rotina → "por quê?" em "Quais grupos você quer priorizar?".' });
+  await r.folha('rotina-folha-por-que-grupos', () => page.locator('fieldset', { hasText: 'Priorizar algum grupo' }).getByRole('button', { name: 'por quê?' }).click(), { titulo: 'Folha "Grupos prioritários" (por quê?)', comoChegar: 'Rotina → "por quê?" em "Priorizar algum grupo?".' });
   await r.passo('rotina, as notas do foco', async () => {
     for (const g of ['Peito', 'Costas', 'Ombros']) await page.getByLabel(g, { exact: true }).check();
     await r.foto('rotina-foco-3-grupos', { titulo: 'Rotina: 3 grupos marcados (a nota "Com mais de 2 grupos…")', comoChegar: 'Rotina → marcar Peito, Costas e Ombros.', tipo: 'aviso' });
@@ -314,9 +315,10 @@ roteiro('cadastro-ana', 10, 'cadastro', 'ana', async (r, page) => {
     await page.getByRole('button', { name: /^Conferir os \d+ itens/ }).click();
     await expect(page.getByRole('region', { name: /^Marcados/ })).toBeVisible();
     await r.foto('equipamento-item-por-item-academia', { titulo: 'Equipamento: item por item, com os itens da "Academia completa" marcados', comoChegar: 'Equipamento → "Academia completa" → "Conferir os N itens ›".' });
-    await folhaDoSelo(r, 'equipamento-folha-selo-da-menor-anilha', page.getByRole('region', { name: 'Detalhes: Anilhas das máquinas e barras' }).locator('button.selo'), {
-      titulo: 'Folha "De onde vem isto" (o selo da menor anilha)',
-      comoChegar: 'Equipamento com leg press, hack, smith ou barra marcados → "Anilhas das máquinas e barras" → toque no selo.',
+    // sessão de textos (16/11/2026): a explicação da menor anilha e a regra ficam atrás de "para que serve"
+    await r.folha('equipamento-folha-selo-da-menor-anilha', () => page.getByRole('region', { name: 'Detalhes: Anilhas das máquinas e barras' }).getByRole('button', { name: 'para que serve' }).click(), {
+      titulo: 'Folha "A menor anilha" (para que serve)',
+      comoChegar: 'Equipamento com leg press, hack, smith ou barra marcados → "Anilhas das máquinas e barras" → "para que serve".',
     });
     await page.getByRole('button', { name: 'Corpo livre' }).click();
   });
