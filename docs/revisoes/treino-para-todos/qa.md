@@ -706,3 +706,17 @@ Arquivos: [`medidas/main-com-a-regua-de-14-11/retrato.md`](medidas/main-com-a-re
 | nivel:intermediario | 80,1% | 91,9% | — |
 
 Pior grupo antes: dor:cotovelo 7 (50,0%). Pior grupo depois: min:30 (73,8%).
+
+## Pacote 5 (a janela do aviso de "sem melhora" pelo nível; o programa guarda o nível)
+
+O pacote não muda o gerador: a régua e os 20 cuidados na população ficam como no pacote 4 ([`medidas/pacote-4/retrato.md`](medidas/pacote-4/retrato.md)). A medida dele é a do simulador de meses ([`medidas/longo-prazo.md`](medidas/longo-prazo.md)).
+
+| Critério | Depois do pacote 5 |
+|---|---|
+| Nenhum defeito da régua pior que na `main`, em nenhum grupo | igual ao pacote 4 (os programas são os mesmos; 0 diferenças em 23.470 entre o protótipo de conferência e o app) |
+| A medida do pacote | no simulador de 48 sessões, o aviso de "sem melhora" cai de 24,1 · 35,9 · 40,7 para 16,7 · 16,9 · 17,2 sessões (iniciante · intermediário · avançado), com a carga subindo as mesmas vezes |
+| Revisão cega | não se aplica (os programas não mudam) |
+| Toda regra com selo, fonte e teste | `progressao.estagnacao` em `regras.md` (consenso; `steele2023`; os números são escolha do projeto); `tests/unit/sem-melhora.test.ts` (12 testes) |
+| `src/storage/` só com decisão do Gustavo, migração e teste | cumprido: decisão de 16/11/2026; versão 9; migração 8 → 9 que só grava o nível quando o programa foi gerado com o cadastro de agora; 4 testes em `armazenamento.test.ts` |
+| `npm run check`, `npm run test:e2e`, `npm run auditoria:verificar` | ver [`pacote-5.md`](pacote-5.md), seção 7 |
+

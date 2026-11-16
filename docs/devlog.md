@@ -1770,3 +1770,15 @@ Em relação ao pacote 0, um único par de grupo e defeito sobe, em 1 programa. 
 
 **Rascunho de post.** "Quando o treino não cabe no tempo, o app tinha duas saídas: juntar exercícios em dupla ou cortar séries. Agora tem uma antes dessas: trocar o exercício de um lado só pelo de dois lados, que leva metade do tempo e rende o mesmo. Em 680 mil programas, mil deixaram de passar do tempo sem perder uma série. Também testei limitar o iniciante a 6 exercícios por treino, que era o pedido nº 1 dos revisores: na revisão às cegas a nota caiu, porque o tempo sobrava. Não entrou."
 
+## Sessão "treino para todos", etapa 2, pacote 5 (16/11/2026): o aviso de "sem melhora"
+
+**O que mudou (no ramo `claude/nifty-albattani-mltt95`, não na `main`).** O aviso de "sem melhora" deixou de contar 3 sessões paradas para todo mundo: agora são 4 para o iniciante, 8 para o intermediário e 16 para o avançado. As sessões passam a ser comparadas pelas séries que têm em comum (o exercício com 3 séries num dia e 2 no outro fazia o aviso piscar). Para a regra saber o nível, o programa guardado passou a registrá-lo: é a versão 9 dos dados, com uma migração que só grava o nível quando o programa foi gerado com o cadastro de agora.
+
+**Medido no simulador de meses (48 sessões de um exercício, 15 casos).** O aviso aparecia em 24 sessões para o iniciante, 36 para o intermediário e 41 para o avançado; agora, em 17 nos três. A carga sobe as mesmas vezes. Os números 4, 8 e 16 são escolha do projeto, sem estudo que os defina.
+
+**O custo.** Quem está parado de verdade demora mais para ouvir (um avançado, até 16 semanas num exercício feito 1 vez por semana), e a semana leve por estagnação é sugerida mais tarde (o Bruno: fim da 4ª semana, em vez da 2ª).
+
+**Imagem.** Sem imagem: nada mudou nas telas nem no motor de animação.
+
+**Rascunho de post.** "O app avisava 'três sessões sem melhora' para todo mundo. Para um iniciante, três sessões paradas dizem alguma coisa. Para quem treina há anos, o ganho de uma sessão para a outra é pequeno demais para aparecer: no simulador, um avançado no ritmo normal lia o aviso em 41 de 48 treinos. Agora a paciência do app cresce com o nível: 4, 8 e 16 sessões. Esses números são aposta minha, e está escrito assim na regra."
+

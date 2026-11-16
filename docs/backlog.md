@@ -357,3 +357,14 @@ Detalhes em `revisoes/treino-para-todos/pacote-4.md` e `qa.md`. O pacote está n
 - **O limite de 6 exercícios para o iniciante de 3 dias de até 60 min** terá um teste próprio (medida na população e revisão cega só dele), depois do pacote 5.
 - O próximo pacote é o 5 (o aviso de "sem melhora").
 
+## Da sessão "treino para todos", etapa 2, pacote 5 (16/11/2026)
+
+Detalhes em `revisoes/treino-para-todos/pacote-5.md`. O pacote está no ramo da sessão, esperando a revisão do Gustavo.
+
+**Para medir ou decidir depois**
+- **Recalibrar a janela do aviso de "sem melhora" (4, 8 e 16 sessões) com um export de uso real** (decisão de 02/11): os números são escolha do projeto, sem estudo.
+- **Uma vez parado, o aviso se repete a cada treino** (17 de 48 sessões no simulador, nos três níveis). Avisar uma vez e voltar a avisar só depois de outra janela é uma mudança de tela e de regra; não foi feita.
+- **Oferecer a revisão do nível aos ~6 meses** (a regra do próprio app reclassificaria): pede estado novo e tela.
+- **A carência de 3 semanas depois de uma pausa** deixou de fazer diferença para a estagnação do intermediário e do avançado (a janela só enche depois dela). Rever se a carência ainda precisa existir para esse sinal.
+- **Um teste antigo ainda fraco:** "as sessões da semana leve ficam fora da dupla progressão" não distingue a sessão leve que ficou de fora da que contou; precisa de um treino normal depois da semana leve.
+
