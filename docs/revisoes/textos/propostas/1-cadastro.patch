@@ -1,24 +1,208 @@
-From aeb0c10add8c36426447011bfa1670412fa7cdd1 Mon Sep 17 00:00:00 2001
+From 041473ca6fbe3dbf78445708888bd8923c0e3ff0 Mon Sep 17 00:00:00 2001
 From: Claude <noreply@anthropic.com>
 Date: Mon, 16 Nov 2026 14:29:53 +0000
 Subject: [PATCH] =?UTF-8?q?Proposta=20do=20cadastro=20enxuto=20(ainda=20se?=
- =?UTF-8?q?m=20aprova=C3=A7=C3=A3o;=20testes=20n=C3=A3o=20ajustados)?=
+ =?UTF-8?q?m=20aprova=C3=A7=C3=A3o),=20com=20os=20testes=20ajustados?=
 MIME-Version: 1.0
 Content-Type: text/plain; charset=UTF-8
 Content-Transfer-Encoding: 8bit
 
 ---
- src/domain/gerador/opcoes.ts           |  6 ++--
- src/domain/nivel/index.ts              |  2 +-
- src/features/app/ui.tsx                |  3 +-
- src/features/onboarding/BoasVindas.tsx |  3 +-
- src/features/onboarding/Inventario.tsx | 44 ++++++++++++--------------
- src/features/onboarding/Nivel.tsx      | 17 +++++-----
- src/features/onboarding/Rotina.tsx     | 32 ++++++++++++-------
- src/features/onboarding/Triagem.tsx    |  4 +--
- src/styles.css                         |  3 ++
- 9 files changed, 62 insertions(+), 52 deletions(-)
+ scripts/design/frontend-novo/capturas.spec.ts |  6 +--
+ scripts/textos/cobertura.ts                   |  2 +-
+ scripts/textos/inventario.spec.ts             | 32 +++++++-------
+ src/domain/gerador/opcoes.ts                  |  6 +--
+ src/domain/nivel/index.ts                     |  2 +-
+ src/features/app/ui.tsx                       |  3 +-
+ src/features/onboarding/BoasVindas.tsx        |  3 +-
+ src/features/onboarding/Inventario.tsx        | 44 +++++++++----------
+ src/features/onboarding/Nivel.tsx             | 18 ++++----
+ src/features/onboarding/Rotina.tsx            | 32 +++++++++-----
+ src/features/onboarding/Triagem.tsx           |  4 +-
+ src/styles.css                                |  6 +++
+ tests/e2e/corpo-livre.spec.ts                 |  6 +--
+ tests/e2e/foto.spec.ts                        |  2 +-
+ tests/e2e/jornada.ts                          |  6 +--
+ tests/e2e/onboarding.spec.ts                  | 10 ++---
+ tests/unit/foco.test.ts                       |  4 +-
+ 17 files changed, 100 insertions(+), 86 deletions(-)
 
+diff --git a/scripts/design/frontend-novo/capturas.spec.ts b/scripts/design/frontend-novo/capturas.spec.ts
+index 2582f78..b0bdcde 100644
+--- a/scripts/design/frontend-novo/capturas.spec.ts
++++ b/scripts/design/frontend-novo/capturas.spec.ts
+@@ -117,7 +117,7 @@ test('o app de hoje, tela por tela, com a Ana', async ({ page }, info) => {
+   });
+   await triagemNenhuma(page);
+ 
+-  await expect(page.getByRole('heading', { name: 'Sua experiência com musculação' })).toBeVisible();
++  await expect(page.getByRole('heading', { name: 'Experiência', exact: true })).toBeVisible();
+   await foto('03-nivel-vazio', { acao: 'Continuar', inteira: true });
+   await grupo(/sem parar/).getByLabel('Menos de 6 meses').check();
+   await grupo(/treinando agora/).getByLabel(/^Estou treinando/).check();
+@@ -126,7 +126,7 @@ test('o app de hoje, tela por tela, com a Ana', async ({ page }, info) => {
+   await foto('03b-nivel-respondido', { acao: 'Continuar', inteira: true });
+   await page.getByRole('button', { name: 'Continuar' }).click();
+ 
+-  await expect(page.getByRole('heading', { name: 'Sua rotina de treino' })).toBeVisible();
++  await expect(page.getByRole('heading', { name: 'Rotina', exact: true })).toBeVisible();
+   await foto('04-rotina-vazia', { acao: 'Continuar', inteira: true });
+   await grupo(/Quantos dias/).getByLabel('3 dias').check();
+   await minutosPorTreino(page, '45');
+@@ -135,7 +135,7 @@ test('o app de hoje, tela por tela, com a Ana', async ({ page }, info) => {
+   await foto('04b-rotina-respondida', { acao: 'Continuar', inteira: true });
+   await page.getByRole('button', { name: 'Continuar' }).click();
+ 
+-  await expect(page.getByRole('heading', { name: 'Que equipamento você tem?' })).toBeVisible();
++  await expect(page.getByRole('heading', { name: 'Onde você treina?' })).toBeVisible();
+   await foto('05-equipamento-lugar', { acao: 'Gerar meu programa', inteira: true });
+   await passo('equipamento, pela foto', async () => {
+     await page.getByRole('button', { name: 'Pela foto' }).click();
+diff --git a/scripts/textos/cobertura.ts b/scripts/textos/cobertura.ts
+index ccf0c07..674dc25 100644
+--- a/scripts/textos/cobertura.ts
++++ b/scripts/textos/cobertura.ts
+@@ -108,7 +108,7 @@ export const COBERTURA: Linha[] = [
+   l('src/features/onboarding/Inventario.tsx:554', 'bloco que abre', '"Item por item": marcados, busca, categorias e grade', ['cadastro/equipamento-item-por-item-vazio', 'cadastro/equipamento-item-por-item', 'cadastro/equipamento-item-por-item-academia', 'cadastro/equipamento-categoria-bancos', 'cadastro/equipamento-categoria-polias-e-acessorios', 'cadastro/equipamento-categoria-barras', 'cadastro/equipamento-categoria-maquinas', 'cadastro/equipamento-categoria-outros-acessorios']),
+   l('src/features/onboarding/Inventario.tsx:559', 'folha', '"Reconhecer pela foto"', ['cadastro/equipamento-folha-da-foto', 'termos-e-foto/foto-sem-autorizacao']),
+   l('src/features/onboarding/Inventario.tsx:583', 'erro ou validação', '"falta completar" na linha do item marcado', ['cadastro/equipamento-erro-detalhes-por-completar']),
+-  l('src/features/onboarding/Inventario.tsx:602', 'rota', 'busca pelo nome ("Procurar pelo nome")', ['cadastro/equipamento-busca-com-resultado']),
++  l('src/features/onboarding/Inventario.tsx:602', 'rota', 'busca pelo nome ("Procurar")', ['cadastro/equipamento-busca-com-resultado']),
+   l('src/features/onboarding/Inventario.tsx:622', 'estado vazio', '"Nada com “…”. Confira a escrita ou procure pela categoria."', ['cadastro/equipamento-busca-sem-resultado']),
+   l('src/features/onboarding/Inventario.tsx:638', 'folha', 'folha de detalhes do item (12 itens têm detalhes)', ['cadastro/equipamento-folha-halteres-fixos', 'cadastro/equipamento-folha-anilhas-e-manoplas', 'cadastro/equipamento-folha-polia-simples', 'cadastro/equipamento-folha-banco-regulavel', 'cadastro/equipamento-folha-elasticos', 'cadastro/equipamento-folha-polia-dupla-crossover', 'cadastro/equipamento-folha-multifuncional', 'cadastro/equipamento-folha-kettlebell', 'cadastro/equipamento-folha-caneleiras-de-peso', 'cadastro/equipamento-folha-mini-band', 'cadastro/equipamento-folha-voador', 'cadastro/equipamento-folha-maquina-de-triceps', 'cadastro/equipamento-folha-do-item', 'cadastro/equipamento-folha-do-item-respondida']),
+   l('src/features/onboarding/Inventario.tsx:166', 'aviso condicional', 'campo "<pergunta>: outro valor" (em "Outro")', ['cadastro/equipamento-folha-halteres-fixos-outro']),
+diff --git a/scripts/textos/inventario.spec.ts b/scripts/textos/inventario.spec.ts
+index 9bec9a5..260cc0f 100644
+--- a/scripts/textos/inventario.spec.ts
++++ b/scripts/textos/inventario.spec.ts
+@@ -126,7 +126,7 @@ roteiro('cadastro-ana', 10, 'cadastro', 'ana', async (r, page) => {
+   await triagemNenhuma(page);
+ 
+   // ---- experiência ----
+-  await expect(page.getByRole('heading', { name: 'Sua experiência com musculação' })).toBeVisible();
++  await expect(page.getByRole('heading', { name: 'Experiência', exact: true })).toBeVisible();
+   await r.foto('experiencia-vazia', { titulo: 'Experiência: a 1ª pergunta, sem resposta', comoChegar: 'Saúde → "Não, nenhuma".', tipo: 'estado vazio' });
+   await r.passo('experiência, envio sem resposta', async () => {
+     await forcarEnvio(page);
+@@ -137,7 +137,7 @@ roteiro('cadastro-ana', 10, 'cadastro', 'ana', async (r, page) => {
+       tipo: 'erro',
+     });
+     await page.reload();
+-    await expect(page.getByRole('heading', { name: 'Sua experiência com musculação' })).toBeVisible();
++    await expect(page.getByRole('heading', { name: 'Experiência', exact: true })).toBeVisible();
+   });
+   const nivel = async (tempo: string, pausa: RegExp, tecnica: RegExp | string) => {
+     await grupo(page, /sem parar/).getByLabel(tempo).check();
+@@ -168,7 +168,7 @@ roteiro('cadastro-ana', 10, 'cadastro', 'ana', async (r, page) => {
+   await page.getByRole('button', { name: 'Continuar' }).click();
+ 
+   // ---- rotina ----
+-  await expect(page.getByRole('heading', { name: 'Sua rotina de treino' })).toBeVisible();
++  await expect(page.getByRole('heading', { name: 'Rotina', exact: true })).toBeVisible();
+   await r.foto('rotina-vazia', { titulo: 'Rotina: a 1ª pergunta, sem resposta', comoChegar: 'Experiência → "Continuar".', tipo: 'estado vazio' });
+   await r.folha('rotina-folha-por-que-dias', () => grupo(page, /Quantos dias/).getByRole('button', { name: 'por quê?' }).click(), { titulo: 'Folha "Quantos dias" (por quê?)', comoChegar: 'Rotina → "por quê?" em "Quantos dias por semana você pode treinar?".' });
+   await r.passo('rotina, envio sem resposta', async () => {
+@@ -180,7 +180,7 @@ roteiro('cadastro-ana', 10, 'cadastro', 'ana', async (r, page) => {
+       tipo: 'erro',
+     });
+     await page.reload();
+-    await expect(page.getByRole('heading', { name: 'Sua rotina de treino' })).toBeVisible();
++    await expect(page.getByRole('heading', { name: 'Rotina', exact: true })).toBeVisible();
+   });
+   await grupo(page, /Quantos dias/).getByLabel('3 dias').check();
+   await r.foto('rotina-2a-pergunta', { titulo: 'Rotina: a 2ª pergunta aparece ("Quantos minutos por treino?")', comoChegar: 'Rotina → "3 dias".' });
+@@ -208,7 +208,7 @@ roteiro('cadastro-ana', 10, 'cadastro', 'ana', async (r, page) => {
+   await page.getByRole('button', { name: 'Continuar' }).click();
+ 
+   // ---- equipamento ----
+-  await expect(page.getByRole('heading', { name: 'Que equipamento você tem?' })).toBeVisible();
++  await expect(page.getByRole('heading', { name: 'Onde você treina?' })).toBeVisible();
+   await r.foto('equipamento-lugar', { titulo: 'Equipamento: "Onde você treina?", sem nada marcado', comoChegar: 'Rotina → "Continuar".', tipo: 'estado vazio' });
+   await r.folha('equipamento-folha-da-foto', () => page.getByRole('button', { name: 'Pela foto' }).click(), { titulo: 'Folha "Reconhecer pela foto" (como abre na 1ª vez)', comoChegar: 'Equipamento → "Pela foto".' });
+   await abrirLista(page);
+@@ -219,12 +219,12 @@ roteiro('cadastro-ana', 10, 'cadastro', 'ana', async (r, page) => {
+       await r.foto(`equipamento-categoria-${nomeDeArquivo(categoria)}`, { titulo: `Equipamento: item por item, categoria "${categoria}"`, comoChegar: `Equipamento → "Item por item" → "${categoria}".` });
+     });
+   await r.passo('equipamento, a busca', async () => {
+-    await page.getByLabel('Procurar pelo nome').fill('xyz');
++    await page.getByLabel('Procurar', { exact: true }).fill('xyz');
+     await expect(page.getByText(/^Nada com/)).toBeVisible();
+     await r.foto('equipamento-busca-sem-resultado', { titulo: 'Equipamento: busca sem resultado', comoChegar: 'Equipamento → "Item por item" → procurar "xyz".', tipo: 'estado vazio' });
+-    await page.getByLabel('Procurar pelo nome').fill('extensora');
++    await page.getByLabel('Procurar', { exact: true }).fill('extensora');
+     await r.foto('equipamento-busca-com-resultado', { titulo: 'Equipamento: busca com resultado', comoChegar: 'Equipamento → "Item por item" → procurar "extensora".' });
+-    await page.getByLabel('Procurar pelo nome').fill('');
++    await page.getByLabel('Procurar', { exact: true }).fill('');
+   });
+   // a folha de detalhes de cada item que tem detalhes, como abre ao marcar
+   const COM_DETALHES = ['Halteres fixos', 'Anilhas e manoplas', 'Polia simples', 'Banco regulável', 'Elásticos', 'Polia dupla (crossover)', 'Multifuncional', 'Kettlebell', 'Caneleiras de peso', 'Mini-band', 'Voador', 'Máquina de tríceps'];
+@@ -299,7 +299,7 @@ roteiro('cadastro-ana', 10, 'cadastro', 'ana', async (r, page) => {
+   });
+   // os atalhos de lugar, a partir do formulário vazio (nada foi salvo ainda)
+   await page.reload();
+-  await expect(page.getByRole('heading', { name: 'Que equipamento você tem?' })).toBeVisible();
++  await expect(page.getByRole('heading', { name: 'Onde você treina?' })).toBeVisible();
+   for (const [id, lugar] of [['academia', 'Academia completa'], ['condominio', 'Condomínio com multifuncional'], ['casa', 'Casa com halteres e elásticos'], ['corpo', 'Corpo livre']] as const)
+     await r.passo(`equipamento, o atalho ${lugar}`, async () => {
+       // cada atalho soma ao anterior; "Corpo livre" desmarca tudo, e os outros são colhidos a partir do vazio
+@@ -322,7 +322,7 @@ roteiro('cadastro-ana', 10, 'cadastro', 'ana', async (r, page) => {
+   });
+   // o equipamento da Ana: halteres fixos de 1 a 12 kg e banco reto
+   await page.reload();
+-  await expect(page.getByRole('heading', { name: 'Que equipamento você tem?' })).toBeVisible();
++  await expect(page.getByRole('heading', { name: 'Onde você treina?' })).toBeVisible();
+   const halteres = await marcarItem(page, 'Halteres fixos');
+   await r.foto('equipamento-folha-do-item', { titulo: 'Folha de detalhes: Halteres fixos (a 1ª folha de item da Ana)', comoChegar: 'Equipamento → "Item por item" → marcar "Halteres fixos".', tipo: 'folha' });
+   await grupo(halteres, 'O mais leve').getByLabel('1 kg', { exact: true }).check();
+@@ -1245,7 +1245,7 @@ roteiro('volta-e-semana-leve', 30, 'fim-e-semana', 'ana', async (r, page) => {
+     await r.foto('inicio-volta-200-dias-agora-nao', { titulo: 'Início na volta de 200 dias, depois de "Agora não"', comoChegar: 'Início na volta de 200 dias → "Agora não".', tipo: 'aviso' });
+     await comTreinos(page, [{ dia: 0, quando: em('04-17') }, { dia: 1, quando: em('04-18') }, { dia: 2, quando: em('04-19') }]);
+     await page.getByRole('button', { name: 'Refazer o nível' }).click();
+-    await expect(page.getByRole('heading', { name: 'Sua experiência com musculação' })).toBeVisible();
++    await expect(page.getByRole('heading', { name: 'Experiência', exact: true })).toBeVisible();
+     await r.foto('refazer-o-nivel', { titulo: 'Experiência aberta por "Refazer o nível" (a pausa e o nível vêm sem resposta)', comoChegar: 'Início na volta de 200 dias → "Refazer o nível".', fluxo: 'dados-e-locais' });
+   });
+   const pesados: SessaoSemeada[] = [{ dia: 2, quando: em('10-20') }, { dia: 1, quando: em('10-27') }, { dia: 0, quando: em('11-02'), hojeFoi: 'pesado' }, { dia: 1, quando: em('11-03'), hojeFoi: 'pesado' }];
+@@ -1424,7 +1424,7 @@ roteiro('dados-edicao', 20, 'dados-e-locais', 'ana', async (r, page) => {
+   await inicioPronto(page);
+   await meusDados(page);
+   await page.getByRole('link', { name: /^Rotina e divisão/ }).click();
+-  await expect(page.getByRole('heading', { name: 'Sua rotina de treino' })).toBeVisible();
++  await expect(page.getByRole('heading', { name: 'Rotina', exact: true })).toBeVisible();
+   await r.foto('rotina-e-divisao', { titulo: 'Rotina e divisão (a rotina aberta por Meus dados, com o objetivo e a divisão)', comoChegar: 'Meus dados → "Rotina e divisão".' });
+   await r.folha('rotina-e-divisao-folha-o-objetivo', () => page.getByRole('button', { name: 'o que muda' }).click(), { titulo: 'Folha "O objetivo" (o que muda)', comoChegar: 'Rotina e divisão → "o que muda" em "O que você quer agora?".' });
+   await r.folha('rotina-e-divisao-folha-as-divisoes', () => page.locator('fieldset', { hasText: 'Como prefere dividir' }).getByRole('button', { name: 'por quê?' }).click(), { titulo: 'Folha "As divisões" (por quê?)', comoChegar: 'Rotina e divisão → "por quê?" em "Como prefere dividir?".' });
+@@ -1448,7 +1448,7 @@ roteiro('dados-edicao', 20, 'dados-e-locais', 'ana', async (r, page) => {
+   await r.passo('objetivo', async () => {
+     await meusDados(page);
+     await page.getByRole('link', { name: /^Objetivo/ }).click();
+-    await expect(page.getByRole('heading', { name: 'Sua rotina de treino' })).toBeVisible();
++    await expect(page.getByRole('heading', { name: 'Rotina', exact: true })).toBeVisible();
+     await page.waitForTimeout(300);
+     await r.foto('objetivo', { titulo: 'Objetivo (a mesma tela da rotina, aberta na pergunta do objetivo)', comoChegar: 'Meus dados → "Objetivo".' });
+   });
+@@ -1472,10 +1472,10 @@ roteiro('dados-edicao', 20, 'dados-e-locais', 'ana', async (r, page) => {
+   });
+   await r.passo('as telas do cadastro com o programa feito', async () => {
+     await page.goto('/comecar/nivel');
+-    await expect(page.getByRole('heading', { name: 'Sua experiência com musculação' })).toBeVisible();
++    await expect(page.getByRole('heading', { name: 'Experiência', exact: true })).toBeVisible();
+     await r.foto('experiencia-com-o-programa-feito', { titulo: 'Experiência de quem já tem programa (as respostas guardadas e "Meu programa" no alto)', comoChegar: 'Refazer a triagem → "Não, nenhuma".' });
+     await page.goto('/comecar/inventario');
+-    await expect(page.getByRole('heading', { name: 'Que equipamento você tem?' })).toBeVisible();
++    await expect(page.getByRole('heading', { name: 'Onde você treina?' })).toBeVisible();
+     await r.foto('equipamento-com-o-programa-feito', { titulo: 'Equipamento de quem já tem programa (a lista já vem aberta, com os marcados)', comoChegar: 'Refazer a triagem → … → "Continuar" até o equipamento.' });
+   });
+ });
+@@ -1576,7 +1576,7 @@ roteiro('foto', 20, 'termos-e-foto', 'ana', async (r, page) => {
+     AbortSignal.timeout = (ms: number) => original(Math.min(ms, 4000));
+   });
+   await semear(page, estadoDaPersona('ana'), '/comecar/inventario');
+-  await expect(page.getByRole('heading', { name: 'Que equipamento você tem?' })).toBeVisible();
++  await expect(page.getByRole('heading', { name: 'Onde você treina?' })).toBeVisible();
+   await page.getByRole('button', { name: 'Pela foto' }).click();
+   await folhaPronta(page);
+   const foto = (nome: string, titulo: string, comoChegar: string, tipo: 'folha' | 'erro' | 'carregando' | 'estado vazio' | 'bloco aberto' = 'folha') => r.foto(nome, { titulo, comoChegar, tipo });
 diff --git a/src/domain/gerador/opcoes.ts b/src/domain/gerador/opcoes.ts
 index c1aa4e4..d00ea89 100644
 --- a/src/domain/gerador/opcoes.ts
@@ -234,7 +418,7 @@ index 6af9af3..49a3799 100644
          <button type="submit" className="btn">
            {textoBotao}
 diff --git a/src/features/onboarding/Nivel.tsx b/src/features/onboarding/Nivel.tsx
-index 5e2234a..17c34c2 100644
+index 5e2234a..de65994 100644
 --- a/src/features/onboarding/Nivel.tsx
 +++ b/src/features/onboarding/Nivel.tsx
 @@ -14,7 +14,7 @@ import {
@@ -269,7 +453,7 @@ index 5e2234a..17c34c2 100644
                opcoes={PAUSAS}
                valor={pausa}
                aoMudar={setPausa}
-@@ -109,15 +107,16 @@ export function Nivel() {
+@@ -109,15 +107,17 @@ export function Nivel() {
          {sugestao && (
            <Revelar>
              <section className="resultado" aria-live="polite">
@@ -277,12 +461,13 @@ index 5e2234a..17c34c2 100644
 -              <p>
 -                {sugestao.motivo} Na dúvida, classificamos para baixo. <Selo id={sugestao.regraId} />
 -              </p>
-+              <h2>
-+                Seu nível: {NOME_NIVEL[sugestao.nivel]}{' '}
++              {/* sessão de textos (16/11/2026): o motivo repete o que a pessoa acabou de responder; ele e o selo ficam a um toque */}
++              <div className="nivel-linha">
++                <h2>Seu nível: {NOME_NIVEL[sugestao.nivel]}</h2>
 +                <PorQue regras={[sugestao.regraId]} titulo="Como o nível é definido">
 +                  <p>{sugestao.motivo} Na dúvida, classificamos para baixo.</p>
 +                </PorQue>
-+              </h2>
++              </div>
                {permitidos.length > 1 && (
                  <Escolha
                    nome="nivel-escolhido"
@@ -397,10 +582,18 @@ index e8e33d3..f62f531 100644
          <Erros erros={erros} />
          <div className="pilha">
 diff --git a/src/styles.css b/src/styles.css
-index 3a3a6bd..9ad1c52 100644
+index 3a3a6bd..a6df1c7 100644
 --- a/src/styles.css
 +++ b/src/styles.css
-@@ -512,6 +512,9 @@ html:has(.acao-boas){scroll-padding-bottom:calc(var(--h64) * 3 + var(--s16))}
+@@ -163,6 +163,7 @@ header.top{position:sticky;top:0;z-index:4;background:var(--fundo);padding:var(-
+ .resultado{background:var(--superficie-2);border-radius:var(--r8);padding:var(--s16);display:flex;flex-direction:column;gap:var(--s8)}
+ .resultado h2{margin:0;font-size:var(--t-pergunta);font-weight:700;letter-spacing:-.01em}
+ .resultado p{margin:0}
++.nivel-linha{display:flex;flex-wrap:wrap;align-items:baseline;gap:var(--s4) var(--s16)}
+ .reservado{border:1px dashed var(--borda);border-radius:var(--r8);padding:var(--s16);display:flex;flex-direction:column;gap:var(--s4);color:var(--texto-2);font-size:var(--t-apoio)}
+ .reservado b{color:var(--texto)}
+ .fase{margin:0;font-size:var(--t-apoio);color:var(--texto-2)}
+@@ -512,6 +513,9 @@ html:has(.acao-boas){scroll-padding-bottom:calc(var(--h64) * 3 + var(--s16))}
  .lugar-linha:focus-visible{outline:3px solid var(--foco);outline-offset:2px}
  .supos{display:flex;flex-direction:column;gap:var(--s16);background:var(--superficie-2);border-radius:var(--r8);padding:var(--s16)}
  .supos p{margin:0}
@@ -410,6 +603,146 @@ index 3a3a6bd..9ad1c52 100644
  .equipamento .chips{flex-wrap:wrap;overflow:visible;padding:0}
  .equipamento .chip[aria-pressed="true"],.detalhes-eq .chip-valor:has(input:checked){background:var(--superficie-2);color:var(--texto);box-shadow:inset 0 0 0 2px var(--acao)}
  .lista-eq{display:flex;flex-direction:column;gap:var(--s24)}
+@@ -520,6 +524,8 @@ html:has(.acao-boas){scroll-padding-bottom:calc(var(--h64) * 3 + var(--s16))}
+ .marcado-nome{flex:1;min-width:0;display:flex;flex-direction:column;overflow-wrap:break-word;font-weight:500}
+ .marcado-nome small{font-size:var(--t-apoio);color:var(--alerta);font-weight:600}
+ .marcados .btn{flex:0 0 auto;width:auto;align-self:center}
++/* o "×" de tirar: sem a palavra, o botão continua com 48 px de largura para o toque */
++.marcados .btn:has(> .icone:only-child){min-width:var(--h48);justify-content:center}
+ /* na folha, o título da folha já diz "Reconhecer pela foto" */
+ .folha .foto-eq > h2{display:none}
+ .grade-2{display:grid;grid-template-columns:1fr 1fr;gap:var(--s8)}
+diff --git a/tests/e2e/corpo-livre.spec.ts b/tests/e2e/corpo-livre.spec.ts
+index eba336c..bd96fbf 100644
+--- a/tests/e2e/corpo-livre.spec.ts
++++ b/tests/e2e/corpo-livre.spec.ts
+@@ -10,19 +10,19 @@ test('Corpo livre: sem nada marcado, o programa sai só com o peso do corpo, diz
+   await page.getByRole('button', { name: 'Começar', exact: true }).click();
+   await triagemNenhuma(page);
+ 
+-  await expect(page.getByRole('heading', { name: 'Sua experiência com musculação' })).toBeVisible();
++  await expect(page.getByRole('heading', { name: 'Experiência', exact: true })).toBeVisible();
+   await grupo(page, /sem parar/).getByLabel('Menos de 6 meses').check();
+   await grupo(page, /treinando agora/).getByLabel(/^Estou treinando/).check();
+   await grupo(page, /confiança na técnica/).getByLabel(/^Sim/).check();
+   await page.getByRole('button', { name: 'Continuar' }).click();
+ 
+-  await expect(page.getByRole('heading', { name: 'Sua rotina de treino' })).toBeVisible();
++  await expect(page.getByRole('heading', { name: 'Rotina', exact: true })).toBeVisible();
+   await grupo(page, /Quantos dias/).getByLabel('3 dias').check();
+   await minutosPorTreino(page, '30');
+   await page.getByRole('button', { name: 'Continuar' }).click();
+ 
+   // O 4º atalho: a escolha explícita de treinar sem equipamento (equipamento.atalhos). Nada vem pré-marcado.
+-  await expect(page.getByRole('heading', { name: 'Que equipamento você tem?' })).toBeVisible();
++  await expect(page.getByRole('heading', { name: 'Onde você treina?' })).toBeVisible();
+   const corpoLivre = page.getByRole('button', { name: /^(✓ )?Corpo livre$/ });
+   await expect(corpoLivre).toHaveAttribute('aria-pressed', 'false');
+   // Mesmo com algo marcado antes, o toque desmarca tudo.
+diff --git a/tests/e2e/foto.spec.ts b/tests/e2e/foto.spec.ts
+index 9439d4c..6e2e53b 100644
+--- a/tests/e2e/foto.spec.ts
++++ b/tests/e2e/foto.spec.ts
+@@ -27,7 +27,7 @@ async function fotoComExif(page: Page): Promise<Buffer> {
+ async function irParaEquipamento(page: Page) {
+   await ana(page);
+   await page.goto('/comecar/inventario');
+-  await expect(page.getByRole('heading', { name: 'Que equipamento você tem?' })).toBeVisible();
++  await expect(page.getByRole('heading', { name: 'Onde você treina?' })).toBeVisible();
+   // lote 3 do redesign: a foto abre numa folha, pelo botão "Pela foto"
+   await page.getByRole('button', { name: 'Pela foto' }).click();
+   await folhaPronta(page);
+diff --git a/tests/e2e/jornada.ts b/tests/e2e/jornada.ts
+index 5206a17..b33c458 100644
+--- a/tests/e2e/jornada.ts
++++ b/tests/e2e/jornada.ts
+@@ -70,7 +70,7 @@ export async function ana(
+   else await triagemNenhuma(page);
+   await p();
+ 
+-  await expect(page.getByRole('heading', { name: 'Sua experiência com musculação' })).toBeVisible();
++  await expect(page.getByRole('heading', { name: 'Experiência', exact: true })).toBeVisible();
+   await grupo(page, /sem parar/).getByLabel('Menos de 6 meses').check();
+   await grupo(page, /treinando agora/).getByLabel(/^Estou treinando/).check();
+   await grupo(page, /confiança na técnica/).getByLabel(/^Sim/).check();
+@@ -78,7 +78,7 @@ export async function ana(
+   await p();
+   await page.getByRole('button', { name: 'Continuar' }).click();
+ 
+-  await expect(page.getByRole('heading', { name: 'Sua rotina de treino' })).toBeVisible();
++  await expect(page.getByRole('heading', { name: 'Rotina', exact: true })).toBeVisible();
+   await grupo(page, /Quantos dias/).getByLabel('3 dias').check();
+   await minutosPorTreino(page, minutos);
+   await page.getByLabel('Pernas', { exact: true }).check();
+@@ -87,7 +87,7 @@ export async function ana(
+   await p();
+   await page.getByRole('button', { name: 'Continuar' }).click();
+ 
+-  await expect(page.getByRole('heading', { name: 'Que equipamento você tem?' })).toBeVisible();
++  await expect(page.getByRole('heading', { name: 'Onde você treina?' })).toBeVisible();
+   // lote 3 do redesign: item por item; marcar um item com detalhes abre a folha dele
+   const halteres = await marcarItem(page, 'Halteres fixos');
+   await grupo(halteres, 'O mais leve').getByLabel('1 kg', { exact: true }).check();
+diff --git a/tests/e2e/onboarding.spec.ts b/tests/e2e/onboarding.spec.ts
+index 1fee00f..ddfdd5d 100644
+--- a/tests/e2e/onboarding.spec.ts
++++ b/tests/e2e/onboarding.spec.ts
+@@ -85,7 +85,7 @@ test('triagem com "sim" bloqueia, e confirmar a liberação desbloqueia', async
+   await triagem(page, { simEm: ['coração'] });
+   await page.getByLabel('Confirmo que fui avaliado e liberado').check();
+   await continuar.click();
+-  await expect(page.getByRole('heading', { name: 'Sua experiência com musculação' })).toBeVisible();
++  await expect(page.getByRole('heading', { name: 'Experiência', exact: true })).toBeVisible();
+ });
+ 
+ test('lote 3: a saúde em uma pergunta mostra as perguntas inteiras a um toque, e "sim" sem nada marcado pede para voltar', async ({ page }) => {
+@@ -132,7 +132,7 @@ test('"sim" só no osteoarticular pede as regiões e a dor de hoje, e o aviso di
+       await expect(dialogo).toContainText('Você não marcou estas 8:');
+       await expect(dialogo).toContainText('Algum médico já disse que você tem problema no coração ou pressão alta?');
+       await confirmarNaoMarcadas(p);
+-      await expect(p.getByRole('heading', { name: 'Sua experiência com musculação' })).toBeVisible();
++      await expect(p.getByRole('heading', { name: 'Experiência', exact: true })).toBeVisible();
+     },
+   });
+   // lote 3 do redesign: o resumo da dor da triagem é o 1º aviso do programa novo, com o selo, até o 1º treino
+@@ -177,7 +177,7 @@ test('atalho "academia completa": nada vem marcado, o toque marca o conjunto e o
+   await page.getByRole('button', { name: 'Academia completa' }).click();
+   await expect(page.getByRole('button', { name: 'Academia completa' })).toHaveAttribute('aria-pressed', 'true');
+   // lote 3 do redesign: o que o app supôs em 1 linha; conferir abre os marcados
+-  await expect(page.locator('.supos')).toContainText(/Um toque marcou \d+ itens típicos/);
++  await expect(page.locator('.supos')).toContainText(/\d+ itens marcados/);
+   // a Ana já tinha itens, então a lista já vem aberta (no cadastro novo, "Conferir os N itens ›" abre)
+   await abrirLista(page);
+   const marcados = page.getByRole('region', { name: /^Marcados/ });
+@@ -207,10 +207,10 @@ test('atalho "academia completa": nada vem marcado, o toque marca o conjunto e o
+ test('lote 3: a busca acha o item pelo nome em qualquer categoria, e o detalhe que falta abre sozinho ao gerar', async ({ page }) => {
+   await ana(page);
+   await page.goto('/comecar/inventario');
+-  await page.getByLabel('Procurar pelo nome').fill('extensora');
++  await page.getByLabel('Procurar', { exact: true }).fill('extensora');
+   await expect(page.locator('.grade-2 .item-eq')).toHaveCount(1);
+   await page.locator('.grade-2').getByLabel('Cadeira extensora', { exact: true }).check();
+-  await page.getByLabel('Procurar pelo nome').fill('xyz');
++  await page.getByLabel('Procurar', { exact: true }).fill('xyz');
+   await expect(page.getByText('Nada com “xyz”. Confira a escrita ou procure pela categoria.')).toBeVisible();
+   // marcar a polia simples abre os detalhes; fechar sem responder e gerar abre de novo, com o erro
+   const polia = await marcarItem(page, 'Polia simples');
+diff --git a/tests/unit/foco.test.ts b/tests/unit/foco.test.ts
+index 24d22b4..4b6ccdc 100644
+--- a/tests/unit/foco.test.ts
++++ b/tests/unit/foco.test.ts
+@@ -154,9 +154,9 @@ describe('escolha até 2 grupos de foco (volume.prioridade.ate-dois)', () => {
+     expect(notaDoFoco(['peito'])).toBeNull();
+     expect(notaDoFoco(['peito', 'costas'])).toBeNull();
+     expect(notaDoFoco(['bracos'])).toBeNull();
+-    expect(notaDoFoco(['peito', 'costas', 'ombros'])).toMatch(/^Com mais de 2 grupos, o foco se divide e cada um cresce menos\. Dá para seguir assim/);
++    expect(notaDoFoco(['peito', 'costas', 'ombros'])).toBe('Com mais de 2 grupos, cada um cresce menos.');
+     expect(notaDoFoco(['peito', 'bracos'])).toMatch(/^"Braços" conta como 2: bíceps e tríceps\./);
+-    expect(notaDoFoco(['pernas'])).toMatch(/^"Pernas" conta como 3: frente da coxa, posterior e panturrilha\. Com isso, o foco se divide/);
++    expect(notaDoFoco(['pernas'])).toBe('"Pernas" conta como 3: frente da coxa, posterior e panturrilha. O foco rende mais com até 2.');
+     expect(notaDoFoco(['peito', 'costas', 'pernas'])).toMatch(/"Pernas" conta como 3/);
+   });
+ });
 -- 
 2.43.0
 

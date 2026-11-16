@@ -39,7 +39,7 @@ O Gustavo escolheu primeiro a versão 1 (só os dois bonecos). A pesquisa 04 tro
 
 ## 1. Cadastro (proposta; esperando a decisão)
 
-Folhas: `folhas/1a-cadastro-abertura-e-equipamento.png`, `1b-cadastro-experiencia-e-rotina.png`, `1c-cadastro-equipamento-marcado.png` e `1d-cadastro-saude.png`. A mudança inteira, como está na cópia de exemplo, está em `propostas/1-cadastro.patch` (os testes ainda não foram ajustados).
+Folhas: `folhas/1a-cadastro-abertura-e-equipamento.png`, `1b-cadastro-experiencia-e-rotina.png`, `1c-cadastro-equipamento-marcado.png` e `1d-cadastro-saude.png`. A mudança inteira, como está na cópia de exemplo, está em `propostas/1-cadastro.patch`, já com os testes ajustados: 904 testes de regra, a conferência de tokens e os 161 de ponta a ponta passam com ela.
 
 | Tela | Hoje | Proposta | O que muda |
 |---|---|---|---|
@@ -62,5 +62,7 @@ Folhas: `folhas/1a-cadastro-abertura-e-equipamento.png`, `1b-cadastro-experienci
 - **A folha da foto** (194 palavras): é privacidade; fica para o fluxo "termos e foto", com o ok explícito do Gustavo.
 
 **Um defeito que apareceu ao subir o bloco "Às vezes tem":** os nomes quebravam no meio da palavra ("Kettlebe ll", "Elástico s"), hoje e antes. Na proposta eles cabem.
+
+**Um defeito que os testes pegaram na própria proposta:** sem a palavra "Tirar", o botão "×" ficou com 40 px de largura, abaixo dos 44 px de toque. O teste de toque falhou em 7 cenários; o botão passou a ter 48 px e o teste não foi mexido.
 
 **Decisões anteriores que a proposta muda:** os 4 lugares tinham uma linha de descrição cada (apresentação aprovada em 06/11/2026); a proposta tira as quatro.
