@@ -1,0 +1,415 @@
+From aeb0c10add8c36426447011bfa1670412fa7cdd1 Mon Sep 17 00:00:00 2001
+From: Claude <noreply@anthropic.com>
+Date: Mon, 16 Nov 2026 14:29:53 +0000
+Subject: [PATCH] =?UTF-8?q?Proposta=20do=20cadastro=20enxuto=20(ainda=20se?=
+ =?UTF-8?q?m=20aprova=C3=A7=C3=A3o;=20testes=20n=C3=A3o=20ajustados)?=
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+---
+ src/domain/gerador/opcoes.ts           |  6 ++--
+ src/domain/nivel/index.ts              |  2 +-
+ src/features/app/ui.tsx                |  3 +-
+ src/features/onboarding/BoasVindas.tsx |  3 +-
+ src/features/onboarding/Inventario.tsx | 44 ++++++++++++--------------
+ src/features/onboarding/Nivel.tsx      | 17 +++++-----
+ src/features/onboarding/Rotina.tsx     | 32 ++++++++++++-------
+ src/features/onboarding/Triagem.tsx    |  4 +--
+ src/styles.css                         |  3 ++
+ 9 files changed, 62 insertions(+), 52 deletions(-)
+
+diff --git a/src/domain/gerador/opcoes.ts b/src/domain/gerador/opcoes.ts
+index c1aa4e4..d00ea89 100644
+--- a/src/domain/gerador/opcoes.ts
++++ b/src/domain/gerador/opcoes.ts
+@@ -119,9 +119,9 @@ export const FOCO_RECOMENDADO = 2;
+ export function notaDoFoco(prioridades: Grupo[]): string | null {
+   const peso = prioridades.reduce((t, g) => t + PESO_DO_GRUPO(g), 0);
+   if (peso <= FOCO_RECOMENDADO) return null;
+-  const fim = 'Dá para seguir assim, mas o foco rende mais com até 2.';
++  const fim = 'O foco rende mais com até 2.';
+   const pernas = '"Pernas" conta como 3: frente da coxa, posterior e panturrilha.';
+-  if (prioridades.length > FOCO_RECOMENDADO) return `Com mais de 2 grupos, o foco se divide e cada um cresce menos. ${fim}${prioridades.includes('pernas') ? ` ${pernas}` : ''}`;
++  if (prioridades.length > FOCO_RECOMENDADO) return `Com mais de 2 grupos, cada um cresce menos.${prioridades.includes('pernas') ? ` ${pernas}` : ''}`;
+   const qual = prioridades.includes('pernas') ? pernas : '"Braços" conta como 2: bíceps e tríceps.';
+-  return `${qual} Com isso, o foco se divide e cada músculo cresce menos. ${fim}`;
++  return `${qual} ${fim}`;
+ }
+diff --git a/src/domain/nivel/index.ts b/src/domain/nivel/index.ts
+index a9264b6..1615d54 100644
+--- a/src/domain/nivel/index.ts
++++ b/src/domain/nivel/index.ts
+@@ -12,7 +12,7 @@ export const TEMPOS_DE_TREINO = [
+ export type TempoDeTreino = (typeof TEMPOS_DE_TREINO)[number]['id'];
+ 
+ export const CONFIANCA_TECNICA = [
+-  { id: 'sim', texto: 'Sim, faço os exercícios básicos com segurança' },
++  { id: 'sim', texto: 'Sim' },
+   { id: 'mais-ou-menos', texto: 'Mais ou menos' },
+   { id: 'nao', texto: 'Não' },
+ ] as const;
+diff --git a/src/features/app/ui.tsx b/src/features/app/ui.tsx
+index 8b88cc4..098ca54 100644
+--- a/src/features/app/ui.tsx
++++ b/src/features/app/ui.tsx
+@@ -305,7 +305,8 @@ export function Passo({
+             )
+           )}
+           <span>
+-            Passo {indice} de {total}
++            <span className="sr">Passo </span>
++            {indice} de {total}
+           </span>
+         </div>
+         <div className="barra" aria-hidden="true">
+diff --git a/src/features/onboarding/BoasVindas.tsx b/src/features/onboarding/BoasVindas.tsx
+index 7ed93c3..0f0a88f 100644
+--- a/src/features/onboarding/BoasVindas.tsx
++++ b/src/features/onboarding/BoasVindas.tsx
+@@ -42,7 +42,6 @@ export function BoasVindas() {
+           </div>
+         )}
+         <AvisoSalvar />
+-        <p className="lede">Monta o programa, mostra cada exercício e diz o porquê.</p>
+         <section className="nota-aviso" aria-labelledby="nao-faz">
+           <Icone nome="info" />
+           <div>
+@@ -80,7 +79,7 @@ export function BoasVindas() {
+             Começar
+           </button>
+           <p className="ajuda termos-linha">
+-            4 passos, uns 3 minutos. Ao começar, você concorda com os <Link to="/termos">termos de uso e o aviso de privacidade</Link>.
++            Ao começar, você concorda com os <Link to="/termos">termos de uso e o aviso de privacidade</Link>.
+           </p>
+         </div>
+       </main>
+diff --git a/src/features/onboarding/Inventario.tsx b/src/features/onboarding/Inventario.tsx
+index 6af9af3..49a3799 100644
+--- a/src/features/onboarding/Inventario.tsx
++++ b/src/features/onboarding/Inventario.tsx
+@@ -4,7 +4,8 @@ import { useNavigate } from 'react-router-dom';
+ import { ITENS, type Inventario as InventarioDados, type ItemId } from '../../domain/taxonomia/equipamentos';
+ import { comInventario, localPrincipal } from '../../storage/esquema';
+ import { agoraIso, comProgramaNovo, useApp } from '../app/estado';
+-import { Erros, Escolha, Marcar, Numero, Passo, Selo } from '../app/ui';
++import { Erros, Escolha, Marcar, Numero, Passo, PorQue, Selo } from '../app/ui';
++import { Icone } from '../app/icones';
+ import { FOTO_LIGADA } from '../app/contato';
+ import { FotoEquipamento } from './FotoEquipamento';
+ import { IconeEquipamento } from './icones';
+@@ -38,12 +39,6 @@ const kg = (n: number) => `${numeroBr(n)} kg`;
+ const normalizar = (s: string) => s.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
+ /** Os lugares na ordem do protótipo aprovado, com o subtítulo de cada um (lote 3 do redesign). */
+ const ORDEM_LUGAR = ['academia', 'condominio', 'casa', 'corpo'] as const;
+-const SUB_LUGAR: Record<(typeof ORDEM_LUGAR)[number], string> = {
+-  academia: 'Halteres, polias, barras e máquinas',
+-  condominio: 'Alguns halteres, banco e uma estação',
+-  casa: 'Pergunta só o que muda o programa',
+-  corpo: 'Sem equipamento: chão, parede e cadeira',
+-};
+ /** O item de cada grupo de campos do formulário (para os erros de detalhe apontarem o item). */
+ const ITEM_DO_CAMPO: Record<string, ItemId> = {
+   halteres: 'halteres_fixos',
+@@ -212,10 +207,11 @@ export function Inventario() {
+   const { estado, atualizar } = useApp();
+   const navigate = useNavigate();
+   return (
+-    <Passo id="inventario" titulo="Que equipamento você tem?">
++    <Passo id="inventario" titulo="Onde você treina?">
+       <FormularioInventario
+         inicial={localPrincipal(estado)?.inventario}
+         textoBotao="Gerar meu programa"
++        perguntaNoTitulo
+         aoSalvar={(inv) => {
+           // lote 3 do redesign: o "Tudo certo?" saiu; o equipamento é o último passo e gera o programa
+           atualizar((s) => ({ ...comProgramaNovo(comInventario(s, localPrincipal(s)?.id, inv), agoraIso(), true), ajustes: undefined }));
+@@ -231,10 +227,13 @@ export function FormularioInventario({
+   inicial,
+   aoSalvar,
+   textoBotao = 'Continuar',
++  perguntaNoTitulo = false,
+ }: {
+   inicial?: InventarioDados;
+   aoSalvar: (inv: InventarioDados) => void;
+   textoBotao?: string;
++  /** No cadastro o título da tela já é "Onde você treina?": a legenda do grupo fica só para o leitor de tela. */
++  perguntaNoTitulo?: boolean;
+ }) {
+   const [f, setF] = useState<FormInventario>(() => paraForm(inicial));
+   const [erros, setErros] = useState<Record<string, string>>({});
+@@ -278,7 +277,6 @@ export function FormularioInventario({
+       case 'halteres_fixos':
+         return (
+           <Detalhes titulo="Halteres fixos">
+-            <p className="ajuda">Isso define as cargas que o app pode sugerir.</p>
+             <ValorPorToque legenda="O mais leve" valores={VALORES.halterMin} valor={f.halteres.min} aoMudar={(v) => set('halteres', { min: v })} erro={e('halteres.min')} />
+             <ValorPorToque legenda="O mais pesado" valores={VALORES.halterMax} valor={f.halteres.max} aoMudar={(v) => set('halteres', { max: v })} erro={e('halteres.max')} />
+             <ValorPorToque legenda="De quanto em quanto" valores={VALORES.halterPasso} valor={f.halteres.passo} aoMudar={(v) => set('halteres', { passo: v })} erro={e('halteres.passo')} />
+@@ -491,7 +489,7 @@ export function FormularioInventario({
+     <form onSubmit={enviarComFolha} noValidate className="form equipamento">
+       {tentou && nErros > 0 && <Erros erros={[nErros === 1 ? 'Há 1 detalhe para completar.' : `Há ${nErros} detalhes para completar.`]} />}
+       <fieldset className="campo atalhos">
+-        <legend>Onde você treina?</legend>
++        <legend className={perguntaNoTitulo ? 'sr' : undefined}>Onde você treina?</legend>
+         <div className="lugares-lista">
+           {ORDEM_LUGAR.map((id) => {
+             const a = ATALHO[id];
+@@ -501,18 +499,13 @@ export function FormularioInventario({
+                 type="button"
+                 className="lugar-linha"
+                 aria-pressed={atalho === id}
+-                aria-label={a.nome}
+-                aria-describedby={`lugar-${id}`}
+                 onClick={() => {
+                   setF((x) => aplicarAtalho(x, id));
+                   setAtalho(id);
+                 }}
+               >
+                 <IconeLugar lugar={id} />
+-                <span>
+-                  <b>{a.nome}</b>
+-                  <small id={`lugar-${id}`}>{SUB_LUGAR[id]}</small>
+-                </span>
++                <b>{a.nome}</b>
+               </button>
+             );
+           })}
+@@ -520,12 +513,12 @@ export function FormularioInventario({
+         {atalho && (
+           <div className="supos">
+             <p>
+-              {ATALHO[atalho].ajuda ?? `Um toque marcou ${marcados.length} itens típicos. Confira e tire o que não tiver; a 1ª série de cada exercício acerta a carga.`}{' '}
++              {ATALHO[atalho].ajuda ?? `${marcados.length} itens marcados. Tire o que não tiver.`}{' '}
+               <Selo id="equipamento.atalhos" />
+             </p>
+             {ATALHO[atalho].asVezes.length > 0 && (
+               <fieldset className="campo sub">
+-                <legend>Às vezes tem (toque no que você tiver)</legend>
++                <legend>Às vezes tem</legend>
+                 <div className="opcoes grade">
+                   {ATALHO[atalho].asVezes.map((id) => (
+                     <Marcar key={id} marcado={f.marcados.includes(id)} aoMudar={(v) => marcar(id, v)}>
+@@ -588,7 +581,7 @@ export function FormularioInventario({
+                       </button>
+                     )}
+                     <button type="button" className="btn ter pequeno" aria-label={`Tirar ${NOME_CURTO[id]}`} onClick={() => marcar(id, false)}>
+-                      Tirar
++                      <Icone nome="x" />
+                     </button>
+                   </li>
+                 ))}
+@@ -600,7 +593,7 @@ export function FormularioInventario({
+               Marcar mais
+             </h2>
+             <label className="busca">
+-              <span>Procurar pelo nome</span>
++              <span>Procurar</span>
+               <input type="search" value={procura} onChange={(ev) => setProcura(ev.target.value)} />
+             </label>
+             <div className="chips" role="group" aria-label="Categorias">
+@@ -646,8 +639,13 @@ export function FormularioInventario({
+       {f.marcados.some((id) => ITENS_DE_ANILHA.includes(id)) && (
+         <Detalhes titulo="Anilhas das máquinas e barras">
+           <p className="ajuda">
+-            Vale para {ITENS_DE_ANILHA.filter((id) => f.marcados.includes(id)).map((id) => NOME_CURTO[id].toLowerCase()).join(', ')}. É o passo para
+-            subir a carga. Se não souber, o app usa 2 kg. <Selo id="equipamento.menor-anilha" />
++            Não sabe? O app usa 2 kg.{' '}
++            <PorQue regras={['equipamento.menor-anilha']} titulo="A menor anilha" rotulo="para que serve">
++              <p>
++                Vale para {ITENS_DE_ANILHA.filter((id) => f.marcados.includes(id)).map((id) => NOME_CURTO[id].toLowerCase()).join(', ')}. É o passo para
++                subir a carga.
++              </p>
++            </PorQue>
+           </p>
+           <ValorPorToque
+             legenda="Qual a menor anilha?"
+@@ -658,7 +656,7 @@ export function FormularioInventario({
+           />
+         </Detalhes>
+       )}
+-      <p className="ajuda">Dá para mudar depois, em Meus dados. Sem nada marcado, o programa usa o peso do corpo.</p>
++      <p className="ajuda">Sem nada marcado, o programa usa o peso do corpo.</p>
+       <div className="acao-fixa">
+         <button type="submit" className="btn">
+           {textoBotao}
+diff --git a/src/features/onboarding/Nivel.tsx b/src/features/onboarding/Nivel.tsx
+index 5e2234a..17c34c2 100644
+--- a/src/features/onboarding/Nivel.tsx
++++ b/src/features/onboarding/Nivel.tsx
+@@ -14,7 +14,7 @@ import {
+ } from '../../domain/nivel';
+ import type { Nivel as TipoNivel } from '../../domain/regras';
+ import { useApp } from '../app/estado';
+-import { Erros, Escolha, Passo, Revelar, Selo } from '../app/ui';
++import { Erros, Escolha, Passo, PorQue, Revelar } from '../app/ui';
+ 
+ // Passo 3: experiência de treino → nível (nivel.classificacao). Na dúvida, para baixo; a pessoa pode baixar, não subir.
+ export function Nivel() {
+@@ -68,13 +68,12 @@ export function Nivel() {
+   };
+ 
+   return (
+-    <Passo id="nivel" titulo="Sua experiência com musculação">
++    <Passo id="nivel" titulo="Experiência">
+       <form onSubmit={enviar} noValidate className="form">
+         {tentou && <Erros erros={erros} />}
+         <Escolha
+           nome="tempo"
+           legenda="Há quanto tempo você treina musculação sem parar?"
+-          ajuda="Conte só o tempo contínuo, sem pausas de meses."
+           opcoes={TEMPOS_DE_TREINO}
+           valor={tempo}
+           aoMudar={setTempo}
+@@ -86,7 +85,6 @@ export function Nivel() {
+             <Escolha
+               nome="pausa"
+               legenda="Você está treinando agora?"
+-              ajuda="Depois de uma pausa, o programa começa com semanas mais leves."
+               opcoes={PAUSAS}
+               valor={pausa}
+               aoMudar={setPausa}
+@@ -109,15 +107,16 @@ export function Nivel() {
+         {sugestao && (
+           <Revelar>
+             <section className="resultado" aria-live="polite">
+-              <h2>Seu nível: {NOME_NIVEL[sugestao.nivel]}</h2>
+-              <p>
+-                {sugestao.motivo} Na dúvida, classificamos para baixo. <Selo id={sugestao.regraId} />
+-              </p>
++              <h2>
++                Seu nível: {NOME_NIVEL[sugestao.nivel]}{' '}
++                <PorQue regras={[sugestao.regraId]} titulo="Como o nível é definido">
++                  <p>{sugestao.motivo} Na dúvida, classificamos para baixo.</p>
++                </PorQue>
++              </h2>
+               {permitidos.length > 1 && (
+                 <Escolha
+                   nome="nivel-escolhido"
+                   legenda="Quer começar num nível mais leve?"
+-                  ajuda="Você pode escolher um nível abaixo do sugerido, nunca acima."
+                   opcoes={[...permitidos].reverse().map((n) => ({
+                     id: n,
+                     texto: n === sugestao.nivel ? `${NOME_NIVEL[n]} (sugerido)` : NOME_NIVEL[n],
+diff --git a/src/features/onboarding/Rotina.tsx b/src/features/onboarding/Rotina.tsx
+index a917d83..770cbd2 100644
+--- a/src/features/onboarding/Rotina.tsx
++++ b/src/features/onboarding/Rotina.tsx
+@@ -1,4 +1,4 @@
+-import { useEffect, useRef, useState } from 'react';
++import { useEffect, useRef, useState, type ReactNode } from 'react';
+ import { useNavigate, useSearchParams } from 'react-router-dom';
+ import { GRUPOS, metaMaxima, type Grupo, type Objetivo } from '../../domain/gerador';
+ import { opcoesDeDivisao, type DivisaoId } from '../../domain/gerador/divisoes';
+@@ -84,12 +84,12 @@ export function Rotina() {
+   };
+ 
+   return (
+-    <Passo id="rotina" titulo="Sua rotina de treino" deDados={deDados}>
++    <Passo id="rotina" titulo="Rotina" deDados={deDados}>
+       <form onSubmit={enviar} noValidate className="form">
+         {tentou && <Erros erros={erros} />}
+         <Escolha
+           nome="dias"
+-          legenda="Quantos dias por semana você pode treinar?"
++          legenda="Quantos dias por semana?"
+           ajuda={
+             <>
+               <PorQue regras={['divisao.seis-dias']} titulo="Quantos dias">
+@@ -97,7 +97,15 @@ export function Rotina() {
+               </PorQue>
+             </>
+           }
+-          opcoes={DIAS.map((d) => ({ id: d, texto: `${d} dias` }))}
++          opcoes={DIAS.map((d) => ({
++            id: d,
++            texto: (
++              <>
++                {d}
++                <span className="sr"> dias</span>
++              </>
++            ),
++          }))}
+           valor={dias}
+           aoMudar={mudarDias}
+           erro={tentou && !dias ? 'Escolha uma opção.' : undefined}
+@@ -108,13 +116,18 @@ export function Rotina() {
+             <Escolha
+               nome="minutos"
+               legenda="Quantos minutos por treino?"
+-              ajuda="Tempo total, com aquecimento e descansos."
++              ajuda="Com aquecimento e descansos."
+               opcoes={[
+                 ...MINUTOS.map((m) => ({
+                   id: m as OpcaoMinutos,
+-                  texto: `${m} min`,
++                  texto: (
++                    <>
++                      {m}
++                      <span className="sr"> min</span>
++                    </>
++                  ) as ReactNode,
+                 })),
+-                { id: 'outro' as OpcaoMinutos, texto: 'Outro' },
++                { id: 'outro' as OpcaoMinutos, texto: 'Outro' as ReactNode },
+               ]}
+               valor={opMin}
+               aoMudar={escolherMin}
+@@ -139,7 +152,7 @@ export function Rotina() {
+         {((dias && opMin) || deDados) && (
+           <Revelar semRolar={deDados}>
+             <fieldset className="campo">
+-              <legend>Quais grupos você quer priorizar? (opcional)</legend>
++              <legend>Priorizar algum grupo? (opcional)</legend>
+               <p className="ajuda">
+                 Escolha até 2.{' '}
+                 <PorQue regras={['volume.semanal.minimo-eficaz', 'volume.prioridade.ate-dois']} titulo="Grupos prioritários">
+@@ -160,9 +173,6 @@ export function Rotina() {
+               )}
+             </fieldset>
+             {/* lote 3 do redesign: o objetivo saiu do cadastro ("ganhar músculo" é o padrão) e fica em Meus dados */}
+-            {!deDados && (
+-              <p className="ajuda">Dá para mudar depois, em Meus dados.</p>
+-            )}
+             {deDados && (
+             <div ref={noObjetivo} className="ancora-objetivo">
+             <Escolha
+diff --git a/src/features/onboarding/Triagem.tsx b/src/features/onboarding/Triagem.tsx
+index e8e33d3..f62f531 100644
+--- a/src/features/onboarding/Triagem.tsx
++++ b/src/features/onboarding/Triagem.tsx
+@@ -112,7 +112,7 @@ export function Triagem() {
+         <p>
+           {r.mensagem} <Selo id={r.regraId} />
+         </p>
+-        <p className="ajuda">O app não pede o nome nem o registro do profissional: só guarda, neste aparelho, a data da sua confirmação.</p>
++        <p className="ajuda">O app guarda só a data da confirmação, neste aparelho.</p>
+         <Marcar marcado={liberado} aoMudar={setLiberado}>
+           Confirmo que fui avaliado e liberado por um médico ou profissional de Educação Física
+         </Marcar>
+@@ -171,7 +171,7 @@ export function Triagem() {
+ 
+   return (
+     <Passo id="triagem" titulo="Quais valem para você?" aoVoltar={() => setGeral(true)}>
+-      <p className="lede">Marque as que valem. No fim, você confirma que as outras não valem.</p>
++      <p className="lede">Marque as que valem.</p>
+       <form onSubmit={continuar} noValidate className="form">
+         <Erros erros={erros} />
+         <div className="pilha">
+diff --git a/src/styles.css b/src/styles.css
+index 3a3a6bd..9ad1c52 100644
+--- a/src/styles.css
++++ b/src/styles.css
+@@ -512,6 +512,9 @@ html:has(.acao-boas){scroll-padding-bottom:calc(var(--h64) * 3 + var(--s16))}
+ .lugar-linha:focus-visible{outline:3px solid var(--foco);outline-offset:2px}
+ .supos{display:flex;flex-direction:column;gap:var(--s16);background:var(--superficie-2);border-radius:var(--r8);padding:var(--s16)}
+ .supos p{margin:0}
++/* o grupo "Às vezes tem" fica dentro da caixa do lugar: sem a 2ª caixa em volta, os nomes cabem sem quebrar no meio da palavra */
++.supos .sub{margin:0;padding:0}
++.supos .opcao{gap:var(--s8)}
+ .equipamento .chips{flex-wrap:wrap;overflow:visible;padding:0}
+ .equipamento .chip[aria-pressed="true"],.detalhes-eq .chip-valor:has(input:checked){background:var(--superficie-2);color:var(--texto);box-shadow:inset 0 0 0 2px var(--acao)}
+ .lista-eq{display:flex;flex-direction:column;gap:var(--s24)}
+-- 
+2.43.0
+

@@ -191,12 +191,21 @@ export function colherNaPagina(): Medida {
     }
     return nomeDaFolha;
   };
+  // na 1ª dobra: dentro da tela e sem estar cortado por uma área que rola (a lista comprida dentro de uma folha)
+  const naPrimeiraDobra = (el: Element) => {
+    const r = el.getBoundingClientRect();
+    let [topo, base] = [Math.max(0, r.top), Math.min(h, r.bottom)];
+    for (let a = el.parentElement; a && a !== document.documentElement; a = a.parentElement) {
+      const s = getComputedStyle(a);
+      if (s.overflowY === 'visible' && s.overflowX === 'visible') continue;
+      const c = a.getBoundingClientRect();
+      [topo, base] = [Math.max(topo, c.top), Math.min(base, c.bottom)];
+    }
+    return base - topo > 1;
+  };
   const blocos: Medida['blocos'] = [];
   for (const [bloco, nos] of grupos) {
-    const aVista = nos.some((no) => {
-      const r = no.parentElement!.getBoundingClientRect();
-      return r.bottom > 0 && r.top < h;
-    });
+    const aVista = nos.some((no) => naPrimeiraDobra(no.parentElement!));
     // o `summary` do próprio bloco fica de fora: ele aparece com o bloco fechado também
     const aberto = bloco.closest('details[open]');
     const dentro = aberto && !(tagDe(bloco) === 'summary' && bloco.parentElement === aberto) ? aberto : (aberto?.parentElement?.closest('details[open]') ?? null);

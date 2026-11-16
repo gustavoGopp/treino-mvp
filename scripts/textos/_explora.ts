@@ -22,3 +22,16 @@ for (const [nome, p] of Object.entries(PERSONAS)) {
 const sem = BIBLIOTECA.filter((e) => !e.animacaoId);
 console.log('\nsem animação:', sem.length, 'sem cartão:', sem.filter((e) => !temCartao(e.id)).map((e) => e.id));
 console.log('cargas:', [...new Set(BIBLIOTECA.map((e) => e.carga))]);
+
+const POR = Object.fromEntries(BIBLIOTECA.map((e) => [e.id, e]));
+for (const [nome, p] of Object.entries(PERSONAS)) {
+  const inv = inventarioSchema.parse(p.inventario);
+  const r = gerarPrograma({ ...p.perfil, semanasParado: 0 }, inv);
+  if (r.status !== 'ok') continue;
+  for (const d of r.programa.dias)
+    for (const [i, x] of d.exercicios.entries()) {
+      const tipos = x.alternativas.map((a) => POR[a]?.carga).filter((c) => c === 'assistida' || c === 'anilha');
+      if (!x.alternativas.length || tipos.length || ['anilha', 'assistida', 'barra', 'maquina', 'polia', 'kettlebell', 'caneleira'].includes(POR[x.exId]!.carga))
+        console.log(nome, d.nome, i + 1, x.nome, `[${POR[x.exId]!.carga}]`, 'alts:', x.alternativas.length, x.alternativas.filter((a) => ['assistida', 'anilha'].includes(POR[a]!.carga)).map((a) => `${POR[a]!.nome}[${POR[a]!.carga}]`).join('; '));
+    }
+}
