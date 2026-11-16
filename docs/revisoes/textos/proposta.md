@@ -37,9 +37,9 @@ Folha: `folhas/0-estilo-do-boneco.png` e `folhas/0b-estilo-do-boneco-nomes.png`.
 
 O Gustavo escolheu primeiro a versão 1 (só os dois bonecos). A pesquisa 04 trouxe que o padrão das fontes é imagem com nome, e ele trocou para a versão 2 (um nome de uma palavra sob cada boneco), com os nomes do par A: **Manequim** e **Pessoa**. O Boneco ficou maior (o quadro fecha em volta do corpo, na tela, sem mexer no motor) e o escolhido tem contorno e a marca de "certo".
 
-## 1. Cadastro (proposta; esperando a decisão)
+## 1. Cadastro (aprovado como está e aplicado em 16/11/2026)
 
-Folhas: `folhas/1a-cadastro-abertura-e-equipamento.png`, `1b-cadastro-experiencia-e-rotina.png`, `1c-cadastro-equipamento-marcado.png` e `1d-cadastro-saude.png`. A mudança inteira, como está na cópia de exemplo, está em `propostas/1-cadastro.patch`, já com os testes ajustados: 904 testes de regra, a conferência de tokens e os 161 de ponta a ponta passam com ela.
+Folhas: `folhas/1a-cadastro-abertura-e-equipamento.png`, `1b-cadastro-experiencia-e-rotina.png`, `1c-cadastro-equipamento-marcado.png` e `1d-cadastro-saude.png`. A mudança aplicada é a de `propostas/1-cadastro.patch`. Depois dela, a medição das 458 telas foi de 66.352 para 64.285 palavras (`depois/comparacao.md`): cadastro −16%, Meus dados e locais −8% (usam as mesmas telas). Testes: 904 de regra e tokens limpos; nos de ponta a ponta, 160 de 161 na rodada completa (o que falhou é o intermitente do cartão de texto, anotado no backlog em 13/11, e passou sozinho).
 
 | Tela | Hoje | Proposta | O que muda |
 |---|---|---|---|
@@ -66,3 +66,26 @@ Folhas: `folhas/1a-cadastro-abertura-e-equipamento.png`, `1b-cadastro-experienci
 **Um defeito que os testes pegaram na própria proposta:** sem a palavra "Tirar", o botão "×" ficou com 40 px de largura, abaixo dos 44 px de toque. O teste de toque falhou em 7 cenários; o botão passou a ter 48 px e o teste não foi mexido.
 
 **Decisões anteriores que a proposta muda:** os 4 lugares tinham uma linha de descrição cada (apresentação aprovada em 06/11/2026); a proposta tira as quatro.
+
+## 2. Início e programa (proposta; esperando a decisão)
+
+Folhas: `folhas/2a-inicio-e-folha-do-exercicio.png`, `2b-inicio-sobre-o-programa-e-ajustes.png`, `2c-inicio-como-ler-e-dois-locais.png` e `2d-inicio-abas-com-5-dias.png`. A mudança de exemplo está em `propostas/2-inicio.patch` (os testes ainda não foram ajustados).
+
+| Tela | Hoje | Proposta | O que muda |
+|---|---|---|---|
+| Início | 105 | 88 | as abas ficam só com a letra do dia (os minutos do dia escolhido já estão logo abaixo); "Músculos abaixo da meta." com o botão "Ajustar" no lugar de "Alguns músculos ficaram abaixo da meta. Dá para ajustar." e "Ver"; o botão vira "Começar o treino" (o nome do treino é o título) |
+| Folha do exercício | 93 | 29 | à vista ficam a prescrição e "Ver como fazer"; as alternativas e o "prefiro este" vão para "Alternativas (4)", a um toque; "Por que este exercício (5)" |
+| Sobre o programa | 104 | 93 | "Semana 1." no lugar de "Você está na semana 1."; a divisão entra na linha do resumo; o título "Como está o seu programa" fica só para o leitor de tela |
+| Ajustes possíveis | 94 | 86 | um título só (hoje a folha "Avisos" repete "Ajustes possíveis" embaixo); "Tocar numa opção gera o programa de novo." |
+| "Como ler o seu treino", aberto | 256 | 193 | cada definição mais curta, com o mesmo sentido e os mesmos selos |
+| Início com dois locais | 237 | 130 | "Em Academia do bairro: o treino muda." e "4 trocas" a um toque (a lista do dia, logo abaixo, já mostra os exercícios deste local) |
+| Início com 5 dias | 121 | 105 | as abas sem os minutos |
+| **Soma das 7** | **1.010** | **724** | menos 28% |
+
+**Um defeito de hoje, achado na medição com as outras personas:** com 4 ou 5 dias de treino, o nome do dia é cortado nas abas ("Supe", "Inferic", "Empu"). Os testes não pegavam porque a persona deles tem 3 dias. Na proposta as abas passam para a linha de baixo e todo nome aparece inteiro (`folhas/2d-inicio-abas-com-5-dias.png`).
+
+**O que continua longo, e por quê:** as frases que vêm das regras (o aviso de ajuste, a fase, as opções de ajuste, os 9 avisos e os 10 porquês de "Sobre o programa"). Só encurtam de verdade se forem reescritas na regra que as gera, com os testes delas. Proposta: tratá-las num passo próprio, depois das telas ("as frases das regras"), com o antes e o depois de cada frase.
+
+**Decisões anteriores que a proposta muda:**
+- As abas dos dias mostravam os minutos de cada dia (frontend novo, 12 e 13/11). Na proposta, só o dia escolhido mostra os minutos.
+- As 3 melhores alternativas ficavam à vista na folha do exercício, e o resto em "ver mais" (decisão de 01/11). Na proposta, todas ficam a um toque.
