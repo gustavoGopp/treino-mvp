@@ -361,7 +361,9 @@ async function sobreOPrograma(r: Roteiro, sufixo: string, quem: string, umPorVez
       await blocos.nth(i).click();
       if (!umPorVez) continue;
       await blocos.nth(i).scrollIntoViewIfNeeded();
-      await r.foto(`sobre-o-programa${sufixo}-${nomeDeArquivo(rotulo.replace(/\(\d+\)/, ''))}`, { titulo: `Folha "Sobre o programa", com "${rotulo}" aberto (${quem})`, comoChegar: `Início → "Sobre o programa" → "${rotulo}".`, tipo: 'bloco aberto' });
+      // o nome da tela é o da medida de antes, para a comparação casar (o rótulo era "Séries por músculo na semana")
+      const nome = nomeDeArquivo(rotulo.replace(/\(\d+\)/, '')).replace(/^series-por-musculo$/, 'series-por-musculo-na-semana');
+      await r.foto(`sobre-o-programa${sufixo}-${nome}`, { titulo: `Folha "Sobre o programa", com "${rotulo}" aberto (${quem})`, comoChegar: `Início → "Sobre o programa" → "${rotulo}".`, tipo: 'bloco aberto' });
       await blocos.nth(i).click();
     }
     if (!umPorVez) await r.foto(`sobre-o-programa${sufixo}-tudo-aberto`, { titulo: `Folha "Sobre o programa", com os ${quantos} blocos abertos (${quem})`, comoChegar: 'Início → "Sobre o programa" → abrir cada bloco.', tipo: 'bloco aberto' });

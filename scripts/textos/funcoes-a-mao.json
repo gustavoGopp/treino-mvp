@@ -55,6 +55,18 @@
     [
       "^Com aquecimento e descansos|^Não sabe\\? O app usa",
       "definição"
+    ],
+    [
+      "^Tocar numa opção gera",
+      "instrução"
+    ],
+    [
+      "abaixo da meta\\.$|passa do tempo\\.$|: o treino (muda|é o mesmo)\\.$|^Versão nova do programa",
+      "estado"
+    ],
+    [
+      "^Termos comuns do treino",
+      "definição"
     ]
   ]
 }

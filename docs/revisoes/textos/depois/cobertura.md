@@ -451,9 +451,9 @@ Gerado por `scripts/textos/montar.ts` a partir da colheita (`colheita.json`) e d
 | 05b-equipamento-foto | `cadastro/40-equipamento-folha-da-foto` | 194 | 194 | = |
 | 05c-equipamento-folha-do-item | `cadastro/86-equipamento-folha-do-item` | 62 | 53 | -9 |
 | 05d-equipamento-item-por-item | `cadastro/88-equipamento-item-por-item` | 110 | 70 | -40 |
-| 06-inicio | `inicio/03-inicio` | 105 | 105 | = |
-| 07-folha-do-exercicio | `inicio/06-folha-do-exercicio` | 93 | 93 | = |
-| 06b-inicio-sobre-o-programa | `inicio/10-sobre-o-programa` | 104 | 104 | = |
+| 06-inicio | `inicio/03-inicio` | 105 | 88 | -17 |
+| 07-folha-do-exercicio | `inicio/06-folha-do-exercicio` | 93 | 29 | -64 |
+| 06b-inicio-sobre-o-programa | `inicio/10-sobre-o-programa` | 104 | 93 | -11 |
 | 08-treino-serie-vazia | `treino/01-serie-vazia` | 69 | 67 | -2 |
 | 12-guia-tecnica | `guia/01-tecnica` | 295 | 295 | = |
 | 12b-guia-erros | `guia/04-erros` | 323 | 323 | = |
@@ -475,39 +475,39 @@ Gerado por `scripts/textos/montar.ts` a partir da colheita (`colheita.json`) e d
 | 13-fim-do-treino | `fim-e-semana/06-fim-do-treino` | 62 | 62 | = |
 | 14-semana | `fim-e-semana/11-semana-1-treino` | 101 | 101 | = |
 | 15-evolucao | `fim-e-semana/12-evolucao-1-treino` | 29 | 29 | = |
-| 06c-inicio-depois-do-1o-treino | `inicio/01-inicio-depois-do-1o-treino` | 109 | 109 | = |
+| 06c-inicio-depois-do-1o-treino | `inicio/01-inicio-depois-do-1o-treino` | 109 | 92 | -17 |
 | 16-meus-dados | `dados-e-locais/01-meus-dados` | 144 | 144 | = |
 | 16b-meus-dados-estilo-do-boneco | `dados-e-locais/04-meus-dados-folha-estilo-do-boneco` | 46 | 6 | -40 |
 | 17-locais | `dados-e-locais/40-locais` | 38 | 38 | = |
 | 17b-locais-editar | `dados-e-locais/42-locais-editar` | 125 | 90 | -35 |
 | 18-termos | `termos-e-foto/01-termos` | 793 | 792 | -1 |
-| **Soma** | | **5.019** | **4.721** | -298 |
+| **Soma** | | **5.019** | **4.612** | -407 |
 
 ## Totais
 
-- Telas colhidas: **458**, do app na versão `e711024` (publicada em 16/11/2026; colheita de 2026-11-16).
-- Soma de `palavrasNaTela`: **64.285** (a mesma frase conta de novo em cada tela ou folha em que aparece).
+- Telas colhidas: **458**, do app na versão `52ca5b9` (publicada em 16/11/2026; colheita de 2026-11-16).
+- Soma de `palavrasNaTela`: **62.270** (a mesma frase conta de novo em cada tela ou folha em que aparece).
 - Linhas da tabela de cobertura: 245 (por tipo: rota 35, folha 23, bloco que abre 23, por quê 17, aviso condicional 83, estado vazio 5, carregando 5, erro ou validação 39, resposta de uma ação 15); não alcançados: 9.
 - Falhas anotadas na colheita: 0 (em `colheita.json`, campo `falhas`).
 
 | Fluxo | Telas | palavrasNaTela (soma) | Folhas | Blocos abertos | Estados vazios, erros e avisos |
 |---|---|---|---|---|---|
 | cadastro | 88 | 7.783 | 29 | 1 | 32 |
-| inicio | 90 | 14.427 | 26 | 21 | 10 |
-| treino | 80 | 6.564 | 20 | 3 | 41 |
-| guia | 47 | 14.983 | 2 | 12 | 0 |
-| fim-e-semana | 49 | 7.965 | 18 | 1 | 21 |
+| inicio | 90 | 12.751 | 26 | 21 | 10 |
+| treino | 80 | 6.563 | 20 | 3 | 41 |
+| guia | 47 | 14.984 | 2 | 12 | 0 |
+| fim-e-semana | 49 | 7.792 | 18 | 1 | 21 |
 | dados-e-locais | 50 | 6.298 | 11 | 2 | 13 |
 | termos-e-foto | 29 | 3.627 | 9 | 1 | 18 |
-| avisos-e-erros | 25 | 2.638 | 2 | 0 | 23 |
+| avisos-e-erros | 25 | 2.472 | 2 | 0 | 23 |
 
 | Persona | Telas | palavrasNaTela (soma) | Folhas | Blocos abertos | Estados vazios, erros e avisos |
 |---|---|---|---|---|---|
-| ana | 341 | 42.938 | 99 | 24 | 126 |
-| ana + saúde | 13 | 2.594 | 4 | 2 | 3 |
-| bruno | 17 | 2.518 | 2 | 2 | 2 |
-| carla | 28 | 5.031 | 1 | 5 | 9 |
-| diego | 10 | 1.394 | 2 | 2 | 3 |
-| elisa | 22 | 4.623 | 2 | 4 | 5 |
-| fabio | 11 | 1.363 | 2 | 2 | 3 |
+| ana | 341 | 41.835 | 99 | 24 | 126 |
+| ana + saúde | 13 | 2.520 | 4 | 2 | 3 |
+| bruno | 17 | 2.010 | 2 | 2 | 2 |
+| carla | 28 | 4.962 | 1 | 5 | 9 |
+| diego | 10 | 1.316 | 2 | 2 | 3 |
+| elisa | 22 | 4.543 | 2 | 4 | 5 |
+| fabio | 11 | 1.260 | 2 | 2 | 3 |
 | ninguém | 16 | 3.824 | 5 | 0 | 7 |

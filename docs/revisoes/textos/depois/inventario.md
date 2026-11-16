@@ -1,46 +1,46 @@
 # Inventário do texto do app
 
-> Gerado por `scripts/textos/classificar.mjs` a partir de `colheita.json` (2026-11-16T19:12:15.175Z). Não edite à mão: rode o roteiro e o script de novo.
+> Gerado por `scripts/textos/classificar.mjs` a partir de `colheita.json` (2026-11-16T19:33:36.568Z). Não edite à mão: rode o roteiro e o script de novo.
 
-**458 telas, folhas e estados colhidos; 11566 textos (2049 diferentes); 64285 palavras somadas** (a mesma frase conta de novo em cada tela em que aparece; as palavras de textos diferentes somam 20186).
+**458 telas, folhas e estados colhidos; 11479 textos (1984 diferentes); 62270 palavras somadas** (a mesma frase conta de novo em cada tela em que aparece; as palavras de textos diferentes somam 19478).
 
 ## Por fluxo
 
 | Fluxo | Telas | Palavras | Média por tela | Maior tela |
 |---|---|---|---|---|
 | cadastro | 88 | 7783 | 88 | Folha "Por que esta pergunta" (362) |
-| inicio | 90 | 14427 | 160 | Folha "Sobre o programa", com os 5 blocos abertos (a Ana com dor) (946) |
-| treino | 80 | 6564 | 82 | Folha "Por quê" de "1ª vez: comece leve." (a calibração da carga) (295) |
-| guia | 47 | 14983 | 319 | Guia de um exercício com a nota "Montagem segura" abaixo do palco (búlgaro na suspensão) (652) |
-| fim-e-semana | 49 | 7965 | 163 | Folha "Bem-vindo de volta!" (por quê?), pausa de 200 dias (332) |
+| inicio | 90 | 12751 | 142 | Folha "Sobre o programa", com os 5 blocos abertos (a Ana com dor) (935) |
+| treino | 80 | 6563 | 82 | Folha "Por quê" de "1ª vez: comece leve." (a calibração da carga) (295) |
+| guia | 47 | 14984 | 319 | Guia de um exercício com a nota "Montagem segura" abaixo do palco (búlgaro na suspensão) (652) |
+| fim-e-semana | 49 | 7792 | 159 | Folha "Bem-vindo de volta!" (por quê?), pausa de 200 dias (332) |
 | dados-e-locais | 50 | 6298 | 126 | Refazer a triagem (quem tinha um "sim": abre em "Quais valem", com as marcas, as regiões e as notas) (324) |
 | termos-e-foto | 29 | 3627 | 125 | Termos de uso e privacidade (792) |
-| avisos-e-erros | 25 | 2638 | 106 | Início no iPhone (Safari, sem instalar): o aviso de instalar depois dos exercícios (190) |
+| avisos-e-erros | 25 | 2472 | 99 | Folha "De onde vem isto" (o selo do lembrete de cópia) (181) |
 
 ## Para que serve o texto (todas as telas somadas)
 
 | Função | Textos | Palavras | Parte | Decididos à mão |
 |---|---|---|---|---|
-| ação | 4155 | 14508 | 23% | 0 |
+| ação | 4145 | 13600 | 22% | 0 |
 | opção | 1557 | 5239 | 8% | 0 |
-| título ou rótulo | 1683 | 4865 | 8% | 16 |
-| estado | 504 | 5588 | 9% | 257 |
-| número | 1088 | 3280 | 5% | 112 |
-| segurança | 358 | 7970 | 12% | 14 |
-| definição | 70 | 566 | 1% | 49 |
-| justificativa | 812 | 10109 | 16% | 43 |
-| privacidade | 256 | 5110 | 8% | 27 |
-| instrução | 1083 | 7050 | 11% | 54 |
+| título ou rótulo | 1648 | 4703 | 8% | 16 |
+| estado | 481 | 5009 | 8% | 234 |
+| número | 1087 | 3278 | 5% | 112 |
+| segurança | 351 | 7828 | 13% | 14 |
+| definição | 71 | 551 | 1% | 49 |
+| justificativa | 805 | 10102 | 16% | 43 |
+| privacidade | 250 | 4984 | 8% | 27 |
+| instrução | 1084 | 6976 | 11% | 54 |
 
 ## De quem é o texto
 
 | Dono | Textos | Palavras | Parte |
 |---|---|---|---|
 | jurídico | 248 | 2342 | 4% |
-| conteúdo | 1569 | 15465 | 24% |
-| domínio | 2937 | 17241 | 27% |
-| motor | 104 | 331 | 1% |
-| tela | 6708 | 28906 | 45% |
+| conteúdo | 1553 | 15339 | 25% |
+| domínio | 2944 | 16564 | 27% |
+| motor | 107 | 338 | 1% |
+| tela | 6627 | 27687 | 44% |
 
 ## cadastro
 
@@ -139,96 +139,96 @@
 
 | Tela | O que é | Quem vê | Palavras | À vista | Blocos longos | Selos | Do que é feito (palavras por função) |
 |---|---|---|---|---|---|---|---|
-| `inicio/01-inicio-depois-do-1o-treino` Início, depois do 1º treino (com a faixa "A sua semana") | tela | ana | 109 | 106 | 0 | 0 | ação 90, estado 9, número 5, título ou rótulo 5 |
-| `inicio/02-folha-do-exercicio-com-historico` Folha do exercício com histórico ("Ver a evolução deste exercício") | folha | ana | 98 | 85 | 0 | 1 | ação 54, título ou rótulo 17, segurança 16, número 10, justificativa 1 |
-| `inicio/03-inicio` Início, antes do 1º treino (a Ana) | tela | ana | 105 | 105 | 0 | 0 | ação 86, estado 9, número 5, título ou rótulo 5 |
-| `inicio/04-inicio-aba-corpo-todo-b` Início, aba "Corpo todo B" (a Ana) | tela | ana | 103 | 103 | 0 | 0 | ação 84, estado 9, número 5, título ou rótulo 5 |
-| `inicio/05-inicio-aba-corpo-todo-c` Início, aba "Corpo todo C" (a Ana) | tela | ana | 95 | 95 | 0 | 0 | ação 76, estado 9, número 5, título ou rótulo 5 |
-| `inicio/06-folha-do-exercicio` Folha do exercício como abre (o 1º do dia A: agachamento búlgaro) | folha | ana | 93 | 85 | 0 | 1 | ação 49, título ou rótulo 17, segurança 16, número 10, justificativa 1 |
-| `inicio/07-folha-do-exercicio-ver-mais-opcoes` Folha do exercício, com "Ver mais opções" aberto | bloco aberto | ana | 98 | 84 | 0 | 1 | ação 54, título ou rótulo 17, segurança 16, número 10, justificativa 1 |
-| `inicio/08-folha-do-exercicio-por-que` Folha do exercício, com "Por que este exercício" aberto | bloco aberto | ana | 200 | 149 | 1 | 6 | justificativa 94, ação 49, título ou rótulo 17, segurança 16, privacidade 14, número 10 |
+| `inicio/01-inicio-depois-do-1o-treino` Início, depois do 1º treino (com a faixa "A sua semana") | tela | ana | 92 | 92 | 0 | 0 | ação 78, número 5, título ou rótulo 5, estado 4 |
+| `inicio/02-folha-do-exercicio-com-historico` Folha do exercício com histórico ("Ver a evolução deste exercício") | folha | ana | 34 | 34 | 0 | 0 | ação 20, número 10, título ou rótulo 4 |
+| `inicio/03-inicio` Início, antes do 1º treino (a Ana) | tela | ana | 88 | 91 | 0 | 0 | ação 74, número 5, título ou rótulo 5, estado 4 |
+| `inicio/04-inicio-aba-corpo-todo-b` Início, aba "Corpo todo B" (a Ana) | tela | ana | 86 | 89 | 0 | 0 | ação 72, número 5, título ou rótulo 5, estado 4 |
+| `inicio/05-inicio-aba-corpo-todo-c` Início, aba "Corpo todo C" (a Ana) | tela | ana | 78 | 81 | 0 | 0 | ação 64, número 5, título ou rótulo 5, estado 4 |
+| `inicio/06-folha-do-exercicio` Folha do exercício como abre (o 1º do dia A: agachamento búlgaro) | folha | ana | 29 | 29 | 0 | 0 | ação 15, número 10, título ou rótulo 4 |
+| `inicio/07-folha-do-exercicio-ver-mais-opcoes` Folha do exercício, com "Alternativas" aberto | bloco aberto | ana | 91 | 78 | 0 | 1 | ação 53, título ou rótulo 17, número 10, segurança 10, justificativa 1 |
+| `inicio/08-folha-do-exercicio-por-que` Folha do exercício, com "Por que este exercício" aberto | bloco aberto | ana | 136 | 118 | 1 | 5 | justificativa 93, ação 15, privacidade 14, número 10, título ou rótulo 4 |
 | `inicio/09-folha-do-exercicio-folha-selo` Folha "De onde vem isto" (o selo do 1º motivo do exercício) | folha | ana | 224 | 143 | 4 | 0 | justificativa 122, segurança 91, ação 7, título ou rótulo 4 |
-| `inicio/10-sobre-o-programa` Folha "Sobre o programa" como abre (a Ana) | folha | ana | 104 | 92 | 1 | 3 | estado 59, ação 27, título ou rótulo 8, número 7, justificativa 3 |
-| `inicio/11-sobre-o-programa-limites-e-observacoes` Folha "Sobre o programa", com "Limites e observações (3)" aberto (a Ana) | bloco aberto | ana | 229 | 127 | 4 | 6 | estado 181, ação 27, título ou rótulo 8, número 7, justificativa 6 |
-| `inicio/12-sobre-o-programa-avisos` Folha "Sobre o programa", com "Avisos (9)" aberto (a Ana) | bloco aberto | ana | 452 | 110 | 9 | 12 | estado 398, ação 27, justificativa 12, título ou rótulo 8, número 7 |
-| `inicio/13-sobre-o-programa-fases` Folha "Sobre o programa", com "Fases (2)" aberto (a Ana) | bloco aberto | ana | 128 | 92 | 1 | 5 | estado 81, ação 27, título ou rótulo 8, número 7, justificativa 5 |
-| `inicio/14-sobre-o-programa-por-que-este-programa` Folha "Sobre o programa", com "Por que este programa (10)" aberto (a Ana) | bloco aberto | ana | 299 | 126 | 3 | 13 | justificativa 174, estado 59, ação 27, privacidade 24, título ou rótulo 8, número 7 |
-| `inicio/15-sobre-o-programa-series-por-musculo-na-semana` Folha "Sobre o programa", com "Séries por músculo na semana" aberto (a Ana) | bloco aberto | ana | 152 | 104 | 1 | 4 | estado 59, número 29, ação 27, título ou rótulo 26, definição 6, justificativa 5 |
-| `inicio/16-folha-avisos` Folha "Avisos" (os ajustes possíveis da Ana) | folha | ana | 94 | 94 | 0 | 1 | ação 75, instrução 15, título ou rótulo 3, justificativa 1 |
+| `inicio/10-sobre-o-programa` Folha "Sobre o programa" como abre (a Ana) | folha | ana | 93 | 95 | 1 | 3 | estado 55, ação 25, número 7, título ou rótulo 3, justificativa 3 |
+| `inicio/11-sobre-o-programa-limites-e-observacoes` Folha "Sobre o programa", com "Limites e observações (3)" aberto (a Ana) | bloco aberto | ana | 218 | 173 | 4 | 6 | estado 177, ação 25, número 7, justificativa 6, título ou rótulo 3 |
+| `inicio/12-sobre-o-programa-avisos` Folha "Sobre o programa", com "Avisos (9)" aberto (a Ana) | bloco aberto | ana | 441 | 148 | 9 | 12 | estado 394, ação 25, justificativa 12, número 7, título ou rótulo 3 |
+| `inicio/13-sobre-o-programa-fases` Folha "Sobre o programa", com "Fases (2)" aberto (a Ana) | bloco aberto | ana | 117 | 105 | 1 | 5 | estado 77, ação 25, número 7, justificativa 5, título ou rótulo 3 |
+| `inicio/14-sobre-o-programa-por-que-este-programa` Folha "Sobre o programa", com "Por que este programa (10)" aberto (a Ana) | bloco aberto | ana | 288 | 109 | 3 | 13 | justificativa 174, estado 55, ação 25, privacidade 24, número 7, título ou rótulo 3 |
+| `inicio/15-sobre-o-programa-series-por-musculo-na-semana` Folha "Sobre o programa", com "Séries por músculo" aberto (a Ana) | bloco aberto | ana | 141 | 106 | 1 | 4 | estado 55, número 29, ação 25, título ou rótulo 21, definição 6, justificativa 5 |
+| `inicio/16-folha-avisos` Folha "Avisos" (os ajustes possíveis da Ana) | folha | ana | 86 | 86 | 0 | 1 | ação 75, instrução 8, título ou rótulo 2, justificativa 1 |
 | `inicio/17-folha-avisos-folha-selo` Folha "De onde vem isto" (o selo dos ajustes possíveis) | folha | ana | 265 | 131 | 6 | 0 | justificativa 245, ação 16, título ou rótulo 4 |
-| `inicio/18-como-ler-aberto` Início, com "Como ler o seu treino" aberto | bloco aberto | ana | 256 | 174 | 2 | 5 | definição 115, ação 86, privacidade 31, estado 9, número 5, título ou rótulo 5, justificativa 5 |
+| `inicio/18-como-ler-aberto` Início, com "Como ler o seu treino" aberto | bloco aberto | ana | 193 | 131 | 0 | 5 | definição 100, ação 74, número 5, título ou rótulo 5, justificativa 5, estado 4 |
 | `inicio/19-como-ler-folha-selo` Folha "De onde vem isto" (o selo de "Carga", em "Como ler o seu treino") | folha | ana | 268 | 158 | 6 | 0 | justificativa 251, ação 13, título ou rótulo 4 |
-| `inicio/20-folha-do-exercicio-sem-animacao` Folha de um exercício sem animação (guia em texto): crucifixo invertido sentado | folha | ana | 87 | 87 | 0 | 1 | ação 39, título ou rótulo 20, segurança 16, número 8, estado 3, justificativa 1 |
+| `inicio/20-folha-do-exercicio-sem-animacao` Folha de um exercício sem animação (guia em texto): crucifixo invertido sentado | folha | ana | 38 | 38 | 0 | 0 | ação 17, título ou rótulo 10, número 8, estado 3 |
 | `inicio/21-folha-como-fazer-em-texto` Folha "Como fazer (em texto)" como abre | folha | ana | 78 | 78 | 0 | 0 | instrução 63, ação 8, título ou rótulo 7 |
 | `inicio/22-folha-como-fazer-em-texto-passo-a-passo` Folha "Como fazer (em texto)", com "Posição, execução e carga, passo a passo" aberto | bloco aberto | ana | 204 | 122 | 1 | 0 | instrução 185, título ou rótulo 11, ação 8 |
-| `inicio/23-inicio-com-treino-em-andamento` Início com um treino em andamento ("Continuar o treino em andamento") | tela | ana | 94 | 99 | 0 | 0 | ação 84, número 5, título ou rótulo 5 |
-| `inicio/24-inicio-depois-de-mudar-a-rotina` Início depois de mudar o objetivo em Meus dados (a versão nova do programa) | aviso | ana | 106 | 98 | 0 | 0 | ação 89, estado 7, número 5, título ou rótulo 5 |
-| `inicio/25-folha-do-exercicio-preferencia-salva` Folha do exercício, depois de "Prefiro…" | folha | ana | 217 | 102 | 1 | 6 | justificativa 94, ação 52, título ou rótulo 17, segurança 16, estado 14, privacidade 14, número 10 |
-| `inicio/26-inicio-versao-nova` Início, com "Há uma versão nova do seu programa." | aviso | ana | 120 | 109 | 0 | 0 | ação 89, estado 21, número 5, título ou rótulo 5 |
-| `inicio/27-inicio-versao-nova-folha-mais-avisos` Folha "Avisos" aberta por "Mais 1 aviso" | folha | ana | 94 | 94 | 0 | 1 | ação 75, instrução 15, título ou rótulo 3, justificativa 1 |
-| `inicio/28-inicio-programa-atualizado` Início, depois de "Atualizar" | aviso | ana | 113 | 110 | 0 | 0 | ação 88, estado 15, número 5, título ou rótulo 5 |
-| `inicio/29-inicio-programa-mantido` Início, depois de "Manter" nos ajustes possíveis | aviso | ana | 99 | 99 | 0 | 0 | ação 87, número 5, título ou rótulo 5, estado 2 |
-| `inicio/30-sobre-o-programa-ver-ajustes` Folha "Sobre o programa", com "Ver ajustes possíveis" no fim | folha | ana | 107 | 93 | 1 | 3 | estado 59, ação 30, título ou rótulo 8, número 7, justificativa 3 |
-| `inicio/31-inicio-programa-gerado-de-novo` Início, depois de escolher um ajuste | aviso | ana | 130 | 70 | 0 | 0 | ação 102, estado 18, número 5, título ou rótulo 5 |
-| `inicio/32-inicio-com-treino-em-andamento-e-versao-nova` Início com um treino em andamento e uma mudança à espera ("O programa será atualizado depois do treino em andamento.") | aviso | ana | 133 | 116 | 0 | 0 | ação 100, estado 23, número 5, título ou rótulo 5 |
-| `inicio/33-inicio-semana-completa` Início com a semana completa e o lembrete de cópia | tela | ana | 131 | 100 | 0 | 1 | ação 94, privacidade 23, número 5, título ou rótulo 5, justificativa 4 |
-| `inicio/34-inicio-ana-na-3a-semana` Início da Ana na 3ª semana (passada a fase de aprendizado), com 5 treinos no histórico | tela | ana | 133 | 97 | 0 | 1 | ação 96, privacidade 23, número 5, título ou rótulo 5, justificativa 4 |
-| `inicio/35-folha-do-exercicio-com-drop-set` Folha de um exercício em bi-set e com a última série em drop set (o último do dia A) | folha | ana | 111 | 98 | 0 | 1 | ação 44, instrução 19, número 16, segurança 16, título ou rótulo 15, justificativa 1 |
-| `inicio/36-inicio-ana-saude` Início da Ana com dor no ombro (7), no joelho (4) e no punho (1): o aviso "Pela triagem" | tela | ana + saúde | 97 | 102 | 0 | 0 | ação 73, segurança 14, número 5, título ou rótulo 5 |
-| `inicio/37-inicio-ana-saude-aba-corpo-todo-b` Início, aba "Corpo todo B" (a Ana com dor) | tela | ana + saúde | 98 | 103 | 0 | 0 | ação 74, segurança 14, número 5, título ou rótulo 5 |
-| `inicio/38-inicio-ana-saude-aba-corpo-todo-c` Início, aba "Corpo todo C" (a Ana com dor) | tela | ana + saúde | 108 | 105 | 0 | 0 | ação 84, segurança 14, número 5, título ou rótulo 5 |
-| `inicio/39-folha-avisos-ana-saude` Folha "Avisos": "Pela triagem" e os outros avisos | folha | ana + saúde | 131 | 121 | 0 | 2 | ação 59, segurança 47, instrução 15, título ou rótulo 8, justificativa 2 |
-| `inicio/40-sobre-o-programa-ana-saude` Folha "Sobre o programa" como abre (a Ana com dor) | folha | ana + saúde | 103 | 91 | 1 | 3 | estado 58, ação 27, título ou rótulo 8, número 7, justificativa 3 |
-| `inicio/41-sobre-o-programa-ana-saude-tudo-aberto` Folha "Sobre o programa", com os 5 blocos abertos (a Ana com dor) | bloco aberto | ana + saúde | 946 | 212 | 18 | 31 | estado 325, segurança 316, justificativa 193, número 29, ação 27, título ou rótulo 26, privacidade 24, definição 6 |
-| `inicio/42-folha-do-exercicio-ana-saude` Folha do 1º exercício da Ana com dor, com os motivos abertos | bloco aberto | ana + saúde | 228 | 149 | 2 | 7 | justificativa 95, ação 49, segurança 43, título ou rótulo 17, privacidade 14, número 10 |
+| `inicio/23-inicio-com-treino-em-andamento` Início com um treino em andamento ("Continuar o treino em andamento") | tela | ana | 85 | 90 | 0 | 0 | ação 75, número 5, título ou rótulo 5 |
+| `inicio/24-inicio-depois-de-mudar-a-rotina` Início depois de mudar o objetivo em Meus dados (a versão nova do programa) | aviso | ana | 91 | 91 | 0 | 0 | ação 77, número 5, título ou rótulo 5, estado 4 |
+| `inicio/25-folha-do-exercicio-preferencia-salva` Folha do exercício, depois de "Prefiro…" | folha | ana | 215 | 101 | 1 | 6 | justificativa 94, ação 56, título ou rótulo 17, estado 14, privacidade 14, número 10, segurança 10 |
+| `inicio/26-inicio-versao-nova` Início, com "Há uma versão nova do seu programa." | aviso | ana | 105 | 97 | 0 | 0 | ação 77, estado 18, número 5, título ou rótulo 5 |
+| `inicio/27-inicio-versao-nova-folha-mais-avisos` Folha "Avisos" aberta por "Mais 1 aviso" | folha | ana | 86 | 86 | 0 | 1 | ação 75, instrução 8, título ou rótulo 2, justificativa 1 |
+| `inicio/28-inicio-programa-atualizado` Início, depois de "Atualizar" | aviso | ana | 96 | 96 | 0 | 0 | ação 76, estado 10, número 5, título ou rótulo 5 |
+| `inicio/29-inicio-programa-mantido` Início, depois de "Manter" nos ajustes possíveis | aviso | ana | 87 | 95 | 0 | 0 | ação 75, número 5, título ou rótulo 5, estado 2 |
+| `inicio/30-sobre-o-programa-ver-ajustes` Folha "Sobre o programa", com "Ver ajustes possíveis" no fim | folha | ana | 96 | 93 | 1 | 3 | estado 55, ação 28, número 7, título ou rótulo 3, justificativa 3 |
+| `inicio/31-inicio-programa-gerado-de-novo` Início, depois de escolher um ajuste | aviso | ana | 113 | 70 | 0 | 0 | ação 90, estado 13, número 5, título ou rótulo 5 |
+| `inicio/32-inicio-com-treino-em-andamento-e-versao-nova` Início com um treino em andamento e uma mudança à espera ("O programa será atualizado depois do treino em andamento.") | aviso | ana | 124 | 107 | 0 | 0 | ação 91, estado 23, número 5, título ou rótulo 5 |
+| `inicio/33-inicio-semana-completa` Início com a semana completa e o lembrete de cópia | tela | ana | 119 | 91 | 0 | 1 | ação 82, privacidade 23, número 5, título ou rótulo 5, justificativa 4 |
+| `inicio/34-inicio-ana-na-3a-semana` Início da Ana na 3ª semana (passada a fase de aprendizado), com 5 treinos no histórico | tela | ana | 121 | 88 | 0 | 1 | ação 84, privacidade 23, número 5, título ou rótulo 5, justificativa 4 |
+| `inicio/35-folha-do-exercicio-com-drop-set` Folha de um exercício em bi-set e com a última série em drop set (o último do dia A) | folha | ana | 60 | 60 | 0 | 0 | ação 20, instrução 19, número 16, título ou rótulo 5 |
+| `inicio/36-inicio-ana-saude` Início da Ana com dor no ombro (7), no joelho (4) e no punho (1): o aviso "Pela triagem" | tela | ana + saúde | 85 | 93 | 0 | 0 | ação 61, segurança 14, número 5, título ou rótulo 5 |
+| `inicio/37-inicio-ana-saude-aba-corpo-todo-b` Início, aba "Corpo todo B" (a Ana com dor) | tela | ana + saúde | 86 | 94 | 0 | 0 | ação 62, segurança 14, número 5, título ou rótulo 5 |
+| `inicio/38-inicio-ana-saude-aba-corpo-todo-c` Início, aba "Corpo todo C" (a Ana com dor) | tela | ana + saúde | 96 | 99 | 0 | 0 | ação 72, segurança 14, número 5, título ou rótulo 5 |
+| `inicio/39-folha-avisos-ana-saude` Folha "Avisos": "Pela triagem" e os outros avisos | folha | ana + saúde | 124 | 114 | 0 | 2 | ação 59, segurança 47, título ou rótulo 8, instrução 8, justificativa 2 |
+| `inicio/40-sobre-o-programa-ana-saude` Folha "Sobre o programa" como abre (a Ana com dor) | folha | ana + saúde | 92 | 94 | 1 | 3 | estado 54, ação 25, número 7, título ou rótulo 3, justificativa 3 |
+| `inicio/41-sobre-o-programa-ana-saude-tudo-aberto` Folha "Sobre o programa", com os 5 blocos abertos (a Ana com dor) | bloco aberto | ana + saúde | 935 | 215 | 18 | 31 | estado 321, segurança 316, justificativa 193, número 29, ação 25, privacidade 24, título ou rótulo 21, definição 6 |
+| `inicio/42-folha-do-exercicio-ana-saude` Folha do 1º exercício da Ana com dor, com os motivos abertos | bloco aberto | ana + saúde | 226 | 147 | 2 | 7 | justificativa 95, ação 53, segurança 37, título ou rótulo 17, privacidade 14, número 10 |
 | `inicio/43-programa-pausado-pela-triagem` "Programa pausado" (a triagem refeita tem um "sim" sem liberação) | aviso | ana + saúde | 32 | 32 | 1 | 1 | segurança 24, ação 5, título ou rótulo 2, justificativa 1 |
 | `inicio/44-programa-pausado-folha-selo` Folha "De onde vem isto" (o selo do programa pausado) | folha | ana + saúde | 237 | 141 | 5 | 0 | justificativa 164, segurança 53, ação 16, título ou rótulo 4 |
 | `inicio/45-programa-pausado-sem-exercicio` "Programa pausado" (dor acima de 5 em todas as regiões: nenhum exercício possível) | aviso | ana + saúde | 74 | 74 | 1 | 1 | segurança 66, ação 5, título ou rótulo 2, justificativa 1 |
-| `inicio/46-folha-avisos-dor-sem-nota` Folha "Avisos": "Pela triagem" com uma região sem a nota de hoje | folha | ana + saúde | 112 | 112 | 0 | 2 | ação 60, instrução 24, segurança 18, título ou rótulo 8, justificativa 2 |
-| `inicio/47-inicio-com-2-locais-e-versao-nova` Início da Ana com 2 locais, depois de trocar o local principal ("Onde vou treinar hoje?" e a versão nova) | aviso | ana | 215 | 156 | 0 | 1 | estado 92, ação 89, privacidade 19, título ou rótulo 9, número 5, justificativa 1 |
-| `inicio/48-sobre-o-programa-conferindo` Folha "Sobre o programa" enquanto o avaliador chega ("Conferindo o programa…") | carregando | ana | 60 | 60 | 0 | 1 | estado 28, ação 21, número 7, título ou rótulo 3, justificativa 1 |
-| `inicio/49-inicio-diego` Início, antes do 1º treino (o Diego: iniciante em casa, com elásticos e barra fixa) | tela | diego | 94 | 94 | 0 | 0 | ação 75, estado 9, número 5, título ou rótulo 5 |
-| `inicio/50-inicio-diego-aba-corpo-todo-b` Início, aba "Corpo todo B" (o Diego) | tela | diego | 94 | 99 | 0 | 0 | ação 75, estado 9, número 5, título ou rótulo 5 |
-| `inicio/51-inicio-diego-aba-corpo-todo-c` Início, aba "Corpo todo C" (o Diego) | tela | diego | 99 | 99 | 0 | 0 | ação 80, estado 9, número 5, título ou rótulo 5 |
-| `inicio/52-folha-avisos-diego` Folha "Avisos" (o Diego) | folha | diego | 78 | 78 | 0 | 1 | ação 59, instrução 15, título ou rótulo 3, justificativa 1 |
-| `inicio/53-sobre-o-programa-diego` Folha "Sobre o programa" como abre (o Diego) | folha | diego | 93 | 88 | 1 | 2 | estado 49, ação 27, título ou rótulo 8, número 7, justificativa 2 |
-| `inicio/54-sobre-o-programa-diego-tudo-aberto` Folha "Sobre o programa", com os 5 blocos abertos (o Diego) | bloco aberto | diego | 596 | 212 | 8 | 22 | estado 300, justificativa 184, número 29, ação 27, título ou rótulo 26, privacidade 24, definição 6 |
-| `inicio/55-folha-do-exercicio-diego` Folha do 1º exercício (o Diego), com os motivos abertos | bloco aberto | diego | 124 | 106 | 1 | 5 | justificativa 74, ação 20, privacidade 14, título ou rótulo 8, número 8 |
-| `inicio/56-inicio-elisa` Início, antes do 1º treino (a Elisa: iniciante, sem equipamento nenhum) | tela | elisa | 87 | 95 | 0 | 0 | ação 68, estado 9, número 5, título ou rótulo 5 |
-| `inicio/57-inicio-elisa-aba-corpo-todo-b` Início, aba "Corpo todo B" (a Elisa) | tela | elisa | 86 | 94 | 0 | 0 | ação 67, estado 9, número 5, título ou rótulo 5 |
-| `inicio/58-inicio-elisa-aba-corpo-todo-c` Início, aba "Corpo todo C" (a Elisa) | tela | elisa | 81 | 89 | 0 | 0 | ação 62, estado 9, número 5, título ou rótulo 5 |
-| `inicio/59-folha-avisos-elisa` Folha "Avisos" (a Elisa) | folha | elisa | 67 | 67 | 0 | 1 | ação 48, instrução 15, título ou rótulo 3, justificativa 1 |
-| `inicio/60-sobre-o-programa-elisa` Folha "Sobre o programa" como abre (a Elisa) | folha | elisa | 93 | 88 | 1 | 2 | estado 49, ação 27, título ou rótulo 8, número 7, justificativa 2 |
-| `inicio/61-sobre-o-programa-elisa-tudo-aberto` Folha "Sobre o programa", com os 5 blocos abertos (a Elisa) | bloco aberto | elisa | 632 | 203 | 11 | 24 | estado 350, justificativa 170, número 29, ação 27, título ou rótulo 26, privacidade 24, definição 6 |
-| `inicio/62-folha-do-exercicio-elisa` Folha do 1º exercício (a Elisa), com os motivos abertos | bloco aberto | elisa | 131 | 129 | 1 | 6 | justificativa 91, privacidade 14, ação 12, número 8, título ou rótulo 6 |
-| `inicio/63-inicio-fabio` Início, antes do 1º treino (o Fábio: intermediário, só com uma barra fixa) | tela | fabio | 98 | 97 | 0 | 0 | ação 80, estado 9, número 5, título ou rótulo 4 |
-| `inicio/64-inicio-fabio-aba-inferior-a` Início, aba "Inferior A" (o Fábio) | tela | fabio | 110 | 101 | 0 | 0 | ação 92, estado 9, número 5, título ou rótulo 4 |
-| `inicio/65-inicio-fabio-aba-superior-b` Início, aba "Superior B" (o Fábio) | tela | fabio | 98 | 97 | 0 | 0 | ação 80, estado 9, número 5, título ou rótulo 4 |
-| `inicio/66-inicio-fabio-aba-inferior-b` Início, aba "Inferior B" (o Fábio) | tela | fabio | 106 | 100 | 0 | 0 | ação 88, estado 9, número 5, título ou rótulo 4 |
-| `inicio/67-folha-avisos-fabio` Folha "Avisos" (o Fábio) | folha | fabio | 30 | 30 | 0 | 1 | instrução 15, ação 11, título ou rótulo 3, justificativa 1 |
-| `inicio/68-sobre-o-programa-fabio` Folha "Sobre o programa" como abre (o Fábio) | folha | fabio | 67 | 67 | 1 | 1 | estado 28, ação 23, título ou rótulo 8, número 7, justificativa 1 |
-| `inicio/69-sobre-o-programa-fabio-tudo-aberto` Folha "Sobre o programa", com os 4 blocos abertos (o Fábio) | bloco aberto | fabio | 502 | 225 | 7 | 18 | justificativa 206, estado 188, número 29, título ou rótulo 26, privacidade 24, ação 23, definição 6 |
-| `inicio/70-folha-do-exercicio-fabio` Folha do 1º exercício (o Fábio), com os motivos abertos | bloco aberto | fabio | 142 | 91 | 1 | 6 | justificativa 65, ação 26, segurança 16, privacidade 14, título ou rótulo 13, número 8 |
-| `inicio/71-inicio-bruno` Início, antes do 1º treino (o Bruno: intermediário voltando de 12 semanas parado, com 2 locais) | tela | bruno | 135 | 97 | 0 | 0 | ação 122, título ou rótulo 8, número 5 |
-| `inicio/72-inicio-bruno-aba-inferior-a` Início, aba "Inferior A" (o Bruno) | tela | bruno | 111 | 96 | 0 | 0 | ação 98, título ou rótulo 8, número 5 |
-| `inicio/73-inicio-bruno-aba-superior-b` Início, aba "Superior B" (o Bruno) | tela | bruno | 142 | 93 | 0 | 0 | ação 129, título ou rótulo 8, número 5 |
-| `inicio/74-inicio-bruno-aba-inferior-b` Início, aba "Inferior B" (o Bruno) | tela | bruno | 127 | 93 | 0 | 0 | ação 114, título ou rótulo 8, número 5 |
-| `inicio/75-sobre-o-programa-bruno` Folha "Sobre o programa" como abre (o Bruno) | folha | bruno | 75 | 75 | 1 | 2 | estado 37, ação 21, título ou rótulo 8, número 7, justificativa 2 |
-| `inicio/76-sobre-o-programa-bruno-tudo-aberto` Folha "Sobre o programa", com os 4 blocos abertos (o Bruno) | bloco aberto | bruno | 381 | 204 | 4 | 17 | justificativa 171, estado 104, número 29, título ou rótulo 26, privacidade 24, ação 21, definição 6 |
-| `inicio/77-folha-do-exercicio-bruno` Folha do 1º exercício (o Bruno), com os motivos abertos | bloco aberto | bruno | 140 | 104 | 1 | 5 | justificativa 75, ação 24, título ou rótulo 19, privacidade 14, número 8 |
-| `inicio/78-inicio-bruno-na-academia-do-bairro-superior-a` Início do Bruno, "Superior A" no 2º local (Academia do bairro): o que muda no treino | tela | bruno | 237 | 158 | 0 | 1 | ação 120, estado 84, privacidade 19, título ou rótulo 8, número 5, justificativa 1 |
-| `inicio/79-inicio-bruno-na-academia-do-bairro-inferior-a` Início do Bruno, "Inferior A" no 2º local (Academia do bairro): o que muda no treino | tela | bruno | 199 | 153 | 0 | 1 | ação 91, estado 75, privacidade 19, título ou rótulo 8, número 5, justificativa 1 |
-| `inicio/80-inicio-bruno-na-academia-do-bairro-superior-b` Início do Bruno, "Superior B" no 2º local (Academia do bairro): o que muda no treino | tela | bruno | 272 | 189 | 0 | 1 | ação 122, estado 117, privacidade 19, título ou rótulo 8, número 5, justificativa 1 |
-| `inicio/81-inicio-bruno-na-academia-do-bairro-inferior-b` Início do Bruno, "Inferior B" no 2º local (Academia do bairro): o que muda no treino | tela | bruno | 216 | 152 | 0 | 1 | ação 109, estado 74, privacidade 19, título ou rótulo 8, número 5, justificativa 1 |
+| `inicio/46-folha-avisos-dor-sem-nota` Folha "Avisos": "Pela triagem" com uma região sem a nota de hoje | folha | ana + saúde | 105 | 105 | 0 | 2 | ação 60, segurança 18, instrução 17, título ou rótulo 8, justificativa 2 |
+| `inicio/47-inicio-com-2-locais-e-versao-nova` Início da Ana com 2 locais, depois de trocar o local principal ("Onde vou treinar hoje?" e a versão nova) | aviso | ana | 104 | 76 | 0 | 1 | ação 79, estado 10, título ou rótulo 9, número 5, justificativa 1 |
+| `inicio/48-sobre-o-programa-conferindo` Folha "Sobre o programa" enquanto o avaliador chega ("Conferindo o programa…") | carregando | ana | 54 | 54 | 0 | 1 | estado 24, ação 19, número 7, título ou rótulo 3, justificativa 1 |
+| `inicio/49-inicio-diego` Início, antes do 1º treino (o Diego: iniciante em casa, com elásticos e barra fixa) | tela | diego | 77 | 85 | 0 | 0 | ação 63, número 5, título ou rótulo 5, estado 4 |
+| `inicio/50-inicio-diego-aba-corpo-todo-b` Início, aba "Corpo todo B" (o Diego) | tela | diego | 77 | 85 | 0 | 0 | ação 63, número 5, título ou rótulo 5, estado 4 |
+| `inicio/51-inicio-diego-aba-corpo-todo-c` Início, aba "Corpo todo C" (o Diego) | tela | diego | 82 | 85 | 0 | 0 | ação 68, número 5, título ou rótulo 5, estado 4 |
+| `inicio/52-folha-avisos-diego` Folha "Avisos" (o Diego) | folha | diego | 70 | 70 | 0 | 1 | ação 59, instrução 8, título ou rótulo 2, justificativa 1 |
+| `inicio/53-sobre-o-programa-diego` Folha "Sobre o programa" como abre (o Diego) | folha | diego | 82 | 87 | 1 | 2 | estado 45, ação 25, número 7, título ou rótulo 3, justificativa 2 |
+| `inicio/54-sobre-o-programa-diego-tudo-aberto` Folha "Sobre o programa", com os 5 blocos abertos (o Diego) | bloco aberto | diego | 585 | 215 | 8 | 22 | estado 296, justificativa 184, número 29, ação 25, privacidade 24, título ou rótulo 21, definição 6 |
+| `inicio/55-folha-do-exercicio-diego` Folha do 1º exercício (o Diego), com os motivos abertos | bloco aberto | diego | 127 | 98 | 1 | 5 | justificativa 74, ação 23, privacidade 14, título ou rótulo 8, número 8 |
+| `inicio/56-inicio-elisa` Início, antes do 1º treino (a Elisa: iniciante, sem equipamento nenhum) | tela | elisa | 70 | 81 | 0 | 0 | ação 56, número 5, título ou rótulo 5, estado 4 |
+| `inicio/57-inicio-elisa-aba-corpo-todo-b` Início, aba "Corpo todo B" (a Elisa) | tela | elisa | 69 | 80 | 0 | 0 | ação 55, número 5, título ou rótulo 5, estado 4 |
+| `inicio/58-inicio-elisa-aba-corpo-todo-c` Início, aba "Corpo todo C" (a Elisa) | tela | elisa | 64 | 75 | 0 | 0 | ação 50, número 5, título ou rótulo 5, estado 4 |
+| `inicio/59-folha-avisos-elisa` Folha "Avisos" (a Elisa) | folha | elisa | 59 | 59 | 0 | 1 | ação 48, instrução 8, título ou rótulo 2, justificativa 1 |
+| `inicio/60-sobre-o-programa-elisa` Folha "Sobre o programa" como abre (a Elisa) | folha | elisa | 82 | 87 | 1 | 2 | estado 45, ação 25, número 7, título ou rótulo 3, justificativa 2 |
+| `inicio/61-sobre-o-programa-elisa-tudo-aberto` Folha "Sobre o programa", com os 5 blocos abertos (a Elisa) | bloco aberto | elisa | 621 | 206 | 11 | 24 | estado 346, justificativa 170, número 29, ação 25, privacidade 24, título ou rótulo 21, definição 6 |
+| `inicio/62-folha-do-exercicio-elisa` Folha do 1º exercício (a Elisa), com os motivos abertos | bloco aberto | elisa | 130 | 128 | 1 | 6 | justificativa 91, privacidade 14, ação 11, número 8, título ou rótulo 6 |
+| `inicio/63-inicio-fabio` Início, antes do 1º treino (o Fábio: intermediário, só com uma barra fixa) | tela | fabio | 79 | 80 | 0 | 0 | ação 66, número 5, título ou rótulo 4, estado 4 |
+| `inicio/64-inicio-fabio-aba-inferior-a` Início, aba "Inferior A" (o Fábio) | tela | fabio | 91 | 84 | 0 | 0 | ação 78, número 5, título ou rótulo 4, estado 4 |
+| `inicio/65-inicio-fabio-aba-superior-b` Início, aba "Superior B" (o Fábio) | tela | fabio | 79 | 80 | 0 | 0 | ação 66, número 5, título ou rótulo 4, estado 4 |
+| `inicio/66-inicio-fabio-aba-inferior-b` Início, aba "Inferior B" (o Fábio) | tela | fabio | 87 | 80 | 0 | 0 | ação 74, número 5, título ou rótulo 4, estado 4 |
+| `inicio/67-folha-avisos-fabio` Folha "Avisos" (o Fábio) | folha | fabio | 22 | 22 | 0 | 1 | ação 11, instrução 8, título ou rótulo 2, justificativa 1 |
+| `inicio/68-sobre-o-programa-fabio` Folha "Sobre o programa" como abre (o Fábio) | folha | fabio | 59 | 64 | 1 | 1 | estado 27, ação 21, número 7, título ou rótulo 3, justificativa 1 |
+| `inicio/69-sobre-o-programa-fabio-tudo-aberto` Folha "Sobre o programa", com os 4 blocos abertos (o Fábio) | bloco aberto | fabio | 494 | 228 | 7 | 18 | justificativa 206, estado 187, número 29, privacidade 24, título ou rótulo 21, ação 21, definição 6 |
+| `inicio/70-folha-do-exercicio-fabio` Folha do 1º exercício (o Fábio), com os motivos abertos | bloco aberto | fabio | 139 | 88 | 1 | 6 | justificativa 65, ação 29, privacidade 14, título ou rótulo 13, segurança 10, número 8 |
+| `inicio/71-inicio-bruno` Início, antes do 1º treino (o Bruno: intermediário voltando de 12 semanas parado, com 2 locais) | tela | bruno | 121 | 82 | 0 | 0 | ação 108, título ou rótulo 8, número 5 |
+| `inicio/72-inicio-bruno-aba-inferior-a` Início, aba "Inferior A" (o Bruno) | tela | bruno | 97 | 84 | 0 | 0 | ação 84, título ou rótulo 8, número 5 |
+| `inicio/73-inicio-bruno-aba-superior-b` Início, aba "Superior B" (o Bruno) | tela | bruno | 128 | 81 | 0 | 0 | ação 115, título ou rótulo 8, número 5 |
+| `inicio/74-inicio-bruno-aba-inferior-b` Início, aba "Inferior B" (o Bruno) | tela | bruno | 113 | 81 | 0 | 0 | ação 100, título ou rótulo 8, número 5 |
+| `inicio/75-sobre-o-programa-bruno` Folha "Sobre o programa" como abre (o Bruno) | folha | bruno | 64 | 69 | 1 | 2 | estado 33, ação 19, número 7, título ou rótulo 3, justificativa 2 |
+| `inicio/76-sobre-o-programa-bruno-tudo-aberto` Folha "Sobre o programa", com os 4 blocos abertos (o Bruno) | bloco aberto | bruno | 370 | 207 | 4 | 17 | justificativa 171, estado 100, número 29, privacidade 24, título ou rótulo 21, ação 19, definição 6 |
+| `inicio/77-folha-do-exercicio-bruno` Folha do 1º exercício (o Bruno), com os motivos abertos | bloco aberto | bruno | 149 | 98 | 1 | 5 | justificativa 75, ação 28, título ou rótulo 24, privacidade 14, número 8 |
+| `inicio/78-inicio-bruno-na-academia-do-bairro-superior-a` Início do Bruno, "Superior A" no 2º local (Academia do bairro): o que muda no treino | tela | bruno | 130 | 76 | 0 | 1 | ação 108, título ou rótulo 8, estado 8, número 5, justificativa 1 |
+| `inicio/79-inicio-bruno-na-academia-do-bairro-inferior-a` Início do Bruno, "Inferior A" no 2º local (Academia do bairro): o que muda no treino | tela | bruno | 101 | 78 | 0 | 1 | ação 79, título ou rótulo 8, estado 8, número 5, justificativa 1 |
+| `inicio/80-inicio-bruno-na-academia-do-bairro-superior-b` Início do Bruno, "Superior B" no 2º local (Academia do bairro): o que muda no treino | tela | bruno | 132 | 76 | 0 | 1 | ação 110, título ou rótulo 8, estado 8, número 5, justificativa 1 |
+| `inicio/81-inicio-bruno-na-academia-do-bairro-inferior-b` Início do Bruno, "Inferior B" no 2º local (Academia do bairro): o que muda no treino | tela | bruno | 119 | 83 | 0 | 1 | ação 97, título ou rótulo 8, estado 8, número 5, justificativa 1 |
 | `inicio/82-inicio-bruno-folha-selo-do-local` Folha "De onde vem isto" (o selo da troca de local) | folha | bruno | 75 | 75 | 1 | 0 | justificativa 70, título ou rótulo 4, ação 1 |
-| `inicio/83-inicio-carla` Início, antes do 1º treino (a Carla: avançada, academia completa) | tela | carla | 121 | 97 | 0 | 0 | ação 113, número 5, título ou rótulo 3 |
-| `inicio/84-inicio-carla-aba-inferior` Início, aba "Inferior" (a Carla) | tela | carla | 105 | 96 | 0 | 0 | ação 97, número 5, título ou rótulo 3 |
-| `inicio/85-inicio-carla-aba-empurrar` Início, aba "Empurrar" (a Carla) | tela | carla | 104 | 98 | 0 | 0 | ação 96, número 5, título ou rótulo 3 |
-| `inicio/86-inicio-carla-aba-puxar` Início, aba "Puxar" (a Carla) | tela | carla | 88 | 90 | 0 | 0 | ação 80, número 5, título ou rótulo 3 |
-| `inicio/87-inicio-carla-aba-pernas` Início, aba "Pernas" (a Carla) | tela | carla | 106 | 97 | 0 | 0 | ação 98, número 5, título ou rótulo 3 |
-| `inicio/88-sobre-o-programa-carla` Folha "Sobre o programa" como abre (a Carla) | folha | carla | 39 | 39 | 0 | 1 | ação 13, estado 10, título ou rótulo 8, número 7, justificativa 1 |
-| `inicio/89-sobre-o-programa-carla-tudo-aberto` Folha "Sobre o programa", com os 2 blocos abertos (a Carla) | bloco aberto | carla | 310 | 205 | 3 | 13 | justificativa 202, número 29, título ou rótulo 26, privacidade 24, ação 13, estado 10, definição 6 |
-| `inicio/90-folha-do-exercicio-carla` Folha do 1º exercício (a Carla), com os motivos abertos | bloco aberto | carla | 166 | 115 | 1 | 6 | justificativa 71, ação 36, título ou rótulo 21, segurança 16, privacidade 14, número 8 |
+| `inicio/83-inicio-carla` Início, antes do 1º treino (a Carla: avançada, academia completa) | tela | carla | 105 | 79 | 0 | 0 | ação 97, número 5, título ou rótulo 3 |
+| `inicio/84-inicio-carla-aba-inferior` Início, aba "Inferior" (a Carla) | tela | carla | 89 | 75 | 0 | 0 | ação 81, número 5, título ou rótulo 3 |
+| `inicio/85-inicio-carla-aba-empurrar` Início, aba "Empurrar" (a Carla) | tela | carla | 88 | 80 | 0 | 0 | ação 80, número 5, título ou rótulo 3 |
+| `inicio/86-inicio-carla-aba-puxar` Início, aba "Puxar" (a Carla) | tela | carla | 72 | 72 | 0 | 0 | ação 64, número 5, título ou rótulo 3 |
+| `inicio/87-inicio-carla-aba-pernas` Início, aba "Pernas" (a Carla) | tela | carla | 90 | 78 | 0 | 0 | ação 82, número 5, título ou rótulo 3 |
+| `inicio/88-sobre-o-programa-carla` Folha "Sobre o programa" como abre (a Carla) | folha | carla | 31 | 36 | 0 | 1 | ação 11, estado 9, número 7, título ou rótulo 3, justificativa 1 |
+| `inicio/89-sobre-o-programa-carla-tudo-aberto` Folha "Sobre o programa", com os 2 blocos abertos (a Carla) | bloco aberto | carla | 302 | 208 | 3 | 13 | justificativa 202, número 29, privacidade 24, título ou rótulo 21, ação 11, estado 9, definição 6 |
+| `inicio/90-folha-do-exercicio-carla` Folha do 1º exercício (a Carla), com os motivos abertos | bloco aberto | carla | 194 | 123 | 1 | 6 | justificativa 71, ação 48, título ou rótulo 43, privacidade 14, segurança 10, número 8 |
 
 ## treino
 
@@ -237,12 +237,12 @@
 | `treino/01-serie-vazia` Treino: 1ª série do 1º exercício, vazia (1ª vez no exercício) | estado vazio | ana | 67 | 85 | 0 | 1 | título ou rótulo 17, ação 15, instrução 12, estado 9, número 7, opção 6, justificativa 1 |
 | `treino/02-serie-vazia-guia-erros` Treino: a série com o guia no modo "Erros" | tela | ana | 70 | 88 | 0 | 1 | ação 18, título ou rótulo 17, instrução 12, estado 9, número 7, opção 6, justificativa 1 |
 | `treino/03-serie-vazia-guia-musculos` Treino: a série com o guia no modo "Músculos" | tela | ana | 70 | 88 | 0 | 1 | ação 18, título ou rótulo 17, instrução 12, estado 9, número 7, opção 6, justificativa 1 |
-| `treino/04-serie-vazia-guia-trajetoria` Treino: a série com o guia no modo "Trajetória" | tela | ana | 70 | 88 | 0 | 1 | ação 18, título ou rótulo 17, instrução 12, estado 9, número 7, opção 6, justificativa 1 |
-| `treino/05-serie-vazia-guia-pausado` Treino: a série com o guia pausado | tela | ana | 70 | 88 | 0 | 1 | ação 18, título ou rótulo 17, instrução 12, estado 9, número 7, opção 6, justificativa 1 |
+| `treino/04-serie-vazia-guia-trajetoria` Treino: a série com o guia no modo "Trajetória" | tela | ana | 69 | 87 | 0 | 1 | ação 17, título ou rótulo 17, instrução 12, estado 9, número 7, opção 6, justificativa 1 |
+| `treino/05-serie-vazia-guia-pausado` Treino: a série com o guia pausado | tela | ana | 69 | 87 | 0 | 1 | ação 17, título ou rótulo 17, instrução 12, estado 9, número 7, opção 6, justificativa 1 |
 | `treino/06-folha-por-que-da-1a-vez` Folha "Por quê" de "1ª vez: comece leve." (a calibração da carga) | folha | ana | 295 | 117 | 7 | 0 | justificativa 251, segurança 29, ação 13, título ou rótulo 2 |
 | `treino/07-folha-selo-do-aquecimento` Folha "De onde vem isto" (o selo do aquecimento) | folha | ana | 147 | 141 | 4 | 0 | justificativa 133, ação 10, título ou rótulo 4 |
 | `treino/08-folha-por-que-da-reserva` Folha "Por quê" de "Quantas ainda conseguiria?" (o RIR) | folha | ana | 202 | 128 | 5 | 0 | justificativa 187, ação 13, título ou rótulo 2 |
-| `treino/09-serie-falta-a-carga` Treino: série com a reserva e sem a carga ("Falta escolher a carga.") | erro | ana | 66 | 84 | 0 | 1 | ação 18, título ou rótulo 17, instrução 12, número 7, opção 6, estado 5, justificativa 1 |
+| `treino/09-serie-falta-a-carga` Treino: série com a reserva e sem a carga ("Falta escolher a carga.") | erro | ana | 65 | 83 | 0 | 1 | ação 17, título ou rótulo 17, instrução 12, número 7, opção 6, estado 5, justificativa 1 |
 | `treino/10-serie-falta-a-reserva` Treino: série com a carga e sem a reserva ("Falta dizer quantas ainda conseguiria.") | erro | ana | 66 | 84 | 0 | 1 | ação 17, título ou rótulo 17, instrução 12, número 8, opção 6, estado 5, justificativa 1 |
 | `treino/11-serie-preenchida` Treino: 1ª série preenchida | tela | ana | 62 | 80 | 0 | 1 | ação 18, título ou rótulo 17, instrução 12, número 8, opção 6, justificativa 1 |
 | `treino/12-descanso` Treino: descanso depois da 1ª série (com "Série 1 salva · Desfazer") | tela | ana | 51 | 56 | 0 | 0 | número 28, ação 12, título ou rótulo 8, estado 3 |
@@ -270,7 +270,7 @@
 | `treino/34-folha-selo-da-calibracao` Folha "De onde vem isto" (o selo da calibração) | folha | ana | 268 | 127 | 6 | 0 | justificativa 251, ação 13, título ou rótulo 4 |
 | `treino/35-aviso-dor-4` Treino: nota de dor 4 depois de uma série ("Reduza a carga…") | aviso | ana | 95 | 100 | 1 | 1 | segurança 56, número 15, ação 12, título ou rótulo 8, estado 3, justificativa 1 |
 | `treino/36-descanso-entre-exercicios` Treino: descanso depois da última série do exercício ("A seguir · exercício 2 de 6") | tela | ana | 100 | 105 | 1 | 1 | segurança 56, número 17, título ou rótulo 13, ação 10, estado 3, justificativa 1 |
-| `treino/37-exercicio-completo` Treino: exercício com as séries completas | tela | ana | 103 | 113 | 1 | 1 | segurança 56, número 16, ação 11, instrução 10, estado 5, título ou rótulo 4, justificativa 1 |
+| `treino/37-exercicio-completo` Treino: exercício com as séries completas | tela | ana | 104 | 114 | 1 | 1 | segurança 56, número 16, ação 12, instrução 10, estado 5, título ou rótulo 4, justificativa 1 |
 | `treino/38-exercicio-trocado` Treino: exercício trocado pela alternativa ("No lugar de …, só neste treino.") | estado vazio | ana | 65 | 81 | 0 | 0 | estado 17, ação 16, título ou rótulo 16, número 6, opção 6, instrução 4 |
 | `treino/39-folha-trocar-exercicio-com-preferencia` Folha "Trocar só neste treino por:", com um "Prefiro…" marcado | folha | ana | 31 | 33 | 0 | 0 | ação 26, título ou rótulo 5 |
 | `treino/40-folha-trocar-depois-da-dor` Folha de troca aberta pela nota de dor 7, com a orientação | aviso | ana | 53 | 55 | 0 | 1 | ação 26, segurança 21, título ou rótulo 5, justificativa 1 |
@@ -282,14 +282,14 @@
 | `treino/46-serie-com-sugestao-do-dia` Treino: 1ª série de um exercício já feito, com a sugestão do dia ("Hoje: …") | tela | ana | 65 | 83 | 0 | 1 | ação 17, título ou rótulo 17, instrução 11, número 8, opção 6, estado 5, justificativa 1 |
 | `treino/47-folha-por-que-da-sugestao-do-dia` Folha "Por quê" da sugestão do dia | folha | ana | 60 | 62 | 1 | 0 | justificativa 54, ação 4, título ou rótulo 2 |
 | `treino/48-exercicio-com-drop-set` Treino: exercício com a última série em drop set (Tríceps francês sentado com halter) | tela | ana | 66 | 79 | 0 | 1 | ação 18, número 17, título ou rótulo 16, opção 6, estado 5, instrução 3, justificativa 1 |
-| `treino/49-serie-com-drop-set` Treino: a última série, com "Drop set (opcional)" e as 2 quedas | tela | ana | 107 | 103 | 0 | 2 | número 34, instrução 24, título ou rótulo 23, ação 13, opção 6, estado 5, justificativa 2 |
+| `treino/49-serie-com-drop-set` Treino: a última série, com "Drop set (opcional)" e as 2 quedas | tela | ana | 106 | 103 | 0 | 2 | número 34, instrução 24, título ou rótulo 23, ação 12, opção 6, estado 5, justificativa 2 |
 | `treino/50-serie-com-drop-set-folha-selo` Folha "De onde vem isto" (o selo do drop set) | folha | ana | 201 | 137 | 5 | 0 | justificativa 184, ação 13, título ou rótulo 4 |
 | `treino/51-folha-terminar-sem-serie` Folha "Terminar o treino agora?" (sem nenhuma série) | folha | ana | 32 | 34 | 0 | 1 | estado 18, ação 9, título ou rótulo 4, justificativa 1 |
 | `treino/52-folha-mais-opcoes-sem-serie` Folha "Mais opções" (no 1º exercício, sem série feita) | folha | ana | 11 | 13 | 0 | 0 | ação 9, título ou rótulo 2 |
 | `treino/53-exercicio-sem-animacao` Treino: exercício sem animação, com o cartão de texto fechado (Crucifixo invertido sentado, com o peito nas coxas, com halteres) | estado vazio | ana | 63 | 79 | 0 | 0 | título ou rótulo 21, ação 16, estado 9, número 7, opção 6, instrução 4 |
 | `treino/54-exercicio-sem-animacao-folha-como-fazer` Treino: folha "Como fazer (em texto)" como abre | folha | ana | 78 | 80 | 0 | 0 | instrução 63, ação 8, título ou rótulo 7 |
 | `treino/55-exercicio-sem-animacao-folha-como-fazer-passo-a-passo` Treino: folha "Como fazer (em texto)", com o passo a passo aberto | bloco aberto | ana | 204 | 111 | 1 | 0 | instrução 185, título ou rótulo 11, ação 8 |
-| `treino/56-treino-na-volta` Treino na volta da pausa: a carga 10% menor já preenchida ("Hoje: 9 kg") | tela | ana | 66 | 84 | 0 | 1 | ação 18, título ou rótulo 17, instrução 11, número 8, opção 6, estado 5, justificativa 1 |
+| `treino/56-treino-na-volta` Treino na volta da pausa: a carga 10% menor já preenchida ("Hoje: 9 kg") | tela | ana | 65 | 83 | 0 | 1 | ação 17, título ou rótulo 17, instrução 11, número 8, opção 6, estado 5, justificativa 1 |
 | `treino/57-treino-na-volta-folha-por-que` Folha "Por quê" da sugestão do dia na volta da pausa | folha | ana | 170 | 144 | 4 | 0 | justificativa 141, segurança 17, ação 10, título ou rótulo 2 |
 | `treino/58-carla-inferior-1` Treino da Carla: dia "Inferior", 1º exercício, 1ª série vazia (Agachamento livre com barra (profundo)) | estado vazio | carla | 111 | 125 | 0 | 2 | segurança 42, título ou rótulo 18, ação 16, instrução 12, estado 9, número 6, opção 6, justificativa 2 |
 | `treino/59-carla-inferior-2` Treino da Carla: dia "Inferior", 2º exercício, 1ª série vazia (Stiff com halteres) | estado vazio | carla | 58 | 72 | 0 | 0 | ação 18, título ou rótulo 14, estado 9, número 7, opção 6, instrução 4 |
@@ -312,7 +312,7 @@
 | `treino/76-fabio-exercicio-1` Treino do Fábio (barra fixa): 1º exercício, 1ª série vazia (Barra fixa) | estado vazio | fabio | 62 | 77 | 0 | 1 | título ou rótulo 17, ação 15, instrução 12, número 6, opção 6, estado 5, justificativa 1 |
 | `treino/77-fabio-exercicio-2` Treino do Fábio (barra fixa): 2º exercício, 1ª série vazia (Barra fixa só na descida (negativa)) | estado vazio | fabio | 91 | 106 | 1 | 1 | segurança 30, título ou rótulo 23, ação 16, número 6, opção 6, estado 5, instrução 4, justificativa 1 |
 | `treino/78-fabio-exercicio-3` Treino do Fábio (barra fixa): 3º exercício, 1ª série vazia (Flexão de braço) | estado vazio | fabio | 57 | 72 | 0 | 0 | ação 18, título ou rótulo 18, número 6, opção 6, estado 5, instrução 4 |
-| `treino/79-bruno-volta-da-pausa-exercicio-1` Treino do Bruno (voltando de pausa): 1º exercício (Supino reto com halteres) | estado vazio | bruno | 65 | 80 | 0 | 1 | ação 15, título ou rótulo 15, instrução 12, estado 9, número 7, opção 6, justificativa 1 |
+| `treino/79-bruno-volta-da-pausa-exercicio-1` Treino do Bruno (voltando de pausa): 1º exercício (Supino reto com halteres) | estado vazio | bruno | 68 | 83 | 0 | 1 | ação 18, título ou rótulo 15, instrução 12, estado 9, número 7, opção 6, justificativa 1 |
 | `treino/80-bruno-troca-do-local-2` Treino do Bruno no 2º local: 2º exercício, trocado pelo local, com o motivo (Barra fixa) | estado vazio | bruno | 71 | 86 | 0 | 1 | estado 20, ação 17, título ou rótulo 17, número 6, opção 6, instrução 4, justificativa 1 |
 
 ## guia
@@ -321,7 +321,7 @@
 |---|---|---|---|---|---|---|---|
 | `guia/01-tecnica` Guia aberto pelo treino: agachamento búlgaro, modo Técnica | tela | ana | 295 | 59 | 2 | 0 | instrução 117, segurança 87, ação 37, opção 28, título ou rótulo 14, número 12 |
 | `guia/02-tecnica-vista-frontal` Guia: modo Técnica, vista "Frontal" | tela | ana | 295 | 59 | 2 | 0 | instrução 117, segurança 87, ação 37, opção 28, título ou rótulo 14, número 12 |
-| `guia/03-tecnica-pausado-e-lento` Guia: modo Técnica, pausado e com "Lento" ligado | tela | ana | 295 | 59 | 2 | 0 | instrução 117, segurança 87, ação 37, opção 28, título ou rótulo 14, número 12 |
+| `guia/03-tecnica-pausado-e-lento` Guia: modo Técnica, pausado e com "Lento" ligado | tela | ana | 295 | 59 | 2 | 0 | instrução 119, segurança 87, ação 37, opção 28, título ou rótulo 14, número 10 |
 | `guia/04-erros` Guia: agachamento búlgaro, modo Erros | tela | ana | 323 | 52 | 2 | 0 | instrução 132, segurança 87, ação 50, opção 28, título ou rótulo 14, número 12 |
 | `guia/05-erros-2` Guia: modo Erros, 2º erro ("Pé da frente perto do banco") | tela | ana | 329 | 58 | 2 | 0 | instrução 138, segurança 87, ação 50, opção 28, título ou rótulo 14, número 12 |
 | `guia/06-erros-3` Guia: modo Erros, 3º erro ("Descer pouco") | tela | ana | 325 | 54 | 2 | 0 | instrução 134, segurança 87, ação 50, opção 28, título ou rótulo 14, número 12 |
@@ -343,11 +343,11 @@
 | `guia/22-pelo-programa-trajetoria` Guia de halter (a Ana, pelo programa): Supino reto com halteres, modo Trajetória | tela | ana | 304 | 62 | 2 | 0 | instrução 137, segurança 87, ação 36, número 17, título ou rótulo 14, opção 13 |
 | `guia/23-pelo-programa-tudo-aberto` Guia de halter (a Ana, pelo programa): Supino reto com halteres, com os 7 blocos abertos | bloco aberto | ana | 534 | 190 | 3 | 0 | instrução 369, segurança 87, ação 36, número 15, título ou rótulo 14, opção 13 |
 | `guia/24-carla-polia-tecnica` Guia de polia (a Carla): Crucifixo na polia (crossover), modo Técnica | tela | carla | 267 | 47 | 3 | 0 | instrução 89, segurança 87, ação 36, opção 24, número 17, título ou rótulo 14 |
-| `guia/25-carla-polia-erros` Guia de polia (a Carla): Crucifixo na polia (crossover), modo Erros | tela | carla | 294 | 45 | 3 | 0 | instrução 110, segurança 87, ação 44, opção 24, número 15, título ou rótulo 14 |
-| `guia/26-carla-polia-musculos` Guia de polia (a Carla): Crucifixo na polia (crossover), modo Músculos | tela | carla | 307 | 67 | 3 | 0 | instrução 129, segurança 87, ação 36, opção 24, número 17, título ou rótulo 14 |
-| `guia/27-carla-polia-trajetoria` Guia de polia (a Carla): Crucifixo na polia (crossover), modo Trajetória | tela | carla | 301 | 61 | 3 | 0 | instrução 123, segurança 87, ação 36, opção 24, número 17, título ou rótulo 14 |
-| `guia/28-carla-polia-tudo-aberto` Guia de polia (a Carla): Crucifixo na polia (crossover), com os 7 blocos abertos | bloco aberto | carla | 505 | 172 | 4 | 0 | instrução 329, segurança 87, ação 36, opção 24, número 15, título ou rótulo 14 |
-| `guia/29-carla-polia-remada-tecnica` Guia de polia (a Carla): Puxada unilateral ajoelhado na polia alta, modo Técnica | tela | carla | 257 | 55 | 2 | 0 | segurança 91, instrução 81, ação 38, opção 19, título ou rótulo 16, número 12 |
+| `guia/25-carla-polia-erros` Guia de polia (a Carla): Crucifixo na polia (crossover), modo Erros | tela | carla | 296 | 47 | 3 | 0 | instrução 110, segurança 87, ação 44, opção 24, número 17, título ou rótulo 14 |
+| `guia/26-carla-polia-musculos` Guia de polia (a Carla): Crucifixo na polia (crossover), modo Músculos | tela | carla | 306 | 66 | 3 | 0 | instrução 130, segurança 87, ação 36, opção 24, número 15, título ou rótulo 14 |
+| `guia/27-carla-polia-trajetoria` Guia de polia (a Carla): Crucifixo na polia (crossover), modo Trajetória | tela | carla | 300 | 60 | 3 | 0 | instrução 124, segurança 87, ação 36, opção 24, número 15, título ou rótulo 14 |
+| `guia/28-carla-polia-tudo-aberto` Guia de polia (a Carla): Crucifixo na polia (crossover), com os 7 blocos abertos | bloco aberto | carla | 507 | 172 | 4 | 0 | instrução 329, segurança 87, ação 36, opção 24, número 17, título ou rótulo 14 |
+| `guia/29-carla-polia-remada-tecnica` Guia de polia (a Carla): Puxada unilateral ajoelhado na polia alta, modo Técnica | tela | carla | 254 | 52 | 2 | 0 | segurança 91, instrução 80, ação 38, opção 19, título ou rótulo 16, número 10 |
 | `guia/30-carla-polia-remada-erros` Guia de polia (a Carla): Puxada unilateral ajoelhado na polia alta, modo Erros | tela | carla | 282 | 50 | 2 | 0 | segurança 102, instrução 84, ação 49, opção 19, título ou rótulo 16, número 12 |
 | `guia/31-carla-polia-remada-musculos` Guia de polia (a Carla): Puxada unilateral ajoelhado na polia alta, modo Músculos | tela | carla | 294 | 66 | 2 | 0 | instrução 118, segurança 91, ação 38, opção 19, título ou rótulo 16, número 12 |
 | `guia/32-carla-polia-remada-trajetoria` Guia de polia (a Carla): Puxada unilateral ajoelhado na polia alta, modo Trajetória | tela | carla | 279 | 57 | 2 | 0 | instrução 103, segurança 91, ação 38, opção 19, título ou rótulo 16, número 12 |
@@ -359,7 +359,7 @@
 | `guia/38-elisa-corpo-livre-1-tudo-aberto` Guia de corpo livre (a Elisa): Agachamento com o peso do corpo, com os 7 blocos abertos | bloco aberto | elisa | 562 | 220 | 7 | 0 | instrução 266, segurança 166, privacidade 44, ação 35, opção 20, título ou rótulo 16, número 15 |
 | `guia/39-elisa-corpo-livre-2-tecnica` Guia de corpo livre (a Elisa): Flexão de braço, modo Técnica | tela | elisa | 248 | 51 | 2 | 0 | segurança 87, instrução 74, ação 36, opção 21, número 17, título ou rótulo 13 |
 | `guia/40-elisa-corpo-livre-2-erros` Guia de corpo livre (a Elisa): Flexão de braço, modo Erros | tela | elisa | 272 | 47 | 2 | 0 | instrução 90, segurança 87, ação 44, opção 21, número 17, título ou rótulo 13 |
-| `guia/41-elisa-corpo-livre-2-musculos` Guia de corpo livre (a Elisa): Flexão de braço, modo Músculos | tela | elisa | 289 | 64 | 2 | 0 | segurança 105, instrução 99, ação 36, opção 21, número 15, título ou rótulo 13 |
+| `guia/41-elisa-corpo-livre-2-musculos` Guia de corpo livre (a Elisa): Flexão de braço, modo Músculos | tela | elisa | 291 | 66 | 2 | 0 | segurança 105, instrução 99, ação 36, opção 21, número 17, título ou rótulo 13 |
 | `guia/42-elisa-corpo-livre-2-trajetoria` Guia de corpo livre (a Elisa): Flexão de braço, modo Trajetória | tela | elisa | 277 | 56 | 2 | 0 | instrução 103, segurança 87, ação 36, opção 21, número 17, título ou rótulo 13 |
 | `guia/43-elisa-corpo-livre-2-tudo-aberto` Guia de corpo livre (a Elisa): Flexão de braço, com os 7 blocos abertos | bloco aberto | elisa | 436 | 165 | 3 | 0 | instrução 244, segurança 105, ação 36, opção 21, número 17, título ou rótulo 13 |
 | `guia/44-catalogo` Guia sem contexto (o catálogo das animações): supino inclinado com halteres | tela | ninguém | 350 | 67 | 3 | 0 | instrução 164, segurança 87, ação 60, opção 19, título ou rótulo 14, número 6 |
@@ -394,32 +394,32 @@
 | `fim-e-semana/21-semana-2-de-3` Semana com 2 de 3 treinos e uma semana anterior sem treino | tela | ana | 174 | 76 | 0 | 1 | ação 78, número 67, título ou rótulo 15, estado 13, justificativa 1 |
 | `fim-e-semana/22-semana-revisao-da-meta` Semana com a oferta "Um programa que cabe melhor?" | aviso | ana | 329 | 141 | 2 | 3 | número 112, ação 88, estado 67, justificativa 39, título ou rótulo 23 |
 | `fim-e-semana/23-evolucao-por-local` Evolução de um exercício de polia com 2 locais (uma lista por local) | tela | bruno | 75 | 75 | 0 | 1 | número 30, definição 29, título ou rótulo 10, ação 5, justificativa 1 |
-| `fim-e-semana/24-inicio-volta-22-dias` Início na volta de uma pausa de 22 dias: o cartão "Bem-vindo de volta!" | aviso | ana | 145 | 109 | 0 | 1 | ação 97, privacidade 23, número 15, definição 6, título ou rótulo 3, justificativa 1 |
+| `fim-e-semana/24-inicio-volta-22-dias` Início na volta de uma pausa de 22 dias: o cartão "Bem-vindo de volta!" | aviso | ana | 133 | 100 | 0 | 1 | ação 85, privacidade 23, número 15, definição 6, título ou rótulo 3, justificativa 1 |
 | `fim-e-semana/25-inicio-volta-22-dias-folha-por-que` Folha "Bem-vindo de volta!" (por quê?), pausa de 22 dias | folha | ana | 328 | 167 | 8 | 0 | justificativa 270, segurança 38, ação 16, título ou rótulo 4 |
-| `fim-e-semana/26-sobre-o-programa-na-volta` Folha "Sobre o programa" na volta da pausa (a fase da semana 1) | folha | ana | 107 | 95 | 1 | 3 | estado 62, ação 27, título ou rótulo 8, número 7, justificativa 3 |
-| `fim-e-semana/27-inicio-volta-15-dias` Início na volta de uma pausa de 15 dias: o cartão "Bem-vindo de volta!" | aviso | ana | 145 | 109 | 0 | 1 | ação 97, privacidade 23, número 15, definição 6, título ou rótulo 3, justificativa 1 |
+| `fim-e-semana/26-sobre-o-programa-na-volta` Folha "Sobre o programa" na volta da pausa (a fase da semana 1) | folha | ana | 96 | 98 | 1 | 3 | estado 58, ação 25, número 7, título ou rótulo 3, justificativa 3 |
+| `fim-e-semana/27-inicio-volta-15-dias` Início na volta de uma pausa de 15 dias: o cartão "Bem-vindo de volta!" | aviso | ana | 133 | 100 | 0 | 1 | ação 85, privacidade 23, número 15, definição 6, título ou rótulo 3, justificativa 1 |
 | `fim-e-semana/28-inicio-volta-15-dias-folha-por-que` Folha "Bem-vindo de volta!" (por quê?), pausa de 15 dias | folha | ana | 313 | 165 | 7 | 0 | justificativa 270, estado 23, ação 16, título ou rótulo 4 |
-| `fim-e-semana/29-inicio-volta-60-dias` Início na volta de uma pausa de 60 dias: o cartão "Bem-vindo de volta!" | aviso | ana | 145 | 109 | 0 | 1 | ação 97, privacidade 23, número 15, definição 6, título ou rótulo 3, justificativa 1 |
+| `fim-e-semana/29-inicio-volta-60-dias` Início na volta de uma pausa de 60 dias: o cartão "Bem-vindo de volta!" | aviso | ana | 133 | 100 | 0 | 1 | ação 85, privacidade 23, número 15, definição 6, título ou rótulo 3, justificativa 1 |
 | `fim-e-semana/30-inicio-volta-60-dias-folha-por-que` Folha "Bem-vindo de volta!" (por quê?), pausa de 60 dias | folha | ana | 321 | 160 | 8 | 0 | justificativa 270, segurança 31, ação 16, título ou rótulo 4 |
-| `fim-e-semana/31-inicio-volta-200-dias` Início na volta de uma pausa de 200 dias: o cartão "Bem-vindo de volta!" | aviso | ana | 150 | 111 | 0 | 1 | ação 102, privacidade 23, número 15, definição 6, título ou rótulo 3, justificativa 1 |
+| `fim-e-semana/31-inicio-volta-200-dias` Início na volta de uma pausa de 200 dias: o cartão "Bem-vindo de volta!" | aviso | ana | 138 | 102 | 0 | 1 | ação 90, privacidade 23, número 15, definição 6, título ou rótulo 3, justificativa 1 |
 | `fim-e-semana/32-inicio-volta-200-dias-folha-por-que` Folha "Bem-vindo de volta!" (por quê?), pausa de 200 dias | folha | ana | 332 | 171 | 8 | 0 | justificativa 270, segurança 42, ação 16, título ou rótulo 4 |
-| `fim-e-semana/33-inicio-volta-200-dias-agora-nao` Início na volta de 200 dias, depois de "Agora não" | aviso | ana | 155 | 108 | 0 | 1 | ação 97, privacidade 23, número 15, estado 10, definição 6, título ou rótulo 3, justificativa 1 |
-| `fim-e-semana/34-inicio-oferta-de-semana-leve` Início com a oferta "Semana leve? (opcional)" na linha do aviso | aviso | ana | 123 | 88 | 0 | 1 | ação 86, privacidade 23, número 5, título ou rótulo 5, justificativa 4 |
-| `fim-e-semana/35-inicio-oferta-de-semana-leve-folha-avisos` Folha "Avisos": "Semana leve? (opcional)" e os outros avisos | folha | ana | 199 | 109 | 1 | 3 | ação 83, justificativa 57, estado 30, instrução 15, título ou rótulo 14 |
+| `fim-e-semana/33-inicio-volta-200-dias-agora-nao` Início na volta de 200 dias, depois de "Agora não" | aviso | ana | 143 | 107 | 0 | 1 | ação 85, privacidade 23, número 15, estado 10, definição 6, título ou rótulo 3, justificativa 1 |
+| `fim-e-semana/34-inicio-oferta-de-semana-leve` Início com a oferta "Semana leve? (opcional)" na linha do aviso | aviso | ana | 111 | 83 | 0 | 1 | ação 74, privacidade 23, número 5, título ou rótulo 5, justificativa 4 |
+| `fim-e-semana/35-inicio-oferta-de-semana-leve-folha-avisos` Folha "Avisos": "Semana leve? (opcional)" e os outros avisos | folha | ana | 192 | 109 | 1 | 3 | ação 83, justificativa 57, estado 30, título ou rótulo 14, instrução 8 |
 | `fim-e-semana/36-semana-com-oferta-de-semana-leve` Semana com a oferta "Semana leve? (opcional)" | aviso | ana | 277 | 105 | 1 | 2 | número 114, ação 84, justificativa 38, estado 23, título ou rótulo 18 |
 | `fim-e-semana/37-fim-com-oferta-de-semana-leve` Fim do treino com "pesado demais" marcado e a oferta "Semana leve? (opcional)" | aviso | ana | 175 | 77 | 1 | 1 | número 56, ação 41, justificativa 37, título ou rótulo 22, estado 19 |
 | `fim-e-semana/38-fim-com-semana-leve-ativa` Fim do treino com a semana leve aceita ("Semana leve até …") | aviso | ana | 143 | 71 | 0 | 1 | número 56, ação 38, título ou rótulo 23, definição 16, estado 9, justificativa 1 |
-| `fim-e-semana/39-inicio-semana-leve-ativa` Início com a semana leve ativa | aviso | ana | 124 | 89 | 0 | 1 | ação 86, privacidade 23, número 5, título ou rótulo 5, estado 4, justificativa 1 |
-| `fim-e-semana/40-inicio-semana-leve-ativa-folha-avisos` Folha "Avisos": "Semana leve até …", com "Voltar ao normal" | folha | ana | 167 | 98 | 0 | 3 | ação 80, justificativa 21, estado 20, definição 16, título ou rótulo 15, instrução 15 |
-| `fim-e-semana/41-sobre-o-programa-na-semana-leve` Folha "Sobre o programa" na semana leve (a fase diz "Semana leve: …") | folha | ana | 108 | 96 | 1 | 3 | estado 63, ação 27, título ou rótulo 8, número 7, justificativa 3 |
+| `fim-e-semana/39-inicio-semana-leve-ativa` Início com a semana leve ativa | aviso | ana | 112 | 84 | 0 | 1 | ação 74, privacidade 23, número 5, título ou rótulo 5, estado 4, justificativa 1 |
+| `fim-e-semana/40-inicio-semana-leve-ativa-folha-avisos` Folha "Avisos": "Semana leve até …", com "Voltar ao normal" | folha | ana | 160 | 91 | 0 | 3 | ação 80, justificativa 21, estado 20, definição 16, título ou rótulo 15, instrução 8 |
+| `fim-e-semana/41-sobre-o-programa-na-semana-leve` Folha "Sobre o programa" na semana leve (a fase diz "Semana leve: …") | folha | ana | 97 | 99 | 1 | 3 | estado 59, ação 25, número 7, título ou rótulo 3, justificativa 3 |
 | `fim-e-semana/42-semana-na-semana-leve` Semana com a semana leve ativa (a meta é a prescrita para a semana) | aviso | ana | 205 | 82 | 0 | 2 | ação 81, número 74, título ou rótulo 19, definição 16, estado 13, justificativa 2 |
-| `fim-e-semana/43-inicio-dor-que-se-repete` Início com o aviso de dor que se repete no mesmo exercício | aviso | ana | 162 | 109 | 1 | 2 | ação 86, segurança 38, privacidade 23, número 5, título ou rótulo 5, justificativa 5 |
-| `fim-e-semana/44-inicio-dor-que-se-repete-folha-avisos` Folha "Avisos" com a dor que se repete como motivo da semana leve | folha | ana | 203 | 113 | 1 | 3 | ação 83, justificativa 57, estado 20, instrução 15, título ou rótulo 14, segurança 14 |
+| `fim-e-semana/43-inicio-dor-que-se-repete` Início com o aviso de dor que se repete no mesmo exercício | aviso | ana | 150 | 103 | 1 | 2 | ação 74, segurança 38, privacidade 23, número 5, título ou rótulo 5, justificativa 5 |
+| `fim-e-semana/44-inicio-dor-que-se-repete-folha-avisos` Folha "Avisos" com a dor que se repete como motivo da semana leve | folha | ana | 196 | 113 | 1 | 3 | ação 83, justificativa 57, estado 20, título ou rótulo 14, segurança 14, instrução 8 |
 | `fim-e-semana/45-fim-com-dor` Fim do treino com dor registrada (a linha do exercício diz "Ajustar") | aviso | ana | 209 | 76 | 2 | 2 | número 56, segurança 52, ação 41, justificativa 38, título ou rótulo 22 |
 | `fim-e-semana/46-fim-com-dor-folha-por-que` Folha do "por quê?" de um exercício com "Ajustar" (dor) | folha | ana | 215 | 152 | 3 | 0 | justificativa 110, segurança 82, número 11, ação 7, título ou rótulo 5 |
-| `fim-e-semana/47-inicio-aviso-do-tempo` Início com o aviso "O tempo dos seus treinos" | aviso | ana | 135 | 99 | 0 | 1 | ação 96, privacidade 23, título ou rótulo 10, número 5, justificativa 1 |
-| `fim-e-semana/48-inicio-aviso-do-tempo-folha-avisos` Folha "Avisos": "O tempo dos seus treinos" | folha | ana | 143 | 110 | 0 | 2 | ação 77, estado 20, justificativa 20, instrução 15, título ou rótulo 11 |
-| `fim-e-semana/49-inicio-tempo-ajustado` Início depois de "Ajustar" o tempo (e a versão nova do programa que isso oferece) | aviso | ana | 146 | 99 | 0 | 1 | ação 99, privacidade 23, estado 13, número 5, título ou rótulo 5, justificativa 1 |
+| `fim-e-semana/47-inicio-aviso-do-tempo` Início com o aviso "O tempo dos seus treinos" | aviso | ana | 123 | 90 | 0 | 1 | ação 84, privacidade 23, título ou rótulo 10, número 5, justificativa 1 |
+| `fim-e-semana/48-inicio-aviso-do-tempo-folha-avisos` Folha "Avisos": "O tempo dos seus treinos" | folha | ana | 136 | 103 | 0 | 2 | ação 77, estado 20, justificativa 20, título ou rótulo 11, instrução 8 |
+| `fim-e-semana/49-inicio-tempo-ajustado` Início depois de "Ajustar" o tempo (e a versão nova do programa que isso oferece) | aviso | ana | 131 | 87 | 0 | 1 | ação 87, privacidade 23, estado 10, número 5, título ou rótulo 5, justificativa 1 |
 
 ## dados-e-locais
 
@@ -516,11 +516,11 @@
 |---|---|---|---|---|---|---|---|
 | `avisos-e-erros/01-instalar-no-iphone-boas-vindas` Boas-vindas no iPhone (Safari, sem instalar): o aviso "Instale o app para não perder seus dados" | aviso | ninguém | 138 | 131 | 1 | 1 | privacidade 67, ação 26, instrução 23, segurança 14, título ou rótulo 7, justificativa 1 |
 | `avisos-e-erros/02-instalar-no-iphone-folha-selo` Folha "De onde vem isto" (o selo do aviso de instalar) | folha | ninguém | 88 | 88 | 1 | 0 | justificativa 80, título ou rótulo 4, ação 4 |
-| `avisos-e-erros/03-instalar-no-iphone-inicio` Início no iPhone (Safari, sem instalar): o aviso de instalar depois dos exercícios | aviso | ana | 190 | 122 | 1 | 1 | ação 87, privacidade 60, instrução 23, estado 9, número 5, título ou rótulo 5, justificativa 1 |
-| `avisos-e-erros/04-lembrete-de-copia` Início com o lembrete "Guarde uma cópia dos seus treinos" (nenhuma cópia ainda) | aviso | ana | 135 | 77 | 0 | 1 | ação 96, privacidade 23, título ou rótulo 10, número 5, justificativa 1 |
+| `avisos-e-erros/03-instalar-no-iphone-inicio` Início no iPhone (Safari, sem instalar): o aviso de instalar depois dos exercícios | aviso | ana | 173 | 122 | 1 | 1 | ação 75, privacidade 60, instrução 23, número 5, título ou rótulo 5, estado 4, justificativa 1 |
+| `avisos-e-erros/04-lembrete-de-copia` Início com o lembrete "Guarde uma cópia dos seus treinos" (nenhuma cópia ainda) | aviso | ana | 123 | 77 | 0 | 1 | ação 84, privacidade 23, título ou rótulo 10, número 5, justificativa 1 |
 | `avisos-e-erros/05-lembrete-de-copia-folha-selo` Folha "De onde vem isto" (o selo do lembrete de cópia) | folha | ana | 181 | 133 | 2 | 0 | justificativa 97, privacidade 70, ação 10, título ou rótulo 4 |
-| `avisos-e-erros/06-lembrete-de-copia-exportado` Início logo depois de "Exportar agora" no lembrete de cópia | aviso | ana | 119 | 76 | 0 | 0 | ação 92, privacidade 12, título ou rótulo 10, número 5 |
-| `avisos-e-erros/07-lembrete-de-copia-com-treinos-novos` Início com o lembrete de cópia de quem já exportou ("Você tem treinos novos desde a última cópia.") | aviso | ana | 137 | 79 | 0 | 1 | ação 96, privacidade 25, título ou rótulo 10, número 5, justificativa 1 |
+| `avisos-e-erros/06-lembrete-de-copia-exportado` Início logo depois de "Exportar agora" no lembrete de cópia | aviso | ana | 107 | 76 | 0 | 0 | ação 80, privacidade 12, título ou rótulo 10, número 5 |
+| `avisos-e-erros/07-lembrete-de-copia-com-treinos-novos` Início com o lembrete de cópia de quem já exportou ("Você tem treinos novos desde a última cópia.") | aviso | ana | 125 | 79 | 0 | 1 | ação 84, privacidade 25, título ou rótulo 10, número 5, justificativa 1 |
 | `avisos-e-erros/08-dado-ilegivel-boas-vindas` Boas-vindas com um dado guardado que o app não leu | erro | ninguém | 69 | 69 | 0 | 0 | ação 27, privacidade 21, segurança 14, título ou rótulo 7 |
 | `avisos-e-erros/09-dado-ilegivel-meus-dados` Meus dados com um dado guardado que o app não leu ("Exportar os dados que não foram lidos") | erro | ninguém | 145 | 79 | 0 | 0 | ação 69, privacidade 31, segurança 19, estado 17, título ou rótulo 9 |
 | `avisos-e-erros/10-dado-ilegivel-exportado` Meus dados depois de exportar os dados que não foram lidos | aviso | ninguém | 163 | 97 | 0 | 0 | ação 69, privacidade 49, segurança 19, estado 17, título ou rótulo 9 |
@@ -529,15 +529,15 @@
 | `avisos-e-erros/13-tela-de-erro-sem-dados` Tela de erro, ao exportar sem nada guardado | erro | ninguém | 82 | 70 | 0 | 0 | privacidade 37, título ou rótulo 14, ação 12, instrução 10, estado 9 |
 | `avisos-e-erros/14-nao-foi-possivel-salvar-treino` Treino com o aviso "Não foi possível salvar neste aparelho." | erro | ana | 92 | 110 | 1 | 1 | privacidade 26, título ou rótulo 17, ação 14, instrução 12, estado 9, número 7, opção 6, justificativa 1 |
 | `avisos-e-erros/15-nao-foi-possivel-salvar-serie` Descanso com "Série 1 anotada, mas não salva" | erro | ana | 83 | 88 | 1 | 0 | número 28, privacidade 26, ação 15, título ou rótulo 8, estado 6 |
-| `avisos-e-erros/16-nao-foi-possivel-salvar-inicio` Início com o aviso "Não foi possível salvar neste aparelho." | erro | ana | 123 | 112 | 1 | 0 | ação 87, privacidade 26, número 5, título ou rótulo 5 |
-| `avisos-e-erros/17-sobre-o-programa-sem-conferir` Folha "Sobre o programa" quando o avaliador não baixa | erro | ana | 72 | 72 | 0 | 1 | estado 37, ação 24, número 7, título ou rótulo 3, justificativa 1 |
+| `avisos-e-erros/16-nao-foi-possivel-salvar-inicio` Início com o aviso "Não foi possível salvar neste aparelho." | erro | ana | 114 | 103 | 1 | 0 | ação 78, privacidade 26, número 5, título ou rótulo 5 |
+| `avisos-e-erros/17-sobre-o-programa-sem-conferir` Folha "Sobre o programa" quando o avaliador não baixa | erro | ana | 66 | 66 | 0 | 1 | estado 33, ação 22, número 7, título ou rótulo 3, justificativa 1 |
 | `avisos-e-erros/18-selo-carregando-a-regra` Folha "De onde vem isto" enquanto a regra chega ("Carregando a regra…") | carregando | ana | 8 | 8 | 0 | 0 | título ou rótulo 4, estado 3, ação 1 |
 | `avisos-e-erros/19-selo-carregando-as-fontes` Folha "De onde vem isto" enquanto as fontes chegam ("Carregando as fontes…") | carregando | ana | 91 | 91 | 1 | 0 | justificativa 83, título ou rótulo 4, estado 3, ação 1 |
 | `avisos-e-erros/20-selo-sem-as-fontes` Folha "De onde vem isto" quando as fontes não baixam | erro | ana | 104 | 104 | 1 | 0 | justificativa 83, estado 16, título ou rótulo 4, ação 1 |
 | `avisos-e-erros/21-selo-sem-a-regra` Folha "De onde vem isto" quando a regra não baixa | erro | ana | 20 | 20 | 0 | 0 | estado 12, título ou rótulo 4, ação 4 |
 | `avisos-e-erros/22-guia-animado-nao-carregou` Treino quando o guia animado não carrega (o registro da série continua) | erro | ana | 78 | 96 | 0 | 1 | estado 21, título ou rótulo 17, ação 14, instrução 12, número 7, opção 6, justificativa 1 |
-| `avisos-e-erros/23-guia-em-texto-nao-baixou-na-folha` Folha do exercício sem animação quando o guia em texto não baixa ("Tentar de novo") | erro | ana | 96 | 96 | 0 | 1 | ação 37, título ou rótulo 20, segurança 16, estado 14, número 8, justificativa 1 |
-| `avisos-e-erros/24-guia-em-texto-nao-baixou-2a-vez` Folha do exercício sem animação quando o guia em texto falha de novo ("Recarregar o app") | erro | ana | 96 | 96 | 0 | 1 | ação 37, título ou rótulo 20, segurança 16, estado 14, número 8, justificativa 1 |
+| `avisos-e-erros/23-guia-em-texto-nao-baixou-na-folha` Folha do exercício sem animação quando o guia em texto não baixa ("Tentar de novo") | erro | ana | 47 | 47 | 0 | 0 | ação 15, estado 14, título ou rótulo 10, número 8 |
+| `avisos-e-erros/24-guia-em-texto-nao-baixou-2a-vez` Folha do exercício sem animação quando o guia em texto falha de novo ("Recarregar o app") | erro | ana | 47 | 47 | 0 | 0 | ação 15, estado 14, título ou rótulo 10, número 8 |
 | `avisos-e-erros/25-guia-em-texto-nao-baixou-no-treino` Treino num exercício sem animação quando o guia em texto não baixa | erro | ana | 72 | 88 | 0 | 0 | título ou rótulo 21, estado 20, ação 14, número 7, opção 6, instrução 4 |
 
 ## Os 60 textos que mais pesam (palavras × vezes em que aparecem)
@@ -557,12 +557,12 @@
 | 7 | 45 | tela | ação | O que varia de pessoa para pessoa | guia/01-tecnica e mais 44 |
 | 21 | 15 | tela | ação | Termos de uso e privacidade O que o app faz e não faz, onde ficam os dados e os seus direitos | dados-e-locais/01-meus-dados e mais 14 |
 | 156 | 2 | domínio | privacidade | Texto da foto do equipamento e consentimento antes do 1º envio (R5c, 07/11/2026). A foto é o único dado que sai do aparelho e pode ser dado pessoal (mostra a ca… | cadastro/04-boas-vindas-folha-selo-da-foto e mais 1 |
-| 20 | 15 | domínio | estado | Você está na semana 1. Fase de aprendizado: foco na técnica, volume no mínimo, RIR 3–4 e sem superséries. | inicio/10-sobre-o-programa e mais 14 |
-| 1 | 289 | domínio | justificativa | consenso | cadastro/10-saude-quais-valem-regioes-erro-sem-regiao e mais 120 |
 | 36 | 8 | domínio | justificativa | Para descansar, não para crescer. Pode deixar a força um pouco mais baixa por alguns dias; o músculo não perde. Mesma frequência, cerca de metade das séries, RI… | fim-e-semana/17-semana-completa e mais 7 |
 | 19 | 15 | tela | segurança | Refazer a triagem As 9 perguntas e a dor de hoje; o programa é gerado de novo no fim | dados-e-locais/01-meus-dados e mais 14 |
+| 1 | 282 | domínio | justificativa | consenso | cadastro/10-saude-quais-valem-regioes-erro-sem-regiao e mais 114 |
 | 5 | 56 | tela | ação | Como ler o seu treino | inicio/01-inicio-depois-do-1o-treino e mais 55 |
 | 34 | 8 | conteúdo | justificativa | Halperin I, et al. (2022). Accuracy in Predicting Repetitions to Task Failure in Resistance Exercise: A Scoping Review and Exploratory Meta-analysis. Sports Med… | inicio/19-como-ler-folha-selo e mais 7 |
+| 17 | 15 | domínio | estado | Semana 1. Fase de aprendizado: foco na técnica, volume no mínimo, RIR 3–4 e sem superséries. | inicio/10-sobre-o-programa e mais 14 |
 | 12 | 21 | conteúdo | ação | Remada unilateral com halter apoiada no banco 2 × 8–12 cada lado | inicio/01-inicio-depois-do-1o-treino e mais 20 |
 | 27 | 9 | domínio | estado | Ajustar: Foco abaixo da meta: panturrilha 6 de 10 séries por semana. Suba 1 série em panturrilha no degrau da escada, no treino Corpo todo C. | inicio/10-sobre-o-programa e mais 8 |
 | 11 | 22 | conteúdo | ação | Flexão de joelho deslizando os pés no chão 2 × 8–15 | inicio/03-inicio e mais 21 |
@@ -577,7 +577,6 @@
 | 8 | 26 | tela | estado | Falta escolher a carga e quantas ainda conseguiria. | treino/01-serie-vazia e mais 25 |
 | 41 | 5 | domínio | estado | Pouca carga para as pernas: o programa usa uma perna de cada vez, mais repetições e degraus de dificuldade. As pernas podem crescer menos que numa academia. Não… | inicio/12-sobre-o-programa-avisos e mais 4 |
 | 20 | 10 | conteúdo | instrução | Pé da frente longe o bastante para o calcanhar ficar no chão embaixo: teste antes com o peso do corpo. | guia/01-tecnica e mais 9 |
-| 16 | 12 | tela | segurança | Prefere algum destes? Vale no próximo programa e nas trocas de local; a dor sempre manda. | inicio/02-folha-do-exercicio-com-historico e mais 11 |
 | 8 | 24 | conteúdo | ação | Tríceps francês sentado com halter 2 × 10–15 | inicio/03-inicio e mais 23 |
 | 38 | 5 | conteúdo | justificativa | Mayhew JL, Prinster JL, Ware JS, Zimmer DL, Arabas JR, Bemben MG (1995). Muscular endurance repetitions to predict bench press strength in men of different trai… | inicio/19-como-ler-folha-selo e mais 4 |
 | 62 | 3 | domínio | opção | Corpo todo A/B/C Recomendada Cada músculo 3 vezes por semana · cerca de 6 exercícios por treino. Os três treinos passam por todos os grandes grupos, com exercíc… | dados-e-locais/22-rotina-e-divisao e mais 2 |
@@ -589,9 +588,7 @@
 | 24 | 7 | domínio | privacidade | Cada vaga pede uma função (por exemplo, "tríceps com o braço acima da cabeça"), não um aparelho: máquina e peso livre valem o mesmo. | inicio/14-sobre-o-programa-por-que-este-programa e mais 6 |
 | 4 | 42 | tela | instrução | 1ª vez: comece leve. | treino/01-serie-vazia e mais 41 |
 | 42 | 4 | conteúdo | justificativa | Ogasawara R, Yasuda T, Sakamaki M, Ozaki H, Abe T (2011). Effects of periodic and continued resistance training on muscle CSA and strength in previously untrain… | fim-e-semana/25-inicio-volta-22-dias-folha-por-que e mais 3 |
-| 15 | 11 | tela | instrução | Toque numa opção para gerar o programa de novo. Nada muda sem a sua escolha. | inicio/16-folha-avisos e mais 10 |
-| 9 | 18 | tela | estado | Alguns músculos ficaram abaixo da meta. Dá para ajustar. | inicio/01-inicio-depois-do-1o-treino e mais 17 |
-| 9 | 18 | tela | estado | Versão do app: e711024, publicada em 16/11/2026. | dados-e-locais/01-meus-dados e mais 17 |
+| 9 | 18 | tela | estado | Versão do app: 52ca5b9, publicada em 16/11/2026. | dados-e-locais/01-meus-dados e mais 17 |
 | 7 | 23 | conteúdo | ação | Supino reto com halteres 2 × 6–10 | inicio/01-inicio-depois-do-1o-treino e mais 22 |
 | 5 | 32 | tela | ação | Série feita · descansar 1:45 | treino/01-serie-vazia e mais 31 |
 | 40 | 4 | jurídico | privacidade | Mande este texto para quem te passou o link do app, contando o que aconteceu. Vão a versão do app, o modelo do aparelho e a tela. Não escreva nada sobre a sua s… | dados-e-locais/12-meus-dados-avisar-um-problema e mais 3 |
@@ -604,6 +601,9 @@
 | 18 | 8 | jurídico | privacidade | No seu celular, cada foto é reduzida e perde a localização (GPS) e os outros dados da câmera. | cadastro/40-equipamento-folha-da-foto e mais 7 |
 | 18 | 8 | jurídico | privacidade | O servidor do app não guarda a foto e não registra a imagem (só quantas fotos foram enviadas). | cadastro/40-equipamento-folha-da-foto e mais 7 |
 | 3 | 48 | tela | título ou rótulo | Quantas ainda conseguiria? | treino/01-serie-vazia e mais 47 |
+| 36 | 4 | conteúdo | justificativa | Ogasawara R, Yasuda T, Ishii N, Abe T (2013). Comparison of muscle hypertrophy following 6-month of continuous and periodic strength training. Eur J Appl Physio… | fim-e-semana/25-inicio-volta-22-dias-folha-por-que e mais 3 |
+| 14 | 10 | conteúdo | instrução | Banco plano atrás de você; a estação ao lado, para a mão de apoio. | guia/01-tecnica e mais 9 |
+| 35 | 4 | domínio | justificativa | Pausa detectada durante o uso (R2; pesquisa-v2/07, seção 3): dias do fim da última sessão terminada até hoje, para o programa inteiro e em qualquer local; até 1… | fim-e-semana/25-inicio-volta-22-dias-folha-por-que e mais 3 |
 
 ## Controles sem nome acessível
 
