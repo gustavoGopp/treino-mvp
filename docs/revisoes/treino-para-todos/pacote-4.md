@@ -128,9 +128,9 @@ O que os revisores continuam apontando, e que não é deste pacote: quem quer gl
 | --- | --- |
 | `npm run check` | limpo (997 testes) |
 | Protótipo de conferência = app | 0 programas diferentes em 23.470, depois de cada regra |
-| A simulação de meses | ver o fim desta tabela |
-| `npm run test:e2e` | ver o fim desta tabela |
-| A auditoria oficial em duas rodadas | ver o fim desta tabela |
+| A simulação de meses | refeita: idêntica (o pacote não mexe na progressão) |
+| `npm run test:e2e` | limpo (158 testes), com a máquina livre. Rodando junto com a auditoria, um teste sensível a tempo ("o cartão de texto que não baixou") falhou uma vez e passou sozinho nas repetições; não tem relação com o pacote |
+| A auditoria oficial em duas rodadas | limpa: 39 arquivos idênticos nas duas rodadas e nenhum defeito acima da linha de base da régua (os mesmos passos de `npm run auditoria:verificar`, um por vez, com os hashes de cada rodada guardados) |
 | `src/engine/`, telas, `src/styles.css`, `api/`, `CLAUDE.md` | sem mudança neste pacote |
 
 ## 8. Para quem já usa

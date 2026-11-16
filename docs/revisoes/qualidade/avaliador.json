@@ -1,55 +1,55 @@
 {
  "programas": 5850,
  "vereditos": {
-  "bom": 2665,
-  "limite": 2704,
-  "ajustar": 481,
+  "bom": 2670,
+  "limite": 2711,
+  "ajustar": 469,
   "bloqueado": 0
  },
  "comSemAviso": 0,
  "porTipo": {
-  "ajustar abaixo-da-meta": 371,
-  "ajustar abaixo-do-piso": 78,
-  "ajustar tempo": 52,
-  "info maximo": 874,
-  "limite abaixo-da-meta": 1974,
+  "ajustar abaixo-da-meta": 350,
+  "ajustar abaixo-do-piso": 86,
+  "ajustar tempo": 49,
+  "info maximo": 877,
+  "limite abaixo-da-meta": 1987,
   "limite abaixo-do-piso": 1367,
-  "limite empurrar-puxar": 69,
-  "limite funcoes": 1342,
-  "limite obrigatorio": 477,
+  "limite empurrar-puxar": 62,
+  "limite funcoes": 1344,
+  "limite obrigatorio": 479,
   "limite sem-exercicio": 975,
-  "limite tempo": 783
+  "limite tempo": 753
  },
  "semAviso": {},
  "porCenario": {
   "academia": {
-   "bom": 548,
-   "limite": 390,
-   "ajustar": 37,
+   "bom": 549,
+   "limite": 383,
+   "ajustar": 43,
    "bloqueado": 0
   },
   "condominio": {
    "bom": 553,
-   "limite": 324,
-   "ajustar": 98,
+   "limite": 330,
+   "ajustar": 92,
    "bloqueado": 0
   },
   "casa": {
-   "bom": 518,
-   "limite": 382,
+   "bom": 520,
+   "limite": 380,
    "ajustar": 75,
    "bloqueado": 0
   },
   "elasticos": {
-   "bom": 490,
+   "bom": 492,
    "limite": 394,
-   "ajustar": 91,
+   "ajustar": 89,
    "bloqueado": 0
   },
   "halteres-banco": {
    "bom": 556,
-   "limite": 316,
-   "ajustar": 103,
+   "limite": 326,
+   "ajustar": 93,
    "bloqueado": 0
   },
   "sem-nada": {

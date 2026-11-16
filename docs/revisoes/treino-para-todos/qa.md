@@ -578,7 +578,7 @@ Arquivos: [`medidas/main-com-a-regua-de-14-11/retrato.md`](medidas/main-com-a-re
 | O pior grupo melhor do que era | cumprido: os treinos de 30 min, de 73,4% para 73,8% |
 | Revisão cega com nenhuma pessoa pior e as notas médias maiores | notas médias maiores (5,89 · 6,31 · 5,64 → 5,97 · 6,42 · 5,75, em 12 pessoas, contra o pacote 2); uma sobe 5,0, oito iguais, **três caem (−0,7, −0,3 e −0,3)**: são as pessoas em que agiram a prática do iniciante e a dupla de lombar como último recurso. Decisões 1 e 2 de [`pacote-4.md`](pacote-4.md) |
 | Toda regra com selo, fonte e teste | `tempo.corte` (degrau 1b), `tempo.superserie` (último recurso) e `selecao.pratica-do-iniciante` (nova) em `regras.md`; `tests/unit/iniciante-e-corte.test.ts` (18 testes) |
-| `npm run check`, `npm run test:e2e`, `npm run auditoria:verificar` | ver [`pacote-4.md`](pacote-4.md), seção 7 |
+| `npm run check`, `npm run test:e2e`, `npm run auditoria:verificar` | `check` limpo (997 testes), `test:e2e` limpo (158) e a auditoria em duas rodadas limpa (39 arquivos idênticos; nenhum defeito acima da linha de base da régua) |
 
 ### A régua oficial e os 20 cuidados, na população inteira (main, com a régua de agora → ramo, com os pacotes 1, 0, 3, 2 e 4)
 
