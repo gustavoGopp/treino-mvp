@@ -327,6 +327,28 @@ export function contextoDeSelecao(perfil: Perfil, inventarioOriginal: Inventario
   const alternativasDe = (e: Exercicio, funcao: Funcao) =>
     alternativas(e, funcao, possiveis.filter((x) => !funcaoTemExercicio(funcao, x.id) || naFuncao(funcao, x.id)));
 
+  /**
+   * tempo.corte, degrau 1b (16/11/2026): o equivalente de dois lados de um exercício de um lado só, no mesmo nível da
+   * função, para o dia que não cabe no tempo. Não pode ser pior nos critérios de treino (dor de 3 a 5, estabilidade do
+   * iniciante, carga possível), nem estar no dia, nem ficar em todos os dias da semana (`usos` conta os dias de cada
+   * exercício; `diasDaSemana`, quantos dias a semana tem).
+   */
+  const doisLadosNoLugar = (e: Exercicio, funcao: Funcao, noDia: (id: string) => boolean, usos: Map<string, number>, diasDaSemana: number): Exercicio | null => {
+    if (!e.unilateral) return null;
+    const n = funcao.niveis.findIndex((ids) => ids.includes(noLugarDe(e.id)));
+    if (n < 0) return null;
+    const treino = (x: Exercicio) => [x.articulacoes.some((a) => dorLeve.has(a)) ? 1 : 0, nivel === 'iniciante' && !estavel(x) ? 1 : 0, -cargaPossivel(x)];
+    const base = treino(e);
+    const limiteDeDias = diasDaSemana >= 3 ? diasDaSemana - 1 : Infinity;
+    return (
+      funcao.niveis[n]!
+        .filter((id) => id !== e.id && naFuncao(funcao, id) && !noDia(id) && !barraDoIniciante(id) && (usos.get(id) ?? 0) < limiteDeDias)
+        .map((id) => POR_ID[id]!)
+        .filter((c) => !c.unilateral && c.tipo === e.tipo && treino(c).every((v, i) => v <= base[i]!))
+        .sort(comparar(usos, () => funcao))[0] ?? null
+    );
+  };
+
   return {
     nivel,
     inventario,
@@ -344,6 +366,7 @@ export function contextoDeSelecao(perfil: Perfil, inventarioOriginal: Inventario
     temOrdemDeReferencia: true,
     halterMax,
     barraDoIniciante,
+    doisLadosNoLugar,
     noLugarDe,
     preferido,
     comparar,
@@ -1142,7 +1165,22 @@ function montarPrograma(perfil: Perfil, inventarioOriginal: Inventario, triagem:
         (c === 'caneleira' && cargasDeCaneleira >= 2))
     );
   };
-  programaDias = cortarTempo(programaDias, perfil.minutosSessao, metas, nivel, prioritarios, avisos, podeDrop, colchaoDe(perfil), trocouProtegido);
+  // tempo.corte, degrau 1b: antes de qualquer técnica ou corte, o exercício de um lado só dá lugar ao equivalente de dois
+  // lados do mesmo nível da função (a série leva metade do tempo).
+  const maisRapido = (x: ExercicioPrescrito, d: DiaPrograma, todos: DiaPrograma[]): ExercicioPrescrito | null => {
+    const f = x.funcao ? FUNCAO[x.funcao] : undefined;
+    const e = POR_ID[x.exId]!;
+    if (!f || x.supersetCom || x.dropSet) return null;
+    const usos = new Map<string, number>();
+    for (const z of todos) for (const id of new Set(z.exercicios.map((y) => y.exId))) usos.set(id, (usos.get(id) ?? 0) + 1);
+    const c = ctx.doisLadosNoLugar(e, f, (id) => d.exercicios.some((y) => y.exId === id), usos, todos.length);
+    if (!c) return null;
+    return prescrever(c, f, f.niveis.findIndex((ids) => ids.includes(ctx.noLugarDe(x.exId))), x.series, ctx, [
+      { regraId: r('tempo.corte'), texto: `Entrou no lugar de ${e.nome.toLowerCase()} para o treino caber no tempo: trabalha os dois lados de uma vez, e cada série leva metade do tempo.` },
+      ...lembretesDeDor(c, triagem),
+    ]);
+  };
+  programaDias = cortarTempo(programaDias, perfil.minutosSessao, metas, nivel, prioritarios, avisos, podeDrop, colchaoDe(perfil), trocouProtegido, maisRapido);
   programaDias = completarPelaRegua(programaDias, ctx, perfil, N, semPuxar, metas, prioritarios);
   // tempo.sobra-series, 2º passo (13/11/2026): com o programa montado, cortado e completado, o tempo que ainda sobra vira
   // série em todos os dias. Os exercícios não mudam: só as séries sobem.
@@ -1859,6 +1897,8 @@ export function cortarTempo(
   colchao: number = TEMPO.colchao,
   /** Já saiu um exercício antes (a troca do protegido com 30 min): o aviso diz "menos exercícios". */
   jaTirouExercicio = false,
+  /** Degrau 1b: o equivalente de dois lados de um exercício de um lado só, já prescrito, se houver (tempo.corte). */
+  maisRapido?: (x: ExercicioPrescrito, d: DiaPrograma, todos: DiaPrograma[]) => ExercicioPrescrito | null,
 ): DiaPrograma[] {
   const recalcular = (d: DiaPrograma) => ({ ...d, minutosEstimados: minutos(d.exercicios, colchao) });
   const volume = () =>
@@ -1890,6 +1930,14 @@ export function cortarTempo(
       dias[di] = d;
     };
     // 1) só aquecimento específico: já é o que o modelo de tempo considera.
+    // 1b) o exercício de um lado só dá lugar ao equivalente de dois lados (16/11/2026): nenhuma série sai da semana.
+    if (maisRapido)
+      while (d.minutosEstimados > limite) {
+        const troca = d.exercicios.map((x) => ({ x, y: maisRapido(x, d, dias) })).find((t) => t.y);
+        if (!troca) break;
+        salvar(d.exercicios.map((x) => (x === troca.x ? troca.y! : x)));
+        usados.add('lado');
+      }
     // 2) superséries: primeiro entre isoladores, depois entre multiarticulares de músculos diferentes
     //    (nunca dois multiarticulares de pernas; tempo.superserie).
     if (d.minutosEstimados > limite) {
@@ -1987,6 +2035,7 @@ export function cortarTempo(
       texto:
         'Para caber no tempo: ' +
         [
+          usados.has('lado') && 'exercícios de dois lados no lugar dos de um lado só',
           usados.has('superserie') && 'superséries entre músculos que não competem',
           usados.has('dropset') && 'drop set na última série de alguns isoladores (conta como 2 séries)',
           usados.has('corte') && 'menos exercícios',

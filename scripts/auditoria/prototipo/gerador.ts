@@ -1215,7 +1215,36 @@ function montarPrograma(perfil: Perfil, inventarioOriginal: Inventario, triagem:
         (c === 'caneleira' && cargasDeCaneleira >= 2))
     );
   };
-  programaDias = cortarTempo(programaDias, perfil.minutosSessao, metas, nivel, prioritarios, avisos, podeDrop, colchaoDe(perfil), trocouProtegido);
+  // EXPERIMENTO (corte-lado): antes de qualquer técnica ou corte, o exercício de um lado só dá lugar ao equivalente de dois
+  // lados do mesmo nível da função (a série leva metade do tempo), se ele não for pior nos critérios de treino (dor leve,
+  // estabilidade do iniciante, carga possível).
+  const maisRapido = prot('corte-lado')
+    ? (x: ExercicioPrescrito, d: DiaPrograma, todos: DiaPrograma[]): ExercicioPrescrito | null => {
+        const f = x.funcao ? FUNCAO[x.funcao] : undefined;
+        const e = POR_ID[x.exId]!;
+        if (!f || !e.unilateral || x.supersetCom || x.dropSet) return null;
+        const n = f.niveis.findIndex((ids) => ids.includes(ctx.noLugarDe(x.exId)));
+        if (n < 0) return null;
+        const noDia = new Set(d.exercicios.map((y) => y.exId));
+        const base = ctx.criteriosDeTreino(e).slice(0, 3);
+        // Os dias da semana em que cada exercício já está: a troca não põe o mesmo exercício em todos os dias (régua, B1).
+        const usos = new Map<string, number>();
+        for (const z of todos) for (const id of new Set(z.exercicios.map((y) => y.exId))) usos.set(id, (usos.get(id) ?? 0) + 1);
+        const limiteDeDias = todos.length >= 3 ? todos.length - 1 : Infinity;
+        const cands = f.niveis[n]!
+          .filter((id) => id !== x.exId && naFuncao(f, id) && !noDia.has(id) && !ctx.barraDoIniciante(id) && (usos.get(id) ?? 0) < limiteDeDias)
+          .map((id) => POR_ID[id]!)
+          .filter((c) => !c.unilateral && c.tipo === e.tipo && ctx.criteriosDeTreino(c).slice(0, 3).every((v, i) => v <= base[i]!))
+          .sort(ctx.comparar(usos, () => f));
+        const c = cands[0];
+        if (!c) return null;
+        return prescrever(c, f, n, x.series, ctx, [
+          { regraId: r('tempo.corte'), texto: `Entrou no lugar de ${e.nome.toLowerCase()} para o treino caber no tempo: trabalha os dois lados de uma vez, e cada série leva metade do tempo.` },
+          ...lembretesDeDor(c, triagem),
+        ]);
+      }
+    : undefined;
+  programaDias = cortarTempo(programaDias, perfil.minutosSessao, metas, nivel, prioritarios, avisos, podeDrop, colchaoDe(perfil), trocouProtegido, maisRapido);
   programaDias = completarPelaRegua(programaDias, ctx, perfil, N, semPuxar, metas, prioritarios);
   // PROTÓTIPO (usa-tempo): o tempo que sobra vira série em TODOS os dias, com o programa já montado, cortado e completado:
   // os exercícios são os de hoje, e só as séries sobem. Sem foco, até o alvo do nível (8, 12, 14); com foco, o foco primeiro.
@@ -1931,6 +1960,8 @@ export function cortarTempo(
   colchao: number = TEMPO.colchao,
   /** Já saiu um exercício antes (a troca do protegido com 30 min): o aviso diz "menos exercícios". */
   jaTirouExercicio = false,
+  /** EXPERIMENTO (corte-lado): o equivalente de dois lados de um exercício de um lado só, se houver. */
+  maisRapido?: (x: ExercicioPrescrito, d: DiaPrograma, todos: DiaPrograma[]) => ExercicioPrescrito | null,
 ): DiaPrograma[] {
   const recalcular = (d: DiaPrograma) => ({ ...d, minutosEstimados: minutos(d.exercicios, colchao) });
   const volume = () =>
@@ -1969,6 +2000,14 @@ export function cortarTempo(
       dias[di] = d;
     };
     // 1) só aquecimento específico: já é o que o modelo de tempo considera.
+    // EXPERIMENTO (corte-lado): 1b) o exercício de um lado só dá lugar ao equivalente de dois lados.
+    if (maisRapido)
+      while (d.minutosEstimados > limite) {
+        const troca = d.exercicios.map((x) => ({ x, y: maisRapido(x, d, dias) })).find((t) => t.y);
+        if (!troca) break;
+        salvar(d.exercicios.map((x) => (x === troca.x ? troca.y! : x)));
+        usados.add('lado');
+      }
     // 2) superséries: primeiro entre isoladores, depois entre multiarticulares de músculos diferentes
     //    (nunca dois multiarticulares de pernas; tempo.superserie).
     if (d.minutosEstimados > limite) {
@@ -2076,6 +2115,7 @@ export function cortarTempo(
       texto:
         'Para caber no tempo: ' +
         [
+          usados.has('lado') && 'exercícios de dois lados no lugar dos de um lado só',
           usados.has('superserie') && 'superséries entre músculos que não competem',
           usados.has('dropset') && 'drop set na última série de alguns isoladores (conta como 2 séries)',
           usados.has('corte') && 'menos exercícios',

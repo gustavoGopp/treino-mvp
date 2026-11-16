@@ -1972,11 +1972,11 @@
   },
   {
     "id": "tempo.corte",
-    "regra": "Escada fixa quando a sessão não cabe no tempo: primeiro as técnicas que mantêm o volume; um músculo prioritário nunca perde séries antes de um não prioritário. Desde o R5-CL (07/11/2026; `g-biblioteca-ampliada.md`, decisão 9), nenhum corte tira quadríceps ÷ posteriores da faixa de 0,5 a 2 (se já estava dentro) nem tira o único exercício direto de posteriores da semana (`volume.equilibrio-coxa`): com os exercícios novos de superiores ocupando o dia, o corte tirava séries de posteriores",
+    "regra": "Escada fixa quando a sessão não cabe no tempo: primeiro as técnicas que mantêm o volume; um músculo prioritário nunca perde séries antes de um não prioritário. Desde o R5-CL (07/11/2026; `g-biblioteca-ampliada.md`, decisão 9), nenhum corte tira quadríceps ÷ posteriores da faixa de 0,5 a 2 (se já estava dentro) nem tira o único exercício direto de posteriores da semana (`volume.equilibrio-coxa`): com os exercícios novos de superiores ocupando o dia, o corte tirava séries de posteriores. **Desde 16/11/2026 (pacote 4 da sessão \"treino para todos\"), a escada ganhou um degrau antes das técnicas (1b): no dia que não cabe no tempo, o exercício de um lado só dá lugar ao equivalente de dois lados do mesmo nível da função** (o afundo búlgaro pelo agachamento goblet; a remada de um braço pela remada com os dois; a panturrilha de um pé pela de dois). A série de um lado só leva o dobro do tempo, e a pesquisa não achou diferença de resultado entre um lado e dois (`kassiano2025`, lida do resumo). A troca só acontece se o exercício de dois lados não for pior nos critérios de treino (dor de 3 a 5, estabilidade do iniciante, carga possível), se ainda não estiver no dia e se não ficar em todos os dias da semana (`selecao.variacoes-equivalentes`). O exercício que entra traz o porquê, e o aviso do corte diz \"exercícios de dois lados no lugar dos de um lado só\". Nenhuma série sai da semana. Medido em 680.625 programas: o dia mais longo acima de 110% do tempo cai de 23.465 para 22.424 programas e empurrar ÷ puxar acima de 1,5 cai de 3.340 para 3.150; 14 pares grupo × defeito sobem (o maior: empurrar ÷ puxar com dor forte no quadril, 165 → 180 de 45.375) e 153 descem",
     "valores": {
-      "iniciante": "1) só aquecimento específico; 2) superséries entre músculos que não competem (isoladores, depois multiarticulares de músculos diferentes); 3) drop set na última série de isoladores com ≥ 3 séries (nunca nas semanas com RIR 3–4); 4) menos exercícios, mantendo multiarticulares e isoladores obrigatórios; 5) por último, menos séries: não prioritários até o piso de 4, depois prioritários",
-      "intermediario": "1) só aquecimento específico; 2) superséries entre músculos que não competem (isoladores, depois multiarticulares de músculos diferentes); 3) drop set na última série de isoladores com ≥ 3 séries (nunca nas semanas com RIR 3–4); 4) menos exercícios, mantendo multiarticulares e isoladores obrigatórios; 5) por último, menos séries: não prioritários até o piso de 4, depois prioritários",
-      "avancado": "1) só aquecimento específico; 2) superséries entre músculos que não competem (isoladores, depois multiarticulares de músculos diferentes); 3) drop set na última série de isoladores com ≥ 3 séries (nunca nas semanas com RIR 3–4); 4) menos exercícios, mantendo multiarticulares e isoladores obrigatórios; 5) por último, menos séries: não prioritários até o piso de 4, depois prioritários"
+      "iniciante": "1) só aquecimento específico; 1b) dois lados no lugar de um lado só, havendo equivalente; 2) superséries entre músculos que não competem (isoladores, depois multiarticulares de músculos diferentes); 3) drop set na última série de isoladores com ≥ 3 séries (nunca nas semanas com RIR 3–4); 4) menos exercícios, mantendo multiarticulares e isoladores obrigatórios; 5) por último, menos séries: não prioritários até o piso de 4, depois prioritários",
+      "intermediario": "1) só aquecimento específico; 1b) dois lados no lugar de um lado só, havendo equivalente; 2) superséries entre músculos que não competem (isoladores, depois multiarticulares de músculos diferentes); 3) drop set na última série de isoladores com ≥ 3 séries (nunca nas semanas com RIR 3–4); 4) menos exercícios, mantendo multiarticulares e isoladores obrigatórios; 5) por último, menos séries: não prioritários até o piso de 4, depois prioritários",
+      "avancado": "1) só aquecimento específico; 1b) dois lados no lugar de um lado só, havendo equivalente; 2) superséries entre músculos que não competem (isoladores, depois multiarticulares de músculos diferentes); 3) drop set na última série de isoladores com ≥ 3 séries (nunca nas semanas com RIR 3–4); 4) menos exercícios, mantendo multiarticulares e isoladores obrigatórios; 5) por último, menos séries: não prioritários até o piso de 4, depois prioritários"
     },
     "selo": "consenso",
     "fontes": [
@@ -1984,7 +1984,8 @@
       "zhang2025",
       "sodal2023",
       "bradshaw2026",
-      "chien2026"
+      "chien2026",
+      "kassiano2025"
     ]
   },
   {
