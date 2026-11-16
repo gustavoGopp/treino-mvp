@@ -39,15 +39,34 @@ test('o cinza é o padrão, o cor de pele fica em Meus dados e os desenhos de an
   // lote 5 do redesign: o estilo fica numa folha de Meus dados, com a prévia de cada desenho
   await page.goto('/dados');
   await page.getByRole('button', { name: 'Estilo do Boneco' }).click();
-  const grupo = page.getByRole('radiogroup', { name: 'Estilo do boneco' });
-  await expect(grupo.getByRole('radio', { name: /Cinza \(padrão\)/ })).toBeChecked();
+  // sessão de textos (16/11/2026): a folha são os dois bonecos, cada um com um nome de uma palavra embaixo
+  const folha = page.getByRole('dialog', { name: 'Escolha o Boneco' });
+  const grupo = folha.getByRole('radiogroup', { name: 'Estilo do boneco' });
+  await expect(grupo.getByRole('radio', { name: 'Manequim', exact: true })).toBeChecked();
   await expect(grupo.getByRole('radio')).toHaveCount(2);
+  // à vista, só o título, o "Fechar" e os dois nomes: nenhuma frase de explicação nem descrição
+  await expect.poll(() => folha.evaluate((f) => {
+    const anda = document.createTreeWalker(f, NodeFilter.SHOW_TEXT);
+    let palavras = 0;
+    for (let no = anda.nextNode(); no; no = anda.nextNode()) if (!no.parentElement!.closest('.sr, svg') && no.parentElement!.checkVisibility()) palavras += (no.textContent ?? '').trim().split(/\s+/).filter(Boolean).length;
+    return palavras;
+  })).toBe(6);
   await expect(grupo.getByRole('radio', { name: /Clássico|Silhueta|Boneco \(padrão\)/ })).toHaveCount(0);
   await expect(grupo.locator('svg.pele path.b-mp').first()).toBeAttached();
   await expect(grupo.locator('svg.cinza path.b-mp').first()).toBeAttached();
+  // o Boneco enche o cartão (o quadro fecha em volta do corpo) e o escolhido tem a marca, não só a cor
+  for (const desenho of await grupo.locator('label > svg').all()) {
+    const parte = await desenho.evaluate((s) => {
+      const corpo = Array.from(s.querySelectorAll('path')).map((p) => p.getBoundingClientRect());
+      return (Math.max(...corpo.map((r) => r.bottom)) - Math.min(...corpo.map((r) => r.top))) / s.getBoundingClientRect().height;
+    });
+    expect(parte).toBeGreaterThan(0.6);
+  }
+  await expect(grupo.locator('label', { has: page.getByRole('radio', { name: 'Manequim', exact: true }) }).locator('.marca')).toBeVisible();
+  await expect(grupo.locator('label', { has: page.getByRole('radio', { name: 'Pessoa', exact: true }) }).locator('.marca')).toBeHidden();
 
   // escolhido o cor de pele, o guia, a legenda e a miniatura do programa passam a ele
-  await grupo.getByRole('radio', { name: /Cor de pele/ }).check();
+  await grupo.getByRole('radio', { name: 'Pessoa', exact: true }).check();
   await page.goto('/guia/goblet');
   await expect(page.locator('.stage svg')).toHaveClass(/\bnovo\b.*\bpele\b/);
   await page.getByRole('button', { name: 'Músculos' }).click();

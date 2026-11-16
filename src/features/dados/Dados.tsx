@@ -229,7 +229,7 @@ export function Dados() {
         </p>
 
         {folha === 'estilo' && (
-          <Folha titulo="Estilo do Boneco" aoFechar={() => setFolha(null)}>
+          <Folha titulo="Escolha o Boneco" aoFechar={() => setFolha(null)}>
             <EscolhaEstiloBoneco />
           </Folha>
         )}
