@@ -393,10 +393,11 @@ roteiro('inicio-ana', 10, 'inicio', 'ana', async (r, page) => {
     await folhaPronta(page);
     const folha = page.getByRole('dialog').last();
     await r.foto('folha-do-exercicio', { titulo: 'Folha do exercício como abre (o 1º do dia A: agachamento búlgaro)', comoChegar: 'Início → toque no 1º exercício da lista.', tipo: 'folha' });
-    const mais = folha.locator('details.ver-mais summary');
+    // sessão de textos (16/11/2026): as alternativas e o "prefiro este" ficam em "Alternativas (N)", a um toque
+    const mais = folha.locator('summary', { hasText: /^Alternativas \(\d+\)$/ });
     if (await mais.count()) {
       await mais.click();
-      await r.foto('folha-do-exercicio-ver-mais-opcoes', { titulo: 'Folha do exercício, com "Ver mais opções" aberto', comoChegar: 'Folha do exercício → "Ver mais N opções".', tipo: 'bloco aberto' });
+      await r.foto('folha-do-exercicio-ver-mais-opcoes', { titulo: 'Folha do exercício, com "Alternativas" aberto', comoChegar: 'Folha do exercício → "Alternativas (N)".', tipo: 'bloco aberto' });
       await mais.click();
     }
     await folha.locator('summary', { hasText: /^Por que este exercício/ }).click();
@@ -409,7 +410,7 @@ roteiro('inicio-ana', 10, 'inicio', 'ana', async (r, page) => {
   await r.passo('início, os avisos', async () => {
     await verAvisos(page);
     await r.foto('folha-avisos', { titulo: 'Folha "Avisos" (os ajustes possíveis da Ana)', comoChegar: 'Início → "Ver" na linha do aviso.', tipo: 'folha' });
-    await folhaDoSelo(r, 'folha-avisos-folha-selo', page.getByRole('dialog', { name: 'Avisos' }).locator('button.selo').first(), { titulo: 'Folha "De onde vem isto" (o selo dos ajustes possíveis)', comoChegar: 'Folha "Avisos" → toque no selo.' });
+    await folhaDoSelo(r, 'folha-avisos-folha-selo', page.getByRole('dialog', { name: /^(Avisos|Ajustes possíveis)$/ }).locator('button.selo').first(), { titulo: 'Folha "De onde vem isto" (o selo dos ajustes possíveis)', comoChegar: 'Folha "Avisos" → toque no selo.' });
     await r.fecharFolha();
   });
   await r.passo('início, como ler o seu treino', async () => {
@@ -448,7 +449,7 @@ roteiro('inicio-ana-versoes', 20, 'inicio', 'ana', async (r, page) => {
     await folha.locator('.preferencias').scrollIntoViewIfNeeded();
     await r.foto('folha-do-exercicio-preferencia-salva', { titulo: 'Folha do exercício, depois de "Prefiro…"', comoChegar: 'Folha do exercício → toque em "Prefiro <exercício>".', tipo: 'folha' });
     await r.fecharFolha();
-    await expect(page.getByText('Há uma versão nova do seu programa.')).toBeVisible();
+    await expect(page.getByText('Versão nova do programa.')).toBeVisible();
     await r.foto('inicio-versao-nova', { titulo: 'Início, com "Há uma versão nova do seu programa."', comoChegar: 'Início → folha do exercício → "Prefiro…" → fechar.', tipo: 'aviso' });
     await page.locator('.aviso-linha').getByRole('button', { name: /^Mais \d+ avisos?$/ }).click();
     await folhaPronta(page);
