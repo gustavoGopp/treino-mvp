@@ -90,7 +90,7 @@ Folhas: `folhas/2a-inicio-e-folha-do-exercicio.png`, `2b-inicio-sobre-o-programa
 - As abas dos dias mostravam os minutos de cada dia (frontend novo, 12 e 13/11). Na proposta, só o dia escolhido mostra os minutos.
 - As 3 melhores alternativas ficavam à vista na folha do exercício, e o resto em "ver mais" (decisão de 01/11). Na proposta, todas ficam a um toque.
 
-## 3. Treino (proposta; esperando a decisão)
+## 3. Treino (proposta superada pela versão mínima da seção 5)
 
 Folha: `folhas/3-treino.png`. A mudança de exemplo está em `propostas/3-treino.patch`.
 
@@ -113,7 +113,7 @@ Folha: `folhas/3-treino.png`. A mudança de exemplo está em `propostas/3-treino
 - **"1ª vez: comece leve."** e **"Quantas ainda conseguiria? meta 3–4"**: sem eles a pessoa erra a carga ou não sabe o que responder.
 - **As folhas de "por quê?"** (de 170 a 295 palavras): o peso delas é o texto das regras e as fontes, que ficam para o passo das frases das regras.
 
-## 4. Guia (proposta preparada; não foi mostrada: a direção mudou antes)
+## 4. Guia (proposta superada pela versão mínima da seção 5)
 
 Folha: `folhas/4-guia.png`; patch: `propostas/4-guia.patch`. Levava a tela de 295 para 169 palavras: "Montagem" fechada como os outros blocos, a prescrição só com os números, o rodapé "Segurança" com duas frases a menos, sem o 2º botão de voltar e sem "articulações" na legenda (o desenho novo não marca as articulações).
 
@@ -135,3 +135,67 @@ Exemplo em imagem, do app rodando (`folhas/5a-minimo-guia.png`, `5b-minimo-inici
 **O que a versão mínima muda de princípio** (por isso pede o ok explícito do Gustavo):
 - **Evidência.** O `CLAUDE.md` diz que toda regra e todo texto técnico indicam o nível de evidência e a fonte. Na versão mínima, o selo e o "por quê?" saem de todas as telas; o nível e a fonte continuam existindo e alcançáveis, num lugar só (uma página "Entenda o treino", em Meus dados).
 - **Segurança no guia.** À vista fica uma frase com os sinais e a ação ("Dor forte ou em pontada, formigamento ou perda de força? Pare e procure avaliação."). As outras duas (a dor muscular esperada; as animações não substituem avaliação presencial) iriam para a página única e para os termos.
+
+**Decisão do Gustavo (16/11/2026): "sim para as duas, pode seguir".** Aplicado no commit `f81e484`:
+- A explicação, o selo de evidência e o "por quê?" saíram de todas as telas e estão na página **"Entenda o treino"** (Meus dados → Programa), em 7 blocos fechados: como ler o treino; o seu programa; os exercícios (por que cada um e a próxima carga); a sua semana e as pausas; por que o app pergunta e sugere; segurança; todas as regras e as fontes (as 163 regras, conferidas por teste contra `regras.json`).
+- O princípio da evidência no `CLAUDE.md` foi reescrito para dizer isso: o nível e a fonte continuam existindo e alcançáveis, num lugar só.
+- No guia, a segurança à vista é uma frase com os sinais e a ação; o texto inteiro está em "Entenda o treino" → "Segurança" e nos termos.
+- Segurança e privacidade que precisam ficar a um toque continuam a um toque (`PorQue essencial`: "o que sai daqui", o aviso do navegador).
+
+Em imagem, do app rodando: `folhas/5c-aplicado-inicio-e-folha.png`, `5d-aplicado-treino-e-guia.png`, `5e-aplicado-entenda-o-treino.png`.
+
+| Tela | No começo do dia | Agora |
+|---|---|---|
+| Guia | 295 | 60 |
+| Início | 105 | 78 |
+| Folha do exercício | 93 | 22 |
+| Série do treino | 69 | 61 |
+
+No app inteiro (só as telas que existem nas duas medições): 56.539 → 42.962 palavras (−24%); guia −59%, cadastro −21%, início −15%. A conta do início ainda carrega o texto que foi para "Entenda o treino" (as telas antigas "Sobre o programa" e "Como ler" são medidas lá, com o mesmo nome). A tabela completa está em `depois/comparacao.md`.
+
+## 6. Fim do treino e semana (proposta; esperando a decisão)
+
+No mesmo padrão: fica o número e a ação; a explicação vai para "Entenda o treino" → "A sua semana e as pausas". Proposta em `propostas/6-fim-e-semana.patch`; imagens em `folhas/6a-fim.png`, `6b-semana.png`, `6c-ofertas.png`, `6d-evolucao-e-apagar.png`, `6e-dor-e-entenda.png`.
+
+| Tela | Hoje | Proposta |
+|---|---|---|
+| Fim do treino (com recorde e oferta de semana leve) | 161 | 97 |
+| Semana completa | 291 | 111 |
+| Semana com 2 de 3 | 173 | 77 |
+| Semana com a oferta de menos dias | 326 | 114 |
+| Semana com a oferta de semana leve | 275 | 94 |
+| Semana na semana leve | 203 | 98 |
+| Evolução de um exercício | 84 | 76 |
+| Evolução sem treino | 33 | 15 |
+
+O que muda, peça por peça:
+
+| Onde | Hoje | Proposta | Desfecho |
+|---|---|---|---|
+| Fim: título do bloco | "O que mudou hoje" | só para leitor de tela | tirar da vista |
+| Fim: a semana | linha "A sua semana ▪▪▪ 3 de 3" e, lá embaixo, o botão "Ver a sua semana" | a própria linha vira o toque que leva à semana; o botão sai | trocar |
+| Fim: cargas que sobem | "1 exercício com carga para subir na próxima vez." | sai (a lista logo abaixo já diz "Subir · próxima: 9 kg") | tirar |
+| Fim: pergunta | "Hoje foi: (opcional)" | "Hoje foi" | encurtar |
+| Fim: lista | "Para a próxima vez" | "Próxima vez" | encurtar |
+| Fim: apagar | "Registrei algo errado: apagar este treino" | "Apagar este treino" (a confirmação, com o que acontece, não muda) | encurtar |
+| Semana: data | "02/11 a 08/11, em qualquer local" | "02/11 a 08/11" | encurtar; "qualquer local" vai para Entenda |
+| Semana: frase | "Semana completa: 3 de 3. Peito, costas e glúteos na meta." | sai da tela (o número e o quadro já dizem) | levar para Entenda |
+| Semana: últimas semanas | quadradinhos + "3 das últimas 3 semanas com treino." | só os quadradinhos (a frase fica no nome acessível) | tirar da vista |
+| Semana: título | "O que subiu nesta semana" | "Subiu nesta semana" | encurtar |
+| Semana: músculo abaixo da meta | "o seu programa planeja 6 de 10: falta tempo" em cada linha | sai da linha | levar para Entenda |
+| Semana: "Como ler este quadro" | bloco fechado na tela | sai da tela | levar para Entenda |
+| Semana: menos dias | "Um programa que cabe melhor?" + 3 frases | "Um programa com menos dias?" + "Nas últimas 4 semanas você treinou cerca de 1 vez por semana." + os botões | encurtar; o resto vai para Entenda |
+| Semana leve: oferta | "Semana leve? (opcional)" + motivo + 37 palavras + "Fazer a semana leve" | "Semana leve?" + "Metade das séries por 7 dias, mesma carga." + "Fazer" / "Agora não" | encurtar; motivo e explicação vão para Entenda |
+| Semana leve: ativa | "Cerca de metade das séries, RIR 3–4 e a mesma carga. Para descansar, não para crescer." | "Metade das séries, RIR 3–4, mesma carga." | encurtar |
+| Semana: evolução | "Sua evolução" + a lista de todos os exercícios | bloco fechado "Evolução (14)" | levar para um toque |
+| Evolução: legenda | "Sua evolução: a melhor série de cada treino." | sai | levar para Entenda |
+| Evolução: sem treino | "Ainda não há treino registrado deste exercício. A evolução aparece depois do 1º treino com ele." | "Ainda sem treino registrado deste exercício." | encurtar |
+| Evolução: máquinas em 2 locais | "Nas máquinas, cada local tem a sua lista: a placa de uma torre não pesa o mesmo que a de outra." | sai (os títulos "Em <local>" continuam) | levar para Entenda |
+
+**O que não muda (segurança):** o aviso de dor que se repete ("Dor de 3 a 5 no mesmo exercício em 2 treinos seguidos: …procure avaliação profissional."), o fim "Treino encerrado por segurança" com o SAMU 192 e a confirmação de apagar o treino.
+
+**Regras:** nenhuma mudou. Em `src/domain/` só encurtou a frase da oferta de menos dias (`acompanhamento/semana.ts`); o teste da regra (quando oferecer e quais opções) é o mesmo.
+
+**Um conserto junto:** na página "Entenda o treino", a frase da semana saía repetida ("2 de 3 treinos. 2 de 3 treinos. Se der…"). A proposta tira a repetição.
+
+**Testes da proposta:** 904 unitários, 177 de ponta a ponta e os tokens, tudo passando.
