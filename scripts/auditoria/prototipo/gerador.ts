@@ -99,6 +99,7 @@ export type Fase = { semanas: string; fatorSeries: number; rir: [number, number]
 export type Programa = {
   versao: 1;
   entradasHash: string;
+  nivel?: Nivel;
   divisao: string;
   divisaoId?: DivisaoId;
   dias: DiaPrograma[];
@@ -1442,6 +1443,7 @@ function montarPrograma(perfil: Perfil, inventarioOriginal: Inventario, triagem:
   return {
     versao: 1,
     entradasHash: hash(JSON.stringify([perfil, inventarioOriginal])),
+    nivel, // (16/11/2026, pacote 5) o programa diz o nível, como no app
     divisao: divisao.nome,
     divisaoId: divisao.id,
     dias: programaDias,

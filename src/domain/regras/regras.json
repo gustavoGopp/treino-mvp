@@ -811,16 +811,18 @@
   },
   {
     "id": "progressao.estagnacao",
-    "regra": "Estagnação = 3 sessões seguidas sem melhora de repetições nem de carga num exercício. Sem \"estagnado\" na fase de aprendizado do iniciante: o app pede +1 repetição (R5a)",
+    "regra": "Estagnação = sessões seguidas do mesmo exercício, com a mesma carga, sem ganhar nenhuma repetição no total. Sem \"estagnado\" na fase de aprendizado do iniciante: o app pede +1 repetição (R5a). **Desde 16/11/2026 (pacote 5 da sessão \"treino para todos\"), a janela cresce com o nível: 4 sessões para o iniciante, 8 para o intermediário e 16 para o avançado** (antes, 3 para todos). Quem progride no ritmo normal do seu nível lia \"três sessões sem melhora\" em metade dos treinos, por meses: no simulador de 48 sessões de um exercício (`docs/revisoes/treino-para-todos/medidas/longo-prazo.md`; o corpo é um modelo, sem pretensão de evidência), o aviso aparecia em 24 sessões para o iniciante, 36 para o intermediário e 41 para o avançado; com a janela pelo nível, em 17 nos três, e a carga sobe as mesmas vezes. O ganho de força desacelera muito com o tempo de treino (`steele2023`); **nenhum ensaio define a janela: os números 4, 8 e 16 são escolha do projeto**, a recalibrar quando houver export de uso real (decisão de 02/11). O programa passa a guardar o nível para o qual foi montado (dado guardado, versão 9); o programa antigo sem nível continua com a janela de 3 até a pessoa aceitar a versão nova. As sessões da janela são comparadas pelas séries que todas têm em comum: o exercício com 3 séries num dia e 2 no outro não conta como ganho nem como perda (com a janela maior, o aviso piscava de um treino para o outro)",
     "valores": {
-      "iniciante": "escada: 1) faixa mais larga; 2) −10% e reconstruir; 3) semana leve se ≥ 2 exercícios estagnarem; 4) trocar por variação equivalente",
-      "intermediario": "escada: 1) faixa mais larga; 2) −10% e reconstruir; 3) semana leve se ≥ 2 exercícios estagnarem; 4) trocar por variação equivalente",
-      "avancado": "escada: 1) faixa mais larga; 2) −10% e reconstruir; 3) semana leve se ≥ 2 exercícios estagnarem; 4) trocar por variação equivalente"
+      "iniciante": "janela de 4 sessões; escada: 1) faixa mais larga; 2) −10% e reconstruir; 3) semana leve se ≥ 2 exercícios estagnarem; 4) trocar por variação equivalente",
+      "intermediario": "janela de 8 sessões; escada: 1) faixa mais larga; 2) −10% e reconstruir; 3) semana leve se ≥ 2 exercícios estagnarem; 4) trocar por variação equivalente",
+      "avancado": "janela de 16 sessões; escada: 1) faixa mais larga; 2) −10% e reconstruir; 3) semana leve se ≥ 2 exercícios estagnarem; 4) trocar por variação equivalente"
     },
     "selo": "consenso",
     "fontes": [
       "rogerson2024",
-      "moesgaard2022"
+      "moesgaard2022",
+      "steele2023",
+      "consenso-projeto"
     ]
   },
   {

@@ -123,6 +123,11 @@ export const PROGRESSAO = {
   janelaFalha: 6, // sessões em que uma carga que ficou pesada não volta a ser sugerida
   folgaDegrau: 2, // progressao.criterio-degrau: as séries depois da 1ª podem ficar até 2 repetições abaixo do topo
   reducaoEstagnacao: 0.1, // progressao.estagnacao: uma das saídas é reduzir 10% e reconstruir
+  // progressao.estagnacao (16/11/2026): sessões seguidas com a mesma carga sem ganhar repetição para o aviso de "sem
+  // melhora". Cresce com o nível (o ganho desacelera: steele2023); os números são escolha do projeto.
+  janelaEstagnacao: { iniciante: 4, intermediario: 8, avancado: 16 } as PorNivel<number>,
+  // O programa guardado antes da versão 9 não diz o nível: vale a janela de antes.
+  janelaEstagnacaoSemNivel: 3,
   acertosMax: 3, // progressao.calibracao (R5a): depois de 3 séries de acerto sem cair em A ± 2, a calibração termina
 };
 

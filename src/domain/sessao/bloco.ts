@@ -1,5 +1,5 @@
 import { aplicarFase, colchaoDe, faseNaSemana, fasesDeReadaptacao, type DiaPrograma, type Fase, type Programa } from '../gerador';
-import { r, READAPTACAO, SEMANA_LEVE } from '../regras';
+import { r, READAPTACAO, SEMANA_LEVE, type Nivel } from '../regras';
 import type { Sessao } from './index';
 
 // Pausas detectadas sozinhas e a semana do programa (readaptacao.durante-uso; pesquisa-v2/07, seção 3).
@@ -151,6 +151,8 @@ export type Hoje = {
   rirMais1: string[];
   /** O programa com a prescrição de hoje. */
   dias: DiaPrograma[];
+  /** O nível do programa (progressao.estagnacao: a janela do aviso de "sem melhora"); ausente no programa antigo. */
+  nivel?: Nivel;
 };
 
 /**
@@ -181,6 +183,7 @@ export function hojeNoPrograma(
     semanaLeve: fase === FASE_SEMANA_LEVE,
     rirMais1,
     dias,
+    ...(programa.nivel ? { nivel: programa.nivel } : {}),
   };
 }
 

@@ -36,10 +36,17 @@ describe('os casos S1 a S5 do T6', () => {
 
   it('S2: 2 exercícios estagnados → sugere, com o motivo', () => {
     let e = estadoDe(bruno);
+    // Desde o pacote 5 (16/11/2026), a janela do "sem melhora" vem do nível (progressao.estagnacao): para o Bruno,
+    // intermediário, são 8 sessões do mesmo exercício. Com 3 semanas paradas (a janela de antes, de 3 treinos), nada.
     for (let w = 0; w < 3; w++) e = semanaDe(e, w);
-    const s = sugestao(e, 3 * 7);
+    const antes = sugestao(e, 3 * 7);
+    expect(antes.sugerir).toBe(false);
+    expect(antes.motivos).toEqual([]);
+    // Com 8 semanas, todo exercício do programa tem 8 sessões na mesma carga, sem ganhar repetição.
+    for (let w = 3; w < 8; w++) e = semanaDe(e, w);
+    const s = sugestao(e, 8 * 7);
     expect(s.sugerir).toBe(true);
-    expect(s.motivos[0]).toMatch(/^\d+ exercícios sem progresso em 3 treinos$/);
+    expect(s.motivos[0]).toMatch(/^\d+ exercícios sem progresso em 8 treinos$/);
     expect(s.texto).toMatch(/^Para descansar, não para crescer\./);
     expect(s.regraId).toBe('deload.semana-leve');
   });
@@ -101,33 +108,42 @@ describe('os casos S1 a S5 do T6', () => {
   it('S5: 2 exercícios estagnados na semana 2 depois de uma volta de pausa → não sugere', () => {
     let e = estadoDe(bruno);
     for (let w = 0; w < 2; w++) e = semanaDe(e, w);
-    // Volta depois de 3 semanas (bloco novo) e 3 treinos parados na mesma carga, com as mesmas 2 séries.
+    // Volta depois de 3 semanas (bloco novo), parado na mesma carga, com as mesmas 2 séries. Desde o pacote 5
+    // (16/11/2026), o "sem melhora" do Bruno (intermediário) pede 8 sessões do mesmo exercício, contadas dentro do bloco.
+    // Para isso caber nas 3 semanas da carência, ele treina todos os dias, no rodízio dos 4 treinos: no 16º dia seguido,
+    // já na semana 3 do bloco, a puxada (Superior A e B) e o abdominal na polia (Inferior A e B) têm 8 sessões paradas.
+    // Com 4 treinos por semana, os dois só chegariam à 8ª sessão no fim da semana 4 do bloco, com a carência já terminada.
     const duas = () => 2;
-    for (let w = 5; w < 7; w++) e = semanaDe(e, w, serieTipica, duas);
-    e = treinar(e, 7 * 7, 'superior-a', 'local-1', serieTipica, duas);
-    const h = hojeNoPrograma(e.programa!.programa, e.historico, dia(7 * 7 + 1));
+    const volta = 5 * 7;
+    const rodizio = (de: number, ate: number) => {
+      for (let n = de; n < ate; n++) e = treinar(e, n, DIAS[(n - volta) % 4]!, 'local-1', serieTipica, duas);
+    };
+    rodizio(volta, volta + 16);
+    const h = hojeNoPrograma(e.programa!.programa, e.historico, dia(7 * 7 + 2));
     expect(h.bloco.pausaDias).toBeDefined();
     expect(h.semana).toBe(3);
-    const s = sugestao(e, 7 * 7 + 1);
+    const s = sugestao(e, 7 * 7 + 2);
     expect(s.motivos.length).toBeGreaterThan(0);
     expect(s.carencia).toBe(true);
     expect(s.sugerir).toBe(false);
     // Na semana 4 do bloco, a carência acaba.
-    e = semanaDe(e, 8, serieTipica, duas);
-    expect(sugestao(e, 9 * 7).sugerir).toBe(true);
+    rodizio(7 * 7 + 2, 8 * 7);
+    expect(sugestao(e, 8 * 7).sugerir).toBe(true);
   });
 });
 
 describe('a semana leve aceita', () => {
+  // 8 semanas na mesma carga, sem ganhar repetição: a janela do "sem melhora" do Bruno, intermediário, é de 8 sessões
+  // do mesmo exercício (progressao.estagnacao, desde o pacote 5, 16/11/2026; antes, 3 treinos bastavam).
   const parado = () => {
     let e = estadoDe(bruno);
-    for (let w = 0; w < 3; w++) e = semanaDe(e, w);
+    for (let w = 0; w < 8; w++) e = semanaDe(e, w);
     return e;
   };
 
   it('é manual: só começa com o aceite, vale 7 dias, deixa a metade das séries com RIR 3–4, e o programa salvo não muda', () => {
     const e = parado();
-    const n = 3 * 7;
+    const n = 8 * 7;
     expect(semanaLeveDoEstado(e, dia(n))!.mostrar).toBe(true);
     const l = aceitarSemanaLeve(e, dia(n));
     expect(l.programa).toBe(e.programa);
@@ -142,14 +158,14 @@ describe('a semana leve aceita', () => {
     // O treino feito na semana leve fica marcado, e fora da dupla progressão.
     const t = iniciarSessao(l, dia(n + 1), 'superior-a');
     expect(t.sessaoAtual!.semanaLeve).toBe(true);
-    expect(semanaLeveDoEstado(l, dia(n + 1))).toMatchObject({ ativa: true, mostrar: false, ate: '2026-11-01' });
+    expect(semanaLeveDoEstado(l, dia(n + 1))).toMatchObject({ ativa: true, mostrar: false, ate: '2026-12-06' });
     // No 8º dia, acabou.
     expect(hojeNoPrograma(l.programa!.programa, l.historico, dia(n + 7), { semanaLeve: l.semanaLeve! }).semanaLeve).toBe(false);
   });
 
   it('"Voltar ao normal" encerra antes; "Agora não" esconde a sugestão por 7 dias, com ou sem treino no meio (R5a)', () => {
     const e = parado();
-    const n = 3 * 7;
+    const n = 8 * 7;
     const l = encerrarSemanaLeve(aceitarSemanaLeve(e, dia(n)), dia(n + 2));
     expect(semanaLeveDoEstado(l, dia(n + 3))!.ativa).toBe(false);
     // Depois de uma semana leve, 3 semanas sem sugerir de novo.
@@ -175,12 +191,13 @@ describe('a semana leve aceita', () => {
 
   it('as sessões da semana leve ficam fora da dupla progressão: a sugestão depois dela olha os treinos de antes', () => {
     const e = parado();
-    const l = aceitarSemanaLeve(e, dia(21));
+    const n = 8 * 7;
+    const l = aceitarSemanaLeve(e, dia(n));
     let v = l;
-    [0, 1, 3, 4].forEach((k, i) => (v = treinar(v, 21 + k, DIAS[i]!, 'local-1', (exId) => ({ ...serieTipica(exId), reps: 6, rir: 4 }))));
+    [0, 1, 3, 4].forEach((k, i) => (v = treinar(v, n + k, DIAS[i]!, 'local-1', (exId) => ({ ...serieTipica(exId), reps: 6, rir: 4 }))));
     expect(v.historico.slice(-4).every((s: Sessao) => s.semanaLeve)).toBe(true);
-    // Sem as sessões leves, os 3 treinos de antes seguem estagnados (a leve não "piorou" nada).
-    expect(sugestao({ ...v, semanaLeve: undefined }, 26).motivos[0]).toMatch(/exercícios sem progresso/);
+    // Sem as sessões leves, os 8 treinos de antes seguem estagnados (a leve não "piorou" nada).
+    expect(sugestao({ ...v, semanaLeve: undefined }, n + 5).motivos[0]).toMatch(/exercícios sem progresso/);
   });
 });
 
@@ -197,9 +214,16 @@ describe('R5a: a fase de aprendizado e o exercício feito na vaga (deload.semana
     expect(s.carencia).toBe(true);
     expect(s.sugerir).toBe(false);
     const h = hojeNoPrograma(e.programa!.programa, e.historico, dia(13));
-    const x = e.programa!.programa.dias[0]!.exercicios[0]!;
-    const sug = sugestaoDoExercicio(e.historico, x, bruno.inventario, opcoesDeHoje(h));
+    // Um exercício que já tem as 4 sessões paradas do iniciante (entra em dois dias da semana): fora da fase de
+    // aprendizado ele seria "estagnado"; nela, não. (Até 16/11/2026 a conferência olhava o 1º exercício do dia, que só
+    // tinha 2 sessões e não seria "estagnado" de jeito nenhum.)
+    const programa = e.programa!.programa;
+    const x = programa.dias.flatMap((d) => d.exercicios).find((y) => programa.dias.filter((d) => d.exercicios.some((z) => z.exId === y.exId)).length >= 2)!;
+    const sug = sugestaoDoExercicio(e.historico, x, bruno.inventario, { local: { localId: 'local-1' }, ...opcoesDeHoje(h) });
     expect(sug.acao).not.toBe('estagnado');
+    const { aprendizado: _a, ...foraDaFase } = opcoesDeHoje(h);
+    void _a;
+    expect(sugestaoDoExercicio(e.historico, x, bruno.inventario, { local: { localId: 'local-1' }, ...foraDaFase }).acao).toBe('estagnado');
     // Semana 3: fora da fase, o mesmo sinal sugere.
     e = semanaDe(e, 2);
     e = comHojeFoi(comHojeFoi(e, -1, 'pesado'), -2, 'pesado');
@@ -219,13 +243,17 @@ describe('R5a: a fase de aprendizado e o exercício feito na vaga (deload.semana
         return { exId, ...(alt ? { noLugarDe: v.exId } : {}), series: [{ ...serieTipica(exId), reps: baixo + reps }] };
       }),
     });
-    const motivo = (h: Sessao[]) => sugestao({ ...e, historico: h }, h.length > 3 ? 14 : (Date.parse(h.at(-1)!.inicio) - Date.parse(dia(0))) / 86_400_000 + 2).motivos.find((m) => m.includes('sem progresso'));
-    // 1) As vagas paradas há tempo, mas agora a pessoa faz a alternativa e sobe as repetições: nada estagnado.
-    const parado = [0, 2, 4].map((n) => sessao(n, false, 0));
-    expect(motivo(parado)).toBe('2 exercícios sem progresso em 3 treinos');
-    expect(motivo([...parado, ...[8, 10, 12].map((n, k) => sessao(n, true, k))])).toBeUndefined();
-    // 2) A alternativa parada em 3 treinos, com a vaga nunca feita: conta (antes do R5a, ficava de fora).
-    expect(motivo([8, 10, 12].map((n) => sessao(n, true, 0)))).toBe('2 exercícios sem progresso em 3 treinos');
+    // "Hoje" é sempre 2 dias depois da última sessão.
+    const motivo = (h: Sessao[]) => sugestao({ ...e, historico: h }, (Date.parse(h.at(-1)!.inicio) - Date.parse(dia(0))) / 86_400_000 + 2).motivos.find((m) => m.includes('sem progresso'));
+    // 8 sessões, uma a cada 2 dias: a janela do "sem melhora" do Bruno, intermediário (pacote 5, 16/11/2026; antes, 3).
+    const oito = (de: number) => Array.from({ length: 8 }, (_, k) => de + 2 * k);
+    // 1) As vagas paradas há tempo, mas agora a pessoa faz a alternativa e sobe as repetições (1 a cada 2 sessões, sem
+    // sair da faixa): nada estagnado.
+    const parado = oito(0).map((n) => sessao(n, false, 0));
+    expect(motivo(parado)).toBe('2 exercícios sem progresso em 8 treinos');
+    expect(motivo([...parado, ...oito(16).map((n, k) => sessao(n, true, Math.floor(k / 2)))])).toBeUndefined();
+    // 2) A alternativa parada em 8 treinos, com a vaga nunca feita: conta (antes do R5a, ficava de fora).
+    expect(motivo(oito(16).map((n) => sessao(n, true, 0)))).toBe('2 exercícios sem progresso em 8 treinos');
   });
 });
 

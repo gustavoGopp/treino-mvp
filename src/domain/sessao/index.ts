@@ -2,10 +2,10 @@ import { MUSCULOS_INFERIORES, POR_ID, type Exercicio } from '../biblioteca';
 import { faseNaSemana, prescricaoDaSemana, type DiaPrograma, type ExercicioPrescrito, type Fase, type Programa } from '../gerador';
 import { blocoAtual, naFaseDeAprendizado, semanaNoBloco, treinoFeito, type Hoje } from './bloco';
 import { DEPOIS_DA_ESCADA, escadaDe, nomeDoDegrau, pedeMiniBand } from '../progressao/escadas';
-import { existeNoPasso, noPassoAbaixo, proximaCarga, sugerirProgressao, sugestaoPorDor, textoDaCargaSimples, type Alvo, type Carga, type OpcoesCarga, type SerieRegistrada, type SessaoExercicio, type Sugestao } from '../progressao';
+import { existeNoPasso, janelaDeEstagnacao, noPassoAbaixo, proximaCarga, sugerirProgressao, sugestaoPorDor, textoDaCargaSimples, type Alvo, type Carga, type OpcoesCarga, type SerieRegistrada, type SessaoExercicio, type Sugestao } from '../progressao';
 import { calibrar, emCalibracao, fimDaCalibracao, semCalibracao, type ResultadoCalibracao } from '../progressao/calibracao';
 import { funcoesDoExercicio } from '../gerador/funcoes';
-import { DOR, r } from '../regras';
+import { DOR, r, type Nivel } from '../regras';
 import { CAPACIDADES, cargasCaneleiras, cargasHalter, cargasKettlebell, ITEM_IDS, MENOR_ANILHA_PADRAO_KG, type Capacidade, type Inventario } from '../taxonomia/equipamentos';
 export * from './bloco';
 
@@ -225,6 +225,8 @@ export type OpcoesSugestao = {
   semanaLeve?: boolean;
   /** Fase de aprendizado do iniciante (iniciante.fase-aprendizado): sem "estagnado" (R5a). */
   aprendizado?: boolean;
+  /** O nível do programa: dá a janela do aviso de "sem melhora" (progressao.estagnacao). */
+  nivel?: Nivel;
 };
 
 /** As opções da sugestão que saem da prescrição de hoje: a semana 1 da volta, o bloco aberto por pausa e a semana leve. */
@@ -235,6 +237,7 @@ export const opcoesDeHoje = (hoje: Hoje): OpcoesSugestao => {
     ...(b.pausaDias !== undefined ? { bloco: { inicio: b.inicio, reducao: b.reducao, ...(b.calibrar ? { calibrar: true } : {}) } } : {}),
     ...(hoje.semanaLeve ? { semanaLeve: true } : {}),
     ...(naFaseDeAprendizado(hoje) ? { aprendizado: true } : {}),
+    ...(hoje.nivel ? { nivel: hoje.nivel } : {}),
   };
 };
 
@@ -372,7 +375,7 @@ export function sugestaoDoExercicio(
     return { acao: 'manter', ...(base ? { proxima: base } : {}), motivo: 'Semana leve: a mesma carga, com menos séries e mais reserva.', regraId: r('deload.semana-leve') };
   }
   const trabalho = semCalibracao(bloco ? hist({ desde: bloco.inicio, semLeve: true }) : hist({ semLeve: true }));
-  const sug = sugerirProgressao(trabalho.length ? trabalho : semCalibracao(noBloco), alvo, op);
+  const sug = sugerirProgressao(trabalho.length ? trabalho : semCalibracao(noBloco), alvo, op, janelaDeEstagnacao(opcoes.nivel));
   // Na fase de aprendizado, a carga sobe quando a técnica estiver estável: nada de "estagnado" (R5a).
   if (sug.acao === 'estagnado' && opcoes.aprendizado)
     return { acao: 'manter', motivo: 'Fase de aprendizado: mantenha a carga e busque +1 repetição com a técnica firme.', regraId: r('iniciante.fase-aprendizado') };

@@ -1,5 +1,5 @@
 import type { ExercicioPrescrito, Programa } from '../gerador';
-import { sugerirProgressao, sugerirSemanaLeve } from '../progressao';
+import { janelaDeEstagnacao, sugerirProgressao, sugerirSemanaLeve } from '../progressao';
 import { semCalibracao } from '../progressao/calibracao';
 import { DOR, r, SEMANA_LEVE } from '../regras';
 import { diaLocal, dorDoExercicio, hojeNoPrograma, historicoDoExercicio, naFaseDeAprendizado, opcoesCarga, prescricaoDaVaga, treinoFeito, type LocalDaCarga, type Sessao } from '../sessao';
@@ -72,7 +72,7 @@ export function semanaLeveDeHoje(programa: Programa, historico: Sessao[], hojeIs
     const localId = o.localDe(ultima);
     const local: LocalDaCarga | undefined = localId ? { localId, ...(o.localPadrao ? { localPadrao: o.localPadrao } : {}) } : undefined;
     const h = semCalibracao(historicoDoExercicio(historico, exId, local, { semLeve: true, ...(desde ? { desde } : {}) }));
-    if (sugerirProgressao(h, { reps: x.reps, rir: x.rir }, opcoesCarga(exId, o.inventario(localId))).acao === 'estagnado') estagnados++;
+    if (sugerirProgressao(h, { reps: x.reps, rir: x.rir }, opcoesCarga(exId, o.inventario(localId)), janelaDeEstagnacao(programa.nivel)).acao === 'estagnado') estagnados++;
   }
 
   // 2) "Pesado demais" nos últimos 3 treinos (o toque opcional do fim do treino).
@@ -100,6 +100,6 @@ export function semanaLeveDeHoje(programa: Programa, historico: Sessao[], hojeIs
   // A fase de aprendizado do iniciante também é carência (iniciante.fase-aprendizado; R5a).
   const carencia = depoisDaVolta || depoisDaLeve || naFaseDeAprendizado(hoje);
 
-  const s = sugerirSemanaLeve({ exerciciosEstagnados: estagnados, pesadoNosUltimos3: pesado, dorQueSeRepete: comDor.length, carencia });
+  const s = sugerirSemanaLeve({ exerciciosEstagnados: estagnados, pesadoNosUltimos3: pesado, dorQueSeRepete: comDor.length, carencia, janela: janelaDeEstagnacao(programa.nivel) });
   return { ...s, carencia, ...(dor ? { dor } : {}) };
 }

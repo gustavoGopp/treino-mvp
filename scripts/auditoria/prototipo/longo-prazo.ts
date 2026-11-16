@@ -7,7 +7,7 @@
 // Uso: npx vite-node scripts/auditoria/prototipo/longo-prazo.ts -- [--saida <pasta>]
 import { mkdirSync, writeFileSync } from 'node:fs';
 import { POR_ID } from '../../../src/domain/biblioteca';
-import { sugerirProgressao, valorDaCarga, type Carga, type SessaoExercicio, type Sugestao } from '../../../src/domain/progressao';
+import { janelaDeEstagnacao, sugerirProgressao, valorDaCarga, type Carga, type SessaoExercicio, type Sugestao } from '../../../src/domain/progressao';
 import { RIR, type Nivel } from '../../../src/domain/regras';
 import { noInventario, opcoesCarga } from '../../../src/domain/sessao';
 import type { Inventario } from '../../../src/domain/taxonomia/equipamentos';
@@ -91,7 +91,7 @@ function comJanela(sug: Sugestao, hist: SessaoExercicio[], janela: number): Suge
   return parado ? sug : { acao: 'manter', motivo: 'Mantenha a carga e busque +1 repetição.', regraId: 'progressao.manter' };
 }
 
-function simular(caso: Caso, nivel: Nivel, janela: number) {
+function simular(caso: Caso, nivel: Nivel, janela: number, doApp = false) {
   const e = POR_ID[caso.exId]!;
   const reps = e.faixaReps;
   const rir = (e.tipo === 'composto' ? RIR.composto : RIR.isolador)[nivel];
@@ -107,8 +107,10 @@ function simular(caso: Caso, nivel: Nivel, janela: number) {
       return { carga, reps: feitas, rir: Math.min(5, Math.max(0, Math.floor(rf - k) - feitas)) };
     });
     hist.push({ series });
+    // "o app de agora": a própria regra do app, com a janela do nível (pacote 5, 16/11/2026); as outras variantes são a
+    // regra de antes (3 sessões) e as janelas do protótipo, aplicadas por fora.
     const bruta = sugerirProgressao(hist, { reps, rir }, op);
-    const sug = comJanela(bruta, hist, janela);
+    const sug = doApp ? sugerirProgressao(hist, { reps, rir }, op, janelaDeEstagnacao(nivel)) : comJanela(bruta, hist, janela);
     acoes[sug.acao] = (acoes[sug.acao] ?? 0) + 1;
     const prox = sug.proxima ? noInventario(sug.proxima, op).carga : undefined;
     if (prox) carga = prox;
@@ -118,10 +120,11 @@ function simular(caso: Caso, nivel: Nivel, janela: number) {
 }
 
 const NIVEIS: Nivel[] = ['iniciante', 'intermediario', 'avancado'];
-const VARIANTES = ['hoje (3 sessões)', ...Object.keys(JANELAS)];
+const APP = 'o app de agora (4, 8, 16)';
+const VARIANTES = ['antes (3 sessões)', ...Object.keys(JANELAS), APP];
 const janelaDe = (v: string, n: Nivel) => JANELAS[v]?.[n] ?? 3;
 const media = (xs: number[]) => (xs.reduce((t, x) => t + x, 0) / xs.length).toFixed(1).replace('.', ',');
-const res = NIVEIS.map((nivel) => ({ nivel, porVariante: VARIANTES.map((v) => CASOS.map((caso) => simular(caso, nivel, janelaDe(v, nivel)))) }));
+const res = NIVEIS.map((nivel) => ({ nivel, porVariante: VARIANTES.map((v) => CASOS.map((caso) => simular(caso, nivel, janelaDe(v, nivel), v === APP))) }));
 const L = [
   '# O que a pessoa ouve em 24 semanas: o aviso de "sem melhora" hoje e com a janela pelo nível',
   '',
@@ -129,11 +132,11 @@ const L = [
   '',
   'Em quantas das 48 sessões de um exercício a pessoa lê "três sessões sem melhora" (média dos 15 casos), e quantas vezes a carga sobe.',
   '',
-  `| nível | ${VARIANTES.map((v) => `"sem melhora": ${v}`).join(' | ')} | a carga sobe (igual nas três) |`,
+  `| nível | ${VARIANTES.map((v) => `"sem melhora": ${v}`).join(' | ')} | a carga sobe (igual em todas) |`,
   `| --- | ${VARIANTES.map(() => '---:').join(' | ')} | ---: |`,
   ...res.map((r) => `| ${r.nivel} | ${r.porVariante.map((xs) => media(xs.map((a) => a.estagnado ?? 0))).join(' | ')} | ${media(r.porVariante[0]!.map((a) => a.subir ?? 0))} |`),
   '',
-  '## Por caso (hoje)',
+  '## Por caso (antes, com 3 sessões)',
   '',
   '| nível | caso | "sem melhora" em 48 sessões | a carga sobe |',
   '| --- | --- | ---: | ---: |',

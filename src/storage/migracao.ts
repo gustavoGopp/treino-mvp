@@ -1,8 +1,8 @@
 import type { z } from 'zod';
-import { minutos, type ExercicioPrescrito } from '../domain/gerador';
+import { hashDasEntradas, minutos, type ExercicioPrescrito } from '../domain/gerador';
 import { sanarInventario } from '../domain/taxonomia/equipamentos';
 import { acertarIds } from './ids';
-import { estadoSchema, NOME_LOCAL_PADRAO, VERSAO_ESTADO, type Estado } from './esquema';
+import { estadoSchema, localDoPrograma, NOME_LOCAL_PADRAO, perfilDe, VERSAO_ESTADO, type Estado } from './esquema';
 
 // Migrações do estado guardado. Cada entrada leva da versão N para N + 1.
 // Cada mudança de formato entra aqui, com teste em tests/unit/armazenamento.test.ts.
@@ -72,7 +72,30 @@ export const MIGRACOES: Record<number, Migracao> = {
     });
     return { ...saida, locais };
   },
+  // 8 → 9 (sessão "treino para todos", pacote 5; decisão do Gustavo em 16/11/2026): o programa guardado passa a dizer o
+  // nível para o qual foi montado (`programa.nivel`), porque a janela do aviso de "sem melhora" depende dele
+  // (progressao.estagnacao). Nada é inventado: o nível só é gravado quando o programa guardado foi gerado com o cadastro
+  // de agora (o hash das entradas bate). Se a pessoa mudou o cadastro e ainda não atualizou o programa, ele fica sem
+  // nível, vale a janela de antes (3 sessões), e a tela do programa já oferece a versão nova.
+  8: (anterior) => comNivelDoPrograma(anterior),
 };
+
+/** 8 → 9: grava no programa salvo o nível do cadastro, quando o programa foi gerado com o cadastro de agora. */
+function comNivelDoPrograma(anterior: Record<string, unknown>): Record<string, unknown> {
+  const guardado = anterior.programa as { programa?: { entradasHash?: unknown; nivel?: unknown } } | undefined;
+  if (!guardado?.programa || guardado.programa.nivel !== undefined) return { ...anterior };
+  try {
+    // O cadastro é lido pelo esquema de agora só para refazer o hash; se não for legível aqui, o esquema decide no fim.
+    const lido = estadoSchema.safeParse(acertarIds({ ...anterior, versao: VERSAO_ESTADO }));
+    if (!lido.success) return { ...anterior };
+    const perfil = perfilDe(lido.data);
+    const inventario = localDoPrograma(lido.data)?.inventario;
+    if (!perfil || !inventario || hashDasEntradas(perfil, inventario) !== guardado.programa.entradasHash) return { ...anterior };
+    return { ...anterior, programa: { ...guardado, programa: { ...guardado.programa, nivel: perfil.nivel } } };
+  } catch {
+    return { ...anterior }; // formato inesperado: o esquema decide
+  }
+}
 
 /** 7 → 8: grava no programa salvo a margem pessoal de tempo, quando os minutos guardados mostram que ele a usou. */
 function comMargemDoPrograma(anterior: Record<string, unknown>): Record<string, unknown> {

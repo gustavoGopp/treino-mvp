@@ -97,6 +97,11 @@ export type Fase = { semanas: string; fatorSeries: number; rir: [number, number]
 export type Programa = {
   versao: 1;
   entradasHash: string;
+  /**
+   * O nível para o qual o programa foi montado (16/11/2026; dado guardado, versão 9). A janela do aviso de "sem melhora"
+   * depende dele (progressao.estagnacao). Ausente no programa guardado antes disso.
+   */
+  nivel?: Nivel;
   divisao: string;
   divisaoId?: DivisaoId;
   dias: DiaPrograma[];
@@ -1376,7 +1381,8 @@ function montarPrograma(perfil: Perfil, inventarioOriginal: Inventario, triagem:
 
   return {
     versao: 1,
-    entradasHash: hash(JSON.stringify([perfil, inventarioOriginal])),
+    entradasHash: hashDasEntradas(perfil, inventarioOriginal),
+    nivel,
     divisao: divisao.nome,
     divisaoId: divisao.id,
     dias: programaDias,
@@ -2209,6 +2215,9 @@ export function aplicarFase(dias: DiaPrograma[], fase: Fase | undefined, colchao
     return { ...d, exercicios, minutosEstimados: minutos(exercicios, colchao) };
   });
 }
+
+/** O hash das entradas de um programa (perfil e inventário): diz se o programa guardado foi gerado com este cadastro. */
+export const hashDasEntradas = (perfil: Perfil, inventario: Inventario) => hash(JSON.stringify([perfil, inventario]));
 
 function hash(s: string): string {
   let h = 0x811c9dc5;
