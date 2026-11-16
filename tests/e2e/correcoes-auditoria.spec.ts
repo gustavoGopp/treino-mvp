@@ -195,13 +195,13 @@ test('nenhum id se repete na tela do programa, com as miniaturas desenhadas, nem
 test('a folha recebe as regras de .app, a de baixo fica inerte e o foco volta a quem abriu', async ({ page }) => {
   await page.emulateMedia({ reducedMotion: 'reduce' });
   await ana(page);
-  // uma folha (o exercício) e outra por cima (o selo de uma regra)
-  await page.getByRole('tabpanel').getByRole('button', { name: /Agachamento búlgaro com apoio/ }).first().click();
+  // uma folha e outra por cima (o selo de uma regra). Sessão de textos (16/11/2026): os selos saíram da folha do
+  // exercício; a folha sobre folha que resta é a da privacidade em Meus dados ("o que sai daqui", com o selo da foto).
+  await page.goto('/dados');
+  await page.getByRole('button', { name: 'o que sai daqui' }).click();
   const deBaixo = page.getByRole('dialog').first();
   await expect(deBaixo).toBeVisible();
-  // o selo de uma regra do "Por que este exercício" (frontend novo: as alternativas e o "Prefiro" vêm antes na folha)
-  await deBaixo.locator('summary', { hasText: /^Por que este exercício/ }).click();
-  const selo = deBaixo.locator('ul.lista').getByRole('button', { name: /ver de onde vem$/ }).first();
+  const selo = deBaixo.getByRole('button', { name: /ver de onde vem$/ }).first();
   await selo.click();
   const deCima = page.getByRole('dialog', { name: 'De onde vem isto' });
   await expect(deCima).toBeVisible();
@@ -231,6 +231,7 @@ test('a folha recebe as regras de .app, a de baixo fica inerte e o foco volta a 
   await expect(page.getByRole('dialog')).toHaveCount(0);
 
   // no treino: "⋯" → "Trocar exercício" troca uma folha pela outra; ao fechar, o foco volta ao "⋯"
+  await page.goto('/programa');
   await comecar(page);
   const mais = page.getByRole('button', { name: /^Mais opções/ });
   await mais.click();

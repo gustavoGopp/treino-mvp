@@ -1,7 +1,7 @@
 import { expect, test, type Page } from '@playwright/test';
 import { execFileSync } from 'node:child_process';
 import type { Estado } from '../../src/storage/esquema';
-import { ana, maisOpcoes } from './jornada';
+import { ana, maisOpcoes, porQueDaSugestao } from './jornada';
 
 // R5a, o registro que não engana (seguranca.dor.escala; registro.treino-feito), nas 6 personas fictícias. O estado de
 // cada uma é gravado direto no aparelho (IndexedDB), com o cadastro feito e o programa do gerador, sem histórico
@@ -98,9 +98,11 @@ for (const nome of NOMES) {
       // "Para a próxima vez": o exercício com dor vem com "Ajustar" (dor de 3 a 5: reduzir), pela regra de dor.
       const linha = page.locator('.resumo-ex').first();
       await expect(linha).toContainText('Ajustar');
-      await linha.getByRole('button', { name: 'por quê?' }).click();
-      await expect(page.getByRole('dialog')).toContainText(temMenor ? 'Dor entre 3 e 5/10: reduza a carga' : 'Dor entre 3 e 5/10, e não há carga menor aqui');
-      await expect(page.getByRole('dialog')).toContainText('Hoje:');
+      // sessão de textos (16/11/2026): o motivo saiu do fim do treino e está em "Entenda o treino" → "Os exercícios"
+      await expect(linha.getByRole('button', { name: 'por quê?' })).toHaveCount(0);
+      const exercicio = (await linha.locator('b').first().innerText()).trim();
+      const motivo = await porQueDaSugestao(page, exercicio);
+      await expect(motivo).toContainText(temMenor ? 'Dor entre 3 e 5/10: reduza a carga' : 'Dor entre 3 e 5/10, e não há carga menor aqui');
     });
 
     test('"Começar" e "Terminar" sem série mantém o mesmo dia e oferece descartar', async ({ page }) => {
@@ -108,7 +110,7 @@ for (const nome of NOMES) {
       const dia = await comecar(page);
       await (await maisOpcoes(page)).getByRole('button', { name: 'Terminar o treino agora' }).click();
       const confirma = page.getByRole('dialog', { name: 'Terminar o treino agora?' });
-      await expect(confirma).toContainText('Você não registrou nenhuma série.');
+      await expect(confirma).toContainText('Nenhuma série registrada');
       await confirma.getByRole('button', { name: 'Descartar este treino' }).click();
       await expect(page).toHaveURL(/\/programa$/);
       await expect(page.getByRole('button', { name: `Começar o treino ${dia}` })).toBeVisible();

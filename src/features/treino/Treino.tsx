@@ -15,7 +15,6 @@ import {
   opcoesCarga,
   precisaAquecer,
   prescricaoDaVaga,
-  REGRA_AQUECIMENTO,
   sugestaoDoExercicio,
   textoCarga,
   ultimaSerie,
@@ -28,7 +27,7 @@ import { AvisoSalvar } from '../app/avisos';
 import { agoraIso, fusoDoAparelho, useApp } from '../app/estado';
 import { Folha } from '../app/Folha';
 import { Icone } from '../app/icones';
-import { PorQue, Selo, Titulo } from '../app/ui';
+import { Titulo } from '../app/ui';
 import { Miniatura } from '../programa/Miniatura';
 import { BotaoPrefiro } from '../programa/Prefiro';
 import { alternarPreferencia, anotarDor, descartarSessao, desfazerSerie, diaDoTreino, interromperExercicio, inventarioDoTreino, opcoesDaCarga, registrarSerie, semSerie, terminarSessao, trocarExercicio } from './acoes';
@@ -221,7 +220,7 @@ export function Treino() {
         {/* a orientação de segurança (dor, sinal de alerta) fica sempre à vista, na série e no descanso */}
         {aviso && painel === 'nenhum' && (
           <div className="warnbox aviso-seguranca" role="alert">
-            {aviso.texto} <Selo id={aviso.regraId} />
+            {aviso.texto}
           </div>
         )}
         {noRelogio && (
@@ -312,7 +311,7 @@ export function Treino() {
           )}
           {trocaDoLocal ? (
             <p className="ajuda troca-local">
-              {trocaDoLocal.motivo.charAt(0).toUpperCase() + trocaDoLocal.motivo.slice(1)}. <Selo id={trocaDoLocal.regraId} />
+              {trocaDoLocal.motivo.charAt(0).toUpperCase() + trocaDoLocal.motivo.slice(1)}.
             </p>
           ) : (
             feito.noLugarDe && <p className="ajuda">No lugar de {POR_ID[feito.noLugarDe]?.nome.toLowerCase()}, só neste treino.</p>
@@ -329,7 +328,7 @@ export function Treino() {
               {x.dropSet && (
                 <>
                   {' '}
-                  · última série em drop set <Selo id="tempo.drop-set" />
+                  · última série em drop set
                 </>
               )}
             </p>
@@ -339,7 +338,7 @@ export function Treino() {
 
           {feito.interrompido ? (
             <div className="warnbox">
-              Exercício encerrado. Se quiser, troque pela alternativa abaixo ou siga para o próximo.
+              Exercício encerrado. Troque pela alternativa ou siga para o próximo.
             </div>
           ) : !completo ? (
             <>
@@ -348,15 +347,14 @@ export function Treino() {
                   <Sugestao x={x} estado={estado} inventario={inventario} opcoes={opcoesCargaHoje} />
                   {precisaAquecer(dia, dia.exercicios.findIndex((y) => y === vaga)) && (
                     <p className="dica">
-                      Antes: 1–2 séries leves de aquecimento, sem contar. <Selo id={REGRA_AQUECIMENTO} />
+                      Aqueça antes: 1–2 séries leves, sem contar.
                     </p>
                   )}
                 </div>
               )}
               {(calNaSessao.calibrando || calNaSessao.fim) && calNaSessao.ultima && (
                 <p className="dica calibracao" role="status">
-                  {calNaSessao.fim ? '' : 'Calibração: '}
-                  {calNaSessao.ultima.motivo} <Selo id={calNaSessao.ultima.regraId} />
+                  {calNaSessao.ultima.motivo}
                 </p>
               )}
               <RegistroSerie
@@ -369,7 +367,6 @@ export function Treino() {
                 estado={estado}
                 inventario={inventario}
                 opcoes={opcoesCargaHoje}
-                descansando={descanso.ativo}
               />
             </>
           ) : (
@@ -395,7 +392,7 @@ export function Treino() {
           <Folha titulo="Trocar só neste treino por:" aoFechar={() => setPainel('nenhum')} livre={() => document.querySelector<HTMLElement>('.alerta-topo')} fecharAoTocarLivre={false}>
             {aviso && (
               <div className="warnbox" role="alert">
-                {aviso.texto} <Selo id={aviso.regraId} />
+                {aviso.texto}
               </div>
             )}
             <Trocar
@@ -491,13 +488,11 @@ export function Treino() {
             {semSerie(estado) ? (
               // registro.treino-feito (R5a): sem nenhuma série, o treino não conta e o dia não muda; descartar é a saída principal.
               <p>
-                Você não registrou nenhuma série. Um treino sem série não conta, e o próximo continua sendo este dia.{' '}
-                <Selo id="registro.treino-feito" />
+                Nenhuma série registrada: este treino não conta, e o próximo continua sendo este dia.
               </p>
             ) : (
               <p>
-                Você terminou {itens.filter((t) => t.feito.series.length >= t.x.series || t.feito.interrompido).length} de {itens.length} exercícios. O que já foi registrado fica
-                salvo.
+                {itens.filter((t) => t.feito.series.length >= t.x.series || t.feito.interrompido).length} de {itens.length} exercícios feitos. O que foi registrado fica salvo.
               </p>
             )}
             <button type="button" className="btn" onClick={() => setPainel('nenhum')}>
@@ -542,19 +537,11 @@ function Sugestao({ x, estado, inventario, opcoes }: { x: ExercicioPrescrito; es
     return (
       <p className="dica">
         <b>1ª vez: comece leve.</b>
-        <PorQue regras={[s.regraId]}>
-          <p>
-            <b>Calibração da carga.</b> {s.motivo} A meta é {faixa(x.reps)} repetições com {faixa(x.rir)} de reserva.
-          </p>
-        </PorQue>
       </p>
     );
   return (
     <p className="dica">
       <b>{s.proxima ? `Hoje: ${textoCarga(s.proxima, x.exId)}` : 'Hoje: mesma carga'}</b>
-      <PorQue regras={[s.regraId]}>
-        <p>{s.motivo}</p>
-      </PorQue>
     </p>
   );
 }
@@ -629,9 +616,7 @@ function RegistroSerie({
   estado,
   inventario,
   opcoes,
-  descansando = false,
 }: {
-  descansando?: boolean;
   x: ExercicioPrescrito;
   numero: number;
   anteriores: SerieRegistrada[];
@@ -712,9 +697,6 @@ function RegistroSerie({
           <span className="rir-meta" id={`rir-meta-${numero}`}>
             meta<span className="sr"> de hoje:</span> {faixa(x.rir)}
           </span>
-          <PorQue regras={['rir.leitura']}>
-            <p>A maioria das pessoas acha que tem menos reserva do que tem.</p>
-          </PorQue>
         </div>
         <div className="chips-valor">
           {RIRS.map((n) => (
@@ -739,8 +721,7 @@ function RegistroSerie({
         <fieldset className="campo quedas">
           <legend>Drop set (opcional)</legend>
           <p className="ajuda">
-            Logo depois da série, sem descansar: tire cerca de 20–30% da carga e faça mais repetições; repita uma vez. Anote as quedas se quiser.
-            <Selo id="tempo.drop-set" />
+            Sem descansar, tire 20–30% da carga e faça mais repetições. Repita uma vez.
           </p>
           {quedas.map((q, n) => (
             <div key={n} className="queda">
@@ -773,14 +754,8 @@ function RegistroSerie({
         </fieldset>
       )}
       <button type="button" className="btn salvar" disabled={!pronto} aria-describedby={pronto ? undefined : `${uid}-falta`} onClick={() => pronto && aoFazer(montar.current())}>
-        {descansando ? (
-          'Série feita'
-        ) : (
-          // um bloco só de texto: o botão é uma linha flexível, e dois pedaços soltos virariam duas colunas
-          <span>
-            Série feita · <span className="nw">descansar {tempo(x.descansoSeg)}</span>
-          </span>
-        )}
+        {/* sessão de textos (16/11/2026): o tempo do descanso saiu do botão; o relógio o mostra logo depois do toque */}
+        Série feita
       </button>
       {!pronto && (
         <p className="falta" id={`${uid}-falta`}>
@@ -857,7 +832,7 @@ function ControleCarga({
           {numero(p)}
         </output>
         <MenosMais
-         
+
           rotuloMenos="Menos contrapeso (mais difícil)"
           rotuloMais="Mais contrapeso (mais fácil)"
           semMenos={!p || p <= 1}
@@ -900,7 +875,7 @@ function ControleCarga({
           {numero(p)}
         </output>
         <MenosMais
-         
+
           rotuloMenos="Placa anterior"
           rotuloMais="Próxima placa"
           semMenos={!p || p <= 1}
@@ -1041,7 +1016,7 @@ function Sentir({ aoDor, aoSinal }: { aoDor: (nota: number) => void; aoSinal: (s
         </div>
       </fieldset>
       <p className="ajuda">
-        O app não diagnostica. <Selo id="seguranca.sem-diagnostico" />
+        O app não diagnostica.
       </p>
     </section>
   );

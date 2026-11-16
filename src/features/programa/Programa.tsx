@@ -1,11 +1,10 @@
 import { useMemo, useState, type ReactNode } from 'react';
 import { Link, Navigate, useNavigate } from 'react-router-dom';
 import { POR_ID, type Musculo } from '../../domain/biblioteca';
-import { NOME_MUSCULO, ehAvisoDeMeta, type DiaPrograma, type ExercicioPrescrito, type Programa as TipoPrograma } from '../../domain/gerador';
+import { NOME_MUSCULO, ehAvisoDeMeta, type DiaPrograma, type ExercicioPrescrito } from '../../domain/gerador';
 import { mensagemDeVolta, type MensagemDeVolta } from '../../domain/acompanhamento/volta';
 import { opcoesDeAjuste, type Opcao } from '../../domain/gerador/opcoes';
-import { diaEMes as dataCurta, faixaTexto as faixa, numeroBr, tempoNoRelogio as tempo } from '../../domain/numero';
-import { NOME_NIVEL } from '../../domain/nivel';
+import { diaEMes as dataCurta, faixaTexto as faixa, tempoNoRelogio as tempo } from '../../domain/numero';
 import { avaliarTriagem, efeitoDaDor } from '../../domain/triagem';
 import { EFEITO_DA_DOR, NOME_ARTICULACAO } from '../onboarding/articulacoes';
 import { proximoDia, treinoFeito } from '../../domain/sessao';
@@ -16,17 +15,13 @@ import { Preferencias } from './Prefiro';
 import { agoraIso, comProgramaNovo, fusoDoAparelho, mesmoConteudo, resultadoDoEstado, useApp } from '../app/estado';
 import { AvisoInstalar, AvisoSalvar, LembreteCopia } from '../app/avisos';
 import { Icone } from '../app/icones';
-import { NavInferior, PorQue, Selo, Titulo, Topo } from '../app/ui';
-import { ComoLer } from './ComoLer';
+import { NavInferior, Titulo, Topo } from '../app/ui';
 import { Folha } from '../app/Folha';
 import { Miniatura } from './Miniatura';
 import { FaixaSemana } from '../acompanhamento/Semana';
 import { SemanaLeve } from '../acompanhamento/SemanaLeve';
 import { aceitarMargemTempo, recusarMargemTempo, semanaDoEstado, semanaLeveDoEstado, tempoDoEstado } from '../acompanhamento/acoes';
 import { CartaoTexto, temCartao } from './CartaoTexto';
-import { ComoEsta } from './ComoEsta';
-import type { Perfil } from '../../domain/gerador';
-import type { Inventario } from '../../domain/taxonomia/equipamentos';
 
 // Tela do treino: vai direto ao que importa (o treino de cada dia, com a imagem de cada exercício e
 // séries × repetições em destaque). Ajustes, avisos e o porquê ficam um toque abaixo. Nada muda sem a escolha da pessoa.
@@ -70,11 +65,11 @@ export function Programa() {
           <div className="warnbox seguranca">
             {semExercicio && !triagem.bloqueado ? (
               <p>
-                {semExercicio.texto} <Selo id={semExercicio.regraId} />
+                {semExercicio.texto}
               </p>
             ) : (
               <p>
-                {triagem.mensagem} <Selo id={triagem.regraId} />
+                {triagem.mensagem}
               </p>
             )}
           </div>
@@ -122,7 +117,6 @@ export function Programa() {
   const agora = agoraIso();
   const fuso = fusoDoAparelho();
   const hoje = hojeDoEstado(estado, agora, fuso)!;
-  const semana = hoje.semana;
   const diasDaSemana = hoje.dias;
   const diaDoPrograma = diasDaSemana[Math.min(diaSel, diasDaSemana.length - 1)]!;
   const locais = estado.locais ?? [];
@@ -140,7 +134,6 @@ export function Programa() {
   const tempoProposto = volta ? null : tempoDoEstado(estado, fuso);
   const feitos = new Set(estado.historico.flatMap((s) => s.exercicios.filter((e) => e.series.length).map((e) => e.exId)));
   const resumoSemana = estado.historico.some(treinoFeito) ? semanaDoEstado(estado, agora, fuso) : null;
-  const faseAtual = salvo.fases[0];
   const prefixoAbas = prefixoComum(diasDaSemana.map((d) => d.nome));
 
   // Uma mensagem por vez (lote 4; agente 1, 4.5A): a dor fica sempre à vista; o resto entra numa fila, na ordem
@@ -158,7 +151,7 @@ export function Programa() {
       bloco: (
         <section className="box" aria-labelledby="dor-triagem">
           <h2 id="dor-triagem">
-            Pela triagem <Selo id="seguranca.dor.programa" />
+            Pela triagem
           </h2>
           <ul className="lista">
             {doresTriagem.map((d) => (
@@ -199,7 +192,7 @@ export function Programa() {
           <section className="box volta" aria-labelledby="tempo-real">
             <h2 id="tempo-real">O tempo dos seus treinos</h2>
             <p>
-              {tempoProposto.texto} <Selo id={tempoProposto.regraId} />
+              {tempoProposto.texto}
             </p>
             <p className="ajuda">Com o ajuste, o que cabe nos seus minutos pode mudar; o programa só muda quando você atualizar.</p>
             <div className="opcoes linha">
@@ -288,7 +281,6 @@ export function Programa() {
             />
           ) : (
             <>
-              <p className="rotulo">Semana {semana}</p>
               <h2 id="hoje-t">{dia.nome}</h2>
               <div className="numeros num">
                 <div>
@@ -316,7 +308,7 @@ export function Programa() {
                 <div className="box">
                   <p>
                     <b>Em {nomeLocal}:</b>{' '}
-                    {noLocal.trocas.length ? 'o treino muda.' : 'o treino é o mesmo.'} <Selo id="local.treino-do-dia" />
+                    {noLocal.trocas.length ? 'o treino muda.' : 'o treino é o mesmo.'}
                   </p>
                   {noLocal.trocas.length > 0 && (
                     <details className="dobra">
@@ -395,25 +387,10 @@ export function Programa() {
         {/* o convite para instalar (iPhone) vem depois dos exercícios: na 1ª tela, o treino de hoje */}
         <AvisoInstalar />
 
-        {/* R5c (B2; treino.leitura): o vocabulário do treino, a um toque; e o lembrete de cópia (dados.copia) */}
-        <ComoLer iniciante={perfil!.nivel === 'iniciante'} />
+        {/* o lembrete de cópia (dados.copia). Sessão de textos (16/11/2026): "Como ler o seu treino" e "Sobre o programa"
+            saíram daqui e moram em "Entenda o treino" (Meus dados) */}
         {!estado.sessaoAtual && <LembreteCopia estado={estado} />}
 
-        <Sobre
-          programa={salvo}
-          perfil={perfil!}
-          inventario={inventario}
-          semana={semana}
-          fase={hoje.fase ?? faseAtual}
-          reabrirAjustes={
-            opcoes.length > 0 && !!estado.ajustes?.recolhido && !estado.sessaoAtual
-              ? () => {
-                  atualizar((s) => ({ ...s, ajustes: { recolhido: false } }));
-                  setVerAvisos(true);
-                }
-              : undefined
-          }
-        />
 
         {/* A ação principal fica presa embaixo, acima da barra, em qualquer estado (lote 4; agente 1, 4.2). */}
         <div className="acao-fixa">
@@ -498,11 +475,6 @@ function Volta({
           <dd>{faixa(rir)} repetições</dd>
         </div>
       </dl>
-      <p className="apoio">
-        <PorQue regras={[m.regraId]} titulo={m.titulo}>
-          <p>{m.texto}</p>
-        </PorQue>
-      </p>
       {m.refazerNivel && !respondida && (
         <div className="opcoes linha">
           <button type="button" className="btn sec pequeno" onClick={refazer}>
@@ -522,7 +494,7 @@ function Ajustes({ opcoes, escolher }: { opcoes: Opcao[]; escolher: (o: Opcao) =
     <section className="box ajustes" aria-labelledby="ajustes">
       <h2 id="ajustes">Ajustes possíveis</h2>
       <p className="ajuda">
-        Tocar numa opção gera o programa de novo. <Selo id="tempo.corte" />
+        Tocar numa opção gera o programa de novo.
       </p>
       <ul className="opcoes-ajuste">
         {opcoes.map((o) => (
@@ -634,138 +606,9 @@ function LinhaExercicio({
               Ver a evolução deste exercício
             </Link>
           )}
-          <details className="box dobra">
-            <summary>Por que este exercício ({x.porque.length})</summary>
-            <ul className="lista">
-              {x.porque.map((q) => (
-                <li key={q.regraId}>
-                  {q.texto} <Selo id={q.regraId} />
-                </li>
-              ))}
-            </ul>
-          </details>
         </Folha>
       )}
     </li>
-  );
-}
-
-/** "Sobre o programa" (lote 4): o resumo da rotina, a fase, os avisos e o porquê, numa folha a um toque. */
-function Sobre({
-  programa,
-  perfil,
-  inventario,
-  semana,
-  fase,
-  reabrirAjustes,
-}: {
-  programa: TipoPrograma;
-  perfil: Perfil;
-  inventario: Inventario | null | undefined;
-  semana: number;
-  fase?: TipoPrograma['fases'][number];
-  reabrirAjustes?: () => void;
-}) {
-  const [aberta, setAberta] = useState(false);
-  const linhas = (Object.entries(programa.metas) as [Musculo, number][]).map(([m, meta]) => ({ m, meta, v: programa.volumeSemanal[m] ?? 0 }));
-  return (
-    <>
-      <button type="button" className="linha-sobre" aria-haspopup="dialog" onClick={() => setAberta(true)}>
-        Sobre o programa
-        <span className="seta" aria-hidden="true">
-          <Icone nome="chevron-right" />
-        </span>
-      </button>
-      {aberta && (
-        <Folha titulo="Sobre o programa" aoFechar={() => setAberta(false)}>
-          <ul className="fichas" aria-label="Resumo">
-            <li>{perfil.diasSemana}x por semana</li>
-            <li>até {perfil.minutosSessao} min</li>
-            <li>{NOME_NIVEL[perfil.nivel]}</li>
-            <li>{programa.divisao}</li>
-          </ul>
-          {fase && (
-            <p className="fase">
-              <b>Semana {semana}.</b> {fase.texto} <Selo id={fase.regraId} />
-            </p>
-          )}
-          {inventario && <ComoEsta programa={programa} perfil={perfil} inventario={inventario} />}
-          {programa.avisos.length > 0 && (
-            <details className="box dobra">
-              <summary>Avisos ({programa.avisos.length})</summary>
-              <div className="avisos-lista">
-                {programa.avisos.map((a, i) => (
-                  <div key={i} className="warnbox">
-                    {a.texto} <Selo id={a.regraId} />
-                  </div>
-                ))}
-              </div>
-            </details>
-          )}
-          {programa.fases.length > 0 && (
-            <details className="box dobra">
-              <summary>Fases ({programa.fases.length})</summary>
-              <ul className="lista">
-                {programa.fases.map((f) => (
-                  <li key={f.semanas}>
-                    <b>{/^\d/.test(f.semanas) ? `Semana ${f.semanas}` : f.semanas}:</b> {f.texto} <Selo id={f.regraId} />
-                  </li>
-                ))}
-              </ul>
-            </details>
-          )}
-          <details className="box dobra">
-            <summary>Por que este programa ({programa.porque.length})</summary>
-            <ul className="lista">
-              {programa.porque.map((q) => (
-                <li key={q.regraId}>
-                  {q.texto} <Selo id={q.regraId} />
-                </li>
-              ))}
-            </ul>
-          </details>
-          <details className="box dobra">
-            <summary>Séries por músculo</summary>
-          <p className="ajuda">
-            Séries indiretas contam como meia série. <Selo id="volume.serie-indireta.peso" />
-          </p>
-          <table className="vol">
-            <thead>
-              <tr>
-                <th scope="col">Músculo</th>
-                <th scope="col">Meta</th>
-                <th scope="col">Programa</th>
-              </tr>
-            </thead>
-            <tbody>
-              {linhas.map(({ m, meta, v }) => (
-                <tr key={m} className={v < meta ? 'abaixo' : undefined}>
-                  <th scope="row">{NOME_MUSCULO[m]}</th>
-                  <td>{meta}</td>
-                  <td>
-                    {numeroBr(v)}
-                    {v < meta && <span className="sr"> (abaixo da meta)</span>}
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-          </details>
-          {reabrirAjustes && (
-            <button
-              type="button"
-              className="btn sec"
-              onClick={() => {
-                setAberta(false);
-                reabrirAjustes();
-              }}
-            >
-              Ver ajustes possíveis
-            </button>
-          )}
-        </Folha>
-      )}
-    </>
   );
 }
 

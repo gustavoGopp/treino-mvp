@@ -1,5 +1,5 @@
 import { expect, test, type Page } from '@playwright/test';
-import { abrirExercicio, ana, marcarItem, porQueDaSugestao, terminarTreino } from './jornada';
+import { abrirExercicio, ana, marcarItem, terminarTreino } from './jornada';
 
 // R1b: vários locais. A Ana (persona fictícia) cadastra a "Academia" como 2º local, escolhe onde treina hoje,
 // vê a troca com o motivo e registra a 1ª série no aparelho novo, com a calibração da carga.
@@ -54,8 +54,8 @@ test('cadastra o 2º local, escolhe onde treinar hoje, vê a troca explicada e c
   await expect(page.getByRole('heading', { name: 'Leg press' })).toBeVisible();
   await expect(page.getByText('Aqui não tem halteres: agachamento búlgaro com apoio → leg press.')).toBeVisible();
   await expect(page.getByText('1ª vez: comece leve.')).toBeVisible();
-  await expect(await porQueDaSugestao(page)).toContainText(/Calibração da carga/);
-  await page.keyboard.press('Escape');
+  // sessão de textos (16/11/2026): o motivo da 1ª vez não fica mais a um toque na tela do treino (está em "Entenda o
+  // treino"); a regra da calibração num aparelho novo continua conferida em tests/unit/calibracao.test.ts
   await print(page, 'troca-explicada');
 
   const mais = page.getByRole('button', { name: 'Mais anilha de cada lado' });
@@ -68,7 +68,7 @@ test('cadastra o 2º local, escolhe onde treinar hoje, vê a troca explicada e c
 
   // 8 kg por lado × 20 com 4+ de reserva, na faixa 8–15 com RIR 3–4: leve demais → 2 passos do menor par (2 kg).
   await expect(page.getByRole('list', { name: 'Séries feitas' })).toContainText('8 kg por lado × 20 · RIR 4+ · acerto da carga');
-  await expect(page.getByText('Calibração: Ficou leve: na próxima série, 12 kg por lado.')).toBeVisible();
+  await expect(page.getByText('Ficou leve: na próxima série, 12 kg por lado.')).toBeVisible();
   await expect(page.getByRole('group', { name: 'Anilhas por lado' })).toContainText('12 kg');
   await print(page, 'calibracao');
 

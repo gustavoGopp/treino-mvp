@@ -9,7 +9,7 @@ import { agoraIso, useApp } from '../app/estado';
 import { apagarLocal, apagarTodosLocais, dataCurta, lerLocal, LOCAL } from '../app/local';
 import { AvisarProblema, TextoFotoCurto } from '../app/privacidade';
 import { Icone } from '../app/icones';
-import { NavInferior, PorQue, Selo, Titulo, Topo } from '../app/ui';
+import { NavInferior, PorQue, Titulo, Topo } from '../app/ui';
 import { Folha } from '../app/Folha';
 import { EscolhaEstiloBoneco } from './EstiloBoneco';
 import { apagarEstiloBoneco } from '../app/estiloBoneco';
@@ -128,7 +128,7 @@ export function Dados() {
         <p className="ajuda">
           Tudo fica guardado só neste aparelho.{' '}
           {/* o texto da foto, com o selo dele (a regra e a fonte), vem inteiro de privacidade.tsx */}
-          <PorQue regras={[]} titulo="O que sai deste aparelho" rotulo="o que sai daqui">
+          <PorQue essencial regras={[]} titulo="O que sai deste aparelho" rotulo="o que sai daqui">
             <p>
               <TextoFotoCurto />
             </p>
@@ -138,7 +138,7 @@ export function Dados() {
           <div className="warnbox" role="note">
             <p>
               <b>Este navegador pode apagar seus dados.</b> Guarde uma cópia.{' '}
-              <PorQue regras={['dados.persistente']} titulo="O navegador e os seus dados">
+              <PorQue essencial regras={['dados.persistente']} titulo="O navegador e os seus dados">
                 <p>
                   Este navegador não garantiu guardar seus dados de forma permanente: ele pode apagá-los se faltar espaço. Instalar o app na
                   tela inicial ajuda; exportar uma cópia protege.
@@ -190,6 +190,9 @@ export function Dados() {
                 {locais.length === 1 ? `1 local: ${locais[0]!.nome}` : `${locais.length} locais: ${locais.map((l) => l.nome).join(', ')}`}
               </LinhaDados>
             )}
+            <LinhaDados para="/entenda" titulo="Entenda o treino">
+              O porquê de cada coisa e as fontes
+            </LinhaDados>
             <LinhaDados aoTocar={() => setFolha('estilo')} titulo="Estilo do Boneco">
               Como o guia desenha os exercícios
             </LinhaDados>
@@ -236,8 +239,7 @@ export function Dados() {
         {folha === 'guardar' && (
           <Folha titulo="Guardar uma cópia" aoFechar={() => setFolha(null)}>
             <p>
-              O navegador pode apagar dados de sites pouco usados. Instale o app na tela inicial e exporte uma cópia de vez em quando.{' '}
-              <Selo id="dados.copia" />
+              O navegador pode apagar dados de sites pouco usados. Instale o app na tela inicial e exporte uma cópia de vez em quando.
             </p>
             <p>
               <b>Última cópia: {textoUltimaCopia(ultimaCopia || undefined, agoraIso())}</b>
@@ -302,7 +304,7 @@ export function Dados() {
           <Folha titulo="Foto do equipamento" aoFechar={() => setFolha(null)}>
             <p>
               Você autorizou o envio das fotos à Anthropic, nos EUA, em {dataCurta(fotoEm)}. Se retirar, a foto pede a autorização de novo
-              antes do próximo envio. <Selo id="privacidade.foto" />
+              antes do próximo envio.
             </p>
             <button
               type="button"

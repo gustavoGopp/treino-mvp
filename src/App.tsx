@@ -23,6 +23,7 @@ const Evolucao = tela(() => import('./features/acompanhamento/Evolucao'), 'Evolu
 const Dados = tela(() => import('./features/dados/Dados'), 'Dados');
 const Guia = tela(() => import('./features/guia/Guia'), 'Guia');
 const Termos = tela(() => import('./features/termos/Termos'), 'Termos');
+const Entenda = tela(() => import('./features/entenda/Entenda'), 'Entenda');
 
 // Enquanto o pedaço chega (em uso, do service worker, em milissegundos): só o fundo do app, sem spinner.
 const Carregando = () => <div className="wrap app" aria-busy="true" />;
@@ -58,6 +59,7 @@ export function App() {
             <Route path="/guia" element={<Navigate to="/guia/supino-inclinado" replace />} />
             <Route path="/guia/:id" element={<Guia />} />
             <Route path="/termos" element={<Termos />} />
+            <Route path="/entenda" element={<Entenda />} />
             {GeradorDev && (
               <Route
                 path="/dev/gerador"

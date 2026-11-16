@@ -103,7 +103,9 @@ test('a nota de montagem segura aparece em todos os modos, sem marca de HTML esc
     await expect(nota.locator('b').first()).toHaveText(/Montagem segura/);
     await expect(nota).not.toContainText('<b>');
   }
-  await expect(nota.locator('button.selo')).toHaveAccessibleName(/: ver de onde vem$/);
+  // sessão de textos (16/11/2026): o selo da nota saiu do guia; a regra da montagem segura, com o nível e as fontes,
+  // está em "Entenda o treino" (tests/e2e/entenda.spec.ts)
+  await expect(nota.locator('button.selo')).toHaveCount(0);
 });
 
 test('o guia tem a página principal marcada e os exercícios do catálogo como botões (sem aba falsa)', async ({ page }) => {

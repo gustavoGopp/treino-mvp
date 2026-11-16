@@ -12,7 +12,6 @@ import { agoraIso, fusoDoAparelho, useApp } from '../app/estado';
 import { lerContexto, linkDoGuia } from './link';
 import { useTelaAcesa } from '../treino/Temporizador';
 import { Icone } from '../app/icones';
-import { PorQue, Selo } from '../app/ui';
 import { useDescanso } from '../treino/Temporizador';
 
 // Tela do guia de execução: mesma interface do guia original (referencia/guia-execucao-fase1.html),
@@ -408,7 +407,8 @@ function GuiaExercicio({ ex, grupos }: { ex: Ficha; grupos: Grupo[] }) {
 
         <section className="exhead">
           <div className="exhead-topo">
-            <p className="rotulo">
+            {/* sessão de textos (16/11/2026): "Exercício 1 de 6" fica só para o leitor de tela; as setas ao lado levam ao anterior e ao próximo */}
+            <p className="sr">
               Exercício {pos + 1} de {dia.ex.length}
             </p>
             <div className="nav">
@@ -422,73 +422,35 @@ function GuiaExercicio({ ex, grupos }: { ex: Ficha; grupos: Grupo[] }) {
           </div>
           <div>
             <h1>{txt.name}</h1>
-            {minha ? (
-              <div className="rx" data-testid="prescricao">
-                {[
-                  `Semana ${minha.semana}: ${minha.x.series} × ${faixa(minha.x.reps)}${minha.x.unilateral ? ' cada lado' : ''}`,
-                  `RIR ${faixa(minha.x.rir)}`,
-                  `descanso ${tempo(minha.x.descansoSeg)}`,
-                  ...(minha.fase?.rir ? [minha.fase.regraId === 'iniciante.fase-aprendizado' ? 'fase de aprendizado' : 'volta da pausa'] : []),
-                ].map((t, i) => (
-                  <span key={t}>
-                    {i > 0 && ' '}
-                    <span className="nw">
-                      {i > 0 && '· '}
-                      {t}
-                    </span>
-                  </span>
-                ))}
-              </div>
-            ) : (
-              <div className="rx">As séries, as repetições e o RIR vêm do seu programa.</div>
-            )}
-            {/* a evidência da prescrição a um toque, com o que é o RIR */}
-            {minha && (
-              <div className="rx">
-                <PorQue regras={['rir.leitura', ...(minha.fase?.rir ? [minha.fase.regraId] : [])]} titulo="A prescrição de hoje">
-                  <p>RIR é “repetições na reserva”: quantas repetições ainda sobravam quando você parou. RIR 2 quer dizer que dava para fazer mais 2.</p>
-                </PorQue>
-              </div>
-            )}
-            <div className="tg">
-              <b>Alvo:</b> {txt.target}
-            </div>
+            {/* sessão de textos (16/11/2026): a prescrição, o "por quê?" dela e o alvo saíram do guia. A prescrição está na
+                tela do treino e na folha do exercício; o alvo, no modo Músculos; a explicação, em "Entenda o treino". */}
           </div>
         </section>
 
         <section className="quick">
           <div className="bloco-guia">
-            <h2 className="rotulo">As 3 dicas</h2>
+            <h2 className="sr">As dicas</h2>
             <ol className="cues">
               {txt.cues.map((c) => (
                 <li key={c}>{c}</li>
               ))}
             </ol>
           </div>
-          <Checklist key={ex.id} itens={minha ? checklistComRir(txt.check, faixa(minha.x.rir)) : txt.check} id={ex.id} />
         </section>
 
+        <Checklist key={ex.id} itens={minha ? checklistComRir(txt.check, faixa(minha.x.rir)) : txt.check} id={ex.id} />
         <Detalhes txt={txt} />
       </main>
 
       <footer>
         <div className="box">
-          <h2>Segurança</h2>
-          <p>Dor muscular de treino é esperada: queimação durante a série e dolorimento difuso por 1–3 dias.</p>
+          {/* sessão de textos (16/11/2026, com o ok do Gustavo): à vista ficam os sinais de alerta e a ação; a dor muscular
+              esperada e o limite das animações estão em "Entenda o treino" (Segurança) e nos termos */}
+          <h2 className="sr">Segurança</h2>
           <p>
-            <b>Pare o exercício</b> e procure avaliação (fisioterapeuta ou médico do esporte) se aparecer dor articular forte ou em
-            pontada, formigamento, perda de força incomum ou sensação de lesão. Nesses casos, não continue achando que é normal.
-          </p>
-          <p className="note">
-            As animações usam um modelo simplificado com medidas aproximadas e não substituem uma avaliação presencial. A sensação
-            muscular sozinha não prova que a execução está certa: confira também a montagem, a trajetória e a amplitude.
+            <b>Dor forte ou em pontada, formigamento ou perda de força?</b> Pare e procure avaliação.
           </p>
         </div>
-        {minha && (
-          <Link className="btn sec" to={ctx!.de === 'treino' ? '/treino' : '/programa'}>
-            Voltar para {ctx!.de === 'treino' ? 'o treino' : 'o programa'}
-          </Link>
-        )}
       </footer>
     </div>
   );
@@ -511,21 +473,8 @@ function InfoModo({
 }) {
   // as amostras da legenda seguem as cores do desenho escolhido (cinza ou cor de pele): src/styles.css, `.legend.pele`
   const legenda = estilo === 'pele' ? 'legend pele' : 'legend';
-  if (modo === 'tec')
-    return (
-      <>
-        <div className={legenda}>
-          <span>
-            <i className="sw c-guide" />
-            linhas de referência
-          </span>
-          <span>
-            <i className="sw c-joint" />
-            articulações
-          </span>
-        </div>
-      </>
-    );
+  // sessão de textos (16/11/2026): no modo Técnica a legenda saiu (as linhas e os rótulos estão no próprio desenho)
+  if (modo === 'tec') return null;
   if (modo === 'err')
     return (
       <>
@@ -603,8 +552,8 @@ function InfoModo({
 function Checklist({ itens, id }: { itens: string[]; id: string }) {
   const [marcados, setMarcados] = useState(() => itens.map(() => false));
   return (
-    <div className="bloco-guia">
-      <h2 className="rotulo">Confira em 5 segundos</h2>
+    <details className="box conferir">
+      <summary>Conferir ({itens.length})</summary>
       <div className="check">
         {itens.map((c, i) => (
           <label key={c} htmlFor={`ck-${id}-${i}`}>
@@ -621,7 +570,7 @@ function Checklist({ itens, id }: { itens: string[]; id: string }) {
           Desmarcar tudo
         </button>
       </div>
-    </div>
+    </details>
   );
 }
 
@@ -636,7 +585,7 @@ const Lista = ({ itens }: { itens: string[] }) => (
 function Detalhes({ txt }: { txt: (typeof CONTEUDO)[string] }) {
   return (
     <section className="secao-guia">
-      <details className="box" open>
+      <details className="box">
         <summary>Montagem</summary>
         <div className="dbody">
           <h3>Equipamento</h3>
@@ -646,7 +595,7 @@ function Detalhes({ txt }: { txt: (typeof CONTEUDO)[string] }) {
         </div>
       </details>
       <details className="box">
-        <summary>Execução e tempo</summary>
+        <summary>Execução</summary>
         <div className="dbody">
           <div className="steps">
             {txt.exec.map(([k, titulo, d]) => (
@@ -679,7 +628,7 @@ function Detalhes({ txt }: { txt: (typeof CONTEUDO)[string] }) {
         </div>
       </details>
       <details className="box">
-        <summary>Erros comuns</summary>
+        <summary>Erros</summary>
         <div className="dbody">
           <ul>
             {txt.errors.map((e) => (
@@ -692,7 +641,7 @@ function Detalhes({ txt }: { txt: (typeof CONTEUDO)[string] }) {
         </div>
       </details>
       <details className="box">
-        <summary>O que varia de pessoa para pessoa</summary>
+        <summary>Variações</summary>
         <div className="dbody">
           <p>{txt.vary}</p>
         </div>
@@ -710,7 +659,6 @@ function NotaDoGuia({ nota }: { nota: string }) {
   return (
     <div className="warnbox nota-guia">
       {partes.map((p, i) => (i % 2 ? <b key={i}>{p}</b> : p))}
-      {/montagem segura/i.test(nota) && <Selo id="seguranca.montagem" />}
     </div>
   );
 }

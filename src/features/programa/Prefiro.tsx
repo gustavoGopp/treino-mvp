@@ -1,6 +1,5 @@
 import { POR_ID } from '../../domain/biblioteca';
 import { FUNCAO } from '../../domain/gerador/funcoes';
-import { Selo } from '../app/ui';
 
 /** Equivalentes do mesmo nível da função (selecao.equivalencia): os únicos entre os quais a preferência decide. */
 export function equivalentes(funcao: string | undefined, atual: string, alternativas: string[]): string[] {
@@ -59,7 +58,7 @@ export function Preferencias({
   return (
     <div className="preferencias">
       <p className="ajuda">
-        Prefere algum? Vale nos próximos programas; a dor sempre manda. <Selo id="selecao.preferencia" />
+        Prefere algum? Vale nos próximos programas; a dor sempre manda.
       </p>
       {eq.map((id) => (
         <BotaoPrefiro key={id} funcao={funcao} id={id} atual={atual} alternativas={alternativas} preferidos={preferidos} aoPreferir={aoPreferir} />

@@ -4,7 +4,6 @@ import type { Estado } from '../../storage/esquema';
 import { baixarCopia } from './copia';
 import { agoraIso, useApp } from './estado';
 import { gravarLocal, lerLocal, LOCAL } from './local';
-import { Selo } from './ui';
 
 // Avisos que protegem os dados (R5c): instalar no iPhone (dados.instalar-iphone) e o lembrete de cópia (dados.copia).
 
@@ -49,7 +48,7 @@ export function AvisoInstalar() {
       </h2>
       <p>
         No iPhone, o Safari apaga os dados de um site depois de 7 dias de uso sem abri-lo. Instalado na tela de início, o app não entra
-        nessa contagem. <Selo id="dados.instalar-iphone" />
+        nessa contagem.
       </p>
       <ol>
         <li>Toque em Compartilhar (o quadrado com a seta para cima).</li>
@@ -92,7 +91,7 @@ export function LembreteCopia({ estado }: { estado: Estado }) {
       </h2>
       <p>
         {ultima ? 'Você tem treinos novos desde a última cópia.' : 'Você ainda não exportou nenhuma cópia.'} Os dados ficam só neste
-        aparelho, e o navegador pode apagá-los. <Selo id="dados.copia" />
+        aparelho, e o navegador pode apagá-los.
       </p>
       <div className="opcoes linha">
         <button

@@ -1,12 +1,12 @@
 import { Selo } from '../app/ui';
 
-// "Como ler o seu treino" (R5c, B2; treino.leitura): o vocabulário do programa em 5 linhas, para quem nunca treinou.
-// Aberto até o 1º treino terminado; depois, recolhido. No iniciante, uma linha a mais com a fase de aprendizado.
-// Estudo dos textos (13/11/2026, decisão do Gustavo): fica fechado, a um toque. Antes (R5c) abria sozinho até o 1º treino.
-export function ComoLer({ iniciante }: { iniciante: boolean }) {
+// As definições do treino (R5c, B2; treino.leitura): o vocabulário do programa em 5 linhas, para quem nunca treinou. No
+// iniciante, uma linha a mais com a fase de aprendizado.
+// Sessão de textos (16/11/2026, decisão do Gustavo): saíram do início ("Como ler o seu treino", que em 13/11 já tinha
+// passado a ficar fechado) e moram na página "Entenda o treino", com as outras explicações.
+export function DefinicoesDoTreino({ iniciante }: { iniciante: boolean }) {
   return (
-    <details className="box dobra como-ler">
-      <summary>Como ler o seu treino</summary>
+    <div className="como-ler">
       <dl>
         <div>
           <dt>Série</dt>
@@ -48,6 +48,6 @@ export function ComoLer({ iniciante }: { iniciante: boolean }) {
       <p className="ajuda">
         Termos comuns do treino de força. <Selo id="treino.leitura" />
       </p>
-    </details>
+    </div>
   );
 }

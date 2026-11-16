@@ -8,7 +8,7 @@ import { localDaSessao } from '../../storage/esquema';
 import { TEXTO_ESTADO, type ResumoDaSemana } from '../../domain/acompanhamento/semana';
 import { agoraIso, fusoDoAparelho, useApp } from '../app/estado';
 import { Icone } from '../app/icones';
-import { NavInferior, Selo, Titulo, Topo } from '../app/ui';
+import { NavInferior, Titulo, Topo } from '../app/ui';
 import { aceitarMenosDias, manterDias, semanaDoEstado } from './acoes';
 import { SemanaLeve } from './SemanaLeve';
 
@@ -60,7 +60,7 @@ export function Semana() {
         <div className="cabeca-treino">
           <Titulo>A sua semana</Titulo>
           <p className="ajuda">
-            {dataCurta(r.segunda)} a {dataCurta(r.domingo)}, em qualquer local <Selo id={r.regraId} />
+            {dataCurta(r.segunda)} a {dataCurta(r.domingo)}, em qualquer local
           </p>
         </div>
 
@@ -146,7 +146,7 @@ export function Semana() {
             <summary>Como ler este quadro</summary>
           <p className="ajuda">
             Conta a série com até {RIR.serieEfetivaMax} repetições de reserva e amplitude completa; a série que trabalha o músculo de forma indireta vale meia.{' '}
-            {r.metaPrescrita ? 'Nesta semana, a meta é o que o programa prescreveu para ela.' : 'A meta é a do seu programa.'} <Selo id="rir.serie-efetiva" />
+            {r.metaPrescrita ? 'Nesta semana, a meta é o que o programa prescreveu para ela.' : 'A meta é a do seu programa.'}
           </p>
           <p className="ajuda legenda-estados">A barra é o que foi feito; o traço tracejado é a meta. Cheio: na meta · médio: crescendo ({VOLUME.minimoEficazPiso} séries ou mais) · claro: mantendo · vazio: ainda sem treino na semana.</p>
           </details>
@@ -157,7 +157,7 @@ export function Semana() {
           <section className="box volta" aria-labelledby="revisao">
             <h2 id="revisao">Um programa que cabe melhor?</h2>
             <p>
-              {r.revisao.texto} <Selo id={r.revisao.regraId} />
+              {r.revisao.texto}
             </p>
             <p className="ajuda">O programa só muda se você escolher.</p>
             <div className="opcoes linha">

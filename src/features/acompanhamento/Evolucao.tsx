@@ -6,7 +6,7 @@ import { evolucaoDoExercicio, type Marca, type PontoDaEvolucao } from '../../dom
 import { cargaDaMaquina, textoCarga } from '../../domain/sessao';
 import { localDaSessao, localPorId } from '../../storage/esquema';
 import { useApp } from '../app/estado';
-import { NavInferior, Selo, Titulo, Topo } from '../app/ui';
+import { NavInferior, Titulo, Topo } from '../app/ui';
 
 // Evolução de um exercício (acompanhamento.evolucao): a melhor série de cada treino, com "subiu a carga" e "recorde".
 // Nunca uma carga máxima estimada. Nas máquinas, uma lista por local, com o nome do local. Lote 4 do redesign: o resumo
@@ -30,7 +30,7 @@ export function Evolucao() {
       <main className="conteudo evolucao">
         <Titulo>{ex.nome}</Titulo>
         <p className="ajuda">
-          Sua evolução: a melhor série de cada treino. <Selo id="acompanhamento.evolucao" />
+          Sua evolução: a melhor série de cada treino.
         </p>
         {!linhas.length && <p>Ainda não há treino registrado deste exercício. A evolução aparece depois do 1º treino com ele.</p>}
         {linhas.map((l) => (

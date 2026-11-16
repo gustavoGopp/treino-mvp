@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { ITENS, type Inventario as InventarioDados, type ItemId } from '../../domain/taxonomia/equipamentos';
 import { comInventario, localPrincipal } from '../../storage/esquema';
 import { agoraIso, comProgramaNovo, useApp } from '../app/estado';
-import { Erros, Escolha, Marcar, Numero, Passo, PorQue, Selo } from '../app/ui';
+import { Erros, Escolha, Marcar, Numero, Passo } from '../app/ui';
 import { Icone } from '../app/icones';
 import { FOTO_LIGADA } from '../app/contato';
 import { FotoEquipamento } from './FotoEquipamento';
@@ -513,8 +513,7 @@ export function FormularioInventario({
         {atalho && (
           <div className="supos">
             <p>
-              {ATALHO[atalho].ajuda ?? `${marcados.length} itens marcados. Tire o que não tiver.`}{' '}
-              <Selo id="equipamento.atalhos" />
+              {ATALHO[atalho].ajuda ?? `${marcados.length} itens marcados. Tire o que não tiver.`}
             </p>
             {ATALHO[atalho].asVezes.length > 0 && (
               <fieldset className="campo sub">
@@ -639,13 +638,7 @@ export function FormularioInventario({
       {f.marcados.some((id) => ITENS_DE_ANILHA.includes(id)) && (
         <Detalhes titulo="Anilhas das máquinas e barras">
           <p className="ajuda">
-            Não sabe? O app usa 2 kg.{' '}
-            <PorQue regras={['equipamento.menor-anilha']} titulo="A menor anilha" rotulo="para que serve">
-              <p>
-                Vale para {ITENS_DE_ANILHA.filter((id) => f.marcados.includes(id)).map((id) => NOME_CURTO[id].toLowerCase()).join(', ')}. É o passo para
-                subir a carga.
-              </p>
-            </PorQue>
+            Não sabe? O app usa 2 kg.
           </p>
           <ValorPorToque
             legenda="Qual a menor anilha?"

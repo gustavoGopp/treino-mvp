@@ -163,7 +163,6 @@ header.top{position:sticky;top:0;z-index:4;background:var(--fundo);padding:var(-
 .resultado{background:var(--superficie-2);border-radius:var(--r8);padding:var(--s16);display:flex;flex-direction:column;gap:var(--s8)}
 .resultado h2{margin:0;font-size:var(--t-pergunta);font-weight:700;letter-spacing:-.01em}
 .resultado p{margin:0}
-.nivel-linha{display:flex;flex-wrap:wrap;align-items:baseline;gap:var(--s4) var(--s16)}
 .reservado{border:1px dashed var(--borda);border-radius:var(--r8);padding:var(--s16);display:flex;flex-direction:column;gap:var(--s4);color:var(--texto-2);font-size:var(--t-apoio)}
 .reservado b{color:var(--texto)}
 .fase{margin:0;font-size:var(--t-apoio);color:var(--texto-2)}
@@ -376,6 +375,7 @@ details.campo .opcoes{margin-top:var(--s8)}
 .exhead{display:block}
 .exhead-topo{display:flex;align-items:center;justify-content:space-between;gap:var(--s16)}
 .exhead-topo .rotulo{margin:0}
+.exhead-topo .nav{margin-left:auto}
 .exhead h1{font-weight:700;font-size:var(--t-titulo);line-height:1.1;margin:var(--s4) 0 0;letter-spacing:-.03em;overflow-wrap:break-word}
 .exhead .rx{font-size:var(--t-apoio);color:var(--texto-2);margin-top:var(--s4)}
 .exhead .tg{font-size:var(--t-apoio);margin-top:var(--s4)}
@@ -445,7 +445,8 @@ details.box{padding:0;background:none;border-radius:0;border-bottom:1px solid va
 details.box summary{list-style:none;cursor:pointer;min-height:var(--h56);padding:0;font-size:var(--t-corpo);font-weight:600;display:flex;justify-content:space-between;align-items:center}
 details.box summary::-webkit-details-marker{display:none}
 details.box summary::after{content:"+";display:inline-block;text-decoration:none;font-size:var(--t-pergunta);color:var(--texto-2)}
-details.box[open] summary::after{content:"\2212"}
+/* só o bloco aberto troca o sinal: um bloco fechado dentro de outro aberto continua com "+" */
+details.box[open] > summary::after{content:"\2212"}
 details.box.dobra > summary{text-decoration:none}
 .dbody{padding:0 0 var(--s16);display:flex;flex-direction:column;gap:var(--s8);font-size:var(--t-corpo)}
 .dbody h3{font-size:var(--t-rotulo);font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:var(--texto-2);margin:var(--s8) 0 0}

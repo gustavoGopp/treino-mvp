@@ -14,7 +14,7 @@ import {
 } from '../../domain/nivel';
 import type { Nivel as TipoNivel } from '../../domain/regras';
 import { useApp } from '../app/estado';
-import { Erros, Escolha, Passo, PorQue, Revelar } from '../app/ui';
+import { Erros, Escolha, Passo, Revelar } from '../app/ui';
 
 // Passo 3: experiência de treino → nível (nivel.classificacao). Na dúvida, para baixo; a pessoa pode baixar, não subir.
 export function Nivel() {
@@ -107,13 +107,9 @@ export function Nivel() {
         {sugestao && (
           <Revelar>
             <section className="resultado" aria-live="polite">
-              {/* sessão de textos (16/11/2026): o motivo repete o que a pessoa acabou de responder; ele e o selo ficam a um toque */}
-              <div className="nivel-linha">
-                <h2>Seu nível: {NOME_NIVEL[sugestao.nivel]}</h2>
-                <PorQue regras={[sugestao.regraId]} titulo="Como o nível é definido">
-                  <p>{sugestao.motivo} Na dúvida, classificamos para baixo.</p>
-                </PorQue>
-              </div>
+              {/* sessão de textos (16/11/2026): o motivo repete o que a pessoa acabou de responder; a regra do nível está em
+                  "Entenda o treino" */}
+              <h2>Seu nível: {NOME_NIVEL[sugestao.nivel]}</h2>
               {permitidos.length > 1 && (
                 <Escolha
                   nome="nivel-escolhido"

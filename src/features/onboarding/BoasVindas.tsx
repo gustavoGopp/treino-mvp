@@ -48,7 +48,7 @@ export function BoasVindas() {
             <h2 id="nao-faz">O app orienta, não diagnostica</h2>
             <p>
               Sentiu dor, tontura ou mal-estar? Pare e procure avaliação.{' '}
-              <PorQue regras={['seguranca.sem-diagnostico']} titulo="O que o app não faz" rotulo="o que o app não faz">
+              <PorQue essencial regras={['seguranca.sem-diagnostico']} titulo="O que o app não faz" rotulo="o que o app não faz">
                 <p>
                   O app não diagnostica e não substitui um médico ou um profissional de Educação Física. É uma ferramenta de orientação, não
                   uma prescrição. Se sentir dor, tontura ou mal-estar, pare e procure avaliação.

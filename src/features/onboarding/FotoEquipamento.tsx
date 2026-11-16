@@ -8,7 +8,6 @@ import { NOME_CURTO } from './inventarioForm';
 import { agoraIso } from '../app/estado';
 import { apagarLocal, dataCurta, gravarLocal, lerLocal, LOCAL } from '../app/local';
 import { ParaOndeVaiAFoto } from '../app/privacidade';
-import { Selo } from '../app/ui';
 
 // Foto do equipamento (M4): reduz e limpa as fotos no aparelho, envia para /api/vision e mostra as sugestões.
 // Nada entra na lista sem a confirmação da pessoa (plano, seção g.6). Qualquer erro leva de volta à lista.
@@ -196,7 +195,7 @@ export function FotoEquipamento({ aoUsar }: { aoUsar: (sugestoes: Sugestao[], co
             <span>Autorizo enviar as minhas fotos à Anthropic, nos EUA, só para reconhecer o equipamento.</span>
           </label>
           <p className="ajuda">
-            Sem autorizar, a lista funciona igual. Você pode retirar a autorização quando quiser. <Selo id="privacidade.foto" />
+            Sem autorizar, a lista funciona igual. Você pode retirar a autorização quando quiser.
           </p>
         </section>
       )}

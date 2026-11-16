@@ -1,7 +1,7 @@
 import { readFile } from 'node:fs/promises';
 import { expect, test, type Page } from '@playwright/test';
 import { semContrasteBaixo } from './contraste';
-import { ana, folhaPronta } from './jornada';
+import { ana, entenda, folhaPronta } from './jornada';
 import { semToquePequeno } from './toque';
 
 // R5c, abrir para família e amigos: a tela de erro com saída, a última cópia, o armazenamento negado, os termos,
@@ -96,12 +96,11 @@ test('boas-vindas: o texto da foto diz para onde ela vai e há link para os term
 
 // Estudo dos textos (13/11/2026, decisão do Gustavo): o vocabulário fica fechado, a um toque (antes abria sozinho até o
 // 1º treino). O que o teste confere continua: antes do 1º treino, as definições estão ali, com a linha da iniciante.
-test('"Como ler o seu treino" fica a um toque antes do 1º treino', async ({ page }) => {
+// Sessão de textos (16/11/2026, decisão do Gustavo): "Como ler o seu treino" saiu do início e está em "Entenda o treino".
+test('as definições do treino ficam em "Entenda o treino", fora do início', async ({ page }) => {
   await ana(page);
-  const comoLer = page.locator('details.como-ler');
-  await expect(comoLer).not.toHaveAttribute('open', '');
-  await comoLer.locator('summary').click();
-  await expect(comoLer).toHaveAttribute('open', '');
+  await expect(page.getByText('Como ler o seu treino')).toHaveCount(0);
+  const comoLer = await entenda(page, 'Como ler o treino');
   await expect(comoLer.getByText('Série', { exact: true })).toBeVisible();
   await expect(comoLer.getByText('RIR', { exact: true })).toBeVisible();
   // A Ana é iniciante: a linha da fase de aprendizado aparece.

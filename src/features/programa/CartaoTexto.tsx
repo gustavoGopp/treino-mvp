@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react';
 import { carregarCartao, temCartao } from '../../conteudo/cartoes';
 import type { CartaoTexto as Cartao } from '../../conteudo/schema';
 import { Icone } from '../app/icones';
-import { Selo } from '../app/ui';
 import { Folha } from '../app/Folha';
 
 // Cartão de texto do exercício sem animação aprovada (CLAUDE.md, qualidade do guia): nunca uma animação
@@ -62,7 +61,7 @@ export function CartaoTexto({ exId }: { exId: string }) {
       {c.montagem && (
         <section className="montagem" aria-labelledby={`mont-${c.id}`}>
           <h4 id={`mont-${c.id}`}>
-            Montagem segura <Selo id="seguranca.montagem" />
+            Montagem segura
           </h4>
           <ul className="lista">
             {c.montagem.map((t) => (
@@ -72,7 +71,7 @@ export function CartaoTexto({ exId }: { exId: string }) {
         </section>
       )}
       <button type="button" className="link-guia como-fazer" aria-haspopup="dialog" onClick={() => setAberto(true)}>
-        Como fazer: dicas e erros
+        Como fazer
         <Icone nome="chevron-right" />
       </button>
       {aberto && (

@@ -31,9 +31,11 @@ test('sessão completa: registra as séries, descansa e recebe a sugestão para 
   await expect(page.getByRole('heading', { name: 'Agachamento búlgaro com apoio' })).toBeVisible();
   // 1ª vez: a 1ª série calibra a carga (progressao.calibracao, R1b).
   await expect(page.getByText('1ª vez: comece leve.')).toBeVisible();
-  await expect(await porQueDaSugestao(page)).toContainText(/1ª vez neste exercício: comece com uma carga que pareça fácil/);
-  await page.keyboard.press('Escape');
-  await expect(page.getByText(/1–2 séries leves de aquecimento/)).toBeVisible();
+  // sessão de textos (16/11/2026): o motivo saiu da tela do treino e está em "Entenda o treino" → "Os exercícios"
+  await expect(page.getByRole('button', { name: 'por quê?' })).toHaveCount(0);
+  await expect(await porQueDaSugestao(page, 'Agachamento búlgaro com apoio')).toContainText(/1ª vez neste exercício: comece com uma carga que pareça fácil/);
+  await page.goto('/treino');
+  await expect(page.getByText('Aqueça antes: 1–2 séries leves, sem contar.')).toBeVisible();
 
   // 1ª série: sem carga e sem RIR o botão não deixa salvar.
   const feita = page.getByRole('button', { name: /^Série feita/ });
@@ -54,7 +56,7 @@ test('sessão completa: registra as séries, descansa e recebe a sugestão para 
   await expect(page.getByRole('list', { name: 'Séries feitas' })).toContainText('8 kg × 9 · RIR 2 · acerto da carga');
 
   // 2ª série vem com a carga calibrada (Brzycki, para baixo no inventário: 7 kg).
-  await expect(page.getByText('Calibração: Ficou pesada: na próxima série, 7 kg.')).toBeVisible();
+  await expect(page.getByText('Ficou pesada: na próxima série, 7 kg.')).toBeVisible();
   await expect(page.getByLabel('Carga', { exact: true })).toHaveValue('7');
   await page.getByRole('button', { name: 'Mais uma repetição' }).click();
   await page.getByRole('button', { name: 'Mais uma repetição' }).click();
@@ -81,10 +83,12 @@ test('sessão completa: registra as séries, descansa e recebe a sugestão para 
   await expect(page.getByRole('region', { name: 'O que mudou hoje' })).toContainText('1 de 3');
   await expect(page.getByRole('heading', { name: 'Para a próxima vez' })).toBeVisible();
   await expect(page.locator('.resumo-ex').first()).toContainText('Manter');
-  // o motivo da sugestão, com o selo, fica no "por quê?" de cada linha
-  await page.locator('.resumo-ex').first().getByRole('button', { name: 'por quê?' }).click();
-  await expect(page.getByRole('dialog').locator('.selo-folha').first()).toBeVisible();
-  await page.keyboard.press('Escape');
+  // sessão de textos (16/11/2026): o motivo da sugestão, com o selo, saiu do fim do treino e está em "Entenda o treino"
+  await expect(page.locator('.resumo-ex').first().getByRole('button', { name: 'por quê?' })).toHaveCount(0);
+  const motivo = await porQueDaSugestao(page, 'Agachamento búlgaro com apoio');
+  await expect(motivo.locator('.selo').first()).toBeVisible();
+  await page.goto('/treino/fim');
+  await expect(page.getByRole('heading', { name: 'Treino concluído' })).toBeVisible();
 
   // De volta ao início: o próximo da rotação vem selecionado, e o histórico sobrevive ao recarregar.
   await page.getByRole('link', { name: 'Voltar ao início' }).click();
@@ -179,8 +183,11 @@ test('R1: aberto pelo treino, o guia do búlgaro mostra a prescrição da semana
   await expect(page.locator('.rir-meta')).toContainText('meta de hoje: 3–4');
   await page.getByRole('link', { name: 'Ver como fazer' }).click();
   await expect(page).toHaveURL(/\/guia\/bulgaro\?de=treino/);
-  const rx = page.getByTestId('prescricao');
-  await expect(rx).toHaveText(new RegExp(`^Semana 1: ${series} × 8–12 cada lado · RIR 3–4 · descanso 1:45 · fase de aprendizado$`));
+  // sessão de textos (16/11/2026): a linha da prescrição saiu do guia (ela está na tela do treino, de onde a pessoa
+  // veio); o que o guia ainda diz da prescrição é a carga da lista de conferência, com o RIR desta semana
+  expect(Number(series)).toBeGreaterThan(0);
+  await expect(page.getByTestId('prescricao')).toHaveCount(0);
+  await page.locator('summary', { hasText: /^Conferir \(\d+\)$/ }).click();
   // Nada da prescrição do programa de referência ("3 × 8–12 por perna · RIR 1–2 · 1,5 min").
   await expect(page.locator('body')).not.toContainText('RIR 1–2');
   await expect(page.locator('body')).not.toContainText('por perna');
@@ -218,7 +225,7 @@ test('terminar no meio do treino pede confirmação; "Continuar treinando" volta
   await (await maisOpcoes(page)).getByRole('button', { name: 'Terminar o treino agora' }).click();
   const confirma = page.getByRole('dialog', { name: 'Terminar o treino agora?' });
   // R5a (registro.treino-feito): sem nenhuma série, a confirmação oferece descartar.
-  await expect(confirma).toContainText('Você não registrou nenhuma série.');
+  await expect(confirma).toContainText('Nenhuma série registrada');
   await expect(confirma.getByRole('button', { name: 'Descartar este treino' })).toBeVisible();
   await expect(page.getByRole('button', { name: 'Senti algo' })).toBeVisible();
   await confirma.getByRole('button', { name: 'Continuar treinando' }).click();
@@ -256,7 +263,7 @@ test('"Desfazer" por 5 s depois de salvar a série apaga a série e para o desca
 // dicas e erros abrem numa folha.
 // R5-anim, lote 2 (10/11/2026): a ponte com halter ganhou animação; o exercício sem animação do dia A passa a ser a
 // barra só na descida (o 4º), que entra com uma barra fixa no equipamento da Ana.
-test('exercício sem animação: a montagem segura vem sempre aberta, com o selo', async ({ page }) => {
+test('exercício sem animação: a montagem segura vem sempre aberta', async ({ page }) => {
   await ana(page, { equipamentoExtra: async (p) => void (await marcarItem(p, 'Barra fixa')) });
   await comecar(page);
   for (let i = 0; i < 3; i++) await proximoExercicio(page);
@@ -264,8 +271,9 @@ test('exercício sem animação: a montagem segura vem sempre aberta, com o selo
   const montagem = page.getByRole('region', { name: /Montagem segura/ });
   await expect(montagem).toBeVisible();
   await expect(montagem.getByRole('listitem').first()).toBeVisible();
-  await expect(montagem.locator('button.selo')).toHaveAccessibleName(/: ver de onde vem$/);
-  await page.getByRole('button', { name: 'Como fazer: dicas e erros' }).click();
+  // sessão de textos (16/11/2026): o selo saiu da tela; a regra da montagem segura está em "Entenda o treino"
+  await expect(montagem.locator('button.selo')).toHaveCount(0);
+  await page.getByRole('button', { name: 'Como fazer', exact: true }).click();
   const folha = page.getByRole('dialog', { name: 'Como fazer (em texto)' });
   await expect(folha.getByRole('heading', { name: 'Dicas' })).toBeVisible();
   await expect(page.getByRole('button', { name: 'Senti algo' })).toBeVisible();

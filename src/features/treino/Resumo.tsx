@@ -10,7 +10,7 @@ import { apagarUltimoTreino, hojeDoTreino, inventarioDoTreino, opcoesDaCarga } f
 import { marcarHojeFoi, semanaDoEstado } from '../acompanhamento/acoes';
 import { Pontos } from '../acompanhamento/Semana';
 import { SemanaLeve } from '../acompanhamento/SemanaLeve';
-import { PorQue, Selo, Titulo } from '../app/ui';
+import { Titulo } from '../app/ui';
 
 // Fim do treino: resumo e a sugestão de cada exercício para a próxima vez (decisão 9 do M5). Lote 4 do redesign: primeiro
 // "O que mudou hoje" (a semana, os recordes e as cargas que sobem), depois "Hoje foi" e a próxima vez, com o motivo no
@@ -69,7 +69,7 @@ export function Resumo() {
           <div className="caixa-erro" role="alert">
             <p>
               Pare o treino agora e descanse. Se o sintoma não passar em poucos minutos ou for forte, ligue para o SAMU: <b>192</b>. Antes de
-              voltar a treinar, procure avaliação. <Selo id="seguranca.alerta.cardiovascular" />
+              voltar a treinar, procure avaliação.
             </p>
             {/* o número a um toque (o texto da orientação não muda) */}
             <a className="btn ligar" href="tel:192">
@@ -103,10 +103,7 @@ export function Resumo() {
                   <b>A sua semana</b> <Pontos r={semana} />{' '}
                   <b className="num">
                     {semana.feitos} de {semana.planejados}
-                  </b>{' '}
-                  <PorQue regras={[semana.regraId]} titulo="A sua semana" rotulo="o que conta">
-                    <p>{semana.mensagem}</p>
-                  </PorQue>
+                  </b>
                 </p>
               </>
             )}
@@ -139,11 +136,6 @@ export function Resumo() {
               </button>
             ))}
           </div>
-          <p className="ajuda">
-            <PorQue regras={['deload.semana-leve']} titulo="Hoje foi" rotulo="para que serve">
-              <p>Nada vem marcado. Com "pesado demais" em 2 dos últimos 3 treinos, o app sugere uma semana leve.</p>
-            </PorQue>
-          </p>
         </fieldset>
         <section aria-labelledby="proxima" className="pilha">
           <h2 id="proxima" className="rotulo">
@@ -156,11 +148,7 @@ export function Resumo() {
                 <b>{POR_ID[e.exId]?.nome}</b>
                 <span>
                   <span className={`acao acao-${sug.acao}`}>{ACAO[sug.acao]}</span>
-                  {sug.proxima && <> · próxima: {textoCarga(sug.proxima, e.exId)}</>}{' '}
-                  <PorQue regras={[sug.regraId]} titulo={POR_ID[e.exId]?.nome}>
-                    <p>Hoje: {e.series.map((x) => `${textoCarga(x.carga, e.exId)} × ${x.reps}`).join(' · ')}.</p>
-                    <p>{sug.motivo}</p>
-                  </PorQue>
+                  {sug.proxima && <> · próxima: {textoCarga(sug.proxima, e.exId)}</>}
                 </span>
               </li>
             ))}
@@ -173,7 +161,7 @@ export function Resumo() {
         {apagar ? (
           <div className="warnbox" role="group" aria-label="Apagar este treino?">
             <p>
-              Apagar este treino? As séries dele saem do histórico, e o próximo treino volta a ser {dia.nome}. <Selo id="registro.treino-feito" />
+              Apagar este treino? As séries dele saem do histórico, e o próximo treino volta a ser {dia.nome}.
             </p>
             <div className="dois">
               <button type="button" className="btn sec" autoFocus onClick={() => setApagar(false)}>
