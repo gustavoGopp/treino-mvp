@@ -12,6 +12,7 @@
 //
 // O pé fica onde, no topo, a canela fica em pé (a animação aprovada de hoje: "canela na vertical"); a conferência
 // mede, embaixo, a distância do calcanhar ao glúteo ("cerca de um palmo", na ficha).
+import { calibragem } from '../calibragens';
 import { pontosDoBoneco } from '../boneco';
 import { formaDoKettlebell } from '../equipamento';
 import { resolverMembros, sinal } from '../esqueleto';
@@ -168,49 +169,52 @@ export function criarPonte(fichaJson: unknown, carga: CargaDaPonte): { ficha: Fi
   function calibrar(corpo: Corpo) {
     let c = CACHE.get(corpo);
     if (c) return c;
-    const ini = resolver1((fr) => folgaDaPelve(corpo, fr, 0) - f('quadril.folgaEmbaixo'), -86, -110, 30);
-    const fimPara = (zBola: number) => resolver1((fr) => faltaParaALinha(pose(corpo, zBola, fr)) - f('quadril.topo'), -95, -140, 26);
-    const canela = (zBola: number) => {
-      const e = pose(corpo, zBola, fimPara(zBola));
-      // positivo quando o joelho fica à frente do tornozelo (para o lado da cabeça)
-      return Math.sign(e.lado.R.tornozelo[2] - e.lado.R.joelho[2]) * canelaDaVertical(e) - f('canela.topo');
-    };
-    const zBola = resolver1(canela, 30, 60, 24);
-    // a dobra do quadril: embaixo, a carga assenta onde fica mais baixa, entre a barriga e as coxas (procurada de 20 cm
-    // para o lado da cabeça a 6 cm para o lado dos pés do meio dos quadris); daí em diante ela anda presa à bacia
-    const e0 = pose(corpo, zBola, ini);
-    const zQ = (e0.lado.R.quadril[2] + e0.lado.L.quadril[2]) / 2;
-    const pts = pontosOndeACargaApoia(e0);
-    let melhor: V3 = [0, 1e9, zQ];
-    if (carga !== 'nenhuma')
-      for (let z = zQ - 20; z <= zQ + 6; z += 0.5) {
-        const y = carga === 'halter' ? alturaDoHalter(pts, z) : alturaDoKettlebell(pts, z, [0, 0, -1], [1, 0, 0], 'bola');
-        if (y < melhor[1]) melhor = [0, y, z];
-      }
-    const fim = fimPara(zBola);
-    const dobra = paraRef(e0.pelve, add(melhor, [0, 0, carga === 'nenhuma' ? 0 : f('carga.aFrenteDoQuadril')]));
-    // o kettlebell: embaixo, a bola assenta na dobra, deitado de lado com a alça para a cabeça, inclinada o que a ficha
-    // pede (sem a alça entrar na barriga); daí em diante as mãos o seguram preso à bacia (sobe e gira com ela). Achado
-    // quadro a quadro, ele tremeria com os pontos da superfície, e as mãos tremeriam junto.
-    let kb = { c: [0, 0, 0] as V3, t: [0, 0, 0] as V3 };
-    if (carga === 'kettlebell') {
-      const zD = noRef(e0.pelve, dobra)[2];
-      const cima0 = cimaInclinado(f('kettlebell.tomba'));
-      const c0: V3 = [0, alturaDoKettlebell(pts, zD, cima0, [1, 0, 0]), zD];
-      kb = { c: paraRef(e0.pelve, c0), t: paraRef(e0.pelve, add(c0, cima0)) };
-    }
-    // para onde o cotovelo aponta (para fora): da ficha ou, sem ela, o que deixa o braço deitado no chão embaixo, sem
-    // atravessá-lo (o ponto mais baixo do braço e do antebraço a 0,3 cm do chão)
-    let fora = tem('maos.poloFora') ? f('maos.poloFora') : 0;
-    if (carga !== 'nenhuma' && !tem('maos.poloFora')) {
-      const C0 = comCarga(e0, dobra, 0, kb);
-      const braco = (x: number) => {
-        const e = pose(corpo, zBola, ini, { bracos: () => bracosNaCarga(C0, x) });
-        return Math.min(...pontosDoBoneco(e).filter((p) => p.parte === 'braco' || p.parte === 'ante').map((p) => p.p[1]));
+    // a conta demorada vem guardada para o corpo do app: ../calibragens.ts
+    c = calibragem(corpo, `${F.id}:calibrar`, () => {
+      const ini = resolver1((fr) => folgaDaPelve(corpo, fr, 0) - f('quadril.folgaEmbaixo'), -86, -110, 30);
+      const fimPara = (zBola: number) => resolver1((fr) => faltaParaALinha(pose(corpo, zBola, fr)) - f('quadril.topo'), -95, -140, 26);
+      const canela = (zBola: number) => {
+        const e = pose(corpo, zBola, fimPara(zBola));
+        // positivo quando o joelho fica à frente do tornozelo (para o lado da cabeça)
+        return Math.sign(e.lado.R.tornozelo[2] - e.lado.R.joelho[2]) * canelaDaVertical(e) - f('canela.topo');
       };
-      fora = resolver1((x) => braco(x) - f('maos.cotoveloNoChao'), 0.1, 4, 24);
-    }
-    c = { ini, fim, zBola, dobra, kb, fora };
+      const zBola = resolver1(canela, 30, 60, 24);
+      // a dobra do quadril: embaixo, a carga assenta onde fica mais baixa, entre a barriga e as coxas (procurada de 20 cm
+      // para o lado da cabeça a 6 cm para o lado dos pés do meio dos quadris); daí em diante ela anda presa à bacia
+      const e0 = pose(corpo, zBola, ini);
+      const zQ = (e0.lado.R.quadril[2] + e0.lado.L.quadril[2]) / 2;
+      const pts = pontosOndeACargaApoia(e0);
+      let melhor: V3 = [0, 1e9, zQ];
+      if (carga !== 'nenhuma')
+        for (let z = zQ - 20; z <= zQ + 6; z += 0.5) {
+          const y = carga === 'halter' ? alturaDoHalter(pts, z) : alturaDoKettlebell(pts, z, [0, 0, -1], [1, 0, 0], 'bola');
+          if (y < melhor[1]) melhor = [0, y, z];
+        }
+      const fim = fimPara(zBola);
+      const dobra = paraRef(e0.pelve, add(melhor, [0, 0, carga === 'nenhuma' ? 0 : f('carga.aFrenteDoQuadril')]));
+      // o kettlebell: embaixo, a bola assenta na dobra, deitado de lado com a alça para a cabeça, inclinada o que a ficha
+      // pede (sem a alça entrar na barriga); daí em diante as mãos o seguram preso à bacia (sobe e gira com ela). Achado
+      // quadro a quadro, ele tremeria com os pontos da superfície, e as mãos tremeriam junto.
+      let kb = { c: [0, 0, 0] as V3, t: [0, 0, 0] as V3 };
+      if (carga === 'kettlebell') {
+        const zD = noRef(e0.pelve, dobra)[2];
+        const cima0 = cimaInclinado(f('kettlebell.tomba'));
+        const c0: V3 = [0, alturaDoKettlebell(pts, zD, cima0, [1, 0, 0]), zD];
+        kb = { c: paraRef(e0.pelve, c0), t: paraRef(e0.pelve, add(c0, cima0)) };
+      }
+      // para onde o cotovelo aponta (para fora): da ficha ou, sem ela, o que deixa o braço deitado no chão embaixo, sem
+      // atravessá-lo (o ponto mais baixo do braço e do antebraço a 0,3 cm do chão)
+      let fora = tem('maos.poloFora') ? f('maos.poloFora') : 0;
+      if (carga !== 'nenhuma' && !tem('maos.poloFora')) {
+        const C0 = comCarga(e0, dobra, 0, kb);
+        const braco = (x: number) => {
+          const e = pose(corpo, zBola, ini, { bracos: () => bracosNaCarga(C0, x) });
+          return Math.min(...pontosDoBoneco(e).filter((p) => p.parte === 'braco' || p.parte === 'ante').map((p) => p.p[1]));
+        };
+        fora = resolver1((x) => braco(x) - f('maos.cotoveloNoChao'), 0.1, 4, 24);
+      }
+      return { ini, fim, zBola, dobra, kb, fora };
+    });
     CACHE.set(corpo, c);
     return c;
   }

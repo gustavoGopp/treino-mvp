@@ -10,6 +10,7 @@
 //  - as escápulas: um pouco à frente no começo, juntas (sem força) no fim, com os ombros baixos o tempo todo;
 //  - cada cabo reto do elo do estribo à roldana da coluna do outro lado, e cada pilha subindo o curso do seu cabo
 //    dividido pela relação da máquina.
+import { calibragem } from '../calibragens';
 import ficha from '../dados/movimentos/crucifixo-invertido-polia.json';
 import { sinal } from '../esqueleto';
 import type { Esq, Lado, PoseBraco, Tronco } from '../esqueleto';
@@ -109,15 +110,18 @@ function calibrar(corpo: Corpo): Calibrado {
       tR = torreDo('R', y);
     return { psiInicio, y, dif: compDoCabo(tL, estriboNaMao(e0, 'R', tL).elo) - compDoCabo(tR, estriboNaMao(e0, 'L', tR).elo) };
   };
-  const elAjuste = resolver1((d) => comeco(d).dif, -10, 10, 24);
-  const { psiInicio, y } = comeco(elAjuste);
+  // as contas demoradas (esta e o comprimento dos cabos em repouso, abaixo) vêm guardadas para o corpo do app: ../calibragens.ts
+  const { elAjuste, psiInicio, y } = calibragem(corpo, `${F.id}:comeco`, () => {
+    const elAjuste = resolver1((d) => comeco(d).dif, -10, 10, 24);
+    return { elAjuste, ...(({ psiInicio, y }) => ({ psiInicio, y }))(comeco(elAjuste)) };
+  });
   // cabos cruzados: a mão direita puxa o cabo da coluna da esquerda, e vice-versa
   const cabos: CaboDaColuna[] = [
     { id: 'cabo', torre: torreDo('L', y) },
     { id: 'cabo2', torre: torreDo('R', y) },
   ];
   const parcial = { pelve, psiInicio, elAjuste };
-  const repouso = (['R', 'L'] as Lado[]).map((k, i) => menorNoCiclo((u) => compDoCabo(cabos[i]!.torre, estriboNaMao(pose(corpo, parcial, u), k, cabos[i]!.torre).elo)));
+  const repouso = calibragem(corpo, `${F.id}:repouso`, () => (['R', 'L'] as Lado[]).map((k, i) => menorNoCiclo((u) => compDoCabo(cabos[i]!.torre, estriboNaMao(pose(corpo, parcial, u), k, cabos[i]!.torre).elo))));
   c = { ...parcial, cabos, repouso };
   CAL.set(corpo, c);
   return c;

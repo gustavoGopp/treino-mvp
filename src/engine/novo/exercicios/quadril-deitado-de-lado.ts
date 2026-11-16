@@ -14,6 +14,7 @@
 //  - a mão de cima, espalmada no piso à frente do peito;
 //  - a perna que deita no piso: o exercício dá a flexão da coxa e da canela, e cada uma desce até encostar no piso.
 // Os pontos da superfície vêm do Boneco (pontosDoBoneco). As contas da pose fixa são feitas uma vez por corpo.
+import { calibragem } from '../calibragens';
 import { pontosDoBoneco } from '../boneco';
 import { resolverMembros, resolverTronco, sinal } from '../esqueleto';
 import type { Esq, Lado, PoseBraco, PosePerna, PoseTronco, Tronco } from '../esqueleto';
@@ -147,6 +148,12 @@ function base(corpo: Corpo, o: OpcoesDeLado): BaseDeLado {
   if (!mapa) BASES.set(corpo, (mapa = new Map()));
   const ja = mapa.get(chave);
   if (ja) return ja;
+  // a conta demorada vem guardada para o corpo do app: ../calibragens.ts
+  const b = calibragem(corpo, `quadril-deitado-de-lado:base:${chave}`, () => baseDoZero(corpo, o, oo));
+  mapa.set(chave, b);
+  return b;
+}
+function baseDoZero(corpo: Corpo, o: OpcoesDeLado, oo: OpcoesDeLado): BaseDeLado {
   const esq = (lombarLado: number, cervicalLado: number, y = 0) => {
     const t = resolverTronco(corpo, poseDoTronco(oo, y, { lombarLado, cervicalLado }));
     return resolverMembros(t, bracos(corpo, t, oo), pernasSoltas(t, o.baixo));
@@ -180,9 +187,7 @@ function base(corpo: Corpo, o: OpcoesDeLado): BaseDeLado {
     return min === 1e9 ? 30 - c : min - o.cabecaNoBraco;
   };
   const cervicalLado = resolver1(folgaDaCabeca, -10, 35, 20);
-  const b: BaseDeLado = { lombarLado, cervicalLado, y };
-  mapa.set(chave, b);
-  return b;
+  return { lombarLado, cervicalLado, y };
 }
 
 /** O tronco deitado de lado, com os braços postos. Quando a bacia rola ou a cintura dobra, ela volta a encostar no piso. */

@@ -8,6 +8,7 @@
 // tórax: o úmero gira no plano que a ficha dá (`plano`: graus à frente do plano do corpo) da elevação de baixo até a de
 // cima; o antebraço dobra para a frente embaixo e, conforme o braço sobe, para baixo (o cotovelo conduz e fica acima
 // da mão). Cada variação traz a sua ficha de movimento e diz o que as mãos seguram.
+import { calibragem } from '../calibragens';
 import { LADOS, sinal } from '../esqueleto';
 import type { Esq, Lado, PoseBraco } from '../esqueleto';
 import { daFicha, fichaSchema, resolver1, suave } from '../movimento';
@@ -136,10 +137,13 @@ export function criarElevacao(fichaJson: unknown, maos: MaosDaElevacao, opcoes: 
   function calibrar(corpo: Corpo) {
     let c = CACHE.get(corpo);
     if (c) return c;
-    const base = pedidoBase(0);
-    const a0 = resolver1((a) => folgaDasPernas(pose(corpo, { ...base, a }).e, LADOS_QUE_SOBEM.flatMap((k) => esferas(pose(corpo, { ...base, a }).e, k))) - f('carga.folga'), 0, 45, 22);
-    // o quadril fica parado no ângulo do equilíbrio do meio da subida (sem embalo): o centro de massa anda um pouco no pé
-    const alfa = pose(corpo, { ...pedidoBase(0.5), a: mix(a0, f('braco.topo'), 0.5) }).alfa;
+    // a conta demorada vem guardada para o corpo do app: ../calibragens.ts
+    const { a0, alfa } = calibragem(corpo, `${F.id}:calibrar`, () => {
+      const base = pedidoBase(0);
+      const a0 = resolver1((a) => folgaDasPernas(pose(corpo, { ...base, a }).e, LADOS_QUE_SOBEM.flatMap((k) => esferas(pose(corpo, { ...base, a }).e, k))) - f('carga.folga'), 0, 45, 22);
+      // o quadril fica parado no ângulo do equilíbrio do meio da subida (sem embalo): o centro de massa anda um pouco no pé
+      return { a0, alfa: pose(corpo, { ...pedidoBase(0.5), a: mix(a0, f('braco.topo'), 0.5) }).alfa };
+    });
     c = { a0, rep: 0, alfa };
     CACHE.set(corpo, c);
     if (polia) c.rep = montar(corpo, 0).comp;

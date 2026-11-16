@@ -12,6 +12,7 @@ import { add, noRef } from './vec';
 import type { V3 } from './vec';
 import type { Exercicio, Quadro } from './movimento';
 import type { Corpo } from './tabelas';
+import ENQUADRAMENTOS from './dados/enquadramentos.gerado.json';
 
 export type Modo = 'tec' | 'mus' | 'traj' | 'err';
 export interface OpcoesCena {
@@ -140,7 +141,11 @@ function itensEmU(ex: Exercicio, u: number, o: OpcoesCena): Item[] {
       const comp = P.reduce((s, p, j) => (j ? s + Math.hypot(p[0] - P[j - 1]![0], p[1] - P[j - 1]![1]) : 0), 0);
       if (comp < 2) return;
       const fim = P[P.length - 1]!;
-      itens.push({ d: 0, camada: 3, s: `<polyline class="n-traj${i ? ' n-traj2' : ''}" points="${P.map((p) => `${f1(p[0])},${f1(p[1])}`).join(' ')}"/><circle class="n-traj-p" cx="${f1(P[0]![0])}" cy="${f1(P[0]![1])}" r="1.6"/><circle class="n-traj-p" cx="${f1(fim[0])}" cy="${f1(fim[1])}" r="1.6"/>` });
+      itens.push({
+        d: 0,
+        camada: 3,
+        s: `<polyline class="n-traj${i ? ' n-traj2' : ''}" points="${P.map((p) => `${f1(p[0])},${f1(p[1])}`).join(' ')}"/><circle class="n-traj-p" cx="${f1(P[0]![0])}" cy="${f1(P[0]![1])}" r="1.6"/><circle class="n-traj-p" cx="${f1(fim[0])}" cy="${f1(fim[1])}" r="1.6"/>`,
+      });
     });
   }
   return itens;
@@ -182,14 +187,30 @@ export function vistasDoModoMusculos(ex: Exercicio, corpo: Corpo): { vista: IdVi
 
 /* ============================== enquadramento e rótulos ============================== */
 type VB = [number, number, number, number];
-/** A caixa do corpo e do equipamento no ciclo inteiro (e nos erros dessa vista): o que o quadro precisa conter. */
+/**
+ * A caixa do corpo e do equipamento no ciclo inteiro (e nos erros dessa vista): o que o quadro precisa conter. Ela
+ * pede 12 quadros do ciclo e 6 de cada erro, e sem ela não se põe nem o primeiro rótulo: as do corpo e do desenho que
+ * o app usa já vêm calculadas (./dados/enquadramentos.gerado.json, feito e conferido por
+ * scripts/animacao-nova/preparo.mjs); as outras são calculadas na hora, com o mesmo resultado.
+ */
 const CAIXAS = new WeakMap<Exercicio, Map<string, Caixa>>();
-function caixaDoCiclo(ex: Exercicio, o: Omit<OpcoesCena, 'modo' | 'erro'>): Caixa {
+const CAIXAS_GUARDADAS = ENQUADRAMENTOS as unknown as Record<string, { caixas?: Record<string, number[]> } | undefined>;
+let usarCaixasGuardadas = true;
+/** Só para o script que grava e confere a tabela: desliga o uso das caixas guardadas. */
+export function usarEnquadramentosGuardados(sim: boolean): void {
+  usarCaixasGuardadas = sim;
+}
+export function caixaDoCiclo(ex: Exercicio, o: Omit<OpcoesCena, 'modo' | 'erro'>): Caixa {
   let m = CAIXAS.get(ex);
   if (!m) CAIXAS.set(ex, (m = new Map()));
   const chave = [o.corpo.id, o.vista, o.boneco, o.mini ? 1 : 0, o.equipamento ?? ''].join('|');
   let c = m.get(chave);
   if (c) return c;
+  const guardada = usarCaixasGuardadas ? CAIXAS_GUARDADAS[ex.ficha.id]?.caixas?.[chave] : undefined;
+  if (guardada?.length === 4) {
+    m.set(chave, (c = guardada as Caixa));
+    return c;
+  }
   const T = duracao(ex.ficha.fases);
   c = [1e9, 1e9, -1e9, -1e9];
   const junta = (itens: Item[]) => {
@@ -239,7 +260,12 @@ function rotulosPostos(ex: Exercicio, o: OpcoesCena, vb: VB): (RotuloPosto | nul
     r = def ? disporRotulos([{ texto: def.titulo, alvo: alvoMedio(ex, o, def.foco) }], corpo, vb, tam * TAM_DO_ERRO, 20) : [];
   } else {
     const lista = o.modo === 'tec' ? ex.ficha.rotulos.filter((x) => x.vista === o.vista) : [];
-    r = disporRotulos(lista.map((x) => ({ texto: x.texto, alvo: alvoMedio(ex, { ...o, erro: undefined }, x.ponto), acima: x.acima })), corpo, vb, tam);
+    r = disporRotulos(
+      lista.map((x) => ({ texto: x.texto, alvo: alvoMedio(ex, { ...o, erro: undefined }, x.ponto), acima: x.acima })),
+      corpo,
+      vb,
+      tam,
+    );
   }
   m.set(chave, r);
   return r;
@@ -288,7 +314,12 @@ function camadaDeRotulos(ex: Exercicio, u: number, o: OpcoesCena, vb: VB): strin
     // o nome de cada linha da trajetória, fora do corpo, com um fio até o fim da linha
     const nomes = trajetoriasDesenhadas(ex, o.corpo, cam);
     const tamT = tamDaLetra(vb);
-    const lugares = disporRotulos(nomes.map((n) => ({ texto: n.nome, alvo: n.fim })), caixaDoCiclo(ex, o), vb, tamT);
+    const lugares = disporRotulos(
+      nomes.map((n) => ({ texto: n.nome, alvo: n.fim })),
+      caixaDoCiclo(ex, o),
+      vb,
+      tamT,
+    );
     return nomes
       .map((n, i) => {
         const r = lugares[i];
@@ -331,7 +362,11 @@ function camadaDeRotulos(ex: Exercicio, u: number, o: OpcoesCena, vb: VB): strin
           const a = naTela(cam, add(c, [fora, x.seta.desce * 0.45, 0])),
             b = naTela(cam, add(c, [fora, -x.seta.desce * 0.55, 0]));
           const u = tam * 0.34;
-          s += `<polyline class="n-seta-l" points="${pts([a, b])}"/><polygon class="n-seta-p" points="${pts([[b[0] - u, b[1] - u * 1.5], [b[0] + u, b[1] - u * 1.5], [b[0], b[1] + u * 0.4]])}"/>`;
+          s += `<polyline class="n-seta-l" points="${pts([a, b])}"/><polygon class="n-seta-p" points="${pts([
+            [b[0] - u, b[1] - u * 1.5],
+            [b[0] + u, b[1] - u * 1.5],
+            [b[0], b[1] + u * 0.4],
+          ])}"/>`;
         }
       if (x.guia) for (const k of lados) s += `<polyline class="n-guia-l" points="${pts(x.guia.map((nome) => naTela(cam, ponto(e, nome, k))))}"/>`;
       const r = postos[i];

@@ -9,6 +9,7 @@
 //  - em cada quadro: a coxa e o joelho que deixam o pé assentado na bola, com o calcanhar no mesmo lugar e o pé na
 //    mesma direção (o tornozelo dobra o que a canela gira);
 //  - no topo: a bacia sobe até ombro, quadril e joelho ficarem em linha.
+import { calibragem } from '../calibragens';
 import ficha from '../dados/movimentos/ponte-pes-bola.json';
 import { pontosDoBoneco } from '../boneco';
 import { resolverMembros, resolverTronco } from '../esqueleto';
@@ -40,7 +41,17 @@ function apoioNaBola(corpo: Corpo): number {
 const PE = new WeakMap<Corpo, V3[]>();
 function superficieDoPe(corpo: Corpo, e: Esq): V3[] {
   let s = PE.get(corpo);
-  if (!s) PE.set(corpo, (s = pontosDoBoneco(e).filter((x) => x.parte === 'pe' && x.p[0] < 0).map((x) => paraRef(e.lado.R.pe, x.p))));
+  // a primeira pose que passa por aqui é uma da calibração; com a calibração guardada, a superfície vem guardada junto,
+  // para o pé ser medido sempre com os mesmos pontos (../calibragens.ts)
+  if (!s)
+    PE.set(
+      corpo,
+      (s = calibragem(corpo, `${F.id}:superficie-do-pe`, () =>
+        pontosDoBoneco(e)
+          .filter((x) => x.parte === 'pe' && x.p[0] < 0)
+          .map((x) => paraRef(e.lado.R.pe, x.p)),
+      )),
+    );
   return s;
 }
 /** Quanto o pé direito fica fora da bola (cm; negativo = afunda nela). */
@@ -136,7 +147,11 @@ interface Calibrado {
   zBola: number;
 }
 const CACHE = new WeakMap<Corpo, Calibrado>();
+/** A calibração demorada (centenas de poses) vem guardada para o corpo do app: ../calibragens.ts. */
 function calibrar(corpo: Corpo): Calibrado {
+  return calibragem(corpo, `${F.id}:calibrar`, () => calibrarDoZero(corpo));
+}
+function calibrarDoZero(corpo: Corpo): Calibrado {
   const ja = CACHE.get(corpo);
   if (ja) return ja;
   const apoio = apoioNaBola(corpo);

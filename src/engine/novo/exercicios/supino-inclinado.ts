@@ -8,6 +8,7 @@
 //  - o braço: embaixo, ele fica no plano a `cotovelos.doTronco` graus do tronco (medido no plano das costas) e um pouco
 //    abaixo dele; no topo, quase na vertical sobre o ombro. Entre os dois, a direção gira pelo caminho mais curto. O
 //    antebraço fica sempre na vertical (no mundo).
+import { calibragem } from '../calibragens';
 import ficha from '../dados/movimentos/supino-inclinado.json';
 import { pontosDoBoneco } from '../boneco';
 import { resolverMembros, resolverTronco, sinal } from '../esqueleto';
@@ -98,13 +99,17 @@ function apoiar(corpo: Corpo, frente: number): V3 {
 }
 function sentar(corpo: Corpo): Sentado {
   const amassa = f('apoio.amassa');
-  const frente = resolver1((fr) => {
-    const p = apoiar(corpo, fr);
-    return maisFundo(corpoTodo(corpo, p, fr, 0, p[2] + f('pes.aFrente')), COSTAS, noEncosto) - amassa;
-  }, -20, -85, 16);
-  const pelve = apoiar(corpo, frente);
+  // a conta demorada (milhares de poses) vem guardada para o corpo do app: ../calibragens.ts
+  const { pelve, frente, cervical } = calibragem(corpo, `${F.id}:sentado`, () => {
+    const frente = resolver1((fr) => {
+      const p = apoiar(corpo, fr);
+      return maisFundo(corpoTodo(corpo, p, fr, 0, p[2] + f('pes.aFrente')), COSTAS, noEncosto) - amassa;
+    }, -20, -85, 16);
+    const pelve = apoiar(corpo, frente);
+    const cervical = Math.max(f('cervical.min'), resolver1((c) => maisFundo(corpoTodo(corpo, pelve, frente, c, pelve[2] + f('pes.aFrente')), CABECA, noEncosto) - amassa, 20, -40, 24));
+    return { pelve, frente, cervical };
+  });
   const zPe = pelve[2] + f('pes.aFrente');
-  const cervical = Math.max(f('cervical.min'), resolver1((c) => maisFundo(corpoTodo(corpo, pelve, frente, c, zPe), CABECA, noEncosto) - amassa, 20, -40, 24));
   return { t: tronco(corpo, pelve, frente, cervical), pernas: pernas(zPe), pelve, frente, cervical };
 }
 const CACHE = new WeakMap<Corpo, Sentado>();

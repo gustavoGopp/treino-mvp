@@ -6,6 +6,7 @@
 //  - as mãos ficam com os cotovelos quase estendidos e a carga rente às pernas: o braço gira no ombro até a carga
 //    ficar à folga pedida da superfície da coxa ou da canela (a carga pende na vertical, da mão).
 // Cada variação traz a sua ficha de movimento e diz o que as mãos seguram.
+import { calibragem } from '../calibragens';
 import { formaDoKettlebell } from '../equipamento';
 import { LADOS, resolverMembros, resolverTronco, sinal } from '../esqueleto';
 import type { Esq, Lado, PoseBraco, PosePerna, Tronco } from '../esqueleto';
@@ -339,7 +340,8 @@ export function criarStiff(fichaJson: unknown, maos: MaosDoStiff): { ficha: Fich
     let c = CACHE.get(corpo);
     if (c !== undefined) return c;
     const alvo = corpo.m('altura.maleolo') + f('maos.embaixo') * (corpo.m('altura.joelho') - corpo.m('altura.maleolo'));
-    c = resolver1((x) => pose(corpo, { joelho: f('joelho.baixo'), tronco: x, lombar: 0, toracica: 0, folga: f('carga.folga'), abre: 0, u: 1, livre: 0 }).e.lado.R.pegada[1] - alvo, 40, 100, 24);
+    // as duas contas demoradas do stiff (esta e o perfil do braço, abaixo) vêm guardadas para o corpo do app: ../calibragens.ts
+    c = calibragem(corpo, `${F.id}:tronco-embaixo`, () => resolver1((x) => pose(corpo, { joelho: f('joelho.baixo'), tronco: x, lombar: 0, toracica: 0, folga: f('carga.folga'), abre: 0, u: 1, livre: 0 }).e.lado.R.pegada[1] - alvo, 40, 100, 24));
     CACHE.set(corpo, c);
     return c;
   }
@@ -374,14 +376,17 @@ export function criarStiff(fichaJson: unknown, maos: MaosDoStiff): { ficha: Fich
     if (!porErro) PERFIS.set(corpo, (porErro = new Map()));
     const ja = porErro.get(erro ?? '');
     if (ja) return ja;
-    const cru: number[] = [];
-    for (let i = 0; i <= N; i++) cru.push(anguloDoBraco(pose(corpo, pedido(corpo, i / N, erro)).e, 'R'));
-    const viz = (v: number[], i: number) => v[Math.max(0, Math.min(N, i))]!;
-    let b: number[] = cru.map((_, i) => Math.max(viz(cru, i - 1), viz(cru, i), viz(cru, i + 1)));
-    for (let k = 0; k < 2; k++) {
-      const v: number[] = b;
-      b = v.map((_, i) => (viz(v, i - 1) + 2 * viz(v, i) + viz(v, i + 1)) / 4);
-    }
+    const b = calibragem(corpo, `${F.id}:perfil-do-braco:${erro ?? ''}`, () => {
+      const cru: number[] = [];
+      for (let i = 0; i <= N; i++) cru.push(anguloDoBraco(pose(corpo, pedido(corpo, i / N, erro)).e, 'R'));
+      const viz = (v: number[], i: number) => v[Math.max(0, Math.min(N, i))]!;
+      let b: number[] = cru.map((_, i) => Math.max(viz(cru, i - 1), viz(cru, i), viz(cru, i + 1)));
+      for (let k = 0; k < 2; k++) {
+        const v: number[] = b;
+        b = v.map((_, i) => (viz(v, i - 1) + 2 * viz(v, i) + viz(v, i + 1)) / 4);
+      }
+      return b;
+    });
     porErro.set(erro ?? '', b);
     return b;
   }

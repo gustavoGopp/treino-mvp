@@ -3,6 +3,7 @@
 // em vez da toalha. Deitado de costas, braços no chão abertos ~30° do corpo; no começo, pernas estendidas e ombros,
 // quadril e calcanhares em linha; os calcanhares puxam a bola em direção ao glúteo, o quadril sobe mais, e no fim os
 // joelhos dobram ~90°, com os pés em cima da bola e ombros, quadril e joelhos em linha. A bola rola debaixo do pé.
+import { calibragem } from '../calibragens';
 import ficha from '../dados/movimentos/flexao-bola.json';
 import { daFicha, fichaSchema, resolver1 } from '../movimento';
 import type { Exercicio, Quadro } from '../movimento';
@@ -73,7 +74,11 @@ function apoioDoPe(e: Esq): number {
   return z / s;
 }
 
+/** A calibração demorada (centenas de poses) vem guardada para o corpo do app: ../calibragens.ts. */
 function calibrar(corpo: Corpo) {
+  return calibragem(corpo, `${F.id}:calibrar`, () => calibrarDoZero(corpo));
+}
+function calibrarDoZero(corpo: Corpo) {
   let c = CACHE.get(corpo);
   if (c) return c;
   // fim: joelhos a 90°, ombros, quadril e joelhos em linha; o pé deita em cima da bola (a sola na horizontal)

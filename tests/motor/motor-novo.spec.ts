@@ -1,3 +1,4 @@
+import { execFileSync } from 'node:child_process';
 import { createHash } from 'node:crypto';
 import { existsSync, readFileSync, writeFileSync } from 'node:fs';
 import { expect, test } from '@playwright/test';
@@ -65,6 +66,9 @@ test('as animações aprovadas do motor novo continuam iguais às aprovadas', as
       ),
     );
   }
+  // a política de segurança do app (style-src 'self') barra estilo embutido: o desenho só pode usar classes
+  const comEstiloEmbutido = atual.filter((e) => Object.values(e.quadros).some((qs) => qs.some((q) => /\sstyle=/.test(q)))).map((e) => e.id);
+  expect(comEstiloEmbutido, 'desenho com estilo embutido (style="..."), que o app barra').toEqual([]);
   const hashes: Base = {
     nTempos: N,
     exercicios: atual.map((e) => ({
@@ -82,4 +86,20 @@ test('as animações aprovadas do motor novo continuam iguais às aprovadas', as
     'animação aprovada sem linha de base do motor novo',
   ).toEqual(base.exercicios.map((e) => e.id));
   for (const [i, b] of base.exercicios.entries()) expect.soft(hashes.exercicios[i], b.id).toEqual(b);
+});
+
+// O quadro de cada vista e as calibrações demoradas vêm calculados de antemão (src/engine/novo/dados/*.gerado.json),
+// para o guia abrir sem esperar. Se alguém muda um exercício e esquece de regravar as tabelas, o desenho passaria a
+// usar números velhos sem aviso: aqui o script calcula tudo de novo, no mesmo navegador, e compara.
+// Regravar: node scripts/animacao-nova/preparo.mjs
+test('as tabelas calculadas de antemão são as que o motor calcula', () => {
+  test.setTimeout(600_000);
+  let saida = '';
+  try {
+    saida = execFileSync('node', ['scripts/animacao-nova/preparo.mjs', 'conferir'], { encoding: 'utf8', stdio: ['ignore', 'pipe', 'pipe'] });
+  } catch (e) {
+    const erro = e as { stdout?: string; stderr?: string };
+    saida = `${erro.stdout ?? ''}${erro.stderr ?? ''}`;
+  }
+  expect(saida).toContain('as tabelas conferem');
 });

@@ -179,7 +179,7 @@ function marcarOAngulo(C: CenaRealista, b: BancoRegulavel): void {
   }
   // o número fica logo acima da ponta da linha tracejada, do lado de fora do arco
   const txt = tela(add(D, [0, 1.5, -(r + 4)]));
-  const svg = `<polyline class="n-guia-l" points="${pts([D, add(D, [0, 0, -(r + 8)])])}"/><polyline class="n-guia-l" points="${pts(arco)}" style="stroke-dasharray:none"/>` +
+  const svg = `<polyline class="n-guia-l" points="${pts([D, add(D, [0, 0, -(r + 8)])])}"/><polyline class="n-guia-l n-guia-cheia" points="${pts(arco)}"/>` +
     `<text class="n-rot-t" font-size="7" text-anchor="middle" x="${Math.round(txt[0] * 10) / 10}" y="${Math.round(txt[1] * 10) / 10}">${b.encosto}°</text>`;
   C.bruto(z0[2] - 20, svg);
 }

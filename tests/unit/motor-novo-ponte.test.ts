@@ -3,7 +3,8 @@ import { describe, expect, it } from 'vitest';
 import { APROVADOS } from '../../src/engine/novo/aprovados';
 import { EXERCICIOS } from '../../src/engine/novo/app';
 import { cssDoBoneco } from '../../src/engine/novo/boneco';
-import { fichaDoMotorNovo, miniaturaDoMotorNovo, quadroDoMotorNovo } from '../../src/engine/novo/ponte';
+import { usarEnquadramentosGuardados } from '../../src/engine/novo/cena';
+import { enquadramentoCalculado, fichaDoMotorNovo, miniaturaDoMotorNovo, quadroDoMotorNovo, vistasDoGuia } from '../../src/engine/novo/ponte';
 import { NOME_DA_VISTA_NOVA } from '../../src/engine/novo/vistas';
 import { VIEWS } from '../../src/engine/desenho';
 
@@ -26,8 +27,13 @@ describe('motor novo: a ponte com as telas', () => {
     // movimento certo nesse erro); os outros erros dela seguem a ordem do app
     const SEM_DESENHO: Record<string, string[]> = { 'panturrilha-degrau': ['Quicar embaixo'] };
     for (const [id, ex] of Object.entries(EXERCICIOS)) {
-      const doApp = conteudo(id).errors.map((e) => e.title).filter((t) => !(SEM_DESENHO[id] ?? []).includes(t));
-      expect(ex.ficha.erros.map((e) => e.titulo), id).toEqual(doApp);
+      const doApp = conteudo(id)
+        .errors.map((e) => e.title)
+        .filter((t) => !(SEM_DESENHO[id] ?? []).includes(t));
+      expect(
+        ex.ficha.erros.map((e) => e.titulo),
+        id,
+      ).toEqual(doApp);
     }
   });
 
@@ -65,6 +71,33 @@ describe('motor novo: a ponte com as telas', () => {
 
   it('toda vista usada pelas animações novas tem nome para o botão do guia', () => {
     for (const ex of Object.values(EXERCICIOS)) for (const v of ex.vistas) expect(v in VIEWS || v in NOME_DA_VISTA_NOVA, `${ex.ficha.id}: ${v}`).toBe(true);
+  });
+
+  // O quadro de cada vista e as calibrações demoradas vêm calculados de antemão, para o guia abrir sem esperar
+  // (node scripts/animacao-nova/preparo.mjs). A conferência completa, número por número, roda no navegador
+  // (tests/motor/motor-novo.spec.ts); aqui, o que dá para ver depressa: nenhuma animação aprovada ficou sem tabela e,
+  // em três delas, o guardado é o que o motor calcula (no Node a última casa decimal pode diferir da do navegador).
+  it('toda animação aprovada tem o enquadramento guardado, e o guardado é o que o motor calcula', () => {
+    const guardados = JSON.parse(readFileSync('src/engine/novo/dados/enquadramentos.gerado.json', 'utf8')) as Record<string, { vistaMiniatura: string; quadros: Record<string, number[]>; mini: number[]; caixas: Record<string, number[]> }>;
+    for (const id of Object.keys(APROVADOS)) {
+      const g = guardados[id];
+      expect(g, id).toBeDefined();
+      for (const v of vistasDoGuia(EXERCICIOS[id]!)) expect(g!.quadros[v], `${id}: ${v}`).toHaveLength(4);
+      expect(g!.mini, id).toHaveLength(4);
+      expect(Object.keys(g!.caixas).length, id).toBe(Object.keys(g!.quadros).length + 1);
+    }
+    usarEnquadramentosGuardados(false);
+    try {
+      for (const id of ['goblet', 'flexao', 'rosca-martelo']) {
+        const calculado = enquadramentoCalculado(EXERCICIOS[id]!);
+        const g = guardados[id]!;
+        expect(calculado.vistaMiniatura, id).toBe(g.vistaMiniatura);
+        for (const [v, vb] of Object.entries(calculado.quadros)) vb.forEach((n, i) => expect(n, `${id}: ${v}`).toBeCloseTo(g.quadros[v]![i]!, 6));
+        for (const [k, c] of Object.entries(calculado.caixas)) c.forEach((n, i) => expect(n, `${id}: ${k}`).toBeCloseTo(g.caixas[k]![i]!, 6));
+      }
+    } finally {
+      usarEnquadramentosGuardados(true);
+    }
   });
 
   it('o CSS do Boneco que o app carrega é o que o motor gera (node scripts/animacao-nova/css-do-boneco.mjs)', () => {

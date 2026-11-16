@@ -6,6 +6,7 @@
 //    apoiarem no encosto; a bacia inclina para trás até o sacro também apoiar (o estofado amassa `apoio.amassa` cm);
 //  - o pescoço dobra para trás até a nuca apoiar no encosto, dentro de uma faixa confortável;
 //  - os pés: no chão, à frente do quadril; o joelho vem da cinemática.
+import { calibragem } from '../calibragens';
 import fichaPadrao from '../dados/movimentos/rosca-inclinada.json';
 import { pontosDoBoneco } from '../boneco';
 import { resolverMembros, resolverTronco, sinal } from '../esqueleto';
@@ -87,11 +88,15 @@ export function criarRoscaInclinada(fichaJson: unknown): { ficha: Ficha; quadro(
   /** O corpo sentado no banco, apoiado. */
   function sentar(corpo: Corpo): Sentado {
     const amassa = f('apoio.amassa');
-    // o tronco inclina para trás em volta do quadril até as costas apoiarem no encosto
-    const frente = resolver1((fr) => maisFundo(corpoTodo(corpo, apoiar(corpo, fr), fr, 0), COSTAS, noEncosto) - amassa, -10, -70, 16);
-    const pelve = apoiar(corpo, frente);
-    // o pescoço dobra para trás até a nuca apoiar no encosto, sem passar da faixa da ficha
-    const cervical = Math.max(f('cervical.min'), resolver1((c) => maisFundo(corpoTodo(corpo, pelve, frente, c), CABECA, noEncosto) - amassa, 20, -40, 24));
+    // a conta demorada (milhares de poses) vem guardada para o corpo do app: ../calibragens.ts
+    const { pelve, frente, cervical } = calibragem(corpo, `${F.id}:sentado`, () => {
+      // o tronco inclina para trás em volta do quadril até as costas apoiarem no encosto
+      const frente = resolver1((fr) => maisFundo(corpoTodo(corpo, apoiar(corpo, fr), fr, 0), COSTAS, noEncosto) - amassa, -10, -70, 16);
+      const pelve = apoiar(corpo, frente);
+      // o pescoço dobra para trás até a nuca apoiar no encosto, sem passar da faixa da ficha
+      const cervical = Math.max(f('cervical.min'), resolver1((c) => maisFundo(corpoTodo(corpo, pelve, frente, c), CABECA, noEncosto) - amassa, 20, -40, 24));
+      return { pelve, frente, cervical };
+    });
     return { t: tronco(corpo, pelve, frente, cervical), pernas: pernas(pelve), pelve, frente, cervical };
   }
   const CACHE = new WeakMap<Corpo, Sentado>();
