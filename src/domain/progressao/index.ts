@@ -203,8 +203,6 @@ const cargaEmTodas = (s: SessaoExercicio) => {
   return !!primeira && s.series.every((x) => x.carga.tipo === primeira.tipo && valor(x.carga) >= valor(primeira) - 1e-9);
 };
 const noTopo = (s: SessaoExercicio, a: Alvo) => repsNoTopo(s, a) && cargaEmTodas(s);
-const totalReps = (s: SessaoExercicio) => validas(s).reduce((t, x) => t + x.reps, 0);
-
 /**
  * O que a nota de dor da última vez pede (seguranca.dor.escala; consenso): acima de 5, a alternativa; de 3 a 5, a
  * carga reduzida (quando há uma carga de onde reduzir). Abaixo de 3, nada: devolve undefined.
