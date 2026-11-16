@@ -1,0 +1,109 @@
+From 971931e2ecae8e5a74223f2221bb41b7338e0d8b Mon Sep 17 00:00:00 2001
+From: Claude <noreply@anthropic.com>
+Date: Mon, 16 Nov 2026 19:43:09 +0000
+Subject: [PATCH] =?UTF-8?q?EXEMPLO=20da=20vers=C3=A3o=20m=C3=ADnima=20(s?=
+ =?UTF-8?q?=C3=B3=20para=20a=20imagem=20de=20decis=C3=A3o;=20n=C3=A3o=20ap?=
+ =?UTF-8?q?licar)?=
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+
+---
+ src/features/guia/Guia.tsx | 20 ++++++++------------
+ src/styles.css             |  8 ++++++++
+ 2 files changed, 16 insertions(+), 12 deletions(-)
+
+diff --git a/src/features/guia/Guia.tsx b/src/features/guia/Guia.tsx
+index 749e097..3b9093a 100644
+--- a/src/features/guia/Guia.tsx
++++ b/src/features/guia/Guia.tsx
+@@ -465,21 +465,17 @@ function GuiaExercicio({ ex, grupos }: { ex: Ficha; grupos: Grupo[] }) {
+               ))}
+             </ol>
+           </div>
+-          <Checklist key={ex.id} itens={minha ? checklistComRir(txt.check, faixa(minha.x.rir)) : txt.check} id={ex.id} />
+         </section>
+ 
++        <Checklist key={ex.id} itens={minha ? checklistComRir(txt.check, faixa(minha.x.rir)) : txt.check} id={ex.id} />
+         <Detalhes txt={txt} />
+       </main>
+ 
+       <footer>
+         <div className="box">
+-          <h2>Segurança</h2>
+-          <p>Dor muscular de treino é esperada: queimação durante a série e dolorimento difuso por 1–3 dias.</p>
+           <p>
+-            <b>Pare o exercício</b> e procure avaliação (fisioterapeuta ou médico do esporte) se aparecer dor articular forte ou em
+-            pontada, formigamento, perda de força incomum ou sensação de lesão.
++            <b>Dor forte ou em pontada, formigamento ou perda de força?</b> Pare e procure avaliação.
+           </p>
+-          <p className="note">As animações são um modelo simplificado e não substituem uma avaliação presencial.</p>
+         </div>
+       </footer>
+     </div>
+@@ -591,8 +587,8 @@ function InfoModo({
+ function Checklist({ itens, id }: { itens: string[]; id: string }) {
+   const [marcados, setMarcados] = useState(() => itens.map(() => false));
+   return (
+-    <div className="bloco-guia">
+-      <h2 className="rotulo">Confira em 5 segundos</h2>
++    <details className="box conferir-minimo">
++      <summary>Conferir ({itens.length})</summary>
+       <div className="check">
+         {itens.map((c, i) => (
+           <label key={c} htmlFor={`ck-${id}-${i}`}>
+@@ -609,7 +605,7 @@ function Checklist({ itens, id }: { itens: string[]; id: string }) {
+           Desmarcar tudo
+         </button>
+       </div>
+-    </div>
++    </details>
+   );
+ }
+ 
+@@ -634,7 +630,7 @@ function Detalhes({ txt }: { txt: (typeof CONTEUDO)[string] }) {
+         </div>
+       </details>
+       <details className="box">
+-        <summary>Execução e tempo</summary>
++        <summary>Execução</summary>
+         <div className="dbody">
+           <div className="steps">
+             {txt.exec.map(([k, titulo, d]) => (
+@@ -667,7 +663,7 @@ function Detalhes({ txt }: { txt: (typeof CONTEUDO)[string] }) {
+         </div>
+       </details>
+       <details className="box">
+-        <summary>Erros comuns</summary>
++        <summary>Erros</summary>
+         <div className="dbody">
+           <ul>
+             {txt.errors.map((e) => (
+@@ -680,7 +676,7 @@ function Detalhes({ txt }: { txt: (typeof CONTEUDO)[string] }) {
+         </div>
+       </details>
+       <details className="box">
+-        <summary>O que varia de pessoa para pessoa</summary>
++        <summary>Variações</summary>
+         <div className="dbody">
+           <p>{txt.vary}</p>
+         </div>
+diff --git a/src/styles.css b/src/styles.css
+index 8497f99..a6fca66 100644
+--- a/src/styles.css
++++ b/src/styles.css
+@@ -1055,3 +1055,11 @@ header.top:has(.cab-treino){container-type:inline-size;container-name:cab}
+ .ea-cont-longe{stroke-linejoin:round}
+ .eb-folga-t{fill:var(--stage);stroke:var(--stage);stroke-linejoin:round}
+ /* BONECO:FIM */
++
++/* EXEMPLO MÍNIMO (só para a imagem de decisão; não é o app) */
++.porque,.selo{display:none !important}
++details.como-ler,.linha-sobre{display:none}
++.cartao-hoje > .rotulo{display:none}
++.folha > details.dobra:last-child{display:none}
++.exhead .rx,.exhead .tg,.legend,.quick .bloco-guia > h2.rotulo{display:none}
++.conferir-minimo{margin-bottom:0}
+-- 
+2.43.0
+

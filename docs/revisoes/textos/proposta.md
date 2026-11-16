@@ -112,3 +112,26 @@ Folha: `folhas/3-treino.png`. A mudança de exemplo está em `propostas/3-treino
 - **"Montagem segura"** nos exercícios com barra, rack ou barra fixa: segurança.
 - **"1ª vez: comece leve."** e **"Quantas ainda conseguiria? meta 3–4"**: sem eles a pessoa erra a carga ou não sabe o que responder.
 - **As folhas de "por quê?"** (de 170 a 295 palavras): o peso delas é o texto das regras e as fontes, que ficam para o passo das frases das regras.
+
+## 4. Guia (proposta preparada; não foi mostrada: a direção mudou antes)
+
+Folha: `folhas/4-guia.png`; patch: `propostas/4-guia.patch`. Levava a tela de 295 para 169 palavras: "Montagem" fechada como os outros blocos, a prescrição só com os números, o rodapé "Segurança" com duas frases a menos, sem o 2º botão de voltar e sem "articulações" na legenda (o desenho novo não marca as articulações).
+
+## 5. Mudança de direção (16/11/2026): "quero bem menos que isso"
+
+Depois do treino e antes do guia, o Gustavo disse: "quero bem menos que isso, ainda acho que tem muita margem para diminuir, que podem parecer necessárias, como a explicação do projeto, mas que não são".
+
+A leitura: o corte feito até aqui encurtou e levou para um toque, mas deixou a explicação espalhada por todas as telas (o "por quê?", o selo de evidência, "Como ler o seu treino", "Sobre o programa", os porquês de cada exercício, os blocos do guia). A versão mínima tira a explicação das telas e a junta num lugar só.
+
+Exemplo em imagem, do app rodando (`folhas/5a-minimo-guia.png`, `5b-minimo-inicio-e-treino.png`; o exemplo está em `propostas/5-exemplo-minimo.patch` e é só para a decisão: esconde as peças, não constrói ainda o lugar único):
+
+| Tela | No começo do dia | Com o corte de antes | Versão mínima |
+|---|---|---|---|
+| Guia | 295 | 169 | 60 |
+| Início | 105 | 88 | 78 |
+| Folha do exercício | 93 | 29 | 22 |
+| Série do treino | 69 | 66 | 60 |
+
+**O que a versão mínima muda de princípio** (por isso pede o ok explícito do Gustavo):
+- **Evidência.** O `CLAUDE.md` diz que toda regra e todo texto técnico indicam o nível de evidência e a fonte. Na versão mínima, o selo e o "por quê?" saem de todas as telas; o nível e a fonte continuam existindo e alcançáveis, num lugar só (uma página "Entenda o treino", em Meus dados).
+- **Segurança no guia.** À vista fica uma frase com os sinais e a ação ("Dor forte ou em pontada, formigamento ou perda de força? Pare e procure avaliação."). As outras duas (a dor muscular esperada; as animações não substituem avaliação presencial) iriam para a página única e para os termos.
