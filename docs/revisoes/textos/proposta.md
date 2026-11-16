@@ -67,9 +67,9 @@ Folhas: `folhas/1a-cadastro-abertura-e-equipamento.png`, `1b-cadastro-experienci
 
 **Decisões anteriores que a proposta muda:** os 4 lugares tinham uma linha de descrição cada (apresentação aprovada em 06/11/2026); a proposta tira as quatro.
 
-## 2. Início e programa (proposta; esperando a decisão)
+## 2. Início e programa (aprovado como está e aplicado em 16/11/2026)
 
-Folhas: `folhas/2a-inicio-e-folha-do-exercicio.png`, `2b-inicio-sobre-o-programa-e-ajustes.png`, `2c-inicio-como-ler-e-dois-locais.png` e `2d-inicio-abas-com-5-dias.png`. A mudança de exemplo está em `propostas/2-inicio.patch` (os testes ainda não foram ajustados).
+Folhas: `folhas/2a-inicio-e-folha-do-exercicio.png`, `2b-inicio-sobre-o-programa-e-ajustes.png`, `2c-inicio-como-ler-e-dois-locais.png` e `2d-inicio-abas-com-5-dias.png`. A mudança aplicada é a de `propostas/2-inicio.patch`, com os testes: 904 de regra, tokens limpos e 167 de ponta a ponta (os 161 de antes e 6 novos, das abas nas 6 personas).
 
 | Tela | Hoje | Proposta | O que muda |
 |---|---|---|---|
@@ -89,3 +89,26 @@ Folhas: `folhas/2a-inicio-e-folha-do-exercicio.png`, `2b-inicio-sobre-o-programa
 **Decisões anteriores que a proposta muda:**
 - As abas dos dias mostravam os minutos de cada dia (frontend novo, 12 e 13/11). Na proposta, só o dia escolhido mostra os minutos.
 - As 3 melhores alternativas ficavam à vista na folha do exercício, e o resto em "ver mais" (decisão de 01/11). Na proposta, todas ficam a um toque.
+
+## 3. Treino (proposta; esperando a decisão)
+
+Folha: `folhas/3-treino.png`. A mudança de exemplo está em `propostas/3-treino.patch`.
+
+**O treino já era o fluxo mais enxuto** (de 51 a 69 palavras por tela, quase tudo número, rótulo e botão), e a maior parte do que tem é segurança. Sobra pouco para cortar:
+
+| Tela | Hoje | Proposta | O que muda |
+|---|---|---|---|
+| Série | 69 | 66 | o botão "Série feita · descansar 1:45" vira "Série feita" (o relógio mostra o tempo logo depois do toque); "Aqueça antes: 1–2 séries leves, sem contar." |
+| Série preenchida | 62 | 58 | o mesmo botão |
+| Descanso | 51 | 51 | nada |
+| Depois da série de acerto | 69 | 69 | sai o rótulo "Calibração:" antes da frase (a frase já começa por "Ficou pesada:", e ficavam dois dois-pontos seguidos) |
+| Terminar sem série | 32 | 28 | "Nenhuma série registrada: este treino não conta, e o próximo continua sendo este dia." |
+| Terminar com série | 23 | 21 | "0 de 6 exercícios feitos. O que foi registrado fica salvo." |
+| Série com drop set | 107 | cerca de 96 (contado na frase; a tela não foi fotografada) | "Sem descansar, tire 20–30% da carga e faça mais repetições. Repita uma vez." |
+| Exercício sem animação | 63 | 60 (idem) | o botão "Como fazer: dicas e erros" vira "Como fazer" |
+
+**O que não mexi, e por quê:**
+- **"Senti algo"** (as 7 opções, a nota de dor, "O app não diagnostica") e **os avisos de dor**: segurança.
+- **"Montagem segura"** nos exercícios com barra, rack ou barra fixa: segurança.
+- **"1ª vez: comece leve."** e **"Quantas ainda conseguiria? meta 3–4"**: sem eles a pessoa erra a carga ou não sabe o que responder.
+- **As folhas de "por quê?"** (de 170 a 295 palavras): o peso delas é o texto das regras e as fontes, que ficam para o passo das frases das regras.
