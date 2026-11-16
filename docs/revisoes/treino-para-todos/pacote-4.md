@@ -139,7 +139,7 @@ O iniciante de academia vê "Há uma versão nova do seu programa", com menos ex
 
 ## 9. Decisões (uma por vez)
 
-1. **A regra 3 (a prática do iniciante) fica?** A régua melhora (696 programas a menos com dia fraco; os iniciantes com mais de 12 exercícios diferentes vão de 19,3% para 12,7% dos programas, na grade), mas a revisão cega não a premiou: três iniciantes com a mesma nota e uma com 0,7 a menos. *Recomendo que fique: é o que os revisores pediram na etapa 1 ("exercícios demais para o iniciante"), tem trava de custo e não piora nenhuma nota média.* A alternativa é tirar e deixar o iniciante com a variedade de antes.
-2. **A regra 2 (a dupla de lombar como último recurso) fica?** Metade dessas duplas some sem nenhum defeito novo na população, mas as duas pessoas da revisão cega em que ela agiu caíram 0,3. *Recomendo que fique: o custo medido é um ponto de um revisor, e a dupla de stiff com remada curvada é a que os três citam como "sem lógica".*
-3. **O limite de 6 exercícios para o iniciante de 3 dias de até 60 min** (a forma estreita que os números sugerem) vale um teste próprio, com revisão cega só dele? *Recomendo sim, mas depois do pacote 5; não muda nada agora.*
-4. **O próximo pacote.** *Recomendo o pacote 5 (o aviso de "sem melhora" no longo prazo), que é o último da proposta.* Depois dele vem o fechamento da etapa 2: a revisão cega final contra a `main`, o resumo e a sua decisão sobre a ida para a `main`.
+1. ~~A regra 3 (a prática do iniciante) fica?~~ **Decidido em 16/11/2026: fica.** A régua melhora (696 programas a menos com dia fraco; os iniciantes com mais de 12 exercícios diferentes vão de 19,3% para 12,7% dos programas, na grade); na revisão cega, três iniciantes ficaram com a mesma nota e uma com 0,7 a menos.
+2. ~~A regra 2 (a dupla de lombar como último recurso) fica?~~ **Decidido em 16/11/2026: fica.** Metade dessas duplas some sem nenhum defeito novo na população; as duas pessoas da revisão cega em que ela agiu caíram 0,3.
+3. ~~O limite de 6 exercícios para o iniciante de 3 dias de até 60 min vale um teste próprio?~~ **Decidido em 16/11/2026: sim, depois do pacote 5.** Não muda nada agora; está no backlog.
+4. ~~O próximo pacote.~~ **Decidido em 16/11/2026: o pacote 5 (o aviso de "sem melhora" no longo prazo), o último da proposta.** Depois dele vem o fechamento da etapa 2.

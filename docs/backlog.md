@@ -352,3 +352,8 @@ Detalhes em `revisoes/treino-para-todos/pacote-4.md` e `qa.md`. O pacote está n
 - **A elevação lateral de um lado só na polia para o iniciante da academia:** ganha da com halteres por ser "estável" (o critério do iniciante vem antes do de dois lados). Rever a marca de estável dos exercícios de polia de um lado só.
 - **Quem quer glúteos em casa com halteres** fica sem ponte de glúteo com halter em 30 min (3,5 a 4 séries de glúteo): os três revisores apontaram.
 
+**Decidido em 16/11 (pacote 4)**
+- A prática do iniciante e a dupla de lombar como último recurso ficam.
+- **O limite de 6 exercícios para o iniciante de 3 dias de até 60 min** terá um teste próprio (medida na população e revisão cega só dele), depois do pacote 5.
+- O próximo pacote é o 5 (o aviso de "sem melhora").
+
