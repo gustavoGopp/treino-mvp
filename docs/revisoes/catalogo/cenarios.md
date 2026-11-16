@@ -71,7 +71,7 @@
 | Empurrar horizontal | 3 | 4 | 4 | supino-reto, supino-barra, supino-maquina, supino-smith |
 | Empurrar inclinado | 2 | 2 | 2 | supino-inclinado, supino-inclinado-polia |
 | Crucifixo (peito alongado) | 5 | 5 | 5 | voador, crucifixo-polia, crucifixo-halteres, crucifixo-polia-baixo, crucifixo-inclinado-halteres |
-| Puxar vertical | 6 | 6 | 6 | barra-fixa, barra-fixa-supinada, puxada-frente, puxada-barra-reta, puxada-unilateral, barra-fixa-graviton |
+| Puxar vertical | 6 | 6 | 6 | puxada-frente, puxada-barra-reta, barra-fixa, barra-fixa-supinada, barra-fixa-graviton, puxada-unilateral |
 | Puxar horizontal | 8 | 8 | 8 | remada-baixa, remada-baixa-estacao, remada-articulada, remada-apoiada, remada-unilateral-halter, remada-curvada-halteres, remada-unilateral-sem-banco, remada-unilateral-polia |
 | Empurrar vertical | 3 | 4 | 4 | desenvolvimento, desenvolvimento-maquina, desenvolvimento-barra, desenvolvimento-unilateral |
 | Elevação lateral | 2 | 2 | 2 | elevacao-halteres, elevacao-lateral |
@@ -80,7 +80,7 @@
 | Tríceps acima da cabeça | 4 | 4 | 4 | triceps-frances, triceps-frances-halter, triceps-frances-polia-unilateral, triceps-frances-unilateral-halter |
 | Tríceps (complemento) | 3 | 3 | 3 | triceps-corda, triceps-barra-reta, triceps-maquina |
 | Agachar | 3 | 4 | 4 | agachamento-barra, leg-press, hack, agachamento-smith |
-| Afundo | 3 | 3 | 3 | bulgaro, afundo, afundo-tras |
+| Afundo | 3 | 3 | 3 | afundo, afundo-tras, bulgaro |
 | Extensora | **1** | **1** | **1** | cadeira-extensora |
 | Flexão de joelho | **1** | **1** | **1** | cadeira-flexora |
 | Dobrar o quadril | 2 | 3 | 3 | terra-romeno-barra, stiff, stiff-unilateral |
@@ -99,7 +99,7 @@
 | Empurrar horizontal | 3 | 4 | 4 | supino-reto, supino-barra, supino-maquina, supino-smith |
 | Empurrar inclinado | 2 | 2 | 2 | supino-inclinado, supino-inclinado-polia |
 | Crucifixo (peito alongado) | 5 | 5 | 5 | voador, crucifixo-polia, crucifixo-halteres, crucifixo-polia-baixo, crucifixo-inclinado-halteres |
-| Puxar vertical | 6 | 6 | 6 | barra-fixa, barra-fixa-supinada, puxada-frente, puxada-barra-reta, puxada-unilateral, barra-fixa-graviton |
+| Puxar vertical | 6 | 6 | 6 | puxada-frente, puxada-barra-reta, barra-fixa, barra-fixa-supinada, barra-fixa-graviton, puxada-unilateral |
 | Puxar horizontal | 9 | 9 | 9 | remada-baixa, remada-baixa-estacao, remada-articulada, remada-apoiada, remada-unilateral-halter, remada-curvada-halteres, remada-unilateral-sem-banco, remada-unilateral-polia, remada-unilateral-kettlebell |
 | Empurrar vertical | 4 | 5 | 5 | desenvolvimento, desenvolvimento-maquina, desenvolvimento-barra, desenvolvimento-unilateral, desenvolvimento-unilateral-kettlebell |
 | Elevação lateral | 2 | 2 | 2 | elevacao-halteres, elevacao-lateral |
@@ -108,7 +108,7 @@
 | Tríceps acima da cabeça | 6 | 6 | 6 | triceps-frances, triceps-frances-halter, triceps-elastico-acima, triceps-frances-polia-unilateral, triceps-frances-kettlebell, triceps-frances-unilateral-halter |
 | Tríceps (complemento) | 3 | 3 | 3 | triceps-corda, triceps-barra-reta, triceps-maquina |
 | Agachar | 3 | 4 | 4 | agachamento-barra, leg-press, hack, agachamento-smith |
-| Afundo | 4 | 4 | 4 | bulgaro, afundo, afundo-tras, afundo-kettlebell |
+| Afundo | 4 | 4 | 4 | afundo, afundo-tras, bulgaro, afundo-kettlebell |
 | Extensora | **1** | **1** | **1** | cadeira-extensora |
 | Flexão de joelho | **1** | **1** | **1** | cadeira-flexora |
 | Dobrar o quadril | 4 | 5 | 5 | terra-romeno-barra, stiff, stiff-unilateral, stiff-kettlebell, stiff-unilateral-kettlebell |
@@ -164,7 +164,7 @@
 | Tríceps acima da cabeça | 4 | 4 | 4 | triceps-frances-halter, triceps-elastico-acima, triceps-frances-kettlebell, triceps-frances-unilateral-halter |
 | Tríceps (complemento) | **1** (n2) | **1** (n2) | **1** (n2) | triceps-suspensao |
 | Agachar | 4 (n2) | 4 (n2) | 4 (n2) | goblet, agachamento-halteres, bulgaro, goblet-kettlebell |
-| Afundo | 4 | 4 | 4 | bulgaro, afundo, afundo-tras, afundo-kettlebell |
+| Afundo | 4 | 4 | 4 | afundo, afundo-tras, bulgaro, afundo-kettlebell |
 | Extensora | 3 (n2) | 3 (n2) | 3 (n2) | extensao-joelho-caneleira, extensao-joelho-elastico, extensao-joelho-mini-band |
 | Flexão de joelho | 2 (n3) | 2 (n3) | 2 (n3) | flexao-bola, flexao-joelho-elastico |
 | Dobrar o quadril | 4 | 4 | 4 | stiff, stiff-unilateral, stiff-kettlebell, stiff-unilateral-kettlebell |
@@ -173,7 +173,7 @@
 | Adução de quadril (complemento) | **1** (n2) | **1** (n2) | **1** (n2) | aducao-caneleira |
 | Panturrilha em pé | 2 | 2 | 2 | panturrilha, panturrilha-bilateral-step |
 | Panturrilha sentada (complemento) | **1** (n2) | **1** (n2) | **1** (n2) | panturrilha-sentada-halter |
-| Abdômen | 4 (n2) | 5 (n2) | 5 (n2) | elevacao-joelhos, abdominal-chao, abdominal-bola, roda-abdominal, abdominal-invertido |
+| Abdômen | 4 (n2) | 5 (n2) | 5 (n2) | abdominal-chao, abdominal-bola, abdominal-invertido, elevacao-joelhos, roda-abdominal |
 
 ### Condomínio com multifuncional (atalho: puxador e remada)
 
@@ -192,7 +192,7 @@
 | Tríceps acima da cabeça | 2 | 2 | 2 | triceps-frances-halter, triceps-frances-unilateral-halter |
 | Tríceps (complemento) | 2 (n3) | 2 (n3) | 2 (n3) | flexao-fechada, triceps-testa-halteres |
 | Agachar | 3 (n2) | 3 (n2) | 3 (n2) | goblet, agachamento-halteres, bulgaro |
-| Afundo | 3 | 3 | 3 | bulgaro, afundo, afundo-tras |
+| Afundo | 3 | 3 | 3 | afundo, afundo-tras, bulgaro |
 | Extensora | **0** | **0** | **0** | — |
 | Flexão de joelho | **1** (n3) | **1** (n3) | **1** (n3) | flexao-bola |
 | Dobrar o quadril | 2 | 2 | 2 | stiff, stiff-unilateral |
@@ -211,7 +211,7 @@
 | Empurrar horizontal | 2 | 2 | 2 | supino-reto, supino-maquina |
 | Empurrar inclinado | **1** | **1** | **1** | supino-inclinado |
 | Crucifixo (peito alongado) | 3 | 3 | 3 | voador, crucifixo-halteres, crucifixo-inclinado-halteres |
-| Puxar vertical | 3 | 3 | 3 | barra-fixa, barra-fixa-supinada, puxada-frente |
+| Puxar vertical | 3 | 3 | 3 | puxada-frente, barra-fixa, barra-fixa-supinada |
 | Puxar horizontal | 6 | 6 | 6 | remada-baixa-estacao, remada-apoiada, remada-unilateral-halter, remada-curvada-halteres, remada-unilateral-sem-banco, remada-unilateral-kettlebell |
 | Empurrar vertical | 3 | 3 | 3 | desenvolvimento, desenvolvimento-unilateral, desenvolvimento-unilateral-kettlebell |
 | Elevação lateral | **1** | **1** | **1** | elevacao-halteres |
@@ -220,7 +220,7 @@
 | Tríceps acima da cabeça | 4 | 4 | 4 | triceps-frances-halter, triceps-elastico-acima, triceps-frances-kettlebell, triceps-frances-unilateral-halter |
 | Tríceps (complemento) | 3 (n3) | 3 (n3) | 3 (n3) | flexao-fechada, triceps-testa-halteres, triceps-elastico-alto |
 | Agachar | 4 (n2) | 4 (n2) | 4 (n2) | goblet, agachamento-halteres, bulgaro, goblet-kettlebell |
-| Afundo | 4 | 4 | 4 | bulgaro, afundo, afundo-tras, afundo-kettlebell |
+| Afundo | 4 | 4 | 4 | afundo, afundo-tras, bulgaro, afundo-kettlebell |
 | Extensora | **1** | **1** | **1** | cadeira-extensora |
 | Flexão de joelho | **1** | **1** | **1** | cadeira-flexora |
 | Dobrar o quadril | 4 | 5 | 5 | terra-romeno-barra, stiff, stiff-unilateral, stiff-kettlebell, stiff-unilateral-kettlebell |
@@ -229,7 +229,7 @@
 | Adução de quadril (complemento) | **1** (n2) | **1** (n2) | **1** (n2) | aducao-caneleira |
 | Panturrilha em pé | 2 | 2 | 2 | panturrilha, panturrilha-bilateral-step |
 | Panturrilha sentada (complemento) | **1** (n2) | **1** (n2) | **1** (n2) | panturrilha-sentada-halter |
-| Abdômen | 4 (n2) | 5 (n2) | 5 (n2) | elevacao-joelhos, abdominal-chao, abdominal-bola, roda-abdominal, abdominal-invertido |
+| Abdômen | 4 (n2) | 5 (n2) | 5 (n2) | abdominal-chao, abdominal-bola, abdominal-invertido, elevacao-joelhos, roda-abdominal |
 
 ### Academia do bairro sem polia (2º local do Bruno)
 
@@ -248,7 +248,7 @@
 | Tríceps acima da cabeça | 2 | 2 | 2 | triceps-frances-halter, triceps-frances-unilateral-halter |
 | Tríceps (complemento) | 2 (n3) | **1** (n2) | **1** (n2) | mergulho |
 | Agachar | **1** | **1** | **1** | leg-press |
-| Afundo | 3 | 3 | 3 | bulgaro, afundo, afundo-tras |
+| Afundo | 3 | 3 | 3 | afundo, afundo-tras, bulgaro |
 | Extensora | **1** | **1** | **1** | cadeira-extensora |
 | Flexão de joelho | **1** | **1** | **1** | cadeira-flexora |
 | Dobrar o quadril | 2 | 2 | 2 | stiff, stiff-unilateral |
@@ -257,7 +257,7 @@
 | Adução de quadril (complemento) | **1** (n3) | **1** (n3) | **1** (n3) | aducao-deitado |
 | Panturrilha em pé | **1** | **1** | **1** | panturrilha-leg-press |
 | Panturrilha sentada (complemento) | **1** (n2) | **1** (n2) | **1** (n2) | panturrilha-sentada-halter |
-| Abdômen | 4 (n2) | 4 (n2) | 4 (n2) | elevacao-joelhos, abdominal-chao, elevacao-joelhos-paralelas, abdominal-invertido |
+| Abdômen | 4 (n2) | 4 (n2) | 4 (n2) | abdominal-chao, abdominal-invertido, elevacao-joelhos, elevacao-joelhos-paralelas |
 
 ### Prédio com polia dupla, halteres e banco regulável (o Bruno)
 
@@ -267,7 +267,7 @@
 | Empurrar horizontal | **1** | **1** | **1** | supino-reto |
 | Empurrar inclinado | 2 | 2 | 2 | supino-inclinado, supino-inclinado-polia |
 | Crucifixo (peito alongado) | 4 | 4 | 4 | crucifixo-polia, crucifixo-halteres, crucifixo-polia-baixo, crucifixo-inclinado-halteres |
-| Puxar vertical | 4 | 4 | 4 | barra-fixa, barra-fixa-supinada, puxada-barra-reta, puxada-unilateral |
+| Puxar vertical | 4 | 4 | 4 | puxada-barra-reta, barra-fixa, barra-fixa-supinada, puxada-unilateral |
 | Puxar horizontal | 6 | 6 | 6 | remada-baixa, remada-apoiada, remada-unilateral-halter, remada-curvada-halteres, remada-unilateral-sem-banco, remada-unilateral-polia |
 | Empurrar vertical | 2 | 2 | 2 | desenvolvimento, desenvolvimento-unilateral |
 | Elevação lateral | 2 | 2 | 2 | elevacao-halteres, elevacao-lateral |
@@ -276,7 +276,7 @@
 | Tríceps acima da cabeça | 5 | 5 | 5 | triceps-frances, triceps-frances-halter, triceps-elastico-acima, triceps-frances-polia-unilateral, triceps-frances-unilateral-halter |
 | Tríceps (complemento) | 2 | 2 | 2 | triceps-corda, triceps-barra-reta |
 | Agachar | 3 (n2) | 3 (n2) | 3 (n2) | goblet, agachamento-halteres, bulgaro |
-| Afundo | 3 | 3 | 3 | bulgaro, afundo, afundo-tras |
+| Afundo | 3 | 3 | 3 | afundo, afundo-tras, bulgaro |
 | Extensora | **1** (n2) | **1** (n2) | **1** (n2) | extensao-joelho-elastico |
 | Flexão de joelho | 2 (n3) | 2 (n3) | 2 (n3) | flexao-bola, flexao-joelho-elastico |
 | Dobrar o quadril | 2 | 3 | 3 | terra-romeno-barra, stiff, stiff-unilateral |
@@ -304,7 +304,7 @@ Mesmo programa: Barra fixa de porta + elásticos (3 intensidades).
 | Tríceps acima da cabeça | **1** | **1** | **1** | triceps-elastico-acima |
 | Tríceps (complemento) | 2 (n3) | 2 (n3) | 2 (n3) | flexao-fechada, triceps-elastico-alto |
 | Agachar | 2 (n3) | 2 (n3) | 2 (n3) | agachamento-elastico, agachamento-peso-corpo |
-| Afundo | 3 (n2) | 3 (n2) | 3 (n2) | afundo-peso-corpo, bulgaro-peso-corpo, afundo-tras-peso-corpo |
+| Afundo | 3 (n2) | 3 (n2) | 3 (n2) | afundo-peso-corpo, afundo-tras-peso-corpo, bulgaro-peso-corpo |
 | Extensora | **1** (n2) | **1** (n2) | **1** (n2) | extensao-joelho-elastico |
 | Flexão de joelho | **1** (n3) | **1** (n3) | **1** (n3) | flexao-joelho-elastico |
 | Dobrar o quadril | **1** (n3) | **1** (n3) | **1** (n3) | stiff-elastico |
@@ -313,7 +313,7 @@ Mesmo programa: Barra fixa de porta + elásticos (3 intensidades).
 | Adução de quadril (complemento) | **1** (n3) | **1** (n3) | **1** (n3) | aducao-deitado |
 | Panturrilha em pé | **1** (n2) | **1** (n2) | **1** (n2) | panturrilha-degrau |
 | Panturrilha sentada (complemento) | **0** | **0** | **0** | — |
-| Abdômen | 3 (n2) | 3 (n2) | 3 (n2) | elevacao-joelhos, abdominal-chao, abdominal-invertido |
+| Abdômen | 3 (n2) | 3 (n2) | 3 (n2) | abdominal-chao, abdominal-invertido, elevacao-joelhos |
 
 ### Só elásticos
 Mesmo programa: Só elásticos (faixas ou tubos).
@@ -332,7 +332,7 @@ Mesmo programa: Só elásticos (faixas ou tubos).
 | Tríceps acima da cabeça | **1** | **1** | **1** | triceps-elastico-acima |
 | Tríceps (complemento) | 2 (n3) | 2 (n3) | 2 (n3) | flexao-fechada, triceps-elastico-alto |
 | Agachar | 2 (n3) | 2 (n3) | 2 (n3) | agachamento-elastico, agachamento-peso-corpo |
-| Afundo | 3 (n2) | 3 (n2) | 3 (n2) | afundo-peso-corpo, bulgaro-peso-corpo, afundo-tras-peso-corpo |
+| Afundo | 3 (n2) | 3 (n2) | 3 (n2) | afundo-peso-corpo, afundo-tras-peso-corpo, bulgaro-peso-corpo |
 | Extensora | **1** (n2) | **1** (n2) | **1** (n2) | extensao-joelho-elastico |
 | Flexão de joelho | **1** (n3) | **1** (n3) | **1** (n3) | flexao-joelho-elastico |
 | Dobrar o quadril | **1** (n3) | **1** (n3) | **1** (n3) | stiff-elastico |
@@ -388,7 +388,7 @@ Mesmo programa: Só elásticos (faixas ou tubos).
 | Tríceps acima da cabeça | 2 | 2 | 2 | triceps-frances-halter, triceps-frances-unilateral-halter |
 | Tríceps (complemento) | 2 (n3) | 2 (n3) | 2 (n3) | flexao-fechada, triceps-testa-halteres |
 | Agachar | 3 (n2) | 3 (n2) | 3 (n2) | goblet, agachamento-halteres, bulgaro |
-| Afundo | 3 | 3 | 3 | bulgaro, afundo, afundo-tras |
+| Afundo | 3 | 3 | 3 | afundo, afundo-tras, bulgaro |
 | Extensora | **0** | **0** | **0** | — |
 | Flexão de joelho | **1** (n4) | 2 (n4) | 2 (n4) | flexao-joelho-deslizante, nordico |
 | Dobrar o quadril | 2 | 2 | 2 | stiff, stiff-unilateral |
@@ -416,7 +416,7 @@ Mesmo programa: Só polia simples; Só banco regulável (inclina); Só banco ret
 | Tríceps acima da cabeça | **1** (n3) | **1** (n3) | **1** (n3) | extensao-triceps-peso-corpo |
 | Tríceps (complemento) | **1** (n3) | **1** (n3) | **1** (n3) | flexao-fechada |
 | Agachar | **1** (n3) | **1** (n3) | **1** (n3) | agachamento-peso-corpo |
-| Afundo | 3 (n2) | 3 (n2) | 3 (n2) | afundo-peso-corpo, bulgaro-peso-corpo, afundo-tras-peso-corpo |
+| Afundo | 3 (n2) | 3 (n2) | 3 (n2) | afundo-peso-corpo, afundo-tras-peso-corpo, bulgaro-peso-corpo |
 | Extensora | **0** | **0** | **0** | — |
 | Flexão de joelho | **1** (n4) | 2 (n4) | 2 (n4) | flexao-joelho-deslizante, nordico |
 | Dobrar o quadril | → flexao-joelho | → flexao-joelho | → flexao-joelho | — |
@@ -444,7 +444,7 @@ Mesmo programa: Só polia simples; Só banco regulável (inclina); Só banco ret
 | Tríceps acima da cabeça | 2 | 2 | 2 | triceps-frances-halter, triceps-frances-unilateral-halter |
 | Tríceps (complemento) | 2 (n3) | 2 (n3) | 2 (n3) | flexao-fechada, triceps-testa-halteres |
 | Agachar | 3 (n2) | 3 (n2) | 3 (n2) | goblet, agachamento-halteres, bulgaro |
-| Afundo | 3 | 3 | 3 | bulgaro, afundo, afundo-tras |
+| Afundo | 3 | 3 | 3 | afundo, afundo-tras, bulgaro |
 | Extensora | **0** | **0** | **0** | — |
 | Flexão de joelho | **1** (n4) | 2 (n4) | 2 (n4) | flexao-joelho-deslizante, nordico |
 | Dobrar o quadril | 2 | 2 | 2 | stiff, stiff-unilateral |
@@ -500,7 +500,7 @@ Mesmo programa: Só polia simples; Só banco regulável (inclina); Só banco ret
 | Tríceps acima da cabeça | **1** | **1** | **1** | triceps-elastico-acima |
 | Tríceps (complemento) | 2 (n3) | 2 (n3) | 2 (n3) | flexao-fechada, triceps-elastico-alto |
 | Agachar | 2 (n3) | 2 (n3) | 2 (n3) | agachamento-elastico, agachamento-peso-corpo |
-| Afundo | 3 (n2) | 3 (n2) | 3 (n2) | afundo-peso-corpo, bulgaro-peso-corpo, afundo-tras-peso-corpo |
+| Afundo | 3 (n2) | 3 (n2) | 3 (n2) | afundo-peso-corpo, afundo-tras-peso-corpo, bulgaro-peso-corpo |
 | Extensora | **1** (n2) | **1** (n2) | **1** (n2) | extensao-joelho-elastico |
 | Flexão de joelho | **1** (n3) | **1** (n3) | **1** (n3) | flexao-joelho-elastico |
 | Dobrar o quadril | **1** (n3) | **1** (n3) | **1** (n3) | stiff-elastico |
@@ -528,7 +528,7 @@ Mesmo programa: Só polia simples; Só banco regulável (inclina); Só banco ret
 | Tríceps acima da cabeça | **1** | **1** | **1** | triceps-elastico-acima |
 | Tríceps (complemento) | **1** (n2) | **1** (n2) | **1** (n2) | triceps-suspensao |
 | Agachar | 2 (n3) | 2 (n3) | 2 (n3) | agachamento-elastico, agachamento-peso-corpo |
-| Afundo | 3 (n2) | 4 (n2) | 4 (n2) | afundo-peso-corpo, bulgaro-peso-corpo, bulgaro-suspensao, afundo-tras-peso-corpo |
+| Afundo | 3 (n2) | 4 (n2) | 4 (n2) | afundo-peso-corpo, afundo-tras-peso-corpo, bulgaro-peso-corpo, bulgaro-suspensao |
 | Extensora | **1** (n2) | **1** (n2) | **1** (n2) | extensao-joelho-elastico |
 | Flexão de joelho | **1** (n3) | **1** (n3) | **1** (n3) | flexao-joelho-elastico |
 | Dobrar o quadril | **1** (n3) | **1** (n3) | **1** (n3) | stiff-elastico |
@@ -556,7 +556,7 @@ Mesmo programa: Só polia simples; Só banco regulável (inclina); Só banco ret
 | Tríceps acima da cabeça | **1** (n3) | **1** (n3) | **1** (n3) | extensao-triceps-peso-corpo |
 | Tríceps (complemento) | **1** (n3) | **1** (n3) | **1** (n3) | flexao-fechada |
 | Agachar | **1** (n3) | **1** (n3) | **1** (n3) | agachamento-peso-corpo |
-| Afundo | 3 (n2) | 3 (n2) | 3 (n2) | afundo-peso-corpo, bulgaro-peso-corpo, afundo-tras-peso-corpo |
+| Afundo | 3 (n2) | 3 (n2) | 3 (n2) | afundo-peso-corpo, afundo-tras-peso-corpo, bulgaro-peso-corpo |
 | Extensora | **0** | **0** | **0** | — |
 | Flexão de joelho | **1** (n4) | 2 (n4) | 2 (n4) | flexao-joelho-deslizante, nordico |
 | Dobrar o quadril | → flexao-joelho | → flexao-joelho | → flexao-joelho | — |
@@ -612,7 +612,7 @@ Mesmo programa: Só polia simples; Só banco regulável (inclina); Só banco ret
 | Tríceps acima da cabeça | **1** (n3) | **1** (n3) | **1** (n3) | extensao-triceps-peso-corpo |
 | Tríceps (complemento) | **1** (n3) | **1** (n3) | **1** (n3) | flexao-fechada |
 | Agachar | **1** (n3) | **1** (n3) | **1** (n3) | agachamento-peso-corpo |
-| Afundo | 3 (n2) | 3 (n2) | 3 (n2) | afundo-peso-corpo, bulgaro-peso-corpo, afundo-tras-peso-corpo |
+| Afundo | 3 (n2) | 3 (n2) | 3 (n2) | afundo-peso-corpo, afundo-tras-peso-corpo, bulgaro-peso-corpo |
 | Extensora | **0** | **0** | **0** | — |
 | Flexão de joelho | **1** (n4) | 2 (n4) | 2 (n4) | flexao-joelho-deslizante, nordico |
 | Dobrar o quadril | **1** (n2) | **1** (n2) | **1** (n2) | hiperextensao |
@@ -640,7 +640,7 @@ Mesmo programa: Só polia simples; Só banco regulável (inclina); Só banco ret
 | Tríceps acima da cabeça | **1** (n3) | **1** (n3) | **1** (n3) | extensao-triceps-peso-corpo |
 | Tríceps (complemento) | **1** (n3) | **1** (n3) | **1** (n3) | flexao-fechada |
 | Agachar | **1** (n3) | **1** (n3) | **1** (n3) | agachamento-peso-corpo |
-| Afundo | 3 (n2) | 3 (n2) | 3 (n2) | afundo-peso-corpo, bulgaro-peso-corpo, afundo-tras-peso-corpo |
+| Afundo | 3 (n2) | 3 (n2) | 3 (n2) | afundo-peso-corpo, afundo-tras-peso-corpo, bulgaro-peso-corpo |
 | Extensora | **0** | **0** | **0** | — |
 | Flexão de joelho | **1** (n4) | 2 (n4) | 2 (n4) | flexao-joelho-deslizante, nordico |
 | Dobrar o quadril | → flexao-joelho | → flexao-joelho | → flexao-joelho | — |
@@ -649,7 +649,7 @@ Mesmo programa: Só polia simples; Só banco regulável (inclina); Só banco ret
 | Adução de quadril (complemento) | **1** (n3) | **1** (n3) | **1** (n3) | aducao-deitado |
 | Panturrilha em pé | **1** (n2) | **1** (n2) | **1** (n2) | panturrilha-degrau |
 | Panturrilha sentada (complemento) | **0** | **0** | **0** | — |
-| Abdômen | 3 (n2) | 3 (n2) | 3 (n2) | elevacao-joelhos, abdominal-chao, abdominal-invertido |
+| Abdômen | 3 (n2) | 3 (n2) | 3 (n2) | abdominal-chao, abdominal-invertido, elevacao-joelhos |
 
 ### Só barra hexagonal (trap bar)
 
@@ -668,7 +668,7 @@ Mesmo programa: Só polia simples; Só banco regulável (inclina); Só banco ret
 | Tríceps acima da cabeça | **1** (n3) | **1** (n3) | **1** (n3) | extensao-triceps-peso-corpo |
 | Tríceps (complemento) | **1** (n3) | **1** (n3) | **1** (n3) | flexao-fechada |
 | Agachar | **1** (n2) | **1** (n2) | **1** (n2) | terra-hexagonal |
-| Afundo | 3 (n2) | 3 (n2) | 3 (n2) | afundo-peso-corpo, bulgaro-peso-corpo, afundo-tras-peso-corpo |
+| Afundo | 3 (n2) | 3 (n2) | 3 (n2) | afundo-peso-corpo, afundo-tras-peso-corpo, bulgaro-peso-corpo |
 | Extensora | **0** | **0** | **0** | — |
 | Flexão de joelho | **1** (n4) | 2 (n4) | 2 (n4) | flexao-joelho-deslizante, nordico |
 | Dobrar o quadril | → flexao-joelho | → flexao-joelho | → flexao-joelho | — |
@@ -696,7 +696,7 @@ Mesmo programa: Só polia simples; Só banco regulável (inclina); Só banco ret
 | Tríceps acima da cabeça | **1** (n3) | **1** (n3) | **1** (n3) | extensao-triceps-peso-corpo |
 | Tríceps (complemento) | **1** (n3) | **1** (n3) | **1** (n3) | flexao-fechada |
 | Agachar | **1** (n3) | **1** (n3) | **1** (n3) | agachamento-peso-corpo |
-| Afundo | 3 (n2) | 3 (n2) | 3 (n2) | afundo-peso-corpo, bulgaro-peso-corpo, afundo-tras-peso-corpo |
+| Afundo | 3 (n2) | 3 (n2) | 3 (n2) | afundo-peso-corpo, afundo-tras-peso-corpo, bulgaro-peso-corpo |
 | Extensora | **0** | **0** | **0** | — |
 | Flexão de joelho | **1** (n4) | 2 (n4) | 2 (n4) | flexao-joelho-deslizante, nordico |
 | Dobrar o quadril | → flexao-joelho | **1** | **1** | terra-romeno-barra |
@@ -724,7 +724,7 @@ Mesmo programa: Só polia simples; Só banco regulável (inclina); Só banco ret
 | Tríceps acima da cabeça | **1** (n3) | **1** (n3) | **1** (n3) | extensao-triceps-peso-corpo |
 | Tríceps (complemento) | **1** (n3) | **1** (n3) | **1** (n3) | flexao-fechada |
 | Agachar | **1** (n3) | **1** (n3) | **1** (n3) | agachamento-peso-corpo |
-| Afundo | 3 (n2) | 3 (n2) | 3 (n2) | afundo-peso-corpo, bulgaro-peso-corpo, afundo-tras-peso-corpo |
+| Afundo | 3 (n2) | 3 (n2) | 3 (n2) | afundo-peso-corpo, afundo-tras-peso-corpo, bulgaro-peso-corpo |
 | Extensora | **0** | **0** | **0** | — |
 | Flexão de joelho | **1** (n4) | 2 (n4) | 2 (n4) | flexao-joelho-deslizante, nordico |
 | Dobrar o quadril | → flexao-joelho | → flexao-joelho | → flexao-joelho | — |
@@ -752,7 +752,7 @@ Mesmo programa: Só polia simples; Só banco regulável (inclina); Só banco ret
 | Tríceps acima da cabeça | **1** (n3) | **1** (n3) | **1** (n3) | extensao-triceps-peso-corpo |
 | Tríceps (complemento) | **1** (n3) | **1** (n3) | **1** (n3) | flexao-fechada |
 | Agachar | **1** (n3) | **1** (n3) | **1** (n3) | agachamento-peso-corpo |
-| Afundo | 3 (n2) | 3 (n2) | 3 (n2) | afundo-peso-corpo, bulgaro-peso-corpo, afundo-tras-peso-corpo |
+| Afundo | 3 (n2) | 3 (n2) | 3 (n2) | afundo-peso-corpo, afundo-tras-peso-corpo, bulgaro-peso-corpo |
 | Extensora | **0** | **0** | **0** | — |
 | Flexão de joelho | **1** (n3) | **1** (n3) | **1** (n3) | flexao-bola |
 | Dobrar o quadril | → flexao-joelho | → flexao-joelho | → flexao-joelho | — |
@@ -780,7 +780,7 @@ Mesmo programa: Só polia simples; Só banco regulável (inclina); Só banco ret
 | Tríceps acima da cabeça | **1** (n3) | **1** (n3) | **1** (n3) | extensao-triceps-peso-corpo |
 | Tríceps (complemento) | **1** (n3) | **1** (n3) | **1** (n3) | flexao-fechada |
 | Agachar | **1** (n3) | **1** (n3) | **1** (n3) | agachamento-peso-corpo |
-| Afundo | 3 (n2) | 3 (n2) | 3 (n2) | afundo-peso-corpo, bulgaro-peso-corpo, afundo-tras-peso-corpo |
+| Afundo | 3 (n2) | 3 (n2) | 3 (n2) | afundo-peso-corpo, afundo-tras-peso-corpo, bulgaro-peso-corpo |
 | Extensora | **0** | **0** | **0** | — |
 | Flexão de joelho | **1** (n4) | 2 (n4) | 2 (n4) | flexao-joelho-deslizante, nordico |
 | Dobrar o quadril | → flexao-joelho | → flexao-joelho | → flexao-joelho | — |
@@ -808,7 +808,7 @@ Mesmo programa: Só polia simples; Só banco regulável (inclina); Só banco ret
 | Tríceps acima da cabeça | **1** (n3) | **1** (n3) | **1** (n3) | extensao-triceps-peso-corpo |
 | Tríceps (complemento) | **1** (n3) | **1** (n3) | **1** (n3) | flexao-fechada |
 | Agachar | **1** (n3) | **1** (n3) | **1** (n3) | agachamento-peso-corpo |
-| Afundo | 3 (n2) | 3 (n2) | 3 (n2) | afundo-peso-corpo, bulgaro-peso-corpo, afundo-tras-peso-corpo |
+| Afundo | 3 (n2) | 3 (n2) | 3 (n2) | afundo-peso-corpo, afundo-tras-peso-corpo, bulgaro-peso-corpo |
 | Extensora | **1** | **1** | **1** | cadeira-extensora |
 | Flexão de joelho | **1** (n4) | 2 (n4) | 2 (n4) | flexao-joelho-deslizante, nordico |
 | Dobrar o quadril | → flexao-joelho | → flexao-joelho | → flexao-joelho | — |
@@ -836,7 +836,7 @@ Mesmo programa: Só polia simples; Só banco regulável (inclina); Só banco ret
 | Tríceps acima da cabeça | **1** (n3) | **1** (n3) | **1** (n3) | extensao-triceps-peso-corpo |
 | Tríceps (complemento) | **1** (n3) | **1** (n3) | **1** (n3) | flexao-fechada |
 | Agachar | **1** (n3) | **1** (n3) | **1** (n3) | agachamento-peso-corpo |
-| Afundo | 3 (n2) | 3 (n2) | 3 (n2) | afundo-peso-corpo, bulgaro-peso-corpo, afundo-tras-peso-corpo |
+| Afundo | 3 (n2) | 3 (n2) | 3 (n2) | afundo-peso-corpo, afundo-tras-peso-corpo, bulgaro-peso-corpo |
 | Extensora | **0** | **0** | **0** | — |
 | Flexão de joelho | **1** | **1** | **1** | cadeira-flexora |
 | Dobrar o quadril | → flexao-joelho | → flexao-joelho | → flexao-joelho | — |
@@ -864,7 +864,7 @@ Mesmo programa: Só polia simples; Só banco regulável (inclina); Só banco ret
 | Tríceps acima da cabeça | **1** (n3) | **1** (n3) | **1** (n3) | extensao-triceps-peso-corpo |
 | Tríceps (complemento) | **1** (n3) | **1** (n3) | **1** (n3) | flexao-fechada |
 | Agachar | **1** (n3) | **1** (n3) | **1** (n3) | agachamento-peso-corpo |
-| Afundo | 3 (n2) | 3 (n2) | 3 (n2) | afundo-peso-corpo, bulgaro-peso-corpo, afundo-tras-peso-corpo |
+| Afundo | 3 (n2) | 3 (n2) | 3 (n2) | afundo-peso-corpo, afundo-tras-peso-corpo, bulgaro-peso-corpo |
 | Extensora | **1** (n2) | **1** (n2) | **1** (n2) | extensao-joelho-caneleira |
 | Flexão de joelho | **1** (n4) | 2 (n4) | 2 (n4) | flexao-joelho-deslizante, nordico |
 | Dobrar o quadril | → flexao-joelho | → flexao-joelho | → flexao-joelho | — |
@@ -892,7 +892,7 @@ Mesmo programa: Só polia simples; Só banco regulável (inclina); Só banco ret
 | Tríceps acima da cabeça | **1** (n3) | **1** (n3) | **1** (n3) | extensao-triceps-peso-corpo |
 | Tríceps (complemento) | **1** (n3) | **1** (n3) | **1** (n3) | flexao-fechada |
 | Agachar | **1** (n3) | **1** (n3) | **1** (n3) | agachamento-peso-corpo |
-| Afundo | 3 (n2) | 3 (n2) | 3 (n2) | afundo-peso-corpo, bulgaro-peso-corpo, afundo-tras-peso-corpo |
+| Afundo | 3 (n2) | 3 (n2) | 3 (n2) | afundo-peso-corpo, afundo-tras-peso-corpo, bulgaro-peso-corpo |
 | Extensora | **0** | **0** | **0** | — |
 | Flexão de joelho | **1** (n4) | 2 (n4) | 2 (n4) | flexao-joelho-deslizante, nordico |
 | Dobrar o quadril | → flexao-joelho | → flexao-joelho | → flexao-joelho | — |
@@ -920,7 +920,7 @@ Mesmo programa: Só polia simples; Só banco regulável (inclina); Só banco ret
 | Tríceps acima da cabeça | **1** | **1** | **1** | triceps-frances-polia-unilateral |
 | Tríceps (complemento) | **1** (n3) | **1** (n3) | **1** (n3) | flexao-fechada |
 | Agachar | **1** (n3) | **1** (n3) | **1** (n3) | agachamento-peso-corpo |
-| Afundo | 3 (n2) | 3 (n2) | 3 (n2) | afundo-peso-corpo, bulgaro-peso-corpo, afundo-tras-peso-corpo |
+| Afundo | 3 (n2) | 3 (n2) | 3 (n2) | afundo-peso-corpo, afundo-tras-peso-corpo, bulgaro-peso-corpo |
 | Extensora | **0** | **0** | **0** | — |
 | Flexão de joelho | **1** (n4) | 2 (n4) | 2 (n4) | flexao-joelho-deslizante, nordico |
 | Dobrar o quadril | → flexao-joelho | → flexao-joelho | → flexao-joelho | — |
@@ -948,7 +948,7 @@ Mesmo programa: Só polia simples; Só banco regulável (inclina); Só banco ret
 | Tríceps acima da cabeça | **1** (n3) | **1** (n3) | **1** (n3) | extensao-triceps-peso-corpo |
 | Tríceps (complemento) | **1** (n3) | **1** (n3) | **1** (n3) | flexao-fechada |
 | Agachar | **1** (n3) | **1** (n3) | **1** (n3) | agachamento-peso-corpo |
-| Afundo | 3 (n2) | 3 (n2) | 3 (n2) | afundo-peso-corpo, bulgaro-peso-corpo, afundo-tras-peso-corpo |
+| Afundo | 3 (n2) | 3 (n2) | 3 (n2) | afundo-peso-corpo, afundo-tras-peso-corpo, bulgaro-peso-corpo |
 | Extensora | **0** | **0** | **0** | — |
 | Flexão de joelho | **1** (n4) | 2 (n4) | 2 (n4) | flexao-joelho-deslizante, nordico |
 | Dobrar o quadril | → flexao-joelho | → flexao-joelho | → flexao-joelho | — |
@@ -976,7 +976,7 @@ Mesmo programa: Só polia simples; Só banco regulável (inclina); Só banco ret
 | Tríceps acima da cabeça | **1** (n3) | **1** (n3) | **1** (n3) | extensao-triceps-peso-corpo |
 | Tríceps (complemento) | **1** (n3) | **1** (n3) | **1** (n3) | flexao-fechada |
 | Agachar | **1** (n3) | **1** (n3) | **1** (n3) | agachamento-peso-corpo |
-| Afundo | 3 (n2) | 3 (n2) | 3 (n2) | afundo-peso-corpo, bulgaro-peso-corpo, afundo-tras-peso-corpo |
+| Afundo | 3 (n2) | 3 (n2) | 3 (n2) | afundo-peso-corpo, afundo-tras-peso-corpo, bulgaro-peso-corpo |
 | Extensora | **0** | **0** | **0** | — |
 | Flexão de joelho | **1** (n4) | 2 (n4) | 2 (n4) | flexao-joelho-deslizante, nordico |
 | Dobrar o quadril | → flexao-joelho | → flexao-joelho | → flexao-joelho | — |
@@ -1004,7 +1004,7 @@ Mesmo programa: Só polia simples; Só banco regulável (inclina); Só banco ret
 | Tríceps acima da cabeça | **1** (n3) | **1** (n3) | **1** (n3) | extensao-triceps-peso-corpo |
 | Tríceps (complemento) | **1** (n3) | **1** (n3) | **1** (n3) | flexao-fechada |
 | Agachar | **1** (n3) | **1** (n3) | **1** (n3) | agachamento-peso-corpo |
-| Afundo | 3 (n2) | 3 (n2) | 3 (n2) | afundo-peso-corpo, bulgaro-peso-corpo, afundo-tras-peso-corpo |
+| Afundo | 3 (n2) | 3 (n2) | 3 (n2) | afundo-peso-corpo, afundo-tras-peso-corpo, bulgaro-peso-corpo |
 | Extensora | **0** | **0** | **0** | — |
 | Flexão de joelho | **1** (n4) | 2 (n4) | 2 (n4) | flexao-joelho-deslizante, nordico |
 | Dobrar o quadril | → flexao-joelho | → flexao-joelho | → flexao-joelho | — |
@@ -1032,7 +1032,7 @@ Mesmo programa: Só polia simples; Só banco regulável (inclina); Só banco ret
 | Tríceps acima da cabeça | **1** (n3) | **1** (n3) | **1** (n3) | extensao-triceps-peso-corpo |
 | Tríceps (complemento) | **1** (n3) | **1** (n3) | **1** (n3) | flexao-fechada |
 | Agachar | **1** (n3) | **1** (n3) | **1** (n3) | agachamento-peso-corpo |
-| Afundo | 3 (n2) | 3 (n2) | 3 (n2) | afundo-peso-corpo, bulgaro-peso-corpo, afundo-tras-peso-corpo |
+| Afundo | 3 (n2) | 3 (n2) | 3 (n2) | afundo-peso-corpo, afundo-tras-peso-corpo, bulgaro-peso-corpo |
 | Extensora | **0** | **0** | **0** | — |
 | Flexão de joelho | **1** (n4) | 2 (n4) | 2 (n4) | flexao-joelho-deslizante, nordico |
 | Dobrar o quadril | → flexao-joelho | → flexao-joelho | → flexao-joelho | — |
@@ -1060,7 +1060,7 @@ Mesmo programa: Só polia simples; Só banco regulável (inclina); Só banco ret
 | Tríceps acima da cabeça | **1** (n3) | **1** (n3) | **1** (n3) | extensao-triceps-peso-corpo |
 | Tríceps (complemento) | **1** (n3) | **1** (n3) | **1** (n3) | flexao-fechada |
 | Agachar | **1** | **1** | **1** | hack |
-| Afundo | 3 (n2) | 3 (n2) | 3 (n2) | afundo-peso-corpo, bulgaro-peso-corpo, afundo-tras-peso-corpo |
+| Afundo | 3 (n2) | 3 (n2) | 3 (n2) | afundo-peso-corpo, afundo-tras-peso-corpo, bulgaro-peso-corpo |
 | Extensora | **0** | **0** | **0** | — |
 | Flexão de joelho | **1** (n4) | 2 (n4) | 2 (n4) | flexao-joelho-deslizante, nordico |
 | Dobrar o quadril | → flexao-joelho | → flexao-joelho | → flexao-joelho | — |
@@ -1144,7 +1144,7 @@ Mesmo programa: Só polia simples; Só banco regulável (inclina); Só banco ret
 | Tríceps acima da cabeça | **1** (n3) | **1** (n3) | **1** (n3) | extensao-triceps-peso-corpo |
 | Tríceps (complemento) | **1** (n3) | **1** (n3) | **1** (n3) | flexao-fechada |
 | Agachar | **1** | **1** | **1** | leg-press |
-| Afundo | 3 (n2) | 3 (n2) | 3 (n2) | afundo-peso-corpo, bulgaro-peso-corpo, afundo-tras-peso-corpo |
+| Afundo | 3 (n2) | 3 (n2) | 3 (n2) | afundo-peso-corpo, afundo-tras-peso-corpo, bulgaro-peso-corpo |
 | Extensora | **0** | **0** | **0** | — |
 | Flexão de joelho | **1** (n4) | 2 (n4) | 2 (n4) | flexao-joelho-deslizante, nordico |
 | Dobrar o quadril | → flexao-joelho | → flexao-joelho | → flexao-joelho | — |
@@ -1172,7 +1172,7 @@ Mesmo programa: Só polia simples; Só banco regulável (inclina); Só banco ret
 | Tríceps acima da cabeça | **1** (n3) | **1** (n3) | **1** (n3) | extensao-triceps-peso-corpo |
 | Tríceps (complemento) | **1** (n3) | **1** (n3) | **1** (n3) | flexao-fechada |
 | Agachar | **1** (n3) | **1** (n3) | **1** (n3) | agachamento-peso-corpo |
-| Afundo | 3 (n2) | 3 (n2) | 3 (n2) | afundo-peso-corpo, bulgaro-peso-corpo, afundo-tras-peso-corpo |
+| Afundo | 3 (n2) | 3 (n2) | 3 (n2) | afundo-peso-corpo, afundo-tras-peso-corpo, bulgaro-peso-corpo |
 | Extensora | **0** | **0** | **0** | — |
 | Flexão de joelho | **1** (n2) | **1** (n2) | **1** (n2) | mesa-flexora |
 | Dobrar o quadril | → flexao-joelho | → flexao-joelho | → flexao-joelho | — |
@@ -1200,7 +1200,7 @@ Mesmo programa: Só polia simples; Só banco regulável (inclina); Só banco ret
 | Tríceps acima da cabeça | **1** (n3) | **1** (n3) | **1** (n3) | extensao-triceps-peso-corpo |
 | Tríceps (complemento) | **1** (n3) | **1** (n3) | **1** (n3) | flexao-fechada |
 | Agachar | **1** (n3) | **1** (n3) | **1** (n3) | agachamento-peso-corpo |
-| Afundo | 3 (n2) | 3 (n2) | 3 (n2) | afundo-peso-corpo, bulgaro-peso-corpo, afundo-tras-peso-corpo |
+| Afundo | 3 (n2) | 3 (n2) | 3 (n2) | afundo-peso-corpo, afundo-tras-peso-corpo, bulgaro-peso-corpo |
 | Extensora | **1** (n2) | **1** (n2) | **1** (n2) | extensao-joelho-mini-band |
 | Flexão de joelho | **1** (n4) | 2 (n4) | 2 (n4) | flexao-joelho-deslizante, nordico |
 | Dobrar o quadril | → flexao-joelho | → flexao-joelho | → flexao-joelho | — |
@@ -1228,7 +1228,7 @@ Mesmo programa: Só polia simples; Só banco regulável (inclina); Só banco ret
 | Tríceps acima da cabeça | **1** (n3) | **1** (n3) | **1** (n3) | extensao-triceps-peso-corpo |
 | Tríceps (complemento) | **1** (n3) | **1** (n3) | **1** (n3) | flexao-fechada |
 | Agachar | **1** (n3) | **1** (n3) | **1** (n3) | agachamento-peso-corpo |
-| Afundo | 3 (n2) | 3 (n2) | 3 (n2) | afundo-peso-corpo, bulgaro-peso-corpo, afundo-tras-peso-corpo |
+| Afundo | 3 (n2) | 3 (n2) | 3 (n2) | afundo-peso-corpo, afundo-tras-peso-corpo, bulgaro-peso-corpo |
 | Extensora | **0** | **0** | **0** | — |
 | Flexão de joelho | **1** (n4) | 2 (n4) | 2 (n4) | flexao-joelho-deslizante, nordico |
 | Dobrar o quadril | → flexao-joelho | → flexao-joelho | → flexao-joelho | — |
@@ -1256,7 +1256,7 @@ Mesmo programa: Só polia simples; Só banco regulável (inclina); Só banco ret
 | Tríceps acima da cabeça | **1** (n3) | **1** (n3) | **1** (n3) | extensao-triceps-peso-corpo |
 | Tríceps (complemento) | **1** (n3) | **1** (n3) | **1** (n3) | flexao-fechada |
 | Agachar | **1** (n3) | **1** (n3) | **1** (n3) | agachamento-peso-corpo |
-| Afundo | 3 (n2) | 3 (n2) | 3 (n2) | afundo-peso-corpo, bulgaro-peso-corpo, afundo-tras-peso-corpo |
+| Afundo | 3 (n2) | 3 (n2) | 3 (n2) | afundo-peso-corpo, afundo-tras-peso-corpo, bulgaro-peso-corpo |
 | Extensora | **0** | **0** | **0** | — |
 | Flexão de joelho | **1** (n4) | 2 (n4) | 2 (n4) | flexao-joelho-deslizante, nordico |
 | Dobrar o quadril | → flexao-joelho | → flexao-joelho | → flexao-joelho | — |
@@ -1284,7 +1284,7 @@ Mesmo programa: Só polia simples; Só banco regulável (inclina); Só banco ret
 | Tríceps acima da cabeça | **1** (n3) | **1** (n3) | **1** (n3) | extensao-triceps-peso-corpo |
 | Tríceps (complemento) | **1** (n3) | **1** (n3) | **1** (n3) | flexao-fechada |
 | Agachar | **1** (n3) | **1** (n3) | **1** (n3) | agachamento-peso-corpo |
-| Afundo | 3 (n2) | 3 (n2) | 3 (n2) | afundo-peso-corpo, bulgaro-peso-corpo, afundo-tras-peso-corpo |
+| Afundo | 3 (n2) | 3 (n2) | 3 (n2) | afundo-peso-corpo, afundo-tras-peso-corpo, bulgaro-peso-corpo |
 | Extensora | **0** | **0** | **0** | — |
 | Flexão de joelho | **1** (n4) | 2 (n4) | 2 (n4) | flexao-joelho-deslizante, nordico |
 | Dobrar o quadril | → flexao-joelho | → flexao-joelho | → flexao-joelho | — |
@@ -1312,7 +1312,7 @@ Mesmo programa: Só polia simples; Só banco regulável (inclina); Só banco ret
 | Tríceps acima da cabeça | **1** (n3) | **1** (n3) | **1** (n3) | extensao-triceps-peso-corpo |
 | Tríceps (complemento) | **1** (n3) | **1** (n2) | **1** (n2) | mergulho |
 | Agachar | **1** (n3) | **1** (n3) | **1** (n3) | agachamento-peso-corpo |
-| Afundo | 3 (n2) | 3 (n2) | 3 (n2) | afundo-peso-corpo, bulgaro-peso-corpo, afundo-tras-peso-corpo |
+| Afundo | 3 (n2) | 3 (n2) | 3 (n2) | afundo-peso-corpo, afundo-tras-peso-corpo, bulgaro-peso-corpo |
 | Extensora | **0** | **0** | **0** | — |
 | Flexão de joelho | **1** (n4) | 2 (n4) | 2 (n4) | flexao-joelho-deslizante, nordico |
 | Dobrar o quadril | → flexao-joelho | → flexao-joelho | → flexao-joelho | — |
@@ -1321,7 +1321,7 @@ Mesmo programa: Só polia simples; Só banco regulável (inclina); Só banco ret
 | Adução de quadril (complemento) | **1** (n3) | **1** (n3) | **1** (n3) | aducao-deitado |
 | Panturrilha em pé | **1** (n2) | **1** (n2) | **1** (n2) | panturrilha-degrau |
 | Panturrilha sentada (complemento) | **0** | **0** | **0** | — |
-| Abdômen | 3 (n2) | 3 (n2) | 3 (n2) | abdominal-chao, elevacao-joelhos-paralelas, abdominal-invertido |
+| Abdômen | 3 (n2) | 3 (n2) | 3 (n2) | abdominal-chao, abdominal-invertido, elevacao-joelhos-paralelas |
 
 ### Só rack ou gaiola de agachamento
 
@@ -1340,7 +1340,7 @@ Mesmo programa: Só polia simples; Só banco regulável (inclina); Só banco ret
 | Tríceps acima da cabeça | **1** (n3) | **1** (n3) | **1** (n3) | extensao-triceps-peso-corpo |
 | Tríceps (complemento) | **1** (n3) | **1** (n3) | **1** (n3) | flexao-fechada |
 | Agachar | **1** (n3) | **1** (n3) | **1** (n3) | agachamento-peso-corpo |
-| Afundo | 3 (n2) | 3 (n2) | 3 (n2) | afundo-peso-corpo, bulgaro-peso-corpo, afundo-tras-peso-corpo |
+| Afundo | 3 (n2) | 3 (n2) | 3 (n2) | afundo-peso-corpo, afundo-tras-peso-corpo, bulgaro-peso-corpo |
 | Extensora | **0** | **0** | **0** | — |
 | Flexão de joelho | **1** (n4) | 2 (n4) | 2 (n4) | flexao-joelho-deslizante, nordico |
 | Dobrar o quadril | → flexao-joelho | → flexao-joelho | → flexao-joelho | — |
@@ -1368,7 +1368,7 @@ Mesmo programa: Só polia simples; Só banco regulável (inclina); Só banco ret
 | Tríceps acima da cabeça | **1** (n3) | **1** (n3) | **1** (n3) | extensao-triceps-peso-corpo |
 | Tríceps (complemento) | **1** (n3) | **1** (n3) | **1** (n3) | flexao-fechada |
 | Agachar | **1** (n3) | **1** (n3) | **1** (n3) | agachamento-peso-corpo |
-| Afundo | 3 (n2) | 3 (n2) | 3 (n2) | afundo-peso-corpo, bulgaro-peso-corpo, afundo-tras-peso-corpo |
+| Afundo | 3 (n2) | 3 (n2) | 3 (n2) | afundo-peso-corpo, afundo-tras-peso-corpo, bulgaro-peso-corpo |
 | Extensora | **0** | **0** | **0** | — |
 | Flexão de joelho | **1** (n4) | 2 (n4) | 2 (n4) | flexao-joelho-deslizante, nordico |
 | Dobrar o quadril | → flexao-joelho | → flexao-joelho | → flexao-joelho | — |
@@ -1396,7 +1396,7 @@ Mesmo programa: Só polia simples; Só banco regulável (inclina); Só banco ret
 | Tríceps acima da cabeça | **1** (n3) | **1** (n3) | **1** (n3) | extensao-triceps-peso-corpo |
 | Tríceps (complemento) | **1** (n3) | **1** (n3) | **1** (n3) | flexao-fechada |
 | Agachar | **1** (n3) | **1** (n3) | **1** (n3) | agachamento-peso-corpo |
-| Afundo | 3 (n2) | 3 (n2) | 3 (n2) | afundo-peso-corpo, bulgaro-peso-corpo, afundo-tras-peso-corpo |
+| Afundo | 3 (n2) | 3 (n2) | 3 (n2) | afundo-peso-corpo, afundo-tras-peso-corpo, bulgaro-peso-corpo |
 | Extensora | **0** | **0** | **0** | — |
 | Flexão de joelho | **1** (n4) | 2 (n4) | 2 (n4) | flexao-joelho-deslizante, nordico |
 | Dobrar o quadril | → flexao-joelho | → flexao-joelho | → flexao-joelho | — |
@@ -1405,7 +1405,7 @@ Mesmo programa: Só polia simples; Só banco regulável (inclina); Só banco ret
 | Adução de quadril (complemento) | **1** (n3) | **1** (n3) | **1** (n3) | aducao-deitado |
 | Panturrilha em pé | **1** (n2) | **1** (n2) | **1** (n2) | panturrilha-degrau |
 | Panturrilha sentada (complemento) | **0** | **0** | **0** | — |
-| Abdômen | 2 (n2) | 3 (n2) | 3 (n2) | abdominal-chao, roda-abdominal, abdominal-invertido |
+| Abdômen | 2 (n2) | 3 (n2) | 3 (n2) | abdominal-chao, abdominal-invertido, roda-abdominal |
 
 ### Só máquina de rosca
 
@@ -1424,7 +1424,7 @@ Mesmo programa: Só polia simples; Só banco regulável (inclina); Só banco ret
 | Tríceps acima da cabeça | **1** (n3) | **1** (n3) | **1** (n3) | extensao-triceps-peso-corpo |
 | Tríceps (complemento) | **1** (n3) | **1** (n3) | **1** (n3) | flexao-fechada |
 | Agachar | **1** (n3) | **1** (n3) | **1** (n3) | agachamento-peso-corpo |
-| Afundo | 3 (n2) | 3 (n2) | 3 (n2) | afundo-peso-corpo, bulgaro-peso-corpo, afundo-tras-peso-corpo |
+| Afundo | 3 (n2) | 3 (n2) | 3 (n2) | afundo-peso-corpo, afundo-tras-peso-corpo, bulgaro-peso-corpo |
 | Extensora | **0** | **0** | **0** | — |
 | Flexão de joelho | **1** (n4) | 2 (n4) | 2 (n4) | flexao-joelho-deslizante, nordico |
 | Dobrar o quadril | → flexao-joelho | → flexao-joelho | → flexao-joelho | — |
@@ -1452,7 +1452,7 @@ Mesmo programa: Só polia simples; Só banco regulável (inclina); Só banco ret
 | Tríceps acima da cabeça | **1** (n3) | **1** (n3) | **1** (n3) | extensao-triceps-peso-corpo |
 | Tríceps (complemento) | **1** (n3) | **1** (n3) | **1** (n3) | flexao-fechada |
 | Agachar | **1** | **1** | **1** | agachamento-smith |
-| Afundo | 3 (n2) | 3 (n2) | 3 (n2) | afundo-peso-corpo, bulgaro-peso-corpo, afundo-tras-peso-corpo |
+| Afundo | 3 (n2) | 3 (n2) | 3 (n2) | afundo-peso-corpo, afundo-tras-peso-corpo, bulgaro-peso-corpo |
 | Extensora | **0** | **0** | **0** | — |
 | Flexão de joelho | **1** (n4) | 2 (n4) | 2 (n4) | flexao-joelho-deslizante, nordico |
 | Dobrar o quadril | → flexao-joelho | → flexao-joelho | → flexao-joelho | — |
@@ -1480,7 +1480,7 @@ Mesmo programa: Só polia simples; Só banco regulável (inclina); Só banco ret
 | Tríceps acima da cabeça | **1** (n3) | **1** (n3) | **1** (n3) | extensao-triceps-peso-corpo |
 | Tríceps (complemento) | **1** (n3) | **1** (n3) | **1** (n3) | flexao-fechada |
 | Agachar | **1** (n3) | **1** (n3) | **1** (n3) | agachamento-peso-corpo |
-| Afundo | 3 (n2) | 3 (n2) | 3 (n2) | afundo-peso-corpo, bulgaro-peso-corpo, afundo-tras-peso-corpo |
+| Afundo | 3 (n2) | 3 (n2) | 3 (n2) | afundo-peso-corpo, afundo-tras-peso-corpo, bulgaro-peso-corpo |
 | Extensora | **0** | **0** | **0** | — |
 | Flexão de joelho | **1** (n4) | 2 (n4) | 2 (n4) | flexao-joelho-deslizante, nordico |
 | Dobrar o quadril | → flexao-joelho | → flexao-joelho | → flexao-joelho | — |
@@ -1508,7 +1508,7 @@ Mesmo programa: Só polia simples; Só banco regulável (inclina); Só banco ret
 | Tríceps acima da cabeça | **1** (n3) | **1** (n3) | **1** (n3) | extensao-triceps-peso-corpo |
 | Tríceps (complemento) | **1** (n3) | **1** (n3) | **1** (n3) | flexao-fechada |
 | Agachar | **1** (n3) | **1** (n3) | **1** (n3) | agachamento-peso-corpo |
-| Afundo | 3 (n2) | 3 (n2) | 3 (n2) | afundo-peso-corpo, bulgaro-peso-corpo, afundo-tras-peso-corpo |
+| Afundo | 3 (n2) | 3 (n2) | 3 (n2) | afundo-peso-corpo, afundo-tras-peso-corpo, bulgaro-peso-corpo |
 | Extensora | **0** | **0** | **0** | — |
 | Flexão de joelho | **1** (n4) | 2 (n4) | 2 (n4) | flexao-joelho-deslizante, nordico |
 | Dobrar o quadril | → flexao-joelho | → flexao-joelho | → flexao-joelho | — |
@@ -1536,7 +1536,7 @@ Mesmo programa: Só polia simples; Só banco regulável (inclina); Só banco ret
 | Tríceps acima da cabeça | **1** (n2) | **1** (n2) | **1** (n2) | triceps-suspensao |
 | Tríceps (complemento) | **1** (n2) | **1** (n2) | **1** (n2) | triceps-suspensao |
 | Agachar | **1** (n3) | **1** (n3) | **1** (n3) | agachamento-peso-corpo |
-| Afundo | 3 (n2) | 4 (n2) | 4 (n2) | afundo-peso-corpo, bulgaro-peso-corpo, bulgaro-suspensao, afundo-tras-peso-corpo |
+| Afundo | 3 (n2) | 4 (n2) | 4 (n2) | afundo-peso-corpo, afundo-tras-peso-corpo, bulgaro-peso-corpo, bulgaro-suspensao |
 | Extensora | **0** | **0** | **0** | — |
 | Flexão de joelho | 2 (n4) | 3 (n4) | 3 (n4) | flexao-joelho-deslizante, nordico, flexao-joelho-suspensao |
 | Dobrar o quadril | → flexao-joelho | → flexao-joelho | → flexao-joelho | — |
@@ -1564,7 +1564,7 @@ Mesmo programa: Só polia simples; Só banco regulável (inclina); Só banco ret
 | Tríceps acima da cabeça | **1** (n3) | **1** (n3) | **1** (n3) | extensao-triceps-peso-corpo |
 | Tríceps (complemento) | **1** | **1** | **1** | triceps-maquina |
 | Agachar | **1** (n3) | **1** (n3) | **1** (n3) | agachamento-peso-corpo |
-| Afundo | 3 (n2) | 3 (n2) | 3 (n2) | afundo-peso-corpo, bulgaro-peso-corpo, afundo-tras-peso-corpo |
+| Afundo | 3 (n2) | 3 (n2) | 3 (n2) | afundo-peso-corpo, afundo-tras-peso-corpo, bulgaro-peso-corpo |
 | Extensora | **0** | **0** | **0** | — |
 | Flexão de joelho | **1** (n4) | 2 (n4) | 2 (n4) | flexao-joelho-deslizante, nordico |
 | Dobrar o quadril | → flexao-joelho | → flexao-joelho | → flexao-joelho | — |
@@ -1592,7 +1592,7 @@ Mesmo programa: Só polia simples; Só banco regulável (inclina); Só banco ret
 | Tríceps acima da cabeça | **1** (n3) | **1** (n3) | **1** (n3) | extensao-triceps-peso-corpo |
 | Tríceps (complemento) | **1** (n3) | **1** (n3) | **1** (n3) | flexao-fechada |
 | Agachar | **1** (n3) | **1** (n3) | **1** (n3) | agachamento-peso-corpo |
-| Afundo | 3 (n2) | 3 (n2) | 3 (n2) | afundo-peso-corpo, bulgaro-peso-corpo, afundo-tras-peso-corpo |
+| Afundo | 3 (n2) | 3 (n2) | 3 (n2) | afundo-peso-corpo, afundo-tras-peso-corpo, bulgaro-peso-corpo |
 | Extensora | **0** | **0** | **0** | — |
 | Flexão de joelho | **1** (n4) | 2 (n4) | 2 (n4) | flexao-joelho-deslizante, nordico |
 | Dobrar o quadril | → flexao-joelho | → flexao-joelho | → flexao-joelho | — |

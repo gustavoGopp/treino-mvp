@@ -161,7 +161,8 @@ Outro efeito real, do ajuste dos testes unitários: **para o Bruno, a sugestão 
 | `npm run check` | limpo (979 testes; 23 novos em `tests/unit/escolha-do-exercicio.test.ts`) |
 | Protótipo de conferência = app | 0 programas diferentes em 23.470 |
 | A simulação de meses | refeita: idêntica (o pacote não mexe na progressão) |
-| `npm run test:e2e` e `npm run auditoria:verificar` | ver o fim deste arquivo |
+| `npm run test:e2e` | limpo (158 testes; 10 ajustados e 1 novo, seção 7) |
+| A auditoria oficial em duas rodadas | limpa: 39 arquivos idênticos nas duas rodadas e nenhum defeito acima da linha de base da régua. Rodada com os mesmos passos de `npm run auditoria:verificar`, um por vez e com os hashes de cada rodada guardados, porque o processo da sessão reiniciou duas vezes no meio da rodada única |
 | `src/engine/`, telas, `api/`, `CLAUDE.md` | sem mudança |
 | `src/styles.css` | uma regra (`.m-num`), com autorização do Gustavo (seção 7) |
 

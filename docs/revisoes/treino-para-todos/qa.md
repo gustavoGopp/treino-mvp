@@ -439,7 +439,7 @@ Arquivos: [`medidas/main-com-a-regua-de-14-11/retrato.md`](medidas/main-com-a-re
 | O pior grupo melhor do que era | cumprido: os treinos de 30 min, de 72,9% para 73,4% (na `main` o pior era a dor forte no cotovelo, 50,0%; hoje 75,1%) |
 | Revisão cega com nenhuma pessoa pior e as notas médias maiores | notas médias maiores (5,94 · 6,31 · 5,75 → 6,06 · 6,61 · 5,97, em 12 pessoas, contra o pacote 3); seis sobem, quatro iguais, **duas caem 0,3** (uma nota de um revisor). A 1ª rodada achou duas pessoas piores com a regra dos dois lados na versão larga; a regra foi estreitada e a revisão refeita. Detalhes em [`pacote-2.md`](pacote-2.md), seção 5 |
 | Toda regra com selo, fonte e teste | `selecao.funcao-da-vaga` (duas partes), `selecao.lombar-no-dia` (nova) e `volume.prioridade.foco-primeiro` em `regras.md`; `tests/unit/escolha-do-exercicio.test.ts` (23 testes) |
-| `npm run check`, `npm run test:e2e`, `npm run auditoria:verificar` | ver [`pacote-2.md`](pacote-2.md), seção 8 |
+| `npm run check`, `npm run test:e2e`, `npm run auditoria:verificar` | `check` limpo (979 testes), `test:e2e` limpo (158; dez ajustados com autorização do Gustavo e um novo) e a auditoria em duas rodadas limpa (39 arquivos idênticos; nenhum defeito acima da linha de base da régua). Uma regra de `src/styles.css` mudou, com autorização (o número da tela da semana no zoom de 200%); detalhes em [`pacote-2.md`](pacote-2.md), seções 7 e 8 |
 
 ### A régua oficial e os 20 cuidados, na população inteira (main, com a régua de agora → ramo, com os pacotes 1, 0, 3 e 2)
 
