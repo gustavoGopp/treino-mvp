@@ -225,7 +225,8 @@ test('escolher uma opção calculada gera o programa de novo com o novo perfil',
   await ana(page, { minutos: '40' });
   // Os ajustes entram na linha de aviso (um por vez); nenhuma opção vem escolhida.
   await expect(page.getByRole('tab', { name: 'Corpo todo A', exact: true })).toBeVisible();
-  await expect(page.locator('.aviso-linha')).toContainText('Dá para ajustar.');
+  await expect(page.locator('.aviso-linha')).toContainText(/abaixo da meta\.|passa do tempo\./);
+  await expect(page.locator('.aviso-linha').getByRole('button', { name: 'Ajustar', exact: true })).toBeVisible();
   let avisos = await verAvisos(page);
   await avisos.getByRole('region', { name: 'Ajustes possíveis' }).getByRole('button', { name: /^4 treinos de 40 min/ }).click();
   await expect(page.getByRole('status')).toContainText('4 treinos de 40 min');
@@ -235,7 +236,7 @@ test('escolher uma opção calculada gera o programa de novo com o novo perfil',
   await expect(page.getByRole('tab', { name: 'Superior A', exact: true })).toBeVisible();
 
   // "Manter" tira o aviso da tela; dá para reabrir em "Sobre o programa".
-  if (await page.locator('.aviso-linha').filter({ hasText: 'Dá para ajustar.' }).isVisible()) {
+  if (await page.locator('.aviso-linha').filter({ hasText: /abaixo da meta\.|passa do tempo\./ }).isVisible()) {
     avisos = await verAvisos(page);
     await avisos.getByRole('button', { name: /^Manter/ }).click();
     await expect(page.locator('.aviso-linha')).toHaveCount(0);
@@ -362,8 +363,9 @@ test('catálogo do R0c: equipamento novo sem desenho, estações do multifuncion
   const cartao = await abrirExercicio(page, /Agachamento no hack/);
   await expect(cartao.getByText('Montagem segura')).toBeVisible();
   await expect(cartao.getByText(/Solte a trava de segurança/)).toBeVisible();
-  // As alternativas mostram 3 e guardam o resto em "ver mais".
-  await expect(cartao.getByText(/^Ver mais \d+ opç/)).toBeVisible();
+  // sessão de textos (16/11/2026): as alternativas ficam a um toque, todas de uma vez (antes: 3 à vista e "ver mais")
+  await expect(cartao.locator('summary', { hasText: /^Alternativas \(\d+\)$/ })).toBeVisible();
+  await expect(cartao.getByText(/^Ver mais \d+ opç/)).toHaveCount(0);
   await cartao.getByRole('button', { name: 'Fechar' }).click();
   // A extensora vem da estação do multifuncional (no dia B).
   await page.getByRole('tab', { name: 'Corpo todo B', exact: true }).click();

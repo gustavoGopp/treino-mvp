@@ -97,7 +97,7 @@ test('volta depois de 22 dias: a mensagem sem culpa, menos séries e a carga 10%
   await expect(porque).toContainText('Faz 22 dias do último treino. Estas 2 semanas vão mais leves, para o corpo se readaptar sem dor. O músculo não some em 3 semanas.');
   await expect(porque).toContainText('A carga começa 10% abaixo da última vez e já vem preenchida.');
   await page.keyboard.press('Escape');
-  await expect((await sobreOPrograma(page)).getByText(/Você está na semana 1\. Cerca de metade das séries, RIR 3–4 e carga 10% abaixo da última vez/)).toBeVisible();
+  await expect((await sobreOPrograma(page)).getByText(/Semana 1\. Cerca de metade das séries, RIR 3–4 e carga 10% abaixo da última vez/)).toBeVisible();
   await page.keyboard.press('Escape');
 
   await page.getByRole('button', { name: 'Começar o treino Corpo todo A' }).click();
@@ -252,7 +252,7 @@ test('com o sinal, recebe a sugestão da semana leve: o toque "hoje foi" no fim 
 
   // No Seu treino, a semana leve já vale: metade das séries e RIR 3–4.
   await page.getByRole('link', { name: 'Voltar ao início' }).click();
-  await expect((await sobreOPrograma(page)).getByText(/Você está na semana \d\. Semana leve: cerca de metade das séries/)).toBeVisible();
+  await expect((await sobreOPrograma(page)).getByText(/Semana \d\. Semana leve: cerca de metade das séries/)).toBeVisible();
   await page.keyboard.press('Escape');
   // a semana leve ativa é o aviso do dia, em 1 linha; "Voltar ao normal" fica na folha
   await expect(page.locator('.aviso-linha')).toContainText(/^Semana leve até /);

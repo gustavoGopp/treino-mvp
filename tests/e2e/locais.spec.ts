@@ -41,6 +41,9 @@ test('cadastra o 2º local, escolhe onde treinar hoje, vê a troca explicada e c
   await expect(onde.getByRole('button', { name: 'Meu local' })).toHaveAttribute('aria-pressed', 'true');
   await onde.getByRole('button', { name: 'Academia' }).click();
   await expect(onde.getByRole('button', { name: 'Academia' })).toHaveAttribute('aria-pressed', 'true');
+  // sessão de textos (16/11/2026): a lista das trocas fica a um toque (a lista do dia, logo abaixo, já mostra os exercícios)
+  await expect(onde).toContainText('Em Academia: o treino muda.');
+  await onde.locator('summary', { hasText: /^\d+ trocas?$/ }).click();
   const trocas = page.getByRole('list', { name: 'Trocas em Academia' });
   await expect(trocas).toContainText('Aqui não tem halteres: agachamento búlgaro com apoio → leg press.');
   await onde.scrollIntoViewIfNeeded();
@@ -83,8 +86,8 @@ test('"prefiro este" nas alternativas: um toque marca, outro desfaz, e o program
   const nome = (await prefiro.innerText()).replace(/^Prefiro /, '');
   await prefiro.click();
   await expect(cartao.getByRole('button', { name: `Você prefere ${nome} · desfazer` })).toHaveAttribute('aria-pressed', 'true');
-  await expect(page.getByText('Há uma versão nova do seu programa.')).toBeVisible();
+  await expect(page.getByText('Versão nova do programa.')).toBeVisible();
   await cartao.getByRole('button', { name: `Você prefere ${nome} · desfazer` }).click();
   await expect(cartao.getByRole('button', { name: `Prefiro ${nome}` })).toHaveAttribute('aria-pressed', 'false');
-  await expect(page.getByText('Há uma versão nova do seu programa.')).toHaveCount(0);
+  await expect(page.getByText('Versão nova do programa.')).toHaveCount(0);
 });

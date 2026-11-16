@@ -588,11 +588,13 @@ img.icone-eq{display:block;flex:none;object-fit:contain;background:#F6F6F4;borde
 .aviso-linha p{flex:1 1 9rem;margin:0;font-size:var(--t-apoio);color:var(--texto-2);text-wrap:balance}
 .aviso-linha .btn{flex:0 0 auto;width:auto}
 /* os dias do programa: blocos lado a lado; o que está aberto inverte */
-.abas{display:grid;grid-auto-flow:column;grid-auto-columns:1fr;gap:var(--s8)}
-.abas [role="tab"]{display:flex;flex-direction:column;align-items:flex-start;justify-content:center;gap:var(--s4);min-width:0;min-height:var(--h64);padding:var(--s8) var(--s16);border-radius:var(--r8);border:0;background:var(--superficie-2);line-height:1.1;cursor:pointer;color:var(--texto);white-space:normal;text-align:left}
+/* cada aba tem no mínimo a largura do nome; com 4 ou 5 dias elas passam para a linha de baixo, em vez de cortar
+   "Superior" em "Supe" ou de esconder um dia fora da tela */
+.abas{display:flex;flex-wrap:wrap;gap:var(--s8)}
+.abas [role="tab"]{flex:1 1 auto;display:flex;flex-direction:column;align-items:flex-start;justify-content:center;gap:var(--s4);min-height:var(--h48);padding:var(--s8) var(--s16);border-radius:var(--r8);border:0;background:var(--superficie-2);line-height:1.1;cursor:pointer;color:var(--texto);white-space:nowrap;text-align:left}
 .abas [role="tab"] b{font-size:var(--t-pergunta);font-weight:700}
-.abas [role="tab"] small{font-size:var(--t-rotulo);font-weight:600;color:var(--texto-2)}
-.abas [role="tab"][aria-selected="true"] small{color:inherit;opacity:.8}
+/* a folha só dos ajustes já tem "Ajustes possíveis" no título: o do bloco fica para o leitor de tela */
+.so-um .ajustes > h2{display:none}
 .abas [role="tab"][aria-selected="true"]{background:var(--acao);color:var(--sobre-acao)}
 .painel-dia{display:flex;flex-direction:column;gap:0}
 .cartoes-ex{counter-reset:ex}

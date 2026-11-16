@@ -156,9 +156,12 @@ export async function abrirExercicio(page: Page, nome: string | RegExp) {
   await page.getByRole('tabpanel').getByRole('button', { name: nome }).first().click();
   await folhaPronta(page);
   const folha = page.getByRole('dialog').last();
-  // estudo dos textos (13/11/2026): os motivos ficam a um toque, num bloco que abre no lugar
-  const porque = folha.locator('summary', { hasText: /^Por que este exercício/ });
-  if (await porque.count()) await porque.click();
+  // estudo dos textos (13/11/2026): os motivos ficam a um toque, num bloco que abre no lugar; sessão de textos
+  // (16/11/2026): as alternativas e o "prefiro este" também
+  for (const rotulo of [/^Alternativas \(\d+\)$/, /^Por que este exercício/]) {
+    const bloco = folha.locator('summary', { hasText: rotulo });
+    if (await bloco.count()) await bloco.click();
+  }
   return folha;
 }
 /** Abre "Sobre o programa" (o resumo, a fase, os avisos do programa e o porquê) e devolve a folha. */
@@ -180,9 +183,10 @@ export async function abrirBloco(onde: Page | Locator, rotulo: RegExp | string) 
 }
 /** Abre a folha dos avisos pelo "Ver" (ou "Mais N avisos") da linha do aviso e devolve a folha. */
 export async function verAvisos(page: Page) {
-  await page.locator('.aviso-linha').getByRole('button', { name: /^(Ver|Mais \d+ avisos?)$/ }).click();
+  await page.locator('.aviso-linha').getByRole('button', { name: /^(Ver|Ajustar|Mais \d+ avisos?)$/ }).click();
   await folhaPronta(page);
-  return page.getByRole('dialog', { name: 'Avisos' });
+  // com um bloco só (os ajustes), o título da folha é o do bloco
+  return page.getByRole('dialog', { name: /^(Avisos|Ajustes possíveis)$/ });
 }
 
 // Equipamento (redesign, lote 3): o lugar primeiro; "Item por item" abre os marcados, a busca, as categorias e a grade.

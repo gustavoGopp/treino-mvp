@@ -29,9 +29,12 @@ test('a folha do exercício sem animação traz a montagem segura aberta, o porq
   const folha = page.getByRole('dialog', { name: /Barra fixa só na descida/ });
   await expect(folha.getByText('Montagem segura')).toBeVisible();
   // estudo dos textos (13/11/2026): os motivos ficam a um toque, com a contagem no rótulo
-  const porque = folha.locator('details', { hasText: /^Por que este exercício \(\d+ motivos?\)/ });
+  const porque = folha.locator('details', { hasText: /^Por que este exercício \(\d+\)/ });
   await porque.locator('summary').click();
   await expect(porque.locator('.selo').first()).toBeVisible();
+  // sessão de textos (16/11/2026): as alternativas ficam a um toque
+  await expect(folha.getByText(/^Se o equipamento estiver ocupado/)).toBeHidden();
+  await folha.locator('summary', { hasText: /^Alternativas \(\d+\)$/ }).click();
   await expect(folha.getByText(/^Se o equipamento estiver ocupado/)).toBeVisible();
   await page.keyboard.press('Escape');
   await expect(folha).toBeHidden();

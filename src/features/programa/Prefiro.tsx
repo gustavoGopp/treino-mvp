@@ -59,7 +59,7 @@ export function Preferencias({
   return (
     <div className="preferencias">
       <p className="ajuda">
-        Prefere algum destes? Vale no próximo programa e nas trocas de local; a dor sempre manda. <Selo id="selecao.preferencia" />
+        Prefere algum? Vale nos próximos programas; a dor sempre manda. <Selo id="selecao.preferencia" />
       </p>
       {eq.map((id) => (
         <BotaoPrefiro key={id} funcao={funcao} id={id} atual={atual} alternativas={alternativas} preferidos={preferidos} aoPreferir={aoPreferir} />

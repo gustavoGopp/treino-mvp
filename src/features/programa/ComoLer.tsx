@@ -10,44 +10,43 @@ export function ComoLer({ iniciante }: { iniciante: boolean }) {
       <dl>
         <div>
           <dt>Série</dt>
-          <dd>Um bloco de repetições feitas em seguida, sem parar. “3 × 8–12” quer dizer 3 séries de 8 a 12 repetições.</dd>
+          <dd>Repetições seguidas, sem parar. “3 × 8–12”: 3 séries de 8 a 12 repetições.</dd>
         </div>
         <div>
           <dt>Repetição</dt>
-          <dd>Um movimento completo, ida e volta (descer e subir, por exemplo).</dd>
+          <dd>Um movimento completo, ida e volta.</dd>
         </div>
         <div>
           <dt>Carga</dt>
           <dd>
-            O peso que você usa: o halter, as anilhas, a placa do aparelho. Na 1ª vez de um exercício, o app ajusta a carga série a série
-            pelo que você registra. <Selo id="progressao.calibracao" />
+            O peso que você usa. Na 1ª vez de um exercício, o app acerta a carga série a série. <Selo id="progressao.calibracao" />
           </dd>
         </div>
         <div>
           <dt>Descanso</dt>
           <dd>
-            A pausa entre uma série e a próxima. O temporizador conta para você. <Selo id="descanso.por-tipo" />
+            A pausa entre as séries. O relógio conta para você. <Selo id="descanso.por-tipo" />
           </dd>
         </div>
         <div>
           <dt>RIR</dt>
           <dd>
-            “Repetições na reserva”: quantas repetições ainda sobravam quando você parou. RIR 2 quer dizer que dava para fazer mais 2. No
-            começo, quase todo mundo erra por cerca de 1, e tudo bem. <Selo id="rir.leitura" />
+            Quantas repetições ainda sobravam quando você parou. RIR 2: dava para fazer mais 2. Errar por 1 no começo é normal.{' '}
+            <Selo id="rir.leitura" />
           </dd>
         </div>
         {iniciante && (
           <div>
             <dt>As primeiras semanas</dt>
             <dd>
-              Nas 2 a 3 primeiras semanas, o foco é aprender o movimento, com mais folga (RIR 3–4) e menos séries.{' '}
+              Nas 2 a 3 primeiras, o foco é aprender: mais folga (RIR 3–4) e menos séries.{' '}
               <Selo id="iniciante.fase-aprendizado" />
             </dd>
           </div>
         )}
       </dl>
       <p className="ajuda">
-        São os termos de sempre do treino de força. <Selo id="treino.leitura" />
+        Termos comuns do treino de força. <Selo id="treino.leitura" />
       </p>
     </details>
   );

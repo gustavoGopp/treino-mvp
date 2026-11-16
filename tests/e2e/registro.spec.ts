@@ -136,7 +136,7 @@ test('apagar o último treino, com confirmação, volta a rotação ao dia dele'
   await expect(page.getByRole('button', { name: `Começar o treino ${dia}` })).toBeVisible();
 });
 
-// R5a, a checagem lateral (proximos-passos.md, 2.6): a faixa "Há uma versão nova do seu programa" que a frente C e o
+// R5a, a checagem lateral (proximos-passos.md, 2.6): a faixa "Versão nova do programa" que a frente C e o
 // redesign viram no Bruno e na Carla vinha do estado semeado sem passar pelo esquema do app (a ordem das chaves do
 // inventário muda o `entradasHash`). Com o inventário lido pelo esquema, ela não aparece; e quem faz o cadastro pela tela
 // também não a vê, nem depois de recarregar (o app relê tudo pelo esquema).
@@ -144,14 +144,33 @@ for (const nome of NOMES)
   test(`${nome}: o estado semeado pelo esquema do app não mostra "versão nova"`, async ({ page }) => {
     await semear(page, estadoDaPersona(nome));
     await expect(page.getByRole('button', { name: /^Começar o treino / })).toBeVisible();
-    await expect(page.getByText('Há uma versão nova do seu programa.')).toHaveCount(0);
+    await expect(page.getByText('Versão nova do programa.')).toHaveCount(0);
+  });
+
+// Sessão de textos (16/11/2026): com 4 ou 5 dias, as abas cortavam o nome do dia ("Supe", "Inferic", "Empu"); a persona
+// dos outros testes tem 3 dias e não mostrava o defeito. Vale para as 6 personas: todo nome inteiro, toda aba na tela.
+for (const nome of NOMES)
+  test(`${nome}: as abas dos dias mostram o nome inteiro de cada dia, todas dentro da tela`, async ({ page }) => {
+    await semear(page, estadoDaPersona(nome));
+    const abas = page.getByRole('tab');
+    await expect(abas.first()).toBeVisible();
+    const cortadas = await abas.evaluateAll((els) =>
+      els
+        .filter((e) => {
+          const aba = e.getBoundingClientRect();
+          const texto = e.querySelector('b')!.getBoundingClientRect();
+          return texto.right > aba.right + 0.5 || texto.left < aba.left - 0.5 || aba.right > window.innerWidth || aba.left < 0 || e.scrollWidth > e.clientWidth + 1;
+        })
+        .map((e) => e.textContent),
+    );
+    expect(cortadas, 'abas com o nome cortado ou fora da tela').toEqual([]);
   });
 
 test('o cadastro pela tela não mostra "versão nova", nem depois de recarregar', async ({ page }) => {
   await ana(page);
-  await expect(page.getByText('Há uma versão nova do seu programa.')).toHaveCount(0);
+  await expect(page.getByText('Versão nova do programa.')).toHaveCount(0);
   await page.reload();
   await expect(page.getByRole('heading', { name: 'Seu treino', exact: true })).toBeVisible();
-  await expect(page.getByText('Há uma versão nova do seu programa.')).toHaveCount(0);
+  await expect(page.getByText('Versão nova do programa.')).toHaveCount(0);
 });
 
