@@ -34,3 +34,4 @@ export { REGRAS_ROSCA_SCOTT } from './rosca-scott';
 export { REGRAS_CRUCIFIXOS } from './crucifixos';
 export { REGRAS_TRICEPS_ELASTICO_ALTO } from './triceps-elastico-alto';
 export { REGRAS_ELEVACAO_UNILATERAL_ELASTICO } from './elevacao-lateral-unilateral-elastico';
+export { REGRAS_ABERTURA_ELASTICO } from './abertura-elastico';
