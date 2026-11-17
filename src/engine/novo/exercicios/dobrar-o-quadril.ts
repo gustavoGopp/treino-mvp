@@ -45,6 +45,11 @@ export interface PedidoDoStiff {
    * equilíbrio: o quadril fica parado enquanto só os braços se mexem (as elevações laterais). Só com os dois pés no chão.
    */
   alfa?: number;
+  /**
+   * Inclinação da coluna para a esquerda (graus; metade na lombar, metade na torácica), com a bacia parada: o erro
+   * "inclinar para o lado" dos desenvolvimentos de um braço (acréscimo de 17/11/2026; sem ele, nada muda).
+   */
+  lado?: number;
   /** A perna livre (só com apoio 'R'), dado o tronco. */
   pernaLivre?(t: Tronco): PosePerna;
   /** Os braços e a carga, dado o esqueleto com o tronco e as pernas já no lugar (os braços ainda pendurados). */
@@ -197,7 +202,7 @@ export function dobrarOQuadril(corpo: Corpo, p: PedidoDoStiff): Dobrado {
     const plano = Math.sqrt(Math.max(1, d * d - (hx - torn[0]) ** 2));
     const quadril: V3 = [hx, torn[1] + plano * Math.cos(alfa * rad), torn[2] - plano * Math.sin(alfa * rad)];
     const pelve = add(quadril, mul(xDaPelve, hq));
-    const t = resolverTronco(corpo, { pelve, ...giros, lombar: p.lombar, toracica: p.toracica, cervical: p.cervical, cabeca: p.cabeca });
+    const t = resolverTronco(corpo, { pelve, ...giros, lombar: p.lombar, toracica: p.toracica, cervical: p.cervical, cabeca: p.cabeca, ...(p.lado ? { lombarLado: p.lado / 2, toracicaLado: p.lado / 2 } : {}) });
     const pernas = { R: pe(-1), L: p.apoio === 'R' && p.pernaLivre ? p.pernaLivre(t) : pe(1) };
     // braços pendurados, para achar os ombros; depois as mãos onde a variação pede (duas passadas: a elevação do
     // braço move a clavícula e o ombro)

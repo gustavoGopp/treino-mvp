@@ -9,7 +9,10 @@
 //  - o corpo em pé (kettlebell): o núcleo dos stiffs (./dobrar-o-quadril.ts), com o quadril parado no ângulo do
 //    equilíbrio do meio da subida (o tronco não se mexe) e a outra mão na cintura;
 //  - o kettlebell em posição de rack: a mão segura a alça, e a bola apoia no dorso do antebraço, do lado de fora; o
-//    ângulo da bola sai do encosto no antebraço (`resolver1`).
+//    ângulo da bola sai do encosto no antebraço (`resolver1`);
+//  - em pé com halteres (acréscimo de 17/11/2026): o corpo em pé do kettlebell, com um halter em cada mão
+//    ('halteres-em-pe') ou um halter só na mão direita e a outra mão na cintura ('halter'), as palmas para a frente e
+//    o cabo atravessado, como no sentado. O erro "inclinar para o lado" ('lado') dobra a coluna para a esquerda.
 import { pontosDoBoneco } from '../boneco';
 import { formaDoKettlebell } from '../equipamento';
 import { LADOS, resolverMembros, resolverTronco, sinal } from '../esqueleto';
@@ -33,7 +36,11 @@ const rad = Math.PI / 180;
  * 'elastico': em pé, um pegador do elástico em cada mão (palmas para a frente), os dois braços sobem, sem carga no
  * equilíbrio; o quadro sai só com o corpo e o chão (o elástico, que vai das mãos aos pés, é a variação que desenha).
  */
-export type CargaDoDesenvolvimento = 'halteres-sentado' | 'kettlebell' | 'elastico';
+/**
+ * 'halteres-em-pe': em pé, um halter em cada mão; 'halter': em pé, um halter só, na mão direita, e a outra mão na
+ * cintura.
+ */
+export type CargaDoDesenvolvimento = 'halteres-sentado' | 'kettlebell' | 'elastico' | 'halteres-em-pe' | 'halter';
 
 /** A direção do úmero (s = −1 direita, +1 esquerda): `el` graus acima da horizontal, o cotovelo `frente` graus à frente do plano do corpo. */
 export function umeroNa(el: number, frente: number, s: number): V3 {
@@ -47,6 +54,8 @@ export function criarDesenvolvimento(fichaJson: unknown, carga: CargaDoDesenvolv
   const f = daFicha(F);
   const sentado = carga === 'halteres-sentado';
   const elastico = carga === 'elastico';
+  /** Halteres em pé (dois, ou um só na mão direita). */
+  const emPeComHalter = carga === 'halteres-em-pe' || carga === 'halter';
 
   /* ------------------------------ o braço ------------------------------ */
   interface Braco {
@@ -66,7 +75,7 @@ export function criarDesenvolvimento(fichaJson: unknown, carga: CargaDoDesenvolv
     // para onde o cotovelo aponta: para fora da linha do ombro ao punho (do lado em que o cotovelo está)
     const op = norm(sub(punho, ombro));
     const polo = norm(sub(sub(cot, ombro), mul(op, dot(sub(cot, ombro), op))));
-    if (sentado) {
+    if (sentado || emPeComHalter) {
       // halteres: palmas para a frente, o cabo atravessado (o polegar para dentro)
       return { umero, antebraco: [0, 1, 0], polo, mao: { polegar: [-s, 0, 0], forma: 'pegada', diam: obj('halter', 'caboDiam') } };
     }
@@ -161,11 +170,13 @@ export function criarDesenvolvimento(fichaJson: unknown, carga: CargaDoDesenvolv
     frente: number;
     joelho: number;
     alfa?: number;
+    /** Inclinação da coluna para a esquerda (graus; o erro "inclinar para o lado"). */
+    lado?: number;
   }
   function pedido(u: number, erro?: string): Pedido {
     const de = erro === 'curta' ? f('erro.curta.elevacao') : f('braco.baixo.elevacao');
     const p: Pedido = {
-      braco: { el: mix(de, f('braco.topo.elevacao'), u), frente: mix(f('braco.baixo.frente'), f('braco.topo.frente'), u), punho: 0, giro: sentado || elastico ? 0 : mix(f('mao.giro.baixo'), f('mao.giro.topo'), u) },
+      braco: { el: mix(de, f('braco.topo.elevacao'), u), frente: mix(f('braco.baixo.frente'), f('braco.topo.frente'), u), punho: 0, giro: carga === 'kettlebell' ? mix(f('mao.giro.baixo'), f('mao.giro.topo'), u) : 0 },
       lombar: 0,
       toracica: 0,
       frente: f('bacia'),
@@ -184,6 +195,8 @@ export function criarDesenvolvimento(fichaJson: unknown, carga: CargaDoDesenvolv
       p.frente = f('bacia') + mix(f('erro.jogar.bacia'), 0, u);
     }
     if (erro === 'punho') p.braco.punho = f('erro.punho') * (1 - u);
+    // a coluna dobra para o lado de fora do braço que empurra (a esquerda) enquanto a carga sobe
+    if (erro === 'lado') p.lado = f('erro.lado.tronco') * u;
     return p;
   }
 
@@ -199,9 +212,13 @@ export function criarDesenvolvimento(fichaJson: unknown, carga: CargaDoDesenvolv
       pesMeiaDistancia: f('pes.meiaDistancia'),
       apoio: 'dois',
       alfa: o.alfa,
+      ...(o.lado ? { lado: o.lado } : {}),
       bracos(e) {
         const R = braco(corpo, e, 'R', o.braco);
         if (elastico) return { R, L: braco(corpo, e, 'L', o.braco), cargas: [] };
+        const halter = obj('halter', 'massa');
+        if (carga === 'halteres-em-pe') return { R, L: braco(corpo, e, 'L', o.braco), cargas: [{ massa: halter, pos: e.lado.R.pegada }, { massa: halter, pos: e.lado.L.pegada }] };
+        if (carga === 'halter') return { R, L: maosNaCintura(e, 'L', f('maoLivre.acima')), cargas: [{ massa: halter, pos: e.lado.R.pegada }] };
         // a carga no equilíbrio: a bola do kettlebell, com o braço da passada anterior (na calibração, antes de se saber
         // o ângulo da bola, a carga fica na mão)
         const beta = BETA.get(corpo);
@@ -219,7 +236,7 @@ export function criarDesenvolvimento(fichaJson: unknown, carga: CargaDoDesenvolv
   function calibrarEmPe(corpo: Corpo): number {
     const ja = ALFA.get(corpo);
     if (ja !== undefined) return ja;
-    if (!elastico) {
+    if (carga === 'kettlebell') {
       const alfa0 = emPe(corpo, pedido(0.5)).alfa;
       const e0 = emPe(corpo, { ...pedido(0), alfa: alfa0 }).e;
       BETA.set(corpo, resolver1((b) => folgaNoAntebraco(e0, b) - f('kettlebell.folga'), 20, 89, 24));
@@ -267,6 +284,19 @@ export function criarDesenvolvimento(fichaJson: unknown, carga: CargaDoDesenvolv
     }
     if (elastico) {
       q.marcas = { mao: e.lado.R.pegada };
+      return q;
+    }
+    if (emPeComHalter) {
+      // o halter na mão, com o cabo atravessado (de um lado ao outro), como no sentado
+      const pecas: Peca[] = [];
+      for (const k of carga === 'halter' ? (['R'] as const) : LADOS) {
+        const centro = e.lado[k].pegada,
+          eixo: V3 = [1, 0, 0];
+        q.prims.push(...halter(centro, eixo, 0.4));
+        pecas.push({ t: 'halter', centro, eixo });
+      }
+      q.pecas = pecas;
+      q.marcas = carga === 'halter' ? { halter: e.lado.R.pegada, maoDeApoio: e.lado.L.pegada } : { halter: e.lado.R.pegada };
       return q;
     }
     // o kettlebell: a bola encosta no antebraço (o ângulo sai do encosto, uma vez por corpo, na posição de baixo)

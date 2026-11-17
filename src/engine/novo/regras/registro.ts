@@ -40,3 +40,4 @@ export { REGRAS_QUATRO_APOIOS } from './quatro-apoios';
 export { REGRAS_TRICEPS_ELASTICO_ALTO } from './triceps-elastico-alto';
 export { REGRAS_ELEVACAO_UNILATERAL_ELASTICO } from './elevacao-lateral-unilateral-elastico';
 export { REGRAS_ABERTURA_ELASTICO } from './abertura-elastico';
+export { REGRAS_DESENVOLVIMENTOS_EM_PE } from './desenvolvimentos-em-pe';

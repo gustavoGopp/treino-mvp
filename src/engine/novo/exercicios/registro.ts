@@ -109,3 +109,4 @@ export { roscaMarteloElastico } from './rosca-martelo-elastico';
 export { tricepsElasticoAlto } from './triceps-elastico-alto';
 export { elevacaoLateralUnilateralElastico } from './elevacao-lateral-unilateral-elastico';
 export { aberturaElastico } from './abertura-elastico';
+export { desenvolvimentoUnilateral } from './desenvolvimento-unilateral';
