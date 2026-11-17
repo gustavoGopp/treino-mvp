@@ -260,6 +260,29 @@ export function conferir(ex: Exercicio, corpo: Corpo, qps = 60): Relatorio {
   // 3) contatos: o que a ficha declara preso não sai do lugar
   const pontos: Record<string, (e: Esq, k: Lado) => V3[]> = { pe: (e, k) => [e.lado[k].bola, e.lado[k].ponta], mao: (e, k) => [e.lado[k].punho], joelho: (e, k) => [e.lado[k].joelho], pelve: (e) => [e.pelve.o] };
   for (const c of F.contatos) {
+    // "pe.R:noChao": o pé que sai do chão e volta (a caminhada lateral) fica preso só enquanto apoia; em cada trecho
+    // seguido de quadros com a bola do pé no chão, ele não sai do lugar
+    if (c.endsWith(':noChao')) {
+      const k = c.slice(3, 4) as Lado;
+      const apoia = quadros.map((q) => q.esq.lado[k].bola[1] <= 0.05);
+      // começa a contar num quadro com o pé no ar, para o trecho que atravessa o fim do ciclo não ficar partido
+      const i0 = Math.max(0, apoia.indexOf(false));
+      let d = 0,
+        ref: V3[] | undefined;
+      for (let j = 0; j < n; j++) {
+        const i = (i0 + j) % n;
+        if (!apoia[i]) {
+          ref = undefined;
+          continue;
+        }
+        const ps = pontos.pe!(quadros[i]!.esq, k);
+        if (!ref) ref = ps;
+        d = Math.max(d, ...ps.map((p, x) => dist(p, ref![x]!)));
+      }
+      const parte = apoia.filter(Boolean).length / n;
+      add('Contatos', `preso no lugar enquanto apoia: ${c.slice(0, 4)}`, `no chão em ${f1(parte * 100)}% do ciclo; desloca no máximo ${f1(d)} cm enquanto apoia`, 'tolerância 0,1 cm', d <= 0.1 && parte > 0 ? 'ok' : 'falha');
+      continue;
+    }
     const [parte, lado] = c.split('.') as [string, Lado | undefined];
     const le = pontos[parte];
     if (!le) continue;

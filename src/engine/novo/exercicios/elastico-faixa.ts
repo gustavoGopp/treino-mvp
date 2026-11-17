@@ -27,6 +27,8 @@ export interface OpcoesDoFio {
   fatia?: number;
   /** Partes que o elástico não contorna perto das pontas (cm a partir de cada ponta), como a mão que o segura. */
   livreNasPontas?: number;
+  /** Só os pontos da pele que este filtro aceita (por exemplo, só os de uma perna); por omissão, todos os das `partes`. */
+  aceita?: (p: V3) => boolean;
 }
 
 /**
@@ -47,6 +49,7 @@ export function fioPorFora(e: Esq, a: V3, b: V3, o: OpcoesDoFio): V3[] {
   const P: [number, number][] = [[0, 0], [L, 0]];
   for (const x of pontosDoBoneco(e)) {
     if (!partes.has(x.parte)) continue;
+    if (o.aceita && !o.aceita(x.p)) continue;
     const r = sub(x.p, a);
     const s = dot(r, d);
     if (s <= livre || s >= L - livre) continue;

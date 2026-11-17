@@ -101,3 +101,7 @@ export { crucifixoInclinadoHalteres } from './crucifixo-inclinado-halteres';
 export { remadaCurvadaElastico } from './remada-curvada-elastico';
 export { remadaUnilateralElastico } from './remada-unilateral-elastico';
 export { abducaoElastico } from './abducao-elastico';
+export { abducaoDeitadoMiniBand } from './abducao-deitado-mini-band';
+export { extensaoJoelhoMiniBand } from './extensao-joelho-mini-band';
+export { caminhadaLateralMiniBand } from './caminhada-lateral-mini-band';
+export { coiceElastico } from './coice-elastico';

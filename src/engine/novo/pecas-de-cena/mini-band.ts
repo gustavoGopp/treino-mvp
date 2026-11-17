@@ -16,7 +16,7 @@ import type { PecaPropria } from '../pecas';
 import type { Material } from '../realista/base.mjs';
 import { mix } from '../realista/base.mjs';
 import { obj } from '../tabelas';
-import { add, cross, dist, dot, mul, norm, sub } from '../vec';
+import { add, cross, dist, dot, mul, norm, perp, sub } from '../vec';
 import type { V3 } from '../vec';
 
 const g = (id: string) => obj('miniBand', id);
@@ -45,6 +45,8 @@ export interface Laco {
   assenta: (Lado | undefined)[];
   /** As pernas, como bolas por dentro da pele: o que esconde a faixa de quem olha. */
   pernas: { c: V3; r: number; parte: 'coxa' | 'canela'; lado: Lado }[];
+  /** Em que parte da perna a faixa assenta (por omissão, nas coxas; `lacoNasCanelas`, nas canelas). */
+  parte?: 'coxa' | 'canela';
 }
 
 /** As pontas do eixo de uma parte da perna: a coxa do joelho ao quadril, a canela do joelho ao tornozelo. */
@@ -227,6 +229,117 @@ export function lacoNasCoxas(e: Esq, acima: number): Laco {
   };
 }
 
+/** A curva fechada e lisa que passa pelos pontos do espaço (Catmull-Rom), com `n` pontos por trecho. */
+function lisa3(pts: V3[], n: number): V3[] {
+  const out: V3[] = [];
+  const m = pts.length;
+  for (let i = 0; i < m; i++) {
+    const [p0, p1, p2, p3] = [pts[(i + m - 1) % m]!, pts[i]!, pts[(i + 1) % m]!, pts[(i + 2) % m]!];
+    for (let j = 0; j < n; j++) {
+      const t = j / n;
+      const c = (k: 0 | 1 | 2) => 0.5 * (2 * p1[k] + (p2[k] - p0[k]) * t + (2 * p0[k] - 5 * p1[k] + 4 * p2[k] - p3[k]) * t * t + (3 * p1[k] - p0[k] - 3 * p2[k] + p3[k]) * t * t * t);
+      out.push([c(0), c(1), c(2)]);
+    }
+  }
+  return out;
+}
+
+/**
+ * A faixa em volta das duas canelas, com o meio dela a `acima` cm do centro de cada tornozelo (a mini band "nos
+ * tornozelos"). Diferente das coxas, as duas canelas podem ficar longe de paralelas (uma perna estende e a outra fica
+ * no chão; deitado de lado, a de baixo dobrada): cada canela é cortada na perpendicular dela mesma, e a faixa é o
+ * fecho das duas seções visto no plano que passa pelos dois centros. Onde assenta numa canela, a faixa segue a pele
+ * dela, com a largura ao longo dela; entre as duas, vai reta, torcendo de uma direção à outra.
+ */
+export function lacoNasCanelas(e: Esq, acima: number): Laco {
+  const aneis = aneisDaPerna(e, 'canela');
+  const folga = g('esp') / 2;
+  const secao = (k: Lado) => {
+    const X = e.lado[k];
+    const ax = norm(sub(X.tornozelo, X.joelho));
+    const s = dist(X.joelho, X.tornozelo) - acima;
+    const A = aneis[k];
+    const d = (p: V3) => dot(sub(p, X.joelho), ax) - s;
+    const corte: V3[] = [];
+    for (let j = 0; j < 12; j++) {
+      // a linha da pele que corre ao longo da canela cruza o corte entre dois anéis vizinhos
+      let i = 0;
+      while (i < A.length - 2 && d(A[i + 1]![j]!) < 0) i++;
+      const a = A[i]![j]!,
+        b = A[i + 1]![j]!;
+      const t = (0 - d(a)) / (d(b) - d(a) || 1);
+      corte.push(add(a, mul(sub(b, a), t)));
+    }
+    return { c: add(X.joelho, mul(ax, s)), ax, pts: lisa3(corte, 6) };
+  };
+  const S = { R: secao('R'), L: secao('L') };
+  const meio = mul(add(S.R.c, S.L.c), 0.5);
+  // o plano da faixa: e1 do centro da direita para o da esquerda; o eixo médio das canelas, sem a parte ao longo de e1
+  const e1 = norm(sub(S.L.c, S.R.c));
+  const eixo = norm(perp(add(S.R.ax, S.L.ax), e1));
+  let e2 = cross(eixo, e1);
+  if (e2[1] < 0) e2 = mul(e2, -1);
+  const no2 = (p: V3): P2 => [dot(sub(p, meio), e1), dot(sub(p, meio), e2)];
+  const dono = new Map<P2, { k: Lado; p: V3 }>();
+  const todos: P2[] = [];
+  for (const k of ['R', 'L'] as const)
+    for (const p of S[k].pts) {
+      const q = no2(p);
+      dono.set(q, { k, p });
+      todos.push(q);
+    }
+  const H = fecho(todos);
+  const pts: V3[] = [],
+    larguras: V3[] = [],
+    assenta: (Lado | undefined)[] = [];
+  for (let j = 0; j < N; j++) {
+    const a = (2 * Math.PI * j) / N,
+      dx = Math.cos(a),
+      dy = Math.sin(a);
+    let r = 0,
+      ponto: V3 = meio,
+      ax: V3 = eixo,
+      onde: Lado | undefined;
+    for (let i = 0; i < H.length; i++) {
+      const p = H[i]!,
+        q = H[(i + 1) % H.length]!;
+      const ex = q[0] - p[0],
+        ey = q[1] - p[1];
+      const den = dx * ey - dy * ex;
+      if (Math.abs(den) < 1e-9) continue;
+      const t = (p[0] * ey - p[1] * ex) / den,
+        w = (p[0] * dy - p[1] * dx) / den;
+      if (t > r && w >= -1e-9 && w <= 1 + 1e-9) {
+        r = t;
+        const P = dono.get(p)!,
+          Q = dono.get(q)!;
+        ponto = add(P.p, mul(sub(Q.p, P.p), w));
+        ax = norm(add(mul(S[P.k].ax, 1 - w), mul(S[Q.k].ax, w)));
+        onde = P.k === Q.k ? P.k : undefined;
+      }
+    }
+    pts.push(add(ponto, add(mul(e1, folga * dx), mul(e2, folga * dy))));
+    larguras.push(ax);
+    assenta.push(onde);
+  }
+  let comp = 0;
+  for (let i = 0; i < N; i++) comp += dist(pts[i]!, pts[(i + 1) % N]!);
+  const estica = comp / g('comp');
+  const larg = g('larg') / Math.sqrt(Math.max(1, estica));
+  return {
+    pts,
+    bordas: [pts.map((p, i) => add(p, mul(larguras[i]!, -larg / 2))), pts.map((p, i) => add(p, mul(larguras[i]!, larg / 2)))],
+    eixo,
+    comp,
+    estica,
+    larg,
+    centros: { R: S.R.c, L: S.L.c },
+    assenta,
+    pernas: [...bolasDaPerna(e, 'coxa'), ...bolasDaPerna(e, 'canela')],
+    parte: 'canela',
+  };
+}
+
 /** A faixa ao longo da volta, assentada nas coxas, com a largura ao longo delas (estreita ao esticar). */
 export function miniBand(l: Laco): { prims: Prim[]; peca: PecaPropria } {
   const [frente, tras] = l.bordas;
@@ -248,7 +361,7 @@ export function miniBand(l: Laco): { prims: Prim[]; peca: PecaPropria } {
         /** Há uma perna entre o ponto e quem olha? (`menos`: a coxa em que o pedaço assenta não conta) */
         const escondido = (p: V3, menos?: Lado) =>
           l.pernas.some((b) => {
-            if (b.parte === 'coxa' && b.lado === menos) return false;
+            if (b.parte === (l.parte ?? 'coxa') && b.lado === menos) return false;
             const v = sub(b.c, p);
             const t = dot(v, olho);
             return t > 0 && dist(v, mul(olho, t)) < b.r * 0.94;
