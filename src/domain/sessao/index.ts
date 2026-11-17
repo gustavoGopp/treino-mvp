@@ -38,8 +38,10 @@ export type Sessao = {
   semana: number;
   inicio: string;
   fim?: string;
-  /** Encerrada por sinal de alerta cardiovascular (seguranca.alerta.cardiovascular). */
+  /** Encerrada por sinal de alerta: o cardiovascular (seguranca.alerta.cardiovascular) ou, com `alerta`, o que ele diz. */
   encerradaPorAlerta?: boolean;
+  /** Qual sinal encerrou o treino, quando não foi o cardiovascular (seguranca.alerta.musculoesqueletico: cauda equina). */
+  alerta?: 'cauda-equina';
   /** Local onde o treino foi feito (R1b); sem local = de antes do R1b, no 1º local. */
   localId?: string;
   exercicios: ExercicioFeito[];

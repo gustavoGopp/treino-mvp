@@ -1,5 +1,6 @@
 import { expect, test, type Page } from '@playwright/test';
 import { ana, abrirTrocar, maisOpcoes, marcarItem, proximoExercicio, terminarTreino, porQueDaSugestao } from './jornada';
+import { semToquePequeno } from './toque';
 
 // M5: treinar com o app. Persona fictícia Ana (halteres de 1 a 12 kg e banco reto).
 
@@ -172,6 +173,26 @@ test('dor no peito encerra o treino e orienta ligar para o SAMU', async ({ page 
   await page.getByRole('button', { name: 'Dor, pressão ou aperto no peito' }).click();
   await expect(page.getByRole('heading', { name: 'Treino encerrado por segurança' })).toBeVisible();
   await expect(page.getByRole('alert')).toContainText('192');
+});
+
+// seguranca.alerta.musculoesqueletico (17/11/2026): a regra dizia que os sinais de cauda equina pedem atendimento urgente,
+// e nenhuma tela os mostrava. Agora o "Senti algo" tem o sinal, em palavras simples, e ele encerra o treino.
+test('dormência entre as pernas ou descontrole da urina ou das fezes encerra o treino e manda a um pronto-socorro', async ({ page }) => {
+  await ana(page);
+  await comecar(page);
+  await page.getByRole('button', { name: 'Senti algo' }).click();
+  const encerra = page.getByRole('group', { name: 'Encerra o treino de hoje' });
+  await semToquePequeno(page);
+  await encerra.getByRole('button', { name: 'Dormência entre as pernas ou descontrole da urina ou das fezes' }).click();
+  await expect(page.getByRole('heading', { name: 'Treino encerrado por segurança' })).toBeVisible();
+  const alerta = page.getByRole('alert');
+  await expect(alerta).toContainText('atendimento urgente');
+  await expect(alerta).toContainText('procure um pronto-socorro agora');
+  // a orientação do coração (esperar o sintoma passar, SAMU) não aparece aqui
+  await expect(alerta).not.toContainText('Se o sintoma não passar');
+  // e o treino fica guardado como encerrado por esse sinal
+  await page.reload();
+  await expect(page.getByRole('alert')).toContainText('procure um pronto-socorro agora');
 });
 
 test('R1: aberto pelo treino, o guia do búlgaro mostra a prescrição da semana da Ana (RIR 3–4), não a da referência', async ({ page }) => {

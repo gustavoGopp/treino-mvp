@@ -1888,3 +1888,36 @@ Contando tudo o que cada medição colheu: 458 telas e 66.352 palavras antes; 42
 >
 > O que aprendi: explicar tudo em todo lugar é um jeito de não escolher o que importa em cada tela.
 
+## As regras em linguagem simples (17/11/2026)
+
+**Por quê.** A página "Entenda o treino" reuniu as 163 regras do app, mas mostrava o texto delas como foi escrito para quem desenvolve: em 91 havia siglas de etapa, nomes de arquivo e datas de decisão, e em muitas o texto era só um título, porque o que a regra faz estava num campo que a tela não mostrava. O Gustavo pediu as frases em linguagem simples.
+
+**Como foi feito.** Cada regra ganhou um título curto e uma frase para quem treina, tirados só do texto e dos valores dela (`src/conteudo/frases-das-regras.json`). Quatro redatores escreveram, com um guia de estilo; quatro revisores independentes conferiram cada frase contra a regra e, nas dúvidas, contra o código. A revisão trouxe 61 correções: 6 por erro de sentido, 34 por algo essencial que tinha ficado de fora e 21 de linguagem. Um teste novo confere que toda regra tem a sua frase, que nenhuma traz jargão interno e que nenhum número aparece numa frase sem estar na regra dela.
+
+![Quatro regras abertas, antes e depois](revisoes/textos/folhas/10c-regras-abertas.png)
+
+**O que não mudou de tamanho.** O texto do catálogo foi de 8.140 para cerca de 8.700 palavras: não ficou mais curto, ficou legível e completo. A frase típica tem 45 palavras; as de segurança e de privacidade são as mais longas, porque ali nada podia sair.
+
+**O que a revisão achou nas próprias regras, e foi arrumado** (com o ok do Gustavo). Escrever o que cada regra faz em palavras simples mostrou onde a regra e o app não diziam a mesma coisa:
+- A regra de reduzir a carga falava em 5 a 10% com dor; o app sempre reduziu 10 a 20%, pela regra da nota de dor. A regra agora remete a ela.
+- Os sinais que pedem atendimento urgente por compressão dos nervos no fim da coluna (cauda equina) estavam na regra, em jargão médico, e em nenhuma tela. A regra ganhou palavras simples, e o "Senti algo" ganhou o sinal "Dormência entre as pernas ou descontrole da urina ou das fezes", que encerra o treino e diz "procure um pronto-socorro agora".
+- Quatro acertos menores: o descanso mínimo (60 s ou mais), a conta do lote de elástico (8, não 9), o que o mínimo semanal faz, e duas regras que passaram a dizer que ainda não estão no app.
+
+![O "Senti algo" com o sinal novo](revisoes/textos/folhas/11-senti-algo.png)
+
+**Ficou para decidir:** a regra dos sinais do coração diz que o app bloqueia novos treinos até a pessoa confirmar a avaliação, e o app não bloqueia (só orienta). A frase da regra diz isso com todas as letras; fazer o bloqueio é decisão do Gustavo.
+
+**Resultado:** `npm run check` com 909 testes e `npm run test:e2e` com 178, tudo passando.
+
+**Rascunho de post para o LinkedIn**
+
+> Reescrevi as 163 regras do meu app em linguagem simples. O que eu não esperava: a tradução achou erros.
+>
+> As regras estavam escritas para quem desenvolve: siglas, nomes de arquivo, datas de decisão. Pedi uma frase para cada uma, do jeito que eu explicaria a alguém na academia.
+>
+> Quem escreve não revisa: outros revisores conferiram cada frase contra a regra. Vieram 61 correções.
+>
+> E, ao dizer com clareza o que cada regra faz, apareceu onde a regra e o app não diziam a mesma coisa. Uma regra falava em reduzir 5 a 10% da carga com dor; o app sempre reduziu 10 a 20%. Um sinal de alerta que pede pronto-socorro estava descrito num termo médico, e não aparecia em tela nenhuma.
+>
+> Texto difícil esconde erro. Enquanto a regra estava em jargão, ninguém lia; quando virou uma frase simples, bastou ler.
+

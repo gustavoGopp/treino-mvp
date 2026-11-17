@@ -64,7 +64,15 @@ export function Resumo() {
         <AvisoSalvar />
         <p className="rotulo subtitulo">{dia.nome}</p>
         <Titulo>{s.encerradaPorAlerta ? 'Treino encerrado por segurança' : 'Treino concluído'}</Titulo>
-        {s.encerradaPorAlerta && (
+        {/* sinal de cauda equina (seguranca.alerta.musculoesqueletico): atendimento urgente, sem esperar o sintoma passar */}
+        {s.encerradaPorAlerta && s.alerta === 'cauda-equina' && (
+          <div className="caixa-erro" role="alert">
+            <p>
+              Pare o treino. Esse sinal pede atendimento urgente: <b>procure um pronto-socorro agora</b>.
+            </p>
+          </div>
+        )}
+        {s.encerradaPorAlerta && !s.alerta && (
           <div className="caixa-erro" role="alert">
             <p>
               Pare o treino agora e descanse. Se o sintoma não passar em poucos minutos ou for forte, ligue para o SAMU: <b>192</b>. Antes de

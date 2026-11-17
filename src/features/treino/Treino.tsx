@@ -141,9 +141,9 @@ export function Treino() {
     setAviso(null);
     window.scrollTo?.(0, 0);
   };
-  const terminar = (porAlerta = false) => {
+  const terminar = (porAlerta = false, alerta?: 'cauda-equina') => {
     descanso.parar();
-    atualizar((s) => terminarSessao(s, agoraIso(), porAlerta));
+    atualizar((s) => terminarSessao(s, agoraIso(), porAlerta, alerta));
     navigate('/treino/fim', { replace: true });
   };
   // as séries já feitas neste exercício: à vista no registro e, durante o descanso, na tela do relógio
@@ -439,7 +439,7 @@ export function Treino() {
               aoSinal={(sinal) => {
                 const r = avaliarSinal(sinal);
                 if (r.acao === 'encerrar-sessao') {
-                  terminar(true);
+                  terminar(true, sinal === 'cauda-equina' ? sinal : undefined);
                   return;
                 }
                 setAviso({ texto: r.mensagem, regraId: r.regraId });
@@ -979,6 +979,7 @@ const SINAIS: { id: Sinal; texto: string }[] = [
   { id: 'falta-de-ar', texto: 'Falta de ar fora do normal' },
   { id: 'tontura', texto: 'Tontura ou quase desmaio' },
   { id: 'palpitacao', texto: 'Coração batendo muito irregular' },
+  { id: 'cauda-equina', texto: 'Dormência entre as pernas ou descontrole da urina ou das fezes' },
   { id: 'dor-articular-aguda', texto: 'Dor aguda ou em pontada numa articulação' },
   { id: 'formigamento', texto: 'Formigamento ou dormência' },
   { id: 'perda-de-forca', texto: 'Perda de força estranha' },

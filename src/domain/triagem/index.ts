@@ -141,10 +141,18 @@ export function avaliarDor(nota: number, aguda = false, haCargaMenor = true): Ac
   return { acao: 'seguir', mensagem: 'Pode seguir.', regraId };
 }
 
-export type Sinal = 'peito' | 'falta-de-ar' | 'tontura' | 'palpitacao' | 'dor-articular-aguda' | 'formigamento' | 'perda-de-forca';
+export type Sinal = 'peito' | 'falta-de-ar' | 'tontura' | 'palpitacao' | 'cauda-equina' | 'dor-articular-aguda' | 'formigamento' | 'perda-de-forca';
 
 /** Sinais de alerta durante o treino (seguranca.alerta.*). */
 export function avaliarSinal(s: Sinal): { acao: 'encerrar-sessao' | 'encerrar-exercicio'; mensagem: string; regraId: string } {
+  // Sinais de cauda equina pedem atendimento urgente (seguranca.alerta.musculoesqueletico; tabela 2 de aafp2015): o treino
+  // acaba e a orientação é ir a um pronto-socorro. Até 17/11/2026 a regra dizia isso e nenhuma tela mostrava o sinal.
+  if (s === 'cauda-equina')
+    return {
+      acao: 'encerrar-sessao',
+      mensagem: 'Pare o treino. Esse sinal pede atendimento urgente: procure um pronto-socorro agora.',
+      regraId: r('seguranca.alerta.musculoesqueletico'),
+    };
   if (s === 'peito' || s === 'falta-de-ar' || s === 'tontura' || s === 'palpitacao')
     return {
       acao: 'encerrar-sessao',

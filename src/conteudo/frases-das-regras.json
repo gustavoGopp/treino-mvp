@@ -5,7 +5,7 @@
   },
   "volume.semanal.minimo": {
     "titulo": "Mínimo de séries nos músculos em foco",
-    "frase": "Nos músculos que você prioriza, a faixa de séries por semana do seu nível começa em 6 (iniciante), 10 (intermediário) ou 12 (avançado)."
+    "frase": "Nos músculos que você prioriza, a faixa de séries por semana do seu nível começa em 6 (iniciante), 10 (intermediário) ou 12 (avançado). Quando o treino não cabe no tempo, um músculo em foco não desce abaixo disso."
   },
   "volume.semanal.alvo": {
     "titulo": "Séries por semana nos músculos em foco",
@@ -45,7 +45,7 @@
   },
   "volume.manutencao.piso": {
     "titulo": "Mínimo de séries no modo manutenção",
-    "frase": "No modo manutenção, o mínimo é de 1–3 séries pesadas por músculo por semana, com a carga mantida. O app avisa que esse modo mantém, e não maximiza."
+    "frase": "O modo manutenção ainda não está no app. A regra prevê, nele, um mínimo de 1–3 séries pesadas por músculo por semana, com a carga mantida, e o aviso de que esse modo mantém, e não maximiza."
   },
   "volume.sessao.teto": {
     "titulo": "Limite de séries por músculo num treino",
@@ -129,11 +129,11 @@
   },
   "rir.calibracao": {
     "titulo": "Teste das repetições de reserva",
-    "frase": "Uma vez por semana, a partir da semana 3, a última série de um isolador seguro vai até a falha técnica, para acertar a sua noção de repetições de reserva. Nunca em agachamento, levantamento terra ou supino livre sem segurança."
+    "frase": "Ainda não está no app. A regra prevê que, uma vez por semana, a partir da semana 3, a última série de um isolador seguro vá até a falha técnica, para acertar a sua noção de repetições de reserva. Nunca em agachamento, levantamento terra ou supino livre sem segurança."
   },
   "descanso.piso": {
     "titulo": "Descanso mínimo entre as séries",
-    "frase": "O descanso entre as séries fica acima de 60 s. Descansar mais de 60 s traz uma vantagem pequena, e acima de cerca de 90 s não há diferença apreciável."
+    "frase": "O descanso entre as séries é de 60 s ou mais. Descansar mais de 60 s traz uma vantagem pequena, e acima de cerca de 90 s não há diferença apreciável."
   },
   "descanso.por-tipo": {
     "titulo": "Descanso por tipo de exercício",
@@ -153,7 +153,7 @@
   },
   "progressao.reduzir": {
     "titulo": "Quando reduzir a carga",
-    "frase": "A carga cai de 5 a 10% quando as repetições ficam abaixo do mínimo da faixa em 2 treinos seguidos. Com dor, quem manda é a regra da nota de dor."
+    "frase": "A carga cai de 5 a 10% quando as repetições ficam abaixo do mínimo da faixa em 2 treinos seguidos. Com dor, vale a regra da nota de dor: redução de 10 a 20% com nota de 3 a 5, e o exercício é encerrado acima de 5."
   },
   "progressao.incremento.halteres": {
     "titulo": "Aumento de carga com halteres e kettlebell",
@@ -297,7 +297,7 @@
   },
   "selecao.elastico-ampliado": {
     "titulo": "Mais exercícios com elástico",
-    "frase": "Entraram na biblioteca mais exercícios com elástico, quase todos sem ponto de ancoragem, como remadas e rosca martelo. O tríceps com o elástico preso no alto só vale na âncora do fabricante ou na barra fixa, testada antes. Em 11 casos de lesão de olho, em todos o elástico escapou da ancoragem, preso sob ou à frente da pessoa. Por isso, todo exercício com elástico pede o pé inteiro sobre ele e conferir rachaduras antes da série."
+    "frase": "Entraram na biblioteca mais 8 exercícios com elástico, quase todos sem ponto de ancoragem, como remadas e rosca martelo. O tríceps com o elástico preso no alto só vale na âncora do fabricante ou na barra fixa, testada antes. Em 11 casos de lesão de olho, em todos o elástico escapou da ancoragem, preso sob ou à frente da pessoa. Por isso, todo exercício com elástico pede o pé inteiro sobre ele e conferir rachaduras antes da série."
   },
   "selecao.barra-negativa": {
     "titulo": "Barra fixa só na descida",
@@ -569,11 +569,11 @@
   },
   "seguranca.alerta.cardiovascular": {
     "titulo": "Sinais de alerta do coração",
-    "frase": "Os sinais: dor, pressão ou aperto no peito, ou que se espalha a partir dele (irradiado), falta de ar fora do normal, tontura ou quase desmaio, coração batendo muito irregular. O app encerra o treino, orienta ligar para o SAMU (192) se o sintoma não passar ou for intenso, e bloqueia novos treinos até você confirmar que passou por avaliação."
+    "frase": "Os sinais: dor, pressão ou aperto no peito, ou que se espalha a partir dele (irradiado), falta de ar fora do normal, tontura ou quase desmaio, coração batendo muito irregular. O app encerra o treino e orienta ligar para o SAMU (192) se o sintoma não passar ou for intenso. A regra prevê também bloquear novos treinos até você confirmar que passou por avaliação; esse bloqueio ainda não está no app, que por enquanto só diz para procurar avaliação antes de voltar a treinar."
   },
   "seguranca.alerta.musculoesqueletico": {
     "titulo": "Sinais de alerta em músculos e articulações",
-    "frase": "Os sinais: dor aguda ou em pontada numa articulação, estalo com dor, formigamento, dormência ou dor que se espalha (irradiada), perda de força incomum. O app encerra o exercício, oferece uma alternativa e recomenda avaliação se o sinal persistir. Sinais de cauda equina (na região da sela, na urina, no intestino, ou fraqueza nas pernas) pedem atendimento urgente."
+    "frase": "Os sinais: dor aguda ou em pontada numa articulação, estalo com dor, formigamento, dormência ou dor que se espalha (irradiada), perda de força incomum. O app encerra o exercício, oferece uma alternativa e recomenda avaliação se o sinal persistir. Dormência na região que encosta num selim, retenção ou perda de controle da urina ou das fezes, perda de força progressiva nas pernas ou ciática aguda nas duas pernas (sinais de cauda equina) pedem atendimento urgente: em “Senti algo”, o sinal “Dormência entre as pernas ou descontrole da urina ou das fezes” encerra o treino e orienta procurar um pronto-socorro."
   },
   "seguranca.dor.escala": {
     "titulo": "Nota de dor de 0 a 10",

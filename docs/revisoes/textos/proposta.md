@@ -274,7 +274,7 @@ O pedido da sessão diz: não tirar conteúdo dos termos nem da folha da foto se
 
 Por que A: a autorização vale pelo que a pessoa leu antes de marcar (LGPD, consentimento informado). Na opção B ela pode autorizar sem abrir os detalhes (por exemplo, a exceção de 2 anos e o processamento em outros países), e isso é uma decisão sobre privacidade, não sobre texto.
 
-## 10. As frases das regras em linguagem simples (proposta; esperando a decisão)
+## 10. As frases das regras em linguagem simples (aprovado em 17/11/2026 e aplicado no commit `916ea63`)
 
 Pedido do Gustavo em 17/11/2026: "pode reescrever as frases das regras em linguagem simples". Proposta em `propostas/10-frases-das-regras.patch`; imagens em `folhas/10a-regras-lista.png`, `10b-regras-abertas.png` e `10c-regras-abertas.png`.
 
@@ -300,4 +300,21 @@ Pedido do Gustavo em 17/11/2026: "pode reescrever as frases das regras em lingua
 - `selecao.elastico-ampliado`: o valor diz "os 9", e o texto e a biblioteca têm 8 exercícios no lote.
 - `rir.calibracao` e `volume.manutencao.piso` descrevem coisas que o app ainda não faz (o teste semanal até a falha e um modo manutenção).
 - `volume.semanal.minimo`: o texto não diz o que o mínimo faz na prática (no código, é o piso dos cortes de tempo para os músculos em foco).
+
+## 11. Os achados da revisão, arrumados (17/11/2026; pedido do Gustavo: "faça o necessário para arrumar os achados")
+
+As correções foram feitas no texto de origem das regras (`docs/pesquisa/regras.md`), de onde sai o arquivo do app, e nas frases simples de cada uma. Nenhum número do gerador mudou: em todos os casos o texto da regra passou a dizer o que o código já fazia, ou a dizer que o app ainda não faz.
+
+| Regra | O que estava errado | O que foi feito |
+|---|---|---|
+| `progressao.reduzir` | dizia "dor → −5 a −10%"; o app reduz 10–20% (dor de 3 a 5) ou encerra o exercício (acima de 5) | a regra remete à regra da nota de dor |
+| `seguranca.alerta.musculoesqueletico` | os sinais de cauda equina estavam em jargão ("sela") e não apareciam em nenhuma tela | a regra descreve os sinais em palavras simples (tabela 2 da fonte `aafp2015`); o "Senti algo" ganhou o sinal "Dormência entre as pernas ou descontrole da urina ou das fezes", que encerra o treino e diz "procure um pronto-socorro agora" (`folhas/11-senti-algo.png`) |
+| `descanso.piso` | "acima de 60 s", contra os 60 a 90 s dos isoladores em `descanso.por-tipo` | "≥ 60 s" |
+| `selecao.elastico-ampliado` | o valor dizia "os 9"; o texto e a biblioteca têm 8 | "os 8" |
+| `rir.calibracao` e `volume.manutencao.piso` | descrevem o que o app não faz | o texto e a frase dizem "ainda não está no app" |
+| `volume.semanal.minimo` | não dizia o que o mínimo faz | "nos cortes de tempo, um músculo em foco não desce abaixo dele" (é o que o gerador faz) |
+
+**Achado novo, à espera de decisão:** `seguranca.alerta.cardiovascular` diz que o app bloqueia novos treinos até a pessoa confirmar a avaliação, e o app não bloqueia. A frase da regra diz isso com todas as letras. Fazer o bloqueio é mudança de comportamento.
+
+**Testes:** 909 unitários, 178 de ponta a ponta (um novo, do sinal) e os tokens, tudo passando.
 
