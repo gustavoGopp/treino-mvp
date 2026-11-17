@@ -1,0 +1,47 @@
+{
+ "id": "triceps-testa-halteres",
+ "nome": "Tríceps testa com halteres, deitado",
+ "fichaDaTecnica": "docs/pesquisa/animacoes/triceps-testa-halteres.md",
+ "fontes": {
+  "ficha": "Ficha da técnica (docs/pesquisa/animacoes/triceps-testa-halteres.md, tabela Técnica): consenso de treinadores (Laércio Refundini, vídeo listado em docs/pesquisa-v2/17-biblioteca-ampliada.md, G2; brandao2020 para o movimento)",
+  "app": "Cartão do app (src/conteudo/exercicios/triceps-testa-halteres.json): a montagem, o tempo da descida, a amplitude, as dicas e os erros comuns, que seguem a ficha da técnica",
+  "objetos": "src/engine/novo/dados/objetos/halter-leve.json e src/engine/novo/dados/objetos.json (colchonete)",
+  "desenho": "Escolha de desenho desta animação, dentro do que a ficha pede, tirada das animações aprovadas parecidas (não há animação de hoje deste exercício); a conferência mede o resultado"
+ },
+ "param": {
+  "lombar.base": { "v": 0, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "deitado de costas, a lombar com a curva de repouso; a bacia inclina até o glúteo e a parte de cima das costas encostarem juntos no colchonete, como no supino no chão (o cartão pede só deitado de costas, joelhos dobrados)" },
+  "joelho": { "v": 90, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "joelhos dobrados, pés no chão (a ficha não dá o ângulo): o pé fica onde o joelho dobra 90°, como no abdominal no chão aprovado" },
+  "ombro.z": { "v": -50, "un": "cm", "selo": "desenho", "fonte": "desenho", "o": "onde ficam os ombros na cena, deitado (só posiciona a cena)" },
+  "colchonete.alemDaCabeca": { "v": 3, "un": "cm", "selo": "desenho", "fonte": "desenho", "o": "o colchonete (o cartão: \"o chão (com colchonete)\") vai de 3 cm além do topo da cabeça até o glúteo; os pés ficam no chão, fora dele (o colchonete da tabela tem 100 cm)" },
+  "braco.paraTras": { "v": 10, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "o braço aponta para o teto, 10° para o lado da cabeça (\"leve os braços um pouco para trás, na direção da cabeça\", no cartão; a ficha não dá número), na largura dos ombros, e fica parado o ciclo todo" },
+  "cotovelo.estendido": { "v": 8, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "em cima: braços estendidos, o cotovelo dobrado 8° (como no tríceps francês aprovado: o cotovelo não trava)" },
+  "halter.folgaEmbaixo": { "v": 2, "un": "cm", "selo": "desenho", "fonte": "desenho", "o": "embaixo: \"halteres ao lado da cabeça, cotovelos bem dobrados\" (cartão); o cotovelo dobra até a ponta do halter chegar a 2 cm do colchonete, sem encostar: é o chão que limita a descida (a ficha não dá o ângulo; ele sai daí, medido)" },
+  "erro.cotovelos.fora": { "v": 25, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "erro: os braços abrem 25° para os lados enquanto o cotovelo dobra (os cotovelos deixam de apontar para o teto)" },
+  "erro.ombro.braco": { "v": -35, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "erro: embaixo, o braço desce até 35° para o lado dos pés (o cotovelo vai para perto do tronco, como num supino); o certo fica 10° para o lado da cabeça" },
+  "erro.falha.cotovelo": { "v": 100, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "erro: na repetição em que a forma cede, o cotovelo dobra 100° e os antebraços tombam para o meio: os halteres descem sobre a testa, e não para os lados da cabeça" },
+  "erro.falha.folga": { "v": 1, "un": "cm", "selo": "desenho", "fonte": "desenho", "o": "erro: os antebraços tombam para o meio até o halter ficar a 1 cm da testa (o certo passa a mais de 3 cm da cabeça)" }
+ },
+ "fases": [
+  { "nome": "Em cima", "tipo": "pausa", "dur": 0.5, "de": 0, "ate": 0, "respira": "INSPIRA", "tempo": "braços estendidos", "selo": "consenso", "fonte": "app" },
+  { "nome": "Descida · excêntrica", "tipo": "exc", "dur": 2.5, "de": 0, "ate": 1, "respira": "INSPIRA", "tempo": "~2 a 3 s", "selo": "consenso", "fonte": "app" },
+  { "nome": "Embaixo", "tipo": "pausa", "dur": 0.4, "de": 1, "ate": 1, "respira": "FIRME", "tempo": "cotovelos para o teto", "selo": "consenso", "fonte": "app" },
+  { "nome": "Subida · concêntrica", "tipo": "conc", "dur": 1.2, "de": 1, "ate": 0, "respira": "EXPIRA", "tempo": "estica os cotovelos", "selo": "desenho", "fonte": "desenho" }
+ ],
+ "contatos": ["pe.R", "pe.L", "pelve"],
+ "regras": [
+  { "id": "so-o-cotovelo-dobra-no-testa", "pede": "só os cotovelos dobram: o braço fica parado, apontado para o teto", "selo": "consenso", "fonte": "ficha" },
+  { "id": "pegada-neutra-no-testa", "pede": "pegada neutra: palmas uma para a outra", "selo": "consenso", "fonte": "ficha" },
+  { "id": "halteres-ao-lado-da-cabeca", "pede": "embaixo, os halteres ficam ao lado da cabeça, sem encostar nela nem no colchonete", "selo": "consenso", "fonte": "app" },
+  { "id": "costas-e-quadril-no-colchonete", "pede": "deitado, as costas, a cabeça e o glúteo apoiados no colchonete", "selo": "consenso", "fonte": "app" }
+ ],
+ "erros": [
+  { "id": "cotovelos", "instante": 1, "titulo": "Abrir os cotovelos", "vista": "cima", "oQueMuda": "os cotovelos vão para os lados", "destaca": ["bracos"], "linha": ["ombro", "cotovelo", "pegada"], "foco": "cotovelo" },
+  { "id": "ombro", "instante": 1, "titulo": "Mexer os ombros", "vista": "lateral", "oQueMuda": "o braço desce como num supino", "destaca": ["bracos"], "linha": ["ombro", "cotovelo", "pegada"], "foco": "cotovelo" },
+  { "id": "falha", "instante": 1, "titulo": "Ir até a falha", "vista": "cima", "oQueMuda": "os antebraços tombam para o meio e o halter desce rente à testa", "destaca": ["bracos"], "linha": ["ombro", "cotovelo", "pegada"], "foco": "pegada" }
+ ],
+ "simetrico": true,
+ "rotulos": [
+  { "vista": "lateral", "texto": "cotovelos para o teto", "ponto": "cotovelo", "selo": "consenso", "fonte": "app" },
+  { "vista": "quina", "texto": "pegada neutra", "ponto": "pegada", "selo": "consenso", "fonte": "app" }
+ ]
+}
