@@ -1,0 +1,67 @@
+{
+ "id": "crucifixo-invertido-caneleira",
+ "nome": "Crucifixo invertido sentado com caneleira presa no punho",
+ "fichaDaTecnica": "docs/pesquisa/animacoes/crucifixo-invertido-caneleira.md",
+ "fontes": {
+  "ficha": "Ficha da técnica (docs/pesquisa/animacoes/crucifixo-invertido-caneleira.md): sentado, peito nas coxas, caneleira acima do punho (consenso, 17, G3); abrir para os lados até a altura dos ombros (um estudo, modelagem: zhu2025); 'o mesmo do crucifixo invertido sentado com halteres'",
+  "app": "Cartão do app (src/conteudo/exercicios/crucifixo-invertido-caneleira.json): 'Um par de caneleiras, presas no antebraço, logo acima do punho, e uma cadeira firme'; 'Sentado na ponta da cadeira, pés juntos, peito nas coxas'; 'Braços pendurados, cotovelos levemente dobrados'; abertura em ~1 s, pausa curta, descida em ~2 s; 'Velcro firme no antebraço, acima do punho'; as dicas ('Peito nas coxas.', 'Abra para os lados.', 'Perto da falha.') e os erros",
+  "anatomia": "Revisão de anatomia, achado 5 (docs/revisoes/anatomia.md; correcoes-ja-feitas.md): nos crucifixos invertidos, quem trabalha é o ombro de trás, sem secundário; as escápulas não se juntam com força",
+  "cadeira": "A cadeira firme da extensão de joelho com caneleira, aprovada (src/engine/novo/dados/movimentos/extensao-joelho-caneleira.json, dados/objetos/cadeira.json: assento a 45,1 cm): o glúteo afunda 1 cm no assento",
+  "objetos": "src/engine/novo/dados/objetos/caneleira.json (a caneleira de 2 lb: 10,8 cm de largura, 1,27 cm de espessura, 0,91 kg)",
+  "desenho": "Escolha de desenho desta animação, dentro do que a ficha pede, quando ela não dá número (não existe animação de hoje deste exercício); a conferência mede o resultado",
+  "sentado": "O crucifixo invertido sentado com halteres, feito nesta frente (src/engine/novo/dados/movimentos/crucifixo-invertido-sentado.json): a mesma posição e o mesmo arco dos braços (que vêm do crucifixo invertido curvado aprovado); a ficha da técnica da caneleira diz 'o mesmo do crucifixo invertido sentado com halteres'"
+ },
+ "param": {
+  "quadrilABorda": {"v": 12, "un": "cm", "selo": "consenso", "fonte": "app", "o": "'sentado na ponta da cadeira': o centro do quadril a 12 cm da borda da frente do assento (o glúteo ainda apoia no assento; a coxa fica livre além da borda)"},
+  "pes.meiaDistancia": {"v": 6, "un": "cm", "selo": "consenso", "fonte": "app", "o": "'pés juntos': a bola de cada pé a 6 cm do meio (os pés se tocam pela borda de dentro)"},
+  "joelho": {"v": 60, "un": "graus", "selo": "desenho", "fonte": "sentado", "o": "os joelhos dobrados 60°, os pés no chão um pouco à frente dos joelhos (o do crucifixo invertido sentado com halteres; a ficha não dá número)"},
+  "assento.amassa": {"v": 1, "un": "cm", "selo": "desenho", "fonte": "cadeira", "o": "o glúteo e a coxa afundam 1 cm no assento (o da extensão de joelho com caneleira aprovada)"},
+  "lombar": {"v": 15, "un": "graus", "selo": "desenho", "fonte": "sentado", "o": "a lombar dobra 15° além da curva de repouso, a série toda: com o peito nas coxas, o tronco se apoia relaxado (a ficha não fala de costas retas; o resto da inclinação vem do quadril) (o do crucifixo invertido sentado com halteres)"},
+  "toracica": {"v": 15, "un": "graus", "selo": "desenho", "fonte": "sentado", "o": "a parte de cima das costas dobra 15° além da curva de repouso, a série toda (o peito deita nas coxas) (o do crucifixo invertido sentado com halteres)"},
+  "cervical": {"v": -10, "un": "graus", "selo": "desenho", "fonte": "sentado", "o": "o pescoço na linha das costas, um pouco estendido: o olhar vai ao chão logo à frente dos pés, sem a cabeça pender (o do crucifixo invertido sentado com halteres)"},
+  "cabeca": {"v": 0, "un": "graus", "selo": "desenho", "fonte": "sentado", "o": "a cabeça na linha do pescoço (o do crucifixo invertido sentado com halteres)"},
+  "peito.amassa": {"v": 1, "un": "cm", "selo": "consenso", "fonte": "app", "o": "'peito nas coxas': a bacia inclina até a pele do tronco encostar na metade de baixo das coxas, amassando 1 cm (medido na superfície do Boneco; a inclinação sai dessa medida)"},
+  "inicio.paraTras": {"v": 8, "un": "graus", "selo": "desenho", "fonte": "sentado", "o": "começo: 'braços pendurados': a linha do ombro à mão vai 8° para trás da vertical, as mãos atrás das panturrilhas, como no crucifixo invertido sentado com halteres; na subida, ela volta para o lado"},
+  "inicio.folgaDoChao": {"v": 2, "un": "cm", "selo": "desenho", "fonte": "desenho", "o": "começo: os braços pendem abertos para o lado só o que deixa a ponta dos dedos (a mão relaxada) 2 cm acima do chão: com o peito nas coxas, o ombro fica a uns 68 cm do chão. O ângulo sai dessa medida"},
+  "fim.abaixo": {"v": 5, "un": "graus", "selo": "consenso", "fonte": "ficha", "o": "fim: 'até a altura dos ombros': a linha do ombro à mão fica 5° abaixo da horizontal, para o lado (o mesmo do crucifixo invertido sentado com halteres)"},
+  "cotovelo": {"v": 15, "un": "graus", "selo": "consenso", "fonte": "ficha", "o": "'cotovelos levemente dobrados': 15° a série toda (o mesmo do crucifixo invertido sentado com halteres; a ficha não dá número)"},
+  "cotovelo.paraTras": {"v": 0.4, "un": "fração", "selo": "desenho", "fonte": "sentado", "o": "para onde o cotovelo aponta: para fora, no sentido em que o braço abre, e um pouco para trás (0,4 da direção para trás), como no crucifixo invertido sentado com halteres"},
+  "escapula.prot.inicio": {"v": 0, "un": "graus", "selo": "consenso", "fonte": "sentado", "o": "começo: a escápula no ritmo, sem ir à frente (o do crucifixo invertido sentado com halteres)"},
+  "escapula.retr.fim": {"v": 2, "un": "graus", "selo": "consenso", "fonte": "anatomia", "o": "no fim a escápula só acompanha o braço, sem se juntar (a clavícula 2° para trás do ritmo), como no crucifixo invertido sentado com halteres"},
+  "escapula.elev": {"v": -2, "un": "graus", "selo": "consenso", "fonte": "sentado", "o": "ombros baixos: a clavícula 2° abaixo do ritmo, a série toda, como no crucifixo invertido sentado com halteres"},
+  "carga": {"v": 0.91, "un": "kg", "selo": "desenho", "fonte": "objetos", "o": "'um par de caneleiras': a de 2 lb da tabela (0,91 kg), uma em cada antebraço (a ficha não dá a carga)"},
+  "erro.tronco.sobe": {"v": 25, "un": "graus", "selo": "desenho", "fonte": "sentado", "o": "erro: a bacia endireita 25° enquanto os braços abrem e o peito sai das coxas, para dar embalo (o do crucifixo invertido sentado com halteres)"},
+  "erro.remada.dobra": {"v": 85, "un": "graus", "selo": "desenho", "fonte": "sentado", "o": "erro: os cotovelos dobram até 85° e o antebraço fica pendurado embaixo do cotovelo: vira uma remada com os cotovelos abertos (o do crucifixo invertido sentado com halteres)"},
+  "erro.remada.abaixo": {"v": 5, "un": "graus", "selo": "desenho", "fonte": "sentado", "o": "erro: no fim, o braço (do ombro ao cotovelo) sobe até 5° abaixo da horizontal, como o certo; quem fica embaixo é a mão (o do crucifixo invertido sentado com halteres)"},
+  "caneleira.acimaDoPunho": {"v": 1, "un": "cm", "selo": "consenso", "fonte": "app", "o": "'presas no antebraço, logo acima do punho': a borda de baixo da faixa fica 1 cm acima do centro do punho; a faixa (10,8 cm) cobre o antebraço até 12 cm acima do punho, e a mão fica livre, relaxada"}
+ },
+ "fases": [
+  {"nome": "Braços pendurados", "tipo": "pausa", "dur": 0.5, "de": 0, "ate": 0, "respira": "INSPIRA", "tempo": "braços pendurados", "selo": "consenso", "fonte": "app"},
+  {"nome": "Abertura · concêntrica", "tipo": "conc", "dur": 1.0, "de": 0, "ate": 1, "respira": "EXPIRA", "tempo": "~1 s", "selo": "consenso", "fonte": "app"},
+  {"nome": "No alto", "tipo": "pausa", "dur": 0.5, "de": 1, "ate": 1, "respira": "FIRME", "tempo": "pausa curta", "selo": "consenso", "fonte": "app"},
+  {"nome": "Descida · excêntrica", "tipo": "exc", "dur": 2.0, "de": 1, "ate": 0, "respira": "INSPIRA", "tempo": "~2 s", "selo": "consenso", "fonte": "app"}
+ ],
+ "contatos": ["pelve", "pe.R", "pe.L"],
+ "regras": [
+  {"id": "sentado-na-ponta-da-cadeira", "pede": "sentado na ponta da cadeira, os pés no chão", "selo": "consenso", "fonte": "app"},
+  {"id": "peito-nas-coxas-parado", "pede": "o peito encosta nas coxas e fica nelas: sem atravessar e sem subir", "selo": "consenso", "fonte": "ficha"},
+  {"id": "pescoco-na-linha-das-costas", "pede": "a cabeça segue as costas, sem pender nem dobrar o pescoço", "selo": "consenso", "fonte": "desenho"},
+  {"id": "crucifixo-sentado-bracos-pendurados", "pede": "começo: braços pendurados, o mais baixo que o chão deixa", "selo": "consenso", "fonte": "ficha"},
+  {"id": "crucifixo-sentado-caneleira-presa-no-punho", "pede": "a caneleira presa no antebraço, logo acima do punho: não escorrega", "selo": "consenso", "fonte": "app"},
+  {"id": "crucifixo-inverso-cotovelos-fixos", "pede": "cotovelos levemente dobrados e fixos", "selo": "consenso", "fonte": "ficha"},
+  {"id": "crucifixo-inverso-abre-para-os-lados", "pede": "abre os braços para os lados (a mão sobe para o lado, sem ir para a frente nem para trás)", "selo": "consenso", "fonte": "ficha"},
+  {"id": "crucifixo-inverso-ate-a-linha-dos-ombros", "pede": "fim: os braços na altura dos ombros", "selo": "consenso", "fonte": "ficha"},
+  {"id": "crucifixo-inverso-escapulas-sem-encolher-nem-juntar", "pede": "sem encolher os ombros nem juntar as escápulas", "selo": "consenso", "fonte": "anatomia"},
+  {"id": "crucifixo-sentado-carga-livre", "pede": "a caneleira não bate nas pernas, no tronco, na cadeira nem no chão", "selo": "consenso", "fonte": "desenho"}
+ ],
+ "erros": [
+  {"id": "tronco", "instante": 1, "titulo": "Levantar o tronco", "vista": "quinaTras", "oQueMuda": "o tronco sobe das coxas enquanto os braços abrem: o embalo", "destaca": ["corpo"], "linha": ["pelve", "c7"], "foco": "c7"},
+  {"id": "remada", "instante": 1, "titulo": "Virar remada", "vista": "quinaTras", "oQueMuda": "os cotovelos dobram e a mão fica embaixo do cotovelo: vira uma remada", "destaca": ["bracos"], "linha": ["ombro", "cotovelo", "pegada"], "foco": "cotovelo"}
+ ],
+ "simetrico": true,
+ "rotulos": [
+  {"vista": "quinaTras", "texto": "peito nas coxas", "ponto": "c7", "selo": "consenso", "fonte": "app"},
+  {"vista": "quinaTras", "texto": "abra para os lados", "ponto": "pegada:R", "selo": "consenso", "fonte": "app"},
+  {"vista": "cima", "texto": "abra para os lados", "ponto": "pegada:L", "selo": "consenso", "fonte": "app"}
+ ]
+}

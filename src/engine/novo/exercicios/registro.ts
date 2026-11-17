@@ -119,3 +119,4 @@ export { agachamentoHalteres } from './agachamento-halteres';
 export { gobletKettlebell } from './goblet-kettlebell';
 export { stiffUnilateralKettlebell } from './stiff-unilateral-kettlebell';
 export { crucifixoInvertidoSentado } from './crucifixo-invertido-sentado';
+export { crucifixoInvertidoCaneleira } from './crucifixo-invertido-caneleira';
