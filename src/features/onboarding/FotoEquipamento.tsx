@@ -162,7 +162,7 @@ export function FotoEquipamento({ aoUsar }: { aoUsar: (sugestoes: Sugestao[], co
   return (
     <section className="foto-eq" aria-labelledby="titulo-foto">
       <h2 id="titulo-foto">Reconhecer pela foto</h2>
-      <p className="ajuda">Tire ou escolha até {MAX_FOTOS} fotos do lugar onde você treina. Usar a foto é opcional: a lista abaixo faz o mesmo.</p>
+      <p className="ajuda">Até {MAX_FOTOS} fotos do lugar onde você treina.</p>
       {consentidoEm ? (
         <div className="pilha">
           <p className="ajuda">
