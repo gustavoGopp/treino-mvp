@@ -259,7 +259,7 @@ O que saiu vai para "Entenda o treino" → "Por que o app pergunta e sugere" →
 
 **Testes da pilha de propostas (6 + 7 + 8), em 17/11:** 904 unitários, 177 de ponta a ponta e os tokens, tudo passando.
 
-## 9. Termos e foto (proposta; esperando a decisão)
+## 9. Termos e foto (decidido em 17/11/2026: opção A, aplicada no commit `dc3d872`)
 
 O pedido da sessão diz: não tirar conteúdo dos termos nem da folha da foto sem o ok explícito do Gustavo. Por isso este fluxo é uma pergunta, com duas opções em imagem (`folhas/9-foto.png`).
 

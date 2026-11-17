@@ -262,7 +262,7 @@ O que sobrou da reconstrução na direção "Placar" (`devlog.md`, "Frontend nov
 - **Celular de 320 × 640**: o registro da série não cabe em 75% da tela, então a tela rola e o palco fica em cima, sem as abas dos modos (que seguem no guia completo, pelo livro do cabeçalho). Emagrecer o registro nesse tamanho devolveria as abas.
 - **O conferidor de tokens não olha letra nem largura**: o botão principal usa um 9º tamanho de letra (1,1875rem), fora dos 8 tokens, e passa.
 - **O Lighthouse acusa uma linha da lista meio coberta pela barra presa** (início 97, Meus dados 96 de acessibilidade): dar à lista uma folga no fim, do tamanho da barra presa embaixo, para a última linha visível nunca ficar pela metade sob ela.
-- **Um teste intermitente**: "o cartão de texto que não baixou avisa, tenta de novo e, se o navegador guardou a falha, oferece recarregar" (`correcoes-auditoria.spec.ts`). Contagem de 13/11/2026 na máquina da sessão: falhou em 4 das 6 rodadas em que `npm run test:e2e` rodou logo depois de `npm run check`; passou nas outras 11 rodadas completas (3 delas com o rastro ligado), em 15 repetições sozinho e nas 5 verificações do GitHub. Na falha, 5 s depois do toque em "Recarregar o app" a tela ainda era a de antes de recarregar. É compatível com a recarga passar de 5 s com a máquina ocupada, mas a causa não foi vista num rastro. Opção: dar ao teste uma espera maior depois de recarregar (a conferência continua a mesma). Não se sabe se já acontecia antes desta sessão.
+- **Um teste intermitente**: "o cartão de texto que não baixou avisa, tenta de novo e, se o navegador guardou a falha, oferece recarregar" (`correcoes-auditoria.spec.ts`). Contagem de 13/11/2026 na máquina da sessão: falhou em 4 das 6 rodadas em que `npm run test:e2e` rodou logo depois de `npm run check`; passou nas outras 11 rodadas completas (3 delas com o rastro ligado), em 15 repetições sozinho e nas 5 verificações do GitHub. Na falha, 5 s depois do toque em "Recarregar o app" a tela ainda era a de antes de recarregar. É compatível com a recarga passar de 5 s com a máquina ocupada, mas a causa não foi vista num rastro. Opção: dar ao teste uma espera maior depois de recarregar (a conferência continua a mesma). Não se sabe se já acontecia antes desta sessão. **Feito em 17/11/2026**: o teste passou a esperar o recarregamento terminar (15 s no máximo); o que ele confere não mudou. Tinha falhado em 2 rodadas completas seguidas naquele dia e passou na rodada final.
 - **Não medido**: o app instalado num iPhone e num Android de verdade (tudo foi conferido no Chromium, em tamanhos simulados); o leitor de tela de verdade (TalkBack, VoiceOver).
 
 **Da 2ª rodada de revisão** (`revisoes/frontend-novo/revisao-inicio-fim-semana.md` e `revisao-cadastro-dados-locais.md`; os números são os dos pareceres)
@@ -330,4 +330,23 @@ O que sobrou de refazer as 90 animações no motor novo (`devlog.md`, "Animaçã
 - Fora da lista do que a frente podia alterar, mudaram no mínimo necessário: `package.json` (o comando `conferir:animacao`), `vite.config.ts` (o Worker em módulos, para carregar cada exercício só ao abrir), `src/main.tsx` (as duas folhas de estilo do motor novo), `.gitattributes` (os registros de uma linha por item) e três testes que esperavam o desenho de hoje (`tests/e2e/guia.spec.ts`, `tests/e2e/correcoes-auditoria.spec.ts`, `tests/unit/ids-do-desenho.test.ts`).
 - Em `src/features/`: o Worker do Boneco (só o motor novo), o pedido com o tema da tela, a preferência de desenho (`app/estiloBoneco.ts`, agora `cinza` ou `pele`), a folha "Estilo do Boneco" de Meus dados e, no guia, o nome das vistas e a legenda. `src/domain/`, `src/storage/`, `api/`, as personas e o `CLAUDE.md` não mudaram.
 - **Depois de mudar um exercício do motor novo**, regravar as tabelas calculadas de antemão: `node scripts/animacao-nova/preparo.mjs`.
+
+## Da sessão de textos (16 e 17/11/2026)
+
+O que sobrou do corte de texto (`devlog.md`, "Bem menos texto"; o registro das decisões em `revisoes/textos/proposta.md`).
+
+**Para decidir com o Gustavo** (uma por vez, com imagem)
+- **A junção com a `main`**: tudo está no ramo `claude/nifty-curie-oc512n`; falta o ok dele.
+- **As frases das regras em "Entenda o treino"**: o bloco "Todas as regras e as fontes" mostra o texto de cada regra como está em `regras.json`, e 91 das 163 trazem jargão interno ("R1b", "pesquisa-v2/07…", datas de decisão). Uma frase em linguagem simples para cada regra pede uma sessão própria: só a frase muda, nunca a regra, e cada frase precisa bater com a fonte.
+- **As outras frases que vêm do domínio** (avisos do programa, porquês de cada exercício, fases, ajustes possíveis): agora aparecem só em "Entenda o treino" e na folha de ajustes, e continuam longas.
+- **A caixa de consentimento da foto e os termos** ficaram inteiros por decisão (opção A). A opção B (resumo à vista, o resto a um toque) está em `revisoes/textos/folhas/9-foto.png`, se ele quiser rever.
+
+**Achados**
+- **"Entenda o treino" baixa o arquivo das regras e o das fontes assim que abre**, e não só quando o bloco "Todas as regras e as fontes" é aberto (o comentário em `Entenda.tsx` diz o contrário). Não quebra nada; custa um download a mais nessa página.
+- **"Última cópia: nenhuma cópia ainda"** (Meus dados) é uma frase do domínio (`textoUltimaCopia`) que ainda dá para encurtar.
+- **As mensagens de validação de Experiência e Rotina** não entram na medição: o roteiro não chega a elas.
+- **`scripts/design/frontend-novo/capturas.spec.ts`** (o roteiro de fotos de 13/11) só foi atualizado em parte para a estrutura nova; o roteiro em uso é o de `scripts/textos/`.
+- **A conta do início** na comparação carrega o texto que foi para "Entenda o treino" (as telas "Sobre o programa" e "Como ler" mantêm o nome antigo para casar com a medição de antes).
+
+**Não medido**: o leitor de tela de verdade nas telas novas (a página "Entenda o treino" e os nomes acessíveis que ficaram no lugar do texto) e um aparelho de verdade.
 

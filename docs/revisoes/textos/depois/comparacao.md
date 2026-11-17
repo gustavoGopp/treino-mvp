@@ -1,22 +1,22 @@
 # Antes e depois dos cortes: palavras por tela
 
-> Gerado por `scripts/textos/comparar.mjs`. Antes: 0b80e68 (2026-11-16). Depois: ? (2026-11-17). Só entram na conta as telas que existem nas duas medições.
+> Gerado por `scripts/textos/comparar.mjs`. Antes: 0b80e68 (2026-11-16). Depois: 2784be0 (2026-11-17). Só entram na conta as telas que existem nas duas medições.
 
-**Tudo o que cada medição colheu** (com as telas que só existem numa delas): antes, 458 telas, 66.352 palavras; agora, 424 telas, 44.338 palavras.
+**Tudo o que cada medição colheu** (com as telas que só existem numa delas): antes, 458 telas, 66.352 palavras; agora, 424 telas, 44.017 palavras.
 
 ## Por fluxo (só as telas que existem nas duas)
 
 | Fluxo | Telas | Palavras antes | Palavras depois | Mudança | Blocos de 15 ou mais, antes | Depois | Selos à vista, antes | Depois |
 |---|---|---|---|---|---|---|---|---|
-| cadastro | 80 | 7727 | 6114 | −21% | 58 | 28 | 19 | 0 |
+| cadastro | 80 | 7727 | 6100 | −21% | 58 | 27 | 19 | 0 |
 | inicio | 85 | 13426 | 11400 | −15% | 202 | 145 | 252 | 188 |
-| treino | 69 | 4587 | 4186 | −9% | 30 | 28 | 44 | 0 |
-| guia | 45 | 14535 | 5978 | −59% | 230 | 65 | 1 | 0 |
+| treino | 69 | 4587 | 4185 | −9% | 30 | 28 | 44 | 0 |
+| guia | 45 | 14535 | 5980 | −59% | 230 | 65 | 1 | 0 |
 | fim-e-semana | 36 | 5055 | 3380 | −33% | 59 | 20 | 52 | 6 |
 | dados-e-locais | 47 | 6284 | 4914 | −22% | 36 | 28 | 8 | 1 |
-| termos-e-foto | 29 | 3627 | 3622 | −0% | 84 | 84 | 8 | 3 |
+| termos-e-foto | 29 | 3627 | 3314 | −9% | 84 | 62 | 8 | 3 |
 | avisos-e-erros | 23 | 2399 | 1834 | −24% | 25 | 16 | 9 | 1 |
-| **Tudo** | 414 | 57640 | 41428 | −28% | 724 | 414 | 393 | 199 |
+| **Tudo** | 414 | 57640 | 41107 | −29% | 724 | 391 | 393 | 199 |
 
 ## cadastro: as 54 telas que mudaram
 
@@ -54,6 +54,7 @@
 | Experiência: a 2ª pergunta aparece ("Você está treinando agora?") | ana | 82 | 58 | −29% |
 | Rotina: a 2ª pergunta aparece ("Quantos minutos por treino?") | ana | 49 | 28 | −43% |
 | Boas-vindas | ana | 68 | 53 | −22% |
+| Folha "Reconhecer pela foto" (como abre na 1ª vez) | ana | 194 | 179 | −8% |
 | Rotina: a 1ª pergunta, sem resposta | ana | 28 | 14 | −50% |
 | Rotina: as mensagens de "falta" sem nenhuma resposta | ana | 43 | 29 | −33% |
 | Experiência: a 1ª pergunta, sem resposta | ana | 40 | 27 | −32% |
@@ -75,7 +76,6 @@
 | Folha de detalhes: Halteres fixos, respondida (1 a 12 kg, de 1 em 1) | ana | 62 | 53 | −15% |
 | Saúde: a pergunta geral, com as 9 condições | ana | 87 | 83 | −5% |
 | Folha "Seus dados ficam no aparelho" | ana | 93 | 92 | −1% |
-| Folha "Reconhecer pela foto" (como abre na 1ª vez) | ana | 194 | 193 | −1% |
 
 ## inicio: as 82 telas que mudaram
 
@@ -164,7 +164,7 @@
 | Folha "Sobre o programa", com os 2 blocos abertos (a Carla) | carla | 310 | 344 | +11% |
 | Folha "Sobre o programa" enquanto o avaliador chega ("Conferindo o programa…") | ana | 60 | 96 | +60% |
 
-## treino: as 56 telas que mudaram
+## treino: as 55 telas que mudaram
 
 | Tela | Quem vê | Antes | Depois | Mudança |
 |---|---|---|---|---|
@@ -175,7 +175,6 @@
 | Treino do Fábio (barra fixa): 2º exercício, 1ª série vazia (Barra fixa só na descida (negativa)) | fabio | 91 | 80 | −12% |
 | Treino: a série com o guia pausado | ana | 70 | 60 | −14% |
 | Treino: série com a carga e sem a reserva ("Falta dizer quantas ainda conseguiria.") | ana | 67 | 57 | −15% |
-| Treino: depois da nota de dor 0 ("Pode seguir.") | ana | 68 | 58 | −15% |
 | Treino: nota de dor 4 antes da 1ª série | ana | 91 | 81 | −11% |
 | Treino: exercício sem animação, com o cartão de texto fechado (Crucifixo invertido sentado, com o peito nas coxas, com halteres) | ana | 63 | 53 | −16% |
 | Treino na volta da pausa: a carga 10% menor já preenchida ("Hoje: 9 kg") | ana | 66 | 56 | −15% |
@@ -183,21 +182,23 @@
 | Treino da Carla: dia "Inferior", 4º exercício, 1ª série vazia (Cadeira extensora) | carla | 54 | 44 | −19% |
 | Treino da Carla: dia "Inferior", 7º exercício, 1ª série vazia (Adução na cadeira adutora) | carla | 56 | 46 | −18% |
 | Treino da Carla: barra fixa assistida no graviton (a carga é o contrapeso) | carla | 85 | 75 | −12% |
-| Treino: 1ª série do 1º exercício, vazia (1ª vez no exercício) | ana | 67 | 58 | −13% |
+| Treino do Fábio (barra fixa): 1º exercício, 1ª série vazia (Barra fixa) | fabio | 63 | 53 | −16% |
 | Treino: a série com o guia no modo "Erros" | ana | 70 | 61 | −13% |
 | Treino: a série com o guia no modo "Músculos" | ana | 70 | 61 | −13% |
-| Treino: a série com o guia no modo "Trajetória" | ana | 69 | 60 | −13% |
 | Treino: série com a reserva e sem a carga ("Falta escolher a carga.") | ana | 66 | 57 | −14% |
 | Treino: 3º exercício do dia A, 1ª série vazia (Supino reto com halteres) | ana | 68 | 59 | −13% |
+| Treino: depois da nota de dor 0 ("Pode seguir.") | ana | 68 | 59 | −13% |
 | Treino: 1ª série de um exercício já feito, com a sugestão do dia ("Hoje: …") | ana | 65 | 56 | −14% |
 | Treino da Elisa (peso do corpo): 1º exercício, 1ª série vazia (Agachamento com o peso do corpo) | elisa | 66 | 57 | −14% |
 | Treino da Elisa (peso do corpo): 2º exercício, 1ª série vazia (Flexão de braço) | elisa | 64 | 55 | −14% |
 | Treino do Diego (elásticos e barra fixa): 1º exercício, 1ª série vazia (Flexão de braço) | diego | 63 | 54 | −14% |
 | Treino do Diego (elásticos e barra fixa): 3º exercício, 1ª série vazia (Agachamento com elástico) | diego | 64 | 55 | −14% |
 | Treino do Bruno (voltando de pausa): 1º exercício (Supino reto com halteres) | bruno | 65 | 56 | −14% |
+| Treino: a série com o guia no modo "Trajetória" | ana | 69 | 61 | −12% |
 | Treino: 2ª série, com a mensagem da calibração e as séries feitas (uma com dor) | ana | 104 | 96 | −8% |
 | Treino: exercício com a última série em drop set (Tríceps francês sentado com halter) | ana | 66 | 58 | −12% |
 | Treino do Bruno no 2º local: 2º exercício, trocado pelo local, com o motivo (Barra fixa) | bruno | 71 | 63 | −11% |
+| Treino: 1ª série do 1º exercício, vazia (1ª vez no exercício) | ana | 67 | 60 | −10% |
 | Treino: 4º exercício do dia A, 1ª série vazia (Remada unilateral com halter apoiada no banco) | ana | 64 | 57 | −11% |
 | Treino: 5º exercício do dia A, 1ª série vazia (Flexão de joelho deslizando os pés no chão) | ana | 60 | 53 | −12% |
 | Treino: 6º exercício do dia A, 1ª série vazia (Tríceps francês sentado com halter) | ana | 60 | 53 | −12% |
@@ -212,11 +213,9 @@
 | Folha "Terminar o treino agora?" (sem nenhuma série) | ana | 32 | 27 | −16% |
 | Treino: 2º exercício do dia A, 1ª série vazia (Ponte de glúteo com halter) | ana | 59 | 55 | −7% |
 | Treino: exercício encerrado pela dor (a orientação e "Exercício encerrado.") | ana | 73 | 69 | −5% |
-| Treino do Fábio (barra fixa): 1º exercício, 1ª série vazia (Barra fixa) | fabio | 63 | 59 | −6% |
 | Folha "Terminar o treino agora?" (com série registrada) | ana | 23 | 21 | −9% |
 | Folha "Terminar o treino agora?" (com exercícios feitos e por fazer) | ana | 23 | 21 | −9% |
 | Folha "O que você sentiu?" | ana | 73 | 72 | −1% |
-| Treino: 2ª série com o descanso numa faixa (e a mensagem da calibração) | ana | 64 | 63 | −2% |
 | Treino: nota de dor 4 com o halter mais leve (não há carga menor) | ana | 79 | 78 | −1% |
 | Treino: nota de dor 4 depois de uma série ("Reduza a carga…") | ana | 95 | 94 | −1% |
 | Treino: descanso depois da última série do exercício ("A seguir · exercício 2 de 6") | ana | 100 | 99 | −1% |
@@ -244,15 +243,15 @@
 | Guia de polia (a Carla): Crucifixo na polia (crossover), modo Técnica | carla | 267 | 62 | −77% |
 | Guia de halter (a Ana, pelo programa): Supino reto com halteres, modo Erros | ana | 302 | 98 | −68% |
 | Guia de halter (a Ana, pelo programa): Supino reto com halteres, modo Músculos | ana | 306 | 102 | −67% |
-| Guia de halter (a Ana, pelo programa): Supino reto com halteres, modo Trajetória | ana | 301 | 97 | −68% |
 | Guia de polia (a Carla): Crucifixo na polia (crossover), modo Erros | carla | 296 | 93 | −69% |
+| Guia de halter (a Ana, pelo programa): Supino reto com halteres, modo Trajetória | ana | 301 | 100 | −67% |
 | Guia de polia (a Carla): Crucifixo na polia (crossover), modo Músculos | carla | 307 | 106 | −65% |
 | Guia de polia (a Carla): Crucifixo na polia (crossover), modo Trajetória | carla | 300 | 99 | −67% |
 | Guia sem contexto, grupo "Novas" (os nomes curtos de todas as animações novas) | ninguém | 524 | 327 | −38% |
 | Guia de polia (a Carla): Puxada unilateral ajoelhado na polia alta, modo Técnica | carla | 257 | 62 | −76% |
-| Guia de polia (a Carla): Puxada unilateral ajoelhado na polia alta, modo Trajetória | carla | 277 | 85 | −69% |
 | Guia de polia (a Carla): Puxada unilateral ajoelhado na polia alta, modo Erros | carla | 282 | 91 | −68% |
 | Guia de polia (a Carla): Puxada unilateral ajoelhado na polia alta, modo Músculos | carla | 291 | 100 | −66% |
+| Guia de polia (a Carla): Puxada unilateral ajoelhado na polia alta, modo Trajetória | carla | 277 | 86 | −69% |
 | Guia de corpo livre (a Elisa): Flexão de braço, modo Técnica | elisa | 248 | 62 | −75% |
 | Guia de corpo livre (a Elisa): Flexão de braço, modo Músculos | elisa | 291 | 107 | −63% |
 | Guia de corpo livre (a Elisa): Agachamento com o peso do corpo, modo Técnica | elisa | 247 | 64 | −74% |
@@ -260,18 +259,18 @@
 | Guia de corpo livre (a Elisa): Flexão de braço, modo Trajetória | elisa | 277 | 95 | −66% |
 | Guia de corpo livre (a Elisa): Agachamento com o peso do corpo, modo Trajetória | elisa | 278 | 97 | −65% |
 | Guia de corpo livre (a Elisa): Agachamento com o peso do corpo, modo Erros | elisa | 281 | 102 | −64% |
-| Guia de corpo livre (a Elisa): Agachamento com o peso do corpo, modo Músculos | elisa | 291 | 112 | −62% |
+| Guia de corpo livre (a Elisa): Agachamento com o peso do corpo, modo Músculos | elisa | 291 | 114 | −61% |
+| Guia: só o bloco "Amplitude" aberto | ana | 253 | 96 | −62% |
+| Guia: só o bloco "Respiração" aberto | ana | 226 | 69 | −69% |
+| Guia: só o bloco "Onde sentir" aberto | ana | 255 | 98 | −62% |
+| Guia: só o bloco "Erros comuns" aberto | ana | 285 | 128 | −55% |
+| Guia: só o bloco "O que varia de pessoa para pessoa" aberto | ana | 256 | 99 | −61% |
 | Guia: só o bloco "Montagem" aberto | ana | 295 | 140 | −53% |
 | Guia: só o bloco "Execução e tempo" aberto | ana | 267 | 112 | −58% |
-| Guia: só o bloco "Amplitude" aberto | ana | 253 | 98 | −61% |
-| Guia: só o bloco "Respiração" aberto | ana | 226 | 71 | −69% |
-| Guia: só o bloco "Onde sentir" aberto | ana | 255 | 100 | −61% |
-| Guia: só o bloco "Erros comuns" aberto | ana | 285 | 130 | −54% |
-| Guia: só o bloco "O que varia de pessoa para pessoa" aberto | ana | 256 | 101 | −61% |
 | Guia de corpo livre (a Elisa): Agachamento com o peso do corpo, com os 7 blocos abertos | elisa | 562 | 418 | −26% |
-| Guia de corpo livre (a Elisa): Flexão de braço, com os 7 blocos abertos | elisa | 434 | 292 | −33% |
-| Guia de polia (a Carla): Crucifixo na polia (crossover), com os 7 blocos abertos | carla | 505 | 365 | −28% |
-| Guia de polia (a Carla): Puxada unilateral ajoelhado na polia alta, com os 7 blocos abertos | carla | 457 | 318 | −30% |
+| Guia de corpo livre (a Elisa): Flexão de braço, com os 7 blocos abertos | elisa | 434 | 294 | −32% |
+| Guia de polia (a Carla): Crucifixo na polia (crossover), com os 7 blocos abertos | carla | 505 | 367 | −27% |
+| Guia de polia (a Carla): Puxada unilateral ajoelhado na polia alta, com os 7 blocos abertos | carla | 457 | 320 | −30% |
 | Guia de halter (a Ana, pelo programa): Supino reto com halteres, com os 7 blocos abertos | ana | 534 | 398 | −25% |
 | Guia: "Confira em 5 segundos", com um item marcado | ana | 215 | 90 | −58% |
 
@@ -361,15 +360,32 @@
 | Folha "Foto do equipamento" (retirar a autorização) | ana | 36 | 35 | −3% |
 | Folha "Guardar uma cópia" de quem não tem nada guardado (o botão fica desligado) | ninguém | 38 | 37 | −3% |
 
-## termos-e-foto: as 5 telas que mudaram
+## termos-e-foto: as 22 telas que mudaram
 
 | Tela | Quem vê | Antes | Depois | Mudança |
 |---|---|---|---|---|
-| Folha "Reconhecer pela foto": sem a autorização ("Falta marcar a autorização acima.") | ana | 194 | 193 | −1% |
-| Folha da foto: com a autorização marcada | ana | 189 | 188 | −1% |
-| Folha da foto: fotos escolhidas sem o código de convite | ana | 204 | 203 | −0% |
-| Folha da foto: mais de 5 fotos | ana | 193 | 192 | −1% |
-| Folha da foto depois de "Retirar a autorização" (a caixa de consentimento volta) | ana | 204 | 203 | −0% |
+| Folha "Reconhecer pela foto": sem a autorização ("Falta marcar a autorização acima.") | ana | 194 | 179 | −8% |
+| Folha da foto: com a autorização marcada | ana | 189 | 174 | −8% |
+| Folha da foto: fotos escolhidas sem o código de convite | ana | 204 | 189 | −7% |
+| Folha da foto: mais de 5 fotos | ana | 193 | 178 | −8% |
+| Folha da foto depois de "Retirar a autorização" (a caixa de consentimento volta) | ana | 204 | 189 | −7% |
+| Folha da foto: "Analisando as fotos…" | ana | 53 | 39 | −26% |
+| Folha da foto de quem já autorizou ("Você autorizou o envio… em <data>") | ana | 52 | 38 | −27% |
+| Folha da foto de quem já autorizou, com "Para onde vai a foto" aberto | ana | 174 | 160 | −8% |
+| Folha da foto: a foto que o navegador não abre | ana | 81 | 67 | −17% |
+| Folha da foto: o servidor não respondeu | ana | 70 | 56 | −20% |
+| Folha da foto: sem conexão | ana | 58 | 44 | −24% |
+| Folha da foto: as fotos ficaram grandes demais (o servidor recusa sem dizer por quê) | ana | 70 | 56 | −20% |
+| Folha da foto: a análise falhou (o servidor responde com erro sem mensagem) | ana | 62 | 48 | −23% |
+| Folha da foto: a análise demorou demais | ana | 68 | 54 | −21% |
+| Folha da foto: a mensagem do servidor "Código de convite inválido." | ana | 56 | 42 | −25% |
+| Folha da foto: a mensagem do servidor "Muitas tentativas com o código errado hoje. Use a lista ou tente amanhã." | ana | 65 | 51 | −22% |
+| Folha da foto: a mensagem do servidor "Limite de fotos de hoje atingido. Use a lista ou tente amanhã." | ana | 64 | 50 | −22% |
+| Folha da foto: a mensagem do servidor "O reconhecimento por foto ainda não está configurado. Use a lista." | ana | 63 | 49 | −22% |
+| Folha da foto: a mensagem do servidor "Pedido inválido." | ana | 54 | 40 | −26% |
+| Folha da foto: a mensagem do servidor "Foto em formato ou tamanho não aceito." | ana | 59 | 45 | −24% |
+| Folha da foto: a mensagem do servidor "As fotos juntas passam do tamanho aceito. Envie menos fotos por vez." | ana | 64 | 50 | −22% |
+| Folha da foto: a mensagem do servidor "Não foi possível analisar as fotos agora. Use a lista." | ana | 62 | 48 | −23% |
 
 ## avisos-e-erros: as 19 telas que mudaram
 

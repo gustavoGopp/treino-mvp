@@ -95,6 +95,10 @@
     [
       "^Nova semana\\. O próximo treino é|^Ainda sem treino registrado",
       "estado"
+    ],
+    [
+      "^Até \\d+ fotos do lugar onde você treina",
+      "instrução"
     ]
   ]
 }

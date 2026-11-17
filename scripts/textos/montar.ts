@@ -61,7 +61,7 @@ export default function montar() {
   for (const p of escuro) for (const f of p.fotos) if (!colhidas.has(`${p.chave}|${f.fluxo}/${f.nome}`)) falhas.push(`[montagem] ${f.fluxo}/${f.nome}: fotografada no escuro (${p.chave}) e não colhida no claro`);
 
   // a versão do app colhido, como o próprio app a escreve em "Meus dados"
-  const versao = telas.flatMap((t) => t.blocos).map((b) => /^Versão do app: (\S+), publicada em ([\d/]+)\./.exec(b.texto)).find(Boolean);
+  const versao = telas.flatMap((t) => t.blocos).map((b) => /^Versão (?:do app: )?(\S+?)(?:, publicada em| ·) ([\d/]+)/.exec(b.texto)).find(Boolean);
   const cabeca = { geradoEm: new Date().toISOString(), versaoDoApp: versao?.[1] ?? null, publicadaEm: versao?.[2] ?? null };
   // ---- cobertura.md ----
   const citadas = new Set<string>();
