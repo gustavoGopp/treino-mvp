@@ -387,6 +387,7 @@ Detalhes em `revisoes/treino-para-todos/fechamento-etapa-2.md`. A etapa 2 está 
 - **Idade e equilíbrio:** a flexão de joelho na bola suíça e a panturrilha no degrau para o Gilberto (67 anos). O app não pergunta nada sobre equilíbrio; ligado à decisão 7 da proposta ("tenho 60 anos ou mais"), que ficou em "não agora".
 
 **Na junção com a `main`**
+- **Lição da junção (17/11):** antes de mandar qualquer coisa para a `main`, rodar o que a verificação automática roda (`npm run lint`, `npm run typecheck`, `npm run test:cobertura` e `npm run test:e2e`), e não só `npm run check`. Com a cobertura ligada os testes ficam mais lentos: um teste do gerador estourou os 5 s lá e passou aqui. Vale também olhar os testes de propriedade que ficam perto do limite (os de `equipamento-minimo.test.ts` levam cerca de 2 s cada, com o limite padrão de 5 s).
 - **Passo 1, feito em 17/11:** a `main` está dentro do ramo (três junções no dia), com `check`, testes de tela, a medida da população e a auditoria conferidos (`revisoes/treino-para-todos/fechamento-etapa-2.md`, seção 9.1).
 - **Para a sessão de textos rever:** as 13 frases em linguagem simples das regras que a etapa 2 criou ou mudou (`revisoes/treino-para-todos/frases-das-regras.md`). Duas perderam conteúdo para caber em 80 palavras (`tempo.sobra-series` e `tempo.corte`): decidir se essas duas entram na lista das regras longas do teste. **Passo 2, feito em 17/11, com o ok do Gustavo:** o ramo foi juntado na `main`, sem forçar (`revisoes/treino-para-todos/fechamento-etapa-2.md`, seção 9.2).
 

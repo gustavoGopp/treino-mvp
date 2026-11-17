@@ -169,6 +169,8 @@ O ramo foi juntado na `main`, sem forçar nada.
 
 Depois da junção, só os documentos mudaram (esta seção, a página de entrada da sessão, o devlog e o backlog), para registrar que ela foi feita.
 
+**O que deu errado depois da junção, e a correção.** A verificação automática da `main` (a que o GitHub roda a cada envio) falhou no commit da junção: um teste antigo do gerador (`tests/unit/gerador.test.ts`, a propriedade da dor em 1 ou 2 regiões, 672 combinações) estourou o limite de 5 segundos. Não era erro de resultado. Desde o pacote 3, com dor forte o gerador monta a semana em mais de uma divisão e fica com a melhor: o teste foi de cerca de 1,9 s para 2,7 s, e de 4 a 5 s com a medida de cobertura ligada (cerca de 4 milésimos de segundo por programa). A correção, enviada à `main` com o ok do Gustavo (`feed6c7`): o teste passa a ter o limite de 30 s que as outras propriedades do mesmo arquivo já têm. **Por que escapou:** antes de juntar eu rodei `npm run check`, que não liga a cobertura; a verificação automática roda `npm run test:cobertura`. A lição está no backlog.
+
 **O que muda para quem usa o app a partir da `main`:**
 
 - **Os dados guardados passam da versão 8 para a 9** na primeira abertura (o programa passa a guardar o nível). A migração é automática e tem teste. Ela não volta atrás: um app na versão 9 não abre num código de antes da junção.
