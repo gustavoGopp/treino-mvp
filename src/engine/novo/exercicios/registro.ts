@@ -99,3 +99,4 @@ export { roscaScottBancoInclinado } from './rosca-scott-banco-inclinado';
 export { crucifixoHalteres } from './crucifixo-halteres';
 export { crucifixoInclinadoHalteres } from './crucifixo-inclinado-halteres';
 export { abducaoDeitadoMiniBand } from './abducao-deitado-mini-band';
+export { extensaoJoelhoMiniBand } from './extensao-joelho-mini-band';
