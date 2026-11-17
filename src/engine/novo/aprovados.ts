@@ -105,6 +105,7 @@ export const APROVADOS: Record<string, { em: string; oQueEleDisse: string; como?
   'coice-elastico': { em: '2026-11-17', oQueEleDisse: DELEGOU, como: 'por delegação' },
   'extensao-joelho-mini-band': { em: '2026-11-17', oQueEleDisse: DELEGOU, como: 'por delegação' },
   'abducao-deitado-mini-band': { em: '2026-11-17', oQueEleDisse: DELEGOU, como: 'por delegação' },
+  'caminhada-lateral-mini-band': { em: '2026-11-17', oQueEleDisse: DELEGOU, como: 'por delegação' },
   'abducao-mini-band': { em: '2026-11-16', oQueEleDisse: 'O único problema é que quando ele abre a band parece que a mão está pra dentro, ajuste isso e seguimos. Não quero olhar mais nenhuma', como: 'por delegação' },
 };
 
@@ -114,7 +115,7 @@ export const APROVADOS: Record<string, { em: string; oQueEleDisse: string; como?
  * e o texto do guia. Até lá elas ficam fora do catálogo do guia e o app não as mostra: a ligação muda o treino gerado e
  * só entra com o ok do Gustavo (docs/revisoes/animacoes-restantes/plano.md, seção 4).
  */
-export const ESPERAM_A_LIGACAO: string[] = ['supino-chao-halteres', 'triceps-testa-halteres', 'crucifixo-inverso', 'crucifixo-halteres', 'crucifixo-inclinado-halteres', 'remada-curvada-elastico', 'remada-unilateral-elastico', 'abducao-elastico', 'coice-elastico', 'extensao-joelho-mini-band', 'abducao-deitado-mini-band'];
+export const ESPERAM_A_LIGACAO: string[] = ['supino-chao-halteres', 'triceps-testa-halteres', 'crucifixo-inverso', 'crucifixo-halteres', 'crucifixo-inclinado-halteres', 'remada-curvada-elastico', 'remada-unilateral-elastico', 'abducao-elastico', 'coice-elastico', 'extensao-joelho-mini-band', 'abducao-deitado-mini-band', 'caminhada-lateral-mini-band'];
 
 /**
  * As animações novas feitas que ainda não estão aprovadas, com o motivo: as de maior risco, que quem integra separou para
@@ -122,5 +123,4 @@ export const ESPERAM_A_LIGACAO: string[] = ['supino-chao-halteres', 'triceps-tes
  */
 export const EM_REVISAO: Record<string, string> = {
   'rosca-scott-banco-inclinado': 'para o Gustavo ver: o braço livre pendurado, o braço fora do meio do encosto e o erro "travar" discreto',
-  'caminhada-lateral-mini-band': 'em correção: o passo e o meio agachamento não se leem nos quadros parados',
 };

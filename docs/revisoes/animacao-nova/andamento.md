@@ -115,5 +115,5 @@ Os 81 exercícios que eram cartão de texto, em lotes (`docs/revisoes/animacoes-
 | A2 | `coice-elastico` | feita e conferida quadro a quadro por quem integra; aprovada por delegação; espera a ligação (o núcleo novo de quatro apoios; "Chutar com embalo" sem desenho) |
 | A2 | `extensao-joelho-mini-band` | feita e conferida quadro a quadro por quem integra; aprovada por delegação; espera a ligação (abre de três quartos, onde se vê o encosto; "Parar longe da falha" sem desenho) |
 | A2 | `abducao-deitado-mini-band` | feita e conferida quadro a quadro por quem integra; aprovada por delegação; espera a ligação (a perna sobe 30°, o que a faixa permite pela medida do fabricante) |
-| A2 | `caminhada-lateral-mini-band` | **em correção**: nos quadros parados o passo e o meio agachamento não se leem |
+| A2 | `caminhada-lateral-mini-band` | feita, refeita uma vez (o passo e o meio agachamento não se liam) e conferida quadro a quadro por quem integra; aprovada por delegação; espera a ligação (dois passos para cada lado; o pé sobe 9 cm; abre de três quartos pela frente) |
 
