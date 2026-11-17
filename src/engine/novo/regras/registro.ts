@@ -28,3 +28,4 @@ export { regrasDoPendurado } from './pendurado';
 export { REGRAS_RODA_ABDOMINAL } from './roda-abdominal';
 export { regrasDoQuadril } from './quadril-abrir-e-fechar';
 export { regrasDaExtensaoComCaneleira } from './extensao-joelho-caneleira';
+export { regrasDoDeitadoNoChao } from './deitado-no-chao';

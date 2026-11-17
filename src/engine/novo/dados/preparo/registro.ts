@@ -82,16 +82,17 @@ import p76 from './stiff.json';
 import p77 from './stiff-elastico.json';
 import p78 from './stiff-kettlebell.json';
 import p79 from './stiff-unilateral.json';
-import p80 from './supino-inclinado.json';
-import p81 from './supino-reto.json';
-import p82 from './triceps-corda.json';
-import p83 from './triceps-elastico-acima.json';
-import p84 from './triceps-frances.json';
-import p85 from './triceps-frances-halter.json';
-import p86 from './triceps-frances-kettlebell.json';
-import p87 from './triceps-frances-polia-unilateral.json';
-import p88 from './triceps-suspensao.json';
-import p89 from './yt-suspensao.json';
+import p80 from './supino-chao-halteres.json';
+import p81 from './supino-inclinado.json';
+import p82 from './supino-reto.json';
+import p83 from './triceps-corda.json';
+import p84 from './triceps-elastico-acima.json';
+import p85 from './triceps-frances.json';
+import p86 from './triceps-frances-halter.json';
+import p87 from './triceps-frances-kettlebell.json';
+import p88 from './triceps-frances-polia-unilateral.json';
+import p89 from './triceps-suspensao.json';
+import p90 from './yt-suspensao.json';
 
 const TODOS: Record<string, Preparo> = {
   'abdominal-bola': p0,
@@ -174,15 +175,16 @@ const TODOS: Record<string, Preparo> = {
   'stiff-elastico': p77,
   'stiff-kettlebell': p78,
   'stiff-unilateral': p79,
-  'supino-inclinado': p80,
-  'supino-reto': p81,
-  'triceps-corda': p82,
-  'triceps-elastico-acima': p83,
-  'triceps-frances': p84,
-  'triceps-frances-halter': p85,
-  'triceps-frances-kettlebell': p86,
-  'triceps-frances-polia-unilateral': p87,
-  'triceps-suspensao': p88,
-  'yt-suspensao': p89,
+  'supino-chao-halteres': p80,
+  'supino-inclinado': p81,
+  'supino-reto': p82,
+  'triceps-corda': p83,
+  'triceps-elastico-acima': p84,
+  'triceps-frances': p85,
+  'triceps-frances-halter': p86,
+  'triceps-frances-kettlebell': p87,
+  'triceps-frances-polia-unilateral': p88,
+  'triceps-suspensao': p89,
+  'yt-suspensao': p90,
 };
 for (const [id, p] of Object.entries(TODOS)) registrarPreparo(id, p);
