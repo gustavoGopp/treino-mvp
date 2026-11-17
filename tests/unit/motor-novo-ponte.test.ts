@@ -1,7 +1,7 @@
 import { readFileSync, readdirSync } from 'node:fs';
 import { describe, expect, it } from 'vitest';
 import { BIBLIOTECA } from '../../src/domain/biblioteca';
-import { APROVADOS, ESPERAM_A_LIGACAO } from '../../src/engine/novo/aprovados';
+import { APROVADOS, ESPERAM_A_LIGACAO, PARA_O_GUSTAVO_VER } from '../../src/engine/novo/aprovados';
 import { EXERCICIOS } from '../../src/engine/novo/app';
 import { cssDoBoneco } from '../../src/engine/novo/boneco';
 import { enquadramentoCalculado, fichaDoMotorNovo, miniaturaDoMotorNovo, previaDoMotorNovo, quadroDoMotorNovo, vistasDoGuia } from '../../src/engine/novo/ponte';
@@ -27,7 +27,9 @@ describe('motor novo: a ponte com as telas', () => {
   it('os erros de cada animação nova têm os títulos do texto do app, na mesma ordem (o guia escolhe o erro pelo índice)', () => {
     // exceção conhecida: a panturrilha no degrau não desenha o erro de ritmo "Quicar embaixo" (o guia mostra o
     // movimento certo nesse erro); os outros erros dela seguem a ordem do app
-    const SEM_DESENHO: Record<string, string[]> = { 'panturrilha-degrau': ['Quicar embaixo'] };
+    // "Carga pesada demais", do crucifixo inverso: o cartão só diz que o movimento sai com tranco, que é ritmo (a proposta
+    // de desenhar o erro de ritmo espera o Gustavo: docs/revisoes/animacoes-restantes/plano.md, seção 5)
+    const SEM_DESENHO: Record<string, string[]> = { 'panturrilha-degrau': ['Quicar embaixo'], 'crucifixo-inverso': ['Carga pesada demais'] };
     for (const [id, ex] of Object.entries(EXERCICIOS)) {
       const doApp = conteudo(id)
         .errors.map((e) => e.title)
@@ -81,13 +83,15 @@ describe('motor novo: a ponte com as telas', () => {
   // biblioteca (ESPERAM_A_LIGACAO), que muda o treino gerado e espera o ok do Gustavo.
   it('todas as animações estão aprovadas e no catálogo do guia, sem sobra de um lado nem do outro', () => {
     const ids = Object.keys(EXERCICIOS).sort();
-    expect(Object.keys(APROVADOS).sort()).toEqual(ids);
+    // as que esperam o olhar do Gustavo (PARA_O_GUSTAVO_VER) ainda não estão aprovadas, e as duas listas não se cruzam
+    for (const id of PARA_O_GUSTAVO_VER) expect(APROVADOS[id], id).toBeUndefined();
+    expect([...Object.keys(APROVADOS), ...PARA_O_GUSTAVO_VER].sort()).toEqual(ids);
     expect(new Set(ESPERAM_A_LIGACAO).size).toBe(ESPERAM_A_LIGACAO.length);
     for (const id of ESPERAM_A_LIGACAO) {
       expect(ids, id).toContain(id);
       expect(BIBLIOTECA.some((e) => e.animacaoId === id), `${id} já está ligado na biblioteca`).toBe(false);
     }
-    expect([...CATALOGO.todos].sort()).toEqual(ids.filter((id) => !ESPERAM_A_LIGACAO.includes(id)));
+    expect([...CATALOGO.todos].sort()).toEqual(ids.filter((id) => !ESPERAM_A_LIGACAO.includes(id) && !PARA_O_GUSTAVO_VER.includes(id)));
     expect(new Set(CATALOGO.todos).size).toBe(CATALOGO.todos.length);
     for (const d of CATALOGO.dias) for (const id of d.ids) expect(ids, `${d.nome}: ${id}`).toContain(id);
   });
