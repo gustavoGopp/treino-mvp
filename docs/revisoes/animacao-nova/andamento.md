@@ -99,7 +99,7 @@ Resumo: as 90 animações estão feitas e aprovadas. 23 aprovadas pelo Gustavo (
 
 ## As animações restantes (desde 17/11/2026)
 
-Os 81 exercícios que eram cartão de texto, em lotes (`docs/revisoes/animacoes-restantes/plano.md`). "Espera a ligação" = conferida e aprovada, mas fora do app até o `animacaoId` entrar na biblioteca com o texto do guia, o que muda o treino gerado e espera o ok do Gustavo (`ESPERAM_A_LIGACAO` em `src/engine/novo/aprovados.ts`). "Para o Gustavo ver" = risco médio ou alto, fora do app até ele olhar (`PARA_O_GUSTAVO_VER`). As conferências escritas ficam em `lote-A1/`.
+Os 81 exercícios que eram cartão de texto, em lotes (`docs/revisoes/animacoes-restantes/plano.md`). "Espera a ligação" = conferida e aprovada, mas fora do app até o `animacaoId` entrar na biblioteca com o texto do guia, o que muda o treino gerado e espera o ok do Gustavo (`ESPERAM_A_LIGACAO` em `src/engine/novo/aprovados.ts`). "Para o Gustavo ver" = risco médio ou alto, fora do app até ele olhar; "em correção" = voltou para quem fez (as duas em `EM_REVISAO`, com o motivo). As conferências escritas ficam em `lote-A1/` e `lote-A2/`.
 
 | Lote | Exercício | Estado |
 |---|---|---|
@@ -109,3 +109,11 @@ Os 81 exercícios que eram cartão de texto, em lotes (`docs/revisoes/animacoes-
 | A1 | `supino-chao-halteres` | feita e conferida quadro a quadro por quem integra; aprovada por delegação; espera a ligação (o braço desce até encostar no chão, medido na pele) |
 | A1 | `triceps-testa-halteres` | feita e conferida quadro a quadro por quem integra; aprovada por delegação; espera a ligação (no chão, com colchonete; abre de três quartos, porque de lado o halter parece estar no rosto) |
 | A1 | `rosca-scott-banco-inclinado` | **para o Gustavo ver**: em pé, encosto a 60°; o braço livre fica pendurado ao lado do banco, o braço que trabalha deita 9 cm fora do meio do encosto e o erro "travar o cotovelo" é discreto |
+| A2 | `remada-curvada-elastico` | feita e conferida quadro a quadro por quem integra; aprovada por delegação; espera a ligação (uma volta do tubo em cada mão, como na remada sentada aprovada) |
+| A2 | `remada-unilateral-elastico` | feita e conferida quadro a quadro por quem integra; aprovada por delegação; espera a ligação (o tubo dobrado sob o pé da frente, os dois pegadores na mesma mão) |
+| A2 | `abducao-elastico` | feita e conferida quadro a quadro por quem integra; aprovada por delegação; espera a ligação (o laço longo pisado; a perna abre 25°, escolha de desenho; "Balançar a perna" sem desenho: o cartão só fala de ritmo) |
+| A2 | `coice-elastico` | feita e conferida quadro a quadro por quem integra; aprovada por delegação; espera a ligação (o núcleo novo de quatro apoios; "Chutar com embalo" sem desenho) |
+| A2 | `extensao-joelho-mini-band` | feita e conferida quadro a quadro por quem integra; aprovada por delegação; espera a ligação (abre de três quartos, onde se vê o encosto; "Parar longe da falha" sem desenho) |
+| A2 | `abducao-deitado-mini-band` | feita e conferida quadro a quadro por quem integra; aprovada por delegação; espera a ligação (a perna sobe 30°, o que a faixa permite pela medida do fabricante) |
+| A2 | `caminhada-lateral-mini-band` | **em correção**: nos quadros parados o passo e o meio agachamento não se leem |
+
