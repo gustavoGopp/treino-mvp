@@ -387,7 +387,7 @@ Detalhes em `revisoes/treino-para-todos/fechamento-etapa-2.md`. A etapa 2 está 
 - **Idade e equilíbrio:** a flexão de joelho na bola suíça e a panturrilha no degrau para o Gilberto (67 anos). O app não pergunta nada sobre equilíbrio; ligado à decisão 7 da proposta ("tenho 60 anos ou mais"), que ficou em "não agora".
 
 **Na junção com a `main`**
-- Trazer a `main` para o ramo; resolver os 4 conflitos (`docs/backlog.md`, `docs/devlog.md`, `src/styles.css`, `tests/e2e/treino.spec.ts`); ajustar os testes de tela novos que citam o búlgaro (21 lugares); refazer a correção do zoom de 200% no estilo novo; rodar `check`, testes de tela, auditoria em duas rodadas e a medida da população; só então juntar, com o ok do Gustavo e o aviso de exportar os dados (versão 9).
+- **Passo 1, feito em 17/11:** a `main` está dentro do ramo, com `check`, testes de tela e a medida da população conferidos (`revisoes/treino-para-todos/fechamento-etapa-2.md`, seção 9.1). **Passo 2, à espera do ok do Gustavo:** juntar o ramo na `main`, sem forçar, com o aviso de exportar os dados antes (versão 9). Se a `main` andar antes disso, repetir o passo 1.
 
 ## Do frontend novo (13/11/2026)
 

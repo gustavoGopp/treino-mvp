@@ -868,3 +868,14 @@ Pior grupo antes: dor:cotovelo 7 (50,0%). Pior grupo depois: min:30 (73,8%).
 - `npm run check`: limpo (64 arquivos, 1.014 testes).
 - `npm run test:e2e -- --trace off`: limpo (158 testes).
 - Auditoria em duas rodadas (os 10 passos de `npm run auditoria`, duas vezes): limpa. 39 arquivos idênticos nas duas rodadas; nenhum defeito acima da linha de base da régua. Na grade da régua oficial, a marca do ombro muda uma linha: "dia mais longo acima de 110%", com dor, de 2.104 para 2.108 programas (2,9%; a linha de base é 4,5%).
+
+### Depois de trazer a `main` para o ramo (17/11/2026, passo 1 da junção)
+
+Com a `main` (280 commits: o frontend e a animação novos) dentro do ramo, tudo foi rodado de novo:
+
+- `npm run check`: limpo (65 arquivos, 1.022 testes).
+- `npm run test:e2e -- --trace off`: limpo (162 testes).
+- A medida da população (680.625 programas): idêntica à do fechamento, byte a byte (`medidas/final/`).
+- Auditoria em duas rodadas: limpa. 39 arquivos idênticos nas duas rodadas, nenhum defeito acima da linha de base da régua, e nenhum relatório mudou.
+- `src/engine/`, `src/features/`, `src/styles.css`, `api/` e `CLAUDE.md`: iguais aos da `main`. A exceção de 15/11 em `src/styles.css` deixou de existir (o estilo novo resolve o zoom de 200% de outro jeito). Ficam duas exceções em relação à `main`: `src/storage/` (versão 9) e os testes de tela ajustados no pacote 2, mais uma linha no teste criado nesta sessão.
+

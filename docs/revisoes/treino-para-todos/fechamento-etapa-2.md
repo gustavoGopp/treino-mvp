@@ -127,6 +127,26 @@ Em ordem do que eu atacaria primeiro. Tudo está em `docs/backlog.md`.
 - **Os testes de tela da `main` são de outra sessão.** Ajustá-los (trocar "búlgaro" por "goblet" onde o teste confere o nome do exercício) é mexer em `tests/e2e/`, que você já autorizou uma vez, no pacote 2. No passo 1 eu mostraria a lista antes de ajustar, como da outra vez.
 - **Se a `main` continuar andando** enquanto o passo 1 acontece, o passo se repete, menor.
 
+## 9.1 O passo 1, feito em 17/11/2026 (com o ok do Gustavo)
+
+A `main` foi trazida para dentro do ramo (commit `69e2d67`). **A `main` não foi tocada.**
+
+| O que | Resultado |
+|---|---|
+| Os 4 conflitos | Resolvidos. Em `docs/backlog.md` e `docs/devlog.md` ficam os dois textos inteiros. Em `src/styles.css` vale o arquivo da `main`. Em `tests/e2e/treino.spec.ts` fica a estrutura da `main` com o número deste ramo (a carga do goblet, 6 kg) |
+| Os testes de tela novos da `main` | **Não precisaram de ajuste.** O ensaio contava 21 citações do búlgaro; quase todas estavam em arquivos que este ramo já tinha ajustado no pacote 2, e a junção combinou os dois lados sozinha. Só um teste falhou: um que eu mesmo criei no pacote 2 (o afundo, "cada lado"), que procurava o link "‹ Voltar ao treino"; o frontend novo chama o link de "Voltar ao treino". Troquei o nome no teste (1 linha) |
+| A correção do zoom de 200% | **Não precisou ser refeita.** O estilo novo da `main` resolve de outro jeito (em tela estreita, a barra desce para a linha de baixo), e o teste do zoom passa. `src/styles.css` está igual ao da `main`: a exceção de 15/11 deixou de existir |
+| Telas, motor de animação, `api/` e `CLAUDE.md` | Iguais aos da `main`, arquivo por arquivo |
+| `npm run check` | Limpo: 65 arquivos, 1.022 testes (os 1.014 deste ramo e os 8 novos da `main`) |
+| Testes de tela | Limpos: 162 (os 158 deste ramo e os 4 novos da `main`) |
+| As conferências novas da `main` (`conferir:tokens`, `conferir:animacao`) | Passam |
+| A medida da população (680.625 programas) | **Idêntica à do fechamento, byte a byte.** A junção não muda nenhum programa: a `main` não mexeu no gerador, nas regras nem nos dados |
+| Auditoria em duas rodadas | Limpa: 39 arquivos idênticos nas duas rodadas, nenhum defeito acima da linha de base da régua, e nenhum relatório mudou em relação ao do fechamento |
+
+**O que mudou em `tests/e2e/` neste passo** (para você poder vetar): só `tests/e2e/treino.spec.ts`, em dois lugares. (1) No teste da calibração, o trecho em conflito: fica "6 kg × 11 · RIR 2" (o número deste ramo) e a conferência do "Desfazer a última série" dentro do "⋯" (a da `main`). (2) No teste do afundo, o nome do link.
+
+**O que o passo 2 faria.** Juntar este ramo na `main`. Como a `main` já está inteira dentro do ramo, a junção não tem conflito e a `main` passa a ser exatamente o que foi verificado aqui. Se a `main` receber commits novos antes disso, repito o passo 1 (menor) antes de juntar.
+
 ## 10. Como conferir
 
 ```bash

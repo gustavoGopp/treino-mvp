@@ -1799,6 +1799,18 @@ Em relação ao pacote 0, um único par de grupo e defeito sobe, em 1 programa. 
 
 **Rascunho de post.** "Passei cinco dias fazendo o app montar um treino melhor para qualquer pessoa, não só para mim. A regra da casa: melhorar um perfil piorando outro não é melhoria. Medi 680 mil programas de pessoas inventadas antes e depois de cada mudança, e pedi a treinadores simulados que dessem nota sem saber qual versão estavam lendo. O que mais rendeu não foi nada esperto: o app deixava minutos sobrando no treino, e agora usa. O que eu não consegui resolver também está escrito: quem treina em casa sem equipamento continua sem exercício para as costas, e o iniciante ainda recebe exercícios em dupla para caber no tempo. No último dia, os revisores acharam um erro que estava lá desde o começo: agachamento com a barra nas costas para quem marcou dor forte no ombro. Corrigido no mesmo dia, com teste."
 
+## Sessão "treino para todos": a `main` dentro do ramo (17/11/2026)
+
+**O que mudou (no ramo `claude/nifty-albattani-mltt95`; a `main` não foi tocada).** Com o ok do Gustavo, a `main` (280 commits: o frontend novo e a animação nova) foi trazida para dentro do ramo da sessão. Quatro conflitos, todos resolvidos sem perder nada de nenhum lado: os dois textos do backlog e do devlog ficam inteiros; o estilo fica o da `main`; um teste de tela junta a estrutura da `main` com o número deste ramo.
+
+**O que apareceu.** Os testes de tela novos da `main` não precisaram de ajuste (a junção combinou os dois lados sozinha); falhou só um teste criado nesta sessão, que procurava um link pelo nome antigo. A correção do zoom de 200% (15/11) deixou de ser necessária: o estilo novo resolve o caso de outro jeito.
+
+**Conferido no estado juntado.** `check` limpo (1.022 testes), testes de tela limpos (162), as duas conferências novas da `main` passam, e a medida da população (680.625 programas) é idêntica à do fechamento, byte a byte: a junção não muda nenhum programa.
+
+**Imagem.** Sem imagem: as telas e o motor são os da `main`.
+
+**Rascunho de post.** Sem post: é trabalho de bastidor.
+
 ## Frontend novo: o app refeito na direção "Placar" (12 e 13/11/2026)
 
 **Por quê.** O redesign de 05 a 08/11 arrumou a estrutura das telas, mas o app ainda não tinha acabamento de aplicativo profissional: 528 espaços, alturas e cantos fora de uma escala, emojis no lugar de ícones, caixa dentro de caixa, três cores disputando com o Boneco. O Gustavo pediu o frontend refeito por completo, em duas etapas: primeiro pesquisa e direção, depois a reconstrução.
