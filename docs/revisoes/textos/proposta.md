@@ -233,7 +233,7 @@ A regra da linha: a 2ª linha só fica quando mostra um **valor** (o que está e
 
 **O que não muda (privacidade e proteção dos dados):** "Tudo fica guardado só neste aparelho." com "o que sai daqui"; o aviso "Este navegador pode apagar seus dados."; as folhas "Guardar uma cópia", "Trazer uma cópia", "Foto do equipamento" e "Apagar todos os dados?"; o texto de "Avisar um problema" (o que vai na mensagem e o pedido de não escrever sobre a saúde).
 
-**Testes da proposta:** 177 de ponta a ponta e os tokens passando. Os unitários precisam ser repetidos com a máquina livre (na 1ª rodada deram tempo esgotado em testes do motor e do gerador, que a proposta não toca, porque a medição rodava junto).
+**Testes da proposta:** 904 unitários, 177 de ponta a ponta e os tokens passando (os unitários foram repetidos com a máquina livre; na 1ª rodada, com a medição rodando junto, três testes do motor e do gerador deram tempo esgotado).
 
 ## 8. Avisos e erros (proposta preparada; mostrar depois dos fluxos 6 e 7)
 
@@ -257,5 +257,5 @@ O que saiu vai para "Entenda o treino" → "Por que o app pergunta e sugere" →
 
 **O que não muda:** as mensagens de falha de carregamento (já são de uma frase com o botão "Tentar de novo"), o alerta "Série N anotada, mas não salva" e o texto de "Avisar um problema".
 
-**Testes da pilha de propostas (6 + 7 + 8):** 904 unitários e os tokens passando; os testes de ponta a ponta ligados aos avisos, também. A rodada completa de ponta a ponta fica registrada no fim desta seção quando terminar.
+**Testes da pilha de propostas (6 + 7 + 8), em 17/11:** 904 unitários, 177 de ponta a ponta e os tokens, tudo passando.
 
