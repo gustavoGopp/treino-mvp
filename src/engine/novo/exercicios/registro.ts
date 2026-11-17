@@ -111,3 +111,6 @@ export { elevacaoLateralUnilateralElastico } from './elevacao-lateral-unilateral
 export { aberturaElastico } from './abertura-elastico';
 export { crucifixoInvertidoCurvado } from './crucifixo-invertido-curvado';
 export { elevacaoLateralUnilateral } from './elevacao-lateral-unilateral';
+export { desenvolvimentoUnilateral } from './desenvolvimento-unilateral';
+export { desenvolvimentoEmPeHalteres } from './desenvolvimento-em-pe-halteres';
+export { tricepsFrancesUnilateralHalter } from './triceps-frances-unilateral-halter';
