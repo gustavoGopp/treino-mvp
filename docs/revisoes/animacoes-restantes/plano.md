@@ -2,6 +2,13 @@
 
 De 17/11/2026. Parte A do prompt `docs/prompts/sessao-animacoes-restantes.md`. Os lotes estão em `lotes.json` (é desse arquivo que o script do efeito no treino lê); a frequência vem do teste de estresse regenerado hoje (`npm run auditoria:estresse` e `auditoria:base`: 149.760 programas fictícios, `docs/revisoes/auditoria/inventario.md`); o efeito no treino vem de `scripts/animacao-nova/efeito-no-treino.ts` (resultado em `efeito-no-treino.json`).
 
+## 0. Decidido pelo Gustavo
+
+| Decisão | O que ele disse, e quando |
+|---|---|
+| O modo de aprovação das 90 continua: quem integra confere tudo quadro a quadro e leva a ele só as de maior risco | "pode continuar assim" (17/11/2026) |
+| As animações entram no app (o `animacaoId` na biblioteca e o texto do guia) uma vez por fase, depois de A, de B e de C | "liga por fase" (17/11/2026) |
+
 ## 1. Em uma frase, e a recomendação
 
 São 81 exercícios em 11 lotes e três fases: **A** (42, com peças que o motor já desenha), **B** (10, com barra) e **C** (29, com máquina ou banco novo). Recomendo a ordem A → B → C, e, dentro de cada fase, o lote mais prescrito primeiro; a primeira máquina é a **cadeira flexora**, a mais prescrita das 81 (64 mil vagas no estresse, a 10ª do app). Duas coisas pedem decisão do Gustavo antes de as animações entrarem no app: **quando ligar** (seção 4: recomendo uma vez por fase, e não a cada lote) e **o que o gerador faz quando todas tiverem animação** (seção 4.3: o último desempate vira a ordem alfabética do nome interno).
