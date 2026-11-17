@@ -199,3 +199,37 @@ O que muda, peça por peça:
 **Um conserto junto:** na página "Entenda o treino", a frase da semana saía repetida ("2 de 3 treinos. 2 de 3 treinos. Se der…"). A proposta tira a repetição.
 
 **Testes da proposta:** 904 unitários, 177 de ponta a ponta e os tokens, tudo passando.
+
+## 7. Meus dados e Meus locais (proposta preparada; mostrar depois da decisão do fluxo 6)
+
+A regra da linha: a 2ª linha só fica quando mostra um **valor** (o que está escolhido); quando só descreve o que o título já diz, sai. Proposta em `propostas/7-meus-dados-e-locais.patch` (aplica por cima da 6); imagens em `folhas/7a-meus-dados.png`, `7b-meus-locais.png`, `7c-novo-local-e-evitar.png`.
+
+| Tela | Hoje | Proposta |
+|---|---|---|
+| Meus dados | 155 | 99 |
+| Meus locais (2 locais) | 49 | 24 |
+| Meus locais, depois de trocar o principal | 68 | 40 |
+| Novo local | 56 | 44 |
+| Algo a evitar | 43 | 22 |
+
+| Onde | Hoje | Proposta | Desfecho |
+|---|---|---|---|
+| Meus dados: Objetivo | "Ganhar músculo (o padrão)" | "Ganhar músculo" | encurtar |
+| Meus dados: Meus locais | "1 local: Meu local" / "2 locais: Prédio, Academia do bairro" | "Meu local" / "Prédio, Academia do bairro" | encurtar |
+| Meus dados: Entenda o treino | "O porquê de cada coisa e as fontes" | "O porquê e as fontes" | encurtar |
+| Meus dados: Estilo do Boneco | "Como o guia desenha os exercícios" | o estilo escolhido: "Manequim" ou "Pessoa" | trocar |
+| Meus dados: Trazer uma cópia | "De um arquivo exportado por este app" | sem 2ª linha (a folha explica) | tirar |
+| Meus dados: Refazer a triagem | "As 9 perguntas e a dor de hoje; o programa é gerado de novo no fim" | sem 2ª linha | tirar |
+| Meus dados: Termos de uso e privacidade | "O que o app faz e não faz, onde ficam os dados e os seus direitos" | sem 2ª linha (o conteúdo dos termos não muda) | tirar |
+| Meus dados: versão | "Versão do app: d3babf4, publicada em 17/11/2026." | "Versão d3babf4 · 17/11/2026" | encurtar |
+| Folha do estilo | título "Escolha o Boneco" (a linha diz "Estilo do Boneco") | "Estilo do Boneco" nos três lugares | trocar (um nome só) |
+| Meus locais: frase do alto | "O programa é montado para o local principal." | sai; o cartão do local diz "13 equipamentos · principal" | trocar |
+| Meus locais: botões | "Editar nome e equipamento" · "Montar o programa para este local" · "Cadastrar outro local" | "Editar" · "Tornar principal" · "Novo local" | encurtar |
+| Meus locais: aviso da troca | "Academia do bairro é o local principal. O programa muda só quando você tocar em "Atualizar" no seu treino." | "Academia do bairro é o principal. O programa muda quando você tocar em "Atualizar" no início." | encurtar |
+| Novo local / Editar | "Toque numa sugestão ou escreva o seu." e "Que equipamento tem neste local?" | sai a ajuda; o título vira "Equipamento" | tirar e encurtar |
+| Algo a evitar | "Opcional. O programa é gerado de novo sem o que você marcar." + "Algum equipamento que você tem, mas prefere não usar? (opcional)" + "Algum exercício que você quer evitar? (opcional)" | "Equipamento que prefere não usar" + "Exercícios a evitar" (o botão já diz "Salvar e gerar o programa") | tirar e encurtar |
+
+**O que não muda (privacidade e proteção dos dados):** "Tudo fica guardado só neste aparelho." com "o que sai daqui"; o aviso "Este navegador pode apagar seus dados."; as folhas "Guardar uma cópia", "Trazer uma cópia", "Foto do equipamento" e "Apagar todos os dados?"; o texto de "Avisar um problema" (o que vai na mensagem e o pedido de não escrever sobre a saúde).
+
+**Testes da proposta:** 177 de ponta a ponta e os tokens passando. Os unitários precisam ser repetidos com a máquina livre (na 1ª rodada deram tempo esgotado em testes do motor e do gerador, que a proposta não toca, porque a medição rodava junto).
+

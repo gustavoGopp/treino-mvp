@@ -1,0 +1,299 @@
+diff --git a/src/features/dados/Dados.tsx b/src/features/dados/Dados.tsx
+index 7aa1a29..9d7a012 100644
+--- a/src/features/dados/Dados.tsx
++++ b/src/features/dados/Dados.tsx
+@@ -12,7 +12,7 @@ import { Icone } from '../app/icones';
+ import { NavInferior, PorQue, Titulo, Topo } from '../app/ui';
+ import { Folha } from '../app/Folha';
+ import { EscolhaEstiloBoneco } from './EstiloBoneco';
+-import { apagarEstiloBoneco } from '../app/estiloBoneco';
++import { apagarEstiloBoneco, useEstiloBoneco } from '../app/estiloBoneco';
+ 
+ // Meus dados: exportar e importar em JSON, apagar tudo e refazer a triagem. Nada sai do aparelho sem a pessoa.
+ // R5c: a data da última cópia (dados.copia), o aviso quando o navegador nega o armazenamento persistente
+@@ -23,6 +23,7 @@ const OBJETIVO = { cutting: 'Manter o músculo enquanto perco peso', forca: 'Fic
+ export function Dados() {
+   const { estado, carregado, persistente, erroCarga, cargaFalhou, substituir, limpar } = useApp();
+   const navigate = useNavigate();
++  const estilo = useEstiloBoneco();
+   const arquivo = useRef<HTMLInputElement>(null);
+   const [msg, setMsg] = useState('');
+   const [erro, setErro] = useState('');
+@@ -177,7 +178,7 @@ export function Dados() {
+             )}
+             {r && (
+               <LinhaDados para="/comecar/rotina?de=dados&foco=objetivo" titulo="Objetivo">
+-                {r.objetivo && r.objetivo !== 'hipertrofia' ? OBJETIVO[r.objetivo] : 'Ganhar músculo (o padrão)'}
++                {OBJETIVO[r.objetivo ?? 'hipertrofia']}
+               </LinhaDados>
+             )}
+             {estado.programa && (
+@@ -187,14 +188,14 @@ export function Dados() {
+             )}
+             {locais.length > 0 && (
+               <LinhaDados para="/locais" titulo="Meus locais">
+-                {locais.length === 1 ? `1 local: ${locais[0]!.nome}` : `${locais.length} locais: ${locais.map((l) => l.nome).join(', ')}`}
++                {locais.map((l) => l.nome).join(', ')}
+               </LinhaDados>
+             )}
+             <LinhaDados para="/entenda" titulo="Entenda o treino">
+-              O porquê de cada coisa e as fontes
++              O porquê e as fontes
+             </LinhaDados>
+             <LinhaDados aoTocar={() => setFolha('estilo')} titulo="Estilo do Boneco">
+-              Como o guia desenha os exercícios
++              {estilo === 'pele' ? 'Pessoa' : 'Manequim'}
+             </LinhaDados>
+           </GrupoLinhas>
+ 
+@@ -202,23 +203,17 @@ export function Dados() {
+           <LinhaDados aoTocar={() => setFolha('guardar')} titulo="Guardar uma cópia">
+             Última cópia: {textoUltimaCopia(ultimaCopia || undefined, agoraIso())}
+           </LinhaDados>
+-          <LinhaDados aoTocar={() => setFolha('trazer')} titulo="Trazer uma cópia">
+-            De um arquivo exportado por este app
+-          </LinhaDados>
++          <LinhaDados aoTocar={() => setFolha('trazer')} titulo="Trazer uma cópia" />
+         </GrupoLinhas>
+ 
+         <GrupoLinhas rotulo="Saúde e privacidade">
+-          <LinhaDados para="/comecar/triagem" titulo="Refazer a triagem">
+-            As 9 perguntas e a dor de hoje; o programa é gerado de novo no fim
+-          </LinhaDados>
++          <LinhaDados para="/comecar/triagem" titulo="Refazer a triagem" />
+           {fotoEm && (
+             <LinhaDados aoTocar={() => setFolha('foto')} titulo="Foto do equipamento">
+               Autorizada em {dataCurta(fotoEm)}
+             </LinhaDados>
+           )}
+-          <LinhaDados para="/termos" titulo="Termos de uso e privacidade">
+-            O que o app faz e não faz, onde ficam os dados e os seus direitos
+-          </LinhaDados>
++          <LinhaDados para="/termos" titulo="Termos de uso e privacidade" />
+         </GrupoLinhas>
+ 
+         <AvisarProblema />
+@@ -228,11 +223,11 @@ export function Dados() {
+         </button>
+ 
+         <p className="muted">
+-          Versão do app: {__VERSAO__}, publicada em {new Date(__DATA_BUILD__).toLocaleDateString('pt-BR')}.
++          Versão {__VERSAO__} · {new Date(__DATA_BUILD__).toLocaleDateString('pt-BR')}
+         </p>
+ 
+         {folha === 'estilo' && (
+-          <Folha titulo="Escolha o Boneco" aoFechar={() => setFolha(null)}>
++          <Folha titulo="Estilo do Boneco" aoFechar={() => setFolha(null)}>
+             <EscolhaEstiloBoneco />
+           </Folha>
+         )}
+@@ -353,12 +348,12 @@ function GrupoLinhas({ rotulo, children }: { rotulo: string; children: ReactNode
+   );
+ }
+ 
+-function LinhaDados({ titulo, children, para, aoTocar }: { titulo: string; children: ReactNode; para?: string; aoTocar?: () => void }) {
++function LinhaDados({ titulo, children, para, aoTocar }: { titulo: string; children?: ReactNode; para?: string; aoTocar?: () => void }) {
+   const corpo = (
+     <>
+       <span>
+         <b>{titulo}</b>
+-        <small>{children}</small>
++        {children !== undefined && <small>{children}</small>}
+       </span>
+       <span className="seta" aria-hidden="true">
+         <Icone nome="chevron-right" />
+diff --git a/src/features/dados/EstiloBoneco.tsx b/src/features/dados/EstiloBoneco.tsx
+index b95bbf9..eaddbae 100644
+--- a/src/features/dados/EstiloBoneco.tsx
++++ b/src/features/dados/EstiloBoneco.tsx
+@@ -51,8 +51,8 @@ export function EscolhaEstiloBoneco() {
+   const estilo = useEstiloBoneco();
+   return (
+     <section className="box">
+-      <h2>Estilo do boneco</h2>
+-      <div className="estilos-boneco" role="radiogroup" aria-label="Estilo do boneco">
++      <h2>Estilo do Boneco</h2>
++      <div className="estilos-boneco" role="radiogroup" aria-label="Estilo do Boneco">
+         {OPCOES.map((o) => (
+           <label key={o.id} className="estilo-boneco">
+             <input type="radio" name="estilo-boneco" value={o.id} checked={estilo === o.id} onChange={() => definirEstiloBoneco(o.id)} />
+diff --git a/src/features/locais/Locais.tsx b/src/features/locais/Locais.tsx
+index 3ea1e2e..6f79300 100644
+--- a/src/features/locais/Locais.tsx
++++ b/src/features/locais/Locais.tsx
+@@ -23,9 +23,6 @@ export function Locais() {
+       <Topo voltar={{ para: '/dados', rotulo: 'Meus dados' }} />
+       <main className="conteudo">
+         <Titulo>Meus locais</Titulo>
+-        <p className="lede">
+-          O programa é montado para o local principal.
+-        </p>
+         <p role="status" className="status">
+           {aviso}
+         </p>
+@@ -35,11 +32,11 @@ export function Locais() {
+               <h2>{l.nome}</h2>
+               <p className="ajuda">
+                 {Object.keys(l.inventario).length === 1 ? '1 equipamento' : `${Object.keys(l.inventario).length} equipamentos`}
+-                {l.id === principal?.id ? ' · o programa é montado para este local' : ''}
++                {l.id === principal?.id ? ' · principal' : ''}
+               </p>
+               <div className="acoes-local">
+                 <Link className="btn sec pequeno" to={`/locais/${l.id}`} aria-label={`Editar ${l.nome}`}>
+-                  Editar nome e equipamento
++                  Editar
+                 </Link>
+                 {l.id !== principal?.id && (
+                   <button
+@@ -47,10 +44,10 @@ export function Locais() {
+                     className="btn sec pequeno"
+                     onClick={() => {
+                       atualizar((s) => ({ ...s, localPrincipalId: l.id }));
+-                      setAviso(`${l.nome} é o local principal. O programa muda só quando você tocar em "Atualizar" no seu treino.`);
++                      setAviso(`${l.nome} é o principal. O programa muda quando você tocar em "Atualizar" no início.`);
+                     }}
+                   >
+-                    Montar o programa para este local
++                    Tornar principal
+                   </button>
+                 )}
+               </div>
+@@ -58,7 +55,7 @@ export function Locais() {
+           ))}
+         </ul>
+         <Link className="btn" to="/locais/novo">
+-          Cadastrar outro local
++          Novo local
+         </Link>
+       </main>
+       <NavInferior atual="dados" />
+@@ -99,9 +96,6 @@ export function EditarLocal() {
+           <label htmlFor="nome-local" className="rotulo">
+             Nome do local
+           </label>
+-          <p className="ajuda" id="nome-local-ajuda">
+-            Toque numa sugestão ou escreva o seu.
+-          </p>
+           {erroNome && (
+             <p className="erro" id="nome-local-erro">
+               {erroNome}
+@@ -128,7 +122,7 @@ export function EditarLocal() {
+             type="text"
+             maxLength={40}
+             value={nome}
+-            aria-describedby={erroNome ? 'nome-local-ajuda nome-local-erro' : 'nome-local-ajuda'}
++            aria-describedby={erroNome ? 'nome-local-erro' : undefined}
+             aria-invalid={!!erroNome || undefined}
+             onChange={(e) => {
+               setNome(e.target.value);
+@@ -136,7 +130,7 @@ export function EditarLocal() {
+             }}
+           />
+         </div>
+-        <h2 className="secao">Que equipamento tem {nome.trim() ? `em "${nome.trim()}"` : 'neste local'}?</h2>
++        <h2 className="secao">Equipamento</h2>
+         <FormularioInventario inicial={local?.inventario} aoSalvar={salvar} textoBotao="Salvar local" />
+       </main>
+     </div>
+diff --git a/src/features/onboarding/Restricoes.tsx b/src/features/onboarding/Restricoes.tsx
+index af8229d..18e2448 100644
+--- a/src/features/onboarding/Restricoes.tsx
++++ b/src/features/onboarding/Restricoes.tsx
+@@ -43,11 +43,10 @@ export function Restricoes() {
+       <Topo voltar={{ para: '/dados', rotulo: 'Meus dados' }} />
+       <main className="conteudo">
+         <Titulo>Algo a evitar</Titulo>
+-        <p className="lede">Opcional. O programa é gerado de novo sem o que você marcar.</p>
+         <form onSubmit={enviar} noValidate className="form">
+           {meusItens.length > 0 && (
+             <fieldset className="campo">
+-              <legend>Algum equipamento que você tem, mas prefere não usar? (opcional)</legend>
++              <legend>Equipamento que prefere não usar</legend>
+               <div className="opcoes">
+                 {meusItens.map((id) => (
+                   <Marcar key={id} marcado={evitarEq.includes(id)} aoMudar={(v) => setEvitarEq((x) => (v ? [...x, id] : x.filter((y) => y !== id)))}>
+@@ -58,7 +57,7 @@ export function Restricoes() {
+             </fieldset>
+           )}
+           <details className="campo dobra" open={evitarEx.length > 0}>
+-            <summary>Algum exercício que você quer evitar? (opcional)</summary>
++            <summary>Exercícios a evitar</summary>
+             <div className="opcoes">
+               {possiveis.map((ex) => (
+                 <Marcar
+diff --git a/tests/e2e/abertura.spec.ts b/tests/e2e/abertura.spec.ts
+index 9dda713..0975ca8 100644
+--- a/tests/e2e/abertura.spec.ts
++++ b/tests/e2e/abertura.spec.ts
+@@ -17,7 +17,7 @@ test('erro forçado numa tela: mostra a saída, exporta os dados dali, avisa o p
+   await page.evaluate(() => sessionStorage.setItem('treino-teste-erro', '1'));
+   await page.goto('/programa');
+   await expect(page.getByRole('heading', { name: 'Algo deu errado nesta tela' })).toBeVisible();
+-  await expect(page.getByText(/^Versão do app:/)).toBeVisible();
++  await expect(page.getByText(/^Versão /)).toBeVisible();
+   for (const tema of ['light', 'dark'] as const) {
+     await page.emulateMedia({ colorScheme: tema });
+     await conferir(page);
+diff --git a/tests/e2e/correcoes-auditoria.spec.ts b/tests/e2e/correcoes-auditoria.spec.ts
+index 653b986..0667e70 100644
+--- a/tests/e2e/correcoes-auditoria.spec.ts
++++ b/tests/e2e/correcoes-auditoria.spec.ts
+@@ -90,7 +90,7 @@ test('com um treino aberto, o programa não é gerado de novo: a mudança espera
+   await page.getByRole('link', { name: /Voltar ao início/ }).click();
+   await page.getByRole('navigation', { name: 'Seções' }).getByRole('link', { name: 'Meus dados' }).click();
+   await page.getByRole('link', { name: 'Algo a evitar' }).click();
+-  await page.getByText('Algum exercício que você quer evitar? (opcional)').click();
++  await page.getByText('Exercícios a evitar', { exact: true }).click();
+   await page.getByLabel('Agachamento búlgaro com apoio', { exact: true }).check();
+   await page.getByRole('button', { name: 'Salvar e gerar o programa' }).click();
+   await expect(page.getByRole('heading', { name: 'Seu treino', exact: true })).toBeVisible();
+diff --git a/tests/e2e/guia.spec.ts b/tests/e2e/guia.spec.ts
+index ce27470..c78cd85 100644
+--- a/tests/e2e/guia.spec.ts
++++ b/tests/e2e/guia.spec.ts
+@@ -40,8 +40,8 @@ test('o cinza é o padrão, o cor de pele fica em Meus dados e os desenhos de an
+   await page.goto('/dados');
+   await page.getByRole('button', { name: 'Estilo do Boneco' }).click();
+   // sessão de textos (16/11/2026): a folha são os dois bonecos, cada um com um nome de uma palavra embaixo
+-  const folha = page.getByRole('dialog', { name: 'Escolha o Boneco' });
+-  const grupo = folha.getByRole('radiogroup', { name: 'Estilo do boneco' });
++  const folha = page.getByRole('dialog', { name: 'Estilo do Boneco' });
++  const grupo = folha.getByRole('radiogroup', { name: 'Estilo do Boneco' });
+   await expect(grupo.getByRole('radio', { name: 'Manequim', exact: true })).toBeChecked();
+   await expect(grupo.getByRole('radio')).toHaveCount(2);
+   // à vista, só o título, o "Fechar" e os dois nomes: nenhuma frase de explicação nem descrição
+diff --git a/tests/e2e/locais.spec.ts b/tests/e2e/locais.spec.ts
+index 995a0d6..82d4cd4 100644
+--- a/tests/e2e/locais.spec.ts
++++ b/tests/e2e/locais.spec.ts
+@@ -18,7 +18,7 @@ test('cadastra o 2º local, escolhe onde treinar hoje, vê a troca explicada e c
+   await page.getByRole('link', { name: 'Meus locais' }).click();
+   await expect(page.getByRole('heading', { name: 'Meus locais' })).toBeVisible();
+   await expect(page.getByRole('list', { name: 'Locais' })).toContainText('Meu local');
+-  await page.getByRole('link', { name: 'Cadastrar outro local' }).click();
++  await page.getByRole('link', { name: 'Novo local' }).click();
+ 
+   // 2. O 2º local: nome por toque e a mesma tela de equipamento (atalhos e foto incluídos).
+   await expect(page.getByRole('heading', { name: 'Novo local' })).toBeVisible();
+diff --git a/tests/e2e/onboarding.spec.ts b/tests/e2e/onboarding.spec.ts
+index cf80f4b..83a602f 100644
+--- a/tests/e2e/onboarding.spec.ts
++++ b/tests/e2e/onboarding.spec.ts
+@@ -265,7 +265,7 @@ test('recarregar a página mantém perfil, inventário e programa', async ({ pag
+ test('Meus dados mostra a versão do app e a data da publicação', async ({ page }) => {
+   // R3: para a pessoa conferir se o celular já está com a versão nova.
+   await page.goto('/dados');
+-  await expect(page.getByText(/^Versão do app: ([0-9a-f]{7}|local), publicada em \d{2}\/\d{2}\/\d{4}\.$/)).toBeVisible();
++  await expect(page.getByText(/^Versão ([0-9a-f]{7}|local) · \d{2}\/\d{2}\/\d{4}$/)).toBeVisible();
+ });
+ 
+ test('exportar, apagar e importar devolve o mesmo estado', async ({ page }) => {
+@@ -378,7 +378,7 @@ test('lote 3: "algo a evitar" fica em Meus dados e gera o programa de novo sem o
+   await page.getByRole('navigation', { name: 'Seções' }).getByRole('link', { name: 'Meus dados' }).click();
+   await page.getByRole('link', { name: 'Algo a evitar' }).click();
+   await expect(page.getByRole('heading', { name: 'Algo a evitar' })).toBeVisible();
+-  await page.getByText('Algum exercício que você quer evitar? (opcional)').click();
++  await page.getByText('Exercícios a evitar', { exact: true }).click();
+   await page.getByLabel('Agachamento búlgaro com apoio', { exact: true }).check();
+   await page.getByRole('button', { name: 'Salvar e gerar o programa' }).click();
+   await expect(page.getByRole('heading', { name: 'Seu treino', exact: true })).toBeVisible();
