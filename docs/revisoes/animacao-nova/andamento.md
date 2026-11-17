@@ -125,4 +125,8 @@ Os 81 exercícios que eram cartão de texto, em lotes (`docs/revisoes/animacoes-
 | A3 | `desenvolvimento-unilateral` | feita e conferida quadro a quadro por quem integra; aprovada por delegação; espera a ligação (abre de frente: de lado o halter passa na frente do rosto; o cotovelo vai 70° à frente no topo, como no desenvolvimento com kettlebell) |
 | A3 | `desenvolvimento-em-pe-halteres` | feita e conferida quadro a quadro por quem integra; aprovada por delegação; espera a ligação (abre de frente, pelo mesmo motivo) |
 | A3 | `triceps-frances-unilateral-halter` | feita, refeita uma vez (a mão que segurava o cotovelo tapava o rosto) e conferida quadro a quadro por quem integra; aprovada por delegação; espera a ligação (em pé, a mão livre na cintura, como no unilateral na polia) |
+| A3 | `afundo-tras` | feita e conferida quadro a quadro por quem integra; aprovada por delegação; espera a ligação (o afundo para trás aprovado, com os halteres ao lado do corpo) |
+| A3 | `agachamento-halteres` | feita e conferida quadro a quadro por quem integra; aprovada por delegação; espera a ligação (os braços abrem só o que o halter precisa para passar pela perna: 7° em cima e 12° embaixo) |
+| A3 | `goblet-kettlebell` | feita e conferida quadro a quadro por quem integra; aprovada por delegação; espera a ligação (calcanhares no chão, sem anilha; o kettlebell inclina com o tronco) |
+| A3 | `stiff-unilateral-kettlebell` | feita e conferida quadro a quadro por quem integra; aprovada por delegação; espera a ligação (o kettlebell na mão do lado oposto à perna de apoio; de lado ele fica atrás da perna) |
 
