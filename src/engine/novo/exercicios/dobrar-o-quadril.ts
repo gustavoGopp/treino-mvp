@@ -235,10 +235,10 @@ export function dobrarOQuadril(corpo: Corpo, p: PedidoDoStiff): Dobrado {
 /* ============================== as variações ============================== */
 /**
  * O que as mãos seguram: um halter em cada mão ('halteres'), o kettlebell pela alça com as duas mãos ('kettlebell'),
- * as pontas do elástico ('elastico', o tubo é desenhado por quem chama) ou um halter só na mão direita, numa perna só
- * ('halter').
+ * as pontas do elástico ('elastico', o tubo é desenhado por quem chama), um halter só na mão direita, numa perna só
+ * ('halter'), ou um kettlebell só na mão esquerda, a do lado oposto à perna de apoio, numa perna só ('kettlebellOposta').
  */
-export type MaosDoStiff = 'halteres' | 'kettlebell' | 'elastico' | 'halter';
+export type MaosDoStiff = 'halteres' | 'kettlebell' | 'elastico' | 'halter' | 'kettlebellOposta';
 
 /** A altura do meio das hastes da alça acima da base do kettlebell: é onde as mãos seguram. */
 export const alturaDaPegadaDoKettlebell = () => {
@@ -250,7 +250,11 @@ export function criarStiff(fichaJson: unknown, maos: MaosDoStiff): { ficha: Fich
   const F = fichaSchema.parse(fichaJson);
   const f = daFicha(F);
   const tem = (id: string) => id in F.param;
-  const umaPerna = maos === 'halter';
+  const umaPerna = maos === 'halter' || maos === 'kettlebellOposta';
+  /** A mão que segura a carga: a direita, menos no kettlebell na mão oposta à perna de apoio. */
+  const maoDaCarga: Lado = maos === 'kettlebellOposta' ? 'L' : 'R';
+  /** Numa mão só, ela segura o kettlebell pelo meio da barra de cima da alça: a base fica abaixo dela essa altura. */
+  const alcaAcimaDaBase = () => formaDoKettlebell().altura - formaDoKettlebell().rAlca;
   const CACHE = new WeakMap<Corpo, number>();
 
   /** As esferas que fazem as vezes da carga na conta da folga até as pernas, para uma pegada da mão k. */
@@ -262,6 +266,10 @@ export function criarStiff(fichaJson: unknown, maos: MaosDoStiff): { ficha: Fich
       return [{ c: [0, pegada[1] - alturaDaPegadaDoKettlebell() + K.centro, pegada[2]], r: K.R }];
     }
     if (maos === 'elastico') return [{ c: pegada, r: f('mao.raio') }];
+    if (maos === 'kettlebellOposta') {
+      const K = formaDoKettlebell();
+      return [{ c: [pegada[0], pegada[1] - alcaAcimaDaBase() + K.centro, pegada[2]], r: K.R }];
+    }
     // halter com o cabo atravessado (de um lado ao outro): as duas cabeças, cada uma como três esferas
     const ra = obj('halter', 'cabecaLargura') / 2,
       c0 = obj('halter', 'caboComp') / 2,
@@ -299,6 +307,18 @@ export function criarStiff(fichaJson: unknown, maos: MaosDoStiff): { ficha: Fich
             R: braco('R', pR, [1, 0, 0], obj('halter', 'caboDiam')),
             L: braco('L', [oL[0], oL[1] - alcance, oL[2]], [-1, 0, 0], 3, 'relaxada'),
             cargas: [{ massa: f('carga'), pos: pR }],
+          };
+        }
+        if (maos === 'kettlebellOposta') {
+          // o kettlebell na mão esquerda, pela barra de cima da alça; a mão desce perto da perna de apoio, um pouco para
+          // dentro do pé (a bola passa rente à canela, pela frente); a mão direita pende, solta
+          const xL = e.lado.R.bola[0] + f('kettlebell.paraDentroDoPe');
+          const pL = o.braco !== undefined ? maoNoAngulo(e, 'L', xL, alcance, o.braco) : pegadaRente(e, 'L', xL, alcance, esferas('L'), o.folga);
+          const oR = e.lado.R.ombro;
+          return {
+            R: braco('R', [oR[0], oR[1] - alcance, oR[2]], [1, 0, 0], 3, 'relaxada'),
+            L: braco('L', pL, [-1, 0, 0], obj('kettlebell', 'alcaDiam')),
+            cargas: [{ massa: obj('kettlebell', 'massa'), pos: esferas('L')(pL)[0]!.c }],
           };
         }
         const x = maos === 'kettlebell' ? formaDoKettlebell().meiaAlca : f('maos.meiaDistancia');
@@ -370,7 +390,9 @@ export function criarStiff(fichaJson: unknown, maos: MaosDoStiff): { ficha: Fich
    * depois a média), para a mão e o quadril não mudarem de rumo de repente.
    */
   const PERFIS = new WeakMap<Corpo, Map<string, number[]>>();
-  const N = 24;
+  // o kettlebell numa mão só passa rente à coxa com a bola, que é larga: com mais pontos, o alisamento não o afasta
+  // da perna no começo da descida (as outras variações ficam com os 25 pontos de sempre)
+  const N = maos === 'kettlebellOposta' ? 48 : 24;
   function perfil(corpo: Corpo, erro?: string): number[] {
     let porErro = PERFIS.get(corpo);
     if (!porErro) PERFIS.set(corpo, (porErro = new Map()));
@@ -378,7 +400,7 @@ export function criarStiff(fichaJson: unknown, maos: MaosDoStiff): { ficha: Fich
     if (ja) return ja;
     const b = calibragem(corpo, `${F.id}:perfil-do-braco:${erro ?? ''}`, () => {
       const cru: number[] = [];
-      for (let i = 0; i <= N; i++) cru.push(anguloDoBraco(pose(corpo, pedido(corpo, i / N, erro)).e, 'R'));
+      for (let i = 0; i <= N; i++) cru.push(anguloDoBraco(pose(corpo, pedido(corpo, i / N, erro)).e, maoDaCarga));
       const viz = (v: number[], i: number) => v[Math.max(0, Math.min(N, i))]!;
       let b: number[] = cru.map((_, i) => Math.max(viz(cru, i - 1), viz(cru, i), viz(cru, i + 1)));
       for (let k = 0; k < 2; k++) {
@@ -417,6 +439,15 @@ export function criarStiff(fichaJson: unknown, maos: MaosDoStiff): { ficha: Fich
       }
       q.pecas = pecas;
       q.marcas = { halter: e.lado.R.pegada };
+    }
+    if (maos === 'kettlebellOposta') {
+      const K = formaDoKettlebell();
+      // o kettlebell pende na vertical da mão esquerda, que segura o meio da barra de cima da alça
+      const p = e.lado.L.pegada;
+      const base: V3 = [p[0], p[1] - alcaAcimaDaBase(), p[2]];
+      q.prims.push({ t: 'esfera', c: [base[0], base[1] + K.centro, base[2]], r: K.R, cls: 'ferro' });
+      q.pecas = [{ t: 'kettlebell', base, cima: [0, 1, 0], lado: [1, 0, 0] }];
+      q.marcas = { kettlebell: p };
     }
     if (maos === 'kettlebell') {
       const K = formaDoKettlebell();

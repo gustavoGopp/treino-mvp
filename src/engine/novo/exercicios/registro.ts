@@ -112,3 +112,4 @@ export { aberturaElastico } from './abertura-elastico';
 export { afundoTras } from './afundo-tras';
 export { agachamentoHalteres } from './agachamento-halteres';
 export { gobletKettlebell } from './goblet-kettlebell';
+export { stiffUnilateralKettlebell } from './stiff-unilateral-kettlebell';
