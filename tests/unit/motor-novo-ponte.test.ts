@@ -27,9 +27,9 @@ describe('motor novo: a ponte com as telas', () => {
   it('os erros de cada animação nova têm os títulos do texto do app, na mesma ordem (o guia escolhe o erro pelo índice)', () => {
     // exceção conhecida: a panturrilha no degrau não desenha o erro de ritmo "Quicar embaixo" (o guia mostra o
     // movimento certo nesse erro); os outros erros dela seguem a ordem do app
-    // "Carga pesada demais", do crucifixo inverso: o cartão só diz que o movimento sai com tranco, que é ritmo (a proposta
+    // "Carga pesada demais", do crucifixo inverso, e "Balançar a perna", da abdução em pé: o cartão só descreve o ritmo (a proposta
     // de desenhar o erro de ritmo espera o Gustavo: docs/revisoes/animacoes-restantes/plano.md, seção 5)
-    const SEM_DESENHO: Record<string, string[]> = { 'panturrilha-degrau': ['Quicar embaixo'], 'crucifixo-inverso': ['Carga pesada demais'] };
+    const SEM_DESENHO: Record<string, string[]> = { 'panturrilha-degrau': ['Quicar embaixo'], 'crucifixo-inverso': ['Carga pesada demais'], 'abducao-elastico': ['Balançar a perna'] };
     for (const [id, ex] of Object.entries(EXERCICIOS)) {
       const doApp = conteudo(id)
         .errors.map((e) => e.title)
