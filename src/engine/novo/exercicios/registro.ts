@@ -121,3 +121,6 @@ export { stiffUnilateralKettlebell } from './stiff-unilateral-kettlebell';
 export { elevacaoLateralDeitado } from './elevacao-lateral-deitado';
 export { elevacaoLateralCaneleira } from './elevacao-lateral-caneleira';
 export { coiceCaneleira } from './coice-caneleira';
+export { crucifixoInvertidoSentado } from './crucifixo-invertido-sentado';
+export { crucifixoInvertidoCaneleira } from './crucifixo-invertido-caneleira';
+export { roscaConcentrada } from './rosca-concentrada';
