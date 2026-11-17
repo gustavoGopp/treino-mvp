@@ -1,0 +1,58 @@
+{
+ "fontes": {
+  "iwf2020": "International Weightlifting Federation. Technical and Competition Rules & Regulations 2020, seção 3.3.3 e anexo de equipamento, itens 4 (Men's bar), 6 (Competition discs) e 8 (Collars); https://iwlf.in/wp-content/uploads/2021/03/IWF_TCRR_2020.pdf (lido em 12/11/2026; docs/revisoes/animacao-nova/pesquisa/04-objetos.md, seções 1 e 2)",
+  "ipf2026": "International Powerlifting Federation. Technical Rules Book 2026, seções 2.3 e 2.6 (lido em 12/11/2026)",
+  "rogue-steel": "Rogue Fitness. Steel Plates, tabela Plate Diameter (lido em 12/11/2026)",
+  "desenho": "Escolha de desenho, sem medida de fabricante: quantidade ou detalhe que não muda a medida do objeto"
+ },
+ "objetos": {
+  "barraLonga": {
+   "nome": "Barra longa (olímpica, de 20 kg), com a pegada recartilhada, os rebordos e as mangas que giram",
+   "medidas": {
+    "comp": { "v": 220, "un": "cm", "tipo": "medida", "fonte": "iwf2020", "onde": "anexo, Men's bar: comprimento total 220 cm (a IPF dá o mesmo como máximo, seção 2.3 (a)1)" },
+    "pegadaDiam": { "v": 2.8, "un": "cm", "tipo": "medida", "fonte": "iwf2020", "onde": "anexo, Men's bar: diâmetro da seção de pegada 28 mm" },
+    "entreMangas": { "v": 131, "un": "cm", "tipo": "medida", "fonte": "iwf2020", "onde": "anexo, Men's bar: comprimento da seção de pegada, entre as faces internas das mangas, 131 cm (a IPF dá 131 a 132 cm entre as faces dos colares)" },
+    "mangaDiam": { "v": 5, "un": "cm", "tipo": "medida", "fonte": "iwf2020", "onde": "anexo, Men's bar: manga de 50 mm" },
+    "mangaComp": { "v": 41.5, "un": "cm", "tipo": "medida", "fonte": "iwf2020", "onde": "anexo, Men's bar: manga de 41,5 cm" },
+    "rebordoDiam": { "v": 7.6, "un": "cm", "tipo": "medida", "fonte": "iwf2020", "onde": "anexo, Men's bar: diâmetro do rebordo (rim) de 7,3 a 8,0 cm; o desenho usa o meio da faixa" },
+    "rebordoEsp": { "v": 2.5, "un": "cm", "tipo": "desenho", "fonte": "desenho", "onde": "espessura do rebordo: a IWF não dá; 2,5 cm é o que cabe entre a pegada e a manga sem mudar os 220 cm" },
+    "marcasEntre": { "v": 81, "un": "cm", "tipo": "medida", "fonte": "ipf2026", "onde": "seção 2.3 (a)6: as marcas usinadas da pegada ficam a 81 cm uma da outra" },
+    "massa": { "v": 20, "un": "kg", "tipo": "medida", "fonte": "iwf2020", "onde": "3.3.3.3: barra masculina de 20 kg" }
+   }
+  },
+  "anilha20": {
+   "nome": "Anilha de 20 kg",
+   "medidas": {
+    "diam": { "v": 45, "un": "cm", "tipo": "medida", "fonte": "iwf2020", "onde": "anexo, Competition discs: diâmetro de 45 cm das anilhas de 10 kg para cima (a de ferro de 45 lb da Rogue também tem 450 mm)" },
+    "esp": { "v": 5.4, "un": "cm", "tipo": "provisoria", "fonte": "iwf2020", "onde": "espessura máxima da anilha de 20 kg de competição (5,4 cm); a de ferro de academia é mais fina, e nenhuma ficha lida dá a espessura dela" },
+    "furo": { "v": 5.2, "un": "cm", "tipo": "medida", "fonte": "ipf2026", "onde": "seção 2.3 (b)2: furo central de 52 a 53 mm" },
+    "massa": { "v": 20, "un": "kg", "tipo": "medida", "fonte": "iwf2020", "onde": "série de anilhas" }
+   }
+  },
+  "anilha10": {
+   "nome": "Anilha de 10 kg",
+   "medidas": {
+    "diam": { "v": 45, "un": "cm", "tipo": "medida", "fonte": "iwf2020", "onde": "anexo, Competition discs: 45 cm das anilhas de 10 kg para cima" },
+    "esp": { "v": 3.5, "un": "cm", "tipo": "provisoria", "fonte": "iwf2020", "onde": "espessura máxima da anilha de 10 kg de competição (3,5 cm); a de ferro não tem fonte" },
+    "furo": { "v": 5.2, "un": "cm", "tipo": "medida", "fonte": "ipf2026", "onde": "seção 2.3 (b)2" },
+    "massa": { "v": 10, "un": "kg", "tipo": "medida", "fonte": "iwf2020", "onde": "série de anilhas" }
+   }
+  },
+  "anilha5": {
+   "nome": "Anilha de 5 kg",
+   "medidas": {
+    "diam": { "v": 24, "un": "cm", "tipo": "medida", "fonte": "iwf2020", "onde": "anexo, Competition discs: anilha de 5 kg com 23 a 26 cm de diâmetro; o desenho usa 24 (a de ferro de 10 lb da Rogue tem 22,8)" },
+    "esp": { "v": 2.65, "un": "cm", "tipo": "provisoria", "fonte": "iwf2020", "onde": "espessura máxima da de 5 kg (2,65 cm)" },
+    "furo": { "v": 5.2, "un": "cm", "tipo": "medida", "fonte": "ipf2026", "onde": "seção 2.3 (b)2" },
+    "massa": { "v": 5, "un": "kg", "tipo": "medida", "fonte": "iwf2020", "onde": "série de anilhas" }
+   }
+  },
+  "presilha": {
+   "nome": "Presilha de mola da barra",
+   "medidas": {
+    "larg": { "v": 5, "un": "cm", "tipo": "desenho", "fonte": "desenho", "onde": "a presilha de mola de academia não tem ficha lida; a IWF só limita o colar de competição a 7 cm de largura" },
+    "diam": { "v": 7, "un": "cm", "tipo": "desenho", "fonte": "desenho", "onde": "a volta de arame em torno da manga de 5 cm, com as duas alças" }
+   }
+  }
+ }
+}

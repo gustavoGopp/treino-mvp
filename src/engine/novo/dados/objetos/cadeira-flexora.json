@@ -1,0 +1,39 @@
+{
+ "fontes": {
+  "lf-hs26-slc": "Life Fitness e Hammer Strength, catálogo de produtos 2026, tabela Insignia, p. 214: Seated Leg Curl SS-SLC, 61,3 x 39,8 x 58,1 pol (156 x 102 x 148 cm), C x L x A; a altura é a da pilha (docs/revisoes/animacao-nova/pesquisa/04-objetos.md, seção 13.1)",
+  "hs24-slc": "Hammer Strength, catálogo 2024, tabela Select, p. 59: Seated Leg Curl HS-SLC, 55 x 34 x 55 pol (140 x 87 x 140 cm) (pesquisa/04-objetos.md, seção 13.1)",
+  "precor-rsl0619": "Precor, Resolute Seated Leg Curl RSL0619; https://www.precor.com/en-GB/products/RSL0619 (lido em 17/11/2026): \"63 x 48 x 58 in / 160 x 122 x 147 cm\", \"Weight stack tower height: 148 cm\", \"Weight stack: 160 lb / 73 kg\", o assento largo \"with a slight 15 degree tilt, properly aligns the exerciser's knee with the pivot point\", \"Upholstery total thickness is 2.5 inches (65 mm)\", \"The adjustable back pad, start position, thigh stabilizing pad and weight stack pin are all within easy reach\"",
+  "desenho": "Escolha de desenho, sem medida de fabricante: quantidade ou detalhe que não muda a medida do objeto"
+ },
+ "objetos": {
+  "cadeiraFlexora": {
+   "nome": "Cadeira flexora (flexão de joelho sentado): assento inclinado, encosto que regula, trava das coxas, alavanca com o rolo atrás da perna, girando num eixo ao lado do joelho, e a pilha de placas",
+   "medidas": {
+    "comp": { "v": 156, "un": "cm", "tipo": "medida", "fonte": "lf-hs26-slc", "onde": "comprimento total da Life Fitness SS-SLC (a Hammer Strength tem 140; a Precor, 160)" },
+    "larg": { "v": 102, "un": "cm", "tipo": "medida", "fonte": "lf-hs26-slc", "onde": "largura total, com a pilha ao lado do assento (Hammer Strength 87; Precor 122)" },
+    "alturaTorre": { "v": 148, "un": "cm", "tipo": "medida", "fonte": "precor-rsl0619", "onde": "altura da torre da pilha: 148 cm na Precor (\"Weight stack tower height\"); a Life Fitness dá 58,1 pol (148 cm) de altura total" },
+    "assentoInclina": { "v": 15, "un": "graus", "tipo": "medida", "fonte": "precor-rsl0619", "onde": "o assento sobe 15° para a frente, para o joelho cair no eixo" },
+    "estofadoEsp": { "v": 6.5, "un": "cm", "tipo": "medida", "fonte": "precor-rsl0619", "onde": "espessura total dos estofados: 2,5 pol (65 mm)" },
+    "assentoComp": { "v": 44, "un": "cm", "tipo": "desenho", "fonte": "desenho", "onde": "comprimento do assento: as fichas não dão; cabe a coxa da tabela do corpo até 6 cm antes do joelho" },
+    "assentoLarg": { "v": 40, "un": "cm", "tipo": "desenho", "fonte": "desenho", "onde": "largura do assento: as fichas não dão; um pouco mais largo que o quadril do corpo da tabela" },
+    "assentoAltura": { "v": 50, "un": "cm", "tipo": "desenho", "fonte": "desenho", "onde": "altura do chão ao meio do topo do assento: as fichas não dão; com a perna estendida à frente, o pé fica fora do chão" },
+    "encostoComp": { "v": 62, "un": "cm", "tipo": "desenho", "fonte": "desenho", "onde": "comprimento do encosto, do assento até acima dos ombros de quem senta" },
+    "encostoInclina": { "v": 20, "un": "graus", "tipo": "desenho", "fonte": "desenho", "onde": "o encosto deita 20° para trás da vertical; as fichas não dão o ângulo" },
+    "encostoCurso": { "v": 16, "un": "cm", "tipo": "desenho", "fonte": "desenho", "onde": "o quanto o encosto anda para a frente e para trás, para o joelho de cada pessoa cair no eixo (a Precor diz que ele regula, sem dar o curso)" },
+    "eixoAcima": { "v": 9, "un": "cm", "tipo": "desenho", "fonte": "desenho", "onde": "altura do eixo acima da borda da frente do assento: o centro do joelho de quem senta" },
+    "eixoFrente": { "v": 5, "un": "cm", "tipo": "desenho", "fonte": "desenho", "onde": "quanto o eixo fica à frente da borda do assento: o joelho sai inteiro do assento" },
+    "cameDiam": { "v": 22, "un": "cm", "tipo": "desenho", "fonte": "desenho", "onde": "diâmetro do came no eixo (a peça redonda que enrola o cabo); como no cartão de hoje" },
+    "alavancaMax": { "v": 52, "un": "cm", "tipo": "desenho", "fonte": "desenho", "onde": "o rolo da perna corre na alavanca até 52 cm do eixo (a canela da tabela do corpo tem 43 cm até o tornozelo)" },
+    "roloDiam": { "v": 11, "un": "cm", "tipo": "desenho", "fonte": "desenho", "onde": "diâmetro do rolo da perna, como no cartão de hoje" },
+    "roloComp": { "v": 44, "un": "cm", "tipo": "desenho", "fonte": "desenho", "onde": "o rolo passa por baixo das duas pernas" },
+    "travaLarg": { "v": 40, "un": "cm", "tipo": "desenho", "fonte": "desenho", "onde": "largura da trava das coxas, a mesma do assento" },
+    "travaComp": { "v": 22, "un": "cm", "tipo": "desenho", "fonte": "desenho", "onde": "comprimento da trava das coxas (ao longo da coxa)" },
+    "pilhaPlacas": { "v": 15, "un": "placas", "tipo": "desenho", "fonte": "desenho", "onde": "número de placas desenhadas; a Precor tem 73 kg de pilha, sem dizer em quantas placas" },
+    "pilhaAltura": { "v": 75, "un": "cm", "tipo": "desenho", "fonte": "desenho", "onde": "altura da pilha em repouso" },
+    "pilhaLarg": { "v": 26, "un": "cm", "tipo": "desenho", "fonte": "desenho", "onde": "largura das placas" },
+    "pilhaProf": { "v": 12, "un": "cm", "tipo": "desenho", "fonte": "desenho", "onde": "fundo das placas" },
+    "tubo": { "v": 7, "un": "cm", "tipo": "desenho", "fonte": "desenho", "onde": "tubo da estrutura, como o do cartão de hoje" }
+   }
+  }
+ }
+}

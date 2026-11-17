@@ -23,3 +23,5 @@ export { default as paralelas } from './paralelas.json';
 export { default as rodaAbdominal } from './roda-abdominal.json';
 export { default as caneleira } from './caneleira.json';
 export { default as miniBand } from './mini-band.json';
+export { default as barraLonga } from './barra-longa.json';
+export { default as cadeiraFlexora } from './cadeira-flexora.json';

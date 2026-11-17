@@ -1,0 +1,204 @@
+// Peça de cena: a cadeira flexora (flexão de joelho sentado). Medidas em ../dados/objetos/cadeira-flexora.json: o
+// tamanho total vem das fichas da Life Fitness, da Hammer Strength e da Precor; a inclinação do assento e a espessura
+// dos estofados, da Precor; as medidas que fazem a máquina funcionar (a altura do assento, onde fica o eixo, o
+// comprimento da alavanca) não aparecem nas fichas e são de desenho, com o motivo. Parte do cartão de hoje
+// (scripts/desenhos-equipamento/realista/itens.mjs, `cadeira_flexora`): o assento e o encosto azuis, a trava que prende
+// as coxas por cima, o came redondo no eixo, a alavanca com o rolo atrás da perna, a torre com a pilha de placas. O
+// cartão de hoje é 26% a 41% mais estreito que as fichas (a pilha encostada atrás do assento); aqui a pilha fica ao
+// lado do assento, como nas fichas (a largura de 102 cm só fecha assim).
+//
+// A máquina funciona: a alavanca gira no eixo, que fica ao lado do joelho de quem senta; o came gira com ela e enrola o
+// cabo, e as placas escolhidas sobem o arco do came (raio × ângulo girado desde a posição inicial); o encosto anda para
+// a frente e para trás, para o joelho de cada pessoa cair no eixo; o rolo corre na alavanca até ficar atrás do
+// tornozelo; a trava das coxas desce até encostar nelas.
+//
+// Eixos: quem senta olha para +z; o assento fica centrado em x = 0, com a borda da frente em z = 0. O lado esquerdo de
+// quem senta é +x (o direito, que a vista de lado mostra, é −x): o came, a alavanca e a torre ficam à esquerda, para não
+// esconder o joelho de quem olha de lado.
+import type { Prim } from '../desenho';
+import type { PecaPropria } from '../pecas';
+import { cilindro } from '../pecas';
+import { obj } from '../tabelas';
+import { add, mul } from '../vec';
+import type { V3 } from '../vec';
+
+const g = (id: string) => obj('cadeiraFlexora', id);
+const rad = Math.PI / 180;
+const X: V3 = [1, 0, 0],
+  Y: V3 = [0, 1, 0];
+
+/** As regulagens e o instante da máquina. */
+export interface CadeiraFlexora {
+  /** O ângulo da alavanca, em graus: 0 = apontando para baixo, 90 = para a frente, na horizontal. */
+  alavanca: number;
+  /** O ângulo da posição inicial (a regulagem "start position"): a pilha começa a subir daí. */
+  inicio: number;
+  /** A distância do eixo ao centro do rolo da perna (cm). */
+  rolo: number;
+  /** Quanto o encosto está à frente da posição mais recuada (0 até `encostoCurso`). */
+  encosto: number;
+  /** A altura da face de baixo da trava das coxas (cm, do chão). */
+  trava: number;
+  /** Quantas placas estão no pino. */
+  placas?: number;
+}
+
+/** A geometria fixa da máquina (não depende da regulagem). */
+export function geometriaDaCadeiraFlexora() {
+  const inc = g('assentoInclina') * rad;
+  // o assento sobe para a frente: `ao` aponta para a frente e para cima; `normal`, para fora do estofado
+  const ao: V3 = [0, Math.sin(inc), Math.cos(inc)];
+  const normal: V3 = [0, Math.cos(inc), -Math.sin(inc)];
+  const c = g('assentoComp');
+  // o meio do topo do assento fica na altura da tabela; a borda da frente, em z = 0
+  const meioTopo: V3 = [0, g('assentoAltura'), -(c / 2) * Math.cos(inc)];
+  const frenteTopo = add(meioTopo, mul(ao, c / 2));
+  const fundoTopo = add(meioTopo, mul(ao, -c / 2));
+  const eixo: V3 = add(frenteTopo, [0, g('eixoAcima'), g('eixoFrente')]);
+  const xCame = g('assentoLarg') / 2 + 7;
+  return { ao, normal, meioTopo, frenteTopo, fundoTopo, eixo, xCame };
+}
+
+/** A direção da alavanca (do eixo para o rolo) no ângulo dado. */
+export const direcaoDaAlavanca = (graus: number): V3 => [0, -Math.cos(graus * rad), Math.sin(graus * rad)];
+
+/** Quanto as placas sobem (cm) com a alavanca no ângulo dado. */
+export const subidaDaPilha = (m: Pick<CadeiraFlexora, 'alavanca' | 'inicio'>) => Math.max(0, m.inicio - m.alavanca) * rad * (g('cameDiam') / 2);
+
+/** A borda de baixo do encosto (o ponto que encosta no fundo do assento) e a direção dele, para cima. */
+function encosto(m: Pick<CadeiraFlexora, 'encosto'>) {
+  const G = geometriaDaCadeiraFlexora();
+  const inc = g('encostoInclina') * rad;
+  const sobe: V3 = [0, Math.cos(inc), -Math.sin(inc)];
+  const frente: V3 = [0, Math.sin(inc), Math.cos(inc)];
+  const base = add(G.fundoTopo, [0, 0, m.encosto - g('encostoCurso') / 2]);
+  return { base, sobe, frente };
+}
+
+/**
+ * A cadeira flexora: os volumes para a conferência (o assento, o encosto, a trava e o rolo, onde o corpo encosta e que
+ * ele não pode atravessar), a estrutura parada e a parte que se mexe (alavanca, rolo, came, cabo e placas), e os pontos
+ * que o exercício lê (o eixo, o centro do rolo, a frente do encosto).
+ */
+export function cadeiraFlexora(m: CadeiraFlexora) {
+  const G = geometriaDaCadeiraFlexora();
+  const E = encosto(m);
+  const esp = g('estofadoEsp');
+  const dAl = direcaoDaAlavanca(m.alavanca);
+  const centroRolo = add(G.eixo, mul(dAl, m.rolo));
+  const rRolo = g('roloDiam') / 2;
+  const meiaLarg = g('assentoLarg') / 2;
+  // a trava das coxas: logo atrás do joelho, sobre as coxas
+  const zTrava = G.frenteTopo[2] - g('travaComp') / 2 - 4;
+  const travaBaixo: V3 = [0, m.trava, zTrava];
+
+  const caixa = (o: V3, x: V3, y: V3, z: V3, meias: V3, cls: string): Prim => ({ t: 'caixa', ref: { o, x, y, z }, meias, cls, vies: 0.5 });
+  const prims: Prim[] = [
+    // o assento: a caixa do estofado, com o topo no plano do assento
+    caixa(add(G.meioTopo, mul(G.normal, -esp / 2)), X, G.normal, G.ao, [meiaLarg, esp / 2, g('assentoComp') / 2], 'estofado'),
+    // o encosto
+    caixa(add(add(E.base, mul(E.sobe, g('encostoComp') / 2)), mul(E.frente, -esp / 2)), X, E.frente, E.sobe, [meiaLarg - 2, esp / 2, g('encostoComp') / 2], 'estofado'),
+    // a trava das coxas
+    caixa(add(travaBaixo, [0, esp / 2, 0]), X, Y, [0, 0, 1], [g('travaLarg') / 2, esp / 2, g('travaComp') / 2], 'estofado'),
+    // o rolo da perna
+    { t: 'volume', vol: cilindro(add(centroRolo, [-g('roloComp') / 2, 0, 0]), add(centroRolo, [g('roloComp') / 2, 0, 0]), rRolo), cls: 'estofado', vies: 0.5 },
+  ];
+
+  const xC = G.xCame,
+    tubo = g('tubo');
+  // a torre da pilha, ao lado do assento (à esquerda de quem senta), com a frente virada para o assento
+  const zTorre = G.fundoTopo[2] + 6;
+  const xT0 = g('larg') - meiaLarg - 8 - 34,
+    xT1 = xT0 + 34;
+  const zT0 = zTorre - 16,
+    zT1 = zTorre + 16;
+  const H = g('alturaTorre');
+  const zTras = E.base[2] - Math.sin(g('encostoInclina') * rad) * g('encostoComp') - 12;
+  const zFrente = zTras + g('comp');
+
+  const fixa: PecaPropria = {
+    t: 'propria',
+    nome: 'cadeira flexora',
+    fixa: [m.encosto, m.trava],
+    desenhar(C, M, o) {
+      const T = (a: V3, b: V3, w = tubo) => C.tubo(a, b, w, w, M.metal);
+      // a base no chão: dois trilhos ao longo de z e as travessas
+      for (const x of [-meiaLarg + 4, xC + 2]) T([x, tubo / 2, zTras], [x, tubo / 2, G.eixo[2] + 6]);
+      for (const z of [zTras + 4, G.eixo[2] + 2]) T([-meiaLarg + 4, tubo / 2, z], [xT1, tubo / 2, z]);
+      T([xT0, tubo / 2, zT0], [xT0, tubo / 2, zT1]);
+      T([xT1, tubo / 2, zT0], [xT1, tubo / 2, zT1]);
+      // o pé do assento e o do eixo
+      T([0, tubo, G.meioTopo[2]], [0, G.meioTopo[1] - esp - 2, G.meioTopo[2]]);
+      T([-meiaLarg + 4, tubo / 2, G.meioTopo[2]], [xC + 2, tubo / 2, G.meioTopo[2]]);
+      T([xC + 2, tubo, G.eixo[2]], [xC + 2, G.eixo[1] - 6, G.eixo[2]]);
+      // o trilho do encosto (ele corre sobre ele) e o encosto
+      T([0, G.fundoTopo[1] - esp - 6, G.fundoTopo[2] - g('encostoCurso') / 2 - 6], [0, G.fundoTopo[1] - esp - 6, G.meioTopo[2] + 6], 5);
+      // o estofado do encosto: a face de trás (a de baixo do estofado) fica atrás da linha onde as costas encostam
+      C.estofado(add(add(E.base, mul(E.sobe, g('encostoComp') / 2)), mul(E.frente, -esp)), E.sobe, E.frente, X, g('encostoComp'), esp, g('assentoLarg') - 4);
+      T(add(E.base, [0, -esp - 4, -2]), add(add(E.base, mul(E.sobe, g('encostoComp') * 0.45)), mul(E.frente, -esp - 2)), 5);
+      // o assento
+      C.estofado(add(G.meioTopo, mul(G.normal, -esp)), G.ao, G.normal, X, g('assentoComp'), esp, g('assentoLarg'));
+      // os pegadores ao lado do assento
+      for (const s of [-1, 1]) {
+        const x = s * (meiaLarg + 4);
+        C.tubo([x * 0.85, G.meioTopo[1] - esp - 4, G.meioTopo[2] - 4], [x, G.meioTopo[1] - 2, G.meioTopo[2] + 6], 3, 3, M.metal);
+        C.cilindro([x, G.meioTopo[1] - 2, G.meioTopo[2] + 6], [x, G.meioTopo[1] - 2, G.meioTopo[2] + 18], 2, M.borracha, { lados: 12 });
+      }
+      // a trava das coxas: a almofada sobre as coxas, presa num braço que desce do lado esquerdo
+      C.estofado(travaBaixo, [0, 0, 1], Y, X, g('travaComp'), esp, g('travaLarg'));
+      T([xC + 2, G.eixo[1] + 4, zTrava - 2], [xC + 2, m.trava + esp + 8, zTrava - 2], 5);
+      T([xC + 2, m.trava + esp + 8, zTrava - 2], [g('travaLarg') / 2 - 4, m.trava + esp + 3, zTrava - 2], 4.5);
+      // a torre: quatro montantes, a tampa e as guias das placas
+      for (const [x, z] of [
+        [xT0, zT0],
+        [xT1, zT0],
+        [xT0, zT1],
+        [xT1, zT1],
+      ] as [number, number][])
+        T([x, tubo, z], [x, H, z], 4.5);
+      for (const z of [zT0, zT1]) T([xT0, H, z], [xT1, H, z], 4.5);
+      for (const x of [xT0, xT1]) T([x, H, zT0], [x, H, zT1], 4.5);
+      for (const dz of [-6, 6]) C.cilindro([(xT0 + xT1) / 2, tubo, zTorre + dz], [(xT0 + xT1) / 2, H - 6, zTorre + dz], 0.8, M.cromo, { lados: 8 });
+      // a polia do pé da torre, por onde o cabo entra
+      C.cilindro([(xT0 + xT1) / 2 - 1.5, 10, zT1 + 2], [(xT0 + xT1) / 2 + 1.5, 10, zT1 + 2], 4.5, M.metalClaro, { lados: 16 });
+      if (o.comSombra) C.sombra((xT1 - meiaLarg) / 2, (zTras + zFrente) / 2, (xT1 + meiaLarg) / 2 + 6, g('comp') / 2, 0.18);
+    },
+  };
+
+  const subida = subidaDaPilha(m);
+  const n = g('pilhaPlacas'),
+    k = Math.min(n, Math.max(1, m.placas ?? 5)),
+    hp = g('pilhaAltura') / n;
+  const movel: PecaPropria = {
+    t: 'propria',
+    nome: 'alavanca da cadeira flexora',
+    desenhar(C, M) {
+      // as placas: as que ficam embaixo e as do pino, que sobem; a haste que as atravessa
+      const xP = (xT0 + xT1) / 2 - g('pilhaLarg') / 2,
+        zP = zTorre + g('pilhaProf') / 2;
+      if (n - k > 0) C.pilha([xP, tubo + 2, zP], X, [0, 0, -1], g('pilhaLarg'), hp * (n - k), g('pilhaProf'), n - k);
+      const yDo = tubo + 2 + hp * (n - k) + subida;
+      C.pilha([xP, yDo, zP], X, [0, 0, -1], g('pilhaLarg'), hp * k, g('pilhaProf'), k);
+      C.cilindro([(xT0 + xT1) / 2, yDo + hp * k, zTorre], [(xT0 + xT1) / 2, yDo + hp * k + 10, zTorre], 1.2, M.cromo, { lados: 8 });
+      // o cabo: do came, desce até a polia do pé da torre e sobe por dentro dela até o alto das placas
+      const rC = g('cameDiam') / 2;
+      const saida = add(G.eixo, [xC - 1, -rC, 0]);
+      const polia: V3 = [(xT0 + xT1) / 2, 10 - 4.5, zT1 + 2];
+      C.linha(saida, [saida[0], 10 - 4.5, saida[2]], '#202327', 0.7);
+      C.linha([saida[0], 10 - 4.5, saida[2]], polia, '#202327', 0.7);
+      // o came e o eixo
+      const cx = (x: number): V3 => [x, G.eixo[1], G.eixo[2]];
+      C.cilindro(cx(xC - 3), cx(xC + 3), rC, M.metalClaro, { lados: 24 });
+      C.cilindro(cx(xC + 3), cx(xC + 6), 3, M.cromo, { lados: 12 });
+      // a alavanca: do came até o rolo, no lado esquerdo; o rolo passa por baixo das duas pernas
+      const pontaAl = add(G.eixo, mul(dAl, g('alavancaMax')));
+      const lado = (v: V3, x: number): V3 => [x, v[1], v[2]];
+      C.tubo(lado(G.eixo, xC), lado(pontaAl, xC), 5, 5, M.metal, { up: [1, 0, 0] });
+      // a luva do rolo, que corre na alavanca, e a haste que leva o rolo para baixo das pernas
+      C.tubo(lado(add(centroRolo, mul(dAl, -4)), xC), lado(add(centroRolo, mul(dAl, 4)), xC), 7, 7, M.metalClaro, { up: [1, 0, 0] });
+      C.cilindro(lado(centroRolo, xC - 3), lado(centroRolo, -g('roloComp') / 2), 1.6, M.cromo, { lados: 10 });
+      C.cilindro(add(centroRolo, [-g('roloComp') / 2, 0, 0]), add(centroRolo, [g('roloComp') / 2 - 6, 0, 0]), rRolo, M.estofado, { lados: 18 });
+    },
+  };
+  return { prims, fixa, movel, eixo: G.eixo, centroRolo, frenteDoEncosto: E, subida, extremos: { zTras, zFrente, xDireita: -meiaLarg - 6, xEsquerda: xT1 + 2 } };
+}
