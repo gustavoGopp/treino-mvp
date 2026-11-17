@@ -45,3 +45,4 @@ export { REGRAS_DESENVOLVIMENTOS_EM_PE } from './desenvolvimentos-em-pe';
 export { REGRAS_TRICEPS_FRANCES_UNILATERAL_HALTER } from './triceps-frances-unilateral-halter';
 export { regrasDoAgachamentoComHalteres } from './agachamento-halteres';
 export { regrasDoGobletKettlebell } from './goblet-kettlebell';
+export { REGRAS_SENTADO_NA_PONTA } from './sentado-na-ponta';
