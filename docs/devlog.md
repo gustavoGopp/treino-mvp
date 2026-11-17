@@ -1905,9 +1905,11 @@ Contando tudo o que cada medição colheu: 458 telas e 66.352 palavras antes; 42
 
 ![O "Senti algo" com o sinal novo](revisoes/textos/folhas/11-senti-algo.png)
 
-**Ficou para decidir:** a regra dos sinais do coração diz que o app bloqueia novos treinos até a pessoa confirmar a avaliação, e o app não bloqueia (só orienta). A frase da regra diz isso com todas as letras; fazer o bloqueio é decisão do Gustavo.
+**O bloqueio que a regra pedia e o app não fazia.** A regra dos sinais do coração dizia que o app bloqueia novos treinos até a pessoa confirmar a avaliação; o app só orientava. Agora, depois de um treino encerrado por um desses sinais, o início mostra "Treino pausado por segurança", sem o botão de começar, até a pessoa marcar "Confirmo que fui avaliado e liberado por um médico". É o mesmo molde da triagem, e a data da confirmação fica só no aparelho.
 
-**Resultado:** `npm run check` com 909 testes e `npm run test:e2e` com 178, tudo passando.
+![Do treino encerrado ao início liberado](revisoes/textos/folhas/12-bloqueio-depois-do-alerta.png)
+
+**Resultado:** `npm run check` com 915 testes e `npm run test:e2e` com 179, tudo passando.
 
 **Rascunho de post para o LinkedIn**
 

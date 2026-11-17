@@ -1,6 +1,6 @@
 import { diaNoLocal, type DiaNoLocal } from '../../domain/locais';
 import type { SerieRegistrada } from '../../domain/progressao';
-import { hojeDaSessao, hojeNoPrograma, opcoesDeHoje, proximoDia, type Hoje, type OpcoesSugestao, type Sessao } from '../../domain/sessao';
+import { alertaPendente, hojeDaSessao, hojeNoPrograma, opcoesDeHoje, proximoDia, type Hoje, type OpcoesSugestao, type Sessao } from '../../domain/sessao';
 import type { Inventario } from '../../domain/taxonomia/equipamentos';
 import { localDoPrograma, localDoTreino, localPorId, perfilDe, type Estado } from '../../storage/esquema';
 
@@ -58,6 +58,8 @@ export function opcoesDaCarga(e: Estado, s: Pick<Sessao, 'id' | 'inicio' | 'loca
  */
 export function iniciarSessao(e: Estado, agora: string, diaId?: string, localId?: string, fusoMin = 0): Estado {
   if (e.sessaoAtual || !e.programa) return e;
+  // seguranca.alerta.cardiovascular: sem a confirmação da avaliação, nenhum treino novo começa
+  if (alertaPendente(e.historico, e.respostas?.alertaAvaliadoEm)) return e;
   const programa = e.programa.programa;
   const id = diaId ?? proximoDia(programa, e.historico).id;
   const hoje = hojeDoEstado(e, agora, fusoMin)!;
@@ -160,3 +162,6 @@ export function descartarSessao(e: Estado): Estado {
   void sessaoAtual;
   return resto;
 }
+
+/** A pessoa confirmou que foi avaliada depois do sinal de alerta do coração: os treinos voltam (seguranca.alerta.cardiovascular). */
+export const confirmarAvaliacaoDoAlerta = (e: Estado, agora: string): Estado => ({ ...e, respostas: { ...e.respostas, alertaAvaliadoEm: agora } });

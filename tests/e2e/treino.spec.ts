@@ -175,6 +175,34 @@ test('dor no peito encerra o treino e orienta ligar para o SAMU', async ({ page 
   await expect(page.getByRole('alert')).toContainText('192');
 });
 
+// seguranca.alerta.cardiovascular (17/11/2026): a regra dizia "bloqueia novos treinos até a pessoa confirmar avaliação", e
+// o app só orientava. Agora o início não deixa começar um treino até a confirmação, como na triagem.
+test('depois da dor no peito, o início só deixa treinar de novo com a confirmação da avaliação', async ({ page }) => {
+  await ana(page);
+  await comecar(page);
+  await page.getByRole('button', { name: 'Senti algo' }).click();
+  await page.getByRole('button', { name: 'Dor, pressão ou aperto no peito' }).click();
+  await page.getByRole('link', { name: 'Voltar ao início' }).click();
+
+  const bloqueio = page.getByRole('region', { name: 'Treino pausado por segurança' });
+  await expect(bloqueio).toContainText('Só volte a treinar depois de uma avaliação.');
+  await expect(page.getByRole('button', { name: /^Começar o treino/ })).toHaveCount(0);
+  const voltar = bloqueio.getByRole('button', { name: 'Voltar a treinar' });
+  await expect(voltar).toBeDisabled();
+  await semToquePequeno(page);
+  // recarregar não desfaz o bloqueio
+  await page.reload();
+  await expect(bloqueio).toBeVisible();
+  await expect(page.getByRole('button', { name: /^Começar o treino/ })).toHaveCount(0);
+
+  await bloqueio.getByRole('checkbox', { name: 'Confirmo que fui avaliado e liberado por um médico' }).check();
+  await voltar.click();
+  await expect(bloqueio).toHaveCount(0);
+  await expect(page.getByRole('button', { name: /^Começar o treino/ })).toBeVisible();
+  await page.reload();
+  await expect(page.getByRole('button', { name: /^Começar o treino/ })).toBeVisible();
+});
+
 // seguranca.alerta.musculoesqueletico (17/11/2026): a regra dizia que os sinais de cauda equina pedem atendimento urgente,
 // e nenhuma tela os mostrava. Agora o "Senti algo" tem o sinal, em palavras simples, e ele encerra o treino.
 test('dormência entre as pernas ou descontrole da urina ou das fezes encerra o treino e manda a um pronto-socorro', async ({ page }) => {
@@ -193,6 +221,9 @@ test('dormência entre as pernas ou descontrole da urina ou das fezes encerra o 
   // e o treino fica guardado como encerrado por esse sinal
   await page.reload();
   await expect(page.getByRole('alert')).toContainText('procure um pronto-socorro agora');
+  // este sinal não bloqueia o próximo treino: a regra dele pede atendimento urgente, não a confirmação
+  await page.getByRole('link', { name: 'Voltar ao início' }).click();
+  await expect(page.getByRole('button', { name: /^Começar o treino/ })).toBeVisible();
 });
 
 test('R1: aberto pelo treino, o guia do búlgaro mostra a prescrição da semana da Ana (RIR 3–4), não a da referência', async ({ page }) => {

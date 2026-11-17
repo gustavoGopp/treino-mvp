@@ -10,12 +10,13 @@ import { EFEITO_DA_DOR, NOME_ARTICULACAO } from '../onboarding/articulacoes';
 import { proximoDia, treinoFeito } from '../../domain/sessao';
 import { linkDoGuia } from '../guia/link';
 import { inventarioPrincipal, localDoTreino, perfilDe, primeiroPassoPendente, type Estado } from '../../storage/esquema';
-import { alternarPreferencia, diaDoTreino, hojeDoEstado, iniciarSessao } from '../treino/acoes';
+import { alternarPreferencia, confirmarAvaliacaoDoAlerta, diaDoTreino, hojeDoEstado, iniciarSessao } from '../treino/acoes';
+import { alertaPendente } from '../../domain/sessao';
 import { Preferencias } from './Prefiro';
 import { agoraIso, comProgramaNovo, fusoDoAparelho, mesmoConteudo, resultadoDoEstado, useApp } from '../app/estado';
 import { AvisoInstalar, AvisoSalvar, LembreteCopia } from '../app/avisos';
 import { Icone } from '../app/icones';
-import { NavInferior, Titulo, Topo } from '../app/ui';
+import { Marcar, NavInferior, Titulo, Topo } from '../app/ui';
 import { Folha } from '../app/Folha';
 import { Miniatura } from './Miniatura';
 import { FaixaSemana } from '../acompanhamento/Semana';
@@ -38,6 +39,8 @@ export function Programa() {
   });
   // a folha dos avisos ("Ver" na linha do aviso, ou "Ver ajustes possíveis" em "Sobre o programa")
   const [verAvisos, setVerAvisos] = useState(false);
+  // a caixa "Confirmo que fui avaliado" do bloqueio depois de um sinal de alerta do coração
+  const [avaliado, setAvaliado] = useState(false);
   // "Onde vou treinar hoje?" (R1b): o último local usado vem lembrado; a escolha continua visível.
   const [localHoje, setLocalHoje] = useState(() => localDoTreino(estado)?.id);
   const perfil = useMemo(() => perfilDe(estado), [estado]);
@@ -223,6 +226,8 @@ export function Programa() {
   }
   const [primeiro, ...outros] = fila;
   const naFolha = primeiro?.acao ? outros : fila;
+  // seguranca.alerta.cardiovascular: depois de um sinal de alerta do coração, o treino só volta com a confirmação da avaliação
+  const bloqueadoPorAlerta = !estado.sessaoAtual && alertaPendente(estado.historico, estado.respostas?.alertaAvaliadoEm);
   const iniciar = () => {
     atualizar((s) => iniciarSessao(s, agoraIso(), dia.id, localHoje, fusoDoAparelho()));
     navigate('/treino');
@@ -235,6 +240,18 @@ export function Programa() {
       <main className="conteudo treino">
         <AvisoSalvar />
         <Titulo soLeitor>Seu treino</Titulo>
+        {bloqueadoPorAlerta && (
+          <section className="caixa-erro pilha" aria-labelledby="bloqueio-alerta">
+            <h2 id="bloqueio-alerta">Treino pausado por segurança</h2>
+            <p>O último treino foi encerrado por um sinal de alerta do coração. Só volte a treinar depois de uma avaliação.</p>
+            <Marcar marcado={avaliado} aoMudar={setAvaliado}>
+              Confirmo que fui avaliado e liberado por um médico
+            </Marcar>
+            <button type="button" className="btn" disabled={!avaliado} onClick={() => atualizar((s) => confirmarAvaliacaoDoAlerta(s, agoraIso()))}>
+              Voltar a treinar
+            </button>
+          </section>
+        )}
 
         <div className="abas" role="tablist" aria-label="Dias de treino">
           {diasDaSemana.map((d, i) => (
@@ -393,6 +410,7 @@ export function Programa() {
 
 
         {/* A ação principal fica presa embaixo, acima da barra, em qualquer estado (lote 4; agente 1, 4.2). */}
+        {!bloqueadoPorAlerta && (
         <div className="acao-fixa">
           {estado.sessaoAtual ? (
             <Link className="btn" to="/treino">
@@ -408,6 +426,7 @@ export function Programa() {
             </button>
           )}
         </div>
+        )}
       </main>
       <NavInferior atual="treino" />
     </div>

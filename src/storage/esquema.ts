@@ -199,6 +199,8 @@ export const estadoSchema = z.object({
       semanaLeveEm: data.optional(),
       /** "Não" ao ajuste do tempo estimado (tempo.calibracao). */
       tempoEm: data.optional(),
+      /** "Confirmo que fui avaliado" depois de um treino encerrado por sinal de alerta do coração (seguranca.alerta.cardiovascular). */
+      alertaAvaliadoEm: data.optional(),
     })
     .optional(),
   /** Margem pessoal do tempo estimado (tempo.calibracao), só com o aceite: substitui os 10% de tempo.colchao. */
