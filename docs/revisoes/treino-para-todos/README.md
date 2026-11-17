@@ -1,6 +1,6 @@
 # Treino para todos (12 a 17/11/2026)
 
-> **Etapa 2 fechada no ramo da sessão, em 17/11/2026. Nada foi para a `main`.** O resumo para decidir está em [`fechamento-etapa-2.md`](fechamento-etapa-2.md); as doze pessoas, com a semana de antes ao lado da de agora, em [`exemplos-finais/`](exemplos-finais/README.md); a revisão cega final, em [`revisao-cega/final/`](revisao-cega/final/README.md); a régua por grupo, na última seção de [`qa.md`](qa.md). **Em 17/11, com o ok do Gustavo, a `main` foi trazida para dentro do ramo (três junções no dia, porque ela andava) e tudo foi verificado de novo** (seção 9.1 do fechamento). Falta a decisão dele sobre o passo 2: juntar o ramo na `main`.
+> **Etapa 2 fechada e juntada na `main` em 17/11/2026, com o ok do Gustavo.** O resumo está em [`fechamento-etapa-2.md`](fechamento-etapa-2.md); as doze pessoas, com a semana de antes ao lado da de agora, em [`exemplos-finais/`](exemplos-finais/README.md); a revisão cega final, em [`revisao-cega/final/`](revisao-cega/final/README.md); a régua por grupo, na última seção de [`qa.md`](qa.md). **Em 17/11, com o ok do Gustavo, a `main` foi trazida para dentro do ramo (três junções no dia, porque ela andava) e tudo foi verificado de novo** (seção 9.1 do fechamento). Em seguida, também com o ok dele, o ramo foi juntado na `main`, sem forçar (seção 9.2).
 
 | Para | Abra |
 |---|---|

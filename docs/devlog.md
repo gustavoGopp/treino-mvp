@@ -1799,13 +1799,15 @@ Em relação ao pacote 0, um único par de grupo e defeito sobe, em 1 programa. 
 
 **Rascunho de post.** "Passei cinco dias fazendo o app montar um treino melhor para qualquer pessoa, não só para mim. A regra da casa: melhorar um perfil piorando outro não é melhoria. Medi 680 mil programas de pessoas inventadas antes e depois de cada mudança, e pedi a treinadores simulados que dessem nota sem saber qual versão estavam lendo. O que mais rendeu não foi nada esperto: o app deixava minutos sobrando no treino, e agora usa. O que eu não consegui resolver também está escrito: quem treina em casa sem equipamento continua sem exercício para as costas, e o iniciante ainda recebe exercícios em dupla para caber no tempo. No último dia, os revisores acharam um erro que estava lá desde o começo: agachamento com a barra nas costas para quem marcou dor forte no ombro. Corrigido no mesmo dia, com teste."
 
-## Sessão "treino para todos": a `main` dentro do ramo (17/11/2026)
+## Sessão "treino para todos": a `main` dentro do ramo e o ramo na `main` (17/11/2026)
 
 **O que mudou (no ramo `claude/nifty-albattani-mltt95`; a `main` não foi tocada).** Com o ok do Gustavo, a `main` foi trazida para dentro do ramo da sessão, em três junções no mesmo dia, porque ela andava enquanto o trabalho era feito: o frontend e a animação novos (280 commits), a sessão de textos (45) e o bloqueio depois do sinal de alerta do coração (2). Nove conflitos ao todo, resolvidos sem perder nada de nenhum lado.
 
 **O que apareceu.** A sessão de textos passou a exigir uma frase em linguagem simples para cada regra. Faltavam as das 2 regras novas da etapa 2, e 11 frases ainda diziam o que a regra dizia antes (por exemplo, "3 treinos seguidos" sem melhora, quando agora são 4, 8 ou 16). As 13 estão em `docs/revisoes/treino-para-todos/frases-das-regras.md`, antes e depois, para revisão. Nos testes de tela reescritos pela sessão de textos, ficou a estrutura da `main` com o exercício deste ramo (o goblet no lugar do búlgaro). A correção do zoom de 200% (15/11) deixou de ser necessária: o estilo novo resolve o caso de outro jeito.
 
 **Conferido no estado juntado.** `check` limpo (1.033 testes), testes de tela limpos (180), as duas conferências novas da `main` passam, a auditoria em duas rodadas fecha limpa (39 arquivos idênticos, nenhum relatório mudou) e a medida da população (680.625 programas) é idêntica à do fechamento, byte a byte: as junções não mudam nenhum programa.
+
+**A junção na `main`.** No mesmo dia, com o ok do Gustavo, o ramo foi juntado na `main`, sem forçar: um commit de junção cujo conteúdo é idêntico ao do ramo verificado. Os dados guardados passam da versão 8 para a 9 na primeira abertura do app.
 
 **Imagem.** Sem imagem: as telas e o motor são os da `main`.
 

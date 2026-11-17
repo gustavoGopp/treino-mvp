@@ -1,6 +1,6 @@
 # Fechamento da etapa 2 (17/11/2026)
 
-> Sessão "treino para todos". A etapa 2 levou para o app, um pacote por vez, o que a etapa 1 propôs. Tudo está no ramo `claude/nifty-albattani-mltt95`. **Nada foi para a `main`.** Esta página é o resumo para o Gustavo decidir o próximo passo. Todas as pessoas citadas são fictícias.
+> Sessão "treino para todos". A etapa 2 levou para o app, um pacote por vez, o que a etapa 1 propôs. Tudo foi feito no ramo `claude/nifty-albattani-mltt95`. **Em 17/11/2026, com o ok do Gustavo, o ramo foi juntado na `main`** (seções 9.1 e 9.2). Esta página é o resumo que serviu para ele decidir; as seções 1 a 9 estão como foram escritas antes da junção. Todas as pessoas citadas são fictícias.
 
 ## 1. Em uma página
 
@@ -156,7 +156,25 @@ A `main` foi trazida para dentro do ramo. **A `main` não foi tocada.** Como ela
 | A medida da população (680.625 programas) | **Idêntica à do fechamento, byte a byte.** As junções não mudam nenhum programa: a `main` não mexeu no gerador nem na biblioteca de exercícios |
 | Auditoria em duas rodadas | Limpa: 39 arquivos idênticos nas duas rodadas, nenhum defeito acima da linha de base da régua, e nenhum relatório mudou em relação ao do fechamento |
 
-**O que o passo 2 faria.** Juntar este ramo na `main`. Como a `main` já está inteira dentro do ramo, a junção não tem conflito e a `main` passa a ser exatamente o que foi verificado aqui. **A `main` está em movimento** (outras sessões trabalhando nela): se ela receber commits novos antes do passo 2, repito o passo 1 para eles antes de juntar. O melhor momento para o passo 2 é quando as outras sessões estiverem paradas.
+## 9.2 O passo 2, feito em 17/11/2026 (com o ok do Gustavo)
+
+O ramo foi juntado na `main`, sem forçar nada.
+
+| O que | Resultado |
+|---|---|
+| A `main` antes | `ef73b17`, já inteira dentro do ramo (nenhum commit novo desde a verificação do passo 1) |
+| A junção | Um commit de junção, `5fdb0ad`, com a `main` como primeiro pai e o ramo verificado (`45bcfd0`) como segundo |
+| O conteúdo da `main` depois | Idêntico ao do ramo verificado no passo 1: nenhuma linha de diferença |
+| Como foi enviado | `git push origin main`, avanço simples (`ef73b17..5fdb0ad`), sem `--force` |
+
+Depois da junção, só os documentos mudaram (esta seção, a página de entrada da sessão, o devlog e o backlog), para registrar que ela foi feita.
+
+**O que muda para quem usa o app a partir da `main`:**
+
+- **Os dados guardados passam da versão 8 para a 9** na primeira abertura (o programa passa a guardar o nível). A migração é automática e tem teste. Ela não volta atrás: um app na versão 9 não abre num código de antes da junção.
+- **O programa muda quando for gerado de novo**, do jeito que os exemplos mostram: exercícios de dois lados em máquina, polia e barra; mais séries onde sobrava tempo; o aviso de "sem melhora" depois de 4, 8 ou 16 treinos, conforme o nível.
+
+**O que fica para depois** está em `docs/backlog.md`: as 13 frases das regras para a sessão de textos rever, o teste próprio do limite de 6 exercícios do iniciante, e os itens da seção 7 desta página.
 
 ## 10. Como conferir
 
