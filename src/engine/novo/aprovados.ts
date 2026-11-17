@@ -94,6 +94,8 @@ export const APROVADOS: Record<string, { em: string; oQueEleDisse: string; como?
   'supino-reto': { em: '2026-11-15', oQueEleDisse: 'podem ficar assim, segue com as próximas, só ajuste as animações com o elástico desse bloco', como: 'nos quadros' },
   'puxada-unilateral': { em: '2026-11-15', oQueEleDisse: 'podem ficar assim, segue com as próximas, só ajuste as animações com o elástico desse bloco', como: 'nos quadros' },
   flexao: { em: '2026-11-15', oQueEleDisse: 'podem ficar assim, segue com as próximas, só ajuste as animações com o elástico desse bloco', como: 'nos quadros' },
+  'supino-chao-halteres': { em: '2026-11-17', oQueEleDisse: DELEGOU, como: 'por delegação' },
+  'triceps-testa-halteres': { em: '2026-11-17', oQueEleDisse: DELEGOU, como: 'por delegação' },
   'abducao-mini-band': { em: '2026-11-16', oQueEleDisse: 'O único problema é que quando ele abre a band parece que a mão está pra dentro, ajuste isso e seguimos. Não quero olhar mais nenhuma', como: 'por delegação' },
 };
 
@@ -103,4 +105,4 @@ export const APROVADOS: Record<string, { em: string; oQueEleDisse: string; como?
  * e o texto do guia. Até lá elas ficam fora do catálogo do guia e o app não as mostra: a ligação muda o treino gerado e
  * só entra com o ok do Gustavo (docs/revisoes/animacoes-restantes/plano.md, seção 4).
  */
-export const ESPERAM_A_LIGACAO: string[] = [];
+export const ESPERAM_A_LIGACAO: string[] = ['supino-chao-halteres', 'triceps-testa-halteres'];
