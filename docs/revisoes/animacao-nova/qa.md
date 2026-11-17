@@ -1,6 +1,6 @@
 # Os vinte cuidados, animação por animação
 
-Gerado por `scripts/animacao-nova/qa-md.mjs` a partir da conferência automática (`prototipos/conferencia.json`), da lista de aprovadas (`src/engine/novo/aprovados.ts`) e do andamento. São 116 animações.
+Gerado por `scripts/animacao-nova/qa-md.mjs` a partir da conferência automática (`prototipos/conferencia.json`), da lista de aprovadas (`src/engine/novo/aprovados.ts`) e do andamento. São 122 animações.
 
 Cada célula diz **como** o cuidado foi conferido naquela animação:
 
@@ -11,7 +11,7 @@ Cada célula diz **como** o cuidado foi conferido naquela animação:
 - **–**: não se aplica a essa animação.
 - **✗**: não cumprido (explicado no fim).
 
-Contagem das 2204 células dos cuidados 1 a 19: M 891, M! 105, O 832, C 348, – 22, ✗ 6.
+Contagem das 2318 células dos cuidados 1 a 19: M 930, M! 112, O 879, C 366, – 22, ✗ 9.
 
 ## O que cada cuidado pede e como foi conferido
 
@@ -71,13 +71,16 @@ O que **não** foi feito: não houve um revisor independente animação por anim
 | `bulgaro-peso-corpo` | 1 | M | M! | M | M | M | C | O | M | C | M | O | O | O | M | O | C | O | O | M | D | [quadros](quadros/bulgaro-peso-corpo.png) |
 | `bulgaro-suspensao` | 1 | M | M | M | M | M | C | O | M | C | M | O | O | O | M | O | C | O | O | M | D | [quadros](quadros/bulgaro-suspensao.png) |
 | `caminhada-lateral-mini-band` | ? | M | M! | M | M! | M | C | O | M | C | M | O | O | O | M | O | C | O | O | M | D | [quadros](quadros/caminhada-lateral-mini-band.png) |
+| `coice-caneleira` | ? | M | M! | M | O | M | C | O | M | C | M | O | O | O | ✗ | O | C | O | O | M | D | [quadros](quadros/coice-caneleira.png) |
 | `coice-elastico` | ? | M | M! | M | M! | M | C | O | M | C | M | O | O | O | ✗ | O | C | O | O | M | D | [quadros](quadros/coice-elastico.png) |
 | `crucifixo-elastico` | 3 | M | M | M | M! | M | C | O | M | C | M | O | O | O | M | O | C | O | O | M | D | [quadros](quadros/crucifixo-elastico.png) |
 | `crucifixo-halteres` | ? | M | M | M | O | M | C | O | M | C | M | O | O | O | M | O | C | O | O | M | D | [quadros](quadros/crucifixo-halteres.png) |
 | `crucifixo-inclinado-halteres` | ? | M | M | M | O | M | C | O | M | C | M | O | O | O | M | O | C | O | O | M | D | [quadros](quadros/crucifixo-inclinado-halteres.png) |
 | `crucifixo-inverso` | ? | M | M | M | O | M | C | O | M | C | M | O | O | O | ✗ | O | C | O | O | M | D | [quadros](quadros/crucifixo-inverso.png) |
+| `crucifixo-invertido-caneleira` | ? | M | M! | M | O | M | C | O | M | C | M | O | O | O | ✗ | O | C | O | O | M | D | [quadros](quadros/crucifixo-invertido-caneleira.png) |
 | `crucifixo-invertido-curvado` | ? | M | M | M | M | M | C | O | M | C | M | O | O | O | M | O | C | O | O | M | D | [quadros](quadros/crucifixo-invertido-curvado.png) |
 | `crucifixo-invertido-polia` | 3 | M | M | M | M | M | C | O | M | C | M | O | O | O | M | O | C | O | O | M | D | [quadros](quadros/crucifixo-invertido-polia.png) |
+| `crucifixo-invertido-sentado` | ? | M | M! | M | O | M | C | O | M | C | M | O | O | O | M | O | C | O | O | M | D | [quadros](quadros/crucifixo-invertido-sentado.png) |
 | `crucifixo-polia` | 3 | M | M | M | M | M | C | O | M | C | M | O | O | O | M | O | C | O | O | M | D | [quadros](quadros/crucifixo-polia.png) |
 | `desenvolvimento` | 3 | M | M | M | O | M | C | O | M! | C | M | O | O | O | M | O | C | O | O | M | D | [quadros](quadros/desenvolvimento.png) |
 | `desenvolvimento-elastico` | 3 | M | M | M | M! | M | C | O | M | C | M | O | O | O | M | O | C | O | O | M | D | [quadros](quadros/desenvolvimento-elastico.png) |
@@ -88,6 +91,8 @@ O que **não** foi feito: não houve um revisor independente animação por anim
 | `elevacao-joelhos` | 7 | M | M! | M! | O | M | C | O | M! | C | M | O | O | O | M | O | C | O | O | M | D | [quadros](quadros/elevacao-joelhos.png) |
 | `elevacao-joelhos-paralelas` | 7 | M | M | M! | O | M | C | O | M | C | M | O | O | O | M | O | C | O | O | M | D | [quadros](quadros/elevacao-joelhos-paralelas.png) |
 | `elevacao-lateral` | 3 | M | M | M | M | M | C | O | M! | C | M | O | O | O | M | O | C | O | O | M | D | [quadros](quadros/elevacao-lateral.png) |
+| `elevacao-lateral-caneleira` | ? | M | M | M | M | M | C | O | M! | C | M | O | O | O | ✗ | O | C | O | O | M | D | [quadros](quadros/elevacao-lateral-caneleira.png) |
+| `elevacao-lateral-deitado` | ? | M | M | M | O | M | C | O | M! | C | M | O | O | O | M | O | C | O | O | M | D | [quadros](quadros/elevacao-lateral-deitado.png) |
 | `elevacao-lateral-elastico` | 3 | M | M | M | M! | M | C | O | M! | C | M | O | O | O | M | O | C | O | O | M | D | [quadros](quadros/elevacao-lateral-elastico.png) |
 | `elevacao-lateral-unilateral` | ? | M | M | M | O | M | C | O | M! | C | M | O | O | O | M | O | C | O | O | M | D | [quadros](quadros/elevacao-lateral-unilateral.png) |
 | `elevacao-lateral-unilateral-elastico` | ? | M | M | M | M! | M | C | O | M! | C | M | O | O | O | M | O | C | O | O | M | D | [quadros](quadros/elevacao-lateral-unilateral-elastico.png) |
@@ -133,6 +138,7 @@ O que **não** foi feito: não houve um revisor independente animação por anim
 | `remada-unilateral-sem-banco` | 4 | M | M! | M | M | M | C | O | M | C | M | O | O | O | M | O | C | O | O | M | D | [quadros](quadros/remada-unilateral-sem-banco.png) |
 | `roda-abdominal` | 7 | M | M! | M | O | M | C | O | M | C | M | O | O | O | M | O | C | O | O | M | D | [quadros](quadros/roda-abdominal.png) |
 | `rosca-alternada` | 5 | M | M | M | M | M | C | O | M! | C | M | O | O | O | M | O | C | O | O | M | G (quadros) | [quadros](quadros/rosca-alternada.png) |
+| `rosca-concentrada` | ? | M | M! | M | O | M | C | O | M! | C | M | O | O | O | M | O | C | O | O | M | D | [quadros](quadros/rosca-concentrada.png) |
 | `rosca-elastico` | 5 | M | M | M | M! | M | C | O | M! | C | M | O | O | O | M | O | C | O | O | M | D | [quadros](quadros/rosca-elastico.png) |
 | `rosca-inclinada` | 5 | M | M | M | O | M | C | O | M! | C | M | O | O | O | M | O | C | O | O | M | G (quadros) | [quadros](quadros/rosca-inclinada.png) |
 | `rosca-kettlebell` | 5 | M | M | M | M | M | C | O | M! | C | M | O | O | O | M | O | C | O | O | M | D | [quadros](quadros/rosca-kettlebell.png) |
@@ -166,7 +172,7 @@ O que **não** foi feito: não houve um revisor independente animação por anim
 Dois avisos aparecem em quase todas e não entram na lista abaixo:
 
 - **Cuidado 1, linhas provisórias** (0 animações): linhas da ficha do movimento que são escolha de desenho, sem número na ficha da técnica. Estão listadas, animação por animação, em `prototipos/conferencia.md`.
-- **Cuidado 8, diferenças de músculo aceitas** (29 animações): o desenho realça um músculo dentro de um grupo que o conteúdo trata como um só, ou não tem o músculo separado (por exemplo, o glúteo médio). Estão em `prototipos/conferencia.md` e nos `pedidos-ao-conteudo.md`.
+- **Cuidado 8, diferenças de músculo aceitas** (32 animações): o desenho realça um músculo dentro de um grupo que o conteúdo trata como um só, ou não tem o músculo separado (por exemplo, o glúteo médio). Estão em `prototipos/conferencia.md` e nos `pedidos-ao-conteudo.md`.
 
 Os demais:
 
@@ -218,6 +224,10 @@ Os demais:
 - `caminhada-lateral-mini-band`
   - cuidado 2: dorsiflexão do tornozelo → 26°
   - cuidado 4: elástico: quanto estica no ciclo (1 = comprimento em repouso) → de 1,3 a 1,9 vezes (79,2 a 113,7 cm); em cima, 1,3 vezes
+- `coice-caneleira`
+  - cuidado 14: o erro "Parar longe da falha" do app não foi desenhado (é erro de ritmo; o motor novo ainda não muda o tempo das fases por erro): nesse erro o app mostra o movimento certo
+  - cuidado 2: flexão plantar do tornozelo → 80,7°
+  - cuidado 2: extensão do punho → 92,7°
 - `coice-elastico`
   - cuidado 14: o erro "Chutar com embalo" do app não foi desenhado (é erro de ritmo; o motor novo ainda não muda o tempo das fases por erro): nesse erro o app mostra o movimento certo
   - cuidado 2: flexão plantar do tornozelo → 80,7°
@@ -227,6 +237,11 @@ Os demais:
   - cuidado 4: elástico: quanto estica no ciclo (1 = comprimento em repouso) → de 1,3 a 1,7 vezes (198,1 a 263,6 cm); em cima, 1,3 vezes
 - `crucifixo-inverso`
   - cuidado 14: o erro "Carga pesada demais" do app não foi desenhado (é erro de ritmo; o motor novo ainda não muda o tempo das fases por erro): nesse erro o app mostra o movimento certo
+- `crucifixo-invertido-caneleira`
+  - cuidado 14: o erro "Parar longe da falha" do app não foi desenhado (é erro de ritmo; o motor novo ainda não muda o tempo das fases por erro): nesse erro o app mostra o movimento certo
+  - cuidado 2: flexão do quadril → 144,8°
+- `crucifixo-invertido-sentado`
+  - cuidado 2: flexão do quadril → 144,8°
 - `desenvolvimento-elastico`
   - cuidado 4: elástico: quanto estica no ciclo (1 = comprimento em repouso) → de 2,3 a 2,8 vezes (344,4 a 428 cm); em cima, 2,3 vezes
 - `desenvolvimento-unilateral-kettlebell`
@@ -237,6 +252,8 @@ Os demais:
   - cuidado 3: maior salto de velocidade entre dois quadros (a 60 quadros por segundo) → 15,9% da velocidade de pico (quadril, Subida · concêntrica); pico de 273,9 cm/s
 - `elevacao-joelhos-paralelas`
   - cuidado 3: maior salto de velocidade entre dois quadros (a 60 quadros por segundo) → 16,2% da velocidade de pico (quadril, Subida · concêntrica); pico de 247,9 cm/s
+- `elevacao-lateral-caneleira`
+  - cuidado 14: o erro "Parar longe da falha" do app não foi desenhado (é erro de ritmo; o motor novo ainda não muda o tempo das fases por erro): nesse erro o app mostra o movimento certo
 - `elevacao-lateral-elastico`
   - cuidado 4: elástico: quanto estica no ciclo (1 = comprimento em repouso) → de 1,3 a 2,5 vezes (160,2 a 306,4 cm); em cima, 1,3 vezes
 - `elevacao-lateral-unilateral-elastico`
@@ -321,6 +338,8 @@ Os demais:
   - cuidado 2: dorsiflexão do tornozelo → 17,8°
 - `roda-abdominal`
   - cuidado 2: flexão plantar do tornozelo → 80,7°
+- `rosca-concentrada`
+  - cuidado 2: flexão do quadril → 136°
 - `rosca-elastico`
   - cuidado 4: elástico: quanto estica no ciclo (1 = comprimento em repouso) → de 1,4 a 2,3 vezes (168,4 a 277,1 cm); em cima, 1,4 vezes
 - `rosca-martelo-elastico`
@@ -365,13 +384,16 @@ Os demais:
 - `bulgaro-peso-corpo`: aprovada por delegação (risco baixo)
 - `bulgaro-suspensao`: feita e conferida quadro a quadro por quem integra; aprovada por delegação (depois da correção: o berço com uma tira de cada lado do pé, o pé girando no berço)
 - `caminhada-lateral-mini-band`: (sem linha no andamento)
+- `coice-caneleira`: (sem linha no andamento)
 - `coice-elastico`: (sem linha no andamento)
 - `crucifixo-elastico`: feita e conferida quadro a quadro por quem integra; aprovada por delegação (o tubo de 60 pol preso numa porta atrás, na altura do peito)
 - `crucifixo-halteres`: (sem linha no andamento)
 - `crucifixo-inclinado-halteres`: (sem linha no andamento)
 - `crucifixo-inverso`: (sem linha no andamento)
+- `crucifixo-invertido-caneleira`: (sem linha no andamento)
 - `crucifixo-invertido-curvado`: (sem linha no andamento)
 - `crucifixo-invertido-polia`: feita e conferida quadro a quadro por quem integra; aprovada por delegação (a vista padrão passou a ser a de trás)
+- `crucifixo-invertido-sentado`: (sem linha no andamento)
 - `crucifixo-polia`: feita e conferida quadro a quadro por quem integra; aprovada por delegação (duas colunas; a vista padrão passou a ser a de frente)
 - `desenvolvimento`: feita e conferida quadro a quadro por quem integra; aprovada por delegação (sentado, com encosto; o banco regulável agora é um desenho só, o mesmo da rosca inclinada)
 - `desenvolvimento-elastico`: feita e conferida quadro a quadro por quem integra; aprovada por delegação (em pé; com um tubo de 60 pol, que é objeto novo: o de 48 pol passaria do máximo do fabricante)
@@ -382,6 +404,8 @@ Os demais:
 - `elevacao-joelhos`: feita e conferida quadro a quadro por quem integra; aprovada por delegação (o corpo recua um pouco quando as pernas sobem, para ficar parado)
 - `elevacao-joelhos-paralelas`: feita e conferida quadro a quadro por quem integra; aprovada por delegação (braços retos; as paralelas ficaram a 132 cm, pela medida do fabricante; as de hoje têm 105)
 - `elevacao-lateral`: feita e conferida quadro a quadro por quem integra; aprovada por delegação (é a elevação lateral de um braço na polia, como a ficha e o app dizem)
+- `elevacao-lateral-caneleira`: (sem linha no andamento)
+- `elevacao-lateral-deitado`: (sem linha no andamento)
 - `elevacao-lateral-elastico`: feita e conferida quadro a quadro por quem integra; aprovada por delegação
 - `elevacao-lateral-unilateral`: (sem linha no andamento)
 - `elevacao-lateral-unilateral-elastico`: (sem linha no andamento)
@@ -427,6 +451,7 @@ Os demais:
 - `remada-unilateral-sem-banco`: feita e conferida quadro a quadro por quem integra; aprovada por delegação
 - `roda-abdominal`: feita e conferida quadro a quadro por quem integra; aprovada por delegação (a roda é peça nova e gira conforme anda)
 - `rosca-alternada`: aprovada pelo Gustavo em 15/11/2026, vendo os quadros ("podem ficar assim, segue com as próximas", pela segunda vez): refeita com o halter de 10 lb, com os braços junto do corpo (6°) e a palma para a frente
+- `rosca-concentrada`: (sem linha no andamento)
 - `rosca-elastico`: feita e conferida quadro a quadro por quem integra; aprovada por delegação
 - `rosca-inclinada`: aprovada pelo Gustavo em 15/11/2026, vendo os quadros ("podem ficar assim, segue com as próximas", pela segunda vez): com o halter de 10 lb; de frente os braços abrem 25°, para o halter não entrar no quadril
 - `rosca-kettlebell`: feita e conferida quadro a quadro por quem integra; aprovada por delegação

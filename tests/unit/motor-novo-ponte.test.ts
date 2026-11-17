@@ -28,10 +28,10 @@ describe('motor novo: a ponte com as telas', () => {
     // exceção conhecida: a panturrilha no degrau não desenha o erro de ritmo "Quicar embaixo" (o guia mostra o
     // movimento certo nesse erro); os outros erros dela seguem a ordem do app
     // "Carga pesada demais", do crucifixo inverso, "Balançar a perna", da abdução em pé, e "Chutar com embalo", do coice com
-    // elástico: o cartão só descreve o ritmo; "Parar longe da falha", da extensão com mini band e das duas caneleiras, e "Não
+    // elástico: o cartão só descreve o ritmo; "Parar longe da falha", da extensão com mini band e das três caneleiras, e "Não
     // testar o ponto alto", do tríceps no elástico alto, não têm nada visível (a proposta
     // de desenhar o erro de ritmo espera o Gustavo: docs/revisoes/animacoes-restantes/plano.md, seção 5)
-    const SEM_DESENHO: Record<string, string[]> = { 'panturrilha-degrau': ['Quicar embaixo'], 'crucifixo-inverso': ['Carga pesada demais'], 'abducao-elastico': ['Balançar a perna'], 'coice-elastico': ['Chutar com embalo'], 'extensao-joelho-mini-band': ['Parar longe da falha'], 'triceps-elastico-alto': ['Não testar o ponto alto'], 'elevacao-lateral-caneleira': ['Parar longe da falha'], 'coice-caneleira': ['Parar longe da falha'] };
+    const SEM_DESENHO: Record<string, string[]> = { 'panturrilha-degrau': ['Quicar embaixo'], 'crucifixo-inverso': ['Carga pesada demais'], 'abducao-elastico': ['Balançar a perna'], 'coice-elastico': ['Chutar com embalo'], 'extensao-joelho-mini-band': ['Parar longe da falha'], 'triceps-elastico-alto': ['Não testar o ponto alto'], 'elevacao-lateral-caneleira': ['Parar longe da falha'], 'coice-caneleira': ['Parar longe da falha'], 'crucifixo-invertido-caneleira': ['Parar longe da falha'] };
     for (const [id, ex] of Object.entries(EXERCICIOS)) {
       const doApp = conteudo(id)
         .errors.map((e) => e.title)

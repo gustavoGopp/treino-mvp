@@ -132,4 +132,7 @@ Os 81 exercícios que eram cartão de texto, em lotes (`docs/revisoes/animacoes-
 | A4 | `elevacao-lateral-deitado` | feita e conferida quadro a quadro por quem integra; aprovada por delegação; espera a ligação (o corpo deitado da abdução aprovada; de frente, os joelhos dobrados parecem pernas esticadas, porque as coxas vêm na direção de quem olha) |
 | A4 | `elevacao-lateral-caneleira` | feita e conferida quadro a quadro por quem integra; aprovada por delegação; espera a ligação (a caneleira no antebraço, a mão solta; "Parar longe da falha" sem desenho) |
 | A4 | `coice-caneleira` | feita e conferida quadro a quadro por quem integra; aprovada por delegação; espera a ligação (o núcleo de quatro apoios do coice com elástico; segunda vista de três quartos pela frente; "Parar longe da falha" sem desenho) |
+| A4 | `crucifixo-invertido-sentado` | feita e conferida quadro a quadro por quem integra; aprovada por delegação; espera a ligação (o peito nas coxas, medido; com o peito ali o braço começa aberto 23°, porque o halter chega ao chão; a cadeira é pintada atrás do corpo, como todo cenário) |
+| A4 | `crucifixo-invertido-caneleira` | feita e conferida quadro a quadro por quem integra; aprovada por delegação; espera a ligação (a mesma base, com a caneleira no antebraço; começa aberto 32°; "Parar longe da falha" sem desenho) |
+| A4 | `rosca-concentrada` | feita e conferida quadro a quadro por quem integra; aprovada por delegação; espera a ligação (o braço apoiado por dentro da coxa, medido; abre de frente) |
 
