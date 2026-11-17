@@ -1,12 +1,13 @@
 # Treino para todos (12 a 17/11/2026)
 
-> **Etapa 2 fechada no ramo da sessão, em 17/11/2026. Nada foi para a `main`.** O resumo para decidir está em [`fechamento-etapa-2.md`](fechamento-etapa-2.md); as doze pessoas, com a semana de antes ao lado da de agora, em [`exemplos-finais/`](exemplos-finais/README.md); a revisão cega final, em [`revisao-cega/final/`](revisao-cega/final/README.md); a régua por grupo, na última seção de [`qa.md`](qa.md). **Em 17/11, com o ok do Gustavo, a `main` foi trazida para dentro do ramo e tudo foi verificado de novo** (seção 9.1 do fechamento). Falta a decisão dele sobre o passo 2: juntar o ramo na `main`.
+> **Etapa 2 fechada no ramo da sessão, em 17/11/2026. Nada foi para a `main`.** O resumo para decidir está em [`fechamento-etapa-2.md`](fechamento-etapa-2.md); as doze pessoas, com a semana de antes ao lado da de agora, em [`exemplos-finais/`](exemplos-finais/README.md); a revisão cega final, em [`revisao-cega/final/`](revisao-cega/final/README.md); a régua por grupo, na última seção de [`qa.md`](qa.md). **Em 17/11, com o ok do Gustavo, a `main` foi trazida para dentro do ramo (três junções no dia, porque ela andava) e tudo foi verificado de novo** (seção 9.1 do fechamento). Falta a decisão dele sobre o passo 2: juntar o ramo na `main`.
 
 | Para | Abra |
 |---|---|
 | Decidir o próximo passo | [`fechamento-etapa-2.md`](fechamento-etapa-2.md) |
 | Ver doze pessoas, antes e depois | [`exemplos-finais/`](exemplos-finais/README.md) |
 | Ver cada pacote, com as decisões | [`pacote-1.md`](pacote-1.md), [`pacote-0.md`](pacote-0.md), [`pacote-3.md`](pacote-3.md), [`pacote-2.md`](pacote-2.md), [`pacote-4.md`](pacote-4.md), [`pacote-5.md`](pacote-5.md) |
+| Rever as frases das regras que mudaram (texto que aparece no app) | [`frases-das-regras.md`](frases-das-regras.md) |
 | Ver todos os números, por grupo | [`qa.md`](qa.md) e [`medidas/final/retrato.md`](medidas/final/retrato.md) |
 | Ver o que depende das outras sessões | [`pedidos-ao-design.md`](pedidos-ao-design.md), [`pedidos-a-animacao.md`](pedidos-a-animacao.md) |
 

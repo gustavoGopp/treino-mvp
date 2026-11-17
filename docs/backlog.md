@@ -387,7 +387,8 @@ Detalhes em `revisoes/treino-para-todos/fechamento-etapa-2.md`. A etapa 2 está 
 - **Idade e equilíbrio:** a flexão de joelho na bola suíça e a panturrilha no degrau para o Gilberto (67 anos). O app não pergunta nada sobre equilíbrio; ligado à decisão 7 da proposta ("tenho 60 anos ou mais"), que ficou em "não agora".
 
 **Na junção com a `main`**
-- **Passo 1, feito em 17/11:** a `main` está dentro do ramo, com `check`, testes de tela e a medida da população conferidos (`revisoes/treino-para-todos/fechamento-etapa-2.md`, seção 9.1). **Passo 2, à espera do ok do Gustavo:** juntar o ramo na `main`, sem forçar, com o aviso de exportar os dados antes (versão 9). Se a `main` andar antes disso, repetir o passo 1.
+- **Passo 1, feito em 17/11:** a `main` está dentro do ramo (três junções no dia), com `check`, testes de tela, a medida da população e a auditoria conferidos (`revisoes/treino-para-todos/fechamento-etapa-2.md`, seção 9.1).
+- **Para a sessão de textos rever:** as 13 frases em linguagem simples das regras que a etapa 2 criou ou mudou (`revisoes/treino-para-todos/frases-das-regras.md`). Duas perderam conteúdo para caber em 80 palavras (`tempo.sobra-series` e `tempo.corte`): decidir se essas duas entram na lista das regras longas do teste. **Passo 2, à espera do ok do Gustavo:** juntar o ramo na `main`, sem forçar, com o aviso de exportar os dados antes (versão 9). Se a `main` andar antes disso, repetir o passo 1.
 
 ## Do frontend novo (13/11/2026)
 

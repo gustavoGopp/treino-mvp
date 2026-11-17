@@ -129,23 +129,34 @@ Em ordem do que eu atacaria primeiro. Tudo está em `docs/backlog.md`.
 
 ## 9.1 O passo 1, feito em 17/11/2026 (com o ok do Gustavo)
 
-A `main` foi trazida para dentro do ramo (commit `69e2d67`). **A `main` não foi tocada.**
+A `main` foi trazida para dentro do ramo. **A `main` não foi tocada.** Como ela andou enquanto o passo rodava, foram três junções no mesmo dia:
+
+| Junção | O que veio da `main` | Conflitos | Commit |
+|---|---|---|---|
+| 1ª | 280 commits: o frontend novo e a animação nova | 4 (backlog, devlog, estilo, um teste de tela) | `69e2d67` |
+| 2ª | 45 commits: a sessão de textos (texto das telas cortado, a página "Entenda o treino", uma frase em linguagem simples por regra) | 5 (`regras.md` e quatro testes de tela) | `d8475ff` |
+| 3ª | 2 commits: o bloqueio de novos treinos depois do sinal de alerta do coração | nenhum | `04284bb` |
+
+**O que precisou de trabalho meu, além de resolver conflito:**
+
+1. **As frases das regras.** A sessão de textos criou uma frase em linguagem simples para cada regra e um teste que exige uma por regra. Faltavam as das 2 regras novas da etapa 2, e 11 frases diziam o que a regra dizia antes da etapa 2 (por exemplo, "estagnar é passar 3 treinos seguidos", quando agora são 4, 8 ou 16). Escrevi as 2 e atualizei as 11, pelo guia de redação da própria sessão de textos. **É texto que aparece no app**: está tudo, antes e depois, em [`frases-das-regras.md`](frases-das-regras.md), para você e a sessão de textos reverem.
+2. **Os testes de tela.** A sessão de textos reescreveu vários testes que ainda citavam o agachamento búlgaro. Em cada conflito ficou a estrutura da `main` com o exercício deste ramo (o goblet). Fora dos conflitos, troquei o nome do exercício em 4 linhas de testes novos da `main` (`acompanhamento`, `entenda` e duas em `treino`), e adaptei o teste que criei no pacote 2 (o afundo, "cada lado") ao guia novo, que não mostra mais a linha da prescrição. Em relação à `main`, o ramo difere em 6 arquivos de `tests/e2e/`, sempre pelo mesmo motivo: o 1º exercício da Ana é o goblet, e não o búlgaro.
+3. **A regra `volume.semanal.minimo`**: as duas sessões mexeram na mesma região de `regras.md`. Ficou a linha da `main` para o mínimo e a deste ramo para o alvo.
+
+**O que não precisou de trabalho:** a correção do zoom de 200% (o estilo novo da `main` resolve de outro jeito; `src/styles.css` está igual ao da `main`, e a exceção de 15/11 deixou de existir) e os dados guardados (a `main` acrescentou dois campos opcionais sem mudar a versão; o ramo fica na versão 9, com os campos dela).
+
+**Conferido no estado juntado:**
 
 | O que | Resultado |
 |---|---|
-| Os 4 conflitos | Resolvidos. Em `docs/backlog.md` e `docs/devlog.md` ficam os dois textos inteiros. Em `src/styles.css` vale o arquivo da `main`. Em `tests/e2e/treino.spec.ts` fica a estrutura da `main` com o número deste ramo (a carga do goblet, 6 kg) |
-| Os testes de tela novos da `main` | **Não precisaram de ajuste.** O ensaio contava 21 citações do búlgaro; quase todas estavam em arquivos que este ramo já tinha ajustado no pacote 2, e a junção combinou os dois lados sozinha. Só um teste falhou: um que eu mesmo criei no pacote 2 (o afundo, "cada lado"), que procurava o link "‹ Voltar ao treino"; o frontend novo chama o link de "Voltar ao treino". Troquei o nome no teste (1 linha) |
-| A correção do zoom de 200% | **Não precisou ser refeita.** O estilo novo da `main` resolve de outro jeito (em tela estreita, a barra desce para a linha de baixo), e o teste do zoom passa. `src/styles.css` está igual ao da `main`: a exceção de 15/11 deixou de existir |
-| Telas, motor de animação, `api/` e `CLAUDE.md` | Iguais aos da `main`, arquivo por arquivo |
-| `npm run check` | Limpo: 65 arquivos, 1.022 testes (os 1.014 deste ramo e os 8 novos da `main`) |
-| Testes de tela | Limpos: 162 (os 158 deste ramo e os 4 novos da `main`) |
+| Telas, motor de animação, estilo, `api/` e `CLAUDE.md` | Iguais aos da `main`, arquivo por arquivo |
+| `npm run check` | Limpo: 67 arquivos, 1.033 testes |
+| Testes de tela | Limpos: 180 (os 158 deste ramo e os 22 novos da `main`) |
 | As conferências novas da `main` (`conferir:tokens`, `conferir:animacao`) | Passam |
-| A medida da população (680.625 programas) | **Idêntica à do fechamento, byte a byte.** A junção não muda nenhum programa: a `main` não mexeu no gerador, nas regras nem nos dados |
+| A medida da população (680.625 programas) | **Idêntica à do fechamento, byte a byte.** As junções não mudam nenhum programa: a `main` não mexeu no gerador nem na biblioteca de exercícios |
 | Auditoria em duas rodadas | Limpa: 39 arquivos idênticos nas duas rodadas, nenhum defeito acima da linha de base da régua, e nenhum relatório mudou em relação ao do fechamento |
 
-**O que mudou em `tests/e2e/` neste passo** (para você poder vetar): só `tests/e2e/treino.spec.ts`, em dois lugares. (1) No teste da calibração, o trecho em conflito: fica "6 kg × 11 · RIR 2" (o número deste ramo) e a conferência do "Desfazer a última série" dentro do "⋯" (a da `main`). (2) No teste do afundo, o nome do link.
-
-**O que o passo 2 faria.** Juntar este ramo na `main`. Como a `main` já está inteira dentro do ramo, a junção não tem conflito e a `main` passa a ser exatamente o que foi verificado aqui. Se a `main` receber commits novos antes disso, repito o passo 1 (menor) antes de juntar.
+**O que o passo 2 faria.** Juntar este ramo na `main`. Como a `main` já está inteira dentro do ramo, a junção não tem conflito e a `main` passa a ser exatamente o que foi verificado aqui. **A `main` está em movimento** (outras sessões trabalhando nela): se ela receber commits novos antes do passo 2, repito o passo 1 para eles antes de juntar. O melhor momento para o passo 2 é quando as outras sessões estiverem paradas.
 
 ## 10. Como conferir
 

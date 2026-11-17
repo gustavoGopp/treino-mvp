@@ -1801,11 +1801,11 @@ Em relação ao pacote 0, um único par de grupo e defeito sobe, em 1 programa. 
 
 ## Sessão "treino para todos": a `main` dentro do ramo (17/11/2026)
 
-**O que mudou (no ramo `claude/nifty-albattani-mltt95`; a `main` não foi tocada).** Com o ok do Gustavo, a `main` (280 commits: o frontend novo e a animação nova) foi trazida para dentro do ramo da sessão. Quatro conflitos, todos resolvidos sem perder nada de nenhum lado: os dois textos do backlog e do devlog ficam inteiros; o estilo fica o da `main`; um teste de tela junta a estrutura da `main` com o número deste ramo.
+**O que mudou (no ramo `claude/nifty-albattani-mltt95`; a `main` não foi tocada).** Com o ok do Gustavo, a `main` foi trazida para dentro do ramo da sessão, em três junções no mesmo dia, porque ela andava enquanto o trabalho era feito: o frontend e a animação novos (280 commits), a sessão de textos (45) e o bloqueio depois do sinal de alerta do coração (2). Nove conflitos ao todo, resolvidos sem perder nada de nenhum lado.
 
-**O que apareceu.** Os testes de tela novos da `main` não precisaram de ajuste (a junção combinou os dois lados sozinha); falhou só um teste criado nesta sessão, que procurava um link pelo nome antigo. A correção do zoom de 200% (15/11) deixou de ser necessária: o estilo novo resolve o caso de outro jeito.
+**O que apareceu.** A sessão de textos passou a exigir uma frase em linguagem simples para cada regra. Faltavam as das 2 regras novas da etapa 2, e 11 frases ainda diziam o que a regra dizia antes (por exemplo, "3 treinos seguidos" sem melhora, quando agora são 4, 8 ou 16). As 13 estão em `docs/revisoes/treino-para-todos/frases-das-regras.md`, antes e depois, para revisão. Nos testes de tela reescritos pela sessão de textos, ficou a estrutura da `main` com o exercício deste ramo (o goblet no lugar do búlgaro). A correção do zoom de 200% (15/11) deixou de ser necessária: o estilo novo resolve o caso de outro jeito.
 
-**Conferido no estado juntado.** `check` limpo (1.022 testes), testes de tela limpos (162), as duas conferências novas da `main` passam, e a medida da população (680.625 programas) é idêntica à do fechamento, byte a byte: a junção não muda nenhum programa.
+**Conferido no estado juntado.** `check` limpo (1.033 testes), testes de tela limpos (180), as duas conferências novas da `main` passam, a auditoria em duas rodadas fecha limpa (39 arquivos idênticos, nenhum relatório mudou) e a medida da população (680.625 programas) é idêntica à do fechamento, byte a byte: as junções não mudam nenhum programa.
 
 **Imagem.** Sem imagem: as telas e o motor são os da `main`.
 

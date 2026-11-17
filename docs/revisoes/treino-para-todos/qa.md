@@ -871,11 +871,12 @@ Pior grupo antes: dor:cotovelo 7 (50,0%). Pior grupo depois: min:30 (73,8%).
 
 ### Depois de trazer a `main` para o ramo (17/11/2026, passo 1 da junção)
 
-Com a `main` (280 commits: o frontend e a animação novos) dentro do ramo, tudo foi rodado de novo:
+A `main` foi trazida para o ramo em três junções no mesmo dia (280, 45 e 2 commits: o frontend e a animação novos, a sessão de textos e o bloqueio depois do sinal de alerta do coração). No estado final, tudo foi rodado de novo:
 
-- `npm run check`: limpo (65 arquivos, 1.022 testes).
-- `npm run test:e2e -- --trace off`: limpo (162 testes).
+- `npm run check`: limpo (67 arquivos, 1.033 testes).
+- `npm run test:e2e -- --trace off`: limpo (180 testes).
 - A medida da população (680.625 programas): idêntica à do fechamento, byte a byte (`medidas/final/`).
 - Auditoria em duas rodadas: limpa. 39 arquivos idênticos nas duas rodadas, nenhum defeito acima da linha de base da régua, e nenhum relatório mudou.
-- `src/engine/`, `src/features/`, `src/styles.css`, `api/` e `CLAUDE.md`: iguais aos da `main`. A exceção de 15/11 em `src/styles.css` deixou de existir (o estilo novo resolve o zoom de 200% de outro jeito). Ficam duas exceções em relação à `main`: `src/storage/` (versão 9) e os testes de tela ajustados no pacote 2, mais uma linha no teste criado nesta sessão.
-
+- `src/engine/`, `src/features/`, `src/styles.css`, `api/` e `CLAUDE.md`: iguais aos da `main`. A exceção de 15/11 em `src/styles.css` deixou de existir (o estilo novo resolve o zoom de 200% de outro jeito).
+- Em relação à `main`, o ramo difere fora do domínio em três lugares: `src/storage/` (versão 9, com os dois campos novos da `main`); 6 arquivos de `tests/e2e/` (o goblet no lugar do búlgaro); e `src/conteudo/frases-das-regras.json` (as frases das 2 regras novas e de 11 regras que a etapa 2 mudou; [`frases-das-regras.md`](frases-das-regras.md)).
+- Toda regra com selo, fonte, teste e, agora, frase em linguagem simples: 165 regras, 165 frases (`tests/repo/frases-das-regras.test.ts`).
