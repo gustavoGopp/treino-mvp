@@ -25,3 +25,4 @@ export { default as caneleira } from './caneleira.json';
 export { default as miniBand } from './mini-band.json';
 export { default as barraLonga } from './barra-longa.json';
 export { default as cadeiraFlexora } from './cadeira-flexora.json';
+export { default as elasticoLongoPisado } from './elastico-longo-pisado.json';

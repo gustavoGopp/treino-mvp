@@ -32,3 +32,4 @@ export { regrasDoDeitadoNoChao } from './deitado-no-chao';
 export { REGRAS_CRUCIFIXO_INVERSO } from './crucifixo-inverso';
 export { REGRAS_ROSCA_SCOTT } from './rosca-scott';
 export { REGRAS_CRUCIFIXOS } from './crucifixos';
+export { REGRAS_ABDUCAO_EM_PE } from './abducao-em-pe';
