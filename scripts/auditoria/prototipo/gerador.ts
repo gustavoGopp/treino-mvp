@@ -161,6 +161,11 @@ const INICIANTE_MAX_EXERCICIOS = 99;
 /** EXPERIMENTO (ini-sem-custo): a 2ª montagem do iniciante, sem a prática antes da variedade, para comparar o custo. */
 let SEM_PRATICA = false;
 const INICIANTE_LIMITE_DESDE_DIAS = 3;
+/**
+ * EXPERIMENTO (ini-6-3x60; teste próprio pedido pelo Gustavo em 16/11/2026, feito em 17/11): o limite de 6 exercícios do
+ * iniciante só na forma estreita, a de quem treina exatamente 3 dias de até 60 min. `ini-6` é a forma larga (3 dias ou mais).
+ */
+const ini6 = (perfil: Perfil) => prot('ini-6') || (prot('ini-6-3x60') && perfil.diasSemana === 3 && perfil.minutosSessao <= 60);
 /** PROTÓTIPO (fadiga): o exercício carrega a lombar sem apoio (fora os abdominais). */
 const carregaLombar = (e: Exercicio) => e.padrao !== 'core' && e.articulacoes.includes('lombar') && !e.tags.includes('apoiado');
 
@@ -504,7 +509,7 @@ function gerarNaDivisao(perfil: Perfil, inventarioOriginal: Inventario): Resulta
   const com = escolher();
   // EXPERIMENTO (ini-sem-custo): a prática do iniciante só vale se não custar um dia acima de 110% do tempo, um dia fraco
   // ou empurrar ÷ puxar acima de 1,5 que a montagem sem ela não teria.
-  if (prot('ini-sem-custo') && (prot('iniciante-simples') || prot('esc-simples') || prot('ini-6')) && perfil.nivel === 'iniciante') {
+  if (prot('ini-sem-custo') && (prot('iniciante-simples') || prot('esc-simples') || ini6(perfil)) && perfil.nivel === 'iniciante') {
     SEM_PRATICA = true;
     const sem = escolher();
     SEM_PRATICA = false;
@@ -514,7 +519,7 @@ function gerarNaDivisao(perfil: Perfil, inventarioOriginal: Inventario): Resulta
     // (ini-6) nem esquecer um músculo, nem deixar mais músculos com menos de 4 séries
     const zerados = (p: Programa) => MUSCULOS_COM_META.filter((m) => !(p.volumeSemanal[m] ?? 0)).length;
     const soltos = (p: Programa) => MUSCULOS_COM_META.filter((m) => (p.volumeSemanal[m] ?? 0) < VOLUME.minimoEficazPiso).length;
-    const custaVolume = prot('ini-6') && (zerados(com) > zerados(sem) || soltos(com) > soltos(sem));
+    const custaVolume = ini6(perfil) && (zerados(com) > zerados(sem) || soltos(com) > soltos(sem));
     if (acima(com) > acima(sem) || fracosDe(com) > fracosDe(sem) || (empurra(com) && !empurra(sem)) || custaVolume) return fechar(sem, triagem);
   }
   return fechar(com, triagem);
@@ -571,8 +576,8 @@ function montarPrograma(perfil: Perfil, inventarioOriginal: Inventario, triagem:
   // PROTÓTIPO (iniciante-simples): com 3 dias ou mais, o iniciante fica com até 6 exercícios por treino, mesmo com mais
   // minutos (com 2 dias, cada treino precisa cobrir o corpo todo); o 2º exercício do foco pode ser o 7º.
   // EXPERIMENTO (ini-6): o limite de 6 exercícios por treino, com a trava de custo de `ini-sem-custo`.
-  const maxDoIniciante = prot('ini-6') && !SEM_PRATICA ? 6 : INICIANTE_MAX_EXERCICIOS;
-  const limiteDoIniciante = (prot('iniciante-simples') || prot('ini-6')) && nivel === 'iniciante' && perfil.diasSemana >= INICIANTE_LIMITE_DESDE_DIAS && exerciciosPorSessao(perfil.minutosSessao) > maxDoIniciante;
+  const maxDoIniciante = ini6(perfil) && !SEM_PRATICA ? 6 : INICIANTE_MAX_EXERCICIOS;
+  const limiteDoIniciante = (prot('iniciante-simples') || ini6(perfil)) && nivel === 'iniciante' && perfil.diasSemana >= INICIANTE_LIMITE_DESDE_DIAS && exerciciosPorSessao(perfil.minutosSessao) > maxDoIniciante;
   const N = limiteDoIniciante ? maxDoIniciante : exerciciosPorSessao(perfil.minutosSessao);
   const ativaPeloFoco = (v: Vaga) => !v.prioridade || v.prioridade.some((g) => grupos.has(g));
   // selecao.gluteo (R5a): numa semana sem vaga de extensão de quadril valendo (o Corpo todo A/B sem foco em glúteo), a
