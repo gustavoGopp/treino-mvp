@@ -110,3 +110,4 @@ export { tricepsElasticoAlto } from './triceps-elastico-alto';
 export { elevacaoLateralUnilateralElastico } from './elevacao-lateral-unilateral-elastico';
 export { aberturaElastico } from './abertura-elastico';
 export { crucifixoInvertidoCurvado } from './crucifixo-invertido-curvado';
+export { elevacaoLateralUnilateral } from './elevacao-lateral-unilateral';
