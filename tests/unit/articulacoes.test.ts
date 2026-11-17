@@ -52,4 +52,20 @@ describe('articulações que cada exercício carrega (seguranca.dor.programa)', 
     const semMarca = BIBLIOTECA.filter((e) => apoiam.includes(e.id) && !e.articulacoes.includes('joelho')).map((e) => e.id);
     expect(semMarca).toEqual([]);
   });
+
+  // Fechamento da etapa 2 da sessão "treino para todos" (17/11/2026): com dor forte no ombro, o app ainda mandava agachar
+  // com a barra nas costas (achado dos três revisores da revisão cega final). A posição vem do texto de execução do app.
+  it('o exercício com a barra apoiada no alto das costas marca o ombro', () => {
+    const NAS_COSTAS = /barra (apoiada )?no alto das costas/i;
+    const pasta = 'src/conteudo/exercicios';
+    const comABarra = readdirSync(pasta)
+      .filter((f) => f.endsWith('.json'))
+      .map((f) => JSON.parse(readFileSync(join(pasta, f), 'utf8')) as { id: string; setupEq?: string[]; setupBody?: string[] })
+      .filter((c) => NAS_COSTAS.test([...(c.setupEq ?? []), ...(c.setupBody ?? [])].join(' ')))
+      .map((c) => c.id)
+      .sort();
+    expect(comABarra).toEqual(['agachamento-barra', 'agachamento-smith']);
+    const semMarca = BIBLIOTECA.filter((e) => comABarra.includes(e.id) && !e.articulacoes.includes('ombro')).map((e) => e.id);
+    expect(semMarca).toEqual([]);
+  });
 });

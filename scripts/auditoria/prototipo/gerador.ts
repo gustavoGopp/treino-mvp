@@ -147,7 +147,13 @@ const LIGAR_SEM_CARGA = false;
 // apoios ou com o joelho na almofada. `PROT=joelho3` mede só os 3 da proposta da etapa 1.
 const AJOELHADOS_3 = ['puxada-unilateral', 'puxada-barra-reta', 'abdominal-polia'];
 const AJOELHADOS = new Set(prot('joelho3') && !prot('todas') ? AJOELHADOS_3 : [...AJOELHADOS_3, 'roda-abdominal', 'puxada-elastico', 'coice-caneleira', 'coice-elastico', 'coice-maquina']);
-const articulacoesDe = (e: Exercicio): Articulacao[] => ((prot('joelho') || (prot('joelho3') && !prot('todas'))) && AJOELHADOS.has(e.id) && !e.articulacoes.includes('joelho') ? [...e.articulacoes, 'joelho'] : e.articulacoes);
+/** EXPERIMENTO (ombro-barra): com a barra apoiada nas costas, as mãos seguram a barra atrás dos ombros (achado da revisão cega final). */
+const BARRA_NAS_COSTAS = new Set(['agachamento-barra', 'agachamento-smith']);
+const articulacoesDe = (e: Exercicio): Articulacao[] => {
+  const com = (a: Articulacao, vale: boolean, base: Articulacao[]) => (vale && !base.includes(a) ? [...base, a] : base);
+  const joelho = com('joelho', (prot('joelho') || (prot('joelho3') && !prot('todas'))) && AJOELHADOS.has(e.id), e.articulacoes);
+  return com('ombro', prot('ombro-barra') && BARRA_NAS_COSTAS.has(e.id), joelho);
+};
 /** selecao.funcao-da-vaga (15/11/2026, adotada): a posição do exercício na lista da função (a ordem de referência, dado curado). */
 const posicaoDeReferencia = (f: Funcao, id: string) => f.niveis.flat().indexOf(id);
 /** PROTÓTIPO (iniciante-simples): exercícios por treino do iniciante. */

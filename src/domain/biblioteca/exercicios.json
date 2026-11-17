@@ -1522,7 +1522,8 @@
   "articulacoes": [
    "joelho",
    "quadril",
-   "lombar"
+   "lombar",
+   "ombro"
   ],
   "tags": [
    "profundo",
@@ -2568,7 +2569,8 @@
   "articulacoes": [
    "joelho",
    "quadril",
-   "lombar"
+   "lombar",
+   "ombro"
   ],
   "tags": [
    "estavel",
