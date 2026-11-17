@@ -1,46 +1,46 @@
 # Inventário do texto do app
 
-> Gerado por `scripts/textos/classificar.mjs` a partir de `colheita.json` (2026-11-17T10:29:41.883Z). Não edite à mão: rode o roteiro e o script de novo.
+> Gerado por `scripts/textos/classificar.mjs` a partir de `colheita.json` (2026-11-17T12:31:46.206Z). Não edite à mão: rode o roteiro e o script de novo.
 
-**424 telas, folhas e estados colhidos; 9709 textos (1924 diferentes); 44516 palavras somadas** (a mesma frase conta de novo em cada tela em que aparece; as palavras de textos diferentes somam 16506).
+**424 telas, folhas e estados colhidos; 9702 textos (1925 diferentes); 44338 palavras somadas** (a mesma frase conta de novo em cada tela em que aparece; as palavras de textos diferentes somam 16542).
 
 ## Por fluxo
 
 | Fluxo | Telas | Palavras | Média por tela | Maior tela |
 |---|---|---|---|---|
 | cadastro | 80 | 6114 | 76 | Saúde: 3 regiões marcadas, sem as notas de dor (349) |
-| inicio | 85 | 11414 | 134 | "O seu programa", com os 5 blocos abertos (a Ana com dor) (977) |
-| treino | 69 | 4183 | 61 | Treino: folha "Como fazer (em texto)", com o passo a passo aberto (204) |
-| guia | 45 | 5977 | 133 | Guia de corpo livre (a Elisa): Agachamento com o peso do corpo, com os 7 blocos abertos (418) |
-| fim-e-semana | 38 | 3763 | 99 | "Entenda o treino", com "A sua semana e as pausas" aberto, na volta de uma pausa de 22 dias (a semana e a mensagem da pausa) (243) |
-| dados-e-locais | 53 | 7266 | 137 | "Entenda o treino", com "Todas as regras e as fontes" aberto (as regras fechadas) (1200) |
+| inicio | 85 | 11400 | 134 | "O seu programa", com os 5 blocos abertos (a Ana com dor) (977) |
+| treino | 69 | 4186 | 61 | Treino: folha "Como fazer (em texto)", com o passo a passo aberto (204) |
+| guia | 45 | 5978 | 133 | Guia de corpo livre (a Elisa): Agachamento com o peso do corpo, com os 7 blocos abertos (418) |
+| fim-e-semana | 38 | 3693 | 97 | "Entenda o treino", com "A sua semana e as pausas" aberto, na volta de uma pausa de 22 dias (a semana e a mensagem da pausa) (243) |
+| dados-e-locais | 53 | 7404 | 140 | "Entenda o treino", com "Todas as regras e as fontes" aberto (as regras fechadas) (1200) |
 | termos-e-foto | 29 | 3622 | 125 | Termos de uso e privacidade (792) |
-| avisos-e-erros | 25 | 2177 | 87 | Tela de erro, depois de exportar e com "Avisar um problema" aberto (180) |
+| avisos-e-erros | 25 | 1941 | 78 | Tela de erro, depois de exportar e com "Avisar um problema" aberto (139) |
 
 ## Para que serve o texto (todas as telas somadas)
 
 | Função | Textos | Palavras | Parte | Decididos à mão |
 |---|---|---|---|---|
-| ação | 4036 | 13194 | 30% | 0 |
+| ação | 4036 | 13175 | 30% | 0 |
 | opção | 1310 | 4231 | 10% | 0 |
-| título ou rótulo | 1393 | 4102 | 9% | 16 |
-| estado | 449 | 4608 | 10% | 208 |
-| número | 878 | 2390 | 5% | 89 |
+| título ou rótulo | 1385 | 4078 | 9% | 16 |
+| estado | 446 | 4581 | 10% | 205 |
+| número | 882 | 2407 | 5% | 89 |
 | segurança | 232 | 3718 | 8% | 15 |
 | definição | 59 | 517 | 1% | 37 |
-| justificativa | 380 | 2820 | 6% | 33 |
-| privacidade | 242 | 4664 | 10% | 27 |
-| instrução | 730 | 4272 | 10% | 61 |
+| justificativa | 383 | 2823 | 6% | 33 |
+| privacidade | 243 | 4567 | 10% | 27 |
+| instrução | 726 | 4241 | 10% | 58 |
 
 ## De quem é o texto
 
 | Dono | Textos | Palavras | Parte |
 |---|---|---|---|
 | jurídico | 328 | 2547 | 6% |
-| conteúdo | 992 | 7306 | 16% |
-| domínio | 2660 | 13891 | 31% |
-| motor | 119 | 387 | 1% |
-| tela | 5610 | 20385 | 46% |
+| conteúdo | 986 | 7298 | 16% |
+| domínio | 2661 | 13892 | 31% |
+| motor | 124 | 398 | 1% |
+| tela | 5603 | 20203 | 46% |
 
 ## cadastro
 
@@ -160,8 +160,8 @@
 | `inicio/27-sobre-o-programa-ver-ajustes` "Entenda o treino" → "O seu programa", com "Ver ajustes possíveis" (até 16/11, no fim da folha "Sobre o programa") | bloco aberto | ana | 138 | 99 | 1 | 3 | ação 70, estado 55, número 7, título ou rótulo 3, justificativa 3 |
 | `inicio/28-inicio-programa-gerado-de-novo` Início, depois de escolher um ajuste | aviso | ana | 103 | 97 | 0 | 0 | ação 82, estado 13, título ou rótulo 5, número 3 |
 | `inicio/29-inicio-com-treino-em-andamento-e-versao-nova` Início com um treino em andamento e uma mudança à espera ("O programa será atualizado depois do treino em andamento.") | aviso | ana | 114 | 108 | 0 | 0 | ação 83, estado 23, título ou rótulo 5, número 3 |
-| `inicio/30-inicio-semana-completa` Início com a semana completa e o lembrete de cópia | tela | ana | 107 | 88 | 0 | 0 | ação 74, privacidade 23, título ou rótulo 5, número 3, justificativa 2 |
-| `inicio/31-inicio-ana-na-3a-semana` Início da Ana na 3ª semana (passada a fase de aprendizado), com 5 treinos no histórico | tela | ana | 109 | 90 | 0 | 0 | ação 76, privacidade 23, título ou rótulo 5, número 3, justificativa 2 |
+| `inicio/30-inicio-semana-completa` Início com a semana completa e o lembrete de cópia | tela | ana | 100 | 88 | 0 | 0 | ação 73, privacidade 17, título ou rótulo 5, número 3, justificativa 2 |
+| `inicio/31-inicio-ana-na-3a-semana` Início da Ana na 3ª semana (passada a fase de aprendizado), com 5 treinos no histórico | tela | ana | 102 | 90 | 0 | 0 | ação 75, privacidade 17, título ou rótulo 5, número 3, justificativa 2 |
 | `inicio/32-folha-do-exercicio-com-drop-set` Folha de um exercício em bi-set e com a última série em drop set (o último do dia A) | folha | ana | 53 | 53 | 0 | 0 | instrução 19, número 16, ação 13, título ou rótulo 5 |
 | `inicio/33-inicio-ana-saude` Início da Ana com dor no ombro (7), no joelho (4) e no punho (1): o aviso "Pela triagem" | tela | ana + saúde | 75 | 86 | 0 | 0 | ação 53, segurança 14, título ou rótulo 5, número 3 |
 | `inicio/34-inicio-ana-saude-aba-corpo-todo-b` Início, aba "Corpo todo B" (a Ana com dor) | tela | ana + saúde | 76 | 87 | 0 | 0 | ação 54, segurança 14, título ou rótulo 5, número 3 |
@@ -221,13 +221,13 @@
 
 | Tela | O que é | Quem vê | Palavras | À vista | Blocos longos | Selos | Do que é feito (palavras por função) |
 |---|---|---|---|---|---|---|---|
-| `treino/01-serie-vazia` Treino: 1ª série do 1º exercício, vazia (1ª vez no exercício) | estado vazio | ana | 60 | 78 | 0 | 0 | título ou rótulo 17, instrução 11, ação 10, estado 9, número 7, opção 6 |
+| `treino/01-serie-vazia` Treino: 1ª série do 1º exercício, vazia (1ª vez no exercício) | estado vazio | ana | 58 | 76 | 0 | 0 | título ou rótulo 17, instrução 11, estado 9, ação 8, número 7, opção 6 |
 | `treino/02-serie-vazia-guia-erros` Treino: a série com o guia no modo "Erros" | tela | ana | 61 | 79 | 0 | 0 | título ou rótulo 17, ação 11, instrução 11, estado 9, número 7, opção 6 |
 | `treino/03-serie-vazia-guia-musculos` Treino: a série com o guia no modo "Músculos" | tela | ana | 61 | 79 | 0 | 0 | título ou rótulo 17, ação 11, instrução 11, estado 9, número 7, opção 6 |
-| `treino/04-serie-vazia-guia-trajetoria` Treino: a série com o guia no modo "Trajetória" | tela | ana | 61 | 79 | 0 | 0 | título ou rótulo 17, ação 11, instrução 11, estado 9, número 7, opção 6 |
+| `treino/04-serie-vazia-guia-trajetoria` Treino: a série com o guia no modo "Trajetória" | tela | ana | 60 | 78 | 0 | 0 | título ou rótulo 17, instrução 11, ação 10, estado 9, número 7, opção 6 |
 | `treino/05-serie-vazia-guia-pausado` Treino: a série com o guia pausado | tela | ana | 60 | 78 | 0 | 0 | título ou rótulo 17, instrução 11, ação 10, estado 9, número 7, opção 6 |
 | `treino/06-serie-falta-a-carga` Treino: série com a reserva e sem a carga ("Falta escolher a carga.") | erro | ana | 57 | 75 | 0 | 0 | título ou rótulo 17, ação 11, instrução 11, número 7, opção 6, estado 5 |
-| `treino/07-serie-falta-a-reserva` Treino: série com a carga e sem a reserva ("Falta dizer quantas ainda conseguiria.") | erro | ana | 58 | 76 | 0 | 0 | título ou rótulo 17, ação 11, instrução 11, número 8, opção 6, estado 5 |
+| `treino/07-serie-falta-a-reserva` Treino: série com a carga e sem a reserva ("Falta dizer quantas ainda conseguiria.") | erro | ana | 57 | 75 | 0 | 0 | título ou rótulo 17, instrução 11, ação 10, número 8, opção 6, estado 5 |
 | `treino/08-serie-preenchida` Treino: 1ª série preenchida | tela | ana | 63 | 81 | 0 | 0 | instrução 21, título ou rótulo 17, ação 11, número 8, opção 6 |
 | `treino/09-descanso` Treino: descanso depois da 1ª série (com "Série 1 salva · Desfazer") | tela | ana | 51 | 56 | 0 | 0 | número 28, ação 12, título ou rótulo 8, estado 3 |
 | `treino/10-folha-senti-algo` Folha "O que você sentiu?" | folha | ana | 72 | 65 | 0 | 0 | segurança 48, título ou rótulo 12, ação 12 |
@@ -266,7 +266,7 @@
 | `treino/43-exercicio-sem-animacao` Treino: exercício sem animação, com o cartão de texto fechado (Crucifixo invertido sentado, com o peito nas coxas, com halteres) | estado vazio | ana | 53 | 69 | 0 | 0 | título ou rótulo 21, estado 9, número 7, ação 6, opção 6, instrução 4 |
 | `treino/44-exercicio-sem-animacao-folha-como-fazer` Treino: folha "Como fazer (em texto)" como abre | folha | ana | 78 | 80 | 0 | 0 | instrução 63, ação 8, título ou rótulo 7 |
 | `treino/45-exercicio-sem-animacao-folha-como-fazer-passo-a-passo` Treino: folha "Como fazer (em texto)", com o passo a passo aberto | bloco aberto | ana | 204 | 111 | 1 | 0 | instrução 185, título ou rótulo 11, ação 8 |
-| `treino/46-treino-na-volta` Treino na volta da pausa: a carga 10% menor já preenchida ("Hoje: 9 kg") | tela | ana | 54 | 72 | 0 | 0 | título ou rótulo 17, instrução 10, número 8, ação 8, opção 6, estado 5 |
+| `treino/46-treino-na-volta` Treino na volta da pausa: a carga 10% menor já preenchida ("Hoje: 9 kg") | tela | ana | 56 | 74 | 0 | 0 | título ou rótulo 17, ação 10, instrução 10, número 8, opção 6, estado 5 |
 | `treino/47-carla-inferior-1` Treino da Carla: dia "Inferior", 1º exercício, 1ª série vazia (Agachamento livre com barra (profundo)) | estado vazio | carla | 98 | 112 | 0 | 0 | segurança 42, título ou rótulo 18, instrução 11, estado 9, número 6, ação 6, opção 6 |
 | `treino/48-carla-inferior-2` Treino da Carla: dia "Inferior", 2º exercício, 1ª série vazia (Stiff com halteres) | estado vazio | carla | 51 | 65 | 0 | 0 | título ou rótulo 14, ação 11, estado 9, número 7, opção 6, instrução 4 |
 | `treino/49-carla-inferior-3` Treino da Carla: dia "Inferior", 3º exercício, 1ª série vazia (Flexão de joelho na cadeira flexora (sentado)) | estado vazio | carla | 49 | 63 | 0 | 0 | título ou rótulo 18, estado 9, número 6, ação 6, opção 6, instrução 4 |
@@ -285,7 +285,7 @@
 | `treino/62-diego-exercicio-1` Treino do Diego (elásticos e barra fixa): 1º exercício, 1ª série vazia (Flexão de braço) | estado vazio | diego | 54 | 70 | 0 | 0 | título ou rótulo 16, instrução 11, ação 10, número 6, opção 6, estado 5 |
 | `treino/63-diego-exercicio-2` Treino do Diego (elásticos e barra fixa): 2º exercício, 1ª série vazia (Barra fixa só na descida (negativa)) | estado vazio | diego | 78 | 94 | 1 | 0 | segurança 30, título ou rótulo 21, número 6, ação 6, opção 6, estado 5, instrução 4 |
 | `treino/64-diego-exercicio-3` Treino do Diego (elásticos e barra fixa): 3º exercício, 1ª série vazia (Agachamento com elástico) | estado vazio | diego | 55 | 71 | 0 | 0 | título ou rótulo 16, ação 11, instrução 11, número 6, opção 6, estado 5 |
-| `treino/65-fabio-exercicio-1` Treino do Fábio (barra fixa): 1º exercício, 1ª série vazia (Barra fixa) | estado vazio | fabio | 54 | 69 | 0 | 0 | título ou rótulo 17, instrução 11, ação 9, número 6, opção 6, estado 5 |
+| `treino/65-fabio-exercicio-1` Treino do Fábio (barra fixa): 1º exercício, 1ª série vazia (Barra fixa) | estado vazio | fabio | 59 | 74 | 0 | 0 | título ou rótulo 17, ação 14, instrução 11, número 6, opção 6, estado 5 |
 | `treino/66-fabio-exercicio-2` Treino do Fábio (barra fixa): 2º exercício, 1ª série vazia (Barra fixa só na descida (negativa)) | estado vazio | fabio | 80 | 95 | 1 | 0 | segurança 30, título ou rótulo 23, número 6, ação 6, opção 6, estado 5, instrução 4 |
 | `treino/67-fabio-exercicio-3` Treino do Fábio (barra fixa): 3º exercício, 1ª série vazia (Flexão de braço) | estado vazio | fabio | 50 | 65 | 0 | 0 | título ou rótulo 18, ação 11, número 6, opção 6, estado 5, instrução 4 |
 | `treino/68-bruno-volta-da-pausa-exercicio-1` Treino do Bruno (voltando de pausa): 1º exercício (Supino reto com halteres) | estado vazio | bruno | 56 | 71 | 0 | 0 | título ou rótulo 15, instrução 11, estado 9, ação 8, número 7, opção 6 |
@@ -302,21 +302,21 @@
 | `guia/05-erros-2` Guia: modo Erros, 2º erro ("Pé da frente perto do banco") | tela | ana | 98 | 58 | 0 | 0 | instrução 41, ação 37, segurança 14, título ou rótulo 4, número 2 |
 | `guia/06-erros-3` Guia: modo Erros, 3º erro ("Descer pouco") | tela | ana | 94 | 54 | 0 | 0 | ação 37, instrução 37, segurança 14, título ou rótulo 4, número 2 |
 | `guia/07-musculos` Guia: agachamento búlgaro, modo Músculos | tela | ana | 109 | 69 | 0 | 0 | instrução 42, segurança 37, ação 24, título ou rótulo 4, número 2 |
-| `guia/08-trajetoria` Guia: agachamento búlgaro, modo Trajetória | tela | ana | 95 | 59 | 0 | 0 | instrução 51, ação 24, segurança 14, título ou rótulo 4, número 2 |
+| `guia/08-trajetoria` Guia: agachamento búlgaro, modo Trajetória | tela | ana | 95 | 59 | 0 | 0 | instrução 53, ação 24, segurança 14, título ou rótulo 4 |
 | `guia/09-bloco-montagem` Guia: só o bloco "Montagem" aberto | bloco aberto | ana | 140 | 104 | 0 | 0 | instrução 96, ação 24, segurança 14, título ou rótulo 6 |
 | `guia/10-bloco-execucao-e-tempo` Guia: só o bloco "Execução" aberto | bloco aberto | ana | 112 | 42 | 0 | 0 | instrução 68, ação 24, segurança 14, título ou rótulo 4, número 2 |
-| `guia/11-bloco-amplitude` Guia: só o bloco "Amplitude" aberto | bloco aberto | ana | 96 | 73 | 0 | 0 | instrução 42, segurança 26, ação 24, título ou rótulo 4 |
-| `guia/12-bloco-respiracao` Guia: só o bloco "Respiração" aberto | bloco aberto | ana | 69 | 48 | 0 | 0 | instrução 27, ação 24, segurança 14, título ou rótulo 4 |
-| `guia/13-bloco-onde-sentir` Guia: só o bloco "Onde sentir" aberto | bloco aberto | ana | 98 | 73 | 0 | 0 | segurança 37, instrução 33, ação 24, título ou rótulo 4 |
-| `guia/14-bloco-erros-comuns` Guia: só o bloco "Erros" aberto | bloco aberto | ana | 128 | 92 | 0 | 0 | instrução 86, ação 24, segurança 14, título ou rótulo 4 |
-| `guia/15-bloco-o-que-varia-de-pessoa-para-pessoa` Guia: só o bloco "Variações" aberto | bloco aberto | ana | 99 | 74 | 1 | 0 | instrução 57, ação 24, segurança 14, título ou rótulo 4 |
-| `guia/16-lista-de-conferencia` Guia: "Confira em 5 segundos", com um item marcado | tela | ana | 90 | 66 | 0 | 0 | opção 28, ação 26, instrução 16, segurança 14, título ou rótulo 4, número 2 |
+| `guia/11-bloco-amplitude` Guia: só o bloco "Amplitude" aberto | bloco aberto | ana | 98 | 73 | 0 | 0 | instrução 42, segurança 26, ação 24, título ou rótulo 4, número 2 |
+| `guia/12-bloco-respiracao` Guia: só o bloco "Respiração" aberto | bloco aberto | ana | 71 | 48 | 0 | 0 | instrução 27, ação 24, segurança 14, título ou rótulo 4, número 2 |
+| `guia/13-bloco-onde-sentir` Guia: só o bloco "Onde sentir" aberto | bloco aberto | ana | 100 | 73 | 0 | 0 | segurança 37, instrução 33, ação 24, título ou rótulo 4, número 2 |
+| `guia/14-bloco-erros-comuns` Guia: só o bloco "Erros" aberto | bloco aberto | ana | 130 | 92 | 0 | 0 | instrução 86, ação 24, segurança 14, título ou rótulo 4, número 2 |
+| `guia/15-bloco-o-que-varia-de-pessoa-para-pessoa` Guia: só o bloco "Variações" aberto | bloco aberto | ana | 101 | 74 | 1 | 0 | instrução 57, ação 24, segurança 14, título ou rótulo 4, número 2 |
+| `guia/16-lista-de-conferencia` Guia: "Confira em 5 segundos", com um item marcado | tela | ana | 90 | 66 | 0 | 0 | opção 28, ação 26, instrução 18, segurança 14, título ou rótulo 4 |
 | `guia/17-tecnica-com-descanso` Guia aberto durante o descanso (a faixa "Descanso" no alto) | tela | ana | 62 | 34 | 0 | 0 | ação 26, instrução 16, segurança 14, título ou rótulo 4, número 2 |
 | `guia/18-pelo-programa-tecnica` Guia de halter (a Ana, pelo programa): Supino reto com halteres, modo Técnica | tela | ana | 61 | 41 | 0 | 0 | ação 23, instrução 18, segurança 14, título ou rótulo 4, número 2 |
 | `guia/19-pelo-programa-erros` Guia de halter (a Ana, pelo programa): Supino reto com halteres, modo Erros | tela | ana | 98 | 51 | 0 | 0 | instrução 43, ação 35, segurança 14, título ou rótulo 4, número 2 |
 | `guia/20-pelo-programa-musculos` Guia de halter (a Ana, pelo programa): Supino reto com halteres, modo Músculos | tela | ana | 102 | 64 | 0 | 0 | instrução 59, ação 23, segurança 14, título ou rótulo 4, número 2 |
 | `guia/21-pelo-programa-trajetoria` Guia de halter (a Ana, pelo programa): Supino reto com halteres, modo Trajetória | tela | ana | 97 | 59 | 0 | 0 | instrução 56, ação 23, segurança 14, título ou rótulo 4 |
-| `guia/22-pelo-programa-tudo-aberto` Guia de halter (a Ana, pelo programa): Supino reto com halteres, com os 7 blocos abertos | bloco aberto | ana | 401 | 164 | 1 | 0 | instrução 356, ação 23, segurança 14, título ou rótulo 6, número 2 |
+| `guia/22-pelo-programa-tudo-aberto` Guia de halter (a Ana, pelo programa): Supino reto com halteres, com os 7 blocos abertos | bloco aberto | ana | 398 | 164 | 1 | 0 | instrução 355, ação 23, segurança 14, título ou rótulo 6 |
 | `guia/23-carla-polia-tecnica` Guia de polia (a Carla): Crucifixo na polia (crossover), modo Técnica | tela | carla | 62 | 37 | 0 | 0 | ação 23, instrução 19, segurança 14, título ou rótulo 4, número 2 |
 | `guia/24-carla-polia-erros` Guia de polia (a Carla): Crucifixo na polia (crossover), modo Erros | tela | carla | 93 | 45 | 0 | 0 | instrução 44, ação 31, segurança 14, título ou rótulo 4 |
 | `guia/25-carla-polia-musculos` Guia de polia (a Carla): Crucifixo na polia (crossover), modo Músculos | tela | carla | 106 | 63 | 0 | 0 | instrução 63, ação 23, segurança 14, título ou rótulo 4, número 2 |
@@ -326,17 +326,17 @@
 | `guia/29-carla-polia-remada-erros` Guia de polia (a Carla): Puxada unilateral ajoelhado na polia alta, modo Erros | tela | carla | 91 | 50 | 0 | 0 | ação 36, segurança 25, instrução 22, título ou rótulo 6, número 2 |
 | `guia/30-carla-polia-remada-musculos` Guia de polia (a Carla): Puxada unilateral ajoelhado na polia alta, modo Músculos | tela | carla | 100 | 63 | 0 | 0 | instrução 55, ação 25, segurança 14, título ou rótulo 6 |
 | `guia/31-carla-polia-remada-trajetoria` Guia de polia (a Carla): Puxada unilateral ajoelhado na polia alta, modo Trajetória | tela | carla | 85 | 54 | 0 | 0 | instrução 40, ação 25, segurança 14, título ou rótulo 6 |
-| `guia/32-carla-polia-remada-tudo-aberto` Guia de polia (a Carla): Puxada unilateral ajoelhado na polia alta, com os 7 blocos abertos | bloco aberto | carla | 320 | 147 | 1 | 0 | instrução 238, segurança 47, ação 25, título ou rótulo 8, número 2 |
+| `guia/32-carla-polia-remada-tudo-aberto` Guia de polia (a Carla): Puxada unilateral ajoelhado na polia alta, com os 7 blocos abertos | bloco aberto | carla | 318 | 147 | 1 | 0 | instrução 238, segurança 47, ação 25, título ou rótulo 8 |
 | `guia/33-elisa-corpo-livre-1-tecnica` Guia de corpo livre (a Elisa): Agachamento com o peso do corpo, modo Técnica | tela | elisa | 64 | 44 | 0 | 0 | ação 22, instrução 20, segurança 14, título ou rótulo 6, número 2 |
 | `guia/34-elisa-corpo-livre-1-erros` Guia de corpo livre (a Elisa): Agachamento com o peso do corpo, modo Erros | tela | elisa | 102 | 51 | 0 | 0 | instrução 49, ação 31, segurança 14, título ou rótulo 6, número 2 |
-| `guia/35-elisa-corpo-livre-1-musculos` Guia de corpo livre (a Elisa): Agachamento com o peso do corpo, modo Músculos | tela | elisa | 114 | 68 | 0 | 0 | instrução 45, segurança 41, ação 22, título ou rótulo 6 |
+| `guia/35-elisa-corpo-livre-1-musculos` Guia de corpo livre (a Elisa): Agachamento com o peso do corpo, modo Músculos | tela | elisa | 112 | 66 | 0 | 0 | instrução 41, segurança 41, ação 22, título ou rótulo 6, número 2 |
 | `guia/36-elisa-corpo-livre-1-trajetoria` Guia de corpo livre (a Elisa): Agachamento com o peso do corpo, modo Trajetória | tela | elisa | 97 | 55 | 0 | 0 | instrução 40, segurança 27, ação 22, título ou rótulo 6, número 2 |
 | `guia/37-elisa-corpo-livre-1-tudo-aberto` Guia de corpo livre (a Elisa): Agachamento com o peso do corpo, com os 7 blocos abertos | bloco aberto | elisa | 418 | 198 | 5 | 0 | instrução 249, segurança 93, privacidade 44, ação 22, título ou rótulo 8, número 2 |
 | `guia/38-elisa-corpo-livre-2-tecnica` Guia de corpo livre (a Elisa): Flexão de braço, modo Técnica | tela | elisa | 62 | 42 | 0 | 0 | ação 23, instrução 20, segurança 14, título ou rótulo 3, número 2 |
 | `guia/39-elisa-corpo-livre-2-erros` Guia de corpo livre (a Elisa): Flexão de braço, modo Erros | tela | elisa | 90 | 47 | 0 | 0 | instrução 40, ação 31, segurança 14, título ou rótulo 3, número 2 |
 | `guia/40-elisa-corpo-livre-2-musculos` Guia de corpo livre (a Elisa): Flexão de braço, modo Músculos | tela | elisa | 107 | 64 | 0 | 0 | instrução 49, segurança 32, ação 23, título ou rótulo 3 |
 | `guia/41-elisa-corpo-livre-2-trajetoria` Guia de corpo livre (a Elisa): Flexão de braço, modo Trajetória | tela | elisa | 95 | 56 | 0 | 0 | instrução 53, ação 23, segurança 14, título ou rótulo 3, número 2 |
-| `guia/42-elisa-corpo-livre-2-tudo-aberto` Guia de corpo livre (a Elisa): Flexão de braço, com os 7 blocos abertos | bloco aberto | elisa | 294 | 145 | 1 | 0 | instrução 232, segurança 32, ação 23, título ou rótulo 5, número 2 |
+| `guia/42-elisa-corpo-livre-2-tudo-aberto` Guia de corpo livre (a Elisa): Flexão de braço, com os 7 blocos abertos | bloco aberto | elisa | 292 | 145 | 1 | 0 | instrução 232, segurança 32, ação 23, título ou rótulo 5 |
 | `guia/43-catalogo` Guia sem contexto (o catálogo das animações): supino inclinado com halteres | tela | ninguém | 100 | 63 | 0 | 0 | ação 53, instrução 27, segurança 14, título ou rótulo 4, número 2 |
 | `guia/44-catalogo-novas` Guia sem contexto, grupo "Novas" (os nomes curtos de todas as animações novas) | tela | ninguém | 327 | 297 | 0 | 0 | ação 284, instrução 20, segurança 14, título ou rótulo 7, número 2 |
 | `guia/45-catalogo-nota-de-montagem-segura` Guia de um exercício com a nota "Montagem segura" abaixo do palco (búlgaro na suspensão) | tela | ninguém | 403 | 357 | 1 | 0 | ação 281, estado 72, instrução 26, segurança 14, título ou rótulo 8, número 2 |
@@ -361,28 +361,28 @@
 | `fim-e-semana/14-semana-2-de-3` Semana com 2 de 3 treinos e uma semana anterior sem treino | tela | ana | 77 | 63 | 0 | 0 | número 56, título ou rótulo 13, ação 8 |
 | `fim-e-semana/15-semana-revisao-da-meta` Semana com a oferta "Um programa com menos dias?" | aviso | ana | 114 | 72 | 0 | 0 | número 59, título ou rótulo 20, ação 15, estado 12, instrução 8 |
 | `fim-e-semana/16-evolucao-por-local` Evolução de um exercício de polia com 2 locais (uma lista por local) | tela | bruno | 45 | 45 | 0 | 0 | número 30, título ou rótulo 10, ação 5 |
-| `fim-e-semana/17-inicio-volta-22-dias` Início na volta de uma pausa de 22 dias: o cartão "Bem-vindo de volta!" | aviso | ana | 122 | 103 | 0 | 0 | ação 75, privacidade 23, número 15, definição 6, título ou rótulo 3 |
+| `fim-e-semana/17-inicio-volta-22-dias` Início na volta de uma pausa de 22 dias: o cartão "Bem-vindo de volta!" | aviso | ana | 115 | 103 | 0 | 0 | ação 74, privacidade 17, número 15, definição 6, título ou rótulo 3 |
 | `fim-e-semana/18-sobre-o-programa-na-volta` "Entenda o treino" → "O seu programa" na volta da pausa (a fase da semana 1; até 16/11, a folha "Sobre o programa") | bloco aberto | ana | 138 | 103 | 1 | 3 | ação 67, estado 58, número 7, título ou rótulo 3, justificativa 3 |
 | `fim-e-semana/19-entenda-a-sua-semana-e-as-pausas` "Entenda o treino", com "A sua semana e as pausas" aberto, na volta de uma pausa de 22 dias (a semana e a mensagem da pausa) | bloco aberto | ana | 243 | 126 | 4 | 6 | definição 111, ação 43, segurança 41, justificativa 29, estado 10, título ou rótulo 9 |
-| `fim-e-semana/20-inicio-volta-15-dias` Início na volta de uma pausa de 15 dias: o cartão "Bem-vindo de volta!" | aviso | ana | 122 | 103 | 0 | 0 | ação 75, privacidade 23, número 15, definição 6, título ou rótulo 3 |
-| `fim-e-semana/21-inicio-volta-60-dias` Início na volta de uma pausa de 60 dias: o cartão "Bem-vindo de volta!" | aviso | ana | 122 | 103 | 0 | 0 | ação 75, privacidade 23, número 15, definição 6, título ou rótulo 3 |
-| `fim-e-semana/22-inicio-volta-200-dias` Início na volta de uma pausa de 200 dias: o cartão "Bem-vindo de volta!" | aviso | ana | 127 | 100 | 0 | 0 | ação 80, privacidade 23, número 15, definição 6, título ou rótulo 3 |
-| `fim-e-semana/23-inicio-volta-200-dias-agora-nao` Início na volta de 200 dias, depois de "Agora não" | aviso | ana | 132 | 105 | 0 | 0 | ação 75, privacidade 23, número 15, estado 10, definição 6, título ou rótulo 3 |
-| `fim-e-semana/24-inicio-oferta-de-semana-leve` Início com a oferta de semana leve ("Semana leve?") na linha do aviso | aviso | ana | 99 | 83 | 0 | 0 | ação 66, privacidade 23, título ou rótulo 5, número 3, justificativa 2 |
+| `fim-e-semana/20-inicio-volta-15-dias` Início na volta de uma pausa de 15 dias: o cartão "Bem-vindo de volta!" | aviso | ana | 115 | 103 | 0 | 0 | ação 74, privacidade 17, número 15, definição 6, título ou rótulo 3 |
+| `fim-e-semana/21-inicio-volta-60-dias` Início na volta de uma pausa de 60 dias: o cartão "Bem-vindo de volta!" | aviso | ana | 115 | 103 | 0 | 0 | ação 74, privacidade 17, número 15, definição 6, título ou rótulo 3 |
+| `fim-e-semana/22-inicio-volta-200-dias` Início na volta de uma pausa de 200 dias: o cartão "Bem-vindo de volta!" | aviso | ana | 120 | 100 | 0 | 0 | ação 79, privacidade 17, número 15, definição 6, título ou rótulo 3 |
+| `fim-e-semana/23-inicio-volta-200-dias-agora-nao` Início na volta de 200 dias, depois de "Agora não" | aviso | ana | 125 | 105 | 0 | 0 | ação 74, privacidade 17, número 15, estado 10, definição 6, título ou rótulo 3 |
+| `fim-e-semana/24-inicio-oferta-de-semana-leve` Início com a oferta de semana leve ("Semana leve?") na linha do aviso | aviso | ana | 92 | 83 | 0 | 0 | ação 65, privacidade 17, título ou rótulo 5, número 3, justificativa 2 |
 | `fim-e-semana/25-inicio-oferta-de-semana-leve-folha-avisos` Folha "Avisos": a oferta de semana leve e os outros avisos | folha | ana | 147 | 91 | 0 | 0 | ação 80, estado 20, justificativa 18, instrução 16, título ou rótulo 13 |
 | `fim-e-semana/26-semana-com-oferta-de-semana-leve` Semana com a oferta de semana leve ("Semana leve?") | aviso | ana | 94 | 63 | 0 | 0 | número 60, título ou rótulo 15, ação 11, instrução 8 |
 | `fim-e-semana/27-fim-com-oferta-de-semana-leve` Fim do treino com "pesado demais" marcado e a oferta de semana leve ("Semana leve?") | aviso | ana | 91 | 63 | 0 | 0 | número 50, ação 19, título ou rótulo 14, instrução 8 |
 | `fim-e-semana/28-fim-com-semana-leve-ativa` Fim do treino com a semana leve aceita ("Semana leve até …") | aviso | ana | 92 | 54 | 0 | 0 | número 50, ação 19, título ou rótulo 16, instrução 7 |
-| `fim-e-semana/29-inicio-semana-leve-ativa` Início com a semana leve ativa | aviso | ana | 101 | 85 | 0 | 0 | ação 66, privacidade 23, título ou rótulo 5, estado 4, número 3 |
+| `fim-e-semana/29-inicio-semana-leve-ativa` Início com a semana leve ativa | aviso | ana | 94 | 85 | 0 | 0 | ação 65, privacidade 17, título ou rótulo 5, estado 4, número 3 |
 | `fim-e-semana/30-inicio-semana-leve-ativa-folha-avisos` Folha "Avisos": "Semana leve até …", com "Voltar ao normal" | folha | ana | 148 | 92 | 0 | 0 | ação 80, estado 20, justificativa 18, título ou rótulo 15, instrução 15 |
 | `fim-e-semana/31-sobre-o-programa-na-semana-leve` "Entenda o treino" → "O seu programa" na semana leve (a fase fala da semana leve; até 16/11, a folha "Sobre o programa") | bloco aberto | ana | 139 | 104 | 1 | 3 | ação 67, estado 59, número 7, título ou rótulo 3, justificativa 3 |
 | `fim-e-semana/32-semana-na-semana-leve` Semana com a semana leve ativa (a meta é a prescrita para a semana) | aviso | ana | 98 | 69 | 0 | 0 | número 63, título ou rótulo 17, ação 11, instrução 7 |
-| `fim-e-semana/33-inicio-dor-que-se-repete` Início com o aviso de dor que se repete no mesmo exercício | aviso | ana | 137 | 103 | 1 | 0 | ação 66, segurança 38, privacidade 23, título ou rótulo 5, número 3, justificativa 2 |
+| `fim-e-semana/33-inicio-dor-que-se-repete` Início com o aviso de dor que se repete no mesmo exercício | aviso | ana | 130 | 103 | 1 | 0 | ação 65, segurança 38, privacidade 17, título ou rótulo 5, número 3, justificativa 2 |
 | `fim-e-semana/34-inicio-dor-que-se-repete-folha-avisos` Folha "Avisos" com a dor que se repete como motivo da semana leve | folha | ana | 147 | 91 | 0 | 0 | ação 80, estado 20, justificativa 18, instrução 16, título ou rótulo 13 |
 | `fim-e-semana/35-fim-com-dor` Fim do treino com dor registrada (a linha do exercício diz "Ajustar") | aviso | ana | 129 | 63 | 1 | 0 | número 50, segurança 38, ação 19, título ou rótulo 14, instrução 8 |
-| `fim-e-semana/36-inicio-aviso-do-tempo` Início com o aviso "O tempo dos seus treinos" | aviso | ana | 112 | 93 | 0 | 0 | ação 76, privacidade 23, título ou rótulo 10, número 3 |
+| `fim-e-semana/36-inicio-aviso-do-tempo` Início com o aviso "O tempo dos seus treinos" | aviso | ana | 105 | 93 | 0 | 0 | ação 75, privacidade 17, título ou rótulo 10, número 3 |
 | `fim-e-semana/37-inicio-aviso-do-tempo-folha-avisos` Folha "Avisos": "O tempo dos seus treinos" | folha | ana | 134 | 101 | 0 | 0 | ação 77, estado 20, justificativa 18, título ou rótulo 11, instrução 8 |
-| `fim-e-semana/38-inicio-tempo-ajustado` Início depois de "Ajustar" o tempo (e a versão nova do programa que isso oferece) | aviso | ana | 120 | 93 | 0 | 0 | ação 79, privacidade 23, estado 10, título ou rótulo 5, número 3 |
+| `fim-e-semana/38-inicio-tempo-ajustado` Início depois de "Ajustar" o tempo (e a versão nova do programa que isso oferece) | aviso | ana | 113 | 93 | 0 | 0 | ação 78, privacidade 17, estado 10, título ou rótulo 5, número 3 |
 
 ## dados-e-locais
 
@@ -411,7 +411,7 @@
 | `dados-e-locais/21-entenda` "Entenda o treino", com os blocos fechados | tela | ana | 46 | 46 | 0 | 0 | ação 43, título ou rótulo 3 |
 | `dados-e-locais/22-entenda-os-exercicios` "Entenda o treino", com "Os exercícios: por que cada um e a próxima carga" aberto | bloco aberto | ana | 275 | 126 | 1 | 6 | ação 134, justificativa 94, segurança 21, privacidade 14, título ou rótulo 12 |
 | `dados-e-locais/23-entenda-a-sua-semana` "Entenda o treino", com "A sua semana e as pausas" aberto | bloco aberto | ana | 201 | 127 | 3 | 5 | definição 111, ação 43, justificativa 28, estado 10, título ou rótulo 9 |
-| `dados-e-locais/24-entenda-por-que-o-app-pergunta` "Entenda o treino", com "Por que o app pergunta e sugere" aberto | bloco aberto | ana | 415 | 113 | 6 | 16 | justificativa 291, segurança 48, ação 43, privacidade 26, título ou rótulo 7 |
+| `dados-e-locais/24-entenda-por-que-o-app-pergunta` "Entenda o treino", com "Por que o app pergunta e sugere" aberto | bloco aberto | ana | 553 | 113 | 10 | 19 | justificativa 294, privacidade 158, segurança 48, ação 43, título ou rótulo 10 |
 | `dados-e-locais/25-entenda-seguranca` "Entenda o treino", com "Segurança" aberto | bloco aberto | ana | 215 | 116 | 3 | 3 | segurança 166, ação 43, título ou rótulo 3, justificativa 3 |
 | `dados-e-locais/26-entenda-todas-as-regras` "Entenda o treino", com "Todas as regras e as fontes" aberto (as regras fechadas) | bloco aberto | ana | 1200 | 72 | 0 | 0 | ação 1052, segurança 89, título ou rótulo 50, privacidade 9 |
 | `dados-e-locais/27-meus-dados-com-copia-antiga` Meus dados com a última cópia de dias atrás ("Última cópia: há 16 dias") | tela | ana | 99 | 77 | 0 | 0 | ação 71, privacidade 15, título ou rótulo 9, número 4 |
@@ -480,20 +480,20 @@
 
 | Tela | O que é | Quem vê | Palavras | À vista | Blocos longos | Selos | Do que é feito (palavras por função) |
 |---|---|---|---|---|---|---|---|
-| `avisos-e-erros/01-instalar-no-iphone-boas-vindas` Boas-vindas no iPhone (Safari, sem instalar): o aviso "Instale o app para não perder seus dados" | aviso | ninguém | 137 | 130 | 1 | 0 | privacidade 67, ação 26, instrução 23, segurança 14, título ou rótulo 7 |
-| `avisos-e-erros/02-instalar-no-iphone-inicio` Início no iPhone (Safari, sem instalar): o aviso de instalar depois dos exercícios | aviso | ana | 162 | 113 | 1 | 0 | ação 67, privacidade 60, instrução 23, título ou rótulo 5, estado 4, número 3 |
-| `avisos-e-erros/03-lembrete-de-copia` Início com o lembrete "Guarde uma cópia dos seus treinos" (nenhuma cópia ainda) | aviso | ana | 112 | 83 | 0 | 0 | ação 76, privacidade 23, título ou rótulo 10, número 3 |
+| `avisos-e-erros/01-instalar-no-iphone-boas-vindas` Boas-vindas no iPhone (Safari, sem instalar): o aviso "Instale o app para não perder seus dados" | aviso | ninguém | 111 | 111 | 0 | 0 | privacidade 41, ação 26, instrução 23, segurança 14, título ou rótulo 7 |
+| `avisos-e-erros/02-instalar-no-iphone-inicio` Início no iPhone (Safari, sem instalar): o aviso de instalar depois dos exercícios | aviso | ana | 136 | 99 | 0 | 0 | ação 67, privacidade 34, instrução 23, título ou rótulo 5, estado 4, número 3 |
+| `avisos-e-erros/03-lembrete-de-copia` Início com o lembrete "Guarde uma cópia dos seus treinos" (nenhuma cópia ainda) | aviso | ana | 105 | 81 | 0 | 0 | ação 75, privacidade 17, título ou rótulo 10, número 3 |
 | `avisos-e-erros/04-lembrete-de-copia-exportado` Início logo depois de "Exportar agora" no lembrete de cópia | aviso | ana | 97 | 83 | 0 | 0 | ação 72, privacidade 12, título ou rótulo 10, número 3 |
-| `avisos-e-erros/05-lembrete-de-copia-com-treinos-novos` Início com o lembrete de cópia de quem já exportou ("Você tem treinos novos desde a última cópia.") | aviso | ana | 114 | 85 | 0 | 0 | ação 76, privacidade 25, título ou rótulo 10, número 3 |
+| `avisos-e-erros/05-lembrete-de-copia-com-treinos-novos` Início com o lembrete de cópia de quem já exportou ("Você tem treinos novos desde a última cópia.") | aviso | ana | 101 | 81 | 0 | 0 | ação 75, privacidade 13, título ou rótulo 10, número 3 |
 | `avisos-e-erros/06-dado-ilegivel-boas-vindas` Boas-vindas com um dado guardado que o app não leu | erro | ninguém | 69 | 69 | 0 | 0 | ação 27, privacidade 21, segurança 14, título ou rótulo 7 |
-| `avisos-e-erros/07-dado-ilegivel-meus-dados` Meus dados com um dado guardado que o app não leu ("Exportar os dados que não foram lidos") | erro | ninguém | 104 | 74 | 0 | 0 | ação 52, privacidade 31, título ou rótulo 9, estado 8, número 4 |
-| `avisos-e-erros/08-dado-ilegivel-exportado` Meus dados depois de exportar os dados que não foram lidos | aviso | ninguém | 122 | 92 | 0 | 0 | ação 52, privacidade 49, título ou rótulo 9, estado 8, número 4 |
-| `avisos-e-erros/09-tela-de-erro` Tela de erro ("Algo deu errado nesta tela") | erro | ana | 76 | 73 | 0 | 0 | privacidade 31, título ou rótulo 14, ação 12, instrução 10, estado 9 |
-| `avisos-e-erros/10-tela-de-erro-exportado-e-aviso-aberto` Tela de erro, depois de exportar e com "Avisar um problema" aberto | erro | ana | 180 | 113 | 1 | 0 | privacidade 132, ação 15, título ou rótulo 14, instrução 10, estado 9 |
-| `avisos-e-erros/11-tela-de-erro-sem-dados` Tela de erro, ao exportar sem nada guardado | erro | ninguém | 82 | 70 | 0 | 0 | privacidade 37, título ou rótulo 14, ação 12, instrução 10, estado 9 |
-| `avisos-e-erros/12-nao-foi-possivel-salvar-treino` Treino com o aviso "Não foi possível salvar neste aparelho." | erro | ana | 83 | 101 | 1 | 0 | privacidade 26, título ou rótulo 17, instrução 11, estado 9, número 7, ação 7, opção 6 |
-| `avisos-e-erros/13-nao-foi-possivel-salvar-serie` Descanso com "Série 1 anotada, mas não salva" | erro | ana | 83 | 88 | 1 | 0 | número 28, privacidade 26, ação 15, título ou rótulo 8, estado 6 |
-| `avisos-e-erros/14-nao-foi-possivel-salvar-inicio` Início com o aviso "Não foi possível salvar neste aparelho." | erro | ana | 104 | 104 | 1 | 0 | ação 70, privacidade 26, título ou rótulo 5, número 3 |
+| `avisos-e-erros/07-dado-ilegivel-meus-dados` Meus dados com um dado guardado que o app não leu ("Exportar os dados que não foram lidos") | erro | ninguém | 100 | 70 | 0 | 0 | ação 48, privacidade 31, título ou rótulo 9, estado 8, número 4 |
+| `avisos-e-erros/08-dado-ilegivel-exportado` Meus dados depois de exportar os dados que não foram lidos | aviso | ninguém | 118 | 88 | 0 | 0 | privacidade 49, ação 48, título ou rótulo 9, estado 8, número 4 |
+| `avisos-e-erros/09-tela-de-erro` Tela de erro ("Algo deu errado nesta tela") | erro | ana | 35 | 35 | 0 | 0 | privacidade 13, ação 12, título ou rótulo 5, número 5 |
+| `avisos-e-erros/10-tela-de-erro-exportado-e-aviso-aberto` Tela de erro, depois de exportar e com "Avisar um problema" aberto | erro | ana | 139 | 131 | 1 | 0 | privacidade 114, ação 15, título ou rótulo 5, número 5 |
+| `avisos-e-erros/11-tela-de-erro-sem-dados` Tela de erro, ao exportar sem nada guardado | erro | ninguém | 41 | 41 | 0 | 0 | privacidade 19, ação 12, título ou rótulo 5, número 5 |
+| `avisos-e-erros/12-nao-foi-possivel-salvar-treino` Treino com o aviso "Não foi possível salvar neste aparelho." | erro | ana | 72 | 90 | 0 | 0 | título ou rótulo 17, privacidade 15, instrução 11, estado 9, número 7, ação 7, opção 6 |
+| `avisos-e-erros/13-nao-foi-possivel-salvar-serie` Descanso com "Série 1 anotada, mas não salva" | erro | ana | 72 | 77 | 0 | 0 | número 28, ação 15, privacidade 15, título ou rótulo 8, estado 6 |
+| `avisos-e-erros/14-nao-foi-possivel-salvar-inicio` Início com o aviso "Não foi possível salvar neste aparelho." | erro | ana | 93 | 93 | 0 | 0 | ação 70, privacidade 15, título ou rótulo 5, número 3 |
 | `avisos-e-erros/15-sobre-o-programa-sem-conferir` "Entenda o treino" → "O seu programa" quando o avaliador não baixa (até 16/11, na folha "Sobre o programa") | erro | ana | 108 | 88 | 0 | 1 | ação 64, estado 33, número 7, título ou rótulo 3, justificativa 1 |
 | `avisos-e-erros/16-selo-carregando-a-regra` Folha "De onde vem isto" enquanto a regra chega ("Carregando a regra…") | carregando | ana | 8 | 8 | 0 | 0 | título ou rótulo 4, estado 3, ação 1 |
 | `avisos-e-erros/17-entenda-todas-as-regras-carregando` "Entenda o treino", com "Todas as regras e as fontes" aberto enquanto as regras chegam ("Carregando as regras…") | carregando | ana | 49 | 49 | 0 | 0 | ação 43, título ou rótulo 3, estado 3 |
@@ -520,7 +520,6 @@
 | 12 | 20 | conteúdo | ação | Remada unilateral com halter apoiada no banco 2 × 8–12 cada lado | inicio/01-inicio-depois-do-1o-treino e mais 19 |
 | 11 | 21 | conteúdo | ação | Flexão de joelho deslizando os pés no chão 2 × 8–15 | inicio/03-inicio e mais 20 |
 | 7 | 33 | tela | ação | Por que o app pergunta e sugere | inicio/08-sobre-o-programa e mais 32 |
-| 17 | 13 | tela | privacidade | Você ainda não exportou nenhuma cópia. Os dados ficam só neste aparelho, e o navegador pode apagá-los. | inicio/30-inicio-semana-completa e mais 12 |
 | 13 | 17 | tela | privacidade | Você autorizou o envio das fotos à Anthropic, nos EUA, em 17/11/2026. | termos-e-foto/09-foto-analisando e mais 16 |
 | 10 | 22 | tela | estado | Sem nada marcado, o programa usa o peso do corpo. | cadastro/33-equipamento-lugar e mais 21 |
 | 27 | 8 | jurídico | privacidade | Ela vai para a Anthropic, empresa dos EUA, que faz o reconhecimento. A Anthropic guarda o dado nos EUA e pode processá-lo também em outros países. | cadastro/34-equipamento-folha-da-foto e mais 7 |
@@ -547,6 +546,7 @@
 | 18 | 8 | jurídico | privacidade | No seu celular, cada foto é reduzida e perde a localização (GPS) e os outros dados da câmera. | cadastro/34-equipamento-folha-da-foto e mais 7 |
 | 18 | 8 | jurídico | privacidade | O servidor do app não guarda a foto e não registra a imagem (só quantas fotos foram enviadas). | cadastro/34-equipamento-folha-da-foto e mais 7 |
 | 3 | 48 | tela | título ou rótulo | Quantas ainda conseguiria? | treino/01-serie-vazia e mais 47 |
+| 11 | 13 | tela | privacidade | Os dados ficam só neste aparelho, e o navegador pode apagá-los. | inicio/30-inicio-semana-completa e mais 12 |
 | 23 | 6 | domínio | ação | Sem priorizar pernas quadríceps, posteriores da coxa, panturrilha voltam ao mínimo eficaz (sem prioridade); atinge a meta de ombro (lateral); ainda abaixo: glút… | inicio/14-folha-avisos e mais 5 |
 | 17 | 8 | domínio | estado | "Pernas" conta como 3: frente da coxa, posterior e panturrilha. O foco rende mais com até 2. | cadastro/32-rotina-respondida e mais 7 |
 | 9 | 15 | tela | privacidade | Este navegador pode apagar seus dados. Guarde uma cópia. | dados-e-locais/01-meus-dados e mais 14 |
@@ -564,7 +564,7 @@
 | 11 | 11 | tela | ação | Rotina e divisão 3 × 45 min · Corpo todo A/B/C | dados-e-locais/01-meus-dados e mais 10 |
 | 15 | 8 | tela | justificativa | Consenso de especialistas. Prática de treinadores e posicionamentos, sem ensaio que teste este número. | cadastro/02-boas-vindas-folha-o-que-o-app-nao-faz e mais 7 |
 | 8 | 15 | tela | ação | Entenda o treino O porquê e as fontes | dados-e-locais/01-meus-dados e mais 14 |
-| 40 | 3 | domínio | privacidade | Conte o que aconteceu e o que você esperava (por favor, sem dados de saúde e sem anexar o arquivo exportado): --- Versão: ab0caf4 (publicada em 17/11/2026) Apar… | dados-e-locais/12-meus-dados-avisar-um-problema e mais 2 |
+| 40 | 3 | domínio | privacidade | Conte o que aconteceu e o que você esperava (por favor, sem dados de saúde e sem anexar o arquivo exportado): --- Versão: 4b4528d (publicada em 17/11/2026) Apar… | dados-e-locais/12-meus-dados-avisar-um-problema e mais 2 |
 | 17 | 7 | domínio | justificativa | Os exercícios ficam os mesmos por 4 a 8 semanas; o programa só muda quando você pede. | inicio/12-sobre-o-programa-por-que-este-programa e mais 6 |
 | 1 | 118 | domínio | ação | Fechar | cadastro/02-boas-vindas-folha-o-que-o-app-nao-faz e mais 117 |
 | 1 | 118 | domínio | ação | Treino | inicio/01-inicio-depois-do-1o-treino e mais 116 |

@@ -235,7 +235,7 @@ A regra da linha: a 2ª linha só fica quando mostra um **valor** (o que está e
 
 **Testes da proposta:** 904 unitários, 177 de ponta a ponta e os tokens passando (os unitários foram repetidos com a máquina livre; na 1ª rodada, com a medição rodando junto, três testes do motor e do gerador deram tempo esgotado).
 
-## 8. Avisos e erros (proposta preparada; mostrar depois dos fluxos 6 e 7)
+## 8. Avisos e erros (aprovado como está e aplicado em 17/11/2026, commit `4b4528d`)
 
 São textos que protegem os dados da pessoa: a frase pode encurtar, mas o que ela precisa saber e o botão ficam. Proposta em `propostas/8-avisos-e-erros.patch` (aplica por cima da 7); imagens em `folhas/8a-avisos.png` e `8b-lembrete-de-copia.png`.
 
@@ -258,4 +258,19 @@ O que saiu vai para "Entenda o treino" → "Por que o app pergunta e sugere" →
 **O que não muda:** as mensagens de falha de carregamento (já são de uma frase com o botão "Tentar de novo"), o alerta "Série N anotada, mas não salva" e o texto de "Avisar um problema".
 
 **Testes da pilha de propostas (6 + 7 + 8), em 17/11:** 904 unitários, 177 de ponta a ponta e os tokens, tudo passando.
+
+## 9. Termos e foto (proposta; esperando a decisão)
+
+O pedido da sessão diz: não tirar conteúdo dos termos nem da folha da foto sem o ok explícito do Gustavo. Por isso este fluxo é uma pergunta, com duas opções em imagem (`folhas/9-foto.png`).
+
+**Os termos (793 palavras).** São um documento para ler, alcançado por um link; ninguém passa por ele no meio do treino. Recomendação: não mexer.
+
+**A folha da foto (193 palavras antes de autorizar).** Quase tudo é a caixa de consentimento: os 5 itens de "para onde vai a foto", a frase de autorização e o direito de retirar.
+
+| Opção | O que muda | Palavras na folha |
+|---|---|---|
+| A (recomendada) | só a frase de instrução: "Tire ou escolha até 5 fotos do lugar onde você treina. Usar a foto é opcional: a lista abaixo faz o mesmo." vira "Até 5 fotos do lugar onde você treina." A caixa de consentimento fica inteira | 179 |
+| B | além disso, os 5 itens viram um resumo de 2 frases à vista, com "Ler tudo antes de autorizar" a um toque | 95 |
+
+Por que A: a autorização vale pelo que a pessoa leu antes de marcar (LGPD, consentimento informado). Na opção B ela pode autorizar sem abrir os detalhes (por exemplo, a exceção de 2 anos e o processamento em outros países), e isso é uma decisão sobre privacidade, não sobre texto.
 

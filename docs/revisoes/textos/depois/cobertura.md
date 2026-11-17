@@ -460,7 +460,7 @@ Gerado por `scripts/textos/montar.ts` a partir da colheita (`colheita.json`) e d
 | 06-inicio | `inicio/03-inicio` | 105 | 78 | -27 |
 | 07-folha-do-exercicio | `inicio/06-folha-do-exercicio` | 93 | 22 | -71 |
 | 06b-inicio-sobre-o-programa | `inicio/08-sobre-o-programa` | 104 | 135 | +31 |
-| 08-treino-serie-vazia | `treino/01-serie-vazia` | 69 | 60 | -9 |
+| 08-treino-serie-vazia | `treino/01-serie-vazia` | 69 | 58 | -11 |
 | 12-guia-tecnica | `guia/01-tecnica` | 295 | 60 | -235 |
 | 12b-guia-erros | `guia/04-erros` | 323 | 92 | -231 |
 | 12c-guia-musculos | `guia/07-musculos` | 340 | 109 | -231 |
@@ -487,7 +487,7 @@ Gerado por `scripts/textos/montar.ts` a partir da colheita (`colheita.json`) e d
 | 17-locais | `dados-e-locais/44-locais` | 38 | 17 | -21 |
 | 17b-locais-editar | `dados-e-locais/45-locais-editar` | 125 | 77 | -48 |
 | 18-termos | `termos-e-foto/01-termos` | 793 | 792 | -1 |
-| **Soma** (sem a tela que saiu do app) | | **4.817** | **3.296** | -1521 |
+| **Soma** (sem a tela que saiu do app) | | **4.817** | **3.294** | -1523 |
 
 Saíram do app (não entram na soma):
 
@@ -495,29 +495,29 @@ Saíram do app (não entram na soma):
 
 ## Totais
 
-- Telas colhidas: **424**, do app na versão `ab0caf4` (publicada em 17/11/2026; colheita de 2026-11-17).
-- Soma de `palavrasNaTela`: **44.516** (a mesma frase conta de novo em cada tela ou folha em que aparece).
+- Telas colhidas: **424**, do app na versão `desconhecida` (publicada em ?; colheita de 2026-11-17).
+- Soma de `palavrasNaTela`: **44.338** (a mesma frase conta de novo em cada tela ou folha em que aparece).
 - Linhas da tabela de cobertura: 242 (por tipo: rota 37, folha 22, bloco que abre 28, por quê 3, aviso condicional 86, estado vazio 5, carregando 6, erro ou validação 40, resposta de uma ação 15); não alcançados: 9.
 - Falhas anotadas na colheita: 0 (em `colheita.json`, campo `falhas`).
 
 | Fluxo | Telas | palavrasNaTela (soma) | Folhas | Blocos abertos | Estados vazios, erros e avisos |
 |---|---|---|---|---|---|
 | cadastro | 80 | 6.114 | 21 | 1 | 32 |
-| inicio | 85 | 11.414 | 14 | 28 | 10 |
-| treino | 69 | 4.183 | 9 | 3 | 41 |
-| guia | 45 | 5.977 | 0 | 12 | 0 |
-| fim-e-semana | 38 | 3.763 | 4 | 4 | 21 |
-| dados-e-locais | 53 | 7.266 | 8 | 7 | 13 |
+| inicio | 85 | 11.400 | 14 | 28 | 10 |
+| treino | 69 | 4.186 | 9 | 3 | 41 |
+| guia | 45 | 5.978 | 0 | 12 | 0 |
+| fim-e-semana | 38 | 3.693 | 4 | 4 | 21 |
+| dados-e-locais | 53 | 7.404 | 8 | 7 | 13 |
 | termos-e-foto | 29 | 3.622 | 9 | 1 | 18 |
-| avisos-e-erros | 25 | 2.177 | 0 | 0 | 25 |
+| avisos-e-erros | 25 | 1.941 | 0 | 0 | 25 |
 
 | Persona | Telas | palavrasNaTela (soma) | Folhas | Blocos abertos | Estados vazios, erros e avisos |
 |---|---|---|---|---|---|
-| ana | 311 | 29.721 | 57 | 33 | 128 |
+| ana | 311 | 29.619 | 57 | 33 | 128 |
 | ana + saúde | 12 | 2.186 | 2 | 3 | 3 |
 | bruno | 16 | 1.716 | 0 | 3 | 2 |
-| carla | 28 | 2.960 | 0 | 6 | 9 |
+| carla | 28 | 2.958 | 0 | 6 | 9 |
 | diego | 10 | 1.245 | 1 | 3 | 3 |
-| elisa | 22 | 2.712 | 1 | 5 | 5 |
-| fabio | 11 | 1.191 | 1 | 3 | 3 |
-| ninguém | 14 | 2.785 | 3 | 0 | 7 |
+| elisa | 22 | 2.708 | 1 | 5 | 5 |
+| fabio | 11 | 1.196 | 1 | 3 | 3 |
+| ninguém | 14 | 2.710 | 3 | 0 | 7 |
