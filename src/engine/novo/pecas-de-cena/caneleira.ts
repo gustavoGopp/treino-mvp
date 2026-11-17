@@ -63,6 +63,28 @@ export function caneleiraNaPerna(e: Esq, k: Lado, fora: V3): Caneleira {
   return { ...p0, raio: r + g('esp') };
 }
 
+/**
+ * A caneleira no antebraço `k` (acréscimo de 17/11, a elevação lateral com caneleira): a mesma faixa, fechada em volta
+ * do antebraço, com a borda de baixo `acima` cm acima do centro do punho. O raio do antebraço é o maior afastamento
+ * da pele ao eixo dele na altura da faixa, medido na superfície do Boneco. `fora` é o lado do velcro.
+ */
+export function caneleiraNoAntebraco(e: Esq, k: Lado, fora: V3, acima: number): Caneleira {
+  const X = e.lado[k];
+  const eixo = norm(X.antebraco.y);
+  const centro = add(X.punho, mul(eixo, acima + g('larg') / 2));
+  const L = g('larg') / 2;
+  let r = 0;
+  for (const { p, parte } of pontosDoBoneco(e)) {
+    if (parte !== 'ante' || dist(p, X.punho) > 25) continue;
+    const v = sub(p, centro);
+    const t = dot(v, eixo);
+    if (Math.abs(t) > L) continue;
+    const radial = Math.hypot(...sub(v, mul(eixo, t)));
+    if (radial < 10) r = Math.max(r, radial);
+  }
+  return { centro, eixo, fora: norm(fora), raio: r + g('esp') };
+}
+
 export function caneleira(c: Caneleira): { prims: Prim[]; peca: PecaPropria } {
   const L = g('larg') / 2;
   const a = add(c.centro, mul(c.eixo, -L)),

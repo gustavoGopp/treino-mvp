@@ -46,3 +46,4 @@ export { REGRAS_TRICEPS_FRANCES_UNILATERAL_HALTER } from './triceps-frances-unil
 export { regrasDoAgachamentoComHalteres } from './agachamento-halteres';
 export { regrasDoGobletKettlebell } from './goblet-kettlebell';
 export { REGRAS_ELEVACAO_LATERAL_DEITADO } from './elevacao-lateral-deitado';
+export { REGRAS_ELEVACAO_LATERAL_CANELEIRA } from './elevacao-lateral-caneleira';
