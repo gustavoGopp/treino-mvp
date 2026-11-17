@@ -1,0 +1,15 @@
+{
+ "lotes": [
+  {"id": "A1", "nome": "halteres no banco", "ids": ["rosca-scott-banco-inclinado", "crucifixo-halteres", "crucifixo-inverso", "triceps-testa-halteres", "crucifixo-inclinado-halteres", "supino-chao-halteres"]},
+  {"id": "A2", "nome": "elástico e mini band", "ids": ["triceps-elastico-alto", "abducao-elastico", "elevacao-lateral-unilateral-elastico", "rosca-martelo-elastico", "coice-elastico", "abertura-elastico", "remada-curvada-elastico", "remada-unilateral-elastico", "extensao-joelho-mini-band", "abducao-deitado-mini-band", "caminhada-lateral-mini-band"]},
+  {"id": "A3", "nome": "halteres e kettlebell em pé", "ids": ["afundo-tras", "crucifixo-invertido-curvado", "triceps-frances-unilateral-halter", "desenvolvimento-unilateral", "agachamento-halteres", "elevacao-lateral-unilateral", "stiff-unilateral-kettlebell", "desenvolvimento-em-pe-halteres", "goblet-kettlebell"]},
+  {"id": "A4", "nome": "sentado ou deitado, com halter ou caneleira", "ids": ["crucifixo-invertido-sentado", "rosca-concentrada", "elevacao-lateral-deitado", "coice-caneleira", "elevacao-lateral-caneleira", "crucifixo-invertido-caneleira"]},
+  {"id": "A5", "nome": "na polia", "ids": ["puxada-barra-reta", "triceps-barra-reta", "rosca-polia-costas", "supino-inclinado-polia", "crucifixo-polia-baixo", "pull-through", "supino-polia"]},
+  {"id": "A6", "nome": "pendurado, paralelas e suspensão", "ids": ["barra-fixa-negativa", "mergulho", "face-pull-suspensao"]},
+  {"id": "B1", "nome": "barra longa, barra W e barra hexagonal", "ids": ["hip-thrust", "agachamento-barra", "supino-barra", "terra-romeno-barra", "desenvolvimento-barra", "rosca-barra-w", "remada-barra", "terra-hexagonal"]},
+  {"id": "B2", "nome": "smith", "ids": ["agachamento-smith", "supino-smith"]},
+  {"id": "C1", "nome": "máquinas de perna", "ids": ["cadeira-flexora", "cadeira-extensora", "panturrilha-leg-press", "coice-maquina", "aducao-maquina", "abducao-maquina", "leg-press", "mesa-flexora", "hack"]},
+  {"id": "C2", "nome": "máquinas de tronco", "ids": ["puxada-frente", "supino-maquina", "remada-articulada", "desenvolvimento-maquina", "voador", "remada-baixa-estacao", "voador-invertido", "barra-fixa-graviton", "mergulho-graviton"]},
+  {"id": "C3", "nome": "braço, panturrilha, abdômen e bancos especiais", "ids": ["abdominal-maquina", "rosca-maquina", "panturrilha-sentada", "panturrilha-em-pe-maquina", "rosca-scott", "coice-polia", "abducao-polia", "triceps-maquina", "abdominal-declinado", "hiperextensao", "remada-invertida"]}
+ ]
+}
