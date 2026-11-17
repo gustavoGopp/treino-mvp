@@ -314,7 +314,7 @@ As correções foram feitas no texto de origem das regras (`docs/pesquisa/regras
 | `rir.calibracao` e `volume.manutencao.piso` | descrevem o que o app não faz | o texto e a frase dizem "ainda não está no app" |
 | `volume.semanal.minimo` | não dizia o que o mínimo faz | "nos cortes de tempo, um músculo em foco não desce abaixo dele" (é o que o gerador faz) |
 
-**Achado novo, à espera de decisão:** `seguranca.alerta.cardiovascular` diz que o app bloqueia novos treinos até a pessoa confirmar a avaliação, e o app não bloqueia. A frase da regra diz isso com todas as letras. Fazer o bloqueio é mudança de comportamento.
+**Achado novo, arrumado em seguida:** `seguranca.alerta.cardiovascular` dizia que o app bloqueia novos treinos até a pessoa confirmar a avaliação, e o app só orientava. Com o "pode juntar ao main e fazer o que resta" do Gustavo, o bloqueio foi feito no molde da triagem: depois de um treino encerrado por sinal de alerta do coração, o início mostra "Treino pausado por segurança", sem o botão de começar, até a pessoa marcar "Confirmo que fui avaliado e liberado por um médico" e tocar em "Voltar a treinar" (`folhas/12-bloqueio-depois-do-alerta.png`). A data da confirmação fica só no aparelho. A regra é uma função pura (`alertaPendente`, com 6 testes); um treino novo também não começa por outro caminho.
 
-**Testes:** 909 unitários, 178 de ponta a ponta (um novo, do sinal) e os tokens, tudo passando.
+**Testes no fim:** 915 unitários, 179 de ponta a ponta (dois novos: o sinal e o bloqueio) e os tokens, tudo passando.
 

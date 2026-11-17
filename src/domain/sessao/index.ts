@@ -32,6 +32,18 @@ export type ExercicioFeito = {
 export const dorDoExercicio = (e: Pick<ExercicioFeito, 'series' | 'dorSemSerie'>): number =>
   Math.max(0, e.dorSemSerie ?? 0, ...e.series.map((s) => s.dor ?? 0));
 
+/**
+ * seguranca.alerta.cardiovascular: depois de um treino encerrado por um sinal de alerta do coração, o app bloqueia novos
+ * treinos até a pessoa confirmar que foi avaliada. Vale o último treino encerrado assim; a confirmação precisa ser
+ * posterior a ele. O sinal de cauda equina (`alerta`) manda a um pronto-socorro e não entra aqui: a regra dele não
+ * pede bloqueio. Até 17/11/2026 a regra dizia isto e o app só orientava.
+ */
+export function alertaPendente(historico: Pick<Sessao, 'inicio' | 'fim' | 'encerradaPorAlerta' | 'alerta'>[], avaliadoEm?: string): boolean {
+  const ultimo = [...historico].reverse().find((s) => s.encerradaPorAlerta && !s.alerta);
+  if (!ultimo) return false;
+  return !avaliadoEm || Date.parse(avaliadoEm) < Date.parse(ultimo.fim ?? ultimo.inicio);
+}
+
 export type Sessao = {
   id: string;
   diaId: string;
