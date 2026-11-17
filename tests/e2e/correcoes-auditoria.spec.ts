@@ -263,9 +263,11 @@ test('o cartão de texto que não baixou avisa, tenta de novo e, se o navegador 
   const montagem = page.getByRole('region', { name: /Montagem segura/ });
   const recarregar = page.getByRole('button', { name: 'Recarregar o app' });
   await expect(montagem.or(recarregar)).toBeVisible();
-  if (await recarregar.isVisible()) await recarregar.click();
-  await expect(page.getByRole('heading', { name: /Barra fixa só na descida/ })).toBeVisible();
-  await expect(montagem).toBeVisible();
+  // o recarregar troca o documento inteiro: o teste espera o app novo carregar antes de conferir. Com a máquina
+  // ocupada (a rodada completa, em paralelo), isso passava dos 5 s da espera padrão e o teste falhava de vez em quando.
+  if (await recarregar.isVisible()) await Promise.all([page.waitForEvent('load'), recarregar.click()]);
+  await expect(page.getByRole('heading', { name: /Barra fixa só na descida/ })).toBeVisible({ timeout: 15_000 });
+  await expect(montagem).toBeVisible({ timeout: 15_000 });
   await expect(page.getByText('Não deu para carregar o guia em texto')).toHaveCount(0);
   await contexto.close();
 });
