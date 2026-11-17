@@ -35,3 +35,4 @@ export { REGRAS_CRUCIFIXOS } from './crucifixos';
 export { REGRAS_MINI_BAND } from './mini-band';
 export { REGRAS_EXTENSAO_MINI_BAND } from './extensao-joelho-mini-band';
 export { REGRAS_CAMINHADA_LATERAL } from './caminhada-lateral';
+export { REGRAS_QUATRO_APOIOS } from './quatro-apoios';
