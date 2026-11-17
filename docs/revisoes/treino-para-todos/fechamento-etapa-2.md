@@ -96,7 +96,7 @@ Três pontos. Nenhum é de segurança. Os dois primeiros você já conhece; o te
 
 Em ordem do que eu atacaria primeiro. Tudo está em `docs/backlog.md`.
 
-1. **Duplas e drop set para quem está começando** (Gilberto, Ana, Diego). É a crítica que mais se repete nas revisões. Tirar as técnicas foi medido duas vezes e não entrou: o treino deixa de caber no tempo e aparece dia fraco. O caminho provável é outro: menos exercícios por dia para o iniciante. É o teste do "limite de 6 exercícios" que você já marcou para depois.
+1. **Duplas e drop set para quem está começando** (Gilberto, Ana, Diego). É a crítica que mais se repete nas revisões. Tirar as técnicas foi medido duas vezes e não entrou: o treino deixa de caber no tempo e aparece dia fraco. O caminho provável é outro: menos exercícios por dia para o iniciante. O teste do "limite de 6 exercícios" foi feito em 17/11, depois da junção ([`teste-limite-6.md`](teste-limite-6.md)): os revisores preferem a semana com o limite (7 de 8 iniciantes melhoram, nenhum piora na soma), mas um defeito da régua piora em 30 programas, e por isso ele não entrou. É a primeira proposta para a próxima sessão.
 2. **Com 3 focos ou mais, braço acima de perna** (Bruno).
 3. **Quem tem muito tempo fica com dias curtos** (Carla: 43 a 48 minutos em 75). O teto de séries segura; falta decidir o que fazer com a sobra.
 4. **Treino em casa sem equipamento: costas e bíceps com zero** (Elisa, Kátia). O app não inventa improviso; faltam exercícios na biblioteca. É conteúdo, não regra.
@@ -178,7 +178,25 @@ Depois da junção, só os documentos mudaram (esta seção, a página de entrad
 - **Os dados guardados passam da versão 8 para a 9** na primeira abertura (o programa passa a guardar o nível). A migração é automática e tem teste. Ela não volta atrás: um app na versão 9 não abre num código de antes da junção.
 - **O programa muda quando for gerado de novo**, do jeito que os exemplos mostram: exercícios de dois lados em máquina, polia e barra; mais séries onde sobrava tempo; o aviso de "sem melhora" depois de 4, 8 ou 16 treinos, conforme o nível.
 
-**O que fica para depois** está em `docs/backlog.md`: as 13 frases das regras para a sessão de textos rever, o teste próprio do limite de 6 exercícios do iniciante, e os itens da seção 7 desta página.
+## 9.3 O encerramento da sessão (17/11/2026)
+
+Com a aprovação final do Gustavo ("aprovo tudo"), foram feitos os últimos ajustes:
+
+| O que | Como ficou |
+|---|---|
+| As 13 frases das regras | Aprovadas. Duas (`tempo.sobra-series` e `tempo.corte`) recuperaram os limites que tinham perdido para caber em 80 palavras e entraram na lista das regras longas do teste ([`frases-das-regras.md`](frases-das-regras.md)) |
+| O teste próprio do limite de 6 exercícios do iniciante | Feito ([`teste-limite-6.md`](teste-limite-6.md)). Os revisores preferem a semana com o limite (7 de 8 melhoram, nenhuma piora na soma), mas um defeito da régua piora em 30 programas. **Não entrou no app**; é a primeira proposta para a próxima sessão |
+| A verificação automática da `main` | Verde no fim (seção 9.2: as duas falhas depois da junção e as correções) |
+
+**O que fica para a próxima sessão**, em ordem (tudo em `docs/backlog.md`):
+
+1. O limite de 6 exercícios do iniciante de 3 dias de até 60 min, com os três consertos que o teste apontou.
+2. Com 3 focos ou mais, a série que sobra não ir para o braço enquanto a perna está no mínimo (o Bruno).
+3. O que fazer com o tempo que sobra de quem tem muito tempo (a Carla).
+4. As duas correções para os 27 pares "grupo × defeito" que ficaram acima da `main` de antes.
+5. As perguntas que pedem fonte: a rosca Scott e o ombro; o hip thrust e a lombar; barra ou halteres para o objetivo de força.
+
+**O que depende das outras sessões:** a animação ([`pedidos-a-animacao.md`](pedidos-a-animacao.md): a puxada pela frente e o hip thrust primeiro) e o design ([`pedidos-ao-design.md`](pedidos-ao-design.md): a barra de tempo do guia em tela estreita, item 9).
 
 ## 10. Como conferir
 

@@ -1813,6 +1813,20 @@ Em relação ao pacote 0, um único par de grupo e defeito sobe, em 1 programa. 
 
 **Rascunho de post.** Sem post: é trabalho de bastidor.
 
+## Sessão "treino para todos": encerramento (17/11/2026)
+
+**O que mudou.** A etapa 2 está na `main`. Depois da junção, a verificação automática do GitHub falhou duas vezes, e as duas foram consertadas com o ok do Gustavo: um teste antigo do gerador estourava os 5 segundos com a medida de cobertura ligada (com dor forte, cada programa passou a levar cerca de 4 milésimos de segundo; antes eram 3), e no guia do goblet com zoom de 200% a palavra "subida" não cabia na barra de tempo (uma linha de estilo para telas de até 279 px). No fim, a verificação ficou verde.
+
+**O teste que faltava.** O limite de 6 exercícios por treino para o iniciante de 3 dias de até 60 minutos foi medido sozinho, como o Gustavo tinha pedido. Os revisores preferem a semana com o limite: em oito iniciantes, as notas médias sobem de 5,9 · 6,8 · 5,6 para 6,4 · 7,1 · 6,3, e nenhuma pessoa piora na soma. Mas um defeito da régua piora (o foco abaixo da meta aparece em 30 programas a mais), e pela regra da sessão isso basta para não entrar. Fica como a primeira proposta para a próxima sessão, com os três consertos anotados.
+
+**As frases das regras.** O Gustavo aprovou as 13 frases em linguagem simples que a etapa 2 criou ou mudou. Duas delas recuperaram os limites que tinham perdido para caber em 80 palavras.
+
+**A lição.** Antes de mandar qualquer coisa para a `main`, rodar o que a verificação automática roda (com a cobertura ligada e os testes de tela), e não só o `check`.
+
+**Imagem.** Sem imagem: nada mudou nas telas além de uma letra menor na barra de tempo em tela muito estreita.
+
+**Rascunho de post.** "Fechei a sessão com um resultado que eu não esperava. Testei dar ao iniciante menos exercícios por treino: 6 em vez de 8. Os treinadores simulados gostaram mais em sete de oito casos. A minha régua de defeitos disse não: em 30 programas, quem queria peito ficou abaixo da meta. Eu tinha combinado no começo que nenhuma mudança entra se piorar um defeito para alguém, então não entrou. Ficou escrito o que falta consertar. Gostar mais não é o mesmo que estar pronto."
+
 ## Frontend novo: o app refeito na direção "Placar" (12 e 13/11/2026)
 
 **Por quê.** O redesign de 05 a 08/11 arrumou a estrutura das telas, mas o app ainda não tinha acabamento de aplicativo profissional: 528 espaços, alturas e cantos fora de uma escala, emojis no lugar de ícones, caixa dentro de caixa, três cores disputando com o Boneco. O Gustavo pediu o frontend refeito por completo, em duas etapas: primeiro pesquisa e direção, depois a reconstrução.
