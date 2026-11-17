@@ -155,7 +155,7 @@ No app inteiro, pela medição refeita em 17/11 com o roteiro consertado (60 rot
 
 Achado da medição, para o backlog: a página "Entenda o treino" baixa o arquivo das regras e o das fontes assim que abre, e não só quando o bloco "Todas as regras e as fontes" é aberto (o comentário no código diz o contrário). Não quebra nada; custa um download a mais nessa página.
 
-## 6. Fim do treino e semana (proposta; esperando a decisão)
+## 6. Fim do treino e semana (aprovado como está e aplicado em 17/11/2026, commit `57a6348`)
 
 No mesmo padrão: fica o número e a ação; a explicação vai para "Entenda o treino" → "A sua semana e as pausas". Proposta em `propostas/6-fim-e-semana.patch`; imagens em `folhas/6a-fim.png`, `6b-semana.png`, `6c-ofertas.png`, `6d-evolucao-e-apagar.png`, `6e-dor-e-entenda.png`.
 

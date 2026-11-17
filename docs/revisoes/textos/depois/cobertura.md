@@ -35,9 +35,9 @@ Gerado por `scripts/textos/montar.ts` a partir da colheita (`colheita.json`) e d
 | 51 | `/locais` Meus locais | rota | `dados-e-locais/44-locais`<br>`dados-e-locais/49-locais-2-locais`<br>`dados-e-locais/51-locais-bruno` |
 | 52 | `/locais/:id` Editar local e `/locais/novo` Novo local | rota | `dados-e-locais/45-locais-editar`<br>`dados-e-locais/46-locais-novo` |
 | 53 | `/treino` Treino em andamento | rota | `treino/01-serie-vazia`<br>`treino/09-descanso` |
-| 54 | `/treino/fim` Fim do treino | rota | `fim-e-semana/05-fim-do-treino`<br>`fim-e-semana/04-fim-sem-serie`<br>`fim-e-semana/10-fim-encerrado-por-seguranca` |
-| 55 | `/semana` A sua semana | rota | `fim-e-semana/01-semana-vazia`<br>`fim-e-semana/07-semana-1-treino`<br>`fim-e-semana/11-semana-completa` |
-| 56 | `/evolucao/:exId` Evolução | rota | `fim-e-semana/03-evolucao-vazia`<br>`fim-e-semana/08-evolucao-1-treino`<br>`fim-e-semana/12-evolucao-com-historico`<br>`fim-e-semana/16-evolucao-por-local` |
+| 54 | `/treino/fim` Fim do treino | rota | `fim-e-semana/04-fim-do-treino`<br>`fim-e-semana/03-fim-sem-serie`<br>`fim-e-semana/10-fim-encerrado-por-seguranca` |
+| 55 | `/semana` A sua semana | rota | `fim-e-semana/01-semana-vazia`<br>`fim-e-semana/06-semana-1-treino`<br>`fim-e-semana/11-semana-completa` |
+| 56 | `/evolucao/:exId` Evolução | rota | `fim-e-semana/02-evolucao-vazia`<br>`fim-e-semana/08-evolucao-1-treino`<br>`fim-e-semana/12-evolucao-com-historico`<br>`fim-e-semana/16-evolucao-por-local` |
 | 57 | `/dados` Meus dados | rota | `dados-e-locais/01-meus-dados`<br>`dados-e-locais/19-meus-dados-sem-dados`<br>`dados-e-locais/52-meus-dados-bruno` |
 | 58 | `/guia` (leva ao 1º do catálogo) *(não há link para o catálogo dentro do app)* | rota | `guia/43-catalogo` |
 | 59 | `/guia/:id` Guia de execução | rota | `guia/01-tecnica`<br>`guia/18-pelo-programa-tecnica`<br>`guia/43-catalogo` |
@@ -308,23 +308,23 @@ Gerado por `scripts/textos/montar.ts` a partir da colheita (`colheita.json`) e d
 | Linha | O que é | Tipo | Na colheita |
 |---|---|---|---|
 | 67 | "Treino encerrado por segurança" + a orientação e "Ligar para o SAMU: 192" | aviso condicional | `fim-e-semana/10-fim-encerrado-por-seguranca` |
-| 97 | "O que mudou hoje": a semana, os recordes e "N exercício(s) com carga para subir na próxima vez." | aviso condicional | `fim-e-semana/05-fim-do-treino`<br>`fim-e-semana/13-fim-com-recorde` |
-| 158 | "Para a próxima vez": Subir, Manter, Reduzir, Voltar à anterior, Estagnado, Ajustar, Trocar, Calibrar *(colhidos: Calibrar, Manter, Subir, Reduzir, Estagnado e Ajustar; faltam "Voltar à anterior" e "Trocar" (Resumo.tsx:18 a 27). O motivo de cada um saiu do fim do treino e está em "Entenda o treino" → "Os exercícios")* | aviso condicional | `fim-e-semana/05-fim-do-treino`<br>`fim-e-semana/13-fim-com-recorde`<br>`fim-e-semana/35-fim-com-dor`<br>`fim-e-semana/27-fim-com-oferta-de-semana-leve` |
-| 174 | confirmação "Apagar este treino?" | aviso condicional | `fim-e-semana/06-fim-apagar-este-treino` |
+| 97 | "O que mudou hoje": a semana, os recordes e "N exercício(s) com carga para subir na próxima vez." | aviso condicional | `fim-e-semana/04-fim-do-treino`<br>`fim-e-semana/13-fim-com-recorde` |
+| 158 | "Para a próxima vez": Subir, Manter, Reduzir, Voltar à anterior, Estagnado, Ajustar, Trocar, Calibrar *(colhidos: Calibrar, Manter, Subir, Reduzir, Estagnado e Ajustar; faltam "Voltar à anterior" e "Trocar" (Resumo.tsx:18 a 27). O motivo de cada um saiu do fim do treino e está em "Entenda o treino" → "Os exercícios")* | aviso condicional | `fim-e-semana/04-fim-do-treino`<br>`fim-e-semana/13-fim-com-recorde`<br>`fim-e-semana/35-fim-com-dor`<br>`fim-e-semana/27-fim-com-oferta-de-semana-leve` |
+| 174 | confirmação "Apagar este treino?" | aviso condicional | `fim-e-semana/05-fim-apagar-este-treino` |
 
 ### `src/features/acompanhamento/Semana.tsx`
 
 | Linha | O que é | Tipo | Na colheita |
 |---|---|---|---|
 | 35 | faixa "A sua semana" no Início (depois do 1º treino), e o Início com histórico | aviso condicional | `inicio/01-inicio-depois-do-1o-treino`<br>`inicio/30-inicio-semana-completa`<br>`inicio/31-inicio-ana-na-3a-semana` |
-| 72 | frase da semana (5 formas, em src/domain/acompanhamento/semana.ts:144 a 151) | aviso condicional | `fim-e-semana/01-semana-vazia`<br>`fim-e-semana/07-semana-1-treino`<br>`fim-e-semana/14-semana-2-de-3`<br>`fim-e-semana/11-semana-completa` |
+| 72 | frase da semana (5 formas, em src/domain/acompanhamento/semana.ts:144 a 151) | aviso condicional | `fim-e-semana/01-semana-vazia`<br>`fim-e-semana/06-semana-1-treino`<br>`fim-e-semana/14-semana-2-de-3`<br>`fim-e-semana/11-semana-completa` |
 | 76 | "Últimas N semanas" | aviso condicional | `fim-e-semana/11-semana-completa`<br>`fim-e-semana/14-semana-2-de-3` |
 | 94 | "O que subiu nesta semana" (subiu a carga, recorde) | aviso condicional | `fim-e-semana/11-semana-completa` |
-| 137 | estado de cada músculo (na meta, crescendo, mantendo, ainda não treinou) e "o seu programa planeja N de M: …" | aviso condicional | `fim-e-semana/07-semana-1-treino`<br>`fim-e-semana/11-semana-completa` |
-| 145 | "Como ler este quadro" *(o bloco está de saída da Semana: o que ele explica também está em "Entenda o treino" → "A sua semana e as pausas")* | bloco que abre | `fim-e-semana/02-semana-como-ler-este-quadro` |
-| 149 | "Nesta semana, a meta é o que o programa prescreveu para ela." (semana leve ou volta de pausa) / "A meta é a do seu programa." (dentro de "Como ler este quadro") | aviso condicional | `fim-e-semana/32-semana-na-semana-leve`<br>`fim-e-semana/02-semana-como-ler-este-quadro` |
+| 137 | estado de cada músculo (na meta, crescendo, mantendo, ainda não treinou) e "o seu programa planeja N de M: …" | aviso condicional | `fim-e-semana/06-semana-1-treino`<br>`fim-e-semana/11-semana-completa` |
+| 145 | "Como ler este quadro" *(o bloco está de saída da Semana: o que ele explica também está em "Entenda o treino" → "A sua semana e as pausas")* | bloco que abre | *não existe nesta versão do app: fim-e-semana/semana-como-ler-este-quadro* |
+| 149 | "Nesta semana, a meta é o que o programa prescreveu para ela." (semana leve ou volta de pausa) / "A meta é a do seu programa." (dentro de "Como ler este quadro") | aviso condicional | `fim-e-semana/32-semana-na-semana-leve`<br>*não existe nesta versão do app: fim-e-semana/semana-como-ler-este-quadro* |
 | 157 | "Um programa que cabe melhor?" (a revisão da meta) | aviso condicional | `fim-e-semana/15-semana-revisao-da-meta` |
-| 180 | "Sua evolução" (a lista dos exercícios com histórico) | aviso condicional | `fim-e-semana/07-semana-1-treino` |
+| 180 | "Sua evolução" (a lista dos exercícios com histórico) | aviso condicional | `fim-e-semana/06-semana-1-treino` |
 
 ### `src/features/acompanhamento/SemanaLeve.tsx`
 
@@ -338,7 +338,7 @@ Gerado por `scripts/textos/montar.ts` a partir da colheita (`colheita.json`) e d
 
 | Linha | O que é | Tipo | Na colheita |
 |---|---|---|---|
-| 35 | "Ainda não há treino registrado deste exercício. A evolução aparece depois do 1º treino com ele." | estado vazio | `fim-e-semana/03-evolucao-vazia` |
+| 35 | "Ainda não há treino registrado deste exercício. A evolução aparece depois do 1º treino com ele." | estado vazio | `fim-e-semana/02-evolucao-vazia` |
 | 38 | "Em <local>" e "Nas máquinas, cada local tem a sua lista…" (máquina, com 2 locais) | aviso condicional | `fim-e-semana/16-evolucao-por-local` |
 | 73 | resumo da evolução ("<série> · 1 treino" / "Começou com … · agora … · N treinos") e as marcas | aviso condicional | `fim-e-semana/08-evolucao-1-treino`<br>`fim-e-semana/12-evolucao-com-historico`<br>`fim-e-semana/09-evolucao-pelo-programa` |
 
@@ -436,6 +436,10 @@ Gerado por `scripts/textos/montar.ts` a partir da colheita (`colheita.json`) e d
 | `src/features/app/estado.tsx:57` | falha ao abrir o armazenamento do aparelho | Não foi possível ler os dados guardados neste aparelho. | Só quando o IndexedDB recusa a leitura (não quando o dado está num formato inválido, que foi colhido). Aparece nos mesmos lugares do erro colhido: a caixa de erro da Boas-vindas e de Meus dados. |
 | `src/features/treino/Resumo.tsx:18` | rótulos de "Para a próxima vez" não vistos | Voltar à anterior · Trocar | Cada um pede um histórico próprio (a carga que subiu e não rendeu; o exercício interrompido pela dor em sessões seguidas). Foram colhidos Calibrar, Manter, Subir, Reduzir, Estagnado e Ajustar; o motivo de cada um vem de src/domain/progressao e, desde 16/11, aparece em "Entenda o treino" → "Os exercícios". |
 
+## Telas colhidas que a tabela não cita
+
+- `fim-e-semana/07-semana-1-treino-evolucao-aberta`: Semana com 1 treino, com "Evolução (1)" aberto
+
 ## As 41 telas de 13/11, com a mesma régua
 
 `palavrasNaTela` de `docs/revisoes/frontend-novo/textos/medidas-de-texto.json` (a medida "enxuta", depois da etapa 1) e da tela de hoje que refaz o mesmo caminho.
@@ -465,7 +469,7 @@ Gerado por `scripts/textos/montar.ts` a partir da colheita (`colheita.json`) e d
 | 09-treino-descanso | `treino/09-descanso` | 51 | 51 | = |
 | 10-treino-senti-algo | `treino/10-folha-senti-algo` | 73 | 72 | -1 |
 | 11-treino-mais-opcoes | `treino/11-folha-mais-opcoes` | 15 | 15 | = |
-| 09b-treino-serie-com-descanso | `treino/13-serie-com-descanso` | 64 | 64 | = |
+| 09b-treino-serie-com-descanso | `treino/13-serie-com-descanso` | 64 | 63 | -1 |
 | 11b-treino-por-que | *saiu do app* (`treino/folha-por-que-na-2a-serie`) | 202 | — | saiu |
 | 08c-treino-exercicio-2 | `treino/16-exercicio-2` | 59 | 55 | -4 |
 | 09c-treino-hora-da-proxima-serie | `treino/17-hora-da-proxima-serie` | 31 | 31 | = |
@@ -474,16 +478,16 @@ Gerado por `scripts/textos/montar.ts` a partir da colheita (`colheita.json`) e d
 | 08c-treino-exercicio-5 | `treino/20-exercicio-5` | 60 | 53 | -7 |
 | 08c-treino-exercicio-6 | `treino/21-exercicio-6` | 60 | 53 | -7 |
 | 11c-treino-terminar | `treino/22-folha-terminar-com-serie` | 23 | 21 | -2 |
-| 13-fim-do-treino | `fim-e-semana/05-fim-do-treino` | 62 | 54 | -8 |
-| 14-semana | `fim-e-semana/07-semana-1-treino` | 101 | 100 | -1 |
-| 15-evolucao | `fim-e-semana/08-evolucao-1-treino` | 29 | 28 | -1 |
+| 13-fim-do-treino | `fim-e-semana/04-fim-do-treino` | 62 | 40 | -22 |
+| 14-semana | `fim-e-semana/06-semana-1-treino` | 101 | 66 | -35 |
+| 15-evolucao | `fim-e-semana/08-evolucao-1-treino` | 29 | 20 | -9 |
 | 06c-inicio-depois-do-1o-treino | `inicio/01-inicio-depois-do-1o-treino` | 109 | 82 | -27 |
 | 16-meus-dados | `dados-e-locais/01-meus-dados` | 144 | 155 | +11 |
 | 16b-meus-dados-estilo-do-boneco | `dados-e-locais/04-meus-dados-folha-estilo-do-boneco` | 46 | 6 | -40 |
 | 17-locais | `dados-e-locais/44-locais` | 38 | 35 | -3 |
 | 17b-locais-editar | `dados-e-locais/45-locais-editar` | 125 | 90 | -35 |
 | 18-termos | `termos-e-foto/01-termos` | 793 | 792 | -1 |
-| **Soma** (sem a tela que saiu do app) | | **4.817** | **3.440** | -1377 |
+| **Soma** (sem a tela que saiu do app) | | **4.817** | **3.383** | -1434 |
 
 Saíram do app (não entram na soma):
 
@@ -491,29 +495,29 @@ Saíram do app (não entram na soma):
 
 ## Totais
 
-- Telas colhidas: **424**, do app na versão `d3babf4` (publicada em 17/11/2026; colheita de 2026-11-17).
-- Soma de `palavrasNaTela`: **46.703** (a mesma frase conta de novo em cada tela ou folha em que aparece).
+- Telas colhidas: **424**, do app na versão `57a6348` (publicada em 17/11/2026; colheita de 2026-11-17).
+- Soma de `palavrasNaTela`: **45.534** (a mesma frase conta de novo em cada tela ou folha em que aparece).
 - Linhas da tabela de cobertura: 242 (por tipo: rota 37, folha 22, bloco que abre 28, por quê 3, aviso condicional 86, estado vazio 5, carregando 6, erro ou validação 40, resposta de uma ação 15); não alcançados: 9.
 - Falhas anotadas na colheita: 0 (em `colheita.json`, campo `falhas`).
 
 | Fluxo | Telas | palavrasNaTela (soma) | Folhas | Blocos abertos | Estados vazios, erros e avisos |
 |---|---|---|---|---|---|
 | cadastro | 80 | 6.114 | 21 | 1 | 32 |
-| inicio | 85 | 11.416 | 14 | 28 | 10 |
-| treino | 69 | 4.193 | 9 | 3 | 41 |
-| guia | 45 | 5.992 | 0 | 12 | 0 |
-| fim-e-semana | 38 | 5.011 | 4 | 4 | 21 |
-| dados-e-locais | 53 | 8.074 | 8 | 7 | 13 |
+| inicio | 85 | 11.414 | 14 | 28 | 10 |
+| treino | 69 | 4.184 | 9 | 3 | 41 |
+| guia | 45 | 5.983 | 0 | 12 | 0 |
+| fim-e-semana | 38 | 3.763 | 4 | 4 | 21 |
+| dados-e-locais | 53 | 8.173 | 8 | 7 | 13 |
 | termos-e-foto | 29 | 3.622 | 9 | 1 | 18 |
 | avisos-e-erros | 25 | 2.281 | 0 | 0 | 25 |
 
 | Persona | Telas | palavrasNaTela (soma) | Folhas | Blocos abertos | Estados vazios, erros e avisos |
 |---|---|---|---|---|---|
-| ana | 311 | 31.633 | 57 | 33 | 128 |
+| ana | 311 | 30.503 | 57 | 33 | 128 |
 | ana + saúde | 12 | 2.186 | 2 | 3 | 3 |
-| bruno | 16 | 1.829 | 0 | 3 | 2 |
-| carla | 28 | 2.967 | 0 | 6 | 9 |
-| diego | 10 | 1.246 | 1 | 3 | 3 |
-| elisa | 22 | 2.711 | 1 | 5 | 5 |
-| fabio | 11 | 1.190 | 1 | 3 | 3 |
+| bruno | 16 | 1.797 | 0 | 3 | 2 |
+| carla | 28 | 2.961 | 0 | 6 | 9 |
+| diego | 10 | 1.245 | 1 | 3 | 3 |
+| elisa | 22 | 2.710 | 1 | 5 | 5 |
+| fabio | 11 | 1.191 | 1 | 3 | 3 |
 | ninguém | 14 | 2.941 | 3 | 0 | 7 |

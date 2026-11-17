@@ -87,6 +87,14 @@
     [
       "^Sem descansar, tire ",
       "instrução"
+    ],
+    [
+      "^Metade das séries",
+      "instrução"
+    ],
+    [
+      "^Nova semana\\. O próximo treino é|^Ainda sem treino registrado",
+      "estado"
     ]
   ]
 }

@@ -1,22 +1,22 @@
 # Antes e depois dos cortes: palavras por tela
 
-> Gerado por `scripts/textos/comparar.mjs`. Antes: 0b80e68 (2026-11-16). Depois: d3babf4 (2026-11-17). Só entram na conta as telas que existem nas duas medições.
+> Gerado por `scripts/textos/comparar.mjs`. Antes: 0b80e68 (2026-11-16). Depois: 57a6348 (2026-11-17). Só entram na conta as telas que existem nas duas medições.
 
-**Tudo o que cada medição colheu** (com as telas que só existem numa delas): antes, 458 telas, 66.352 palavras; agora, 424 telas, 46.703 palavras.
+**Tudo o que cada medição colheu** (com as telas que só existem numa delas): antes, 458 telas, 66.352 palavras; agora, 424 telas, 45.534 palavras.
 
 ## Por fluxo (só as telas que existem nas duas)
 
 | Fluxo | Telas | Palavras antes | Palavras depois | Mudança | Blocos de 15 ou mais, antes | Depois | Selos à vista, antes | Depois |
 |---|---|---|---|---|---|---|---|---|
 | cadastro | 80 | 7727 | 6114 | −21% | 58 | 28 | 19 | 0 |
-| inicio | 85 | 13426 | 11416 | −15% | 202 | 147 | 252 | 188 |
-| treino | 69 | 4587 | 4193 | −9% | 30 | 28 | 44 | 0 |
-| guia | 45 | 14535 | 5992 | −59% | 230 | 65 | 1 | 0 |
-| fim-e-semana | 37 | 5204 | 4867 | −6% | 61 | 57 | 54 | 6 |
+| inicio | 85 | 13426 | 11414 | −15% | 202 | 147 | 252 | 188 |
+| treino | 69 | 4587 | 4184 | −9% | 30 | 28 | 44 | 0 |
+| guia | 45 | 14535 | 5983 | −59% | 230 | 65 | 1 | 0 |
+| fim-e-semana | 36 | 5055 | 3450 | −32% | 59 | 30 | 52 | 6 |
 | dados-e-locais | 47 | 6284 | 5821 | −7% | 36 | 29 | 8 | 1 |
 | termos-e-foto | 29 | 3627 | 3622 | −0% | 84 | 84 | 8 | 3 |
 | avisos-e-erros | 23 | 2399 | 2174 | −9% | 25 | 23 | 9 | 1 |
-| **Tudo** | 415 | 57789 | 44199 | −24% | 726 | 461 | 395 | 199 |
+| **Tudo** | 414 | 57640 | 42762 | −26% | 724 | 434 | 393 | 199 |
 
 ## cadastro: as 54 telas que mudaram
 
@@ -121,12 +121,12 @@
 | Início, aba "Pernas" (a Carla) | carla | 106 | 80 | −25% |
 | Início depois de mudar o objetivo em Meus dados (a versão nova do programa) | ana | 106 | 81 | −24% |
 | Início, com "Há uma versão nova do seu programa." | ana | 120 | 95 | −21% |
+| Início com a semana completa e o lembrete de cópia | ana | 131 | 107 | −18% |
+| Início da Ana na 3ª semana (passada a fase de aprendizado), com 5 treinos no histórico | ana | 133 | 109 | −18% |
 | Início, antes do 1º treino (o Bruno: intermediário voltando de 12 semanas parado, com 2 locais) | bruno | 135 | 111 | −18% |
 | Início, aba "Inferior A" (o Bruno) | bruno | 111 | 87 | −22% |
 | Início, aba "Superior B" (o Bruno) | bruno | 142 | 118 | −17% |
 | Início, aba "Inferior B" (o Bruno) | bruno | 127 | 103 | −19% |
-| Início com a semana completa e o lembrete de cópia | ana | 131 | 108 | −18% |
-| Início da Ana na 3ª semana (passada a fase de aprendizado), com 5 treinos no histórico | ana | 133 | 110 | −17% |
 | Início, depois de "Manter" nos ajustes possíveis | ana | 99 | 77 | −22% |
 | Início da Ana com dor no ombro (7), no joelho (4) e no punho (1): o aviso "Pela triagem" | ana + saúde | 97 | 75 | −23% |
 | Início, aba "Corpo todo B" (a Ana com dor) | ana + saúde | 98 | 76 | −22% |
@@ -164,7 +164,7 @@
 | Folha "Sobre o programa", com os 2 blocos abertos (a Carla) | carla | 310 | 344 | +11% |
 | Folha "Sobre o programa" enquanto o avaliador chega ("Conferindo o programa…") | ana | 60 | 96 | +60% |
 
-## treino: as 54 telas que mudaram
+## treino: as 56 telas que mudaram
 
 | Tela | Quem vê | Antes | Depois | Mudança |
 |---|---|---|---|---|
@@ -173,7 +173,8 @@
 | Treino da Carla: dia "Inferior", 6º exercício, 1ª série vazia (Panturrilha sentada na máquina) | carla | 87 | 76 | −13% |
 | Treino do Diego (elásticos e barra fixa): 2º exercício, 1ª série vazia (Barra fixa só na descida (negativa)) | diego | 89 | 78 | −12% |
 | Treino do Fábio (barra fixa): 2º exercício, 1ª série vazia (Barra fixa só na descida (negativa)) | fabio | 91 | 80 | −12% |
-| Treino: a série com o guia no modo "Músculos" | ana | 70 | 60 | −14% |
+| Treino: a série com o guia pausado | ana | 70 | 60 | −14% |
+| Treino: série com a carga e sem a reserva ("Falta dizer quantas ainda conseguiria.") | ana | 67 | 57 | −15% |
 | Treino: nota de dor 4 antes da 1ª série | ana | 91 | 81 | −11% |
 | Treino: exercício sem animação, com o cartão de texto fechado (Crucifixo invertido sentado, com o peito nas coxas, com halteres) | ana | 63 | 53 | −16% |
 | Treino na volta da pausa: a carga 10% menor já preenchida ("Hoje: 9 kg") | ana | 66 | 56 | −15% |
@@ -181,46 +182,47 @@
 | Treino da Carla: dia "Inferior", 4º exercício, 1ª série vazia (Cadeira extensora) | carla | 54 | 44 | −19% |
 | Treino da Carla: dia "Inferior", 7º exercício, 1ª série vazia (Adução na cadeira adutora) | carla | 56 | 46 | −18% |
 | Treino da Carla: barra fixa assistida no graviton (a carga é o contrapeso) | carla | 85 | 75 | −12% |
-| Treino do Fábio (barra fixa): 1º exercício, 1ª série vazia (Barra fixa) | fabio | 63 | 53 | −16% |
 | Treino: a série com o guia no modo "Erros" | ana | 70 | 61 | −13% |
-| Treino: a série com o guia pausado | ana | 70 | 61 | −13% |
+| Treino: a série com o guia no modo "Músculos" | ana | 70 | 61 | −13% |
+| Treino: a série com o guia no modo "Trajetória" | ana | 69 | 60 | −13% |
 | Treino: série com a reserva e sem a carga ("Falta escolher a carga.") | ana | 66 | 57 | −14% |
-| Treino: série com a carga e sem a reserva ("Falta dizer quantas ainda conseguiria.") | ana | 67 | 58 | −13% |
 | Treino: 3º exercício do dia A, 1ª série vazia (Supino reto com halteres) | ana | 68 | 59 | −13% |
 | Treino: depois da nota de dor 0 ("Pode seguir.") | ana | 68 | 59 | −13% |
-| Treino: nota de dor 2 antes da 1ª série | ana | 75 | 66 | −12% |
+| Treino: 1ª série de um exercício já feito, com a sugestão do dia ("Hoje: …") | ana | 65 | 56 | −14% |
+| Treino da Elisa (peso do corpo): 1º exercício, 1ª série vazia (Agachamento com o peso do corpo) | elisa | 66 | 57 | −14% |
 | Treino da Elisa (peso do corpo): 2º exercício, 1ª série vazia (Flexão de braço) | elisa | 64 | 55 | −14% |
+| Treino do Diego (elásticos e barra fixa): 1º exercício, 1ª série vazia (Flexão de braço) | diego | 63 | 54 | −14% |
 | Treino do Diego (elásticos e barra fixa): 3º exercício, 1ª série vazia (Agachamento com elástico) | diego | 64 | 55 | −14% |
-| Treino: a série com o guia no modo "Trajetória" | ana | 69 | 61 | −12% |
+| Treino do Fábio (barra fixa): 1º exercício, 1ª série vazia (Barra fixa) | fabio | 63 | 54 | −14% |
+| Treino do Bruno (voltando de pausa): 1º exercício (Supino reto com halteres) | bruno | 65 | 56 | −14% |
 | Treino: 2ª série, com a mensagem da calibração e as séries feitas (uma com dor) | ana | 104 | 96 | −8% |
-| Treino: 1ª série de um exercício já feito, com a sugestão do dia ("Hoje: …") | ana | 65 | 57 | −12% |
 | Treino: exercício com a última série em drop set (Tríceps francês sentado com halter) | ana | 66 | 58 | −12% |
-| Treino da Elisa (peso do corpo): 1º exercício, 1ª série vazia (Agachamento com o peso do corpo) | elisa | 66 | 58 | −12% |
-| Treino do Diego (elásticos e barra fixa): 1º exercício, 1ª série vazia (Flexão de braço) | diego | 63 | 55 | −13% |
 | Treino do Bruno no 2º local: 2º exercício, trocado pelo local, com o motivo (Barra fixa) | bruno | 71 | 63 | −11% |
 | Treino: 1ª série do 1º exercício, vazia (1ª vez no exercício) | ana | 67 | 60 | −10% |
 | Treino: 4º exercício do dia A, 1ª série vazia (Remada unilateral com halter apoiada no banco) | ana | 64 | 57 | −11% |
 | Treino: 5º exercício do dia A, 1ª série vazia (Flexão de joelho deslizando os pés no chão) | ana | 60 | 53 | −12% |
 | Treino: 6º exercício do dia A, 1ª série vazia (Tríceps francês sentado com halter) | ana | 60 | 53 | −12% |
+| Treino: nota de dor 2 antes da 1ª série | ana | 75 | 68 | −9% |
+| Treino: exercício trocado pela alternativa ("No lugar de …, só neste treino.") | ana | 65 | 58 | −11% |
 | Treino da Carla: dia "Inferior", 2º exercício, 1ª série vazia (Stiff com halteres) | carla | 58 | 51 | −12% |
 | Treino da Carla: dia "Inferior", 5º exercício, 1ª série vazia (Panturrilha unilateral no step) | carla | 61 | 54 | −11% |
 | Treino da Carla: dia "Inferior", 8º exercício, 1ª série vazia (Abdominal na polia com corda, ajoelhado) | carla | 60 | 53 | −12% |
 | Treino da Elisa (peso do corpo): 3º exercício, 1ª série vazia (Flexão de joelho deslizando os pés no chão) | elisa | 60 | 53 | −12% |
 | Treino da Elisa (peso do corpo): 4º exercício, 1ª série vazia (Extensão de tríceps com o peso do corpo) | elisa | 60 | 53 | −12% |
 | Treino do Fábio (barra fixa): 3º exercício, 1ª série vazia (Flexão de braço) | fabio | 57 | 50 | −12% |
-| Treino do Bruno (voltando de pausa): 1º exercício (Supino reto com halteres) | bruno | 65 | 59 | −9% |
-| Treino: exercício trocado pela alternativa ("No lugar de …, só neste treino.") | ana | 65 | 60 | −8% |
 | Folha "Terminar o treino agora?" (sem nenhuma série) | ana | 32 | 27 | −16% |
 | Treino: 2º exercício do dia A, 1ª série vazia (Ponte de glúteo com halter) | ana | 59 | 55 | −7% |
 | Treino: exercício encerrado pela dor (a orientação e "Exercício encerrado.") | ana | 73 | 69 | −5% |
 | Folha "Terminar o treino agora?" (com série registrada) | ana | 23 | 21 | −9% |
 | Folha "Terminar o treino agora?" (com exercícios feitos e por fazer) | ana | 23 | 21 | −9% |
 | Folha "O que você sentiu?" | ana | 73 | 72 | −1% |
+| Treino: 2ª série com o descanso numa faixa (e a mensagem da calibração) | ana | 64 | 63 | −2% |
 | Treino: nota de dor 4 com o halter mais leve (não há carga menor) | ana | 79 | 78 | −1% |
 | Treino: nota de dor 4 depois de uma série ("Reduza a carga…") | ana | 95 | 94 | −1% |
 | Treino: descanso depois da última série do exercício ("A seguir · exercício 2 de 6") | ana | 100 | 99 | −1% |
 | Folha de troca aberta pela nota de dor 7, com a orientação | ana | 53 | 52 | −2% |
 | Folha de troca aberta por "Formigamento ou dormência", com a orientação | ana | 36 | 35 | −3% |
+| Treino: último exercício com as séries completas ("Terminar treino") | ana | 61 | 60 | −2% |
 | Treino: 1ª série preenchida | ana | 62 | 63 | +2% |
 
 ## guia: as 45 telas que mudaram
@@ -242,15 +244,15 @@
 | Guia de polia (a Carla): Crucifixo na polia (crossover), modo Técnica | carla | 267 | 62 | −77% |
 | Guia de halter (a Ana, pelo programa): Supino reto com halteres, modo Erros | ana | 302 | 98 | −68% |
 | Guia de halter (a Ana, pelo programa): Supino reto com halteres, modo Músculos | ana | 306 | 102 | −67% |
-| Guia de halter (a Ana, pelo programa): Supino reto com halteres, modo Trajetória | ana | 301 | 100 | −67% |
+| Guia de halter (a Ana, pelo programa): Supino reto com halteres, modo Trajetória | ana | 301 | 97 | −68% |
 | Guia de polia (a Carla): Crucifixo na polia (crossover), modo Erros | carla | 296 | 95 | −68% |
 | Guia de polia (a Carla): Crucifixo na polia (crossover), modo Músculos | carla | 307 | 106 | −65% |
 | Guia de polia (a Carla): Crucifixo na polia (crossover), modo Trajetória | carla | 300 | 99 | −67% |
-| Guia de polia (a Carla): Puxada unilateral ajoelhado na polia alta, modo Técnica | carla | 257 | 59 | −77% |
 | Guia sem contexto, grupo "Novas" (os nomes curtos de todas as animações novas) | ninguém | 524 | 327 | −38% |
+| Guia de polia (a Carla): Puxada unilateral ajoelhado na polia alta, modo Técnica | carla | 257 | 62 | −76% |
 | Guia de polia (a Carla): Puxada unilateral ajoelhado na polia alta, modo Erros | carla | 282 | 91 | −68% |
-| Guia de polia (a Carla): Puxada unilateral ajoelhado na polia alta, modo Trajetória | carla | 277 | 88 | −68% |
-| Guia de polia (a Carla): Puxada unilateral ajoelhado na polia alta, modo Músculos | carla | 291 | 103 | −65% |
+| Guia de polia (a Carla): Puxada unilateral ajoelhado na polia alta, modo Músculos | carla | 291 | 100 | −66% |
+| Guia de polia (a Carla): Puxada unilateral ajoelhado na polia alta, modo Trajetória | carla | 277 | 86 | −69% |
 | Guia de corpo livre (a Elisa): Flexão de braço, modo Técnica | elisa | 248 | 62 | −75% |
 | Guia de corpo livre (a Elisa): Flexão de braço, modo Músculos | elisa | 291 | 107 | −63% |
 | Guia de corpo livre (a Elisa): Agachamento com o peso do corpo, modo Técnica | elisa | 247 | 64 | −74% |
@@ -258,7 +260,7 @@
 | Guia de corpo livre (a Elisa): Flexão de braço, modo Trajetória | elisa | 277 | 95 | −66% |
 | Guia de corpo livre (a Elisa): Agachamento com o peso do corpo, modo Trajetória | elisa | 278 | 97 | −65% |
 | Guia de corpo livre (a Elisa): Agachamento com o peso do corpo, modo Erros | elisa | 281 | 102 | −64% |
-| Guia de corpo livre (a Elisa): Agachamento com o peso do corpo, modo Músculos | elisa | 291 | 112 | −62% |
+| Guia de corpo livre (a Elisa): Agachamento com o peso do corpo, modo Músculos | elisa | 291 | 114 | −61% |
 | Guia: só o bloco "Montagem" aberto | ana | 295 | 140 | −53% |
 | Guia: só o bloco "Execução e tempo" aberto | ana | 267 | 112 | −58% |
 | Guia: só o bloco "Amplitude" aberto | ana | 253 | 98 | −61% |
@@ -267,51 +269,50 @@
 | Guia: só o bloco "Erros comuns" aberto | ana | 285 | 130 | −54% |
 | Guia: só o bloco "O que varia de pessoa para pessoa" aberto | ana | 256 | 101 | −61% |
 | Guia de corpo livre (a Elisa): Agachamento com o peso do corpo, com os 7 blocos abertos | elisa | 562 | 418 | −26% |
-| Guia de corpo livre (a Elisa): Flexão de braço, com os 7 blocos abertos | elisa | 434 | 294 | −32% |
-| Guia de polia (a Carla): Crucifixo na polia (crossover), com os 7 blocos abertos | carla | 505 | 367 | −27% |
-| Guia de polia (a Carla): Puxada unilateral ajoelhado na polia alta, com os 7 blocos abertos | carla | 457 | 320 | −30% |
+| Guia de corpo livre (a Elisa): Flexão de braço, com os 7 blocos abertos | elisa | 434 | 292 | −33% |
+| Guia de polia (a Carla): Crucifixo na polia (crossover), com os 7 blocos abertos | carla | 505 | 365 | −28% |
+| Guia de polia (a Carla): Puxada unilateral ajoelhado na polia alta, com os 7 blocos abertos | carla | 457 | 318 | −30% |
 | Guia de halter (a Ana, pelo programa): Supino reto com halteres, com os 7 blocos abertos | ana | 534 | 398 | −25% |
 | Guia: "Confira em 5 segundos", com um item marcado | ana | 215 | 90 | −58% |
 
-## fim-e-semana: as 37 telas que mudaram
+## fim-e-semana: as 36 telas que mudaram
 
 | Tela | Quem vê | Antes | Depois | Mudança |
 |---|---|---|---|---|
+| Semana com a oferta "Um programa que cabe melhor?" | ana | 329 | 114 | −65% |
+| Semana com a oferta "Semana leve? (opcional)" | ana | 277 | 94 | −66% |
+| Semana completa (3 de 3), com "O que subiu nesta semana", as últimas semanas e a evolução | ana | 293 | 111 | −62% |
+| Semana com a semana leve ativa (a meta é a prescrita para a semana) | ana | 205 | 98 | −52% |
+| Semana com 2 de 3 treinos e uma semana anterior sem treino | ana | 174 | 77 | −56% |
+| Fim do treino com "pesado demais" marcado e a oferta "Semana leve? (opcional)" | ana | 175 | 91 | −48% |
+| Fim do treino com recorde e carga para subir ("O que mudou hoje") | ana | 180 | 97 | −46% |
+| Fim do treino com dor registrada (a linha do exercício diz "Ajustar") | ana | 209 | 129 | −38% |
+| Folha "Avisos" com a dor que se repete como motivo da semana leve | ana | 203 | 147 | −28% |
+| Folha "Avisos": "Semana leve? (opcional)" e os outros avisos | ana | 199 | 147 | −26% |
+| Fim do treino com a semana leve aceita ("Semana leve até …") | ana | 143 | 92 | −36% |
+| Semana com 1 treino | ana | 101 | 66 | −35% |
+| Evolução de um exercício de polia com 2 locais (uma lista por local) | bruno | 75 | 45 | −40% |
 | Início depois de "Ajustar" o tempo (e a versão nova do programa que isso oferece) | ana | 146 | 120 | −18% |
-| Início com o aviso de dor que se repete no mesmo exercício | ana | 162 | 138 | −15% |
+| Início com o aviso de dor que se repete no mesmo exercício | ana | 162 | 137 | −15% |
+| Início com a oferta "Semana leve? (opcional)" na linha do aviso | ana | 123 | 99 | −20% |
 | Início na volta de uma pausa de 22 dias: o cartão "Bem-vindo de volta!" | ana | 145 | 122 | −16% |
 | Início na volta de uma pausa de 15 dias: o cartão "Bem-vindo de volta!" | ana | 145 | 122 | −16% |
 | Início na volta de uma pausa de 60 dias: o cartão "Bem-vindo de volta!" | ana | 145 | 122 | −16% |
 | Início na volta de uma pausa de 200 dias: o cartão "Bem-vindo de volta!" | ana | 150 | 127 | −15% |
 | Início na volta de 200 dias, depois de "Agora não" | ana | 155 | 132 | −15% |
-| Início com a oferta "Semana leve? (opcional)" na linha do aviso | ana | 123 | 100 | −19% |
 | Início com a semana leve ativa | ana | 124 | 101 | −19% |
 | Início com o aviso "O tempo dos seus treinos" | ana | 135 | 112 | −17% |
-| Fim do treino com dor registrada (a linha do exercício diz "Ajustar") | ana | 209 | 189 | −10% |
-| Fim do treino com recorde e carga para subir ("O que mudou hoje") | ana | 180 | 161 | −11% |
-| Fim do treino com "pesado demais" marcado e a oferta "Semana leve? (opcional)" | ana | 175 | 156 | −11% |
-| Fim do treino com a semana leve aceita ("Semana leve até …") | ana | 143 | 124 | −13% |
-| Folha "Avisos": "Semana leve? (opcional)" e os outros avisos | ana | 199 | 189 | −5% |
-| Folha "Avisos": "Semana leve até …", com "Voltar ao normal" | ana | 167 | 157 | −6% |
-| Folha "Avisos" com a dor que se repete como motivo da semana leve | ana | 203 | 193 | −5% |
-| Fim do treino, com a confirmação "Apagar este treino?" | ana | 79 | 70 | −11% |
+| Fim do treino com 1 série (o 1º treino da Ana) | ana | 62 | 40 | −35% |
+| Fim do treino encerrado por um sinal de alerta ("Treino encerrado por segurança", SAMU 192) | ana | 89 | 68 | −24% |
+| Fim do treino sem nenhuma série ("Guardar mesmo assim") | ana | 51 | 31 | −39% |
+| Fim do treino, com a confirmação "Apagar este treino?" | ana | 79 | 59 | −25% |
+| Semana sem nenhum treino (programa novo) | ana | 79 | 60 | −24% |
+| Evolução de um exercício sem treino registrado | ana | 34 | 15 | −56% |
+| Folha "Avisos": "Semana leve até …", com "Voltar ao normal" | ana | 167 | 148 | −11% |
+| Evolução de um exercício com 1 treino | ana | 29 | 20 | −31% |
+| Evolução aberta pela folha do exercício (voltar: "Treino") | ana | 29 | 20 | −31% |
+| Evolução de um exercício com vários treinos ("Começou com … · agora …", recorde) | ana | 85 | 76 | −11% |
 | Folha "Avisos": "O tempo dos seus treinos" | ana | 143 | 134 | −6% |
-| Fim do treino com 1 série (o 1º treino da Ana) | ana | 62 | 54 | −13% |
-| Fim do treino encerrado por um sinal de alerta ("Treino encerrado por segurança", SAMU 192) | ana | 89 | 82 | −8% |
-| Fim do treino sem nenhuma série ("Guardar mesmo assim") | ana | 51 | 45 | −12% |
-| Semana com a oferta "Um programa que cabe melhor?" | ana | 329 | 326 | −1% |
-| Semana, com "Como ler este quadro" aberto | ana | 149 | 147 | −1% |
-| Semana completa (3 de 3), com "O que subiu nesta semana", as últimas semanas e a evolução | ana | 293 | 291 | −1% |
-| Semana com a oferta "Semana leve? (opcional)" | ana | 277 | 275 | −1% |
-| Semana com a semana leve ativa (a meta é a prescrita para a semana) | ana | 205 | 203 | −1% |
-| Semana sem nenhum treino (programa novo) | ana | 79 | 78 | −1% |
-| Evolução de um exercício sem treino registrado | ana | 34 | 33 | −3% |
-| Semana com 1 treino | ana | 101 | 100 | −1% |
-| Evolução de um exercício com 1 treino | ana | 29 | 28 | −3% |
-| Evolução aberta pela folha do exercício (voltar: "Treino") | ana | 29 | 28 | −3% |
-| Evolução de um exercício com vários treinos ("Começou com … · agora …", recorde) | ana | 85 | 84 | −1% |
-| Semana com 2 de 3 treinos e uma semana anterior sem treino | ana | 174 | 173 | −1% |
-| Evolução de um exercício de polia com 2 locais (uma lista por local) | bruno | 75 | 74 | −1% |
 | Folha "Sobre o programa" na volta da pausa (a fase da semana 1) | ana | 107 | 138 | +29% |
 | Folha "Sobre o programa" na semana leve (a fase diz "Semana leve: …") | ana | 108 | 139 | +29% |
 
@@ -416,6 +417,7 @@
 - `treino/treino-na-volta-folha-por-que` Folha "Por quê" da sugestão do dia na volta da pausa (170 palavras)
 - `guia/folha-por-que-da-prescricao` Folha "A prescrição de hoje" (por quê?) (314 palavras)
 - `guia/catalogo-nota-de-montagem-segura-folha-selo` Folha "De onde vem isto" (o selo da montagem segura) (130 palavras)
+- `fim-e-semana/semana-como-ler-este-quadro` Semana, com "Como ler este quadro" aberto (149 palavras)
 - `fim-e-semana/semana-como-ler-folha-selo` Folha "De onde vem isto" (o selo da série efetiva) (74 palavras)
 - `fim-e-semana/fim-folha-o-que-conta` Folha "A sua semana" (o que conta) (206 palavras)
 - `fim-e-semana/fim-folha-para-que-serve` Folha "Hoje foi" (para que serve) (275 palavras)
@@ -436,10 +438,11 @@
 
 ## Telas que só existem na medição de agora
 
-- `fim-e-semana/entenda-a-sua-semana-e-as-pausas` "Entenda o treino", com "A sua semana e as pausas" aberto, na volta de uma pausa de 22 dias (a semana e a mensagem da pausa) (144 palavras)
+- `fim-e-semana/semana-1-treino-evolucao-aberta` Semana com 1 treino, com "Evolução (1)" aberto (70 palavras)
+- `fim-e-semana/entenda-a-sua-semana-e-as-pausas` "Entenda o treino", com "A sua semana e as pausas" aberto, na volta de uma pausa de 22 dias (a semana e a mensagem da pausa) (243 palavras)
 - `dados-e-locais/entenda` "Entenda o treino", com os blocos fechados (46 palavras)
 - `dados-e-locais/entenda-os-exercicios` "Entenda o treino", com "Os exercícios: por que cada um e a próxima carga" aberto (275 palavras)
-- `dados-e-locais/entenda-a-sua-semana` "Entenda o treino", com "A sua semana e as pausas" aberto (102 palavras)
+- `dados-e-locais/entenda-a-sua-semana` "Entenda o treino", com "A sua semana e as pausas" aberto (201 palavras)
 - `dados-e-locais/entenda-por-que-o-app-pergunta` "Entenda o treino", com "Por que o app pergunta e sugere" aberto (415 palavras)
 - `dados-e-locais/entenda-seguranca` "Entenda o treino", com "Segurança" aberto (215 palavras)
 - `dados-e-locais/entenda-todas-as-regras` "Entenda o treino", com "Todas as regras e as fontes" aberto (as regras fechadas) (1200 palavras)
