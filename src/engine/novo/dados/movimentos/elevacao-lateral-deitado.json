@@ -1,0 +1,63 @@
+{
+ "id": "elevacao-lateral-deitado",
+ "nome": "Elevação lateral deitado de lado com halter",
+ "fichaDaTecnica": "docs/pesquisa/animacoes/elevacao-lateral-deitado.md",
+ "fontes": {
+  "ficha": "Ficha da técnica (docs/pesquisa/animacoes/elevacao-lateral-deitado.md): deitado de lado, cabeça apoiada, halter na mão de cima (consenso, 17, G4); braço em arco até quase a vertical, cotovelo levemente dobrado (consenso, idem)",
+  "app": "Texto do app (src/conteudo/exercicios/elevacao-lateral-deitado.json): um halter leve, o chão (com colchonete) ou um banco; deite de lado, a cabeça apoiada no braço de baixo, joelhos dobrados; o halter na mão de cima, braço à frente do corpo e perto da coxa, cotovelo levemente dobrado; subida ~1 s em arco até o braço ficar quase na vertical; pausa curta; descida ~2 s até o halter voltar perto da coxa; 'Corpo de lado, parado'; 'Arco, cotovelo levemente dobrado'; erros 'Rolar o corpo' (o tronco gira para ajudar), 'Jogar o halter' (o embalo tira o trabalho do ombro), 'Dobrar demais o cotovelo' (o braço encurta)",
+  "aprovada": "Animações aprovadas parecidas: a abdução deitado de lado com caneleira (exercicios/quadril-abrir-deitado.ts e quadril-deitado-de-lado.ts: deitado sobre o lado esquerdo, a cabeça no braço de baixo, estendido acima da cabeça) e a elevação com halteres (exercicios/elevar-o-braco.ts: o braço no plano da escápula, o cotovelo levemente dobrado e conduzindo, a pegada neutra, o halter leve de 10 lb)",
+  "objetos": "src/engine/novo/dados/objetos/halter-leve.json (o halter sextavado de 10 lb, RitFit e Titan)",
+  "desenho": "Escolha de desenho desta animação, dentro do que a ficha pede; a conferência mede o resultado"
+ },
+ "param": {
+  "piso": {"v": 0, "un": "cm", "selo": "desenho", "fonte": "desenho", "o": "deitado no chão, sem colchonete: o cartão aceita o chão com colchonete ou um banco, mas o colchonete da tabela (100 × 50 cm, provisório) é curto para o corpo deitado de lado (como na abdução com caneleira aprovada)"},
+  "bracoDeBaixo.abre": {"v": 28, "un": "graus", "selo": "desenho", "fonte": "aprovada", "o": "o braço de baixo estendido acima da cabeça, deitado no chão, um pouco à frente da linha do corpo (o da abdução aprovada)"},
+  "bracoDeBaixo.prot": {"v": 0, "un": "graus", "selo": "desenho", "fonte": "aprovada", "o": "o ombro de baixo não vai para a frente (o da abdução aprovada)"},
+  "bracoDeBaixo.elev": {"v": 30, "un": "graus", "selo": "desenho", "fonte": "aprovada", "o": "com o braço acima da cabeça e o peso do corpo em cima, o ombro de baixo sobe 30° de clavícula além do ritmo do braço: o lado do peito apoia no chão e a cabeça desce até o braço (o da abdução aprovada)"},
+  "bracoDeBaixo.cotovelo": {"v": 15, "un": "graus", "selo": "desenho", "fonte": "aprovada", "o": "o cotovelo de baixo quase estendido (o da abdução aprovada)"},
+  "maoDeCima.frente": {"v": 20, "un": "cm", "selo": "desenho", "fonte": "aprovada", "o": "só para a conta da altura do corpo deitado (o núcleo apoia a mão de cima no chão à frente do peito); aqui a mão de cima segura o halter"},
+  "maoDeCima.abaixo": {"v": 2, "un": "cm", "selo": "desenho", "fonte": "aprovada", "o": "idem: só para a conta do corpo deitado"},
+  "cabecaNoBraco": {"v": 0.5, "un": "cm", "selo": "consenso", "fonte": "app", "o": "a cabeça apoiada no braço de baixo (a pele da cabeça a 0,5 cm da do braço)"},
+  "pernas.quadril": {"v": 40, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "joelhos dobrados (o cartão): as duas coxas 40° à frente da linha do corpo, uma sobre a outra, para dar base sem tapar a mão embaixo (a ficha não dá número)"},
+  "pernas.joelho": {"v": 85, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "os dois joelhos dobrados a 85° (a ficha não dá número)"},
+  "pernas.folga": {"v": 0, "un": "cm", "selo": "desenho", "fonte": "desenho", "o": "a perna de cima deitada sobre a de baixo (a pele de uma encosta na da outra, do meio da coxa ao tornozelo)"},
+  "pe.flexaoPlantar": {"v": 10, "un": "graus", "selo": "desenho", "fonte": "aprovada", "o": "os pés relaxados, 10° de flexão plantar (o da abdução aprovada)"},
+  "plano.baixo": {"v": 105, "un": "graus", "selo": "desenho", "fonte": "app", "o": "embaixo, o braço à frente do corpo e perto da coxa (o cartão): o úmero sai do ombro para os pés e para a frente, 105° à frente do plano do corpo, e o halter pende para o chão na frente da coxa de cima; a elevação embaixo sai da folga até a coxa"},
+  "plano": {"v": 20, "un": "graus", "selo": "desenho", "fonte": "aprovada", "o": "o braço sobe em arco, um pouco à frente do plano do corpo: 20° (a elevação com halteres aprovada usa 30°, no meio da faixa de ~20° a ~40° do texto dela; deitado, com 20° o braço chega mais perto da vertical)"},
+  "plano.transicao": {"v": 0.75, "un": "fração", "selo": "desenho", "fonte": "desenho", "o": "o braço passa do plano de baixo para o da subida nos primeiros três quartos do caminho, sem tranco (na elevação com halteres aprovada, na primeira metade; deitado, com a volta maior, de 105° para 20°, a metade dava um salto de velocidade de 18% no cotovelo)"},
+  "braco.topo": {"v": 86, "un": "graus", "selo": "consenso", "fonte": "ficha", "o": "em cima, o braço quase na vertical (a ficha): o úmero 86° acima da linha do corpo, no plano de 20° (com o tronco deitado, o braço fica uns 20° antes da vertical, um pouco à frente; a ficha não dá número)"},
+  "cotovelo": {"v": 15, "un": "graus", "selo": "consenso", "fonte": "ficha", "o": "o cotovelo levemente dobrado, o mesmo ângulo no movimento todo (a ficha; 15°, como na elevação com halteres aprovada)"},
+  "cotovelo.giro": {"v": 20, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "no alto, o úmero gira 20° para dentro e o cotovelo conduz um pouco (na elevação em pé aprovada, 50°: lá o braço para na horizontal; deitado, com o braço quase vertical, 50° viravam o antebraço para os pés)"},
+  "polegar.paraCima": {"v": 0, "un": "graus", "selo": "desenho", "fonte": "desenho", "o": "a pegada neutra o movimento todo (a ficha não pede o polegar para cima)"},
+  "carga.folga": {"v": 1.5, "un": "cm", "selo": "desenho", "fonte": "aprovada", "o": "embaixo, o halter perto da coxa (o cartão): a folga entre a cabeça do halter e a pele da coxa, como na elevação com halteres aprovada"},
+  "carga": {"v": 4.5, "un": "kg", "selo": "desenho", "fonte": "objetos", "o": "um halter leve (a ficha): o sextavado de 10 lb da tabela, o menor dela"},
+  "erro.rola.graus": {"v": 30, "un": "graus", "selo": "desenho", "fonte": "app", "o": "erro: o tronco gira para ajudar (o cartão): a bacia e o tronco rolam 30° para trás no alto (como no erro de rolar da abdução aprovada)"},
+  "erro.embalo.alem": {"v": 32, "un": "graus", "selo": "desenho", "fonte": "app", "o": "erro: o embalo joga o halter, que passa do topo e da vertical, para trás do corpo (32° além do topo), onde o ombro deixa de trabalhar (como o 'Subir alto demais com tranco' aprovado, em que o impulso joga a perna além do topo)"},
+  "erro.cotovelo.dobra": {"v": 80, "un": "graus", "selo": "desenho", "fonte": "app", "o": "erro: o cotovelo dobra 80° (o cartão: o braço encurta)"}
+ },
+ "fases": [
+  {"nome": "Embaixo", "tipo": "pausa", "dur": 0.4, "de": 0, "ate": 0, "respira": "INSPIRA", "tempo": "corpo de lado", "selo": "consenso", "fonte": "app"},
+  {"nome": "Subida · concêntrica", "tipo": "conc", "dur": 1.1, "de": 0, "ate": 1, "respira": "EXPIRA", "tempo": "~1 s", "selo": "consenso", "fonte": "app"},
+  {"nome": "No alto", "tipo": "pausa", "dur": 0.4, "de": 1, "ate": 1, "respira": "FIRME", "tempo": "pausa curta", "selo": "consenso", "fonte": "app"},
+  {"nome": "Descida · excêntrica", "tipo": "exc", "dur": 2, "de": 1, "ate": 0, "respira": "INSPIRA", "tempo": "~2 s", "selo": "consenso", "fonte": "app"}
+ ],
+ "contatos": ["pelve", "joelho.L", "pe.L"],
+ "regras": [
+  {"id": "quadril-deitado-de-lado-no-chao", "pede": "deitado de lado: a bacia e o peito no chão, a cabeça apoiada no braço de baixo", "selo": "consenso", "fonte": "ficha"},
+  {"id": "quadril-empilhado", "pede": "corpo de lado, parado: sem rolar nem dobrar a cintura", "selo": "consenso", "fonte": "app"},
+  {"id": "quadril-pernas-sem-se-atravessar", "pede": "as duas pernas não se atravessam", "selo": "desenho", "fonte": "desenho"},
+  {"id": "elevacao-deitado-braco-quase-vertical", "pede": "o braço sobe em arco até quase a vertical, um pouco à frente do corpo", "selo": "consenso", "fonte": "ficha"},
+  {"id": "elevacao-deitado-cotovelo-levemente-dobrado", "pede": "o cotovelo levemente dobrado, o mesmo o movimento todo", "selo": "consenso", "fonte": "ficha"},
+  {"id": "elevacao-deitado-halter-perto-da-coxa", "pede": "embaixo, o halter perto da coxa, à frente do corpo, sem encostar nem atravessar", "selo": "consenso", "fonte": "app"}
+ ],
+ "erros": [
+  {"id": "rola", "instante": 1, "titulo": "Rolar o corpo", "vista": "quina", "oQueMuda": "a bacia e o tronco rolam 30° para trás e levam o braço junto, para trás do corpo", "destaca": ["corpo"], "linha": ["ombro:L", "ombro:R"], "foco": "ombro:R"},
+  {"id": "embalo", "instante": 1, "titulo": "Jogar o halter", "vista": "frontal", "oQueMuda": "o halter é jogado: o braço passa da vertical e vai para trás do corpo", "destaca": ["bracos"], "linha": ["ombro:R", "cotovelo:R", "pegada:R"], "foco": "pegada:R"},
+  {"id": "cotovelo", "instante": 1, "titulo": "Dobrar demais o cotovelo", "vista": "frontal", "oQueMuda": "o cotovelo dobra 80°: o braço encurta", "destaca": ["bracos"], "linha": ["ombro:R", "cotovelo:R", "pegada:R"], "foco": "cotovelo:R"}
+ ],
+ "simetrico": false,
+ "rotulos": [
+  {"vista": "frontal", "texto": "corpo de lado, parado", "ponto": "c7", "selo": "consenso", "fonte": "app"},
+  {"vista": "frontal", "texto": "arco, cotovelo levemente dobrado", "ponto": "cotovelo:R", "selo": "consenso", "fonte": "app"}
+ ]
+}
