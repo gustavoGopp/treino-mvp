@@ -1856,7 +1856,7 @@ O celular lento é o Chromium com a CPU 4 vezes mais lenta; nada foi medido num 
 | Termos e foto | 3.627 | 3.314 | −9% |
 | **Tudo** | 57.640 | 41.107 | −29% |
 
-Contando tudo o que cada medição colheu: 458 telas e 66.352 palavras antes; 424 telas e 44.017 depois (as folhas de "por quê?" e de selo não existem mais). Os blocos de 15 palavras ou mais foram de 724 para 391, e os selos à vista, de 393 para 199, todos dentro de "Entenda o treino" e dos termos. A conta do início ainda carrega o texto que foi para "Entenda o treino": as telas antigas "Sobre o programa" e "Como ler" são medidas lá, com o mesmo nome, para a comparação casar. A tabela completa, tela por tela, está em `revisoes/textos/depois/comparacao.md`.
+Contando tudo o que cada medição colheu: 458 telas e 66.352 palavras antes; 424 telas e 44.017 depois (as folhas de "por quê?" e de selo não existem mais). Os blocos de 15 palavras ou mais foram de 724 para 391, e os selos à vista, de 393 para 199: os que restam estão em "Entenda o treino", nos termos e na folha de privacidade "o que sai daqui". A conta do início ainda carrega o texto que foi para "Entenda o treino": as telas antigas "Sobre o programa" e "Como ler" são medidas lá, com o mesmo nome, para a comparação casar. A tabela completa, tela por tela, está em `revisoes/textos/depois/comparacao.md`.
 
 **O que não se perdeu.**
 - Segurança: a triagem, o "Senti algo", os sinais de alerta, o aviso de dor que se repete e o "Treino encerrado por segurança" com o SAMU 192 não mudaram.
